@@ -111,6 +111,14 @@ support the type distinction.
 
 If the target repeats `deque::at(i)` arithmetic, caching a reference may be semantically equivalent but produce irreconcilable code. Conversely, a standalone object may repeat work that LTCG removed. Prefer the form supported by the decompilation and call structure, then classify the remaining optimizer difference honestly.
 
+For mixed scalar/floating member calls, recover parameter order from stack
+construction before trusting decompiler prototypes. In the result-menu render
+path, the callee receives `(float x, float y, unsigned index)`: VC8 pushes the
+integer first, then reserves eight bytes and stores the two x87 float results.
+An index-first declaration preserved behavior but produced a different
+three-byte-longer call sequence; the corrected declaration made the entire
+267-byte caller exact.
+
 ## 6. Branch, register, and expression shaping
 
 Change source shape only after ABI and relocations are correct.
@@ -158,6 +166,14 @@ Map the first failure to an action:
 - late divergence around calls/cleanup: inspect ownership, destructor order, EH state, and calling convention.
 
 Comparator support should stay fail-closed. Extending decorated-name resolution or a well-defined relocation category is appropriate; ignoring bytes or accepting arbitrary externals is not.
+
+A generated scalar deleting destructor may call a source destructor that is
+defined in another COMDAT section of the same COFF object. Such a `REL32`
+target is local rather than undefined, but it is still safe to relocate when
+its class-qualified short name has a unique address in `known-symbols.csv`.
+Treat unknown local calls exactly like unknown externals and fail closed; do
+not reject all section-defined call targets before attempting the proven name
+mapping.
 
 ## 10. Measurement and evidence
 

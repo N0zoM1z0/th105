@@ -37,11 +37,11 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00402000,92,0x00402061,FUN_00402000,,,unclassified,0.00,unknown,undefined FUN_00402000(void),false,,,,
 0x00402070,27,0x0040208D,FUN_00402070,,,unclassified,0.00,unknown,undefined FUN_00402070(void),false,,,,
 0x00402090,27,0x004020AD,FUN_00402090,,,unclassified,0.00,unknown,undefined FUN_00402090(void),false,,,,
-0x004020B0,218,0x00402189,FUN_004020b0,,,unclassified,0.00,unknown,undefined FUN_004020b0(void),false,,,,
+0x004020B0,218,0x00402189,FUN_004020b0,ResultString28_assign_copy,ui,identified,0.00,unknown,undefined FUN_004020b0(void),false,,Result-list deque insertion assigns a checked string into an allocated 0x1C slot,,
 0x00402190,14,0x0040219D,FUN_00402190,,,unclassified,0.00,unknown,undefined FUN_00402190(void),false,,,,
 0x004021A0,5,0x004021A4,thunk_FUN_00402400,,,unclassified,0.00,unknown,undefined thunk_FUN_00402400(void),true,,,,
 0x004021B0,5,0x004021B4,thunk_FUN_00402450,,,unclassified,0.00,unknown,undefined thunk_FUN_00402450(void),true,,,,
-0x004021C0,193,0x00402280,FUN_004021c0,,,unclassified,0.00,unknown,undefined FUN_004021c0(void),false,,,,
+0x004021C0,193,0x00402280,FUN_004021c0,ResultString28_assign_buffer,ui,identified,0.00,unknown,undefined FUN_004021c0(void),false,,ResultList population constructs display text from its formatted row buffer,,
 0x00402290,131,0x00402312,FUN_00402290,,,unclassified,0.00,unknown,undefined FUN_00402290(void),false,,,,
 0x00402320,184,0x004023DB,FUN_00402320,,,unclassified,0.00,unknown,undefined FUN_00402320(void),false,,,,
 0x004023E0,26,0x004023F9,FUN_004023e0,,,unclassified,0.00,unknown,undefined FUN_004023e0(void),false,,,,
@@ -383,8 +383,8 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0040F5C0,90,0x0040F619,FUN_0040f5c0,,,unclassified,0.00,unknown,undefined FUN_0040f5c0(void),false,,,,
 0x0040F620,344,0x0040F77A,FUN_0040f620,,,unclassified,0.00,unknown,undefined FUN_0040f620(void),false,,,,
 0x0040F780,119,0x0040F7FC,FUN_0040f780,,,unclassified,0.00,unknown,undefined FUN_0040f780(void),false,,,,
-0x0040F800,338,0x0040F954,FUN_0040f800,,,unclassified,0.00,unknown,undefined FUN_0040f800(void),false,,,,
-0x0040F960,143,0x0040F9F7,FUN_0040f960,,,unclassified,0.00,unknown,undefined FUN_0040f960(void),false,,,,
+0x0040F800,338,0x0040F954,FUN_0040f800,ResultStringDeque20_grow,ui,identified,0.00,unknown,undefined FUN_0040f800(void),false,,Inlined result-string deque push grows its map through this checked helper,,
+0x0040F960,143,0x0040F9F7,FUN_0040f960,destroy_result_index_deque,ui,identified,0.00,__fastcall,void destroy_result_index_deque(void * deque),false,,ResultList destructor and population reset the checked index deque at +0xB8,root,Shared checked-deque storage release
 0x0040FA00,253,0x0040FAFC,FUN_0040fa00,,,unclassified,0.00,unknown,undefined FUN_0040fa00(void),false,,,,
 0x0040FB00,82,0x0040FB54,FUN_0040fb00,,,unclassified,0.00,unknown,undefined FUN_0040fb00(void),false,,,,
 0x0040FB60,123,0x0040FBDA,FUN_0040fb60,,,unclassified,0.00,unknown,undefined FUN_0040fb60(void),false,,,,
@@ -864,7 +864,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00427980,203,0x00427A4A,FUN_00427980,,,unclassified,0.00,unknown,undefined FUN_00427980(void),false,,,,
 0x00427A50,100,0x00427AB3,FUN_00427a50,,,unclassified,0.00,unknown,undefined FUN_00427a50(void),false,,,,
 0x00427AC0,240,0x00427BAF,FUN_00427ac0,,,unclassified,0.00,unknown,undefined FUN_00427ac0(void),false,,,,
-0x00427BD0,100,0x00427C33,FUN_00427bd0,,,unclassified,0.00,unknown,undefined FUN_00427bd0(void),false,,,,
+0x00427BD0,100,0x00427C33,FUN_00427bd0,ResultReplayDeque20_at,ui,identified,0.00,__thiscall,"short * ResultReplayDeque20_at(void * this, unsigned int index)",false,,CMenuResult active-update target instructions and container offset trace,root,Checked replay identifier deque accessor
 0x00427C40,183,0x00427CF6,FUN_00427c40,,,unclassified,0.00,unknown,undefined FUN_00427c40(void),false,,,,
 0x00427D00,187,0x00427DBA,FUN_00427d00,,,unclassified,0.00,unknown,undefined FUN_00427d00(void),false,,,,
 0x00427DC0,8,0x00427DC7,FUN_00427dc0,,,unclassified,0.00,unknown,undefined FUN_00427dc0(void),false,,,,
@@ -887,7 +887,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004295C0,122,0x00429639,FUN_004295c0,,,unclassified,0.00,unknown,undefined FUN_004295c0(void),false,,,,
 0x00429640,35,0x00429662,FUN_00429640,,,unclassified,0.00,unknown,undefined FUN_00429640(void),false,,,,
 0x00429670,1284,0x00429B85,FUN_00429670,,,unclassified,0.00,unknown,undefined FUN_00429670(void),false,,,,
-0x00429B90,119,0x00429C06,FUN_00429b90,,,unclassified,0.00,unknown,undefined FUN_00429b90(void),false,,,,
+0x00429B90,119,0x00429C06,FUN_00429b90,ResultReplayString_assign,ui,identified,0.00,__thiscall,"void ResultReplayString_assign(void * this, const short * source)",false,,CMenuResult active-update target instructions and destination offset 0x30,root,Assigns selected replay identifier into match setup
 0x00429C10,1748,0x0042A329,FUN_00429c10,,,unclassified,0.00,unknown,undefined FUN_00429c10(void),false,,,,
 0x00429E88,32,0x00429EA7,Catch_All@00429e88,,,unclassified,0.00,unknown,undefined Catch_All@00429e88(void),false,,,,
 0x0042A1CF,38,0x0042A1F4,Catch_All@0042a1cf,,,unclassified,0.00,unknown,undefined Catch_All@0042a1cf(void),false,,,,
@@ -970,8 +970,8 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0042D2C0,854,0x0042D61B,FUN_0042d2c0,,,unclassified,0.00,unknown,undefined FUN_0042d2c0(void),false,,,,
 0x0042D620,95,0x0042D67E,FUN_0042d620,,,unclassified,0.00,unknown,undefined FUN_0042d620(void),false,,,,
 0x0042D680,200,0x0042D748,FUN_0042d680,,,unclassified,0.00,unknown,undefined FUN_0042d680(void),false,,,,
-0x0042D750,118,0x0042D7C5,FUN_0042d750,,,unclassified,0.00,unknown,undefined FUN_0042d750(void),false,,,,
-0x0042D7D0,84,0x0042D823,FUN_0042d7d0,,,unclassified,0.00,unknown,undefined FUN_0042d7d0(void),false,,,,
+0x0042D750,118,0x0042D7C5,FUN_0042d750,ResultNameResolver_ctor,ui,identified,0.00,unknown,undefined FUN_0042d750(void),false,,ResultList population constructs the 0x20-byte spell-name resolver,,
+0x0042D7D0,84,0x0042D823,FUN_0042d7d0,ResultNameResolver_dtor,ui,identified,0.00,unknown,undefined FUN_0042d7d0(void),false,,ResultList population destroys its spell-name resolver on completion,,
 0x0042D850,5,0x0042D854,thunk_FUN_0040f780,,,unclassified,0.00,unknown,undefined thunk_FUN_0040f780(void),true,,,,
 0x0042D860,990,0x0042DC3D,FUN_0042d860,,,unclassified,0.00,unknown,undefined FUN_0042d860(void),false,,,,
 0x0042DC40,2390,0x0042E5BB,FUN_0042dc40,,,unclassified,0.00,unknown,undefined FUN_0042dc40(void),false,,,,
@@ -1171,7 +1171,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004380A0,81,0x004380FE,FUN_004380a0,,,unclassified,0.00,unknown,undefined FUN_004380a0(void),false,,,,
 0x00438100,40,0x00438127,FUN_00438100,,,unclassified,0.00,unknown,undefined FUN_00438100(void),false,,,,
 0x00438190,7,0x00438196,FUN_00438190,,,unclassified,0.00,unknown,undefined FUN_00438190(void),false,,,,
-0x004381A0,4,0x004381A3,FUN_004381a0,,,unclassified,0.00,unknown,undefined FUN_004381a0(void),false,,,,
+0x004381A0,4,0x004381A3,FUN_004381a0,ResultListBase_entry_count,ui,identified,0.00,__thiscall,int ResultListBase_entry_count(void * this),false,,Target instructions return the base field at offset 0xA4,root,Entry count accessor used by CMenuResult
 0x004381B0,165,0x00438254,FUN_004381b0,,,unclassified,0.00,unknown,undefined FUN_004381b0(void),false,,,,
 0x00438260,164,0x00438303,FUN_00438260,,,unclassified,0.00,unknown,undefined FUN_00438260(void),false,,,,
 0x00438310,189,0x004383CC,FUN_00438310,,,unclassified,0.00,unknown,undefined FUN_00438310(void),false,,,,
@@ -1180,16 +1180,16 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004384D0,140,0x0043855B,FUN_004384d0,,,unclassified,0.00,unknown,undefined FUN_004384d0(void),false,,,,
 0x00438560,123,0x004385E6,FUN_00438560,,,unclassified,0.00,unknown,undefined FUN_00438560(void),false,,,,
 0x004385F0,26,0x00438609,FUN_004385f0,,,unclassified,0.00,unknown,undefined FUN_004385f0(void),false,,,,
-0x00438610,100,0x00438673,FUN_00438610,,,unclassified,0.00,unknown,undefined FUN_00438610(void),false,,,,
-0x00438680,57,0x004386B8,FUN_00438680,,,unclassified,0.00,unknown,undefined FUN_00438680(void),false,,,,
+0x00438610,100,0x00438673,FUN_00438610,ResultPointerDeque20_at,ui,identified,0.00,__thiscall,"unsigned int * ResultPointerDeque20_at(void * this, unsigned int index)",false,,CMenuResult active-update target instructions and result-list member offsets,root,Checked result metadata deque accessor
+0x00438680,57,0x004386B8,FUN_00438680,ResultListBase_render_row,ui,identified,0.00,__thiscall,"void ResultListBase_render_row(void * this, float x, float y, unsigned int index)",false,,CMenuResult render call site target stack construction and exact caller match,root,Renders one visible result row
 0x004386C0,28,0x004386DB,FUN_004386c0,,,unclassified,0.00,unknown,undefined FUN_004386c0(void),false,,,,
 0x004386E0,153,0x0043877B,FUN_004386e0,,,unclassified,0.00,unknown,undefined FUN_004386e0(void),false,,,,
 0x00438780,230,0x00438868,FUN_00438780,,,unclassified,0.00,unknown,undefined FUN_00438780(void),false,,,,
 0x00438870,341,0x004389C7,FUN_00438870,,,unclassified,0.00,unknown,undefined FUN_00438870(void),false,,,,
 0x004389D0,338,0x00438B24,FUN_004389d0,,,unclassified,0.00,unknown,undefined FUN_004389d0(void),false,,,,
 0x00438B30,112,0x00438B9F,FUN_00438b30,,,unclassified,0.00,unknown,undefined FUN_00438b30(void),false,,,,
-0x00438BA0,128,0x00438C1F,FUN_00438ba0,,,unclassified,0.00,unknown,undefined FUN_00438ba0(void),false,,,,
-0x00438C20,215,0x00438CFF,FUN_00438c20,,,unclassified,0.00,unknown,undefined FUN_00438c20(void),false,,,,
+0x00438BA0,128,0x00438C1F,FUN_00438ba0,ResultListBase_ctor,ui,identified,0.00,__thiscall,void ResultListBase_ctor(void * this),false,,ResultList constructor first constructs the 0xB8 polymorphic list/render base,root,Base layout boundary established by derived member offsets
+0x00438C20,215,0x00438CFF,FUN_00438c20,ResultListBase_dtor,ui,identified,0.00,__thiscall,void ResultListBase_dtor(void * this),false,,ResultList destructor tail-calls the polymorphic 0xB8 base destructor,root,Base layout boundary established by derived member offsets
 0x00438D00,166,0x00438DA5,FUN_00438d00,,,unclassified,0.00,unknown,undefined FUN_00438d00(void),false,,,,
 0x00438DB0,1056,0x004391EF,FUN_00438db0,,,unclassified,0.00,unknown,undefined FUN_00438db0(void),false,,,,
 0x004391F0,1101,0x0043963F,FUN_004391f0,,,unclassified,0.00,unknown,undefined FUN_004391f0(void),false,,,,
@@ -1247,7 +1247,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0043A3D0,95,0x0043A434,FUN_0043a3d0,,,unclassified,0.00,unknown,undefined FUN_0043a3d0(void),false,,,,
 0x0043A440,95,0x0043A4A4,FUN_0043a440,,,unclassified,0.00,unknown,undefined FUN_0043a440(void),false,,,,
 0x0043A4B0,171,0x0043A55A,FUN_0043a4b0,,,unclassified,0.00,unknown,undefined FUN_0043a4b0(void),false,,,,
-0x0043A560,286,0x0043A67D,FUN_0043a560,,,unclassified,0.00,unknown,undefined FUN_0043a560(void),false,,,,
+0x0043A560,286,0x0043A67D,FUN_0043a560,prepare_result_match,ui,identified,0.00,__cdecl,"void prepare_result_match(int mode, int player)",false,,CMenuResult confirmation calls with mode seven and player zero,root,Prepares global match setup for result playback
 0x0043A680,217,0x0043A758,FUN_0043a680,,,unclassified,0.00,unknown,undefined FUN_0043a680(void),false,,,,
 0x0043A760,147,0x0043A7F2,FUN_0043a760,,,unclassified,0.00,unknown,undefined FUN_0043a760(void),false,,,,
 0x0043A800,36,0x0043A823,FUN_0043a800,,,unclassified,0.00,unknown,undefined FUN_0043a800(void),false,,,,
@@ -1444,20 +1444,20 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00444EC0,187,0x00444F7A,FUN_00444ec0,,,unclassified,0.00,unknown,undefined FUN_00444ec0(void),false,,,,
 0x00444F80,350,0x004450DD,FUN_00444f80,,,unclassified,0.00,unknown,undefined FUN_00444f80(void),false,,,,
 0x004450E0,27,0x004450FD,FUN_004450e0,,,unclassified,0.00,unknown,undefined FUN_004450e0(void),false,,,,
-0x00445100,267,0x0044520D,FUN_00445100,,,unclassified,0.00,unknown,undefined FUN_00445100(void),false,,,,
-0x00445210,342,0x00445365,FUN_00445210,,,unclassified,0.00,unknown,undefined FUN_00445210(void),false,,,,
+0x00445100,267,0x0044520D,FUN_00445100,CMenuResult_render,ui,matching,100.00,__thiscall,void CMenuResult_render(void * this),false,src/ui/MenuResult.cpp,scripts/compile-unit.sh src/ui/MenuResult.cpp build/ui-round3/MenuResult.obj then compare-function gives 267/267 exact,root,Renders character stand cursor sixteen result rows design and guide
+0x00445210,342,0x00445365,FUN_00445210,CMenuResult_refresh_selected_character,ui,implemented,0.00,__thiscall,void CMenuResult_refresh_selected_character(void * this),false,src/ui/MenuResultRefresh.cpp,Complete resource reload lazy population and cursor reset path; standalone VC8 probe is 347 bytes versus 342 target,root,Reloads stand texture lazily populates the selected ResultList and resets its row cursor
 0x00445370,5,0x00445374,release_owned_pointer_buffer,,,unclassified,0.00,__fastcall,void release_owned_pointer_buffer(void * buffer),true,,,,
 0x00445380,341,0x004454D7,FUN_00445380,,,unclassified,0.00,unknown,undefined FUN_00445380(void),false,,,,
-0x004454E0,117,0x00445554,FUN_004454e0,,,unclassified,0.00,unknown,undefined FUN_004454e0(void),false,,,,
-0x00445560,128,0x004455DF,FUN_00445560,,,unclassified,0.00,unknown,undefined FUN_00445560(void),false,,,,
-0x004455E0,55,0x00445616,FUN_004455e0,,,unclassified,0.00,unknown,undefined FUN_004455e0(void),false,,,,
-0x00445620,619,0x0044588A,FUN_00445620,,,unclassified,0.00,unknown,undefined FUN_00445620(void),false,,,,
-0x00445890,73,0x004458DB,FUN_00445890,,,unclassified,0.00,unknown,undefined FUN_00445890(void),false,,,,
-0x004458E0,43,0x0044590A,FUN_004458e0,,,unclassified,0.00,unknown,undefined FUN_004458e0(void),false,,,,
-0x00445910,253,0x00445A0F,FUN_00445910,,,unclassified,0.00,unknown,undefined FUN_00445910(void),false,,,,
-0x00445A10,502,0x00445C05,FUN_00445a10,,,unclassified,0.00,unknown,undefined FUN_00445a10(void),false,,,,
-0x00445C10,27,0x00445C2D,FUN_00445c10,,,unclassified,0.00,unknown,undefined FUN_00445c10(void),false,,,,
-0x00445C30,1127,0x0044609C,FUN_00445c30,,,unclassified,0.00,unknown,undefined FUN_00445c30(void),false,,,,
+0x004454E0,117,0x00445554,FUN_004454e0,ResultPointerDeque20_push_back,ui,identified,0.00,unknown,undefined FUN_004454e0(void),false,,ResultList population appends character and language metadata to parallel checked deques,,
+0x00445560,128,0x004455DF,FUN_00445560,ResultList_ctor,ui,matching,100.00,__thiscall,void ResultList_ctor(void * this),false,src/ui/ResultList.cpp,scripts/compile-unit.sh src/ui/ResultList.cpp build/ui-round3/ResultList.obj then compare-function gives 128/128 exact,root,Constructs the 0xB8 base and four 0x14 checked deque members in the 0x108 object
+0x004455E0,55,0x00445616,FUN_004455e0,ResultList_dtor,ui,implemented,0.00,__thiscall,void ResultList_dtor(void * this),false,src/ui/ResultList.cpp,Read-only 18089 Ghidra decompile and natural reverse-order member destruction candidate,root,Releases three owned-pointer deques index deque and 0xB8 base
+0x00445620,619,0x0044588A,FUN_00445620,CMenuResult_update_active,ui,implemented,0.00,__thiscall,bool CMenuResult_update_active(void * this),false,src/ui/MenuResultUpdate.cpp,Complete two-cursor match setup replay-menu and cancellation state machine; standalone VC8 probe is 620 bytes versus 619 target,root,Cursor navigation replay launch result confirmation and cancel state machine
+0x00445890,73,0x004458DB,FUN_00445890,ResultList_scalar_deleting_destructor,ui,identified,0.00,__thiscall,"void * ResultList_scalar_deleting_destructor(void * this, unsigned int flags)",false,,ResultList vtable slot zero and target instruction trace,root,Compiler generated deleting destructor with inlined member cleanup
+0x004458E0,43,0x0044590A,FUN_004458e0,CMenuResult_update,ui,matching,100.00,__thiscall,bool CMenuResult_update(void * this),false,src/ui/MenuResult.cpp,scripts/compile-unit.sh src/ui/MenuResult.cpp build/ui-round3/MenuResult.obj then compare-function gives 43/43 exact,root,Guards the active state machine on selected ResultList entry availability
+0x00445910,253,0x00445A0F,FUN_00445910,CMenuResult_dtor,ui,matching,100.00,__thiscall,void CMenuResult_dtor(void * this),false,src/ui/MenuResult.cpp,scripts/compile-unit.sh src/ui/MenuResult.cpp build/ui-round3/MenuResult.obj then compare-function gives 253/253 exact,root,Releases stand texture list contents design guide ResultList array vector sprite and Menu base
+0x00445A10,502,0x00445C05,FUN_00445a10,CMenuResult_ctor,ui,implemented,0.00,__thiscall,void CMenuResult_ctor(void * this),false,src/ui/MenuResult.cpp,Complete 0x1148 construction and initialization path; standalone VC8 probe is 493 bytes versus 502 target,root,Constructs and initializes the complete result menu including fifteen ResultList elements
+0x00445C10,27,0x00445C2D,FUN_00445c10,CMenuResult_scalar_deleting_destructor,ui,matching,100.00,__thiscall,"void * CMenuResult_scalar_deleting_destructor(void * this, unsigned int flags)",false,src/ui/MenuResult.cpp,Local-symbol relocation support plus compare-function gives 27/27 exact,root,Compiler generated scalar deleting destructor wrapping 0x00445910
+0x00445C30,1127,0x0044609C,FUN_00445c30,ResultList_populate,ui,implemented,0.00,__thiscall,void ResultList_populate(void * this),false,src/ui/ResultListPopulate.cpp,Complete record traversal formatting replay-id and five parallel checked-container population path; standalone VC8 probe is 1003 bytes versus 1127 target,root,Populates formatted spell result rows and parallel checked deques from score records
 0x004460A0,669,0x0044633C,FUN_004460a0,CMenuSelect_update_primary_selection,ui,implemented,0.00,__thiscall,bool CMenuSelect_update_primary_selection(void * this),false,src/ui/MenuSelectPrimary.cpp,TH105_MSVC8_ROOT=/home/c/yann/th105/.tools/msvc80-sp1 TH105_WINEPREFIX=/home/c/yann/th105-systems/.wine-msvc8 TH105_ENABLE_GS=1 scripts/compile-unit.sh src/ui/MenuSelectPrimary.cpp build/ui-round2/MenuSelectPrimary.obj && python3 scripts/compare-function.py 0x004460A0 build/ui-round2/MenuSelectPrimary.obj,root,Complete eight-item selector candidate; first 100 bytes and behavior agree but four new-plus-install expressions retain duplicated null-path blocks in the 752-byte standalone object versus 669-byte target
 0x00446360,114,0x004463D1,FUN_00446360,CMenuSelect_render,ui,matching,100.00,__thiscall,void CMenuSelect_render(void * this),false,src/ui/MenuSelect.cpp,TH105_MSVC8_ROOT=/home/c/yann/th105/.tools/msvc80-sp1 TH105_WINEPREFIX=/home/c/yann/th105-systems/.wine-msvc8 TH105_ENABLE_GS=1 scripts/compile-unit.sh src/ui/MenuSelect.cpp build/ui-round2/MenuSelect.obj && python3 scripts/compare-function.py 0x00446360 build/ui-round2/MenuSelect.obj,root,Exact 114-byte render including alternate list layout cursor coordinates design resource and both guide overlays
 0x004463E0,400,0x00446575,FUN_004463e0,CMenuSelect_update_player_assignment,ui,matching,100.00,__thiscall,bool CMenuSelect_update_player_assignment(void * this),false,src/ui/MenuSelectPlayer.cpp,TH105_MSVC8_ROOT=/home/c/yann/th105/.tools/msvc80-sp1 TH105_WINEPREFIX=/home/c/yann/th105-systems/.wine-msvc8 TH105_ENABLE_GS=1 scripts/compile-unit.sh src/ui/MenuSelectPlayer.cpp build/ui-round2/MenuSelectPlayer.obj && python3 scripts/compare-function.py 0x004463E0 build/ui-round2/MenuSelectPlayer.obj,root,Exact 400-byte player-profile assignment with two 28-byte checked SSO strings item colors input invalidation and selected-profile reload
@@ -1517,7 +1517,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0044B900,696,0x0044BBB7,FUN_0044b900,,,unclassified,0.00,unknown,undefined FUN_0044b900(void),false,,,,
 0x0044BBD0,591,0x0044BCB2,FUN_0044bbd0,,,unclassified,0.00,unknown,undefined FUN_0044bbd0(void),false,,,,
 0x0044BCD0,407,0x0044BE75,FUN_0044bcd0,,,unclassified,0.00,unknown,undefined FUN_0044bcd0(void),false,,,,
-0x0044BE80,496,0x0044C06F,FUN_0044be80,,,unclassified,0.00,unknown,undefined FUN_0044be80(void),false,,,,
+0x0044BE80,496,0x0044C06F,FUN_0044be80,CMenuReplay_ctor,ui,identified,0.00,__thiscall,void CMenuReplay_ctor(void * this),false,,CMenuResult allocates 0x8EC bytes before calling this constructor,root,Constructs replay-selection menu
 0x0044C070,27,0x0044C08D,FUN_0044c070,,,unclassified,0.00,unknown,undefined FUN_0044c070(void),false,,,,
 0x0044C090,106,0x0044C0F9,FUN_0044c090,,,unclassified,0.00,unknown,undefined FUN_0044c090(void),false,,,,
 0x0044C100,46,0x0044C12D,FUN_0044c100,,,unclassified,0.00,unknown,undefined FUN_0044c100(void),false,,,,
@@ -2970,7 +2970,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0067C8F7,5,0x0067C8FB,_atol,,,unclassified,0.00,__cdecl,long _atol(char * _Str),true,,,,
 0x0067C8FC,236,0x0067C9E7,_strtok_s,,,unclassified,0.00,__cdecl,"char * _strtok_s(char * _Str, char * _Delim, char * * _Context)",false,,,,
 0x0067C9E8,179,0x0067CA9A,_strncpy_s,,,unclassified,0.00,__cdecl,"errno_t _strncpy_s(char * _Dst, rsize_t _SizeInBytes, char * _Src, rsize_t _MaxCount)",false,,,,
-0x0067CA9B,28,0x0067CAB6,_sprintf_s,,,unclassified,0.00,__cdecl,"int _sprintf_s(char * _DstBuf, size_t _SizeInBytes, char * _Format, ...)",false,,,,
+0x0067CA9B,28,0x0067CAB6,_sprintf_s,_sprintf_s,crt,identified,0.00,__cdecl,"int _sprintf_s(char * _DstBuf, size_t _SizeInBytes, char * _Format, ...)",false,,ResultList population target call address formats both display-row variants,,
 0x0067CAB7,169,0x0067CB5F,__atof_l,,,unclassified,0.00,__cdecl,"double __atof_l(char * _String, _locale_t _Locale)",false,,,,
 0x0067CB60,14,0x0067CB6D,_atof,,,unclassified,0.00,__cdecl,double _atof(char * _String),false,,,,
 0x0067CB6E,192,0x0067CC2D,__mbsrchr_l,,,unclassified,0.00,__cdecl,"uchar * __mbsrchr_l(uchar * _Str, uint _Ch, _locale_t _Locale)",false,,,,

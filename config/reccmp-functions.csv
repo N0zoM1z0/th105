@@ -3,6 +3,8 @@ RenderModeManager_begin_frame,0x00401000,function
 RenderModeManager_finish_frame,0x00401040,function
 RenderModeManager_prepare_frame,0x004010C0,function
 dispatch_wave_handle,0x00401D70,function
+ResultString28_assign_copy,0x004020B0,function
+ResultString28_assign_buffer,0x004021C0,function
 RenderModeManager_set_mode,0x00404980,function
 phase_04a10,0x00404A10,function
 TitleResourceManager_load_texture,0x00404EC0,function
@@ -46,6 +48,8 @@ create_direct_input_keyboard,0x0040CFA0,function
 create_direct_input_mouse,0x0040D250,function
 is_raw_key_down,0x0040D370,function
 DirectInputBackend_get_gamepad_state,0x0040D3D0,function
+ResultStringDeque20_grow,0x0040F800,function
+destroy_result_index_deque,0x0040F960,function
 shutdown_direct_sound,0x004180D0,function
 create_secondary_buffer8,0x00418130,function
 linear_gain_to_ds_volume,0x004181A0,function
@@ -94,7 +98,11 @@ CLoadingWatch_on_scene_enter,0x00425980,function
 update_global_6e6260_first,0x00425CD0,function
 update_global_6e6260_second,0x00425F10,function
 set_target_20_enabled_2c,0x004263B0,function
+ResultReplayDeque20_at,0x00427BD0,function
+ResultReplayString_assign,0x00429B90,function
 update_observed_record_statistics,0x0042C100,function
+ResultNameResolver_ctor,0x0042D750,function
+ResultNameResolver_dtor,0x0042D7D0,function
 PlayerSlotRecord_set_profile_color,0x0042FF20,function
 PlayerSlotRecord_load_profile,0x00430540,function
 front_checked,0x00430C30,function
@@ -116,6 +124,11 @@ classify_fighter_x_boundary,0x00434390,function
 test_proposed_x_against_stage_height,0x004343D0,function
 stage_surface_height_at_x,0x00434800,function
 is_y_at_or_below_stage_surface,0x00434860,function
+ResultListBase_entry_count,0x004381A0,function
+ResultPointerDeque20_at,0x00438610,function
+ResultListBase_render_row,0x00438680,function
+ResultListBase_ctor,0x00438BA0,function
+ResultListBase_dtor,0x00438C20,function
 get_battle_setup_task,0x004397B0,function
 is_menu_initial_press,0x004397F0,function
 get_game_mode,0x00439860,function
@@ -141,6 +154,7 @@ start_scene_fade,0x00439D60,function
 dispatch_indexed_event,0x00439DC0,function
 select_input_slot,0x0043A1F0,function
 has_ui_selection_state_changed,0x0043A290,function
+prepare_result_match,0x0043A560,function
 character_key_to_name,0x0043ABE0,function
 reload_selected_profiles,0x0043B520,function
 play_bgm,0x0043B6D0,function
@@ -156,6 +170,18 @@ render_menu_list,0x0043DFC0,function
 Menu_initialize_profile_menu,0x0043E1A0,function
 CMenuSelect_select_profile,0x0043E8F0,function
 install_menu_object,0x0043EBD0,function
+CMenuResult_render,0x00445100,function
+CMenuResult_refresh_selected_character,0x00445210,function
+ResultPointerDeque20_push_back,0x004454E0,function
+ResultList_ctor,0x00445560,function
+ResultList_dtor,0x004455E0,function
+CMenuResult_update_active,0x00445620,function
+ResultList_scalar_deleting_destructor,0x00445890,function
+CMenuResult_update,0x004458E0,function
+CMenuResult_dtor,0x00445910,function
+CMenuResult_ctor,0x00445A10,function
+CMenuResult_scalar_deleting_destructor,0x00445C10,function
+ResultList_populate,0x00445C30,function
 CMenuSelect_update_primary_selection,0x004460A0,function
 CMenuSelect_render,0x00446360,function
 CMenuSelect_update_player_assignment,0x004463E0,function
@@ -165,6 +191,7 @@ CMenuSelect_ctor,0x00446660,function
 CMenuSelect_scalar_deleting_destructor,0x00446780,function
 CMenuPlayerConfig_ctor,0x00446B60,function
 CMenuInputConfig_ctor,0x0044A420,function
+CMenuReplay_ctor,0x0044BE80,function
 std_list_incsize_pointer,0x00454890,function
 integrate_and_clamp_fighter_position,0x00459860,function
 update_common_fighter_state_window,0x00459B20,function
@@ -276,4 +303,5 @@ eh_vector_constructor_iterator,0x0067BA4C,function
 memset,0x0067BB80,function
 free,0x0067C166,function
 strcpy_s,0x0067C4D5,function
+_sprintf_s,0x0067CA9B,function
 log10,0x0067D9B0,function

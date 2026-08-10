@@ -153,6 +153,40 @@ is currently 752 bytes versus the 669-byte target because four `new` paths
 duplicate the null-result installation block instead of merging it with the
 constructed-object path.
 
+### `CMenuResult` and `ResultList`
+
+The result browser is a `0x1148`-byte `Menu` containing fifteen lazy
+`ResultList` objects. Each list is `0x108` bytes: a `0xB8` polymorphic base
+followed by five parallel checked-container views rooted at base `+0x04` and
+derived offsets `+0xB8`, `+0xCC`, `+0xE0`, and `+0xF4`.
+
+| `CMenuResult` offset | Type / role |
+| ---: | --- |
+| `+0x04` / `+0x08` | stand texture handle and `UiSprite94` |
+| `+0x09C` | unlocked-character `SelectIntVector16` |
+| `+0x0B0` / `+0x0C4` | character cursor and selected character |
+| `+0x0C8` | `ResultList[15]` |
+| `+0x1040` | fifteen lazy-population flags |
+| `+0x1050` / `+0x1084` | design resource and selected design object |
+| `+0x108C` | visible-row cursor |
+| `+0x10A0` | `GuideOverlay` |
+
+The render, destructor, guarded update, scalar deleting destructor, and
+`ResultList` constructor are exact. The 619-byte active update is complete and
+currently compiles to 620 bytes; it covers both cursors, replay validation,
+parallel result-metadata transfer into match setup, the 0x8EC-byte replay-menu
+allocation, scene transition, and cancellation. The 1127-byte population path
+is also complete: it traverses 24-byte score records, switches spell-name
+metadata by character, formats localized rows, and appends the row plus four
+parallel metadata values. Its standalone probe is 1003 bytes while the target
+inlines a more specific checked-deque insertion shape.
+
+One ABI correction was especially important: `ResultListBase::render_row` is
+`(float x, float y, unsigned index)`, not index-first. The target pushes the
+integer before reserving/storing the two float arguments; declaring that
+source order changed the call-site evaluation shape and completed the
+267/267-byte render match.
+
 ## Function and dependency map
 
 ```text
