@@ -334,11 +334,15 @@ the target's EH-bearing `0x94`-byte sprite local and register schedule.
 reset: owned-state cleanup, subordinate phases, initial position and facing,
 counter/scalar defaults, the two eight-element tables at `+0x604/+0x624`,
 action reset, category-dependent sequence setup, checked front access, initial
-record publication, and action `700`. VC8 emits 1223/1247 bytes and matches the
-target prefix through `+0x10C`. The unresolved difference begins in zero-store
-ordering and continues into checked-iterator scheduling. The source covers all
-phases observed in the current decompile, while further semantic audit remains
-open. The adjacent `0x00462050` remains decompiled:
+record publication, and action `700`. VC8 emits 1231/1247 bytes and matches the
+target prefix through `+0x340` after recovering the original two 32-byte
+`memset` shapes, preloading the action-reset vcall, and placing the category-two
+spell path in the target fallthrough. The
+first unresolved difference is a target-only speculative `LEA ECX,[ESI+4F0]`
+before the long branch; the checked-iterator suffix still differs in register
+coloring and guard scheduling. The source covers all phases observed in the
+current decompile, while further semantic audit remains open. The adjacent
+`0x00462050` remains decompiled:
 it calls the common spell-data loader, formats the character face resource and
 ten `back/spell%03d.bmp` resources, stores the face handle at `+0x338`,
 registers back resources through the owner at `+0x68C`, applies player-relative

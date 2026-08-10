@@ -117,6 +117,15 @@ Change source shape only after ABI and relocations are correct.
 - A local alias may inhibit common-subexpression elimination. Use it only when aliasing is valid for the real object and behavior.
 - Reusing a temporary can improve or worsen register allocation. First match memory access count and branch graph; register names alone are weak evidence.
 
+For fixed-size table clears, do not assume that a run of scalar stores came
+from hand-written assignments. At `0x0045F140`, replacing eight explicit
+32-bit `-1` stores and eight explicit zero stores with two source-level
+`memset` calls recovered VC8's fully unrolled sequence: `EDI=-1`, copy to
+`EAX`, eight stores, `XOR EAX,EAX`, then eight zero stores. It also restored
+the surrounding x87 and virtual-call schedule and moved the exact prefix from
+`+0x1D7` to `+0x2C8`. Use this pattern only when the destination is genuinely
+contiguous and the immediate byte fill matches the target words.
+
 Confirmed case: `0x00409AD0` (`CInputManagerEx` logical-mask builder) matched 378/378 bytes after preserving the unrolled injected-input order, caching only the initial axis/button portion of the mask, accessing later bits through a legitimate byte alias to prevent VC8 CSE, and loading the final result through that alias. The hardware branch already matched. This is a precise example of source-plausible aliasing, not a general instruction to add volatile or arbitrary casts.
 
 Top-bit keyboard tests often match when written as `(state[key] & 0x80) != 0`; this preserves boolean semantics and can produce the observed VC8 `movzx` sequence.

@@ -4,6 +4,8 @@
 
 #include "input/InputManager.hpp"
 
+#include <cstring>
+
 namespace th105 {
 
 void __fastcall initialize_fighter_phase_62380(Fighter *fighter);
@@ -124,10 +126,10 @@ void Fighter::initialize_fighter_battle_state()
     field_4ae = 0;
     store_word(this, 0x4b0, 0);
     store_word(this, 0x4b2, 0);
+    state_4b8 = *reinterpret_cast<int *>(0x006e4e20);
     maximum_176 = 10000;
     value_174 = 10000;
     value_47c = 10000;
-    state_4b8 = *reinterpret_cast<int *>(0x006e4e20);
     blocker_48e = 0;
     field_49e = 0;
     value_4a0 = 0;
@@ -143,8 +145,8 @@ void Fighter::initialize_fighter_battle_state()
     unknown_484 = 1000;
     counter_482 = 1000;
     floor_486 = 0;
-    store_word(this, 0x488, 0);
     scalar_494 = 1.0f;
+    store_word(this, 0x488, 0);
     store_word(this, 0x6a0, 0);
     source_factor_4bc = 1.0f;
     value_498 = 0;
@@ -165,26 +167,14 @@ void Fighter::initialize_fighter_battle_state()
     x_scale_4dc = 1.0f;
     y_scale_4e0 = 1.0f;
 
-    reinterpret_cast<int *>(this)[0x624 / 4] = -1;
-    reinterpret_cast<int *>(this)[0x628 / 4] = -1;
-    reinterpret_cast<int *>(this)[0x62c / 4] = -1;
-    reinterpret_cast<int *>(this)[0x630 / 4] = -1;
-    reinterpret_cast<int *>(this)[0x634 / 4] = -1;
-    reinterpret_cast<int *>(this)[0x638 / 4] = -1;
-    reinterpret_cast<int *>(this)[0x63c / 4] = -1;
-    reinterpret_cast<int *>(this)[0x640 / 4] = -1;
-    reinterpret_cast<int *>(scalar_modifier_table_604)[0] = 0;
-    reinterpret_cast<int *>(scalar_modifier_table_604)[1] = 0;
-    reinterpret_cast<int *>(scalar_modifier_table_604)[2] = 0;
-    reinterpret_cast<int *>(scalar_modifier_table_604)[3] = 0;
-    reinterpret_cast<int *>(scalar_modifier_table_604)[4] = 0;
-    reinterpret_cast<int *>(scalar_modifier_table_604)[5] = 0;
-    reinterpret_cast<int *>(scalar_modifier_table_604)[6] = 0;
-    reinterpret_cast<int *>(scalar_modifier_table_604)[7] = 0;
+    std::memset(unknown_624, -1, 0x20);
+    std::memset(scalar_modifier_table_604, 0, sizeof(scalar_modifier_table_604));
 
-    result_180 = 0;
+    SetFighterAction reset_action = reinterpret_cast<SetFighterAction>(
+        (*reinterpret_cast<void ***>(this))[2]);
     unknown_184[0] = 0;
-    set_fighter_action(this, 0);
+    result_180 = 0;
+    reset_action(this, 0);
     state_4ea = 0;
     store_byte(this, 0x4e9, 0);
     unknown_4eb[0] = 0;
@@ -202,49 +192,48 @@ void Fighter::initialize_fighter_battle_state()
     statistic_enable_655 = 0;
     statistic_candidate_64c = -1;
 
-    if (state_72c != 2) {
-        set_spell_sequence_mode_430fa0(1);
-        state_55b = 5;
+    if (state_72c == 2) {
+        SpellDataOwner *lookup =
+            reinterpret_cast<SpellDataOwner *>(spell_lookup_4f0);
+        set_spell_sequence_mode_430fa0(0);
+        state_55b = static_cast<signed char>(
+            *reinterpret_cast<unsigned char *>(&spell_nonzero_gate_534));
         state_55a = 0;
-        reset_fighter_sequence_controller_45e5f0(
-            &sequence_controller_55c);
+        reset_fighter_sequence_controller_45e5f0(&sequence_controller_55c);
+        for (int i = 0; i < state_55b; ++i) {
+            prepare_next_spell_sequence_entry();
+        }
+
+        FighterSequenceSlot *front =
+            checked_front_sequence_slot(&sequence_controller_55c);
+        SpellRecordView *record =
+            lookup->find_local_then_common_spell_record(front->record_id_00);
+        value_174 = record->value_1e;
+        maximum_176 = record->value_1e;
         store_byte(this, 0x6a2, 0);
-        statistic_candidate_64c = -1;
-        post_advance_value_650 = -1;
-        return;
-    }
 
-    set_spell_sequence_mode_430fa0(0);
-    state_55b = static_cast<signed char>(
-        *reinterpret_cast<unsigned char *>(&spell_nonzero_gate_534));
-    state_55a = 0;
-    reset_fighter_sequence_controller_45e5f0(&sequence_controller_55c);
-    for (int i = 0; i < state_55b; ++i) {
-        prepare_next_spell_sequence_entry();
-    }
-
-    FighterSequenceSlot *front =
-        checked_front_sequence_slot(&sequence_controller_55c);
-    SpellDataOwner *lookup =
-        reinterpret_cast<SpellDataOwner *>(spell_lookup_4f0);
-    SpellRecordView *record =
-        lookup->find_local_then_common_spell_record(front->record_id_00);
-    value_174 = record->value_1e;
-    maximum_176 = record->value_1e;
-    store_byte(this, 0x6a2, 0);
-
-    front = checked_front_sequence_slot(&sequence_controller_55c);
-    if (front->record_id_00 >= 200) {
-        post_advance_value_650 = -1;
+        front = checked_front_sequence_slot(&sequence_controller_55c);
+        if (front->record_id_00 >= 200) {
+            post_advance_value_650 = -1;
+            set_fighter_action(this, 700);
+            return;
+        }
+        FighterSequenceSlot *selected =
+            sequence_controller_55c.entry_at_checked(0);
+        record = lookup->find_local_then_common_spell_record(
+            selected->record_id_00);
+        post_advance_value_650 = record->value_3c;
         set_fighter_action(this, 700);
         return;
     }
-    FighterSequenceSlot *selected =
-        sequence_controller_55c.entry_at_checked(0);
-    record = lookup->find_local_then_common_spell_record(
-        selected->record_id_00);
-    post_advance_value_650 = record->value_3c;
-    set_fighter_action(this, 700);
+
+    set_spell_sequence_mode_430fa0(1);
+    state_55b = 5;
+    state_55a = 0;
+    reset_fighter_sequence_controller_45e5f0(&sequence_controller_55c);
+    store_byte(this, 0x6a2, 0);
+    statistic_candidate_64c = -1;
+    post_advance_value_650 = -1;
 }
 
 } // namespace th105
