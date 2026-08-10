@@ -1,6 +1,10 @@
+#include <math.h>
 #include <vector>
 
 namespace th105 {
+
+float __cdecl lookup_orientation_sine(int angle);
+float __cdecl lookup_orientation_cosine(int angle);
 
 namespace {
 
@@ -101,6 +105,159 @@ __forceinline void copy_descriptor_for_facing(
         out->y0 = -in->y1;
         out->x1 = in->x0;
         out->y1 = -in->y0;
+    }
+}
+
+} // namespace
+
+namespace {
+
+void CollisionGeometryObject::transform_box_from_local_frame(
+    int *record,
+    int *out_box)
+{
+    if (facing_104 == 1) {
+        out_box[0] =
+            static_cast<int>(static_cast<float>(ceil(x_ec))) + record[0];
+        out_box[2] =
+            static_cast<int>(static_cast<float>(ceil(x_ec))) + record[2];
+    } else {
+        out_box[0] =
+            static_cast<int>(static_cast<float>(ceil(x_ec))) - record[2];
+        out_box[2] =
+            static_cast<int>(static_cast<float>(ceil(x_ec))) - record[0];
+    }
+    out_box[1] =
+        record[1] - static_cast<int>(static_cast<float>(ceil(y_f0)));
+    out_box[3] =
+        record[3] - static_cast<int>(static_cast<float>(ceil(y_f0)));
+}
+
+void CollisionGeometryObject::transform_box_from_local_frame_flipped_y(
+    int *record,
+    int *out_box)
+{
+    if (facing_104 == 1) {
+        out_box[0] =
+            static_cast<int>(static_cast<float>(ceil(x_ec))) + record[0];
+        out_box[2] =
+            static_cast<int>(static_cast<float>(ceil(x_ec))) + record[2];
+        out_box[1] =
+            record[1] - static_cast<int>(static_cast<float>(ceil(y_f0)));
+        out_box[3] =
+            record[3] - static_cast<int>(static_cast<float>(ceil(y_f0)));
+        return;
+    }
+
+    out_box[0] =
+        static_cast<int>(static_cast<float>(ceil(x_ec))) - record[2];
+    out_box[2] =
+        static_cast<int>(static_cast<float>(ceil(x_ec))) - record[0];
+    out_box[1] =
+        record[3] - static_cast<int>(static_cast<float>(ceil(y_f0)));
+    out_box[3] =
+        record[1] - static_cast<int>(static_cast<float>(ceil(y_f0)));
+}
+
+void __stdcall build_oriented_box_and_descriptor(
+    int *record,
+    short angle,
+    short pivot_x,
+    short pivot_y,
+    int *out_box,
+    int *out_descriptor)
+{
+    float cosine = lookup_orientation_cosine(angle);
+    float sine = lookup_orientation_sine(angle);
+
+    if (sine >= 0.0f) {
+        if (cosine >= 0.0f) {
+            out_box[0] =
+                static_cast<int>((record[0] - pivot_x) * cosine) -
+                static_cast<int>((record[3] - pivot_y) * sine) + pivot_x;
+            out_box[1] =
+                static_cast<int>((record[0] - pivot_x) * sine) +
+                static_cast<int>((record[3] - pivot_y) * cosine) + pivot_y;
+            out_box[2] =
+                static_cast<int>((record[2] - pivot_x) * cosine) -
+                static_cast<int>((record[1] - pivot_y) * sine) + pivot_x;
+            out_box[3] =
+                static_cast<int>((record[2] - pivot_x) * sine) +
+                static_cast<int>((record[1] - pivot_y) * cosine) + pivot_y;
+            out_descriptor[0] =
+                static_cast<int>((record[3] - record[1]) * sine);
+            out_descriptor[1] =
+                -static_cast<int>((record[3] - record[1]) * cosine);
+            out_descriptor[2] =
+                static_cast<int>((record[2] - record[0]) * cosine);
+            out_descriptor[3] =
+                static_cast<int>((record[2] - record[0]) * sine);
+        } else {
+            out_box[0] =
+                static_cast<int>((record[2] - pivot_x) * cosine) -
+                static_cast<int>((record[3] - pivot_y) * sine) + pivot_x;
+            out_box[1] =
+                static_cast<int>((record[2] - pivot_x) * sine) +
+                static_cast<int>((record[3] - pivot_y) * cosine) + pivot_y;
+            out_box[2] =
+                static_cast<int>((record[0] - pivot_x) * cosine) -
+                static_cast<int>((record[1] - pivot_y) * sine) + pivot_x;
+            out_box[3] =
+                static_cast<int>((record[0] - pivot_x) * sine) +
+                static_cast<int>((record[1] - pivot_y) * cosine) + pivot_y;
+            out_descriptor[0] =
+                -static_cast<int>((record[2] - record[0]) * cosine);
+            out_descriptor[1] =
+                -static_cast<int>((record[2] - record[0]) * sine);
+            out_descriptor[2] =
+                static_cast<int>((record[3] - record[1]) * sine);
+            out_descriptor[3] =
+                -static_cast<int>((record[3] - record[1]) * cosine);
+        }
+    } else {
+        if (cosine >= 0.0f) {
+            out_box[0] =
+                static_cast<int>((record[0] - pivot_x) * cosine) -
+                static_cast<int>((record[1] - pivot_y) * sine) + pivot_x;
+            out_box[1] =
+                static_cast<int>((record[0] - pivot_x) * sine) +
+                static_cast<int>((record[1] - pivot_y) * cosine) + pivot_y;
+            out_box[2] =
+                static_cast<int>((record[2] - pivot_x) * cosine) -
+                static_cast<int>((record[3] - pivot_y) * sine) + pivot_x;
+            out_box[3] =
+                static_cast<int>((record[2] - pivot_x) * sine) +
+                static_cast<int>((record[3] - pivot_y) * cosine) + pivot_y;
+            out_descriptor[0] =
+                static_cast<int>((record[2] - record[0]) * cosine);
+            out_descriptor[1] =
+                static_cast<int>((record[2] - record[0]) * sine);
+            out_descriptor[2] =
+                -static_cast<int>((record[3] - record[1]) * sine);
+            out_descriptor[3] =
+                static_cast<int>((record[3] - record[1]) * cosine);
+        } else {
+            out_box[0] =
+                static_cast<int>((record[2] - pivot_x) * cosine) -
+                static_cast<int>((record[1] - pivot_y) * sine) + pivot_x;
+            out_box[1] =
+                static_cast<int>((record[2] - pivot_x) * sine) +
+                static_cast<int>((record[1] - pivot_y) * cosine) + pivot_y;
+            out_box[2] =
+                static_cast<int>((record[0] - pivot_x) * cosine) -
+                static_cast<int>((record[3] - pivot_y) * sine) + pivot_x;
+            out_box[3] =
+                static_cast<int>((record[0] - pivot_x) * sine) +
+                static_cast<int>((record[3] - pivot_y) * cosine) + pivot_y;
+            out_descriptor[0] =
+                -static_cast<int>((record[3] - record[1]) * sine);
+            out_descriptor[1] =
+                static_cast<int>((record[3] - record[1]) * cosine);
+            out_descriptor[2] =
+                -static_cast<int>((record[2] - record[0]) * cosine);
+            out_descriptor[3] =
+                -static_cast<int>((record[2] - record[0]) * sine);
+        }
     }
 }
 

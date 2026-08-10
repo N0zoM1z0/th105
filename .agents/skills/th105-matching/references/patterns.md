@@ -125,6 +125,17 @@ Top-bit keyboard tests often match when written as `(state[key] & 0x80) != 0`; t
 
 On 32-bit VC8, expression grouping affects x87 load/store order, stack depth, comparisons, and rounding points. Recover float versus double fields and constants before rearranging arithmetic. Do not replace an observed `double` timing conversion with float intermediates merely because the result is close.
 
+Confirmed collision-geometry pattern: source such as
+`static_cast<int>(static_cast<float>(ceil(value)))` preserves the target's
+double-argument call, explicit single-precision spill, and subsequent
+`_ftol2_sse` truncation. Do not cache this result when the target repeats the
+call for each coordinate. In an unrolled sign-quadrant function, also keep
+width and height differences inside the individual descriptor assignments
+when the target recomputes them. Hoisting those differences before the branch
+made VC8 reserve a larger frame and retain different x87 values; restoring the
+branch-local expressions changed `0x0045A4A0` from 1311 bytes to an exact
+1386/1386 match.
+
 For unsigned 32-bit to double conversion, VC8 may emit a high-bit correction path using a `4294967296.0` constant. Allowlist the exact constant relocation rather than changing the source to signed arithmetic.
 
 ## 8. LTCG and private-ABI stop conditions

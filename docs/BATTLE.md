@@ -126,20 +126,32 @@ the corresponding failure path is 123 bytes, so the internal relocation is
 not treated as equivalent by name or exception string. Its ledger status
 therefore remains `implemented` with no percentage claim.
 
-Its three direct geometry leaves are now bounded. `0x0045A190` transforms a
-four-int local box with actor position at `+0xEC/+0xF0` and signed direction at
-`+0x104`; every coordinate conversion deliberately executes `ceil`, spills to
-single precision, and then calls `_ftol2_sse`. `0x0045A2E0` repeats the same
-conversion sequence but swaps the local Y endpoints in the mirrored-X branch.
-They are decompiled, but their 335- and 445-byte x87 spill schedules are not yet
-reproduced by natural VC8 source.
+Its three direct geometry leaves are exact reconstructions. `0x0045A190`
+transforms a four-int local box with actor position at `+0xEC/+0xF0` and signed
+direction at `+0x104`; every coordinate conversion deliberately executes
+`ceil`, spills to single precision, and then calls `_ftol2_sse`. `0x0045A2E0`
+repeats the same conversion sequence but swaps the local Y endpoints in the
+mirrored-X branch.
+The natural VC8 source reproduces their full 335- and 445-byte x87 spill
+schedules exactly.
 
 `0x0045A4A0` is a six-argument `__stdcall` builder for one four-int local box
 and one four-int auxiliary descriptor. It evaluates the direct and
 quarter-period-shifted orientation values, then uses four intentionally
 unrolled sign quadrants and twelve `_ftol2_sse` conversions per path. The
-coordinate ordering and descriptor gameplay meaning remain unresolved, so the
-neutral reconstruction name is retained.
+quadrants select opposite rotated corners and emit the two edge vectors rooted
+at the first corner. This complete source is an exact 1386-byte match. The
+neutral reconstruction name is retained because the target proves the geometry
+but not its original gameplay terminology.
+
+All three compare exactly from the shared translation unit:
+
+```bash
+scripts/compile-unit.sh src/battle/CollisionPreparation.cpp build/wave18/CollisionPreparation.obj
+python3 scripts/compare-function.py 0x0045A190 build/wave18/CollisionPreparation.obj
+python3 scripts/compare-function.py 0x0045A2E0 build/wave18/CollisionPreparation.obj
+python3 scripts/compare-function.py 0x0045A4A0 build/wave18/CollisionPreparation.obj
+```
 
 The paired orientation leaves are exact reconstructions. `0x00406680` indexes
 `g_orientation_cosine_table[abs(angle * 10) % 3600]`; `0x00406650` indexes the

@@ -232,6 +232,7 @@ address,name,module,confidence,evidence
 0x0067B884,_invalid_parameter_noinfo,runtime,observed,docs/BATTLE.md fighter checked containers and docs/EVIDENCE.md input/UI checked-container validation
 0x0067B8E0,_ftol2_sse,runtime,observed,docs/BATTLE.md verified VC8 x87-to-int truncation runtime helper
 0x0067BB80,memset,runtime,observed,docs/EVIDENCE.md target runtime symbol identity and exact call from input-state reset
+0x0067CC50,ceil,runtime,observed,docs/BATTLE.md verified CRT ceil helper called by collision world-box transforms
 0x0067D9B0,log10,runtime,observed,docs/EVIDENCE.md pinned VC8 SP1 libcmt log10 object and target instruction identity including FLDLG2 FYL2X core
 0x00664F9A,malloc,runtime,inferred,docs/EVIDENCE.md allocation thunk used by SFL metadata buffer path
 0x0067B02A,operator_delete,runtime,observed,docs/EVIDENCE.md VC8 scalar delete target used by file-reader deleting destructor
