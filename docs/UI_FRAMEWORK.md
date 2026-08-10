@@ -122,6 +122,37 @@ bind helpers at `0x0040C6A0` and `0x0046F2A0` validate iterator ownership,
 recognize the end sentinel, and extract the node value. This corrected ABI
 restores the formerly missing validation block in the scenario constructor.
 
+### `CMenuSelect`
+
+RTTI and the vtable at `0x006AE108` establish a real `Menu`-derived class of
+size `0x1C4`; it is no longer an opaque allocation. The four virtual slots are
+the scalar deleting destructor, the shared no-op at `0x004686B0`, `update`,
+and `render`.
+
+| Offset | Type | Role |
+| ---: | --- | --- |
+| `+0x00` | `Menu` | vptr/base object |
+| `+0x04` | `signed char` | primary/profile-assignment state |
+| `+0x08` | `TitleDesignResource` | `data/menu/select/select.dat` design |
+| `+0x3C` | `UiDesignObject *[8]` | menu entries 100 through 170 |
+| `+0x5C` | `MenuCursorState` | eight-entry selector |
+| `+0x70` | `signed char` | active player index |
+| `+0x74` | `GuideOverlay[2]` | guide IDs 5 and 11 |
+
+The constructor, destructor, update dispatcher, render method, and the full
+player-assignment state are exact matches. The profile path also proves a
+28-byte checked string facade: an allocator-state dword followed by the VC8
+24-byte SSO string. Its pointer-first `c_str()` branch order is required for
+the exact 400-byte result.
+
+The primary state machine is behaviorally complete. It updates the cursor,
+colors all eight entries, opens player-specific `0x288` and input-specific
+`0x330` child menus, handles the network-server mode variant, and implements
+confirm/cancel audio plus the scene-mode transition. Its standalone VC8 object
+is currently 752 bytes versus the 669-byte target because four `new` paths
+duplicate the null-result installation block instead of merging it with the
+constructed-object path.
+
 ## Function and dependency map
 
 ```text
@@ -170,6 +201,12 @@ on_scene_exit(next_scene) ── clear_menu_objects
 | `0x0043DA00` | `void __thiscall GuideOverlay::update()` | complete source candidate |
 | `0x0043DA70` | `void __thiscall GuideOverlay::render()` | `matching` |
 | `0x0043DAF0` | `void __thiscall GuideOverlay::GuideOverlay()` | `matching` |
+| `0x004460A0` | `bool __thiscall CMenuSelect::update_primary_selection()` | complete source candidate; 752-byte probe versus 669-byte target |
+| `0x00446360` | `void __thiscall CMenuSelect::render()` | `matching` |
+| `0x004463E0` | `bool __thiscall CMenuSelect::update_player_assignment()` | `matching` |
+| `0x00446580` | `bool __thiscall CMenuSelect::update()` | `matching` |
+| `0x004465D0` | `void __thiscall CMenuSelect::~CMenuSelect()` | `matching` |
+| `0x00446660` | `void __thiscall CMenuSelect::CMenuSelect()` | `matching` |
 
 The guide destructor releases its texture handle and performs natural sprite
 member destruction. Guide calls occur in several other menu scenes, but those
@@ -207,8 +244,11 @@ a source-type distinction, not an arbitrary register hint.
 - The checked design tree ABI is recovered, but its remaining storage fields
   and the source reason for the two bind-helper code-generation copies are not
   yet proven.
-- `CMenuSelect` is an opaque `0x1C4` allocation target; its constructor and
-  scene ownership need a separate RTTI/vtable pass.
+- The `0x288` and `0x330` child-menu layouts reached from `CMenuSelect` remain
+  opaque beyond their proven `Menu` base, allocation sizes, constructor ABIs,
+  and player/mode arguments.
+- `CMenuSelect::update_primary_selection` still needs the original source form
+  that makes VC8 merge each constructor's null and non-null installation path.
 - `MatchSetup` and `GameConfig` expose only fields proven by this slice.
 - `UiSprite94`, `UiTileA4`, and `UiDesignObject` are shared ABI facades, not
   claims of original source names or complete layouts.

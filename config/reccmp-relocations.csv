@@ -80,3 +80,15 @@ _select_clear_path,0x006ACC88,646174612f7363656e652f73656c6563742f7363656e617269
 _select_character_name_path,0x006ACC60,646174612f7363656e652f73656c6563742f7363656e6172696f2f6368725f6e616d652e626d7000,0x0,target scenario character-name tile path,address
 _select_design_path,0x006ACC3C,646174612f7363656e652f73656c6563742f7363656e6172696f2f73632e64617400,0x0,target scenario selection design path,address
 _scenario_stand_path_format,0x006ACC08,646174612f7374616e642f25732e626d7000,0x0,target scenario stand bitmap format string,address
+__ehhandler$??0CMenuSelect@th105@@QAE@XZ,0x006A6CCC,8b5424088d42ec8b,0x0,target VC8 CMenuSelect constructor EH handler entry bytes,address
+__ehhandler$??1CMenuSelect@th105@@UAE@XZ,0x006A6C7C,8b5424088d42f48b,0x0,target VC8 CMenuSelect destructor EH handler entry bytes,address
+??_7CMenuSelect@th105@@6B@,0x006AE108,80674400,0x0,target RTTI-owned CMenuSelect vtable address and scalar deleting destructor slot,address
+??_7Menu@th105@@6B@,0x006AD974,30ec4300,0x0,target RTTI-owned Menu base vtable address and scalar deleting destructor slot,address
+_menu_select_design_path,0x006AE118,646174612f6d656e752f73656c6563742f73656c6563742e64617400,0x0,target CMenuSelect design archive path bytes,address
+_g_active_menu_input,0x006E75D0,00000000,0x0,target zero-filled active menu input pointer used by menu cursor construction,address
+__real@43800000,0x006AD984,00008043,0x0,target float 256.0 menu cursor scale,literal
+__real@4020000000000000,0x006AC9B0,0000000000002040,0x0,target double 8.0 menu cursor vertical offset,literal
+??0GuideOverlay@th105@@QAE@XZ,0x0043DAF0,8bc133c989480cc7,0x0,target GuideOverlay constructor address used by VC8 array-constructor metadata,address
+??1GuideOverlay@th105@@QAE@XZ,0x0043D8E0,6aff687b606a0064,0x0,target GuideOverlay destructor address used by VC8 array construction and destruction metadata,address
+__ehhandler$?update_player_assignment@CMenuSelect@th105@@AAE_NXZ,0x006A71C0,8b5424088d42b48b,0x0,target VC8 CMenuSelect player-assignment EH handler entry bytes,address
+__ehhandler$?update_primary_selection@CMenuSelect@th105@@AAE_NXZ,0x006A6C27,8b5424088d42ec8b,0x0,target VC8 CMenuSelect primary-selection EH handler entry bytes,address

@@ -26,6 +26,7 @@ address,name,module,confidence,evidence
 0x006E7038,g_indexed_event_handles,audio,observed,docs/BATTLE.md 128 zero-filled packed wave handles loaded from data/se files
 0x006E7238,g_score_data,config,observed,docs/EVIDENCE.md CRT construction and score.dat serializer call chain
 0x006E7520,g_combined_menu_input,input,observed,docs/EVIDENCE.md menu input trace
+0x006E75D0,g_active_menu_input,ui,observed,CMenuSelect and shared profile-menu helpers read the active menu input pointer and its counters at +0x3C
 0x006E8498,g_mt19937_state,engine,observed,docs/BATTLE.md exact 624-word MT19937 state array ending before orientation cosine table
 0x006E8E58,g_orientation_cosine_table,engine,observed,docs/BATTLE.md runtime initializer 0x00406780 fills 3600 floats with fcos at 0.1-degree increments
 0x006EC830,g_wave_handle_service,audio,observed,docs/BATTLE.md static CHandleManager wave-buffer service used by indexed event dispatch

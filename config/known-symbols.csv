@@ -73,8 +73,26 @@ address,name,module,confidence,evidence
 0x004397F0,is_menu_initial_press,input,inferred,thin menu-facing wrapper over is_initial_press
 0x00439AB0,prepare_scenario_match,ui,inferred,CSelectScenario confirmation path initializes the selected scenario match state
 0x00439D60,start_scene_fade,ui,inferred,CSelectScenario confirmation path starts a 1000-unit scene fade
+0x00439D10,install_menu_object_thunk,ui,observed,CMenuSelect submenu cases call the five-byte menu-installation thunk
 0x0043EBD0,install_menu_object,ui,inferred,CSelectScenario update inserts a newly allocated CMenuSelect into the active menu list
 0x00446660,CMenuSelect_ctor,ui,observed,constructor reached from CSelectScenario button-two menu overlay path
+0x00446B60,CMenuPlayerConfig_ctor,ui,observed,CMenuSelect entries two and three allocate a 0x288-byte player-specific submenu and call this constructor
+0x0044A420,CMenuInputConfig_ctor,ui,observed,CMenuSelect entries four and five allocate a 0x330-byte input-specific submenu and call this constructor
+0x0043DF80,Menu_render_cursor,ui,observed,Shared menu cursor renderer consumes this in ECX and three float arguments with callee cleanup
+0x0043DFC0,render_menu_list,ui,observed,Shared profile-list renderer consumes an alternate-layout flag with callee cleanup
+0x0043E1A0,Menu_initialize_profile_menu,ui,observed,Shared menu helper resets profile-list cursor globals while preserving the member-call ABI
+0x0042FF20,PlayerSlotRecord_set_profile_color,ui,observed,CMenuSelect player-assignment path applies the selected profile colors through the slot record
+0x00430540,PlayerSlotRecord_load_profile,ui,observed,CMenuSelect player-assignment path loads the chosen profile file into one player slot
+0x0043A1F0,select_input_slot,input,observed,CMenuSelect player assignment refreshes the selected logical input slot
+0x0043B520,reload_selected_profiles,ui,observed,CMenuSelect profile confirmation reloads both selected player profile records
+0x0043E8F0,CMenuSelect_select_profile,ui,observed,CMenuSelect profile chooser returns confirm cancel or idle and fills two checked strings
+0x004460A0,CMenuSelect_update_primary_selection,ui,observed,CMenuSelect state-zero branch implements the eight-item selector
+0x00446360,CMenuSelect_render,ui,observed,CMenuSelect vtable slot three draws cursor design and guide overlays
+0x004463E0,CMenuSelect_update_player_assignment,ui,observed,CMenuSelect state-one branch performs profile assignment
+0x00446580,CMenuSelect_update,ui,observed,CMenuSelect vtable slot two updates both guides and dispatches state
+0x004465D0,CMenuSelect_dtor,ui,observed,CMenuSelect destructor releases design and guide members
+0x00446780,CMenuSelect_scalar_deleting_destructor,ui,observed,CMenuSelect vtable slot zero wraps the source destructor and optional scalar delete
+0x004686B0,Menu_unknown_menu_method,ui,observed,Shared one-byte no-op occupies Menu-derived vtable slot one
 0x004247D0,CSelectScenario_scalar_deleting_destructor,ui,observed,docs/EVIDENCE.md RTTI-owned CSelectScenario vtable slot zero and scalar-delete flag path
 0x00424840,on_scene_exit,ui,inferred,docs/EVIDENCE.md CTitle vtable slot and scene-controller transition call
 0x004247F0,CTitle_on_scene_enter,ui,inferred,docs/EVIDENCE.md CTitle vtable slot previous-scene gates and title BGM path
@@ -231,6 +249,8 @@ address,name,module,confidence,evidence
 0x0067B50C,operator_new,runtime,observed,docs/BATTLE.md verified VC8 allocation routine called by collision-list helpers
 0x0067B884,_invalid_parameter_noinfo,runtime,observed,docs/BATTLE.md fighter checked containers and docs/EVIDENCE.md input/UI checked-container validation
 0x0067B8E0,_ftol2_sse,runtime,observed,docs/BATTLE.md verified VC8 x87-to-int truncation runtime helper
+0x0067B9E9,eh_vector_destructor_iterator,runtime,observed,VC8 ??_M helper used for CMenuSelect GuideOverlay array destruction
+0x0067BA4C,eh_vector_constructor_iterator,runtime,observed,VC8 ??_L helper used for CMenuSelect GuideOverlay array construction
 0x0067BB80,memset,runtime,observed,docs/EVIDENCE.md target runtime symbol identity and exact call from input-state reset
 0x0067D9B0,log10,runtime,observed,docs/EVIDENCE.md pinned VC8 SP1 libcmt log10 object and target instruction identity including FLDLG2 FYL2X core
 0x00664F9A,malloc,runtime,inferred,docs/EVIDENCE.md allocation thunk used by SFL metadata buffer path

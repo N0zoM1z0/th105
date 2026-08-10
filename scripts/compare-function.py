@@ -60,6 +60,10 @@ def coff_short_name(name: str) -> str:
         return "operator_new"
     if name.startswith("??3@"):
         return "operator_delete"
+    if name.startswith("??_L@"):
+        return "eh_vector_constructor_iterator"
+    if name.startswith("??_M@"):
+        return "eh_vector_destructor_iterator"
     if name.startswith("??0"):
         return f"{name[3:].split('@', 1)[0]}_ctor"
     if name.startswith("??1"):
@@ -67,7 +71,7 @@ def coff_short_name(name: str) -> str:
     if name.startswith("?"):
         scoped_name, separator, decoration = name[1:].partition("@@")
         parts = scoped_name.split("@")
-        if separator and decoration.startswith(("Q", "U")) and len(parts) >= 2:
+        if separator and decoration.startswith(("A", "I", "Q", "U")) and len(parts) >= 2:
             return f"{parts[1]}_{parts[0]}"
         return parts[0]
     if name.startswith("_"):

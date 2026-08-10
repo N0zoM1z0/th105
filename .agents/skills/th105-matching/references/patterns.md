@@ -41,6 +41,13 @@ Resolve these before changing algorithms:
 
 VC8 emits multiple symbols for special members. Semantic ledger names such as `Class_ctor`, `Class_dtor`, and `Class_scalar_deleting_destructor` must select `??0`, `??1`, and `??_G` respectively. Ordinary qualified aliases should resolve to their decorated member symbol, not to the first similarly named COMDAT.
 
+Decorated ordinary members are not limited to public `Q...` access codes.
+Private/protected members may begin their post-scope decoration with `A`, `I`,
+or `U`; class-qualified comparator aliases must accept the full proven set.
+This was required to resolve `CMenuSelect_update_player_assignment` and
+`CMenuSelect_update_primary_selection` without falling back to an ambiguous
+unqualified name.
+
 When object length differs unexpectedly, inspect the COFF symbol table before reshaping source. The comparator may have selected an adjacent thunk, scalar deleting destructor, cold fragment, or helper.
 
 ## 3. Relocation-aware comparison
@@ -79,6 +86,13 @@ Use the repository's VC8 declarations, not a modern STL mental model.
 - A VC8 `vector` commonly includes allocator state plus three pointers; repository layouts may therefore occupy 16 bytes rather than the modern 12-byte intuition.
 - A VC8 `deque` uses a map, map size, offset, and size. Checked access can introduce repeated map/block arithmetic and library calls.
 - `string`, container bounds checks, and allocator code can be inlined or reshaped by LTCG.
+
+Confirmed checked-string case: `0x004463E0` uses a 28-byte local made from a
+four-byte allocator state followed by VC8's 24-byte SSO string. Its inline
+`c_str()` first loads the heap-pointer union member, then overwrites the result
+with the inline-buffer address when capacity is below 16. Expressing that as a
+pointer initialization plus conditional assignment, rather than a ternary,
+produced the target branch order and completed the 400/400-byte exact match.
 
 Checked iterators can change both layout and calling convention. In the
 scenario-select `vector<int>` cluster, an iterator is the 8-byte pair
