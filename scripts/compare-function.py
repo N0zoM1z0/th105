@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import csv
+import argparse
 from pathlib import Path
 import struct
 import sys
@@ -182,11 +183,23 @@ def coff_symbol_bytes(
 
 
 def main() -> int:
-    if len(sys.argv) != 3:
-        print("usage: scripts/compare-function.py 0xADDRESS build/file.obj", file=sys.stderr)
-        return 2
-    address = canonical(sys.argv[1])
-    obj = Path(sys.argv[2]).resolve()
+    parser = argparse.ArgumentParser(
+        description="Compare one VC8 COFF function with target executable bytes."
+    )
+    parser.add_argument(
+        "--contiguous-span",
+        action="store_true",
+        help=(
+            "compare entry through span_end, including bytes omitted from "
+            "Ghidra's non-contiguous function body"
+        ),
+    )
+    parser.add_argument("address")
+    parser.add_argument("object")
+    args = parser.parse_args()
+
+    address = canonical(args.address)
+    obj = Path(args.object).resolve()
 
     with FUNCTIONS.open(newline="", encoding="utf-8") as stream:
         row = next((item for item in csv.DictReader(stream) if item["address"] == address), None)
@@ -198,6 +211,8 @@ def main() -> int:
         known = next((item for item in csv.DictReader(stream) if item["address"] == address), None)
 
     size = int(row["size"])
+    if args.contiguous_span:
+        size = int(row["span_end"], 16) - int(address, 16) + 1
     expected = target_bytes(int(address, 16), size)
     symbol_base = row["proposed_name"] or (known and known["name"]) or row["current_name"]
     actual_section = coff_symbol_bytes(

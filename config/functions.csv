@@ -710,7 +710,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0041F900,63,0x0041F93E,FUN_0041f900,,,unclassified,0.00,unknown,undefined FUN_0041f900(void),false,,,,
 0x0041FD00,42,0x0041FD34,FUN_0041fd00,,,unclassified,0.00,unknown,undefined FUN_0041fd00(void),false,,,,
 0x0041FD40,1231,0x0041FE94,FUN_0041fd40,,,unclassified,0.00,unknown,undefined FUN_0041fd40(void),false,,,,
-0x0041FEA0,26,0x0041FEB9,FUN_0041fea0,,,unclassified,0.00,unknown,undefined FUN_0041fea0(void),false,,,,
+0x0041FEA0,26,0x0041FEB9,create_collision_list_sentinel,create_collision_list_sentinel,battle,matching,100.00,__cdecl,void * create_collision_list_sentinel(void),false,src/battle/CollisionList.cpp,scripts/compile-unit.sh src/battle/CollisionList.cpp build/wave3/CollisionList.obj && python3 scripts/compare-function.py 0x0041FEA0 build/wave3/CollisionList.obj,root,Exact 26-byte match after resolving the external operator_new CALL relocation
 0x0041FEC0,49,0x0041FEFB,FUN_0041fec0,,,unclassified,0.00,unknown,undefined FUN_0041fec0(void),false,,,,
 0x0041FF10,5,0x0041FF14,thunk_FUN_00438560,,,unclassified,0.00,unknown,undefined thunk_FUN_00438560(void),true,,,,
 0x0041FF20,5,0x0041FF24,FUN_0041ff20,,,unclassified,0.00,unknown,undefined FUN_0041ff20(void),false,,,,
@@ -2044,10 +2044,10 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0046A5B0,11,0x0046A5BA,FUN_0046a5b0,,,unclassified,0.00,unknown,undefined FUN_0046a5b0(void),false,,,,
 0x0046A5C0,11,0x0046A5CA,FUN_0046a5c0,,,unclassified,0.00,unknown,undefined FUN_0046a5c0(void),false,,,,
 0x0046A5D0,51,0x0046A602,FUN_0046a5d0,,,unclassified,0.00,unknown,undefined FUN_0046a5d0(void),false,,,,
-0x0046A610,127,0x0046A691,FUN_0046a610,,,unclassified,0.00,unknown,undefined FUN_0046a610(void),false,,,,
-0x0046A6A0,219,0x0046A77D,FUN_0046a6a0,,,unclassified,0.00,unknown,undefined FUN_0046a6a0(void),false,,,,
+0x0046A610,127,0x0046A691,reset_fighter_fields_6bc_728,reset_fighter_fields_6bc_728,battle,matching,100.00,__fastcall,void reset_fighter_fields_6bc_728(void * context),false,src/battle/FighterResets.cpp,python3 scripts/compare-function.py --contiguous-span 0x0046A610 build/wave3/FighterResets.obj,root,Exact 130-byte contiguous entry-to-span match including three bytes omitted from Ghidra's body set
+0x0046A6A0,219,0x0046A77D,reset_fighter_fields_6b4_728,reset_fighter_fields_6b4_728,battle,matching,100.00,__fastcall,void reset_fighter_fields_6b4_728(void * context),false,src/battle/FighterResets.cpp,python3 scripts/compare-function.py --contiguous-span 0x0046A6A0 build/wave3/FighterResets.obj,root,Exact 222-byte contiguous entry-to-span match including three bytes omitted from Ghidra's body set
 0x0046A780,105,0x0046A7E8,FUN_0046a780,,,unclassified,0.00,unknown,undefined FUN_0046a780(void),false,,,,
-0x0046A7F0,22,0x0046A805,FUN_0046a7f0,,,unclassified,0.00,unknown,undefined FUN_0046a7f0(void),false,,,,
+0x0046A7F0,22,0x0046A805,initialize_collision_list,initialize_collision_list,battle,matching,100.00,__fastcall,void * initialize_collision_list(void * self),false,src/battle/CollisionListInit.cpp,scripts/compile-unit.sh src/battle/CollisionListInit.cpp build/wave3/CollisionListInit.obj && python3 scripts/compare-function.py 0x0046A7F0 build/wave3/CollisionListInit.obj,root,Exact 22-byte match after resolving the external sentinel-creator CALL relocation
 0x0046A810,147,0x0046A8A2,FUN_0046a810,,,unclassified,0.00,unknown,undefined FUN_0046a810(void),false,,,,
 0x0046A8B0,138,0x0046A939,FUN_0046a8b0,,,unclassified,0.00,unknown,undefined FUN_0046a8b0(void),false,,,,
 0x0046A940,93,0x0046A99C,FUN_0046a940,,,unclassified,0.00,unknown,undefined FUN_0046a940(void),false,,,,
@@ -2055,19 +2055,19 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0046AA30,333,0x0046AB7C,accumulate_float_collision_extents,accumulate_float_collision_extents,battle,identified,0.00,__thiscall,"void accumulate_float_collision_extents(void * this, float * first, float * second)",false,,docs/BATTLE.md observed float-coordinate extent selection and integer conversion,,
 0x0046AB80,67,0x0046ABC2,FUN_0046ab80,,,unclassified,0.00,unknown,undefined FUN_0046ab80(void),false,,,,
 0x0046ABD0,110,0x0046AC3D,FUN_0046abd0,,,unclassified,0.00,unknown,undefined FUN_0046abd0(void),false,,,,
-0x0046AC40,100,0x0046ACA3,FUN_0046ac40,,,unclassified,0.00,unknown,undefined FUN_0046ac40(void),false,,,,
+0x0046AC40,100,0x0046ACA3,emit_effect_at_collision_center,emit_effect_at_collision_center,battle,identified,0.00,__thiscall,"void emit_effect_at_collision_center(void * this, int effect_code, int direction)",false,,docs/BATTLE.md observed effect dispatch at accumulated collision midpoint,root,Source-faithful probe is blocked on a DIR32 relocation to the target double constant at 0x006B73D8
 0x0046ACB0,23,0x0046ACC6,reset_collision_extents,reset_collision_extents,battle,matching,100.00,__thiscall,void reset_collision_extents(void * this),false,src/battle/Collision.cpp,scripts/compile-unit.sh src/battle/Collision.cpp build/probes/Collision.obj && python3 scripts/compare-function.py 0x0046ACB0 build/probes/Collision.obj,,Exact sentinel writes; extent semantics and original context type remain inferred
 0x0046ACD0,91,0x0046AD2A,transform_local_aabb_to_world,transform_local_aabb_to_world,battle,matching,100.00,__stdcall,"void transform_local_aabb_to_world(void * actor, int * param_2, float * world_aabb)",false,src/battle/Collision.cpp,scripts/compile-unit.sh src/battle/Collision.cpp build/probes/Collision.obj && python3 scripts/compare-function.py 0x0046ACD0 build/probes/Collision.obj,,Exact x87 local-to-world AABB transform; source type names are reconstructed
 0x0046AD30,97,0x0046AD90,test_and_accumulate_float_aabb_overlap,test_and_accumulate_float_aabb_overlap,battle,identified,0.00,__thiscall,"int test_and_accumulate_float_aabb_overlap(void * this, float * first, float * second)",false,,docs/BATTLE.md observed sign-bit overlap test and extent-helper call,,
-0x0046ADA0,248,0x0046AE97,FUN_0046ada0,,,unclassified,0.00,unknown,undefined FUN_0046ada0(void),false,,,,
-0x0046AEA0,142,0x0046AF2D,FUN_0046aea0,,,unclassified,0.00,unknown,undefined FUN_0046aea0(void),false,,,,
+0x0046ADA0,248,0x0046AE97,test_aabb_against_descriptor_shape,test_aabb_against_descriptor_shape,battle,identified,0.00,__thiscall,"int test_aabb_against_descriptor_shape(void * this, void * first_aabb, void * descriptor, void * second_aabb)",false,,docs/BATTLE.md observed signed AABB and four-word descriptor overlap predicates,root,Predicate semantics recovered; current faithful probe differs in VC8 register scheduling and still calls 0x0046AB80
+0x0046AEA0,142,0x0046AF2D,test_descriptor_point_inside,test_descriptor_point_inside,battle,matching,100.00,__thiscall,"int test_descriptor_point_inside(void * this, void * aabb, void * descriptor, int x, int y)",false,src/battle/HitGeometry.cpp,scripts/compile-unit.sh src/battle/HitGeometry.cpp build/wave3/HitGeometry.obj && python3 scripts/compare-function.py 0x0046AEA0 build/wave3/HitGeometry.obj,root,Exact four signed half-space expressions; descriptor geometry interpretation remains inferred
 0x0046AF30,194,0x0046AFF4,test_group_a_against_primary_box,test_group_a_against_primary_box,battle,identified,0.00,__thiscall,"int test_group_a_against_primary_box(void * this, void * first, void * second)",false,,docs/BATTLE.md observed group A iteration against optional primary box,,
-0x0046B000,252,0x0046B0FB,FUN_0046b000,,,unclassified,0.00,unknown,undefined FUN_0046b000(void),false,,,,
+0x0046B000,252,0x0046B0FB,test_descriptor_shapes_overlap,test_descriptor_shapes_overlap,battle,identified,0.00,__thiscall,"int test_descriptor_shapes_overlap(void * this, void * first_aabb, void * first_descriptor, void * second_aabb, void * second_descriptor)",false,,docs/BATTLE.md observed ordered descriptor overlap and point tests,root,Control flow recovered; implementation deferred until 0x0046ABD0 and ordered helper calls have exact source shapes
 0x0046B100,398,0x0046B28D,test_group_a_against_group_b,test_group_a_against_group_b,battle,identified,0.00,__thiscall,"int test_group_a_against_group_b(void * this, void * first, void * second)",false,,docs/BATTLE.md observed group A versus group B box testing,,
 0x0046B290,398,0x0046B41D,test_group_b_against_group_b,test_group_b_against_group_b,battle,identified,0.00,__thiscall,"int test_group_b_against_group_b(void * this, void * first, void * second)",false,,docs/BATTLE.md observed group B versus group B box testing,,
 0x0046B420,195,0x0046B4E2,FUN_0046b420,,,unclassified,0.00,unknown,undefined FUN_0046b420(void),false,,,,
 0x0046B4F0,34,0x0046B511,FUN_0046b4f0,,,unclassified,0.00,unknown,undefined FUN_0046b4f0(void),false,,,,
-0x0046B520,74,0x0046B569,FUN_0046b520,,,unclassified,0.00,unknown,undefined FUN_0046b520(void),false,,,,
+0x0046B520,74,0x0046B569,adjust_counter_482,adjust_counter_482,battle,matching,100.00,__thiscall,"void adjust_counter_482(void * this, short amount, int floor_value)",false,src/battle/FighterState.cpp,scripts/compile-unit.sh src/battle/FighterState.cpp build/wave3/FighterState.obj && python3 scripts/compare-function.py 0x0046B520 build/wave3/FighterState.obj,root,Exact subtract clamp state gate and floor raise; field gameplay meanings remain unknown
 0x0046B570,1579,0x0046BB9A,FUN_0046b570,,,unclassified,0.00,unknown,undefined FUN_0046b570(void),false,,,,
 0x0046BBA0,301,0x0046BCCC,FUN_0046bba0,,,unclassified,0.00,unknown,undefined FUN_0046bba0(void),false,,,,
 0x0046BCD0,260,0x0046BDD3,FUN_0046bcd0,,,unclassified,0.00,unknown,undefined FUN_0046bcd0(void),false,,,,
@@ -2080,7 +2080,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0046C9E0,530,0x0046CBF1,FUN_0046c9e0,,,unclassified,0.00,unknown,undefined FUN_0046c9e0(void),false,,,,
 0x0046CC00,542,0x0046CE1D,FUN_0046cc00,,,unclassified,0.00,unknown,undefined FUN_0046cc00(void),false,,,,
 0x0046CE20,446,0x0046CFDD,FUN_0046ce20,,,unclassified,0.00,unknown,undefined FUN_0046ce20(void),false,,,,
-0x0046D000,51,0x0046D032,FUN_0046d000,,,unclassified,0.00,unknown,undefined FUN_0046d000(void),false,,,,
+0x0046D000,51,0x0046D032,create_collision_list_node,create_collision_list_node,battle,matching,100.00,__stdcall,"void * create_collision_list_node(void * next, void * previous, void * * payload)",false,src/battle/CollisionList.cpp,scripts/compile-unit.sh src/battle/CollisionList.cpp build/wave3/CollisionList.obj && python3 scripts/compare-function.py 0x0046D000 build/wave3/CollisionList.obj,root,Exact 51-byte match after resolving the external operator_new CALL relocation
 0x0046D040,285,0x0046D15C,FUN_0046d040,,,unclassified,0.00,unknown,undefined FUN_0046d040(void),false,,,,
 0x0046D160,525,0x0046D36C,FUN_0046d160,,,unclassified,0.00,unknown,undefined FUN_0046d160(void),false,,,,
 0x0046D370,686,0x0046D61D,FUN_0046d370,,,unclassified,0.00,unknown,undefined FUN_0046d370(void),false,,,,
@@ -2684,7 +2684,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00664EE2,33,0x00664F03,FUN_00664ee2,,,unclassified,0.00,unknown,undefined FUN_00664ee2(void),false,,,,
 0x00664F04,62,0x00664F41,FUN_00664f04,,,unclassified,0.00,unknown,undefined FUN_00664f04(void),false,,,,
 0x00664F43,62,0x00664F80,FUN_00664f43,,,unclassified,0.00,unknown,undefined FUN_00664f43(void),false,,,,
-0x00664F9A,5,0x00664F9E,thunk_FUN_0067b50c,,,unclassified,0.00,unknown,undefined thunk_FUN_0067b50c(void),true,,,,
+0x00664F9A,5,0x00664F9E,operator_new,,,library,0.00,__cdecl,void * operator_new(uint size),true,,Ghidra thunk target 0x0067B50C verified as VC8 allocation runtime,root,Compiler runtime thunk excluded from authored reconstruction progress
 0x00664FA0,93,0x00664FFC,FUN_00664fa0,,,unclassified,0.00,unknown,undefined FUN_00664fa0(void),false,,,,
 0x00665000,203,0x006650CA,FUN_00665000,,,unclassified,0.00,unknown,undefined FUN_00665000(void),false,,,,
 0x006650D0,26,0x006650E9,FUN_006650d0,,,unclassified,0.00,unknown,undefined FUN_006650d0(void),false,,,,
@@ -2922,7 +2922,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0067B475,96,0x0067B4D4,__cfltcvt_init,,,unclassified,0.00,unknown,undefined __cfltcvt_init(void),false,,,,
 0x0067B4D5,30,0x0067B4F2,__fpmath,,,unclassified,0.00,__cdecl,void __fpmath(int param_1),false,,,,
 0x0067B4F3,25,0x0067B50B,std::bad_alloc::bad_alloc,,,unclassified,0.00,__thiscall,undefined bad_alloc(bad_alloc * this),false,,,,
-0x0067B50C,105,0x0067B574,FUN_0067b50c,,,unclassified,0.00,unknown,undefined FUN_0067b50c(void),false,,,,
+0x0067B50C,105,0x0067B574,operator_new,operator_new,runtime,library,0.00,__cdecl,void * operator_new(uint size),false,,docs/BATTLE.md verified VC8 allocation routine called by collision-list helpers,root,VC8 allocation runtime excluded from authored reconstruction progress
 0x0067B576,123,0x0067B5F0,_memcpy_s,,,unclassified,0.00,__cdecl,"errno_t _memcpy_s(void * _Dst, rsize_t _DstSize, void * _Src, rsize_t _MaxCount)",false,,,,
 0x0067B5F1,91,0x0067B64B,_memmove_s,,,unclassified,0.00,__cdecl,"errno_t _memmove_s(void * _Dst, rsize_t _DstSize, void * _Src, rsize_t _MaxCount)",false,,,,
 0x0067B64C,17,0x0067B65C,FUN_0067b64c,,,unclassified,0.00,unknown,undefined FUN_0067b64c(void),false,,,,

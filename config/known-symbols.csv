@@ -9,6 +9,7 @@ address,name,module,confidence,evidence
 0x0040CFA0,create_direct_input_keyboard,input,observed,docs/EVIDENCE.md DirectInput device creation
 0x0040D250,create_direct_input_mouse,input,observed,docs/EVIDENCE.md DirectInput device creation
 0x0040D370,is_raw_key_down,input,observed,docs/EVIDENCE.md exact top-bit DirectInput scan-code query
+0x0041FEA0,create_collision_list_sentinel,battle,inferred,docs/BATTLE.md exact 12-byte self-linked sentinel allocation
 0x00424860,main_menu_render,ui,observed,docs/EVIDENCE.md main menu vtable and runtime
 0x00424AB0,main_menu_update,ui,observed,docs/EVIDENCE.md main menu vtable and runtime
 0x004397B0,get_battle_setup_task,battle,inferred,docs/EVIDENCE.md async battle setup callback task selector
@@ -28,15 +29,25 @@ address,name,module,confidence,evidence
 0x00439CB0,get_network_session,network,observed,docs/EVIDENCE.md returns CNetworkBase pointer installed by client/server setup
 0x00463270,get_slot_character,battle,inferred,docs/EVIDENCE.md exact indexed character pointer load from battle slot state +0x28
 0x00463280,is_slot_active,battle,inferred,docs/EVIDENCE.md active byte maintained with the paired character slot
+0x0046A610,reset_fighter_fields_6bc_728,battle,inferred,docs/BATTLE.md exact two-fighter observed-field reset
+0x0046A6A0,reset_fighter_fields_6b4_728,battle,inferred,docs/BATTLE.md exact broader two-fighter observed-field reset
+0x0046A7F0,initialize_collision_list,battle,inferred,docs/BATTLE.md exact sentinel and count initialization for one collision list
 0x0046A9A0,accumulate_collision_extents,battle,inferred,docs/BATTLE.md exact integer extent accumulation from two four-coordinate inputs
 0x0046AA30,accumulate_float_collision_extents,battle,inferred,docs/BATTLE.md observed float-coordinate extent selection and integer conversion
+0x0046AC40,emit_effect_at_collision_center,battle,inferred,docs/BATTLE.md observed effect dispatch at accumulated collision midpoint
 0x0046ACB0,reset_collision_extents,battle,inferred,docs/BATTLE.md exact sentinel writes to collision context +0x1C..+0x28
 0x0046ACD0,transform_local_aabb_to_world,battle,observed,docs/EVIDENCE.md instruction and geometry validation
 0x0046AD30,test_and_accumulate_float_aabb_overlap,battle,inferred,docs/BATTLE.md observed sign-bit overlap test and extent-helper call
+0x0046ADA0,test_aabb_against_descriptor_shape,battle,inferred,docs/BATTLE.md observed signed AABB and four-word descriptor overlap predicates
+0x0046AEA0,test_descriptor_point_inside,battle,inferred,docs/BATTLE.md exact four signed descriptor half-space tests for one point
 0x0046AF30,test_group_a_against_primary_box,battle,inferred,docs/BATTLE.md observed group A iteration against optional primary box
+0x0046B000,test_descriptor_shapes_overlap,battle,inferred,docs/BATTLE.md observed ordered descriptor overlap and point tests
 0x0046B100,test_group_a_against_group_b,battle,inferred,docs/BATTLE.md observed group A versus group B box testing
 0x0046B290,test_group_b_against_group_b,battle,inferred,docs/BATTLE.md observed group B versus group B box testing
+0x0046B520,adjust_counter_482,battle,inferred,docs/BATTLE.md exact shared fighter counter clamp and floor update
 0x0046BE90,try_frame_flag_pair_outcome,battle,inferred,docs/BATTLE.md exact four ordered frame-flag pair outcomes and result code writes
 0x0046C290,resolve_fighter_body_collision,battle,observed,docs/EVIDENCE.md collision call flow and live frame layout
+0x0046D000,create_collision_list_node,battle,inferred,docs/BATTLE.md exact transient 12-byte collision-list node allocation
 0x004DDB20,Sakuya_on_action_changed,characters,observed,docs/EVIDENCE.md Sakuya action traces
 0x004DEF70,Sakuya_handle_input_and_select_action,characters,observed,docs/EVIDENCE.md Sakuya dispatcher data flow and runtime actions
+0x0067B50C,operator_new,runtime,observed,docs/BATTLE.md verified VC8 allocation routine called by collision-list helpers

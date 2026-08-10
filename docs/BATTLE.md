@@ -86,6 +86,12 @@ terms, so documentation calls them families 0, 1, and 2. Family 1 feeds
 object-object clash at `0x0046D370`; family 2 feeds object interactions at
 `0x0046D160`; family 0 feeds attack-vs-fighter dispatch at `0x0046D040`.
 
+The three allocation/initialization leaves are now exact reconstructions:
+`0x0041FEA0` creates a 12-byte self-linked sentinel, `0x0046A7F0` stores it
+at list `+4` and zeros count `+8`, and `0x0046D000` creates a transient node.
+The list field at `+0` is deliberately left unnamed because initialization
+does not touch it.
+
 ### Frame-flag result leaf
 
 `0x0046BE90` is an exact reconstructed leaf beneath `0x0046D040`. It checks
@@ -109,6 +115,12 @@ Attack damage is resolved before fighter body separation.
 - `0x0046AD30` gates and accumulates float AABB overlap. Its behavior and ABI
   are identified, but pure VC8 C++ still schedules the bitwise reduction
   differently from the target.
+- `0x0046AEA0` exactly reconstructs the four signed half-space expressions
+  used to test a point against an AABB plus a four-word descriptor.
+- `0x0046ADA0` tests one AABB against such a descriptor, while `0x0046B000`
+  performs an ordered descriptor-pair broad phase and five point tests. Their
+  predicates and helper order are identified, but their current source shapes
+  are not yet byte-identical.
 - `0x0046C290` reads the two fighter roots at manager `+0x0C/+0x10`, consumes
   current-frame body geometry through fighter `+0x158`, and applies overlap
   correction and pushback.
@@ -132,6 +144,13 @@ colors the groups differently, but that does not prove hitbox/hurtbox labels.
 
 The names of the latter two remain broad until their complete field contracts
 are mapped.
+
+Two exact per-frame reset leaves at `0x0046A610` and `0x0046A6A0` clear
+different observed subsets of fighter fields `+0x6B4..+0x728` for both player
+slots. These are intentionally named by field range until callers prove phase
+or gameplay terminology. `0x0046B520` is also exact: it subtracts and clamps
+fighter short `+0x482`, applies a state-5 gate from `+0x4B8`, and raises short
+`+0x486` to the resulting floor value.
 
 The collision/list manager constructed by `0x0046A810` installs
 `CBattleManagerBase::vftable` at `0x006AF634` and constructs three pairs of

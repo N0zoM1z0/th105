@@ -49,6 +49,12 @@ routine whole-project checks, and both are designed to finish in under a
 second. Full Ghidra inventory exports and executable-wide reccmp reports are
 milestone operations, not per-edit requirements.
 
+When Ghidra's function body is a non-contiguous address set that omits bytes
+inside the entry-to-`span_end` range, use `compare-function.py
+--contiguous-span` only after disassembly proves that the whole contiguous span
+belongs to the function. The comparison then covers those omitted bytes as
+well as the tracked body rather than accepting a truncated prefix.
+
 ## Parallel-agent safety
 
 Agents should partition work by address/function and source module. Claims must
