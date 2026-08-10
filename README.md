@@ -66,6 +66,8 @@ See [docs/MCP.md](docs/MCP.md) for setup and security details.
 
 - [Architecture](docs/ARCHITECTURE.md) — confirmed binary structure and module plan
 - [Reverse-engineering workflow](docs/RE_WORKFLOW.md) — evidence and agent handoff rules
+- [Gameplay reconstruction framework](docs/CORE_FRAMEWORK.md) — core lanes,
+  ABI/type contracts, dependency graph, and agent-ready worklist
 - [Matching workflow](docs/BUILD_MATCHING.md) — compiler, reccmp, and objdiff stages
 - [Exact-matching pattern catalog](.agents/skills/th105-re/references/exact-matching-patterns.md) — reusable VC8, COFF, relocation, and source-shaping techniques
 - [Progress](docs/PROGRESS.md) — generated from `config/functions.csv`
@@ -77,6 +79,7 @@ Regenerate and validate the tracking data with:
 
 ```bash
 python3 scripts/generate-tracking.py
+python3 scripts/core-worklist.py --check
 python3 scripts/progress.py --check
 python3 scripts/validate-tracking.py
 ```

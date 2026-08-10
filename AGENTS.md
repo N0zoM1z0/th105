@@ -13,6 +13,9 @@ Do not analyze or substitute a localized executable.
    active claim; use a small address-bounded work unit.
 4. Confirm `th105-ghidra` with `codex mcp list`. If necessary, run the protocol
    smoke test documented in `docs/MCP.md`.
+5. For danmaku, skill, battle, collision, score, or spell-card work, inspect
+   `docs/CORE_FRAMEWORK.md` and run `python3 scripts/core-worklist.py --ready`.
+   The framework selects work; it does not override the function ledger.
 
 ## Evidence rules
 
@@ -71,12 +74,16 @@ and Git; evidence workers receive non-overlapping address ranges.
   class layout, vtable order, exception behavior, and static initialization.
 - Keep functions in the module directories described by
   `docs/ARCHITECTURE.md`. Do not create a monolithic catch-all translation unit.
+- Represent not-yet-implemented gameplay functions with ledger signatures,
+  dependency/type manifests, and declarations. Never add empty or fake-return
+  function bodies merely to make the framework link.
 - Build and compare the smallest affected object/function first, then run the
   project-level comparison when the build skeleton supports it.
 - Run before handoff:
 
   ```bash
   python3 scripts/validate-tracking.py
+  python3 scripts/core-worklist.py --check
   python3 scripts/progress.py --check
   ```
 

@@ -1,0 +1,134 @@
+caller,callee,required_status,evidence
+0x0042C100,0x00439860,matching,docs/BATTLE.md observed mode gate
+0x0042C100,0x00439C90,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x00430DE0,0x00430C80,identified,target direct call and exact 0x00430DE0 comparison
+0x00430DE0,0x00432D80,identified,target direct call and exact 0x00430DE0 comparison
+0x00430DE0,0x00433490,identified,target direct call and exact 0x00430DE0 comparison
+0x004317A0,0x004316C0,identified,docs/BATTLE.md checked local and common tree lookup
+0x00432D80,0x00432500,identified,docs/BATTLE.md wrapper call order
+0x00432D80,0x004325B0,identified,docs/BATTLE.md wrapper parser forwarding
+0x00432D80,0x0043ABE0,identified,docs/BATTLE.md character path component resolution
+0x00432E20,0x004021C0,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x00432E20,0x00404EC0,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x00432E20,0x00404F30,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x00432E20,0x00408A40,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x00432E20,0x00408B40,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x00432E20,0x0040EB20,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x00432E20,0x0040EE50,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x00432E20,0x0040EF50,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x00432E20,0x0040F050,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x00432E20,0x0040F780,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x00432E20,0x00416A50,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x00432E20,0x00431430,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x00432E20,0x00431950,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x00432E20,0x00432310,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x00433490,0x00432500,identified,docs/BATTLE.md wrapper call order
+0x00433490,0x00432E20,decompiled,docs/BATTLE.md resource parser forwarding
+0x00433490,0x0043ABE0,identified,docs/BATTLE.md character path component resolution
+0x0045A4A0,0x00406650,matching,docs/BATTLE.md oriented descriptor sine dependency
+0x0045A4A0,0x00406680,matching,docs/BATTLE.md oriented descriptor cosine dependency
+0x0045AEC0,0x0045A190,decompiled,docs/BATTLE.md group geometry transform path
+0x0045AEC0,0x0045A2E0,decompiled,docs/BATTLE.md mirrored group geometry transform path
+0x0045AEC0,0x0045A4A0,decompiled,docs/BATTLE.md oriented descriptor construction path
+0x0045BC30,0x0042C100,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0045BC30,0x004317A0,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0045BC30,0x00431860,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0045BC30,0x00439B40,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0045BC30,0x0045B9E0,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0045BC30,0x0045BA40,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0045C690,0x00406C30,identified,docs/BATTLE.md optional resource preparation
+0x0045C690,0x00430D90,identified,docs/BATTLE.md record selection
+0x0045C690,0x004317A0,implemented,docs/BATTLE.md selected record lookup
+0x0045C690,0x0045C5A0,identified,docs/BATTLE.md sequence record transfer
+0x0045F140,0x00409AA0,identified,target initialization call order
+0x0045F140,0x00430FA0,identified,target initialization call order
+0x0045F140,0x004317A0,implemented,target checked sequence initialization path
+0x0045F140,0x00433B90,matching,target initialization call order
+0x0045F140,0x0045B9E0,identified,target checked sequence initialization path
+0x0045F140,0x0045C690,implemented,target initial sequence population loop
+0x0045F140,0x0045E5F0,identified,target initialization call order
+0x0045F140,0x00462380,identified,target initialization call order
+0x0045F140,0x004631E0,identified,target initialization call order
+0x00462050,0x00404EC0,identified,docs/BATTLE.md face and back image load path
+0x00462050,0x00416A50,identified,docs/BATTLE.md back-resource registration
+0x00462050,0x00430DE0,matching,docs/BATTLE.md spell data load call
+0x00462050,0x0043ABE0,identified,docs/BATTLE.md character path component resolution
+0x00462050,0x0045E080,identified,docs/BATTLE.md indexed resource initialization phase
+0x00462050,0x00460B50,identified,docs/BATTLE.md pre-resource initialization phase
+0x00462050,0x00464320,identified,docs/BATTLE.md final character resource callback
+0x0046AB80,0x0046A9A0,matching,exact descriptor extent comparison
+0x0046ABD0,0x0046A9A0,matching,exact descriptor pair extent comparison
+0x0046AC40,0x0046ACB0,matching,exact hit effect and extent reset path
+0x0046AD30,0x0046AA30,identified,docs/BATTLE.md float overlap accumulation path
+0x0046ADA0,0x0046AB80,matching,docs/BATTLE.md one-descriptor accumulation path
+0x0046ADA0,0x0046AEA0,matching,docs/BATTLE.md point-test dependency
+0x0046AF30,0x0046ADA0,implemented,docs/BATTLE.md group A primary geometry path
+0x0046B000,0x0046ABD0,matching,docs/BATTLE.md two-descriptor accumulation path
+0x0046B000,0x0046AEA0,matching,docs/BATTLE.md ordered point-test cascade
+0x0046B100,0x0046ADA0,implemented,docs/BATTLE.md one-descriptor branch
+0x0046B100,0x0046B000,implemented,docs/BATTLE.md two-descriptor branch
+0x0046B290,0x0046ADA0,implemented,docs/BATTLE.md one-descriptor branch
+0x0046B290,0x0046B000,implemented,docs/BATTLE.md two-descriptor branch
+0x0046B570,0x00433B90,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0046B570,0x00434860,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0046B570,0x00439860,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0046B570,0x00439DC0,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0046B570,0x0045AAE0,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0046B570,0x0045B870,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0046B570,0x0045CA70,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0046B570,0x0045CAE0,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0046B570,0x0046A940,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0046B570,0x0046AC40,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0046B570,0x0046ACB0,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0046BBA0,0x00459ED0,implemented,docs/BATTLE.md dynamic forwarded scalar path
+0x0046BBA0,0x0045B870,implemented,docs/BATTLE.md capped counter update
+0x0046BBA0,0x0045CAE0,matching,docs/BATTLE.md state gate
+0x0046BBA0,0x0046A940,matching,docs/BATTLE.md scratch reset path
+0x0046BCD0,0x00439DC0,matching,docs/BATTLE.md terminal indexed event
+0x0046BCD0,0x0045CA70,matching,docs/BATTLE.md terminal facing update
+0x0046BCD0,0x0046A940,matching,docs/BATTLE.md terminal scratch reset
+0x0046BCD0,0x0046AC40,matching,docs/BATTLE.md terminal collision effect
+0x0046BCD0,0x0046ACB0,matching,docs/BATTLE.md terminal extent reset
+0x0046BF20,0x0046B100,implemented,docs/BATTLE.md group A versus group B geometry
+0x0046BFD0,0x0046B290,implemented,docs/BATTLE.md group B pair geometry
+0x0046C070,0x0046B290,implemented,docs/BATTLE.md group B clash geometry
+0x0046C9E0,0x00439DC0,matching,docs/BATTLE.md outcome event dispatch
+0x0046C9E0,0x0045AB10,matching,docs/BATTLE.md alternate descriptor quantity
+0x0046C9E0,0x0045B870,implemented,docs/BATTLE.md owner counter adjustment
+0x0046C9E0,0x0045CB20,implemented,docs/BATTLE.md outcome selector dependency
+0x0046C9E0,0x0045CA70,matching,docs/BATTLE.md facing update
+0x0046C9E0,0x0045CAE0,matching,docs/BATTLE.md state gate
+0x0046C9E0,0x0046A940,matching,docs/BATTLE.md scratch reset
+0x0046C9E0,0x0046AC40,matching,docs/BATTLE.md collision effect
+0x0046C9E0,0x0046ACB0,matching,docs/BATTLE.md extent reset
+0x0046CC00,0x00439DC0,matching,docs/BATTLE.md outcome event dispatch
+0x0046CC00,0x0045AB10,matching,docs/BATTLE.md alternate descriptor quantity
+0x0046CC00,0x0045B870,implemented,docs/BATTLE.md owner counter adjustment
+0x0046CC00,0x0045CA70,matching,docs/BATTLE.md facing update
+0x0046CC00,0x0045CAE0,matching,docs/BATTLE.md state gate
+0x0046CC00,0x0046A940,matching,docs/BATTLE.md scratch reset
+0x0046CC00,0x0046AC40,matching,docs/BATTLE.md collision effect
+0x0046CC00,0x0046ACB0,matching,docs/BATTLE.md extent reset
+0x0046CC00,0x0046BCD0,matching,docs/BATTLE.md terminal outcome handoff
+0x0046CE20,0x00433B90,matching,docs/BATTLE.md action scratch reset after outcome
+0x0046CE20,0x00434860,matching,docs/BATTLE.md selector-six stage gate
+0x0046CE20,0x0045CB20,implemented,docs/BATTLE.md outcome selector
+0x0046CE20,0x0046C9E0,implemented,docs/BATTLE.md outcome path A dispatch
+0x0046CE20,0x0046CC00,implemented,docs/BATTLE.md outcome path B dispatch
+0x0046D040,0x0045CD90,matching,docs/BATTLE.md positive-y state gate
+0x0046D040,0x0046AF30,implemented,docs/BATTLE.md primary geometry branch
+0x0046D040,0x0046B100,implemented,docs/BATTLE.md group geometry branch
+0x0046D040,0x0046B570,implemented,docs/BATTLE.md ordinary hit fallback
+0x0046D040,0x0046BDE0,matching,docs/BATTLE.md candidate flag outcome
+0x0046D040,0x0046BE90,matching,docs/BATTLE.md frame flag pair outcome
+0x0046D040,0x0046CE20,implemented,docs/BATTLE.md outcome dispatch
+0x0046D160,0x0046BF20,implemented,docs/BATTLE.md fallback family interaction
+0x0046D160,0x0046BFD0,matching,docs/BATTLE.md first family pair response
+0x0046D370,0x0046C070,implemented,docs/BATTLE.md object clash resolver
+0x0046D620,0x00454890,library,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0046D620,0x0045AEC0,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0046D620,0x0045BF10,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0046D620,0x0046D000,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0046D620,0x0046D040,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0046D620,0x0046D160,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0046D620,0x0046D370,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10

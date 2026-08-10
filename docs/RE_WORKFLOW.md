@@ -75,3 +75,19 @@ comparison units.
 Generated reports stay below `build/`; durable facts and commands belong in
 the ledger or docs so another agent can reproduce the conclusion without the
 previous chat context.
+
+## Gameplay contract-first workflow
+
+For core gameplay work, query `scripts/core-worklist.py` before claiming a
+function. Its scope and dependency manifests complement rather than replace
+`config/functions.csv`:
+
+```bash
+python3 scripts/core-worklist.py --check
+python3 scripts/core-worklist.py --ready --lane spell-runtime
+```
+
+It is valid to add a proven ABI declaration, partial type view, or dependency
+edge before source exists. Doing so does not justify a ledger status change.
+Never use an empty function body as a placeholder; use the contract framework
+described in [`CORE_FRAMEWORK.md`](CORE_FRAMEWORK.md).

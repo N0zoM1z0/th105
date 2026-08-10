@@ -522,6 +522,13 @@ Keep claims address-bounded, but do not optimize the work queue for easy
 progress counts. The central hard functions now have complete semantic source,
 so the highest-value lanes are:
 
+The machine-readable version of this frontier is maintained in
+`config/core-functions.csv` and `config/core-dependencies.csv`. Agents should
+run `python3 scripts/core-worklist.py --ready` before claiming work; see
+[`CORE_FRAMEWORK.md`](CORE_FRAMEWORK.md). The generated action and blocker
+columns follow the live function ledger and do not promote placeholder
+contracts to implemented source.
+
 1. Shape `0x0045AEC0` against its 2156-byte target, beginning with the
    `vector::at` COMDAT boundary and repeated `frame_158` reload schedule.
 2. Shape the list orchestrators `0x0046D160`, `0x0046D370`, and `0x0046D620`

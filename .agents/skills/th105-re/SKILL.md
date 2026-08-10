@@ -13,8 +13,10 @@ Use this skill only inside this repository and only for the target hash in
 1. Read `AGENTS.md` in full.
 2. Run `python3 scripts/verify-target.py` and
    `python3 scripts/validate-tracking.py`.
-3. Choose an unclaimed row from `config/functions.csv`, preferably adjacent to
-   an already identified function in the same module.
+3. For gameplay-first work, run `python3 scripts/core-worklist.py --ready` and
+   inspect `docs/CORE_FRAMEWORK.md`. Choose an unclaimed row from
+   `config/functions.csv`, preferably a ready dependency frontier or a central
+   hard function in the same lane.
 4. Record the claim in `config/claims.csv` before editing shared source.
 
 ## Establish behavior
@@ -29,6 +31,10 @@ call. Start with:
 
 Apply types and names only when supported. Record the evidence source and
 confidence. Do not treat external layouts or later-game code as authoritative.
+When a result changes a core call dependency or a complete/partial type
+boundary, update `config/core-dependencies.csv` or `config/core-types.csv` in
+the same handoff. Use declarations for not-yet-implemented functions; never add
+fake behavioral stub bodies.
 
 ## Reconstruct and compare
 
@@ -71,6 +77,7 @@ Run:
 
 ```bash
 python3 scripts/validate-tracking.py
+python3 scripts/core-worklist.py --check
 python3 scripts/progress.py --check
 git diff --check
 ```

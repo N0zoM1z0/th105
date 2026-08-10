@@ -107,6 +107,12 @@ Gameplay reconstruction should start from the phase ordering and bounded work
 lanes in [`docs/BATTLE.md`](BATTLE.md). UI, audio, and input plumbing remain
 valid modules but are lower priority than the active battle pipeline.
 
+The machine-readable gameplay scope, dependency frontier, and partial/complete
+type contracts are documented in
+[`docs/CORE_FRAMEWORK.md`](CORE_FRAMEWORK.md). This framework uses declarations
+instead of behavioral stubs, so architecture work does not inflate function
+status or create plausible but false implementations.
+
 These names describe observed roles; they do not imply that original source
 names have been recovered.
 

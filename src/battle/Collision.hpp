@@ -307,6 +307,7 @@ struct Fighter {
     unsigned char consume_spell_sequence_entry();
     void prepare_next_spell_sequence_entry();
     void initialize_fighter_battle_state();
+    void initialize_fighter_spell_resources();
     void consume_counter_484_steps(char count);
     int select_outcome_path_from_frame_flags(unsigned frame_flags);
     signed char classify_fighter_x_boundary();

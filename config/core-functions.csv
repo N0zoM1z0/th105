@@ -1,0 +1,114 @@
+address,lane,priority,notes
+0x004021C0,spell-assets,3,Opaque parser helper reached by the hard spell CSV parser
+0x00404EC0,spell-assets,2,Single image resource loader boundary
+0x00404F30,spell-assets,2,Composite image resource builder boundary
+0x00406650,geometry,3,Exact orientation sine lookup dependency
+0x00406680,geometry,3,Exact orientation cosine lookup dependency
+0x00406780,geometry,2,Orientation table initialization contract still missing
+0x00406C30,spell-assets,2,Optional record resource preparation boundary
+0x00408A40,spell-assets,3,Opaque parser cleanup or ownership helper
+0x00408B40,spell-assets,3,Opaque parser cleanup or ownership helper
+0x00409AA0,fighter-init,2,Prior fighter state release contract
+0x0040EB20,spell-assets,2,CSV reader iteration boundary
+0x0040EE50,spell-assets,2,CSV reader field boundary
+0x0040EF50,spell-assets,2,CSV reader field boundary
+0x0040F050,spell-assets,2,CSV reader field boundary
+0x0040F780,spell-assets,2,CSV reader cleanup boundary
+0x00416A50,spell-assets,2,Loaded resource registration boundary
+0x0041FEA0,collision-phase,3,Exact collision-list sentinel allocation
+0x0042C100,score,1,Observed record count and high-water update
+0x00430C80,spell-data,2,Post-load spell data finalization contract
+0x00430D90,spell-runtime,2,Spell record selector contract
+0x00430DE0,spell-data,2,Exact normal versus alternate loader selector
+0x00430FA0,fighter-init,2,Category-dependent sequence mode setter
+0x00431430,spell-assets,2,Checked spell record traversal boundary
+0x004316C0,spell-data,2,Checked spell tree lookup contract
+0x004317A0,spell-data,1,Local then common spell record lookup
+0x00431860,spell-runtime,2,Player-indexed record callback contract
+0x00431950,spell-assets,2,Spell parser record copy or construction boundary
+0x00432310,spell-assets,2,Spell parser temporary consumption boundary
+0x00432500,spell-data,2,Spell entry container clear contract
+0x004325B0,spell-data,1,First large spell CSV parser body
+0x00432D80,spell-data,2,spellcard versus storySpell wrapper for first parser
+0x00432E20,spell-data,1,Hard spell CSV record and card-resource parser
+0x00433490,spell-data,2,spellcard versus storySpell wrapper for resource parser
+0x00433B90,hit-resolution,3,Exact fighter action scratch reset
+0x00434860,hit-resolution,3,Exact stage-surface fighter gate
+0x00439860,hit-resolution,3,Exact game-mode accessor
+0x00439B40,score,3,Exact ScoreData root accessor
+0x00439C90,score,3,Exact session setup option accessor used by statistics gate
+0x00439DC0,hit-resolution,3,Exact indexed event dispatch
+0x0043ABE0,spell-data,2,Character key to path component contract
+0x00454890,collision-phase,3,Verified VC8 std list size helper
+0x00459ED0,hit-resolution,1,Forwarded quantity scalar chain
+0x0045A030,hit-resolution,1,Base hit quantity scalar chain
+0x0045A190,geometry,1,Hard local box transform with x87 conversion schedule
+0x0045A2E0,geometry,1,Hard mirrored local box transform
+0x0045A4A0,geometry,1,Hard oriented box and descriptor builder
+0x0045AAE0,hit-resolution,3,Exact descriptor quantity at frame offset 1C
+0x0045AB10,hit-resolution,3,Exact descriptor quantity at frame offset 20
+0x0045AEC0,collision-phase,1,Hard frame geometry preparation and vector at COMDAT
+0x0045B870,hit-resolution,2,Capped counter adjustment
+0x0045B9E0,spell-runtime,2,Checked sequence entry access contract
+0x0045BA40,spell-runtime,2,Sequence advance contract
+0x0045BC30,spell-runtime,1,Sequence consume callback statistics and next-record publication
+0x0045BF10,collision-phase,2,Exact deferred sequence counter application
+0x0045C5A0,spell-runtime,2,Two-short sequence record enqueue contract
+0x0045C690,spell-runtime,1,Record selection optional resource preparation and enqueue
+0x0045CA70,hit-resolution,3,Exact paired-fighter facing update
+0x0045CAE0,hit-resolution,3,Exact signed fighter state gate 32 to 95
+0x0045CB00,hit-resolution,3,Exact signed fighter state gate 96 to C7
+0x0045CB20,hit-resolution,1,Outcome selector from fighter and frame state
+0x0045CD90,hit-resolution,3,Exact positive-y and state-window gate
+0x0045E080,fighter-init,2,Per-fighter indexed resource initialization boundary
+0x0045E5F0,fighter-init,2,Sequence controller reset contract
+0x0045F140,fighter-init,1,Fighter battle-state reset and initial sequence publication
+0x00460B50,fighter-init,2,Pre-resource fighter initialization boundary
+0x00462050,fighter-init,1,Fighter spell data face and back-resource initialization
+0x00462380,fighter-init,2,First subordinate fighter initialization phase
+0x004631E0,fighter-init,2,Second subordinate fighter initialization phase
+0x00463610,battle-phase,3,Exact active character and owned-object callback phase
+0x00463760,battle-phase,3,Exact physics status and timer commit phase
+0x00464320,fighter-init,2,Final character resource callback boundary
+0x00469E40,hit-resolution,3,Exact indexed info-manager scratch reset
+0x0046A5B0,battle-phase,3,Exact global active-character phase wrapper
+0x0046A5C0,battle-phase,3,Exact global physics status phase wrapper
+0x0046A5D0,battle-phase,3,Exact post-update callback phase
+0x0046A610,battle-phase,3,Exact narrow two-fighter field reset
+0x0046A6A0,battle-phase,3,Exact broad two-fighter field reset
+0x0046A7F0,collision-phase,3,Exact collision-list initialization
+0x0046A940,hit-resolution,3,Exact hit-exchange scratch reset
+0x0046A9A0,geometry,3,Exact integer collision extent accumulation
+0x0046AA30,geometry,2,Float collision extent accumulation contract
+0x0046AB80,geometry,3,Exact one-descriptor extent accumulation
+0x0046ABD0,geometry,3,Exact two-descriptor extent accumulation
+0x0046AC40,hit-resolution,3,Exact effect dispatch at collision midpoint
+0x0046ACB0,geometry,3,Exact collision extent reset
+0x0046ACD0,geometry,3,Exact local AABB to world transform
+0x0046AD30,geometry,3,Exact float AABB overlap and accumulation
+0x0046ADA0,geometry,2,AABB versus descriptor overlap
+0x0046AEA0,geometry,3,Exact point against descriptor test
+0x0046AF30,geometry,2,Group A versus primary box test
+0x0046B000,geometry,2,Descriptor pair overlap and point-test cascade
+0x0046B100,geometry,2,Group A versus group B geometry
+0x0046B290,geometry,2,Group B versus group B geometry
+0x0046B420,battle-phase,3,Exact shared sixteen-step battle phase sequence
+0x0046B4F0,battle-phase,2,Shared phase plus info callback wrapper
+0x0046B520,hit-resolution,3,Exact fighter counter clamp and floor update
+0x0046B570,hit-resolution,1,General attack hit resolver
+0x0046BBA0,hit-resolution,1,Forwarded quantity application depletion and accounting
+0x0046BCD0,hit-resolution,3,Exact terminal outcome helper
+0x0046BDE0,hit-resolution,3,Exact candidate flag outcome
+0x0046BE90,hit-resolution,3,Exact frame flag pair outcome
+0x0046BF20,hit-resolution,2,Group A versus group B interaction response
+0x0046BFD0,hit-resolution,3,Exact group B pair response
+0x0046C070,hit-resolution,2,Group B object clash result dispatch
+0x0046C290,collision-phase,1,Fighter body collision and separation contract
+0x0046C9E0,hit-resolution,2,Outcome path A
+0x0046CC00,hit-resolution,2,Outcome path B
+0x0046CE20,hit-resolution,1,Outcome selector dispatch and action mapping
+0x0046D000,collision-phase,3,Exact transient collision-list node allocation
+0x0046D040,collision-phase,2,Exact candidate against fighter gate cascade
+0x0046D160,collision-phase,1,Hard family 2 against family 1 checked-list pass
+0x0046D370,collision-phase,1,Hard family 1 same-list and cross-list clash pass
+0x0046D620,collision-phase,1,Hard six-list collision and deferred-result orchestration
