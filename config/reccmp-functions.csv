@@ -11,6 +11,7 @@ create_direct_input_mouse,0x0040D250,function
 is_raw_key_down,0x0040D370,function
 main_menu_render,0x00424860,function
 main_menu_update,0x00424AB0,function
+get_battle_setup_task,0x004397B0,function
 get_game_mode,0x00439860,function
 get_match_setup,0x00439870,function
 get_game_config,0x00439B30,function

@@ -319,7 +319,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0040D060,176,0x0040D10F,FUN_0040d060,,,unclassified,0.00,unknown,undefined FUN_0040d060(void),false,,,,
 0x0040D110,312,0x0040D247,FUN_0040d110,,,unclassified,0.00,unknown,undefined FUN_0040d110(void),false,,,,
 0x0040D250,282,0x0040D369,FUN_0040d250,create_direct_input_mouse,input,identified,0.00,unknown,undefined FUN_0040d250(void),false,,docs/EVIDENCE.md DirectInput device creation,,
-0x0040D370,16,0x0040D37F,is_raw_key_down,is_raw_key_down,input,compiles,0.00,__thiscall,"bool is_raw_key_down(void * this, uchar scan_code)",false,src/input/InputManager.cpp,scripts/compile-unit.sh src/input/InputManager.cpp build/probes/InputManager.obj && python3 scripts/compare-function.py 0x0040D370 build/probes/InputManager.obj,,Behavior and ABI supported; VC8 /O2 emits an equivalent 15-byte byte-register load instead of target movzx
+0x0040D370,16,0x0040D37F,is_raw_key_down,is_raw_key_down,input,matching,100.00,__thiscall,"bool is_raw_key_down(void * this, uchar scan_code)",false,src/input/InputManager.cpp,scripts/compile-unit.sh src/input/InputManager.cpp build/probes/InputManager.obj && python3 scripts/compare-function.py 0x0040D370 build/probes/InputManager.obj,,Exact after expressing the observed top-bit test as (raw_keyboard_state[scan_code] & 0x80) != 0
 0x0040D380,71,0x0040D3C6,FUN_0040d380,,,unclassified,0.00,unknown,undefined FUN_0040d380(void),false,,,,
 0x0040D3D0,88,0x0040D427,FUN_0040d3d0,,,unclassified,0.00,unknown,undefined FUN_0040d3d0(void),false,,,,
 0x0040D430,182,0x0040D4E5,FUN_0040d430,,,unclassified,0.00,unknown,undefined FUN_0040d430(void),false,,,,
@@ -1198,7 +1198,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00439660,6,0x00439665,FUN_00439660,,,unclassified,0.00,unknown,undefined FUN_00439660(void),false,,,,
 0x00439670,116,0x004396E3,FUN_00439670,,,unclassified,0.00,unknown,undefined FUN_00439670(void),false,,,,
 0x004396F0,180,0x004397A3,FUN_004396f0,,,unclassified,0.00,unknown,undefined FUN_004396f0(void),false,,,,
-0x004397B0,6,0x004397B5,FUN_004397b0,,,unclassified,0.00,unknown,undefined FUN_004397b0(void),false,,,,
+0x004397B0,6,0x004397B5,get_battle_setup_task,get_battle_setup_task,battle,matching,100.00,__cdecl,int get_battle_setup_task(void),false,src/battle/BattleSetup.cpp,scripts/compile-unit.sh src/battle/BattleSetup.cpp build/probes/BattleSetup.obj && python3 scripts/compare-function.py 0x004397B0 build/probes/BattleSetup.obj,,Inferred task role from setup callback and polling callers; exact raw accessor
 0x004397C0,40,0x004397E7,FUN_004397c0,,,unclassified,0.00,unknown,undefined FUN_004397c0(void),false,,,,
 0x004397F0,31,0x0043980E,FUN_004397f0,,,unclassified,0.00,unknown,undefined FUN_004397f0(void),false,,,,
 0x00439810,21,0x00439824,FUN_00439810,,,unclassified,0.00,unknown,undefined FUN_00439810(void),false,,,,

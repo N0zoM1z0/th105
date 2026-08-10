@@ -11,6 +11,7 @@ address,name,module,confidence,evidence
 0x0040D370,is_raw_key_down,input,observed,docs/EVIDENCE.md exact top-bit DirectInput scan-code query
 0x00424860,main_menu_render,ui,observed,docs/EVIDENCE.md main menu vtable and runtime
 0x00424AB0,main_menu_update,ui,observed,docs/EVIDENCE.md main menu vtable and runtime
+0x004397B0,get_battle_setup_task,battle,inferred,docs/EVIDENCE.md async battle setup callback task selector
 0x00439860,get_game_mode,battle,observed,docs/EVIDENCE.md returned live game mode
 0x00439870,get_match_setup,battle,inferred,docs/EVIDENCE.md callers use the returned 0x006E6FE8 block for character stage deck and BGM selection
 0x00439B30,get_game_config,config,observed,docs/EVIDENCE.md config menu and live CPU difficulty field

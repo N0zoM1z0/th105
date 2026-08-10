@@ -85,6 +85,8 @@ source files to these exact target bytes:
 0x00439CB0 get_network_session: A1 FC 62 6E 00 C3
 0x00439B40 get_score_data: B8 38 72 6E 00 C3
 0x0040A210 set_input_state_table_entry: 0F B6 44 24 08 0F B6 54 24 04 89 04 91 C2 08 00
+0x0040D370 is_raw_key_down: 0F B6 44 24 04 0F B6 44 08 20 C1 E8 07 C2 04 00
+0x004397B0 get_battle_setup_task: A1 E8 62 6E 00 C3
 ```
 
 These source files compile to the listed standalone functions. Each has no code
@@ -92,6 +94,7 @@ relocation and is recorded as `matching`. They prove the probe path and source
 expressions, but the six-byte accessors among them cannot distinguish VC8 RTM
 from SP1 or prove the final `/GL`/`/LTCG` configuration.
 
-`is_raw_key_down` at `0x0040D370` is deliberately recorded as `compiles`, not
-`matching`: its VC8 `/O2` probe is behaviorally equivalent but emits a 15-byte
-byte-register load where the target uses a 16-byte `movzx` sequence.
+`is_raw_key_down` uses the explicitly normalized top-bit test
+`(raw_keyboard_state[scan_code] & 0x80) != 0`; this preserves the observed
+boolean behavior and makes VC8 SP1 `/O2` emit the target's 16-byte `movzx`
+sequence exactly.

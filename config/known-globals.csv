@@ -2,6 +2,7 @@ address,name,module,confidence,evidence
 0x006E6244,g_battle_manager,battle,observed,docs/EVIDENCE.md live manager and fighter roots
 0x006E62D8,g_input_selection_state,input,inferred,docs/EVIDENCE.md source bytes and selected-input pointers for two slots
 0x006E62E4,g_session_setup_option,input,inferred,docs/EVIDENCE.md raw setup-option value; enum meaning pending
+0x006E62E8,g_battle_setup_task,battle,inferred,docs/EVIDENCE.md async setup selector cleared by completion callback
 0x006E62EC,g_game_mode,battle,observed,docs/EVIDENCE.md live mode values
 0x006E62FC,g_network_session,network,observed,docs/EVIDENCE.md client/server setup installs CNetworkBase-derived object
 0x006E6300,g_player1_input,input,observed,docs/EVIDENCE.md input object layout

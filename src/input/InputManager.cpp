@@ -9,7 +9,7 @@ void InputStateTable::set_input_state_table_entry(unsigned char index, bool stat
 
 bool CInputManager::is_raw_key_down(unsigned char scan_code) const
 {
-    return raw_keyboard_state[scan_code] >> 7;
+    return (raw_keyboard_state[scan_code] & 0x80) != 0;
 }
 
 } // namespace th105

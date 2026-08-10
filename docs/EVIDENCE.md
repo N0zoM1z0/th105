@@ -36,6 +36,9 @@ Evidence labels used by this repository:
   `+0x38`. `0x00409C50` establishes the counter range at that offset.
 - **Inferred** `0x006E62E4` is a session setup option. Its getter and setter
   are exact, but its final enum name is not yet proven.
+- **Inferred** `0x006E62E8` is an asynchronous battle-setup task selector.
+  Setup schedules a callback that clears it on completion; callers poll the
+  value as a busy state.
 - **Observed** `0x006E62FC` holds a `CNetworkBase`-derived session object;
   client/server setup paths install the pointer there.
 - **Observed** main-menu scene 2 uses vtable `0x006ACCF4`; its update and render

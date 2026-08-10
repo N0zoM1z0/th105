@@ -2,6 +2,7 @@ name,address,type
 g_battle_manager,0x006E6244,global
 g_input_selection_state,0x006E62D8,global
 g_session_setup_option,0x006E62E4,global
+g_battle_setup_task,0x006E62E8,global
 g_game_mode,0x006E62EC,global
 g_network_session,0x006E62FC,global
 g_player1_input,0x006E6300,global
