@@ -54,11 +54,44 @@ def target_bytes(address: int, size: int) -> bytes:
 
 
 def coff_short_name(name: str) -> str:
-    if name.startswith("?"):
+    if name.startswith("@"):
         return name[1:].split("@", 1)[0]
+    if name.startswith("??2@"):
+        return "operator_new"
+    if name.startswith("??3@"):
+        return "operator_delete"
+    if name.startswith("??0"):
+        return f"{name[3:].split('@', 1)[0]}_ctor"
+    if name.startswith("??1"):
+        return f"{name[3:].split('@', 1)[0]}_dtor"
+    if name.startswith("?"):
+        scoped_name, separator, decoration = name[1:].partition("@@")
+        parts = scoped_name.split("@")
+        if separator and decoration.startswith(("Q", "U")) and len(parts) >= 2:
+            return f"{parts[1]}_{parts[0]}"
+        return parts[0]
     if name.startswith("_"):
         name = name[1:]
     return name.split("@", 1)[0]
+
+
+def is_function_symbol(name: str, symbol_base: str) -> bool:
+    if name == symbol_base or name.startswith(f"?{symbol_base}@"):
+        return True
+    if name.startswith("?") and not name.startswith("??"):
+        parts = name[1:].split("@", 2)
+        if len(parts) >= 2 and symbol_base == f"{parts[1]}_{parts[0]}":
+            return True
+    if symbol_base.endswith("_ctor"):
+        class_name = symbol_base.removesuffix("_ctor")
+        return name.startswith(f"??0{class_name}@")
+    if symbol_base.endswith("_dtor"):
+        class_name = symbol_base.removesuffix("_dtor")
+        return name.startswith(f"??1{class_name}@")
+    if symbol_base.endswith("_scalar_deleting_destructor"):
+        class_name = symbol_base.removesuffix("_scalar_deleting_destructor")
+        return name.startswith(f"??_G{class_name}@")
+    return False
 
 
 def known_targets() -> dict[str, int]:
@@ -72,8 +105,8 @@ def known_targets() -> dict[str, int]:
     return targets
 
 
-def known_data_targets() -> dict[str, tuple[int, bytes, frozenset[int]]]:
-    targets: dict[str, tuple[int, bytes, frozenset[int]]] = {}
+def known_data_targets() -> dict[str, tuple[int, bytes, frozenset[int], str]]:
+    targets: dict[str, tuple[int, bytes, frozenset[int], str]] = {}
     with KNOWN_RELOCATIONS.open(newline="", encoding="utf-8") as stream:
         for row in csv.DictReader(stream):
             name = row["coff_symbol"]
@@ -89,7 +122,12 @@ def known_data_targets() -> dict[str, tuple[int, bytes, frozenset[int]]]:
             )
             if not addends or any(value < 0 for value in addends):
                 raise ValueError(f"known relocation {name} has invalid addends")
-            targets[name] = (int(row["address"], 16), data, addends)
+            validation = row.get("validation") or "literal"
+            if validation not in {"literal", "address"}:
+                raise ValueError(
+                    f"known relocation {name} has invalid validation {validation!r}"
+                )
+            targets[name] = (int(row["address"], 16), data, addends, validation)
     return targets
 
 
@@ -99,7 +137,7 @@ def coff_symbol_bytes(
     function_address: int,
     function_size: int,
     targets: dict[str, int],
-    data_targets: dict[str, tuple[int, bytes, frozenset[int]]],
+    data_targets: dict[str, tuple[int, bytes, frozenset[int], str]],
 ) -> bytes:
     data = path.read_bytes()
     machine = struct.unpack_from("<H", data, 0)[0]
@@ -157,7 +195,7 @@ def coff_symbol_bytes(
         symbols[index] = symbol
         if (
             0 < section_number <= len(section_rows)
-            and (name == symbol_base or name.startswith(f"?{symbol_base}@"))
+            and is_function_symbol(name, symbol_base)
         ):
             if function_symbol is not None:
                 raise ValueError(f"{path} has multiple function symbols for {symbol_base}")
@@ -201,11 +239,9 @@ def coff_symbol_bytes(
                     f"unknown absolute data relocation: {target_symbol_name}"
                 )
             target_section_number = int(target_symbol["section_number"])
-            if not 0 < target_section_number <= len(section_rows):
-                raise ValueError("DIR32 target is not defined in this object")
-            destination, literal, allowed_addends = data_targets[target_symbol_name]
-            target_section = section_rows[target_section_number - 1]
-            target_value = int(target_symbol["value"])
+            destination, literal, allowed_addends, validation = data_targets[
+                target_symbol_name
+            ]
             raw_addend = struct.unpack_from("<I", code, field_offset)[0]
             if raw_addend not in allowed_addends:
                 raise ValueError(
@@ -217,43 +253,59 @@ def coff_symbol_bytes(
                 if raw_addend < (1 << 31)
                 else raw_addend - (1 << 32)
             )
-            object_value = target_value + addend
-            if int(target_section["characteristics"]) & IMAGE_SCN_CNT_UNINITIALIZED_DATA:
-                # VC8 may encode an explicitly allowlisted negative displacement
-                # from a BSS array symbol for an indexed address expression.
-                # BSS has no object bytes to slice; the target literal check below
-                # still validates the resolved address and value.
-                bss_size = int(target_section["raw_size"])
-                bss_pointer = int(target_section["raw_pointer"])
-                if (
-                    bss_pointer != 0
-                    or object_value + len(literal) > bss_size
-                    or any(literal)
+
+            if validation == "address":
+                if target_section_number != 0 and not (
+                    0 < target_section_number <= len(section_rows)
                 ):
+                    raise ValueError("DIR32 target has an invalid object section")
+            elif target_section_number == 0:
+                if not target_symbol_name.startswith("__imp__") or len(literal) != 4:
                     raise ValueError(
-                        f"unverified nonzero/unexpected BSS relocation for "
-                        f"{target_symbol_name}"
+                        f"undefined DIR32 target {target_symbol_name} is not an "
+                        "allowlisted four-byte import"
                     )
-                object_literal = bytes(len(literal))
             else:
-                if object_value < 0 or object_value + len(literal) > int(
-                    target_section["raw_size"]
-                ):
-                    raise ValueError(
-                        f"DIR32 relocation for {target_symbol_name} selects "
-                        f"bytes outside its initialized COFF section"
+                if not 0 < target_section_number <= len(section_rows):
+                    raise ValueError("DIR32 target has an invalid object section")
+                target_section = section_rows[target_section_number - 1]
+                target_value = int(target_symbol["value"])
+                object_value = target_value + addend
+                if int(target_section["characteristics"]) & IMAGE_SCN_CNT_UNINITIALIZED_DATA:
+                    # VC8 may encode an explicitly allowlisted negative
+                    # displacement from a BSS array symbol. BSS has no object
+                    # bytes; the resolved target literal is still checked below.
+                    bss_size = int(target_section["raw_size"])
+                    bss_pointer = int(target_section["raw_pointer"])
+                    if (
+                        bss_pointer != 0
+                        or object_value + len(literal) > bss_size
+                        or any(literal)
+                    ):
+                        raise ValueError(
+                            f"unverified nonzero/unexpected BSS relocation for "
+                            f"{target_symbol_name}"
+                        )
+                    object_literal = bytes(len(literal))
+                else:
+                    if object_value < 0 or object_value + len(literal) > int(
+                        target_section["raw_size"]
+                    ):
+                        raise ValueError(
+                            f"DIR32 relocation for {target_symbol_name} selects "
+                            f"bytes outside its initialized COFF section"
+                        )
+                    literal_offset = (
+                        int(target_section["raw_pointer"]) + object_value
                     )
-                literal_offset = (
-                    int(target_section["raw_pointer"]) + object_value
-                )
-                object_literal = data[
-                    literal_offset : literal_offset + len(literal)
-                ]
-            if object_literal != literal:
-                raise ValueError(
-                    f"object bytes for {target_symbol_name}+{addend:#x} do not "
-                    "match known literal"
-                )
+                    object_literal = data[
+                        literal_offset : literal_offset + len(literal)
+                    ]
+                if object_literal != literal:
+                    raise ValueError(
+                        f"object bytes for {target_symbol_name}+{addend:#x} do not "
+                        "match known literal"
+                    )
             if target_bytes(destination + addend, len(literal)) != literal:
                 raise ValueError(
                     f"target bytes for {target_symbol_name}+{addend:#x} no longer "
@@ -275,6 +327,14 @@ def coff_symbol_bytes(
         if int(target_symbol["section_number"]) != 0:
             raise ValueError("REL32 target is not an undefined external symbol")
         target_name = coff_short_name(target_symbol_name)
+        if target_name not in targets and target_symbol_name.startswith("?"):
+            # Existing ledger aliases commonly use the unqualified source
+            # member name, while newer rows may use Class_member. Prefer the
+            # class-qualified spelling above, but retain the proven legacy
+            # fallback for ordinary decorated member functions.
+            unqualified_name = target_symbol_name[1:].split("@", 1)[0]
+            if unqualified_name in targets:
+                target_name = unqualified_name
         if target_name not in targets:
             raise ValueError(f"unknown external call/jump target: {target_name}")
         addend = struct.unpack_from("<i", code, field_offset)[0]

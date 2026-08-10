@@ -8,7 +8,7 @@ address,lane,priority,notes
 0x00406C30,spell-assets,2,Optional record resource preparation boundary
 0x00408A40,spell-assets,3,Opaque parser cleanup or ownership helper
 0x00408B40,spell-assets,3,Opaque parser cleanup or ownership helper
-0x00409AA0,fighter-init,2,Prior fighter state release contract
+0x00409AA0,fighter-init,2,Exact linked input-manager counter reset used by fighter initialization
 0x0040EB20,spell-assets,2,CSV reader iteration boundary
 0x0040EE50,spell-assets,2,CSV reader field boundary
 0x0040EF50,spell-assets,2,CSV reader field boundary

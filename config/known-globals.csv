@@ -1,7 +1,10 @@
 address,name,module,confidence,evidence
+0x006D094C,g_scene_mode,engine,observed,CSelectScenario update maps current scene mode 2 versus all others
 0x006E3D9C,g_mt19937_index,engine,observed,docs/BATTLE.md MT19937 state index initialized to 625 and written by seed next and startup paths
-0x006E3DBC,g_battle_phase_static_service,battle,inferred,docs/BATTLE.md direct object used by exact shared battle phase sequence and wrapper
+0x006E3DBC,g_render_mode_manager,render,observed,docs/BATTLE.md shared battle phase and docs/UI_FRAMEWORK.md guide render-mode calls
 0x006E49CC,g_mt19937_twist_xor,engine,observed,docs/BATTLE.md exact two-word MT19937 twist table zero and 0x9908B0DF
+0x006ECE40,g_active_scene_id,engine,observed,CSceneBase constructor snapshots this scene identifier into offset 4
+0x006ECEBC,g_package_file_index,assets,observed,docs/EVIDENCE.md package reader selection gate and package index root
 0x006E4E38,g_stage_surface_heights,battle,inferred,docs/BATTLE.md 0x500-float x-indexed height table consumed by 0x00434800
 0x006E623C,g_fighter_phase_context,battle,inferred,docs/BATTLE.md global context loaded by exact phase wrappers at 0x0046A5B0 and 0x0046A5C0
 0x006E6240,g_battle_object_manager,battle,inferred,docs/BATTLE.md object-manager pointer used by exact shared battle phase sequence
@@ -26,8 +29,12 @@ address,name,module,confidence,evidence
 0x006E8498,g_mt19937_state,engine,observed,docs/BATTLE.md exact 624-word MT19937 state array ending before orientation cosine table
 0x006E8E58,g_orientation_cosine_table,engine,observed,docs/BATTLE.md runtime initializer 0x00406780 fills 3600 floats with fcos at 0.1-degree increments
 0x006EC830,g_wave_handle_service,audio,observed,docs/BATTLE.md static CHandleManager wave-buffer service used by indexed event dispatch
+0x006ECD40,g_title_resource_manager,ui,inferred,docs/EVIDENCE.md CTitle destructor releases handles at +0x08 and +0xA0 through this global manager object
+0x006ED3E8,g_primary_sound_buffer,audio,observed,docs/EVIDENCE.md IDirectSoundBuffer8 pointer released by 0x004180D0
+0x006ED3EC,g_direct_sound,audio,observed,docs/EVIDENCE.md IDirectSound8 pointer created by 0x00417E80 and released by 0x004180D0
+0x006ED3F0,g_direct_sound_listener,audio,observed,docs/EVIDENCE.md IDirectSound3DListener8 pointer created by 0x00417E80 and released by 0x004180D0
 0x006ECFF0,g_raw_keyboard_state,input,observed,docs/EVIDENCE.md DirectInput GetDeviceState destination
-0x006ECFD0,g_input_manager,input,observed,docs/EVIDENCE.md CInputManager base; raw keyboard state at +0x20
+0x006ECFD0,g_direct_input_backend,input,observed,docs/EVIDENCE.md raw DirectInput backend; HWND at +0x00; IDirectInput8 pointer at +0x04; keyboard state at +0x20; no vptr
 0x006ECE44,g_scene_controller,engine,observed,docs/EVIDENCE.md scene transition instructions
 0x006ECE78,g_requested_engine_scene,engine,observed,docs/EVIDENCE.md scene transition instructions
 0x006ECE7C,g_current_engine_scene,engine,observed,docs/EVIDENCE.md scene transition instructions and runtime

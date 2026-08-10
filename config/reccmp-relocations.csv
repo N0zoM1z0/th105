@@ -1,34 +1,82 @@
-coff_symbol,address,data_hex,addends,evidence
-?g_battle_phase_static_service@th105@@3UPhaseStaticService@1@A,0x006E3DBC,a8096c00,0x0,target first word and direct static-service object address verified from shared battle phase
-?g_mt19937_index@th105@@3HA,0x006E3D9C,71020000,0x0,target MT19937 index initial value 625 verified from image bytes
-?g_mt19937_twist_xor@th105@@3PAIA,0x006E49CC,00000000dfb00899,0x0,target MT19937 twist table bytes verified
-?g_mt19937_state@th105@@3PAIA,0x006E8498,00000000,0x0;0x4;0x630;0x9bc;0xfffffffc,target MT19937 state base indexed displacements and last zero-filled word verified
-__real@3fe0000000000000,0x006B73D8,000000000000e03f,0x0,target bytes and IEEE-754 value verified as double 0.5
-__real@3ff8000000000000,0x006ACEB0,000000000000f83f,0x0,target bytes and IEEE-754 value verified as double 1.5 for general hit responses
-__real@408f400000000000,0x006AF6D8,0000000000408f40,0x0,target bytes and IEEE-754 value verified as double 1000.0 for hit-accounting scale
-__real@3feb333340000000,0x006AEA68,000000403333eb3f,0x0,target widened float 0.85 bytes verified for hit scalar modifier
-__real@3fe99999a0000000,0x006AEA70,000000a09999e93f,0x0,target widened float 0.8 bytes verified for hit scalar modifier
-__real@3fd3333340000000,0x006AEA78,000000403333d33f,0x0,target widened float 0.3 bytes verified for quantity ratio
-__real@3fe6666660000000,0x006AEA80,000000606666e63f,0x0,target widened float 0.7 bytes verified for quantity ratio
-__real@3ff0000000000000,0x006B73F8,000000000000f03f,0x0,target double 1.0 bytes verified for table modifier
-__real@4024000000000000,0x006B7470,0000000000002440,0x0,target double 10.0 bytes verified for table modifier divisor
-__real@4059000000000000,0x006AC9A0,0000000000005940,0x0,target bytes and IEEE-754 value verified as double 100.0
-__real@0000000000000000,0x006C0ED0,0000000000000000,0x0,target bytes and IEEE-754 value verified as double 0.0 in fighter position commit
-__real@42200000,0x006AEA40,00002042,0x0,target bytes and IEEE-754 value verified as float 40.0
-__real@449b0000,0x006AEA3C,00009b44,0x0,target bytes and IEEE-754 value verified as float 1240.0
-__real@4044000000000000,0x006AD3D8,0000000000004440,0x0,target double 40.0 bytes verified
-__real@4094000000000000,0x006ACF00,0000000000009440,0x0,target double 1280.0 bytes verified
-__real@4014000000000000,0x006AC648,0000000000001440,0x0,target double 5.0 bytes verified
-__real@4074000000000000,0x006ACEC8,0000000000007440,0x0,target double 320.0 bytes verified for fighter initial horizontal position
-__real@407e000000000000,0x006ACEB8,0000000000007e40,0x0,target double 480.0 bytes verified for fighter initial horizontal position
-?stage_surface_heights@@3PAMA,0x006E4E38,00000000,0x0;0x13fc,target table base plus first raw and last PE-zero-filled floats verified from stage-height lookup
-?g_orientation_cosine_table@th105@@3PAMA,0x006E8E58,00000000,0x0;0x383c,target 3600-float BSS table base and last zero-filled entry verified before runtime initialization
-?g_info_manager@th105@@3PAUInfoManager@1@A,0x006E6248,00000000,0x0,target BSS pointer and zero-filled object symbol verified for hit-exchange scratch reset
-?g_effect_sink@th105@@3PAUEffectSink@1@A,0x006E6250,00000000,0x0,target BSS pointer and zero-filled effect-sink symbol verified from two virtual dispatch wrappers
-?g_fighter_phase_context@th105@@3PAUFighterPhaseContext@1@A,0x006E623C,00000000,0x0,target BSS pointer and zero-filled fighter-phase context verified from exact phase wrappers
-?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A,0x006E6240,00000000,0x0,target BSS pointer and zero-filled battle-object manager verified from shared battle phase
-?g_indexed_event_handles@th105@@3PAIA,0x006E7038,00000000,0x0;0x1fc,target 128-entry zero-filled indexed wave-handle table verified
-?g_wave_handle_service@th105@@3UOpaqueWaveHandleService@1@A,0x006EC830,00000000,0x0,target zero-filled opaque wave-handle service object verified
-?g_common_spell_tree@th105@@3USpellTree@1@A,0x006E4E14,00000000,0x0;0x4,target zero-filled common spell tree header words and end-node addend verified
-??_C@_0BK@LLDEPKNL@data?1csv?1?$CFs?1spellcard?4csv?$AA@,0x006AD2E0,646174612f6373762f25732f7370656c6c636172642e63737600,0x0,target spellcard CSV format string bytes verified
-??_C@_0BL@FDFMFODE@data?1csv?1?$CFs?1storySpell?4csv?$AA@,0x006AD2FC,646174612f6373762f25732f73746f72795370656c6c2e63737600,0x0,target storySpell CSV format string bytes verified
+coff_symbol,address,data_hex,addends,evidence,validation
+?g_battle_phase_static_service@th105@@3UPhaseStaticService@1@A,0x006E3DBC,a8096c00,0x0,target first word and direct static-service object address verified from shared battle phase,literal
+?g_mt19937_index@th105@@3HA,0x006E3D9C,71020000,0x0,target MT19937 index initial value 625 verified from image bytes,literal
+?g_mt19937_twist_xor@th105@@3PAIA,0x006E49CC,00000000dfb00899,0x0,target MT19937 twist table bytes verified,literal
+?g_mt19937_state@th105@@3PAIA,0x006E8498,00000000,0x0;0x4;0x630;0x9bc;0xfffffffc,target MT19937 state base indexed displacements and last zero-filled word verified,literal
+__real@3fe0000000000000,0x006B73D8,000000000000e03f,0x0,target bytes and IEEE-754 value verified as double 0.5,literal
+__real@3ff8000000000000,0x006ACEB0,000000000000f83f,0x0,target bytes and IEEE-754 value verified as double 1.5 for general hit responses,literal
+__real@408f400000000000,0x006AF6D8,0000000000408f40,0x0,target bytes and IEEE-754 value verified as double 1000.0 for hit-accounting scale,literal
+__real@3feb333340000000,0x006AEA68,000000403333eb3f,0x0,target widened float 0.85 bytes verified for hit scalar modifier,literal
+__real@3fe99999a0000000,0x006AEA70,000000a09999e93f,0x0,target widened float 0.8 bytes verified for hit scalar modifier,literal
+__real@3fd3333340000000,0x006AEA78,000000403333d33f,0x0,target widened float 0.3 bytes verified for quantity ratio,literal
+__real@3fe6666660000000,0x006AEA80,000000606666e63f,0x0,target widened float 0.7 bytes verified for quantity ratio,literal
+__real@3ff0000000000000,0x006B73F8,000000000000f03f,0x0,target double 1.0 bytes verified for table modifier,literal
+__real@4024000000000000,0x006B7470,0000000000002440,0x0,target double 10.0 bytes verified for table modifier divisor,literal
+__real@4059000000000000,0x006AC9A0,0000000000005940,0x0,target bytes and IEEE-754 value verified as double 100.0,literal
+__real@0000000000000000,0x006C0ED0,0000000000000000,0x0,target bytes and IEEE-754 value verified as double 0.0 in fighter position commit,literal
+__real@42200000,0x006AEA40,00002042,0x0,target bytes and IEEE-754 value verified as float 40.0,literal
+__real@449b0000,0x006AEA3C,00009b44,0x0,target bytes and IEEE-754 value verified as float 1240.0,literal
+__real@4044000000000000,0x006AD3D8,0000000000004440,0x0,target double 40.0 bytes verified,literal
+__real@4094000000000000,0x006ACF00,0000000000009440,0x0,target double 1280.0 bytes verified,literal
+__real@4014000000000000,0x006AC648,0000000000001440,0x0,target double 5.0 bytes verified,literal
+__real@4074000000000000,0x006ACEC8,0000000000007440,0x0,target double 320.0 bytes verified for fighter initial horizontal position,literal
+__real@407e000000000000,0x006ACEB8,0000000000007e40,0x0,target double 480.0 bytes verified for fighter initial horizontal position,literal
+?stage_surface_heights@@3PAMA,0x006E4E38,00000000,0x0;0x13fc,target table base plus first raw and last PE-zero-filled floats verified from stage-height lookup,literal
+?g_orientation_cosine_table@th105@@3PAMA,0x006E8E58,00000000,0x0;0x383c,target 3600-float BSS table base and last zero-filled entry verified before runtime initialization,literal
+?g_info_manager@th105@@3PAUInfoManager@1@A,0x006E6248,00000000,0x0,target BSS pointer and zero-filled object symbol verified for hit-exchange scratch reset,literal
+?g_effect_sink@th105@@3PAUEffectSink@1@A,0x006E6250,00000000,0x0,target BSS pointer and zero-filled effect-sink symbol verified from two virtual dispatch wrappers,literal
+?g_fighter_phase_context@th105@@3PAUFighterPhaseContext@1@A,0x006E623C,00000000,0x0,target BSS pointer and zero-filled fighter-phase context verified from exact phase wrappers,literal
+?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A,0x006E6240,00000000,0x0,target BSS pointer and zero-filled battle-object manager verified from shared battle phase,literal
+?g_indexed_event_handles@th105@@3PAIA,0x006E7038,00000000,0x0;0x1fc,target 128-entry zero-filled indexed wave-handle table verified,literal
+?g_wave_handle_service@th105@@3UOpaqueWaveHandleService@1@A,0x006EC830,00000000,0x0,target zero-filled opaque wave-handle service object verified,literal
+?g_common_spell_tree@th105@@3USpellTree@1@A,0x006E4E14,00000000,0x0;0x4,target zero-filled common spell tree header words and end-node addend verified,literal
+??_C@_0BK@LLDEPKNL@data?1csv?1?$CFs?1spellcard?4csv?$AA@,0x006AD2E0,646174612f6373762f25732f7370656c6c636172642e63737600,0x0,target spellcard CSV format string bytes verified,literal
+??_C@_0BL@FDFMFODE@data?1csv?1?$CFs?1storySpell?4csv?$AA@,0x006AD2FC,646174612f6373762f25732f73746f72795370656c6c2e63737600,0x0,target storySpell CSV format string bytes verified,literal
+?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A,0x006ED3E8,00000000,0x0;0x4;0x8,target BSS DirectSound pointer block with primary buffer device and 3D listener fields,literal
+_title_bgm_path,0x006AC890,646174612f62676d2f6f702e6f676700,0x0,target title BGM path bytes,address
+_iid_direct_sound_buffer8,0x006B72E4,49a425682475824d920f50e36ab3ab1e,0x0,target IID_IDirectSoundBuffer8 bytes,literal
+_direct_sound_error_title,0x006C0E18,44536f756e642d4572726f7200,0x0,target DirectSound error caption bytes,literal
+_create_sound_buffer_error,0x006C0E28,c1d9cab1bbbab4e6c9fab3c9caa7b0dca1a300,0x0,target create-buffer failure text bytes,literal
+__imp__MessageBoxA@16,0x006AC21C,c0e62c00,0x0,target USER32 MessageBoxA IAT slot and on-disk thunk RVA,literal
+_direct_sound_volume_units,0x006C0F08,0000c842,0x0,target float 100.0,literal
+_logarithmic_volume_scale,0x006C0F0C,48e10442,0x0,target float 33.220001220703125,literal
+__ehhandler$??1CTitle@th105@@UAE@XZ,0x006A499D,8b5424088d42f48b,0x0,target VC8 CTitle destructor EH handler entry bytes,literal
+___security_cookie,0x006E1A88,4ee640bb,0x0,target VC8 security cookie address and bytes,address
+??_7CTitle@th105@@6B@,0x006ACCF4,80514200,0x0,target RTTI-owned CTitle vtable address and first slot,address
+?g_title_resource_manager@th105@@3UTitleResourceManager@1@A,0x006ECD40,00000000,0x0,target zero-filled title resource-manager object address,address
+_title_color_vtable_anchor,0x006AC624,40a84000,0x0,target title color vtable address and first slot,address
+??_7CSceneBase@th105@@6B@,0x006AC77C,f0d34100,0x0,target RTTI-owned CSceneBase vtable address and first slot,address
+??_7IScene@th105@@6B@,0x006AC454,f0d34100,0x0,target RTTI-owned IScene vtable address and first slot,address
+__imp__GetFileSize@8,0x006AC054,b0e52c00,0x0,target KERNEL32 GetFileSize IAT slot and on-disk thunk RVA,literal
+__imp__SetFilePointer@16,0x006AC058,9ee52c00,0x0,target KERNEL32 SetFilePointer IAT slot and on-disk thunk RVA,literal
+__imp__ReadFile@20,0x006AC05C,92e52c00,0x0,target KERNEL32 ReadFile IAT slot and on-disk thunk RVA,literal
+__imp__CreateFileA@28,0x006AC06C,84e52c00,0x0,target KERNEL32 CreateFileA IAT slot and on-disk thunk RVA,literal
+__imp__CloseHandle@4,0x006AC0AC,60e52c00,0x0,target KERNEL32 CloseHandle IAT slot and on-disk thunk RVA,literal
+??_7CFileReader@th105@@6B@,0x006ACF34,70c94000,0x0,target RTTI-owned CFileReader vtable address and first slot,address
+??_7CPackageFileReader@th105@@6B@,0x006C0E4C,70c94000,0x0,target RTTI-owned CPackageFileReader vtable address and first slot,address
+?g_package_file_index@th105@@3PAXA,0x006ECEBC,00000000,0x0,target zero-filled package index root address,address
+__ehhandler$?load_sfl_loop_metadata@th105@@YAXPBDPAUOggDataSource@1@@Z,0x006AA8BB,8b5424088d82d8fe,0x0,target VC8 SFL metadata loader EH handler entry bytes,address
+__real@41f0000000000000,0x006C0EF8,000000000000f041,0x0,target bytes and IEEE-754 double 4294967296.0,literal
+?g_direct_input_backend@th105@@3UDirectInputBackend@1@A,0x006ECFD0,00000000,0x0;0x20,target DirectInput backend object and raw keyboard-state offsets,address
+__ehhandler$??1CSelectScenario@th105@@UAE@XZ,0x006A484F,8b5424088d42f08b,0x0,target VC8 CSelectScenario destructor EH handler entry bytes,address
+??_7CSelectScenario@th105@@6B@,0x006ACC20,d0474200,0x0,target RTTI-owned CSelectScenario vtable address and first slot,address
+__ehhandler$??1GuideOverlay@th105@@QAE@XZ,0x006A607B,8b5424088d42f88b,0x0,target VC8 GuideOverlay destructor EH handler entry bytes,address
+_select_sprite_vtable_anchor,0x006AC668,40a84000,0x0,target CSprite vtable address and first slot,address
+_select_tile_vtable_anchor,0x006AC718,40a84000,0x0,target CTile vtable address and first slot,address
+_guide_texture_path_format,0x006AD82C,646174612f67756964652f253032642e626d7000,0x0,target guide bitmap format string,address
+?g_render_mode_manager@th105@@3URenderModeManager@1@A,0x006E3DBC,a8096c00,0x0,target shared renderer-state object address,address
+__real@43e40000,0x006AD840,0000e443,0x0,target float 456.0 bytes,literal
+__real@4f800000,0x006C0F1C,0000804f,0x0,target float 4294967296.0 for unsigned-to-float conversion,literal
+__imp__wsprintfA,0x006AC1E0,9ae62c00,0x0,target USER32 wsprintfA IAT slot and on-disk thunk RVA,literal
+_g_scene_mode,0x006D094C,16000000,0x0,target live scene-mode global address and initial bytes,address
+__real@406fe00000000000,0x006AC840,0000000000e06f40,0x0,target double 255.0 used by scenario alpha calculation,literal
+__real@4054000000000000,0x006AC850,0000000000005440,0x0,target double 80.0 scenario spacing,literal
+__real@4056000000000000,0x006AC858,0000000000005640,0x0,target double 88.0 preview x offset,literal
+__ehhandler$?update@CSelectScenario@th105@@UAEHXZ,0x006A479B,8b5424088d42f88b,0x0,target VC8 CSelectScenario update EH handler entry bytes,address
+_g_active_scene_id,0x006ECE40,00000000,0x0,target active scene identifier address,address
+__ehhandler$??0CSelectScenario@th105@@QAE@XZ,0x006A48DF,8b5424088d42d48b,0x0,target VC8 CSelectScenario constructor EH handler entry bytes,address
+_select_background_path,0x006ACBAC,646174612f7363656e652f73656c6563742f62672e626d7000,0x0,target scenario selection background path,address
+_select_clear_path,0x006ACC88,646174612f7363656e652f73656c6563742f7363656e6172696f2f636c6561722e626d7000,0x0,target scenario cleared-marker path,address
+_select_character_name_path,0x006ACC60,646174612f7363656e652f73656c6563742f7363656e6172696f2f6368725f6e616d652e626d7000,0x0,target scenario character-name tile path,address
+_select_design_path,0x006ACC3C,646174612f7363656e652f73656c6563742f7363656e6172696f2f73632e64617400,0x0,target scenario selection design path,address
+_scenario_stand_path_format,0x006ACC08,646174612f7374616e642f25732e626d7000,0x0,target scenario stand bitmap format string,address

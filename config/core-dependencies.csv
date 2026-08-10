@@ -41,7 +41,7 @@ caller,callee,required_status,evidence
 0x0045C690,0x00430D90,identified,docs/BATTLE.md record selection
 0x0045C690,0x004317A0,implemented,docs/BATTLE.md selected record lookup
 0x0045C690,0x0045C5A0,identified,docs/BATTLE.md sequence record transfer
-0x0045F140,0x00409AA0,identified,target initialization call order
+0x0045F140,0x00409AA0,matching,target initialization call order and exact CInputManager reset comparison
 0x0045F140,0x00430FA0,identified,target initialization call order
 0x0045F140,0x004317A0,implemented,target checked sequence initialization path
 0x0045F140,0x00433B90,matching,target initialization call order

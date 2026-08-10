@@ -2,9 +2,10 @@
 #include "SpellData.hpp"
 #include "SpellRuntime.hpp"
 
+#include "input/InputManager.hpp"
+
 namespace th105 {
 
-void __fastcall release_prior_fighter_state_409aa0(Fighter *fighter);
 void __fastcall initialize_fighter_phase_62380(Fighter *fighter);
 void __fastcall initialize_fighter_phase_631e0(Fighter *fighter);
 void __stdcall set_spell_sequence_mode_430fa0(int value);
@@ -73,8 +74,8 @@ __forceinline void store_int(Fighter *fighter, unsigned offset, int value)
 void Fighter::initialize_fighter_battle_state()
 {
     if (field_6b0 != 0) {
-        release_prior_fighter_state_409aa0(
-            *reinterpret_cast<Fighter **>(field_6b0));
+        reinterpret_cast<CInputManager *>(
+            *reinterpret_cast<void **>(field_6b0))->reset_counters();
     }
     reinterpret_cast<OwnedManagerInitializationView *>(owned_manager_658)
         ->reset_08();

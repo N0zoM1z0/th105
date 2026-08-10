@@ -35,11 +35,18 @@ sdk_include_win="$(winepath -w "$msvc_root/PlatformSDK/Include" 2> >(filter_prel
 
 # This is the fast non-LTCG probe configuration. The final executable build
 # will add /GL and link with /LTCG once its translation-unit set is recovered.
+# A small number of recovered translation units demonstrably use /GS; opt in
+# per probe without changing the default code generation of existing units.
+gs_flag=/GS-
+if [[ "${TH105_ENABLE_GS:-0}" == 1 ]]; then
+  gs_flag=/GS
+fi
+
 wine "$cl" \
   /nologo \
   /c \
   /O2 \
-  /GS- \
+  "$gs_flag" \
   /GR \
   /EHsc \
   /MT \

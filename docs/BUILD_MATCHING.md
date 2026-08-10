@@ -1,5 +1,11 @@
 # Build and byte-matching plan
 
+Repository agents should use the project-local `th105-matching` skill in
+`.agents/skills/th105-matching/` for the exact-match workflow. Its
+`references/patterns.md` collects confirmed VC8 code-shaping, C++ ABI,
+relocation, STL, `/GS`/EH, x87, and LTCG patterns so experiments and stop
+conditions remain reusable rather than being rediscovered per function.
+
 ## Current evidence
 
 The PE uses Microsoft linker 8.0. Its Rich header is dominated by tool build
@@ -127,6 +133,10 @@ The first core-battle probes also match exactly:
 
 ## Relocation-aware function probes
 
+The fast probe defaults to `/GS-`. Set `TH105_ENABLE_GS=1` only for a
+translation unit whose target prologue and EH data prove stack-cookie use;
+`CTitle::~CTitle` is the first such accepted probe.
+
 `scripts/compare-function.py` resolves i386 `REL32` on an external `CALL` or
 tail `JMP` whose target has a unique address in `config/known-symbols.csv`. It
 applies the link-time displacement using the target function address before
@@ -138,8 +148,23 @@ Absolute `DIR32` data relocations are accepted only when the exact COFF symbol,
 target address, literal bytes, and every used addend are allowlisted in
 `config/reccmp-relocations.csv`. The comparator revalidates the bytes at each
 offset in both the object and original PE, including specified PE zero-filled
-virtual tails. It fails closed for unknown symbols, unlisted addends,
+virtual tails. An undefined DIR32 target is accepted only when its name begins
+with `__imp__` and an exact four-byte IAT slot/literal is allowlisted; the PE
+slot bytes are revalidated on each comparison. Compiler-generated vtables, EH
+anchors, and security globals may instead use an explicit `address` validation
+row when their object bytes are relocatable or externally defined. Such rows
+still fail closed on the exact COFF symbol, target address, addend, and target
+bytes; unlike default `literal` validation, they do not claim that raw object
+bytes are already final linked bytes. It fails closed for unknown
+symbols, unlisted addends,
 non-external `REL32` targets, other opcodes or relocation types, and
 relocation-overflow sections. Those cases still require an appropriate
 linked-slice or executable comparison. A successful object probe does not
 replace final LTCG-sensitive executable-level reccmp acceptance.
+
+For C++ special members, ledger names may use the semantic `_ctor` or `_dtor`
+suffix. The comparator resolves those names to the corresponding VC8 `??0` or
+`??1` decorated COMDAT symbol before applying the same strict byte checks.
+Class-qualified ledger aliases such as `CLoadingWatch_on_scene_enter` likewise
+resolve to the VC8 member symbol `?on_scene_enter@CLoadingWatch@...`; this keeps
+known-symbol names unique without changing the reconstructed class interface.

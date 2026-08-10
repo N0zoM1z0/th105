@@ -1,8 +1,11 @@
 address,name,module,confidence,evidence
-0x004010C0,phase_010c0,battle,inferred,docs/BATTLE.md observed pre-sequence static-service call in shared battle phase wrapper
+0x004010C0,RenderModeManager_prepare_frame,render,observed,docs/BATTLE.md shared battle phase and docs/UI_FRAMEWORK.md scenario render preparation
 0x00401D70,dispatch_wave_handle,audio,observed,docs/BATTLE.md opaque CHandleManager wave-handle dispatch reached by indexed battle events
-0x00404980,phase_04980,battle,inferred,docs/BATTLE.md observed ordered static-service calls in shared battle phase sequence
+0x00404980,RenderModeManager_set_mode,render,observed,docs/BATTLE.md shared battle phase and docs/UI_FRAMEWORK.md guide render modes 2 and 1
 0x00404A10,phase_04a10,battle,inferred,docs/BATTLE.md observed ordered static-service call in shared battle phase sequence
+0x00404EC0,TitleResourceManager_load_texture,ui,observed,CSelectScenario and GuideOverlay texture path calls return a handle and dimensions through the global resource manager
+0x00404FA0,release_title_resource_handle,ui,inferred,docs/EVIDENCE.md exact CTitle destructor calls on handles at +0x08 and +0xA0 through the global resource manager
+0x00404FA0,TitleResourceManager_release_title_resource_handle,ui,inferred,docs/EVIDENCE.md class-qualified alias for VC8 member-symbol relocation in title and scenario destructors
 0x00406650,lookup_orientation_sine,engine,observed,docs/BATTLE.md exact quarter-period-shifted lookup into runtime fcos table
 0x00406680,lookup_orientation_cosine,engine,observed,docs/BATTLE.md exact direct lookup into runtime fcos table
 0x00406840,mt19937_seed_u32,engine,observed,docs/BATTLE.md standard MT19937 seed recurrence and state-index writes
@@ -12,15 +15,69 @@ address,name,module,confidence,evidence
 0x00407F80,commit_pending_engine_scene,engine,observed,docs/EVIDENCE.md scene transition instructions and runtime
 0x004080E0,engine_main_loop_poll_input_and_update_scene,engine,observed,docs/EVIDENCE.md main loop trace
 0x00409900,update_player_input_counters_from_raw,input,observed,docs/EVIDENCE.md input data flow and runtime counters
-0x00409AA0,release_prior_fighter_state_409aa0,battle,inferred,docs/BATTLE.md observed conditional old fighter state release at battle-state initialization entry
+0x00409AA0,reset_counters,input,inferred,docs/EVIDENCE.md exact ten-dword CInputManager counter reset and RTTI-supported class layout
 0x00409AD0,build_player_logical_input_mask,input,observed,docs/EVIDENCE.md input data flow and runtime mask
 0x00409C50,merge_menu_input_sources,input,observed,docs/EVIDENCE.md menu input trace
+0x0040A040,get_active_source,input,inferred,docs/EVIDENCE.md exact CInputManagerCluster byte accessor at +0x74
+0x0040A050,InputStateTableStorage_ctor,input,inferred,docs/EVIDENCE.md exact static input-state table storage constructor clearing three tail pointers
+0x0040A070,reset_input_state_table,input,inferred,docs/EVIDENCE.md exact counter container and modifier-state reset on the static input-state table
+0x0040A1C0,is_initial_press,input,inferred,docs/EVIDENCE.md exact counter-equals-one test with three optional modifier-state requirements
 0x0040A210,set_input_state_table_entry,input,inferred,docs/EVIDENCE.md exact 256-entry state-table write ABI
+0x0040A220,add_tracked_key,input,inferred,docs/EVIDENCE.md checked duplicate scan followed by vector push_back on the input-state tracked-key list
+0x0040A2F0,clear_input_key_list_storage,input,inferred,docs/EVIDENCE.md sole caller passes input-state storage +0x400 and reset semantics are observed; container type unknown
+0x0040A400,_Xran,input,observed,docs/EVIDENCE.md VC8 vector checked-access out-of-range helper tail-called by input-state update
 0x0040CDE0,init_direct_input,input,observed,docs/EVIDENCE.md DirectInput call flow
 0x0040CFA0,create_direct_input_keyboard,input,observed,docs/EVIDENCE.md DirectInput device creation
 0x0040D250,create_direct_input_mouse,input,observed,docs/EVIDENCE.md DirectInput device creation
 0x0040D370,is_raw_key_down,input,observed,docs/EVIDENCE.md exact top-bit DirectInput scan-code query
+0x0040D3D0,DirectInputBackend_get_gamepad_state,input,observed,docs/EVIDENCE.md bounded 0x50-byte raw gamepad-state vector accessor
+0x00409900,CInputManager_update_player_input_counters_from_raw,input,observed,docs/EVIDENCE.md class-qualified raw input counter updater call target
+0x004180D0,shutdown_direct_sound,audio,observed,docs/EVIDENCE.md ordered COM Release and clear of the DirectSound global pointer block
+0x00418130,create_secondary_buffer8,audio,inferred,docs/EVIDENCE.md exact DirectSound buffer creation QueryInterface Release and error-dialog paths
+0x004181A0,linear_gain_to_ds_volume,audio,observed,docs/EVIDENCE.md exact CRT log10 conversion scaling and DirectSound volume clamp
+0x00418210,eh_cleanup_delete_audio_member_30,audio,observed,docs/EVIDENCE.md VC8 EH unwind continuation deletes owning audio object member +0x30 through vtable slot zero
+0x00418220,OggDataSource_open,audio,inferred,docs/EVIDENCE.md observed Ogg reader ownership callback setup Vorbis info and PCM wave-format initialization
+0x004184E0,close_ogg_data_source,audio,inferred,docs/EVIDENCE.md exact close callback in observed Ogg read seek close tell callback table
+0x00418500,tell_ogg_data_source,audio,inferred,docs/EVIDENCE.md exact tell callback in observed Ogg callback table using reader vslot +0x0C and source adjustment +8
+0x0041B480,open_package_file_entry,assets,observed,docs/EVIDENCE.md package index lookup returning archive handle size and file offset
+0x0040C9A0,FileReaderOwner_dtor,assets,observed,docs/EVIDENCE.md owning file-reader wrapper virtual-delete cleanup
+0x0040C9C0,FileReaderOwner_open,assets,observed,docs/EVIDENCE.md package/plain file-reader selection allocation and failure cleanup
+0x0041E870,advance_battle_setup_state,engine,inferred,docs/EVIDENCE.md CSceneBase state advance increments +0xB8 and returns battle-setup task state 5 or 6
 0x0041FEA0,create_collision_list_sentinel,battle,inferred,docs/BATTLE.md exact 12-byte self-linked sentinel allocation
+0x00420BB0,TitleDesignResource_dtor,ui,inferred,docs/EVIDENCE.md exact CTitle destructor member cleanup call for the +0x1DC design resource
+0x00401000,RenderModeManager_begin_frame,render,observed,CSelectScenario render frame gate
+0x00401040,RenderModeManager_finish_frame,render,observed,CSelectScenario render frame finalization
+0x00409550,UiTileA4_render,ui,inferred,CSelectScenario draws scenario labels through its embedded tile renderer
+0x00409410,UiTileA4_set_texture,ui,inferred,CSelectScenario constructor binds the character-name tile sheet
+0x0040C6A0,TitleDesignResource_bind_object,ui,observed,checked iterator validation binds design IDs 200 and 600 from the resource tree
+0x0040C7F0,UiDesignTree_find,ui,observed,checked tree search returns an owner-and-node iterator for CSelectScenario design ID lookup
+0x00420B10,TitleDesignResource_ctor,ui,observed,CSelectScenario and title constructors initialize embedded design resources here
+0x00423E60,vc8_int_vector_copy_range,runtime,observed,VC8 checked int-vector helper copies a pointer range into destination storage
+0x00423E90,vc8_int_vector_fill_range,runtime,observed,VC8 checked int-vector helper constructs repeated integer values
+0x00423EC0,vc8_int_vector_move_backward,runtime,observed,VC8 int-vector overlap-safe backward move helper
+0x00423F00,vc8_int_vector_construct_repeated,runtime,observed,VC8 int-vector repeated-value construction wrapper
+0x00423F40,SelectIntVector16_erase,runtime,observed,VC8 checked int-vector erase specialization used by scenario-list clear
+0x00423FB0,vc8_int_vector_copy_construct_range,runtime,observed,VC8 int-vector range construction wrapper
+0x00423FE0,vc8_int_vector_insert_repeated,runtime,observed,VC8 int-vector allocation growth and repeated insertion helper
+0x00424230,vc8_int_vector_insert_one_checked,runtime,observed,VC8 checked iterator wrapper around one-element insertion
+0x004242C0,SelectIntVector16_append,runtime,observed,VC8 std::vector<int>::push_back specialization appends an unlocked scenario ID by const reference
+0x0046F2A0,TitleDesignResource_bind_object_alt,ui,observed,second code-generation copy of checked resource-tree binding used for design IDs 300 and 500
+0x0041EE30,MenuCursorState_update,ui,observed,CSelectScenario cursor repeat-state update used by scenario and game-type selectors
+0x0041DC90,CSelectScenario_on_scene_exit,ui,observed,CSelectScenario vtable slot five clears active menu objects and consumes one scene argument
+0x0043DB10,MenuCursorState_move_page_backward,ui,observed,shared cursor page-backward selection and window adjustment
+0x0043DB80,MenuCursorState_move_page_forward,ui,observed,shared cursor page-forward selection and window adjustment
+0x00439D20,clear_menu_objects,ui,inferred,scene-exit thunk target removes active menu objects
+0x0043ABE0,get_scenario_name,ui,inferred,CSelectScenario preview path formatter consumes the returned scenario stand name
+0x004686B0,CSelectScenario_unknown_scene_method,ui,observed,CSelectScenario vtable slot three is a shared one-byte no-op
+0x004236F0,CSelectScenario_apply_scenario,ui,observed,CSelectScenario preview texture replacement for the selected scenario
+0x004397F0,is_menu_initial_press,input,inferred,thin menu-facing wrapper over is_initial_press
+0x00439AB0,prepare_scenario_match,ui,inferred,CSelectScenario confirmation path initializes the selected scenario match state
+0x00439D60,start_scene_fade,ui,inferred,CSelectScenario confirmation path starts a 1000-unit scene fade
+0x0043EBD0,install_menu_object,ui,inferred,CSelectScenario update inserts a newly allocated CMenuSelect into the active menu list
+0x00446660,CMenuSelect_ctor,ui,observed,constructor reached from CSelectScenario button-two menu overlay path
+0x004247D0,CSelectScenario_scalar_deleting_destructor,ui,observed,docs/EVIDENCE.md RTTI-owned CSelectScenario vtable slot zero and scalar-delete flag path
+0x00424840,on_scene_exit,ui,inferred,docs/EVIDENCE.md CTitle vtable slot and scene-controller transition call
+0x004247F0,CTitle_on_scene_enter,ui,inferred,docs/EVIDENCE.md CTitle vtable slot previous-scene gates and title BGM path
 0x00424860,main_menu_render,ui,observed,docs/EVIDENCE.md main menu vtable and runtime
 0x00424AB0,main_menu_update,ui,observed,docs/EVIDENCE.md main menu vtable and runtime
 0x00425CD0,update_global_6e6260_first,battle,inferred,docs/BATTLE.md post-update phase calls this first with global state 0x006E6260
@@ -39,6 +96,16 @@ address,name,module,confidence,evidence
 0x00432D80,load_spell_csv_via_325b0,battle,inferred,docs/BATTLE.md observed spellcard versus storySpell path wrapper
 0x00432E20,parse_spell_csv_and_build_card_resources,battle,inferred,docs/BATTLE.md observed spell CSV records card images tree insertion and batch resources
 0x00433490,load_spell_csv_via_32e20,battle,inferred,docs/BATTLE.md observed alternate spell CSV parser wrapper
+0x00424E60,CTitle_dtor,ui,observed,docs/EVIDENCE.md RTTI-owned CTitle destructor with exact resource-release member-cleanup and base-vptr sequence
+0x00425280,copy_session_field_6c8_if_unset,network,inferred,docs/EVIDENCE.md exact guarded network-session field copy used by menu-to-battle transition paths
+0x0043D8E0,GuideOverlay_dtor,ui,observed,docs/EVIDENCE.md CSelectScenario reverse-order member destruction calls the embedded guide overlay destructor at object offset 0x344
+0x0043D940,GuideOverlay_load,ui,observed,guide texture path formatting load dimensions and animation-state initialization
+0x0043DA00,GuideOverlay_update,ui,observed,scroll wrapping and 15-step alpha fade applied to the guide sprite
+0x0043DA70,GuideOverlay_render,ui,observed,two horizontally wrapped guide sprite draws bracketed by render-mode changes
+0x0043DAF0,GuideOverlay_ctor,ui,observed,20-byte constructor initializing sprite vptr handle and visibility fields
+0x004253A0,map_battle_setup_state_to_scene,engine,inferred,docs/EVIDENCE.md exact CSceneBase vtable method mapping setup states to scene IDs
+0x00425980,CLoadingWatch_on_scene_enter,ui,observed,docs/EVIDENCE.md RTTI-owned vtable scene-entry slot and exact previous-scene gate for title BGM
+0x004263B0,set_target_20_enabled_2c,ui,inferred,docs/EVIDENCE.md exact shared camera-state target and enable setter with 68 direct call xrefs
 0x00433B90,reset_fighter_action_scratch,battle,inferred,docs/BATTLE.md observed fighter action scratch reset after outcome dispatch
 0x00433CC0,emit_fighter_effect_433cc0,battle,inferred,docs/BATTLE.md deferred counter leaf forwards effect code position facing and fighter to the effect manager
 0x00434390,classify_fighter_x_boundary,battle,inferred,docs/BATTLE.md observed AL-only x-boundary classification at 40 and 1240
@@ -50,6 +117,10 @@ address,name,module,confidence,evidence
 0x00439870,get_match_setup,battle,inferred,docs/EVIDENCE.md callers use the returned 0x006E6FE8 block for character stage deck and BGM selection
 0x00439B30,get_game_config,config,observed,docs/EVIDENCE.md config menu and live CPU difficulty field
 0x00439B40,get_score_data,config,observed,docs/EVIDENCE.md CRT construction and score.dat serializer call chain
+0x00439CC0,clear_network_session,network,observed,docs/EVIDENCE.md cleanup and deleting-destructor path followed by global pointer clear
+0x00439D30,set_ui_selection_state_tracking,ui,inferred,docs/EVIDENCE.md thunk writes UI selection tracking bytes and dispatches a reset callback
+0x0043A290,has_ui_selection_state_changed,ui,inferred,docs/EVIDENCE.md exact comparison of tracked selection byte and current state dword
+0x0043B6D0,play_bgm,audio,inferred,docs/EVIDENCE.md observed stream creation playback fade and score-data notification around a path argument
 0x00439C40,get_combined_menu_input,input,observed,docs/EVIDENCE.md menu input trace
 0x00439C00,get_player_slot_record,input,inferred,docs/EVIDENCE.md exact slot-record address formula and callers
 0x00439C10,invalidate_selected_input,input,observed,docs/EVIDENCE.md exact selection-state writes
@@ -158,5 +229,15 @@ address,name,module,confidence,evidence
 0x0051D0D0,release_owned_pointer_buffer,battle,inferred,docs/BATTLE.md observed owned-pointer buffer release used by indexed scratch reset
 0x0067B02A,free_transient_list_node,runtime,observed,docs/BATTLE.md CRT free thunk used for transient collision-list nodes
 0x0067B50C,operator_new,runtime,observed,docs/BATTLE.md verified VC8 allocation routine called by collision-list helpers
-0x0067B884,_invalid_parameter_noinfo,runtime,observed,docs/BATTLE.md repeated VC8 checked-vector invalid-parameter target in fighter phase loops
+0x0067B884,_invalid_parameter_noinfo,runtime,observed,docs/BATTLE.md fighter checked containers and docs/EVIDENCE.md input/UI checked-container validation
 0x0067B8E0,_ftol2_sse,runtime,observed,docs/BATTLE.md verified VC8 x87-to-int truncation runtime helper
+0x0067BB80,memset,runtime,observed,docs/EVIDENCE.md target runtime symbol identity and exact call from input-state reset
+0x0067D9B0,log10,runtime,observed,docs/EVIDENCE.md pinned VC8 SP1 libcmt log10 object and target instruction identity including FLDLG2 FYL2X core
+0x00664F9A,malloc,runtime,inferred,docs/EVIDENCE.md allocation thunk used by SFL metadata buffer path
+0x0067B02A,operator_delete,runtime,observed,docs/EVIDENCE.md VC8 scalar delete target used by file-reader deleting destructor
+0x0067B465,__security_check_cookie,runtime,observed,docs/EVIDENCE.md VC8 stack-cookie checker used by GS-protected UI and audio functions
+0x0067C166,free,runtime,observed,docs/EVIDENCE.md deallocation thunk used by SFL metadata buffer path
+0x0067C4D5,strcpy_s,runtime,observed,docs/EVIDENCE.md VC8 checked string copy used by SFL sidecar path construction
+0x0066DD00,ov_time_seek,third_party,observed,docs/EVIDENCE.md libvorbisfile API ABI used by Ogg PCM loop decoder
+0x0066DE00,ov_time_tell,third_party,observed,docs/EVIDENCE.md libvorbisfile API ABI used by Ogg PCM loop decoder
+0x0066DF30,ov_read,third_party,observed,docs/EVIDENCE.md libvorbisfile API ABI used by Ogg PCM block decoder

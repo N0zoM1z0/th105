@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import os
 from pathlib import Path
 
 from mcp import ClientSession, StdioServerParameters
@@ -19,6 +20,7 @@ async def check() -> None:
         command="bash",
         args=[str(ROOT / "scripts" / "mcp-ghidra.sh")],
         cwd=ROOT,
+        env=os.environ.copy(),
     )
     async with stdio_client(server) as (read_stream, write_stream):
         async with ClientSession(read_stream, write_stream) as session:

@@ -105,7 +105,9 @@ state. They establish the first vertical slices:
 
 Gameplay reconstruction should start from the phase ordering and bounded work
 lanes in [`docs/BATTLE.md`](BATTLE.md). UI, audio, and input plumbing remain
-valid modules but are lower priority than the active battle pipeline.
+valid modules but are lower priority than the active battle pipeline. The
+scenario-select vertical slice, shared UI ABI layouts, and its explicit open
+edges are mapped in [`docs/UI_FRAMEWORK.md`](UI_FRAMEWORK.md).
 
 The machine-readable gameplay scope, dependency frontier, and partial/complete
 type contracts are documented in

@@ -35,6 +35,8 @@ MANUAL_FIELDS = {
     "module",
     "status",
     "match_percent",
+    "calling_convention",
+    "signature",
     "source_file",
     "evidence",
     "owner",

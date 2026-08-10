@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import os
 from pathlib import Path
 import re
 
@@ -23,6 +24,7 @@ async def run(
         command="bash",
         args=[str(ROOT / "scripts" / "mcp-ghidra.sh")],
         cwd=ROOT,
+        env=os.environ.copy(),
     )
     async with stdio_client(server) as (read_stream, write_stream):
         async with ClientSession(read_stream, write_stream) as session:

@@ -70,6 +70,8 @@ See [docs/MCP.md](docs/MCP.md) for setup and security details.
   ABI/type contracts, dependency graph, and agent-ready worklist
 - [Matching workflow](docs/BUILD_MATCHING.md) — compiler, reccmp, and objdiff stages
 - [Exact-matching pattern catalog](.agents/skills/th105-re/references/exact-matching-patterns.md) — reusable VC8, COFF, relocation, and source-shaping techniques
+- [Exact-matching skill](.agents/skills/th105-matching/SKILL.md) — focused mismatch classification and verified UI/input-era VC8 case studies
+- [UI reconstruction framework](docs/UI_FRAMEWORK.md) — scenario-select ABI, call graph, and shared menu helpers
 - [Progress](docs/PROGRESS.md) — generated from `config/functions.csv`
 - [AGENTS.md](AGENTS.md) — mandatory operating rules for coding agents
 - [Parallel-agent skill](.agents/skills/th105-parallel/SKILL.md) — safe,

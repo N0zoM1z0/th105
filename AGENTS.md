@@ -46,6 +46,14 @@ Do not analyze or substitute a localized executable.
 Do not skip directly to `matching`. Update `source_file`, `owner`,
 `match_percent`, and `evidence` together with status changes.
 
+## Exact matching
+
+For nontrivial byte-matching work, read
+`.agents/skills/th105-matching/SKILL.md` together with the normal `th105-re`
+skill. The matching skill collects reusable VC8, COFF relocation, STL, EH,
+register-shaping, and LTCG stop-condition patterns. This file and `th105-re`
+remain authoritative for status transitions, claims, evidence, and handoff.
+
 ## MCP usage
 
 Codex loads the registered `th105-ghidra` server from its user configuration.

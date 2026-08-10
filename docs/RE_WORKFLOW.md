@@ -64,6 +64,10 @@ revalidated on every comparison. Any nonzero relocation addend must also be
 explicitly allowlisted and is verified at that exact offset in both images.
 PE virtual tails are materialized using their specified zero-fill semantics
 when an allowlisted target lies beyond the section's raw file bytes.
+Undefined DIR32 symbols remain rejected except for explicitly allowlisted
+`__imp__*` imports. An import mapping must name its exact four-byte IAT slot
+and on-disk thunk literal; the target bytes and relocation addend are
+revalidated on every comparison.
 
 ## Parallel-agent safety
 
