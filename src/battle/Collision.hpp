@@ -30,6 +30,31 @@ struct AttackCandidate {
     int calculate_descriptor_scaled_quantity_20();
 };
 
+struct CollisionObjectFrame4c {
+    unsigned char unknown_00[0x4c];
+    unsigned flags_4c;
+};
+
+struct CollisionObjectFrame50 {
+    unsigned char unknown_00[0x50];
+    unsigned flags_50;
+};
+
+struct CollisionObject {
+    unsigned char unknown_000[0x104];
+    signed char facing_104;
+    unsigned char unknown_105[0x53];
+    CollisionObjectFrame50 *frame_158;
+    unsigned char unknown_15c[0x10];
+    void *owner_16c;
+    void *owner_170;
+    unsigned char unknown_174[0x14];
+    signed char counter_188;
+    signed char gate_189;
+    unsigned char unknown_18a[0x1a];
+    CollisionObjectFrame4c *frame_1a4;
+};
+
 struct ByteStrideRange {
     unsigned char unknown_00[0x04];
     unsigned char *begin_04;
@@ -138,6 +163,12 @@ struct CollisionContext {
         const struct ShapeWords *descriptor,
         int x,
         int y);
+    int test_group_b_against_group_b(
+        CollisionObject *source,
+        CollisionObject *other);
+    bool try_group_b_pair_response(
+        CollisionObject *source,
+        CollisionObject *other);
 };
 
 struct EffectSink {

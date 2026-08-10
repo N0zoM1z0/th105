@@ -67,9 +67,12 @@ address,name,module,confidence,evidence
 0x0046BDE0,try_candidate_flag_outcome,battle,inferred,docs/BATTLE.md exact ordered candidate-frame flag outcome before general hit resolution
 0x0046BE90,try_frame_flag_pair_outcome,battle,inferred,docs/BATTLE.md exact four ordered frame-flag pair outcomes and result code writes
 0x0046BF20,try_group_a_vs_group_b_interaction,battle,inferred,docs/BATTLE.md observed family-A versus family-B response path
-0x0046BFD0,try_group_b_pair_response,battle,inferred,docs/BATTLE.md observed family-B pair response before fallback interaction
-0x0046C290,resolve_fighter_body_collision,battle,observed,docs/EVIDENCE.md collision call flow and live frame layout
+0x0046BFD0,try_group_b_pair_response,battle,inferred,docs/BATTLE.md exact family-B pair response before fallback interaction
 0x0046C070,resolve_group_b_object_clash,battle,inferred,docs/BATTLE.md observed group-B object-pair result dispatch
+0x0046C290,resolve_fighter_body_collision,battle,observed,docs/EVIDENCE.md collision call flow and live frame layout
+0x0046C9E0,try_outcome_path_a,battle,inferred,docs/BATTLE.md observed path-A counter transition and normal result-code-2 response
+0x0046CC00,try_outcome_path_b,battle,inferred,docs/BATTLE.md observed path-B terminal gates and normal result-code-2 response
+0x0046CE20,dispatch_outcome_path,battle,inferred,docs/BATTLE.md observed selector table and ordered outcome action dispatch
 0x0046D000,create_collision_list_node,battle,inferred,docs/BATTLE.md exact transient 12-byte collision-list node allocation
 0x0046D040,resolve_attack_candidate_against_fighter,battle,inferred,docs/BATTLE.md observed ordered attack-versus-fighter gates and outcome cascade
 0x0046D160,dispatch_family2_against_family1,battle,inferred,docs/BATTLE.md observed family-2 against family-1 sentinel traversal and response cascade

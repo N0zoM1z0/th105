@@ -178,16 +178,28 @@ preserving that traversal is required even when only a boolean result is used.
 `0x0046C070` handles one observed group-B object-pair overlap after
 `0x0046B290` succeeds. It compares two 16-bit values from each current frame
 record, writes neutral result codes at object `+0x180/+0x184`, and resets the
-collision extents. The exact branch table is documented in Ghidra; no graze,
-guard, cancel, or priority terminology is assigned without live proof.
+collision extents. The ordered table is fully mapped, including the unusual
+branch where the left object's `+0x184` byte is derived from the right object's
+`+0x1A0` byte. All comparisons are signed 16-bit. No graze, guard, cancel, or
+priority terminology is assigned without live proof.
 
 Inside the family-2 versus family-1 pass, `0x0046D160` first tries
 `0x0046BFD0`, which transfers owner pointers and flips facing after group-B
 geometry succeeds. Its fallback `0x0046BF20` performs group-A versus group-B
 geometry, writes frame-derived outputs, subtracts from the other object's
-`+0x174`, and dispatches frame event/effect values. Both remain identified
-rather than matching because their current VC8 probes still differ in branch
-or one zero-extension instruction shape.
+`+0x174`, and dispatches frame event/effect values. `0x0046BFD0` now has an
+exact 147-byte VC8 reconstruction in `ObjectResponses.cpp`. `0x0046BF20`
+remains one instruction away: the target gratuitously zero-extends a 16-bit
+load before immediately storing only its low 16 bits, while every otherwise
+exact natural source shape uses a 16-bit load.
+
+The larger nonzero outcome selector is also bounded. `0x0046CE20` obtains a
+selector from `0x0045CB20`; selector zero returns false to the ordinary hit
+resolver, selectors `1/3/5/6` use `0x0046C9E0`, and selectors `2/4` use
+`0x0046CC00`. The two subpaths share scratch/resource accounting and a normal
+result-code-2 response, but differ in their counter transition rules, terminal
+gates, and effect codes (`0x32` versus `0x33`). Their names remain neutral until
+live behavior establishes the original gameplay terminology.
 
 ## Physics and state commit
 
