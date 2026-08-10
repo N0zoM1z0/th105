@@ -3,6 +3,7 @@
 namespace th105 {
 
 struct Fighter;
+struct WorldAabb;
 
 void __fastcall release_owned_pointer_buffer(void *buffer);
 
@@ -247,6 +248,12 @@ struct CollisionContext {
 
     void reset_collision_extents();
     void accumulate_collision_extents(const int *first, const int *second);
+    void accumulate_float_collision_extents(
+        WorldAabb *first,
+        WorldAabb *second);
+    int test_and_accumulate_float_aabb_overlap(
+        WorldAabb *first,
+        WorldAabb *second);
     void accumulate_descriptor_extents(
         const struct CollisionAabb *first,
         const struct ShapeWords *descriptor,
@@ -268,6 +275,10 @@ struct CollisionContext {
         const struct ShapeWords *descriptor,
         int x,
         int y);
+    int test_aabb_against_descriptor_shape(
+        const struct CollisionAabb *first,
+        const struct ShapeWords *descriptor,
+        const struct CollisionAabb *second);
     int test_group_b_against_group_b(
         CollisionObject *source,
         CollisionObject *other);

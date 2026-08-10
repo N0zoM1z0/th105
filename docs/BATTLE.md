@@ -215,18 +215,23 @@ Attack damage is resolved before fighter body separation.
   selecting and converting extrema.
 - `0x0046ACD0` converts a local rectangle into a world AABB using actor
   position at `+0xEC/+0xF0` and facing at `+0x104`.
-- `0x0046AD30` gates and accumulates float AABB overlap. Its behavior and ABI
-  are identified, but pure VC8 C++ still schedules the bitwise reduction
-  differently from the target.
+- `0x0046AD30` exactly gates and accumulates float AABB overlap. Its source
+  materializes four float differences in the target's non-sequential scratch
+  order, ANDs their raw IEEE-754 sign words, and tests `0x80000000` before
+  calling the float extent accumulator. This produces the complete 97-byte
+  target rather than the former 95-byte optimized shape.
 - `0x0046AEA0` exactly reconstructs the four signed half-space expressions
   used to test a point against an AABB plus a four-word descriptor.
 - `0x0046AC40` exactly reconstructs effect dispatch at the midpoint of the
   accumulated extents. Its VC8 double-`0.5` data relocation is verified
   against both the COFF literal and target bytes before comparison.
 - `0x0046ADA0` tests one AABB against such a descriptor, while `0x0046B000`
-  performs an ordered descriptor-pair broad phase and five point tests. Their
-  predicates and helper order are identified, but their current source shapes
-  are not yet byte-identical.
+  performs an ordered descriptor-pair broad phase and five point tests. The
+  former now has complete source for its broad phase, four ordered half-space
+  tests, extent accumulation, and return paths. Its natural VC8 object is 246
+  bytes versus the 248-byte target: the optimizer replaces the target's final
+  `AND EBP,ESI; TEST EBP,EBP` with `TEST ESI,EBP`. `0x0046B000` remains
+  identified but not byte-identical.
 - `0x0046C290` reads the two fighter roots at manager `+0x0C/+0x10`, consumes
   current-frame body geometry through fighter `+0x158`, and applies overlap
   correction and pushback.
@@ -267,8 +272,10 @@ geometry, writes frame-derived outputs, subtracts from the other object's
 exact 147-byte VC8 reconstruction in `ObjectResponses.cpp`. `0x0046BF20`
 remains one instruction away: the target gratuitously zero-extends a 16-bit
 load before immediately storing only its low 16 bits, while every otherwise
-exact natural source shape uses a 16-bit load. Its integrated source is 162 of
-164 bytes equal (98.78%) and remains `implemented`, not `matching`.
+exact natural source shape uses a 16-bit load. Twenty-three bounded source and
+type variants either retain that load or disturb later register scheduling.
+Its integrated source is 162 of 164 bytes equal (98.78%) and remains
+`implemented`, not `matching`.
 
 The larger nonzero outcome selector is also bounded. `0x0046CE20` obtains a
 selector from `0x0045CB20`; selector zero returns false to the ordinary hit

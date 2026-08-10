@@ -62,6 +62,25 @@ void CollisionContext::accumulate_collision_extents(
     }
 }
 
+int CollisionContext::test_and_accumulate_float_aabb_overlap(
+    WorldAabb *first,
+    WorldAabb *second)
+{
+    float differences[4];
+    differences[0] = second->left - first->right;
+    differences[2] = first->left - second->right;
+    differences[1] = second->top - first->bottom;
+    differences[3] = first->top - second->bottom;
+
+    int sign_bits = *(int *)&differences[0] & *(int *)&differences[2] &
+                    *(int *)&differences[1] & *(int *)&differences[3];
+    if (sign_bits & 0x80000000) {
+        accumulate_float_collision_extents(first, second);
+        return 1;
+    }
+    return 0;
+}
+
 void __stdcall transform_local_aabb_to_world(
     const ActorPosition *actor,
     const LocalAabb *local,
