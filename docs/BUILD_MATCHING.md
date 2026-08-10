@@ -104,8 +104,10 @@ The first core-battle probes also match exactly:
 ```text
 0x00463270 get_slot_character: 11 / 11 bytes
 0x00463280 is_slot_active: 11 / 11 bytes
+0x0046A9A0 accumulate_collision_extents: 139 / 139 bytes
 0x0046ACB0 reset_collision_extents: 23 / 23 bytes
 0x0046ACD0 transform_local_aabb_to_world: 91 / 91 bytes
+0x0046BE90 try_frame_flag_pair_outcome: 143 / 143 bytes
 ```
 
 ## Relocation-aware function probes

@@ -2,12 +2,64 @@
 
 namespace th105 {
 
-void CollisionExtents::reset_collision_extents()
+void CollisionContext::reset_collision_extents()
 {
     extent_1c = -10000;
     extent_20 = -10000;
     extent_24 = 10000;
     extent_28 = 10000;
+}
+
+void CollisionContext::accumulate_collision_extents(
+    const int *first,
+    const int *second)
+{
+    int first_x = first[0];
+    int first_x2 = first[2];
+    if (first_x < first_x2) {
+        if (extent_1c < first_x) {
+            extent_1c = first_x;
+        }
+        first_x = *(volatile const int *)(first + 2);
+    } else {
+        if (extent_1c < first_x2) {
+            extent_1c = first_x2;
+        }
+        first_x = *(volatile const int *)first;
+    }
+    if (extent_24 > first_x) {
+        extent_24 = first_x;
+    }
+
+    int second_x = second[0];
+    int second_x2 = second[2];
+    if (second_x < second_x2) {
+        if (extent_1c < second_x) {
+            extent_1c = second_x;
+        }
+        second_x = *(volatile const int *)(second + 2);
+    } else {
+        if (extent_1c < second_x2) {
+            extent_1c = second_x2;
+        }
+        second_x = *(volatile const int *)second;
+    }
+    if (extent_24 > second_x) {
+        extent_24 = second_x;
+    }
+
+    if (extent_20 < first[1]) {
+        extent_20 = first[1];
+    }
+    if (extent_20 < second[1]) {
+        extent_20 = second[1];
+    }
+    if (extent_28 > first[3]) {
+        extent_28 = first[3];
+    }
+    if (extent_28 > second[3]) {
+        extent_28 = second[3];
+    }
 }
 
 void __stdcall transform_local_aabb_to_world(

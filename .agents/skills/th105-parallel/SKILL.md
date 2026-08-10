@@ -47,6 +47,57 @@ server-serialized enough that more workers usually add queueing rather than
 throughput. Add an implementation worker only after a clear interface and
 source ownership are known.
 
+For the current Codex setup, a productive default is one coordinating agent
+plus four `gpt-5.6-terra` workers at `high` reasoning. The workers gather and
+challenge evidence; the coordinator performs source integration, Ghidra
+writes, comparisons, ledger updates, and Git operations. Prefer reusing a
+completed worker for the next address-bounded lane because it retains the
+relevant class/layout context.
+
+## Gameplay-first scheduling
+
+Unless the user requests otherwise, prioritize the core gameplay map in
+`docs/BATTLE.md` ahead of UI, audio, menu, and input plumbing:
+
+1. collision geometry and small no-relocation leaves;
+2. attack/hurtbox intersection primitives;
+3. projectile/object clash and attack-vs-fighter dispatch;
+4. character action, physics, and timer phases;
+5. collision-list orchestrators and the battle state machine after their leaf
+   contracts are stable.
+
+A high-throughput four-lane wave is:
+
+- **A / exact probe**: one or two small leaves and their immediate callee;
+- **B / layout**: the shared `AttackObject`/`CharacterObject` fields used by a
+  tightly bounded hitbox cluster;
+- **C / semantics**: defensive and hit-result dispatch, with game terms kept
+  inferred until flags or runtime behavior prove them;
+- **D / orchestrator analysis**: recover list/node ownership and call order but
+  do not port the large dispatcher yet.
+
+This produces source matches and the layouts needed for the next wave at the
+same time. Do not spend all workers scanning arbitrary short functions: short
+UI accessors increase the counter but do not unblock the gameplay core.
+
+## Shared MCP lifecycle
+
+When workers need a stable shared server, the coordinator starts exactly one
+in a coordinator-owned foreground execution session:
+
+```bash
+env TH105_JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 \
+  scripts/ghidra-mcp-server.sh
+```
+
+Keep that execution session open, verify `/get_metadata` names `th105.exe`, and
+give workers read-only MCP briefs. A detached `nohup` process is not reliable in
+all agent runtimes and can race worker launchers for the project lock. Before
+headless inventory export, wait for every worker, call `save_program`, send
+Ctrl-C to the coordinator-owned session, verify port 8089 is closed, then run
+`scripts/export-function-inventory.sh`. Never use a broad `pkill` pattern and
+never export while the server owns the project.
+
 ## Recommended lanes
 
 - **Reconnaissance**: caller/callee/xref/RTTI/string/global evidence for an

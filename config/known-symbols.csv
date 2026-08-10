@@ -28,8 +28,15 @@ address,name,module,confidence,evidence
 0x00439CB0,get_network_session,network,observed,docs/EVIDENCE.md returns CNetworkBase pointer installed by client/server setup
 0x00463270,get_slot_character,battle,inferred,docs/EVIDENCE.md exact indexed character pointer load from battle slot state +0x28
 0x00463280,is_slot_active,battle,inferred,docs/EVIDENCE.md active byte maintained with the paired character slot
+0x0046A9A0,accumulate_collision_extents,battle,inferred,docs/BATTLE.md exact integer extent accumulation from two four-coordinate inputs
+0x0046AA30,accumulate_float_collision_extents,battle,inferred,docs/BATTLE.md observed float-coordinate extent selection and integer conversion
 0x0046ACB0,reset_collision_extents,battle,inferred,docs/BATTLE.md exact sentinel writes to collision context +0x1C..+0x28
 0x0046ACD0,transform_local_aabb_to_world,battle,observed,docs/EVIDENCE.md instruction and geometry validation
+0x0046AD30,test_and_accumulate_float_aabb_overlap,battle,inferred,docs/BATTLE.md observed sign-bit overlap test and extent-helper call
+0x0046AF30,test_group_a_against_primary_box,battle,inferred,docs/BATTLE.md observed group A iteration against optional primary box
+0x0046B100,test_group_a_against_group_b,battle,inferred,docs/BATTLE.md observed group A versus group B box testing
+0x0046B290,test_group_b_against_group_b,battle,inferred,docs/BATTLE.md observed group B versus group B box testing
+0x0046BE90,try_frame_flag_pair_outcome,battle,inferred,docs/BATTLE.md exact four ordered frame-flag pair outcomes and result code writes
 0x0046C290,resolve_fighter_body_collision,battle,observed,docs/EVIDENCE.md collision call flow and live frame layout
 0x004DDB20,Sakuya_on_action_changed,characters,observed,docs/EVIDENCE.md Sakuya action traces
 0x004DEF70,Sakuya_handle_input_and_select_action,characters,observed,docs/EVIDENCE.md Sakuya dispatcher data flow and runtime actions

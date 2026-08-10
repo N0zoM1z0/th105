@@ -18,6 +18,10 @@ The launcher verifies that port 8089 serves the TH10.5 project,
 starts `scripts/ghidra-mcp-server.sh` when necessary, and never binds outside
 `127.0.0.1`.
 
+The headless server uses Java 21 from `/usr/lib/jvm/java-21-openjdk-amd64` by
+default, independently of a host `JAVA_HOME` that may point at Java 17. Override
+only for this project with `TH105_JAVA_HOME=/path/to/java21`.
+
 ## Verify the real MCP path
 
 ```bash

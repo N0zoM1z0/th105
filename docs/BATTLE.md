@@ -60,17 +60,66 @@ Terms such as graze, guard, spell, and armor must not be assigned to individual
 branches until flags and live behavior prove them. At present, clash and general
 hit roles are supported by the data flow; the finer result taxonomy is not.
 
+### Collision scratch lists
+
+The collision/list manager is `0xA8` bytes. Its six temporary lists are three
+families for two player slots:
+
+| Family / slot | List object | Sentinel pointer | Count |
+| --- | ---: | ---: | ---: |
+| 0 / 0 | `+0x2C` | `+0x30` | `+0x34` |
+| 0 / 1 | `+0x38` | `+0x3C` | `+0x40` |
+| 1 / 0 | `+0x44` | `+0x48` | `+0x4C` |
+| 1 / 1 | `+0x50` | `+0x54` | `+0x58` |
+| 2 / 0 | `+0x5C` | `+0x60` | `+0x64` |
+| 2 / 1 | `+0x68` | `+0x6C` | `+0x70` |
+
+Each list object is 12 bytes. `0x0046A7F0` allocates its persistent sentinel;
+`0x0046D000` allocates transient 12-byte nodes laid out as `{next, prev,
+CharacterObject *payload}`. `0x0046D620` frees all prior-frame nodes, relinks
+the sentinel to itself, and resets the count without freeing payloads. Fields
+`+0x74/+0x78` and `+0x7C/+0x80` hold deferred per-player results applied after
+collision dispatch.
+
+The target proves three geometry classifications but not their original game
+terms, so documentation calls them families 0, 1, and 2. Family 1 feeds
+object-object clash at `0x0046D370`; family 2 feeds object interactions at
+`0x0046D160`; family 0 feeds attack-vs-fighter dispatch at `0x0046D040`.
+
+### Frame-flag result leaf
+
+`0x0046BE90` is an exact reconstructed leaf beneath `0x0046D040`. It checks
+four ordered pairs between candidate-frame flags at `candidate+0x1A4->+0x50`
+and fighter-frame flags at `fighter+0x158->+0x4C`. A matching pair writes
+result code `3` to both objects at `+0x180`, resets collision extents, and
+returns true. The target proves this mechanism but not its original gameplay
+term, so the source uses the neutral name `try_frame_flag_pair_outcome`.
+
 ## Body collision and geometry
 
 Attack damage is resolved before fighter body separation.
 
 - `0x0046ACB0` resets the collision context extents at `+0x1C..+0x28`.
+- `0x0046A9A0` accumulates those fields from two four-integer coordinate
+  records and is reconstructed exactly.
+- `0x0046AA30` performs the corresponding float-coordinate accumulation after
+  selecting and converting extrema.
 - `0x0046ACD0` converts a local rectangle into a world AABB using actor
   position at `+0xEC/+0xF0` and facing at `+0x104`.
-- `0x0046AD30` gates and accumulates AABB overlap.
+- `0x0046AD30` gates and accumulates float AABB overlap. Its behavior and ABI
+  are identified, but pure VC8 C++ still schedules the bitwise reduction
+  differently from the target.
 - `0x0046C290` reads the two fighter roots at manager `+0x0C/+0x10`, consumes
   current-frame body geometry through fighter `+0x158`, and applies overlap
   correction and pushback.
+
+Collision objects expose two observed box groups without proven gameplay
+names. Group A uses signed count `+0x1AF`, boxes at `+0x204`, and optional shape
+pointers at `+0x304`; group B uses signed count `+0x1B0`, boxes at `+0x1B4`,
+and shape pointers at `+0x318`. An optional primary box pointer is at `+0x32C`.
+`0x0046AF30` tests group A against the primary box, `0x0046B100` tests group A
+against group B, and `0x0046B290` tests group B against group B. Debug drawing
+colors the groups differently, but that does not prove hitbox/hurtbox labels.
 
 ## Physics and state commit
 

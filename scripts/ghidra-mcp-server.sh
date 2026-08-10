@@ -4,7 +4,8 @@ set -euo pipefail
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ghidra_home="${GHIDRA_HOME:-$repo_root/.tools/ghidra_12.1_PUBLIC}"
 mcp_root="${GHIDRA_MCP_ROOT:-$repo_root/.tools/src/ghidra-mcp}"
-java_bin="${JAVA_HOME:-/usr/lib/jvm/java-21-openjdk-amd64}/bin/java"
+java_home="${TH105_JAVA_HOME:-/usr/lib/jvm/java-21-openjdk-amd64}"
+java_bin="$java_home/bin/java"
 project="${TH105_GHIDRA_PROJECT:-$repo_root/local/ghidra/th105.gpr}"
 program="${TH105_GHIDRA_PROGRAM:-/th105.exe}"
 bind="${TH105_GHIDRA_BIND:-127.0.0.1}"
@@ -30,6 +31,7 @@ done
 mkdir -p "$repo_root/.tools/config" "$repo_root/local/logs"
 exec env \
   XDG_CONFIG_HOME="$repo_root/.tools/config" \
+  JAVA_HOME="$java_home" \
   GHIDRA_MCP_FILE_ROOT="$repo_root" \
   "$java_bin" \
   -Xmx12g \

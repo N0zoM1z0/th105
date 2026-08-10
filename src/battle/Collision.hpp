@@ -2,7 +2,31 @@
 
 namespace th105 {
 
-struct CollisionExtents {
+struct AttackCandidateFrame {
+    unsigned char unknown_00[0x50];
+    unsigned flags_50;
+};
+
+struct FighterFrame {
+    unsigned char unknown_00[0x4c];
+    unsigned flags_4c;
+};
+
+struct AttackCandidate {
+    unsigned char unknown_000[0x180];
+    unsigned result_180;
+    unsigned char unknown_184[0x20];
+    AttackCandidateFrame *frame_1a4;
+};
+
+struct Fighter {
+    unsigned char unknown_000[0x158];
+    FighterFrame *frame_158;
+    unsigned char unknown_15c[0x24];
+    unsigned result_180;
+};
+
+struct CollisionContext {
     unsigned char unknown_00[0x1c];
     int extent_1c;
     int extent_20;
@@ -10,6 +34,10 @@ struct CollisionExtents {
     int extent_28;
 
     void reset_collision_extents();
+    void accumulate_collision_extents(const int *first, const int *second);
+    bool try_frame_flag_pair_outcome(
+        AttackCandidate *candidate,
+        Fighter *fighter);
 };
 
 struct ActorPosition {
