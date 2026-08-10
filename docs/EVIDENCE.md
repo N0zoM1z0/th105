@@ -186,8 +186,16 @@ Evidence labels used by this repository:
   facing at `+0x104`, action/sequence/pose/frame at
   `+0x13C/+0x13E/+0x140/+0x142`, and HP/max HP at `+0x174/+0x176`.
 - **Observed** `transform_local_aabb_to_world` at `0x0046ACD0` mirrors local X
-  by facing and translates by actor position. `resolve_fighter_body_collision`
-  at `0x0046C290` consumes current frame data and its body rectangle.
+  by facing and translates by actor position. Although its 91-byte body does
+  not read `ECX`, both direct calls in `0x0046C290` load the collision context
+  into `ECX`; modeling it as a `CollisionContext` member preserves the existing
+  91/91 exact body and reproduces those call sites.
+- **Observed** `resolve_fighter_body_collision` at `0x0046C290` consumes both
+  current-frame body rectangles, two signed edge-owner globals at
+  `0x006D1B6C..0x006D1B6D`, stage-boundary classifications, AABB overlap, and
+  proposed-X stage-height gates. The complete implementation covers all four
+  edge-pinned and both ordinary half-separation paths; its standalone VC8
+  object is 1832 bytes against the 1862-byte target and is not claimed exact.
 - **Observed** battle-slot state methods `0x00463270` and `0x00463280` index a
   three-element character-pointer array at `+0x28` and active-byte array at
   `+0x34`. `0x00463290` swaps both fields in lockstep; `0x00464240` activates

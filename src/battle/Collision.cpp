@@ -81,7 +81,7 @@ int CollisionContext::test_and_accumulate_float_aabb_overlap(
     return 0;
 }
 
-void __stdcall transform_local_aabb_to_world(
+void CollisionContext::transform_local_aabb_to_world(
     const ActorPosition *actor,
     const LocalAabb *local,
     WorldAabb *world)

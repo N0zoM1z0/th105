@@ -93,6 +93,11 @@ caller,callee,required_status,evidence
 0x0046BF20,0x0046B100,implemented,docs/BATTLE.md group A versus group B geometry
 0x0046BFD0,0x0046B290,implemented,docs/BATTLE.md group B pair geometry
 0x0046C070,0x0046B290,implemented,docs/BATTLE.md group B clash geometry
+0x0046C290,0x00434390,matching,Ghidra MCP direct callee and body-collision boundary classification
+0x0046C290,0x004343D0,matching,Ghidra MCP direct callee and proposed-X stage-height gate
+0x0046C290,0x0046ACB0,matching,Ghidra MCP direct callee and collision extent reset
+0x0046C290,0x0046ACD0,matching,Ghidra MCP direct callee and body AABB world transform
+0x0046C290,0x0046AD30,matching,Ghidra MCP direct callee and body AABB overlap gate
 0x0046C9E0,0x00439DC0,matching,docs/BATTLE.md outcome event dispatch
 0x0046C9E0,0x0045AB10,matching,docs/BATTLE.md alternate descriptor quantity
 0x0046C9E0,0x0045B870,implemented,docs/BATTLE.md owner counter adjustment

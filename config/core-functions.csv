@@ -34,6 +34,8 @@ address,lane,priority,notes
 0x00432E20,spell-data,1,Hard spell CSV record and card-resource parser
 0x00433490,spell-data,2,spellcard versus storySpell wrapper for resource parser
 0x00433B90,hit-resolution,3,Exact fighter action scratch reset
+0x00434390,geometry,3,Exact fighter X-boundary classification used by body separation
+0x004343D0,geometry,3,Exact proposed-X stage-height gate used by body separation
 0x00434860,hit-resolution,3,Exact stage-surface fighter gate
 0x00439860,hit-resolution,3,Exact game-mode accessor
 0x00439B40,score,3,Exact ScoreData root accessor

@@ -1,4 +1,6 @@
 address,name,module,confidence,evidence
+0x006D1B6C,g_body_collision_edge_owner_a,battle,observed,0x0046C290 sole xrefs store fighter index 0 or 1 and use -1 as unlatched state
+0x006D1B6D,g_body_collision_edge_owner_b,battle,observed,0x0046C290 sole xrefs store fighter index 0 or 1 and use -1 as unlatched state
 0x006D094C,g_scene_mode,engine,observed,CSelectScenario update maps current scene mode 2 versus all others
 0x006E3D9C,g_mt19937_index,engine,observed,docs/BATTLE.md MT19937 state index initialized to 625 and written by seed next and startup paths
 0x006E3DBC,g_render_mode_manager,render,observed,docs/BATTLE.md shared battle phase and docs/UI_FRAMEWORK.md guide render-mode calls

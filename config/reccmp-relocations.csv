@@ -3,6 +3,8 @@ coff_symbol,address,data_hex,addends,evidence,validation
 ?g_mt19937_index@th105@@3HA,0x006E3D9C,71020000,0x0,target MT19937 index initial value 625 verified from image bytes,literal
 ?g_mt19937_twist_xor@th105@@3PAIA,0x006E49CC,00000000dfb00899,0x0,target MT19937 twist table bytes verified,literal
 ?g_mt19937_state@th105@@3PAIA,0x006E8498,00000000,0x0;0x4;0x630;0x9bc;0xfffffffc,target MT19937 state base indexed displacements and last zero-filled word verified,literal
+?g_body_collision_edge_owner_a@th105@@3CA,0x006D1B6C,ff,0x0,target initialized signed byte and sole-function xrefs verified,literal
+?g_body_collision_edge_owner_b@th105@@3CA,0x006D1B6D,ff,0x0;0xffffffff,target initialized signed byte plus VC8 adjacent-symbol -1 addend verified,literal
 __real@3fe0000000000000,0x006B73D8,000000000000e03f,0x0,target bytes and IEEE-754 value verified as double 0.5,literal
 __real@3ff8000000000000,0x006ACEB0,000000000000f83f,0x0,target bytes and IEEE-754 value verified as double 1.5 for general hit responses,literal
 __real@408f400000000000,0x006AF6D8,0000000000408f40,0x0,target bytes and IEEE-754 value verified as double 1000.0 for hit-accounting scale,literal

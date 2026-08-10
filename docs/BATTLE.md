@@ -358,9 +358,19 @@ Attack damage is resolved before fighter body separation.
   optimizer replaces the target's final `AND EBP,ESI; TEST EBP,EBP` with
   `TEST ESI,EBP`. The latter's isolated object is 232 bytes versus 252 because
   its register lifetimes and branch layout still differ from the target.
-- `0x0046C290` reads the two fighter roots at manager `+0x0C/+0x10`, consumes
-  current-frame body geometry through fighter `+0x158`, and applies overlap
-  correction and pushback.
+- `0x0046C290` now has complete source for fighter body separation. It reads
+  fighter roots at context `+0x0C/+0x10`, clears the per-fighter response at
+  `+0x6A4`, and returns when either current frame (`+0x158`) has no body AABB
+  pointer at frame `+0x54`. Two signed global bytes latch which fighter owns
+  each stage edge (`0`, `1`, or `-1` for unlatched). After transforming both
+  local rectangles, the function resolves four edge-pinned cases directly;
+  otherwise it chooses a separation direction from AABB centers (with vertical
+  center as the tie-break), splits penetration by `0.5`, gates both proposed X
+  moves against stage height, and computes the coupled facing-relative response.
+  The standalone VC8 object is 1832 bytes versus the 1862-byte target. Its ABI,
+  0x40-byte frame, `ESI=this`, member-helper calls, and full control-flow
+  semantics are established; remaining differences are stack-slot coloring and
+  branch layout, so the ledger truthfully keeps it `implemented`.
 
 Collision objects expose two observed box groups without proven gameplay
 names. Group A uses signed count `+0x1AF`, boxes at `+0x204`, and optional shape
@@ -558,9 +568,9 @@ contracts to implemented source.
    `0x0046AF30`, `0x0046B000`, `0x0046B100`, and `0x0046B290`.
 6. Continue hit/object responses at `0x0046BF20`, `0x0046C070`, and the larger
    `0x0046CE20` outcome branch.
-7. Finish the remaining fighter status/timer phase at `0x0045CDD0` and
-   `0x0045CF00`, then move outward to `0x0046C290` body separation and the
-   battle state machine at `0x0046FE80..0x00470940`.
+7. Shape the now-complete `0x0046C290` body-separation source, then connect it
+   outward to the remaining fighter status/timer phase at `0x0045CDD0` and
+   `0x0045CF00` and the battle state machine at `0x0046FE80..0x00470940`.
 
 Small exact leaves remain useful only when they unblock one of these core paths
 or prove an ABI/layout dependency.

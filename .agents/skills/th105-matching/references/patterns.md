@@ -43,6 +43,15 @@ VC8 emits multiple symbols for special members. Semantic ledger names such as `C
 
 When object length differs unexpectedly, inspect the COFF symbol table before reshaping source. The comparator may have selected an adjacent thunk, scalar deleting destructor, cold fragment, or helper.
 
+An otherwise-unused `ECX` at a call site can prove member ownership even when
+the callee body never reads `this`. In the TH10.5 body-collision path, callers
+push three geometry arguments and load the collision context into `ECX` before
+calling the 91-byte AABB transform. Declaring that transform as a
+`CollisionContext` member keeps its already-exact body unchanged while also
+reproducing the caller's `ECX=this` setup. Check every direct caller before
+classifying such a helper as a free `__stdcall` function merely from its
+callee cleanup and unused register.
+
 ## 3. Relocation-aware comparison
 
 `REL32` calls and tail jumps can be linked in a standalone probe when the external symbol maps uniquely to a known target address. A symbol collision or unknown target is a naming/inventory problem, not a byte-tuning problem.

@@ -8,6 +8,8 @@ namespace {
 // the contract typedefs. This unit is a validator and is not a target TU.
 CollisionPhaseFunction const check_collision_phase =
     &CollisionContext::run_attack_projectile_collision_phase;
+BodyCollisionFunction const check_body_collision =
+    &CollisionContext::resolve_fighter_body_collision;
 GeneralHitFunction const check_general_hit =
     &CollisionContext::resolve_general_attack_hit;
 ForwardedQuantityFunction const check_forwarded_quantity =

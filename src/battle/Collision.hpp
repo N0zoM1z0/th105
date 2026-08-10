@@ -5,6 +5,8 @@
 namespace th105 {
 
 struct Fighter;
+struct ActorPosition;
+struct LocalAabb;
 struct WorldAabb;
 
 void __fastcall release_owned_pointer_buffer(void *buffer);
@@ -75,6 +77,8 @@ struct AttackCandidateFrame {
 struct FighterFrame {
     unsigned char unknown_00[0x4c];
     unsigned flags_4c;
+    unsigned char unknown_50[0x04];
+    LocalAabb *body_aabb_54;
 };
 
 struct AttackCandidate {
@@ -338,6 +342,10 @@ struct CollisionContext {
     int test_and_accumulate_float_aabb_overlap(
         WorldAabb *first,
         WorldAabb *second);
+    void transform_local_aabb_to_world(
+        const ActorPosition *actor,
+        const LocalAabb *local,
+        WorldAabb *world);
     void accumulate_descriptor_extents(
         const struct CollisionAabb *first,
         const struct ShapeWords *descriptor,
@@ -408,6 +416,7 @@ struct CollisionContext {
         Fighter *fighter);
     void dispatch_family2_against_family1();
     void dispatch_family1_object_clashes();
+    void resolve_fighter_body_collision();
     void run_attack_projectile_collision_phase();
 };
 
@@ -474,10 +483,5 @@ struct WorldAabb {
     float right;
     float bottom;
 };
-
-void __stdcall transform_local_aabb_to_world(
-    const ActorPosition *actor,
-    const LocalAabb *local,
-    WorldAabb *world);
 
 } // namespace th105

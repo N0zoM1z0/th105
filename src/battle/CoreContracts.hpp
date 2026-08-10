@@ -13,6 +13,7 @@ namespace core_contracts {
 // These typedefs encode target-facing C++ method contracts without defining
 // placeholder bodies or producing linker-visible replacement functions.
 typedef void (CollisionContext::*CollisionPhaseFunction)();
+typedef void (CollisionContext::*BodyCollisionFunction)();
 typedef void (CollisionContext::*GeneralHitFunction)(
     AttackCandidate *,
     Fighter *);
@@ -48,6 +49,7 @@ enum CoreFunctionAddress {
     ADDRESS_INITIALIZE_FIGHTER_RESOURCES = 0x00462050,
     ADDRESS_GENERAL_HIT = 0x0046B570,
     ADDRESS_FORWARDED_QUANTITY = 0x0046BBA0,
+    ADDRESS_BODY_COLLISION = 0x0046C290,
     ADDRESS_COLLISION_PHASE = 0x0046D620
 };
 
