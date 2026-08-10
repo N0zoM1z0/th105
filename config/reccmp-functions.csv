@@ -29,6 +29,8 @@ get_player2_input,0x00439C80,function
 get_session_setup_option,0x00439C90,function
 set_session_setup_option,0x00439CA0,function
 get_network_session,0x00439CB0,function
+dispatch_indexed_event,0x00439DC0,function
+consume_counter_484_steps,0x00459C90,function
 calculate_base_hit_quantity,0x0045A030,function
 call_one_arg_helper_then_vslot_3c,0x0045AA10,function
 call_two_arg_helper_then_vslot_3c,0x0045AA30,function
@@ -38,6 +40,7 @@ count_0x88_byte_stride_entries,0x0045AAC0,function
 calculate_descriptor_scaled_quantity_1c,0x0045AAE0,function
 calculate_descriptor_scaled_quantity_20,0x0045AB10,function
 adjust_capped_counter_558,0x0045B870,function
+update_fighter_facing_from_other_x,0x0045CA70,function
 is_state_13c_in_32_95,0x0045CAE0,function
 is_positive_y_and_state_window,0x0045CD90,function
 get_slot_character,0x00463270,function
@@ -64,6 +67,7 @@ run_shared_battle_phase_sequence,0x0046B420,function
 run_battle_phase_and_info_callback,0x0046B4F0,function
 adjust_counter_482,0x0046B520,function
 resolve_general_attack_hit,0x0046B570,function
+apply_terminal_outcome,0x0046BCD0,function
 try_candidate_flag_outcome,0x0046BDE0,function
 try_frame_flag_pair_outcome,0x0046BE90,function
 try_group_a_vs_group_b_interaction,0x0046BF20,function

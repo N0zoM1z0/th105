@@ -2,12 +2,23 @@
 
 namespace th105 {
 
+struct Fighter;
+
 struct AttackCandidateFrame {
     unsigned char unknown_00[0x1c];
     short quantity_1c;
     unsigned char unknown_1e[0x02];
     short quantity_20;
-    unsigned char unknown_22[0x2e];
+    short amount_22;
+    unsigned char unknown_24[0x0a];
+    unsigned short result_2e;
+    unsigned short result_30;
+    unsigned char unknown_32[0x02];
+    unsigned short amount_34;
+    unsigned char unknown_36[0x06];
+    float response_3c;
+    float response_40;
+    unsigned char unknown_44[0x0c];
     unsigned flags_50;
 };
 
@@ -17,10 +28,14 @@ struct FighterFrame {
 };
 
 struct AttackCandidate {
-    unsigned char unknown_000[0x180];
+    unsigned char unknown_000[0x16c];
+    Fighter *owner_16c;
+    unsigned char unknown_170[0x10];
     unsigned result_180;
     unsigned char result_slot_184;
-    unsigned char unknown_185[0x1b];
+    unsigned char unknown_185;
+    unsigned short result_186;
+    unsigned char unknown_188[0x18];
     unsigned char source_1a0;
     unsigned char unknown_1a1[3];
     AttackCandidateFrame *frame_1a4;
@@ -40,6 +55,12 @@ struct CollisionObjectFrame50 {
     unsigned flags_50;
 };
 
+struct CollisionObjectClashFrame {
+    unsigned char unknown_00[0x10];
+    short value_10;
+    short value_12;
+};
+
 struct CollisionObject {
     unsigned char unknown_000[0x104];
     signed char facing_104;
@@ -48,11 +69,17 @@ struct CollisionObject {
     unsigned char unknown_15c[0x10];
     void *owner_16c;
     void *owner_170;
-    unsigned char unknown_174[0x14];
+    unsigned char unknown_174[0x0c];
+    unsigned result_180;
+    unsigned char result_slot_184;
+    unsigned char unknown_185[0x03];
     signed char counter_188;
     signed char gate_189;
-    unsigned char unknown_18a[0x1a];
+    unsigned char unknown_18a[0x16];
+    unsigned char source_1a0;
+    unsigned char unknown_1a1[0x03];
     CollisionObjectFrame4c *frame_1a4;
+    CollisionObjectClashFrame *frame_1a8;
 };
 
 struct ByteStrideRange {
@@ -73,11 +100,17 @@ struct Fighter {
     short state_13c;
     unsigned char unknown_13e[0x1a];
     FighterFrame *frame_158;
-    unsigned char unknown_15c[0x18];
+    unsigned char unknown_15c[0x14];
+    Fighter *other_fighter_170;
     short value_174;
     unsigned char unknown_176[0x0a];
     unsigned result_180;
-    unsigned char unknown_184[0x1b0];
+    unsigned char unknown_184[0x02];
+    unsigned short result_186;
+    unsigned char unknown_188[0x04];
+    float response_18c;
+    float response_190;
+    unsigned char unknown_194[0x1a0];
     signed char player_index_334;
     unsigned char unknown_335[0x147];
     short value_47c;
@@ -101,7 +134,9 @@ struct Fighter {
     short field_4ae;
     unsigned char unknown_4b0[0x08];
     int state_4b8;
-    unsigned char unknown_4bc[0x1f8];
+    unsigned char unknown_4bc[0x1c];
+    float scale_4d8;
+    unsigned char unknown_4dc[0x1d8];
     int field_6b4;
     int field_6b8;
     int field_6bc;
@@ -129,7 +164,11 @@ struct Fighter {
     int field_728;
 
     void adjust_counter_482(short amount, int floor_value);
+    void adjust_capped_counter_558(short amount);
+    void consume_counter_484_steps(char count);
 };
+
+bool __fastcall update_fighter_facing_from_other_x(Fighter *fighter);
 
 struct CollisionContext {
     unsigned char unknown_00[0x0c];
@@ -139,6 +178,8 @@ struct CollisionContext {
     int extent_20;
     int extent_24;
     int extent_28;
+    unsigned char unknown_2c[0x50];
+    int deferred_7c[2];
 
     void reset_collision_extents();
     void accumulate_collision_extents(const int *first, const int *second);
@@ -169,6 +210,13 @@ struct CollisionContext {
     bool try_group_b_pair_response(
         CollisionObject *source,
         CollisionObject *other);
+    void resolve_group_b_object_clash(
+        CollisionObject *left,
+        CollisionObject *right);
+    void reset_hit_exchange_scratch(Fighter *owner, Fighter *fighter);
+    void apply_terminal_outcome(
+        AttackCandidate *candidate,
+        Fighter *fighter);
 };
 
 struct EffectSink {
@@ -190,6 +238,7 @@ int __fastcall is_state_13c_in_32_95(Fighter *fighter);
 int __fastcall is_positive_y_and_state_window(Fighter *fighter);
 float __fastcall stage_surface_height_at_x(Fighter *fighter);
 int __fastcall is_y_at_or_below_stage_surface(Fighter *fighter);
+void dispatch_indexed_event(unsigned index);
 
 struct ActorPosition {
     unsigned char unknown_00[0xec];

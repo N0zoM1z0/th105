@@ -174,6 +174,10 @@ box or pointer indexing. `0x0046B100` and `0x0046B290` select the descriptor-pai
 helper, one-descriptor helper, or inline AABB predicate from the two descriptor
 null states. They OR every pair result and do not return early after an overlap;
 preserving that traversal is required even when only a boolean result is used.
+The two 398-byte functions are byte-isomorphic apart from 17 bytes accounting
+for their group offsets and call displacements. A behaviorally faithful
+`0x0046B290` probe remains shorter because VC8 assigns different registers and
+does not reproduce the target's repeated descriptor reloads.
 
 `0x0046C070` handles one observed group-B object-pair overlap after
 `0x0046B290` succeeds. It compares two 16-bit values from each current frame
@@ -181,7 +185,9 @@ record, writes neutral result codes at object `+0x180/+0x184`, and resets the
 collision extents. The ordered table is fully mapped, including the unusual
 branch where the left object's `+0x184` byte is derived from the right object's
 `+0x1A0` byte. All comparisons are signed 16-bit. No graze, guard, cancel, or
-priority terminology is assigned without live proof.
+priority terminology is assigned without live proof. The faithful source now
+lives in `ObjectResponses.cpp`; VC8 emits 557 bytes instead of 542 because it
+tail-merges one repeated result/reset suffix that the target keeps separate.
 
 Inside the family-2 versus family-1 pass, `0x0046D160` first tries
 `0x0046BFD0`, which transfers owner pointers and flips facing after group-B
@@ -200,6 +206,15 @@ resolver, selectors `1/3/5/6` use `0x0046C9E0`, and selectors `2/4` use
 result-code-2 response, but differ in their counter transition rules, terminal
 gates, and effect codes (`0x32` versus `0x33`). Their names remain neutral until
 live behavior establishes the original gameplay terminology.
+
+Their shared terminal helper `0x0046BCD0` is now an exact 260-byte
+reconstruction. It consumes one observed 200-unit counter step, resets the hit
+exchange scratch, writes result code 2 and descriptor outputs, updates deferred
+per-player accounting, emits indexed event `0x14` through `0x00439DC0` and
+collision effect `0x35`, then resets extents. The counter-step helper is
+`0x00459C90`. `0x0045CA70`, used by this helper and both normal outcome
+paths, is also exact: it compares the paired fighters' x coordinates, writes
+signed facing `1/-1`, and reports whether the facing changed.
 
 ## Physics and state commit
 

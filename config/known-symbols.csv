@@ -29,6 +29,8 @@ address,name,module,confidence,evidence
 0x00439C90,get_session_setup_option,input,inferred,docs/EVIDENCE.md raw 0x006E62E4 accessor; exact enum meaning pending
 0x00439CA0,set_session_setup_option,input,inferred,docs/EVIDENCE.md raw 0x006E62E4 accessor; exact enum meaning pending
 0x00439CB0,get_network_session,network,observed,docs/EVIDENCE.md returns CNetworkBase pointer installed by client/server setup
+0x00439DC0,dispatch_indexed_event,battle,inferred,docs/BATTLE.md observed bounded table forwarding used by hit outcomes
+0x00459C90,consume_counter_484_steps,battle,inferred,docs/BATTLE.md observed repeated 200-unit counter decrement in terminal outcome
 0x0045A030,calculate_base_hit_quantity,battle,inferred,docs/BATTLE.md observed scalar and conditional modifier product used by hit quantity wrappers
 0x0045AA10,call_one_arg_helper_then_vslot_3c,battle,inferred,docs/BATTLE.md observed one-argument helper followed by AttackObject-family virtual slot 0x3c
 0x0045AA30,call_two_arg_helper_then_vslot_3c,battle,inferred,docs/BATTLE.md observed two-argument helper followed by AttackObject-family virtual slot 0x3c
@@ -38,6 +40,7 @@ address,name,module,confidence,evidence
 0x0045AAE0,calculate_descriptor_scaled_quantity_1c,battle,inferred,docs/BATTLE.md observed scaled descriptor quantity and float-to-int tail conversion
 0x0045AB10,calculate_descriptor_scaled_quantity_20,battle,inferred,docs/BATTLE.md exact sibling scaled descriptor quantity using signed short 0x20
 0x0045B870,adjust_capped_counter_558,battle,inferred,docs/BATTLE.md observed gated signed-short adjustment capped at 500
+0x0045CA70,update_fighter_facing_from_other_x,battle,inferred,docs/BATTLE.md exact facing update from paired fighter x coordinates
 0x0045CAE0,is_state_13c_in_32_95,battle,inferred,docs/BATTLE.md exact signed fighter state-window predicate
 0x0045CD90,is_positive_y_and_state_window,battle,inferred,docs/BATTLE.md exact positive-y zero-field and state-window predicate
 0x00463270,get_slot_character,battle,inferred,docs/EVIDENCE.md exact indexed character pointer load from battle slot state +0x28
@@ -64,6 +67,7 @@ address,name,module,confidence,evidence
 0x0046B4F0,run_battle_phase_and_info_callback,battle,inferred,docs/BATTLE.md observed phase wrapper and Info-manager virtual callback
 0x0046B520,adjust_counter_482,battle,inferred,docs/BATTLE.md exact shared fighter counter clamp and floor update
 0x0046B570,resolve_general_attack_hit,battle,inferred,docs/BATTLE.md observed final ordinary hit resolver phases and field contracts
+0x0046BCD0,apply_terminal_outcome,battle,inferred,docs/BATTLE.md exact shared terminal result-code-2 outcome helper
 0x0046BDE0,try_candidate_flag_outcome,battle,inferred,docs/BATTLE.md exact ordered candidate-frame flag outcome before general hit resolution
 0x0046BE90,try_frame_flag_pair_outcome,battle,inferred,docs/BATTLE.md exact four ordered frame-flag pair outcomes and result code writes
 0x0046BF20,try_group_a_vs_group_b_interaction,battle,inferred,docs/BATTLE.md observed family-A versus family-B response path
