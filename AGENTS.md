@@ -58,6 +58,13 @@ headless Ghidra when batch behavior is needed.
 After changing the Ghidra database, call `save_program`, export the relevant
 inventory, and commit the source-side evidence in the same change.
 
+## Parallel work
+
+For two or more concurrent reconstruction lanes, read
+`.agents/skills/th105-parallel/SKILL.md` together with the normal `th105-re`
+skill. The coordinator owns Ghidra writes, claims, ledgers, inventory exports,
+and Git; evidence workers receive non-overlapping address ranges.
+
 ## Implementation and verification
 
 - Preserve the expected VC8-era ABI: x86 data sizes, calling conventions,

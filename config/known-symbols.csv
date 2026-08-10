@@ -13,7 +13,15 @@ address,name,module,confidence,evidence
 0x00439870,get_match_setup,battle,inferred,docs/EVIDENCE.md callers use the returned 0x006E6FE8 block for character stage deck and BGM selection
 0x00439B30,get_game_config,config,observed,docs/EVIDENCE.md config menu and live CPU difficulty field
 0x00439C40,get_combined_menu_input,input,observed,docs/EVIDENCE.md menu input trace
+0x00439C00,get_player_slot_record,input,inferred,docs/EVIDENCE.md exact slot-record address formula and callers
+0x00439C10,invalidate_selected_input,input,observed,docs/EVIDENCE.md exact selection-state writes
+0x00439C30,get_selected_input,input,observed,docs/EVIDENCE.md exact selection-state pointer read
+0x00439C50,get_combined_menu_input_counters,input,observed,docs/EVIDENCE.md returns combined menu input +0x38
+0x00439C60,get_selected_input_source,input,inferred,docs/EVIDENCE.md exact source-byte read and invalid sentinel use
 0x00439C80,get_player2_input,input,inferred,docs/EVIDENCE.md P2 input begins one 0x70-byte input object after P1
+0x00439C90,get_session_setup_option,input,inferred,docs/EVIDENCE.md raw 0x006E62E4 accessor; exact enum meaning pending
+0x00439CA0,set_session_setup_option,input,inferred,docs/EVIDENCE.md raw 0x006E62E4 accessor; exact enum meaning pending
+0x00439CB0,get_network_session,network,observed,docs/EVIDENCE.md returns CNetworkBase pointer installed by client/server setup
 0x0046ACD0,transform_local_aabb_to_world,battle,observed,docs/EVIDENCE.md instruction and geometry validation
 0x0046C290,resolve_fighter_body_collision,battle,observed,docs/EVIDENCE.md collision call flow and live frame layout
 0x004DDB20,Sakuya_on_action_changed,characters,observed,docs/EVIDENCE.md Sakuya action traces

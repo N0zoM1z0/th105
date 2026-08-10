@@ -3,6 +3,6 @@
   <text x="24" y="32" fill="#f4f4f5" font-family="sans-serif" font-size="16" font-weight="600">TH10.5 reconstruction</text>
   <text x="536" y="32" fill="#f4f4f5" text-anchor="end" font-family="monospace" font-size="14">0.00% bytes</text>
   <rect x="24" y="48" width="440" height="14" rx="7" fill="#3b4058"/>
-  <rect x="24" y="48" width="0.00" height="14" rx="7" fill="#e46c8c"/>
-  <text x="24" y="88" fill="#c8cad2" font-family="sans-serif" font-size="13">5 / 4,838 functions · 30 / 2,641,870 function bytes</text>
+  <rect x="24" y="48" width="0.02" height="14" rx="7" fill="#e46c8c"/>
+  <text x="24" y="88" fill="#c8cad2" font-family="sans-serif" font-size="13">13 / 4,838 functions · 120 / 2,641,870 function bytes</text>
 </svg>

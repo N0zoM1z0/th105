@@ -57,6 +57,8 @@ See [docs/MCP.md](docs/MCP.md) for setup and security details.
 - [Matching workflow](docs/BUILD_MATCHING.md) — compiler, reccmp, and objdiff stages
 - [Progress](docs/PROGRESS.md) — generated from `config/functions.csv`
 - [AGENTS.md](AGENTS.md) — mandatory operating rules for coding agents
+- [Parallel-agent skill](.agents/skills/th105-parallel/SKILL.md) — safe,
+  high-throughput Ghidra/ledger delegation
 
 Regenerate and validate the tracking data with:
 

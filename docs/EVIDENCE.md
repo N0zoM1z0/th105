@@ -21,6 +21,16 @@ Evidence labels used by this repository:
 - **Observed** `0x006E7520` is the combined menu-input object.
 - **Observed** `0x006E6B38` is the game-configuration object; its CPU
   difficulty field at `+0x64` is read and clamped by the configuration menu.
+- **Observed** `0x00439C00` computes `0x006E64C0 + slot * 0x33C`; selection
+  callers use slots 0 and 1. The record field names are not recovered.
+- **Observed** `0x00439C10` clears `0x006E62DC[slot]` and stores `0xFE` to
+  `0x006E62D8[slot]`; `0x00439C30` and `0x00439C60` read those exact fields.
+- **Observed** `0x00439C50` returns `0x006E7558`, which is combined menu input
+  `+0x38`. `0x00409C50` establishes the counter range at that offset.
+- **Inferred** `0x006E62E4` is a session setup option. Its getter and setter
+  are exact, but its final enum name is not yet proven.
+- **Observed** `0x006E62FC` holds a `CNetworkBase`-derived session object;
+  client/server setup paths install the pointer there.
 - **Observed** main-menu scene 2 uses vtable `0x006ACCF4`; its update and render
   functions are `0x00424AB0` and `0x00424860`.
 
