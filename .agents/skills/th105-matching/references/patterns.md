@@ -167,6 +167,29 @@ Map the first failure to an action:
 
 Comparator support should stay fail-closed. Extending decorated-name resolution or a well-defined relocation category is appropriate; ignoring bytes or accepting arbitrary externals is not.
 
+VC8 switch tables inside a function COMDAT use `DIR32` relocations both for
+the table address and for its local case labels. Resolve these only when the
+target symbol belongs to the same `.text` section as the function: preserve
+the symbol's offset from the function entry and apply the signed addend, just
+as the image linker would. This is narrower than a data allowlist and keeps
+unknown external `DIR32` relocations fail-closed. The profile-menu state-six
+and update probes also show that source case order controls the physical order
+of tail-call blocks even when the jump-table indices remain numeric.
+
+The same 28-byte SSO ABI may need two source views in different translation
+units. A local type containing `char[16]` is a vulnerable buffer to `/GS`,
+while an ABI-equivalent four-dword view is not. `CMenuSelect` needs the former
+to reproduce its additional security cookie; `CProfileMenu` state six needs a
+non-vulnerable return-temporary view to reproduce its single EH cookie. Keep
+the persistent string type honest and use a narrowly named temporary facade
+only when both layout and target prologue prove this compiler distinction.
+
+A call that appears global in a decompile may actually be a member call. In
+`CProfileMenu::render`, declaring the footer renderer as a member kept `this`
+live in `ESI`, forced the guide loop to use `EDI/EBX`, and reproduced the final
+`mov ecx,esi` tail jump, completing a 223-byte exact match. Check ECX setup at
+the call site before tuning loop registers.
+
 A generated scalar deleting destructor may call a source destructor that is
 defined in another COMDAT section of the same COFF object. Such a `REL32`
 target is local rather than undefined, but it is still safe to relocate when

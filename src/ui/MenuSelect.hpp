@@ -9,6 +9,8 @@
 
 namespace th105 {
 
+struct ProfileStringTemporary;
+
 struct MenuString28 {
     unsigned int allocator_state;
     union {
@@ -36,11 +38,22 @@ struct MenuString28 {
 
     const char *c_str() const
     {
-        const char *result = storage.allocation;
-        if (capacity < 16)
-            result = storage.buffer;
+        const char *result = reinterpret_cast<const char *>(this);
+        if (capacity >= 16)
+            result = storage.allocation;
+        else
+            result += 4;
         return result;
     }
+
+    MenuString28 &assign(
+        const MenuString28 &source,
+        unsigned int offset = 0,
+        unsigned int count = ~0u);
+    MenuString28 &assign(
+        const ProfileStringTemporary &source,
+        unsigned int offset = 0,
+        unsigned int count = ~0u);
 };
 
 struct PlayerSlotRecord {

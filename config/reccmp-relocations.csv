@@ -110,3 +110,17 @@ _g_next_scene_mode,0x006D0950,ffffffff,0x0,target next-scene mode global address
 __ehhandler$?populate@ResultList@th105@@UAEXXZ,0x006A6BBF,8b5424088d8290fb,0x0,target VC8 ResultList population EH handler entry bytes,address
 _result_empty_row_format,0x006AE088,3c636f6c6f72203830383038303ea3bf,0x0,target result-menu unavailable-row format prefix bytes,address
 _result_row_format,0x006AE0C0,252d3338732025732020253033642f25303364202054696d6520253032642e2530326400,0x0,target result-menu formatted spell-result row bytes,address
+??_7CProfileMenu@th105@@6B@,0x006AE48C,70c04400,0x0,target RTTI-owned CProfileMenu vtable address and scalar deleting-destructor slot,address
+__ehhandler$??0CProfileMenu@th105@@QAE@XZ,0x006A73C0,8b5424088d42e88b,0x0,target VC8 CProfileMenu constructor EH handler entry bytes,address
+__ehhandler$??1CProfileMenu@th105@@UAE@XZ,0x006A7310,8b5424088d42ec8b,0x0,target VC8 CProfileMenu destructor EH handler entry bytes,address
+_profile_menu_design_path,0x006AE49C,646174612f70726f66696c652f70726f66696c652e64617400,0x0,target CProfileMenu design archive path bytes,address
+_profile_editor_records,0x006E7658,00000000,0x0;0x14,target zero-filled shared profile editor record table address and proven first-range addend,address
+__real@4010000000000000,0x006ACCD0,0000000000001040,0x0,target double 4.0 profile-menu cursor y offset,literal
+__real@405d000000000000,0x006AE3B0,0000000000005d40,0x0,target double 116.0 profile-editor x offset,literal
+__real@4039000000000000,0x006AE3B8,0000000000003940,0x0,target double 25.0 profile-editor y offset,literal
+_g_profile_menu_controller,0x006E3E00,00000000,0x0,target zero-filled shared profile controller object,address
+_g_profile_name_list,0x006E7868,00000000,0x0,target zero-filled shared loaded-profile list object,address
+_profile_name_empty,0x006C0A4E,00,0x0,target empty profile-name sentinel byte,address
+_profile_file_extension,0x006AE410,2e64617400,0x0,target .dat suffix used to form profile paths,address
+_profile_copy_suffix,0x006AE44C,20d2d1b4e6d4daa3accac7b7f1cce6bbbba3bf00,0x0,target localized suffix used for the duplicate-profile message,address
+__ehhandler$?update_state_six@CProfileMenu@th105@@AAE_NXZ,0x006A7260,8b5424088d42bc8b,0x0,target VC8 CProfileMenu state-six EH handler entry bytes,address

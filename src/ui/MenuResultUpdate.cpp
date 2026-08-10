@@ -1,4 +1,5 @@
 #include "ResultMenu.hpp"
+#include "ProfileMenu.hpp"
 
 #include "../input/InputManager.hpp"
 
@@ -19,20 +20,6 @@ extern MatchSetup *get_match_setup();
 struct ResultReplayString {
     void assign(const short *source);
 };
-
-class CMenuReplay : public Menu {
-public:
-    CMenuReplay();
-    virtual ~CMenuReplay();
-    virtual bool update();
-    virtual void render();
-
-private:
-    unsigned char storage_04[0x8E8];
-};
-
-typedef char CMenuReplay_size_must_be_0x8ec[
-    sizeof(CMenuReplay) == 0x8EC ? 1 : -1];
 
 bool CMenuResult::update_active()
 {
@@ -86,8 +73,8 @@ bool CMenuResult::update_active()
 
     if (input->buttons[2] == 1) {
         dispatch_indexed_event(0x28);
-        CMenuReplay *menu;
-        menu = new CMenuReplay;
+        CProfileMenu *menu;
+        menu = new CProfileMenu;
         install_menu_object_thunk(menu);
         return true;
     }

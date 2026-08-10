@@ -174,7 +174,7 @@ derived offsets `+0xB8`, `+0xCC`, `+0xE0`, and `+0xF4`.
 The render, destructor, guarded update, scalar deleting destructor, and
 `ResultList` constructor are exact. The 619-byte active update is complete and
 currently compiles to 620 bytes; it covers both cursors, replay validation,
-parallel result-metadata transfer into match setup, the 0x8EC-byte replay-menu
+parallel result-metadata transfer into match setup, the 0x8EC-byte profile-menu
 allocation, scene transition, and cancellation. The 1127-byte population path
 is also complete: it traverses 24-byte score records, switches spell-name
 metadata by character, formats localized rows, and appends the row plus four
@@ -186,6 +186,30 @@ One ABI correction was especially important: `ResultListBase::render_row` is
 integer before reserving/storing the two float arguments; declaring that
 source order changed the call-site evaluation shape and completed the
 267/267-byte render match.
+
+### `CProfileMenu`
+
+The secondary profile workflow reached from the main menu and `CMenuResult` is
+now identified as `CProfileMenu`, not a replay menu. It is a `0x8EC`-byte
+`Menu` with a `0x33C` profile-list base, a seven-entry cursor, an embedded
+`0x168` profile editor, five independent 28-byte SSO strings, and five
+`GuideOverlay` members. The strings are individual members: modeling them as
+an array changes VC8 construction and destruction code generation.
+
+The 496-byte constructor, 223-byte render method, 696-byte state-six workflow,
+and 27-byte scalar deleting destructor exact-match. State six covers profile
+selection, editor confirmation/cancellation, `.dat` path construction,
+case-insensitive source-name comparison, loaded-profile duplicate detection,
+message handling, and the final rename/commit transition.
+
+The update dispatcher's contiguous `0x0044BBD0..0x0044BCB2` span also matches
+all 227 bytes. It colors seven design objects, updates and hides five guides,
+then tail-dispatches states zero through six. Ghidra treats the separate
+`0x0044B5E0` state-four chunk as part of the same 591-byte function body, so
+the ledger deliberately remains `implemented` until that non-contiguous chunk
+is recovered. The primary selector is behaviorally complete; its 244-byte
+standalone body differs from the 256-byte target only in VC8 branch relaxation
+and return-tail folding.
 
 ## Function and dependency map
 
