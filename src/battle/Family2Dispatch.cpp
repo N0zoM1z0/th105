@@ -20,8 +20,11 @@ void CollisionContext::dispatch_family2_against_family1()
     Fighter **fighter = fighters;
     // The checked iterators retain three independent end-sentinel lifetimes.
     struct EndSentinelLocals {
+        unsigned char source_padding[4];
         CollisionListNode *source;
+        unsigned char other_padding[4];
         CollisionListNode *other;
+        unsigned char same_padding[4];
         CollisionListNode *same;
     } end_sentinels;
     int fighter_count = 2;

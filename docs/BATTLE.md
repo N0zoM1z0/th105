@@ -91,10 +91,17 @@ VC8 emits 1398 bytes versus the 1405-byte target and reproduces all 21 observed
 checked-list failure calls. A narrow volatile view of the reset count reproduces
 the target's `0x2C` stack frame; the first mismatch is now register allocation
 at `+0x5`, where the target retains `this` in `EBP`. The remaining gap is
-register/spill and reset-loop scheduling.
+register/spill and reset-loop scheduling. Exposing the sentinel-slot lifetime
+does recover the target-like `ESI=this+0x30` and `EBX=this+0x7C`, but it also
+makes VC8 reserve `EBP` as a zero register and shrinks the function to 1382
+bytes, so that diagnostic variant is not integrated.
 The two internal list passes are likewise source-complete. `0x0046D160` emits
-527/525 bytes with all 19 target failure calls and a `0x1C` stack frame, while `0x0046D370` emits
-667/686 bytes after changing its iterator to reload the owning list sentinel.
+527/525 bytes with all 19 target failure calls, the target `0x28` stack frame,
+and exact endpoint slots `+0x24/+0x2C/+0x34`; its first remaining difference is
+register allocation at `+0x5`. `0x0046D370` emits 667/686 bytes after changing
+its iterator to reload the owning list sentinel. It retains all 25 target
+failure calls; explicit owner checks are rejected because they add two guards
+rather than reproducing the target's enclosing iterator-owner lifetimes.
 All three remain `implemented`, never `matching`, until the accepted comparator
 reports exact bytes.
 
@@ -114,7 +121,10 @@ versus the 2156-byte target. Removing the cached `frame_158` local reproduces
 the target's `0x3C` stack frame and its major frame reload regions. The next raw
 difference is the target's zero-extending word load at `+0x8`, while strict
 comparison still stops on a defined `vector::at` failure-path COMDAT. Its
-ledger status therefore remains `implemented` with no percentage claim.
+object-local `_Xran` helper is 106 bytes while the target helper reached from
+the corresponding failure path is 123 bytes, so the internal relocation is
+not treated as equivalent by name or exception string. Its ledger status
+therefore remains `implemented` with no percentage claim.
 
 Its three direct geometry leaves are now bounded. `0x0045A190` transforms a
 four-int local box with actor position at `+0xEC/+0xF0` and signed direction at
@@ -205,16 +215,102 @@ term, so the source uses the neutral name `try_frame_flag_pair_outcome`.
 `0x0046D040` is the per-candidate attack-versus-fighter orchestrator. After
 state and shape gates, it tries outcomes in strict order: `0x0046BE90`,
 `0x0046BDE0`, `0x0046CE20`, then the ordinary resolver `0x0046B570`.
-The latter performs scratch reset, threshold/result selection, candidate and
-fighter output setup, owner/context accounting, depletion handling, virtual
-callbacks, effects, and final extent reset. This phase map is observed; names
-for individual result codes and flag bits remain deliberately unresolved.
+The ordinary resolver now has complete source in `GeneralHitResolver.cpp`. It
+performs scratch reset, scaled threshold/result selection, action-code and
+conditional boost selection, candidate/fighter output setup, hit-quantity and
+response calculation, owner and deferred-channel accounting, signed depletion
+handling, virtual callbacks, effects, final extent reset, and indexed-event
+dispatch. The boosted path multiplies response floats by 1.5, uses four thirds
+of the descriptor-scaled quantity, and sets owner flag bit `0x20`; these are
+observed operations, not inferred game terms. A volatile pointer reload plus an
+unsigned-byte flag view reproduces the target's byte test and branch layout,
+while a double local keeps the threshold value on the x87 stack across the
+shared suffix. The current object is 1533 bytes versus the 1579-byte target;
+its first difference at `+0x53` is only the target using `ECX` versus VC8 using
+`EAX` for that frame reload. Names for individual result and action codes
+remain deliberately unresolved.
 
 `0x0046BDE0` is now an exact reconstruction of the second outcome leaf. It
 checks three candidate flag bits plus fighter frame/short gates, optionally
 uses `adjust_counter_482`, writes neutral result code `6`, emits effect `0x34`,
 and resets extents. The source name stays flag-oriented because the original
 gameplay term is not proven.
+
+## Damage scalars and spell-card runtime
+
+The two 347-byte scalar providers at `0x00459ED0` and `0x0045A030` now have
+complete source. Both multiply the source fighter, target fighter, and attack
+owner factors, blend an observed current quantity into a `0.7..1.0` factor,
+apply an indexed signed modifier divided by ten, then apply frame-bit and owner
+bit modifiers. They differ in which frame and current quantity they read. VC8
+emits 333 bytes for each; the first mismatch at `+0x3` is the target retaining
+the source pointer in `EDX` while the object uses `EAX`. The target proves the
+arithmetic and field flow, but not the original names of the individual
+modifiers.
+
+`0x0046BBA0` consumes the forwarded scalar in the hit path. It conditionally
+resets exchange scratch, scales the incoming integer quantity, adjusts fighter
+counter `+0x558`, updates owner fields `+0x498/+0x494/+0x49A`, applies the
+positive recovery factor at `+0x4D4`, clamps and subtracts fighter `+0x174`,
+invokes context vslot `+0x2C` on depletion, and accumulates the result at
+fighter `+0x178`. Its current object is 299/301 bytes; the remaining two-byte
+gap is prologue/register scheduling rather than a missing behavioral phase.
+
+The observed statistics path is also modeled. `0x0042C100` first rejects
+nonzero game mode and setup option two, then selects a 16-byte range header at
+`ScoreData+0x198 + selector*0x10`. Each record is 24 bytes: keys are at `+0`
+and `+8`, the update count at `+0x10`, and a signed maximum at `+0x14`. A
+matching record increments the count and raises the maximum. Its natural object
+is 94/191 bytes because the target retains repeated checked-range validation
+paths; no absent insertion path is inferred from that code-size difference.
+
+The spell data loader selector at `0x00430DE0` is an exact 71-byte
+reconstruction. It chooses the normal `spellcard.csv` loader or alternate
+`storySpell.csv` loader, returns false on failure, and calls the shared
+post-load finalizer only after success. `0x004317A0` performs checked lookup in
+the fighter-local tree and then the common tree at `0x006E4E14`; its source is
+target-sized at 179 bytes, with the remaining mismatch in checked-iterator
+owner register allocation.
+
+The large parser at `0x00432E20` is decompiled but deliberately not yet called
+implemented. Its observed row schema is integer, string, byte, short, string,
+short, short. It publishes fields at record offsets `+0x1C`, `+0x1E`, `+0x3C`,
+`+0x3E`, `+0x40`, `+0x44`, and `+0x48`, formats
+`data/card/%s/card%03d.bmp`, and stores images through a
+deque-like owner. Every 16 records it builds a `0x200` by `0x100` composite and
+publishes its handle at record payload `+0x40`. The unresolved blockers are the
+reader and small-string layouts, SEH cleanup, checked-container ownership, and
+asset-service contracts. The two path wrappers at `0x00432D80` and
+`0x00433490` are implemented at 103/148 and 108/161 bytes; their target frames
+retain stack cookies and an indirect `wsprintf` import.
+
+At runtime, `0x0045BC30` only consumes a sequence entry when fighter category
+`+0x72C` equals two and signed state `+0x55A` is positive. It dispatches the
+front record through the player-indexed context, optionally updates the score
+record using peer key `+0x330`, self key `+0x330`, record id, and statistic
+candidate `+0x64C`, advances the sequence, publishes the next record's
+`+0x1E/+0x3C` values, and clears `+0x655/+0x64C`. The source emits 282/346
+bytes; strict comparison remains fail-closed on the external
+`g_info_manager` relocation. `0x0045C690` selects a record, optionally prepares
+its resource at `+0x44`, transfers the observed two-short sequence record, and
+publishes pending state. It emits 193/259 bytes; the remaining difference is
+the target's EH-bearing `0x94`-byte sprite local and register schedule.
+
+`0x0045F140` now provides maintainable source for the observed fighter battle-state
+reset: owned-state cleanup, subordinate phases, initial position and facing,
+counter/scalar defaults, the two eight-element tables at `+0x604/+0x624`,
+action reset, category-dependent sequence setup, checked front access, initial
+record publication, and action `700`. VC8 emits 1223/1247 bytes and matches the
+target prefix through `+0x10C`. The unresolved difference begins in zero-store
+ordering and continues into checked-iterator scheduling. The source covers all
+phases observed in the current decompile, while further semantic audit remains
+open. The adjacent `0x00462050` remains decompiled:
+it calls the common spell-data loader, formats the character face resource and
+ten `back/spell%03d.bmp` resources, stores the face handle at `+0x338`,
+registers back resources through the owner at `+0x68C`, applies player-relative
+`-1/+1` values at `+0x3C4/+0x3C8`, and finishes with the character resource
+callback rooted at `+0x3D0`. Asset ownership and stack-cookie contracts must be
+proven before source is claimed.
 
 ## Body collision and geometry
 
@@ -430,11 +526,16 @@ so the highest-value lanes are:
    `vector::at` COMDAT boundary and repeated `frame_158` reload schedule.
 2. Shape the list orchestrators `0x0046D160`, `0x0046D370`, and `0x0046D620`
    using their recorded stack-frame and checked-iterator differences.
-3. Close geometry codegen gaps in `0x0045A190`, `0x0045A2E0`, `0x0045A4A0`,
+3. Implement the proven spell-card dependencies around parser `0x00432E20`
+   and fighter resource initializer `0x00462050`; then use those contracts to
+   shape `0x0045BC30`, `0x0045C690`, and `0x0045F140` without synthetic EH.
+4. Restore the checked-range form of score updater `0x0042C100` and close the
+   scalar/hit gaps at `0x00459ED0`, `0x0045A030`, and `0x0046BBA0`.
+5. Close geometry codegen gaps in `0x0045A190`, `0x0045A2E0`, `0x0045A4A0`,
    `0x0046AF30`, `0x0046B000`, `0x0046B100`, and `0x0046B290`.
-4. Continue hit/object responses at `0x0046BF20`, `0x0046C070`, and the larger
+6. Continue hit/object responses at `0x0046BF20`, `0x0046C070`, and the larger
    `0x0046CE20` outcome branch.
-5. Finish the remaining fighter status/timer phase at `0x0045CDD0` and
+7. Finish the remaining fighter status/timer phase at `0x0045CDD0` and
    `0x0045CF00`, then move outward to `0x0046C290` body separation and the
    battle state machine at `0x0046FE80..0x00470940`.
 

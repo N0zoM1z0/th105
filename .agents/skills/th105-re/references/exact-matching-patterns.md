@@ -194,6 +194,14 @@ Useful rules:
 - Repeated target conversions or loads may require repeated expressions rather
   than a cached source local.
 
+For a branched x87 calculation with a shared multiply/convert suffix, the
+temporary's source type can decide whether VC8 spills it. In `0x0046B570`, a
+`float` temporary forced `FSTP/FLD` around the join, while a `double` temporary
+kept the value on the x87 stack and reproduced the target's `FILD`, branch,
+shared `FMUL`, and `_ftol2_sse` sequence. The target still stores the final
+result as a short; the wider temporary is a code-generation fact, not evidence
+that the surrounding object field is double.
+
 The exact `0x00434390` source deliberately uses:
 
 ```cpp
@@ -256,6 +264,15 @@ Use a private split-TU probe to learn source shape, but do not mark the
 integrated function `matching` unless the repository's accepted command
 reproduces it.
 
+Do not equate an object-local STL failure COMDAT with a target helper merely
+because both throw the same message. At `0x0045AEC0`, the object-local
+`vector<LocalAabb>::_Xran` is 106 bytes while the target failure helper at
+`0x0040C140` is 123 bytes, and the anonymous-namespace hash in the decorated
+COMDAT name changes with source variants. Keep such defined `REL32`
+relocations fail-closed. A diagnostic may report the object section, symbol,
+COMDAT status, and target-side branch, but only a proven external mapping or a
+final executable-level comparison may accept it.
+
 ## P9: Register lifetimes, reloads, and volatile shaping
 
 Once ABI, control flow, and relocations agree, remaining differences often come
@@ -316,7 +333,7 @@ Current hard examples:
 | Address | Integrated / target | Main shaping gap |
 | --- | ---: | --- |
 | `0x0045AEC0` | 1902 / 2156 | `vector::at` COMDAT, word-load and reload schedule |
-| `0x0046D160` | 527 / 525 | matched guard count, stack/register schedule |
+| `0x0046D160` | 527 / 525 | matched guards/frame/endpoint slots, register schedule |
 | `0x0046D370` | 667 / 686 | owner identity and stack/register schedule |
 | `0x0046D620` | 1398 / 1405 | matched guard count/frame, register allocation |
 
@@ -327,14 +344,23 @@ For `0x0046D160`, this raised the emitted failure calls from 15 to the target's
 main function from 7 to the target's 21 calls and closed 195 of the 202 missing
 bytes. Match the guard sites first; only then tune stack and registers.
 
-Two narrower shaping results are also reusable. Grouping three related end
-sentinels in one local aggregate grew `0x0046D160`'s frame from `0x18` to
-`0x1C` without changing its 527-byte body or guard count. A volatile view of
+Two narrower shaping results are also reusable. A non-volatile aggregate with
+one four-byte padding member before each of three end sentinels reproduces
+`0x0046D160`'s target `0x28` frame and endpoint slots `+0x24/+0x2C/+0x34`
+without changing its 527-byte body or 19 guards. Making the aggregate volatile
+instead bloats the function to 551 bytes by forcing reloads. A volatile view of
 only `CollisionList::count` changed `0x0046D620` from a `0x24` to the target's
-`0x2C` frame while preserving its body size and all guards. Conversely, adding
-the two missing cross-iterator owner checks to `0x0046D370` grew 667 bytes to
-707; do not force isolated identity checks until their enclosing iterator
-lifetime is understood.
+`0x2C` frame while preserving its body size and all guards.
+
+For `0x0046D370`, the two apparent owner-identity sites belong to the enclosing
+checked-iterator lifetimes. Adding explicit owner checks increases the guard
+count from the target's 25 to 27 and grows the function to 720 bytes; do not
+model dead `cmp owner,owner` shapes as new semantic checks. Preserve owner,
+begin/end, and sentinel lifetimes, then relocate existing validation paths.
+Likewise, exposing `0x0046D620`'s sentinel slot did recover the target-like
+`ESI=this+0x30` and `EBX=this+0x7C`, but made VC8 use `EBP` as a zero register
+and shrank the function to 1382 bytes. Keep diagnostic lifetime variants out
+of shared source when they improve one register but worsen the whole function.
 
 These functions are not dead ends. Their complete source and recorded first
 mismatches make them good dedicated hard lanes. Do not abandon them merely
