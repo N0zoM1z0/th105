@@ -1,0 +1,22 @@
+[ghidra]
+version = "12.1"
+archive = "ghidra_12.1_PUBLIC_20260513.zip"
+sha256 = "aa5cbcbbf48f41ca185fce900e19592f1ade4cd5994eb6e0ede468dac8a6f302"
+url = "https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_12.1_build/ghidra_12.1_PUBLIC_20260513.zip"
+
+[ghidra_mcp]
+repository = "https://github.com/bethington/ghidra-mcp.git"
+commit = "0e5f0a410c652cbb90aa30a953ce69b55a5d26a7"
+version = "7.0.0"
+
+[maven]
+version = "3.9.16"
+archive = "apache-maven-3.9.16-bin.tar.gz"
+sha256 = "80ffca22aed9e8b9713a232f3394fd81d7f20322df75efdb2b047dbd3e3a23bb"
+sha512 = "831a8591fe20c8243b1dbe7d71e3244f31d1665b0804b2e825e38cbbe5ce0cafb8338851f90780735568773e0a6cd07bbec107cda0b896b008b861075358b6f6"
+
+[reccmp]
+version = "0.1.6"
+
+[java]
+major = 21

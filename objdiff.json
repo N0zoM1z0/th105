@@ -1,0 +1,10 @@
+{
+  "custom_make": "python3",
+  "custom_args": ["scripts/build.py", "--object-name"],
+  "target_dir": "build/objdiff/orig",
+  "base_dir": "build/objdiff/reimpl",
+  "build_base": true,
+  "build_target": false,
+  "watch_patterns": ["*.c", "*.cpp", "*.h", "*.hpp"],
+  "units": []
+}

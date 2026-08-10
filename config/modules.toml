@@ -1,0 +1,47 @@
+[modules.platform]
+description = "WinMain, Win32 windowing, timing, memory and static CRT integration"
+evidence = ["PE imports", "entry point", "MSVC runtime strings"]
+
+[modules.engine]
+description = "Main loop, scene manager, scene transitions and global services"
+evidence = ["IScene", "CSceneBase", "CSceneManager", "CFade"]
+
+[modules.input]
+description = "DirectInput devices, raw state, player counters and logical input"
+evidence = ["DINPUT8 import", "runtime-validated input roots"]
+
+[modules.render]
+description = "Direct3D 9 renderer, sprites, animation and frame/pattern data"
+evidence = ["d3d9", "d3dx9_33", "CRenderer", "CSprite", "AnimationObject"]
+
+[modules.assets]
+description = "Package readers, texture/pattern loading and resource lookup"
+evidence = ["CPackageFileReader", "resource path strings"]
+
+[modules.audio]
+description = "BGM and sound playback"
+evidence = ["WINMM import", "BGM and sound path strings"]
+
+[modules.ui]
+description = "Menus, profiles, configuration, character/deck/stage selection"
+evidence = ["CMenu*", "CProfile*", "CDesign*"]
+
+[modules.script]
+description = "Scenario/command factories and typed command dispatch"
+evidence = ["CScript::CCommandFactory", "CCommandBase", "TCommand templates"]
+
+[modules.network]
+description = "Client/server/watch modes, UDP/Winsock and packet protocol"
+evidence = ["CNetworkBase", "CNetworkClient", "CNetworkServer", "CDPP_*", "WS2_32"]
+
+[modules.battle]
+description = "Battle managers, fighters, collision, weather and system effects"
+evidence = ["CBattleManagerBase", "Character", "AttackObject", "WeatherEffectObject"]
+
+[modules.characters]
+description = "Fifteen fighter implementations and their object managers"
+evidence = ["RTTI for Reimu through Tenshi and per-character object classes"]
+
+[modules.third_party]
+description = "Compiler runtime and linked libraries that should be classified separately"
+evidence = ["MSVC helper names", "FID results", "D3DX imports"]

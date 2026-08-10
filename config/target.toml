@@ -1,0 +1,25 @@
+[target]
+title = "東方緋想天 ～ Scarlet Weather Rhapsody"
+version = "1.06a"
+region = "original-japanese"
+filename = "th105.exe"
+archive_member = "th105c.exe"
+size = 3039232
+sha256 = "49c23d9467b9927ba687ed2b873c4bc2d2f39ddadc9f55051ccf10172c0b7c11"
+md5 = "c2e6515bc690ee3ad74c57045ff40d88"
+
+[pe]
+machine = "i386"
+image_base = "0x00400000"
+entry_point = "0x0067D112"
+timestamp_utc = "2008-09-22T11:41:47Z"
+linker_version = "8.0"
+text_start = "0x00401000"
+text_end = "0x006ABFFF"
+text_raw_size = 2797568
+relocations_stripped = true
+
+[codeview]
+pdb_path = "c:\\Nonotaro\\works\\東方緋想天\\th105.pdb"
+pdb_guid = "02EAE7E3-B37D-6541-B325-6C8DEB517961"
+pdb_age = 157

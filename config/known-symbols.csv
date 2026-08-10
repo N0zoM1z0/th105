@@ -1,0 +1,16 @@
+address,name,module,confidence,evidence
+0x00407F80,commit_pending_engine_scene,engine,observed,docs/EVIDENCE.md scene transition instructions and runtime
+0x004080E0,engine_main_loop_poll_input_and_update_scene,engine,observed,docs/EVIDENCE.md main loop trace
+0x00409900,update_player_input_counters_from_raw,input,observed,docs/EVIDENCE.md input data flow and runtime counters
+0x00409AD0,build_player_logical_input_mask,input,observed,docs/EVIDENCE.md input data flow and runtime mask
+0x00409C50,merge_menu_input_sources,input,observed,docs/EVIDENCE.md menu input trace
+0x0040CDE0,init_direct_input,input,observed,docs/EVIDENCE.md DirectInput call flow
+0x0040CFA0,create_direct_input_keyboard,input,observed,docs/EVIDENCE.md DirectInput device creation
+0x0040D250,create_direct_input_mouse,input,observed,docs/EVIDENCE.md DirectInput device creation
+0x00424860,main_menu_render,ui,observed,docs/EVIDENCE.md main menu vtable and runtime
+0x00424AB0,main_menu_update,ui,observed,docs/EVIDENCE.md main menu vtable and runtime
+0x00439860,get_game_mode,battle,observed,docs/EVIDENCE.md returned live game mode
+0x0046ACD0,transform_local_aabb_to_world,battle,observed,docs/EVIDENCE.md instruction and geometry validation
+0x0046C290,resolve_fighter_body_collision,battle,observed,docs/EVIDENCE.md collision call flow and live frame layout
+0x004DDB20,Sakuya_on_action_changed,characters,observed,docs/EVIDENCE.md Sakuya action traces
+0x004DEF70,Sakuya_handle_input_and_select_action,characters,observed,docs/EVIDENCE.md Sakuya dispatcher data flow and runtime actions

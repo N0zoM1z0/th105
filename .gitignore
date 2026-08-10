@@ -1,0 +1,17 @@
+# Original game files are never distributed by this project.
+/resources/th105.exe
+/resources/*.dat
+/resources/*.rar
+
+# Generated and local reverse-engineering state.
+/.analysis/
+/.tools/
+/local/
+/build/
+/.venv/
+/reccmp-user.yml
+/compile_commands.json
+*.gpr
+*.rep/
+*.pyc
+__pycache__/
