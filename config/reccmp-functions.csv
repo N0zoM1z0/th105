@@ -1,4 +1,5 @@
 name,address,type
+selector_random_roll,0x004069A0,function
 commit_pending_engine_scene,0x00407F80,function
 engine_main_loop_poll_input_and_update_scene,0x004080E0,function
 update_player_input_counters_from_raw,0x00409900,function
@@ -12,6 +13,7 @@ is_raw_key_down,0x0040D370,function
 create_collision_list_sentinel,0x0041FEA0,function
 main_menu_render,0x00424860,function
 main_menu_update,0x00424AB0,function
+reset_fighter_action_scratch,0x00433B90,function
 stage_surface_height_at_x,0x00434800,function
 is_y_at_or_below_stage_surface,0x00434860,function
 get_battle_setup_task,0x004397B0,function
@@ -42,9 +44,12 @@ calculate_descriptor_scaled_quantity_20,0x0045AB10,function
 adjust_capped_counter_558,0x0045B870,function
 update_fighter_facing_from_other_x,0x0045CA70,function
 is_state_13c_in_32_95,0x0045CAE0,function
+is_state_13c_in_96_c7,0x0045CB00,function
+select_outcome_path_from_frame_flags,0x0045CB20,function
 is_positive_y_and_state_window,0x0045CD90,function
 get_slot_character,0x00463270,function
 is_slot_active,0x00463280,function
+reset_info_manager_indexed_entry,0x00469E40,function
 reset_fighter_fields_6bc_728,0x0046A610,function
 reset_fighter_fields_6b4_728,0x0046A6A0,function
 initialize_collision_list,0x0046A7F0,function
@@ -83,5 +88,6 @@ dispatch_family2_against_family1,0x0046D160,function
 dispatch_family1_object_clashes,0x0046D370,function
 Sakuya_on_action_changed,0x004DDB20,function
 Sakuya_handle_input_and_select_action,0x004DEF70,function
+release_owned_pointer_buffer,0x0051D0D0,function
 operator_new,0x0067B50C,function
 _ftol2_sse,0x0067B8E0,function

@@ -207,6 +207,20 @@ result-code-2 response, but differ in their counter transition rules, terminal
 gates, and effect codes (`0x32` versus `0x33`). Their names remain neutral until
 live behavior establishes the original gameplay terminology.
 
+All three paths now have source in `OutcomePaths.cpp`, including the complete
+selector table, virtual action dispatch, per-path counter transitions, terminal
+handoff, deferred accounting, and effect/event outputs. Natural VC8 emits 517,
+524, and 320 bytes versus target sizes 530, 542, and 446. The first two retain
+the current-frame pointer where the target reloads it; the dispatcher is shaped
+very differently by its target switch table and unmerged case suffixes. They
+therefore remain `implemented`, not matching.
+
+The selector at `0x0045CB20` is also implemented. It returns codes `0..6` from
+the incoming frame byte, current frame flags, two signed state windows, stage
+surface, cached direction, battle state, and an observed random-roll policy.
+Its adjacent `0x0045CB00` state-window leaf (`0x96..0xC7`) is an exact 28-byte
+reconstruction. The selector's natural object is 601 bytes versus 620.
+
 Their shared terminal helper `0x0046BCD0` is now an exact 260-byte
 reconstruction. It consumes one observed 200-unit counter step, resets the hit
 exchange scratch, writes result code 2 and descriptor outputs, updates deferred
@@ -238,16 +252,19 @@ fighter short `+0x482`, applies a state-5 gate from `+0x4B8`, and raises short
 Two additional exact fighter gates now bound the general hit path:
 `0x0045CAE0` tests signed short `+0x13C` against `0x32..0x95`, while
 `0x0045CD90` additionally requires positive y at `+0xF0` and zero short
-`+0x49E`. `0x00434860` compares the same y coordinate against an x-dependent
-stage-height helper. Both the wrapper and helper `0x00434800` are exact: the
+`+0x49E`. The adjacent exact `0x0045CB00` leaf tests the same signed state
+against `0x96..0xC7`. `0x00434860` compares y against an x-dependent stage-height
+helper. Both the wrapper and helper `0x00434800` are exact: the
 helper rounds positive x with double `0.5`, clamps at table index `0x4FF`, and
 reads the 0x500-float height table at `0x006E4E38`.
 
 `0x0046A940` resets the shared exchange scratch used by five hit-resolution
 paths: it copies target `+0x174` to `+0x47C`, clears target `+0x4A2`, initializes
 owner `+0x491/+0x494/+0x498..+0x49C`, and resets an indexed 0x34-byte manager
-entry. Its VC8 source shape is recovered; durable matching remains blocked on
-the indexed manager global and `0x00469E40` relocation mappings.
+entry. It is now an exact 93-byte reconstruction. Its `0x00469E40` indexed-entry
+reset is also exact at 26 bytes and tail-calls `0x0051D0D0` to release its
+owned-pointer buffer. The absolute manager pointer at `0x006E6248` is accepted
+only through a strict zero-filled BSS relocation mapping.
 
 The hit pipeline obtains frame-derived quantities through exact sibling
 wrappers `0x0045AAE0` and `0x0045AB10`. They multiply a candidate scale by the

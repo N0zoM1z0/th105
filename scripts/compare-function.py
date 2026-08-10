@@ -17,6 +17,7 @@ KNOWN_SYMBOLS = ROOT / "config" / "known-symbols.csv"
 KNOWN_RELOCATIONS = ROOT / "config" / "reccmp-relocations.csv"
 IMAGE_REL_I386_DIR32 = 0x0006
 IMAGE_REL_I386_REL32 = 0x0014
+IMAGE_SCN_CNT_UNINITIALIZED_DATA = 0x00000080
 IMAGE_SCN_LNK_NRELOC_OVFL = 0x01000000
 
 
@@ -211,10 +212,26 @@ def coff_symbol_bytes(
                     f"DIR32 relocation for {target_symbol_name} has unverified "
                     f"addend {addend:#x}"
                 )
-            literal_offset = (
-                int(target_section["raw_pointer"]) + target_value + addend
-            )
-            object_literal = data[literal_offset : literal_offset + len(literal)]
+            if int(target_section["characteristics"]) & IMAGE_SCN_CNT_UNINITIALIZED_DATA:
+                bss_size = int(target_section["raw_size"])
+                bss_pointer = int(target_section["raw_pointer"])
+                if (
+                    bss_pointer != 0
+                    or target_value + addend + len(literal) > bss_size
+                    or any(literal)
+                ):
+                    raise ValueError(
+                        f"unverified nonzero/unexpected BSS relocation for "
+                        f"{target_symbol_name}"
+                    )
+                object_literal = bytes(len(literal))
+            else:
+                literal_offset = (
+                    int(target_section["raw_pointer"]) + target_value + addend
+                )
+                object_literal = data[
+                    literal_offset : literal_offset + len(literal)
+                ]
             if object_literal != literal:
                 raise ValueError(
                     f"object bytes for {target_symbol_name}+{addend:#x} do not "

@@ -1,4 +1,5 @@
 address,name,module,confidence,evidence
+0x004069A0,selector_random_roll,battle,inferred,docs/BATTLE.md observed bounded random roll used by the outcome selector
 0x00407F80,commit_pending_engine_scene,engine,observed,docs/EVIDENCE.md scene transition instructions and runtime
 0x004080E0,engine_main_loop_poll_input_and_update_scene,engine,observed,docs/EVIDENCE.md main loop trace
 0x00409900,update_player_input_counters_from_raw,input,observed,docs/EVIDENCE.md input data flow and runtime counters
@@ -12,6 +13,7 @@ address,name,module,confidence,evidence
 0x0041FEA0,create_collision_list_sentinel,battle,inferred,docs/BATTLE.md exact 12-byte self-linked sentinel allocation
 0x00424860,main_menu_render,ui,observed,docs/EVIDENCE.md main menu vtable and runtime
 0x00424AB0,main_menu_update,ui,observed,docs/EVIDENCE.md main menu vtable and runtime
+0x00433B90,reset_fighter_action_scratch,battle,inferred,docs/BATTLE.md observed fighter action scratch reset after outcome dispatch
 0x00434800,stage_surface_height_at_x,battle,inferred,docs/BATTLE.md exact clamped lookup from fighter x into stage-height table
 0x00434860,is_y_at_or_below_stage_surface,battle,inferred,docs/BATTLE.md observed y versus x-dependent stage-height predicate
 0x004397B0,get_battle_setup_task,battle,inferred,docs/EVIDENCE.md async battle setup callback task selector
@@ -42,9 +44,12 @@ address,name,module,confidence,evidence
 0x0045B870,adjust_capped_counter_558,battle,inferred,docs/BATTLE.md observed gated signed-short adjustment capped at 500
 0x0045CA70,update_fighter_facing_from_other_x,battle,inferred,docs/BATTLE.md exact facing update from paired fighter x coordinates
 0x0045CAE0,is_state_13c_in_32_95,battle,inferred,docs/BATTLE.md exact signed fighter state-window predicate
+0x0045CB00,is_state_13c_in_96_c7,battle,inferred,docs/BATTLE.md exact adjacent signed fighter state-window predicate
+0x0045CB20,select_outcome_path_from_frame_flags,battle,inferred,docs/BATTLE.md observed outcome selection from frame flags and fighter state
 0x0045CD90,is_positive_y_and_state_window,battle,inferred,docs/BATTLE.md exact positive-y zero-field and state-window predicate
 0x00463270,get_slot_character,battle,inferred,docs/EVIDENCE.md exact indexed character pointer load from battle slot state +0x28
 0x00463280,is_slot_active,battle,inferred,docs/EVIDENCE.md active byte maintained with the paired character slot
+0x00469E40,reset_info_manager_indexed_entry,battle,inferred,docs/BATTLE.md exact indexed info-manager scratch reset and owned-buffer tail release
 0x0046A610,reset_fighter_fields_6bc_728,battle,inferred,docs/BATTLE.md exact two-fighter observed-field reset
 0x0046A6A0,reset_fighter_fields_6b4_728,battle,inferred,docs/BATTLE.md exact broader two-fighter observed-field reset
 0x0046A7F0,initialize_collision_list,battle,inferred,docs/BATTLE.md exact sentinel and count initialization for one collision list
@@ -83,5 +88,6 @@ address,name,module,confidence,evidence
 0x0046D370,dispatch_family1_object_clashes,battle,inferred,docs/BATTLE.md observed same-list and cross-list object clash traversal
 0x004DDB20,Sakuya_on_action_changed,characters,observed,docs/EVIDENCE.md Sakuya action traces
 0x004DEF70,Sakuya_handle_input_and_select_action,characters,observed,docs/EVIDENCE.md Sakuya dispatcher data flow and runtime actions
+0x0051D0D0,release_owned_pointer_buffer,battle,inferred,docs/BATTLE.md observed owned-pointer buffer release used by indexed scratch reset
 0x0067B50C,operator_new,runtime,observed,docs/BATTLE.md verified VC8 allocation routine called by collision-list helpers
 0x0067B8E0,_ftol2_sse,runtime,observed,docs/BATTLE.md verified VC8 x87-to-int truncation runtime helper

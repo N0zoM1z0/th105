@@ -7,6 +7,11 @@ int __fastcall is_state_13c_in_32_95(Fighter *fighter)
     return fighter->state_13c >= 0x32 && fighter->state_13c < 0x96;
 }
 
+int __fastcall is_state_13c_in_96_c7(Fighter *fighter)
+{
+    return fighter->state_13c >= 0x96 && fighter->state_13c < 0xc8;
+}
+
 int __fastcall is_positive_y_and_state_window(Fighter *fighter)
 {
     return fighter->y_f0 > 0.0f && fighter->field_49e == 0 &&

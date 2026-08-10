@@ -4,6 +4,31 @@ namespace th105 {
 
 struct Fighter;
 
+void __fastcall release_owned_pointer_buffer(void *buffer);
+
+struct HitExchangeIndexedEntry {
+    unsigned char unknown_00[0x10];
+    int unknown_10;
+    int reset_state_14;
+    int unknown_18;
+    unsigned char reset_flag_1c;
+    unsigned char unknown_1d[0x03];
+    unsigned char owned_tail_20[0x14];
+
+    __declspec(noinline) void reset_info_manager_indexed_entry();
+};
+
+struct InfoManager {
+    unsigned char unknown_000[0x16c];
+    HitExchangeIndexedEntry indexed_entries_16c[2];
+};
+
+extern InfoManager *g_info_manager;
+
+struct FighterActionScratch {
+    void reset();
+};
+
 struct AttackCandidateFrame {
     unsigned char unknown_00[0x1c];
     short quantity_1c;
@@ -18,7 +43,9 @@ struct AttackCandidateFrame {
     unsigned char unknown_36[0x06];
     float response_3c;
     float response_40;
-    unsigned char unknown_44[0x0c];
+    unsigned char unknown_44[0x04];
+    signed char action_offset_48;
+    unsigned char unknown_49[0x07];
     unsigned flags_50;
 };
 
@@ -28,7 +55,8 @@ struct FighterFrame {
 };
 
 struct AttackCandidate {
-    unsigned char unknown_000[0x16c];
+    unsigned char unknown_000[0x168];
+    Fighter *source_168;
     Fighter *owner_16c;
     unsigned char unknown_170[0x10];
     unsigned result_180;
@@ -118,7 +146,9 @@ struct Fighter {
     short counter_482;
     short unknown_484;
     short floor_486;
-    unsigned char unknown_488[0x09];
+    unsigned char unknown_488[0x06];
+    short blocker_48e;
+    unsigned char unknown_490;
     unsigned char flag_491;
     unsigned char unknown_492[0x02];
     float scalar_494;
@@ -128,15 +158,28 @@ struct Fighter {
     short field_49e;
     short value_4a0;
     short value_4a2;
-    unsigned char unknown_4a4[0x02];
+    short field_4a4;
     short field_4a6;
     unsigned char unknown_4a8[0x06];
     short field_4ae;
     unsigned char unknown_4b0[0x08];
     int state_4b8;
-    unsigned char unknown_4bc[0x1c];
+    unsigned char unknown_4bc[0x14];
+    float factor_4d0;
+    float factor_4d4;
     float scale_4d8;
-    unsigned char unknown_4dc[0x1d8];
+    unsigned char unknown_4dc[0x08];
+    unsigned char gate_4e4;
+    unsigned char unknown_4e5[0x05];
+    unsigned char state_4ea;
+    unsigned char unknown_4eb[0x02];
+    unsigned char gate_4ed;
+    unsigned char unknown_4ee[0x6a];
+    short counter_558;
+    signed char state_55a;
+    signed char state_55b;
+    unsigned char unknown_55c[0x154];
+    int field_6b0;
     int field_6b4;
     int field_6b8;
     int field_6bc;
@@ -162,10 +205,12 @@ struct Fighter {
     unsigned char unknown_70c[0x18];
     int field_724;
     int field_728;
+    signed char state_72c;
 
     void adjust_counter_482(short amount, int floor_value);
     void adjust_capped_counter_558(short amount);
     void consume_counter_484_steps(char count);
+    int select_outcome_path_from_frame_flags(unsigned frame_flags);
 };
 
 bool __fastcall update_fighter_facing_from_other_x(Fighter *fighter);
@@ -178,7 +223,8 @@ struct CollisionContext {
     int extent_20;
     int extent_24;
     int extent_28;
-    unsigned char unknown_2c[0x50];
+    unsigned char unknown_2c[0x48];
+    int deferred_74[2];
     int deferred_7c[2];
 
     void reset_collision_extents();
@@ -217,6 +263,9 @@ struct CollisionContext {
     void apply_terminal_outcome(
         AttackCandidate *candidate,
         Fighter *fighter);
+    bool try_outcome_path_a(AttackCandidate *candidate, Fighter *fighter);
+    bool try_outcome_path_b(AttackCandidate *candidate, Fighter *fighter);
+    bool dispatch_outcome_path(AttackCandidate *candidate, Fighter *fighter);
 };
 
 struct EffectSink {
@@ -235,6 +284,7 @@ struct EffectSink {
 void __fastcall reset_fighter_fields_6bc_728(CollisionContext *context);
 void __fastcall reset_fighter_fields_6b4_728(CollisionContext *context);
 int __fastcall is_state_13c_in_32_95(Fighter *fighter);
+int __fastcall is_state_13c_in_96_c7(Fighter *fighter);
 int __fastcall is_positive_y_and_state_window(Fighter *fighter);
 float __fastcall stage_surface_height_at_x(Fighter *fighter);
 int __fastcall is_y_at_or_below_stage_surface(Fighter *fighter);
