@@ -103,6 +103,10 @@ state. They establish the first vertical slices:
 - shared collision/frame geometry around `0x0046ACD0`;
 - Sakuya action handling at `0x004DDB20` and `0x004DEF70`.
 
+Gameplay reconstruction should start from the phase ordering and bounded work
+lanes in [`docs/BATTLE.md`](BATTLE.md). UI, audio, and input plumbing remain
+valid modules but are lower priority than the active battle pipeline.
+
 These names describe observed roles; they do not imply that original source
 names have been recovered.
 

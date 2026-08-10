@@ -98,3 +98,27 @@ from SP1 or prove the final `/GL`/`/LTCG` configuration.
 `(raw_keyboard_state[scan_code] & 0x80) != 0`; this preserves the observed
 boolean behavior and makes VC8 SP1 `/O2` emit the target's 16-byte `movzx`
 sequence exactly.
+
+The first core-battle probes also match exactly:
+
+```text
+0x00463270 get_slot_character: 11 / 11 bytes
+0x00463280 is_slot_active: 11 / 11 bytes
+0x0046ACB0 reset_collision_extents: 23 / 23 bytes
+0x0046ACD0 transform_local_aabb_to_world: 91 / 91 bytes
+```
+
+## Relocation-aware function probes
+
+`scripts/compare-function.py` resolves one deliberately narrow class of COFF
+relocation: i386 `REL32` on an external `CALL` whose callee has a unique address
+in `config/known-symbols.csv`. It applies the link-time displacement using the
+target function address before comparing bytes. This permits small battle and
+collision helpers with direct calls to already identified functions to be
+checked without constructing a fake executable layout.
+
+The comparator fails closed for unknown callees, non-external targets,
+non-`CALL` `REL32` records, `DIR32` globals/vtables/statics, relocation-overflow
+sections, and every other relocation type. Those cases still require an
+appropriate linked-slice or executable comparison. A successful object probe
+does not replace final LTCG-sensitive executable-level reccmp acceptance.

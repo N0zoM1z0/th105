@@ -1913,8 +1913,8 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00462E20,753,0x00463110,FUN_00462e20,,,unclassified,0.00,unknown,undefined FUN_00462e20(void),false,,,,
 0x00463120,183,0x004631D6,FUN_00463120,,,unclassified,0.00,unknown,undefined FUN_00463120(void),false,,,,
 0x004631E0,136,0x00463267,FUN_004631e0,,,unclassified,0.00,unknown,undefined FUN_004631e0(void),false,,,,
-0x00463270,11,0x0046327A,get_battle_slot_object,get_battle_slot_object,battle,matching,100.00,__thiscall,void * get_battle_slot_object(void * this; unsigned int slot),false,src/battle/BattleSetup.cpp,scripts/compile-unit.sh src/battle/BattleSetup.cpp build/probes/BattleSetup.obj && python3 scripts/compare-function.py 0x00463270 build/probes/BattleSetup.obj,,Exact indexed pointer load; concrete pointed-to battle type remains unresolved
-0x00463280,11,0x0046328A,get_battle_slot_flag,get_battle_slot_flag,battle,matching,100.00,__thiscall,unsigned char get_battle_slot_flag(void * this; unsigned int slot),false,src/battle/BattleSetup.cpp,scripts/compile-unit.sh src/battle/BattleSetup.cpp build/probes/BattleSetup.obj && python3 scripts/compare-function.py 0x00463280 build/probes/BattleSetup.obj,,Exact indexed byte load; flag meaning remains unresolved
+0x00463270,11,0x0046327A,get_slot_character,get_slot_character,battle,matching,100.00,__thiscall,"void * get_slot_character(void * this, uint slot)",false,src/battle/BattleSetup.cpp,scripts/compile-unit.sh src/battle/BattleSetup.cpp build/probes/BattleSetup.obj && python3 scripts/compare-function.py 0x00463270 build/probes/BattleSetup.obj,,Exact indexed character pointer load; manager class name remains inferred
+0x00463280,11,0x0046328A,is_slot_active,is_slot_active,battle,matching,100.00,__thiscall,"uchar is_slot_active(void * this, uint slot)",false,src/battle/BattleSetup.cpp,scripts/compile-unit.sh src/battle/BattleSetup.cpp build/probes/BattleSetup.obj && python3 scripts/compare-function.py 0x00463280 build/probes/BattleSetup.obj,,Exact active-byte load; original method spelling remains unknown
 0x00463290,49,0x004632C0,FUN_00463290,,,unclassified,0.00,unknown,undefined FUN_00463290(void),false,,,,
 0x004632D0,767,0x004635CE,FUN_004632d0,,,unclassified,0.00,unknown,undefined FUN_004632d0(void),false,,,,
 0x00463610,323,0x00463752,FUN_00463610,,,unclassified,0.00,unknown,undefined FUN_00463610(void),false,,,,
@@ -2056,8 +2056,8 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0046AB80,67,0x0046ABC2,FUN_0046ab80,,,unclassified,0.00,unknown,undefined FUN_0046ab80(void),false,,,,
 0x0046ABD0,110,0x0046AC3D,FUN_0046abd0,,,unclassified,0.00,unknown,undefined FUN_0046abd0(void),false,,,,
 0x0046AC40,100,0x0046ACA3,FUN_0046ac40,,,unclassified,0.00,unknown,undefined FUN_0046ac40(void),false,,,,
-0x0046ACB0,23,0x0046ACC6,FUN_0046acb0,,,unclassified,0.00,unknown,undefined FUN_0046acb0(void),false,,,,
-0x0046ACD0,91,0x0046AD2A,FUN_0046acd0,transform_local_aabb_to_world,battle,identified,0.00,unknown,undefined FUN_0046acd0(void),false,,docs/EVIDENCE.md instruction and geometry validation,,
+0x0046ACB0,23,0x0046ACC6,reset_collision_extents,reset_collision_extents,battle,matching,100.00,__thiscall,void reset_collision_extents(void * this),false,src/battle/Collision.cpp,scripts/compile-unit.sh src/battle/Collision.cpp build/probes/Collision.obj && python3 scripts/compare-function.py 0x0046ACB0 build/probes/Collision.obj,,Exact sentinel writes; extent semantics and original context type remain inferred
+0x0046ACD0,91,0x0046AD2A,transform_local_aabb_to_world,transform_local_aabb_to_world,battle,matching,100.00,__stdcall,"void transform_local_aabb_to_world(void * actor, int * param_2, float * world_aabb)",false,src/battle/Collision.cpp,scripts/compile-unit.sh src/battle/Collision.cpp build/probes/Collision.obj && python3 scripts/compare-function.py 0x0046ACD0 build/probes/Collision.obj,,Exact x87 local-to-world AABB transform; source type names are reconstructed
 0x0046AD30,97,0x0046AD90,FUN_0046ad30,,,unclassified,0.00,unknown,undefined FUN_0046ad30(void),false,,,,
 0x0046ADA0,248,0x0046AE97,FUN_0046ada0,,,unclassified,0.00,unknown,undefined FUN_0046ada0(void),false,,,,
 0x0046AEA0,142,0x0046AF2D,FUN_0046aea0,,,unclassified,0.00,unknown,undefined FUN_0046aea0(void),false,,,,

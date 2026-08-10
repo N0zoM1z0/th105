@@ -58,10 +58,11 @@ Evidence labels used by this repository:
   by facing and translates by actor position. `resolve_fighter_body_collision`
   at `0x0046C290` consumes current frame data and its body rectangle.
 - **Observed** battle-slot state methods `0x00463270` and `0x00463280` index a
-  paired pointer array at `+0x28` and byte array at `+0x34`. `0x00463290`
-  swaps both fields in lockstep; callers use slots 0 and 1. The pointed-to
-  concrete type and flag meaning remain inferred, so the source keeps them
-  opaque.
+  three-element character-pointer array at `+0x28` and active-byte array at
+  `+0x34`. `0x00463290` swaps both fields in lockstep; `0x00464240` activates
+  a non-null slot and rebuilds the active-character list, while `0x004641F0`
+  clears it on removal. The manager class and original method names remain
+  inferred.
 
 ## Sakuya action roots
 

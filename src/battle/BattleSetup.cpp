@@ -2,14 +2,14 @@
 
 namespace th105 {
 
-void *BattleSlotState::get_battle_slot_object(unsigned slot) const
+Character *BattleSlotState::get_slot_character(unsigned slot) const
 {
-    return objects[slot];
+    return slot_characters[slot];
 }
 
-unsigned char BattleSlotState::get_battle_slot_flag(unsigned slot) const
+unsigned char BattleSlotState::is_slot_active(unsigned slot) const
 {
-    return flags[slot];
+    return slot_active[slot];
 }
 
 int get_battle_setup_task()
