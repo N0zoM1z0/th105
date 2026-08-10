@@ -279,6 +279,14 @@ struct CollisionContext {
         const struct CollisionAabb *first,
         const struct ShapeWords *descriptor,
         const struct CollisionAabb *second);
+    int test_descriptor_shapes_overlap(
+        const struct CollisionAabb *first,
+        const struct ShapeWords *first_descriptor,
+        const struct CollisionAabb *second,
+        const struct ShapeWords *second_descriptor);
+    int test_group_a_against_primary_box(
+        CollisionObject *first,
+        CollisionObject *second);
     int test_group_b_against_group_b(
         CollisionObject *source,
         CollisionObject *other);

@@ -226,12 +226,12 @@ Attack damage is resolved before fighter body separation.
   accumulated extents. Its VC8 double-`0.5` data relocation is verified
   against both the COFF literal and target bytes before comparison.
 - `0x0046ADA0` tests one AABB against such a descriptor, while `0x0046B000`
-  performs an ordered descriptor-pair broad phase and five point tests. The
-  former now has complete source for its broad phase, four ordered half-space
-  tests, extent accumulation, and return paths. Its natural VC8 object is 246
-  bytes versus the 248-byte target: the optimizer replaces the target's final
-  `AND EBP,ESI; TEST EBP,EBP` with `TEST ESI,EBP`. `0x0046B000` remains
-  identified but not byte-identical.
+  performs an ordered descriptor-pair broad phase and five point tests. Both
+  now have complete source, including extent accumulation and return paths.
+  The former's natural VC8 object is 246 bytes versus the 248-byte target: the
+  optimizer replaces the target's final `AND EBP,ESI; TEST EBP,EBP` with
+  `TEST ESI,EBP`. The latter's isolated object is 232 bytes versus 252 because
+  its register lifetimes and branch layout still differ from the target.
 - `0x0046C290` reads the two fighter roots at manager `+0x0C/+0x10`, consumes
   current-frame body geometry through fighter `+0x158`, and applies overlap
   correction and pushback.
@@ -250,9 +250,11 @@ helper, one-descriptor helper, or inline AABB predicate from the two descriptor
 null states. They OR every pair result and do not return early after an overlap;
 preserving that traversal is required even when only a boolean result is used.
 The two 398-byte functions are byte-isomorphic apart from 17 bytes accounting
-for their group offsets and call displacements. A behaviorally faithful
-`0x0046B290` probe remains shorter because VC8 assigns different registers and
-does not reproduce the target's repeated descriptor reloads.
+for their group offsets and call displacements. Complete source now covers
+`0x0046AF30`, `0x0046B100`, and `0x0046B290`; their current integrated VC8
+objects are respectively 161/194, 321/398, and 321/398 bytes. They remain
+`implemented` because VC8 assigns different registers and does not reproduce
+the target's repeated descriptor reloads and stack scheduling.
 
 `0x0046C070` handles one observed group-B object-pair overlap after
 `0x0046B290` succeeds. It compares two 16-bit values from each current frame
@@ -394,8 +396,9 @@ needs broader global/tail-dispatch relocation support.
 
 Keep claims address-bounded and prefer leaf functions before orchestrators:
 
-1. Geometry source shaping: `0x0046AD30`, `0x0046ADA0`, and `0x0046B000`,
-   using the exact extent and point-test leaves already in source.
+1. Geometry source shaping: `0x0046ADA0`, `0x0046AF30`, `0x0046B000`,
+   `0x0046B100`, and `0x0046B290`, using the exact extent and point-test leaves
+   already in source.
 2. Hit/object responses: `0x0046BF20`, `0x0046BFD0`, `0x0046C070`, then the
    larger `0x0046CE20` outcome branch.
 3. Character action/object update: `0x0046A5B0`, `0x00463610`, `0x00459E50`.

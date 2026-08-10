@@ -85,4 +85,42 @@ int CollisionContext::test_aabb_against_descriptor_shape(
     return 1;
 }
 
+int CollisionContext::test_descriptor_shapes_overlap(
+    const CollisionAabb *first,
+    const ShapeWords *first_descriptor,
+    const CollisionAabb *second,
+    const ShapeWords *second_descriptor)
+{
+    int broad_phase = second_descriptor->y0 - first_descriptor->y1 -
+        first->top + second->top;
+    broad_phase &= second->left - first->right;
+    broad_phase &= first_descriptor->y0 - second_descriptor->y1 -
+        second->top + first->top;
+    broad_phase &= first->left - second->right;
+    if (broad_phase >= 0) {
+        return 0;
+    }
+
+    if (test_descriptor_point_inside(
+            first, first_descriptor, second->left, second->top) ||
+        test_descriptor_point_inside(
+            first, first_descriptor, second->right, second->bottom) ||
+        test_descriptor_point_inside(
+            first, first_descriptor,
+            second->left + second_descriptor->x0,
+            second->top + second_descriptor->y0) ||
+        test_descriptor_point_inside(
+            first, first_descriptor,
+            second->left + second_descriptor->x1,
+            second->top + second_descriptor->y1) ||
+        test_descriptor_point_inside(
+            second, second_descriptor, first->left, first->top)) {
+        accumulate_descriptor_pair_extents(
+            first, first_descriptor, second, second_descriptor);
+        return 1;
+    }
+
+    return 0;
+}
+
 } // namespace th105
