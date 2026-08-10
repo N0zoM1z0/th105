@@ -73,12 +73,19 @@ A high-throughput four-lane wave is:
   tightly bounded hitbox cluster;
 - **C / semantics**: defensive and hit-result dispatch, with game terms kept
   inferred until flags or runtime behavior prove them;
-- **D / orchestrator analysis**: recover list/node ownership and call order but
-  do not port the large dispatcher yet.
+- **D / hard path**: recover or shape one central orchestrator, large geometry
+  builder, or response cascade using the current complete leaf/layout evidence.
 
 This produces source matches and the layouts needed for the next wave at the
-same time. Do not spend all workers scanning arbitrary short functions: short
-UI accessors increase the counter but do not unblock the gameplay core.
+same time. Every wave should include at least one hard-path lane; do not spend
+all workers scanning arbitrary short functions. Short leaves are preferred
+when they unblock a core ABI, relocation, or call path rather than only
+increasing the counter.
+
+Before assigning source-shaping work, route the worker through the diagnosis
+table in `../th105-re/references/exact-matching-patterns.md`. The handoff should
+name the applicable pattern IDs (for example P3/P6/P11) and the first mismatch,
+so the next worker does not repeat already classified experiments.
 
 ## Shared MCP lifecycle
 

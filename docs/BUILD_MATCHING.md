@@ -37,6 +37,21 @@ build.
 5. **Executable comparison** — use reccmp as the acceptance report and retain
    explicit mappings for functions/globals/floats/strings.
 
+## Agent exact-matching playbook
+
+The reusable, symptom-driven VC8 source-shaping catalog lives at
+[`../.agents/skills/th105-re/references/exact-matching-patterns.md`](../.agents/skills/th105-re/references/exact-matching-patterns.md).
+It covers the repository's proven patterns for ABI/return-width recovery,
+external `REL32`, strict `DIR32` and signed addends, non-contiguous Ghidra body
+sets, x87 expression shaping, TU/COMDAT boundaries, BSS section placement,
+register reloads, switch tail merging, checked STL paths, hard-function
+handoffs, and regression testing after shared-layout changes.
+
+Agents should start from its diagnosis table after the first failed comparison
+and add genuinely reusable techniques as they are proven. Function-specific
+semantics remain in module notes and `config/functions.csv`; the playbook is
+for methods that transfer across address ranges.
+
 ## reccmp
 
 After placing the exact original executable in `resources/`:

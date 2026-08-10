@@ -67,6 +67,7 @@ See [docs/MCP.md](docs/MCP.md) for setup and security details.
 - [Architecture](docs/ARCHITECTURE.md) — confirmed binary structure and module plan
 - [Reverse-engineering workflow](docs/RE_WORKFLOW.md) — evidence and agent handoff rules
 - [Matching workflow](docs/BUILD_MATCHING.md) — compiler, reccmp, and objdiff stages
+- [Exact-matching pattern catalog](.agents/skills/th105-re/references/exact-matching-patterns.md) — reusable VC8, COFF, relocation, and source-shaping techniques
 - [Progress](docs/PROGRESS.md) — generated from `config/functions.csv`
 - [AGENTS.md](AGENTS.md) — mandatory operating rules for coding agents
 - [Parallel-agent skill](.agents/skills/th105-parallel/SKILL.md) — safe,
