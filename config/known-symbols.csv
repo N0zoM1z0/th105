@@ -13,7 +13,10 @@ address,name,module,confidence,evidence
 0x0041FEA0,create_collision_list_sentinel,battle,inferred,docs/BATTLE.md exact 12-byte self-linked sentinel allocation
 0x00424860,main_menu_render,ui,observed,docs/EVIDENCE.md main menu vtable and runtime
 0x00424AB0,main_menu_update,ui,observed,docs/EVIDENCE.md main menu vtable and runtime
+0x00425CD0,update_global_6e6260_first,battle,inferred,docs/BATTLE.md post-update phase calls this first with global state 0x006E6260
+0x00425F10,update_global_6e6260_second,battle,inferred,docs/BATTLE.md post-update phase tail-dispatches this second with global state 0x006E6260
 0x00433B90,reset_fighter_action_scratch,battle,inferred,docs/BATTLE.md observed fighter action scratch reset after outcome dispatch
+0x00433CC0,emit_fighter_effect_433cc0,battle,inferred,docs/BATTLE.md deferred counter leaf forwards effect code position facing and fighter to the effect manager
 0x00434800,stage_surface_height_at_x,battle,inferred,docs/BATTLE.md exact clamped lookup from fighter x into stage-height table
 0x00434860,is_y_at_or_below_stage_surface,battle,inferred,docs/BATTLE.md observed y versus x-dependent stage-height predicate
 0x004397B0,get_battle_setup_task,battle,inferred,docs/EVIDENCE.md async battle setup callback task selector
@@ -32,7 +35,10 @@ address,name,module,confidence,evidence
 0x00439CA0,set_session_setup_option,input,inferred,docs/EVIDENCE.md raw 0x006E62E4 accessor; exact enum meaning pending
 0x00439CB0,get_network_session,network,observed,docs/EVIDENCE.md returns CNetworkBase pointer installed by client/server setup
 0x00439DC0,dispatch_indexed_event,battle,inferred,docs/BATTLE.md observed bounded table forwarding used by hit outcomes
+0x00454890,std_list_incsize_pointer,runtime,observed,docs/BATTLE.md verified VC8 std list pointer-element size increment helper used by collision insertion
+0x00459860,integrate_and_clamp_fighter_position,battle,inferred,docs/BATTLE.md first pass of the fighter position status timer phase
 0x00459C90,consume_counter_484_steps,battle,inferred,docs/BATTLE.md observed repeated 200-unit counter decrement in terminal outcome
+0x00459E50,run_common_character_update,battle,inferred,docs/BATTLE.md fourth pass of the active character and owned-object phase
 0x0045A030,calculate_base_hit_quantity,battle,inferred,docs/BATTLE.md observed scalar and conditional modifier product used by hit quantity wrappers
 0x0045AA10,call_one_arg_helper_then_vslot_3c,battle,inferred,docs/BATTLE.md observed one-argument helper followed by AttackObject-family virtual slot 0x3c
 0x0045AA30,call_two_arg_helper_then_vslot_3c,battle,inferred,docs/BATTLE.md observed two-argument helper followed by AttackObject-family virtual slot 0x3c
@@ -41,15 +47,25 @@ address,name,module,confidence,evidence
 0x0045AAC0,count_0x88_byte_stride_entries,battle,inferred,docs/BATTLE.md exact pointer-range count with 0x88-byte stride
 0x0045AAE0,calculate_descriptor_scaled_quantity_1c,battle,inferred,docs/BATTLE.md observed scaled descriptor quantity and float-to-int tail conversion
 0x0045AB10,calculate_descriptor_scaled_quantity_20,battle,inferred,docs/BATTLE.md exact sibling scaled descriptor quantity using signed short 0x20
+0x0045AEC0,prepare_collision_geometry_from_frame,battle,inferred,docs/BATTLE.md observed materialization of frame geometry into collision-ready object scratch
 0x0045B870,adjust_capped_counter_558,battle,inferred,docs/BATTLE.md observed gated signed-short adjustment capped at 500
+0x0045BA40,advance_fighter_sequence_55c,battle,inferred,docs/BATTLE.md deferred counter leaf advances the observed controller rooted at fighter 0x55c
+0x0045BF10,apply_deferred_counter_558,battle,inferred,docs/BATTLE.md post-collision deferred channel reduces or wraps fighter counter 0x558
 0x0045CA70,update_fighter_facing_from_other_x,battle,inferred,docs/BATTLE.md exact facing update from paired fighter x coordinates
 0x0045CAE0,is_state_13c_in_32_95,battle,inferred,docs/BATTLE.md exact signed fighter state-window predicate
 0x0045CB00,is_state_13c_in_96_c7,battle,inferred,docs/BATTLE.md exact adjacent signed fighter state-window predicate
 0x0045CB20,select_outcome_path_from_frame_flags,battle,inferred,docs/BATTLE.md observed outcome selection from frame flags and fighter state
 0x0045CD90,is_positive_y_and_state_window,battle,inferred,docs/BATTLE.md exact positive-y zero-field and state-window predicate
+0x0045CDD0,process_fighter_transient_status,battle,inferred,docs/BATTLE.md second pass of the fighter position status timer phase
+0x0045CF00,decrement_fighter_timers_and_cleanup,battle,inferred,docs/BATTLE.md third pass of the fighter position status timer phase
 0x00463270,get_slot_character,battle,inferred,docs/EVIDENCE.md exact indexed character pointer load from battle slot state +0x28
 0x00463280,is_slot_active,battle,inferred,docs/EVIDENCE.md active byte maintained with the paired character slot
+0x00463610,run_active_character_and_owned_object_callbacks,battle,inferred,docs/BATTLE.md five complete fighter-vector passes with character and owned-object callbacks
+0x00463760,commit_fighter_physics_status_timers,battle,inferred,docs/BATTLE.md three complete fighter-vector passes for position status and timer processing
 0x00469E40,reset_info_manager_indexed_entry,battle,inferred,docs/BATTLE.md exact indexed info-manager scratch reset and owned-buffer tail release
+0x0046A5B0,run_global_fighter_action_owned_object_phase,battle,inferred,docs/BATTLE.md exact global-context tail wrapper for 0x00463610
+0x0046A5C0,run_global_fighter_position_status_timer_phase,battle,inferred,docs/BATTLE.md exact global-context tail wrapper for 0x00463760
+0x0046A5D0,run_post_update_callbacks_and_global_state,battle,inferred,docs/BATTLE.md exact post-update virtual callbacks clear and ordered global-state calls
 0x0046A610,reset_fighter_fields_6bc_728,battle,inferred,docs/BATTLE.md exact two-fighter observed-field reset
 0x0046A6A0,reset_fighter_fields_6b4_728,battle,inferred,docs/BATTLE.md exact broader two-fighter observed-field reset
 0x0046A7F0,initialize_collision_list,battle,inferred,docs/BATTLE.md exact sentinel and count initialization for one collision list
@@ -86,8 +102,10 @@ address,name,module,confidence,evidence
 0x0046D040,resolve_attack_candidate_against_fighter,battle,inferred,docs/BATTLE.md observed ordered attack-versus-fighter gates and outcome cascade
 0x0046D160,dispatch_family2_against_family1,battle,inferred,docs/BATTLE.md observed family-2 against family-1 sentinel traversal and response cascade
 0x0046D370,dispatch_family1_object_clashes,battle,inferred,docs/BATTLE.md observed same-list and cross-list object clash traversal
+0x0046D620,run_attack_projectile_collision_phase,battle,inferred,docs/BATTLE.md observed six-list reset classification clash fighter-resolution and deferred-application orchestration
 0x004DDB20,Sakuya_on_action_changed,characters,observed,docs/EVIDENCE.md Sakuya action traces
 0x004DEF70,Sakuya_handle_input_and_select_action,characters,observed,docs/EVIDENCE.md Sakuya dispatcher data flow and runtime actions
 0x0051D0D0,release_owned_pointer_buffer,battle,inferred,docs/BATTLE.md observed owned-pointer buffer release used by indexed scratch reset
 0x0067B50C,operator_new,runtime,observed,docs/BATTLE.md verified VC8 allocation routine called by collision-list helpers
+0x0067B884,_invalid_parameter_noinfo,runtime,observed,docs/BATTLE.md repeated VC8 checked-vector invalid-parameter target in fighter phase loops
 0x0067B8E0,_ftol2_sse,runtime,observed,docs/BATTLE.md verified VC8 x87-to-int truncation runtime helper

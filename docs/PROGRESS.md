@@ -3,19 +3,19 @@
 Generated from `config/functions.csv`. Only functions with a verified
 100% comparison are counted as reconstructed.
 
-- Matching functions: **47 / 4835 (0.97%)**
-- Matching function bytes: **2,653 / 2,641,615 (0.10%)**
+- Matching functions: **53 / 4833 (1.10%)**
+- Matching function bytes: **3,386 / 2,641,439 (0.13%)**
 - Ghidra internal `.text` inventory: **4,838 functions**
 
 | Status | Functions |
 | --- | ---: |
-| `unclassified` | 4,745 |
-| `identified` | 37 |
-| `decompiled` | 0 |
-| `implemented` | 6 |
+| `unclassified` | 4,727 |
+| `identified` | 44 |
+| `decompiled` | 2 |
+| `implemented` | 7 |
 | `compiles` | 0 |
-| `matching` | 47 |
-| `library` | 3 |
+| `matching` | 53 |
+| `library` | 5 |
 | `blocked` | 0 |
 
 Run `python3 scripts/progress.py` after changing the ledger.

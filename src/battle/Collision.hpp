@@ -74,12 +74,20 @@ struct AttackCandidate {
 };
 
 struct CollisionObjectFrame4c {
-    unsigned char unknown_00[0x4c];
+    unsigned char unknown_00[0x1c];
+    short quantity_1c;
+    unsigned char unknown_1e[0x0c];
+    unsigned short result_2a;
+    unsigned char unknown_2c[0x18];
+    short event_44;
+    unsigned short effect_46;
+    unsigned char unknown_48[0x04];
     unsigned flags_4c;
 };
 
 struct CollisionObjectFrame50 {
-    unsigned char unknown_00[0x50];
+    unsigned char unknown_00[0x4c];
+    unsigned flags_4c;
     unsigned flags_50;
 };
 
@@ -91,16 +99,18 @@ struct CollisionObjectClashFrame {
 
 struct CollisionObject {
     unsigned char unknown_000[0x104];
-    signed char facing_104;
+    unsigned char facing_104;
     unsigned char unknown_105[0x53];
     CollisionObjectFrame50 *frame_158;
     unsigned char unknown_15c[0x10];
     void *owner_16c;
     void *owner_170;
-    unsigned char unknown_174[0x0c];
+    short value_174;
+    unsigned char unknown_176[0x0a];
     unsigned result_180;
     unsigned char result_slot_184;
-    unsigned char unknown_185[0x03];
+    unsigned char unknown_185;
+    unsigned short result_186;
     signed char counter_188;
     signed char gate_189;
     unsigned char unknown_18a[0x16];
@@ -209,6 +219,14 @@ struct Fighter {
 
     void adjust_counter_482(short amount, int floor_value);
     void adjust_capped_counter_558(short amount);
+    void apply_deferred_counter_558(short amount);
+    void emit_fighter_effect_433cc0(
+        int effect_code,
+        float x,
+        float y,
+        int direction,
+        int trailing_value);
+    void advance_fighter_sequence_55c();
     void consume_counter_484_steps(char count);
     int select_outcome_path_from_frame_flags(unsigned frame_flags);
 };
@@ -251,6 +269,12 @@ struct CollisionContext {
         int x,
         int y);
     int test_group_b_against_group_b(
+        CollisionObject *source,
+        CollisionObject *other);
+    int test_group_a_against_group_b(
+        CollisionObject *source,
+        CollisionObject *other);
+    bool try_group_a_vs_group_b_interaction(
         CollisionObject *source,
         CollisionObject *other);
     bool try_group_b_pair_response(

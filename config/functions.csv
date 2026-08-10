@@ -827,8 +827,8 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00425BD0,165,0x00425C74,FUN_00425bd0,,,unclassified,0.00,unknown,undefined FUN_00425bd0(void),false,,,,
 0x00425C80,27,0x00425C9D,FUN_00425c80,,,unclassified,0.00,unknown,undefined FUN_00425c80(void),false,,,,
 0x00425CB0,31,0x00425CCE,FUN_00425cb0,,,unclassified,0.00,unknown,undefined FUN_00425cb0(void),false,,,,
-0x00425CD0,561,0x00425F00,FUN_00425cd0,,,unclassified,0.00,unknown,undefined FUN_00425cd0(void),false,,,,
-0x00425F10,948,0x004262C3,FUN_00425f10,,,unclassified,0.00,unknown,undefined FUN_00425f10(void),false,,,,
+0x00425CD0,561,0x00425F00,update_global_6e6260_first,update_global_6e6260_first,battle,identified,0.00,__fastcall,void update_global_6e6260_first(void * state),false,,docs/BATTLE.md post-update phase calls this first with global state 0x006E6260,root,opaque helper contract identified from exact caller
+0x00425F10,948,0x004262C3,update_global_6e6260_second,update_global_6e6260_second,battle,identified,0.00,__fastcall,void update_global_6e6260_second(void * state),false,,docs/BATTLE.md post-update phase tail-dispatches this second with global state 0x006E6260,root,opaque helper contract identified from exact caller
 0x004262D0,70,0x00426315,FUN_004262d0,,,unclassified,0.00,unknown,undefined FUN_004262d0(void),false,,,,
 0x00426320,128,0x0042639F,FUN_00426320,,,unclassified,0.00,unknown,undefined FUN_00426320(void),false,,,,
 0x004263A0,10,0x004263A9,FUN_004263a0,,,unclassified,0.00,unknown,undefined FUN_004263a0(void),false,,,,
@@ -1068,7 +1068,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00433C40,62,0x00433C7D,FUN_00433c40,,,unclassified,0.00,unknown,undefined FUN_00433c40(void),false,,,,
 0x00433C80,22,0x00433C95,FUN_00433c80,,,unclassified,0.00,unknown,undefined FUN_00433c80(void),false,,,,
 0x00433CA0,27,0x00433CBA,FUN_00433ca0,,,unclassified,0.00,unknown,undefined FUN_00433ca0(void),false,,,,
-0x00433CC0,52,0x00433CF3,FUN_00433cc0,,,unclassified,0.00,unknown,undefined FUN_00433cc0(void),false,,,,
+0x00433CC0,52,0x00433CF3,emit_fighter_effect_433cc0,emit_fighter_effect_433cc0,battle,identified,0.00,__thiscall,"void emit_fighter_effect_433cc0(void * this, int effect_code, float x, float y, int direction, int trailing_value)",false,,docs/BATTLE.md deferred counter leaf forwards effect code position facing and fighter to the effect manager,root,effective virtual argument order established; sink semantics remain neutral
 0x00433D00,213,0x00433DD4,FUN_00433d00,,,unclassified,0.00,unknown,undefined FUN_00433d00(void),false,,,,
 0x00433DE0,439,0x00433F96,FUN_00433de0,,,unclassified,0.00,unknown,undefined FUN_00433de0(void),false,,,,
 0x00433FA0,29,0x00433FBC,FUN_00433fa0,,,unclassified,0.00,unknown,undefined FUN_00433fa0(void),false,,,,
@@ -1705,7 +1705,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00454670,233,0x00454761,FUN_00454670,,,unclassified,0.00,unknown,undefined FUN_00454670(void),false,,,,
 0x00454770,114,0x004547E1,FUN_00454770,,,unclassified,0.00,unknown,undefined FUN_00454770(void),false,,,,
 0x004547F0,160,0x0045488F,FUN_004547f0,,,unclassified,0.00,unknown,undefined FUN_004547f0(void),false,,,,
-0x00454890,160,0x0045492F,FUN_00454890,,,unclassified,0.00,unknown,undefined FUN_00454890(void),false,,,,
+0x00454890,160,0x0045492F,std_list_incsize_pointer,std_list_incsize_pointer,runtime,library,0.00,__thiscall,"void std_list_incsize_pointer(void * this, uint count)",false,,docs/BATTLE.md VC8 list<T>::_Incsize shape max UINT_MAX divided by 4 and collision insertion callers,root,verified standard-library template body excluded from authored progress
 0x00454930,505,0x00454B28,FUN_00454930,,,unclassified,0.00,unknown,undefined FUN_00454930(void),false,,,,
 0x00454B30,155,0x00454BCA,FUN_00454b30,,,unclassified,0.00,unknown,undefined FUN_00454b30(void),false,,,,
 0x00454BD0,116,0x00454C43,FUN_00454bd0,,,unclassified,0.00,unknown,undefined FUN_00454bd0(void),false,,,,
@@ -1763,14 +1763,14 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00459680,80,0x004596CF,FUN_00459680,,,unclassified,0.00,unknown,undefined FUN_00459680(void),false,,,,
 0x004596D0,160,0x0045976F,FUN_004596d0,,,unclassified,0.00,unknown,undefined FUN_004596d0(void),false,,,,
 0x00459770,240,0x0045985F,FUN_00459770,,,unclassified,0.00,unknown,undefined FUN_00459770(void),false,,,,
-0x00459860,270,0x0045996D,FUN_00459860,,,unclassified,0.00,unknown,undefined FUN_00459860(void),false,,,,
+0x00459860,270,0x0045996D,integrate_and_clamp_fighter_position,integrate_and_clamp_fighter_position,battle,identified,0.00,__fastcall,void integrate_and_clamp_fighter_position(void * fighter),false,,docs/BATTLE.md first pass of the fighter position status timer phase,root,phase position established; internal field contract remains to reconstruct
 0x00459970,27,0x0045998A,FUN_00459970,,,unclassified,0.00,unknown,undefined FUN_00459970(void),false,,,,
 0x00459990,399,0x00459B1E,FUN_00459990,,,unclassified,0.00,unknown,undefined FUN_00459990(void),false,,,,
 0x00459B20,339,0x00459C72,FUN_00459b20,,,unclassified,0.00,unknown,undefined FUN_00459b20(void),false,,,,
 0x00459C80,15,0x00459C8E,FUN_00459c80,,,unclassified,0.00,unknown,undefined FUN_00459c80(void),false,,,,
 0x00459C90,138,0x00459D24,consume_counter_484_steps,consume_counter_484_steps,battle,identified,0.00,__thiscall,"void consume_counter_484_steps(void * this, char count)",false,,docs/BATTLE.md observed repeated 200-unit counter decrement in terminal outcome,root,Counter gameplay terminology and manager callback role remain unresolved
 0x00459D30,284,0x00459E4B,FUN_00459d30,,,unclassified,0.00,unknown,undefined FUN_00459d30(void),false,,,,
-0x00459E50,119,0x00459EC6,FUN_00459e50,,,unclassified,0.00,unknown,undefined FUN_00459e50(void),false,,,,
+0x00459E50,119,0x00459EC6,run_common_character_update,run_common_character_update,battle,identified,0.00,__fastcall,void run_common_character_update(void * fighter),false,,docs/BATTLE.md fourth pass of the active character and owned-object phase,root,phase position and input virtual callback established
 0x00459ED0,347,0x0045A02A,FUN_00459ed0,,,unclassified,0.00,unknown,undefined FUN_00459ed0(void),false,,,,
 0x0045A030,347,0x0045A18A,calculate_base_hit_quantity,calculate_base_hit_quantity,battle,identified,0.00,__thiscall,float calculate_base_hit_quantity(void * this),false,,docs/BATTLE.md observed scalar and conditional modifier product used by hit quantity wrappers,root,Exact calculation mapped; 347-byte source-shaping work remains
 0x0045A190,335,0x0045A2DE,FUN_0045a190,,,unclassified,0.00,unknown,undefined FUN_0045a190(void),false,,,,
@@ -1791,20 +1791,20 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0045ACE0,112,0x0045AD4F,FUN_0045ace0,,,unclassified,0.00,unknown,undefined FUN_0045ace0(void),false,,,,
 0x0045AD50,202,0x0045AE19,FUN_0045ad50,,,unclassified,0.00,unknown,undefined FUN_0045ad50(void),false,,,,
 0x0045AE20,154,0x0045AEB9,FUN_0045ae20,,,unclassified,0.00,unknown,undefined FUN_0045ae20(void),false,,,,
-0x0045AEC0,2156,0x0045B72B,FUN_0045aec0,,,unclassified,0.00,unknown,undefined FUN_0045aec0(void),false,,,,
+0x0045AEC0,2156,0x0045B72B,prepare_collision_geometry_from_frame,prepare_collision_geometry_from_frame,battle,decompiled,0.00,__thiscall,void prepare_collision_geometry_from_frame(void * this),false,,docs/BATTLE.md complete cache refresh group A group B extension and primary geometry phase map,root,monolithic source deferred until 0x0045A190 0x0045A2E0 and 0x0045A4A0 stabilize
 0x0045B730,317,0x0045B86F,FUN_0045b730,,,unclassified,0.00,unknown,undefined FUN_0045b730(void),false,,,,
 0x0045B870,126,0x0045B8ED,adjust_capped_counter_558,adjust_capped_counter_558,battle,implemented,96.03,__thiscall,"void adjust_capped_counter_558(void * this, short quantity)",false,src/battle/HitCounters.cpp,scripts/compile-unit.sh src/battle/HitCounters.cpp build/wave8/HitCounters.obj && python3 scripts/compare-function.py 0x0045B870 build/wave8/HitCounters.obj,root,Faithful 126-byte C++ differs in five register-allocation bytes; 121 of 126 bytes agree
 0x0045B8F0,8,0x0045B8F7,FUN_0045b8f0,,,unclassified,0.00,unknown,undefined FUN_0045b8f0(void),false,,,,
 0x0045B900,67,0x0045B942,FUN_0045b900,,,unclassified,0.00,unknown,undefined FUN_0045b900(void),false,,,,
 0x0045B950,143,0x0045B9DE,FUN_0045b950,,,unclassified,0.00,unknown,undefined FUN_0045b950(void),false,,,,
 0x0045B9E0,94,0x0045BA3D,FUN_0045b9e0,,,unclassified,0.00,unknown,undefined FUN_0045b9e0(void),false,,,,
-0x0045BA40,198,0x0045BB05,FUN_0045ba40,,,unclassified,0.00,unknown,undefined FUN_0045ba40(void),false,,,,
+0x0045BA40,198,0x0045BB05,advance_fighter_sequence_55c,advance_fighter_sequence_55c,battle,identified,0.00,__thiscall,void advance_fighter_sequence_55c(void * this),false,,docs/BATTLE.md deferred counter leaf advances the observed controller rooted at fighter 0x55c,root,controller field taxonomy remains to reconstruct
 0x0045BB10,154,0x0045BBA9,FUN_0045bb10,,,unclassified,0.00,unknown,undefined FUN_0045bb10(void),false,,,,
 0x0045BBB0,118,0x0045BC25,FUN_0045bbb0,,,unclassified,0.00,unknown,undefined FUN_0045bbb0(void),false,,,,
 0x0045BC30,346,0x0045BD89,FUN_0045bc30,,,unclassified,0.00,unknown,undefined FUN_0045bc30(void),false,,,,
 0x0045BD90,186,0x0045BE49,FUN_0045bd90,,,unclassified,0.00,unknown,undefined FUN_0045bd90(void),false,,,,
 0x0045BE50,186,0x0045BF09,FUN_0045be50,,,unclassified,0.00,unknown,undefined FUN_0045be50(void),false,,,,
-0x0045BF10,150,0x0045BFA5,FUN_0045bf10,,,unclassified,0.00,unknown,undefined FUN_0045bf10(void),false,,,,
+0x0045BF10,150,0x0045BFA5,apply_deferred_counter_558,apply_deferred_counter_558,battle,matching,100.00,__thiscall,"void apply_deferred_counter_558(void * this, short amount)",false,src/battle/HitCounters.cpp,scripts/compile-unit.sh src/battle/HitCounters.cpp build/wave10/HitCounters.obj && python3 scripts/compare-function.py 0x0045BF10 build/wave10/HitCounters.obj,root,Exact signed counter reduction wrap effect dispatch and sequence advance
 0x0045BFB0,187,0x0045C06A,FUN_0045bfb0,,,unclassified,0.00,unknown,undefined FUN_0045bfb0(void),false,,,,
 0x0045C070,183,0x0045C126,FUN_0045c070,,,unclassified,0.00,unknown,undefined FUN_0045c070(void),false,,,,
 0x0045C130,115,0x0045C1A2,FUN_0045c130,,,unclassified,0.00,unknown,undefined FUN_0045c130(void),false,,,,
@@ -1822,8 +1822,8 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0045CB00,28,0x0045CB1B,is_state_13c_in_96_c7,is_state_13c_in_96_c7,battle,matching,100.00,__fastcall,int is_state_13c_in_96_c7(void * fighter),false,src/battle/FighterGates.cpp,scripts/compile-unit.sh src/battle/FighterGates.cpp build/wave8/FighterGates.obj && python3 scripts/compare-function.py 0x0045CB00 build/wave8/FighterGates.obj,root,Exact 28-byte adjacent signed state-window predicate
 0x0045CB20,620,0x0045CD8B,select_outcome_path_from_frame_flags,select_outcome_path_from_frame_flags,battle,implemented,0.00,__thiscall,"int select_outcome_path_from_frame_flags(void * this, uint frame_flags)",false,src/battle/OutcomeSelector.cpp,docs/BATTLE.md complete selector decision tree and current object-size comparison,root,Natural VC8 source is 601 bytes versus 620; register allocation and absolute zero-literal relocation remain compiler-shaping blockers
 0x0045CD90,53,0x0045CDC4,is_positive_y_and_state_window,is_positive_y_and_state_window,battle,matching,100.00,__fastcall,int is_positive_y_and_state_window(void * fighter),false,src/battle/FighterGates.cpp,scripts/compile-unit.sh src/battle/FighterGates.cpp build/wave4/FighterGates.obj && python3 scripts/compare-function.py 0x0045CD90 build/wave4/FighterGates.obj,root,Exact 53-byte positive-y zero-field and state-window predicate
-0x0045CDD0,301,0x0045CEFC,FUN_0045cdd0,,,unclassified,0.00,unknown,undefined FUN_0045cdd0(void),false,,,,
-0x0045CF00,470,0x0045D0D5,FUN_0045cf00,,,unclassified,0.00,unknown,undefined FUN_0045cf00(void),false,,,,
+0x0045CDD0,301,0x0045CEFC,process_fighter_transient_status,process_fighter_transient_status,battle,identified,0.00,__fastcall,void process_fighter_transient_status(void * fighter),false,,docs/BATTLE.md second pass of the fighter position status timer phase,root,broad phase role supported; complete field contract pending
+0x0045CF00,470,0x0045D0D5,decrement_fighter_timers_and_cleanup,decrement_fighter_timers_and_cleanup,battle,identified,0.00,__fastcall,void decrement_fighter_timers_and_cleanup(void * fighter),false,,docs/BATTLE.md third pass of the fighter position status timer phase,root,broad phase role supported; complete timer taxonomy pending
 0x0045D0E0,570,0x0045D319,FUN_0045d0e0,,,unclassified,0.00,unknown,undefined FUN_0045d0e0(void),false,,,,
 0x0045D320,45,0x0045D34C,FUN_0045d320,,,unclassified,0.00,unknown,undefined FUN_0045d320(void),false,,,,
 0x0045D350,3080,0x0045DF5E,FUN_0045d350,,,unclassified,0.00,unknown,undefined FUN_0045d350(void),false,,,,
@@ -1917,8 +1917,8 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00463280,11,0x0046328A,is_slot_active,is_slot_active,battle,matching,100.00,__thiscall,"uchar is_slot_active(void * this, uint slot)",false,src/battle/BattleSetup.cpp,scripts/compile-unit.sh src/battle/BattleSetup.cpp build/probes/BattleSetup.obj && python3 scripts/compare-function.py 0x00463280 build/probes/BattleSetup.obj,,Exact active-byte load; original method spelling remains unknown
 0x00463290,49,0x004632C0,FUN_00463290,,,unclassified,0.00,unknown,undefined FUN_00463290(void),false,,,,
 0x004632D0,767,0x004635CE,FUN_004632d0,,,unclassified,0.00,unknown,undefined FUN_004632d0(void),false,,,,
-0x00463610,323,0x00463752,FUN_00463610,,,unclassified,0.00,unknown,undefined FUN_00463610(void),false,,,,
-0x00463760,187,0x0046381A,FUN_00463760,,,unclassified,0.00,unknown,undefined FUN_00463760(void),false,,,,
+0x00463610,323,0x00463752,run_active_character_and_owned_object_callbacks,run_active_character_and_owned_object_callbacks,battle,matching,100.00,__fastcall,void run_active_character_and_owned_object_callbacks(void * context),false,src/battle/FighterPhases.cpp,scripts/compile-unit.sh src/battle/FighterPhases.cpp build/wave9/FighterPhases.obj && python3 scripts/compare-function.py 0x00463610 build/wave9/FighterPhases.obj,root,Exact five-pass VC8 checked-vector phase with vector object at context 0x38 and pointer triplet at 0x3c
+0x00463760,187,0x0046381A,commit_fighter_physics_status_timers,commit_fighter_physics_status_timers,battle,matching,100.00,__fastcall,void commit_fighter_physics_status_timers(void * context),false,src/battle/FighterPhases.cpp,scripts/compile-unit.sh src/battle/FighterPhases.cpp build/wave9/FighterPhases.obj && python3 scripts/compare-function.py 0x00463760 build/wave9/FighterPhases.obj,root,Exact three-pass VC8 checked-vector position status timer phase
 0x00463820,334,0x0046396D,FUN_00463820,,,unclassified,0.00,unknown,undefined FUN_00463820(void),false,,,,
 0x00463970,133,0x004639F4,FUN_00463970,,,unclassified,0.00,unknown,undefined FUN_00463970(void),false,,,,
 0x00463A00,84,0x00463A56,FUN_00463a00,,,unclassified,0.00,unknown,undefined FUN_00463a00(void),false,,,,
@@ -2041,9 +2041,9 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0046A1E0,101,0x0046A244,FUN_0046a1e0,,,unclassified,0.00,unknown,undefined FUN_0046a1e0(void),false,,,,
 0x0046A250,572,0x0046A48B,FUN_0046a250,,,unclassified,0.00,unknown,undefined FUN_0046a250(void),false,,,,
 0x0046A490,279,0x0046A5A6,FUN_0046a490,,,unclassified,0.00,unknown,undefined FUN_0046a490(void),false,,,,
-0x0046A5B0,11,0x0046A5BA,FUN_0046a5b0,,,unclassified,0.00,unknown,undefined FUN_0046a5b0(void),false,,,,
-0x0046A5C0,11,0x0046A5CA,FUN_0046a5c0,,,unclassified,0.00,unknown,undefined FUN_0046a5c0(void),false,,,,
-0x0046A5D0,51,0x0046A602,FUN_0046a5d0,,,unclassified,0.00,unknown,undefined FUN_0046a5d0(void),false,,,,
+0x0046A5B0,11,0x0046A5BA,run_global_fighter_action_owned_object_phase,run_global_fighter_action_owned_object_phase,battle,matching,100.00,__cdecl,void run_global_fighter_action_owned_object_phase(void),false,src/battle/BattlePhaseWrappers.cpp,python3 scripts/compare-function.py 0x0046A5B0 build/wave9/BattlePhaseWrappers.obj exact 11 bytes,root,exact global-context tail wrapper
+0x0046A5C0,11,0x0046A5CA,run_global_fighter_position_status_timer_phase,run_global_fighter_position_status_timer_phase,battle,matching,100.00,__cdecl,void run_global_fighter_position_status_timer_phase(void),false,src/battle/BattlePhaseWrappers.cpp,python3 scripts/compare-function.py 0x0046A5C0 build/wave9/BattlePhaseWrappers.obj exact 11 bytes,root,exact global-context tail wrapper
+0x0046A5D0,51,0x0046A602,run_post_update_callbacks_and_global_state,run_post_update_callbacks_and_global_state,battle,matching,100.00,__fastcall,void run_post_update_callbacks_and_global_state(void * context),false,src/battle/BattlePhaseWrappers.cpp,python3 scripts/compare-function.py 0x0046A5D0 build/wave9/BattlePhaseWrappers.obj exact 51 bytes,root,exact ordered virtual callbacks clear and global-state calls
 0x0046A610,127,0x0046A691,reset_fighter_fields_6bc_728,reset_fighter_fields_6bc_728,battle,matching,100.00,__fastcall,void reset_fighter_fields_6bc_728(void * context),false,src/battle/FighterResets.cpp,python3 scripts/compare-function.py --contiguous-span 0x0046A610 build/wave3/FighterResets.obj,root,Exact 130-byte contiguous entry-to-span match including three bytes omitted from Ghidra's body set
 0x0046A6A0,219,0x0046A77D,reset_fighter_fields_6b4_728,reset_fighter_fields_6b4_728,battle,matching,100.00,__fastcall,void reset_fighter_fields_6b4_728(void * context),false,src/battle/FighterResets.cpp,python3 scripts/compare-function.py --contiguous-span 0x0046A6A0 build/wave3/FighterResets.obj,root,Exact 222-byte contiguous entry-to-span match including three bytes omitted from Ghidra's body set
 0x0046A780,105,0x0046A7E8,FUN_0046a780,,,unclassified,0.00,unknown,undefined FUN_0046a780(void),false,,,,
@@ -2073,7 +2073,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0046BCD0,260,0x0046BDD3,apply_terminal_outcome,apply_terminal_outcome,battle,matching,100.00,__thiscall,"void apply_terminal_outcome(void * this, void * candidate, void * fighter)",false,src/battle/TerminalOutcomes.cpp,scripts/compile-unit.sh src/battle/TerminalOutcomes.cpp build/probes/TerminalOutcomes.obj && python3 scripts/compare-function.py 0x0046BCD0 build/probes/TerminalOutcomes.obj,root,Exact 260-byte shared terminal result-code-2 outcome helper
 0x0046BDE0,169,0x0046BE88,try_candidate_flag_outcome,try_candidate_flag_outcome,battle,matching,100.00,__thiscall,"bool try_candidate_flag_outcome(void * this, void * candidate, void * fighter)",false,src/battle/CandidateOutcomes.cpp,scripts/compile-unit.sh src/battle/CandidateOutcomes.cpp build/wave4/CandidateOutcomes.obj && python3 scripts/compare-function.py 0x0046BDE0 build/wave4/CandidateOutcomes.obj,root,Exact 169-byte ordered candidate-frame flag outcome; gameplay term remains unproven
 0x0046BE90,143,0x0046BF1E,try_frame_flag_pair_outcome,try_frame_flag_pair_outcome,battle,matching,100.00,__thiscall,"bool try_frame_flag_pair_outcome(void * this, void * candidate, void * fighter)",false,src/battle/HitDetection.cpp,scripts/compile-unit.sh src/battle/HitDetection.cpp build/probes/HitDetection.obj && python3 scripts/compare-function.py 0x0046BE90 build/probes/HitDetection.obj,,Exact ordered flag-pair checks and result code 3; gameplay term remains inferred
-0x0046BF20,164,0x0046BFC3,try_group_a_vs_group_b_interaction,try_group_a_vs_group_b_interaction,battle,identified,0.00,__thiscall,"bool try_group_a_vs_group_b_interaction(void * this, void * source, void * other)",false,,docs/BATTLE.md observed family-A versus family-B response path,root,Faithful source differs by one zero-extension instruction shape
+0x0046BF20,164,0x0046BFC3,try_group_a_vs_group_b_interaction,try_group_a_vs_group_b_interaction,battle,implemented,98.78,__thiscall,"bool try_group_a_vs_group_b_interaction(void * this, void * source, void * other)",false,src/battle/ObjectResponses.cpp,python3 scripts/compare-function.py 0x0046BF20 build/wave10/ObjectResponses.obj mismatch only MOVZX versus 16-bit MOV at offset 0x52,root,162 of 164 bytes equal; unexplained dead zero-extension remains
 0x0046BFD0,147,0x0046C062,try_group_b_pair_response,try_group_b_pair_response,battle,matching,100.00,__thiscall,"bool try_group_b_pair_response(void * this, void * source, void * other)",false,src/battle/ObjectResponses.cpp,scripts/compile-unit.sh src/battle/ObjectResponses.cpp build/probes/ObjectResponses.obj && python3 scripts/compare-function.py 0x0046BFD0 build/probes/ObjectResponses.obj,root,Exact 147-byte ordered group-B pair response; field roles remain neutral
 0x0046C070,542,0x0046C28D,resolve_group_b_object_clash,resolve_group_b_object_clash,battle,implemented,0.00,__thiscall,"void resolve_group_b_object_clash(void * this, void * left, void * right)",false,src/battle/ObjectResponses.cpp,docs/BATTLE.md exact signed result table and cross-object source-byte branch,root,Natural VC8 source is 557 bytes; compiler tail-merges one result suffix absent from target
 0x0046C290,1862,0x0046C9D5,FUN_0046c290,resolve_fighter_body_collision,battle,identified,0.00,unknown,undefined FUN_0046c290(void),false,,docs/EVIDENCE.md collision call flow and live frame layout,,
@@ -2084,7 +2084,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0046D040,285,0x0046D15C,resolve_attack_candidate_against_fighter,resolve_attack_candidate_against_fighter,battle,identified,0.00,__thiscall,"void resolve_attack_candidate_against_fighter(void * this, void * candidate, void * fighter)",false,,docs/BATTLE.md observed ordered attack-versus-fighter gates and outcome cascade,root,Strict state and shape gates plus outcome cascade mapped; monolithic port remains deferred
 0x0046D160,525,0x0046D36C,dispatch_family2_against_family1,dispatch_family2_against_family1,battle,identified,0.00,__thiscall,void dispatch_family2_against_family1(void * this),false,,docs/BATTLE.md observed family-2 against family-1 sentinel traversal and response cascade,root,Traversal/filter/call order mapped; monolithic port deferred until response leaves match
 0x0046D370,686,0x0046D61D,dispatch_family1_object_clashes,dispatch_family1_object_clashes,battle,identified,0.00,__thiscall,void dispatch_family1_object_clashes(void * this),false,,docs/BATTLE.md observed same-list and cross-list object clash traversal,root,Exact asymmetric filters and pair order mapped; monolithic port deferred until 0x0046C070 matches
-0x0046D620,1405,0x0046DBCB,FUN_0046d620,,,unclassified,0.00,unknown,undefined FUN_0046d620(void),false,,,,
+0x0046D620,1405,0x0046DBCB,run_attack_projectile_collision_phase,run_attack_projectile_collision_phase,battle,decompiled,0.00,__thiscall,void run_attack_projectile_collision_phase(void * this),false,,docs/BATTLE.md six-list reset classification clash fighter-resolution and deferred-application phase map,root,monolithic source intentionally deferred until 0x0045BF10 0x00454890 and 0x0045AEC0 contracts stabilize
 0x0046DBD0,168,0x0046DC77,FUN_0046dbd0,,,unclassified,0.00,unknown,undefined FUN_0046dbd0(void),false,,,,
 0x0046DC80,753,0x0046DF70,FUN_0046dc80,,,unclassified,0.00,unknown,undefined FUN_0046dc80(void),false,,,,
 0x0046DF90,33,0x0046DFB0,FUN_0046df90,,,unclassified,0.00,unknown,undefined FUN_0046df90(void),false,,,,
@@ -2935,7 +2935,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0067B75A,10,0x0067B763,FUN_0067b75a,,,unclassified,0.00,unknown,undefined FUN_0067b75a(void),false,,,,
 0x0067B764,252,0x0067B85F,__invoke_watson,,,unclassified,0.00,__cdecl,"void __invoke_watson(wchar_t * param_1, wchar_t * param_2, wchar_t * param_3, uint param_4, uintptr_t param_5)",false,,,,
 0x0067B860,36,0x0067B883,FUN_0067b860,,,unclassified,0.00,unknown,undefined FUN_0067b860(void),false,,,,
-0x0067B884,16,0x0067B893,FUN_0067b884,,,unclassified,0.00,unknown,undefined FUN_0067b884(void),false,,,,
+0x0067B884,16,0x0067B893,_invalid_parameter_noinfo,_invalid_parameter_noinfo,runtime,library,0.00,__cdecl,void _invalid_parameter_noinfo(void),false,,docs/BATTLE.md repeated VC8 checked-vector invalid-parameter target in fighter phase loops,root,verified compiler runtime path excluded from authored progress
 0x0067B894,74,0x0067B8DD,__CxxThrowException@8,,,unclassified,0.00,unknown,undefined __CxxThrowException@8(void),false,,,,
 0x0067B8E0,145,0x0067B98A,_ftol2_sse,_ftol2_sse,runtime,library,0.00,__cdecl,int _ftol2_sse(void),false,,docs/BATTLE.md verified VC8 x87-to-int truncation runtime helper,root,Verified compiler runtime helper excluded from authored progress
 0x0067B98B,50,0x0067B9E8,__ArrayUnwind,,,unclassified,0.00,__stdcall,"void __ArrayUnwind(void * param_1, uint param_2, int param_3, _func_void_void_ptr * param_4)",false,,,,

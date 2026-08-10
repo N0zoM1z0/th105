@@ -29,14 +29,23 @@ pipeline when their state-specific gates allow simulation.
 `0x0046A5B0` enters `0x00463610`, which iterates active fighters and their
 owned object managers. The Sakuya vtable provides concrete slot evidence:
 
-- fighter vtable `+0x40` calls `0x004DDB20`, the action-change handler;
+- raw fighter vtable `+0x3C` is `0x004DDB20`, the action-change handler;
+- raw fighter vtable `+0x40` is `0x00476520`. Older notes that called
+  `0x004DDB20` slot `+0x40` counted the preceding RTTI locator cell and must
+  not be used when reconstructing C++ virtual layout;
 - the common update at `0x00459E50` reaches vtable `+0x50`, which is
   `0x004DEF70`, the input/action selector;
 - fighter `+0x658` is the owned-object manager used during this phase.
 
-The exact ordering inside `0x00463610` must be preserved: fighter callbacks,
-owned-object callbacks, the common character update, then the object-manager
-post-update callback.
+The exact wrapper `0x0046A5B0` loads the context pointer from `0x006E623C` and
+tail-jumps to `0x00463610`. That function makes five separate complete passes
+over the fighter vector at context `+0x3C/+0x40`: fighter raw vslot `+0x40`,
+owned-manager vslot `+0x0C`, fighter vslot `+0x28`, direct common update
+`0x00459E50`, then owned-manager vslot `+0x10`. Every pass repeats the original
+VC8 checked-vector bounds path and reaches `0x0067B884` on failure. VC8 places
+the `std::vector` object at context `+0x38`; its allocator/pair base makes the
+observed begin/end/capacity triplet land at `+0x3C/+0x40/+0x44`. Preserving
+that layout produces an exact 323-byte reconstruction.
 
 ## Attack and projectile collision phase
 
@@ -55,16 +64,44 @@ order and fields are observed, but helper, slot, and table semantics remain
 unknown.
 
 `0x0046D620` clears and fills six per-side collision lists from current fighter
-and object frame data. It then dispatches in this order:
+and object frame data. The complete observed orchestration is:
 
-1. `0x0046D370` (`dispatch_family1_object_clashes`) enumerates active object
+1. Free and relink all six transient lists, zero their counts, and clear the
+   two deferred-result channels.
+2. For each of two fighters, copy byte `+0x4E9` to `+0x4EA`, enumerate owned
+   objects through the manager at fighter `+0x658` vslot `+0x24`, and classify
+   eligible payloads into the three list families.
+3. Insert the fighters themselves into family 0 and family 2.
+4. Dispatch the collision passes in this order:
+
+   - `0x0046D370` (`dispatch_family1_object_clashes`) enumerates active object
    pairs and calls `0x0046C070` for object-object clash handling.
-2. `0x0046D160` (`dispatch_family2_against_family1`) resolves interactions
+   - `0x0046D160` (`dispatch_family2_against_family1`) resolves interactions
    between classified object lists through `0x0046BFD0`, falling back to
    `0x0046BF20` when not consumed.
-3. `0x0046D040` evaluates every attack candidate against the opposing fighter.
+   - `0x0046D040` evaluates every family-0 attack candidate against the
+   opposing fighter.
    It performs shape overlap and state gates, then dispatches special outcomes
    or falls through to the general hit resolver at `0x0046B570`.
+5. Apply the deferred per-player channels only after all family-0 fighter
+   resolution has completed.
+
+The 1405-byte function is now decompiled and named
+`run_attack_projectile_collision_phase`, but deliberately has no monolithic
+source port yet. Its former deferred-result dependency `0x0045BF10` is now an
+exact reconstruction, while `0x00454890` is verified VC8 standard-library code
+and tracked as `library`. The remaining large preparation dependency
+`0x0045AEC0` is decompiled into bounded transformation helpers below.
+
+`0x0045AEC0` (`prepare_collision_geometry_from_frame`) materializes each
+fighter/object frame into collision-ready scratch before list insertion. It
+caches the frame at object `+0x1A4`, transforms family-0 records into 16-byte
+entries at `+0x204` with optional descriptor pointers at `+0x304`, transforms
+family-1 records into `+0x1B4/+0x318`, handles the optional extension at
+`+0x194`, and builds an optional primary entry at `+0x2F4/+0x32C`. Frame bits
+`0x400000`, `0x800000`, and `0x1000000` select observed preparation modes; no
+gameplay terminology is assigned. The next direct leaves are `0x0045A190`,
+`0x0045A2E0`, and `0x0045A4A0`.
 
 Terms such as graze, guard, spell, and armor must not be assigned to individual
 branches until flags and live behavior prove them. At present, clash and general
@@ -108,6 +145,12 @@ The three allocation/initialization leaves are now exact reconstructions:
 at list `+4` and zeros count `+8`, and `0x0046D000` creates a transient node.
 The list field at `+0` is deliberately left unnamed because initialization
 does not touch it.
+
+The insertion helper at `0x00454890` is VC8
+`std::list<pointer>::_Incsize`: it checks `0x3FFFFFFF - count` against the
+requested increment, throws `length_error("list<T> too long")` on overflow,
+and otherwise increments list `+8`. This is compiler/standard-library code and
+is excluded from authored reconstruction progress.
 
 ### Frame-flag result leaf
 
@@ -197,7 +240,8 @@ geometry, writes frame-derived outputs, subtracts from the other object's
 exact 147-byte VC8 reconstruction in `ObjectResponses.cpp`. `0x0046BF20`
 remains one instruction away: the target gratuitously zero-extends a 16-bit
 load before immediately storing only its low 16 bits, while every otherwise
-exact natural source shape uses a 16-bit load.
+exact natural source shape uses a 16-bit load. Its integrated source is 162 of
+164 bytes equal (98.78%) and remains `implemented`, not `matching`.
 
 The larger nonzero outcome selector is also bounded. `0x0046CE20` obtains a
 selector from `0x0045CB20`; selector zero returns false to the ordinary hit
@@ -232,7 +276,9 @@ signed facing `1/-1`, and reports whether the facing changed.
 
 ## Physics and state commit
 
-`0x0046A5C0` enters `0x00463760`. Its core callees include:
+The exact wrapper `0x0046A5C0` loads the same global context at `0x006E623C`
+and tail-jumps to `0x00463760`. The latter makes three separate complete
+checked-vector passes, in this exact order:
 
 - `0x00459860`: position integration and stage-bound clamping for fighter
   coordinates `+0xEC/+0xF0`;
@@ -240,7 +286,13 @@ signed facing `1/-1`, and reports whether the facing changed.
 - `0x0045CF00`: timer decrement and cleanup.
 
 The names of the latter two remain broad until their complete field contracts
-are mapped.
+are mapped. The same VC8 vector layout and checked `operator[]` shape produce
+an exact 187-byte reconstruction of the three-pass phase.
+
+`0x0046A5D0` is an exact 51-byte post-update phase. It calls context vslot
+`+0x3C`, clears context field `+0x08`, calls Info-manager vslot `+0x10`, then
+calls `0x00425CD0` and tail-dispatches `0x00425F10`, both with opaque global
+state `0x006E6260` in `ECX`.
 
 Two exact per-frame reset leaves at `0x0046A610` and `0x0046A6A0` clear
 different observed subsets of fighter fields `+0x6B4..+0x728` for both player
@@ -265,6 +317,14 @@ entry. It is now an exact 93-byte reconstruction. Its `0x00469E40` indexed-entry
 reset is also exact at 26 bytes and tail-calls `0x0051D0D0` to release its
 owned-pointer buffer. The absolute manager pointer at `0x006E6248` is accepted
 only through a strict zero-filled BSS relocation mapping.
+
+The collision phase's deferred channel at context `+0x7C/+0x80` now ends in an
+exact 150-byte leaf, `0x0045BF10` (`apply_deferred_counter_558`). Unless fighter
+byte `+0x72C` equals 2, it subtracts a signed short from counter `+0x558`; when
+the subtraction crosses zero and signed byte `+0x55A` is positive it wraps by
+500, emits effect `0xA0` at `(x, y + 100.0)`, and advances the controller rooted
+at `+0x55C`. Otherwise it clamps the counter to zero. These remain neutral
+counter/controller names until runtime evidence supports a gameplay term.
 
 The hit pipeline obtains frame-derived quantities through exact sibling
 wrappers `0x0045AAE0` and `0x0045AB10`. They multiply a candidate scale by the

@@ -1,7 +1,9 @@
 address,name,module,confidence,evidence
 0x006E4E38,g_stage_surface_heights,battle,inferred,docs/BATTLE.md 0x500-float x-indexed height table consumed by 0x00434800
+0x006E623C,g_fighter_phase_context,battle,inferred,docs/BATTLE.md global context loaded by exact phase wrappers at 0x0046A5B0 and 0x0046A5C0
 0x006E6244,g_battle_manager,battle,observed,docs/EVIDENCE.md live manager and fighter roots
 0x006E6248,g_info_manager,battle,inferred,docs/BATTLE.md indexed hit-exchange entry reset and verified zero-filled pointer relocation
+0x006E6260,g_global_6e6260,battle,inferred,docs/BATTLE.md opaque state passed to two ordered post-update helpers; semantic type remains unknown
 0x006E62D8,g_input_selection_state,input,inferred,docs/EVIDENCE.md source bytes and selected-input pointers for two slots
 0x006E62E4,g_session_setup_option,input,inferred,docs/EVIDENCE.md raw setup-option value; enum meaning pending
 0x006E62E8,g_battle_setup_task,battle,inferred,docs/EVIDENCE.md async setup selector cleared by completion callback

@@ -1,4 +1,5 @@
 coff_symbol,address,data_hex,addends,evidence
 __real@3fe0000000000000,0x006B73D8,000000000000e03f,0x0,target bytes and IEEE-754 value verified as double 0.5
+__real@4059000000000000,0x006AC9A0,0000000000005940,0x0,target bytes and IEEE-754 value verified as double 100.0
 ?stage_surface_heights@@3PAMA,0x006E4E38,00000000,0x0;0x13fc,target table base plus first raw and last PE-zero-filled floats verified from stage-height lookup
 ?g_info_manager@th105@@3PAUInfoManager@1@A,0x006E6248,00000000,0x0,target BSS pointer and zero-filled object symbol verified for hit-exchange scratch reset

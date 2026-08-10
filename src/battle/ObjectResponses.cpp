@@ -2,6 +2,28 @@
 
 namespace th105 {
 
+bool CollisionContext::try_group_a_vs_group_b_interaction(
+    CollisionObject *source,
+    CollisionObject *other)
+{
+    if ((other->frame_158->flags_4c & 0x40) == 0) {
+        return false;
+    }
+    if (!test_group_a_against_group_b(source, other)) {
+        return false;
+    }
+
+    source->result_180 = 9;
+    source->result_slot_184 = source->source_1a0 - 1;
+    source->result_186 = source->frame_1a4->result_2a;
+    other->value_174 -= source->frame_1a4->quantity_1c;
+    dispatch_indexed_event(source->frame_1a4->event_44);
+    emit_effect_at_collision_center(
+        source->frame_1a4->effect_46, source->facing_104);
+    reset_collision_extents();
+    return true;
+}
+
 bool CollisionContext::try_group_b_pair_response(
     CollisionObject *source,
     CollisionObject *other)
