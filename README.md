@@ -1,15 +1,26 @@
 # 東方緋想天 ～ Scarlet Weather Rhapsody
 
-![Decompilation progress](resources/progress.svg)
+<p align="center">
+  <img
+    src="resources/title-screen.jpg"
+    width="640"
+    alt="Original Japanese TH10.5 title screen">
+</p>
+
+<p align="center">
+  <img
+    src="resources/progress.svg"
+    alt="Decompilation progress">
+</p>
 
 This project aims to reconstruct the source code of the original Japanese
 `東方緋想天 ～ Scarlet Weather Rhapsody` version 1.06a executable, with
 reproducible binary comparison as the acceptance criterion.
 
-The project is in its initial reverse-engineering stage. The target has been
-fingerprinted and fully imported into Ghidra. The source/build partition is not
-yet recovered; the first seventeen small routines have exact function-byte
-matches.
+The project is in active reverse engineering. The target has been fingerprinted
+and fully imported into Ghidra; reconstructed routines are counted only after
+an exact function-byte comparison. The progress graphic above is generated
+from the machine-readable function ledger.
 
 ## Target executable
 
@@ -72,8 +83,8 @@ python3 scripts/validate-tracking.py
 ## Build status
 
 The PE Rich header and linker metadata point to Visual C++ 2005 (VC8), including
-42 C++ LTCG records. VC8 SP1 already reproduces seventeen small routines exactly,
-but the original service level, complete flags, translation-unit
+42 C++ LTCG records. VC8 SP1 already reproduces the tracked matching routines
+exactly, but the original service level, complete flags, translation-unit
 partition, and link order are still being established. A matching full
 executable is not yet advertised. See
 [docs/BUILD_MATCHING.md](docs/BUILD_MATCHING.md).
