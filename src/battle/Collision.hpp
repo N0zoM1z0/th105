@@ -1,5 +1,7 @@
 #pragma once
 
+#include "CollisionList.hpp"
+
 namespace th105 {
 
 struct Fighter;
@@ -27,7 +29,19 @@ struct InfoManager {
 extern InfoManager *g_info_manager;
 
 struct FighterActionScratch {
-    void reset();
+    unsigned char unknown_000[0x104];
+    float reset_zero_104;
+    float reset_zero_108;
+    int reset_minus_one_10c;
+    int reset_zero_110;
+    unsigned char unknown_114[0x04];
+    float reset_one_118;
+    float reset_one_11c;
+    float reset_zero_120;
+    float reset_zero_124;
+    float reset_zero_128;
+
+    __declspec(noinline) void reset_fighter_action_scratch();
 };
 
 struct AttackCandidateFrame {
@@ -133,7 +147,9 @@ struct Fighter {
     unsigned char unknown_000[0xec];
     float x_ec;
     float y_f0;
-    unsigned char unknown_f4[0x10];
+    float x_component_f4;
+    float y_component_f8;
+    unsigned char unknown_fc[0x08];
     unsigned char facing_104;
     unsigned char unknown_105[0x37];
     short state_13c;
@@ -157,7 +173,8 @@ struct Fighter {
     short counter_482;
     short unknown_484;
     short floor_486;
-    unsigned char unknown_488[0x06];
+    unsigned char unknown_488[0x04];
+    short gate_48c;
     short blocker_48e;
     unsigned char unknown_490;
     unsigned char flag_491;
@@ -166,12 +183,14 @@ struct Fighter {
     short value_498;
     short value_49a;
     short value_49c;
-    short field_49e;
+    unsigned short field_49e;
     short value_4a0;
     short value_4a2;
     short field_4a4;
     short field_4a6;
-    unsigned char unknown_4a8[0x06];
+    short gate_4a8;
+    short gate_4aa;
+    short gate_4ac;
     short field_4ae;
     unsigned char unknown_4b0[0x08];
     int state_4b8;
@@ -179,7 +198,8 @@ struct Fighter {
     float factor_4d0;
     float factor_4d4;
     float scale_4d8;
-    unsigned char unknown_4dc[0x08];
+    float x_scale_4dc;
+    float y_scale_4e0;
     unsigned char gate_4e4;
     unsigned char unknown_4e5[0x05];
     unsigned char state_4ea;
@@ -189,7 +209,10 @@ struct Fighter {
     short counter_558;
     signed char state_55a;
     signed char state_55b;
-    unsigned char unknown_55c[0x154];
+    unsigned char unknown_55c[0x148];
+    float body_overlap_x_6a4;
+    unsigned char unknown_6a8[0x04];
+    float peer_component_6ac;
     int field_6b0;
     int field_6b4;
     int field_6b8;
@@ -230,6 +253,8 @@ struct Fighter {
     void advance_fighter_sequence_55c();
     void consume_counter_484_steps(char count);
     int select_outcome_path_from_frame_flags(unsigned frame_flags);
+    signed char classify_fighter_x_boundary();
+    int test_proposed_x_against_stage_height(float delta_x);
 };
 
 bool __fastcall update_fighter_facing_from_other_x(Fighter *fighter);
@@ -242,7 +267,9 @@ struct CollisionContext {
     int extent_20;
     int extent_24;
     int extent_28;
-    unsigned char unknown_2c[0x48];
+    CollisionList family_0[2];
+    CollisionList family_1[2];
+    CollisionList family_2[2];
     int deferred_74[2];
     int deferred_7c[2];
 
@@ -309,20 +336,34 @@ struct CollisionContext {
     bool try_outcome_path_a(AttackCandidate *candidate, Fighter *fighter);
     bool try_outcome_path_b(AttackCandidate *candidate, Fighter *fighter);
     bool dispatch_outcome_path(AttackCandidate *candidate, Fighter *fighter);
+    void resolve_general_attack_hit(
+        AttackCandidate *candidate,
+        Fighter *fighter);
+    void resolve_attack_candidate_against_fighter(
+        AttackCandidate *candidate,
+        Fighter *fighter);
+    void dispatch_family2_against_family1();
+    void dispatch_family1_object_clashes();
+    void run_attack_projectile_collision_phase();
 };
 
 struct EffectSink {
     virtual void unknown_00();
     virtual void unknown_04();
     virtual void unknown_08();
-    virtual void emit_effect(
+    virtual void *emit_effect(
         int effect_code,
         float x,
         float y,
         int direction,
         int one,
-        int zero);
+        void *context);
+    virtual void unknown_10();
+    virtual void unknown_14();
+    virtual void phase_18(int value);
 };
+
+extern EffectSink *g_effect_sink;
 
 void __fastcall reset_fighter_fields_6bc_728(CollisionContext *context);
 void __fastcall reset_fighter_fields_6b4_728(CollisionContext *context);
@@ -332,6 +373,7 @@ int __fastcall is_positive_y_and_state_window(Fighter *fighter);
 float __fastcall stage_surface_height_at_x(Fighter *fighter);
 int __fastcall is_y_at_or_below_stage_surface(Fighter *fighter);
 void dispatch_indexed_event(unsigned index);
+void __fastcall prepare_collision_geometry_from_frame(void *object);
 
 struct ActorPosition {
     unsigned char unknown_00[0xec];

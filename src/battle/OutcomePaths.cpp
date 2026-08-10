@@ -15,10 +15,11 @@ void set_fighter_action(Fighter *fighter, short action)
     reinterpret_cast<FighterVirtualView *>(fighter)->set_action(action);
 }
 
-void reset_fighter_action_scratch(Fighter *fighter)
+__forceinline void reset_fighter_action_scratch_after_outcome(Fighter *fighter)
 {
     reinterpret_cast<FighterActionScratch *>(
-        reinterpret_cast<unsigned char *>(fighter) + 4)->reset();
+        reinterpret_cast<unsigned char *>(fighter) + 4)
+        ->reset_fighter_action_scratch();
 }
 
 } // namespace
@@ -162,7 +163,7 @@ bool CollisionContext::dispatch_outcome_path(
             try_outcome_path_a(candidate, fighter) ? 0x8f :
                 static_cast<short>(
                     candidate->frame_1a4->action_offset_48 + 0x96));
-        reset_fighter_action_scratch(fighter);
+        reset_fighter_action_scratch_after_outcome(fighter);
         return true;
     case 2:
         set_fighter_action(
@@ -170,7 +171,7 @@ bool CollisionContext::dispatch_outcome_path(
             try_outcome_path_b(candidate, fighter) ? 0x8f :
                 static_cast<short>(
                     candidate->frame_1a4->action_offset_48 + 0x9f));
-        reset_fighter_action_scratch(fighter);
+        reset_fighter_action_scratch_after_outcome(fighter);
         return true;
     case 3:
         set_fighter_action(
@@ -178,7 +179,7 @@ bool CollisionContext::dispatch_outcome_path(
             try_outcome_path_a(candidate, fighter) ? 0x8f :
                 static_cast<short>(
                     candidate->frame_1a4->action_offset_48 + 0x9a));
-        reset_fighter_action_scratch(fighter);
+        reset_fighter_action_scratch_after_outcome(fighter);
         return true;
     case 4:
         set_fighter_action(
@@ -186,13 +187,13 @@ bool CollisionContext::dispatch_outcome_path(
             try_outcome_path_b(candidate, fighter) ? 0x8f :
                 static_cast<short>(
                     candidate->frame_1a4->action_offset_48 + 0xa3));
-        reset_fighter_action_scratch(fighter);
+        reset_fighter_action_scratch_after_outcome(fighter);
         return true;
     case 5:
         set_fighter_action(
             fighter,
             try_outcome_path_a(candidate, fighter) ? 0x91 : 0x9e);
-        reset_fighter_action_scratch(fighter);
+        reset_fighter_action_scratch_after_outcome(fighter);
         return true;
     case 6:
         if (!try_outcome_path_a(candidate, fighter)) {
@@ -203,7 +204,7 @@ bool CollisionContext::dispatch_outcome_path(
             is_y_at_or_below_stage_surface(fighter) != 0 ? 0x8f : 0x91);
         return true;
     default:
-        reset_fighter_action_scratch(fighter);
+        reset_fighter_action_scratch_after_outcome(fighter);
         return true;
     }
 }

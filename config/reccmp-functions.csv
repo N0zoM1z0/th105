@@ -1,6 +1,7 @@
 name,address,type
 lookup_orientation_sine,0x00406650,function
 lookup_orientation_cosine,0x00406680,function
+mt19937_next_u32,0x00406880,function
 selector_random_roll,0x004069A0,function
 commit_pending_engine_scene,0x00407F80,function
 engine_main_loop_poll_input_and_update_scene,0x004080E0,function
@@ -19,6 +20,8 @@ update_global_6e6260_first,0x00425CD0,function
 update_global_6e6260_second,0x00425F10,function
 reset_fighter_action_scratch,0x00433B90,function
 emit_fighter_effect_433cc0,0x00433CC0,function
+classify_fighter_x_boundary,0x00434390,function
+test_proposed_x_against_stage_height,0x004343D0,function
 stage_surface_height_at_x,0x00434800,function
 is_y_at_or_below_stage_surface,0x00434860,function
 get_battle_setup_task,0x004397B0,function
@@ -39,6 +42,7 @@ get_network_session,0x00439CB0,function
 dispatch_indexed_event,0x00439DC0,function
 std_list_incsize_pointer,0x00454890,function
 integrate_and_clamp_fighter_position,0x00459860,function
+update_common_fighter_state_window,0x00459B20,function
 consume_counter_484_steps,0x00459C90,function
 run_common_character_update,0x00459E50,function
 calculate_base_hit_quantity,0x0045A030,function
@@ -57,6 +61,7 @@ adjust_capped_counter_558,0x0045B870,function
 advance_fighter_sequence_55c,0x0045BA40,function
 apply_deferred_counter_558,0x0045BF10,function
 update_fighter_facing_from_other_x,0x0045CA70,function
+is_state_13c_below_32,0x0045CAD0,function
 is_state_13c_in_32_95,0x0045CAE0,function
 is_state_13c_in_96_c7,0x0045CB00,function
 select_outcome_path_from_frame_flags,0x0045CB20,function

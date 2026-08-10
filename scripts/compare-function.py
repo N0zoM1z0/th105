@@ -206,18 +206,28 @@ def coff_symbol_bytes(
             destination, literal, allowed_addends = data_targets[target_symbol_name]
             target_section = section_rows[target_section_number - 1]
             target_value = int(target_symbol["value"])
-            addend = struct.unpack_from("<I", code, field_offset)[0]
-            if addend not in allowed_addends:
+            raw_addend = struct.unpack_from("<I", code, field_offset)[0]
+            if raw_addend not in allowed_addends:
                 raise ValueError(
                     f"DIR32 relocation for {target_symbol_name} has unverified "
-                    f"addend {addend:#x}"
+                    f"addend {raw_addend:#x}"
                 )
+            addend = (
+                raw_addend
+                if raw_addend < (1 << 31)
+                else raw_addend - (1 << 32)
+            )
+            object_value = target_value + addend
             if int(target_section["characteristics"]) & IMAGE_SCN_CNT_UNINITIALIZED_DATA:
+                # VC8 may encode an explicitly allowlisted negative displacement
+                # from a BSS array symbol for an indexed address expression.
+                # BSS has no object bytes to slice; the target literal check below
+                # still validates the resolved address and value.
                 bss_size = int(target_section["raw_size"])
                 bss_pointer = int(target_section["raw_pointer"])
                 if (
                     bss_pointer != 0
-                    or target_value + addend + len(literal) > bss_size
+                    or object_value + len(literal) > bss_size
                     or any(literal)
                 ):
                     raise ValueError(
@@ -226,8 +236,15 @@ def coff_symbol_bytes(
                     )
                 object_literal = bytes(len(literal))
             else:
+                if object_value < 0 or object_value + len(literal) > int(
+                    target_section["raw_size"]
+                ):
+                    raise ValueError(
+                        f"DIR32 relocation for {target_symbol_name} selects "
+                        f"bytes outside its initialized COFF section"
+                    )
                 literal_offset = (
-                    int(target_section["raw_pointer"]) + target_value + addend
+                    int(target_section["raw_pointer"]) + object_value
                 )
                 object_literal = data[
                     literal_offset : literal_offset + len(literal)
@@ -242,7 +259,9 @@ def coff_symbol_bytes(
                     f"target bytes for {target_symbol_name}+{addend:#x} no longer "
                     "match mapping"
                 )
-            struct.pack_into("<I", code, field_offset, destination + addend)
+            struct.pack_into(
+                "<I", code, field_offset, (destination + addend) & 0xFFFFFFFF
+            )
             continue
 
         if relocation_type != IMAGE_REL_I386_REL32:

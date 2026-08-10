@@ -86,21 +86,30 @@ and object frame data. The complete observed orchestration is:
 5. Apply the deferred per-player channels only after all family-0 fighter
    resolution has completed.
 
-The 1405-byte function is now decompiled and named
-`run_attack_projectile_collision_phase`, but deliberately has no monolithic
-source port yet. Its former deferred-result dependency `0x0045BF10` is now an
-exact reconstruction, while `0x00454890` is verified VC8 standard-library code
-and tracked as `library`. The remaining large preparation dependency
-`0x0045AEC0` is decompiled into bounded transformation helpers below.
+The complete orchestration now has maintainable source in `CollisionPhase.cpp`.
+VC8 emits 1203 bytes versus the 1405-byte target; the first mismatch is the
+stack frame (`0x20` versus `0x2C`) and the remaining gap is concentrated in
+checked-iterator frequency and register/spill scheduling. The two internal list
+passes are likewise source-complete: `0x0046D160` emits 485/525 bytes and
+`0x0046D370` emits 601/686 bytes. All three remain `implemented`, never
+`matching`, until the accepted comparator reports exact bytes.
 
-`0x0045AEC0` (`prepare_collision_geometry_from_frame`) materializes each
+The former deferred-result dependency `0x0045BF10` is exact, while
+`0x00454890` is verified VC8 standard-library code and tracked as `library`.
+
+`0x0045AEC0` (`prepare_collision_geometry_from_frame`) now has complete source
+in `CollisionPreparation.cpp`. It materializes each
 fighter/object frame into collision-ready scratch before list insertion. It
 caches the frame at object `+0x1A4`, transforms family-0 records into 16-byte
 entries at `+0x204` with optional descriptor pointers at `+0x304`, transforms
 family-1 records into `+0x1B4/+0x318`, handles the optional extension at
 `+0x194`, and builds an optional primary entry at `+0x2F4/+0x32C`. Frame bits
 `0x400000`, `0x800000`, and `0x1000000` select observed preparation modes; no
-gameplay terminology is assigned.
+gameplay terminology is assigned. The integrated VC8 function is 1880 bytes
+versus the 2156-byte target. Its first codegen difference is stack allocation
+(`0x44` versus target `0x3C`); strict comparison currently stops earlier on a
+defined `vector::at` failure-path COMDAT, so its ledger status is
+`implemented` with no percentage claim.
 
 Its three direct geometry leaves are now bounded. `0x0045A190` transforms a
 four-int local box with actor position at `+0xEC/+0xF0` and signed direction at
@@ -301,6 +310,13 @@ surface, cached direction, battle state, and an observed random-roll policy.
 Its adjacent `0x0045CB00` state-window leaf (`0x96..0xC7`) is an exact 28-byte
 reconstruction. The selector's natural object is 601 bytes versus 620.
 
+The selector's RNG dependency is also reconstructed exactly. `0x00406880` is
+the MT19937 next-word routine, including twist, fallback seed, state index, and
+tempering. `0x004069A0` performs the target's unsigned quotient mapping; it can
+produce the requested upper endpoint for a small tail of raw values, so the
+source deliberately does not replace it with a conventional modulo or uniform
+distribution helper.
+
 Their shared terminal helper `0x0046BCD0` is now an exact 260-byte
 reconstruction. It consumes one observed 200-unit counter step, resets the hit
 exchange scratch, writes result code 2 and descriptor outputs, updates deferred
@@ -324,6 +340,12 @@ checked-vector passes, in this exact order:
 The names of the latter two remain broad until their complete field contracts
 are mapped. The same VC8 vector layout and checked `operator[]` shape produce
 an exact 187-byte reconstruction of the three-pass phase.
+
+`0x00459860` itself is exact at 270 bytes. Its two stage-boundary dependencies
+are now exact as well: `0x00434390` classifies x at the observed 40/1240
+boundaries (59 bytes), and `0x004343D0` tests proposed x against the 0x500-float
+stage-height table with five units of y clearance (120 bytes). The source keeps
+the target's x87 double-expression order rather than simplifying the comparisons.
 
 `0x0046A5D0` is an exact 51-byte post-update phase. It calls context vslot
 `+0x3C`, clears context field `+0x08`, calls Info-manager vslot `+0x10`, then
@@ -385,30 +407,31 @@ The collision/list manager constructed by `0x0046A810` installs
 12-byte list-like elements. This object is distinct from the higher-level
 battle-state controller that calls the frame phases above.
 
-`0x0046B420` is an identified 16-step cross-manager phase sequence over the
+`0x0046B420` is an exact 195-byte, 16-step cross-manager phase sequence over the
 object manager, fighter container, static service, and effect manager; it does
 not directly manipulate hit fields. The vtable `+0x38` wrapper `0x0046B4F0`
 calls that sequence and then an Info-manager-family virtual slot `+0x14`.
-Their exact compiler shapes are known, but durable project comparison still
-needs broader global/tail-dispatch relocation support.
+Its natural source is complete and a private split-TU probe is 34/34 exact, but
+the integrated same-TU form remains `implemented` because the standard
+comparator intentionally rejects its internally defined REL32 call.
 
 ## Recommended reconstruction lanes
 
-Keep claims address-bounded and prefer leaf functions before orchestrators:
+Keep claims address-bounded, but do not optimize the work queue for easy
+progress counts. The central hard functions now have complete semantic source,
+so the highest-value lanes are:
 
-1. Geometry source shaping: `0x0046ADA0`, `0x0046AF30`, `0x0046B000`,
-   `0x0046B100`, and `0x0046B290`, using the exact extent and point-test leaves
-   already in source.
-2. Hit/object responses: `0x0046BF20`, `0x0046BFD0`, `0x0046C070`, then the
-   larger `0x0046CE20` outcome branch.
-3. Character action/object update: `0x0046A5B0`, `0x00463610`, `0x00459E50`.
-4. Physics commit: `0x0046A5C0`, `0x00463760`, `0x00459860`,
-   `0x0045CDD0`, `0x0045CF00`.
-5. Collision-list orchestrator `0x0046D620` only after the response contracts
-   and the two documented list passes are stable.
-6. Battle state machine: `0x0046FE80..0x00470500` and `0x00470940` after the
-   phase contracts above are stable.
+1. Shape `0x0045AEC0` against its 2156-byte target, beginning with the
+   `vector::at` COMDAT boundary and repeated `frame_158` reload schedule.
+2. Shape the list orchestrators `0x0046D160`, `0x0046D370`, and `0x0046D620`
+   using their recorded stack-frame and checked-iterator differences.
+3. Close geometry codegen gaps in `0x0045A190`, `0x0045A2E0`, `0x0045A4A0`,
+   `0x0046AF30`, `0x0046B000`, `0x0046B100`, and `0x0046B290`.
+4. Continue hit/object responses at `0x0046BF20`, `0x0046C070`, and the larger
+   `0x0046CE20` outcome branch.
+5. Finish the remaining fighter status/timer phase at `0x0045CDD0` and
+   `0x0045CF00`, then move outward to `0x0046C290` body separation and the
+   battle state machine at `0x0046FE80..0x00470940`.
 
-Do not begin with `0x0046D620` or `0x0046C290` as monolithic source ports. Use
-their leaf callees to establish layouts, flag meanings, and comparison support
-first, then reconstruct the orchestrators from those verified contracts.
+Small exact leaves remain useful only when they unblock one of these core paths
+or prove an ABI/layout dependency.
