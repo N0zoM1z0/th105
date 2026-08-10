@@ -64,7 +64,8 @@ __forceinline void reset_transient_list(CollisionList *list)
     CollisionListNode *node = sentinel->next;
     sentinel->next = sentinel;
     sentinel->previous = sentinel;
-    list->count = 0;
+    // Keep the target's reset-store and stack-slot schedule localized here.
+    reinterpret_cast<volatile unsigned *>(list)[2] = 0;
     while (node != sentinel) {
         CollisionListNode *next = node->next;
         free_transient_list_node(node);
@@ -99,20 +100,28 @@ __forceinline void require_not_sentinel(
 
 __forceinline void classify_owned_object(
     CollisionContext *context,
-    CollisionObject *object)
+    CollisionListNode *node,
+    CollisionListNode *sentinel)
 {
+    require_not_sentinel(node, sentinel);
+    CollisionObject *object = static_cast<CollisionObject *>(node->payload);
     CollisionObjectClassificationView *view =
         reinterpret_cast<CollisionObjectClassificationView *>(object);
+    require_not_sentinel(node, sentinel);
     ObjectClassificationFrameView *frame = view->frame_158;
+    require_not_sentinel(node, sentinel);
     const int slot = reinterpret_cast<Fighter *>(
         object->owner_16c)->player_index_334;
+    require_not_sentinel(node, sentinel);
     int family2_count = entry_count(
         frame->family2_begin_6c, frame->family2_end_70);
+    require_not_sentinel(node, sentinel);
     int family1_count = entry_count(
         frame->family1_begin_5c, frame->family1_end_60);
 
     if (view->extension_194 != 0) {
         ++family2_count;
+        require_not_sentinel(node, sentinel);
         if ((frame->flags_4c & 0x01000000) != 0) {
             ++family1_count;
         }
@@ -120,15 +129,22 @@ __forceinline void classify_owned_object(
 
     if (family2_count != 0 && object->result_180 == 0 &&
         static_cast<signed char>(object->result_slot_184) > 0) {
+        require_not_sentinel(node, sentinel);
         prepare_collision_geometry_from_frame(object);
+        require_not_sentinel(node, sentinel);
         append_payload(&context->family_0[slot], object);
         if (family1_count != 0) {
+            require_not_sentinel(node, sentinel);
             append_payload(&context->family_1[slot], object);
         }
+        require_not_sentinel(node, sentinel);
         append_payload(&context->family_2[slot], object);
     } else if (family1_count != 0) {
+        require_not_sentinel(node, sentinel);
         prepare_collision_geometry_from_frame(object);
+        require_not_sentinel(node, sentinel);
         append_payload(&context->family_1[slot], object);
+        require_not_sentinel(node, sentinel);
         append_payload(&context->family_2[slot], object);
     }
 }
@@ -177,8 +193,7 @@ void CollisionContext::run_attack_projectile_collision_phase()
         }
         for (; node != end_list->sentinel; node = node->next) {
             require_not_sentinel(node, begin_list->sentinel);
-            classify_owned_object(
-                this, static_cast<CollisionObject *>(node->payload));
+            classify_owned_object(this, node, begin_list->sentinel);
             require_not_sentinel(node, begin_list->sentinel);
         }
     }
@@ -200,6 +215,7 @@ void CollisionContext::run_attack_projectile_collision_phase()
             require_not_sentinel(node, attacks->sentinel);
             AttackCandidate *candidate =
                 static_cast<AttackCandidate *>(node->payload);
+            require_not_sentinel(node, attacks->sentinel);
             resolve_attack_candidate_against_fighter(candidate, other);
             require_not_sentinel(node, attacks->sentinel);
             if ((candidate->frame_1a4->flags_50 & 0x00100000) != 0) {

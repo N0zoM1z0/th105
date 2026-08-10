@@ -87,12 +87,16 @@ and object frame data. The complete observed orchestration is:
    resolution has completed.
 
 The complete orchestration now has maintainable source in `CollisionPhase.cpp`.
-VC8 emits 1203 bytes versus the 1405-byte target; the first mismatch is the
-stack frame (`0x20` versus `0x2C`) and the remaining gap is concentrated in
-checked-iterator frequency and register/spill scheduling. The two internal list
-passes are likewise source-complete: `0x0046D160` emits 485/525 bytes and
-`0x0046D370` emits 601/686 bytes. All three remain `implemented`, never
-`matching`, until the accepted comparator reports exact bytes.
+VC8 emits 1398 bytes versus the 1405-byte target and reproduces all 21 observed
+checked-list failure calls. A narrow volatile view of the reset count reproduces
+the target's `0x2C` stack frame; the first mismatch is now register allocation
+at `+0x5`, where the target retains `this` in `EBP`. The remaining gap is
+register/spill and reset-loop scheduling.
+The two internal list passes are likewise source-complete. `0x0046D160` emits
+527/525 bytes with all 19 target failure calls and a `0x1C` stack frame, while `0x0046D370` emits
+667/686 bytes after changing its iterator to reload the owning list sentinel.
+All three remain `implemented`, never `matching`, until the accepted comparator
+reports exact bytes.
 
 The former deferred-result dependency `0x0045BF10` is exact, while
 `0x00454890` is verified VC8 standard-library code and tracked as `library`.
@@ -105,11 +109,12 @@ entries at `+0x204` with optional descriptor pointers at `+0x304`, transforms
 family-1 records into `+0x1B4/+0x318`, handles the optional extension at
 `+0x194`, and builds an optional primary entry at `+0x2F4/+0x32C`. Frame bits
 `0x400000`, `0x800000`, and `0x1000000` select observed preparation modes; no
-gameplay terminology is assigned. The integrated VC8 function is 1880 bytes
-versus the 2156-byte target. Its first codegen difference is stack allocation
-(`0x44` versus target `0x3C`); strict comparison currently stops earlier on a
-defined `vector::at` failure-path COMDAT, so its ledger status is
-`implemented` with no percentage claim.
+gameplay terminology is assigned. The integrated VC8 function is 1902 bytes
+versus the 2156-byte target. Removing the cached `frame_158` local reproduces
+the target's `0x3C` stack frame and its major frame reload regions. The next raw
+difference is the target's zero-extending word load at `+0x8`, while strict
+comparison still stops on a defined `vector::at` failure-path COMDAT. Its
+ledger status therefore remains `implemented` with no percentage claim.
 
 Its three direct geometry leaves are now bounded. `0x0045A190` transforms a
 four-int local box with actor position at `+0xEC/+0xF0` and signed direction at

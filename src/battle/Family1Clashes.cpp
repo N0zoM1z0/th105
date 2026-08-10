@@ -14,11 +14,11 @@ unsigned frame_flags_50(const CollisionObject *object)
 
 struct CheckedCollisionListIterator {
     CollisionListNode *node;
-    CollisionListNode *sentinel;
+    CollisionList *list;
 
     CollisionObject *payload() const
     {
-        if (node == sentinel) {
+        if (node == list->sentinel) {
             _invalid_parameter_noinfo();
         }
         return static_cast<CollisionObject *>(node->payload);
@@ -26,7 +26,7 @@ struct CheckedCollisionListIterator {
 
     void increment()
     {
-        if (node == sentinel) {
+        if (node == list->sentinel) {
             _invalid_parameter_noinfo();
         }
         node = node->next;
@@ -41,14 +41,15 @@ void CollisionContext::dispatch_family1_object_clashes()
     CollisionList *list = family_1;
     do {
         CollisionListNode *const sentinel = list->sentinel;
-        CheckedCollisionListIterator outer = { sentinel->next, sentinel };
+        CheckedCollisionListIterator outer = { sentinel->next, list };
         while (outer.node != sentinel) {
             if ((frame_flags_50(outer.payload()) & 0x100000) != 0 &&
                 (outer.payload()->frame_1a4->flags_4c & 0x40) == 0 &&
                 outer.payload()->source_1a0 != 0 &&
                 (outer.payload()->frame_1a4->flags_4c & 0x80000) == 0) {
+                CollisionListNode *const inner_sentinel = list->sentinel;
                 CheckedCollisionListIterator inner = {
-                    sentinel->next, sentinel
+                    inner_sentinel->next, list
                 };
                 while (inner.node != sentinel) {
                     if ((inner.payload()->frame_1a4->flags_4c & 0x40) == 0 &&
@@ -66,9 +67,11 @@ void CollisionContext::dispatch_family1_object_clashes()
         ++list;
     } while (--list_count != 0);
 
-    CollisionListNode *const left_sentinel = family_1[0].sentinel;
+    // Preserve the target's saved-this lifetime across the cross-list pass.
+    CollisionContext * volatile context = this;
+    CollisionListNode *const left_sentinel = context->family_1[0].sentinel;
     CheckedCollisionListIterator outer = {
-        left_sentinel->next, left_sentinel
+        left_sentinel->next, &family_1[0]
     };
     while (outer.node != left_sentinel) {
         if ((outer.payload()->frame_1a4->flags_4c & 0x40) == 0 &&
@@ -76,7 +79,7 @@ void CollisionContext::dispatch_family1_object_clashes()
             (outer.payload()->frame_1a4->flags_4c & 0x80000) == 0) {
             CollisionListNode *const right_sentinel = family_1[1].sentinel;
             CheckedCollisionListIterator inner = {
-                right_sentinel->next, right_sentinel
+                right_sentinel->next, &family_1[1]
             };
             while (inner.node != right_sentinel) {
                 if ((inner.payload()->frame_1a4->flags_4c & 0x40) == 0 &&

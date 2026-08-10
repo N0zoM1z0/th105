@@ -315,10 +315,26 @@ Current hard examples:
 
 | Address | Integrated / target | Main shaping gap |
 | --- | ---: | --- |
-| `0x0045AEC0` | 1880 / 2156 | `vector::at` COMDAT, frame reloads, stack shape |
-| `0x0046D160` | 485 / 525 | sentinel checks and register schedule |
-| `0x0046D370` | 601 / 686 | repeated checked-iterator paths |
-| `0x0046D620` | 1203 / 1405 | stack frame, list checks, spills |
+| `0x0045AEC0` | 1902 / 2156 | `vector::at` COMDAT, word-load and reload schedule |
+| `0x0046D160` | 527 / 525 | matched guard count, stack/register schedule |
+| `0x0046D370` | 667 / 686 | owner identity and stack/register schedule |
+| `0x0046D620` | 1398 / 1405 | matched guard count/frame, register allocation |
+
+Wave 16 confirmed a useful checked-container shaping rule: preserve the owner
+container, begin/end aliases, and end sentinel as distinct source lifetimes.
+For `0x0046D160`, this raised the emitted failure calls from 15 to the target's
+19. For `0x0046D620`, guarding each observed payload dereference raised the
+main function from 7 to the target's 21 calls and closed 195 of the 202 missing
+bytes. Match the guard sites first; only then tune stack and registers.
+
+Two narrower shaping results are also reusable. Grouping three related end
+sentinels in one local aggregate grew `0x0046D160`'s frame from `0x18` to
+`0x1C` without changing its 527-byte body or guard count. A volatile view of
+only `CollisionList::count` changed `0x0046D620` from a `0x24` to the target's
+`0x2C` frame while preserving its body size and all guards. Conversely, adding
+the two missing cross-iterator owner checks to `0x0046D370` grew 667 bytes to
+707; do not force isolated identity checks until their enclosing iterator
+lifetime is understood.
 
 These functions are not dead ends. Their complete source and recorded first
 mismatches make them good dedicated hard lanes. Do not abandon them merely
