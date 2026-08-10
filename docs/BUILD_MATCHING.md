@@ -75,9 +75,23 @@ source files to these exact target bytes:
 0x00439B30 get_game_config: B8 38 6B 6E 00 C3
 0x00439C40 get_combined_menu_input: B8 20 75 6E 00 C3
 0x00439C80 get_player2_input: B8 70 63 6E 00 C3
+0x00439C00 get_player_slot_record: 8B 44 24 04 69 C0 3C 03 00 00 05 C0 64 6E 00 C3
+0x00439C10 invalidate_selected_input: 8B 44 24 04 C7 04 85 DC 62 6E 00 00 00 00 00 C6 80 D8 62 6E 00 FE C3
+0x00439C30 get_selected_input: 8B 44 24 04 8B 04 85 DC 62 6E 00 C3
+0x00439C50 get_combined_menu_input_counters: B8 58 75 6E 00 C3
+0x00439C60 get_selected_input_source: 8B 44 24 04 8A 80 D8 62 6E 00 C3
+0x00439C90 get_session_setup_option: A1 E4 62 6E 00 C3
+0x00439CA0 set_session_setup_option: 8B 44 24 04 A3 E4 62 6E 00 C3
+0x00439CB0 get_network_session: A1 FC 62 6E 00 C3
+0x00439B40 get_score_data: B8 38 72 6E 00 C3
+0x0040A210 set_input_state_table_entry: 0F B6 44 24 08 0F B6 54 24 04 89 04 91 C2 08 00
 ```
 
 These source files compile to the listed standalone functions. Each has no code
 relocation and is recorded as `matching`. They prove the probe path and source
-expressions, but six-byte accessors cannot distinguish VC8 RTM from SP1 or prove
-the final `/GL`/`/LTCG` configuration.
+expressions, but the six-byte accessors among them cannot distinguish VC8 RTM
+from SP1 or prove the final `/GL`/`/LTCG` configuration.
+
+`is_raw_key_down` at `0x0040D370` is deliberately recorded as `compiles`, not
+`matching`: its VC8 `/O2` probe is behaviorally equivalent but emits a 15-byte
+byte-register load where the target uses a 16-byte `movzx` sequence.

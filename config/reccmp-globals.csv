@@ -8,10 +8,12 @@ g_player1_input,0x006E6300,global
 g_player2_input,0x006E6370,global
 g_player_slot_records,0x006E64C0,global
 g_game_config,0x006E6B38,global
+g_input_state_table,0x006E6BB8,global
 g_match_setup,0x006E6FE8,global
 g_score_data,0x006E7238,global
 g_combined_menu_input,0x006E7520,global
 g_raw_keyboard_state,0x006ECFF0,global
+g_input_manager,0x006ECFD0,global
 g_scene_controller,0x006ECE44,global
 g_requested_engine_scene,0x006ECE78,global
 g_current_engine_scene,0x006ECE7C,global

@@ -19,6 +19,11 @@ Evidence labels used by this repository:
 - **Inferred** `0x006E6370` is the P2 input object. It begins exactly one
   `0x70`-byte player-input object after P1 and is returned by `0x00439C80`.
 - **Observed** `0x006E7520` is the combined menu-input object.
+- **Observed** `0x006ECFD0` is a `CInputManager` base whose raw keyboard state
+  begins at `+0x20` (`0x006ECFF0`). `0x0040D370` returns the DirectInput
+  top-bit state for one scan code.
+- **Observed** `0x006E6BB8` is a static 256-entry dword input-state table;
+  `0x0040A210` writes a zero-extended byte to one entry.
 - **Observed** `0x006E6B38` is the game-configuration object; its CPU
   difficulty field at `+0x64` is read and clamped by the configuration menu.
 - **Observed** `0x006E7238` is the static score-data object. CRT initialization

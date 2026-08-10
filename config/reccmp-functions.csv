@@ -4,9 +4,11 @@ engine_main_loop_poll_input_and_update_scene,0x004080E0,function
 update_player_input_counters_from_raw,0x00409900,function
 build_player_logical_input_mask,0x00409AD0,function
 merge_menu_input_sources,0x00409C50,function
+set_input_state_table_entry,0x0040A210,function
 init_direct_input,0x0040CDE0,function
 create_direct_input_keyboard,0x0040CFA0,function
 create_direct_input_mouse,0x0040D250,function
+is_raw_key_down,0x0040D370,function
 main_menu_render,0x00424860,function
 main_menu_update,0x00424AB0,function
 get_game_mode,0x00439860,function

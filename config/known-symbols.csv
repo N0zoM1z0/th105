@@ -4,9 +4,11 @@ address,name,module,confidence,evidence
 0x00409900,update_player_input_counters_from_raw,input,observed,docs/EVIDENCE.md input data flow and runtime counters
 0x00409AD0,build_player_logical_input_mask,input,observed,docs/EVIDENCE.md input data flow and runtime mask
 0x00409C50,merge_menu_input_sources,input,observed,docs/EVIDENCE.md menu input trace
+0x0040A210,set_input_state_table_entry,input,inferred,docs/EVIDENCE.md exact 256-entry state-table write ABI
 0x0040CDE0,init_direct_input,input,observed,docs/EVIDENCE.md DirectInput call flow
 0x0040CFA0,create_direct_input_keyboard,input,observed,docs/EVIDENCE.md DirectInput device creation
 0x0040D250,create_direct_input_mouse,input,observed,docs/EVIDENCE.md DirectInput device creation
+0x0040D370,is_raw_key_down,input,observed,docs/EVIDENCE.md exact top-bit DirectInput scan-code query
 0x00424860,main_menu_render,ui,observed,docs/EVIDENCE.md main menu vtable and runtime
 0x00424AB0,main_menu_update,ui,observed,docs/EVIDENCE.md main menu vtable and runtime
 0x00439860,get_game_mode,battle,observed,docs/EVIDENCE.md returned live game mode
