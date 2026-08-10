@@ -17,6 +17,7 @@ address,name,module,confidence,evidence
 0x006E6FE8,g_match_setup,battle,inferred,docs/EVIDENCE.md selection and battle callers use the block for match configuration
 0x006E7238,g_score_data,config,observed,docs/EVIDENCE.md CRT construction and score.dat serializer call chain
 0x006E7520,g_combined_menu_input,input,observed,docs/EVIDENCE.md menu input trace
+0x006E8E58,g_orientation_cosine_table,engine,observed,docs/BATTLE.md runtime initializer 0x00406780 fills 3600 floats with fcos at 0.1-degree increments
 0x006ECFF0,g_raw_keyboard_state,input,observed,docs/EVIDENCE.md DirectInput GetDeviceState destination
 0x006ECFD0,g_input_manager,input,observed,docs/EVIDENCE.md CInputManager base; raw keyboard state at +0x20
 0x006ECE44,g_scene_controller,engine,observed,docs/EVIDENCE.md scene transition instructions

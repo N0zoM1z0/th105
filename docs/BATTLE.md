@@ -100,8 +100,35 @@ entries at `+0x204` with optional descriptor pointers at `+0x304`, transforms
 family-1 records into `+0x1B4/+0x318`, handles the optional extension at
 `+0x194`, and builds an optional primary entry at `+0x2F4/+0x32C`. Frame bits
 `0x400000`, `0x800000`, and `0x1000000` select observed preparation modes; no
-gameplay terminology is assigned. The next direct leaves are `0x0045A190`,
-`0x0045A2E0`, and `0x0045A4A0`.
+gameplay terminology is assigned.
+
+Its three direct geometry leaves are now bounded. `0x0045A190` transforms a
+four-int local box with actor position at `+0xEC/+0xF0` and signed direction at
+`+0x104`; every coordinate conversion deliberately executes `ceil`, spills to
+single precision, and then calls `_ftol2_sse`. `0x0045A2E0` repeats the same
+conversion sequence but swaps the local Y endpoints in the mirrored-X branch.
+They are decompiled, but their 335- and 445-byte x87 spill schedules are not yet
+reproduced by natural VC8 source.
+
+`0x0045A4A0` is a six-argument `__stdcall` builder for one four-int local box
+and one four-int auxiliary descriptor. It evaluates the direct and
+quarter-period-shifted orientation values, then uses four intentionally
+unrolled sign quadrants and twelve `_ftol2_sse` conversions per path. The
+coordinate ordering and descriptor gameplay meaning remain unresolved, so the
+neutral reconstruction name is retained.
+
+The paired orientation leaves are exact reconstructions. `0x00406680` indexes
+`g_orientation_cosine_table[abs(angle * 10) % 3600]`; `0x00406650` indexes the
+same table at `abs(angle * 10 - 900) % 3600`. Initializer `0x00406780` fills
+the 3600-float table at `0x006E8E58` using x87 `fcos` at 0.1-degree increments,
+which establishes the cosine and quarter-shifted sine roles. Their strict
+comparison commands both report 100%:
+
+```bash
+scripts/compile-unit.sh src/engine/AngleLookup.cpp build/wave11/AngleLookup.obj
+python3 scripts/compare-function.py 0x00406650 build/wave11/AngleLookup.obj
+python3 scripts/compare-function.py 0x00406680 build/wave11/AngleLookup.obj
+```
 
 Terms such as graze, guard, spell, and armor must not be assigned to individual
 branches until flags and live behavior prove them. At present, clash and general

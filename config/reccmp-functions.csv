@@ -1,4 +1,6 @@
 name,address,type
+lookup_orientation_sine,0x00406650,function
+lookup_orientation_cosine,0x00406680,function
 selector_random_roll,0x004069A0,function
 commit_pending_engine_scene,0x00407F80,function
 engine_main_loop_poll_input_and_update_scene,0x004080E0,function
@@ -40,6 +42,9 @@ integrate_and_clamp_fighter_position,0x00459860,function
 consume_counter_484_steps,0x00459C90,function
 run_common_character_update,0x00459E50,function
 calculate_base_hit_quantity,0x0045A030,function
+transform_box_from_local_frame,0x0045A190,function
+transform_box_from_local_frame_flipped_y,0x0045A2E0,function
+build_oriented_box_and_descriptor,0x0045A4A0,function
 call_one_arg_helper_then_vslot_3c,0x0045AA10,function
 call_two_arg_helper_then_vslot_3c,0x0045AA30,function
 dispatch_indexed_entry_0_to_63,0x0045AA60,function

@@ -1,4 +1,6 @@
 address,name,module,confidence,evidence
+0x00406650,lookup_orientation_sine,engine,observed,docs/BATTLE.md exact quarter-period-shifted lookup into runtime fcos table
+0x00406680,lookup_orientation_cosine,engine,observed,docs/BATTLE.md exact direct lookup into runtime fcos table
 0x004069A0,selector_random_roll,battle,inferred,docs/BATTLE.md observed bounded random roll used by the outcome selector
 0x00407F80,commit_pending_engine_scene,engine,observed,docs/EVIDENCE.md scene transition instructions and runtime
 0x004080E0,engine_main_loop_poll_input_and_update_scene,engine,observed,docs/EVIDENCE.md main loop trace
@@ -40,6 +42,9 @@ address,name,module,confidence,evidence
 0x00459C90,consume_counter_484_steps,battle,inferred,docs/BATTLE.md observed repeated 200-unit counter decrement in terminal outcome
 0x00459E50,run_common_character_update,battle,inferred,docs/BATTLE.md fourth pass of the active character and owned-object phase
 0x0045A030,calculate_base_hit_quantity,battle,inferred,docs/BATTLE.md observed scalar and conditional modifier product used by hit quantity wrappers
+0x0045A190,transform_box_from_local_frame,battle,inferred,docs/BATTLE.md observed ceil and signed-facing local-box transform into world coordinates
+0x0045A2E0,transform_box_from_local_frame_flipped_y,battle,inferred,docs/BATTLE.md observed mirrored-X transform with direction-dependent Y endpoint swap
+0x0045A4A0,build_oriented_box_and_descriptor,battle,inferred,docs/BATTLE.md observed four-quadrant oriented box and descriptor construction
 0x0045AA10,call_one_arg_helper_then_vslot_3c,battle,inferred,docs/BATTLE.md observed one-argument helper followed by AttackObject-family virtual slot 0x3c
 0x0045AA30,call_two_arg_helper_then_vslot_3c,battle,inferred,docs/BATTLE.md observed two-argument helper followed by AttackObject-family virtual slot 0x3c
 0x0045AA60,dispatch_indexed_entry_0_to_63,battle,inferred,docs/BATTLE.md observed bounded indexed table tail dispatch
