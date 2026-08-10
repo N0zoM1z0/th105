@@ -116,11 +116,17 @@ entries at `+0x204` with optional descriptor pointers at `+0x304`, transforms
 family-1 records into `+0x1B4/+0x318`, handles the optional extension at
 `+0x194`, and builds an optional primary entry at `+0x2F4/+0x32C`. Frame bits
 `0x400000`, `0x800000`, and `0x1000000` select observed preparation modes; no
-gameplay terminology is assigned. The integrated VC8 function is 1902 bytes
-versus the 2156-byte target. Removing the cached `frame_158` local reproduces
-the target's `0x3C` stack frame and its major frame reload regions. The next raw
-difference is the target's zero-extending word load at `+0x8`, while strict
-comparison still stops on a defined `vector::at` failure-path COMDAT. Its
+gameplay terminology is assigned. The integrated VC8 function is now 2162
+bytes versus the 2156-byte target. The family-0 branch order follows the
+target's descriptor-present fallthrough, its mirrored descriptor path performs
+the four independently checked vector reads visible in the executable, and
+the extension's nonzero-angle path now precedes its scalar path. Direct
+pointer-slot assignments are intentionally unrolled in all three oriented
+descriptor paths; collapsing them behind a cached output pointer loses target
+alias/reload behavior. Strict comparison still stops on a defined
+`vector::at` failure-path COMDAT. The current object uses a `0x34` stack frame
+versus the target's `0x3C`, and the first target word copy still uses `MOVZX`
+where the object uses a 16-bit `MOV`. Its
 object-local `_Xran` helper is 106 bytes while the target helper reached from
 the corresponding failure path is 123 bytes, so the internal relocation is
 not treated as equivalent by name or exception string. Its ledger status
@@ -570,8 +576,9 @@ run `python3 scripts/core-worklist.py --ready` before claiming work; see
 columns follow the live function ledger and do not promote placeholder
 contracts to implemented source.
 
-1. Shape `0x0045AEC0` against its 2156-byte target, beginning with the
-   `vector::at` COMDAT boundary and repeated `frame_158` reload schedule.
+1. Shape `0x0045AEC0` against its 2156-byte target, beginning with the two
+   missing group-A loop locals that account for the `0x34`/`0x3C` frame gap,
+   then close the entry `MOVZX` schedule and `vector::at` COMDAT boundary.
 2. Shape the list orchestrators `0x0046D160`, `0x0046D370`, and `0x0046D620`
    using their recorded stack-frame and checked-iterator differences.
 3. Implement the proven spell-card dependencies around parser `0x00432E20`

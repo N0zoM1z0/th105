@@ -343,7 +343,7 @@ Current hard examples:
 
 | Address | Integrated / target | Main shaping gap |
 | --- | ---: | --- |
-| `0x0045AEC0` | 1902 / 2156 | `vector::at` COMDAT, word-load and reload schedule |
+| `0x0045AEC0` | 2162 / 2156 | `0x34`/`0x3c` frame locals, entry `MOVZX`, `vector::at` COMDAT |
 | `0x0046D160` | 527 / 525 | matched guards/frame/endpoint slots, register schedule |
 | `0x0046D370` | 667 / 686 | owner identity and stack/register schedule |
 | `0x0046D620` | 1398 / 1405 | matched guard count/frame, register allocation |

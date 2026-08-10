@@ -150,6 +150,17 @@ operands in target load order to produce `TEST AH,1; JNE`. Treat operand order,
 negation, and the exact status-word mask as one unit; finite-value equivalence
 does not prove matching NaN behavior.
 
+For a vector of descriptor pointers, do not automatically cache the selected
+pointer or the destination pointer-to-pointer. At `0x0045AEC0`, the mirrored
+family-0 path re-evaluates checked `vector::operator[]` separately for all four
+descriptor words, while the oriented family-0, family-1, and extension paths
+re-dereference their destination pointer slot for each word. Writing those
+assignments explicitly increased the integrated function from 1902 to 2162
+bytes against a 2156-byte target and recovered the target's major branch and
+reload sequence. The remaining `0x34` versus `0x3c` frame gap shows that a
+near-equal size is diagnostic only: preserve the target's loop locals and
+strict COMDAT boundary before claiming byte progress.
+
 ## 8. LTCG and private-ABI stop conditions
 
 Stop standalone-object tuning when evidence indicates that the remaining difference depends on:
