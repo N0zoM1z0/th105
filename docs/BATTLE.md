@@ -45,13 +45,23 @@ and `0x004927D0` first call its constructor at `0x0045E3A0` before installing
 the `Character` and `CharacterObject` vtables. This establishes a shared
 collision-data base for fighters and their spawned objects.
 
+Four adjacent shared methods are identified without assigning gameplay terms.
+`0x0045AA10` and `0x0045AA30` call one- or two-argument helpers and then the
+same virtual slot `+0x3C`; their addresses occur across AttackObject-family
+vtables. `0x0045AA60` tail-dispatches one of 64 entries from a table at
+object `+0x164`, while `0x0045AA90` forwards four arguments plus object
+`+0x170` to the handler at `0x0046BBA0` through the battle root. Their call
+order and fields are observed, but helper, slot, and table semantics remain
+unknown.
+
 `0x0046D620` clears and fills six per-side collision lists from current fighter
 and object frame data. It then dispatches in this order:
 
-1. `0x0046D370` enumerates active object pairs and calls `0x0046C070` for
-   object-object clash handling.
-2. `0x0046D160` resolves interactions between classified object lists through
-   `0x0046BFD0`, falling back to `0x0046BF20` when not consumed.
+1. `0x0046D370` (`dispatch_family1_object_clashes`) enumerates active object
+   pairs and calls `0x0046C070` for object-object clash handling.
+2. `0x0046D160` (`dispatch_family2_against_family1`) resolves interactions
+   between classified object lists through `0x0046BFD0`, falling back to
+   `0x0046BF20` when not consumed.
 3. `0x0046D040` evaluates every attack candidate against the opposing fighter.
    It performs shape overlap and state gates, then dispatches special outcomes
    or falls through to the general hit resolver at `0x0046B570`.
@@ -85,6 +95,13 @@ The target proves three geometry classifications but not their original game
 terms, so documentation calls them families 0, 1, and 2. Family 1 feeds
 object-object clash at `0x0046D370`; family 2 feeds object interactions at
 `0x0046D160`; family 0 feeds attack-vs-fighter dispatch at `0x0046D040`.
+
+Both object-list passes traverse sentinel links rather than their count fields.
+`0x0046D370` performs a same-list pass for each player and then a slot-0 versus
+slot-1 pass; the frame-flag filters are intentionally asymmetric between outer
+and inner payloads. `0x0046D160` walks family-2 sources against family-1 and
+tries `0x0046BFD0` before `0x0046BF20`. Neither pass touches the deferred-result
+fields; `0x0046D620` applies those only after the family-0 fighter phase.
 
 The three allocation/initialization leaves are now exact reconstructions:
 `0x0041FEA0` creates a 12-byte self-linked sentinel, `0x0046A7F0` stores it
@@ -152,6 +169,12 @@ and shape pointers at `+0x318`. An optional primary box pointer is at `+0x32C`.
 against group B, and `0x0046B290` tests group B against group B. Debug drawing
 colors the groups differently, but that does not prove hitbox/hurtbox labels.
 
+The group counts are signed bytes and every loop index is sign-extended before
+box or pointer indexing. `0x0046B100` and `0x0046B290` select the descriptor-pair
+helper, one-descriptor helper, or inline AABB predicate from the two descriptor
+null states. They OR every pair result and do not return early after an overlap;
+preserving that traversal is required even when only a boolean result is used.
+
 `0x0046C070` handles one observed group-B object-pair overlap after
 `0x0046B290` succeeds. It compares two 16-bit values from each current frame
 record, writes neutral result codes at object `+0x180/+0x184`, and resets the
@@ -199,17 +222,23 @@ owner `+0x491/+0x494/+0x498..+0x49C`, and resets an indexed 0x34-byte manager
 entry. Its VC8 source shape is recovered; durable matching remains blocked on
 the indexed manager global and `0x00469E40` relocation mappings.
 
-The ordinary resolver obtains one frame-derived quantity through `0x0045AAE0`:
-it multiplies a candidate scale by signed descriptor short `+0x1C` and
-tail-dispatches the VC8 float-to-int truncation helper. `0x0045B870` then
-adjusts an observed signed-short counter at `+0x558`, with near-limit scaling
-and an upper cap of 500. Its faithful C++ is not yet register-scheduled exactly.
+The hit pipeline obtains frame-derived quantities through exact sibling
+wrappers `0x0045AAE0` and `0x0045AB10`. They multiply a candidate scale by the
+signed descriptor short at `+0x1C` or `+0x20`, respectively, then tail-dispatch
+the VC8 float-to-int truncation helper. `0x0045B870` adjusts an observed
+signed-short counter at `+0x558`, with near-limit scaling and an upper cap of
+500. Its faithful C++ is not yet register-scheduled exactly.
 
 The scale provider `0x0045A030` is identified as the product of several
 candidate/owner/fighter scalars and conditional modifiers. `0x0045AAE0` now has
 an exact natural-C++ match, including its tail jump to verified VC8 runtime
 `_ftol2_sse`; that runtime is tracked as library code rather than authored
 progress.
+
+The adjacent no-relocation leaf `0x0045AAC0` is also exact. It returns zero
+when pointer `+4` is null and otherwise divides the byte difference between
+pointers `+8` and `+4` by `0x88`. Its structural contract is proven; the
+element type and original gameplay name are not.
 
 The collision/list manager constructed by `0x0046A810` installs
 `CBattleManagerBase::vftable` at `0x006AF634` and constructs three pairs of
@@ -227,13 +256,16 @@ needs broader global/tail-dispatch relocation support.
 
 Keep claims address-bounded and prefer leaf functions before orchestrators:
 
-1. Geometry: `0x0046ACB0`, `0x0046ACD0`, `0x0046AD30`, then `0x0046C290`.
-2. Character action/object update: `0x0046A5B0`, `0x00463610`, `0x00459E50`.
-3. Physics commit: `0x0046A5C0`, `0x00463760`, `0x00459860`,
+1. Geometry source shaping: `0x0046AD30`, `0x0046ADA0`, and `0x0046B000`,
+   using the exact extent and point-test leaves already in source.
+2. Hit/object responses: `0x0046BF20`, `0x0046BFD0`, `0x0046C070`, then the
+   larger `0x0046CE20` outcome branch.
+3. Character action/object update: `0x0046A5B0`, `0x00463610`, `0x00459E50`.
+4. Physics commit: `0x0046A5C0`, `0x00463760`, `0x00459860`,
    `0x0045CDD0`, `0x0045CF00`.
-4. Hit pipeline: `0x0046D000`, `0x0046D040`, `0x0046D160`,
-   `0x0046D370`, and finally `0x0046D620`.
-5. Battle state machine: `0x0046FE80..0x00470500` and `0x00470940` after the
+5. Collision-list orchestrator `0x0046D620` only after the response contracts
+   and the two documented list passes are stable.
+6. Battle state machine: `0x0046FE80..0x00470500` and `0x00470940` after the
    phase contracts above are stable.
 
 Do not begin with `0x0046D620` or `0x0046C290` as monolithic source ports. Use

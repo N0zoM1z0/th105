@@ -5,7 +5,9 @@ namespace th105 {
 struct AttackCandidateFrame {
     unsigned char unknown_00[0x1c];
     short quantity_1c;
-    unsigned char unknown_1e[0x32];
+    unsigned char unknown_1e[0x02];
+    short quantity_20;
+    unsigned char unknown_22[0x2e];
     unsigned flags_50;
 };
 
@@ -25,6 +27,15 @@ struct AttackCandidate {
 
     float calculate_base_hit_quantity();
     int calculate_descriptor_scaled_quantity_1c();
+    int calculate_descriptor_scaled_quantity_20();
+};
+
+struct ByteStrideRange {
+    unsigned char unknown_00[0x04];
+    unsigned char *begin_04;
+    unsigned char *end_08;
+
+    int count_0x88_byte_stride_entries();
 };
 
 struct Fighter {

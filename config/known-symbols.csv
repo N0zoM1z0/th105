@@ -30,7 +30,13 @@ address,name,module,confidence,evidence
 0x00439CA0,set_session_setup_option,input,inferred,docs/EVIDENCE.md raw 0x006E62E4 accessor; exact enum meaning pending
 0x00439CB0,get_network_session,network,observed,docs/EVIDENCE.md returns CNetworkBase pointer installed by client/server setup
 0x0045A030,calculate_base_hit_quantity,battle,inferred,docs/BATTLE.md observed scalar and conditional modifier product used by hit quantity wrappers
+0x0045AA10,call_one_arg_helper_then_vslot_3c,battle,inferred,docs/BATTLE.md observed one-argument helper followed by AttackObject-family virtual slot 0x3c
+0x0045AA30,call_two_arg_helper_then_vslot_3c,battle,inferred,docs/BATTLE.md observed two-argument helper followed by AttackObject-family virtual slot 0x3c
+0x0045AA60,dispatch_indexed_entry_0_to_63,battle,inferred,docs/BATTLE.md observed bounded indexed table tail dispatch
+0x0045AA90,forward_arguments_to_battle_handler,battle,inferred,docs/BATTLE.md observed battle-root handler forwarding path
+0x0045AAC0,count_0x88_byte_stride_entries,battle,inferred,docs/BATTLE.md exact pointer-range count with 0x88-byte stride
 0x0045AAE0,calculate_descriptor_scaled_quantity_1c,battle,inferred,docs/BATTLE.md observed scaled descriptor quantity and float-to-int tail conversion
+0x0045AB10,calculate_descriptor_scaled_quantity_20,battle,inferred,docs/BATTLE.md exact sibling scaled descriptor quantity using signed short 0x20
 0x0045B870,adjust_capped_counter_558,battle,inferred,docs/BATTLE.md observed gated signed-short adjustment capped at 500
 0x0045CAE0,is_state_13c_in_32_95,battle,inferred,docs/BATTLE.md exact signed fighter state-window predicate
 0x0045CD90,is_positive_y_and_state_window,battle,inferred,docs/BATTLE.md exact positive-y zero-field and state-window predicate
@@ -66,6 +72,8 @@ address,name,module,confidence,evidence
 0x0046C070,resolve_group_b_object_clash,battle,inferred,docs/BATTLE.md observed group-B object-pair result dispatch
 0x0046D000,create_collision_list_node,battle,inferred,docs/BATTLE.md exact transient 12-byte collision-list node allocation
 0x0046D040,resolve_attack_candidate_against_fighter,battle,inferred,docs/BATTLE.md observed ordered attack-versus-fighter gates and outcome cascade
+0x0046D160,dispatch_family2_against_family1,battle,inferred,docs/BATTLE.md observed family-2 against family-1 sentinel traversal and response cascade
+0x0046D370,dispatch_family1_object_clashes,battle,inferred,docs/BATTLE.md observed same-list and cross-list object clash traversal
 0x004DDB20,Sakuya_on_action_changed,characters,observed,docs/EVIDENCE.md Sakuya action traces
 0x004DEF70,Sakuya_handle_input_and_select_action,characters,observed,docs/EVIDENCE.md Sakuya dispatcher data flow and runtime actions
 0x0067B50C,operator_new,runtime,observed,docs/BATTLE.md verified VC8 allocation routine called by collision-list helpers
