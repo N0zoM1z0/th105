@@ -1207,17 +1207,17 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00439870,6,0x00439875,get_match_setup,get_match_setup,battle,matching,100.00,__cdecl,void * get_match_setup(void),false,src/battle/GameMode.cpp,scripts/compile-unit.sh src/battle/GameMode.cpp build/probes/GameMode.obj && python3 scripts/compare-function.py 0x00439870 build/probes/GameMode.obj,,Inferred semantics from callers; VC8 SP1 standalone function probe; no code relocations
 0x00439880,521,0x00439A88,FUN_00439880,,,unclassified,0.00,unknown,undefined FUN_00439880(void),false,,,,
 0x00439AB0,119,0x00439B26,FUN_00439ab0,,,unclassified,0.00,unknown,undefined FUN_00439ab0(void),false,,,,
-0x00439B30,6,0x00439B35,FUN_00439b30,,,unclassified,0.00,unknown,undefined FUN_00439b30(void),false,,,,
+0x00439B30,6,0x00439B35,get_game_config,get_game_config,config,matching,100.00,__cdecl,void * get_game_config(void),false,src/config/GameConfig.cpp,scripts/compile-unit.sh src/config/GameConfig.cpp build/probes/GameConfig.obj && python3 scripts/compare-function.py 0x00439B30 build/probes/GameConfig.obj,,VC8 SP1 standalone function probe; no code relocations
 0x00439B40,6,0x00439B45,FUN_00439b40,,,unclassified,0.00,unknown,undefined FUN_00439b40(void),false,,,,
 0x00439B50,167,0x00439BF6,FUN_00439b50,,,unclassified,0.00,unknown,undefined FUN_00439b50(void),false,,,,
 0x00439C00,16,0x00439C0F,FUN_00439c00,,,unclassified,0.00,unknown,undefined FUN_00439c00(void),false,,,,
 0x00439C10,23,0x00439C26,FUN_00439c10,,,unclassified,0.00,unknown,undefined FUN_00439c10(void),false,,,,
 0x00439C30,12,0x00439C3B,FUN_00439c30,,,unclassified,0.00,unknown,undefined FUN_00439c30(void),false,,,,
-0x00439C40,6,0x00439C45,FUN_00439c40,,,unclassified,0.00,unknown,undefined FUN_00439c40(void),false,,,,
+0x00439C40,6,0x00439C45,get_combined_menu_input,get_combined_menu_input,input,matching,100.00,__cdecl,void * get_combined_menu_input(void),false,src/input/Input.cpp,scripts/compile-unit.sh src/input/Input.cpp build/probes/Input.obj && python3 scripts/compare-function.py 0x00439C40 build/probes/Input.obj,,VC8 SP1 standalone function probe; no code relocations
 0x00439C50,6,0x00439C55,FUN_00439c50,,,unclassified,0.00,unknown,undefined FUN_00439c50(void),false,,,,
 0x00439C60,11,0x00439C6A,FUN_00439c60,,,unclassified,0.00,unknown,undefined FUN_00439c60(void),false,,,,
 0x00439C70,10,0x00439C79,FUN_00439c70,,,unclassified,0.00,unknown,undefined FUN_00439c70(void),false,,,,
-0x00439C80,6,0x00439C85,FUN_00439c80,,,unclassified,0.00,unknown,undefined FUN_00439c80(void),false,,,,
+0x00439C80,6,0x00439C85,get_player2_input,get_player2_input,input,matching,100.00,__cdecl,void * get_player2_input(void),false,src/input/Input.cpp,scripts/compile-unit.sh src/input/Input.cpp build/probes/Input.obj && python3 scripts/compare-function.py 0x00439C80 build/probes/Input.obj,,Inferred semantics from layout and callers; VC8 SP1 standalone function probe; no code relocations
 0x00439C90,6,0x00439C95,FUN_00439c90,,,unclassified,0.00,unknown,undefined FUN_00439c90(void),false,,,,
 0x00439CA0,10,0x00439CA9,FUN_00439ca0,,,unclassified,0.00,unknown,undefined FUN_00439ca0(void),false,,,,
 0x00439CB0,6,0x00439CB5,FUN_00439cb0,,,unclassified,0.00,unknown,undefined FUN_00439cb0(void),false,,,,

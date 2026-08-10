@@ -8,7 +8,7 @@ reproducible binary comparison as the acceptance criterion.
 
 The project is in its initial reverse-engineering stage. The target has been
 fingerprinted and fully imported into Ghidra. The source/build partition is not
-yet recovered; the first two small accessors have exact function-byte matches.
+yet recovered; the first five small accessors have exact function-byte matches.
 
 ## Target executable
 
@@ -69,10 +69,10 @@ python3 scripts/validate-tracking.py
 ## Build status
 
 The PE Rich header and linker metadata point to Visual C++ 2005 (VC8), including
-42 C++ LTCG records. VC8 SP1 already reproduces the 6-byte `get_game_mode` and
-`get_match_setup` accessors exactly, but the original service level, complete
-flags, translation-unit partition, and link order are still being established.
-A matching full executable is not yet advertised. See
+42 C++ LTCG records. VC8 SP1 already reproduces five 6-byte global accessors
+exactly, but the original service level, complete flags, translation-unit
+partition, and link order are still being established. A matching full
+executable is not yet advertised. See
 [docs/BUILD_MATCHING.md](docs/BUILD_MATCHING.md).
 
 ## License

@@ -16,7 +16,11 @@ Evidence labels used by this repository:
   `GetDeviceState` in the main loop at `0x004080E0`.
 - **Observed** `0x006E6300` is the P1 input object; bindings begin at `+0x08`,
   signed hold counters at `+0x38`, and the logical mask at `+0x62`.
+- **Inferred** `0x006E6370` is the P2 input object. It begins exactly one
+  `0x70`-byte player-input object after P1 and is returned by `0x00439C80`.
 - **Observed** `0x006E7520` is the combined menu-input object.
+- **Observed** `0x006E6B38` is the game-configuration object; its CPU
+  difficulty field at `+0x64` is read and clamped by the configuration menu.
 - **Observed** main-menu scene 2 uses vtable `0x006ACCF4`; its update and render
   functions are `0x00424AB0` and `0x00424860`.
 

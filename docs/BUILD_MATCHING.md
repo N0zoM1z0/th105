@@ -66,14 +66,18 @@ to populate the UI.
 
 ## First code-generation results
 
-The pinned VC8 SP1 compiler (`14.00.50727.762`) compiles
-`src/battle/GameMode.cpp` to the exact target bytes for both small accessors:
+The pinned VC8 SP1 compiler (`14.00.50727.762`) compiles the initial accessor
+source files to these exact target bytes:
 
 ```text
 0x00439860 get_game_mode:   A1 EC 62 6E 00 C3
 0x00439870 get_match_setup: B8 E8 6F 6E 00 C3
+0x00439B30 get_game_config: B8 38 6B 6E 00 C3
+0x00439C40 get_combined_menu_input: B8 20 75 6E 00 C3
+0x00439C80 get_player2_input: B8 70 63 6E 00 C3
 ```
 
-Each standalone function has no code relocation and is recorded as `matching`.
-They prove the probe path and source expressions, but six-byte accessors cannot
-distinguish VC8 RTM from SP1 or prove the final `/GL`/`/LTCG` configuration.
+These source files compile to the listed standalone functions. Each has no code
+relocation and is recorded as `matching`. They prove the probe path and source
+expressions, but six-byte accessors cannot distinguish VC8 RTM from SP1 or prove
+the final `/GL`/`/LTCG` configuration.
