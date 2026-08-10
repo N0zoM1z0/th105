@@ -101,6 +101,20 @@ result code `3` to both objects at `+0x180`, resets collision extents, and
 returns true. The target proves this mechanism but not its original gameplay
 term, so the source uses the neutral name `try_frame_flag_pair_outcome`.
 
+`0x0046D040` is the per-candidate attack-versus-fighter orchestrator. After
+state and shape gates, it tries outcomes in strict order: `0x0046BE90`,
+`0x0046BDE0`, `0x0046CE20`, then the ordinary resolver `0x0046B570`.
+The latter performs scratch reset, threshold/result selection, candidate and
+fighter output setup, owner/context accounting, depletion handling, virtual
+callbacks, effects, and final extent reset. This phase map is observed; names
+for individual result codes and flag bits remain deliberately unresolved.
+
+`0x0046BDE0` is now an exact reconstruction of the second outcome leaf. It
+checks three candidate flag bits plus fighter frame/short gates, optionally
+uses `adjust_counter_482`, writes neutral result code `6`, emits effect `0x34`,
+and resets extents. The source name stays flag-oriented because the original
+gameplay term is not proven.
+
 ## Body collision and geometry
 
 Attack damage is resolved before fighter body separation.
@@ -108,6 +122,8 @@ Attack damage is resolved before fighter body separation.
 - `0x0046ACB0` resets the collision context extents at `+0x1C..+0x28`.
 - `0x0046A9A0` accumulates those fields from two four-integer coordinate
   records and is reconstructed exactly.
+- `0x0046AB80` and `0x0046ABD0` exactly project one or two AABBs vertically
+  with descriptor words `+4/+0x0C`, then call the integer extent accumulator.
 - `0x0046AA30` performs the corresponding float-coordinate accumulation after
   selecting and converting extrema.
 - `0x0046ACD0` converts a local rectangle into a world AABB using actor
@@ -117,6 +133,9 @@ Attack damage is resolved before fighter body separation.
   differently from the target.
 - `0x0046AEA0` exactly reconstructs the four signed half-space expressions
   used to test a point against an AABB plus a four-word descriptor.
+- `0x0046AC40` exactly reconstructs effect dispatch at the midpoint of the
+  accumulated extents. Its VC8 double-`0.5` data relocation is verified
+  against both the COFF literal and target bytes before comparison.
 - `0x0046ADA0` tests one AABB against such a descriptor, while `0x0046B000`
   performs an ordered descriptor-pair broad phase and five point tests. Their
   predicates and helper order are identified, but their current source shapes
@@ -132,6 +151,20 @@ and shape pointers at `+0x318`. An optional primary box pointer is at `+0x32C`.
 `0x0046AF30` tests group A against the primary box, `0x0046B100` tests group A
 against group B, and `0x0046B290` tests group B against group B. Debug drawing
 colors the groups differently, but that does not prove hitbox/hurtbox labels.
+
+`0x0046C070` handles one observed group-B object-pair overlap after
+`0x0046B290` succeeds. It compares two 16-bit values from each current frame
+record, writes neutral result codes at object `+0x180/+0x184`, and resets the
+collision extents. The exact branch table is documented in Ghidra; no graze,
+guard, cancel, or priority terminology is assigned without live proof.
+
+Inside the family-2 versus family-1 pass, `0x0046D160` first tries
+`0x0046BFD0`, which transfers owner pointers and flips facing after group-B
+geometry succeeds. Its fallback `0x0046BF20` performs group-A versus group-B
+geometry, writes frame-derived outputs, subtracts from the other object's
+`+0x174`, and dispatches frame event/effect values. Both remain identified
+rather than matching because their current VC8 probes still differ in branch
+or one zero-extension instruction shape.
 
 ## Physics and state commit
 
@@ -152,10 +185,43 @@ or gameplay terminology. `0x0046B520` is also exact: it subtracts and clamps
 fighter short `+0x482`, applies a state-5 gate from `+0x4B8`, and raises short
 `+0x486` to the resulting floor value.
 
+Two additional exact fighter gates now bound the general hit path:
+`0x0045CAE0` tests signed short `+0x13C` against `0x32..0x95`, while
+`0x0045CD90` additionally requires positive y at `+0xF0` and zero short
+`+0x49E`. `0x00434860` compares the same y coordinate against an x-dependent
+stage-height helper. Both the wrapper and helper `0x00434800` are exact: the
+helper rounds positive x with double `0.5`, clamps at table index `0x4FF`, and
+reads the 0x500-float height table at `0x006E4E38`.
+
+`0x0046A940` resets the shared exchange scratch used by five hit-resolution
+paths: it copies target `+0x174` to `+0x47C`, clears target `+0x4A2`, initializes
+owner `+0x491/+0x494/+0x498..+0x49C`, and resets an indexed 0x34-byte manager
+entry. Its VC8 source shape is recovered; durable matching remains blocked on
+the indexed manager global and `0x00469E40` relocation mappings.
+
+The ordinary resolver obtains one frame-derived quantity through `0x0045AAE0`:
+it multiplies a candidate scale by signed descriptor short `+0x1C` and
+tail-dispatches the VC8 float-to-int truncation helper. `0x0045B870` then
+adjusts an observed signed-short counter at `+0x558`, with near-limit scaling
+and an upper cap of 500. Its faithful C++ is not yet register-scheduled exactly.
+
+The scale provider `0x0045A030` is identified as the product of several
+candidate/owner/fighter scalars and conditional modifiers. `0x0045AAE0` now has
+an exact natural-C++ match, including its tail jump to verified VC8 runtime
+`_ftol2_sse`; that runtime is tracked as library code rather than authored
+progress.
+
 The collision/list manager constructed by `0x0046A810` installs
 `CBattleManagerBase::vftable` at `0x006AF634` and constructs three pairs of
 12-byte list-like elements. This object is distinct from the higher-level
 battle-state controller that calls the frame phases above.
+
+`0x0046B420` is an identified 16-step cross-manager phase sequence over the
+object manager, fighter container, static service, and effect manager; it does
+not directly manipulate hit fields. The vtable `+0x38` wrapper `0x0046B4F0`
+calls that sequence and then an Info-manager-family virtual slot `+0x14`.
+Their exact compiler shapes are known, but durable project comparison still
+needs broader global/tail-dispatch relocation support.
 
 ## Recommended reconstruction lanes
 

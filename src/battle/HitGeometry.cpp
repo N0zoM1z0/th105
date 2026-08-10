@@ -2,6 +2,38 @@
 
 namespace th105 {
 
+void CollisionContext::accumulate_descriptor_extents(
+    const CollisionAabb *first,
+    const ShapeWords *descriptor,
+    const CollisionAabb *second)
+{
+    int local[4];
+    local[0] = first->left;
+    local[2] = first->right;
+    local[1] = descriptor->y0 + first->top;
+    local[3] = descriptor->y1 + first->top;
+    accumulate_collision_extents(local, &second->left);
+}
+
+void CollisionContext::accumulate_descriptor_pair_extents(
+    const CollisionAabb *first,
+    const ShapeWords *first_descriptor,
+    const CollisionAabb *second,
+    const ShapeWords *second_descriptor)
+{
+    int first_local[4];
+    int second_local[4];
+    first_local[0] = first->left;
+    first_local[2] = first->right;
+    first_local[1] = first_descriptor->y0 + first->top;
+    first_local[3] = first_descriptor->y1 + first->top;
+    second_local[0] = second->left;
+    second_local[2] = second->right;
+    second_local[1] = second_descriptor->y0 + second->top;
+    second_local[3] = second_descriptor->y1 + second->top;
+    accumulate_collision_extents(first_local, second_local);
+}
+
 int CollisionContext::test_descriptor_point_inside(
     const CollisionAabb *aabb,
     const ShapeWords *descriptor,

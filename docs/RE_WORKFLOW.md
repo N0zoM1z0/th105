@@ -55,6 +55,16 @@ inside the entry-to-`span_end` range, use `compare-function.py
 belongs to the function. The comparison then covers those omitted bytes as
 well as the tracked body rather than accepting a truncated prefix.
 
+The comparator resolves external `CALL rel32` targets through
+`known-symbols.csv`; the same strict mapping supports external `JMP rel32`
+tail calls. Absolute data relocations remain fail-closed unless the
+exact COFF symbol, target address, and literal bytes are recorded in
+`config/reccmp-relocations.csv`; both the object literal and target bytes are
+revalidated on every comparison. Any nonzero relocation addend must also be
+explicitly allowlisted and is verified at that exact offset in both images.
+PE virtual tails are materialized using their specified zero-fill semantics
+when an allowlisted target lies beyond the section's raw file bytes.
+
 ## Parallel-agent safety
 
 Agents should partition work by address/function and source module. Claims must

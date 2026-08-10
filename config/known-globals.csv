@@ -1,4 +1,5 @@
 address,name,module,confidence,evidence
+0x006E4E38,g_stage_surface_heights,battle,inferred,docs/BATTLE.md 0x500-float x-indexed height table consumed by 0x00434800
 0x006E6244,g_battle_manager,battle,observed,docs/EVIDENCE.md live manager and fighter roots
 0x006E62D8,g_input_selection_state,input,inferred,docs/EVIDENCE.md source bytes and selected-input pointers for two slots
 0x006E62E4,g_session_setup_option,input,inferred,docs/EVIDENCE.md raw setup-option value; enum meaning pending

@@ -3,7 +3,9 @@
 namespace th105 {
 
 struct AttackCandidateFrame {
-    unsigned char unknown_00[0x50];
+    unsigned char unknown_00[0x1c];
+    short quantity_1c;
+    unsigned char unknown_1e[0x32];
     unsigned flags_50;
 };
 
@@ -15,20 +17,53 @@ struct FighterFrame {
 struct AttackCandidate {
     unsigned char unknown_000[0x180];
     unsigned result_180;
-    unsigned char unknown_184[0x20];
+    unsigned char result_slot_184;
+    unsigned char unknown_185[0x1b];
+    unsigned char source_1a0;
+    unsigned char unknown_1a1[3];
     AttackCandidateFrame *frame_1a4;
+
+    float calculate_base_hit_quantity();
+    int calculate_descriptor_scaled_quantity_1c();
 };
 
 struct Fighter {
-    unsigned char unknown_000[0x158];
+    unsigned char unknown_000[0xec];
+    float x_ec;
+    float y_f0;
+    unsigned char unknown_f4[0x10];
+    unsigned char facing_104;
+    unsigned char unknown_105[0x37];
+    short state_13c;
+    unsigned char unknown_13e[0x1a];
     FighterFrame *frame_158;
-    unsigned char unknown_15c[0x24];
+    unsigned char unknown_15c[0x18];
+    short value_174;
+    unsigned char unknown_176[0x0a];
     unsigned result_180;
-    unsigned char unknown_184[0x2fe];
+    unsigned char unknown_184[0x1b0];
+    signed char player_index_334;
+    unsigned char unknown_335[0x147];
+    short value_47c;
+    unsigned char unknown_47e[0x04];
     short counter_482;
     short unknown_484;
     short floor_486;
-    unsigned char unknown_488[0x30];
+    unsigned char unknown_488[0x09];
+    unsigned char flag_491;
+    unsigned char unknown_492[0x02];
+    float scalar_494;
+    short value_498;
+    short value_49a;
+    short value_49c;
+    short field_49e;
+    short value_4a0;
+    short value_4a2;
+    unsigned char unknown_4a4[0x02];
+    short field_4a6;
+    unsigned char unknown_4a8[0x06];
+    short field_4ae;
+    unsigned char unknown_4b0[0x08];
     int state_4b8;
     unsigned char unknown_4bc[0x1f8];
     int field_6b4;
@@ -71,9 +106,22 @@ struct CollisionContext {
 
     void reset_collision_extents();
     void accumulate_collision_extents(const int *first, const int *second);
+    void accumulate_descriptor_extents(
+        const struct CollisionAabb *first,
+        const struct ShapeWords *descriptor,
+        const struct CollisionAabb *second);
+    void accumulate_descriptor_pair_extents(
+        const struct CollisionAabb *first,
+        const struct ShapeWords *first_descriptor,
+        const struct CollisionAabb *second,
+        const struct ShapeWords *second_descriptor);
     bool try_frame_flag_pair_outcome(
         AttackCandidate *candidate,
         Fighter *fighter);
+    bool try_candidate_flag_outcome(
+        AttackCandidate *candidate,
+        Fighter *fighter);
+    void emit_effect_at_collision_center(int effect_code, int direction);
     int test_descriptor_point_inside(
         const struct CollisionAabb *aabb,
         const struct ShapeWords *descriptor,
@@ -81,8 +129,25 @@ struct CollisionContext {
         int y);
 };
 
+struct EffectSink {
+    virtual void unknown_00();
+    virtual void unknown_04();
+    virtual void unknown_08();
+    virtual void emit_effect(
+        int effect_code,
+        float x,
+        float y,
+        int direction,
+        int one,
+        int zero);
+};
+
 void __fastcall reset_fighter_fields_6bc_728(CollisionContext *context);
 void __fastcall reset_fighter_fields_6b4_728(CollisionContext *context);
+int __fastcall is_state_13c_in_32_95(Fighter *fighter);
+int __fastcall is_positive_y_and_state_window(Fighter *fighter);
+float __fastcall stage_surface_height_at_x(Fighter *fighter);
+int __fastcall is_y_at_or_below_stage_surface(Fighter *fighter);
 
 struct ActorPosition {
     unsigned char unknown_00[0xec];

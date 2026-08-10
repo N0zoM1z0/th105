@@ -112,15 +112,19 @@ The first core-battle probes also match exactly:
 
 ## Relocation-aware function probes
 
-`scripts/compare-function.py` resolves one deliberately narrow class of COFF
-relocation: i386 `REL32` on an external `CALL` whose callee has a unique address
-in `config/known-symbols.csv`. It applies the link-time displacement using the
-target function address before comparing bytes. This permits small battle and
-collision helpers with direct calls to already identified functions to be
-checked without constructing a fake executable layout.
+`scripts/compare-function.py` resolves i386 `REL32` on an external `CALL` or
+tail `JMP` whose target has a unique address in `config/known-symbols.csv`. It
+applies the link-time displacement using the target function address before
+comparing bytes. This permits small battle and collision helpers with direct
+calls to already identified functions to be checked without constructing a
+fake executable layout.
 
-The comparator fails closed for unknown callees, non-external targets,
-non-`CALL` `REL32` records, `DIR32` globals/vtables/statics, relocation-overflow
-sections, and every other relocation type. Those cases still require an
-appropriate linked-slice or executable comparison. A successful object probe
-does not replace final LTCG-sensitive executable-level reccmp acceptance.
+Absolute `DIR32` data relocations are accepted only when the exact COFF symbol,
+target address, literal bytes, and every used addend are allowlisted in
+`config/reccmp-relocations.csv`. The comparator revalidates the bytes at each
+offset in both the object and original PE, including specified PE zero-filled
+virtual tails. It fails closed for unknown symbols, unlisted addends,
+non-external `REL32` targets, other opcodes or relocation types, and
+relocation-overflow sections. Those cases still require an appropriate
+linked-slice or executable comparison. A successful object probe does not
+replace final LTCG-sensitive executable-level reccmp acceptance.

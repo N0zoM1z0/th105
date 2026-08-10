@@ -1,0 +1,3 @@
+coff_symbol,address,data_hex,addends,evidence
+__real@3fe0000000000000,0x006B73D8,000000000000e03f,0x0,target bytes and IEEE-754 value verified as double 0.5
+?stage_surface_heights@@3PAMA,0x006E4E38,00000000,0x0;0x13fc,target table base plus first raw and last PE-zero-filled floats verified from stage-height lookup
