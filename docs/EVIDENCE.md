@@ -57,6 +57,11 @@ Evidence labels used by this repository:
 - **Observed** `transform_local_aabb_to_world` at `0x0046ACD0` mirrors local X
   by facing and translates by actor position. `resolve_fighter_body_collision`
   at `0x0046C290` consumes current frame data and its body rectangle.
+- **Observed** battle-slot state methods `0x00463270` and `0x00463280` index a
+  paired pointer array at `+0x28` and byte array at `+0x34`. `0x00463290`
+  swaps both fields in lockstep; callers use slots 0 and 1. The pointed-to
+  concrete type and flag meaning remain inferred, so the source keeps them
+  opaque.
 
 ## Sakuya action roots
 

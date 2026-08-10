@@ -1913,8 +1913,8 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00462E20,753,0x00463110,FUN_00462e20,,,unclassified,0.00,unknown,undefined FUN_00462e20(void),false,,,,
 0x00463120,183,0x004631D6,FUN_00463120,,,unclassified,0.00,unknown,undefined FUN_00463120(void),false,,,,
 0x004631E0,136,0x00463267,FUN_004631e0,,,unclassified,0.00,unknown,undefined FUN_004631e0(void),false,,,,
-0x00463270,11,0x0046327A,FUN_00463270,,,unclassified,0.00,unknown,undefined FUN_00463270(void),false,,,,
-0x00463280,11,0x0046328A,FUN_00463280,,,unclassified,0.00,unknown,undefined FUN_00463280(void),false,,,,
+0x00463270,11,0x0046327A,get_battle_slot_object,get_battle_slot_object,battle,matching,100.00,__thiscall,void * get_battle_slot_object(void * this; unsigned int slot),false,src/battle/BattleSetup.cpp,scripts/compile-unit.sh src/battle/BattleSetup.cpp build/probes/BattleSetup.obj && python3 scripts/compare-function.py 0x00463270 build/probes/BattleSetup.obj,,Exact indexed pointer load; concrete pointed-to battle type remains unresolved
+0x00463280,11,0x0046328A,get_battle_slot_flag,get_battle_slot_flag,battle,matching,100.00,__thiscall,unsigned char get_battle_slot_flag(void * this; unsigned int slot),false,src/battle/BattleSetup.cpp,scripts/compile-unit.sh src/battle/BattleSetup.cpp build/probes/BattleSetup.obj && python3 scripts/compare-function.py 0x00463280 build/probes/BattleSetup.obj,,Exact indexed byte load; flag meaning remains unresolved
 0x00463290,49,0x004632C0,FUN_00463290,,,unclassified,0.00,unknown,undefined FUN_00463290(void),false,,,,
 0x004632D0,767,0x004635CE,FUN_004632d0,,,unclassified,0.00,unknown,undefined FUN_004632d0(void),false,,,,
 0x00463610,323,0x00463752,FUN_00463610,,,unclassified,0.00,unknown,undefined FUN_00463610(void),false,,,,
