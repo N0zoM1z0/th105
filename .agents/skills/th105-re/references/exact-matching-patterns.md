@@ -234,6 +234,11 @@ and statement shape narrowly:
 force-inlined adapter so they still emit `lea ecx,[fighter+4]` followed by the
 real noinline call.
 
+`0x00430D90` is a compact branch-layout example. Writing an early empty return
+made VC8 place the `-1` suffix before the nonempty path and emitted 79 bytes.
+Writing the same behavior as `if (count != 0) { ... return result; } return -1;`
+placed the negative suffix at the target tail and produced the exact 78 bytes.
+
 Do not add global compiler pragmas to fix one function. Keep shaping local and
 record why it exists.
 
@@ -263,6 +268,12 @@ call to `0x0046B420`.
 Use a private split-TU probe to learn source shape, but do not mark the
 integrated function `matching` unless the repository's accepted command
 reproduces it.
+
+`0x00430D90` also shows why `noinline` alone is not a TU boundary. Defining its
+`0x00430C30` checked-front callee in the same object produced a defined/internal
+`REL32`, which the strict comparator correctly rejected. Moving the two source
+bodies to `SpellDataRuntime.cpp` and `ShortDequeAccess.cpp` preserved the target
+external call and allowed both functions to compare exactly.
 
 Do not equate an object-local STL failure COMDAT with a target helper merely
 because both throw the same message. At `0x0045AEC0`, the object-local
@@ -351,6 +362,16 @@ without changing its 527-byte body or 19 guards. Making the aggregate volatile
 instead bloats the function to 551 bytes by forcing reloads. A volatile view of
 only `CollisionList::count` changed `0x0046D620` from a `0x24` to the target's
 `0x2C` frame while preserving its body size and all guards.
+
+For the eight-shorts-per-block deque front at `0x00430C30`, computing only the
+block index let VC8 defer `absolute & 7`, reuse `EBX`, and emit 67/71 bytes.
+Introducing a named `within_block` local before the range check kept it in
+`EBP`, reproduced the target push/pop set and address expression, and yielded
+an exact 71/71 match. The adjacent `0x00430C80` remains the complementary hard
+case: its complete natural source is 226/257 bytes because the target retains a
+0x10-byte checked-iterator frame, owner-identity check, and separate owner/block
+lifetimes. Do not add a standalone semantic owner guard just to mimic the dead
+`CMP owner,owner`; recover the iterator source lifetime instead.
 
 For `0x0046D370`, the two apparent owner-identity sites belong to the enclosing
 checked-iterator lifetimes. Adding explicit owner checks increases the guard

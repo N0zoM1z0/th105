@@ -12,7 +12,7 @@ unsigned char SpellDataOwner::load_spell_data(
             return 0;
         }
     } else if (load_spell_csv_via_325b0(
-                   character_key, arg2, load_destination_20) == 0) {
+                   character_key, arg2, &loaded_spell_ids_20) == 0) {
         return 0;
     }
     finalize_loaded_spell_data();

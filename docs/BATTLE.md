@@ -272,6 +272,22 @@ the fighter-local tree and then the common tree at `0x006E4E14`; its source is
 target-sized at 179 bytes, with the remaining mismatch in checked-iterator
 owner register allocation.
 
+The selector container below that loader is now structurally recovered. Both
+`SpellDataOwner+0x20` and `+0x34` are 0x14-byte deque-like headers whose blocks
+hold eight shorts. `0x00430C30` is the exact 71-byte checked front accessor.
+`0x00430D90` is an exact 78-byte selector: it returns signed `-1` when empty,
+otherwise reads the front ID, advances the circular absolute head modulo eight
+times the block capacity, decrements the live count, and resets the head when
+the count reaches zero.
+
+`0x00430C80` is now source-complete post-load behavior. It zeroes the 32-byte
+table at owner `+0x48`, traverses every ID in the deque at `+0x20`, resolves the
+ID through `0x004317A0`, and for records whose byte at `+0x1C` equals one stores
+the low ID byte at table index `record+0x1E`. VC8 currently emits 226 bytes
+versus the 257-byte target. The target retains a 0x10-byte checked-iterator
+frame, an owner-identity check, and longer owner/block register lifetimes; this
+is a compiler-shaping blocker, not missing transformation logic.
+
 The large parser at `0x00432E20` is decompiled but deliberately not yet called
 implemented. Its observed row schema is integer, string, byte, short, string,
 short, short. It publishes fields at record offsets `+0x1C`, `+0x1E`, `+0x3C`,

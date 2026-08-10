@@ -65,7 +65,19 @@ files in the repository:
 ```bash
 python3 scripts/core-worklist.py --lane spell-data --json
 python3 scripts/core-worklist.py --lane collision-phase --dot > build/collision.dot
+python3 scripts/core-worklist.py --blockers --limit 20
+python3 scripts/core-worklist.py --explain 0x00430C80
+python3 scripts/core-worklist.py --explain 0x0045B9E0 --json
 ```
+
+`--blockers` ranks unmet direct dependencies with a deliberately simple weight:
+priority-1 callers contribute 100 points, priority-2 callers 10, and priority-3
+callers 1. This is an impact queue, not a progress score; it helps find a small
+contract that releases several hard gameplay callers. `--explain ADDRESS`
+produces an address-bounded handoff packet containing the live ledger fields,
+claim, dependencies, reverse dependents, evidence, and whether each contract is
+currently satisfied. Agents should attach this packet to a claim rather than
+copying stale task descriptions between chats.
 
 The action column is derived from the live function ledger:
 
@@ -109,6 +121,13 @@ The manifests make two different kinds of work explicit:
   `0x0045AEC0`, `0x0046B570`, `0x0046D160`, `0x0046D370`, and `0x0046D620`;
 - contract-unlocking lanes around the spell parsers and resource ownership,
   especially `0x00432E20` and `0x00462050`.
+
+The spell-runtime frontier now has an exact checked short-deque front at
+`0x00430C30` and exact selector/advance behavior at `0x00430D90`. The post-load
+transform at `0x00430C80` is source-complete; its remaining mismatch is a
+checked-iterator owner/lifetime shaping problem. Together these establish two
+0x14-byte short-deque headers at `SpellDataOwner+0x20` and `+0x34`, followed by
+the 32-byte indexed output table at `+0x48`.
 
 This allows parallel agents to work on small dependency boundaries without
 abandoning central hard functions for easy progress counters.

@@ -17,6 +17,7 @@ address,lane,priority,notes
 0x00416A50,spell-assets,2,Loaded resource registration boundary
 0x0041FEA0,collision-phase,3,Exact collision-list sentinel allocation
 0x0042C100,score,1,Observed record count and high-water update
+0x00430C30,spell-runtime,3,Exact checked front access for a short deque-like container
 0x00430C80,spell-data,2,Post-load spell data finalization contract
 0x00430D90,spell-runtime,2,Spell record selector contract
 0x00430DE0,spell-data,2,Exact normal versus alternate loader selector

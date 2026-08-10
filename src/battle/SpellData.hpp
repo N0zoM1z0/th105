@@ -35,11 +35,23 @@ struct SpellRecordView {
     int value_48;
 };
 
+struct ShortDeque8 {
+    unsigned unknown_00;
+    short **blocks_04;
+    unsigned block_capacity_08;
+    unsigned head_0c;
+    unsigned live_count_10;
+
+    __declspec(noinline) short *front_checked();
+};
+
 struct SpellDataOwner {
     unsigned char unknown_00[0x14];
     SpellTree local_tree_14;
     unsigned char unknown_1c[0x04];
-    unsigned char load_destination_20[0x04];
+    ShortDeque8 loaded_spell_ids_20;
+    ShortDeque8 selection_ids_34;
+    unsigned char selected_value_by_index_48[0x20];
 
     void clear_spell_entries();
     void finalize_loaded_spell_data();

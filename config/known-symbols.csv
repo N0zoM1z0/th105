@@ -26,6 +26,7 @@ address,name,module,confidence,evidence
 0x00425CD0,update_global_6e6260_first,battle,inferred,docs/BATTLE.md post-update phase calls this first with global state 0x006E6260
 0x00425F10,update_global_6e6260_second,battle,inferred,docs/BATTLE.md post-update phase tail-dispatches this second with global state 0x006E6260
 0x0042C100,update_observed_record_statistics,config,inferred,docs/BATTLE.md observed existing-record count and signed high-water update
+0x00430C30,front_checked,battle,inferred,Ghidra MCP target instructions show checked front access for a VC8 deque-like short container
 0x00430C80,finalize_loaded_spell_data,battle,inferred,docs/BATTLE.md called only after a selected spell CSV loader succeeds
 0x00430D90,select_spell_record_id,battle,inferred,docs/BATTLE.md observed signed-short selector used before spell record lookup
 0x00430DE0,load_spell_data,battle,inferred,docs/BATTLE.md observed normal versus alternate spell CSV loader selection and finalization

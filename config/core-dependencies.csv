@@ -1,6 +1,7 @@
 caller,callee,required_status,evidence
 0x0042C100,0x00439860,matching,docs/BATTLE.md observed mode gate
 0x0042C100,0x00439C90,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x00430D90,0x00430C30,matching,target direct call and exact 0x00430D90 comparison
 0x00430DE0,0x00430C80,identified,target direct call and exact 0x00430DE0 comparison
 0x00430DE0,0x00432D80,identified,target direct call and exact 0x00430DE0 comparison
 0x00430DE0,0x00433490,identified,target direct call and exact 0x00430DE0 comparison

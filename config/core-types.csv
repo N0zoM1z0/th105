@@ -13,8 +13,9 @@ ObservedRecord24,src/config/ScoreData.hpp,complete,0x18,observed,0x0042C100 targ
 ObservedRecordRange16,src/config/ScoreData.hpp,complete,0x10,observed,0x0042C100 target instructions,Begin end and capacity pointer view
 ScoreData,src/config/ScoreData.hpp,partial,0x198,observed,0x0042C100 target instructions,Observed prefix before the range array
 SequenceRecord4,src/battle/SpellRuntime.hpp,complete,0x04,observed,0x0045C690 target instructions,Two-short record transferred to the sequence controller
+ShortDeque8,src/battle/SpellData.hpp,complete,0x14,observed,exact 0x00430C30 and 0x00430D90 comparisons,Five dword deque-like header with eight shorts per block
 ShapeWords,src/battle/Collision.hpp,complete,0x10,observed,exact descriptor geometry functions,Four signed descriptor words
-SpellDataOwner,src/battle/SpellData.hpp,partial,0x24,inferred,spell loader and lookup target instructions,Observed prefix containing local tree and load destination
+SpellDataOwner,src/battle/SpellData.hpp,partial,0x68,observed,0x00430C80 and 0x00430D90 target instructions,Observed prefix containing two short deques and a 32-byte indexed value table
 SpellRecordView,src/battle/SpellData.hpp,complete,0x4C,observed,spell parser and runtime target instructions,Observed fields through +0x48
 SpellSpriteWork,src/battle/SpellRuntime.hpp,complete,0x94,observed,0x0045C690 stack frame and vtable initialization,EH and ownership behavior remain unresolved
 SpellTree,src/battle/SpellData.hpp,partial,0x08,inferred,checked local and common lookup instructions,Only header and end-node pointer are modeled

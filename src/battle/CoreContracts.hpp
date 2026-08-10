@@ -31,6 +31,8 @@ typedef void (SpellDataOwner::*ParseSpellResourcesFunction)(
     const char *,
     void *,
     SpellTree *);
+typedef void (SpellDataOwner::*FinalizeSpellDataFunction)();
+typedef short (SpellDataOwner::*SelectSpellRecordFunction)();
 typedef void (ScoreData::*UpdateObservedStatisticsFunction)(
     int,
     int,
@@ -69,6 +71,8 @@ typedef char CheckObservedRangeSize[
     sizeof(ObservedRecordRange16) == 0x10 ? 1 : -1];
 typedef char CheckSequenceRecordSize[
     sizeof(SequenceRecord4) == 0x04 ? 1 : -1];
+typedef char CheckShortDequeSize[
+    sizeof(ShortDeque8) == 0x14 ? 1 : -1];
 typedef char CheckShapeWordsSize[
     sizeof(ShapeWords) == 0x10 ? 1 : -1];
 typedef char CheckSpellRecordSize[
@@ -88,6 +92,12 @@ typedef char CheckFighterCategoryOffset[
     offsetof(Fighter, state_72c) == 0x72c ? 1 : -1];
 typedef char CheckSpellRecordResourceOffset[
     offsetof(SpellRecordView, optional_resource_44) == 0x44 ? 1 : -1];
+typedef char CheckLoadedSpellIdsOffset[
+    offsetof(SpellDataOwner, loaded_spell_ids_20) == 0x20 ? 1 : -1];
+typedef char CheckSelectionIdsOffset[
+    offsetof(SpellDataOwner, selection_ids_34) == 0x34 ? 1 : -1];
+typedef char CheckSelectedValueTableOffset[
+    offsetof(SpellDataOwner, selected_value_by_index_48) == 0x48 ? 1 : -1];
 
 } // namespace core_contracts
 } // namespace th105

@@ -53,6 +53,11 @@ def action_for(status: str) -> str:
     }[status]
 
 
+def canonical_address(value: str) -> str:
+    numeric = int(value.strip(), 16)
+    return f"0x{numeric:08X}"
+
+
 def validate() -> tuple[list[str], dict[str, dict[str, str]], list[dict[str, str]]]:
     errors: list[str] = []
     function_rows = read_rows(FUNCTIONS)
@@ -144,12 +149,24 @@ def validate() -> tuple[list[str], dict[str, dict[str, str]], list[dict[str, str
         records[address] = {
             **scoped,
             "name": ledger.get("proposed_name") or ledger.get("current_name", ""),
+            "current_name": ledger.get("current_name", ""),
+            "proposed_name": ledger.get("proposed_name", ""),
+            "size": ledger.get("size", ""),
+            "span_end": ledger.get("span_end", ""),
             "status": ledger.get("status", ""),
             "action": action_for(ledger.get("status", "unclassified")),
+            "match_percent": ledger.get("match_percent", ""),
             "calling_convention": ledger.get("calling_convention", ""),
             "signature": ledger.get("signature", ""),
             "source_file": ledger.get("source_file", ""),
+            "ledger_evidence": ledger.get("evidence", ""),
+            "ledger_owner": ledger.get("owner", ""),
+            "ledger_notes": ledger.get("notes", ""),
+            "scope_notes": scoped.get("notes", ""),
             "claim_owner": claims.get(address, {}).get("owner", ""),
+            "claim_started_utc": claims.get(address, {}).get("started_utc", ""),
+            "claim_branch": claims.get(address, {}).get("branch", ""),
+            "claim_notes": claims.get(address, {}).get("notes", ""),
             "blockers": ";".join(blockers),
         }
     return errors, records, edges
@@ -176,6 +193,142 @@ def print_table(items: list[dict[str, str]], limit: int) -> None:
             f"{row['status']:<13} {row['action']:<11} "
             f"{(row['claim_owner'] or '-'):<10} {blockers:<8} {row['name']}"
         )
+
+
+def blocker_records(
+    records: dict[str, dict[str, str]], edges: list[dict[str, str]], lane: str
+) -> list[dict[str, object]]:
+    priorities = {1: 100, 2: 10, 3: 1}
+    grouped: dict[str, dict[str, object]] = {}
+    for edge in edges:
+        caller = records[edge["caller"]]
+        callee = records[edge["callee"]]
+        if lane and caller["lane"] != lane and callee["lane"] != lane:
+            continue
+        current = callee["status"]
+        required = edge["required_status"]
+        if STATUS_RANK.get(current, -1) >= STATUS_RANK[required]:
+            continue
+        item = grouped.setdefault(
+            edge["callee"],
+            {
+                "address": edge["callee"],
+                "name": callee["name"],
+                "lane": callee["lane"],
+                "status": current,
+                "claim_owner": callee["claim_owner"],
+                "impact": 0,
+                "blocked_callers": [],
+            },
+        )
+        priority = int(caller["priority"])
+        item["impact"] = int(item["impact"]) + priorities[priority]
+        cast_callers = item["blocked_callers"]
+        assert isinstance(cast_callers, list)
+        cast_callers.append(
+            {
+                "address": edge["caller"],
+                "name": caller["name"],
+                "lane": caller["lane"],
+                "priority": priority,
+                "required_status": required,
+                "evidence": edge["evidence"],
+            }
+        )
+    return sorted(
+        grouped.values(),
+        key=lambda row: (-int(row["impact"]), int(str(row["address"]), 16)),
+    )
+
+
+def print_blockers(items: list[dict[str, object]], limit: int) -> None:
+    if limit:
+        items = items[:limit]
+    print("address     lane             status        impact callers claim      name")
+    for row in items:
+        callers = row["blocked_callers"]
+        assert isinstance(callers, list)
+        print(
+            f"{row['address']}  {str(row['lane']):<16} "
+            f"{str(row['status']):<13} {int(row['impact']):<6} "
+            f"{len(callers):<7} {str(row['claim_owner'] or '-'):<10} {row['name']}"
+        )
+
+
+def explain_record(
+    address: str,
+    records: dict[str, dict[str, str]],
+    edges: list[dict[str, str]],
+) -> dict[str, object]:
+    if address not in records:
+        raise ValueError(f"{address} is outside config/core-functions.csv")
+    record = dict(records[address])
+    dependencies: list[dict[str, object]] = []
+    dependents: list[dict[str, object]] = []
+    for edge in edges:
+        if edge["caller"] == address:
+            callee = records[edge["callee"]]
+            dependencies.append(
+                {
+                    "address": edge["callee"],
+                    "name": callee["name"],
+                    "lane": callee["lane"],
+                    "status": callee["status"],
+                    "required_status": edge["required_status"],
+                    "satisfied": STATUS_RANK[callee["status"]]
+                    >= STATUS_RANK[edge["required_status"]],
+                    "claim_owner": callee["claim_owner"],
+                    "evidence": edge["evidence"],
+                }
+            )
+        if edge["callee"] == address:
+            caller = records[edge["caller"]]
+            dependents.append(
+                {
+                    "address": edge["caller"],
+                    "name": caller["name"],
+                    "lane": caller["lane"],
+                    "priority": int(caller["priority"]),
+                    "status": caller["status"],
+                    "required_status": edge["required_status"],
+                    "blocked_by_this": STATUS_RANK[record["status"]]
+                    < STATUS_RANK[edge["required_status"]],
+                    "claim_owner": caller["claim_owner"],
+                    "evidence": edge["evidence"],
+                }
+            )
+    record["dependencies"] = dependencies
+    record["dependents"] = dependents
+    return record
+
+
+def print_explanation(packet: dict[str, object]) -> None:
+    scalar_fields = (
+        "address", "name", "lane", "priority", "status", "action", "size",
+        "span_end", "match_percent", "calling_convention", "signature",
+        "source_file", "scope_notes", "ledger_evidence", "ledger_notes",
+        "claim_owner", "claim_started_utc", "claim_branch", "claim_notes",
+    )
+    for field in scalar_fields:
+        value = packet.get(field, "")
+        print(f"{field}: {value or '-'}")
+    for title in ("dependencies", "dependents"):
+        print(f"{title}:")
+        values = packet[title]
+        assert isinstance(values, list)
+        if not values:
+            print("  -")
+            continue
+        for value in values:
+            assert isinstance(value, dict)
+            state_key = "satisfied" if title == "dependencies" else "blocked_by_this"
+            print(
+                f"  {value['address']} {value['name']} "
+                f"status={value['status']} required={value['required_status']} "
+                f"{state_key}={str(value[state_key]).lower()} "
+                f"claim={value['claim_owner'] or '-'}"
+            )
+            print(f"    evidence: {value['evidence']}")
 
 
 def print_dot(
@@ -212,6 +365,8 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true", help="validate manifests only")
     parser.add_argument("--ready", action="store_true", help="show unclaimed tasks with satisfied contract dependencies")
+    parser.add_argument("--blockers", action="store_true", help="rank unmet dependency contracts by direct weighted impact")
+    parser.add_argument("--explain", metavar="ADDRESS", help="emit one address-bounded agent handoff packet")
     parser.add_argument("--lane", default="", help="restrict output to one lane")
     parser.add_argument("--limit", type=int, default=0, help="limit table or JSON rows")
     parser.add_argument("--json", action="store_true", help="emit selected rows as JSON")
@@ -231,6 +386,28 @@ def main() -> int:
         return 0
     if args.dot:
         print_dot(records, edges, args.lane)
+        return 0
+
+    if args.explain:
+        try:
+            packet = explain_record(canonical_address(args.explain), records, edges)
+        except (ValueError, KeyError) as error:
+            print(str(error), file=sys.stderr)
+            return 2
+        if args.json:
+            print(json.dumps(packet, indent=2, ensure_ascii=False))
+        else:
+            print_explanation(packet)
+        return 0
+
+    if args.blockers:
+        items = blocker_records(records, edges, args.lane)
+        if args.json:
+            if args.limit:
+                items = items[: args.limit]
+            print(json.dumps(items, indent=2, ensure_ascii=False))
+        else:
+            print_blockers(items, args.limit)
         return 0
 
     items = selected_records(records, args.lane, args.ready)
