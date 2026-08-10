@@ -9,6 +9,7 @@ address,name,module,confidence,evidence
 0x006E64C0,g_player_slot_records,input,inferred,docs/EVIDENCE.md two callers use 0x33C-stride records
 0x006E6B38,g_game_config,config,observed,docs/EVIDENCE.md config menu and live CPU difficulty at +0x64
 0x006E6FE8,g_match_setup,battle,inferred,docs/EVIDENCE.md selection and battle callers use the block for match configuration
+0x006E7238,g_score_data,config,observed,docs/EVIDENCE.md CRT construction and score.dat serializer call chain
 0x006E7520,g_combined_menu_input,input,observed,docs/EVIDENCE.md menu input trace
 0x006ECFF0,g_raw_keyboard_state,input,observed,docs/EVIDENCE.md DirectInput GetDeviceState destination
 0x006ECE44,g_scene_controller,engine,observed,docs/EVIDENCE.md scene transition instructions

@@ -12,6 +12,7 @@ address,name,module,confidence,evidence
 0x00439860,get_game_mode,battle,observed,docs/EVIDENCE.md returned live game mode
 0x00439870,get_match_setup,battle,inferred,docs/EVIDENCE.md callers use the returned 0x006E6FE8 block for character stage deck and BGM selection
 0x00439B30,get_game_config,config,observed,docs/EVIDENCE.md config menu and live CPU difficulty field
+0x00439B40,get_score_data,config,observed,docs/EVIDENCE.md CRT construction and score.dat serializer call chain
 0x00439C40,get_combined_menu_input,input,observed,docs/EVIDENCE.md menu input trace
 0x00439C00,get_player_slot_record,input,inferred,docs/EVIDENCE.md exact slot-record address formula and callers
 0x00439C10,invalidate_selected_input,input,observed,docs/EVIDENCE.md exact selection-state writes

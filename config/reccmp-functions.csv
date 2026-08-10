@@ -12,6 +12,7 @@ main_menu_update,0x00424AB0,function
 get_game_mode,0x00439860,function
 get_match_setup,0x00439870,function
 get_game_config,0x00439B30,function
+get_score_data,0x00439B40,function
 get_player_slot_record,0x00439C00,function
 invalidate_selected_input,0x00439C10,function
 get_selected_input,0x00439C30,function

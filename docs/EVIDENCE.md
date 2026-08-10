@@ -21,6 +21,8 @@ Evidence labels used by this repository:
 - **Observed** `0x006E7520` is the combined menu-input object.
 - **Observed** `0x006E6B38` is the game-configuration object; its CPU
   difficulty field at `+0x64` is read and clamped by the configuration menu.
+- **Observed** `0x006E7238` is the static score-data object. CRT initialization
+  constructs it, and its accessor feeds the `score.dat` serializer.
 - **Observed** `0x00439C00` computes `0x006E64C0 + slot * 0x33C`; selection
   callers use slots 0 and 1. The record field names are not recovered.
 - **Observed** `0x00439C10` clears `0x006E62DC[slot]` and stores `0xFE` to
