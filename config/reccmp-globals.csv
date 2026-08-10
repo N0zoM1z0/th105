@@ -1,6 +1,7 @@
 name,address,type
 g_battle_manager,0x006E6244,global
 g_game_mode,0x006E62EC,global
+g_match_setup,0x006E6FE8,global
 g_player1_input,0x006E6300,global
 g_combined_menu_input,0x006E7520,global
 g_raw_keyboard_state,0x006ECFF0,global

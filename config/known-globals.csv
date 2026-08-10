@@ -1,6 +1,7 @@
 address,name,module,confidence,evidence
 0x006E6244,g_battle_manager,battle,observed,docs/EVIDENCE.md live manager and fighter roots
 0x006E62EC,g_game_mode,battle,observed,docs/EVIDENCE.md live mode values
+0x006E6FE8,g_match_setup,battle,inferred,docs/EVIDENCE.md selection and battle callers use the block for match configuration
 0x006E6300,g_player1_input,input,observed,docs/EVIDENCE.md input object layout
 0x006E7520,g_combined_menu_input,input,observed,docs/EVIDENCE.md menu input trace
 0x006ECFF0,g_raw_keyboard_state,input,observed,docs/EVIDENCE.md DirectInput GetDeviceState destination

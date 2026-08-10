@@ -17,12 +17,15 @@ The analyzed target is the original Japanese 1.06a executable identified in
 | `.text` | `0x00401000..0x006ABFFF`, 2,797,568 raw bytes |
 | Linker | Microsoft linker 8.0 |
 | Rich-header tool build | 50727 for the dominant VC8 tools |
+| Rich-header LTCG entries | 42 `Utc1400_LTCG_CPP` objects |
 | Debug record | RSDS, PDB age 157 |
 | Original PDB path | `c:\Nonotaro\works\東方緋想天\th105.pdb` |
 | Ghidra inventory | 4,838 internal `.text` functions |
 | Ghidra metadata | 5,009 total functions, 57,543 symbols |
 
-The linker and Rich header establish the Visual C++ 2005 family. They do not
+The linker and Rich header establish the Visual C++ 2005 family. The 42
+`Utc1400_LTCG_CPP` records are strong evidence that a meaningful C++ subset was
+compiled with `/GL` and passed through link-time code generation. They do not
 yet establish the exact service pack or all compiler/linker switches.
 
 ## Runtime structure
@@ -105,8 +108,8 @@ names have been recovered.
 
 ## Open architecture gates
 
-1. Recover translation-unit/object boundaries from alignment, static init,
-   RTTI/vftable clusters, string ownership, and link-order experiments.
+1. Recover translation-unit ownership from static init, RTTI/vftable clusters,
+   strings, and link experiments while accounting for LTCG-erased boundaries.
 2. Separate compiler/runtime/library functions from authored game code.
 3. Recover class layouts and vtable slot ownership starting at scene and battle
    roots.

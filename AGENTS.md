@@ -11,7 +11,7 @@ Do not analyze or substitute a localized executable.
 2. Run `python3 scripts/verify-target.py`.
 3. Inspect `config/functions.csv` and `config/claims.csv`. Do not duplicate an
    active claim; use a small address-bounded work unit.
-4. Confirm Ghidra MCP with `codex mcp list`. If necessary, run the protocol
+4. Confirm `th105-ghidra` with `codex mcp list`. If necessary, run the protocol
    smoke test documented in `docs/MCP.md`.
 
 ## Evidence rules
@@ -45,9 +45,12 @@ Do not skip directly to `matching`. Update `source_file`, `owner`,
 
 ## MCP usage
 
-Codex loads the repository-local `ghidra` server from `.codex/config.toml`.
+Codex loads the registered `th105-ghidra` server from its user configuration.
 Use MCP native tools for decompilation, xrefs, functions, types, comments, and
 renames. Always provide `program="th105.exe"`; strict program routing is on.
+If an already-running agent session cannot hot-load that registration, use
+`.tools/src/ghidra-mcp/.venv/bin/python scripts/mcp-call.py`; it still uses MCP
+initialize/list/call over stdio.
 The server binds only to loopback. Arbitrary Ghidra script execution remains
 disabled in the MCP server; use reviewed scripts under `scripts/ghidra/` via
 headless Ghidra when batch behavior is needed.

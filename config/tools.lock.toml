@@ -18,5 +18,11 @@ sha512 = "831a8591fe20c8243b1dbe7d71e3244f31d1665b0804b2e825e38cbbe5ce0cafb83388
 [reccmp]
 version = "0.1.6"
 
+[msvc8_sp1]
+repository = "https://github.com/bananapizzuh/msvc80-sp1.git"
+commit = "cd5f81de4228351ed9ed5b2dc8059d57da8f554a"
+compiler_version = "14.00.50727.762"
+linker_version = "8.00.50727.762"
+
 [java]
 major = 21

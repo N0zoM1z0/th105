@@ -7,12 +7,14 @@ downloads="$tools_dir/downloads"
 ghidra_home="$tools_dir/ghidra_12.1_PUBLIC"
 mcp_root="$tools_dir/src/ghidra-mcp"
 maven_home="$tools_dir/apache-maven-3.9.16"
+msvc_root="$tools_dir/msvc80-sp1"
 
 ghidra_url="https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_12.1_build/ghidra_12.1_PUBLIC_20260513.zip"
 ghidra_sha256="aa5cbcbbf48f41ca185fce900e19592f1ade4cd5994eb6e0ede468dac8a6f302"
 maven_url="https://archive.apache.org/dist/maven/maven-3/3.9.16/binaries/apache-maven-3.9.16-bin.tar.gz"
 maven_sha256="80ffca22aed9e8b9713a232f3394fd81d7f20322df75efdb2b047dbd3e3a23bb"
 mcp_commit="0e5f0a410c652cbb90aa30a953ce69b55a5d26a7"
+msvc_commit="cd5f81de4228351ed9ed5b2dc8059d57da8f554a"
 
 for command in curl git java tar unzip uv; do
   if ! command -v "$command" >/dev/null; then
@@ -58,6 +60,12 @@ if [[ ! -d "$mcp_root/.git" ]]; then
 fi
 git -C "$mcp_root" fetch --quiet origin "$mcp_commit"
 git -C "$mcp_root" checkout --quiet --detach "$mcp_commit"
+
+if [[ ! -d "$msvc_root/.git" ]]; then
+  git clone https://github.com/bananapizzuh/msvc80-sp1.git "$msvc_root"
+fi
+git -C "$msvc_root" fetch --quiet origin "$msvc_commit"
+git -C "$msvc_root" checkout --quiet --detach "$msvc_commit"
 
 uv sync --directory "$mcp_root"
 (

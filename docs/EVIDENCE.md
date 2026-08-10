@@ -24,6 +24,9 @@ Evidence labels used by this repository:
 
 - **Observed** `0x006E6244` is a live `CBattleManagerBase`/derived pointer.
   Fighter roots are manager `+0x0C` and `+0x10`.
+- **Inferred** `0x006E6FE8` is the shared match-setup block. Callers use its
+  fields for both character IDs, stage/BGM selection, decks, and battle-scene
+  initialization; `0x00439870` returns its address.
 - **Observed** fighter positions are `+0xEC/+0xF0`, velocity `+0xF4/+0xF8`,
   facing at `+0x104`, action/sequence/pose/frame at
   `+0x13C/+0x13E/+0x140/+0x142`, and HP/max HP at `+0x174/+0x176`.

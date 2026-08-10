@@ -7,8 +7,8 @@ This project aims to reconstruct the source code of the original Japanese
 reproducible binary comparison as the acceptance criterion.
 
 The project is in its initial reverse-engineering stage. The target has been
-fingerprinted and fully imported into Ghidra; the source/build partition is not
-yet recovered and no function is currently claimed as matching.
+fingerprinted and fully imported into Ghidra. The source/build partition is not
+yet recovered; the first two small accessors have exact function-byte matches.
 
 ## Target executable
 
@@ -34,14 +34,15 @@ python3 scripts/verify-target.py
 The repository uses Ghidra 12.1, GhidraMCP, reccmp, and objdiff-style object
 comparison. The workflow borrows the proven mapping/build/report structure of
 the GensokyoClub TH06 and TH08 projects, while adding a machine-readable
-function ledger and a repository-local MCP setup for coding agents.
+function ledger and a project-scoped MCP launcher for coding agents.
 
-From the repository root, Codex discovers the `ghidra` MCP server through
-`.codex/config.toml`. Verify the complete MCP protocol path with:
+From the repository root, register the `th105-ghidra` MCP server once and verify
+the complete MCP protocol path with:
 
 ```bash
 scripts/bootstrap-tools.sh
 scripts/bootstrap-ghidra-project.sh
+scripts/register-codex-mcp.sh
 codex mcp list
 .tools/src/ghidra-mcp/.venv/bin/python scripts/check-mcp.py
 ```
@@ -67,10 +68,12 @@ python3 scripts/validate-tracking.py
 
 ## Build status
 
-The PE Rich header and linker metadata point to the Visual C++ 2005 (VC8)
-toolchain family. The exact compiler service level, flags, translation-unit
-partition, and link order are still being established, so a byte-matching build
-is not yet advertised. See [docs/BUILD_MATCHING.md](docs/BUILD_MATCHING.md).
+The PE Rich header and linker metadata point to Visual C++ 2005 (VC8), including
+42 C++ LTCG records. VC8 SP1 already reproduces the 6-byte `get_game_mode` and
+`get_match_setup` accessors exactly, but the original service level, complete
+flags, translation-unit partition, and link order are still being established.
+A matching full executable is not yet advertised. See
+[docs/BUILD_MATCHING.md](docs/BUILD_MATCHING.md).
 
 ## License
 

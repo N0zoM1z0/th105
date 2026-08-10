@@ -12,14 +12,16 @@ The connection has two processes:
 Codex MCP client ──stdio──> GhidraMCP bridge ──HTTP loopback──> headless Ghidra
 ```
 
-`.codex/config.toml` registers `scripts/mcp-ghidra.sh` as a project-local stdio
-MCP server. The script verifies that port 8089 serves the TH10.5 project,
+`scripts/register-codex-mcp.sh` registers the absolute launcher path with the
+Codex user configuration under the collision-resistant name `th105-ghidra`.
+The launcher verifies that port 8089 serves the TH10.5 project,
 starts `scripts/ghidra-mcp-server.sh` when necessary, and never binds outside
 `127.0.0.1`.
 
 ## Verify the real MCP path
 
 ```bash
+scripts/register-codex-mcp.sh
 codex mcp list
 .tools/src/ghidra-mcp/.venv/bin/python scripts/check-mcp.py
 ```
@@ -28,9 +30,24 @@ The second command performs MCP `initialize`, `tools/list`, and
 `tools/call(get_metadata)`. A direct HTTP health request alone does not count as
 this verification.
 
-Codex reads project MCP configuration at process startup. If the current Codex
-session began before `.codex/config.toml` existed, start a new session from the
-repository root; MCP servers are not hot-added to an already running tool list.
+For shells or agent sessions that started before the MCP registration existed,
+`scripts/mcp-call.py` is a small protocol-native client. It keeps several calls
+in one initialized stdio session:
+
+```bash
+.tools/src/ghidra-mcp/.venv/bin/python scripts/mcp-call.py \
+  --schema decompile_function
+.tools/src/ghidra-mcp/.venv/bin/python scripts/mcp-call.py \
+  --call get_function_by_address \
+  '{"address":"0x00439870","program":"th105.exe"}'
+```
+
+Use repeated `--call TOOL JSON` arguments for an atomic-looking agent work unit,
+then finish database edits with `save_program`. Use `--search REGEX` to discover
+tool names without dumping the full catalog.
+
+Codex reads MCP configuration at process startup. Start a new session after
+registration; MCP servers are not hot-added to an already running tool list.
 
 ## Operating rules
 
