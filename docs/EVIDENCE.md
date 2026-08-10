@@ -195,7 +195,8 @@ Evidence labels used by this repository:
   `0x006D1B6C..0x006D1B6D`, stage-boundary classifications, AABB overlap, and
   proposed-X stage-height gates. The complete implementation covers all four
   edge-pinned and both ordinary half-separation paths; its standalone VC8
-  object is 1832 bytes against the 1862-byte target and is not claimed exact.
+  object is 1853 bytes against the 1862-byte target. The remaining gap is the
+  first ordinary response's x87/stack-coloring suffix and is not claimed exact.
 - **Observed** battle-slot state methods `0x00463270` and `0x00463280` index a
   three-element character-pointer array at `+0x28` and active-byte array at
   `+0x34`. `0x00463290` swaps both fields in lockstep; `0x00464240` activates

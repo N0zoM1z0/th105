@@ -138,6 +138,18 @@ branch-local expressions changed `0x0045A4A0` from 1311 bytes to an exact
 
 For unsigned 32-bit to double conversion, VC8 may emit a high-bit correction path using a `4294967296.0` constant. Allowlist the exact constant relocation rather than changing the source to signed arithmetic.
 
+In compound x87 comparisons, algebraically equivalent relational spellings can
+select different unordered handling. The `0x0046C290` body-collision probe
+reproduces the target's `TEST AH,41h; JE` center-order branches with negated
+strict forms such as `!(left > right)` and `!(right < left)`. The latter also
+changed VC8's surrounding AABB-local coloring in the full function, so retain
+it only when the complete stack map improves. Its motion guards
+use negated inclusive forms such as `!(left <= right)` to reproduce
+`TEST AH,41h; JP`, while the opposite guard uses `!(left <= right)` with the
+operands in target load order to produce `TEST AH,1; JNE`. Treat operand order,
+negation, and the exact status-word mask as one unit; finite-value equivalence
+does not prove matching NaN behavior.
+
 ## 8. LTCG and private-ABI stop conditions
 
 Stop standalone-object tuning when evidence indicates that the remaining difference depends on:

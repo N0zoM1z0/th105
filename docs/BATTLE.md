@@ -379,10 +379,13 @@ Attack damage is resolved before fighter body separation.
   otherwise it chooses a separation direction from AABB centers (with vertical
   center as the tie-break), splits penetration by `0.5`, gates both proposed X
   moves against stage height, and computes the coupled facing-relative response.
-  The standalone VC8 object is 1832 bytes versus the 1862-byte target. Its ABI,
-  0x40-byte frame, `ESI=this`, member-helper calls, and full control-flow
-  semantics are established; remaining differences are stack-slot coloring and
-  branch layout, so the ledger truthfully keeps it `implemented`.
+  The standalone VC8 object is now 1853 bytes versus the 1862-byte target. Its
+  ABI, 0x40-byte frame, `ESI=this`, member-helper calls, edge-owner cold-block
+  placement, four pinned-edge responses, ordinary separation direction, and
+  both motion guards are established. The remaining nine-byte gap is isolated
+  to the first ordinary response suffix: VC8 keeps a different pair of x87
+  values live while coloring the two coupled-motion slots. The ledger therefore
+  truthfully keeps it `implemented`.
 
 Collision objects expose two observed box groups without proven gameplay
 names. Group A uses signed count `+0x1AF`, boxes at `+0x204`, and optional shape
