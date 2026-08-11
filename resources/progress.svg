@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="560" height="112" role="img" aria-label="TH10.5 reconstruction progress 0.60% by bytes">
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="112" role="img" aria-label="TH10.5 reconstruction progress 0.61% by bytes">
   <rect width="560" height="112" rx="8" fill="#1f2335"/>
   <text x="24" y="32" fill="#f4f4f5" font-family="sans-serif" font-size="16" font-weight="600">TH10.5 reconstruction</text>
-  <text x="536" y="32" fill="#f4f4f5" text-anchor="end" font-family="monospace" font-size="14">0.60% bytes</text>
+  <text x="536" y="32" fill="#f4f4f5" text-anchor="end" font-family="monospace" font-size="14">0.61% bytes</text>
   <rect x="24" y="48" width="440" height="14" rx="7" fill="#3b4058"/>
-  <rect x="24" y="48" width="2.63" height="14" rx="7" fill="#e46c8c"/>
-  <text x="24" y="88" fill="#c8cad2" font-family="sans-serif" font-size="13">138 / 4,808 functions · 15,746 / 2,637,624 function bytes</text>
+  <rect x="24" y="48" width="2.69" height="14" rx="7" fill="#e46c8c"/>
+  <text x="24" y="88" fill="#c8cad2" font-family="sans-serif" font-size="13">139 / 4,808 functions · 16,113 / 2,637,624 function bytes</text>
 </svg>

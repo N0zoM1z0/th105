@@ -236,6 +236,9 @@ caller,callee,required_status,evidence
 0x0058B640,0x0058B3A0,identified,IDA Pro character-specific pool-acquire call
 0x0058B840,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
 0x0058B840,0x0058B640,identified,IDA Pro direct acquire-and-link call
+0x0058BA30,0x00434390,matching,Exact post-action-201 boundary classifier call
+0x0058BA30,0x004631E0,implemented,Exact relocated phase-initializer call sites in standalone object comparison
+0x0058BA30,0x00493580,implemented,Exact relocated command-threshold lookup call sites in standalone object comparison
 0x0058BBA0,0x0045BBB0,matching,IDA Pro Yukari spell sequence availability gates
 0x0058BBA0,0x004631E0,implemented,IDA Pro Yukari action-transition call cluster
 0x0058BBA0,0x00493C90,implemented,IDA Pro Yukari front-record selector call

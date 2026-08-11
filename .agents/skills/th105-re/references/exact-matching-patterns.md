@@ -650,6 +650,29 @@ promotion, producing 134 bytes instead of 136. Keep it `compiles` until a
 truthful source shape recovers the target's final `OR AL,DL; MOVZX` chain; do
 not add fake volatile storage or inline assembly merely to force two bytes.
 
+## P20: Compare byte-domain results before integral promotion
+
+`0x0058BA30` reuses the shared mirrored action-`200/201` gate and adds a
+Yukari-only byte comparison after action `201`. The boundary classifier's
+declared return is `signed char`, while facing is stored as `unsigned char`.
+A direct C++ comparison promotes both operands and makes VC8 emit six extra
+bytes (`MOVZX`, `MOVSX`, `CMP reg,reg`). The target instead compares the raw
+bytes with `CMP AL,[this+0x104]`.
+
+Express the intended byte-domain comparison explicitly:
+
+```cpp
+if (static_cast<unsigned char>(classify_fighter_x_boundary()) ==
+    facing_104) {
+    call_fighter_vslot(this, 3, 4);
+}
+```
+
+This removes only the unobserved promotions and produces the exact 367-byte
+function. Apply this pattern only when the target proves a byte compare and
+the conversion preserves the intended two's-complement byte value; it is not
+a general license to erase signedness.
+
 ## Hard-function strategy
 
 Every reconstruction wave should include at least one function whose completion

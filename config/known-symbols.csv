@@ -279,6 +279,7 @@ address,name,module,confidence,evidence
 0x0053B040,Youmu_handle_input_and_select_action,characters,observed,Youmu fighter vtable slot +0x50 and grounded spell skill and normal action groups
 0x00555D90,Remilia_handle_input_and_select_action,characters,observed,Remilia fighter vtable slot +0x50 and grounded spell skill and normal action groups
 0x0056D8E0,Yuyuko_handle_input_and_select_action,characters,observed,Yuyuko fighter vtable slot +0x50 and grounded spell skill and normal action groups
+0x0058BA30,Yukari_try_dispatch_mirrored_gate_actions_200_201,characters,observed,Exact 367-byte Yukari 200 and 201 selector with post-action boundary callback
 0x0058BBA0,Yukari_handle_input_and_select_action,characters,observed,Yukari fighter vtable slot +0x50 and grounded spell skill and normal action groups
 0x005AE470,Suika_handle_input_and_select_action,characters,observed,Suika fighter vtable slot +0x50 and grounded spell skill and normal action groups
 0x005D63F0,Udonge_handle_input_and_select_action,characters,observed,Udonge fighter vtable slot +0x50 and grounded spell skill and normal action groups

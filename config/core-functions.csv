@@ -196,7 +196,7 @@ address,lane,priority,notes
 0x0058B3A0,character-owned-object,1,Yukari object-pool acquire semantics
 0x0058B640,character-owned-object,1,Yukari object acquire and tracking-list insertion source
 0x0058B840,character-owned-object,1,Yukari owned-object spawn contract
-0x0058BA30,character-command,1,Yukari character-specific 200 and 201 selector leaf
+0x0058BA30,character-command,1,Yukari character-specific 200 and 201 selector exact source
 0x0058BBA0,character-command,1,Yukari spell skill and normal input dispatcher
 0x005ABDF0,character-command,2,Suika sequence-driven action lifecycle
 0x005ACC10,character-command,1,Suika action-entry lifecycle root

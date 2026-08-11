@@ -280,6 +280,14 @@ clusters; Yukari has both positive-derived and zero-gated trees. The observed
 fields remain neutral `command_bits_728`, derived gates, and family latches
 until action implementations or runtime evidence justify gameplay names.
 
+Yukari's `0x0058BA30` is now an exact 367-byte character-specific source
+unit. It preserves the shared mirrored action-`200/201` gates, then after
+committing action `201` compares the exact stage-boundary classifier result
+with facing and conditionally calls raw vslot `+0x0C` with value `4`. This is
+the first extracted role-specific branch from the mapped roster dispatchers;
+the common `0x004937D0` version remains the implementation used by the other
+fourteen fighters.
+
 The third wave takes the pilot map beyond the requested ten-character mark:
 
 | Fighter | Dispatcher size | Front-record spell mapping | `0x004631E0` edges | Next character-specific roots |
