@@ -407,11 +407,18 @@ front record through the player-indexed context, optionally updates the score
 record using peer key `+0x330`, self key `+0x330`, record id, and statistic
 candidate `+0x64C`, advances the sequence, publishes the next record's
 `+0x1E/+0x3C` values, and clears `+0x655/+0x64C`. The source emits 282/346
-bytes; strict comparison remains fail-closed on the external
-`g_info_manager` relocation. `0x0045C690` selects a record, optionally prepares
+bytes. Its external `g_info_manager` reference is now accepted through a
+strict direct-address relocation mapping, so comparison reaches the remaining
+code-shape difference. `0x0045C690` selects a record, optionally prepares
 its resource at `+0x44`, transfers the observed two-short sequence record, and
 publishes pending state. It emits 193/259 bytes; the remaining difference is
 the target's EH-bearing `0x94`-byte sprite local and register schedule.
+
+The exact finalize caller also resolves `0x0042C060`: outside excluded game
+and session modes, it scans the selected `ScoreData+0x198` range of 0x18-byte
+records, matches keys at `+0x00/+0x08`, and increments the sequence-result
+counter at `+0x0C`. The adjacent `0x0042C100` uses the same layout to increment
+`+0x10` and update the signed high-water field at `+0x14`.
 
 `0x0045BBB0` is now an exact 118-byte shared front-sequence readiness gate.
 It first requires signed available count `+0x55A` to exceed the requested

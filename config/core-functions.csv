@@ -34,6 +34,9 @@ address,lane,priority,notes
 0x00425CB0,battle-controller,2,Roster metadata copy reached by exact roster preparation
 0x00425CD0,battle-phase,2,Post-update battle camera or global-view transform pass
 0x00425F10,battle-phase,2,Second post-update global-state pass and round-reset dependency
+0x00426410,battle-controller,2,Global round-reset synchronization operation
+0x00426440,battle-controller,2,Four-position fighter-pair metadata publication
+0x00427150,battle-controller,2,Paired battle-input reset
 0x00427190,battle-controller,2,Round-state input or session setup dependency
 0x00427680,battle-controller,2,Exact synchronized input-state availability test used by the controller input gate
 0x00427A50,battle-controller,2,Synchronized 16-bit control queue consume helper
@@ -43,6 +46,7 @@ address,lane,priority,notes
 0x0042AAB0,battle-controller,1,Shared setup dependency reached by controller initialization and roster preparation
 0x0042ABF0,battle-controller,1,Shared setup dependency reached by controller initialization and roster preparation
 0x0042B5D0,battle-controller,2,Session character-input configuration reached by exact setup
+0x0042C060,score,2,Score result tuple lookup and tally reached by exact sequence finalization
 0x0042C100,score,1,Observed record count and high-water update
 0x0042D240,spell-data,2,Recursive SpellTree subtree destruction with owning-string cleanup
 0x00430C30,spell-runtime,3,Exact checked front access for a short deque-like container
@@ -72,6 +76,7 @@ address,lane,priority,notes
 0x00433CC0,character-command,1,Exact shared effect emission forwarding boundary
 0x00434390,geometry,3,Exact fighter X-boundary classification used by body separation
 0x004343D0,geometry,3,Exact proposed-X stage-height gate used by body separation
+0x00434780,battle-controller,2,Embedded BattleController+0x04 mode selection
 0x00434800,geometry,3,Exact stage-surface height lookup
 0x00434860,hit-resolution,3,Exact stage-surface fighter gate
 0x004397F0,battle-controller,2,Menu initial-press gate used by the central frame dispatcher
@@ -87,19 +92,26 @@ address,lane,priority,notes
 0x00439D10,battle-controller,2,Menu object installation thunk used by the scene-exit path
 0x00439DC0,hit-resolution,3,Exact indexed event dispatch
 0x0043A290,battle-controller,2,UI selection-state change gate used by the central frame dispatcher
+0x0043A4B0,battle-controller,2,Asynchronous scene-load transition helper
 0x0043ABE0,spell-data,2,Character key to path component contract
 0x0043AD10,battle-controller,2,Character-to-stage selector reached by exact fallback setup
 0x0043AD60,battle-controller,2,Character-to-BGM selector reached by exact fallback setup
 0x0043B6D0,battle-controller,2,BGM playback boundary reached by exact fallback setup
 0x0043F030,battle-controller,1,Shared controller service reached by round initialization and frame dispatch
+0x00443230,battle-controller,2,Continue menu constructor reached by exact transition
+0x004434B0,battle-controller,2,End menu constructor reached by exact transition
 0x004454E0,character-owned-object,2,Exact four-byte VC8 deque append used by every fighter parent-link path
 0x004531A0,battle-controller,2,Round outcome tally publication reached by exact resolution
 0x00453B70,spell-runtime,2,Copy 0x94-byte sprite subobject inside a fighter sequence slot
 0x00454890,collision-phase,3,Verified VC8 std list size helper
+0x00456870,battle-controller,2,Embedded battle-HUD round reset
+0x00458CC0,battle-controller,2,Post-Continue scenario-step predicate
 0x00458CD0,battle-controller,2,Opaque phase-block tail used by the exact active-simulation wrapper for phases zero five and six
 0x00458D10,battle-controller,1,Shared fighter setup dependency reached by controller initialization and roster preparation
+0x00458D90,battle-controller,2,Signed scenario transition selector
 0x00458E80,battle-controller,1,Shared fighter reset dependency reached by scene transition and round reset
 0x00458F10,battle-controller,2,Fighter setup dependency reached by controller initialization
+0x00459170,battle-controller,2,Checked BattlePhaseBlock pointer-list assignment
 0x004591D0,battle-controller,2,Fighter state dependency reached by controller initialization
 0x00459860,battle-phase,2,Exact fighter position integration and stage clamp
 0x00459C90,hit-resolution,3,Exact counter-step consumption and indexed callback
@@ -129,6 +141,7 @@ address,lane,priority,notes
 0x0045CD90,hit-resolution,3,Exact positive-y and state-window gate
 0x0045CDD0,battle-phase,2,Fighter transient status and embedded countdown continuity
 0x0045CF00,battle-phase,2,Fighter timer decrement cleanup and tail contract
+0x0045E010,battle-controller,2,Per-fighter transition counter reset
 0x0045E040,battle-controller,2,Paired fighter roster reset reached by exact roster preparation
 0x0045E080,fighter-init,2,Per-fighter indexed resource initialization boundary
 0x0045E3A0,character-owned-object,1,Shared AttackObject constructor and Character or CharacterObject base contract
@@ -155,9 +168,11 @@ address,lane,priority,notes
 0x00464240,battle-controller,2,Fighter slot setup finish reached by exact roster preparation
 0x00464270,battle-controller,2,MatchSetup-side fighter slot initialization reached by exact setup
 0x00464320,fighter-init,2,Final character resource callback boundary
+0x004643F0,spell-runtime,2,Embedded fighter sequence-effect reset reached by exact finalization
 0x00465B00,battle-phase,2,Object-manager list vslot +0x10 pass with global pre/post calls
 0x00465B70,battle-phase,2,Object-manager list vslot +0x0C pass
 0x00465F70,battle-controller,2,Controller-owned manager setup dependency
+0x004694E0,battle-controller,2,Post-renderer fighter-pair state reset
 0x00469E40,hit-resolution,3,Exact indexed info-manager scratch reset
 0x0046A490,battle-controller,2,Controller fighter-vector setup dependency
 0x0046A5B0,battle-phase,3,Exact global active-character phase wrapper
@@ -201,6 +216,8 @@ address,lane,priority,notes
 0x0046D160,collision-phase,1,Hard family 2 against family 1 checked-list pass
 0x0046D370,collision-phase,1,Hard family 1 same-list and cross-list clash pass
 0x0046D620,collision-phase,1,Hard six-list collision and deferred-result orchestration
+0x0046E040,battle-controller,2,Phase-selected transition effect publication
+0x0046E130,battle-controller,2,Transition position publication
 0x0046FE80,battle-controller,1,Battle setup and transition phase root
 0x00470060,battle-controller,1,Roster and match setup phase root
 0x004701C0,battle-controller,1,Round-state initialization phase root

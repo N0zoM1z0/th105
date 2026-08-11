@@ -633,3 +633,117 @@ rel32_targets = [
   "?update_after_sequence_consume_4712b0@PostSequenceContextView@th105@@QAEXXZ=0x004712B0",
   "?add_clamped_counts_4531a0@PhaseTallyView@th105@@QAEXHHH@Z=0x004531A0",
 ]
+
+[units.fighter-sequence-finalize]
+kind = "probe"
+source = "src/battle/FighterSequenceFinalize.cpp"
+object = "build/match-units/FighterSequenceFinalize.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Focused fighter spell-sequence outcome publication and score/effect finalization helper."
+
+[[units.fighter-sequence-finalize.functions]]
+address = "0x0045BB10"
+symbol_base = "finalize_sequence_entry_45bb10"
+rel32_targets = [
+  "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x0045B9E0",
+  "?get_score_data@th105@@YAPAUScoreData@1@XZ=0x00439B40",
+  "?record_sequence_result_42c060@ScoreData@th105@@QAEXHHH@Z=0x0042C060",
+  "FighterSequenceEffectView_finalize_4643f0=0x004643F0",
+  "?invoke_indexed_record@PlayerIndexedCallbackView@th105@@QAEXHH@Z=0x00431860",
+]
+
+[units.score-observations]
+kind = "probe"
+source = "src/config/ScoreObservations.cpp"
+object = "build/match-units/ScoreObservations.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Focused shared 0x18-byte score-record scan and tally helpers; natural source excludes target checked-iterator validation expansion."
+
+[[units.score-observations.functions]]
+address = "0x0042C060"
+symbol_base = "record_sequence_result_42c060"
+rel32_targets = [
+  "?get_game_mode@th105@@YAIXZ=0x00439860",
+  "?get_session_setup_option@th105@@YAIXZ=0x00439C90",
+]
+
+[[units.score-observations.functions]]
+address = "0x0042C100"
+symbol_base = "update_observed_record_statistics"
+rel32_targets = [
+  "?get_game_mode@th105@@YAIXZ=0x00439860",
+  "?get_session_setup_option@th105@@YAIXZ=0x00439C90",
+]
+
+[units.battle-pair-initialization]
+kind = "probe"
+source = "src/battle/BattlePairInitialization.cpp"
+object = "build/match-units/BattlePairInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Focused two-fighter initialization and global battle-state reset; exact scheduling requires COFF globals for 0x006E6238 and 0x006E4E38."
+
+[[units.battle-pair-initialization.functions]]
+address = "0x0046A490"
+symbol_base = "initialize_battle_fighter_pair_46a490"
+rel32_targets = [
+  "FighterPhaseContextPairView_get_slot_character_463270=0x00463270",
+  "Fighter_reset_for_roster_45e040=0x0045E040",
+  "FighterPhaseContextPairView_finish_slot_464240=0x00464240",
+  "GlobalBattlePairStateView_initialize_pair_metadata_426440=0x00426440",
+  "CollisionContext_reset_collision_extents=0x0046ACB0",
+  "PairPostResetView_reset_pair_state_4694e0=0x004694E0",
+  "PairEmbeddedModeView_select_pair_mode_434780=0x00434780",
+  "PairInputStateView_reset_pair_input_427150=0x00427150",
+]
+
+[units.battle-round-transition]
+kind = "probe"
+source = "src/battle/BattleRoundTransition.cpp"
+object = "build/match-units/BattleRoundTransition.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Exact seven-way virtual battle round transition including native String28 ownership menu allocation and VC8 EH metadata."
+
+[[units.battle-round-transition.functions]]
+address = "0x00470500"
+symbol_base = "dispatch_round_phase_34"
+rel32_targets = [
+  "FighterTransitionView_reset_transition_counters_45e010=0x0045E010",
+  "PostSequenceTransitionView_publish_transition_effect_46e040=0x0046E040",
+  "PostSequenceTransitionView_publish_transition_effect_at_46e130=0x0046E130",
+  "ScenarioTransitionView_consume_transition_code_458d90=0x00458D90",
+  "?start_async_engine_scene_load@th105@@YAEH@Z=0x0043A4B0",
+  "??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@PBD@Z=0x00401DE0",
+  "ScenarioTransitionView_dispatch_owned_string_458e80=0x00458E80",
+  "operator_new=0x0067B50C",
+  "ContinueMenu_ctor=0x00443230",
+  "EndMenu_ctor=0x004434B0",
+  "?install_menu_object_thunk@th105@@YAXPAX@Z=0x00439D10",
+]
+
+[units.battle-round-reset]
+kind = "probe"
+source = "src/battle/BattleRoundReset.cpp"
+object = "build/match-units/BattleRoundReset.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Truthful round reset and checked std::list copy; 290-byte object matches target size but retains an ECX/EDI scheduling mismatch."
+
+[[units.battle-round-reset.functions]]
+address = "0x00470780"
+symbol_base = "reset_battle_round_470780"
+rel32_targets = [
+  "set_session_setup_option=0x00439CA0",
+  "GlobalBattleResetStateView_update_second_425f10=0x00425F10",
+  "GlobalBattleResetStateView_synchronize_426410=0x00426410",
+  "?$_Assign=0x00459170",
+  "HudState_reset_456870=0x00456870",
+  "CollisionContext_reset_collision_extents=0x0046ACB0",
+  "memset=0x0067BB80",
+  "assign=0x004021C0",
+  "dispatch_scenario_owned_string=0x00458E80",
+  "BattlePhaseRunView_run_458cc0=0x00458CC0",
+]

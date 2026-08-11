@@ -49,7 +49,7 @@ __real@4074000000000000,0x006ACEC8,0000000000007440,0x0,target double 320.0 byte
 __real@407e000000000000,0x006ACEB8,0000000000007e40,0x0,target double 480.0 bytes verified for fighter initial horizontal position,literal
 ?stage_surface_heights@@3PAMA,0x006E4E38,00000000,0x0;0x13fc,target table base plus first raw and last PE-zero-filled floats verified from stage-height lookup,literal
 ?g_orientation_cosine_table@th105@@3PAMA,0x006E8E58,00000000,0x0;0x383c,target 3600-float BSS table base and last zero-filled entry verified before runtime initialization,literal
-?g_info_manager@th105@@3PAUInfoManager@1@A,0x006E6248,00000000,0x0,target BSS pointer and zero-filled object symbol verified for hit-exchange scratch reset,literal
+?g_info_manager@th105@@3PAUInfoManager@1@A,0x006E6248,00000000,0x0,target BSS pointer direct loads verified in hit-exchange reset and fighter sequence finalization,address
 ?g_effect_sink@th105@@3PAUEffectSink@1@A,0x006E6250,00000000,0x0,target BSS pointer and zero-filled effect-sink symbol verified from two virtual dispatch wrappers,literal
 ?g_fighter_phase_context@th105@@3PAUFighterPhaseContext@1@A,0x006E623C,00000000,0x0,target BSS pointer and zero-filled fighter-phase context verified from exact phase wrappers,literal
 ?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A,0x006E6240,00000000,0x0,target BSS pointer and zero-filled battle-object manager verified from shared battle phase,literal
@@ -205,3 +205,11 @@ __ehhandler$??0?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@QAE@XZ,0x006
 ??_7?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@6B@,0x006B24F4,d0046300,0x0,target RTTI-owned Iku TObjectManagerBase vtable and deleting-destructor slot,address
 __ehhandler$??0?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@QAE@XZ,0x006A95AB,8b5424088d42f48b,0x0,target VC8 Tenshi TObjectManagerBase constructor EH handler entry bytes,address
 ??_7?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@6B@,0x006B275C,60a86400,0x0,target RTTI-owned Tenshi TObjectManagerBase vtable and deleting-destructor slot,address
+?g_pair_state_6e6238@th105@@3HA,0x006E6238,00000000,0x0,PE virtual zero-fill and exact 0x0046A490 direct zero store,address
+?g_stage_surface_heights_6e4e38@th105@@3PAMA,0x006E4E38,00000000,0x0,PE virtual zero-fill table base and exact 0x0046A490 memset destination,address
+__ehhandler$?dispatch_round_phase_34@BattleController@th105@@UAEXH@Z,0x006A8926,8b542408,0x0,target VC8 dispatch-round-phase EH handler entry and exact 0x00470500 probe,address
+__real@43f00000,0x006AC578,0000f043,0x0,target float 480.0 used by exact battle round transition,literal
+?g_battle_transition_mode@th105@@3EA,0x006E4E2F,00,0x0,target transition mode byte direct load at exact 0x00470500,address
+??_C@_04IJKGBDBE@Lose?$AA@,0x006AF8E4,4c6f736500,0x0,target Lose transition string used by exact 0x00470500,literal
+??_C@_03DEBJKBHO@Win?$AA@,0x006AF8E0,57696e00,0x0,target Win transition string used by exact 0x00470500,literal
+??_C@_08LJHDLOLO@Continue?$AA@,0x006AF8EC,436f6e74696e756500,0x0,target Continue string bytes at sole 0x00470780 construction site,literal

@@ -39,8 +39,8 @@ BattleController [observed prefix +0x00..+0xA7]
 │   └── 0x0045BC30 consume spell sequence entry [implemented]
 ├── 0x004704D0 active simulation wrapper [exact]
 │   └── 0x0046B4F0 shared phase plus info callback [implemented]
-├── 0x00470500 scene/round transition phase [decompiled]
-├── 0x00470780 round reset phase [decompiled]
+├── 0x00470500 virtual scene/round transition phase [exact]
+├── 0x00470780 round reset phase [implemented, 290/290]
 └── 0x004708B0 synchronized input gate [implemented, 127/129]
 
 Controller direct dependency layer [mixed breadth/exact]
@@ -52,7 +52,7 @@ Controller direct dependency layer [mixed breadth/exact]
 ├── 0x0043F030 CMenuBattle mode-specific pause menu construction
 ├── 0x00462E20 fighter scripted-input state update
 ├── 0x00465F70 render/list reset plus event signal
-└── 0x0046A490 fighter-pair and scene initialization
+└── 0x0046A490 fighter-pair and scene initialization [exact]
 
 Active simulation frame
 ├── manager virtual +0x40
@@ -157,6 +157,13 @@ shared virtual slot `+0x34` with phase 3 or 4, and updates controller
 `+0x94/+0x98/+0x9C`. This is why Spell-card and Battle simulation cannot be
 reconstructed as isolated systems.
 
+`0x0045BB10` is exact at 154/154. For a nonzero outcome it copies the pending
+statistic candidate, records the peer/self/record tuple in `ScoreData`, and
+resets the embedded sequence effect at fighter `+0x3D0`; every active sequence
+then publishes its front record and outcome through the player-indexed display
+context. Inlining both checked front-entry expressions is required for the
+target VC8 right-to-left argument evaluation and register schedule.
+
 `0x00470300` is exact at 90/90. It sets fighter byte `+0x4E9` to `2`, updates
 the observed byte global at `0x006E4E2E` on one branch, and emits effect 64,
 66, or 67 from the fighter-facing byte at `+0x104`, selected by fighter
@@ -213,8 +220,29 @@ The ledger remains authoritative for all comparisons:
 
 ## Breadth-first implementation frontier
 
-1. Reconstruct the remaining transition/reset bodies `0x00470500/0x00470780`
-   and the shared fighter-pair initializer `0x0046A490` in bounded units.
+`0x0046A490` is exact at 279/279. It loads both fighter slots, performs paired
+roster and vslot resets, publishes four position pointers, clears collision and
+global scene state, resets renderer/post/input services, and dispatches phase
+zero. The otherwise unused `BattleController+0x04` thiscall receiver for
+`0x00434780` and COFF-global forms of `0x006E6238/0x006E4E38` are required for
+the exact VC8 EBX/EDI schedule.
+
+`0x00470500` is exact at 602/602 and corrects an earlier model: it is the
+existing virtual `BattleController::dispatch_round_phase_34(int)` at vslot
+`+0x34`, not a second nonvirtual transition method. Its seven cases cover
+state clearing, fighter transition reset, effects, scenario selection, async
+scene loading, owned `String28` Win/Lose dispatch, and Continue/End menu
+allocation. Native string ownership and `/GS` EH metadata are part of the
+accepted match.
+
+`0x00470780` now has complete 290-byte source and a 290-byte VC8 object. The
+strict first mismatch is `+0x3D`: target retains the phase block in EDI after
+first deriving list `+0x598` through ECX, while the standalone object derives
+destination `+0x5A4` first. This remains `implemented`, with checked-STL
+register shaping explicitly isolated from semantic completeness.
+
+1. Tune the round reset `0x00470780` only through truthful checked-list source
+   shaping or later linked/LTCG evidence; its behavior and size are complete.
 2. Tune the synchronized control pair `0x00427AC0/0x0042A370` after their queue
    container layout is shared; retain the explicit register-allocation blocker.
 3. Preserve the already source-complete collision/hit algorithms while adding

@@ -1023,3 +1023,40 @@ Next bounded experiment: ...
 ```
 
 That handoff is more useful than a long list of untracked source variants.
+
+### P34. Inline dependent call arguments to recover VC8 right-to-left scheduling
+
+The exact `0x0045BB10` source initially used local variables for a checked
+sequence record and a computed player-indexed receiver. It was semantically
+correct but emitted 155 bytes against 154: VC8 loaded the peer key before the
+self key and used a six-byte absolute load through ECX. Writing the checked
+record expression directly as the last argument made VC8 evaluate it first,
+retain the record in EAX/ECX, select EAX for the absolute pointer load, and
+produce the exact 154-byte register schedule. When a call cascade is already
+semantically complete, test faithful expression nesting before adding manual
+temporaries.
+
+### P35. Preserve unused embedded `this` receivers when they shape registers
+
+`0x0046A490` calls `0x00434780` with `ECX=BattleController+0x04`, even though
+the callee does not consume ECX. Modeling the helper as a free function loses
+that receiver and changes the caller's EBX/EDI schedule. A truthful empty
+receiver contract on an embedded view produced the exact 279-byte function.
+Do not erase a thiscall receiver merely because its current body ignores it.
+
+### P36. Native owning strings can be required for the target EH island
+
+The exact 602-byte `0x00470500` needs native `String28("Win")` and
+`String28("Lose")` temporaries passed by value, `/GS`, and the C++-linked menu
+installation thunk. These choices generate the target EH state transitions,
+two delete funclets, local switch table, and security handler. Replacing the
+strings with raw pointers can preserve apparent behavior while deleting the
+target's ownership and exception topology.
+
+### P37. Equal total size is not evidence of exact checked-STL scheduling
+
+The complete `0x00470780` source and target are both 290 bytes, yet differ from
+`+0x3D` because VC8 derives the two adjacent `std::list<void *>` receivers in a
+different ECX/EDI order. Record the exact prefix, first mismatch, and register
+schedule, and keep the function `implemented`; never use padding or fake
+layouts to turn equal size into a matching claim.

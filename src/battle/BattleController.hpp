@@ -115,7 +115,6 @@ struct BattleController {
     void publish_fighter_terminal_effect_470300(Fighter *fighter);
     void advance_round_resolution_470360();
     int run_active_simulation_frame_4704d0();
-    int transition_battle_scene_470500(int argument);
     int reset_battle_round_470780();
     int dispatch_battle_state_frame_470940();
     void initialize_battle_fighter_pair_46a490();

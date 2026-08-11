@@ -1,4 +1,9 @@
 caller,callee,required_status,evidence
+0x0045BB10,0x0045B9E0,implemented,exact checked front sequence-entry access
+0x0045BB10,0x00439B40,matching,exact score-data singleton access
+0x0045BB10,0x0042C060,decompiled,exact score-result key and record publication
+0x0045BB10,0x004643F0,decompiled,exact embedded Fighter+0x3D0 effect reset
+0x0045BB10,0x00431860,decompiled,exact player-indexed spell display callback
 0x00432500,0x00404FA0,identified,IDA Pro release each image handle before container reset
 0x00432500,0x004132D0,decompiled,IDA Pro DwordDeque4 storage clear
 0x00432500,0x0042D240,decompiled,IDA Pro recursive SpellTree subtree destruction
@@ -217,11 +222,29 @@ caller,callee,required_status,evidence
 0x00470360,0x004712B0,identified,exact post-sequence update
 0x004704D0,0x0046B4F0,implemented,IDA Pro active simulation frame wrapper
 0x004704D0,0x00458CD0,identified,strict exact active simulation wrapper phase-dependent tail
-0x00470500,0x0043F030,decompiled,IDA Pro direct CMenuBattle construction dependency
 0x00470500,0x00458E80,decompiled,IDA Pro direct owned scenario-string dispatch dependency
+0x00470500,0x0045E010,identified,exact per-fighter transition counter reset
+0x00470500,0x0046E040,identified,exact phase-selected transition effect publication
+0x00470500,0x0046E130,identified,exact 480.0 transition position publication
+0x00470500,0x00458D90,identified,exact signed scenario transition selector
+0x00470500,0x0043A4B0,identified,exact asynchronous engine scene-load branch
+0x00470500,0x00443230,identified,exact ContinueMenu allocation and constructor branch
+0x00470500,0x004434B0,identified,exact EndMenu allocation and constructor branch
 0x00470780,0x00458E80,decompiled,IDA Pro direct owned scenario-string dispatch dependency
 0x00470780,0x00425F10,identified,IDA Pro round reset second global-state pass
+0x00470780,0x00426410,identified,exact round reset global-state synchronization
+0x00470780,0x00459170,identified,VC8 checked source-to-destination list assignment
+0x00470780,0x00456870,identified,exact BattlePhaseBlock+0x68 reset
+0x00470780,0x00458CC0,identified,exact post-Continue scenario run loop
 0x00470780,0x0046ACB0,matching,IDA Pro round reset collision-extent reset
+0x0046A490,0x00463270,matching,exact fighter-slot loads for both sides
+0x0046A490,0x0045E040,identified,exact paired roster reset calls
+0x0046A490,0x00464240,identified,exact fighter-slot finish calls
+0x0046A490,0x00426440,identified,exact four-position pair metadata publication
+0x0046A490,0x0046ACB0,matching,exact collision extent reset
+0x0046A490,0x004694E0,identified,exact post-renderer pair reset
+0x0046A490,0x00434780,identified,exact embedded mode selection
+0x0046A490,0x00427150,identified,exact paired input reset
 0x004708B0,0x0040A710,matching,IDA Pro synchronized input critical-section entry
 0x004708B0,0x0040A720,matching,IDA Pro synchronized input critical-section exit
 0x004708B0,0x00427680,matching,exact synchronized input-state availability call

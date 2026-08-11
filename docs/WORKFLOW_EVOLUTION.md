@@ -244,6 +244,19 @@ and clear source emits 122 bytes and matches 120, differing only in the token
 load/push register. A comparator run against the stale 112 bytes would have
 silently omitted the node-freeing tail.
 
+The following fan-out is the strongest evidence so far for breadth-first plus
+exact workers. Shared Fighter/ScoreData/BattleController layouts made
+`0x0045BB10` exact at 154/154 after one expression-order adjustment,
+`0x0046A490` exact at 279/279 after preserving an otherwise unused embedded
+thiscall receiver, and the EH-bearing virtual `0x00470500` exact at 602/602.
+The neighboring `0x00470780` also reached complete source and an equal-size
+290-byte object; its only remaining issue is a precisely recorded checked-list
+ECX/EDI schedule at `+0x3D`. In the same wave, fifteen direct dependencies were
+promoted from inventory into named core contracts. This is the desired split:
+the coordinator expands and stabilizes the graph, parallel workers close
+bounded byte deltas, and non-exact results return a reusable blocker instead of
+inflated progress.
+
 ## Operational loop
 
 ```bash

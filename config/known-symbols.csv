@@ -1,4 +1,14 @@
 address,name,module,confidence,evidence
+0x00426440,GlobalBattlePairState_initialize_pair_metadata,battle,observed,Exact 0x0046A490 receiver and four fighter-position arguments
+0x00427150,PairInputState_reset,battle,observed,Exact 0x0046A490 global receiver 0x006E4E28 and direct call
+0x00434780,PairEmbeddedMode_select,battle,observed,Exact 0x0046A490 BattleController+0x04 receiver mode 16 publish 1
+0x004694E0,PairPostReset_reset_state,battle,observed,Exact 0x0046A490 global receiver 0x006E624C and direct call
+0x0046A490,initialize_battle_fighter_pair,battle,exact,python3 scripts/build.py --unit battle-pair-initialization --compare --json exact 279/279
+0x00470500,BattleController_dispatch_round_phase_34,battle,exact,python3 scripts/build.py --unit battle-round-transition --compare --json exact 602/602
+0x00470780,battle_reset_round_470780,battle,observed,Complete 290-byte source and strict first mismatch +0x3D in checked-list scheduling
+0x0042C060,ScoreData_record_sequence_result_42c060,battle,observed,IDA Pro MCP decompile/disassembly and exact 0x0045BB10 caller
+0x0045BB10,Fighter_finalize_sequence_entry,battle,exact,python3 scripts/build.py --unit fighter-sequence-finalize --compare --json exact 154/154
+0x004643F0,FighterSequenceEffect_reset_and_set_color,battle,observed,IDA Pro MCP decompile/disassembly and exact Fighter+0x3D0 receiver
 0x004010C0,RenderModeManager_prepare_frame,render,observed,docs/BATTLE.md shared battle phase and docs/UI_FRAMEWORK.md scenario render preparation
 0x00401B10,load_wave_handle,audio,observed,IDA Pro 0x0045E080 direct call stores returned global-manager handle in the fighter table
 0x00401D70,dispatch_wave_handle,audio,observed,docs/BATTLE.md opaque CHandleManager wave-handle dispatch reached by indexed battle events
