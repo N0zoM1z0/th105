@@ -172,6 +172,28 @@ def coff_short_name(name: str) -> str:
     return name.split("@", 1)[0]
 
 
+def relocation_target_key(name: str, targets: dict[str, int]) -> str:
+    """Resolve a COFF REL32 symbol without collapsing an explicit mapping.
+
+    Different template specializations commonly share the same human-readable
+    short name (for example, ``std::vector<T>::push_back``).  An exact decorated
+    mapping must therefore take precedence over the compatibility aliases used
+    by older match units.
+    """
+    if name in targets:
+        return name
+
+    short_name = coff_short_name(name)
+    if short_name in targets:
+        return short_name
+
+    if name.startswith("?"):
+        unqualified_name = name[1:].split("@", 1)[0]
+        if unqualified_name in targets:
+            return unqualified_name
+    return short_name
+
+
 def is_function_symbol(name: str, symbol_base: str) -> bool:
     if name == symbol_base or name.startswith(f"?{symbol_base}@"):
         return True
@@ -441,15 +463,7 @@ def coff_symbol_bytes(
             raise ValueError(
                 f"REL32 at +{field_offset:#x} is not an external CALL/JMP"
             )
-        target_name = coff_short_name(target_symbol_name)
-        if target_name not in targets and target_symbol_name.startswith("?"):
-            # Existing ledger aliases commonly use the unqualified source
-            # member name, while newer rows may use Class_member. Prefer the
-            # class-qualified spelling above, but retain the proven legacy
-            # fallback for ordinary decorated member functions.
-            unqualified_name = target_symbol_name[1:].split("@", 1)[0]
-            if unqualified_name in targets:
-                target_name = unqualified_name
+        target_name = relocation_target_key(target_symbol_name, targets)
         if target_name not in targets:
             locality = (
                 "local" if int(target_symbol["section_number"]) != 0 else "external"

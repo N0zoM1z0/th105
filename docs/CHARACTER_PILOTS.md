@@ -163,8 +163,14 @@ generation words at `+0x14`, checked free-slot list at `+0x24`, counter at
 `+0x30`, and a `CriticalSectionWrapper` at `+0x34`. The wrapper's enter and
 leave methods at `0x0040A710/20` are exact 11-byte matches; the four checked
 container helpers are fully decompiled but remain VC8 STL probe candidates.
-All fourteen roster rows remain `decompiled`; no unresolved per-character
-behavior blocks a shared pool source template.
+The Reimu canonical source now uses the real checked STL containers and a
+non-primary tail base.  Its 514-byte standalone VC8 probe is exact through the
+entire fresh path; the target's remaining five bytes come from keeping the
+handle in `EBX` while spilling the checked-list iterator in the reuse path.
+That register/spill choice is deferred to the linked-LTCG island.  The exact
+target clone manifest supports an audited fan-out, so the fourteen non-Sakuya
+pool rows are now `implemented`.  Sakuya retains its older independent object
+view and remains a separate integration task.
 
 The shared constructor is now bounded at `0x004927D0` (78 bytes) with exactly
 thirty roster-pool call sites, once from each fresh path and once from each

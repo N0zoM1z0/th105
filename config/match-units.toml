@@ -80,3 +80,26 @@ notes = "Focused shared CharacterObject derived constructor probe; not evidence 
 address = "0x004927D0"
 symbol_base = "CharacterObject_ctor"
 rel32_targets = ["AttackObject_ctor=0x0045E3A0"]
+
+[units.reimu-object-pool]
+kind = "probe"
+source = "src/characters/RosterObjectPools.cpp"
+object = "build/match-units/RosterObjectPools.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Canonical roster object-pool acquire reconstruction; used before audited clone-family fan-out."
+
+[[units.reimu-object-pool.functions]]
+address = "0x00492BA0"
+symbol_base = "?acquire@ReimuObjectPool@th105@@QAEPAVReimuObject@@PAI@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040A710",
+  "??2@YAPAXI@Z=0x0067B50C",
+  "??0CharacterObject@@QAE@XZ=0x004927D0",
+  "?push_back@?$vector@PAVReimuObject@@V?$allocator@PAVReimuObject@@@std@@@std@@QAEXABQAVReimuObject@@@Z=0x00464110",
+  "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040D760",
+  "__invalid_parameter_noinfo=0x0067B884",
+  "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x00402A50",
+  "?at@?$vector@PAVReimuObject@@V?$allocator@PAVReimuObject@@@std@@@std@@QAEAAPAVReimuObject@@I@Z=0x004B8FB0",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040A720",
+]

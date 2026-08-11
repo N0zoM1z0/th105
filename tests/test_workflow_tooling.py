@@ -55,6 +55,25 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(result, "blocked")
         self.assertEqual(failure["category"], "relocation.dir32.unknown_symbol")
 
+    def test_exact_decorated_rel32_mapping_precedes_short_alias(self) -> None:
+        decorated = (
+            "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z"
+        )
+        targets = {"push_back": 0x401000, decorated: 0x402000}
+        self.assertEqual(
+            self.comparator.relocation_target_key(decorated, targets),
+            decorated,
+        )
+
+    def test_rel32_mapping_retains_legacy_short_alias(self) -> None:
+        decorated = "?enter@CriticalSectionWrapper@th105@@QAEXXZ"
+        self.assertEqual(
+            self.comparator.relocation_target_key(
+                decorated, {"CriticalSectionWrapper_enter": 0x40A710}
+            ),
+            "CriticalSectionWrapper_enter",
+        )
+
     def test_target_identity_failure_is_not_a_match_blocker(self) -> None:
         result, failure = self.comparator.failure_record(
             ValueError("target SHA-256 mismatch: got wrong, expected exact")

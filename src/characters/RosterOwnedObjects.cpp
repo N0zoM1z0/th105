@@ -13,7 +13,8 @@ namespace th105 {
                                                                               \
         local.handle_token = 0;                                               \
         RosterOwnedObjectPrefix338 *object =                                  \
-            pool_04.acquire(&local.handle_token);                             \
+            reinterpret_cast<RosterOwnedObjectPrefix338 *>(                   \
+                pool_04.acquire(&local.handle_token));                        \
         object->handle_token_334 = local.handle_token;                        \
                                                                               \
         CollisionListNode *sentinel = linked_objects_54.sentinel;             \

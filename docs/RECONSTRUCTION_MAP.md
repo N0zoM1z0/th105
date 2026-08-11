@@ -177,9 +177,11 @@ shared owned-object lifecycle [contracted]
 ├── fifteen 94-byte acquire-and-link entries [source-ready]
 │   ├── normalized token/list contract
 │   └── fourteen roster functions emitted from one shared source body
-├── fifteen 519-byte pool fresh/reuse entries [semantics-ready]
+├── fifteen 519-byte pool fresh/reuse entries [14 implemented; Sakuya contracted]
 │   ├── low16 slot / high16 generation token contract
 │   ├── Alice 0x38C allocation trait; all others 0x388
+│   ├── Reimu canonical standalone probe 514/519 [fresh path exact; reuse LTCG-sensitive]
+│   ├── fourteen non-Sakuya functions emitted from one audited source template
 │   └── shared pool-container/lock/constructor helpers [contracted]
 │       ├── 0x50-byte checked-container pool layout [source]
 │       ├── 0x0040A710/20 lock wrapper [exact]

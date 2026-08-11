@@ -3,7 +3,25 @@
 #include "battle/CollisionList.hpp"
 #include "engine/CriticalSectionWrapper.hpp"
 
+#include <list>
 #include <stddef.h>
+#include <vector>
+
+
+class ReimuObject;
+class MarisaObject;
+class AliceObject;
+class PatchouliObject;
+class YoumuObject;
+class RemiliaObject;
+class YuyukoObject;
+class YukariObject;
+class SuikaObject;
+class UdongeObject;
+class KomachiObject;
+class AyaObject;
+class IkuObject;
+class TenshiObject;
 
 namespace th105 {
 
@@ -23,34 +41,21 @@ typedef char CheckRosterOwnedObjectPrefixSize[
 // Common VC8 checked-container layout observed in every one of the fifteen
 // normalized 519-byte pool acquire functions.  The first dword in each
 // container is the checked-iterator proxy/allocator base.
-struct CheckedPointerVector16 {
-    unsigned proxy_or_base_00;
-    RosterOwnedObjectPrefix338 **begin_04;
-    RosterOwnedObjectPrefix338 **end_08;
-    RosterOwnedObjectPrefix338 **capacity_0c;
-};
+typedef std::vector<unsigned> CheckedUnsignedVector16;
+typedef std::list<unsigned> CheckedUnsignedList12;
 
-struct CheckedUnsignedVector16 {
+template <typename ObjectType>
+struct CharacterObjectPoolStorageT {
     unsigned proxy_or_base_00;
-    unsigned *begin_04;
-    unsigned *end_08;
-    unsigned *capacity_0c;
-};
-
-struct CheckedUnsignedList12 {
-    unsigned proxy_or_base_00;
-    CollisionListNode *sentinel_04;
-    unsigned count_08;
-};
-
-struct CharacterObjectPoolStorage {
-    unsigned proxy_or_base_00;
-    CheckedPointerVector16 slots_04;
+    std::vector<ObjectType *> slots_04;
     CheckedUnsignedVector16 generations_14;
     CheckedUnsignedList12 free_slots_24;
     unsigned generation_counter_30;
     CriticalSectionWrapper lock_34;
 };
+
+typedef CharacterObjectPoolStorageT<RosterOwnedObjectPrefix338>
+    CharacterObjectPoolStorage;
 
 typedef char CheckCharacterObjectPoolStorageSize[
     sizeof(CharacterObjectPoolStorage) == 0x50 ? 1 : -1];
@@ -60,9 +65,11 @@ typedef char CheckCharacterObjectPoolLockOffset[
     offsetof(CharacterObjectPoolStorage, lock_34) == 0x34 ? 1 : -1];
 
 #define TH105_DECLARE_ROSTER_OBJECT_MANAGER(FighterName)                      \
+    typedef CharacterObjectPoolStorageT< ::FighterName##Object>               \
+        FighterName##ObjectPoolStorage;                                       \
     struct FighterName##ObjectPool {                                          \
-        CharacterObjectPoolStorage storage_00;                               \
-        RosterOwnedObjectPrefix338 *acquire(unsigned *handle_token);          \
+        FighterName##ObjectPoolStorage storage_00;                            \
+        ::FighterName##Object *acquire(unsigned *handle_token);                \
     };                                                                        \
     struct FighterName##ObjectManagerBase {                                   \
         void *manager_vtable_00;                                              \

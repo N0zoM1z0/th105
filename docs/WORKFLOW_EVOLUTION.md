@@ -110,6 +110,19 @@ scalar deleting destructor at `0x0041EB30`, `AttackObject::AttackObject` at
 vptr/EH-state store order, a linked-LTCG island question rather than a semantic
 gap.
 
+The next canonical packet, Reimu pool acquire `0x00492BA0`, also validates the
+workflow.  Exact decorated REL32 names are now preferred over legacy short
+aliases, so distinct VC8 template specializations such as the pointer-vector
+and unsigned-vector `push_back` calls remain fail-closed and unambiguous.  The
+resulting probe matches all relocated target bytes through the complete fresh
+allocation path.  Modeling the object tail as a second non-polymorphic base
+was the decisive structural correction: VC8 then emits base construction,
+tail initialization, and the derived vptr store in target order.  The only
+remaining delta is a five-byte checked-list iterator spill/register schedule
+in the reuse path, suitable for the linked-LTCG island rather than fake source
+code.  The verified roster clone manifest then safely fans this implementation
+out to all fourteen non-Sakuya object pools.
+
 ## Operational loop
 
 ```bash

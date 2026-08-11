@@ -162,3 +162,5 @@ __ehhandler$??0CEffectSprite@@QAE@XZ,0x006A4288,8b5424088d42f88b,0x0,target VC8 
 ??_7IColor@@6B@,0x006AC624,40a8400074b0670074b0670074b06700,0x0,target RTTI-owned global IColor vtable and four observed slots,address
 ??_7AttackObject@@6B@,0x006AEB44,a0e2450030aa450010aa450050ad450020ae450050ac4500e0ac4500b0ab4500,0x0,target RTTI-owned global AttackObject vtable and eight observed slots,address
 ??_7CharacterObject@@6B@,0x006B001C,b027490030aa450010aa450050ad450020ae450050ac4500e0ac4500b0ab4500,0x0,target RTTI-owned global CharacterObject vtable and eight observed slots,address
+__ehhandler$?acquire@ReimuObjectPool@th105@@QAEPAVReimuObject@@PAI@Z,0x006A9414,8b5424088d42e48b,0x0,target VC8 Reimu object-pool acquire EH handler entry bytes,address
+??_7ReimuObject@@6B@,0x006B00B4,f02a490030aa450010aa450050ad4500,0x0,target RTTI-owned global ReimuObject vtable and four observed slots,address

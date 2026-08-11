@@ -355,6 +355,19 @@ its physical offset is higher. `CharacterObject` constructs `CObjectBase` at
 stores and yields an exact 78-byte constructor. Do not reorder base declarations
 by physical address when target construction order and RTTI base order agree.
 
+A derived object's post-primary state may likewise be a non-polymorphic second
+base rather than an owned member.  In the roster pool acquire family, a member
+causes standalone VC8 to install the derived vptr before initializing
+`+0x34C/+0x354..+0x360`; a second base causes `CharacterObject` construction,
+tail initialization, then the derived vptr store, matching both target paths.
+Require the RTTI/layout offsets and both fresh/reuse instruction sequences
+before applying this shape; never write a raw vptr assignment to force it.
+
+When multiple VC8 template specializations collapse to one short COFF name,
+such as two `std::vector<...>::push_back` calls, resolve an explicitly supplied
+decorated symbol before the legacy short alias.  This preserves fail-closed
+relocation replay without pretending distinct targets share one address.
+
 ## 10. Measurement and evidence
 
 Use the strictest truthful status:
