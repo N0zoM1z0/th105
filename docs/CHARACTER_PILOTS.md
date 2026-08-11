@@ -390,6 +390,47 @@ Its two modes accept owner actions `50..149` or `71..149`, then emit effect
 codes `200` and `201` the requested positive number of times from the object's
 current position and facing.
 
+## Roster action-change family
+
+The fighter primary-vtable slot `+0x3C` is now breadth-mapped for all fifteen
+roster members.  Unlike the CPU policy slot, every fighter owns a distinct
+body.  IDA completed every switch and direct-callee inventory; the
+machine-readable case order and callee addresses are preserved in
+`config/character-action-change-cases.csv`.
+
+| Fighter | Body | Bytes | Cases | <300 | 300s | 400s | 500s | 600s | 700+ | Direct callees |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Reimu | `0x00491480` | 3,767 | 96 | 15 | 13 | 11 | 28 | 19 | 10 | 10 |
+| Marisa | `0x004B81F0` | 2,446 | 91 | 0 | 14 | 20 | 31 | 15 | 11 | 5 |
+| Sakuya | `0x004DDB20` | 2,106 | 78 | 0 | 14 | 15 | 24 | 16 | 9 | 1 |
+| Alice | `0x004F9320` | 1,551 | 71 | 2 | 14 | 14 | 26 | 10 | 5 | 3 |
+| Patchouli | `0x0051D140` | 3,132 | 80 | 2 | 14 | 15 | 21 | 14 | 14 | 10 |
+| Youmu | `0x00539D70` | 1,424 | 60 | 0 | 16 | 12 | 21 | 8 | 3 | 3 |
+| Remilia | `0x00554A00` | 1,802 | 73 | 0 | 15 | 14 | 20 | 14 | 10 | 1 |
+| Yuyuko | `0x0056C490` | 2,083 | 88 | 0 | 14 | 14 | 28 | 16 | 16 | 2 |
+| Yukari | `0x00589F20` | 3,441 | 89 | 15 | 13 | 13 | 26 | 10 | 12 | 9 |
+| Suika | `0x005ACC10` | 2,577 | 85 | 0 | 16 | 15 | 23 | 15 | 16 | 4 |
+| Udonge | `0x005D4610` | 4,033 | 118 | 40 | 12 | 14 | 25 | 11 | 16 | 9 |
+| Komachi | `0x005F5DE0` | 1,971 | 68 | 0 | 14 | 15 | 23 | 11 | 5 | 3 |
+| Aya | `0x006166A0` | 2,049 | 75 | 0 | 14 | 14 | 31 | 11 | 5 | 4 |
+| Iku | `0x0062F4B0` | 1,842 | 74 | 0 | 14 | 15 | 25 | 16 | 4 | 2 |
+| Tenshi | `0x006495C0` | 2,453 | 65 | 0 | 14 | 14 | 17 | 9 | 11 | 4 |
+
+The numeric bands are structural facts, not gameplay names: they count the
+recovered switch labels by action number.  The only direct callee shared by
+all fifteen bodies is `0x00459970`, which clears the four motion floats at
+`+0xF4..+0x100`.  The wave adds 70 caller/callee edges and promotes twelve
+previously unclassified shared or character-specific dependencies, including
+the 4,830-byte `BaseFighter_initialize_common_action`, the checked
+spell-sequence window dispatcher `0x0045C8B0`, and the roster-owned object
+spawn adapter `0x004642D0`.
+
+These bodies are now `decompiled`, not `implemented`: their complete case
+topology and dependency graph are durable, but no placeholder source is
+emitted.  The next source wave should factor the common 300/400/500 action
+bands and add per-character 600/700 traits, using the CSV rows as independent
+address-bounded implementation packets.
+
 ## CPU action-policy vslot family
 
 The fighter primary vtable slot `+0x58` is a second roster-wide command

@@ -406,10 +406,11 @@ At runtime, `0x0045BC30` only consumes a sequence entry when fighter category
 front record through the player-indexed context, optionally updates the score
 record using peer key `+0x330`, self key `+0x330`, record id, and statistic
 candidate `+0x64C`, advances the sequence, publishes the next record's
-`+0x1E/+0x3C` values, and clears `+0x655/+0x64C`. The source emits 282/346
-bytes. Its external `g_info_manager` reference is now accepted through a
-strict direct-address relocation mapping, so comparison reaches the remaining
-code-shape difference. `0x0045C690` selects a record, optionally prepares
+`+0x1E/+0x3C` values, and clears `+0x655/+0x64C`. The source is now
+exact-size at 346/346 and matches the first 204 bytes. Its external
+`g_info_manager` reference is accepted through a strict direct-address
+relocation mapping; the remaining difference is the target-delayed maximum
+word store and linked-TU register lifetime. `0x0045C690` selects a record, optionally prepares
 its resource at `+0x44`, transfers the observed two-short sequence record, and
 publishes pending state. It emits 193/259 bytes; the remaining difference is
 the target's EH-bearing `0x94`-byte sprite local and register schedule.
@@ -418,7 +419,10 @@ The exact finalize caller also resolves `0x0042C060`: outside excluded game
 and session modes, it scans the selected `ScoreData+0x198` range of 0x18-byte
 records, matches keys at `+0x00/+0x08`, and increments the sequence-result
 counter at `+0x0C`. The adjacent `0x0042C100` uses the same layout to increment
-`+0x10` and update the signed high-water field at `+0x14`.
+`+0x10` and update the signed high-water field at `+0x14`. Restoring a real
+VC8 `std::vector<ObservedRecord24>::iterator` raises its canonical object from
+94 to 182/191 bytes; the only missing target block is a nine-byte iterator-owner
+compatibility guard folded by the isolated `/O2` probe.
 
 `0x0045BBB0` is now an exact 118-byte shared front-sequence readiness gate.
 It first requires signed available count `+0x55A` to exceed the requested
@@ -744,8 +748,9 @@ contracts to implemented source.
 3. Implement the proven spell-card dependencies around parser `0x00432E20`
    and fighter resource initializer `0x00462050`; then use those contracts to
    shape `0x0045BC30`, `0x0045C690`, and `0x0045F140` without synthetic EH.
-4. Restore the checked-range form of score updater `0x0042C100` and close the
-   scalar/hit gaps at `0x00459ED0`, `0x0045A030`, and `0x0046BBA0`.
+4. Use a linked-TU experiment for the remaining nine-byte checked-owner guard
+   in score updater `0x0042C100`, and close the scalar/hit gaps at
+   `0x00459ED0`, `0x0045A030`, and `0x0046BBA0`.
 5. Close geometry codegen gaps in `0x0045A190`, `0x0045A2E0`, `0x0045A4A0`,
    `0x0046AF30`, `0x0046B000`, `0x0046B100`, and `0x0046B290`.
 6. Continue hit/object responses at `0x0046BF20`, `0x0046C070`, and the larger

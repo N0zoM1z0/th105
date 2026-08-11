@@ -3,6 +3,8 @@
 #include "battle/GameMode.hpp"
 #include "input/InputSelection.hpp"
 
+#include <vector>
+
 namespace th105 {
 
 void ScoreData::record_sequence_result_42c060(
@@ -38,12 +40,12 @@ void ScoreData::update_observed_record_statistics(
         return;
     }
 
-    ObservedRecordRange16 *range =
-        reinterpret_cast<ObservedRecordRange16 *>(
+    std::vector<ObservedRecord24> *records =
+        reinterpret_cast<std::vector<ObservedRecord24> *>(
             reinterpret_cast<unsigned char *>(this) + 0x198) +
         range_selector;
-    for (ObservedRecord24 *record = range->begin_04;
-         record != range->end_08;
+    for (std::vector<ObservedRecord24>::iterator record = records->begin();
+         record != records->end();
          ++record) {
         if (record->key_00 == key_00 && record->key_08 == key_08) {
             ++record->update_count_10;

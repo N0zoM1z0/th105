@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 FUNCTIONS = ROOT / "config" / "functions.csv"
 KNOWN = ROOT / "config" / "known-symbols.csv"
 CLAIMS = ROOT / "config" / "claims.csv"
+ACTION_CHANGES = ROOT / "config" / "character-action-change-cases.csv"
 STATUSES = {
     "unclassified",
     "identified",
@@ -40,6 +41,38 @@ FUNCTION_COLUMNS = [
     "owner",
     "notes",
 ]
+ACTION_CHANGE_COLUMNS = [
+    "character",
+    "address",
+    "ledger_size",
+    "case_count",
+    "under_300",
+    "actions_300_399",
+    "actions_400_499",
+    "actions_500_599",
+    "actions_600_699",
+    "actions_700_plus",
+    "case_labels",
+    "direct_callees",
+    "evidence",
+]
+ROSTER = {
+    "Reimu",
+    "Marisa",
+    "Sakuya",
+    "Alice",
+    "Patchouli",
+    "Youmu",
+    "Remilia",
+    "Yuyuko",
+    "Yukari",
+    "Suika",
+    "Udonge",
+    "Komachi",
+    "Aya",
+    "Iku",
+    "Tenshi",
+}
 
 
 def read_rows(
@@ -84,6 +117,7 @@ def main() -> int:
     errors: list[str] = []
     rows = read_rows(FUNCTIONS, errors, FUNCTION_COLUMNS)
     addresses: set[str] = set()
+    ledger: dict[str, dict[str, str]] = {}
     previous = -1
 
     for line, row in enumerate(rows, 2):
@@ -96,6 +130,7 @@ def main() -> int:
             errors.append(f"functions.csv:{line}: addresses are duplicated or unsorted")
         previous = numeric
         addresses.add(address)
+        ledger[address] = row
 
         status = row["status"]
         if status not in STATUSES:
@@ -134,6 +169,90 @@ def main() -> int:
                 errors.append(
                     f"functions.csv:{line}: source_file does not exist: {source_file!r}"
                 )
+
+    action_rows = read_rows(ACTION_CHANGES, errors, ACTION_CHANGE_COLUMNS)
+    action_characters: set[str] = set()
+    action_addresses: set[str] = set()
+    for line, row in enumerate(action_rows, 2):
+        character = row["character"]
+        if character in action_characters:
+            errors.append(
+                f"{ACTION_CHANGES.name}:{line}: duplicate character {character!r}"
+            )
+        action_characters.add(character)
+
+        address = row["address"]
+        if not ADDRESS.fullmatch(address):
+            errors.append(
+                f"{ACTION_CHANGES.name}:{line}: invalid canonical address {address!r}"
+            )
+            continue
+        if address in action_addresses:
+            errors.append(f"{ACTION_CHANGES.name}:{line}: duplicate address {address}")
+        action_addresses.add(address)
+
+        ledger_row = ledger.get(address)
+        if ledger_row is None:
+            errors.append(
+                f"{ACTION_CHANGES.name}:{line}: address {address} is absent from functions.csv"
+            )
+            continue
+
+        numeric_fields = [
+            "ledger_size",
+            "case_count",
+            "under_300",
+            "actions_300_399",
+            "actions_400_499",
+            "actions_500_599",
+            "actions_600_699",
+            "actions_700_plus",
+        ]
+        try:
+            values = {name: int(row[name]) for name in numeric_fields}
+        except ValueError:
+            errors.append(f"{ACTION_CHANGES.name}:{line}: invalid numeric field")
+            continue
+        if any(value < 0 for value in values.values()):
+            errors.append(f"{ACTION_CHANGES.name}:{line}: negative count")
+        if values["ledger_size"] != int(ledger_row["size"]):
+            errors.append(
+                f"{ACTION_CHANGES.name}:{line}: ledger_size disagrees with functions.csv"
+            )
+
+        band_total = sum(values[name] for name in numeric_fields[2:])
+        if band_total != values["case_count"]:
+            errors.append(
+                f"{ACTION_CHANGES.name}:{line}: action-band counts do not sum to case_count"
+            )
+
+        try:
+            labels = [int(value, 16) for value in row["case_labels"].split(";")]
+        except ValueError:
+            errors.append(f"{ACTION_CHANGES.name}:{line}: invalid case label")
+            labels = []
+        if len(labels) != values["case_count"] or len(labels) != len(set(labels)):
+            errors.append(
+                f"{ACTION_CHANGES.name}:{line}: case labels are missing or duplicated"
+            )
+
+        for callee in row["direct_callees"].split(";"):
+            if not ADDRESS.fullmatch(callee) or callee not in addresses:
+                errors.append(
+                    f"{ACTION_CHANGES.name}:{line}: invalid direct callee {callee!r}"
+                )
+
+        if ledger_row["status"] in {"unclassified", "identified"}:
+            errors.append(
+                f"{ACTION_CHANGES.name}:{line}: complete case manifest requires decompiled or later status"
+            )
+
+    if action_characters != ROSTER:
+        missing = sorted(ROSTER - action_characters)
+        extra = sorted(action_characters - ROSTER)
+        errors.append(
+            f"{ACTION_CHANGES.name}: roster mismatch; missing={missing}, extra={extra}"
+        )
 
     for path in (KNOWN, CLAIMS):
         for line, row in enumerate(read_rows(path, errors), 2):

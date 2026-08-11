@@ -104,6 +104,8 @@ address,lane,priority,notes
 0x00433CC0,character-command,1,Exact shared effect emission forwarding boundary
 0x00434390,geometry,3,Exact fighter X-boundary classification used by body separation
 0x004343D0,geometry,3,Exact proposed-X stage-height gate used by body separation
+0x00434450,character-command,2,Action-change float forwarding wrapper
+0x00434470,character-command,2,Action-change indexed-event forwarding wrapper
 0x00434780,battle-controller,2,Embedded BattleController+0x04 mode selection
 0x00434800,geometry,3,Exact stage-surface height lookup
 0x00434860,hit-resolution,3,Exact stage-surface fighter gate
@@ -143,6 +145,8 @@ address,lane,priority,notes
 0x00459170,battle-controller,2,Checked BattlePhaseBlock pointer-list assignment
 0x004591D0,battle-controller,1,Complete scenario event-row parser reached by controller initialization
 0x00459860,battle-phase,2,Exact fighter position integration and stage clamp
+0x00459970,character-command,1,Motion reset shared by all fifteen roster action-change roots
+0x00459C80,character-command,2,Adjacent fighter action-word commit helper
 0x00459C90,hit-resolution,3,Exact counter-step consumption and indexed callback
 0x00459E50,battle-phase,2,Exact common character update and input/action tail dispatch
 0x00459ED0,hit-resolution,1,Forwarded quantity scalar chain
@@ -150,6 +154,7 @@ address,lane,priority,notes
 0x0045A190,geometry,1,Hard local box transform with x87 conversion schedule
 0x0045A2E0,geometry,1,Hard mirrored local box transform
 0x0045A4A0,geometry,1,Hard oriented box and descriptor builder
+0x0045AA60,character-command,2,Bounded indexed event entry dispatcher used by six roster action-change roots
 0x0045AAE0,hit-resolution,3,Exact descriptor quantity at frame offset 1C
 0x0045AB10,hit-resolution,3,Exact descriptor quantity at frame offset 20
 0x0045AEC0,collision-phase,1,Hard frame geometry preparation and vector at COMDAT
@@ -163,6 +168,7 @@ address,lane,priority,notes
 0x0045C440,spell-runtime,2,Exact VC8 std::deque<FighterSequenceSlot>::_Growmap specialization
 0x0045C5A0,spell-runtime,2,Exact allocation and enqueue of a complete 0x98-byte fighter sequence slot
 0x0045C690,spell-runtime,1,Record selection optional resource preparation and enqueue
+0x0045C8B0,spell-runtime,1,Checked indexed sequence-window callback and effect dispatcher
 0x0045CA70,hit-resolution,3,Exact paired-fighter facing update
 0x0045CAE0,hit-resolution,3,Exact signed fighter state gate 32 to 95
 0x0045CB00,hit-resolution,3,Exact signed fighter state gate 96 to C7
@@ -170,6 +176,7 @@ address,lane,priority,notes
 0x0045CD90,hit-resolution,3,Exact positive-y and state-window gate
 0x0045CDD0,battle-phase,2,Fighter transient status and embedded countdown continuity
 0x0045CF00,battle-phase,2,Fighter timer decrement cleanup and tail contract
+0x0045DF60,character-command,2,Fighter indexed state publication helper
 0x0045E010,battle-controller,2,Per-fighter transition counter reset
 0x0045E040,battle-controller,2,Paired fighter roster reset reached by exact roster preparation
 0x0045E080,fighter-init,2,Per-fighter indexed resource initialization boundary
@@ -196,6 +203,7 @@ address,lane,priority,notes
 0x004641F0,battle-controller,2,Fighter slot setup begin reached by exact roster preparation
 0x00464240,battle-controller,2,Fighter slot setup finish reached by exact roster preparation
 0x00464270,battle-controller,2,MatchSetup-side fighter slot initialization reached by exact setup
+0x004642D0,character-owned-object,1,Shared fighter owned-object manager spawn adapter
 0x00464320,fighter-init,2,Final character resource callback boundary
 0x004643F0,spell-runtime,2,Embedded fighter sequence-effect reset reached by exact finalization
 0x00465B00,battle-phase,2,Object-manager list vslot +0x10 pass with global pre/post calls
@@ -259,6 +267,9 @@ address,lane,priority,notes
 0x00470940,battle-controller,1,Seven-state per-frame battle dispatcher
 0x004712B0,battle-controller,2,Post-sequence update reached by exact round resolution
 0x00471470,battle-controller,2,Roster state refresh reached by exact roster preparation
+0x004737A0,character-command,2,Global active-system variant dispatcher
+0x00477040,character-command,1,Shared 4830-byte base fighter action initializer
+0x00478670,character-command,2,Fighter opponent-facing and horizontal velocity correction
 0x0048CBA0,character-command,1,Reimu randomized CPU action-policy override at fighter vslot +0x58
 0x00491480,character-command,1,Reimu character-specific action-change root
 0x004927D0,character-owned-object,1,Shared CharacterObject construction and common-tail initialization
@@ -282,6 +293,7 @@ address,lane,priority,notes
 0x00493B00,character-command,2,Exact counted action-214 gate and direction-angle assignment
 0x00493C90,character-command,1,Shared seven-way front-record action gate
 0x00494050,character-command,1,Reimu normal skill and spell input dispatcher root
+0x00495BE0,character-command,2,Reimu ground-height and descending-state gate used by Marisa action changes
 0x004B38A0,character-command,1,Marisa randomized CPU action-policy override at fighter vslot +0x58
 0x004B81F0,character-command,1,Marisa character-specific action-change root
 0x004B8FB0,character-owned-object,1,Shared checked object-slot resolver
@@ -400,6 +412,7 @@ address,lane,priority,notes
 0x005AE280,character-owned-object,1,Suika owned-object spawn contract
 0x005AE470,character-command,1,Suika normal skill and spell input dispatcher root
 0x005BEEE0,character-command,2,Suika vtable +0x60 event bridge root
+0x005CFDE0,character-command,2,Udonge derived visual-state reset
 0x005CFE00,character-command,1,Default randomized CPU action policy shared by eleven roster fighters
 0x005D3EA0,character-command,2,Udonge front-sequence and action progression root
 0x005D4610,character-command,1,Udonge character-specific action-change root

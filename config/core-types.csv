@@ -32,7 +32,7 @@ FixedSlotEnvelopeVector,src/battle/BattleControllerDependencies.hpp,complete,0x1
 MatchSetup,src/battle/GameMode.hpp,complete,0x4C,observed,strict exact 0x0046FE80 and 0x00470060 setup sources,Match identifier stage and BGM bytes two 0x20 side records and seed dword
 MatchSetupSide,src/battle/GameMode.hpp,complete,0x20,observed,strict exact setup and roster source argument offsets,Character key dword followed by an opaque 0x1C-byte side payload
 ObservedRecord24,src/config/ScoreData.hpp,complete,0x18,observed,IDA Pro MCP 0x0042C060 and 0x0042C100 target instructions,Two keys sequence-result count observed-stat count and signed high-water value
-ObservedRecordRange16,src/config/ScoreData.hpp,complete,0x10,observed,0x0042C100 target instructions,Begin end and capacity pointer view
+ObservedRecordRange16,src/config/ScoreData.hpp,complete,0x10,observed,0x0042C100 target instructions and 182-byte VC8 checked-vector probe,Source-facing VC8 std::vector<ObservedRecord24> layout with debug proxy begin end and capacity pointers
 ScoreData,src/config/ScoreData.hpp,partial,0x198,observed,0x0042C100 target instructions,Observed prefix before the range array
 ScenarioEventNameMap,src/battle/ScenarioEventNameResolver.cpp,complete,0x0C,observed,Strict exact 0x0043AC30 and verified global base 0x006E7510,VC8 std::map<int String28> with integer key at node +0x0C owning string at +0x10 and nil flag at +0x2D
 SceneExitTransition,src/battle/BattleController.hpp,complete,0x78,observed,0x00470940 exact source allocation constructor and EH path,Concrete transition object allocated by the central battle frame dispatcher; internal fields remain semantically opaque

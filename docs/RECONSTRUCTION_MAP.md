@@ -79,6 +79,7 @@ TH10.5
 │   │   ├── 0x98-byte two-short plus sprite sequence slot [contracted]
 │   │   ├── 0x0045C440 VC8 deque grow [library exact]
 │   │   ├── 0x0045C5A0 enqueue [exact]
+│   │   ├── 0x00431860 indexed display callback [compiles, 234/234]
 │   │   └── 0x0045BC30/0x0045C690 consume/prepare [implemented]
 │   └── fighter integration [source-ready]
 │       ├── 0x0045F140 battle-state initialization [implemented]
@@ -92,6 +93,12 @@ TH10.5
     │   ├── 0x00493300/0x00493490/0x00493540 [exact]
     │   └── 0x00493380/0x00493580 [implemented]
     ├── fifteen RTTI/vtable pilot rows -> docs/CHARACTER_PILOTS.md
+    ├── fifteen vslot +0x3C action-change roots [decompiled breadth]
+    │   ├── 36,677 bytes and 1,211 switch cases in the durable case manifest
+    │   ├── 70 direct dependencies and twelve newly classified helpers
+    │   └── 0x00459970 motion reset shared by every roster member
+    ├── vslot +0x58 CPU action-policy family [identified]
+    │   └── four overrides plus one default body shared by eleven fighters
     ├── fifteen owned-object spawn families [contracted]
     │   ├── one normalized 237-byte ABI/template
     │   ├── fifteen normalized acquire-and-link entries [source-ready]

@@ -395,6 +395,23 @@ case: its complete natural source is 226/257 bytes because the target retains a
 lifetimes. Do not add a standalone semantic owner guard just to mimic the dead
 `CMP owner,owner`; recover the iterator source lifetime instead.
 
+For `0x0042C100`, replacing a raw begin/end pointer loop with the truthful
+VC8 `std::vector<ObservedRecord24>::iterator` loop recovered checked-range
+behavior and raised the canonical object from 94 to 182 of the target's 191
+bytes. The sole missing nine-byte guard compares an iterator owner with itself;
+local `/O2` folds it, while named-end and volatile attempts disturb otherwise
+aligned code. Preserve the real vector source and treat that one owner check as
+a linked-TU/private-inlining stop condition.
+
+The exact-size `0x0045BC30` sequence consumer has a related store-scheduling
+stop condition. Its first 204/346 bytes are exact; the target prepares the next
+checked-front call before storing a recovered short maximum through `AX`,
+while the isolated VC8 unit stores immediately through `CX`. Direct-field,
+conversion, raw-short, comma-expression, accessor, and local-short variants
+either preserve the mismatch or regress size/earlier code. Once calls,
+relocations, ABI, and total size agree, keep the truthful source and defer this
+delta to a linked/LTCG island.
+
 For `0x0046D370`, the two apparent owner-identity sites belong to the enclosing
 checked-iterator lifetimes. Adding explicit owner checks increases the guard
 count from the target's 25 to 27 and grows the function to 720 bytes; do not

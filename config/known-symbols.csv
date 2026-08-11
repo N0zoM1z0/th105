@@ -507,3 +507,15 @@ address,name,module,confidence,evidence
 0x004F4650,Alice_update_cpu_action_policy,characters,inferred,IDA Pro Alice fighter vtable +0x58 xref and randomized action-state control writes documented in CHARACTER_PILOTS
 0x005CFE00,Fighter_update_default_cpu_action_policy,characters,inferred,IDA Pro shared fighter vtable +0x58 xrefs for eleven roster members and randomized action-state control writes
 0x00611D80,Aya_update_cpu_action_policy,characters,inferred,IDA Pro Aya fighter vtable +0x58 xref complete disassembly and randomized action-state control writes
+0x00434450,forward_action_float_434450,characters,observed,IDA Pro complete forwarding wrapper and roster action-change xrefs
+0x00434470,dispatch_action_indexed_event_434470,characters,observed,IDA Pro complete forwarding wrapper and roster action-change xrefs
+0x00459970,Fighter_zero_velocity_acceleration,characters,observed,IDA Pro complete four-float clear body and all fifteen roster action-change xrefs
+0x00459C80,Fighter_copy_action_word_176_to_174,characters,observed,IDA Pro complete adjacent word-copy body and roster action-change xrefs
+0x0045C8B0,Fighter_dispatch_indexed_sequence_window_45c8b0,characters,observed,IDA Pro complete checked sequence window and display/effect callback body
+0x0045DF60,Fighter_publish_indexed_state_45df60,characters,observed,IDA Pro complete fighter/global indexed-state publication body
+0x004642D0,Fighter_spawn_owned_object_via_manager,characters,observed,IDA Pro complete manager vslot +0x04 forwarding body and seven roster action-change xrefs
+0x004737A0,dispatch_active_system_variant_4737a0,characters,observed,IDA Pro complete global mode/variant switch
+0x00477040,BaseFighter_initialize_common_action,characters,observed,IDA Pro complete 4830-byte action switch and Udonge/Tenshi action-change xrefs
+0x00478670,Fighter_face_opponent_and_flip_horizontal_velocity,characters,observed,IDA Pro complete opponent-position/facing body
+0x00495BE0,Reimu_is_descending_at_or_below_ground,characters,observed,IDA Pro complete stage-height and vertical-motion gate
+0x005CFDE0,Udonge_reset_action_visual_state,characters,observed,IDA Pro complete three-field derived state reset

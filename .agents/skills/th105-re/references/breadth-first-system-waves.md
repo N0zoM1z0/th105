@@ -58,6 +58,16 @@ implementations. This is the preferred monolith split: map ownership, shared
 layout, cases, and dependencies first; factor a common skeleton next; only then
 fan out exact tuning.
 
+The roster action-change wave applies the same rule to fifteen distinct
+vtable-slot `+0x3C` bodies. A single batched IDA pass recovered 36,677 target
+bytes, 1,211 switch labels, and 70 direct-call edges without emitting fake
+source. The durable case manifest makes the shared 300/400/500 bands and each
+fighter's 600/700 extensions independently schedulable. It also exposed twelve
+previously unclassified dependencies; the only callee common to every fighter
+is the four-float motion reset at `0x00459970`. This is a useful breadth gate:
+promote complete decompiler topology to `decompiled`, then implement common
+bands and character traits in separate packets.
+
 ## Coordinator loop
 
 1. Select one subsystem and its existing core lanes. Verify the target and run
