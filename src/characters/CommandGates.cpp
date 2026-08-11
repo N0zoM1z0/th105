@@ -147,15 +147,15 @@ int Fighter::set_action_and_finalize_command(
     return result;
 }
 
-short Fighter::lookup_command_gate_value(int command_key)
+short Fighter::lookup_command_gate_value(short command_key)
 {
     CommandGateIterator found;
-    command_key = static_cast<short>(command_key);
+    int const signed_command_key = command_key;
     CommandGateIterator *const result = reinterpret_cast<CommandGateTree *>(
         *reinterpret_cast<void **>(
             reinterpret_cast<unsigned char *>(this) + 0x160))->lower_bound(
                 &found,
-                &command_key);
+                &signed_command_key);
     if (result->owner_00 == 0) {
         _invalid_parameter_noinfo();
     }

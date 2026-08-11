@@ -63,7 +63,7 @@ and lookup layer used by all fifteen input/action dispatchers:
 | `0x00493380` | flagged/ranged gate selecting `220`, `222..224` | exactly 15 callers | complete 229/258 |
 | `0x00493490` | flagged state-158 gate selecting `225/226` | exactly 15 callers | exact 164/164 |
 | `0x00493540` | set action; flag window `>=10`; finalize command | 160 calls in 15 dispatchers | exact 50/50 |
-| `0x00493580` | signed lower-bound command table lookup | 783 direct xrefs | complete 78/78, prologue order differs |
+| `0x00493580` | signed lower-bound command table lookup | 783 direct xrefs | exact 78/78 |
 | `0x004935D0` | ordered threshold gates for actions `208..210` | exactly 15 callers | exact 504/504 |
 | `0x004937D0` | mirrored direction gates for actions `200/201` | 14 dispatcher callers | exact 333/333 |
 | `0x00493920` | counted/repeated gate for action `202` | exactly 15 callers | complete 226/226, vslot prefetch differs |
@@ -439,6 +439,15 @@ emitted.  The next source wave should factor the common 300/400/500 action
 bands and add per-character 600/700 traits, using the CSV rows as independent
 address-bounded implementation packets.
 
+The companion vslot `+0x50` input/skill/spell family is now at the same breadth
+gate. Its fifteen ledger-accepted bodies cover 94,915 bytes and 13,703 complete
+IDA pseudocode lines. The 172 switch labels, 227 direct-call cells, and shared
+`0x0045C7A0` tail edge are preserved row-by-row in
+`config/character-input-dispatch-cases.csv`. All fifteen roots are
+`decompiled`; source work can now split common `200` command handling from each
+fighter's `300/320` skill/spell records without rediscovering monolithic
+control flow.
+
 ## CPU action-policy vslot family
 
 The fighter primary vtable slot `+0x58` is a second roster-wide command
@@ -496,8 +505,9 @@ incoming-parent alias and all fourteen of those entries are exact.
 
 The complete fifteen-character action-change and input-dispatch breadth map is
 maintained in `docs/CHARACTER_ACTION_ROOTS.md`. It records accepted ledger
-boundaries, switch families, the common fourteen-helper command prelude, and
-the three IDA boundary conflicts that must remain fail-closed.
+boundaries, switch families, the common command prelude, both machine-readable
+case manifests, and the three action-root IDA boundary conflicts that must
+remain fail-closed.
 
 ## Next waves
 

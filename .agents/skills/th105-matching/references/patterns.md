@@ -137,6 +137,16 @@ support the type distinction.
 
 If the target repeats `deque::at(i)` arithmetic, caching a reference may be semantically equivalent but produce irreconcilable code. Conversely, a standalone object may repeat work that LTCG removed. Prefer the form supported by the decompilation and call structure, then classify the remaining optimizer difference honestly.
 
+A narrow public key can feed a wider checked-container key without making the
+public ABI wide. At `0x00493580`, the roster command lookup reads only a signed
+16-bit argument, but `CommandGateTree::lower_bound` takes `const int *`.
+Declaring the member argument as `short`, then initializing an explicit
+`int const` local and passing that local by address, reproduced the target's
+sign-extension, stack home, checked iterator calls, and complete 78/78 byte
+body. Passing an `int` directly has the same common caller stack width but a
+different callee prologue. Require both callee loads and caller pushes before
+using this width-conversion pattern.
+
 For mixed scalar/floating member calls, recover parameter order from stack
 construction before trusting decompiler prototypes. In the result-menu render
 path, the callee receives `(float x, float y, unsigned index)`: VC8 pushes the

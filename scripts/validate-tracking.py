@@ -13,6 +13,7 @@ FUNCTIONS = ROOT / "config" / "functions.csv"
 KNOWN = ROOT / "config" / "known-symbols.csv"
 CLAIMS = ROOT / "config" / "claims.csv"
 ACTION_CHANGES = ROOT / "config" / "character-action-change-cases.csv"
+INPUT_DISPATCHES = ROOT / "config" / "character-input-dispatch-cases.csv"
 STATUSES = {
     "unclassified",
     "identified",
@@ -54,6 +55,19 @@ ACTION_CHANGE_COLUMNS = [
     "actions_700_plus",
     "case_labels",
     "direct_callees",
+    "evidence",
+]
+INPUT_DISPATCH_COLUMNS = [
+    "character",
+    "address",
+    "ledger_size",
+    "decompiler_lines",
+    "case_count",
+    "actions_200_299",
+    "actions_300_399",
+    "case_labels",
+    "direct_callees",
+    "tail_target",
     "evidence",
 ]
 ROSTER = {
@@ -252,6 +266,89 @@ def main() -> int:
         extra = sorted(action_characters - ROSTER)
         errors.append(
             f"{ACTION_CHANGES.name}: roster mismatch; missing={missing}, extra={extra}"
+        )
+
+    input_rows = read_rows(INPUT_DISPATCHES, errors, INPUT_DISPATCH_COLUMNS)
+    input_characters: set[str] = set()
+    input_addresses: set[str] = set()
+    for line, row in enumerate(input_rows, 2):
+        character = row["character"]
+        if character in input_characters:
+            errors.append(
+                f"{INPUT_DISPATCHES.name}:{line}: duplicate character {character!r}"
+            )
+        input_characters.add(character)
+
+        address = row["address"]
+        if not ADDRESS.fullmatch(address):
+            errors.append(
+                f"{INPUT_DISPATCHES.name}:{line}: invalid canonical address {address!r}"
+            )
+            continue
+        if address in input_addresses:
+            errors.append(f"{INPUT_DISPATCHES.name}:{line}: duplicate address {address}")
+        input_addresses.add(address)
+
+        ledger_row = ledger.get(address)
+        if ledger_row is None:
+            errors.append(
+                f"{INPUT_DISPATCHES.name}:{line}: address {address} is absent from functions.csv"
+            )
+            continue
+
+        numeric_fields = [
+            "ledger_size",
+            "decompiler_lines",
+            "case_count",
+            "actions_200_299",
+            "actions_300_399",
+        ]
+        try:
+            values = {name: int(row[name]) for name in numeric_fields}
+        except ValueError:
+            errors.append(f"{INPUT_DISPATCHES.name}:{line}: invalid numeric field")
+            continue
+        if any(value < 0 for value in values.values()):
+            errors.append(f"{INPUT_DISPATCHES.name}:{line}: negative count")
+        if values["ledger_size"] != int(ledger_row["size"]):
+            errors.append(
+                f"{INPUT_DISPATCHES.name}:{line}: ledger_size disagrees with functions.csv"
+            )
+        if values["actions_200_299"] + values["actions_300_399"] != values["case_count"]:
+            errors.append(
+                f"{INPUT_DISPATCHES.name}:{line}: action-band counts do not sum to case_count"
+            )
+
+        try:
+            labels = [int(value, 16) for value in row["case_labels"].split(";")]
+        except ValueError:
+            errors.append(f"{INPUT_DISPATCHES.name}:{line}: invalid case label")
+            labels = []
+        if len(labels) != values["case_count"] or len(labels) != len(set(labels)):
+            errors.append(
+                f"{INPUT_DISPATCHES.name}:{line}: case labels are missing or duplicated"
+            )
+
+        for callee in row["direct_callees"].split(";"):
+            if not ADDRESS.fullmatch(callee) or callee not in addresses:
+                errors.append(
+                    f"{INPUT_DISPATCHES.name}:{line}: invalid direct callee {callee!r}"
+                )
+        tail_target = row["tail_target"]
+        if not ADDRESS.fullmatch(tail_target) or tail_target not in addresses:
+            errors.append(
+                f"{INPUT_DISPATCHES.name}:{line}: invalid tail target {tail_target!r}"
+            )
+        if ledger_row["status"] in {"unclassified", "identified"}:
+            errors.append(
+                f"{INPUT_DISPATCHES.name}:{line}: complete case manifest requires decompiled or later status"
+            )
+
+    if input_characters != ROSTER:
+        missing = sorted(ROSTER - input_characters)
+        extra = sorted(input_characters - ROSTER)
+        errors.append(
+            f"{INPUT_DISPATCHES.name}: roster mismatch; missing={missing}, extra={extra}"
         )
 
     for path in (KNOWN, CLAIMS):

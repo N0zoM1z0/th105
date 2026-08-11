@@ -332,7 +332,7 @@ struct Fighter {
     unsigned char try_dispatch_flagged_gate_actions_220_224();
     unsigned char try_dispatch_flagged_gate_actions_225_226();
     int set_action_and_finalize_command(int action_id, int window_value);
-    short lookup_command_gate_value(int command_key);
+    short lookup_command_gate_value(short command_key);
     unsigned char try_dispatch_threshold_gated_actions_208_210(
         int window_value,
         int bypass_window_gate);

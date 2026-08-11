@@ -90,14 +90,18 @@ TH10.5
 └── Character-specific families [mapped roots]
     ├── shared Character/CharacterEx/AttackObject contracts
     ├── shared command gates 0x00493300..0x00493580 [source-ready]
-    │   ├── 0x00493300/0x00493490/0x00493540 [exact]
-    │   └── 0x00493380/0x00493580 [implemented]
+    │   ├── 0x00493300/0x00493490/0x00493540/0x00493580 [exact]
+    │   └── 0x00493380 [implemented]
     ├── fifteen RTTI/vtable pilot rows -> docs/CHARACTER_PILOTS.md
     ├── fifteen vslot +0x3C action-change roots [decompiled breadth]
     │   ├── 36,677 bytes and 1,211 switch cases in the durable case manifest
     │   ├── 70 direct dependencies and twelve newly classified helpers
     │   ├── 0x00459970 motion reset shared by every roster member [exact]
     │   └── 0x004642D0 owned-object spawn adapter used by seven fighters [exact]
+    ├── fifteen vslot +0x50 input/skill/spell roots [decompiled breadth]
+    │   ├── 94,915 bytes and 172 switch cases in the durable case manifest
+    │   ├── 227 direct-call cells across the roster
+    │   └── fifteen raw tail-jump edges to 0x0045C7A0 [source-ready]
     ├── vslot +0x58 CPU action-policy family [identified]
     │   └── four overrides plus one default body shared by eleven fighters
     ├── fifteen owned-object spawn families [contracted]
@@ -111,7 +115,7 @@ TH10.5
         ├── 0x004DECF0 manager constructor [decompiled]
         ├── 0x004DED80 owned-object spawn [implemented]
         ├── raw vslot +0x3C: 0x004DDB20 action change [decompiled]
-        └── common-update vslot +0x50: 0x004DEF70 input/action [identified]
+        └── common-update vslot +0x50: 0x004DEF70 input/action [decompiled]
 ```
 
 Supporting systems remain necessary but lower priority unless they block a core

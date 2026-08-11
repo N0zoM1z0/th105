@@ -76,6 +76,17 @@ semantic caller list with raw code xrefs before calling a function orphaned.
 That one check turned an unclassified 265-byte neighbor into a complete-source
 all-roster spell/runtime boundary and a 19-edge core-graph expansion.
 
+The follow-up roster input-dispatch wave demonstrates the full breadth-to-exact
+loop. One batched survey promoted all fifteen vslot `+0x50` roots only after
+capturing 94,915 bytes, 13,703 pseudocode lines, 172 switch cases, 227
+direct-call cells, and every shared tail edge in a validated CSV manifest.
+Three exact packets then ran against the shared prelude: the signed lookup at
+`0x00493580` became exact after its true 16-bit parameter was converted into an
+explicit 32-bit tree key, while the 202/203 pair and the 690..696 selector
+returned precise VC8 scheduling stop conditions. This is a successful wave
+even though two packets remain non-exact: coverage expanded first, one reusable
+ABI fix landed, and the remaining work is bounded rather than rediscovered.
+
 ## Coordinator loop
 
 1. Select one subsystem and its existing core lanes. Verify the target and run

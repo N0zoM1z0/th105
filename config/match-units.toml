@@ -1250,3 +1250,19 @@ rel32_targets = [
   "_invalid_parameter_noinfo=0x0067B884",
   "__security_check_cookie=0x0067B465",
 ]
+
+[units.command-gates]
+kind = "probe"
+source = "src/characters/CommandGates.cpp"
+object = "build/match-units/CommandGates.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Shared fifteen-roster command-gate source; the registered lookup is an exact signed-width and checked-tree ABI regression."
+
+[[units.command-gates.functions]]
+address = "0x00493580"
+symbol_base = "Fighter_lookup_command_gate_value"
+rel32_targets = [
+  "?lower_bound@CommandGateTree@th105@@QAEPAUCommandGateIterator@2@PAU32@PBH@Z=0x004213F0",
+  "__invalid_parameter_noinfo=0x0067B884",
+]

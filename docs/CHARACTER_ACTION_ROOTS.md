@@ -52,6 +52,13 @@ has fourteen dispatcher callers. This proves that character work should retain
 one shared command prelude and reconstruct only the character-specific branch
 tails.
 
+The complete IDA decompile/callee inventory is durable in
+`config/character-input-dispatch-cases.csv`. Across the roster it accounts for
+94,915 target bytes, 13,703 pseudocode lines, 172 observed switch cases, 227
+direct-call cells, and fifteen raw tail-jump edges to `0x0045C7A0`. Every root
+is therefore `decompiled`: this is structural coverage, not placeholder source
+or an exact-match claim.
+
 | Fighter | Address | Bytes | Observed record/action cases |
 | --- | ---: | ---: | --- |
 | Reimu | `0x00494050` | 6952 | 200–201; 206; 208–210; 214; 219; 300; 320–321 |
