@@ -77,6 +77,29 @@ or an exact-match claim.
 | Iku | `0x00630800` | 6302 | 200–203; 205–210 |
 | Tenshi | `0x0064AB80` | 5352 | 200–207 |
 
+## CPU action-policy roots
+
+The primary-vtable slot `+0x58` resolves to five implementations covering the
+entire roster: four character overrides and one default shared by eleven
+fighters. All five IDA boundaries agree with the ledger and all call the same
+five helpers. The complete inventory is preserved in
+`config/character-cpu-policy-cases.csv`; case counts below distinguish raw
+label occurrences from unique numeric labels because nested switches reuse
+values.
+
+| Owner group | Address | Bytes | IDA lines | Case occurrences | Unique labels |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Reimu | `0x0048CBA0` | 15,999 | 2,390 | 56 | 51 |
+| Marisa | `0x004B38A0` | 16,229 | 2,362 | 71 | 51 |
+| Alice | `0x004F4650` | 16,354 | 2,668 | 85 | 49 |
+| Default (11 fighters) | `0x005CFE00` | 15,910 | 2,330 | 64 | 48 |
+| Aya | `0x00611D80` | 16,032 | 2,340 | 64 | 48 |
+
+Together these roots cover 80,524 target bytes, 12,090 complete pseudocode
+lines, 340 case-label occurrences, and 25 direct-call cells. They are
+`decompiled`, not implemented: the manifest is the split point for factoring
+their common policy skeleton before character-specific source is emitted.
+
 ## Work allocation
 
 Use one character per bounded lane. Begin with an IDA work packet for its

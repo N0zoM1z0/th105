@@ -14,6 +14,7 @@ KNOWN = ROOT / "config" / "known-symbols.csv"
 CLAIMS = ROOT / "config" / "claims.csv"
 ACTION_CHANGES = ROOT / "config" / "character-action-change-cases.csv"
 INPUT_DISPATCHES = ROOT / "config" / "character-input-dispatch-cases.csv"
+CPU_POLICIES = ROOT / "config" / "character-cpu-policy-cases.csv"
 STATUSES = {
     "unclassified",
     "identified",
@@ -70,6 +71,25 @@ INPUT_DISPATCH_COLUMNS = [
     "tail_target",
     "evidence",
 ]
+CPU_POLICY_COLUMNS = [
+    "owner_group",
+    "address",
+    "ledger_size",
+    "decompiler_lines",
+    "case_occurrences",
+    "unique_case_count",
+    "case_labels",
+    "direct_callees",
+    "vtable_owners",
+    "evidence",
+]
+CPU_POLICY_GROUPS = {
+    "Reimu",
+    "Marisa",
+    "Alice",
+    "Default (11 fighters)",
+    "Aya",
+}
 ROSTER = {
     "Reimu",
     "Marisa",
@@ -350,6 +370,81 @@ def main() -> int:
         errors.append(
             f"{INPUT_DISPATCHES.name}: roster mismatch; missing={missing}, extra={extra}"
         )
+
+    cpu_rows = read_rows(CPU_POLICIES, errors, CPU_POLICY_COLUMNS)
+    cpu_groups: set[str] = set()
+    cpu_addresses: set[str] = set()
+    cpu_vtable_owners: set[str] = set()
+    expected_cpu_callees = {
+        "0x0045B9E0",
+        "0x0067B8E0",
+        "0x00406710",
+        "0x004069A0",
+        "0x00406880",
+    }
+    for line, row in enumerate(cpu_rows, 2):
+        group = row["owner_group"]
+        if group in cpu_groups:
+            errors.append(f"{CPU_POLICIES.name}:{line}: duplicate owner group {group!r}")
+        cpu_groups.add(group)
+
+        address = row["address"]
+        if not ADDRESS.fullmatch(address):
+            errors.append(f"{CPU_POLICIES.name}:{line}: invalid canonical address {address!r}")
+            continue
+        if address in cpu_addresses:
+            errors.append(f"{CPU_POLICIES.name}:{line}: duplicate address {address}")
+        cpu_addresses.add(address)
+        ledger_row = ledger.get(address)
+        if ledger_row is None:
+            errors.append(f"{CPU_POLICIES.name}:{line}: address {address} is absent from functions.csv")
+            continue
+
+        try:
+            ledger_size = int(row["ledger_size"])
+            decompiler_lines = int(row["decompiler_lines"])
+            occurrences = int(row["case_occurrences"])
+            unique_count = int(row["unique_case_count"])
+        except ValueError:
+            errors.append(f"{CPU_POLICIES.name}:{line}: invalid numeric field")
+            continue
+        if min(ledger_size, decompiler_lines, occurrences, unique_count) < 0:
+            errors.append(f"{CPU_POLICIES.name}:{line}: negative count")
+        if ledger_size != int(ledger_row["size"]):
+            errors.append(f"{CPU_POLICIES.name}:{line}: ledger_size disagrees with functions.csv")
+        if occurrences < unique_count:
+            errors.append(f"{CPU_POLICIES.name}:{line}: case occurrences below unique count")
+
+        try:
+            labels = [int(value, 0) for value in row["case_labels"].split(";")]
+        except ValueError:
+            errors.append(f"{CPU_POLICIES.name}:{line}: invalid case label")
+            labels = []
+        if len(labels) != unique_count or len(labels) != len(set(labels)):
+            errors.append(f"{CPU_POLICIES.name}:{line}: case labels are missing or duplicated")
+
+        callees = set(row["direct_callees"].split(";"))
+        if callees != expected_cpu_callees:
+            errors.append(f"{CPU_POLICIES.name}:{line}: shared direct-callee set disagrees")
+        if any(not ADDRESS.fullmatch(callee) or callee not in addresses for callee in callees):
+            errors.append(f"{CPU_POLICIES.name}:{line}: invalid direct callee")
+
+        owners = row["vtable_owners"].split(";")
+        if any(owner not in ROSTER for owner in owners):
+            errors.append(f"{CPU_POLICIES.name}:{line}: invalid vtable owner")
+        overlap = cpu_vtable_owners.intersection(owners)
+        if overlap:
+            errors.append(f"{CPU_POLICIES.name}:{line}: duplicate vtable owners {sorted(overlap)}")
+        cpu_vtable_owners.update(owners)
+        if ledger_row["status"] in {"unclassified", "identified"}:
+            errors.append(f"{CPU_POLICIES.name}:{line}: complete manifest requires decompiled or later status")
+
+    if cpu_groups != CPU_POLICY_GROUPS:
+        errors.append(f"{CPU_POLICIES.name}: owner-group set mismatch")
+    if cpu_vtable_owners != ROSTER:
+        missing = sorted(ROSTER - cpu_vtable_owners)
+        extra = sorted(cpu_vtable_owners - ROSTER)
+        errors.append(f"{CPU_POLICIES.name}: vtable roster mismatch; missing={missing}, extra={extra}")
 
     for path in (KNOWN, CLAIMS):
         for line, row in enumerate(read_rows(path, errors), 2):

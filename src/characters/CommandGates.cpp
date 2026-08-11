@@ -90,6 +90,10 @@ unsigned char Fighter::try_dispatch_flagged_gate_actions_220_224()
         }
         initialize_fighter_phase_631e0(this);
         set_fighter_action(this, 220);
+        if (state_4b8 != 0) {
+            consume_counter_484_steps(1);
+        }
+        return 1;
     } else {
         if (static_cast<signed char>(facing_104) * field_6b4 > 0) {
             initialize_fighter_phase_631e0(this);

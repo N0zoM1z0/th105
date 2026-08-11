@@ -24,7 +24,7 @@ struct OwnedManagerInitializationView {
 };
 
 struct FighterPhaseSubobject710 {
-    int update_63120(int selector, unsigned const *packed_input);
+    int update_63120(int selector, unsigned short const *packed_input);
 };
 
 typedef void (__thiscall *SetFighterAction)(Fighter *fighter, int action);
@@ -96,7 +96,7 @@ int __fastcall initialize_fighter_phase_631e0(Fighter *fighter)
     packed += packed;
     packed |= fighter->field_6b4 < 0;
 
-    unsigned packed_input = static_cast<unsigned short>(packed);
+    unsigned short packed_input = packed;
     return reinterpret_cast<FighterPhaseSubobject710 *>(
                reinterpret_cast<unsigned char *>(fighter) + 0x710)
         ->update_63120(0x5a, &packed_input);
@@ -189,7 +189,7 @@ void Fighter::initialize_fighter_battle_state()
     unknown_4e5 = 0;
     factor_4d0 = 1.0f;
     gate_4e6 = 0;
-    unknown_4e7[0] = 0;
+    unknown_4e7 = 0;
     factor_4d4 = 0.0f;
     value_49c = 0;
     scale_4d8 = 0.0f;
@@ -206,7 +206,7 @@ void Fighter::initialize_fighter_battle_state()
     reset_action(this, 0);
     state_4ea = 0;
     store_byte(this, 0x4e9, 0);
-    unknown_4eb[0] = 0;
+    terminal_finalize_4eb = 0;
     store_byte(this, 0x4ec, 0);
     store_byte(this, 0x4e8, 0);
     gate_4ed = 0;

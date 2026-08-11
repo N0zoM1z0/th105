@@ -87,6 +87,15 @@ returned precise VC8 scheduling stop conditions. This is a successful wave
 even though two packets remain non-exact: coverage expanded first, one reusable
 ABI fix landed, and the remaining work is bounded rather than rediscovered.
 
+The CPU-policy follow-up shows that the same gate applies to very large shared
+skeletons. Five vslot `+0x58` implementations cover all fifteen fighters and
+sum to 80,524 bytes. A single attested survey captured 12,090 pseudocode lines,
+340 case-label occurrences, 247 unique numeric labels, identical five-callee
+sets, and exact vtable ownership before any source split. Persist both raw
+occurrence and unique-label counts: nested switches legitimately reuse labels,
+so collapsing to a set alone loses structural information while counting raw
+labels alone overstates the action domain.
+
 ## Coordinator loop
 
 1. Select one subsystem and its existing core lanes. Verify the target and run

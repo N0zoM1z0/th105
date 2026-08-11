@@ -102,8 +102,9 @@ TH10.5
     │   ├── 94,915 bytes and 172 switch cases in the durable case manifest
     │   ├── 227 direct-call cells across the roster
     │   └── fifteen raw tail-jump edges to 0x0045C7A0 [source-ready]
-    ├── vslot +0x58 CPU action-policy family [identified]
-    │   └── four overrides plus one default body shared by eleven fighters
+    ├── vslot +0x58 CPU action-policy family [decompiled breadth]
+    │   ├── four overrides plus one default body shared by eleven fighters
+    │   └── 80,524 bytes, 12,090 IDA lines, and 340 case occurrences
     ├── fifteen owned-object spawn families [contracted]
     │   ├── one normalized 237-byte ABI/template
     │   ├── fifteen normalized acquire-and-link entries [source-ready]
@@ -161,7 +162,7 @@ progress from being dominated by isolated small functions.
 shared command layer [source-ready]
 ├── 0x00493300..0x00493B00 common gates [mixed exact/source-ready]
 ├── 0x0045BBB0 front-sequence readiness [exact]
-├── 0x004631E0 shared action-transition input phase [source, 134/136]
+├── 0x004631E0 shared action-transition input phase [exact]
 └── 0x00493C90 front-record actions 690..696 [source, 950/950]
     ├── Reimu 0x00494050 spell/skill groups [mapped]
     ├── Marisa 0x004B9A60 spell/skill groups [mapped]

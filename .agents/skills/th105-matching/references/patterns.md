@@ -97,6 +97,17 @@ For constructors, distinguish explicit body work from implicit base/member const
 
 Case pattern: `CTitle::~CTitle` proved that a source-faithful special member plus real embedded types and `/GS` can reproduce compiler-generated cleanup; it should not be rewritten as a manual sequence of destructor calls.
 
+An EH-bearing local can be a linked special-member stop condition rather than
+a missing `try` block. At `0x0045C7A0`, the 265-byte target registers C++ EH,
+copies a CSprite-like local, records unwind state zero, and uses external
+cleanup `0x0045B8F0`; the faithful standalone source is 247 bytes with `/GS`
+but no EH. A nontrivial u32-backed local recovers the target prologue and copy
+prefix through `+0x94`, while a modeled destructor reaches 266 bytes, then
+diverges in folded pop/destructor register scheduling and carries an unknown
+EH-handler `DIR32`. Do not register a synthetic handler or invent a local type:
+defer exactness until the real sprite special member and linked TU boundary are
+available.
+
 ## 5. VC8 containers and library shapes
 
 Use the repository's VC8 declarations, not a modern STL mental model.
@@ -146,6 +157,15 @@ sign-extension, stack home, checked iterator calls, and complete 78/78 byte
 body. Passing an `int` directly has the same common caller stack width but a
 different callee prologue. Require both callee loads and caller pushes before
 using this width-conversion pattern.
+
+The inverse width boundary can preserve otherwise missing zero-extension. At
+`0x004631E0`, eight input predicates are accumulated in a byte, then stored in
+an `unsigned short` local whose address is passed to the phase subobject.
+Declaring both the local and callee pointer as `unsigned short` makes VC8 emit
+the target's final `movzx ax, al; movzx edx, ax` sequence and changes the
+shared adapter from 134/136 to exact 136/136. A 32-bit local preserves the
+numeric value but erases this ABI evidence; require the target word load/store
+and pointer-taking call before narrowing such a local.
 
 For mixed scalar/floating member calls, recover parameter order from stack
 construction before trusting decompiler prototypes. In the result-menu render

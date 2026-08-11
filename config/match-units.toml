@@ -1266,3 +1266,18 @@ rel32_targets = [
   "?lower_bound@CommandGateTree@th105@@QAEPAUCommandGateIterator@2@PAU32@PBH@Z=0x004213F0",
   "__invalid_parameter_noinfo=0x0067B884",
 ]
+
+[units.fighter-input-phase]
+kind = "probe"
+source = "src/battle/FighterInitialization.cpp"
+object = "build/match-units/FighterInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Exact shared packed-input phase adapter used throughout roster command dispatch."
+
+[[units.fighter-input-phase.functions]]
+address = "0x004631E0"
+symbol_base = "initialize_fighter_phase_631e0"
+rel32_targets = [
+  "?update_63120@FighterPhaseSubobject710@?A0x82dee21b@th105@@QAEHHPBG@Z=0x00463120",
+]

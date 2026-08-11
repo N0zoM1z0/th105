@@ -60,7 +60,7 @@ and lookup layer used by all fifteen input/action dispatchers:
 | Address | Contract | Coverage | Source result |
 | ---: | --- | --- | --- |
 | `0x00493300` | signed gate selecting actions `208..210` | exactly 15 callers | exact 117/117 |
-| `0x00493380` | flagged/ranged gate selecting `220`, `222..224` | exactly 15 callers | complete 229/258 |
+| `0x00493380` | flagged/ranged gate selecting `220`, `222..224` | exactly 15 callers | complete 258/258, epilogue placement differs |
 | `0x00493490` | flagged state-158 gate selecting `225/226` | exactly 15 callers | exact 164/164 |
 | `0x00493540` | set action; flag window `>=10`; finalize command | 160 calls in 15 dispatchers | exact 50/50 |
 | `0x00493580` | signed lower-bound command table lookup | 783 direct xrefs | exact 78/78 |
@@ -71,7 +71,7 @@ and lookup layer used by all fifteen input/action dispatchers:
 | `0x00493B00` | counted action `214` plus direction angle | exactly 15 callers | exact 393/393 |
 | `0x00493C90` | front-record categories selecting `690..696` | exactly 15 callers | complete 950/950, instruction order differs |
 | `0x0045BBB0` | front sequence availability and slot threshold gate | exactly 30 sites, two in each dispatcher | exact 118/118 |
-| `0x004631E0` | pack shared input phase before action transition | 407 sites in 28 functions | complete 134/136 |
+| `0x004631E0` | pack shared input phase before action transition | 407 sites in 28 functions | exact 136/136 |
 
 The gates test observed fields `+0x104`, `+0x13C`, `+0x484`, `+0x4B8`,
 `+0x6B4`, `+0x6B8`, `+0x724`, and `+0x75A`, refresh the common snapshot at
@@ -431,7 +431,10 @@ spawn adapter `0x004642D0`.
 All fifteen input/action selector roots also share the same tail-jump to
 `0x0045C7A0`. That 265-byte spell-sequence rotation now has complete source,
 making its front-slot copy/pop/enqueue contract available to every character
-pilot instead of rediscovering it per roster member.
+pilot instead of rediscovering it per roster member. Its remaining 247/265
+standalone delta is bounded to the original CSprite local copy/destructor and
+linked EH folding; an EH-bearing probe recovered the target prologue through
+`+0x94` but did not prove an exact source patch.
 
 These bodies are now `decompiled`, not `implemented`: their complete case
 topology and dependency graph are durable, but no placeholder source is
@@ -455,13 +458,13 @@ boundary, separate from the normal skill/spell input dispatcher at `+0x50`.
 IDA data xrefs prove four character overrides and one default body shared by
 the other eleven fighters:
 
-| Policy body | Target span | Vtable owners | IDA switch cases | Random rolls / sequence lookups |
+| Policy body | Target span | Vtable owners | IDA lines | Case occurrences / unique labels |
 | --- | ---: | --- | ---: | ---: |
-| `0x0048CBA0` | 15,999 | Reimu | 56 | 114 / 25 |
-| `0x004B38A0` | 16,229 | Marisa | 71 | 114 / 27 |
-| `0x004F4650` | 16,354 | Alice | 85 | 113 / 20 |
-| `0x005CFE00` | 15,910 | Sakuya, Patchouli, Youmu, Remilia, Yuyuko, Yukari, Suika, Udonge, Komachi, Iku, Tenshi | 64 | 105 / 25 |
-| `0x00611D80` | 16,032 | Aya | 64 | 107 / 25 |
+| `0x0048CBA0` | 15,999 | Reimu | 2,390 | 56 / 51 |
+| `0x004B38A0` | 16,229 | Marisa | 2,362 | 71 / 51 |
+| `0x004F4650` | 16,354 | Alice | 2,668 | 85 / 49 |
+| `0x005CFE00` | 15,910 | Sakuya, Patchouli, Youmu, Remilia, Yuyuko, Yukari, Suika, Udonge, Komachi, Iku, Tenshi | 2,330 | 64 / 48 |
+| `0x00611D80` | 16,032 | Aya | 2,340 | 64 / 48 |
 
 The ownership matrix above is a target fact: each entry is read directly from
 the fighter vtable whose `+0x3C` action-change and `+0x50` input-dispatch slots
@@ -472,6 +475,13 @@ switches on action `+0x13C`, repeatedly calls the exact random helpers, reads
 the checked front sequence at `+0x55C`, and writes the control block
 `+0x6B4..+0x6D0`, command flags `+0x724/+0x728`, and policy counters
 `+0x764..+0x76E`.
+
+The SHA-attested breadth pass covers 80,524 target bytes and 12,090 complete
+IDA pseudocode lines. Its 340 case-label occurrences, unique numeric labels,
+five-callee sets, and non-overlapping vtable ownership are validated in
+`config/character-cpu-policy-cases.csv`. All five rows are now `decompiled`;
+this records complete structure without pretending that the large policy
+bodies have source implementations.
 
 All five bodies have the same complete direct-callee set:
 `mt19937_next_u32`, `selector_random_roll`, `atan2_degrees`, the checked

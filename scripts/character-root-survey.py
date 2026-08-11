@@ -42,6 +42,14 @@ ROOTS = (
     ("Tenshi", "0x006495C0", "0x0064AB80"),
 )
 
+CPU_POLICY_ROOTS = (
+    ("Reimu", "0x0048CBA0"),
+    ("Marisa", "0x004B38A0"),
+    ("Alice", "0x004F4650"),
+    ("Default (11 fighters)", "0x005CFE00"),
+    ("Aya", "0x00611D80"),
+)
+
 CASE_RE = re.compile(r"\bcase\s+(-?(?:0x[0-9a-fA-F]+|\d+))\s*:")
 
 
@@ -98,7 +106,7 @@ async def survey(server: str, kind: str) -> dict[str, object]:
         for fighter, action_address, input_address in ROOTS:
             selected = (("action-change", action_address), ("input-dispatch", input_address))
             for root_kind, address in selected:
-                if kind != "both" and root_kind != kind:
+                if kind not in {"both", "all"} and root_kind != kind:
                     continue
                 row = tracked.get(address.upper())
                 if row is None:
@@ -113,7 +121,8 @@ async def survey(server: str, kind: str) -> dict[str, object]:
                     session, "get_callees", {"function_address": address}
                 )
                 text = decompile if isinstance(decompile, str) else json.dumps(decompile)
-                cases = sorted({integer(match) for match in CASE_RE.findall(text)})
+                case_occurrences = [integer(match) for match in CASE_RE.findall(text)]
+                cases = sorted(set(case_occurrences))
                 backend_size = (
                     parse_int(function.get("size")) if isinstance(function, dict) else -1
                 )
@@ -127,6 +136,43 @@ async def survey(server: str, kind: str) -> dict[str, object]:
                         "boundary_agrees": backend_size == int(row["size"]),
                         "backend_name": function.get("name") if isinstance(function, dict) else None,
                         "decompiler_lines": text.count("\n") + 1,
+                        "switch_case_occurrences": len(case_occurrences),
+                        "switch_cases": cases,
+                        "switch_case_ranges": case_ranges(cases),
+                        "callees": flatten_callees(callees),
+                    }
+                )
+        if kind in {"cpu-policy", "all"}:
+            for fighter, address in CPU_POLICY_ROOTS:
+                row = tracked.get(address.upper())
+                if row is None:
+                    raise RuntimeError(f"missing ledger address: {address}")
+                function = await call_json(
+                    session, "get_function_by_address", {"address": address}
+                )
+                decompile = await call_json(
+                    session, "decompile_function", {"address": address}
+                )
+                callees = await call_json(
+                    session, "get_callees", {"function_address": address}
+                )
+                text = decompile if isinstance(decompile, str) else json.dumps(decompile)
+                case_occurrences = [integer(match) for match in CASE_RE.findall(text)]
+                cases = sorted(set(case_occurrences))
+                backend_size = (
+                    parse_int(function.get("size")) if isinstance(function, dict) else -1
+                )
+                entries.append(
+                    {
+                        "fighter": fighter,
+                        "kind": "cpu-policy",
+                        "address": address,
+                        "ledger_size": int(row["size"]),
+                        "backend_size": backend_size,
+                        "boundary_agrees": backend_size == int(row["size"]),
+                        "backend_name": function.get("name") if isinstance(function, dict) else None,
+                        "decompiler_lines": text.count("\n") + 1,
+                        "switch_case_occurrences": len(case_occurrences),
                         "switch_cases": cases,
                         "switch_case_ranges": case_ranges(cases),
                         "callees": flatten_callees(callees),
@@ -150,7 +196,9 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--server", default=DEFAULT_SERVER)
     parser.add_argument(
-        "--kind", choices=("action-change", "input-dispatch", "both"), default="both"
+        "--kind",
+        choices=("action-change", "input-dispatch", "cpu-policy", "both", "all"),
+        default="both",
     )
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
