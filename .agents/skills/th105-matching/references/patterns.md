@@ -238,6 +238,20 @@ and reproduces the target 66/66 bytes. The analogous state-4-or-8 helper at
 produce its 73/73-byte register lifetime. Preserve the target control-flow
 merge when shrink-wrapping changes prologue placement.
 
+For a vtable forwarding wrapper, whether the function pointer is cached can
+change argument scheduling. The exact parented spawn adapter at `0x00520360`
+must keep the vslot cast inline in the returned call; caching the slot hoists
+its load and loses the target's late `mov eax, [edx+4]`. Its unparented sibling
+at `0x004FC350` has a different faithful register schedule and does cache the
+typed function pointer. Treat sibling wrappers independently.
+
+At `0x0053C7F0`, a natural VC8 switch reproduces the signed `movsx; sub 0;
+sub 1` mode dispatch and all floating-point/payload operations, but emits 446
+bytes against the 450-byte target. The target places the reverse-phase
+`phase < 4` lifetime-decrement block after the motion return; VC8 standalone
+source keeps it inline before motion. Record this as a cold-block placement
+delta unless a source-faithful structured form reproduces the target layout.
+
 Stop standalone-object tuning when evidence indicates that the remaining difference depends on:
 
 - cross-function inlining or whole-program commoning;
