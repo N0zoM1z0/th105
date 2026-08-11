@@ -77,6 +77,16 @@ possible. Package each remaining mismatch for later exact-tuning workers.
 Canonical comparisons remain regression gates; clone identity never grants
 `matching`, and breadth never permits fake bodies.
 
+For a whole gameplay subsystem such as spell data/runtime or battle
+simulation, use the same policy as a repeated system wave. Read
+[`references/breadth-first-system-waves.md`](references/breadth-first-system-waves.md),
+survey the registered core lanes with `scripts/core-lane-survey.py`, expand one
+direct-call layer with conservative contracts, and only then fan out
+non-overlapping exact packets. The coordinator owns the graph, claims, ledger,
+and merges; evidence workers own temporary probes and strict comparison
+results. Repeat the wave after exact matches reveal stronger types or new
+shared dependencies.
+
 1. Place code in the module indicated by `config/modules.toml`.
 2. Preserve calling convention, object layout, side effects, and initialization
    order before attempting expression-level compiler tuning.

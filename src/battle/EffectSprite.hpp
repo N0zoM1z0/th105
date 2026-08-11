@@ -26,6 +26,18 @@ public:
 };
 
 
+// RTTI at 0x006E4AE0 and vtable 0x006AC668 prove that the 0x94-byte object
+// embedded in a fighter spell-sequence slot is the global CSprite class.
+// Its special-member folding remains a linked/LTCG boundary.
+class CSprite : public CSpriteBase {
+public:
+    CSprite();
+    virtual ~CSprite();
+
+    float opaque_float_words_08[0x23];
+};
+
+
 class CSpriteEx : public CSpriteBase {
 public:
     virtual ~CSpriteEx() {}
@@ -60,6 +72,7 @@ public:
 typedef char IColor_size_must_be_0x08[sizeof(IColor) == 0x08 ? 1 : -1];
 typedef char CSpriteBase_size_must_be_0x08[
     sizeof(CSpriteBase) == 0x08 ? 1 : -1];
+typedef char CSprite_size_must_be_0x94[sizeof(CSprite) == 0x94 ? 1 : -1];
 typedef char CSpriteEx_size_must_be_0x08[
     sizeof(CSpriteEx) == 0x08 ? 1 : -1];
 typedef char CEffectSprite_observed_size_must_be_0x12c[

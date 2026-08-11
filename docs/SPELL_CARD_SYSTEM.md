@@ -60,7 +60,7 @@ Post-load and battle runtime
 ├── 0x0045C690 prepare next sequence slot [implemented]
 │   ├── slot is 0x98 bytes: two shorts + 0x94-byte sprite
 │   ├── 0x0045C5A0 allocate/enqueue slot [exact]
-│   ├── 0x0045C440 grow slot-pointer storage [decompiled]
+│   ├── 0x0045C440 VC8 deque<FighterSequenceSlot>::_Growmap [library exact]
 │   └── 0x00453B70 copy the embedded sprite [decompiled]
 ├── 0x0045BBB0 front-entry availability gate [exact]
 ├── 0x0045BC30 consume/callback/statistics/advance [implemented]
@@ -87,6 +87,19 @@ contracts.
 and word at `+0x00/+0x02`, then calls `0x00453B70` to copy the `0x94`-byte
 sprite at `+0x04`. This proves that the old four-byte enqueue parameter was an
 incomplete view, not a standalone record type.
+
+The adjacent `0x0045C440` body is not authored pointer-array growth. A native
+VC8 `std::deque<FighterSequenceSlot>` probe matches the 338-byte ledger body
+exactly; its `UINT_MAX / 0x98` length gate proves one sequence slot per deque
+block. The object's three bytes beyond the ledger span are alignment only.
+
+RTTI further identifies the embedded 0x94-byte payload as the global
+`CSprite`, derived from `CSpriteBase` and `IColor`, with vtable `0x006AC668`.
+The target's EH cleanup at `0x0045B8F0` only restores the IColor vptr. A
+truthful derived-class probe produces the required GS/EH frame but calls an
+out-of-line IColor constructor that the linked target folded away; therefore
+`0x0045C690` remains an explicit special-member/LTCG blocker rather than being
+modeled as a trivial byte blob.
 
 The two large parsers share the row schema: integer key, owning name string,
 one-byte selector, signed short value, owning description string, and two more
@@ -116,8 +129,8 @@ These are work-packet conflicts, not permission to extend comparison ranges.
 
 Breadth is now sufficient to split exact work without rediscovering the graph:
 
-1. Runtime lane: use exact `0x0045C5A0` to shape `0x0045BA40`,
-   `0x0045C440`, and `0x0045C690` around their shared 0x98 slot.
+1. Runtime lane: use exact `0x0045C5A0` and library-exact `0x0045C440` to
+   shape `0x0045BA40` and the CSprite/LTCG boundary at `0x0045C690`.
 2. Data lane: `0x004316C0`, `0x004317A0`, `0x00430C80`, `0x00432500`.
 3. Wrapper lane: `0x00432D80` and `0x00433490` after the corrected free-parser ABI.
 4. Hard parser lane: `0x004325B0` and `0x00432E20`, only after the shared

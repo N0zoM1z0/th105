@@ -5,6 +5,10 @@ audio, or input plumbing. Addresses and phase ordering below are observed in the
 original Japanese v1.06a target. Semantic names remain reconstruction names
 unless explicitly supported by RTTI.
 
+Use `docs/BATTLE_SIMULATION_SYSTEM.md` for the breadth-first controller tree,
+one-hop dependency expansion, boundary gate, and exact-worker frontier. This
+file retains the detailed collision, hit, spell-runtime, and phase algorithms.
+
 ## Active-frame order
 
 The active battle-state controller dispatches each frame through `0x00470940`.

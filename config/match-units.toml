@@ -435,3 +435,44 @@ notes = "Native VC8 checked std::map<int, SpellRecordView> find specialization p
 [[units.probe-spell-tree-find.functions]]
 address = "0x004316C0"
 symbol_base = "find"
+
+[units.battle-controller-runtime]
+kind = "probe"
+source = "src/battle/BattleControllerRuntime.cpp"
+object = "build/match-units/BattleControllerRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Focused BattleController active-simulation phase wrapper; not evidence of an original translation-unit boundary."
+
+[[units.battle-controller-runtime.functions]]
+address = "0x004704D0"
+symbol_base = "run_active_simulation_frame_4704d0"
+
+[units.probe-deque-sequence-slots]
+kind = "probe"
+source = "scripts/probes/deque_sequence_slots.cpp"
+object = "build/match-units/deque_sequence_slots.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Native VC8 deque<FighterSequenceSlot> growth specialization probe; excluded from authored progress."
+
+[[units.probe-deque-sequence-slots.functions]]
+address = "0x0045C440"
+symbol_base = "_Growmap"
+rel32_targets = [
+  "_Xlen=0x0046A000",
+  "?$_Allocate=0x0044EBF0",
+  "memmove_s=0x0067B5F1",
+]
+
+[units.battle-input-gate]
+kind = "probe"
+source = "src/battle/BattleInputGate.cpp"
+object = "build/match-units/BattleInputGate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Focused synchronized-input RAII lock gate; truthful source remains two bytes short through VC8 register scheduling."
+
+[[units.battle-input-gate.functions]]
+address = "0x004708B0"
+symbol_base = "poll_synchronized_input_4708b0"

@@ -860,6 +860,44 @@ This pattern is evidence for the 0x98-byte slot layout and the embedded
 0x94-byte object boundary. It is not evidence that the local object in the
 separate EH-bearing consumer has a trivial destructor.
 
+## P28: A pointer-map layout may still belong to a value deque
+
+Do not classify a grow body as a custom pointer container merely because the
+header contains a `T **` map. VC8 `std::deque<T>` stores pointers to blocks;
+for a large `T`, `_DEQUESIZ` becomes one and each block holds exactly one
+value. The map is therefore a pointer map even though the semantic container
+is `deque<T>`.
+
+At `0x0045C440`, `UINT_MAX / 0x98` and the full growth algorithm identify
+VC8 `std::deque<FighterSequenceSlot>::_Growmap`. A native explicit template
+instantiation matches the 338-byte ledger body exactly:
+
+```bash
+python3 scripts/build.py --unit probe-deque-sequence-slots --compare --json
+```
+
+The object's additional three section-tail bytes are alignment beyond the
+accepted ledger span. Classify this body as `library`; do not count it as an
+authored gameplay match or replace it with a hand-written pointer-array grow.
+
+## P29: RTTI-owned locals can expose an LTCG special-member boundary
+
+An EH-bearing local whose target initialization looks like two raw stores may
+still be a real polymorphic class. Check RTTI, unwind funclets, and vtables
+before declaring it trivial.
+
+For `0x0045C690`, RTTI identifies the 0x94-byte payload as global `CSprite`,
+derived from `CSpriteBase` and `IColor`. A truthful derived-class probe produces
+the target-style GS/EH frame, but standalone VC8 calls the IColor constructor
+and emits normal destruction while the linked target folds construction to
+two stores, elides normal cleanup, and retains only an exceptional IColor-vptr
+write at `0x0045B8F0`.
+
+This is a linked/LTCG special-member blocker. Do not map the absent constructor
+to an unrelated target, replace the class with a byte blob, or add fake manual
+cleanup merely to move the comparator. Preserve the class contract and defer
+the final shape to an audited linked island.
+
 ## Hard-function strategy
 
 Every reconstruction wave should include at least one function whose completion

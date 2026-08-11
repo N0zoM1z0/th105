@@ -181,6 +181,8 @@ address,name,module,confidence,evidence
 0x0045BF10,apply_deferred_counter_558,battle,inferred,docs/BATTLE.md post-collision deferred channel reduces or wraps fighter counter 0x558
 0x0045C440,?grow_storage@FighterSequenceController@th105@@QAEXI@Z,battle,observed,IDA Pro target direct callee and strict exact 0x0045C5A0 sequence enqueue probe
 0x00453B70,?copy_fighter_sequence_sprite@FighterSequenceSpriteCopyView@th105@@QAEPAXPBU12@@Z,battle,observed,IDA Pro target direct callee and strict exact 0x0045C5A0 sequence enqueue probe
+0x00427680,?is_input_available_427680@SynchronizedInputState@th105@@QAEEXZ,battle,observed,IDA Pro 8-byte field +0x4C zero test and 0x004708B0 direct call
+0x00458CD0,?run_458cd0@BattlePhaseBlock@th105@@QAEHXZ,battle,observed,IDA Pro target direct callee and strict exact 0x004704D0 active-simulation probe
 0x0045C5A0,enqueue_record,battle,observed,Strict exact 114-byte complete 0x98-slot allocation and sprite-copy source
 0x0045C690,prepare_next_spell_sequence_entry,battle,inferred,docs/BATTLE.md observed spell record selection optional resource preparation and sequence transfer
 0x0045CA70,update_fighter_facing_from_other_x,battle,inferred,docs/BATTLE.md exact facing update from paired fighter x coordinates
@@ -235,6 +237,7 @@ address,name,module,confidence,evidence
 0x0046B290,test_group_b_against_group_b,battle,inferred,docs/BATTLE.md observed group B versus group B box testing
 0x0046B420,run_shared_battle_phase_sequence,battle,inferred,docs/BATTLE.md observed ordered cross-manager battle phase dispatch
 0x0046B4F0,run_battle_phase_and_info_callback,battle,inferred,docs/BATTLE.md observed phase wrapper and Info-manager virtual callback
+0x0046B4F0,?run_battle_phase_and_info_callback@BattleController@th105@@QAEHXZ,battle,observed,IDA Pro target direct call and strict exact 0x004704D0 active-simulation probe; return type does not affect VC8 decoration
 0x0046B520,adjust_counter_482,battle,inferred,docs/BATTLE.md exact shared fighter counter clamp and floor update
 0x0046B570,resolve_general_attack_hit,battle,inferred,docs/BATTLE.md observed final ordinary hit resolver phases and field contracts
 0x0046BBA0,apply_forwarded_quantity_to_pair,battle,inferred,docs/BATTLE.md observed forwarded scalar accounting bounded adjustment depletion and cumulative quantity path

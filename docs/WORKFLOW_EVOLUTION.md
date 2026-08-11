@@ -189,6 +189,25 @@ truthful grow/lazy-allocation/two-short/embedded-sprite-copy implementation.
 The latter is now a canonical match unit and a regression gate for the harder
 EH-bearing sequence preparation path.
 
+This result makes the breadth/exact cycle the default for large gameplay
+systems rather than a one-off experiment. The reusable procedure is recorded
+in `.agents/skills/th105-re/references/breadth-first-system-waves.md`: survey a
+lane, expand one direct-call layer, establish neutral contracts and boundary
+gates, fan out non-overlapping strict packets, merge exact results centrally,
+then repeat from the newly exposed graph. The second BattleController wave
+validated the next iteration by promoting thirteen formerly unclassified
+shared setup/input/scenario/fighter/manager dependencies without adding fake
+bodies.
+
+The first exact fan-out from the expanded controller graph then made the
+42-byte active-simulation wrapper `0x004704D0` exact as a canonical match unit.
+In parallel, the strengthened 0x98-byte spell-sequence contract revealed that
+`0x0045C440` is an exact native VC8 `deque<FighterSequenceSlot>::_Growmap`, not
+authored storage code, and RTTI turned `0x0045C690`'s vague byte payload into a
+real global CSprite/LTCG special-member blocker. These outcomes are the desired
+feedback loop: exact work both retires functions and corrects the next breadth
+wave's type graph.
+
 The work-packet boundary gate also prevented a false partial comparison at
 `0x004B9540`: its stored `size=112` disagreed with `span_end=0x004B95B9`.
 Fresh IDA instructions prove a contiguous 122-byte body through the final

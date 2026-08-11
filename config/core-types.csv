@@ -2,6 +2,7 @@ type_name,header,coverage,observed_size,confidence,evidence,notes
 AttackCandidate,src/battle/Collision.hpp,partial,0x1A8,observed,docs/BATTLE.md and target field accesses,Observed prefix through frame pointer at +0x1A4
 AttackCandidateFrame,src/battle/Collision.hpp,complete,0x54,observed,docs/BATTLE.md and exact dependent functions,All fields used by the shared hit pipeline are laid out
 BattleController,src/battle/BattleController.hpp,partial,0xA0,observed,docs/BATTLE_SIMULATION_SYSTEM.md and IDA Pro target instructions for 0x0046FE80 through 0x00470940,Observed prefix covers frame counter two fighter pointers result phase and transition state; declarations intentionally have no placeholder bodies
+BattleInputGate,src/battle/BattleController.hpp,partial,0x142,observed,0x004708B0 target instructions and 127/129 RAII source comparison,Observed fields include input pointer +0x104 CriticalSectionWrapper +0x124 and synchronization bytes +0x140/+0x141; compiler rounds allocation size beyond observed prefix
 AliceObjectFlightState,src/characters/AliceObjectEffects.hpp,partial,0x37C,observed,0x004FC0B0 exact source and Alice 0x38C pool allocation trait,Alice-specific view covers owner target heading lifetime delta squares distance and scale; trailing allocation fields remain opaque
 CharacterObjectEffectEmitter,src/characters/CharacterObjectEffects.hpp,partial,0x378,observed,0x004FC350 0x004FC3A0 0x00520360 0x0053C7F0 and 0x0064C090 sources plus all-roster action callers,Shared object view now covers motion/scaling mode lifetime control direction and spawn phase fields through +0x374; opaque fields remain
 CharacterObjectRuntime,src/characters/CharacterObjectRuntime.hpp,partial,0x388,observed,0x00433BE0 0x00433C40 0x004FC4E0 and 0x005203B0 exact sources plus roster object-action callers,Shared oriented components animation state phase byte and signed counters at +0x384/+0x386; exact target pool allocation size is 0x388 but opaque fields remain
@@ -15,6 +16,7 @@ CommandGateIterator,src/characters/CommandGates.hpp,complete,0x08,observed,0x004
 CommandGateNode,src/characters/CommandGates.hpp,complete,0x18,observed,0x004213F0 signed lower-bound traversal and sentinel flag,Three links key mapped pointer and flags
 CommandGateTree,src/characters/CommandGates.hpp,partial,0x08,observed,0x00493580 and 0x004213F0,Observed prefix through end-node pointer +0x04
 CsvReader,src/assets/CsvReader.hpp,partial,0x2E,observed,IDA Pro target instructions for 0x0040EB20 and field or row accessors,Observed prefix through parser comment and quote flags; nested deque and iterator auxiliary types remain opaque
+CSprite,src/battle/EffectSprite.hpp,complete,0x94,observed,RTTI type descriptor 0x006E4AE0 vtable 0x006AC668 and EH cleanup 0x0045B8F0,Global CSprite derives from CSpriteBase and owns the 0x94-byte sequence sprite payload; constructor and destructor folding remain a linked LTCG boundary
 DwordDeque4,src/battle/SpellData.hpp,complete,0x14,observed,0x00432500 and both large parser target instructions,Four-dword-block handle deque at SpellDataOwner +0x00 with map capacity head and live count
 Fighter,src/battle/Collision.hpp,partial,0x72D,observed,docs/BATTLE.md and fighter initialization disassembly,Observed prefix through category byte +0x72C
 FighterCutinResource,src/battle/FighterResources.hpp,complete,0xA0,observed,exact target offsets and 0x00464320 source comparison,Handle sprite selector and terminal state fields
@@ -32,12 +34,13 @@ ShortTreeNode,src/battle/SpellData.hpp,complete,0x10,observed,0x00431590 allocat
 ShapeWords,src/battle/Collision.hpp,complete,0x10,observed,exact descriptor geometry functions,Four signed descriptor words
 SpellDataOwner,src/battle/SpellData.hpp,complete,0x68,observed,0x00432500 parser wrappers and runtime target instructions,DwordDeque4 at +0x00 SpellTree at +0x14 two ShortDeque8 fields and a 32-byte indexed value table
 SpellRecordView,src/battle/SpellData.hpp,complete,0x4C,observed,exact 0x00431950 copy constructor and parser/runtime target instructions,Two owning String28 members and all scalar/resource fields through +0x48
-SpellSpriteWork,src/battle/SpellRuntime.hpp,complete,0x94,observed,0x0045C690 stack frame and vtable initialization,EH and ownership behavior remain unresolved
+SpellSpriteWork,src/battle/SpellRuntime.hpp,complete,0x94,observed,0x0045C690 stack frame plus CSprite RTTI and vtable evidence,Source-facing ABI facade for global CSprite; ownership and EH behavior are documented by the CSprite contract
 SpellTree,src/battle/SpellData.hpp,complete,0x0C,observed,exact VC8 map insert and checked iterator probes,Allocator state sentinel/end node and node count
 SpellTreeIterator,src/battle/SpellData.hpp,complete,0x08,observed,0x004317A0 checked iterator paths,Owner and node pointers
 SpellTreeInsertResult,src/battle/SpellData.hpp,complete,0x0C,observed,exact 0x00432310 VC8 map insert comparison,Owner node inserted byte and padding
 SpellTreeNode,src/battle/SpellData.hpp,complete,0x60,observed,IDA Pro 0x00431F90 allocation and exact map probes,Links signed key 0x4C value color nil flag and padding
 SpellTreeValue,src/battle/SpellData.hpp,complete,0x50,observed,exact 0x00432310 map insert comparison,Signed key followed by deep-copy SpellRecordView
+SynchronizedInputState,src/battle/BattleController.hpp,partial,0x50,observed,0x00427680 exact target instructions and 0x004708B0 direct call,Observed prefix through the signed availability dword at +0x4C
 PointerBlockDeque20,src/characters/OwnedObjectContainers.hpp,complete,0x14,observed,exact 0x004454E0 VC8 deque push_back and 0x0051D0D0 teardown,Owns map and four-slot blocks but never pointees
 RosterOwnedObjectPrefix338,src/characters/RosterOwnedObjects.hpp,partial,0x338,observed,all fifteen normalized acquire-and-link helpers,Observed common prefix through packed handle token at +0x334; complete allocation span remains character-specific
 Sakuya,src/characters/Sakuya.hpp,partial,0x758,observed,docs/CHARACTER_PILOTS.md action roots and target field writes,Observed derived prefix from +0x730 through +0x757

@@ -52,7 +52,7 @@ caller,callee,required_status,evidence
 0x0045C690,0x00430D90,identified,docs/BATTLE.md record selection
 0x0045C690,0x004317A0,implemented,docs/BATTLE.md selected record lookup
 0x0045C5A0,0x00453B70,decompiled,IDA Pro 0x94-byte embedded sprite copy at slot +0x04
-0x0045C5A0,0x0045C440,decompiled,IDA Pro slot-pointer storage growth before enqueue
+0x0045C5A0,0x0045C440,library,exact VC8 deque<FighterSequenceSlot>::_Growmap before enqueue
 0x0045C690,0x0045C5A0,matching,strict exact complete 0x98-byte sequence-slot transfer
 0x0045E3A0,0x00421310,decompiled,IDA Pro sole constructor dependency at AttackObject this+4
 0x0045F140,0x00409AA0,matching,target initialization call order and exact CInputManager reset comparison
@@ -171,16 +171,37 @@ caller,callee,required_status,evidence
 0x0046D620,0x0046D370,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x0046FE80,0x00439860,matching,IDA Pro battle setup mode gate
 0x0046FE80,0x00439C90,matching,IDA Pro battle setup option gate
+0x0046FE80,0x0042AAB0,decompiled,IDA Pro direct setup-slot save dependency
+0x0046FE80,0x0042ABF0,decompiled,IDA Pro direct setup-slot load dependency
+0x0046FE80,0x00458D10,decompiled,IDA Pro direct scenario-page dependency
+0x0046FE80,0x00458F10,decompiled,IDA Pro direct character-story initialization dependency
+0x0046FE80,0x004591D0,decompiled,IDA Pro direct scenario-row dependency
+0x0046FE80,0x00465F70,decompiled,IDA Pro direct render-state reset dependency
+0x0046FE80,0x0046A490,decompiled,IDA Pro direct fighter-pair initialization dependency
+0x00470060,0x0042AAB0,decompiled,IDA Pro direct setup-slot save dependency
+0x00470060,0x0042ABF0,decompiled,IDA Pro direct setup-slot load dependency
+0x00470060,0x00458D10,decompiled,IDA Pro direct scenario-page dependency
+0x00470060,0x0046A490,decompiled,IDA Pro direct fighter-pair initialization dependency
+0x004701C0,0x00427190,decompiled,IDA Pro direct local/practice control dependency
+0x004701C0,0x00427AC0,decompiled,IDA Pro direct synchronized-control publication dependency
+0x004701C0,0x0042A560,decompiled,IDA Pro direct packed-control collection dependency
+0x004701C0,0x0043F030,decompiled,IDA Pro direct CMenuBattle construction dependency
+0x004701C0,0x00462E20,decompiled,IDA Pro direct fighter scripted-input dependency
 0x004701C0,0x00439DC0,matching,IDA Pro round initialization indexed event
 0x004701C0,0x0046A610,matching,IDA Pro round initialization narrow fighter reset
 0x004701C0,0x0046A6A0,matching,IDA Pro round initialization broad fighter reset
 0x00470300,0x0046AC40,matching,IDA Pro terminal fighter effect publication
 0x00470360,0x0045BC30,implemented,IDA Pro round resolution spell-sequence consumption
 0x004704D0,0x0046B4F0,implemented,IDA Pro active simulation frame wrapper
+0x004704D0,0x00458CD0,identified,strict exact active simulation wrapper phase-dependent tail
+0x00470500,0x0043F030,decompiled,IDA Pro direct CMenuBattle construction dependency
+0x00470500,0x00458E80,decompiled,IDA Pro direct owned scenario-string dispatch dependency
+0x00470780,0x00458E80,decompiled,IDA Pro direct owned scenario-string dispatch dependency
 0x00470780,0x00425F10,identified,IDA Pro round reset second global-state pass
 0x00470780,0x0046ACB0,matching,IDA Pro round reset collision-extent reset
 0x004708B0,0x0040A710,matching,IDA Pro synchronized input critical-section entry
 0x004708B0,0x0040A720,matching,IDA Pro synchronized input critical-section exit
+0x004708B0,0x00427680,identified,IDA Pro synchronized input-state availability call
 0x00470940,0x00439C90,matching,IDA Pro frame dispatcher session-option gate
 0x00470940,0x00439DC0,matching,IDA Pro frame dispatcher scene-exit event
 0x00470940,0x004708B0,decompiled,IDA Pro network frame loop synchronized input gate

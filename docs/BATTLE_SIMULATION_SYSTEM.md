@@ -37,11 +37,20 @@ BattleController [observed prefix +0x00..+0x9F]
 ├── 0x00470300 terminal fighter effect publication [decompiled]
 ├── 0x00470360 round/sequence resolution [decompiled]
 │   └── 0x0045BC30 consume spell sequence entry [implemented]
-├── 0x004704D0 active simulation wrapper [decompiled]
+├── 0x004704D0 active simulation wrapper [exact]
 │   └── 0x0046B4F0 shared phase plus info callback [implemented]
 ├── 0x00470500 scene/round transition phase [decompiled]
 ├── 0x00470780 round reset phase [decompiled]
-└── 0x004708B0 synchronized input gate [decompiled, separate input object]
+└── 0x004708B0 synchronized input gate [implemented, 127/129]
+
+Controller direct dependency layer [decompiled breadth]
+├── 0x0042AAB0/0x0042ABF0 save/load fixed battle-setup slots
+├── 0x00427190/0x00427AC0/0x0042A560 control collection/publication
+├── 0x00458D10/0x00458F10/0x004591D0 scenario and story-row setup
+├── 0x0043F030 CMenuBattle mode-specific pause menu construction
+├── 0x00462E20 fighter scripted-input state update
+├── 0x00465F70 render/list reset plus event signal
+└── 0x0046A490 fighter-pair and scene initialization
 
 Active simulation frame
 ├── manager virtual +0x40
@@ -82,6 +91,19 @@ frames until synchronized input is available. Escape/scene-exit gates dispatch
 event `0x29` and construct the observed transition object. These are direct
 target facts; original class and method names remain unknown.
 
+The dispatcher deliberately retries an unsupported phase once: it increments
+the frame counter twice before returning zero. Session option 2 polls the
+separate `BattleInputGate`; when input is unavailable it loops additional
+frames only for phases 0 and 5, then republishes the synchronized return value.
+These branches must remain explicit in eventual source rather than being
+collapsed into a generic vtable array.
+
+`0x004708B0` now has truthful RAII source. Its input object pointer is at
+`+0x104`, the 0x1C-byte `CriticalSectionWrapper` is at `+0x124`, and comparison
+bytes are at `+0x140/+0x141`. VC8 emits 127 bytes against the 129-byte target;
+the first mismatch at `+0x4B` is the helper result register (`BL` in target),
+not missing lock or comparison behavior.
+
 `0x00470360` joins the battle controller to the spell runtime. It consumes a
 fighter sequence entry through `0x0045BC30`, selects virtual phase 3 or 4, and
 updates the observed counters at controller `+0x94/+0x98/+0x9C`. This is why
@@ -92,6 +114,18 @@ from the fighter-facing byte at `+0x104`, selected by fighter `+0x72C` and
 sequence state `+0x55A`. Finer gameplay terminology is intentionally not
 assigned.
 
+The first one-hop expansion from the controller island promoted thirteen
+formerly unclassified direct dependencies. The two 0x0042AAxx functions are
+inverse fixed-slot setup transfers; the 0x00427xxx/0x0042A560 group bridges
+local or synchronized controls into packed fighter inputs; and the 0x00458xxx
+group loads character story CSV/pages and event rows. `0x004704D0` now has a
+canonical 42/42 match unit, proving its shared phase call and phase-0/5/6 tail
+dispatch without guessing the tail object's gameplay name.
+Their declaration-only handoff is
+`src/battle/BattleControllerDependencies.hpp`; it intentionally records
+receiver and argument contracts without placeholder behavior or unsupported
+original class ownership.
+
 ## Boundary and backend gate
 
 The ledger remains authoritative for all comparisons:
@@ -99,12 +133,18 @@ The ledger remains authoritative for all comparisons:
 | Address | Ledger bytes | IDA result | Treatment |
 | --- | ---: | ---: | --- |
 | `0x00406780` | ledger-defined | query error | retain ledger; use target bytes/headless fallback |
+| `0x00427190` | 474 | 482 | keep ledger span |
+| `0x0043F030` | 797 | 800 | keep ledger span |
+| `0x00458E80` | 127 | 130 | keep ledger span |
+| `0x00458F10` | 306 | 312 | keep ledger span |
+| `0x004591D0` | 516 | 543 | keep ledger span |
 | `0x00463610` | 323 | 11 | IDA subchunk is rejected; exact 323-byte object is authoritative |
 | `0x00463760` | 187 | 11 | IDA subchunk is rejected; exact 187-byte object is authoritative |
 | `0x0046A610` | 127 | 130 | keep ledger span |
 | `0x0046A6A0` | 219 | 222 | keep ledger span |
 | `0x0046AF30` | 194 | 197 | keep ledger span |
 | `0x0046D620` | 1405 | 1452 | keep ledger span |
+| `0x00465F70` | 325 | 332 | keep ledger span |
 | `0x004701C0` | 299 | 306 | keep ledger span |
 | `0x00470940` | 529 | 535 | keep ledger span |
 

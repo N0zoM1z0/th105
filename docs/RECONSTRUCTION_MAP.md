@@ -29,6 +29,9 @@ TH10.5
 ├── Battle simulation -> docs/BATTLE_SIMULATION_SYSTEM.md
 │   ├── frame-state controller [decompiled breadth]
 │   │   ├── 0x0046FE80..0x00470940 ten-function controller island
+│   │   ├── thirteen direct dependencies [decompiled]
+│   │   ├── 0x004704D0 active simulation wrapper [exact]
+│   │   ├── 0x004708B0 synchronized input gate [implemented, 127/129]
 │   │   └── 0x00470940 seven-state frame dispatcher [decompiled]
 │   ├── fighter update [semantics-ready]
 │   │   ├── action + owned-object callbacks [exact]
@@ -66,7 +69,7 @@ TH10.5
 │   ├── spell runtime [source-ready]
 │   │   ├── 0x00430C30/0x00430D90 deque front/select [exact]
 │   │   ├── 0x98-byte two-short plus sprite sequence slot [contracted]
-│   │   ├── 0x0045C440 grow [decompiled]
+│   │   ├── 0x0045C440 VC8 deque grow [library exact]
 │   │   ├── 0x0045C5A0 enqueue [exact]
 │   │   └── 0x0045BC30/0x0045C690 consume/prepare [implemented]
 │   └── fighter integration [source-ready]
@@ -101,12 +104,12 @@ platform/runtime. Their module boundaries are listed in `docs/ARCHITECTURE.md`.
 
 ## Unlock-first frontier
 
-1. **Battle controller breadth.** The previously unclassified ten-function
-   island `0x0046FE80..0x00470940` is now decompiled and connected to fighter,
-   phase, input, scene, and spell-runtime edges. Contract the controller's
-   observed state fields and implement one phase at a time, starting with the
-   frame dispatcher and the small active-simulation wrapper; retain the two
-   ledger/IDA boundary disagreements recorded in the subsystem map.
+1. **Battle controller exact fan-out.** The ten-function island and thirteen
+   direct dependencies are now decompiled; `0x004704D0` is exact and
+   `0x004708B0` has truthful 127/129 RAII source. Implement the explicit
+   seven-state/synchronized-loop structure of `0x00470940`, then split setup,
+   round initialization, transition, and reset into bounded source units while
+   retaining every ledger/IDA boundary disagreement in the subsystem map.
 2. **PAT record semantics.** `0x00462050` now has target-sized complete source,
    `0x0045E080` is exact, and `0x00464320` is 197/199 bytes. Recover the
    EH-bearing record types inside `0x00460B50`; this is the remaining shared

@@ -33,6 +33,12 @@ address,lane,priority,notes
 0x00421310,character-owned-object,1,CEffectSprite constructor required by the shared AttackObject constructor
 0x00425CD0,battle-phase,2,Post-update battle camera or global-view transform pass
 0x00425F10,battle-phase,2,Second post-update global-state pass and round-reset dependency
+0x00427190,battle-controller,2,Round-state input or session setup dependency
+0x00427680,battle-controller,2,Synchronized input-state availability test used by the controller input gate
+0x00427AC0,battle-controller,2,Round-state synchronized service dependency
+0x0042A560,battle-controller,2,Round-state controller dependency
+0x0042AAB0,battle-controller,1,Shared setup dependency reached by controller initialization and roster preparation
+0x0042ABF0,battle-controller,1,Shared setup dependency reached by controller initialization and roster preparation
 0x0042C100,score,1,Observed record count and high-water update
 0x0042D240,spell-data,2,Recursive SpellTree subtree destruction with owning-string cleanup
 0x00430C30,spell-runtime,3,Exact checked front access for a short deque-like container
@@ -68,9 +74,15 @@ address,lane,priority,notes
 0x00439C90,score,3,Exact session setup option accessor used by statistics gate
 0x00439DC0,hit-resolution,3,Exact indexed event dispatch
 0x0043ABE0,spell-data,2,Character key to path component contract
+0x0043F030,battle-controller,1,Shared controller service reached by round initialization and frame dispatch
 0x004454E0,character-owned-object,2,Exact four-byte VC8 deque append used by every fighter parent-link path
 0x00453B70,spell-runtime,2,Copy 0x94-byte sprite subobject inside a fighter sequence slot
 0x00454890,collision-phase,3,Verified VC8 std list size helper
+0x00458CD0,battle-controller,2,Opaque phase-block tail used by the exact active-simulation wrapper for phases zero five and six
+0x00458D10,battle-controller,1,Shared fighter setup dependency reached by controller initialization and roster preparation
+0x00458E80,battle-controller,1,Shared fighter reset dependency reached by scene transition and round reset
+0x00458F10,battle-controller,2,Fighter setup dependency reached by controller initialization
+0x004591D0,battle-controller,2,Fighter state dependency reached by controller initialization
 0x00459860,battle-phase,2,Exact fighter position integration and stage clamp
 0x00459C90,hit-resolution,3,Exact counter-step consumption and indexed callback
 0x00459E50,battle-phase,2,Exact common character update and input/action tail dispatch
@@ -88,7 +100,7 @@ address,lane,priority,notes
 0x0045BBB0,spell-runtime,1,Exact shared front spell-sequence availability gate
 0x0045BC30,spell-runtime,1,Sequence consume callback statistics and next-record publication
 0x0045BF10,collision-phase,2,Exact deferred sequence counter application
-0x0045C440,spell-runtime,2,Grow fighter sequence slot-pointer storage
+0x0045C440,spell-runtime,2,Exact VC8 std::deque<FighterSequenceSlot>::_Growmap specialization
 0x0045C5A0,spell-runtime,2,Exact allocation and enqueue of a complete 0x98-byte fighter sequence slot
 0x0045C690,spell-runtime,1,Record selection optional resource preparation and enqueue
 0x0045CA70,hit-resolution,3,Exact paired-fighter facing update
@@ -105,6 +117,7 @@ address,lane,priority,notes
 0x00460B50,fighter-init,2,Pre-resource fighter initialization boundary
 0x00462050,fighter-init,1,Fighter spell data face and back-resource initialization
 0x00462380,fighter-init,2,First subordinate fighter initialization phase
+0x00462E20,battle-controller,2,Fighter round initialization dependency
 0x00463120,fighter-init,2,Packed fighter-input phase subobject consumer
 0x004631E0,fighter-init,2,Second subordinate fighter initialization phase
 0x00463610,battle-phase,3,Exact active character and owned-object callback phase
@@ -118,7 +131,9 @@ address,lane,priority,notes
 0x00464320,fighter-init,2,Final character resource callback boundary
 0x00465B00,battle-phase,2,Object-manager list vslot +0x10 pass with global pre/post calls
 0x00465B70,battle-phase,2,Object-manager list vslot +0x0C pass
+0x00465F70,battle-controller,2,Controller-owned manager setup dependency
 0x00469E40,hit-resolution,3,Exact indexed info-manager scratch reset
+0x0046A490,battle-controller,2,Controller fighter-vector setup dependency
 0x0046A5B0,battle-phase,3,Exact global active-character phase wrapper
 0x0046A5C0,battle-phase,3,Exact global physics status phase wrapper
 0x0046A5D0,battle-phase,3,Exact post-update callback phase
