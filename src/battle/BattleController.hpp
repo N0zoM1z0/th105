@@ -6,6 +6,8 @@ namespace th105 {
 
 struct Fighter;
 struct BattlePhaseBlock;
+struct PostSequenceContextView;
+struct MatchSetup;
 struct BattleInputGate;
 struct BattleController;
 
@@ -55,6 +57,11 @@ struct BattleInputGate {
     unsigned char consumed_141;
 
     unsigned char poll_synchronized_input_4708b0();
+    void update_local_practice_battle_controls_427190();
+    void publish_synchronized_control_bits_427ac0();
+    void save_battle_setup_slot(signed char slot, MatchSetup *setup);
+    void load_battle_setup_slot(signed char slot, MatchSetup *setup);
+    void configure_session_input(signed char character_key, int game_mode);
     void queue_control_word(unsigned short packed_control_bits);
     void collect_battle_control_bits_42a560();
 };
@@ -80,6 +87,9 @@ struct BattleController {
     virtual int run_phase_4_470940();
     virtual int run_phase_5_470940();
     virtual int run_phase_6_470940();
+    virtual int unused_vslot_2c();
+    virtual int unused_vslot_30();
+    virtual void dispatch_round_phase_34(int phase);
 
     unsigned frame_counter_04;
     unsigned char unknown_08[0x04];
@@ -88,35 +98,45 @@ struct BattleController {
     unsigned char unknown_14[0x70];
     int result_84;
     int phase_88;
-    void *field_8c;
+    PostSequenceContextView *post_sequence_context_8c;
     unsigned char field_90;
     unsigned char transition_flag_91;
     unsigned char unknown_92[0x02];
-    int field_94;
-    int field_98;
-    int field_9c;
+    int outcome_band_94;
+    int tally_second_98;
+    int tally_third_9c;
+    int phase_a0;
+    unsigned char transition_a4;
+    unsigned char unknown_a5[3];
 
-    void initialize_or_transition_46fe80(int argument);
-    int prepare_match_roster_470060();
-    void *initialize_round_state_4701c0();
-    int publish_fighter_terminal_effect_470300(Fighter *fighter);
-    void *advance_round_resolution_470360();
+    void initialize_or_transition_46fe80(MatchSetup *setup);
+    void prepare_match_roster_470060();
+    void initialize_round_state_4701c0();
+    void publish_fighter_terminal_effect_470300(Fighter *fighter);
+    void advance_round_resolution_470360();
     int run_active_simulation_frame_4704d0();
     int transition_battle_scene_470500(int argument);
     int reset_battle_round_470780();
     int dispatch_battle_state_frame_470940();
+    void initialize_battle_fighter_pair_46a490();
 
     int run_battle_phase_and_info_callback();
 };
 
 struct BattlePhaseBlock {
     int run_458cd0();
+    void advance_scenario_script_page_458d10();
+    void initialize_character_story_script_458f10(
+        int character_key,
+        void *selected_input,
+        int match_identifier);
+    void parse_scenario_event_row_4591d0(void *destination);
 };
 
 extern BattlePhaseBlock *g_battle_phase_block;
 
-typedef char BattleController_observed_prefix_must_be_0xa0[
-    sizeof(BattleController) == 0xa0 ? 1 : -1];
+typedef char BattleController_observed_prefix_must_be_0xa8[
+    sizeof(BattleController) == 0xa8 ? 1 : -1];
 typedef char SceneExitTransition_size_must_be_0x78[
     sizeof(SceneExitTransition) == 0x78 ? 1 : -1];
 

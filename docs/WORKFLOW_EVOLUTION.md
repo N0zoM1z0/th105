@@ -218,6 +218,23 @@ caller's EH frame. The same packets left auditable stop conditions for the
 transfers. Breadth therefore supplies stable types and packet boundaries;
 strict fan-out supplies exact bytes and feeds corrections into the next wave.
 
+The newly shared controller/input/scene contracts then made the 299-byte round
+initializer `0x004701C0` exact on its first complete source pass except for one
+final branch polarity. Complementing the phase-1 predicate fixed the cold-block
+order without changing behavior, yielding a 306-byte matching section tail and
+an exact authoritative ledger prefix. This is the intended economics of the
+workflow: breadth absorbs the semantic and ABI cost once, leaving exact workers
+with small compiler-shaping deltas instead of whole-function rediscovery.
+
+The same map immediately paid off across both neighboring directions. The
+setup/roster worker returned exact 479-byte and 337-byte bodies, establishing a
+complete 0x4C-byte `MatchSetup`, scenario/story argument order, and the shared
+fighter-slot initialization path. The resolution worker returned exact 90-byte
+terminal publication and 358-byte spell-linked round resolution, promoting
+formerly unclassified direct callees into bounded contracts. Five new central
+functions and 1,563 exact bytes were integrated from one breadth map without
+each worker rediscovering the controller layout.
+
 The work-packet boundary gate also prevented a false partial comparison at
 `0x004B9540`: its stored `size=112` disagreed with `span_end=0x004B95B9`.
 Fresh IDA instructions prove a contiguous 122-byte body through the final

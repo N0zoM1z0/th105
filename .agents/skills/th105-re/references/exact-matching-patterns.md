@@ -944,6 +944,41 @@ range merely because the extra local data also happens to match.
 
 ## Hard-function strategy
 
+## P32: Flip the source predicate when only branch polarity and cold-block order differ
+
+When a long truthful function matches through a final conditional but swaps
+the two called blocks, preserve semantics by testing the complementary
+predicate and exchanging fallthrough/branch bodies. Do not reach for a pragma,
+padding, or assembly when ordinary structured C++ controls the layout.
+
+At `0x004701C0`, the first round-initialization source matched 256 bytes before
+VC8 emitted `jne narrow-reset` followed by the broad reset. Writing the same
+decision as `phase != 1`, with narrow reset as fallthrough and broad reset as
+the branch destination, reproduces the full authoritative 299 bytes:
+
+```bash
+python3 scripts/build.py --unit battle-round-initialization --compare --json
+```
+
+Apply this only after both branches, calls, and state semantics are already
+proven. Predicate inversion is a layout tool, not permission to alter behavior.
+
+## P33: Give an extern byte DIR32 a four-byte verified target window
+
+COFF DIR32 relocations always resolve a 32-bit address even when the referenced
+object is one byte. An undefined external byte therefore needs an allowlisted
+address relocation plus enough target bytes for the comparator's four-byte
+verification window; a single-byte `data_hex` is insufficient.
+
+`0x00470300` uses an external `unsigned char` at `0x006E4E2E`. Recording the
+byte and its three adjacent zero-filled bytes with `validation=address` lets the
+strict comparator verify the absolute operand without pretending the undefined
+symbol is a four-byte import. The natural 90-byte source then matches exactly.
+
+Use `literal` when the object defines the symbol and its contents are also
+being compared. Use `address` for a proven external storage address, and still
+verify the target byte window and every nonzero addend.
+
 Every reconstruction wave should include at least one function whose completion
 improves a central call path, layout, or orchestration contract. Small leaves
 are valuable when they unblock relocations, ABI, or source shaping, not merely

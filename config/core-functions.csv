@@ -31,6 +31,7 @@ address,lane,priority,notes
 0x00416A50,spell-assets,2,Loaded resource registration boundary
 0x0041FEA0,collision-phase,3,Exact collision-list sentinel allocation
 0x00421310,character-owned-object,1,CEffectSprite constructor required by the shared AttackObject constructor
+0x00425CB0,battle-controller,2,Roster metadata copy reached by exact roster preparation
 0x00425CD0,battle-phase,2,Post-update battle camera or global-view transform pass
 0x00425F10,battle-phase,2,Second post-update global-state pass and round-reset dependency
 0x00427190,battle-controller,2,Round-state input or session setup dependency
@@ -41,6 +42,7 @@ address,lane,priority,notes
 0x0042A560,battle-controller,2,Exact local packed-control collection and publication phase
 0x0042AAB0,battle-controller,1,Shared setup dependency reached by controller initialization and roster preparation
 0x0042ABF0,battle-controller,1,Shared setup dependency reached by controller initialization and roster preparation
+0x0042B5D0,battle-controller,2,Session character-input configuration reached by exact setup
 0x0042C100,score,1,Observed record count and high-water update
 0x0042D240,spell-data,2,Recursive SpellTree subtree destruction with owning-string cleanup
 0x00430C30,spell-runtime,3,Exact checked front access for a short deque-like container
@@ -63,6 +65,7 @@ address,lane,priority,notes
 0x00432D80,spell-data,2,spellcard versus storySpell wrapper for first parser
 0x00432E20,spell-data,1,Hard spell CSV record and card-resource parser
 0x00433490,spell-data,2,spellcard versus storySpell wrapper for resource parser
+0x00433860,battle-controller,2,Stage music selection reached by exact fallback setup
 0x00433B90,hit-resolution,3,Exact fighter action scratch reset
 0x00433BE0,character-owned-object,1,Exact shared oriented component setter with 721 direct roster call sites
 0x00433C40,character-command,1,Exact shared CharacterObject frame advance and vslot dispatch
@@ -74,16 +77,23 @@ address,lane,priority,notes
 0x004397F0,battle-controller,2,Menu initial-press gate used by the central frame dispatcher
 0x00439810,battle-controller,2,Synchronized menu control-state publication helper
 0x00439860,hit-resolution,3,Exact game-mode accessor
+0x00439870,battle-controller,2,Exact MatchSetup accessor used by roster preparation
 0x00439B40,score,3,Exact ScoreData root accessor
+0x00439C30,battle-controller,2,Exact selected-input accessor used by story setup
 0x00439C80,battle-controller,2,Exact player-two input accessor used by the synchronized frame loop
 0x00439C90,score,3,Exact session setup option accessor used by statistics gate
+0x00439CA0,battle-controller,2,Exact session setup option setter
 0x00439CB0,battle-controller,2,Exact network session accessor used by packed control collection
 0x00439D10,battle-controller,2,Menu object installation thunk used by the scene-exit path
 0x00439DC0,hit-resolution,3,Exact indexed event dispatch
 0x0043A290,battle-controller,2,UI selection-state change gate used by the central frame dispatcher
 0x0043ABE0,spell-data,2,Character key to path component contract
+0x0043AD10,battle-controller,2,Character-to-stage selector reached by exact fallback setup
+0x0043AD60,battle-controller,2,Character-to-BGM selector reached by exact fallback setup
+0x0043B6D0,battle-controller,2,BGM playback boundary reached by exact fallback setup
 0x0043F030,battle-controller,1,Shared controller service reached by round initialization and frame dispatch
 0x004454E0,character-owned-object,2,Exact four-byte VC8 deque append used by every fighter parent-link path
+0x004531A0,battle-controller,2,Round outcome tally publication reached by exact resolution
 0x00453B70,spell-runtime,2,Copy 0x94-byte sprite subobject inside a fighter sequence slot
 0x00454890,collision-phase,3,Verified VC8 std list size helper
 0x00458CD0,battle-controller,2,Opaque phase-block tail used by the exact active-simulation wrapper for phases zero five and six
@@ -105,6 +115,7 @@ address,lane,priority,notes
 0x0045B870,hit-resolution,2,Capped counter adjustment
 0x0045B9E0,spell-runtime,2,Checked sequence entry access contract
 0x0045BA40,spell-runtime,2,Sequence advance contract
+0x0045BB10,spell-runtime,2,Fighter sequence-entry finalization reached by exact round resolution
 0x0045BBB0,spell-runtime,1,Exact shared front spell-sequence availability gate
 0x0045BC30,spell-runtime,1,Sequence consume callback statistics and next-record publication
 0x0045BF10,collision-phase,2,Exact deferred sequence counter application
@@ -118,6 +129,7 @@ address,lane,priority,notes
 0x0045CD90,hit-resolution,3,Exact positive-y and state-window gate
 0x0045CDD0,battle-phase,2,Fighter transient status and embedded countdown continuity
 0x0045CF00,battle-phase,2,Fighter timer decrement cleanup and tail contract
+0x0045E040,battle-controller,2,Paired fighter roster reset reached by exact roster preparation
 0x0045E080,fighter-init,2,Per-fighter indexed resource initialization boundary
 0x0045E3A0,character-owned-object,1,Shared AttackObject constructor and Character or CharacterObject base contract
 0x0045E5F0,fighter-init,2,Sequence controller reset contract
@@ -128,6 +140,9 @@ address,lane,priority,notes
 0x00462E20,battle-controller,2,Fighter round initialization dependency
 0x00463120,fighter-init,2,Packed fighter-input phase subobject consumer
 0x004631E0,fighter-init,2,Second subordinate fighter initialization phase
+0x00463270,battle-controller,2,Exact fighter slot character accessor
+0x00463280,battle-controller,2,Exact fighter slot active gate
+0x00463290,battle-controller,2,Fighter slot configuration reached by exact roster preparation
 0x00463610,battle-phase,3,Exact active character and owned-object callback phase
 0x00463760,battle-phase,3,Exact physics status and timer commit phase
 0x00463820,battle-phase,2,Ordered fighter-vector vslot +0x2C pass with side selection
@@ -136,6 +151,9 @@ address,lane,priority,notes
 0x00463A60,battle-phase,2,Fighter-vector direct shared helper pass
 0x00463AB0,battle-phase,2,Fighter embedded +0x3D0 state pass
 0x00464110,character-owned-object,1,Shared object pointer-storage insertion helper
+0x004641F0,battle-controller,2,Fighter slot setup begin reached by exact roster preparation
+0x00464240,battle-controller,2,Fighter slot setup finish reached by exact roster preparation
+0x00464270,battle-controller,2,MatchSetup-side fighter slot initialization reached by exact setup
 0x00464320,fighter-init,2,Final character resource callback boundary
 0x00465B00,battle-phase,2,Object-manager list vslot +0x10 pass with global pre/post calls
 0x00465B70,battle-phase,2,Object-manager list vslot +0x0C pass
@@ -193,6 +211,8 @@ address,lane,priority,notes
 0x00470780,battle-controller,1,Round reset phase
 0x004708B0,battle-controller,2,Synchronized input availability gate
 0x00470940,battle-controller,1,Seven-state per-frame battle dispatcher
+0x004712B0,battle-controller,2,Post-sequence update reached by exact round resolution
+0x00471470,battle-controller,2,Roster state refresh reached by exact roster preparation
 0x00491480,character-command,1,Reimu character-specific action-change root
 0x004927D0,character-owned-object,1,Shared CharacterObject construction and common-tail initialization
 0x00492B10,character-owned-object,1,Reimu typed handle-pool constructor

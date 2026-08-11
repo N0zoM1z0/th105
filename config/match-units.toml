@@ -527,3 +527,109 @@ rel32_targets = [
   "?is_menu_control_pressed@th105@@YAEEEEE@Z=0x004397F0",
   "?queue_control_word@BattleInputGate@th105@@QAEXG@Z=0x0042A370",
 ]
+
+[units.battle-round-initialization]
+kind = "probe"
+source = "src/battle/BattleRoundInitialization.cpp"
+object = "build/match-units/BattleRoundInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Focused controller round initialization with synchronized/local input publication, scene-exit allocation, and phase-dependent fighter resets."
+
+[[units.battle-round-initialization.functions]]
+address = "0x004701C0"
+symbol_base = "initialize_round_state_4701c0"
+rel32_targets = [
+  "?get_session_setup_option@th105@@YAIXZ=0x00439C90",
+  "?get_player2_input@th105@@YAPAUBattleInputGate@1@XZ=0x00439C80",
+  "?publish_synchronized_control_bits_427ac0@BattleInputGate@th105@@QAEXXZ=0x00427AC0",
+  "?update_scripted_input_state_462e20@Fighter@th105@@QAEXXZ=0x00462E20",
+  "?get_network_session@th105@@YAPAUCNetworkBase@1@XZ=0x00439CB0",
+  "?dispatch_indexed_event@th105@@YAXI@Z=0x00439DC0",
+  "??0SceneExitTransition@th105@@QAE@PAUBattleController@1@@Z=0x0043F030",
+  "?install_menu_object@th105@@YAXPAX@Z=0x00439D10",
+  "?update_local_practice_battle_controls_427190@BattleInputGate@th105@@QAEXXZ=0x00427190",
+  "?collect_battle_control_bits_42a560@BattleInputGate@th105@@QAEXXZ=0x0042A560",
+  "?reset_fighter_fields_6b4_728@th105@@YIXPAUCollisionContext@1@@Z=0x0046A6A0",
+  "?reset_fighter_fields_6bc_728@th105@@YIXPAUCollisionContext@1@@Z=0x0046A610",
+]
+
+[units.battle-round-resolution]
+kind = "probe"
+source = "src/battle/BattleRoundResolution.cpp"
+object = "build/match-units/BattleRoundResolution.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Focused terminal-effect and round/spell-sequence resolution controller phase."
+
+[[units.battle-round-resolution.functions]]
+address = "0x00470300"
+symbol_base = "publish_fighter_terminal_effect_470300"
+rel32_targets = [
+  "?emit_effect_at_collision_center@CollisionContext@th105@@QAEXHH@Z=0x0046AC40",
+]
+
+[units.battle-controller-setup]
+kind = "probe"
+source = "src/battle/BattleControllerSetup.cpp"
+object = "build/match-units/BattleControllerSetup.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Focused controller setup and roster preparation phases with MatchSetup, story, fighter-pair, and BGM contracts."
+
+[[units.battle-controller-setup.functions]]
+address = "0x0046FE80"
+symbol_base = "initialize_or_transition_46fe80"
+rel32_targets = [
+  "get_game_mode=0x00439860",
+  "get_session_setup_option=0x00439C90",
+  "set_session_setup_option=0x00439CA0",
+  "get_player2_input=0x00439C80",
+  "BattleInputGate_load_battle_setup_slot=0x0042ABF0",
+  "get_selected_input=0x00439C30",
+  "BattlePhaseBlock_initialize_character_story_script_458f10=0x00458F10",
+  "BattlePhaseBlock_parse_scenario_event_row_4591d0=0x004591D0",
+  "BattleInputGate_configure_session_input=0x0042B5D0",
+  "BattleInputGate_save_battle_setup_slot=0x0042AAB0",
+  "mt19937_seed_u32=0x00406840",
+  "BattleObjectSetupManagerView_reset_battle_render_state_and_signal_465f70=0x00465F70",
+  "FighterPhaseContextSetupView_initialize_slot_464270=0x00464270",
+  "BattleController_initialize_battle_fighter_pair_46a490=0x0046A490",
+  "BattlePhaseBlock_advance_scenario_script_page_458d10=0x00458D10",
+  "get_stage_for_character=0x0043AD10",
+  "get_bgm_for_character=0x0043AD60",
+  "BattleAudioSetupView_set_stage_music_433860=0x00433860",
+  "play_bgm=0x0043B6D0",
+  "GlobalBattleSetupStateView_update_second_425f10=0x00425F10",
+  "__security_check_cookie=0x0067B465",
+]
+
+[[units.battle-controller-setup.functions]]
+address = "0x00470060"
+symbol_base = "prepare_match_roster_470060"
+rel32_targets = [
+  "get_session_setup_option=0x00439C90",
+  "get_match_setup=0x00439870",
+  "get_player2_input=0x00439C80",
+  "BattleInputGate_load_battle_setup_slot=0x0042ABF0",
+  "BattleInputGate_save_battle_setup_slot=0x0042AAB0",
+  "FighterPhaseContextSetupView_begin_slot_4641f0=0x004641F0",
+  "FighterPhaseContextSetupView_configure_slot_463290=0x00463290",
+  "FighterPhaseContextSetupView_get_slot_character_463270=0x00463270",
+  "FighterPhaseContextSetupView_is_slot_active_463280=0x00463280",
+  "Fighter_reset_for_roster_45e040=0x0045E040",
+  "FighterPhaseContextSetupView_finish_slot_464240=0x00464240",
+  "GlobalBattleSetupStateView_copy_roster_metadata_425cb0=0x00425CB0",
+  "BattleRendererSetupView_refresh_roster_state_471470=0x00471470",
+  "BattlePhaseBlock_advance_scenario_script_page_458d10=0x00458D10",
+]
+
+[[units.battle-round-resolution.functions]]
+address = "0x00470360"
+symbol_base = "advance_round_resolution_470360"
+rel32_targets = [
+  "?finalize_sequence_entry_45bb10@Fighter@th105@@QAEXH@Z=0x0045BB10",
+  "?consume_spell_sequence_entry@Fighter@th105@@QAEEXZ=0x0045BC30",
+  "?update_after_sequence_consume_4712b0@PostSequenceContextView@th105@@QAEXXZ=0x004712B0",
+  "?add_clamped_counts_4531a0@PhaseTallyView@th105@@QAEXHHH@Z=0x004531A0",
+]

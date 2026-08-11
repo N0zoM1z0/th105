@@ -171,17 +171,37 @@ caller,callee,required_status,evidence
 0x0046D620,0x0046D370,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x0046FE80,0x00439860,matching,IDA Pro battle setup mode gate
 0x0046FE80,0x00439C90,matching,IDA Pro battle setup option gate
+0x0046FE80,0x00439CA0,matching,exact battle setup session-option setter
+0x0046FE80,0x00439C80,matching,exact battle setup player-two input accessor
 0x0046FE80,0x0042AAB0,decompiled,IDA Pro direct setup-slot save dependency
 0x0046FE80,0x0042ABF0,decompiled,IDA Pro direct setup-slot load dependency
+0x0046FE80,0x0042B5D0,identified,exact battle setup session character-input configuration
+0x0046FE80,0x00433860,identified,exact battle setup stage-music selection
+0x0046FE80,0x00439C30,matching,exact battle setup selected-input accessor
+0x0046FE80,0x0043AD10,identified,exact fallback character-to-stage selection
+0x0046FE80,0x0043AD60,identified,exact fallback character-to-BGM selection
+0x0046FE80,0x0043B6D0,identified,exact fallback BGM playback boundary
 0x0046FE80,0x00458D10,decompiled,IDA Pro direct scenario-page dependency
 0x0046FE80,0x00458F10,decompiled,IDA Pro direct character-story initialization dependency
 0x0046FE80,0x004591D0,decompiled,IDA Pro direct scenario-row dependency
+0x0046FE80,0x00464270,identified,exact MatchSetup-side fighter slot initialization
 0x0046FE80,0x00465F70,decompiled,IDA Pro direct render-state reset dependency
 0x0046FE80,0x0046A490,decompiled,IDA Pro direct fighter-pair initialization dependency
+0x0046FE80,0x00425F10,identified,exact final global battle-state update
+0x00470060,0x00439870,matching,exact roster preparation MatchSetup accessor
+0x00470060,0x00439C80,matching,exact roster preparation player-two input accessor
+0x00470060,0x00439C90,matching,exact roster preparation session option gate
 0x00470060,0x0042AAB0,decompiled,IDA Pro direct setup-slot save dependency
 0x00470060,0x0042ABF0,decompiled,IDA Pro direct setup-slot load dependency
+0x00470060,0x00425CB0,identified,exact roster metadata copy
+0x00470060,0x0045E040,identified,exact paired fighter roster reset
 0x00470060,0x00458D10,decompiled,IDA Pro direct scenario-page dependency
-0x00470060,0x0046A490,decompiled,IDA Pro direct fighter-pair initialization dependency
+0x00470060,0x00463270,matching,exact fighter slot character accessor
+0x00470060,0x00463280,matching,exact fighter slot active gate
+0x00470060,0x00463290,identified,exact fighter slot configuration
+0x00470060,0x004641F0,identified,exact fighter slot setup begin
+0x00470060,0x00464240,identified,exact inactive fighter slot setup finish
+0x00470060,0x00471470,identified,exact roster state refresh
 0x004701C0,0x00427190,decompiled,IDA Pro direct local/practice control dependency
 0x004701C0,0x00427AC0,decompiled,IDA Pro direct synchronized-control publication dependency
 0x004701C0,0x0042A560,matching,IDA Pro direct packed-control collection dependency and exact canonical match unit
@@ -191,7 +211,10 @@ caller,callee,required_status,evidence
 0x004701C0,0x0046A610,matching,IDA Pro round initialization narrow fighter reset
 0x004701C0,0x0046A6A0,matching,IDA Pro round initialization broad fighter reset
 0x00470300,0x0046AC40,matching,IDA Pro terminal fighter effect publication
+0x00470360,0x004531A0,identified,exact round outcome tally publication
+0x00470360,0x0045BB10,identified,exact fighter sequence-entry finalization
 0x00470360,0x0045BC30,implemented,IDA Pro round resolution spell-sequence consumption
+0x00470360,0x004712B0,identified,exact post-sequence update
 0x004704D0,0x0046B4F0,implemented,IDA Pro active simulation frame wrapper
 0x004704D0,0x00458CD0,identified,strict exact active simulation wrapper phase-dependent tail
 0x00470500,0x0043F030,decompiled,IDA Pro direct CMenuBattle construction dependency

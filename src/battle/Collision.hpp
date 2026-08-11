@@ -245,9 +245,12 @@ struct Fighter {
     unsigned char gate_4e4;
     unsigned char unknown_4e5;
     unsigned char gate_4e6;
-    unsigned char unknown_4e7[0x03];
+    unsigned char unknown_4e7;
+    signed char terminal_delay_4e8;
+    unsigned char terminal_pending_4e9;
     unsigned char state_4ea;
-    unsigned char unknown_4eb[0x02];
+    unsigned char terminal_finalize_4eb;
+    unsigned char unknown_4ec;
     unsigned char gate_4ed;
     unsigned char unknown_4ee[0x02];
     unsigned char spell_lookup_4f0[0x44];
@@ -308,6 +311,9 @@ struct Fighter {
         int direction,
         int trailing_value);
     void advance_fighter_sequence_55c();
+    void finalize_sequence_entry_45bb10(int index);
+    void reset_for_roster_45e040(Fighter *other);
+    void update_scripted_input_state_462e20();
     bool is_front_sequence_entry_ready_55a(signed char index);
     unsigned char consume_spell_sequence_entry();
     void prepare_next_spell_sequence_entry();
@@ -464,6 +470,8 @@ struct EffectSink {
     virtual void unknown_10();
     virtual void unknown_14();
     virtual void phase_18(int value);
+    virtual void unknown_1c();
+    virtual void publish_roster_fighter_20(Fighter *fighter);
 };
 
 extern EffectSink *g_effect_sink;

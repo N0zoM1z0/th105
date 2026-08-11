@@ -1,7 +1,7 @@
 type_name,header,coverage,observed_size,confidence,evidence,notes
 AttackCandidate,src/battle/Collision.hpp,partial,0x1A8,observed,docs/BATTLE.md and target field accesses,Observed prefix through frame pointer at +0x1A4
 AttackCandidateFrame,src/battle/Collision.hpp,complete,0x54,observed,docs/BATTLE.md and exact dependent functions,All fields used by the shared hit pipeline are laid out
-BattleController,src/battle/BattleController.hpp,partial,0xA0,observed,docs/BATTLE_SIMULATION_SYSTEM.md and IDA Pro target instructions for 0x0046FE80 through 0x00470940,Observed prefix covers frame counter two fighter pointers result phase and transition state; declarations intentionally have no placeholder bodies
+BattleController,src/battle/BattleController.hpp,partial,0xA8,observed,exact controller setup round and dispatcher match units for 0x0046FE80 through 0x00470940,Observed prefix covers frame counter fighter pointers result/phase tallies and setup transition state through +0xA4
 BattleInputGate,src/battle/BattleController.hpp,partial,0x142,observed,0x004708B0 target instructions and 127/129 RAII source comparison,Observed fields include input pointer +0x104 CriticalSectionWrapper +0x124 and synchronization bytes +0x140/+0x141; compiler rounds allocation size beyond observed prefix
 AliceObjectFlightState,src/characters/AliceObjectEffects.hpp,partial,0x37C,observed,0x004FC0B0 exact source and Alice 0x38C pool allocation trait,Alice-specific view covers owner target heading lifetime delta squares distance and scale; trailing allocation fields remain opaque
 CharacterObjectEffectEmitter,src/characters/CharacterObjectEffects.hpp,partial,0x378,observed,0x004FC350 0x004FC3A0 0x00520360 0x0053C7F0 and 0x0064C090 sources plus all-roster action callers,Shared object view now covers motion/scaling mode lifetime control direction and spawn phase fields through +0x374; opaque fields remain
@@ -22,10 +22,14 @@ Fighter,src/battle/Collision.hpp,partial,0x72D,observed,docs/BATTLE.md and fight
 FighterCutinResource,src/battle/FighterResources.hpp,complete,0xA0,observed,exact target offsets and 0x00464320 source comparison,Handle sprite selector and terminal state fields
 FighterCutinSpriteWork,src/battle/FighterResources.hpp,complete,0x94,observed,0x006AC668 vtable and 0x00464320 virtual slot +0x14 call,Sprite view with observed float fields at +0x88 and +0x8C
 FighterControlInput,src/battle/BattleController.hpp,partial,0x64,observed,strict exact 0x0042A560 control collection source,Observed prefix through packed low ten control bits at +0x62
+FighterRoundTransitionLink,src/battle/BattleRoundInitialization.cpp,complete,0x04,observed,strict exact 0x004701C0 round initialization source,Optional fighter +0x6B0 link to a shared transition-state record
+FighterRoundTransitionState,src/battle/BattleRoundInitialization.cpp,partial,0x5C,observed,strict exact 0x004701C0 round initialization source,Observed prefix through the scene-exit gate dword at +0x58
 FighterSequenceController,src/battle/Collision.hpp,complete,0x14,observed,checked sequence access instructions,Five dword controller header
 FighterSequenceSlot,src/battle/SpellRuntime.hpp,complete,0x98,observed,spell runtime checked entry accesses,Two shorts followed by a 0x94-byte sprite-compatible object
 FixedBattleSetupSlot,src/battle/BattleControllerDependencies.hpp,complete,0x3C,observed,0x0042AAB0 and 0x0042ABF0 inverse target transfers,Two side bytes and 0x14 payloads token tags plus terminal setup bytes and dword
 FixedSlotEnvelope,src/battle/BattleControllerDependencies.hpp,complete,0x50,observed,0x0042AAB0 and 0x0042ABF0 0x66666667 stride division,0x3C setup payload plus 0x14 private container tail
+MatchSetup,src/battle/GameMode.hpp,complete,0x4C,observed,strict exact 0x0046FE80 and 0x00470060 setup sources,Match identifier stage and BGM bytes two 0x20 side records and seed dword
+MatchSetupSide,src/battle/GameMode.hpp,complete,0x20,observed,strict exact setup and roster source argument offsets,Character key dword followed by an opaque 0x1C-byte side payload
 ObservedRecord24,src/config/ScoreData.hpp,complete,0x18,observed,0x0042C100 target instructions,Two keys count and signed high-water value
 ObservedRecordRange16,src/config/ScoreData.hpp,complete,0x10,observed,0x0042C100 target instructions,Begin end and capacity pointer view
 ScoreData,src/config/ScoreData.hpp,partial,0x198,observed,0x0042C100 target instructions,Observed prefix before the range array

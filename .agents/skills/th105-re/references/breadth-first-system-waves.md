@@ -29,6 +29,14 @@ blocker, and fixed-slot save/load have clean-relocation layout probes. This is
 strong enough evidence to make the wave loop the default for large gameplay
 subsystems.
 
+The next packets added exact setup (479), roster preparation (337), round
+initialization (299), terminal publication (90), and spell-linked resolution
+(358). Those 1,563 bytes all reuse the same controller/input/fighter contracts,
+while their calls promoted setup-slot, fighter-slot, tally, and post-sequence
+boundaries for the next breadth layer. This is the expected compounding effect:
+new structure lowers exact cost, and exact relocations make the following map
+more precise.
+
 ## Coordinator loop
 
 1. Select one subsystem and its existing core lanes. Verify the target and run

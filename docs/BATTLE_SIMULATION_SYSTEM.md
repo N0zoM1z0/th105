@@ -22,7 +22,7 @@ a function. This pass additionally promotes the ten-function controller island
 ## System tree
 
 ```text
-BattleController [observed prefix +0x00..+0x9F]
+BattleController [observed prefix +0x00..+0xA7]
 ├── 0x00470940 per-frame state dispatcher [exact]
 │   ├── state 0 -> virtual +0x10
 │   ├── state 1 -> virtual +0x14
@@ -31,11 +31,11 @@ BattleController [observed prefix +0x00..+0x9F]
 │   ├── state 4 -> virtual +0x20
 │   ├── state 5 -> virtual +0x24
 │   └── state 6 -> virtual +0x28
-├── 0x0046FE80 setup/transition phase [decompiled]
-├── 0x00470060 roster/setup phase [decompiled]
-├── 0x004701C0 round-state initialization phase [decompiled]
-├── 0x00470300 terminal fighter effect publication [decompiled]
-├── 0x00470360 round/sequence resolution [decompiled]
+├── 0x0046FE80 setup/transition phase [exact]
+├── 0x00470060 roster/setup phase [exact]
+├── 0x004701C0 round-state initialization phase [exact]
+├── 0x00470300 terminal fighter effect publication [exact]
+├── 0x00470360 round/sequence resolution [exact]
 │   └── 0x0045BC30 consume spell sequence entry [implemented]
 ├── 0x004704D0 active simulation wrapper [exact]
 │   └── 0x0046B4F0 shared phase plus info callback [implemented]
@@ -107,6 +107,25 @@ diagnostic comparison of that full tail is also exact. This strengthens the
 switch/vslot evidence but does not override the ledger boundary or IDA's 535
 byte grouping.
 
+`0x004701C0` is exact across its authoritative 299-byte ledger span; its object
+section tail is the same 306 bytes that IDA groups. It selects synchronized or
+local input publication, advances scripted input for both fighters, opens the
+scene-exit transition for either fighter's `+0x6B0` linked state, then chooses
+the already exact narrow or broad two-fighter reset from controller phase.
+Writing the final test as `phase != 1` preserves target fallthrough into the
+narrow reset and branches to the broad reset; the semantically equivalent
+positive test reverses code layout after 256 otherwise exact bytes.
+
+The setup pair is exact as one audited source unit. `0x0046FE80` matches
+479/479 with the target 260-byte path buffer and `/GS` frame; it selects local
+or synchronized setup, initializes scenario/story rows, seeds the match,
+initializes both fighter slots, and falls back to character-derived stage/BGM
+selection when no scenario phase block exists. `0x00470060` matches 337/337;
+it transfers the fixed setup slot, prepares the second fighter when inactive,
+copies both fighters' `+0xEC/+0xF0` metadata, refreshes shared state, and
+dispatches phase 0. Together they prove the complete 0x4C-byte `MatchSetup`
+view and extend the controller's observed prefix through `+0xA4`.
+
 `0x004708B0` now has truthful RAII source. Its input object pointer is at
 `+0x104`, the 0x1C-byte `CriticalSectionWrapper` is at `+0x124`, and comparison
 bytes are at `+0x140/+0x141`. VC8 emits 127 bytes against the 129-byte target;
@@ -131,15 +150,18 @@ resolves all external calls. VC8 currently emits 258 bytes against 240 with the
 first mismatch at `+0x02`; the bounded blocker is entry register allocation,
 not an unknown branch or unresolved relocation.
 
-`0x00470360` joins the battle controller to the spell runtime. It consumes a
-fighter sequence entry through `0x0045BC30`, selects virtual phase 3 or 4, and
-updates the observed counters at controller `+0x94/+0x98/+0x9C`. This is why
-Spell-card and Battle simulation cannot be reconstructed as isolated systems.
+`0x00470360` is exact at 358/358 and joins the battle controller to the spell
+runtime. It finalizes or consumes fighter sequence entries through
+`0x0045BB10/0x0045BC30`, publishes the outcome band and tallies, selects the
+shared virtual slot `+0x34` with phase 3 or 4, and updates controller
+`+0x94/+0x98/+0x9C`. This is why Spell-card and Battle simulation cannot be
+reconstructed as isolated systems.
 
-`0x00470300` sets fighter byte `+0x4E9` to `2` and emits effect 64, 66, or 67
-from the fighter-facing byte at `+0x104`, selected by fighter `+0x72C` and
-sequence state `+0x55A`. Finer gameplay terminology is intentionally not
-assigned.
+`0x00470300` is exact at 90/90. It sets fighter byte `+0x4E9` to `2`, updates
+the observed byte global at `0x006E4E2E` on one branch, and emits effect 64,
+66, or 67 from the fighter-facing byte at `+0x104`, selected by fighter
+`+0x72C` and sequence state `+0x55A`. Finer gameplay terminology is
+intentionally not assigned.
 
 The first one-hop expansion from the controller island promoted thirteen
 formerly unclassified direct dependencies. The two 0x0042AAxx functions are
@@ -161,7 +183,8 @@ blocker is the original fixed-slot container/TU register lifetime, so the
 layout is durable while exact tuning remains bounded as a pair.
 
 This fan-out is the concrete validation for the breadth-first workflow: one
-controller map produced three authored exact functions (`0x00470940`,
+controller map produced eight authored exact functions (`0x0046FE80`,
+`0x00470060`, `0x004701C0`, `0x00470300`, `0x00470360`, `0x00470940`,
 `0x0042A560`, and `0x00427680`), preserved precise stop conditions for three
 hard neighbors, and strengthened shared controller/input types before another
 call-graph layer was expanded.
@@ -190,8 +213,8 @@ The ledger remains authoritative for all comparisons:
 
 ## Breadth-first implementation frontier
 
-1. Reconstruct the remaining controller phase bodies `0x0046FE80..0x00470780`
-   in bounded setup, round-resolution, transition, and reset units.
+1. Reconstruct the remaining transition/reset bodies `0x00470500/0x00470780`
+   and the shared fighter-pair initializer `0x0046A490` in bounded units.
 2. Tune the synchronized control pair `0x00427AC0/0x0042A370` after their queue
    container layout is shared; retain the explicit register-allocation blocker.
 3. Preserve the already source-complete collision/hit algorithms while adding

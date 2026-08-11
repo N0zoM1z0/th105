@@ -44,6 +44,11 @@ fails closed unless SHA-256, MD5, image base, and file size match
 reports whether IDA currently assigns the separate body at `0x00463610` to the
 same function.
 
+The open filename is not target identity. In the mixed Windows installation
+used for this reconstruction, the authoritative hash belongs to `th105c.exe`,
+while the sibling `th105.exe` has a different size and hash. Always run the
+metadata/hash gate; never accept or reject an IDA session from its basename.
+
 Failure reasons are machine-readable:
 
 | Reason | Action |

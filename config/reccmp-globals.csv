@@ -2,6 +2,7 @@ name,address,type
 g_mt19937_index,0x006E3D9C,global
 g_battle_phase_static_service,0x006E3DBC,global
 g_mt19937_twist_xor,0x006E49CC,global
+g_round_counter,0x006E4E2E,global
 g_fighter_phase_context,0x006E623C,global
 g_battle_object_manager,0x006E6240,global
 g_battle_manager,0x006E6244,global
