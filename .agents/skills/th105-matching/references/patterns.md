@@ -257,6 +257,17 @@ Separate stores make VC8 reload the record identifier and lose the target
 175/175-byte register schedule. Preserve the shared value flow when adjacent
 fields intentionally receive the same source word.
 
+VC8 deque block selection uses the complete padded element size. The known
+Youmu record fields occupy 42 bytes, but natural tail padding makes
+`sizeof(YoumuObjectRecord) == 44`; explicitly instantiating
+`std::deque<YoumuObjectRecord>` therefore selects one element per block and
+emits the exact 94-byte mutable checked `at` specialization at `0x0053CA40`.
+Select the fully decorated mutable overload when comparing an explicit-template
+object, because it also contains the const overload. Its `_Xran` dependency at
+`0x0053C9C0` has an instruction-identical 117-byte VC8 probe, but an unregistered
+absolute EH-handler relocation keeps strict comparison fail-closed; classify
+that helper as verified library code without claiming an exact match.
+
 At `0x0053C7F0`, a natural VC8 switch reproduces the signed `movsx; sub 0;
 sub 1` mode dispatch and all floating-point/payload operations, but emits 446
 bytes against the 450-byte target. The target places the reverse-phase

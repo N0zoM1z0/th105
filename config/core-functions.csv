@@ -188,6 +188,7 @@ address,lane,priority,notes
 0x0053ADF0,character-owned-object,1,Youmu owned-object spawn contract
 0x0053B040,character-command,1,Youmu spell skill and normal input dispatcher
 0x0053C7F0,character-owned-object,1,Implemented all-roster ping-pong motion and periodic action-980 spawn helper
+0x0053CA40,character-owned-object,2,Exact VC8 checked Youmu owner-record deque access library specialization
 0x0053CAA0,character-owned-object,1,Exact Youmu owner-record application and action-state publication adapter
 0x005448A0,character-command,2,Youmu event-code action bridge
 0x005544A0,character-command,2,Remilia vtable +0x5C sequence lifecycle root

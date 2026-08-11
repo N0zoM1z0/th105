@@ -231,6 +231,7 @@ caller,callee,required_status,evidence
 0x0053B040,0x004631E0,implemented,IDA Pro Youmu action-transition call cluster
 0x0053B040,0x00493C90,implemented,IDA Pro Youmu front-record selector call
 0x0053C7F0,0x004FC350,matching,IDA Pro direct call to exact unparented related-object spawn adapter
+0x0053CAA0,0x0053CA40,library,Exact Youmu owner-record adapter uses checked deque access specialization
 0x00555690,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths
 0x00555930,0x00454890,library,IDA Pro exact normalized list-size update call
 0x00555930,0x0046D000,matching,IDA Pro exact normalized list-node allocation call
