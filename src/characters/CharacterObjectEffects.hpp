@@ -14,9 +14,19 @@ struct CharacterObjectEffectEmitter {
     float y_f0;
     unsigned char unknown_0f4[0x10];
     unsigned char facing_104;
-    unsigned char unknown_105[0x243];
+    unsigned char unknown_105[0x67];
+    void *related_16c;
+    unsigned char unknown_170[0x1d8];
     Fighter *owner_348;
 
+    void *spawn_unparented_related_object(
+        int action_id,
+        float x,
+        float y,
+        int facing,
+        int field_33c,
+        const unsigned *copied_words,
+        int copied_word_count);
     void emit_fighter_effect_433cc0(
         int effect_code,
         float x,
@@ -31,6 +41,8 @@ struct CharacterObjectEffectEmitter {
 
 typedef char CheckCharacterObjectEffectOwnerOffset[
     offsetof(CharacterObjectEffectEmitter, owner_348) == 0x348 ? 1 : -1];
+typedef char CheckCharacterObjectEffectRelatedOffset[
+    offsetof(CharacterObjectEffectEmitter, related_16c) == 0x16c ? 1 : -1];
 typedef char CheckCharacterObjectEffectEmitterSize[
     sizeof(CharacterObjectEffectEmitter) == 0x34c ? 1 : -1];
 

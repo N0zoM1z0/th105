@@ -2,6 +2,48 @@
 
 namespace th105 {
 
+namespace {
+
+typedef void *(__thiscall *SpawnOwnedObject)(
+    void *manager,
+    CharacterObjectEffectEmitter *parent,
+    void *related,
+    int action_id,
+    float x,
+    float y,
+    int facing,
+    int field_33c,
+    const unsigned *copied_words,
+    int copied_word_count);
+
+} // namespace
+
+void *CharacterObjectEffectEmitter::spawn_unparented_related_object(
+    int action_id,
+    float x,
+    float y,
+    int facing,
+    int field_33c,
+    const unsigned *copied_words,
+    int copied_word_count)
+{
+    void *manager = owner_348->owned_manager_658;
+    SpawnOwnedObject const spawn =
+        reinterpret_cast<SpawnOwnedObject>(
+            (*reinterpret_cast<void ***>(manager))[1]);
+    return spawn(
+        manager,
+        0,
+        related_16c,
+        action_id,
+        x,
+        y,
+        facing,
+        field_33c,
+        copied_words,
+        copied_word_count);
+}
+
 unsigned char CharacterObjectEffectEmitter::emit_repeated_effects_for_owner_state(
     int mode,
     int effect_200_count,

@@ -5,6 +5,7 @@ coff_symbol,address,data_hex,addends,evidence,validation
 ?g_fighter_state_4b8_default@th105@@3HA,0x006E4E20,00000000,0x0,target initialized dword and direct 0x0045CDD0 fallback load verified,literal
 ?g_mt19937_state@th105@@3PAIA,0x006E8498,00000000,0x0;0x4;0x630;0x9bc;0xfffffffc,target MT19937 state base indexed displacements and last zero-filled word verified,literal
 __real@3fe0000000000000,0x006B73D8,000000000000e03f,0x0,target bytes and IEEE-754 value verified as double 0.5,literal
+__real@3f000000,0x006B73E0,0000003f,0x0,target bytes and IEEE-754 value verified as float 0.5 for quantized orientation lookup,literal
 __real@3ff8000000000000,0x006ACEB0,000000000000f83f,0x0,target bytes and IEEE-754 value verified as double 1.5 for general hit responses,literal
 __real@408f400000000000,0x006AF6D8,0000000000408f40,0x0,target bytes and IEEE-754 value verified as double 1000.0 for hit-accounting scale,literal
 __real@3feb333340000000,0x006AEA68,000000403333eb3f,0x0,target widened float 0.85 bytes verified for hit scalar modifier,literal
@@ -21,6 +22,7 @@ __real@42340000,0x006AFE00,00003442,0x0,target bytes and IEEE-754 value verified
 __real@43070000,0x006AFDD4,00000743,0x0,target bytes and IEEE-754 value verified as float 135.0 for action 214 direction angle,literal
 __real@42b40000,0x006AFD9C,0000b442,0x0,target bytes and IEEE-754 value verified as float 90.0 for action 214 direction angle,literal
 __real@43340000,0x006C0F04,00003443,0x0,target bytes and IEEE-754 value verified as float 180.0 for action 214 direction angle,literal
+__real@41200000,0x006C0F10,00002041,0x0,target bytes and IEEE-754 value verified as float 10.0 for quantized orientation lookup,literal
 __real@0000000000000000,0x006C0ED0,0000000000000000,0x0,target bytes and IEEE-754 value verified as double 0.0 in fighter position commit,literal
 __real@42200000,0x006AEA40,00002042,0x0,target bytes and IEEE-754 value verified as float 40.0,literal
 __real@449b0000,0x006AEA3C,00009b44,0x0,target bytes and IEEE-754 value verified as float 1240.0,literal

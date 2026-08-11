@@ -59,6 +59,15 @@ reproducing the caller's `ECX=this` setup. Check every direct caller before
 classifying such a helper as a free `__stdcall` function merely from its
 callee cleanup and unused register.
 
+For a thin virtual forwarding member, model the vtable slot and every stack
+argument with a typed `__thiscall` function pointer instead of introducing a
+convenient direct helper. At `0x004FC350`, keeping the null parent, related
+object pointer, two floats, and five scalar arguments in the observed order
+made VC8 naturally reproduce the target's x87 float stores, repeated `ESI`
+push schedule, owner/manager dereferences, and indirect vslot-one call for an
+exact 78/78 match. This pattern is especially useful for shared roster object
+adapters because one exact wrapper can validate thousands of call sites.
+
 ## 3. Relocation-aware comparison
 
 `REL32` calls and tail jumps can be linked in a standalone probe when the external symbol maps uniquely to a known target address. A symbol collision or unknown target is a naming/inventory problem, not a byte-tuning problem.

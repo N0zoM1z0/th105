@@ -26,6 +26,8 @@ caller,callee,required_status,evidence
 0x00433490,0x00432500,identified,docs/BATTLE.md wrapper call order
 0x00433490,0x00432E20,decompiled,docs/BATTLE.md resource parser forwarding
 0x00433490,0x0043ABE0,identified,docs/BATTLE.md character path component resolution
+0x00433BE0,0x00406530,implemented,target direct call and exact shared oriented-component setter comparison
+0x00433BE0,0x004065A0,implemented,target direct call and exact shared oriented-component setter comparison
 0x0045A4A0,0x00406650,matching,docs/BATTLE.md oriented descriptor sine dependency
 0x0045A4A0,0x00406680,matching,docs/BATTLE.md oriented descriptor cosine dependency
 0x0045AEC0,0x0045A190,decompiled,docs/BATTLE.md group geometry transform path

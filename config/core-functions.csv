@@ -3,6 +3,8 @@ address,lane,priority,notes
 0x00402A50,character-owned-object,1,Shared reusable pool node removal contract
 0x00404EC0,spell-assets,2,Single image resource loader boundary
 0x00404F30,spell-assets,2,Composite image resource builder boundary
+0x00406530,character-owned-object,1,Shared float orientation sine lookup used across all 15 roster object-action families
+0x004065A0,character-owned-object,1,Shared float orientation cosine lookup used across all 15 roster object-action families
 0x00406650,geometry,3,Exact orientation sine lookup dependency
 0x00406680,geometry,3,Exact orientation cosine lookup dependency
 0x00406780,geometry,2,Orientation table initialization contract still missing
@@ -39,6 +41,8 @@ address,lane,priority,notes
 0x00432E20,spell-data,1,Hard spell CSV record and card-resource parser
 0x00433490,spell-data,2,spellcard versus storySpell wrapper for resource parser
 0x00433B90,hit-resolution,3,Exact fighter action scratch reset
+0x00433BE0,character-owned-object,1,Exact shared oriented component setter with 721 direct roster call sites
+0x00433C40,character-command,1,Exact shared CharacterObject frame advance and vslot dispatch
 0x00433CC0,character-command,1,Exact shared effect emission forwarding boundary
 0x00434390,geometry,3,Exact fighter X-boundary classification used by body separation
 0x004343D0,geometry,3,Exact proposed-X stage-height gate used by body separation
@@ -164,6 +168,7 @@ address,lane,priority,notes
 0x004FA530,character-command,2,Alice fighter constructor and owned-manager boundary
 0x004FA5C0,character-command,1,Alice spell skill and normal input dispatcher
 0x004FC0B0,character-command,2,Alice target and position update leaf
+0x004FC350,character-owned-object,1,Exact all-roster unparented related-object spawn adapter with 1026 direct calls
 0x0051C5C0,character-command,2,Patchouli sequence-driven action lifecycle
 0x0051D140,character-command,1,Patchouli action-change root
 0x0051E3C0,character-owned-object,1,Patchouli object-pool acquire semantics
