@@ -123,6 +123,18 @@ in the reuse path, suitable for the linked-LTCG island rather than fake source
 code.  The verified roster clone manifest then safely fans this implementation
 out to all fourteen non-Sakuya object pools.
 
+The same canonical-first rule then advanced the 237-byte roster spawn family.
+The clone audit corrected an important trait assumption: only acquire-and-link
+is character-specific; deque append, array allocation, and `memcpy` are shared
+targets whose raw REL32 operands differ only by caller address.  Giving the
+owner `+0x160` field a direct typed assignment and using the real virtual
+action method moved the first mismatch from `+0x0D` to the parent block at
+`+0x3E`; the target and object are both 237 bytes and the complete tail from
+`+0x57` is exact.  A tempting single-expression parent append introduced
+C++03 evaluation-order ambiguity and was rejected.  The safe source keeps the
+same parent/deque operations with only a standalone/LTCG scheduling delta, and
+the audited manifest fans it out to fourteen non-Sakuya managers.
+
 ## Operational loop
 
 ```bash

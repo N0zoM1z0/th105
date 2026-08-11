@@ -103,3 +103,21 @@ rel32_targets = [
   "?at@?$vector@PAVReimuObject@@V?$allocator@PAVReimuObject@@@std@@@std@@QAEAAPAVReimuObject@@I@Z=0x004B8FB0",
   "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040A720",
 ]
+
+[units.reimu-object-spawn]
+kind = "probe"
+source = "src/characters/RosterObjectSpawns.cpp"
+object = "build/match-units/RosterObjectSpawns.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Canonical 237-byte roster spawn reconstruction before audited clone-family fan-out."
+
+[[units.reimu-object-spawn.functions]]
+address = "0x00493110"
+symbol_base = "?spawn_object@ReimuObjectManager@th105@@QAEPAVReimuObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@ReimuObjectManagerBase@th105@@QAEPAVReimuObject@@XZ=0x00492E20",
+  "?push_back@?$deque@PAVReimuObject@@V?$allocator@PAVReimuObject@@@std@@@std@@QAEXABQAVReimuObject@@@Z=0x004454E0",
+  "??_U@YAPAXI@Z=0x00664F9A",
+  "_memcpy=0x0067C170",
+]

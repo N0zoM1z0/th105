@@ -368,6 +368,16 @@ such as two `std::vector<...>::push_back` calls, resolve an explicitly supplied
 decorated symbol before the legacy short alias.  This preserves fail-closed
 relocation replay without pretending distinct targets share one address.
 
+For roster-style spawn functions, keep a true virtual declaration for the
+action setter when target code loads vtable slot `+0x08` and immediately calls
+it.  Caching that slot in a raw function-pointer local changes the final
+register schedule even when the ABI is equivalent.  Likewise, a direct typed
+assignment from the owner `+0x160` field can keep the owner and parent values
+in the target registers where a duplicated branch-local assignment cannot.
+Reject expressions such as `parent->children.push_back(parent = object)` when
+the receiver and argument mutation are unsequenced in C++03; a byte improvement
+does not justify undefined or ambiguous source semantics.
+
 ## 10. Measurement and evidence
 
 Use the strictest truthful status:

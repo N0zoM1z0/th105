@@ -171,9 +171,9 @@ shared owned-object lifecycle [contracted]
 ├── 0x0053C7F0 ping-pong motion + periodic action-980 spawn [implemented, all 15 rosters]
 ├── 0x0064C090 owner-gated repeated effects 200/201 [exact, 228 roster calls]
 ├── 0x004B9540 return tracked objects to pool [semantics-ready]
-├── fifteen 237-byte spawn entries [contracted]
-│   ├── Sakuya 0x004DED80 [source-ready]
-│   └── fourteen normalized twins [decompiled]
+├── fifteen 237-byte spawn entries [implemented]
+│   ├── Sakuya 0x004DED80 [independent source]
+│   └── fourteen normalized twins [typed shared source; parent-block LTCG schedule]
 ├── fifteen 94-byte acquire-and-link entries [source-ready]
 │   ├── normalized token/list contract
 │   └── fourteen roster functions emitted from one shared source body

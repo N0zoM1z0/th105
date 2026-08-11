@@ -27,7 +27,7 @@ struct RosterObjectTail {
     typedef RosterObjectTail<FighterName##Object, TailBytes>                  \
         FighterName##ObjectTail;                                              \
     class FighterName##Object : public CharacterObject,                       \
-                                private FighterName##ObjectTail {             \
+                                public FighterName##ObjectTail {              \
     public:                                                                    \
         __forceinline FighterName##Object()                                    \
         {                                                                      \

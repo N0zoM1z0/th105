@@ -125,11 +125,15 @@ pointer is dereferenced at `+0x170` without a null guard. The outer manager
 layout is likewise shared: secondary manager-base view at `+0x04`, tracked
 list at outer `+0x58`, and fighter owner at `+0x64`.
 
-Alice's four-byte larger fresh allocation is the only observed roster
-deviation; the spawn instructions themselves remain template-identical. The
-fourteen newly named rows are therefore `decompiled`, while only Sakuya has a
-source body. A reusable emitted template must preserve separate character pool
-calls and the Alice tail before those rows can advance to `implemented`.
+Alice's four-byte larger fresh allocation is the only observed pool deviation;
+the spawn instructions themselves remain template-identical.  Of the four
+normalized calls, only acquire-and-link is character-specific; deque
+`push_back`, array allocation, and `memcpy` share the same targets in every
+member.  The Reimu canonical source compiles to the exact 237-byte size and is
+exact through `+0x3D` and again from `+0x57` through `ret 0x24`.  The remaining
+parent block contains the same instructions in a different safe scheduling
+order.  The fourteen non-Sakuya rows are therefore `implemented` from one
+typed emitted body; Sakuya keeps its independently compiled same-size source.
 
 The acquire-and-link column is independently stronger: all fifteen entries are
 94-byte instruction-template twins after normalizing the three call operands at

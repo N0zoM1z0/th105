@@ -3,7 +3,7 @@
 namespace th105 {
 
 #define TH105_DEFINE_ACQUIRE_AND_LINK(FighterName)                            \
-    RosterOwnedObjectPrefix338 *                                              \
+    ::FighterName##Object *                                                   \
         FighterName##ObjectManagerBase::acquire_and_link_object()             \
     {                                                                         \
         union LocalSlot {                                                      \
@@ -12,13 +12,13 @@ namespace th105 {
         } local;                                                               \
                                                                               \
         local.handle_token = 0;                                               \
-        RosterOwnedObjectPrefix338 *object =                                  \
-            reinterpret_cast<RosterOwnedObjectPrefix338 *>(                   \
-                pool_04.acquire(&local.handle_token));                        \
-        object->handle_token_334 = local.handle_token;                        \
+        ::FighterName##Object *object =                                       \
+            pool_04.acquire(&local.handle_token);                             \
+        reinterpret_cast<RosterOwnedObjectPrefix338 *>(object)                \
+            ->handle_token_334 = local.handle_token;                          \
                                                                               \
         CollisionListNode *sentinel = linked_objects_54.sentinel;             \
-        local.object = object;                                                \
+        local.object = reinterpret_cast<RosterOwnedObjectPrefix338 *>(object); \
         CollisionListNode *node = create_collision_list_node(                 \
             sentinel,                                                        \
             sentinel->previous,                                              \

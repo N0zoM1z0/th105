@@ -75,10 +75,23 @@ typedef char CheckCharacterObjectPoolLockOffset[
         void *manager_vtable_00;                                              \
         FighterName##ObjectPool pool_04;                                      \
         CollisionList linked_objects_54;                                     \
-        RosterOwnedObjectPrefix338 *acquire_and_link_object();                \
+        ::FighterName##Object *acquire_and_link_object();                     \
+    };                                                                        \
+    struct FighterName##ObjectManager {                                       \
+        void *interface_vtable_00;                                            \
+        FighterName##ObjectManagerBase base_04;                               \
+        void *owner_64;                                                       \
+        ::FighterName##Object *spawn_object(                                  \
+            ::FighterName##Object *parent,                                    \
+            ::FighterName##Object *related,                                   \
+            int action_id, float x, float y, signed char facing,              \
+            unsigned char field_33c, const unsigned *copied_words,            \
+            int copied_word_count);                                           \
     };                                                                        \
     typedef char Check##FighterName##ObjectManagerBaseSize[                   \
-        sizeof(FighterName##ObjectManagerBase) == 0x60 ? 1 : -1]
+        sizeof(FighterName##ObjectManagerBase) == 0x60 ? 1 : -1];             \
+    typedef char Check##FighterName##ObjectManagerSize[                       \
+        sizeof(FighterName##ObjectManager) == 0x68 ? 1 : -1]
 
 TH105_DECLARE_ROSTER_OBJECT_MANAGER(Reimu);
 TH105_DECLARE_ROSTER_OBJECT_MANAGER(Marisa);

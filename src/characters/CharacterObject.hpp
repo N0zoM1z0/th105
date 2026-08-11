@@ -25,7 +25,8 @@ public:
     virtual void unknown_character_object_vslot_04();
 
     unsigned field_338;
-    unsigned char unknown_33c[0x04];
+    unsigned char field_33c;
+    unsigned char unknown_33d[0x03];
     unsigned *copied_words_340;
     short field_344;
     short field_346;

@@ -13,7 +13,7 @@ public:
 
 class Environment {
 public:
-    unsigned char unknown_000[0x04];
+    unsigned owner_field_000;
     unsigned char flag_004;
     unsigned char flag_005;
     unsigned char unknown_006[0x1e];
@@ -30,7 +30,7 @@ public:
     }
     virtual ~AnimationObject();
     virtual void unknown_vslot_04();
-    virtual void unknown_vslot_08();
+    virtual void set_action(int action_id);
     virtual void unknown_vslot_0c();
 
     void *pointer_154;
@@ -71,7 +71,9 @@ public:
         table_index_024 = -1;
     }
 
-    unsigned char unknown_000[0x10];
+    unsigned char unknown_000[0x08];
+    unsigned owner_field_008;
+    unsigned char unknown_00c[0x04];
     void *owner_010;
     void *related_014;
     void *related_018;
@@ -103,7 +105,7 @@ public:
     AttackObject();
     virtual ~AttackObject();
     virtual void unknown_vslot_04();
-    virtual void unknown_vslot_08();
+    virtual void set_action(int action_id);
     virtual void unknown_vslot_0c();
 
     AttackObjectState state_158;
@@ -124,6 +126,8 @@ typedef char AnimationObject_size_must_be_0x158[
     sizeof(AnimationObject) == 0x158 ? 1 : -1];
 typedef char AttackObjectState_size_must_be_0x1d8[
     sizeof(AttackObjectState) == 0x1d8 ? 1 : -1];
+typedef char AttackObjectState_owner_field_offset_must_be_0x08[
+    offsetof(AttackObjectState, owner_field_008) == 0x08 ? 1 : -1];
 typedef char AttackObject_state_offset_must_be_0x158[
     offsetof(AttackObject, state_158) == 0x158 ? 1 : -1];
 typedef char AttackObject_size_must_be_0x330[
