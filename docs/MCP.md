@@ -1,6 +1,17 @@
-# Ghidra MCP for agents
+# Analysis MCP backends
 
-## What is installed
+Use IDA Pro MCP as the preferred semantic-analysis backend when
+`python3 scripts/check-ida-mcp.py` passes. Its target routing, boundary rules,
+protocol-native helper, and Ghidra-analysis import design are documented in
+[`IDA_MCP.md`](IDA_MCP.md).
+
+The rest of this document describes the independent Ghidra fallback and the
+current authoritative function-inventory export path. An unavailable IDA
+installation must not prevent repository work when this path is configured.
+
+## Ghidra MCP fallback
+
+### What is installed
 
 The pinned versions and hashes are in `config/tools.lock.toml`. Local working
 copies live below ignored `.tools/`; the analyzed Ghidra project lives below
@@ -22,7 +33,7 @@ The headless server uses Java 21 from `/usr/lib/jvm/java-21-openjdk-amd64` by
 default, independently of a host `JAVA_HOME` that may point at Java 17. Override
 only for this project with `TH105_JAVA_HOME=/path/to/java21`.
 
-## Verify the real MCP path
+### Verify the real MCP path
 
 ```bash
 scripts/register-codex-mcp.sh
@@ -53,7 +64,7 @@ tool names without dumping the full catalog.
 Codex reads MCP configuration at process startup. Start a new session after
 registration; MCP servers are not hot-added to an already running tool list.
 
-## Operating rules
+### Operating rules
 
 - Include `program="th105.exe"` in program-scoped calls. The bridge enables
   strict program selectors to prevent accidental writes to another program.
@@ -65,7 +76,7 @@ registration; MCP servers are not hot-added to an already running tool list.
 - The original executable, Ghidra database, logs, and tool installs are ignored
   and must never be committed.
 
-## Manual troubleshooting
+### Manual troubleshooting
 
 ```bash
 scripts/ghidra-mcp-server.sh

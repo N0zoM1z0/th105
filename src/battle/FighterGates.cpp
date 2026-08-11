@@ -2,7 +2,7 @@
 
 namespace th105 {
 
-int __fastcall is_state_13c_in_32_95(Fighter *fighter)
+bool __fastcall is_state_13c_in_32_95(Fighter *fighter)
 {
     return fighter->state_13c >= 0x32 && fighter->state_13c < 0x96;
 }

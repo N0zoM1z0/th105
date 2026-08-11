@@ -1,6 +1,6 @@
 ---
 name: th105-re
-description: Reverse engineer and byte-match functions in the original Japanese TH10.5 v1.06a executable using the repository Ghidra MCP and function ledger.
+description: Reverse engineer and byte-match functions in the original Japanese TH10.5 v1.06a executable using verified IDA Pro MCP first, the repository Ghidra MCP fallback, and the authoritative function ledger.
 ---
 
 # TH105 function reconstruction
@@ -19,17 +19,37 @@ Use this skill only inside this repository and only for the target hash in
    hard function in the same lane.
 4. Record the claim in `config/claims.csv` before editing shared source.
 
+## Select the analysis backend
+
+Run `python3 scripts/check-ida-mcp.py`. When it passes, use IDA Pro MCP first
+for semantic analysis. Recheck metadata for every bounded work unit because
+IDA is attached to the GUI's current file and has no program selector. If IDA
+is unavailable or lacks a required read tool, use the Ghidra MCP fallback with
+`program="th105.exe"` on every program-scoped call.
+
+IDA function chunks and sizes are not inventory evidence. Reconcile the entry,
+ledger `size`/`span_end`, and target instructions before using a decompile. The
+`0x0046A5B0` tail wrapper and separate `0x00463610` body are the mandatory
+regression case. Never call `patch_address_assembles` or patch target bytes.
+
+Read [`../../../docs/IDA_MCP.md`](../../../docs/IDA_MCP.md) for routing,
+protocol-native fallback calls, database-write safety, and analysis imports.
+When importing a prior Ghidra project, export it with the repository's
+headless `-readOnly -noanalysis` bundle path. Never launch the Ghidra GUI for
+that transfer and never import unreviewed Windows/CRT placeholder types into
+IDA as gameplay structures.
+
 ## Establish behavior
 
-Use the `ghidra` MCP server with `program="th105.exe"` on every program-scoped
-call. Start with:
+With the selected verified backend, start with:
 
 1. `get_function_by_address`
 2. `decompile_function`
 3. incoming/outgoing xrefs and callers/callees
 4. relevant strings, globals, vtable slots, RTTI, and neighboring functions
 
-Apply types and names only when supported. Record the evidence source and
+IDA uses `disassemble_function`, while Ghidra exposes corresponding
+disassembly operations. Apply types and names only when supported. Record the evidence source and
 confidence. Do not treat external layouts or later-game code as authoritative.
 When a result changes a core call dependency or a complete/partial type
 boundary, update `config/core-dependencies.csv` or `config/core-types.csv` in
@@ -70,6 +90,11 @@ in the same change if it would save another agent meaningful retries. Include:
 
 Keep one-off semantic discoveries in module notes or ledger evidence. Keep
 general VC8/reccmp/source-shaping knowledge in the pattern catalog.
+
+Only the coordinator writes IDA or Ghidra during parallel work. Read back IDA
+names/types/comments after applying them; call `save_program` after Ghidra
+writes. Preserve every durable discovery in tracked manifests, headers, docs,
+or ledger evidence rather than only in a local database.
 
 ## Finish
 

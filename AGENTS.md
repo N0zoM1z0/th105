@@ -11,8 +11,9 @@ Do not analyze or substitute a localized executable.
 2. Run `python3 scripts/verify-target.py`.
 3. Inspect `config/functions.csv` and `config/claims.csv`. Do not duplicate an
    active claim; use a small address-bounded work unit.
-4. Confirm `th105-ghidra` with `codex mcp list`. If necessary, run the protocol
-   smoke test documented in `docs/MCP.md`.
+4. Prefer the registered IDA Pro MCP when `python3 scripts/check-ida-mcp.py`
+   passes the exact target and capability checks. Otherwise confirm
+   `th105-ghidra` and run the fallback protocol smoke test in `docs/MCP.md`.
 5. For danmaku, skill, battle, collision, score, or spell-card work, inspect
    `docs/CORE_FRAMEWORK.md` and run `python3 scripts/core-worklist.py --ready`.
    The framework selects work; it does not override the function ledger.
@@ -54,7 +55,20 @@ skill. The matching skill collects reusable VC8, COFF relocation, STL, EH,
 register-shaping, and LTCG stop-condition patterns. This file and `th105-re`
 remain authoritative for status transitions, claims, evidence, and handoff.
 
-## MCP usage
+## Analysis backend usage
+
+IDA Pro MCP is the preferred semantic-analysis backend when its preflight
+passes. Re-run `scripts/check-ida-mcp.py` at the start of each bounded work
+unit because IDA MCP is attached to the file currently open in the GUI and has
+no `program=` selector. Use IDA for decompilation, disassembly, xrefs, call
+graphs, RTTI, structures, and type recovery. Treat IDA function chunks and
+sizes as non-authoritative: reconcile every address with the function ledger.
+The known `0x0046A5B0` wrapper/`0x00463610` body pair is the boundary regression
+case. Never use `patch_address_assembles` or otherwise patch target bytes.
+
+If IDA is unavailable, missing a required capability, or routed to the wrong
+target, use the Ghidra fallback below. See `docs/IDA_MCP.md` for the selection,
+safety, and Ghidra-analysis import workflow.
 
 Codex loads the registered `th105-ghidra` server from its user configuration.
 Use MCP native tools for decompilation, xrefs, functions, types, comments, and
@@ -66,8 +80,11 @@ The server binds only to loopback. Arbitrary Ghidra script execution remains
 disabled in the MCP server; use reviewed scripts under `scripts/ghidra/` via
 headless Ghidra when batch behavior is needed.
 
-After changing the Ghidra database, call `save_program`, export the relevant
-inventory, and commit the source-side evidence in the same change.
+Only the coordinator writes either analysis database during parallel work.
+After changing Ghidra, call `save_program`; after changing IDA, read back the
+applied names/types/comments. Export the relevant inventory or manifest and
+commit the source-side evidence in the same change. Neither database is the
+only durable copy of a discovery.
 
 ## Parallel work
 

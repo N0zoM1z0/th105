@@ -1,6 +1,6 @@
 ---
 name: th105-parallel
-description: Coordinate parallel TH10.5 reverse-engineering agents without corrupting the shared Ghidra project, ledger, or Git history.
+description: Coordinate parallel TH10.5 reverse-engineering agents without corrupting shared IDA/Ghidra analysis databases, the ledger, or Git history.
 ---
 
 # TH105 parallel reconstruction
@@ -15,7 +15,7 @@ The coordinator is the sole writer for shared state:
 
 - `config/claims.csv`, `config/functions.csv`, known-symbol/global CSVs, and
   generated progress;
-- Ghidra rename/type/comment/save operations;
+- IDA and Ghidra rename/type/comment/prototype/save operations;
 - shared ABI headers, module maps, toolchain configuration, and build scripts;
 - Ghidra inventory exports, commits, and pushes.
 
@@ -30,16 +30,19 @@ implement and no other worker owns that subtree. Workers never commit or push.
 2. Reserve every selected range in `config/claims.csv` before any mutation.
    One claim can cover a tightly coupled accessor group; never claim a broad
    subsystem without concrete addresses.
-3. Start at most one persistent loopback GhidraMCP server for the shared
-   project. Workers use the existing `th105-ghidra` server through MCP; they do
-   not start alternative servers against the same project or run inventory
-   export while it is live.
-4. Use parallel workers first for evidence gathering. Each should batch its MCP
+3. Run the IDA target preflight before IDA-primary work. Start at most one
+   persistent loopback GhidraMCP server for the shared project. Workers use the
+   existing `th105-ghidra` server through MCP; they do not start alternative
+   servers against the same project or run inventory export while it is live.
+4. Use parallel workers first for evidence gathering. IDA workers remain
+   read-only and verify the target for each session; Ghidra workers batch MCP
    calls in one `scripts/mcp-call.py` session to avoid startup overhead.
-5. The coordinator selects only evidence-backed candidates, applies Ghidra
-   mutations in a short serial batch, calls `save_program`, then stops the
-   server before `scripts/export-function-inventory.sh`.
-6. Compile and compare each selected function independently. Update the ledger,
+5. The coordinator selects only evidence-backed candidates, applies IDA or
+   Ghidra mutations in a short serial batch, reads back IDA writes or calls
+   `save_program` for Ghidra.
+6. Before a Ghidra inventory export, stop the server, then run
+   `scripts/export-function-inventory.sh`.
+7. Compile and compare each selected function independently. Update the ledger,
    regenerate progress, run lightweight checks, release claims, then commit.
 
 Four concurrent evidence workers is normally enough: Ghidra decompilation is
@@ -49,20 +52,24 @@ source ownership are known.
 
 For the current Codex setup, a productive default is one coordinating agent
 plus four `gpt-5.6-terra` workers at `high` reasoning. The workers gather and
-challenge evidence; the coordinator performs source integration, Ghidra
+challenge evidence; the coordinator performs source integration, IDA/Ghidra
 writes, comparisons, ledger updates, and Git operations. Prefer reusing a
 completed worker for the next address-bounded lane because it retains the
 relevant class/layout context.
 
 ## Gameplay-first scheduling
 
-Unless the user requests otherwise, prioritize the core gameplay map in
-`docs/BATTLE.md` ahead of UI, audio, menu, and input plumbing:
+Unless the user requests otherwise, prioritize the unlock map in
+`docs/RECONSTRUCTION_MAP.md` and the gameplay evidence in `docs/BATTLE.md`
+ahead of UI, audio, menu, and input plumbing:
 
-1. collision geometry and small no-relocation leaves;
-2. attack/hurtbox intersection primitives;
-3. projectile/object clash and attack-vs-fighter dispatch;
-4. character action, physics, and timer phases;
+1. spell asset/container/parser contracts that release spell runtime and
+   fighter initialization;
+2. one evidence-backed character pilot linking RTTI/vtables, action selection,
+   spell behavior, and owned-object managers to shared `Character` contracts;
+3. character action, physics, status, and timer continuity;
+4. collision/hit semantics or exact shaping that unlocks a shared ABI or hard
+   caller;
 5. collision-list orchestrators and the battle state machine after their leaf
    contracts are stable.
 

@@ -318,6 +318,45 @@ asset-service contracts. The two path wrappers at `0x00432D80` and
 `0x00433490` are implemented at 103/148 and 108/161 bytes; their target frames
 retain stack cookies and an indirect `wsprintf` import.
 
+The shared insertion boundary at `0x00416A50` is no longer semantically
+opaque. Target instructions match VC8 SP1 `include/deque` `push_back` for a
+four-byte element exactly: the 0x14-byte header is map pointer `+4`, map size
+`+8`, first offset `+0x0C`, and live size `+0x10`; `_DEQUESIZ` is four and a
+missing block allocates 16 bytes. A forced `std::deque<unsigned long>` probe
+matches all 117 bytes after resolving `_Growmap` to `0x00416D10`; the latter
+also matches its 344-byte contiguous VC8 specialization exactly. Both standard
+library bodies are classified `library`; callers may use the resulting
+0x14-byte deque contract without reimplementing either function.
+
+The spell parser's texture and CSV-reader boundaries are now concrete. The
+101-byte `0x00404F30` acquires an index-plus-generation handle from a shared
+pool, delegates creation/population of an A8R8G8B8 texture, returns the handle
+only for a nonnegative status, and otherwise recycles it. Both spell parsers
+pass the same upload state and a 512-by-256 target for paths formatted as
+`data/card/%s/card%03d.bmp`. The target proves handle ownership and failure
+rollback, but not the original class names of the pool or upload state.
+
+The reader used by `0x00432E20` is a 0x2E-byte observed prefix. Its row-deque
+header is at `+0x04..+0x10`, outer iterator owner/position at `+0x18/+0x1C`,
+current row/field position at `+0x24/+0x28`, and parser comment/quote flags at
+`+0x2C/+0x2D`. The recovered API is:
+
+- `0x0040EB20`: load, parse owned row/field copies, reset iteration, then free
+  the temporary input buffer;
+- `0x0040EE50`: consume an integer field, returning zero when exhausted;
+- `0x0040EF50`: consume a field into an owning VC8 string copy, assigning empty
+  when exhausted;
+- `0x0040F050`: advance to the next row and reset the field iterator;
+- `0x0040F780`: destroy all owned fields, rows, blocks, and the deque map.
+
+`0x00432E20` consumes each record as integer, string, two integers, string,
+and two integers, advances the row, and explicitly clears the reader. It does
+not test the reader-load result, so the resource is required to parse
+successfully. Two inventory rows remain deliberately non-contiguous:
+`0x0040EB20` tracks 164 body bytes within the 0xAA-byte entry span and
+`0x0040F780` tracks 119 body bytes within the 0x7D-byte entry span. IDA sizes
+must not overwrite those ledger values.
+
 At runtime, `0x0045BC30` only consumes a sequence entry when fighter category
 `+0x72C` equals two and signed state `+0x55A` is positive. It dispatches the
 front record through the player-indexed context, optionally updates the score
@@ -489,9 +528,32 @@ checked-vector passes, in this exact order:
 - `0x0045CDD0`: transient status processing;
 - `0x0045CF00`: timer decrement and cleanup.
 
-The names of the latter two remain broad until their complete field contracts
-are mapped. The same VC8 vector layout and checked `operator[]` shape produce
-an exact 187-byte reconstruction of the three-pass phase.
+`0x0045CDD0` now has complete source-level behavior. It updates the paired
+`+0x48A/+0x48C` counters, resets floats `+0x6AC/+0x4DC/+0x4E0`, clamps signed
+shorts `+0x174/+0x47C`, steps the embedded object at `+0x3D0`, decrements
+positive dword `+0x670`, selects `+0x4B8` from short `+0x4B2` or global
+`0x006E4E20`, and normalizes 32 signed bytes at `+0x624` into `+0x604`.
+The integrated VC8 object is 300 bytes versus the 301-byte target and remains
+`implemented`; its first difference at `+0x11E` is only the false-loop's
+8-bit versus 32-bit mask scheduling.
+
+`0x0045CF00` is fully decompiled as the third pass. It first suppresses the
+pass when the paired fighter at `+0x170` has nonzero `+0x48C`, otherwise gives
+local short `+0x186` an early-return countdown. It then processes the observed
+`+0x4A0..+0x4B2` countdown group, the `+0x4A2/+0x4A4` state-window gate,
+frame bit `0x1000`, and the `+0x558/+0x55A/+0x72C` threshold callback path.
+Every normal suffix tail-jumps to the separate ledger function `0x00459D30`,
+which updates `+0x482..+0x488` and can notify a global virtual sink. IDA
+currently absorbs that tail target into `0x0045CF00`; reconstruction and
+comparison must retain the authoritative 470-byte local span ending at
+`0x0045D0D5`.
+
+The pass ordering supplies a cross-fighter continuity guarantee: all fighters
+finish `0x0045CDD0` before any fighter enters `0x0045CF00`, so the paired
+fighter `+0x48C` suppression reads a completed pass-two state rather than an
+iteration-order-dependent partial update. The same VC8 vector layout and
+checked `operator[]` shape produce an exact 187-byte reconstruction of the
+three-pass outer phase.
 
 `0x00459860` itself is exact at 270 bytes. Its two stage-boundary dependencies
 are now exact as well: `0x00434390` classifies x at the observed 40/1240

@@ -16,6 +16,7 @@ env XDG_CONFIG_HOME="$repo_root/.tools/config" JAVA_HOME="$java_home" \
   "$ghidra_home/support/analyzeHeadless" \
   "$repo_root/local/ghidra" th105 \
   -process th105.exe \
+  -readOnly \
   -noanalysis \
   -scriptPath "$repo_root/scripts/ghidra" \
   -postScript ExportFunctionInventory.java "$repo_root/.analysis/ghidra-functions.csv"

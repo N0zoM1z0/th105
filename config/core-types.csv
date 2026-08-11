@@ -6,6 +6,7 @@ CollisionContext,src/battle/Collision.hpp,partial,0x84,observed,docs/BATTLE.md c
 CollisionList,src/battle/CollisionList.hpp,complete,0x0C,observed,exact list initialization and allocation,List header with sentinel and count
 CollisionListNode,src/battle/CollisionList.hpp,complete,0x0C,observed,exact list allocation and traversal,Next previous and payload pointers
 CollisionObject,src/battle/Collision.hpp,partial,0x330,observed,docs/BATTLE.md prepared geometry map,Observed prefix through optional primary box pointer
+CsvReader,src/assets/CsvReader.hpp,partial,0x2E,observed,IDA Pro target instructions for 0x0040EB20 and field or row accessors,Observed prefix through parser comment and quote flags; nested deque and iterator auxiliary types remain opaque
 Fighter,src/battle/Collision.hpp,partial,0x72D,observed,docs/BATTLE.md and fighter initialization disassembly,Observed prefix through category byte +0x72C
 FighterSequenceController,src/battle/Collision.hpp,complete,0x14,observed,checked sequence access instructions,Five dword controller header
 FighterSequenceSlot,src/battle/SpellRuntime.hpp,complete,0x98,observed,spell runtime checked entry accesses,Two shorts followed by a 0x94-byte sprite-compatible object

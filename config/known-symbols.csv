@@ -44,6 +44,15 @@ address,name,module,confidence,evidence
 0x0040C9C0,FileReaderOwner_open,assets,observed,docs/EVIDENCE.md package/plain file-reader selection allocation and failure cleanup
 0x0041E870,advance_battle_setup_state,engine,inferred,docs/EVIDENCE.md CSceneBase state advance increments +0xB8 and returns battle-setup task state 5 or 6
 0x0041FEA0,create_collision_list_sentinel,battle,inferred,docs/BATTLE.md exact 12-byte self-linked sentinel allocation
+0x00404F30,TexturePool_create_texture_from_path,assets,observed,IDA Pro target instructions acquire index-generation handle create or populate texture and recycle on negative status
+0x0040EB20,csv_reader_load,assets,observed,IDA Pro target instructions load parse reset and free temporary input buffer
+0x0040EE50,csv_reader_next_int,assets,observed,IDA Pro target instructions checked field consumption and atol conversion
+0x0040EF50,csv_reader_next_string,assets,observed,IDA Pro target instructions checked field consumption and owning VC8 string copy
+0x0040F050,csv_reader_advance_row,assets,observed,IDA Pro target instructions advance outer row and initialize inner field iterator
+0x0040F780,csv_reader_clear_rows,assets,observed,IDA Pro target instructions destroy owned fields rows blocks and deque map
+0x00416A50,std_deque_push_back_4byte,runtime,observed,VC8 SP1 include/deque push_back exact 117-byte probe match
+0x00416D10,_Growmap,runtime,observed,VC8 SP1 include/deque callee used by exact 0x00416A50 probe relocation
+0x00416D10,std_deque_grow_map_4byte,runtime,observed,VC8 SP1 include/deque exact 344-byte contiguous probe match
 0x00420BB0,TitleDesignResource_dtor,ui,inferred,docs/EVIDENCE.md exact CTitle destructor member cleanup call for the +0x1DC design resource
 0x00401000,RenderModeManager_begin_frame,render,observed,CSelectScenario render frame gate
 0x00401040,RenderModeManager_finish_frame,render,observed,CSelectScenario render frame finalization

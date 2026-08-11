@@ -3,6 +3,7 @@ address,name,module,confidence,evidence
 0x006E3D9C,g_mt19937_index,engine,observed,docs/BATTLE.md MT19937 state index initialized to 625 and written by seed next and startup paths
 0x006E3DBC,g_render_mode_manager,render,observed,docs/BATTLE.md shared battle phase and docs/UI_FRAMEWORK.md guide render-mode calls
 0x006E49CC,g_mt19937_twist_xor,engine,observed,docs/BATTLE.md exact two-word MT19937 twist table zero and 0x9908B0DF
+0x006E4E20,g_fighter_state_4b8_default,battle,observed,0x0045CDD0 loads this dword when fighter short +0x4B2 is zero
 0x006ECE40,g_active_scene_id,engine,observed,CSceneBase constructor snapshots this scene identifier into offset 4
 0x006ECEBC,g_package_file_index,assets,observed,docs/EVIDENCE.md package reader selection gate and package index root
 0x006E4E38,g_stage_surface_heights,battle,inferred,docs/BATTLE.md 0x500-float x-indexed height table consumed by 0x00434800

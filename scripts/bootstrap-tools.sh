@@ -74,8 +74,11 @@ uv sync --directory "$mcp_root"
   export XDG_CONFIG_HOME="$tools_dir/config"
   .venv/bin/python -m tools.setup ensure-prereqs --ghidra-path "$ghidra_home"
   .venv/bin/python -m tools.setup build
-  .venv/bin/python -m tools.setup deploy --ghidra-path "$ghidra_home"
 )
+
+# Do not use tools.setup deploy here: it launches the Ghidra GUI. The
+# repository fallback uses scripts/ghidra-mcp-server.sh and the bundle exports
+# use analyzeHeadless, so the built headless JAR is sufficient.
 
 if ! command -v reccmp-project >/dev/null || [[ "$(reccmp-project --version 2>/dev/null || true)" != *"0.1.6"* ]]; then
   uv tool install --force reccmp==0.1.6

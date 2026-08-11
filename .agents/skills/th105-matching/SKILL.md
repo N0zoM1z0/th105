@@ -5,7 +5,7 @@ description: Reconstruct and tune Touhou 10.5 (TH105) Visual C++ 2005 functions 
 
 # TH105 Exact Matching
 
-Use this skill after the semantic role of a function is understood and the task is to turn that understanding into reproducible matching evidence. Follow the repository's `th105-re` workflow for claims, Ghidra coordination, ledger updates, and evidence ownership.
+Use this skill after the semantic role of a function is understood and the task is to turn that understanding into reproducible matching evidence. Follow the repository's `th105-re` workflow for claims, verified IDA-first/Ghidra-fallback coordination, ledger updates, and evidence ownership.
 
 ## Workflow
 
@@ -27,6 +27,7 @@ Use this skill after the semantic role of a function is understood and the task 
 - Do not use naked assembly, byte arrays, manual NOP/padding, fake types, or ABI lies solely to force bytes.
 - Do not add a relocation allowlist row without proving the exact symbol, address, addend, and PE bytes or compiler-generated address anchor.
 - Do not infer a final executable match from a standalone object when LTCG can inline, merge, reorder, or change calling convention.
+- Do not use an IDA chunk owner, decompiler body, or reported size as an accepted comparison boundary; reconcile it with the ledger and target instructions first.
 - Do not perturb already matching shared layouts merely to improve one probe; isolate the experiment first.
 - Prefer source expressions the original programmer could reasonably have written. A code-shaping cast, alias, or loop is acceptable only when it preserves the recovered interface and behavior.
 

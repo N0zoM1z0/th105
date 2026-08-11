@@ -388,6 +388,17 @@ def main() -> int:
             "Ghidra's non-contiguous function body"
         ),
     )
+    parser.add_argument(
+        "--symbol-base",
+        help="override the ledger name used to select a COFF function symbol",
+    )
+    parser.add_argument(
+        "--rel32-target",
+        action="append",
+        default=[],
+        metavar="NAME=ADDRESS",
+        help="add a probe-only REL32 symbol mapping without changing the ledger",
+    )
     parser.add_argument("address")
     parser.add_argument("object")
     args = parser.parse_args()
@@ -408,13 +419,24 @@ def main() -> int:
     if args.contiguous_span:
         size = int(row["span_end"], 16) - int(address, 16) + 1
     expected = target_bytes(int(address, 16), size)
-    symbol_base = row["proposed_name"] or (known and known["name"]) or row["current_name"]
+    symbol_base = (
+        args.symbol_base
+        or row["proposed_name"]
+        or (known and known["name"])
+        or row["current_name"]
+    )
+    targets = known_targets()
+    for mapping in args.rel32_target:
+        name, separator, raw_address = mapping.partition("=")
+        if not separator or not name or not raw_address:
+            parser.error(f"invalid --rel32-target mapping: {mapping!r}")
+        targets[name] = int(raw_address, 0)
     actual_section = coff_symbol_bytes(
         obj,
         symbol_base,
         int(address, 16),
         size,
-        known_targets(),
+        targets,
         known_data_targets(),
     )
     actual = actual_section[:size]

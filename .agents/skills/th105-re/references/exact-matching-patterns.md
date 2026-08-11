@@ -18,6 +18,7 @@ Classify the first failure before trying source variants:
 | Unknown external `CALL` or `JMP` | P2: `REL32` mapping and TU boundary |
 | Unknown absolute data relocation | P3: strict `DIR32` mapping |
 | Target size differs from the ledger body size | P4: function boundary |
+| IDA query/decompile absorbs another entry or tail body | P4: function boundary |
 | Correct logic, different conditional jump | P5: width and signedness |
 | Difference begins in x87 instructions | P6: floating expression shape |
 | Difference begins at prologue or stack allocation | P7/P11: locals, inlining, checked paths |
@@ -147,6 +148,27 @@ Known examples include `0x00406880`, `0x00459C90`, `0x0046A610`, and
 later agent does not mistake the difference for an object overrun.
 
 Never use contiguous mode simply because the ordinary comparison fails.
+
+IDA has the complementary failure mode: it may assign a separately callable
+tail body as a chunk of a wrapper. At `0x0046A5B0`, IDA reports the exact
+11-byte global-context wrapper but querying `0x00463610` returns the same chunk
+owner and Hex-Rays decompiles the 323-byte callback body with it. The ledger and
+accepted comparisons correctly keep both entries separate and 100% matching.
+
+Use IDA's combined pseudocode to understand flow, but never copy its chunk
+ownership or size into the ledger. Before matching, verify the address against
+the ledger, direct target disassembly, incoming edges, and the Ghidra body
+inventory. Tail chunks, shared tails, or entry aliases require an explicit
+boundary note; they are not compiler-shaping problems and should not trigger
+source variants.
+
+The same failure appears on an ordinary authored tail call. The ledger assigns
+470 contiguous bytes to `0x0045CF00..0x0045D0D5`; its final instruction jumps
+to the independently callable 284-byte function at `0x00459D30`. IDA appends
+that target as a function chunk and Hex-Rays shows its behavior inside
+`0x0045CF00`. Preserve the two ledger entries and express the final edge as a
+tail call. Do not implement, size, or compare the combined pseudocode as one
+function.
 
 ## P5: Width, signedness, and branch opcode shaping
 
@@ -405,6 +427,35 @@ The Wave14/15 collision layout changes were checked against fighter phases,
 stage gates, hit scratch, collision geometry, candidate outcomes, hit effects,
 and object responses. Independent review caught the `bool`/`int` declaration
 mismatch described in P1 even though the new caller still emitted exact bytes.
+
+## P13: Verify STL helpers from the pinned VC8 header
+
+When an apparent gameplay blocker is a shared checked-STL primitive, inspect
+the pinned `.tools/msvc80-sp1/include` implementation before authoring a clone.
+Match its field arithmetic, allocation size, helper calls, and template block
+constant, then force that specialization into a small probe object.
+
+At `0x00416A50`, IDA exposed the 0x14-byte deque header fields at `+4/+8/+0xC`
+and `+0x10`, a 16-byte block allocation, and `_Growmap(1)`. VC8's
+`include/deque` defines `_DEQUESIZ == 4` for a four-byte element, and its
+`push_back` body maps instruction-for-instruction. The reproducible check is:
+
+```bash
+scripts/compile-unit.sh scripts/probes/deque_push_back_4byte.cpp \
+  build/probes/deque_push_back_4byte.obj
+python3 scripts/compare-function.py --symbol-base push_back \
+  0x00416A50 build/probes/deque_push_back_4byte.obj
+```
+
+This yields an exact 117-byte section after the `_Growmap` REL32 alias is
+resolved. Its `0x00416D10` `_Growmap` callee also matches the first 341 body
+bytes plus three alignment bytes under `--contiguous-span`; use repeatable
+`--rel32-target NAME=ADDRESS` options for specialization-local helper aliases
+instead of polluting durable symbol names. Classify such verified template
+bodies as `library`, preserve the container layout as a caller contract, and
+spend authored reconstruction time on the parser or resource owner using it.
+Do not generalize the four-element block constant to deques whose element
+width differs.
 
 ## Hard-function strategy
 

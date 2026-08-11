@@ -3,6 +3,7 @@
 ## Sources of truth
 
 - `config/target.toml`: immutable target identity.
+- the verified IDA IDB: preferred semantic working database; never committed.
 - `local/ghidra/th105.gpr`: local analysis database; never committed.
 - `config/functions.csv`: one row per internal Ghidra `.text` function.
 - `config/known-symbols.csv` and `config/known-globals.csv`: concise supported names.
@@ -25,17 +26,27 @@ python3 scripts/progress.py
 Existing status/evidence/owner fields are preserved by address. A missing or
 duplicate address fails validation.
 
+Use the read-only headless bundle route in `docs/IDA_MCP.md` when transferring
+an existing Ghidra project into IDA. Do not launch the Ghidra GUI merely to
+export it, and do not translate Ghidra's private database files directly.
+
 ## Function lifecycle
 
 1. Claim a small function or tightly related group.
-2. Establish role and interface using callers/callees, xrefs, RTTI/vtables,
+2. Select the analysis backend through `docs/IDA_MCP.md`: IDA first after an
+   exact metadata preflight, otherwise strict Ghidra fallback.
+3. Establish role and interface using callers/callees, xrefs, RTTI/vtables,
    strings, globals, and neighboring functions.
-3. Apply supported names/types to Ghidra and record evidence.
-4. Reconstruct class layout and behavior before compiler-shaping work.
-5. Implement in the appropriate source module.
-6. Compile and iterate with object-level diff.
-7. Run reccmp and record the exact percentage/report.
-8. Mark `matching` only at 100%, update progress, and release the claim.
+4. Reconcile the selected tool's function boundary with the ledger and target
+   instructions. IDA tail chunks and Ghidra non-contiguous bodies are not
+   automatically accepted comparison spans.
+5. Apply supported names/types to the selected analysis database and record
+   durable repository evidence.
+6. Reconstruct class layout and behavior before compiler-shaping work.
+7. Implement in the appropriate source module.
+8. Compile and iterate with object-level diff.
+9. Run reccmp and record the exact percentage/report.
+10. Mark `matching` only at 100%, update progress, and release the claim.
 
 Do not use a decompiler listing as source by mechanical transcription. Its
 types, signedness, control-flow structure, and expressions are hypotheses until

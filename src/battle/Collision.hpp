@@ -440,7 +440,7 @@ extern EffectSink *g_effect_sink;
 
 void __fastcall reset_fighter_fields_6bc_728(CollisionContext *context);
 void __fastcall reset_fighter_fields_6b4_728(CollisionContext *context);
-int __fastcall is_state_13c_in_32_95(Fighter *fighter);
+bool __fastcall is_state_13c_in_32_95(Fighter *fighter);
 int __fastcall is_state_13c_in_96_c7(Fighter *fighter);
 int __fastcall is_positive_y_and_state_window(Fighter *fighter);
 float __fastcall stage_surface_height_at_x(Fighter *fighter);

@@ -18,20 +18,39 @@ if [[ ! -f "$cl" ]]; then
   exit 1
 fi
 
-mkdir -p "$(dirname "$output_path")" "$wine_prefix"
-export WINEPREFIX="$wine_prefix"
-export WINEARCH=win32
-export WINEDEBUG=-all
+mkdir -p "$(dirname "$output_path")"
 
 filter_preload_noise() {
   sed '/mhxtlib\.so.*wrong ELF class/d' >&2
 }
 
-source_win="$(winepath -w "$source_path" 2> >(filter_preload_noise))"
-output_win="$(winepath -w "$output_path" 2> >(filter_preload_noise))"
-src_include_win="$(winepath -w "$repo_root/src" 2> >(filter_preload_noise))"
-crt_include_win="$(winepath -w "$msvc_root/include" 2> >(filter_preload_noise))"
-sdk_include_win="$(winepath -w "$msvc_root/PlatformSDK/Include" 2> >(filter_preload_noise))"
+if command -v wine >/dev/null && command -v winepath >/dev/null; then
+  mkdir -p "$wine_prefix"
+  export WINEPREFIX="$wine_prefix"
+  export WINEARCH=win32
+  export WINEDEBUG=-all
+  path_to_windows() {
+    winepath -w "$1" 2> >(filter_preload_noise)
+  }
+  compiler=(wine "$cl")
+elif command -v wslpath >/dev/null && [[ -x /mnt/c/Windows/System32/cmd.exe ]]; then
+  # WSL can execute PE files directly. This avoids requiring Wine when the
+  # reconstruction workspace already runs beside the user's Windows tools.
+  chmod +x "$cl"
+  path_to_windows() {
+    wslpath -w "$1"
+  }
+  compiler=("$cl")
+else
+  echo "neither Wine nor Windows interop is available for VC8 cl.exe" >&2
+  exit 1
+fi
+
+source_win="$(path_to_windows "$source_path")"
+output_win="$(path_to_windows "$output_path")"
+src_include_win="$(path_to_windows "$repo_root/src")"
+crt_include_win="$(path_to_windows "$msvc_root/include")"
+sdk_include_win="$(path_to_windows "$msvc_root/PlatformSDK/Include")"
 
 # This is the fast non-LTCG probe configuration. The final executable build
 # will add /GL and link with /LTCG once its translation-unit set is recovered.
@@ -42,7 +61,7 @@ if [[ "${TH105_ENABLE_GS:-0}" == 1 ]]; then
   gs_flag=/GS
 fi
 
-wine "$cl" \
+"${compiler[@]}" \
   /nologo \
   /c \
   /O2 \

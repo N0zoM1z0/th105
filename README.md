@@ -43,13 +43,23 @@ python3 scripts/verify-target.py
 
 ## Reverse-engineering environment
 
-The repository uses Ghidra 12.1, GhidraMCP, reccmp, and objdiff-style object
-comparison. The workflow borrows the proven mapping/build/report structure of
-the GensokyoClub TH06 and TH08 projects, while adding a machine-readable
-function ledger and a project-scoped MCP launcher for coding agents.
+The repository prefers IDA Pro MCP for semantic analysis when a verified IDA
+session is available, with Ghidra 12.1/GhidraMCP as an independent fallback
+and current function-inventory authority. Exact acceptance still uses reccmp
+and objdiff-style object comparison. The workflow borrows the proven
+mapping/build/report structure of the GensokyoClub TH06 and TH08 projects,
+while adding a machine-readable function ledger and project-scoped MCP
+launchers for coding agents.
 
-From the repository root, register the `th105-ghidra` MCP server once and verify
-the complete MCP protocol path with:
+For IDA-first work, open the exact target, start its MCP plugin, register the
+stdio bridge as `ida-pro-mcp`, and run:
+
+```bash
+python3 scripts/check-ida-mcp.py
+```
+
+If IDA is unavailable, register the `th105-ghidra` fallback once and verify the
+complete MCP protocol path with:
 
 ```bash
 scripts/bootstrap-tools.sh
@@ -66,6 +76,8 @@ See [docs/MCP.md](docs/MCP.md) for setup and security details.
 
 - [Architecture](docs/ARCHITECTURE.md) — confirmed binary structure and module plan
 - [Reverse-engineering workflow](docs/RE_WORKFLOW.md) — evidence and agent handoff rules
+- [IDA-first analysis](docs/IDA_MCP.md) — exact routing, boundary safety, and Ghidra fallback
+- [Reconstruction map](docs/RECONSTRUCTION_MAP.md) — unlock-first gameplay and character tree
 - [Gameplay reconstruction framework](docs/CORE_FRAMEWORK.md) — core lanes,
   ABI/type contracts, dependency graph, and agent-ready worklist
 - [Matching workflow](docs/BUILD_MATCHING.md) — compiler, reccmp, and objdiff stages
@@ -75,7 +87,7 @@ See [docs/MCP.md](docs/MCP.md) for setup and security details.
 - [Progress](docs/PROGRESS.md) — generated from `config/functions.csv`
 - [AGENTS.md](AGENTS.md) — mandatory operating rules for coding agents
 - [Parallel-agent skill](.agents/skills/th105-parallel/SKILL.md) — safe,
-  high-throughput Ghidra/ledger delegation
+  high-throughput IDA/Ghidra/ledger delegation
 
 Regenerate and validate the tracking data with:
 
