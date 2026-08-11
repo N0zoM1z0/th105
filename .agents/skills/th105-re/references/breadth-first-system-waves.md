@@ -20,6 +20,15 @@ thirteen more formerly unclassified shared setup, input, scenario, fighter,
 and manager functions. These are useful unlocks even before their compiler
 scheduling is tuned.
 
+The first Battle exact fan-out then converted that breadth into 761 exact
+authored bytes: the 529-byte seven-state dispatcher, 224-byte packed local
+control collector, and 8-byte synchronized-input availability leaf. At the
+same time it bounded the adjacent hard paths instead of hiding them: the RAII
+gate is 127/129, synchronized publication is 258/240 with an entry-register
+blocker, and fixed-slot save/load have clean-relocation layout probes. This is
+strong enough evidence to make the wave loop the default for large gameplay
+subsystems.
+
 ## Coordinator loop
 
 1. Select one subsystem and its existing core lanes. Verify the target and run

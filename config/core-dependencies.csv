@@ -184,7 +184,7 @@ caller,callee,required_status,evidence
 0x00470060,0x0046A490,decompiled,IDA Pro direct fighter-pair initialization dependency
 0x004701C0,0x00427190,decompiled,IDA Pro direct local/practice control dependency
 0x004701C0,0x00427AC0,decompiled,IDA Pro direct synchronized-control publication dependency
-0x004701C0,0x0042A560,decompiled,IDA Pro direct packed-control collection dependency
+0x004701C0,0x0042A560,matching,IDA Pro direct packed-control collection dependency and exact canonical match unit
 0x004701C0,0x0043F030,decompiled,IDA Pro direct CMenuBattle construction dependency
 0x004701C0,0x00462E20,decompiled,IDA Pro direct fighter scripted-input dependency
 0x004701C0,0x00439DC0,matching,IDA Pro round initialization indexed event
@@ -201,10 +201,20 @@ caller,callee,required_status,evidence
 0x00470780,0x0046ACB0,matching,IDA Pro round reset collision-extent reset
 0x004708B0,0x0040A710,matching,IDA Pro synchronized input critical-section entry
 0x004708B0,0x0040A720,matching,IDA Pro synchronized input critical-section exit
-0x004708B0,0x00427680,identified,IDA Pro synchronized input-state availability call
+0x004708B0,0x00427680,matching,exact synchronized input-state availability call
+0x0042A560,0x0042A370,identified,exact packed-control collection queue publication call
+0x0042A560,0x004397F0,identified,exact packed-control collection menu initial-press gates
+0x0042A560,0x00439CB0,matching,exact packed-control collection network session gate
+0x00427AC0,0x00427A50,identified,faithful synchronized-control publication queue consume call
+0x00427AC0,0x00439810,identified,faithful synchronized-control publication menu-state calls
 0x00470940,0x00439C90,matching,IDA Pro frame dispatcher session-option gate
 0x00470940,0x00439DC0,matching,IDA Pro frame dispatcher scene-exit event
-0x00470940,0x004708B0,decompiled,IDA Pro network frame loop synchronized input gate
+0x00470940,0x004397F0,identified,exact frame dispatcher menu initial-press gate
+0x00470940,0x00439C80,matching,exact frame dispatcher player-two input accessor
+0x00470940,0x00439D10,identified,exact frame dispatcher scene-exit menu installation thunk
+0x00470940,0x0043A290,identified,exact frame dispatcher UI state-change early gate
+0x00470940,0x0043F030,decompiled,exact frame dispatcher SceneExitTransition constructor target
+0x00470940,0x004708B0,implemented,exact frame dispatcher synchronized input gate edge
 0x004927D0,0x0045E3A0,decompiled,IDA Pro sole shared base-constructor call
 0x00492BA0,0x00402A50,library,IDA Pro direct call from Reimu object-pool reuse path
 0x00492BA0,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths

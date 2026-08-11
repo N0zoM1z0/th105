@@ -29,10 +29,13 @@ TH10.5
 ├── Battle simulation -> docs/BATTLE_SIMULATION_SYSTEM.md
 │   ├── frame-state controller [decompiled breadth]
 │   │   ├── 0x0046FE80..0x00470940 ten-function controller island
-│   │   ├── thirteen direct dependencies [decompiled]
+│   │   ├── thirteen direct dependencies [mixed breadth/exact]
 │   │   ├── 0x004704D0 active simulation wrapper [exact]
 │   │   ├── 0x004708B0 synchronized input gate [implemented, 127/129]
-│   │   └── 0x00470940 seven-state frame dispatcher [decompiled]
+│   │   ├── 0x00427680 input availability leaf [exact]
+│   │   ├── 0x0042A560 packed local control collection [exact]
+│   │   ├── 0x00427AC0 synchronized publication [decompiled, 258/240]
+│   │   └── 0x00470940 seven-state frame dispatcher [exact]
 │   ├── fighter update [semantics-ready]
 │   │   ├── action + owned-object callbacks [exact]
 │   │   │   └── 0x0046A5B0 -> 0x00463610
@@ -105,9 +108,9 @@ platform/runtime. Their module boundaries are listed in `docs/ARCHITECTURE.md`.
 ## Unlock-first frontier
 
 1. **Battle controller exact fan-out.** The ten-function island and thirteen
-   direct dependencies are now decompiled; `0x004704D0` is exact and
-   `0x004708B0` has truthful 127/129 RAII source. Implement the explicit
-   seven-state/synchronized-loop structure of `0x00470940`, then split setup,
+   direct dependencies are mapped; `0x004704D0`, `0x0042A560`, and the central
+   `0x00470940` dispatcher are exact, while `0x004708B0` has truthful 127/129
+   RAII source and `0x00427AC0` has a 258/240 faithful probe. Split setup,
    round initialization, transition, and reset into bounded source units while
    retaining every ledger/IDA boundary disagreement in the subsystem map.
 2. **PAT record semantics.** `0x00462050` now has target-sized complete source,

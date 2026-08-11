@@ -23,7 +23,7 @@ a function. This pass additionally promotes the ten-function controller island
 
 ```text
 BattleController [observed prefix +0x00..+0x9F]
-├── 0x00470940 per-frame state dispatcher [decompiled]
+├── 0x00470940 per-frame state dispatcher [exact]
 │   ├── state 0 -> virtual +0x10
 │   ├── state 1 -> virtual +0x14
 │   ├── state 2 -> virtual +0x18
@@ -43,9 +43,11 @@ BattleController [observed prefix +0x00..+0x9F]
 ├── 0x00470780 round reset phase [decompiled]
 └── 0x004708B0 synchronized input gate [implemented, 127/129]
 
-Controller direct dependency layer [decompiled breadth]
+Controller direct dependency layer [mixed breadth/exact]
 ├── 0x0042AAB0/0x0042ABF0 save/load fixed battle-setup slots
-├── 0x00427190/0x00427AC0/0x0042A560 control collection/publication
+├── 0x00427190 local/practice control setup [decompiled]
+├── 0x00427AC0 synchronized control publication [decompiled, 258/240]
+├── 0x0042A560 packed local control collection [exact]
 ├── 0x00458D10/0x00458F10/0x004591D0 scenario and story-row setup
 ├── 0x0043F030 CMenuBattle mode-specific pause menu construction
 ├── 0x00462E20 fighter scripted-input state update
@@ -98,11 +100,36 @@ frames only for phases 0 and 5, then republishes the synchronized return value.
 These branches must remain explicit in eventual source rather than being
 collapsed into a generic vtable array.
 
+The canonical dispatcher match unit is exact for all 529 authoritative ledger
+bytes. Its COFF section tail is 564 bytes because VC8 emits the remaining code
+tail, one NOP, and a seven-entry local jump table in the same section; a
+diagnostic comparison of that full tail is also exact. This strengthens the
+switch/vslot evidence but does not override the ledger boundary or IDA's 535
+byte grouping.
+
 `0x004708B0` now has truthful RAII source. Its input object pointer is at
 `+0x104`, the 0x1C-byte `CriticalSectionWrapper` is at `+0x124`, and comparison
 bytes are at `+0x140/+0x141`. VC8 emits 127 bytes against the 129-byte target;
 the first mismatch at `+0x4B` is the helper result register (`BL` in target),
 not missing lock or comparison behavior.
+The availability leaf `0x00427680` is exact at 8/8 in a separate match unit.
+Keeping it in its own translation unit is semantically important: putting its
+body beside the RAII caller lets VC8 inline the zero test and delete the target
+EH frame.
+
+`0x0042A560` is exact at 224/224. It collects the low ten bits from each active
+fighter-control record, maps menu inputs 59/60/61/63/64/65 into the six high
+bits, and publishes each packed word through `0x0042A370`. This exact result
+supports the `BattleInputGate` offsets for both control pointers, both low-bit
+fields, the side-enable flags, and the queue/lock region. The network-session
+gate bypasses local collection when synchronized play owns the input stream.
+
+The paired synchronized publication path at `0x00427AC0` is semantically
+complete in a temporary probe: it consumes the same 16-bit format under lock,
+publishes low fighter bits and high menu-state bits for the enabled sides, and
+resolves all external calls. VC8 currently emits 258 bytes against 240 with the
+first mismatch at `+0x02`; the bounded blocker is entry register allocation,
+not an unknown branch or unresolved relocation.
 
 `0x00470360` joins the battle controller to the spell runtime. It consumes a
 fighter sequence entry through `0x0045BC30`, selects virtual phase 3 or 4, and
@@ -125,6 +152,19 @@ Their declaration-only handoff is
 `src/battle/BattleControllerDependencies.hpp`; it intentionally records
 receiver and argument contracts without placeholder behavior or unsupported
 original class ownership.
+
+The paired `0x0042AAB0/0x0042ABF0` setup transfers now have a complete payload
+contract: each stored setup is 0x3C bytes inside a 0x50-stride envelope, with
+two 0x14 side payloads and token/tail metadata. Truthful save/load probes emit
+288/305 and 292/332 bytes with clean relocations. Their remaining shared
+blocker is the original fixed-slot container/TU register lifetime, so the
+layout is durable while exact tuning remains bounded as a pair.
+
+This fan-out is the concrete validation for the breadth-first workflow: one
+controller map produced three authored exact functions (`0x00470940`,
+`0x0042A560`, and `0x00427680`), preserved precise stop conditions for three
+hard neighbors, and strengthened shared controller/input types before another
+call-graph layer was expanded.
 
 ## Boundary and backend gate
 
@@ -150,14 +190,14 @@ The ledger remains authoritative for all comparisons:
 
 ## Breadth-first implementation frontier
 
-1. Declare and type the ten controller entries and their observed `0xA0`
-   prefix; do not add empty bodies.
-2. Preserve the already source-complete collision/hit algorithms while adding
-   newly discovered direct phase dependencies to the core graph.
-3. Split exact work by object boundary: controller island, shared sixteen-step
-   phase, collision preparation/list orchestration, general hit/outcome paths.
-4. Only after these shared paths are stable, fan out exact work into per-role
-   character 600-series spell actions and other character-specific simulation.
+1. Reconstruct the remaining controller phase bodies `0x0046FE80..0x00470780`
+   in bounded setup, round-resolution, transition, and reset units.
+2. Tune the synchronized control pair `0x00427AC0/0x0042A370` after their queue
+   container layout is shared; retain the explicit register-allocation blocker.
+3. Preserve the already source-complete collision/hit algorithms while adding
+   only direct dependencies that unlock a controller or spell-runtime edge.
+4. Fan out exact work by object boundary, then feed recovered types and exact
+   helpers back into the next one-hop breadth wave.
 
 The next exact work should favor a type or helper that unlocks several of these
 branches, not a disconnected trivial leaf.

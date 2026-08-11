@@ -163,6 +163,7 @@ __ehhandler$?update_state_six@CProfileMenu@th105@@AAE_NXZ,0x006A7260,8b5424088d4
 __ehhandler$??0CEffectSprite@@QAE@XZ,0x006A4288,8b5424088d42f88b,0x0,target VC8 global CEffectSprite constructor EH handler entry bytes,address
 __ehhandler$?prepare_next_spell_sequence_entry@Fighter@th105@@QAEXXZ,0x006A7D1B,8b5424088d8260ff,0x0,target VC8 spell-sequence preparation EH handler entry bytes,address
 __ehhandler$?poll_synchronized_input_4708b0@BattleInputGate@th105@@QAEEXZ,0x006A8958,8b5424088d42f08b,0x0,target VC8 synchronized-input gate EH handler entry bytes,address
+__ehhandler$?dispatch_battle_state_frame_470940@BattleController@th105@@QAEHXZ,0x006A898B,8b5424088d42f48b,0x0,target VC8 central battle frame dispatcher EH handler entry bytes,address
 ??_7CEffectSprite@@6B@,0x006AC72C,30eb410040a7400060a7400080a74000,0x0,target RTTI-owned global CEffectSprite vtable and four observed slots,address
 ??_7IColor@@6B@,0x006AC624,40a8400074b0670074b0670074b06700,0x0,target RTTI-owned global IColor vtable and four observed slots,address
 ??_7AttackObject@@6B@,0x006AEB44,a0e2450030aa450010aa450050ad450020ae450050ac4500e0ac4500b0ab4500,0x0,target RTTI-owned global AttackObject vtable and eight observed slots,address

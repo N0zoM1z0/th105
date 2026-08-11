@@ -21,11 +21,16 @@ DwordDeque4,src/battle/SpellData.hpp,complete,0x14,observed,0x00432500 and both 
 Fighter,src/battle/Collision.hpp,partial,0x72D,observed,docs/BATTLE.md and fighter initialization disassembly,Observed prefix through category byte +0x72C
 FighterCutinResource,src/battle/FighterResources.hpp,complete,0xA0,observed,exact target offsets and 0x00464320 source comparison,Handle sprite selector and terminal state fields
 FighterCutinSpriteWork,src/battle/FighterResources.hpp,complete,0x94,observed,0x006AC668 vtable and 0x00464320 virtual slot +0x14 call,Sprite view with observed float fields at +0x88 and +0x8C
+FighterControlInput,src/battle/BattleController.hpp,partial,0x64,observed,strict exact 0x0042A560 control collection source,Observed prefix through packed low ten control bits at +0x62
 FighterSequenceController,src/battle/Collision.hpp,complete,0x14,observed,checked sequence access instructions,Five dword controller header
 FighterSequenceSlot,src/battle/SpellRuntime.hpp,complete,0x98,observed,spell runtime checked entry accesses,Two shorts followed by a 0x94-byte sprite-compatible object
+FixedBattleSetupSlot,src/battle/BattleControllerDependencies.hpp,complete,0x3C,observed,0x0042AAB0 and 0x0042ABF0 inverse target transfers,Two side bytes and 0x14 payloads token tags plus terminal setup bytes and dword
+FixedSlotEnvelope,src/battle/BattleControllerDependencies.hpp,complete,0x50,observed,0x0042AAB0 and 0x0042ABF0 0x66666667 stride division,0x3C setup payload plus 0x14 private container tail
 ObservedRecord24,src/config/ScoreData.hpp,complete,0x18,observed,0x0042C100 target instructions,Two keys count and signed high-water value
 ObservedRecordRange16,src/config/ScoreData.hpp,complete,0x10,observed,0x0042C100 target instructions,Begin end and capacity pointer view
 ScoreData,src/config/ScoreData.hpp,partial,0x198,observed,0x0042C100 target instructions,Observed prefix before the range array
+SceneExitTransition,src/battle/BattleController.hpp,complete,0x78,observed,0x00470940 exact source allocation constructor and EH path,Concrete transition object allocated by the central battle frame dispatcher; internal fields remain semantically opaque
+SidePayload,src/battle/BattleControllerDependencies.hpp,complete,0x14,observed,0x0042A7B0 calls inside paired battle setup save/load,Opaque side payload with inverse copy direction proven by both callers
 ShortDeque8,src/battle/SpellData.hpp,complete,0x14,observed,exact 0x00430C30 and 0x00430D90 comparisons,Five dword deque-like header with eight shorts per block
 ShortTree,src/battle/SpellData.hpp,complete,0x0C,observed,0x00431590 0x00431730 and 0x00431ED0 IDA target instructions,Temporary parser tree with allocator state sentinel and count
 ShortTreeIterator,src/battle/SpellData.hpp,complete,0x08,observed,0x00431730 and 0x00431ED0 IDA target instructions,Owner and 0x10-byte node pointers

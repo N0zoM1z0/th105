@@ -476,3 +476,54 @@ notes = "Focused synchronized-input RAII lock gate; truthful source remains two 
 [[units.battle-input-gate.functions]]
 address = "0x004708B0"
 symbol_base = "poll_synchronized_input_4708b0"
+
+[units.battle-input-state]
+kind = "probe"
+source = "src/battle/BattleInputState.cpp"
+object = "build/match-units/BattleInputState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Focused synchronized-input state availability leaf kept in a separate TU so the RAII caller preserves its target EH boundary."
+
+[[units.battle-input-state.functions]]
+address = "0x00427680"
+symbol_base = "is_input_available_427680"
+
+[units.battle-dispatcher]
+kind = "probe"
+source = "src/battle/BattleDispatcher.cpp"
+object = "build/match-units/BattleDispatcher.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Focused central seven-state BattleController dispatcher with scene-exit EH and synchronized-input loop; ledger comparison remains 529 bytes."
+
+[[units.battle-dispatcher.functions]]
+address = "0x00470940"
+symbol_base = "dispatch_battle_state_frame_470940"
+rel32_targets = [
+  "?has_ui_selection_state_changed@th105@@YA_NXZ=0x0043A290",
+  "?is_menu_initial_press@th105@@YA_NHHHH@Z=0x004397F0",
+  "?get_session_setup_option@th105@@YAIXZ=0x00439C90",
+  "?dispatch_indexed_event@th105@@YAXI@Z=0x00439DC0",
+  "??0SceneExitTransition@th105@@QAE@PAUBattleController@1@@Z=0x0043F030",
+  "?install_menu_object@th105@@YAXPAX@Z=0x00439D10",
+  "?get_player2_input@th105@@YAPAUBattleInputGate@1@XZ=0x00439C80",
+  "?poll_synchronized_input_4708b0@BattleInputGate@th105@@QAEEXZ=0x004708B0",
+]
+
+[units.battle-control-collect]
+kind = "probe"
+source = "src/battle/BattleControlCollect.cpp"
+object = "build/match-units/BattleControlCollect.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Focused packed local/network battle-control collection and queueing source."
+
+[[units.battle-control-collect.functions]]
+address = "0x0042A560"
+symbol_base = "collect_battle_control_bits_42a560"
+rel32_targets = [
+  "?get_network_session_for_control_collect@th105@@YAPAUCNetworkBase@1@XZ=0x00439CB0",
+  "?is_menu_control_pressed@th105@@YAEEEEE@Z=0x004397F0",
+  "?queue_control_word@BattleInputGate@th105@@QAEXG@Z=0x0042A370",
+]

@@ -898,6 +898,50 @@ to an unrelated target, replace the class with a byte blob, or add fake manual
 cleanup merely to move the comparator. Preserve the class contract and defer
 the final shape to an audited linked island.
 
+## P30: Keep a proven leaf in a separate TU when the caller needs an EH edge
+
+Adding a tiny callee body to the same focused source can make VC8 inline it and
+prove that the surrounding RAII scope no longer throws. The compiler may then
+delete the caller's entire EH frame even though both functions are individually
+truthful.
+
+`SynchronizedInputState::is_input_available_427680` is an exact eight-byte
+field test. When defined beside the `0x004708B0` RAII lock gate, VC8 inlines it
+and collapses that caller from 127 bytes with EH to 61 bytes without EH. Keeping
+the leaf in `BattleInputState.cpp` and the caller in `BattleInputGate.cpp`
+preserves both results:
+
+```bash
+python3 scripts/build.py --unit battle-input-state --compare --json
+python3 scripts/build.py --unit battle-input-gate --compare --json
+```
+
+Use this split only when target call and unwind evidence support an external TU
+boundary. It is not permission to scatter functions merely to disable useful
+inlining.
+
+## P31: Keep named virtual cases and the source switch when the target has a local jump table
+
+A raw vtable-index array may look compact in reconstructed source, but it loses
+the compiler's knowledge of distinct virtual methods and often changes switch,
+EH, and local-data emission. When the target has a bounded state switch, model
+each observed slot as a named virtual declaration and write the semantic switch.
+
+At `0x00470940`, four leading virtual slots followed by seven named phase slots
+at `+0x10..+0x28`, an explicit states-0-through-6 switch, the unsupported-state
+double retry, and the separate synchronized states-0/5 loop reproduce the
+authoritative 529 bytes exactly:
+
+```bash
+python3 scripts/build.py --unit battle-dispatcher --compare --json
+```
+
+The object section tail is 564 bytes because it also owns the remaining linked
+code tail, a NOP, and the seven-entry local jump table. A full-tail diagnostic
+may validate those bytes, but the accepted strict comparison must retain the
+ledger's 529-byte boundary. Never promote an IDA-sized or section-tail-sized
+range merely because the extra local data also happens to match.
+
 ## Hard-function strategy
 
 Every reconstruction wave should include at least one function whose completion

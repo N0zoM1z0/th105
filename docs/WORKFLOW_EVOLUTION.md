@@ -208,6 +208,16 @@ real global CSprite/LTCG special-member blocker. These outcomes are the desired
 feedback loop: exact work both retires functions and corrects the next breadth
 wave's type graph.
 
+The next fan-out confirmed that this was repeatable rather than a one-function
+success. The central seven-state dispatcher `0x00470940` now matches all 529
+authoritative bytes (and its 564-byte diagnostic section tail), the packed
+local-control collector `0x0042A560` matches 224/224, and the synchronized
+availability leaf `0x00427680` matches 8/8 in a separate TU that preserves its
+caller's EH frame. The same packets left auditable stop conditions for the
+127/129 RAII caller, 258/240 synchronized publisher, and paired fixed-slot
+transfers. Breadth therefore supplies stable types and packet boundaries;
+strict fan-out supplies exact bytes and feeds corrections into the next wave.
+
 The work-packet boundary gate also prevented a false partial comparison at
 `0x004B9540`: its stored `size=112` disagreed with `span_end=0x004B95B9`.
 Fresh IDA instructions prove a contiguous 122-byte body through the final
