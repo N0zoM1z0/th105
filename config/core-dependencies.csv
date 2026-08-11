@@ -109,6 +109,7 @@ caller,callee,required_status,evidence
 0x0046C9E0,0x0046A940,matching,docs/BATTLE.md scratch reset
 0x0046C9E0,0x0046AC40,matching,docs/BATTLE.md collision effect
 0x0046C9E0,0x0046ACB0,matching,docs/BATTLE.md extent reset
+0x004FC3A0,0x00406710,matching,target direct call and exact related-object heading tracker comparison
 0x0046CC00,0x00439DC0,matching,docs/BATTLE.md outcome event dispatch
 0x0046CC00,0x0045AB10,matching,docs/BATTLE.md alternate descriptor quantity
 0x0046CC00,0x0045B870,implemented,docs/BATTLE.md owner counter adjustment

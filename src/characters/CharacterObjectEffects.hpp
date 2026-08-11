@@ -13,10 +13,13 @@ struct CharacterObjectEffectEmitter {
     float x_ec;
     float y_f0;
     unsigned char unknown_0f4[0x10];
-    unsigned char facing_104;
+    signed char facing_104;
     unsigned char unknown_105[0x67];
     void *related_16c;
-    unsigned char unknown_170[0x1d8];
+    CharacterObjectEffectEmitter *target_170;
+    unsigned char unknown_174[0x1cc];
+    float *heading_340;
+    unsigned char unknown_344[0x04];
     Fighter *owner_348;
 
     void *spawn_unparented_related_object(
@@ -27,6 +30,10 @@ struct CharacterObjectEffectEmitter {
         int field_33c,
         const unsigned *copied_words,
         int copied_word_count);
+    void turn_heading_toward_related(
+        float heading_bias,
+        float max_step,
+        float y_offset);
     void emit_fighter_effect_433cc0(
         int effect_code,
         float x,
@@ -43,6 +50,10 @@ typedef char CheckCharacterObjectEffectOwnerOffset[
     offsetof(CharacterObjectEffectEmitter, owner_348) == 0x348 ? 1 : -1];
 typedef char CheckCharacterObjectEffectRelatedOffset[
     offsetof(CharacterObjectEffectEmitter, related_16c) == 0x16c ? 1 : -1];
+typedef char CheckCharacterObjectEffectTargetOffset[
+    offsetof(CharacterObjectEffectEmitter, target_170) == 0x170 ? 1 : -1];
+typedef char CheckCharacterObjectEffectHeadingOffset[
+    offsetof(CharacterObjectEffectEmitter, heading_340) == 0x340 ? 1 : -1];
 typedef char CheckCharacterObjectEffectEmitterSize[
     sizeof(CharacterObjectEffectEmitter) == 0x34c ? 1 : -1];
 

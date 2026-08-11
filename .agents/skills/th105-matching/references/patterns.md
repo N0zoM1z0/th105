@@ -178,6 +178,25 @@ branch-local expressions changed `0x0045A4A0` from 1311 bytes to an exact
 
 For unsigned 32-bit to double conversion, VC8 may emit a high-bit correction path using a `4294967296.0` constant. Allowlist the exact constant relocation rather than changing the source to signed arithmetic.
 
+CRT math names may select a compiler-private x87 intrinsic convention instead
+of the ordinary C stack ABI. The exact `0x00406710` atan2-to-degrees helper
+needed a narrow source-facing `runtime_atan2(double,double)` alias mapped to
+the verified target bridge; calling `atan2` directly made VC8 pass operands on
+the x87 stack instead of materializing the target's two qword arguments. A
+volatile alias of the real float parameter reproduced the observed rounding
+stores, while verified volatile float constants kept the target `fmul`/`fdiv`
+memory operands. Use this only when the callee instructions and caller ABI
+prove the ordinary double-argument bridge.
+
+For bounded heading updates, preserve precision transitions explicitly. At
+`0x004FC3A0`, rounding the negated atan2 result to the float argument slot,
+then keeping the biased desired heading as `double`, then separately rounding
+the desired-minus-current delta to float before `_ftol2_sse` produced the
+target x87 stack schedule. Writing the final gate as
+`absolute_delta <= max_step` rather than the equivalent reversed comparison
+also reproduced the target operand order and unordered-value branch mask,
+completing an exact 314/314 match.
+
 In compound x87 comparisons, algebraically equivalent relational spellings can
 select different unordered handling. The `0x0046C290` body-collision probe
 reproduces the target's `TEST AH,41h; JE` center-order branches with negated

@@ -1,6 +1,10 @@
 #include "CharacterObjectEffects.hpp"
 
+#include <math.h>
+
 namespace th105 {
+
+double __cdecl atan2_degrees(float y, float x);
 
 namespace {
 
@@ -17,6 +21,35 @@ typedef void *(__thiscall *SpawnOwnedObject)(
     int copied_word_count);
 
 } // namespace
+
+void CharacterObjectEffectEmitter::turn_heading_toward_related(
+    float heading_bias,
+    float max_step,
+    float y_offset)
+{
+    y_offset = static_cast<float>(-atan2_degrees(
+        target_170->y_f0 + y_offset - y_f0,
+        (target_170->x_ec - x_ec) * static_cast<float>(facing_104)));
+    double const desired_heading = y_offset + heading_bias;
+    float delta = static_cast<float>(desired_heading - *heading_340);
+    delta = static_cast<float>(static_cast<int>(delta) % 360);
+
+    if (delta > 180.0f) {
+        delta -= 360.0f;
+    }
+    if (delta < -180.0f) {
+        delta += 360.0f;
+    }
+
+    float const absolute_delta = static_cast<float>(fabs(delta));
+    if (absolute_delta <= max_step) {
+        *heading_340 = desired_heading;
+    } else if (delta < 0.0f) {
+        *heading_340 -= max_step;
+    } else if (delta > 0.0f) {
+        *heading_340 += max_step;
+    }
+}
 
 void *CharacterObjectEffectEmitter::spawn_unparented_related_object(
     int action_id,
@@ -73,13 +106,23 @@ unsigned char CharacterObjectEffectEmitter::emit_repeated_effects_for_owner_stat
     if (effect_200_count > 0) {
         int count = effect_200_count;
         do {
-            emit_fighter_effect_433cc0(200, x_ec, y_f0, facing_104, 1);
+            emit_fighter_effect_433cc0(
+                200,
+                x_ec,
+                y_f0,
+                static_cast<unsigned char>(facing_104),
+                1);
         } while (--count != 0);
     }
     if (effect_201_count > 0) {
         int count = effect_201_count;
         do {
-            emit_fighter_effect_433cc0(201, x_ec, y_f0, facing_104, 1);
+            emit_fighter_effect_433cc0(
+                201,
+                x_ec,
+                y_f0,
+                static_cast<unsigned char>(facing_104),
+                1);
         } while (--count != 0);
     }
     return 1;

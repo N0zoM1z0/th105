@@ -7,6 +7,7 @@ address,lane,priority,notes
 0x004065A0,character-owned-object,1,Shared float orientation cosine lookup used across all 15 roster object-action families
 0x00406650,geometry,3,Exact orientation sine lookup dependency
 0x00406680,geometry,3,Exact orientation cosine lookup dependency
+0x00406710,character-owned-object,1,Exact shared atan2-to-degrees dependency with 339 direct calls
 0x00406780,geometry,2,Orientation table initialization contract still missing
 0x00406C30,spell-assets,2,Optional record resource preparation boundary
 0x00408A40,spell-assets,3,Exact VC8 std::string substring append specialization
@@ -169,6 +170,7 @@ address,lane,priority,notes
 0x004FA5C0,character-command,1,Alice spell skill and normal input dispatcher
 0x004FC0B0,character-command,2,Alice target and position update leaf
 0x004FC350,character-owned-object,1,Exact all-roster unparented related-object spawn adapter with 1026 direct calls
+0x004FC3A0,character-owned-object,1,Exact shared related-object heading tracker used across 14 roster families
 0x0051C5C0,character-command,2,Patchouli sequence-driven action lifecycle
 0x0051D140,character-command,1,Patchouli action-change root
 0x0051E3C0,character-owned-object,1,Patchouli object-pool acquire semantics

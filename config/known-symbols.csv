@@ -11,6 +11,7 @@ address,name,module,confidence,evidence
 0x004065A0,lookup_orientation_cosine_quantized_abs,engine,observed,IDA Pro instructions and all-roster xrefs prove absolute rounded float angle lookup into the runtime cosine table
 0x00406650,lookup_orientation_sine,engine,observed,docs/BATTLE.md exact quarter-period-shifted lookup into runtime fcos table
 0x00406680,lookup_orientation_cosine,engine,observed,docs/BATTLE.md exact direct lookup into runtime fcos table
+0x00406710,atan2_degrees,engine,observed,Exact 63-byte ordinary atan2 bridge with float-rounded radian-to-degree conversion and 339 direct calls
 0x00406840,mt19937_seed_u32,engine,observed,docs/BATTLE.md standard MT19937 seed recurrence and state-index writes
 0x00406880,mt19937_next_u32,engine,observed,docs/BATTLE.md exact MT19937 twist and temper sequence with verified state globals
 0x004069A0,selector_random_roll,battle,inferred,docs/BATTLE.md observed bounded random roll used by the outcome selector
@@ -296,6 +297,7 @@ address,name,module,confidence,evidence
 0x004FA1C0,AliceObjectManagerBase_acquire_and_link_object,characters,observed,IDA Pro normalized roster-owned 94-byte acquire-and-link template
 0x004FA3C0,AliceObjectManager_spawn_object,characters,observed,IDA Pro normalized roster-owned 237-byte spawn template and 0x38C fresh allocation exception
 0x004FC350,CharacterObjectEffectEmitter_spawn_unparented_related_object,characters,observed,Exact 78-byte shared owner-manager spawn adapter with 1026 direct calls across all 15 roster families
+0x004FC3A0,CharacterObjectEffectEmitter_turn_heading_toward_related,characters,observed,Exact 314-byte related-target heading tracker used by 14 roster action families
 0x0051E3C0,PatchouliObjectPool_acquire,characters,observed,IDA Pro complete normalized 519-byte fresh/reuse pool path
 0x0051E660,PatchouliObjectManagerBase_acquire_and_link_object,characters,observed,IDA Pro normalized roster-owned 94-byte acquire-and-link template
 0x0051E870,PatchouliObjectManager_spawn_object,characters,observed,IDA Pro normalized roster-owned 237-byte spawn template
@@ -346,6 +348,8 @@ address,name,module,confidence,evidence
 0x0066DF30,ov_read,third_party,observed,docs/EVIDENCE.md libvorbisfile API ABI used by Ogg PCM block decoder
 0x0067CC50,ceil,runtime,observed,docs/BATTLE.md verified CRT ceil helper called by collision world-box transforms
 0x0067D1EE,fabs,runtime,observed,Target named _fabs; quantized orientation lookups call this CRT leaf directly
+0x0067D2B0,_CIatan2,runtime,observed,Target ten-byte CRT bridge used by the shared atan2-to-degrees helper
+0x0067D2B0,runtime_atan2,runtime,observed,Source-facing ordinary double-argument alias for the target atan2 CRT bridge
 0x0040F960,destroy_result_index_deque,ui,observed,ResultList destructor and population reset the checked index deque at +0xB8
 0x00438BA0,ResultListBase_ctor,ui,observed,ResultList constructor first constructs its 0xB8 polymorphic base
 0x00438C20,ResultListBase_dtor,ui,observed,ResultList destructor tail-calls its 0xB8 polymorphic base destructor
