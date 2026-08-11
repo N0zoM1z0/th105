@@ -11,6 +11,7 @@
 class ReimuObject;
 class CharacterObject;
 class MarisaObject;
+class SakuyaObject;
 class AliceObject;
 class PatchouliObject;
 class YoumuObject;
@@ -59,6 +60,8 @@ struct CharacterObjectPoolStorageT {
 
 typedef CharacterObjectPoolStorageT<RosterOwnedObjectPrefix338>
     CharacterObjectPoolStorage;
+typedef CharacterObjectPoolStorageT< ::SakuyaObject>
+    SakuyaObjectPoolStorage;
 
 typedef char CheckCharacterObjectPoolStorageSize[
     sizeof(CharacterObjectPoolStorage) == 0x50 ? 1 : -1];
@@ -90,6 +93,7 @@ typedef char CheckRosterObjectManagerBaseSize[
         FighterName##ObjectPool pool_04;                                      \
         CollisionList linked_objects_54;                                     \
         ::FighterName##Object *acquire_and_link_object();                     \
+        void preallocate_object_pool(unsigned target_count);                 \
     };                                                                        \
     struct FighterName##ObjectManager {                                       \
         void *interface_vtable_00;                                            \

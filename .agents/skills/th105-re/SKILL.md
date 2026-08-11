@@ -69,6 +69,14 @@ fake behavioral stub bodies.
 
 ## Reconstruct and compare
 
+For roster-wide work, reconstruct breadth before spending a lane on the final
+compiler-scheduling delta. Recover one canonical member completely, prove any
+fan-out with exact target clone normalization, then give every member truthful
+types, control-flow evidence, dependencies, and compilable shared source where
+possible. Package each remaining mismatch for later exact-tuning workers.
+Canonical comparisons remain regression gates; clone identity never grants
+`matching`, and breadth never permits fake bodies.
+
 1. Place code in the module indicated by `config/modules.toml`.
 2. Preserve calling convention, object layout, side effects, and initialization
    order before attempting expression-level compiler tuning.

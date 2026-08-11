@@ -131,9 +131,15 @@ address,lane,priority,notes
 0x0046D160,collision-phase,1,Hard family 2 against family 1 checked-list pass
 0x0046D370,collision-phase,1,Hard family 1 same-list and cross-list clash pass
 0x0046D620,collision-phase,1,Hard six-list collision and deferred-result orchestration
+0x00491480,character-command,1,Reimu character-specific action-change root
 0x004927D0,character-owned-object,1,Shared CharacterObject construction and common-tail initialization
+0x00492B10,character-owned-object,1,Reimu typed handle-pool constructor
 0x00492BA0,character-owned-object,1,Reimu object-pool acquire semantics
+0x00492DB0,character-owned-object,1,Reimu manager-base constructor
 0x00492E20,character-owned-object,1,Reimu object acquire and tracking-list insertion source
+0x00492E80,character-owned-object,2,Reimu manager-base destructor and owned-handle cleanup
+0x00492F10,character-owned-object,1,Reimu reusable object-pool preallocation
+0x00492F90,character-owned-object,2,Reimu outer owned-object manager constructor
 0x00493110,character-owned-object,1,Reimu owned-object spawn contract
 0x00493300,character-command,2,Exact shared signed command gate for actions 208 through 210
 0x00493380,character-command,1,Shared flagged command gate for actions 220 and 222 through 224
@@ -146,113 +152,181 @@ address,lane,priority,notes
 0x00493A10,character-command,1,Shared mirrored counted and repeated command gate for action 203
 0x00493B00,character-command,2,Exact counted action-214 gate and direction-angle assignment
 0x00493C90,character-command,1,Shared seven-way front-record action gate
-0x00494050,character-command,1,Reimu spell skill and normal input dispatcher
+0x00494050,character-command,1,Reimu normal skill and spell input dispatcher root
+0x004B81F0,character-command,1,Marisa character-specific action-change root
 0x004B8FB0,character-owned-object,1,Shared checked object-slot resolver
+0x004B91B0,character-owned-object,1,Marisa typed handle-pool constructor
 0x004B9240,character-owned-object,1,Marisa object-pool acquire semantics
+0x004B9470,character-owned-object,1,Marisa manager-base constructor
 0x004B94E0,character-owned-object,1,Marisa object acquire and tracking-list insertion source
 0x004B9540,character-owned-object,1,Roster-wide tracked-object release and reusable-pool reset
+0x004B95C0,character-owned-object,2,Marisa manager-base destructor and owned-handle cleanup
+0x004B9650,character-owned-object,1,Marisa reusable object-pool preallocation
+0x004B96D0,character-owned-object,2,Marisa outer owned-object manager constructor
 0x004B9860,character-owned-object,1,Marisa owned-object spawn contract
-0x004B9A60,character-command,1,Marisa spell skill and normal input dispatcher
-0x004DDB20,character-command,1,Sakuya action-change root
+0x004B9A60,character-command,1,Marisa normal skill and spell input dispatcher root
+0x004DDB20,character-command,1,Sakuya character-specific action-change root
+0x004DE850,character-owned-object,1,Sakuya typed handle-pool constructor
 0x004DE8E0,character-owned-object,1,Sakuya object pool acquire and handle publication
-0x004DEB10,character-owned-object,1,Sakuya manager-base pool and tracking-list constructor
+0x004DEB10,character-owned-object,1,Sakuya manager-base constructor
 0x004DEB80,character-owned-object,1,Sakuya object acquire and tracking-list insertion
-0x004DEC70,character-owned-object,1,Sakuya object-pool preallocation
-0x004DECF0,character-owned-object,2,Sakuya owned-object manager constructor
+0x004DEBE0,character-owned-object,2,Sakuya manager-base destructor and owned-handle cleanup
+0x004DEC70,character-owned-object,1,Sakuya reusable object-pool preallocation
+0x004DECF0,character-owned-object,2,Sakuya outer owned-object manager constructor
 0x004DED80,character-owned-object,1,Sakuya owned-object spawn path
 0x004DEEF0,character-owned-object,2,Sakuya fighter constructor
-0x004DEF70,character-command,1,Sakuya input and action dispatcher
+0x004DEF70,character-command,1,Sakuya normal skill and spell input dispatcher root
+0x004F9320,character-command,1,Alice character-specific action-change root
+0x004F9EB0,character-owned-object,1,Alice typed handle-pool constructor
 0x004F9F40,character-owned-object,1,Alice object-pool acquire semantics with 0x38C allocation trait
+0x004FA150,character-owned-object,1,Alice manager-base constructor
 0x004FA1C0,character-owned-object,1,Alice object acquire and tracking-list insertion source
-0x004FA2B0,character-owned-object,2,Alice typed object-manager capacity fill and cleanup
+0x004FA220,character-owned-object,2,Alice manager-base destructor and owned-handle cleanup
+0x004FA2B0,character-owned-object,1,Alice reusable object-pool preallocation
+0x004FA330,character-owned-object,2,Alice outer owned-object manager constructor
 0x004FA3C0,character-owned-object,1,Alice owned-object spawn contract
 0x004FA530,character-command,2,Alice fighter constructor and owned-manager boundary
-0x004FA5C0,character-command,1,Alice spell skill and normal input dispatcher
+0x004FA5C0,character-command,1,Alice normal skill and spell input dispatcher root
 0x004FC0B0,character-command,2,Exact Alice object owner-position target-vector and target-state gate
 0x004FC350,character-owned-object,1,Exact all-roster unparented related-object spawn adapter with 1026 direct calls
 0x004FC3A0,character-owned-object,1,Exact shared related-object heading tracker used across 14 roster families
 0x004FC4E0,character-owned-object,1,Exact shared state-six phase counter transition with 261 calls across 13 roster roots
 0x0051C5C0,character-command,2,Patchouli sequence-driven action lifecycle
-0x0051D140,character-command,1,Patchouli action-change root
+0x0051D140,character-command,1,Patchouli character-specific action-change root
+0x0051E330,character-owned-object,1,Patchouli typed handle-pool constructor
 0x0051E3C0,character-owned-object,1,Patchouli object-pool acquire semantics
+0x0051E5F0,character-owned-object,1,Patchouli manager-base constructor
 0x0051E660,character-owned-object,1,Patchouli object acquire and tracking-list insertion source
+0x0051E6C0,character-owned-object,2,Patchouli manager-base destructor and owned-handle cleanup
+0x0051E750,character-owned-object,1,Patchouli reusable object-pool preallocation
+0x0051E7D0,character-owned-object,2,Patchouli outer owned-object manager constructor
 0x0051E870,character-owned-object,1,Patchouli owned-object spawn contract
-0x0051EA60,character-command,1,Patchouli spell skill and normal input dispatcher
+0x0051EA60,character-command,1,Patchouli normal skill and spell input dispatcher root
 0x00520360,character-owned-object,1,Exact parented related-object spawn adapter with 237 calls across 13 roster families
 0x005203B0,character-owned-object,1,Exact shared state-4-or-8 phase counter transition with 101 calls across 14 roster roots
 0x0052F950,character-command,2,Patchouli event-code action bridge
 0x005397E0,character-command,2,Youmu sequence-driven action lifecycle
-0x00539D70,character-command,1,Youmu action-change root
+0x00539D70,character-command,1,Youmu character-specific action-change root
+0x0053A830,character-owned-object,1,Youmu typed handle-pool constructor
 0x0053A8C0,character-owned-object,1,Youmu object-pool acquire semantics
+0x0053AAF0,character-owned-object,1,Youmu manager-base constructor
 0x0053AB60,character-owned-object,1,Youmu object acquire and tracking-list insertion source
+0x0053ABC0,character-owned-object,2,Youmu manager-base destructor and owned-handle cleanup
+0x0053AC50,character-owned-object,1,Youmu reusable object-pool preallocation
+0x0053ACD0,character-owned-object,2,Youmu outer owned-object manager constructor
 0x0053ADF0,character-owned-object,1,Youmu owned-object spawn contract
-0x0053B040,character-command,1,Youmu spell skill and normal input dispatcher
+0x0053B040,character-command,1,Youmu normal skill and spell input dispatcher root
 0x0053C7F0,character-owned-object,1,Implemented all-roster ping-pong motion and periodic action-980 spawn helper
 0x0053CA40,character-owned-object,2,Exact VC8 checked Youmu owner-record deque access library specialization
 0x0053CAA0,character-owned-object,1,Exact Youmu owner-record application and action-state publication adapter
 0x005448A0,character-command,2,Youmu event-code action bridge
 0x005544A0,character-command,2,Remilia vtable +0x5C sequence lifecycle root
-0x00554A00,character-command,1,Remilia action-entry lifecycle root for 500 600 and 700 ranges
+0x00554A00,character-command,1,Remilia character-specific action-change root
+0x00555600,character-owned-object,1,Remilia typed handle-pool constructor
 0x00555690,character-owned-object,1,Remilia object-pool acquire semantics
+0x005558C0,character-owned-object,1,Remilia manager-base constructor
 0x00555930,character-owned-object,1,Remilia object acquire and tracking-list insertion source
+0x00555990,character-owned-object,2,Remilia manager-base destructor and owned-handle cleanup
+0x00555A20,character-owned-object,1,Remilia reusable object-pool preallocation
+0x00555AA0,character-owned-object,2,Remilia outer owned-object manager constructor
 0x00555BA0,character-owned-object,1,Remilia owned-object spawn contract
-0x00555D90,character-command,1,Remilia spell skill and normal input dispatcher
+0x00555D90,character-command,1,Remilia normal skill and spell input dispatcher root
 0x0055CFD0,character-command,2,Remilia vtable +0x60 event bridge root
 0x0056BDC0,character-command,2,Yuyuko sequence-driven action lifecycle
-0x0056C490,character-command,1,Yuyuko action-transition root
+0x0056C490,character-command,1,Yuyuko character-specific action-change root
+0x0056D1C0,character-owned-object,1,Yuyuko typed handle-pool constructor
 0x0056D250,character-owned-object,1,Yuyuko object-pool acquire semantics
+0x0056D480,character-owned-object,1,Yuyuko manager-base constructor
 0x0056D4F0,character-owned-object,1,Yuyuko object acquire and tracking-list insertion source
+0x0056D550,character-owned-object,2,Yuyuko manager-base destructor and owned-handle cleanup
+0x0056D5E0,character-owned-object,1,Yuyuko reusable object-pool preallocation
+0x0056D660,character-owned-object,2,Yuyuko outer owned-object manager constructor
 0x0056D6F0,character-owned-object,1,Yuyuko owned-object spawn contract
-0x0056D8E0,character-command,1,Yuyuko spell skill and normal input dispatcher
+0x0056D8E0,character-command,1,Yuyuko normal skill and spell input dispatcher root
 0x0057A5C0,character-command,2,Yuyuko event-code action bridge
 0x00588DF0,character-command,2,Yukari sequence-driven action lifecycle
-0x00589F20,character-command,1,Yukari action-transition root for dispatcher outputs
+0x00589F20,character-command,1,Yukari character-specific action-change root
+0x0058B310,character-owned-object,1,Yukari typed handle-pool constructor
 0x0058B3A0,character-owned-object,1,Yukari object-pool acquire semantics
+0x0058B5D0,character-owned-object,1,Yukari manager-base constructor
 0x0058B640,character-owned-object,1,Yukari object acquire and tracking-list insertion source
+0x0058B6A0,character-owned-object,2,Yukari manager-base destructor and owned-handle cleanup
+0x0058B730,character-owned-object,1,Yukari reusable object-pool preallocation
+0x0058B7B0,character-owned-object,2,Yukari outer owned-object manager constructor
 0x0058B840,character-owned-object,1,Yukari owned-object spawn contract
 0x0058BA30,character-command,1,Yukari character-specific 200 and 201 selector exact source
-0x0058BBA0,character-command,1,Yukari spell skill and normal input dispatcher
+0x0058BBA0,character-command,1,Yukari normal skill and spell input dispatcher root
 0x005ABDF0,character-command,2,Suika sequence-driven action lifecycle
-0x005ACC10,character-command,1,Suika action-entry lifecycle root
+0x005ACC10,character-command,1,Suika character-specific action-change root
+0x005ADD50,character-owned-object,1,Suika typed handle-pool constructor
 0x005ADDE0,character-owned-object,1,Suika object-pool acquire semantics
+0x005AE010,character-owned-object,1,Suika manager-base constructor
 0x005AE080,character-owned-object,1,Suika object acquire and tracking-list insertion source
+0x005AE0E0,character-owned-object,2,Suika manager-base destructor and owned-handle cleanup
+0x005AE170,character-owned-object,1,Suika reusable object-pool preallocation
+0x005AE1F0,character-owned-object,2,Suika outer owned-object manager constructor
 0x005AE280,character-owned-object,1,Suika owned-object spawn contract
-0x005AE470,character-command,1,Suika spell skill and normal input dispatcher
+0x005AE470,character-command,1,Suika normal skill and spell input dispatcher root
 0x005BEEE0,character-command,2,Suika vtable +0x60 event bridge root
 0x005D3EA0,character-command,2,Udonge front-sequence and action progression root
-0x005D4610,character-command,1,Udonge action-entry lifecycle root
+0x005D4610,character-command,1,Udonge character-specific action-change root
+0x005D5CD0,character-owned-object,1,Udonge typed handle-pool constructor
 0x005D5D60,character-owned-object,1,Udonge object-pool acquire semantics
+0x005D5F70,character-owned-object,1,Udonge manager-base constructor
 0x005D5FE0,character-owned-object,1,Udonge object acquire and tracking-list insertion source
+0x005D6040,character-owned-object,2,Udonge manager-base destructor and owned-handle cleanup
+0x005D60D0,character-owned-object,1,Udonge reusable object-pool preallocation
+0x005D6150,character-owned-object,2,Udonge outer owned-object manager constructor
 0x005D6200,character-owned-object,1,Udonge owned-object spawn contract
-0x005D63F0,character-command,1,Udonge spell skill and normal input dispatcher
+0x005D63F0,character-command,1,Udonge normal skill and spell input dispatcher root
 0x005E53D0,character-command,2,Udonge event-code action bridge
 0x005F5700,character-command,2,Komachi front-sequence and action progression root
-0x005F5DE0,character-command,1,Komachi action-entry lifecycle root
+0x005F5DE0,character-command,1,Komachi character-specific action-change root
+0x005F6A90,character-owned-object,1,Komachi typed handle-pool constructor
 0x005F6B20,character-owned-object,1,Komachi object-pool acquire semantics
+0x005F6D30,character-owned-object,1,Komachi manager-base constructor
 0x005F6DA0,character-owned-object,1,Komachi object acquire and tracking-list insertion source
+0x005F6E00,character-owned-object,2,Komachi manager-base destructor and owned-handle cleanup
+0x005F6E90,character-owned-object,1,Komachi reusable object-pool preallocation
+0x005F6F10,character-owned-object,2,Komachi outer owned-object manager constructor
 0x005F6FA0,character-owned-object,1,Komachi owned-object spawn contract
-0x005F7190,character-command,1,Komachi spell skill and normal input dispatcher
+0x005F7190,character-command,1,Komachi normal skill and spell input dispatcher root
 0x006013C0,character-command,2,Komachi event-code action bridge
 0x00611D80,character-command,1,Aya large action-decision and command-state root
 0x00615EA0,character-command,2,Aya front-sequence action progression root
-0x006166A0,character-command,1,Aya action-entry lifecycle root
+0x006166A0,character-command,1,Aya character-specific action-change root
+0x00617390,character-owned-object,1,Aya typed handle-pool constructor
 0x00617420,character-owned-object,1,Aya object-pool acquire semantics
+0x00617650,character-owned-object,1,Aya manager-base constructor
 0x006176C0,character-owned-object,1,Aya object acquire and tracking-list insertion source
+0x00617720,character-owned-object,2,Aya manager-base destructor and owned-handle cleanup
+0x006177B0,character-owned-object,1,Aya reusable object-pool preallocation
+0x00617830,character-owned-object,2,Aya outer owned-object manager constructor
 0x00617930,character-owned-object,1,Aya owned-object spawn contract
-0x00617B20,character-command,1,Aya spell skill and normal input dispatcher
+0x00617B20,character-command,1,Aya normal skill and spell input dispatcher root
 0x0061F870,character-command,2,Aya event-code action bridge
 0x0062E910,character-command,2,Iku front-sequence action progression root
-0x0062F4B0,character-command,1,Iku action-entry lifecycle root
+0x0062F4B0,character-command,1,Iku character-specific action-change root
+0x006300F0,character-owned-object,1,Iku typed handle-pool constructor
 0x00630180,character-owned-object,1,Iku object-pool acquire semantics
+0x00630390,character-owned-object,1,Iku manager-base constructor
 0x00630400,character-owned-object,1,Iku object acquire and tracking-list insertion source
+0x00630460,character-owned-object,2,Iku manager-base destructor and owned-handle cleanup
+0x006304F0,character-owned-object,1,Iku reusable object-pool preallocation
+0x00630570,character-owned-object,2,Iku outer owned-object manager constructor
 0x00630600,character-owned-object,1,Iku owned-object spawn contract
-0x00630800,character-command,1,Iku spell skill and normal input dispatcher
+0x00630800,character-command,1,Iku normal skill and spell input dispatcher root
 0x0063C1D0,character-command,2,Iku event-code action bridge
 0x00648850,character-command,2,Tenshi front-sequence action progression root
-0x006495C0,character-command,1,Tenshi action-entry lifecycle root
+0x006495C0,character-command,1,Tenshi character-specific action-change root
+0x0064A480,character-owned-object,1,Tenshi typed handle-pool constructor
 0x0064A510,character-owned-object,1,Tenshi object-pool acquire semantics
+0x0064A720,character-owned-object,1,Tenshi manager-base constructor
 0x0064A790,character-owned-object,1,Tenshi object acquire and tracking-list insertion source
+0x0064A7F0,character-owned-object,2,Tenshi manager-base destructor and owned-handle cleanup
+0x0064A880,character-owned-object,1,Tenshi reusable object-pool preallocation
+0x0064A900,character-owned-object,2,Tenshi outer owned-object manager constructor
 0x0064A990,character-owned-object,1,Tenshi owned-object spawn contract
-0x0064AB80,character-command,1,Tenshi spell skill and normal input dispatcher
+0x0064AB80,character-command,1,Tenshi normal skill and spell input dispatcher root
 0x0064C090,character-command,1,Shared roster-owned object owner-gated repeated effect-emission exact source
 0x00658830,character-command,2,Tenshi event-code action bridge

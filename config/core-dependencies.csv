@@ -1,4 +1,5 @@
 caller,callee,required_status,evidence
+0x00421310,0x00433B90,matching,IDA Pro sole direct reset_fighter_action_scratch dependency
 0x0042C100,0x00439860,matching,docs/BATTLE.md observed mode gate
 0x0042C100,0x00439C90,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x00430D90,0x00430C30,matching,target direct call and exact 0x00430D90 comparison
@@ -33,6 +34,7 @@ caller,callee,required_status,evidence
 0x0045AEC0,0x0045A190,decompiled,docs/BATTLE.md group geometry transform path
 0x0045AEC0,0x0045A2E0,decompiled,docs/BATTLE.md mirrored group geometry transform path
 0x0045AEC0,0x0045A4A0,decompiled,docs/BATTLE.md oriented descriptor construction path
+0x0045BBB0,0x0045B9E0,implemented,IDA Pro sole checked sequence-slot accessor dependency
 0x0045BC30,0x0042C100,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x0045BC30,0x004317A0,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x0045BC30,0x00431860,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
@@ -43,6 +45,7 @@ caller,callee,required_status,evidence
 0x0045C690,0x00430D90,identified,docs/BATTLE.md record selection
 0x0045C690,0x004317A0,implemented,docs/BATTLE.md selected record lookup
 0x0045C690,0x0045C5A0,identified,docs/BATTLE.md sequence record transfer
+0x0045E3A0,0x00421310,decompiled,IDA Pro sole constructor dependency at AttackObject this+4
 0x0045F140,0x00409AA0,matching,target initialization call order and exact CInputManager reset comparison
 0x0045F140,0x00430FA0,identified,target initialization call order
 0x0045F140,0x004317A0,implemented,target checked sequence initialization path
@@ -59,6 +62,7 @@ caller,callee,required_status,evidence
 0x00462050,0x0045E080,identified,docs/BATTLE.md indexed resource initialization phase
 0x00462050,0x00460B50,identified,docs/BATTLE.md pre-resource initialization phase
 0x00462050,0x00464320,identified,docs/BATTLE.md final character resource callback
+0x004631E0,0x00463120,identified,IDA Pro sole packed-input subobject call and EAX pass-through
 0x0046AB80,0x0046A9A0,matching,exact descriptor extent comparison
 0x0046ABD0,0x0046A9A0,matching,exact descriptor pair extent comparison
 0x0046AC40,0x0046ACB0,matching,exact hit effect and extent reset path
@@ -103,28 +107,12 @@ caller,callee,required_status,evidence
 0x0046C9E0,0x00439DC0,matching,docs/BATTLE.md outcome event dispatch
 0x0046C9E0,0x0045AB10,matching,docs/BATTLE.md alternate descriptor quantity
 0x0046C9E0,0x0045B870,implemented,docs/BATTLE.md owner counter adjustment
-0x0046C9E0,0x0045CB20,implemented,docs/BATTLE.md outcome selector dependency
 0x0046C9E0,0x0045CA70,matching,docs/BATTLE.md facing update
 0x0046C9E0,0x0045CAE0,matching,docs/BATTLE.md state gate
+0x0046C9E0,0x0045CB20,implemented,docs/BATTLE.md outcome selector dependency
 0x0046C9E0,0x0046A940,matching,docs/BATTLE.md scratch reset
 0x0046C9E0,0x0046AC40,matching,docs/BATTLE.md collision effect
 0x0046C9E0,0x0046ACB0,matching,docs/BATTLE.md extent reset
-0x004FC3A0,0x00406710,matching,target direct call and exact related-object heading tracker comparison
-0x00492BA0,0x00402A50,library,IDA Pro direct call from Reimu object-pool reuse path
-0x004B9240,0x00402A50,library,IDA Pro direct call from Marisa object-pool reuse path
-0x004DE8E0,0x00402A50,library,IDA Pro direct call from Sakuya object-pool reuse path
-0x004F9F40,0x00402A50,library,IDA Pro direct call from Alice object-pool reuse path
-0x0051E3C0,0x00402A50,library,IDA Pro direct call from Patchouli object-pool reuse path
-0x0053A8C0,0x00402A50,library,IDA Pro direct call from Youmu object-pool reuse path
-0x00555690,0x00402A50,library,IDA Pro direct call from Remilia object-pool reuse path
-0x0056D250,0x00402A50,library,IDA Pro direct call from Yuyuko object-pool reuse path
-0x0058B3A0,0x00402A50,library,IDA Pro direct call from Yukari object-pool reuse path
-0x005ADDE0,0x00402A50,library,IDA Pro direct call from Suika object-pool reuse path
-0x005D5D60,0x00402A50,library,IDA Pro direct call from Udonge object-pool reuse path
-0x005F6B20,0x00402A50,library,IDA Pro direct call from Komachi object-pool reuse path
-0x00617420,0x00402A50,library,IDA Pro direct call from Aya object-pool reuse path
-0x00630180,0x00402A50,library,IDA Pro direct call from Iku object-pool reuse path
-0x0064A510,0x00402A50,library,IDA Pro direct call from Tenshi object-pool reuse path
 0x0046CC00,0x00439DC0,matching,docs/BATTLE.md outcome event dispatch
 0x0046CC00,0x0045AB10,matching,docs/BATTLE.md alternate descriptor quantity
 0x0046CC00,0x0045B870,implemented,docs/BATTLE.md owner counter adjustment
@@ -156,39 +144,49 @@ caller,callee,required_status,evidence
 0x0046D620,0x0046D040,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x0046D620,0x0046D160,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x0046D620,0x0046D370,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
-0x0045E3A0,0x00421310,decompiled,IDA Pro sole constructor dependency at AttackObject this+4
-0x00421310,0x00433B90,matching,IDA Pro sole direct reset_fighter_action_scratch dependency
-0x0045BBB0,0x0045B9E0,implemented,IDA Pro sole checked sequence-slot accessor dependency
-0x004631E0,0x00463120,identified,IDA Pro sole packed-input subobject call and EAX pass-through
 0x004927D0,0x0045E3A0,decompiled,IDA Pro sole shared base-constructor call
-0x00494050,0x0045BBB0,matching,IDA Pro Reimu spell sequence availability gates
-0x00494050,0x004631E0,implemented,IDA Pro Reimu action-transition call cluster
-0x00494050,0x00493C90,implemented,IDA Pro Reimu front-record selector call
+0x00492BA0,0x00402A50,library,IDA Pro direct call from Reimu object-pool reuse path
 0x00492BA0,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths
+0x00492DB0,0x00492B10,decompiled,config/clone-families.toml canonical manager-base constructor constructs typed handle pool at +4
 0x00492E20,0x00454890,library,IDA Pro exact normalized list-size update call
 0x00492E20,0x0046D000,matching,IDA Pro exact normalized list-node allocation call
 0x00492E20,0x00492BA0,identified,IDA Pro character-specific pool-acquire call
+0x00492F10,0x00492BA0,identified,config/clone-families.toml canonical preallocation loop calls fighter pool acquire
+0x00492F10,0x004B9540,decompiled,config/clone-families.toml canonical preallocation tail releases tracked handles
+0x00492F90,0x00492DB0,decompiled,config/clone-families.toml canonical outer manager constructs secondary base at +4
+0x00492F90,0x00492F10,implemented,config/clone-families.toml canonical outer manager preallocates 256 objects
 0x00493110,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
 0x00493110,0x00492E20,identified,IDA Pro direct acquire-and-link call
+0x00494050,0x0045BBB0,matching,IDA Pro Reimu spell sequence availability gates
+0x00494050,0x004631E0,implemented,IDA Pro Reimu action-transition call cluster
+0x00494050,0x00493C90,implemented,IDA Pro Reimu front-record selector call
+0x004B9240,0x00402A50,library,IDA Pro direct call from Marisa object-pool reuse path
 0x004B9240,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths
-0x004B9A60,0x0045BBB0,matching,IDA Pro Marisa spell sequence availability gates
-0x004B9A60,0x004631E0,implemented,IDA Pro Marisa action-transition call cluster
-0x004B9A60,0x00493C90,implemented,IDA Pro Marisa front-record selector call
+0x004B9470,0x004B91B0,decompiled,config/clone-families.toml canonical manager-base constructor constructs typed handle pool at +4
 0x004B94E0,0x00454890,library,IDA Pro exact normalized list-size update call
 0x004B94E0,0x0046D000,matching,IDA Pro exact normalized list-node allocation call
 0x004B94E0,0x004B9240,identified,IDA Pro character-specific pool-acquire call
+0x004B9650,0x004B9240,identified,config/clone-families.toml canonical preallocation loop calls fighter pool acquire
+0x004B9650,0x004B9540,decompiled,config/clone-families.toml canonical preallocation tail releases tracked handles
+0x004B96D0,0x004B9470,decompiled,config/clone-families.toml canonical outer manager constructs secondary base at +4
+0x004B96D0,0x004B9650,implemented,config/clone-families.toml canonical outer manager preallocates 256 objects
 0x004B9860,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
 0x004B9860,0x004B94E0,identified,IDA Pro direct acquire-and-link call
+0x004B9A60,0x0045BBB0,matching,IDA Pro Marisa spell sequence availability gates
+0x004B9A60,0x004631E0,implemented,IDA Pro Marisa action-transition call cluster
+0x004B9A60,0x00493C90,implemented,IDA Pro Marisa front-record selector call
+0x004DE8E0,0x00402A50,library,IDA Pro direct call from Sakuya object-pool reuse path
 0x004DE8E0,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths
+0x004DEB10,0x004DE850,decompiled,config/clone-families.toml canonical manager-base constructor constructs typed handle pool at +4
 0x004DEB80,0x00454890,library,IDA Pro target list insertion call
 0x004DEB80,0x0046D000,matching,IDA Pro target list-node allocation call
 0x004DEB80,0x004DE8E0,identified,IDA Pro target pool acquire call and handle output
 0x004DEC70,0x00454890,library,IDA Pro repeated target list insertion call
 0x004DEC70,0x0046D000,matching,IDA Pro repeated target list-node allocation call
-0x004DEC70,0x004B9540,decompiled,IDA Pro preallocation tail releases all tracked objects back to pool
-0x004DEC70,0x004DE8E0,identified,IDA Pro repeated pool acquire call
-0x004DECF0,0x004DEB10,decompiled,IDA Pro secondary manager-base construction and EH cleanup
-0x004DECF0,0x004DEC70,implemented,docs/CHARACTER_PILOTS.md constructor preallocates 256 reusable objects
+0x004DEC70,0x004B9540,decompiled,config/clone-families.toml canonical preallocation tail releases tracked handles
+0x004DEC70,0x004DE8E0,identified,config/clone-families.toml canonical preallocation loop calls fighter pool acquire
+0x004DECF0,0x004DEB10,decompiled,config/clone-families.toml canonical outer manager constructs secondary base at +4
+0x004DECF0,0x004DEC70,implemented,config/clone-families.toml canonical outer manager preallocates 256 objects
 0x004DED80,0x004454E0,library,IDA Pro optional parent publication through exact VC8 deque push_back
 0x004DED80,0x004DEB80,implemented,IDA Pro spawn begins with acquire and tracking-list insertion
 0x004DEEF0,0x004DECF0,decompiled,docs/CHARACTER_PILOTS.md owned-manager allocation and construction
@@ -203,28 +201,47 @@ caller,callee,required_status,evidence
 0x004DEF70,0x00493A10,implemented,docs/CHARACTER_PILOTS.md shared action-203 repeated-command gate
 0x004DEF70,0x00493B00,matching,docs/CHARACTER_PILOTS.md shared action-214 counted direction-angle gate
 0x004DEF70,0x00493C90,implemented,docs/CHARACTER_PILOTS.md shared seven-way front-record action gate
+0x004F9F40,0x00402A50,library,IDA Pro direct call from Alice object-pool reuse path
 0x004F9F40,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths
+0x004FA150,0x004F9EB0,decompiled,config/clone-families.toml canonical manager-base constructor constructs typed handle pool at +4
 0x004FA1C0,0x00454890,library,IDA Pro exact normalized list-size update call
 0x004FA1C0,0x0046D000,matching,IDA Pro exact normalized list-node allocation call
 0x004FA1C0,0x004F9F40,identified,IDA Pro character-specific pool-acquire call
+0x004FA2B0,0x004B9540,decompiled,config/clone-families.toml canonical preallocation tail releases tracked handles
+0x004FA2B0,0x004F9F40,identified,config/clone-families.toml canonical preallocation loop calls fighter pool acquire
+0x004FA330,0x004FA150,decompiled,config/clone-families.toml canonical outer manager constructs secondary base at +4
+0x004FA330,0x004FA2B0,implemented,config/clone-families.toml canonical outer manager preallocates 256 objects
 0x004FA3C0,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
 0x004FA3C0,0x004FA1C0,identified,IDA Pro direct acquire-and-link call
 0x004FA5C0,0x0045BBB0,matching,IDA Pro Alice spell sequence availability gates
 0x004FA5C0,0x004631E0,implemented,IDA Pro Alice action-transition call cluster
 0x004FA5C0,0x00493C90,implemented,IDA Pro Alice front-record selector call
+0x004FC3A0,0x00406710,matching,target direct call and exact related-object heading tracker comparison
+0x0051E3C0,0x00402A50,library,IDA Pro direct call from Patchouli object-pool reuse path
 0x0051E3C0,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths
+0x0051E5F0,0x0051E330,decompiled,config/clone-families.toml canonical manager-base constructor constructs typed handle pool at +4
 0x0051E660,0x00454890,library,IDA Pro exact normalized list-size update call
 0x0051E660,0x0046D000,matching,IDA Pro exact normalized list-node allocation call
 0x0051E660,0x0051E3C0,identified,IDA Pro character-specific pool-acquire call
+0x0051E750,0x004B9540,decompiled,config/clone-families.toml canonical preallocation tail releases tracked handles
+0x0051E750,0x0051E3C0,identified,config/clone-families.toml canonical preallocation loop calls fighter pool acquire
+0x0051E7D0,0x0051E5F0,decompiled,config/clone-families.toml canonical outer manager constructs secondary base at +4
+0x0051E7D0,0x0051E750,implemented,config/clone-families.toml canonical outer manager preallocates 256 objects
 0x0051E870,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
 0x0051E870,0x0051E660,identified,IDA Pro direct acquire-and-link call
 0x0051EA60,0x0045BBB0,matching,IDA Pro Patchouli spell sequence availability gates
 0x0051EA60,0x004631E0,implemented,IDA Pro Patchouli action-transition call cluster
 0x0051EA60,0x00493C90,implemented,IDA Pro Patchouli front-record selector call
+0x0053A8C0,0x00402A50,library,IDA Pro direct call from Youmu object-pool reuse path
 0x0053A8C0,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths
+0x0053AAF0,0x0053A830,decompiled,config/clone-families.toml canonical manager-base constructor constructs typed handle pool at +4
 0x0053AB60,0x00454890,library,IDA Pro exact normalized list-size update call
 0x0053AB60,0x0046D000,matching,IDA Pro exact normalized list-node allocation call
 0x0053AB60,0x0053A8C0,identified,IDA Pro character-specific pool-acquire call
+0x0053AC50,0x004B9540,decompiled,config/clone-families.toml canonical preallocation tail releases tracked handles
+0x0053AC50,0x0053A8C0,identified,config/clone-families.toml canonical preallocation loop calls fighter pool acquire
+0x0053ACD0,0x0053AAF0,decompiled,config/clone-families.toml canonical outer manager constructs secondary base at +4
+0x0053ACD0,0x0053AC50,implemented,config/clone-families.toml canonical outer manager preallocates 256 objects
 0x0053ADF0,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
 0x0053ADF0,0x0053AB60,identified,IDA Pro direct acquire-and-link call
 0x0053B040,0x0045BBB0,matching,IDA Pro Youmu spell sequence availability gates
@@ -232,28 +249,46 @@ caller,callee,required_status,evidence
 0x0053B040,0x00493C90,implemented,IDA Pro Youmu front-record selector call
 0x0053C7F0,0x004FC350,matching,IDA Pro direct call to exact unparented related-object spawn adapter
 0x0053CAA0,0x0053CA40,library,Exact Youmu owner-record adapter uses checked deque access specialization
+0x00555690,0x00402A50,library,IDA Pro direct call from Remilia object-pool reuse path
 0x00555690,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths
+0x005558C0,0x00555600,decompiled,config/clone-families.toml canonical manager-base constructor constructs typed handle pool at +4
 0x00555930,0x00454890,library,IDA Pro exact normalized list-size update call
 0x00555930,0x0046D000,matching,IDA Pro exact normalized list-node allocation call
 0x00555930,0x00555690,identified,IDA Pro character-specific pool-acquire call
+0x00555A20,0x004B9540,decompiled,config/clone-families.toml canonical preallocation tail releases tracked handles
+0x00555A20,0x00555690,identified,config/clone-families.toml canonical preallocation loop calls fighter pool acquire
+0x00555AA0,0x005558C0,decompiled,config/clone-families.toml canonical outer manager constructs secondary base at +4
+0x00555AA0,0x00555A20,implemented,config/clone-families.toml canonical outer manager preallocates 256 objects
 0x00555BA0,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
 0x00555BA0,0x00555930,identified,IDA Pro direct acquire-and-link call
 0x00555D90,0x0045BBB0,matching,IDA Pro Remilia spell sequence availability gates
 0x00555D90,0x004631E0,implemented,IDA Pro Remilia action-transition call cluster
 0x00555D90,0x00493C90,implemented,IDA Pro Remilia front-record selector call
+0x0056D250,0x00402A50,library,IDA Pro direct call from Yuyuko object-pool reuse path
 0x0056D250,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths
+0x0056D480,0x0056D1C0,decompiled,config/clone-families.toml canonical manager-base constructor constructs typed handle pool at +4
 0x0056D4F0,0x00454890,library,IDA Pro exact normalized list-size update call
 0x0056D4F0,0x0046D000,matching,IDA Pro exact normalized list-node allocation call
 0x0056D4F0,0x0056D250,identified,IDA Pro character-specific pool-acquire call
+0x0056D5E0,0x004B9540,decompiled,config/clone-families.toml canonical preallocation tail releases tracked handles
+0x0056D5E0,0x0056D250,identified,config/clone-families.toml canonical preallocation loop calls fighter pool acquire
+0x0056D660,0x0056D480,decompiled,config/clone-families.toml canonical outer manager constructs secondary base at +4
+0x0056D660,0x0056D5E0,implemented,config/clone-families.toml canonical outer manager preallocates 256 objects
 0x0056D6F0,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
 0x0056D6F0,0x0056D4F0,identified,IDA Pro direct acquire-and-link call
 0x0056D8E0,0x0045BBB0,matching,IDA Pro Yuyuko spell sequence availability gates
 0x0056D8E0,0x004631E0,implemented,IDA Pro Yuyuko action-transition call cluster
 0x0056D8E0,0x00493C90,implemented,IDA Pro Yuyuko front-record selector call
+0x0058B3A0,0x00402A50,library,IDA Pro direct call from Yukari object-pool reuse path
 0x0058B3A0,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths
+0x0058B5D0,0x0058B310,decompiled,config/clone-families.toml canonical manager-base constructor constructs typed handle pool at +4
 0x0058B640,0x00454890,library,IDA Pro exact normalized list-size update call
 0x0058B640,0x0046D000,matching,IDA Pro exact normalized list-node allocation call
 0x0058B640,0x0058B3A0,identified,IDA Pro character-specific pool-acquire call
+0x0058B730,0x004B9540,decompiled,config/clone-families.toml canonical preallocation tail releases tracked handles
+0x0058B730,0x0058B3A0,identified,config/clone-families.toml canonical preallocation loop calls fighter pool acquire
+0x0058B7B0,0x0058B5D0,decompiled,config/clone-families.toml canonical outer manager constructs secondary base at +4
+0x0058B7B0,0x0058B730,implemented,config/clone-families.toml canonical outer manager preallocates 256 objects
 0x0058B840,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
 0x0058B840,0x0058B640,identified,IDA Pro direct acquire-and-link call
 0x0058BA30,0x00434390,matching,Exact post-action-201 boundary classifier call
@@ -262,55 +297,91 @@ caller,callee,required_status,evidence
 0x0058BBA0,0x0045BBB0,matching,IDA Pro Yukari spell sequence availability gates
 0x0058BBA0,0x004631E0,implemented,IDA Pro Yukari action-transition call cluster
 0x0058BBA0,0x00493C90,implemented,IDA Pro Yukari front-record selector call
+0x005ADDE0,0x00402A50,library,IDA Pro direct call from Suika object-pool reuse path
 0x005ADDE0,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths
+0x005AE010,0x005ADD50,decompiled,config/clone-families.toml canonical manager-base constructor constructs typed handle pool at +4
 0x005AE080,0x00454890,library,IDA Pro exact normalized list-size update call
 0x005AE080,0x0046D000,matching,IDA Pro exact normalized list-node allocation call
 0x005AE080,0x005ADDE0,identified,IDA Pro character-specific pool-acquire call
+0x005AE170,0x004B9540,decompiled,config/clone-families.toml canonical preallocation tail releases tracked handles
+0x005AE170,0x005ADDE0,identified,config/clone-families.toml canonical preallocation loop calls fighter pool acquire
+0x005AE1F0,0x005AE010,decompiled,config/clone-families.toml canonical outer manager constructs secondary base at +4
+0x005AE1F0,0x005AE170,implemented,config/clone-families.toml canonical outer manager preallocates 256 objects
 0x005AE280,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
 0x005AE280,0x005AE080,identified,IDA Pro direct acquire-and-link call
 0x005AE470,0x0045BBB0,matching,IDA Pro Suika spell sequence availability gates
 0x005AE470,0x004631E0,implemented,IDA Pro Suika action-transition call cluster
 0x005AE470,0x00493C90,implemented,IDA Pro Suika front-record selector call
+0x005D5D60,0x00402A50,library,IDA Pro direct call from Udonge object-pool reuse path
 0x005D5D60,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths
+0x005D5F70,0x005D5CD0,decompiled,config/clone-families.toml canonical manager-base constructor constructs typed handle pool at +4
 0x005D5FE0,0x00454890,library,IDA Pro exact normalized list-size update call
 0x005D5FE0,0x0046D000,matching,IDA Pro exact normalized list-node allocation call
 0x005D5FE0,0x005D5D60,identified,IDA Pro character-specific pool-acquire call
+0x005D60D0,0x004B9540,decompiled,config/clone-families.toml canonical preallocation tail releases tracked handles
+0x005D60D0,0x005D5D60,identified,config/clone-families.toml canonical preallocation loop calls fighter pool acquire
+0x005D6150,0x005D5F70,decompiled,config/clone-families.toml canonical outer manager constructs secondary base at +4
+0x005D6150,0x005D60D0,implemented,config/clone-families.toml canonical outer manager preallocates 256 objects
 0x005D6200,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
 0x005D6200,0x005D5FE0,identified,IDA Pro direct acquire-and-link call
 0x005D63F0,0x0045BBB0,matching,IDA Pro Udonge spell sequence availability gates
 0x005D63F0,0x004631E0,implemented,IDA Pro Udonge action-transition call cluster
 0x005D63F0,0x00493C90,implemented,IDA Pro Udonge front-record selector call
+0x005F6B20,0x00402A50,library,IDA Pro direct call from Komachi object-pool reuse path
 0x005F6B20,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths
+0x005F6D30,0x005F6A90,decompiled,config/clone-families.toml canonical manager-base constructor constructs typed handle pool at +4
 0x005F6DA0,0x00454890,library,IDA Pro exact normalized list-size update call
 0x005F6DA0,0x0046D000,matching,IDA Pro exact normalized list-node allocation call
 0x005F6DA0,0x005F6B20,identified,IDA Pro character-specific pool-acquire call
+0x005F6E90,0x004B9540,decompiled,config/clone-families.toml canonical preallocation tail releases tracked handles
+0x005F6E90,0x005F6B20,identified,config/clone-families.toml canonical preallocation loop calls fighter pool acquire
+0x005F6F10,0x005F6D30,decompiled,config/clone-families.toml canonical outer manager constructs secondary base at +4
+0x005F6F10,0x005F6E90,implemented,config/clone-families.toml canonical outer manager preallocates 256 objects
 0x005F6FA0,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
 0x005F6FA0,0x005F6DA0,identified,IDA Pro direct acquire-and-link call
 0x005F7190,0x0045BBB0,matching,IDA Pro Komachi spell sequence availability gates
 0x005F7190,0x004631E0,implemented,IDA Pro Komachi action-transition call cluster
 0x005F7190,0x00493C90,implemented,IDA Pro Komachi front-record selector call
+0x00617420,0x00402A50,library,IDA Pro direct call from Aya object-pool reuse path
 0x00617420,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths
+0x00617650,0x00617390,decompiled,config/clone-families.toml canonical manager-base constructor constructs typed handle pool at +4
 0x006176C0,0x00454890,library,IDA Pro exact normalized list-size update call
 0x006176C0,0x0046D000,matching,IDA Pro exact normalized list-node allocation call
 0x006176C0,0x00617420,identified,IDA Pro character-specific pool-acquire call
+0x006177B0,0x004B9540,decompiled,config/clone-families.toml canonical preallocation tail releases tracked handles
+0x006177B0,0x00617420,identified,config/clone-families.toml canonical preallocation loop calls fighter pool acquire
+0x00617830,0x00617650,decompiled,config/clone-families.toml canonical outer manager constructs secondary base at +4
+0x00617830,0x006177B0,implemented,config/clone-families.toml canonical outer manager preallocates 256 objects
 0x00617930,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
 0x00617930,0x006176C0,identified,IDA Pro direct acquire-and-link call
 0x00617B20,0x0045BBB0,matching,IDA Pro Aya spell sequence availability gates
 0x00617B20,0x004631E0,implemented,IDA Pro Aya action-transition call cluster
 0x00617B20,0x00493C90,implemented,IDA Pro Aya front-record selector call
+0x00630180,0x00402A50,library,IDA Pro direct call from Iku object-pool reuse path
 0x00630180,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths
+0x00630390,0x006300F0,decompiled,config/clone-families.toml canonical manager-base constructor constructs typed handle pool at +4
 0x00630400,0x00454890,library,IDA Pro exact normalized list-size update call
 0x00630400,0x0046D000,matching,IDA Pro exact normalized list-node allocation call
 0x00630400,0x00630180,identified,IDA Pro character-specific pool-acquire call
+0x006304F0,0x004B9540,decompiled,config/clone-families.toml canonical preallocation tail releases tracked handles
+0x006304F0,0x00630180,identified,config/clone-families.toml canonical preallocation loop calls fighter pool acquire
+0x00630570,0x00630390,decompiled,config/clone-families.toml canonical outer manager constructs secondary base at +4
+0x00630570,0x006304F0,implemented,config/clone-families.toml canonical outer manager preallocates 256 objects
 0x00630600,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
 0x00630600,0x00630400,identified,IDA Pro direct acquire-and-link call
 0x00630800,0x0045BBB0,matching,IDA Pro Iku spell sequence availability gates
 0x00630800,0x004631E0,implemented,IDA Pro Iku action-transition call cluster
 0x00630800,0x00493C90,implemented,IDA Pro Iku front-record selector call
+0x0064A510,0x00402A50,library,IDA Pro direct call from Tenshi object-pool reuse path
 0x0064A510,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths
+0x0064A720,0x0064A480,decompiled,config/clone-families.toml canonical manager-base constructor constructs typed handle pool at +4
 0x0064A790,0x00454890,library,IDA Pro exact normalized list-size update call
 0x0064A790,0x0046D000,matching,IDA Pro exact normalized list-node allocation call
 0x0064A790,0x0064A510,identified,IDA Pro character-specific pool-acquire call
+0x0064A880,0x004B9540,decompiled,config/clone-families.toml canonical preallocation tail releases tracked handles
+0x0064A880,0x0064A510,identified,config/clone-families.toml canonical preallocation loop calls fighter pool acquire
+0x0064A900,0x0064A720,decompiled,config/clone-families.toml canonical outer manager constructs secondary base at +4
+0x0064A900,0x0064A880,implemented,config/clone-families.toml canonical outer manager preallocates 256 objects
 0x0064A990,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
 0x0064A990,0x0064A790,identified,IDA Pro direct acquire-and-link call
 0x0064AB80,0x0045BBB0,matching,IDA Pro Tenshi spell sequence availability gates

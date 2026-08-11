@@ -5,9 +5,6 @@
 namespace th105 {
 
 namespace {
-
-typedef void (__thiscall *SetObjectAction)(SakuyaObject *, int);
-
 __forceinline unsigned &owner_field(Sakuya *owner, unsigned offset)
 {
     return *reinterpret_cast<unsigned *>(
@@ -31,18 +28,18 @@ SakuyaObject *SakuyaObjectManager::spawn_object(
 
     Sakuya *owner = owner_64;
     object->owner_348 = owner;
-    object->owner_168 = owner;
-    object->field_130 = owner_field(owner, 0x130);
+    object->state_158.owner_010 = owner;
+    object->owner_field_000 = owner_field(owner, 0x130);
     unsigned const owner_field_160 = owner_field(owner, 0x160);
 
     if (parent != 0) {
         std::deque<SakuyaObject *> *child_refs = &parent->child_refs_350;
-        object->field_160 = owner_field_160;
+        object->state_158.owner_field_008 = owner_field_160;
         object->parent_34c = parent;
         parent = object;
         child_refs->push_back(parent);
     } else {
-        object->field_160 = owner_field_160;
+        object->state_158.owner_field_008 = owner_field_160;
     }
 
     if (copied_word_count > 0) {
@@ -55,17 +52,14 @@ SakuyaObject *SakuyaObjectManager::spawn_object(
         }
     }
 
-    object->related_16c = related;
-    object->x_ec = x;
-    object->facing_104 = facing;
-    object->y_f0 = y;
-    object->copied_related_field_170 = related->copied_related_field_170;
+    object->state_158.related_014 = related;
+    object->effect_000.object_x_0e8 = x;
+    object->effect_000.object_facing_100 = facing;
+    object->effect_000.object_y_0ec = y;
+    object->state_158.related_018 = related->state_158.related_018;
 
-    SetObjectAction const set_action =
-        reinterpret_cast<SetObjectAction>(
-            (*reinterpret_cast<void ***>(object))[2]);
     object->field_33c = field_33c;
-    set_action(object, action_id);
+    object->set_action(action_id);
     return object;
 }
 

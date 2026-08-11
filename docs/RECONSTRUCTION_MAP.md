@@ -177,11 +177,17 @@ shared owned-object lifecycle [contracted]
 ├── fifteen 94-byte acquire-and-link entries [source-ready]
 │   ├── normalized token/list contract
 │   └── fourteen roster functions emitted from one shared source body
-├── fifteen 519-byte pool fresh/reuse entries [14 implemented; Sakuya contracted]
+├── eight exact-template lifecycle families [120 target functions audited]
+│   ├── fifteen 130-byte typed handle-pool constructors [decompiled]
+│   ├── fifteen 103-byte manager-base constructors [decompiled]
+│   ├── fifteen 100-byte manager-base destructors [decompiled]
+│   ├── fifteen 117-byte preallocate/release passes [implemented]
+│   └── fifteen 123-byte outer manager constructors [decompiled]
+├── fifteen 519-byte pool fresh/reuse entries [implemented]
 │   ├── low16 slot / high16 generation token contract
 │   ├── Alice 0x38C allocation trait; all others 0x388
-│   ├── Reimu canonical standalone probe 514/519 [fresh path exact; reuse LTCG-sensitive]
-│   ├── fourteen non-Sakuya functions emitted from one audited source template
+│   ├── Reimu and Sakuya canonical probes 514/519 [fresh path exact]
+│   ├── all fifteen functions emitted from one audited source template
 │   └── shared pool-container/lock/constructor helpers [contracted]
 │       ├── 0x50-byte checked-container pool layout [source]
 │       ├── 0x0040A710/20 lock wrapper [exact]
@@ -190,9 +196,11 @@ shared owned-object lifecycle [contracted]
 │           └── 0x0045E3A0 AttackObject ctor [exact]
 │               └── 0x00421310 CEffectSprite ctor [source; linked-LTCG byte blocker]
 └── Sakuya fighter pilot [source-ready]
-    ├── 0x004DE8E0 pool acquire [contracted]
+    ├── 0x004DE8E0 pool acquire [implemented, canonical shared source]
+    ├── 0x004DEB10 manager-base constructor [decompiled]
     ├── 0x004DEB80 acquire and link [source-ready]
     ├── 0x004DEC70 preallocate 256 then release [source-ready]
+    ├── 0x004DECF0 outer manager constructor [decompiled]
     └── 0x004DEF70 spell/skill/normal dispatcher [semantics-ready]
 ```
 

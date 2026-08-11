@@ -1,44 +1,17 @@
 #pragma once
 
 #include "battle/Collision.hpp"
-#include "OwnedObjectContainers.hpp"
+#include "RosterObjectPools.hpp"
 
-#include <deque>
 #include <stddef.h>
 
 namespace th105 {
 
 struct Sakuya;
-
-struct SakuyaObject {
-    unsigned char unknown_000[0xec];
-    float x_ec;
-    float y_f0;
-    unsigned char unknown_0f4[0x10];
-    signed char facing_104;
-    unsigned char unknown_105[0x2b];
-    unsigned field_130;
-    unsigned char unknown_134[0x2c];
-    unsigned field_160;
-    unsigned char unknown_164[0x04];
-    Sakuya *owner_168;
-    SakuyaObject *related_16c;
-    unsigned copied_related_field_170;
-    unsigned char unknown_174[0x1c0];
-    unsigned handle_token_334;
-    unsigned char unknown_338[0x04];
-    unsigned char field_33c;
-    unsigned char unknown_33d[0x03];
-    unsigned *copied_words_340;
-    unsigned char unknown_344[0x04];
-    Sakuya *owner_348;
-    SakuyaObject *parent_34c;
-    std::deque<SakuyaObject *> child_refs_350;
-    unsigned char unknown_364[0x24];
-};
+typedef ::SakuyaObject SakuyaObject;
 
 struct SakuyaObjectPool {
-    unsigned char unknown_00[0x50];
+    SakuyaObjectPoolStorage storage_00;
 
     SakuyaObject *acquire(unsigned *handle_token);
 };
@@ -107,7 +80,7 @@ typedef char CheckSakuyaObjectManagerOwnerOffset[
 typedef char CheckSakuyaObjectObservedSize[
     sizeof(SakuyaObject) == 0x388 ? 1 : -1];
 typedef char CheckSakuyaObjectHandleTokenOffset[
-    offsetof(SakuyaObject, handle_token_334) == 0x334 ? 1 : -1];
+    offsetof(SakuyaObject, handle_token_004) == 0x334 ? 1 : -1];
 typedef char CheckSakuyaObjectCopiedWordsOffset[
     offsetof(SakuyaObject, copied_words_340) == 0x340 ? 1 : -1];
 typedef char CheckSakuyaObjectChildRefsOffset[

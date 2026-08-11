@@ -104,6 +104,21 @@ rel32_targets = [
   "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040A720",
 ]
 
+[[units.reimu-object-pool.functions]]
+address = "0x004DE8E0"
+symbol_base = "?acquire@SakuyaObjectPool@th105@@QAEPAVSakuyaObject@@PAI@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040A710",
+  "??2@YAPAXI@Z=0x0067B50C",
+  "??0CharacterObject@@QAE@XZ=0x004927D0",
+  "?push_back@?$vector@PAVSakuyaObject@@V?$allocator@PAVSakuyaObject@@@std@@@std@@QAEXABQAVSakuyaObject@@@Z=0x00464110",
+  "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040D760",
+  "__invalid_parameter_noinfo=0x0067B884",
+  "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x00402A50",
+  "?at@?$vector@PAVSakuyaObject@@V?$allocator@PAVSakuyaObject@@@std@@@std@@QAEAAPAVSakuyaObject@@I@Z=0x004B8FB0",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040A720",
+]
+
 [units.reimu-object-spawn]
 kind = "probe"
 source = "src/characters/RosterObjectSpawns.cpp"
@@ -111,6 +126,24 @@ object = "build/match-units/RosterObjectSpawns.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
 notes = "Canonical 237-byte roster spawn reconstruction before audited clone-family fan-out."
+
+[units.reimu-object-preallocate]
+kind = "probe"
+source = "src/characters/RosterOwnedObjects.cpp"
+object = "build/match-units/RosterOwnedObjects.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Canonical roster manager preallocation loop before audited fifteen-member clone-family fan-out."
+
+[[units.reimu-object-preallocate.functions]]
+address = "0x00492F10"
+symbol_base = "?preallocate_object_pool@ReimuObjectManagerBase@th105@@QAEXI@Z"
+rel32_targets = [
+  "?acquire@ReimuObjectPool@th105@@QAEPAVReimuObject@@PAI@Z=0x00492BA0",
+  "?create_collision_list_node@th105@@YGPAUCollisionListNode@1@PAU21@0PAPAX@Z=0x0046D000",
+  "?std_list_incsize_pointer@CollisionList@th105@@QAEXI@Z=0x0041DD10",
+  "?release_all_tracked_objects@RosterObjectManagerBase@th105@@QAEXXZ=0x004B9540",
+]
 
 [[units.reimu-object-spawn.functions]]
 address = "0x00493110"

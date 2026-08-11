@@ -1,4 +1,4 @@
-#include "RosterObjectPools.hpp"
+#include "Sakuya.hpp"
 
 #include <new>
 
@@ -72,6 +72,7 @@ private:
 
 TH105_DEFINE_POOL_ACQUIRE(Reimu)
 TH105_DEFINE_POOL_ACQUIRE(Marisa)
+TH105_DEFINE_POOL_ACQUIRE(Sakuya)
 TH105_DEFINE_POOL_ACQUIRE(Alice)
 TH105_DEFINE_POOL_ACQUIRE(Patchouli)
 TH105_DEFINE_POOL_ACQUIRE(Youmu)

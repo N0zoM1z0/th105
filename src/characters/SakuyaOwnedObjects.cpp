@@ -11,7 +11,7 @@ SakuyaObject *SakuyaObjectManagerBase::acquire_and_link_object()
 
     local.handle_token = 0;
     SakuyaObject *object = pool_04.acquire(&local.handle_token);
-    object->handle_token_334 = local.handle_token;
+    object->handle_token_004 = local.handle_token;
 
     CollisionListNode *sentinel = linked_objects_54.sentinel;
     local.object = object;
@@ -36,7 +36,7 @@ CollisionListNode *SakuyaObjectManagerBase::preallocate_object_pool(
 
         local.handle_token = 0;
         SakuyaObject *object = pool_04.acquire(&local.handle_token);
-        object->handle_token_334 = local.handle_token;
+        object->handle_token_004 = local.handle_token;
 
         CollisionListNode *sentinel = linked_objects_54.sentinel;
         local.object = object;

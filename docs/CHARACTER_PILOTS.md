@@ -201,6 +201,43 @@ constructor explains why `+0x334/+0x330` are initialized before the call to
 78/78 bytes, so the fifteen 519-byte pool-acquire functions are now the shared
 frontier rather than a constructor-layout blocker.
 
+## Roster manager lifecycle expansion
+
+Exact target normalization extends the owned-object lifecycle from three to
+eight fifteen-member families. The five newly audited families below preserve
+every instruction and normalize only proven four-byte EH, vtable, or direct
+call operands. Each family has one normalized SHA-256 across all fifteen
+members. This proves shared structure and authorizes controlled semantic
+fan-out; it does not by itself make any function byte-matching source.
+
+| Fighter | Pool ctor `130` | Base ctor `103` | Base dtor `100` | Preallocate `117` | Manager ctor `123` |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Reimu | `0x00492B10` | `0x00492DB0` | `0x00492E80` | `0x00492F10` | `0x00492F90` |
+| Marisa | `0x004B91B0` | `0x004B9470` | `0x004B95C0` | `0x004B9650` | `0x004B96D0` |
+| Sakuya | `0x004DE850` | `0x004DEB10` | `0x004DEBE0` | `0x004DEC70` | `0x004DECF0` |
+| Alice | `0x004F9EB0` | `0x004FA150` | `0x004FA220` | `0x004FA2B0` | `0x004FA330` |
+| Patchouli | `0x0051E330` | `0x0051E5F0` | `0x0051E6C0` | `0x0051E750` | `0x0051E7D0` |
+| Youmu | `0x0053A830` | `0x0053AAF0` | `0x0053ABC0` | `0x0053AC50` | `0x0053ACD0` |
+| Remilia | `0x00555600` | `0x005558C0` | `0x00555990` | `0x00555A20` | `0x00555AA0` |
+| Yuyuko | `0x0056D1C0` | `0x0056D480` | `0x0056D550` | `0x0056D5E0` | `0x0056D660` |
+| Yukari | `0x0058B310` | `0x0058B5D0` | `0x0058B6A0` | `0x0058B730` | `0x0058B7B0` |
+| Suika | `0x005ADD50` | `0x005AE010` | `0x005AE0E0` | `0x005AE170` | `0x005AE1F0` |
+| Udonge | `0x005D5CD0` | `0x005D5F70` | `0x005D6040` | `0x005D60D0` | `0x005D6150` |
+| Komachi | `0x005F6A90` | `0x005F6D30` | `0x005F6E00` | `0x005F6E90` | `0x005F6F10` |
+| Aya | `0x00617390` | `0x00617650` | `0x00617720` | `0x006177B0` | `0x00617830` |
+| Iku | `0x006300F0` | `0x00630390` | `0x00630460` | `0x006304F0` | `0x00630570` |
+| Tenshi | `0x0064A480` | `0x0064A720` | `0x0064A7F0` | `0x0064A880` | `0x0064A900` |
+
+The canonical Sakuya evidence establishes the common layout: a polymorphic
+typed handle manager occupies outer manager-base `+0x04..+0x53`, its tracked
+list starts at `+0x54`, and the multiple-inheritance outer manager places that
+base at `+0x04` with its fighter owner at `+0x64`. All fifteen preallocation
+passes now have emitted shared source: acquire and track until count `256`,
+then tail-call the shared handle-release path. The Reimu standalone body is
+115 bytes against the 117-byte target; only the established register schedule
+differs, so this family is ready for later per-function exact tuning without
+blocking broader character recovery.
+
 ## Sakuya pilot
 
 Sakuya's constructor at `0x004DEEF0` has one explicit base argument, calls the

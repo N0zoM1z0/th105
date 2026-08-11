@@ -20,6 +20,16 @@ repository and the TH06-style build proposal in `/tmp/vc_sth.txt`. It keeps
 exact function bytes as the acceptance criterion while separating facts about
 the shipped executable from useful, but weaker, source/build hypotheses.
 
+The 2026-08-11 roster pass also fixed the operating priority inside those
+gates: breadth-first reconstruction precedes per-function compiler tuning.
+IDA evidence, RTTI, exact clone manifests, and truthful compilable source first
+move central gameplay roots to `decompiled` or `implemented` across the whole
+roster. Canonical strict comparisons remain mandatory regression gates, but a
+known LTCG/register-scheduling tail must not monopolize the lane while dozens
+of character functions remain unclassified. Once a family has source and a
+reproducible mismatch packet, parallel evidence workers may tune its members
+individually; only their strict 100% results become `matching`.
+
 ## Why this order
 
 The function ledger previously admitted malformed CSV rows because comma-bearing
@@ -38,9 +48,12 @@ advisory because neither IDA MCP nor Ghidra MCP exposes a stable database
 revision identity.
 
 The fifteen-character object lifecycle is a known family supported by exact
-target bytes. It is safer and more valuable to encode and validate those three
-families before attempting generic similarity mining. Clone membership does not
-change function status: template identity is not a source-byte match.
+target bytes. Eight audited families now cover 120 functions: handle-pool
+construction/acquire, manager-base construction/destruction, acquire/link,
+preallocation, outer-manager construction, and spawn. It is safer and more
+valuable to encode these families before attempting generic similarity mining.
+Clone membership alone does not change function status; it supports a
+controlled semantic fan-out only after one canonical member is fully recovered.
 
 Objdiff is useful before an original COFF is recovered, but the evidence class
 must remain explicit. An audited PE-derived synthetic island can normalize
@@ -82,7 +95,7 @@ remains final authority, especially for the PE's LTCG code.
   only fresh canonical comparison results. `--backend ghidra` is the explicit
   headless fallback; `--cached` is visibly advisory.
 - `config/clone-families.toml` and `scripts/clone-families.py --check` attest
-  the 45 known roster lifecycle members against exact target bytes and explicit
+  the 120 known roster lifecycle members against exact target bytes and explicit
   normalization fields.
 - `config/synthetic-islands.toml` and
   `scripts/generate-synthetic-coff.py` define one audited PE-derived diagnostic

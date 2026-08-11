@@ -72,3 +72,118 @@ members = [
   { name = "Iku", address = "0x00630180" },
   { name = "Tenshi", address = "0x0064A510" },
 ]
+
+[families.roster-pool-ctor]
+size = 130
+normalized_sha256 = "5aeba2259742130050a4f08f1d5ddb1dfcdccc1157b663f0cfae40b5ed48d572"
+zero_dword_offsets = [0x2c, 0x53, 0x66]
+notes = "Fifteen CHandleManagerEx<Object> constructors; normalized fields are the object vtable and two character-specific CALL operands."
+members = [
+  { name = "Reimu", address = "0x00492B10" },
+  { name = "Marisa", address = "0x004B91B0" },
+  { name = "Sakuya", address = "0x004DE850" },
+  { name = "Alice", address = "0x004F9EB0" },
+  { name = "Patchouli", address = "0x0051E330" },
+  { name = "Youmu", address = "0x0053A830" },
+  { name = "Remilia", address = "0x00555600" },
+  { name = "Yuyuko", address = "0x0056D1C0" },
+  { name = "Yukari", address = "0x0058B310" },
+  { name = "Suika", address = "0x005ADD50" },
+  { name = "Udonge", address = "0x005D5CD0" },
+  { name = "Komachi", address = "0x005F6A90" },
+  { name = "Aya", address = "0x00617390" },
+  { name = "Iku", address = "0x006300F0" },
+  { name = "Tenshi", address = "0x0064A480" },
+]
+
+[families.roster-manager-base-ctor]
+size = 103
+normalized_sha256 = "1bd990cb8eafb49ea0938dc08a9a50bc37e258aa9c093c7c75cb16a9d03676ea"
+zero_dword_offsets = [0x03, 0x2e, 0x33, 0x45]
+notes = "Fifteen TObjectManagerBase<Object,CharacterObject> constructors; normalized fields are EH handler, vtable, handle-manager ctor, and list-sentinel call."
+members = [
+  { name = "Reimu", address = "0x00492DB0" },
+  { name = "Marisa", address = "0x004B9470" },
+  { name = "Sakuya", address = "0x004DEB10" },
+  { name = "Alice", address = "0x004FA150" },
+  { name = "Patchouli", address = "0x0051E5F0" },
+  { name = "Youmu", address = "0x0053AAF0" },
+  { name = "Remilia", address = "0x005558C0" },
+  { name = "Yuyuko", address = "0x0056D480" },
+  { name = "Yukari", address = "0x0058B5D0" },
+  { name = "Suika", address = "0x005AE010" },
+  { name = "Udonge", address = "0x005D5F70" },
+  { name = "Komachi", address = "0x005F6D30" },
+  { name = "Aya", address = "0x00617650" },
+  { name = "Iku", address = "0x00630390" },
+  { name = "Tenshi", address = "0x0064A720" },
+]
+
+[families.roster-manager-base-dtor]
+size = 100
+normalized_sha256 = "b6475736b2a7135aeb9155b48b3efccbf9d65a9b12688c129af9afffe7eeb6fd"
+zero_dword_offsets = [0x03, 0x2a, 0x37, 0x3f, 0x4f]
+notes = "Fifteen TObjectManagerBase destructors; normalized fields are EH handler, vtable, tracked-object release, list destructor, and handle-manager destructor."
+members = [
+  { name = "Reimu", address = "0x00492E80" },
+  { name = "Marisa", address = "0x004B95C0" },
+  { name = "Sakuya", address = "0x004DEBE0" },
+  { name = "Alice", address = "0x004FA220" },
+  { name = "Patchouli", address = "0x0051E6C0" },
+  { name = "Youmu", address = "0x0053ABC0" },
+  { name = "Remilia", address = "0x00555990" },
+  { name = "Yuyuko", address = "0x0056D550" },
+  { name = "Yukari", address = "0x0058B6A0" },
+  { name = "Suika", address = "0x005AE0E0" },
+  { name = "Udonge", address = "0x005D6040" },
+  { name = "Komachi", address = "0x005F6E00" },
+  { name = "Aya", address = "0x00617720" },
+  { name = "Iku", address = "0x00630460" },
+  { name = "Tenshi", address = "0x0064A7F0" },
+]
+
+[families.roster-preallocate]
+size = 117
+normalized_sha256 = "a562cf8f0e4f284884f89e91e3d0dd303fb5aeb16afaed353489ae49282cfedf"
+zero_dword_offsets = [0x24, 0x46, 0x51, 0x6c]
+notes = "Fifteen manager-base preallocation passes; normalized fields are pool acquire, list-node allocation, list-size increment, and shared release tail call."
+members = [
+  { name = "Reimu", address = "0x00492F10" },
+  { name = "Marisa", address = "0x004B9650" },
+  { name = "Sakuya", address = "0x004DEC70" },
+  { name = "Alice", address = "0x004FA2B0" },
+  { name = "Patchouli", address = "0x0051E750" },
+  { name = "Youmu", address = "0x0053AC50" },
+  { name = "Remilia", address = "0x00555A20" },
+  { name = "Yuyuko", address = "0x0056D5E0" },
+  { name = "Yukari", address = "0x0058B730" },
+  { name = "Suika", address = "0x005AE170" },
+  { name = "Udonge", address = "0x005D60D0" },
+  { name = "Komachi", address = "0x005F6E90" },
+  { name = "Aya", address = "0x006177B0" },
+  { name = "Iku", address = "0x006304F0" },
+  { name = "Tenshi", address = "0x0064A880" },
+]
+
+[families.roster-manager-ctor]
+size = 123
+normalized_sha256 = "294d6783d4598628cfa93f8dd5777d87b1ad5cfb882edbb3e05835744a3de420"
+zero_dword_offsets = [0x03, 0x3d, 0x53, 0x59]
+notes = "Fifteen CharacterObjectManager<Fighter,Object> constructors; normalized fields are EH handler, manager-base ctor, primary vtable, and secondary vtable."
+members = [
+  { name = "Reimu", address = "0x00492F90" },
+  { name = "Marisa", address = "0x004B96D0" },
+  { name = "Sakuya", address = "0x004DECF0" },
+  { name = "Alice", address = "0x004FA330" },
+  { name = "Patchouli", address = "0x0051E7D0" },
+  { name = "Youmu", address = "0x0053ACD0" },
+  { name = "Remilia", address = "0x00555AA0" },
+  { name = "Yuyuko", address = "0x0056D660" },
+  { name = "Yukari", address = "0x0058B7B0" },
+  { name = "Suika", address = "0x005AE1F0" },
+  { name = "Udonge", address = "0x005D6150" },
+  { name = "Komachi", address = "0x005F6F10" },
+  { name = "Aya", address = "0x00617830" },
+  { name = "Iku", address = "0x00630570" },
+  { name = "Tenshi", address = "0x0064A900" },
+]
