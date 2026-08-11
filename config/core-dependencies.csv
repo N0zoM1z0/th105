@@ -144,3 +144,8 @@ caller,callee,required_status,evidence
 0x004DEF70,0x00493490,identified,docs/CHARACTER_PILOTS.md shared flagged gate
 0x004DEF70,0x00493540,identified,docs/CHARACTER_PILOTS.md repeated action-selection helper
 0x004DEF70,0x00493580,identified,docs/CHARACTER_PILOTS.md repeated command-table lookup
+0x004DEF70,0x004935D0,matching,docs/CHARACTER_PILOTS.md shared ordered 208 209 210 threshold gate
+0x004DEF70,0x004937D0,matching,docs/CHARACTER_PILOTS.md shared mirrored 200 201 direction gate
+0x004DEF70,0x00493920,implemented,docs/CHARACTER_PILOTS.md shared action-202 repeated-command gate
+0x004DEF70,0x00493A10,implemented,docs/CHARACTER_PILOTS.md shared action-203 repeated-command gate
+0x004DEF70,0x00493B00,matching,docs/CHARACTER_PILOTS.md shared action-214 counted direction-angle gate

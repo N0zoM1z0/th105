@@ -14,6 +14,13 @@ __real@3fe6666660000000,0x006AEA80,000000606666e63f,0x0,target widened float 0.7
 __real@3ff0000000000000,0x006B73F8,000000000000f03f,0x0,target double 1.0 bytes verified for table modifier,literal
 __real@4024000000000000,0x006B7470,0000000000002440,0x0,target double 10.0 bytes verified for table modifier divisor,literal
 __real@4059000000000000,0x006AC9A0,0000000000005940,0x0,target bytes and IEEE-754 value verified as double 100.0,literal
+__real@c2340000,0x006AFDE0,000034c2,0x0,target bytes and IEEE-754 value verified as float -45.0 for action 214 direction angle,literal
+__real@c3070000,0x006AFDC0,000007c3,0x0,target bytes and IEEE-754 value verified as float -135.0 for action 214 direction angle,literal
+__real@c2b40000,0x006AFD98,0000b4c2,0x0,target bytes and IEEE-754 value verified as float -90.0 for action 214 direction angle,literal
+__real@42340000,0x006AFE00,00003442,0x0,target bytes and IEEE-754 value verified as float 45.0 for action 214 direction angle,literal
+__real@43070000,0x006AFDD4,00000743,0x0,target bytes and IEEE-754 value verified as float 135.0 for action 214 direction angle,literal
+__real@42b40000,0x006AFD9C,0000b442,0x0,target bytes and IEEE-754 value verified as float 90.0 for action 214 direction angle,literal
+__real@43340000,0x006C0F04,00003443,0x0,target bytes and IEEE-754 value verified as float 180.0 for action 214 direction angle,literal
 __real@0000000000000000,0x006C0ED0,0000000000000000,0x0,target bytes and IEEE-754 value verified as double 0.0 in fighter position commit,literal
 __real@42200000,0x006AEA40,00002042,0x0,target bytes and IEEE-754 value verified as float 40.0,literal
 __real@449b0000,0x006AEA3C,00009b44,0x0,target bytes and IEEE-754 value verified as float 1240.0,literal

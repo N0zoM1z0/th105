@@ -64,6 +64,11 @@ and lookup layer used by all fifteen input/action dispatchers:
 | `0x00493490` | flagged state-158 gate selecting `225/226` | exactly 15 callers | exact 164/164 |
 | `0x00493540` | set action; flag window `>=10`; finalize command | 160 calls in 15 dispatchers | exact 50/50 |
 | `0x00493580` | signed lower-bound command table lookup | 783 direct xrefs | complete 78/78, prologue order differs |
+| `0x004935D0` | ordered threshold gates for actions `208..210` | exactly 15 callers | exact 504/504 |
+| `0x004937D0` | mirrored direction gates for actions `200/201` | 14 dispatcher callers | exact 333/333 |
+| `0x00493920` | counted/repeated gate for action `202` | exactly 15 callers | complete 226/226, vslot prefetch differs |
+| `0x00493A10` | mirrored counted/repeated gate for action `203` | exactly 15 callers | complete 226/226, vslot prefetch differs |
+| `0x00493B00` | counted action `214` plus direction angle | exactly 15 callers | exact 393/393 |
 
 The gates test observed fields `+0x104`, `+0x13C`, `+0x484`, `+0x4B8`,
 `+0x6B4`, `+0x6B8`, `+0x724`, and `+0x75A`, refresh the common snapshot at
@@ -75,7 +80,10 @@ equality.
 
 These contracts move shared command parsing ahead of character-specific
 branches: every pilot may now call the same source declarations instead of
-reconstructing five opaque helpers independently.
+reconstructing ten opaque helpers independently.  The action-214 gate writes
+`-135/-90/-45/0/45/90/135/180` (with zero selected by two neutral cases) to
+the derived-field position `+0x740`; this is an observed angle table, while
+the gameplay label for the resulting motion remains deliberately unset.
 
 ## Sakuya pilot
 
@@ -132,8 +140,8 @@ are proven.
 
 ## Next waves
 
-1. Continue the adjacent shared decision leaves after `0x00493580`, then use
-   them to finish Sakuya's command matrix without guessing command names.
+1. Use the now-reconstructed shared decision layer to finish Sakuya's
+   `0x004DEF70` command matrix without guessing command names.
 2. Recover `0x004DEB80` and `0x004454E0`, implement the Sakuya object-spawn
    boundary, and link at least two projectile/spell paths to the action roots.
 3. Apply the same vtable/action/derived-delta checklist to Reimu, Marisa, and

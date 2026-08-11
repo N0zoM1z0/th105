@@ -246,6 +246,11 @@ address,name,module,confidence,evidence
 0x00493490,try_dispatch_flagged_gate_actions_225_226,characters,observed,Exact source and one direct caller in each of 15 character dispatchers
 0x00493540,set_action_and_finalize_command,characters,observed,Exact source and 160 direct calls across 15 character dispatchers
 0x00493580,lookup_command_gate_value,characters,observed,Signed lower-bound table lookup with 783 direct xrefs across all character families
+0x004935D0,try_dispatch_threshold_gated_actions_208_210,characters,observed,Exact ordered threshold gate with one direct caller in each of 15 character dispatchers
+0x004937D0,try_dispatch_mirrored_gate_actions_200_201,characters,observed,Exact mirrored direction gate with direct callers in 14 character dispatchers
+0x00493920,try_dispatch_action_202,characters,observed,Complete target-sized action-202 gate with one direct caller in each of 15 character dispatchers
+0x00493A10,try_dispatch_action_203,characters,observed,Complete target-sized action-203 mirror gate with one direct caller in each of 15 character dispatchers
+0x00493B00,try_dispatch_action_214_with_direction_angle,characters,observed,Exact counted action-214 gate and nine-value direction-angle assignment with one direct caller in each of 15 character dispatchers
 0x004DDB20,Sakuya_on_action_changed,characters,observed,docs/EVIDENCE.md Sakuya action traces
 0x004DECF0,SakuyaObjectManager_ctor,characters,observed,Exact constructor instructions install two Sakuya manager vtables and owner +0x64
 0x004DED80,SakuyaObjectManager_spawn_object,characters,observed,Complete manager vtable spawn path and object field publication

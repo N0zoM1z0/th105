@@ -320,6 +320,26 @@ struct Fighter {
     unsigned char try_dispatch_flagged_gate_actions_225_226();
     int set_action_and_finalize_command(int action_id, int window_value);
     short lookup_command_gate_value(int command_key);
+    unsigned char try_dispatch_threshold_gated_actions_208_210(
+        int window_value,
+        int bypass_window_gate);
+    unsigned char try_dispatch_mirrored_gate_actions_200_201(
+        int window_value,
+        int action_201_override);
+    unsigned char try_dispatch_action_202(
+        int window_value,
+        int bypass_window_gate,
+        int repeat_limit,
+        int same_action_minimum);
+    unsigned char try_dispatch_action_203(
+        int window_value,
+        int bypass_window_gate,
+        int repeat_limit,
+        int same_action_minimum);
+    unsigned char try_dispatch_action_214_with_direction_angle(
+        int window_value,
+        int bypass_window_gate,
+        int maximum_count);
     int select_outcome_path_from_frame_flags(unsigned frame_flags);
     signed char classify_fighter_x_boundary();
     int test_proposed_x_against_stage_height(float delta_x);

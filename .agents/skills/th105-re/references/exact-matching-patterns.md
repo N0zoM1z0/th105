@@ -551,6 +551,34 @@ the entire 78-byte body but standalone VC8 schedules the initial stack
 allocation after two argument/object loads; record it as same-size
 `implemented`, not `matching`.
 
+## P17: Preserve unsigned-positive gates and negated x87 predicates
+
+Two source-level distinctions recovered the shared fighter command cluster
+without changing its observed behavior contract:
+
+- Target `CMP field,0; JBE` for a nonzero-looking gate means the field is
+  compared as unsigned positive.  Write `static_cast<unsigned>(field) > 0`;
+  `field != 0` instead selects `JE/JNE`.  This completed the 504-byte
+  `0x004935D0` and 333-byte `0x004937D0` functions.
+- Target x87 pairs `TEST AH,1; JZ` and `TEST AH,41; JNZ` retain unordered
+  behavior that direct `value > 0 && other <= 100` source does not express.
+  The evidence-faithful form is
+  `!(value <= 0.0f) && !(other > 100.0)`.  It completed the 393-byte
+  `0x00493B00` body and every non-vcall byte of `0x00493920/0x00493A10`.
+
+Validate with:
+
+```bash
+scripts/compile-unit.sh src/characters/CommandGates.cpp build/wave_character/CommandGates.obj
+python3 scripts/compare-function.py 0x00493B00 build/wave_character/CommandGates.obj \
+  --symbol-base Fighter_try_dispatch_action_214_with_direction_angle
+```
+
+Do not generalize these spellings from finite-value equivalence alone.  Use
+them only when the target status-word masks and branch directions prove the
+same NaN/unordered contract.  Likewise do not reinterpret a signed field as
+unsigned merely to change one opcode; require the observed `JBE/JA` family.
+
 ## Hard-function strategy
 
 Every reconstruction wave should include at least one function whose completion

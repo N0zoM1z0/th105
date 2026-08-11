@@ -29,6 +29,12 @@ __forceinline unsigned char &field_byte(Fighter *fighter, unsigned offset)
     return *(reinterpret_cast<unsigned char *>(fighter) + offset);
 }
 
+__forceinline float &field_float(Fighter *fighter, unsigned offset)
+{
+    return *reinterpret_cast<float *>(
+        reinterpret_cast<unsigned char *>(fighter) + offset);
+}
+
 } // namespace
 
 unsigned char Fighter::try_dispatch_signed_gate_actions_208_210()
@@ -156,6 +162,235 @@ short Fighter::lookup_command_gate_value(int command_key)
         _invalid_parameter_noinfo();
     }
     return result->node_04->value_10->value_10;
+}
+
+unsigned char Fighter::try_dispatch_threshold_gated_actions_208_210(
+    int window_value,
+    int bypass_window_gate)
+{
+    if (((field_byte(this, 0x724) & 0x04) != 0 ||
+         (static_cast<unsigned>(field_6c8) > 0 &&
+          field_6b8 < 0 && field_6b4 == 0) ||
+         (field_6b8 < 0 && field_6b4 == 0 && window_value >= 40)) &&
+        (window_value <= lookup_command_gate_value(208) ||
+         bypass_window_gate != 0)) {
+        short const state = state_13c;
+        if ((state > 299 && result_180 != 0 && result_180 != 3) ||
+            state < 300) {
+            initialize_fighter_phase_631e0(this);
+            set_fighter_action(this, 208);
+            return 1;
+        }
+    }
+
+    if (((field_byte(this, 0x724) & 0x10) != 0 ||
+         (static_cast<unsigned>(field_6c8) > 0 && field_6b8 < 0 &&
+          field_6b4 * static_cast<signed char>(facing_104) > 0) ||
+         (field_6b8 < 0 &&
+          field_6b4 * static_cast<signed char>(facing_104) > 0 &&
+          window_value >= 40)) &&
+        (window_value <= lookup_command_gate_value(209) ||
+         bypass_window_gate != 0)) {
+        short const state = state_13c;
+        if ((state > 299 && result_180 != 0 && result_180 != 3) ||
+            state < 300) {
+            initialize_fighter_phase_631e0(this);
+            set_fighter_action(this, 209);
+            return 1;
+        }
+    }
+
+    if (((field_byte(this, 0x724) & 0x08) != 0 ||
+         (static_cast<unsigned>(field_6c8) > 0 && field_6b8 < 0 &&
+          field_6b4 * static_cast<signed char>(facing_104) < 0) ||
+         (field_6b8 < 0 &&
+          field_6b4 * static_cast<signed char>(facing_104) < 0 &&
+          window_value >= 40)) &&
+        (window_value <= lookup_command_gate_value(210) ||
+         bypass_window_gate != 0)) {
+        short const state = state_13c;
+        if ((state > 299 && result_180 != 0 && result_180 != 3) ||
+            state < 300) {
+            initialize_fighter_phase_631e0(this);
+            set_fighter_action(this, 210);
+            return 1;
+        }
+    }
+    return 0;
+}
+
+unsigned char Fighter::try_dispatch_mirrored_gate_actions_200_201(
+    int window_value,
+    int action_201_override)
+{
+    int const first_flags = field_int(this, 0x724);
+    if ((((first_flags & 1) != 0 && facing_104 == 1) ||
+         ((first_flags & 2) != 0 && facing_104 == 0xff) ||
+         (static_cast<unsigned>(field_6c8) > 0 && field_6b8 == 0 &&
+          field_6b4 * static_cast<signed char>(facing_104) > 0)) &&
+        state_13c != 204 &&
+        window_value <= lookup_command_gate_value(200)) {
+        short const state = state_13c;
+        if ((state > 299 && result_180 != 0 && result_180 != 3) ||
+            state < 300) {
+            initialize_fighter_phase_631e0(this);
+            set_fighter_action(this, 200);
+            return 1;
+        }
+    }
+
+    int const second_flags = field_int(this, 0x724);
+    if ((((second_flags & 2) != 0 && facing_104 == 1) ||
+         ((second_flags & 1) != 0 && facing_104 == 0xff) ||
+         (static_cast<unsigned>(field_6c8) > 0 && field_6b8 == 0 &&
+          field_6b4 * static_cast<signed char>(facing_104) < 0)) &&
+        (window_value <= lookup_command_gate_value(201) ||
+         action_201_override != 0)) {
+        short const state = state_13c;
+        if ((state > 299 && result_180 != 0 && result_180 != 3) ||
+            state < 300) {
+            initialize_fighter_phase_631e0(this);
+            set_fighter_action(this, 201);
+            return 1;
+        }
+    }
+    return 0;
+}
+
+unsigned char Fighter::try_dispatch_action_202(
+    int window_value,
+    int bypass_window_gate,
+    int repeat_limit,
+    int same_action_minimum)
+{
+    if (static_cast<signed char>(field_byte(this, 0x47f)) >= repeat_limit ||
+        (state_13c == 202 &&
+         *reinterpret_cast<short *>(
+             reinterpret_cast<unsigned char *>(this) + 0x13e) <
+             same_action_minimum)) {
+        return 0;
+    }
+
+    int const flags = field_int(this, 0x724);
+    if ((((flags & 1) == 0 || facing_104 != 1) &&
+         ((flags & 2) == 0 || facing_104 != 0xff)) ||
+        (window_value > lookup_command_gate_value(202) &&
+         bypass_window_gate == 0) ||
+        (!(y_component_f8 <= 0.0f) && !(y_f0 > 100.0))) {
+        return 0;
+    }
+
+    short const state = state_13c;
+    if ((state <= 299 || result_180 == 0 || result_180 == 3) &&
+        state >= 300) {
+        return 0;
+    }
+
+    initialize_fighter_phase_631e0(this);
+    ++field_byte(this, 0x47f);
+    set_fighter_action(this, 202);
+    return 1;
+}
+
+unsigned char Fighter::try_dispatch_action_203(
+    int window_value,
+    int bypass_window_gate,
+    int repeat_limit,
+    int same_action_minimum)
+{
+    if (static_cast<signed char>(field_byte(this, 0x47f)) >= repeat_limit ||
+        (state_13c == 203 &&
+         *reinterpret_cast<short *>(
+             reinterpret_cast<unsigned char *>(this) + 0x13e) <
+             same_action_minimum)) {
+        return 0;
+    }
+
+    int const flags = field_int(this, 0x724);
+    if ((((flags & 2) == 0 || facing_104 != 1) &&
+         ((flags & 1) == 0 || facing_104 != 0xff)) ||
+        (window_value > lookup_command_gate_value(203) &&
+         bypass_window_gate == 0) ||
+        (!(y_component_f8 <= 0.0f) && !(y_f0 > 100.0))) {
+        return 0;
+    }
+
+    short const state = state_13c;
+    if ((state <= 299 || result_180 == 0 || result_180 == 3) &&
+        state >= 300) {
+        return 0;
+    }
+
+    initialize_fighter_phase_631e0(this);
+    ++field_byte(this, 0x47f);
+    set_fighter_action(this, 203);
+    return 1;
+}
+
+unsigned char Fighter::try_dispatch_action_214_with_direction_angle(
+    int window_value,
+    int bypass_window_gate,
+    int maximum_count)
+{
+    if (static_cast<signed char>(field_byte(this, 0x47f)) >= maximum_count ||
+        static_cast<unsigned>(field_6c8) < 1 ||
+        (field_6b4 == 0 && field_6b8 == 0) ||
+        (!(y_component_f8 <= 0.0f) && !(y_f0 > 100.0)) ||
+        (window_value > lookup_command_gate_value(214) &&
+         bypass_window_gate == 0) ||
+        ((state_13c <= 299 || result_180 == 0 || result_180 == 3) &&
+         state_13c >= 300)) {
+        return 0;
+    }
+
+    int const vertical = field_6b8;
+    if (vertical > 0) {
+        int const horizontal =
+            field_6b4 * static_cast<signed char>(facing_104);
+        if (horizontal > 0) {
+            field_float(this, 0x740) = -45.0f;
+        }
+        if (horizontal < 0) {
+            field_float(this, 0x740) = -135.0f;
+        }
+        if (horizontal == 0) {
+            field_float(this, 0x740) = -90.0f;
+        }
+    }
+    if (vertical < 0) {
+        int const horizontal =
+            field_6b4 * static_cast<signed char>(facing_104);
+        if (horizontal > 0) {
+            field_float(this, 0x740) = 45.0f;
+        }
+        if (horizontal < 0) {
+            field_float(this, 0x740) = 135.0f;
+        }
+        if (horizontal == 0) {
+            field_float(this, 0x740) = 90.0f;
+        }
+    }
+    if (vertical == 0) {
+        int const horizontal =
+            field_6b4 * static_cast<signed char>(facing_104);
+        if (horizontal > 0) {
+            field_float(this, 0x740) = 0.0f;
+        }
+        if (horizontal < 0) {
+            field_float(this, 0x740) = 180.0f;
+        }
+        if (horizontal == 0) {
+            field_float(this, 0x740) = 0.0f;
+        }
+    }
+
+    initialize_fighter_phase_631e0(this);
+    SetFighterAction const action =
+        reinterpret_cast<SetFighterAction>(
+            (*reinterpret_cast<void ***>(this))[2]);
+    ++field_byte(this, 0x47f);
+    action(this, 214);
+    return 1;
 }
 
 } // namespace th105

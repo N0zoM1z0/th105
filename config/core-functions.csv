@@ -120,6 +120,11 @@ address,lane,priority,notes
 0x00493490,character-command,2,Exact shared flagged command gate for actions 225 and 226
 0x00493540,character-command,2,Exact shared action selection and command finalization
 0x00493580,character-command,1,Shared signed lower-bound command table lookup
+0x004935D0,character-command,2,Exact ordered threshold gate for actions 208 through 210
+0x004937D0,character-command,2,Exact mirrored direction gate for actions 200 and 201
+0x00493920,character-command,1,Shared counted and repeated command gate for action 202
+0x00493A10,character-command,1,Shared mirrored counted and repeated command gate for action 203
+0x00493B00,character-command,2,Exact counted action-214 gate and direction-angle assignment
 0x004DDB20,character-command,1,Sakuya action-change root
 0x004DECF0,character-owned-object,2,Sakuya owned-object manager constructor
 0x004DED80,character-owned-object,1,Sakuya owned-object spawn path
