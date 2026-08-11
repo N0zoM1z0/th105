@@ -2229,7 +2229,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00492B10,130,0x00492B91,FUN_00492b10,,,unclassified,0.00,unknown,undefined FUN_00492b10(void),false,,,,
 0x00492BA0,519,0x00492DA6,FUN_00492ba0,,,unclassified,0.00,unknown,undefined FUN_00492ba0(void),false,,,,
 0x00492DB0,103,0x00492E16,FUN_00492db0,,,unclassified,0.00,unknown,undefined FUN_00492db0(void),false,,,,
-0x00492E20,94,0x00492E7D,FUN_00492e20,,,unclassified,0.00,unknown,undefined FUN_00492e20(void),false,,,,
+0x00492E20,94,0x00492E7D,FUN_00492e20,ReimuObjectManagerBase_acquire_and_link_object,characters,implemented,0.00,__thiscall,ReimuObject * ReimuObjectManagerBase_acquire_and_link_object(ReimuObjectManagerBase * this),false,src/characters/RosterOwnedObjects.cpp,scripts/compile-unit.sh src/characters/RosterOwnedObjects.cpp build/wave_roster/RosterOwnedObjects.obj and compare-function.py 0x00492E20 => target 94 object 90,root,Complete roster-template token publication and tracked-list insertion; remaining mismatch is target EDI manager plus ESI object allocation and local scheduling
 0x00492E80,100,0x00492EE3,FUN_00492e80,,,unclassified,0.00,unknown,undefined FUN_00492e80(void),false,,,,
 0x00492EF0,27,0x00492F0D,FUN_00492ef0,,,unclassified,0.00,unknown,undefined FUN_00492ef0(void),false,,,,
 0x00492F10,117,0x00492F84,FUN_00492f10,,,unclassified,0.00,unknown,undefined FUN_00492f10(void),false,,,,
@@ -2274,7 +2274,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004B9240,519,0x004B9446,FUN_004b9240,,,unclassified,0.00,unknown,undefined FUN_004b9240(void),false,,,,
 0x004B9450,27,0x004B946D,FUN_004b9450,,,unclassified,0.00,unknown,undefined FUN_004b9450(void),false,,,,
 0x004B9470,103,0x004B94D6,FUN_004b9470,,,unclassified,0.00,unknown,undefined FUN_004b9470(void),false,,,,
-0x004B94E0,94,0x004B953D,FUN_004b94e0,,,unclassified,0.00,unknown,undefined FUN_004b94e0(void),false,,,,
+0x004B94E0,94,0x004B953D,FUN_004b94e0,MarisaObjectManagerBase_acquire_and_link_object,characters,implemented,0.00,__thiscall,MarisaObject * MarisaObjectManagerBase_acquire_and_link_object(MarisaObjectManagerBase * this),false,src/characters/RosterOwnedObjects.cpp,scripts/compile-unit.sh src/characters/RosterOwnedObjects.cpp build/wave_roster/RosterOwnedObjects.obj and compare-function.py 0x004B94E0 => target 94 object 90,root,Complete roster-template token publication and tracked-list insertion; remaining mismatch is target EDI manager plus ESI object allocation and local scheduling
 0x004B9540,112,0x004B95B9,FUN_004b9540,release_all_tracked_objects,characters,decompiled,0.00,__thiscall,void * release_all_tracked_objects(void * this),false,,IDA Pro target instructions and 30 direct callers across fifteen manager destructor and preallocation families,root,Returns every tracked object token through pool +4 then resets list +54 and frees only tracking nodes; Ghidra body size 112 within IDA contiguous 122-byte boundary
 0x004B95C0,100,0x004B9623,FUN_004b95c0,,,unclassified,0.00,unknown,undefined FUN_004b95c0(void),false,,,,
 0x004B9630,27,0x004B964D,FUN_004b9630,,,unclassified,0.00,unknown,undefined FUN_004b9630(void),false,,,,
@@ -2331,7 +2331,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004F9EB0,130,0x004F9F31,FUN_004f9eb0,,,unclassified,0.00,unknown,undefined FUN_004f9eb0(void),false,,,,
 0x004F9F40,519,0x004FA146,FUN_004f9f40,,,unclassified,0.00,unknown,undefined FUN_004f9f40(void),false,,,,
 0x004FA150,103,0x004FA1B6,FUN_004fa150,,,unclassified,0.00,unknown,undefined FUN_004fa150(void),false,,,,
-0x004FA1C0,94,0x004FA21D,FUN_004fa1c0,,,unclassified,0.00,unknown,undefined FUN_004fa1c0(void),false,,,,
+0x004FA1C0,94,0x004FA21D,FUN_004fa1c0,AliceObjectManagerBase_acquire_and_link_object,characters,implemented,0.00,__thiscall,AliceObject * AliceObjectManagerBase_acquire_and_link_object(AliceObjectManagerBase * this),false,src/characters/RosterOwnedObjects.cpp,scripts/compile-unit.sh src/characters/RosterOwnedObjects.cpp build/wave_roster/RosterOwnedObjects.obj and compare-function.py 0x004FA1C0 => target 94 object 90,root,Complete roster-template token publication and tracked-list insertion; Alice allocation-span deviation is outside this identical helper; remaining mismatch is register and local scheduling
 0x004FA220,100,0x004FA283,FUN_004fa220,,,unclassified,0.00,unknown,undefined FUN_004fa220(void),false,,,,
 0x004FA290,27,0x004FA2AD,FUN_004fa290,,,unclassified,0.00,unknown,undefined FUN_004fa290(void),false,,,,
 0x004FA2B0,117,0x004FA324,FUN_004fa2b0,,,unclassified,0.00,unknown,undefined FUN_004fa2b0(void),false,,,,
@@ -2363,7 +2363,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0051E3C0,519,0x0051E5C6,FUN_0051e3c0,,,unclassified,0.00,unknown,undefined FUN_0051e3c0(void),false,,,,
 0x0051E5D0,27,0x0051E5ED,FUN_0051e5d0,,,unclassified,0.00,unknown,undefined FUN_0051e5d0(void),false,,,,
 0x0051E5F0,103,0x0051E656,FUN_0051e5f0,,,unclassified,0.00,unknown,undefined FUN_0051e5f0(void),false,,,,
-0x0051E660,94,0x0051E6BD,FUN_0051e660,,,unclassified,0.00,unknown,undefined FUN_0051e660(void),false,,,,
+0x0051E660,94,0x0051E6BD,FUN_0051e660,PatchouliObjectManagerBase_acquire_and_link_object,characters,implemented,0.00,__thiscall,PatchouliObject * PatchouliObjectManagerBase_acquire_and_link_object(PatchouliObjectManagerBase * this),false,src/characters/RosterOwnedObjects.cpp,scripts/compile-unit.sh src/characters/RosterOwnedObjects.cpp build/wave_roster/RosterOwnedObjects.obj and compare-function.py 0x0051E660 => target 94 object 90,root,Complete roster-template token publication and tracked-list insertion; remaining mismatch is target EDI manager plus ESI object allocation and local scheduling
 0x0051E6C0,100,0x0051E723,FUN_0051e6c0,,,unclassified,0.00,unknown,undefined FUN_0051e6c0(void),false,,,,
 0x0051E730,27,0x0051E74D,FUN_0051e730,,,unclassified,0.00,unknown,undefined FUN_0051e730(void),false,,,,
 0x0051E750,117,0x0051E7C4,FUN_0051e750,,,unclassified,0.00,unknown,undefined FUN_0051e750(void),false,,,,
@@ -2397,7 +2397,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0053A8C0,519,0x0053AAC6,FUN_0053a8c0,,,unclassified,0.00,unknown,undefined FUN_0053a8c0(void),false,,,,
 0x0053AAD0,27,0x0053AAED,FUN_0053aad0,,,unclassified,0.00,unknown,undefined FUN_0053aad0(void),false,,,,
 0x0053AAF0,103,0x0053AB56,FUN_0053aaf0,,,unclassified,0.00,unknown,undefined FUN_0053aaf0(void),false,,,,
-0x0053AB60,94,0x0053ABBD,FUN_0053ab60,,,unclassified,0.00,unknown,undefined FUN_0053ab60(void),false,,,,
+0x0053AB60,94,0x0053ABBD,FUN_0053ab60,YoumuObjectManagerBase_acquire_and_link_object,characters,implemented,0.00,__thiscall,YoumuObject * YoumuObjectManagerBase_acquire_and_link_object(YoumuObjectManagerBase * this),false,src/characters/RosterOwnedObjects.cpp,scripts/compile-unit.sh src/characters/RosterOwnedObjects.cpp build/wave_roster/RosterOwnedObjects.obj and compare-function.py 0x0053AB60 => target 94 object 90,root,Complete roster-template token publication and tracked-list insertion; remaining mismatch is target EDI manager plus ESI object allocation and local scheduling
 0x0053ABC0,100,0x0053AC23,FUN_0053abc0,,,unclassified,0.00,unknown,undefined FUN_0053abc0(void),false,,,,
 0x0053AC30,27,0x0053AC4D,FUN_0053ac30,,,unclassified,0.00,unknown,undefined FUN_0053ac30(void),false,,,,
 0x0053AC50,117,0x0053ACC4,FUN_0053ac50,,,unclassified,0.00,unknown,undefined FUN_0053ac50(void),false,,,,
@@ -2429,7 +2429,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00555690,519,0x00555896,FUN_00555690,,,unclassified,0.00,unknown,undefined FUN_00555690(void),false,,,,
 0x005558A0,27,0x005558BD,FUN_005558a0,,,unclassified,0.00,unknown,undefined FUN_005558a0(void),false,,,,
 0x005558C0,103,0x00555926,FUN_005558c0,,,unclassified,0.00,unknown,undefined FUN_005558c0(void),false,,,,
-0x00555930,94,0x0055598D,FUN_00555930,,,unclassified,0.00,unknown,undefined FUN_00555930(void),false,,,,
+0x00555930,94,0x0055598D,FUN_00555930,RemiliaObjectManagerBase_acquire_and_link_object,characters,implemented,0.00,__thiscall,RemiliaObject * RemiliaObjectManagerBase_acquire_and_link_object(RemiliaObjectManagerBase * this),false,src/characters/RosterOwnedObjects.cpp,scripts/compile-unit.sh src/characters/RosterOwnedObjects.cpp build/wave_roster/RosterOwnedObjects.obj and compare-function.py 0x00555930 => target 94 object 90,root,Complete roster-template token publication and tracked-list insertion; remaining mismatch is target EDI manager plus ESI object allocation and local scheduling
 0x00555990,100,0x005559F3,FUN_00555990,,,unclassified,0.00,unknown,undefined FUN_00555990(void),false,,,,
 0x00555A00,27,0x00555A1D,FUN_00555a00,,,unclassified,0.00,unknown,undefined FUN_00555a00(void),false,,,,
 0x00555A20,117,0x00555A94,FUN_00555a20,,,unclassified,0.00,unknown,undefined FUN_00555a20(void),false,,,,
@@ -2456,7 +2456,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0056D250,519,0x0056D456,FUN_0056d250,,,unclassified,0.00,unknown,undefined FUN_0056d250(void),false,,,,
 0x0056D460,27,0x0056D47D,FUN_0056d460,,,unclassified,0.00,unknown,undefined FUN_0056d460(void),false,,,,
 0x0056D480,103,0x0056D4E6,FUN_0056d480,,,unclassified,0.00,unknown,undefined FUN_0056d480(void),false,,,,
-0x0056D4F0,94,0x0056D54D,FUN_0056d4f0,,,unclassified,0.00,unknown,undefined FUN_0056d4f0(void),false,,,,
+0x0056D4F0,94,0x0056D54D,FUN_0056d4f0,YuyukoObjectManagerBase_acquire_and_link_object,characters,implemented,0.00,__thiscall,YuyukoObject * YuyukoObjectManagerBase_acquire_and_link_object(YuyukoObjectManagerBase * this),false,src/characters/RosterOwnedObjects.cpp,scripts/compile-unit.sh src/characters/RosterOwnedObjects.cpp build/wave_roster/RosterOwnedObjects.obj and compare-function.py 0x0056D4F0 => target 94 object 90,root,Complete roster-template token publication and tracked-list insertion; remaining mismatch is target EDI manager plus ESI object allocation and local scheduling
 0x0056D550,100,0x0056D5B3,FUN_0056d550,,,unclassified,0.00,unknown,undefined FUN_0056d550(void),false,,,,
 0x0056D5C0,27,0x0056D5DD,FUN_0056d5c0,,,unclassified,0.00,unknown,undefined FUN_0056d5c0(void),false,,,,
 0x0056D5E0,117,0x0056D654,FUN_0056d5e0,,,unclassified,0.00,unknown,undefined FUN_0056d5e0(void),false,,,,
@@ -2481,7 +2481,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0058B3A0,519,0x0058B5A6,FUN_0058b3a0,,,unclassified,0.00,unknown,undefined FUN_0058b3a0(void),false,,,,
 0x0058B5B0,27,0x0058B5CD,FUN_0058b5b0,,,unclassified,0.00,unknown,undefined FUN_0058b5b0(void),false,,,,
 0x0058B5D0,103,0x0058B636,FUN_0058b5d0,,,unclassified,0.00,unknown,undefined FUN_0058b5d0(void),false,,,,
-0x0058B640,94,0x0058B69D,FUN_0058b640,,,unclassified,0.00,unknown,undefined FUN_0058b640(void),false,,,,
+0x0058B640,94,0x0058B69D,FUN_0058b640,YukariObjectManagerBase_acquire_and_link_object,characters,implemented,0.00,__thiscall,YukariObject * YukariObjectManagerBase_acquire_and_link_object(YukariObjectManagerBase * this),false,src/characters/RosterOwnedObjects.cpp,scripts/compile-unit.sh src/characters/RosterOwnedObjects.cpp build/wave_roster/RosterOwnedObjects.obj and compare-function.py 0x0058B640 => target 94 object 90,root,Complete roster-template token publication and tracked-list insertion; remaining mismatch is target EDI manager plus ESI object allocation and local scheduling
 0x0058B6A0,100,0x0058B703,FUN_0058b6a0,,,unclassified,0.00,unknown,undefined FUN_0058b6a0(void),false,,,,
 0x0058B710,27,0x0058B72D,FUN_0058b710,,,unclassified,0.00,unknown,undefined FUN_0058b710(void),false,,,,
 0x0058B730,117,0x0058B7A4,FUN_0058b730,,,unclassified,0.00,unknown,undefined FUN_0058b730(void),false,,,,
@@ -2510,7 +2510,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x005ADDE0,519,0x005ADFE6,FUN_005adde0,,,unclassified,0.00,unknown,undefined FUN_005adde0(void),false,,,,
 0x005ADFF0,27,0x005AE00D,FUN_005adff0,,,unclassified,0.00,unknown,undefined FUN_005adff0(void),false,,,,
 0x005AE010,103,0x005AE076,FUN_005ae010,,,unclassified,0.00,unknown,undefined FUN_005ae010(void),false,,,,
-0x005AE080,94,0x005AE0DD,FUN_005ae080,,,unclassified,0.00,unknown,undefined FUN_005ae080(void),false,,,,
+0x005AE080,94,0x005AE0DD,FUN_005ae080,SuikaObjectManagerBase_acquire_and_link_object,characters,implemented,0.00,__thiscall,SuikaObject * SuikaObjectManagerBase_acquire_and_link_object(SuikaObjectManagerBase * this),false,src/characters/RosterOwnedObjects.cpp,scripts/compile-unit.sh src/characters/RosterOwnedObjects.cpp build/wave_roster/RosterOwnedObjects.obj and compare-function.py 0x005AE080 => target 94 object 90,root,Complete roster-template token publication and tracked-list insertion; remaining mismatch is target EDI manager plus ESI object allocation and local scheduling
 0x005AE0E0,100,0x005AE143,FUN_005ae0e0,,,unclassified,0.00,unknown,undefined FUN_005ae0e0(void),false,,,,
 0x005AE150,27,0x005AE16D,FUN_005ae150,,,unclassified,0.00,unknown,undefined FUN_005ae150(void),false,,,,
 0x005AE170,117,0x005AE1E4,FUN_005ae170,,,unclassified,0.00,unknown,undefined FUN_005ae170(void),false,,,,
@@ -2537,7 +2537,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x005D5CD0,130,0x005D5D51,FUN_005d5cd0,,,unclassified,0.00,unknown,undefined FUN_005d5cd0(void),false,,,,
 0x005D5D60,519,0x005D5F66,FUN_005d5d60,,,unclassified,0.00,unknown,undefined FUN_005d5d60(void),false,,,,
 0x005D5F70,103,0x005D5FD6,FUN_005d5f70,,,unclassified,0.00,unknown,undefined FUN_005d5f70(void),false,,,,
-0x005D5FE0,94,0x005D603D,FUN_005d5fe0,,,unclassified,0.00,unknown,undefined FUN_005d5fe0(void),false,,,,
+0x005D5FE0,94,0x005D603D,FUN_005d5fe0,UdongeObjectManagerBase_acquire_and_link_object,characters,implemented,0.00,__thiscall,UdongeObject * UdongeObjectManagerBase_acquire_and_link_object(UdongeObjectManagerBase * this),false,src/characters/RosterOwnedObjects.cpp,scripts/compile-unit.sh src/characters/RosterOwnedObjects.cpp build/wave_roster/RosterOwnedObjects.obj and compare-function.py 0x005D5FE0 => target 94 object 90,root,Complete roster-template token publication and tracked-list insertion; remaining mismatch is target EDI manager plus ESI object allocation and local scheduling
 0x005D6040,100,0x005D60A3,FUN_005d6040,,,unclassified,0.00,unknown,undefined FUN_005d6040(void),false,,,,
 0x005D60B0,27,0x005D60CD,FUN_005d60b0,,,unclassified,0.00,unknown,undefined FUN_005d60b0(void),false,,,,
 0x005D60D0,117,0x005D6144,FUN_005d60d0,,,unclassified,0.00,unknown,undefined FUN_005d60d0(void),false,,,,
@@ -2563,7 +2563,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x005F6A90,130,0x005F6B11,FUN_005f6a90,,,unclassified,0.00,unknown,undefined FUN_005f6a90(void),false,,,,
 0x005F6B20,519,0x005F6D26,FUN_005f6b20,,,unclassified,0.00,unknown,undefined FUN_005f6b20(void),false,,,,
 0x005F6D30,103,0x005F6D96,FUN_005f6d30,,,unclassified,0.00,unknown,undefined FUN_005f6d30(void),false,,,,
-0x005F6DA0,94,0x005F6DFD,FUN_005f6da0,,,unclassified,0.00,unknown,undefined FUN_005f6da0(void),false,,,,
+0x005F6DA0,94,0x005F6DFD,FUN_005f6da0,KomachiObjectManagerBase_acquire_and_link_object,characters,implemented,0.00,__thiscall,KomachiObject * KomachiObjectManagerBase_acquire_and_link_object(KomachiObjectManagerBase * this),false,src/characters/RosterOwnedObjects.cpp,scripts/compile-unit.sh src/characters/RosterOwnedObjects.cpp build/wave_roster/RosterOwnedObjects.obj and compare-function.py 0x005F6DA0 => target 94 object 90,root,Complete roster-template token publication and tracked-list insertion; remaining mismatch is target EDI manager plus ESI object allocation and local scheduling
 0x005F6E00,100,0x005F6E63,FUN_005f6e00,,,unclassified,0.00,unknown,undefined FUN_005f6e00(void),false,,,,
 0x005F6E70,27,0x005F6E8D,FUN_005f6e70,,,unclassified,0.00,unknown,undefined FUN_005f6e70(void),false,,,,
 0x005F6E90,117,0x005F6F04,FUN_005f6e90,,,unclassified,0.00,unknown,undefined FUN_005f6e90(void),false,,,,
@@ -2590,7 +2590,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00617420,519,0x00617626,FUN_00617420,,,unclassified,0.00,unknown,undefined FUN_00617420(void),false,,,,
 0x00617630,27,0x0061764D,FUN_00617630,,,unclassified,0.00,unknown,undefined FUN_00617630(void),false,,,,
 0x00617650,103,0x006176B6,FUN_00617650,,,unclassified,0.00,unknown,undefined FUN_00617650(void),false,,,,
-0x006176C0,94,0x0061771D,FUN_006176c0,,,unclassified,0.00,unknown,undefined FUN_006176c0(void),false,,,,
+0x006176C0,94,0x0061771D,FUN_006176c0,AyaObjectManagerBase_acquire_and_link_object,characters,implemented,0.00,__thiscall,AyaObject * AyaObjectManagerBase_acquire_and_link_object(AyaObjectManagerBase * this),false,src/characters/RosterOwnedObjects.cpp,scripts/compile-unit.sh src/characters/RosterOwnedObjects.cpp build/wave_roster/RosterOwnedObjects.obj and compare-function.py 0x006176C0 => target 94 object 90,root,Complete roster-template token publication and tracked-list insertion; remaining mismatch is target EDI manager plus ESI object allocation and local scheduling
 0x00617720,100,0x00617783,FUN_00617720,,,unclassified,0.00,unknown,undefined FUN_00617720(void),false,,,,
 0x00617790,27,0x006177AD,FUN_00617790,,,unclassified,0.00,unknown,undefined FUN_00617790(void),false,,,,
 0x006177B0,117,0x00617824,FUN_006177b0,,,unclassified,0.00,unknown,undefined FUN_006177b0(void),false,,,,
@@ -2617,7 +2617,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006300F0,130,0x00630171,FUN_006300f0,,,unclassified,0.00,unknown,undefined FUN_006300f0(void),false,,,,
 0x00630180,519,0x00630386,FUN_00630180,,,unclassified,0.00,unknown,undefined FUN_00630180(void),false,,,,
 0x00630390,103,0x006303F6,FUN_00630390,,,unclassified,0.00,unknown,undefined FUN_00630390(void),false,,,,
-0x00630400,94,0x0063045D,FUN_00630400,,,unclassified,0.00,unknown,undefined FUN_00630400(void),false,,,,
+0x00630400,94,0x0063045D,FUN_00630400,IkuObjectManagerBase_acquire_and_link_object,characters,implemented,0.00,__thiscall,IkuObject * IkuObjectManagerBase_acquire_and_link_object(IkuObjectManagerBase * this),false,src/characters/RosterOwnedObjects.cpp,scripts/compile-unit.sh src/characters/RosterOwnedObjects.cpp build/wave_roster/RosterOwnedObjects.obj and compare-function.py 0x00630400 => target 94 object 90,root,Complete roster-template token publication and tracked-list insertion; remaining mismatch is target EDI manager plus ESI object allocation and local scheduling
 0x00630460,100,0x006304C3,FUN_00630460,,,unclassified,0.00,unknown,undefined FUN_00630460(void),false,,,,
 0x006304D0,27,0x006304ED,FUN_006304d0,,,unclassified,0.00,unknown,undefined FUN_006304d0(void),false,,,,
 0x006304F0,117,0x00630564,FUN_006304f0,,,unclassified,0.00,unknown,undefined FUN_006304f0(void),false,,,,
@@ -2645,7 +2645,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0064A480,130,0x0064A501,FUN_0064a480,,,unclassified,0.00,unknown,undefined FUN_0064a480(void),false,,,,
 0x0064A510,519,0x0064A716,FUN_0064a510,,,unclassified,0.00,unknown,undefined FUN_0064a510(void),false,,,,
 0x0064A720,103,0x0064A786,FUN_0064a720,,,unclassified,0.00,unknown,undefined FUN_0064a720(void),false,,,,
-0x0064A790,94,0x0064A7ED,FUN_0064a790,,,unclassified,0.00,unknown,undefined FUN_0064a790(void),false,,,,
+0x0064A790,94,0x0064A7ED,FUN_0064a790,TenshiObjectManagerBase_acquire_and_link_object,characters,implemented,0.00,__thiscall,TenshiObject * TenshiObjectManagerBase_acquire_and_link_object(TenshiObjectManagerBase * this),false,src/characters/RosterOwnedObjects.cpp,scripts/compile-unit.sh src/characters/RosterOwnedObjects.cpp build/wave_roster/RosterOwnedObjects.obj and compare-function.py 0x0064A790 => target 94 object 90,root,Complete roster-template token publication and tracked-list insertion; remaining mismatch is target EDI manager plus ESI object allocation and local scheduling
 0x0064A7F0,100,0x0064A853,FUN_0064a7f0,,,unclassified,0.00,unknown,undefined FUN_0064a7f0(void),false,,,,
 0x0064A860,27,0x0064A87D,FUN_0064a860,,,unclassified,0.00,unknown,undefined FUN_0064a860(void),false,,,,
 0x0064A880,117,0x0064A8F4,FUN_0064a880,,,unclassified,0.00,unknown,undefined FUN_0064a880(void),false,,,,

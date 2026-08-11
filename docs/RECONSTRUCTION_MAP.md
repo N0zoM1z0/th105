@@ -78,6 +78,7 @@ TH10.5
     ├── fifteen RTTI/vtable pilot rows -> docs/CHARACTER_PILOTS.md
     ├── fifteen owned-object spawn families [contracted]
     │   ├── one normalized 237-byte ABI/template
+    │   ├── fifteen normalized acquire-and-link entries [source-ready]
     │   ├── fourteen roster spawn entries [decompiled]
     │   └── Sakuya spawn source [source-ready]
     └── Sakuya fighter pilot [mapped]
@@ -96,9 +97,10 @@ platform/runtime. Their module boundaries are listed in `docs/ARCHITECTURE.md`.
 
 1. **Roster character pilots.** All fifteen owned-object spawn entries now have
    one proven ABI and normalized instruction template; Sakuya supplies the
-   source body. Promote the fourteen acquire-and-link dependencies, emit the
-   shared source pattern without hiding Alice's `0x38C` allocation exception,
-   then split spell/skill decision leaves under each fighter dispatcher.
+   source body, and all fifteen acquire-and-link helpers have one source-ready
+   body. Recover the fourteen pool fresh/reuse paths without hiding Alice's
+   `0x38C` allocation exception, then emit the shared spawn pattern and split
+   spell/skill decision leaves under each fighter dispatcher.
 2. **PAT record semantics.** `0x00462050` now has target-sized complete source,
    `0x0045E080` is exact, and `0x00464320` is 197/199 bytes. Recover the
    EH-bearing record types inside `0x00460B50`; this is the remaining shared
@@ -139,6 +141,9 @@ shared owned-object lifecycle [contracted]
 ├── fifteen 237-byte spawn entries [contracted]
 │   ├── Sakuya 0x004DED80 [source-ready]
 │   └── fourteen normalized twins [decompiled]
+├── fifteen 94-byte acquire-and-link entries [source-ready]
+│   ├── normalized token/list contract
+│   └── fourteen roster functions emitted from one shared source body
 └── Sakuya fighter pilot [source-ready]
     ├── 0x004DE8E0 pool acquire [contracted]
     ├── 0x004DEB80 acquire and link [source-ready]

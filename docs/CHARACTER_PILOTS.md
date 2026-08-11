@@ -129,6 +129,16 @@ fourteen newly named rows are therefore `decompiled`, while only Sakuya has a
 source body. A reusable emitted template must preserve separate character pool
 calls and the Alice tail before those rows can advance to `implemented`.
 
+The acquire-and-link column is independently stronger: all fifteen entries are
+94-byte instruction-template twins after normalizing the three call operands at
+`+0x18`, `+0x3F`, and `+0x4A`; the normalized SHA-256 is
+`7cb85121ffe61ec2759825d7c64d10c2ceb25fc3281cee12510f562b449a5457`.
+`RosterOwnedObjects.cpp` now emits the fourteen non-Sakuya functions from one
+typed layout/body. VC8 produces 90 bytes for each, matching the prior Sakuya
+probe and preserving the complete semantics; the common remaining four-byte
+difference is register allocation and address-taken-local scheduling. These
+rows are `implemented`, not `matching`.
+
 ## Sakuya pilot
 
 Sakuya's constructor at `0x004DEEF0` has one explicit base argument, calls the
@@ -205,9 +215,9 @@ field-load/register order.
 
 ## Next waves
 
-1. Promote the fourteen acquire-and-link helpers in the roster matrix. They are
-   normalized 94-byte twins of Sakuya's complete contract and are the direct
-   blockers for a shared emitted spawn template.
+1. Recover the fourteen pool-acquire functions in the roster matrix. Their
+   reuse/fresh branches are now the direct blocker for complete per-character
+   object allocation and for the shared emitted spawn template.
 2. Split Sakuya's complete `0x004DEF70` matrix into source-backed spell, skill,
    and normal-action blocks, beginning with the spell-record `600..609/656`
    selector because it links parser data directly to character behavior.

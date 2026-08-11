@@ -579,6 +579,35 @@ them only when the target status-word masks and branch directions prove the
 same NaN/unordered contract.  Likewise do not reinterpret a signed field as
 unsigned merely to change one opcode; require the observed `JBE/JA` family.
 
+## P18: Normalize repeated character templates without claiming a match
+
+Per-character object-manager functions may be one compiler template repeated
+at fifteen target addresses. Prove that relationship by masking only supported
+relocation operands, hashing the complete accepted ledger span, and comparing
+every remaining byte. Do not mask prologues, immediates, field offsets, branch
+displacements, or padding.
+
+The roster-owned object lifecycle has two canonical examples:
+
+- every 237-byte spawn body becomes identical after zeroing the four `CALL
+  rel32` operands at `+0x08`, `+0x53`, `+0x73`, and `+0x93`;
+- every 94-byte acquire-and-link body becomes identical after zeroing the three
+  `CALL rel32` operands at `+0x18`, `+0x3F`, and `+0x4A`.
+
+The second family proves pool at manager `+0x04`, token at object `+0x334`,
+and tracked list at manager `+0x54`. One shared source body faithfully emits
+all character variants, but standalone VC8 emits 90 bytes rather than 94: the
+target keeps the manager in `EDI`, object in `ESI`, and schedules the
+address-taken union local differently. Template-normalized target identity is
+therefore strong semantic/layout evidence, but it is not an object comparison
+and never justifies `matching` or an estimated percentage.
+
+Keep character-specific direct callees explicit in each emitted function.
+Record genuine outliers separately: Alice's fresh object allocation is
+`0x38C`, while the other fourteen are `0x388`; that difference belongs to the
+pool fresh path and must not be erased merely because Alice's spawn and
+acquire-and-link instruction templates normalize with the roster.
+
 ## Hard-function strategy
 
 Every reconstruction wave should include at least one function whose completion
