@@ -22,6 +22,8 @@ __real@3f847ae140000000,0x006AD668,00000040e17a843f,0x0,target IDA qword and IEE
 __real@40000000,0x006AD3F8,00000040,0x0,target IDA dword and IEEE-754 value verified as float 2.0 for shared object motion clamp,literal
 __real@4008000000000000,0x006AFB88,0000000000000840,0x0,target IDA qword and IEEE-754 value verified as double 3.0 for shared object heading increment,literal
 __real@3fa99999a0000000,0x006B01E0,000000a09999a93f,0x0,target IDA qword and IEEE-754 value verified as widened float 0.05 for shared object spawn phase,literal
+__real@4066800000000000,0x006C0EE0,0000000000806640,0x0,target IDA qword and IEEE-754 value verified as double 180.0 for Alice target heading,literal
+__real@3f70000000000000,0x006B0C98,000000000000703f,0x0,target IDA qword and IEEE-754 value verified as double 1/256 for Alice target distance scale,literal
 __real@4076800000000000,0x006ACEE0,0000000000807640,0x0,target bytes and IEEE-754 value verified as double 360.0 for shared heading normalization,literal
 __real@c2340000,0x006AFDE0,000034c2,0x0,target bytes and IEEE-754 value verified as float -45.0 for action 214 direction angle,literal
 __real@c3070000,0x006AFDC0,000007c3,0x0,target bytes and IEEE-754 value verified as float -135.0 for action 214 direction angle,literal

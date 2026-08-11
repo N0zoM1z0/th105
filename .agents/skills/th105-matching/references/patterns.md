@@ -245,6 +245,12 @@ its load and loses the target's late `mov eax, [edx+4]`. Its unparented sibling
 at `0x004FC350` has a different faithful register schedule and does cache the
 typed function pointer. Treat sibling wrappers independently.
 
+The exact Alice target-vector helper at `0x004FC0B0` depends on repeating the
+target coordinate subtractions in source. Caching `dx` or `dy` reshapes the
+x87 stack and register schedule. Direct expressions reproduce both facing
+branches, the two squared deltas, `__CIsqrt`, and the final 1/256 scale at
+319/319 bytes after the target double literals are independently mapped.
+
 At `0x0053C7F0`, a natural VC8 switch reproduces the signed `movsx; sub 0;
 sub 1` mode dispatch and all floating-point/payload operations, but emits 446
 bytes against the 450-byte target. The target places the reverse-phase

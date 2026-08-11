@@ -168,7 +168,7 @@ address,lane,priority,notes
 0x004FA3C0,character-owned-object,1,Alice owned-object spawn contract
 0x004FA530,character-command,2,Alice fighter constructor and owned-manager boundary
 0x004FA5C0,character-command,1,Alice spell skill and normal input dispatcher
-0x004FC0B0,character-command,2,Alice target and position update leaf
+0x004FC0B0,character-command,2,Exact Alice object owner-position target-vector and target-state gate
 0x004FC350,character-owned-object,1,Exact all-roster unparented related-object spawn adapter with 1026 direct calls
 0x004FC3A0,character-owned-object,1,Exact shared related-object heading tracker used across 14 roster families
 0x004FC4E0,character-owned-object,1,Exact shared state-six phase counter transition with 261 calls across 13 roster roots

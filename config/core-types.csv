@@ -1,6 +1,7 @@
 type_name,header,coverage,observed_size,confidence,evidence,notes
 AttackCandidate,src/battle/Collision.hpp,partial,0x1A8,observed,docs/BATTLE.md and target field accesses,Observed prefix through frame pointer at +0x1A4
 AttackCandidateFrame,src/battle/Collision.hpp,complete,0x54,observed,docs/BATTLE.md and exact dependent functions,All fields used by the shared hit pipeline are laid out
+AliceObjectFlightState,src/characters/AliceObjectEffects.hpp,partial,0x37C,observed,0x004FC0B0 exact source and Alice 0x38C pool allocation trait,Alice-specific view covers owner target heading lifetime delta squares distance and scale; trailing allocation fields remain opaque
 CharacterObjectEffectEmitter,src/characters/CharacterObjectEffects.hpp,partial,0x378,observed,0x004FC350 0x004FC3A0 0x00520360 0x0053C7F0 and 0x0064C090 sources plus all-roster action callers,Shared object view now covers motion/scaling mode lifetime control direction and spawn phase fields through +0x374; opaque fields remain
 CharacterObjectRuntime,src/characters/CharacterObjectRuntime.hpp,partial,0x388,observed,0x00433BE0 0x00433C40 0x004FC4E0 and 0x005203B0 exact sources plus roster object-action callers,Shared oriented components animation state phase byte and signed counters at +0x384/+0x386; exact target pool allocation size is 0x388 but opaque fields remain
 CollisionAabb,src/battle/Collision.hpp,complete,0x10,observed,exact geometry comparison units,Four signed integer coordinates
