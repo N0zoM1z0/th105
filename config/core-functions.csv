@@ -39,6 +39,7 @@ address,lane,priority,notes
 0x00432E20,spell-data,1,Hard spell CSV record and card-resource parser
 0x00433490,spell-data,2,spellcard versus storySpell wrapper for resource parser
 0x00433B90,hit-resolution,3,Exact fighter action scratch reset
+0x00433CC0,character-command,1,Exact shared effect emission forwarding boundary
 0x00434390,geometry,3,Exact fighter X-boundary classification used by body separation
 0x004343D0,geometry,3,Exact proposed-X stage-height gate used by body separation
 0x00434860,hit-resolution,3,Exact stage-surface fighter gate
@@ -240,5 +241,5 @@ address,lane,priority,notes
 0x0064A790,character-owned-object,1,Tenshi object acquire and tracking-list insertion source
 0x0064A990,character-owned-object,1,Tenshi owned-object spawn contract
 0x0064AB80,character-command,1,Tenshi spell skill and normal input dispatcher
-0x0064C090,character-command,1,Tenshi owned-object repeated effect-emission helper candidate
+0x0064C090,character-command,1,Shared roster-owned object owner-gated repeated effect-emission exact source
 0x00658830,character-command,2,Tenshi event-code action bridge

@@ -315,7 +315,11 @@ All three retain the roster-wide two sequence-ready sites, one front-record
 selector, command word, derived gates, and four family latches. No small
 Aya-only or Iku-only dispatcher callee analogous to Yukari `0x0058BA30` was
 observed; Tenshi `0x0064C090` is instead a bounded owned-object effect-emission
-helper suitable for the next source-extraction wave.
+helper. It is now exact at 200 bytes and is not Tenshi-only: target xrefs prove
+228 direct calls distributed across all fifteen roster object-action roots.
+Its two modes accept owner actions `50..149` or `71..149`, then emit effect
+codes `200` and `201` the requested positive number of times from the object's
+current position and facing.
 
 The Sakuya manager's raw primary-vtable slot `+0x04` is `0x004DED80`, a complete object-spawn
 boundary. It obtains a new Sakuya object from the manager base at `+0x04`,

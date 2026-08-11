@@ -296,3 +296,4 @@ caller,callee,required_status,evidence
 0x0064AB80,0x0045BBB0,matching,IDA Pro Tenshi spell sequence availability gates
 0x0064AB80,0x004631E0,implemented,IDA Pro Tenshi action-transition call cluster
 0x0064AB80,0x00493C90,implemented,IDA Pro Tenshi front-record selector call
+0x0064C090,0x00433CC0,matching,Exact two relocated effect-emitter calls in standalone object comparison

@@ -673,6 +673,44 @@ function. Apply this pattern only when the target proves a byte compare and
 the conversion preserves the intended two's-complement byte value; it is not
 a general license to erase signedness.
 
+## P21: Preserve positive-entry countdown loops and nested signed ranges
+
+`0x0064C090` is a 200-byte shared roster-object leaf with 228 direct call
+sites. It first accepts one of two signed-short owner-action intervals, then
+emits effect `200` and `201` a requested number of times. A normal
+`for (count > 0; --count)` makes VC8 retest the signed condition after every
+iteration (`SUB; TEST; JG`). The target tests positivity once and thereafter
+uses `SUB; JNZ`, which is faithfully expressed as:
+
+```cpp
+if (count > 0) {
+    do {
+        emit_effect(...);
+    } while (--count != 0);
+}
+```
+
+For the mode-one interval, a combined `state <= 70 || state >= 150` allowed
+VC8 to fold the checks into an unsigned range idiom. Separate negative tests
+still triggered branch threading into the earlier mode's upper-bound compare.
+The natural nested positive form preserves the target's two local signed
+16-bit comparisons:
+
+```cpp
+if (state > 70) {
+    if (state < 150) {
+        // accepted
+    } else {
+        return 0;
+    }
+} else {
+    return 0;
+}
+```
+
+Together these shapes reproduce the target's two loop bodies, including VC8's
+alignment NOP before the second loop, without volatile storage or assembly.
+
 ## Hard-function strategy
 
 Every reconstruction wave should include at least one function whose completion

@@ -155,6 +155,7 @@ shared command layer [source-ready]
 
 shared owned-object lifecycle [contracted]
 ├── 0x004454E0 four-byte VC8 deque push_back [library, exact]
+├── 0x0064C090 owner-gated repeated effects 200/201 [exact, 228 roster calls]
 ├── 0x004B9540 return tracked objects to pool [semantics-ready]
 ├── fifteen 237-byte spawn entries [contracted]
 │   ├── Sakuya 0x004DED80 [source-ready]
