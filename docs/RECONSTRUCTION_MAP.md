@@ -48,13 +48,15 @@ TH10.5
 │   │   └── 0x0046C290 fighter body separation [implemented]
 │   └── 0x0046B420 shared battle phase [exact]
 ├── Spell-card system
-│   ├── assets and parsers [contracted: remaining record/string blockers]
+│   ├── assets and parsers [implemented: compiler-shaping remains]
 │   │   ├── 0x00416A50 VC8 deque<4-byte>::push_back [library, exact probe]
+│   │   ├── 0x00408A40 VC8 string append [library, exact probe]
 │   │   ├── 0x00404F30 pooled texture creation [decompiled]
 │   │   ├── 0x0040EB20/EE50/EF50/F050/F780 CSV reader API [decompiled]
+│   │   ├── 0x00431430/0x00432310 VC8 map traversal/insert [library, exact]
+│   │   ├── 0x00431950 SpellRecord deep copy [exact]
 │   │   ├── 0x004325B0 first CSV parser [identified]
-│   │   ├── 0x00432E20 record/resource parser [decompiled]
-│   │   └── reader, image, small-string, and container contracts
+│   │   └── 0x00432E20 record/resource parser [implemented]
 │   ├── spell data [source-ready]
 │   │   ├── 0x00430DE0 loader selector [exact]
 │   │   ├── 0x00430C80 post-load transform [implemented]
@@ -79,16 +81,16 @@ platform/runtime. Their module boundaries are listed in `docs/ARCHITECTURE.md`.
 
 ## Unlock-first frontier
 
-1. **Spell record and ownership contracts.** The shared four-byte deque,
-   pooled 512-by-256 card texture creation, and CSV reader API are now
-   recovered. Continue with the remaining high-impact boundaries reported by
-   `scripts/core-worklist.py --blockers`, especially `0x00408A40`,
-   `0x00431430`, `0x00431950`, and `0x00432310`, then reconstruct the hard
-   parser `0x00432E20` against these concrete contracts.
-2. **Sakuya character pilot.** Use `0x004DDB20` and `0x004DEF70` to recover the
+1. **Sakuya character pilot.** The hard spell parser and its former four
+   record/string blockers are now implemented or exact. Use `0x004DDB20` and
+   `0x004DEF70` to recover the
    derived vtable, action-code families, shared virtual contracts, and owned
    object-manager interactions. This lane should establish a repeatable
    onboarding method for the other fourteen fighters.
+2. **Fighter resource initialization.** Resolve the three current framework
+   blockers `0x0045E080`, `0x00460B50`, and `0x00464320`, then promote
+   `0x00462050`; these shared boundaries unlock spell/skill assets for every
+   character rather than one fighter at a time.
 3. **Fighter state continuity.** Shape the one-byte remaining loop difference
    in `0x0045CDD0`, reconstruct the separate tail helper `0x00459D30`, then
    implement `0x0045CF00` without accepting IDA's merged tail chunk. This

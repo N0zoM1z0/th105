@@ -103,7 +103,7 @@ address,name,module,confidence,evidence
 0x00432500,clear_spell_entries,battle,inferred,docs/BATTLE.md spell CSV wrappers clear destination entries before parsing
 0x004325B0,parse_spell_csv_via_325b0,battle,inferred,docs/BATTLE.md observed large spell CSV parser reached by the first wrapper
 0x00432D80,load_spell_csv_via_325b0,battle,inferred,docs/BATTLE.md observed spellcard versus storySpell path wrapper
-0x00432E20,parse_spell_csv_and_build_card_resources,battle,inferred,docs/BATTLE.md observed spell CSV records card images tree insertion and batch resources
+0x00432E20,parse_spell_csv_and_build_card_resources,battle,observed,IDA Pro callers 0x00433490 and 0x00433540 load ECX owner and pass name path optional handle deque and spell tree; callee ret 0x10; docs/BATTLE.md records parser behavior
 0x00433490,load_spell_csv_via_32e20,battle,inferred,docs/BATTLE.md observed alternate spell CSV parser wrapper
 0x00424E60,CTitle_dtor,ui,observed,docs/EVIDENCE.md RTTI-owned CTitle destructor with exact resource-release member-cleanup and base-vptr sequence
 0x00425280,copy_session_field_6c8_if_unset,network,inferred,docs/EVIDENCE.md exact guarded network-session field copy used by menu-to-battle transition paths
@@ -290,6 +290,10 @@ address,name,module,confidence,evidence
 0x004064D0,MenuString28_dtor,ui,observed,VC8 basic_string destructor used by profile-menu temporary paths
 0x004064D0,ProfileStringTemporary_dtor,ui,observed,VC8 basic_string destructor used by the non-vulnerable profile return temporary
 0x00408B40,concatenate_profile_string,ui,observed,Returns a MenuString28 formed from a profile name and suffix
+0x00408A40,std_string_append_substring,runtime,observed,Exact VC8 SP1 std::basic_string char append string offset count probe
+0x00431430,std_spell_tree_iterator_decrement,runtime,observed,Exact VC8 checked std::map int SpellRecordView iterator predecessor probe
+0x00431950,SpellRecordView_ctor,battle,observed,Exact 189-byte deep-copy constructor with two owning String28 members
+0x00432310,std_spell_tree_insert_unique,runtime,observed,Exact VC8 std::map int SpellRecordView unique insert probe
 0x004122D0,profile_string_equals,ui,observed,Compares a MenuString28 with the profile workflow sentinel text
 0x00426D80,ProfileEditor168_update_selection,ui,observed,CProfileMenu state workflows poll the embedded profile editor
 0x0044AA70,ProfileEditor168_read_profile_name,ui,observed,CProfileMenu copies the editor name into its pending profile string

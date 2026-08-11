@@ -1,38 +1,111 @@
 #pragma once
 
+#include "assets/String28.hpp"
+
 namespace th105 {
 
 struct SpellTree;
 
+struct SpellRecordCopyShort {
+    short value;
+
+    SpellRecordCopyShort() {}
+    SpellRecordCopyShort(short source) : value(source) {}
+    SpellRecordCopyShort(const SpellRecordCopyShort &source)
+        : value(source.value)
+    {
+        // The target record special member retains this second load/store.
+        value = source.value;
+    }
+    SpellRecordCopyShort &operator=(short source)
+    {
+        value = source;
+        return *this;
+    }
+    operator short() const { return value; }
+};
+
+struct SpellRecordView {
+    String28 name_00;
+    signed char selector_1c;
+    SpellRecordCopyShort value_1e;
+    String28 description_20;
+    SpellRecordCopyShort value_3c;
+    short value_3e;
+    void *batch_resource_40;
+    void *optional_resource_44;
+    int value_48;
+
+    SpellRecordView() {}
+};
+
+typedef char SpellRecordView_size_must_be_0x4c[
+    sizeof(SpellRecordView) == 0x4c ? 1 : -1];
+
 struct SpellTreeNode {
-    unsigned char unknown_00[0x10];
+    SpellTreeNode *left_00;
+    SpellTreeNode *parent_04;
+    SpellTreeNode *right_08;
+    int key_0c;
+    SpellRecordView value_10;
+    unsigned char color_5c;
+    unsigned char is_nil_5d;
+    unsigned char padding_5e[2];
 };
 
 struct SpellTreeIterator {
     SpellTree *owner;
     SpellTreeNode *node;
+
+    void decrement_checked();
+};
+
+struct SpellTreeValue {
+    int key;
+    SpellRecordView record;
+
+    SpellTreeValue(int key_value, const SpellRecordView &record_value)
+        : key(key_value), record(record_value) {}
+};
+
+struct SpellTreeInsertResult {
+    SpellTree *owner;
+    SpellTreeNode *node;
+    unsigned char inserted;
+    unsigned char padding[3];
 };
 
 struct SpellTree {
-    unsigned char unknown_00[0x04];
+    unsigned allocator_state_00;
     SpellTreeNode *end_node_04;
+    unsigned node_count_08;
 
     SpellTreeIterator *find_checked(
         SpellTreeIterator *result,
         const int *key);
+    SpellTreeInsertResult *insert_unique_value(
+        SpellTreeInsertResult *result,
+        const SpellTreeValue *value);
 };
 
-struct SpellRecordView {
-    unsigned char unknown_00[0x1c];
-    signed char selector_1c;
-    unsigned char unknown_1d;
-    short value_1e;
-    unsigned char unknown_20[0x1c];
-    short value_3c;
-    short value_3e;
-    void *batch_resource_40;
-    void *optional_resource_44;
-    int value_48;
+typedef char SpellTreeNode_size_must_be_0x60[
+    sizeof(SpellTreeNode) == 0x60 ? 1 : -1];
+typedef char SpellTreeValue_size_must_be_0x50[
+    sizeof(SpellTreeValue) == 0x50 ? 1 : -1];
+typedef char SpellTreeInsertResult_size_must_be_0x0c[
+    sizeof(SpellTreeInsertResult) == 0x0c ? 1 : -1];
+typedef char SpellTree_size_must_be_0x0c[
+    sizeof(SpellTree) == 0x0c ? 1 : -1];
+
+struct DwordDeque4 {
+    unsigned allocator_state_00;
+    unsigned **blocks_04;
+    unsigned block_capacity_08;
+    unsigned head_0c;
+    unsigned live_count_10;
+
+    void push_back(const unsigned *value);
+    unsigned &back_checked();
 };
 
 struct ShortDeque8 {
@@ -48,7 +121,6 @@ struct ShortDeque8 {
 struct SpellDataOwner {
     unsigned char unknown_00[0x14];
     SpellTree local_tree_14;
-    unsigned char unknown_1c[0x04];
     ShortDeque8 loaded_spell_ids_20;
     ShortDeque8 selection_ids_34;
     unsigned char selected_value_by_index_48[0x20];

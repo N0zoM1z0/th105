@@ -306,15 +306,33 @@ versus the 257-byte target. The target retains a 0x10-byte checked-iterator
 frame, an owner-identity check, and longer owner/block register lifetimes; this
 is a compiler-shaping blocker, not missing transformation logic.
 
-The large parser at `0x00432E20` is decompiled but deliberately not yet called
-implemented. Its observed row schema is integer, string, byte, short, string,
+The large parser at `0x00432E20` is a `SpellDataOwner::__thiscall` boundary
+with an unused incoming `this`. Callers `0x00433490` and `0x00433540` load ECX
+with the owner immediately before pushing the character name, CSV path,
+optional four-byte handle deque, and spell tree; the callee returns with
+`ret 0x10`. Its maintainable implementation is now in
+`SpellCardParser.cpp`. The source preserves the complete row loop, deep-copy
+record insertion, optional individual card resources, 16-record composite
+publication, descending checked-tree traversal, and owned cleanup. VC8 emits a
+1940-byte body versus the ledger's 1602 body bytes; the remaining work is
+asset/global relocation mapping, EH lifetime shaping, and compiler scheduling,
+not missing parser behavior. Its observed row schema is integer, string, byte, short, string,
 short, short. It publishes fields at record offsets `+0x1C`, `+0x1E`, `+0x3C`,
 `+0x3E`, `+0x40`, `+0x44`, and `+0x48`, formats
 `data/card/%s/card%03d.bmp`, and stores images through a
 deque-like owner. Every 16 records it builds a `0x200` by `0x100` composite and
-publishes its handle at record payload `+0x40`. The unresolved blockers are the
-reader and small-string layouts, SEH cleanup, checked-container ownership, and
-asset-service contracts. The two path wrappers at `0x00432D80` and
+publishes its handle at record payload `+0x40`.
+
+The four former record/string blockers are now closed with VC8 probes.
+`0x00408A40` is the exact 251-byte `std::string::append(string,off,count)`
+specialization. `0x00431430` is the exact 137-byte checked spell-map iterator
+predecessor, and `0x00432310` is the exact 185-byte unique map insertion body.
+`0x00431950` is the exact 189-byte `SpellRecordView` copy constructor: two real
+0x1C owning strings and the observed repeated short-copy subobjects reproduce
+every target byte. The map evidence fixes a 0x60-byte node, 0x50-byte
+key/value pair, 0x0C-byte insert result, and 0x0C-byte tree header.
+
+The two path wrappers at `0x00432D80` and
 `0x00433490` are implemented at 103/148 and 108/161 bytes; their target frames
 retain stack cookies and an indirect `wsprintf` import.
 

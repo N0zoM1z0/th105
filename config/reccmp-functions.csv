@@ -226,6 +226,7 @@ phase_04a10,0x00404A10,function
 ProfileStringTemporary_dtor,0x004064D0,function
 mt19937_seed_u32,0x00406840,function
 load_optional_spell_resource,0x00406C30,function
+std_string_append_substring,0x00408A40,function
 concatenate_profile_string,0x00408B40,function
 ProfileMenuController_set_mode,0x0040E1C0,function
 ProfileMenuController_select_profile,0x0040E560,function
@@ -253,9 +254,12 @@ finalize_loaded_spell_data,0x00430C80,function
 select_spell_record_id,0x00430D90,function
 load_spell_data,0x00430DE0,function
 set_spell_sequence_mode_430fa0,0x00430FA0,function
+std_spell_tree_iterator_decrement,0x00431430,function
 find_checked,0x004316C0,function
 find_local_then_common_spell_record,0x004317A0,function
 invoke_indexed_record,0x00431860,function
+SpellRecordView_ctor,0x00431950,function
+std_spell_tree_insert_unique,0x00432310,function
 clear_spell_entries,0x00432500,function
 parse_spell_csv_via_325b0,0x004325B0,function
 load_spell_csv_via_325b0,0x00432D80,function

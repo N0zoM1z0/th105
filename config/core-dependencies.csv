@@ -12,7 +12,7 @@ caller,callee,required_status,evidence
 0x00432E20,0x004021C0,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x00432E20,0x00404EC0,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x00432E20,0x00404F30,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
-0x00432E20,0x00408A40,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x00432E20,0x00408A40,library,exact VC8 std::string append probe and target direct call
 0x00432E20,0x00408B40,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x00432E20,0x0040EB20,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x00432E20,0x0040EE50,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
@@ -20,9 +20,9 @@ caller,callee,required_status,evidence
 0x00432E20,0x0040F050,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x00432E20,0x0040F780,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x00432E20,0x00416A50,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
-0x00432E20,0x00431430,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
-0x00432E20,0x00431950,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
-0x00432E20,0x00432310,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x00432E20,0x00431430,library,exact VC8 spell-map iterator decrement probe and target direct call
+0x00432E20,0x00431950,matching,exact SpellRecordView copy-constructor probe and target direct call
+0x00432E20,0x00432310,library,exact VC8 spell-map unique insert probe and target direct call
 0x00433490,0x00432500,identified,docs/BATTLE.md wrapper call order
 0x00433490,0x00432E20,decompiled,docs/BATTLE.md resource parser forwarding
 0x00433490,0x0043ABE0,identified,docs/BATTLE.md character path component resolution

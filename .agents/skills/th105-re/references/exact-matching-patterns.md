@@ -457,6 +457,49 @@ spend authored reconstruction time on the parser or resource owner using it.
 Do not generalize the four-element block constant to deques whose element
 width differs.
 
+## P14: Recover parser records with real VC8 strings and container probes
+
+When a parser stack record contains 0x1C-byte owning strings, do not preserve
+them as opaque byte arrays.  Use the pinned VC8 `std::string` specialization
+and force the relevant COMDAT before shaping the authored caller.  For the
+TH105 spell record, this proved all of the following independently:
+
+- `0x00408A40` is the exact 251-byte
+  `basic_string<char>::append(string, offset, count)` body;
+- the string layout uses a 16-byte SSO threshold and is 0x1C bytes;
+- `0x00431430` is the exact 137-byte checked `std::map` iterator `_Dec`;
+- `0x00432310` is the exact 185-byte unique `map::insert(value_type const&)`;
+- the map node is 0x60 bytes, its value is `{int key; 0x4C record}`, and the
+  tree header and insert result are both 0x0C bytes.
+
+Use `scripts/probes/string_append.cpp` and `scripts/probes/spell_tree.cpp` as
+the minimal forcing units.  Map probe-local names with repeatable
+`--rel32-target` arguments; classify the exact template bodies as `library`.
+
+The authored `SpellRecordView` copy constructor at `0x00431950` exposed a
+second pattern: two short fields are each loaded and stored twice, with the
+duplicate before the next throwing string construction.  Moving redundant
+assignments into the outer constructor body produced the correct size but the
+wrong schedule.  A two-byte member subobject whose copy constructor performs
+the repeated assignment made VC8 place both stores in member order and yielded
+an exact 189/189 comparison.  This is a code-generation contract, not license
+to invent semantic wrapper types elsewhere; require the repeated target
+instructions and a full exact comparison before using it.
+
+The accepted record check is:
+
+```bash
+TH105_ENABLE_GS=1 scripts/compile-unit.sh \
+  scripts/probes/spell_record_copy.cpp build/probes/spell_record_copy.obj
+python3 scripts/compare-function.py --symbol-base SpellRecordView_ctor \
+  --rel32-target assign=0x004020B0 \
+  0x00431950 build/probes/spell_record_copy.obj
+```
+
+Constructor comparisons with `/GS` and EH require strict `DIR32` entries for
+the exact target security cookie and constructor handler.  Validate handler
+bytes at its target address; never wildcard local EH relocations.
+
 ## Hard-function strategy
 
 Every reconstruction wave should include at least one function whose completion

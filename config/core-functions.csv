@@ -6,7 +6,7 @@ address,lane,priority,notes
 0x00406680,geometry,3,Exact orientation cosine lookup dependency
 0x00406780,geometry,2,Orientation table initialization contract still missing
 0x00406C30,spell-assets,2,Optional record resource preparation boundary
-0x00408A40,spell-assets,3,Opaque parser cleanup or ownership helper
+0x00408A40,spell-assets,3,Exact VC8 std::string substring append specialization
 0x00408B40,spell-assets,3,Opaque parser cleanup or ownership helper
 0x00409AA0,fighter-init,2,Exact linked input-manager counter reset used by fighter initialization
 0x0040EB20,spell-assets,2,CSV reader iteration boundary
@@ -22,12 +22,12 @@ address,lane,priority,notes
 0x00430D90,spell-runtime,2,Spell record selector contract
 0x00430DE0,spell-data,2,Exact normal versus alternate loader selector
 0x00430FA0,fighter-init,2,Category-dependent sequence mode setter
-0x00431430,spell-assets,2,Checked spell record traversal boundary
+0x00431430,spell-assets,2,Exact VC8 checked spell-map iterator predecessor specialization
 0x004316C0,spell-data,2,Checked spell tree lookup contract
 0x004317A0,spell-data,1,Local then common spell record lookup
 0x00431860,spell-runtime,2,Player-indexed record callback contract
-0x00431950,spell-assets,2,Spell parser record copy or construction boundary
-0x00432310,spell-assets,2,Spell parser temporary consumption boundary
+0x00431950,spell-assets,2,Exact SpellRecordView deep-copy constructor
+0x00432310,spell-assets,2,Exact VC8 spell-map unique insert specialization
 0x00432500,spell-data,2,Spell entry container clear contract
 0x004325B0,spell-data,1,First large spell CSV parser body
 0x00432D80,spell-data,2,spellcard versus storySpell wrapper for first parser

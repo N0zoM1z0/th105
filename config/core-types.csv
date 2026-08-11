@@ -17,8 +17,12 @@ SequenceRecord4,src/battle/SpellRuntime.hpp,complete,0x04,observed,0x0045C690 ta
 ShortDeque8,src/battle/SpellData.hpp,complete,0x14,observed,exact 0x00430C30 and 0x00430D90 comparisons,Five dword deque-like header with eight shorts per block
 ShapeWords,src/battle/Collision.hpp,complete,0x10,observed,exact descriptor geometry functions,Four signed descriptor words
 SpellDataOwner,src/battle/SpellData.hpp,partial,0x68,observed,0x00430C80 and 0x00430D90 target instructions,Observed prefix containing two short deques and a 32-byte indexed value table
-SpellRecordView,src/battle/SpellData.hpp,complete,0x4C,observed,spell parser and runtime target instructions,Observed fields through +0x48
+SpellRecordView,src/battle/SpellData.hpp,complete,0x4C,observed,exact 0x00431950 copy constructor and parser/runtime target instructions,Two owning String28 members and all scalar/resource fields through +0x48
 SpellSpriteWork,src/battle/SpellRuntime.hpp,complete,0x94,observed,0x0045C690 stack frame and vtable initialization,EH and ownership behavior remain unresolved
-SpellTree,src/battle/SpellData.hpp,partial,0x08,inferred,checked local and common lookup instructions,Only header and end-node pointer are modeled
+SpellTree,src/battle/SpellData.hpp,complete,0x0C,observed,exact VC8 map insert and checked iterator probes,Allocator state sentinel/end node and node count
 SpellTreeIterator,src/battle/SpellData.hpp,complete,0x08,observed,0x004317A0 checked iterator paths,Owner and node pointers
+SpellTreeInsertResult,src/battle/SpellData.hpp,complete,0x0C,observed,exact 0x00432310 VC8 map insert comparison,Owner node inserted byte and padding
+SpellTreeNode,src/battle/SpellData.hpp,complete,0x60,observed,IDA Pro 0x00431F90 allocation and exact map probes,Links signed key 0x4C value color nil flag and padding
+SpellTreeValue,src/battle/SpellData.hpp,complete,0x50,observed,exact 0x00432310 map insert comparison,Signed key followed by deep-copy SpellRecordView
+String28,src/assets/String28.hpp,complete,0x1C,observed,exact 0x00408A40 VC8 std::string append comparison,Real VC8 owning string specialization with 16-byte SSO threshold
 WorldAabb,src/battle/Collision.hpp,complete,0x10,observed,exact float geometry comparison units,Four float coordinates
