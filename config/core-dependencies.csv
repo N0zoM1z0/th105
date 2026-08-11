@@ -110,6 +110,21 @@ caller,callee,required_status,evidence
 0x0046C9E0,0x0046AC40,matching,docs/BATTLE.md collision effect
 0x0046C9E0,0x0046ACB0,matching,docs/BATTLE.md extent reset
 0x004FC3A0,0x00406710,matching,target direct call and exact related-object heading tracker comparison
+0x00492BA0,0x00402A50,library,IDA Pro direct call from Reimu object-pool reuse path
+0x004B9240,0x00402A50,library,IDA Pro direct call from Marisa object-pool reuse path
+0x004DE8E0,0x00402A50,library,IDA Pro direct call from Sakuya object-pool reuse path
+0x004F9F40,0x00402A50,library,IDA Pro direct call from Alice object-pool reuse path
+0x0051E3C0,0x00402A50,library,IDA Pro direct call from Patchouli object-pool reuse path
+0x0053A8C0,0x00402A50,library,IDA Pro direct call from Youmu object-pool reuse path
+0x00555690,0x00402A50,library,IDA Pro direct call from Remilia object-pool reuse path
+0x0056D250,0x00402A50,library,IDA Pro direct call from Yuyuko object-pool reuse path
+0x0058B3A0,0x00402A50,library,IDA Pro direct call from Yukari object-pool reuse path
+0x005ADDE0,0x00402A50,library,IDA Pro direct call from Suika object-pool reuse path
+0x005D5D60,0x00402A50,library,IDA Pro direct call from Udonge object-pool reuse path
+0x005F6B20,0x00402A50,library,IDA Pro direct call from Komachi object-pool reuse path
+0x00617420,0x00402A50,library,IDA Pro direct call from Aya object-pool reuse path
+0x00630180,0x00402A50,library,IDA Pro direct call from Iku object-pool reuse path
+0x0064A510,0x00402A50,library,IDA Pro direct call from Tenshi object-pool reuse path
 0x0046CC00,0x00439DC0,matching,docs/BATTLE.md outcome event dispatch
 0x0046CC00,0x0045AB10,matching,docs/BATTLE.md alternate descriptor quantity
 0x0046CC00,0x0045B870,implemented,docs/BATTLE.md owner counter adjustment

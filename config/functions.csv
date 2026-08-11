@@ -59,7 +59,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00402950,110,0x004029BD,FUN_00402950,,,unclassified,0.00,unknown,undefined FUN_00402950(void),false,,,,
 0x004029C0,95,0x00402A1E,FUN_004029c0,,,unclassified,0.00,unknown,undefined FUN_004029c0(void),false,,,,
 0x00402A20,46,0x00402A4D,FUN_00402a20,,,unclassified,0.00,unknown,undefined FUN_00402a20(void),false,,,,
-0x00402A50,94,0x00402AAD,FUN_00402a50,vc8_checked_list_u32_erase,runtime,decompiled,0.00,__thiscall,"void * vc8_checked_list_u32_erase(void * this, void * result, void * owner, void * node)",false,,IDA Pro complete instructions and all fifteen roster pool reuse-path callers,root,Observed VC8 checked std::list<unsigned>::erase specialization with hidden iterator result; exact VC8 STL probe required before library classification
+0x00402A50,94,0x00402AAD,FUN_00402a50,vc8_checked_list_u32_erase,runtime,library,100.00,__thiscall,"void * vc8_checked_list_u32_erase(void * this, void * result, void * owner, void * node)",false,,"scripts/compile-unit.sh scripts/probes/list_u32.cpp build/probes/list_u32.obj && python3 scripts/compare-function.py 0x00402A50 build/probes/list_u32.obj --symbol-base '?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z' reports exact 94-byte match",root,Verified VC8 SP1 checked std::list<unsigned>::erase specialization with hidden iterator result; direct reuse-path caller in every roster object pool
 0x00402AB0,347,0x00402C0D,FUN_00402ab0,,,unclassified,0.00,unknown,undefined FUN_00402ab0(void),false,,,,
 0x00402C10,51,0x00402C42,FUN_00402c10,,,unclassified,0.00,unknown,undefined FUN_00402c10(void),false,,,,
 0x00402C50,165,0x00402CF4,FUN_00402c50,,,unclassified,0.00,unknown,undefined FUN_00402c50(void),false,,,,

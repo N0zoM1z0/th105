@@ -105,6 +105,14 @@ Use the repository's VC8 declarations, not a modern STL mental model.
 - A VC8 `deque` uses a map, map size, offset, and size. Checked access can introduce repeated map/block arithmetic and library calls.
 - `string`, container bounds checks, and allocator code can be inlined or reshaped by LTCG.
 
+An explicit VC8 template instantiation can prove that an apparently authored
+container helper is library code. `template class std::list<unsigned>;` emits
+both `erase` overloads; selecting the fully decorated single-iterator overload
+reproduces `0x00402A50` exactly at 94/94 bytes, including the hidden iterator
+result, checked owner/sentinel validation, unlink/free sequence, and count
+decrement. Keep the decorated overload in the evidence command because the
+short name `erase` is intentionally ambiguous in the probe object.
+
 Confirmed checked-string case: `0x004463E0` uses a 28-byte local made from a
 four-byte allocator state followed by VC8's 24-byte SSO string. Its inline
 `c_str()` first loads the heap-pointer union member, then overwrites the result

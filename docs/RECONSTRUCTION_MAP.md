@@ -154,6 +154,7 @@ shared command layer [source-ready]
     └── Tenshi 0x0064AB80 spell/skill groups [mapped]
 
 shared owned-object lifecycle [contracted]
+├── 0x00402A50 checked list erase [library exact, all 15 pool reuse paths]
 ├── 0x004454E0 four-byte VC8 deque push_back [library, exact]
 ├── 0x00406530/0x004065A0 shared float sine/cosine table lookups [source, compiler-shaping edge]
 ├── 0x00406710 atan2 radians-to-degrees helper [exact, 339 calls]
