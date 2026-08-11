@@ -9,6 +9,7 @@
 
 
 class ReimuObject;
+class CharacterObject;
 class MarisaObject;
 class AliceObject;
 class PatchouliObject;
@@ -52,6 +53,8 @@ struct CharacterObjectPoolStorageT {
     CheckedUnsignedList12 free_slots_24;
     unsigned generation_counter_30;
     CriticalSectionWrapper lock_34;
+
+    void release_handle(unsigned handle_token);
 };
 
 typedef CharacterObjectPoolStorageT<RosterOwnedObjectPrefix338>
@@ -63,6 +66,17 @@ typedef char CheckCharacterObjectPoolGenerationCounterOffset[
     offsetof(CharacterObjectPoolStorage, generation_counter_30) == 0x30 ? 1 : -1];
 typedef char CheckCharacterObjectPoolLockOffset[
     offsetof(CharacterObjectPoolStorage, lock_34) == 0x34 ? 1 : -1];
+
+struct RosterObjectManagerBase {
+    void *manager_vtable_00;
+    CharacterObjectPoolStorage pool_04;
+    std::list<CharacterObject *> linked_objects_54;
+
+    void release_all_tracked_objects();
+};
+
+typedef char CheckRosterObjectManagerBaseSize[
+    sizeof(RosterObjectManagerBase) == 0x60 ? 1 : -1];
 
 #define TH105_DECLARE_ROSTER_OBJECT_MANAGER(FighterName)                      \
     typedef CharacterObjectPoolStorageT< ::FighterName##Object>               \

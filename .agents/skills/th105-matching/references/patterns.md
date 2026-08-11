@@ -378,6 +378,13 @@ Reject expressions such as `parent->children.push_back(parent = object)` when
 the receiver and argument mutation are unsequenced in C++03; a byte improvement
 does not justify undefined or ambiguous source semantics.
 
+Before comparing, assert `size == span_end - address + 1` for contiguous
+functions. The roster release helper carried a stale 112-byte Ghidra body size
+alongside an IDA-confirmed inclusive end that implied 122 bytes. The missing
+ten bytes were the final checked-list node-free loop and epilogue, so a
+prefix-only comparison would have overstated confidence. Resolve boundary
+conflicts from exact instructions and the neighboring function before tuning.
+
 ## 10. Measurement and evidence
 
 Use the strictest truthful status:

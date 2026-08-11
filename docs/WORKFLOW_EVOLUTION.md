@@ -135,6 +135,15 @@ C++03 evaluation-order ambiguity and was rejected.  The safe source keeps the
 same parent/deque operations with only a standalone/LTCG scheduling delta, and
 the audited manifest fans it out to fourteen non-Sakuya managers.
 
+The work-packet boundary gate also prevented a false partial comparison at
+`0x004B9540`: its stored `size=112` disagreed with `span_end=0x004B95B9`.
+Fresh IDA instructions prove a contiguous 122-byte body through the final
+`retn`, with the next function at `0x004B95C0`. Correcting the boundary before
+adding a match unit exposed the full result: the genuine checked-list release
+and clear source emits 122 bytes and matches 120, differing only in the token
+load/push register. A comparator run against the stale 112 bytes would have
+silently omitted the node-freeing tail.
+
 ## Operational loop
 
 ```bash

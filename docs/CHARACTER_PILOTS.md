@@ -217,9 +217,13 @@ boundary rather than merely two unrelated raw pointers. It stores
 the owning Sakuya pointer at `+0x64` and calls `0x004DEC70` with target count
 `256`. That function acquires and tracks objects until the unsigned target is
 reached, then `0x004B9540` returns every handle token to the pool and frees only
-the tracking nodes. It is therefore a reusable-pool preallocation pass, not a
-permanent 256-entry active list. The manager-base view is 0x60 bytes: pool at
-`+0x04`, tracking list at `+0x54`; the outer owner remains at `+0x64`.
+the tracking nodes. Its stale Ghidra size was corrected from 112 to the IDA-
+verified contiguous 122 bytes ending at `retn 0x004B95B9`. A genuine checked
+`std::list<CharacterObject *>` source reproduces 120/122 bytes; only the token
+load/push register differs (`EAX/50` target versus `EDX/52` standalone). It is
+therefore a reusable-pool preallocation pass, not a permanent 256-entry active
+list. The manager-base view is 0x60 bytes: pool at `+0x04`, tracking list at
+`+0x54`; the outer owner remains at `+0x64`.
 
 The fresh branch of `0x004DE8E0` allocates `0x388` bytes, installs SakuyaObject
 vtable `0x006B089C`, and initializes the observed parent/reference fields. The

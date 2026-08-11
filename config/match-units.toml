@@ -121,3 +121,18 @@ rel32_targets = [
   "??_U@YAPAXI@Z=0x00664F9A",
   "_memcpy=0x0067C170",
 ]
+
+[units.roster-object-release]
+kind = "probe"
+source = "src/characters/RosterObjectRelease.cpp"
+object = "build/match-units/RosterObjectRelease.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Shared fifteen-roster tracked-object release and checked-list clear lifecycle."
+
+[[units.roster-object-release.functions]]
+address = "0x004B9540"
+symbol_base = "?release_all_tracked_objects@RosterObjectManagerBase@th105@@QAEXXZ"
+rel32_targets = [
+  "?release_handle@?$CharacterObjectPoolStorageT@URosterOwnedObjectPrefix338@th105@@@th105@@QAEXI@Z=0x004357E0",
+]
