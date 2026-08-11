@@ -121,6 +121,9 @@ __ehhandler$?_Insert_n@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlo
 __ehhandler$?_Assign_n@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@IAEXIABUFixedSlotEnvelope@th105@@@Z,0x006A4E18,8b5424088d42988b,0x0,target VC8 fixed-slot vector count-assignment EH handler entry bytes,address
 ??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ,0x0051D0D0,53568bf1,0x0,target direct native deque-short destructor/tidy entry used by fixed-slot vector insertion,address
 _fixed_slot_vector_assign_deque_dtor_thunk,0x00445370,e95b7d0d,0x0,target verified jump thunk to 0x0051D0D0 selected by fixed-slot vector count assignment,address
+__ehhandler$?configure_session_input_slots@BattleInputSlotConfigView@th105@@QAEXCC@Z,0x006A4E48,8b5424088d42988b,0x0,target VC8 session input-slot configuration EH handler entry bytes,address
+??0?$deque@FV?$allocator@F@std@@@std@@QAE@XZ,0x00427BB0,8bc133c989480489,0x0,target native deque-short default constructor entry used by fixed-slot default-envelope construction,address
+__ehhandler$?load_battle_input_recording@BattleInputRecordingView@th105@@QAE_NPBD@Z,0x006A4E8B,8b5424088d826cff,0x0,target VC8 battle input-record loader EH handler entry bytes,address
 __TI2?AVbad_alloc@std@@,0x006CCFE0,0000000070164000,0x0,target VC8 bad_alloc ThrowInfo address and leading bytes verified at 0x00427662,address
 ??_7bad_alloc@std@@6B@,0x006AC5A0,8016400031b76700,0x0,target VC8 bad_alloc vtable address and leading slots verified at 0x0042766C,address
 __real@406fe00000000000,0x006AC840,0000000000e06f40,0x0,target double 255.0 used by scenario alpha calculation,literal

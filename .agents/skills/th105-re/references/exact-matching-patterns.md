@@ -1108,3 +1108,15 @@ truthfully. Record both destinations with target bytes in
 function's `dir32_targets`. Never patch the object or accept an unchecked raw
 address. This made `0x0042B4F0` exact at 218/218 while preserving
 `0x0042B1D0` as a genuine 786-byte register-schedule mismatch at `+0x43`.
+
+### P42. Preserve serialized-width conversions separately for each owning container
+
+`0x0042A3F0` reads three serialized short streams into native
+`std::deque<short>` members. The first two paths require an explicit
+`unsigned short` to `short` conversion, which gives VC8 the target four-byte
+temporary and `movzx` schedule. Reusing that source shape for the third deque
+adds nine bytes. Passing a `short const&` view of the same verified 16-bit read
+storage instead reproduces the target direct stack-address append and makes the
+complete deserializer exact at 365/365. Treat signedness and serialized width
+as per-use codegen evidence; identical wire widths do not guarantee identical
+temporary construction in each owning-container path.

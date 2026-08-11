@@ -37,6 +37,19 @@ boundaries for the next breadth layer. This is the expected compounding effect:
 new structure lowers exact cost, and exact relocations make the following map
 more precise.
 
+A later roster-policy wave shows how to handle huge functions without turning
+breadth work into speculative source. One priority-one Aya root at `0x00611D80`
+was resolved through its fighter vtable `+0x58` slot. Reading the same slot in
+all fifteen vtables exposed four overrides (Reimu, Marisa, Alice, Aya) and one
+default body shared by the other eleven fighters. All five are approximately
+16 KB, use the same five direct callees, and read/write the same fighter policy
+fields. The coordinator recorded a single typed 0x770 view, five signatures,
+the vtable ownership matrix, and the full direct dependency set, but left the
+functions `identified` because their dozens of action cases are not yet source
+implementations. This is the preferred monolith split: map ownership, shared
+layout, cases, and dependencies first; factor a common skeleton next; only then
+fan out exact tuning.
+
 ## Coordinator loop
 
 1. Select one subsystem and its existing core lanes. Verify the target and run

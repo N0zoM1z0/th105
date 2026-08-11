@@ -575,3 +575,28 @@ caller,callee,required_status,evidence
 0x0064AB80,0x004631E0,implemented,IDA Pro Tenshi action-transition call cluster
 0x0064AB80,0x00493C90,implemented,IDA Pro Tenshi front-record selector call
 0x0064C090,0x00433CC0,matching,Exact two relocated effect-emitter calls in standalone object comparison
+0x0048CBA0,0x00406710,matching,IDA Pro complete Reimu CPU action-policy direct-callee inventory
+0x0048CBA0,0x00406880,matching,IDA Pro complete Reimu CPU action-policy direct-callee inventory
+0x0048CBA0,0x004069A0,matching,IDA Pro complete Reimu CPU action-policy direct-callee inventory
+0x0048CBA0,0x0045B9E0,implemented,IDA Pro complete Reimu CPU action-policy direct-callee inventory
+0x0048CBA0,0x0067B8E0,library,IDA Pro complete Reimu CPU action-policy direct-callee inventory
+0x004B38A0,0x00406710,matching,IDA Pro complete Marisa CPU action-policy direct-callee inventory
+0x004B38A0,0x00406880,matching,IDA Pro complete Marisa CPU action-policy direct-callee inventory
+0x004B38A0,0x004069A0,matching,IDA Pro complete Marisa CPU action-policy direct-callee inventory
+0x004B38A0,0x0045B9E0,implemented,IDA Pro complete Marisa CPU action-policy direct-callee inventory
+0x004B38A0,0x0067B8E0,library,IDA Pro complete Marisa CPU action-policy direct-callee inventory
+0x004F4650,0x00406710,matching,IDA Pro complete Alice CPU action-policy direct-callee inventory
+0x004F4650,0x00406880,matching,IDA Pro complete Alice CPU action-policy direct-callee inventory
+0x004F4650,0x004069A0,matching,IDA Pro complete Alice CPU action-policy direct-callee inventory
+0x004F4650,0x0045B9E0,implemented,IDA Pro complete Alice CPU action-policy direct-callee inventory
+0x004F4650,0x0067B8E0,library,IDA Pro complete Alice CPU action-policy direct-callee inventory
+0x005CFE00,0x00406710,matching,IDA Pro complete shared CPU action-policy direct-callee inventory
+0x005CFE00,0x00406880,matching,IDA Pro complete shared CPU action-policy direct-callee inventory
+0x005CFE00,0x004069A0,matching,IDA Pro complete shared CPU action-policy direct-callee inventory
+0x005CFE00,0x0045B9E0,implemented,IDA Pro complete shared CPU action-policy direct-callee inventory
+0x005CFE00,0x0067B8E0,library,IDA Pro complete shared CPU action-policy direct-callee inventory
+0x00611D80,0x00406710,matching,IDA Pro complete Aya CPU action-policy direct-callee inventory
+0x00611D80,0x00406880,matching,IDA Pro complete Aya CPU action-policy direct-callee inventory
+0x00611D80,0x004069A0,matching,IDA Pro complete Aya CPU action-policy direct-callee inventory
+0x00611D80,0x0045B9E0,implemented,IDA Pro complete Aya CPU action-policy direct-callee inventory
+0x00611D80,0x0067B8E0,library,IDA Pro complete Aya CPU action-policy direct-callee inventory

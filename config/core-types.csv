@@ -67,3 +67,4 @@ CheckedPointerVector16,src/characters/RosterOwnedObjects.hpp,complete,0x10,obser
 CheckedUnsignedVector16,src/characters/RosterOwnedObjects.hpp,complete,0x10,observed,0x0040D760 target instructions,VC8 checked unsigned-vector proxy begin end and capacity layout
 CheckedUnsignedList12,src/characters/RosterOwnedObjects.hpp,complete,0x0C,observed,0x00402A50 target instructions,VC8 checked unsigned-list proxy sentinel and count layout
 CharacterObjectPoolStorage,src/characters/RosterOwnedObjects.hpp,complete,0x50,observed,all fifteen normalized 130-byte pool constructors and 519-byte pool acquisition bodies,Typed slots generations free-slot list generation counter and lock wrapper with observed offsets and construction order
+CpuActionPolicyView,src/characters/CpuActionPolicies.hpp,partial,0x770,observed,IDA Pro complete five-body CPU action-policy vslot matrix and field-access inventory,Observed policy-facing fighter view through the six short counters ending at +0x76E

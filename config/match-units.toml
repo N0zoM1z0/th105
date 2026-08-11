@@ -928,6 +928,72 @@ profile = "vc8-sp1-probe-o2"
 enable_gs = false
 notes = "Exact 0x50-byte fixed battle-setup envelope assignment with three native deque<short> members."
 
+[units.fixed-slot-envelope-deserialize]
+kind = "probe"
+source = "src/battle/FixedSlotEnvelopeDeserialize.cpp"
+object = "build/match-units/FixedSlotEnvelopeDeserialize.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Exact binary reader deserialization for one fixed 0x50-byte envelope and its three deque<short> payloads."
+
+[[units.fixed-slot-envelope-deserialize.functions]]
+address = "0x0042A3F0"
+symbol_base = "deserialize_fixed_slot_envelope"
+rel32_targets = [
+  "push_back=0x00429B90",
+  "_Tidy=0x0051D0D0",
+]
+
+[units.battle-input-slot-config]
+kind = "probe"
+source = "src/battle/BattleInputSlotConfig.cpp"
+object = "build/match-units/BattleInputSlotConfig.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Exact signed-count session slot initialization over the native 0x50-byte fixed-slot vector."
+
+[[units.battle-input-slot-config.functions]]
+address = "0x0042B5D0"
+symbol_base = "configure_session_input_slots"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0067B884",
+  "erase=0x0042AFD0",
+  "??_L@YGXPAXIHP6EX0@Z1@Z=0x0067BA4C",
+  "_Assign_n=0x0042B4F0",
+  "_Tidy=0x0051D0D0",
+  "??_M@YGXPAXIHP6EX0@Z@Z=0x0067B9E9",
+  "@__security_check_cookie@4=0x0067B465",
+]
+dir32_targets = [
+  "__ehhandler$?configure_session_input_slots@BattleInputSlotConfigView@th105@@QAEXCC@Z=__ehhandler$?configure_session_input_slots@BattleInputSlotConfigView@th105@@QAEXCC@Z",
+  "___security_cookie=___security_cookie",
+  "??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=_fixed_slot_vector_assign_deque_dtor_thunk",
+  "??0?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??0?$deque@FV?$allocator@F@std@@@std@@QAE@XZ",
+]
+
+[units.battle-input-recording]
+kind = "probe"
+source = "src/battle/BattleInputRecording.cpp"
+object = "build/match-units/BattleInputRecording.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete battle input-record loader; current delta is VC8 String28 entry/register shaping, not missing ownership or control flow."
+
+[[units.battle-input-recording.functions]]
+address = "0x0042B6C0"
+symbol_base = "load_battle_input_recording"
+rel32_targets = [
+  "append=0x00408950",
+  "assign=0x004021C0",
+  "battle_input_recording_format_marker=0x00439660",
+  "clear=0x0042B120",
+  "_Assign_n=0x0042B4F0",
+  "_Tidy=0x0051D0D0",
+]
+dir32_targets = [
+  "__ehhandler$?load_battle_input_recording@BattleInputRecordingView@th105@@QAE_NPBD@Z=__ehhandler$?load_battle_input_recording@BattleInputRecordingView@th105@@QAE_NPBD@Z",
+]
+
 [[units.fixed-slot-envelope.functions]]
 address = "0x0042AA00"
 symbol_base = "??4FixedSlotEnvelopeView@th105@@QAEAAU01@ABU01@@Z"

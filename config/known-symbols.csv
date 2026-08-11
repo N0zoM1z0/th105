@@ -502,3 +502,8 @@ address,name,module,confidence,evidence
 0x0045E3A0,AttackObject_ctor,battle,observed,IDA Pro RTTI base offsets and exact 193-byte VC8 constructor comparison
 0x00464110,vc8_vector_pointer_push_back,runtime,observed,IDA Pro complete checked pointer-vector append body and all roster pool fresh-slot callers
 0x004B8FB0,vc8_vector_pointer_at,runtime,observed,IDA Pro checked pointer-vector access body and all roster pool slot-resolution callers
+0x0048CBA0,Reimu_update_cpu_action_policy,characters,inferred,IDA Pro Reimu fighter vtable +0x58 xref and randomized action-state control writes documented in CHARACTER_PILOTS
+0x004B38A0,Marisa_update_cpu_action_policy,characters,inferred,IDA Pro Marisa fighter vtable +0x58 xref and randomized action-state control writes documented in CHARACTER_PILOTS
+0x004F4650,Alice_update_cpu_action_policy,characters,inferred,IDA Pro Alice fighter vtable +0x58 xref and randomized action-state control writes documented in CHARACTER_PILOTS
+0x005CFE00,Fighter_update_default_cpu_action_policy,characters,inferred,IDA Pro shared fighter vtable +0x58 xrefs for eleven roster members and randomized action-state control writes
+0x00611D80,Aya_update_cpu_action_policy,characters,inferred,IDA Pro Aya fighter vtable +0x58 xref complete disassembly and randomized action-state control writes

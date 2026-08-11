@@ -350,6 +350,20 @@ native 786-byte `_Insert_n` is a clean mismatch at `+0x43`, not a relocation
 blocker. Registering the separately verified `bad_alloc` ThrowInfo and vtable
 anchors also closes native `std::_Allocate<FixedSlotEnvelope>` at 89/89.
 
+The next iteration validated both halves of the breadth/exact loop at once.
+LeanToken first retrieved the roster and field contracts, while IDA vtable
+xrefs expanded one 16,032-byte Aya root into a five-body CPU action-policy
+family covering roughly 80 KB: four character overrides plus one default body
+shared by eleven fighters. The family now has one common 0x770-byte view, five
+ledger signatures, 25 direct dependency edges, and explicit declarations,
+without fake gameplay bodies. In parallel, three exact packets consumed the
+fixed-slot ownership layer: the 365-byte envelope deserializer and 238-byte
+session slot initializer are exact, while the complete 848-byte recording
+loader is durably registered with its first genuine compiler-shaping mismatch.
+This confirms the intended cadence: use repository retrieval plus IDA to close
+a large semantic family, then let small strict packets retire exact leaves and
+feed corrected relocation facts back into the next breadth wave.
+
 ## Operational loop
 
 ```bash

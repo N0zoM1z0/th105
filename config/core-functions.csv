@@ -16,6 +16,8 @@ address,lane,priority,notes
 0x00406680,geometry,3,Exact orientation cosine lookup dependency
 0x00406710,character-owned-object,1,Exact shared atan2-to-degrees dependency with 339 direct calls
 0x00406780,geometry,2,Orientation table initialization contract still missing
+0x00406880,character-command,3,Exact MT19937 source used by every roster CPU action-policy body
+0x004069A0,character-command,3,Exact bounded random selector used by every roster CPU action-policy body
 0x00406C30,spell-assets,2,Optional record resource preparation boundary
 0x00408A40,spell-assets,3,Exact VC8 std::string substring append specialization
 0x00408B40,spell-assets,3,Opaque parser cleanup or ownership helper
@@ -257,6 +259,7 @@ address,lane,priority,notes
 0x00470940,battle-controller,1,Seven-state per-frame battle dispatcher
 0x004712B0,battle-controller,2,Post-sequence update reached by exact round resolution
 0x00471470,battle-controller,2,Roster state refresh reached by exact roster preparation
+0x0048CBA0,character-command,1,Reimu randomized CPU action-policy override at fighter vslot +0x58
 0x00491480,character-command,1,Reimu character-specific action-change root
 0x004927D0,character-owned-object,1,Shared CharacterObject construction and common-tail initialization
 0x00492B10,character-owned-object,1,Reimu typed handle-pool constructor
@@ -279,6 +282,7 @@ address,lane,priority,notes
 0x00493B00,character-command,2,Exact counted action-214 gate and direction-angle assignment
 0x00493C90,character-command,1,Shared seven-way front-record action gate
 0x00494050,character-command,1,Reimu normal skill and spell input dispatcher root
+0x004B38A0,character-command,1,Marisa randomized CPU action-policy override at fighter vslot +0x58
 0x004B81F0,character-command,1,Marisa character-specific action-change root
 0x004B8FB0,character-owned-object,1,Shared checked object-slot resolver
 0x004B91B0,character-owned-object,1,Marisa typed handle-pool constructor
@@ -302,6 +306,7 @@ address,lane,priority,notes
 0x004DED80,character-owned-object,1,Sakuya owned-object spawn path
 0x004DEEF0,character-owned-object,2,Sakuya fighter constructor
 0x004DEF70,character-command,1,Sakuya normal skill and spell input dispatcher root
+0x004F4650,character-command,1,Alice randomized CPU action-policy override at fighter vslot +0x58
 0x004F9320,character-command,1,Alice character-specific action-change root
 0x004F9EB0,character-owned-object,1,Alice typed handle-pool constructor
 0x004F9F40,character-owned-object,1,Alice object-pool acquire semantics with 0x38C allocation trait
@@ -395,6 +400,7 @@ address,lane,priority,notes
 0x005AE280,character-owned-object,1,Suika owned-object spawn contract
 0x005AE470,character-command,1,Suika normal skill and spell input dispatcher root
 0x005BEEE0,character-command,2,Suika vtable +0x60 event bridge root
+0x005CFE00,character-command,1,Default randomized CPU action policy shared by eleven roster fighters
 0x005D3EA0,character-command,2,Udonge front-sequence and action progression root
 0x005D4610,character-command,1,Udonge character-specific action-change root
 0x005D5CD0,character-owned-object,1,Udonge typed handle-pool constructor
@@ -419,7 +425,7 @@ address,lane,priority,notes
 0x005F6FA0,character-owned-object,1,Komachi owned-object spawn contract
 0x005F7190,character-command,1,Komachi normal skill and spell input dispatcher root
 0x006013C0,character-command,2,Komachi event-code action bridge
-0x00611D80,character-command,1,Aya large action-decision and command-state root
+0x00611D80,character-command,1,Aya randomized CPU action-policy override at fighter vslot +0x58
 0x00615EA0,character-command,2,Aya front-sequence action progression root
 0x006166A0,character-command,1,Aya character-specific action-change root
 0x00617390,character-owned-object,1,Aya typed handle-pool constructor
@@ -457,3 +463,4 @@ address,lane,priority,notes
 0x0064AB80,character-command,1,Tenshi normal skill and spell input dispatcher root
 0x0064C090,character-command,1,Shared roster-owned object owner-gated repeated effect-emission exact source
 0x00658830,character-command,2,Tenshi event-code action bridge
+0x0067B8E0,character-command,3,Verified VC8 float-to-integer runtime helper used by every roster CPU action-policy body

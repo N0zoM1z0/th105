@@ -390,6 +390,48 @@ Its two modes accept owner actions `50..149` or `71..149`, then emit effect
 codes `200` and `201` the requested positive number of times from the object's
 current position and facing.
 
+## CPU action-policy vslot family
+
+The fighter primary vtable slot `+0x58` is a second roster-wide command
+boundary, separate from the normal skill/spell input dispatcher at `+0x50`.
+IDA data xrefs prove four character overrides and one default body shared by
+the other eleven fighters:
+
+| Policy body | Target span | Vtable owners | IDA switch cases | Random rolls / sequence lookups |
+| --- | ---: | --- | ---: | ---: |
+| `0x0048CBA0` | 15,999 | Reimu | 56 | 114 / 25 |
+| `0x004B38A0` | 16,229 | Marisa | 71 | 114 / 27 |
+| `0x004F4650` | 16,354 | Alice | 85 | 113 / 20 |
+| `0x005CFE00` | 15,910 | Sakuya, Patchouli, Youmu, Remilia, Yuyuko, Yukari, Suika, Udonge, Komachi, Iku, Tenshi | 64 | 105 / 25 |
+| `0x00611D80` | 16,032 | Aya | 64 | 107 / 25 |
+
+The ownership matrix above is a target fact: each entry is read directly from
+the fighter vtable whose `+0x3C` action-change and `+0x50` input-dispatch slots
+are already mapped. The CPU-policy terminology is an inference supported by
+the bodies, not original debug information. Every body reads the paired
+fighter at `+0x170`, computes absolute X/Y separation from `+0xEC/+0xF0`,
+switches on action `+0x13C`, repeatedly calls the exact random helpers, reads
+the checked front sequence at `+0x55C`, and writes the control block
+`+0x6B4..+0x6D0`, command flags `+0x724/+0x728`, and policy counters
+`+0x764..+0x76E`.
+
+All five bodies have the same complete direct-callee set:
+`mt19937_next_u32`, `selector_random_roll`, `atan2_degrees`, the checked
+sequence accessor `0x0045B9E0`, and VC8 `_ftol2_sse`. The shared prefix clears
+`+0x724/+0x728` and `+0x6BC..+0x6D0`, decrements `+0x768`, refreshes the
+random word at `+0x76E`, and returns immediately when the paired fighter's
+short `+0x174` is non-positive. These facts are captured as declarations and
+offset assertions in `src/characters/CpuActionPolicies.hpp`; no placeholder
+function body is emitted.
+
+The caller-side control-mode dispatcher at `0x00462E20` supplies the vslot
+meaning boundary: control byte `+0x72C == 2` selects vslot `+0x5C`, value `3`
+selects a separate shared path, and other values select this `+0x58` policy.
+The exact human/CPU/replay labels for every numeric mode remain unresolved.
+Later source work should first factor the common 64-case skeleton, then layer
+Reimu/Marisa/Alice/Aya traits; attempting five unrelated 16-KB functions would
+discard the strongest recovered structure.
+
 The Sakuya manager's raw primary-vtable slot `+0x04` is `0x004DED80`, a complete object-spawn
 boundary. It obtains a new Sakuya object from the manager base at `+0x04`,
 copies owner state into object fields `+0x130`, `+0x160`, `+0x168`, and
