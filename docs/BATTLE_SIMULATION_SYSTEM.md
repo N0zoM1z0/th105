@@ -186,7 +186,9 @@ original class ownership.
 
 The paired `0x0042AAB0/0x0042ABF0` setup transfers now have a complete payload
 contract: each stored setup is 0x3C bytes inside a 0x50-stride envelope, with
-two 0x14 side payloads and token/tail metadata. Their authored save/load bodies
+two 0x14 `std::deque<short>` payloads. The envelope also owns a third deque at
+`+0x3C`; the exact 297/297 native VC8 assignment at `0x0042A7B0` replaced the
+earlier opaque side-payload hypothesis. Their authored save/load bodies
 emit 288/305 and 292/332 bytes with clean relocations, while the shared checked
 slot selector `0x004275E0` is exact at 60/60. Their remaining shared blocker is
 the original fixed-slot container/TU register lifetime, so the layout is
@@ -197,6 +199,14 @@ the earlier free `__stdcall` hypothesis. Its shared `ScenarioTransitionView`
 source is exact for all 127 authoritative bytes; both `0x00470500` and
 `0x00470780` now pass the phase block in ECX and retain their established
 comparison results.
+
+The adjacent event-row parser `0x004591D0` now has complete authored source.
+It resolves an owning event-name string through `0x0043AC30`, clears the output
+short deque and the two internal integer lists, selects one of four CSV columns,
+and mirrors the newly read integer list. Its strict object is 538 bytes against
+the 516-byte ledger span, with every relocation resolved; the first delta at
+`+0x10` is the VC8 `/GS` frame size, while IDA's 543-byte grouping remains
+non-authoritative.
 
 This fan-out is the concrete validation for the breadth-first workflow: one
 controller map produced eight authored exact functions (`0x0046FE80`,
@@ -256,7 +266,9 @@ register shaping explicitly isolated from semantic completeness.
    container layout is shared; retain the explicit register-allocation blocker.
 3. Preserve the already source-complete collision/hit algorithms while adding
    only direct dependencies that unlock a controller or spell-runtime edge.
-4. Fan out exact work by object boundary, then feed recovered types and exact
+4. Use the complete `0x004591D0` source and decompiled `0x0043AC30` resolver as
+   the next scenario-loader exact packets; do not rediscover their behavior.
+5. Fan out exact work by object boundary, then feed recovered types and exact
    helpers back into the next one-hop breadth wave.
 
 The next exact work should favor a type or helper that unlocks several of these

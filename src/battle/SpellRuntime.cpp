@@ -5,6 +5,8 @@
 
 namespace th105 {
 
+extern "C" void __cdecl _invalid_parameter_noinfo(void);
+
 bool Fighter::is_front_sequence_entry_ready_55a(signed char index)
 {
     if (state_55a <= index) {
@@ -19,6 +21,49 @@ bool Fighter::is_front_sequence_entry_ready_55a(signed char index)
         : sequence_controller_55c.entry_at_checked(index)->field_02 -
               (state_4b8 == 2);
     return state_55a >= required;
+}
+
+void Fighter::advance_fighter_sequence_55c()
+{
+    if (sequence_controller_55c.live_count_10 > 0) {
+        FighterSequenceController *controller = &sequence_controller_55c;
+        const unsigned head = controller->head_0c;
+        if (head > head + controller->live_count_10) {
+            _invalid_parameter_noinfo();
+        }
+        if (head >= controller->live_count_10 + controller->head_0c) {
+            _invalid_parameter_noinfo();
+        }
+
+        if (controller->live_count_10 != 0) {
+            SpellSpriteWork *sprite =
+                &controller->slots_04[controller->head_0c]->sprite_04;
+            sprite->vtable_00 = reinterpret_cast<void *>(0x006AC624);
+            ++controller->head_0c;
+            if (controller->slot_capacity_08 <= controller->head_0c) {
+                controller->head_0c = 0;
+            }
+            if (--controller->live_count_10 == 0) {
+                controller->head_0c = 0;
+            }
+        }
+
+        int live_count = controller->live_count_10;
+        state_55a = static_cast<signed char>(live_count);
+        if (state_55a == 0) {
+            return;
+        }
+
+        int record_id = controller->entry_at_checked(0)->record_id_00;
+        SpellDataOwner *lookup =
+            reinterpret_cast<SpellDataOwner *>(spell_lookup_4f0);
+        if (lookup->find_local_then_common_spell_record(record_id)
+                ->selector_1c == -1) {
+            maximum_176 = lookup->find_local_then_common_spell_record(
+                static_cast<short>(controller->entry_at_checked(0)
+                    ->record_id_00))->value_1e.value;
+        }
+    }
 }
 
 unsigned char Fighter::consume_spell_sequence_entry()

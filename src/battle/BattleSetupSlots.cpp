@@ -1,15 +1,13 @@
 #include "BattleController.hpp"
 #include "GameMode.hpp"
 
+#include <deque>
+
 namespace th105 {
 
 extern "C" void __cdecl _invalid_parameter_noinfo();
 
-struct SidePayloadView {
-    unsigned char storage_00[0x14];
-
-    SidePayloadView *copy_from_42a7b0(const SidePayloadView &source);
-};
+typedef std::deque<short> SidePayloadView;
 
 struct FixedBattleSetupSlotView {
     unsigned char side_value_lo_00[2];
@@ -27,7 +25,7 @@ struct FixedBattleSetupSlotView {
 
 struct FixedSlotEnvelopeView {
     FixedBattleSetupSlotView setup_00;
-    unsigned char private_tail_3c[0x14];
+    SidePayloadView private_payload_3c;
 };
 
 struct SetupTokenInput {
@@ -129,7 +127,7 @@ void BattleInputGate::save_battle_setup_slot(
          payload_offset += 0x14, ++side, ++source) {
         saved->side_value_lo_00[side] = source->value_00;
         saved->side_byte_05_02[side] = source->byte_05;
-        saved->payload_08[side].copy_from_42a7b0(source->payload_08);
+        saved->payload_08[side] = source->payload_08;
         saved->side_byte_04_06[side] = source->byte_04;
         saved->side_byte_06_04[side] = source->byte_06;
         if (source->token_1c != 0) {
@@ -182,7 +180,7 @@ void BattleInputGate::load_battle_setup_slot(
         destination->value_00 =
             static_cast<signed char>(saved->side_value_lo_00[side]);
         destination->byte_05 = saved->side_byte_05_02[side];
-        destination->payload_08.copy_from_42a7b0(saved->payload_08[side]);
+        destination->payload_08 = saved->payload_08[side];
         destination->byte_04 = saved->side_byte_04_06[side];
         destination->byte_06 = saved->side_byte_06_04[side];
         if ((owner->saved_token_mask_f0 & (1 << side)) != 0) {

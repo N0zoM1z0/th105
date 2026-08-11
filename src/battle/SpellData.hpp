@@ -90,6 +90,7 @@ struct SpellTree {
         SpellTreeIterator *result,
         SpellTreeIterator begin,
         SpellTreeIterator end);
+    void destroy_subtree(SpellTreeNode *node);
 };
 
 typedef char SpellTreeNode_size_must_be_0x60[
@@ -158,8 +159,6 @@ typedef char ShortTreeNode_size_must_be_0x10[
 typedef char ShortTree_size_must_be_0x0c[
     sizeof(ShortTree) == 0x0c ? 1 : -1];
 
-void __stdcall destroy_spell_tree_subtree(SpellTreeNode *node);
-
 struct ShortDeque8 {
     unsigned unknown_00;
     short **blocks_04;
@@ -168,6 +167,8 @@ struct ShortDeque8 {
     unsigned live_count_10;
 
     __declspec(noinline) short *front_checked();
+    short *push_back(const short *value);
+    void clear_storage();
 };
 
 struct SpellDataOwner {

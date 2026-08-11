@@ -269,6 +269,19 @@ for breadth-first plus exact fan-out: complete subsystem behavior may land as
 `implemented`, precise compiler deltas stay queued, and independent leaves can
 still become `matching` without holding the breadth wave hostage.
 
+The following mixed wave exposed a second, equally important payoff: exact
+workers can correct breadth contracts, not merely close byte deltas. A native
+VC8 `std::deque<short>::operator=` probe matched `0x0042A7B0` at 297/297 and
+proved that all three 0x14-byte fixed-setup payloads are real deques, replacing
+an opaque authored type. That corrected layout fed back into both setup
+transfers. In parallel, resource-owner cleanup `0x00432500` became exact at
+171/171 and fixed the `0x0042D240` member ABI, while breadth source completed
+the 516-byte scenario-row parser `0x004591D0` and 198-byte spell advance
+`0x0045BA40` with resolved relocation graphs. The practical rule is now clear:
+fan out exact packets early enough to challenge inferred types, merge those
+corrections centrally, and immediately spend the improved contracts on the
+next breadth layer.
+
 ## Operational loop
 
 ```bash

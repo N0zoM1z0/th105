@@ -24,10 +24,22 @@ caller,callee,required_status,evidence
 0x004325B0,0x00431950,matching,Exact SpellRecordView deep-copy dependency
 0x004325B0,0x00432310,library,Exact VC8 SpellTree unique insertion specialization
 0x004325B0,0x00431430,library,Exact VC8 checked SpellTree iterator predecessor specialization
+0x004591D0,0x0040EE50,decompiled,Complete scenario row integer-field consumption
+0x004591D0,0x0040EF50,decompiled,Complete scenario event-name owning string consumption
+0x004591D0,0x004020B0,identified,Exact source String28 slice copy for owning resolver argument
+0x004591D0,0x0043AC30,decompiled,Complete scenario event-name lookup dependency
+0x004591D0,0x0040F050,decompiled,Complete scenario CSV row-advance dependency
+0x004591D0,0x0051D0D0,identified,Complete selected-short deque storage reset dependency
+0x004591D0,0x00429B90,identified,Complete selected-short deque append dependency
+0x004591D0,0x0046D000,matching,Exact integer list-node allocation dependency
+0x004591D0,0x00454890,library,VC8 integer-list size increment dependency
+0x004591D0,0x00459170,identified,Checked source-to-destination integer-list assignment dependency
+0x0045BA40,0x0045B9E0,implemented,Complete checked next sequence-entry access
+0x0045BA40,0x004317A0,implemented,Complete next spell-record lookup dependency
 0x0042AAB0,0x004275E0,matching,Exact checked fixed-slot selector dependency
-0x0042AAB0,0x0042A7B0,decompiled,Complete owning side-payload assignment dependency
+0x0042AAB0,0x0042A7B0,library,Exact native VC8 std::deque<short> assignment dependency
 0x0042ABF0,0x004275E0,matching,Exact checked fixed-slot selector dependency
-0x0042ABF0,0x0042A7B0,decompiled,Complete owning side-payload assignment dependency
+0x0042ABF0,0x0042A7B0,library,Exact native VC8 std::deque<short> assignment dependency
 0x00421310,0x00433B90,matching,IDA Pro sole direct reset_fighter_action_scratch dependency
 0x0042C100,0x00439860,matching,docs/BATTLE.md observed mode gate
 0x0042C100,0x00439C90,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
@@ -36,7 +48,7 @@ caller,callee,required_status,evidence
 0x00430DE0,0x00432D80,identified,target direct call and exact 0x00430DE0 comparison
 0x00430DE0,0x00433490,identified,target direct call and exact 0x00430DE0 comparison
 0x004317A0,0x004316C0,library,exact VC8 std::map find dependency for local and common trees
-0x00432D80,0x00432500,identified,docs/BATTLE.md wrapper call order
+0x00432D80,0x00432500,matching,Exact spell owner cleanup before parser dispatch
 0x00432D80,0x004325B0,implemented,Complete authored filtered spell CSV parser forwarding
 0x00432D80,0x0043ABE0,identified,docs/BATTLE.md character path component resolution
 0x00432E20,0x004021C0,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
@@ -53,7 +65,7 @@ caller,callee,required_status,evidence
 0x00432E20,0x00431430,library,exact VC8 spell-map iterator decrement probe and target direct call
 0x00432E20,0x00431950,matching,exact SpellRecordView copy-constructor probe and target direct call
 0x00432E20,0x00432310,library,exact VC8 spell-map unique insert probe and target direct call
-0x00433490,0x00432500,identified,docs/BATTLE.md wrapper call order
+0x00433490,0x00432500,matching,Exact spell owner cleanup before parser dispatch
 0x00433490,0x00432E20,decompiled,docs/BATTLE.md resource parser forwarding
 0x00433490,0x0043ABE0,identified,docs/BATTLE.md character path component resolution
 0x00433BE0,0x00406530,implemented,target direct call and exact shared oriented-component setter comparison
@@ -69,7 +81,7 @@ caller,callee,required_status,evidence
 0x0045BC30,0x00431860,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x0045BC30,0x00439B40,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x0045BC30,0x0045B9E0,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
-0x0045BC30,0x0045BA40,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0045BC30,0x0045BA40,implemented,Complete authored spell-sequence front advance dependency
 0x0045C690,0x00406C30,identified,docs/BATTLE.md optional resource preparation
 0x0045C690,0x00430D90,identified,docs/BATTLE.md record selection
 0x0045C690,0x004317A0,implemented,docs/BATTLE.md selected record lookup
@@ -205,7 +217,7 @@ caller,callee,required_status,evidence
 0x0046FE80,0x0043B6D0,identified,exact fallback BGM playback boundary
 0x0046FE80,0x00458D10,decompiled,IDA Pro direct scenario-page dependency
 0x0046FE80,0x00458F10,decompiled,IDA Pro direct character-story initialization dependency
-0x0046FE80,0x004591D0,decompiled,IDA Pro direct scenario-row dependency
+0x0046FE80,0x004591D0,implemented,Complete authored scenario event-row parser dependency
 0x0046FE80,0x00464270,identified,exact MatchSetup-side fighter slot initialization
 0x0046FE80,0x00465F70,decompiled,IDA Pro direct render-state reset dependency
 0x0046FE80,0x0046A490,decompiled,IDA Pro direct fighter-pair initialization dependency

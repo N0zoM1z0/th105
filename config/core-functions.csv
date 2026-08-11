@@ -2,6 +2,7 @@ address,lane,priority,notes
 0x004010C0,battle-phase,3,Render-service preparation called by battle phase plus info wrapper
 0x004016B0,collision-phase,3,VC8 std logic_error constructor reached by checked list overflow
 0x00401D70,hit-resolution,3,Wave-handle dispatch reached by indexed battle events
+0x004020B0,battle-controller,3,Exact String28 slice copy used for owning scenario event-name arguments
 0x004021C0,spell-assets,3,Opaque parser helper reached by the hard spell CSV parser
 0x00402A50,character-owned-object,1,Shared reusable pool node removal contract
 0x00404980,battle-phase,2,Render or service mode transition used by the shared sixteen-step phase
@@ -42,9 +43,10 @@ address,lane,priority,notes
 0x00427680,battle-controller,2,Exact synchronized input-state availability test used by the controller input gate
 0x00427A50,battle-controller,2,Synchronized 16-bit control queue consume helper
 0x00427AC0,battle-controller,2,Round-state synchronized service dependency
+0x00429B90,battle-controller,2,Checked short-deque append used by scenario event-row loading
 0x0042A370,battle-controller,2,Packed 16-bit control queue publication helper
 0x0042A560,battle-controller,2,Exact local packed-control collection and publication phase
-0x0042A7B0,battle-controller,1,Owning 0x14-byte side-payload assignment shared by setup save and load
+0x0042A7B0,battle-controller,1,Exact native VC8 deque<short> assignment shared by all 0x14-byte setup payloads
 0x0042AAB0,battle-controller,1,Shared setup dependency reached by controller initialization and roster preparation
 0x0042ABF0,battle-controller,1,Shared setup dependency reached by controller initialization and roster preparation
 0x0042B5D0,battle-controller,2,Session character-input configuration reached by exact setup
@@ -66,7 +68,7 @@ address,lane,priority,notes
 0x00431ED0,spell-data,2,Short-key temporary-tree unique insertion
 0x00432040,spell-data,2,Checked ShortTree iterator-range erase used by the filtered parser
 0x00432310,spell-assets,2,Exact VC8 spell-map unique insert specialization
-0x00432500,spell-data,2,Spell entry container clear contract
+0x00432500,spell-data,1,Exact image-handle deque and SpellTree cleanup before either parser
 0x004325B0,spell-data,1,First large spell CSV parser body
 0x00432D80,spell-data,2,spellcard versus storySpell wrapper for first parser
 0x00432E20,spell-data,1,Hard spell CSV record and card-resource parser
@@ -96,6 +98,7 @@ address,lane,priority,notes
 0x0043A290,battle-controller,2,UI selection-state change gate used by the central frame dispatcher
 0x0043A4B0,battle-controller,2,Asynchronous scene-load transition helper
 0x0043ABE0,spell-data,2,Character key to path component contract
+0x0043AC30,battle-controller,2,Scenario event-name to integer identifier lookup reached by the event-row parser
 0x0043AD10,battle-controller,2,Character-to-stage selector reached by exact fallback setup
 0x0043AD60,battle-controller,2,Character-to-BGM selector reached by exact fallback setup
 0x0043B6D0,battle-controller,2,BGM playback boundary reached by exact fallback setup
@@ -114,7 +117,7 @@ address,lane,priority,notes
 0x00458E80,battle-controller,1,Shared fighter reset dependency reached by scene transition and round reset
 0x00458F10,battle-controller,2,Fighter setup dependency reached by controller initialization
 0x00459170,battle-controller,2,Checked BattlePhaseBlock pointer-list assignment
-0x004591D0,battle-controller,2,Fighter state dependency reached by controller initialization
+0x004591D0,battle-controller,1,Complete scenario event-row parser reached by controller initialization
 0x00459860,battle-phase,2,Exact fighter position integration and stage clamp
 0x00459C90,hit-resolution,3,Exact counter-step consumption and indexed callback
 0x00459E50,battle-phase,2,Exact common character update and input/action tail dispatch
@@ -128,7 +131,7 @@ address,lane,priority,notes
 0x0045AEC0,collision-phase,1,Hard frame geometry preparation and vector at COMDAT
 0x0045B870,hit-resolution,2,Capped counter adjustment
 0x0045B9E0,spell-runtime,2,Checked sequence entry access contract
-0x0045BA40,spell-runtime,2,Sequence advance contract
+0x0045BA40,spell-runtime,1,Complete sequence front destruction count publication and next-record update
 0x0045BB10,spell-runtime,2,Fighter sequence-entry finalization reached by exact round resolution
 0x0045BBB0,spell-runtime,1,Exact shared front spell-sequence availability gate
 0x0045BC30,spell-runtime,1,Sequence consume callback statistics and next-record publication
@@ -293,6 +296,7 @@ address,lane,priority,notes
 0x004FC3A0,character-owned-object,1,Exact shared related-object heading tracker used across 14 roster families
 0x004FC4E0,character-owned-object,1,Exact shared state-six phase counter transition with 261 calls across 13 roster roots
 0x0051C5C0,character-command,2,Patchouli sequence-driven action lifecycle
+0x0051D0D0,battle-controller,2,Native short-deque storage clear used by scenario event-row loading
 0x0051D140,character-command,1,Patchouli character-specific action-change root
 0x0051E330,character-owned-object,1,Patchouli typed handle-pool constructor
 0x0051E3C0,character-owned-object,1,Patchouli object-pool acquire semantics

@@ -45,7 +45,7 @@ CSV and asset load
 │   ├── 0x00432040 checked ShortTree range erase [decompiled]
 │   └── 0x0042D240 SpellTree recursive subtree destruction [decompiled]
 ├── owner cleanup
-│   ├── 0x00432500 clear image handles and record tree [decompiled]
+│   ├── 0x00432500 clear image handles and record tree [exact]
 │   └── 0x004132D0 clear DwordDeque4 storage [decompiled]
 └── resources
     ├── 0x00404EC0 acquire/load one texture handle [decompiled]
@@ -64,7 +64,7 @@ Post-load and battle runtime
 │   └── 0x00453B70 copy the embedded sprite [decompiled]
 ├── 0x0045BBB0 front-entry availability gate [exact]
 ├── 0x0045BC30 consume/callback/statistics/advance [implemented]
-├── 0x0045BA40 pop front and publish next record fields [decompiled]
+├── 0x0045BA40 pop front and publish next record fields [implemented]
 └── 0x00431860 configure indexed record display/callback state [decompiled]
 
 Character fan-out
@@ -121,6 +121,19 @@ the second checked-front access and is limited to value-register and store
 scheduling, while callback, statistics, sequence advance, lookup, and terminal
 state behavior are all present.
 
+The owner cleanup at `0x00432500` is now exact at 171/171. Its source releases
+every image handle, clears the four-dword deque, calls `0x0042D240` as a real
+`SpellTree::__thiscall` member, and restores the tree sentinel and count. This
+exact caller corrected the previous free-function ABI hypothesis for the
+recursive subtree destructor.
+
+The neighboring sequence advance at `0x0045BA40` also has complete source. It
+checks and removes the current deque entry, performs the folded embedded-sprite
+cleanup, publishes the signed state byte, and conditionally copies the next
+record's maximum. Its strict object is 185 bytes against 198 target bytes, with
+all relocations resolved; the remaining delta is the folded CSprite cleanup and
+register schedule rather than missing gameplay behavior.
+
 ## Boundary gate
 
 Six IDA boundaries disagree with the ledger and are deliberately not adopted:
@@ -141,9 +154,11 @@ These are work-packet conflicts, not permission to extend comparison ranges.
 Breadth is now sufficient to split exact work without rediscovering the graph:
 
 1. Runtime lane: finish the post-`+0xCC` VC8 schedule in exact-size
-   `0x0045BC30`, then use exact `0x0045C5A0` and library-exact `0x0045C440` to
-   shape `0x0045BA40` and the CSprite/LTCG boundary at `0x0045C690`.
-2. Data lane: `0x004316C0`, `0x004317A0`, `0x00430C80`, `0x00432500`.
+   `0x0045BC30`, then use the complete 185/198 `0x0045BA40`, exact
+   `0x0045C5A0`, and library-exact `0x0045C440` to isolate the shared
+   CSprite/LTCG boundary at `0x0045C690`.
+2. Data lane: `0x004317A0`, `0x00430C80`, and the now ABI-correct
+   `0x0042D240`; retain exact `0x00432500` as the cleanup regression gate.
 3. Wrapper lane: `0x00432D80` and `0x00433490` after the corrected free-parser ABI.
 4. Hard parser lane: tune the now-complete `0x004325B0` and `0x00432E20`
    sources with their strict tree/string/resource relocation manifests while

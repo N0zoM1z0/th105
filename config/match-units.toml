@@ -785,7 +785,7 @@ address = "0x0042AAB0"
 symbol_base = "save_battle_setup_slot"
 rel32_targets = [
   "FixedSlotStoreView_select_slot_4275e0=0x004275E0",
-  "SidePayloadView_copy_from_42a7b0=0x0042A7B0",
+  "?4?$deque=0x0042A7B0",
 ]
 
 [[units.battle-setup-slots.functions]]
@@ -793,7 +793,73 @@ address = "0x0042ABF0"
 symbol_base = "load_battle_setup_slot"
 rel32_targets = [
   "FixedSlotStoreView_select_slot_4275e0=0x004275E0",
-  "SidePayloadView_copy_from_42a7b0=0x0042A7B0",
+  "?4?$deque=0x0042A7B0",
+]
+
+[units.probe-deque-short]
+kind = "probe"
+source = "scripts/probes/deque_short.cpp"
+object = "build/match-units/deque_short.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Native VC8 std::deque<short>::operator= proving the 0x14-byte setup side payload and eight-short block geometry."
+
+[[units.probe-deque-short.functions]]
+address = "0x0042A7B0"
+symbol_base = "?4?$deque"
+rel32_targets = [
+  "_Tidy=0x0051D0D0",
+  "begin=0x004277A0",
+  "end=0x004277D0",
+  "?$copy=0x00428590",
+  "erase=0x004288A0",
+  "?H?$_Deque_const_iterator=0x0042EDB0",
+  "?$insert=0x0042A750",
+]
+
+[units.spell-data-clear]
+kind = "probe"
+source = "src/battle/SpellDataClear.cpp"
+object = "build/match-units/SpellDataClear.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Exact resource-handle iteration, deque cleanup, and SpellTree subtree/sentinel reset."
+
+[[units.spell-data-clear.functions]]
+address = "0x00432500"
+symbol_base = "?clear_spell_entries@SpellDataOwner@th105@@QAEXXZ"
+rel32_targets = [
+  "?clear_storage@DwordDeque4@th105@@QAEXXZ=0x004132D0",
+  "?destroy_subtree@SpellTree@th105@@QAEXPAUSpellTreeNode@2@@Z=0x0042D240",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEXI@Z=0x00404FA0",
+]
+
+[units.scenario-event-parser]
+kind = "probe"
+source = "src/battle/ScenarioEventParser.cpp"
+object = "build/match-units/ScenarioEventParser.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete scenario event-row parser with active-column short selection and mirrored integer lists; exact tuning begins at the GS frame size."
+
+[[units.scenario-event-parser.functions]]
+address = "0x004591D0"
+symbol_base = "parse_scenario_event_row_4591d0"
+rel32_targets = [
+  "CsvReader_next_int=0x0040EE50",
+  "CsvReader_next_string=0x0040EF50",
+  "assign=0x004020B0",
+  "resolve_scenario_event_name=0x0043AC30",
+  "CsvReader_advance_row=0x0040F050",
+  "ShortDeque8_clear_storage=0x0051D0D0",
+  "ShortDeque8_push_back=0x00429B90",
+  "_Buynode=0x0046D000",
+  "_Incsize=0x00454890",
+  "?$_Assign=0x00459170",
+  "operator_delete=0x0067B02A",
+  "operator_new=0x0067B50C",
+  "_invalid_parameter_noinfo=0x0067B884",
+  "__security_check_cookie=0x0067B465",
 ]
 
 [units.spell-sequence-consume]
@@ -803,6 +869,15 @@ object = "build/match-units/SpellRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
 notes = "Complete 346-byte spell-sequence consume body; first 204 bytes match and the remainder is bounded to VC8 register/store scheduling."
+
+[[units.spell-sequence-consume.functions]]
+address = "0x0045BA40"
+symbol_base = "advance_fighter_sequence_55c"
+rel32_targets = [
+  "_invalid_parameter_noinfo=0x0067B884",
+  "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x0045B9E0",
+  "?find_local_then_common_spell_record@SpellDataOwner@th105@@QAEPAUSpellRecordView@2@H@Z=0x004317A0",
+]
 
 [[units.spell-sequence-consume.functions]]
 address = "0x0045BC30"

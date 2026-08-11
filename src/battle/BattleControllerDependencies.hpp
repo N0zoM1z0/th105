@@ -1,15 +1,13 @@
 #pragma once
 
+#include <deque>
+
 namespace th105 {
 
 struct Fighter;
 struct String28;
 
-struct SidePayload {
-    unsigned char storage_00[0x14];
-
-    SidePayload *copy_from(const SidePayload &source);
-};
+typedef std::deque<short> SidePayload;
 
 struct FixedBattleSetupSlot {
     unsigned char side_value_lo_00[2];
@@ -27,7 +25,7 @@ struct FixedBattleSetupSlot {
 
 struct FixedSlotEnvelope {
     FixedBattleSetupSlot setup_00;
-    unsigned char private_tail_3c[0x14];
+    SidePayload private_payload_3c;
 };
 
 typedef char SidePayload_size_must_be_0x14[

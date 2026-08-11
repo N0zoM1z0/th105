@@ -77,6 +77,7 @@ __ehhandler$??0SpellRecordView@th105@@QAE@ABU01@@Z,0x006A5288,8b5424088d42f08b,0
 __ehhandler$?parse_spell_csv_and_build_card_resources@th105@@YGXPBD0PAUDwordDeque4@1@PAUSpellTree@1@@Z,0x006A53D8,8b5424088d823cfd,0x0,target VC8 free stdcall spell-card parser EH handler entry bytes,address
 __ehhandler$?parse_spell_csv_via_325b0@th105@@YGXPBD0PAUDwordDeque4@1@PAUSpellTree@1@PAX@Z,0x006A5343,8b5424088d8224fd,0x0,target VC8 filtered spell-card parser EH handler entry bytes,address
 __ehhandler$?dispatch_owned_string_458e80@ScenarioTransitionView@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z,0x006A7C28,8b5424088d42f48b,0x0,target VC8 ScenarioTransitionView owned-string dispatcher EH handler entry bytes,address
+__ehhandler$?parse_scenario_event_row_4591d0@BattlePhaseBlock@th105@@QAEXPAX@Z,0x006A7CB8,8b5424088d42bc8b,0x0,target VC8 BattlePhaseBlock scenario event-row parser EH handler entry bytes,address
 ??_7CTitle@th105@@6B@,0x006ACCF4,80514200,0x0,target RTTI-owned CTitle vtable address and first slot,address
 ?g_title_resource_manager@th105@@3UTitleResourceManager@1@A,0x006ECD40,00000000,0x0,target zero-filled title resource-manager object address,address
 ?g_spell_texture_pool@th105@@3USpellTexturePool@1@A,0x006ECD40,00000000,0x0,target zero-filled texture-pool object address shared with the verified resource-manager anchor,address
