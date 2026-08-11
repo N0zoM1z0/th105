@@ -6,6 +6,50 @@
 
 namespace th105 {
 
+struct Sakuya;
+
+struct SakuyaObject {
+    unsigned char unknown_000[0xec];
+    float x_ec;
+    float y_f0;
+    unsigned char unknown_0f4[0x10];
+    signed char facing_104;
+    unsigned char unknown_105[0x2b];
+    unsigned field_130;
+    unsigned char unknown_134[0x2c];
+    unsigned field_160;
+    unsigned char unknown_164[0x04];
+    Sakuya *owner_168;
+    SakuyaObject *related_16c;
+    unsigned copied_related_field_170;
+    unsigned char unknown_174[0x1c8];
+    unsigned char field_33c;
+    unsigned char unknown_33d[0x03];
+    unsigned *copied_words_340;
+    unsigned char unknown_344[0x04];
+    Sakuya *owner_348;
+    SakuyaObject *parent_34c;
+};
+
+struct SakuyaObjectManager {
+    void *interface_vtable_00;
+    void *manager_vtable_04;
+    unsigned char unknown_08[0x5c];
+    Sakuya *owner_64;
+
+    SakuyaObjectManager(Sakuya *owner);
+    SakuyaObject *spawn_object(
+        SakuyaObject *parent,
+        SakuyaObject *related,
+        int action_id,
+        float x,
+        float y,
+        signed char facing,
+        unsigned char field_33c,
+        const unsigned *copied_words,
+        int copied_word_count);
+};
+
 // Partial derived view.  The target establishes only the fields below; the
 // concrete class continues beyond this observed prefix.
 struct Sakuya : Fighter {
@@ -26,6 +70,7 @@ struct Sakuya : Fighter {
     unsigned char skill_cancel_756;
     unsigned char unknown_757;
 
+    Sakuya(int base_argument);
     void on_action_changed();
     void handle_input_and_select_action();
 };
@@ -34,5 +79,13 @@ typedef char CheckSakuyaField730Offset[
     offsetof(Sakuya, field_730) == 0x730 ? 1 : -1];
 typedef char CheckSakuyaSkillCancel754Offset[
     offsetof(Sakuya, skill_cancel_754) == 0x754 ? 1 : -1];
+typedef char CheckSakuyaObjectManagerSize[
+    sizeof(SakuyaObjectManager) == 0x68 ? 1 : -1];
+typedef char CheckSakuyaObjectManagerOwnerOffset[
+    offsetof(SakuyaObjectManager, owner_64) == 0x64 ? 1 : -1];
+typedef char CheckSakuyaObjectObservedSize[
+    sizeof(SakuyaObject) == 0x350 ? 1 : -1];
+typedef char CheckSakuyaObjectCopiedWordsOffset[
+    offsetof(SakuyaObject, copied_words_340) == 0x340 ? 1 : -1];
 
 } // namespace th105

@@ -529,6 +529,28 @@ target's terminal `ret` and IDA agree on contiguous span
 separately; never fold IDA-attached distant EH chunks into a contiguous object
 comparison.
 
+## P16: Prove roster-wide helpers by repeated dispatcher xrefs
+
+Code placed next to one character's translation-unit cluster may still be
+shared by every fighter. Before classifying an adjacent gate as character-
+specific, count caller functions and align their positions against the fifteen
+RTTI/vtable dispatcher roots.
+
+The cluster `0x00493300..0x00493580` proves the pattern:
+
+- three gates have exactly one caller in each of fifteen dispatchers;
+- `0x00493540` has 160 calls distributed across those same dispatchers;
+- `0x00493580` has 783 direct xrefs and preserves a signed lower-bound lookup
+  without an equality check.
+
+This evidence justifies shared `Fighter` methods even though the code is near
+Reimu's address family. Preserve signed byte/word loads and raw vslot `+0x08`
+dispatch. Natural VC8 source exactly matches `0x00493300`, `0x00493490`, and
+`0x00493540`. For `0x00493580`, using the returned iterator pointer recovers
+the entire 78-byte body but standalone VC8 schedules the initial stack
+allocation after two argument/object loads; record it as same-size
+`implemented`, not `matching`.
+
 ## Hard-function strategy
 
 Every reconstruction wave should include at least one function whose completion

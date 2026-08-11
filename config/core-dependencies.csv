@@ -138,3 +138,9 @@ caller,callee,required_status,evidence
 0x0046D620,0x0046D040,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x0046D620,0x0046D160,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x0046D620,0x0046D370,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x004DEEF0,0x004DECF0,decompiled,docs/CHARACTER_PILOTS.md owned-manager allocation and construction
+0x004DEF70,0x00493300,identified,docs/CHARACTER_PILOTS.md shared dispatcher prelude
+0x004DEF70,0x00493380,identified,docs/CHARACTER_PILOTS.md shared dispatcher prelude
+0x004DEF70,0x00493490,identified,docs/CHARACTER_PILOTS.md shared flagged gate
+0x004DEF70,0x00493540,identified,docs/CHARACTER_PILOTS.md repeated action-selection helper
+0x004DEF70,0x00493580,identified,docs/CHARACTER_PILOTS.md repeated command-table lookup

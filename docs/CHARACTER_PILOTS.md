@@ -51,13 +51,47 @@ bytes.  Its previous ledger size was short by `0x68`; IDA and the target's
 terminal `ret` agree on the corrected boundary.  Its local EH tails are not
 part of that contiguous span.
 
+## Shared command layer
+
+The functions at `0x00493300..0x00493580` are not Reimu-specific despite
+their address placement. Target xrefs prove that they form a shared prelude
+and lookup layer used by all fifteen input/action dispatchers:
+
+| Address | Contract | Coverage | Source result |
+| ---: | --- | --- | --- |
+| `0x00493300` | signed gate selecting actions `208..210` | exactly 15 callers | exact 117/117 |
+| `0x00493380` | flagged/ranged gate selecting `220`, `222..224` | exactly 15 callers | complete 229/258 |
+| `0x00493490` | flagged state-158 gate selecting `225/226` | exactly 15 callers | exact 164/164 |
+| `0x00493540` | set action; flag window `>=10`; finalize command | 160 calls in 15 dispatchers | exact 50/50 |
+| `0x00493580` | signed lower-bound command table lookup | 783 direct xrefs | complete 78/78, prologue order differs |
+
+The gates test observed fields `+0x104`, `+0x13C`, `+0x484`, `+0x4B8`,
+`+0x6B4`, `+0x6B8`, `+0x724`, and `+0x75A`, refresh the common snapshot at
+`0x004631E0`, and use raw vslot `+0x08` to change action. The lookup treats
+its key as signed 16-bit, performs lower-bound on the tree pointed to by
+`Fighter+0x160`, checks only iterator validity/end, and returns a signed word
+from the mapped entry at `+0x10`. It deliberately does not require exact key
+equality.
+
+These contracts move shared command parsing ahead of character-specific
+branches: every pilot may now call the same source declarations instead of
+reconstructing five opaque helpers independently.
+
 ## Sakuya pilot
 
-Sakuya's constructor at `0x004DEEF0` calls the shared fighter constructor
-`0x00461A90`, installs vtable `0x006B0924`, and creates the owned-object
-manager stored at `Fighter+0x658`.  This establishes the base/derived boundary;
-the observed Sakuya extension begins at `+0x730` and currently reaches
-`+0x756`.  The partial layout is recorded in `src/characters/Sakuya.hpp`.
+Sakuya's constructor at `0x004DEEF0` has one explicit base argument, calls the
+shared fighter constructor `0x00461A90`, installs vtable `0x006B0924`, allocates
+`0x68` bytes, and creates the owned-object manager stored at `Fighter+0x658`.
+Its sole caller is the fifteen-way fighter factory at `0x004632D0`.
+
+The manager constructor at `0x004DECF0` first installs the shared
+`ICharacterObjectManager` vtable, constructs a base view at `+0x04`, then
+installs the two Sakuya manager vtables `0x006B08F4` and `0x006B08EC`. It stores
+the owning Sakuya pointer at `+0x64` and calls `0x004DEC70` with capacity/count
+`256`. The role of that count remains neutral until the container is recovered.
+These two constructors establish the base/derived and fighter/owned-manager
+boundaries. The observed Sakuya extension begins at `+0x730` and currently
+reaches `+0x757`; both partial layouts are in `src/characters/Sakuya.hpp`.
 
 `0x004DDB20` is a no-argument `__thiscall` action-change handler.  It switches
 on the 16-bit action at `+0x13C`, uses the common velocity reset at
@@ -86,12 +120,22 @@ vslot `+0x08` to change action.  The branch-by-branch matrix is still open, so
 the ledger keeps `0x004DEF70` at `identified` rather than claiming a complete
 decompile.
 
+The Sakuya manager's raw vslot `+0x04` is `0x004DED80`, a complete object-spawn
+boundary. It obtains a new Sakuya object from the manager base at `+0x04`,
+copies owner state into object fields `+0x130`, `+0x160`, `+0x168`, and
+`+0x348`, optionally links a parent at `+0x34C`, optionally allocates and
+copies a dword payload at `+0x340`, publishes position at `+0xEC/+0xF0`, and
+sets facing/action through byte `+0x104` and raw vslot `+0x08`. The observed
+object prefix through `+0x34C` is now represented by `SakuyaObject`; source is
+deferred until allocation `0x004DEB80` and parent-link `0x004454E0` ownership
+are proven.
+
 ## Next waves
 
-1. Complete the smaller Sakuya decision leaves reached by `0x004DEF70`, then
-   use them to finish its command matrix without guessing command names.
-2. Recover Sakuya's owned-object manager roots under `Fighter+0x658` and link
-   at least two projectile/spell paths to the action roots.
+1. Continue the adjacent shared decision leaves after `0x00493580`, then use
+   them to finish Sakuya's command matrix without guessing command names.
+2. Recover `0x004DEB80` and `0x004454E0`, implement the Sakuya object-spawn
+   boundary, and link at least two projectile/spell paths to the action roots.
 3. Apply the same vtable/action/derived-delta checklist to Reimu, Marisa, and
    Alice, then proceed through the remaining eleven table rows in bounded,
    non-overlapping address lanes.

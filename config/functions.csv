@@ -2240,11 +2240,11 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00493200,81,0x00493250,FUN_00493200,,,unclassified,0.00,unknown,undefined FUN_00493200(void),false,,,,
 0x00493260,27,0x0049327D,FUN_00493260,,,unclassified,0.00,unknown,undefined FUN_00493260(void),false,,,,
 0x00493280,126,0x004932FD,FUN_00493280,,,unclassified,0.00,unknown,undefined FUN_00493280(void),false,,,,
-0x00493300,117,0x00493374,FUN_00493300,,,unclassified,0.00,unknown,undefined FUN_00493300(void),false,,,,
-0x00493380,258,0x00493481,FUN_00493380,,,unclassified,0.00,unknown,undefined FUN_00493380(void),false,,,,
-0x00493490,164,0x00493533,FUN_00493490,,,unclassified,0.00,unknown,undefined FUN_00493490(void),false,,,,
-0x00493540,50,0x00493571,FUN_00493540,,,unclassified,0.00,unknown,undefined FUN_00493540(void),false,,,,
-0x00493580,78,0x004935CD,FUN_00493580,,,unclassified,0.00,unknown,undefined FUN_00493580(void),false,,,,
+0x00493300,117,0x00493374,FUN_00493300,try_dispatch_signed_gate_actions_208_210,characters,matching,100.00,__thiscall,unsigned char try_dispatch_signed_gate_actions_208_210(Fighter * this),false,src/characters/CommandGates.cpp,scripts/compile-unit.sh and scripts/compare-function.py 0x00493300 report exact 117-byte match,root,Exact shared gate used once by every character dispatcher
+0x00493380,258,0x00493481,FUN_00493380,try_dispatch_flagged_gate_actions_220_224,characters,implemented,0.00,__thiscall,unsigned char try_dispatch_flagged_gate_actions_220_224(Fighter * this),false,src/characters/CommandGates.cpp,scripts/compile-unit.sh produces 229 bytes versus 258 target with complete branch semantics,root,Shared by all 15 dispatchers; remaining difference is duplicated virtual-call and return-path scheduling
+0x00493490,164,0x00493533,FUN_00493490,try_dispatch_flagged_gate_actions_225_226,characters,matching,100.00,__thiscall,unsigned char try_dispatch_flagged_gate_actions_225_226(Fighter * this),false,src/characters/CommandGates.cpp,scripts/compile-unit.sh and scripts/compare-function.py 0x00493490 report exact 164-byte match,root,Exact shared gate used once by every character dispatcher
+0x00493540,50,0x00493571,FUN_00493540,set_action_and_finalize_command,characters,matching,100.00,__thiscall,"int set_action_and_finalize_command(Fighter * this, int action_id, int window_value)",false,src/characters/CommandGates.cpp,scripts/compile-unit.sh and scripts/compare-function.py 0x00493540 report exact 50-byte match,root,Exact shared action helper with 160 call sites across all 15 dispatchers
+0x00493580,78,0x004935CD,FUN_00493580,lookup_command_gate_value,characters,implemented,0.00,__thiscall,"short lookup_command_gate_value(Fighter * this, int command_key)",false,src/characters/CommandGates.cpp,scripts/compile-unit.sh emits the same 78 bytes but strict comparison first differs in entry prologue scheduling,root,Signed lower-bound lookup with 783 direct xrefs across all 15 dispatchers
 0x004935D0,504,0x004937C7,FUN_004935d0,,,unclassified,0.00,unknown,undefined FUN_004935d0(void),false,,,,
 0x004937D0,333,0x0049391C,FUN_004937d0,,,unclassified,0.00,unknown,undefined FUN_004937d0(void),false,,,,
 0x00493920,226,0x00493A01,FUN_00493920,,,unclassified,0.00,unknown,undefined FUN_00493920(void),false,,,,
@@ -2307,12 +2307,12 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004DEBE0,100,0x004DEC43,FUN_004debe0,,,unclassified,0.00,unknown,undefined FUN_004debe0(void),false,,,,
 0x004DEC50,27,0x004DEC6D,FUN_004dec50,,,unclassified,0.00,unknown,undefined FUN_004dec50(void),false,,,,
 0x004DEC70,117,0x004DECE4,FUN_004dec70,,,unclassified,0.00,unknown,undefined FUN_004dec70(void),false,,,,
-0x004DECF0,123,0x004DED6A,FUN_004decf0,,,unclassified,0.00,unknown,undefined FUN_004decf0(void),false,,,,
+0x004DECF0,123,0x004DED6A,FUN_004decf0,SakuyaObjectManager_ctor,characters,decompiled,0.00,__thiscall,"SakuyaObjectManager * SakuyaObjectManager_ctor(SakuyaObjectManager * this, Sakuya * owner)",false,,docs/CHARACTER_PILOTS.md exact constructor instructions and vtable addresses,root,Complete constructor contract; source awaits shared manager base layout and 0x004DEC70 container contract
 0x004DED70,8,0x004DED77,FUN_004ded70,,,unclassified,0.00,unknown,undefined FUN_004ded70(void),false,,,,
-0x004DED80,237,0x004DEE6C,FUN_004ded80,,,unclassified,0.00,unknown,undefined FUN_004ded80(void),false,,,,
+0x004DED80,237,0x004DEE6C,FUN_004ded80,SakuyaObjectManager_spawn_object,characters,decompiled,0.00,__thiscall,"SakuyaObject * SakuyaObjectManager_spawn_object(SakuyaObjectManager * this, SakuyaObject * parent, SakuyaObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,,docs/CHARACTER_PILOTS.md complete IDA and target instruction field map,root,Source awaits 0x004DEB80 object allocation and 0x004454E0 parent-link ownership contracts
 0x004DEE70,81,0x004DEEC0,FUN_004dee70,,,unclassified,0.00,unknown,undefined FUN_004dee70(void),false,,,,
 0x004DEED0,27,0x004DEEED,FUN_004deed0,,,unclassified,0.00,unknown,undefined FUN_004deed0(void),false,,,,
-0x004DEEF0,126,0x004DEF6D,FUN_004deef0,,,unclassified,0.00,unknown,undefined FUN_004deef0(void),false,,,,
+0x004DEEF0,126,0x004DEF6D,FUN_004deef0,Sakuya_ctor,characters,decompiled,0.00,__thiscall,"Sakuya * Sakuya_ctor(Sakuya * this, int base_argument)",false,,docs/CHARACTER_PILOTS.md exact constructor instructions and sole factory caller at 0x004632D0,root,Complete derived constructor contract; source awaits truthful virtual base and EH layout
 0x004DEF70,5897,0x004E0678,FUN_004def70,Sakuya_handle_input_and_select_action,characters,identified,0.00,__thiscall,void Sakuya_handle_input_and_select_action(Sakuya * this),false,,docs/CHARACTER_PILOTS.md raw vtable and command action family evidence,root,No stack arguments; full branch-by-branch command matrix remains to document before decompiled promotion
 0x004E06B0,28985,0x004E77E8,FUN_004e06b0,,,unclassified,0.00,unknown,undefined FUN_004e06b0(void),false,,,,
 0x004E79E0,323,0x004E7B22,FUN_004e79e0,,,unclassified,0.00,unknown,undefined FUN_004e79e0(void),false,,,,

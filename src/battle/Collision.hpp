@@ -315,6 +315,11 @@ struct Fighter {
     void load_indexed_character_wave_resources();
     void initialize_fighter_spell_resources();
     void consume_counter_484_steps(char count);
+    unsigned char try_dispatch_signed_gate_actions_208_210();
+    unsigned char try_dispatch_flagged_gate_actions_220_224();
+    unsigned char try_dispatch_flagged_gate_actions_225_226();
+    int set_action_and_finalize_command(int action_id, int window_value);
+    short lookup_command_gate_value(int command_key);
     int select_outcome_path_from_frame_flags(unsigned frame_flags);
     signed char classify_fighter_x_boundary();
     int test_proposed_x_against_stage_height(float delta_x);

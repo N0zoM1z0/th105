@@ -115,3 +115,13 @@ address,lane,priority,notes
 0x0046D160,collision-phase,1,Hard family 2 against family 1 checked-list pass
 0x0046D370,collision-phase,1,Hard family 1 same-list and cross-list clash pass
 0x0046D620,collision-phase,1,Hard six-list collision and deferred-result orchestration
+0x00493300,character-command,2,Exact shared signed command gate for actions 208 through 210
+0x00493380,character-command,1,Shared flagged command gate for actions 220 and 222 through 224
+0x00493490,character-command,2,Exact shared flagged command gate for actions 225 and 226
+0x00493540,character-command,2,Exact shared action selection and command finalization
+0x00493580,character-command,1,Shared signed lower-bound command table lookup
+0x004DDB20,character-command,1,Sakuya action-change root
+0x004DECF0,character-owned-object,2,Sakuya owned-object manager constructor
+0x004DED80,character-owned-object,1,Sakuya owned-object spawn path
+0x004DEEF0,character-owned-object,2,Sakuya fighter constructor
+0x004DEF70,character-command,1,Sakuya input and action dispatcher

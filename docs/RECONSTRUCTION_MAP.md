@@ -72,9 +72,15 @@ TH10.5
 │           └── 0x00464320 cut-in resource [implemented]
 └── Character-specific families [mapped roots]
     ├── shared Character/CharacterEx/AttackObject contracts
+    ├── shared command gates 0x00493300..0x00493580 [source-ready]
+    │   ├── 0x00493300/0x00493490/0x00493540 [exact]
+    │   └── 0x00493380/0x00493580 [implemented]
     ├── fifteen RTTI/vtable pilot rows -> docs/CHARACTER_PILOTS.md
     ├── per-character fighter and owned-object manager families [seed]
     └── Sakuya pilot [mapped]
+        ├── 0x004DEEF0 fighter constructor [decompiled]
+        ├── 0x004DECF0 manager constructor [decompiled]
+        ├── 0x004DED80 owned-object spawn [decompiled]
         ├── raw vslot +0x3C: 0x004DDB20 action change [decompiled]
         └── common-update vslot +0x50: 0x004DEF70 input/action [identified]
 ```
@@ -86,10 +92,10 @@ platform/runtime. Their module boundaries are listed in `docs/ARCHITECTURE.md`.
 ## Unlock-first frontier
 
 1. **Sakuya character pilot.** The derived vtable, action families, extension
-   prefix, and shared virtual contracts are mapped. Complete the smaller
-   decision leaves beneath `0x004DEF70`, then recover its owned-object manager
-   roots. Apply the resulting checklist to the other fourteen fighters in
-   `docs/CHARACTER_PILOTS.md`.
+   prefix, constructors, shared command gates, and owned-object spawn contract
+   are mapped. Recover the spawn allocator/parent-link dependencies and the
+   next decision leaves beneath `0x004DEF70`. Apply the resulting checklist to
+   the other fourteen fighters in `docs/CHARACTER_PILOTS.md`.
 2. **PAT record semantics.** `0x00462050` now has target-sized complete source,
    `0x0045E080` is exact, and `0x00464320` is 197/199 bytes. Recover the
    EH-bearing record types inside `0x00460B50`; this is the remaining shared

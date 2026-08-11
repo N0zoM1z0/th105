@@ -6,6 +6,10 @@ CollisionContext,src/battle/Collision.hpp,partial,0x84,observed,docs/BATTLE.md c
 CollisionList,src/battle/CollisionList.hpp,complete,0x0C,observed,exact list initialization and allocation,List header with sentinel and count
 CollisionListNode,src/battle/CollisionList.hpp,complete,0x0C,observed,exact list allocation and traversal,Next previous and payload pointers
 CollisionObject,src/battle/Collision.hpp,partial,0x330,observed,docs/BATTLE.md prepared geometry map,Observed prefix through optional primary box pointer
+CommandGateEntry,src/characters/CommandGates.hpp,partial,0x12,observed,0x00493580 mapped-entry field access,Observed prefix through signed word +0x10
+CommandGateIterator,src/characters/CommandGates.hpp,complete,0x08,observed,0x00493580 checked lower-bound result,Owner and node pointers
+CommandGateNode,src/characters/CommandGates.hpp,complete,0x18,observed,0x004213F0 signed lower-bound traversal and sentinel flag,Three links key mapped pointer and flags
+CommandGateTree,src/characters/CommandGates.hpp,partial,0x08,observed,0x00493580 and 0x004213F0,Observed prefix through end-node pointer +0x04
 CsvReader,src/assets/CsvReader.hpp,partial,0x2E,observed,IDA Pro target instructions for 0x0040EB20 and field or row accessors,Observed prefix through parser comment and quote flags; nested deque and iterator auxiliary types remain opaque
 Fighter,src/battle/Collision.hpp,partial,0x72D,observed,docs/BATTLE.md and fighter initialization disassembly,Observed prefix through category byte +0x72C
 FighterCutinResource,src/battle/FighterResources.hpp,complete,0xA0,observed,exact target offsets and 0x00464320 source comparison,Handle sprite selector and terminal state fields
@@ -27,5 +31,7 @@ SpellTreeInsertResult,src/battle/SpellData.hpp,complete,0x0C,observed,exact 0x00
 SpellTreeNode,src/battle/SpellData.hpp,complete,0x60,observed,IDA Pro 0x00431F90 allocation and exact map probes,Links signed key 0x4C value color nil flag and padding
 SpellTreeValue,src/battle/SpellData.hpp,complete,0x50,observed,exact 0x00432310 map insert comparison,Signed key followed by deep-copy SpellRecordView
 Sakuya,src/characters/Sakuya.hpp,partial,0x758,observed,docs/CHARACTER_PILOTS.md action roots and target field writes,Observed derived prefix from +0x730 through +0x757
+SakuyaObject,src/characters/Sakuya.hpp,partial,0x350,observed,0x004DED80 complete spawn path,Observed prefix through parent pointer +0x34C
+SakuyaObjectManager,src/characters/Sakuya.hpp,complete,0x68,observed,0x004DECF0 target constructor and 0x004DEEF0 allocation size,Two vtable-bearing views and owner pointer at +0x64
 String28,src/assets/String28.hpp,complete,0x1C,observed,exact 0x00408A40 VC8 std::string append comparison,Real VC8 owning string specialization with 16-byte SSO threshold
 WorldAabb,src/battle/Collision.hpp,complete,0x10,observed,exact float geometry comparison units,Four float coordinates
