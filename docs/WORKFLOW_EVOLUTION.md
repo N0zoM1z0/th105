@@ -315,6 +315,17 @@ The same retuning cycle moved the paired fixed-slot transfers from 288/305 and
 displacements (`+0x0C` and `+0x1F`), which isolates the remaining work to the
 original container/TU register schedule rather than payload semantics.
 
+The corrected ownership island then unlocked another six formerly anonymous
+fixed-slot operations without requiring speculative bodies: single-envelope
+and range destruction, EH-safe range copy construction, checked tail
+relocation/publication, backward tail assignment, and counted fill
+construction (`0x00429640`, `0x0042A330`, and `0x0042AF20..0x0042B070`). Their
+edges all terminate in the already typed envelope copy/assignment/tidy layer.
+This is a useful LeanToken-assisted breadth pattern: retrieve the shared
+repository contracts once, confirm exact address semantics in IDA, commit a
+complete ownership/dependency slice, then hand the newly bounded callers to
+exact workers.
+
 ## Operational loop
 
 ```bash

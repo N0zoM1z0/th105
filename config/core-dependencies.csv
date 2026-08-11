@@ -46,6 +46,15 @@ caller,callee,required_status,evidence
 0x0042AE50,0x0042AA00,matching,Exact envelope assignment inside the forward range loop
 0x0042AEA0,0x0042AA00,matching,Exact envelope assignment inside the backward range loop
 0x0042AEF0,0x0042AA00,matching,Exact envelope assignment inside the fill loop
+0x00429640,0x0051D0D0,library,Exact COMDAT-folded deque cleanup for all three envelope payloads
+0x0042A330,0x0051D0D0,library,Exact COMDAT-folded deque cleanup across the envelope range
+0x0042AF20,0x0042ADD0,decompiled,Complete per-element envelope copy construction dependency
+0x0042AF20,0x00429640,decompiled,Complete exception cleanup dependency
+0x0042AFD0,0x0042AE50,decompiled,Complete forward tail assignment dependency
+0x0042AFD0,0x0042A330,decompiled,Complete old-tail destruction dependency
+0x0042B040,0x0042AEA0,decompiled,Complete backward overlap-safe assignment dependency
+0x0042B070,0x0042ADD0,decompiled,Complete counted envelope copy construction dependency
+0x0042B070,0x00429640,decompiled,Complete exception cleanup dependency
 0x00421310,0x00433B90,matching,IDA Pro sole direct reset_fighter_action_scratch dependency
 0x0042C100,0x00439860,matching,docs/BATTLE.md observed mode gate
 0x0042C100,0x00439C90,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10

@@ -206,6 +206,17 @@ forward assignment, backward overlap-safe assignment, and fill algorithms over
 0x50-byte envelope ranges. All three call exact `0x0042AA00`; their callers now
 form bounded container-growth packets instead of opaque setup helpers.
 
+That ownership graph now extends through the next six anonymous container
+operations. `0x00429640` destroys all three deque payloads in one envelope and
+`0x0042A330` repeats that ownership cleanup across a half-open 0x50-stride
+range. `0x0042AF20` and `0x0042B070` are EH-safe range-copy and counted-fill
+constructors built on `0x0042ADD0`, with `0x00429640` as their unwind cleanup.
+`0x0042AFD0` validates iterator ownership, forward-assigns a remaining tail,
+destroys the obsolete range, and publishes the new checked end; `0x0042B040`
+is its backward overlap-safe assignment wrapper. These functions remain
+decompiled contracts rather than fake source bodies, but they turn the
+following fixed-slot growth callers into bounded implementation packets.
+
 The scenario dispatch at `0x00458E80` is a receiver-bearing `__thiscall`, not
 the earlier free `__stdcall` hypothesis. Its shared `ScenarioTransitionView`
 source is exact for all 127 authoritative bytes; both `0x00470500` and
@@ -241,6 +252,8 @@ The ledger remains authoritative for all comparisons:
 | --- | ---: | ---: | --- |
 | `0x00406780` | ledger-defined | query error | retain ledger; use target bytes/headless fallback |
 | `0x00427190` | 474 | 482 | keep ledger span |
+| `0x0042AF20` | 125 | 162 | keep ledger span; IDA includes EH tail/chunk |
+| `0x0042B070` | 125 | 162 | keep ledger span; IDA includes EH tail/chunk |
 | `0x0043F030` | 797 | 800 | keep ledger span |
 | `0x00458E80` | 127 | 130 | keep ledger span |
 | `0x00458F10` | 306 | 312 | keep ledger span |

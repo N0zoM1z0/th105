@@ -43,7 +43,9 @@ address,lane,priority,notes
 0x00427680,battle-controller,2,Exact synchronized input-state availability test used by the controller input gate
 0x00427A50,battle-controller,2,Synchronized 16-bit control queue consume helper
 0x00427AC0,battle-controller,2,Round-state synchronized service dependency
+0x00429640,battle-controller,3,Fixed-slot envelope three-deque EH cleanup helper
 0x00429B90,battle-controller,2,Checked short-deque append used by scenario event-row loading
+0x0042A330,battle-controller,3,Fixed-slot envelope range destruction helper
 0x0042A370,battle-controller,2,Packed 16-bit control queue publication helper
 0x0042A560,battle-controller,2,Exact local packed-control collection and publication phase
 0x0042A7B0,battle-controller,1,Exact native VC8 deque<short> assignment shared by all 0x14-byte setup payloads
@@ -55,6 +57,10 @@ address,lane,priority,notes
 0x0042AE50,battle-controller,3,Forward fixed-slot envelope range assignment helper
 0x0042AEA0,battle-controller,3,Backward fixed-slot envelope range assignment helper
 0x0042AEF0,battle-controller,3,Fixed-slot envelope range fill helper
+0x0042AF20,battle-controller,2,EH-safe fixed-slot envelope range copy construction
+0x0042AFD0,battle-controller,2,Checked fixed-slot tail relocation destruction and end publication
+0x0042B040,battle-controller,3,Backward fixed-slot tail assignment wrapper
+0x0042B070,battle-controller,2,EH-safe counted fixed-slot envelope fill construction
 0x0042B5D0,battle-controller,2,Session character-input configuration reached by exact setup
 0x0042C060,score,2,Score result tuple lookup and tally reached by exact sequence finalization
 0x0042C100,score,1,Observed record count and high-water update
