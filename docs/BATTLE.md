@@ -325,17 +325,18 @@ versus the 257-byte target. The target retains a 0x10-byte checked-iterator
 frame, an owner-identity check, and longer owner/block register lifetimes; this
 is a compiler-shaping blocker, not missing transformation logic.
 
-The large parser at `0x00432E20` is a `SpellDataOwner::__thiscall` boundary
-with an unused incoming `this`. Callers `0x00433490` and `0x00433540` load ECX
-with the owner immediately before pushing the character name, CSV path,
-optional four-byte handle deque, and spell tree; the callee returns with
-`ret 0x10`. Its maintainable implementation is now in
+The large parser at `0x00432E20` is a free four-argument `__stdcall` boundary.
+Callers `0x00433490` and `0x00433540` preserve their owner separately while
+pushing the character name, CSV path, optional four-byte handle deque, and
+spell tree; the callee's `ret 0x10` proves four stack arguments and rules out a
+truthful member-function ABI. Its maintainable implementation is now in
 `SpellCardParser.cpp`. The source preserves the complete row loop, deep-copy
 record insertion, optional individual card resources, 16-record composite
-publication, descending checked-tree traversal, and owned cleanup. VC8 emits a
-1940-byte body versus the ledger's 1602 body bytes; the remaining work is
-asset/global relocation mapping, EH lifetime shaping, and compiler scheduling,
-not missing parser behavior. Its observed row schema is integer, string, byte, short, string,
+publication, descending checked-tree traversal, and owned cleanup. The ledger
+retains the 1602-byte body boundary while IDA reports a 1644-byte entry span;
+strict comparison currently stops at the verified local EH-handler relocation.
+The remaining work is asset/global relocation mapping, EH lifetime shaping,
+and compiler scheduling, not missing parser behavior. Its observed row schema is integer, string, byte, short, string,
 short, short. It publishes fields at record offsets `+0x1C`, `+0x1E`, `+0x3C`,
 `+0x3E`, `+0x40`, `+0x44`, and `+0x48`, formats
 `data/card/%s/card%03d.bmp`, and stores images through a
@@ -351,9 +352,11 @@ predecessor, and `0x00432310` is the exact 185-byte unique map insertion body.
 every target byte. The map evidence fixes a 0x60-byte node, 0x50-byte
 key/value pair, 0x0C-byte insert result, and 0x0C-byte tree header.
 
-The two path wrappers at `0x00432D80` and
-`0x00433490` are implemented at 103/148 and 108/161 bytes; their target frames
-retain stack cookies and an indirect `wsprintf` import.
+The two path wrappers at `0x00432D80` and `0x00433490` are implemented at
+146/148 and 159/161 bytes. Each matches through its meaningful branch body;
+the remaining two-byte tails are truthful translation-unit/LTCG register
+scheduling differences, not missing parser calls. Their target frames retain
+stack cookies and an indirect `wsprintfA` import.
 
 The shared insertion boundary at `0x00416A50` is no longer semantically
 opaque. Target instructions match VC8 SP1 `include/deque` `push_back` for a

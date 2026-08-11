@@ -86,6 +86,10 @@ struct SpellTree {
     SpellTreeInsertResult *insert_unique_value(
         SpellTreeInsertResult *result,
         const SpellTreeValue *value);
+    SpellTreeIterator *erase_range_checked(
+        SpellTreeIterator *result,
+        SpellTreeIterator begin,
+        SpellTreeIterator end);
 };
 
 typedef char SpellTreeNode_size_must_be_0x60[
@@ -106,7 +110,51 @@ struct DwordDeque4 {
 
     void push_back(const unsigned *value);
     unsigned &back_checked();
+    void clear_storage();
 };
+
+struct ShortTree;
+
+struct ShortTreeNode {
+    ShortTreeNode *left_00;
+    ShortTreeNode *parent_04;
+    ShortTreeNode *right_08;
+    short key_0c;
+    unsigned char color_0e;
+    unsigned char is_nil_0f;
+};
+
+struct ShortTreeIterator {
+    ShortTree *owner;
+    ShortTreeNode *node;
+};
+
+struct ShortTreeInsertResult {
+    ShortTree *owner;
+    ShortTreeNode *node;
+    unsigned char inserted;
+    unsigned char padding[3];
+};
+
+struct ShortTree {
+    unsigned allocator_state_00;
+    ShortTreeNode *end_node_04;
+    unsigned node_count_08;
+
+    ShortTreeIterator *find_checked(
+        ShortTreeIterator *result,
+        const short *key);
+    ShortTreeInsertResult *insert_unique_key(
+        ShortTreeInsertResult *result,
+        const short *key);
+};
+
+typedef char ShortTreeNode_size_must_be_0x10[
+    sizeof(ShortTreeNode) == 0x10 ? 1 : -1];
+typedef char ShortTree_size_must_be_0x0c[
+    sizeof(ShortTree) == 0x0c ? 1 : -1];
+
+void __stdcall destroy_spell_tree_subtree(SpellTreeNode *node);
 
 struct ShortDeque8 {
     unsigned unknown_00;
@@ -119,7 +167,7 @@ struct ShortDeque8 {
 };
 
 struct SpellDataOwner {
-    unsigned char unknown_00[0x14];
+    DwordDeque4 image_handles_00;
     SpellTree local_tree_14;
     ShortDeque8 loaded_spell_ids_20;
     ShortDeque8 selection_ids_34;
@@ -135,25 +183,26 @@ struct SpellDataOwner {
         unsigned char alternate_loader);
     unsigned char load_spell_csv_via_325b0(
         int character_key,
-        int arg2,
+        signed char story_mode,
         void *mode_argument);
     unsigned char load_spell_csv_via_32e20(
         int character_key,
-        int arg2,
+        signed char story_mode,
         unsigned char use_owner);
-    void parse_spell_csv_via_325b0(
-        const char *character_name,
-        const char *path,
-        SpellDataOwner *owner,
-        SpellTree *destination,
-        void *mode_argument);
-    void parse_spell_csv_and_build_card_resources(
-        const char *character_name,
-        const char *path,
-        void *image_owner,
-        SpellTree *destination);
 };
 
 extern SpellTree g_common_spell_tree;
+
+void __stdcall parse_spell_csv_via_325b0(
+    const char *character_name,
+    const char *path,
+    DwordDeque4 *image_owner,
+    SpellTree *destination,
+    void *mode_argument);
+void __stdcall parse_spell_csv_and_build_card_resources(
+    const char *character_name,
+    const char *path,
+    DwordDeque4 *image_owner,
+    SpellTree *destination);
 
 } // namespace th105

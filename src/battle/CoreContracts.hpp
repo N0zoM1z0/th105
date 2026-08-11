@@ -28,10 +28,10 @@ typedef void (CollisionContext::*ForwardedQuantityFunction)(
 typedef unsigned char (Fighter::*ConsumeSpellEntryFunction)();
 typedef void (Fighter::*PrepareSpellEntryFunction)();
 typedef void (Fighter::*InitializeFighterFunction)();
-typedef void (SpellDataOwner::*ParseSpellResourcesFunction)(
+typedef void (__stdcall *ParseSpellResourcesFunction)(
     const char *,
     const char *,
-    void *,
+    DwordDeque4 *,
     SpellTree *);
 typedef void (SpellDataOwner::*FinalizeSpellDataFunction)();
 typedef short (SpellDataOwner::*SelectSpellRecordFunction)();

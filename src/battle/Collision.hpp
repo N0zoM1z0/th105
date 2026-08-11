@@ -162,7 +162,6 @@ struct ByteStrideRange {
 };
 
 struct FighterSequenceSlot;
-struct SequenceRecord4;
 
 struct FighterSequenceController {
     unsigned unknown_00;
@@ -172,7 +171,8 @@ struct FighterSequenceController {
     unsigned live_count_10;
 
     FighterSequenceSlot *entry_at_checked(int index);
-    void enqueue_record(const SequenceRecord4 *record);
+    void grow_storage(unsigned additional_slots);
+    void enqueue_record(const FighterSequenceSlot *record);
 };
 
 struct Fighter {

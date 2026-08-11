@@ -77,9 +77,9 @@ void Fighter::prepare_next_spell_sequence_entry()
     }
 
     counter_558 = 0;
-    SpellSpriteWork sprite_work;
-    sprite_work.vtable_00 = reinterpret_cast<void *>(0x006ac668);
-    *reinterpret_cast<int *>(sprite_work.unknown_04) = 0;
+    FighterSequenceSlot sequence_record;
+    sequence_record.sprite_04.vtable_00 = reinterpret_cast<void *>(0x006ac668);
+    *reinterpret_cast<int *>(sequence_record.sprite_04.unknown_04) = 0;
 
     SpellDataOwner *lookup =
         reinterpret_cast<SpellDataOwner *>(spell_lookup_4f0);
@@ -90,12 +90,11 @@ void Fighter::prepare_next_spell_sequence_entry()
         return;
     }
 
-    SequenceRecord4 sequence_record;
     sequence_record.record_id_00 = record_id;
-    sequence_record.record_word_02 =
+    sequence_record.field_02 =
         record->selector_1c == 1 ? 1 : record->value_1e;
     if (record->optional_resource_44 != 0) {
-        sprite_work.load_optional_spell_resource(
+        sequence_record.sprite_04.load_optional_spell_resource(
             record->optional_resource_44,
             0,
             0,

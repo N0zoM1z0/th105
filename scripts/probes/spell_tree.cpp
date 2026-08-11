@@ -20,4 +20,13 @@ emit_spell_tree_insert(
     return tree.insert(value);
 }
 
+__declspec(noinline) SpellTreeProbe::iterator emit_spell_tree_find(
+    SpellTreeProbe &tree,
+    const int &key)
+{
+    typedef SpellTreeProbe::iterator (SpellTreeProbe::*FindMember)(const int &);
+    FindMember member = &SpellTreeProbe::find;
+    return (tree.*member)(key);
+}
+
 } // namespace th105

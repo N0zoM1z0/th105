@@ -1,4 +1,11 @@
 caller,callee,required_status,evidence
+0x00432500,0x00404FA0,identified,IDA Pro release each image handle before container reset
+0x00432500,0x004132D0,decompiled,IDA Pro DwordDeque4 storage clear
+0x00432500,0x0042D240,decompiled,IDA Pro recursive SpellTree subtree destruction
+0x004325B0,0x00431590,decompiled,IDA Pro short-key temporary-tree nil allocation
+0x004325B0,0x00431730,decompiled,IDA Pro short-key temporary-tree checked lookup
+0x004325B0,0x00431ED0,decompiled,IDA Pro short-key temporary-tree unique insertion
+0x004325B0,0x00432040,decompiled,IDA Pro checked temporary-tree range erase at parser exit
 0x00421310,0x00433B90,matching,IDA Pro sole direct reset_fighter_action_scratch dependency
 0x0042C100,0x00439860,matching,docs/BATTLE.md observed mode gate
 0x0042C100,0x00439C90,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
@@ -6,7 +13,7 @@ caller,callee,required_status,evidence
 0x00430DE0,0x00430C80,identified,target direct call and exact 0x00430DE0 comparison
 0x00430DE0,0x00432D80,identified,target direct call and exact 0x00430DE0 comparison
 0x00430DE0,0x00433490,identified,target direct call and exact 0x00430DE0 comparison
-0x004317A0,0x004316C0,identified,docs/BATTLE.md checked local and common tree lookup
+0x004317A0,0x004316C0,library,exact VC8 std::map find dependency for local and common trees
 0x00432D80,0x00432500,identified,docs/BATTLE.md wrapper call order
 0x00432D80,0x004325B0,identified,docs/BATTLE.md wrapper parser forwarding
 0x00432D80,0x0043ABE0,identified,docs/BATTLE.md character path component resolution
@@ -44,7 +51,9 @@ caller,callee,required_status,evidence
 0x0045C690,0x00406C30,identified,docs/BATTLE.md optional resource preparation
 0x0045C690,0x00430D90,identified,docs/BATTLE.md record selection
 0x0045C690,0x004317A0,implemented,docs/BATTLE.md selected record lookup
-0x0045C690,0x0045C5A0,identified,docs/BATTLE.md sequence record transfer
+0x0045C5A0,0x00453B70,decompiled,IDA Pro 0x94-byte embedded sprite copy at slot +0x04
+0x0045C5A0,0x0045C440,decompiled,IDA Pro slot-pointer storage growth before enqueue
+0x0045C690,0x0045C5A0,matching,strict exact complete 0x98-byte sequence-slot transfer
 0x0045E3A0,0x00421310,decompiled,IDA Pro sole constructor dependency at AttackObject this+4
 0x0045F140,0x00409AA0,matching,target initialization call order and exact CInputManager reset comparison
 0x0045F140,0x00430FA0,identified,target initialization call order
@@ -63,6 +72,12 @@ caller,callee,required_status,evidence
 0x00462050,0x00460B50,identified,docs/BATTLE.md pre-resource initialization phase
 0x00462050,0x00464320,identified,docs/BATTLE.md final character resource callback
 0x004631E0,0x00463120,identified,IDA Pro sole packed-input subobject call and EAX pass-through
+0x00463610,0x00459E50,matching,IDA Pro exact five-pass callback phase reaches common fighter update
+0x00463760,0x00459860,matching,IDA Pro exact commit phase position integration
+0x00463760,0x0045CDD0,implemented,IDA Pro exact commit phase transient-status pass
+0x00463760,0x0045CF00,decompiled,IDA Pro exact commit phase timer-cleanup pass
+0x0046A5D0,0x00425CD0,decompiled,IDA Pro post-update first global-view pass
+0x0046A5D0,0x00425F10,identified,docs/BATTLE.md post-update second global-state pass
 0x0046AB80,0x0046A9A0,matching,exact descriptor extent comparison
 0x0046ABD0,0x0046A9A0,matching,exact descriptor pair extent comparison
 0x0046AC40,0x0046ACB0,matching,exact hit effect and extent reset path
@@ -76,6 +91,16 @@ caller,callee,required_status,evidence
 0x0046B100,0x0046B000,implemented,docs/BATTLE.md two-descriptor branch
 0x0046B290,0x0046ADA0,implemented,docs/BATTLE.md one-descriptor branch
 0x0046B290,0x0046B000,implemented,docs/BATTLE.md two-descriptor branch
+0x0046B420,0x00404980,decompiled,IDA Pro shared sixteen-step service mode transition
+0x0046B420,0x00404A10,decompiled,IDA Pro shared sixteen-step state-pair service commands
+0x0046B420,0x00463820,decompiled,IDA Pro shared sixteen-step fighter side-selection pass
+0x0046B420,0x00463970,decompiled,IDA Pro shared sixteen-step owned-manager and fighter passes
+0x0046B420,0x00463A00,decompiled,IDA Pro shared sixteen-step signed phase-argument pass
+0x0046B420,0x00463A60,decompiled,IDA Pro shared sixteen-step direct fighter helper pass
+0x0046B420,0x00463AB0,decompiled,IDA Pro shared sixteen-step embedded-state pass
+0x0046B420,0x00465B00,decompiled,IDA Pro shared sixteen-step first object-manager list pass
+0x0046B420,0x00465B70,decompiled,IDA Pro shared sixteen-step second object-manager list pass
+0x0046B4F0,0x004010C0,decompiled,IDA Pro battle-phase plus info callback render-service preparation
 0x0046B570,0x00433B90,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x0046B570,0x00434860,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x0046B570,0x00439860,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
@@ -144,6 +169,21 @@ caller,callee,required_status,evidence
 0x0046D620,0x0046D040,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x0046D620,0x0046D160,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x0046D620,0x0046D370,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0046FE80,0x00439860,matching,IDA Pro battle setup mode gate
+0x0046FE80,0x00439C90,matching,IDA Pro battle setup option gate
+0x004701C0,0x00439DC0,matching,IDA Pro round initialization indexed event
+0x004701C0,0x0046A610,matching,IDA Pro round initialization narrow fighter reset
+0x004701C0,0x0046A6A0,matching,IDA Pro round initialization broad fighter reset
+0x00470300,0x0046AC40,matching,IDA Pro terminal fighter effect publication
+0x00470360,0x0045BC30,implemented,IDA Pro round resolution spell-sequence consumption
+0x004704D0,0x0046B4F0,implemented,IDA Pro active simulation frame wrapper
+0x00470780,0x00425F10,identified,IDA Pro round reset second global-state pass
+0x00470780,0x0046ACB0,matching,IDA Pro round reset collision-extent reset
+0x004708B0,0x0040A710,matching,IDA Pro synchronized input critical-section entry
+0x004708B0,0x0040A720,matching,IDA Pro synchronized input critical-section exit
+0x00470940,0x00439C90,matching,IDA Pro frame dispatcher session-option gate
+0x00470940,0x00439DC0,matching,IDA Pro frame dispatcher scene-exit event
+0x00470940,0x004708B0,decompiled,IDA Pro network frame loop synchronized input gate
 0x004927D0,0x0045E3A0,decompiled,IDA Pro sole shared base-constructor call
 0x00492BA0,0x00402A50,library,IDA Pro direct call from Reimu object-pool reuse path
 0x00492BA0,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths

@@ -4,17 +4,6 @@
 
 namespace th105 {
 
-struct FighterSequenceSlot {
-    short record_id_00;
-    unsigned short field_02;
-    unsigned char sprite_04[0x94];
-};
-
-struct SequenceRecord4 {
-    short record_id_00;
-    short record_word_02;
-};
-
 struct PlayerIndexedCallbackView {
     void invoke_indexed_record(int record_id, int zero);
 };
@@ -30,5 +19,14 @@ struct SpellSpriteWork {
         void *global_a,
         void *global_b);
 };
+
+struct FighterSequenceSlot {
+    short record_id_00;
+    unsigned short field_02;
+    SpellSpriteWork sprite_04;
+};
+
+typedef char FighterSequenceSlot_size_must_be_0x98[
+    sizeof(FighterSequenceSlot) == 0x98 ? 1 : -1];
 
 } // namespace th105

@@ -826,6 +826,40 @@ Do not replace the polymorphic member with opaque storage just because its
 layout is known. That loses vptr ownership and EH construction state, which
 are precisely what determine the target instruction order.
 
+## P26: Prefer the native VC8 STL specialization when it is the code
+
+A hand-written traversal can be semantically correct yet permanently miss the
+target's checked-iterator owner tests, exception paths, and register lifetime.
+Before shaping such a traversal, instantiate the recovered container and value
+layout with the pinned VC8 headers and force the suspected member specialization.
+
+For the spell-card tree, a real `std::map<int, SpellRecordView>::find` probe
+reproduces `0x004316C0` exactly at 105/105 bytes. This both classifies the row as
+`library` and removes a false authored-gameplay target. Keep the observed tree
+facade where callers need a narrow ABI contract, but use the exact native probe
+as the authority for the implementation identity and iterator behavior.
+
+## P27: Preserve raw-slot allocation and subobject-copy dataflow
+
+For arrays of pointers to nontrivial fixed-size records, the target may expose
+three independent facts: capacity growth, lazy raw allocation, and a copy call
+on an embedded subobject. Model each directly instead of inventing a record
+constructor or replacing the subobject call with `memcpy`.
+
+`FighterSequenceController::enqueue_record` at `0x0045C5A0` becomes exact at
+114/114 bytes when source:
+
+- grows before computing the circular index;
+- allocates exactly `0x98` bytes only for a null slot;
+- caches the selected destination pointer;
+- copies the two leading shorts explicitly;
+- invokes the recovered copy operation on the embedded object at `+0x04`; and
+- increments the live count after the nullable destination block.
+
+This pattern is evidence for the 0x98-byte slot layout and the embedded
+0x94-byte object boundary. It is not evidence that the local object in the
+separate EH-bearing consumer has a trivial destructor.
+
 ## Hard-function strategy
 
 Every reconstruction wave should include at least one function whose completion

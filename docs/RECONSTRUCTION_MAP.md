@@ -26,9 +26,10 @@ status remains ledger-driven. `core-functions.csv` selects gameplay scope,
 
 ```text
 TH10.5
-├── Battle simulation
-│   ├── frame-state controller [mapped]
-│   │   └── 0x0046FE80..0x00470940 active-state dispatch
+├── Battle simulation -> docs/BATTLE_SIMULATION_SYSTEM.md
+│   ├── frame-state controller [decompiled breadth]
+│   │   ├── 0x0046FE80..0x00470940 ten-function controller island
+│   │   └── 0x00470940 seven-state frame dispatcher [decompiled]
 │   ├── fighter update [semantics-ready]
 │   │   ├── action + owned-object callbacks [exact]
 │   │   │   └── 0x0046A5B0 -> 0x00463610
@@ -47,7 +48,7 @@ TH10.5
 │   │   ├── 0x0046B570 general hit resolution [implemented]
 │   │   └── 0x0046C290 fighter body separation [implemented]
 │   └── 0x0046B420 shared battle phase [exact]
-├── Spell-card system
+├── Spell-card system -> docs/SPELL_CARD_SYSTEM.md
 │   ├── assets and parsers [implemented: compiler-shaping remains]
 │   │   ├── 0x00416A50 VC8 deque<4-byte>::push_back [library, exact probe]
 │   │   ├── 0x00408A40 VC8 string append [library, exact probe]
@@ -55,7 +56,8 @@ TH10.5
 │   │   ├── 0x0040EB20/EE50/EF50/F050/F780 CSV reader API [decompiled]
 │   │   ├── 0x00431430/0x00432310 VC8 map traversal/insert [library, exact]
 │   │   ├── 0x00431950 SpellRecord deep copy [exact]
-│   │   ├── 0x004325B0 first CSV parser [identified]
+│   │   ├── short-key temporary tree and int-key record tree helpers [decompiled]
+│   │   ├── 0x004325B0 first CSV parser [decompiled]
 │   │   └── 0x00432E20 record/resource parser [implemented]
 │   ├── spell data [source-ready]
 │   │   ├── 0x00430DE0 loader selector [exact]
@@ -63,6 +65,9 @@ TH10.5
 │   │   └── 0x004317A0 local/common lookup [implemented]
 │   ├── spell runtime [source-ready]
 │   │   ├── 0x00430C30/0x00430D90 deque front/select [exact]
+│   │   ├── 0x98-byte two-short plus sprite sequence slot [contracted]
+│   │   ├── 0x0045C440 grow [decompiled]
+│   │   ├── 0x0045C5A0 enqueue [exact]
 │   │   └── 0x0045BC30/0x0045C690 consume/prepare [implemented]
 │   └── fighter integration [source-ready]
 │       ├── 0x0045F140 battle-state initialization [implemented]
@@ -96,13 +101,12 @@ platform/runtime. Their module boundaries are listed in `docs/ARCHITECTURE.md`.
 
 ## Unlock-first frontier
 
-1. **Roster character pilots.** All fifteen owned-object spawn entries now have
-   one proven ABI and normalized instruction template; Sakuya supplies the
-   source body, all fifteen acquire-and-link helpers have one source-ready
-   body, and all pool fresh/reuse paths are semantics-ready. Recover their
-   shared container/lock/constructor dependencies without hiding Alice's
-   `0x38C` allocation exception, then emit the shared spawn pattern and split
-   spell/skill decision leaves under each fighter dispatcher.
+1. **Battle controller breadth.** The previously unclassified ten-function
+   island `0x0046FE80..0x00470940` is now decompiled and connected to fighter,
+   phase, input, scene, and spell-runtime edges. Contract the controller's
+   observed state fields and implement one phase at a time, starting with the
+   frame dispatcher and the small active-simulation wrapper; retain the two
+   ledger/IDA boundary disagreements recorded in the subsystem map.
 2. **PAT record semantics.** `0x00462050` now has target-sized complete source,
    `0x0045E080` is exact, and `0x00464320` is 197/199 bytes. Recover the
    EH-bearing record types inside `0x00460B50`; this is the remaining shared

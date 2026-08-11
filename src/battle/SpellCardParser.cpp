@@ -4,7 +4,7 @@
 
 namespace th105 {
 
-extern "C" int __cdecl wsprintfA(
+extern "C" __declspec(dllimport) int __cdecl wsprintfA(
     char *destination,
     const char *format,
     ...);
@@ -48,10 +48,10 @@ __forceinline unsigned &DwordDeque4::back_checked()
     return blocks_04[block][position & 3];
 }
 
-void SpellDataOwner::parse_spell_csv_and_build_card_resources(
+void __stdcall parse_spell_csv_and_build_card_resources(
     const char *character_name,
     const char *path,
-    void *image_owner,
+    DwordDeque4 *image_owner,
     SpellTree *destination)
 {
     CsvReader reader;
@@ -73,7 +73,7 @@ void SpellDataOwner::parse_spell_csv_and_build_card_resources(
         parsed.batch_resource_40 = 0;
         parsed.optional_resource_44 = 0;
 
-        DwordDeque4 *handles = static_cast<DwordDeque4 *>(image_owner);
+        DwordDeque4 *handles = image_owner;
         if (handles != 0) {
             char card_path[260];
             wsprintfA(

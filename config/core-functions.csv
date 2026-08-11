@@ -1,8 +1,14 @@
 address,lane,priority,notes
+0x004010C0,battle-phase,3,Render-service preparation called by battle phase plus info wrapper
+0x004016B0,collision-phase,3,VC8 std logic_error constructor reached by checked list overflow
+0x00401D70,hit-resolution,3,Wave-handle dispatch reached by indexed battle events
 0x004021C0,spell-assets,3,Opaque parser helper reached by the hard spell CSV parser
 0x00402A50,character-owned-object,1,Shared reusable pool node removal contract
+0x00404980,battle-phase,2,Render or service mode transition used by the shared sixteen-step phase
+0x00404A10,battle-phase,2,State-pair dependent service command transition used by the shared phase
 0x00404EC0,spell-assets,2,Single image resource loader boundary
 0x00404F30,spell-assets,2,Composite image resource builder boundary
+0x00404FA0,spell-assets,2,Release one image/resource handle during spell-owner reset
 0x00406530,character-owned-object,1,Shared float orientation sine lookup used across all 15 roster object-action families
 0x004065A0,character-owned-object,1,Shared float orientation cosine lookup used across all 15 roster object-action families
 0x00406650,geometry,3,Exact orientation sine lookup dependency
@@ -21,20 +27,28 @@ address,lane,priority,notes
 0x0040EF50,spell-assets,2,CSV reader field boundary
 0x0040F050,spell-assets,2,CSV reader field boundary
 0x0040F780,spell-assets,2,CSV reader cleanup boundary
+0x004132D0,spell-assets,2,DwordDeque4 block and map storage clear used by spell-owner reset
 0x00416A50,spell-assets,2,Loaded resource registration boundary
 0x0041FEA0,collision-phase,3,Exact collision-list sentinel allocation
 0x00421310,character-owned-object,1,CEffectSprite constructor required by the shared AttackObject constructor
+0x00425CD0,battle-phase,2,Post-update battle camera or global-view transform pass
+0x00425F10,battle-phase,2,Second post-update global-state pass and round-reset dependency
 0x0042C100,score,1,Observed record count and high-water update
+0x0042D240,spell-data,2,Recursive SpellTree subtree destruction with owning-string cleanup
 0x00430C30,spell-runtime,3,Exact checked front access for a short deque-like container
 0x00430C80,spell-data,2,Post-load spell data finalization contract
 0x00430D90,spell-runtime,2,Spell record selector contract
 0x00430DE0,spell-data,2,Exact normal versus alternate loader selector
 0x00430FA0,fighter-init,2,Category-dependent sequence mode setter
 0x00431430,spell-assets,2,Exact VC8 checked spell-map iterator predecessor specialization
-0x004316C0,spell-data,2,Checked spell tree lookup contract
+0x00431590,spell-data,2,Short-key temporary-tree nil-node allocation
+0x004316C0,spell-data,2,Exact VC8 std::map<int SpellRecordView>::find specialization
+0x00431730,spell-data,2,Checked short-key temporary-tree lookup
 0x004317A0,spell-data,1,Local then common spell record lookup
 0x00431860,spell-runtime,2,Player-indexed record callback contract
 0x00431950,spell-assets,2,Exact SpellRecordView deep-copy constructor
+0x00431ED0,spell-data,2,Short-key temporary-tree unique insertion
+0x00432040,spell-data,2,Checked SpellTree iterator-range erase
 0x00432310,spell-assets,2,Exact VC8 spell-map unique insert specialization
 0x00432500,spell-data,2,Spell entry container clear contract
 0x004325B0,spell-data,1,First large spell CSV parser body
@@ -47,6 +61,7 @@ address,lane,priority,notes
 0x00433CC0,character-command,1,Exact shared effect emission forwarding boundary
 0x00434390,geometry,3,Exact fighter X-boundary classification used by body separation
 0x004343D0,geometry,3,Exact proposed-X stage-height gate used by body separation
+0x00434800,geometry,3,Exact stage-surface height lookup
 0x00434860,hit-resolution,3,Exact stage-surface fighter gate
 0x00439860,hit-resolution,3,Exact game-mode accessor
 0x00439B40,score,3,Exact ScoreData root accessor
@@ -54,7 +69,11 @@ address,lane,priority,notes
 0x00439DC0,hit-resolution,3,Exact indexed event dispatch
 0x0043ABE0,spell-data,2,Character key to path component contract
 0x004454E0,character-owned-object,2,Exact four-byte VC8 deque append used by every fighter parent-link path
+0x00453B70,spell-runtime,2,Copy 0x94-byte sprite subobject inside a fighter sequence slot
 0x00454890,collision-phase,3,Verified VC8 std list size helper
+0x00459860,battle-phase,2,Exact fighter position integration and stage clamp
+0x00459C90,hit-resolution,3,Exact counter-step consumption and indexed callback
+0x00459E50,battle-phase,2,Exact common character update and input/action tail dispatch
 0x00459ED0,hit-resolution,1,Forwarded quantity scalar chain
 0x0045A030,hit-resolution,1,Base hit quantity scalar chain
 0x0045A190,geometry,1,Hard local box transform with x87 conversion schedule
@@ -69,13 +88,16 @@ address,lane,priority,notes
 0x0045BBB0,spell-runtime,1,Exact shared front spell-sequence availability gate
 0x0045BC30,spell-runtime,1,Sequence consume callback statistics and next-record publication
 0x0045BF10,collision-phase,2,Exact deferred sequence counter application
-0x0045C5A0,spell-runtime,2,Two-short sequence record enqueue contract
+0x0045C440,spell-runtime,2,Grow fighter sequence slot-pointer storage
+0x0045C5A0,spell-runtime,2,Exact allocation and enqueue of a complete 0x98-byte fighter sequence slot
 0x0045C690,spell-runtime,1,Record selection optional resource preparation and enqueue
 0x0045CA70,hit-resolution,3,Exact paired-fighter facing update
 0x0045CAE0,hit-resolution,3,Exact signed fighter state gate 32 to 95
 0x0045CB00,hit-resolution,3,Exact signed fighter state gate 96 to C7
 0x0045CB20,hit-resolution,1,Outcome selector from fighter and frame state
 0x0045CD90,hit-resolution,3,Exact positive-y and state-window gate
+0x0045CDD0,battle-phase,2,Fighter transient status and embedded countdown continuity
+0x0045CF00,battle-phase,2,Fighter timer decrement cleanup and tail contract
 0x0045E080,fighter-init,2,Per-fighter indexed resource initialization boundary
 0x0045E3A0,character-owned-object,1,Shared AttackObject constructor and Character or CharacterObject base contract
 0x0045E5F0,fighter-init,2,Sequence controller reset contract
@@ -87,8 +109,15 @@ address,lane,priority,notes
 0x004631E0,fighter-init,2,Second subordinate fighter initialization phase
 0x00463610,battle-phase,3,Exact active character and owned-object callback phase
 0x00463760,battle-phase,3,Exact physics status and timer commit phase
+0x00463820,battle-phase,2,Ordered fighter-vector vslot +0x2C pass with side selection
+0x00463970,battle-phase,2,Owned-manager vslot +0x18 then fighter vslot +0x30 passes
+0x00463A00,battle-phase,2,Fighter owned-manager signed phase-argument pass
+0x00463A60,battle-phase,2,Fighter-vector direct shared helper pass
+0x00463AB0,battle-phase,2,Fighter embedded +0x3D0 state pass
 0x00464110,character-owned-object,1,Shared object pointer-storage insertion helper
 0x00464320,fighter-init,2,Final character resource callback boundary
+0x00465B00,battle-phase,2,Object-manager list vslot +0x10 pass with global pre/post calls
+0x00465B70,battle-phase,2,Object-manager list vslot +0x0C pass
 0x00469E40,hit-resolution,3,Exact indexed info-manager scratch reset
 0x0046A5B0,battle-phase,3,Exact global active-character phase wrapper
 0x0046A5C0,battle-phase,3,Exact global physics status phase wrapper
@@ -131,6 +160,16 @@ address,lane,priority,notes
 0x0046D160,collision-phase,1,Hard family 2 against family 1 checked-list pass
 0x0046D370,collision-phase,1,Hard family 1 same-list and cross-list clash pass
 0x0046D620,collision-phase,1,Hard six-list collision and deferred-result orchestration
+0x0046FE80,battle-controller,1,Battle setup and transition phase root
+0x00470060,battle-controller,1,Roster and match setup phase root
+0x004701C0,battle-controller,1,Round-state initialization phase root
+0x00470300,battle-controller,2,Terminal fighter state and effect publication
+0x00470360,battle-controller,1,Round and spell-sequence resolution phase
+0x004704D0,battle-controller,1,Active simulation frame wrapper
+0x00470500,battle-controller,1,Scene and round transition phase
+0x00470780,battle-controller,1,Round reset phase
+0x004708B0,battle-controller,2,Synchronized input availability gate
+0x00470940,battle-controller,1,Seven-state per-frame battle dispatcher
 0x00491480,character-command,1,Reimu character-specific action-change root
 0x004927D0,character-owned-object,1,Shared CharacterObject construction and common-tail initialization
 0x00492B10,character-owned-object,1,Reimu typed handle-pool constructor

@@ -411,3 +411,27 @@ rel32_targets = [
   "??0?$CHandleManagerEx@VTenshiObject@@@@QAE@XZ=0x0064A480",
   "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x0041FEA0",
 ]
+
+[units.spell-sequence-enqueue]
+kind = "probe"
+source = "src/battle/SequenceEnqueue.cpp"
+object = "build/match-units/SequenceEnqueue.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Focused 0x98-byte spell-sequence slot transfer reconstruction; not evidence of an original translation-unit boundary."
+
+[[units.spell-sequence-enqueue.functions]]
+address = "0x0045C5A0"
+symbol_base = "enqueue_record"
+
+[units.probe-spell-tree-find]
+kind = "probe"
+source = "scripts/probes/spell_tree.cpp"
+object = "build/match-units/spell_tree.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Native VC8 checked std::map<int, SpellRecordView> find specialization probe; excluded from authored progress."
+
+[[units.probe-spell-tree-find.functions]]
+address = "0x004316C0"
+symbol_base = "find"

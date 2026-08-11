@@ -23,7 +23,7 @@ InitializeFighterFunction const check_initialize_fighter =
 InitializeFighterFunction const check_initialize_fighter_resources =
     &Fighter::initialize_fighter_spell_resources;
 ParseSpellResourcesFunction const check_parse_spell_resources =
-    &SpellDataOwner::parse_spell_csv_and_build_card_resources;
+    &parse_spell_csv_and_build_card_resources;
 FinalizeSpellDataFunction const check_finalize_spell_data =
     &SpellDataOwner::finalize_loaded_spell_data;
 SelectSpellRecordFunction const check_select_spell_record =

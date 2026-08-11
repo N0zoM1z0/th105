@@ -163,6 +163,32 @@ vtables, makes all fifteen constructor instances exact at 103/103 bytes. One
 truthful type recovery therefore retired fifteen functions and strengthened
 every later manager, spell, and battle work packet.
 
+The next breadth-first pass applied the same gates at subsystem scale instead
+of waiting for individual exact matches. `scripts/core-lane-survey.py` now
+collects SHA-attested IDA-first packets for a named core lane, records ledger
+versus backend boundaries, and keeps per-function query failures explicit. The
+spell-card survey expanded the core graph with parser-owned deques and trees,
+short-key temporary-tree helpers, sprite copy/growth, and sequence storage. It
+also corrected `0x00432E20` from a guessed member function to its proven free
+four-argument `__stdcall` ABI.
+
+The battle survey then promoted the entire previously unclassified controller
+island `0x0046FE80..0x00470940` to decompiled structure and connected it to
+input gating, scene transitions, shared phase calls, fighter updates, and spell
+runtime. This is the intended breadth-first result: central functions acquire
+truthful declarations, type/dependency contracts, boundary warnings, and
+bounded exact-work packets before workers spend time on compiler scheduling.
+No fake bodies were added to make the island compile.
+
+Two exact checks demonstrate that breadth and exactness reinforce each other.
+The recovered spell-tree layout makes the native VC8
+`std::map<int, SpellRecordView>::find` specialization at `0x004316C0` exact
+(105/105) and therefore `library`; it is not authored progress. The recovered
+0x98-byte sequence-slot layout makes `0x0045C5A0` exact (114/114) through a
+truthful grow/lazy-allocation/two-short/embedded-sprite-copy implementation.
+The latter is now a canonical match unit and a regression gate for the harder
+EH-bearing sequence preparation path.
+
 The work-packet boundary gate also prevented a false partial comparison at
 `0x004B9540`: its stored `size=112` disagreed with `span_end=0x004B95B9`.
 Fresh IDA instructions prove a contiguous 122-byte body through the final

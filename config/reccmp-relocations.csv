@@ -71,6 +71,7 @@ _logarithmic_volume_scale,0x006C0F0C,48e10442,0x0,target float 33.22000122070312
 __ehhandler$??1CTitle@th105@@UAE@XZ,0x006A499D,8b5424088d42f48b,0x0,target VC8 CTitle destructor EH handler entry bytes,literal
 ___security_cookie,0x006E1A88,4ee640bb,0x0,target VC8 security cookie address and bytes,address
 __ehhandler$??0SpellRecordView@th105@@QAE@ABU01@@Z,0x006A5288,8b5424088d42f08b,0x0,target VC8 SpellRecordView copy-constructor EH handler entry bytes,address
+__ehhandler$?parse_spell_csv_and_build_card_resources@th105@@YGXPBD0PAUDwordDeque4@1@PAUSpellTree@1@@Z,0x006A53D8,8b5424088d823cfd,0x0,target VC8 free stdcall spell-card parser EH handler entry bytes,address
 ??_7CTitle@th105@@6B@,0x006ACCF4,80514200,0x0,target RTTI-owned CTitle vtable address and first slot,address
 ?g_title_resource_manager@th105@@3UTitleResourceManager@1@A,0x006ECD40,00000000,0x0,target zero-filled title resource-manager object address,address
 _title_color_vtable_anchor,0x006AC624,40a84000,0x0,target title color vtable address and first slot,address
@@ -158,6 +159,7 @@ _profile_file_extension,0x006AE410,2e64617400,0x0,target .dat suffix used to for
 _profile_copy_suffix,0x006AE44C,20d2d1b4e6d4daa3accac7b7f1cce6bbbba3bf00,0x0,target localized suffix used for the duplicate-profile message,address
 __ehhandler$?update_state_six@CProfileMenu@th105@@AAE_NXZ,0x006A7260,8b5424088d42bc8b,0x0,target VC8 CProfileMenu state-six EH handler entry bytes,address
 __ehhandler$??0CEffectSprite@@QAE@XZ,0x006A4288,8b5424088d42f88b,0x0,target VC8 global CEffectSprite constructor EH handler entry bytes,address
+__ehhandler$?prepare_next_spell_sequence_entry@Fighter@th105@@QAEXXZ,0x006A7D1B,8b5424088d8260ff,0x0,target VC8 spell-sequence preparation EH handler entry bytes,address
 ??_7CEffectSprite@@6B@,0x006AC72C,30eb410040a7400060a7400080a74000,0x0,target RTTI-owned global CEffectSprite vtable and four observed slots,address
 ??_7IColor@@6B@,0x006AC624,40a8400074b0670074b0670074b06700,0x0,target RTTI-owned global IColor vtable and four observed slots,address
 ??_7AttackObject@@6B@,0x006AEB44,a0e2450030aa450010aa450050ad450020ae450050ac4500e0ac4500b0ab4500,0x0,target RTTI-owned global AttackObject vtable and eight observed slots,address
