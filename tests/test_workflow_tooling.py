@@ -74,6 +74,15 @@ class WorkflowToolingTests(unittest.TestCase):
             "CriticalSectionWrapper_enter",
         )
 
+    def test_dir32_mapping_selects_verified_function_local_alias(self) -> None:
+        decorated = "??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ"
+        alias = "_fixed_slot_vector_assign_deque_dtor_thunk"
+        self.assertEqual(
+            self.comparator.dir32_target_key(decorated, {decorated: alias}),
+            alias,
+        )
+        self.assertEqual(self.comparator.dir32_target_key(decorated, {}), decorated)
+
     def test_target_identity_failure_is_not_a_match_blocker(self) -> None:
         result, failure = self.comparator.failure_record(
             ValueError("target SHA-256 mismatch: got wrong, expected exact")
@@ -87,8 +96,8 @@ class WorkflowToolingTests(unittest.TestCase):
 
     def test_known_clone_families_match_target(self) -> None:
         reports = self.clones.load_and_check()
-        self.assertEqual(len(reports), 3)
-        self.assertEqual(sum(report["member_count"] for report in reports), 45)
+        self.assertEqual(len(reports), 8)
+        self.assertEqual(sum(report["member_count"] for report in reports), 120)
 
     def test_ghidra_body_span_boundary_is_advisory(self) -> None:
         entry, size, basis = self.packet.canonical_backend_boundary(

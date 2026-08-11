@@ -110,10 +110,15 @@ address,name,module,confidence,evidence
 0x00424AB0,main_menu_update,ui,observed,docs/EVIDENCE.md main menu vtable and runtime
 0x00425CD0,update_global_6e6260_first,battle,inferred,docs/BATTLE.md post-update phase calls this first with global state 0x006E6260
 0x00425F10,update_global_6e6260_second,battle,inferred,docs/BATTLE.md post-update phase tail-dispatches this second with global state 0x006E6260
+0x004275C0,fixed_slot_envelope_vector_size,runtime,observed,Strict exact native VC8 vector size specialization over 0x50-byte elements
 0x004275E0,FixedSlotStoreView_select_slot_4275e0,battle,observed,Strict exact 60-byte checked 0x50-stride fixed battle-setup slot selector
+0x00427620,allocate_fixed_slot_envelopes,runtime,observed,Strict exact native VC8 allocation specialization with verified bad_alloc anchors
 0x00429640,destroy_fixed_slot_envelope_payloads,runtime,observed,IDA Pro complete third-deque and EH-vector two-deque cleanup
+0x00429B90,std_deque_short_push_back,runtime,observed,Strict exact native VC8 std::deque<short>::push_back used by scenario and fixed-slot loading
+0x0042A3F0,deserialize_fixed_slot_envelope,battle,observed,IDA Pro complete two-side terminal and three-short-deque binary read sequence
 0x0042A7B0,std_deque_short_assign,runtime,observed,Strict exact native VC8 std::deque<short>::operator= probe and fixed setup save/load call sites
 0x0042A8E0,std_deque_short_copy_ctor,runtime,observed,Strict exact native VC8 std::deque<short> copy-constructor probe with target GS and EH mapping
+0x0042A9E0,fixed_slot_envelope_range_eh_cleanup_adapter,runtime,observed,IDA Pro insertion exception-path bridge to the typed range destructor
 0x0042AA00,FixedSlotEnvelope_assign,battle,observed,Strict exact 0x50-byte envelope deep assignment with three native deque<short> members
 0x0042A330,destroy_fixed_slot_envelope_range,runtime,observed,IDA Pro complete 0x50-stride envelope ownership cleanup loop
 0x0042ADD0,FixedSlotEnvelope_copy_ctor,battle,observed,IDA Pro complete copy path uses EH vector helper and exact deque short copy constructor for the three owning payloads
@@ -124,6 +129,13 @@ address,name,module,confidence,evidence
 0x0042AFD0,relocate_fixed_slot_tail_and_publish_iterator,runtime,observed,IDA Pro complete checked iterator tail relocation destruction and end publication
 0x0042B040,assign_fixed_slot_tail_backward,runtime,observed,IDA Pro direct forwarding to the backward envelope assignment loop
 0x0042B070,fill_construct_fixed_slot_envelopes,runtime,observed,IDA Pro complete counted copy construction and EH cleanup loop
+0x0042B120,clear_fixed_slot_envelope_vector,runtime,observed,Strict exact native VC8 checked vector clear specialization
+0x0042B160,fill_construct_fixed_slot_envelope_range_wrapper,runtime,observed,Strict exact native VC8 vector uninitialized-fill wrapper
+0x0042B1A0,copy_construct_fixed_slot_envelope_range_wrapper,runtime,observed,Strict exact native VC8 vector uninitialized-copy wrapper
+0x0042B1D0,insert_fixed_slot_envelope_copies,runtime,observed,Native VC8 vector counted insertion exact-size 786-byte probe with register-schedule delta at +0x43
+0x0042B4F0,assign_fixed_slot_envelope_count,runtime,observed,Strict exact native VC8 vector count-assignment specialization
+0x0042B5D0,configure_session_input_slots,battle,observed,IDA Pro clears and count-assigns the fixed-slot vector while storing game mode
+0x0042B6C0,load_battle_input_recording,battle,observed,IDA Pro complete file validation vector rebuild and per-envelope decoding
 0x0042AAB0,BattleInputGate_save_battle_setup_slot,battle,observed,Complete authored fixed-slot save and exact checked selector dependency
 0x0042ABF0,BattleInputGate_load_battle_setup_slot,battle,observed,Complete authored inverse fixed-slot load and exact checked selector dependency
 0x0042C100,update_observed_record_statistics,config,inferred,docs/BATTLE.md observed existing-record count and signed high-water update
@@ -395,7 +407,6 @@ address,name,module,confidence,evidence
 0x00438680,ResultListBase_render_row,ui,observed,CMenuResult render calls this helper for each visible result row
 0x00427BD0,ResultReplayDeque20_at,ui,observed,CMenuResult confirmation reads the selected replay identifier through this checked deque accessor
 0x00438610,ResultPointerDeque20_at,ui,observed,CMenuResult confirmation reads selected result metadata through this checked deque accessor
-0x00429B90,ResultReplayString_assign,ui,observed,CMenuResult copies the selected replay identifier into match setup offset 0x30
 0x0043A560,prepare_result_match,ui,observed,CMenuResult confirmation prepares result playback mode seven for player zero
 0x0044BE80,CProfileMenu_ctor,ui,observed,Main menu and CMenuResult secondary action construct the 0x8EC-byte profile menu
 0x0044BCD0,CProfileMenu_dtor,ui,observed,CProfileMenu vtable cleanup and natural member destruction path
@@ -452,7 +463,6 @@ address,name,module,confidence,evidence
 0x004317A0,ResultNameResolver_find_spell,ui,observed,ResultList population resolves the spell-name record for a result row
 0x00439B40,get_result_score_state,ui,observed,ResultList population reads per-character result records from the shared score state
 0x004454E0,std_deque_push_back_pointer_ref,runtime,observed,Exact VC8 four-byte std::deque push_back specialization with 25 callers including all fifteen fighter parent-link paths
-0x00429B90,ResultReplayDeque20_push_back,ui,observed,ResultList population appends the selected row replay identifier
 0x0067CA9B,_sprintf_s,crt,observed,ResultList population target call address formats both display-row variants
 0x00445100,CMenuResult_render,ui,observed,CMenuResult vtable render slot and 18089 decompile
 0x00445210,CMenuResult_refresh_selected_character,ui,observed,CMenuResult resource and lazy ResultList refresh helper

@@ -94,6 +94,11 @@ Undefined DIR32 symbols remain rejected except for explicitly allowlisted
 and on-disk thunk literal; the target bytes and relocation addend are
 revalidated on every comparison.
 
+Function-level `dir32_targets` may select a different named allowlist row for
+one exact COFF symbol when linked COMDAT folding proves different destinations
+across functions. Both destinations remain byte-validated in
+`config/reccmp-relocations.csv`; raw per-function addresses are not accepted.
+
 `scripts/compare-function.py --json` is the machine-facing interface. It
 distinguishes `exact`, `mismatch`, `blocked`, and `error`, reports the first
 differing byte, and classifies relocation blockers. Human-readable output is

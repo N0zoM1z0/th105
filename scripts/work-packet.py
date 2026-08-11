@@ -322,6 +322,8 @@ def comparison_state(address: str) -> dict[str, object]:
         command.extend(["--symbol-base", str(function["symbol_base"])])
     for mapping in function.get("rel32_targets", []):
         command.extend(["--rel32-target", str(mapping)])
+    for mapping in function.get("dir32_targets", []):
+        command.extend(["--dir32-target", str(mapping)])
     command.extend(["--json", address, str(output)])
     completed = subprocess.run(command, cwd=ROOT, capture_output=True, text=True)
     try:

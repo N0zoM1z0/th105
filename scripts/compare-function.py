@@ -194,6 +194,11 @@ def relocation_target_key(name: str, targets: dict[str, int]) -> str:
     return short_name
 
 
+def dir32_target_key(name: str, overrides: dict[str, str]) -> str:
+    """Resolve a function-local DIR32 symbol to a verified allowlist key."""
+    return overrides.get(name, name)
+
+
 def is_function_symbol(name: str, symbol_base: str) -> bool:
     if name == symbol_base or name.startswith(f"?{symbol_base}@"):
         return True
@@ -257,7 +262,10 @@ def coff_symbol_bytes(
     function_size: int,
     targets: dict[str, int],
     data_targets: dict[str, tuple[int, bytes, frozenset[int], str]],
+    data_target_overrides: dict[str, str] | None = None,
 ) -> bytes:
+    if data_target_overrides is None:
+        data_target_overrides = {}
     data = path.read_bytes()
     machine = struct.unpack_from("<H", data, 0)[0]
     if machine != 0x014C:
@@ -374,12 +382,15 @@ def coff_symbol_bytes(
                 )
                 struct.pack_into("<I", code, field_offset, destination & 0xFFFFFFFF)
                 continue
-            if target_symbol_name not in data_targets:
+            data_target_key = dir32_target_key(
+                target_symbol_name, data_target_overrides
+            )
+            if data_target_key not in data_targets:
                 raise ValueError(
                     f"unknown absolute data relocation: {target_symbol_name}"
                 )
             destination, literal, allowed_addends, validation = data_targets[
-                target_symbol_name
+                data_target_key
             ]
             raw_addend = struct.unpack_from("<I", code, field_offset)[0]
             if raw_addend not in allowed_addends:
@@ -507,6 +518,16 @@ def main() -> int:
         help="add a probe-only REL32 symbol mapping without changing the ledger",
     )
     parser.add_argument(
+        "--dir32-target",
+        action="append",
+        default=[],
+        metavar="COFF_SYMBOL=ALLOWLIST_KEY",
+        help=(
+            "map one function-local DIR32 symbol to a separately verified "
+            "config/reccmp-relocations.csv key"
+        ),
+    )
+    parser.add_argument(
         "--json",
         action="store_true",
         help="emit one machine-readable comparison result",
@@ -592,6 +613,12 @@ def main() -> int:
             if not separator or not name or not raw_address:
                 parser.error(f"invalid --rel32-target mapping: {mapping!r}")
             targets[name] = int(raw_address, 0)
+        data_target_overrides: dict[str, str] = {}
+        for mapping in args.dir32_target:
+            name, separator, allowlist_key = mapping.partition("=")
+            if not separator or not name or not allowlist_key:
+                parser.error(f"invalid --dir32-target mapping: {mapping!r}")
+            data_target_overrides[name] = allowlist_key
         actual_section = coff_symbol_bytes(
             obj,
             symbol_base,
@@ -599,6 +626,7 @@ def main() -> int:
             size,
             targets,
             known_data_targets(),
+            data_target_overrides,
         )
         actual = actual_section[:size]
         mismatch = first_mismatch(expected, actual, int(address, 16))

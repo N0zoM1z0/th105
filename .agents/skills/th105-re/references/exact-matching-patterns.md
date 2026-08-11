@@ -1096,3 +1096,15 @@ to a raw `memcpy`: it preserves ownership and calls the exact native deque
 assignment. If VC8 outlines an implicit nested aggregate operator, spell out
 the same field operations without changing the data model; do not fake a byte
 copy across owning STL members.
+
+### P41. Model function-local COMDAT DIR32 destinations as verified aliases
+
+One explicit VC8 `vector<FixedSlotEnvelope>` object emits the same deque
+destructor COFF symbol in both `_Insert_n` and `_Assign_n`, but the shipped
+image links the former directly to `0x0051D0D0` and the latter to the proven
+`0x00445370` jump thunk. A single global symbol mapping cannot represent both
+truthfully. Record both destinations with target bytes in
+`reccmp-relocations.csv`, then select the alternate allowlist key through the
+function's `dir32_targets`. Never patch the object or accept an unchecked raw
+address. This made `0x0042B4F0` exact at 218/218 while preserving
+`0x0042B1D0` as a genuine 786-byte register-schedule mismatch at `+0x43`.

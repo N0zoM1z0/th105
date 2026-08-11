@@ -205,6 +205,13 @@ relocation-overflow sections. Those cases still require an appropriate
 linked-slice or executable comparison. A successful object probe does not
 replace final LTCG-sensitive executable-level reccmp acceptance.
 
+When COMDAT folding routes the same COFF symbol to different verified target
+entries in different linked functions, a match-unit function may use
+`dir32_targets = ["COFF_SYMBOL=ALLOWLIST_KEY"]`. The right-hand key must still
+be a fully byte-validated row in `config/reccmp-relocations.csv`; this is a
+function-local selection between proven destinations, not an unchecked address
+override.
+
 For C++ special members, ledger names may use the semantic `_ctor` or `_dtor`
 suffix. The comparator resolves those names to the corresponding VC8 `??0` or
 `??1` decorated COMDAT symbol before applying the same strict byte checks.

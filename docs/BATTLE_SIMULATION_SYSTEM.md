@@ -217,6 +217,31 @@ is its backward overlap-safe assignment wrapper. These functions remain
 decompiled contracts rather than fake source bodies, but they turn the
 following fixed-slot growth callers into bounded implementation packets.
 
+The first caller layer resolves the container itself as a VC8 checked
+vector-like owner with `{begin,end,capacity_end}` pointers and 0x50-byte
+elements. `0x004275C0` computes its size, `0x00427620` performs
+overflow-checked raw allocation, and `0x0042A9E0` forwards range destruction.
+The thin `0x0042B160/0x0042B1A0` wrappers expose uninitialized fill/copy
+construction, while `0x0042B120` clears the live range without releasing
+capacity. A native VC8 vector probe makes those three wrappers exact at 56/56,
+41/41, and 57/57; `0x004275C0` is likewise exact at 31/31, and verified
+`bad_alloc` RTTI/vtable anchors close `0x00427620` at 89/89. They are correctly
+classified as compiler-library code, not authored progress. The central
+`0x0042B1D0` counted insertion covers both in-place and
+reallocation branches, including overlap-safe movement, EH cleanup, geometric
+growth, and old-storage destruction; `0x0042B4F0` composes clear plus counted
+insert into count assignment. This closes the shared container machinery
+needed by session configuration and the adjacent input-record file loader.
+
+The next gameplay-facing edge is now mapped as well. `0x0042B5D0` stores the
+game mode and initializes a requested count of default input slots; this
+corrects the earlier character-key hypothesis. `0x0042B6C0` opens an input
+record, validates its format marker, rebuilds the slot vector, and calls
+`0x0042A3F0` once per serialized envelope. The decoder reads both setup sides,
+terminal fields, and all three bounded short deques. Its append dependency
+`0x00429B90` was also corrected from two stale replay-UI aliases to exact
+native `std::deque<short>::push_back` at 119/119.
+
 The scenario dispatch at `0x00458E80` is a receiver-bearing `__thiscall`, not
 the earlier free `__stdcall` hypothesis. Its shared `ScenarioTransitionView`
 source is exact for all 127 authoritative bytes; both `0x00470500` and
@@ -254,6 +279,8 @@ The ledger remains authoritative for all comparisons:
 | `0x00427190` | 474 | 482 | keep ledger span |
 | `0x0042AF20` | 125 | 162 | keep ledger span; IDA includes EH tail/chunk |
 | `0x0042B070` | 125 | 162 | keep ledger span; IDA includes EH tail/chunk |
+| `0x0042B1D0` | 786 | 786 | corrected stale `size=711`; span and final `retn 10h` agree |
+| `0x0042B6C0` | 848 | 848 | corrected stale 825-byte/short-span row through final jump at `0x0042BA0E` |
 | `0x0043F030` | 797 | 800 | keep ledger span |
 | `0x00458E80` | 127 | 130 | keep ledger span |
 | `0x00458F10` | 306 | 312 | keep ledger span |

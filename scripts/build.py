@@ -90,6 +90,8 @@ def compare_unit(unit: dict[str, object], json_mode: bool) -> tuple[int, list[ob
             command.extend(["--symbol-base", str(function["symbol_base"])])
         for mapping in function.get("rel32_targets", []):
             command.extend(["--rel32-target", str(mapping)])
+        for mapping in function.get("dir32_targets", []):
+            command.extend(["--dir32-target", str(mapping)])
         if json_mode:
             command.append("--json")
         command.extend([str(function["address"]), str(output)])

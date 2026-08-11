@@ -30,7 +30,7 @@ caller,callee,required_status,evidence
 0x004591D0,0x0043AC30,matching,Exact scenario event-name lookup dependency
 0x004591D0,0x0040F050,decompiled,Complete scenario CSV row-advance dependency
 0x004591D0,0x0051D0D0,library,Exact native selected-short deque storage reset dependency
-0x004591D0,0x00429B90,identified,Complete selected-short deque append dependency
+0x004591D0,0x00429B90,library,Exact native selected-short deque append dependency
 0x004591D0,0x0046D000,matching,Exact integer list-node allocation dependency
 0x004591D0,0x00454890,library,VC8 integer-list size increment dependency
 0x004591D0,0x00459170,identified,Checked source-to-destination integer-list assignment dependency
@@ -55,6 +55,32 @@ caller,callee,required_status,evidence
 0x0042B040,0x0042AEA0,decompiled,Complete backward overlap-safe assignment dependency
 0x0042B070,0x0042ADD0,decompiled,Complete counted envelope copy construction dependency
 0x0042B070,0x00429640,decompiled,Complete exception cleanup dependency
+0x0042A9E0,0x0042A330,decompiled,Direct fixed-slot range destruction forwarding dependency
+0x0042B120,0x0042AFD0,decompiled,Checked erase and end-publication dependency
+0x0042B160,0x0042B070,decompiled,Counted uninitialized-fill construction dependency
+0x0042B1A0,0x0042AF20,decompiled,Uninitialized range-copy construction dependency
+0x0042B1D0,0x004275C0,library,Exact native vector-size dependency for growth selection
+0x0042B1D0,0x00427620,library,Verified native overflow-checked raw envelope allocation dependency
+0x0042B1D0,0x0042ADD0,decompiled,Owning value-copy dependency
+0x0042B1D0,0x0042AF20,decompiled,EH-safe prefix and suffix copy construction dependency
+0x0042B1D0,0x0042A330,decompiled,Old-storage range destruction dependency
+0x0042B1D0,0x0042B040,decompiled,Overlap-safe in-place tail movement dependency
+0x0042B1D0,0x0042AEF0,decompiled,In-place fill assignment dependency
+0x0042B1D0,0x0042B160,library,Exact native counted uninitialized-fill wrapper dependency
+0x0042B1D0,0x0042B1A0,library,Exact native uninitialized range-copy wrapper dependency
+0x0042B1D0,0x0051D0D0,library,Exact temporary-envelope deque cleanup dependency
+0x0042B4F0,0x0042ADD0,decompiled,Owning fill-value copy dependency
+0x0042B4F0,0x0042AFD0,decompiled,Checked full-range erase dependency
+0x0042B4F0,0x0042B1D0,library,Verified native counted fixed-slot insertion dependency
+0x0042B4F0,0x0051D0D0,library,Exact temporary-envelope deque cleanup dependency
+0x0042A3F0,0x00429B90,library,Exact native append used for all three decoded short payloads
+0x0042A3F0,0x0051D0D0,library,Exact native reset of the third payload before decoding
+0x0042B5D0,0x0042AFD0,decompiled,Checked fixed-slot vector clear dependency
+0x0042B5D0,0x0042B4F0,library,Exact native default-envelope count assignment dependency
+0x0042B5D0,0x0051D0D0,library,Exact temporary-envelope deque cleanup dependency
+0x0042B6C0,0x0042B120,library,Exact native fixed-slot vector clear dependency
+0x0042B6C0,0x0042B4F0,library,Exact native default-envelope count assignment dependency
+0x0042B6C0,0x0042A3F0,decompiled,Per-slot binary envelope deserialization dependency
 0x00421310,0x00433B90,matching,IDA Pro sole direct reset_fighter_action_scratch dependency
 0x0042C100,0x00439860,matching,docs/BATTLE.md observed mode gate
 0x0042C100,0x00439C90,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
@@ -224,7 +250,7 @@ caller,callee,required_status,evidence
 0x0046FE80,0x00439C80,matching,exact battle setup player-two input accessor
 0x0046FE80,0x0042AAB0,implemented,Complete authored setup-slot save dependency
 0x0046FE80,0x0042ABF0,implemented,Complete authored setup-slot load dependency
-0x0046FE80,0x0042B5D0,identified,exact battle setup session character-input configuration
+0x0046FE80,0x0042B5D0,decompiled,Exact battle setup reaches complete session input-slot vector initialization
 0x0046FE80,0x00433860,identified,exact battle setup stage-music selection
 0x0046FE80,0x00439C30,matching,exact battle setup selected-input accessor
 0x0046FE80,0x0043AD10,identified,exact fallback character-to-stage selection

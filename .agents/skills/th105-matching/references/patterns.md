@@ -385,6 +385,13 @@ ten bytes were the final checked-list node-free loop and epilogue, so a
 prefix-only comparison would have overstated confidence. Resolve boundary
 conflicts from exact instructions and the neighboring function before tuning.
 
+When the linker routes one COFF `DIR32` symbol to different proven COMDAT
+entries in different functions, keep each target as a byte-validated relocation
+row and use the match-unit function's `dir32_targets` to select the alternate
+allowlist key. Do not overwrite the global symbol mapping, patch the object, or
+permit a raw unvalidated address. The fixed-slot vector `_Insert_n/_Assign_n`
+pair is the regression case.
+
 ## 10. Measurement and evidence
 
 Use the strictest truthful status:

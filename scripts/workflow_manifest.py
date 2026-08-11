@@ -16,10 +16,12 @@ ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "config" / "match-units.toml"
 FUNCTIONS = ROOT / "config" / "functions.csv"
 TARGET_CONFIG = ROOT / "config" / "target.toml"
+RELOCATIONS = ROOT / "config" / "reccmp-relocations.csv"
 ALLOWED_KINDS = {"probe", "synthetic_island", "linked_candidate"}
 ALLOWED_PROFILES = {"vc8-sp1-probe-o2"}
 ADDRESS = re.compile(r"0x[0-9A-F]{8}$")
 REL32_TARGET = re.compile(r"[^=\s]+=0x[0-9A-Fa-f]{8}$")
+DIR32_TARGET = re.compile(r"[^=\s]+=[^=\s]+$")
 
 
 def repository_path(raw: str, *, output: bool = False) -> Path:
@@ -53,6 +55,10 @@ def load_manifest() -> dict[str, Any]:
 
     with FUNCTIONS.open(newline="", encoding="utf-8") as stream:
         ledger = {row["address"]: row for row in csv.DictReader(stream)}
+    with RELOCATIONS.open(newline="", encoding="utf-8") as stream:
+        dir32_allowlist = {
+            row["coff_symbol"] for row in csv.DictReader(stream)
+        }
 
     units = manifest.get("units")
     if not isinstance(units, dict) or not units:
@@ -99,6 +105,18 @@ def load_manifest() -> dict[str, Any]:
                     raise ValueError(
                         f"match unit {name!r} function {address} has invalid "
                         f"REL32 mapping {mapping!r}"
+                    )
+            for mapping in function.get("dir32_targets", []):
+                if not isinstance(mapping, str) or not DIR32_TARGET.fullmatch(mapping):
+                    raise ValueError(
+                        f"match unit {name!r} function {address} has invalid "
+                        f"DIR32 mapping {mapping!r}"
+                    )
+                allowlist_key = mapping.partition("=")[2]
+                if allowlist_key not in dir32_allowlist:
+                    raise ValueError(
+                        f"match unit {name!r} function {address} references "
+                        f"unknown DIR32 allowlist key {allowlist_key!r}"
                     )
     return manifest
 

@@ -828,10 +828,96 @@ rel32_targets = [
 ]
 
 [[units.probe-deque-short.functions]]
+address = "0x00429B90"
+symbol_base = "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z"
+rel32_targets = [
+  "_Growmap=0x00429460",
+  "??2@YAPAXI@Z=0x0067B50C",
+]
+
+[[units.probe-deque-short.functions]]
 address = "0x0051D0D0"
 symbol_base = "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ"
 rel32_targets = [
   "operator_delete=0x0067B02A",
+]
+
+[units.probe-fixed-slot-vector]
+kind = "probe"
+source = "scripts/probes/fixed_slot_vector.cpp"
+object = "build/match-units/fixed_slot_vector.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Native VC8 checked std::vector<FixedSlotEnvelope> specializations over the verified 0x50-byte three-deque element."
+
+[[units.probe-fixed-slot-vector.functions]]
+address = "0x004275C0"
+symbol_base = "?size@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@QBEIXZ"
+
+[[units.probe-fixed-slot-vector.functions]]
+address = "0x00427620"
+symbol_base = "??$_Allocate@UFixedSlotEnvelope@th105@@@std@@YAPAUFixedSlotEnvelope@th105@@IPAU12@@Z"
+rel32_targets = [
+  "??2@YAPAXI@Z=0x0067B50C",
+  "??0exception@std@@QAE@ABQBD@Z=0x0067B65D",
+  "_CxxThrowException=0x0067B894",
+]
+
+[[units.probe-fixed-slot-vector.functions]]
+address = "0x0042B120"
+symbol_base = "?clear@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@QAEXXZ"
+rel32_targets = [
+  "erase=0x0042AFD0",
+]
+
+[[units.probe-fixed-slot-vector.functions]]
+address = "0x0042B160"
+symbol_base = "?_Ufill@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@IAEPAUFixedSlotEnvelope@th105@@PAU34@IABU34@@Z"
+rel32_targets = [
+  "PAUFixedSlotEnvelope_?$_Uninit_fill_n=0x0042B070",
+]
+
+[[units.probe-fixed-slot-vector.functions]]
+address = "0x0042B1A0"
+symbol_base = "??$_Ucopy@PAUFixedSlotEnvelope@th105@@@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@IAEPAUFixedSlotEnvelope@th105@@PAU23@00@Z"
+rel32_targets = [
+  "?$_Uninit_copy=0x0042AF20",
+]
+
+[[units.probe-fixed-slot-vector.functions]]
+address = "0x0042B1D0"
+contiguous_span = true
+symbol_base = "_Insert_n"
+rel32_targets = [
+  "??0FixedSlotEnvelope@th105@@QAE@ABU01@@Z=0x0042ADD0",
+  "?_Xlen@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@KAXXZ=0x0045E9A0",
+  "?size@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@QBEIXZ=0x004275C0",
+  "??$_Allocate@UFixedSlotEnvelope@th105@@@std@@YAPAUFixedSlotEnvelope@th105@@IPAU12@@Z=0x00427620",
+  "??$_Uninit_copy@PAUFixedSlotEnvelope@th105@@PAU12@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@YAPAUFixedSlotEnvelope@th105@@PAU12@00AAV?$allocator@UFixedSlotEnvelope@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z=0x0042AF20",
+  "?_Ufill@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@IAEPAUFixedSlotEnvelope@th105@@PAU34@IABU34@@Z=0x0042B160",
+  "??$_Destroy_range@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@YAXPAUFixedSlotEnvelope@th105@@0AAV?$allocator@UFixedSlotEnvelope@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@@Z=0x0042A330",
+  "??3@YAXPAX@Z=0x0067B02A",
+  "?_Destroy@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@IAEXPAUFixedSlotEnvelope@th105@@0@Z=0x0042A9E0",
+  "??$_Umove@PAUFixedSlotEnvelope@th105@@@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@IAEPAUFixedSlotEnvelope@th105@@PAU23@00@Z=0x0042B1A0",
+  "??$_Unchecked_move_backward@PAUFixedSlotEnvelope@th105@@PAU12@@stdext@@YAPAUFixedSlotEnvelope@th105@@PAU12@00@Z=0x0042B040",
+  "??$_Fill@PAUFixedSlotEnvelope@th105@@U12@@std@@YAXPAUFixedSlotEnvelope@th105@@0ABU12@@Z=0x0042AEF0",
+  "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x0051D0D0",
+  "??_M@YGXPAXIHP6EX0@Z@Z=0x0067B9E9",
+  "_CxxThrowException=0x0067B894",
+]
+
+[[units.probe-fixed-slot-vector.functions]]
+address = "0x0042B4F0"
+symbol_base = "_Assign_n"
+rel32_targets = [
+  "??0FixedSlotEnvelope@th105@@QAE@ABU01@@Z=0x0042ADD0",
+  "?_Insert_n@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@IAEXV?$_Vector_iterator@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@2@IABUFixedSlotEnvelope@th105@@@Z=0x0042B1D0",
+  "?erase@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@2@V32@0@Z=0x0042AFD0",
+  "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x0051D0D0",
+  "??_M@YGXPAXIHP6EX0@Z@Z=0x0067B9E9",
+]
+dir32_targets = [
+  "??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=_fixed_slot_vector_assign_deque_dtor_thunk",
 ]
 
 [units.fixed-slot-envelope]

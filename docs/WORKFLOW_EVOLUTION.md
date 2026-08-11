@@ -326,6 +326,30 @@ repository contracts once, confirm exact address semantics in IDA, commit a
 complete ownership/dependency slice, then hand the newly bounded callers to
 exact workers.
 
+Following that graph one caller layer farther recovered the complete checked
+vector contract: size and overflow-checked allocation leaves, clear,
+uninitialized copy/fill wrappers, a 786-byte counted insertion engine, and
+count assignment (`0x004275C0`, `0x00427620`,
+`0x0042A9E0`, `0x0042B120..0x0042B4F0`). This wave also demonstrates why the
+ledger schema gate stays first: `0x0042B1D0` still carried `size=711`, while
+its recorded span, contiguous target instructions, final `retn 10h`, and IDA
+all agree on 786 bytes. The size was corrected before any exact packet was
+allowed to compare it. A parallel native-vector probe then closed the size,
+clear, uninitialized-fill, and uninitialized-copy specializations exactly
+(31, 57, 56, and 41 bytes) as compiler-library code. The exact results do not
+inflate authored progress; they remove ABI uncertainty from the central insert
+and its input-record callers.
+
+The same vector probe exposed and closed a comparator-schema gap. The deque
+destructor COFF symbol resolves directly to `0x0051D0D0` inside
+`0x0042B1D0`, but to the verified `0x00445370` jump thunk inside
+`0x0042B4F0`. Function-local `dir32_targets` now select between separately
+byte-validated relocation rows while remaining fail-closed. This makes the
+native VC8 `_Assign_n` specialization reproducibly exact at 218/218; the
+native 786-byte `_Insert_n` is a clean mismatch at `+0x43`, not a relocation
+blocker. Registering the separately verified `bad_alloc` ThrowInfo and vtable
+anchors also closes native `std::_Allocate<FixedSlotEnvelope>` at 89/89.
+
 ## Operational loop
 
 ```bash

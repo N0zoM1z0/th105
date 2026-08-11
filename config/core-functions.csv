@@ -39,17 +39,21 @@ address,lane,priority,notes
 0x00426440,battle-controller,2,Four-position fighter-pair metadata publication
 0x00427150,battle-controller,2,Paired battle-input reset
 0x00427190,battle-controller,2,Round-state input or session setup dependency
+0x004275C0,battle-controller,3,Exact native fixed-slot envelope vector size helper
 0x004275E0,battle-controller,1,Exact checked fixed battle-setup slot selector shared by save and load
+0x00427620,battle-controller,3,Exact native overflow-checked fixed-slot envelope raw allocation helper
 0x00427680,battle-controller,2,Exact synchronized input-state availability test used by the controller input gate
 0x00427A50,battle-controller,2,Synchronized 16-bit control queue consume helper
 0x00427AC0,battle-controller,2,Round-state synchronized service dependency
 0x00429640,battle-controller,3,Fixed-slot envelope three-deque EH cleanup helper
-0x00429B90,battle-controller,2,Checked short-deque append used by scenario event-row loading
+0x00429B90,battle-controller,2,Exact native short-deque append used by scenario and fixed-slot loading
 0x0042A330,battle-controller,3,Fixed-slot envelope range destruction helper
 0x0042A370,battle-controller,2,Packed 16-bit control queue publication helper
+0x0042A3F0,battle-controller,1,Fixed-slot envelope binary deserializer for replay or input-record loading
 0x0042A560,battle-controller,2,Exact local packed-control collection and publication phase
 0x0042A7B0,battle-controller,1,Exact native VC8 deque<short> assignment shared by all 0x14-byte setup payloads
 0x0042A8E0,battle-controller,2,Exact native VC8 deque<short> copy constructor used by fixed setup ownership paths
+0x0042A9E0,battle-controller,3,Compiler-generated fixed-slot range EH cleanup adapter
 0x0042AA00,battle-controller,2,Exact full fixed-slot envelope deep assignment with three deque payloads
 0x0042AAB0,battle-controller,1,Shared setup dependency reached by controller initialization and roster preparation
 0x0042ABF0,battle-controller,1,Shared setup dependency reached by controller initialization and roster preparation
@@ -61,7 +65,13 @@ address,lane,priority,notes
 0x0042AFD0,battle-controller,2,Checked fixed-slot tail relocation destruction and end publication
 0x0042B040,battle-controller,3,Backward fixed-slot tail assignment wrapper
 0x0042B070,battle-controller,2,EH-safe counted fixed-slot envelope fill construction
-0x0042B5D0,battle-controller,2,Session character-input configuration reached by exact setup
+0x0042B120,battle-controller,2,Exact native checked full-range fixed-slot vector clear
+0x0042B160,battle-controller,3,Exact native counted uninitialized-fill construction wrapper
+0x0042B1A0,battle-controller,3,Exact native uninitialized range-copy construction wrapper
+0x0042B1D0,battle-controller,1,Verified native fixed-slot vector counted insertion with one bounded register-schedule delta
+0x0042B4F0,battle-controller,1,Exact native fixed-slot vector count assignment reached by session configuration
+0x0042B5D0,battle-controller,2,Session input-slot vector initialization reached by exact setup
+0x0042B6C0,battle-controller,1,Battle input-record loader owning the fixed-slot vector and decoder
 0x0042C060,score,2,Score result tuple lookup and tally reached by exact sequence finalization
 0x0042C100,score,1,Observed record count and high-water update
 0x0042D240,spell-data,2,Complete recursive SpellTree subtree destruction with owning-string cleanup

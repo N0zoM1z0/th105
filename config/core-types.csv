@@ -28,6 +28,7 @@ FighterSequenceController,src/battle/Collision.hpp,complete,0x14,observed,checke
 FighterSequenceSlot,src/battle/SpellRuntime.hpp,complete,0x98,observed,spell runtime checked entry accesses,Two shorts followed by a 0x94-byte sprite-compatible object
 FixedBattleSetupSlot,src/battle/BattleControllerDependencies.hpp,complete,0x3C,observed,0x0042AAB0 and 0x0042ABF0 inverse target transfers,Two side bytes and 0x14 payloads token tags plus terminal setup bytes and dword
 FixedSlotEnvelope,src/battle/BattleControllerDependencies.hpp,complete,0x50,observed,Strict exact 0x0042AA00 assignment and inverse 0x0042AAB0/0x0042ABF0 transfers,0x3C setup payload plus a third 0x14 VC8 deque<short>
+FixedSlotEnvelopeVector,src/battle/BattleControllerDependencies.hpp,complete,0x10,observed,IDA Pro complete 0x0042B1D0 insertion and exact 0x50 pointer arithmetic,Allocator word followed by begin end and capacity-end pointers for 0x50-byte envelopes
 MatchSetup,src/battle/GameMode.hpp,complete,0x4C,observed,strict exact 0x0046FE80 and 0x00470060 setup sources,Match identifier stage and BGM bytes two 0x20 side records and seed dword
 MatchSetupSide,src/battle/GameMode.hpp,complete,0x20,observed,strict exact setup and roster source argument offsets,Character key dword followed by an opaque 0x1C-byte side payload
 ObservedRecord24,src/config/ScoreData.hpp,complete,0x18,observed,IDA Pro MCP 0x0042C060 and 0x0042C100 target instructions,Two keys sequence-result count observed-stat count and signed high-water value

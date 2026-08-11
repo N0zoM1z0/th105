@@ -5,6 +5,7 @@
 namespace th105 {
 
 struct Fighter;
+struct FileReader;
 struct String28;
 
 typedef std::deque<short> SidePayload;
@@ -26,6 +27,15 @@ struct FixedBattleSetupSlot {
 struct FixedSlotEnvelope {
     FixedBattleSetupSlot setup_00;
     SidePayload private_payload_3c;
+
+    bool deserialize_fixed_slot_envelope(FileReader *reader);
+};
+
+struct FixedSlotEnvelopeVector {
+    unsigned allocator_00;
+    FixedSlotEnvelope *begin_04;
+    FixedSlotEnvelope *end_08;
+    FixedSlotEnvelope *capacity_end_0c;
 };
 
 typedef char SidePayload_size_must_be_0x14[
@@ -34,6 +44,8 @@ typedef char FixedBattleSetupSlot_size_must_be_0x3c[
     sizeof(FixedBattleSetupSlot) == 0x3c ? 1 : -1];
 typedef char FixedSlotEnvelope_size_must_be_0x50[
     sizeof(FixedSlotEnvelope) == 0x50 ? 1 : -1];
+typedef char FixedSlotEnvelopeVector_size_must_be_0x10[
+    sizeof(FixedSlotEnvelopeVector) == 0x10 ? 1 : -1];
 
 // One-hop contracts reached directly from the BattleController island. These
 // names are neutral reconstruction views; no original class ownership is
@@ -47,6 +59,10 @@ struct BattleControlBridgeView {
 struct BattleSetupOwner {
     void save_battle_setup_slot(signed char slot, const void *setup);
     void load_battle_setup_slot(signed char slot, void *setup);
+    void configure_session_input_slots(
+        signed char slot_count,
+        signed char game_mode);
+    bool load_battle_input_recording(const char *path);
 };
 
 struct ScenarioBattleView {
