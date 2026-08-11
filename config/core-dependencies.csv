@@ -138,6 +138,16 @@ caller,callee,required_status,evidence
 0x0046D620,0x0046D040,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x0046D620,0x0046D160,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x0046D620,0x0046D370,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x004DEB80,0x00454890,library,IDA Pro target list insertion call
+0x004DEB80,0x0046D000,matching,IDA Pro target list-node allocation call
+0x004DEB80,0x004DE8E0,identified,IDA Pro target pool acquire call and handle output
+0x004DEC70,0x00454890,library,IDA Pro repeated target list insertion call
+0x004DEC70,0x0046D000,matching,IDA Pro repeated target list-node allocation call
+0x004DEC70,0x004B9540,decompiled,IDA Pro preallocation tail releases all tracked objects back to pool
+0x004DEC70,0x004DE8E0,identified,IDA Pro repeated pool acquire call
+0x004DECF0,0x004DEC70,implemented,docs/CHARACTER_PILOTS.md constructor preallocates 256 reusable objects
+0x004DED80,0x004454E0,library,IDA Pro optional parent publication through exact VC8 deque push_back
+0x004DED80,0x004DEB80,implemented,IDA Pro spawn begins with acquire and tracking-list insertion
 0x004DEEF0,0x004DECF0,decompiled,docs/CHARACTER_PILOTS.md owned-manager allocation and construction
 0x004DEF70,0x00493300,identified,docs/CHARACTER_PILOTS.md shared dispatcher prelude
 0x004DEF70,0x00493380,identified,docs/CHARACTER_PILOTS.md shared dispatcher prelude
@@ -149,3 +159,4 @@ caller,callee,required_status,evidence
 0x004DEF70,0x00493920,implemented,docs/CHARACTER_PILOTS.md shared action-202 repeated-command gate
 0x004DEF70,0x00493A10,implemented,docs/CHARACTER_PILOTS.md shared action-203 repeated-command gate
 0x004DEF70,0x00493B00,matching,docs/CHARACTER_PILOTS.md shared action-214 counted direction-angle gate
+0x004DEF70,0x00493C90,implemented,docs/CHARACTER_PILOTS.md shared seven-way front-record action gate

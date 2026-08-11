@@ -69,6 +69,7 @@ and lookup layer used by all fifteen input/action dispatchers:
 | `0x00493920` | counted/repeated gate for action `202` | exactly 15 callers | complete 226/226, vslot prefetch differs |
 | `0x00493A10` | mirrored counted/repeated gate for action `203` | exactly 15 callers | complete 226/226, vslot prefetch differs |
 | `0x00493B00` | counted action `214` plus direction angle | exactly 15 callers | exact 393/393 |
+| `0x00493C90` | front-record categories selecting `690..696` | exactly 15 callers | complete 920/950 |
 
 The gates test observed fields `+0x104`, `+0x13C`, `+0x484`, `+0x4B8`,
 `+0x6B4`, `+0x6B8`, `+0x724`, and `+0x75A`, refresh the common snapshot at
@@ -95,11 +96,18 @@ Its sole caller is the fifteen-way fighter factory at `0x004632D0`.
 The manager constructor at `0x004DECF0` first installs the shared
 `ICharacterObjectManager` vtable, constructs a base view at `+0x04`, then
 installs the two Sakuya manager vtables `0x006B08F4` and `0x006B08EC`. It stores
-the owning Sakuya pointer at `+0x64` and calls `0x004DEC70` with capacity/count
-`256`. The role of that count remains neutral until the container is recovered.
-These two constructors establish the base/derived and fighter/owned-manager
-boundaries. The observed Sakuya extension begins at `+0x730` and currently
-reaches `+0x757`; both partial layouts are in `src/characters/Sakuya.hpp`.
+the owning Sakuya pointer at `+0x64` and calls `0x004DEC70` with target count
+`256`. That function acquires and tracks objects until the unsigned target is
+reached, then `0x004B9540` returns every handle token to the pool and frees only
+the tracking nodes. It is therefore a reusable-pool preallocation pass, not a
+permanent 256-entry active list. The manager-base view is 0x60 bytes: pool at
+`+0x04`, tracking list at `+0x54`; the outer owner remains at `+0x64`.
+
+The fresh branch of `0x004DE8E0` allocates `0x388` bytes, installs SakuyaObject
+vtable `0x006B089C`, and initializes the observed parent/reference fields. The
+complete allocation span is represented in `src/characters/Sakuya.hpp`; bytes
+that remain semantically unknown stay explicitly opaque. The Sakuya fighter
+extension begins at `+0x730` and currently reaches `+0x757`.
 
 `0x004DDB20` is a no-argument `__thiscall` action-change handler.  It switches
 on the 16-bit action at `+0x13C`, uses the common velocity reset at
@@ -120,30 +128,42 @@ are:
 | command group 236 | `500/501` | `505/506` | `+0x608` | `+0x754` |
 | command group 214 | `520/521` | `525/526` | `+0x609` | `+0x755` |
 | command group 623 | `540/541`, air `542/543` | `545/546`, air `547/548` | `+0x60A` | `+0x756` |
+| high-bit command group | `560/561` | `565/566` | `+0x60B` | observed adjacent cancel byte |
 | spell records `200..209` | actions `600..609` | record `206` also reaches `656` | n/a | n/a |
+
+The complete IDA control-flow recovery also enumerates normal actions
+`300..309`, `320..322`, and `400..418`, split by ground/air state, facing-
+relative direction fields, and signed command-table thresholds. The shared
+front-record helper tries actions in the exact priority
+`690, 691, 695, 696, 692, 693, 694`; records `0..5` select all but `690`, while
+`690` accepts the observed record range `100..199`.
 
 Successful selections call the shared phase at `0x004631E0`, may set bit
 `0x08` at `+0x491` when the observed window is at least ten, and invoke raw
-vslot `+0x08` to change action.  The branch-by-branch matrix is still open, so
-the ledger keeps `0x004DEF70` at `identified` rather than claiming a complete
-decompile.
+vslot `+0x08` to change action. The target has no stack arguments and returns
+the selected path's low byte. All branches are now covered by the 850-line IDA
+decompile, so the ledger records `decompiled`; source remains split into
+bounded command groups to avoid a monolithic guessed transcription.
 
-The Sakuya manager's raw vslot `+0x04` is `0x004DED80`, a complete object-spawn
+The Sakuya manager's raw base-vtable slot `+0x0C` is `0x004DED80`, a complete object-spawn
 boundary. It obtains a new Sakuya object from the manager base at `+0x04`,
 copies owner state into object fields `+0x130`, `+0x160`, `+0x168`, and
 `+0x348`, optionally links a parent at `+0x34C`, optionally allocates and
 copies a dword payload at `+0x340`, publishes position at `+0xEC/+0xF0`, and
-sets facing/action through byte `+0x104` and raw vslot `+0x08`. The observed
-object prefix through `+0x34C` is now represented by `SakuyaObject`; source is
-deferred until allocation `0x004DEB80` and parent-link `0x004454E0` ownership
-are proven.
+sets facing/action through byte `+0x104` and raw vslot `+0x08`. Parent objects
+hold a VC8 `std::deque<SakuyaObject *>` at `+0x350`; its exact 117-byte
+push-back specialization owns its map and four-pointer blocks but not the child
+pointees. The complete spawn source compiles to the target size, 237/237 bytes;
+remaining differences are parent-reference argument scheduling and the final
+field-load/register order.
 
 ## Next waves
 
-1. Use the now-reconstructed shared decision layer to finish Sakuya's
-   `0x004DEF70` command matrix without guessing command names.
-2. Recover `0x004DEB80` and `0x004454E0`, implement the Sakuya object-spawn
-   boundary, and link at least two projectile/spell paths to the action roots.
+1. Split Sakuya's complete `0x004DEF70` matrix into source-backed spell, skill,
+   and normal-action blocks, beginning with the spell-record `600..609/656`
+   selector because it links parser data directly to character behavior.
+2. Link at least two Sakuya projectile/spell action paths through the now-
+   implemented `0x004DED80` spawn template and its reusable object pool.
 3. Apply the same vtable/action/derived-delta checklist to Reimu, Marisa, and
    Alice, then proceed through the remaining eleven table rows in bounded,
    non-overlapping address lanes.

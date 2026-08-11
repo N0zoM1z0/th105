@@ -340,6 +340,8 @@ struct Fighter {
         int window_value,
         int bypass_window_gate,
         int maximum_count);
+    unsigned char try_dispatch_front_word_actions_690_696(
+        int window_value);
     int select_outcome_path_from_frame_flags(unsigned frame_flags);
     signed char classify_fighter_x_boundary();
     int test_proposed_x_against_stage_height(float delta_x);

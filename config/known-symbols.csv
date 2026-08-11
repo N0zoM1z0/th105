@@ -241,6 +241,8 @@ address,name,module,confidence,evidence
 0x0046D160,dispatch_family2_against_family1,battle,inferred,docs/BATTLE.md observed family-2 against family-1 sentinel traversal and response cascade
 0x0046D370,dispatch_family1_object_clashes,battle,inferred,docs/BATTLE.md observed same-list and cross-list object clash traversal
 0x0046D620,run_attack_projectile_collision_phase,battle,inferred,docs/BATTLE.md observed six-list reset classification clash fighter-resolution and deferred-application orchestration
+0x00493C90,try_dispatch_front_word_actions_690_696,characters,observed,Complete seven-way front-record action gate and one caller in each of fifteen character dispatchers
+0x004B9540,release_all_tracked_objects,characters,observed,Thirty callers across fifteen manager families return tracked object tokens to reusable pools and clear list nodes
 0x00493300,try_dispatch_signed_gate_actions_208_210,characters,observed,Exact source and one direct caller in each of 15 character dispatchers
 0x00493380,try_dispatch_flagged_gate_actions_220_224,characters,observed,Complete source and one direct caller in each of 15 character dispatchers
 0x00493490,try_dispatch_flagged_gate_actions_225_226,characters,observed,Exact source and one direct caller in each of 15 character dispatchers
@@ -252,6 +254,9 @@ address,name,module,confidence,evidence
 0x00493A10,try_dispatch_action_203,characters,observed,Complete target-sized action-203 mirror gate with one direct caller in each of 15 character dispatchers
 0x00493B00,try_dispatch_action_214_with_direction_angle,characters,observed,Exact counted action-214 gate and nine-value direction-angle assignment with one direct caller in each of 15 character dispatchers
 0x004DDB20,Sakuya_on_action_changed,characters,observed,docs/EVIDENCE.md Sakuya action traces
+0x004DE8E0,SakuyaObjectPool_acquire,characters,observed,IDA Pro fresh and reuse paths allocate 0x388-byte Sakuya objects and publish packed handles
+0x004DEB80,SakuyaObjectManagerBase_acquire_and_link_object,characters,observed,Complete pool acquire token store and tracking-list insertion source
+0x004DEC70,SakuyaObjectManagerBase_preallocate_object_pool,characters,observed,Acquires to an unsigned target count then releases all tracked objects back to the pool
 0x004DECF0,SakuyaObjectManager_ctor,characters,observed,Exact constructor instructions install two Sakuya manager vtables and owner +0x64
 0x004DED80,SakuyaObjectManager_spawn_object,characters,observed,Complete manager vtable spawn path and object field publication
 0x004DEEF0,Sakuya_ctor,characters,observed,Exact constructor instructions and sole 0x004632D0 fighter-factory caller
@@ -263,7 +268,7 @@ address,name,module,confidence,evidence
 0x0067B8E0,_ftol2_sse,runtime,observed,docs/BATTLE.md verified VC8 x87-to-int truncation runtime helper
 0x0067BB80,memset,runtime,observed,docs/EVIDENCE.md target runtime symbol identity and exact call from input-state reset
 0x0067D9B0,log10,runtime,observed,docs/EVIDENCE.md pinned VC8 SP1 libcmt log10 object and target instruction identity including FLDLG2 FYL2X core
-0x00664F9A,malloc,runtime,inferred,docs/EVIDENCE.md allocation thunk used by SFL metadata buffer path
+0x00664F9A,malloc,runtime,observed,Source-facing allocation alias; target is a five-byte jump to verified operator new at 0x0067B50C
 0x0067B02A,operator_delete,runtime,observed,docs/EVIDENCE.md VC8 scalar delete target used by file-reader deleting destructor
 0x0067B465,__security_check_cookie,runtime,observed,docs/EVIDENCE.md VC8 stack-cookie checker used by GS-protected UI and audio functions
 0x0067C166,free,runtime,observed,docs/EVIDENCE.md deallocation thunk used by SFL metadata buffer path
@@ -335,7 +340,7 @@ address,name,module,confidence,evidence
 0x00433490,ResultNameResolver_load_character,ui,observed,ResultList population reloads spell metadata when the record character changes
 0x004317A0,ResultNameResolver_find_spell,ui,observed,ResultList population resolves the spell-name record for a result row
 0x00439B40,get_result_score_state,ui,observed,ResultList population reads per-character result records from the shared score state
-0x004454E0,ResultPointerDeque20_push_back,ui,observed,ResultList population appends character and language metadata to parallel checked deques
+0x004454E0,std_deque_push_back_pointer_ref,runtime,observed,Exact VC8 four-byte std::deque push_back specialization with 25 callers including all fifteen fighter parent-link paths
 0x00429B90,ResultReplayDeque20_push_back,ui,observed,ResultList population appends the selected row replay identifier
 0x0067CA9B,_sprintf_s,crt,observed,ResultList population target call address formats both display-row variants
 0x00445100,CMenuResult_render,ui,observed,CMenuResult vtable render slot and 18089 decompile

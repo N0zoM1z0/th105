@@ -30,8 +30,10 @@ SpellTreeIterator,src/battle/SpellData.hpp,complete,0x08,observed,0x004317A0 che
 SpellTreeInsertResult,src/battle/SpellData.hpp,complete,0x0C,observed,exact 0x00432310 VC8 map insert comparison,Owner node inserted byte and padding
 SpellTreeNode,src/battle/SpellData.hpp,complete,0x60,observed,IDA Pro 0x00431F90 allocation and exact map probes,Links signed key 0x4C value color nil flag and padding
 SpellTreeValue,src/battle/SpellData.hpp,complete,0x50,observed,exact 0x00432310 map insert comparison,Signed key followed by deep-copy SpellRecordView
+PointerBlockDeque20,src/characters/OwnedObjectContainers.hpp,complete,0x14,observed,exact 0x004454E0 VC8 deque push_back and 0x0051D0D0 teardown,Owns map and four-slot blocks but never pointees
 Sakuya,src/characters/Sakuya.hpp,partial,0x758,observed,docs/CHARACTER_PILOTS.md action roots and target field writes,Observed derived prefix from +0x730 through +0x757
-SakuyaObject,src/characters/Sakuya.hpp,partial,0x350,observed,0x004DED80 complete spawn path,Observed prefix through parent pointer +0x34C
+SakuyaObject,src/characters/Sakuya.hpp,partial,0x388,observed,0x004DE8E0 allocation and 0x004DED80 complete spawn path,Full allocation span with handle +0x334 parent +0x34C child deque +0x350 and opaque trailing bytes
+SakuyaObjectManagerBase,src/characters/Sakuya.hpp,complete,0x60,observed,0x004DEB80 0x004DEC70 and 0x004B9540 target instructions,Pool at +4 and tracked-object list at +0x54
 SakuyaObjectManager,src/characters/Sakuya.hpp,complete,0x68,observed,0x004DECF0 target constructor and 0x004DEEF0 allocation size,Two vtable-bearing views and owner pointer at +0x64
 String28,src/assets/String28.hpp,complete,0x1C,observed,exact 0x00408A40 VC8 std::string append comparison,Real VC8 owning string specialization with 16-byte SSO threshold
 WorldAabb,src/battle/Collision.hpp,complete,0x10,observed,exact float geometry comparison units,Four float coordinates

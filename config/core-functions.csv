@@ -42,6 +42,7 @@ address,lane,priority,notes
 0x00439C90,score,3,Exact session setup option accessor used by statistics gate
 0x00439DC0,hit-resolution,3,Exact indexed event dispatch
 0x0043ABE0,spell-data,2,Character key to path component contract
+0x004454E0,character-owned-object,2,Exact four-byte VC8 deque append used by every fighter parent-link path
 0x00454890,collision-phase,3,Verified VC8 std list size helper
 0x00459ED0,hit-resolution,1,Forwarded quantity scalar chain
 0x0045A030,hit-resolution,1,Base hit quantity scalar chain
@@ -125,7 +126,12 @@ address,lane,priority,notes
 0x00493920,character-command,1,Shared counted and repeated command gate for action 202
 0x00493A10,character-command,1,Shared mirrored counted and repeated command gate for action 203
 0x00493B00,character-command,2,Exact counted action-214 gate and direction-angle assignment
+0x00493C90,character-command,1,Shared seven-way front-record action gate
+0x004B9540,character-owned-object,1,Roster-wide tracked-object release and reusable-pool reset
 0x004DDB20,character-command,1,Sakuya action-change root
+0x004DE8E0,character-owned-object,1,Sakuya object pool acquire and handle publication
+0x004DEB80,character-owned-object,1,Sakuya object acquire and tracking-list insertion
+0x004DEC70,character-owned-object,1,Sakuya object-pool preallocation
 0x004DECF0,character-owned-object,2,Sakuya owned-object manager constructor
 0x004DED80,character-owned-object,1,Sakuya owned-object spawn path
 0x004DEEF0,character-owned-object,2,Sakuya fighter constructor

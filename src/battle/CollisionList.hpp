@@ -12,6 +12,8 @@ struct CollisionList {
     unsigned unknown_00;
     CollisionListNode *sentinel;
     unsigned count;
+
+    void std_list_incsize_pointer(unsigned amount);
 };
 
 void * __cdecl create_collision_list_sentinel();

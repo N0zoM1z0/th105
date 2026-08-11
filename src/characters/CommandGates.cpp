@@ -1,6 +1,7 @@
 #include "CommandGates.hpp"
 
 #include "battle/Collision.hpp"
+#include "battle/SpellRuntime.hpp"
 
 extern "C" void __cdecl _invalid_parameter_noinfo(void);
 
@@ -391,6 +392,132 @@ unsigned char Fighter::try_dispatch_action_214_with_direction_angle(
     ++field_byte(this, 0x47f);
     action(this, 214);
     return 1;
+}
+
+unsigned char Fighter::try_dispatch_front_word_actions_690_696(
+    int window_value)
+{
+    int command_key = 690;
+    CommandGateIterator found;
+    CommandGateIterator *result = reinterpret_cast<CommandGateTree *>(
+        *reinterpret_cast<void **>(
+            reinterpret_cast<unsigned char *>(this) + 0x160))->lower_bound(
+                &found,
+                &command_key);
+    if (result->owner_00 == 0) {
+        _invalid_parameter_noinfo();
+    }
+    if (result->node_04 == result->owner_00->end_node_04) {
+        _invalid_parameter_noinfo();
+    }
+
+    int const saved_window = window_value;
+    if (window_value <= result->node_04->value_10->value_10 &&
+        sequence_controller_55c.entry_at_checked(0)->record_id_00 >= 100 &&
+        sequence_controller_55c.entry_at_checked(0)->record_id_00 <= 199) {
+        short const state = state_13c;
+        if ((state > 299 && result_180 != 0 && result_180 != 3) ||
+            state < 300) {
+            initialize_fighter_phase_631e0(this);
+            set_fighter_action(this, 690);
+            return 1;
+        }
+    }
+
+    window_value = 691;
+    result = reinterpret_cast<CommandGateTree *>(
+        *reinterpret_cast<void **>(
+            reinterpret_cast<unsigned char *>(this) + 0x160))->lower_bound(
+                &found,
+                &window_value);
+    if (result->owner_00 == 0) {
+        _invalid_parameter_noinfo();
+    }
+    if (result->node_04 == result->owner_00->end_node_04) {
+        _invalid_parameter_noinfo();
+    }
+
+    if (saved_window <= result->node_04->value_10->value_10 &&
+        sequence_controller_55c.entry_at_checked(0)->record_id_00 == 0) {
+        short const state = state_13c;
+        if ((state > 299 && result_180 != 0 && result_180 != 3) ||
+            state < 300) {
+            initialize_fighter_phase_631e0(this);
+            set_fighter_action(this, 691);
+            return 1;
+        }
+    }
+
+    window_value = 695;
+    result = reinterpret_cast<CommandGateTree *>(
+        *reinterpret_cast<void **>(
+            reinterpret_cast<unsigned char *>(this) + 0x160))->lower_bound(
+                &found,
+                &window_value);
+    if (result->owner_00 == 0) {
+        _invalid_parameter_noinfo();
+    }
+    if (result->node_04 == result->owner_00->end_node_04) {
+        _invalid_parameter_noinfo();
+    }
+
+    if (saved_window <= result->node_04->value_10->value_10 &&
+        sequence_controller_55c.entry_at_checked(0)->record_id_00 == 1) {
+        short const state = state_13c;
+        if ((state > 299 && result_180 != 0 && result_180 != 3) ||
+            state < 300) {
+            initialize_fighter_phase_631e0(this);
+            set_fighter_action(this, 695);
+            return 1;
+        }
+    }
+
+    if (saved_window <= lookup_command_gate_value(696) &&
+        sequence_controller_55c.entry_at_checked(0)->record_id_00 == 2) {
+        short const state = state_13c;
+        if (state >= 150 && state <= 157) {
+            if ((state > 299 && result_180 != 0 && result_180 != 3) ||
+                state < 300) {
+                initialize_fighter_phase_631e0(this);
+                set_fighter_action(this, 696);
+                return 1;
+            }
+        }
+    }
+
+    if (saved_window <= lookup_command_gate_value(692) &&
+        sequence_controller_55c.entry_at_checked(0)->record_id_00 == 3) {
+        short const state = state_13c;
+        if ((state > 299 && result_180 != 0 && result_180 != 3) ||
+            state < 300) {
+            initialize_fighter_phase_631e0(this);
+            set_fighter_action(this, 692);
+            return 1;
+        }
+    }
+
+    if (saved_window <= lookup_command_gate_value(693) &&
+        sequence_controller_55c.entry_at_checked(0)->record_id_00 == 4) {
+        short const state = state_13c;
+        if ((state > 299 && result_180 != 0 && result_180 != 3) ||
+            state < 300) {
+            initialize_fighter_phase_631e0(this);
+            set_fighter_action(this, 693);
+            return 1;
+        }
+    }
+
+    if (saved_window <= lookup_command_gate_value(694) &&
+        sequence_controller_55c.entry_at_checked(0)->record_id_00 == 5) {
+        short const state = state_13c;
+        if ((state > 299 && result_180 != 0 && result_180 != 3) ||
+            state < 300) {
+            initialize_fighter_phase_631e0(this);
+            set_fighter_action(this, 694);
+            return 1;
+        }
+    }
+    return 0;
 }
 
 } // namespace th105

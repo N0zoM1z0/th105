@@ -122,6 +122,31 @@ A fighter moves from `seed` to `mapped` only after its node records:
 This keeps character work connected to the shared battle pipeline and prevents
 progress from being dominated by isolated small functions.
 
+## Character-pilot unlocks
+
+```text
+shared command layer [source-ready]
+├── 0x00493300..0x00493B00 common gates [mixed exact/source-ready]
+└── 0x00493C90 front-record actions 690..696 [source-ready]
+    └── fifteen character input dispatchers
+
+shared owned-object lifecycle [contracted]
+├── 0x004454E0 four-byte VC8 deque push_back [library, exact]
+├── 0x004B9540 return tracked objects to pool [semantics-ready]
+└── Sakuya pilot [source-ready]
+    ├── 0x004DE8E0 pool acquire [contracted]
+    ├── 0x004DEB80 acquire and link [source-ready]
+    ├── 0x004DEC70 preallocate 256 then release [source-ready]
+    ├── 0x004DED80 spawn and parent/payload publication [source-ready]
+    └── 0x004DEF70 spell/skill/normal dispatcher [semantics-ready]
+```
+
+The parent-reference append block occurs once in every fighter spawn family,
+and the release/reset helper has paired callers across all fifteen manager
+families. These are the reusable onboarding contracts for the next ten-plus
+character pilots; character-specific work should start at each vtable's spawn
+and dispatcher roots rather than rediscovering container ownership.
+
 ## Refresh commands
 
 ```bash
