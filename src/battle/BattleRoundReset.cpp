@@ -1,5 +1,6 @@
 #include "battle/BattleController.hpp"
 #include "battle/Collision.hpp"
+#include "battle/ScenarioTransition.hpp"
 #include "assets/String28.hpp"
 
 #include <cstring>
@@ -48,8 +49,6 @@ struct BattlePhaseRunView {
     bool run_458cc0();
 };
 
-unsigned char __stdcall dispatch_scenario_owned_string(String28 value);
-
 static __forceinline GlobalBattleResetStateView *global_reset_state()
 {
     return reinterpret_cast<GlobalBattleResetStateView *>(0x006e6260);
@@ -94,7 +93,8 @@ int BattleController::reset_battle_round_470780()
         ->reset_0c();
     fighter_0c->terminal_delay_4e8 = 3;
 
-    if (dispatch_scenario_owned_string(String28("Continue"))) {
+    if (reinterpret_cast<ScenarioTransitionView *>(g_battle_phase_block)
+            ->dispatch_owned_string_458e80(String28("Continue"))) {
         while (reinterpret_cast<BattlePhaseRunView *>(g_battle_phase_block)
                    ->run_458cc0()) {
         }

@@ -38,11 +38,13 @@ address,lane,priority,notes
 0x00426440,battle-controller,2,Four-position fighter-pair metadata publication
 0x00427150,battle-controller,2,Paired battle-input reset
 0x00427190,battle-controller,2,Round-state input or session setup dependency
+0x004275E0,battle-controller,1,Exact checked fixed battle-setup slot selector shared by save and load
 0x00427680,battle-controller,2,Exact synchronized input-state availability test used by the controller input gate
 0x00427A50,battle-controller,2,Synchronized 16-bit control queue consume helper
 0x00427AC0,battle-controller,2,Round-state synchronized service dependency
 0x0042A370,battle-controller,2,Packed 16-bit control queue publication helper
 0x0042A560,battle-controller,2,Exact local packed-control collection and publication phase
+0x0042A7B0,battle-controller,1,Owning 0x14-byte side-payload assignment shared by setup save and load
 0x0042AAB0,battle-controller,1,Shared setup dependency reached by controller initialization and roster preparation
 0x0042ABF0,battle-controller,1,Shared setup dependency reached by controller initialization and roster preparation
 0x0042B5D0,battle-controller,2,Session character-input configuration reached by exact setup
@@ -62,7 +64,7 @@ address,lane,priority,notes
 0x00431860,spell-runtime,2,Player-indexed record callback contract
 0x00431950,spell-assets,2,Exact SpellRecordView deep-copy constructor
 0x00431ED0,spell-data,2,Short-key temporary-tree unique insertion
-0x00432040,spell-data,2,Checked SpellTree iterator-range erase
+0x00432040,spell-data,2,Checked ShortTree iterator-range erase used by the filtered parser
 0x00432310,spell-assets,2,Exact VC8 spell-map unique insert specialization
 0x00432500,spell-data,2,Spell entry container clear contract
 0x004325B0,spell-data,1,First large spell CSV parser body

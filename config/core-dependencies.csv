@@ -11,6 +11,23 @@ caller,callee,required_status,evidence
 0x004325B0,0x00431730,decompiled,IDA Pro short-key temporary-tree checked lookup
 0x004325B0,0x00431ED0,decompiled,IDA Pro short-key temporary-tree unique insertion
 0x004325B0,0x00432040,decompiled,IDA Pro checked temporary-tree range erase at parser exit
+0x004325B0,0x0040EB20,decompiled,Complete source CSV load dependency
+0x004325B0,0x0040EE50,decompiled,Complete source seven-field integer parsing dependency
+0x004325B0,0x0040EF50,decompiled,Complete source owning string-field parsing dependency
+0x004325B0,0x0040F050,decompiled,Complete source row-advance dependency
+0x004325B0,0x0040F780,decompiled,Complete source CSV storage cleanup dependency
+0x004325B0,0x00404EC0,decompiled,Complete source optional per-card texture load dependency
+0x004325B0,0x00404F30,decompiled,Complete source 512x256 composite texture creation dependency
+0x004325B0,0x00416A50,matching,Exact VC8 four-byte handle deque push dependency
+0x004325B0,0x00408A40,library,Exact VC8 String28 append specialization
+0x004325B0,0x00408B40,identified,Observed String28 plus literal concatenation dependency
+0x004325B0,0x00431950,matching,Exact SpellRecordView deep-copy dependency
+0x004325B0,0x00432310,library,Exact VC8 SpellTree unique insertion specialization
+0x004325B0,0x00431430,library,Exact VC8 checked SpellTree iterator predecessor specialization
+0x0042AAB0,0x004275E0,matching,Exact checked fixed-slot selector dependency
+0x0042AAB0,0x0042A7B0,decompiled,Complete owning side-payload assignment dependency
+0x0042ABF0,0x004275E0,matching,Exact checked fixed-slot selector dependency
+0x0042ABF0,0x0042A7B0,decompiled,Complete owning side-payload assignment dependency
 0x00421310,0x00433B90,matching,IDA Pro sole direct reset_fighter_action_scratch dependency
 0x0042C100,0x00439860,matching,docs/BATTLE.md observed mode gate
 0x0042C100,0x00439C90,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
@@ -20,7 +37,7 @@ caller,callee,required_status,evidence
 0x00430DE0,0x00433490,identified,target direct call and exact 0x00430DE0 comparison
 0x004317A0,0x004316C0,library,exact VC8 std::map find dependency for local and common trees
 0x00432D80,0x00432500,identified,docs/BATTLE.md wrapper call order
-0x00432D80,0x004325B0,identified,docs/BATTLE.md wrapper parser forwarding
+0x00432D80,0x004325B0,implemented,Complete authored filtered spell CSV parser forwarding
 0x00432D80,0x0043ABE0,identified,docs/BATTLE.md character path component resolution
 0x00432E20,0x004021C0,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x00432E20,0x00404EC0,identified,Ghidra MCP get_function_callees program th105.exe 2026-08-10
@@ -178,8 +195,8 @@ caller,callee,required_status,evidence
 0x0046FE80,0x00439C90,matching,IDA Pro battle setup option gate
 0x0046FE80,0x00439CA0,matching,exact battle setup session-option setter
 0x0046FE80,0x00439C80,matching,exact battle setup player-two input accessor
-0x0046FE80,0x0042AAB0,decompiled,IDA Pro direct setup-slot save dependency
-0x0046FE80,0x0042ABF0,decompiled,IDA Pro direct setup-slot load dependency
+0x0046FE80,0x0042AAB0,implemented,Complete authored setup-slot save dependency
+0x0046FE80,0x0042ABF0,implemented,Complete authored setup-slot load dependency
 0x0046FE80,0x0042B5D0,identified,exact battle setup session character-input configuration
 0x0046FE80,0x00433860,identified,exact battle setup stage-music selection
 0x0046FE80,0x00439C30,matching,exact battle setup selected-input accessor
@@ -196,8 +213,8 @@ caller,callee,required_status,evidence
 0x00470060,0x00439870,matching,exact roster preparation MatchSetup accessor
 0x00470060,0x00439C80,matching,exact roster preparation player-two input accessor
 0x00470060,0x00439C90,matching,exact roster preparation session option gate
-0x00470060,0x0042AAB0,decompiled,IDA Pro direct setup-slot save dependency
-0x00470060,0x0042ABF0,decompiled,IDA Pro direct setup-slot load dependency
+0x00470060,0x0042AAB0,implemented,Complete authored setup-slot save dependency
+0x00470060,0x0042ABF0,implemented,Complete authored setup-slot load dependency
 0x00470060,0x00425CB0,identified,exact roster metadata copy
 0x00470060,0x0045E040,identified,exact paired fighter roster reset
 0x00470060,0x00458D10,decompiled,IDA Pro direct scenario-page dependency
@@ -222,7 +239,7 @@ caller,callee,required_status,evidence
 0x00470360,0x004712B0,identified,exact post-sequence update
 0x004704D0,0x0046B4F0,implemented,IDA Pro active simulation frame wrapper
 0x004704D0,0x00458CD0,identified,strict exact active simulation wrapper phase-dependent tail
-0x00470500,0x00458E80,decompiled,IDA Pro direct owned scenario-string dispatch dependency
+0x00470500,0x00458E80,matching,Strict exact member owned scenario-string dispatch dependency
 0x00470500,0x0045E010,identified,exact per-fighter transition counter reset
 0x00470500,0x0046E040,identified,exact phase-selected transition effect publication
 0x00470500,0x0046E130,identified,exact 480.0 transition position publication
@@ -230,7 +247,7 @@ caller,callee,required_status,evidence
 0x00470500,0x0043A4B0,identified,exact asynchronous engine scene-load branch
 0x00470500,0x00443230,identified,exact ContinueMenu allocation and constructor branch
 0x00470500,0x004434B0,identified,exact EndMenu allocation and constructor branch
-0x00470780,0x00458E80,decompiled,IDA Pro direct owned scenario-string dispatch dependency
+0x00470780,0x00458E80,matching,Strict exact member owned scenario-string dispatch dependency
 0x00470780,0x00425F10,identified,IDA Pro round reset second global-state pass
 0x00470780,0x00426410,identified,exact round reset global-state synchronization
 0x00470780,0x00459170,identified,VC8 checked source-to-destination list assignment

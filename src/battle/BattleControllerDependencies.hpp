@@ -8,7 +8,7 @@ struct String28;
 struct SidePayload {
     unsigned char storage_00[0x14];
 
-    void copy_from(const SidePayload &source);
+    SidePayload *copy_from(const SidePayload &source);
 };
 
 struct FixedBattleSetupSlot {
@@ -72,7 +72,6 @@ struct BattlePairContextView {
     int initialize_battle_fighter_pair();
 };
 
-unsigned char __stdcall dispatch_scenario_owned_string(String28 value);
 unsigned int __thiscall update_fighter_scripted_input_state(Fighter *fighter);
 
 } // namespace th105

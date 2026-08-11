@@ -110,6 +110,10 @@ address,name,module,confidence,evidence
 0x00424AB0,main_menu_update,ui,observed,docs/EVIDENCE.md main menu vtable and runtime
 0x00425CD0,update_global_6e6260_first,battle,inferred,docs/BATTLE.md post-update phase calls this first with global state 0x006E6260
 0x00425F10,update_global_6e6260_second,battle,inferred,docs/BATTLE.md post-update phase tail-dispatches this second with global state 0x006E6260
+0x004275E0,FixedSlotStoreView_select_slot_4275e0,battle,observed,Strict exact 60-byte checked 0x50-stride fixed battle-setup slot selector
+0x0042A7B0,SidePayload_assign_owned_fields,battle,observed,IDA Pro complete decompile and inverse setup save/load callers prove the owning 0x14-byte assignment contract
+0x0042AAB0,BattleInputGate_save_battle_setup_slot,battle,observed,Complete authored fixed-slot save and exact checked selector dependency
+0x0042ABF0,BattleInputGate_load_battle_setup_slot,battle,observed,Complete authored inverse fixed-slot load and exact checked selector dependency
 0x0042C100,update_observed_record_statistics,config,inferred,docs/BATTLE.md observed existing-record count and signed high-water update
 0x00430C30,front_checked,battle,inferred,Ghidra MCP target instructions show checked front access for a VC8 deque-like short container
 0x00430C80,finalize_loaded_spell_data,battle,inferred,docs/BATTLE.md called only after a selected spell CSV loader succeeds
@@ -120,6 +124,7 @@ address,name,module,confidence,evidence
 0x004316C0,find_checked,battle,inferred,docs/BATTLE.md checked tree-like lookup helper used by local and common spell record search
 0x004317A0,find_local_then_common_spell_record,battle,inferred,docs/BATTLE.md observed local tree then common tree record lookup
 0x00431860,invoke_indexed_record,battle,inferred,docs/BATTLE.md player-indexed callback invoked when a spell sequence record is consumed
+0x00432040,erase_short_tree_range_checked,battle,observed,Complete 0x004325B0 source constructs and passes ShortTree iterators to this checked range erase specialization
 0x00432500,clear_spell_entries,battle,inferred,docs/BATTLE.md spell CSV wrappers clear destination entries before parsing
 0x004325B0,parse_spell_csv_via_325b0,battle,inferred,docs/BATTLE.md observed large spell CSV parser reached by the first wrapper
 0x00432D80,load_spell_csv_via_325b0,battle,inferred,docs/BATTLE.md observed spellcard versus storySpell path wrapper
@@ -188,6 +193,7 @@ address,name,module,confidence,evidence
 0x0045BBB0,Fighter_is_front_sequence_entry_ready_55a,battle,observed,Exact shared availability threshold gate with two call sites in every character dispatcher
 0x0045BA40,advance_fighter_sequence_55c,battle,inferred,docs/BATTLE.md deferred counter leaf advances the observed controller rooted at fighter 0x55c
 0x0045BC30,consume_spell_sequence_entry,battle,inferred,docs/BATTLE.md observed spell sequence callback statistics advance and next-record publication
+0x00458E80,ScenarioTransitionView_dispatch_owned_string_458e80,battle,observed,Strict exact 127-byte member owned-string dispatcher reached by battle transition and reset
 0x0045BF10,apply_deferred_counter_558,battle,inferred,docs/BATTLE.md post-collision deferred channel reduces or wraps fighter counter 0x558
 0x0045C440,?grow_storage@FighterSequenceController@th105@@QAEXI@Z,battle,observed,IDA Pro target direct callee and strict exact 0x0045C5A0 sequence enqueue probe
 0x00453B70,?copy_fighter_sequence_sprite@FighterSequenceSpriteCopyView@th105@@QAEPAXPBU12@@Z,battle,observed,IDA Pro target direct callee and strict exact 0x0045C5A0 sequence enqueue probe

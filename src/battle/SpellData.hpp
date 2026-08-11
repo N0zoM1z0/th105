@@ -147,6 +147,10 @@ struct ShortTree {
     ShortTreeInsertResult *insert_unique_key(
         ShortTreeInsertResult *result,
         const short *key);
+    ShortTreeIterator *erase_range_checked(
+        ShortTreeIterator *result,
+        ShortTreeIterator begin,
+        ShortTreeIterator end);
 };
 
 typedef char ShortTreeNode_size_must_be_0x10[

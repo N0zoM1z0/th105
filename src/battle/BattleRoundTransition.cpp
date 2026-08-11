@@ -1,6 +1,7 @@
 #include "assets/String28.hpp"
 #include "battle/BattleController.hpp"
 #include "battle/Collision.hpp"
+#include "battle/ScenarioTransition.hpp"
 
 #include <new>
 
@@ -13,11 +14,6 @@ struct FighterTransitionView {
 struct PostSequenceTransitionView {
     int publish_transition_effect_46e040(int effect);
     void publish_transition_effect_at_46e130(float position);
-};
-
-struct ScenarioTransitionView {
-    signed char consume_transition_code_458d90();
-    unsigned char dispatch_owned_string_458e80(String28 value);
 };
 
 struct ContinueMenu {

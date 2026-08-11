@@ -744,6 +744,101 @@ rel32_targets = [
   "CollisionContext_reset_collision_extents=0x0046ACB0",
   "memset=0x0067BB80",
   "assign=0x004021C0",
-  "dispatch_scenario_owned_string=0x00458E80",
+  "ScenarioTransitionView_dispatch_owned_string_458e80=0x00458E80",
   "BattlePhaseRunView_run_458cc0=0x00458CC0",
+]
+
+[units.scenario-string-dispatch]
+kind = "probe"
+source = "src/battle/ScenarioStringDispatch.cpp"
+object = "build/match-units/ScenarioStringDispatch.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Exact member owned-string slice copy and dispatch; ledger retains the authoritative 127-byte span from the 130-byte IDA/object tail."
+
+[[units.scenario-string-dispatch.functions]]
+address = "0x00458E80"
+symbol_base = "dispatch_owned_string_458e80"
+rel32_targets = [
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020B0",
+  "?dispatch@ScenarioStringDispatchTarget@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x00453E30",
+  "operator_delete=0x0067B02A",
+]
+
+[units.battle-setup-slots]
+kind = "probe"
+source = "src/battle/BattleSetupSlots.cpp"
+object = "build/match-units/BattleSetupSlots.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete paired fixed-slot save/load transfer plus exact checked 0x50-stride selector dependency."
+
+[[units.battle-setup-slots.functions]]
+address = "0x004275E0"
+symbol_base = "select_slot_4275e0"
+rel32_targets = [
+  "_invalid_parameter_noinfo=0x0067B884",
+]
+
+[[units.battle-setup-slots.functions]]
+address = "0x0042AAB0"
+symbol_base = "save_battle_setup_slot"
+rel32_targets = [
+  "FixedSlotStoreView_select_slot_4275e0=0x004275E0",
+  "SidePayloadView_copy_from_42a7b0=0x0042A7B0",
+]
+
+[[units.battle-setup-slots.functions]]
+address = "0x0042ABF0"
+symbol_base = "load_battle_setup_slot"
+rel32_targets = [
+  "FixedSlotStoreView_select_slot_4275e0=0x004275E0",
+  "SidePayloadView_copy_from_42a7b0=0x0042A7B0",
+]
+
+[units.spell-sequence-consume]
+kind = "probe"
+source = "src/battle/SpellRuntime.cpp"
+object = "build/match-units/SpellRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete 346-byte spell-sequence consume body; first 204 bytes match and the remainder is bounded to VC8 register/store scheduling."
+
+[[units.spell-sequence-consume.functions]]
+address = "0x0045BC30"
+symbol_base = "consume_spell_sequence_entry"
+
+[units.spell-csv-filtered-parser]
+kind = "probe"
+source = "src/battle/SpellCsvFilteredParser.cpp"
+object = "build/match-units/SpellCsvFilteredParser.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete five-argument filtered spell CSV parser including temporary short-key tree and sixteen-card composite batches; exact tuning remains after full relocation coverage."
+
+[[units.spell-csv-filtered-parser.functions]]
+address = "0x004325B0"
+symbol_base = "parse_spell_csv_via_325b0"
+rel32_targets = [
+  "CsvReader_load=0x0040EB20",
+  "allocate_short_tree_nil_node=0x00431590",
+  "ShortTree_insert_unique_key=0x00431ED0",
+  "CsvReader_next_int=0x0040EE50",
+  "CsvReader_next_string=0x0040EF50",
+  "ShortTree_find_checked=0x00431730",
+  "SpellTexturePool_load_texture=0x00404EC0",
+  "DwordDeque4_push_back=0x00416A50",
+  "?$?HDU?$char_traits=0x00408B40",
+  "append=0x00408A40",
+  "SpellRecordView_ctor=0x00431950",
+  "SpellTree_insert_unique_value=0x00432310",
+  "CsvReader_advance_row=0x0040F050",
+  "SpellTexturePool_create_composite_texture=0x00404F30",
+  "SpellTreeIterator_decrement_checked=0x00431430",
+  "assign=0x004021C0",
+  "ShortTree_erase_range_checked=0x00432040",
+  "CsvReader_clear_rows=0x0040F780",
+  "free=0x0067B02A",
+  "_invalid_parameter_noinfo=0x0067B884",
+  "__security_check_cookie=0x0067B465",
 ]

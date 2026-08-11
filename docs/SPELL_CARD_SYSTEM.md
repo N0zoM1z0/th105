@@ -31,7 +31,7 @@ CSV and asset load
 │   ├── 0x00432D80 first-parser wrapper [implemented]
 │   └── 0x00433490 resource-parser wrapper [implemented]
 ├── free parser ABI, not SpellDataOwner members
-│   ├── 0x004325B0 five-argument parser [decompiled]
+│   ├── 0x004325B0 five-argument filtered parser [implemented]
 │   └── 0x00432E20 four-argument card-resource parser [implemented]
 ├── CSV reader 0x0040EB20/EE50/EF50/F050/F780 [decompiled]
 ├── record/tree contracts
@@ -42,7 +42,7 @@ CSV and asset load
 │   ├── 0x00431590 short-tree nil allocation [decompiled]
 │   ├── 0x00431730 short-tree checked find [decompiled]
 │   ├── 0x00431ED0 short-tree unique insert [decompiled]
-│   ├── 0x00432040 checked SpellTree range erase [decompiled]
+│   ├── 0x00432040 checked ShortTree range erase [decompiled]
 │   └── 0x0042D240 SpellTree recursive subtree destruction [decompiled]
 ├── owner cleanup
 │   ├── 0x00432500 clear image handles and record tree [decompiled]
@@ -108,7 +108,18 @@ short values. The optional resource path is
 image owner exists, groups of sixteen names are joined with `<br>`, rendered to
 a 512x256 composite, and published back to the most recent records.
 `0x004325B0` additionally builds and consults a short-key temporary tree and
-erases it at exit.
+erases it at exit. Its complete authored source now compiles to 1960 bytes
+against the authoritative 1885-byte ledger body with every relocation
+resolved. The first-byte delta is the VC8 aligned EH frame, so exact work can
+start from a bounded compiler-shaping packet rather than rediscovering parser
+behavior. This pass also corrected `0x00432040` from a SpellTree-specific
+contract to the concrete ShortTree specialization used by the parser.
+
+The spell-sequence consumer `0x0045BC30` now emits the exact target size
+(346/346); its first 204 bytes match exactly. The remaining delta begins after
+the second checked-front access and is limited to value-register and store
+scheduling, while callback, statistics, sequence advance, lookup, and terminal
+state behavior are all present.
 
 ## Boundary gate
 
@@ -129,13 +140,14 @@ These are work-packet conflicts, not permission to extend comparison ranges.
 
 Breadth is now sufficient to split exact work without rediscovering the graph:
 
-1. Runtime lane: use exact `0x0045C5A0` and library-exact `0x0045C440` to
+1. Runtime lane: finish the post-`+0xCC` VC8 schedule in exact-size
+   `0x0045BC30`, then use exact `0x0045C5A0` and library-exact `0x0045C440` to
    shape `0x0045BA40` and the CSprite/LTCG boundary at `0x0045C690`.
 2. Data lane: `0x004316C0`, `0x004317A0`, `0x00430C80`, `0x00432500`.
 3. Wrapper lane: `0x00432D80` and `0x00433490` after the corrected free-parser ABI.
-4. Hard parser lane: `0x004325B0` and `0x00432E20`, only after the shared
-   tree/string/resource relocations are strict and the six boundary conflicts
-   remain fail-closed.
+4. Hard parser lane: tune the now-complete `0x004325B0` and `0x00432E20`
+   sources with their strict tree/string/resource relocation manifests while
+   keeping all six boundary conflicts fail-closed.
 5. Character fan-out: split each dispatcher into its proven 600-series spell
    group only after the shared sequence and record contracts above compile.
 

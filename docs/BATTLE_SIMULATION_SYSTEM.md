@@ -44,11 +44,13 @@ BattleController [observed prefix +0x00..+0xA7]
 └── 0x004708B0 synchronized input gate [implemented, 127/129]
 
 Controller direct dependency layer [mixed breadth/exact]
-├── 0x0042AAB0/0x0042ABF0 save/load fixed battle-setup slots
+├── 0x0042AAB0/0x0042ABF0 save/load fixed battle-setup slots [implemented]
+│   └── 0x004275E0 checked 0x50-stride slot selector [exact]
 ├── 0x00427190 local/practice control setup [decompiled]
 ├── 0x00427AC0 synchronized control publication [decompiled, 258/240]
 ├── 0x0042A560 packed local control collection [exact]
 ├── 0x00458D10/0x00458F10/0x004591D0 scenario and story-row setup
+├── 0x00458E80 member owned-string scenario dispatch [exact]
 ├── 0x0043F030 CMenuBattle mode-specific pause menu construction
 ├── 0x00462E20 fighter scripted-input state update
 ├── 0x00465F70 render/list reset plus event signal
@@ -184,10 +186,17 @@ original class ownership.
 
 The paired `0x0042AAB0/0x0042ABF0` setup transfers now have a complete payload
 contract: each stored setup is 0x3C bytes inside a 0x50-stride envelope, with
-two 0x14 side payloads and token/tail metadata. Truthful save/load probes emit
-288/305 and 292/332 bytes with clean relocations. Their remaining shared
-blocker is the original fixed-slot container/TU register lifetime, so the
-layout is durable while exact tuning remains bounded as a pair.
+two 0x14 side payloads and token/tail metadata. Their authored save/load bodies
+emit 288/305 and 292/332 bytes with clean relocations, while the shared checked
+slot selector `0x004275E0` is exact at 60/60. Their remaining shared blocker is
+the original fixed-slot container/TU register lifetime, so the layout is
+durable while exact tuning remains bounded as a pair.
+
+The scenario dispatch at `0x00458E80` is a receiver-bearing `__thiscall`, not
+the earlier free `__stdcall` hypothesis. Its shared `ScenarioTransitionView`
+source is exact for all 127 authoritative bytes; both `0x00470500` and
+`0x00470780` now pass the phase block in ECX and retain their established
+comparison results.
 
 This fan-out is the concrete validation for the breadth-first workflow: one
 controller map produced eight authored exact functions (`0x0046FE80`,

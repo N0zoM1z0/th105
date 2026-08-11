@@ -257,6 +257,18 @@ the coordinator expands and stabilizes the graph, parallel workers close
 bounded byte deltas, and non-exact results return a reusable blocker instead of
 inflated progress.
 
+The next spell/battle wave confirms the split also works when exact closure is
+not immediate. One worker turned the 1,885-byte `0x004325B0` parser survey into
+complete compilable source and corrected its temporary container to
+`ShortTree`; another moved `0x0045BC30` from a 282-byte partial body to an
+exact-size 346-byte object whose first 204 bytes match. In parallel, the small
+ABI-focused `0x00458E80` packet corrected a false free-function hypothesis and
+closed all 127 ledger bytes exactly. The coordinator then registered each
+object and strict relocation set centrally. This is now the default evidence
+for breadth-first plus exact fan-out: complete subsystem behavior may land as
+`implemented`, precise compiler deltas stay queued, and independent leaves can
+still become `matching` without holding the breadth wave hostage.
+
 ## Operational loop
 
 ```bash

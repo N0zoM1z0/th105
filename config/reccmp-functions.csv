@@ -274,6 +274,7 @@ select_spell_record_id,0x00430D90,function
 load_spell_data,0x00430DE0,function
 set_spell_sequence_mode_430fa0,0x00430FA0,function
 std_spell_tree_iterator_decrement,0x00431430,function
+erase_short_tree_range_checked,0x00432040,function
 find_checked,0x004316C0,function
 find_local_then_common_spell_record,0x004317A0,function
 invoke_indexed_record,0x00431860,function
@@ -341,6 +342,8 @@ calculate_forwarded_quantity,0x00459ED0,function
 entry_at_checked,0x0045B9E0,function
 Fighter_is_front_sequence_entry_ready_55a,0x0045BBB0,function
 consume_spell_sequence_entry,0x0045BC30,function
+ScenarioTransitionView_dispatch_owned_string_458e80,0x00458E80,function
+FixedSlotStoreView_select_slot_4275e0,0x004275E0,function
 enqueue_record,0x0045C5A0,function
 prepare_next_spell_sequence_entry,0x0045C690,function
 reset_fighter_sequence_controller_45e5f0,0x0045E5F0,function

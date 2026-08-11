@@ -75,8 +75,17 @@ __ehhandler$??1CTitle@th105@@UAE@XZ,0x006A499D,8b5424088d42f48b,0x0,target VC8 C
 ___security_cookie,0x006E1A88,4ee640bb,0x0,target VC8 security cookie address and bytes,address
 __ehhandler$??0SpellRecordView@th105@@QAE@ABU01@@Z,0x006A5288,8b5424088d42f08b,0x0,target VC8 SpellRecordView copy-constructor EH handler entry bytes,address
 __ehhandler$?parse_spell_csv_and_build_card_resources@th105@@YGXPBD0PAUDwordDeque4@1@PAUSpellTree@1@@Z,0x006A53D8,8b5424088d823cfd,0x0,target VC8 free stdcall spell-card parser EH handler entry bytes,address
+__ehhandler$?parse_spell_csv_via_325b0@th105@@YGXPBD0PAUDwordDeque4@1@PAUSpellTree@1@PAX@Z,0x006A5343,8b5424088d8224fd,0x0,target VC8 filtered spell-card parser EH handler entry bytes,address
+__ehhandler$?dispatch_owned_string_458e80@ScenarioTransitionView@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z,0x006A7C28,8b5424088d42f48b,0x0,target VC8 ScenarioTransitionView owned-string dispatcher EH handler entry bytes,address
 ??_7CTitle@th105@@6B@,0x006ACCF4,80514200,0x0,target RTTI-owned CTitle vtable address and first slot,address
 ?g_title_resource_manager@th105@@3UTitleResourceManager@1@A,0x006ECD40,00000000,0x0,target zero-filled title resource-manager object address,address
+?g_spell_texture_pool@th105@@3USpellTexturePool@1@A,0x006ECD40,00000000,0x0,target zero-filled texture-pool object address shared with the verified resource-manager anchor,address
+?g_spell_texture_load_state@th105@@3IA,0x006E4C64,00000000,0x0,target zero-filled spell texture load-state word verified through IDA target memory,address
+?g_spell_texture_upload_state@th105@@3IA,0x006E4C60,00000000,0x0,target zero-filled spell texture upload-state word verified through IDA target memory,address
+?g_spell_composite_upload_state@th105@@3IA,0x006E4C80,00000000,0x0,target zero-filled spell composite upload-state word verified through IDA target memory,address
+??_C@_0BK@JLMCKHPC@data?1card?1?$CFs?1card?$CF03d?4bmp?$AA@,0x006AD2C4,646174612f636172642f25732f63617264253033642e626d7000,0x0,target spell-card bitmap format bytes verified through IDA target memory,literal
+??_C@_04NKJDMFKO@?$DMbr?$DO?$AA@,0x006AD2BC,3c62723e00,0x0,target spell-card composite path separator bytes verified through IDA target memory,literal
+??_C@_00CNPNBAHC@?$AA@,0x006C0A4E,00,0x0,target shared empty string byte verified through IDA target memory,literal
 _title_color_vtable_anchor,0x006AC624,40a84000,0x0,target title color vtable address and first slot,address
 ??_7CSceneBase@th105@@6B@,0x006AC77C,f0d34100,0x0,target RTTI-owned CSceneBase vtable address and first slot,address
 ??_7IScene@th105@@6B@,0x006AC454,f0d34100,0x0,target RTTI-owned IScene vtable address and first slot,address
