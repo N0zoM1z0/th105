@@ -311,6 +311,8 @@ struct Fighter {
     unsigned char consume_spell_sequence_entry();
     void prepare_next_spell_sequence_entry();
     void initialize_fighter_battle_state();
+    void load_pat_data_and_palette_resources();
+    void load_indexed_character_wave_resources();
     void initialize_fighter_spell_resources();
     void consume_counter_484_steps(char count);
     int select_outcome_path_from_frame_flags(unsigned frame_flags);

@@ -3,6 +3,7 @@
 #include <stddef.h>
 
 #include "Collision.hpp"
+#include "FighterResources.hpp"
 #include "SpellData.hpp"
 #include "SpellRuntime.hpp"
 #include "config/ScoreData.hpp"
@@ -65,6 +66,10 @@ typedef char CheckCollisionListNodeSize[
     sizeof(CollisionListNode) == 0x0c ? 1 : -1];
 typedef char CheckFighterSequenceControllerSize[
     sizeof(FighterSequenceController) == 0x14 ? 1 : -1];
+typedef char CheckFighterCutinResourceContractSize[
+    sizeof(FighterCutinResource) == 0xa0 ? 1 : -1];
+typedef char CheckFighterCutinSpriteContractSize[
+    sizeof(FighterCutinSpriteWork) == 0x94 ? 1 : -1];
 typedef char CheckFighterSequenceSlotSize[
     sizeof(FighterSequenceSlot) == 0x98 ? 1 : -1];
 typedef char CheckObservedRecordSize[

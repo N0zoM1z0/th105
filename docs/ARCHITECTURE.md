@@ -106,6 +106,8 @@ state. They establish the first vertical slices:
 Gameplay reconstruction should start from the phase ordering and bounded work
 lanes in [`docs/BATTLE.md`](BATTLE.md). UI, audio, and input plumbing remain
 valid modules but are lower priority than the active battle pipeline. The
+fifteen fighter vtable roots and the repeatable character onboarding lanes are
+tracked in [`docs/CHARACTER_PILOTS.md`](CHARACTER_PILOTS.md). The
 scenario-select vertical slice, shared UI ABI layouts, and its explicit open
 edges are mapped in [`docs/UI_FRAMEWORK.md`](UI_FRAMEWORK.md).
 

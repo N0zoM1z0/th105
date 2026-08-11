@@ -398,14 +398,39 @@ spell path in the target fallthrough. The
 first unresolved difference is a target-only speculative `LEA ECX,[ESI+4F0]`
 before the long branch; the checked-iterator suffix still differs in register
 coloring and guard scheduling. The source covers all phases observed in the
-current decompile, while further semantic audit remains open. The adjacent
-`0x00462050` remains decompiled:
-it calls the common spell-data loader, formats the character face resource and
-ten `back/spell%03d.bmp` resources, stores the face handle at `+0x338`,
-registers back resources through the owner at `+0x68C`, applies player-relative
-`-1/+1` values at `+0x3C4/+0x3C8`, and finishes with the character resource
-callback rooted at `+0x3D0`. Asset ownership and stack-cookie contracts must be
-proven before source is claimed.
+current decompile, while further semantic audit remains open.
+
+The adjacent `0x00462050` now has complete source in
+`FighterResourceInitialization.cpp`. It first parses per-character PAT and
+palette resources through `0x00460B50`, loads exactly 64 indexed wave handles
+through the exact `0x0045E080`, and invokes the exact spell-data selector. It
+then formats the face resource and up to ten `back/spell%03d.bmp` resources,
+stores the face handle at `+0x338`, registers back handles in the dword deque at
+`+0x68C`, applies player-relative `-1/+1` values at `+0x3C4/+0x3C8`, and ends
+with the cut-in component at `+0x3D0`. VC8 emits the same 333-byte size as the
+target. Remaining bytes differ in the target's LTCG-preserved unused argument
+bits and virtual-call register scheduling, not in a missing phase.
+
+`0x0045E080` is an exact 132-byte reconstruction. It resolves `+0x330` to a
+borrowed character path component, loads `data/se/%s/%03d.wav` for indices
+zero through 63 through the global wave-handle manager, and stores the opaque
+handles in the table pointed to by `Fighter+0x164`. The fighter does not own or
+release the underlying wave objects in this function.
+
+`0x00464320` has complete 197-byte source against the 199-byte target. Its
+`0xA0`-byte `FighterCutinResource` contains a handle, a `0x94`-byte embedded
+sprite, selector at `+0x98`, and terminal state at `+0x9C`. It formats
+`data/stand/cutin/%s.bmp`, configures sprite vslot `+0x14` with the loaded
+handle and observed extents, applies the selector-one float pair, and stores
+`-1` at `+0x9C`. No local release path is present.
+
+The remaining large shared boundary `0x00460B50` reads
+`data/character/%s/%s.pat`, loads `palette%03d.bmp` handles into the container
+at `+0x130`, and builds checked tree/deque records through `+0x160` and
+`+0x65C`. Its corrected contiguous span is 3885 bytes ending at
+`0x00461A7C`; the older inventory size omitted `0x68` bytes. Its local reader,
+lists, and EH cleanup still require concrete record types before source is
+claimed.
 
 ## Body collision and geometry
 

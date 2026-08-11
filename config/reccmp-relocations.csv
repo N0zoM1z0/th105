@@ -29,7 +29,12 @@ __real@407e000000000000,0x006ACEB8,0000000000007e40,0x0,target double 480.0 byte
 ?g_fighter_phase_context@th105@@3PAUFighterPhaseContext@1@A,0x006E623C,00000000,0x0,target BSS pointer and zero-filled fighter-phase context verified from exact phase wrappers,literal
 ?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A,0x006E6240,00000000,0x0,target BSS pointer and zero-filled battle-object manager verified from shared battle phase,literal
 ?g_indexed_event_handles@th105@@3PAIA,0x006E7038,00000000,0x0;0x1fc,target 128-entry zero-filled indexed wave-handle table verified,literal
-?g_wave_handle_service@th105@@3UOpaqueWaveHandleService@1@A,0x006EC830,00000000,0x0,target zero-filled opaque wave-handle service object verified,literal
+?g_wave_handle_service@th105@@3UOpaqueWaveHandleService@1@A,0x006EC830,00000000,0x0,target zero-filled opaque wave-handle service object and direct target address verified,address
+??_C@_0BE@KPICLJDF@data?1se?1?$CFs?1?$CF03d?4wav?$AA@,0x006AEB28,646174612f73652f25732f253033642e77617600,0x0,target indexed character wave path format bytes verified,literal
+??_C@_0BI@LDOABOLK@data?1stand?1cutin?1?$CFs?4bmp?$AA@,0x006AED20,646174612f7374616e642f637574696e2f25732e626d7000,0x0,target fighter cut-in bitmap path format bytes verified,literal
+__real@bf800000,0x006C0EDC,000080bf,0x0,target fighter cut-in mirrored float minus one bytes verified,literal
+??_C@_0CF@FHHKEGPJ@data?1character?1?$CFs?1back?1spell?$CF03d@,0x006AEC4C,646174612f6368617261637465722f25732f6261636b2f7370656c6c253033642e626d7000,0x0,target per-character back spell bitmap path format bytes verified,literal
+??_C@_0CE@NPKABDGF@data?1character?1?$CFs?1face?1face?$CF03d?4@,0x006AEC74,646174612f6368617261637465722f25732f666163652f66616365253033642e626d7000,0x0,target per-character face bitmap path format bytes verified,literal
 ?g_common_spell_tree@th105@@3USpellTree@1@A,0x006E4E14,00000000,0x0;0x4,target zero-filled common spell tree header words and end-node addend verified,literal
 ??_C@_0BK@LLDEPKNL@data?1csv?1?$CFs?1spellcard?4csv?$AA@,0x006AD2E0,646174612f6373762f25732f7370656c6c636172642e63737600,0x0,target spellcard CSV format string bytes verified,literal
 ??_C@_0BL@FDFMFODE@data?1csv?1?$CFs?1storySpell?4csv?$AA@,0x006AD2FC,646174612f6373762f25732f73746f72795370656c6c2e63737600,0x0,target storySpell CSV format string bytes verified,literal

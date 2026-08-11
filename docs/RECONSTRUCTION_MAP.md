@@ -64,14 +64,18 @@ TH10.5
 │   ├── spell runtime [source-ready]
 │   │   ├── 0x00430C30/0x00430D90 deque front/select [exact]
 │   │   └── 0x0045BC30/0x0045C690 consume/prepare [implemented]
-│   └── fighter integration [contracted]
+│   └── fighter integration [source-ready]
 │       ├── 0x0045F140 battle-state initialization [implemented]
-│       └── 0x00462050 spell-resource initialization [decompiled, blocked]
-└── Character-specific families [seed]
+│       └── 0x00462050 spell-resource initialization [implemented]
+│           ├── 0x0045E080 indexed wave resources [exact]
+│           ├── 0x00460B50 PAT/palette records [identified]
+│           └── 0x00464320 cut-in resource [implemented]
+└── Character-specific families [mapped roots]
     ├── shared Character/CharacterEx/AttackObject contracts
-    ├── per-character fighter and owned-object manager families
+    ├── fifteen RTTI/vtable pilot rows -> docs/CHARACTER_PILOTS.md
+    ├── per-character fighter and owned-object manager families [seed]
     └── Sakuya pilot [mapped]
-        ├── raw vslot +0x3C: 0x004DDB20 action change [identified]
+        ├── raw vslot +0x3C: 0x004DDB20 action change [decompiled]
         └── common-update vslot +0x50: 0x004DEF70 input/action [identified]
 ```
 
@@ -81,16 +85,15 @@ platform/runtime. Their module boundaries are listed in `docs/ARCHITECTURE.md`.
 
 ## Unlock-first frontier
 
-1. **Sakuya character pilot.** The hard spell parser and its former four
-   record/string blockers are now implemented or exact. Use `0x004DDB20` and
-   `0x004DEF70` to recover the
-   derived vtable, action-code families, shared virtual contracts, and owned
-   object-manager interactions. This lane should establish a repeatable
-   onboarding method for the other fourteen fighters.
-2. **Fighter resource initialization.** Resolve the three current framework
-   blockers `0x0045E080`, `0x00460B50`, and `0x00464320`, then promote
-   `0x00462050`; these shared boundaries unlock spell/skill assets for every
-   character rather than one fighter at a time.
+1. **Sakuya character pilot.** The derived vtable, action families, extension
+   prefix, and shared virtual contracts are mapped. Complete the smaller
+   decision leaves beneath `0x004DEF70`, then recover its owned-object manager
+   roots. Apply the resulting checklist to the other fourteen fighters in
+   `docs/CHARACTER_PILOTS.md`.
+2. **PAT record semantics.** `0x00462050` now has target-sized complete source,
+   `0x0045E080` is exact, and `0x00464320` is 197/199 bytes. Recover the
+   EH-bearing record types inside `0x00460B50`; this is the remaining shared
+   resource semantic boundary inherited by all fifteen fighters.
 3. **Fighter state continuity.** Shape the one-byte remaining loop difference
    in `0x0045CDD0`, reconstruct the separate tail helper `0x00459D30`, then
    implement `0x0045CF00` without accepting IDA's merged tail chunk. This

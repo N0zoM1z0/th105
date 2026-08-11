@@ -1,0 +1,97 @@
+# Character pilot map
+
+This is the address-level onboarding map for the fifteen playable fighter
+families.  It complements the subsystem tree in `RECONSTRUCTION_MAP.md`; the
+function ledger remains authoritative for function status.
+
+All addresses below come from RTTI-owned vtables in the exact Japanese 1.06a
+target.  The constructor-installed vtable pointer is the `vtable` column.  The
+other columns are target function pointers observed in that table, not
+recovered original names.  Raw offsets exclude the preceding RTTI locator.
+
+| Fighter | vtable | `+0x28` | `+0x3C` action change | `+0x44` | `+0x50` input/action | `+0x5C` | `+0x60` | State |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| Reimu | `0x006B013C` | `0x004787B0` | `0x00491480` | `0x00491410` | `0x00494050` | `0x00490C60` | `0x004A2A50` | seed |
+| Marisa | `0x006B0594` | `0x004A2F40` | `0x004B81F0` | `0x004B81B0` | `0x004B9A60` | `0x004B7AB0` | `0x004CA440` | seed |
+| Sakuya | `0x006B0924` | `0x004CA870` | `0x004DDB20` | `0x004DDAF0` | `0x004DEF70` | `0x004DD2A0` | `0x004E9610` | mapped |
+| Alice | `0x006B0BEC` | `0x004E9A20` | `0x004F9320` | `0x004F92D0` | `0x004FA5C0` | `0x004F88D0` | `0x0050E780` | seed |
+| Patchouli | `0x006B0EBC` | `0x0050EC80` | `0x0051D140` | `0x0051D070` | `0x0051EA60` | `0x0051C5C0` | `0x0052F950` | seed |
+| Youmu | `0x006B1154` | `0x0052FDA0` | `0x00539D70` | `0x00539D00` | `0x0053B040` | `0x005397E0` | `0x005448A0` | seed |
+| Remilia | `0x006B13D4` | `0x00544D40` | `0x00554A00` | `0x00616680` | `0x00555D90` | `0x005544A0` | `0x0055CFD0` | seed |
+| Yuyuko | `0x006B165C` | `0x0055D4A0` | `0x0056C490` | `0x0056C460` | `0x0056D8E0` | `0x0056BDC0` | `0x0057A5C0` | seed |
+| Yukari | `0x006B18DC` | `0x0057AA60` | `0x00589F20` | `0x00589EA0` | `0x0058BBA0` | `0x00588DF0` | `0x00597B20` | seed |
+| Suika | `0x006B1B9C` | `0x00598100` | `0x005ACC10` | `0x005ACBE0` | `0x005AE470` | `0x005ABDF0` | `0x005BEEE0` | seed |
+| Udonge | `0x006B1E3C` | `0x005BF460` | `0x005D4610` | `0x005D45C0` | `0x005D63F0` | `0x005D3EA0` | `0x005E53D0` | seed |
+| Komachi | `0x006B2074` | `0x005E5860` | `0x005F5DE0` | `0x005F5DB0` | `0x005F7190` | `0x005F5700` | `0x006013C0` | seed |
+| Aya | `0x006B22DC` | `0x006018F0` | `0x006166A0` | `0x00616680` | `0x00617B20` | `0x00615EA0` | `0x0061F870` | seed |
+| Iku | `0x006B2534` | `0x0061FDE0` | `0x0062F4B0` | `0x0062F480` | `0x00630800` | `0x0062E910` | `0x0063C1D0` | seed |
+| Tenshi | `0x006B279C` | `0x0063C900` | `0x006495C0` | `0x00649520` | `0x0064AB80` | `0x00648850` | `0x00658830` | seed |
+
+The meanings of `+0x3C` and `+0x50` are proven by the shared update path and
+Sakuya behavior.  The other four columns deliberately retain neutral slot
+labels until callers and fields establish their roles.
+
+## Shared unlock inherited by every fighter
+
+`0x004632D0` constructs one of fifteen derived fighters and then calls
+`0x00462050`.  The shared initialization chain is now:
+
+```text
+0x00462050 initialize_fighter_spell_resources [implemented, 333/333 bytes]
+├── 0x00460B50 PAT + palette + parsed records [identified]
+├── 0x0045E080 64 indexed character wave handles [exact]
+├── 0x00430DE0 spell-data loader selector [exact]
+├── face bitmap and embedded sprite setup
+├── up to ten back/spell bitmaps in Fighter+0x68C
+└── 0x00464320 cut-in resource at Fighter+0x3D0 [implemented, 197/199]
+```
+
+The `0x00460B50` contiguous body is `0x00460B50..0x00461A7C`, 3885
+bytes.  Its previous ledger size was short by `0x68`; IDA and the target's
+terminal `ret` agree on the corrected boundary.  Its local EH tails are not
+part of that contiguous span.
+
+## Sakuya pilot
+
+Sakuya's constructor at `0x004DEEF0` calls the shared fighter constructor
+`0x00461A90`, installs vtable `0x006B0924`, and creates the owned-object
+manager stored at `Fighter+0x658`.  This establishes the base/derived boundary;
+the observed Sakuya extension begins at `+0x730` and currently reaches
+`+0x756`.  The partial layout is recorded in `src/characters/Sakuya.hpp`.
+
+`0x004DDB20` is a no-argument `__thiscall` action-change handler.  It switches
+on the 16-bit action at `+0x13C`, uses the common velocity reset at
+`0x00459970`, and falls back to the shared common-action initializer for
+unhandled actions.  Observed families include ordinary ground/air actions in
+`300..418`, skill actions in the `500` series, spell actions beginning at
+`600`, and terminal/special actions `797` and `798`.  Sakuya fields written by
+the complete switch include shorts `+0x730..+0x738`, floats `+0x73C`, `+0x740`,
+and `+0x74C`, and bytes `+0x750` and `+0x754`.
+
+`0x004DEF70` is likewise a no-argument `__thiscall`; `0x00459E50` tail-jumps
+to raw vslot `+0x50` and ignores its incidental register return.  The function
+selects actions from command bits and current ground/air state.  Proven groups
+are:
+
+| Group | Default actions | Alternate actions | Level byte | one-use/cancel byte |
+| --- | --- | --- | ---: | ---: |
+| command group 236 | `500/501` | `505/506` | `+0x608` | `+0x754` |
+| command group 214 | `520/521` | `525/526` | `+0x609` | `+0x755` |
+| command group 623 | `540/541`, air `542/543` | `545/546`, air `547/548` | `+0x60A` | `+0x756` |
+| spell records `200..209` | actions `600..609` | record `206` also reaches `656` | n/a | n/a |
+
+Successful selections call the shared phase at `0x004631E0`, may set bit
+`0x08` at `+0x491` when the observed window is at least ten, and invoke raw
+vslot `+0x08` to change action.  The branch-by-branch matrix is still open, so
+the ledger keeps `0x004DEF70` at `identified` rather than claiming a complete
+decompile.
+
+## Next waves
+
+1. Complete the smaller Sakuya decision leaves reached by `0x004DEF70`, then
+   use them to finish its command matrix without guessing command names.
+2. Recover Sakuya's owned-object manager roots under `Fighter+0x658` and link
+   at least two projectile/spell paths to the action roots.
+3. Apply the same vtable/action/derived-delta checklist to Reimu, Marisa, and
+   Alice, then proceed through the remaining eleven table rows in bounded,
+   non-overlapping address lanes.

@@ -1830,7 +1830,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0045DF60,170,0x0045E009,FUN_0045df60,,,unclassified,0.00,unknown,undefined FUN_0045df60(void),false,,,,
 0x0045E010,43,0x0045E03A,FUN_0045e010,,,unclassified,0.00,unknown,undefined FUN_0045e010(void),false,,,,
 0x0045E040,58,0x0045E079,FUN_0045e040,,,unclassified,0.00,unknown,undefined FUN_0045e040(void),false,,,,
-0x0045E080,132,0x0045E103,FUN_0045e080,,,unclassified,0.00,unknown,undefined FUN_0045e080(void),false,,,,
+0x0045E080,132,0x0045E103,FUN_0045e080,load_indexed_character_wave_resources,battle,matching,100.00,__thiscall,void load_indexed_character_wave_resources(Fighter * this),false,src/battle/FighterResourceInitialization.cpp,scripts/compile-unit.sh with TH105_ENABLE_GS=1 and scripts/compare-function.py 0x0045E080 reports exact 132-byte match,root,Exact 64-entry per-character wave-handle cache loader
 0x0045E110,91,0x0045E16A,FUN_0045e110,,,unclassified,0.00,unknown,undefined FUN_0045e110(void),false,,,,
 0x0045E170,68,0x0045E1B3,FUN_0045e170,,,unclassified,0.00,unknown,undefined FUN_0045e170(void),false,,,,
 0x0045E1C0,55,0x0045E1F6,FUN_0045e1c0,,,unclassified,0.00,unknown,undefined FUN_0045e1c0(void),false,,,,
@@ -1897,11 +1897,11 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004609A0,101,0x00460A04,FUN_004609a0,,,unclassified,0.00,unknown,undefined FUN_004609a0(void),false,,,,
 0x00460A10,187,0x00460ACA,FUN_00460a10,,,unclassified,0.00,unknown,undefined FUN_00460a10(void),false,,,,
 0x00460AD0,119,0x00460B4C,FUN_00460ad0,,,unclassified,0.00,unknown,undefined FUN_00460ad0(void),false,,,,
-0x00460B50,3781,0x00461A7C,FUN_00460b50,,,unclassified,0.00,unknown,undefined FUN_00460b50(void),false,,,,
+0x00460B50,3885,0x00461A7C,FUN_00460b50,load_pat_data_and_palette_resources,battle,identified,0.00,__thiscall,void load_pat_data_and_palette_resources(Fighter * this),false,,docs/BATTLE.md IDA Pro contiguous body and all-15-character constructor path,root,Large EH-bearing PAT reader body still requires full record type and ownership recovery
 0x00461A80,5,0x00461A84,FUN_00461a80,,,unclassified,0.00,unknown,undefined FUN_00461a80(void),false,,,,
 0x00461A90,557,0x00461CBC,FUN_00461a90,,,unclassified,0.00,unknown,undefined FUN_00461a90(void),false,,,,
 0x00461CC0,481,0x00462048,FUN_00461cc0,,,unclassified,0.00,unknown,undefined FUN_00461cc0(void),false,,,,
-0x00462050,333,0x0046219C,FUN_00462050,initialize_fighter_spell_resources,battle,decompiled,0.00,__thiscall,void initialize_fighter_spell_resources(Fighter * this),false,,docs/BATTLE.md observed spell data load face image ten back spell images and final character resource callback,root,Source awaits loader asset ownership string formatting stack-cookie and relocation contracts
+0x00462050,333,0x0046219C,FUN_00462050,initialize_fighter_spell_resources,battle,implemented,0.00,__thiscall,void initialize_fighter_spell_resources(Fighter * this),false,src/battle/FighterResourceInitialization.cpp,TH105_ENABLE_GS=1 compile and strict compare produce target-sized 333-byte source with relocation-verified resource strings,root,Complete shared PAT wave spell face back and cut-in initialization; remaining differences are LTCG argument and register scheduling
 0x004621A0,480,0x0046237F,FUN_004621a0,,,unclassified,0.00,unknown,undefined FUN_004621a0(void),false,,,,
 0x00462380,57,0x004623B8,FUN_00462380,initialize_fighter_phase_62380,battle,identified,0.00,__fastcall,void initialize_fighter_phase_62380(void * fighter),false,,docs/BATTLE.md first subordinate phase in initialize_fighter_battle_state,root,Body semantics remain to reconstruct
 0x004623C0,171,0x0046246A,FUN_004623c0,,,unclassified,0.00,unknown,undefined FUN_004623c0(void),false,,,,
@@ -1939,7 +1939,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00464240,38,0x00464265,FUN_00464240,,,unclassified,0.00,unknown,undefined FUN_00464240(void),false,,,,
 0x00464270,88,0x004642C7,FUN_00464270,,,unclassified,0.00,unknown,undefined FUN_00464270(void),false,,,,
 0x004642D0,66,0x00464311,FUN_004642d0,,,unclassified,0.00,unknown,undefined FUN_004642d0(void),false,,,,
-0x00464320,199,0x004643E6,FUN_00464320,,,unclassified,0.00,unknown,undefined FUN_00464320(void),false,,,,
+0x00464320,199,0x004643E6,FUN_00464320,FighterCutinResource_load_for_character,battle,implemented,0.00,__thiscall,"void FighterCutinResource_load_for_character(FighterCutinResource * this, int character_key, int selector)",false,src/battle/FighterResourceInitialization.cpp,TH105_ENABLE_GS=1 compile and strict compare produce 197 bytes versus 199 target,root,Complete cut-in handle sprite extent selector polarity and state initialization; remaining gap is virtual-call register and tail-store scheduling
 0x004643F0,50,0x00464421,FUN_004643f0,,,unclassified,0.00,unknown,undefined FUN_004643f0(void),false,,,,
 0x00464430,248,0x00464527,FUN_00464430,,,unclassified,0.00,unknown,undefined FUN_00464430(void),false,,,,
 0x00464530,45,0x0046455C,FUN_00464530,,,unclassified,0.00,unknown,undefined FUN_00464530(void),false,,,,
@@ -2295,7 +2295,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004CA870,74937,0x004DCD91,FUN_004ca870,,,unclassified,0.00,unknown,undefined FUN_004ca870(void),false,,,,
 0x004DD2A0,1796,0x004DD9A3,FUN_004dd2a0,,,unclassified,0.00,unknown,undefined FUN_004dd2a0(void),false,,,,
 0x004DDAF0,38,0x004DDB15,FUN_004ddaf0,,,unclassified,0.00,unknown,undefined FUN_004ddaf0(void),false,,,,
-0x004DDB20,2106,0x004DE359,FUN_004ddb20,Sakuya_on_action_changed,characters,identified,0.00,unknown,undefined FUN_004ddb20(void),false,,docs/EVIDENCE.md Sakuya action traces,,
+0x004DDB20,2106,0x004DE359,FUN_004ddb20,Sakuya_on_action_changed,characters,decompiled,0.00,__thiscall,void Sakuya_on_action_changed(Sakuya * this),false,,docs/CHARACTER_PILOTS.md complete IDA switch and raw target vtable slot +0x3C,root,Complete action-family dispatch documented; source awaits named shared action-init boundary and action enum evidence
 0x004DE580,178,0x004DE63B,FUN_004de580,,,unclassified,0.00,unknown,undefined FUN_004de580(void),false,,,,
 0x004DE690,27,0x004DE6AD,FUN_004de690,,,unclassified,0.00,unknown,undefined FUN_004de690(void),false,,,,
 0x004DE6B0,406,0x004DE845,FUN_004de6b0,,,unclassified,0.00,unknown,undefined FUN_004de6b0(void),false,,,,
@@ -2313,7 +2313,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004DEE70,81,0x004DEEC0,FUN_004dee70,,,unclassified,0.00,unknown,undefined FUN_004dee70(void),false,,,,
 0x004DEED0,27,0x004DEEED,FUN_004deed0,,,unclassified,0.00,unknown,undefined FUN_004deed0(void),false,,,,
 0x004DEEF0,126,0x004DEF6D,FUN_004deef0,,,unclassified,0.00,unknown,undefined FUN_004deef0(void),false,,,,
-0x004DEF70,5897,0x004E0678,FUN_004def70,Sakuya_handle_input_and_select_action,characters,identified,0.00,unknown,undefined FUN_004def70(void),false,,docs/EVIDENCE.md Sakuya dispatcher data flow and runtime actions,,
+0x004DEF70,5897,0x004E0678,FUN_004def70,Sakuya_handle_input_and_select_action,characters,identified,0.00,__thiscall,void Sakuya_handle_input_and_select_action(Sakuya * this),false,,docs/CHARACTER_PILOTS.md raw vtable and command action family evidence,root,No stack arguments; full branch-by-branch command matrix remains to document before decompiled promotion
 0x004E06B0,28985,0x004E77E8,FUN_004e06b0,,,unclassified,0.00,unknown,undefined FUN_004e06b0(void),false,,,,
 0x004E79E0,323,0x004E7B22,FUN_004e79e0,,,unclassified,0.00,unknown,undefined FUN_004e79e0(void),false,,,,
 0x004E7B30,6538,0x004E94B9,FUN_004e7b30,,,unclassified,0.00,unknown,undefined FUN_004e7b30(void),false,,,,

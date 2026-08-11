@@ -500,6 +500,35 @@ Constructor comparisons with `/GS` and EH require strict `DIR32` entries for
 the exact target security cookie and constructor handler.  Validate handler
 bytes at its target address; never wildcard local EH relocations.
 
+## P15: Separate shared resource ownership from embedded sprite dispatch
+
+Character resource initialization combines three ownership shapes that should
+not be flattened into one texture abstraction:
+
+- `0x0045E080` stores 64 opaque handles from the global wave manager into the
+  table pointed to by `Fighter+0x164`; it neither owns nor releases the wave
+  objects. Natural `/GS` VC8 source matches all 132 bytes.
+- `0x00462050` stores face/back handles owned by the shared image service and
+  invokes an embedded sprite's virtual slot `+0x14`. Complete source is the
+  same 333-byte size as the target even though LTCG argument/register
+  scheduling differs.
+- `0x00464320` operates on a separate `0xA0` cut-in component containing a
+  handle, a `0x94` virtual sprite, selector, and terminal state. Its complete
+  standalone object is 197 bytes versus the 199-byte target.
+
+Keep the handle manager, handle value, and vtable-bearing sprite as distinct
+types. A direct texture setter loses the virtual dispatch and changes register
+lifetimes. Do not add release calls where the target only copies a manager
+handle. For exact comparison, allowlist the concrete path literal, global
+service address, import slot, security cookie, and float literal separately.
+
+Large resource readers may also expose inventory drift. For `0x00460B50`, the
+target's terminal `ret` and IDA agree on contiguous span
+`0x00460B50..0x00461A7C` (3885 bytes), while the old ledger size was shorter by
+`0x68`. Prefer the target boundary and record non-contiguous EH tails
+separately; never fold IDA-attached distant EH chunks into a contiguous object
+comparison.
+
 ## Hard-function strategy
 
 Every reconstruction wave should include at least one function whose completion
