@@ -48,7 +48,8 @@ TH10.5
 │   │   │   ├── 0x0046A5C0 -> 0x00463760 outer phase [exact]
 │   │   │   ├── 0x00459860 position phase [exact]
 │   │   │   ├── 0x0045CDD0 transient status [implemented]
-│   │   │   └── 0x0045CF00 timer cleanup [decompiled]
+│   │   │   ├── 0x0045CF00 timer cleanup [implemented]
+│   │   │   └── 0x00459D30 counter thresholds [exact]
 │   │   └── 0x0046A5D0 post-update [exact]
 │   ├── attack/projectile collision [source-ready]
 │   │   ├── 0x0045AEC0 geometry preparation [implemented]
@@ -85,7 +86,7 @@ TH10.5
 │       ├── 0x0045F140 battle-state initialization [implemented]
 │       └── 0x00462050 spell-resource initialization [implemented]
 │           ├── 0x0045E080 indexed wave resources [exact]
-│           ├── 0x00460B50 PAT/palette records [identified]
+│           ├── 0x00460B50 PAT/palette records [decompiled]
 │           └── 0x00464320 cut-in resource [implemented]
 └── Character-specific families [mapped roots]
     ├── shared Character/CharacterEx/AttackObject contracts
@@ -105,6 +106,11 @@ TH10.5
     ├── vslot +0x58 CPU action-policy family [decompiled breadth]
     │   ├── four overrides plus one default body shared by eleven fighters
     │   └── 80,524 bytes, 12,090 IDA lines, and 340 case occurrences
+    ├── remaining sequence-lifecycle/event roots [decompiled breadth]
+    │   ├── 22 bounded entries, 35,673 bytes, and 5,375 IDA lines
+    │   ├── eleven vslot +0x5C sequence callbacks
+    │   ├── ten vslot +0x60 bool event-code bridges
+    │   └── Alice 0x004FA530 constructor boundary
     ├── fifteen owned-object spawn families [contracted]
     │   ├── one normalized 237-byte ABI/template
     │   ├── fifteen normalized acquire-and-link entries [source-ready]
@@ -130,15 +136,16 @@ platform/runtime. Their module boundaries are listed in `docs/ARCHITECTURE.md`.
    simulation, and the central dispatcher are exact. Finish the bounded
    transition/reset pair and shared fighter-pair initializer; keep the truthful
    127/129 RAII and 258/240 synchronized-publication blockers visible.
-2. **PAT record semantics.** `0x00462050` now has target-sized complete source,
-   `0x0045E080` is exact, and `0x00464320` is 197/199 bytes. Recover the
-   EH-bearing record types inside `0x00460B50`; this is the remaining shared
-   resource semantic boundary inherited by all fifteen fighters.
-3. **Fighter state continuity.** Shape the one-byte remaining loop difference
-   in `0x0045CDD0`, reconstruct the separate tail helper `0x00459D30`, then
-   implement `0x0045CF00` without accepting IDA's merged tail chunk. This
-   connects action, position, hit results, transient flags, and countdowns
-   through the already exact outer phase before expanding the state controller.
+2. **PAT parser implementation.** `0x00462050` has target-sized complete source,
+   `0x0045E080` is exact, and `0x00464320` is 197/199 bytes. The EH-bearing
+   `0x20` group, `0x88` record, nested vectors, transient lists, and funclets in
+   `0x00460B50` are now contracted; emit the parser body and destructors without
+   renaming unknown on-disk fields.
+3. **Fighter continuity codegen.** `0x00459D30` is exact and `0x0045CF00` now
+   has complete source while preserving its authoritative boundary against
+   IDA's merged tail chunk. Shape the bounded `+0x11E` mask schedule in
+   `0x0045CDD0` and `+0x8B` store-order gap in `0x0045CF00`, then expand the
+   state controller outward from the now-continuous exact outer phase.
 4. **Central matching lanes.** Continue shaping `0x0045AEC0`, `0x0046B570`,
    `0x0046C290`, `0x0046D160`, `0x0046D370`, and `0x0046D620`, but treat this
    as exact-codegen work rather than the main source of new semantic unlocks.
@@ -163,6 +170,7 @@ shared command layer [source-ready]
 ├── 0x00493300..0x00493B00 common gates [mixed exact/source-ready]
 ├── 0x0045BBB0 front-sequence readiness [exact]
 ├── 0x004631E0 shared action-transition input phase [exact]
+│   └── 0x00463120 VC8 deque<short>::_Assign_n [library exact]
 └── 0x00493C90 front-record actions 690..696 [source, 950/950]
     ├── Reimu 0x00494050 spell/skill groups [mapped]
     ├── Marisa 0x004B9A60 spell/skill groups [mapped]

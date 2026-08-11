@@ -96,6 +96,19 @@ occurrence and unique-label counts: nested switches legitimately reuse labels,
 so collapsing to a set alone loses structural information while counting raw
 labels alone overstates the action domain.
 
+The sequence/event and fighter-continuity wave confirms that breadth and exact
+packets should run concurrently once the address set is bounded. The
+coordinator captured 22 remaining character-command roots in one attested IDA
+session (35,673 bytes, 5,375 pseudocode lines, 480 case occurrences), while
+three read-only workers audited the shared input consumer, PAT parser records,
+and status/timer chain. Integration produced an exact 183-byte result by
+recognizing `0x00463120` as native VC8 `deque<short>::_Assign_n`, an exact
+284-byte counter-threshold helper at `0x00459D30`, complete source for the
+470-byte timer cleanup, and concrete `0x20`/`0x88` PAT ownership layouts. Let
+breadth expose stable role/type families while exact workers test narrow
+compiler hypotheses; do not ask exact workers to rediscover the roster graph
+or let the breadth coordinator spend the wave on one register schedule.
+
 ## Coordinator loop
 
 1. Select one subsystem and its existing core lanes. Verify the target and run

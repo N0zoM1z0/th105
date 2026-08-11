@@ -5,11 +5,12 @@
 #include "input/InputManager.hpp"
 
 #include <cstring>
+#include <deque>
 
 namespace th105 {
 
 void __fastcall initialize_fighter_phase_62380(Fighter *fighter);
-int __fastcall initialize_fighter_phase_631e0(Fighter *fighter);
+void __fastcall initialize_fighter_phase_631e0(Fighter *fighter);
 void __stdcall set_spell_sequence_mode_430fa0(int value);
 void __fastcall reset_fighter_sequence_controller_45e5f0(
     FighterSequenceController *controller);
@@ -24,7 +25,7 @@ struct OwnedManagerInitializationView {
 };
 
 struct FighterPhaseSubobject710 {
-    int update_63120(int selector, unsigned short const *packed_input);
+    std::deque<short> history_00;
 };
 
 typedef void (__thiscall *SetFighterAction)(Fighter *fighter, int action);
@@ -77,7 +78,10 @@ __forceinline void store_int(Fighter *fighter, unsigned offset, int value)
 
 } // namespace
 
-int __fastcall initialize_fighter_phase_631e0(Fighter *fighter)
+// The native deque assign is semantically void.  Linked callers in the target
+// may observe its incidental EAX, so the ledger retains that ABI uncertainty;
+// return types do not participate in the x86 decorated symbol.
+void __fastcall initialize_fighter_phase_631e0(Fighter *fighter)
 {
     unsigned char packed =
         static_cast<unsigned>(fighter->field_6c8) > 0;
@@ -97,9 +101,11 @@ int __fastcall initialize_fighter_phase_631e0(Fighter *fighter)
     packed |= fighter->field_6b4 < 0;
 
     unsigned short packed_input = packed;
-    return reinterpret_cast<FighterPhaseSubobject710 *>(
-               reinterpret_cast<unsigned char *>(fighter) + 0x710)
-        ->update_63120(0x5a, &packed_input);
+    reinterpret_cast<FighterPhaseSubobject710 *>(
+        reinterpret_cast<unsigned char *>(fighter) + 0x710)
+        ->history_00.assign(
+            0x5a,
+            reinterpret_cast<short const &>(packed_input));
 }
 
 void Fighter::initialize_fighter_battle_state()

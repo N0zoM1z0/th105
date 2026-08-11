@@ -1153,3 +1153,16 @@ storage instead reproduces the target direct stack-address append and makes the
 complete deserializer exact at 365/365. Treat signedness and serialized width
 as per-use codegen evidence; identical wire widths do not guarantee identical
 temporary construction in each owning-container path.
+
+### P43. Compare the outlined native helper before naming an STL call a gameplay method
+
+`0x00463120` initially looked like a fighter `+0x710` history consumer because
+its sole caller supplies a packed input word and count `0x5A`. Its body builds
+checked begin/end iterators, erases the whole range, then calls `_Insert_n`.
+Handwritten erase-plus-insert source emitted 176/183 bytes and differed at
+`+0x3A`; calling `std::deque<short>::assign(count, value)` exposed VC8's
+outlined `_Assign_n` COMDAT, which matched the target exactly at 183/183. The
+caller remained exact at 136/136 when its relocation was mapped directly to
+that COMDAT. When a small wrapper-like function is composed entirely of native
+container helpers, compile the public STL operation and compare its generated
+internal specialization before inventing a domain class or custom method name.

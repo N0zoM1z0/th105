@@ -75,7 +75,8 @@ Active simulation frame
 │   └── 0x00463760 commit orchestration [exact]
 │       ├── 0x00459860 position integration [exact]
 │       ├── 0x0045CDD0 transient status [implemented]
-│       └── 0x0045CF00 timer cleanup [decompiled]
+│       ├── 0x0045CF00 timer cleanup [implemented]
+│       └── 0x00459D30 counter thresholds [exact]
 ├── 0x0046A5D0 post-update/global state [exact]
 └── manager virtual +0x30
 

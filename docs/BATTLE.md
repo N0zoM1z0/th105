@@ -433,13 +433,14 @@ dispatchers. Its faithful ternary deliberately repeats the checked slot access
 on the non-clamp path, matching the target rather than applying unsupported
 common-subexpression elimination.
 
-The action-transition phase at `0x004631E0` is also source-complete. It packs
+The action-transition phase at `0x004631E0` is exact. It packs
 nonzero state from `+0x6C8/+0x6C4/+0x6C0/+0x6BC` and signed positive/negative
-tests from `+0x6B8/+0x6B4` into one byte, passes selector `0x5A` and that word
-to the subobject at `this+0x710`, and returns the callee's full EAX. It has 407
-call sites across 28 functions, including every character dispatcher. Natural
-VC8 emits 134 bytes versus the 136-byte target because it folds the final byte
-OR into the subsequent 32-bit promotion; the ledger therefore says `compiles`.
+tests from `+0x6B8/+0x6B4` into one byte, then assigns that value 90 times to
+the native `std::deque<short>` at `this+0x710`. It has 407 call sites across 28
+functions, including every character dispatcher. The callee `0x00463120` is
+the exact native VC8 `deque<short>::_Assign_n` specialization: the registered
+unit matches both functions at 183/183 and 136/136 bytes. This removes the core
+graph's last direct dependency blocker without inventing a gameplay subobject.
 
 `0x0045F140` now provides maintainable source for the observed fighter battle-state
 reset: owned-state cleanup, subordinate phases, initial position and facing,
@@ -478,13 +479,24 @@ sprite, selector at `+0x98`, and terminal state at `+0x9C`. It formats
 handle and observed extents, applies the selector-one float pair, and stores
 `-1` at `+0x9C`. No local release path is present.
 
-The remaining large shared boundary `0x00460B50` reads
-`data/character/%s/%s.pat`, loads `palette%03d.bmp` handles into the container
-at `+0x130`, and builds checked tree/deque records through `+0x160` and
-`+0x65C`. Its corrected contiguous span is 3885 bytes ending at
-`0x00461A7C`; the older inventory size omitted `0x68` bytes. Its local reader,
-lists, and EH cleanup still require concrete record types before source is
-claimed.
+The remaining large shared boundary `0x00460B50` is now structurally complete.
+It opens `data/character/%s/%s.pat`, resizes the palette-handle vector at
+`+0x130`, loads `palette%03d.bmp`, and parses persistent `0x20` groups in the
+deque at `+0x65C`. Each group owns a vector of `0x88` records. A record owns an
+optional `0x20` mode payload at `+0x18`, an optional raw `0x10` block at
+`+0x54`, two vectors of `0x10` records at `+0x58/+0x68`, and the parallel
+pointer vector at `+0x78`. Selector `-1` populates two transient intrusive
+lists; the suffix reconciles their paired payloads through the checked tree at
+`+0x160` before draining both lists.
+
+The durable neutral layouts and offset assertions live in
+`PatResourceContracts.hpp`; compiling `FighterResourceInitialization.cpp`
+checks the `0x20`, `0x88`, and nested-vector boundaries. The authoritative
+body remains `0x00460B50..0x00461A7C` (3885 bytes). EH funclets at
+`0x006A8012..0x006A8056` stay outside it and call the recovered local tree,
+group, and record destructors. The function is therefore `decompiled`, not
+implemented: the remaining work is the source body, original file-field names,
+and exact nested destructor semantics, rather than record-layout discovery.
 
 ## Body collision and geometry
 
@@ -634,16 +646,19 @@ The integrated VC8 object is 300 bytes versus the 301-byte target and remains
 `implemented`; its first difference at `+0x11E` is only the false-loop's
 8-bit versus 32-bit mask scheduling.
 
-`0x0045CF00` is fully decompiled as the third pass. It first suppresses the
+`0x0045CF00` now has complete source as the third pass. It first suppresses the
 pass when the paired fighter at `+0x170` has nonzero `+0x48C`, otherwise gives
 local short `+0x186` an early-return countdown. It then processes the observed
 `+0x4A0..+0x4B2` countdown group, the `+0x4A2/+0x4A4` state-window gate,
 frame bit `0x1000`, and the `+0x558/+0x55A/+0x72C` threshold callback path.
-Every normal suffix tail-jumps to the separate ledger function `0x00459D30`,
-which updates `+0x482..+0x488` and can notify a global virtual sink. IDA
-currently absorbs that tail target into `0x0045CF00`; reconstruction and
-comparison must retain the authoritative 470-byte local span ending at
-`0x0045D0D5`.
+Every normal suffix tail-jumps to the separate ledger function `0x00459D30`.
+That helper is now exact at 284/284 bytes: it updates `+0x482..+0x488`, applies
+the state-4/state-8 thresholds, and can notify global renderer vslot `+0x18`
+with the player index and `+0x484/200`. IDA still absorbs the tail target into
+`0x0045CF00`; the ledger retains the authoritative 470-byte local span ending
+at `0x0045D0D5`. The complete cleanup body emits 459 bytes and matches through
+`+0x8A`; its first difference at `+0x8B` is VC8 reordering independent stores
+to `+0x4A2/+0x4A4`, not a missing semantic phase.
 
 The pass ordering supplies a cross-fighter continuity guarantee: all fighters
 finish `0x0045CDD0` before any fighter enters `0x0045CF00`, so the paired
@@ -755,9 +770,10 @@ contracts to implemented source.
    `0x0046AF30`, `0x0046B000`, `0x0046B100`, and `0x0046B290`.
 6. Continue hit/object responses at `0x0046BF20`, `0x0046C070`, and the larger
    `0x0046CE20` outcome branch.
-7. Shape the now-complete `0x0046C290` body-separation source, then connect it
-   outward to the remaining fighter status/timer phase at `0x0045CDD0` and
-   `0x0045CF00` and the battle state machine at `0x0046FE80..0x00470940`.
+7. Shape the now-complete `0x0046C290` body-separation source and the bounded
+   codegen gaps in `0x0045CDD0/0x0045CF00`; fighter status/timer semantics now
+   continue through the exact `0x00459D30`, so expansion can move outward to
+   the battle state machine at `0x0046FE80..0x00470940`.
 
 Small exact leaves remain useful only when they unblock one of these core paths
 or prove an ABI/layout dependency.

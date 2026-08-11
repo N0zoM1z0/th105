@@ -15,6 +15,7 @@ CLAIMS = ROOT / "config" / "claims.csv"
 ACTION_CHANGES = ROOT / "config" / "character-action-change-cases.csv"
 INPUT_DISPATCHES = ROOT / "config" / "character-input-dispatch-cases.csv"
 CPU_POLICIES = ROOT / "config" / "character-cpu-policy-cases.csv"
+LIFECYCLE_EVENTS = ROOT / "config" / "character-lifecycle-event-roots.csv"
 STATUSES = {
     "unclassified",
     "identified",
@@ -83,6 +84,42 @@ CPU_POLICY_COLUMNS = [
     "vtable_owners",
     "evidence",
 ]
+LIFECYCLE_EVENT_COLUMNS = [
+    "character",
+    "role",
+    "address",
+    "ledger_size",
+    "decompiler_lines",
+    "case_occurrences",
+    "unique_case_count",
+    "case_labels",
+    "direct_callees",
+    "evidence",
+]
+LIFECYCLE_EVENT_ROOTS = {
+    ("Alice", "constructor-boundary", "0x004FA530"),
+    ("Patchouli", "sequence-lifecycle", "0x0051C5C0"),
+    ("Patchouli", "event-bridge", "0x0052F950"),
+    ("Youmu", "sequence-lifecycle", "0x005397E0"),
+    ("Youmu", "event-bridge", "0x005448A0"),
+    ("Remilia", "sequence-lifecycle", "0x005544A0"),
+    ("Remilia", "event-bridge", "0x0055CFD0"),
+    ("Yuyuko", "sequence-lifecycle", "0x0056BDC0"),
+    ("Yuyuko", "event-bridge", "0x0057A5C0"),
+    ("Yukari", "sequence-lifecycle", "0x00588DF0"),
+    ("Suika", "sequence-lifecycle", "0x005ABDF0"),
+    ("Suika", "event-bridge", "0x005BEEE0"),
+    ("Udonge", "sequence-lifecycle", "0x005D3EA0"),
+    ("Udonge", "event-bridge", "0x005E53D0"),
+    ("Komachi", "sequence-lifecycle", "0x005F5700"),
+    ("Komachi", "event-bridge", "0x006013C0"),
+    ("Aya", "sequence-lifecycle", "0x00615EA0"),
+    ("Aya", "event-bridge", "0x0061F870"),
+    ("Iku", "sequence-lifecycle", "0x0062E910"),
+    ("Iku", "event-bridge", "0x0063C1D0"),
+    ("Tenshi", "sequence-lifecycle", "0x00648850"),
+    ("Tenshi", "event-bridge", "0x00658830"),
+}
 CPU_POLICY_GROUPS = {
     "Reimu",
     "Marisa",
@@ -445,6 +482,80 @@ def main() -> int:
         missing = sorted(ROSTER - cpu_vtable_owners)
         extra = sorted(cpu_vtable_owners - ROSTER)
         errors.append(f"{CPU_POLICIES.name}: vtable roster mismatch; missing={missing}, extra={extra}")
+
+    lifecycle_rows = read_rows(
+        LIFECYCLE_EVENTS, errors, LIFECYCLE_EVENT_COLUMNS
+    )
+    lifecycle_roots: set[tuple[str, str, str]] = set()
+    lifecycle_addresses: set[str] = set()
+    for line, row in enumerate(lifecycle_rows, 2):
+        key = (row["character"], row["role"], row["address"])
+        if key in lifecycle_roots:
+            errors.append(f"{LIFECYCLE_EVENTS.name}:{line}: duplicate root {key!r}")
+        lifecycle_roots.add(key)
+
+        address = row["address"]
+        if not ADDRESS.fullmatch(address):
+            errors.append(
+                f"{LIFECYCLE_EVENTS.name}:{line}: invalid canonical address {address!r}"
+            )
+            continue
+        if address in lifecycle_addresses:
+            errors.append(f"{LIFECYCLE_EVENTS.name}:{line}: duplicate address {address}")
+        lifecycle_addresses.add(address)
+        ledger_row = ledger.get(address)
+        if ledger_row is None:
+            errors.append(
+                f"{LIFECYCLE_EVENTS.name}:{line}: address {address} is absent from functions.csv"
+            )
+            continue
+
+        try:
+            ledger_size = int(row["ledger_size"])
+            decompiler_lines = int(row["decompiler_lines"])
+            occurrences = int(row["case_occurrences"])
+            unique_count = int(row["unique_case_count"])
+        except ValueError:
+            errors.append(f"{LIFECYCLE_EVENTS.name}:{line}: invalid numeric field")
+            continue
+        if min(ledger_size, decompiler_lines, occurrences, unique_count) < 0:
+            errors.append(f"{LIFECYCLE_EVENTS.name}:{line}: negative count")
+        if ledger_size != int(ledger_row["size"]):
+            errors.append(
+                f"{LIFECYCLE_EVENTS.name}:{line}: ledger_size disagrees with functions.csv"
+            )
+        if occurrences < unique_count:
+            errors.append(
+                f"{LIFECYCLE_EVENTS.name}:{line}: case occurrences below unique count"
+            )
+
+        labels: list[int] = []
+        if row["case_labels"]:
+            try:
+                labels = [int(value, 0) for value in row["case_labels"].split(";")]
+            except ValueError:
+                errors.append(f"{LIFECYCLE_EVENTS.name}:{line}: invalid case label")
+        if len(labels) != unique_count or len(labels) != len(set(labels)):
+            errors.append(
+                f"{LIFECYCLE_EVENTS.name}:{line}: case labels are missing or duplicated"
+            )
+
+        for callee in row["direct_callees"].split(";"):
+            if not ADDRESS.fullmatch(callee) or callee not in addresses:
+                errors.append(
+                    f"{LIFECYCLE_EVENTS.name}:{line}: invalid direct callee {callee!r}"
+                )
+        if ledger_row["status"] in {"unclassified", "identified"}:
+            errors.append(
+                f"{LIFECYCLE_EVENTS.name}:{line}: complete manifest requires decompiled or later status"
+            )
+
+    if lifecycle_roots != LIFECYCLE_EVENT_ROOTS:
+        missing = sorted(LIFECYCLE_EVENT_ROOTS - lifecycle_roots)
+        extra = sorted(lifecycle_roots - LIFECYCLE_EVENT_ROOTS)
+        errors.append(
+            f"{LIFECYCLE_EVENTS.name}: root-set mismatch; missing={missing}, extra={extra}"
+        )
 
     for path in (KNOWN, CLAIMS):
         for line, row in enumerate(read_rows(path, errors), 2):

@@ -1140,6 +1140,35 @@ notes = "Exact all-roster fighter motion reset used by every action-change body.
 address = "0x00459970"
 symbol_base = "Fighter_zero_velocity_acceleration"
 
+[units.fighter-continuity]
+kind = "probe"
+source = "src/battle/FighterContinuity.cpp"
+object = "build/match-units/FighterContinuity.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Fighter transient-status, counter-threshold, and timer-cleanup continuity in the exact global phase order."
+
+[[units.fighter-continuity.functions]]
+address = "0x00459D30"
+symbol_base = "update_fighter_counter_thresholds"
+
+[[units.fighter-continuity.functions]]
+address = "0x0045CDD0"
+symbol_base = "process_fighter_transient_status"
+rel32_targets = [
+  "FighterEmbeddedState3d0_step=0x00464430",
+]
+
+[[units.fighter-continuity.functions]]
+address = "0x0045CF00"
+symbol_base = "decrement_fighter_timers_and_cleanup"
+rel32_targets = [
+  "is_state_13c_in_32_95=0x0045CAE0",
+  "Fighter_prepare_next_spell_sequence_entry=0x0045C690",
+  "dispatch_action_indexed_event_434470=0x00434470",
+  "update_fighter_counter_thresholds=0x00459D30",
+]
+
 [units.fighter-sequence-window]
 kind = "probe"
 source = "src/battle/FighterSequenceWindow.cpp"
@@ -1273,11 +1302,19 @@ source = "src/battle/FighterInitialization.cpp"
 object = "build/match-units/FighterInitialization.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Exact shared packed-input phase adapter used throughout roster command dispatch."
+notes = "Exact shared packed-input phase adapter plus the native VC8 deque<short>::_Assign_n specialization that owns its 90-entry history."
+
+[[units.fighter-input-phase.functions]]
+address = "0x00463120"
+symbol_base = "_Assign_n"
+rel32_targets = [
+  "erase=0x004288A0",
+  "_Insert_n=0x004628A0",
+]
 
 [[units.fighter-input-phase.functions]]
 address = "0x004631E0"
 symbol_base = "initialize_fighter_phase_631e0"
 rel32_targets = [
-  "?update_63120@FighterPhaseSubobject710@?A0x82dee21b@th105@@QAEHHPBG@Z=0x00463120",
+  "_Assign_n=0x00463120",
 ]

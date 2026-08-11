@@ -500,6 +500,36 @@ Later source work should first factor the common 64-case skeleton, then layer
 Reimu/Marisa/Alice/Aya traits; attempting five unrelated 16-KB functions would
 discard the strongest recovered structure.
 
+## Sequence-lifecycle and event-bridge breadth
+
+The final unclassified character-command roots in the core graph now have one
+SHA-attested IDA inventory in
+`config/character-lifecycle-event-roots.csv`. The 22 bounded entries cover
+35,673 target bytes, 5,375 complete pseudocode lines, 480 case-label
+occurrences, and 130 direct-call cells. Every IDA boundary agrees with the
+ledger.
+
+Eleven vslot `+0x5C` roots are neutral `update_sequence_lifecycle` callbacks.
+They reset per-frame command/output fields, inspect the checked front sequence,
+advance character-specific `700`-series action state, and emit owned effects.
+Ten vslot `+0x60` roots are `bool (event_code)` bridges. Their common event
+families cover position/camera publication, action reset, spell/terminal
+transitions, effect emission, and character-specific `120+` or `130+` codes.
+The manifest records numeric labels without guessing gameplay terminology.
+
+The remaining row, Alice `0x004FA530`, is not forced into either virtual
+family: its complete body calls the base fighter constructor, publishes the
+Alice vtable, initializes the float at `+0x138` to `-6.0`, allocates the owned
+manager, and stores it at `+0x658`. It is retained as the constructor boundary
+that completed the same address-selected breadth wave.
+
+All 22 entries are `decompiled` and have declarations in
+`src/characters/SequenceLifecycleEventRoots.hpp`; there are no placeholder
+bodies. Reimu, Marisa, Sakuya, Alice, and Yukari companion slot roots that were
+already outside this unclassified core set remain separate future packets.
+The next implementation wave can fan out by shared vslot role and numeric case
+family instead of rediscovering monolithic per-character control flow.
+
 The Sakuya manager's raw primary-vtable slot `+0x04` is `0x004DED80`, a complete object-spawn
 boundary. It obtains a new Sakuya object from the manager base at `+0x04`,
 copies owner state into object fields `+0x130`, `+0x160`, `+0x168`, and

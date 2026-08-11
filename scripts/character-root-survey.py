@@ -50,6 +50,36 @@ CPU_POLICY_ROOTS = (
     ("Aya", "0x00611D80"),
 )
 
+# These are the remaining unclassified character-command roots in the core
+# graph.  The apparent Alice constructor boundary is retained because it is the
+# roster-owned bridge that occupies the otherwise lifecycle/event breadth set;
+# the manifest records the neutral slot role instead of forcing it into a
+# sequence callback family.
+LIFECYCLE_EVENT_ROOTS = (
+    ("Alice", "constructor-boundary", "0x004FA530"),
+    ("Patchouli", "sequence-lifecycle", "0x0051C5C0"),
+    ("Patchouli", "event-bridge", "0x0052F950"),
+    ("Youmu", "sequence-lifecycle", "0x005397E0"),
+    ("Youmu", "event-bridge", "0x005448A0"),
+    ("Remilia", "sequence-lifecycle", "0x005544A0"),
+    ("Remilia", "event-bridge", "0x0055CFD0"),
+    ("Yuyuko", "sequence-lifecycle", "0x0056BDC0"),
+    ("Yuyuko", "event-bridge", "0x0057A5C0"),
+    ("Yukari", "sequence-lifecycle", "0x00588DF0"),
+    ("Suika", "sequence-lifecycle", "0x005ABDF0"),
+    ("Suika", "event-bridge", "0x005BEEE0"),
+    ("Udonge", "sequence-lifecycle", "0x005D3EA0"),
+    ("Udonge", "event-bridge", "0x005E53D0"),
+    ("Komachi", "sequence-lifecycle", "0x005F5700"),
+    ("Komachi", "event-bridge", "0x006013C0"),
+    ("Aya", "sequence-lifecycle", "0x00615EA0"),
+    ("Aya", "event-bridge", "0x0061F870"),
+    ("Iku", "sequence-lifecycle", "0x0062E910"),
+    ("Iku", "event-bridge", "0x0063C1D0"),
+    ("Tenshi", "sequence-lifecycle", "0x00648850"),
+    ("Tenshi", "event-bridge", "0x00658830"),
+)
+
 CASE_RE = re.compile(r"\bcase\s+(-?(?:0x[0-9a-fA-F]+|\d+))\s*:")
 
 
@@ -178,6 +208,42 @@ async def survey(server: str, kind: str) -> dict[str, object]:
                         "callees": flatten_callees(callees),
                     }
                 )
+        if kind in {"lifecycle-event", "all"}:
+            for fighter, root_kind, address in LIFECYCLE_EVENT_ROOTS:
+                row = tracked.get(address.upper())
+                if row is None:
+                    raise RuntimeError(f"missing ledger address: {address}")
+                function = await call_json(
+                    session, "get_function_by_address", {"address": address}
+                )
+                decompile = await call_json(
+                    session, "decompile_function", {"address": address}
+                )
+                callees = await call_json(
+                    session, "get_callees", {"function_address": address}
+                )
+                text = decompile if isinstance(decompile, str) else json.dumps(decompile)
+                case_occurrences = [integer(match) for match in CASE_RE.findall(text)]
+                cases = sorted(set(case_occurrences))
+                backend_size = (
+                    parse_int(function.get("size")) if isinstance(function, dict) else -1
+                )
+                entries.append(
+                    {
+                        "fighter": fighter,
+                        "kind": root_kind,
+                        "address": address,
+                        "ledger_size": int(row["size"]),
+                        "backend_size": backend_size,
+                        "boundary_agrees": backend_size == int(row["size"]),
+                        "backend_name": function.get("name") if isinstance(function, dict) else None,
+                        "decompiler_lines": text.count("\n") + 1,
+                        "switch_case_occurrences": len(case_occurrences),
+                        "switch_cases": cases,
+                        "switch_case_ranges": case_ranges(cases),
+                        "callees": flatten_callees(callees),
+                    }
+                )
         after = await require_target(session)
         fields = ("sha256", "md5", "base", "filesize", "path", "module")
         if any(before.get(field) != after.get(field) for field in fields):
@@ -197,7 +263,14 @@ def main() -> int:
     parser.add_argument("--server", default=DEFAULT_SERVER)
     parser.add_argument(
         "--kind",
-        choices=("action-change", "input-dispatch", "cpu-policy", "both", "all"),
+        choices=(
+            "action-change",
+            "input-dispatch",
+            "cpu-policy",
+            "lifecycle-event",
+            "both",
+            "all",
+        ),
         default="both",
     )
     parser.add_argument("--output", type=Path)

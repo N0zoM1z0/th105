@@ -236,13 +236,14 @@ address,name,module,confidence,evidence
 0x0045CD90,is_positive_y_and_state_window,battle,inferred,docs/BATTLE.md exact positive-y zero-field and state-window predicate
 0x0045CDD0,process_fighter_transient_status,battle,inferred,docs/BATTLE.md second pass of the fighter position status timer phase
 0x0045CF00,decrement_fighter_timers_and_cleanup,battle,inferred,docs/BATTLE.md third pass of the fighter position status timer phase
+0x00459D30,update_fighter_counter_thresholds,battle,exact,python3 scripts/build.py --unit fighter-continuity --compare --json exact 284/284
 0x0045E080,load_indexed_character_wave_resources,battle,observed,Exact VC8 source and 0x00462050 phase ordering
 0x0045E5F0,reset_fighter_sequence_controller_45e5f0,battle,inferred,docs/BATTLE.md observed sequence-controller reset before initial spell entry population
 0x0045F140,initialize_fighter_battle_state,battle,inferred,docs/BATTLE.md observed fighter battle-state reset and initial spell sequence publication
-0x00460B50,load_pat_data_and_palette_resources,battle,observed,IDA Pro PAT and palette paths plus all-15-character constructor chain
+0x00460B50,load_pat_data_and_palette_resources,battle,observed,IDA Pro complete PAT palette group-record nested-record list-reconciliation and EH-funclet inventory
 0x00462380,initialize_fighter_phase_62380,battle,inferred,docs/BATTLE.md observed first subordinate initialization phase in fighter battle-state reset
 0x004631E0,initialize_fighter_phase_631e0,battle,inferred,docs/BATTLE.md observed second subordinate initialization phase in fighter battle-state reset
-0x00463120,FighterPhaseSubobject710_update_63120,battle,inferred,IDA Pro sole callee of 0x004631E0 receives selector 0x5A and a packed input word
+0x00463120,std_deque_short_assign_count,runtime,exact,python3 scripts/build.py --unit fighter-input-phase --compare --json exact VC8 deque<short>::_Assign_n 183/183
 0x00463270,get_slot_character,battle,inferred,docs/EVIDENCE.md exact indexed character pointer load from battle slot state +0x28
 0x00463280,is_slot_active,battle,inferred,docs/EVIDENCE.md active byte maintained with the paired character slot
 0x00463610,run_active_character_and_owned_object_callbacks,battle,inferred,docs/BATTLE.md five complete fighter-vector passes with character and owned-object callbacks
@@ -522,3 +523,25 @@ address,name,module,confidence,evidence
 0x0045B900,FighterSequenceIterator_dereference_checked,battle,observed,IDA Pro complete checked iterator dereference and sole indexed sequence-window caller
 0x0045C620,std_deque_fighter_sequence_slot_erase_one_checked,runtime,observed,Exact native VC8 deque specialization probe and IDA readback
 0x0045C7A0,Fighter_rotate_front_spell_sequence_entry_to_back,battle,observed,IDA Pro complete checked rotate body and tail-jump xrefs from all fifteen roster input selectors
+0x004FA530,Alice_construct,characters,observed,IDA Pro complete base-constructor vtable owned-manager allocation and return-this body
+0x0051C5C0,Patchouli_update_sequence_lifecycle,characters,inferred,Patchouli vtable +0x5C ownership and complete sequence-state decompile manifest
+0x0052F950,Patchouli_handle_event_bridge,characters,inferred,Patchouli vtable +0x60 ownership and complete event-code decompile manifest
+0x005397E0,Youmu_update_sequence_lifecycle,characters,inferred,Youmu vtable +0x5C ownership and complete sequence-state decompile manifest
+0x005448A0,Youmu_handle_event_bridge,characters,inferred,Youmu vtable +0x60 ownership and complete event-code decompile manifest
+0x005544A0,Remilia_update_sequence_lifecycle,characters,inferred,Remilia vtable +0x5C ownership and complete sequence-state decompile manifest
+0x0055CFD0,Remilia_handle_event_bridge,characters,inferred,Remilia vtable +0x60 ownership and complete event-code decompile manifest
+0x0056BDC0,Yuyuko_update_sequence_lifecycle,characters,inferred,Yuyuko vtable +0x5C ownership and complete sequence-state decompile manifest
+0x0057A5C0,Yuyuko_handle_event_bridge,characters,inferred,Yuyuko vtable +0x60 ownership and complete event-code decompile manifest
+0x00588DF0,Yukari_update_sequence_lifecycle,characters,inferred,Yukari vtable +0x5C ownership and complete sequence-state decompile manifest
+0x005ABDF0,Suika_update_sequence_lifecycle,characters,inferred,Suika vtable +0x5C ownership and complete sequence-state decompile manifest
+0x005BEEE0,Suika_handle_event_bridge,characters,inferred,Suika vtable +0x60 ownership and complete event-code decompile manifest
+0x005D3EA0,Udonge_update_sequence_lifecycle,characters,inferred,Udonge vtable +0x5C ownership and complete sequence-state decompile manifest
+0x005E53D0,Udonge_handle_event_bridge,characters,inferred,Udonge vtable +0x60 ownership and complete event-code decompile manifest
+0x005F5700,Komachi_update_sequence_lifecycle,characters,inferred,Komachi vtable +0x5C ownership and complete sequence-state decompile manifest
+0x006013C0,Komachi_handle_event_bridge,characters,inferred,Komachi vtable +0x60 ownership and complete event-code decompile manifest
+0x00615EA0,Aya_update_sequence_lifecycle,characters,inferred,Aya vtable +0x5C ownership and complete sequence-state decompile manifest
+0x0061F870,Aya_handle_event_bridge,characters,inferred,Aya vtable +0x60 ownership and complete event-code decompile manifest
+0x0062E910,Iku_update_sequence_lifecycle,characters,inferred,Iku vtable +0x5C ownership and complete sequence-state decompile manifest
+0x0063C1D0,Iku_handle_event_bridge,characters,inferred,Iku vtable +0x60 ownership and complete event-code decompile manifest
+0x00648850,Tenshi_update_sequence_lifecycle,characters,inferred,Tenshi vtable +0x5C ownership and complete sequence-state decompile manifest
+0x00658830,Tenshi_handle_event_bridge,characters,inferred,Tenshi vtable +0x60 ownership and complete event-code decompile manifest

@@ -144,13 +144,14 @@ caller,callee,required_status,evidence
 0x00462050,0x00430DE0,matching,docs/BATTLE.md spell data load call
 0x00462050,0x0043ABE0,identified,docs/BATTLE.md character path component resolution
 0x00462050,0x0045E080,identified,docs/BATTLE.md indexed resource initialization phase
-0x00462050,0x00460B50,identified,docs/BATTLE.md pre-resource initialization phase
+0x00462050,0x00460B50,decompiled,docs/BATTLE.md complete PAT palette group record nested record and EH inventory
 0x00462050,0x00464320,identified,docs/BATTLE.md final character resource callback
-0x004631E0,0x00463120,identified,IDA Pro sole packed-input subobject call and EAX pass-through
+0x004631E0,0x00463120,library,strict exact VC8 std::deque<short>::_Assign_n dependency
 0x00463610,0x00459E50,matching,IDA Pro exact five-pass callback phase reaches common fighter update
 0x00463760,0x00459860,matching,IDA Pro exact commit phase position integration
 0x00463760,0x0045CDD0,implemented,IDA Pro exact commit phase transient-status pass
-0x00463760,0x0045CF00,decompiled,IDA Pro exact commit phase timer-cleanup pass
+0x00463760,0x0045CF00,implemented,IDA Pro exact commit phase timer-cleanup pass with complete source
+0x0045CF00,0x00459D30,matching,target tail jumps to the separate exact fighter counter-threshold helper
 0x0046A5D0,0x00425CD0,decompiled,IDA Pro post-update first global-view pass
 0x0046A5D0,0x00425F10,identified,docs/BATTLE.md post-update second global-state pass
 0x0046AB80,0x0046A9A0,matching,exact descriptor extent comparison

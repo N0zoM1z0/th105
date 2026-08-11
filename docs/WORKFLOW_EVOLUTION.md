@@ -364,6 +364,18 @@ This confirms the intended cadence: use repository retrieval plus IDA to close
 a large semantic family, then let small strict packets retire exact leaves and
 feed corrected relocation facts back into the next breadth wave.
 
+The 2026-08-12 lifecycle/continuity wave is the first direct audit of the
+combined breadth-plus-parallel-exact policy. One coordinator-owned IDA survey
+classified 22 remaining character roots and persisted their complete cases and
+callees, while three read-only evidence lanes handled independent shared
+boundaries. The lanes did not touch IDA, ledgers, or Git. Central integration
+then identified `0x00463120` as the exact VC8 `deque<short>::_Assign_n`
+specialization, matched the separate `0x00459D30` tail helper exactly, emitted
+complete `0x0045CF00` source, and recovered the nested PAT ownership contracts.
+This is a productive workflow: wide structural coverage and narrow compiler
+experiments compound instead of competing, provided the coordinator retains
+all shared writes and strict comparison remains the only matching gate.
+
 ## Operational loop
 
 ```bash

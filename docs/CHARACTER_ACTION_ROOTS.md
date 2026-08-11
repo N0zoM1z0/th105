@@ -9,6 +9,8 @@ python3 scripts/character-root-survey.py --kind action-change \
   --output build/character-action-survey.json
 python3 scripts/character-root-survey.py --kind input-dispatch \
   --output build/character-input-survey.json
+python3 scripts/character-root-survey.py --kind lifecycle-event \
+  --output build/character-lifecycle-event-survey.json
 ```
 
 The function ledger remains authoritative for boundaries. Case values below
@@ -108,3 +110,10 @@ and split source by normal `300/320/400`, skill `500`-series, spell `600`-series
 and character terminal/special `700+` groups. Boundary-conflicted action roots
 must compare only the ledger span until direct target instructions prove any
 additional bytes belong to that entry.
+
+The companion lifecycle/event inventory is validated in
+`config/character-lifecycle-event-roots.csv`. Allocate its vslot `+0x5C`
+sequence callbacks and vslot `+0x60` bool event bridges by role family rather
+than by adjacent address; Alice `0x004FA530` remains a separate constructor
+packet. These 22 entries are structurally decompiled and declared, but still
+need real source bodies before exact fan-out begins.

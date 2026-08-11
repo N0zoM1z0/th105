@@ -1,5 +1,6 @@
 #include "Collision.hpp"
 #include "FighterResources.hpp"
+#include "PatResourceContracts.hpp"
 #include "SpellData.hpp"
 
 #include "ui/Title.hpp"
