@@ -177,15 +177,27 @@ address,lane,priority,notes
 0x0053ADF0,character-owned-object,1,Youmu owned-object spawn contract
 0x0053B040,character-command,1,Youmu spell skill and normal input dispatcher
 0x005448A0,character-command,2,Youmu event-code action bridge
+0x005544A0,character-command,2,Remilia vtable +0x5C sequence lifecycle root
+0x00554A00,character-command,1,Remilia action-entry lifecycle root for 500 600 and 700 ranges
 0x00555690,character-owned-object,1,Remilia object-pool acquire semantics
 0x00555930,character-owned-object,1,Remilia object acquire and tracking-list insertion source
 0x00555BA0,character-owned-object,1,Remilia owned-object spawn contract
+0x00555D90,character-command,1,Remilia spell skill and normal input dispatcher
+0x0055CFD0,character-command,2,Remilia vtable +0x60 event bridge root
+0x0056BDC0,character-command,2,Yuyuko sequence-driven action lifecycle
+0x0056C490,character-command,1,Yuyuko action-transition root
 0x0056D250,character-owned-object,1,Yuyuko object-pool acquire semantics
 0x0056D4F0,character-owned-object,1,Yuyuko object acquire and tracking-list insertion source
 0x0056D6F0,character-owned-object,1,Yuyuko owned-object spawn contract
+0x0056D8E0,character-command,1,Yuyuko spell skill and normal input dispatcher
+0x0057A5C0,character-command,2,Yuyuko event-code action bridge
+0x00588DF0,character-command,2,Yukari sequence-driven action lifecycle
+0x00589F20,character-command,1,Yukari action-transition root for dispatcher outputs
 0x0058B3A0,character-owned-object,1,Yukari object-pool acquire semantics
 0x0058B640,character-owned-object,1,Yukari object acquire and tracking-list insertion source
 0x0058B840,character-owned-object,1,Yukari owned-object spawn contract
+0x0058BA30,character-command,1,Yukari character-specific 200 and 201 selector leaf
+0x0058BBA0,character-command,1,Yukari spell skill and normal input dispatcher
 0x005ADDE0,character-owned-object,1,Suika object-pool acquire semantics
 0x005AE080,character-owned-object,1,Suika object acquire and tracking-list insertion source
 0x005AE280,character-owned-object,1,Suika owned-object spawn contract

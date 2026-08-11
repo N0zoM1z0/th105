@@ -2441,7 +2441,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00555C90,81,0x00555CE0,FUN_00555c90,,,unclassified,0.00,unknown,undefined FUN_00555c90(void),false,,,,
 0x00555CF0,27,0x00555D0D,FUN_00555cf0,,,unclassified,0.00,unknown,undefined FUN_00555cf0(void),false,,,,
 0x00555D10,126,0x00555D8D,FUN_00555d10,,,unclassified,0.00,unknown,undefined FUN_00555d10(void),false,,,,
-0x00555D90,5415,0x005572B6,FUN_00555d90,,,unclassified,0.00,unknown,undefined FUN_00555d90(void),false,,,,
+0x00555D90,5415,0x005572B6,FUN_00555d90,Remilia_handle_input_and_select_action,characters,identified,0.00,__thiscall,unsigned char Remilia_handle_input_and_select_action(Remilia * this),false,,IDA Pro vtable slot +0x50 xref direct-callee inventory and bounded spell skill and normal control-flow groups,root,Front records 200 through 207 map to actions 600 through 607; grounded 500-series command gates and latches documented while full normal matrix remains to decompile
 0x005572E0,17790,0x0055B860,FUN_005572e0,,,unclassified,0.00,unknown,undefined FUN_005572e0(void),false,,,,
 0x0055BAC0,4997,0x0055CE44,FUN_0055bac0,,,unclassified,0.00,unknown,undefined FUN_0055bac0(void),false,,,,
 0x0055CFD0,1043,0x0055D3E2,FUN_0055cfd0,,,unclassified,0.00,unknown,undefined FUN_0055cfd0(void),false,,,,
@@ -2466,7 +2466,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0056D7E0,81,0x0056D830,FUN_0056d7e0,,,unclassified,0.00,unknown,undefined FUN_0056d7e0(void),false,,,,
 0x0056D840,27,0x0056D85D,FUN_0056d840,,,unclassified,0.00,unknown,undefined FUN_0056d840(void),false,,,,
 0x0056D860,126,0x0056D8DD,FUN_0056d860,,,unclassified,0.00,unknown,undefined FUN_0056d860(void),false,,,,
-0x0056D8E0,6180,0x0056F103,FUN_0056d8e0,,,unclassified,0.00,unknown,undefined FUN_0056d8e0(void),false,,,,
+0x0056D8E0,6180,0x0056F103,FUN_0056d8e0,Yuyuko_handle_input_and_select_action,characters,identified,0.00,__thiscall,unsigned char Yuyuko_handle_input_and_select_action(Yuyuko * this),false,,IDA Pro vtable slot +0x50 xref direct-callee inventory and bounded spell skill and normal control-flow groups,root,Front records 200 through 208 map to 600 through 608 with later 201 to 651 and 207 to 657 paths; grounded 500-series gates documented while full normal matrix remains
 0x0056F130,34210,0x00577715,FUN_0056f130,,,unclassified,0.00,unknown,undefined FUN_0056f130(void),false,,,,
 0x00577A30,10828,0x0057A47B,FUN_00577a30,,,unclassified,0.00,unknown,undefined FUN_00577a30(void),false,,,,
 0x0057A5C0,986,0x0057A999,FUN_0057a5c0,,,unclassified,0.00,unknown,undefined FUN_0057a5c0(void),false,,,,
@@ -2492,7 +2492,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0058B990,27,0x0058B9AD,FUN_0058b990,,,unclassified,0.00,unknown,undefined FUN_0058b990(void),false,,,,
 0x0058B9B0,126,0x0058BA2D,FUN_0058b9b0,,,unclassified,0.00,unknown,undefined FUN_0058b9b0(void),false,,,,
 0x0058BA30,367,0x0058BB9E,FUN_0058ba30,,,unclassified,0.00,unknown,undefined FUN_0058ba30(void),false,,,,
-0x0058BBA0,6233,0x0058D3F8,FUN_0058bba0,,,unclassified,0.00,unknown,undefined FUN_0058bba0(void),false,,,,
+0x0058BBA0,6233,0x0058D3F8,FUN_0058bba0,Yukari_handle_input_and_select_action,characters,identified,0.00,__thiscall,void Yukari_handle_input_and_select_action(Yukari * this),false,,IDA Pro vtable slot +0x50 xref direct-callee inventory and bounded spell skill and normal control-flow groups,root,Front records 200 through 207 and 215 map to 600 through 607 and 615 with a later 206 to 656 path; grounded 500-series gates documented while full normal matrix remains
 0x0058D440,33972,0x005958F3,FUN_0058d440,,,unclassified,0.00,unknown,undefined FUN_0058d440(void),false,,,,
 0x00595C30,7588,0x005979D3,FUN_00595c30,,,unclassified,0.00,unknown,undefined FUN_00595c30(void),false,,,,
 0x00597B20,1247,0x00597FFE,FUN_00597b20,,,unclassified,0.00,unknown,undefined FUN_00597b20(void),false,,,,
