@@ -166,3 +166,33 @@ __ehhandler$?acquire@ReimuObjectPool@th105@@QAEPAVReimuObject@@PAI@Z,0x006A9414,
 ??_7ReimuObject@@6B@,0x006B00B4,f02a490030aa450010aa450050ad4500,0x0,target RTTI-owned global ReimuObject vtable and four observed slots,address
 __ehhandler$?acquire@SakuyaObjectPool@th105@@QAEPAVSakuyaObject@@PAI@Z,0x006A9414,8b5424088d42e48b,0x0,target Sakuya pool clone uses the same VC8 EH handler entry encoded in its exact prologue,address
 ??_7SakuyaObject@@6B@,0x006B089C,f0ea4d0030aa450010aa450050ad4500,0x0,target RTTI-owned global SakuyaObject vtable and four observed slots,address
+__ehhandler$??0?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@QAE@XZ,0x006A8D0B,8b5424088d42f48b,0x0,target VC8 Sakuya TObjectManagerBase constructor EH handler entry bytes,address
+??_7?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@6B@,0x006B08E4,50ec4d00,0x0,target RTTI-owned Sakuya TObjectManagerBase vtable and deleting-destructor slot,address
+__ehhandler$??0?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@QAE@XZ,0x006A8B4B,8b5424088d42f48b,0x0,target VC8 Reimu TObjectManagerBase constructor EH handler entry bytes,address
+??_7?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@6B@,0x006B00FC,f02e4900,0x0,target RTTI-owned Reimu TObjectManagerBase vtable and deleting-destructor slot,address
+__ehhandler$??0?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@QAE@XZ,0x006A8C1B,8b5424088d42f48b,0x0,target VC8 Marisa TObjectManagerBase constructor EH handler entry bytes,address
+??_7?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@6B@,0x006B0554,30964b00,0x0,target RTTI-owned Marisa TObjectManagerBase vtable and deleting-destructor slot,address
+__ehhandler$??0?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@QAE@XZ,0x006A8DAB,8b5424088d42f48b,0x0,target VC8 Alice TObjectManagerBase constructor EH handler entry bytes,address
+??_7?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@6B@,0x006B0BAC,90a24f00,0x0,target RTTI-owned Alice TObjectManagerBase vtable and deleting-destructor slot,address
+__ehhandler$??0?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@QAE@XZ,0x006A8E4B,8b5424088d42f48b,0x0,target VC8 Patchouli TObjectManagerBase constructor EH handler entry bytes,address
+??_7?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@6B@,0x006B0E7C,30e75100,0x0,target RTTI-owned Patchouli TObjectManagerBase vtable and deleting-destructor slot,address
+__ehhandler$??0?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@QAE@XZ,0x006A8EEB,8b5424088d42f48b,0x0,target VC8 Youmu TObjectManagerBase constructor EH handler entry bytes,address
+??_7?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@6B@,0x006B1114,30ac5300,0x0,target RTTI-owned Youmu TObjectManagerBase vtable and deleting-destructor slot,address
+__ehhandler$??0?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@QAE@XZ,0x006A8FCB,8b5424088d42f48b,0x0,target VC8 Remilia TObjectManagerBase constructor EH handler entry bytes,address
+??_7?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@6B@,0x006B1394,005a5500,0x0,target RTTI-owned Remilia TObjectManagerBase vtable and deleting-destructor slot,address
+__ehhandler$??0?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@QAE@XZ,0x006A909B,8b5424088d42f48b,0x0,target VC8 Yuyuko TObjectManagerBase constructor EH handler entry bytes,address
+??_7?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@6B@,0x006B161C,c0d55600,0x0,target RTTI-owned Yuyuko TObjectManagerBase vtable and deleting-destructor slot,address
+__ehhandler$??0?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@QAE@XZ,0x006A913B,8b5424088d42f48b,0x0,target VC8 Yukari TObjectManagerBase constructor EH handler entry bytes,address
+??_7?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@6B@,0x006B189C,10b75800,0x0,target RTTI-owned Yukari TObjectManagerBase vtable and deleting-destructor slot,address
+__ehhandler$??0?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@QAE@XZ,0x006A91DB,8b5424088d42f48b,0x0,target VC8 Suika TObjectManagerBase constructor EH handler entry bytes,address
+??_7?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@6B@,0x006B1B5C,50e15a00,0x0,target RTTI-owned Suika TObjectManagerBase vtable and deleting-destructor slot,address
+__ehhandler$??0?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@QAE@XZ,0x006A92BB,8b5424088d42f48b,0x0,target VC8 Udonge TObjectManagerBase constructor EH handler entry bytes,address
+??_7?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@6B@,0x006B1DFC,b0605d00,0x0,target RTTI-owned Udonge TObjectManagerBase vtable and deleting-destructor slot,address
+__ehhandler$??0?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@QAE@XZ,0x006A935B,8b5424088d42f48b,0x0,target VC8 Komachi TObjectManagerBase constructor EH handler entry bytes,address
+??_7?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@6B@,0x006B2034,706e5f00,0x0,target RTTI-owned Komachi TObjectManagerBase vtable and deleting-destructor slot,address
+__ehhandler$??0?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@QAE@XZ,0x006A943B,8b5424088d42f48b,0x0,target VC8 Aya TObjectManagerBase constructor EH handler entry bytes,address
+??_7?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@6B@,0x006B229C,90776100,0x0,target RTTI-owned Aya TObjectManagerBase vtable and deleting-destructor slot,address
+__ehhandler$??0?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@QAE@XZ,0x006A94DB,8b5424088d42f48b,0x0,target VC8 Iku TObjectManagerBase constructor EH handler entry bytes,address
+??_7?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@6B@,0x006B24F4,d0046300,0x0,target RTTI-owned Iku TObjectManagerBase vtable and deleting-destructor slot,address
+__ehhandler$??0?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@QAE@XZ,0x006A95AB,8b5424088d42f48b,0x0,target VC8 Tenshi TObjectManagerBase constructor EH handler entry bytes,address
+??_7?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@6B@,0x006B275C,60a86400,0x0,target RTTI-owned Tenshi TObjectManagerBase vtable and deleting-destructor slot,address

@@ -136,12 +136,21 @@ enable_gs = false
 notes = "Canonical roster manager preallocation loop before audited fifteen-member clone-family fan-out."
 
 [[units.reimu-object-preallocate.functions]]
+address = "0x00492E20"
+symbol_base = "?acquire_and_link_object@ReimuObjectManagerBase@th105@@QAEPAVReimuObject@@XZ"
+rel32_targets = [
+  "?acquire@ReimuObjectPool@th105@@QAEPAVReimuObject@@PAI@Z=0x00492BA0",
+  "?create_node@CollisionList@th105@@QAEPAUCollisionListNode@2@PAU32@0PAPAX@Z=0x0046D000",
+  "?std_list_incsize_pointer@CollisionList@th105@@QAEXI@Z=0x00454890",
+]
+
+[[units.reimu-object-preallocate.functions]]
 address = "0x00492F10"
 symbol_base = "?preallocate_object_pool@ReimuObjectManagerBase@th105@@QAEXI@Z"
 rel32_targets = [
   "?acquire@ReimuObjectPool@th105@@QAEPAVReimuObject@@PAI@Z=0x00492BA0",
-  "?create_collision_list_node@th105@@YGPAUCollisionListNode@1@PAU21@0PAPAX@Z=0x0046D000",
-  "?std_list_incsize_pointer@CollisionList@th105@@QAEXI@Z=0x0041DD10",
+  "?create_node@CollisionList@th105@@QAEPAUCollisionListNode@2@PAU32@0PAPAX@Z=0x0046D000",
+  "?std_list_incsize_pointer@CollisionList@th105@@QAEXI@Z=0x00454890",
   "?release_all_tracked_objects@RosterObjectManagerBase@th105@@QAEXXZ=0x004B9540",
 ]
 
@@ -151,6 +160,124 @@ symbol_base = "?spawn_object@ReimuObjectManager@th105@@QAEPAVReimuObject@@PAV3@0
 rel32_targets = [
   "?acquire_and_link_object@ReimuObjectManagerBase@th105@@QAEPAVReimuObject@@XZ=0x00492E20",
   "?push_back@?$deque@PAVReimuObject@@V?$allocator@PAVReimuObject@@@std@@@std@@QAEXABQAVReimuObject@@@Z=0x004454E0",
+  "??_U@YAPAXI@Z=0x00664F9A",
+  "_memcpy=0x0067C170",
+]
+
+[[units.reimu-object-spawn.functions]]
+address = "0x004B9860"
+symbol_base = "?spawn_object@MarisaObjectManager@th105@@QAEPAVMarisaObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@MarisaObjectManagerBase@th105@@QAEPAVMarisaObject@@XZ=0x004B94E0",
+  "?push_back@?$deque@PAVMarisaObject@@V?$allocator@PAVMarisaObject@@@std@@@std@@QAEXABQAVMarisaObject@@@Z=0x004454E0",
+  "??_U@YAPAXI@Z=0x00664F9A",
+  "_memcpy=0x0067C170",
+]
+[[units.reimu-object-spawn.functions]]
+address = "0x004FA3C0"
+symbol_base = "?spawn_object@AliceObjectManager@th105@@QAEPAVAliceObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@AliceObjectManagerBase@th105@@QAEPAVAliceObject@@XZ=0x004FA1C0",
+  "?push_back@?$deque@PAVAliceObject@@V?$allocator@PAVAliceObject@@@std@@@std@@QAEXABQAVAliceObject@@@Z=0x004454E0",
+  "??_U@YAPAXI@Z=0x00664F9A",
+  "_memcpy=0x0067C170",
+]
+[[units.reimu-object-spawn.functions]]
+address = "0x0051E870"
+symbol_base = "?spawn_object@PatchouliObjectManager@th105@@QAEPAVPatchouliObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@PatchouliObjectManagerBase@th105@@QAEPAVPatchouliObject@@XZ=0x0051E660",
+  "?push_back@?$deque@PAVPatchouliObject@@V?$allocator@PAVPatchouliObject@@@std@@@std@@QAEXABQAVPatchouliObject@@@Z=0x004454E0",
+  "??_U@YAPAXI@Z=0x00664F9A",
+  "_memcpy=0x0067C170",
+]
+[[units.reimu-object-spawn.functions]]
+address = "0x0053ADF0"
+symbol_base = "?spawn_object@YoumuObjectManager@th105@@QAEPAVYoumuObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@YoumuObjectManagerBase@th105@@QAEPAVYoumuObject@@XZ=0x0053AB60",
+  "?push_back@?$deque@PAVYoumuObject@@V?$allocator@PAVYoumuObject@@@std@@@std@@QAEXABQAVYoumuObject@@@Z=0x004454E0",
+  "??_U@YAPAXI@Z=0x00664F9A",
+  "_memcpy=0x0067C170",
+]
+[[units.reimu-object-spawn.functions]]
+address = "0x00555BA0"
+symbol_base = "?spawn_object@RemiliaObjectManager@th105@@QAEPAVRemiliaObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@RemiliaObjectManagerBase@th105@@QAEPAVRemiliaObject@@XZ=0x00555930",
+  "?push_back@?$deque@PAVRemiliaObject@@V?$allocator@PAVRemiliaObject@@@std@@@std@@QAEXABQAVRemiliaObject@@@Z=0x004454E0",
+  "??_U@YAPAXI@Z=0x00664F9A",
+  "_memcpy=0x0067C170",
+]
+[[units.reimu-object-spawn.functions]]
+address = "0x0056D6F0"
+symbol_base = "?spawn_object@YuyukoObjectManager@th105@@QAEPAVYuyukoObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@YuyukoObjectManagerBase@th105@@QAEPAVYuyukoObject@@XZ=0x0056D4F0",
+  "?push_back@?$deque@PAVYuyukoObject@@V?$allocator@PAVYuyukoObject@@@std@@@std@@QAEXABQAVYuyukoObject@@@Z=0x004454E0",
+  "??_U@YAPAXI@Z=0x00664F9A",
+  "_memcpy=0x0067C170",
+]
+[[units.reimu-object-spawn.functions]]
+address = "0x0058B840"
+symbol_base = "?spawn_object@YukariObjectManager@th105@@QAEPAVYukariObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@YukariObjectManagerBase@th105@@QAEPAVYukariObject@@XZ=0x0058B640",
+  "?push_back@?$deque@PAVYukariObject@@V?$allocator@PAVYukariObject@@@std@@@std@@QAEXABQAVYukariObject@@@Z=0x004454E0",
+  "??_U@YAPAXI@Z=0x00664F9A",
+  "_memcpy=0x0067C170",
+]
+[[units.reimu-object-spawn.functions]]
+address = "0x005AE280"
+symbol_base = "?spawn_object@SuikaObjectManager@th105@@QAEPAVSuikaObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@SuikaObjectManagerBase@th105@@QAEPAVSuikaObject@@XZ=0x005AE080",
+  "?push_back@?$deque@PAVSuikaObject@@V?$allocator@PAVSuikaObject@@@std@@@std@@QAEXABQAVSuikaObject@@@Z=0x004454E0",
+  "??_U@YAPAXI@Z=0x00664F9A",
+  "_memcpy=0x0067C170",
+]
+[[units.reimu-object-spawn.functions]]
+address = "0x005D6200"
+symbol_base = "?spawn_object@UdongeObjectManager@th105@@QAEPAVUdongeObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@UdongeObjectManagerBase@th105@@QAEPAVUdongeObject@@XZ=0x005D5FE0",
+  "?push_back@?$deque@PAVUdongeObject@@V?$allocator@PAVUdongeObject@@@std@@@std@@QAEXABQAVUdongeObject@@@Z=0x004454E0",
+  "??_U@YAPAXI@Z=0x00664F9A",
+  "_memcpy=0x0067C170",
+]
+[[units.reimu-object-spawn.functions]]
+address = "0x005F6FA0"
+symbol_base = "?spawn_object@KomachiObjectManager@th105@@QAEPAVKomachiObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@KomachiObjectManagerBase@th105@@QAEPAVKomachiObject@@XZ=0x005F6DA0",
+  "?push_back@?$deque@PAVKomachiObject@@V?$allocator@PAVKomachiObject@@@std@@@std@@QAEXABQAVKomachiObject@@@Z=0x004454E0",
+  "??_U@YAPAXI@Z=0x00664F9A",
+  "_memcpy=0x0067C170",
+]
+[[units.reimu-object-spawn.functions]]
+address = "0x00617930"
+symbol_base = "?spawn_object@AyaObjectManager@th105@@QAEPAVAyaObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@AyaObjectManagerBase@th105@@QAEPAVAyaObject@@XZ=0x006176C0",
+  "?push_back@?$deque@PAVAyaObject@@V?$allocator@PAVAyaObject@@@std@@@std@@QAEXABQAVAyaObject@@@Z=0x004454E0",
+  "??_U@YAPAXI@Z=0x00664F9A",
+  "_memcpy=0x0067C170",
+]
+[[units.reimu-object-spawn.functions]]
+address = "0x00630600"
+symbol_base = "?spawn_object@IkuObjectManager@th105@@QAEPAVIkuObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@IkuObjectManagerBase@th105@@QAEPAVIkuObject@@XZ=0x00630400",
+  "?push_back@?$deque@PAVIkuObject@@V?$allocator@PAVIkuObject@@@std@@@std@@QAEXABQAVIkuObject@@@Z=0x004454E0",
+  "??_U@YAPAXI@Z=0x00664F9A",
+  "_memcpy=0x0067C170",
+]
+[[units.reimu-object-spawn.functions]]
+address = "0x0064A990"
+symbol_base = "?spawn_object@TenshiObjectManager@th105@@QAEPAVTenshiObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@TenshiObjectManagerBase@th105@@QAEPAVTenshiObject@@XZ=0x0064A790",
+  "?push_back@?$deque@PAVTenshiObject@@V?$allocator@PAVTenshiObject@@@std@@@std@@QAEXABQAVTenshiObject@@@Z=0x004454E0",
   "??_U@YAPAXI@Z=0x00664F9A",
   "_memcpy=0x0067C170",
 ]
@@ -168,4 +295,119 @@ address = "0x004B9540"
 symbol_base = "?release_all_tracked_objects@RosterObjectManagerBase@th105@@QAEXXZ"
 rel32_targets = [
   "?release_handle@?$CharacterObjectPoolStorageT@URosterOwnedObjectPrefix338@th105@@@th105@@QAEXI@Z=0x004357E0",
+]
+
+[units.sakuya-manager-base-ctor]
+kind = "probe"
+source = "src/characters/TObjectManagerBase.cpp"
+object = "build/match-units/TObjectManagerBase.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Truthful global TObjectManagerBase<SakuyaObject,CharacterObject> constructor with typed handle-pool and inline tracked-list construction."
+
+[[units.sakuya-manager-base-ctor.functions]]
+address = "0x004DEB10"
+symbol_base = "??0?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VSakuyaObject@@@@QAE@XZ=0x004DE850",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x0041FEA0",
+]
+
+[[units.sakuya-manager-base-ctor.functions]]
+address = "0x00492DB0"
+symbol_base = "??0?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VReimuObject@@@@QAE@XZ=0x00492B10",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x0041FEA0",
+]
+[[units.sakuya-manager-base-ctor.functions]]
+address = "0x004B9470"
+symbol_base = "??0?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VMarisaObject@@@@QAE@XZ=0x004B91B0",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x0041FEA0",
+]
+[[units.sakuya-manager-base-ctor.functions]]
+address = "0x004FA150"
+symbol_base = "??0?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VAliceObject@@@@QAE@XZ=0x004F9EB0",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x0041FEA0",
+]
+[[units.sakuya-manager-base-ctor.functions]]
+address = "0x0051E5F0"
+symbol_base = "??0?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VPatchouliObject@@@@QAE@XZ=0x0051E330",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x0041FEA0",
+]
+[[units.sakuya-manager-base-ctor.functions]]
+address = "0x0053AAF0"
+symbol_base = "??0?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VYoumuObject@@@@QAE@XZ=0x0053A830",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x0041FEA0",
+]
+[[units.sakuya-manager-base-ctor.functions]]
+address = "0x005558C0"
+symbol_base = "??0?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VRemiliaObject@@@@QAE@XZ=0x00555600",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x0041FEA0",
+]
+[[units.sakuya-manager-base-ctor.functions]]
+address = "0x0056D480"
+symbol_base = "??0?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VYuyukoObject@@@@QAE@XZ=0x0056D1C0",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x0041FEA0",
+]
+[[units.sakuya-manager-base-ctor.functions]]
+address = "0x0058B5D0"
+symbol_base = "??0?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VYukariObject@@@@QAE@XZ=0x0058B310",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x0041FEA0",
+]
+[[units.sakuya-manager-base-ctor.functions]]
+address = "0x005AE010"
+symbol_base = "??0?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VSuikaObject@@@@QAE@XZ=0x005ADD50",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x0041FEA0",
+]
+[[units.sakuya-manager-base-ctor.functions]]
+address = "0x005D5F70"
+symbol_base = "??0?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VUdongeObject@@@@QAE@XZ=0x005D5CD0",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x0041FEA0",
+]
+[[units.sakuya-manager-base-ctor.functions]]
+address = "0x005F6D30"
+symbol_base = "??0?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VKomachiObject@@@@QAE@XZ=0x005F6A90",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x0041FEA0",
+]
+[[units.sakuya-manager-base-ctor.functions]]
+address = "0x00617650"
+symbol_base = "??0?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VAyaObject@@@@QAE@XZ=0x00617390",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x0041FEA0",
+]
+[[units.sakuya-manager-base-ctor.functions]]
+address = "0x00630390"
+symbol_base = "??0?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VIkuObject@@@@QAE@XZ=0x006300F0",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x0041FEA0",
+]
+[[units.sakuya-manager-base-ctor.functions]]
+address = "0x0064A720"
+symbol_base = "??0?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VTenshiObject@@@@QAE@XZ=0x0064A480",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x0041FEA0",
 ]

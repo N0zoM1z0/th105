@@ -37,11 +37,10 @@ __forceinline unsigned &owner_field(void *owner, unsigned offset)
     object->state_158.owner_field_008 = owner_field(owner, 0x160);            \
                                                                               \
     if (parent != 0) {                                                        \
-        std::deque<FighterName##Object *> *child_refs =                       \
-            &parent->child_refs_350;                                          \
-        object->parent_34c = parent;                                          \
+        FighterName##Object *original_parent = parent;                        \
+        object->parent_34c = original_parent;                                 \
         parent = object;                                                      \
-        child_refs->push_back(parent);                                        \
+        original_parent->child_refs_350.push_back(parent);                    \
     }                                                                         \
                                                                               \
     if (copied_word_count > 0) {                                              \

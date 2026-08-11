@@ -126,14 +126,15 @@ layout is likewise shared: secondary manager-base view at `+0x04`, tracked
 list at outer `+0x58`, and fighter owner at `+0x64`.
 
 Alice's four-byte larger fresh allocation is the only observed pool deviation;
-the spawn instructions themselves remain template-identical.  Of the four
+the spawn instructions themselves remain template-identical. Of the four
 normalized calls, only acquire-and-link is character-specific; deque
 `push_back`, array allocation, and `memcpy` share the same targets in every
-member.  The Reimu canonical source compiles to the exact 237-byte size and is
-exact through `+0x3D` and again from `+0x57` through `ret 0x24`.  The remaining
-parent block contains the same instructions in a different safe scheduling
-order.  The fourteen non-Sakuya rows are therefore `implemented` from one
-typed emitted body; Sakuya keeps its independently compiled same-size source.
+member. Preserving the incoming parent in a stable alias before publishing it
+to `object->parent_34c`, then passing the published lvalue to deque `push_back`,
+reproduces the target scheduling without relying on C++03 evaluation order.
+All fourteen non-Sakuya rows now compare exactly at 237/237 bytes from one
+typed emitted body. Sakuya keeps its independently compiled same-size source
+and remains `implemented` until its own strict comparison is exact.
 
 The acquire-and-link column is independently stronger: all fifteen entries are
 94-byte instruction-template twins after normalizing the three call operands at
@@ -234,9 +235,12 @@ list starts at `+0x54`, and the multiple-inheritance outer manager places that
 base at `+0x04` with its fighter owner at `+0x64`. All fifteen preallocation
 passes now have emitted shared source: acquire and track until count `256`,
 then tail-call the shared handle-release path. The Reimu standalone body is
-115 bytes against the 117-byte target; only the established register schedule
+117 bytes against the 117-byte target; only the `EBX`/`EBP` allocation schedule
 differs, so this family is ready for later per-function exact tuning without
-blocking broader character recovery.
+blocking broader character recovery. The adjacent manager-base constructor is
+fully recovered as a polymorphic `CHandleManagerEx<Object>` member at `+0x04`
+followed by the tracked list at `+0x54`; all fifteen constructor instances now
+compare exactly at 103/103 bytes.
 
 ## Sakuya pilot
 
@@ -394,9 +398,15 @@ copies a dword payload at `+0x340`, publishes position at `+0xEC/+0xF0`, and
 sets facing/action through byte `+0x104` and raw vslot `+0x08`. Parent objects
 hold a VC8 `std::deque<SakuyaObject *>` at `+0x350`; its exact 117-byte
 push-back specialization owns its map and four-pointer blocks but not the child
-pointees. The complete spawn source compiles to the target size, 237/237 bytes;
-remaining differences are parent-reference argument scheduling and the final
-field-load/register order.
+pointees. The complete Sakuya spawn source compiles to the target size,
+237/237 bytes; its independent comparison still has parent-reference and final
+register-order differences. The shared non-Sakuya specialization uses a stable
+incoming-parent alias and all fourteen of those entries are exact.
+
+The complete fifteen-character action-change and input-dispatch breadth map is
+maintained in `docs/CHARACTER_ACTION_ROOTS.md`. It records accepted ledger
+boundaries, switch families, the common fourteen-helper command prelude, and
+the three IDA boundary conflicts that must remain fail-closed.
 
 ## Next waves
 

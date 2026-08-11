@@ -148,6 +148,21 @@ C++03 evaluation-order ambiguity and was rejected.  The safe source keeps the
 same parent/deque operations with only a standalone/LTCG scheduling delta, and
 the audited manifest fans it out to fourteen non-Sakuya managers.
 
+A later exact pass resolved that final spawn delta without unsafe expression
+tricks. Keeping the incoming parent in a stable alias, publishing it to the
+object, and passing the published lvalue to deque `push_back` gives VC8 the
+target dataflow while preserving deterministic C++03 semantics. All fourteen
+shared-source non-Sakuya spawn entries now compare exactly at 237/237 bytes;
+Sakuya remains an independently compiled work unit.
+
+The same object graph exposed the manager-base constructor boundary. RTTI and
+offset evidence require a polymorphic `CHandleManagerEx<Object>` member at
+`+0x04` and an inline-constructed tracked list at `+0x54`. Modeling those as
+real members, including the constructor-local EH relocations and per-roster
+vtables, makes all fifteen constructor instances exact at 103/103 bytes. One
+truthful type recovery therefore retired fifteen functions and strengthened
+every later manager, spell, and battle work packet.
+
 The work-packet boundary gate also prevented a false partial comparison at
 `0x004B9540`: its stored `size=112` disagreed with `span_end=0x004B95B9`.
 Fresh IDA instructions prove a contiguous 122-byte body through the final

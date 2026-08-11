@@ -15,7 +15,7 @@ SakuyaObject *SakuyaObjectManagerBase::acquire_and_link_object()
 
     CollisionListNode *sentinel = linked_objects_54.sentinel;
     local.object = object;
-    CollisionListNode *node = create_collision_list_node(
+    CollisionListNode *node = linked_objects_54.create_node(
         sentinel,
         sentinel->previous,
         reinterpret_cast<void **>(&local.object));
@@ -40,7 +40,7 @@ CollisionListNode *SakuyaObjectManagerBase::preallocate_object_pool(
 
         CollisionListNode *sentinel = linked_objects_54.sentinel;
         local.object = object;
-        CollisionListNode *node = create_collision_list_node(
+        CollisionListNode *node = linked_objects_54.create_node(
             sentinel,
             sentinel->previous,
             reinterpret_cast<void **>(&local.object));

@@ -80,12 +80,12 @@ TH10.5
     │   ├── one normalized 237-byte ABI/template
     │   ├── fifteen normalized acquire-and-link entries [source-ready]
     │   ├── fifteen normalized pool fresh/reuse entries [semantics-ready]
-    │   ├── fourteen roster spawn entries [decompiled]
+    │   ├── fourteen roster spawn entries [exact]
     │   └── Sakuya spawn source [source-ready]
     └── Sakuya fighter pilot [mapped]
         ├── 0x004DEEF0 fighter constructor [decompiled]
         ├── 0x004DECF0 manager constructor [decompiled]
-        ├── 0x004DED80 owned-object spawn [decompiled]
+        ├── 0x004DED80 owned-object spawn [implemented]
         ├── raw vslot +0x3C: 0x004DDB20 action change [decompiled]
         └── common-update vslot +0x50: 0x004DEF70 input/action [identified]
 ```
@@ -171,15 +171,15 @@ shared owned-object lifecycle [contracted]
 ├── 0x0053C7F0 ping-pong motion + periodic action-980 spawn [implemented, all 15 rosters]
 ├── 0x0064C090 owner-gated repeated effects 200/201 [exact, 228 roster calls]
 ├── 0x004B9540 return tracked objects to pool [implemented, 120/122]
-├── fifteen 237-byte spawn entries [implemented]
-│   ├── Sakuya 0x004DED80 [independent source]
-│   └── fourteen normalized twins [typed shared source; parent-block LTCG schedule]
+├── fifteen 237-byte spawn entries [14 exact, Sakuya implemented]
+│   ├── Sakuya 0x004DED80 [independent same-size source]
+│   └── fourteen normalized twins [exact typed shared source]
 ├── fifteen 94-byte acquire-and-link entries [source-ready]
 │   ├── normalized token/list contract
 │   └── fourteen roster functions emitted from one shared source body
 ├── eight exact-template lifecycle families [120 target functions audited]
 │   ├── fifteen 130-byte typed handle-pool constructors [decompiled]
-│   ├── fifteen 103-byte manager-base constructors [decompiled]
+│   ├── fifteen 103-byte manager-base constructors [exact]
 │   ├── fifteen 100-byte manager-base destructors [decompiled]
 │   ├── fifteen 117-byte preallocate/release passes [implemented]
 │   └── fifteen 123-byte outer manager constructors [decompiled]
@@ -197,7 +197,7 @@ shared owned-object lifecycle [contracted]
 │               └── 0x00421310 CEffectSprite ctor [source; linked-LTCG byte blocker]
 └── Sakuya fighter pilot [source-ready]
     ├── 0x004DE8E0 pool acquire [implemented, canonical shared source]
-    ├── 0x004DEB10 manager-base constructor [decompiled]
+    ├── 0x004DEB10 manager-base constructor [exact]
     ├── 0x004DEB80 acquire and link [source-ready]
     ├── 0x004DEC70 preallocate 256 then release [source-ready]
     ├── 0x004DECF0 outer manager constructor [decompiled]
@@ -208,7 +208,9 @@ The parent-reference append block occurs once in every fighter spawn family,
 and the release/reset helper has paired callers across all fifteen manager
 families. These are the reusable onboarding contracts for the next ten-plus
 character pilots; character-specific work should start at each vtable's spawn
-and dispatcher roots rather than rediscovering container ownership.
+and dispatcher roots rather than rediscovering container ownership. The full
+action-change/input-dispatch breadth survey is in
+`docs/CHARACTER_ACTION_ROOTS.md`.
 
 ## Refresh commands
 

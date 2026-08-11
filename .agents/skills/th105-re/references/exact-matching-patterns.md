@@ -778,6 +778,54 @@ to `+0x334/+0x330` before the call to `AttackObject_ctor`. Modeling
 `0x004927D0`; treating those two fields as ordinary derived initializers leaves
 them after the base call and cannot reproduce the target prologue.
 
+## P24: Preserve a stable incoming alias across publish-and-append code
+
+The 237-byte roster spawn target stores the incoming parent into object
+`+0x34C`, then pushes that published pointer through the parent's deque at
+`+0x350`. A direct chained expression gives VC8 freedom to reload and schedule
+the parent differently, while forcing an arbitrary volatile temporary changes
+the contract.
+
+Use a normal stable alias for the incoming parent, publish it, rebind the local
+to the newly created object, and pass the published lvalue to `push_back`:
+
+```cpp
+Object *original_parent = parent;
+object->parent_34c = original_parent;
+parent = object;
+original_parent->child_refs_350.push_back(parent);
+```
+
+This is truthful because both aliases retain their semantic identities and no
+evaluation order is assumed. It makes all fourteen shared-source non-Sakuya
+spawn functions exact at 237/237 bytes:
+
+```bash
+python3 scripts/build.py --unit reimu-object-spawn --compare --json
+```
+
+## P25: Model constructor-owned polymorphic template members directly
+
+The fifteen 103-byte manager-base constructors are not raw initialization
+sequences. Target offsets and EH cleanup edges prove a polymorphic
+`CHandleManagerEx<Object>` member at `+0x04`; its complete size is `0x50`.
+The following tracked `CollisionList` begins at `+0x54` and its sentinel/count
+initialization is inlined by the owner constructor.
+
+Represent both as real members and keep the list constructor force-inlined.
+Map each roster's handle-manager constructor, vtable, and constructor-local EH
+handler relocation separately. With those evidence-backed distinctions, all
+fifteen explicit template constructor instances compare exactly at 103/103
+bytes:
+
+```bash
+python3 scripts/build.py --unit sakuya-manager-base-ctor --compare --json
+```
+
+Do not replace the polymorphic member with opaque storage just because its
+layout is known. That loses vptr ownership and EH construction state, which
+are precisely what determine the target instruction order.
+
 ## Hard-function strategy
 
 Every reconstruction wave should include at least one function whose completion

@@ -19,7 +19,7 @@ namespace th105 {
                                                                               \
         CollisionListNode *sentinel = linked_objects_54.sentinel;             \
         local.object = reinterpret_cast<RosterOwnedObjectPrefix338 *>(object); \
-        CollisionListNode *node = create_collision_list_node(                 \
+        CollisionListNode *node = linked_objects_54.create_node(              \
             sentinel,                                                        \
             sentinel->previous,                                              \
             reinterpret_cast<void **>(&local.object));                        \
@@ -65,7 +65,7 @@ TH105_DEFINE_ACQUIRE_AND_LINK(Tenshi)
             CollisionListNode *sentinel = linked_objects_54.sentinel;         \
             local.object =                                                    \
                 reinterpret_cast<RosterOwnedObjectPrefix338 *>(object);       \
-            CollisionListNode *node = create_collision_list_node(             \
+            CollisionListNode *node = linked_objects_54.create_node(          \
                 sentinel,                                                     \
                 sentinel->previous,                                           \
                 reinterpret_cast<void **>(&local.object));                    \

@@ -13,6 +13,17 @@ struct CollisionList {
     CollisionListNode *sentinel;
     unsigned count;
 
+    __forceinline CollisionList()
+    {
+        sentinel = buy_sentinel();
+        count = 0;
+    }
+
+    CollisionListNode *buy_sentinel();
+    CollisionListNode *create_node(
+        CollisionListNode *next,
+        CollisionListNode *previous,
+        void **payload);
     void std_list_incsize_pointer(unsigned amount);
 };
 
