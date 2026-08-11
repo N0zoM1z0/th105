@@ -59,7 +59,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00402950,110,0x004029BD,FUN_00402950,,,unclassified,0.00,unknown,undefined FUN_00402950(void),false,,,,
 0x004029C0,95,0x00402A1E,FUN_004029c0,,,unclassified,0.00,unknown,undefined FUN_004029c0(void),false,,,,
 0x00402A20,46,0x00402A4D,FUN_00402a20,,,unclassified,0.00,unknown,undefined FUN_00402a20(void),false,,,,
-0x00402A50,87,0x00402AAD,FUN_00402a50,,,unclassified,0.00,unknown,undefined FUN_00402a50(void),false,,,,
+0x00402A50,94,0x00402AAD,FUN_00402a50,vc8_checked_list_u32_erase,runtime,decompiled,0.00,__thiscall,"void * vc8_checked_list_u32_erase(void * this, void * result, void * owner, void * node)",false,,IDA Pro complete instructions and all fifteen roster pool reuse-path callers,root,Observed VC8 checked std::list<unsigned>::erase specialization with hidden iterator result; exact VC8 STL probe required before library classification
 0x00402AB0,347,0x00402C0D,FUN_00402ab0,,,unclassified,0.00,unknown,undefined FUN_00402ab0(void),false,,,,
 0x00402C10,51,0x00402C42,FUN_00402c10,,,unclassified,0.00,unknown,undefined FUN_00402c10(void),false,,,,
 0x00402C50,165,0x00402CF4,FUN_00402c50,,,unclassified,0.00,unknown,undefined FUN_00402c50(void),false,,,,
@@ -234,8 +234,8 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0040A6A0,23,0x0040A6B6,FUN_0040a6a0,,,unclassified,0.00,unknown,undefined FUN_0040a6a0(void),false,,,,
 0x0040A6C0,38,0x0040A6E8,FUN_0040a6c0,,,unclassified,0.00,unknown,undefined FUN_0040a6c0(void),false,,,,
 0x0040A6F0,17,0x0040A700,FUN_0040a6f0,,,unclassified,0.00,unknown,undefined FUN_0040a6f0(void),false,,,,
-0x0040A710,11,0x0040A71A,FUN_0040a710,,,unclassified,0.00,unknown,undefined FUN_0040a710(void),false,,,,
-0x0040A720,11,0x0040A72A,FUN_0040a720,,,unclassified,0.00,unknown,undefined FUN_0040a720(void),false,,,,
+0x0040A710,11,0x0040A71A,FUN_0040a710,CriticalSectionWrapper_enter,engine,matching,100.00,__thiscall,void CriticalSectionWrapper_enter(CriticalSectionWrapper * this),false,src/engine/CriticalSectionWrapper.cpp,scripts/compile-unit.sh src/engine/CriticalSectionWrapper.cpp build/wave_pool_abi/CriticalSectionWrapper.obj and compare-function.py 0x0040A710 exact 11/11 bytes,root,Forwards wrapper+4 to imported EnterCriticalSection; roster pools pass pool+0x34
+0x0040A720,11,0x0040A72A,FUN_0040a720,CriticalSectionWrapper_leave,engine,matching,100.00,__thiscall,void CriticalSectionWrapper_leave(CriticalSectionWrapper * this),false,src/engine/CriticalSectionWrapper.cpp,scripts/compile-unit.sh src/engine/CriticalSectionWrapper.cpp build/wave_pool_abi/CriticalSectionWrapper.obj and compare-function.py 0x0040A720 exact 11/11 bytes,root,Forwards wrapper+4 to imported LeaveCriticalSection
 0x0040A730,7,0x0040A736,FUN_0040a730,,,unclassified,0.00,unknown,undefined FUN_0040a730(void),false,,,,
 0x0040A740,19,0x0040A752,FUN_0040a740,,,unclassified,0.00,unknown,undefined FUN_0040a740(void),false,,,,
 0x0040A760,30,0x0040A77D,FUN_0040a760,,,unclassified,0.00,unknown,undefined FUN_0040a760(void),false,,,,
@@ -330,7 +330,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0040D6B0,58,0x0040D6E9,FUN_0040d6b0,,,unclassified,0.00,unknown,undefined FUN_0040d6b0(void),false,,,,
 0x0040D6F0,62,0x0040D72D,FUN_0040d6f0,,,unclassified,0.00,unknown,undefined FUN_0040d6f0(void),false,,,,
 0x0040D730,43,0x0040D75A,FUN_0040d730,,,unclassified,0.00,unknown,undefined FUN_0040d730(void),false,,,,
-0x0040D760,110,0x0040D7CD,FUN_0040d760,,,unclassified,0.00,unknown,undefined FUN_0040d760(void),false,,,,
+0x0040D760,110,0x0040D7CD,FUN_0040d760,vc8_vector_u32_push_back,runtime,decompiled,0.00,__thiscall,"void vc8_vector_u32_push_back(void * this,unsigned const * value)",false,,IDA Pro complete instructions and all fifteen roster pool fresh-slot callers,root,Observed VC8 checked std::vector<unsigned>::push_back specialization publishing per-slot generation words; exact STL probe required before library classification
 0x0040D7D0,87,0x0040D826,FUN_0040d7d0,,,unclassified,0.00,unknown,undefined FUN_0040d7d0(void),false,,,,
 0x0040D830,99,0x0040D892,FUN_0040d830,,,unclassified,0.00,unknown,undefined FUN_0040d830(void),false,,,,
 0x0040D8A0,35,0x0040D8C2,FUN_0040d8a0,,,unclassified,0.00,unknown,undefined FUN_0040d8a0(void),false,,,,
@@ -1841,7 +1841,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0045E300,43,0x0045E32A,FUN_0045e300,,,unclassified,0.00,unknown,undefined FUN_0045e300(void),false,,,,
 0x0045E330,50,0x0045E361,FUN_0045e330,,,unclassified,0.00,unknown,undefined FUN_0045e330(void),false,,,,
 0x0045E370,48,0x0045E39F,FUN_0045e370,,,unclassified,0.00,unknown,undefined FUN_0045e370(void),false,,,,
-0x0045E3A0,193,0x0045E460,FUN_0045e3a0,,,unclassified,0.00,unknown,undefined FUN_0045e3a0(void),false,,,,
+0x0045E3A0,193,0x0045E460,FUN_0045e3a0,AttackObject_ctor,battle,decompiled,0.00,__thiscall,AttackObject * AttackObject_ctor(AttackObject * this),false,,IDA Pro complete constructor instructions and exactly two callers at Character_ctor and CharacterObject_ctor,root,Calls CEffectSprite_ctor on this+4 installs AttackObject vtable 0x006AEB44 and initializes observed fields through +0x32C; composition versus secondary base remains unproven
 0x0045E470,41,0x0045E498,FUN_0045e470,,,unclassified,0.00,unknown,undefined FUN_0045e470(void),false,,,,
 0x0045E4A0,43,0x0045E4CA,FUN_0045e4a0,,,unclassified,0.00,unknown,undefined FUN_0045e4a0(void),false,,,,
 0x0045E4D0,57,0x0045E508,FUN_0045e4d0,,,unclassified,0.00,unknown,undefined FUN_0045e4d0(void),false,,,,
@@ -1933,7 +1933,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00463ED0,137,0x00463F58,FUN_00463ed0,,,unclassified,0.00,unknown,undefined FUN_00463ed0(void),false,,,,
 0x00463F60,241,0x00464050,FUN_00463f60,,,unclassified,0.00,unknown,undefined FUN_00463f60(void),false,,,,
 0x00464060,170,0x00464109,FUN_00464060,,,unclassified,0.00,unknown,undefined FUN_00464060(void),false,,,,
-0x00464110,105,0x00464178,FUN_00464110,,,unclassified,0.00,unknown,undefined FUN_00464110(void),false,,,,
+0x00464110,105,0x00464178,FUN_00464110,vc8_vector_pointer_push_back,runtime,decompiled,0.00,__thiscall,"void vc8_vector_pointer_push_back(void * this,void * const * value)",false,,IDA Pro complete instructions and twenty-one callers including all fifteen roster pool fresh-slot paths,root,Observed VC8 checked std::vector<T*>::push_back specialization; pool begin end capacity are +8 +C +10; exact STL probe required before library classification
 0x00464180,100,0x004641E6,FUN_00464180,,,unclassified,0.00,unknown,undefined FUN_00464180(void),false,,,,
 0x004641F0,69,0x00464234,FUN_004641f0,,,unclassified,0.00,unknown,undefined FUN_004641f0(void),false,,,,
 0x00464240,38,0x00464265,FUN_00464240,,,unclassified,0.00,unknown,undefined FUN_00464240(void),false,,,,
@@ -2268,7 +2268,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004B8E00,178,0x004B8EBB,FUN_004b8e00,,,unclassified,0.00,unknown,undefined FUN_004b8e00(void),false,,,,
 0x004B8F10,27,0x004B8F2D,FUN_004b8f10,,,unclassified,0.00,unknown,undefined FUN_004b8f10(void),false,,,,
 0x004B8F30,117,0x004B8FA4,FUN_004b8f30,,,unclassified,0.00,unknown,undefined FUN_004b8f30(void),false,,,,
-0x004B8FB0,90,0x004B9009,FUN_004b8fb0,,,unclassified,0.00,unknown,undefined FUN_004b8fb0(void),false,,,,
+0x004B8FB0,90,0x004B9009,FUN_004b8fb0,vc8_vector_pointer_at,runtime,decompiled,0.00,__thiscall,"void * * vc8_vector_pointer_at(void * this,unsigned int index)",false,,IDA Pro complete checked-access instructions forty-one callers and out_of_range path,root,Observed VC8 checked std::vector<T*>::at specialization returning T**; exact STL probe required before library classification
 0x004B9010,406,0x004B91A5,FUN_004b9010,,,unclassified,0.00,unknown,undefined FUN_004b9010(void),false,,,,
 0x004B91B0,130,0x004B9231,FUN_004b91b0,,,unclassified,0.00,unknown,undefined FUN_004b91b0(void),false,,,,
 0x004B9240,519,0x004B9446,FUN_004b9240,MarisaObjectPool_acquire,characters,decompiled,0.00,__thiscall,MarisaObject * MarisaObjectPool_acquire(MarisaObjectPool * this,unsigned * out_token),false,,docs/CHARACTER_PILOTS.md normalized 519-byte pool fresh/reuse template and complete IDA control flow,root,Publishes low16 slot high16 generation and initializes 0x388-byte object; source blocked on shared pool container lock and CharacterObject constructor contracts

@@ -138,6 +138,7 @@ caller,callee,required_status,evidence
 0x0046D620,0x0046D040,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x0046D620,0x0046D160,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x0046D620,0x0046D370,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x0045E3A0,0x00421310,decompiled,IDA Pro sole constructor dependency at AttackObject this+4
 0x004927D0,0x0045E3A0,decompiled,IDA Pro sole shared base-constructor call
 0x00492BA0,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths
 0x00492E20,0x00454890,library,IDA Pro exact normalized list-size update call

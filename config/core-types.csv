@@ -38,3 +38,9 @@ SakuyaObjectManagerBase,src/characters/Sakuya.hpp,complete,0x60,observed,0x004DE
 SakuyaObjectManager,src/characters/Sakuya.hpp,complete,0x68,observed,0x004DECF0 target constructor and 0x004DEEF0 allocation size,Two vtable-bearing views and owner pointer at +0x64
 String28,src/assets/String28.hpp,complete,0x1C,observed,exact 0x00408A40 VC8 std::string append comparison,Real VC8 owning string specialization with 16-byte SSO threshold
 WorldAabb,src/battle/Collision.hpp,complete,0x10,observed,exact float geometry comparison units,Four float coordinates
+Win32CriticalSection24,src/engine/CriticalSectionWrapper.hpp,complete,0x18,observed,exact 0x0040A710 and 0x0040A720 imported API forwarding matches,x86 RTL_CRITICAL_SECTION field layout without requiring a case-sensitive Windows SDK include tree
+CriticalSectionWrapper,src/engine/CriticalSectionWrapper.hpp,complete,0x1C,observed,exact 0x0040A710 and 0x0040A720 comparisons,Four-byte wrapper state followed by Win32 critical section at +0x04
+CheckedPointerVector16,src/characters/RosterOwnedObjects.hpp,complete,0x10,observed,0x00464110 and 0x004B8FB0 target instructions,VC8 checked pointer-vector proxy begin end and capacity layout
+CheckedUnsignedVector16,src/characters/RosterOwnedObjects.hpp,complete,0x10,observed,0x0040D760 target instructions,VC8 checked unsigned-vector proxy begin end and capacity layout
+CheckedUnsignedList12,src/characters/RosterOwnedObjects.hpp,complete,0x0C,observed,0x00402A50 target instructions,VC8 checked unsigned-list proxy sentinel and count layout
+CharacterObjectPoolStorage,src/characters/RosterOwnedObjects.hpp,complete,0x50,observed,all fifteen normalized 519-byte roster pool acquisition bodies,Slots generations free-slot list generation counter and lock wrapper with observed offsets

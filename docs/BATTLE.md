@@ -52,7 +52,12 @@ that layout produces an exact 323-byte reconstruction.
 The `AttackObject` base has vtable `0x006AEB44`. Constructors at `0x00461A90`
 and `0x004927D0` first call its constructor at `0x0045E3A0` before installing
 the `Character` and `CharacterObject` vtables. This establishes a shared
-collision-data base for fighters and their spawned objects.
+collision-data base for fighters and their spawned objects. The complete
+193-byte constructor calls `0x00421310` on `this+4`, installs the AttackObject
+vtable, and initializes directly observed fields through `+0x32C`. The callee
+installs the `CEffectSprite` vtable `0x006AC72C` and resets fighter-action
+scratch, but whether that `this+4` object is composition or a secondary base is
+not yet proven.
 
 Four adjacent shared methods are identified without assigning gameplay terms.
 `0x0045AA10` and `0x0045AA30` call one- or two-argument helpers and then the

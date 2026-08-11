@@ -1,6 +1,7 @@
 #pragma once
 
 #include "battle/CollisionList.hpp"
+#include "engine/CriticalSectionWrapper.hpp"
 
 #include <stddef.h>
 
@@ -19,9 +20,48 @@ typedef char CheckRosterOwnedObjectHandleTokenOffset[
 typedef char CheckRosterOwnedObjectPrefixSize[
     sizeof(RosterOwnedObjectPrefix338) == 0x338 ? 1 : -1];
 
+// Common VC8 checked-container layout observed in every one of the fifteen
+// normalized 519-byte pool acquire functions.  The first dword in each
+// container is the checked-iterator proxy/allocator base.
+struct CheckedPointerVector16 {
+    unsigned proxy_or_base_00;
+    RosterOwnedObjectPrefix338 **begin_04;
+    RosterOwnedObjectPrefix338 **end_08;
+    RosterOwnedObjectPrefix338 **capacity_0c;
+};
+
+struct CheckedUnsignedVector16 {
+    unsigned proxy_or_base_00;
+    unsigned *begin_04;
+    unsigned *end_08;
+    unsigned *capacity_0c;
+};
+
+struct CheckedUnsignedList12 {
+    unsigned proxy_or_base_00;
+    CollisionListNode *sentinel_04;
+    unsigned count_08;
+};
+
+struct CharacterObjectPoolStorage {
+    unsigned proxy_or_base_00;
+    CheckedPointerVector16 slots_04;
+    CheckedUnsignedVector16 generations_14;
+    CheckedUnsignedList12 free_slots_24;
+    unsigned generation_counter_30;
+    CriticalSectionWrapper lock_34;
+};
+
+typedef char CheckCharacterObjectPoolStorageSize[
+    sizeof(CharacterObjectPoolStorage) == 0x50 ? 1 : -1];
+typedef char CheckCharacterObjectPoolGenerationCounterOffset[
+    offsetof(CharacterObjectPoolStorage, generation_counter_30) == 0x30 ? 1 : -1];
+typedef char CheckCharacterObjectPoolLockOffset[
+    offsetof(CharacterObjectPoolStorage, lock_34) == 0x34 ? 1 : -1];
+
 #define TH105_DECLARE_ROSTER_OBJECT_MANAGER(FighterName)                      \
     struct FighterName##ObjectPool {                                          \
-        unsigned char unknown_00[0x50];                                      \
+        CharacterObjectPoolStorage storage_00;                               \
         RosterOwnedObjectPrefix338 *acquire(unsigned *handle_token);          \
     };                                                                        \
     struct FighterName##ObjectManagerBase {                                   \

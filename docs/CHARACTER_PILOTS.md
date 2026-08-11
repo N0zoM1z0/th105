@@ -155,18 +155,25 @@ shared object constructor at `0x004927D0`, zero object
 `+0x34C/+0x354/+0x358/+0x35C/+0x360`, and install the character vtable. The
 pool view also exposes storage at `+0x04`, a generation range at `+0x18`, a
 reusable-node container at `+0x24`, and a synchronization member at `+0x34`.
-All fourteen roster rows are now `decompiled`. Source waits on the truthful
-contracts of `0x0040A710/20`, `0x00464110`, `0x0040D760`, `0x00402A50`,
-`0x004B8FB0`, and the complete `CharacterObject` constructor rather than on
-any unresolved per-character behavior.
+The complete common `0x50`-byte storage view is now represented by
+`CharacterObjectPoolStorage`: checked pointer slots at `+0x04`, checked
+generation words at `+0x14`, checked free-slot list at `+0x24`, counter at
+`+0x30`, and a `CriticalSectionWrapper` at `+0x34`. The wrapper's enter and
+leave methods at `0x0040A710/20` are exact 11-byte matches; the four checked
+container helpers are fully decompiled but remain VC8 STL probe candidates.
+All fourteen roster rows remain `decompiled`; no unresolved per-character
+behavior blocks a shared pool source template.
 
 The shared constructor is now bounded at `0x004927D0` (78 bytes) with exactly
 thirty roster-pool call sites, once from each fresh path and once from each
 reuse path. It calls base constructor `0x0045E3A0`, initializes dwords
 `+0x330/+0x334/+0x338/+0x340`, words `+0x174/+0x176/+0x344/+0x346`, and
 installs `CharacterObject` vtable `0x006B001C`. The base constructor is the
-next common object-layout blocker; no per-character analysis is needed to
-reach it.
+193-byte `AttackObject` constructor at `0x0045E3A0`: it installs vtable
+`0x006AEB44`, initializes the observed collision prefix through `+0x32C`, and
+calls `0x00421310` on `this+4`. That `CEffectSprite` constructor and its
+ownership/destructor boundary are the remaining shared source blocker; no
+per-character analysis is needed to reach it.
 
 ## Sakuya pilot
 
@@ -244,10 +251,9 @@ field-load/register order.
 
 ## Next waves
 
-1. Recover the shared pool storage, reuse-list, generation-range, lock, and
-   `CharacterObject` constructor helpers listed above. These are the direct
-   blockers for emitting all fifteen pool-acquire functions from one source
-   template.
+1. Recover `0x00421310` and the CEffectSprite ownership/destructor boundary,
+   then emit the normalized fifteen-way pool-acquire source using the now
+   complete `0x50`-byte storage and exact lock contracts.
 2. Split Sakuya's complete `0x004DEF70` matrix into source-backed spell, skill,
    and normal-action blocks, beginning with the spell-record `600..609/656`
    selector because it links parser data directly to character behavior.

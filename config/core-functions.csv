@@ -20,6 +20,7 @@ address,lane,priority,notes
 0x0040F780,spell-assets,2,CSV reader cleanup boundary
 0x00416A50,spell-assets,2,Loaded resource registration boundary
 0x0041FEA0,collision-phase,3,Exact collision-list sentinel allocation
+0x00421310,character-owned-object,1,CEffectSprite constructor required by the shared AttackObject constructor
 0x0042C100,score,1,Observed record count and high-water update
 0x00430C30,spell-runtime,3,Exact checked front access for a short deque-like container
 0x00430C80,spell-data,2,Post-load spell data finalization contract
@@ -69,7 +70,7 @@ address,lane,priority,notes
 0x0045CB20,hit-resolution,1,Outcome selector from fighter and frame state
 0x0045CD90,hit-resolution,3,Exact positive-y and state-window gate
 0x0045E080,fighter-init,2,Per-fighter indexed resource initialization boundary
-0x0045E3A0,character-owned-object,1,Shared AttackObject or CharacterObject base-construction blocker
+0x0045E3A0,character-owned-object,1,Shared AttackObject constructor and Character or CharacterObject base contract
 0x0045E5F0,fighter-init,2,Sequence controller reset contract
 0x0045F140,fighter-init,1,Fighter battle-state reset and initial sequence publication
 0x00460B50,fighter-init,2,Pre-resource fighter initialization boundary

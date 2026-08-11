@@ -361,3 +361,5 @@ eh_vector_destructor_iterator,0x0067B9E9,function
 eh_vector_constructor_iterator,0x0067BA4C,function
 _stricmp,0x0067C778,function
 _sprintf_s,0x0067CA9B,function
+CriticalSectionWrapper_enter,0x0040A710,function
+CriticalSectionWrapper_leave,0x0040A720,function

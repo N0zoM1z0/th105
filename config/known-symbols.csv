@@ -418,3 +418,10 @@ address,name,module,confidence,evidence
 0x004686B0,Menu_unknown_menu_method,ui,observed,Shared one-byte no-op occupies Menu-derived vtable slot one
 0x0067B9E9,eh_vector_destructor_iterator,runtime,observed,VC8 ??_M helper used for CMenuSelect GuideOverlay array destruction
 0x0067BA4C,eh_vector_constructor_iterator,runtime,observed,VC8 ??_L helper used for CMenuSelect GuideOverlay array construction
+0x00402A50,vc8_checked_list_u32_erase,runtime,observed,IDA Pro complete checked erase body and one reuse-path caller in every roster object pool
+0x0040A710,CriticalSectionWrapper_enter,engine,observed,Exact source and imported KERNEL32 EnterCriticalSection IAT target
+0x0040A720,CriticalSectionWrapper_leave,engine,observed,Exact source and imported KERNEL32 LeaveCriticalSection IAT target
+0x0040D760,vc8_vector_u32_push_back,runtime,observed,IDA Pro complete checked vector append body and one fresh-slot caller in every roster object pool
+0x0045E3A0,AttackObject_ctor,battle,observed,IDA Pro complete constructor body and sole callers Character_ctor and CharacterObject_ctor
+0x00464110,vc8_vector_pointer_push_back,runtime,observed,IDA Pro complete checked pointer-vector append body and all roster pool fresh-slot callers
+0x004B8FB0,vc8_vector_pointer_at,runtime,observed,IDA Pro checked pointer-vector access body and all roster pool slot-resolution callers
