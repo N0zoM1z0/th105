@@ -1,5 +1,6 @@
 address,lane,priority,notes
 0x004021C0,spell-assets,3,Opaque parser helper reached by the hard spell CSV parser
+0x00402A50,character-owned-object,1,Shared reusable pool node removal contract
 0x00404EC0,spell-assets,2,Single image resource loader boundary
 0x00404F30,spell-assets,2,Composite image resource builder boundary
 0x00406650,geometry,3,Exact orientation sine lookup dependency
@@ -9,6 +10,9 @@ address,lane,priority,notes
 0x00408A40,spell-assets,3,Exact VC8 std::string substring append specialization
 0x00408B40,spell-assets,3,Opaque parser cleanup or ownership helper
 0x00409AA0,fighter-init,2,Exact linked input-manager counter reset used by fighter initialization
+0x0040A710,character-owned-object,1,Shared object-pool synchronization entry helper
+0x0040A720,character-owned-object,1,Shared object-pool synchronization exit helper
+0x0040D760,character-owned-object,1,Shared fresh-slot generation publication helper
 0x0040EB20,spell-assets,2,CSV reader iteration boundary
 0x0040EE50,spell-assets,2,CSV reader field boundary
 0x0040EF50,spell-assets,2,CSV reader field boundary
@@ -73,6 +77,7 @@ address,lane,priority,notes
 0x004631E0,fighter-init,2,Second subordinate fighter initialization phase
 0x00463610,battle-phase,3,Exact active character and owned-object callback phase
 0x00463760,battle-phase,3,Exact physics status and timer commit phase
+0x00464110,character-owned-object,1,Shared object pointer-storage insertion helper
 0x00464320,fighter-init,2,Final character resource callback boundary
 0x00469E40,hit-resolution,3,Exact indexed info-manager scratch reset
 0x0046A5B0,battle-phase,3,Exact global active-character phase wrapper
@@ -116,7 +121,8 @@ address,lane,priority,notes
 0x0046D160,collision-phase,1,Hard family 2 against family 1 checked-list pass
 0x0046D370,collision-phase,1,Hard family 1 same-list and cross-list clash pass
 0x0046D620,collision-phase,1,Hard six-list collision and deferred-result orchestration
-0x00492BA0,character-owned-object,1,Reimu object-pool acquire and fresh-object initialization blocker
+0x004927D0,character-owned-object,1,Shared CharacterObject construction and common-tail initialization
+0x00492BA0,character-owned-object,1,Reimu object-pool acquire semantics
 0x00492E20,character-owned-object,1,Reimu object acquire and tracking-list insertion source
 0x00493110,character-owned-object,1,Reimu owned-object spawn contract
 0x00493300,character-command,2,Exact shared signed command gate for actions 208 through 210
@@ -130,7 +136,8 @@ address,lane,priority,notes
 0x00493A10,character-command,1,Shared mirrored counted and repeated command gate for action 203
 0x00493B00,character-command,2,Exact counted action-214 gate and direction-angle assignment
 0x00493C90,character-command,1,Shared seven-way front-record action gate
-0x004B9240,character-owned-object,1,Marisa object-pool acquire and fresh-object initialization blocker
+0x004B8FB0,character-owned-object,1,Shared checked object-slot resolver
+0x004B9240,character-owned-object,1,Marisa object-pool acquire semantics
 0x004B94E0,character-owned-object,1,Marisa object acquire and tracking-list insertion source
 0x004B9540,character-owned-object,1,Roster-wide tracked-object release and reusable-pool reset
 0x004B9860,character-owned-object,1,Marisa owned-object spawn contract
@@ -143,39 +150,39 @@ address,lane,priority,notes
 0x004DED80,character-owned-object,1,Sakuya owned-object spawn path
 0x004DEEF0,character-owned-object,2,Sakuya fighter constructor
 0x004DEF70,character-command,1,Sakuya input and action dispatcher
-0x004F9F40,character-owned-object,1,Alice object-pool acquire and fresh-object initialization blocker
+0x004F9F40,character-owned-object,1,Alice object-pool acquire semantics with 0x38C allocation trait
 0x004FA1C0,character-owned-object,1,Alice object acquire and tracking-list insertion source
 0x004FA3C0,character-owned-object,1,Alice owned-object spawn contract
-0x0051E3C0,character-owned-object,1,Patchouli object-pool acquire and fresh-object initialization blocker
+0x0051E3C0,character-owned-object,1,Patchouli object-pool acquire semantics
 0x0051E660,character-owned-object,1,Patchouli object acquire and tracking-list insertion source
 0x0051E870,character-owned-object,1,Patchouli owned-object spawn contract
-0x0053A8C0,character-owned-object,1,Youmu object-pool acquire and fresh-object initialization blocker
+0x0053A8C0,character-owned-object,1,Youmu object-pool acquire semantics
 0x0053AB60,character-owned-object,1,Youmu object acquire and tracking-list insertion source
 0x0053ADF0,character-owned-object,1,Youmu owned-object spawn contract
-0x00555690,character-owned-object,1,Remilia object-pool acquire and fresh-object initialization blocker
+0x00555690,character-owned-object,1,Remilia object-pool acquire semantics
 0x00555930,character-owned-object,1,Remilia object acquire and tracking-list insertion source
 0x00555BA0,character-owned-object,1,Remilia owned-object spawn contract
-0x0056D250,character-owned-object,1,Yuyuko object-pool acquire and fresh-object initialization blocker
+0x0056D250,character-owned-object,1,Yuyuko object-pool acquire semantics
 0x0056D4F0,character-owned-object,1,Yuyuko object acquire and tracking-list insertion source
 0x0056D6F0,character-owned-object,1,Yuyuko owned-object spawn contract
-0x0058B3A0,character-owned-object,1,Yukari object-pool acquire and fresh-object initialization blocker
+0x0058B3A0,character-owned-object,1,Yukari object-pool acquire semantics
 0x0058B640,character-owned-object,1,Yukari object acquire and tracking-list insertion source
 0x0058B840,character-owned-object,1,Yukari owned-object spawn contract
-0x005ADDE0,character-owned-object,1,Suika object-pool acquire and fresh-object initialization blocker
+0x005ADDE0,character-owned-object,1,Suika object-pool acquire semantics
 0x005AE080,character-owned-object,1,Suika object acquire and tracking-list insertion source
 0x005AE280,character-owned-object,1,Suika owned-object spawn contract
-0x005D5D60,character-owned-object,1,Udonge object-pool acquire and fresh-object initialization blocker
+0x005D5D60,character-owned-object,1,Udonge object-pool acquire semantics
 0x005D5FE0,character-owned-object,1,Udonge object acquire and tracking-list insertion source
 0x005D6200,character-owned-object,1,Udonge owned-object spawn contract
-0x005F6B20,character-owned-object,1,Komachi object-pool acquire and fresh-object initialization blocker
+0x005F6B20,character-owned-object,1,Komachi object-pool acquire semantics
 0x005F6DA0,character-owned-object,1,Komachi object acquire and tracking-list insertion source
 0x005F6FA0,character-owned-object,1,Komachi owned-object spawn contract
-0x00617420,character-owned-object,1,Aya object-pool acquire and fresh-object initialization blocker
+0x00617420,character-owned-object,1,Aya object-pool acquire semantics
 0x006176C0,character-owned-object,1,Aya object acquire and tracking-list insertion source
 0x00617930,character-owned-object,1,Aya owned-object spawn contract
-0x00630180,character-owned-object,1,Iku object-pool acquire and fresh-object initialization blocker
+0x00630180,character-owned-object,1,Iku object-pool acquire semantics
 0x00630400,character-owned-object,1,Iku object acquire and tracking-list insertion source
 0x00630600,character-owned-object,1,Iku owned-object spawn contract
-0x0064A510,character-owned-object,1,Tenshi object-pool acquire and fresh-object initialization blocker
+0x0064A510,character-owned-object,1,Tenshi object-pool acquire semantics
 0x0064A790,character-owned-object,1,Tenshi object acquire and tracking-list insertion source
 0x0064A990,character-owned-object,1,Tenshi owned-object spawn contract

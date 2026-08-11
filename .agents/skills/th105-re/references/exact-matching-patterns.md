@@ -593,6 +593,10 @@ The roster-owned object lifecycle has two canonical examples:
   rel32` operands at `+0x08`, `+0x53`, `+0x73`, and `+0x93`;
 - every 94-byte acquire-and-link body becomes identical after zeroing the three
   `CALL rel32` operands at `+0x18`, `+0x3F`, and `+0x4A`.
+- every 519-byte pool-acquire body becomes identical after zeroing its fourteen
+  `CALL rel32` operands and the two derived-vtable immediates; Alice also
+  requires its allocation-size trait to be normalized from `0x38C` to
+  `0x388`.
 
 The second family proves pool at manager `+0x04`, token at object `+0x334`,
 and tracked list at manager `+0x54`. One shared source body faithfully emits
@@ -607,6 +611,14 @@ Record genuine outliers separately: Alice's fresh object allocation is
 `0x38C`, while the other fourteen are `0x388`; that difference belongs to the
 pool fresh path and must not be erased merely because Alice's spawn and
 acquire-and-link instruction templates normalize with the roster.
+
+The pool family demonstrates the stop condition for source emission. Its
+fresh/reuse behavior, packed token, object initializer, and every per-character
+trait are complete, but pool members `+0x04/+0x14/+0x18/+0x24/+0x34` still
+lack truthful container and synchronization types. Keep these functions
+`decompiled` until those shared helper contracts exist; an opaque-byte struct
+plus raw pointer arithmetic would document pseudocode, not reconstruct the C++
+ownership and EH behavior that generated the target.
 
 ## Hard-function strategy
 

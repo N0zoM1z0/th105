@@ -79,6 +79,7 @@ TH10.5
     ├── fifteen owned-object spawn families [contracted]
     │   ├── one normalized 237-byte ABI/template
     │   ├── fifteen normalized acquire-and-link entries [source-ready]
+    │   ├── fifteen normalized pool fresh/reuse entries [semantics-ready]
     │   ├── fourteen roster spawn entries [decompiled]
     │   └── Sakuya spawn source [source-ready]
     └── Sakuya fighter pilot [mapped]
@@ -97,8 +98,9 @@ platform/runtime. Their module boundaries are listed in `docs/ARCHITECTURE.md`.
 
 1. **Roster character pilots.** All fifteen owned-object spawn entries now have
    one proven ABI and normalized instruction template; Sakuya supplies the
-   source body, and all fifteen acquire-and-link helpers have one source-ready
-   body. Recover the fourteen pool fresh/reuse paths without hiding Alice's
+   source body, all fifteen acquire-and-link helpers have one source-ready
+   body, and all pool fresh/reuse paths are semantics-ready. Recover their
+   shared container/lock/constructor dependencies without hiding Alice's
    `0x38C` allocation exception, then emit the shared spawn pattern and split
    spell/skill decision leaves under each fighter dispatcher.
 2. **PAT record semantics.** `0x00462050` now has target-sized complete source,
@@ -144,6 +146,10 @@ shared owned-object lifecycle [contracted]
 ├── fifteen 94-byte acquire-and-link entries [source-ready]
 │   ├── normalized token/list contract
 │   └── fourteen roster functions emitted from one shared source body
+├── fifteen 519-byte pool fresh/reuse entries [semantics-ready]
+│   ├── low16 slot / high16 generation token contract
+│   ├── Alice 0x38C allocation trait; all others 0x388
+│   └── shared pool-container/lock/constructor helpers [seed]
 └── Sakuya fighter pilot [source-ready]
     ├── 0x004DE8E0 pool acquire [contracted]
     ├── 0x004DEB80 acquire and link [source-ready]

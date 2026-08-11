@@ -139,6 +139,27 @@ probe and preserving the complete semantics; the common remaining four-byte
 difference is register allocation and address-taken-local scheduling. These
 rows are `implemented`, not `matching`.
 
+The pool-acquire column is also one 519-byte fresh/reuse template. Normalizing
+the fourteen `CALL rel32` operands at `+0x31`, `+0x7F`, `+0x98`, `+0xD8`,
+`+0xF1`, `+0x108`, `+0x112`, `+0x14C`, `+0x15E`, `+0x17C`, `+0x18D`,
+`+0x1A7`, `+0x1D8`, and `+0x1EB`, plus vtable immediates at `+0xBF` and
+`+0x1CB`, gives SHA-256
+`e32ec446ed55edd7ad233b42d9f892a2a81288e355bc0a2136864aac6fd55024`
+for every non-Alice fighter. Alice becomes identical after additionally
+parameterizing the allocation immediate at `+0x76`, `0x38C` instead of
+`0x388`.
+
+Fresh and reuse paths both increment the dword at pool `+0x30` with wrap to
+one after `0xFFFF`, publish a token as low-16 slot/high-16 generation, call the
+shared object constructor at `0x004927D0`, zero object
+`+0x34C/+0x354/+0x358/+0x35C/+0x360`, and install the character vtable. The
+pool view also exposes storage at `+0x04`, a generation range at `+0x18`, a
+reusable-node container at `+0x24`, and a synchronization member at `+0x34`.
+All fourteen roster rows are now `decompiled`. Source waits on the truthful
+contracts of `0x0040A710/20`, `0x00464110`, `0x0040D760`, `0x00402A50`,
+`0x004B8FB0`, and the complete `CharacterObject` constructor rather than on
+any unresolved per-character behavior.
+
 ## Sakuya pilot
 
 Sakuya's constructor at `0x004DEEF0` has one explicit base argument, calls the
@@ -215,9 +236,10 @@ field-load/register order.
 
 ## Next waves
 
-1. Recover the fourteen pool-acquire functions in the roster matrix. Their
-   reuse/fresh branches are now the direct blocker for complete per-character
-   object allocation and for the shared emitted spawn template.
+1. Recover the shared pool storage, reuse-list, generation-range, lock, and
+   `CharacterObject` constructor helpers listed above. These are the direct
+   blockers for emitting all fifteen pool-acquire functions from one source
+   template.
 2. Split Sakuya's complete `0x004DEF70` matrix into source-backed spell, skill,
    and normal-action blocks, beginning with the spell-record `600..609/656`
    selector because it links parser data directly to character behavior.
