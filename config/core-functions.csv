@@ -171,12 +171,14 @@ address,lane,priority,notes
 0x004FC0B0,character-command,2,Alice target and position update leaf
 0x004FC350,character-owned-object,1,Exact all-roster unparented related-object spawn adapter with 1026 direct calls
 0x004FC3A0,character-owned-object,1,Exact shared related-object heading tracker used across 14 roster families
+0x004FC4E0,character-owned-object,1,Exact shared state-six phase counter transition with 261 calls across 13 roster roots
 0x0051C5C0,character-command,2,Patchouli sequence-driven action lifecycle
 0x0051D140,character-command,1,Patchouli action-change root
 0x0051E3C0,character-owned-object,1,Patchouli object-pool acquire semantics
 0x0051E660,character-owned-object,1,Patchouli object acquire and tracking-list insertion source
 0x0051E870,character-owned-object,1,Patchouli owned-object spawn contract
 0x0051EA60,character-command,1,Patchouli spell skill and normal input dispatcher
+0x005203B0,character-owned-object,1,Exact shared state-4-or-8 phase counter transition with 101 calls across 14 roster roots
 0x0052F950,character-command,2,Patchouli event-code action bridge
 0x005397E0,character-command,2,Youmu sequence-driven action lifecycle
 0x00539D70,character-command,1,Youmu action-change root

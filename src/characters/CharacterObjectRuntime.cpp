@@ -37,4 +37,35 @@ unsigned char CharacterObjectRuntime::advance_frame_and_dispatch()
     return 0;
 }
 
+unsigned char CharacterObjectRuntime::advance_state_six_counter_conditional(
+    int limit)
+{
+    if (phase_state_180 != 6) {
+        goto return_zero;
+    }
+    ++state_six_counter_384;
+    if (limit <= 0 || state_six_counter_384 < limit) {
+        ++phase_index_184;
+        phase_state_180 = 0;
+        goto return_zero;
+    }
+    return 1;
+
+return_zero:
+    return 0;
+}
+
+unsigned char CharacterObjectRuntime::advance_phase_counter_conditional(int limit)
+{
+    if (phase_state_180 == 4 || phase_state_180 == 8) {
+        ++phase_counter_386;
+        if (limit > 0 && phase_counter_386 >= limit) {
+            return 1;
+        }
+        ++phase_index_184;
+        phase_state_180 = 0;
+    }
+    return 0;
+}
+
 } // namespace th105

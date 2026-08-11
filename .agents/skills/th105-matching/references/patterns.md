@@ -230,6 +230,14 @@ strict COMDAT boundary before claiming byte progress.
 
 ## 8. LTCG and private-ABI stop conditions
 
+Small action-state helpers can require a shared false epilogue even when an
+early return is clearer. At `0x004FC4E0`, spelling both false cases as `goto`
+to one final `return 0` keeps VC8's `push esi` before the initial state branch
+and reproduces the target 66/66 bytes. The analogous state-4-or-8 helper at
+`0x005203B0` instead needs an outer conditional and one shared final return to
+produce its 73/73-byte register lifetime. Preserve the target control-flow
+merge when shrink-wrapping changes prologue placement.
+
 Stop standalone-object tuning when evidence indicates that the remaining difference depends on:
 
 - cross-function inlining or whole-program commoning;
