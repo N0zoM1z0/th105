@@ -293,6 +293,28 @@ sequence-advance worker then used the real CSprite destructor to move
 prefix. These are not disconnected leaves: each result sharpens a shared type
 or ownership boundary used by larger setup, scenario, or spell-runtime bodies.
 
+Breadth then advanced immediately through that corrected type. The next four
+previously unclassified functions were identified as full-envelope copy
+construction plus forward, backward, and fill algorithms over 0x50-byte fixed
+setup ranges (`0x0042ADD0` and `0x0042AE50/AEA0/AEF0`). Their edges terminate in
+the already exact deque copy/tidy and envelope assignment gates. This is the
+preferred expansion shape: one exact ownership island turns several anonymous
+neighbors into typed compiler/container contracts before exact workers tune
+their callers.
+
+Exact shaping on the adjacent scenario parser also benefited from the stronger
+contracts: target-like selected-value reuse and a remaining-row loop reduced
+`0x004591D0` from 538 to 518 bytes against 516, while preserving every resolved
+relocation. The sole leading delta remains the four-byte VC8 `/GS`/EH frame
+allocation, so the packet is now a two-byte tail-size problem rather than a
+twenty-two-byte structural gap.
+
+The same retuning cycle moved the paired fixed-slot transfers from 288/305 and
+292/332 to 302/305 and exact-size 332/332 while preserving exact selector
+`0x004275E0`. Their first differences are now early empty-container branch
+displacements (`+0x0C` and `+0x1F`), which isolates the remaining work to the
+original container/TU register schedule rather than payload semantics.
+
 ## Operational loop
 
 ```bash

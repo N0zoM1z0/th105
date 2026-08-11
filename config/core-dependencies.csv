@@ -41,6 +41,11 @@ caller,callee,required_status,evidence
 0x0042ABF0,0x004275E0,matching,Exact checked fixed-slot selector dependency
 0x0042ABF0,0x0042A7B0,library,Exact native VC8 std::deque<short> assignment dependency
 0x0042AA00,0x0042A7B0,library,Exact native VC8 deque assignment used for all three envelope payloads
+0x0042ADD0,0x0042A8E0,library,Exact native VC8 deque copy constructor used for all three owning payloads
+0x0042ADD0,0x0051D0D0,library,Exact COMDAT-folded deque cleanup passed to the EH vector copy helper
+0x0042AE50,0x0042AA00,matching,Exact envelope assignment inside the forward range loop
+0x0042AEA0,0x0042AA00,matching,Exact envelope assignment inside the backward range loop
+0x0042AEF0,0x0042AA00,matching,Exact envelope assignment inside the fill loop
 0x00421310,0x00433B90,matching,IDA Pro sole direct reset_fighter_action_scratch dependency
 0x0042C100,0x00439860,matching,docs/BATTLE.md observed mode gate
 0x0042C100,0x00439C90,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10

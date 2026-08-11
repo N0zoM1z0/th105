@@ -109,41 +109,54 @@ void BattleInputGate::save_battle_setup_slot(
 
     BattleInputGateSetupView *owner =
         reinterpret_cast<BattleInputGateSetupView *>(this);
-    int count = 0;
-    if (owner->slots_f4.begin_04 != 0) {
-        count = owner->slots_f4.end_08 - owner->slots_f4.begin_04;
-    }
-    if (slot > count) {
+    if (slot > static_cast<signed char>(
+                   owner->slots_f4.begin_04 != 0
+                       ? owner->slots_f4.end_08 - owner->slots_f4.begin_04
+                       : 0)) {
         return;
     }
 
-    FixedBattleSetupSlotView *saved =
-        owner->slots_f4.select_slot_4275e0(slot);
-    owner->selected_slot_104 = saved;
-    const MatchSetupSideView *source =
-        reinterpret_cast<const MatchSetupView *>(setup)->sides_08;
-    for (int side = 0, payload_offset = 0;
-         payload_offset < 0x28;
-         payload_offset += 0x14, ++side, ++source) {
-        saved->side_value_lo_00[side] = source->value_00;
-        saved->side_byte_05_02[side] = source->byte_05;
-        saved->payload_08[side] = source->payload_08;
-        saved->side_byte_04_06[side] = source->byte_04;
-        saved->side_byte_06_04[side] = source->byte_06;
-        if (source->token_1c != 0) {
-            saved->token_tag_30[side] = source->token_1c->tag_04;
-            owner->retained_token_values_00[side] = source->token_1c->value_00;
+    owner->selected_slot_104 = owner->slots_f4.select_slot_4275e0(slot);
+    int side = 0;
+    int payload_offset = 0;
+    const unsigned char *source =
+        reinterpret_cast<const unsigned char *>(setup) + 0x0d;
+    for (; payload_offset < 0x28;
+         payload_offset += 0x14, ++side, source += 0x20) {
+        reinterpret_cast<unsigned char *>(owner->selected_slot_104)[side] =
+            source[-5];
+        reinterpret_cast<unsigned char *>(owner->selected_slot_104)[side + 2] =
+            source[0];
+        *reinterpret_cast<SidePayloadView *>(
+            reinterpret_cast<unsigned char *>(owner->selected_slot_104) +
+            payload_offset + 8) =
+            *reinterpret_cast<const SidePayloadView *>(source + 3);
+        reinterpret_cast<unsigned char *>(owner->selected_slot_104)[side + 6] =
+            source[-1];
+        reinterpret_cast<unsigned char *>(owner->selected_slot_104)[side + 4] =
+            source[1];
+        if (*reinterpret_cast<SetupTokenInput *const *>(source + 0x17) != 0) {
+            reinterpret_cast<unsigned char *>(owner->selected_slot_104)
+                [side + 0x30] =
+                (*reinterpret_cast<SetupTokenInput *const *>(source + 0x17))
+                    ->tag_04;
+            owner->retained_token_values_00[side] =
+                (*reinterpret_cast<SetupTokenInput *const *>(source + 0x17))
+                    ->value_00;
         } else {
             owner->retained_token_values_00[side] = 0;
         }
     }
 
-    const MatchSetupView *source_setup =
-        reinterpret_cast<const MatchSetupView *>(setup);
-    saved->tail_32 = source_setup->terminal_00;
-    saved->tail_33 = source_setup->terminal_04;
-    saved->tail_34 = source_setup->terminal_05;
-    saved->tail_dword_38 = source_setup->terminal_dword_48;
+    owner->selected_slot_104->tail_32 =
+        *reinterpret_cast<const unsigned char *>(setup);
+    owner->selected_slot_104->tail_33 =
+        *(reinterpret_cast<const unsigned char *>(setup) + 4);
+    owner->selected_slot_104->tail_34 =
+        *(reinterpret_cast<const unsigned char *>(setup) + 5);
+    owner->selected_slot_104->tail_dword_38 =
+        *reinterpret_cast<const unsigned *>(
+            reinterpret_cast<const unsigned char *>(setup) + 0x48);
     if (slot > owner->maximum_saved_slot_140) {
         owner->maximum_saved_slot_140 = slot;
     }
@@ -159,46 +172,61 @@ void BattleInputGate::load_battle_setup_slot(
 
     BattleInputGateSetupView *owner =
         reinterpret_cast<BattleInputGateSetupView *>(this);
-    int count = 0;
-    if (owner->slots_f4.begin_04 != 0) {
-        count = owner->slots_f4.end_08 - owner->slots_f4.begin_04;
-    }
-    if (slot > count) {
+    FixedSlotStoreView *slots = &owner->slots_f4;
+    if (slot > static_cast<signed char>(
+                   slots->begin_04 != 0
+                       ? slots->end_08 - slots->begin_04
+                       : 0)) {
         return;
     }
 
-    FixedBattleSetupSlotView *saved =
-        owner->slots_f4.select_slot_4275e0(slot);
+    owner->selected_slot_104 = slots->select_slot_4275e0(slot);
     owner->loaded_slot_141 = slot;
-    owner->selected_slot_104 = saved;
-    MatchSetupSideView *destination =
-        reinterpret_cast<MatchSetupView *>(setup)->sides_08;
+    unsigned char *destination =
+        reinterpret_cast<unsigned char *>(setup) + 0x0d;
     SavedTokenMetadata *metadata = owner->saved_tokens_d8;
     for (int side = 0, payload_offset = 0;
          payload_offset < 0x28;
-         payload_offset += 0x14, ++side, ++destination, ++metadata) {
-        destination->value_00 =
-            static_cast<signed char>(saved->side_value_lo_00[side]);
-        destination->byte_05 = saved->side_byte_05_02[side];
-        destination->payload_08 = saved->payload_08[side];
-        destination->byte_04 = saved->side_byte_04_06[side];
-        destination->byte_06 = saved->side_byte_06_04[side];
+         payload_offset += 0x14, ++side, destination += 0x20, ++metadata) {
+        *reinterpret_cast<int *>(destination - 5) =
+            static_cast<signed char>(
+                reinterpret_cast<unsigned char *>(owner->selected_slot_104)
+                    [side]);
+        destination[0] =
+            reinterpret_cast<unsigned char *>(owner->selected_slot_104)
+                [side + 2];
+        *reinterpret_cast<SidePayloadView *>(destination + 3) =
+            *reinterpret_cast<SidePayloadView *>(
+                reinterpret_cast<unsigned char *>(owner->selected_slot_104) +
+                payload_offset + 8);
+        destination[-1] =
+            reinterpret_cast<unsigned char *>(owner->selected_slot_104)
+                [side + 6];
+        destination[1] =
+            reinterpret_cast<unsigned char *>(owner->selected_slot_104)
+                [side + 4];
         if ((owner->saved_token_mask_f0 & (1 << side)) != 0) {
-            metadata->tag_04 = saved->token_tag_30[side];
-            destination->token_1c =
-                reinterpret_cast<SetupTokenInput *>(metadata);
+            metadata->tag_04 =
+                reinterpret_cast<unsigned char *>(owner->selected_slot_104)
+                    [side + 0x30];
+            *reinterpret_cast<SetupTokenInput **>(destination + 0x17) =
+                ((owner->saved_token_mask_f0 & (1 << side)) != 0)
+                    ? reinterpret_cast<SetupTokenInput *>(metadata)
+                    : 0;
         } else {
-            destination->token_1c = 0;
+            *reinterpret_cast<SetupTokenInput **>(destination + 0x17) = 0;
         }
     }
 
-    MatchSetupView *destination_setup =
-        reinterpret_cast<MatchSetupView *>(setup);
-    destination_setup->terminal_00 =
-        static_cast<signed char>(saved->tail_32);
-    destination_setup->terminal_04 = saved->tail_33;
-    destination_setup->terminal_05 = saved->tail_34;
-    destination_setup->terminal_dword_48 = saved->tail_dword_38;
+    *reinterpret_cast<int *>(setup) = static_cast<signed char>(
+        owner->selected_slot_104->tail_32);
+    *(reinterpret_cast<unsigned char *>(setup) + 4) =
+        owner->selected_slot_104->tail_33;
+    *(reinterpret_cast<unsigned char *>(setup) + 5) =
+        owner->selected_slot_104->tail_34;
+    *reinterpret_cast<unsigned *>(
+        reinterpret_cast<unsigned char *>(setup) + 0x48) =
+        owner->selected_slot_104->tail_dword_38;
 }
 
 } // namespace th105

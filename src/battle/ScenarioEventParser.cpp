@@ -25,6 +25,11 @@ struct ScenarioEventParserView {
     std::list<int> destination_values_5a4;
 };
 
+union ScenarioEventSelectedValue {
+    int integer;
+    short short_value;
+};
+
 typedef char ScenarioEventParserView_selected_column_offset_must_be_0x590[
     offsetof(ScenarioEventParserView, selected_column_590) == 0x590 ? 1 : -1];
 typedef char ScenarioEventParserView_source_values_offset_must_be_0x598[
@@ -34,36 +39,40 @@ typedef char ScenarioEventParserView_destination_values_offset_must_be_0x5a4[
 
 void BattlePhaseBlock::parse_scenario_event_row_4591d0(void *destination)
 {
+    ScenarioEventDestinationView &output = *
+        static_cast<ScenarioEventDestinationView *>(destination);
     ScenarioEventParserView *state =
         reinterpret_cast<ScenarioEventParserView *>(this);
-    ScenarioEventDestinationView *output =
-        static_cast<ScenarioEventDestinationView *>(destination);
 
     state->reader_038.next_int();
     String28 event_name;
     state->reader_038.next_string(&event_name);
-    output->event_code_00 = resolve_scenario_event_name(
+    output.event_code_00 = resolve_scenario_event_name(
         String28(event_name, 0, static_cast<unsigned int>(-1)));
     int row_count = state->reader_038.next_int();
     state->reader_038.advance_row();
 
-    output->selected_values_08.clear_storage();
+    output.selected_values_08.clear_storage();
     state->destination_values_5a4.clear();
     state->source_values_598.clear();
 
-    for (int row = 0; row < row_count; ++row) {
-        int selected_value = 0;
-        for (int column = 0; column < 4; ++column) {
-            int value = state->reader_038.next_int();
-            if (column == state->selected_column_590) {
-                selected_value = value;
+    if (row_count > 0) {
+        do {
+            ScenarioEventSelectedValue selected_value;
+            selected_value.integer = 0;
+            for (int column = 0; column < 4; ++column) {
+                int value = state->reader_038.next_int();
+                if (column == state->selected_column_590) {
+                    selected_value.integer = value;
+                }
             }
-        }
 
-        short selected_short = static_cast<unsigned short>(selected_value);
-        output->selected_values_08.push_back(&selected_short);
-        state->source_values_598.push_back(state->reader_038.next_int());
-        state->reader_038.advance_row();
+            selected_value.integer = static_cast<unsigned short>(
+                selected_value.integer);
+            output.selected_values_08.push_back(&selected_value.short_value);
+            state->source_values_598.push_back(state->reader_038.next_int());
+            state->reader_038.advance_row();
+        } while (--row_count);
     }
 
     if (&state->destination_values_5a4 != &state->source_values_598) {

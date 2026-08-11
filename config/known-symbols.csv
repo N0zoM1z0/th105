@@ -114,6 +114,10 @@ address,name,module,confidence,evidence
 0x0042A7B0,std_deque_short_assign,runtime,observed,Strict exact native VC8 std::deque<short>::operator= probe and fixed setup save/load call sites
 0x0042A8E0,std_deque_short_copy_ctor,runtime,observed,Strict exact native VC8 std::deque<short> copy-constructor probe with target GS and EH mapping
 0x0042AA00,FixedSlotEnvelope_assign,battle,observed,Strict exact 0x50-byte envelope deep assignment with three native deque<short> members
+0x0042ADD0,FixedSlotEnvelope_copy_ctor,battle,observed,IDA Pro complete copy path uses EH vector helper and exact deque short copy constructor for the three owning payloads
+0x0042AE50,assign_fixed_slot_envelope_range_forward,runtime,observed,IDA Pro complete forward 0x50-stride range assignment loop through exact 0x0042AA00
+0x0042AEA0,assign_fixed_slot_envelope_range_backward,runtime,observed,IDA Pro complete backward 0x50-stride range assignment loop through exact 0x0042AA00
+0x0042AEF0,fill_fixed_slot_envelope_range,runtime,observed,IDA Pro complete 0x50-stride fill loop through exact 0x0042AA00
 0x0042AAB0,BattleInputGate_save_battle_setup_slot,battle,observed,Complete authored fixed-slot save and exact checked selector dependency
 0x0042ABF0,BattleInputGate_load_battle_setup_slot,battle,observed,Complete authored inverse fixed-slot load and exact checked selector dependency
 0x0042C100,update_observed_record_statistics,config,inferred,docs/BATTLE.md observed existing-record count and signed high-water update

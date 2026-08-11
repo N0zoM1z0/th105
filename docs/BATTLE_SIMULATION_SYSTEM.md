@@ -190,11 +190,21 @@ two 0x14 `std::deque<short>` payloads. The envelope also owns a third deque at
 `+0x3C`; the exact 297/297 native VC8 assignment at `0x0042A7B0` replaced the
 earlier opaque side-payload hypothesis. The `/GS` copy constructor at
 `0x0042A8E0` is now native-library exact at 236/236, and the full envelope
-assignment `0x0042AA00` is authored exact at 162/162. Their authored save/load bodies
-emit 288/305 and 292/332 bytes with clean relocations, while the shared checked
-slot selector `0x004275E0` is exact at 60/60. Their remaining shared blocker is
+assignment `0x0042AA00` is authored exact at 162/162. Retuning their authored
+save/load bodies with the real deque and envelope contracts improves them to
+302/305 (first delta `+0x0C`) and exact-size 332/332 (first delta `+0x1F`),
+while the shared checked slot selector `0x004275E0` remains exact at 60/60.
+Their remaining shared blocker is
 the original fixed-slot container/TU register lifetime, so the layout is
 durable while exact tuning remains bounded as a pair.
+
+The next ownership layer is now structurally complete. `0x0042ADD0` copy-
+constructs a full envelope, using the VC8 EH vector-copy helper for the two
+adjacent setup deques and the exact native copy constructor for the third deque.
+The neighboring `0x0042AE50`, `0x0042AEA0`, and `0x0042AEF0` are respectively
+forward assignment, backward overlap-safe assignment, and fill algorithms over
+0x50-byte envelope ranges. All three call exact `0x0042AA00`; their callers now
+form bounded container-growth packets instead of opaque setup helpers.
 
 The scenario dispatch at `0x00458E80` is a receiver-bearing `__thiscall`, not
 the earlier free `__stdcall` hypothesis. Its shared `ScenarioTransitionView`
@@ -205,7 +215,8 @@ comparison results.
 The adjacent event-row parser `0x004591D0` now has complete authored source.
 It resolves an owning event-name string through `0x0043AC30`, clears the output
 short deque and the two internal integer lists, selects one of four CSV columns,
-and mirrors the newly read integer list. Its strict object is 538 bytes against
+and mirrors the newly read integer list. A four-byte selected-value union and
+remaining-row loop now reduce its strict object from 538 to 518 bytes against
 the 516-byte ledger span, with every relocation resolved; the first delta at
 `+0x10` is the VC8 `/GS` frame size, while IDA's 543-byte grouping remains
 non-authoritative.

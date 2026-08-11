@@ -51,6 +51,10 @@ address,lane,priority,notes
 0x0042AA00,battle-controller,2,Exact full fixed-slot envelope deep assignment with three deque payloads
 0x0042AAB0,battle-controller,1,Shared setup dependency reached by controller initialization and roster preparation
 0x0042ABF0,battle-controller,1,Shared setup dependency reached by controller initialization and roster preparation
+0x0042ADD0,battle-controller,2,Complete fixed-slot envelope copy construction with three owning deques
+0x0042AE50,battle-controller,3,Forward fixed-slot envelope range assignment helper
+0x0042AEA0,battle-controller,3,Backward fixed-slot envelope range assignment helper
+0x0042AEF0,battle-controller,3,Fixed-slot envelope range fill helper
 0x0042B5D0,battle-controller,2,Session character-input configuration reached by exact setup
 0x0042C060,score,2,Score result tuple lookup and tally reached by exact sequence finalization
 0x0042C100,score,1,Observed record count and high-water update
