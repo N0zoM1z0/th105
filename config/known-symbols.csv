@@ -274,6 +274,9 @@ address,name,module,confidence,evidence
 0x004DEEF0,Sakuya_ctor,characters,observed,Exact constructor instructions and sole 0x004632D0 fighter-factory caller
 0x004DEF70,Sakuya_handle_input_and_select_action,characters,observed,docs/EVIDENCE.md Sakuya dispatcher data flow and runtime actions
 0x004B9A60,Marisa_handle_input_and_select_action,characters,observed,Marisa fighter vtable slot +0x50 and grounded spell skill and normal action groups
+0x004FA5C0,Alice_handle_input_and_select_action,characters,observed,Alice fighter vtable slot +0x50 and grounded spell skill and normal action groups
+0x0051EA60,Patchouli_handle_input_and_select_action,characters,observed,Patchouli fighter vtable slot +0x50 and grounded spell skill and normal action groups
+0x0053B040,Youmu_handle_input_and_select_action,characters,observed,Youmu fighter vtable slot +0x50 and grounded spell skill and normal action groups
 0x004F9F40,AliceObjectPool_acquire,characters,observed,IDA Pro complete normalized 519-byte fresh/reuse pool path and 0x38C allocation exception
 0x004FA1C0,AliceObjectManagerBase_acquire_and_link_object,characters,observed,IDA Pro normalized roster-owned 94-byte acquire-and-link template
 0x004FA3C0,AliceObjectManager_spawn_object,characters,observed,IDA Pro normalized roster-owned 237-byte spawn template and 0x38C fresh allocation exception

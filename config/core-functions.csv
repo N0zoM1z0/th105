@@ -158,13 +158,25 @@ address,lane,priority,notes
 0x004DEF70,character-command,1,Sakuya input and action dispatcher
 0x004F9F40,character-owned-object,1,Alice object-pool acquire semantics with 0x38C allocation trait
 0x004FA1C0,character-owned-object,1,Alice object acquire and tracking-list insertion source
+0x004FA2B0,character-owned-object,2,Alice typed object-manager capacity fill and cleanup
 0x004FA3C0,character-owned-object,1,Alice owned-object spawn contract
+0x004FA530,character-command,2,Alice fighter constructor and owned-manager boundary
+0x004FA5C0,character-command,1,Alice spell skill and normal input dispatcher
+0x004FC0B0,character-command,2,Alice target and position update leaf
+0x0051C5C0,character-command,2,Patchouli sequence-driven action lifecycle
+0x0051D140,character-command,1,Patchouli action-change root
 0x0051E3C0,character-owned-object,1,Patchouli object-pool acquire semantics
 0x0051E660,character-owned-object,1,Patchouli object acquire and tracking-list insertion source
 0x0051E870,character-owned-object,1,Patchouli owned-object spawn contract
+0x0051EA60,character-command,1,Patchouli spell skill and normal input dispatcher
+0x0052F950,character-command,2,Patchouli event-code action bridge
+0x005397E0,character-command,2,Youmu sequence-driven action lifecycle
+0x00539D70,character-command,1,Youmu action-change root
 0x0053A8C0,character-owned-object,1,Youmu object-pool acquire semantics
 0x0053AB60,character-owned-object,1,Youmu object acquire and tracking-list insertion source
 0x0053ADF0,character-owned-object,1,Youmu owned-object spawn contract
+0x0053B040,character-command,1,Youmu spell skill and normal input dispatcher
+0x005448A0,character-command,2,Youmu event-code action bridge
 0x00555690,character-owned-object,1,Remilia object-pool acquire semantics
 0x00555930,character-owned-object,1,Remilia object acquire and tracking-list insertion source
 0x00555BA0,character-owned-object,1,Remilia owned-object spawn contract

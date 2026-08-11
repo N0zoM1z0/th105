@@ -11,12 +11,12 @@ recovered original names.  Raw offsets exclude the preceding RTTI locator.
 
 | Fighter | vtable | `+0x28` | `+0x3C` action change | `+0x44` | `+0x50` input/action | `+0x5C` | `+0x60` | State |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| Reimu | `0x006B013C` | `0x004787B0` | `0x00491480` | `0x00491410` | `0x00494050` | `0x00490C60` | `0x004A2A50` | seed |
-| Marisa | `0x006B0594` | `0x004A2F40` | `0x004B81F0` | `0x004B81B0` | `0x004B9A60` | `0x004B7AB0` | `0x004CA440` | seed |
+| Reimu | `0x006B013C` | `0x004787B0` | `0x00491480` | `0x00491410` | `0x00494050` | `0x00490C60` | `0x004A2A50` | mapped |
+| Marisa | `0x006B0594` | `0x004A2F40` | `0x004B81F0` | `0x004B81B0` | `0x004B9A60` | `0x004B7AB0` | `0x004CA440` | mapped |
 | Sakuya | `0x006B0924` | `0x004CA870` | `0x004DDB20` | `0x004DDAF0` | `0x004DEF70` | `0x004DD2A0` | `0x004E9610` | mapped |
-| Alice | `0x006B0BEC` | `0x004E9A20` | `0x004F9320` | `0x004F92D0` | `0x004FA5C0` | `0x004F88D0` | `0x0050E780` | seed |
-| Patchouli | `0x006B0EBC` | `0x0050EC80` | `0x0051D140` | `0x0051D070` | `0x0051EA60` | `0x0051C5C0` | `0x0052F950` | seed |
-| Youmu | `0x006B1154` | `0x0052FDA0` | `0x00539D70` | `0x00539D00` | `0x0053B040` | `0x005397E0` | `0x005448A0` | seed |
+| Alice | `0x006B0BEC` | `0x004E9A20` | `0x004F9320` | `0x004F92D0` | `0x004FA5C0` | `0x004F88D0` | `0x0050E780` | mapped |
+| Patchouli | `0x006B0EBC` | `0x0050EC80` | `0x0051D140` | `0x0051D070` | `0x0051EA60` | `0x0051C5C0` | `0x0052F950` | mapped |
+| Youmu | `0x006B1154` | `0x0052FDA0` | `0x00539D70` | `0x00539D00` | `0x0053B040` | `0x005397E0` | `0x005448A0` | mapped |
 | Remilia | `0x006B13D4` | `0x00544D40` | `0x00554A00` | `0x00616680` | `0x00555D90` | `0x005544A0` | `0x0055CFD0` | seed |
 | Yuyuko | `0x006B165C` | `0x0055D4A0` | `0x0056C490` | `0x0056C460` | `0x0056D8E0` | `0x0056BDC0` | `0x0057A5C0` | seed |
 | Yukari | `0x006B18DC` | `0x0057AA60` | `0x00589F20` | `0x00589EA0` | `0x0058BBA0` | `0x00588DF0` | `0x00597B20` | seed |
@@ -249,6 +249,21 @@ include Reimu `600/601/606/608/609/610/614/619`, Marisa `600..619` with an
 alternate `658` branch, and Sakuya `600..609/656`. These action IDs and call
 orders are facts; spell/skill labels remain inferred from the surrounding
 record and command data flow.
+
+The next three vtable `+0x50` roots are now bounded as well:
+
+| Fighter | Dispatcher size | Front-record spell mapping | 500-series shared phase calls | Next character-specific roots |
+| --- | ---: | --- | ---: | --- |
+| Alice | 6677 | records `200..209` -> actions `600..609` | 31 calls plus one tail edge | `0x004FA2B0`, `0x004FA530`, `0x004FC0B0` |
+| Patchouli | 6351 | `200..207/210` -> `600..607/610`; `201` also -> `651` | 25 calls | `0x0051C5C0`, `0x0051D140`, `0x0052F950` |
+| Youmu | 6017 | records `200..207` -> actions `600..607` | 23 calls plus two tail edges | `0x005397E0`, `0x00539D70`, `0x005448A0` |
+
+Each dispatcher has exactly two `0x0045BBB0` sites and one `0x00493C90`
+site. Their skill trees use command word `+0x728`, derived gates in the
+`+0x605..+0x611` range, and per-family latches beginning at `+0x754`, but the
+action priorities differ. The tables above therefore support one shared
+control skeleton with character traits; they do not support copying one
+fighter's action map into another.
 
 The Sakuya manager's raw primary-vtable slot `+0x04` is `0x004DED80`, a complete object-spawn
 boundary. It obtains a new Sakuya object from the manager base at `+0x04`,
