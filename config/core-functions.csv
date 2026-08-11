@@ -47,12 +47,14 @@ address,lane,priority,notes
 0x0042A370,battle-controller,2,Packed 16-bit control queue publication helper
 0x0042A560,battle-controller,2,Exact local packed-control collection and publication phase
 0x0042A7B0,battle-controller,1,Exact native VC8 deque<short> assignment shared by all 0x14-byte setup payloads
+0x0042A8E0,battle-controller,2,Exact native VC8 deque<short> copy constructor used by fixed setup ownership paths
+0x0042AA00,battle-controller,2,Exact full fixed-slot envelope deep assignment with three deque payloads
 0x0042AAB0,battle-controller,1,Shared setup dependency reached by controller initialization and roster preparation
 0x0042ABF0,battle-controller,1,Shared setup dependency reached by controller initialization and roster preparation
 0x0042B5D0,battle-controller,2,Session character-input configuration reached by exact setup
 0x0042C060,score,2,Score result tuple lookup and tally reached by exact sequence finalization
 0x0042C100,score,1,Observed record count and high-water update
-0x0042D240,spell-data,2,Recursive SpellTree subtree destruction with owning-string cleanup
+0x0042D240,spell-data,2,Complete recursive SpellTree subtree destruction with owning-string cleanup
 0x00430C30,spell-runtime,3,Exact checked front access for a short deque-like container
 0x00430C80,spell-data,2,Post-load spell data finalization contract
 0x00430D90,spell-runtime,2,Spell record selector contract
@@ -98,7 +100,7 @@ address,lane,priority,notes
 0x0043A290,battle-controller,2,UI selection-state change gate used by the central frame dispatcher
 0x0043A4B0,battle-controller,2,Asynchronous scene-load transition helper
 0x0043ABE0,spell-data,2,Character key to path component contract
-0x0043AC30,battle-controller,2,Scenario event-name to integer identifier lookup reached by the event-row parser
+0x0043AC30,battle-controller,2,Exact scenario event-name to integer identifier lookup reached by the event-row parser
 0x0043AD10,battle-controller,2,Character-to-stage selector reached by exact fallback setup
 0x0043AD60,battle-controller,2,Character-to-BGM selector reached by exact fallback setup
 0x0043B6D0,battle-controller,2,BGM playback boundary reached by exact fallback setup
@@ -296,7 +298,7 @@ address,lane,priority,notes
 0x004FC3A0,character-owned-object,1,Exact shared related-object heading tracker used across 14 roster families
 0x004FC4E0,character-owned-object,1,Exact shared state-six phase counter transition with 261 calls across 13 roster roots
 0x0051C5C0,character-command,2,Patchouli sequence-driven action lifecycle
-0x0051D0D0,battle-controller,2,Native short-deque storage clear used by scenario event-row loading
+0x0051D0D0,battle-controller,2,Exact COMDAT-folded VC8 trivial-element deque tidy used by scenario and pointer storage
 0x0051D140,character-command,1,Patchouli character-specific action-change root
 0x0051E330,character-owned-object,1,Patchouli typed handle-pool constructor
 0x0051E3C0,character-owned-object,1,Patchouli object-pool acquire semantics

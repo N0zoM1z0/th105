@@ -282,6 +282,17 @@ fan out exact packets early enough to challenge inferred types, merge those
 corrections centrally, and immediately spend the improved contracts on the
 next breadth layer.
 
+The immediate next iteration validated that rule quantitatively. Enabling the
+target's `/GS` mode made the native deque copy constructor `0x0042A8E0` exact
+at 236/236, and its corrected three-deque layout made the whole fixed-slot
+envelope assignment `0x0042AA00` exact at 162/162. Independently, an event-name
+worker replaced a false global-list model with the exact VC8
+`std::map<int, String28>` contract and closed `0x0043AC30` at 203/203. The
+sequence-advance worker then used the real CSprite destructor to move
+`0x0045BA40` from 185/198 at `+0x0C` to an exact-size object with a 46-byte exact
+prefix. These are not disconnected leaves: each result sharpens a shared type
+or ownership boundary used by larger setup, scenario, or spell-runtime bodies.
+
 ## Operational loop
 
 ```bash

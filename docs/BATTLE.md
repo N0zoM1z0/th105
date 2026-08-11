@@ -679,8 +679,9 @@ reads the 0x500-float height table at `0x006E4E38`.
 paths: it copies target `+0x174` to `+0x47C`, clears target `+0x4A2`, initializes
 owner `+0x491/+0x494/+0x498..+0x49C`, and resets an indexed 0x34-byte manager
 entry. It is now an exact 93-byte reconstruction. Its `0x00469E40` indexed-entry
-reset is also exact at 26 bytes and tail-calls `0x0051D0D0` to release its
-owned-pointer buffer. The absolute manager pointer at `0x006E6248` is accepted
+reset is also exact at 26 bytes and calls `0x0051D0D0`, now proven exact as the
+COMDAT-folded VC8 trivial-element deque `_Tidy` shared by pointer and short
+specializations. The absolute manager pointer at `0x006E6248` is accepted
 only through a strict zero-filled BSS relocation mapping.
 
 The collision phase's deferred channel at context `+0x7C/+0x80` now ends in an

@@ -1,4 +1,5 @@
 #include "Collision.hpp"
+#include "EffectSprite.hpp"
 #include "SpellRuntime.hpp"
 
 #include "config/ScoreData.hpp"
@@ -36,9 +37,9 @@ void Fighter::advance_fighter_sequence_55c()
         }
 
         if (controller->live_count_10 != 0) {
-            SpellSpriteWork *sprite =
-                &controller->slots_04[controller->head_0c]->sprite_04;
-            sprite->vtable_00 = reinterpret_cast<void *>(0x006AC624);
+            reinterpret_cast<CSprite *>(
+                &controller->slots_04[controller->head_0c]->sprite_04)
+                ->~CSprite();
             ++controller->head_0c;
             if (controller->slot_capacity_08 <= controller->head_0c) {
                 controller->head_0c = 0;

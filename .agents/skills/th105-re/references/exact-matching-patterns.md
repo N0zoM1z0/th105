@@ -1060,3 +1060,39 @@ The complete `0x00470780` source and target are both 290 bytes, yet differ from
 different ECX/EDI order. Record the exact prefix, first mismatch, and register
 schedule, and keep the function `implemented`; never use padding or fake
 layouts to turn equal size into a matching claim.
+
+### P38. Test the target `/GS` profile before rewriting an EH-bearing STL special member
+
+The native `std::deque<short>` copy-constructor probe for `0x0042A8E0` first
+emitted 243 bytes and diverged at `+0x11`: VC8 installed the exception chain
+before allocating the local frame, while the target delayed that write until
+after its security-cookie setup. Changing only the match-unit profile to
+`enable_gs = true` produced the exact authoritative 236-byte prefix; the
+254-byte section tail correctly includes the adjacent catch cleanup. When a
+native constructor already has the right algorithm and EH handler but differs
+in prologue order, test `/GS` before changing truthful source or accepting an
+IDA-expanded boundary. Re-run every other function in the shared object because
+the profile applies to the whole translation unit.
+
+### P39. Use exact DIR32 addends and node offsets to distinguish STL container families
+
+Decompiler traversal alone can make a VC8 map look like a list. At
+`0x0043AC30`, four absolute relocations to global `0x006E7510` used only
+addends `+0` and `+4`; the exact source then established a
+`std::map<int, String28>` with key at node `+0x0C`, owning string at `+0x10`,
+and nil flag at `+0x2D`. The 203-byte resolver matched exactly. Treat verified
+global-base addends, sentinel links, payload offsets, and iterator helper
+specializations as a joint container fingerprint. Feed the corrected type back
+into callers and core manifests instead of preserving an earlier semantic name.
+
+### P40. Reconstruct generated aggregate assignment through its real member operations
+
+Once the fixed setup layout was proven to contain three
+`std::deque<short>` members, an explicit but ordinary C++ assignment for the
+surrounding 0x50-byte envelope reproduced `0x0042AA00` at 162/162. The source
+copies the eight leading bytes, loops across the two adjacent deques, copies the
+tail bytes and dword, then assigns the third deque at `+0x3C`. This is preferable
+to a raw `memcpy`: it preserves ownership and calls the exact native deque
+assignment. If VC8 outlines an implicit nested aggregate operator, spell out
+the same field operations without changing the data model; do not fake a byte
+copy across owning STL members.

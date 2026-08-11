@@ -112,6 +112,8 @@ address,name,module,confidence,evidence
 0x00425F10,update_global_6e6260_second,battle,inferred,docs/BATTLE.md post-update phase tail-dispatches this second with global state 0x006E6260
 0x004275E0,FixedSlotStoreView_select_slot_4275e0,battle,observed,Strict exact 60-byte checked 0x50-stride fixed battle-setup slot selector
 0x0042A7B0,std_deque_short_assign,runtime,observed,Strict exact native VC8 std::deque<short>::operator= probe and fixed setup save/load call sites
+0x0042A8E0,std_deque_short_copy_ctor,runtime,observed,Strict exact native VC8 std::deque<short> copy-constructor probe with target GS and EH mapping
+0x0042AA00,FixedSlotEnvelope_assign,battle,observed,Strict exact 0x50-byte envelope deep assignment with three native deque<short> members
 0x0042AAB0,BattleInputGate_save_battle_setup_slot,battle,observed,Complete authored fixed-slot save and exact checked selector dependency
 0x0042ABF0,BattleInputGate_load_battle_setup_slot,battle,observed,Complete authored inverse fixed-slot load and exact checked selector dependency
 0x0042C100,update_observed_record_statistics,config,inferred,docs/BATTLE.md observed existing-record count and signed high-water update
@@ -131,7 +133,7 @@ address,name,module,confidence,evidence
 0x00432D80,load_spell_csv_via_325b0,battle,inferred,docs/BATTLE.md observed spellcard versus storySpell path wrapper
 0x00432E20,parse_spell_csv_and_build_card_resources,battle,observed,IDA Pro callers 0x00433490 and 0x00433540 load ECX owner and pass name path optional handle deque and spell tree; callee ret 0x10; docs/BATTLE.md records parser behavior
 0x00433490,load_spell_csv_via_32e20,battle,inferred,docs/BATTLE.md observed alternate spell CSV parser wrapper
-0x0043AC30,resolve_scenario_event_name,battle,observed,IDA Pro complete global mapping-list lookup and complete 0x004591D0 owning String28 caller
+0x0043AC30,resolve_scenario_event_name,battle,observed,Strict exact owning String28 lookup in global VC8 std::map<int String28> and complete 0x004591D0 caller
 0x00424E60,CTitle_dtor,ui,observed,docs/EVIDENCE.md RTTI-owned CTitle destructor with exact resource-release member-cleanup and base-vptr sequence
 0x00425280,copy_session_field_6c8_if_unset,network,inferred,docs/EVIDENCE.md exact guarded network-session field copy used by menu-to-battle transition paths
 0x0043D8E0,GuideOverlay_dtor,ui,observed,docs/EVIDENCE.md CSelectScenario reverse-order member destruction calls the embedded guide overlay destructor at object offset 0x344
@@ -357,7 +359,7 @@ address,name,module,confidence,evidence
 0x0064A510,TenshiObjectPool_acquire,characters,observed,IDA Pro complete normalized 519-byte fresh/reuse pool path
 0x0064A790,TenshiObjectManagerBase_acquire_and_link_object,characters,observed,IDA Pro normalized roster-owned 94-byte acquire-and-link template
 0x0064A990,TenshiObjectManager_spawn_object,characters,observed,IDA Pro normalized roster-owned 237-byte spawn template
-0x0051D0D0,release_owned_pointer_buffer,battle,inferred,docs/BATTLE.md observed owned-pointer buffer release used by indexed scratch reset
+0x0051D0D0,std_deque_trivial_tidy,runtime,observed,Strict exact native VC8 std::deque<short>::_Tidy probe plus pointer-deque and scenario short-deque call sites prove COMDAT folding
 0x0067B02A,free_transient_list_node,runtime,observed,docs/BATTLE.md CRT free thunk used for transient collision-list nodes
 0x0067B50C,operator_new,runtime,observed,docs/BATTLE.md verified VC8 allocation routine called by collision-list helpers
 0x0067B884,_invalid_parameter_noinfo,runtime,observed,docs/BATTLE.md fighter checked containers and docs/EVIDENCE.md input/UI checked-container validation

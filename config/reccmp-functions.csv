@@ -225,7 +225,7 @@ AyaObjectManagerBase_acquire_and_link_object,0x006176C0,function
 IkuObjectManagerBase_acquire_and_link_object,0x00630400,function
 TenshiObjectManagerBase_acquire_and_link_object,0x0064A790,function
 Sakuya_handle_input_and_select_action,0x004DEF70,function
-release_owned_pointer_buffer,0x0051D0D0,function
+std_deque_trivial_tidy,0x0051D0D0,function
 malloc,0x00664F9A,function
 ov_time_seek,0x0066DD00,function
 ov_time_tell,0x0066DE00,function
@@ -282,6 +282,8 @@ SpellRecordView_ctor,0x00431950,function
 std_spell_tree_insert_unique,0x00432310,function
 clear_spell_entries,0x00432500,function
 std_deque_short_assign,0x0042A7B0,function
+std_deque_short_copy_ctor,0x0042A8E0,function
+FixedSlotEnvelope_assign,0x0042AA00,function
 BattlePhaseBlock_parse_scenario_event_row_4591d0,0x004591D0,function
 SpellTree_destroy_subtree,0x0042D240,function
 resolve_scenario_event_name,0x0043AC30,function

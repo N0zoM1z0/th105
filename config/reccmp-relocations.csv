@@ -61,6 +61,7 @@ __real@bf800000,0x006C0EDC,000080bf,0x0,target fighter cut-in mirrored float min
 ??_C@_0CF@FHHKEGPJ@data?1character?1?$CFs?1back?1spell?$CF03d@,0x006AEC4C,646174612f6368617261637465722f25732f6261636b2f7370656c6c253033642e626d7000,0x0,target per-character back spell bitmap path format bytes verified,literal
 ??_C@_0CE@NPKABDGF@data?1character?1?$CFs?1face?1face?$CF03d?4@,0x006AEC74,646174612f6368617261637465722f25732f666163652f66616365253033642e626d7000,0x0,target per-character face bitmap path format bytes verified,literal
 ?g_common_spell_tree@th105@@3USpellTree@1@A,0x006E4E14,00000000,0x0;0x4,target zero-filled common spell tree header words and end-node addend verified,literal
+_g_scenario_event_name_map,0x006E7510,00000000,0x0;0x4,target PE data virtual-tail zero-fill and IDA direct map base and sentinel loads at 0x0043AC30,address
 ??_C@_0BK@LLDEPKNL@data?1csv?1?$CFs?1spellcard?4csv?$AA@,0x006AD2E0,646174612f6373762f25732f7370656c6c636172642e63737600,0x0,target spellcard CSV format string bytes verified,literal
 ??_C@_0BL@FDFMFODE@data?1csv?1?$CFs?1storySpell?4csv?$AA@,0x006AD2FC,646174612f6373762f25732f73746f72795370656c6c2e63737600,0x0,target storySpell CSV format string bytes verified,literal
 ?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A,0x006ED3E8,00000000,0x0;0x4;0x8,target BSS DirectSound pointer block with primary buffer device and 3D listener fields,literal
@@ -78,6 +79,7 @@ __ehhandler$?parse_spell_csv_and_build_card_resources@th105@@YGXPBD0PAUDwordDequ
 __ehhandler$?parse_spell_csv_via_325b0@th105@@YGXPBD0PAUDwordDeque4@1@PAUSpellTree@1@PAX@Z,0x006A5343,8b5424088d8224fd,0x0,target VC8 filtered spell-card parser EH handler entry bytes,address
 __ehhandler$?dispatch_owned_string_458e80@ScenarioTransitionView@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z,0x006A7C28,8b5424088d42f48b,0x0,target VC8 ScenarioTransitionView owned-string dispatcher EH handler entry bytes,address
 __ehhandler$?parse_scenario_event_row_4591d0@BattlePhaseBlock@th105@@QAEXPAX@Z,0x006A7CB8,8b5424088d42bc8b,0x0,target VC8 BattlePhaseBlock scenario event-row parser EH handler entry bytes,address
+__ehhandler$??0?$deque@FV?$allocator@F@std@@@std@@QAE@ABV01@@Z,0x006A4D60,8b5424088d420c8b,0x0,target VC8 std::deque<short> copy-constructor EH handler entry bytes,address
 ??_7CTitle@th105@@6B@,0x006ACCF4,80514200,0x0,target RTTI-owned CTitle vtable address and first slot,address
 ?g_title_resource_manager@th105@@3UTitleResourceManager@1@A,0x006ECD40,00000000,0x0,target zero-filled title resource-manager object address,address
 ?g_spell_texture_pool@th105@@3USpellTexturePool@1@A,0x006ECD40,00000000,0x0,target zero-filled texture-pool object address shared with the verified resource-manager anchor,address

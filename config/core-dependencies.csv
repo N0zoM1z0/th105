@@ -6,7 +6,7 @@ caller,callee,required_status,evidence
 0x0045BB10,0x00431860,decompiled,exact player-indexed spell display callback
 0x00432500,0x00404FA0,identified,IDA Pro release each image handle before container reset
 0x00432500,0x004132D0,decompiled,IDA Pro DwordDeque4 storage clear
-0x00432500,0x0042D240,decompiled,IDA Pro recursive SpellTree subtree destruction
+0x00432500,0x0042D240,implemented,Complete authored recursive SpellTree subtree destruction
 0x004325B0,0x00431590,decompiled,IDA Pro short-key temporary-tree nil allocation
 0x004325B0,0x00431730,decompiled,IDA Pro short-key temporary-tree checked lookup
 0x004325B0,0x00431ED0,decompiled,IDA Pro short-key temporary-tree unique insertion
@@ -27,9 +27,9 @@ caller,callee,required_status,evidence
 0x004591D0,0x0040EE50,decompiled,Complete scenario row integer-field consumption
 0x004591D0,0x0040EF50,decompiled,Complete scenario event-name owning string consumption
 0x004591D0,0x004020B0,identified,Exact source String28 slice copy for owning resolver argument
-0x004591D0,0x0043AC30,decompiled,Complete scenario event-name lookup dependency
+0x004591D0,0x0043AC30,matching,Exact scenario event-name lookup dependency
 0x004591D0,0x0040F050,decompiled,Complete scenario CSV row-advance dependency
-0x004591D0,0x0051D0D0,identified,Complete selected-short deque storage reset dependency
+0x004591D0,0x0051D0D0,library,Exact native selected-short deque storage reset dependency
 0x004591D0,0x00429B90,identified,Complete selected-short deque append dependency
 0x004591D0,0x0046D000,matching,Exact integer list-node allocation dependency
 0x004591D0,0x00454890,library,VC8 integer-list size increment dependency
@@ -40,6 +40,7 @@ caller,callee,required_status,evidence
 0x0042AAB0,0x0042A7B0,library,Exact native VC8 std::deque<short> assignment dependency
 0x0042ABF0,0x004275E0,matching,Exact checked fixed-slot selector dependency
 0x0042ABF0,0x0042A7B0,library,Exact native VC8 std::deque<short> assignment dependency
+0x0042AA00,0x0042A7B0,library,Exact native VC8 deque assignment used for all three envelope payloads
 0x00421310,0x00433B90,matching,IDA Pro sole direct reset_fighter_action_scratch dependency
 0x0042C100,0x00439860,matching,docs/BATTLE.md observed mode gate
 0x0042C100,0x00439C90,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10

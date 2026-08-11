@@ -188,7 +188,9 @@ The paired `0x0042AAB0/0x0042ABF0` setup transfers now have a complete payload
 contract: each stored setup is 0x3C bytes inside a 0x50-stride envelope, with
 two 0x14 `std::deque<short>` payloads. The envelope also owns a third deque at
 `+0x3C`; the exact 297/297 native VC8 assignment at `0x0042A7B0` replaced the
-earlier opaque side-payload hypothesis. Their authored save/load bodies
+earlier opaque side-payload hypothesis. The `/GS` copy constructor at
+`0x0042A8E0` is now native-library exact at 236/236, and the full envelope
+assignment `0x0042AA00` is authored exact at 162/162. Their authored save/load bodies
 emit 288/305 and 292/332 bytes with clean relocations, while the shared checked
 slot selector `0x004275E0` is exact at 60/60. Their remaining shared blocker is
 the original fixed-slot container/TU register lifetime, so the layout is
@@ -207,6 +209,11 @@ and mirrors the newly read integer list. Its strict object is 538 bytes against
 the 516-byte ledger span, with every relocation resolved; the first delta at
 `+0x10` is the VC8 `/GS` frame size, while IDA's 543-byte grouping remains
 non-authoritative.
+
+The resolver `0x0043AC30` is exact at 203/203 and corrects another breadth
+hypothesis: global `0x006E7510` is a VC8 `std::map<int, String28>`, not a list.
+It iterates the map case-insensitively, returns the integer key on a name match,
+and consumes its owning by-value string argument.
 
 This fan-out is the concrete validation for the breadth-first workflow: one
 controller map produced eight authored exact functions (`0x0046FE80`,
@@ -266,8 +273,8 @@ register shaping explicitly isolated from semantic completeness.
    container layout is shared; retain the explicit register-allocation blocker.
 3. Preserve the already source-complete collision/hit algorithms while adding
    only direct dependencies that unlock a controller or spell-runtime edge.
-4. Use the complete `0x004591D0` source and decompiled `0x0043AC30` resolver as
-   the next scenario-loader exact packets; do not rediscover their behavior.
+4. Use exact `0x0043AC30` as the map/ownership gate while shaping the complete
+   `0x004591D0` scenario-row source; do not rediscover either behavior.
 5. Fan out exact work by object boundary, then feed recovered types and exact
    helpers back into the next one-hop breadth wave.
 

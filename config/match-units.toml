@@ -801,8 +801,18 @@ kind = "probe"
 source = "scripts/probes/deque_short.cpp"
 object = "build/match-units/deque_short.obj"
 profile = "vc8-sp1-probe-o2"
-enable_gs = false
+enable_gs = true
 notes = "Native VC8 std::deque<short>::operator= proving the 0x14-byte setup side payload and eight-short block geometry."
+
+[[units.probe-deque-short.functions]]
+address = "0x0042A8E0"
+symbol_base = "??0?$deque@FV?$allocator@F@std@@@std@@QAE@ABV01@@Z"
+rel32_targets = [
+  "?$insert=0x0042A750",
+  "_Tidy=0x0051D0D0",
+  "__CxxThrowException=0x0067B894",
+  "_invalid_parameter_noinfo=0x0067B884",
+]
 
 [[units.probe-deque-short.functions]]
 address = "0x0042A7B0"
@@ -815,6 +825,28 @@ rel32_targets = [
   "erase=0x004288A0",
   "?H?$_Deque_const_iterator=0x0042EDB0",
   "?$insert=0x0042A750",
+]
+
+[[units.probe-deque-short.functions]]
+address = "0x0051D0D0"
+symbol_base = "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ"
+rel32_targets = [
+  "operator_delete=0x0067B02A",
+]
+
+[units.fixed-slot-envelope]
+kind = "probe"
+source = "src/battle/FixedSlotEnvelope.cpp"
+object = "build/match-units/FixedSlotEnvelope.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Exact 0x50-byte fixed battle-setup envelope assignment with three native deque<short> members."
+
+[[units.fixed-slot-envelope.functions]]
+address = "0x0042AA00"
+symbol_base = "??4FixedSlotEnvelopeView@th105@@QAEAAU01@ABU01@@Z"
+rel32_targets = [
+  "?4?$deque=0x0042A7B0",
 ]
 
 [units.spell-data-clear]
@@ -832,6 +864,39 @@ rel32_targets = [
   "?clear_storage@DwordDeque4@th105@@QAEXXZ=0x004132D0",
   "?destroy_subtree@SpellTree@th105@@QAEXPAUSpellTreeNode@2@@Z=0x0042D240",
   "?release_title_resource_handle@TitleResourceManager@th105@@QAEXI@Z=0x00404FA0",
+]
+
+[units.spell-tree-destroy]
+kind = "probe"
+source = "src/battle/SpellTreeDestroy.cpp"
+object = "build/match-units/SpellTreeDestroy.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete recursive SpellTree node and owning-string destruction; strict delta is VC8 prologue register scheduling."
+
+[[units.spell-tree-destroy.functions]]
+address = "0x0042D240"
+symbol_base = "?destroy_subtree@SpellTree@th105@@QAEXPAUSpellTreeNode@2@@Z"
+rel32_targets = [
+  "operator_delete=0x0067B02A",
+]
+
+[units.scenario-event-name-resolver]
+kind = "probe"
+source = "src/battle/ScenarioEventNameResolver.cpp"
+object = "build/match-units/ScenarioEventNameResolver.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Owning String28 case-insensitive lookup in the global VC8 map<int, String28>."
+
+[[units.scenario-event-name-resolver.functions]]
+address = "0x0043AC30"
+symbol_base = "resolve_scenario_event_name"
+rel32_targets = [
+  "_Inc=0x0043A360",
+  "_invalid_parameter_noinfo=0x0067B884",
+  "_stricmp=0x0067C778",
+  "operator_delete=0x0067B02A",
 ]
 
 [units.scenario-event-parser]
@@ -868,7 +933,7 @@ source = "src/battle/SpellRuntime.cpp"
 object = "build/match-units/SpellRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete 346-byte spell-sequence consume body; first 204 bytes match and the remainder is bounded to VC8 register/store scheduling."
+notes = "Exact-size 198-byte sequence advance and 346-byte consume bodies; remaining deltas are bounded to VC8 register/special-member scheduling."
 
 [[units.spell-sequence-consume.functions]]
 address = "0x0045BA40"
