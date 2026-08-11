@@ -612,13 +612,43 @@ Record genuine outliers separately: Alice's fresh object allocation is
 pool fresh path and must not be erased merely because Alice's spawn and
 acquire-and-link instruction templates normalize with the roster.
 
-The pool family demonstrates the stop condition for source emission. Its
-fresh/reuse behavior, packed token, object initializer, and every per-character
-trait are complete, but pool members `+0x04/+0x14/+0x18/+0x24/+0x34` still
-lack truthful container and synchronization types. Keep these functions
-`decompiled` until those shared helper contracts exist; an opaque-byte struct
-plus raw pointer arithmetic would document pseudocode, not reconstruct the C++
-ownership and EH behavior that generated the target.
+The pool family also demonstrates how to retire that stop condition. All
+fifteen callers prove a common `0x50`-byte layout: pointer vector at `+0x04`,
+generation vector at `+0x14`, free-index list at `+0x24`, generation counter at
+`+0x30`, and synchronization wrapper at `+0x34`. The wrapper contains the x86
+Win32 critical section at `+0x04`; direct source with verified IAT relocations
+matches its `EnterCriticalSection` and `LeaveCriticalSection` methods 11/11
+bytes. Keep the four checked-container bodies `decompiled` until exact VC8 STL
+probes classify them, but the pool structure itself no longer needs opaque
+bytes. The remaining source blocker is the CEffectSprite/AttackObject
+constructor ownership boundary, not per-character pool behavior.
+
+## P19: Preserve duplicated sequence-threshold expressions
+
+`0x0045BBB0` is a roster-wide spell-sequence gate with exactly two call sites
+in every character dispatcher. Its target evaluates
+`entry_at_checked(index)->field_02 - (state_4b8 == 2)` once for the `< 1`
+test, then evaluates the same checked accessor again on the non-clamp path.
+Writing a cached `required` value lets VC8 remove the second call and is not an
+exact reconstruction. Preserve the observed ternary shape:
+
+```cpp
+int required = entry_at_checked(index)->field_02 - (state_4b8 == 2);
+required = required < 1
+    ? 1
+    : entry_at_checked(index)->field_02 - (state_4b8 == 2);
+```
+
+That form matches all 118 bytes. This duplication is evidence of source shape,
+not permission to duplicate arbitrary accessors. Require the two target calls,
+the same threshold loads, and the same clamp branch before applying it.
+
+The adjacent `0x004631E0` shows a separate byte-packing caution. Repeated
+`unsigned char` shift/OR statements reproduce the first seven input bits
+exactly, while natural VC8 folds the final byte OR into a later 32-bit
+promotion, producing 134 bytes instead of 136. Keep it `compiles` until a
+truthful source shape recovers the target's final `OR AL,DL; MOVZX` chain; do
+not add fake volatile storage or inline assembly merely to force two bytes.
 
 ## Hard-function strategy
 

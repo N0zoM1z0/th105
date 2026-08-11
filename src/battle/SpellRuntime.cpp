@@ -5,6 +5,22 @@
 
 namespace th105 {
 
+bool Fighter::is_front_sequence_entry_ready_55a(signed char index)
+{
+    if (state_55a <= index) {
+        return false;
+    }
+
+    int required =
+        sequence_controller_55c.entry_at_checked(index)->field_02 -
+        (state_4b8 == 2);
+    required = required < 1
+        ? 1
+        : sequence_controller_55c.entry_at_checked(index)->field_02 -
+              (state_4b8 == 2);
+    return state_55a >= required;
+}
+
 unsigned char Fighter::consume_spell_sequence_entry()
 {
     if (state_72c != 2 || state_55a <= 0) {

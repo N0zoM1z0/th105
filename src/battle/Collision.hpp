@@ -308,6 +308,7 @@ struct Fighter {
         int direction,
         int trailing_value);
     void advance_fighter_sequence_55c();
+    bool is_front_sequence_entry_ready_55a(signed char index);
     unsigned char consume_spell_sequence_entry();
     void prepare_next_spell_sequence_entry();
     void initialize_fighter_battle_state();

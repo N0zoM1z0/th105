@@ -60,6 +60,7 @@ address,lane,priority,notes
 0x0045B870,hit-resolution,2,Capped counter adjustment
 0x0045B9E0,spell-runtime,2,Checked sequence entry access contract
 0x0045BA40,spell-runtime,2,Sequence advance contract
+0x0045BBB0,spell-runtime,1,Exact shared front spell-sequence availability gate
 0x0045BC30,spell-runtime,1,Sequence consume callback statistics and next-record publication
 0x0045BF10,collision-phase,2,Exact deferred sequence counter application
 0x0045C5A0,spell-runtime,2,Two-short sequence record enqueue contract
@@ -76,6 +77,7 @@ address,lane,priority,notes
 0x00460B50,fighter-init,2,Pre-resource fighter initialization boundary
 0x00462050,fighter-init,1,Fighter spell data face and back-resource initialization
 0x00462380,fighter-init,2,First subordinate fighter initialization phase
+0x00463120,fighter-init,2,Packed fighter-input phase subobject consumer
 0x004631E0,fighter-init,2,Second subordinate fighter initialization phase
 0x00463610,battle-phase,3,Exact active character and owned-object callback phase
 0x00463760,battle-phase,3,Exact physics status and timer commit phase
@@ -138,11 +140,13 @@ address,lane,priority,notes
 0x00493A10,character-command,1,Shared mirrored counted and repeated command gate for action 203
 0x00493B00,character-command,2,Exact counted action-214 gate and direction-angle assignment
 0x00493C90,character-command,1,Shared seven-way front-record action gate
+0x00494050,character-command,1,Reimu spell skill and normal input dispatcher
 0x004B8FB0,character-owned-object,1,Shared checked object-slot resolver
 0x004B9240,character-owned-object,1,Marisa object-pool acquire semantics
 0x004B94E0,character-owned-object,1,Marisa object acquire and tracking-list insertion source
 0x004B9540,character-owned-object,1,Roster-wide tracked-object release and reusable-pool reset
 0x004B9860,character-owned-object,1,Marisa owned-object spawn contract
+0x004B9A60,character-command,1,Marisa spell skill and normal input dispatcher
 0x004DDB20,character-command,1,Sakuya action-change root
 0x004DE8E0,character-owned-object,1,Sakuya object pool acquire and handle publication
 0x004DEB10,character-owned-object,1,Sakuya manager-base pool and tracking-list constructor

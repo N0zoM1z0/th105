@@ -392,6 +392,23 @@ its resource at `+0x44`, transfers the observed two-short sequence record, and
 publishes pending state. It emits 193/259 bytes; the remaining difference is
 the target's EH-bearing `0x94`-byte sprite local and register schedule.
 
+`0x0045BBB0` is now an exact 118-byte shared front-sequence readiness gate.
+It first requires signed available count `+0x55A` to exceed the requested
+index, then compares that count against slot word `+0x02`, subtracting one when
+fighter state `+0x4B8` equals two and clamping the threshold to one. Target
+xrefs prove exactly two call sites in each of all fifteen character
+dispatchers. Its faithful ternary deliberately repeats the checked slot access
+on the non-clamp path, matching the target rather than applying unsupported
+common-subexpression elimination.
+
+The action-transition phase at `0x004631E0` is also source-complete. It packs
+nonzero state from `+0x6C8/+0x6C4/+0x6C0/+0x6BC` and signed positive/negative
+tests from `+0x6B8/+0x6B4` into one byte, passes selector `0x5A` and that word
+to the subobject at `this+0x710`, and returns the callee's full EAX. It has 407
+call sites across 28 functions, including every character dispatcher. Natural
+VC8 emits 134 bytes versus the 136-byte target because it folds the final byte
+OR into the subsequent 32-bit promotion; the ledger therefore says `compiles`.
+
 `0x0045F140` now provides maintainable source for the observed fighter battle-state
 reset: owned-state cleanup, subordinate phases, initial position and facing,
 counter/scalar defaults, the two eight-element tables at `+0x604/+0x624`,

@@ -139,7 +139,13 @@ caller,callee,required_status,evidence
 0x0046D620,0x0046D160,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x0046D620,0x0046D370,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x0045E3A0,0x00421310,decompiled,IDA Pro sole constructor dependency at AttackObject this+4
+0x00421310,0x00433B90,matching,IDA Pro sole direct reset_fighter_action_scratch dependency
+0x0045BBB0,0x0045B9E0,implemented,IDA Pro sole checked sequence-slot accessor dependency
+0x004631E0,0x00463120,identified,IDA Pro sole packed-input subobject call and EAX pass-through
 0x004927D0,0x0045E3A0,decompiled,IDA Pro sole shared base-constructor call
+0x00494050,0x0045BBB0,matching,IDA Pro Reimu spell sequence availability gates
+0x00494050,0x004631E0,implemented,IDA Pro Reimu action-transition call cluster
+0x00494050,0x00493C90,implemented,IDA Pro Reimu front-record selector call
 0x00492BA0,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths
 0x00492E20,0x00454890,library,IDA Pro exact normalized list-size update call
 0x00492E20,0x0046D000,matching,IDA Pro exact normalized list-node allocation call
@@ -147,6 +153,9 @@ caller,callee,required_status,evidence
 0x00493110,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
 0x00493110,0x00492E20,identified,IDA Pro direct acquire-and-link call
 0x004B9240,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths
+0x004B9A60,0x0045BBB0,matching,IDA Pro Marisa spell sequence availability gates
+0x004B9A60,0x004631E0,implemented,IDA Pro Marisa action-transition call cluster
+0x004B9A60,0x00493C90,implemented,IDA Pro Marisa front-record selector call
 0x004B94E0,0x00454890,library,IDA Pro exact normalized list-size update call
 0x004B94E0,0x0046D000,matching,IDA Pro exact normalized list-node allocation call
 0x004B94E0,0x004B9240,identified,IDA Pro character-specific pool-acquire call

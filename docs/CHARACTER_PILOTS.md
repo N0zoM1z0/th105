@@ -69,7 +69,9 @@ and lookup layer used by all fifteen input/action dispatchers:
 | `0x00493920` | counted/repeated gate for action `202` | exactly 15 callers | complete 226/226, vslot prefetch differs |
 | `0x00493A10` | mirrored counted/repeated gate for action `203` | exactly 15 callers | complete 226/226, vslot prefetch differs |
 | `0x00493B00` | counted action `214` plus direction angle | exactly 15 callers | exact 393/393 |
-| `0x00493C90` | front-record categories selecting `690..696` | exactly 15 callers | complete 920/950 |
+| `0x00493C90` | front-record categories selecting `690..696` | exactly 15 callers | complete 950/950, instruction order differs |
+| `0x0045BBB0` | front sequence availability and slot threshold gate | exactly 30 sites, two in each dispatcher | exact 118/118 |
+| `0x004631E0` | pack shared input phase before action transition | 407 sites in 28 functions | complete 134/136 |
 
 The gates test observed fields `+0x104`, `+0x13C`, `+0x484`, `+0x4B8`,
 `+0x6B4`, `+0x6B8`, `+0x724`, and `+0x75A`, refresh the common snapshot at
@@ -236,6 +238,17 @@ vslot `+0x08` to change action. The target has no stack arguments and returns
 the selected path's low byte. All branches are now covered by the 850-line IDA
 decompile, so the ledger records `decompiled`; source remains split into
 bounded command groups to avoid a monolithic guessed transcription.
+
+The same bounded split is now grounded for the first three pilot roots rather
+than only for Sakuya. Reimu `0x00494050` is 6952 bytes and Marisa `0x004B9A60`
+is 7664 bytes; both occupy fighter vtable slot `+0x50`. Their spell/front-record
+paths call the exact `0x0045BBB0` readiness gate and shared `0x00493C90`
+selector before committing 600-series actions. Their 5xx skill paths converge
+on `0x004631E0` immediately before raw action vslot `+0x08`. Observed examples
+include Reimu `600/601/606/608/609/610/614/619`, Marisa `600..619` with an
+alternate `658` branch, and Sakuya `600..609/656`. These action IDs and call
+orders are facts; spell/skill labels remain inferred from the surrounding
+record and command data flow.
 
 The Sakuya manager's raw primary-vtable slot `+0x04` is `0x004DED80`, a complete object-spawn
 boundary. It obtains a new Sakuya object from the manager base at `+0x04`,

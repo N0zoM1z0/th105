@@ -9,7 +9,7 @@
 namespace th105 {
 
 void __fastcall initialize_fighter_phase_62380(Fighter *fighter);
-void __fastcall initialize_fighter_phase_631e0(Fighter *fighter);
+int __fastcall initialize_fighter_phase_631e0(Fighter *fighter);
 void __stdcall set_spell_sequence_mode_430fa0(int value);
 void __fastcall reset_fighter_sequence_controller_45e5f0(
     FighterSequenceController *controller);
@@ -21,6 +21,10 @@ struct OwnedManagerInitializationView {
     virtual void slot_00();
     virtual void slot_04();
     virtual void reset_08();
+};
+
+struct FighterPhaseSubobject710 {
+    int update_63120(int selector, unsigned const *packed_input);
 };
 
 typedef void (__thiscall *SetFighterAction)(Fighter *fighter, int action);
@@ -72,6 +76,31 @@ __forceinline void store_int(Fighter *fighter, unsigned offset, int value)
 }
 
 } // namespace
+
+int __fastcall initialize_fighter_phase_631e0(Fighter *fighter)
+{
+    unsigned char packed =
+        static_cast<unsigned>(fighter->field_6c8) > 0;
+    packed += packed;
+    packed |= static_cast<unsigned>(fighter->field_6c4) > 0;
+    packed += packed;
+    packed |= static_cast<unsigned>(fighter->field_6c0) > 0;
+    packed += packed;
+    packed |= static_cast<unsigned>(fighter->field_6bc) > 0;
+    packed += packed;
+    packed |= fighter->field_6b8 > 0;
+    packed += packed;
+    packed |= fighter->field_6b8 < 0;
+    packed += packed;
+    packed |= fighter->field_6b4 > 0;
+    packed += packed;
+    packed |= fighter->field_6b4 < 0;
+
+    unsigned packed_input = static_cast<unsigned short>(packed);
+    return reinterpret_cast<FighterPhaseSubobject710 *>(
+               reinterpret_cast<unsigned char *>(fighter) + 0x710)
+        ->update_63120(0x5a, &packed_input);
+}
 
 void Fighter::initialize_fighter_battle_state()
 {

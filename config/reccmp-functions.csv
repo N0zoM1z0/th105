@@ -339,6 +339,7 @@ CProfileMenu_ctor,0x0044BE80,function
 CProfileMenu_scalar_deleting_destructor,0x0044C070,function
 calculate_forwarded_quantity,0x00459ED0,function
 entry_at_checked,0x0045B9E0,function
+Fighter_is_front_sequence_entry_ready_55a,0x0045BBB0,function
 consume_spell_sequence_entry,0x0045BC30,function
 enqueue_record,0x0045C5A0,function
 prepare_next_spell_sequence_entry,0x0045C690,function

@@ -134,8 +134,12 @@ progress from being dominated by isolated small functions.
 ```text
 shared command layer [source-ready]
 ├── 0x00493300..0x00493B00 common gates [mixed exact/source-ready]
-└── 0x00493C90 front-record actions 690..696 [source-ready]
-    └── fifteen character input dispatchers
+├── 0x0045BBB0 front-sequence readiness [exact]
+├── 0x004631E0 shared action-transition input phase [source, 134/136]
+└── 0x00493C90 front-record actions 690..696 [source, 950/950]
+    ├── Reimu 0x00494050 spell/skill groups [mapped]
+    ├── Marisa 0x004B9A60 spell/skill groups [mapped]
+    └── Sakuya 0x004DEF70 spell/skill groups [mapped]
 
 shared owned-object lifecycle [contracted]
 ├── 0x004454E0 four-byte VC8 deque push_back [library, exact]
