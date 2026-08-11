@@ -251,6 +251,12 @@ x87 stack and register schedule. Direct expressions reproduce both facing
 branches, the two squared deltas, `__CIsqrt`, and the final 1/256 scale at
 319/319 bytes after the target double literals are independently mapped.
 
+For the exact Youmu record adapter at `0x0053CAA0`, the identifier update must
+remain a chained assignment: `field_150 = record_identifier_158 = id`.
+Separate stores make VC8 reload the record identifier and lose the target
+175/175-byte register schedule. Preserve the shared value flow when adjacent
+fields intentionally receive the same source word.
+
 At `0x0053C7F0`, a natural VC8 switch reproduces the signed `movsx; sub 0;
 sub 1` mode dispatch and all floating-point/payload operations, but emits 446
 bytes against the 450-byte target. The target places the reverse-phase

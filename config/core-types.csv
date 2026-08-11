@@ -39,6 +39,7 @@ Sakuya,src/characters/Sakuya.hpp,partial,0x758,observed,docs/CHARACTER_PILOTS.md
 SakuyaObject,src/characters/Sakuya.hpp,partial,0x388,observed,0x004DE8E0 allocation and 0x004DED80 complete spawn path,Full allocation span with handle +0x334 parent +0x34C child deque +0x350 and opaque trailing bytes
 SakuyaObjectManagerBase,src/characters/Sakuya.hpp,complete,0x60,observed,0x004DEB80 0x004DEC70 and 0x004B9540 target instructions,Pool at +4 and tracked-object list at +0x54
 SakuyaObjectManager,src/characters/Sakuya.hpp,complete,0x68,observed,0x004DECF0 target constructor and 0x004DEEF0 allocation size,Two vtable-bearing views and owner pointer at +0x64
+YoumuObjectRecordState,src/characters/YoumuObjectRecords.hpp,partial,0x34C,observed,0x0053CAA0 exact source and Youmu owner +0x7D0 record-ring access,Youmu-specific view covers record identity phase state nine float destinations facing and owner pointer; opaque fields remain
 String28,src/assets/String28.hpp,complete,0x1C,observed,exact 0x00408A40 VC8 std::string append comparison,Real VC8 owning string specialization with 16-byte SSO threshold
 WorldAabb,src/battle/Collision.hpp,complete,0x10,observed,exact float geometry comparison units,Four float coordinates
 Win32CriticalSection24,src/engine/CriticalSectionWrapper.hpp,complete,0x18,observed,exact 0x0040A710 and 0x0040A720 imported API forwarding matches,x86 RTL_CRITICAL_SECTION field layout without requiring a case-sensitive Windows SDK include tree
