@@ -96,7 +96,8 @@ TH10.5
     ├── fifteen vslot +0x3C action-change roots [decompiled breadth]
     │   ├── 36,677 bytes and 1,211 switch cases in the durable case manifest
     │   ├── 70 direct dependencies and twelve newly classified helpers
-    │   └── 0x00459970 motion reset shared by every roster member
+    │   ├── 0x00459970 motion reset shared by every roster member [exact]
+    │   └── 0x004642D0 owned-object spawn adapter used by seven fighters [exact]
     ├── vslot +0x58 CPU action-policy family [identified]
     │   └── four overrides plus one default body shared by eleven fighters
     ├── fifteen owned-object spawn families [contracted]

@@ -369,7 +369,9 @@ CProfileMenu_dtor,0x0044BCD0,function
 CProfileMenu_ctor,0x0044BE80,function
 CProfileMenu_scalar_deleting_destructor,0x0044C070,function
 calculate_forwarded_quantity,0x00459ED0,function
+Fighter_zero_velocity_acceleration,0x00459970,function
 entry_at_checked,0x0045B9E0,function
+Fighter_dispatch_indexed_sequence_window_45c8b0,0x0045C8B0,function
 Fighter_is_front_sequence_entry_ready_55a,0x0045BBB0,function
 consume_spell_sequence_entry,0x0045BC30,function
 ScenarioTransitionView_dispatch_owned_string_458e80,0x00458E80,function
@@ -386,6 +388,7 @@ phase_463970,0x00463970,function
 phase_463a00,0x00463A00,function
 phase_463a60,0x00463A60,function
 phase_463ab0,0x00463AB0,function
+spawn_owned_object_via_manager,0x004642D0,function
 phase_465b00,0x00465B00,function
 phase_465b70,0x00465B70,function
 phase_465bd0,0x00465BD0,function

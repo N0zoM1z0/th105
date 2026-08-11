@@ -670,3 +670,8 @@ caller,callee,required_status,evidence
 0x006495C0,0x004642D0,decompiled,IDA Pro complete roster action-change direct-callee inventory 2026-08-11
 0x006495C0,0x00477040,decompiled,IDA Pro complete roster action-change direct-callee inventory 2026-08-11
 0x006495C0,0x00478670,decompiled,IDA Pro complete roster action-change direct-callee inventory 2026-08-11
+0x0045C8B0,0x00431860,implemented,IDA Pro complete indexed sequence-window direct-callee inventory
+0x0045C8B0,0x0045B900,decompiled,IDA Pro complete indexed sequence-window direct-callee inventory
+0x0045C8B0,0x0045C620,decompiled,IDA Pro complete indexed sequence-window direct-callee inventory
+0x0045C8B0,0x004643F0,decompiled,IDA Pro complete indexed sequence-window direct-callee inventory
+0x0045C8B0,0x0067B884,library,IDA Pro complete indexed sequence-window direct-callee inventory

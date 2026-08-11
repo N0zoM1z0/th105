@@ -1121,6 +1121,51 @@ dir32_targets = [
   "__real@41a80000=__real@41a80000",
 ]
 
+[units.fighter-motion-reset]
+kind = "probe"
+source = "src/characters/FighterMotionReset.cpp"
+object = "build/match-units/FighterMotionReset.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Exact all-roster fighter motion reset used by every action-change body."
+
+[[units.fighter-motion-reset.functions]]
+address = "0x00459970"
+symbol_base = "Fighter_zero_velocity_acceleration"
+
+[units.fighter-sequence-window]
+kind = "probe"
+source = "src/battle/FighterSequenceWindow.cpp"
+object = "build/match-units/FighterSequenceWindow.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete checked indexed fighter sequence window; target stack/register shaping and repeated checked-access expansion remain open."
+
+[[units.fighter-sequence-window.functions]]
+address = "0x0045C8B0"
+symbol_base = "Fighter_dispatch_indexed_sequence_window_45c8b0"
+rel32_targets = [
+  "?dereference_checked@FighterSequenceIterator@th105@@QAEPAUFighterSequenceSlot@2@XZ=0x0045B900",
+  "?reset_and_set_color@FighterSequenceEffectWindowView@th105@@QAEHXZ=0x004643F0",
+  "?invoke_indexed_record@PlayerIndexedCallbackView@th105@@QAEXHH@Z=0x00431860",
+  "?erase_one_checked@th105@@YGPAUFighterSequenceIterator@1@PAU21@HPAUFighterSequenceController@1@I@Z=0x0045C620",
+]
+dir32_targets = [
+  "?g_battle_scene_renderer@th105@@3PAEA=?g_battle_scene_renderer@th105@@3PAEA",
+]
+
+[units.fighter-owned-object-spawn]
+kind = "probe"
+source = "src/characters/FighterOwnedObjectSpawn.cpp"
+object = "build/match-units/FighterOwnedObjectSpawn.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Exact shared fighter-to-owned-object-manager spawn adapter used by seven roster action-change bodies."
+
+[[units.fighter-owned-object-spawn.functions]]
+address = "0x004642D0"
+symbol_base = "spawn_owned_object_via_manager"
+
 [units.spell-csv-filtered-parser]
 kind = "probe"
 source = "src/battle/SpellCsvFilteredParser.cpp"

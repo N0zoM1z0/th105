@@ -11,7 +11,7 @@ address,name,module,confidence,evidence
 0x006E623C,g_fighter_phase_context,battle,inferred,docs/BATTLE.md global context loaded by exact phase wrappers at 0x0046A5B0 and 0x0046A5C0
 0x006E6240,g_battle_object_manager,battle,inferred,docs/BATTLE.md object-manager pointer used by exact shared battle phase sequence
 0x006E6244,g_battle_manager,battle,observed,docs/EVIDENCE.md live manager and fighter roots
-0x006E6248,g_info_manager,battle,inferred,docs/BATTLE.md indexed hit-exchange entry reset and verified zero-filled pointer relocation
+0x006E6248,g_battle_scene_renderer,battle,observed,IDA Pro 0x0045C8B0 indexed player callback base plus exact zero-filled pointer relocation
 0x006E6250,g_effect_sink,battle,observed,docs/BATTLE.md effect wrapper and collision-center emitter both dispatch virtual slot 0x0c through this pointer
 0x006E6260,g_global_6e6260,battle,inferred,docs/BATTLE.md opaque state passed to two ordered post-update helpers; semantic type remains unknown
 0x006E62D8,g_input_selection_state,input,inferred,docs/EVIDENCE.md source bytes and selected-input pointers for two slots

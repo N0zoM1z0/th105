@@ -519,3 +519,5 @@ address,name,module,confidence,evidence
 0x00478670,Fighter_face_opponent_and_flip_horizontal_velocity,characters,observed,IDA Pro complete opponent-position/facing body
 0x00495BE0,Reimu_is_descending_at_or_below_ground,characters,observed,IDA Pro complete stage-height and vertical-motion gate
 0x005CFDE0,Udonge_reset_action_visual_state,characters,observed,IDA Pro complete three-field derived state reset
+0x0045B900,FighterSequenceIterator_dereference_checked,battle,observed,IDA Pro complete checked iterator dereference and sole indexed sequence-window caller
+0x0045C620,FighterSequenceDeque_erase_one_checked,battle,observed,IDA Pro complete checked one-element range erase wrapper and sole indexed sequence-window caller

@@ -283,6 +283,11 @@ struct Fighter {
     int field_6cc;
     int field_6d0;
     int field_6d4;
+
+    void dispatch_indexed_sequence_window_45c8b0(
+        signed char relative_index,
+        int outcome,
+        int source_token);
     int field_6d8;
     int field_6dc;
     int field_6e0;

@@ -65,7 +65,11 @@ Post-load and battle runtime
 ├── 0x0045BBB0 front-entry availability gate [exact]
 ├── 0x0045BC30 consume/callback/statistics/advance [implemented]
 ├── 0x0045BA40 pop front and publish next record fields [implemented]
-└── 0x00431860 configure indexed record display/callback state [compiles]
+├── 0x00431860 configure indexed record display/callback state [compiles]
+└── 0x0045C8B0 action-change indexed sequence window [implemented]
+    ├── 0x0045B900 checked iterator dereference [decompiled]
+    ├── 0x0045C620 checked single-entry erase [decompiled]
+    └── display callback + embedded sequence effect publication
 
 Character fan-out
 └── fifteen input dispatch roots -> docs/CHARACTER_ACTION_ROOTS.md
@@ -73,6 +77,12 @@ Character fan-out
     ├── record IDs 200-series
     └── character spell actions 600-series plus roster-specific 650+ branches
 ```
+
+The action-change bridge `0x0045C8B0` now has complete compiling source for
+all observed checked-range, iterator, effect, display-callback, erase-loop, and
+live-count behavior. Its standalone VC8 object is 392 bytes against the
+446-byte target, with the first delta at `+0x02`; exact work is isolated to
+stack/register shaping and target-style repeated checked deque expansion.
 
 ## Corrected ABI and layouts
 

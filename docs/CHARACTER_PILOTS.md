@@ -418,8 +418,11 @@ machine-readable case order and callee addresses are preserved in
 
 The numeric bands are structural facts, not gameplay names: they count the
 recovered switch labels by action number.  The only direct callee shared by
-all fifteen bodies is `0x00459970`, which clears the four motion floats at
-`+0xF4..+0x100`.  The wave adds 70 caller/callee edges and promotes twelve
+all fifteen bodies is `0x00459970`, now exact at 27/27 bytes; it clears the
+four motion floats at `+0xF4..+0x100`. The shared manager adapter
+`0x004642D0`, reached by seven fighters, is also exact at 66/66 and proves
+the fighter `+0x658` manager pointer plus vslot `+0x04` spawn ABI. The wave
+adds 70 caller/callee edges and promotes twelve
 previously unclassified shared or character-specific dependencies, including
 the 4,830-byte `BaseFighter_initialize_common_action`, the checked
 spell-sequence window dispatcher `0x0045C8B0`, and the roster-owned object
