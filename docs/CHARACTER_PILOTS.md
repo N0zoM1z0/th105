@@ -20,9 +20,9 @@ recovered original names.  Raw offsets exclude the preceding RTTI locator.
 | Remilia | `0x006B13D4` | `0x00544D40` | `0x00554A00` | `0x00616680` | `0x00555D90` | `0x005544A0` | `0x0055CFD0` | mapped |
 | Yuyuko | `0x006B165C` | `0x0055D4A0` | `0x0056C490` | `0x0056C460` | `0x0056D8E0` | `0x0056BDC0` | `0x0057A5C0` | mapped |
 | Yukari | `0x006B18DC` | `0x0057AA60` | `0x00589F20` | `0x00589EA0` | `0x0058BBA0` | `0x00588DF0` | `0x00597B20` | mapped |
-| Suika | `0x006B1B9C` | `0x00598100` | `0x005ACC10` | `0x005ACBE0` | `0x005AE470` | `0x005ABDF0` | `0x005BEEE0` | seed |
-| Udonge | `0x006B1E3C` | `0x005BF460` | `0x005D4610` | `0x005D45C0` | `0x005D63F0` | `0x005D3EA0` | `0x005E53D0` | seed |
-| Komachi | `0x006B2074` | `0x005E5860` | `0x005F5DE0` | `0x005F5DB0` | `0x005F7190` | `0x005F5700` | `0x006013C0` | seed |
+| Suika | `0x006B1B9C` | `0x00598100` | `0x005ACC10` | `0x005ACBE0` | `0x005AE470` | `0x005ABDF0` | `0x005BEEE0` | mapped |
+| Udonge | `0x006B1E3C` | `0x005BF460` | `0x005D4610` | `0x005D45C0` | `0x005D63F0` | `0x005D3EA0` | `0x005E53D0` | mapped |
+| Komachi | `0x006B2074` | `0x005E5860` | `0x005F5DE0` | `0x005F5DB0` | `0x005F7190` | `0x005F5700` | `0x006013C0` | mapped |
 | Aya | `0x006B22DC` | `0x006018F0` | `0x006166A0` | `0x00616680` | `0x00617B20` | `0x00615EA0` | `0x0061F870` | seed |
 | Iku | `0x006B2534` | `0x0061FDE0` | `0x0062F4B0` | `0x0062F480` | `0x00630800` | `0x0062E910` | `0x0063C1D0` | seed |
 | Tenshi | `0x006B279C` | `0x0063C900` | `0x006495C0` | `0x00649520` | `0x0064AB80` | `0x00648850` | `0x00658830` | seed |
@@ -279,6 +279,19 @@ site. Remilia uses six grounded command families including high-bit
 clusters; Yukari has both positive-derived and zero-gated trees. The observed
 fields remain neutral `command_bits_728`, derived gates, and family latches
 until action implementations or runtime evidence justify gameplay names.
+
+The third wave takes the pilot map beyond the requested ten-character mark:
+
+| Fighter | Dispatcher size | Front-record spell mapping | `0x004631E0` edges | Next character-specific roots |
+| --- | ---: | --- | ---: | --- |
+| Suika | 5849 | `200..208` -> `600..608`; later `200` -> `650` | 21 calls plus one tail edge | `0x005ABDF0`, `0x005ACC10`, `0x005BEEE0` |
+| Udonge | 6684 | `200/202/203/205..209` -> `600/602/603/605..609`; later `200/202/205` -> `650/652/655` | 28 calls | `0x005D3EA0`, `0x005D4610`, `0x005E53D0` |
+| Komachi | 6181 | `200..206/211` -> `600..606/611` | 26 calls plus one tail edge | `0x005F5700`, `0x005F5DE0`, `0x006013C0` |
+
+Suika, Udonge, and Komachi again share the two sequence-ready sites, the one
+front-record selector site, command word `+0x728`, derived gates, and four
+family latches. Their sparse spell tables and secondary paths differ enough
+that the per-character traits must preserve explicit record/action pairs.
 
 The Sakuya manager's raw primary-vtable slot `+0x04` is `0x004DED80`, a complete object-spawn
 boundary. It obtains a new Sakuya object from the manager base at `+0x04`,

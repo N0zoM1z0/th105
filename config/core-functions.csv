@@ -198,15 +198,27 @@ address,lane,priority,notes
 0x0058B840,character-owned-object,1,Yukari owned-object spawn contract
 0x0058BA30,character-command,1,Yukari character-specific 200 and 201 selector leaf
 0x0058BBA0,character-command,1,Yukari spell skill and normal input dispatcher
+0x005ABDF0,character-command,2,Suika sequence-driven action lifecycle
+0x005ACC10,character-command,1,Suika action-entry lifecycle root
 0x005ADDE0,character-owned-object,1,Suika object-pool acquire semantics
 0x005AE080,character-owned-object,1,Suika object acquire and tracking-list insertion source
 0x005AE280,character-owned-object,1,Suika owned-object spawn contract
+0x005AE470,character-command,1,Suika spell skill and normal input dispatcher
+0x005BEEE0,character-command,2,Suika vtable +0x60 event bridge root
+0x005D3EA0,character-command,2,Udonge front-sequence and action progression root
+0x005D4610,character-command,1,Udonge action-entry lifecycle root
 0x005D5D60,character-owned-object,1,Udonge object-pool acquire semantics
 0x005D5FE0,character-owned-object,1,Udonge object acquire and tracking-list insertion source
 0x005D6200,character-owned-object,1,Udonge owned-object spawn contract
+0x005D63F0,character-command,1,Udonge spell skill and normal input dispatcher
+0x005E53D0,character-command,2,Udonge event-code action bridge
+0x005F5700,character-command,2,Komachi front-sequence and action progression root
+0x005F5DE0,character-command,1,Komachi action-entry lifecycle root
 0x005F6B20,character-owned-object,1,Komachi object-pool acquire semantics
 0x005F6DA0,character-owned-object,1,Komachi object acquire and tracking-list insertion source
 0x005F6FA0,character-owned-object,1,Komachi owned-object spawn contract
+0x005F7190,character-command,1,Komachi spell skill and normal input dispatcher
+0x006013C0,character-command,2,Komachi event-code action bridge
 0x00617420,character-owned-object,1,Aya object-pool acquire semantics
 0x006176C0,character-owned-object,1,Aya object acquire and tracking-list insertion source
 0x00617930,character-owned-object,1,Aya owned-object spawn contract

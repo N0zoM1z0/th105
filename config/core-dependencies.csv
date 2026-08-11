@@ -245,18 +245,27 @@ caller,callee,required_status,evidence
 0x005AE080,0x005ADDE0,identified,IDA Pro character-specific pool-acquire call
 0x005AE280,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
 0x005AE280,0x005AE080,identified,IDA Pro direct acquire-and-link call
+0x005AE470,0x0045BBB0,matching,IDA Pro Suika spell sequence availability gates
+0x005AE470,0x004631E0,implemented,IDA Pro Suika action-transition call cluster
+0x005AE470,0x00493C90,implemented,IDA Pro Suika front-record selector call
 0x005D5D60,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths
 0x005D5FE0,0x00454890,library,IDA Pro exact normalized list-size update call
 0x005D5FE0,0x0046D000,matching,IDA Pro exact normalized list-node allocation call
 0x005D5FE0,0x005D5D60,identified,IDA Pro character-specific pool-acquire call
 0x005D6200,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
 0x005D6200,0x005D5FE0,identified,IDA Pro direct acquire-and-link call
+0x005D63F0,0x0045BBB0,matching,IDA Pro Udonge spell sequence availability gates
+0x005D63F0,0x004631E0,implemented,IDA Pro Udonge action-transition call cluster
+0x005D63F0,0x00493C90,implemented,IDA Pro Udonge front-record selector call
 0x005F6B20,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths
 0x005F6DA0,0x00454890,library,IDA Pro exact normalized list-size update call
 0x005F6DA0,0x0046D000,matching,IDA Pro exact normalized list-node allocation call
 0x005F6DA0,0x005F6B20,identified,IDA Pro character-specific pool-acquire call
 0x005F6FA0,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
 0x005F6FA0,0x005F6DA0,identified,IDA Pro direct acquire-and-link call
+0x005F7190,0x0045BBB0,matching,IDA Pro Komachi spell sequence availability gates
+0x005F7190,0x004631E0,implemented,IDA Pro Komachi action-transition call cluster
+0x005F7190,0x00493C90,implemented,IDA Pro Komachi front-record selector call
 0x00617420,0x004927D0,decompiled,IDA Pro common CharacterObject construction in fresh and reuse paths
 0x006176C0,0x00454890,library,IDA Pro exact normalized list-size update call
 0x006176C0,0x0046D000,matching,IDA Pro exact normalized list-node allocation call
