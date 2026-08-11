@@ -1,4 +1,5 @@
 #include "SelectScenario.hpp"
+#include "MenuSelect.hpp"
 
 #include "../input/InputSelection.hpp"
 
@@ -16,11 +17,6 @@ extern "C" void __cdecl _invalid_parameter_noinfo();
 extern "C" int g_scene_mode;
 
 namespace th105 {
-
-struct CMenuSelect {
-    CMenuSelect();
-    unsigned char storage[0x1C4];
-};
 
 extern MatchSetup *get_match_setup();
 extern GameConfig *get_game_config();

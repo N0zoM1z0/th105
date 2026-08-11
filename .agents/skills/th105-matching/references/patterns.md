@@ -41,6 +41,13 @@ Resolve these before changing algorithms:
 
 VC8 emits multiple symbols for special members. Semantic ledger names such as `Class_ctor`, `Class_dtor`, and `Class_scalar_deleting_destructor` must select `??0`, `??1`, and `??_G` respectively. Ordinary qualified aliases should resolve to their decorated member symbol, not to the first similarly named COMDAT.
 
+Decorated ordinary members are not limited to public `Q...` access codes.
+Private/protected members may begin their post-scope decoration with `A`, `I`,
+or `U`; class-qualified comparator aliases must accept the full proven set.
+This was required to resolve `CMenuSelect_update_player_assignment` and
+`CMenuSelect_update_primary_selection` without falling back to an ambiguous
+unqualified name.
+
 When object length differs unexpectedly, inspect the COFF symbol table before reshaping source. The comparator may have selected an adjacent thunk, scalar deleting destructor, cold fragment, or helper.
 
 An otherwise-unused `ECX` at a call site can prove member ownership even when
@@ -89,6 +96,13 @@ Use the repository's VC8 declarations, not a modern STL mental model.
 - A VC8 `deque` uses a map, map size, offset, and size. Checked access can introduce repeated map/block arithmetic and library calls.
 - `string`, container bounds checks, and allocator code can be inlined or reshaped by LTCG.
 
+Confirmed checked-string case: `0x004463E0` uses a 28-byte local made from a
+four-byte allocator state followed by VC8's 24-byte SSO string. Its inline
+`c_str()` first loads the heap-pointer union member, then overwrites the result
+with the inline-buffer address when capacity is below 16. Expressing that as a
+pointer initialization plus conditional assignment, rather than a ternary,
+produced the target branch order and completed the 400/400-byte exact match.
+
 Checked iterators can change both layout and calling convention. In the
 scenario-select `vector<int>` cluster, an iterator is the 8-byte pair
 `{ owner, current }`; range erase returns that pair through a hidden result
@@ -105,6 +119,14 @@ Use this only when target signed comparisons and the temporary store both
 support the type distinction.
 
 If the target repeats `deque::at(i)` arithmetic, caching a reference may be semantically equivalent but produce irreconcilable code. Conversely, a standalone object may repeat work that LTCG removed. Prefer the form supported by the decompilation and call structure, then classify the remaining optimizer difference honestly.
+
+For mixed scalar/floating member calls, recover parameter order from stack
+construction before trusting decompiler prototypes. In the result-menu render
+path, the callee receives `(float x, float y, unsigned index)`: VC8 pushes the
+integer first, then reserves eight bytes and stores the two x87 float results.
+An index-first declaration preserved behavior but produced a different
+three-byte-longer call sequence; the corrected declaration made the entire
+267-byte caller exact.
 
 ## 6. Branch, register, and expression shaping
 
@@ -196,6 +218,37 @@ Map the first failure to an action:
 - late divergence around calls/cleanup: inspect ownership, destructor order, EH state, and calling convention.
 
 Comparator support should stay fail-closed. Extending decorated-name resolution or a well-defined relocation category is appropriate; ignoring bytes or accepting arbitrary externals is not.
+
+VC8 switch tables inside a function COMDAT use `DIR32` relocations both for
+the table address and for its local case labels. Resolve these only when the
+target symbol belongs to the same `.text` section as the function: preserve
+the symbol's offset from the function entry and apply the signed addend, just
+as the image linker would. This is narrower than a data allowlist and keeps
+unknown external `DIR32` relocations fail-closed. The profile-menu state-six
+and update probes also show that source case order controls the physical order
+of tail-call blocks even when the jump-table indices remain numeric.
+
+The same 28-byte SSO ABI may need two source views in different translation
+units. A local type containing `char[16]` is a vulnerable buffer to `/GS`,
+while an ABI-equivalent four-dword view is not. `CMenuSelect` needs the former
+to reproduce its additional security cookie; `CProfileMenu` state six needs a
+non-vulnerable return-temporary view to reproduce its single EH cookie. Keep
+the persistent string type honest and use a narrowly named temporary facade
+only when both layout and target prologue prove this compiler distinction.
+
+A call that appears global in a decompile may actually be a member call. In
+`CProfileMenu::render`, declaring the footer renderer as a member kept `this`
+live in `ESI`, forced the guide loop to use `EDI/EBX`, and reproduced the final
+`mov ecx,esi` tail jump, completing a 223-byte exact match. Check ECX setup at
+the call site before tuning loop registers.
+
+A generated scalar deleting destructor may call a source destructor that is
+defined in another COMDAT section of the same COFF object. Such a `REL32`
+target is local rather than undefined, but it is still safe to relocate when
+its class-qualified short name has a unique address in `known-symbols.csv`.
+Treat unknown local calls exactly like unknown externals and fail closed; do
+not reject all section-defined call targets before attempting the proven name
+mapping.
 
 ## 10. Measurement and evidence
 

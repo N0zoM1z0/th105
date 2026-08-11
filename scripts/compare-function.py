@@ -60,6 +60,10 @@ def coff_short_name(name: str) -> str:
         return "operator_new"
     if name.startswith("??3@"):
         return "operator_delete"
+    if name.startswith("??_L@"):
+        return "eh_vector_constructor_iterator"
+    if name.startswith("??_M@"):
+        return "eh_vector_destructor_iterator"
     if name.startswith("??0"):
         return f"{name[3:].split('@', 1)[0]}_ctor"
     if name.startswith("??1"):
@@ -67,7 +71,7 @@ def coff_short_name(name: str) -> str:
     if name.startswith("?"):
         scoped_name, separator, decoration = name[1:].partition("@@")
         parts = scoped_name.split("@")
-        if separator and decoration.startswith(("Q", "U")) and len(parts) >= 2:
+        if separator and decoration.startswith(("A", "I", "Q", "U")) and len(parts) >= 2:
             return f"{parts[1]}_{parts[0]}"
         return parts[0]
     if name.startswith("_"):
@@ -234,11 +238,31 @@ def coff_symbol_bytes(
         target_symbol_name = str(target_symbol["name"])
 
         if relocation_type == IMAGE_REL_I386_DIR32:
+            target_section_number = int(target_symbol["section_number"])
+            if target_section_number == section_number:
+                # VC8 emits switch jump tables into the function's COMDAT and
+                # references both the table and its local labels through DIR32
+                # relocations.  These are code addresses, not allowlisted data
+                # literals.  Model the image linker by preserving the local
+                # symbol's offset from the function entry.
+                raw_addend = struct.unpack_from("<I", code, field_offset)[0]
+                addend = (
+                    raw_addend
+                    if raw_addend < (1 << 31)
+                    else raw_addend - (1 << 32)
+                )
+                destination = (
+                    function_address
+                    + int(target_symbol["value"])
+                    - value
+                    + addend
+                )
+                struct.pack_into("<I", code, field_offset, destination & 0xFFFFFFFF)
+                continue
             if target_symbol_name not in data_targets:
                 raise ValueError(
                     f"unknown absolute data relocation: {target_symbol_name}"
                 )
-            target_section_number = int(target_symbol["section_number"])
             destination, literal, allowed_addends, validation = data_targets[
                 target_symbol_name
             ]
@@ -324,8 +348,6 @@ def coff_symbol_bytes(
             raise ValueError(
                 f"REL32 at +{field_offset:#x} is not an external CALL/JMP"
             )
-        if int(target_symbol["section_number"]) != 0:
-            raise ValueError("REL32 target is not an undefined external symbol")
         target_name = coff_short_name(target_symbol_name)
         if target_name not in targets and target_symbol_name.startswith("?"):
             # Existing ledger aliases commonly use the unqualified source
@@ -336,7 +358,12 @@ def coff_symbol_bytes(
             if unqualified_name in targets:
                 target_name = unqualified_name
         if target_name not in targets:
-            raise ValueError(f"unknown external call/jump target: {target_name}")
+            locality = (
+                "local" if int(target_symbol["section_number"]) != 0 else "external"
+            )
+            raise ValueError(
+                f"unknown {locality} call/jump target: {target_name}"
+            )
         addend = struct.unpack_from("<i", code, field_offset)[0]
         displacement = (
             targets[target_name]

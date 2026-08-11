@@ -232,7 +232,6 @@ address,name,module,confidence,evidence
 0x0067B884,_invalid_parameter_noinfo,runtime,observed,docs/BATTLE.md fighter checked containers and docs/EVIDENCE.md input/UI checked-container validation
 0x0067B8E0,_ftol2_sse,runtime,observed,docs/BATTLE.md verified VC8 x87-to-int truncation runtime helper
 0x0067BB80,memset,runtime,observed,docs/EVIDENCE.md target runtime symbol identity and exact call from input-state reset
-0x0067CC50,ceil,runtime,observed,docs/BATTLE.md verified CRT ceil helper called by collision world-box transforms
 0x0067D9B0,log10,runtime,observed,docs/EVIDENCE.md pinned VC8 SP1 libcmt log10 object and target instruction identity including FLDLG2 FYL2X core
 0x00664F9A,malloc,runtime,inferred,docs/EVIDENCE.md allocation thunk used by SFL metadata buffer path
 0x0067B02A,operator_delete,runtime,observed,docs/EVIDENCE.md VC8 scalar delete target used by file-reader deleting destructor
@@ -242,3 +241,97 @@ address,name,module,confidence,evidence
 0x0066DD00,ov_time_seek,third_party,observed,docs/EVIDENCE.md libvorbisfile API ABI used by Ogg PCM loop decoder
 0x0066DE00,ov_time_tell,third_party,observed,docs/EVIDENCE.md libvorbisfile API ABI used by Ogg PCM loop decoder
 0x0066DF30,ov_read,third_party,observed,docs/EVIDENCE.md libvorbisfile API ABI used by Ogg PCM block decoder
+0x0067CC50,ceil,runtime,observed,docs/BATTLE.md verified CRT ceil helper called by collision world-box transforms
+0x0040F960,destroy_result_index_deque,ui,observed,ResultList destructor and population reset the checked index deque at +0xB8
+0x00438BA0,ResultListBase_ctor,ui,observed,ResultList constructor first constructs its 0xB8 polymorphic base
+0x00438C20,ResultListBase_dtor,ui,observed,ResultList destructor tail-calls its 0xB8 polymorphic base destructor
+0x004381A0,ResultListBase_entry_count,ui,observed,Four-byte accessor returns the list entry count at base offset 0xA4
+0x00438680,ResultListBase_render_row,ui,observed,CMenuResult render calls this helper for each visible result row
+0x00427BD0,ResultReplayDeque20_at,ui,observed,CMenuResult confirmation reads the selected replay identifier through this checked deque accessor
+0x00438610,ResultPointerDeque20_at,ui,observed,CMenuResult confirmation reads selected result metadata through this checked deque accessor
+0x00429B90,ResultReplayString_assign,ui,observed,CMenuResult copies the selected replay identifier into match setup offset 0x30
+0x0043A560,prepare_result_match,ui,observed,CMenuResult confirmation prepares result playback mode seven for player zero
+0x0044BE80,CProfileMenu_ctor,ui,observed,Main menu and CMenuResult secondary action construct the 0x8EC-byte profile menu
+0x0044BCD0,CProfileMenu_dtor,ui,observed,CProfileMenu vtable cleanup and natural member destruction path
+0x0044C070,CProfileMenu_scalar_deleting_destructor,ui,observed,CProfileMenu vtable slot zero
+0x0044BBD0,CProfileMenu_update,ui,observed,CProfileMenu vtable slot two dispatches seven profile workflow states
+0x0044A7A0,CProfileMenu_render,ui,observed,CProfileMenu vtable slot three renders list design editor guides and footer
+0x0044A680,CProfileMenu_update_primary,ui,observed,CProfileMenu state zero seven-entry selector
+0x0044B900,CProfileMenu_update_state_six,ui,observed,CProfileMenu state six profile-copy and confirmation workflow
+0x0044B410,CProfileMenu_update_state_one,ui,observed,CProfileMenu dispatcher state one workflow
+0x0044A880,CProfileMenu_update_state_two,ui,observed,CProfileMenu dispatcher state two workflow
+0x0044A970,CProfileMenu_update_state_three,ui,observed,CProfileMenu dispatcher state three workflow
+0x0044B5E0,CProfileMenu_update_state_four,ui,internal,CProfileMenu non-contiguous dispatcher state-four workflow chunk owned by 0x0044BBD0
+0x0044B770,CProfileMenu_update_state_five,ui,observed,CProfileMenu dispatcher state five workflow
+0x0042C270,ProfileMenuBaseData_ctor,ui,observed,CProfileMenu constructs the 0x33C-byte embedded profile-list state at offset 0x04
+0x0042C330,ProfileMenuBaseData_dtor,ui,observed,CProfileMenu naturally destroys the embedded profile-list state at offset 0x04
+0x0042FE70,ProfileMenuBaseData_cleanup,ui,observed,CProfileMenu explicit destructor work cleans profile-list data before member destruction
+0x00427120,ProfileEditor168_ctor,ui,observed,CProfileMenu constructs the 0x168-byte editor at offset 0x3B0
+0x00426CE0,ProfileEditor168_dtor,ui,observed,CProfileMenu naturally destroys its editor after five strings and guides
+0x00426CF0,ProfileEditor168_initialize,ui,observed,CProfileMenu binds 24-byte profile records to its embedded editor
+0x00426D60,ProfileEditor168_shutdown,ui,observed,CProfileMenu explicit destructor work shuts down the editor
+0x00426ED0,ProfileEditor168_render,ui,observed,CProfileMenu renders the editor relative to design object id 20
+0x00439B50,reset_profile_menu_data,ui,observed,CProfileMenu destructor resets shared profile data after member cleanup preparation
+0x0043DF20,render_profile_menu_footer,ui,observed,CProfileMenu render tail-calls the shared profile footer renderer
+0x0043DF20,CProfileMenu_render_profile_menu_footer,ui,observed,CProfileMenu member footer renderer receives the menu through ECX
+0x0040E1C0,set_profile_menu_mode,ui,observed,CProfileMenu primary state enters the named profile-selection mode
+0x0040E1C0,ProfileMenuController_set_mode,ui,observed,CProfileMenu calls the shared profile controller with thiscall semantics
+0x0040E560,ProfileMenuController_select_profile,ui,observed,CProfileMenu passes the selected profile name to the shared profile controller
+0x004020B0,MenuString28_assign,ui,observed,VC8 basic_string substring assignment used by profile-menu temporary paths
+0x004064D0,MenuString28_dtor,ui,observed,VC8 basic_string destructor used by profile-menu temporary paths
+0x004064D0,ProfileStringTemporary_dtor,ui,observed,VC8 basic_string destructor used by the non-vulnerable profile return temporary
+0x00408B40,concatenate_profile_string,ui,observed,Returns a MenuString28 formed from a profile name and suffix
+0x004122D0,profile_string_equals,ui,observed,Compares a MenuString28 with the profile workflow sentinel text
+0x00426D80,ProfileEditor168_update_selection,ui,observed,CProfileMenu state workflows poll the embedded profile editor
+0x0044AA70,ProfileEditor168_read_profile_name,ui,observed,CProfileMenu copies the editor name into its pending profile string
+0x004383D0,ProfileNameList_contains,ui,observed,Shared loaded-profile list performs a case-insensitive profile-name lookup
+0x0043DBF0,CProfileMenu_show_profile_message,ui,observed,CProfileMenu opens the profile-copy message workflow
+0x0043DC90,update_profile_message,ui,observed,CProfileMenu polls the profile message dialog result
+0x0043DE20,update_profile_confirmation,ui,observed,CProfileMenu polls the profile confirmation dialog result
+0x0043E8F0,select_profile_pair,ui,observed,CProfileMenu selects source and alternate profile strings
+0x0044B1F0,CProfileMenu_commit_profile_change,ui,observed,CProfileMenu commits or reports a profile rename operation
+0x0067C778,_stricmp,crt,observed,Profile workflow performs case-insensitive path comparison through the linked CRT
+0x0040F960,ResultStringDeque20_clear,ui,observed,ResultList population clears its two checked string deques through this shared helper
+0x0040F800,ResultStringDeque20_grow,ui,observed,Inlined result-string deque push grows its map through this checked helper
+0x004020B0,ResultString28_assign_copy,ui,observed,Result-list deque insertion assigns a checked string into an allocated 0x1C slot
+0x004021C0,ResultString28_assign_buffer,ui,observed,ResultList population constructs display text from its formatted row buffer
+0x0042D750,ResultNameResolver_ctor,ui,observed,ResultList population constructs the 0x20-byte spell-name resolver
+0x0042D7D0,ResultNameResolver_dtor,ui,observed,ResultList population destroys its spell-name resolver on completion
+0x00432500,ResultNameResolver_cleanup,ui,observed,ResultList population clears resolver entries before finalizing its list
+0x00433490,ResultNameResolver_load_character,ui,observed,ResultList population reloads spell metadata when the record character changes
+0x004317A0,ResultNameResolver_find_spell,ui,observed,ResultList population resolves the spell-name record for a result row
+0x00439B40,get_result_score_state,ui,observed,ResultList population reads per-character result records from the shared score state
+0x004454E0,ResultPointerDeque20_push_back,ui,observed,ResultList population appends character and language metadata to parallel checked deques
+0x00429B90,ResultReplayDeque20_push_back,ui,observed,ResultList population appends the selected row replay identifier
+0x0067CA9B,_sprintf_s,crt,observed,ResultList population target call address formats both display-row variants
+0x00445100,CMenuResult_render,ui,observed,CMenuResult vtable render slot and 18089 decompile
+0x00445210,CMenuResult_refresh_selected_character,ui,observed,CMenuResult resource and lazy ResultList refresh helper
+0x00445560,ResultList_ctor,ui,observed,VC8 vector-constructor callback for fifteen 0x108 ResultList members
+0x004455E0,ResultList_dtor,ui,observed,VC8 vector-destructor callback for fifteen 0x108 ResultList members
+0x00445620,CMenuResult_update_active,ui,observed,CMenuResult active cursor and confirmation state machine
+0x00445890,ResultList_scalar_deleting_destructor,ui,observed,ResultList vtable slot zero
+0x004458E0,CMenuResult_update,ui,observed,CMenuResult vtable update slot
+0x00445910,CMenuResult_dtor,ui,observed,CMenuResult source destructor
+0x00445A10,CMenuResult_ctor,ui,observed,Main menu Result entry allocates 0x1148 bytes and calls this constructor
+0x00445C10,CMenuResult_scalar_deleting_destructor,ui,observed,CMenuResult vtable slot zero
+0x00445C30,ResultList_populate,ui,observed,ResultList vtable slot one
+0x00439D10,install_menu_object_thunk,ui,observed,CMenuSelect submenu cases call the five-byte menu-installation thunk
+0x00446B60,CMenuPlayerConfig_ctor,ui,observed,CMenuSelect entries two and three allocate a 0x288-byte player-specific submenu and call this constructor
+0x0044A420,CMenuInputConfig_ctor,ui,observed,CMenuSelect entries four and five allocate a 0x330-byte input-specific submenu and call this constructor
+0x0043DF80,Menu_render_cursor,ui,observed,Shared menu cursor renderer consumes this in ECX and three float arguments with callee cleanup
+0x0043DFC0,render_menu_list,ui,observed,Shared profile-list renderer consumes an alternate-layout flag with callee cleanup
+0x0043E1A0,Menu_initialize_profile_menu,ui,observed,Shared menu helper resets profile-list cursor globals while preserving the member-call ABI
+0x0042FF20,PlayerSlotRecord_set_profile_color,ui,observed,CMenuSelect player-assignment path applies the selected profile colors through the slot record
+0x00430540,PlayerSlotRecord_load_profile,ui,observed,CMenuSelect player-assignment path loads the chosen profile file into one player slot
+0x0043A1F0,select_input_slot,input,observed,CMenuSelect player assignment refreshes the selected logical input slot
+0x0043B520,reload_selected_profiles,ui,observed,CMenuSelect profile confirmation reloads both selected player profile records
+0x0043E8F0,CMenuSelect_select_profile,ui,observed,CMenuSelect profile chooser returns confirm cancel or idle and fills two checked strings
+0x004460A0,CMenuSelect_update_primary_selection,ui,observed,CMenuSelect state-zero branch implements the eight-item selector
+0x00446360,CMenuSelect_render,ui,observed,CMenuSelect vtable slot three draws cursor design and guide overlays
+0x004463E0,CMenuSelect_update_player_assignment,ui,observed,CMenuSelect state-one branch performs profile assignment
+0x00446580,CMenuSelect_update,ui,observed,CMenuSelect vtable slot two updates both guides and dispatches state
+0x004465D0,CMenuSelect_dtor,ui,observed,CMenuSelect destructor releases design and guide members
+0x00446780,CMenuSelect_scalar_deleting_destructor,ui,observed,CMenuSelect vtable slot zero wraps the source destructor and optional scalar delete
+0x004686B0,Menu_unknown_menu_method,ui,observed,Shared one-byte no-op occupies Menu-derived vtable slot one
+0x0067B9E9,eh_vector_destructor_iterator,runtime,observed,VC8 ??_M helper used for CMenuSelect GuideOverlay array destruction
+0x0067BA4C,eh_vector_constructor_iterator,runtime,observed,VC8 ??_L helper used for CMenuSelect GuideOverlay array construction

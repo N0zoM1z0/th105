@@ -72,6 +72,8 @@ def main() -> int:
         for line, row in enumerate(read_rows(path), 2):
             address = canonical(row["address"])
             if address not in addresses:
+                if path == KNOWN and row.get("confidence") == "internal":
+                    continue
                 errors.append(f"{path.name}:{line}: address {address} is absent from functions.csv")
 
     if errors:

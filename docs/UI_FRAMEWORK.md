@@ -122,6 +122,95 @@ bind helpers at `0x0040C6A0` and `0x0046F2A0` validate iterator ownership,
 recognize the end sentinel, and extract the node value. This corrected ABI
 restores the formerly missing validation block in the scenario constructor.
 
+### `CMenuSelect`
+
+RTTI and the vtable at `0x006AE108` establish a real `Menu`-derived class of
+size `0x1C4`; it is no longer an opaque allocation. The four virtual slots are
+the scalar deleting destructor, the shared no-op at `0x004686B0`, `update`,
+and `render`.
+
+| Offset | Type | Role |
+| ---: | --- | --- |
+| `+0x00` | `Menu` | vptr/base object |
+| `+0x04` | `signed char` | primary/profile-assignment state |
+| `+0x08` | `TitleDesignResource` | `data/menu/select/select.dat` design |
+| `+0x3C` | `UiDesignObject *[8]` | menu entries 100 through 170 |
+| `+0x5C` | `MenuCursorState` | eight-entry selector |
+| `+0x70` | `signed char` | active player index |
+| `+0x74` | `GuideOverlay[2]` | guide IDs 5 and 11 |
+
+The constructor, destructor, update dispatcher, render method, and the full
+player-assignment state are exact matches. The profile path also proves a
+28-byte checked string facade: an allocator-state dword followed by the VC8
+24-byte SSO string. Its pointer-first `c_str()` branch order is required for
+the exact 400-byte result.
+
+The primary state machine is behaviorally complete. It updates the cursor,
+colors all eight entries, opens player-specific `0x288` and input-specific
+`0x330` child menus, handles the network-server mode variant, and implements
+confirm/cancel audio plus the scene-mode transition. Its standalone VC8 object
+is currently 752 bytes versus the 669-byte target because four `new` paths
+duplicate the null-result installation block instead of merging it with the
+constructed-object path.
+
+### `CMenuResult` and `ResultList`
+
+The result browser is a `0x1148`-byte `Menu` containing fifteen lazy
+`ResultList` objects. Each list is `0x108` bytes: a `0xB8` polymorphic base
+followed by five parallel checked-container views rooted at base `+0x04` and
+derived offsets `+0xB8`, `+0xCC`, `+0xE0`, and `+0xF4`.
+
+| `CMenuResult` offset | Type / role |
+| ---: | --- |
+| `+0x04` / `+0x08` | stand texture handle and `UiSprite94` |
+| `+0x09C` | unlocked-character `SelectIntVector16` |
+| `+0x0B0` / `+0x0C4` | character cursor and selected character |
+| `+0x0C8` | `ResultList[15]` |
+| `+0x1040` | fifteen lazy-population flags |
+| `+0x1050` / `+0x1084` | design resource and selected design object |
+| `+0x108C` | visible-row cursor |
+| `+0x10A0` | `GuideOverlay` |
+
+The render, destructor, guarded update, scalar deleting destructor, and
+`ResultList` constructor are exact. The 619-byte active update is complete and
+currently compiles to 620 bytes; it covers both cursors, replay validation,
+parallel result-metadata transfer into match setup, the 0x8EC-byte profile-menu
+allocation, scene transition, and cancellation. The 1127-byte population path
+is also complete: it traverses 24-byte score records, switches spell-name
+metadata by character, formats localized rows, and appends the row plus four
+parallel metadata values. Its standalone probe is 1003 bytes while the target
+inlines a more specific checked-deque insertion shape.
+
+One ABI correction was especially important: `ResultListBase::render_row` is
+`(float x, float y, unsigned index)`, not index-first. The target pushes the
+integer before reserving/storing the two float arguments; declaring that
+source order changed the call-site evaluation shape and completed the
+267/267-byte render match.
+
+### `CProfileMenu`
+
+The secondary profile workflow reached from the main menu and `CMenuResult` is
+now identified as `CProfileMenu`, not a replay menu. It is a `0x8EC`-byte
+`Menu` with a `0x33C` profile-list base, a seven-entry cursor, an embedded
+`0x168` profile editor, five independent 28-byte SSO strings, and five
+`GuideOverlay` members. The strings are individual members: modeling them as
+an array changes VC8 construction and destruction code generation.
+
+The 496-byte constructor, 223-byte render method, 696-byte state-six workflow,
+and 27-byte scalar deleting destructor exact-match. State six covers profile
+selection, editor confirmation/cancellation, `.dat` path construction,
+case-insensitive source-name comparison, loaded-profile duplicate detection,
+message handling, and the final rename/commit transition.
+
+The update dispatcher's contiguous `0x0044BBD0..0x0044BCB2` span also matches
+all 227 bytes. It colors seven design objects, updates and hides five guides,
+then tail-dispatches states zero through six. Ghidra treats the separate
+`0x0044B5E0` state-four chunk as part of the same 591-byte function body, so
+the ledger deliberately remains `implemented` until that non-contiguous chunk
+is recovered. The primary selector is behaviorally complete; its 244-byte
+standalone body differs from the 256-byte target only in VC8 branch relaxation
+and return-tail folding.
+
 ## Function and dependency map
 
 ```text
@@ -170,6 +259,12 @@ on_scene_exit(next_scene) ── clear_menu_objects
 | `0x0043DA00` | `void __thiscall GuideOverlay::update()` | complete source candidate |
 | `0x0043DA70` | `void __thiscall GuideOverlay::render()` | `matching` |
 | `0x0043DAF0` | `void __thiscall GuideOverlay::GuideOverlay()` | `matching` |
+| `0x004460A0` | `bool __thiscall CMenuSelect::update_primary_selection()` | complete source candidate; 752-byte probe versus 669-byte target |
+| `0x00446360` | `void __thiscall CMenuSelect::render()` | `matching` |
+| `0x004463E0` | `bool __thiscall CMenuSelect::update_player_assignment()` | `matching` |
+| `0x00446580` | `bool __thiscall CMenuSelect::update()` | `matching` |
+| `0x004465D0` | `void __thiscall CMenuSelect::~CMenuSelect()` | `matching` |
+| `0x00446660` | `void __thiscall CMenuSelect::CMenuSelect()` | `matching` |
 
 The guide destructor releases its texture handle and performs natural sprite
 member destruction. Guide calls occur in several other menu scenes, but those
@@ -207,8 +302,11 @@ a source-type distinction, not an arbitrary register hint.
 - The checked design tree ABI is recovered, but its remaining storage fields
   and the source reason for the two bind-helper code-generation copies are not
   yet proven.
-- `CMenuSelect` is an opaque `0x1C4` allocation target; its constructor and
-  scene ownership need a separate RTTI/vtable pass.
+- The `0x288` and `0x330` child-menu layouts reached from `CMenuSelect` remain
+  opaque beyond their proven `Menu` base, allocation sizes, constructor ABIs,
+  and player/mode arguments.
+- `CMenuSelect::update_primary_selection` still needs the original source form
+  that makes VC8 merge each constructor's null and non-null installation path.
 - `MatchSetup` and `GameConfig` expose only fields proven by this slice.
 - `UiSprite94`, `UiTileA4`, and `UiDesignObject` are shared ABI facades, not
   claims of original source names or complete layouts.
