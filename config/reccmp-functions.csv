@@ -372,6 +372,9 @@ calculate_forwarded_quantity,0x00459ED0,function
 Fighter_zero_velocity_acceleration,0x00459970,function
 entry_at_checked,0x0045B9E0,function
 Fighter_dispatch_indexed_sequence_window_45c8b0,0x0045C8B0,function
+rotate_front_spell_sequence_entry_to_back,0x0045C7A0,function
+FighterSequenceIterator_dereference_checked,0x0045B900,function
+?erase@?$deque@UFighterSequenceSlot@th105@@V?$allocator@UFighterSequenceSlot@th105@@@std@@@std@@QAE?AV?$_Deque_iterator@UFighterSequenceSlot@th105@@V?$allocator@UFighterSequenceSlot@th105@@@std@@$00@2@V32@@Z,0x0045C620,function
 Fighter_is_front_sequence_entry_ready_55a,0x0045BBB0,function
 consume_spell_sequence_entry,0x0045BC30,function
 ScenarioTransitionView_dispatch_owned_string_458e80,0x00458E80,function
@@ -389,6 +392,7 @@ phase_463a00,0x00463A00,function
 phase_463a60,0x00463A60,function
 phase_463ab0,0x00463AB0,function
 spawn_owned_object_via_manager,0x004642D0,function
+FighterSequenceEffect_reset_and_set_color,0x004643F0,function
 phase_465b00,0x00465B00,function
 phase_465b70,0x00465B70,function
 phase_465bd0,0x00465BD0,function

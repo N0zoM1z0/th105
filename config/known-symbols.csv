@@ -520,4 +520,5 @@ address,name,module,confidence,evidence
 0x00495BE0,Reimu_is_descending_at_or_below_ground,characters,observed,IDA Pro complete stage-height and vertical-motion gate
 0x005CFDE0,Udonge_reset_action_visual_state,characters,observed,IDA Pro complete three-field derived state reset
 0x0045B900,FighterSequenceIterator_dereference_checked,battle,observed,IDA Pro complete checked iterator dereference and sole indexed sequence-window caller
-0x0045C620,FighterSequenceDeque_erase_one_checked,battle,observed,IDA Pro complete checked one-element range erase wrapper and sole indexed sequence-window caller
+0x0045C620,std_deque_fighter_sequence_slot_erase_one_checked,runtime,observed,Exact native VC8 deque specialization probe and IDA readback
+0x0045C7A0,Fighter_rotate_front_spell_sequence_entry_to_back,battle,observed,IDA Pro complete checked rotate body and tail-jump xrefs from all fifteen roster input selectors

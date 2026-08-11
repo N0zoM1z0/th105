@@ -428,6 +428,11 @@ the 4,830-byte `BaseFighter_initialize_common_action`, the checked
 spell-sequence window dispatcher `0x0045C8B0`, and the roster-owned object
 spawn adapter `0x004642D0`.
 
+All fifteen input/action selector roots also share the same tail-jump to
+`0x0045C7A0`. That 265-byte spell-sequence rotation now has complete source,
+making its front-slot copy/pop/enqueue contract available to every character
+pilot instead of rediscovering it per roster member.
+
 These bodies are now `decompiled`, not `implemented`: their complete case
 topology and dependency graph are durable, but no placeholder source is
 emitted.  The next source wave should factor the common 300/400/500 action

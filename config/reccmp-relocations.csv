@@ -234,6 +234,7 @@ __ehhandler$??0?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@QAE@XZ,0x
 ?g_stage_surface_heights_6e4e38@th105@@3PAMA,0x006E4E38,00000000,0x0,PE virtual zero-fill table base and exact 0x0046A490 memset destination,address
 __ehhandler$?dispatch_round_phase_34@BattleController@th105@@UAEXH@Z,0x006A8926,8b542408,0x0,target VC8 dispatch-round-phase EH handler entry and exact 0x00470500 probe,address
 __real@43f00000,0x006AC578,0000f043,0x0,target float 480.0 used by exact battle round transition,literal
+__real@c4200000,0x006AED38,000020c4,0x0,target float -640.0 loaded by 0x004643F0; IDA memory readback verified,literal
 ?g_battle_transition_mode@th105@@3EA,0x006E4E2F,00,0x0,target transition mode byte direct load at exact 0x00470500,address
 ?g_battle_scene_renderer@th105@@3PAEA,0x006E6248,00000000,0x0,target BSS pointer loaded by 0x0045C8B0 before indexed player callback dispatch,address
 ??_C@_04IJKGBDBE@Lose?$AA@,0x006AF8E4,4c6f736500,0x0,target Lose transition string used by exact 0x00470500,literal

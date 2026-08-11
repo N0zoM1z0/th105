@@ -68,6 +68,14 @@ is the four-float motion reset at `0x00459970`. This is a useful breadth gate:
 promote complete decompiler topology to `decompiled`, then implement common
 bands and character traits in separate packets.
 
+The spell-sequence rotation at `0x0045C7A0` adds an IDA-specific discovery
+rule. `get_callers` returned no callers because every roster input selector
+reaches the helper with a tail `jmp`, while `get_xrefs_to` exposed all fifteen
+code references. For shared leaf or epilogue candidates, always reconcile the
+semantic caller list with raw code xrefs before calling a function orphaned.
+That one check turned an unclassified 265-byte neighbor into a complete-source
+all-roster spell/runtime boundary and a 19-edge core-graph expansion.
+
 ## Coordinator loop
 
 1. Select one subsystem and its existing core lanes. Verify the target and run

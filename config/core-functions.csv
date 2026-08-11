@@ -159,7 +159,8 @@ address,lane,priority,notes
 0x0045AB10,hit-resolution,3,Exact descriptor quantity at frame offset 20
 0x0045AEC0,collision-phase,1,Hard frame geometry preparation and vector at COMDAT
 0x0045B870,hit-resolution,2,Capped counter adjustment
-0x0045B900,spell-runtime,2,Checked fighter-sequence iterator dereference
+0x0045B8F0,spell-runtime,2,CSprite-to-IColor EH cleanup for fighter sequence-slot temporaries
+0x0045B900,spell-runtime,2,Complete checked fighter-sequence iterator dereference source with bounded register-shaping blocker
 0x0045B9E0,spell-runtime,2,Checked sequence entry access contract
 0x0045BA40,spell-runtime,1,Complete sequence front destruction count publication and next-record update
 0x0045BB10,spell-runtime,2,Fighter sequence-entry finalization reached by exact round resolution
@@ -168,8 +169,9 @@ address,lane,priority,notes
 0x0045BF10,collision-phase,2,Exact deferred sequence counter application
 0x0045C440,spell-runtime,2,Exact VC8 std::deque<FighterSequenceSlot>::_Growmap specialization
 0x0045C5A0,spell-runtime,2,Exact allocation and enqueue of a complete 0x98-byte fighter sequence slot
-0x0045C620,spell-runtime,2,Checked single-entry fighter-sequence erase wrapper
+0x0045C620,spell-runtime,2,Exact native VC8 deque<FighterSequenceSlot>::erase iterator specialization
 0x0045C690,spell-runtime,1,Record selection optional resource preparation and enqueue
+0x0045C7A0,spell-runtime,1,Complete all-roster front-to-back fighter spell-sequence rotation source
 0x0045C8B0,spell-runtime,1,Complete source for checked indexed sequence-window callback effect and erase dispatcher
 0x0045CA70,hit-resolution,3,Exact paired-fighter facing update
 0x0045CAE0,hit-resolution,3,Exact signed fighter state gate 32 to 95
@@ -207,7 +209,7 @@ address,lane,priority,notes
 0x00464270,battle-controller,2,MatchSetup-side fighter slot initialization reached by exact setup
 0x004642D0,character-owned-object,1,Exact shared fighter owned-object manager spawn adapter
 0x00464320,fighter-init,2,Final character resource callback boundary
-0x004643F0,spell-runtime,2,Embedded fighter sequence-effect reset reached by exact finalization
+0x004643F0,spell-runtime,2,Exact embedded fighter sequence-effect reset shared by finalization and indexed window dispatch
 0x00465B00,battle-phase,2,Object-manager list vslot +0x10 pass with global pre/post calls
 0x00465B70,battle-phase,2,Object-manager list vslot +0x0C pass
 0x00465F70,battle-controller,2,Controller-owned manager setup dependency

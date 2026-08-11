@@ -288,6 +288,7 @@ struct Fighter {
         signed char relative_index,
         int outcome,
         int source_token);
+    unsigned char rotate_front_spell_sequence_entry_to_back();
     int field_6d8;
     int field_6dc;
     int field_6e0;

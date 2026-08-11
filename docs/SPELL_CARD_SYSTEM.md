@@ -65,11 +65,12 @@ Post-load and battle runtime
 ├── 0x0045BBB0 front-entry availability gate [exact]
 ├── 0x0045BC30 consume/callback/statistics/advance [implemented]
 ├── 0x0045BA40 pop front and publish next record fields [implemented]
+├── 0x0045C7A0 rotate front sequence slot to back [implemented; 15/15 roster]
 ├── 0x00431860 configure indexed record display/callback state [compiles]
 └── 0x0045C8B0 action-change indexed sequence window [implemented]
-    ├── 0x0045B900 checked iterator dereference [decompiled]
-    ├── 0x0045C620 checked single-entry erase [decompiled]
-    └── display callback + embedded sequence effect publication
+    ├── 0x0045B900 checked iterator dereference [implemented; 38-byte exact prefix]
+    ├── 0x0045C620 native VC8 checked deque erase(iterator) [library exact]
+    └── display callback + embedded sequence effect publication [effect exact]
 
 Character fan-out
 └── fifteen input dispatch roots -> docs/CHARACTER_ACTION_ROOTS.md
@@ -83,6 +84,14 @@ all observed checked-range, iterator, effect, display-callback, erase-loop, and
 live-count behavior. Its standalone VC8 object is 392 bytes against the
 446-byte target, with the first delta at `+0x02`; exact work is isolated to
 stack/register shaping and target-style repeated checked deque expansion.
+
+The adjacent `0x0045C7A0` is an all-roster input-selector primitive rather
+than an orphan: every one of the fifteen character input roots tail-jumps to
+it when switching the shared sequence mode. Its source checked-copies the
+front 0x98-byte slot, destroys and pops the original, enqueues the copy at the
+back, and republishes the live count. The 247-byte standalone object versus
+265-byte target isolates the remaining gap to the original CSprite copy/EH
+special-member folding.
 
 ## Corrected ABI and layouts
 

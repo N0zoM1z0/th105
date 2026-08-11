@@ -465,6 +465,13 @@ rel32_targets = [
   "memmove_s=0x0067B5F1",
 ]
 
+[[units.probe-deque-sequence-slots.functions]]
+address = "0x0045C620"
+symbol_base = "?erase@?$deque@UFighterSequenceSlot@th105@@V?$allocator@UFighterSequenceSlot@th105@@@std@@@std@@QAE?AV?$_Deque_iterator@UFighterSequenceSlot@th105@@V?$allocator@UFighterSequenceSlot@th105@@@std@@$00@2@V32@@Z"
+rel32_targets = [
+  "erase=0x0045C230",
+]
+
 [units.battle-input-gate]
 kind = "probe"
 source = "src/battle/BattleInputGate.cpp"
@@ -1154,6 +1161,34 @@ dir32_targets = [
   "?g_battle_scene_renderer@th105@@3PAEA=?g_battle_scene_renderer@th105@@3PAEA",
 ]
 
+[units.fighter-sequence-rotate]
+kind = "probe"
+source = "src/battle/FighterSequenceRotate.cpp"
+object = "build/match-units/FighterSequenceRotate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete all-roster checked front-to-back spell-sequence rotation; exact target retains CSprite copy EH/special-member folding."
+
+[[units.fighter-sequence-rotate.functions]]
+address = "0x0045C7A0"
+symbol_base = "rotate_front_spell_sequence_entry_to_back"
+rel32_targets = [
+  "?copy_fighter_sequence_sprite@FighterSequenceSpriteCopyView@th105@@QAEPAXPBU12@@Z=0x00453B70",
+  "?enqueue_record@FighterSequenceController@th105@@QAEXPBUFighterSequenceSlot@2@@Z=0x0045C5A0",
+]
+
+[units.fighter-sequence-iterator]
+kind = "probe"
+source = "src/battle/FighterSequenceIterator.cpp"
+object = "build/match-units/FighterSequenceIterator.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete checked sequence iterator dereference; 38-byte exact prefix before final block-map register scheduling."
+
+[[units.fighter-sequence-iterator.functions]]
+address = "0x0045B900"
+symbol_base = "FighterSequenceIterator_dereference_checked"
+
 [units.fighter-owned-object-spawn]
 kind = "probe"
 source = "src/characters/FighterOwnedObjectSpawn.cpp"
@@ -1165,6 +1200,21 @@ notes = "Exact shared fighter-to-owned-object-manager spawn adapter used by seve
 [[units.fighter-owned-object-spawn.functions]]
 address = "0x004642D0"
 symbol_base = "spawn_owned_object_via_manager"
+
+[units.fighter-sequence-effect]
+kind = "probe"
+source = "src/battle/FighterSequenceEffect.cpp"
+object = "build/match-units/FighterSequenceEffect.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Exact embedded fighter sequence-effect reset and color publication helper."
+
+[[units.fighter-sequence-effect.functions]]
+address = "0x004643F0"
+symbol_base = "FighterSequenceEffect_reset_and_set_color"
+dir32_targets = [
+  "__real@c4200000=__real@c4200000",
+]
 
 [units.spell-csv-filtered-parser]
 kind = "probe"

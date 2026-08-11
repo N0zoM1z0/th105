@@ -672,6 +672,25 @@ caller,callee,required_status,evidence
 0x006495C0,0x00478670,decompiled,IDA Pro complete roster action-change direct-callee inventory 2026-08-11
 0x0045C8B0,0x00431860,implemented,IDA Pro complete indexed sequence-window direct-callee inventory
 0x0045C8B0,0x0045B900,decompiled,IDA Pro complete indexed sequence-window direct-callee inventory
-0x0045C8B0,0x0045C620,decompiled,IDA Pro complete indexed sequence-window direct-callee inventory
+0x0045C8B0,0x0045C620,library,IDA Pro complete indexed sequence-window direct-callee inventory and exact VC8 specialization probe
 0x0045C8B0,0x004643F0,decompiled,IDA Pro complete indexed sequence-window direct-callee inventory
 0x0045C8B0,0x0067B884,library,IDA Pro complete indexed sequence-window direct-callee inventory
+0x0045C7A0,0x00453B70,decompiled,IDA Pro complete all-roster sequence-rotation direct-callee inventory 2026-08-11
+0x0045C7A0,0x0045B8F0,identified,IDA Pro sequence-rotation EH cleanup edge 2026-08-11
+0x0045C7A0,0x0045C5A0,matching,IDA Pro complete all-roster sequence-rotation direct-callee inventory 2026-08-11
+0x0045C7A0,0x0067B884,library,IDA Pro complete all-roster sequence-rotation direct-callee inventory 2026-08-11
+0x00494050,0x0045C7A0,implemented,IDA Pro exact tail-jump xref from Reimu input selector 2026-08-11
+0x004B9A60,0x0045C7A0,implemented,IDA Pro exact tail-jump xref from Marisa input selector 2026-08-11
+0x004DEF70,0x0045C7A0,implemented,IDA Pro exact tail-jump xref from Sakuya input selector 2026-08-11
+0x004FA5C0,0x0045C7A0,implemented,IDA Pro exact tail-jump xref from Alice input selector 2026-08-11
+0x0051EA60,0x0045C7A0,implemented,IDA Pro exact tail-jump xref from Patchouli input selector 2026-08-11
+0x0053B040,0x0045C7A0,implemented,IDA Pro exact tail-jump xref from Youmu input selector 2026-08-11
+0x00555D90,0x0045C7A0,implemented,IDA Pro exact tail-jump xref from Remilia input selector 2026-08-11
+0x0056D8E0,0x0045C7A0,implemented,IDA Pro exact tail-jump xref from Yuyuko input selector 2026-08-11
+0x0058BBA0,0x0045C7A0,implemented,IDA Pro exact tail-jump xref from Yukari input selector 2026-08-11
+0x005AE470,0x0045C7A0,implemented,IDA Pro exact tail-jump xref from Suika input selector 2026-08-11
+0x005D63F0,0x0045C7A0,implemented,IDA Pro exact tail-jump xref from Udonge input selector 2026-08-11
+0x005F7190,0x0045C7A0,implemented,IDA Pro exact tail-jump xref from Komachi input selector 2026-08-11
+0x00617B20,0x0045C7A0,implemented,IDA Pro exact tail-jump xref from Aya input selector 2026-08-11
+0x00630800,0x0045C7A0,implemented,IDA Pro exact tail-jump xref from Iku input selector 2026-08-11
+0x0064AB80,0x0045C7A0,implemented,IDA Pro exact tail-jump xref from Tenshi input selector 2026-08-11
