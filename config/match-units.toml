@@ -977,7 +977,7 @@ source = "src/battle/BattleInputRecording.cpp"
 object = "build/match-units/BattleInputRecording.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete battle input-record loader; current delta is VC8 String28 entry/register shaping, not missing ownership or control flow."
+notes = "Complete battle input-record loader; out-of-line source-facing String28 gates improve the canonical tail to 825/848 and leave a bounded receiver-spill/EH-state scheduling delta."
 
 [[units.battle-input-recording.functions]]
 address = "0x0042B6C0"
@@ -1099,6 +1099,27 @@ rel32_targets = [
 [[units.spell-sequence-consume.functions]]
 address = "0x0045BC30"
 symbol_base = "consume_spell_sequence_entry"
+
+[units.spell-display-callback]
+kind = "probe"
+source = "src/battle/SpellDisplayCallback.cpp"
+object = "build/match-units/SpellDisplayCallback.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete 234-byte indexed spell-record display callback; exact prefix ends at the post-lookup String28 length register allocation."
+
+[[units.spell-display-callback.functions]]
+address = "0x00431860"
+symbol_base = "invoke_indexed_record"
+rel32_targets = [
+  "?find_local_then_common_spell_record@SpellDataOwner@th105@@QAEPAUSpellRecordView@2@H@Z=0x004317A0",
+]
+dir32_targets = [
+  "__real@43b40000=__real@43b40000",
+  "__real@41400000=__real@41400000",
+  "__real@40e00000=__real@40e00000",
+  "__real@41a80000=__real@41a80000",
+]
 
 [units.spell-csv-filtered-parser]
 kind = "probe"

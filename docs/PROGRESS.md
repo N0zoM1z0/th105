@@ -11,9 +11,9 @@ Generated from `config/functions.csv`. Only functions with a verified
 | --- | ---: |
 | `unclassified` | 4,194 |
 | `identified` | 165 |
-| `decompiled` | 98 |
+| `decompiled` | 97 |
 | `implemented` | 128 |
-| `compiles` | 3 |
+| `compiles` | 4 |
 | `matching` | 203 |
 | `library` | 47 |
 | `blocked` | 0 |

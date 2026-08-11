@@ -31,6 +31,19 @@ struct FileReader {
 
 typedef std::deque<short> SidePayload;
 
+// The target keeps these two checked-string operations out of line at
+// 0x004021C0 and 0x00408950.  The gate preserves their __thiscall ABI while
+// String28 itself retains the real VC8 owning layout and destructor.
+struct String28CallGate {
+    void assign(const char *source, unsigned source_size);
+    void append(const char *source, unsigned source_size);
+};
+
+static String28CallGate *string_gate(String28 *value)
+{
+    return reinterpret_cast<String28CallGate *>(value);
+}
+
 struct FixedBattleSetupSlot {
     unsigned char side_value_lo_00[2];
     unsigned char side_byte_05_02[2];
@@ -103,11 +116,10 @@ typedef char CFileReader_size_must_be_0x0c[
 
 bool BattleInputRecordingView::load_battle_input_recording(const char *path)
 {
-    BattleInputRecordingView *recording = this;
-
     String28 open_path;
-    open_path.assign("", static_cast<unsigned>(0));
-    open_path.append(path, std::strlen(path));
+    string_gate(&open_path)->assign("", 0);
+    string_gate(&open_path)->append(path, std::strlen(path));
+    BattleInputRecordingView *recording = this;
 
     unsigned char reader_storage[sizeof(CFileReader)];
     CFileReader *reader = new (reader_storage) CFileReader;
@@ -125,11 +137,11 @@ bool BattleInputRecordingView::load_battle_input_recording(const char *path)
         reader_access->file_04 = 0;
 
     if (reader_access->file_04 == 0) {
-        recording->source_path_108.assign("", static_cast<unsigned>(0));
+        string_gate(&recording->source_path_108)->assign("", 0);
         return false;
     }
 
-    recording->source_path_108.assign(path, std::strlen(path));
+    string_gate(&recording->source_path_108)->assign(path, std::strlen(path));
 
     unsigned recording_format_marker;
     ReadFile(
@@ -139,7 +151,7 @@ bool BattleInputRecordingView::load_battle_input_recording(const char *path)
         &reader_access->bytes_read_08,
         0);
     if (recording_format_marker != battle_input_recording_format_marker()) {
-        recording->source_path_108.assign("", static_cast<unsigned>(0));
+        string_gate(&recording->source_path_108)->assign("", 0);
         CloseHandle(reader_access->file_04);
         return false;
     }

@@ -405,6 +405,22 @@ Likewise, exposing `0x0046D620`'s sentinel slot did recover the target-like
 and shrank the function to 1382 bytes. Keep diagnostic lifetime variants out
 of shared source when they improve one register but worsen the whole function.
 
+The audited follow-up establishes a firmer stop condition for `0x0046D620`.
+The target keeps `this` in `EBP`, the deferred-counter cursor in `EBX`, and the
+list cursor in `ESI`; the standalone unit instead spills `this` and assigns
+those registers differently from `+0x05`. Explicit `this` aliases and
+pointer-form reset loops do not change that allocation, while removing the
+narrow volatile count store loses the correct 0x2C frame. Treat the remaining
+seven-byte size delta as linked-TU/register-coloring work, not missing checks.
+
+For VC8 owning strings, a source-facing ABI gate can preserve a real
+`std::string` layout while preventing the compiler from folding a target
+out-of-line `assign` or `append` into inline SSO stores. Reinterpreting only at
+the call boundary improved `0x0042B6C0` from a 889-byte tail with first mismatch
+`+0x42` to 825 bytes and `+0x44`. Stop there when the remaining difference is
+receiver-spill/EH-state order around construction; a naked or inline-assembly
+shim would no longer be a truthful ownership reconstruction.
+
 These functions are not dead ends. Their complete source and recorded first
 mismatches make them good dedicated hard lanes. Do not abandon them merely
 because a short leaf would increase the progress counter faster.

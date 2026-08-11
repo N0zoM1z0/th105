@@ -65,7 +65,7 @@ Post-load and battle runtime
 ├── 0x0045BBB0 front-entry availability gate [exact]
 ├── 0x0045BC30 consume/callback/statistics/advance [implemented]
 ├── 0x0045BA40 pop front and publish next record fields [implemented]
-└── 0x00431860 configure indexed record display/callback state [decompiled]
+└── 0x00431860 configure indexed record display/callback state [compiles]
 
 Character fan-out
 └── fifteen input dispatch roots -> docs/CHARACTER_ACTION_ROOTS.md
@@ -121,6 +121,17 @@ the second checked-front access and is limited to value-register and store
 scheduling, while callback, statistics, sequence advance, lookup, and terminal
 state behavior are all present.
 
+The shared indexed display callback at `0x00431860` now has complete source and
+a full `PlayerIndexedCallbackView` layout through its 0x154-byte caller stride.
+It handles the null-source clear path, initializes the six display parameters,
+performs the local-then-common record lookup, clamps name width to 272 pixels,
+selects the normal or alternate vertical alignment, invokes the embedded
+display receiver's vtable slot `+0x10`, and publishes the active/source fields.
+The canonical VC8 object is the exact target size (234/234) and matches the
+first 113 bytes.  The remaining delta begins at the optimizer's choice of
+`EDX` versus `EDI` for name length and clamped width, so this is now a bounded
+exact-tuning packet rather than an uncovered gameplay callback.
+
 The owner cleanup at `0x00432500` is now exact at 171/171. Its source releases
 every image handle, clears the four-dword deque, calls `0x0042D240` as a real
 `SpellTree::__thiscall` member, and restores the tree sentinel and count. This
@@ -164,7 +175,7 @@ Breadth is now sufficient to split exact work without rediscovering the graph:
    `0x0045BC30`, then use the complete 185/198 `0x0045BA40`, exact
    `0x0045C5A0`, and library-exact `0x0045C440` to isolate the shared
    CSprite/LTCG boundary at `0x0045C690`.
-2. Data lane: `0x004317A0`, `0x00430C80`, and the complete 116/108
+2. Data lane: `0x004317A0`, exact-size `0x00431860`, `0x00430C80`, and the complete 116/108
    `0x0042D240`; retain exact `0x00432500` as the cleanup regression gate.
 3. Wrapper lane: `0x00432D80` and `0x00433490` after the corrected free-parser ABI.
 4. Hard parser lane: tune the now-complete `0x004325B0` and `0x00432E20`

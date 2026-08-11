@@ -47,6 +47,10 @@ __real@4094000000000000,0x006ACF00,0000000000009440,0x0,target double 1280.0 byt
 __real@4014000000000000,0x006AC648,0000000000001440,0x0,target double 5.0 bytes verified,literal
 __real@4074000000000000,0x006ACEC8,0000000000007440,0x0,target double 320.0 bytes verified for fighter initial horizontal position,literal
 __real@407e000000000000,0x006ACEB8,0000000000007e40,0x0,target double 480.0 bytes verified for fighter initial horizontal position,literal
+__real@43b40000,0x006ACEE8,0000b443,0x0,target IDA dword and IEEE-754 value verified as float 360.0 for indexed spell display initialization,address
+__real@41400000,0x006AD2B8,00004041,0x0,target IDA dword and IEEE-754 value verified as float 12.0 for indexed spell display initialization,address
+__real@40e00000,0x006AD2B4,0000e040,0x0,target IDA dword and IEEE-754 value verified as float 7.0 for indexed spell display initialization,address
+__real@41a80000,0x006AD2B0,0000a841,0x0,target IDA dword and IEEE-754 value verified as float 21.0 for indexed spell display initialization,address
 ?stage_surface_heights@@3PAMA,0x006E4E38,00000000,0x0;0x13fc,target table base plus first raw and last PE-zero-filled floats verified from stage-height lookup,literal
 ?g_orientation_cosine_table@th105@@3PAMA,0x006E8E58,00000000,0x0;0x383c,target 3600-float BSS table base and last zero-filled entry verified before runtime initialization,literal
 ?g_info_manager@th105@@3PAUInfoManager@1@A,0x006E6248,00000000,0x0,target BSS pointer direct loads verified in hit-exchange reset and fighter sequence finalization,address

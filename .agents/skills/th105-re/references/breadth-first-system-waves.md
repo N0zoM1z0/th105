@@ -37,6 +37,14 @@ boundaries for the next breadth layer. This is the expected compounding effect:
 new structure lowers exact cost, and exact relocations make the following map
 more precise.
 
+The spell display callback wave added another useful stop condition: a newly
+recovered 234-byte body can match the target's first 113 bytes and full size
+while differing only in the allocation of two live integer values after a
+shared record lookup.  This is enough to promote the body into the canonical
+build as `compiles`, publish its complete 0x154-byte caller view, and unlock its
+three sequence callers.  Do not spend the breadth coordinator's time forcing
+that final register swap; issue it later as an address-bounded exact packet.
+
 A later roster-policy wave shows how to handle huge functions without turning
 breadth work into speculative source. One priority-one Aya root at `0x00611D80`
 was resolved through its fighter vtable `+0x58` slot. Reading the same slot in
