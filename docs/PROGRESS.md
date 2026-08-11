@@ -9,9 +9,9 @@ Generated from `config/functions.csv`. Only functions with a verified
 
 | Status | Functions |
 | --- | ---: |
-| `unclassified` | 4,423 |
+| `unclassified` | 4,422 |
 | `identified` | 122 |
-| `decompiled` | 42 |
+| `decompiled` | 43 |
 | `implemented` | 86 |
 | `compiles` | 0 |
 | `matching` | 135 |

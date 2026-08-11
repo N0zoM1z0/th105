@@ -2221,7 +2221,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00491480,3767,0x00492348,FUN_00491480,,,unclassified,0.00,unknown,undefined FUN_00491480(void),false,,,,
 0x00492710,119,0x004927A0,FUN_00492710,,,unclassified,0.00,unknown,undefined FUN_00492710(void),false,,,,
 0x004927B0,27,0x004927CD,FUN_004927b0,,,unclassified,0.00,unknown,undefined FUN_004927b0(void),false,,,,
-0x004927D0,78,0x0049281D,FUN_004927d0,,,unclassified,0.00,unknown,undefined FUN_004927d0(void),false,,,,
+0x004927D0,78,0x0049281D,FUN_004927d0,CharacterObject_ctor,characters,decompiled,0.00,__thiscall,CharacterObject * CharacterObject_ctor(CharacterObject * this),false,,IDA Pro complete constructor instructions and exactly 30 call sites from fifteen roster pools,root,Calls shared base constructor 0x0045E3A0 then initializes observed fields through +0x346 and installs CharacterObject vtable 0x006B001C; source awaits base type and vtable contract
 0x00492820,178,0x004928DB,FUN_00492820,,,unclassified,0.00,unknown,undefined FUN_00492820(void),false,,,,
 0x00492930,27,0x0049294D,FUN_00492930,,,unclassified,0.00,unknown,undefined FUN_00492930(void),false,,,,
 0x00492950,406,0x00492AE5,FUN_00492950,,,unclassified,0.00,unknown,undefined FUN_00492950(void),false,,,,

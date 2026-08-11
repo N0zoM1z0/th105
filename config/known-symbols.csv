@@ -241,6 +241,7 @@ address,name,module,confidence,evidence
 0x0046D160,dispatch_family2_against_family1,battle,inferred,docs/BATTLE.md observed family-2 against family-1 sentinel traversal and response cascade
 0x0046D370,dispatch_family1_object_clashes,battle,inferred,docs/BATTLE.md observed same-list and cross-list object clash traversal
 0x0046D620,run_attack_projectile_collision_phase,battle,inferred,docs/BATTLE.md observed six-list reset classification clash fighter-resolution and deferred-application orchestration
+0x004927D0,CharacterObject_ctor,characters,observed,IDA Pro exact 78-byte shared constructor and thirty roster-pool call sites
 0x00493C90,try_dispatch_front_word_actions_690_696,characters,observed,Complete seven-way front-record action gate and one caller in each of fifteen character dispatchers
 0x004B9540,release_all_tracked_objects,characters,observed,Thirty callers across fifteen manager families return tracked object tokens to reusable pools and clear list nodes
 0x00493300,try_dispatch_signed_gate_actions_208_210,characters,observed,Exact source and one direct caller in each of 15 character dispatchers

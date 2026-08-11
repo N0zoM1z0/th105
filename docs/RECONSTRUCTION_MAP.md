@@ -150,6 +150,8 @@ shared owned-object lifecycle [contracted]
 │   ├── low16 slot / high16 generation token contract
 │   ├── Alice 0x38C allocation trait; all others 0x388
 │   └── shared pool-container/lock/constructor helpers [seed]
+│       └── 0x004927D0 CharacterObject ctor [decompiled]
+│           └── 0x0045E3A0 base constructor [seed]
 └── Sakuya fighter pilot [source-ready]
     ├── 0x004DE8E0 pool acquire [contracted]
     ├── 0x004DEB80 acquire and link [source-ready]

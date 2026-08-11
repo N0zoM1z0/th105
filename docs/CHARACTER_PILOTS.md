@@ -160,6 +160,14 @@ contracts of `0x0040A710/20`, `0x00464110`, `0x0040D760`, `0x00402A50`,
 `0x004B8FB0`, and the complete `CharacterObject` constructor rather than on
 any unresolved per-character behavior.
 
+The shared constructor is now bounded at `0x004927D0` (78 bytes) with exactly
+thirty roster-pool call sites, once from each fresh path and once from each
+reuse path. It calls base constructor `0x0045E3A0`, initializes dwords
+`+0x330/+0x334/+0x338/+0x340`, words `+0x174/+0x176/+0x344/+0x346`, and
+installs `CharacterObject` vtable `0x006B001C`. The base constructor is the
+next common object-layout blocker; no per-character analysis is needed to
+reach it.
+
 ## Sakuya pilot
 
 Sakuya's constructor at `0x004DEEF0` has one explicit base argument, calls the

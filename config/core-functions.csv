@@ -69,6 +69,7 @@ address,lane,priority,notes
 0x0045CB20,hit-resolution,1,Outcome selector from fighter and frame state
 0x0045CD90,hit-resolution,3,Exact positive-y and state-window gate
 0x0045E080,fighter-init,2,Per-fighter indexed resource initialization boundary
+0x0045E3A0,character-owned-object,1,Shared AttackObject or CharacterObject base-construction blocker
 0x0045E5F0,fighter-init,2,Sequence controller reset contract
 0x0045F140,fighter-init,1,Fighter battle-state reset and initial sequence publication
 0x00460B50,fighter-init,2,Pre-resource fighter initialization boundary
