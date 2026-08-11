@@ -56,8 +56,22 @@ collision-data base for fighters and their spawned objects. The complete
 193-byte constructor calls `0x00421310` on `this+4`, installs the AttackObject
 vtable, and initializes directly observed fields through `+0x32C`. The callee
 installs the `CEffectSprite` vtable `0x006AC72C` and resets fighter-action
-scratch, but whether that `this+4` object is composition or a secondary base is
-not yet proven.
+scratch. Its cleanup tail-jumps to the exact seven-byte `IColor` destructor at
+`0x0041EAA0`, and the compiler-generated `CEffectSprite` scalar deleting
+destructor at `0x0041EB30` is exact across its 31-byte contiguous span. This
+proves the RTTI chain `CEffectSprite -> CSpriteEx -> CSpriteBase -> IColor` at
+the start of the embedded `this+4` object. The constructor source has the exact
+79-byte size and behavior;
+standalone VC8 differs only by swapping the derived-vptr and EH-state stores,
+so final byte acceptance is deferred to the first linked LTCG island.
+
+AttackObject RTTI independently proves `AttackObject -> AnimationObject`, with
+`AnimationObjectBase` at `+0x04` and `Environment` at `+0x130`. The former owns
+the `CEffectSprite` member at its own offset zero; `AnimationObject` ends after
+the pointer at `+0x154`, for a size of `0x158`. Modeling the constructor-owned
+AttackObject tail as the following inlined state subobject preserves the target
+boundary between base initialization and derived field stores. The resulting
+`0x0045E3A0` constructor is an exact 193/193-byte match.
 
 Four adjacent shared methods are identified without assigning gameplay terms.
 `0x0045AA10` and `0x0045AA30` call one- or two-argument helpers and then the

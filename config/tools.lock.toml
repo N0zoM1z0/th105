@@ -18,6 +18,12 @@ sha512 = "831a8591fe20c8243b1dbe7d71e3244f31d1665b0804b2e825e38cbbe5ce0cafb83388
 [reccmp]
 version = "0.1.6"
 
+[objdiff]
+version = "3.8.0"
+asset = "objdiff-cli-linux-x86_64"
+sha256 = "bc1e047126f9c6914bd1695798175234642ab9eaf45e886f841b59a4231e1a81"
+url = "https://github.com/encounter/objdiff/releases/download/v3.8.0/objdiff-cli-linux-x86_64"
+
 [msvc8_sp1]
 repository = "https://github.com/bananapizzuh/msvc80-sp1.git"
 commit = "cd5f81de4228351ed9ed5b2dc8059d57da8f554a"

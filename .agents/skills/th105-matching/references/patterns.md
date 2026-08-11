@@ -331,6 +331,30 @@ Treat unknown local calls exactly like unknown externals and fail closed; do
 not reject all section-defined call targets before attempting the proven name
 mapping.
 
+The global `CEffectSprite -> CSpriteEx -> CSpriteBase -> IColor` recovery is a
+matching stop-condition fixture. Empty out-of-line endpoint destructors
+reproduce `IColor::~IColor` at
+`0x0041EAA0` and the derived scalar deleting destructor at `0x0041EB30`
+exactly, while the 79-byte constructor differs only by the order of its derived
+vptr store and EH-state store. Natural non-throwing specifications and inherited
+virtual declarations do not change that order. Preserve the exact destructor
+evidence and defer the constructor to a linked LTCG island rather than writing
+the vptr explicitly.
+
+For the exact `0x0045E3A0` AttackObject constructor, RTTI base offsets explain
+vptr timing: `AnimationObjectBase+0x04` owns the CEffectSprite member and
+`Environment` begins at `+0x130`; the primary `AnimationObject` is `0x158`
+bytes. The target derived-vptr store separates base initialization from a
+post-vptr state block. Representing that block as one force-inlined owned
+subobject preserves the exact 193-byte schedule. Require both RTTI offsets and
+the vptr boundary before using this constructor-ownership pattern.
+
+RTTI may list a non-primary base before the primary polymorphic base even when
+its physical offset is higher. `CharacterObject` constructs `CObjectBase` at
+`+0x330` before `AttackObject` at `+0`; this explains its two pre-base-call
+stores and yields an exact 78-byte constructor. Do not reorder base declarations
+by physical address when target construction order and RTTI base order agree.
+
 ## 10. Measurement and evidence
 
 Use the strictest truthful status:

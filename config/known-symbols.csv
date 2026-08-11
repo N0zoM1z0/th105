@@ -47,6 +47,8 @@ address,name,module,confidence,evidence
 0x0040C9A0,FileReaderOwner_dtor,assets,observed,docs/EVIDENCE.md owning file-reader wrapper virtual-delete cleanup
 0x0040C9C0,FileReaderOwner_open,assets,observed,docs/EVIDENCE.md package/plain file-reader selection allocation and failure cleanup
 0x0041E870,advance_battle_setup_state,engine,inferred,docs/EVIDENCE.md CSceneBase state advance increments +0xB8 and returns battle-setup task state 5 or 6
+0x0041EAA0,IColor_dtor,battle,observed,IDA Pro cleanup funclet and exact VC8 7-byte comparison restore the IColor vtable 0x006AC624
+0x0041EB30,CEffectSprite_scalar_deleting_destructor,battle,observed,IDA Pro CEffectSprite vtable slot and exact VC8 31-byte contiguous comparison
 0x0041FEA0,create_collision_list_sentinel,battle,inferred,docs/BATTLE.md exact 12-byte self-linked sentinel allocation
 0x00404F30,TexturePool_create_texture_from_path,assets,observed,IDA Pro target instructions acquire index-generation handle create or populate texture and recycle on negative status
 0x0040EB20,csv_reader_load,assets,observed,IDA Pro target instructions load parse reset and free temporary input buffer
@@ -249,7 +251,7 @@ address,name,module,confidence,evidence
 0x0046D160,dispatch_family2_against_family1,battle,inferred,docs/BATTLE.md observed family-2 against family-1 sentinel traversal and response cascade
 0x0046D370,dispatch_family1_object_clashes,battle,inferred,docs/BATTLE.md observed same-list and cross-list object clash traversal
 0x0046D620,run_attack_projectile_collision_phase,battle,inferred,docs/BATTLE.md observed six-list reset classification clash fighter-resolution and deferred-application orchestration
-0x004927D0,CharacterObject_ctor,characters,observed,IDA Pro exact 78-byte shared constructor and thirty roster-pool call sites
+0x004927D0,CharacterObject_ctor,characters,observed,IDA Pro RTTI CObjectBase offset and exact 78-byte VC8 constructor comparison with thirty roster-pool call sites
 0x00493C90,try_dispatch_front_word_actions_690_696,characters,observed,Complete seven-way front-record action gate and one caller in each of fifteen character dispatchers
 0x00494050,Reimu_handle_input_and_select_action,characters,observed,Reimu fighter vtable slot +0x50 and grounded spell skill and normal action groups
 0x004B9540,release_all_tracked_objects,characters,observed,Thirty callers across fifteen manager families return tracked object tokens to reusable pools and clear list nodes
@@ -451,6 +453,6 @@ address,name,module,confidence,evidence
 0x0040A710,CriticalSectionWrapper_enter,engine,observed,Exact source and imported KERNEL32 EnterCriticalSection IAT target
 0x0040A720,CriticalSectionWrapper_leave,engine,observed,Exact source and imported KERNEL32 LeaveCriticalSection IAT target
 0x0040D760,vc8_vector_u32_push_back,runtime,observed,IDA Pro complete checked vector append body and one fresh-slot caller in every roster object pool
-0x0045E3A0,AttackObject_ctor,battle,observed,IDA Pro complete constructor body and sole callers Character_ctor and CharacterObject_ctor
+0x0045E3A0,AttackObject_ctor,battle,observed,IDA Pro RTTI base offsets and exact 193-byte VC8 constructor comparison
 0x00464110,vc8_vector_pointer_push_back,runtime,observed,IDA Pro complete checked pointer-vector append body and all roster pool fresh-slot callers
 0x004B8FB0,vc8_vector_pointer_at,runtime,observed,IDA Pro checked pointer-vector access body and all roster pool slot-resolution callers

@@ -174,8 +174,22 @@ installs `CharacterObject` vtable `0x006B001C`. The base constructor is the
 193-byte `AttackObject` constructor at `0x0045E3A0`: it installs vtable
 `0x006AEB44`, initializes the observed collision prefix through `+0x32C`, and
 calls `0x00421310` on `this+4`. That `CEffectSprite` constructor and its
-ownership/destructor boundary are the remaining shared source blocker; no
-per-character analysis is needed to reach it.
+RTTI chain through `CSpriteEx`, `CSpriteBase`, and global `IColor` is now
+represented in source. The base destructor and
+derived scalar deleting destructor compare exactly; the 79-byte constructor is
+same-size and differs only in VC8 vptr/EH-state store order. This removes the
+ownership/layout uncertainty from the shared pool source path while leaving a
+linked-LTCG comparison as the constructor's final byte blocker.
+
+AttackObject RTTI further places `AnimationObjectBase` at `+0x04` and
+`Environment` at `+0x130`; exact source establishes an `AnimationObject` size
+of `0x158` and reproduces the complete AttackObject constructor 193/193 bytes.
+CharacterObject RTTI places a non-primary `CObjectBase` at `+0x330` before the
+primary `AttackObject` in declaration/construction order. Its two-field
+constructor explains why `+0x334/+0x330` are initialized before the call to
+`AttackObject_ctor`. The recovered multiple-inheritance source matches all
+78/78 bytes, so the fifteen 519-byte pool-acquire functions are now the shared
+frontier rather than a constructor-layout blocker.
 
 ## Sakuya pilot
 
@@ -335,9 +349,11 @@ field-load/register order.
 
 ## Next waves
 
-1. Recover `0x00421310` and the CEffectSprite ownership/destructor boundary,
-   then emit the normalized fifteen-way pool-acquire source using the now
-   complete `0x50`-byte storage and exact lock contracts.
+1. Use the recovered
+   `CEffectSprite -> CSpriteEx -> CSpriteBase -> IColor` boundary to emit the
+   normalized fifteen-way pool-acquire source using the complete `0x50`-byte
+   storage and exact lock contracts; retain `0x00421310` as the first
+   linked-LTCG island.
 2. Split Sakuya's complete `0x004DEF70` matrix into source-backed spell, skill,
    and normal-action blocks, beginning with the spell-record `600..609/656`
    selector because it links parser data directly to character behavior.

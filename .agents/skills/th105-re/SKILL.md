@@ -19,6 +19,17 @@ Use this skill only inside this repository and only for the target hash in
    hard function in the same lane.
 4. Record the claim in `config/claims.csv` before editing shared source.
 
+After claiming, the coordinator should capture one lazy work packet when the
+script is available:
+
+```bash
+python3 scripts/work-packet.py ADDRESS --refresh
+```
+
+The packet combines a hash-attested IDA-first query, ledger boundary, core
+dependencies, and fresh canonical comparison provenance. It is evidence
+packaging, not a replacement for the ledger or an accepted boundary.
+
 ## Select the analysis backend
 
 Run `python3 scripts/check-ida-mcp.py`. When it passes, use IDA Pro MCP first
@@ -65,8 +76,11 @@ fake behavioral stub bodies.
    [`references/exact-matching-patterns.md`](references/exact-matching-patterns.md).
    Start from its diagnosis table; do not repeat random variants when the
    mismatch is already a known ABI, relocation, x87, TU, or checked-STL pattern.
-4. Compile the smallest unit supported by the current build.
-5. Compare one function with `scripts/compare-function.py`; use objdiff for
+4. When the function has an entry in `config/match-units.toml`, build and run
+   its canonical comparison with `scripts/build.py --unit UNIT --compare
+   --json`. Otherwise compile the smallest focused unit supported by the
+   current build.
+5. Compare one function with `scripts/compare-function.py --json`; use objdiff for
    iteration and executable-level reccmp when that build stage exists.
 6. Save generated reports under `build/` and put the reproducible command in
    the function row.
@@ -102,6 +116,9 @@ Run:
 
 ```bash
 python3 scripts/validate-tracking.py
+python3 scripts/build.py --check
+python3 scripts/clone-families.py --check
+python3 scripts/generate-synthetic-coff.py --check
 python3 scripts/core-worklist.py --check
 python3 scripts/progress.py --check
 git diff --check

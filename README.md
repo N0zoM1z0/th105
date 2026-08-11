@@ -76,6 +76,9 @@ See [docs/MCP.md](docs/MCP.md) for setup and security details.
 
 - [Architecture](docs/ARCHITECTURE.md) — confirmed binary structure and module plan
 - [Reverse-engineering workflow](docs/RE_WORKFLOW.md) — evidence and agent handoff rules
+- [Workflow evolution decision](docs/WORKFLOW_EVOLUTION.md) — gated rollout from
+  strict ledger/comparator foundations through packets, clone fan-out, objdiff,
+  linking, and runtime validation
 - [IDA-first analysis](docs/IDA_MCP.md) — exact routing, boundary safety, and Ghidra fallback
 - [Reconstruction map](docs/RECONSTRUCTION_MAP.md) — unlock-first gameplay and character tree
 - [Gameplay reconstruction framework](docs/CORE_FRAMEWORK.md) — core lanes,

@@ -612,6 +612,10 @@ Record genuine outliers separately: Alice's fresh object allocation is
 pool fresh path and must not be erased merely because Alice's spawn and
 acquire-and-link instruction templates normalize with the roster.
 
+The machine-readable form of these families is
+`config/clone-families.toml`; rerun `python3 scripts/clone-families.py --check`
+instead of copying hashes from this document.
+
 The pool family also demonstrates how to retire that stop condition. All
 fifteen callers prove a common `0x50`-byte layout: pointer vector at `+0x04`,
 generation vector at `+0x14`, free-index list at `+0x24`, generation counter at
@@ -620,8 +624,10 @@ Win32 critical section at `+0x04`; direct source with verified IAT relocations
 matches its `EnterCriticalSection` and `LeaveCriticalSection` methods 11/11
 bytes. Keep the four checked-container bodies `decompiled` until exact VC8 STL
 probes classify them, but the pool structure itself no longer needs opaque
-bytes. The remaining source blocker is the CEffectSprite/AttackObject
-constructor ownership boundary, not per-character pool behavior.
+bytes. The recovered
+`CEffectSprite -> CSpriteEx -> CSpriteBase -> IColor` hierarchy supplies the
+shared AttackObject ownership boundary; the constructor's final byte blocker
+is linked EH/LTCG scheduling, not per-character pool behavior.
 
 ## P19: Preserve duplicated sequence-threshold expressions
 
@@ -710,6 +716,67 @@ if (state > 70) {
 
 Together these shapes reproduce the target's two loop bodies, including VC8's
 alignment NOP before the second loop, without volatile storage or assembly.
+
+## P22: Recover a derived constructor through its unwind destructor chain
+
+At `0x00421310`, target EH cleanup tail-jumps to `0x0041EAA0`, whose sole body
+restores the global `IColor` vtable. RTTI proves the primary-base chain
+`CEffectSprite -> CSpriteEx -> CSpriteBase -> IColor`; the derived vtable at
+`0x006AC72C` contains a scalar deleting destructor followed by the same three
+color slots as the base. Modeling that chain, initializing the base dword at
+`+0x04`, and defining empty out-of-line endpoint destructors emits two
+independent exact functions:
+
+- `IColor::~IColor` matches 7/7 bytes;
+- the compiler-generated `CEffectSprite` scalar deleting destructor matches the
+  proven 31-byte contiguous span at `0x0041EB30`.
+
+The constructor itself is 79/79 bytes with the same GS/EH scaffold and reset
+call, but standalone VC8 writes EH state before the derived vptr while the
+target writes the vptr first. Explicit non-throwing base constructor/destructor
+specifications and removing redundant derived virtual redeclarations do not
+change that order. Preserve the truthful hierarchy, mark the constructor
+`implemented`, and route the remaining four-byte scheduling delta to a linked
+LTCG island; do not use volatile storage or explicit vptr writes to force it.
+
+Validate all three functions with:
+
+```bash
+python3 scripts/build.py --unit effect-sprite --compare --json
+```
+
+## P23: Use RTTI base offsets and vptr timing to split constructor ownership
+
+AttackObject RTTI lists `AnimationObjectBase` at `+0x04` and `Environment` at
+`+0x130` below the primary `AnimationObject` base. The target constructor calls
+the `CEffectSprite` member at `+0x04`, initializes pointer `+0x154` and two
+environment bytes, installs the derived AttackObject vptr, then performs the
+remaining stores through `+0x32C`.
+
+A direct CEffectSprite member on AttackObject writes the derived vptr before
+the member call and fails at `+0x06`. A faithful base layout fixes that prefix:
+`AnimationObjectBase` owns the CEffectSprite, `Environment` is `0x24` bytes,
+and `AnimationObject` ends at `0x158`. Keeping the post-vptr assignment block
+inside one force-inlined constructor-owned tail subobject then preserves the
+observed derived-construction boundary and exact non-address store order. The
+result matches `0x0045E3A0` for 193/193 bytes:
+
+```bash
+python3 scripts/build.py --unit attack-object --compare --json
+```
+
+Use this pattern only when RTTI proves the base offsets and the target vptr
+store separates two complete initialization blocks. A convenient member wrapper
+without that evidence is not a valid byte-shaping device.
+
+The adjacent `CharacterObject` constructor demonstrates that RTTI base-list
+order matters independently of physical offset. RTTI declares non-primary
+`CObjectBase` first at `+0x330`, then primary `AttackObject` at `+0`. C++ must
+therefore construct the two-field CObjectBase first, explaining target stores
+to `+0x334/+0x330` before the call to `AttackObject_ctor`. Modeling
+`CharacterObject : CObjectBase, AttackObject` reproduces all 78 bytes at
+`0x004927D0`; treating those two fields as ordinary derived initializers leaves
+them after the base call and cannot reproduce the target prologue.
 
 ## Hard-function strategy
 

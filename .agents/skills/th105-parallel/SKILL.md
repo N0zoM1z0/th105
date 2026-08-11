@@ -35,8 +35,10 @@ implement and no other worker owns that subtree. Workers never commit or push.
    existing `th105-ghidra` server through MCP; they do not start alternative
    servers against the same project or run inventory export while it is live.
 4. Use parallel workers first for evidence gathering. IDA workers remain
-   read-only and verify the target for each session; Ghidra workers batch MCP
-   calls in one `scripts/mcp-call.py` session to avoid startup overhead.
+   read-only and verify the target for each session. Prefer one coordinator
+   capture with `scripts/work-packet.py ADDRESS --refresh`; workers consume it
+   with `--cached`. Ghidra workers batch MCP calls in one
+   `scripts/mcp-call.py` session to avoid startup overhead.
 5. The coordinator selects only evidence-backed candidates, applies IDA or
    Ghidra mutations in a short serial batch, reads back IDA writes or calls
    `save_program` for Ghidra.

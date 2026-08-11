@@ -43,6 +43,32 @@ build.
 5. **Executable comparison** — use reccmp as the acceptance report and retain
    explicit mappings for functions/globals/floats/strings.
 
+The current rollout order and stop gates are recorded in
+[`WORKFLOW_EVOLUTION.md`](WORKFLOW_EVOLUTION.md).
+
+## Match-unit graph
+
+`config/match-units.toml` maps a focused source probe to its generated object,
+VC8 profile, `/GS` setting, function symbols, and strict REL32 mappings. These
+units are deliberately typed as probes, synthetic islands, or linked
+candidates; a probe does not assert an original translation-unit boundary.
+
+```bash
+python3 scripts/build.py --check
+python3 scripts/build.py --list
+python3 scripts/build.py --unit youmu-object-records --compare --json
+python3 scripts/build.py --object-name YoumuObjectRecords.obj --compare --json
+```
+
+Each build writes an ignored provenance sidecar containing source/object
+hashes, compiler-shaping inputs, compiler hash, profile, and command. A work
+packet reports a comparison only when that provenance input digest is fresh.
+
+The exact roster lifecycle families are separately recorded in
+`config/clone-families.toml` and checked with
+`python3 scripts/clone-families.py --check`. Their normalized target-byte
+identity supports controlled fan-out but never marks a member `matching`.
+
 ## Agent exact-matching playbook
 
 The reusable, symptom-driven VC8 source-shaping catalog lives at
@@ -80,10 +106,27 @@ ledger.
 
 ## objdiff
 
-`objdiff.json` is intentionally empty until an object boundary is supported by
-evidence. Adding a unit requires both an extracted original object/slice and a
-reproducible rebuilt object. Do not invent translation-unit boundaries merely
-to populate the UI.
+Objdiff 3.8.0 is pinned in `config/tools.lock.toml`. The first unit is an audited
+diagnostic rather than an asserted original object:
+
+```bash
+python3 scripts/generate-synthetic-coff.py --check
+python3 scripts/generate-synthetic-coff.py --island youmu-owner-record
+.tools/objdiff/objdiff-cli diff -p . -u synthetic-youmu-owner-record \
+  -o build/objdiff/youmu-owner-record.json --format json-pretty
+```
+
+`config/synthetic-islands.toml` identifies `0x0053CAA0`, its ledger boundary,
+and both target REL32 operands. The generator checks the exact PE hash and call
+equations, emits unlinked zero addends with named COFF relocations, and replays
+the link to prove byte identity. The resulting objdiff unit reports 100.0% for
+the 175-byte `.text` section and function symbol.
+
+This artifact is deliberately classified
+`synthetic_pe_derived_not_original_coff`. It is useful for objdiff inspection
+and relocation diagnostics, but is not evidence of an original object/TU/LTCG
+boundary and cannot independently change function-ledger status. A future
+original-object unit must keep that stronger evidence class separate.
 
 ## First code-generation results
 

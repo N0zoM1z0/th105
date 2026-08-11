@@ -157,3 +157,8 @@ _profile_name_empty,0x006C0A4E,00,0x0,target empty profile-name sentinel byte,ad
 _profile_file_extension,0x006AE410,2e64617400,0x0,target .dat suffix used to form profile paths,address
 _profile_copy_suffix,0x006AE44C,20d2d1b4e6d4daa3accac7b7f1cce6bbbba3bf00,0x0,target localized suffix used for the duplicate-profile message,address
 __ehhandler$?update_state_six@CProfileMenu@th105@@AAE_NXZ,0x006A7260,8b5424088d42bc8b,0x0,target VC8 CProfileMenu state-six EH handler entry bytes,address
+__ehhandler$??0CEffectSprite@@QAE@XZ,0x006A4288,8b5424088d42f88b,0x0,target VC8 global CEffectSprite constructor EH handler entry bytes,address
+??_7CEffectSprite@@6B@,0x006AC72C,30eb410040a7400060a7400080a74000,0x0,target RTTI-owned global CEffectSprite vtable and four observed slots,address
+??_7IColor@@6B@,0x006AC624,40a8400074b0670074b0670074b06700,0x0,target RTTI-owned global IColor vtable and four observed slots,address
+??_7AttackObject@@6B@,0x006AEB44,a0e2450030aa450010aa450050ad450020ae450050ac4500e0ac4500b0ab4500,0x0,target RTTI-owned global AttackObject vtable and eight observed slots,address
+??_7CharacterObject@@6B@,0x006B001C,b027490030aa450010aa450050ad450020ae450050ac4500e0ac4500b0ab4500,0x0,target RTTI-owned global CharacterObject vtable and eight observed slots,address

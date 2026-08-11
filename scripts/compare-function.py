@@ -5,9 +5,13 @@ from __future__ import annotations
 
 import csv
 import argparse
+import hashlib
+import json
 from pathlib import Path
+import re
 import struct
 import sys
+import tomllib
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,14 +19,103 @@ TARGET = ROOT / "resources" / "th105.exe"
 FUNCTIONS = ROOT / "config" / "functions.csv"
 KNOWN_SYMBOLS = ROOT / "config" / "known-symbols.csv"
 KNOWN_RELOCATIONS = ROOT / "config" / "reccmp-relocations.csv"
+TARGET_CONFIG = ROOT / "config" / "target.toml"
 IMAGE_REL_I386_DIR32 = 0x0006
 IMAGE_REL_I386_REL32 = 0x0014
 IMAGE_SCN_CNT_UNINITIALIZED_DATA = 0x00000080
 IMAGE_SCN_LNK_NRELOC_OVFL = 0x01000000
 
 
+def first_mismatch(expected: bytes, actual: bytes, address: int) -> dict[str, object] | None:
+    shared = min(len(expected), len(actual))
+    offset = next(
+        (index for index in range(shared) if expected[index] != actual[index]),
+        shared if len(expected) != len(actual) else None,
+    )
+    if offset is None:
+        return None
+    return {
+        "offset": offset,
+        "address": f"0x{address + offset:08X}",
+        "target_byte": f"{expected[offset]:02x}" if offset < len(expected) else None,
+        "object_byte": f"{actual[offset]:02x}" if offset < len(actual) else None,
+        "target_context": expected[offset : offset + 8].hex(" "),
+        "object_context": actual[offset : offset + 8].hex(" "),
+    }
+
+
+def failure_record(error: Exception) -> tuple[str, dict[str, object]]:
+    message = str(error)
+    category = "comparison.error"
+    details: dict[str, object] = {}
+
+    patterns: list[tuple[str, str]] = [
+        ("unknown absolute data relocation", "relocation.dir32.unknown_symbol"),
+        ("has unverified addend", "relocation.dir32.addend_unverified"),
+        ("DIR32 target has an invalid object section", "relocation.dir32.target_section_invalid"),
+        ("is not an allowlisted four-byte import", "relocation.dir32.import_unverified"),
+        ("unverified nonzero/unexpected BSS relocation", "relocation.dir32.bss_unverified"),
+        ("do not match known literal", "relocation.dir32.object_literal_mismatch"),
+        ("no longer match mapping", "relocation.dir32.target_literal_mismatch"),
+        ("is not an external CALL/JMP", "relocation.rel32.unsupported_operand"),
+        ("unknown local call/jump target", "relocation.rel32.unknown_target"),
+        ("unknown external call/jump target", "relocation.rel32.unknown_target"),
+        ("unsupported code relocation", "relocation.unsupported_type"),
+        ("relocation references invalid symbol index", "relocation.symbol_index_invalid"),
+        ("COFF relocation extends beyond function section", "relocation.field_outside_section"),
+        ("COFF relocation-overflow sections are unsupported", "coff.relocation_overflow"),
+        ("REL32 displacement overflow", "relocation.rel32.displacement_overflow"),
+        ("is not an i386 COFF object", "coff.machine_unsupported"),
+        ("has no function symbol", "coff.symbol_missing"),
+        ("has multiple function symbols", "coff.symbol_ambiguous"),
+        ("not .text", "coff.symbol_not_text"),
+        ("crosses a PE section boundary", "target.range_crosses_section"),
+        ("PE section raw data is truncated", "target.raw_truncated"),
+        ("is not in a PE section", "target.address_unmapped"),
+        ("target SHA-256 mismatch", "target.identity_mismatch"),
+        ("target size mismatch", "target.identity_mismatch"),
+    ]
+    for text, candidate in patterns:
+        if text in message:
+            category = candidate
+            break
+    if isinstance(error, FileNotFoundError):
+        category = "coff.file_not_found"
+    elif category == "comparison.error" and isinstance(error, (ValueError, struct.error)):
+        category = "coff.malformed"
+
+    symbol_match = re.search(r"(?:relocation|target):\s*([^\s]+)$", message)
+    if symbol_match:
+        details["symbol"] = symbol_match.group(1)
+    if "unknown local call/jump target" in message:
+        details["scope"] = "local"
+    elif "unknown external call/jump target" in message:
+        details["scope"] = "external"
+
+    failure = {"category": category, "message": message, **details}
+    result = "blocked" if category.startswith("relocation.") else "error"
+    return result, failure
+
+
 def canonical(value: str) -> str:
     return f"0x{int(value, 16):08X}"
+
+
+def verify_target() -> str:
+    with TARGET_CONFIG.open("rb") as stream:
+        expected = tomllib.load(stream)["target"]
+    actual_size = TARGET.stat().st_size
+    if actual_size != expected["size"]:
+        raise ValueError(
+            f"target size mismatch: got {actual_size}, expected {expected['size']}"
+        )
+    actual_sha256 = hashlib.sha256(TARGET.read_bytes()).hexdigest()
+    if actual_sha256 != expected["sha256"]:
+        raise ValueError(
+            "target SHA-256 mismatch: "
+            f"got {actual_sha256}, expected {expected['sha256']}"
+        )
+    return actual_sha256
 
 
 def target_bytes(address: int, size: int) -> bytes:
@@ -399,57 +492,134 @@ def main() -> int:
         metavar="NAME=ADDRESS",
         help="add a probe-only REL32 symbol mapping without changing the ledger",
     )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="emit one machine-readable comparison result",
+    )
     parser.add_argument("address")
     parser.add_argument("object")
     args = parser.parse_args()
 
-    address = canonical(args.address)
+    try:
+        address = canonical(args.address)
+    except ValueError as error:
+        if args.json:
+            print(json.dumps({
+                "schema_version": 1,
+                "result": "error",
+                "address": args.address,
+                "failure": {"category": "inventory.address_invalid", "message": str(error)},
+            }, indent=2))
+            return 1
+        raise
+
     obj = Path(args.object).resolve()
+    report: dict[str, object] = {
+        "schema_version": 1,
+        "result": "error",
+        "address": address,
+        "object": str(obj),
+        "comparison": {
+            "boundary": "contiguous_span" if args.contiguous_span else "ledger_size",
+            "size": None,
+        },
+        "target_size": None,
+        "object_section_tail_size": None,
+        "object_size_kind": "section_tail",
+        "first_mismatch": None,
+        "failure": None,
+    }
 
-    with FUNCTIONS.open(newline="", encoding="utf-8") as stream:
-        row = next((item for item in csv.DictReader(stream) if item["address"] == address), None)
-    if row is None:
-        print(f"address is absent from function inventory: {address}", file=sys.stderr)
+    try:
+        report["target_executable_sha256"] = verify_target()
+        with FUNCTIONS.open(newline="", encoding="utf-8") as stream:
+            row = next(
+                (item for item in csv.DictReader(stream) if item["address"] == address),
+                None,
+            )
+        if row is None:
+            report["result"] = "error"
+            report["failure"] = {
+                "category": "inventory.address_absent",
+                "message": f"address is absent from function inventory: {address}",
+            }
+            if args.json:
+                print(json.dumps(report, indent=2))
+            else:
+                print(report["failure"]["message"], file=sys.stderr)  # type: ignore[index]
+            return 1
+
+        with KNOWN_SYMBOLS.open(newline="", encoding="utf-8") as stream:
+            known = next(
+                (item for item in csv.DictReader(stream) if item["address"] == address),
+                None,
+            )
+
+        size = int(row["size"])
+        if args.contiguous_span:
+            size = int(row["span_end"], 16) - int(address, 16) + 1
+        expected = target_bytes(int(address, 16), size)
+        symbol_base = (
+            args.symbol_base
+            or row["proposed_name"]
+            or (known and known["name"])
+            or row["current_name"]
+        )
+        report["symbol_base"] = symbol_base
+        comparison = report["comparison"]
+        assert isinstance(comparison, dict)
+        comparison["size"] = size
+        report["target_size"] = size
+
+        targets = known_targets()
+        for mapping in args.rel32_target:
+            name, separator, raw_address = mapping.partition("=")
+            if not separator or not name or not raw_address:
+                parser.error(f"invalid --rel32-target mapping: {mapping!r}")
+            targets[name] = int(raw_address, 0)
+        actual_section = coff_symbol_bytes(
+            obj,
+            symbol_base,
+            int(address, 16),
+            size,
+            targets,
+            known_data_targets(),
+        )
+        actual = actual_section[:size]
+        mismatch = first_mismatch(expected, actual, int(address, 16))
+        exact = actual == expected and len(actual) == size
+        report.update(
+            {
+                "result": "exact" if exact else "mismatch",
+                "object_section_tail_size": len(actual_section),
+                "first_mismatch": mismatch,
+                "target_sha256": hashlib.sha256(expected).hexdigest(),
+                "object_compared_sha256": hashlib.sha256(actual).hexdigest(),
+            }
+        )
+        if args.json:
+            print(json.dumps(report, indent=2))
+        else:
+            print(f"function: {symbol_base} ({address}, {size} bytes)")
+            print(f"expected: {expected.hex(' ')}")
+            print(f"actual:   {actual.hex(' ')}")
+            if len(actual_section) != size:
+                print(
+                    "note: object .text section tail size is "
+                    f"{len(actual_section)} bytes"
+                )
+            print("result: exact function-byte match" if exact else "result: mismatch")
+        return 0 if exact else 1
+    except (OSError, ValueError, struct.error) as error:
+        result, failure = failure_record(error)
+        report["result"] = result
+        report["failure"] = failure
+        if args.json:
+            print(json.dumps(report, indent=2))
+        else:
+            print(f"error: {failure['category']}: {failure['message']}", file=sys.stderr)
         return 1
-
-    with KNOWN_SYMBOLS.open(newline="", encoding="utf-8") as stream:
-        known = next((item for item in csv.DictReader(stream) if item["address"] == address), None)
-
-    size = int(row["size"])
-    if args.contiguous_span:
-        size = int(row["span_end"], 16) - int(address, 16) + 1
-    expected = target_bytes(int(address, 16), size)
-    symbol_base = (
-        args.symbol_base
-        or row["proposed_name"]
-        or (known and known["name"])
-        or row["current_name"]
-    )
-    targets = known_targets()
-    for mapping in args.rel32_target:
-        name, separator, raw_address = mapping.partition("=")
-        if not separator or not name or not raw_address:
-            parser.error(f"invalid --rel32-target mapping: {mapping!r}")
-        targets[name] = int(raw_address, 0)
-    actual_section = coff_symbol_bytes(
-        obj,
-        symbol_base,
-        int(address, 16),
-        size,
-        targets,
-        known_data_targets(),
-    )
-    actual = actual_section[:size]
-    print(f"function: {symbol_base} ({address}, {size} bytes)")
-    print(f"expected: {expected.hex(' ')}")
-    print(f"actual:   {actual.hex(' ')}")
-    if len(actual_section) != size:
-        print(f"note: object .text size is {len(actual_section)} bytes")
-    if actual != expected or len(actual) != size:
-        print("result: mismatch")
-        return 1
-    print("result: exact function-byte match")
-    return 0
 
 
 if __name__ == "__main__":

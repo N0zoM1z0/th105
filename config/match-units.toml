@@ -1,0 +1,82 @@
+schema_version = 1
+target_sha256 = "49c23d9467b9927ba687ed2b873c4bc2d2f39ddadc9f55051ccf10172c0b7c11"
+
+[units.youmu-object-records]
+kind = "probe"
+source = "src/characters/YoumuObjectRecords.cpp"
+object = "build/match-units/YoumuObjectRecords.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Focused reconstruction unit; not evidence of an original translation-unit boundary."
+
+[[units.youmu-object-records.functions]]
+address = "0x0053CAA0"
+symbol_base = "apply_owner_record"
+rel32_targets = [
+  "object_record_ring_at=0x0053CA40",
+  "reset_for_new_record=0x004351D0",
+]
+
+[units.probe-deque-youmu-record]
+kind = "probe"
+source = "scripts/probes/deque_youmu_record.cpp"
+object = "build/match-units/deque_youmu_record.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Explicit VC8 checked-deque specialization probe; not authored gameplay source."
+
+[[units.probe-deque-youmu-record.functions]]
+address = "0x0053CA40"
+symbol_base = "?at@?$deque@UYoumuObjectRecord@th105@@V?$allocator@UYoumuObjectRecord@th105@@@std@@@std@@QAEAAUYoumuObjectRecord@th105@@I@Z"
+rel32_targets = ["_Xran=0x0053C9C0"]
+
+[units.effect-sprite]
+kind = "probe"
+source = "src/battle/EffectSprite.cpp"
+object = "build/match-units/EffectSprite.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Focused global IColor/CEffectSprite inheritance and EH probe; not evidence of an original translation-unit boundary."
+
+[[units.effect-sprite.functions]]
+address = "0x00421310"
+symbol_base = "CEffectSprite_ctor"
+rel32_targets = [
+  "reset_fighter_action_scratch=0x00433B90",
+  "IColor_dtor=0x0041EAA0",
+]
+
+[[units.effect-sprite.functions]]
+address = "0x0041EAA0"
+symbol_base = "IColor_dtor"
+
+[[units.effect-sprite.functions]]
+address = "0x0041EB30"
+symbol_base = "CEffectSprite_scalar_deleting_destructor"
+contiguous_span = true
+
+[units.attack-object]
+kind = "probe"
+source = "src/battle/AttackObject.cpp"
+object = "build/match-units/AttackObject.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Focused AttackObject layout and constructor-order probe using the recovered embedded CEffectSprite; not an original translation-unit claim."
+
+[[units.attack-object.functions]]
+address = "0x0045E3A0"
+symbol_base = "AttackObject_ctor"
+rel32_targets = ["CEffectSprite_ctor=0x00421310"]
+
+[units.character-object]
+kind = "probe"
+source = "src/characters/CharacterObject.cpp"
+object = "build/match-units/CharacterObject.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Focused shared CharacterObject derived constructor probe; not evidence of an original translation-unit boundary."
+
+[[units.character-object.functions]]
+address = "0x004927D0"
+symbol_base = "CharacterObject_ctor"
+rel32_targets = ["AttackObject_ctor=0x0045E3A0"]

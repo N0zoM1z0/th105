@@ -1,0 +1,74 @@
+schema_version = 1
+target_sha256 = "49c23d9467b9927ba687ed2b873c4bc2d2f39ddadc9f55051ccf10172c0b7c11"
+
+[families.roster-acquire-link]
+size = 94
+normalized_sha256 = "7cb85121ffe61ec2759825d7c64d10c2ceb25fc3281cee12510f562b449a5457"
+zero_dword_offsets = [0x18, 0x3f, 0x4a]
+notes = "Known fifteen-fighter acquire-and-link template; normalized operands are three CALL rel32 fields."
+members = [
+  { name = "Reimu", address = "0x00492E20" },
+  { name = "Marisa", address = "0x004B94E0" },
+  { name = "Sakuya", address = "0x004DEB80" },
+  { name = "Alice", address = "0x004FA1C0" },
+  { name = "Patchouli", address = "0x0051E660" },
+  { name = "Youmu", address = "0x0053AB60" },
+  { name = "Remilia", address = "0x00555930" },
+  { name = "Yuyuko", address = "0x0056D4F0" },
+  { name = "Yukari", address = "0x0058B640" },
+  { name = "Suika", address = "0x005AE080" },
+  { name = "Udonge", address = "0x005D5FE0" },
+  { name = "Komachi", address = "0x005F6DA0" },
+  { name = "Aya", address = "0x006176C0" },
+  { name = "Iku", address = "0x00630400" },
+  { name = "Tenshi", address = "0x0064A790" },
+]
+
+[families.roster-spawn]
+size = 237
+normalized_sha256 = "1624928279d7f6257673ad5f943304704689115380798615d25055e71a40f8ad"
+zero_dword_offsets = [0x08, 0x53, 0x73, 0x93]
+notes = "Known fifteen-fighter spawn template; normalized operands are four CALL rel32 fields."
+members = [
+  { name = "Reimu", address = "0x00493110" },
+  { name = "Marisa", address = "0x004B9860" },
+  { name = "Sakuya", address = "0x004DED80" },
+  { name = "Alice", address = "0x004FA3C0" },
+  { name = "Patchouli", address = "0x0051E870" },
+  { name = "Youmu", address = "0x0053ADF0" },
+  { name = "Remilia", address = "0x00555BA0" },
+  { name = "Yuyuko", address = "0x0056D6F0" },
+  { name = "Yukari", address = "0x0058B840" },
+  { name = "Suika", address = "0x005AE280" },
+  { name = "Udonge", address = "0x005D6200" },
+  { name = "Komachi", address = "0x005F6FA0" },
+  { name = "Aya", address = "0x00617930" },
+  { name = "Iku", address = "0x00630600" },
+  { name = "Tenshi", address = "0x0064A990" },
+]
+
+[families.roster-pool-acquire]
+size = 519
+normalized_sha256 = "e32ec446ed55edd7ad233b42d9f892a2a81288e355bc0a2136864aac6fd55024"
+zero_dword_offsets = [
+  0x31, 0x7f, 0x98, 0xbf, 0xd8, 0xf1, 0x108, 0x112,
+  0x14c, 0x15e, 0x17c, 0x18d, 0x1a7, 0x1cb, 0x1d8, 0x1eb,
+]
+notes = "Known fifteen-fighter pool template; CALL operands and vtable immediates are normalized. Alice's 0x38C allocation trait is normalized to the common 0x388 value."
+members = [
+  { name = "Reimu", address = "0x00492BA0" },
+  { name = "Marisa", address = "0x004B9240" },
+  { name = "Sakuya", address = "0x004DE8E0" },
+  { name = "Alice", address = "0x004F9F40", replacements = [{ offset = 0x76, from_hex = "8c030000", to_hex = "88030000" }] },
+  { name = "Patchouli", address = "0x0051E3C0" },
+  { name = "Youmu", address = "0x0053A8C0" },
+  { name = "Remilia", address = "0x00555690" },
+  { name = "Yuyuko", address = "0x0056D250" },
+  { name = "Yukari", address = "0x0058B3A0" },
+  { name = "Suika", address = "0x005ADDE0" },
+  { name = "Udonge", address = "0x005D5D60" },
+  { name = "Komachi", address = "0x005F6B20" },
+  { name = "Aya", address = "0x00617420" },
+  { name = "Iku", address = "0x00630180" },
+  { name = "Tenshi", address = "0x0064A510" },
+]

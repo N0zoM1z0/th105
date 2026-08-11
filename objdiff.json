@@ -1,10 +1,22 @@
 {
+  "$schema": "https://raw.githubusercontent.com/encounter/objdiff/main/config.schema.json",
+  "min_version": "3.8.0",
   "custom_make": "python3",
   "custom_args": ["scripts/build.py", "--object-name"],
-  "target_dir": "build/objdiff/orig",
-  "base_dir": "build/objdiff/reimpl",
   "build_base": true,
   "build_target": false,
   "watch_patterns": ["*.c", "*.cpp", "*.h", "*.hpp"],
-  "units": []
+  "units": [
+    {
+      "name": "synthetic-youmu-owner-record",
+      "target_path": "build/objdiff/orig/YoumuObjectRecords.obj",
+      "base_path": "build/match-units/YoumuObjectRecords.obj",
+      "metadata": {
+        "complete": false,
+        "source_path": "src/characters/YoumuObjectRecords.cpp",
+        "progress_categories": ["diagnostic-synthetic"],
+        "auto_generated": true
+      }
+    }
+  ]
 }

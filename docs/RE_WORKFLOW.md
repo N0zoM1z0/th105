@@ -54,6 +54,20 @@ they agree with instructions and surrounding ABI evidence.
 
 ## Fast iteration loop
 
+The accepted tooling rollout and its evidence boundaries are recorded in
+[`WORKFLOW_EVOLUTION.md`](WORKFLOW_EVOLUTION.md). For a fresh, hash-attested
+IDA-first packet at one ledger entry, use:
+
+```bash
+python3 scripts/work-packet.py 0x00421310 --refresh
+```
+
+Only the coordinator or a single-agent lane refreshes semantic evidence.
+Parallel evidence workers use `--cached`; cached packets are advisory and never
+justify a status transition by themselves. Use `--backend ghidra` for the
+explicit headless fallback. The packet preserves backend-native payloads and
+reports a boundary conflict instead of replacing the ledger boundary.
+
 Normal function work should use a focused decompile/xref query and an
 object/function-level diff. The CSV validator and progress check are the only
 routine whole-project checks, and both are designed to finish in under a
@@ -79,6 +93,11 @@ Undefined DIR32 symbols remain rejected except for explicitly allowlisted
 `__imp__*` imports. An import mapping must name its exact four-byte IAT slot
 and on-disk thunk literal; the target bytes and relocation addend are
 revalidated on every comparison.
+
+`scripts/compare-function.py --json` is the machine-facing interface. It
+distinguishes `exact`, `mismatch`, `blocked`, and `error`, reports the first
+differing byte, and classifies relocation blockers. Human-readable output is
+retained for direct iteration.
 
 ## Parallel-agent safety
 
