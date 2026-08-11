@@ -219,12 +219,26 @@ address,lane,priority,notes
 0x005F6FA0,character-owned-object,1,Komachi owned-object spawn contract
 0x005F7190,character-command,1,Komachi spell skill and normal input dispatcher
 0x006013C0,character-command,2,Komachi event-code action bridge
+0x00611D80,character-command,1,Aya large action-decision and command-state root
+0x00615EA0,character-command,2,Aya front-sequence action progression root
+0x006166A0,character-command,1,Aya action-entry lifecycle root
 0x00617420,character-owned-object,1,Aya object-pool acquire semantics
 0x006176C0,character-owned-object,1,Aya object acquire and tracking-list insertion source
 0x00617930,character-owned-object,1,Aya owned-object spawn contract
+0x00617B20,character-command,1,Aya spell skill and normal input dispatcher
+0x0061F870,character-command,2,Aya event-code action bridge
+0x0062E910,character-command,2,Iku front-sequence action progression root
+0x0062F4B0,character-command,1,Iku action-entry lifecycle root
 0x00630180,character-owned-object,1,Iku object-pool acquire semantics
 0x00630400,character-owned-object,1,Iku object acquire and tracking-list insertion source
 0x00630600,character-owned-object,1,Iku owned-object spawn contract
+0x00630800,character-command,1,Iku spell skill and normal input dispatcher
+0x0063C1D0,character-command,2,Iku event-code action bridge
+0x00648850,character-command,2,Tenshi front-sequence action progression root
+0x006495C0,character-command,1,Tenshi action-entry lifecycle root
 0x0064A510,character-owned-object,1,Tenshi object-pool acquire semantics
 0x0064A790,character-owned-object,1,Tenshi object acquire and tracking-list insertion source
 0x0064A990,character-owned-object,1,Tenshi owned-object spawn contract
+0x0064AB80,character-command,1,Tenshi spell skill and normal input dispatcher
+0x0064C090,character-command,1,Tenshi owned-object repeated effect-emission helper candidate
+0x00658830,character-command,2,Tenshi event-code action bridge

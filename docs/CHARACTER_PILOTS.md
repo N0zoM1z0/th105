@@ -23,9 +23,9 @@ recovered original names.  Raw offsets exclude the preceding RTTI locator.
 | Suika | `0x006B1B9C` | `0x00598100` | `0x005ACC10` | `0x005ACBE0` | `0x005AE470` | `0x005ABDF0` | `0x005BEEE0` | mapped |
 | Udonge | `0x006B1E3C` | `0x005BF460` | `0x005D4610` | `0x005D45C0` | `0x005D63F0` | `0x005D3EA0` | `0x005E53D0` | mapped |
 | Komachi | `0x006B2074` | `0x005E5860` | `0x005F5DE0` | `0x005F5DB0` | `0x005F7190` | `0x005F5700` | `0x006013C0` | mapped |
-| Aya | `0x006B22DC` | `0x006018F0` | `0x006166A0` | `0x00616680` | `0x00617B20` | `0x00615EA0` | `0x0061F870` | seed |
-| Iku | `0x006B2534` | `0x0061FDE0` | `0x0062F4B0` | `0x0062F480` | `0x00630800` | `0x0062E910` | `0x0063C1D0` | seed |
-| Tenshi | `0x006B279C` | `0x0063C900` | `0x006495C0` | `0x00649520` | `0x0064AB80` | `0x00648850` | `0x00658830` | seed |
+| Aya | `0x006B22DC` | `0x006018F0` | `0x006166A0` | `0x00616680` | `0x00617B20` | `0x00615EA0` | `0x0061F870` | mapped |
+| Iku | `0x006B2534` | `0x0061FDE0` | `0x0062F4B0` | `0x0062F480` | `0x00630800` | `0x0062E910` | `0x0063C1D0` | mapped |
+| Tenshi | `0x006B279C` | `0x0063C900` | `0x006495C0` | `0x00649520` | `0x0064AB80` | `0x00648850` | `0x00658830` | mapped |
 
 The meanings of `+0x3C` and `+0x50` are proven by the shared update path and
 Sakuya behavior.  The other four columns deliberately retain neutral slot
@@ -300,6 +300,22 @@ Suika, Udonge, and Komachi again share the two sequence-ready sites, the one
 front-record selector site, command word `+0x728`, derived gates, and four
 family latches. Their sparse spell tables and secondary paths differ enough
 that the per-character traits must preserve explicit record/action pairs.
+
+The final wave completes all fifteen roster pilot boundaries:
+
+| Fighter | Dispatcher size | Front-record spell mapping | `0x004631E0` edges | Next character-specific roots |
+| --- | ---: | --- | ---: | --- |
+| Aya | 7161 | primary `200/201/202/205/206/211/212` -> `600/601/602/605/606/611/612`; later `203/211/212` -> `603/661/662` | 29 calls plus one tail edge | `0x00611D80`, `0x00615EA0`, `0x006166A0`, `0x0061F870` |
+| Iku | 6302 | primary `200..203/205..210` -> `600..603/605..610`; later `200/210` -> `650/660` | 24 calls | `0x0062E910`, `0x0062F4B0`, `0x0063C1D0` |
+| Tenshi | 5352 | `200..207` -> `600..607`; later `207` -> `657` | 17 calls plus one tail edge | `0x00648850`, `0x006495C0`, `0x0064C090`, `0x00658830` |
+
+Aya and Iku use sparse record tables and later-priority spell branches; Tenshi
+uses a contiguous eight-record primary table but a distinct later `657` path.
+All three retain the roster-wide two sequence-ready sites, one front-record
+selector, command word, derived gates, and four family latches. No small
+Aya-only or Iku-only dispatcher callee analogous to Yukari `0x0058BA30` was
+observed; Tenshi `0x0064C090` is instead a bounded owned-object effect-emission
+helper suitable for the next source-extraction wave.
 
 The Sakuya manager's raw primary-vtable slot `+0x04` is `0x004DED80`, a complete object-spawn
 boundary. It obtains a new Sakuya object from the manager base at `+0x04`,

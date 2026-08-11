@@ -284,6 +284,9 @@ address,name,module,confidence,evidence
 0x005AE470,Suika_handle_input_and_select_action,characters,observed,Suika fighter vtable slot +0x50 and grounded spell skill and normal action groups
 0x005D63F0,Udonge_handle_input_and_select_action,characters,observed,Udonge fighter vtable slot +0x50 and grounded spell skill and normal action groups
 0x005F7190,Komachi_handle_input_and_select_action,characters,observed,Komachi fighter vtable slot +0x50 and grounded spell skill and normal action groups
+0x00617B20,Aya_handle_input_and_select_action,characters,observed,Aya fighter vtable slot +0x50 and grounded spell skill and normal action groups
+0x00630800,Iku_handle_input_and_select_action,characters,observed,Iku fighter vtable slot +0x50 and grounded spell skill and normal action groups
+0x0064AB80,Tenshi_handle_input_and_select_action,characters,observed,Tenshi fighter vtable slot +0x50 and grounded spell skill and normal action groups
 0x004F9F40,AliceObjectPool_acquire,characters,observed,IDA Pro complete normalized 519-byte fresh/reuse pool path and 0x38C allocation exception
 0x004FA1C0,AliceObjectManagerBase_acquire_and_link_object,characters,observed,IDA Pro normalized roster-owned 94-byte acquire-and-link template
 0x004FA3C0,AliceObjectManager_spawn_object,characters,observed,IDA Pro normalized roster-owned 237-byte spawn template and 0x38C fresh allocation exception
