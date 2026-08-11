@@ -254,13 +254,28 @@ address,name,module,confidence,evidence
 0x00493A10,try_dispatch_action_203,characters,observed,Complete target-sized action-203 mirror gate with one direct caller in each of 15 character dispatchers
 0x00493B00,try_dispatch_action_214_with_direction_angle,characters,observed,Exact counted action-214 gate and nine-value direction-angle assignment with one direct caller in each of 15 character dispatchers
 0x004DDB20,Sakuya_on_action_changed,characters,observed,docs/EVIDENCE.md Sakuya action traces
+0x00493110,ReimuObjectManager_spawn_object,characters,observed,IDA Pro normalized roster-owned 237-byte spawn template
+0x004B9860,MarisaObjectManager_spawn_object,characters,observed,IDA Pro normalized roster-owned 237-byte spawn template
 0x004DE8E0,SakuyaObjectPool_acquire,characters,observed,IDA Pro fresh and reuse paths allocate 0x388-byte Sakuya objects and publish packed handles
+0x004DEB10,SakuyaObjectManagerBase_ctor,characters,observed,IDA Pro exact handle-pool and tracking-list construction with EH cleanup
 0x004DEB80,SakuyaObjectManagerBase_acquire_and_link_object,characters,observed,Complete pool acquire token store and tracking-list insertion source
 0x004DEC70,SakuyaObjectManagerBase_preallocate_object_pool,characters,observed,Acquires to an unsigned target count then releases all tracked objects back to the pool
 0x004DECF0,SakuyaObjectManager_ctor,characters,observed,Exact constructor instructions install two Sakuya manager vtables and owner +0x64
 0x004DED80,SakuyaObjectManager_spawn_object,characters,observed,Complete manager vtable spawn path and object field publication
 0x004DEEF0,Sakuya_ctor,characters,observed,Exact constructor instructions and sole 0x004632D0 fighter-factory caller
 0x004DEF70,Sakuya_handle_input_and_select_action,characters,observed,docs/EVIDENCE.md Sakuya dispatcher data flow and runtime actions
+0x004FA3C0,AliceObjectManager_spawn_object,characters,observed,IDA Pro normalized roster-owned 237-byte spawn template and 0x38C fresh allocation exception
+0x0051E870,PatchouliObjectManager_spawn_object,characters,observed,IDA Pro normalized roster-owned 237-byte spawn template
+0x0053ADF0,YoumuObjectManager_spawn_object,characters,observed,IDA Pro normalized roster-owned 237-byte spawn template
+0x00555BA0,RemiliaObjectManager_spawn_object,characters,observed,IDA Pro normalized roster-owned 237-byte spawn template
+0x0056D6F0,YuyukoObjectManager_spawn_object,characters,observed,IDA Pro normalized roster-owned 237-byte spawn template
+0x0058B840,YukariObjectManager_spawn_object,characters,observed,IDA Pro normalized roster-owned 237-byte spawn template
+0x005AE280,SuikaObjectManager_spawn_object,characters,observed,IDA Pro normalized roster-owned 237-byte spawn template
+0x005D6200,UdongeObjectManager_spawn_object,characters,observed,IDA Pro normalized roster-owned 237-byte spawn template
+0x005F6FA0,KomachiObjectManager_spawn_object,characters,observed,IDA Pro normalized roster-owned 237-byte spawn template
+0x00617930,AyaObjectManager_spawn_object,characters,observed,IDA Pro normalized roster-owned 237-byte spawn template
+0x00630600,IkuObjectManager_spawn_object,characters,observed,IDA Pro normalized roster-owned 237-byte spawn template
+0x0064A990,TenshiObjectManager_spawn_object,characters,observed,IDA Pro normalized roster-owned 237-byte spawn template
 0x0051D0D0,release_owned_pointer_buffer,battle,inferred,docs/BATTLE.md observed owned-pointer buffer release used by indexed scratch reset
 0x0067B02A,free_transient_list_node,runtime,observed,docs/BATTLE.md CRT free thunk used for transient collision-list nodes
 0x0067B50C,operator_new,runtime,observed,docs/BATTLE.md verified VC8 allocation routine called by collision-list helpers

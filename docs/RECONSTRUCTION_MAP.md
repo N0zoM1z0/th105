@@ -76,8 +76,11 @@ TH10.5
     │   ├── 0x00493300/0x00493490/0x00493540 [exact]
     │   └── 0x00493380/0x00493580 [implemented]
     ├── fifteen RTTI/vtable pilot rows -> docs/CHARACTER_PILOTS.md
-    ├── per-character fighter and owned-object manager families [seed]
-    └── Sakuya pilot [mapped]
+    ├── fifteen owned-object spawn families [contracted]
+    │   ├── one normalized 237-byte ABI/template
+    │   ├── fourteen roster spawn entries [decompiled]
+    │   └── Sakuya spawn source [source-ready]
+    └── Sakuya fighter pilot [mapped]
         ├── 0x004DEEF0 fighter constructor [decompiled]
         ├── 0x004DECF0 manager constructor [decompiled]
         ├── 0x004DED80 owned-object spawn [decompiled]
@@ -91,11 +94,11 @@ platform/runtime. Their module boundaries are listed in `docs/ARCHITECTURE.md`.
 
 ## Unlock-first frontier
 
-1. **Sakuya character pilot.** The derived vtable, action families, extension
-   prefix, constructors, shared command gates, and owned-object spawn contract
-   are mapped. Recover the spawn allocator/parent-link dependencies and the
-   next decision leaves beneath `0x004DEF70`. Apply the resulting checklist to
-   the other fourteen fighters in `docs/CHARACTER_PILOTS.md`.
+1. **Roster character pilots.** All fifteen owned-object spawn entries now have
+   one proven ABI and normalized instruction template; Sakuya supplies the
+   source body. Promote the fourteen acquire-and-link dependencies, emit the
+   shared source pattern without hiding Alice's `0x38C` allocation exception,
+   then split spell/skill decision leaves under each fighter dispatcher.
 2. **PAT record semantics.** `0x00462050` now has target-sized complete source,
    `0x0045E080` is exact, and `0x00464320` is 197/199 bytes. Recover the
    EH-bearing record types inside `0x00460B50`; this is the remaining shared
@@ -133,11 +136,13 @@ shared command layer [source-ready]
 shared owned-object lifecycle [contracted]
 ├── 0x004454E0 four-byte VC8 deque push_back [library, exact]
 ├── 0x004B9540 return tracked objects to pool [semantics-ready]
-└── Sakuya pilot [source-ready]
+├── fifteen 237-byte spawn entries [contracted]
+│   ├── Sakuya 0x004DED80 [source-ready]
+│   └── fourteen normalized twins [decompiled]
+└── Sakuya fighter pilot [source-ready]
     ├── 0x004DE8E0 pool acquire [contracted]
     ├── 0x004DEB80 acquire and link [source-ready]
     ├── 0x004DEC70 preallocate 256 then release [source-ready]
-    ├── 0x004DED80 spawn and parent/payload publication [source-ready]
     └── 0x004DEF70 spell/skill/normal dispatcher [semantics-ready]
 ```
 

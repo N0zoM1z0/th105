@@ -116,6 +116,8 @@ address,lane,priority,notes
 0x0046D160,collision-phase,1,Hard family 2 against family 1 checked-list pass
 0x0046D370,collision-phase,1,Hard family 1 same-list and cross-list clash pass
 0x0046D620,collision-phase,1,Hard six-list collision and deferred-result orchestration
+0x00492E20,character-owned-object,1,Reimu object acquire and tracking-list insertion blocker
+0x00493110,character-owned-object,1,Reimu owned-object spawn contract
 0x00493300,character-command,2,Exact shared signed command gate for actions 208 through 210
 0x00493380,character-command,1,Shared flagged command gate for actions 220 and 222 through 224
 0x00493490,character-command,2,Exact shared flagged command gate for actions 225 and 226
@@ -127,12 +129,39 @@ address,lane,priority,notes
 0x00493A10,character-command,1,Shared mirrored counted and repeated command gate for action 203
 0x00493B00,character-command,2,Exact counted action-214 gate and direction-angle assignment
 0x00493C90,character-command,1,Shared seven-way front-record action gate
+0x004B94E0,character-owned-object,1,Marisa object acquire and tracking-list insertion blocker
 0x004B9540,character-owned-object,1,Roster-wide tracked-object release and reusable-pool reset
+0x004B9860,character-owned-object,1,Marisa owned-object spawn contract
 0x004DDB20,character-command,1,Sakuya action-change root
 0x004DE8E0,character-owned-object,1,Sakuya object pool acquire and handle publication
+0x004DEB10,character-owned-object,1,Sakuya manager-base pool and tracking-list constructor
 0x004DEB80,character-owned-object,1,Sakuya object acquire and tracking-list insertion
 0x004DEC70,character-owned-object,1,Sakuya object-pool preallocation
 0x004DECF0,character-owned-object,2,Sakuya owned-object manager constructor
 0x004DED80,character-owned-object,1,Sakuya owned-object spawn path
 0x004DEEF0,character-owned-object,2,Sakuya fighter constructor
 0x004DEF70,character-command,1,Sakuya input and action dispatcher
+0x004FA1C0,character-owned-object,1,Alice object acquire and tracking-list insertion blocker
+0x004FA3C0,character-owned-object,1,Alice owned-object spawn contract
+0x0051E660,character-owned-object,1,Patchouli object acquire and tracking-list insertion blocker
+0x0051E870,character-owned-object,1,Patchouli owned-object spawn contract
+0x0053AB60,character-owned-object,1,Youmu object acquire and tracking-list insertion blocker
+0x0053ADF0,character-owned-object,1,Youmu owned-object spawn contract
+0x00555930,character-owned-object,1,Remilia object acquire and tracking-list insertion blocker
+0x00555BA0,character-owned-object,1,Remilia owned-object spawn contract
+0x0056D4F0,character-owned-object,1,Yuyuko object acquire and tracking-list insertion blocker
+0x0056D6F0,character-owned-object,1,Yuyuko owned-object spawn contract
+0x0058B640,character-owned-object,1,Yukari object acquire and tracking-list insertion blocker
+0x0058B840,character-owned-object,1,Yukari owned-object spawn contract
+0x005AE080,character-owned-object,1,Suika object acquire and tracking-list insertion blocker
+0x005AE280,character-owned-object,1,Suika owned-object spawn contract
+0x005D5FE0,character-owned-object,1,Udonge object acquire and tracking-list insertion blocker
+0x005D6200,character-owned-object,1,Udonge owned-object spawn contract
+0x005F6DA0,character-owned-object,1,Komachi object acquire and tracking-list insertion blocker
+0x005F6FA0,character-owned-object,1,Komachi owned-object spawn contract
+0x006176C0,character-owned-object,1,Aya object acquire and tracking-list insertion blocker
+0x00617930,character-owned-object,1,Aya owned-object spawn contract
+0x00630400,character-owned-object,1,Iku object acquire and tracking-list insertion blocker
+0x00630600,character-owned-object,1,Iku owned-object spawn contract
+0x0064A790,character-owned-object,1,Tenshi object acquire and tracking-list insertion blocker
+0x0064A990,character-owned-object,1,Tenshi owned-object spawn contract

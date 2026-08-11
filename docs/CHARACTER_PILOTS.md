@@ -86,6 +86,49 @@ reconstructing ten opaque helpers independently.  The action-214 gate writes
 the derived-field position `+0x740`; this is an observed angle table, while
 the gameplay label for the resulting motion remains deliberately unset.
 
+## Roster owned-object spawn matrix
+
+Every playable fighter owns the same manager/object lifecycle boundary. IDA
+disassembly proves that all fifteen spawn entries are 237 bytes and end in
+`ret 0x24`. After zeroing only the four direct `CALL rel32` displacements at
+function offsets `+0x08`, `+0x53`, `+0x73`, and `+0x93`, every body has the
+same SHA-256,
+`1624928279d7f6257673ad5f943304704689115380798615d25055e71a40f8ad`.
+This is instruction-template identity, not an exact source comparison.
+
+| Fighter | Spawn | Acquire and link | Pool acquire | Fresh span | Object vtable |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Reimu | `0x00493110` | `0x00492E20` | `0x00492BA0` | `0x388` | `0x006B00B4` |
+| Marisa | `0x004B9860` | `0x004B94E0` | `0x004B9240` | `0x388` | `0x006B050C` |
+| Sakuya | `0x004DED80` | `0x004DEB80` | `0x004DE8E0` | `0x388` | `0x006B089C` |
+| Alice | `0x004FA3C0` | `0x004FA1C0` | `0x004F9F40` | `0x38C` | `0x006B0B64` |
+| Patchouli | `0x0051E870` | `0x0051E660` | `0x0051E3C0` | `0x388` | `0x006B0E34` |
+| Youmu | `0x0053ADF0` | `0x0053AB60` | `0x0053A8C0` | `0x388` | `0x006B10CC` |
+| Remilia | `0x00555BA0` | `0x00555930` | `0x00555690` | `0x388` | `0x006B134C` |
+| Yuyuko | `0x0056D6F0` | `0x0056D4F0` | `0x0056D250` | `0x388` | `0x006B15D4` |
+| Yukari | `0x0058B840` | `0x0058B640` | `0x0058B3A0` | `0x388` | `0x006B1854` |
+| Suika | `0x005AE280` | `0x005AE080` | `0x005ADDE0` | `0x388` | `0x006B1B14` |
+| Udonge | `0x005D6200` | `0x005D5FE0` | `0x005D5D60` | `0x388` | `0x006B1DB4` |
+| Komachi | `0x005F6FA0` | `0x005F6DA0` | `0x005F6B20` | `0x388` | `0x006B1FEC` |
+| Aya | `0x00617930` | `0x006176C0` | `0x00617420` | `0x388` | `0x006B2254` |
+| Iku | `0x00630600` | `0x00630400` | `0x00630180` | `0x388` | `0x006B24AC` |
+| Tenshi | `0x0064A990` | `0x0064A790` | `0x0064A510` | `0x388` | `0x006B2714` |
+
+The shared ABI takes parent and related-object pointers, action, X/Y, two byte
+arguments, and an optional dword payload. It returns a new object, publishes
+the owner at `+0x168/+0x348`, copies owner state from `+0x130/+0x160`, writes
+the parent at `+0x34C`, appends the child through the exact deque specialization
+at parent `+0x350`, and calls object vslot `+0x08` with the action. The related
+pointer is dereferenced at `+0x170` without a null guard. The outer manager
+layout is likewise shared: secondary manager-base view at `+0x04`, tracked
+list at outer `+0x58`, and fighter owner at `+0x64`.
+
+Alice's four-byte larger fresh allocation is the only observed roster
+deviation; the spawn instructions themselves remain template-identical. The
+fourteen newly named rows are therefore `decompiled`, while only Sakuya has a
+source body. A reusable emitted template must preserve separate character pool
+calls and the Alice tail before those rows can advance to `implemented`.
+
 ## Sakuya pilot
 
 Sakuya's constructor at `0x004DEEF0` has one explicit base argument, calls the
@@ -94,8 +137,11 @@ shared fighter constructor `0x00461A90`, installs vtable `0x006B0924`, allocates
 Its sole caller is the fifteen-way fighter factory at `0x004632D0`.
 
 The manager constructor at `0x004DECF0` first installs the shared
-`ICharacterObjectManager` vtable, constructs a base view at `+0x04`, then
-installs the two Sakuya manager vtables `0x006B08F4` and `0x006B08EC`. It stores
+`ICharacterObjectManager` vtable, constructs a secondary manager base at
+`+0x04`, then installs the two Sakuya manager vtables `0x006B08F4` and
+`0x006B08EC`. The target's two EH cleanup states destroy the secondary base
+and restore/clean the primary interface, proving a C++ multiple-inheritance
+boundary rather than merely two unrelated raw pointers. It stores
 the owning Sakuya pointer at `+0x64` and calls `0x004DEC70` with target count
 `256`. That function acquires and tracks objects until the unsigned target is
 reached, then `0x004B9540` returns every handle token to the pool and frees only
@@ -145,7 +191,7 @@ the selected path's low byte. All branches are now covered by the 850-line IDA
 decompile, so the ledger records `decompiled`; source remains split into
 bounded command groups to avoid a monolithic guessed transcription.
 
-The Sakuya manager's raw base-vtable slot `+0x0C` is `0x004DED80`, a complete object-spawn
+The Sakuya manager's raw primary-vtable slot `+0x04` is `0x004DED80`, a complete object-spawn
 boundary. It obtains a new Sakuya object from the manager base at `+0x04`,
 copies owner state into object fields `+0x130`, `+0x160`, `+0x168`, and
 `+0x348`, optionally links a parent at `+0x34C`, optionally allocates and
@@ -159,11 +205,12 @@ field-load/register order.
 
 ## Next waves
 
-1. Split Sakuya's complete `0x004DEF70` matrix into source-backed spell, skill,
+1. Promote the fourteen acquire-and-link helpers in the roster matrix. They are
+   normalized 94-byte twins of Sakuya's complete contract and are the direct
+   blockers for a shared emitted spawn template.
+2. Split Sakuya's complete `0x004DEF70` matrix into source-backed spell, skill,
    and normal-action blocks, beginning with the spell-record `600..609/656`
    selector because it links parser data directly to character behavior.
-2. Link at least two Sakuya projectile/spell action paths through the now-
-   implemented `0x004DED80` spawn template and its reusable object pool.
-3. Apply the same vtable/action/derived-delta checklist to Reimu, Marisa, and
-   Alice, then proceed through the remaining eleven table rows in bounded,
-   non-overlapping address lanes.
+3. Apply that dispatcher split to Reimu and Marisa, then fan out through the
+   remaining roster while preserving one bounded character/action family per
+   claim.

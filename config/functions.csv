@@ -2236,7 +2236,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00492F90,123,0x0049300A,FUN_00492f90,,,unclassified,0.00,unknown,undefined FUN_00492f90(void),false,,,,
 0x00493010,76,0x0049305B,FUN_00493010,,,unclassified,0.00,unknown,undefined FUN_00493010(void),false,,,,
 0x00493100,8,0x00493107,FUN_00493100,,,unclassified,0.00,unknown,undefined FUN_00493100(void),false,,,,
-0x00493110,237,0x004931FC,FUN_00493110,,,unclassified,0.00,unknown,undefined FUN_00493110(void),false,,,,
+0x00493110,237,0x004931FC,FUN_00493110,ReimuObjectManager_spawn_object,characters,decompiled,0.00,__thiscall,"ReimuObject * ReimuObjectManager_spawn_object(ReimuObjectManager * this, ReimuObject * parent, ReimuObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,,docs/CHARACTER_PILOTS.md roster-owned spawn matrix and IDA Pro normalized 237-byte instruction template,root,Complete shared field-publication control flow; four character-specific direct calls remain dependencies; source awaits shared template emission and exact compiler shaping
 0x00493200,81,0x00493250,FUN_00493200,,,unclassified,0.00,unknown,undefined FUN_00493200(void),false,,,,
 0x00493260,27,0x0049327D,FUN_00493260,,,unclassified,0.00,unknown,undefined FUN_00493260(void),false,,,,
 0x00493280,126,0x004932FD,FUN_00493280,,,unclassified,0.00,unknown,undefined FUN_00493280(void),false,,,,
@@ -2283,7 +2283,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004B9750,8,0x004B9757,FUN_004b9750,,,unclassified,0.00,unknown,undefined FUN_004b9750(void),false,,,,
 0x004B9760,200,0x004B982E,FUN_004b9760,,,unclassified,0.00,unknown,undefined FUN_004b9760(void),false,,,,
 0x004B9830,37,0x004B9854,FUN_004b9830,,,unclassified,0.00,unknown,undefined FUN_004b9830(void),false,,,,
-0x004B9860,237,0x004B994C,FUN_004b9860,,,unclassified,0.00,unknown,undefined FUN_004b9860(void),false,,,,
+0x004B9860,237,0x004B994C,FUN_004b9860,MarisaObjectManager_spawn_object,characters,decompiled,0.00,__thiscall,"MarisaObject * MarisaObjectManager_spawn_object(MarisaObjectManager * this, MarisaObject * parent, MarisaObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,,docs/CHARACTER_PILOTS.md roster-owned spawn matrix and IDA Pro normalized 237-byte instruction template,root,Complete shared field-publication control flow; four character-specific direct calls remain dependencies; source awaits shared template emission and exact compiler shaping
 0x004B9950,8,0x004B9957,FUN_004b9950,,,unclassified,0.00,unknown,undefined FUN_004b9950(void),false,,,,
 0x004B9960,81,0x004B99B0,FUN_004b9960,,,unclassified,0.00,unknown,undefined FUN_004b9960(void),false,,,,
 0x004B99C0,27,0x004B99DD,FUN_004b99c0,,,unclassified,0.00,unknown,undefined FUN_004b99c0(void),false,,,,
@@ -2302,12 +2302,12 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004DE850,130,0x004DE8D1,FUN_004de850,,,unclassified,0.00,unknown,undefined FUN_004de850(void),false,,,,
 0x004DE8E0,519,0x004DEAE6,FUN_004de8e0,SakuyaObjectPool_acquire,characters,identified,0.00,__thiscall,SakuyaObject * SakuyaObjectPool_acquire(void * this,unsigned * handle_token),false,,IDA Pro allocation and reuse paths including operator new 0x388 and vtable 0x006B089C,root,Fresh and reuse paths initialize the shared CharacterObject base and return a packed slot-generation token
 0x004DEAF0,27,0x004DEB0D,FUN_004deaf0,,,unclassified,0.00,unknown,undefined FUN_004deaf0(void),false,,,,
-0x004DEB10,103,0x004DEB76,FUN_004deb10,,,unclassified,0.00,unknown,undefined FUN_004deb10(void),false,,,,
+0x004DEB10,103,0x004DEB76,FUN_004deb10,SakuyaObjectManagerBase_ctor,characters,decompiled,0.00,__thiscall,SakuyaObjectManagerBase * SakuyaObjectManagerBase_ctor(SakuyaObjectManagerBase * this),false,,IDA Pro exact constructor and EH cleanup paths at 0x006A8D00,root,Constructs handle pool at +4 and tracking-list sentinel at +0x54; source awaits truthful pool member constructors and destructors
 0x004DEB80,94,0x004DEBDD,FUN_004deb80,SakuyaObjectManagerBase_acquire_and_link_object,characters,implemented,0.00,__thiscall,SakuyaObject * SakuyaObjectManagerBase_acquire_and_link_object(SakuyaObjectManagerBase * this),false,src/characters/SakuyaOwnedObjects.cpp,"scripts/compile-unit.sh src/characters/SakuyaOwnedObjects.cpp build/wave_sakuya/SakuyaOwnedObjects.obj && python3 scripts/compare-function.py 0x004DEB80 build/wave_sakuya/SakuyaOwnedObjects.obj --symbol-base acquire_and_link_object --rel32-target SakuyaObjectPool_acquire=0x004DE8E0 => target 94 object 90",root,Complete acquire token publication and raw list insertion; remaining mismatch is ESI EDI allocation plus address-taken local scheduling
 0x004DEBE0,100,0x004DEC43,FUN_004debe0,,,unclassified,0.00,unknown,undefined FUN_004debe0(void),false,,,,
 0x004DEC50,27,0x004DEC6D,FUN_004dec50,,,unclassified,0.00,unknown,undefined FUN_004dec50(void),false,,,,
 0x004DEC70,117,0x004DECE4,FUN_004dec70,SakuyaObjectManagerBase_preallocate_object_pool,characters,implemented,0.00,__thiscall,void * SakuyaObjectManagerBase_preallocate_object_pool(SakuyaObjectManagerBase * this,unsigned target_count),false,src/characters/SakuyaOwnedObjects.cpp,"scripts/compile-unit.sh src/characters/SakuyaOwnedObjects.cpp build/wave_sakuya/SakuyaOwnedObjects.obj && python3 scripts/compare-function.py 0x004DEC70 build/wave_sakuya/SakuyaOwnedObjects.obj --symbol-base preallocate_object_pool --rel32-target SakuyaObjectPool_acquire=0x004DE8E0 --rel32-target SakuyaObjectManagerBase_release_all_tracked_objects=0x004B9540 => target 117 object 115",root,Acquires and tracks objects to unsigned target count then returns every token to the reusable pool; remaining mismatch is two bytes of register scheduling
-0x004DECF0,123,0x004DED6A,FUN_004decf0,SakuyaObjectManager_ctor,characters,decompiled,0.00,__thiscall,"SakuyaObjectManager * SakuyaObjectManager_ctor(SakuyaObjectManager * this, Sakuya * owner)",false,,docs/CHARACTER_PILOTS.md exact constructor instructions and vtable addresses,root,Complete constructor contract and manager-base layout; next step is truthful base construction and EH source
+0x004DECF0,123,0x004DED6A,FUN_004decf0,SakuyaObjectManager_ctor,characters,decompiled,0.00,__thiscall,"SakuyaObjectManager * SakuyaObjectManager_ctor(SakuyaObjectManager * this, Sakuya * owner)",false,,docs/CHARACTER_PILOTS.md exact constructor multiple-inheritance vptr and EH cleanup map,root,Primary interface at +0 secondary manager base at +4 and owner +0x64; source awaits truthful C++ inheritance and base cleanup modeling
 0x004DED70,8,0x004DED77,FUN_004ded70,,,unclassified,0.00,unknown,undefined FUN_004ded70(void),false,,,,
 0x004DED80,237,0x004DEE6C,FUN_004ded80,SakuyaObjectManager_spawn_object,characters,implemented,0.00,__thiscall,"SakuyaObject * SakuyaObjectManager_spawn_object(SakuyaObjectManager * this, SakuyaObject * parent, SakuyaObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,src/characters/SakuyaObjectSpawn.cpp,"scripts/compile-unit.sh src/characters/SakuyaObjectSpawn.cpp build/wave_sakuya/SakuyaObjectSpawn.obj && python3 scripts/compare-function.py 0x004DED80 build/wave_sakuya/SakuyaObjectSpawn.obj --symbol-base spawn_object --rel32-target SakuyaObjectManagerBase_acquire_and_link_object=0x004DEB80 --rel32-target push_back=0x004454E0 --rel32-target ?_U=0x00664F9A --rel32-target memcpy=0x0067C170 => target-sized 237/237 mismatch",root,Complete source and object-size equality; remaining difference is parent-reference argument and final field-load register schedule
 0x004DEE70,81,0x004DEEC0,FUN_004dee70,,,unclassified,0.00,unknown,undefined FUN_004dee70(void),false,,,,
@@ -2337,7 +2337,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004FA2B0,117,0x004FA324,FUN_004fa2b0,,,unclassified,0.00,unknown,undefined FUN_004fa2b0(void),false,,,,
 0x004FA330,123,0x004FA3AA,FUN_004fa330,,,unclassified,0.00,unknown,undefined FUN_004fa330(void),false,,,,
 0x004FA3B0,8,0x004FA3B7,FUN_004fa3b0,,,unclassified,0.00,unknown,undefined FUN_004fa3b0(void),false,,,,
-0x004FA3C0,237,0x004FA4AC,FUN_004fa3c0,,,unclassified,0.00,unknown,undefined FUN_004fa3c0(void),false,,,,
+0x004FA3C0,237,0x004FA4AC,FUN_004fa3c0,AliceObjectManager_spawn_object,characters,decompiled,0.00,__thiscall,"AliceObject * AliceObjectManager_spawn_object(AliceObjectManager * this, AliceObject * parent, AliceObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,,docs/CHARACTER_PILOTS.md roster-owned spawn matrix and IDA Pro normalized 237-byte instruction template,root,Complete shared field-publication control flow; fresh pool allocation is the sole 0x38C roster exception; source awaits shared template emission and exact compiler shaping
 0x004FA4B0,81,0x004FA500,FUN_004fa4b0,,,unclassified,0.00,unknown,undefined FUN_004fa4b0(void),false,,,,
 0x004FA510,27,0x004FA52D,FUN_004fa510,,,unclassified,0.00,unknown,undefined FUN_004fa510(void),false,,,,
 0x004FA530,138,0x004FA5B9,FUN_004fa530,,,unclassified,0.00,unknown,undefined FUN_004fa530(void),false,,,,
@@ -2370,7 +2370,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0051E7D0,123,0x0051E84A,FUN_0051e7d0,,,unclassified,0.00,unknown,undefined FUN_0051e7d0(void),false,,,,
 0x0051E850,8,0x0051E857,FUN_0051e850,,,unclassified,0.00,unknown,undefined FUN_0051e850(void),false,,,,
 0x0051E860,4,0x0051E863,FUN_0051e860,,,unclassified,0.00,unknown,undefined FUN_0051e860(void),false,,,,
-0x0051E870,237,0x0051E95C,FUN_0051e870,,,unclassified,0.00,unknown,undefined FUN_0051e870(void),false,,,,
+0x0051E870,237,0x0051E95C,FUN_0051e870,PatchouliObjectManager_spawn_object,characters,decompiled,0.00,__thiscall,"PatchouliObject * PatchouliObjectManager_spawn_object(PatchouliObjectManager * this, PatchouliObject * parent, PatchouliObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,,docs/CHARACTER_PILOTS.md roster-owned spawn matrix and IDA Pro normalized 237-byte instruction template,root,Complete shared field-publication control flow; four character-specific direct calls remain dependencies; source awaits shared template emission and exact compiler shaping
 0x0051E960,81,0x0051E9B0,FUN_0051e960,,,unclassified,0.00,unknown,undefined FUN_0051e960(void),false,,,,
 0x0051E9C0,27,0x0051E9DD,FUN_0051e9c0,,,unclassified,0.00,unknown,undefined FUN_0051e9c0(void),false,,,,
 0x0051E9E0,126,0x0051EA5D,FUN_0051e9e0,,,unclassified,0.00,unknown,undefined FUN_0051e9e0(void),false,,,,
@@ -2406,7 +2406,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0053AD60,77,0x0053ADAC,FUN_0053ad60,,,unclassified,0.00,unknown,undefined FUN_0053ad60(void),false,,,,
 0x0053ADB0,27,0x0053ADCA,FUN_0053adb0,,,unclassified,0.00,unknown,undefined FUN_0053adb0(void),false,,,,
 0x0053ADD0,18,0x0053ADE1,FUN_0053add0,,,unclassified,0.00,unknown,undefined FUN_0053add0(void),false,,,,
-0x0053ADF0,237,0x0053AEDC,FUN_0053adf0,,,unclassified,0.00,unknown,undefined FUN_0053adf0(void),false,,,,
+0x0053ADF0,237,0x0053AEDC,FUN_0053adf0,YoumuObjectManager_spawn_object,characters,decompiled,0.00,__thiscall,"YoumuObject * YoumuObjectManager_spawn_object(YoumuObjectManager * this, YoumuObject * parent, YoumuObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,,docs/CHARACTER_PILOTS.md roster-owned spawn matrix and IDA Pro normalized 237-byte instruction template,root,Complete shared field-publication control flow; four character-specific direct calls remain dependencies; source awaits shared template emission and exact compiler shaping
 0x0053AEE0,81,0x0053AF30,FUN_0053aee0,,,unclassified,0.00,unknown,undefined FUN_0053aee0(void),false,,,,
 0x0053AF40,27,0x0053AF5D,FUN_0053af40,,,unclassified,0.00,unknown,undefined FUN_0053af40(void),false,,,,
 0x0053AF60,159,0x0053AFFE,FUN_0053af60,,,unclassified,0.00,unknown,undefined FUN_0053af60(void),false,,,,
@@ -2437,7 +2437,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00555B20,8,0x00555B27,FUN_00555b20,,,unclassified,0.00,unknown,undefined FUN_00555b20(void),false,,,,
 0x00555B30,72,0x00555B77,FUN_00555b30,,,unclassified,0.00,unknown,undefined FUN_00555b30(void),false,,,,
 0x00555B80,18,0x00555B91,FUN_00555b80,,,unclassified,0.00,unknown,undefined FUN_00555b80(void),false,,,,
-0x00555BA0,237,0x00555C8C,FUN_00555ba0,,,unclassified,0.00,unknown,undefined FUN_00555ba0(void),false,,,,
+0x00555BA0,237,0x00555C8C,FUN_00555ba0,RemiliaObjectManager_spawn_object,characters,decompiled,0.00,__thiscall,"RemiliaObject * RemiliaObjectManager_spawn_object(RemiliaObjectManager * this, RemiliaObject * parent, RemiliaObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,,docs/CHARACTER_PILOTS.md roster-owned spawn matrix and IDA Pro normalized 237-byte instruction template,root,Complete shared field-publication control flow; four character-specific direct calls remain dependencies; source awaits shared template emission and exact compiler shaping
 0x00555C90,81,0x00555CE0,FUN_00555c90,,,unclassified,0.00,unknown,undefined FUN_00555c90(void),false,,,,
 0x00555CF0,27,0x00555D0D,FUN_00555cf0,,,unclassified,0.00,unknown,undefined FUN_00555cf0(void),false,,,,
 0x00555D10,126,0x00555D8D,FUN_00555d10,,,unclassified,0.00,unknown,undefined FUN_00555d10(void),false,,,,
@@ -2462,7 +2462,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0056D5E0,117,0x0056D654,FUN_0056d5e0,,,unclassified,0.00,unknown,undefined FUN_0056d5e0(void),false,,,,
 0x0056D660,123,0x0056D6DA,FUN_0056d660,,,unclassified,0.00,unknown,undefined FUN_0056d660(void),false,,,,
 0x0056D6E0,8,0x0056D6E7,FUN_0056d6e0,,,unclassified,0.00,unknown,undefined FUN_0056d6e0(void),false,,,,
-0x0056D6F0,237,0x0056D7DC,FUN_0056d6f0,,,unclassified,0.00,unknown,undefined FUN_0056d6f0(void),false,,,,
+0x0056D6F0,237,0x0056D7DC,FUN_0056d6f0,YuyukoObjectManager_spawn_object,characters,decompiled,0.00,__thiscall,"YuyukoObject * YuyukoObjectManager_spawn_object(YuyukoObjectManager * this, YuyukoObject * parent, YuyukoObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,,docs/CHARACTER_PILOTS.md roster-owned spawn matrix and IDA Pro normalized 237-byte instruction template,root,Complete shared field-publication control flow; four character-specific direct calls remain dependencies; source awaits shared template emission and exact compiler shaping
 0x0056D7E0,81,0x0056D830,FUN_0056d7e0,,,unclassified,0.00,unknown,undefined FUN_0056d7e0(void),false,,,,
 0x0056D840,27,0x0056D85D,FUN_0056d840,,,unclassified,0.00,unknown,undefined FUN_0056d840(void),false,,,,
 0x0056D860,126,0x0056D8DD,FUN_0056d860,,,unclassified,0.00,unknown,undefined FUN_0056d860(void),false,,,,
@@ -2487,7 +2487,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0058B730,117,0x0058B7A4,FUN_0058b730,,,unclassified,0.00,unknown,undefined FUN_0058b730(void),false,,,,
 0x0058B7B0,123,0x0058B82A,FUN_0058b7b0,,,unclassified,0.00,unknown,undefined FUN_0058b7b0(void),false,,,,
 0x0058B830,8,0x0058B837,FUN_0058b830,,,unclassified,0.00,unknown,undefined FUN_0058b830(void),false,,,,
-0x0058B840,237,0x0058B92C,FUN_0058b840,,,unclassified,0.00,unknown,undefined FUN_0058b840(void),false,,,,
+0x0058B840,237,0x0058B92C,FUN_0058b840,YukariObjectManager_spawn_object,characters,decompiled,0.00,__thiscall,"YukariObject * YukariObjectManager_spawn_object(YukariObjectManager * this, YukariObject * parent, YukariObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,,docs/CHARACTER_PILOTS.md roster-owned spawn matrix and IDA Pro normalized 237-byte instruction template,root,Complete shared field-publication control flow; four character-specific direct calls remain dependencies; source awaits shared template emission and exact compiler shaping
 0x0058B930,81,0x0058B980,FUN_0058b930,,,unclassified,0.00,unknown,undefined FUN_0058b930(void),false,,,,
 0x0058B990,27,0x0058B9AD,FUN_0058b990,,,unclassified,0.00,unknown,undefined FUN_0058b990(void),false,,,,
 0x0058B9B0,126,0x0058BA2D,FUN_0058b9b0,,,unclassified,0.00,unknown,undefined FUN_0058b9b0(void),false,,,,
@@ -2516,7 +2516,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x005AE170,117,0x005AE1E4,FUN_005ae170,,,unclassified,0.00,unknown,undefined FUN_005ae170(void),false,,,,
 0x005AE1F0,123,0x005AE26A,FUN_005ae1f0,,,unclassified,0.00,unknown,undefined FUN_005ae1f0(void),false,,,,
 0x005AE270,8,0x005AE277,FUN_005ae270,,,unclassified,0.00,unknown,undefined FUN_005ae270(void),false,,,,
-0x005AE280,237,0x005AE36C,FUN_005ae280,,,unclassified,0.00,unknown,undefined FUN_005ae280(void),false,,,,
+0x005AE280,237,0x005AE36C,FUN_005ae280,SuikaObjectManager_spawn_object,characters,decompiled,0.00,__thiscall,"SuikaObject * SuikaObjectManager_spawn_object(SuikaObjectManager * this, SuikaObject * parent, SuikaObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,,docs/CHARACTER_PILOTS.md roster-owned spawn matrix and IDA Pro normalized 237-byte instruction template,root,Complete shared field-publication control flow; four character-specific direct calls remain dependencies; source awaits shared template emission and exact compiler shaping
 0x005AE370,81,0x005AE3C0,FUN_005ae370,,,unclassified,0.00,unknown,undefined FUN_005ae370(void),false,,,,
 0x005AE3D0,27,0x005AE3ED,FUN_005ae3d0,,,unclassified,0.00,unknown,undefined FUN_005ae3d0(void),false,,,,
 0x005AE3F0,126,0x005AE46D,FUN_005ae3f0,,,unclassified,0.00,unknown,undefined FUN_005ae3f0(void),false,,,,
@@ -2544,7 +2544,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x005D6150,123,0x005D61CA,FUN_005d6150,,,unclassified,0.00,unknown,undefined FUN_005d6150(void),false,,,,
 0x005D61D0,8,0x005D61D7,FUN_005d61d0,,,unclassified,0.00,unknown,undefined FUN_005d61d0(void),false,,,,
 0x005D61E0,18,0x005D61F1,FUN_005d61e0,,,unclassified,0.00,unknown,undefined FUN_005d61e0(void),false,,,,
-0x005D6200,237,0x005D62EC,FUN_005d6200,,,unclassified,0.00,unknown,undefined FUN_005d6200(void),false,,,,
+0x005D6200,237,0x005D62EC,FUN_005d6200,UdongeObjectManager_spawn_object,characters,decompiled,0.00,__thiscall,"UdongeObject * UdongeObjectManager_spawn_object(UdongeObjectManager * this, UdongeObject * parent, UdongeObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,,docs/CHARACTER_PILOTS.md roster-owned spawn matrix and IDA Pro normalized 237-byte instruction template,root,Complete shared field-publication control flow; four character-specific direct calls remain dependencies; source awaits shared template emission and exact compiler shaping
 0x005D62F0,81,0x005D6340,FUN_005d62f0,,,unclassified,0.00,unknown,undefined FUN_005d62f0(void),false,,,,
 0x005D6350,27,0x005D636D,FUN_005d6350,,,unclassified,0.00,unknown,undefined FUN_005d6350(void),false,,,,
 0x005D6370,126,0x005D63ED,FUN_005d6370,,,unclassified,0.00,unknown,undefined FUN_005d6370(void),false,,,,
@@ -2569,7 +2569,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x005F6E90,117,0x005F6F04,FUN_005f6e90,,,unclassified,0.00,unknown,undefined FUN_005f6e90(void),false,,,,
 0x005F6F10,123,0x005F6F8A,FUN_005f6f10,,,unclassified,0.00,unknown,undefined FUN_005f6f10(void),false,,,,
 0x005F6F90,8,0x005F6F97,FUN_005f6f90,,,unclassified,0.00,unknown,undefined FUN_005f6f90(void),false,,,,
-0x005F6FA0,237,0x005F708C,FUN_005f6fa0,,,unclassified,0.00,unknown,undefined FUN_005f6fa0(void),false,,,,
+0x005F6FA0,237,0x005F708C,FUN_005f6fa0,KomachiObjectManager_spawn_object,characters,decompiled,0.00,__thiscall,"KomachiObject * KomachiObjectManager_spawn_object(KomachiObjectManager * this, KomachiObject * parent, KomachiObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,,docs/CHARACTER_PILOTS.md roster-owned spawn matrix and IDA Pro normalized 237-byte instruction template,root,Complete shared field-publication control flow; four character-specific direct calls remain dependencies; source awaits shared template emission and exact compiler shaping
 0x005F7090,81,0x005F70E0,FUN_005f7090,,,unclassified,0.00,unknown,undefined FUN_005f7090(void),false,,,,
 0x005F70F0,27,0x005F710D,FUN_005f70f0,,,unclassified,0.00,unknown,undefined FUN_005f70f0(void),false,,,,
 0x005F7110,126,0x005F718D,FUN_005f7110,,,unclassified,0.00,unknown,undefined FUN_005f7110(void),false,,,,
@@ -2598,7 +2598,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006178B0,8,0x006178B7,FUN_006178b0,,,unclassified,0.00,unknown,undefined FUN_006178b0(void),false,,,,
 0x006178C0,80,0x0061790F,FUN_006178c0,,,unclassified,0.00,unknown,undefined FUN_006178c0(void),false,,,,
 0x00617910,32,0x0061792F,FUN_00617910,,,unclassified,0.00,unknown,undefined FUN_00617910(void),false,,,,
-0x00617930,237,0x00617A1C,FUN_00617930,,,unclassified,0.00,unknown,undefined FUN_00617930(void),false,,,,
+0x00617930,237,0x00617A1C,FUN_00617930,AyaObjectManager_spawn_object,characters,decompiled,0.00,__thiscall,"AyaObject * AyaObjectManager_spawn_object(AyaObjectManager * this, AyaObject * parent, AyaObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,,docs/CHARACTER_PILOTS.md roster-owned spawn matrix and IDA Pro normalized 237-byte instruction template,root,Complete shared field-publication control flow; four character-specific direct calls remain dependencies; source awaits shared template emission and exact compiler shaping
 0x00617A20,81,0x00617A70,FUN_00617a20,,,unclassified,0.00,unknown,undefined FUN_00617a20(void),false,,,,
 0x00617A80,27,0x00617A9D,FUN_00617a80,,,unclassified,0.00,unknown,undefined FUN_00617a80(void),false,,,,
 0x00617AA0,126,0x00617B1D,FUN_00617aa0,,,unclassified,0.00,unknown,undefined FUN_00617aa0(void),false,,,,
@@ -2623,7 +2623,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006304F0,117,0x00630564,FUN_006304f0,,,unclassified,0.00,unknown,undefined FUN_006304f0(void),false,,,,
 0x00630570,123,0x006305EA,FUN_00630570,,,unclassified,0.00,unknown,undefined FUN_00630570(void),false,,,,
 0x006305F0,8,0x006305F7,FUN_006305f0,,,unclassified,0.00,unknown,undefined FUN_006305f0(void),false,,,,
-0x00630600,237,0x006306EC,FUN_00630600,,,unclassified,0.00,unknown,undefined FUN_00630600(void),false,,,,
+0x00630600,237,0x006306EC,FUN_00630600,IkuObjectManager_spawn_object,characters,decompiled,0.00,__thiscall,"IkuObject * IkuObjectManager_spawn_object(IkuObjectManager * this, IkuObject * parent, IkuObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,,docs/CHARACTER_PILOTS.md roster-owned spawn matrix and IDA Pro normalized 237-byte instruction template,root,Complete shared field-publication control flow; four character-specific direct calls remain dependencies; source awaits shared template emission and exact compiler shaping
 0x006306F0,81,0x00630740,FUN_006306f0,,,unclassified,0.00,unknown,undefined FUN_006306f0(void),false,,,,
 0x00630750,27,0x0063076D,FUN_00630750,,,unclassified,0.00,unknown,undefined FUN_00630750(void),false,,,,
 0x00630770,138,0x006307F9,FUN_00630770,,,unclassified,0.00,unknown,undefined FUN_00630770(void),false,,,,
@@ -2651,7 +2651,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0064A880,117,0x0064A8F4,FUN_0064a880,,,unclassified,0.00,unknown,undefined FUN_0064a880(void),false,,,,
 0x0064A900,123,0x0064A97A,FUN_0064a900,,,unclassified,0.00,unknown,undefined FUN_0064a900(void),false,,,,
 0x0064A980,8,0x0064A987,FUN_0064a980,,,unclassified,0.00,unknown,undefined FUN_0064a980(void),false,,,,
-0x0064A990,237,0x0064AA7C,FUN_0064a990,,,unclassified,0.00,unknown,undefined FUN_0064a990(void),false,,,,
+0x0064A990,237,0x0064AA7C,FUN_0064a990,TenshiObjectManager_spawn_object,characters,decompiled,0.00,__thiscall,"TenshiObject * TenshiObjectManager_spawn_object(TenshiObjectManager * this, TenshiObject * parent, TenshiObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,,docs/CHARACTER_PILOTS.md roster-owned spawn matrix and IDA Pro normalized 237-byte instruction template,root,Complete shared field-publication control flow; four character-specific direct calls remain dependencies; source awaits shared template emission and exact compiler shaping
 0x0064AA80,81,0x0064AAD0,FUN_0064aa80,,,unclassified,0.00,unknown,undefined FUN_0064aa80(void),false,,,,
 0x0064AAE0,27,0x0064AAFD,FUN_0064aae0,,,unclassified,0.00,unknown,undefined FUN_0064aae0(void),false,,,,
 0x0064AB00,126,0x0064AB7D,FUN_0064ab00,,,unclassified,0.00,unknown,undefined FUN_0064ab00(void),false,,,,

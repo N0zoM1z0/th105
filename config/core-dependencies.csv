@@ -138,6 +138,10 @@ caller,callee,required_status,evidence
 0x0046D620,0x0046D040,matching,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x0046D620,0x0046D160,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
 0x0046D620,0x0046D370,implemented,Ghidra MCP get_function_callees program th105.exe 2026-08-10
+0x00493110,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
+0x00493110,0x00492E20,identified,IDA Pro direct acquire-and-link call
+0x004B9860,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
+0x004B9860,0x004B94E0,identified,IDA Pro direct acquire-and-link call
 0x004DEB80,0x00454890,library,IDA Pro target list insertion call
 0x004DEB80,0x0046D000,matching,IDA Pro target list-node allocation call
 0x004DEB80,0x004DE8E0,identified,IDA Pro target pool acquire call and handle output
@@ -145,6 +149,7 @@ caller,callee,required_status,evidence
 0x004DEC70,0x0046D000,matching,IDA Pro repeated target list-node allocation call
 0x004DEC70,0x004B9540,decompiled,IDA Pro preallocation tail releases all tracked objects back to pool
 0x004DEC70,0x004DE8E0,identified,IDA Pro repeated pool acquire call
+0x004DECF0,0x004DEB10,decompiled,IDA Pro secondary manager-base construction and EH cleanup
 0x004DECF0,0x004DEC70,implemented,docs/CHARACTER_PILOTS.md constructor preallocates 256 reusable objects
 0x004DED80,0x004454E0,library,IDA Pro optional parent publication through exact VC8 deque push_back
 0x004DED80,0x004DEB80,implemented,IDA Pro spawn begins with acquire and tracking-list insertion
@@ -160,3 +165,27 @@ caller,callee,required_status,evidence
 0x004DEF70,0x00493A10,implemented,docs/CHARACTER_PILOTS.md shared action-203 repeated-command gate
 0x004DEF70,0x00493B00,matching,docs/CHARACTER_PILOTS.md shared action-214 counted direction-angle gate
 0x004DEF70,0x00493C90,implemented,docs/CHARACTER_PILOTS.md shared seven-way front-record action gate
+0x004FA3C0,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
+0x004FA3C0,0x004FA1C0,identified,IDA Pro direct acquire-and-link call
+0x0051E870,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
+0x0051E870,0x0051E660,identified,IDA Pro direct acquire-and-link call
+0x0053ADF0,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
+0x0053ADF0,0x0053AB60,identified,IDA Pro direct acquire-and-link call
+0x00555BA0,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
+0x00555BA0,0x00555930,identified,IDA Pro direct acquire-and-link call
+0x0056D6F0,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
+0x0056D6F0,0x0056D4F0,identified,IDA Pro direct acquire-and-link call
+0x0058B840,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
+0x0058B840,0x0058B640,identified,IDA Pro direct acquire-and-link call
+0x005AE280,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
+0x005AE280,0x005AE080,identified,IDA Pro direct acquire-and-link call
+0x005D6200,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
+0x005D6200,0x005D5FE0,identified,IDA Pro direct acquire-and-link call
+0x005F6FA0,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
+0x005F6FA0,0x005F6DA0,identified,IDA Pro direct acquire-and-link call
+0x00617930,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
+0x00617930,0x006176C0,identified,IDA Pro direct acquire-and-link call
+0x00630600,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
+0x00630600,0x00630400,identified,IDA Pro direct acquire-and-link call
+0x0064A990,0x004454E0,library,IDA Pro normalized roster-owned spawn parent-link block
+0x0064A990,0x0064A790,identified,IDA Pro direct acquire-and-link call
