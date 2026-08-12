@@ -38,6 +38,23 @@ the bytes, the largest 50 about 71%, and the largest 100 about 91%. First solve
 release/configuration anchors breadth-first, then prioritize large functions
 whose remaining failures are only audited relocations.
 
+## VC8 runtime archive replay
+
+For the static CRT, scan the SHA-pinned `libcmt.lib`/`libcpmt.lib` archives
+before rebuilding or manually decompiling runtime functions. Partition the
+ledger by address, let evidence workers emit read-only candidate packets, then
+have the coordinator exclude every target with competing COFF symbol
+identities. Group accepted targets by canonical archive member and rerun every
+`msvc_prebuilt` unit from the repository build path.
+
+This method produced 74 symbol-unambiguous exact functions and 6,862 bytes in
+one breadth wave. It also exposed the dominant next blockers—runtime globals,
+SEH tables, imports, and shared REL32 callees—without weakening the comparator.
+Identical code is not enough to choose among `__CI*` helpers or other aliases;
+leave those targets unresolved until independent call-site evidence selects a
+symbol. Preserve compiler/register ABI helpers as documentation shims rather
+than inventing ordinary C prototypes.
+
 ## zlib 1.2.3 pilot
 
 ### Provenance facts

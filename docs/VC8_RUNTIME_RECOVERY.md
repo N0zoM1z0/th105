@@ -26,3 +26,27 @@ aliases for it.
 
 Exact runtime rows retain `status=library`. Report them in reproducible-library
 and combined progress, never in authored-game matching.
+
+## Accepted breadth wave (2026-08-12)
+
+Three disjoint address scans over the pinned `libcmt.lib` produced 74
+symbol-unambiguous strict matches and 6,862 function bytes. They are grouped by
+archive member into 58 `msvc_prebuilt` units in `config/match-units.toml`.
+Together with the earlier runtime anchors, 86 runtime functions and 8,006
+bytes are now reproducible.
+
+Every accepted unit was re-extracted through the repository build driver and
+all 74 comparisons returned `result=exact`. Reproduce an individual unit with:
+
+```bash
+python3 scripts/build.py --unit vc8-libcmt-memchr --compare --json
+python3 scripts/build.py --unit vc8-sp1-libcmt-p4-memcpy --compare --json
+python3 scripts/build.py --unit vc8_sp1_libcmt_mantold --compare --json
+```
+
+The scan deliberately excluded byte-identical functions with more than one
+possible COFF symbol. Register-ABI helpers such as `__alldiv`, `__chkstk`, EH
+prologues, and x87 helpers are named from exact symbols but are not represented
+as ordinary C-callable contracts. The `source_file` ledger field points to this
+provenance document because the proprietary CRT source is not vendored; the
+archive member and SHA-256 remain authoritative in each match unit.

@@ -150,6 +150,12 @@ small-block heap, low-level I/O, and `strdup`.  The Unwind rows are referenced
 by EH metadata and contain tiny cleanup/tail-jump bodies owned by parent C++
 functions.  They are link output, not independent authored source routines.
 
+The SHA-pinned VC8 SP1 archive replay now strictly reproduces 86 runtime
+functions and 8,006 bytes. The latest breadth wave contributes 74 functions
+and 6,862 bytes across 58 canonical `libcmt.lib` object units; ambiguous
+identical-body symbols are excluded. Reproduction and ABI caveats are recorded
+in `docs/VC8_RUNTIME_RECOVERY.md`.
+
 Do not extend the CRT rule through `0x006A3DCF`.  The intervening 342-row
 island contains Boost RTTI and templates but also wrappers that call project
 functions in `0x0044xxxx`.  It remains origin review until a dedicated Boost
