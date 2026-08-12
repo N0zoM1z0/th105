@@ -384,3 +384,17 @@ _INVSQ2EXP_LOOKUP+0x80,0x006E185C,0000803ff304353f0000003ff304b53e,0x80,Official
 __real@4@c0028000000000000000,0x006AFB84,000000c1,0x0,Official SDK lsp.obj float constant equals target,literal
 _FROMdB2_LOOKUP,0x006E19EC,202a7e3f74887a3f10f4763fc56c733f,0x0,Official SDK lsp.obj secondary dB lookup prefix equals target,literal
 _FROMdB_LOOKUP,0x006E1960,0000803f6c86213fb4d4cb3ecc9b803e,0x0,Official SDK lsp.obj dB lookup prefix equals target,literal
+___sbh_cntHeaderList,0x006ED430,00000000,0x0,VC8 SP1 sbheap.obj linked zero-filled header-list count; PE .data virtual tail audited,address
+___sbh_indGroupDefer,0x006ED444,00000000,0x0,VC8 SP1 sbheap.obj linked zero-filled deferred group index; PE .data virtual tail audited,address
+___sbh_pHeaderDefer,0x006E8390,00000000,0x0,VC8 SP1 sbheap.obj linked zero-filled deferred header pointer; PE .data virtual tail audited,address
+___sbh_pHeaderList,0x006ED434,00000000,0x0,VC8 SP1 sbheap.obj linked zero-filled header-list pointer; PE .data virtual tail audited,address
+___sbh_pHeaderScan,0x006ED43C,00000000,0x0,VC8 SP1 sbheap.obj linked zero-filled header scan pointer; PE .data virtual tail audited,address
+___sbh_sizeHeaderList,0x006ED440,00000000,0x0,VC8 SP1 sbheap.obj linked zero-filled header-list size; PE .data virtual tail audited,address
+___sbh_threshold,0x006ED438,00000000,0x0,VC8 SP1 sbheap.obj linked zero-filled threshold; PE .data virtual tail audited,address
+__crtheap,0x006E822C,00000000,0x0,VC8 SP1 sbheap.obj linked zero-filled CRT heap handle; PE .data virtual tail audited,address
+__imp__HeapAlloc@12,0x006AC170,fcea2c00,0x0,VC8 SP1 sbheap.obj linked HeapAlloc IAT slot audited against target PE,address
+__imp__HeapFree@12,0x006AC16C,f0ea2c00,0x0,VC8 SP1 sbheap.obj linked HeapFree IAT slot audited against target PE,address
+__imp__HeapReAlloc@16,0x006AC17C,2ceb2c00,0x0,VC8 SP1 sbheap.obj linked HeapReAlloc IAT slot audited against target PE,address
+__imp__RaiseException@16,0x006AC160,b2ea2c00,0x0,VC8 SP1 fpexcept.obj linked RaiseException IAT slot audited against target PE,address
+__imp__VirtualAlloc@16,0x006AC0E4,6eed2c00,0x0,VC8 SP1 sbheap.obj linked VirtualAlloc IAT slot audited against target PE,address
+__imp__VirtualFree@12,0x006AC0F4,20ed2c00,0x0,VC8 SP1 sbheap.obj linked VirtualFree IAT slot audited against target PE,address

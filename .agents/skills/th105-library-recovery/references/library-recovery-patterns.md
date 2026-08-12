@@ -55,6 +55,14 @@ leave those targets unresolved until independent call-site evidence selects a
 symbol. Preserve compiler/register ABI helpers as documentation shims rather
 than inventing ordinary C prototypes.
 
+When a CRT member references globals in a PE section's zero-filled virtual
+tail, audit the section header's `VirtualSize` as well as `SizeOfRawData`.
+Raw-file extraction legitimately returns no bytes beyond the raw size; the PE
+loader supplies zeros through the virtual size. The `sbheap.obj` globals are
+the regression case. Keep these mappings `validation=address`, verify the
+linked virtual addresses are inside the section, and audit IAT slots against
+their actual raw target bytes before strict replay.
+
 ## zlib 1.2.3 pilot
 
 ### Provenance facts

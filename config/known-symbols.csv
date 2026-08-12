@@ -872,3 +872,9 @@ address,name,module,confidence,evidence
 0x0068FECA,__strnicoll_l,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
 0x0069000F,copy_environ,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
 0x006902B8,__strdup,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
+0x00685E10,__raise_exc_ex,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
+0x00689458,___sbh_heap_init,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
+0x006894CB,___sbh_free_block,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
+0x006897DF,___sbh_alloc_new_region,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
+0x0068988F,___sbh_alloc_new_group,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
+0x00689C74,___sbh_alloc_block,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member

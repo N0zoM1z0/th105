@@ -3245,6 +3245,38 @@ notes = "Pinned VC8 SP1 prebuilt build/intel/mt_obj/sbheap.obj; source is a prov
 address = "0x00689995"
 symbol_base = "___sbh_resize_block"
 
+[[units.vc8-sp1-libcmt-sbheap.functions]]
+address = "0x0068988F"
+symbol_base = "___sbh_alloc_new_group"
+dir32_targets = ["__imp__VirtualAlloc@16=__imp__VirtualAlloc@16"]
+
+[[units.vc8-sp1-libcmt-sbheap.functions]]
+address = "0x006897DF"
+symbol_base = "___sbh_alloc_new_region"
+dir32_targets = ["___sbh_sizeHeaderList=___sbh_sizeHeaderList","___sbh_cntHeaderList=___sbh_cntHeaderList","___sbh_pHeaderList=___sbh_pHeaderList","__crtheap=__crtheap","__imp__HeapReAlloc@16=__imp__HeapReAlloc@16","__imp__HeapAlloc@12=__imp__HeapAlloc@12","__imp__VirtualAlloc@16=__imp__VirtualAlloc@16","__imp__HeapFree@12=__imp__HeapFree@12"]
+
+[[units.vc8-sp1-libcmt-sbheap.functions]]
+address = "0x00689458"
+symbol_base = "___sbh_heap_init"
+dir32_targets = ["__crtheap=__crtheap","__imp__HeapAlloc@12=__imp__HeapAlloc@12","___sbh_pHeaderList=___sbh_pHeaderList","___sbh_pHeaderDefer=___sbh_pHeaderDefer","___sbh_cntHeaderList=___sbh_cntHeaderList","___sbh_pHeaderScan=___sbh_pHeaderScan","___sbh_threshold=___sbh_threshold","___sbh_sizeHeaderList=___sbh_sizeHeaderList"]
+
+[[units.vc8-sp1-libcmt-sbheap.functions]]
+address = "0x00689C74"
+symbol_base = "___sbh_alloc_block"
+rel32_targets = ["___sbh_alloc_new_region=0x006897DF","___sbh_alloc_new_group=0x0068988F"]
+dir32_targets = ["___sbh_cntHeaderList=___sbh_cntHeaderList","___sbh_pHeaderList=___sbh_pHeaderList","___sbh_pHeaderScan=___sbh_pHeaderScan","___sbh_pHeaderDefer=___sbh_pHeaderDefer","___sbh_indGroupDefer=___sbh_indGroupDefer"]
+
+[[units.vc8-sp1-libcmt-sbheap.functions]]
+address = "0x006894CB"
+symbol_base = "___sbh_free_block"
+dir32_targets = ["___sbh_pHeaderDefer=___sbh_pHeaderDefer","___sbh_indGroupDefer=___sbh_indGroupDefer","__imp__VirtualFree@12=__imp__VirtualFree@12","__crtheap=__crtheap","__imp__HeapFree@12=__imp__HeapFree@12","___sbh_cntHeaderList=___sbh_cntHeaderList","___sbh_pHeaderList=___sbh_pHeaderList","___sbh_pHeaderScan=___sbh_pHeaderScan"]
+
+[[units.vc8-sp1-libcmt-fpexcept.functions]]
+address = "0x00685E10"
+symbol_base = "__raise_exc_ex"
+rel32_targets = ["__statfp=0x0068674B","__clrfp=0x00686756"]
+dir32_targets = ["__imp__RaiseException@16=__imp__RaiseException@16"]
+
 [units.vc8_sp1_libcmt_cfout]
 kind = "msvc_prebuilt"
 source = "docs/VC8_RUNTIME_RECOVERY.md"

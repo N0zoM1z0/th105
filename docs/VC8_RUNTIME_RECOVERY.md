@@ -32,8 +32,8 @@ and combined progress, never in authored-game matching.
 Three disjoint address scans over the pinned `libcmt.lib` produced 74
 symbol-unambiguous strict matches and 6,862 function bytes. They are grouped by
 archive member into 58 `msvc_prebuilt` units in `config/match-units.toml`.
-Together with the earlier runtime anchors, 86 runtime functions and 8,006
-bytes are now reproducible.
+Together with the earlier runtime anchors and the dependency expansion below,
+92 runtime functions and 10,773 bytes are now reproducible.
 
 Every accepted unit was re-extracted through the repository build driver and
 all 74 comparisons returned `result=exact`. Reproduce an individual unit with:
@@ -50,3 +50,23 @@ prologues, and x87 helpers are named from exact symbols but are not represented
 as ordinary C-callable contracts. The `source_file` ledger field points to this
 provenance document because the proprietary CRT source is not vendored; the
 archive member and SHA-256 remain authoritative in each match unit.
+
+## Dependency expansion: small-block heap and floating exceptions
+
+The next dependency-first pass connected six target-unique functions and 2,767
+bytes from `sbheap.obj` and `fpexcept.obj`. The accepted set contains the small
+block heap initialization, allocation, region/group growth, and release core,
+plus `__raise_exc_ex`. These are replayed through the existing canonical object
+units rather than counted as new archive units.
+
+The small-block heap object relocates into the zero-filled virtual tail of the
+PE `.data` section. Acceptance therefore audits both the section header
+(`VirtualSize=0x1e5a8`, `SizeOfRawData=0x15000`) and each linked virtual address;
+an empty raw-file read is not evidence that the address is invalid. The import
+slots were separately checked against the target PE bytes. Reproduce both
+groups with:
+
+```bash
+python3 scripts/build.py --unit vc8-sp1-libcmt-sbheap --compare --json
+python3 scripts/build.py --unit vc8-sp1-libcmt-fpexcept --compare --json
+```
