@@ -139,8 +139,11 @@ platform/runtime. Their module boundaries are listed in `docs/ARCHITECTURE.md`.
 2. **PAT parser implementation.** `0x00462050` has target-sized complete source,
    `0x0045E080` is exact, and `0x00464320` is 197/199 bytes. The EH-bearing
    `0x20` group, `0x88` record, nested vectors, transient lists, and funclets in
-   `0x00460B50` are now contracted; emit the parser body and destructors without
-   renaming unknown on-disk fields.
+   `0x00460B50` are now contracted. Before emitting its truthful body, recover
+   the record lifecycle (`0x0045FF70`/`0x0045EF10`), group lifecycle
+   (`0x00460500`/`0x00460570`/`0x00460920`/`0x00460A10`), deque growth
+   (`0x0045F670`), and neutral checked-tree mutation bridges (`0x0045E6D0`,
+   `0x0042C9F0`). Do not replace them with a guessed STL container.
 3. **Fighter continuity codegen.** `0x00459D30` is exact and `0x0045CF00` now
    has complete source while preserving its authoritative boundary against
    IDA's merged tail chunk. Shape the bounded `+0x11E` mask schedule in

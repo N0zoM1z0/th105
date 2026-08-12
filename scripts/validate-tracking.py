@@ -97,7 +97,15 @@ LIFECYCLE_EVENT_COLUMNS = [
     "evidence",
 ]
 LIFECYCLE_EVENT_ROOTS = {
+    ("Reimu", "sequence-lifecycle", "0x00490C60"),
+    ("Reimu", "event-bridge", "0x004A2A50"),
+    ("Marisa", "sequence-lifecycle", "0x004B7AB0"),
+    ("Marisa", "event-bridge", "0x004CA440"),
+    ("Sakuya", "sequence-lifecycle", "0x004DD2A0"),
+    ("Sakuya", "event-bridge", "0x004E9610"),
+    ("Alice", "sequence-lifecycle", "0x004F88D0"),
     ("Alice", "constructor-boundary", "0x004FA530"),
+    ("Alice", "event-bridge", "0x0050E780"),
     ("Patchouli", "sequence-lifecycle", "0x0051C5C0"),
     ("Patchouli", "event-bridge", "0x0052F950"),
     ("Youmu", "sequence-lifecycle", "0x005397E0"),
@@ -107,6 +115,7 @@ LIFECYCLE_EVENT_ROOTS = {
     ("Yuyuko", "sequence-lifecycle", "0x0056BDC0"),
     ("Yuyuko", "event-bridge", "0x0057A5C0"),
     ("Yukari", "sequence-lifecycle", "0x00588DF0"),
+    ("Yukari", "event-bridge", "0x00597B20"),
     ("Suika", "sequence-lifecycle", "0x005ABDF0"),
     ("Suika", "event-bridge", "0x005BEEE0"),
     ("Udonge", "sequence-lifecycle", "0x005D3EA0"),

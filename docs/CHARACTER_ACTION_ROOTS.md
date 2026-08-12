@@ -115,5 +115,5 @@ The companion lifecycle/event inventory is validated in
 `config/character-lifecycle-event-roots.csv`. Allocate its vslot `+0x5C`
 sequence callbacks and vslot `+0x60` bool event bridges by role family rather
 than by adjacent address; Alice `0x004FA530` remains a separate constructor
-packet. These 22 entries are structurally decompiled and declared, but still
-need real source bodies before exact fan-out begins.
+packet. The complete 31-entry roster inventory is structurally decompiled and
+declared, but still needs real source bodies before exact fan-out begins.

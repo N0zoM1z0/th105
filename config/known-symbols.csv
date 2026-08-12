@@ -136,6 +136,15 @@ address,name,module,confidence,evidence
 0x0042B4F0,assign_fixed_slot_envelope_count,runtime,observed,Strict exact native VC8 vector count-assignment specialization
 0x0042B5D0,configure_session_input_slots,battle,observed,IDA Pro clears and count-assigns the fixed-slot vector while storing game mode
 0x0042B6C0,load_battle_input_recording,battle,observed,IDA Pro complete file validation vector rebuild and per-envelope decoding
+0x00490C60,Reimu_update_sequence_lifecycle,characters,observed,IDA Pro attested vtable +0x5C root complete 277-line decompile and direct-callee inventory
+0x004A2A50,Reimu_handle_event_bridge,characters,observed,IDA Pro attested vtable +0x60 bool event root complete 143-line decompile and direct-callee inventory
+0x004B7AB0,Marisa_update_sequence_lifecycle,characters,observed,IDA Pro attested vtable +0x5C root complete 292-line decompile and direct-callee inventory
+0x004CA440,Marisa_handle_event_bridge,characters,observed,IDA Pro attested vtable +0x60 bool event root complete 126-line decompile and direct-callee inventory
+0x004DD2A0,Sakuya_update_sequence_lifecycle,characters,observed,IDA Pro attested vtable +0x5C root complete 346-line decompile and direct-callee inventory
+0x004E9610,Sakuya_handle_event_bridge,characters,observed,IDA Pro attested vtable +0x60 bool event root complete 115-line decompile and direct-callee inventory
+0x004F88D0,Alice_update_sequence_lifecycle,characters,observed,IDA Pro attested vtable +0x5C root complete 372-line decompile and direct-callee inventory
+0x0050E780,Alice_handle_event_bridge,characters,observed,IDA Pro attested vtable +0x60 bool event root complete 148-line decompile and direct-callee inventory
+0x00597B20,Yukari_handle_event_bridge,characters,observed,IDA Pro attested vtable +0x60 bool event root complete 158-line decompile and direct-callee inventory
 0x0042AAB0,BattleInputGate_save_battle_setup_slot,battle,observed,Complete authored fixed-slot save and exact checked selector dependency
 0x0042ABF0,BattleInputGate_load_battle_setup_slot,battle,observed,Complete authored inverse fixed-slot load and exact checked selector dependency
 0x0042C100,update_observed_record_statistics,config,inferred,docs/BATTLE.md observed existing-record count and signed high-water update
