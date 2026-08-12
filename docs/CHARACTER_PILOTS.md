@@ -31,6 +31,35 @@ The meanings of `+0x3C` and `+0x50` are proven by the shared update path and
 Sakuya behavior.  The other four columns deliberately retain neutral slot
 labels until callers and fields establish their roles.
 
+## Primary-vtable `+0x28` breadth
+
+The fifteen `+0x28` roots now have a complete address-level structural census
+in `config/character-vslot28-roots.csv`. The shared fighter phase at
+`0x00463610` loads each fighter vtable, calls raw slot `+0x28`, and ignores the
+incidental return. Every root dispatches from the 16-bit action field at
+`Fighter+0x13C`; the manifest records the observed numeric table ranges and
+dispatch sites without claiming original method or per-action names.
+
+Together the roots account for 918,209 ledger bytes. All fifteen share a
+twenty-callee action/frame/effect fingerprint. Character-specific callees
+remain explicit so common low-action skeletons can fan out without erasing
+high-action behavior. Alice, Youmu, and Yuyuko are the first structural pilots:
+Alice has the shortest clean generic layout, Youmu is the smallest body but has
+a distinct `0x0045D320` branch, and Yuyuko exposes a particularly clean
+`301..418` versus `501..731` split. Tenshi is a 43-callee outlier.
+
+The ledger remains the accepted boundary authority. Sakuya is the strongest
+regression case: IDA reports only a `0xA227` primary chunk, while address
+queries retain the same owner through the target `ret` at `0x004DCD91` and the
+ledger span covers 74,937 function-body bytes. Reimu, Alice, Patchouli,
+Remilia, Suika, Aya, and Tenshi likewise have IDA body-size differences caused
+by non-contiguous chunks; none permits an automatic ledger resize.
+
+These rows are `identified`, not `decompiled`: vtable role, selector structure,
+major numeric blocks, and direct callees are recorded, but complete per-case
+field/write effects are not. Promote one root only after that complete case
+evidence exists. Do not emit a monolithic placeholder body.
+
 ## Shared unlock inherited by every fighter
 
 `0x004632D0` constructs one of fifteen derived fighters and then calls

@@ -16,6 +16,8 @@ ACTION_CHANGES = ROOT / "config" / "character-action-change-cases.csv"
 INPUT_DISPATCHES = ROOT / "config" / "character-input-dispatch-cases.csv"
 CPU_POLICIES = ROOT / "config" / "character-cpu-policy-cases.csv"
 LIFECYCLE_EVENTS = ROOT / "config" / "character-lifecycle-event-roots.csv"
+FUNCTION_ORIGINS = ROOT / "config" / "function-origins.csv"
+VSLOT28_ROOTS = ROOT / "config" / "character-vslot28-roots.csv"
 STATUSES = {
     "unclassified",
     "identified",
@@ -96,6 +98,58 @@ LIFECYCLE_EVENT_COLUMNS = [
     "direct_callees",
     "evidence",
 ]
+FUNCTION_ORIGIN_COLUMNS = [
+    "address",
+    "origin",
+    "subsystem",
+    "disposition",
+    "confidence",
+    "evidence_id",
+]
+VSLOT28_COLUMNS = [
+    "fighter",
+    "address",
+    "vtable",
+    "ledger_size",
+    "span_end",
+    "ida_reported_size",
+    "boundary_state",
+    "selector_field",
+    "table_ranges",
+    "dispatch_sites",
+    "direct_callee_count",
+    "shared_fingerprint",
+    "distinctive_callees",
+    "slice_status",
+    "evidence",
+]
+ORIGINS = {
+    "authored_game",
+    "compiler_generated",
+    "vc8_runtime",
+    "third_party",
+    "import_thunk",
+    "unknown",
+}
+ORIGIN_DISPOSITIONS = {"include_authored", "exclude_authored", "review"}
+ORIGIN_CONFIDENCES = {"observed", "inferred", "hypothesized", "unknown"}
+VSLOT28_ROOT_SET = {
+    ("Reimu", "0x004787B0", "0x006B013C"),
+    ("Marisa", "0x004A2F40", "0x006B0594"),
+    ("Sakuya", "0x004CA870", "0x006B0924"),
+    ("Alice", "0x004E9A20", "0x006B0BEC"),
+    ("Patchouli", "0x0050EC80", "0x006B0EBC"),
+    ("Youmu", "0x0052FDA0", "0x006B1154"),
+    ("Remilia", "0x00544D40", "0x006B13D4"),
+    ("Yuyuko", "0x0055D4A0", "0x006B165C"),
+    ("Yukari", "0x0057AA60", "0x006B18DC"),
+    ("Suika", "0x00598100", "0x006B1B9C"),
+    ("Udonge", "0x005BF460", "0x006B1E3C"),
+    ("Komachi", "0x005E5860", "0x006B2074"),
+    ("Aya", "0x006018F0", "0x006B22DC"),
+    ("Iku", "0x0061FDE0", "0x006B2534"),
+    ("Tenshi", "0x0063C900", "0x006B279C"),
+}
 LIFECYCLE_EVENT_ROOTS = {
     ("Reimu", "sequence-lifecycle", "0x00490C60"),
     ("Reimu", "event-bridge", "0x004A2A50"),
@@ -565,6 +619,60 @@ def main() -> int:
         errors.append(
             f"{LIFECYCLE_EVENTS.name}: root-set mismatch; missing={missing}, extra={extra}"
         )
+
+    origin_rows = read_rows(FUNCTION_ORIGINS, errors, FUNCTION_ORIGIN_COLUMNS)
+    origin_addresses: list[str] = []
+    for line, row in enumerate(origin_rows, 2):
+        address = row["address"]
+        origin_addresses.append(address)
+        if address not in ledger:
+            errors.append(f"{FUNCTION_ORIGINS.name}:{line}: address absent from functions.csv")
+        if row["origin"] not in ORIGINS:
+            errors.append(f"{FUNCTION_ORIGINS.name}:{line}: invalid origin")
+        if row["disposition"] not in ORIGIN_DISPOSITIONS:
+            errors.append(f"{FUNCTION_ORIGINS.name}:{line}: invalid disposition")
+        if row["confidence"] not in ORIGIN_CONFIDENCES:
+            errors.append(f"{FUNCTION_ORIGINS.name}:{line}: invalid confidence")
+        if row["origin"] == "unknown" and row["disposition"] != "review":
+            errors.append(f"{FUNCTION_ORIGINS.name}:{line}: unknown must remain review")
+        ledger_row = ledger.get(address)
+        if ledger_row and row["disposition"] == "exclude_authored" and ledger_row["status"] != "library":
+            errors.append(f"{FUNCTION_ORIGINS.name}:{line}: excluded row must be library")
+    if origin_addresses != [row["address"] for row in rows]:
+        errors.append(f"{FUNCTION_ORIGINS.name}: must contain every ledger address in order")
+
+    vslot28_rows = read_rows(VSLOT28_ROOTS, errors, VSLOT28_COLUMNS)
+    vslot28_seen: set[tuple[str, str, str]] = set()
+    for line, row in enumerate(vslot28_rows, 2):
+        key = (row["fighter"], row["address"], row["vtable"])
+        vslot28_seen.add(key)
+        ledger_row = ledger.get(row["address"])
+        if ledger_row is None:
+            errors.append(f"{VSLOT28_ROOTS.name}:{line}: address absent from functions.csv")
+            continue
+        try:
+            ledger_size = int(row["ledger_size"])
+            ida_size = int(row["ida_reported_size"])
+            callee_count = int(row["direct_callee_count"])
+        except ValueError:
+            errors.append(f"{VSLOT28_ROOTS.name}:{line}: invalid numeric field")
+            continue
+        if ledger_size != int(ledger_row["size"]):
+            errors.append(f"{VSLOT28_ROOTS.name}:{line}: ledger_size disagrees")
+        if row["span_end"] != ledger_row["span_end"]:
+            errors.append(f"{VSLOT28_ROOTS.name}:{line}: span_end disagrees")
+        if min(ledger_size, ida_size, callee_count) < 0:
+            errors.append(f"{VSLOT28_ROOTS.name}:{line}: negative numeric field")
+        for value in row["dispatch_sites"].split(";"):
+            if not ADDRESS.fullmatch(value):
+                errors.append(f"{VSLOT28_ROOTS.name}:{line}: invalid dispatch site")
+        for value in filter(None, row["distinctive_callees"].split(";")):
+            if not ADDRESS.fullmatch(value) or value not in ledger:
+                errors.append(f"{VSLOT28_ROOTS.name}:{line}: invalid distinctive callee")
+    if vslot28_seen != VSLOT28_ROOT_SET:
+        missing = sorted(VSLOT28_ROOT_SET - vslot28_seen)
+        extra = sorted(vslot28_seen - VSLOT28_ROOT_SET)
+        errors.append(f"{VSLOT28_ROOTS.name}: roster mismatch; missing={missing}, extra={extra}")
 
     for path in (KNOWN, CLAIMS):
         for line, row in enumerate(read_rows(path, errors), 2):

@@ -117,6 +117,13 @@ type contracts are documented in
 instead of behavioral stubs, so architecture work does not inflate function
 status or create plausible but false implementations.
 
+The whole-executable provenance and subsystem census is documented in
+[`docs/EXECUTABLE_INVENTORY.md`](EXECUTABLE_INVENTORY.md). Its
+`config/function-origins.csv` companion distinguishes authored game code from
+compiler-generated, VC8 runtime, third-party, import-thunk, and unresolved
+rows. The staged execution and parallel-agent direction is maintained in
+[`docs/RECONSTRUCTION_PLAN.md`](RECONSTRUCTION_PLAN.md).
+
 These names describe observed roles; they do not imply that original source
 names have been recovered.
 

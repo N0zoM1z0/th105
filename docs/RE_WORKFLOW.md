@@ -6,6 +6,8 @@
 - the verified IDA IDB: preferred semantic working database; never committed.
 - `local/ghidra/th105.gpr`: local analysis database; never committed.
 - `config/functions.csv`: one row per internal Ghidra `.text` function.
+- `config/function-origins.csv`: one provenance/disposition row per ledger address.
+- `config/function-origin-rules.toml`: fail-closed audited origin selectors.
 - `config/known-symbols.csv` and `config/known-globals.csv`: concise supported names.
 - `config/claims.csv`: active work ownership.
 - reccmp reports: byte-match acceptance evidence.
@@ -25,6 +27,22 @@ python3 scripts/progress.py
 
 Existing status/evidence/owner fields are preserved by address. A missing or
 duplicate address fails validation.
+
+After an inventory refresh, regenerate and validate the whole-executable
+origin census before interpreting progress:
+
+```bash
+python3 scripts/function-origins.py --write
+python3 scripts/function-origins.py --check
+python3 scripts/progress.py
+```
+
+Only the coordinator uses `function-origins.py --apply-ledger`, and only for
+rules whose selected row count and byte total pass. A decompiler/FID name or a
+contiguous address island alone is not sufficient library provenance. The
+current audited partitions and remaining review regions are in
+`docs/EXECUTABLE_INVENTORY.md`; the long-range execution order is in
+`docs/RECONSTRUCTION_PLAN.md`.
 
 Use the read-only headless bundle route in `docs/IDA_MCP.md` when transferring
 an existing Ghidra project into IDA. Do not launch the Ghidra GUI merely to

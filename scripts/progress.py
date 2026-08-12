@@ -11,6 +11,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 FUNCTIONS = ROOT / "config" / "functions.csv"
+ORIGINS = ROOT / "config" / "function-origins.csv"
 MARKDOWN = ROOT / "docs" / "PROGRESS.md"
 SVG = ROOT / "resources" / "progress.svg"
 ORDER = [
@@ -29,6 +30,12 @@ def render() -> tuple[str, str]:
     with FUNCTIONS.open(newline="", encoding="utf-8") as stream:
         rows = list(csv.DictReader(stream))
 
+    with ORIGINS.open(newline="", encoding="utf-8") as stream:
+        origin_rows = list(csv.DictReader(stream))
+    origins = {row["address"]: row for row in origin_rows}
+    if [row["address"] for row in rows] != [row["address"] for row in origin_rows]:
+        raise RuntimeError("config/function-origins.csv is stale or out of ledger order")
+
     authored = [row for row in rows if row["status"] != "library"]
     total_bytes = sum(int(row["size"]) for row in authored)
     matching = [row for row in authored if row["status"] == "matching"]
@@ -36,6 +43,20 @@ def render() -> tuple[str, str]:
     function_pct = 100 * len(matching) / len(authored) if authored else 0.0
     byte_pct = 100 * matching_bytes / total_bytes if total_bytes else 0.0
     counts = Counter(row["status"] for row in rows)
+    origin_counts = Counter(row["origin"] for row in origin_rows)
+    disposition_counts = Counter(row["disposition"] for row in origin_rows)
+    audited_authored = [
+        row for row in rows if origins[row["address"]]["disposition"] == "include_authored"
+    ]
+    audited_matching = [row for row in audited_authored if row["status"] == "matching"]
+    audited_bytes = sum(int(row["size"]) for row in audited_authored)
+    audited_matching_bytes = sum(int(row["size"]) for row in audited_matching)
+    audited_function_pct = (
+        100 * len(audited_matching) / len(audited_authored) if audited_authored else 0.0
+    )
+    audited_byte_pct = (
+        100 * audited_matching_bytes / audited_bytes if audited_bytes else 0.0
+    )
 
     lines = [
         "# Reconstruction progress",
@@ -46,6 +67,13 @@ def render() -> tuple[str, str]:
         f"- Matching functions: **{len(matching)} / {len(authored)} ({function_pct:.2f}%)**",
         f"- Matching function bytes: **{matching_bytes:,} / {total_bytes:,} ({byte_pct:.2f}%)**",
         f"- Ghidra internal `.text` inventory: **{len(rows):,} functions**",
+        f"- Origin census: **{disposition_counts['exclude_authored']:,} excluded**, "
+        f"**{disposition_counts['include_authored']:,} confirmed authored**, "
+        f"**{disposition_counts['review']:,} awaiting origin review**",
+        f"- Exact within confirmed-authored census: **{len(audited_matching)} / "
+        f"{len(audited_authored)} ({audited_function_pct:.2f}%) functions**, "
+        f"**{audited_matching_bytes:,} / {audited_bytes:,} "
+        f"({audited_byte_pct:.2f}%) bytes**",
         "",
         "| Status | Functions |",
         "| --- | ---: |",
@@ -54,7 +82,30 @@ def render() -> tuple[str, str]:
     lines.extend(
         [
             "",
-            "Run `python3 scripts/progress.py` after changing the ledger.",
+            "| Origin | Functions |",
+            "| --- | ---: |",
+        ]
+    )
+    lines.extend(
+        f"| `{origin}` | {origin_counts[origin]:,} |"
+        for origin in (
+            "authored_game",
+            "compiler_generated",
+            "vc8_runtime",
+            "third_party",
+            "import_thunk",
+            "unknown",
+        )
+    )
+    lines.extend(
+        [
+            "",
+            "The legacy authored denominator is every non-`library` ledger row. The",
+            "confirmed-authored census is evidence-backed but deliberately incomplete;",
+            "`review` rows are not silently counted as either authored or library.",
+            "",
+            "Run `python3 scripts/function-origins.py --write` and then",
+            "`python3 scripts/progress.py` after changing origin or ledger evidence.",
             "",
         ]
     )

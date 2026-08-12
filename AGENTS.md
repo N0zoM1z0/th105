@@ -11,6 +11,9 @@ Do not analyze or substitute a localized executable.
 2. Run `python3 scripts/verify-target.py`.
 3. Inspect `config/functions.csv` and `config/claims.csv`. Do not duplicate an
    active claim; use a small address-bounded work unit.
+   For whole-program classification, also inspect
+   `config/function-origins.csv` and `docs/EXECUTABLE_INVENTORY.md`; never
+   assume every non-`library` row is authored game code.
 4. Prefer the registered IDA Pro MCP when `python3 scripts/check-ida-mcp.py`
    passes the exact target and capability checks. Otherwise confirm
    `th105-ghidra` and run the fallback protocol smoke test in `docs/MCP.md`.
@@ -107,6 +110,7 @@ and Git; evidence workers receive non-overlapping address ranges.
 - Run before handoff:
 
   ```bash
+  python3 scripts/function-origins.py --check
   python3 scripts/validate-tracking.py
   python3 scripts/core-worklist.py --check
   python3 scripts/progress.py --check

@@ -94,6 +94,11 @@ TH10.5
     │   ├── 0x00493300/0x00493490/0x00493540/0x00493580 [exact]
     │   └── 0x00493380 [implemented]
     ├── fifteen RTTI/vtable pilot rows -> docs/CHARACTER_PILOTS.md
+    ├── fifteen vslot +0x28 action-state roots [identified breadth]
+    │   ├── 918,209 ledger bytes in the durable numeric-dispatch manifest
+    │   ├── exact vtable ownership and shared caller 0x00463610
+    │   ├── common twenty-callee fingerprint plus character outliers
+    │   └── Alice/Youmu/Yuyuko first structural pilots; Sakuya boundary conflict
     ├── fifteen vslot +0x3C action-change roots [decompiled breadth]
     │   ├── 36,677 bytes and 1,211 switch cases in the durable case manifest
     │   ├── 70 direct dependencies and twelve newly classified helpers
@@ -106,10 +111,10 @@ TH10.5
     ├── vslot +0x58 CPU action-policy family [decompiled breadth]
     │   ├── four overrides plus one default body shared by eleven fighters
     │   └── 80,524 bytes, 12,090 IDA lines, and 340 case occurrences
-    ├── remaining sequence-lifecycle/event roots [decompiled breadth]
-    │   ├── 22 bounded entries, 35,673 bytes, and 5,375 IDA lines
-    │   ├── eleven vslot +0x5C sequence callbacks
-    │   ├── ten vslot +0x60 bool event-code bridges
+    ├── complete sequence-lifecycle/event roots [decompiled breadth]
+    │   ├── 31 bounded entries, 48,181 bytes, and 7,578 IDA lines
+    │   ├── fifteen vslot +0x5C sequence callbacks
+    │   ├── fifteen vslot +0x60 bool event-code bridges
     │   └── Alice 0x004FA530 constructor boundary
     ├── fifteen owned-object spawn families [contracted]
     │   ├── one normalized 237-byte ABI/template
