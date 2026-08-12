@@ -55,8 +55,8 @@ ledger span covers 74,937 function-body bytes. Reimu, Alice, Patchouli,
 Remilia, Suika, Aya, and Tenshi likewise have IDA body-size differences caused
 by non-contiguous chunks; none permits an automatic ledger resize.
 
-Nine roots are now `decompiled`: Alice, Marisa, Patchouli, Reimu, Remilia,
-Tenshi, Udonge, Youmu, and Yuyuko. The other six remain `identified`. The
+Twelve roots are now `decompiled`; only Aya, Iku, and Komachi remain
+`identified`. The
 durable pilot manifest distinguishes
 `ida_hexrays` from `exact_target_tables`: the former records pseudocode lines
 and switches, while the latter records target-disassembly lines and decodes
@@ -84,6 +84,14 @@ three-byte non-contiguous difference while contributing a 7,740-line Hex-Rays
 view and 104 top-level labels. Tenshi retains a seven-byte body/span difference
 and its character-local 43-callee, `+0x780..+0x7C0` extension outlier. A ledger
 body-byte count is not silently replaced by a contiguous-span length.
+
+The fourth wave closes the three highest-risk remaining shapes. Sakuya's exact
+ledger span remains authoritative over an IDA primary chunk short by `0x8292`;
+108 table labels and five direct branches were recovered from target bytes.
+Yukari's contiguous 7,351-line view proves a character-local four-table layout
+with three direct bridges. Suika's 79,426 tracked body bytes coexist with a
+79,435-byte entry-to-ret span; its 113 labels and offset widths come from exact
+maps and target instructions after Hex-Rays failure.
 
 Youmu action 200 uniquely reaches `0x0045D320`: after publishing byte `+0x47E`
 as one, the helper writes `Fighter+0x670 = 3` and forwards constants `4` and

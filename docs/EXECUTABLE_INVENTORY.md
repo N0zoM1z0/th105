@@ -145,12 +145,13 @@ frontier.  It records accepted ledger spans, IDA boundary conflicts, numeric
 action-table blocks, and shared/distinctive callees without inventing per-case
 gameplay names or placeholder bodies.
 
-Nine roots now also have complete slice manifests. Six use successful IDA
-Hex-Rays output; Marisa, Reimu, and Udonge use exact-target compressed-table
-decoding after Hex-Rays failure. Patchouli, Reimu, Remilia, and Tenshi guard
-different non-contiguous body/span cases. This backend-neutral evidence model
-preserves breadth without lowering the semantic gate or pretending that
-disassembly is pseudocode.
+Twelve roots now also have complete slice manifests. Seven use successful IDA
+Hex-Rays output; Marisa, Reimu, Sakuya, Suika, and Udonge use exact-target
+compressed-table decoding after Hex-Rays failure. The family includes
+contiguous, small body/span difference, large chunk-conflict, four-table, and
+43-callee outlier regressions. This backend-neutral evidence model preserves
+breadth without lowering the semantic gate or pretending that disassembly is
+pseudocode.
 
 ## Next provenance work
 

@@ -435,3 +435,10 @@ that the ledger's non-contiguous function-body byte count may legitimately be
 smaller than the inclusive entry-to-terminal-ret span. The workflow preserves
 both values and requires instruction proof before contiguous comparison rather
 than rewriting the ledger size from an IDA extent.
+
+The next three roots extended this to the severe Sakuya chunk conflict, Yukari's
+four independent selector tables, and Suika's 79-KiB exact-table path. Twelve
+of fifteen roots are now structurally gated. In particular, instruction-width
+auditing is sufficient for a truthful `exact_target_tables` structural packet
+when typed pseudocode is unavailable; the manifest records that evidence form
+and still withholds implementation and exact-match status.

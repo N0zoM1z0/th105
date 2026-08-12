@@ -144,10 +144,13 @@ VSLOT28_PILOT_SET = {
     ("Patchouli", "0x0050EC80"),
     ("Reimu", "0x004787B0"),
     ("Remilia", "0x00544D40"),
+    ("Sakuya", "0x004CA870"),
+    ("Suika", "0x00598100"),
     ("Tenshi", "0x0063C900"),
     ("Udonge", "0x005BF460"),
     ("Youmu", "0x0052FDA0"),
     ("Yuyuko", "0x0055D4A0"),
+    ("Yukari", "0x0057AA60"),
 }
 VSLOT28_ANALYSIS_FORMS = {"ida_hexrays", "exact_target_tables"}
 ORIGINS = {
