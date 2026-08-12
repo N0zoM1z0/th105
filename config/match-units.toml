@@ -1412,6 +1412,18 @@ symbol_base = "_updatewindow"
 rel32_targets = ["_memcpy=0x0067C170"]
 
 [[units.zlib-inflate-anchors.functions]]
+address = "0x006651E0"
+symbol_base = "_inflate"
+rel32_targets = [
+  "_crc32=0x00668510",
+  "_adler32=0x00668F10",
+  "_memcpy=0x0067C170",
+  "_inflate_table=0x00668A20",
+  "_inflate_fast=0x00668560",
+  "_updatewindow=0x006650F0",
+]
+
+[[units.zlib-inflate-anchors.functions]]
 address = "0x006667E0"
 symbol_base = "_inflateEnd"
 
@@ -1545,13 +1557,67 @@ address = "0x00668510"
 symbol_base = "_crc32"
 rel32_targets = ["_crc32_little=0x00668270"]
 
+[units.zlib-zutil-anchors]
+kind = "probe"
+source = "third_party/zlib-1.2.3/zutil.c"
+object = "build/match-units/zlib_zutil_anchors.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Unmodified official zlib v1.2.3 allocation wrappers calling the linked VC8 CRT malloc/free bodies."
+
+[[units.zlib-zutil-anchors.functions]]
+address = "0x00668530"
+symbol_base = "_zcalloc"
+rel32_targets = ["_malloc=0x0067DC63"]
+
+[[units.zlib-zutil-anchors.functions]]
+address = "0x00668550"
+symbol_base = "_zcfree"
+rel32_targets = ["_free=0x0067DD26"]
+
+[units.zlib-inffast-anchor]
+kind = "probe"
+source = "third_party/zlib-1.2.3/inffast.c"
+object = "build/match-units/zlib_inffast_anchor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Unmodified official zlib v1.2.3 inflate fast path; target identity corrected from the prior size-only candidate pairing."
+
+[[units.zlib-inffast-anchor.functions]]
+address = "0x00668560"
+symbol_base = "_inflate_fast"
+
+[units.zlib-inftrees-gs-anchor]
+kind = "probe"
+source = "third_party/zlib-1.2.3/inftrees.c"
+object = "build/match-units/zlib_inftrees_gs_anchor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Unmodified official zlib v1.2.3 inflate table builder; its local count/offset arrays trigger the target /GS body."
+
+[[units.zlib-inftrees-gs-anchor.functions]]
+address = "0x00668A20"
+symbol_base = "_inflate_table"
+
+[units.zlib-adler32-anchor]
+kind = "probe"
+source = "third_party/zlib-1.2.3/adler32.c"
+object = "build/match-units/zlib_adler32_anchor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Unmodified official zlib v1.2.3 Adler-32 translation unit."
+
+[[units.zlib-adler32-anchor.functions]]
+address = "0x00668F10"
+symbol_base = "_adler32"
+
 [units.zlib-tree-anchors]
 kind = "probe"
 source = "third_party/zlib-1.2.3/trees.c"
 object = "build/match-units/zlib_tree_anchors.obj"
 profile = "vc8-sp1-probe-o2"
-enable_gs = false
-notes = "Unmodified official zlib v1.2.3 tree translation unit; exact external-library evidence, not authored TH10.5 source."
+enable_gs = true
+notes = "Unmodified official zlib v1.2.3 tree translation unit; /GS affects gen_codes while the remaining functions retain their exact bodies."
 
 [[units.zlib-tree-anchors.functions]]
 address = "0x00669190"
@@ -1562,8 +1628,21 @@ address = "0x00669200"
 symbol_base = "_pqdownheap"
 
 [[units.zlib-tree-anchors.functions]]
+address = "0x006692D0"
+symbol_base = "_gen_bitlen"
+
+[[units.zlib-tree-anchors.functions]]
 address = "0x006694F0"
 symbol_base = "_scan_tree"
+
+[[units.zlib-tree-anchors.functions]]
+address = "0x006695E0"
+symbol_base = "_send_tree"
+
+[[units.zlib-tree-anchors.functions]]
+address = "0x00669AF0"
+symbol_base = "_send_all_trees"
+rel32_targets = ["_send_tree=0x006695E0"]
 
 [[units.zlib-tree-anchors.functions]]
 address = "0x00669D50"
@@ -1596,12 +1675,29 @@ symbol_base = "__tr_init"
 rel32_targets = ["_init_block=0x00669190"]
 
 [[units.zlib-tree-anchors.functions]]
+address = "0x0066A430"
+symbol_base = "_gen_codes"
+
+[[units.zlib-tree-anchors.functions]]
 address = "0x0066A4C0"
 symbol_base = "_build_tree"
 rel32_targets = [
   "_pqdownheap=0x00669200",
   "_gen_bitlen=0x006692D0",
   "_gen_codes=0x0066A430",
+]
+
+[[units.zlib-tree-anchors.functions]]
+address = "0x0066A6C0"
+symbol_base = "_build_bl_tree"
+rel32_targets = [
+  "_scan_tree=0x006694F0",
+  "_build_tree=0x0066A4C0",
+]
+dir32_targets = [
+  "_bl_order+0xFFFFFFFF=_bl_order+0xFFFFFFFF",
+  "_bl_order+0xFFFFFFFE=_bl_order+0xFFFFFFFE",
+  "_bl_order+0xFFFFFFFD=_bl_order+0xFFFFFFFD",
 ]
 
 [[units.zlib-tree-anchors.functions]]

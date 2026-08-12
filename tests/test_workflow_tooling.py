@@ -30,6 +30,7 @@ class WorkflowToolingTests(unittest.TestCase):
         cls.manifest = load_script("workflow_manifest.py")
         cls.clones = load_script("clone-families.py")
         cls.packet = load_script("work-packet.py")
+        cls.progress = load_script("progress.py")
         cls.synthetic = load_script("generate-synthetic-coff.py")
 
     def test_ledger_reader_rejects_extra_physical_column(self) -> None:
@@ -118,6 +119,12 @@ class WorkflowToolingTests(unittest.TestCase):
         reports = self.clones.load_and_check()
         self.assertEqual(len(reports), 8)
         self.assertEqual(sum(report["member_count"] for report in reports), 120)
+
+    def test_progress_exposes_library_and_combined_reconstruction(self) -> None:
+        markdown, svg = self.progress.render()
+        self.assertIn("Reproducible third-party functions", markdown)
+        self.assertIn("Combined exact reconstruction", markdown)
+        self.assertIn("Library exact:", svg)
 
     def test_ghidra_body_span_boundary_is_advisory(self) -> None:
         entry, size, basis = self.packet.canonical_backend_boundary(

@@ -430,6 +430,19 @@ addends `0x10`, `0x18`, and `0x1C` are the regression case. Do not replace them
 with one broad address mapping: the table entries differ and each must remain
 individually revalidated.
 
+Adjacent third-party functions with similar sizes must be cross-compared before
+accepting a name. In the completed zlib island, assigning `inflate_table` to
+`0x00668560` and `inflate_fast` to `0x00668A20` produced plausible sizes but
+opposite prologues. Cross-comparison proved `inflate_fast` at the first address
+and the `/GS` local-array `inflate_table` at the second, after which both were
+exact. Size is a candidate filter, not identity evidence.
+
+A TU-wide `/GS` option does not imply every function changes. The zlib
+`trees.c` `/GS` unit preserves seventeen existing exact functions and changes
+only `gen_codes`, whose local 32-byte array triggers the target cookie. Test the
+truthful TU-wide option before splitting per-function units; split only when
+the accepted bodies genuinely require different source configurations.
+
 ## 10. Measurement and evidence
 
 Use the strictest truthful status:

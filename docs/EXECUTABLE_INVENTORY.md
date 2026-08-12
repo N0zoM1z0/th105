@@ -73,15 +73,19 @@ supporting provenance, never target-instruction authority.
 
 The repository now vendors the unmodified core zlib v1.2.3 translation units
 at `third_party/zlib-1.2.3/`. VC8 SP1 canonical match units strictly reproduce
-33 of the 44 island functions, covering 10,211 of 21,553 bytes. The remaining
-11 functions and 11,342 bytes are still unresolved; all reproduced rows remain
-`status=library`, so this external-source wave does not inflate authored-game
-progress. Reproduce the accepted evidence with:
+all 44 island functions and all 21,553 function bytes. Every row remains
+`status=library`, so the external-source result is visible in library,
+third-party, and combined reconstruction metrics without inflating authored-game
+matching. Reproduce the accepted evidence with:
 
 ```bash
 python3 scripts/build.py --unit zlib-inflate-anchors --compare --json
 python3 scripts/build.py --unit zlib-deflate-anchors --compare --json
 python3 scripts/build.py --unit zlib-crc32-anchor --compare --json
+python3 scripts/build.py --unit zlib-zutil-anchors --compare --json
+python3 scripts/build.py --unit zlib-inffast-anchor --compare --json
+python3 scripts/build.py --unit zlib-inftrees-gs-anchor --compare --json
+python3 scripts/build.py --unit zlib-adler32-anchor --compare --json
 python3 scripts/build.py --unit zlib-tree-anchors --compare --json
 ```
 

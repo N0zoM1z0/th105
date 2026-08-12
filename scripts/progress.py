@@ -37,11 +37,42 @@ def render() -> tuple[str, str]:
         raise RuntimeError("config/function-origins.csv is stale or out of ledger order")
 
     authored = [row for row in rows if row["status"] != "library"]
+    library = [row for row in rows if row["status"] == "library"]
+    exact_library = [row for row in library if row["match_percent"] == "100.00"]
+    third_party = [
+        row for row in rows if origins[row["address"]]["origin"] == "third_party"
+    ]
+    exact_third_party = [
+        row
+        for row in third_party
+        if row["status"] == "library" and row["match_percent"] == "100.00"
+    ]
     total_bytes = sum(int(row["size"]) for row in authored)
+    library_bytes = sum(int(row["size"]) for row in library)
+    exact_library_bytes = sum(int(row["size"]) for row in exact_library)
+    third_party_bytes = sum(int(row["size"]) for row in third_party)
+    exact_third_party_bytes = sum(int(row["size"]) for row in exact_third_party)
+    all_bytes = sum(int(row["size"]) for row in rows)
     matching = [row for row in authored if row["status"] == "matching"]
     matching_bytes = sum(int(row["size"]) for row in matching)
     function_pct = 100 * len(matching) / len(authored) if authored else 0.0
     byte_pct = 100 * matching_bytes / total_bytes if total_bytes else 0.0
+    library_function_pct = (
+        100 * len(exact_library) / len(library) if library else 0.0
+    )
+    library_byte_pct = (
+        100 * exact_library_bytes / library_bytes if library_bytes else 0.0
+    )
+    third_party_function_pct = (
+        100 * len(exact_third_party) / len(third_party) if third_party else 0.0
+    )
+    third_party_byte_pct = (
+        100 * exact_third_party_bytes / third_party_bytes if third_party_bytes else 0.0
+    )
+    combined_functions = len(matching) + len(exact_library)
+    combined_bytes = matching_bytes + exact_library_bytes
+    combined_function_pct = 100 * combined_functions / len(rows) if rows else 0.0
+    combined_byte_pct = 100 * combined_bytes / all_bytes if all_bytes else 0.0
     counts = Counter(row["status"] for row in rows)
     origin_counts = Counter(row["origin"] for row in origin_rows)
     disposition_counts = Counter(row["disposition"] for row in origin_rows)
@@ -61,11 +92,23 @@ def render() -> tuple[str, str]:
     lines = [
         "# Reconstruction progress",
         "",
-        "Generated from `config/functions.csv`. Only functions with a verified",
-        "100% comparison are counted as reconstructed.",
+        "Generated from `config/functions.csv` and `config/function-origins.csv`.",
+        "Only functions with a verified 100% comparison are counted as reconstructed.",
+        "Authored-game and external/library results are shown separately and combined.",
         "",
         f"- Matching functions: **{len(matching)} / {len(authored)} ({function_pct:.2f}%)**",
         f"- Matching function bytes: **{matching_bytes:,} / {total_bytes:,} ({byte_pct:.2f}%)**",
+        f"- Reproducible library functions: **{len(exact_library)} / "
+        f"{len(library)} ({library_function_pct:.2f}%)**",
+        f"- Reproducible library bytes: **{exact_library_bytes:,} / "
+        f"{library_bytes:,} ({library_byte_pct:.2f}%)**",
+        f"- Reproducible third-party functions: **{len(exact_third_party)} / "
+        f"{len(third_party)} ({third_party_function_pct:.2f}%)**",
+        f"- Reproducible third-party bytes: **{exact_third_party_bytes:,} / "
+        f"{third_party_bytes:,} ({third_party_byte_pct:.2f}%)**",
+        f"- Combined exact reconstruction: **{combined_functions} / {len(rows)} "
+        f"({combined_function_pct:.2f}%) functions**, **{combined_bytes:,} / "
+        f"{all_bytes:,} ({combined_byte_pct:.2f}%) bytes**",
         f"- Ghidra internal `.text` inventory: **{len(rows):,} functions**",
         f"- Origin census: **{disposition_counts['exclude_authored']:,} excluded**, "
         f"**{disposition_counts['include_authored']:,} confirmed authored**, "
@@ -102,7 +145,10 @@ def render() -> tuple[str, str]:
             "",
             "The legacy authored denominator is every non-`library` ledger row. The",
             "confirmed-authored census is evidence-backed but deliberately incomplete;",
-            "`review` rows are not silently counted as either authored or library.",
+            "`review` rows are not silently counted as either authored or library. Exact",
+            "library rows remain excluded from authored-game matching, but are included",
+            "in the separately visible library, third-party, and combined reconstruction",
+            "metrics.",
             "",
             "Run `python3 scripts/function-origins.py --write` and then",
             "`python3 scripts/progress.py` after changing origin or ledger evidence.",
@@ -111,14 +157,16 @@ def render() -> tuple[str, str]:
     )
 
     bar_width = 440
-    filled = bar_width * byte_pct / 100
-    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="560" height="112" role="img" aria-label="TH10.5 reconstruction progress {byte_pct:.2f}% by bytes">
-  <rect width="560" height="112" rx="8" fill="#1f2335"/>
-  <text x="24" y="32" fill="#f4f4f5" font-family="sans-serif" font-size="16" font-weight="600">TH10.5 reconstruction</text>
-  <text x="536" y="32" fill="#f4f4f5" text-anchor="end" font-family="monospace" font-size="14">{byte_pct:.2f}% bytes</text>
+    filled = bar_width * combined_byte_pct / 100
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="560" height="138" role="img" aria-label="TH10.5 combined reconstruction progress {combined_byte_pct:.2f}% by bytes">
+  <rect width="560" height="138" rx="8" fill="#1f2335"/>
+  <text x="24" y="32" fill="#f4f4f5" font-family="sans-serif" font-size="16" font-weight="600">TH10.5 complete reconstruction</text>
+  <text x="536" y="32" fill="#f4f4f5" text-anchor="end" font-family="monospace" font-size="14">{combined_byte_pct:.2f}% all bytes</text>
   <rect x="24" y="48" width="440" height="14" rx="7" fill="#3b4058"/>
   <rect x="24" y="48" width="{filled:.2f}" height="14" rx="7" fill="#e46c8c"/>
-  <text x="24" y="88" fill="#c8cad2" font-family="sans-serif" font-size="13">{len(matching):,} / {len(authored):,} functions · {matching_bytes:,} / {total_bytes:,} function bytes</text>
+  <text x="24" y="88" fill="#c8cad2" font-family="sans-serif" font-size="13">Combined: {combined_functions:,} / {len(rows):,} functions · {combined_bytes:,} / {all_bytes:,} bytes</text>
+  <text x="24" y="110" fill="#c8cad2" font-family="sans-serif" font-size="13">Authored exact: {len(matching):,} functions · {matching_bytes:,} bytes</text>
+  <text x="24" y="130" fill="#c8cad2" font-family="sans-serif" font-size="13">Library exact: {len(exact_library):,} functions · {exact_library_bytes:,} bytes</text>
 </svg>
 '''
     return "\n".join(lines), svg

@@ -50,15 +50,20 @@ whose remaining failures are only audited relocations.
 
 ### Strict exact wave
 
-The original seven no-or-low-relocation anchors expanded into four canonical
-translation-unit match units. They now reproduce 33 of 44 functions and
-10,211 of 21,553 bytes exactly. This resolved the former `deflate`,
-`deflateInit2_`, `_tr_*`, `lm_init`, and `crc32_little` relocation blockers.
+The original seven no-or-low-relocation anchors expanded into canonical
+translation-unit match units. They now reproduce all 44 functions and all
+21,553 bytes exactly. This resolved `inflate`, `deflate`, `deflateInit2_`,
+`_tr_*`, `lm_init`, `crc32_little`, all tree helpers, and the independent
+Adler/inflate-fast/inflate-table translation units.
 
 ```bash
 python3 scripts/build.py --unit zlib-inflate-anchors --compare --json
 python3 scripts/build.py --unit zlib-deflate-anchors --compare --json
 python3 scripts/build.py --unit zlib-crc32-anchor --compare --json
+python3 scripts/build.py --unit zlib-zutil-anchors --compare --json
+python3 scripts/build.py --unit zlib-inffast-anchor --compare --json
+python3 scripts/build.py --unit zlib-inftrees-gs-anchor --compare --json
+python3 scripts/build.py --unit zlib-adler32-anchor --compare --json
 python3 scripts/build.py --unit zlib-tree-anchors --compare --json
 ```
 
@@ -74,12 +79,25 @@ promote direct helper callees, then expand to the large callers. Do not update
 a ledger row from this historical note alone; rerun its canonical unit and
 require an exact result.
 
-### Configuration/source-shape candidates
+Do not assign adjacent library identities by nearest size. The two approximately
+1.2 KiB candidates initially appeared to be `inflate_table` then `inflate_fast`;
+cross-comparing their prologues, `/GS` behavior, relocations, and complete bytes
+proved the reverse mapping: `inflate_fast` at `0x00668560` and `inflate_table`
+at `0x00668A20`. Candidate matrices should test every plausible source symbol
+of similar size before naming the ledger row.
 
-The pilot observed close but non-identical sizes for `inflate_fast`,
-`inflate_table`, and `adler32`, while the large `inflate` body differed more.
-Investigate upstream macros, compile flags, release patches, function boundary
-accuracy, and static-vs-external helper visibility one variable at a time.
+One original translation unit may be compiled globally with `/GS` while only
+functions containing compiler-recognized vulnerable arrays emit cookies. In
+`trees.c`, the same `/GS` object leaves seventeen accepted bodies unchanged and
+makes `gen_codes` exact because its local 32-byte code table triggers the
+cookie. Prefer one truthful TU configuration when it reproduces every member.
+
+### Completed configuration/source-shape candidates
+
+The former `inflate_fast`, `inflate_table`, `adler32`, and large `inflate`
+candidates are now exact. The apparent size deltas were six-byte section-tail
+padding, swapped target identity, `/GS` selection, and unresolved relocation
+tables/strings—not source divergence.
 
 ## Xiph Ogg/Vorbis strategy
 

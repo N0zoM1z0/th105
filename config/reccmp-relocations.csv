@@ -274,3 +274,31 @@ _extra_lbits,0x006B6278,00000000000000000000000000000000,0x0,target zlib literal
 _base_length,0x006B6BC0,00000000010000000200000003000000,0x0,target zlib base-length table prefix and exact compress_block indexed access,address
 _extra_dbits,0x006B6300,00000000000000000000000000000000,0x0,target zlib distance extra-bits table prefix and exact compress_block indexed access,address
 _base_dist,0x006B6C38,00000000010000000200000003000000,0x0,target zlib base-distance table prefix and exact compress_block indexed access,address
+_bl_order,0x006B62EC,10111200080709060a050b040c030d020e010f,0x0,target bytes equal official zlib v1.2.3 bit-length-code order and exact tree helper indexed accesses,literal
+_bl_order+0xFFFFFFFF,0x006B62EC,0010111200080709060a050b040c030d020e010f,0xffffffff,target byte immediately before zlib bit-length order plus complete table for build_bl_tree index-minus-one access,literal
+_bl_order+0xFFFFFFFE,0x006B62EC,000010111200080709060a050b040c030d020e010f,0xfffffffe,target two bytes before zlib bit-length order plus complete table for build_bl_tree index-minus-two access,literal
+_bl_order+0xFFFFFFFD,0x006B62EC,00000010111200080709060a050b040c030d020e010f,0xfffffffd,target three bytes before zlib bit-length order plus complete table for build_bl_tree index-minus-three access,literal
+?lbase@?1??inflate_table@@9@9,0x006B6178,03000400050006000700080009000a000b000d000f001100130017001b001f0023002b0033003b0043005300630073008300a300c300e300020100000000,0x0,target bytes equal complete official zlib v1.2.3 inflate length-base table,literal
+?lext@?1??inflate_table@@9@9,0x006B61B8,10001000100010001000100010001000110011001100110012001200120012001300130013001300140014001400140015001500150015001000c900c400,0x0,target bytes equal complete official zlib v1.2.3 inflate length-extra table,literal
+?dbase@?1??inflate_table@@9@9,0x006B61F8,01000200030004000500070009000d001100190021003100410061008100c1000101810101020103010401060108010c01100118012001300140016000000000,0x0,target bytes equal complete official zlib v1.2.3 inflate distance-base table,literal
+?dext@?1??inflate_table@@9@9,0x006B6238,10001000100010001100110012001200130013001400140015001500160016001700170018001800190019001a001a001b001b001c001c001d001d0040004000,0x0,target bytes equal complete official zlib v1.2.3 inflate distance-extra table,literal
+??_C@_0BO@ECPMAOGG@invalid?5distance?5too?5far?5back?$AA@,0x006B3E58,696e76616c69642064697374616e636520746f6f20666172206261636b00,0x0,target zlib invalid-distance diagnostic string and sole inflate_fast data relocation,literal
+??_C@_0BG@LBKINIKP@invalid?5distance?5code?$AA@,0x006B3E78,696e76616c69642064697374616e636520636f646500,0x0,target zlib invalid-distance-code diagnostic string used by inflate_fast,literal
+??_C@_0BM@FFFLPBBC@invalid?5literal?1length?5code?$AA@,0x006B3E90,696e76616c6964206c69746572616c2f6c656e67746820636f646500,0x0,target zlib invalid-literal-length diagnostic string used by inflate_fast,literal
+?lenfix@?1??fixedtables@@9@9,0x006B3580,6007000000085000000810001408730012071f0000087000000830000009c000,0x0,target contains the complete 2048-byte official zlib v1.2.3 fixed literal-length decode table; prefix revalidated here,literal
+?distfix@?1??fixedtables@@9@9,0x006B3D80,1005010017050101130511001b0501101105050019050104150541001d050140,0x0,target contains the complete 128-byte official zlib v1.2.3 fixed distance decode table; prefix revalidated here,literal
+?order@?1??inflate@@9@9,0x006B3E00,100011001200000008000700090006000a0005000b0004000c0003000d0002000e0001000f00,0x0,target bytes equal complete official zlib v1.2.3 inflate code-length order table,literal
+??_C@_0BH@FGKKJGOC@incorrect?5length?5check?$AA@,0x006B3E28,696e636f7272656374206c656e67746820636865636b00,0x0,target zlib incorrect-length diagnostic string used by inflate,literal
+??_C@_0BF@MEIGEHBE@incorrect?5data?5check?$AA@,0x006B3E40,696e636f7272656374206461746120636865636b00,0x0,target zlib incorrect-data diagnostic string used by inflate,literal
+??_C@_0BG@GMDFCBGP@invalid?5distances?5set?$AA@,0x006B3EAC,696e76616c69642064697374616e6365732073657400,0x0,target zlib invalid-distances-set diagnostic string used by inflate,literal
+??_C@_0BK@BMMPFBBH@invalid?5bit?5length?5repeat?$AA@,0x006B3EC4,696e76616c696420626974206c656e6774682072657065617400,0x0,target zlib invalid-bit-length-repeat diagnostic string used by inflate,literal
+??_C@_0BM@IIMGAINC@invalid?5literal?1lengths?5set?$AA@,0x006B3EE0,696e76616c6964206c69746572616c2f6c656e677468732073657400,0x0,target zlib invalid-literal-lengths-set diagnostic string used by inflate,literal
+??_C@_0CE@GMIGFPBB@too?5many?5length?5or?5distance?5symb@,0x006B3EFC,746f6f206d616e79206c656e677468206f722064697374616e63652073796d626f6c7300,0x0,target zlib too-many-length-or-distance-symbols diagnostic string used by inflate,literal
+??_C@_0BJ@HDEPPGOH@invalid?5code?5lengths?5set?$AA@,0x006B3F20,696e76616c696420636f6465206c656e677468732073657400,0x0,target zlib invalid-code-lengths-set diagnostic string used by inflate,literal
+??_C@_0BN@LGAADGOK@invalid?5stored?5block?5lengths?$AA@,0x006B3F3C,696e76616c69642073746f72656420626c6f636b206c656e6774687300,0x0,target zlib invalid-stored-block-lengths diagnostic string used by inflate,literal
+??_C@_0BD@PJCBIDD@invalid?5block?5type?$AA@,0x006B3F5C,696e76616c696420626c6f636b207479706500,0x0,target zlib invalid-block-type diagnostic string used by inflate,literal
+??_C@_0BE@GONKLEPM@header?5crc?5mismatch?$AA@,0x006B3F70,68656164657220637263206d69736d6174636800,0x0,target zlib header-CRC-mismatch diagnostic string used by inflate,literal
+??_C@_0BJ@BLBBCOMO@unknown?5header?5flags?5set?$AA@,0x006B3F84,756e6b6e6f776e2068656164657220666c6167732073657400,0x0,target zlib unknown-header-flags diagnostic string used by inflate,literal
+??_C@_0BH@LIBMMIGA@incorrect?5header?5check?$AA@,0x006B3FA0,696e636f72726563742068656164657220636865636b00,0x0,target zlib incorrect-header diagnostic string used by inflate,literal
+??_C@_0BE@EMOGCLGO@invalid?5window?5size?$AA@,0x006B3FB8,696e76616c69642077696e646f772073697a6500,0x0,target zlib invalid-window-size diagnostic string used by inflate,literal
+??_C@_0BL@IHKGDAEE@unknown?5compression?5method?$AA@,0x006B3FCC,756e6b6e6f776e20636f6d7072657373696f6e206d6574686f6400,0x0,target zlib unknown-compression-method diagnostic string used by inflate,literal
