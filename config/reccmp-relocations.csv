@@ -398,3 +398,23 @@ __imp__HeapReAlloc@16,0x006AC17C,2ceb2c00,0x0,VC8 SP1 sbheap.obj linked HeapReAl
 __imp__RaiseException@16,0x006AC160,b2ea2c00,0x0,VC8 SP1 fpexcept.obj linked RaiseException IAT slot audited against target PE,address
 __imp__VirtualAlloc@16,0x006AC0E4,6eed2c00,0x0,VC8 SP1 sbheap.obj linked VirtualAlloc IAT slot audited against target PE,address
 __imp__VirtualFree@12,0x006AC0F4,20ed2c00,0x0,VC8 SP1 sbheap.obj linked VirtualFree IAT slot audited against target PE,address
+crt_c2_000_security_cookie,0x006E1A88,4ee640bb,0x0,VC8 SP1 write/putwch/x10fout security cookie audited against target PE,address
+crt_c2_001_pioinfo,0x006EE480,00000000,0x0,VC8 SP1 low-level I/O table pointer audited in PE zero-filled virtual tail,address
+crt_c2_002_imp_getconsolemode_8,0x006AC0CC,d4ed2c00,0x0,VC8 SP1 write.obj GetConsoleMode IAT slot audited against target PE,literal
+crt_c2_003_imp_getconsolecp_0,0x006AC0D0,c4ed2c00,0x0,VC8 SP1 write.obj GetConsoleCP IAT slot audited against target PE,literal
+crt_c2_004_imp_widechartomultibyte_32,0x006AC1C0,3aec2c00,0x0,VC8 SP1 low-level console WideCharToMultiByte IAT slot audited against target PE,literal
+crt_c2_005_imp_writefile_20,0x006AC050,bee52c00,0x0,VC8 SP1 write.obj WriteFile IAT slot audited against target PE,literal
+crt_c2_006_imp_getlasterror_0,0x006AC090,6ce62c00,0x0,VC8 SP1 low-level I/O GetLastError IAT slot audited against target PE,literal
+crt_c2_007_c_06pggfogjg_1_cdsnan_aa,0x006C000C,3123534e,0x0,VC8 SP1 x10fout.obj 1#SNAN string prefix audited against target PE,literal
+crt_c2_008_c_05phhocpm_1_cdind_aa,0x006C0004,3123494e,0x0,VC8 SP1 x10fout.obj 1#IND string prefix audited against target PE,literal
+crt_c2_009_c_05dnebiaho_1_cdinf_aa,0x006BFFFC,3123494e,0x0,VC8 SP1 x10fout.obj 1#INF string prefix audited against target PE,literal
+crt_c2_010_c_06imkflfpg_1_cdqnan_aa,0x006BFFF4,3123514e,0x0,VC8 SP1 x10fout.obj 1#QNAN string prefix audited against target PE,literal
+crt_c2_011_pow10pos,0x006E3040,00000000,0x0,VC8 SP1 x10fout.obj positive power-of-ten table address audited against target PE,address
+crt_c2_012_pow10neg,0x006E31A0,cdcccdcc,0x0,VC8 SP1 x10fout.obj negative power-of-ten table address audited against target PE,address
+crt_c2_013_imp_setfilepointer_16,0x006AC058,9ee52c00,0x0,VC8 SP1 lseeki64.obj SetFilePointer IAT slot audited against target PE,literal
+crt_c2_014_nhandle,0x006EE468,00000000,0x0,VC8 SP1 isatty.obj handle-count global audited in PE zero-filled virtual tail,address
+crt_c2_015_use_w_1_putwch_nolock_9_9,0x006E3300,02000000,0x0,VC8 SP1 putwch.obj static wide-console state audited against target PE,literal
+crt_c2_016_confh,0x006E3308,feffffff,0x0,VC8 SP1 putwch.obj console handle global audited against target PE,address
+crt_c2_017_imp_writeconsolew_20,0x006AC07C,a0ee2c00,0x0,VC8 SP1 putwch.obj WriteConsoleW IAT slot audited against target PE,literal
+crt_c2_018_imp_getconsoleoutputcp_0,0x006AC080,8aee2c00,0x0,VC8 SP1 putwch.obj GetConsoleOutputCP IAT slot audited against target PE,literal
+crt_c2_019_imp_writeconsolea_20,0x006AC084,7aee2c00,0x0,VC8 SP1 putwch.obj WriteConsoleA IAT slot audited against target PE,literal

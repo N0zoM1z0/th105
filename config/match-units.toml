@@ -3292,6 +3292,91 @@ notes = "Pinned VC8 SP1 archive replay; source is a provenance-document anchor, 
 address = "0x0068C16C"
 symbol_base = "___dtold"
 
+[units.vc8_sp1_libcmt_isatty]
+kind = "msvc_prebuilt"
+source = "docs/VC8_RUNTIME_RECOVERY.md"
+object = "build/match-units/vc8_sp1_libcmt_isatty.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "build/intel/mt_obj/isatty.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Pinned VC8 SP1 isatty.obj replay; source is a provenance-document anchor, not reconstructed CRT source."
+
+[[units.vc8_sp1_libcmt_isatty.functions]]
+address = "0x0068CCF1"
+symbol_base = "__isatty"
+rel32_targets = ["__errno=0x0067DF4C","__invalid_parameter=0x0067B860"]
+dir32_targets = ["__nhandle+0x0=crt_c2_014_nhandle","___pioinfo+0x0=crt_c2_001_pioinfo"]
+
+[units.vc8_sp1_libcmt_lseeki64]
+kind = "msvc_prebuilt"
+source = "docs/VC8_RUNTIME_RECOVERY.md"
+object = "build/match-units/vc8_sp1_libcmt_lseeki64.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "build/intel/mt_obj/lseeki64.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Pinned VC8 SP1 lseeki64.obj replay; source is a provenance-document anchor, not reconstructed CRT source."
+
+[[units.vc8_sp1_libcmt_lseeki64.functions]]
+address = "0x0068CB11"
+symbol_base = "__lseeki64_nolock"
+rel32_targets = ["__get_osfhandle=0x0068A82E","__errno=0x0067DF4C","__dosmaperr=0x0067DF72"]
+dir32_targets = ["__imp__SetFilePointer@16+0x0=crt_c2_013_imp_setfilepointer_16","__imp__GetLastError@0+0x0=crt_c2_006_imp_getlasterror_0","___pioinfo+0x0=crt_c2_001_pioinfo"]
+
+[units.vc8_sp1_libcmt_putwch]
+kind = "msvc_prebuilt"
+source = "docs/VC8_RUNTIME_RECOVERY.md"
+object = "build/match-units/vc8_sp1_libcmt_putwch.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "build/intel/mt_obj/putwch.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Pinned VC8 SP1 putwch.obj replay; source is a provenance-document anchor, not reconstructed CRT source."
+
+[[units.vc8_sp1_libcmt_putwch.functions]]
+address = "0x0068ECCC"
+symbol_base = "__putwch_nolock"
+rel32_targets = ["___initconout=0x0068FA4C","@__security_check_cookie@4=0x0067B465"]
+dir32_targets = ["___security_cookie+0x0=crt_c2_000_security_cookie","?use_w@?1??_putwch_nolock@@9@9+0x0=crt_c2_015_use_w_1_putwch_nolock_9_9","__confh+0x0=crt_c2_016_confh","__imp__WriteConsoleW@20+0x0=crt_c2_017_imp_writeconsolew_20","__imp__GetLastError@0+0x0=crt_c2_006_imp_getlasterror_0","__imp__GetConsoleOutputCP@0+0x0=crt_c2_018_imp_getconsoleoutputcp_0","__imp__WideCharToMultiByte@32+0x0=crt_c2_004_imp_widechartomultibyte_32","__imp__WriteConsoleA@20+0x0=crt_c2_019_imp_writeconsolea_20"]
+
+[units.vc8_sp1_libcmt_write]
+kind = "msvc_prebuilt"
+source = "docs/VC8_RUNTIME_RECOVERY.md"
+object = "build/match-units/vc8_sp1_libcmt_write.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "build/intel/mt_obj/write.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Pinned VC8 SP1 write.obj replay; source is a provenance-document anchor, not reconstructed CRT source."
+
+[[units.vc8_sp1_libcmt_write.functions]]
+address = "0x0068A961"
+symbol_base = "__write_nolock"
+rel32_targets = ["___doserrno=0x0067DF5F","__errno=0x0067DF4C","__invalid_parameter=0x0067B860","__lseeki64_nolock=0x0068CB11","__isatty=0x0068CCF1","__getptd=0x0067FA71","_isleadbyte=0x0068A79F","_mbtowc=0x0068D040","__putwch_nolock=0x0068ECCC","__dosmaperr=0x0067DF72","@__security_check_cookie@4=0x0067B465"]
+dir32_targets = ["___security_cookie+0x0=crt_c2_000_security_cookie","___pioinfo+0x0=crt_c2_001_pioinfo","__imp__GetConsoleMode@8+0x0=crt_c2_002_imp_getconsolemode_8","__imp__GetConsoleCP@0+0x0=crt_c2_003_imp_getconsolecp_0","__imp__WideCharToMultiByte@32+0x0=crt_c2_004_imp_widechartomultibyte_32","__imp__WriteFile@20+0x0=crt_c2_005_imp_writefile_20","__imp__GetLastError@0+0x0=crt_c2_006_imp_getlasterror_0"]
+
+[units.vc8_sp1_libcmt_x10fout]
+kind = "msvc_prebuilt"
+source = "docs/VC8_RUNTIME_RECOVERY.md"
+object = "build/match-units/vc8_sp1_libcmt_x10fout.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "../build/intel/mt_obj/x10fout.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Pinned VC8 SP1 x10fout.obj replay; source is a provenance-document anchor, not reconstructed CRT source."
+
+[[units.vc8_sp1_libcmt_x10fout.functions]]
+address = "0x0068ED8E"
+symbol_base = "_$I10_OUTPUT"
+rel32_targets = ["_strcpy_s=0x0067C4D5","__invoke_watson=0x0067B764","@__security_check_cookie@4=0x0067B465"]
+dir32_targets = ["___security_cookie+0x0=crt_c2_000_security_cookie","??_C@_06PGGFOGJG@1?$CDSNAN?$AA@+0x0=crt_c2_007_c_06pggfogjg_1_cdsnan_aa","??_C@_05PHHOCPM@1?$CDIND?$AA@+0x0=crt_c2_008_c_05phhocpm_1_cdind_aa","??_C@_05DNEBIAHO@1?$CDINF?$AA@+0x0=crt_c2_009_c_05dnebiaho_1_cdinf_aa","??_C@_06IMKFLFPG@1?$CDQNAN?$AA@+0x0=crt_c2_010_c_06imkflfpg_1_cdqnan_aa","__pow10pos+0x0=crt_c2_011_pow10pos","__pow10neg+0x0=crt_c2_012_pow10neg"]
+
 [units.vc8_sp1_libcmt_cpu_disp]
 kind = "msvc_prebuilt"
 source = "docs/VC8_RUNTIME_RECOVERY.md"

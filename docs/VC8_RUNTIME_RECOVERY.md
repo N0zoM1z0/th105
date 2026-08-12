@@ -33,7 +33,7 @@ Three disjoint address scans over the pinned `libcmt.lib` produced 74
 symbol-unambiguous strict matches and 6,862 function bytes. They are grouped by
 archive member into 58 `msvc_prebuilt` units in `config/match-units.toml`.
 Together with the earlier runtime anchors and the dependency expansion below,
-92 runtime functions and 10,773 bytes are now reproducible.
+97 runtime functions and 14,910 bytes are now reproducible.
 
 Every accepted unit was re-extracted through the repository build driver and
 all 74 comparisons returned `result=exact`. Reproduce an individual unit with:
@@ -70,3 +70,10 @@ groups with:
 python3 scripts/build.py --unit vc8-sp1-libcmt-sbheap --compare --json
 python3 scripts/build.py --unit vc8-sp1-libcmt-fpexcept --compare --json
 ```
+
+The following low-level I/O and decimal-format dependency pass adds five more
+target-unique functions and 4,137 bytes: `__write_nolock`,
+`__lseeki64_nolock`, `__isatty`, `__putwch_nolock`, and `_$I10_OUTPUT`.
+Canonical replay uses five distinct archive members. Three byte-exact targets
+remain excluded because the archive presents competing symbols (`__write` /
+`__locking` / `__lseek`, and two `__ld12tod` / `__ld12tof` pairs).

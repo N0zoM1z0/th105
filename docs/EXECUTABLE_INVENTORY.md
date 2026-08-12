@@ -151,11 +151,12 @@ small-block heap, low-level I/O, and `strdup`.  The Unwind rows are referenced
 by EH metadata and contain tiny cleanup/tail-jump bodies owned by parent C++
 functions.  They are link output, not independent authored source routines.
 
-The SHA-pinned VC8 SP1 archive replay now strictly reproduces 92 runtime
-functions and 10,773 bytes. The initial breadth wave contributes 74 functions
+The SHA-pinned VC8 SP1 archive replay now strictly reproduces 97 runtime
+functions and 14,910 bytes. The initial breadth wave contributes 74 functions
 and 6,862 bytes across 58 canonical `libcmt.lib` object units; the next
 dependency pass contributes six small-block-heap/floating-exception functions
-and 2,767 bytes. Ambiguous identical-body symbols are excluded. Reproduction
+and 2,767 bytes; a low-level I/O/decimal-format pass contributes another five
+functions and 4,137 bytes. Ambiguous identical-body symbols are excluded. Reproduction
 and ABI caveats are recorded in `docs/VC8_RUNTIME_RECOVERY.md`.
 
 Do not extend the CRT rule through `0x006A3DCF`.  The intervening 342-row

@@ -878,3 +878,8 @@ address,name,module,confidence,evidence
 0x006897DF,___sbh_alloc_new_region,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
 0x0068988F,___sbh_alloc_new_group,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
 0x00689C74,___sbh_alloc_block,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
+0x0068A961,__write_nolock,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
+0x0068CB11,__lseeki64_nolock,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
+0x0068CCF1,__isatty,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
+0x0068ECCC,__putwch_nolock,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
+0x0068ED8E,_$I10_OUTPUT,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member

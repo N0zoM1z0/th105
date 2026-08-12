@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="560" height="138" role="img" aria-label="TH10.5 combined reconstruction progress 4.40% by bytes">
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="138" role="img" aria-label="TH10.5 combined reconstruction progress 4.56% by bytes">
   <rect width="560" height="138" rx="8" fill="#1f2335"/>
   <text x="24" y="32" fill="#f4f4f5" font-family="sans-serif" font-size="16" font-weight="600">TH10.5 complete reconstruction</text>
-  <text x="536" y="32" fill="#f4f4f5" text-anchor="end" font-family="monospace" font-size="14">4.40% all bytes</text>
+  <text x="536" y="32" fill="#f4f4f5" text-anchor="end" font-family="monospace" font-size="14">4.56% all bytes</text>
   <rect x="24" y="48" width="440" height="14" rx="7" fill="#3b4058"/>
-  <rect x="24" y="48" width="19.37" height="14" rx="7" fill="#e46c8c"/>
-  <text x="24" y="88" fill="#c8cad2" font-family="sans-serif" font-size="13">Combined: 533 / 4,840 functions · 116,387 / 2,643,951 bytes</text>
+  <rect x="24" y="48" width="20.06" height="14" rx="7" fill="#e46c8c"/>
+  <text x="24" y="88" fill="#c8cad2" font-family="sans-serif" font-size="13">Combined: 538 / 4,840 functions · 120,524 / 2,643,951 bytes</text>
   <text x="24" y="110" fill="#c8cad2" font-family="sans-serif" font-size="13">Authored exact: 214 functions · 28,717 bytes</text>
-  <text x="24" y="130" fill="#c8cad2" font-family="sans-serif" font-size="13">Library exact: 319 functions · 87,670 bytes</text>
+  <text x="24" y="130" fill="#c8cad2" font-family="sans-serif" font-size="13">Library exact: 324 functions · 91,807 bytes</text>
 </svg>
