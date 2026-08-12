@@ -1900,7 +1900,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00460B50,authored_game,battle,include_authored,inferred,ledger-authored-module
 0x00461A80,unknown,,review,unknown,
 0x00461A90,authored_game,battle,include_authored,inferred,ledger-authored-module
-0x00461CC0,unknown,,review,unknown,
+0x00461CC0,authored_game,battle,include_authored,inferred,ledger-authored-module
 0x00462050,authored_game,battle,include_authored,inferred,ledger-authored-module
 0x004621A0,unknown,,review,unknown,
 0x00462380,authored_game,battle,include_authored,inferred,ledger-authored-module

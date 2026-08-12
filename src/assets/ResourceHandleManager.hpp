@@ -20,6 +20,10 @@ struct CHandleManager4 {
     unsigned int next_generation_44;
     unsigned char lock_48[0x1c];
     ResourceHandleToken cached_tokens_64[8];
+
+    // Verified normal-ECX entry point at 0x00417010.  Its returned cell is
+    // still owned by the manager; callers clear it before recycling its token.
+    void **lookup_token(unsigned int packed_token);
 };
 
 typedef char ResourceHandleToken_size_must_be_0x04[

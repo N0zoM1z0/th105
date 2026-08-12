@@ -32,6 +32,7 @@ address,name,module,confidence,evidence
 0x006E8E58,g_orientation_cosine_table,engine,observed,docs/BATTLE.md runtime initializer 0x00406780 fills 3600 floats with fcos at 0.1-degree increments
 0x006EC830,g_wave_handle_service,audio,observed,docs/BATTLE.md static CHandleManager wave-buffer service used by indexed event dispatch
 0x006ECD40,g_title_resource_manager,ui,inferred,docs/EVIDENCE.md CTitle destructor releases handles at +0x08 and +0xA0 through this global manager object
+0x006ED250,g_title_texture_cache_host,render,observed,PE objdump 0x00404FA0 loads this pointer then dispatches its vtable slot +0x104 to clear cached title texture cells
 0x006ED3E8,g_primary_sound_buffer,audio,observed,docs/EVIDENCE.md IDirectSoundBuffer8 pointer released by 0x004180D0
 0x006ED3EC,g_direct_sound,audio,observed,docs/EVIDENCE.md IDirectSound8 pointer created by 0x00417E80 and released by 0x004180D0
 0x006ED3F0,g_direct_sound_listener,audio,observed,docs/EVIDENCE.md IDirectSound3DListener8 pointer created by 0x00417E80 and released by 0x004180D0

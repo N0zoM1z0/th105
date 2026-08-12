@@ -86,6 +86,7 @@ __ehhandler$?parse_scenario_event_row_4591d0@BattlePhaseBlock@th105@@QAEXPAX@Z,0
 __ehhandler$??0?$deque@FV?$allocator@F@std@@@std@@QAE@ABV01@@Z,0x006A4D60,8b5424088d420c8b,0x0,target VC8 std::deque<short> copy-constructor EH handler entry bytes,address
 ??_7CTitle@th105@@6B@,0x006ACCF4,80514200,0x0,target RTTI-owned CTitle vtable address and first slot,address
 ?g_title_resource_manager@th105@@3UTitleResourceManager@1@A,0x006ECD40,00000000,0x0,target zero-filled title resource-manager object address,address
+?g_title_texture_cache_host@th105@@3PAXA,0x006ED250,00000000,0x0,target zero-filled render cache-host pointer loaded by 0x00404FA0 and dispatched at vslot +0x104,address
 ?g_spell_texture_pool@th105@@3USpellTexturePool@1@A,0x006ECD40,00000000,0x0,target zero-filled texture-pool object address shared with the verified resource-manager anchor,address
 ?g_spell_texture_load_state@th105@@3IA,0x006E4C64,00000000,0x0,target zero-filled spell texture load-state word verified through IDA target memory,address
 ?g_spell_texture_upload_state@th105@@3IA,0x006E4C60,00000000,0x0,target zero-filled spell texture upload-state word verified through IDA target memory,address

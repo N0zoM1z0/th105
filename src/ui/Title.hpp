@@ -1,5 +1,6 @@
 #pragma once
 
+#include "assets/ResourceHandleManager.hpp"
 #include "../engine/SceneBase.hpp"
 
 extern "C" const unsigned int title_color_vtable_anchor[];
@@ -42,13 +43,15 @@ typedef char UiDesignTreeIterator_size_must_be_0x08[
 typedef char UiDesignTree_size_must_be_0x14[
     sizeof(UiDesignTree) == 0x14 ? 1 : -1];
 
-struct TitleResourceManager {
+// 0x006ECD40 is the concrete CHandleManager<IDirect3DTexture9 *> instance.
+// In particular, its eight cache cells begin at +0x64.
+struct TitleResourceManager : CHandleManager4 {
     unsigned int *load_texture(
         unsigned int *result,
         const char *path,
         unsigned int *width,
         unsigned int *height);
-    void release_title_resource_handle(unsigned int handle);
+    unsigned char release_title_resource_handle(unsigned int handle);
 };
 
 extern TitleResourceManager g_title_resource_manager;
