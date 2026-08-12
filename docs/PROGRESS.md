@@ -3,20 +3,20 @@
 Generated from `config/functions.csv`. Only functions with a verified
 100% comparison are counted as reconstructed.
 
-- Matching functions: **212 / 2976 (7.12%)**
-- Matching function bytes: **28,497 / 2,476,136 (1.15%)**
+- Matching functions: **213 / 2976 (7.16%)**
+- Matching function bytes: **28,664 / 2,476,136 (1.16%)**
 - Ghidra internal `.text` inventory: **4,838 functions**
 - Origin census: **1,862 excluded**, **658 confirmed authored**, **2,318 awaiting origin review**
-- Exact within confirmed-authored census: **212 / 658 (32.22%) functions**, **28,497 / 1,304,564 (2.18%) bytes**
+- Exact within confirmed-authored census: **213 / 658 (32.37%) functions**, **28,664 / 1,304,564 (2.20%) bytes**
 
 | Status | Functions |
 | --- | ---: |
 | `unclassified` | 2,304 |
-| `identified` | 129 |
+| `identified` | 128 |
 | `decompiled` | 195 |
 | `implemented` | 133 |
 | `compiles` | 3 |
-| `matching` | 212 |
+| `matching` | 213 |
 | `library` | 1,862 |
 | `blocked` | 0 |
 

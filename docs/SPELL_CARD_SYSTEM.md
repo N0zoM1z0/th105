@@ -54,7 +54,7 @@ CSV and asset load
     ├── 0x00408FC0 decode/upload one BMP texture [decompiled]
     ├── 0x00402680 shared generation-token allocation [identified]
     ├── 0x00417010 generation-checked resource lookup [identified]
-    ├── 0x004027F0 token recycle after external resource release [identified]
+    ├── 0x004027F0 token recycle after external resource release [exact; EAX receiver]
     ├── 0x00416A50 four-byte handle deque append [library exact]
     └── 0x00406C30 optional sprite resource vcall adapter [decompiled]
 
