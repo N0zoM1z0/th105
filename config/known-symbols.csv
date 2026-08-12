@@ -14,8 +14,9 @@ address,name,module,confidence,evidence
 0x00401D70,dispatch_wave_handle,audio,observed,docs/BATTLE.md opaque CHandleManager wave-handle dispatch reached by indexed battle events
 0x00404980,RenderModeManager_set_mode,render,observed,docs/BATTLE.md shared battle phase and docs/UI_FRAMEWORK.md guide render modes 2 and 1
 0x00404A10,phase_04a10,battle,inferred,docs/BATTLE.md observed ordered static-service call in shared battle phase sequence
-0x00404EC0,TitleResourceManager_load_texture,ui,observed,CSelectScenario and GuideOverlay texture path calls return a handle and dimensions through the global resource manager
+0x00404EC0,TitleResourceManager_load_texture,ui,exact,scripts/compare-function.py exact 99/99: custom EDI allocator and EAX release bracket the fastcall bitmap loader
 0x00404FA0,TitleResourceManager_release_title_resource_handle,ui,exact,scripts/compare-function.py exact 115/115: eight +0x64 cache cells; renderer vslot +0x104 clear; lookup then COM Release then target-private EAX token recycle
+0x00408FC0,TextureLoader_load_bitmap_to_resource_cell,assets,observed,"IDA exact-target decompile: numbered BMP fallback loader, D3DX texture creation, dimensions and locked-row copy"
 0x00406530,lookup_orientation_sine_quantized_abs,engine,observed,IDA Pro instructions and all-roster xrefs prove float angle times ten minus quarter period then cosine-table lookup
 0x004065A0,lookup_orientation_cosine_quantized_abs,engine,observed,IDA Pro instructions and all-roster xrefs prove absolute rounded float angle lookup into the runtime cosine table
 0x00406650,lookup_orientation_sine,engine,observed,docs/BATTLE.md exact quarter-period-shifted lookup into runtime fcos table

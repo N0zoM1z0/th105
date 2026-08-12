@@ -48,9 +48,10 @@ CSV and asset load
 │   ├── 0x00432500 clear image handles and record tree [exact]
 │   └── 0x004132D0 clear DwordDeque4 storage [decompiled]
 └── resources
-    ├── 0x00404EC0 acquire/load one texture handle [decompiled]
+    ├── 0x00404EC0 acquire/load one texture handle [exact; EDI/EAX handle ABI]
     ├── 0x00404FA0 release one texture handle [exact; target EAX recycle ABI]
     ├── 0x00404F30 build 512x256 composite [decompiled]
+    ├── 0x00408FC0 decode/upload one BMP texture [decompiled]
     ├── 0x00402680 shared generation-token allocation [identified]
     ├── 0x00417010 generation-checked resource lookup [identified]
     ├── 0x004027F0 token recycle after external resource release [identified]

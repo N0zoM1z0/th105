@@ -205,7 +205,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00408DD0,unknown,,review,unknown,
 0x00408E70,unknown,,review,unknown,
 0x00408F10,unknown,,review,unknown,
-0x00408FC0,unknown,,review,unknown,
+0x00408FC0,authored_game,assets,include_authored,inferred,ledger-authored-module
 0x00409300,unknown,,review,unknown,
 0x00409410,authored_game,ui,include_authored,inferred,ledger-authored-module
 0x00409440,unknown,,review,unknown,
