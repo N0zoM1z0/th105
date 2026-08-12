@@ -95,9 +95,10 @@ For each pillar:
 7. fan out exact packets without granting status from clone similarity.
 
 Current `+0x28` state: all fifteen vtable owners, ledger spans, action-table
-blocks, and call fingerprints are recorded.  Sakuya has a severe IDA chunk
-conflict and must always use the ledger span.  Alice, Youmu, and Yuyuko are the
-first structural pilots; Tenshi remains a 43-callee outlier.
+blocks, and call fingerprints are recorded. Alice, Youmu, and Yuyuko now have
+complete case/field/return slice manifests and are `decompiled`; the remaining
+twelve are `identified`. Sakuya has a severe IDA chunk conflict and must always
+use the ledger span. Tenshi remains a 43-callee outlier.
 
 Exit gate: every giant root is at least structurally decompiled into bounded
 packets, with no fake body and no unresolved accepted span.
@@ -163,6 +164,16 @@ Success measure: fewer review rows without misclassifying project adapters.
 Success measure: move roots from `identified` to `decompiled` only after each
 root has complete numeric cases, direct callees, field effects, ABI, and
 boundary evidence.  Source follows per bounded slice.
+
+Capture each pilot with:
+
+```bash
+python3 scripts/character-root-survey.py --kind vslot28 \
+  --fighter Alice --output build/alice-vslot28-survey.json
+```
+
+Use repeated `--fighter` flags for two or three bounded roots. Do not make a
+single whole-roster Hex-Rays response a routine dependency.
 
 ### Wave C — second character pillar
 

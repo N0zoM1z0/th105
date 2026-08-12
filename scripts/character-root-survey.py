@@ -42,6 +42,24 @@ ROOTS = (
     ("Tenshi", "0x006495C0", "0x0064AB80"),
 )
 
+VSLOT28_ROOTS = (
+    ("Reimu", "0x004787B0", "0x006B013C"),
+    ("Marisa", "0x004A2F40", "0x006B0594"),
+    ("Sakuya", "0x004CA870", "0x006B0924"),
+    ("Alice", "0x004E9A20", "0x006B0BEC"),
+    ("Patchouli", "0x0050EC80", "0x006B0EBC"),
+    ("Youmu", "0x0052FDA0", "0x006B1154"),
+    ("Remilia", "0x00544D40", "0x006B13D4"),
+    ("Yuyuko", "0x0055D4A0", "0x006B165C"),
+    ("Yukari", "0x0057AA60", "0x006B18DC"),
+    ("Suika", "0x00598100", "0x006B1B9C"),
+    ("Udonge", "0x005BF460", "0x006B1E3C"),
+    ("Komachi", "0x005E5860", "0x006B2074"),
+    ("Aya", "0x006018F0", "0x006B22DC"),
+    ("Iku", "0x0061FDE0", "0x006B2534"),
+    ("Tenshi", "0x0063C900", "0x006B279C"),
+)
+
 CPU_POLICY_ROOTS = (
     ("Reimu", "0x0048CBA0"),
     ("Marisa", "0x004B38A0"),
@@ -132,7 +150,9 @@ def flatten_callees(value: Any) -> list[dict[str, str]]:
     return result
 
 
-async def survey(server: str, kind: str) -> dict[str, object]:
+async def survey(
+    server: str, kind: str, fighter_filter: set[str]
+) -> dict[str, object]:
     tracked = ledger()
     async with open_session(server) as (session, initialized):
         tools = {tool.name for tool in (await session.list_tools()).tools}
@@ -143,6 +163,8 @@ async def survey(server: str, kind: str) -> dict[str, object]:
         before = await require_target(session)
         entries: list[dict[str, object]] = []
         for fighter, action_address, input_address in ROOTS:
+            if fighter_filter and fighter not in fighter_filter:
+                continue
             selected = (("action-change", action_address), ("input-dispatch", input_address))
             for root_kind, address in selected:
                 if kind not in {"both", "all"} and root_kind != kind:
@@ -183,6 +205,8 @@ async def survey(server: str, kind: str) -> dict[str, object]:
                 )
         if kind in {"cpu-policy", "all"}:
             for fighter, address in CPU_POLICY_ROOTS:
+                if fighter_filter and fighter not in fighter_filter:
+                    continue
                 row = tracked.get(address.upper())
                 if row is None:
                     raise RuntimeError(f"missing ledger address: {address}")
@@ -219,6 +243,8 @@ async def survey(server: str, kind: str) -> dict[str, object]:
                 )
         if kind in {"lifecycle-event", "all"}:
             for fighter, root_kind, address in LIFECYCLE_EVENT_ROOTS:
+                if fighter_filter and fighter not in fighter_filter:
+                    continue
                 row = tracked.get(address.upper())
                 if row is None:
                     raise RuntimeError(f"missing ledger address: {address}")
@@ -253,6 +279,48 @@ async def survey(server: str, kind: str) -> dict[str, object]:
                         "callees": flatten_callees(callees),
                     }
                 )
+        if kind in {"vslot28", "all"}:
+            for fighter, address, vtable in VSLOT28_ROOTS:
+                if fighter_filter and fighter not in fighter_filter:
+                    continue
+                row = tracked.get(address.upper())
+                if row is None:
+                    raise RuntimeError(f"missing ledger address: {address}")
+                function = await call_json(
+                    session, "get_function_by_address", {"address": address}
+                )
+                decompile = await call_json(
+                    session, "decompile_function", {"address": address}
+                )
+                callees = await call_json(
+                    session, "get_callees", {"function_address": address}
+                )
+                text = decompile if isinstance(decompile, str) else json.dumps(decompile)
+                case_occurrences = [integer(match) for match in CASE_RE.findall(text)]
+                cases = sorted(set(case_occurrences))
+                backend_size = (
+                    parse_int(function.get("size")) if isinstance(function, dict) else -1
+                )
+                entries.append(
+                    {
+                        "fighter": fighter,
+                        "kind": "vslot28",
+                        "address": address,
+                        "vtable": vtable,
+                        "vtable_slot": "0x28",
+                        "selector_field": "Fighter+0x13C:u16",
+                        "ledger_size": int(row["size"]),
+                        "ledger_span_end": row["span_end"],
+                        "backend_size": backend_size,
+                        "boundary_agrees": backend_size == int(row["size"]),
+                        "backend_name": function.get("name") if isinstance(function, dict) else None,
+                        "decompiler_lines": text.count("\n") + 1,
+                        "switch_case_occurrences": len(case_occurrences),
+                        "switch_cases": cases,
+                        "switch_case_ranges": case_ranges(cases),
+                        "callees": flatten_callees(callees),
+                    }
+                )
         after = await require_target(session)
         fields = ("sha256", "md5", "base", "filesize", "path", "module")
         if any(before.get(field) != after.get(field) for field in fields):
@@ -277,15 +345,23 @@ def main() -> int:
             "input-dispatch",
             "cpu-policy",
             "lifecycle-event",
+            "vslot28",
             "both",
             "all",
         ),
         default="both",
     )
     parser.add_argument("--output", type=Path)
+    parser.add_argument(
+        "--fighter",
+        action="append",
+        choices=tuple(row[0] for row in ROOTS),
+        default=[],
+        help="limit the survey to one or more fighter names",
+    )
     args = parser.parse_args()
     try:
-        result = asyncio.run(survey(args.server, args.kind))
+        result = asyncio.run(survey(args.server, args.kind, set(args.fighter)))
     except (IdaMcpError, OSError, RuntimeError, ValueError) as error:
         print(json.dumps({"ok": False, "error": str(error)}, indent=2))
         return 1

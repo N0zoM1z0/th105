@@ -55,10 +55,36 @@ ledger span covers 74,937 function-body bytes. Reimu, Alice, Patchouli,
 Remilia, Suika, Aya, and Tenshi likewise have IDA body-size differences caused
 by non-contiguous chunks; none permits an automatic ledger resize.
 
-These rows are `identified`, not `decompiled`: vtable role, selector structure,
-major numeric blocks, and direct callees are recorded, but complete per-case
-field/write effects are not. Promote one root only after that complete case
-evidence exists. Do not emit a monolithic placeholder body.
+Alice, Youmu, and Yuyuko are now `decompiled`; the other twelve remain
+`identified`. Their durable pilot manifest records respectively 5,426, 5,076,
+and 7,016 pseudocode lines; 105, 101, and 110 unique switch labels; complete
+numeric band field-width/read-write unions; direct callees; void return
+topology; and bounded slice points. The declaration-only ABI is in
+`src/characters/Vslot28ActionStateRoots.hpp`.
+
+Youmu action 200 uniquely reaches `0x0045D320`: after publishing byte `+0x47E`
+as one, the helper writes `Fighter+0x670 = 3` and forwards constants `4` and
+`0x00FFFF00` through the subobject at `+0x674`. The manifest retains this
+neutral contract rather than assigning an effect/gameplay name. Yuyuko's
+`301..418` and `501..731` compressed tables have no cross-band fallthrough,
+making them independent source packets after their shared preamble. Alice's
+accepted span splits into six address-bounded control-flow regions, including
+separate low, middle, and high compressed tables.
+
+Promote another root only after the same complete case/field/return evidence
+exists. Do not emit a monolithic placeholder body.
+
+Refresh a bounded ignored work packet with the verified IDA backend instead of
+requesting all fifteen giant decompiles at once:
+
+```bash
+python3 scripts/character-root-survey.py --kind vslot28 \
+  --fighter Alice --output build/alice-vslot28-survey.json
+```
+
+Repeat `--fighter` for a small non-overlapping pilot set. A whole-roster
+decompile is allowed only as a milestone operation because one Hex-Rays failure
+must not obscure fourteen successful roots.
 
 ## Shared unlock inherited by every fighter
 

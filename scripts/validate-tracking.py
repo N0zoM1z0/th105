@@ -18,6 +18,7 @@ CPU_POLICIES = ROOT / "config" / "character-cpu-policy-cases.csv"
 LIFECYCLE_EVENTS = ROOT / "config" / "character-lifecycle-event-roots.csv"
 FUNCTION_ORIGINS = ROOT / "config" / "function-origins.csv"
 VSLOT28_ROOTS = ROOT / "config" / "character-vslot28-roots.csv"
+VSLOT28_PILOTS = ROOT / "config" / "character-vslot28-pilot-slices.csv"
 STATUSES = {
     "unclassified",
     "identified",
@@ -123,6 +124,24 @@ VSLOT28_COLUMNS = [
     "slice_status",
     "evidence",
 ]
+VSLOT28_PILOT_COLUMNS = [
+    "fighter",
+    "address",
+    "decompiler_lines",
+    "case_occurrences",
+    "unique_case_count",
+    "case_labels",
+    "slice_boundaries",
+    "field_access_summary",
+    "distinctive_contracts",
+    "return_topology",
+    "evidence",
+]
+VSLOT28_PILOT_SET = {
+    ("Alice", "0x004E9A20"),
+    ("Youmu", "0x0052FDA0"),
+    ("Yuyuko", "0x0055D4A0"),
+}
 ORIGINS = {
     "authored_game",
     "compiler_generated",
@@ -673,6 +692,48 @@ def main() -> int:
         missing = sorted(VSLOT28_ROOT_SET - vslot28_seen)
         extra = sorted(vslot28_seen - VSLOT28_ROOT_SET)
         errors.append(f"{VSLOT28_ROOTS.name}: roster mismatch; missing={missing}, extra={extra}")
+
+    vslot28_pilot_rows = read_rows(
+        VSLOT28_PILOTS, errors, VSLOT28_PILOT_COLUMNS
+    )
+    vslot28_pilot_seen: set[tuple[str, str]] = set()
+    for line, row in enumerate(vslot28_pilot_rows, 2):
+        key = (row["fighter"], row["address"])
+        vslot28_pilot_seen.add(key)
+        ledger_row = ledger.get(row["address"])
+        if ledger_row is None:
+            errors.append(f"{VSLOT28_PILOTS.name}:{line}: address absent from functions.csv")
+            continue
+        try:
+            decompiler_lines = int(row["decompiler_lines"])
+            occurrences = int(row["case_occurrences"])
+            unique_count = int(row["unique_case_count"])
+            labels = [int(value, 0) for value in row["case_labels"].split(";")]
+        except ValueError:
+            errors.append(f"{VSLOT28_PILOTS.name}:{line}: invalid numeric field")
+            continue
+        if min(decompiler_lines, occurrences, unique_count) <= 0:
+            errors.append(f"{VSLOT28_PILOTS.name}:{line}: non-positive survey count")
+        if occurrences < unique_count:
+            errors.append(f"{VSLOT28_PILOTS.name}:{line}: occurrences below unique count")
+        if len(labels) != unique_count or len(labels) != len(set(labels)):
+            errors.append(f"{VSLOT28_PILOTS.name}:{line}: case labels disagree")
+        if ledger_row["status"] not in {"decompiled", "implemented", "compiles", "matching"}:
+            errors.append(f"{VSLOT28_PILOTS.name}:{line}: pilot requires decompiled or later")
+        if not all(
+            row[field]
+            for field in (
+                "slice_boundaries",
+                "field_access_summary",
+                "return_topology",
+                "evidence",
+            )
+        ):
+            errors.append(f"{VSLOT28_PILOTS.name}:{line}: incomplete structural evidence")
+    if vslot28_pilot_seen != VSLOT28_PILOT_SET:
+        missing = sorted(VSLOT28_PILOT_SET - vslot28_pilot_seen)
+        extra = sorted(vslot28_pilot_seen - VSLOT28_PILOT_SET)
+        errors.append(f"{VSLOT28_PILOTS.name}: pilot mismatch; missing={missing}, extra={extra}")
 
     for path in (KNOWN, CLAIMS):
         for line, row in enumerate(read_rows(path, errors), 2):
