@@ -3093,7 +3093,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00680BB0,113,0x00680C20,__forcdecpt_l,,runtime,library,0.00,__cdecl,"void __forcdecpt_l(char * _Buf, _locale_t _Locale)",false,,[origin:vc8-static-runtime-core] docs/EXECUTABLE_INVENTORY.md,,
 0x00680C21,128,0x00680CA0,__cropzeros_l,,runtime,library,0.00,__cdecl,"void __cropzeros_l(char * _Buf, _locale_t _Locale)",false,,[origin:vc8-static-runtime-core] docs/EXECUTABLE_INVENTORY.md,,
 0x00680CB7,64,0x00680CF6,__fassign_l,,runtime,library,0.00,__cdecl,"void __fassign_l(int flag, char * argument, char * number, _locale_t param_4)",false,,[origin:vc8-static-runtime-core] docs/EXECUTABLE_INVENTORY.md,,
-0x00680D0E,29,0x00680D2A,__shift,,runtime,library,0.00,unknown,undefined __shift(void),false,,[origin:vc8-static-runtime-core] docs/EXECUTABLE_INVENTORY.md,,
+0x00680D0E,29,0x00680D2A,__shift,__shift,runtime,library,100.00,unknown,undefined __shift(void),false,docs/VC8_RUNTIME_RECOVERY.md,python3 scripts/build.py --unit vc8-sp1-libcmt-cvt --compare --json,root,Strict exact SHA-pinned VC8 SP1 libcmt archive member; source_file is the provenance manifest sentinel
 0x00680D47,362,0x00680EB3,__cftoe2_l,,runtime,library,0.00,unknown,undefined __cftoe2_l(void),false,,[origin:vc8-static-runtime-core] docs/EXECUTABLE_INVENTORY.md,,
 0x00680EB4,206,0x00680F81,__cftoe_l,,runtime,library,0.00,unknown,undefined __cftoe_l(void),false,,[origin:vc8-static-runtime-core] docs/EXECUTABLE_INVENTORY.md,,
 0x00680F82,30,0x00680F9F,__cftoe,,runtime,library,0.00,__cdecl,"errno_t __cftoe(double * _Value, char * _Buf, size_t _SizeInBytes, int _Dec, int _Caps)",false,,[origin:vc8-static-runtime-core] docs/EXECUTABLE_INVENTORY.md,,

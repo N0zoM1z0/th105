@@ -3314,6 +3314,21 @@ notes = "Pinned VC8 SP1 archive replay; source is a provenance-document anchor, 
 address = "0x0068C16C"
 symbol_base = "___dtold"
 
+[units.vc8-sp1-libcmt-cvt]
+kind = "msvc_prebuilt"
+source = "docs/VC8_RUNTIME_RECOVERY.md"
+object = "build/match-units/vc8_libcmt_cvt.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "../build/intel/mt_obj/cpp_obj/cvt.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Pinned VC8 SP1 C++ cvt.obj replay; source is a provenance-document anchor, not reconstructed CRT source."
+
+[[units.vc8-sp1-libcmt-cvt.functions]]
+address = "0x00680D0E"
+symbol_base = "__shift"
+
 [units.vc8-libcmt-log10]
 kind = "msvc_prebuilt"
 source = "docs/VC8_RUNTIME_RECOVERY.md"

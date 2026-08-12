@@ -33,7 +33,7 @@ Three disjoint address scans over the pinned `libcmt.lib` produced 74
 symbol-unambiguous strict matches and 6,862 function bytes. They are grouped by
 archive member into 58 `msvc_prebuilt` units in `config/match-units.toml`.
 Together with the earlier runtime anchors and the dependency expansion below,
-110 runtime functions and 19,773 bytes are now reproducible.
+111 runtime functions and 19,802 bytes are now reproducible.
 
 Every accepted unit was re-extracted through the repository build driver and
 all 74 comparisons returned `result=exact`. Reproduce an individual unit with:

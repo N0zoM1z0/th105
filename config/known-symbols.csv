@@ -894,3 +894,4 @@ address,name,module,confidence,evidence
 0x0068AF27,__write,runtime,observed,Strict exact VC8 member plus Ghidra caller/callee semantic disambiguation
 0x0068DCC0,__ld12tod,runtime,observed,Strict exact VC8 member plus DoubleFormat relocation disambiguation
 0x0068E202,__ld12tof,runtime,observed,Strict exact VC8 member plus FloatFormat relocation disambiguation
+0x00680D0E,__shift,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
