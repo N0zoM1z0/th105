@@ -33,7 +33,7 @@ Three disjoint address scans over the pinned `libcmt.lib` produced 74
 symbol-unambiguous strict matches and 6,862 function bytes. They are grouped by
 archive member into 58 `msvc_prebuilt` units in `config/match-units.toml`.
 Together with the earlier runtime anchors and the dependency expansion below,
-108 runtime functions and 19,228 bytes are now reproducible.
+110 runtime functions and 19,773 bytes are now reproducible.
 
 Every accepted unit was re-extracted through the repository build driver and
 all 74 comparisons returned `result=exact`. Reproduce an individual unit with:
@@ -92,3 +92,9 @@ callers identify the otherwise byte-ambiguous wrapper at `0x0068AF27` as
 by their relocation tables: `0x0068DCC0` references `_DoubleFormat`, while
 `0x0068E202` references `_FloatFormat`. Cross-assigning either COFF symbol
 fails the strict literal audit.
+
+Finally, narrowly supporting standard near conditional-jump REL32 operands
+(`0F 80..8F`) closes `log10` and `floor` for another 545 bytes. The permanent
+comparator accepts no other new opcode shape, and unit tests retain the
+unsupported-operand blocker. Both canonical units revalidate their branch
+destinations and every linked data/constant relocation.

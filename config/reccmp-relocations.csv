@@ -442,3 +442,12 @@ crt_c3_018_floatformat,0x006E3028,08000000,0xC,VC8 SP1 intrncvt.obj FloatFormat 
 crt_c3_019_floatformat,0x006E3028,80000000,0x0,VC8 SP1 intrncvt.obj FloatFormat base field audited against target PE,literal
 crt_c3_020_floatformat,0x006E3028,7f000000,0x14,VC8 SP1 intrncvt.obj FloatFormat exponent-max field audited against target PE,literal
 crt_c3_021_floatformat,0x006E3028,20000000,0x10,VC8 SP1 intrncvt.obj FloatFormat mantissa field audited against target PE,literal
+___use_sse2_mathfcns+0x0,0x006EE584,00000000,0x0,VC8 SP1 log10/floor SSE2 math gate audited in PE zero-filled virtual tail,address
+__DEFAULT_CW_in_mem+0x0,0x006B7C78,7f0235c2,0x0,VC8 SP1 log10 linked default x87 control-word storage audited against target PE,address
+___fastflag+0x0,0x006E7944,00000000,0x0,VC8 SP1 log10 linked fast-exit flag audited against target PE,address
+LOG_name+0x0,0x006E1B40,6c6f6731,0x0,VC8 SP1 log10.obj function-name literal prefix audited in object and target,literal
+_Bns+0x0,0x006B7580,33040000,0x0,VC8 SP1 floor_pentium4.obj Bns constant audited in object and target,literal
+_S+0x0,0x006B75B0,ff070000,0x0,VC8 SP1 floor_pentium4.obj S constant audited in object and target,literal
+_One+0x0,0x006B7570,00000000,0x0,VC8 SP1 floor_pentium4.obj One constant prefix audited in object and target,literal
+_NegZero+0x0,0x006B75A0,00000000,0x0,VC8 SP1 floor_pentium4.obj NegZero constant prefix audited in object and target,literal
+_NegOne+0x0,0x006B7590,00000000,0x0,VC8 SP1 floor_pentium4.obj NegOne constant prefix audited in object and target,literal

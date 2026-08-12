@@ -3314,6 +3314,40 @@ notes = "Pinned VC8 SP1 archive replay; source is a provenance-document anchor, 
 address = "0x0068C16C"
 symbol_base = "___dtold"
 
+[units.vc8-libcmt-log10]
+kind = "msvc_prebuilt"
+source = "docs/VC8_RUNTIME_RECOVERY.md"
+object = "build/match-units/vc8_libcmt_log10.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "../build/intel/mt_obj/log10.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Pinned VC8 SP1 log10.obj replay; near-Jcc REL32 and all data destinations are independently audited."
+
+[[units.vc8-libcmt-log10.functions]]
+address = "0x0067D9B0"
+symbol_base = "_log10"
+rel32_targets = ["__log10_pentium4=0x00688E98","__CIlog10_pentium4=0x00688E80","__checkTOS_withFB=0x00681C08","__fload_withFB=0x00681BC5","__fast_exit=0x00681C1E","__math_exit=0x00681C2B"]
+dir32_targets = ["___use_sse2_mathfcns+0x0=___use_sse2_mathfcns+0x0","__DEFAULT_CW_in_mem+0x0=__DEFAULT_CW_in_mem+0x0","___fastflag+0x0=___fastflag+0x0","LOG_name+0x0=LOG_name+0x0"]
+
+[units.vc8-libcmt-floor_pentium4]
+kind = "msvc_prebuilt"
+source = "docs/VC8_RUNTIME_RECOVERY.md"
+object = "build/match-units/vc8_libcmt_floor_pentium4.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "../build/intel/mt_obj/floor_pentium4.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Pinned VC8 SP1 floor_pentium4.obj replay; near-Jcc REL32 and all constants are independently audited."
+
+[[units.vc8-libcmt-floor_pentium4.functions]]
+address = "0x0067E3C0"
+symbol_base = "_floor"
+rel32_targets = ["__floor_default=0x0068A298","___libm_error_support=0x00684E8E"]
+dir32_targets = ["___use_sse2_mathfcns+0x0=___use_sse2_mathfcns+0x0","_Bns+0x0=_Bns+0x0","_S+0x0=_S+0x0","_One+0x0=_One+0x0","_NegZero+0x0=_NegZero+0x0","_NegOne+0x0=_NegOne+0x0"]
+
 [units.vc8_sp1_libcmt_isatty]
 kind = "msvc_prebuilt"
 source = "docs/VC8_RUNTIME_RECOVERY.md"
