@@ -800,3 +800,7 @@ address,name,module,confidence,evidence
 0x00675DF0,_mdct_butterfly_8,third_party,observed,Official SDK mdct.obj strict identity
 0x00675E80,_mdct_butterfly_generic,third_party,observed,Official SDK mdct.obj strict identity
 0x0067F161,_frexp,runtime,observed,Linked REL32 destination in official SDK lsp.obj
+0x006743E0,_dradfg,third_party,observed,Official SDK smallft.obj strict relocation identity
+0x00674FD0,_fdrffti,third_party,observed,Official SDK smallft.obj strict relocation identity
+0x00674FF0,_drfti1,third_party,observed,Official SDK smallft.obj strict relocation identity
+0x006758F0,_mdct_butterfly_32,third_party,observed,Official SDK mdct.obj strict relocation identity

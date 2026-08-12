@@ -36,10 +36,12 @@ from `info.obj`, `block.obj`, and `synthesis.obj`. The next wave proved all
 selected target bodies from `codebook.obj`, `floor1.obj`, `res0.obj`, and
 `mapping0.obj`. A breadth scan then closed the psychoacoustic, shared-book,
 bitrate, envelope, forward small-FFT, MDCT butterfly, floor0, LSP, and lookup
-groups. The accepted total is now 135 unique functions and 43,759 bytes,
+groups. A relocation-dependency tail then recovered nine more functions,
+including the 2,992-byte generic FFT radix and the forward/backward MDCT core.
+The accepted total is now 144 unique functions and 51,075 bytes,
 including the 2,421-byte `mapping0_forward`, 1,615-byte
 `vorbis_synthesis_blockin`, 1,497-byte `floor1_encode`, and 1,209-byte
-`floor1_fit`. Sixteen target functions and 8,296 bytes remain unresolved. Two
+`floor1_fit`. Seven target functions and 980 bytes remain unresolved. Two
 contextual SDK static helpers map to already-owned linked target addresses, so
 object-level candidate counts are deduplicated by target address before
 progress is reported.

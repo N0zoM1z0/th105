@@ -336,6 +336,13 @@ __real@4@3ff1d1b7170000000000,0x006B741C,17b7d138,0x0,Official SDK Vorbis object
 __real@4@3ff4c1fc8f0000000000,0x006B7420,8ffc413a,0x0,Official SDK Vorbis object data for __real@4@3ff4c1fc8f0000000000+0x0 equals target bytes,literal
 __real@4@3ffd8000000000000000,0x006B7448,0000803e,0x0,Official SDK Vorbis object data for __real@4@3ffd8000000000000000+0x0 equals target bytes,literal
 __real@4@3fff8000000000000000,0x006B7460,0000803f,0x0,Official SDK Vorbis object data for __real@4@3fff8000000000000000+0x0 equals target bytes,literal
+_?tpi@?1??dradfg@@9@9,0x006D9168,db0fc940,0x0,Official SDK smallft.obj dradfg tpi float equals target bytes,literal
+_?ntryh@?1??drfti1@@9@9,0x006D9150,04000000020000000300000005000000,0x0,Official SDK smallft.obj drfti1 ntryh base table equals target bytes,literal
+_?ntryh@?1??drfti1@@9@9+0x10,0x006D9150,db0fc940f304353fdb0fc940000000bf,0x10,Official SDK smallft.obj drfti1 ntryh plus 0x10 table slice equals target bytes,literal
+_?tpi@?1??drfti1@@9@9,0x006D9160,db0fc940,0x0,Official SDK smallft.obj drfti1 tpi float equals target bytes,literal
+__real@4@3ffeec835e0000000000,0x006B74B4,5e836c3f,0x0,Official SDK mdct.obj float constant equals target bytes,literal
+__real@4@3ffdc3ef150000000000,0x006B74B0,15efc33e,0x0,Official SDK mdct.obj float constant equals target bytes,literal
+__real@4@3ffeb504f30000000000,0x006B74AC,f304353f,0x0,Official SDK mdct.obj float constant equals target bytes,literal
 __real@4@4001c000000000000000,0x006B747C,0000c040,0x0,Official SDK Vorbis object data for __real@4@4001c000000000000000+0x0 equals target bytes,literal
 __real@4@40028000000000000000,0x006AE87C,00000041,0x0,Official SDK Vorbis object data for __real@4@40028000000000000000+0x0 equals target bytes,literal
 __real@4@4002a000000000000000,0x006C0F10,00002041,0x0,Official SDK Vorbis object data for __real@4@4002a000000000000000+0x0 equals target bytes,literal

@@ -2054,6 +2054,11 @@ sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361
 notes = "Strict exact target functions retained from official SDK psy.obj; target addresses are unique across the unit graph."
 
 [[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x0066FBF0"
+symbol_base = "__vp_global_free"
+rel32_targets = ["_free=0x0067DD26"]
+
+[[units.xiph-sdk-vorbis-psy.functions]]
 address = "0x0066FC10"
 symbol_base = "__vi_psy_free"
 rel32_targets = ["_free=0x0067DD26"]
@@ -2198,6 +2203,16 @@ sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361
 notes = "Strict exact target functions retained from official SDK sharedbook.obj; target addresses are unique across the unit graph."
 
 [[units.xiph-sdk-vorbis-sharedbook.functions]]
+address = "0x006727F0"
+symbol_base = "_vorbis_staticbook_clear"
+rel32_targets = ["_free=0x0067DD26"]
+
+[[units.xiph-sdk-vorbis-sharedbook.functions]]
+address = "0x006728E0"
+symbol_base = "_vorbis_book_clear"
+rel32_targets = ["_free=0x0067DD26"]
+
+[[units.xiph-sdk-vorbis-sharedbook.functions]]
 address = "0x006723C0"
 symbol_base = "__float32_unpack"
 rel32_targets = ["_ldexp=0x0067EC97"]
@@ -2300,6 +2315,20 @@ address = "0x00673F70"
 symbol_base = "_dradf4"
 dir32_targets = ["_?hsqt2@?1??dradf4@@9@9=_?hsqt2@?1??dradf4@@9@9"]
 
+[[units.xiph-sdk-vorbis-smallft-forward.functions]]
+address = "0x006743E0"
+symbol_base = "_dradfg"
+
+[[units.xiph-sdk-vorbis-smallft-forward.functions]]
+address = "0x00674FD0"
+symbol_base = "_fdrffti"
+rel32_targets = ["_drfti1=0x00674FF0"]
+
+[[units.xiph-sdk-vorbis-smallft-forward.functions]]
+address = "0x00674FF0"
+symbol_base = "_drfti1"
+dir32_targets = ["_?ntryh@?1??drfti1@@9@9+0x10=_?ntryh@?1??drfti1@@9@9+0x10"]
+
 [units.xiph-sdk-vorbis-mdct-butterflies]
 kind = "upstream_prebuilt"
 source = "third_party/libvorbis-1.0.1/lib/mdct.c"
@@ -2318,6 +2347,21 @@ symbol_base = "_mdct_butterfly_8"
 [[units.xiph-sdk-vorbis-mdct-butterflies.functions]]
 address = "0x00675E80"
 symbol_base = "_mdct_butterfly_generic"
+
+[[units.xiph-sdk-vorbis-mdct-butterflies.functions]]
+address = "0x006753E0"
+symbol_base = "_mdct_backward"
+rel32_targets = ["_mdct_butterfly_generic=0x00675E80","_mdct_butterfly_32=0x006758F0"]
+
+[[units.xiph-sdk-vorbis-mdct-butterflies.functions]]
+address = "0x006758F0"
+symbol_base = "_mdct_butterfly_32"
+rel32_targets = ["_mdct_butterfly_8=0x00675DF0"]
+
+[[units.xiph-sdk-vorbis-mdct-butterflies.functions]]
+address = "0x00675FA0"
+symbol_base = "_mdct_forward"
+rel32_targets = ["__alloca_probe=0x0067E560","_mdct_butterfly_generic=0x00675E80","_mdct_butterfly_32=0x006758F0"]
 
 [units.xiph-sdk-vorbis-floor0]
 kind = "upstream_prebuilt"

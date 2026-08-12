@@ -172,6 +172,13 @@ shared-book, bitrate, envelope, FFT/MDCT, floor0, LSP, lookup, and floor1 code.
 It is substantially faster than hand-decompiling each library function while
 preserving the same acceptance gate.
 
+After the breadth wave, rescan unresolved ledger rows against function symbols
+in objects that are already proven. Static helpers omitted from the first
+candidate index can still be exact, and solving their table/constant
+relocations may unlock large callers immediately. In the Xiph tail this found
+nine additional functions and 7,316 bytes; seven genuinely divergent or
+unresolved functions (980 bytes) remained instead of being force-fitted.
+
 Do not assume one source file per archived object when historical IPO is in
 use. In the official SDK, functions from `lookup.c` were emitted into
 `lsp.obj`. Keep the upstream source path in the function ledger, record the

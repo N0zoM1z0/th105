@@ -128,9 +128,9 @@ python3 scripts/build.py --unit xiph-sdk-ogg-framing-relocation-free --compare -
 python3 scripts/build.py --unit xiph-sdk-ogg-bitwise-relocation-free --compare --json
 ```
 
-These units strictly reproduce 135 unique libvorbis/vorbisfile functions and
-43,759 function bytes. Together with the complete 33-function libogg island,
-the Xiph work leaves 16 libvorbis functions and 8,296 bytes unresolved. The
+These units strictly reproduce 144 unique libvorbis/vorbisfile functions and
+51,075 function bytes. Together with the complete 33-function libogg island,
+the Xiph work leaves seven libvorbis functions and 980 bytes unresolved. The
 remaining rows stay visible as third-party work rather than being inferred
 exact from their neighbours.
 
