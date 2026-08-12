@@ -69,6 +69,12 @@ fake behavioral stub bodies.
 
 ## Reconstruct and compare
 
+For a range already proven to be compiler/runtime or third-party code, also
+read [`../th105-library-recovery/SKILL.md`](../th105-library-recovery/SKILL.md).
+Use its release-fingerprinting and VC8 fan-out workflow, keep exact external
+rows at `status=library`, and report reproducible library bytes separately from
+authored-game matching progress.
+
 For roster-wide work, reconstruct breadth before spending a lane on the final
 compiler-scheduling delta. Recover one canonical member completely, prove any
 fan-out with exact target clone normalization, then give every member truthful

@@ -1,0 +1,4 @@
+interface:
+  display_name: "TH105 Library Recovery"
+  short_description: "Recover verified third-party library code efficiently"
+  default_prompt: "Use $th105-library-recovery to identify, compile, and strictly compare a TH105 library island."
