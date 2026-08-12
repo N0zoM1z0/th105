@@ -9,6 +9,11 @@ caller,callee,required_status,evidence
 0x00404F30,0x00402680,identified,IDA exact-target composite texture builder allocates a shared generation token before populating its resource cell
 0x00404F30,0x00409300,decompiled,PE and IDA prove the composite envelope delegates its sole population operation to this backend
 0x00409300,0x00411F80,decompiled,PE and IDA prove the locked cleared surface is published before the rich-text renderer call
+0x00411F80,0x00411310,decompiled,Exact call starts one GDI-backed composite-text render pass
+0x00411F80,0x00411440,decompiled,Exact call tears down the GDI-backed composite-text render pass
+0x00411F80,0x004114F0,decompiled,Exact non-markup path dispatches each decoded character to the glyph rasterizer
+0x00411F80,0x004118D0,decompiled,Exact less-than path delegates the following bytes to the markup interpreter
+0x00411F80,0x004120B0,implemented,Exact optional-intermediate path blends the temporary surface into the locked texture
 0x00404FA0,0x004027F0,identified,IDA exact-target release returns the token to the shared manager after resource release
 0x00404FA0,0x00417010,identified,IDA exact-target release resolves a generation-checked resource pointer before virtual release
 0x00432500,0x004132D0,decompiled,IDA Pro DwordDeque4 storage clear

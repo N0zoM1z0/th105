@@ -1280,6 +1280,32 @@ rel32_targets = [
   "__security_check_cookie=0x0067B465",
 ]
 
+[units.composite-text]
+kind = "probe"
+source = "src/assets/CompositeTextureText.cpp"
+object = "build/match-units/CompositeTextureText.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Faithful composite rich-text orchestration and intermediate-surface blend; target-private helper receivers remain a linked-LTCG matching boundary."
+
+[[units.composite-text.functions]]
+address = "0x00411F80"
+symbol_base = "?render_composite_text@CompositeTextureUploadState@th105@@QAEXPBD@Z"
+rel32_targets = [
+  "CompositeTextureUploadState_begin_text_render=0x00411310",
+  "CompositeTextureUploadState_parse_text_markup=0x004118D0",
+  "CompositeTextureUploadState_draw_text_glyph=0x004114F0",
+  "CompositeTextureUploadState_end_text_render=0x00411440",
+  "CompositeTextureUploadState_blend_intermediate_text_surface=0x004120B0",
+  "operator_new=0x00664F9A",
+  "memset=0x0067BB80",
+  "operator_delete=0x0067C166",
+]
+
+[[units.composite-text.functions]]
+address = "0x004120B0"
+symbol_base = "?blend_intermediate_text_surface@CompositeTextureUploadState@th105@@QAEPAEPBIPAI@Z"
+
 [units.command-gates]
 kind = "probe"
 source = "src/characters/CommandGates.cpp"

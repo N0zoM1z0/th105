@@ -64,7 +64,12 @@ address,name,module,confidence,evidence
 0x0041FEA0,create_collision_list_sentinel,battle,inferred,docs/BATTLE.md exact 12-byte self-linked sentinel allocation
 0x00404F30,SpellTexturePool_create_composite_texture,assets,observed,Complete source allocation/population/recycle envelope; target lowers three shared calls through LTCG private register ABIs
 0x00409300,populate_composite_texture_resource,assets,observed,"PE/IDA complete A8R8G8B8 create, lock, clear, +0x140 surface-view publication, text render and unlock flow"
+0x00411310,CompositeTextureUploadState_begin_text_render,assets,observed,IDA exact-target GDI font/DC setup and transient-list reset
+0x00411440,CompositeTextureUploadState_end_text_render,assets,observed,IDA exact-target transient-list cleanup and GDI font/DC teardown
+0x004114F0,CompositeTextureUploadState_draw_text_glyph,assets,observed,IDA exact-target GGO_GRAY8 glyph rasterization and active-surface blend
+0x004118D0,CompositeTextureUploadState_parse_text_markup,assets,observed,IDA exact-target command branches for line ruby accent and color markup
 0x00411F80,CompositeTextureUploadState_render_composite_text,assets,observed,IDA exact-target multibyte/markup renderer called by the composite texture population backend
+0x004120B0,CompositeTextureUploadState_blend_intermediate_text_surface,assets,observed,IDA exact-target intermediate-surface alpha/color blend with four-neighbor outline
 0x0040EB20,csv_reader_load,assets,observed,IDA Pro target instructions load parse reset and free temporary input buffer
 0x0040EE50,csv_reader_next_int,assets,observed,IDA Pro target instructions checked field consumption and atol conversion
 0x0040EF50,csv_reader_next_string,assets,observed,IDA Pro target instructions checked field consumption and owning VC8 string copy

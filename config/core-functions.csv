@@ -34,7 +34,12 @@ address,lane,priority,notes
 0x0040EF50,spell-assets,2,CSV reader field boundary
 0x0040F050,spell-assets,2,CSV reader field boundary
 0x0040F780,spell-assets,2,CSV reader cleanup boundary
+0x00411310,spell-assets,2,Create the GDI font and initialize one composite-text render pass
+0x00411440,spell-assets,2,Dispose transient glyph state and release the GDI render context
+0x004114F0,spell-assets,2,Rasterize and blend one character glyph into the active composite surface
+0x004118D0,spell-assets,2,Interpret rich-text line ruby accent and color markup commands
 0x00411F80,spell-assets,2,Render multibyte text and markup into the active composite surface
+0x004120B0,spell-assets,2,Blend the temporary text surface and synthesize four-neighbor outline alpha
 0x004132D0,spell-assets,2,DwordDeque4 block and map storage clear used by spell-owner reset
 0x00416A50,spell-assets,2,Loaded resource registration boundary
 0x00417010,spell-assets,2,Shared generation-checked resource-handle lookup before texture release

@@ -14,7 +14,17 @@ struct CompositeTextureUploadState {
     unsigned surface_width_14c;
     int surface_pitch_dwords_150;
 
-    void render_composite_text(const char *path_list);
+    // These source-facing members preserve the recovered ownership and call
+    // graph.  The linked target lowers begin/end through ESI, draw/blend
+    // through EAX, and passes the markup cursor through EDX.
+    void begin_text_render();
+    void end_text_render();
+    void draw_text_glyph(unsigned character_code);
+    int parse_text_markup(const char *cursor);
+    unsigned char *blend_intermediate_text_surface(
+        const unsigned *source,
+        unsigned *destination);
+    void render_composite_text(const char *text);
 };
 
 typedef char CompositeTextureUploadState_observed_size_must_be_0x154[
