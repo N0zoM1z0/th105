@@ -3314,6 +3314,46 @@ notes = "Pinned VC8 SP1 archive replay; source is a provenance-document anchor, 
 address = "0x0068C16C"
 symbol_base = "___dtold"
 
+[units.vc8_sp1_libcmt_cfin]
+kind = "msvc_prebuilt"
+source = "docs/VC8_RUNTIME_RECOVERY.md"
+object = "build/match-units/vc8_sp1_libcmt_cfin.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "../build/intel/mt_obj/cfin.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Pinned VC8 SP1 cfin.obj replay; source is a provenance-document anchor, not reconstructed CRT source."
+
+[[units.vc8_sp1_libcmt_cfin.functions]]
+address = "0x00684673"
+symbol_base = "__fltin2"
+rel32_targets = ["___strgtold12_l=0x006847CE","__ld12tod=0x0068DCC0","@__security_check_cookie@4=0x0067B465"]
+dir32_targets = ["___security_cookie+0x0=crt_c2_000_security_cookie"]
+
+[units.vc8_sp1_libcmt_atodbl]
+kind = "msvc_prebuilt"
+source = "docs/VC8_RUNTIME_RECOVERY.md"
+object = "build/match-units/vc8_sp1_libcmt_atodbl.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "build/intel/mt_obj/cpp_obj/atodbl.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Pinned VC8 SP1 atodbl.obj replay; ld12 callee destinations disambiguate the double and float entry identities."
+
+[[units.vc8_sp1_libcmt_atodbl.functions]]
+address = "0x0068BF63"
+symbol_base = "__atodbl_l"
+rel32_targets = ["??0_LocaleUpdate@@QAE@PAUlocaleinfo_struct@@@Z=0x0067BCAD","___strgtold12_l=0x006847CE","__ld12tod=0x0068DCC0","@__security_check_cookie@4=0x0067B465"]
+dir32_targets = ["___security_cookie+0x0=crt_c2_000_security_cookie"]
+
+[[units.vc8_sp1_libcmt_atodbl.functions]]
+address = "0x0068C009"
+symbol_base = "__atoflt_l"
+rel32_targets = ["??0_LocaleUpdate@@QAE@PAUlocaleinfo_struct@@@Z=0x0067BCAD","___strgtold12_l=0x006847CE","__ld12tof=0x0068E202","@__security_check_cookie@4=0x0067B465"]
+dir32_targets = ["___security_cookie+0x0=crt_c2_000_security_cookie"]
+
 [units.vc8-sp1-libcmt-cvt]
 kind = "msvc_prebuilt"
 source = "docs/VC8_RUNTIME_RECOVERY.md"

@@ -151,8 +151,8 @@ small-block heap, low-level I/O, and `strdup`.  The Unwind rows are referenced
 by EH metadata and contain tiny cleanup/tail-jump bodies owned by parent C++
 functions.  They are link output, not independent authored source routines.
 
-The SHA-pinned VC8 SP1 archive replay now strictly reproduces 111 runtime
-functions and 19,802 bytes. The initial breadth wave contributes 74 functions
+The SHA-pinned VC8 SP1 archive replay now strictly reproduces 114 runtime
+functions and 20,299 bytes. The initial breadth wave contributes 74 functions
 and 6,862 bytes across 58 canonical `libcmt.lib` object units; the next
 dependency pass contributes six small-block-heap/floating-exception functions
 and 2,767 bytes; a low-level I/O/decimal-format pass contributes another five
