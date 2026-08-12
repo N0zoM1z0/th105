@@ -67,9 +67,15 @@ address,name,module,confidence,evidence
 0x00411310,CompositeTextureUploadState_begin_text_render,assets,observed,IDA exact-target GDI font/DC setup and transient-list reset
 0x00411440,CompositeTextureUploadState_end_text_render,assets,observed,IDA exact-target transient-list cleanup and GDI font/DC teardown
 0x004114F0,CompositeTextureUploadState_draw_text_glyph,assets,observed,IDA exact-target GGO_GRAY8 glyph rasterization and active-surface blend
+0x00411720,CompositeTextureUploadState_draw_text_accent_dot,assets,observed,IDA exact-target period glyph rasterized above the prior character when accent mode is active
 0x004118D0,CompositeTextureUploadState_parse_text_markup,assets,observed,IDA exact-target command branches for line ruby accent and color markup
 0x00411F80,CompositeTextureUploadState_render_composite_text,assets,observed,IDA exact-target multibyte/markup renderer called by the composite texture population backend
 0x004120B0,CompositeTextureUploadState_blend_intermediate_text_surface,assets,observed,IDA exact-target intermediate-surface alpha/color blend with four-neighbor outline
+0x004121E0,decode_text_hex_nibble,assets,observed,IDA and PE recovered ledger-missing AL-register hexadecimal nibble decoder
+0x00412210,String28_checked_character_pointer,runtime,observed,IDA and PE recovered ledger-missing VC8 checked SSO-or-heap character accessor
+0x00412240,String28_compare_c_string,runtime,exact,VC8 std::basic_string<char>::compare(char const *) probe is exact 45/45 after contiguous PE size correction
+0x00412270,MarkupTokenRing_checked_at,runtime,observed,IDA checked wrapped pointer-ring logical index used by rich-text and profile parsers
+0x004122D0,string28_equals_c_string,assets,exact,VC8 source predicate is exact 53/53 against target
 0x0040EB20,csv_reader_load,assets,observed,IDA Pro target instructions load parse reset and free temporary input buffer
 0x0040EE50,csv_reader_next_int,assets,observed,IDA Pro target instructions checked field consumption and atol conversion
 0x0040EF50,csv_reader_next_string,assets,observed,IDA Pro target instructions checked field consumption and owning VC8 string copy

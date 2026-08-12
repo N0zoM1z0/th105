@@ -1306,6 +1306,45 @@ rel32_targets = [
 address = "0x004120B0"
 symbol_base = "?blend_intermediate_text_surface@CompositeTextureUploadState@th105@@QAEPAEPBIPAI@Z"
 
+[units.composite-text-glyph]
+kind = "probe"
+source = "src/assets/CompositeTextGlyph.cpp"
+object = "build/match-units/CompositeTextGlyph.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Accent glyph rasterization plus the small VC8 String28 and hexadecimal helpers that unlock rich-text markup reconstruction."
+
+[[units.composite-text-glyph.functions]]
+address = "0x00411720"
+symbol_base = "?draw_text_accent_dot@CompositeTextureUploadState@th105@@QAEXHH@Z"
+rel32_targets = [
+  "?_U=0x00664F9A",
+  "?_V=0x0067C166",
+]
+dir32_targets = [
+  "?g_text_glyph_transform@th105@@3UGlyphTransform@1@A=?g_text_glyph_transform@th105@@3UGlyphTransform@1@A",
+  "__imp__GetGlyphOutlineA@28=__imp__GetGlyphOutlineA@28",
+]
+
+[[units.composite-text-glyph.functions]]
+address = "0x004121E0"
+symbol_base = "?decode_text_hex_nibble@th105@@YAEE@Z"
+
+[[units.composite-text-glyph.functions]]
+address = "0x00412240"
+symbol_base = "?compare@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEHPBD@Z"
+rel32_targets = ["compare=0x00405DA0"]
+
+[[units.composite-text-glyph.functions]]
+address = "0x00412270"
+symbol_base = "?checked_at@MarkupTokenRing@th105@@QAEPAXH@Z"
+rel32_targets = ["_invalid_parameter_noinfo=0x0067B884"]
+
+[[units.composite-text-glyph.functions]]
+address = "0x004122D0"
+symbol_base = "?string28_equals_c_string@th105@@YA_NPBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBD@Z"
+rel32_targets = ["compare=0x00405DA0"]
+
 [units.command-gates]
 kind = "probe"
 source = "src/characters/CommandGates.cpp"

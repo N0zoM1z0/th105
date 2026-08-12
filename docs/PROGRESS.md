@@ -3,31 +3,31 @@
 Generated from `config/functions.csv`. Only functions with a verified
 100% comparison are counted as reconstructed.
 
-- Matching functions: **213 / 2976 (7.16%)**
-- Matching function bytes: **28,664 / 2,477,462 (1.16%)**
-- Ghidra internal `.text` inventory: **4,838 functions**
-- Origin census: **1,862 excluded**, **665 confirmed authored**, **2,311 awaiting origin review**
-- Exact within confirmed-authored census: **213 / 665 (32.03%) functions**, **28,664 / 1,308,136 (2.19%) bytes**
+- Matching functions: **214 / 2976 (7.19%)**
+- Matching function bytes: **28,717 / 2,477,469 (1.16%)**
+- Ghidra internal `.text` inventory: **4,840 functions**
+- Origin census: **1,864 excluded**, **667 confirmed authored**, **2,309 awaiting origin review**
+- Exact within confirmed-authored census: **214 / 667 (32.08%) functions**, **28,717 / 1,308,598 (2.19%) bytes**
 
 | Status | Functions |
 | --- | ---: |
-| `unclassified` | 2,297 |
-| `identified` | 127 |
+| `unclassified` | 2,294 |
+| `identified` | 126 |
 | `decompiled` | 199 |
-| `implemented` | 137 |
+| `implemented` | 140 |
 | `compiles` | 3 |
-| `matching` | 213 |
-| `library` | 1,862 |
+| `matching` | 214 |
+| `library` | 1,864 |
 | `blocked` | 0 |
 
 | Origin | Functions |
 | --- | ---: |
-| `authored_game` | 665 |
+| `authored_game` | 667 |
 | `compiler_generated` | 1,148 |
-| `vc8_runtime` | 498 |
+| `vc8_runtime` | 500 |
 | `third_party` | 195 |
 | `import_thunk` | 21 |
-| `unknown` | 2,311 |
+| `unknown` | 2,309 |
 
 The legacy authored denominator is every non-`library` ledger row. The
 confirmed-authored census is evidence-backed but deliberately incomplete;

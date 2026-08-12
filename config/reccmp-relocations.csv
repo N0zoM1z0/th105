@@ -246,3 +246,5 @@ __real@c4200000,0x006AED38,000020c4,0x0,target float -640.0 loaded by 0x004643F0
 ??_C@_04IJKGBDBE@Lose?$AA@,0x006AF8E4,4c6f736500,0x0,target Lose transition string used by exact 0x00470500,literal
 ??_C@_03DEBJKBHO@Win?$AA@,0x006AF8E0,57696e00,0x0,target Win transition string used by exact 0x00470500,literal
 ??_C@_08LJHDLOLO@Continue?$AA@,0x006AF8EC,436f6e74696e756500,0x0,target Continue string bytes at sole 0x00470780 construction site,literal
+?g_text_glyph_transform@th105@@3UGlyphTransform@1@A,0x006E4B58,00000100,0x0,IDA memory readback of the first FIXED 1.0 element and both exact-target GetGlyphOutlineA call sites prove the MAT2 address,address
+__imp__GetGlyphOutlineA@28,0x006AC018,70f02c00,0x0,target GDI32 GetGlyphOutlineA IAT slot and on-disk thunk RVA,literal

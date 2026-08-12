@@ -14,6 +14,11 @@ caller,callee,required_status,evidence
 0x00411F80,0x004114F0,decompiled,Exact non-markup path dispatches each decoded character to the glyph rasterizer
 0x00411F80,0x004118D0,decompiled,Exact less-than path delegates the following bytes to the markup interpreter
 0x00411F80,0x004120B0,implemented,Exact optional-intermediate path blends the temporary surface into the locked texture
+0x004114F0,0x00411720,implemented,Exact accent-enabled glyph path draws a centered period mark above the character
+0x004118D0,0x004121E0,implemented,Exact color-tag path decodes six hexadecimal nibbles
+0x004118D0,0x00412210,library,Exact color-tag path uses the checked VC8 String28 character accessor
+0x004118D0,0x00412270,implemented,Exact tag dispatch repeatedly selects checked markup-token ring entries
+0x004118D0,0x004122D0,matching,Exact tag dispatch compares tokens against ruby accent and color command literals
 0x00404FA0,0x004027F0,identified,IDA exact-target release returns the token to the shared manager after resource release
 0x00404FA0,0x00417010,identified,IDA exact-target release resolves a generation-checked resource pointer before virtual release
 0x00432500,0x004132D0,decompiled,IDA Pro DwordDeque4 storage clear
