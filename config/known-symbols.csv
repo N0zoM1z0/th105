@@ -12,6 +12,7 @@ address,name,module,confidence,evidence
 0x004010C0,RenderModeManager_prepare_frame,render,observed,docs/BATTLE.md shared battle phase and docs/UI_FRAMEWORK.md scenario render preparation
 0x00401B10,load_wave_handle,audio,observed,IDA Pro 0x0045E080 direct call stores returned global-manager handle in the fighter table
 0x00401D70,dispatch_wave_handle,audio,observed,docs/BATTLE.md opaque CHandleManager wave-handle dispatch reached by indexed battle events
+0x00402680,CHandleManager_acquire_4byte_slot,assets,observed,PE objdump/IDA: EDI manager receiver allocates or reuses a low-16 slot and emits a generation-qualified token
 0x00404980,RenderModeManager_set_mode,render,observed,docs/BATTLE.md shared battle phase and docs/UI_FRAMEWORK.md guide render modes 2 and 1
 0x00404A10,phase_04a10,battle,inferred,docs/BATTLE.md observed ordered static-service call in shared battle phase sequence
 0x00404EC0,TitleResourceManager_load_texture,ui,exact,scripts/compare-function.py exact 99/99: custom EDI allocator and EAX release bracket the fastcall bitmap loader
