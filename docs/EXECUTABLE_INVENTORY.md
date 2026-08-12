@@ -57,7 +57,7 @@ transition is visible.
 | Selector | Rows | Bytes | Evidence and limit |
 | --- | ---: | ---: | --- |
 | `0x00664FA0..0x0066AC2D` | 44 | 21,553 | Target has the zlib 1.2.3 version string and `inflateReset`, `inflateInit2`, `inflate`, and `inflate_fast` fingerprints. |
-| `0x0066BFD0..0x0067AFCF` | 151 | 52,055 | Static libvorbis/libvorbisfile cluster anchored by `ov_clear`, `ov_open_callbacks`, `ov_info`, `ov_time_seek`, `ov_time_tell`, and `ov_read`. Six functions/236 bytes are strict exact against the official Win32 SDK 1.0.1 objects. |
+| `0x0066BFD0..0x0067AFCF` | 151 | 52,055 | Static libvorbis/libvorbisfile cluster anchored by `ov_clear`, `ov_open_callbacks`, `ov_info`, `ov_time_seek`, `ov_time_tell`, and `ov_read`. Twenty-nine functions/8,858 bytes are strict exact against the official Win32 SDK 1.0.1 objects; this includes all 25 target functions from `vorbisfile.obj`. |
 | `0x006A2FB0..0x006A3DD7` | 33 | 3,343 | Separated libogg `framing.c`/`bitwise.c` graph proven by page-header semantics, `_packetout`, `oggpack_*`, and direct calls from the `ov_*` cluster. All 33 functions/3,343 bytes are strict exact against the official Win32 SDK 1.0.1 objects. |
 
 The first audit hypothesis incorrectly treated `0x00662F80..0x0067AFCF` as

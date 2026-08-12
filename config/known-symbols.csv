@@ -660,3 +660,41 @@ address,name,module,confidence,evidence
 0x006A3BB0,oggpack_writeclear,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 bitwise.obj
 0x006A3C10,oggpack_look,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 bitwise.obj
 0x006A3CF0,oggpack_read,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 bitwise.obj
+0x0067DED2,_calloc,runtime,observed,Linked REL32 destination in official Xiph SDK objects and exact target bytes
+0x0067DF4C,__errno,runtime,observed,Linked REL32 destination in official Xiph SDK vorbisfile.obj and exact target bytes
+0x0067DF90,__alldiv,runtime,observed,Linked REL32 destination in official Xiph SDK vorbisfile.obj and exact target bytes
+0x0067E4F0,__ftol,runtime,observed,Linked REL32 destination in official Xiph SDK vorbisfile.obj and exact target bytes
+0x0067E520,__allmul,runtime,observed,Linked REL32 destination in official Xiph SDK vorbisfile.obj and exact target bytes
+0x0066BFD0,ov_clear,third_party,observed,Official SDK vorbisfile.obj masked identity and strict relocation replay
+0x0066C0D0,ov_open_callbacks,third_party,observed,Official SDK vorbisfile.obj masked identity and strict relocation replay
+0x0066C120,__ov_open1,third_party,observed,Official SDK vorbisfile.obj internal static function identity
+0x0066C240,__fetch_headers,third_party,observed,Official SDK vorbisfile.obj internal static function identity
+0x0066C390,__get_next_page,third_party,observed,Official SDK vorbisfile.obj internal static function identity
+0x0066C450,__get_data,third_party,observed,Official SDK vorbisfile.obj internal static function identity
+0x0066C4C0,__ov_open2,third_party,observed,Official SDK vorbisfile.obj internal static function identity
+0x0066C510,__open_seekable2,third_party,observed,Official SDK vorbisfile.obj internal static function identity
+0x0066C610,__get_prev_page,third_party,observed,Official SDK vorbisfile.obj internal static function identity
+0x0066C730,__seek_helper,third_party,observed,Official SDK vorbisfile.obj internal static function identity
+0x0066C770,__bisect_forward_serialno,third_party,observed,Official SDK vorbisfile.obj internal static function identity
+0x0066C990,__prefetch_all_headers,third_party,observed,Official SDK vorbisfile.obj internal static function identity
+0x0066CC70,__decode_clear,third_party,observed,Official SDK vorbisfile.obj internal static function identity
+0x0066CCA0,ov_pcm_total,third_party,observed,Official SDK vorbisfile.obj masked identity and strict relocation replay
+0x0066CD10,ov_time_total,third_party,observed,Official SDK vorbisfile.obj masked identity and strict relocation replay
+0x0066CDA0,ov_raw_seek,third_party,observed,Official SDK vorbisfile.obj masked identity and strict relocation replay
+0x0066D0C0,ov_pcm_seek_page,third_party,observed,Official SDK vorbisfile.obj masked identity and strict relocation replay
+0x0066D6B0,ov_pcm_seek,third_party,observed,Official SDK vorbisfile.obj masked identity and strict relocation replay
+0x0066D9B0,__make_decode_ready,third_party,observed,Official SDK vorbisfile.obj internal static function identity
+0x0066DA30,__fetch_and_process_packet,third_party,observed,Official SDK vorbisfile.obj internal static function identity
+0x0066E380,vorbis_info_clear,third_party,observed,Official SDK info.obj masked identity
+0x0066E4F0,vorbis_synthesis_headerin,third_party,observed,Official SDK info.obj masked identity
+0x0066EA60,vorbis_block_init,third_party,observed,Official SDK block.obj masked identity
+0x0066EB90,vorbis_block_clear,third_party,observed,Official SDK block.obj masked identity
+0x0066EF90,vorbis_dsp_clear,third_party,observed,Official SDK block.obj masked identity
+0x0066F1C0,vorbis_synthesis_restart,third_party,observed,Official SDK block.obj masked identity
+0x0066F230,vorbis_synthesis_init,third_party,observed,Official SDK block.obj masked identity
+0x0066F260,vorbis_synthesis_blockin,third_party,observed,Official SDK block.obj masked identity
+0x0066F8B0,vorbis_synthesis_pcmout,third_party,observed,Official SDK block.obj masked identity
+0x0066F910,vorbis_synthesis_read,third_party,observed,Official SDK block.obj masked identity
+0x0066F940,vorbis_synthesis,third_party,observed,Official SDK synthesis.obj masked identity
+0x0066FA90,vorbis_synthesis_trackonly,third_party,observed,Official SDK synthesis.obj masked identity
+0x0066FB70,vorbis_packet_blocksize,third_party,observed,Official SDK synthesis.obj masked identity

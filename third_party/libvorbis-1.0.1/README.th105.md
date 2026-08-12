@@ -16,9 +16,8 @@ The target `ov_time_seek` at `0x0066DD00` uses the old reverse link scan found
 in v1.0.1 and rejected by the changed v1.2.0 implementation. The adjacent
 `vorbis_info_init` at `0x0066E350` allocates a `0xE80`-byte
 `codec_setup_info`; the official v1.1.0 through v1.2.3 candidates allocate
-`0xE50` instead. Nontrivial bodies still have compiler-configuration or
-source-shape deltas, so these facts do not yet promote all 151 libvorbis and
-vorbisfile rows to exact.
+`0xE50` instead. These facts identify the release but do not by themselves
+promote all 151 libvorbis and vorbisfile rows to exact.
 
 The decisive follow-up was the archived official `OggVorbis-win32sdk-1.0.1.zip`
 (SHA-256
@@ -26,9 +25,13 @@ The decisive follow-up was the archived official `OggVorbis-win32sdk-1.0.1.zip`
 Its 2003 prebuilt `info.obj` and `vorbisfile.obj` reproduce the target's
 nontrivial code generation exactly. The repository fetcher validates that
 archive and extracts individual COFF members without committing the SDK
-binary. This raised the first accepted SDK wave to six exact libvorbis/file
-functions, including 96-byte `vorbis_comment_clear`, 38-byte
-`vorbis_info_init`, and 58-byte `ov_info`.
+binary. Strict relocation replay now proves all 25 `vorbisfile.obj` functions
+retained by TH105, plus four functions from `info.obj`: 29 functions and 8,858
+bytes in total. This includes the 1,516-byte `ov_pcm_seek_page`, 860-byte
+`ov_read`, and four verified floating-point DIR32 literals. The final call in
+target `0x0066DD00` resolves to `ov_pcm_seek`, proving the function is
+`ov_time_seek` rather than the otherwise byte-identical `ov_time_seek_page`
+candidate.
 
 Reproduce the accepted bytes with:
 

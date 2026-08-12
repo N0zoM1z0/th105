@@ -1762,11 +1762,103 @@ enable_gs = false
 sdk_component = "vorbisfile"
 sdk_object = "vorbisfile.obj"
 sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
-notes = "Official OggVorbis Win32 SDK 1.0.1 prebuilt vorbisfile.obj from the same archived release."
+notes = "All 25 vorbisfile.obj functions retained by TH105 are strict exact after replaying verified SDK relocations; the historical unit name is retained for stable evidence commands. The target 0x0066DD00 selects ov_time_seek because its final call resolves to ov_pcm_seek, not the otherwise byte-identical ov_time_seek_page candidate."
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066BFD0"
+symbol_base = "_ov_clear"
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066C0D0"
+symbol_base = "_ov_open_callbacks"
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066C120"
+symbol_base = "__ov_open1"
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066C240"
+symbol_base = "__fetch_headers"
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066C390"
+symbol_base = "__get_next_page"
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066C450"
+symbol_base = "__get_data"
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066C4C0"
+symbol_base = "__ov_open2"
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066C510"
+symbol_base = "__open_seekable2"
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066C610"
+symbol_base = "__get_prev_page"
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066C730"
+symbol_base = "__seek_helper"
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066C770"
+symbol_base = "__bisect_forward_serialno"
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066C990"
+symbol_base = "__prefetch_all_headers"
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066CC70"
+symbol_base = "__decode_clear"
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066CCA0"
+symbol_base = "_ov_pcm_total"
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066CD10"
+symbol_base = "_ov_time_total"
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066CDA0"
+symbol_base = "_ov_raw_seek"
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066D0C0"
+symbol_base = "_ov_pcm_seek_page"
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066D6B0"
+symbol_base = "_ov_pcm_seek"
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066D9B0"
+symbol_base = "__make_decode_ready"
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066DA30"
+symbol_base = "__fetch_and_process_packet"
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066DD00"
+symbol_base = "_ov_time_seek"
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066DE00"
+symbol_base = "_ov_time_tell"
 
 [[units.xiph-vorbisfile-host-endian-anchor.functions]]
 address = "0x0066DEF0"
 symbol_base = "_ov_info"
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066DF30"
+symbol_base = "_ov_read"
 
 [[units.xiph-vorbisfile-host-endian-anchor.functions]]
 address = "0x0066E290"
