@@ -67,6 +67,12 @@ struct PatTransientPairNode {
     void *payload_08;
 };
 
+PatRecord88 *__thiscall PatRecord88_construct(PatRecord88 *self);
+void __thiscall PatRecord88_destroy(PatRecord88 *self);
+PatGroup *__thiscall PatGroup_construct(PatGroup *self);
+void __thiscall PatGroup_destroy(PatGroup *self);
+void __thiscall PatGroupDeque_grow_for_append(PatGroupDequeView *self);
+
 typedef char PaletteHandleVectorView_size_must_be_0x10[
     sizeof(PaletteHandleVectorView) == 0x10 ? 1 : -1];
 typedef char PatGroupDequeView_size_must_be_0x14[

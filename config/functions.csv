@@ -1857,12 +1857,12 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0045EA20,200,0x0045EAE8,FUN_0045ea20,,,unclassified,0.00,unknown,undefined FUN_0045ea20(void),false,,,,
 0x0045EAF0,576,0x0045ED47,FUN_0045eaf0,,,unclassified,0.00,unknown,undefined FUN_0045eaf0(void),false,,,,
 0x0045EC73,9,0x0045EC7B,Catch_All@0045ec73,,,unclassified,0.00,unknown,undefined Catch_All@0045ec73(void),false,,,,
-0x0045ED50,434,0x0045EF04,FUN_0045ed50,,,unclassified,0.00,unknown,undefined FUN_0045ed50(void),false,,,,
-0x0045EF10,497,0x0045F112,FUN_0045ef10,,,unclassified,0.00,unknown,undefined FUN_0045ef10(void),false,,,,
+0x0045ED50,437,0x0045EF04,FUN_0045ed50,PatRecord88_append_owned_raw16_pointer,battle,decompiled,0.00,__thiscall,void * PatRecord88_append_owned_raw16_pointer(PatRecord88 * this),false,src/battle/PatResourceContracts.hpp,IDA Pro complete decompile and PAT parser nested pointer-vector caller inventory 2026-08-12,root,Corrected terminal ret boundary and recovered nested owned Raw16 pointer-vector growth contract
+0x0045EF10,515,0x0045F112,FUN_0045ef10,PatRecord88_destroy,battle,decompiled,0.00,__thiscall,void PatRecord88_destroy(PatRecord88 * this),false,src/battle/PatResourceContracts.hpp,IDA Pro complete decompile and PAT parser record destructor inventory 2026-08-12,root,Corrected terminal ret boundary; releases nested owned Raw16 pointers optional Raw16 and record vector storage
 0x0045F120,27,0x0045F13D,FUN_0045f120,,,unclassified,0.00,unknown,undefined FUN_0045f120(void),false,,,,
 0x0045F140,1247,0x0045F61E,FUN_0045f140,initialize_fighter_battle_state,battle,implemented,0.00,__thiscall,void initialize_fighter_battle_state(Fighter * this),false,src/battle/FighterInitialization.cpp,scripts/compile-unit.sh src/battle/FighterInitialization.cpp build/wave20/FighterInitialization_final.obj && python3 scripts/compare-function.py 0x0045F140 build/wave20/FighterInitialization_final.obj produces 1231 bytes versus 1247 target,root,Complete reset defaults category gate initial spell sequence checked access and action dispatch; exact prefix reaches +0x340 after recovering the two 32-byte memset expansions preloaded action vcall and category-two fallthrough; remaining first delta is target dead LEA before long branch then checked-iterator register shape
 0x0045F620,72,0x0045F667,FUN_0045f620,,,unclassified,0.00,unknown,undefined FUN_0045f620(void),false,,,,
-0x0045F670,338,0x0045F7C4,FUN_0045f670,,,unclassified,0.00,unknown,undefined FUN_0045f670(void),false,,,,
+0x0045F670,341,0x0045F7C4,FUN_0045f670,PatGroupDeque_grow_for_append,battle,decompiled,0.00,__thiscall,void PatGroupDeque_grow_for_append(PatGroupDequeView * this),false,src/battle/PatResourceContracts.hpp,IDA Pro complete decompile and PAT parser owner deque caller inventory 2026-08-12,root,Corrected terminal ret boundary; grows Fighter plus 0x65C owned PatGroup pointer deque
 0x0045F7D0,213,0x0045F8A4,FUN_0045f7d0,,,unclassified,0.00,unknown,undefined FUN_0045f7d0(void),false,,,,
 0x0045F8A5,17,0x0045F8B5,Catch_All@0045f8a5,,,unclassified,0.00,unknown,undefined Catch_All@0045f8a5(void),false,,,,
 0x0045F8C0,149,0x0045F954,FUN_0045f8c0,,,unclassified,0.00,unknown,undefined FUN_0045f8c0(void),false,,,,
@@ -1874,7 +1874,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0045FDB0,305,0x0045FEE0,FUN_0045fdb0,,,unclassified,0.00,unknown,undefined FUN_0045fdb0(void),false,,,,
 0x0045FEF0,56,0x0045FF27,FUN_0045fef0,,,unclassified,0.00,unknown,undefined FUN_0045fef0(void),false,,,,
 0x0045FF30,56,0x0045FF67,FUN_0045ff30,,,unclassified,0.00,unknown,undefined FUN_0045ff30(void),false,,,,
-0x0045FF70,300,0x0046009B,FUN_0045ff70,,,unclassified,0.00,unknown,undefined FUN_0045ff70(void),false,,,,
+0x0045FF70,300,0x0046009B,FUN_0045ff70,PatRecord88_construct,battle,decompiled,0.00,__thiscall,PatRecord88 * PatRecord88_construct(PatRecord88 * this),false,src/battle/PatResourceContracts.hpp,IDA Pro complete decompile and PAT parser record constructor inventory 2026-08-12,root,Initializes record vtable optional pointers and three nested vector headers
 0x004600A0,88,0x004600F7,FUN_004600a0,,,unclassified,0.00,unknown,undefined FUN_004600a0(void),false,,,,
 0x00460100,92,0x0046015B,FUN_00460100,,,unclassified,0.00,unknown,undefined FUN_00460100(void),false,,,,
 0x00460160,131,0x00460210,FUN_00460160,,,unclassified,0.00,unknown,undefined FUN_00460160(void),false,,,,
@@ -1887,8 +1887,8 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004603C0,58,0x004603F9,FUN_004603c0,,,unclassified,0.00,unknown,undefined FUN_004603c0(void),false,,,,
 0x00460400,232,0x004604E7,FUN_00460400,,,unclassified,0.00,unknown,undefined FUN_00460400(void),false,,,,
 0x004604E8,17,0x004604F8,Catch_All@004604e8,,,unclassified,0.00,unknown,undefined Catch_All@004604e8(void),false,,,,
-0x00460500,106,0x00460569,FUN_00460500,,,unclassified,0.00,unknown,undefined FUN_00460500(void),false,,,,
-0x00460570,128,0x004605EF,FUN_00460570,,,unclassified,0.00,unknown,undefined FUN_00460570(void),false,,,,
+0x00460500,106,0x00460569,FUN_00460500,PatGroup_construct,battle,decompiled,0.00,__thiscall,PatGroup * PatGroup_construct(PatGroup * this),false,src/battle/PatResourceContracts.hpp,IDA Pro complete decompile and PAT parser group constructor inventory 2026-08-12,root,Initializes 0x20 group record vector scalar fields and links
+0x00460570,128,0x004605EF,FUN_00460570,PatGroup_destroy,battle,decompiled,0.00,__thiscall,void PatGroup_destroy(PatGroup * this),false,src/battle/PatResourceContracts.hpp,IDA Pro complete decompile and PAT parser group destructor inventory 2026-08-12,root,Destroys contained record vector and group-owned storage
 0x004605F0,41,0x00460618,FUN_004605f0,,,unclassified,0.00,unknown,undefined FUN_004605f0(void),false,,,,
 0x00460620,693,0x0046091F,FUN_00460620,,,unclassified,0.00,unknown,undefined FUN_00460620(void),false,,,,
 0x004607EE,22,0x00460803,Catch_All@004607ee,,,unclassified,0.00,unknown,undefined Catch_All@004607ee(void),false,,,,
