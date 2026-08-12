@@ -174,6 +174,11 @@ non-nil 0x60-byte node. The strict result is 116 bytes against the 108-byte
 ledger span with first mismatch `+0x0C`; only VC8 prologue/register scheduling
 remains after the member ABI correction proved by exact `0x00432500`.
 
+The small constructor bridge `0x00430F70` is exact at 35/35. A non-null
+`MatchSetup::Side+0x08` native short deque is assigned to both
+`SpellDataOwner+0x20` and `+0x34`; the null path performs neither assignment.
+It is the direct data handoff used by every fighter's shared base constructor.
+
 ## Shared resource-handle boundary
 
 The texture path is not spell-private. `0x00402680` is the observed

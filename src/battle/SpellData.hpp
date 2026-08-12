@@ -186,6 +186,7 @@ struct SpellDataOwner {
         int character_key,
         int arg2,
         unsigned char alternate_loader);
+    void initialize_side_payload_430f70(const ShortDeque8 *payload);
     unsigned char load_spell_csv_via_325b0(
         int character_key,
         signed char story_mode,

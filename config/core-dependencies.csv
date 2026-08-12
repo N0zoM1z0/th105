@@ -150,7 +150,7 @@ caller,callee,required_status,evidence
 0x00462050,0x0045E080,identified,docs/BATTLE.md indexed resource initialization phase
 0x00462050,0x00460B50,decompiled,docs/BATTLE.md complete PAT palette group record nested record and EH inventory
 0x00462050,0x00464320,identified,docs/BATTLE.md final character resource callback
-0x00461A90,0x00430F70,identified,IDA exact-target constructor copies Side+08 through the fighter spell-data subobject input initializer
+0x00461A90,0x00430F70,matching,IDA exact-target constructor copies Side+08 through the now exact fighter spell-data subobject input initializer
 0x004632D0,0x00462050,implemented,IDA exact-target factory unconditionally enters fighter spell-resource initialization after the selected derived constructor
 0x004631E0,0x00463120,library,strict exact VC8 std::deque<short>::_Assign_n dependency
 0x00463610,0x00459E50,matching,IDA Pro exact five-pass callback phase reaches common fighter update

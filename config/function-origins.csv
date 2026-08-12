@@ -1011,7 +1011,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00430DE0,authored_game,battle,include_authored,inferred,ledger-authored-module
 0x00430E30,unknown,,review,unknown,
 0x00430EA0,unknown,,review,unknown,
-0x00430F70,unknown,,review,unknown,
+0x00430F70,authored_game,battle,include_authored,inferred,ledger-authored-module
 0x00430FA0,authored_game,battle,include_authored,inferred,ledger-authored-module
 0x00430FD0,unknown,,review,unknown,
 0x00431040,unknown,,review,unknown,
