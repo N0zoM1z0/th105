@@ -95,10 +95,12 @@ For each pillar:
 7. fan out exact packets without granting status from clone similarity.
 
 Current `+0x28` state: all fifteen vtable owners, ledger spans, action-table
-blocks, and call fingerprints are recorded. Alice, Youmu, and Yuyuko now have
-complete case/field/return slice manifests and are `decompiled`; the remaining
-twelve are `identified`. Sakuya has a severe IDA chunk conflict and must always
-use the ledger span. Tenshi remains a 43-callee outlier.
+blocks, and call fingerprints are recorded. Alice, Marisa, Patchouli, Youmu,
+Yuyuko, and Udonge now have complete case/field/return slice manifests and are
+`decompiled`; the remaining nine are `identified`. Marisa and Udonge establish
+the backend-neutral `exact_target_tables` path for giant roots that defeat
+Hex-Rays. Sakuya has a severe IDA chunk conflict and must always use the ledger
+span. Tenshi remains a 43-callee outlier.
 
 Exit gate: every giant root is at least structurally decompiled into bounded
 packets, with no fake body and no unresolved accepted span.
@@ -154,9 +156,9 @@ Success measure: fewer review rows without misclassifying project adapters.
 
 ### Wave B — fighter `+0x28` breadth
 
-- recover Alice numeric table entries and field/write/callee summaries;
-- run Youmu in parallel as the shortest body and isolate `0x0045D320`;
-- use Yuyuko to validate the clean `301..418` versus `501..731` split;
+- retain Alice, Youmu, and Yuyuko as the Hex-Rays baseline pilots;
+- retain Marisa and Udonge as exact-instruction table-decoding pilots;
+- retain Patchouli as the non-contiguous-boundary regression pilot;
 - reconcile Sakuya's non-contiguous chunks before any comparator work;
 - fan common `0..226` and `301..418` contracts across the roster;
 - keep high-action tables character-local until clone evidence proves more.

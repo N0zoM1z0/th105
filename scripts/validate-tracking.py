@@ -127,7 +127,8 @@ VSLOT28_COLUMNS = [
 VSLOT28_PILOT_COLUMNS = [
     "fighter",
     "address",
-    "decompiler_lines",
+    "analysis_form",
+    "analysis_lines",
     "case_occurrences",
     "unique_case_count",
     "case_labels",
@@ -139,9 +140,13 @@ VSLOT28_PILOT_COLUMNS = [
 ]
 VSLOT28_PILOT_SET = {
     ("Alice", "0x004E9A20"),
+    ("Marisa", "0x004A2F40"),
+    ("Patchouli", "0x0050EC80"),
+    ("Udonge", "0x005BF460"),
     ("Youmu", "0x0052FDA0"),
     ("Yuyuko", "0x0055D4A0"),
 }
+VSLOT28_ANALYSIS_FORMS = {"ida_hexrays", "exact_target_tables"}
 ORIGINS = {
     "authored_game",
     "compiler_generated",
@@ -705,14 +710,16 @@ def main() -> int:
             errors.append(f"{VSLOT28_PILOTS.name}:{line}: address absent from functions.csv")
             continue
         try:
-            decompiler_lines = int(row["decompiler_lines"])
+            analysis_lines = int(row["analysis_lines"])
             occurrences = int(row["case_occurrences"])
             unique_count = int(row["unique_case_count"])
             labels = [int(value, 0) for value in row["case_labels"].split(";")]
         except ValueError:
             errors.append(f"{VSLOT28_PILOTS.name}:{line}: invalid numeric field")
             continue
-        if min(decompiler_lines, occurrences, unique_count) <= 0:
+        if row["analysis_form"] not in VSLOT28_ANALYSIS_FORMS:
+            errors.append(f"{VSLOT28_PILOTS.name}:{line}: invalid analysis form")
+        if min(analysis_lines, occurrences, unique_count) <= 0:
             errors.append(f"{VSLOT28_PILOTS.name}:{line}: non-positive survey count")
         if occurrences < unique_count:
             errors.append(f"{VSLOT28_PILOTS.name}:{line}: occurrences below unique count")

@@ -175,13 +175,28 @@ async def survey(
                 function = await call_json(
                     session, "get_function_by_address", {"address": address}
                 )
-                decompile = await call_json(
-                    session, "decompile_function", {"address": address}
-                )
                 callees = await call_json(
                     session, "get_callees", {"function_address": address}
                 )
-                text = decompile if isinstance(decompile, str) else json.dumps(decompile)
+                decompile_status = "complete"
+                decompile_error = ""
+                try:
+                    decompile = await call_json(
+                        session, "decompile_function", {"address": address}
+                    )
+                    text = (
+                        decompile
+                        if isinstance(decompile, str)
+                        else json.dumps(decompile)
+                    )
+                except (IdaMcpError, RuntimeError) as error:
+                    # Preserve independently useful boundary/callee evidence and
+                    # successful sibling roots when Hex-Rays rejects one giant
+                    # dispatcher.  The explicit partial packet is then routed to
+                    # exact instruction-table decoding or headless Ghidra.
+                    decompile_status = "failed"
+                    decompile_error = str(error)
+                    text = ""
                 case_occurrences = [integer(match) for match in CASE_RE.findall(text)]
                 cases = sorted(set(case_occurrences))
                 backend_size = (
@@ -196,7 +211,9 @@ async def survey(
                         "backend_size": backend_size,
                         "boundary_agrees": backend_size == int(row["size"]),
                         "backend_name": function.get("name") if isinstance(function, dict) else None,
-                        "decompiler_lines": text.count("\n") + 1,
+                        "decompile_status": decompile_status,
+                        "decompile_error": decompile_error,
+                        "decompiler_lines": text.count("\n") + 1 if text else 0,
                         "switch_case_occurrences": len(case_occurrences),
                         "switch_cases": cases,
                         "switch_case_ranges": case_ranges(cases),
@@ -289,13 +306,27 @@ async def survey(
                 function = await call_json(
                     session, "get_function_by_address", {"address": address}
                 )
-                decompile = await call_json(
-                    session, "decompile_function", {"address": address}
-                )
                 callees = await call_json(
                     session, "get_callees", {"function_address": address}
                 )
-                text = decompile if isinstance(decompile, str) else json.dumps(decompile)
+                decompile_status = "complete"
+                decompile_error = ""
+                try:
+                    decompile = await call_json(
+                        session, "decompile_function", {"address": address}
+                    )
+                    text = (
+                        decompile
+                        if isinstance(decompile, str)
+                        else json.dumps(decompile)
+                    )
+                except (IdaMcpError, RuntimeError) as error:
+                    # Giant dispatchers may exceed Hex-Rays' practical limits.
+                    # Preserve the boundary/callee packet and continue siblings;
+                    # exact table decoding or headless Ghidra supplies the rest.
+                    decompile_status = "failed"
+                    decompile_error = str(error)
+                    text = ""
                 case_occurrences = [integer(match) for match in CASE_RE.findall(text)]
                 cases = sorted(set(case_occurrences))
                 backend_size = (
@@ -314,7 +345,9 @@ async def survey(
                         "backend_size": backend_size,
                         "boundary_agrees": backend_size == int(row["size"]),
                         "backend_name": function.get("name") if isinstance(function, dict) else None,
-                        "decompiler_lines": text.count("\n") + 1,
+                        "decompile_status": decompile_status,
+                        "decompile_error": decompile_error,
+                        "decompiler_lines": text.count("\n") + 1 if text else 0,
                         "switch_case_occurrences": len(case_occurrences),
                         "switch_cases": cases,
                         "switch_case_ranges": case_ranges(cases),

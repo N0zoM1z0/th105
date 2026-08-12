@@ -43,7 +43,7 @@ dispatch sites without claiming original method or per-action names.
 Together the roots account for 918,209 ledger bytes. All fifteen share a
 twenty-callee action/frame/effect fingerprint. Character-specific callees
 remain explicit so common low-action skeletons can fan out without erasing
-high-action behavior. Alice, Youmu, and Yuyuko are the first structural pilots:
+high-action behavior. Alice, Youmu, and Yuyuko were the first structural pilots:
 Alice has the shortest clean generic layout, Youmu is the smallest body but has
 a distinct `0x0045D320` branch, and Yuyuko exposes a particularly clean
 `301..418` versus `501..731` split. Tenshi is a 43-callee outlier.
@@ -55,12 +55,25 @@ ledger span covers 74,937 function-body bytes. Reimu, Alice, Patchouli,
 Remilia, Suika, Aya, and Tenshi likewise have IDA body-size differences caused
 by non-contiguous chunks; none permits an automatic ledger resize.
 
-Alice, Youmu, and Yuyuko are now `decompiled`; the other twelve remain
-`identified`. Their durable pilot manifest records respectively 5,426, 5,076,
-and 7,016 pseudocode lines; 105, 101, and 110 unique switch labels; complete
-numeric band field-width/read-write unions; direct callees; void return
-topology; and bounded slice points. The declaration-only ABI is in
+Alice, Marisa, Patchouli, Youmu, Yuyuko, and Udonge are now `decompiled`; the
+other nine remain `identified`. The durable pilot manifest distinguishes
+`ida_hexrays` from `exact_target_tables`: the former records pseudocode lines
+and switches, while the latter records target-disassembly lines and decodes
+the compiler's byte-index maps directly when a 54–67 KiB dispatcher defeats
+Hex-Rays. Both forms require complete numeric table labels, direct and default
+branches, field-width/read-write unions, callees, ABI/return topology, and
+bounded slice points. The declaration-only ABI is in
 `src/characters/Vslot28ActionStateRoots.hpp`.
+
+The second wave proved why that distinction matters. Patchouli yielded 6,380
+Hex-Rays lines and 107 top-level switch labels, while its accepted ledger span
+still overrides IDA's seven-byte non-contiguous-body discrepancy. Marisa and
+Udonge both passed IDA target, vtable, boundary, callee, and ABI checks but
+Hex-Rays failed. Exact PE instructions and compressed byte maps recovered 125
+and 105 table labels respectively, plus the direct `300/540/795/797/798` and
+`300/520/795` singleton branches. Headless Ghidra was used as the strict
+fallback; it recovered Udonge control flow but did not reconstruct switches,
+so the byte maps—not guessed pseudocode—remain the case authority.
 
 Youmu action 200 uniquely reaches `0x0045D320`: after publishing byte `+0x47E`
 as one, the helper writes `Fighter+0x670 = 3` and forwards constants `4` and
@@ -82,9 +95,11 @@ python3 scripts/character-root-survey.py --kind vslot28 \
   --fighter Alice --output build/alice-vslot28-survey.json
 ```
 
-Repeat `--fighter` for a small non-overlapping pilot set. A whole-roster
-decompile is allowed only as a milestone operation because one Hex-Rays failure
-must not obscure fourteen successful roots.
+Repeat `--fighter` for a small non-overlapping pilot set. The survey now emits
+an explicit partial row and continues sibling roots when Hex-Rays fails; a
+whole-roster decompile is still only a milestone operation. A partial row never
+grants `decompiled`: route it to exact-target table decoding or headless
+Ghidra, then satisfy the same manifest gate.
 
 ## Shared unlock inherited by every fighter
 

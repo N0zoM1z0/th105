@@ -406,3 +406,22 @@ The current high-value path remains the shared character-owned-object chain:
 functions → acquire/link and spawn families → character dispatchers, skills,
 and spell-card pilots. Work should follow this unlock graph instead of raising
 the function count with unrelated trivial accessors.
+
+### 2026-08-12 giant-dispatch backend result
+
+The second primary-vtable `+0x28` wave tested the lazy IDA-first policy against
+three 54–67 KiB roots. Patchouli produced a complete 6,380-line Hex-Rays view;
+Marisa and Udonge passed target, vtable, boundary, caller, callee, ABI, and
+return checks but Hex-Rays rejected the full function. Headless Ghidra remained
+the no-GUI fallback and recovered Udonge control flow, but its jump-table
+warnings did not recover selector cases.
+
+The accepted recovery path is therefore backend-neutral but still fail-closed:
+decode the exact PE byte-index map and target table, keep direct singleton
+branches outside the table-label count, audit fields from target instructions,
+and record the evidence form explicitly. The pilot schema now uses
+`analysis_form` and `analysis_lines`; it no longer mislabels target disassembly
+as pseudocode. Batch survey failures are isolated per root, so one failed giant
+decompile does not discard successful siblings. This moved the family from
+three to six structurally decompiled roots without emitting placeholder source
+or weakening the exact-match gate.

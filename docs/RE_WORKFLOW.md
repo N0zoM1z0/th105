@@ -86,6 +86,17 @@ justify a status transition by themselves. Use `--backend ghidra` for the
 explicit headless fallback. The packet preserves backend-native payloads and
 reports a boundary conflict instead of replacing the ledger boundary.
 
+For giant roster dispatchers, a Hex-Rays failure is local to that function,
+not to the whole bounded batch. `character-root-survey.py --kind vslot28`
+emits `decompile_status=failed` with zero pseudocode lines while preserving
+boundary and callee evidence, then continues its sibling roots. Such a partial
+row cannot enter the pilot manifest. First try strict headless Ghidra; if it
+also fails to recover switches, decode the exact compiler byte-index map and
+target table from the attested PE, record `analysis_form=exact_target_tables`,
+and separately document direct singleton branches, field access, ABI, return
+topology, and defaults. This is a structural-decompilation path, never an exact
+source match.
+
 Normal function work should use a focused decompile/xref query and an
 object/function-level diff. The CSV validator and progress check are the only
 routine whole-project checks, and both are designed to finish in under a
