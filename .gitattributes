@@ -12,3 +12,7 @@
 # Preserve official vendored zlib bytes. Its trees.h intentionally has one
 # trailing blank line in the v1.2.3 tag.
 third_party/zlib-1.2.3/* text eol=lf whitespace=-blank-at-eof
+
+# Preserve the selected official Xiph source/header snapshots verbatim.
+third_party/libvorbis-1.0.1/** text eol=lf -whitespace
+third_party/libogg-1.1.3/** text eol=lf -whitespace

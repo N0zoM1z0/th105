@@ -1723,3 +1723,41 @@ rel32_targets = [
   "_init_block=0x00669190",
   "_bi_windup=0x0066A2B0",
 ]
+
+[units.xiph-vorbis-info-anchors]
+kind = "probe"
+source = "third_party/libvorbis-1.0.1/lib/info.c"
+object = "build/match-units/xiph_vorbis_info_anchors.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+include_dirs = [
+  "third_party/libvorbis-1.0.1/include",
+  "third_party/libvorbis-1.0.1/lib",
+  "third_party/libogg-1.1.3/include",
+]
+notes = "Unmodified official libvorbis v1.0.1 info translation unit. Two functions are exact; the adjacent info initializer's target-only 0xE80 codec-setup size rejects v1.1.0 through v1.2.3."
+
+[[units.xiph-vorbis-info-anchors.functions]]
+address = "0x0066E2A0"
+symbol_base = "_vorbis_comment_init"
+
+[[units.xiph-vorbis-info-anchors.functions]]
+address = "0x0066E330"
+symbol_base = "_vorbis_info_blocksize"
+
+[units.xiph-vorbisfile-host-endian-anchor]
+kind = "probe"
+source = "third_party/libvorbis-1.0.1/lib/vorbisfile.c"
+object = "build/match-units/xiph_vorbisfile_host_endian_anchor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+include_dirs = [
+  "third_party/libvorbis-1.0.1/include",
+  "third_party/libvorbis-1.0.1/lib",
+  "third_party/libogg-1.1.3/include",
+]
+notes = "Unmodified official libvorbis v1.0.1 vorbisfile translation unit. The host-endian helper is exact and the old reverse-scan ov_time_seek source shape rejects v1.2.x."
+
+[[units.xiph-vorbisfile-host-endian-anchor.functions]]
+address = "0x0066E290"
+symbol_base = "_host_is_big_endian"

@@ -72,7 +72,21 @@ disposition = "exclude_authored"
 confidence = "observed"
 ledger_status = "library"
 ledger_module = "third_party"
-evidence = "audited static Xiph cluster with ov_clear/ov_open_callbacks/ov_info/ov_time_seek/ov_time_tell/ov_read fingerprints and no direct game-code calls; exact Xiph release remains unknown; docs/EXECUTABLE_INVENTORY.md"
+evidence = "audited static libvorbis/libvorbisfile cluster with ov_clear/ov_open_callbacks/ov_info/ov_time_seek/ov_time_tell/ov_read fingerprints and no direct game-code calls; v1.0.1 is the strongest source candidate but nontrivial codegen remains unresolved; docs/EXECUTABLE_INVENTORY.md"
+
+[[rules]]
+id = "xiph-libogg-framing-bitwise"
+start = "0x006A2FB0"
+end = "0x006A3DCF"
+expected_count = 33
+expected_bytes = 3343
+origin = "third_party"
+subsystem = "audio"
+disposition = "exclude_authored"
+confidence = "observed"
+ledger_status = "library"
+ledger_module = "third_party"
+evidence = "IDA target semantics map the complete selected framing.c/bitwise.c graph from ogg_page_version through oggpack_bytes including _packetout and the ov_* callers' direct ogg_* edges; docs/EXECUTABLE_INVENTORY.md"
 
 [[rules]]
 id = "late-external-import-thunks"

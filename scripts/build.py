@@ -34,6 +34,10 @@ def build_unit(
     output.parent.mkdir(parents=True, exist_ok=True)
     environment = os.environ.copy()
     environment["TH105_ENABLE_GS"] = "1" if unit["enable_gs"] else "0"
+    include_dirs = [
+        str(repository_path(str(path))) for path in unit.get("include_dirs", [])
+    ]
+    environment["TH105_EXTRA_INCLUDE_DIRS"] = os.pathsep.join(include_dirs)
     command = [
         str(ROOT / "scripts" / "compile-unit.sh"),
         str(source),
@@ -58,6 +62,9 @@ def build_unit(
         "kind": unit["kind"],
         "profile": unit["profile"],
         "enable_gs": unit["enable_gs"],
+        "include_dirs": [
+            str(Path(path).relative_to(ROOT)) for path in include_dirs
+        ],
         "source": str(source.relative_to(ROOT)),
         "object": str(output.relative_to(ROOT)),
         "source_sha256": file_sha256(source),

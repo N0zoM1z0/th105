@@ -118,6 +118,20 @@ Score each tag by exact COFF symbol size, constants/strings, public call graph,
 and strict byte-prefix behavior. Promote a release only after several
 independent anchors agree. Then fan out per translation unit.
 
+The first matrix pass produced two reusable lessons:
+
+- An allocation immediate can be a stronger release fingerprint than an API
+  name. TH105 `vorbis_info_init` allocates `0xE80` bytes, matching the official
+  v1.0.1 `codec_setup_info`; v1.1.0 through v1.2.3 allocate `0xE50`.
+- A library island can be split by the linker. The 151-row libvorbis/file
+  range calls a separate 33-row libogg framing/bitwise island at
+  `0x006A2FB0..0x006A3DD7`. Follow semantic call edges before declaring the
+  surrounding mixed address neighborhood authored or runtime code.
+
+The v1.0.1 candidate currently gives three strict exact functions (44 bytes).
+Nontrivial `ov_*` bodies remain configuration/source-shape work; do not fan out
+their 100% status from release evidence alone.
+
 ## Failure taxonomy and next action
 
 | Result | Meaning | Next action |

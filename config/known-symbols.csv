@@ -614,3 +614,6 @@ address,name,module,confidence,evidence
 0x0066A790,_tr_stored_block,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
 0x0066A830,_tr_align,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
 0x0066AA20,_tr_flush_block,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x0066E290,host_is_big_endian,third_party,observed,Strict exact official libvorbis v1.0.1 VC8 match unit
+0x0066E2A0,vorbis_comment_init,third_party,observed,Strict exact official libvorbis v1.0.1 VC8 match unit
+0x0066E330,vorbis_info_blocksize,third_party,observed,Strict exact official libvorbis v1.0.1 VC8 match unit

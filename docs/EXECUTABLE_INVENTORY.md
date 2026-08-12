@@ -19,30 +19,31 @@ prevents a later inventory refresh from silently widening a library range.
 
 ## Why the original percentage was misleading
 
-At the start of the 2026-08-12 audit, the ledger contained 4,838 functions:
+The current ledger contains 4,840 functions (the audit recovered two missing
+internal boundaries):
 
 | Status | Functions | Function bytes |
 | --- | ---: | ---: |
-| `unclassified` | 4,136 | 2,250,539 |
-| `identified` | 131 | 20,116 |
-| `decompiled` | 179 | 285,703 |
-| `implemented` | 131 | 49,554 |
+| `unclassified` | 2,261 | 1,164,331 |
+| `identified` | 126 | 19,743 |
+| `decompiled` | 199 | 1,208,529 |
+| `implemented` | 140 | 52,378 |
 | `compiles` | 3 | 428 |
-| `matching` | 209 | 28,248 |
-| `library` | 49 | 7,528 |
+| `matching` | 214 | 28,717 |
+| `library` | 1,897 | 169,825 |
 
 The old progress denominator treated every non-`library` row as authored.
 That included import jump stubs, statically linked VC8 CRT, C++ exception
 funclets, zlib, and Xiph codec code.  It therefore reported 209/4,789 even
 though most of those support rows should never be reconstructed by hand.
 
-The current evidence-backed provenance pass excludes 1,864 rows and leaves
-2,976 authored-or-review rows. It reports three separate populations rather than
+The current evidence-backed provenance pass excludes 1,897 rows and leaves
+2,943 authored-or-review rows. It reports three separate populations rather than
 pretending the unresolved population is authored:
 
 - confirmed authored: 667 rows;
-- confirmed non-authored: 1,864 rows;
-- origin review: 2,309 rows.
+- confirmed non-authored: 1,897 rows;
+- origin review: 2,276 rows.
 
 The confirmed-authored population is a lower bound, not a new final
 denominator.  Review rows remain outside that metric until evidence decides
@@ -56,13 +57,20 @@ transition is visible.
 | Selector | Rows | Bytes | Evidence and limit |
 | --- | ---: | ---: | --- |
 | `0x00664FA0..0x0066AC2D` | 44 | 21,553 | Target has the zlib 1.2.3 version string and `inflateReset`, `inflateInit2`, `inflate`, and `inflate_fast` fingerprints. |
-| `0x0066BFD0..0x0067AFCF` | 151 | 52,055 | Static libogg/libvorbis/libvorbisfile cluster anchored by `ov_clear`, `ov_open_callbacks`, `ov_info`, `ov_time_seek`, `ov_time_tell`, and `ov_read`. The exact Xiph release is not yet established. |
+| `0x0066BFD0..0x0067AFCF` | 151 | 52,055 | Static libvorbis/libvorbisfile cluster anchored by `ov_clear`, `ov_open_callbacks`, `ov_info`, `ov_time_seek`, `ov_time_tell`, and `ov_read`. Three functions/44 bytes are strict exact against the v1.0.1 candidate. |
+| `0x006A2FB0..0x006A3DD7` | 33 | 3,343 | Separated libogg `framing.c`/`bitwise.c` graph proven by page-header semantics, `_packetout`, `oggpack_*`, and direct calls from the `ov_*` cluster. The exact libogg release/codegen profile remains open. |
 
 The first audit hypothesis incorrectly treated `0x00662F80..0x0067AFCF` as
 one codec island.  Read-only IDA call graphs disproved it: the prefix contains
 character behavior, renderer helpers, and `WinMain` at `0x00664C20`.  Those
 game rows remain authored/review work.  Library classification must use the
 audited row set, not address adjacency.
+
+A second pass found the inverse layout trap: libogg was not contiguous with
+libvorbis. Its 33 selected framing/bitwise functions were linked at
+`0x006A2FB0..0x006A3DD7` inside a larger mixed-origin address neighborhood.
+Target semantics and direct `ov_*` call edges, rather than neighborhood
+ownership, establish that separate third-party island.
 
 The zlib provenance is additionally supported by the official
 [zlib 1.2.3 source tag](https://github.com/madler/zlib/tree/v1.2.3). Xiph API
@@ -87,6 +95,17 @@ python3 scripts/build.py --unit zlib-inffast-anchor --compare --json
 python3 scripts/build.py --unit zlib-inftrees-gs-anchor --compare --json
 python3 scripts/build.py --unit zlib-adler32-anchor --compare --json
 python3 scripts/build.py --unit zlib-tree-anchors --compare --json
+```
+
+The Xiph release matrix currently favors official libvorbis v1.0.1: target
+`ov_time_seek` retains its old reverse link scan and the target
+`vorbis_info_init` allocates a `0xE80`-byte codec setup, while v1.1.0 through
+v1.2.3 use `0xE50`. Three small bodies are already strict exact. Reproduce
+them with:
+
+```bash
+python3 scripts/build.py --unit xiph-vorbis-info-anchors --compare --json
+python3 scripts/build.py --unit xiph-vorbisfile-host-endian-anchor --compare --json
 ```
 
 ### VC8 runtime and compiler output
@@ -174,8 +193,8 @@ pseudocode.
 
 ## Next provenance work
 
-1. Split the mixed Boost/project island `0x00690310..0x006A3DCF` by RTTI,
-   call-graph isolation, object signatures, and wrapper ownership.
+1. Continue splitting the mixed Boost/project island `0x00690310..0x006A3DCF`;
+   the separated 33-function libogg sub-island is now removed from review.
 2. Mine interspersed VC8 STL specializations, deleting destructors, thunks,
    and EH adapters in the game address region.  Promote only exact or
    provenance-supported bodies.

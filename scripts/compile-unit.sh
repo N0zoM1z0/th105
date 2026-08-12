@@ -52,6 +52,20 @@ src_include_win="$(path_to_windows "$repo_root/src")"
 crt_include_win="$(path_to_windows "$msvc_root/include")"
 sdk_include_win="$(path_to_windows "$msvc_root/PlatformSDK/Include")"
 
+extra_include_args=()
+if [[ -n "${TH105_EXTRA_INCLUDE_DIRS:-}" ]]; then
+  IFS=: read -r -a extra_include_dirs <<< "$TH105_EXTRA_INCLUDE_DIRS"
+  for include_dir in "${extra_include_dirs[@]}"; do
+    include_path="$(realpath "$include_dir")"
+    if [[ ! -d "$include_path" ]]; then
+      echo "missing extra include directory: $include_dir" >&2
+      exit 1
+    fi
+    include_win="$(path_to_windows "$include_path")"
+    extra_include_args+=("/I$include_win")
+  done
+fi
+
 # This is the fast non-LTCG probe configuration. The final executable build
 # will add /GL and link with /LTCG once its translation-unit set is recovered.
 # A small number of recovered translation units demonstrably use /GS; opt in
@@ -72,6 +86,7 @@ fi
   "/I$src_include_win" \
   "/I$crt_include_win" \
   "/I$sdk_include_win" \
+  "${extra_include_args[@]}" \
   "/Fo$output_win" \
   "$source_win" \
   2> >(filter_preload_noise)

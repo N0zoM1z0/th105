@@ -74,6 +74,18 @@ def load_manifest() -> dict[str, Any]:
             raise ValueError(f"match unit {name!r} has invalid compiler profile")
         if not isinstance(unit.get("enable_gs"), bool):
             raise ValueError(f"match unit {name!r} enable_gs must be boolean")
+        include_dirs = unit.get("include_dirs", [])
+        if not isinstance(include_dirs, list) or not all(
+            isinstance(path, str) and path for path in include_dirs
+        ):
+            raise ValueError(f"match unit {name!r} include_dirs must be a string list")
+        for raw_include_dir in include_dirs:
+            include_dir = repository_path(raw_include_dir)
+            if not include_dir.is_dir():
+                raise ValueError(
+                    f"match unit {name!r} include directory does not exist: "
+                    f"{raw_include_dir!r}"
+                )
         source = repository_path(str(unit.get("source", "")))
         if not source.is_file():
             raise ValueError(f"match unit {name!r} source does not exist")
@@ -185,6 +197,9 @@ def unit_input_digest(name: str, unit: dict[str, Any]) -> tuple[str, list[str]]:
     # Vendored library translation units include headers beside the source.
     # Hash them too, so an upstream-header change cannot reuse stale evidence.
     paths.update(source.parent.glob("*.h"))
+    for raw_include_dir in unit.get("include_dirs", []):
+        include_dir = repository_path(str(raw_include_dir))
+        paths.update(include_dir.rglob("*.h"))
     digest = hashlib.sha256()
     digest.update(name.encode("utf-8"))
     digest.update(str(unit["profile"]).encode("utf-8"))
