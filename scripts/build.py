@@ -32,17 +32,29 @@ def build_unit(
     source = repository_path(str(unit["source"]))
     output = repository_path(str(unit["object"]), output=True)
     output.parent.mkdir(parents=True, exist_ok=True)
-    environment = os.environ.copy()
-    environment["TH105_ENABLE_GS"] = "1" if unit["enable_gs"] else "0"
     include_dirs = [
         str(repository_path(str(path))) for path in unit.get("include_dirs", [])
     ]
-    environment["TH105_EXTRA_INCLUDE_DIRS"] = os.pathsep.join(include_dirs)
-    command = [
-        str(ROOT / "scripts" / "compile-unit.sh"),
-        str(source),
-        str(output),
-    ]
+    environment = os.environ.copy()
+    if unit["kind"] == "upstream_prebuilt":
+        command = [
+            sys.executable,
+            str(ROOT / "scripts" / "fetch-xiph-sdk-object.py"),
+            "--component",
+            str(unit["sdk_component"]),
+            "--object",
+            str(unit["sdk_object"]),
+            "--output",
+            str(output),
+        ]
+    else:
+        environment["TH105_ENABLE_GS"] = "1" if unit["enable_gs"] else "0"
+        environment["TH105_EXTRA_INCLUDE_DIRS"] = os.pathsep.join(include_dirs)
+        command = [
+            str(ROOT / "scripts" / "compile-unit.sh"),
+            str(source),
+            str(output),
+        ]
     completed = subprocess.run(
         command,
         cwd=ROOT,
@@ -69,13 +81,23 @@ def build_unit(
         "object": str(output.relative_to(ROOT)),
         "source_sha256": file_sha256(source),
         "object_sha256": file_sha256(output),
-        "compiler_sha256": compiler_sha256(),
+        "compiler_sha256": (
+            None if unit["kind"] == "upstream_prebuilt" else compiler_sha256()
+        ),
         "manifest_sha256": file_sha256(MANIFEST),
         "input_digest": input_digest,
         "inputs": inputs,
         "command": command,
         "built_utc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
     }
+    if unit["kind"] == "upstream_prebuilt":
+        provenance.update(
+            {
+                "sdk_archive_sha256": unit["sdk_archive_sha256"],
+                "sdk_component": unit["sdk_component"],
+                "sdk_object": unit["sdk_object"],
+            }
+        )
     provenance_path = output.with_suffix(output.suffix + ".provenance.json")
     provenance_path.write_text(json.dumps(provenance, indent=2) + "\n", encoding="utf-8")
     return provenance

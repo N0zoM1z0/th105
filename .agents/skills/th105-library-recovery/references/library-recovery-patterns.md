@@ -128,9 +128,18 @@ The first matrix pass produced two reusable lessons:
   `0x006A2FB0..0x006A3DD7`. Follow semantic call edges before declaring the
   surrounding mixed address neighborhood authored or runtime code.
 
-The v1.0.1 candidate currently gives three strict exact functions (44 bytes).
-Nontrivial `ov_*` bodies remain configuration/source-shape work; do not fan out
-their 100% status from release evidence alone.
+The v1.0.1 candidate initially gave three strict exact functions (44 bytes)
+under VC8, while nontrivial bodies differed. The historical Win32 project files
+explain why: release builds contain Intel compiler flags such as `/O3`, `/QaxK`,
+`/Qsox-`, and `/Qip`. The archived official SDK resolves that configuration
+gap directly. Its SHA-256-pinned prebuilt `info.obj`, `vorbisfile.obj`,
+`framing.obj`, and `bitwise.obj` match nontrivial target bodies and enable a
+translation-unit fan-out without guessing a modern compiler profile.
+
+Reusable rule: after source release identification, search historical official
+SDKs before hand-tuning compiler flags. Treat the SDK archive SHA, COFF member,
+and strict comparator as separate gates; never promote the whole archive from
+one exact anchor.
 
 ## Failure taxonomy and next action
 

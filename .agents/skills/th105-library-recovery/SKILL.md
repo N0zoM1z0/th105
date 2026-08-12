@@ -82,6 +82,21 @@ configuration `/O2 /GS- /MT`. Vary one build option at a time when target
 evidence requires it. Do not vendor upstream code until its exact release,
 license, and repository placement are decided.
 
+Before spending heavily on compiler-flag archaeology, inspect the upstream
+release's historical Windows SDK. A SHA-256-pinned official prebuilt `.lib` can
+preserve the original compiler and optimizer that the game actually linked.
+For Xiph 1.0.1, use the repository's fail-closed extractor rather than
+committing the SDK archive:
+
+```bash
+python3 scripts/fetch-xiph-sdk-object.py \
+  --component vorbis --object info.obj \
+  --output build/match-units/xiph_sdk_info.obj
+```
+
+Accept prebuilt objects only when the archive identity, member identity,
+license/provenance, and strict target comparison are all reproducible.
+
 ### 4. Form candidates breadth-first
 
 Use COFF section sizes, symbols, target ledger sizes, and call relationships to

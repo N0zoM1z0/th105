@@ -28,6 +28,7 @@ class WorkflowToolingTests(unittest.TestCase):
         cls.validator = load_script("validate-tracking.py")
         cls.comparator = load_script("compare-function.py")
         cls.manifest = load_script("workflow_manifest.py")
+        cls.xiph_sdk = load_script("fetch-xiph-sdk-object.py")
         cls.clones = load_script("clone-families.py")
         cls.packet = load_script("work-packet.py")
         cls.progress = load_script("progress.py")
@@ -114,6 +115,31 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(len(digest), 64)
         self.assertIn("third_party/zlib-1.2.3/zlib.h", inputs)
         self.assertIn("third_party/zlib-1.2.3/inffixed.h", inputs)
+
+    def test_xiph_sdk_parser_accepts_microsoft_nul_long_names(self) -> None:
+        long_name = b".\\Static_Release\\framing.obj\0"
+
+        def member(name: bytes, body: bytes) -> bytes:
+            header = (
+                name.ljust(16)
+                + b"0".ljust(12)
+                + b"0".ljust(6)
+                + b"0".ljust(6)
+                + b"100666".ljust(8)
+                + str(len(body)).encode("ascii").ljust(10)
+                + b"`\n"
+            )
+            return header + body + (b"\n" if len(body) & 1 else b"")
+
+        archive = (
+            b"!<arch>\n"
+            + member(b"//", long_name)
+            + member(b"/0", b"L\x01object")
+        )
+        self.assertEqual(
+            self.xiph_sdk.archive_members(archive),
+            [(".\\Static_Release\\framing.obj", b"L\x01object")],
+        )
 
     def test_known_clone_families_match_target(self) -> None:
         reports = self.clones.load_and_check()

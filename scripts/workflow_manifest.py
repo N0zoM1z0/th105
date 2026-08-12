@@ -17,11 +17,17 @@ MANIFEST = ROOT / "config" / "match-units.toml"
 FUNCTIONS = ROOT / "config" / "functions.csv"
 TARGET_CONFIG = ROOT / "config" / "target.toml"
 RELOCATIONS = ROOT / "config" / "reccmp-relocations.csv"
-ALLOWED_KINDS = {"probe", "synthetic_island", "linked_candidate"}
-ALLOWED_PROFILES = {"vc8-sp1-probe-o2"}
+ALLOWED_KINDS = {
+    "probe",
+    "synthetic_island",
+    "linked_candidate",
+    "upstream_prebuilt",
+}
+ALLOWED_PROFILES = {"vc8-sp1-probe-o2", "xiph-win32sdk-1.0.1"}
 ADDRESS = re.compile(r"0x[0-9A-F]{8}$")
 REL32_TARGET = re.compile(r"[^=\s]+=0x[0-9A-Fa-f]{8}$")
 DIR32_TARGET = re.compile(r"[^=\s]+=[^=\s]+$")
+XIPH_SDK_SHA256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
 
 
 def repository_path(raw: str, *, output: bool = False) -> Path:
@@ -74,6 +80,24 @@ def load_manifest() -> dict[str, Any]:
             raise ValueError(f"match unit {name!r} has invalid compiler profile")
         if not isinstance(unit.get("enable_gs"), bool):
             raise ValueError(f"match unit {name!r} enable_gs must be boolean")
+        if unit["kind"] == "upstream_prebuilt":
+            if unit["profile"] != "xiph-win32sdk-1.0.1":
+                raise ValueError(
+                    f"prebuilt match unit {name!r} has the wrong profile"
+                )
+            if unit.get("sdk_component") not in {"ogg", "vorbis", "vorbisfile"}:
+                raise ValueError(
+                    f"prebuilt match unit {name!r} has invalid sdk_component"
+                )
+            sdk_object = unit.get("sdk_object")
+            if not isinstance(sdk_object, str) or not sdk_object.endswith(".obj"):
+                raise ValueError(
+                    f"prebuilt match unit {name!r} has invalid sdk_object"
+                )
+            if unit.get("sdk_archive_sha256") != XIPH_SDK_SHA256:
+                raise ValueError(
+                    f"prebuilt match unit {name!r} has the wrong SDK archive hash"
+                )
         include_dirs = unit.get("include_dirs", [])
         if not isinstance(include_dirs, list) or not all(
             isinstance(path, str) and path for path in include_dirs
@@ -187,6 +211,7 @@ def unit_input_digest(name: str, unit: dict[str, Any]) -> tuple[str, list[str]]:
         ROOT / "scripts" / "build.py",
         ROOT / "scripts" / "compare-function.py",
         ROOT / "scripts" / "compile-unit.sh",
+        ROOT / "scripts" / "fetch-xiph-sdk-object.py",
         ROOT / "scripts" / "workflow_manifest.py",
         ROOT / "config" / "known-symbols.csv",
         ROOT / "config" / "reccmp-relocations.csv",
@@ -211,5 +236,9 @@ def unit_input_digest(name: str, unit: dict[str, Any]) -> tuple[str, list[str]]:
         digest.update(relative.encode("utf-8"))
         digest.update(bytes.fromhex(file_sha256(path)))
 
-    digest.update(bytes.fromhex(compiler_sha256()))
+    if unit["kind"] == "upstream_prebuilt":
+        digest.update(str(unit["sdk_component"]).encode("ascii"))
+        digest.update(str(unit["sdk_object"]).encode("ascii"))
+    else:
+        digest.update(bytes.fromhex(compiler_sha256()))
     return digest.hexdigest(), relative_paths
