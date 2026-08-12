@@ -47,6 +47,17 @@ def build_unit(
             "--output",
             str(output),
         ]
+    elif unit["kind"] == "msvc_prebuilt":
+        command = [
+            sys.executable,
+            str(ROOT / "scripts" / "extract-msvc-library-object.py"),
+            "--library",
+            str(unit["toolchain_library"]),
+            "--object",
+            str(unit["toolchain_object"]),
+            "--output",
+            str(output),
+        ]
     else:
         environment["TH105_ENABLE_GS"] = "1" if unit["enable_gs"] else "0"
         environment["TH105_EXTRA_INCLUDE_DIRS"] = os.pathsep.join(include_dirs)
@@ -82,7 +93,9 @@ def build_unit(
         "source_sha256": file_sha256(source),
         "object_sha256": file_sha256(output),
         "compiler_sha256": (
-            None if unit["kind"] == "upstream_prebuilt" else compiler_sha256()
+            None
+            if unit["kind"] in {"upstream_prebuilt", "msvc_prebuilt"}
+            else compiler_sha256()
         ),
         "manifest_sha256": file_sha256(MANIFEST),
         "input_digest": input_digest,
@@ -96,6 +109,14 @@ def build_unit(
                 "sdk_archive_sha256": unit["sdk_archive_sha256"],
                 "sdk_component": unit["sdk_component"],
                 "sdk_object": unit["sdk_object"],
+            }
+        )
+    elif unit["kind"] == "msvc_prebuilt":
+        provenance.update(
+            {
+                "toolchain_archive_sha256": unit["toolchain_archive_sha256"],
+                "toolchain_library": unit["toolchain_library"],
+                "toolchain_object": unit["toolchain_object"],
             }
         )
     provenance_path = output.with_suffix(output.suffix + ".provenance.json")

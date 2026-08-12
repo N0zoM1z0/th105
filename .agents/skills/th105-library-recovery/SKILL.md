@@ -97,6 +97,18 @@ python3 scripts/fetch-xiph-sdk-object.py \
 Accept prebuilt objects only when the archive identity, member identity,
 license/provenance, and strict target comparison are all reproducible.
 
+For the statically linked VC8 runtime, prefer the SHA-256-gated archive member
+extractor against the pinned toolchain instead of rebuilding CRT source:
+
+```bash
+python3 scripts/extract-msvc-library-object.py \
+  --library libcmt --object build/intel/mt_obj/memset.obj \
+  --output build/match-units/vc8_libcmt_memset.obj
+```
+
+Use `kind = "msvc_prebuilt"` match units for accepted members. Read
+`docs/VC8_RUNTIME_RECOVERY.md` before expanding this wave.
+
 ### 4. Form candidates breadth-first
 
 Use COFF section sizes, symbols, target ledger sizes, and call relationships to

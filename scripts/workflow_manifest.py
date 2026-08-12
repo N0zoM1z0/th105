@@ -22,12 +22,21 @@ ALLOWED_KINDS = {
     "synthetic_island",
     "linked_candidate",
     "upstream_prebuilt",
+    "msvc_prebuilt",
 }
-ALLOWED_PROFILES = {"vc8-sp1-probe-o2", "xiph-win32sdk-1.0.1"}
+ALLOWED_PROFILES = {
+    "vc8-sp1-probe-o2",
+    "xiph-win32sdk-1.0.1",
+    "vc8-sp1-libcmt",
+}
 ADDRESS = re.compile(r"0x[0-9A-F]{8}$")
 REL32_TARGET = re.compile(r"[^=\s]+=0x[0-9A-Fa-f]{8}$")
 DIR32_TARGET = re.compile(r"[^=\s]+=[^=\s]+$")
 XIPH_SDK_SHA256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
+MSVC_ARCHIVE_SHA256 = {
+    "libcmt": "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3",
+    "libcpmt": "e1b17cb213bfcf77e3c0988f8cb33ec8be143872d1c52de62c5da07ea1eb8031",
+}
 
 
 def repository_path(raw: str, *, output: bool = False) -> Path:
@@ -97,6 +106,25 @@ def load_manifest() -> dict[str, Any]:
             if unit.get("sdk_archive_sha256") != XIPH_SDK_SHA256:
                 raise ValueError(
                     f"prebuilt match unit {name!r} has the wrong SDK archive hash"
+                )
+        if unit["kind"] == "msvc_prebuilt":
+            if unit["profile"] != "vc8-sp1-libcmt":
+                raise ValueError(
+                    f"VC8 prebuilt match unit {name!r} has the wrong profile"
+                )
+            library = unit.get("toolchain_library")
+            if library not in MSVC_ARCHIVE_SHA256:
+                raise ValueError(
+                    f"VC8 prebuilt match unit {name!r} has invalid toolchain_library"
+                )
+            member = unit.get("toolchain_object")
+            if not isinstance(member, str) or not member.endswith(".obj"):
+                raise ValueError(
+                    f"VC8 prebuilt match unit {name!r} has invalid toolchain_object"
+                )
+            if unit.get("toolchain_archive_sha256") != MSVC_ARCHIVE_SHA256[library]:
+                raise ValueError(
+                    f"VC8 prebuilt match unit {name!r} has the wrong archive hash"
                 )
         include_dirs = unit.get("include_dirs", [])
         if not isinstance(include_dirs, list) or not all(
@@ -212,6 +240,7 @@ def unit_input_digest(name: str, unit: dict[str, Any]) -> tuple[str, list[str]]:
         ROOT / "scripts" / "compare-function.py",
         ROOT / "scripts" / "compile-unit.sh",
         ROOT / "scripts" / "fetch-xiph-sdk-object.py",
+        ROOT / "scripts" / "extract-msvc-library-object.py",
         ROOT / "scripts" / "workflow_manifest.py",
         ROOT / "config" / "known-symbols.csv",
         ROOT / "config" / "reccmp-relocations.csv",
@@ -239,6 +268,10 @@ def unit_input_digest(name: str, unit: dict[str, Any]) -> tuple[str, list[str]]:
     if unit["kind"] == "upstream_prebuilt":
         digest.update(str(unit["sdk_component"]).encode("ascii"))
         digest.update(str(unit["sdk_object"]).encode("ascii"))
+    elif unit["kind"] == "msvc_prebuilt":
+        digest.update(str(unit["toolchain_library"]).encode("ascii"))
+        digest.update(str(unit["toolchain_object"]).encode("ascii"))
+        digest.update(str(unit["toolchain_archive_sha256"]).encode("ascii"))
     else:
         digest.update(bytes.fromhex(compiler_sha256()))
     return digest.hexdigest(), relative_paths
