@@ -192,9 +192,18 @@ preserving the same acceptance gate.
 After the breadth wave, rescan unresolved ledger rows against function symbols
 in objects that are already proven. Static helpers omitted from the first
 candidate index can still be exact, and solving their table/constant
-relocations may unlock large callers immediately. In the Xiph tail this found
-nine additional functions and 7,316 bytes; seven genuinely divergent or
-unresolved functions (980 bytes) remained instead of being force-fitted.
+relocations may unlock large callers immediately. The first Xiph tail pass
+found nine additional functions and 7,316 bytes. A second pass then corrected
+six archive-call identities and audited their CRT, constant, and pointer-table
+relocations, adding another 926 exact bytes. Only `res0_free_look` (54 bytes)
+retains a real non-relocation difference.
+
+Do not infer an unresolved function's archive identity from address adjacency
+or a preliminary object label. Resolve its linked call destinations and exact
+COFF symbol first. The Xiph regression cases are `drft_init`, `drft_clear`,
+`mdct_init`, `mdct_clear`, `_vorbis_window_get`, and
+`_vorbis_apply_window`: all six initially looked like residual divergence, but
+strict relocation replay proved the official SDK bodies exact.
 
 Do not assume one source file per archived object when historical IPO is in
 use. In the official SDK, functions from `lookup.c` were emitted into

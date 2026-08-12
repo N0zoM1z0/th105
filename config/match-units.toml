@@ -2329,6 +2329,16 @@ address = "0x00674FF0"
 symbol_base = "_drfti1"
 dir32_targets = ["_?ntryh@?1??drfti1@@9@9+0x10=_?ntryh@?1??drfti1@@9@9+0x10"]
 
+[[units.xiph-sdk-vorbis-smallft-forward.functions]]
+address = "0x00674F90"
+symbol_base = "_drft_init"
+rel32_targets = ["_calloc=0x0067DED2","_fdrffti=0x00674FD0"]
+
+[[units.xiph-sdk-vorbis-smallft-forward.functions]]
+address = "0x00675180"
+symbol_base = "_drft_clear"
+rel32_targets = ["_free=0x0067DD26"]
+
 [units.xiph-sdk-vorbis-mdct-butterflies]
 kind = "upstream_prebuilt"
 source = "third_party/libvorbis-1.0.1/lib/mdct.c"
@@ -2362,6 +2372,35 @@ rel32_targets = ["_mdct_butterfly_8=0x00675DF0"]
 address = "0x00675FA0"
 symbol_base = "_mdct_forward"
 rel32_targets = ["__alloca_probe=0x0067E560","_mdct_butterfly_generic=0x00675E80","_mdct_butterfly_32=0x006758F0"]
+
+[[units.xiph-sdk-vorbis-mdct-butterflies.functions]]
+address = "0x006751C0"
+symbol_base = "_mdct_init"
+rel32_targets = ["_malloc=0x0067DC63","_floor=0x0067E3C0","__ftol=0x0067E4F0"]
+
+[[units.xiph-sdk-vorbis-mdct-butterflies.functions]]
+address = "0x006753A0"
+symbol_base = "_mdct_clear"
+rel32_targets = ["_free=0x0067DD26"]
+
+[units.xiph-sdk-vorbis-window]
+kind = "upstream_prebuilt"
+source = "third_party/libvorbis-1.0.1/lib/window.c"
+object = "build/match-units/xiph_sdk_vorbis_window.obj"
+profile = "xiph-win32sdk-1.0.1"
+enable_gs = false
+sdk_component = "vorbis"
+sdk_object = "window.obj"
+sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
+notes = "Strict exact target functions retained from official SDK window.obj after auditing the linked vwin pointer table."
+
+[[units.xiph-sdk-vorbis-window.functions]]
+address = "0x00676420"
+symbol_base = "__vorbis_window_get"
+
+[[units.xiph-sdk-vorbis-window.functions]]
+address = "0x00676430"
+symbol_base = "__vorbis_apply_window"
 
 [units.xiph-sdk-vorbis-floor0]
 kind = "upstream_prebuilt"

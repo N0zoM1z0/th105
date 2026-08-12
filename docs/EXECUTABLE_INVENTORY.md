@@ -57,7 +57,7 @@ transition is visible.
 | Selector | Rows | Bytes | Evidence and limit |
 | --- | ---: | ---: | --- |
 | `0x00664FA0..0x0066AC2D` | 44 | 21,553 | Target has the zlib 1.2.3 version string and `inflateReset`, `inflateInit2`, `inflate`, and `inflate_fast` fingerprints. |
-| `0x0066BFD0..0x0067AFCF` | 151 | 52,055 | Static libvorbis/libvorbisfile cluster anchored by `ov_clear`, `ov_open_callbacks`, `ov_info`, `ov_time_seek`, `ov_time_tell`, and `ov_read`. Eighty-three unique functions/27,062 bytes are strict exact against the official Win32 SDK 1.0.1 objects; this includes every selected target function from `vorbisfile.obj`, `info.obj`, `block.obj`, `synthesis.obj`, `codebook.obj`, `floor1.obj`, `res0.obj`, and `mapping0.obj`. |
+| `0x0066BFD0..0x0067AFCF` | 151 | 52,055 | Static libvorbis/libvorbisfile cluster anchored by `ov_clear`, `ov_open_callbacks`, `ov_info`, `ov_time_seek`, `ov_time_tell`, and `ov_read`. One hundred fifty unique functions/52,001 bytes are strict exact against the official Win32 SDK 1.0.1 objects. Only `res0_free_look` (54 bytes) remains non-exact. |
 | `0x006A2FB0..0x006A3DD7` | 33 | 3,343 | Separated libogg `framing.c`/`bitwise.c` graph proven by page-header semantics, `_packetout`, `oggpack_*`, and direct calls from the `ov_*` cluster. All 33 functions/3,343 bytes are strict exact against the official Win32 SDK 1.0.1 objects. |
 
 The first audit hypothesis incorrectly treated `0x00662F80..0x0067AFCF` as
@@ -121,6 +121,7 @@ python3 scripts/build.py --unit xiph-sdk-vorbis-bitrate --compare --json
 python3 scripts/build.py --unit xiph-sdk-vorbis-envelope --compare --json
 python3 scripts/build.py --unit xiph-sdk-vorbis-smallft-forward --compare --json
 python3 scripts/build.py --unit xiph-sdk-vorbis-mdct-butterflies --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-window --compare --json
 python3 scripts/build.py --unit xiph-sdk-vorbis-floor0 --compare --json
 python3 scripts/build.py --unit xiph-sdk-vorbis-lsp --compare --json
 python3 scripts/build.py --unit xiph-sdk-vorbis-lookup --compare --json
@@ -128,11 +129,11 @@ python3 scripts/build.py --unit xiph-sdk-ogg-framing-relocation-free --compare -
 python3 scripts/build.py --unit xiph-sdk-ogg-bitwise-relocation-free --compare --json
 ```
 
-These units strictly reproduce 144 unique libvorbis/vorbisfile functions and
-51,075 function bytes. Together with the complete 33-function libogg island,
-the Xiph work leaves seven libvorbis functions and 980 bytes unresolved. The
-remaining rows stay visible as third-party work rather than being inferred
-exact from their neighbours.
+These units strictly reproduce 150 unique libvorbis/vorbisfile functions and
+52,001 function bytes. Together with the complete 33-function libogg island,
+the Xiph work leaves only `res0_free_look` (54 bytes) unresolved. Its official
+SDK body has a real two-byte non-relocation difference, so it remains visible
+as third-party work rather than being inferred exact from its neighbours.
 
 ### VC8 runtime and compiler output
 
