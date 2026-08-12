@@ -146,6 +146,25 @@ bytes.  Its previous ledger size was short by `0x68`; IDA and the target's
 terminal `ret` agree on the corrected boundary.  Its local EH tails are not
 part of that contiguous span.
 
+### Roster construction boundary
+
+`0x004632D0` is now source-reconstructed as the 15-way fighter factory. It
+selects `MatchSetup::Side+0x00`, allocates the observed family span, calls the
+corresponding derived constructor with that `Side`, enters `0x00462050`, stores
+the result at `BattleSlotState+0x28+4*slot`, and returns the slot. The exact
+allocation table is retained in `src/battle/FighterFactory.cpp`; no common-size
+or guessed derived hierarchy is used.
+
+Every derived constructor calls `0x00461A90`, now real source in
+`src/battle/FighterBaseInitialization.cpp`. That common base packet performs
+the `AttackObject` construction, initializes three sprite-compatible headers,
+initializes the spell-data and `+0x674` subobjects, creates three
+allocation-backed members, and copies
+`Side+0x00/+0x04/+0x05/+0x06/+0x08/+0x1C` to observed fighter fields. Both
+source packets compile with VC8. Their first strict comparison fail-closes at
+an unregistered local EH-handler `DIR32`; this is an exact-work boundary, not
+a matching claim.
+
 ## Shared command layer
 
 The functions at `0x00493300..0x00493580` are not Reimu-specific despite

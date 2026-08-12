@@ -5,6 +5,10 @@ caller,callee,required_status,evidence
 0x0045BB10,0x004643F0,decompiled,exact embedded Fighter+0x3D0 effect reset
 0x0045BB10,0x00431860,decompiled,exact player-indexed spell display callback
 0x00432500,0x00404FA0,identified,IDA Pro release each image handle before container reset
+0x00404EC0,0x00402680,identified,IDA exact-target texture load allocates a shared generation token before populating its resource cell
+0x00404F30,0x00402680,identified,IDA exact-target composite texture builder allocates a shared generation token before populating its resource cell
+0x00404FA0,0x004027F0,identified,IDA exact-target release returns the token to the shared manager after resource release
+0x00404FA0,0x00417010,identified,IDA exact-target release resolves a generation-checked resource pointer before virtual release
 0x00432500,0x004132D0,decompiled,IDA Pro DwordDeque4 storage clear
 0x00432500,0x0042D240,implemented,Complete authored recursive SpellTree subtree destruction
 0x004325B0,0x00431590,decompiled,IDA Pro short-key temporary-tree nil allocation
@@ -146,6 +150,8 @@ caller,callee,required_status,evidence
 0x00462050,0x0045E080,identified,docs/BATTLE.md indexed resource initialization phase
 0x00462050,0x00460B50,decompiled,docs/BATTLE.md complete PAT palette group record nested record and EH inventory
 0x00462050,0x00464320,identified,docs/BATTLE.md final character resource callback
+0x00461A90,0x00430F70,identified,IDA exact-target constructor copies Side+08 through the fighter spell-data subobject input initializer
+0x004632D0,0x00462050,implemented,IDA exact-target factory unconditionally enters fighter spell-resource initialization after the selected derived constructor
 0x004631E0,0x00463120,library,strict exact VC8 std::deque<short>::_Assign_n dependency
 0x00463610,0x00459E50,matching,IDA Pro exact five-pass callback phase reaches common fighter update
 0x00463760,0x00459860,matching,IDA Pro exact commit phase position integration

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CollisionList.hpp"
+#include "GameMode.hpp"
 
 namespace th105 {
 
@@ -323,6 +324,7 @@ struct Fighter {
     bool is_front_sequence_entry_ready_55a(signed char index);
     unsigned char consume_spell_sequence_entry();
     void prepare_next_spell_sequence_entry();
+    Fighter *initialize_fighter_base_from_setup(const MatchSetup::Side *setup);
     void initialize_fighter_battle_state();
     void load_pat_data_and_palette_resources();
     void load_indexed_character_wave_resources();

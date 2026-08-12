@@ -50,6 +50,9 @@ CSV and asset load
 └── resources
     ├── 0x00404EC0 acquire/load one texture handle [decompiled]
     ├── 0x00404F30 build 512x256 composite [decompiled]
+    ├── 0x00402680 shared generation-token allocation [identified]
+    ├── 0x00417010 generation-checked resource lookup [identified]
+    ├── 0x004027F0 token recycle after external resource release [identified]
     ├── 0x00416A50 four-byte handle deque append [library exact]
     └── 0x00406C30 optional sprite resource vcall adapter [decompiled]
 
@@ -170,6 +173,23 @@ right subtrees, walks left, releases both owning strings, and frees every
 non-nil 0x60-byte node. The strict result is 116 bytes against the 108-byte
 ledger span with first mismatch `+0x0C`; only VC8 prologue/register scheduling
 remains after the member ABI correction proved by exact `0x00432500`.
+
+## Shared resource-handle boundary
+
+The texture path is not spell-private. `0x00402680` is the observed
+`CHandleManager<IDirect3DTexture9 *>` allocation boundary: it returns writable
+resource-cell storage and emits a four-byte `{slot,generation}` token. Fresh
+tokens append a zero cell, its stable address, and its generation; reused
+tokens pop the free-slot list. `0x00417010` validates the pair under the
+manager lock before returning the stored resource pointer. `0x00404FA0`
+releases the external texture, clears the cell, and then calls `0x004027F0` to
+recycle the token. This is stale-handle protection, not COM reference counting.
+The raw layout and token ABI are in `src/assets/ResourceHandleManager.hpp`.
+
+`0x00431C10` is removed from authored spell work: target instructions prove
+the VC8 checked unique 16-bit tree `erase(iterator)` body. The accepted ledger
+span ends before the physical epilogue, so this is a provenance-backed
+`library` classification, not a whole-function exact match.
 
 ## Boundary gate
 

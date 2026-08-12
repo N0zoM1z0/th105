@@ -1,5 +1,7 @@
 #pragma once
 
+#include "GameMode.hpp"
+
 namespace th105 {
 
 class Character;
@@ -11,6 +13,7 @@ struct BattleSlotState {
 
     Character *get_slot_character(unsigned slot) const;
     unsigned char is_slot_active(unsigned slot) const;
+    int create_fighter_for_slot(int slot, const MatchSetup::Side *setup);
 };
 
 int get_battle_setup_task();

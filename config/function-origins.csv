@@ -52,12 +52,12 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00402562,unknown,,review,unknown,
 0x004025CB,unknown,,review,unknown,
 0x00402620,unknown,,review,unknown,
-0x00402680,unknown,,review,unknown,
-0x004027F0,unknown,,review,unknown,
+0x00402680,authored_game,assets,include_authored,inferred,ledger-authored-module
+0x004027F0,authored_game,assets,include_authored,inferred,ledger-authored-module
 0x004028A0,unknown,,review,unknown,
 0x004028D0,unknown,,review,unknown,
 0x00402950,unknown,,review,unknown,
-0x004029C0,unknown,,review,unknown,
+0x004029C0,unknown,runtime,review,unknown,
 0x00402A20,unknown,,review,unknown,
 0x00402A50,vc8_runtime,runtime,exclude_authored,observed,ledger-library
 0x00402AB0,unknown,,review,unknown,
@@ -520,7 +520,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00416B40,unknown,,review,unknown,
 0x00416D10,vc8_runtime,runtime,exclude_authored,observed,ledger-library
 0x00416E70,unknown,,review,unknown,
-0x00417010,unknown,,review,unknown,
+0x00417010,authored_game,assets,include_authored,inferred,ledger-authored-module
 0x004170E0,unknown,,review,unknown,
 0x00417160,unknown,,review,unknown,
 0x004171E0,unknown,,review,unknown,
@@ -1034,7 +1034,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00431860,authored_game,battle,include_authored,inferred,ledger-authored-module
 0x00431950,authored_game,battle,include_authored,inferred,ledger-authored-module
 0x00431A10,unknown,,review,unknown,
-0x00431C10,unknown,,review,unknown,
+0x00431C10,vc8_runtime,runtime,exclude_authored,observed,ledger-library
 0x00431ED0,authored_game,battle,include_authored,inferred,ledger-authored-module
 0x00431F90,unknown,,review,unknown,
 0x00432021,unknown,,review,unknown,
@@ -1899,7 +1899,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00460AD0,unknown,,review,unknown,
 0x00460B50,authored_game,battle,include_authored,inferred,ledger-authored-module
 0x00461A80,unknown,,review,unknown,
-0x00461A90,unknown,,review,unknown,
+0x00461A90,authored_game,battle,include_authored,inferred,ledger-authored-module
 0x00461CC0,unknown,,review,unknown,
 0x00462050,authored_game,battle,include_authored,inferred,ledger-authored-module
 0x004621A0,unknown,,review,unknown,
@@ -1916,7 +1916,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00463270,authored_game,battle,include_authored,inferred,ledger-authored-module
 0x00463280,authored_game,battle,include_authored,inferred,ledger-authored-module
 0x00463290,authored_game,battle,include_authored,inferred,ledger-authored-module
-0x004632D0,unknown,,review,unknown,
+0x004632D0,authored_game,battle,include_authored,inferred,ledger-authored-module
 0x00463610,authored_game,battle,include_authored,inferred,ledger-authored-module
 0x00463760,authored_game,battle,include_authored,inferred,ledger-authored-module
 0x00463820,authored_game,battle,include_authored,inferred,ledger-authored-module

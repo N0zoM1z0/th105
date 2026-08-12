@@ -4,6 +4,9 @@ address,lane,priority,notes
 0x00401D70,hit-resolution,3,Wave-handle dispatch reached by indexed battle events
 0x004020B0,battle-controller,3,Exact String28 slice copy used for owning scenario event-name arguments
 0x004021C0,spell-assets,3,Opaque parser helper reached by the hard spell CSV parser
+0x00402680,spell-assets,2,Shared generational resource-handle allocation behind texture and wave loads
+0x004027F0,spell-assets,2,Shared generational resource-handle token recycle behind texture release
+0x004029C0,spell-assets,3,Checked four-byte resource-slot vector access used by token allocation
 0x00402A50,character-owned-object,1,Shared reusable pool node removal contract
 0x00404980,battle-phase,2,Render or service mode transition used by the shared sixteen-step phase
 0x00404A10,battle-phase,2,State-pair dependent service command transition used by the shared phase
@@ -32,6 +35,7 @@ address,lane,priority,notes
 0x0040F780,spell-assets,2,CSV reader cleanup boundary
 0x004132D0,spell-assets,2,DwordDeque4 block and map storage clear used by spell-owner reset
 0x00416A50,spell-assets,2,Loaded resource registration boundary
+0x00417010,spell-assets,2,Shared generation-checked resource-handle lookup before texture release
 0x0041FEA0,collision-phase,3,Exact collision-list sentinel allocation
 0x00421310,character-owned-object,1,CEffectSprite constructor required by the shared AttackObject constructor
 0x00425CB0,battle-controller,2,Roster metadata copy reached by exact roster preparation
@@ -81,6 +85,7 @@ address,lane,priority,notes
 0x00430C80,spell-data,2,Post-load spell data finalization contract
 0x00430D90,spell-runtime,2,Spell record selector contract
 0x00430DE0,spell-data,2,Exact normal versus alternate loader selector
+0x00430F70,fighter-init,2,Fighter constructor spell-data input payload initialization boundary
 0x00430FA0,fighter-init,2,Category-dependent sequence mode setter
 0x00431430,spell-assets,2,Exact VC8 checked spell-map iterator predecessor specialization
 0x00431590,spell-data,2,Short-key temporary-tree nil-node allocation
@@ -189,6 +194,7 @@ address,lane,priority,notes
 0x0045E5F0,fighter-init,2,Sequence controller reset contract
 0x0045F140,fighter-init,1,Fighter battle-state reset and initial sequence publication
 0x00460B50,fighter-init,2,Pre-resource fighter initialization boundary
+0x00461A90,fighter-init,1,Shared base fighter construction from MatchSetup side contract
 0x00462050,fighter-init,1,Fighter spell data face and back-resource initialization
 0x00462380,fighter-init,2,First subordinate fighter initialization phase
 0x00462E20,battle-controller,2,Fighter round initialization dependency
@@ -197,6 +203,7 @@ address,lane,priority,notes
 0x00463270,battle-controller,2,Exact fighter slot character accessor
 0x00463280,battle-controller,2,Exact fighter slot active gate
 0x00463290,battle-controller,2,Fighter slot configuration reached by exact roster preparation
+0x004632D0,fighter-init,1,Fifteen-family fighter allocation factory bridging slots to resource initialization
 0x00463610,battle-phase,3,Exact active character and owned-object callback phase
 0x00463760,battle-phase,3,Exact physics status and timer commit phase
 0x00463820,battle-phase,2,Ordered fighter-vector vslot +0x2C pass with side selection

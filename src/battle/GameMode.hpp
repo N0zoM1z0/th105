@@ -14,7 +14,12 @@ enum GameMode {
 struct MatchSetup {
     struct Side {
         int character_key_00;
-        unsigned char unknown_04[0x1c];
+        unsigned char fighter_option_04;
+        unsigned char fighter_option_05;
+        unsigned char fighter_category_06;
+        unsigned char unknown_07;
+        unsigned char input_payload_08[0x14];
+        void *transition_link_1c;
     };
 
     int match_identifier_00;
