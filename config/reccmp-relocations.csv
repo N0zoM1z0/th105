@@ -309,3 +309,7 @@ __real@8@c0068300000000000000,0x006B73E8,00000000006060c0,0x0,Official SDK vorbi
 __real@8@00000000000000000000,0x006C0ED0,0000000000000000,0x0,Official SDK vorbisfile.obj zero double equals target,literal
 __real@4@40068000000000000000,0x006B73F4,00000043,0x0,Official SDK vorbisfile.obj float 128 equals target,literal
 __real@4@400e8000000000000000,0x006B73F0,00000047,0x0,Official SDK vorbisfile.obj float 32768 equals target,literal
+__floor_P,0x006D9138,b8156e00,0x0,Official SDK info/block objects reference target floor backend table,address
+__residue_P,0x006D9140,38116e00,0x0,Official SDK info/block objects reference target residue backend table,address
+__mapping_P,0x006D914C,20116e00,0x0,Official SDK info/block objects reference target mapping backend table,address
+??_C@_06GIBB@vorbis?$AA@,0x006D31C4,766f7262697300,0x0,Official SDK info.obj vorbis signature literal equals target,literal

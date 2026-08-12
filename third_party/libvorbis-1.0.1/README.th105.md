@@ -31,11 +31,16 @@ bytes in total. This includes the 1,516-byte `ov_pcm_seek_page`, 860-byte
 `ov_read`, and four verified floating-point DIR32 literals. The final call in
 target `0x0066DD00` resolves to `ov_pcm_seek`, proving the function is
 `ov_time_seek` rather than the otherwise byte-identical `ov_time_seek_page`
-candidate.
+candidate. The next dependency wave completed every TH105 function selected
+from `info.obj`, `block.obj`, and `synthesis.obj`. The accepted total is now 49
+functions and 14,857 bytes, including the 1,615-byte
+`vorbis_synthesis_blockin` and the 919-byte shared DSP initializer.
 
 Reproduce the accepted bytes with:
 
 ```bash
 python3 scripts/build.py --unit xiph-vorbis-info-anchors --compare --json
 python3 scripts/build.py --unit xiph-vorbisfile-host-endian-anchor --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-block --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-synthesis --compare --json
 ```

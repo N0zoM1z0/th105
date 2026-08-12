@@ -6,11 +6,11 @@ Authored-game and external/library results are shown separately and combined.
 
 - Matching functions: **214 / 2943 (7.27%)**
 - Matching function bytes: **28,717 / 2,474,126 (1.16%)**
-- Reproducible library functions: **118 / 1897 (6.22%)**
-- Reproducible library bytes: **34,898 / 169,825 (20.55%)**
-- Reproducible third-party functions: **106 / 228 (46.49%)**
-- Reproducible third-party bytes: **33,754 / 76,951 (43.86%)**
-- Combined exact reconstruction: **332 / 4840 (6.86%) functions**, **63,615 / 2,643,951 (2.41%) bytes**
+- Reproducible library functions: **138 / 1897 (7.27%)**
+- Reproducible library bytes: **40,897 / 169,825 (24.08%)**
+- Reproducible third-party functions: **126 / 228 (55.26%)**
+- Reproducible third-party bytes: **39,753 / 76,951 (51.66%)**
+- Combined exact reconstruction: **352 / 4840 (7.27%) functions**, **69,614 / 2,643,951 (2.63%) bytes**
 - Ghidra internal `.text` inventory: **4,840 functions**
 - Origin census: **1,897 excluded**, **667 confirmed authored**, **2,276 awaiting origin review**
 - Exact within confirmed-authored census: **214 / 667 (32.08%) functions**, **28,717 / 1,308,598 (2.19%) bytes**

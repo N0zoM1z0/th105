@@ -698,3 +698,28 @@ address,name,module,confidence,evidence
 0x0066F940,vorbis_synthesis,third_party,observed,Official SDK synthesis.obj masked identity
 0x0066FA90,vorbis_synthesis_trackonly,third_party,observed,Official SDK synthesis.obj masked identity
 0x0066FB70,vorbis_packet_blocksize,third_party,observed,Official SDK synthesis.obj masked identity
+0x0067E900,__allshr,runtime,observed,Linked REL32 destination in official Xiph SDK block.obj and exact target bytes
+0x0066E5F0,__v_readstring,third_party,observed,Official SDK info.obj internal static function identity
+0x0066E620,__vorbis_unpack_info,third_party,observed,Official SDK info.obj internal static function identity
+0x0066E700,__vorbis_unpack_comment,third_party,observed,Official SDK info.obj internal static function identity
+0x0066E7E0,__vorbis_unpack_books,third_party,observed,Official SDK info.obj internal static function identity
+0x0066EAB0,__vorbis_block_alloc,third_party,observed,Official SDK block.obj internal function identity
+0x0066EB20,__vorbis_block_ripcord,third_party,observed,Official SDK block.obj internal function identity
+0x0066EBF0,__vds_shared_init,third_party,observed,Official SDK block.obj internal static function identity
+0x0066FBF0,__vp_global_free,third_party,observed,Official SDK block.obj linked destination
+0x0066FC10,__vi_psy_free,third_party,observed,Official SDK block.obj linked destination
+0x0066FC30,__vp_psy_init,third_party,observed,Official SDK block.obj linked destination
+0x00670980,__vp_psy_clear,third_party,observed,Official SDK block.obj linked destination
+0x006728C0,vorbis_staticbook_destroy,third_party,observed,Official SDK block.obj linked destination
+0x006728E0,vorbis_book_clear,third_party,observed,Official SDK block.obj linked destination
+0x00672940,vorbis_book_init_encode,third_party,observed,Official SDK block.obj linked destination
+0x006729A0,vorbis_book_init_decode,third_party,observed,Official SDK block.obj linked destination
+0x00672DF0,vorbis_staticbook_unpack,third_party,observed,Official SDK block.obj linked destination
+0x00673A70,vorbis_bitrate_clear,third_party,observed,Official SDK block.obj linked destination
+0x00673B70,__ve_envelope_clear,third_party,observed,Official SDK block.obj linked destination
+0x00674F90,drft_init,third_party,observed,Official SDK block.obj linked destination
+0x00675180,drft_clear,third_party,observed,Official SDK block.obj linked destination
+0x006751C0,mdct_init,third_party,observed,Official SDK block.obj linked destination
+0x006753A0,mdct_clear,third_party,observed,Official SDK block.obj linked destination
+0x00676420,__vorbis_window_get,third_party,observed,Official SDK block.obj linked destination
+0x006766D0,ilog2,third_party,observed,Official SDK block.obj linked destination

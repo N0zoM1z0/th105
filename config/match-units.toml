@@ -1733,7 +1733,7 @@ enable_gs = false
 sdk_component = "vorbis"
 sdk_object = "info.obj"
 sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
-notes = "Official OggVorbis Win32 SDK 1.0.1 prebuilt info.obj, archive SHA-256 fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc."
+notes = "All ten info.obj functions retained by TH105 are strict exact after replaying verified SDK relocations; archive SHA-256 fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc."
 
 [[units.xiph-vorbis-info-anchors.functions]]
 address = "0x0066E2A0"
@@ -1752,6 +1752,108 @@ symbol_base = "_vorbis_info_blocksize"
 address = "0x0066E350"
 symbol_base = "_vorbis_info_init"
 rel32_targets = ["_calloc=0x0067DED2"]
+
+[[units.xiph-vorbis-info-anchors.functions]]
+address = "0x0066E380"
+symbol_base = "_vorbis_info_clear"
+
+[[units.xiph-vorbis-info-anchors.functions]]
+address = "0x0066E4F0"
+symbol_base = "_vorbis_synthesis_headerin"
+
+[[units.xiph-vorbis-info-anchors.functions]]
+address = "0x0066E5F0"
+symbol_base = "__v_readstring"
+
+[[units.xiph-vorbis-info-anchors.functions]]
+address = "0x0066E620"
+symbol_base = "__vorbis_unpack_info"
+
+[[units.xiph-vorbis-info-anchors.functions]]
+address = "0x0066E700"
+symbol_base = "__vorbis_unpack_comment"
+
+[[units.xiph-vorbis-info-anchors.functions]]
+address = "0x0066E7E0"
+symbol_base = "__vorbis_unpack_books"
+
+[units.xiph-sdk-vorbis-block]
+kind = "upstream_prebuilt"
+source = "third_party/libvorbis-1.0.1/lib/block.c"
+object = "build/match-units/xiph_sdk_vorbis_block.obj"
+profile = "xiph-win32sdk-1.0.1"
+enable_gs = false
+sdk_component = "vorbis"
+sdk_object = "block.obj"
+sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
+notes = "All eleven block.obj functions retained by TH105, replayed from the pinned official SDK COFF object."
+
+[[units.xiph-sdk-vorbis-block.functions]]
+address = "0x0066EA60"
+symbol_base = "_vorbis_block_init"
+
+[[units.xiph-sdk-vorbis-block.functions]]
+address = "0x0066EAB0"
+symbol_base = "__vorbis_block_alloc"
+
+[[units.xiph-sdk-vorbis-block.functions]]
+address = "0x0066EB20"
+symbol_base = "__vorbis_block_ripcord"
+
+[[units.xiph-sdk-vorbis-block.functions]]
+address = "0x0066EB90"
+symbol_base = "_vorbis_block_clear"
+
+[[units.xiph-sdk-vorbis-block.functions]]
+address = "0x0066EBF0"
+symbol_base = "__vds_shared_init"
+
+[[units.xiph-sdk-vorbis-block.functions]]
+address = "0x0066EF90"
+symbol_base = "_vorbis_dsp_clear"
+
+[[units.xiph-sdk-vorbis-block.functions]]
+address = "0x0066F1C0"
+symbol_base = "_vorbis_synthesis_restart"
+
+[[units.xiph-sdk-vorbis-block.functions]]
+address = "0x0066F230"
+symbol_base = "_vorbis_synthesis_init"
+
+[[units.xiph-sdk-vorbis-block.functions]]
+address = "0x0066F260"
+symbol_base = "_vorbis_synthesis_blockin"
+
+[[units.xiph-sdk-vorbis-block.functions]]
+address = "0x0066F8B0"
+symbol_base = "_vorbis_synthesis_pcmout"
+
+[[units.xiph-sdk-vorbis-block.functions]]
+address = "0x0066F910"
+symbol_base = "_vorbis_synthesis_read"
+
+[units.xiph-sdk-vorbis-synthesis]
+kind = "upstream_prebuilt"
+source = "third_party/libvorbis-1.0.1/lib/synthesis.c"
+object = "build/match-units/xiph_sdk_vorbis_synthesis.obj"
+profile = "xiph-win32sdk-1.0.1"
+enable_gs = false
+sdk_component = "vorbis"
+sdk_object = "synthesis.obj"
+sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
+notes = "All three synthesis.obj functions retained by TH105, replayed from the pinned official SDK COFF object."
+
+[[units.xiph-sdk-vorbis-synthesis.functions]]
+address = "0x0066F940"
+symbol_base = "_vorbis_synthesis"
+
+[[units.xiph-sdk-vorbis-synthesis.functions]]
+address = "0x0066FA90"
+symbol_base = "_vorbis_synthesis_trackonly"
+
+[[units.xiph-sdk-vorbis-synthesis.functions]]
+address = "0x0066FB70"
+symbol_base = "_vorbis_packet_blocksize"
 
 [units.xiph-vorbisfile-host-endian-anchor]
 kind = "upstream_prebuilt"
