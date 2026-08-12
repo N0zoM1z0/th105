@@ -1,6 +1,7 @@
 #include "SpellData.hpp"
 
 #include "assets/CsvReader.hpp"
+#include "assets/SpellTexturePool.hpp"
 
 namespace th105 {
 
@@ -10,24 +11,9 @@ extern "C" __declspec(dllimport) int __cdecl wsprintfA(
     ...);
 extern "C" void __cdecl _invalid_parameter_noinfo(void);
 
-struct SpellTexturePool {
-    unsigned *load_texture(
-        unsigned *result,
-        const char *path,
-        void *load_state,
-        void *upload_state);
-    unsigned *create_composite_texture(
-        unsigned *result,
-        const char *path_list,
-        void *upload_state,
-        int width,
-        int height);
-};
-
-extern SpellTexturePool g_spell_texture_pool;
 extern unsigned g_spell_texture_load_state;
 extern unsigned g_spell_texture_upload_state;
-extern unsigned g_spell_composite_upload_state;
+extern CompositeTextureUploadState g_spell_composite_upload_state;
 
 __forceinline unsigned &DwordDeque4::back_checked()
 {

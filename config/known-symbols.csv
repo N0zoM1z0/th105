@@ -62,7 +62,9 @@ address,name,module,confidence,evidence
 0x0041EAA0,IColor_dtor,battle,observed,IDA Pro cleanup funclet and exact VC8 7-byte comparison restore the IColor vtable 0x006AC624
 0x0041EB30,CEffectSprite_scalar_deleting_destructor,battle,observed,IDA Pro CEffectSprite vtable slot and exact VC8 31-byte contiguous comparison
 0x0041FEA0,create_collision_list_sentinel,battle,inferred,docs/BATTLE.md exact 12-byte self-linked sentinel allocation
-0x00404F30,TexturePool_create_texture_from_path,assets,observed,IDA Pro target instructions acquire index-generation handle create or populate texture and recycle on negative status
+0x00404F30,SpellTexturePool_create_composite_texture,assets,observed,Complete source allocation/population/recycle envelope; target lowers three shared calls through LTCG private register ABIs
+0x00409300,populate_composite_texture_resource,assets,observed,"PE/IDA complete A8R8G8B8 create, lock, clear, +0x140 surface-view publication, text render and unlock flow"
+0x00411F80,CompositeTextureUploadState_render_composite_text,assets,observed,IDA exact-target multibyte/markup renderer called by the composite texture population backend
 0x0040EB20,csv_reader_load,assets,observed,IDA Pro target instructions load parse reset and free temporary input buffer
 0x0040EE50,csv_reader_next_int,assets,observed,IDA Pro target instructions checked field consumption and atol conversion
 0x0040EF50,csv_reader_next_string,assets,observed,IDA Pro target instructions checked field consumption and owning VC8 string copy

@@ -91,6 +91,7 @@ __ehhandler$??0?$deque@FV?$allocator@F@std@@@std@@QAE@ABV01@@Z,0x006A4D60,8b5424
 ?g_spell_texture_load_state@th105@@3IA,0x006E4C64,00000000,0x0,target zero-filled spell texture load-state word verified through IDA target memory,address
 ?g_spell_texture_upload_state@th105@@3IA,0x006E4C60,00000000,0x0,target zero-filled spell texture upload-state word verified through IDA target memory,address
 ?g_spell_composite_upload_state@th105@@3IA,0x006E4C80,00000000,0x0,target zero-filled spell composite upload-state word verified through IDA target memory,address
+?g_spell_composite_upload_state@th105@@3UCompositeTextureUploadState@1@A,0x006E4C80,00000000,0x0,same verified spell composite upload-state address after recovery of its 0x154-byte source type,address
 ??_C@_0BK@JLMCKHPC@data?1card?1?$CFs?1card?$CF03d?4bmp?$AA@,0x006AD2C4,646174612f636172642f25732f63617264253033642e626d7000,0x0,target spell-card bitmap format bytes verified through IDA target memory,literal
 ??_C@_04NKJDMFKO@?$DMbr?$DO?$AA@,0x006AD2BC,3c62723e00,0x0,target spell-card composite path separator bytes verified through IDA target memory,literal
 ??_C@_00CNPNBAHC@?$AA@,0x006C0A4E,00,0x0,target shared empty string byte verified through IDA target memory,literal
@@ -104,6 +105,10 @@ __imp__CreateFileA@28,0x006AC06C,84e52c00,0x0,target KERNEL32 CreateFileA IAT sl
 __imp__CloseHandle@4,0x006AC0AC,60e52c00,0x0,target KERNEL32 CloseHandle IAT slot and on-disk thunk RVA,literal
 __imp__LeaveCriticalSection@4,0x006AC118,30e92c00,0x0,target KERNEL32 LeaveCriticalSection IAT slot and on-disk thunk RVA,literal
 __imp__EnterCriticalSection@4,0x006AC11C,48e92c00,0x0,target KERNEL32 EnterCriticalSection IAT slot and on-disk thunk RVA,literal
+__imp__D3DXCreateTexture@32,0x006AC2B8,8ce82c00,0x0,target D3DX9_33 D3DXCreateTexture IAT slot and on-disk thunk RVA,literal
+?g_texture_resource_lock@th105@@3UWin32CriticalSection24@1@A,0x006ED234,00000000,0x0,target zero-filled critical-section storage passed by 0x00409300 around texture creation and locking,address
+?g_direct3d_device@th105@@3PAXA,0x006ED250,00000000,0x0,target zero-filled Direct3D device pointer loaded by 0x00409300 before D3DXCreateTexture,address
+?g_texture_creation_flags@th105@@3EA,0x006ED294,00000000,0x0,target zero-filled renderer flag byte tested by 0x00409300 for square texture dimensions,address
 ??_7CFileReader@th105@@6B@,0x006ACF34,70c94000,0x0,target RTTI-owned CFileReader vtable address and first slot,address
 ??_7CPackageFileReader@th105@@6B@,0x006C0E4C,70c94000,0x0,target RTTI-owned CPackageFileReader vtable address and first slot,address
 ?g_package_file_index@th105@@3PAXA,0x006ECEBC,00000000,0x0,target zero-filled package index root address,address

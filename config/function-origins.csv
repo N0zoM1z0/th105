@@ -206,7 +206,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00408E70,unknown,,review,unknown,
 0x00408F10,unknown,,review,unknown,
 0x00408FC0,authored_game,assets,include_authored,inferred,ledger-authored-module
-0x00409300,unknown,,review,unknown,
+0x00409300,authored_game,assets,include_authored,inferred,ledger-authored-module
 0x00409410,authored_game,ui,include_authored,inferred,ledger-authored-module
 0x00409440,unknown,,review,unknown,
 0x00409550,authored_game,ui,include_authored,inferred,ledger-authored-module
@@ -419,7 +419,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004114F0,unknown,,review,unknown,
 0x00411720,unknown,,review,unknown,
 0x004118D0,unknown,,review,unknown,
-0x00411F80,unknown,,review,unknown,
+0x00411F80,authored_game,assets,include_authored,inferred,ledger-authored-module
 0x004120B0,unknown,,review,unknown,
 0x00412240,unknown,,review,unknown,
 0x00412270,unknown,,review,unknown,

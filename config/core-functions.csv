@@ -24,6 +24,7 @@ address,lane,priority,notes
 0x00406C30,spell-assets,2,Optional record resource preparation boundary
 0x00408A40,spell-assets,3,Exact VC8 std::string substring append specialization
 0x00408B40,spell-assets,3,Opaque parser cleanup or ownership helper
+0x00409300,spell-assets,2,Create lock clear and expose one composite texture surface
 0x00409AA0,fighter-init,2,Exact linked input-manager counter reset used by fighter initialization
 0x0040A710,character-owned-object,1,Shared object-pool synchronization entry helper
 0x0040A720,character-owned-object,1,Shared object-pool synchronization exit helper
@@ -33,6 +34,7 @@ address,lane,priority,notes
 0x0040EF50,spell-assets,2,CSV reader field boundary
 0x0040F050,spell-assets,2,CSV reader field boundary
 0x0040F780,spell-assets,2,CSV reader cleanup boundary
+0x00411F80,spell-assets,2,Render multibyte text and markup into the active composite surface
 0x004132D0,spell-assets,2,DwordDeque4 block and map storage clear used by spell-owner reset
 0x00416A50,spell-assets,2,Loaded resource registration boundary
 0x00417010,spell-assets,2,Shared generation-checked resource-handle lookup before texture release

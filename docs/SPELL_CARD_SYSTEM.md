@@ -50,8 +50,10 @@ CSV and asset load
 └── resources
     ├── 0x00404EC0 acquire/load one texture handle [exact; EDI/EAX handle ABI]
     ├── 0x00404FA0 release one texture handle [exact; target EAX recycle ABI]
-    ├── 0x00404F30 build 512x256 composite [decompiled]
+    ├── 0x00404F30 build 512x256 composite [implemented; linked private ABI blocker]
     ├── 0x00408FC0 decode/upload one BMP texture [decompiled]
+    ├── 0x00409300 create/lock/clear/render composite texture [implemented]
+    ├── 0x00411F80 render composite text/markup [decompiled]
     ├── 0x00402680 shared generation-token allocation [decompiled; target EDI receiver]
     ├── 0x00417010 generation-checked resource lookup [identified]
     ├── 0x004027F0 token recycle after external resource release [exact; EAX receiver]
