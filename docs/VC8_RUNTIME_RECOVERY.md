@@ -33,7 +33,7 @@ Three disjoint address scans over the pinned `libcmt.lib` produced 74
 symbol-unambiguous strict matches and 6,862 function bytes. They are grouped by
 archive member into 58 `msvc_prebuilt` units in `config/match-units.toml`.
 Together with the earlier runtime anchors and the dependency expansion below,
-97 runtime functions and 14,910 bytes are now reproducible.
+101 runtime functions and 15,904 bytes are now reproducible.
 
 Every accepted unit was re-extracted through the repository build driver and
 all 74 comparisons returned `result=exact`. Reproduce an individual unit with:
@@ -77,3 +77,9 @@ target-unique functions and 4,137 bytes: `__write_nolock`,
 Canonical replay uses five distinct archive members. Three byte-exact targets
 remain excluded because the archive presents competing symbols (`__write` /
 `__locking` / `__lseek`, and two `__ld12tod` / `__ld12tof` pairs).
+
+The floating-point control dependency chain adds four functions and 994 bytes:
+`__SEH_prolog4`, `__set_statfp`, `___set_fpsr_sse2`, and `__control87`.
+`__SEH_prolog4` is accepted only after auditing its absolute handler and
+security-cookie addresses; the dependent fpctrl and ieee87 objects then replay
+without unresolved edges.

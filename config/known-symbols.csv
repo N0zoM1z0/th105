@@ -883,3 +883,7 @@ address,name,module,confidence,evidence
 0x0068CCF1,__isatty,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
 0x0068ECCC,__putwch_nolock,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
 0x0068ED8E,_$I10_OUTPUT,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
+0x00681754,__SEH_prolog4,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
+0x00686789,__set_statfp,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
+0x006867DF,___set_fpsr_sse2,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
+0x00686E6A,__control87,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member

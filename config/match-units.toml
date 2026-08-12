@@ -2994,6 +2994,11 @@ notes = "Pinned VC8 SP1 archive replay; source is a required manifest sentinel, 
 address = "0x00681799"
 symbol_base = "__SEH_epilog4"
 
+[[units.vc8-libcmt-sehprolg4.functions]]
+address = "0x00681754"
+symbol_base = "__SEH_prolog4"
+dir32_targets = ["__except_handler4=__except_handler4","___security_cookie=crt_c2_000_security_cookie"]
+
 [units.vc8-libcmt-genexcep]
 kind = "msvc_prebuilt"
 source = "docs/VC8_RUNTIME_RECOVERY.md"
@@ -3181,6 +3186,17 @@ symbol_base = "__clrfp"
 address = "0x00686762"
 symbol_base = "__ctrlfp"
 
+[[units.vc8-sp1-libcmt-fpctrl.functions]]
+address = "0x00686789"
+symbol_base = "__set_statfp"
+dir32_targets = ["_over=_over","_under=_under"]
+
+[[units.vc8-sp1-libcmt-fpctrl.functions]]
+address = "0x006867DF"
+symbol_base = "___set_fpsr_sse2"
+rel32_targets = ["__SEH_prolog4=0x00681754"]
+dir32_targets = ["__sehtable$___set_fpsr_sse2=__sehtable$___set_fpsr_sse2","___sse2_available=___sse2_available","?__DAZ_ENABLED@?1??__set_fpsr_sse2@@9@9=?__DAZ_ENABLED@?1??__set_fpsr_sse2@@9@9"]
+
 [units.vc8-sp1-libcmt-87cdisp]
 kind = "msvc_prebuilt"
 source = "docs/VC8_RUNTIME_RECOVERY.md"
@@ -3214,6 +3230,12 @@ symbol_base = "__hw_cw"
 [[units.vc8-sp1-libcmt-ieee87.functions]]
 address = "0x00686DCA"
 symbol_base = "___hw_cw_sse2"
+
+[[units.vc8-sp1-libcmt-ieee87.functions]]
+address = "0x00686E6A"
+symbol_base = "__control87"
+rel32_targets = ["__hw_cw=0x00686D3C","___hw_cw_sse2=0x00686DCA","___set_fpsr_sse2=0x006867DF"]
+dir32_targets = ["___sse2_available=___sse2_available"]
 
 [units.vc8-sp1-libcmt-pow-pentium4]
 kind = "msvc_prebuilt"

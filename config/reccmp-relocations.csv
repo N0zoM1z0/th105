@@ -418,3 +418,9 @@ crt_c2_016_confh,0x006E3308,feffffff,0x0,VC8 SP1 putwch.obj console handle globa
 crt_c2_017_imp_writeconsolew_20,0x006AC07C,a0ee2c00,0x0,VC8 SP1 putwch.obj WriteConsoleW IAT slot audited against target PE,literal
 crt_c2_018_imp_getconsoleoutputcp_0,0x006AC080,8aee2c00,0x0,VC8 SP1 putwch.obj GetConsoleOutputCP IAT slot audited against target PE,literal
 crt_c2_019_imp_writeconsolea_20,0x006AC084,7aee2c00,0x0,VC8 SP1 putwch.obj WriteConsoleA IAT slot audited against target PE,literal
+__except_handler4,0x006817B0,83ec1453,0x0,VC8 SP1 sehprolg4.obj linked exception handler function entry audited against ledger/address,address
+_over,0x006E26E8,00000000,0x0,VC8 SP1 fpctrl.obj overflow-state global audited against target PE,address
+_under,0x006E26F4,01000000,0x0,VC8 SP1 fpctrl.obj underflow-state global audited against target PE,address
+__sehtable$___set_fpsr_sse2,0x006CBEB8,feffffff,0x0,VC8 SP1 fpctrl.obj SEH table prefix audited against target PE,address
+___sse2_available,0x006EE588,00000000,0x0,VC8 SP1 fpctrl/ieee87 SSE2 gate audited in PE zero-filled virtual tail,address
+?__DAZ_ENABLED@?1??__set_fpsr_sse2@@9@9,0x006E2700,01000000,0x0,VC8 SP1 fpctrl.obj DAZ state audited against target PE,address
