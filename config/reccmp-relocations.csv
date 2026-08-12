@@ -302,3 +302,6 @@ _bl_order+0xFFFFFFFD,0x006B62EC,00000010111200080709060a050b040c030d020e010f,0xf
 ??_C@_0BH@LIBMMIGA@incorrect?5header?5check?$AA@,0x006B3FA0,696e636f72726563742068656164657220636865636b00,0x0,target zlib incorrect-header diagnostic string used by inflate,literal
 ??_C@_0BE@EMOGCLGO@invalid?5window?5size?$AA@,0x006B3FB8,696e76616c69642077696e646f772073697a6500,0x0,target zlib invalid-window-size diagnostic string used by inflate,literal
 ??_C@_0BL@IHKGDAEE@unknown?5compression?5method?$AA@,0x006B3FCC,756e6b6e6f776e20636f6d7072657373696f6e206d6574686f6400,0x0,target zlib unknown-compression-method diagnostic string used by inflate,literal
+_crc_lookup,0x006E3860,00000000b71dc1046e3b8209d926430ddc7604136b6bc517b24d861a0550471e,0x0,Official SDK framing.obj CRC table prefix equals target table prefix,literal
+??_C@_04BABO@OggS?$AA@,0x006E3C60,4f67675300,0x0,Official SDK framing.obj OggS capture literal equals target,literal
+_mask,0x006E3C68,000000000100000003000000070000000f0000001f0000003f0000007f000000,0x0,Official SDK bitwise.obj mask table prefix equals target table prefix,literal

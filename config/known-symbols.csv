@@ -634,3 +634,29 @@ address,name,module,confidence,evidence
 0x006A3BE0,oggpack_readinit,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 bitwise.obj
 0x006A3CC0,oggpack_adv,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 bitwise.obj
 0x006A3DC0,oggpack_bytes,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 bitwise.obj
+0x0067DC63,_malloc,runtime,observed,Linked REL32 destination in official Xiph SDK objects and exact target bytes
+0x0067DD26,_free,runtime,observed,Linked REL32 destination in official Xiph SDK objects and exact target bytes
+0x0067E03A,_realloc,runtime,observed,Linked REL32 destination in official Xiph SDK objects and exact target bytes
+0x0067E590,_memmove,runtime,observed,Linked REL32 destination in official Xiph SDK objects and exact target bytes
+0x0067BC00,_memchr,runtime,observed,Linked REL32 destination in official Xiph SDK framing.obj and exact target bytes
+0x006A3DE0,__allshl,runtime,observed,Seven linked REL32 destinations in exact ogg_page_granulepos
+0x006A2FF0,ogg_page_granulepos,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 framing.obj
+0x006A3130,ogg_stream_init,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 framing.obj
+0x006A31A0,ogg_stream_clear,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 framing.obj
+0x006A31F0,ogg_page_checksum_set,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 framing.obj
+0x006A32A0,__os_body_expand,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 framing.obj
+0x006A32D0,__os_lacing_expand,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 framing.obj
+0x006A3340,ogg_sync_clear,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 framing.obj
+0x006A3370,ogg_sync_buffer,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 framing.obj
+0x006A3410,ogg_sync_pageseek,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 framing.obj
+0x006A3560,ogg_stream_pagein,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 framing.obj
+0x006A38C0,ogg_stream_reset_serialno,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 framing.obj
+0x006A38E0,ogg_stream_packetout,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 framing.obj
+0x006A3900,__packetout,third_party,observed,Strict exact official SDK static packetout core relocation target
+0x006A3A30,ogg_stream_packetpeek,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 framing.obj
+0x006A3A50,oggpack_writeinit,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 bitwise.obj
+0x006A3A90,oggpack_write,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 bitwise.obj
+0x006A3B90,oggpack_writealign,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 bitwise.obj
+0x006A3BB0,oggpack_writeclear,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 bitwise.obj
+0x006A3C10,oggpack_look,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 bitwise.obj
+0x006A3CF0,oggpack_read,third_party,observed,Strict exact official OggVorbis Win32 SDK 1.0.1 bitwise.obj

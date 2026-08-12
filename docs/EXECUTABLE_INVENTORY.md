@@ -58,7 +58,7 @@ transition is visible.
 | --- | ---: | ---: | --- |
 | `0x00664FA0..0x0066AC2D` | 44 | 21,553 | Target has the zlib 1.2.3 version string and `inflateReset`, `inflateInit2`, `inflate`, and `inflate_fast` fingerprints. |
 | `0x0066BFD0..0x0067AFCF` | 151 | 52,055 | Static libvorbis/libvorbisfile cluster anchored by `ov_clear`, `ov_open_callbacks`, `ov_info`, `ov_time_seek`, `ov_time_tell`, and `ov_read`. Six functions/236 bytes are strict exact against the official Win32 SDK 1.0.1 objects. |
-| `0x006A2FB0..0x006A3DD7` | 33 | 3,343 | Separated libogg `framing.c`/`bitwise.c` graph proven by page-header semantics, `_packetout`, `oggpack_*`, and direct calls from the `ov_*` cluster. The first official-SDK wave proves 14 functions/688 bytes exact. |
+| `0x006A2FB0..0x006A3DD7` | 33 | 3,343 | Separated libogg `framing.c`/`bitwise.c` graph proven by page-header semantics, `_packetout`, `oggpack_*`, and direct calls from the `ov_*` cluster. All 33 functions/3,343 bytes are strict exact against the official Win32 SDK 1.0.1 objects. |
 
 The first audit hypothesis incorrectly treated `0x00662F80..0x0067AFCF` as
 one codec island.  Read-only IDA call graphs disproved it: the prefix contains
@@ -102,7 +102,9 @@ The Xiph release matrix identified official libvorbis v1.0.1: target
 `vorbis_info_init` allocates a `0xE80`-byte codec setup, while v1.1.0 through
 v1.2.3 use `0xE50`. An archived official Windows SDK then proved the missing
 code-generation profile: its prebuilt COFF objects match nontrivial target
-bodies exactly. Reproduce the accepted first wave with:
+bodies exactly. The two libogg commands now cover the complete linked
+framing/bitwise island, including verified REL32 and DIR32 replay. Reproduce
+the accepted wave with:
 
 ```bash
 python3 scripts/build.py --unit xiph-vorbis-info-anchors --compare --json

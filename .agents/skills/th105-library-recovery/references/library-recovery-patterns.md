@@ -141,6 +141,16 @@ SDKs before hand-tuning compiler flags. Treat the SDK archive SHA, COFF member,
 and strict comparator as separate gates; never promote the whole archive from
 one exact anchor.
 
+For a COMDAT-heavy official SDK object, a relocation-masked scan is an efficient
+mapping pass, not acceptance evidence. Match each object section against ledger
+sizes while masking only its recorded four-byte relocation fields. Then read
+the linked REL32/DIR32 destinations back from the exact target, verify static
+data prefixes in both object and image, and replay every relocation through the
+strict comparator. This converted the libogg scan into 33/33 exact functions:
+24 retained `framing.obj` bodies and nine retained `bitwise.obj` bodies. It also
+exposed the linked CRT aliases (`_malloc`, `_free`, `_realloc`, `_memmove`, and
+`_memchr`) without conflating them with pre-existing source-facing aliases.
+
 ## Failure taxonomy and next action
 
 | Result | Meaning | Next action |

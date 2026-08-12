@@ -1781,7 +1781,7 @@ enable_gs = false
 sdk_component = "ogg"
 sdk_object = "framing.obj"
 sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
-notes = "Relocation-free exact anchors from official OggVorbis Win32 SDK 1.0.1 framing.obj; the vendored v1.1.3 source remains a source-shape candidate, not an SDK source claim."
+notes = "All 24 framing.obj functions retained by TH105 are strict exact after replaying verified SDK relocations; the historical unit name is retained for stable evidence commands. The vendored v1.1.3 source remains a source-shape candidate, not an SDK source claim."
 
 [[units.xiph-sdk-ogg-framing-relocation-free.functions]]
 address = "0x006A2FB0"
@@ -1800,6 +1800,10 @@ address = "0x006A2FE0"
 symbol_base = "_ogg_page_eos"
 
 [[units.xiph-sdk-ogg-framing-relocation-free.functions]]
+address = "0x006A2FF0"
+symbol_base = "_ogg_page_granulepos"
+
+[[units.xiph-sdk-ogg-framing-relocation-free.functions]]
 address = "0x006A30D0"
 symbol_base = "_ogg_page_serialno"
 
@@ -1808,12 +1812,48 @@ address = "0x006A3100"
 symbol_base = "_ogg_page_pageno"
 
 [[units.xiph-sdk-ogg-framing-relocation-free.functions]]
+address = "0x006A3130"
+symbol_base = "_ogg_stream_init"
+
+[[units.xiph-sdk-ogg-framing-relocation-free.functions]]
+address = "0x006A31A0"
+symbol_base = "_ogg_stream_clear"
+
+[[units.xiph-sdk-ogg-framing-relocation-free.functions]]
+address = "0x006A31F0"
+symbol_base = "_ogg_page_checksum_set"
+
+[[units.xiph-sdk-ogg-framing-relocation-free.functions]]
+address = "0x006A32A0"
+symbol_base = "__os_body_expand"
+
+[[units.xiph-sdk-ogg-framing-relocation-free.functions]]
+address = "0x006A32D0"
+symbol_base = "__os_lacing_expand"
+
+[[units.xiph-sdk-ogg-framing-relocation-free.functions]]
 address = "0x006A3320"
 symbol_base = "_ogg_sync_init"
 
 [[units.xiph-sdk-ogg-framing-relocation-free.functions]]
+address = "0x006A3340"
+symbol_base = "_ogg_sync_clear"
+
+[[units.xiph-sdk-ogg-framing-relocation-free.functions]]
+address = "0x006A3370"
+symbol_base = "_ogg_sync_buffer"
+
+[[units.xiph-sdk-ogg-framing-relocation-free.functions]]
 address = "0x006A33F0"
 symbol_base = "_ogg_sync_wrote"
+
+[[units.xiph-sdk-ogg-framing-relocation-free.functions]]
+address = "0x006A3410"
+symbol_base = "_ogg_sync_pageseek"
+
+[[units.xiph-sdk-ogg-framing-relocation-free.functions]]
+address = "0x006A3560"
+symbol_base = "_ogg_stream_pagein"
 
 [[units.xiph-sdk-ogg-framing-relocation-free.functions]]
 address = "0x006A3850"
@@ -1824,8 +1864,20 @@ address = "0x006A3870"
 symbol_base = "_ogg_stream_reset"
 
 [[units.xiph-sdk-ogg-framing-relocation-free.functions]]
+address = "0x006A38C0"
+symbol_base = "_ogg_stream_reset_serialno"
+
+[[units.xiph-sdk-ogg-framing-relocation-free.functions]]
+address = "0x006A38E0"
+symbol_base = "_ogg_stream_packetout"
+
+[[units.xiph-sdk-ogg-framing-relocation-free.functions]]
 address = "0x006A3900"
 symbol_base = "__packetout"
+
+[[units.xiph-sdk-ogg-framing-relocation-free.functions]]
+address = "0x006A3A30"
+symbol_base = "_ogg_stream_packetpeek"
 
 [units.xiph-sdk-ogg-bitwise-relocation-free]
 kind = "upstream_prebuilt"
@@ -1836,15 +1888,39 @@ enable_gs = false
 sdk_component = "ogg"
 sdk_object = "bitwise.obj"
 sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
-notes = "Relocation-free exact anchors from official OggVorbis Win32 SDK 1.0.1 bitwise.obj."
+notes = "All nine bitwise.obj functions retained by TH105 are strict exact after replaying verified SDK relocations; the historical unit name is retained for stable evidence commands."
+
+[[units.xiph-sdk-ogg-bitwise-relocation-free.functions]]
+address = "0x006A3A50"
+symbol_base = "_oggpack_writeinit"
+
+[[units.xiph-sdk-ogg-bitwise-relocation-free.functions]]
+address = "0x006A3A90"
+symbol_base = "_oggpack_write"
+
+[[units.xiph-sdk-ogg-bitwise-relocation-free.functions]]
+address = "0x006A3B90"
+symbol_base = "_oggpack_writealign"
+
+[[units.xiph-sdk-ogg-bitwise-relocation-free.functions]]
+address = "0x006A3BB0"
+symbol_base = "_oggpack_writeclear"
 
 [[units.xiph-sdk-ogg-bitwise-relocation-free.functions]]
 address = "0x006A3BE0"
 symbol_base = "_oggpack_readinit"
 
 [[units.xiph-sdk-ogg-bitwise-relocation-free.functions]]
+address = "0x006A3C10"
+symbol_base = "_oggpack_look"
+
+[[units.xiph-sdk-ogg-bitwise-relocation-free.functions]]
 address = "0x006A3CC0"
 symbol_base = "_oggpack_adv"
+
+[[units.xiph-sdk-ogg-bitwise-relocation-free.functions]]
+address = "0x006A3CF0"
+symbol_base = "_oggpack_read"
 
 [[units.xiph-sdk-ogg-bitwise-relocation-free.functions]]
 address = "0x006A3DC0"
