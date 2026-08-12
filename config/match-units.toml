@@ -3382,6 +3382,67 @@ symbol_base = "__write_nolock"
 rel32_targets = ["___doserrno=0x0067DF5F","__errno=0x0067DF4C","__invalid_parameter=0x0067B860","__lseeki64_nolock=0x0068CB11","__isatty=0x0068CCF1","__getptd=0x0067FA71","_isleadbyte=0x0068A79F","_mbtowc=0x0068D040","__putwch_nolock=0x0068ECCC","__dosmaperr=0x0067DF72","@__security_check_cookie@4=0x0067B465"]
 dir32_targets = ["___security_cookie+0x0=crt_c2_000_security_cookie","___pioinfo+0x0=crt_c2_001_pioinfo","__imp__GetConsoleMode@8+0x0=crt_c2_002_imp_getconsolemode_8","__imp__GetConsoleCP@0+0x0=crt_c2_003_imp_getconsolecp_0","__imp__WideCharToMultiByte@32+0x0=crt_c2_004_imp_widechartomultibyte_32","__imp__WriteFile@20+0x0=crt_c2_005_imp_writefile_20","__imp__GetLastError@0+0x0=crt_c2_006_imp_getlasterror_0"]
 
+[[units.vc8_sp1_libcmt_write.functions]]
+address = "0x0068AF27"
+symbol_base = "__write"
+rel32_targets = ["__SEH_prolog4=0x00681754","___doserrno=0x0067DF5F","__errno=0x0067DF4C","__invalid_parameter=0x0067B860","___lock_fhandle=0x0068A89F","__write_nolock=0x0068A961","__SEH_epilog4=0x00681799"]
+dir32_targets = ["__sehtable$__write+0x0=crt_c3_007_sehtable_write","__nhandle+0x0=crt_c2_014_nhandle","___pioinfo+0x0=crt_c2_001_pioinfo"]
+
+[units.vc8_sp1_libcmt_osfinfo]
+kind = "msvc_prebuilt"
+source = "docs/VC8_RUNTIME_RECOVERY.md"
+object = "build/match-units/vc8_sp1_libcmt_osfinfo.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "build/intel/mt_obj/osfinfo.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Pinned VC8 SP1 osfinfo.obj replay; source is a provenance-document anchor, not reconstructed CRT source."
+
+[[units.vc8_sp1_libcmt_osfinfo.functions]]
+address = "0x0068A7AD"
+symbol_base = "__free_osfhnd"
+rel32_targets = ["__errno=0x0067DF4C","___doserrno=0x0067DF5F"]
+dir32_targets = ["__nhandle+0x0=crt_c2_014_nhandle","___pioinfo+0x0=crt_c2_001_pioinfo","___app_type+0x0=crt_c3_033_app_type","__imp__SetStdHandle@8+0x0=crt_c3_034_imp_setstdhandle_8"]
+
+[[units.vc8_sp1_libcmt_osfinfo.functions]]
+address = "0x0068A82E"
+symbol_base = "__get_osfhandle"
+rel32_targets = ["___doserrno=0x0067DF5F","__errno=0x0067DF4C","__invalid_parameter=0x0067B860"]
+dir32_targets = ["__nhandle+0x0=crt_c2_014_nhandle","___pioinfo+0x0=crt_c2_001_pioinfo"]
+
+[[units.vc8_sp1_libcmt_osfinfo.functions]]
+address = "0x0068A89F"
+symbol_base = "___lock_fhandle"
+rel32_targets = ["__SEH_prolog4=0x00681754","__lock=0x00689427","___crtInitCritSecAndSpinCount=0x0068B589","__SEH_epilog4=0x00681799"]
+dir32_targets = ["__sehtable$___lock_fhandle+0x0=crt_c3_035_sehtable_lock_fhandle","___pioinfo+0x0=crt_c2_001_pioinfo","__imp__EnterCriticalSection@4+0x0=crt_c3_036_imp_entercriticalsection_4"]
+
+[[units.vc8_sp1_libcmt_osfinfo.functions]]
+address = "0x0068A93F"
+symbol_base = "__unlock_fhandle"
+dir32_targets = ["___pioinfo+0x0=crt_c2_001_pioinfo","__imp__LeaveCriticalSection@4+0x0=crt_c3_037_imp_leavecriticalsection_4"]
+
+[units.vc8_sp1_libcmt_intrncvt]
+kind = "msvc_prebuilt"
+source = "docs/VC8_RUNTIME_RECOVERY.md"
+object = "build/match-units/vc8_sp1_libcmt_intrncvt.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "../build/intel/mt_obj/intrncvt.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Pinned VC8 SP1 intrncvt.obj replay; DoubleFormat/FloatFormat relocations disambiguate the two exact target identities."
+
+[[units.vc8_sp1_libcmt_intrncvt.functions]]
+address = "0x0068DCC0"
+symbol_base = "__ld12tod"
+dir32_targets = ["_DoubleFormat+0x8=crt_c3_010_doubleformat","_DoubleFormat+0x4=crt_c3_011_doubleformat","_DoubleFormat+0xC=crt_c3_012_doubleformat","_DoubleFormat+0x0=crt_c3_013_doubleformat","_DoubleFormat+0x14=crt_c3_014_doubleformat","_DoubleFormat+0x10=crt_c3_015_doubleformat"]
+
+[[units.vc8_sp1_libcmt_intrncvt.functions]]
+address = "0x0068E202"
+symbol_base = "__ld12tof"
+dir32_targets = ["_FloatFormat+0x8=crt_c3_016_floatformat","_FloatFormat+0x4=crt_c3_017_floatformat","_FloatFormat+0xC=crt_c3_018_floatformat","_FloatFormat+0x0=crt_c3_019_floatformat","_FloatFormat+0x14=crt_c3_020_floatformat","_FloatFormat+0x10=crt_c3_021_floatformat"]
+
 [units.vc8_sp1_libcmt_x10fout]
 kind = "msvc_prebuilt"
 source = "docs/VC8_RUNTIME_RECOVERY.md"

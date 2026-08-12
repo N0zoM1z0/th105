@@ -33,7 +33,7 @@ Three disjoint address scans over the pinned `libcmt.lib` produced 74
 symbol-unambiguous strict matches and 6,862 function bytes. They are grouped by
 archive member into 58 `msvc_prebuilt` units in `config/match-units.toml`.
 Together with the earlier runtime anchors and the dependency expansion below,
-101 runtime functions and 15,904 bytes are now reproducible.
+108 runtime functions and 19,228 bytes are now reproducible.
 
 Every accepted unit was re-extracted through the repository build driver and
 all 74 comparisons returned `result=exact`. Reproduce an individual unit with:
@@ -83,3 +83,12 @@ The floating-point control dependency chain adds four functions and 994 bytes:
 `__SEH_prolog4` is accepted only after auditing its absolute handler and
 security-cookie addresses; the dependent fpctrl and ieee87 objects then replay
 without unresolved edges.
+
+The next I/O and conversion pass adds seven functions and 3,324 bytes. Four
+`osfinfo.obj` handle helpers extend the low-level write graph. Read-only Ghidra
+callers identify the otherwise byte-ambiguous wrapper at `0x0068AF27` as
+`__write`; its body delegates to the already exact three-argument
+`__write_nolock`. The two 1,346-byte intrinsic conversions are distinguished
+by their relocation tables: `0x0068DCC0` references `_DoubleFormat`, while
+`0x0068E202` references `_FloatFormat`. Cross-assigning either COFF symbol
+fails the strict literal audit.

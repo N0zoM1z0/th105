@@ -887,3 +887,10 @@ address,name,module,confidence,evidence
 0x00686789,__set_statfp,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
 0x006867DF,___set_fpsr_sse2,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
 0x00686E6A,__control87,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
+0x0068A7AD,__free_osfhnd,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
+0x0068A82E,__get_osfhandle,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
+0x0068A89F,___lock_fhandle,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
+0x0068A93F,__unlock_fhandle,runtime,observed,Strict exact SHA-pinned VC8 SP1 libcmt archive member
+0x0068AF27,__write,runtime,observed,Strict exact VC8 member plus Ghidra caller/callee semantic disambiguation
+0x0068DCC0,__ld12tod,runtime,observed,Strict exact VC8 member plus DoubleFormat relocation disambiguation
+0x0068E202,__ld12tof,runtime,observed,Strict exact VC8 member plus FloatFormat relocation disambiguation

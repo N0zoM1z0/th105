@@ -424,3 +424,21 @@ _under,0x006E26F4,01000000,0x0,VC8 SP1 fpctrl.obj underflow-state global audited
 __sehtable$___set_fpsr_sse2,0x006CBEB8,feffffff,0x0,VC8 SP1 fpctrl.obj SEH table prefix audited against target PE,address
 ___sse2_available,0x006EE588,00000000,0x0,VC8 SP1 fpctrl/ieee87 SSE2 gate audited in PE zero-filled virtual tail,address
 ?__DAZ_ENABLED@?1??__set_fpsr_sse2@@9@9,0x006E2700,01000000,0x0,VC8 SP1 fpctrl.obj DAZ state audited against target PE,address
+crt_c3_007_sehtable_write,0x006CBF60,feffffff,0x0,VC8 SP1 write.obj SEH table prefix audited against target PE,literal
+crt_c3_033_app_type,0x006E1AC0,02000000,0x0,VC8 SP1 osfinfo.obj application type global audited against target PE,address
+crt_c3_034_imp_setstdhandle_8,0x006AC0D4,b4ed2c00,0x0,VC8 SP1 osfinfo.obj SetStdHandle IAT slot audited against target PE,literal
+crt_c3_035_sehtable_lock_fhandle,0x006CBF40,feffffff,0x0,VC8 SP1 osfinfo.obj lock-fhandle SEH table prefix audited against target PE,literal
+crt_c3_036_imp_entercriticalsection_4,0x006AC11C,48e92c00,0x0,VC8 SP1 osfinfo.obj EnterCriticalSection IAT slot audited against target PE,literal
+crt_c3_037_imp_leavecriticalsection_4,0x006AC118,30e92c00,0x0,VC8 SP1 osfinfo.obj LeaveCriticalSection IAT slot audited against target PE,literal
+crt_c3_010_doubleformat,0x006E3010,35000000,0x8,VC8 SP1 intrncvt.obj DoubleFormat bit-count field audited against target PE,literal
+crt_c3_011_doubleformat,0x006E3010,01fcffff,0x4,VC8 SP1 intrncvt.obj DoubleFormat exponent-min field audited against target PE,literal
+crt_c3_012_doubleformat,0x006E3010,0b000000,0xC,VC8 SP1 intrncvt.obj DoubleFormat precision field audited against target PE,literal
+crt_c3_013_doubleformat,0x006E3010,00040000,0x0,VC8 SP1 intrncvt.obj DoubleFormat base field audited against target PE,literal
+crt_c3_014_doubleformat,0x006E3010,ff030000,0x14,VC8 SP1 intrncvt.obj DoubleFormat exponent-max field audited against target PE,literal
+crt_c3_015_doubleformat,0x006E3010,40000000,0x10,VC8 SP1 intrncvt.obj DoubleFormat mantissa field audited against target PE,literal
+crt_c3_016_floatformat,0x006E3028,18000000,0x8,VC8 SP1 intrncvt.obj FloatFormat bit-count field audited against target PE,literal
+crt_c3_017_floatformat,0x006E3028,81ffffff,0x4,VC8 SP1 intrncvt.obj FloatFormat exponent-min field audited against target PE,literal
+crt_c3_018_floatformat,0x006E3028,08000000,0xC,VC8 SP1 intrncvt.obj FloatFormat precision field audited against target PE,literal
+crt_c3_019_floatformat,0x006E3028,80000000,0x0,VC8 SP1 intrncvt.obj FloatFormat base field audited against target PE,literal
+crt_c3_020_floatformat,0x006E3028,7f000000,0x14,VC8 SP1 intrncvt.obj FloatFormat exponent-max field audited against target PE,literal
+crt_c3_021_floatformat,0x006E3028,20000000,0x10,VC8 SP1 intrncvt.obj FloatFormat mantissa field audited against target PE,literal
