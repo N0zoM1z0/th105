@@ -32,9 +32,14 @@ bytes in total. This includes the 1,516-byte `ov_pcm_seek_page`, 860-byte
 target `0x0066DD00` resolves to `ov_pcm_seek`, proving the function is
 `ov_time_seek` rather than the otherwise byte-identical `ov_time_seek_page`
 candidate. The next dependency wave completed every TH105 function selected
-from `info.obj`, `block.obj`, and `synthesis.obj`. The accepted total is now 49
-functions and 14,857 bytes, including the 1,615-byte
-`vorbis_synthesis_blockin` and the 919-byte shared DSP initializer.
+from `info.obj`, `block.obj`, and `synthesis.obj`. The next wave proved all
+selected target bodies from `codebook.obj`, `floor1.obj`, `res0.obj`, and
+`mapping0.obj`. The accepted total is now 83 unique functions and 27,062
+bytes, including the 2,421-byte `mapping0_forward`, 1,615-byte
+`vorbis_synthesis_blockin`, and 1,209-byte `floor1_fit`. Two contextual SDK
+static helpers map to already-owned linked target addresses, so object-level
+candidate counts are deduplicated by target address before progress is
+reported.
 
 Reproduce the accepted bytes with:
 
@@ -43,4 +48,8 @@ python3 scripts/build.py --unit xiph-vorbis-info-anchors --compare --json
 python3 scripts/build.py --unit xiph-vorbisfile-host-endian-anchor --compare --json
 python3 scripts/build.py --unit xiph-sdk-vorbis-block --compare --json
 python3 scripts/build.py --unit xiph-sdk-vorbis-synthesis --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-codebook --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-floor1 --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-res0 --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-mapping0 --compare --json
 ```

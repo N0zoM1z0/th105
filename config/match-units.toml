@@ -1855,6 +1855,187 @@ symbol_base = "_vorbis_synthesis_trackonly"
 address = "0x0066FB70"
 symbol_base = "_vorbis_packet_blocksize"
 
+[units.xiph-sdk-vorbis-codebook]
+kind = "upstream_prebuilt"
+source = "third_party/libvorbis-1.0.1/lib/codebook.c"
+object = "build/match-units/xiph_sdk_vorbis_codebook.obj"
+profile = "xiph-win32sdk-1.0.1"
+enable_gs = false
+sdk_component = "vorbis"
+sdk_object = "codebook.obj"
+sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
+notes = "Seven unique target functions retained from official SDK codebook.obj; strict relocation replay includes internal bitreverse and shared ilog destinations."
+
+[[units.xiph-sdk-vorbis-codebook.functions]]
+address = "0x00672DF0"
+symbol_base = "_vorbis_staticbook_unpack"
+
+[[units.xiph-sdk-vorbis-codebook.functions]]
+address = "0x00673030"
+symbol_base = "_vorbis_book_encode"
+
+[[units.xiph-sdk-vorbis-codebook.functions]]
+address = "0x00673070"
+symbol_base = "_vorbis_book_decode"
+
+[[units.xiph-sdk-vorbis-codebook.functions]]
+address = "0x00672D70"
+symbol_base = "_bitreverse"
+
+[[units.xiph-sdk-vorbis-codebook.functions]]
+address = "0x006731A0"
+symbol_base = "_vorbis_book_decodevs_add"
+
+[[units.xiph-sdk-vorbis-codebook.functions]]
+address = "0x00673730"
+symbol_base = "_vorbis_book_decodev_set"
+
+[[units.xiph-sdk-vorbis-codebook.functions]]
+address = "0x006738B0"
+symbol_base = "_vorbis_book_decodevv_add"
+
+[units.xiph-sdk-vorbis-floor1]
+kind = "upstream_prebuilt"
+source = "third_party/libvorbis-1.0.1/lib/floor1.c"
+object = "build/match-units/xiph_sdk_vorbis_floor1.obj"
+profile = "xiph-win32sdk-1.0.1"
+enable_gs = false
+sdk_component = "vorbis"
+sdk_object = "floor1.obj"
+sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
+notes = "Fourteen unique target functions retained from official SDK floor1.obj. Shared target helpers are counted once even when another SDK object carries a contextual static alias."
+
+[[units.xiph-sdk-vorbis-floor1.functions]]
+address = "0x00678AB0"
+symbol_base = "_floor1_free_info"
+
+[[units.xiph-sdk-vorbis-floor1.functions]]
+address = "0x006766D0"
+symbol_base = "_ilog2"
+
+[[units.xiph-sdk-vorbis-floor1.functions]]
+address = "0x00679100"
+symbol_base = "_icomp"
+
+[[units.xiph-sdk-vorbis-floor1.functions]]
+address = "0x00679120"
+symbol_base = "_floor1_fit"
+
+[[units.xiph-sdk-vorbis-floor1.functions]]
+address = "0x006795E0"
+symbol_base = "_render_point"
+
+[[units.xiph-sdk-vorbis-floor1.functions]]
+address = "0x00679630"
+symbol_base = "_accumulate_fit"
+
+[[units.xiph-sdk-vorbis-floor1.functions]]
+address = "0x00679820"
+symbol_base = "_vorbis_dBquant"
+
+[[units.xiph-sdk-vorbis-floor1.functions]]
+address = "0x00679850"
+symbol_base = "_fit_line"
+
+[[units.xiph-sdk-vorbis-floor1.functions]]
+address = "0x00679A60"
+symbol_base = "_inspect_error"
+
+[[units.xiph-sdk-vorbis-floor1.functions]]
+address = "0x00679C90"
+symbol_base = "_post_Y"
+
+[[units.xiph-sdk-vorbis-floor1.functions]]
+address = "0x00679CC0"
+symbol_base = "_floor1_interpolate_fit"
+
+[[units.xiph-sdk-vorbis-floor1.functions]]
+address = "0x006723B0"
+symbol_base = "_ilog"
+
+[[units.xiph-sdk-vorbis-floor1.functions]]
+address = "0x0067A360"
+symbol_base = "_render_line0"
+
+[[units.xiph-sdk-vorbis-floor1.functions]]
+address = "0x0067A7F0"
+symbol_base = "_render_line"
+
+[units.xiph-sdk-vorbis-res0]
+kind = "upstream_prebuilt"
+source = "third_party/libvorbis-1.0.1/lib/res0.c"
+object = "build/match-units/xiph_sdk_vorbis_res0.obj"
+profile = "xiph-win32sdk-1.0.1"
+enable_gs = false
+sdk_component = "vorbis"
+sdk_object = "res0.obj"
+sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
+notes = "Eight unique target functions retained from official SDK res0.obj; shared 0x006723B0 ilog is owned by the floor1 unit and referenced here through its exact alias."
+
+[[units.xiph-sdk-vorbis-res0.functions]]
+address = "0x006775E0"
+symbol_base = "_res0_free_info"
+
+[[units.xiph-sdk-vorbis-res0.functions]]
+address = "0x00677770"
+symbol_base = "_icount"
+
+[[units.xiph-sdk-vorbis-res0.functions]]
+address = "0x00677B10"
+symbol_base = "__01inverse"
+
+[[units.xiph-sdk-vorbis-res0.functions]]
+address = "0x00677EB0"
+symbol_base = "_local_book_besterror"
+
+[[units.xiph-sdk-vorbis-res0.functions]]
+address = "0x00678070"
+symbol_base = "__01forward"
+
+[[units.xiph-sdk-vorbis-res0.functions]]
+address = "0x00678340"
+symbol_base = "__01class"
+
+[[units.xiph-sdk-vorbis-res0.functions]]
+address = "0x006785D0"
+symbol_base = "_res2_class"
+
+[[units.xiph-sdk-vorbis-res0.functions]]
+address = "0x00678610"
+symbol_base = "__2class"
+
+[units.xiph-sdk-vorbis-mapping0]
+kind = "upstream_prebuilt"
+source = "third_party/libvorbis-1.0.1/lib/mapping0.c"
+object = "build/match-units/xiph_sdk_vorbis_mapping0.obj"
+profile = "xiph-win32sdk-1.0.1"
+enable_gs = false
+sdk_component = "vorbis"
+sdk_object = "mapping0.obj"
+sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
+notes = "Five unique target functions retained from official SDK mapping0.obj; shared 0x006766D0 ilog/ilog2 code is owned by the floor1 unit."
+
+[[units.xiph-sdk-vorbis-mapping0.functions]]
+address = "0x00676560"
+symbol_base = "_mapping0_free_info"
+
+[[units.xiph-sdk-vorbis-mapping0.functions]]
+address = "0x00676580"
+symbol_base = "_mapping0_pack"
+rel32_targets = ["_ilog=0x006766D0"]
+
+[[units.xiph-sdk-vorbis-mapping0.functions]]
+address = "0x006768C0"
+symbol_base = "_mapping0_forward"
+
+[[units.xiph-sdk-vorbis-mapping0.functions]]
+address = "0x00677240"
+symbol_base = "_todB"
+
+[[units.xiph-sdk-vorbis-mapping0.functions]]
+address = "0x00677270"
+symbol_base = "_mapping0_inverse"
+
 [units.xiph-vorbisfile-host-endian-anchor]
 kind = "upstream_prebuilt"
 source = "third_party/libvorbis-1.0.1/lib/vorbisfile.c"

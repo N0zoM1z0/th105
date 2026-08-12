@@ -313,3 +313,14 @@ __floor_P,0x006D9138,b8156e00,0x0,Official SDK info/block objects reference targ
 __residue_P,0x006D9140,38116e00,0x0,Official SDK info/block objects reference target residue backend table,address
 __mapping_P,0x006D914C,20116e00,0x0,Official SDK info/block objects reference target mapping backend table,address
 ??_C@_06GIBB@vorbis?$AA@,0x006D31C4,766f7262697300,0x0,Official SDK info.obj vorbis signature literal equals target,literal
+_FLOOR1_fromdB_LOOKUP,0x006E1198,3eb4e4330991f3338bb201343c200a34231a133460a91c34a7d726344baf3134,0x0,Official SDK floor1.obj lookup-table prefix equals target,literal
+__real@4@4001ea0ea10000000000,0x006B74BC,a10eea40,0x0,Official SDK floor1.obj float constant equals target,literal
+__real@4@4008ffe0000000000000,0x006B74B8,00e07f44,0x0,Official SDK floor1.obj float constant equals target,literal
+__real@8@3ffe8000000000000000,0x006B73D8,000000000000e03f,0x0,Official SDK floor1.obj double 0.5 equals target,literal
+__real@8@3fff8000000000000000,0x006B73F8,000000000000f03f,0x0,Official SDK floor1.obj double 1.0 equals target,literal
+__real@4@00000000000000000000,0x006C0ED8,00000000,0x0,Official SDK mapping0/res0 float zero equals target,literal
+__real@4@3feac0a8c10000000000,0x006B7414,c1a84035,0x0,Official SDK mapping0.obj float constant equals target,literal
+__real@4@3ffe8000000000000000,0x006B73E0,0000003f,0x0,Official SDK mapping0/res0 float 0.5 equals target,literal
+__real@4@40018000000000000000,0x006B7498,00008040,0x0,Official SDK mapping0.obj float 4.0 equals target,literal
+__real@4@4008bf115b0000000000,0x006B7410,5b113f44,0x0,Official SDK mapping0.obj float constant equals target,literal
+__real@8@4005c800000000000000,0x006AC9A0,0000000000005940,0x0,Official SDK res0.obj double 100.0 equals target,literal

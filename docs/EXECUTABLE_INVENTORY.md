@@ -57,7 +57,7 @@ transition is visible.
 | Selector | Rows | Bytes | Evidence and limit |
 | --- | ---: | ---: | --- |
 | `0x00664FA0..0x0066AC2D` | 44 | 21,553 | Target has the zlib 1.2.3 version string and `inflateReset`, `inflateInit2`, `inflate`, and `inflate_fast` fingerprints. |
-| `0x0066BFD0..0x0067AFCF` | 151 | 52,055 | Static libvorbis/libvorbisfile cluster anchored by `ov_clear`, `ov_open_callbacks`, `ov_info`, `ov_time_seek`, `ov_time_tell`, and `ov_read`. Forty-nine functions/14,857 bytes are strict exact against the official Win32 SDK 1.0.1 objects; this includes every target function from `vorbisfile.obj`, `info.obj`, `block.obj`, and `synthesis.obj`. |
+| `0x0066BFD0..0x0067AFCF` | 151 | 52,055 | Static libvorbis/libvorbisfile cluster anchored by `ov_clear`, `ov_open_callbacks`, `ov_info`, `ov_time_seek`, `ov_time_tell`, and `ov_read`. Eighty-three unique functions/27,062 bytes are strict exact against the official Win32 SDK 1.0.1 objects; this includes every selected target function from `vorbisfile.obj`, `info.obj`, `block.obj`, `synthesis.obj`, `codebook.obj`, `floor1.obj`, `res0.obj`, and `mapping0.obj`. |
 | `0x006A2FB0..0x006A3DD7` | 33 | 3,343 | Separated libogg `framing.c`/`bitwise.c` graph proven by page-header semantics, `_packetout`, `oggpack_*`, and direct calls from the `ov_*` cluster. All 33 functions/3,343 bytes are strict exact against the official Win32 SDK 1.0.1 objects. |
 
 The first audit hypothesis incorrectly treated `0x00662F80..0x0067AFCF` as
@@ -111,6 +111,10 @@ python3 scripts/build.py --unit xiph-vorbis-info-anchors --compare --json
 python3 scripts/build.py --unit xiph-vorbisfile-host-endian-anchor --compare --json
 python3 scripts/build.py --unit xiph-sdk-vorbis-block --compare --json
 python3 scripts/build.py --unit xiph-sdk-vorbis-synthesis --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-codebook --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-floor1 --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-res0 --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-mapping0 --compare --json
 python3 scripts/build.py --unit xiph-sdk-ogg-framing-relocation-free --compare --json
 python3 scripts/build.py --unit xiph-sdk-ogg-bitwise-relocation-free --compare --json
 ```

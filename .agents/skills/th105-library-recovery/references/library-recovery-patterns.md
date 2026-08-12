@@ -151,6 +151,16 @@ strict comparator. This converted the libogg scan into 33/33 exact functions:
 exposed the linked CRT aliases (`_malloc`, `_free`, `_realloc`, `_memmove`, and
 `_memchr`) without conflating them with pre-existing source-facing aliases.
 
+Linked target addresses, not object-symbol occurrences, are the progress
+identity. Different SDK objects can contain contextual static helpers with the
+same code and the linker can fold them onto one target address. Keep one
+canonical match-unit owner for that address, retain the other COFF spellings as
+known aliases, and use a function-local relocation override when one object
+uses an ambiguous helper name. The `floor1.obj`/`res0.obj` shared `ilog` and
+the `floor1.obj`/`mapping0.obj` `ilog2`/`ilog` pair are the regression cases:
+36 object-function mappings become 34 unique ledger functions, not 36 progress
+credits.
+
 ## Failure taxonomy and next action
 
 | Result | Meaning | Next action |

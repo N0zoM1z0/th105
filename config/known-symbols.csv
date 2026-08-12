@@ -723,3 +723,38 @@ address,name,module,confidence,evidence
 0x006753A0,mdct_clear,third_party,observed,Official SDK block.obj linked destination
 0x00676420,__vorbis_window_get,third_party,observed,Official SDK block.obj linked destination
 0x006766D0,ilog2,third_party,observed,Official SDK block.obj linked destination
+0x0067E560,__alloca_probe,runtime,observed,Linked REL32 destination in official Xiph SDK Vorbis objects
+0x00672590,__book_maptype1_quantvals,third_party,observed,Linked REL32 destination in official SDK codebook.obj
+0x006723B0,__ilog,third_party,observed,Official SDK codebook.obj internal helper destination
+0x006723B0,ilog,third_party,observed,Official SDK floor1.obj and res0.obj shared helper destination
+0x00672D70,bitreverse,third_party,observed,Official SDK codebook.obj internal helper identity
+0x006727F0,vorbis_staticbook_clear,third_party,observed,Linked REL32 destination in official SDK codebook.obj
+0x00679630,accumulate_fit,third_party,observed,Official SDK floor1.obj internal helper identity
+0x0067F0D5,exit,runtime,observed,Linked REL32 destination in official SDK floor1.obj
+0x00679850,fit_line,third_party,observed,Official SDK floor1.obj internal helper identity
+0x0067E3C0,floor,runtime,observed,Linked REL32 destination in official Xiph SDK Vorbis objects
+0x00679A60,inspect_error,third_party,observed,Official SDK floor1.obj internal helper identity
+0x00679C90,post_Y,third_party,observed,Official SDK floor1.obj internal helper identity
+0x006795E0,render_point,third_party,observed,Official SDK floor1.obj internal helper identity
+0x00679820,vorbis_dBquant,third_party,observed,Official SDK floor1.obj internal helper identity
+0x00676430,__vorbis_apply_window,third_party,observed,Linked REL32 destination in official SDK mapping0.obj
+0x00671E80,__vp_couple,third_party,observed,Linked REL32 destination in official SDK mapping0.obj
+0x00671C10,__vp_noise_normalize,third_party,observed,Linked REL32 destination in official SDK mapping0.obj
+0x00671B40,__vp_noise_normalize_sort,third_party,observed,Linked REL32 destination in official SDK mapping0.obj
+0x00670AA0,__vp_noisemask,third_party,observed,Linked REL32 destination in official SDK mapping0.obj
+0x00671650,__vp_offset_and_mix,third_party,observed,Linked REL32 destination in official SDK mapping0.obj
+0x006716E0,__vp_quantize_couple_memo,third_party,observed,Linked REL32 destination in official SDK mapping0.obj
+0x00671990,__vp_quantize_couple_sort,third_party,observed,Linked REL32 destination in official SDK mapping0.obj
+0x00670A40,__vp_remove_floor,third_party,observed,Linked REL32 destination in official SDK mapping0.obj
+0x00671160,__vp_tonemask,third_party,observed,Linked REL32 destination in official SDK mapping0.obj
+0x00673BD0,drft_forward,third_party,observed,Linked REL32 destination in official SDK mapping0.obj
+0x00679D70,floor1_encode,third_party,observed,Linked REL32 destination in official SDK mapping0.obj
+0x00679120,floor1_fit,third_party,observed,Official SDK floor1.obj public function identity
+0x00679CC0,floor1_interpolate_fit,third_party,observed,Official SDK floor1.obj public function identity
+0x006753E0,mdct_backward,third_party,observed,Linked REL32 destination in official SDK mapping0.obj
+0x00675FA0,mdct_forward,third_party,observed,Linked REL32 destination in official SDK mapping0.obj
+0x00677240,todB,third_party,observed,Official SDK mapping0.obj internal helper identity
+0x00673B50,vorbis_bitrate_managed,third_party,observed,Linked REL32 destination in official SDK mapping0.obj
+0x00678610,__2class,third_party,observed,Official SDK res0.obj internal helper identity
+0x00673070,vorbis_book_decode,third_party,observed,Official SDK codebook.obj public function identity
+0x00673030,vorbis_book_encode,third_party,observed,Official SDK codebook.obj public function identity
