@@ -1961,6 +1961,12 @@ symbol_base = "_render_line0"
 address = "0x0067A7F0"
 symbol_base = "_render_line"
 
+[[units.xiph-sdk-vorbis-floor1.functions]]
+address = "0x00679D70"
+symbol_base = "_floor1_encode"
+rel32_targets = ["_render_point=0x006795E0","_oggpack_write=0x006A3A90","_ilog=0x006723B0","_vorbis_book_encode=0x00673030","_render_line0=0x0067A360"]
+dir32_targets = ["_?seq@?1??floor1_encode@@9@9=_?seq@?1??floor1_encode@@9@9"]
+
 [units.xiph-sdk-vorbis-res0]
 kind = "upstream_prebuilt"
 source = "third_party/libvorbis-1.0.1/lib/res0.c"
@@ -2035,6 +2041,360 @@ symbol_base = "_todB"
 [[units.xiph-sdk-vorbis-mapping0.functions]]
 address = "0x00677270"
 symbol_base = "_mapping0_inverse"
+
+[units.xiph-sdk-vorbis-psy]
+kind = "upstream_prebuilt"
+source = "third_party/libvorbis-1.0.1/lib/psy.c"
+object = "build/match-units/xiph_sdk_vorbis_psy.obj"
+profile = "xiph-win32sdk-1.0.1"
+enable_gs = false
+sdk_component = "vorbis"
+sdk_object = "psy.obj"
+sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
+notes = "Strict exact target functions retained from official SDK psy.obj; target addresses are unique across the unit graph."
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x0066FC10"
+symbol_base = "__vi_psy_free"
+rel32_targets = ["_free=0x0067DD26"]
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x0066FC30"
+symbol_base = "__vp_psy_init"
+rel32_targets = ["_floor=0x0067E3C0","__ftol=0x0067E4F0","_malloc=0x0067DC63","_setup_tone_curves=0x00670180"]
+dir32_targets = ["__real@4@40028000000000000000=__real@4@40028000000000000000","__real@8@40008000000000000000=__real@8@40008000000000000000","__real@4@3ffd8000000000000000=__real@4@3ffd8000000000000000","__real@8@3fffb8aa3b0000000000=__real@8@3fffb8aa3b0000000000","__real@8@4001bee7b40000000000=__real@8@4001bee7b40000000000","_ATH+0x4=_ATH+0x4","__real@8@3ffc8000000000000000=__real@8@3ffc8000000000000000","__real@8@3ffeb172150000000000=__real@8@3ffeb172150000000000","_ATH+0x160=_ATH+0x160","__real@4@3fe59ee9ee0000000000=__real@4@3fe59ee9ee0000000000","__real@8@40008f5c290000000000=__real@8@40008f5c290000000000","__real@4@3ff4c1fc8f0000000000=__real@4@3ff4c1fc8f0000000000","__real@8@4002d1999a0000000000=__real@8@4002d1999a0000000000","__real@4@3ff1d1b7170000000000=__real@4@3ff1d1b7170000000000","__real@4@40038000000000000000=__real@4@40038000000000000000"]
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x00670180"
+symbol_base = "_setup_tone_curves"
+rel32_targets = ["__chkstk=0x0067E560","__alloca_probe=0x0067E560","_malloc=0x0067DC63","_attenuate_curve=0x00670960","_max_curve=0x00670930","_min_curve=0x00670900","_floor=0x0067E3C0","__ftol=0x0067E4F0","_ceil=0x0067CC50"]
+dir32_targets = ["_tonemasks=_tonemasks","_ATH=_ATH","__real@4@4008f9c0000000000000=__real@4@4008f9c0000000000000","_ATH+0x160=_ATH+0x160","_ATH+0x15C=_ATH+0x15C","__real@8@4002a000000000000000=__real@8@4002a000000000000000","__real@8@4003f000000000000000=__real@8@4003f000000000000000","__real@4@4002a000000000000000=__real@4@4002a000000000000000","_ATH+0x110=_ATH+0x110","__real@8@4001bee7b40000000000=__real@8@4001bee7b40000000000","__real@8@3ffeb172150000000000=__real@8@3ffeb172150000000000","__real@4@3fff8000000000000000=__real@4@3fff8000000000000000","__real@8@3fffb8aa3b0000000000=__real@8@3fffb8aa3b0000000000","__real@8@3ffc8000000000000000=__real@8@3ffc8000000000000000","__real@8@40008400000000000000=__real@8@40008400000000000000","__real@8@3ffff800000000000000=__real@8@3ffff800000000000000","__real@8@40008000000000000000=__real@8@40008000000000000000","__real@4@c006c800000000000000=__real@4@c006c800000000000000"]
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x00670900"
+symbol_base = "_min_curve"
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x00670930"
+symbol_base = "_max_curve"
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x00670960"
+symbol_base = "_attenuate_curve"
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x00670980"
+symbol_base = "__vp_psy_clear"
+rel32_targets = ["_free=0x0067DD26"]
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x00670A40"
+symbol_base = "__vp_remove_floor"
+dir32_targets = ["_FLOOR1_fromdB_INV_LOOKUP=_FLOOR1_fromdB_INV_LOOKUP"]
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x00670AA0"
+symbol_base = "__vp_noisemask"
+rel32_targets = ["__alloca_probe=0x0067E560","_bark_noise_hybridmp=0x00670B90","__ftol=0x0067E4F0"]
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x00670B90"
+symbol_base = "_bark_noise_hybridmp"
+rel32_targets = ["__alloca_probe=0x0067E560"]
+dir32_targets = ["__real@4@3fff8000000000000000=__real@4@3fff8000000000000000"]
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x00671160"
+symbol_base = "__vp_tonemask"
+rel32_targets = ["__alloca_probe=0x0067E560","_seed_loop=0x00671200","_max_seeds=0x006713B0"]
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x00671200"
+symbol_base = "_seed_loop"
+rel32_targets = ["_seed_curve=0x006712E0"]
+dir32_targets = ["__real@4@4001c000000000000000=__real@4@4001c000000000000000"]
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x006712E0"
+symbol_base = "_seed_curve"
+rel32_targets = ["__ftol=0x0067E4F0"]
+dir32_targets = ["__real@8@4003f000000000000000=__real@8@4003f000000000000000","__real@8@3ffbcccccd0000000000=__real@8@3ffbcccccd0000000000","__real@4@40038000000000000000=__real@4@40038000000000000000"]
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x006713B0"
+symbol_base = "_max_seeds"
+rel32_targets = ["_seed_chase=0x006714F0"]
+dir32_targets = ["__real@4@c00c9c3c000000000000=__real@4@c00c9c3c000000000000"]
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x006714F0"
+symbol_base = "_seed_chase"
+rel32_targets = ["__alloca_probe=0x0067E560"]
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x00671650"
+symbol_base = "__vp_offset_and_mix"
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x006716E0"
+symbol_base = "__vp_quantize_couple_memo"
+rel32_targets = ["__vorbis_block_alloc=0x0066EAB0","_dipole_hypot=0x00671830","_round_hypot=0x00671900"]
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x00671830"
+symbol_base = "_dipole_hypot"
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x00671900"
+symbol_base = "_round_hypot"
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x00671990"
+symbol_base = "__vp_quantize_couple_sort"
+rel32_targets = ["__vorbis_block_alloc=0x0066EAB0","__alloca_probe=0x0067E560","_qsort=0x0067E9F0"]
+dir32_targets = ["_apsort=_apsort"]
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x00671B40"
+symbol_base = "__vp_noise_normalize_sort"
+rel32_targets = ["__alloca_probe=0x0067E560","_qsort=0x0067E9F0"]
+dir32_targets = ["_apsort=_apsort"]
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x00671C10"
+symbol_base = "__vp_noise_normalize"
+rel32_targets = ["_floor=0x0067E3C0","_unitnorm=0x00671E60"]
+dir32_targets = ["__real@4@3ffd8000000000000000=__real@4@3ffd8000000000000000"]
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x00671E60"
+symbol_base = "_unitnorm"
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x00671E80"
+symbol_base = "__vp_couple"
+rel32_targets = ["_precomputed_couple_point=0x00672340","_floor=0x0067E3C0","_unitnorm=0x00671E60","_couple_lossless=0x00672270"]
+dir32_targets = ["_stereo_threshholds=_stereo_threshholds","__real@4@3fff8000000000000000=__real@4@3fff8000000000000000"]
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x00672270"
+symbol_base = "_couple_lossless"
+dir32_targets = ["__real@8@3ffffffcb90000000000=__real@8@3ffffffcb90000000000","__real@8@c0008000000000000000=__real@8@c0008000000000000000"]
+
+[[units.xiph-sdk-vorbis-psy.functions]]
+address = "0x00672340"
+symbol_base = "_precomputed_couple_point"
+dir32_targets = ["_hypot_lookup=_hypot_lookup","__real@4@3fff8000000000000000=__real@4@3fff8000000000000000","_FLOOR1_fromdB_INV_LOOKUP=_FLOOR1_fromdB_INV_LOOKUP"]
+
+[units.xiph-sdk-vorbis-sharedbook]
+kind = "upstream_prebuilt"
+source = "third_party/libvorbis-1.0.1/lib/sharedbook.c"
+object = "build/match-units/xiph_sdk_vorbis_sharedbook.obj"
+profile = "xiph-win32sdk-1.0.1"
+enable_gs = false
+sdk_component = "vorbis"
+sdk_object = "sharedbook.obj"
+sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
+notes = "Strict exact target functions retained from official SDK sharedbook.obj; target addresses are unique across the unit graph."
+
+[[units.xiph-sdk-vorbis-sharedbook.functions]]
+address = "0x006723C0"
+symbol_base = "__float32_unpack"
+rel32_targets = ["_ldexp=0x0067EC97"]
+
+[[units.xiph-sdk-vorbis-sharedbook.functions]]
+address = "0x00672410"
+symbol_base = "__make_words"
+rel32_targets = ["_malloc=0x0067DC63","_free=0x0067DD26"]
+
+[[units.xiph-sdk-vorbis-sharedbook.functions]]
+address = "0x00672590"
+symbol_base = "__book_maptype1_quantvals"
+rel32_targets = ["__CIpow=0x0067D760","_floor=0x0067E3C0","__ftol=0x0067E4F0"]
+dir32_targets = ["__real@4@3fff8000000000000000=__real@4@3fff8000000000000000"]
+
+[[units.xiph-sdk-vorbis-sharedbook.functions]]
+address = "0x00672600"
+symbol_base = "__book_unquantize"
+rel32_targets = ["__float32_unpack=0x006723C0","_calloc=0x0067DED2","__book_maptype1_quantvals=0x00672590"]
+
+[[units.xiph-sdk-vorbis-sharedbook.functions]]
+address = "0x006728C0"
+symbol_base = "_vorbis_staticbook_destroy"
+rel32_targets = ["_vorbis_staticbook_clear=0x006727F0","_free=0x0067DD26"]
+
+[[units.xiph-sdk-vorbis-sharedbook.functions]]
+address = "0x00672940"
+symbol_base = "_vorbis_book_init_encode"
+rel32_targets = ["__make_words=0x00672410","__book_unquantize=0x00672600"]
+
+[[units.xiph-sdk-vorbis-sharedbook.functions]]
+address = "0x006729A0"
+symbol_base = "_vorbis_book_init_decode"
+rel32_targets = ["__make_words=0x00672410","__alloca_probe=0x0067E560","_vorbis_book_clear=0x006728E0","_bitreverse=0x00672D70","_qsort=0x0067E9F0","_malloc=0x0067DC63","_free=0x0067DD26"]
+dir32_targets = ["_sort32a=_sort32a"]
+
+[units.xiph-sdk-vorbis-bitrate]
+kind = "upstream_prebuilt"
+source = "third_party/libvorbis-1.0.1/lib/bitrate.c"
+object = "build/match-units/xiph_sdk_vorbis_bitrate.obj"
+profile = "xiph-win32sdk-1.0.1"
+enable_gs = false
+sdk_component = "vorbis"
+sdk_object = "bitrate.obj"
+sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
+notes = "Strict exact target functions retained from official SDK bitrate.obj; target addresses are unique across the unit graph."
+
+[[units.xiph-sdk-vorbis-bitrate.functions]]
+address = "0x00673A70"
+symbol_base = "_vorbis_bitrate_clear"
+rel32_targets = ["_free=0x0067DD26","_oggpack_writeclear=0x006A3BB0"]
+
+[[units.xiph-sdk-vorbis-bitrate.functions]]
+address = "0x00673B50"
+symbol_base = "_vorbis_bitrate_managed"
+
+[units.xiph-sdk-vorbis-envelope]
+kind = "upstream_prebuilt"
+source = "third_party/libvorbis-1.0.1/lib/envelope.c"
+object = "build/match-units/xiph_sdk_vorbis_envelope.obj"
+profile = "xiph-win32sdk-1.0.1"
+enable_gs = false
+sdk_component = "vorbis"
+sdk_object = "envelope.obj"
+sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
+notes = "Strict exact target functions retained from official SDK envelope.obj; target addresses are unique across the unit graph."
+
+[[units.xiph-sdk-vorbis-envelope.functions]]
+address = "0x00673B70"
+symbol_base = "__ve_envelope_clear"
+rel32_targets = ["_mdct_clear=0x006753A0","_free=0x0067DD26"]
+
+[units.xiph-sdk-vorbis-smallft-forward]
+kind = "upstream_prebuilt"
+source = "third_party/libvorbis-1.0.1/lib/smallft.c"
+object = "build/match-units/xiph_sdk_vorbis_smallft_forward.obj"
+profile = "xiph-win32sdk-1.0.1"
+enable_gs = false
+sdk_component = "vorbis"
+sdk_object = "smallft.obj"
+sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
+notes = "Strict exact target functions retained from official SDK smallft.obj; target addresses are unique across the unit graph."
+
+[[units.xiph-sdk-vorbis-smallft-forward.functions]]
+address = "0x00673BD0"
+symbol_base = "_drft_forward"
+rel32_targets = ["_drftf1=0x00673C00"]
+
+[[units.xiph-sdk-vorbis-smallft-forward.functions]]
+address = "0x00673C00"
+symbol_base = "_drftf1"
+rel32_targets = ["_dradfg=0x006743E0","_dradf2=0x00673DB0","_dradf4=0x00673F70"]
+
+[[units.xiph-sdk-vorbis-smallft-forward.functions]]
+address = "0x00673DB0"
+symbol_base = "_dradf2"
+
+[[units.xiph-sdk-vorbis-smallft-forward.functions]]
+address = "0x00673F70"
+symbol_base = "_dradf4"
+dir32_targets = ["_?hsqt2@?1??dradf4@@9@9=_?hsqt2@?1??dradf4@@9@9"]
+
+[units.xiph-sdk-vorbis-mdct-butterflies]
+kind = "upstream_prebuilt"
+source = "third_party/libvorbis-1.0.1/lib/mdct.c"
+object = "build/match-units/xiph_sdk_vorbis_mdct_butterflies.obj"
+profile = "xiph-win32sdk-1.0.1"
+enable_gs = false
+sdk_component = "vorbis"
+sdk_object = "mdct.obj"
+sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
+notes = "Strict exact target functions retained from official SDK mdct.obj; target addresses are unique across the unit graph."
+
+[[units.xiph-sdk-vorbis-mdct-butterflies.functions]]
+address = "0x00675DF0"
+symbol_base = "_mdct_butterfly_8"
+
+[[units.xiph-sdk-vorbis-mdct-butterflies.functions]]
+address = "0x00675E80"
+symbol_base = "_mdct_butterfly_generic"
+
+[units.xiph-sdk-vorbis-floor0]
+kind = "upstream_prebuilt"
+source = "third_party/libvorbis-1.0.1/lib/floor0.c"
+object = "build/match-units/xiph_sdk_vorbis_floor0.obj"
+profile = "xiph-win32sdk-1.0.1"
+enable_gs = false
+sdk_component = "vorbis"
+sdk_object = "floor0.obj"
+sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
+notes = "Four strict exact floor0 target functions from the official SDK object."
+
+[[units.xiph-sdk-vorbis-floor0.functions]]
+address = "0x0067A8B0"
+symbol_base = "_floor0_free_info"
+rel32_targets = ["_free=0x0067DD26"]
+
+[[units.xiph-sdk-vorbis-floor0.functions]]
+address = "0x0067A8D0"
+symbol_base = "_floor0_free_look"
+rel32_targets = ["_free=0x0067DD26"]
+
+[[units.xiph-sdk-vorbis-floor0.functions]]
+address = "0x0067AB60"
+symbol_base = "_floor0_inverse2"
+rel32_targets = ["_floor0_map_lazy_init=0x0067ABE0","_vorbis_lsp_to_curve=0x0067AD40"]
+
+[[units.xiph-sdk-vorbis-floor0.functions]]
+address = "0x0067ABE0"
+symbol_base = "_floor0_map_lazy_init"
+rel32_targets = ["_malloc=0x0067DC63","_floor=0x0067E3C0","__ftol=0x0067E4F0"]
+
+[units.xiph-sdk-vorbis-lsp]
+kind = "upstream_prebuilt"
+source = "third_party/libvorbis-1.0.1/lib/lsp.c"
+object = "build/match-units/xiph_sdk_vorbis_lsp.obj"
+profile = "xiph-win32sdk-1.0.1"
+enable_gs = false
+sdk_component = "vorbis"
+sdk_object = "lsp.obj"
+sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
+notes = "Strict exact LSP curve conversion retained in the official SDK lsp.obj."
+
+[[units.xiph-sdk-vorbis-lsp.functions]]
+address = "0x0067AD40"
+symbol_base = "_vorbis_lsp_to_curve"
+rel32_targets = ["_vorbis_coslook=0x0067AEC0","_frexp=0x0067F161","_vorbis_invsq2explook=0x0067AF60","_vorbis_invsqlook=0x0067AF10","_vorbis_fromdBlook=0x0067AF70"]
+
+[units.xiph-sdk-vorbis-lookup]
+kind = "upstream_prebuilt"
+source = "third_party/libvorbis-1.0.1/lib/lookup.c"
+object = "build/match-units/xiph_sdk_vorbis_lookup_from_lsp.obj"
+profile = "xiph-win32sdk-1.0.1"
+enable_gs = false
+sdk_component = "vorbis"
+sdk_object = "lsp.obj"
+sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
+notes = "Four lookup.c functions retained in the historical SDK lsp.obj through its Intel interprocedural build."
+
+[[units.xiph-sdk-vorbis-lookup.functions]]
+address = "0x0067AEC0"
+symbol_base = "_vorbis_coslook"
+dir32_targets = ["_COS_LOOKUP+0x4=_COS_LOOKUP+0x4"]
+
+[[units.xiph-sdk-vorbis-lookup.functions]]
+address = "0x0067AF10"
+symbol_base = "_vorbis_invsqlook"
+dir32_targets = ["_INVSQ_LOOKUP+0x4=_INVSQ_LOOKUP+0x4"]
+
+[[units.xiph-sdk-vorbis-lookup.functions]]
+address = "0x0067AF60"
+symbol_base = "_vorbis_invsq2explook"
+dir32_targets = ["_INVSQ2EXP_LOOKUP+0x80=_INVSQ2EXP_LOOKUP+0x80"]
+
+[[units.xiph-sdk-vorbis-lookup.functions]]
+address = "0x0067AF70"
+symbol_base = "_vorbis_fromdBlook"
 
 [units.xiph-vorbisfile-host-endian-anchor]
 kind = "upstream_prebuilt"

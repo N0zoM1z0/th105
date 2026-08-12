@@ -34,12 +34,21 @@ target `0x0066DD00` resolves to `ov_pcm_seek`, proving the function is
 candidate. The next dependency wave completed every TH105 function selected
 from `info.obj`, `block.obj`, and `synthesis.obj`. The next wave proved all
 selected target bodies from `codebook.obj`, `floor1.obj`, `res0.obj`, and
-`mapping0.obj`. The accepted total is now 83 unique functions and 27,062
-bytes, including the 2,421-byte `mapping0_forward`, 1,615-byte
-`vorbis_synthesis_blockin`, and 1,209-byte `floor1_fit`. Two contextual SDK
-static helpers map to already-owned linked target addresses, so object-level
-candidate counts are deduplicated by target address before progress is
-reported.
+`mapping0.obj`. A breadth scan then closed the psychoacoustic, shared-book,
+bitrate, envelope, forward small-FFT, MDCT butterfly, floor0, LSP, and lookup
+groups. The accepted total is now 135 unique functions and 43,759 bytes,
+including the 2,421-byte `mapping0_forward`, 1,615-byte
+`vorbis_synthesis_blockin`, 1,497-byte `floor1_encode`, and 1,209-byte
+`floor1_fit`. Sixteen target functions and 8,296 bytes remain unresolved. Two
+contextual SDK static helpers map to already-owned linked target addresses, so
+object-level candidate counts are deduplicated by target address before
+progress is reported.
+
+The archived objects also retain historical Intel IPO layout: the four public
+lookup helpers whose source is `lookup.c` are emitted in `lsp.obj`. The match
+manifest therefore records source ownership separately from the SDK COFF
+member instead of pretending that the archive preserved one-object-per-source
+layout.
 
 Reproduce the accepted bytes with:
 
@@ -52,4 +61,13 @@ python3 scripts/build.py --unit xiph-sdk-vorbis-codebook --compare --json
 python3 scripts/build.py --unit xiph-sdk-vorbis-floor1 --compare --json
 python3 scripts/build.py --unit xiph-sdk-vorbis-res0 --compare --json
 python3 scripts/build.py --unit xiph-sdk-vorbis-mapping0 --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-psy --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-sharedbook --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-bitrate --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-envelope --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-smallft-forward --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-mdct-butterflies --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-floor0 --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-lsp --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-lookup --compare --json
 ```

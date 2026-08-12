@@ -758,3 +758,45 @@ address,name,module,confidence,evidence
 0x00678610,__2class,third_party,observed,Official SDK res0.obj internal helper identity
 0x00673070,vorbis_book_decode,third_party,observed,Official SDK codebook.obj public function identity
 0x00673030,vorbis_book_encode,third_party,observed,Official SDK codebook.obj public function identity
+0x00673A70,_vorbis_bitrate_clear,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x00673B50,_vorbis_bitrate_managed,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x00670180,_setup_tone_curves,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x00670900,_min_curve,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x00670930,_max_curve,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x00670960,_attenuate_curve,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x00670B90,_bark_noise_hybridmp,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x00671200,_seed_loop,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x006712E0,_seed_curve,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x006713B0,_max_seeds,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x006714F0,_seed_chase,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x00671830,_dipole_hypot,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x00671900,_round_hypot,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x00671E60,_unitnorm,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x00672270,_couple_lossless,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x00672340,_precomputed_couple_point,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x006723C0,__float32_unpack,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x00672410,__make_words,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x00672600,__book_unquantize,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x006728C0,_vorbis_staticbook_destroy,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x00672940,_vorbis_book_init_encode,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x006729A0,_vorbis_book_init_decode,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x00673BD0,_drft_forward,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x00673C00,_drftf1,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x00673DB0,_dradf2,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x00673F70,_dradf4,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x00673BD0,_drft_backward,third_party,observed,Official SDK Vorbis object strict relocation identity
+0x0067E560,__chkstk,runtime,observed,Linked destination in official SDK Vorbis object
+0x0067D760,__CIpow,runtime,observed,Linked destination in official SDK Vorbis object
+0x00679D70,_floor1_encode,third_party,observed,Official SDK floor1.obj strict relocation identity
+0x0067A8B0,_floor0_free_info,third_party,observed,Official SDK floor0.obj strict identity
+0x0067A8D0,_floor0_free_look,third_party,observed,Official SDK floor0.obj strict identity
+0x0067AB60,_floor0_inverse2,third_party,observed,Official SDK floor0.obj strict relocation identity
+0x0067ABE0,_floor0_map_lazy_init,third_party,observed,Official SDK floor0.obj strict relocation identity
+0x0067AD40,_vorbis_lsp_to_curve,third_party,observed,Official SDK lsp.obj strict relocation identity
+0x0067AEC0,_vorbis_coslook,third_party,observed,Official SDK lsp.obj strict relocation identity
+0x0067AF10,_vorbis_invsqlook,third_party,observed,Official SDK lsp.obj strict relocation identity
+0x0067AF60,_vorbis_invsq2explook,third_party,observed,Official SDK lsp.obj strict relocation identity
+0x0067AF70,_vorbis_fromdBlook,third_party,observed,Official SDK lsp.obj strict relocation identity
+0x00675DF0,_mdct_butterfly_8,third_party,observed,Official SDK mdct.obj strict identity
+0x00675E80,_mdct_butterfly_generic,third_party,observed,Official SDK mdct.obj strict identity
+0x0067F161,_frexp,runtime,observed,Linked REL32 destination in official SDK lsp.obj

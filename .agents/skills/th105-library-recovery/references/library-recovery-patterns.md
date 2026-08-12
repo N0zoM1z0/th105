@@ -101,8 +101,10 @@ tables/strings—not source divergence.
 
 ## Xiph Ogg/Vorbis strategy
 
-The current target has useful `OggS`, `vorbis`, and `ov_*` fingerprints but no
-verified embedded release string. Exact release is unresolved.
+The target has useful `OggS`, `vorbis`, and `ov_*` fingerprints but no verified
+embedded release string. The `vorbis_info_init` allocation size and
+`ov_time_seek` control-flow fingerprints establish libvorbis v1.0.1; the
+SHA-256-pinned official Windows SDK supplies the authoritative COFF codegen.
 
 Do not manually decompile all 151 functions first. Instead compile a small tag
 matrix of official releases around the target era and compare public anchors:
@@ -160,6 +162,21 @@ uses an ambiguous helper name. The `floor1.obj`/`res0.obj` shared `ilog` and
 the `floor1.obj`/`mapping0.obj` `ilog2`/`ilog` pair are the regression cases:
 36 object-function mappings become 34 unique ledger functions, not 36 progress
 credits.
+
+Once several objects prove the release and code-generation identity, fan out
+independent address-bounded scans in parallel. A masked scan may propose a
+mapping, but the coordinator must audit every referenced callee, constant, and
+table addend and rerun the strict comparator before updating the ledger. This
+sequence closed a 52-function, 16,697-byte wave across psychoacoustic,
+shared-book, bitrate, envelope, FFT/MDCT, floor0, LSP, lookup, and floor1 code.
+It is substantially faster than hand-decompiling each library function while
+preserving the same acceptance gate.
+
+Do not assume one source file per archived object when historical IPO is in
+use. In the official SDK, functions from `lookup.c` were emitted into
+`lsp.obj`. Keep the upstream source path in the function ledger, record the
+actual archive member in the match unit, and give each generated object a
+distinct output name if two units extract the same member.
 
 ## Failure taxonomy and next action
 

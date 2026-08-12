@@ -324,3 +324,54 @@ __real@4@3ffe8000000000000000,0x006B73E0,0000003f,0x0,Official SDK mapping0/res0
 __real@4@40018000000000000000,0x006B7498,00008040,0x0,Official SDK mapping0.obj float 4.0 equals target,literal
 __real@4@4008bf115b0000000000,0x006B7410,5b113f44,0x0,Official SDK mapping0.obj float constant equals target,literal
 __real@8@4005c800000000000000,0x006AC9A0,0000000000005940,0x0,Official SDK res0.obj double 100.0 equals target,literal
+_?hsqt2@?1??dradf4@@9@9,0x006D9164,f304353f,0x0,Official SDK Vorbis object data for _?hsqt2@?1??dradf4@@9@9+0x0 equals target bytes,literal
+_ATH,0x006D31D0,00004cc2,0x0,Official SDK Vorbis object data for _ATH+0x0 equals target bytes,literal
+_ATH+0x4,0x006D31D0,000050c2,0x4,Official SDK Vorbis object data for _ATH+0x4 equals target bytes,literal
+_ATH+0x110,0x006D31D0,0000cac2,0x110,Official SDK Vorbis object data for _ATH+0x110 equals target bytes,literal
+_ATH+0x15C,0x006D31D0,0000f0c1,0x15C,Official SDK Vorbis object data for _ATH+0x15C equals target bytes,literal
+_ATH+0x160,0x006D31D0,000070c2,0x160,Official SDK Vorbis object data for _ATH+0x160 equals target bytes,literal
+_FLOOR1_fromdB_INV_LOOKUP,0x006D8CB8,00000000be88064b48a6fc4aa43bed4a,0x0,Official SDK Vorbis object data for _FLOOR1_fromdB_INV_LOOKUP+0x0 equals target bytes,literal
+__real@4@3fe59ee9ee0000000000,0x006B7424,eee99e32,0x0,Official SDK Vorbis object data for __real@4@3fe59ee9ee0000000000+0x0 equals target bytes,literal
+__real@4@3ff1d1b7170000000000,0x006B741C,17b7d138,0x0,Official SDK Vorbis object data for __real@4@3ff1d1b7170000000000+0x0 equals target bytes,literal
+__real@4@3ff4c1fc8f0000000000,0x006B7420,8ffc413a,0x0,Official SDK Vorbis object data for __real@4@3ff4c1fc8f0000000000+0x0 equals target bytes,literal
+__real@4@3ffd8000000000000000,0x006B7448,0000803e,0x0,Official SDK Vorbis object data for __real@4@3ffd8000000000000000+0x0 equals target bytes,literal
+__real@4@3fff8000000000000000,0x006B7460,0000803f,0x0,Official SDK Vorbis object data for __real@4@3fff8000000000000000+0x0 equals target bytes,literal
+__real@4@4001c000000000000000,0x006B747C,0000c040,0x0,Official SDK Vorbis object data for __real@4@4001c000000000000000+0x0 equals target bytes,literal
+__real@4@40028000000000000000,0x006AE87C,00000041,0x0,Official SDK Vorbis object data for __real@4@40028000000000000000+0x0 equals target bytes,literal
+__real@4@4002a000000000000000,0x006C0F10,00002041,0x0,Official SDK Vorbis object data for __real@4@4002a000000000000000+0x0 equals target bytes,literal
+__real@4@40038000000000000000,0x006B7418,00008041,0x0,Official SDK Vorbis object data for __real@4@40038000000000000000+0x0 equals target bytes,literal
+__real@4@4008f9c0000000000000,0x006B7478,00c07944,0x0,Official SDK Vorbis object data for __real@4@4008f9c0000000000000+0x0 equals target bytes,literal
+__real@4@c006c800000000000000,0x006B744C,000048c3,0x0,Official SDK Vorbis object data for __real@4@c006c800000000000000+0x0 equals target bytes,literal
+__real@4@c00c9c3c000000000000,0x006B7480,003c1cc6,0x0,Official SDK Vorbis object data for __real@4@c00c9c3c000000000000+0x0 equals target bytes,literal
+__real@8@3ffbcccccd0000000000,0x006AF428,000000a09999b93f,0x0,Official SDK Vorbis object data for __real@8@3ffbcccccd0000000000+0x0 equals target bytes,literal
+__real@8@3ffc8000000000000000,0x006B7430,000000000000c03f,0x0,Official SDK Vorbis object data for __real@8@3ffc8000000000000000+0x0 equals target bytes,literal
+__real@8@3ffeb172150000000000,0x006B7428,000000a0422ee63f,0x0,Official SDK Vorbis object data for __real@8@3ffeb172150000000000+0x0 equals target bytes,literal
+__real@8@3fffb8aa3b0000000000,0x006B7440,000000604715f73f,0x0,Official SDK Vorbis object data for __real@8@3fffb8aa3b0000000000+0x0 equals target bytes,literal
+__real@8@3ffff800000000000000,0x006B7450,000000000000ff3f,0x0,Official SDK Vorbis object data for __real@8@3ffff800000000000000+0x0 equals target bytes,literal
+__real@8@3ffffffcb90000000000,0x006B7490,0000002097ffff3f,0x0,Official SDK Vorbis object data for __real@8@3ffffffcb90000000000+0x0 equals target bytes,literal
+__real@8@40008000000000000000,0x006AE1C8,0000000000000040,0x0,Official SDK Vorbis object data for __real@8@40008000000000000000+0x0 equals target bytes,literal
+__real@8@40008400000000000000,0x006B7458,0000000000800040,0x0,Official SDK Vorbis object data for __real@8@40008400000000000000+0x0 equals target bytes,literal
+__real@8@40008f5c290000000000,0x006B7408,0000002085eb0140,0x0,Official SDK Vorbis object data for __real@8@40008f5c290000000000+0x0 equals target bytes,literal
+__real@8@4001bee7b40000000000,0x006B7438,00000080f6dc1740,0x0,Official SDK Vorbis object data for __real@8@4001bee7b40000000000+0x0 equals target bytes,literal
+__real@8@4002a000000000000000,0x006B7470,0000000000002440,0x0,Official SDK Vorbis object data for __real@8@4002a000000000000000+0x0 equals target bytes,literal
+__real@8@4002d1999a0000000000,0x006B7400,0000004033332a40,0x0,Official SDK Vorbis object data for __real@8@4002d1999a0000000000+0x0 equals target bytes,literal
+__real@8@4003f000000000000000,0x006B7468,0000000000003e40,0x0,Official SDK Vorbis object data for __real@8@4003f000000000000000+0x0 equals target bytes,literal
+__real@8@c0008000000000000000,0x006B7488,00000000000000c0,0x0,Official SDK Vorbis object data for __real@8@c0008000000000000000+0x0 equals target bytes,literal
+_apsort,0x00671AF0,8b4424048b5424088b088b02d901d9e1,0x0,Official SDK Vorbis object data for _apsort+0x0 equals target bytes,literal
+_hypot_lookup,0x006D90B8,69c622bcf33c38bcb68050bc65e16bbc,0x0,Official SDK Vorbis object data for _hypot_lookup+0x0 equals target bytes,literal
+_sort32a,0x00672DD0,8b4424048b5424088b088b028b098b10,0x0,Official SDK Vorbis object data for _sort32a+0x0 equals target bytes,literal
+_stereo_threshholds,0x006D8C70,0000000000000000000000000000e03f,0x0,Official SDK Vorbis object data for _stereo_threshholds+0x0 equals target bytes,literal
+_tonemasks,0x006D3330,000070c2000070c2000070c2000070c2,0x0,Official SDK Vorbis object data for _tonemasks+0x0 equals target bytes,literal
+_?seq@?1??floor1_encode@@9@9,0x006E7940,00000000,0x0,Official SDK floor1.obj zero-filled sequence scratch equals target,literal
+__real@4@4000c90fdb0000000000,0x006B74A8,db0f4940,0x0,Official SDK lsp.obj float constant equals target,literal
+__real@8@4004a2f9838f1632f000,0x006B74C0,5ec6e271305f4440,0x0,Official SDK lsp.obj double constant equals target,literal
+_COS_LOOKUP,0x006E15D4,0000803f43ec7f3f0fb17f3f6d4e7f3f,0x0,Official SDK lsp.obj cosine lookup prefix equals target,literal
+_COS_LOOKUP+0x4,0x006E15D4,43ec7f3f0fb17f3f6d4e7f3f6dc47e3f,0x4,Official SDK lsp.obj cosine lookup addend equals target,literal
+__real@4@40058000000000000000,0x006B74C8,00008042,0x0,Official SDK lsp.obj float constant equals target,literal
+__real@4@40048000000000000000,0x006AD3C4,00000042,0x0,Official SDK lsp.obj float constant equals target,literal
+_INVSQ_LOOKUP,0x006E17D8,f304b53f6a41b23f539daf3f6c16ad3f,0x0,Official SDK lsp.obj inverse-square lookup prefix equals target,literal
+_INVSQ_LOOKUP+0x4,0x006E17D8,6a41b23f539daf3f6c16ad3fabaaaa3f,0x4,Official SDK lsp.obj inverse-square lookup addend equals target,literal
+_INVSQ2EXP_LOOKUP+0x80,0x006E185C,0000803ff304353f0000003ff304b53e,0x80,Official SDK lsp.obj inverse-square exponent lookup addend equals target,literal
+__real@4@c0028000000000000000,0x006AFB84,000000c1,0x0,Official SDK lsp.obj float constant equals target,literal
+_FROMdB2_LOOKUP,0x006E19EC,202a7e3f74887a3f10f4763fc56c733f,0x0,Official SDK lsp.obj secondary dB lookup prefix equals target,literal
+_FROMdB_LOOKUP,0x006E1960,0000803f6c86213fb4d4cb3ecc9b803e,0x0,Official SDK lsp.obj dB lookup prefix equals target,literal

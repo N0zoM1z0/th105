@@ -115,9 +115,24 @@ python3 scripts/build.py --unit xiph-sdk-vorbis-codebook --compare --json
 python3 scripts/build.py --unit xiph-sdk-vorbis-floor1 --compare --json
 python3 scripts/build.py --unit xiph-sdk-vorbis-res0 --compare --json
 python3 scripts/build.py --unit xiph-sdk-vorbis-mapping0 --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-psy --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-sharedbook --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-bitrate --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-envelope --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-smallft-forward --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-mdct-butterflies --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-floor0 --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-lsp --compare --json
+python3 scripts/build.py --unit xiph-sdk-vorbis-lookup --compare --json
 python3 scripts/build.py --unit xiph-sdk-ogg-framing-relocation-free --compare --json
 python3 scripts/build.py --unit xiph-sdk-ogg-bitwise-relocation-free --compare --json
 ```
+
+These units strictly reproduce 135 unique libvorbis/vorbisfile functions and
+43,759 function bytes. Together with the complete 33-function libogg island,
+the Xiph work leaves 16 libvorbis functions and 8,296 bytes unresolved. The
+remaining rows stay visible as third-party work rather than being inferred
+exact from their neighbours.
 
 ### VC8 runtime and compiler output
 
