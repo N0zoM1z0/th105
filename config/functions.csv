@@ -1868,8 +1868,8 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0045F8C0,149,0x0045F954,FUN_0045f8c0,,,unclassified,0.00,unknown,undefined FUN_0045f8c0(void),false,,,,
 0x0045F960,290,0x0045FA84,FUN_0045f960,,,unclassified,0.00,unknown,undefined FUN_0045f960(void),false,,,,
 0x0045FA90,17,0x0045FAA0,FUN_0045fa90,,,unclassified,0.00,unknown,undefined FUN_0045fa90(void),false,,,,
-0x0045FAB0,314,0x0045FBEC,FUN_0045fab0,,,unclassified,0.00,unknown,undefined FUN_0045fab0(void),false,,,,
-0x0045FBF0,122,0x0045FC69,FUN_0045fbf0,,,unclassified,0.00,unknown,undefined FUN_0045fbf0(void),false,,,,
+0x0045FAB0,317,0x0045FBEC,FUN_0045fab0,PatRecord88_finalize_owned_fields,battle,decompiled,0.00,__thiscall,"int PatRecord88_finalize_owned_fields(PatRecord88 * this, int selector)",false,src/battle/PatResourceContracts.hpp,IDA Pro complete decompile and PAT parser flag selected finalization inventory 2026-08-12,root,Corrected terminal ret boundary; selected by record flag bit 0x01000000
+0x0045FBF0,122,0x0045FC69,FUN_0045fbf0,PatRecord88_resize_raw16_values,battle,decompiled,0.00,__thiscall,"int PatRecord88_resize_raw16_values(void * this, int count, void * source)",false,src/battle/PatResourceContracts.hpp,IDA Pro complete decompile and PAT parser Raw16 vector caller inventory 2026-08-12,root,Resizes and fills one nested 16-byte record vector
 0x0045FC70,311,0x0045FDA6,FUN_0045fc70,,,unclassified,0.00,unknown,undefined FUN_0045fc70(void),false,,,,
 0x0045FDB0,305,0x0045FEE0,FUN_0045fdb0,,,unclassified,0.00,unknown,undefined FUN_0045fdb0(void),false,,,,
 0x0045FEF0,56,0x0045FF27,FUN_0045fef0,,,unclassified,0.00,unknown,undefined FUN_0045fef0(void),false,,,,
@@ -1893,9 +1893,9 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00460620,693,0x0046091F,FUN_00460620,,,unclassified,0.00,unknown,undefined FUN_00460620(void),false,,,,
 0x004607EE,22,0x00460803,Catch_All@004607ee,,,unclassified,0.00,unknown,undefined Catch_All@004607ee(void),false,,,,
 0x004608A0,38,0x004608C5,Catch_All@004608a0,,,unclassified,0.00,unknown,undefined Catch_All@004608a0(void),false,,,,
-0x00460920,123,0x0046099A,FUN_00460920,,,unclassified,0.00,unknown,undefined FUN_00460920(void),false,,,,
+0x00460920,123,0x0046099A,FUN_00460920,PatGroup_copy_construct,battle,decompiled,0.00,__cdecl,"int PatGroup_copy_construct(void * destination, void const * source)",false,src/battle/PatResourceContracts.hpp,IDA Pro complete decompile and PAT parser group copy inventory 2026-08-12,root,Deep-copies the 0x20 group record-vector ownership boundary
 0x004609A0,101,0x00460A04,FUN_004609a0,,,unclassified,0.00,unknown,undefined FUN_004609a0(void),false,,,,
-0x00460A10,187,0x00460ACA,FUN_00460a10,,,unclassified,0.00,unknown,undefined FUN_00460a10(void),false,,,,
+0x00460A10,187,0x00460ACA,FUN_00460a10,PatGroup_resize_records,battle,decompiled,0.00,__thiscall,"int PatGroup_resize_records(PatGroup * this, int count, void * source)",false,src/battle/PatResourceContracts.hpp,IDA Pro complete decompile and PAT parser record-vector resize inventory 2026-08-12,root,Resizes contained 0x88 record vector using record lifecycle helpers
 0x00460AD0,119,0x00460B4C,FUN_00460ad0,,,unclassified,0.00,unknown,undefined FUN_00460ad0(void),false,,,,
 0x00460B50,3885,0x00461A7C,FUN_00460b50,load_pat_data_and_palette_resources,battle,decompiled,0.00,__thiscall,void load_pat_data_and_palette_resources(Fighter * this),false,src/battle/PatResourceContracts.hpp,docs/BATTLE.md complete IDA Pro phase ownership and EH-funclet inventory plus compiled PatResourceContracts.hpp offset assertions 2026-08-12,root,Complete open palette group-record nested 0x88-record and deferred-list reconciliation topology; source body and original PAT field terminology remain pending
 0x00461A80,5,0x00461A84,FUN_00461a80,,,unclassified,0.00,unknown,undefined FUN_00461a80(void),false,,,,

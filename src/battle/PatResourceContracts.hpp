@@ -72,6 +72,10 @@ void __thiscall PatRecord88_destroy(PatRecord88 *self);
 PatGroup *__thiscall PatGroup_construct(PatGroup *self);
 void __thiscall PatGroup_destroy(PatGroup *self);
 void __thiscall PatGroupDeque_grow_for_append(PatGroupDequeView *self);
+int __thiscall PatRecord88_finalize_owned_fields(PatRecord88 *self, int selector);
+int __thiscall PatRecord88_resize_raw16_values(void *self, int count, void *source);
+int __cdecl PatGroup_copy_construct(void *destination, void const *source);
+int __thiscall PatGroup_resize_records(PatGroup *self, int count, void *source);
 
 typedef char PaletteHandleVectorView_size_must_be_0x10[
     sizeof(PaletteHandleVectorView) == 0x10 ? 1 : -1];
