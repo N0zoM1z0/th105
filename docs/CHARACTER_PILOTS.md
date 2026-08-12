@@ -55,8 +55,9 @@ ledger span covers 74,937 function-body bytes. Reimu, Alice, Patchouli,
 Remilia, Suika, Aya, and Tenshi likewise have IDA body-size differences caused
 by non-contiguous chunks; none permits an automatic ledger resize.
 
-Alice, Marisa, Patchouli, Youmu, Yuyuko, and Udonge are now `decompiled`; the
-other nine remain `identified`. The durable pilot manifest distinguishes
+Nine roots are now `decompiled`: Alice, Marisa, Patchouli, Reimu, Remilia,
+Tenshi, Udonge, Youmu, and Yuyuko. The other six remain `identified`. The
+durable pilot manifest distinguishes
 `ida_hexrays` from `exact_target_tables`: the former records pseudocode lines
 and switches, while the latter records target-disassembly lines and decodes
 the compiler's byte-index maps directly when a 54–67 KiB dispatcher defeats
@@ -74,6 +75,15 @@ and 105 table labels respectively, plus the direct `300/540/795/797/798` and
 `300/520/795` singleton branches. Headless Ghidra was used as the strict
 fallback; it recovered Udonge control flow but did not reconstruct switches,
 so the byte maps—not guessed pseudocode—remain the case authority.
+
+The third wave adds three boundary/outlier regressions. Reimu's 81,488 tracked
+body bytes coexist with an instruction-supported 81,550-byte entry-to-ret span;
+Hex-Rays and strict headless Ghidra both failed, so 126 compressed-table labels
+plus direct 300/560 branches are instruction-backed. Remilia retains its
+three-byte non-contiguous difference while contributing a 7,740-line Hex-Rays
+view and 104 top-level labels. Tenshi retains a seven-byte body/span difference
+and its character-local 43-callee, `+0x780..+0x7C0` extension outlier. A ledger
+body-byte count is not silently replaced by a contiguous-span length.
 
 Youmu action 200 uniquely reaches `0x0045D320`: after publishing byte `+0x47E`
 as one, the helper writes `Fighter+0x670 = 3` and forwards constants `4` and

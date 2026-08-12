@@ -425,3 +425,13 @@ as pseudocode. Batch survey failures are isolated per root, so one failed giant
 decompile does not discard successful siblings. This moved the family from
 three to six structurally decompiled roots without emitting placeholder source
 or weakening the exact-match gate.
+
+The immediately following boundary/outlier wave moved the family from six to
+nine roots. Reimu exercised the exact-table path after both decompilers failed;
+Remilia and Tenshi produced complete Hex-Rays views. A hanging giant request
+also exposed the need for a per-root time budget, so the survey now defaults to
+a 60-second `--decompile-timeout`. Most importantly, Reimu and Tenshi showed
+that the ledger's non-contiguous function-body byte count may legitimately be
+smaller than the inclusive entry-to-terminal-ret span. The workflow preserves
+both values and requires instruction proof before contiguous comparison rather
+than rewriting the ledger size from an IDA extent.

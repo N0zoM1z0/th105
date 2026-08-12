@@ -151,7 +151,7 @@ def flatten_callees(value: Any) -> list[dict[str, str]]:
 
 
 async def survey(
-    server: str, kind: str, fighter_filter: set[str]
+    server: str, kind: str, fighter_filter: set[str], decompile_timeout: float
 ) -> dict[str, object]:
     tracked = ledger()
     async with open_session(server) as (session, initialized):
@@ -181,15 +181,16 @@ async def survey(
                 decompile_status = "complete"
                 decompile_error = ""
                 try:
-                    decompile = await call_json(
-                        session, "decompile_function", {"address": address}
-                    )
+                    async with asyncio.timeout(decompile_timeout):
+                        decompile = await call_json(
+                            session, "decompile_function", {"address": address}
+                        )
                     text = (
                         decompile
                         if isinstance(decompile, str)
                         else json.dumps(decompile)
                     )
-                except (IdaMcpError, RuntimeError) as error:
+                except (IdaMcpError, RuntimeError, TimeoutError) as error:
                     # Preserve independently useful boundary/callee evidence and
                     # successful sibling roots when Hex-Rays rejects one giant
                     # dispatcher.  The explicit partial packet is then routed to
@@ -312,15 +313,16 @@ async def survey(
                 decompile_status = "complete"
                 decompile_error = ""
                 try:
-                    decompile = await call_json(
-                        session, "decompile_function", {"address": address}
-                    )
+                    async with asyncio.timeout(decompile_timeout):
+                        decompile = await call_json(
+                            session, "decompile_function", {"address": address}
+                        )
                     text = (
                         decompile
                         if isinstance(decompile, str)
                         else json.dumps(decompile)
                     )
-                except (IdaMcpError, RuntimeError) as error:
+                except (IdaMcpError, RuntimeError, TimeoutError) as error:
                     # Giant dispatchers may exceed Hex-Rays' practical limits.
                     # Preserve the boundary/callee packet and continue siblings;
                     # exact table decoding or headless Ghidra supplies the rest.
@@ -386,6 +388,12 @@ def main() -> int:
     )
     parser.add_argument("--output", type=Path)
     parser.add_argument(
+        "--decompile-timeout",
+        type=float,
+        default=60.0,
+        help="per-root Hex-Rays timeout in seconds before emitting a partial row",
+    )
+    parser.add_argument(
         "--fighter",
         action="append",
         choices=tuple(row[0] for row in ROOTS),
@@ -394,7 +402,14 @@ def main() -> int:
     )
     args = parser.parse_args()
     try:
-        result = asyncio.run(survey(args.server, args.kind, set(args.fighter)))
+        result = asyncio.run(
+            survey(
+                args.server,
+                args.kind,
+                set(args.fighter),
+                args.decompile_timeout,
+            )
+        )
     except (IdaMcpError, OSError, RuntimeError, ValueError) as error:
         print(json.dumps({"ok": False, "error": str(error)}, indent=2))
         return 1

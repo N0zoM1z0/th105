@@ -94,11 +94,11 @@ TH10.5
     │   ├── 0x00493300/0x00493490/0x00493540/0x00493580 [exact]
     │   └── 0x00493380 [implemented]
     ├── fifteen RTTI/vtable pilot rows -> docs/CHARACTER_PILOTS.md
-    ├── fifteen vslot +0x28 action-state roots [6 decompiled / 9 identified]
+    ├── fifteen vslot +0x28 action-state roots [9 decompiled / 6 identified]
     │   ├── 918,209 ledger bytes in the durable numeric-dispatch manifest
     │   ├── exact vtable ownership and shared caller 0x00463610
     │   ├── common twenty-callee fingerprint plus character outliers
-    │   └── six complete pilots across Hex-Rays/table backends; Sakuya boundary conflict
+    │   └── nine complete pilots across Hex-Rays/table backends; Sakuya boundary conflict
     ├── fifteen vslot +0x3C action-change roots [decompiled breadth]
     │   ├── 36,677 bytes and 1,211 switch cases in the durable case manifest
     │   ├── 70 direct dependencies and twelve newly classified helpers

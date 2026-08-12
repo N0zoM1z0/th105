@@ -97,6 +97,13 @@ and separately document direct singleton branches, field access, ABI, return
 topology, and defaults. This is a structural-decompilation path, never an exact
 source match.
 
+`--decompile-timeout` bounds each giant Hex-Rays request (60 seconds by
+default). A timeout is reported exactly like another local decompile failure;
+the batch continues and the row remains partial. Do not confuse a ledger
+function-body byte count with `span_end - address + 1`: for non-contiguous
+bodies both are durable facts, and contiguous-span comparison still requires
+the separate instruction proof described below.
+
 Normal function work should use a focused decompile/xref query and an
 object/function-level diff. The CSV validator and progress check are the only
 routine whole-project checks, and both are designed to finish in under a

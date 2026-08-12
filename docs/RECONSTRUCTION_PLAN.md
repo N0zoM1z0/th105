@@ -95,12 +95,14 @@ For each pillar:
 7. fan out exact packets without granting status from clone similarity.
 
 Current `+0x28` state: all fifteen vtable owners, ledger spans, action-table
-blocks, and call fingerprints are recorded. Alice, Marisa, Patchouli, Youmu,
-Yuyuko, and Udonge now have complete case/field/return slice manifests and are
-`decompiled`; the remaining nine are `identified`. Marisa and Udonge establish
+blocks, and call fingerprints are recorded. Nine roots now have complete
+case/field/return slice manifests and are `decompiled`; the remaining six are
+`identified`. Marisa, Reimu, and Udonge establish
 the backend-neutral `exact_target_tables` path for giant roots that defeat
 Hex-Rays. Sakuya has a severe IDA chunk conflict and must always use the ledger
 span. Tenshi remains a 43-callee outlier.
+Reimu and Tenshi also establish that tracked non-contiguous body-byte counts
+and instruction-supported contiguous spans must remain separate evidence.
 
 Exit gate: every giant root is at least structurally decompiled into bounded
 packets, with no fake body and no unresolved accepted span.
