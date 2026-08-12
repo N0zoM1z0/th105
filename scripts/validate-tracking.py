@@ -140,6 +140,9 @@ VSLOT28_PILOT_COLUMNS = [
 ]
 VSLOT28_PILOT_SET = {
     ("Alice", "0x004E9A20"),
+    ("Aya", "0x006018F0"),
+    ("Iku", "0x0061FDE0"),
+    ("Komachi", "0x005E5860"),
     ("Marisa", "0x004A2F40"),
     ("Patchouli", "0x0050EC80"),
     ("Reimu", "0x004787B0"),
@@ -152,7 +155,11 @@ VSLOT28_PILOT_SET = {
     ("Yuyuko", "0x0055D4A0"),
     ("Yukari", "0x0057AA60"),
 }
-VSLOT28_ANALYSIS_FORMS = {"ida_hexrays", "exact_target_tables"}
+VSLOT28_ANALYSIS_FORMS = {
+    "ida_hexrays",
+    "exact_target_tables",
+    "headless_ghidra",
+}
 ORIGINS = {
     "authored_game",
     "compiler_generated",

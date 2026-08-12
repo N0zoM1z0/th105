@@ -442,3 +442,10 @@ of fifteen roots are now structurally gated. In particular, instruction-width
 auditing is sufficient for a truthful `exact_target_tables` structural packet
 when typed pseudocode is unavailable; the manifest records that evidence form
 and still withholds implementation and exact-match status.
+
+The fifth wave completed all fifteen roots. Iku and Komachi succeeded in IDA;
+Aya required the strict headless Ghidra fallback. The evidence schema therefore
+now names three truthful analysis forms—`ida_hexrays`,
+`exact_target_tables`, and `headless_ghidra`—and preserves backend-specific
+type/ABI caveats. Breadth completion is a launch point for bounded source and
+exact fan-out, not permission to create fifteen monolithic placeholder bodies.

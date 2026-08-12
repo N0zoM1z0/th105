@@ -55,8 +55,7 @@ ledger span covers 74,937 function-body bytes. Reimu, Alice, Patchouli,
 Remilia, Suika, Aya, and Tenshi likewise have IDA body-size differences caused
 by non-contiguous chunks; none permits an automatic ledger resize.
 
-Twelve roots are now `decompiled`; only Aya, Iku, and Komachi remain
-`identified`. The
+All fifteen roots are now structurally `decompiled`. The
 durable pilot manifest distinguishes
 `ida_hexrays` from `exact_target_tables`: the former records pseudocode lines
 and switches, while the latter records target-disassembly lines and decodes
@@ -93,6 +92,13 @@ with three direct bridges. Suika's 79,426 tracked body bytes coexist with a
 79,435-byte entry-to-ret span; its 113 labels and offset widths come from exact
 maps and target instructions after Hex-Rays failure.
 
+The final wave closes Aya, Iku, and Komachi. Iku and Komachi contributed
+7,566- and 7,737-line IDA views with 108 and 103 table labels. Aya's IDA
+decompile failed, but strict no-GUI Ghidra recovered 7,188 lines and 111
+top-level labels. Its manifest uses `headless_ghidra` and retains the fallback's
+type-propagation and default-location caveats; the `__thiscall` ABI comes from
+the exact vtable/shared caller and ledger, not Ghidra's `__fastcall` guess.
+
 Youmu action 200 uniquely reaches `0x0045D320`: after publishing byte `+0x47E`
 as one, the helper writes `Fighter+0x670 = 3` and forwards constants `4` and
 `0x00FFFF00` through the subobject at `+0x674`. The manifest retains this
@@ -102,8 +108,9 @@ making them independent source packets after their shared preamble. Alice's
 accepted span splits into six address-bounded control-flow regions, including
 separate low, middle, and high compressed tables.
 
-Promote another root only after the same complete case/field/return evidence
-exists. Do not emit a monolithic placeholder body.
+The roster breadth gate is complete. Next split each root into bounded source
+packets and fan shared low-action contracts only after normalized instruction
+evidence; do not emit a monolithic placeholder body.
 
 Refresh a bounded ignored work packet with the verified IDA backend instead of
 requesting all fifteen giant decompiles at once:

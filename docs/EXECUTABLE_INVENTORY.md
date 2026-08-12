@@ -145,9 +145,10 @@ frontier.  It records accepted ledger spans, IDA boundary conflicts, numeric
 action-table blocks, and shared/distinctive callees without inventing per-case
 gameplay names or placeholder bodies.
 
-Twelve roots now also have complete slice manifests. Seven use successful IDA
+All fifteen roots now have complete slice manifests. Nine use successful IDA
 Hex-Rays output; Marisa, Reimu, Sakuya, Suika, and Udonge use exact-target
-compressed-table decoding after Hex-Rays failure. The family includes
+compressed-table decoding after Hex-Rays failure, and Aya uses the strict
+headless Ghidra fallback. The family includes
 contiguous, small body/span difference, large chunk-conflict, four-table, and
 43-callee outlier regressions. This backend-neutral evidence model preserves
 breadth without lowering the semantic gate or pretending that disassembly is
