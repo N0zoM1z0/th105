@@ -135,6 +135,13 @@ one exact COFF symbol when linked COMDAT folding proves different destinations
 across functions. Both destinations remain byte-validated in
 `config/reccmp-relocations.csv`; raw per-function addresses are not accepted.
 
+When one COFF data-table symbol is referenced with several nonzero addends in
+the same function, select each verified entry with
+`COFF_SYMBOL+0xADDEND=ALLOWLIST_KEY`. Every allowlist key must retain the exact
+base address, one permitted addend, and the target bytes at that entry. The
+zlib `_z_errmsg` table is the regression case; a broad table-address mapping
+is not accepted.
+
 `scripts/compare-function.py --json` is the machine-facing interface. It
 distinguishes `exact`, `mismatch`, `blocked`, and `error`, reports the first
 differing byte, and classifies relocation blockers. Human-readable output is

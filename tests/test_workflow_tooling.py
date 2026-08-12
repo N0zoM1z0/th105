@@ -83,6 +83,17 @@ class WorkflowToolingTests(unittest.TestCase):
         )
         self.assertEqual(self.comparator.dir32_target_key(decorated, {}), decorated)
 
+    def test_dir32_mapping_can_select_a_verified_addend_alias(self) -> None:
+        symbol = "_z_errmsg"
+        alias = "_z_errmsg+0x18"
+        overrides = {"_z_errmsg+0x18": alias, symbol: "base_alias"}
+        self.assertEqual(
+            self.comparator.dir32_target_key(symbol, overrides, 0x18), alias
+        )
+        self.assertEqual(
+            self.comparator.dir32_target_key(symbol, overrides, 0x1C), "base_alias"
+        )
+
     def test_target_identity_failure_is_not_a_match_blocker(self) -> None:
         result, failure = self.comparator.failure_record(
             ValueError("target SHA-256 mismatch: got wrong, expected exact")
@@ -93,6 +104,15 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_match_unit_graph_validates(self) -> None:
         manifest = self.manifest.load_manifest()
         self.assertGreaterEqual(len(manifest["units"]), 2)
+
+    def test_vendored_unit_digest_includes_sibling_headers(self) -> None:
+        manifest = self.manifest.load_manifest()
+        digest, inputs = self.manifest.unit_input_digest(
+            "zlib-inflate-anchors", manifest["units"]["zlib-inflate-anchors"]
+        )
+        self.assertEqual(len(digest), 64)
+        self.assertIn("third_party/zlib-1.2.3/zlib.h", inputs)
+        self.assertIn("third_party/zlib-1.2.3/inffixed.h", inputs)
 
     def test_known_clone_families_match_target(self) -> None:
         reports = self.clones.load_and_check()

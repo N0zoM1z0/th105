@@ -36,13 +36,13 @@ That included import jump stubs, statically linked VC8 CRT, C++ exception
 funclets, zlib, and Xiph codec code.  It therefore reported 209/4,789 even
 though most of those support rows should never be reconstructed by hand.
 
-The first evidence-backed provenance pass now excludes 1,861 rows and leaves
-2,977 non-library rows.  It reports three separate populations rather than
+The current evidence-backed provenance pass excludes 1,864 rows and leaves
+2,976 authored-or-review rows. It reports three separate populations rather than
 pretending the unresolved population is authored:
 
-- confirmed authored: 650 rows;
-- confirmed non-authored: 1,861 rows;
-- origin review: 2,327 rows.
+- confirmed authored: 667 rows;
+- confirmed non-authored: 1,864 rows;
+- origin review: 2,309 rows.
 
 The confirmed-authored population is a lower bound, not a new final
 denominator.  Review rows remain outside that metric until evidence decides
@@ -70,6 +70,20 @@ and cluster provenance is supported by the official
 [libogg](https://github.com/xiph/ogg) and
 [libvorbis](https://github.com/xiph/vorbis) repositories; external source is
 supporting provenance, never target-instruction authority.
+
+The repository now vendors the unmodified core zlib v1.2.3 translation units
+at `third_party/zlib-1.2.3/`. VC8 SP1 canonical match units strictly reproduce
+33 of the 44 island functions, covering 10,211 of 21,553 bytes. The remaining
+11 functions and 11,342 bytes are still unresolved; all reproduced rows remain
+`status=library`, so this external-source wave does not inflate authored-game
+progress. Reproduce the accepted evidence with:
+
+```bash
+python3 scripts/build.py --unit zlib-inflate-anchors --compare --json
+python3 scripts/build.py --unit zlib-deflate-anchors --compare --json
+python3 scripts/build.py --unit zlib-crc32-anchor --compare --json
+python3 scripts/build.py --unit zlib-tree-anchors --compare --json
+```
 
 ### VC8 runtime and compiler output
 

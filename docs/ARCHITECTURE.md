@@ -89,6 +89,8 @@ tree will keep platform/engine/input/render/assets/audio/UI/script/network and
 battle code separate, with character-specific code below `src/characters/`.
 Address ranges will be added only after call-graph, RTTI/vtable, string-xref,
 and compiler boundary evidence agree; code adjacency alone is insufficient.
+Verified unmodified external releases live below `third_party/` and remain
+separate from authored `src/` modules and authored progress accounting.
 
 ## High-value confirmed roots
 

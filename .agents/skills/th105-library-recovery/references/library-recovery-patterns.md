@@ -48,57 +48,31 @@ whose remaining failures are only audited relocations.
 - VC8 SP1 `/O2 /GS- /MT` produced multiple exact target functions without
   editing upstream source.
 
-### Strict exact anchors
+### Strict exact wave
 
-The following probes reached exact whole-function equality in the pilot:
-
-| Target | Upstream symbol | Bytes | Required REL32 mapping |
-|---|---|---:|---|
-| `0x00664FA0` | `_inflateReset` | 93 | none |
-| `0x006650D0` | `_inflateInit_` | 26 | `_inflateInit2_=0x00665000` |
-| `0x006667E0` | `_inflateEnd` | 74 | none |
-| `0x00667090` | `_deflateEnd` | 210 | none |
-| `0x00667F80` | `_deflateReset` | 143 | see below |
-| `0x00668230` | `_deflateInit_` | 37 | `_deflateInit2_=0x00668010` |
-| `0x00668510` | `_crc32` | 24 | `_crc32_little=0x00668270` |
-
-The exact `deflateReset` probe used independently identified callees:
-
-```text
-_crc32=0x00668510
-_adler32=0x00668F10
-__tr_init=0x0066A3C0
-_lm_init=0x00667170
-```
-
-Reproduce a no-relocation anchor as follows after compiling `inflate.c`:
+The original seven no-or-low-relocation anchors expanded into four canonical
+translation-unit match units. They now reproduce 33 of 44 functions and
+10,211 of 21,553 bytes exactly. This resolved the former `deflate`,
+`deflateInit2_`, `_tr_*`, `lm_init`, and `crc32_little` relocation blockers.
 
 ```bash
-python3 scripts/compare-function.py 0x00664FA0 /tmp/th105-lib/inflate.obj \
-  --symbol-base _inflateReset
+python3 scripts/build.py --unit zlib-inflate-anchors --compare --json
+python3 scripts/build.py --unit zlib-deflate-anchors --compare --json
+python3 scripts/build.py --unit zlib-crc32-anchor --compare --json
+python3 scripts/build.py --unit zlib-tree-anchors --compare --json
 ```
 
-Do not update a ledger row from this historical note alone. Re-run the command,
-preserve its result in durable evidence, and use a claim before source/ledger
-changes.
+The main reusable discovery is that one COFF data symbol may encode several
+table-element addresses through raw DIR32 addends. Record independently
+verified entries such as `_configuration_table+0x2` or `_crc_table+0x800` in
+`config/reccmp-relocations.csv`, then select the exact addend key in the match
+unit. Never map every addend to the table base.
 
-### Strong relocation-gated candidates
-
-These source symbols and target functions had identical code sizes in the
-pilot, but strict comparison stopped on an unresolved relocation:
-
-| Target | Symbol | Bytes | First unresolved item |
-|---|---|---:|---|
-| `0x00665000` | `_inflateInit2_` | 203 | DIR32 `_zcalloc` |
-| `0x006668B0` | `_deflate` | 2,014 | DIR32 `_z_errmsg` |
-| `0x00668010` | `_deflateInit2_` | 541 | DIR32 `_zcalloc` |
-| `0x0066A3C0` | `__tr_init` | 100 | DIR32 `_static_l_desc` |
-| `0x0066A830` | `__tr_align` | 493 | local REL32 `_bi_flush` |
-| `0x0066AA20` | `__tr_flush_block` | 526 | local REL32 `_set_data_type` |
-
-Resolve the named data or helper independently, add a narrow allowlist entry if
-needed, and rerun strict comparison. Same size plus a relocation-gated prefix
-is promising but is not exact evidence.
+The accepted fan-out also demonstrates the high-yield order for a known
+release: solve public anchors, verify allocator/string/table DIR32 data,
+promote direct helper callees, then expand to the large callers. Do not update
+a ledger row from this historical note alone; rerun its canonical unit and
+require an exact result.
 
 ### Configuration/source-shape candidates
 

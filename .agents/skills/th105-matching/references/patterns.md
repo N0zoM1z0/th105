@@ -422,6 +422,14 @@ allowlist key. Do not overwrite the global symbol mapping, patch the object, or
 permit a raw unvalidated address. The fixed-slot vector `_Insert_n/_Assign_n`
 pair is the regression case.
 
+One data-table symbol may also appear with several nonzero COFF addends inside
+the same function. Select each independently as
+`COFF_SYMBOL+0xADDEND=ALLOWLIST_KEY`, and give every key its exact base address,
+single allowed addend, and target bytes. The zlib `_z_errmsg` references at
+addends `0x10`, `0x18`, and `0x1C` are the regression case. Do not replace them
+with one broad address mapping: the table entries differ and each must remain
+individually revalidated.
+
 ## 10. Measurement and evidence
 
 Use the strictest truthful status:

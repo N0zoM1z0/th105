@@ -194,8 +194,13 @@ def relocation_target_key(name: str, targets: dict[str, int]) -> str:
     return short_name
 
 
-def dir32_target_key(name: str, overrides: dict[str, str]) -> str:
-    """Resolve a function-local DIR32 symbol to a verified allowlist key."""
+def dir32_target_key(
+    name: str, overrides: dict[str, str], addend: int = 0
+) -> str:
+    """Resolve a function-local DIR32 symbol/addend to a verified key."""
+    addend_key = f"{name}+0x{addend:X}"
+    if addend_key in overrides:
+        return overrides[addend_key]
     return overrides.get(name, name)
 
 
@@ -382,8 +387,9 @@ def coff_symbol_bytes(
                 )
                 struct.pack_into("<I", code, field_offset, destination & 0xFFFFFFFF)
                 continue
+            raw_addend = struct.unpack_from("<I", code, field_offset)[0]
             data_target_key = dir32_target_key(
-                target_symbol_name, data_target_overrides
+                target_symbol_name, data_target_overrides, raw_addend
             )
             if data_target_key not in data_targets:
                 raise ValueError(
@@ -392,7 +398,6 @@ def coff_symbol_bytes(
             destination, literal, allowed_addends, validation = data_targets[
                 data_target_key
             ]
-            raw_addend = struct.unpack_from("<I", code, field_offset)[0]
             if raw_addend not in allowed_addends:
                 raise ValueError(
                     f"DIR32 relocation for {target_symbol_name} has unverified "
@@ -523,7 +528,8 @@ def main() -> int:
         default=[],
         metavar="COFF_SYMBOL=ALLOWLIST_KEY",
         help=(
-            "map one function-local DIR32 symbol to a separately verified "
+            "map one function-local DIR32 symbol or symbol+0xADDEND to a "
+            "separately verified "
             "config/reccmp-relocations.csv key"
         ),
     )

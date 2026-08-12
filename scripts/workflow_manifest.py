@@ -168,8 +168,9 @@ def compiler_sha256() -> str:
 def unit_input_digest(name: str, unit: dict[str, Any]) -> tuple[str, list[str]]:
     """Return a conservative digest for all tracked inputs that can shape a probe."""
 
+    source = repository_path(str(unit["source"]))
     paths = {
-        repository_path(str(unit["source"])),
+        source,
         MANIFEST,
         ROOT / "scripts" / "build.py",
         ROOT / "scripts" / "compare-function.py",
@@ -181,6 +182,9 @@ def unit_input_digest(name: str, unit: dict[str, Any]) -> tuple[str, list[str]]:
     }
     paths.update((ROOT / "src").rglob("*.h"))
     paths.update((ROOT / "src").rglob("*.hpp"))
+    # Vendored library translation units include headers beside the source.
+    # Hash them too, so an upstream-header change cannot reuse stale evidence.
+    paths.update(source.parent.glob("*.h"))
     digest = hashlib.sha256()
     digest.update(name.encode("utf-8"))
     digest.update(str(unit["profile"]).encode("utf-8"))

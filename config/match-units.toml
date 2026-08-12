@@ -1383,3 +1383,247 @@ symbol_base = "initialize_fighter_phase_631e0"
 rel32_targets = [
   "_Assign_n=0x00463120",
 ]
+
+[units.zlib-inflate-anchors]
+kind = "probe"
+source = "third_party/zlib-1.2.3/inflate.c"
+object = "build/match-units/zlib_inflate_anchors.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Unmodified official zlib v1.2.3 inflate translation unit; exact external-library evidence, not authored TH10.5 source."
+
+[[units.zlib-inflate-anchors.functions]]
+address = "0x00664FA0"
+symbol_base = "_inflateReset"
+
+[[units.zlib-inflate-anchors.functions]]
+address = "0x00665000"
+symbol_base = "_inflateInit2_"
+rel32_targets = ["_inflateReset=0x00664FA0"]
+
+[[units.zlib-inflate-anchors.functions]]
+address = "0x006650D0"
+symbol_base = "_inflateInit_"
+rel32_targets = ["_inflateInit2_=0x00665000"]
+
+[[units.zlib-inflate-anchors.functions]]
+address = "0x006650F0"
+symbol_base = "_updatewindow"
+rel32_targets = ["_memcpy=0x0067C170"]
+
+[[units.zlib-inflate-anchors.functions]]
+address = "0x006667E0"
+symbol_base = "_inflateEnd"
+
+[units.zlib-deflate-anchors]
+kind = "probe"
+source = "third_party/zlib-1.2.3/deflate.c"
+object = "build/match-units/zlib_deflate_anchors.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Unmodified official zlib v1.2.3 deflate translation unit; exact external-library evidence, not authored TH10.5 source."
+
+[[units.zlib-deflate-anchors.functions]]
+address = "0x00666830"
+symbol_base = "_putShortMSB"
+
+[[units.zlib-deflate-anchors.functions]]
+address = "0x00666860"
+symbol_base = "_flush_pending"
+rel32_targets = ["_memcpy=0x0067C170"]
+
+[[units.zlib-deflate-anchors.functions]]
+address = "0x006668B0"
+symbol_base = "_deflate"
+rel32_targets = [
+  "_crc32=0x00668510",
+  "_putShortMSB=0x00666830",
+  "_adler32=0x00668F10",
+  "_flush_pending=0x00666860",
+  "__tr_align=0x0066A830",
+  "__tr_stored_block=0x0066A790",
+  "_memset=0x0067BB80",
+]
+dir32_targets = [
+  "_configuration_table+0x8=_configuration_table+0x8",
+  "_z_errmsg+0x10=_z_errmsg+0x10",
+  "_z_errmsg+0x1C=_z_errmsg+0x1C",
+]
+
+[[units.zlib-deflate-anchors.functions]]
+address = "0x00667090"
+symbol_base = "_deflateEnd"
+
+[[units.zlib-deflate-anchors.functions]]
+address = "0x00667170"
+symbol_base = "_lm_init"
+rel32_targets = ["_memset=0x0067BB80"]
+dir32_targets = [
+  "_configuration_table+0x0=_configuration_table+0x0",
+  "_configuration_table+0x2=_configuration_table+0x2",
+  "_configuration_table+0x4=_configuration_table+0x4",
+  "_configuration_table+0x6=_configuration_table+0x6",
+]
+
+[[units.zlib-deflate-anchors.functions]]
+address = "0x00667200"
+symbol_base = "_longest_match"
+
+[[units.zlib-deflate-anchors.functions]]
+address = "0x00667380"
+symbol_base = "_longest_match_fast"
+
+[[units.zlib-deflate-anchors.functions]]
+address = "0x00667450"
+symbol_base = "_fill_window"
+rel32_targets = [
+  "_memcpy=0x0067C170",
+  "_adler32=0x00668F10",
+  "_crc32=0x00668510",
+]
+
+[[units.zlib-deflate-anchors.functions]]
+address = "0x00667780"
+symbol_base = "_deflate_fast"
+rel32_targets = [
+  "_fill_window=0x00667450",
+  "_longest_match=0x00667200",
+  "_longest_match_fast=0x00667380",
+  "__tr_flush_block=0x0066AA20",
+  "_memcpy=0x0067C170",
+  "_flush_pending=0x00666860",
+]
+dir32_targets = ["__dist_code+0x100=__dist_code+0x100"]
+
+[[units.zlib-deflate-anchors.functions]]
+address = "0x00667F80"
+symbol_base = "_deflateReset"
+rel32_targets = [
+  "_crc32=0x00668510",
+  "_adler32=0x00668F10",
+  "__tr_init=0x0066A3C0",
+  "_lm_init=0x00667170",
+]
+
+[[units.zlib-deflate-anchors.functions]]
+address = "0x00668010"
+symbol_base = "_deflateInit2_"
+rel32_targets = [
+  "_deflateReset=0x00667F80",
+  "_deflateEnd=0x00667090",
+]
+dir32_targets = ["_z_errmsg+0x18=_z_errmsg+0x18"]
+
+[[units.zlib-deflate-anchors.functions]]
+address = "0x00668230"
+symbol_base = "_deflateInit_"
+rel32_targets = ["_deflateInit2_=0x00668010"]
+
+[units.zlib-crc32-anchor]
+kind = "probe"
+source = "third_party/zlib-1.2.3/crc32.c"
+object = "build/match-units/zlib_crc32_anchor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Unmodified official zlib v1.2.3 CRC translation unit; exact external-library evidence, not authored TH10.5 source."
+
+[[units.zlib-crc32-anchor.functions]]
+address = "0x00668260"
+symbol_base = "_get_crc_table"
+
+[[units.zlib-crc32-anchor.functions]]
+address = "0x00668270"
+symbol_base = "_crc32_little"
+dir32_targets = [
+  "_crc_table+0x400=_crc_table+0x400",
+  "_crc_table+0x800=_crc_table+0x800",
+  "_crc_table+0xC00=_crc_table+0xC00",
+]
+
+[[units.zlib-crc32-anchor.functions]]
+address = "0x00668510"
+symbol_base = "_crc32"
+rel32_targets = ["_crc32_little=0x00668270"]
+
+[units.zlib-tree-anchors]
+kind = "probe"
+source = "third_party/zlib-1.2.3/trees.c"
+object = "build/match-units/zlib_tree_anchors.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Unmodified official zlib v1.2.3 tree translation unit; exact external-library evidence, not authored TH10.5 source."
+
+[[units.zlib-tree-anchors.functions]]
+address = "0x00669190"
+symbol_base = "_init_block"
+
+[[units.zlib-tree-anchors.functions]]
+address = "0x00669200"
+symbol_base = "_pqdownheap"
+
+[[units.zlib-tree-anchors.functions]]
+address = "0x006694F0"
+symbol_base = "_scan_tree"
+
+[[units.zlib-tree-anchors.functions]]
+address = "0x00669D50"
+symbol_base = "_compress_block"
+dir32_targets = ["__dist_code+0x100=__dist_code+0x100"]
+
+[[units.zlib-tree-anchors.functions]]
+address = "0x0066A160"
+symbol_base = "_set_data_type"
+
+[[units.zlib-tree-anchors.functions]]
+address = "0x0066A230"
+symbol_base = "_bi_flush"
+
+[[units.zlib-tree-anchors.functions]]
+address = "0x0066A2B0"
+symbol_base = "_bi_windup"
+
+[[units.zlib-tree-anchors.functions]]
+address = "0x0066A330"
+symbol_base = "_copy_block"
+rel32_targets = [
+  "_bi_windup=0x0066A2B0",
+  "_memcpy=0x0067C170",
+]
+
+[[units.zlib-tree-anchors.functions]]
+address = "0x0066A3C0"
+symbol_base = "__tr_init"
+rel32_targets = ["_init_block=0x00669190"]
+
+[[units.zlib-tree-anchors.functions]]
+address = "0x0066A4C0"
+symbol_base = "_build_tree"
+rel32_targets = [
+  "_pqdownheap=0x00669200",
+  "_gen_bitlen=0x006692D0",
+  "_gen_codes=0x0066A430",
+]
+
+[[units.zlib-tree-anchors.functions]]
+address = "0x0066A790"
+symbol_base = "__tr_stored_block"
+rel32_targets = ["_copy_block=0x0066A330"]
+
+[[units.zlib-tree-anchors.functions]]
+address = "0x0066A830"
+symbol_base = "__tr_align"
+rel32_targets = ["_bi_flush=0x0066A230"]
+
+[[units.zlib-tree-anchors.functions]]
+address = "0x0066AA20"
+symbol_base = "__tr_flush_block"
+rel32_targets = [
+  "_set_data_type=0x0066A160",
+  "_build_tree=0x0066A4C0",
+  "_build_bl_tree=0x0066A6C0",
+  "__tr_stored_block=0x0066A790",
+  "_send_all_trees=0x00669AF0",
+  "_compress_block=0x00669D50",
+  "_init_block=0x00669190",
+  "_bi_windup=0x0066A2B0",
+]

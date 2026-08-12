@@ -248,3 +248,29 @@ __real@c4200000,0x006AED38,000020c4,0x0,target float -640.0 loaded by 0x004643F0
 ??_C@_08LJHDLOLO@Continue?$AA@,0x006AF8EC,436f6e74696e756500,0x0,target Continue string bytes at sole 0x00470780 construction site,literal
 ?g_text_glyph_transform@th105@@3UGlyphTransform@1@A,0x006E4B58,00000100,0x0,IDA memory readback of the first FIXED 1.0 element and both exact-target GetGlyphOutlineA call sites prove the MAT2 address,address
 __imp__GetGlyphOutlineA@28,0x006AC018,70f02c00,0x0,target GDI32 GetGlyphOutlineA IAT slot and on-disk thunk RVA,literal
+_zcalloc,0x00668530,8b4424080faf4424,0x0,target function entry and exact zlib inflateInit2_/deflateInit2_ function-pointer stores,address
+_zcfree,0x00668550,8b44240850e8cc57,0x0,target function entry and exact zlib inflateInit2_/deflateInit2_ function-pointer stores,address
+_z_errmsg+0x10,0x006B6120,e8606b00,0x10,target zlib stream-error pointer at table addend 0x10 and decoded target string,address
+_z_errmsg+0x18,0x006B6120,c8606b00,0x18,target zlib insufficient-memory pointer at table addend 0x18 and decoded target string,address
+_z_errmsg+0x1C,0x006B6120,b8606b00,0x1c,target zlib buffer-error pointer at table addend 0x1C and decoded target string,address
+_static_l_desc,0x006D3188,c8636b0078626b00010100001e0100000f000000,0x0,target zlib literal-tree descriptor fields and exact _tr_init immediate,address
+_static_d_desc,0x006D319C,48686b0000636b00000000001e0000000f000000,0x0,target zlib distance-tree descriptor fields and exact _tr_init immediate,address
+_static_bl_desc,0x006D31B0,0000000078636b00000000001300000007000000,0x0,target zlib bit-length-tree descriptor fields and exact _tr_init immediate,address
+_configuration_table+0x8,0x006B4020,a0756600,0x8,target zlib compression configuration table first function pointer and exact deflate indexed load,address
+_static_ltree,0x006B63C8,0c0008008c0008004c000800cc000800,0x0,target bytes equal official zlib v1.2.3 static literal tree prefix,literal
+_static_dtree,0x006B6848,00000500100005000800050018000500,0x0,target bytes equal official zlib v1.2.3 static distance tree prefix,literal
+_configuration_table+0x0,0x006B4020,0000,0x0,target zlib compression configuration table good-length word and exact lm_init indexed access,address
+_configuration_table+0x2,0x006B4020,0000,0x2,target zlib compression configuration table max-lazy word and exact lm_init indexed access,address
+_configuration_table+0x4,0x006B4020,0000,0x4,target zlib compression configuration table nice-length word and exact lm_init indexed access,address
+_configuration_table+0x6,0x006B4020,0000,0x6,target zlib compression configuration table max-chain word and exact lm_init indexed access,address
+_crc_table,0x006B40A0,00000000963007772c610eeeba510999,0x0,target CRC table header and prefix equals official zlib v1.2.3 table and get_crc_table return,address
+_crc_table+0x400,0x006B40A0,0000000041311b1982623632c3532d2b,0x400,target zlib CRC slicing table 1 prefix and exact crc32_little indexed access,address
+_crc_table+0x800,0x006B40A0,00000000376ac2016ed4840359be4602,0x800,target zlib CRC slicing table 2 prefix and exact crc32_little indexed access,address
+_crc_table+0xC00,0x006B40A0,000000006567bcb88bc809aaeeafb512,0xc00,target zlib CRC slicing table 3 prefix and exact crc32_little indexed access,address
+__length_code,0x006B6AC0,0001020304050607080809090a0a0b0b,0x0,target zlib length-code table prefix and exact deflate/tree indexed accesses,address
+__dist_code,0x006B68C0,00010203040405050606060607070707,0x0,target zlib distance-code table prefix and exact deflate/tree indexed accesses,address
+__dist_code+0x100,0x006B68C0,00001011121213131414141415151515,0x100,target zlib distance-code high-half prefix and exact indexed accesses,address
+_extra_lbits,0x006B6278,00000000000000000000000000000000,0x0,target zlib literal extra-bits table prefix and exact compress_block indexed access,address
+_base_length,0x006B6BC0,00000000010000000200000003000000,0x0,target zlib base-length table prefix and exact compress_block indexed access,address
+_extra_dbits,0x006B6300,00000000000000000000000000000000,0x0,target zlib distance extra-bits table prefix and exact compress_block indexed access,address
+_base_dist,0x006B6C38,00000000010000000200000003000000,0x0,target zlib base-distance table prefix and exact compress_block indexed access,address

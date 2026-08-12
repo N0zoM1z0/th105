@@ -570,3 +570,36 @@ address,name,module,confidence,evidence
 0x0063C1D0,Iku_handle_event_bridge,characters,inferred,Iku vtable +0x60 ownership and complete event-code decompile manifest
 0x00648850,Tenshi_update_sequence_lifecycle,characters,inferred,Tenshi vtable +0x5C ownership and complete sequence-state decompile manifest
 0x00658830,Tenshi_handle_event_bridge,characters,inferred,Tenshi vtable +0x60 ownership and complete event-code decompile manifest
+0x00664FA0,inflateReset,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x00665000,inflateInit2_,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x006650D0,inflateInit_,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x006650F0,updatewindow,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x006667E0,inflateEnd,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x00666830,putShortMSB,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x00666860,flush_pending,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x006668B0,deflate,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x00667090,deflateEnd,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x00667170,lm_init,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x00667200,longest_match,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x00667380,longest_match_fast,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x00667450,fill_window,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x00667780,deflate_fast,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x00667F80,deflateReset,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x00668010,deflateInit2_,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x00668230,deflateInit_,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x00668260,get_crc_table,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x00668270,crc32_little,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x00668510,crc32,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x00669190,init_block,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x00669200,pqdownheap,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x006694F0,scan_tree,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x00669D50,compress_block,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x0066A160,set_data_type,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x0066A230,bi_flush,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x0066A2B0,bi_windup,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x0066A330,copy_block,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x0066A3C0,_tr_init,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x0066A4C0,build_tree,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x0066A790,_tr_stored_block,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x0066A830,_tr_align,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit
+0x0066AA20,_tr_flush_block,third_party,observed,Strict exact official zlib v1.2.3 VC8 match unit

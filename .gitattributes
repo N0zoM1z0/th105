@@ -8,3 +8,7 @@
 *.toml text eol=lf
 *.yml text eol=lf
 *.md text eol=lf
+
+# Preserve official vendored zlib bytes. Its trees.h intentionally has one
+# trailing blank line in the v1.2.3 tag.
+third_party/zlib-1.2.3/* text eol=lf whitespace=-blank-at-eof
