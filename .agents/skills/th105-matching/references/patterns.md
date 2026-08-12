@@ -70,7 +70,7 @@ adapters because one exact wrapper can validate thousands of call sites.
 
 ## 3. Relocation-aware comparison
 
-`REL32` calls and tail jumps can be linked in a standalone probe when the external symbol maps uniquely to a known target address. A symbol collision or unknown target is a naming/inventory problem, not a byte-tuning problem.
+`REL32` calls, tail jumps, and standard x86 near conditional jumps (`0F 80..8F`) can be linked in a standalone probe when the external symbol maps uniquely to a known target address. The comparator still rejects every other opcode form. A symbol collision or unknown target is a naming/inventory problem, not a byte-tuning problem.
 
 `DIR32` references require an exact allowlist entry in `config/reccmp-relocations.csv`. Choose validation deliberately:
 

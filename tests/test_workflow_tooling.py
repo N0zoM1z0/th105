@@ -76,6 +76,21 @@ class WorkflowToolingTests(unittest.TestCase):
             "CriticalSectionWrapper_enter",
         )
 
+    def test_rel32_operand_accepts_only_call_jump_and_near_jcc(self) -> None:
+        self.assertEqual(self.comparator.rel32_operand_kind(b"\xe8\0\0\0\0", 1), "call")
+        self.assertEqual(self.comparator.rel32_operand_kind(b"\xe9\0\0\0\0", 1), "jmp")
+        self.assertEqual(self.comparator.rel32_operand_kind(b"\x0f\x84\0\0\0\0", 2), "jcc")
+        self.assertEqual(self.comparator.rel32_operand_kind(b"\x0f\x8f\0\0\0\0", 2), "jcc")
+        self.assertIsNone(self.comparator.rel32_operand_kind(b"\x0f\x7f\0\0\0\0", 2))
+        self.assertIsNone(self.comparator.rel32_operand_kind(b"\x90\0\0\0\0", 1))
+
+    def test_unsupported_rel32_operand_remains_structured_blocker(self) -> None:
+        result, failure = self.comparator.failure_record(
+            ValueError("REL32 at +0x4 is not an external CALL/JMP/Jcc")
+        )
+        self.assertEqual(result, "blocked")
+        self.assertEqual(failure["category"], "relocation.rel32.unsupported_operand")
+
     def test_dir32_mapping_selects_verified_function_local_alias(self) -> None:
         decorated = "??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ"
         alias = "_fixed_slot_vector_assign_deque_dtor_thunk"

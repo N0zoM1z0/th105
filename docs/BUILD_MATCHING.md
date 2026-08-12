@@ -180,8 +180,9 @@ The fast probe defaults to `/GS-`. Set `TH105_ENABLE_GS=1` only for a
 translation unit whose target prologue and EH data prove stack-cookie use;
 `CTitle::~CTitle` is the first such accepted probe.
 
-`scripts/compare-function.py` resolves i386 `REL32` on an external `CALL` or
-tail `JMP` whose target has a unique address in `config/known-symbols.csv`. It
+`scripts/compare-function.py` resolves i386 `REL32` on an external `CALL`, tail
+`JMP`, or standard near conditional jump (`0F 80..8F`) whose target has a
+unique address in `config/known-symbols.csv`. It
 applies the link-time displacement using the target function address before
 comparing bytes. This permits small battle and collision helpers with direct
 calls to already identified functions to be checked without constructing a

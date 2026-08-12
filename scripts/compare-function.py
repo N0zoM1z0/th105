@@ -44,6 +44,19 @@ def first_mismatch(expected: bytes, actual: bytes, address: int) -> dict[str, ob
     }
 
 
+def rel32_operand_kind(code: bytes | bytearray, field_offset: int) -> str | None:
+    """Return the narrowly supported x86 instruction owning a REL32 field."""
+    if field_offset >= 1 and code[field_offset - 1] in (0xE8, 0xE9):
+        return "call" if code[field_offset - 1] == 0xE8 else "jmp"
+    if (
+        field_offset >= 2
+        and code[field_offset - 2] == 0x0F
+        and 0x80 <= code[field_offset - 1] <= 0x8F
+    ):
+        return "jcc"
+    return None
+
+
 def failure_record(error: Exception) -> tuple[str, dict[str, object]]:
     message = str(error)
     category = "comparison.error"
@@ -57,7 +70,7 @@ def failure_record(error: Exception) -> tuple[str, dict[str, object]]:
         ("unverified nonzero/unexpected BSS relocation", "relocation.dir32.bss_unverified"),
         ("do not match known literal", "relocation.dir32.object_literal_mismatch"),
         ("no longer match mapping", "relocation.dir32.target_literal_mismatch"),
-        ("is not an external CALL/JMP", "relocation.rel32.unsupported_operand"),
+        ("is not an external CALL/JMP/Jcc", "relocation.rel32.unsupported_operand"),
         ("unknown local call/jump target", "relocation.rel32.unknown_target"),
         ("unknown external call/jump target", "relocation.rel32.unknown_target"),
         ("unsupported code relocation", "relocation.unsupported_type"),
@@ -475,9 +488,9 @@ def coff_symbol_bytes(
             raise ValueError(
                 f"unsupported code relocation {relocation_type:#x} at +{field_offset:#x}"
             )
-        if field_offset == 0 or code[field_offset - 1] not in (0xE8, 0xE9):
+        if rel32_operand_kind(code, field_offset) is None:
             raise ValueError(
-                f"REL32 at +{field_offset:#x} is not an external CALL/JMP"
+                f"REL32 at +{field_offset:#x} is not an external CALL/JMP/Jcc"
             )
         target_name = relocation_target_key(target_symbol_name, targets)
         if target_name not in targets:
