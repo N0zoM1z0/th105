@@ -1,5 +1,9 @@
 # 東方緋想天 ～ Scarlet Weather Rhapsody
 
+> [!NOTE]
+> **Project status:** Development of th105 is temporarily paused while I focus on [th08](https://github.com/N0zoM1z0/th08). Work on th105 will resume once th08 is complete.
+
+
 <p align="center">
   <img
     src="resources/title-screen.jpg"
