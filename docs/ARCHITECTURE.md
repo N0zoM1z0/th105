@@ -1,141 +1,67 @@
 # TH10.5 architecture baseline
 
-This document separates confirmed properties of the shipped executable from
-the source layout that the reconstruction project will use. Exact source-file
-boundaries are not yet known.
+This file records only the corrected 1.06a baseline and the repository shape
+chosen for reconstruction. It does not carry forward addresses or exact-match
+claims from the former 1.06 target.
 
-## Binary identity and toolchain evidence
+## Verified executable facts
 
-The analyzed target is the original Japanese 1.06a executable identified in
-`config/target.toml`.
-
-| Property | Observed value |
+| Property | 1.06a value |
 | --- | --- |
-| Format | PE32, x86 Windows GUI |
-| Image base | `0x00400000` (relocations stripped) |
-| Entry point | `0x0067D112` |
-| `.text` | `0x00401000..0x006ABFFF`, 2,797,568 raw bytes |
-| Linker | Microsoft linker 8.0 |
-| Rich-header tool build | 50727 for the dominant VC8 tools |
-| Rich-header LTCG entries | 42 `Utc1400_LTCG_CPP` objects |
-| Debug record | RSDS, PDB age 157 |
-| Original PDB path | `c:\Nonotaro\works\東方緋想天\th105.pdb` |
-| Ghidra inventory | 4,838 internal `.text` functions |
-| Ghidra metadata | 5,009 total functions, 57,543 symbols |
+| Format | PE32 x86 Windows GUI, relocations stripped |
+| File size | `3,129,344` bytes |
+| Image base / image size | `0x00400000` / `0x00306000` |
+| Entry point | `0x0068B9D2` |
+| `.text` virtual range | `0x00401000..0x006BF33A` |
+| `.text` raw size | `2,879,488` bytes |
+| Linker | Microsoft 8.0 |
+| Rich compiler build | `50727` |
+| C++ / C / LTCG C++ records | `279` / `179` / `42` |
+| PDB record | `c:\Nonotaro\works\東方緋想天\th105.pdb`, age 2 |
+| Fresh IDA candidate inventory | 4,001 functions |
 
-The linker and Rich header establish the Visual C++ 2005 family. The 42
-`Utc1400_LTCG_CPP` records are strong evidence that a meaningful C++ subset was
-compiled with `/GL` and passed through link-time code generation. They do not
-yet establish the exact service pack or all compiler/linker switches.
+The section layout, hashes, timestamp, CodeView GUID, and complete provenance
+are machine-readable in `config/target.toml`.
 
-## Runtime structure
+IDA candidates are not compiler-object boundaries. Tail chunks, EH funclets,
+thunks, compiler helpers, statically linked libraries, and LTCG transformations
+must be classified before authored progress has a meaningful denominator.
 
-TH10.5 is structurally different from the earlier shooting games: it is a
-large object-oriented fighting-game executable with polymorphic scenes,
-network variants, battle-manager variants, per-character class families, and a
-static C/C++ runtime.
+## Why TH08 cannot be copied mechanically
 
-```text
-WinMain / platform bootstrap
-└── engine services and main loop
-    ├── input (DirectInput keyboard/mouse → logical player/menu input)
-    ├── scene manager
-    │   ├── logo/opening/title/menu/config/profile scenes
-    │   ├── character/deck/stage select and loading scenes
-    │   ├── local battle
-    │   ├── server/client/watch battle variants
-    │   └── ending/staff roll
-    ├── renderer (D3D9/D3DX9, sprite, animation, pattern/frame data)
-    ├── package/assets and audio
-    └── network/replay services
+TH08 provides a mature workflow, not a compatible program architecture.
 
-battle scene
-└── CBattleManagerBase
-    ├── arcade/story/local manager variants
-    ├── P1/P2 Character roots
-    │   ├── shared Character/CharacterEx/AttackObject behavior
-    │   └── one class and object-manager family per fighter
-    ├── effect/object managers
-    ├── collision and frame-data geometry
-    └── weather, HUD/info, system effects
-```
+| Concern | TH08 | TH105 |
+| --- | --- | --- |
+| Product shape | scrolling shooter | networked fighting game |
+| Dominant code organization | manager/global-heavy game loop | extensive polymorphic C++ scenes, fighters, objects, UI and networking |
+| Toolchain family | VC7-era | VC8 build 50727 |
+| Link optimization | no TH105-style evidence assumed | 42 C++ LTCG Rich records |
+| Safe reusable material | ledgers, status separation, exact acceptance, handoff discipline | target-specific ABI, ownership, types, boundaries and source shape must be recovered anew |
 
-## Confirmed class families
+Accordingly, this repository adopts TH08's control plane while retaining a
+TH105-specific candidate/origin layer and multi-function VC8 match-unit format.
 
-MSVC RTTI supplies 280 type descriptors. Ghidra currently exposes 991
-class/namespace entries after analysis. Important families include:
+## Reconstruction modules
 
-- Scenes: `IScene`, `CSceneBase`, `CBattle`, `CSelect`, `CLoading`,
-  `CSceneManager`, and server/client/watch variants.
-- Rendering/assets: `CRenderer`, `CSprite`, `AnimationObject`, `FrameData`,
-  `PatternData`, `Environment`, `CPackageFileReader`.
-- Battle: `CBattleManagerBase`, `CBattleManager`, `CBattleManagerArcade`,
-  `CBattleManagerStory`, `Character`, `CharacterEx`, `CharacterObject`,
-  `CharacterFrameData`, `AttackObject`.
-- Objects/effects: `TObjectManagerBase`, `CHandleManagerEx`, `CEffectManager`,
-  `EffectObject`, `WeatherEffectObject`, `SystemEffectObject`, `InfoEffectObject`.
-- UI/profile: the `CMenu*`, `CProfile*`, and `CDesign*` families.
-- Network: `CNetworkBase`, client/server/UDP/Winsock classes, `IPacket`, and
-  `CDPP_*` packet classes.
-- Scripting: `CScript::CCommandFactory`, `CCommandBase`, and typed `TCommand`
-  templates.
-- Fighters: Reimu, Marisa, Sakuya, Alice, Patchouli, Youmu, Remilia, Yuyuko,
-  Yukari, Suika, Udonge, Komachi, Aya, Iku, and Tenshi, with object managers.
+`config/modules.toml` is a proposed source taxonomy, not recovered original TU
+ownership. The broad areas are platform/engine, input, rendering/assets/audio,
+UI/script/network, battle, character families, and third-party/runtime code.
+Move or split source only after 1.06a xrefs, RTTI/vtables, static initialization,
+and comparison evidence establish ownership.
 
-## Proposed source modules
+The existing `src/` tree is a retained hypothesis corpus from the old target.
+It is intentionally absent from `config/implemented.csv`: each selected symbol
+must first gain a supported 1.06a mapping and undergo semantic review.
 
-`config/modules.toml` is the machine-readable module list. The initial source
-tree will keep platform/engine/input/render/assets/audio/UI/script/network and
-battle code separate, with character-specific code below `src/characters/`.
-Address ranges will be added only after call-graph, RTTI/vtable, string-xref,
-and compiler boundary evidence agree; code adjacency alone is insufficient.
-Verified unmodified external releases live below `third_party/` and remain
-separate from authored `src/` modules and authored progress accounting.
+## Current gates
 
-## High-value confirmed roots
-
-The seed addresses in `config/known-symbols.csv` and
-`config/known-globals.csv` were validated against shipped instructions and live
-state. They establish the first vertical slices:
-
-- main loop and scene transition at `0x00407F80`/`0x004080E0`;
-- DirectInput and logical input at `0x00409900..0x0040D250`;
-- main-menu update/render at `0x00424AB0`/`0x00424860`;
-- live battle-manager and fighter roots through `0x006E6244`;
-- shared collision/frame geometry around `0x0046ACD0`;
-- Sakuya action handling at `0x004DDB20` and `0x004DEF70`.
-
-Gameplay reconstruction should start from the phase ordering and bounded work
-lanes in [`docs/BATTLE.md`](BATTLE.md). UI, audio, and input plumbing remain
-valid modules but are lower priority than the active battle pipeline. The
-fifteen fighter vtable roots and the repeatable character onboarding lanes are
-tracked in [`docs/CHARACTER_PILOTS.md`](CHARACTER_PILOTS.md). The
-scenario-select vertical slice, shared UI ABI layouts, and its explicit open
-edges are mapped in [`docs/UI_FRAMEWORK.md`](UI_FRAMEWORK.md).
-
-The machine-readable gameplay scope, dependency frontier, and partial/complete
-type contracts are documented in
-[`docs/CORE_FRAMEWORK.md`](CORE_FRAMEWORK.md). This framework uses declarations
-instead of behavioral stubs, so architecture work does not inflate function
-status or create plausible but false implementations.
-
-The whole-executable provenance and subsystem census is documented in
-[`docs/EXECUTABLE_INVENTORY.md`](EXECUTABLE_INVENTORY.md). Its
-`config/function-origins.csv` companion distinguishes authored game code from
-compiler-generated, VC8 runtime, third-party, import-thunk, and unresolved
-rows. The staged execution and parallel-agent direction is maintained in
-[`docs/RECONSTRUCTION_PLAN.md`](RECONSTRUCTION_PLAN.md).
-
-These names describe observed roles; they do not imply that original source
-names have been recovered.
-
-## Open architecture gates
-
-1. Recover translation-unit ownership from static init, RTTI/vftable clusters,
-   strings, and link experiments while accounting for LTCG-erased boundaries.
-2. Separate compiler/runtime/library functions from authored game code.
-3. Recover class layouts and vtable slot ownership starting at scene and battle
-   roots.
-4. Identify the exact VC8 service level and optimization/link switches.
-5. Produce original-object slices suitable for objdiff, then promote functions
-   to reccmp-backed `matching` status.
+1. Reconcile high-confidence IDA candidate boundaries against exact control
+   flow and record exceptions without inferring adjacency-based sizes.
+2. Separate authored code from compiler/runtime/third-party islands.
+3. Recover a small non-LTCG or independently reproducible VC8 function as the
+   first canonical anchor.
+4. Establish ABI/layout evidence around that anchor before scaling to scenes,
+   battle managers, character families, or networking.
+5. Treat standalone-object failure under LTCG as a classification result, not
+   permission to weaken exact acceptance.

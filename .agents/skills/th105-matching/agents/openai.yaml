@@ -1,4 +1,4 @@
 interface:
   display_name: "TH105 Exact Matching"
-  short_description: "Tune VC8 reconstructions to exact target bytes"
-  default_prompt: "Use $th105-matching to reconstruct and byte-match a TH10.5 function while preserving evidence and ABI integrity."
+  short_description: "Match TH105 1.06a functions with pinned VC8 evidence"
+  default_prompt: "Use $th105-matching with $th105-re to compile and strictly compare one bounded TH10.5 v1.06a unit."

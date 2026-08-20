@@ -1,0 +1,4 @@
+interface:
+  display_name: "TH105 Library Classification"
+  short_description: "Classify and reproduce TH105 compiler/library islands"
+  default_prompt: "Use $th105-library to classify one bounded TH10.5 v1.06a compiler/runtime or third-party candidate with positive provenance."

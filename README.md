@@ -1,118 +1,67 @@
 # 東方緋想天 ～ Scarlet Weather Rhapsody
 
-> [!NOTE]
-> **Project status:** Development of th105 is temporarily paused while I focus on [th08](https://github.com/N0zoM1z0/th08). Work on th105 will resume once th08 is complete.
+This project reconstructs the original Japanese TH10.5 version 1.06a
+executable with reproducible byte comparison as the acceptance criterion.
 
+## Exact target
 
-<p align="center">
-  <img
-    src="resources/title-screen.jpg"
-    width="640"
-    alt="Original Japanese TH10.5 title screen">
-</p>
-
-<p align="center">
-  <img
-    src="resources/progress.svg"
-    alt="Decompilation progress">
-</p>
-
-This project aims to reconstruct the source code of the original Japanese
-`東方緋想天 ～ Scarlet Weather Rhapsody` version 1.06a executable, with
-reproducible binary comparison as the acceptance criterion.
-
-The project is in active reverse engineering. The target has been fingerprinted
-and fully imported into Ghidra; reconstructed routines are counted only after
-an exact function-byte comparison. The progress graphic above is generated
-from the machine-readable function ledger.
-
-## Target executable
-
-Supply your own original executable as `resources/th105.exe`:
+Supply your own `resources/th105.exe`:
 
 | Property | Required value |
 | --- | --- |
-| Original archive member | `th105c.exe` |
-| Size | `3,039,232` bytes |
-| SHA-256 | `49c23d9467b9927ba687ed2b873c4bc2d2f39ddadc9f55051ccf10172c0b7c11` |
-| PE image base | `0x00400000` |
+| Version | original Japanese 1.06a |
+| Size | `3,129,344` bytes |
+| SHA-256 | `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e` |
+| MD5 | `2ae711a6c92c4addbdbf526bc61d8e59` |
+| Image base | `0x00400000` |
+| Entry point | `0x0068B9D2` |
 
-Localized executables are different binaries and are intentionally rejected.
-The executable and game data are copyrighted assets and are not included.
+The [official 1.06a updater](https://tasofro.net/touhou105/download.html),
+`th105_update_106a.exe`, contains this executable. The old `th105c.exe`/1.06
+target is different and is deliberately rejected.
 
 ```bash
-scripts/import-target.sh /path/to/th105.rar
+scripts/import-target.sh /path/to/th105.exe
 python3 scripts/verify-target.py
 ```
 
-## Reverse-engineering environment
+Copyrighted executables and game data are not included.
 
-The repository prefers IDA Pro MCP for semantic analysis when a verified IDA
-session is available, with Ghidra 12.1/GhidraMCP as an independent fallback
-and current function-inventory authority. Exact acceptance still uses reccmp
-and objdiff-style object comparison. The workflow borrows the proven
-mapping/build/report structure of the GensokyoClub TH06 and TH08 projects,
-while adding a machine-readable function ledger and project-scoped MCP
-launchers for coding agents.
+## Workflow status
 
-For IDA-first work, open the exact target, start its MCP plugin, register the
-stdio bridge as `ida-pro-mcp`, and run:
+The project now uses the same conservative control-plane model as the TH08
+reconstruction: mapping, source presence, exact matches, and library origin are
+separate facts. TH105 keeps a separate provisional boundary/origin ledger
+because IDA reports 4,001 candidates and VC8 LTCG makes naïve function/TU
+accounting unsafe.
+
+The retained source tree came from the former 1.06 effort. It is available as
+supporting evidence but contributes zero 1.06a progress until individually
+revalidated and compared.
+
+Start a session with:
 
 ```bash
+python3 scripts/verify-target.py
 python3 scripts/check-ida-mcp.py
+python3 scripts/report-reconstruction-status.py --summary
+python3 scripts/validate-tracking.py --require-target
 ```
 
-If IDA is unavailable, register the `th105-ghidra` fallback once and verify the
-complete MCP protocol path with:
+## Documentation
 
-```bash
-scripts/bootstrap-tools.sh
-scripts/bootstrap-ghidra-project.sh
-scripts/register-codex-mcp.sh
-codex mcp list
-.tools/src/ghidra-mcp/.venv/bin/python scripts/check-mcp.py
-```
+- [Current handoff](docs/RE_HANDOFF.md)
+- [Architecture and TH08/TH105 differences](docs/ARCHITECTURE.md)
+- [Reverse-engineering workflow](docs/RE_WORKFLOW.md)
+- [Tool routing](docs/TOOLS.md)
+- [Verified knowledge base](docs/KNOWLEDGE_BASE.md)
+- [IDA MCP attestation](docs/IDA_MCP.md)
+- [VC8 matching](docs/BUILD_MATCHING.md)
+- [Generated progress](docs/PROGRESS.md)
+- [Agent rules](AGENTS.md)
 
-The launcher starts the analyzed headless project on loopback when needed.
-See [docs/MCP.md](docs/MCP.md) for setup and security details.
-
-## Project map
-
-- [Architecture](docs/ARCHITECTURE.md) — confirmed binary structure and module plan
-- [Reverse-engineering workflow](docs/RE_WORKFLOW.md) — evidence and agent handoff rules
-- [Workflow evolution decision](docs/WORKFLOW_EVOLUTION.md) — gated rollout from
-  strict ledger/comparator foundations through packets, clone fan-out, objdiff,
-  linking, and runtime validation
-- [IDA-first analysis](docs/IDA_MCP.md) — exact routing, boundary safety, and Ghidra fallback
-- [Reconstruction map](docs/RECONSTRUCTION_MAP.md) — unlock-first gameplay and character tree
-- [Gameplay reconstruction framework](docs/CORE_FRAMEWORK.md) — core lanes,
-  ABI/type contracts, dependency graph, and agent-ready worklist
-- [Matching workflow](docs/BUILD_MATCHING.md) — compiler, reccmp, and objdiff stages
-- [Exact-matching pattern catalog](.agents/skills/th105-re/references/exact-matching-patterns.md) — reusable VC8, COFF, relocation, and source-shaping techniques
-- [Exact-matching skill](.agents/skills/th105-matching/SKILL.md) — focused mismatch classification and verified UI/input-era VC8 case studies
-- [UI reconstruction framework](docs/UI_FRAMEWORK.md) — scenario-select ABI, call graph, and shared menu helpers
-- [Progress](docs/PROGRESS.md) — generated from `config/functions.csv`
-- [AGENTS.md](AGENTS.md) — mandatory operating rules for coding agents
-- [Parallel-agent skill](.agents/skills/th105-parallel/SKILL.md) — safe,
-  high-throughput IDA/Ghidra/ledger delegation
-
-Regenerate and validate the tracking data with:
-
-```bash
-python3 scripts/generate-tracking.py
-python3 scripts/core-worklist.py --check
-python3 scripts/progress.py --check
-python3 scripts/validate-tracking.py
-```
-
-## Build status
-
-The PE Rich header and linker metadata point to Visual C++ 2005 (VC8), including
-42 C++ LTCG records. VC8 SP1 already reproduces the tracked matching routines
-exactly, but the original service level, complete flags, translation-unit
-partition, and link order are still being established. A matching full
-executable is not yet advertised. See
-[docs/BUILD_MATCHING.md](docs/BUILD_MATCHING.md).
+Run public, target-independent checks with `python3 scripts/ci.py`. Local target
+and IDA checks are intentionally separate.
 
 ## License
 

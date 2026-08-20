@@ -1,221 +1,62 @@
-# Build and byte-matching plan
+# VC8 build and exact matching
 
-Repository agents should use the project-local `th105-matching` skill in
-`.agents/skills/th105-matching/` for the exact-match workflow. Its
-`references/patterns.md` collects confirmed VC8 code-shaping, C++ ABI,
-relocation, STL, `/GS`/EH, x87, and LTCG patterns so experiments and stop
-conditions remain reusable rather than being rediscovered per function.
+The target's linker/Rich metadata establishes the VC8 family and compiler build
+50727; `config/tools.lock.toml` pins the current VC8 SP1 candidate environment.
+The exact profile remains unproven for authored 1.06a code.
 
-## Current evidence
+## Acceptance boundary
 
-The PE uses Microsoft linker 8.0. Its Rich header is dominated by tool build
-50727, placing the build in the Visual C++ 2005 family. The executable imports
-Direct3D 9 and `d3dx9_33`, links a static C/C++ runtime, uses a fixed image base,
-and retains an RSDS path for `th105.pdb`.
+An exact function requires all of the following:
 
-The decoded Rich header contains 279 `Utc1400_CPP`, 165 `Utc1400_C`, and 42
-`Utc1400_LTCG_CPP` records. The LTCG records strongly indicate `/GL` inputs and
-an `/LTCG` link for at least part of the C++ program. Consequently, executable-
-level comparison is authoritative; object boundaries and object-level codegen
-can be altered or erased by the linker.
+- an accepted target address/size in `config/functions.csv`;
+- a durable authored mapping in `config/reccmp-functions.csv`;
+- source selected in `config/implemented.csv`;
+- a reproducible unit in `config/match-units.toml`;
+- strict COFF symbol/extent validation and relocation replay;
+- zero byte differences against canonical `resources/th105.exe`;
+- a `matches.csv` row with command/report evidence and a simultaneous
+  `matching`/`100.00` ledger update.
 
-Still unknown:
+Build success, objdiff similarity, decompiler resemblance, and old 1.06
+reports do not satisfy this boundary.
 
-- exact VC8 service pack/hotfix;
-- compiler options, runtime-library mode, LTCG use, and per-file overrides;
-- original translation-unit names and link order;
-- resource compiler and library versions beyond evidence in the PE;
-- which routines are compiler/runtime/third-party library code.
-
-These unknowns are why the initial repository does not claim a working matching
-build.
-
-## Matching stages
-
-1. **Toolchain probe** — compile controlled VC8 functions and compare codegen,
-   exception data, RTTI, string pooling, and section layout.
-2. **Object partition** — group functions/vtables/statics using RTTI ownership,
-   initializer clusters, strings, alignment, and link-order experiments.
-3. **ABI skeleton** — recover shared types, calling conventions, class layouts,
-   vtables, and global initialization.
-4. **Function matching** — use small non-LTCG object probes for fast iteration,
-   then confirm LTCG-sensitive functions in a linked executable.
-5. **Executable comparison** — use reccmp as the acceptance report and retain
-   explicit mappings for functions/globals/floats/strings.
-
-The current rollout order and stop gates are recorded in
-[`WORKFLOW_EVOLUTION.md`](WORKFLOW_EVOLUTION.md).
-
-## Match-unit graph
-
-`config/match-units.toml` maps a focused source probe to its generated object,
-VC8 profile, `/GS` setting, function symbols, and strict REL32 mappings. These
-units are deliberately typed as probes, synthetic islands, or linked
-candidates; a probe does not assert an original translation-unit boundary.
+## Focused loop
 
 ```bash
+python3 scripts/verify-target.py
 python3 scripts/build.py --check
-python3 scripts/build.py --list
-python3 scripts/build.py --unit youmu-object-records --compare --json
-python3 scripts/build.py --object-name YoumuObjectRecords.obj --compare --json
+python3 scripts/build.py --unit UNIT --compare --json
 ```
 
-Each build writes an ignored provenance sidecar containing source/object
-hashes, compiler-shaping inputs, compiler hash, profile, and command. A work
-packet reports a comparison only when that provenance input digest is fresh.
+Start with a small natural function. Recover calling convention, member
+layout, narrow signedness, EH behavior, callees/globals, and likely object
+ownership before register/branch shaping. Use the pinned compiler naturally;
+never add assembly, machine-code arrays, fake behavior, padding, or ABI lies.
 
-The exact roster lifecycle families are separately recorded in
-`config/clone-families.toml` and checked with
-`python3 scripts/clone-families.py --check`. Their normalized target-byte
-identity supports controlled fan-out but never marks a member `matching`.
+The existing unit format can group tightly coupled functions in one VC8 probe,
+which is useful when COMDATs, templates, inline dependencies, or LTCG-shaped
+ownership make TH08's one-function assumptions unsuitable.
 
-## Agent exact-matching playbook
+## Relocations and boundaries
 
-The reusable, symptom-driven VC8 source-shaping catalog lives at
-[`../.agents/skills/th105-re/references/exact-matching-patterns.md`](../.agents/skills/th105-re/references/exact-matching-patterns.md).
-It covers the repository's proven patterns for ABI/return-width recovery,
-external `REL32`, strict `DIR32` and signed addends, non-contiguous Ghidra body
-sets, x87 expression shaping, TU/COMDAT boundaries, BSS section placement,
-register reloads, switch tail merging, checked STL paths, hard-function
-handoffs, and regression testing after shared-layout changes.
+`compare-function.py` fails closed on unknown REL32/DIR32 targets, unexpected
+addends, unsupported COFF ownership, and target identity changes. Add a
+relocation mapping only after both target bytes and semantic ownership are
+supported.
 
-Agents should start from its diagnosis table after the first failed comparison
-and add genuinely reusable techniques as they are proven. Function-specific
-semantics remain in module notes and `config/functions.csv`; the playbook is
-for methods that transfer across address ranges.
+IDA extents do not define compiler boundaries. Tail chunks, jump tables,
+EH funclets, thunks, and adjacent constants must be proven from control flow
+and COFF records. If LTCG makes a truthful standalone object impossible,
+record the blocker; do not weaken the comparator or invent a source boundary.
 
-## reccmp
+## Shared changes
 
-After placing the exact original executable in `resources/`:
+After any shared layout/header/flag/object-graph/relocation change, rebuild
+every affected accepted unit. Aggregate totals require:
 
 ```bash
-reccmp-project detect --search-path resources/
+python3 scripts/verify-exact-units.py --all
 ```
 
-After a reconstructed executable exists:
-
-```bash
-cd build
-reccmp-project detect --what recompiled
-reccmp-reccmp --target th105 --html report.html
-```
-
-`reccmp-project.yml` refuses a target hash mismatch. The reccmp CSVs are
-generated/maintained from the same supported-name inventory as the function
-ledger.
-
-## objdiff
-
-Objdiff 3.8.0 is pinned in `config/tools.lock.toml`. The first unit is an audited
-diagnostic rather than an asserted original object:
-
-```bash
-python3 scripts/generate-synthetic-coff.py --check
-python3 scripts/generate-synthetic-coff.py --island youmu-owner-record
-.tools/objdiff/objdiff-cli diff -p . -u synthetic-youmu-owner-record \
-  -o build/objdiff/youmu-owner-record.json --format json-pretty
-```
-
-`config/synthetic-islands.toml` identifies `0x0053CAA0`, its ledger boundary,
-and both target REL32 operands. The generator checks the exact PE hash and call
-equations, emits unlinked zero addends with named COFF relocations, and replays
-the link to prove byte identity. The resulting objdiff unit reports 100.0% for
-the 175-byte `.text` section and function symbol.
-
-This artifact is deliberately classified
-`synthetic_pe_derived_not_original_coff`. It is useful for objdiff inspection
-and relocation diagnostics, but is not evidence of an original object/TU/LTCG
-boundary and cannot independently change function-ledger status. A future
-original-object unit must keep that stronger evidence class separate.
-
-## First code-generation results
-
-The pinned VC8 SP1 compiler (`14.00.50727.762`) compiles the initial accessor
-source files to these exact target bytes:
-
-```text
-0x00439860 get_game_mode:   A1 EC 62 6E 00 C3
-0x00439870 get_match_setup: B8 E8 6F 6E 00 C3
-0x00439B30 get_game_config: B8 38 6B 6E 00 C3
-0x00439C40 get_combined_menu_input: B8 20 75 6E 00 C3
-0x00439C80 get_player2_input: B8 70 63 6E 00 C3
-0x00439C00 get_player_slot_record: 8B 44 24 04 69 C0 3C 03 00 00 05 C0 64 6E 00 C3
-0x00439C10 invalidate_selected_input: 8B 44 24 04 C7 04 85 DC 62 6E 00 00 00 00 00 C6 80 D8 62 6E 00 FE C3
-0x00439C30 get_selected_input: 8B 44 24 04 8B 04 85 DC 62 6E 00 C3
-0x00439C50 get_combined_menu_input_counters: B8 58 75 6E 00 C3
-0x00439C60 get_selected_input_source: 8B 44 24 04 8A 80 D8 62 6E 00 C3
-0x00439C90 get_session_setup_option: A1 E4 62 6E 00 C3
-0x00439CA0 set_session_setup_option: 8B 44 24 04 A3 E4 62 6E 00 C3
-0x00439CB0 get_network_session: A1 FC 62 6E 00 C3
-0x00439B40 get_score_data: B8 38 72 6E 00 C3
-0x0040A210 set_input_state_table_entry: 0F B6 44 24 08 0F B6 54 24 04 89 04 91 C2 08 00
-0x0040D370 is_raw_key_down: 0F B6 44 24 04 0F B6 44 08 20 C1 E8 07 C2 04 00
-0x004397B0 get_battle_setup_task: A1 E8 62 6E 00 C3
-```
-
-These source files compile to the listed standalone functions. Each has no code
-relocation and is recorded as `matching`. They prove the probe path and source
-expressions, but the six-byte accessors among them cannot distinguish VC8 RTM
-from SP1 or prove the final `/GL`/`/LTCG` configuration.
-
-`is_raw_key_down` uses the explicitly normalized top-bit test
-`(raw_keyboard_state[scan_code] & 0x80) != 0`; this preserves the observed
-boolean behavior and makes VC8 SP1 `/O2` emit the target's 16-byte `movzx`
-sequence exactly.
-
-The first core-battle probes also match exactly:
-
-```text
-0x00463270 get_slot_character: 11 / 11 bytes
-0x00463280 is_slot_active: 11 / 11 bytes
-0x0046A9A0 accumulate_collision_extents: 139 / 139 bytes
-0x0046ACB0 reset_collision_extents: 23 / 23 bytes
-0x0046ACD0 transform_local_aabb_to_world: 91 / 91 bytes
-0x0046BE90 try_frame_flag_pair_outcome: 143 / 143 bytes
-```
-
-## Relocation-aware function probes
-
-The fast probe defaults to `/GS-`. Set `TH105_ENABLE_GS=1` only for a
-translation unit whose target prologue and EH data prove stack-cookie use;
-`CTitle::~CTitle` is the first such accepted probe.
-
-`scripts/compare-function.py` resolves i386 `REL32` on an external `CALL`, tail
-`JMP`, or standard near conditional jump (`0F 80..8F`) whose target has a
-unique address in `config/known-symbols.csv`. It
-applies the link-time displacement using the target function address before
-comparing bytes. This permits small battle and collision helpers with direct
-calls to already identified functions to be checked without constructing a
-fake executable layout.
-
-Absolute `DIR32` data relocations are accepted only when the exact COFF symbol,
-target address, literal bytes, and every used addend are allowlisted in
-`config/reccmp-relocations.csv`. The comparator revalidates the bytes at each
-offset in both the object and original PE, including specified PE zero-filled
-virtual tails. An undefined DIR32 target is accepted only when its name begins
-with `__imp__` and an exact four-byte IAT slot/literal is allowlisted; the PE
-slot bytes are revalidated on each comparison. Compiler-generated vtables, EH
-anchors, and security globals may instead use an explicit `address` validation
-row when their object bytes are relocatable or externally defined. Such rows
-still fail closed on the exact COFF symbol, target address, addend, and target
-bytes; unlike default `literal` validation, they do not claim that raw object
-bytes are already final linked bytes. It fails closed for unknown
-symbols, unlisted addends,
-non-external `REL32` targets, other opcodes or relocation types, and
-relocation-overflow sections. Those cases still require an appropriate
-linked-slice or executable comparison. A successful object probe does not
-replace final LTCG-sensitive executable-level reccmp acceptance.
-
-When COMDAT folding routes the same COFF symbol to different verified target
-entries in different linked functions, a match-unit function may use
-`dir32_targets = ["COFF_SYMBOL=ALLOWLIST_KEY"]`. The right-hand key must still
-be a fully byte-validated row in `config/reccmp-relocations.csv`; this is a
-function-local selection between proven destinations, not an unchecked address
-override.
-
-For C++ special members, ledger names may use the semantic `_ctor` or `_dtor`
-suffix. The comparator resolves those names to the corresponding VC8 `??0` or
-`??1` decorated COMDAT symbol before applying the same strict byte checks.
-Class-qualified ledger aliases such as `CLoadingWatch_on_scene_enter` likewise
-resolve to the VC8 member symbol `?on_scene_enter@CLoadingWatch@...`; this keeps
-known-symbol names unique without changing the reconstructed class interface.
+The replay is cold and sequential by default so stale or concurrent build
+products cannot support a published exact total.

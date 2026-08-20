@@ -1,50 +1,58 @@
 ---
 name: th105-matching
-description: Reconstruct and tune Touhou 10.5 (TH105) Visual C++ 2005 functions to exact target bytes. Use for compare-function failures, ABI/layout recovery, COFF REL32 or DIR32 relocation mapping, compiler-generated constructors/destructors/EH, VC8 STL codegen, instruction-order tuning, or deciding when LTCG/private ABI prevents a truthful standalone-object match.
+description: Compile and tune Touhou 10.5 v1.06a Visual C++ 2005 x86 functions for strict canonical byte equality. Use for focused VC8 COFF builds, comparator failures, REL32/DIR32 replay, ABI/layout codegen, COMDAT/EH analysis, or determining that LTCG prevents a truthful standalone-object match.
 ---
 
-# TH105 Exact Matching
+# TH105 exact matching
 
-Use this skill after the semantic role of a function is understood and the task is to turn that understanding into reproducible matching evidence. Follow the repository's `th105-re` workflow for claims, verified IDA-first/Ghidra-fallback coordination, ledger updates, and evidence ownership.
+Use together with `$th105-re`. Exact acceptance is defined by
+`docs/BUILD_MATCHING.md`, not visual similarity or an old report.
 
-## Workflow
+## Focused loop
 
-1. Confirm the target, claim, current ledger row, callers, callees, and relevant object/global layout.
-2. Recover semantics and ABI before tuning code shape. Record calling convention, parameter placement, field widths, signedness, and ownership behavior.
-3. Put the probe in the smallest plausible translation unit. Prefer a declared
-   `config/match-units.toml` unit and `scripts/build.py --unit UNIT --compare
-   --json`; otherwise compile with `scripts/compile-unit.sh`. Enable
-   `TH105_ENABLE_GS=1` only when the target proves stack-cookie use. A `probe`
-   unit does not claim an original translation-unit boundary.
-4. Run `scripts/compare-function.py --json ADDRESS OBJECT`. Treat `exact`,
-   `mismatch`, `blocked`, and `error` plus their relocation categories as
-   evidence, not as permission to weaken validation.
-5. Classify the first mismatch before editing:
-   - wrong ABI, layout, field width, signedness, or calling convention;
-   - wrong COFF symbol or function selection;
-   - unresolved `REL32` call/jump or `DIR32` data/EH/vtable reference;
-   - correct semantics but different source order, aliasing, loop form, or temporary lifetime;
-   - `/GS`, EH, STL implementation, LTCG, or private compiler ABI difference.
-6. Make one source-plausible change at a time and remeasure. Preserve semantics and repository style.
-7. Mark `matching` only after a 100% fail-closed comparison. A standalone probe that builds but is not part of the target build is `implemented`, not `compiles`; record exact size, mismatch class, command, and remaining blocker. Use `compiles` only after integration into the target build.
+1. Verify the target and ledgers, then confirm an accepted function boundary,
+   authored mapping, and source-present entry.
+2. Add the smallest reproducible VC8 unit to `config/match-units.toml`.
+3. Run:
 
-## Guardrails
+   ```bash
+   python3 scripts/build.py --check
+   python3 scripts/build.py --unit UNIT --compare --json
+   ```
 
-- Do not use naked assembly, byte arrays, manual NOP/padding, fake types, or ABI lies solely to force bytes.
-- Do not add a relocation allowlist row without proving the exact symbol, address, addend, and PE bytes or compiler-generated address anchor.
-- Do not infer a final executable match from a standalone object when LTCG can inline, merge, reorder, or change calling convention.
-- Do not infer source equality from a normalized clone-family hash. The known
-  roster manifests authorize controlled fan-out experiments, not ledger status
-  changes.
-- Do not treat a PE-derived synthetic COFF island as recovered original COFF,
-  translation-unit, or LTCG-boundary evidence. It is a relocation-aware objdiff
-  diagnostic and cannot independently grant ledger status.
-- Do not use an IDA chunk owner, decompiler body, or reported size as an accepted comparison boundary; reconcile it with the ledger and target instructions first.
-- Do not perturb already matching shared layouts merely to improve one probe; isolate the experiment first.
-- Prefer source expressions the original programmer could reasonably have written. A code-shaping cast, alias, or loop is acceptable only when it preserves the recovered interface and behavior.
+4. Classify the first failure: target/boundary, COFF owner/extent, relocation,
+   ABI/layout, missing behavior, compiler profile, or LTCG/TU ownership.
+5. Change one evidence-backed source property and recompare the whole accepted
+   extent. Do not optimize against an isolated first mismatch while later
+   relocation or control-flow differences remain unexplained.
+6. Record exactness only at zero differences with complete relocation replay;
+   update `matches.csv` and the function ledger together.
 
-## Reference Routing
+## VC8 rules
 
-Read [references/patterns.md](references/patterns.md) before tuning a nontrivial mismatch. Its sections cover symbol selection, relocation validation, special members and EH, VC8 containers, branch/register shaping, x87 behavior, LTCG stop conditions, and evidence/status rules.
+- Preserve x86 calling conventions, `this` placement, return cleanup, scalar
+  widths, class/vtable layout, constructor/destructor/EH behavior, and static
+  initialization.
+- Resolve REL32 and DIR32 using durable symbol/relocation ledgers. An address
+  equality without correct COFF symbol ownership/addend is not sufficient.
+- Prove comparison extents from target control flow and COFF records. IDA tail
+  chunks, jump tables, funclets, and adjacent data are not automatic members.
+- Prefer natural C++ expressions and lifetimes that explain the target. Never
+  use inline/native assembly, copied bytes, padding, fake returns, dead shaping
+  code, or calling-convention lies.
+- The target contains 42 C++ LTCG inputs. If independent compilation cannot
+  truthfully reproduce a function because its boundary/profile was link-time
+  transformed, document that concrete stop condition and seek a larger honest
+  unit or later link-stage comparison.
 
-When a new repeatable pattern is confirmed by an exact match, append a compact case study there: target address, observed mismatch, source-level lever, why it is semantically legitimate, and the validating command.
+## Shared-change safety
+
+After a shared header/layout/flag/TU/global/relocation change, replay every
+affected unit. Aggregate results require:
+
+```bash
+python3 scripts/verify-exact-units.py --all
+```
+
+Do not add a reusable pattern to this skill until a clean 1.06a unit, command,
+and exact result make it reproducible.

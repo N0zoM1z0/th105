@@ -1,0 +1,4 @@
+interface:
+  display_name: "TH105 Reconstruction"
+  short_description: "Recover bounded TH105 1.06a code from attested evidence"
+  default_prompt: "Use $th105-re to investigate and reconstruct one bounded TH10.5 v1.06a function without carrying old-target assumptions."

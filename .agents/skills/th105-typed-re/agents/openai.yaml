@@ -1,0 +1,4 @@
+interface:
+  display_name: "TH105 Typed RE"
+  short_description: "Extract target-pinned TH105 instruction and ABI facts"
+  default_prompt: "Use $th105-typed-re to create and interpret a read-only 1.06a evidence packet before changing source."
