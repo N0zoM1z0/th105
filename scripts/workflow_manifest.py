@@ -76,8 +76,8 @@ def load_manifest() -> dict[str, Any]:
         }
 
     units = manifest.get("units")
-    if not isinstance(units, dict) or not units:
-        raise ValueError("config/match-units.toml must define at least one unit")
+    if not isinstance(units, dict):
+        raise ValueError("config/match-units.toml units must be a table")
     object_names: set[str] = set()
     addresses: set[str] = set()
     for name, unit in units.items():

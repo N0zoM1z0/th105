@@ -20,12 +20,15 @@ DEFAULT_SERVER = "ida-pro-mcp"
 REQUIRED_READ_TOOLS = (
     "check_connection",
     "get_metadata",
+    "get_entry_points",
     "get_function_by_address",
     "disassemble_function",
     "decompile_function",
     "get_xrefs_to",
     "get_callers",
     "get_callees",
+    "list_functions",
+    "read_memory_bytes",
 )
 
 
@@ -96,9 +99,11 @@ async def open_session(
 
 
 def decode_tool_result(result: Any, tool: str) -> Any:
-    if result.isError:
-        raise IdaMcpError("tool_error", f"IDA MCP tool failed: {tool}")
     texts = [item.text for item in result.content if item.type == "text"]
+    if result.isError:
+        detail = "; ".join(texts).strip()
+        suffix = f": {detail}" if detail else ""
+        raise IdaMcpError("tool_error", f"IDA MCP tool failed: {tool}{suffix}")
     if not texts:
         return None
     if len(texts) == 1:

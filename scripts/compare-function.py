@@ -521,7 +521,7 @@ def main() -> int:
         action="store_true",
         help=(
             "compare entry through span_end, including bytes omitted from "
-            "Ghidra's non-contiguous function body"
+            "a provisional analysis function body"
         ),
     )
     parser.add_argument(

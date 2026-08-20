@@ -1,36 +1,80 @@
 #!/usr/bin/env python3
-"""Fast identity check for the one supported executable."""
+"""Fail-closed identity check for the one supported TH105 executable."""
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 from pathlib import Path
 import sys
+import tomllib
 
 
 ROOT = Path(__file__).resolve().parents[1]
-TARGET = ROOT / "resources" / "th105.exe"
-EXPECTED_SIZE = 3_039_232
-EXPECTED_SHA256 = "49c23d9467b9927ba687ed2b873c4bc2d2f39ddadc9f55051ccf10172c0b7c11"
+CONFIG = ROOT / "config" / "target.toml"
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Verify the original Japanese TH105 v1.06a executable"
+    )
+    parser.add_argument(
+        "executable",
+        nargs="?",
+        type=Path,
+        help="path to th105.exe (default: resources/th105.exe)",
+    )
+    return parser.parse_args()
+
+
+def file_hashes(path: Path) -> tuple[str, str]:
+    sha256 = hashlib.sha256()
+    md5 = hashlib.md5(usedforsecurity=False)
+    with path.open("rb") as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b""):
+            sha256.update(block)
+            md5.update(block)
+    return sha256.hexdigest(), md5.hexdigest()
 
 
 def main() -> int:
-    path = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else TARGET
+    args = parse_args()
+    try:
+        with CONFIG.open("rb") as stream:
+            expected = tomllib.load(stream)["target"]
+    except (OSError, KeyError, tomllib.TOMLDecodeError) as exc:
+        print(f"invalid target manifest: {exc}", file=sys.stderr)
+        return 2
+
+    default = ROOT / "resources" / str(expected["filename"])
+    path = (args.executable or default).expanduser().resolve()
     if not path.is_file():
         print(f"missing target: {path}", file=sys.stderr)
-        print("copy the original Japanese 1.06a th105c.exe to resources/th105.exe", file=sys.stderr)
+        print(
+            "copy the original Japanese v1.06a th105.exe to resources/th105.exe "
+            "or pass its path explicitly",
+            file=sys.stderr,
+        )
         return 1
 
     size = path.stat().st_size
-    digest = hashlib.sha256(path.read_bytes()).hexdigest()
-    if size != EXPECTED_SIZE or digest != EXPECTED_SHA256:
+    sha256, md5 = file_hashes(path)
+    problems: list[str] = []
+    if size != int(expected["size"]):
+        problems.append(f"size:   {size} (expected {expected['size']})")
+    if sha256 != str(expected["sha256"]).lower():
+        problems.append(f"sha256: {sha256} (expected {expected['sha256']})")
+    if md5 != str(expected["md5"]).lower():
+        problems.append(f"md5:    {md5} (expected {expected['md5']})")
+    if problems:
         print(f"unsupported executable: {path}", file=sys.stderr)
-        print(f"  size:   {size} (expected {EXPECTED_SIZE})", file=sys.stderr)
-        print(f"  sha256: {digest}", file=sys.stderr)
+        for problem in problems:
+            print(f"  {problem}", file=sys.stderr)
         return 1
 
     print(f"target OK: {path}")
-    print(f"sha256: {digest}")
+    print(f"sha256: {sha256}")
+    print(f"md5:    {md5}")
     return 0
 
 

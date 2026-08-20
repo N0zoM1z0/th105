@@ -3,23 +3,62 @@ title = "東方緋想天 ～ Scarlet Weather Rhapsody"
 version = "1.06a"
 region = "original-japanese"
 filename = "th105.exe"
-archive_member = "th105c.exe"
-size = 3039232
-sha256 = "49c23d9467b9927ba687ed2b873c4bc2d2f39ddadc9f55051ccf10172c0b7c11"
-md5 = "c2e6515bc690ee3ad74c57045ff40d88"
+size = 3129344
+sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+md5 = "2ae711a6c92c4addbdbf526bc61d8e59"
+
+[provenance]
+official_update = "th105_update_106a.exe"
+official_update_url = "https://tasofro.net/arc/th105_update_106a.exe"
+official_update_md5 = "f5662fd2dc38ba716bf3800ff9d6abbf"
+official_update_date = "2011-10-27"
+evidence = "The official Inno Setup payload contains app/th105.exe with the target size and hashes above."
 
 [pe]
 machine = "i386"
 image_base = "0x00400000"
-entry_point = "0x0067D112"
-timestamp_utc = "2008-09-22T11:41:47Z"
+entry_point = "0x0068B9D2"
+timestamp_utc = "2011-10-24T12:17:56Z"
 linker_version = "8.0"
+size_of_image = 3170304
+headers_raw_size = 4096
 text_start = "0x00401000"
-text_end = "0x006ABFFF"
-text_raw_size = 2797568
+text_end = "0x006BF33A"
+text_virtual_size = 2876219
+text_raw_offset = "0x00001000"
+text_raw_size = 2879488
 relocations_stripped = true
+
+[[pe.sections]]
+name = ".rdata"
+rva = "0x002C0000"
+virtual_size = 155994
+raw_offset = "0x002C0000"
+raw_size = 155648
+
+[[pe.sections]]
+name = ".data"
+rva = "0x002E6000"
+virtual_size = 125448
+raw_offset = "0x002E6000"
+raw_size = 86016
+
+[[pe.sections]]
+name = ".rsrc"
+rva = "0x00305000"
+virtual_size = 1084
+raw_offset = "0x002FB000"
+raw_size = 4096
 
 [codeview]
 pdb_path = "c:\\Nonotaro\\works\\東方緋想天\\th105.pdb"
-pdb_guid = "02EAE7E3-B37D-6541-B325-6C8DEB517961"
-pdb_age = 157
+pdb_guid = "40EDD1C4-000E-4014-9634-F3B1DF4085F6"
+pdb_age = 2
+
+[toolchain]
+family = "Microsoft Visual C++ 2005 (VC8)"
+compiler_build = 50727
+rich_utc1400_cpp = 279
+rich_utc1400_c = 179
+rich_utc1400_ltcg_cpp = 42
+evidence = "PE linker 8.0, Rich-header Comp.ID build 50727, and 42 LTCG C++ records"

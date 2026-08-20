@@ -3,16 +3,11 @@ targets:
     filename: th105.exe
     source_root: src
     hash:
-      sha256: 49c23d9467b9927ba687ed2b873c4bc2d2f39ddadc9f55051ccf10172c0b7c11
+      sha256: 56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e
     data_sources:
       - config/reccmp-functions.csv
       - config/reccmp-globals.csv
       - config/reccmp-floats.csv
       - config/reccmp-strings.csv
-    ghidra:
-      ignore_types: []
-      ignore_functions: []
-      name_substitutions: []
-      allow_hash_mismatch: false
     report:
       ignore_functions: []

@@ -1,47 +1,51 @@
+schema_version = 1
+
+# This is a repository taxonomy, not recovered original translation-unit
+# ownership. Every module boundary remains provisional for 1.06a.
 [modules.platform]
-description = "WinMain, Win32 windowing, timing, memory and static CRT integration"
-evidence = ["PE imports", "entry point", "MSVC runtime strings"]
+status = "proposed"
+description = "Win32 process/window/timing/bootstrap and static runtime integration"
 
 [modules.engine]
-description = "Main loop, scene manager, scene transitions and global services"
-evidence = ["IScene", "CSceneBase", "CSceneManager", "CFade"]
+status = "proposed"
+description = "Main loop, scene lifetime, transitions, and shared services"
 
 [modules.input]
-description = "DirectInput devices, raw state, player counters and logical input"
-evidence = ["DINPUT8 import", "runtime-validated input roots"]
+status = "proposed"
+description = "Physical devices and logical player/menu input"
 
 [modules.render]
-description = "Direct3D 9 renderer, sprites, animation and frame/pattern data"
-evidence = ["d3d9", "d3dx9_33", "CRenderer", "CSprite", "AnimationObject"]
+status = "proposed"
+description = "Direct3D rendering, sprites, animation, and frame/pattern data"
 
 [modules.assets]
-description = "Package readers, texture/pattern loading and resource lookup"
-evidence = ["CPackageFileReader", "resource path strings"]
+status = "proposed"
+description = "Packages, textures, patterns, and resource lookup"
 
 [modules.audio]
-description = "BGM and sound playback"
-evidence = ["WINMM import", "BGM and sound path strings"]
+status = "proposed"
+description = "Music and sound playback"
 
 [modules.ui]
-description = "Menus, profiles, configuration, character/deck/stage selection"
-evidence = ["CMenu*", "CProfile*", "CDesign*"]
+status = "proposed"
+description = "Menus, profiles, configuration, selection, and HUD"
 
 [modules.script]
-description = "Scenario/command factories and typed command dispatch"
-evidence = ["CScript::CCommandFactory", "CCommandBase", "TCommand templates"]
+status = "proposed"
+description = "Scenario and command parsing/dispatch"
 
 [modules.network]
-description = "Client/server/watch modes, UDP/Winsock and packet protocol"
-evidence = ["CNetworkBase", "CNetworkClient", "CNetworkServer", "CDPP_*", "WS2_32"]
+status = "proposed"
+description = "Client/server/watch modes and packet transport"
 
 [modules.battle]
-description = "Battle managers, fighters, collision, weather and system effects"
-evidence = ["CBattleManagerBase", "Character", "AttackObject", "WeatherEffectObject"]
+status = "proposed"
+description = "Battle state, collision, weather, effects, and fighter interaction"
 
 [modules.characters]
-description = "Fifteen fighter implementations and their object managers"
-evidence = ["RTTI for Reimu through Tenshi and per-character object classes"]
+status = "proposed"
+description = "Per-fighter behavior and owned object families"
 
 [modules.third_party]
-description = "Compiler runtime and linked libraries that should be classified separately"
-evidence = ["MSVC helper names", "FID results", "D3DX imports"]
+status = "proposed"
+description = "Compiler runtime and independently identified linked libraries"

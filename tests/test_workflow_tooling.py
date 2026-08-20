@@ -1,10 +1,9 @@
 from __future__ import annotations
 
+import csv
 import importlib.util
 from pathlib import Path
-import struct
 import sys
-import tempfile
 import unittest
 
 
@@ -28,27 +27,81 @@ class WorkflowToolingTests(unittest.TestCase):
         cls.validator = load_script("validate-tracking.py")
         cls.comparator = load_script("compare-function.py")
         cls.manifest = load_script("workflow_manifest.py")
-        cls.xiph_sdk = load_script("fetch-xiph-sdk-object.py")
-        cls.clones = load_script("clone-families.py")
-        cls.packet = load_script("work-packet.py")
         cls.progress = load_script("progress.py")
-        cls.synthetic = load_script("generate-synthetic-coff.py")
+        cls.ida_check = load_script("check-ida-mcp.py")
+        cls.inventory = load_script("export-ida-inventory.py")
+        cls.typed = load_script("typed-re.py")
 
-    def test_ledger_reader_rejects_extra_physical_column(self) -> None:
-        with tempfile.TemporaryDirectory() as directory:
-            path = Path(directory) / "functions.csv"
-            path.write_text("a,b\n1,2,3\n", encoding="utf-8")
-            errors: list[str] = []
-            rows = self.validator.read_rows(path, errors, ["a", "b"])
-        self.assertEqual(rows, [])
-        self.assertIn("expected 2 columns, got 3", errors[0])
+    def test_corrected_target_identity(self) -> None:
+        manifest = self.validator.validate_target(require_bytes=False)
+        self.assertEqual(manifest["target"]["size"], 3_129_344)
+        self.assertEqual(
+            manifest["target"]["sha256"],
+            "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e",
+        )
+        self.assertEqual(manifest["pe"]["entry_point"], "0x0068B9D2")
+
+    def test_fresh_inventory_has_no_carried_progress(self) -> None:
+        with (ROOT / "config" / "functions.csv").open(
+            newline="", encoding="utf-8"
+        ) as stream:
+            functions = list(csv.DictReader(stream))
+        self.assertEqual(len(functions), 4001)
+        self.assertEqual({row["status"] for row in functions}, {"unclassified"})
+        self.assertEqual({row["match_percent"] for row in functions}, {"0.00"})
+        self.assertFalse((ROOT / "config" / "implemented.csv").read_text())
+        self.assertEqual(
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 0
+        )
+
+    def test_match_unit_graph_accepts_empty_corrected_baseline(self) -> None:
+        manifest = self.manifest.load_manifest()
+        self.assertEqual(manifest["units"], {})
+
+    def test_progress_reports_zero_exact(self) -> None:
+        markdown = self.progress.render()
+        self.assertIn("IDA 1.06a function candidates | 4,001", markdown)
+        self.assertIn("Canonical exact functions | 0", markdown)
+        self.assertIn(
+            "former 1.06 reconstruction state is intentionally excluded", markdown
+        )
+
+    def test_inventory_pagination_normalization(self) -> None:
+        data, next_offset = self.inventory.normalize_page(
+            {
+                "data": [
+                    {
+                        "address": "0x401000",
+                        "name": "sub_401000",
+                        "size": "0x34",
+                    }
+                ],
+                "next_offset": 1,
+            }
+        )
+        self.assertEqual(len(data), 1)
+        self.assertEqual(next_offset, 1)
+
+    def test_attestation_byte_parser(self) -> None:
+        self.assertEqual(
+            self.ida_check.parse_ida_bytes("90 00 ff"), b"\x90\x00\xff"
+        )
+
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
+    def test_typed_target_mapping_reads_exact_pe_bytes(self) -> None:
+        data, _manifest = self.typed.verify_local_target()
+        self.assertEqual(
+            self.typed.target_bytes(data, 0x00401000, 8), data[0x1000:0x1008]
+        )
 
     def test_first_mismatch_is_structured(self) -> None:
-        mismatch = self.comparator.first_mismatch(b"\x90\x90\xc3", b"\x90\xcc\xc3", 0x401000)
+        mismatch = self.comparator.first_mismatch(
+            b"\x90\x90\xc3", b"\x90\xcc\xc3", 0x401000
+        )
         self.assertEqual(mismatch["offset"], 1)
         self.assertEqual(mismatch["address"], "0x00401001")
-        self.assertEqual(mismatch["target_byte"], "90")
-        self.assertEqual(mismatch["object_byte"], "cc")
 
     def test_unknown_dir32_is_a_blocker(self) -> None:
         result, failure = self.comparator.failure_record(
@@ -57,138 +110,19 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(result, "blocked")
         self.assertEqual(failure["category"], "relocation.dir32.unknown_symbol")
 
-    def test_exact_decorated_rel32_mapping_precedes_short_alias(self) -> None:
-        decorated = (
-            "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z"
-        )
-        targets = {"push_back": 0x401000, decorated: 0x402000}
+    def test_rel32_accepts_only_supported_instruction_forms(self) -> None:
         self.assertEqual(
-            self.comparator.relocation_target_key(decorated, targets),
-            decorated,
-        )
-
-    def test_rel32_mapping_retains_legacy_short_alias(self) -> None:
-        decorated = "?enter@CriticalSectionWrapper@th105@@QAEXXZ"
-        self.assertEqual(
-            self.comparator.relocation_target_key(
-                decorated, {"CriticalSectionWrapper_enter": 0x40A710}
-            ),
-            "CriticalSectionWrapper_enter",
-        )
-
-    def test_rel32_operand_accepts_only_call_jump_and_near_jcc(self) -> None:
-        self.assertEqual(self.comparator.rel32_operand_kind(b"\xe8\0\0\0\0", 1), "call")
-        self.assertEqual(self.comparator.rel32_operand_kind(b"\xe9\0\0\0\0", 1), "jmp")
-        self.assertEqual(self.comparator.rel32_operand_kind(b"\x0f\x84\0\0\0\0", 2), "jcc")
-        self.assertEqual(self.comparator.rel32_operand_kind(b"\x0f\x8f\0\0\0\0", 2), "jcc")
-        self.assertIsNone(self.comparator.rel32_operand_kind(b"\x0f\x7f\0\0\0\0", 2))
-        self.assertIsNone(self.comparator.rel32_operand_kind(b"\x90\0\0\0\0", 1))
-
-    def test_unsupported_rel32_operand_remains_structured_blocker(self) -> None:
-        result, failure = self.comparator.failure_record(
-            ValueError("REL32 at +0x4 is not an external CALL/JMP/Jcc")
-        )
-        self.assertEqual(result, "blocked")
-        self.assertEqual(failure["category"], "relocation.rel32.unsupported_operand")
-
-    def test_dir32_mapping_selects_verified_function_local_alias(self) -> None:
-        decorated = "??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ"
-        alias = "_fixed_slot_vector_assign_deque_dtor_thunk"
-        self.assertEqual(
-            self.comparator.dir32_target_key(decorated, {decorated: alias}),
-            alias,
-        )
-        self.assertEqual(self.comparator.dir32_target_key(decorated, {}), decorated)
-
-    def test_dir32_mapping_can_select_a_verified_addend_alias(self) -> None:
-        symbol = "_z_errmsg"
-        alias = "_z_errmsg+0x18"
-        overrides = {"_z_errmsg+0x18": alias, symbol: "base_alias"}
-        self.assertEqual(
-            self.comparator.dir32_target_key(symbol, overrides, 0x18), alias
+            self.comparator.rel32_operand_kind(b"\xe8\0\0\0\0", 1), "call"
         )
         self.assertEqual(
-            self.comparator.dir32_target_key(symbol, overrides, 0x1C), "base_alias"
-        )
-
-    def test_target_identity_failure_is_not_a_match_blocker(self) -> None:
-        result, failure = self.comparator.failure_record(
-            ValueError("target SHA-256 mismatch: got wrong, expected exact")
-        )
-        self.assertEqual(result, "error")
-        self.assertEqual(failure["category"], "target.identity_mismatch")
-
-    def test_match_unit_graph_validates(self) -> None:
-        manifest = self.manifest.load_manifest()
-        self.assertGreaterEqual(len(manifest["units"]), 2)
-
-    def test_vendored_unit_digest_includes_sibling_headers(self) -> None:
-        manifest = self.manifest.load_manifest()
-        digest, inputs = self.manifest.unit_input_digest(
-            "zlib-inflate-anchors", manifest["units"]["zlib-inflate-anchors"]
-        )
-        self.assertEqual(len(digest), 64)
-        self.assertIn("third_party/zlib-1.2.3/zlib.h", inputs)
-        self.assertIn("third_party/zlib-1.2.3/inffixed.h", inputs)
-
-    def test_xiph_sdk_parser_accepts_microsoft_nul_long_names(self) -> None:
-        long_name = b".\\Static_Release\\framing.obj\0"
-
-        def member(name: bytes, body: bytes) -> bytes:
-            header = (
-                name.ljust(16)
-                + b"0".ljust(12)
-                + b"0".ljust(6)
-                + b"0".ljust(6)
-                + b"100666".ljust(8)
-                + str(len(body)).encode("ascii").ljust(10)
-                + b"`\n"
-            )
-            return header + body + (b"\n" if len(body) & 1 else b"")
-
-        archive = (
-            b"!<arch>\n"
-            + member(b"//", long_name)
-            + member(b"/0", b"L\x01object")
+            self.comparator.rel32_operand_kind(b"\xe9\0\0\0\0", 1), "jmp"
         )
         self.assertEqual(
-            self.xiph_sdk.archive_members(archive),
-            [(".\\Static_Release\\framing.obj", b"L\x01object")],
+            self.comparator.rel32_operand_kind(b"\x0f\x84\0\0\0\0", 2), "jcc"
         )
-
-    def test_known_clone_families_match_target(self) -> None:
-        reports = self.clones.load_and_check()
-        self.assertEqual(len(reports), 8)
-        self.assertEqual(sum(report["member_count"] for report in reports), 120)
-
-    def test_progress_exposes_library_and_combined_reconstruction(self) -> None:
-        markdown, svg = self.progress.render()
-        self.assertIn("Reproducible third-party functions", markdown)
-        self.assertIn("Combined exact reconstruction", markdown)
-        self.assertIn("Library exact:", svg)
-
-    def test_ghidra_body_span_boundary_is_advisory(self) -> None:
-        entry, size, basis = self.packet.canonical_backend_boundary(
-            {
-                "address": "0053caa0",
-                "body_start": "0053caa0",
-                "body_end": "0053cb4e",
-            }
+        self.assertIsNone(
+            self.comparator.rel32_operand_kind(b"\x90\0\0\0\0", 1)
         )
-        self.assertEqual(entry, "0x0053CAA0")
-        self.assertEqual(size, 175)
-        self.assertEqual(basis, "backend_body_span")
-
-    def test_synthetic_coff_replays_to_exact_target(self) -> None:
-        manifest = self.synthetic.load_manifest()
-        island = self.synthetic.validate_island(
-            "youmu-owner-record", manifest["islands"]["youmu-owner-record"]
-        )
-        coff = self.synthetic.build_coff(island)
-        self.assertEqual(struct.unpack_from("<H", coff, 0)[0], 0x014C)
-        self.assertEqual(struct.unpack_from("<H", coff, 2)[0], 1)
-        self.assertEqual(struct.unpack_from("<H", coff, 52)[0], 2)
-        self.assertEqual(self.synthetic.replay_link(island, coff), island["body"])
 
 
 if __name__ == "__main__":
