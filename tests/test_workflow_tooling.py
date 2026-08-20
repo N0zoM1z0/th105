@@ -43,27 +43,38 @@ class WorkflowToolingTests(unittest.TestCase):
         )
         self.assertEqual(manifest["pe"]["entry_point"], "0x0068B9D2")
 
-    def test_fresh_inventory_has_no_carried_progress(self) -> None:
+    def test_corrected_inventory_tracks_only_current_target_progress(self) -> None:
         with (ROOT / "config" / "functions.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4001)
-        self.assertEqual({row["status"] for row in functions}, {"unclassified"})
-        self.assertEqual({row["match_percent"] for row in functions}, {"0.00"})
-        self.assertFalse((ROOT / "config" / "implemented.csv").read_text())
+        matching = [row for row in functions if row["status"] == "matching"]
+        self.assertEqual(len(matching), 47)
+        self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
+        with (ROOT / "config" / "implemented.csv").open(
+            newline="", encoding="utf-8"
+        ) as stream:
+            implemented = [row[0] for row in csv.reader(stream) if row]
+        self.assertEqual(len(implemented), 47)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 0
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 47
         )
 
-    def test_match_unit_graph_accepts_empty_corrected_baseline(self) -> None:
+    def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(manifest["units"], {})
+        self.assertEqual(len(manifest["units"]), 28)
+        self.assertEqual(
+            sum(len(unit["functions"]) for unit in manifest["units"].values()),
+            47,
+        )
 
-    def test_progress_reports_zero_exact(self) -> None:
+    def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("IDA 1.06a function candidates | 4,001", markdown)
-        self.assertIn("Canonical exact functions | 0", markdown)
+        self.assertIn("Confirmed authored functions | 47", markdown)
+        self.assertIn("Canonical exact functions | 47", markdown)
+        self.assertIn("Canonical exact authored bytes | 3,304", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )

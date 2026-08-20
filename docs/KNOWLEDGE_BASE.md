@@ -17,7 +17,10 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The current IDA database exposes 4,001 function candidates. Their auto-names
-  and sizes are provisional analysis output.
+  and unreviewed sizes remain provisional analysis output.
+- The first accepted 1.06a authored wave contains 47 functions / 3,304 bytes in
+  28 VC8 match units. A cold `scripts/verify-exact-units.py --all` replay passes
+  all 47 with zero differences.
 
 ## Repository decisions
 
@@ -26,8 +29,21 @@ notes or source hypotheses.
 - Retain `functions.csv` plus `function-origins.csv` as a TH105-specific layer
   because static libraries, compiler code, thunks/funclets, and LTCG make a
   flat authored mapping unsafe.
-- Keep the old source tree for archaeology but count none of it until a 1.06a
-  mapping and semantic audit justify `implemented.csv`.
+- Retained 1.06 source is archaeology and a hypothesis corpus. It counts only
+  after a current 1.06a mapping, semantic audit, reproducible VC8 unit, and
+  canonical exact comparison justify the corresponding ledgers.
+- Cross-version raw-byte identity is a prioritization signal, never match proof.
+  The accepted 47-function wave came from raw-identical candidates, but every
+  function was freshly compiled and zero-diff compared against 1.06a before
+  promotion.
+- Do not infer current REL32 callees solely by applying an address delta from
+  1.06. A failed `load_spell_data` probe demonstrated that an independently
+  moved callee can violate the surrounding delta; current IDA disassembly gave
+  the correct 1.06a target `0x00434300`, after which the canonical comparison
+  became exact.
+- A durable semantic mapping name and the COFF `symbol_base` used by the exact
+  comparator may differ. Keep semantic names stable in the ledgers and use the
+  actual compiled symbol for object extraction.
 - Use one writable reconstruction session. Claims remain header-only.
 - Use IDA Pro exclusively after exact attestation. There is no Ghidra fallback.
 - Keep IDA client scripts independent of an interactive Python environment:
@@ -37,14 +53,17 @@ notes or source hypotheses.
 
 ## Unknown
 
-- Exact VC8 service pack and compiler/linker flags used for every object.
+- Exact VC8 service pack and compiler/linker flags used for every original
+  object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for all 4,001 candidates.
-- Which retained 1.06 source implementations remain semantically identical in
-  1.06a.
-- First reproducible 1.06a authored exact unit.
+- Accepted boundaries and authored/library origins for the remaining 3,954
+  provisional candidates.
+- The complete authored denominator needed to measure the 95% function and byte
+  goals honestly.
+- Which additional retained 1.06 source implementations remain semantically
+  identical or naturally reconstructable in 1.06a.
 
 Add reusable facts here only after they survive a target-backed bounded
-investigation. Detailed compiler-shaping patterns belong in the matching skill
-only after at least one reproducible 1.06a example exists.
+investigation. Detailed compiler- and comparator-shaping patterns belong in
+`docs/BUILD_MATCHING.md` once supported by reproducible 1.06a examples.

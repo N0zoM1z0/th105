@@ -49,6 +49,30 @@ EH funclets, thunks, and adjacent constants must be proven from control flow
 and COFF records. If LTCG makes a truthful standalone object impossible,
 record the blocker; do not weaken the comparator or invent a source boundary.
 
+## Cross-version hypothesis migration
+
+Retained 1.06 source and raw-byte identity can accelerate selection, but neither
+is authority for 1.06a. The accepted first wave used this sequence:
+
+1. intersect old authored/source hypotheses with unique raw-identical 1.06a
+   candidate spans;
+2. reconcile the current candidate and semantics;
+3. compile the natural retained C/C++ with the pinned VC8 profile;
+4. supply only current-target-backed relocation mappings; and
+5. accept the function only after the canonical comparator reports zero
+   differences and a cold unit replay succeeds.
+
+Do not translate REL32 destinations by address delta alone. During the first
+wave, a delta-derived target for the second `load_spell_data` loader produced a
+real mismatch; current IDA disassembly identified `0x00434300`, which made the
+source comparison exact. Treat that failure mode as a general rule for moved
+callees.
+
+The comparator's `symbol_base` identifies a COFF symbol and need not equal the
+durable semantic name in `reccmp-functions.csv`. This is useful when retained
+source still carries an old address suffix or when a class-qualified compiled
+symbol has a cleaner durable name.
+
 ## Shared changes
 
 After any shared layout/header/flag/object-graph/relocation change, rebuild

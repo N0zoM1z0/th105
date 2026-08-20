@@ -48,8 +48,9 @@ until each boundary is reconciled with target control flow.
 | Canonical exact authored bytes | {exact_bytes:,} |
 
 The former 1.06 reconstruction state is intentionally excluded. Exact totals
-remain zero until a 1.06a VC8 object passes the canonical comparator and is
-recorded in both `config/matches.csv` and `config/functions.csv`.
+count only 1.06a functions whose configured VC8 unit passes the canonical
+zero-difference comparator and is recorded in both `config/matches.csv` and
+`config/functions.csv`.
 """
 
 

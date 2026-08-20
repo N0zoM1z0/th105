@@ -59,9 +59,9 @@ must first gain a supported 1.06a mapping and undergo semantic review.
 1. Reconcile high-confidence IDA candidate boundaries against exact control
    flow and record exceptions without inferring adjacency-based sizes.
 2. Separate authored code from compiler/runtime/third-party islands.
-3. Recover a small non-LTCG or independently reproducible VC8 function as the
-   first canonical anchor.
-4. Establish ABI/layout evidence around that anchor before scaling to scenes,
-   battle managers, character families, or networking.
+3. Expand from the first 47 cold-replayable authored anchors while preserving
+   current-target ABI/layout evidence and exact acceptance.
+4. Establish the authored/excluded denominator before reporting aggregate
+   authored-function or authored-byte percentages.
 5. Treat standalone-object failure under LTCG as a classification result, not
    permission to weaken exact acceptance.

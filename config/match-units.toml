@@ -4,3 +4,443 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 # Add a unit only after the IDA candidate boundary is reconciled against exact
 # target control flow and a reproducible VC8 COFF object exists.
 [units]
+
+[units.battle-input-state]
+kind = "probe"
+source = "src/battle/BattleInputState.cpp"
+object = "build/match-units/BattleInputState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a exact synchronized-input availability leaf; retained source symbol keeps its historical suffix but the durable mapping is address-independent."
+
+[[units.battle-input-state.functions]]
+address = "0x00428560"
+symbol_base = "is_input_available_427680"
+
+[units.fixed-slot-envelope]
+kind = "probe"
+source = "src/battle/FixedSlotEnvelope.cpp"
+object = "build/match-units/FixedSlotEnvelope.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a exact fixed battle-slot envelope assignment with three deque<short> members."
+
+[[units.fixed-slot-envelope.functions]]
+address = "0x0042B900"
+symbol_base = "??4FixedSlotEnvelopeView@th105@@QAEAAU01@ABU01@@Z"
+rel32_targets = ["?4?$deque=0x0042B6B0"]
+
+[units.fighter-motion-reset]
+kind = "probe"
+source = "src/characters/FighterMotionReset.cpp"
+object = "build/match-units/FighterMotionReset.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a exact fighter velocity/acceleration reset leaf."
+
+[[units.fighter-motion-reset.functions]]
+address = "0x0045AF40"
+symbol_base = "Fighter_zero_velocity_acceleration"
+
+[units.fighter-input-phase]
+kind = "probe"
+source = "src/battle/FighterInitialization.cpp"
+object = "build/match-units/FighterInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a exact packed-input history initialization; source symbol keeps a historical suffix while the durable semantic name is address-independent."
+
+[[units.fighter-input-phase.functions]]
+address = "0x00464200"
+symbol_base = "initialize_fighter_phase_631e0"
+rel32_targets = ["_Assign_n=0x00464140"]
+
+[units.fighter-owned-object-spawn]
+kind = "probe"
+source = "src/characters/FighterOwnedObjectSpawn.cpp"
+object = "build/match-units/FighterOwnedObjectSpawn.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a exact Fighter-to-owned-object-manager spawn adapter."
+
+[[units.fighter-owned-object-spawn.functions]]
+address = "0x00465190"
+symbol_base = "spawn_owned_object_via_manager"
+
+[units.cross-v106a-file-reader]
+kind = "probe"
+source = "src/assets/FileReader.cpp"
+object = "build/match-units/CrossV106a_FileReader.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fresh canonical VC8 zero-diff replay; no relocation overrides required."
+
+[[units.cross-v106a-file-reader.functions]]
+address = "0x00407C40"
+symbol_base = "CFileReader_last_read_size"
+
+[[units.cross-v106a-file-reader.functions]]
+address = "0x0040CF20"
+symbol_base = "FileReaderOwner_dtor"
+
+[[units.cross-v106a-file-reader.functions]]
+address = "0x0041B880"
+symbol_base = "CPackageFileReader_size"
+
+[units.cross-v106a-battle-setup]
+kind = "probe"
+source = "src/battle/BattleSetup.cpp"
+object = "build/match-units/CrossV106a_BattleSetup.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fresh canonical VC8 zero-diff replay; no relocation overrides required."
+
+[[units.cross-v106a-battle-setup.functions]]
+address = "0x00464290"
+symbol_base = "get_slot_character"
+
+[[units.cross-v106a-battle-setup.functions]]
+address = "0x004642A0"
+symbol_base = "is_slot_active"
+
+[units.cross-v106a-collision]
+kind = "probe"
+source = "src/battle/Collision.cpp"
+object = "build/match-units/CrossV106a_Collision.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fresh canonical VC8 zero-diff replay; no relocation overrides required."
+
+[[units.cross-v106a-collision.functions]]
+address = "0x0046B3B0"
+symbol_base = "accumulate_collision_extents"
+
+[[units.cross-v106a-collision.functions]]
+address = "0x0046B6C0"
+symbol_base = "reset_collision_extents"
+
+[[units.cross-v106a-collision.functions]]
+address = "0x0046B6E0"
+symbol_base = "transform_local_aabb_to_world"
+
+[units.cross-v106a-fighter-action-scratch]
+kind = "probe"
+source = "src/battle/FighterActionScratch.cpp"
+object = "build/match-units/CrossV106a_FighterActionScratch.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fresh canonical VC8 zero-diff replay; no relocation overrides required."
+
+[[units.cross-v106a-fighter-action-scratch.functions]]
+address = "0x00435110"
+symbol_base = "reset_fighter_action_scratch"
+
+[units.cross-v106a-fighter-common-update-helpers]
+kind = "probe"
+source = "src/battle/FighterCommonUpdateHelpers.cpp"
+object = "build/match-units/CrossV106a_FighterCommonUpdateHelpers.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fresh canonical VC8 zero-diff replay; no relocation overrides required."
+
+[[units.cross-v106a-fighter-common-update-helpers.functions]]
+address = "0x0045E0D0"
+symbol_base = "is_state_13c_below_32"
+
+[units.cross-v106a-fighter-facing]
+kind = "probe"
+source = "src/battle/FighterFacing.cpp"
+object = "build/match-units/CrossV106a_FighterFacing.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fresh canonical VC8 zero-diff replay; no relocation overrides required."
+
+[[units.cross-v106a-fighter-facing.functions]]
+address = "0x0045E070"
+symbol_base = "update_fighter_facing_from_other_x"
+
+[units.cross-v106a-fighter-gates]
+kind = "probe"
+source = "src/battle/FighterGates.cpp"
+object = "build/match-units/CrossV106a_FighterGates.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fresh canonical VC8 zero-diff replay; no relocation overrides required."
+
+[[units.cross-v106a-fighter-gates.functions]]
+address = "0x0045E0E0"
+symbol_base = "is_state_13c_in_32_95"
+
+[[units.cross-v106a-fighter-gates.functions]]
+address = "0x0045E100"
+symbol_base = "is_state_13c_in_96_c7"
+
+[[units.cross-v106a-fighter-gates.functions]]
+address = "0x0045E390"
+symbol_base = "is_positive_y_and_state_window"
+
+[units.cross-v106a-fighter-state]
+kind = "probe"
+source = "src/battle/FighterState.cpp"
+object = "build/match-units/CrossV106a_FighterState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fresh canonical VC8 zero-diff replay; no relocation overrides required."
+
+[[units.cross-v106a-fighter-state.functions]]
+address = "0x0046BF30"
+symbol_base = "adjust_counter_482"
+
+[units.cross-v106a-hit-geometry]
+kind = "probe"
+source = "src/battle/HitGeometry.cpp"
+object = "build/match-units/CrossV106a_HitGeometry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fresh canonical VC8 zero-diff replay; no relocation overrides required."
+
+[[units.cross-v106a-hit-geometry.functions]]
+address = "0x0046B8B0"
+symbol_base = "test_descriptor_point_inside"
+
+[units.cross-v106a-hit-quantities]
+kind = "probe"
+source = "src/battle/HitQuantities.cpp"
+object = "build/match-units/CrossV106a_HitQuantities.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fresh canonical VC8 zero-diff replay; no relocation overrides required."
+
+[[units.cross-v106a-hit-quantities.functions]]
+address = "0x0045C090"
+symbol_base = "count_0x88_byte_stride_entries"
+
+[units.cross-v106a-character-object-effects]
+kind = "probe"
+source = "src/characters/CharacterObjectEffects.cpp"
+object = "build/match-units/CrossV106a_CharacterObjectEffects.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fresh canonical VC8 zero-diff replay; no relocation overrides required."
+
+[[units.cross-v106a-character-object-effects.functions]]
+address = "0x004FCA60"
+symbol_base = "CharacterObjectEffectEmitter_spawn_parented_related_object"
+
+[[units.cross-v106a-character-object-effects.functions]]
+address = "0x0064CCB0"
+symbol_base = "CharacterObjectEffectEmitter_spawn_unparented_related_object"
+
+[units.cross-v106a-character-object-runtime]
+kind = "probe"
+source = "src/characters/CharacterObjectRuntime.cpp"
+object = "build/match-units/CrossV106a_CharacterObjectRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fresh canonical VC8 zero-diff replay; no relocation overrides required."
+
+[[units.cross-v106a-character-object-runtime.functions]]
+address = "0x004351C0"
+symbol_base = "CharacterObjectRuntime_advance_frame_and_dispatch"
+
+[units.cross-v106a-input-cluster]
+kind = "probe"
+source = "src/input/InputCluster.cpp"
+object = "build/match-units/CrossV106a_InputCluster.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fresh canonical VC8 zero-diff replay; no relocation overrides required."
+
+[[units.cross-v106a-input-cluster.functions]]
+address = "0x0040A4E0"
+symbol_base = "get_active_source"
+
+[[units.cross-v106a-input-cluster.functions]]
+address = "0x0040A4F0"
+symbol_base = "InputStateTableStorage_ctor"
+
+[[units.cross-v106a-input-cluster.functions]]
+address = "0x0040A660"
+symbol_base = "is_initial_press"
+
+[units.cross-v106a-input-manager]
+kind = "probe"
+source = "src/input/InputManager.cpp"
+object = "build/match-units/CrossV106a_InputManager.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fresh canonical VC8 zero-diff replay; no relocation overrides required."
+
+[[units.cross-v106a-input-manager.functions]]
+address = "0x00409F40"
+symbol_base = "reset_counters"
+
+[[units.cross-v106a-input-manager.functions]]
+address = "0x0040A6B0"
+symbol_base = "set_input_state_table_entry"
+
+[[units.cross-v106a-input-manager.functions]]
+address = "0x0040D930"
+symbol_base = "is_raw_key_down"
+
+[units.cross-v106a-camera-state]
+kind = "probe"
+source = "src/ui/CameraState.cpp"
+object = "build/match-units/CrossV106a_CameraState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fresh canonical VC8 zero-diff replay; no relocation overrides required."
+
+[[units.cross-v106a-camera-state.functions]]
+address = "0x00427290"
+symbol_base = "set_target_20_enabled_2c"
+
+[units.cross-v106a-menu-cursor]
+kind = "probe"
+source = "src/ui/MenuCursor.cpp"
+object = "build/match-units/CrossV106a_MenuCursor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fresh canonical VC8 zero-diff replay; no relocation overrides required."
+
+[[units.cross-v106a-menu-cursor.functions]]
+address = "0x0043F560"
+symbol_base = "MenuCursorState_move_page_backward"
+
+[[units.cross-v106a-menu-cursor.functions]]
+address = "0x0043F5D0"
+symbol_base = "MenuCursorState_move_page_forward"
+
+# Additional cross-version exact functions that require reviewed REL32 mappings
+# or source-symbol disambiguation. Each mapping was accepted only after the
+# current 1.06a target comparison reached zero differences.
+
+[[units.cross-v106a-collision.functions]]
+address = "0x0046B740"
+symbol_base = "test_and_accumulate_float_aabb_overlap"
+rel32_targets = ["CollisionContext_accumulate_float_collision_extents=0x0046B440"]
+
+[[units.cross-v106a-fighter-gates.functions]]
+address = "0x00435DC0"
+symbol_base = "is_y_at_or_below_stage_surface"
+rel32_targets = ["stage_surface_height_at_x=0x00435D60"]
+
+[[units.cross-v106a-hit-geometry.functions]]
+address = "0x0046B590"
+symbol_base = "accumulate_descriptor_extents"
+rel32_targets = ["CollisionContext_accumulate_collision_extents=0x0046B3B0"]
+
+[[units.cross-v106a-hit-geometry.functions]]
+address = "0x0046B5E0"
+symbol_base = "accumulate_descriptor_pair_extents"
+rel32_targets = ["CollisionContext_accumulate_collision_extents=0x0046B3B0"]
+
+[[units.cross-v106a-character-object-runtime.functions]]
+address = "0x004963A0"
+symbol_base = "advance_state_six_counter_conditional"
+
+[[units.cross-v106a-character-object-runtime.functions]]
+address = "0x0064CD00"
+symbol_base = "advance_phase_counter_conditional"
+
+[units.cross-v106a-candidate-outcomes]
+kind = "probe"
+source = "src/battle/CandidateOutcomes.cpp"
+object = "build/match-units/CrossV106a_CandidateOutcomes.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version exact candidate-outcome helper with current-target REL32 mappings."
+
+[[units.cross-v106a-candidate-outcomes.functions]]
+address = "0x0046C7F0"
+symbol_base = "try_candidate_flag_outcome"
+rel32_targets = [
+  "Fighter_adjust_counter_482=0x0046BF30",
+  "CollisionContext_emit_effect_at_collision_center=0x0046B650",
+  "CollisionContext_reset_collision_extents=0x0046B6C0",
+]
+
+[units.cross-v106a-hit-detection]
+kind = "probe"
+source = "src/battle/HitDetection.cpp"
+object = "build/match-units/CrossV106a_HitDetection.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version exact frame-flag outcome helper with current reset target."
+
+[[units.cross-v106a-hit-detection.functions]]
+address = "0x0046C8A0"
+symbol_base = "try_frame_flag_pair_outcome"
+rel32_targets = ["CollisionContext_reset_collision_extents=0x0046B6C0"]
+
+[units.cross-v106a-object-responses]
+kind = "probe"
+source = "src/battle/ObjectResponses.cpp"
+object = "build/match-units/CrossV106a_ObjectResponses.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version exact group-B response helper with reviewed current-target callees."
+
+[[units.cross-v106a-object-responses.functions]]
+address = "0x0046C9E0"
+symbol_base = "try_group_b_pair_response"
+rel32_targets = [
+  "CollisionContext_test_group_b_against_group_b=0x0046BCA0",
+  "CollisionContext_reset_collision_extents=0x0046B6C0",
+]
+
+[units.cross-v106a-outcome-random]
+kind = "probe"
+source = "src/battle/OutcomeRandom.cpp"
+object = "build/match-units/CrossV106a_OutcomeRandom.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version exact random selector with current MT19937 target."
+
+[[units.cross-v106a-outcome-random.functions]]
+address = "0x004067D0"
+symbol_base = "selector_random_roll"
+rel32_targets = ["mt19937_next_u32=0x004066B0"]
+
+[units.cross-v106a-spell-data-load-selector]
+kind = "probe"
+source = "src/battle/SpellDataLoadSelector.cpp"
+object = "build/match-units/CrossV106a_SpellDataLoadSelector.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version exact spell-data selector. The second loader moved independently in 1.06a and was taken from current IDA disassembly, not delta guessing."
+
+[[units.cross-v106a-spell-data-load-selector.functions]]
+address = "0x00432360"
+symbol_base = "load_spell_data"
+rel32_targets = [
+  "SpellDataOwner_load_spell_csv_via_32e20=0x00434A10",
+  "SpellDataOwner_load_spell_csv_via_325b0=0x00434300",
+  "SpellDataOwner_finalize_loaded_spell_data=0x00432200",
+]
+
+[units.cross-v106a-spell-data-runtime]
+kind = "probe"
+source = "src/battle/SpellDataRuntime.cpp"
+object = "build/match-units/CrossV106a_SpellDataRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version exact spell-record selector with current deque front helper."
+
+[[units.cross-v106a-spell-data-runtime.functions]]
+address = "0x00432310"
+symbol_base = "select_spell_record_id"
+rel32_targets = ["ShortDeque8_front_checked=0x004321B0"]
+
+[units.cross-v106a-input-logical]
+kind = "probe"
+source = "src/input/InputLogical.cpp"
+object = "build/match-units/CrossV106a_InputLogical.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a cross-version exact logical-input mask builder with current raw-counter updater target."
+
+[[units.cross-v106a-input-logical.functions]]
+address = "0x00409F70"
+symbol_base = "build_player_logical_input_mask"
+rel32_targets = ["CInputManager_update_player_input_counters_from_raw=0x00409DA0"]

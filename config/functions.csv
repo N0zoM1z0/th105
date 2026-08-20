@@ -150,7 +150,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004065A0,8,0x004065A7,sub_4065A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00406670,61,0x004066AC,sub_406670,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004066B0,279,0x004067C6,sub_4066B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x004067D0,27,0x004067EA,sub_4067D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x004067D0,27,0x004067EA,sub_4067D0,selector_random_roll,battle,matching,100.00,__cdecl,int selector_random_roll(int limit),false,src/battle/OutcomeRandom.cpp,python3 scripts/build.py --unit cross-v106a-outcome-random --compare --json reports exact 27/27 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x004067F0,153,0x00406888,sub_4067F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00406890,151,0x00406926,sub_406890,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00406930,293,0x00406A54,sub_406930,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -174,7 +174,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00407AD0,219,0x00407BAA,sub_407AD0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00407BB0,54,0x00407BE5,sub_407BB0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00407C10,35,0x00407C32,sub_407C10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00407C40,4,0x00407C43,sub_407C40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00407C40,4,0x00407C43,sub_407C40,CFileReader_last_read_size,assets,matching,100.00,__thiscall,uint CFileReader_last_read_size(void * this),false,src/assets/FileReader.cpp,python3 scripts/build.py --unit cross-v106a-file-reader --compare --json reports exact 4/4 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x00407C50,25,0x00407C68,sub_407C50,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00407C70,45,0x00407C9C,sub_407C70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00407CA0,255,0x00407D9E,sub_407CA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -213,15 +213,15 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00409D50,7,0x00409D56,sub_409D50,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00409D60,52,0x00409D93,sub_409D60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00409DA0,407,0x00409F36,sub_409DA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00409F40,33,0x00409F60,sub_409F40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00409F70,378,0x0040A0E9,sub_409F70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00409F40,33,0x00409F60,sub_409F40,reset_counters,input,matching,100.00,__thiscall,void reset_counters(void * this),false,src/input/InputManager.cpp,python3 scripts/build.py --unit cross-v106a-input-manager --compare --json reports exact 33/33 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
+0x00409F70,378,0x0040A0E9,sub_409F70,build_player_logical_input_mask,input,matching,100.00,__thiscall,void build_player_logical_input_mask(void * this),false,src/input/InputLogical.cpp,python3 scripts/build.py --unit cross-v106a-input-logical --compare --json reports exact 378/378 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x0040A0F0,1003,0x0040A4DA,sub_40A0F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0040A4E0,4,0x0040A4E3,sub_40A4E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0040A4F0,23,0x0040A506,sub_40A4F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0040A4E0,4,0x0040A4E3,sub_40A4E0,get_active_source,input,matching,100.00,__thiscall,signed char get_active_source(void * this),false,src/input/InputCluster.cpp,python3 scripts/build.py --unit cross-v106a-input-cluster --compare --json reports exact 4/4 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
+0x0040A4F0,23,0x0040A506,sub_40A4F0,InputStateTableStorage_ctor,input,matching,100.00,__thiscall,void InputStateTableStorage_ctor(void * this),false,src/input/InputCluster.cpp,python3 scripts/build.py --unit cross-v106a-input-cluster --compare --json reports exact 23/23 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x0040A510,54,0x0040A545,sub_40A510,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0040A550,266,0x0040A659,sub_40A550,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0040A660,69,0x0040A6A4,sub_40A660,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0040A6B0,16,0x0040A6BF,sub_40A6B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0040A660,69,0x0040A6A4,sub_40A660,is_initial_press,input,matching,100.00,__thiscall,"bool is_initial_press(void * this, uchar key, bool require_modifier_0, bool require_modifier_1, bool require_modifier_2)",false,src/input/InputCluster.cpp,python3 scripts/build.py --unit cross-v106a-input-cluster --compare --json reports exact 69/69 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
+0x0040A6B0,16,0x0040A6BF,sub_40A6B0,set_input_state_table_entry,input,matching,100.00,__thiscall,"void set_input_state_table_entry(void * this, uchar index, bool state)",false,src/input/InputManager.cpp,python3 scripts/build.py --unit cross-v106a-input-manager --compare --json reports exact 16/16 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x0040A6C0,202,0x0040A789,sub_40A6C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0040A790,87,0x0040A7E6,sub_40A790,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0040A7F0,126,0x0040A86D,sub_40A7F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -297,7 +297,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0040CED0,35,0x0040CEF2,sub_40CED0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0040CF00,13,0x0040CF0C,sub_40CF00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0040CF10,9,0x0040CF18,unknown_libname_3,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0040CF20,15,0x0040CF2E,sub_40CF20,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0040CF20,15,0x0040CF2E,sub_40CF20,FileReaderOwner_dtor,assets,matching,100.00,__thiscall,void FileReaderOwner_dtor(void * this),false,src/assets/FileReader.cpp,python3 scripts/build.py --unit cross-v106a-file-reader --compare --json reports exact 15/15 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x0040CF30,9,0x0040CF38,sub_40CF30,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0040CF40,213,0x0040D014,sub_40CF40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0040D020,137,0x0040D0A8,sub_40D020,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -313,7 +313,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0040D620,176,0x0040D6CF,sub_40D620,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0040D6D0,312,0x0040D807,sub_40D6D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0040D810,282,0x0040D929,sub_40D810,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0040D930,16,0x0040D93F,sub_40D930,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0040D930,16,0x0040D93F,sub_40D930,is_raw_key_down,input,matching,100.00,__thiscall,"bool is_raw_key_down(void * this, uchar scan_code)",false,src/input/InputManager.cpp,python3 scripts/build.py --unit cross-v106a-input-manager --compare --json reports exact 16/16 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x0040D940,71,0x0040D986,sub_40D940,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0040D990,88,0x0040D9E7,sub_40D990,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0040D9F0,334,0x0040DB3D,sub_40D9F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -578,7 +578,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0041B3F0,1010,0x0041B7E1,sub_41B3F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041B7F0,84,0x0041B843,sub_41B7F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041B850,43,0x0041B87A,sub_41B850,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0041B880,4,0x0041B883,sub_41B880,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0041B880,4,0x0041B883,sub_41B880,CPackageFileReader_size,assets,matching,100.00,__thiscall,uint CPackageFileReader_size(void * this),false,src/assets/FileReader.cpp,python3 scripts/build.py --unit cross-v106a-file-reader --compare --json reports exact 4/4 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x0041B890,45,0x0041B8BC,sub_41B890,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041B8C0,163,0x0041B962,sub_41B8C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041B970,5,0x0041B974,sub_41B970,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -828,7 +828,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004271B0,70,0x004271F5,sub_4271B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00427200,128,0x0042727F,sub_427200,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00427280,10,0x00427289,sub_427280,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00427290,17,0x004272A0,sub_427290,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00427290,17,0x004272A0,sub_427290,set_target_20_enabled_2c,ui,matching,100.00,__thiscall,"void set_target_20_enabled_2c(void * this, bool enabled, float target)",false,src/ui/CameraState.cpp,python3 scripts/build.py --unit cross-v106a-camera-state --compare --json reports exact 17/17 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x004272B0,17,0x004272C0,sub_4272B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004272D0,17,0x004272E0,sub_4272D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004272F0,33,0x00427310,sub_4272F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -848,7 +848,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004284A0,31,0x004284BE,sub_4284A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004284C0,60,0x004284FB,sub_4284C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00428500,89,0x00428558,sub_428500,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00428560,8,0x00428567,sub_428560,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00428560,8,0x00428567,sub_428560,SynchronizedInputState_is_input_available,battle,matching,100.00,__thiscall,unsigned char SynchronizedInputState_is_input_available(SynchronizedInputState * this),false,src/battle/BattleInputState.cpp,python3 scripts/build.py --unit battle-input-state --compare --json reports exact 8/8 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x00428570,73,0x004285B8,sub_428570,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004285C0,191,0x0042867E,sub_4285C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00428680,23,0x00428696,sub_428680,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -894,7 +894,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0042B6B0,297,0x0042B7D8,sub_42B6B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0042B7E0,253,0x0042B8DC,sub_42B7E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0042B8E0,27,0x0042B8FA,sub_42B8E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0042B900,162,0x0042B9A1,sub_42B900,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0042B900,162,0x0042B9A1,sub_42B900,FixedSlotEnvelope_assign,battle,matching,100.00,__thiscall,"FixedSlotEnvelopeView & FixedSlotEnvelope_assign(FixedSlotEnvelopeView * this, FixedSlotEnvelopeView const & source)",false,src/battle/FixedSlotEnvelope.cpp,python3 scripts/build.py --unit fixed-slot-envelope --compare --json reports exact 162/162 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x0042B9B0,305,0x0042BAE0,sub_42B9B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0042BAF0,332,0x0042BC3B,sub_42BAF0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0042BC40,140,0x0042BCCB,sub_42BC40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -1000,8 +1000,8 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004321A0,5,0x004321A4,sub_4321A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004321B0,71,0x004321F6,sub_4321B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00432200,260,0x00432303,sub_432200,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00432310,78,0x0043235D,sub_432310,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00432360,71,0x004323A6,sub_432360,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00432310,78,0x0043235D,sub_432310,select_spell_record_id,battle,matching,100.00,__thiscall,short select_spell_record_id(SpellDataOwner * this),false,src/battle/SpellDataRuntime.cpp,python3 scripts/build.py --unit cross-v106a-spell-data-runtime --compare --json reports exact 78/78 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
+0x00432360,71,0x004323A6,sub_432360,load_spell_data,battle,matching,100.00,__thiscall,"unsigned char load_spell_data(SpellDataOwner * this, int character_key, int arg2, unsigned char alternate_loader)",false,src/battle/SpellDataLoadSelector.cpp,python3 scripts/build.py --unit cross-v106a-spell-data-load-selector --compare --json reports exact 71/71 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed. Current IDA disassembly established independently moved loader target 0x00434300.
 0x004323B0,108,0x0043241B,sub_4323B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00432420,196,0x004324E3,sub_432420,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004324F0,35,0x00432512,sub_4324F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -1054,10 +1054,10 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00434EE0,69,0x00434F24,sub_434EE0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00434F30,441,0x004350E8,sub_434F30,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004350F0,22,0x00435105,sub_4350F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00435110,67,0x00435152,sub_435110,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00435110,67,0x00435152,sub_435110,reset_fighter_action_scratch,battle,matching,100.00,__thiscall,void reset_fighter_action_scratch(void * this),false,src/battle/FighterActionScratch.cpp,python3 scripts/build.py --unit cross-v106a-fighter-action-scratch --compare --json reports exact 67/67 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x00435160,57,0x00435198,sub_435160,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004351A0,26,0x004351B9,sub_4351A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x004351C0,62,0x004351FD,sub_4351C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x004351C0,62,0x004351FD,sub_4351C0,CharacterObjectRuntime_advance_frame_and_dispatch,characters,matching,100.00,__thiscall,unsigned char CharacterObjectRuntime_advance_frame_and_dispatch(CharacterObjectRuntime * this),false,src/characters/CharacterObjectRuntime.cpp,python3 scripts/build.py --unit cross-v106a-character-object-runtime --compare --json reports exact 62/62 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x00435200,22,0x00435215,sub_435200,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00435220,27,0x0043523A,sub_435220,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00435240,52,0x00435273,sub_435240,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -1082,7 +1082,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00435C80,91,0x00435CDA,sub_435C80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00435CE0,119,0x00435D56,sub_435CE0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00435D60,89,0x00435DB8,sub_435D60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00435DC0,42,0x00435DE9,sub_435DC0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00435DC0,42,0x00435DE9,sub_435DC0,is_y_at_or_below_stage_surface,battle,matching,100.00,__fastcall,int is_y_at_or_below_stage_surface(void * fighter),false,src/battle/FighterGates.cpp,python3 scripts/build.py --unit cross-v106a-fighter-gates --compare --json reports exact 42/42 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x00435DF0,81,0x00435E40,sub_435DF0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00435E50,26,0x00435E69,sub_435E50,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00435E70,55,0x00435EA6,sub_435E70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -1314,8 +1314,8 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0043F450,112,0x0043F4BF,sub_43F450,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0043F4C0,124,0x0043F53B,sub_43F4C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0043F540,20,0x0043F553,sub_43F540,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0043F560,111,0x0043F5CE,sub_43F560,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0043F5D0,103,0x0043F636,sub_43F5D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0043F560,111,0x0043F5CE,sub_43F560,MenuCursorState_move_page_backward,ui,matching,100.00,__thiscall,void MenuCursorState_move_page_backward(void * this),false,src/ui/MenuCursor.cpp,python3 scripts/build.py --unit cross-v106a-menu-cursor --compare --json reports exact 111/111 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
+0x0043F5D0,103,0x0043F636,sub_43F5D0,MenuCursorState_move_page_forward,ui,matching,100.00,__thiscall,void MenuCursorState_move_page_forward(void * this),false,src/ui/MenuCursor.cpp,python3 scripts/build.py --unit cross-v106a-menu-cursor --compare --json reports exact 103/103 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x0043F640,160,0x0043F6DF,sub_43F640,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0043F6E0,298,0x0043F809,sub_43F6E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0043F810,93,0x0043F86C,sub_43F810,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -1740,7 +1740,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0045ACA0,160,0x0045AD3F,sub_45ACA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045AD40,240,0x0045AE2F,sub_45AD40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045AE30,270,0x0045AF3D,sub_45AE30,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0045AF40,27,0x0045AF5A,sub_45AF40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0045AF40,27,0x0045AF5A,sub_45AF40,Fighter_zero_velocity_acceleration,characters,matching,100.00,__thiscall,void Fighter_zero_velocity_acceleration(Fighter * this),false,src/characters/FighterMotionReset.cpp,python3 scripts/build.py --unit fighter-motion-reset --compare --json reports exact 27/27 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x0045AF60,399,0x0045B0EE,sub_45AF60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045B0F0,339,0x0045B242,sub_45B0F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045B250,15,0x0045B25E,sub_45B250,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -1755,7 +1755,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0045C000,33,0x0045C020,sub_45C000,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045C030,35,0x0045C052,sub_45C030,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045C060,42,0x0045C089,sub_45C060,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0045C090,31,0x0045C0AE,sub_45C090,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0045C090,31,0x0045C0AE,sub_45C090,count_0x88_byte_stride_entries,battle,matching,100.00,__thiscall,int count_0x88_byte_stride_entries(void * this),false,src/battle/HitQuantities.cpp,python3 scripts/build.py --unit cross-v106a-hit-quantities --compare --json reports exact 31/31 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x0045C0B0,37,0x0045C0D4,sub_45C0B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045C0E0,37,0x0045C104,sub_45C0E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045C110,111,0x0045C17E,sub_45C110,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -1791,12 +1791,12 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0045DC90,259,0x0045DD92,sub_45DC90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045DDA0,265,0x0045DEA8,sub_45DDA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045DEB0,446,0x0045E06D,sub_45DEB0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0045E070,93,0x0045E0CC,sub_45E070,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0045E0D0,14,0x0045E0DD,sub_45E0D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0045E0E0,28,0x0045E0FB,sub_45E0E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0045E100,28,0x0045E11B,sub_45E100,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0045E070,93,0x0045E0CC,sub_45E070,update_fighter_facing_from_other_x,battle,matching,100.00,__fastcall,bool update_fighter_facing_from_other_x(void * fighter),false,src/battle/FighterFacing.cpp,python3 scripts/build.py --unit cross-v106a-fighter-facing --compare --json reports exact 93/93 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
+0x0045E0D0,14,0x0045E0DD,sub_45E0D0,is_state_13c_below_32,battle,matching,100.00,__fastcall,bool is_state_13c_below_32(void * fighter),false,src/battle/FighterCommonUpdateHelpers.cpp,python3 scripts/build.py --unit cross-v106a-fighter-common-update-helpers --compare --json reports exact 14/14 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
+0x0045E0E0,28,0x0045E0FB,sub_45E0E0,is_state_13c_in_32_95,battle,matching,100.00,__fastcall,bool is_state_13c_in_32_95(void * fighter),false,src/battle/FighterGates.cpp,python3 scripts/build.py --unit cross-v106a-fighter-gates --compare --json reports exact 28/28 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
+0x0045E100,28,0x0045E11B,sub_45E100,is_state_13c_in_96_c7,battle,matching,100.00,__fastcall,int is_state_13c_in_96_c7(void * fighter),false,src/battle/FighterGates.cpp,python3 scripts/build.py --unit cross-v106a-fighter-gates --compare --json reports exact 28/28 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x0045E120,620,0x0045E38B,sub_45E120,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0045E390,53,0x0045E3C4,sub_45E390,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0045E390,53,0x0045E3C4,sub_45E390,is_positive_y_and_state_window,battle,matching,100.00,__fastcall,int is_positive_y_and_state_window(void * fighter),false,src/battle/FighterGates.cpp,python3 scripts/build.py --unit cross-v106a-fighter-gates --compare --json reports exact 53/53 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x0045E3D0,301,0x0045E4FC,sub_45E3D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045E500,470,0x0045E6D5,sub_45E500,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045E6E0,570,0x0045E919,sub_45E6E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -1874,9 +1874,9 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004638C0,1404,0x00463E3B,sub_4638C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00463E40,753,0x00464130,sub_463E40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00464140,183,0x004641F6,sub_464140,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00464200,136,0x00464287,sub_464200,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00464290,11,0x0046429A,sub_464290,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x004642A0,11,0x004642AA,sub_4642A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00464200,136,0x00464287,sub_464200,initialize_fighter_packed_input_history,battle,matching,100.00,__fastcall,int initialize_fighter_phase_631e0(Fighter * fighter),false,src/battle/FighterInitialization.cpp,python3 scripts/build.py --unit fighter-input-phase --compare --json reports exact 136/136 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
+0x00464290,11,0x0046429A,sub_464290,get_slot_character,battle,matching,100.00,__thiscall,"void * get_slot_character(void * this, uint slot)",false,src/battle/BattleSetup.cpp,python3 scripts/build.py --unit cross-v106a-battle-setup --compare --json reports exact 11/11 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
+0x004642A0,11,0x004642AA,sub_4642A0,is_slot_active,battle,matching,100.00,__thiscall,"uchar is_slot_active(void * this, uint slot)",false,src/battle/BattleSetup.cpp,python3 scripts/build.py --unit cross-v106a-battle-setup --compare --json reports exact 11/11 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x004642B0,49,0x004642E0,sub_4642B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004642F0,767,0x004645EE,sub_4642F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00464840,334,0x0046498D,sub_464840,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -1897,7 +1897,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004650B0,69,0x004650F4,sub_4650B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00465100,38,0x00465125,sub_465100,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00465130,88,0x00465187,sub_465130,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00465190,66,0x004651D1,sub_465190,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00465190,66,0x004651D1,sub_465190,Fighter_spawn_owned_object_via_manager,characters,matching,100.00,__thiscall,"int Fighter_spawn_owned_object_via_manager(Fighter * this, int object_id, float x, float y, int direction, int arg5, int arg6, int arg7)",false,src/characters/FighterOwnedObjectSpawn.cpp,python3 scripts/build.py --unit fighter-owned-object-spawn --compare --json reports exact 66/66 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x004651E0,199,0x004652A6,sub_4651E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004652B0,50,0x004652E1,sub_4652B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004652F0,248,0x004653E7,sub_4652F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2003,30 +2003,30 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0046B2A0,138,0x0046B329,sub_46B2A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0046B330,30,0x0046B34D,sub_46B330,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0046B350,93,0x0046B3AC,sub_46B350,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0046B3B0,139,0x0046B43A,sub_46B3B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0046B3B0,139,0x0046B43A,sub_46B3B0,accumulate_collision_extents,battle,matching,100.00,__thiscall,"void accumulate_collision_extents(void * this, int * first, int * second)",false,src/battle/Collision.cpp,python3 scripts/build.py --unit cross-v106a-collision --compare --json reports exact 139/139 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x0046B440,333,0x0046B58C,sub_46B440,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0046B590,67,0x0046B5D2,sub_46B590,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0046B5E0,110,0x0046B64D,sub_46B5E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0046B590,67,0x0046B5D2,sub_46B590,accumulate_descriptor_extents,battle,matching,100.00,__thiscall,"void accumulate_descriptor_extents(void * this, void * first, void * descriptor, void * second)",false,src/battle/HitGeometry.cpp,python3 scripts/build.py --unit cross-v106a-hit-geometry --compare --json reports exact 67/67 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
+0x0046B5E0,110,0x0046B64D,sub_46B5E0,accumulate_descriptor_pair_extents,battle,matching,100.00,__thiscall,"void accumulate_descriptor_pair_extents(void * this, void * first, void * first_descriptor, void * second, void * second_descriptor)",false,src/battle/HitGeometry.cpp,python3 scripts/build.py --unit cross-v106a-hit-geometry --compare --json reports exact 110/110 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x0046B650,100,0x0046B6B3,sub_46B650,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0046B6C0,23,0x0046B6D6,sub_46B6C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0046B6E0,91,0x0046B73A,sub_46B6E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0046B740,97,0x0046B7A0,sub_46B740,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0046B6C0,23,0x0046B6D6,sub_46B6C0,reset_collision_extents,battle,matching,100.00,__thiscall,void reset_collision_extents(void * this),false,src/battle/Collision.cpp,python3 scripts/build.py --unit cross-v106a-collision --compare --json reports exact 23/23 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
+0x0046B6E0,91,0x0046B73A,sub_46B6E0,transform_local_aabb_to_world,battle,matching,100.00,__thiscall,"void transform_local_aabb_to_world(CollisionContext * this, ActorPosition const * actor, LocalAabb const * local, WorldAabb * world)",false,src/battle/Collision.cpp,python3 scripts/build.py --unit cross-v106a-collision --compare --json reports exact 91/91 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
+0x0046B740,97,0x0046B7A0,sub_46B740,test_and_accumulate_float_aabb_overlap,battle,matching,100.00,__thiscall,"int test_and_accumulate_float_aabb_overlap(void * this, float * first, float * second)",false,src/battle/Collision.cpp,python3 scripts/build.py --unit cross-v106a-collision --compare --json reports exact 97/97 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x0046B7B0,248,0x0046B8A7,sub_46B7B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0046B8B0,142,0x0046B93D,sub_46B8B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0046B8B0,142,0x0046B93D,sub_46B8B0,test_descriptor_point_inside,battle,matching,100.00,__thiscall,"int test_descriptor_point_inside(void * this, void * aabb, void * descriptor, int x, int y)",false,src/battle/HitGeometry.cpp,python3 scripts/build.py --unit cross-v106a-hit-geometry --compare --json reports exact 142/142 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x0046B940,197,0x0046BA04,sub_46B940,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0046BA10,252,0x0046BB0B,sub_46BA10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0046BB10,398,0x0046BC9D,sub_46BB10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0046BCA0,398,0x0046BE2D,sub_46BCA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0046BE30,195,0x0046BEF2,sub_46BE30,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0046BF00,34,0x0046BF21,sub_46BF00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0046BF30,74,0x0046BF79,sub_46BF30,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0046BF30,74,0x0046BF79,sub_46BF30,adjust_counter_482,battle,matching,100.00,__thiscall,"void adjust_counter_482(void * this, short amount, int floor_value)",false,src/battle/FighterState.cpp,python3 scripts/build.py --unit cross-v106a-fighter-state --compare --json reports exact 74/74 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x0046BF80,1579,0x0046C5AA,sub_46BF80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0046C5B0,301,0x0046C6DC,sub_46C5B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0046C6E0,260,0x0046C7E3,sub_46C6E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0046C7F0,169,0x0046C898,sub_46C7F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0046C8A0,143,0x0046C92E,sub_46C8A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0046C7F0,169,0x0046C898,sub_46C7F0,try_candidate_flag_outcome,battle,matching,100.00,__thiscall,"bool try_candidate_flag_outcome(void * this, void * candidate, void * fighter)",false,src/battle/CandidateOutcomes.cpp,python3 scripts/build.py --unit cross-v106a-candidate-outcomes --compare --json reports exact 169/169 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
+0x0046C8A0,143,0x0046C92E,sub_46C8A0,try_frame_flag_pair_outcome,battle,matching,100.00,__thiscall,"bool try_frame_flag_pair_outcome(void * this, void * candidate, void * fighter)",false,src/battle/HitDetection.cpp,python3 scripts/build.py --unit cross-v106a-hit-detection --compare --json reports exact 143/143 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x0046C930,164,0x0046C9D3,sub_46C930,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0046C9E0,147,0x0046CA72,sub_46C9E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0046C9E0,147,0x0046CA72,sub_46C9E0,try_group_b_pair_response,battle,matching,100.00,__thiscall,"bool try_group_b_pair_response(void * this, void * source, void * other)",false,src/battle/ObjectResponses.cpp,python3 scripts/build.py --unit cross-v106a-object-responses --compare --json reports exact 147/147 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x0046CA80,542,0x0046CC9D,sub_46CA80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0046CCA0,1862,0x0046D3E5,sub_46CCA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0046D3F0,530,0x0046D601,sub_46D3F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2210,7 +2210,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00494450,950,0x00494805,sub_494450,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00494810,6952,0x00496337,sub_494810,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00496370,35,0x00496392,sub_496370,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x004963A0,66,0x004963E1,sub_4963A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x004963A0,66,0x004963E1,sub_4963A0,CharacterObject_advance_state_six_counter_conditional,characters,matching,100.00,__thiscall,"unsigned char CharacterObject_advance_state_six_counter_conditional(CharacterObjectRuntime * this, int limit)",false,src/characters/CharacterObjectRuntime.cpp,python3 scripts/build.py --unit cross-v106a-character-object-runtime --compare --json reports exact 66/66 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x004963F0,43,0x0049641A,sub_4963F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00496420,274,0x00496531,sub_496420,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00496540,39853,0x004A00EC,sub_496540,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2298,7 +2298,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004FC710,163,0x004FC7B2,sub_4FC710,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004FC7C0,319,0x004FC8FE,sub_4FC7C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004FC900,343,0x004FCA56,sub_4FC900,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x004FCA60,77,0x004FCAAC,sub_4FCA60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x004FCA60,77,0x004FCAAC,sub_4FCA60,CharacterObjectEffectEmitter_spawn_parented_related_object,characters,matching,100.00,__thiscall,"void * CharacterObjectEffectEmitter_spawn_parented_related_object(CharacterObjectEffectEmitter * this, int action_id, float x, float y, int facing, int field_33c, const unsigned * copied_words, int copied_word_count)",false,src/characters/CharacterObjectEffects.cpp,python3 scripts/build.py --unit cross-v106a-character-object-effects --compare --json reports exact 77/77 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x004FCAB0,62278,0x0050BDF5,sub_4FCAB0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0050C1C0,10715,0x0050EB9A,sub_50C1C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0050ED00,1075,0x0050F132,sub_50ED00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2617,8 +2617,8 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0064B6F0,126,0x0064B76D,sub_64B6F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0064B770,36,0x0064B793,sub_64B770,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0064B7A0,5352,0x0064CC87,sub_64B7A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0064CCB0,78,0x0064CCFD,sub_64CCB0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0064CD00,73,0x0064CD48,sub_64CD00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0064CCB0,78,0x0064CCFD,sub_64CCB0,CharacterObjectEffectEmitter_spawn_unparented_related_object,characters,matching,100.00,__thiscall,"void * CharacterObjectEffectEmitter_spawn_unparented_related_object(CharacterObjectEffectEmitter * this, int action_id, float x, float y, int facing, int field_33c, const unsigned * copied_words, int copied_word_count)",false,src/characters/CharacterObjectEffects.cpp,python3 scripts/build.py --unit cross-v106a-character-object-effects --compare --json reports exact 78/78 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
+0x0064CD00,73,0x0064CD48,sub_64CD00,CharacterObject_advance_phase_counter_conditional,characters,matching,100.00,__thiscall,"unsigned char CharacterObject_advance_phase_counter_conditional(CharacterObjectRuntime * this, int limit)",false,src/characters/CharacterObjectRuntime.cpp,python3 scripts/build.py --unit cross-v106a-character-object-runtime --compare --json reports exact 73/73 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x0064CD50,41001,0x00656D78,sub_64CD50,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00657150,8590,0x006592DD,sub_657150,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00659420,1412,0x006599A3,sub_659420,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

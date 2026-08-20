@@ -2,8 +2,9 @@
 
 ## Phase
 
-Corrected-target baseline and workflow reset for original Japanese TH10.5
-1.06a.
+First canonical 1.06a authored-exact wave is established. The active phase is
+expanding authored classification and exact source recovery beyond the
+cross-version raw-identity seed set.
 
 ## Verified state
 
@@ -13,34 +14,43 @@ Corrected-target baseline and workflow reset for original Japanese TH10.5
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- Fresh IDA inventory: 4,001 provisional candidates from
-  `0x00401000` through `0x006BF300`.
-- All candidates are unclassified with unreviewed boundaries. Authored,
-  source-present, exact, and excluded totals are zero.
-- `config/claims.csv` is header-only. No match units are accepted yet.
-- IDA Pro is the only semantic backend. A briefly started fresh Ghidra import
-  was cancelled and removed from the workspace when the backend policy was
-  clarified; no Ghidra output entered any ledger.
+- The IDA inventory has 4,001 provisional candidates. Current reviewed state is
+  47 authored functions and 3,954 still awaiting origin/boundary review.
+- All 47 confirmed authored functions are source-present and canonical exact:
+  3,304 exact authored bytes across 28 configured VC8 units.
+- `python3 scripts/verify-exact-units.py --all` cold-replays all 28 units and
+  reports zero differences for all 47 functions.
+- `config/claims.csv` remains header-only. IDA Pro remains the sole semantic
+  backend.
 
-## Invalidation decision
+## Cross-version seed decision
 
-The previous repository targeted 1.06 (`3,039,232` bytes), not 1.06a. Its
-addresses, Ghidra inventory, names, origin classifications, match units,
-matching reports, character tables, and subsystem documents were removed from
-the current authority set. Existing source remains available only as an
-unverified hypothesis corpus. Git history preserves all former tracked work.
+The former repository targeted 1.06 (`3,039,232` bytes), not 1.06a, so its
+addresses, classifications, and exact claims remain invalid for the current
+target. A raw-byte uniqueness survey may be used only to prioritize retained
+source hypotheses.
+
+The first migration wave intersected old authored/exact hypotheses with unique
+raw-identical 1.06a candidates, then rebuilt every retained source with the
+pinned VC8 toolchain and required a fresh canonical zero-difference compare.
+That procedure promoted 47 functions; raw identity by itself promoted none.
+REL32 destinations were checked against the current target. In particular, the
+second loader called by `load_spell_data` is `0x00434300` in 1.06a; a guessed
+cross-version delta produced a mismatch and was rejected before IDA confirmed
+the current call target.
 
 ## Next bounded work
 
-Choose a small high-confidence 1.06a leaf outside obvious import/runtime code.
-Reconcile its exact boundary and origin, recover ABI/callers, then test whether
-a retained source implementation is semantically applicable. The first
-canonical exact unit should establish the real VC8 profile before broad source
-migration.
+Continue origin/boundary review so the authored denominator becomes meaningful,
+then expand exact recovery beyond the 47 raw-identical seed functions. Prefer
+small retained-source leaves and tightly coupled helpers with current-target
+IDA evidence. Treat every old 1.06 address, callee, name, and implementation as
+a hypothesis until independently reconciled against 1.06a.
 
-Do not start with character-wide dispatchers, network stacks, or LTCG-heavy
-class families. Do not populate aggregate architecture notes from old 1.06
-addresses.
+The 95% authored-function and authored-byte goals cannot be reported yet: 3,954
+provisional candidates still need authored/excluded classification, so the
+global authored denominator is not established. Do not use the current 47/47
+exact subset as a substitute denominator.
 
 ## Routine checkpoint
 
@@ -50,6 +60,7 @@ python3 scripts/check-ida-mcp.py
 python3 scripts/validate-tracking.py --require-target
 python3 scripts/build.py --check
 python3 scripts/progress.py --check
+python3 scripts/verify-exact-units.py --all
 python3 scripts/ci.py
 git diff --check
 ```
