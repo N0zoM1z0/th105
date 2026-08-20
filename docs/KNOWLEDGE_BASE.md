@@ -30,6 +30,10 @@ notes or source hypotheses.
   mapping and semantic audit justify `implemented.csv`.
 - Use one writable reconstruction session. Claims remain header-only.
 - Use IDA Pro exclusively after exact attestation. There is no Ghidra fallback.
+- Keep IDA client scripts independent of an interactive Python environment:
+  they pin `mcp==1.26.0` and self-bootstrap it through `uv --no-project` when
+  the selected interpreter does not provide it. This covers systemd/GPT-web
+  login shells without modifying global Python packages.
 
 ## Unknown
 

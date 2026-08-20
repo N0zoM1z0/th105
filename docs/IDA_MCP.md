@@ -13,6 +13,12 @@ python3 scripts/verify-target.py
 python3 scripts/check-ida-mcp.py
 ```
 
+These commands keep the plain `python3` interface but self-bootstrap the
+pinned `mcp==1.26.0` dependency with `uv run --no-project` when the active
+interpreter lacks it. This is intentional for headless GPT-web shells, whose
+login `PATH` may select `/usr/bin/python3` instead of an interactive Conda
+environment.
+
 The second command verifies:
 
 1. required read-tool capability and MCP connection;

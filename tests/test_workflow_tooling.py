@@ -5,6 +5,7 @@ import importlib.util
 from pathlib import Path
 import sys
 import unittest
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,6 +32,7 @@ class WorkflowToolingTests(unittest.TestCase):
         cls.ida_check = load_script("check-ida-mcp.py")
         cls.inventory = load_script("export-ida-inventory.py")
         cls.typed = load_script("typed-re.py")
+        cls.mcp_runtime = load_script("mcp_runtime.py")
 
     def test_corrected_target_identity(self) -> None:
         manifest = self.validator.validate_target(require_bytes=False)
@@ -86,6 +88,38 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(
             self.ida_check.parse_ida_bytes("90 00 ff"), b"\x90\x00\xff"
         )
+
+    def test_ida_mcp_runtime_is_pinned_and_project_independent(self) -> None:
+        self.assertEqual(self.mcp_runtime.MCP_REQUIREMENT, "mcp==1.26.0")
+        self.assertEqual(
+            self.mcp_runtime.bootstrap_command(
+                "/usr/bin/uv", ["scripts/check-ida-mcp.py"]
+            ),
+            [
+                "/usr/bin/uv",
+                "run",
+                "--quiet",
+                "--no-project",
+                "--with",
+                "mcp==1.26.0",
+                "python3",
+                "scripts/check-ida-mcp.py",
+            ],
+        )
+
+    def test_ida_mcp_runtime_reports_missing_uv(self) -> None:
+        with (
+            mock.patch.object(
+                self.mcp_runtime, "installed_mcp_version", return_value=None
+            ),
+            mock.patch.object(self.mcp_runtime.shutil, "which", return_value=None),
+            mock.patch.dict(
+                self.mcp_runtime.os.environ,
+                {self.mcp_runtime.BOOTSTRAP_MARKER: ""},
+            ),
+        ):
+            with self.assertRaisesRegex(RuntimeError, "install uv"):
+                self.mcp_runtime.ensure_mcp_runtime()
 
     @unittest.skipUnless(
         (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"

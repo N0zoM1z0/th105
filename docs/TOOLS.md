@@ -13,6 +13,12 @@ python3 scripts/check-ida-mcp.py
 python3 scripts/ida-mcp-call.py --call decompile_function '{"address":"0x..."}'
 ```
 
+The IDA client entry points pin Python package `mcp==1.26.0`. If the selected
+`python3` does not provide that version (as with the GPT-web systemd login
+shell), they transparently re-exec through `uv run --no-project`; no global
+Python installation or activated virtual environment is required. `uv` must
+be on `PATH`.
+
 `ida-mcp-call.py` re-attests the target on every process and blocks writes by
 default. `patch_address_assembles` is never allowed. Use `--allow-write` only
 for reviewed names, types, comments, and other metadata; read back the result.

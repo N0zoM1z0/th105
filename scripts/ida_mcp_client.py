@@ -9,10 +9,13 @@ import os
 from pathlib import Path
 import subprocess
 import tomllib
-from typing import Any, AsyncIterator
+from typing import Any, AsyncIterator, TYPE_CHECKING
 
-from mcp import ClientSession, StdioServerParameters
-from mcp.client.stdio import stdio_client
+from mcp_runtime import ensure_mcp_runtime
+
+
+if TYPE_CHECKING:
+    from mcp import ClientSession, StdioServerParameters
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -46,6 +49,8 @@ def load_target() -> dict[str, Any]:
 
 
 def load_server(name: str = DEFAULT_SERVER) -> StdioServerParameters:
+    from mcp import StdioServerParameters
+
     try:
         completed = subprocess.run(
             ["codex", "mcp", "get", name, "--json"],
@@ -80,6 +85,10 @@ def load_server(name: str = DEFAULT_SERVER) -> StdioServerParameters:
 async def open_session(
     name: str = DEFAULT_SERVER,
 ) -> AsyncIterator[tuple[ClientSession, Any]]:
+    ensure_mcp_runtime()
+    from mcp import ClientSession
+    from mcp.client.stdio import stdio_client
+
     server = load_server(name)
     stack = AsyncExitStack()
     try:
