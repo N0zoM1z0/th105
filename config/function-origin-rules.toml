@@ -79,3 +79,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "current IDA function identity is a defined symbol in SHA-pinned VC8 SP1 libcmt.lib/libcpmt.lib; the selector parses the pinned COFF archives itself and remains bounded to the current static-runtime island"
+
+[[rules]]
+id = "xiph-sdk-relocation-free-anchors-106a"
+xiph_anchor_file = "config/xiph-origin-anchors.toml"
+expected_count = 39
+expected_bytes = 2704
+origin = "third_party"
+subsystem = "audio"
+disposition = "exclude"
+confidence = "observed"
+evidence = "each current candidate is the inventory-unique raw-byte match of a relocation-free COMDAT re-extracted from the SHA-pinned official Ogg/Vorbis Win32 SDK 1.0.1"

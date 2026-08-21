@@ -6,9 +6,9 @@ until each boundary is reconciled with target control flow.
 | Measure | Count |
 | --- | ---: |
 | IDA 1.06a function candidates | 4,001 |
-| Origin/boundary review pending | 3,421 |
+| Origin/boundary review pending | 3,382 |
 | Confirmed authored functions | 100 |
-| Classified exclusions | 480 |
+| Classified exclusions | 519 |
 | Source-present authored mappings | 100 |
 | Canonical exact functions | 100 |
 | Canonical exact authored bytes | 13,487 |

@@ -1,0 +1,320 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+sdk_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
+
+# Each anchor is a current 1.06a candidate uniquely matched across the full
+# 4,001-candidate inventory by a relocation-free COMDAT from the SHA-pinned
+# official Ogg/Vorbis Win32 SDK 1.0.1. Validation is performed by
+# scripts/function-origins.py; these rows are evidence, not stale 1.06 maps.
+
+[[anchors]]
+address = "0x0067C7B0"
+size = 58
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "_ov_info"
+section_size = 64
+
+[[anchors]]
+address = "0x0067CB60"
+size = 18
+component = "vorbis"
+object = "info.obj"
+symbol = "_vorbis_comment_init"
+section_size = 32
+
+[[anchors]]
+address = "0x0067CBF0"
+size = 23
+component = "vorbis"
+object = "info.obj"
+symbol = "_vorbis_info_blocksize"
+section_size = 32
+
+[[anchors]]
+address = "0x0067D850"
+size = 19
+component = "vorbis"
+object = "info.obj"
+symbol = "_ilog2"
+section_size = 32
+
+[[anchors]]
+address = "0x0067DAA0"
+size = 108
+component = "vorbis"
+object = "block.obj"
+symbol = "_vorbis_synthesis_restart"
+section_size = 112
+
+[[anchors]]
+address = "0x0067E190"
+size = 88
+component = "vorbis"
+object = "block.obj"
+symbol = "_vorbis_synthesis_pcmout"
+section_size = 96
+
+[[anchors]]
+address = "0x0067E1F0"
+size = 43
+component = "vorbis"
+object = "block.obj"
+symbol = "_vorbis_synthesis_read"
+section_size = 48
+
+[[anchors]]
+address = "0x0067F1E0"
+size = 41
+component = "vorbis"
+object = "psy.obj"
+symbol = "_min_curve"
+section_size = 48
+
+[[anchors]]
+address = "0x0067F210"
+size = 41
+component = "vorbis"
+object = "psy.obj"
+symbol = "_max_curve"
+section_size = 48
+
+[[anchors]]
+address = "0x0067F240"
+size = 25
+component = "vorbis"
+object = "psy.obj"
+symbol = "_attenuate_curve"
+section_size = 32
+
+[[anchors]]
+address = "0x0067FF30"
+size = 138
+component = "vorbis"
+object = "psy.obj"
+symbol = "__vp_offset_and_mix"
+section_size = 144
+
+[[anchors]]
+address = "0x006803D0"
+size = 70
+component = "vorbis"
+object = "psy.obj"
+symbol = "_apsort"
+section_size = 80
+
+[[anchors]]
+address = "0x00680740"
+size = 23
+component = "vorbis"
+object = "psy.obj"
+symbol = "_unitnorm"
+section_size = 32
+
+[[anchors]]
+address = "0x00681640"
+size = 96
+component = "vorbis"
+object = "codebook.obj"
+symbol = "_bitreverse"
+section_size = 96
+
+[[anchors]]
+address = "0x006816A0"
+size = 31
+component = "vorbis"
+object = "sharedbook.obj"
+symbol = "_sort32a"
+section_size = 32
+
+[[anchors]]
+address = "0x00682420"
+size = 21
+component = "vorbis"
+object = "bitrate.obj"
+symbol = "_vorbis_bitrate_managed"
+section_size = 32
+
+[[anchors]]
+address = "0x00682680"
+size = 448
+component = "vorbis"
+object = "smallft.obj"
+symbol = "_dradf2"
+section_size = 448
+
+[[anchors]]
+address = "0x006846C0"
+size = 140
+component = "vorbis"
+object = "mdct.obj"
+symbol = "_mdct_butterfly_8"
+section_size = 144
+
+[[anchors]]
+address = "0x00684750"
+size = 279
+component = "vorbis"
+object = "mdct.obj"
+symbol = "_mdct_butterfly_generic"
+section_size = 288
+
+[[anchors]]
+address = "0x00686020"
+size = 22
+component = "vorbis"
+object = "res0.obj"
+symbol = "_icount"
+section_size = 32
+
+[[anchors]]
+address = "0x006879B0"
+size = 21
+component = "vorbis"
+object = "floor1.obj"
+symbol = "_icomp"
+section_size = 32
+
+[[anchors]]
+address = "0x00687E90"
+size = 72
+component = "vorbis"
+object = "floor1.obj"
+symbol = "_render_point"
+section_size = 80
+
+[[anchors]]
+address = "0x00688540"
+size = 35
+component = "vorbis"
+object = "floor1.obj"
+symbol = "_post_Y"
+section_size = 48
+
+[[anchors]]
+address = "0x00688C10"
+size = 16
+component = "vorbis"
+object = "floor1.obj"
+symbol = "_ilog"
+section_size = 16
+
+[[anchors]]
+address = "0x00688C20"
+size = 140
+component = "vorbis"
+object = "floor1.obj"
+symbol = "_render_line0"
+section_size = 144
+
+[[anchors]]
+address = "0x006B5ED0"
+size = 12
+component = "ogg"
+object = "framing.obj"
+symbol = "_ogg_page_version"
+section_size = 16
+
+[[anchors]]
+address = "0x006B5EE0"
+size = 13
+component = "ogg"
+object = "framing.obj"
+symbol = "_ogg_page_continued"
+section_size = 16
+
+[[anchors]]
+address = "0x006B5EF0"
+size = 13
+component = "ogg"
+object = "framing.obj"
+symbol = "_ogg_page_bos"
+section_size = 16
+
+[[anchors]]
+address = "0x006B5F00"
+size = 13
+component = "ogg"
+object = "framing.obj"
+symbol = "_ogg_page_eos"
+section_size = 16
+
+[[anchors]]
+address = "0x006B5FF0"
+size = 37
+component = "ogg"
+object = "framing.obj"
+symbol = "_ogg_page_serialno"
+section_size = 48
+
+[[anchors]]
+address = "0x006B6020"
+size = 37
+component = "ogg"
+object = "framing.obj"
+symbol = "_ogg_page_pageno"
+section_size = 48
+
+[[anchors]]
+address = "0x006B6240"
+size = 22
+component = "ogg"
+object = "framing.obj"
+symbol = "_ogg_sync_init"
+section_size = 32
+
+[[anchors]]
+address = "0x006B6310"
+size = 30
+component = "ogg"
+object = "framing.obj"
+symbol = "_ogg_sync_wrote"
+section_size = 32
+
+[[anchors]]
+address = "0x006B6770"
+size = 24
+component = "ogg"
+object = "framing.obj"
+symbol = "_ogg_sync_reset"
+section_size = 32
+
+[[anchors]]
+address = "0x006B6790"
+size = 76
+component = "ogg"
+object = "framing.obj"
+symbol = "_ogg_stream_reset"
+section_size = 80
+
+[[anchors]]
+address = "0x006B6820"
+size = 302
+component = "ogg"
+object = "framing.obj"
+symbol = "__packetout"
+section_size = 304
+
+[[anchors]]
+address = "0x006B6B00"
+size = 40
+component = "ogg"
+object = "bitwise.obj"
+symbol = "_oggpack_readinit"
+section_size = 48
+
+[[anchors]]
+address = "0x006B6BE0"
+size = 45
+component = "ogg"
+object = "bitwise.obj"
+symbol = "_oggpack_adv"
+section_size = 48
+
+[[anchors]]
+address = "0x006B6CE0"
+size = 24
+component = "ogg"
+object = "bitwise.obj"
+symbol = "_oggpack_bytes"
+section_size = 32

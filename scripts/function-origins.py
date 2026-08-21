@@ -21,6 +21,7 @@ FUNCTIONS = ROOT / "config/functions.csv"
 RULES = ROOT / "config/function-origin-rules.toml"
 OUTPUT = ROOT / "config/function-origins.csv"
 TARGET = ROOT / "resources/th105.exe"
+XIPH_ANCHORS = ROOT / "config/xiph-origin-anchors.toml"
 FIELDS = ["address", "origin", "subsystem", "disposition", "confidence", "evidence_id"]
 ORIGINS = {"authored_game", "compiler_generated", "vc8_runtime", "third_party", "import_thunk", "unknown"}
 DISPOSITIONS = {"authored", "exclude", "review"}
@@ -127,6 +128,174 @@ def msvc_symbol_aliases(name: str) -> set[str]:
     # GNU/COFF tooling and IDA differ by one C-name leading underscore.
     return {name, name[1:] if name.startswith("_") else "_" + name}
 
+
+def load_xiph_sdk_module():
+    path = ROOT / "scripts/fetch-xiph-sdk-object.py"
+    spec = importlib.util.spec_from_file_location("th105_xiph_sdk", path)
+    if spec is None or spec.loader is None:
+        raise ValueError("cannot load pinned Xiph SDK extractor")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def xiph_relocation_free_text(data: bytes, wanted_symbol: str) -> bytes:
+    """Return one zero-relocation COMDAT body for a named i386 COFF function."""
+    if len(data) < 20 or struct.unpack_from("<H", data, 0)[0] != 0x014C:
+        raise ValueError("Xiph SDK member is not an i386 COFF object")
+    section_count = struct.unpack_from("<H", data, 2)[0]
+    symbol_pointer, symbol_count = struct.unpack_from("<II", data, 8)
+    optional_size = struct.unpack_from("<H", data, 16)[0]
+    section_base = 20 + optional_size
+    string_table = symbol_pointer + symbol_count * 18
+    sections: list[dict[str, object]] = []
+    for index in range(section_count):
+        offset = section_base + index * 40
+        raw_size, raw_pointer = struct.unpack_from("<II", data, offset + 16)
+        reloc_count = struct.unpack_from("<H", data, offset + 32)[0]
+        sections.append({
+            "name": data[offset : offset + 8].rstrip(b"\0"),
+            "raw_size": raw_size,
+            "raw_pointer": raw_pointer,
+            "reloc_count": reloc_count,
+            "functions": [],
+        })
+
+    def symbol_name(offset: int) -> str:
+        raw = data[offset : offset + 8]
+        if raw[:4] == b"\0\0\0\0":
+            name_offset = struct.unpack_from("<I", raw, 4)[0]
+            start = string_table + name_offset
+            end = data.find(b"\0", start)
+            if end < 0:
+                raise ValueError("unterminated Xiph COFF symbol name")
+            return data[start:end].decode("ascii", errors="replace")
+        return raw.rstrip(b"\0").decode("ascii", errors="replace")
+
+    index = 0
+    while index < symbol_count:
+        offset = symbol_pointer + index * 18
+        name = symbol_name(offset)
+        value = struct.unpack_from("<I", data, offset + 8)[0]
+        section_number = struct.unpack_from("<h", data, offset + 12)[0]
+        symbol_type = struct.unpack_from("<H", data, offset + 14)[0]
+        storage_class = data[offset + 16]
+        auxiliary = data[offset + 17]
+        if (
+            0 < section_number <= section_count
+            and value == 0
+            and symbol_type == 0x20
+            and storage_class in (2, 3)
+        ):
+            sections[section_number - 1]["functions"].append(name)
+        index += 1 + auxiliary
+
+    matches = []
+    for section in sections:
+        if (
+            section["name"] == b".text"
+            and section["reloc_count"] == 0
+            and section["functions"] == [wanted_symbol]
+        ):
+            start = int(section["raw_pointer"])
+            size = int(section["raw_size"])
+            matches.append(data[start : start + size])
+    if len(matches) != 1:
+        raise ValueError(
+            f"Xiph symbol {wanted_symbol} has {len(matches)} zero-relocation COMDAT bodies"
+        )
+    return matches[0]
+
+
+def validate_xiph_anchor_evidence(
+    rule: dict[str, object],
+    selected: list[dict[str, str]],
+    rows: list[dict[str, str]],
+    read_pe,
+) -> list[str]:
+    errors: list[str] = []
+    anchor_path = ROOT / str(rule["xiph_anchor_file"])
+    anchors_doc = tomllib.loads(anchor_path.read_text(encoding="utf-8"))
+    configured_hash = str(target_manifest()["target"]["sha256"])
+    if str(anchors_doc.get("target_sha256")) != configured_hash:
+        errors.append(f"{rule['id']}: Xiph anchor target SHA-256 differs from canonical target")
+        return errors
+    module = load_xiph_sdk_module()
+    if str(anchors_doc.get("sdk_sha256")) != module.ARCHIVE_SHA256:
+        errors.append(f"{rule['id']}: Xiph anchor SDK SHA-256 differs from pinned extractor")
+        return errors
+    cache = ROOT / ".tools/upstream/OggVorbis-win32sdk-1.0.1.zip"
+    if not cache.is_file():
+        errors.append(f"{rule['id']}: pinned Xiph SDK cache is missing: {cache}")
+        return errors
+    sdk = cache.read_bytes()
+    if hashlib.sha256(sdk).hexdigest() != module.ARCHIVE_SHA256:
+        errors.append(f"{rule['id']}: cached Xiph SDK SHA-256 mismatch")
+        return errors
+
+    anchors = anchors_doc.get("anchors", [])
+    selected_addresses = {row["address"] for row in selected}
+    anchor_addresses = {str(anchor["address"]) for anchor in anchors}
+    if selected_addresses != anchor_addresses:
+        errors.append(f"{rule['id']}: selected addresses differ from Xiph anchor file")
+        return errors
+    row_by_address = {row["address"]: row for row in rows}
+    object_cache: dict[tuple[str, str], bytes] = {}
+    candidate_bytes: dict[str, bytes] = {}
+    for row in rows:
+        try:
+            candidate_bytes[row["address"]] = read_pe(
+                int(row["address"], 0), int(row["size"], 0)
+            )
+        except ValueError:
+            pass
+
+    padding = {0x00, 0x90, 0xCC}
+    for anchor in anchors:
+        address = str(anchor["address"])
+        row = row_by_address.get(address)
+        if row is None:
+            errors.append(f"{rule['id']}: missing Xiph candidate {address}")
+            continue
+        size = int(anchor["size"])
+        if int(row["size"], 0) != size:
+            errors.append(
+                f"{rule['id']}: {address} size {row['size']} differs from anchor {size}"
+            )
+            continue
+        component = str(anchor["component"])
+        object_name = str(anchor["object"])
+        key = (component, object_name)
+        if key not in object_cache:
+            object_cache[key] = module.extract_object(sdk, component, object_name)
+        try:
+            body = xiph_relocation_free_text(object_cache[key], str(anchor["symbol"]))
+        except ValueError as exc:
+            errors.append(f"{rule['id']}: {address}: {exc}")
+            continue
+        if len(body) != int(anchor["section_size"]):
+            errors.append(f"{rule['id']}: {address} Xiph section size changed")
+            continue
+        actual = candidate_bytes.get(address)
+        if actual != body[:size] or any(byte not in padding for byte in body[size:]):
+            errors.append(f"{rule['id']}: {address} no longer raw-matches Xiph anchor")
+            continue
+        candidates = []
+        for other in rows:
+            other_body = candidate_bytes.get(other["address"])
+            if other_body is None or len(other_body) > len(body):
+                continue
+            if other_body != body[: len(other_body)]:
+                continue
+            if any(byte not in padding for byte in body[len(other_body) :]):
+                continue
+            candidates.append(other["address"])
+        if candidates != [address]:
+            errors.append(
+                f"{rule['id']}: {address} Xiph anchor is not inventory-unique: {candidates}"
+            )
+    return errors
+
 def baseline(row: dict[str, str]) -> dict[str, str]:
     if row["status"] == "matching":
         if row["module"] not in AUTHORED_MODULES:
@@ -137,6 +306,11 @@ def baseline(row: dict[str, str]) -> dict[str, str]:
 
 def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: set[str] | None = None) -> list[dict[str, str]]:
     explicit = {str(value).upper() for value in rule.get("addresses", [])}
+    if rule.get("xiph_anchor_file"):
+        anchor_doc = tomllib.loads(
+            (ROOT / str(rule["xiph_anchor_file"])).read_text(encoding="utf-8")
+        )
+        explicit = {str(anchor["address"]).upper() for anchor in anchor_doc.get("anchors", [])}
     start = int(str(rule["start"]), 0) if "start" in rule else None
     end = int(str(rule["end"]), 0) if "end" in rule else None
     selected = []
@@ -159,7 +333,13 @@ def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: se
     return selected
 
 
-def validate_rule_evidence(rule: dict[str, object], selected: list[dict[str, str]], data: bytes, read_pe) -> list[str]:
+def validate_rule_evidence(
+    rule: dict[str, object],
+    selected: list[dict[str, str]],
+    rows: list[dict[str, str]],
+    data: bytes,
+    read_pe,
+) -> list[str]:
     errors: list[str] = []
     rule_id = str(rule["id"])
     expected_names = [str(value) for value in rule.get("expected_names", [])]
@@ -181,6 +361,8 @@ def validate_rule_evidence(rule: dict[str, object], selected: list[dict[str, str
         encoded = str(text).encode("ascii")
         if encoded not in data:
             errors.append(f"{rule_id}: target string missing: {text!r}")
+    if rule.get("xiph_anchor_file"):
+        errors.extend(validate_xiph_anchor_evidence(rule, selected, rows, read_pe))
     return errors
 
 
@@ -204,7 +386,7 @@ def materialize() -> tuple[list[dict[str, str]], list[str]]:
             errors.append(f"{rule_id}: selected {count} rows, expected {rule['expected_count']}")
         if byte_count != int(rule["expected_bytes"]):
             errors.append(f"{rule_id}: selected {byte_count} bytes, expected {rule['expected_bytes']}")
-        errors.extend(validate_rule_evidence(rule, selected, data, read_pe))
+        errors.extend(validate_rule_evidence(rule, selected, rows, data, read_pe))
         for row in selected:
             if row["status"] == "matching":
                 errors.append(f"{rule_id}: overlaps canonical authored function {row['address']}")

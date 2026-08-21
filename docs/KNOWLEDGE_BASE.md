@@ -23,7 +23,7 @@ notes or source hypotheses.
   structural-instruction fingerprinting selected candidates and current-target
   IDA/call evidence reconciled their relocations; canonical VC8 comparisons,
   not the fingerprints, established exactness.
-- The current origin census also has 480 target-backed exclusions: 417 VC8 runtime functions selected from SHA-pinned VC8 SP1 archives, 44 zlib 1.2.3 functions bounded by current-target provenance strings, and 19 direct import thunks whose current names/opcodes are attested. `config/function-origin-rules.toml` is fail-closed on expected counts/bytes and `scripts/function-origins.py` materializes the census only after target/archive identity checks.
+- The current origin census has 519 target-backed exclusions: 417 VC8 runtime functions selected from SHA-pinned VC8 SP1 archives, 44 zlib 1.2.3 functions bounded by current-target provenance strings, 19 direct import thunks whose current names/opcodes are attested, and 39 Ogg/Vorbis functions whose current candidate bytes are inventory-unique matches of relocation-free COMDATs re-extracted from the SHA-pinned official Xiph Win32 SDK 1.0.1. `config/function-origin-rules.toml` is fail-closed on expected counts/bytes and `scripts/function-origins.py` materializes the census only after target/archive identity checks.
 
 ## Repository decisions
 
@@ -81,7 +81,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,421
+- Accepted boundaries and authored/library origins for the remaining 3,382
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.

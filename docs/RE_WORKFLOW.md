@@ -10,6 +10,7 @@ mechanics to TH105's VC8/LTCG executable.
 - `config/functions.csv`: provisional function candidates and reviewed state.
 - `config/function-origins.csv`: generated authored/compiler/library disposition.
 - `config/function-origin-rules.toml`: fail-closed current-target origin/exclusion rules.
+- `config/xiph-origin-anchors.toml`: relocation-free current 1.06a witnesses against the SHA-pinned official Xiph Win32 SDK; every anchor is revalidated for full-inventory uniqueness before exclusion.
 - `config/reccmp-functions.csv`: durable address/name/category mappings.
 - `config/implemented.csv`: mapped authored symbols whose source is present.
 - `config/matches.csv`: accepted 100% exact functions only.

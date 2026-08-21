@@ -4,6 +4,7 @@ import csv
 import importlib.util
 from pathlib import Path
 import sys
+import tomllib
 import unittest
 from unittest import mock
 
@@ -33,6 +34,7 @@ class WorkflowToolingTests(unittest.TestCase):
         cls.inventory = load_script("export-ida-inventory.py")
         cls.typed = load_script("typed-re.py")
         cls.mcp_runtime = load_script("mcp_runtime.py")
+        cls.xiph_sdk = load_script("fetch-xiph-sdk-object.py")
 
     def test_corrected_target_identity(self) -> None:
         manifest = self.validator.validate_target(require_bytes=False)
@@ -73,13 +75,26 @@ class WorkflowToolingTests(unittest.TestCase):
         markdown = self.progress.render()
         self.assertIn("IDA 1.06a function candidates | 4,001", markdown)
         self.assertIn("Confirmed authored functions | 100", markdown)
-        self.assertIn("Classified exclusions | 480", markdown)
-        self.assertIn("Origin/boundary review pending | 3,421", markdown)
+        self.assertIn("Classified exclusions | 519", markdown)
+        self.assertIn("Origin/boundary review pending | 3,382", markdown)
         self.assertIn("Canonical exact functions | 100", markdown)
         self.assertIn("Canonical exact authored bytes | 13,487", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
+
+    def test_xiph_origin_anchor_manifest_is_pinned(self) -> None:
+        with (ROOT / "config" / "xiph-origin-anchors.toml").open("rb") as stream:
+            anchors = tomllib.load(stream)
+        self.assertEqual(
+            anchors["target_sha256"],
+            "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e",
+        )
+        self.assertEqual(anchors["sdk_sha256"], self.xiph_sdk.ARCHIVE_SHA256)
+        rows = anchors["anchors"]
+        self.assertEqual(len(rows), 39)
+        self.assertEqual(len({row["address"] for row in rows}), 39)
+        self.assertEqual(sum(row["size"] for row in rows), 2704)
 
     def test_inventory_pagination_normalization(self) -> None:
         data, next_offset = self.inventory.normalize_page(
