@@ -57,7 +57,20 @@ def main() -> int:
             "Run workflow unit tests",
             [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-v"],
         )
+        run("Regenerate progress artifacts", [sys.executable, "scripts/progress.py"])
         run("Check generated progress", [sys.executable, "scripts/progress.py", "--check"])
+        if os.environ.get("CI"):
+            run(
+                "Check generated progress is committed",
+                [
+                    "git",
+                    "diff",
+                    "--exit-code",
+                    "--",
+                    "docs/PROGRESS.md",
+                    "resources/progress.svg",
+                ],
+            )
         run(
             "Smoke-test status report",
             [sys.executable, "scripts/report-reconstruction-status.py", "--summary"],
