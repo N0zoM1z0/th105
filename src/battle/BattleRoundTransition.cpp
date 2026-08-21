@@ -2,6 +2,7 @@
 #include "battle/BattleController.hpp"
 #include "battle/Collision.hpp"
 #include "battle/ScenarioTransition.hpp"
+#include "battle/PostSequenceTransition.hpp"
 
 #include <new>
 
@@ -9,11 +10,6 @@ namespace th105 {
 
 struct FighterTransitionView {
     void reset_transition_counters_45e010();
-};
-
-struct PostSequenceTransitionView {
-    int publish_transition_effect_46e040(int effect);
-    void publish_transition_effect_at_46e130(float position);
 };
 
 struct ContinueMenu {

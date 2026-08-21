@@ -17,7 +17,7 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 309 functions / 51,524 bytes in 154
+- The accepted 1.06a authored set contains 310 functions / 51,571 bytes in 155
   VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 191
   functions / 36,775 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
@@ -285,7 +285,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 2,999
+- Accepted boundaries and authored/library origins for the remaining 2,998
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.
@@ -422,6 +422,8 @@ ownership and virtual slot are semantic evidence. When the contract is promoted
 to a shared header, replay every accepted TU that previously carried a local
 forward declaration; here `EventSubobject130` remains 34/34 and 74/74 exact after
 the consolidation.
+
+The same shared subobject contract now backs `PostSequenceTransitionView::publish_transition_effect_46e040 @ 0x0046EA10`. Nine current battle callers converge on that helper, and exact `dispatch_round_phase_34` independently establishes the owner role. Natural `emitter_04.emit(effect_id, 320.0f, 240.0f, 1, 0, 0)` reproduces 47/47, including the target x87 materialization order. Reuse the shared emitter ABI when the owner offset and virtual slot agree; do not proliferate TU-local facades for the same subobject.
 ### Caller-backed unused-this return ABI
 
 Do not infer a return contract from EAX residue in a callee that never explicitly

@@ -14,9 +14,9 @@ seeds using current-target-backed structural remapping where appropriate.
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 309 authored functions, 696 classified exclusions, and 2,999 still awaiting origin/boundary review.
-- All 309 confirmed authored functions are source-present and canonical exact:
-  51,524 exact authored bytes across 154 configured VC8 units.
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 310 authored functions, 696 classified exclusions, and 2,998 still awaiting origin/boundary review.
+- All 310 confirmed authored functions are source-present and canonical exact:
+  51,571 exact authored bytes across 155 configured VC8 units.
 - The newest retained-source/lifecycle migration wave added 209 functions / 38,037 bytes
   beyond the prior 100-function checkpoint. Structural instruction shape and
   relocation-masked bytes are used only for candidate ranking; every accepted
@@ -36,6 +36,7 @@ seeds using current-target-backed structural remapping where appropriate.
 - `EventSubobject130::trigger_global_effect @ 0x00434E90` is 74/74 exact and is reached by all fourteen exact roster bridges. Current target fixes event-id publication `0x006FA890`, lookup `0x0043C150`, exact-backed info-manager emitter receiver `0x006FBCA8`, constants `320.0f/42.0f`, and shared state controller `0x006FBCAC`. Keeping the lookup nested as the first emitter argument reproduces the target argument-preparation order naturally; extracting it to a local changes VC8 scheduling.
 - `BattleAudioSetupView::set_stage_music_433860 @ 0x00434DE0` is 40/40 exact. Its semantic name comes from exact battle setup `0x00470880`; current body forwards stage/value/notify=1 to battle object manager `0x006FBCA0 -> 0x00467850` and mirrors stage to the already attested event-effect state `0x006FBCAC -> 0x00469D50`. No new relocation anchors were required.
 - `EventEffectStateView::set_event_id @ 0x00469DF0` is 29/29 exact. Changed ids update controller `+0` then ordinary `return publish_stage_state(g_battle_transition_mode)` naturally reuses the incoming stack slot and tail-jumps to `0x00469D50`; unchanged ids return directly. A shared `EventEffectState.hpp` now keeps the three recovered event/stage TUs on one ODR-consistent narrow contract.
+- `PostSequenceTransitionView::publish_transition_effect_46e040 @ 0x0046EA10` is 47/47 exact. Nine current battle callers converge on the same helper, including the canonical-exact round-transition dispatcher. The body forwards through a polymorphic emitter subobject at `this+4`, vslot `+0x0C`, with `(effect_id, 320.0f, 240.0f, 1, 0, 0)`. Both float literals were already exact-backed elsewhere; a shared narrow facade now replaces duplicated local declarations without changing the exact round-transition caller.
 - `InfoEffectEmitterView::emit_effect @ 0x0046E9D0` is 49/49 exact. Exact `trigger_global_effect @ 0x00434E90` establishes the caller identity; current IDA shows the facade takes its polymorphic emitter subobject at `this+4`, calls vslot `+0x0C`, forwards the five caller arguments, and appends a real trailing zero argument. Moving the narrow emitter contract into `InfoEffectEmitter.hpp` leaves the existing 34/34 and 74/74 `EventSubobject130` helpers exact.
 - `EventSubobject130::trigger_secondary_event_effect @ 0x00434E40` is 67/67 exact. Fifteen current dispatch cases all pass `ECX = Fighter+0x130` and immediately return after the call, proving an unused-receiver `void` member rather than the decompiler's incidental-EAX `int` guess. The helper ignores id 16, publishes `0x006FA884`, then emits `lookup(id)+4` at 320/32.
 - `PairEmbeddedModeView::select_pair_mode_434780 @ 0x00435CE0` is 119/119 exact. Exact battle-pair initialization already owns the member edge; current body optionally publishes the primary effect, emits `lookup(mode)+2`, synchronizes mode globals `0x006FA884/0x006FA880`, and uses exact `selector_random_roll(14)` for mode 14. Extracting the view into `PairEmbeddedMode.hpp` leaves the original 279/279 caller exact.
@@ -78,9 +79,9 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 2,999
+The 95% authored-function and authored-byte goals cannot be reported yet: 2,998
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 309/309
+global authored denominator is not established. Do not use the current 310/310
 exact subset as a substitute denominator.
 
 ## Routine checkpoint

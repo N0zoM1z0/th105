@@ -4280,3 +4280,19 @@ rel32_targets = [
   "?run_post_update_callbacks_and_global_state@th105@@YIXPAX@Z=0x0046AFB0",
 ]
 dir32_targets = ["?g_info_manager@th105@@3PAUInfoManager@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A"]
+
+[units.cross-v106a-post-sequence-transition]
+kind = "probe"
+source = "src/battle/PostSequenceTransition.cpp"
+object = "build/match-units/CrossV106a_PostSequenceTransition.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a post-sequence transition effect facade. Current battle transition callers pass an object whose polymorphic emitter begins at +0x04; vslot +0x0C receives effect id, 320.0f, 240.0f, 1, 0, 0."
+
+[[units.cross-v106a-post-sequence-transition.functions]]
+address = "0x0046EA10"
+symbol_base = "publish_transition_effect_46e040"
+dir32_targets = [
+  "__real@43a00000=__real@43a00000",
+  "__real@43700000=__real@43700000",
+]
