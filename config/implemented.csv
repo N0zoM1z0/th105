@@ -254,3 +254,4 @@ PatRecord88_destroy
 Alice_handle_event_bridge
 PatRecord88_construct
 test_aabb_against_descriptor_shape
+load_indexed_character_wave_resources

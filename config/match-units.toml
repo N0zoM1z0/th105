@@ -3426,3 +3426,26 @@ dir32_targets = [
   "??_7PatRecord88@th105@@6B@=??_7PatRecord88@th105@@6B@",
   "??_7FrameData@th105@@6B@=??_7FrameData@th105@@6B@",
 ]
+
+[units.cross-v106a-fighter-wave-resources]
+kind = "probe"
+source = "src/battle/FighterResourceInitialization.cpp"
+object = "build/match-units/CrossV106a_FighterWaveResources.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a Fighter 64-entry character wave loader. Current target reads record_key_330, resolves the character name at 0x0043BF80, formats data/se/%s/%03d.wav, calls the wave service at 0x00702288 through 0x00401AF0, and publishes handles through Fighter +0x164. Retained C++ body has zero non-relocation differences before canonical reconciliation."
+
+[[units.cross-v106a-fighter-wave-resources.functions]]
+address = "0x0045F680"
+symbol_base = "load_indexed_character_wave_resources"
+rel32_targets = [
+  "?character_key_to_name@th105@@YAPBDH@Z=0x0043BF80",
+  "?load_wave_handle@OpaqueWaveHandleService@th105@@QAEPAIPAIPBD@Z=0x00401AF0",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "___security_cookie=___security_cookie",
+  "__imp__wsprintfA=__imp__wsprintfA",
+  "??_C@_0BE@KPICLJDF@data?1se?1?$CFs?1?$CF03d?4wav?$AA@=??_C@_0BE@KPICLJDF@data?1se?1?$CFs?1?$CF03d?4wav?$AA@",
+  "?g_wave_handle_service@th105@@3UOpaqueWaveHandleService@1@A=?g_wave_handle_service@th105@@3UOpaqueWaveHandleService@1@A",
+]

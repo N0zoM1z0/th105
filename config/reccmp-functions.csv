@@ -255,3 +255,4 @@ PatRecord88_destroy,0x0045FFD0,function
 Alice_handle_event_bridge,0x0050ED00,function
 PatRecord88_construct,0x00460F90,function
 test_aabb_against_descriptor_shape,0x0046B7B0,function
+load_indexed_character_wave_resources,0x0045F680,function

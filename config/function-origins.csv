@@ -1806,7 +1806,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0045F560,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0045F610,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0045F640,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0045F680,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0045F680,authored_game,battle,authored,observed,canonical-exact-authored
 0x0045F710,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0045F7A0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0045F800,unknown,,review,unknown,ida-1.06a-initial-inventory

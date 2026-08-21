@@ -17,9 +17,9 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 256 functions / 34,424 bytes in 125
-  VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 156
-  functions / 20,937 bytes beyond the previous 100-function checkpoint. Candidate
+- The accepted 1.06a authored set contains 257 functions / 34,556 bytes in 126
+  VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 157
+  functions / 21,069 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
   establish hypotheses; canonical VC8 zero-difference comparisons establish
   exactness.
@@ -244,6 +244,7 @@ notes or source hypotheses.
   The title/UI color anchor now points at current `IColor` scalar-deleting
   destructor `0x0040AE80`; that semantic correction makes the `/GS` CTitle
   destructor compare 161/161 exact.
+- Per-character wave-cache loading is now current-target exact-backed. `load_indexed_character_wave_resources @ 0x0045F680` loops exactly 64 slots, derives the character directory from Fighter `record_key_330` through `0x0043BF80`, formats the source-owned `data/se/%s/%03d.wav` literal at `0x006C2B20`, calls the verified wave-service object `0x00702288` via `0x00401AF0`, and publishes each returned handle through Fighter `+0x164`. Retained VC8 `/GS` source had zero non-relocation differences; only current relocation identities were reconciled before the 132/132 canonical match. Reuse these service/string identities for later fighter resource-loading recovery rather than applying old-version address deltas.
 - `process_fighter_transient_status` at `0x0045E3D0` demonstrates acceptable
   natural source shaping: an equivalent C++ conditional expression for the
   32-byte normalization loop restored the target VC8 schedule and all 301 bytes
@@ -265,7 +266,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,070
+- Accepted boundaries and authored/library origins for the remaining 3,069
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.

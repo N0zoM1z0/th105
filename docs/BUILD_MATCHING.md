@@ -510,3 +510,6 @@ Current target evidence forced several natural C++ corrections before all 1075 b
 ### Wider historical source hypothesis queues
 
 After the historical exact-source pool is exhausted, `scripts/rank_retained_exact.py` accepts repeatable `--historical-status` filters such as `implemented` and `compiles`. This only widens the archaeology queue; it never upgrades evidence. Current candidate identity, boundary/ABI review, target-backed relocation reconciliation, and canonical zero-difference comparison remain mandatory before authored promotion.
+### Zero-body-diff resource loaders
+
+A retained function with zero non-relocation differences is still only a candidate until current service and data identities are reconciled. `load_indexed_character_wave_resources @ 0x0045F680` is the reference: current IDA proves `record_key_330 -> 0x0043BF80`, the NUL-terminated `data/se/%s/%03d.wav` literal at `0x006C2B20`, `wsprintfA`, wave-service object `0x00702288`, loader `0x00401AF0`, and Fighter handle array `+0x164`. The natural retained `/GS` C++ then compares 132/132 exact without source changes. Prefer this relocation-reconciliation path over source shaping whenever the non-relocation body is already identical.

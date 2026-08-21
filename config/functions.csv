@@ -1806,7 +1806,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0045F560,170,0x0045F609,sub_45F560,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045F610,43,0x0045F63A,sub_45F610,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045F640,58,0x0045F679,sub_45F640,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0045F680,132,0x0045F703,sub_45F680,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0045F680,132,0x0045F703,sub_45F680,load_indexed_character_wave_resources,battle,matching,100.00,__thiscall,void load_indexed_character_wave_resources(Fighter * this),false,src/battle/FighterResourceInitialization.cpp,python3 scripts/build.py --unit cross-v106a-fighter-wave-resources --compare --json reports exact 132/132 against TH105 1.06a,root,"Current 1.06a IDA proves a 64-entry Fighter wave cache loader: record_key_330 is resolved by 0x0043BF80, data/se/%s/%03d.wav is formatted through wsprintfA, current wave service 0x00702288 calls 0x00401AF0, and returned handles are stored through Fighter +0x164. Fresh pinned VC8 /GS source has zero non-relocation differences and canonical comparison is zero-difference."
 0x0045F710,137,0x0045F798,sub_45F710,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045F7A0,91,0x0045F7FA,sub_45F7A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045F800,68,0x0045F843,sub_45F800,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
