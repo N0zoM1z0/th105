@@ -4062,3 +4062,98 @@ dir32_targets = [
   "?g_pair_mode_primary@th105@@3HA=?g_fighter_state_4b8_default@th105@@3HA",
   "?g_secondary_event_effect_id@th105@@3HA=?g_secondary_event_effect_id@th105@@3HA",
 ]
+
+[units.cross-v106a-battle-manager-virtuals]
+kind = "probe"
+source = "src/battle/BattleManagerVirtuals.cpp"
+object = "build/match-units/CrossV106a_BattleManagerVirtuals.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a CBattleManager shared-vtable recovery. Current constructors publish CBattleManager vtable 0x006C1504 and CBattleManagerArcade vtable 0x006C154C; both share these nine slots. Narrow source preserves unsigned frame_counter_04, Fighter +0x4EC/+0x4E9/+0x72C fields, this+0x8C polymorphic phase object, and caller-backed unused-this ABI views for linked phase helpers."
+
+[[units.cross-v106a-battle-manager-virtuals.functions]]
+address = "0x00471630"
+symbol_base = "run_full_pipeline_471630"
+rel32_targets = [
+  "?run_global_action_owned_phase_view@CBattleManager@th105@@QAEXXZ=0x0046AF90",
+  "?run_intermediate_phase_46dff0@CBattleManager@th105@@QAEXXZ=0x0046DFF0",
+  "?run_collision_phase_46cca0@CBattleManager@th105@@QAEXXZ=0x0046CCA0",
+  "?run_global_position_status_timer_phase_view@CBattleManager@th105@@QAEXXZ=0x0046AFA0",
+  "?run_post_update_callbacks_and_global_state@th105@@YIXPAX@Z=0x0046AFB0",
+]
+
+[[units.cross-v106a-battle-manager-virtuals.functions]]
+address = "0x00471920"
+symbol_base = "constant_one_471920"
+
+[[units.cross-v106a-battle-manager-virtuals.functions]]
+address = "0x00472490"
+symbol_base = "mark_terminal_pending_if_state_not_3_472490"
+
+[[units.cross-v106a-battle-manager-virtuals.functions]]
+address = "0x004724B0"
+symbol_base = "update_phase_object_if_needed_4724b0"
+rel32_targets = [
+  "?run_shared_pre_phase_46bf00@CBattleManager@th105@@QAEXXZ=0x0046BF00",
+]
+
+[[units.cross-v106a-battle-manager-virtuals.functions]]
+address = "0x00472D80"
+symbol_base = "run_pipeline_and_transition_472d80"
+rel32_targets = [
+  "?run_global_action_owned_phase_view@CBattleManager@th105@@QAEXXZ=0x0046AF90",
+  "?run_collision_phase_46cca0@CBattleManager@th105@@QAEXXZ=0x0046CCA0",
+  "?run_global_position_status_timer_phase_view@CBattleManager@th105@@QAEXXZ=0x0046AFA0",
+  "?run_post_update_callbacks_and_global_state@th105@@YIXPAX@Z=0x0046AFB0",
+  "_play_bgm=0x0043CF80",
+]
+
+[[units.cross-v106a-battle-manager-virtuals.functions]]
+address = "0x00472DC0"
+symbol_base = "run_reset_pipeline_472dc0"
+rel32_targets = [
+  "?reset_fighter_fields_6bc_728@th105@@YIXPAX@Z=0x0046AFF0",
+  "?run_global_action_owned_phase_view@CBattleManager@th105@@QAEXXZ=0x0046AF90",
+  "?run_collision_phase_46cca0@CBattleManager@th105@@QAEXXZ=0x0046CCA0",
+  "?run_global_position_status_timer_phase_view@CBattleManager@th105@@QAEXXZ=0x0046AFA0",
+  "?run_post_update_callbacks_and_global_state@th105@@YIXPAX@Z=0x0046AFB0",
+]
+
+[[units.cross-v106a-battle-manager-virtuals.functions]]
+address = "0x00472E10"
+symbol_base = "run_120_frame_pipeline_472e10"
+rel32_targets = [
+  "?reset_fighter_fields_6bc_728@th105@@YIXPAX@Z=0x0046AFF0",
+  "?run_global_action_owned_phase_view@CBattleManager@th105@@QAEXXZ=0x0046AF90",
+  "?run_intermediate_phase_46dff0@CBattleManager@th105@@QAEXXZ=0x0046DFF0",
+  "?run_collision_phase_46cca0@CBattleManager@th105@@QAEXXZ=0x0046CCA0",
+  "?run_global_position_status_timer_phase_view@CBattleManager@th105@@QAEXXZ=0x0046AFA0",
+  "?run_post_update_callbacks_and_global_state@th105@@YIXPAX@Z=0x0046AFB0",
+]
+
+[[units.cross-v106a-battle-manager-virtuals.functions]]
+address = "0x00472EA0"
+symbol_base = "run_180_frame_pipeline_472ea0"
+rel32_targets = [
+  "?reset_fighter_fields_6b4_728@th105@@YIXPAX@Z=0x0046B080",
+  "?run_global_action_owned_phase_view@CBattleManager@th105@@QAEXXZ=0x0046AF90",
+  "?run_intermediate_phase_46dff0@CBattleManager@th105@@QAEXXZ=0x0046DFF0",
+  "?run_collision_phase_46cca0@CBattleManager@th105@@QAEXXZ=0x0046CCA0",
+  "?run_global_position_status_timer_phase_view@CBattleManager@th105@@QAEXXZ=0x0046AFA0",
+  "?run_post_update_callbacks_and_global_state@th105@@YIXPAX@Z=0x0046AFB0",
+  "?get_session_setup_option@th105@@YAIXZ=0x0043B070",
+]
+
+[[units.cross-v106a-battle-manager-virtuals.functions]]
+address = "0x00472F10"
+symbol_base = "run_info_phase_pipeline_472f10"
+rel32_targets = [
+  "?reset_fighter_fields_6b4_728@th105@@YIXPAX@Z=0x0046B080",
+  "?run_global_action_owned_phase_view@CBattleManager@th105@@QAEXXZ=0x0046AF90",
+  "?run_collision_phase_46cca0@CBattleManager@th105@@QAEXXZ=0x0046CCA0",
+  "?run_global_position_status_timer_phase_view@CBattleManager@th105@@QAEXXZ=0x0046AFA0",
+  "?run_post_update_callbacks_and_global_state@th105@@YIXPAX@Z=0x0046AFB0",
+]
+dir32_targets = [
+  "?g_info_manager@th105@@3PAUInfoManager@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A",
+]

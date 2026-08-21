@@ -17,7 +17,7 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 291 functions / 50,262 bytes in 150
+- The accepted 1.06a authored set contains 300 functions / 50,865 bytes in 151
   VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 191
   functions / 36,775 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
@@ -285,7 +285,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,017
+- Accepted boundaries and authored/library origins for the remaining 3,008
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.
@@ -462,3 +462,15 @@ accepted function boundary at the target's RET-terminated 244 bytes while still
 auditing the compiler table shape; the comparator's same-section DIR32 handling
 resolves local case labels without treating the trailing table as authored
 function bytes.
+
+### Vtable-owned class islands can batch exact virtual methods
+
+Current constructor writes can turn a stripped cluster into a bounded class recovery lane. `sub_438CC0` publishes the `CBattleManager` vtable at `0x006C1504`; derived `sub_438D80` calls that constructor and then publishes the `CBattleManagerArcade` vtable at `0x006C154C`. The two tables share nine slots now reproduced by `BattleManagerVirtuals.cpp`: `0x00471630` (58), `0x00471920` (6), `0x00472490` (23), `0x004724B0` (44), `0x00472D80` (60), `0x00472DC0` (66), `0x00472E10` (133), `0x00472EA0` (111), and `0x00472F10` (102), for 603 exact authored bytes. Vtable ownership is the identity evidence; canonical comparison still proves each body.
+
+The class layout is intentionally narrow. Current bodies establish unsigned `frame_counter_04`, `pending_08`, two Fighter pointers at `+0x0C/+0x10`, `phase_88`, and a polymorphic phase object at `+0x8C`. Existing exact Fighter work already proves `terminal_pending_4e9`, `unknown_4ec`, and `state_72c`. An unsigned declaration for `frame_counter_04` is semantic evidence, not code shaping: target `0x00472D80` uses `jbe` for the `<=60` gate, while a signed hypothesis compiles to `jle`.
+
+Unused-this ambiguity can also occur at linked helper edges inside a class island. Call sites before `0x0046AF90` and `0x0046AFA0` preserve or reload `ECX = CBattleManager*` even though the 11-byte target wrappers themselves do not consume ECX and can independently be modeled as free wrappers. `BattleManagerVirtuals.cpp` therefore uses explicit caller-backed member *views* for those edges without changing the existing callee ownership/signature ledgers. One target address may admit multiple narrow ABI views when the body leaves a register semantically unused; do not rewrite an already accepted callee solely to satisfy one caller.
+
+Prefer direct semantic-global field access when it matches the source lifetime. `CBattleManager::run_info_phase_pipeline_472f10` initially used a local `InfoManagerPhaseCounter494View*`; VC8 cached `counter_494` in a register and produced a four-byte-longer body. Repeating the truthful `g_info_manager` view at the two field accesses lets VC8 naturally emit target memory `cmp [eax+0x494],30` / `add [eax+0x494],1`, making all 102 bytes exact. This is not permission to duplicate arbitrary expressions: the global identity and field are independently target-backed.
+
+The adjacent `CBattleManager` timer method `0x00472A70` is a deliberate non-acceptance example. Current semantics prove phase 2, pair-mode globals, a 16-bit timer, thresholds 499/999, exact event-effect helpers, and a common tail at `0x0046B160`. Multiple natural source shapes either reload the timer, spill it, or allocate a different 16-bit register; the target keeps one value in AX across the branch. Stop there. Do not use `register`, volatile, fake locals, assembly, or tautological control flow to force the standalone compiler.

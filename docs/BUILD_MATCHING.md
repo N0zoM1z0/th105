@@ -655,3 +655,11 @@ whole COFF section tail, while letting same-section DIR32 relocations resolve
 case labels relative to the function entry. As with sparse switches, audit the
 trailing table as compiler metadata; do not inflate authored-byte totals to
 include it.
+
+### Batch a polymorphic class only after vtable ownership closes identity
+
+For stripped virtual methods, use constructor/vtable evidence before structural similarity. Current `CBattleManager` constructor `0x00438CC0` writes vtable `0x006C1504`; current `CBattleManagerArcade` constructor `0x00438D80` calls the base constructor and overwrites the vptr with `0x006C154C`. Their shared slots justify one `BattleManagerVirtuals.cpp` match unit containing nine methods, each still compared independently against its current address. Do not infer a class method merely because another candidate has the same small body.
+
+A call-site can prove an unused-this member *view* even when the callee has another accepted standalone view. Several recovered manager pipelines preserve/reload `ECX=this` before `0x0046AF90/0x0046AFA0`; keeping those calls as member views naturally reproduces the target `mov ecx,esi` schedule while the existing 11-byte wrapper units remain unchanged. Record this as caller ABI evidence, not as a reason to mutate a globally accepted callee signature.
+
+Use source types to explain condition-code differences. `frame_counter_04` is unsigned: target `0x00472D80` skips on `jbe` after compare with 60, and changing only the narrow field from signed to unsigned converts standalone VC8 from `jle` to the exact target without altering behavior. Conversely, if a semantically complete function still differs only by register/value scheduling after several natural formulations—as with `0x00472A70`—leave it review-pending rather than adding compiler hints or fake work.
