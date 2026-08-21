@@ -3881,6 +3881,20 @@ profile = "vc8-sp1-probe-o2"
 enable_gs = false
 notes = "TH105 1.06a unused-receiver character-event forwarder into SharedEventState target +0x24. Keeping this wrapper in a separate TU is target-backed: with the setter definition visible VC8 inlines it, while the isolated TU naturally reproduces the linked 26-byte call body."
 
+[[units.cross-v106a-event-subobject130.functions]]
+address = "0x00434E40"
+symbol_base = "trigger_secondary_event_effect"
+rel32_targets = [
+  "?lookup_event_effect_record@th105@@YAHH@Z=0x0043C150",
+  "?emit_effect@InfoEffectEmitterView@th105@@QAEHHMMHH@Z=0x0046E9D0",
+]
+dir32_targets = [
+  "?g_secondary_event_effect_id@th105@@3HA=?g_secondary_event_effect_id@th105@@3HA",
+  "?g_info_effect_emitter@th105@@3PAUInfoEffectEmitterView@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A",
+  "__real@43a00000=__real@43a00000",
+  "__real@42000000=__real@42000000",
+]
+
 [[units.cross-v106a-shared-event-forwarder.functions]]
 address = "0x00476AD0"
 symbol_base = "set_shared_second_target"
@@ -4004,3 +4018,28 @@ notes = "TH105 1.06a info-effect emitter facade. Exact trigger_global_effect res
 [[units.cross-v106a-info-effect-emitter.functions]]
 address = "0x0046E9D0"
 symbol_base = "emit_effect"
+[units.cross-v106a-pair-embedded-mode]
+kind = "probe"
+source = "src/battle/PairEmbeddedMode.cpp"
+object = "build/match-units/CrossV106a_PairEmbeddedMode.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a pair/event mode transition. Exact battle-pair initialization fixes the unused-this member ABI; current body optionally calls primary event effect, emits lookup+2 at 320/32, synchronizes 0x006FA884/0x006FA880, and randomizes mode 14. Natural VC8 is 119/119 exact."
+
+[[units.cross-v106a-pair-embedded-mode.functions]]
+address = "0x00435CE0"
+symbol_base = "select_pair_mode_434780"
+rel32_targets = [
+  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+  "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
+  "?lookup_event_effect_record@th105@@YAHH@Z=0x0043C150",
+  "?emit_effect@InfoEffectEmitterView@th105@@QAEHHMMHH@Z=0x0046E9D0",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+]
+dir32_targets = [
+  "?g_secondary_event_effect_id@th105@@3HA=?g_secondary_event_effect_id@th105@@3HA",
+  "?g_pair_mode_primary@th105@@3HA=?g_fighter_state_4b8_default@th105@@3HA",
+  "?g_info_effect_emitter@th105@@3PAUInfoEffectEmitterView@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A",
+  "__real@43a00000=__real@43a00000",
+  "__real@42000000=__real@42000000",
+]

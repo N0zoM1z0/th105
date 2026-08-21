@@ -17,9 +17,9 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 288 functions / 49,832 bytes in 148
-  VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 188
-  functions / 36,345 bytes beyond the previous 100-function checkpoint. Candidate
+- The accepted 1.06a authored set contains 290 functions / 50,018 bytes in 149
+  VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 190
+  functions / 36,531 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
   establish hypotheses; canonical VC8 zero-difference comparisons establish
   exactness.
@@ -285,7 +285,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,020
+- Accepted boundaries and authored/library origins for the remaining 3,018
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.
@@ -422,3 +422,23 @@ ownership and virtual slot are semantic evidence. When the contract is promoted
 to a shared header, replay every accepted TU that previously carried a local
 forward declaration; here `EventSubobject130` remains 34/34 and 74/74 exact after
 the consolidation.
+### Caller-backed unused-this return ABI
+
+Do not infer a return contract from EAX residue in a callee that never explicitly
+constructs a result. `EventSubobject130::trigger_secondary_event_effect @
+0x00434E40` is the reference. IDA initially decompiles it as an `int`-returning
+stdcall-like function because the no-op path leaves the incoming id in EAX and
+the effect path leaves the virtual emitter result there. Fifteen current callers
+in `0x00473F90` instead prove the real source ABI: each sets `ECX` to
+`Fighter+0x130`, pushes one id, calls the helper, and immediately returns without
+consuming EAX. Modeling it as an unused-receiver `void EventSubobject130` member
+lets natural VC8 reproduce the target `jz` directly to the final `retn 4` and all
+67 bytes. An `int` source forces an extra constant return or different block
+layout.
+
+The adjacent `PairEmbeddedModeView::select_pair_mode_434780 @ 0x00435CE0` uses
+the same principle at larger scale. Its member identity comes from exact
+`initialize_battle_fighter_pair_46a490`; the body may leave `this` unused while
+calling other unused-this members. Preserve caller-proved class ABI even when
+the body does not dereference ECX. A decompiler's free/stdcall presentation is
+not stronger than repeated current call-site evidence plus canonical codegen.

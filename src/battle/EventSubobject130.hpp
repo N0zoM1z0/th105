@@ -9,6 +9,7 @@ struct EventSubobject130 {
     unsigned char storage_00[0x0c];
 
     int trigger_global_effect(int value);
+    void trigger_secondary_event_effect(int event_id);
     void *set_global_pair(float first, float second);
 };
 

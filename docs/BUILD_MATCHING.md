@@ -636,3 +636,13 @@ virtual dispatch. After replacing the local declaration in `EventSubobject130.cp
 with the shared header, rebuild both the new facade unit and the pre-existing
 caller unit; exactness of the new function does not by itself prove that header
 visibility/ODR changes left accepted callers unchanged.
+### Use caller consumption to distinguish void from incidental EAX
+
+A callee can leave useful-looking values in EAX without having a source-level
+return value. Before declaring an `int` ABI, inspect current callers. For
+`0x00434E40`, all fifteen switch callers set an `EventSubobject130` receiver,
+call the helper, and return without reading EAX. The truthful `void` member
+source compiles 67/67 exact; an `int` hypothesis makes VC8 materialize or preserve
+a return and changes the branch/epilogue layout. This is an ABI correction from
+current caller evidence, not permission to change return types merely to improve
+bytes.

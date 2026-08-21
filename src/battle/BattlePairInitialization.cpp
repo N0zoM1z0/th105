@@ -1,5 +1,6 @@
 #include "BattleController.hpp"
 #include "Collision.hpp"
+#include "PairEmbeddedMode.hpp"
 
 #include <cstring>
 
@@ -26,10 +27,6 @@ struct PairPostResetView {
 
 struct PairInputStateView {
     void reset_pair_input_427150();
-};
-
-struct PairEmbeddedModeView {
-    void select_pair_mode_434780(int mode, unsigned char publish);
 };
 
 struct PairRendererView;

@@ -14,10 +14,10 @@ seeds using current-target-backed structural remapping where appropriate.
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 288 authored functions, 696 classified exclusions, and 3,020 still awaiting origin/boundary review.
-- All 288 confirmed authored functions are source-present and canonical exact:
-  49,832 exact authored bytes across 148 configured VC8 units.
-- The newest retained-source/lifecycle migration wave added 188 functions / 36,345 bytes
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 290 authored functions, 696 classified exclusions, and 3,018 still awaiting origin/boundary review.
+- All 290 confirmed authored functions are source-present and canonical exact:
+  50,018 exact authored bytes across 149 configured VC8 units.
+- The newest retained-source/lifecycle migration wave added 190 functions / 36,531 bytes
   beyond the prior 100-function checkpoint. Structural instruction shape and
   relocation-masked bytes are used only for candidate ranking; every accepted
   function still requires current 1.06a semantic/relocation evidence and a fresh
@@ -37,6 +37,8 @@ seeds using current-target-backed structural remapping where appropriate.
 - `BattleAudioSetupView::set_stage_music_433860 @ 0x00434DE0` is 40/40 exact. Its semantic name comes from exact battle setup `0x00470880`; current body forwards stage/value/notify=1 to battle object manager `0x006FBCA0 -> 0x00467850` and mirrors stage to the already attested event-effect state `0x006FBCAC -> 0x00469D50`. No new relocation anchors were required.
 - `EventEffectStateView::set_event_id @ 0x00469DF0` is 29/29 exact. Changed ids update controller `+0` then ordinary `return publish_stage_state(g_battle_transition_mode)` naturally reuses the incoming stack slot and tail-jumps to `0x00469D50`; unchanged ids return directly. A shared `EventEffectState.hpp` now keeps the three recovered event/stage TUs on one ODR-consistent narrow contract.
 - `InfoEffectEmitterView::emit_effect @ 0x0046E9D0` is 49/49 exact. Exact `trigger_global_effect @ 0x00434E90` establishes the caller identity; current IDA shows the facade takes its polymorphic emitter subobject at `this+4`, calls vslot `+0x0C`, forwards the five caller arguments, and appends a real trailing zero argument. Moving the narrow emitter contract into `InfoEffectEmitter.hpp` leaves the existing 34/34 and 74/74 `EventSubobject130` helpers exact.
+- `EventSubobject130::trigger_secondary_event_effect @ 0x00434E40` is 67/67 exact. Fifteen current dispatch cases all pass `ECX = Fighter+0x130` and immediately return after the call, proving an unused-receiver `void` member rather than the decompiler's incidental-EAX `int` guess. The helper ignores id 16, publishes `0x006FA884`, then emits `lookup(id)+4` at 320/32.
+- `PairEmbeddedModeView::select_pair_mode_434780 @ 0x00435CE0` is 119/119 exact. Exact battle-pair initialization already owns the member edge; current body optionally publishes the primary effect, emits `lookup(mode)+2`, synchronizes mode globals `0x006FA884/0x006FA880`, and uses exact `selector_random_roll(14)` for mode 14. Extracting the view into `PairEmbeddedMode.hpp` leaves the original 279/279 caller exact.
 - The UI-selection state wave adds two authored exact helpers / 112 bytes. `has_ui_selection_state_changed @ 0x0043B6E0` is 24/24 exact from the current unsigned dword-state minus byte-snapshot predicate. `set_ui_selection_state_tracking @ 0x0043FFB0` is 88/88 exact and establishes `g_ui_selection_state @ 0x006FD290`, snapshot/fade bytes `0x006FD046/0x006FD047`, and checked `std::list<UiSelectionMenu*> @ 0x006FD288`; disabled nonzero state walks `back()` through the sentinel at base+4 and tail-calls the selected menu vslot +4. These globals are loader-zero virtual-tail storage, so relocation provenance must preserve that fact and the list's +4 addend.
 - `Menu::render_cursor @ 0x0043F9D0` is 55/55 exact from a narrow shared cursor-sprite view. Current IDA has twelve callers, proves receiver base `0x006E6958`, scale fields `+0x88/+0x8C`, direct render `0x00406BE0`, and the double `1/512` literal at `0x006C1860`. The match unit preserves one aggregate symbol and validates the two interior DIR32 references through symbol+addend mappings instead of inventing field globals.
 - The global input-state facade adds `is_menu_initial_press @ 0x0043ABD0` (31/31) and `set_menu_input_state @ 0x0043ABF0` (21/21). Both load receiver `0x006FC618` and forward unchanged byte/bool stack slots to already exact members `0x0040A660/0x0040A6B0`. Canonical PE mapping proves the receiver is loader-zero virtual-tail storage even though IDA presents a nonzero-looking inferred value; relocation provenance follows the PE mapping.
@@ -63,7 +65,7 @@ the current call target.
 ## Next bounded work
 
 Continue origin/boundary review so the authored denominator becomes meaningful,
-then expand exact recovery from the 288 accepted functions. Use
+then expand exact recovery from the 290 accepted functions. Use
 `scripts/rank_retained_exact.py --only-unconfigured` to prioritize historical
 exact source that never had an old match unit. Same-size zero non-relocation
 mismatch candidates are especially productive, but ambiguous template/clone
@@ -72,9 +74,9 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 3,020
+The 95% authored-function and authored-byte goals cannot be reported yet: 3,018
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 288/288
+global authored denominator is not established. Do not use the current 290/290
 exact subset as a substitute denominator.
 
 ## Routine checkpoint

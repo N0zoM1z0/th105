@@ -47,3 +47,4 @@ address,name,module,confidence,evidence
 0x006FC618,g_global_input_state,input,observed,Current 0x0043ABD0 and 0x0043ABF0 both load this receiver before canonical-exact state-table member calls; canonical PE places it in loader-zero virtual .data tail beyond raw-backed bytes
 0x006FA890,g_event_effect_id,battle,observed,Current EventSubobject130::trigger_global_effect writes the requested event id here before effect lookup; canonical target bytes are zero
 0x006FBCAC,g_event_effect_state,battle,observed,Current trigger_global_effect and adjacent battle/event paths load this shared state-controller pointer before 0x00469DF0/0x00469D50 state publication
+0x006FA884,g_secondary_event_effect_id,battle,observed,Exact 0x00434E40 writes this id before lookup and exact 0x00435CE0 mirrors selected pair mode here; current 0x00473F90 reads it across the 15-way mode dispatch

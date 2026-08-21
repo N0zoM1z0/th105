@@ -5,6 +5,7 @@
 namespace th105 {
 
 extern int g_event_effect_id;
+extern int g_secondary_event_effect_id;
 int __cdecl lookup_event_effect_record(int event_id);
 
 struct BattleObjectManagerPairView {
@@ -21,6 +22,20 @@ int EventSubobject130::trigger_global_effect(int value)
     g_info_effect_emitter->emit_effect(
         lookup_event_effect_record(value), 320.0f, 42.0f, 1, 1);
     return g_event_effect_state->set_event_id(value);
+}
+
+void EventSubobject130::trigger_secondary_event_effect(int event_id)
+{
+    if (event_id == 16)
+        return;
+
+    g_secondary_event_effect_id = event_id;
+    g_info_effect_emitter->emit_effect(
+        lookup_event_effect_record(event_id) + 4,
+        320.0f,
+        32.0f,
+        1,
+        1);
 }
 
 void *EventSubobject130::set_global_pair(float first, float second)
