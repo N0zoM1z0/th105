@@ -206,3 +206,36 @@ string. Updating those semantic identities made both
 (337 bytes) compile exactly from one `/GS` object. The accepted addresses are
 also mirrored into `config/known-globals.csv` so later agents need not rediscover
 the same cluster from magic constants.
+
+Normalized structural equality is insufficient to disambiguate clone families.
+The roster object-manager spawn family contains fifteen current 237-byte bodies
+with the same normalized instruction structure. Each identity was therefore
+established by walking the current spawn's first allocator callee into its
+object-pool allocator and observing the concrete vtable written after
+`CharacterObject_ctor`:
+
+| current spawn | allocator core | current class vtable |
+| --- | --- | --- |
+| `0x004938D0` | `0x00493340` | `ReimuObject` |
+| `0x004B9DB0` | `0x004B9920` | `MarisaObject` |
+| `0x004DF2C0` | `0x004DEE40` | `SakuyaObject` |
+| `0x004FAAD0` | `0x004FA630` | `AliceObject` |
+| `0x0051ED70` | `0x0051E8F0` | `PatchouliObject` |
+| `0x0053B1C0` | `0x0053ACB0` | `YoumuObject` |
+| `0x00555E80` | `0x00555A00` | `RemiliaObject` |
+| `0x0056DCB0` | `0x0056D6E0` | `YuyukoObject` |
+| `0x0058BF80` | `0x0058B990` | `YukariObject` |
+| `0x005AEB10` | `0x005AE670` | `SuikaObject` |
+| `0x005D2A80` | `0x005D25C0` | `UdongeObject` |
+| `0x005F78C0` | `0x005F7440` | `KomachiObject` |
+| `0x00618470` | `0x00617DF0` | `AyaObject` |
+| `0x00631140` | `0x00630CA0` | `IkuObject` |
+| `0x0064B580` | `0x0064B070` | `TenshiObject` |
+
+That evidence safely fans the retained shared `RosterObjectSpawns.cpp` source
+out to fourteen current functions, all of which fresh-compile to 237/237 exact.
+Sakuya is deliberately excluded from that exact wave: its current identity is
+proved by `??_7SakuyaObject@@6B@`, but the separate
+`SakuyaObjectSpawn.cpp` fresh object still mismatches at function offset `0x0D`.
+Identity, source presence, and exactness remain separate states even inside a
+clone family.

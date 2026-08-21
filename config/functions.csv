@@ -2193,7 +2193,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004938A0,5,0x004938A4,sub_4938A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004938B0,5,0x004938B4,sub_4938B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004938C0,8,0x004938C7,sub_4938C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x004938D0,237,0x004939BC,sub_4938D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x004938D0,237,0x004939BC,ReimuObjectManager_spawn_object,ReimuObjectManager_spawn_object,characters,matching,100.00,__thiscall,"ReimuObject * ReimuObjectManager_spawn_object(ReimuObjectManager * this, ReimuObject * parent, ReimuObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,src/characters/RosterObjectSpawns.cpp,python3 scripts/build.py --unit cross-v106a-roster-object-spawns --compare --json reports exact 237/237 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 zero-diff clone-family recovery. Current allocator chain writes ??_7ReimuObject@@6B@, positively identifying this 237-byte candidate before exact comparison."
 0x004939C0,81,0x00493A10,sub_4939C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00493A20,30,0x00493A3D,sub_493A20,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00493A40,126,0x00493ABD,sub_493A40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2235,7 +2235,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004B9D10,123,0x004B9D8A,sub_4B9D10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004B9D90,8,0x004B9D97,sub_4B9D90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004B9DA0,4,0x004B9DA3,sub_4B9DA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x004B9DB0,237,0x004B9E9C,sub_4B9DB0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x004B9DB0,237,0x004B9E9C,MarisaObjectManager_spawn_object,MarisaObjectManager_spawn_object,characters,matching,100.00,__thiscall,"MarisaObject * MarisaObjectManager_spawn_object(MarisaObjectManager * this, MarisaObject * parent, MarisaObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,src/characters/RosterObjectSpawns.cpp,python3 scripts/build.py --unit cross-v106a-roster-object-spawns --compare --json reports exact 237/237 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 zero-diff clone-family recovery. Current allocator chain writes ??_7MarisaObject@@6B@, positively identifying this 237-byte candidate before exact comparison."
 0x004B9EA0,81,0x004B9EF0,sub_4B9EA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004B9F00,30,0x004B9F1D,sub_4B9F00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004B9F20,126,0x004B9F9D,sub_4B9F20,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2290,7 +2290,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004FA9C0,117,0x004FAA34,sub_4FA9C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004FAA40,123,0x004FAABA,sub_4FAA40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004FAAC0,8,0x004FAAC7,sub_4FAAC0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x004FAAD0,237,0x004FABBC,sub_4FAAD0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x004FAAD0,237,0x004FABBC,AliceObjectManager_spawn_object,AliceObjectManager_spawn_object,characters,matching,100.00,__thiscall,"AliceObject * AliceObjectManager_spawn_object(AliceObjectManager * this, AliceObject * parent, AliceObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,src/characters/RosterObjectSpawns.cpp,python3 scripts/build.py --unit cross-v106a-roster-object-spawns --compare --json reports exact 237/237 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 zero-diff clone-family recovery. Current allocator chain writes ??_7AliceObject@@6B@, positively identifying this 237-byte candidate before exact comparison."
 0x004FABC0,81,0x004FAC10,sub_4FABC0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004FAC20,30,0x004FAC3D,sub_4FAC20,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004FAC40,138,0x004FACC9,sub_4FAC40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2319,7 +2319,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0051EC60,117,0x0051ECD4,sub_51EC60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0051ECE0,123,0x0051ED5A,sub_51ECE0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0051ED60,8,0x0051ED67,sub_51ED60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0051ED70,237,0x0051EE5C,sub_51ED70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0051ED70,237,0x0051EE5C,PatchouliObjectManager_spawn_object,PatchouliObjectManager_spawn_object,characters,matching,100.00,__thiscall,"PatchouliObject * PatchouliObjectManager_spawn_object(PatchouliObjectManager * this, PatchouliObject * parent, PatchouliObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,src/characters/RosterObjectSpawns.cpp,python3 scripts/build.py --unit cross-v106a-roster-object-spawns --compare --json reports exact 237/237 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 zero-diff clone-family recovery. Current allocator chain writes ??_7PatchouliObject@@6B@, positively identifying this 237-byte candidate before exact comparison."
 0x0051EE60,81,0x0051EEB0,sub_51EE60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0051EEC0,30,0x0051EEDD,sub_51EEC0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0051EEE0,126,0x0051EF5D,sub_51EEE0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2351,7 +2351,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0053B130,80,0x0053B17F,sub_53B130,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0053B180,32,0x0053B19F,sub_53B180,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0053B1A0,18,0x0053B1B1,sub_53B1A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0053B1C0,237,0x0053B2AC,sub_53B1C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0053B1C0,237,0x0053B2AC,YoumuObjectManager_spawn_object,YoumuObjectManager_spawn_object,characters,matching,100.00,__thiscall,"YoumuObject * YoumuObjectManager_spawn_object(YoumuObjectManager * this, YoumuObject * parent, YoumuObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,src/characters/RosterObjectSpawns.cpp,python3 scripts/build.py --unit cross-v106a-roster-object-spawns --compare --json reports exact 237/237 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 zero-diff clone-family recovery. Current allocator chain writes ??_7YoumuObject@@6B@, positively identifying this 237-byte candidate before exact comparison."
 0x0053B2B0,81,0x0053B300,sub_53B2B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0053B310,30,0x0053B32D,sub_53B310,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0053B330,159,0x0053B3CE,sub_53B330,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2379,7 +2379,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00555D70,117,0x00555DE4,sub_555D70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00555DF0,123,0x00555E6A,sub_555DF0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00555E70,8,0x00555E77,sub_555E70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00555E80,237,0x00555F6C,sub_555E80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00555E80,237,0x00555F6C,RemiliaObjectManager_spawn_object,RemiliaObjectManager_spawn_object,characters,matching,100.00,__thiscall,"RemiliaObject * RemiliaObjectManager_spawn_object(RemiliaObjectManager * this, RemiliaObject * parent, RemiliaObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,src/characters/RosterObjectSpawns.cpp,python3 scripts/build.py --unit cross-v106a-roster-object-spawns --compare --json reports exact 237/237 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 zero-diff clone-family recovery. Current allocator chain writes ??_7RemiliaObject@@6B@, positively identifying this 237-byte candidate before exact comparison."
 0x00555F70,81,0x00555FC0,sub_555F70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00555FD0,30,0x00555FED,sub_555FD0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00555FF0,126,0x0055606D,sub_555FF0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2409,7 +2409,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0056DBA0,117,0x0056DC14,sub_56DBA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0056DC20,123,0x0056DC9A,sub_56DC20,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0056DCA0,8,0x0056DCA7,sub_56DCA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0056DCB0,237,0x0056DD9C,sub_56DCB0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0056DCB0,237,0x0056DD9C,YuyukoObjectManager_spawn_object,YuyukoObjectManager_spawn_object,characters,matching,100.00,__thiscall,"YuyukoObject * YuyukoObjectManager_spawn_object(YuyukoObjectManager * this, YuyukoObject * parent, YuyukoObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,src/characters/RosterObjectSpawns.cpp,python3 scripts/build.py --unit cross-v106a-roster-object-spawns --compare --json reports exact 237/237 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 zero-diff clone-family recovery. Current allocator chain writes ??_7YuyukoObject@@6B@, positively identifying this 237-byte candidate before exact comparison."
 0x0056DDA0,8,0x0056DDA7,sub_56DDA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0056DDB0,81,0x0056DE00,sub_56DDB0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0056DE10,30,0x0056DE2D,sub_56DE10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2439,7 +2439,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0058BEE0,72,0x0058BF27,sub_58BEE0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0058BF30,37,0x0058BF54,sub_58BF30,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0058BF60,18,0x0058BF71,sub_58BF60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0058BF80,237,0x0058C06C,sub_58BF80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0058BF80,237,0x0058C06C,YukariObjectManager_spawn_object,YukariObjectManager_spawn_object,characters,matching,100.00,__thiscall,"YukariObject * YukariObjectManager_spawn_object(YukariObjectManager * this, YukariObject * parent, YukariObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,src/characters/RosterObjectSpawns.cpp,python3 scripts/build.py --unit cross-v106a-roster-object-spawns --compare --json reports exact 237/237 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 zero-diff clone-family recovery. Current allocator chain writes ??_7YukariObject@@6B@, positively identifying this 237-byte candidate before exact comparison."
 0x0058C070,81,0x0058C0C0,sub_58C070,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0058C0D0,30,0x0058C0ED,sub_58C0D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0058C0F0,126,0x0058C16D,sub_58C0F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2469,7 +2469,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x005AEA00,117,0x005AEA74,sub_5AEA00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005AEA80,123,0x005AEAFA,sub_5AEA80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005AEB00,8,0x005AEB07,sub_5AEB00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x005AEB10,237,0x005AEBFC,sub_5AEB10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x005AEB10,237,0x005AEBFC,SuikaObjectManager_spawn_object,SuikaObjectManager_spawn_object,characters,matching,100.00,__thiscall,"SuikaObject * SuikaObjectManager_spawn_object(SuikaObjectManager * this, SuikaObject * parent, SuikaObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,src/characters/RosterObjectSpawns.cpp,python3 scripts/build.py --unit cross-v106a-roster-object-spawns --compare --json reports exact 237/237 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 zero-diff clone-family recovery. Current allocator chain writes ??_7SuikaObject@@6B@, positively identifying this 237-byte candidate before exact comparison."
 0x005AEC00,81,0x005AEC50,sub_5AEC00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005AEC60,30,0x005AEC7D,sub_5AEC60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005AEC80,126,0x005AECFD,sub_5AEC80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2498,7 +2498,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x005D29D0,123,0x005D2A4A,sub_5D29D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005D2A50,8,0x005D2A57,sub_5D2A50,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005D2A60,18,0x005D2A71,sub_5D2A60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x005D2A80,237,0x005D2B6C,sub_5D2A80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x005D2A80,237,0x005D2B6C,UdongeObjectManager_spawn_object,UdongeObjectManager_spawn_object,characters,matching,100.00,__thiscall,"UdongeObject * UdongeObjectManager_spawn_object(UdongeObjectManager * this, UdongeObject * parent, UdongeObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,src/characters/RosterObjectSpawns.cpp,python3 scripts/build.py --unit cross-v106a-roster-object-spawns --compare --json reports exact 237/237 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 zero-diff clone-family recovery. Current allocator chain writes ??_7UdongeObject@@6B@, positively identifying this 237-byte candidate before exact comparison."
 0x005D2B70,81,0x005D2BC0,sub_5D2B70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005D2BD0,30,0x005D2BED,sub_5D2BD0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005D2BF0,126,0x005D2C6D,sub_5D2BF0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2524,7 +2524,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x005F77B0,117,0x005F7824,sub_5F77B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005F7830,123,0x005F78AA,sub_5F7830,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005F78B0,8,0x005F78B7,sub_5F78B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x005F78C0,237,0x005F79AC,sub_5F78C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x005F78C0,237,0x005F79AC,KomachiObjectManager_spawn_object,KomachiObjectManager_spawn_object,characters,matching,100.00,__thiscall,"KomachiObject * KomachiObjectManager_spawn_object(KomachiObjectManager * this, KomachiObject * parent, KomachiObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,src/characters/RosterObjectSpawns.cpp,python3 scripts/build.py --unit cross-v106a-roster-object-spawns --compare --json reports exact 237/237 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 zero-diff clone-family recovery. Current allocator chain writes ??_7KomachiObject@@6B@, positively identifying this 237-byte candidate before exact comparison."
 0x005F79B0,81,0x005F7A00,sub_5F79B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005F7A10,30,0x005F7A2D,sub_5F7A10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005F7A30,126,0x005F7AAD,sub_5F7A30,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2555,7 +2555,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00618280,8,0x00618287,sub_618280,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00618290,344,0x006183E7,sub_618290,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006183F0,117,0x00618464,sub_6183F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00618470,237,0x0061855C,sub_618470,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00618470,237,0x0061855C,AyaObjectManager_spawn_object,AyaObjectManager_spawn_object,characters,matching,100.00,__thiscall,"AyaObject * AyaObjectManager_spawn_object(AyaObjectManager * this, AyaObject * parent, AyaObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,src/characters/RosterObjectSpawns.cpp,python3 scripts/build.py --unit cross-v106a-roster-object-spawns --compare --json reports exact 237/237 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 zero-diff clone-family recovery. Current allocator chain writes ??_7AyaObject@@6B@, positively identifying this 237-byte candidate before exact comparison."
 0x00618560,81,0x006185B0,sub_618560,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006185C0,30,0x006185DD,sub_6185C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006185E0,126,0x0061865D,sub_6185E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2580,7 +2580,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00631030,117,0x006310A4,sub_631030,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006310B0,123,0x0063112A,sub_6310B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00631130,8,0x00631137,sub_631130,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00631140,237,0x0063122C,sub_631140,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00631140,237,0x0063122C,IkuObjectManager_spawn_object,IkuObjectManager_spawn_object,characters,matching,100.00,__thiscall,"IkuObject * IkuObjectManager_spawn_object(IkuObjectManager * this, IkuObject * parent, IkuObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,src/characters/RosterObjectSpawns.cpp,python3 scripts/build.py --unit cross-v106a-roster-object-spawns --compare --json reports exact 237/237 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 zero-diff clone-family recovery. Current allocator chain writes ??_7IkuObject@@6B@, positively identifying this 237-byte candidate before exact comparison."
 0x00631230,81,0x00631280,sub_631230,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00631290,30,0x006312AD,sub_631290,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006312B0,138,0x00631339,sub_6312B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2611,7 +2611,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0064B500,8,0x0064B507,sub_64B500,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0064B510,77,0x0064B55C,sub_64B510,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0064B560,27,0x0064B57A,sub_64B560,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0064B580,237,0x0064B66C,sub_64B580,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0064B580,237,0x0064B66C,TenshiObjectManager_spawn_object,TenshiObjectManager_spawn_object,characters,matching,100.00,__thiscall,"TenshiObject * TenshiObjectManager_spawn_object(TenshiObjectManager * this, TenshiObject * parent, TenshiObject * related, int action_id, float x, float y, signed char facing, unsigned char field_33c, const unsigned * copied_words, int copied_word_count)",false,src/characters/RosterObjectSpawns.cpp,python3 scripts/build.py --unit cross-v106a-roster-object-spawns --compare --json reports exact 237/237 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 zero-diff clone-family recovery. Current allocator chain writes ??_7TenshiObject@@6B@, positively identifying this 237-byte candidate before exact comparison."
 0x0064B670,81,0x0064B6C0,sub_64B670,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0064B6D0,30,0x0064B6ED,sub_64B6D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0064B6F0,126,0x0064B76D,sub_64B6F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

@@ -915,3 +915,151 @@ rel32_targets = [
   "BattlePhaseBlock_advance_scenario_script_page_458d10=0x0045A2E0",
 ]
 dir32_targets = ["?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A=?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A"]
+
+[units.cross-v106a-roster-object-spawns]
+kind = "probe"
+source = "src/characters/RosterObjectSpawns.cpp"
+object = "build/match-units/CrossV106a_RosterObjectSpawns.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a exact 14-member roster spawn clone family; each current candidate is class-disambiguated by its allocator-chain Object vtable before comparison. Sakuya remains separate and unresolved."
+
+[[units.cross-v106a-roster-object-spawns.functions]]
+address = "0x004938D0"
+symbol_base = "?spawn_object@ReimuObjectManager@th105@@QAEPAVReimuObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@ReimuObjectManagerBase@th105@@QAEPAVReimuObject@@XZ=0x004935E0",
+  "?push_back@?$deque@PAVReimuObject@@V?$allocator@PAVReimuObject@@@std@@@std@@QAEXABQAVReimuObject@@@Z=0x006183F0",
+  "??_U@YAPAXI@Z=0x00665B8A",
+  "_memcpy=0x0068AA30",
+]
+
+[[units.cross-v106a-roster-object-spawns.functions]]
+address = "0x004B9DB0"
+symbol_base = "?spawn_object@MarisaObjectManager@th105@@QAEPAVMarisaObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@MarisaObjectManagerBase@th105@@QAEPAVMarisaObject@@XZ=0x004B9BA0",
+  "?push_back@?$deque@PAVMarisaObject@@V?$allocator@PAVMarisaObject@@@std@@@std@@QAEXABQAVMarisaObject@@@Z=0x006183F0",
+  "??_U@YAPAXI@Z=0x00665B8A",
+  "_memcpy=0x0068AA30",
+]
+
+[[units.cross-v106a-roster-object-spawns.functions]]
+address = "0x004FAAD0"
+symbol_base = "?spawn_object@AliceObjectManager@th105@@QAEPAVAliceObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@AliceObjectManagerBase@th105@@QAEPAVAliceObject@@XZ=0x004FA8D0",
+  "?push_back@?$deque@PAVAliceObject@@V?$allocator@PAVAliceObject@@@std@@@std@@QAEXABQAVAliceObject@@@Z=0x006183F0",
+  "??_U@YAPAXI@Z=0x00665B8A",
+  "_memcpy=0x0068AA30",
+]
+
+[[units.cross-v106a-roster-object-spawns.functions]]
+address = "0x0051ED70"
+symbol_base = "?spawn_object@PatchouliObjectManager@th105@@QAEPAVPatchouliObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@PatchouliObjectManagerBase@th105@@QAEPAVPatchouliObject@@XZ=0x0051EB70",
+  "?push_back@?$deque@PAVPatchouliObject@@V?$allocator@PAVPatchouliObject@@@std@@@std@@QAEXABQAVPatchouliObject@@@Z=0x006183F0",
+  "??_U@YAPAXI@Z=0x00665B8A",
+  "_memcpy=0x0068AA30",
+]
+
+[[units.cross-v106a-roster-object-spawns.functions]]
+address = "0x0053B1C0"
+symbol_base = "?spawn_object@YoumuObjectManager@th105@@QAEPAVYoumuObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@YoumuObjectManagerBase@th105@@QAEPAVYoumuObject@@XZ=0x0053AF30",
+  "?push_back@?$deque@PAVYoumuObject@@V?$allocator@PAVYoumuObject@@@std@@@std@@QAEXABQAVYoumuObject@@@Z=0x006183F0",
+  "??_U@YAPAXI@Z=0x00665B8A",
+  "_memcpy=0x0068AA30",
+]
+
+[[units.cross-v106a-roster-object-spawns.functions]]
+address = "0x00555E80"
+symbol_base = "?spawn_object@RemiliaObjectManager@th105@@QAEPAVRemiliaObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@RemiliaObjectManagerBase@th105@@QAEPAVRemiliaObject@@XZ=0x00555C80",
+  "?push_back@?$deque@PAVRemiliaObject@@V?$allocator@PAVRemiliaObject@@@std@@@std@@QAEXABQAVRemiliaObject@@@Z=0x006183F0",
+  "??_U@YAPAXI@Z=0x00665B8A",
+  "_memcpy=0x0068AA30",
+]
+
+[[units.cross-v106a-roster-object-spawns.functions]]
+address = "0x0056DCB0"
+symbol_base = "?spawn_object@YuyukoObjectManager@th105@@QAEPAVYuyukoObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@YuyukoObjectManagerBase@th105@@QAEPAVYuyukoObject@@XZ=0x0056DA30",
+  "?push_back@?$deque@PAVYuyukoObject@@V?$allocator@PAVYuyukoObject@@@std@@@std@@QAEXABQAVYuyukoObject@@@Z=0x006183F0",
+  "??_U@YAPAXI@Z=0x00665B8A",
+  "_memcpy=0x0068AA30",
+]
+
+[[units.cross-v106a-roster-object-spawns.functions]]
+address = "0x0058BF80"
+symbol_base = "?spawn_object@YukariObjectManager@th105@@QAEPAVYukariObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@YukariObjectManagerBase@th105@@QAEPAVYukariObject@@XZ=0x0058BC10",
+  "?push_back@?$deque@PAVYukariObject@@V?$allocator@PAVYukariObject@@@std@@@std@@QAEXABQAVYukariObject@@@Z=0x006183F0",
+  "??_U@YAPAXI@Z=0x00665B8A",
+  "_memcpy=0x0068AA30",
+]
+
+[[units.cross-v106a-roster-object-spawns.functions]]
+address = "0x005AEB10"
+symbol_base = "?spawn_object@SuikaObjectManager@th105@@QAEPAVSuikaObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@SuikaObjectManagerBase@th105@@QAEPAVSuikaObject@@XZ=0x005AE910",
+  "?push_back@?$deque@PAVSuikaObject@@V?$allocator@PAVSuikaObject@@@std@@@std@@QAEXABQAVSuikaObject@@@Z=0x006183F0",
+  "??_U@YAPAXI@Z=0x00665B8A",
+  "_memcpy=0x0068AA30",
+]
+
+[[units.cross-v106a-roster-object-spawns.functions]]
+address = "0x005D2A80"
+symbol_base = "?spawn_object@UdongeObjectManager@th105@@QAEPAVUdongeObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@UdongeObjectManagerBase@th105@@QAEPAVUdongeObject@@XZ=0x005D2860",
+  "?push_back@?$deque@PAVUdongeObject@@V?$allocator@PAVUdongeObject@@@std@@@std@@QAEXABQAVUdongeObject@@@Z=0x006183F0",
+  "??_U@YAPAXI@Z=0x00665B8A",
+  "_memcpy=0x0068AA30",
+]
+
+[[units.cross-v106a-roster-object-spawns.functions]]
+address = "0x005F78C0"
+symbol_base = "?spawn_object@KomachiObjectManager@th105@@QAEPAVKomachiObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@KomachiObjectManagerBase@th105@@QAEPAVKomachiObject@@XZ=0x005F76C0",
+  "?push_back@?$deque@PAVKomachiObject@@V?$allocator@PAVKomachiObject@@@std@@@std@@QAEXABQAVKomachiObject@@@Z=0x006183F0",
+  "??_U@YAPAXI@Z=0x00665B8A",
+  "_memcpy=0x0068AA30",
+]
+
+[[units.cross-v106a-roster-object-spawns.functions]]
+address = "0x00618470"
+symbol_base = "?spawn_object@AyaObjectManager@th105@@QAEPAVAyaObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@AyaObjectManagerBase@th105@@QAEPAVAyaObject@@XZ=0x00618090",
+  "?push_back@?$deque@PAVAyaObject@@V?$allocator@PAVAyaObject@@@std@@@std@@QAEXABQAVAyaObject@@@Z=0x006183F0",
+  "??_U@YAPAXI@Z=0x00665B8A",
+  "_memcpy=0x0068AA30",
+]
+
+[[units.cross-v106a-roster-object-spawns.functions]]
+address = "0x00631140"
+symbol_base = "?spawn_object@IkuObjectManager@th105@@QAEPAVIkuObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@IkuObjectManagerBase@th105@@QAEPAVIkuObject@@XZ=0x00630F40",
+  "?push_back@?$deque@PAVIkuObject@@V?$allocator@PAVIkuObject@@@std@@@std@@QAEXABQAVIkuObject@@@Z=0x006183F0",
+  "??_U@YAPAXI@Z=0x00665B8A",
+  "_memcpy=0x0068AA30",
+]
+
+[[units.cross-v106a-roster-object-spawns.functions]]
+address = "0x0064B580"
+symbol_base = "?spawn_object@TenshiObjectManager@th105@@QAEPAVTenshiObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@TenshiObjectManagerBase@th105@@QAEPAVTenshiObject@@XZ=0x0064B310",
+  "?push_back@?$deque@PAVTenshiObject@@V?$allocator@PAVTenshiObject@@@std@@@std@@QAEXABQAVTenshiObject@@@Z=0x006183F0",
+  "??_U@YAPAXI@Z=0x00665B8A",
+  "_memcpy=0x0068AA30",
+]
