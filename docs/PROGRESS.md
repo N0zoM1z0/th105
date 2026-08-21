@@ -6,12 +6,12 @@ until each boundary is reconciled with target control flow.
 | Measure | Count |
 | --- | ---: |
 | IDA 1.06a function candidates | 4,001 |
-| Origin/boundary review pending | 3,945 |
-| Confirmed authored functions | 56 |
+| Origin/boundary review pending | 3,942 |
+| Confirmed authored functions | 59 |
 | Classified exclusions | 0 |
-| Source-present authored mappings | 56 |
-| Canonical exact functions | 56 |
-| Canonical exact authored bytes | 4,644 |
+| Source-present authored mappings | 59 |
+| Canonical exact functions | 59 |
+| Canonical exact authored bytes | 5,319 |
 
 The former 1.06 reconstruction state is intentionally excluded. Exact totals
 count only 1.06a functions whose configured VC8 unit passes the canonical

@@ -93,6 +93,22 @@ xrefs, vtables/RTTI, neighboring recovered anchors, and current relocation
 semantics to establish identity, then require the same canonical zero-difference
 comparison.
 
+A structural size difference can also expose a stale historical boundary rather
+than changed authored logic. `BattleController::dispatch_battle_state_frame`
+ranked as 529 old bytes versus a 535-byte current IDA body. Fresh VC8 output
+matched all 535 current bytes exactly: the old ledger had stopped after the SEH
+`pop ecx` and omitted `pop edi; pop esi; add esp, 0x10; ret`. Inspect the COFF
+section tail and current control-flow terminator before editing source merely to
+explain a size delta. Keep adjacent compiler-owned switch tables outside the
+function body when current IDA/COFF evidence places them after the return.
+
+Do not validate a BSS/global DIR32 destination by reading bytes beyond a PE
+section's initialized raw data and treating file padding as the variable's
+initial value. For globals, establish address identity from current semantics
+and xrefs, and use a relocation validation mode appropriate to the target's
+actual storage. If the existing comparator cannot represent that evidence
+without pretending padding is data, leave the candidate blocked.
+
 The comparator's `symbol_base` identifies a COFF symbol and need not equal the
 durable semantic name in `reccmp-functions.csv`. This is useful when retained
 source still carries an old address suffix or when a class-qualified compiled

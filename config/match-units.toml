@@ -583,3 +583,53 @@ notes = "TH105 1.06a structural-remap exact CharacterObject constructor; base ct
 address = "0x00492F90"
 symbol_base = "CharacterObject_ctor"
 rel32_targets = ["??0AttackObject@@QAE@XZ=0x0045FA30"]
+
+[units.cross-v106a-fighter-sequence-effect]
+kind = "probe"
+source = "src/battle/FighterSequenceEffect.cpp"
+object = "build/match-units/CrossV106a_FighterSequenceEffect.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a structural-remap fighter sequence-effect reset/color helper; -640.0f DIR32 literal is allowlisted from current target/IDA evidence."
+
+[[units.cross-v106a-fighter-sequence-effect.functions]]
+address = "0x004652B0"
+symbol_base = "FighterSequenceEffect_reset_and_set_color"
+dir32_targets = ["__real@c4200000=__real@c4200000"]
+
+[units.cross-v106a-battle-round-resolution]
+kind = "probe"
+source = "src/battle/BattleRoundResolution.cpp"
+object = "build/match-units/CrossV106a_BattleRoundResolution.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a structural-remap terminal round effect publisher; round counter DIR32 and collision-effect REL32 destinations are current-target-backed."
+
+[[units.cross-v106a-battle-round-resolution.functions]]
+address = "0x00470D00"
+symbol_base = "publish_fighter_terminal_effect_470300"
+rel32_targets = ["?emit_effect_at_collision_center@CollisionContext@th105@@QAEXHH@Z=0x0046B650"]
+dir32_targets = ["?g_round_counter@th105@@3EA=?g_round_counter@th105@@3EA"]
+
+[units.cross-v106a-battle-dispatcher]
+kind = "probe"
+source = "src/battle/BattleDispatcher.cpp"
+object = "build/match-units/CrossV106a_BattleDispatcher.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a full-boundary exact central battle dispatcher; current 535-byte body restores a six-byte epilogue omitted by the historical 529-byte provisional ledger boundary."
+
+[[units.cross-v106a-battle-dispatcher.functions]]
+address = "0x00471340"
+symbol_base = "dispatch_battle_state_frame_470940"
+rel32_targets = [
+  "?has_ui_selection_state_changed@th105@@YA_NXZ=0x0043B6E0",
+  "?is_menu_initial_press@th105@@YA_NHHHH@Z=0x0043ABD0",
+  "?get_session_setup_option@th105@@YAIXZ=0x0043B070",
+  "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
+  "operator_new=0x00689DCB",
+  "??0SceneExitTransition@th105@@QAE@PAUBattleController@1@@Z=0x00440B50",
+  "?install_menu_object@th105@@YAXPAX@Z=0x0043B0F0",
+  "?get_player2_input@th105@@YAPAUBattleInputGate@1@XZ=0x0043B060",
+  "?poll_synchronized_input_4708b0@BattleInputGate@th105@@QAEEXZ=0x004712B0",
+]

@@ -18,8 +18,8 @@ notes or source hypotheses.
   object boundaries.
 - The current IDA database exposes 4,001 function candidates. Their auto-names
   and unreviewed sizes remain provisional analysis output.
-- The accepted 1.06a authored set contains 56 functions / 4,644 bytes in 37
-  VC8 match units. The structural-remap waves added nine functions / 1,340 bytes after
+- The accepted 1.06a authored set contains 59 functions / 5,319 bytes in 40
+  VC8 match units. The structural-remap waves added twelve functions / 2,015 bytes after
   structural-instruction fingerprinting selected candidates and current-target
   IDA/call evidence reconciled their relocations; canonical VC8 comparisons,
   not the fingerprints, established exactness.
@@ -55,6 +55,15 @@ notes or source hypotheses.
   were accepted only after their 1.06a vtable destinations (`0x006C2B3C` and
   `0x006C400C`) were recorded in the relocation allowlist and the fresh VC8
   comparison became zero-difference.
+- A historical exact ledger boundary may itself be incomplete. The current
+  `BattleController_dispatch_battle_state_frame` body is 535 bytes and fresh VC8
+  matches all 535; the old 529-byte ledger stopped immediately before the final
+  six-byte epilogue. Treat size deltas as boundary questions before assuming a
+  source-level patch.
+- Never use bytes that happen to occupy file padding beyond a PE section's raw
+  initialized data as proof of a BSS/global variable's contents. Keep such
+  DIR32 candidates blocked until address/storage identity can be represented
+  truthfully by the comparator.
 - A durable semantic mapping name and the COFF `symbol_base` used by the exact
   comparator may differ. Keep semantic names stable in the ledgers and use the
   actual compiled symbol for object extraction.
