@@ -276,7 +276,7 @@ The pre-1.06a historical checkpoint used by default contains 152 old exact
 `.cpp` hypotheses that were absent from its match-unit graph; the migration
 survey could uniquely extract 147 of those COFF symbols. The first tracked
 migration wave raised the accepted 1.06a set from 100 functions / 13,487 bytes
-to 190 functions / 26,876 bytes. This is still a candidate queue only. Every promotion still requires a current boundary/semantic audit,
+to 196 functions / 27,594 bytes. This is still a candidate queue only. Every promotion still requires a current boundary/semantic audit,
 current-target relocation reconciliation, a tracked match unit, and canonical
 zero-difference replay.
 
@@ -433,3 +433,19 @@ and the canonical comparator matches those complete extents.
 The same stale-boundary pattern extends beyond one UI class. `CSelectScenario::~CSelectScenario` was historically 271 bytes but its current `/GS` VC8 section tail and target body are both 277 bytes; `CMenuSelect::update_player_assignment` was historically 400 but current/fresh is 406. In both cases the retained source behavior already matches current IDA semantics and the added bytes merely complete the final epilogue/security-check sequence. When a high-gap structural candidate differs only in size, inspect the full COFF section tail before touching source.
 
 An undefined COFF data symbol can still have a truthful address identity without weakening import checks. `MenuResult.cpp` and `SelectScenario.cpp` only declare the source-owned `_title_color_vtable_anchor`; the anchor itself is independently exact-backed at `0x006C0624`. Their probe objects therefore use a separate address-validated relocation view of that same symbol instead of pretending the undefined symbol is an import or copying bytes into the TU. Keep literal validation on the defining TU and use address validation only for independently established external views.
+Relocation-free loops are useful boundary authorities because there is no target
+address bookkeeping to hide a mismatch. The two fighter reset functions at
+`0x0046AFF0` and `0x0046B080` compare 130/130 and 222/222 directly, while their
+historical body-set rows were three bytes shorter. Current IDA field-offset
+sequences and the exact two-fighter loop establish the complete extents.
+
+When an old row already says a longer contiguous span was exact, treat that span
+as a strong boundary hypothesis rather than reusing the shorter body-set size.
+`consume_counter_484_steps` is 149 bytes rather than the old 138-byte body row,
+and `advance_menu_item_wave` is 147 rather than 137. Fresh VC8 section tails,
+current control flow, and canonical comparison all agree on those complete
+lengths.
+
+Historical row size can lag even its own earlier evidence. Both fighter reset rows recorded 127/219 bytes while their old evidence already cited exact 130/222-byte contiguous spans; `consume_counter_484_steps` similarly recorded 138 while citing 149, and `advance_menu_item_wave` recorded 137 while citing 147. Current IDA semantics plus fresh VC8 section tails reproduce 130/222/149/147 exactly. When migrating retained exact source, parse the evidence text and object tail as well as the CSV size column.
+
+Identical-code folding does not make class ownership unknowable when a current vtable names the shared address. `CFileReader` vtable `0x006C0F34` directly points its seek slot at `0x00407C50` and its scalar-deleting-destructor slot at `0x0041B890`; the neighboring slots are already accepted reader methods. `0x00407C50` may also serve a writer through ICF, but one tracked binary function can truthfully be the shared implementation used by the reader. Current SetFilePointer/CloseHandle IAT semantics plus the vtable chain allow 25/25 and 45/45 exact promotion without pretending the bodies are class-unique.

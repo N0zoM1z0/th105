@@ -188,3 +188,9 @@ CMenuResult_render
 CMenuResult_dtor
 CSelectScenario_dtor
 CMenuSelect_update_player_assignment
+reset_fighter_fields_6bc_728
+reset_fighter_fields_6b4_728
+consume_counter_484_steps
+advance_menu_item_wave
+CFileReader_seek
+CFileReader_scalar_deleting_destructor

@@ -154,3 +154,5 @@ _title_color_vtable_anchor_external,0x006C0624,80ae4000,0,"Address-validated ext
 __ehhandler$??1CSelectScenario@th105@@UAE@XZ,0x006B779F,8b542408,0,"IDA 1.06a disassembly of 0x00425230 labels SEH_425230 at 0x006B779F and the destructor prologue pushes it; attested 2026-08-21",address
 ??_7CSelectScenario@th105@@6B@,0x006C0C18,b0564200,0,"IDA 1.06a CSelectScenario destructor restores its class vtable from 0x006C0C18 before releasing scene-owned resources; target first entry bytes attested 2026-08-21",address
 __ehhandler$?update_player_assignment@CMenuSelect@th105@@AAE_NXZ,0x006BA210,8b542408,0,"IDA 1.06a current CMenuSelect update_player_assignment prologue references SEH_448060 at 0x006BA210; handler prefix target bytes attested 2026-08-21",address
+__real@4024000000000000,0x006D6EC0,0000000000002440,0,"IDA 1.06a advance_menu_item_wave loads IEEE-754 double 10.0 from 0x006D6EC0 for the cosine wave amplitude; target bytes attested 2026-08-21",literal
+__imp__SetFilePointer@16,0x006C0090,6e522e00,0,"TH105 1.06a CFileReader seek at 0x00407C50 calls KERNEL32 SetFilePointer through IAT 0x006C0090; canonical raw thunk bytes attested 2026-08-21",literal

@@ -189,3 +189,9 @@ CMenuResult_render,0x00446F70,function
 CMenuResult_dtor,0x00447590,function
 CSelectScenario_dtor,0x00425230,function
 CMenuSelect_update_player_assignment,0x00448060,function
+reset_fighter_fields_6bc_728,0x0046AFF0,function
+reset_fighter_fields_6b4_728,0x0046B080,function
+consume_counter_484_steps,0x0045B260,function
+advance_menu_item_wave,0x004258F0,function
+CFileReader_seek,0x00407C50,function
+CFileReader_scalar_deleting_destructor,0x0041B890,function

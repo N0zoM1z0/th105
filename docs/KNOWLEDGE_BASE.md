@@ -17,9 +17,9 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,002 candidates because current EH/vtable/canonical evidence recovered a missed independent CFileReader destructor entry at `0x0040CEB0`; IDA had attached that code as a distant tail chunk. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 190 functions / 26,876 bytes in 108
-  VC8 match units. The newest whole-corpus retained-source wave added ninety
-  functions / 13,389 bytes beyond the previous 100-function checkpoint. Candidate
+- The accepted 1.06a authored set contains 196 functions / 27,594 bytes in 112
+  VC8 match units. The newest whole-corpus retained-source wave added ninety-six
+  functions / 14,107 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
   establish hypotheses; canonical VC8 zero-difference comparisons establish
   exactness.
@@ -156,6 +156,13 @@ notes or source hypotheses.
   subsequent slots are the accepted reader methods `0x0040CED0`, `0x00407C40`,
   `0x00407C50`, and `0x0040CF00`. This is the reference way to split tiny
   polymorphic destructor clones.
+- The same current `CFileReader` vtable `0x006C0F34` closes two more class
+  identities: its seek slot points directly to `0x00407C50`, a 25/25 exact
+  SetFilePointer forwarder using the handle at `this+4`, and its first slot points
+  to scalar-deleting destructor `0x0041B890`, which restores the reader vptr,
+  CloseHandles the file, conditionally deletes on flag bit 0, and is 45/45 exact.
+  The seek machine body may be folded/shared with a writer, but the reader's
+  source-level ownership is independently established by this vtable edge.
 - IDA currently chunks `0x0040CEB0` under an unrelated large function and the
   original 4,001-row inventory omitted it. Canonical target layout gives a hard
   boundary: `INT3` padding at `0x0040CEA5..0x0040CEAF`, the 21-byte RET-terminated
@@ -185,8 +192,25 @@ notes or source hypotheses.
   restores `CMenuResult` vtable `0x006C2070`, clears fifteen `0x108`-stride result
   lists, and tears down design/guide/vector/base state. Accept the 270/256 current
   boundaries, not the stale historical sizes.
+- The same boundary rule applies to relocation-free fighter reset loops.
+  `reset_fighter_fields_6bc_728 @ 0x0046AFF0` is 130/130 and
+  `reset_fighter_fields_6b4_728 @ 0x0046B080` is 222/222. IDA shows both iterate
+  exactly two fighter pointers from the collision context and clear the retained
+  field sets; the old body-set sizes 127/219 simply omitted the final three bytes.
+- `consume_counter_484_steps @ 0x0045B260` is 149/149 exact. For each requested
+  step while counter `+0x484` is positive, it subtracts 200 with zero clamp,
+  mirrors to `+0x482`, clears `+0x486`, and calls the exact-backed InfoManager
+  with the fighter source byte and `counter/200`. The historical 138-byte row
+  already documented a 149-byte contiguous exact span; prefer that full span.
+- `advance_menu_item_wave @ 0x004258F0` is 147/147 exact. Current IDA confirms
+  twelve menu entries with 20-frame staggering, a 1080-period/720-flat gate, and
+  `10 - cosine(angle) * 10` for the active wave. The retained 137-byte body row
+  had already been matched over the full 147-byte contiguous span including
+  internal loop-alignment padding.
 - Stale historical extents are now a recurring migration failure mode, not a one-off. In addition to MT19937 and CMenuResult render/dtor, `CSelectScenario::~CSelectScenario` grows from 271 to 277 bytes and `CMenuSelect::update_player_assignment` from 400 to 406; fresh VC8 section tails and current control flow agree exactly, and no source behavior change is required. Check full section tails before treating a size delta as codegen drift.
 - External source-owned vtable anchors need not be redefined just to satisfy a probe object. `_title_color_vtable_anchor` is independently established at `0x006C0624`; MenuResult/SelectScenario use an address-validated external relocation view while the defining TU retains literal validation. This preserves one semantic anchor without weakening the comparator's fail-closed import rule.
+- Historical `size` can disagree with historical exact evidence itself. Fighter resets (127/219 rows vs 130/222 exact spans), `consume_counter_484_steps` (138 vs 149), and `advance_menu_item_wave` (137 vs 147) all reproduce the larger current/fresh VC8 extents. Treat old size columns as hypotheses even when the old row said matching.
+- ICF/shared code can still have target-backed authored ownership through vtables. The current `CFileReader` vtable `0x006C0F34` points to scalar deleting dtor `0x0041B890` and seek `0x00407C50` alongside accepted reader methods; that class chain closes the identity even if another class also reuses the same implementation address.
 - Structural clone ties need class/caller evidence, not old address order. The
   367-byte Yukari mirrored-command gate at `0x0058C170` was accepted only after
   its sole current fighter dispatcher, nearby exact Yukari anchors, and all five
@@ -215,7 +239,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,139
+- Accepted boundaries and authored/library origins for the remaining 3,133
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.

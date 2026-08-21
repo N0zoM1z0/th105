@@ -2567,3 +2567,68 @@ dir32_targets = [
   "__ehhandler$?update_player_assignment@CMenuSelect@th105@@AAE_NXZ=__ehhandler$?update_player_assignment@CMenuSelect@th105@@AAE_NXZ",
   "___security_cookie=___security_cookie",
 ]
+
+[units.cross-v106a-fighter-reset-fields]
+kind = "probe"
+source = "src/battle/FighterResets.cpp"
+object = "build/match-units/CrossV106a_FighterResets.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a fighter reset boundary recovery. Both functions are relocation-free; current IDA field-offset sequences match the retained two-fighter reset semantics. Historical body sizes omitted the final three bytes, while fresh VC8 section tails are 130 and 222 bytes."
+
+[[units.cross-v106a-fighter-reset-fields.functions]]
+address = "0x0046AFF0"
+symbol_base = "reset_fighter_fields_6bc_728"
+
+[[units.cross-v106a-fighter-reset-fields.functions]]
+address = "0x0046B080"
+symbol_base = "reset_fighter_fields_6b4_728"
+
+[units.cross-v106a-hit-counter-consume]
+kind = "probe"
+source = "src/battle/HitScratch.cpp"
+object = "build/match-units/CrossV106a_HitScratchCounter.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a fighter counter-step boundary recovery. Historical 138-byte body row omitted the remainder of the already-evidenced 149-byte contiguous span; current IDA semantics and fresh VC8 section tail agree. The sole DIR32 is exact-backed g_info_manager."
+
+[[units.cross-v106a-hit-counter-consume.functions]]
+address = "0x0045B260"
+symbol_base = "consume_counter_484_steps"
+dir32_targets = ["?g_info_manager@th105@@3PAUInfoManager@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A"]
+
+[units.cross-v106a-title-menu-wave]
+kind = "probe"
+source = "src/ui/Title.cpp"
+object = "build/match-units/CrossV106a_TitleMenuWave.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a title menu-wave boundary recovery. Historical 137-byte body row already documented a 147-byte exact contiguous span; current IDA confirms twelve staggered offsets with cosine amplitude 10, and fresh VC8 section tail is 147 bytes."
+
+[[units.cross-v106a-title-menu-wave.functions]]
+address = "0x004258F0"
+symbol_base = "advance_menu_item_wave"
+rel32_targets = ["_lookup_orientation_cosine=0x004064B0"]
+dir32_targets = ["__real@4024000000000000=__real@4024000000000000"]
+
+[units.cross-v106a-plain-file-reader-virtuals]
+kind = "probe"
+source = "src/assets/FileReader.cpp"
+object = "build/match-units/CrossV106a_PlainFileReaderVirtuals.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a plain CFileReader seek and scalar-deleting-dtor recovery. Current CFileReader vtable 0x006C0F34 directly contains scalar dtor 0x0041B890 and seek 0x00407C50 alongside accepted reader slots, disambiguating shared/folded bodies by class ownership. Historical scalar-dtor size omitted ret 4."
+
+[[units.cross-v106a-plain-file-reader-virtuals.functions]]
+address = "0x00407C50"
+symbol_base = "CFileReader_seek"
+dir32_targets = ["__imp__SetFilePointer@16=__imp__SetFilePointer@16"]
+
+[[units.cross-v106a-plain-file-reader-virtuals.functions]]
+address = "0x0041B890"
+symbol_base = "CFileReader_scalar_deleting_destructor"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = [
+  "??_7CFileReader@th105@@6B@=??_7CFileReader@th105@@6B@",
+  "__imp__CloseHandle@4=__imp__CloseHandle@4",
+]
