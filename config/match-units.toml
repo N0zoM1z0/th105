@@ -2838,7 +2838,7 @@ source = "src/characters/CharacterObjectManagerCtors.cpp"
 object = "build/match-units/CrossV106a_CharacterObjectManagerCtors.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "TH105 1.06a fifteen-member CharacterObjectManager ctor family recovered from natural VC8 multiple inheritance. Candidate discovery requires an exact 123-byte non-relocation signature and a +0x3D REL32 call to the already-exact class-specific TObjectManagerBase ctor; current derived vtables/preallocate/SEH are then decoded from the same target body. No address-delta or clone-order inference is used."
+notes = "TH105 1.06a fifteen-member CharacterObjectManager lifetime family recovered from natural VC8 multiple inheritance. The 15 ctor/scalar pairs remain exact; making the trivial ICharacterObjectManager destructor visible in this TU preserves every 123-byte ctor while making the implicit derived normal destructors exactly 81 bytes. Scalar-wrapper calls independently identify all 15 dtor addresses; current EH and exact secondary-base dtor edges close each specialization."
 
 [[units.cross-v106a-character-object-manager-ctors.functions]]
 address = "0x00493750"
@@ -3185,13 +3185,205 @@ rel32_targets = [
   "??3@YAXPAX@Z=0x006898EA",
 ]
 
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x00491B90"
+symbol_base = "??1ICharacterObjectManager@@UAE@XZ"
+dir32_targets = ["??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@"]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x00491BA0"
+symbol_base = "??_GICharacterObjectManager@@UAEPAXI@Z"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = ["??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@"]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x004939C0"
+symbol_base = "??1?$CharacterObjectManager@VReimu@@VReimuObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@UAE@XZ=0x00493640",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CharacterObjectManager@VReimu@@VReimuObject@@@@UAE@XZ=__ehhandler$??1?$CharacterObjectManager@VReimu@@VReimuObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x004B9EA0"
+symbol_base = "??1?$CharacterObjectManager@VMarisa@@VMarisaObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@UAE@XZ=0x004B9C00",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CharacterObjectManager@VMarisa@@VMarisaObject@@@@UAE@XZ=__ehhandler$??1?$CharacterObjectManager@VMarisa@@VMarisaObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x004DF3B0"
+symbol_base = "??1?$CharacterObjectManager@VSakuya@@VSakuyaObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@UAE@XZ=0x004DF120",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CharacterObjectManager@VSakuya@@VSakuyaObject@@@@UAE@XZ=__ehhandler$??1?$CharacterObjectManager@VSakuya@@VSakuyaObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x004FABC0"
+symbol_base = "??1?$CharacterObjectManager@VAlice@@VAliceObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@UAE@XZ=0x004FA930",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CharacterObjectManager@VAlice@@VAliceObject@@@@UAE@XZ=__ehhandler$??1?$CharacterObjectManager@VAlice@@VAliceObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x0051EE60"
+symbol_base = "??1?$CharacterObjectManager@VPatchouli@@VPatchouliObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@UAE@XZ=0x0051EBD0",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CharacterObjectManager@VPatchouli@@VPatchouliObject@@@@UAE@XZ=__ehhandler$??1?$CharacterObjectManager@VPatchouli@@VPatchouliObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x0053B2B0"
+symbol_base = "??1?$CharacterObjectManager@VYoumu@@VYoumuObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@UAE@XZ=0x0053AF90",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CharacterObjectManager@VYoumu@@VYoumuObject@@@@UAE@XZ=__ehhandler$??1?$CharacterObjectManager@VYoumu@@VYoumuObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x00555F70"
+symbol_base = "??1?$CharacterObjectManager@VRemilia@@VRemiliaObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@UAE@XZ=0x00555CE0",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CharacterObjectManager@VRemilia@@VRemiliaObject@@@@UAE@XZ=__ehhandler$??1?$CharacterObjectManager@VRemilia@@VRemiliaObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x0056DDB0"
+symbol_base = "??1?$CharacterObjectManager@VYuyuko@@VYuyukoObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@UAE@XZ=0x0056DB10",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CharacterObjectManager@VYuyuko@@VYuyukoObject@@@@UAE@XZ=__ehhandler$??1?$CharacterObjectManager@VYuyuko@@VYuyukoObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x0058C070"
+symbol_base = "??1?$CharacterObjectManager@VYukari@@VYukariObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@UAE@XZ=0x0058BC70",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CharacterObjectManager@VYukari@@VYukariObject@@@@UAE@XZ=__ehhandler$??1?$CharacterObjectManager@VYukari@@VYukariObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x005AEC00"
+symbol_base = "??1?$CharacterObjectManager@VSuika@@VSuikaObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@UAE@XZ=0x005AE970",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CharacterObjectManager@VSuika@@VSuikaObject@@@@UAE@XZ=__ehhandler$??1?$CharacterObjectManager@VSuika@@VSuikaObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x005D2B70"
+symbol_base = "??1?$CharacterObjectManager@VUdonge@@VUdongeObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@UAE@XZ=0x005D28C0",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CharacterObjectManager@VUdonge@@VUdongeObject@@@@UAE@XZ=__ehhandler$??1?$CharacterObjectManager@VUdonge@@VUdongeObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x005F79B0"
+symbol_base = "??1?$CharacterObjectManager@VKomachi@@VKomachiObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@UAE@XZ=0x005F7720",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CharacterObjectManager@VKomachi@@VKomachiObject@@@@UAE@XZ=__ehhandler$??1?$CharacterObjectManager@VKomachi@@VKomachiObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x00618560"
+symbol_base = "??1?$CharacterObjectManager@VAya@@VAyaObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@UAE@XZ=0x006180F0",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CharacterObjectManager@VAya@@VAyaObject@@@@UAE@XZ=__ehhandler$??1?$CharacterObjectManager@VAya@@VAyaObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x00631230"
+symbol_base = "??1?$CharacterObjectManager@VIku@@VIkuObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@UAE@XZ=0x00630FA0",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CharacterObjectManager@VIku@@VIkuObject@@@@UAE@XZ=__ehhandler$??1?$CharacterObjectManager@VIku@@VIkuObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x0064B670"
+symbol_base = "??1?$CharacterObjectManager@VTenshi@@VTenshiObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@UAE@XZ=0x0064B370",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CharacterObjectManager@VTenshi@@VTenshiObject@@@@UAE@XZ=__ehhandler$??1?$CharacterObjectManager@VTenshi@@VTenshiObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+]
+
+
 [units.cross-v106a-roster-manager-base-dtors]
 kind = "probe"
 source = "src/characters/TObjectManagerBase.cpp"
 object = "build/match-units/CrossV106a_TObjectManagerBaseDtors.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "TH105 1.06a fourteen standalone TObjectManagerBase destructors recovered from the real template lifetime. CollisionList has a non-throwing destructor: VC8 therefore keeps EH state 1 while calling its normal destructor, matching target normal/EH cleanup paths exactly. Yuyuko is excluded because LTCG replaces its standalone 100-byte base dtor with a 27-byte derived tail-jump to the shared release helper."
+notes = "TH105 1.06a fifteen standalone TObjectManagerBase destructors plus their vtable-owned scalar deleting wrappers, all recovered from the real template lifetime. CollisionList has a non-throwing destructor, so VC8 keeps EH state 1 while calling its normal destructor. Yuyuko is now independently closed at 0x0056DB10 by its 0x006C560C vtable/scalar edge and class-specific handle-manager dtor."
 
 [[units.cross-v106a-roster-manager-base-dtors.functions]]
 address = "0x00493640"
@@ -3388,6 +3580,141 @@ dir32_targets = [
   "___security_cookie=___security_cookie",
   "??_7?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@6B@",
 ]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x0056DB10"
+symbol_base = "??1?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@UAE@XZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
+  "??1CollisionList@th105@@QAE@XZ=0x00435EB0",
+  "??1?$CHandleManagerEx@VYuyukoObject@@@@UAE@XZ=0x0056D2A0",
+]
+dir32_targets = [
+  "__ehhandler$??1?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@UAE@XZ=__ehhandler$??1?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x004936B0"
+symbol_base = "??_G?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@UAE@XZ=0x00493640",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x004B9C70"
+symbol_base = "??_G?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@UAE@XZ=0x004B9C00",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x004DF190"
+symbol_base = "??_G?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@UAE@XZ=0x004DF120",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x004FA9A0"
+symbol_base = "??_G?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@UAE@XZ=0x004FA930",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x0051EC40"
+symbol_base = "??_G?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@UAE@XZ=0x0051EBD0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x0053B000"
+symbol_base = "??_G?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@UAE@XZ=0x0053AF90",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x00555D50"
+symbol_base = "??_G?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@UAE@XZ=0x00555CE0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x0056DB80"
+symbol_base = "??_G?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@UAE@XZ=0x0056DB10",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x0058BCE0"
+symbol_base = "??_G?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@UAE@XZ=0x0058BC70",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x005AE9E0"
+symbol_base = "??_G?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@UAE@XZ=0x005AE970",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x005D2930"
+symbol_base = "??_G?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@UAE@XZ=0x005D28C0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x005F7790"
+symbol_base = "??_G?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@UAE@XZ=0x005F7720",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x00618160"
+symbol_base = "??_G?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@UAE@XZ=0x006180F0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x00631010"
+symbol_base = "??_G?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@UAE@XZ=0x00630FA0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x0064B3E0"
+symbol_base = "??_G?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@UAE@XZ=0x0064B370",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
 
 [units.cross-v106a-pat-group-lifetime]
 kind = "probe"

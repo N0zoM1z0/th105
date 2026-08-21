@@ -20,7 +20,7 @@ class Tenshi;
 
 class ICharacterObjectManager {
 public:
-    virtual ~ICharacterObjectManager();
+    virtual ~ICharacterObjectManager() {}
 };
 
 template <typename FighterType, typename ObjectType>
