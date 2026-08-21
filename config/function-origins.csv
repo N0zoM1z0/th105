@@ -1324,7 +1324,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0043F8D0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043F900,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043F970,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0043F9D0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0043F9D0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043FA10,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043FAF0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043FB60,unknown,,review,unknown,ida-1.06a-initial-inventory

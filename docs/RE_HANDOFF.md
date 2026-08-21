@@ -14,10 +14,10 @@ seeds using current-target-backed structural remapping where appropriate.
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 281 authored functions, 696 classified exclusions, and 3,027 still awaiting origin/boundary review.
-- All 281 confirmed authored functions are source-present and canonical exact:
-  49,533 exact authored bytes across 143 configured VC8 units.
-- The newest retained-source/lifecycle migration wave added 181 functions / 36,046 bytes
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 282 authored functions, 696 classified exclusions, and 3,026 still awaiting origin/boundary review.
+- All 282 confirmed authored functions are source-present and canonical exact:
+  49,588 exact authored bytes across 144 configured VC8 units.
+- The newest retained-source/lifecycle migration wave added 182 functions / 36,101 bytes
   beyond the prior 100-function checkpoint. Structural instruction shape and
   relocation-masked bytes are used only for candidate ranking; every accepted
   function still requires current 1.06a semantic/relocation evidence and a fresh
@@ -34,6 +34,7 @@ seeds using current-target-backed structural remapping where appropriate.
 - `try_dispatch_flagged_gate_actions_220_224 @ 0x00493B40` is 258/258 exact. Current IDA shows calls from all fifteen roster fighter dispatchers and the established phase/counter callees. The target has three truthful success tails: action 222 keeps its own consume-and-return path, action 220 owns a second counter/return path, and actions 223/224 jump into the latter. Preserving that already-observed CFG in ordinary C++ makes VC8 reproduce all internal branch displacements exactly; no assembly, dead code, padding, or register forcing is used.
 - The shared event-helper wave adds five authored exact functions / 127 bytes without changing any of the fourteen exact roster event bridges. `SharedEventState` setters `0x004272B0/0x004272D0` are 17/17 each, `synchronize_targets @ 0x004272F0` is 33/33, `EventSubobject130::set_global_pair @ 0x00434E10` is 34/34, and the unused-receiver `set_shared_second_target @ 0x00476AD0` is 26/26. Fourteen exact callers establish the common state ABI, while the forwarder must remain in a separate TU: making the target setter body visible lets VC8 inline it, unlike the linked 1.06a call body.
 - The UI-selection state wave adds two authored exact helpers / 112 bytes. `has_ui_selection_state_changed @ 0x0043B6E0` is 24/24 exact from the current unsigned dword-state minus byte-snapshot predicate. `set_ui_selection_state_tracking @ 0x0043FFB0` is 88/88 exact and establishes `g_ui_selection_state @ 0x006FD290`, snapshot/fade bytes `0x006FD046/0x006FD047`, and checked `std::list<UiSelectionMenu*> @ 0x006FD288`; disabled nonzero state walks `back()` through the sentinel at base+4 and tail-calls the selected menu vslot +4. These globals are loader-zero virtual-tail storage, so relocation provenance must preserve that fact and the list's +4 addend.
+- `Menu::render_cursor @ 0x0043F9D0` is 55/55 exact from a narrow shared cursor-sprite view. Current IDA has twelve callers, proves receiver base `0x006E6958`, scale fields `+0x88/+0x8C`, direct render `0x00406BE0`, and the double `1/512` literal at `0x006C1860`. The match unit preserves one aggregate symbol and validates the two interior DIR32 references through symbol+addend mappings instead of inventing field globals.
 - `character_key_to_name @ 0x0043BF80` is 78/78 exact from the same tracked `std::map<int,String28>` contract already backing exact `resolve_scenario_event_name @ 0x0043BFD0`. Current resource/spell callers independently use the forward key-to-name direction; fresh VC8 checked iterators and `String28` SSO/heap `c_str()` selection reproduce the full target body. The emitted `std::map<int,String28>::find` COMDAT is itself raw-exact and inventory-unique at current `0x006A4D60`, so it is separately excluded as compiler-generated.
 - `config/claims.csv` remains header-only. IDA Pro remains the sole semantic
   backend.
@@ -57,7 +58,7 @@ the current call target.
 ## Next bounded work
 
 Continue origin/boundary review so the authored denominator becomes meaningful,
-then expand exact recovery from the 281 accepted functions. Use
+then expand exact recovery from the 282 accepted functions. Use
 `scripts/rank_retained_exact.py --only-unconfigured` to prioritize historical
 exact source that never had an old match unit. Same-size zero non-relocation
 mismatch candidates are especially productive, but ambiguous template/clone
@@ -66,9 +67,9 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 3,027
+The 95% authored-function and authored-byte goals cannot be reported yet: 3,026
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 281/281
+global authored denominator is not established. Do not use the current 282/282
 exact subset as a substitute denominator.
 
 ## Routine checkpoint

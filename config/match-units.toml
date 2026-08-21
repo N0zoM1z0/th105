@@ -3901,3 +3901,23 @@ dir32_targets = [
   "?g_ui_selection_fade@th105@@3EA=?g_ui_selection_fade@th105@@3EA",
   "?g_ui_selection_menu_stack@th105@@3V?$list@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@std@@A=?g_ui_selection_menu_stack@th105@@3V?$list@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@std@@A",
 ]
+
+
+[units.cross-v106a-menu-render-cursor]
+kind = "probe"
+source = "src/ui/MenuRenderCursor.cpp"
+object = "build/match-units/CrossV106a_MenuRenderCursor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a shared Menu cursor renderer. Current IDA has twelve callers; object base 0x006E6958, scale fields +0x88/+0x8C, direct sprite render 0x00406BE0, and double 1/512 are independently target-backed. Symbol+addend DIR32 mappings preserve one aggregate object instead of inventing field globals."
+
+[[units.cross-v106a-menu-render-cursor.functions]]
+address = "0x0043F9D0"
+symbol_base = "Menu_render_cursor"
+rel32_targets = ["?render@MenuCursorSpriteView@th105@@QAEXMM@Z=0x00406BE0"]
+dir32_targets = [
+  "?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A=?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A",
+  "?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A+0x88=g_menu_cursor_sprite_scale_fields",
+  "?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A+0x8C=g_menu_cursor_sprite_scale_fields",
+  "__real@3f60000000000000=__real@3f60000000000000",
+]

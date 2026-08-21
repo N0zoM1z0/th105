@@ -565,3 +565,23 @@ Preserve the container base and relocation addend separately. The target trackin
 ### One container contract, two ownership outcomes
 
 An exact-backed STL container may support both authored wrappers and compiler-generated specializations in the same TU. `g_scenario_event_name_map @ 0x006FCF70` is already established by exact `resolve_scenario_event_name @ 0x0043BFD0` as `std::map<int,String28>`. Adding the truthful forward lookup `find(character_key)->second.c_str()` to that tracked TU makes VC8 reproduce `character_key_to_name @ 0x0043BF80` all 78/78, including checked-iterator validation and the `String28` SSO/heap branch. The same compile emits the concrete `std::map<int,String28>::find` specialization as a 105-byte relocation-free COMDAT whose raw bytes have exactly one current-inventory hit, `0x006A4D60`. Promote the wrapper as authored and exclude the specialization as generated; a common source file or caller edge does not collapse those ownership layers.
+
+### Preserve aggregate fields with symbol+addend DIR32 mappings
+
+When one source object is referenced both by its base and by interior fields,
+do not split those fields into fake globals to satisfy the comparator.
+`Menu::render_cursor @ 0x0043F9D0` uses one cursor sprite at `0x006E6958`; VC8
+emits DIR32 relocations for the base and for the same COFF symbol with addends
+`0x88` and `0x8C`. `compare-function.py` supports function-local
+`COFF_SYMBOL+0xADDEND=ALLOWLIST_KEY` overrides, so the match unit keeps the
+aggregate identity while independently attesting the two field addresses. The
+helper then compiles naturally to the target 55/55 bytes.
+
+Use literal validation when the probe object supplies the initialized bytes
+being selected. Use address validation for an independently established
+aggregate-field identity when the source probe does not own a corresponding
+initialized object payload. In both cases, keep the allowlist narrow to the
+observed addends and verify the canonical target bytes/address before exact
+acceptance. This mechanism is not permission to use arbitrary addends as byte
+patches; the object layout and each interior reference must come from current
+target semantics.

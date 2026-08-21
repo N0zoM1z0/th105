@@ -280,3 +280,4 @@ set_shared_second_target,0x00476AD0,function
 character_key_to_name,0x0043BF80,function
 has_ui_selection_state_changed,0x0043B6E0,function
 set_ui_selection_state_tracking,0x0043FFB0,function
+Menu_render_cursor,0x0043F9D0,function

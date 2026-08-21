@@ -1324,7 +1324,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0043F8D0,48,0x0043F8FF,sub_43F8D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0043F900,97,0x0043F960,sub_43F900,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0043F970,83,0x0043F9C2,sub_43F970,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0043F9D0,55,0x0043FA06,sub_43F9D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0043F9D0,55,0x0043FA06,sub_43F9D0,Menu_render_cursor,ui,matching,100.00,__thiscall,"void Menu_render_cursor(Menu * this, float x, float y, float scale)",false,src/ui/MenuRenderCursor.cpp,python3 scripts/build.py --unit cross-v106a-menu-render-cursor --compare --json reports exact 55/55 against TH105 1.06a,,"Current target has twelve callers. The helper scales the shared cursor sprite X axis by 1/512, fixes Y scale to 1.0, then directly calls the current sprite render body; aggregate base/addends and literal are independently attested."
 0x0043FA10,215,0x0043FAE6,sub_43FA10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0043FAF0,103,0x0043FB56,sub_43FAF0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0043FB60,142,0x0043FBED,sub_43FB60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

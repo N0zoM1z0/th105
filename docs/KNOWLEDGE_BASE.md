@@ -17,9 +17,9 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 281 functions / 49,533 bytes in 143
-  VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 181
-  functions / 36,046 bytes beyond the previous 100-function checkpoint. Candidate
+- The accepted 1.06a authored set contains 282 functions / 49,588 bytes in 144
+  VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 182
+  functions / 36,101 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
   establish hypotheses; canonical VC8 zero-difference comparisons establish
   exactness.
@@ -285,7 +285,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,027
+- Accepted boundaries and authored/library origins for the remaining 3,026
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.
@@ -314,3 +314,22 @@ accepted zero-difference functions; they are not cross-version delta guesses.
   clones. Current template-vtable writes separate five effect/UI instantiations
   from fifteen roster-character specializations; all fifteen roster ctors are
   canonical exact under the retained `/GS` profile.
+
+### Aggregate DIR32 addends preserve object identity
+
+`Menu::render_cursor @ 0x0043F9D0` is the reference for a shared aggregate whose
+base and interior fields all appear as absolute relocations. Current IDA shows
+twelve callers, loads the shared cursor sprite base `0x006E6958` as the render
+receiver, writes scale fields at `+0x88/+0x8C`, and calls the current sprite
+render body `0x00406BE0`. Natural C++ expressing `scale_x = scale * (1/512)`,
+`scale_y = 1.0f`, then `render(x,y)` reproduces all 55 bytes under pinned VC8.
+
+Keep one semantic aggregate symbol. The comparator can map
+`COFF_SYMBOL+0x88` and `COFF_SYMBOL+0x8C` to a separately attested addend
+allowlist while mapping bare `COFF_SYMBOL` to the object base. Do not invent
+standalone globals for fields merely because their absolute addresses appear in
+the target. For initialized literals, retain literal-byte validation; for an
+aggregate field whose object section bytes are not independently represented by
+the probe, address validation plus target-backed field identity is the truthful
+model. This is relocation evidence only: canonical zero-difference comparison
+still decides exactness.
