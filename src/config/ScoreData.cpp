@@ -2,9 +2,11 @@
 
 namespace th105 {
 
+extern ScoreData g_score_data;
+
 ScoreData *get_score_data()
 {
-    return reinterpret_cast<ScoreData *>(0x006e7238);
+    return &g_score_data;
 }
 
 } // namespace th105

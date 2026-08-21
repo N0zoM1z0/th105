@@ -2,14 +2,17 @@
 
 namespace th105 {
 
+extern volatile GameMode g_game_mode;
+extern MatchSetup g_match_setup;
+
 GameMode get_game_mode()
 {
-    return *reinterpret_cast<volatile GameMode *>(0x006e62ec);
+    return g_game_mode;
 }
 
 MatchSetup *get_match_setup()
 {
-    return reinterpret_cast<MatchSetup *>(0x006e6fe8);
+    return &g_match_setup;
 }
 
 } // namespace th105

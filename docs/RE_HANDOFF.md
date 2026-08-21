@@ -14,10 +14,10 @@ seeds using current-target-backed structural remapping where appropriate.
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,002 after current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0`, which IDA had attached as a distant tail chunk. Current reviewed state is 196 authored functions, 673 classified exclusions, and 3,133 still awaiting origin/boundary review.
-- All 196 confirmed authored functions are source-present and canonical exact:
-  27,594 exact authored bytes across 112 configured VC8 units.
-- The newest retained-source migration wave added ninety-six functions / 14,107 bytes
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 205 authored functions, 673 classified exclusions, and 3,126 still awaiting origin/boundary review.
+- All 205 confirmed authored functions are source-present and canonical exact:
+  28,219 exact authored bytes across 119 configured VC8 units.
+- The newest retained-source migration wave added 105 functions / 14,732 bytes
   beyond the prior 100-function checkpoint. Structural instruction shape and
   relocation-masked bytes are used only for candidate ranking; every accepted
   function still requires current 1.06a semantic/relocation evidence and a fresh
@@ -44,7 +44,7 @@ the current call target.
 ## Next bounded work
 
 Continue origin/boundary review so the authored denominator becomes meaningful,
-then expand exact recovery from the 196 accepted functions. Use
+then expand exact recovery from the 205 accepted functions. Use
 `scripts/rank_retained_exact.py --only-unconfigured` to prioritize historical
 exact source that never had an old match unit. Same-size zero non-relocation
 mismatch candidates are especially productive, but ambiguous template/clone
@@ -53,9 +53,9 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 3,133
+The 95% authored-function and authored-byte goals cannot be reported yet: 3,126
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 196/196
+global authored denominator is not established. Do not use the current 205/205
 exact subset as a substitute denominator.
 
 ## Routine checkpoint

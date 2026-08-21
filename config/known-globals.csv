@@ -35,3 +35,7 @@ address,name,module,confidence,evidence
 0x006FA1FC,g_mt19937_index,engine,observed,Exact 0x004066B0 reads/writes this MT19937 index; target initial dword is 625
 0x006FDEF0,g_mt19937_state,engine,observed,Exact 0x004066B0 indexes this 624-word loader-zero MT19937 state array with standard 227/623 split
 0x006FA418,g_mt19937_twist_xor,engine,observed,Exact 0x004066B0 indexes this two-dword MT19937 twist table; target bytes are 0 and 0x9908B0DF
+0x006FBD4C,g_game_mode,battle,observed,Current 0x0043AC40 reads this dword and accepted battle setup resolves the getter as get_game_mode
+0x006FCA48,g_match_setup,battle,observed,Current 0x0043AC50 returns this MatchSetup object; accepted roster setup and current SelectScenario enter use the getter
+0x006FC598,g_game_config,config,observed,Current 0x0043AF10 returns this object and SelectScenario enter reads default_game_type at +0x64
+0x006FCC98,g_score_data,config,observed,Current 0x0043AF20 returns this ScoreData object and accepted sequence-finalization code consumes it

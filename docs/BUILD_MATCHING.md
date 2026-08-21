@@ -276,7 +276,7 @@ The pre-1.06a historical checkpoint used by default contains 152 old exact
 `.cpp` hypotheses that were absent from its match-unit graph; the migration
 survey could uniquely extract 147 of those COFF symbols. The first tracked
 migration wave raised the accepted 1.06a set from 100 functions / 13,487 bytes
-to 196 functions / 27,594 bytes. This is still a candidate queue only. Every promotion still requires a current boundary/semantic audit,
+to 205 functions / 28,219 bytes. This is still a candidate queue only. Every promotion still requires a current boundary/semantic audit,
 current-target relocation reconciliation, a tracked match unit, and canonical
 zero-difference replay.
 
@@ -401,8 +401,9 @@ missed. `0x0040CEB0..0x0040CEC4` is surrounded on both sides by `INT3` padding
 and followed by accepted `CFileReader::read @ 0x0040CED0`, while IDA incorrectly
 attributes the address to a remote multi-chunk function. Add the observed
 21-byte candidate to `functions.csv` first so the normal ledger gate remains in
-force; only then run canonical comparison and promote it. This changed the
-corrected inventory from 4,001 to 4,002 candidates.
+force; only then run canonical comparison and promote it. This first correction changed the tracked inventory from 4,001 to 4,002
+candidates. Later target-backed source-level phase entries at `0x00464630` and
+`0x00464780` raise the current corrected inventory to 4,004.
 
 Do not inherit historical function extents when source and current code agree on
 a larger body. `mt19937_next_u32` was historically recorded as 271 bytes, but
@@ -449,3 +450,28 @@ lengths.
 Historical row size can lag even its own earlier evidence. Both fighter reset rows recorded 127/219 bytes while their old evidence already cited exact 130/222-byte contiguous spans; `consume_counter_484_steps` similarly recorded 138 while citing 149, and `advance_menu_item_wave` recorded 137 while citing 147. Current IDA semantics plus fresh VC8 section tails reproduce 130/222/149/147 exactly. When migrating retained exact source, parse the evidence text and object tail as well as the CSV size column.
 
 Identical-code folding does not make class ownership unknowable when a current vtable names the shared address. `CFileReader` vtable `0x006C0F34` directly points its seek slot at `0x00407C50` and its scalar-deleting-destructor slot at `0x0041B890`; the neighboring slots are already accepted reader methods. `0x00407C50` may also serve a writer through ICF, but one tracked binary function can truthfully be the shared implementation used by the reader. Current SetFilePointer/CloseHandle IAT semantics plus the vtable chain allow 25/25 and 45/45 exact promotion without pretending the bodies are class-unique.
+Six-byte global getters are the opposite of a useful structural clone family.
+Once the immediate address is masked, every `mov eax, imm32; ret` getter is
+identical, so scanner score/gap cannot establish identity. Use current callers
+and returned-object field semantics instead. In 1.06a this closes game mode
+`0x0043AC40 -> [0x006FBD4C]`, MatchSetup `0x0043AC50 -> 0x006FCA48`, GameConfig
+`0x0043AF10 -> 0x006FC598`, and ScoreData `0x0043AF20 -> 0x006FCC98`. Expressing
+those addresses as semantic extern globals keeps the C++ natural and turns each
+old literal into one ordinary DIR32 relocation; all four getters then compare
+6/6 exact.
+
+An IDA tail chunk can become a first-class source-level function without editing
+the IDB. The exact wrappers at `0x0046AF90/0x0046AFA0` provide unique entry edges
+to `0x00464630/0x00464780`; current body semantics give the five-pass
+action/owned-object phase and three-pass position/status/timer phase; fresh VC8
+section tails are exactly 323 and 187 bytes. Add those target-backed entries to
+the corrected inventory, let the normal ledger gate run, and accept them only
+after 323/323 and 187/187 canonical comparison. This preserves fail-closed
+boundary discipline while recovering code that auto-analysis stores only as
+remote chunks.
+
+IDA tail-chunk ownership can hide a complete source-level function from candidate scanners. Exact wrappers `0x0046AF90` and `0x0046AFA0` load `g_fighter_phase_context` and tail-jump to `0x00464630` and `0x00464780`. IDA attaches each destination as a wrapper chunk, but the destinations are complete RET-terminated 323-byte and 187-byte bodies. Fresh `FighterPhases.cpp` emits sections of exactly those sizes with zero non-relocation mismatches, and canonical relocation replay is 323/323 and 187/187. Add such target-backed boundaries to `functions.csv`; do not mutate IDA merely to make its function list match the tracked ledger. Candidate-ranking tools that enumerate only standalone IDA functions will miss this class of exact source.
+
+Vtable ownership is also the preferred way to resolve scalar-deleting-destructor clone ties. Current vtables identify `CMenuResult @ 0x00447890`, `CProfileMenu @ 0x0044D6E0`, and `CEffectSprite @ 0x0041F6F0`; fresh VC8 produces exact 30/30, 30/30, and 31/31 wrappers. A structurally similar candidate is not a substitute for the class vtable edge. The `CProfileMenu` 422-byte primary destructor remains deliberately non-exact: its member offsets agree, but standalone VC8 differs in SSO free-register allocation and one member-dtor schedule, so the exact scalar wrapper does not justify forcing the primary destructor.
+
+Small retained absolute-address getters are best migrated as semantic globals, not rewritten constants. Current accepted callers establish `g_game_mode`, `g_match_setup`, `g_game_config`, and `g_score_data`; replacing the stale 1.06 absolutes with extern objects leaves ordinary DIR32 relocations and makes all four six-byte getters exact.

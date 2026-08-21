@@ -2,9 +2,11 @@
 
 namespace th105 {
 
+extern GameConfig g_game_config;
+
 GameConfig *get_game_config()
 {
-    return reinterpret_cast<GameConfig *>(0x006e6b38);
+    return &g_game_config;
 }
 
 } // namespace th105

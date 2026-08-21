@@ -16,14 +16,14 @@ notes or source hypotheses.
 - Rich-header records point to compiler build 50727 and include 42 C++ LTCG
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
-- The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,002 candidates because current EH/vtable/canonical evidence recovered a missed independent CFileReader destructor entry at `0x0040CEB0`; IDA had attached that code as a distant tail chunk. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 196 functions / 27,594 bytes in 112
-  VC8 match units. The newest whole-corpus retained-source wave added ninety-six
-  functions / 14,107 bytes beyond the previous 100-function checkpoint. Candidate
+- The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
+- The accepted 1.06a authored set contains 205 functions / 28,219 bytes in 119
+  VC8 match units. The newest whole-corpus retained-source wave added 105
+  functions / 14,732 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
   establish hypotheses; canonical VC8 zero-difference comparisons establish
   exactness.
-- The current origin census has 673 target-backed exclusions: 417 VC8 runtime functions selected from SHA-pinned VC8 SP1 archives, 44 zlib 1.2.3 functions bounded by current-target provenance strings, 19 direct import thunks whose current names/opcodes are attested, 39 Ogg/Vorbis functions whose current candidate bytes are inventory-unique matches of relocation-free COMDATs, and 154 additional Ogg/Vorbis functions whose non-relocation bytes uniquely match relocation-bearing COMDATs re-extracted from the SHA-pinned official Xiph Win32 SDK 1.0.1. The relocated anchors are fail-closed: every relocation must stay inside the candidate boundary, REL32 fields must belong to CALL/JMP/Jcc forms, at least 70% and 24 bytes of each candidate must remain exact non-relocation evidence, the COMDAT tail may contain only alignment bytes, and the fingerprint must be unique across all 4,002 tracked candidates. `config/function-origin-rules.toml` and `scripts/function-origins.py` replay all target/archive checks before materializing the census.
+- The current origin census has 673 target-backed exclusions: 417 VC8 runtime functions selected from SHA-pinned VC8 SP1 archives, 44 zlib 1.2.3 functions bounded by current-target provenance strings, 19 direct import thunks whose current names/opcodes are attested, 39 Ogg/Vorbis functions whose current candidate bytes are inventory-unique matches of relocation-free COMDATs, and 154 additional Ogg/Vorbis functions whose non-relocation bytes uniquely match relocation-bearing COMDATs re-extracted from the SHA-pinned official Xiph Win32 SDK 1.0.1. The relocated anchors are fail-closed: every relocation must stay inside the candidate boundary, REL32 fields must belong to CALL/JMP/Jcc forms, at least 70% and 24 bytes of each candidate must remain exact non-relocation evidence, the COMDAT tail may contain only alignment bytes, and the fingerprint must be unique across all 4,004 tracked candidates. `config/function-origin-rules.toml` and `scripts/function-origins.py` replay all target/archive checks before materializing the census.
 
 ## Repository decisions
 
@@ -136,11 +136,7 @@ notes or source hypotheses.
   callback phase, while `0x0046AFA0` jumps to `0x00464780`, whose three passes
   are position, transient-status, and timer cleanup. Both wrappers are 11/11
   exact after semantic global migration.
-- A source-level callee may survive in the linked target only as an internal LTCG
-  entry. It is valid to map a REL32 relocation to that observed entry when its
-  body semantics establish identity; do not create or claim a standalone IDA
-  function boundary merely to make the comparator happy. The two battle phase
-  wrappers above are the reference case.
+- A source-level callee may survive in the linked target only as an IDA tail chunk. It is valid to map a REL32 relocation to that observed entry when body semantics establish identity. When stronger evidence also proves an independent source/compiler boundary—an exact wrapper tail-jump to the entry, a complete RET-terminated body, and a fresh VC8 section of the same extent—add a tracked candidate without mutating IDA. The fighter phase entries `0x00464630` (323 bytes) and `0x00464780` (187 bytes) are the reference cases.
 - `run_post_update_callbacks_and_global_state @ 0x0046AFB0` is 51/51 exact after
   replacing stale 1.06 globals with exact-backed `g_info_manager` at
   `0x006FBCA8` and shared battle-setup state at `0x006FBCC0`; its current helper
@@ -167,9 +163,11 @@ notes or source hypotheses.
   original 4,001-row inventory omitted it. Canonical target layout gives a hard
   boundary: `INT3` padding at `0x0040CEA5..0x0040CEAF`, the 21-byte RET-terminated
   body at `0x0040CEB0..0x0040CEC4`, more `INT3` padding through `0x0040CECF`,
-  then accepted `CFileReader::read @ 0x0040CED0`. The corrected inventory therefore
-  has 4,002 candidates. Preserve target-backed boundary corrections in the ledger
-  rather than mutating IDA to satisfy the build.
+  then accepted `CFileReader::read @ 0x0040CED0`. This first boundary correction
+  raised the tracked inventory from 4,001 to 4,002. The later source-level phase
+  entries at `0x00464630` and `0x00464780` raise the current corrected inventory
+  to 4,004. Preserve target-backed boundary corrections in the ledger rather than
+  mutating IDA to satisfy the build.
 - `mt19937_next_u32 @ 0x004066B0` is 279/279 exact. Current IDA confirms the
   standard 624-word MT19937 twist loops, fallback seed 5489, and tempering masks.
   The historical 271-byte row was a stale boundary; fresh VC8 and current target
@@ -207,10 +205,30 @@ notes or source hypotheses.
   `10 - cosine(angle) * 10` for the active wave. The retained 137-byte body row
   had already been matched over the full 147-byte contiguous span including
   internal loop-alignment padding.
+- Tiny `mov eax, imm32; ret` getters are a structural dead end for ranking: the
+  immediate is exactly the identity-bearing field that relocation normalization
+  erases. Current caller semantics instead establish `get_game_mode @ 0x0043AC40`
+  reading `0x006FBD4C`, `get_match_setup @ 0x0043AC50` returning `0x006FCA48`,
+  `get_game_config @ 0x0043AF10` returning `0x006FC598`, and `get_score_data @
+  0x0043AF20` returning `0x006FCC98`. The GameConfig identity is independently
+  closed by current SelectScenario code reading `getter()+0x64` as
+  `default_game_type`; the other three getters already have accepted semantic
+  callers. Replacing retained 1.06 absolute literals with extern semantic globals
+  makes all four six-byte functions naturally exact.
+- The source-level fighter phase bodies previously used only as LTCG tail
+  destinations are themselves canonical exact: `run_active_character_and_owned_object_callbacks
+  @ 0x00464630` is 323/323 and `commit_fighter_physics_status_timers @ 0x00464780`
+  is 187/187. Their exact 11-byte wrappers uniquely jump to these entries, current
+  bodies preserve the five-pass and three-pass semantics respectively, and fresh
+  VC8 section tails establish the complete boundaries. IDA tail-chunk ownership
+  is therefore not a reason to exclude a source-level authored function when the
+  target entry, bounded body, and canonical bytes all agree.
 - Stale historical extents are now a recurring migration failure mode, not a one-off. In addition to MT19937 and CMenuResult render/dtor, `CSelectScenario::~CSelectScenario` grows from 271 to 277 bytes and `CMenuSelect::update_player_assignment` from 400 to 406; fresh VC8 section tails and current control flow agree exactly, and no source behavior change is required. Check full section tails before treating a size delta as codegen drift.
 - External source-owned vtable anchors need not be redefined just to satisfy a probe object. `_title_color_vtable_anchor` is independently established at `0x006C0624`; MenuResult/SelectScenario use an address-validated external relocation view while the defining TU retains literal validation. This preserves one semantic anchor without weakening the comparator's fail-closed import rule.
 - Historical `size` can disagree with historical exact evidence itself. Fighter resets (127/219 rows vs 130/222 exact spans), `consume_counter_484_steps` (138 vs 149), and `advance_menu_item_wave` (137 vs 147) all reproduce the larger current/fresh VC8 extents. Treat old size columns as hypotheses even when the old row said matching.
 - ICF/shared code can still have target-backed authored ownership through vtables. The current `CFileReader` vtable `0x006C0F34` points to scalar deleting dtor `0x0041B890` and seek `0x00407C50` alongside accepted reader methods; that class chain closes the identity even if another class also reuses the same implementation address.
+- Vtable edges beat normalized clone ranking for scalar deleting destructors. Current `CMenuResult` vtable `0x006C2070` points to `0x00447890`, `CProfileMenu` vtable `0x006C2484` points to `0x0044D6E0`, and `CEffectSprite` vtable `0x006C072C` points to `0x0041F6F0`. Fresh VC8 matches those wrappers 30/30, 30/30, and 31/31. Structural candidates such as `0x006B4DE0` and `0x006A08C0` were rejected despite similar shapes.
+- The current game/config accessor globals are now exact-backed rather than retained magic absolutes: `g_game_mode @ 0x006FBD4C`, `g_match_setup @ 0x006FCA48`, `g_game_config @ 0x006FC598`, and `g_score_data @ 0x006FCC98`. The four six-byte getters compile exact from semantic externs and are independently consumed by accepted battle/UI paths.
 - Structural clone ties need class/caller evidence, not old address order. The
   367-byte Yukari mirrored-command gate at `0x0058C170` was accepted only after
   its sole current fighter dispatcher, nearby exact Yukari anchors, and all five
@@ -239,7 +257,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,133
+- Accepted boundaries and authored/library origins for the remaining 3,126
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.

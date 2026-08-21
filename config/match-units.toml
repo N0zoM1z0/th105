@@ -2632,3 +2632,119 @@ dir32_targets = [
   "??_7CFileReader@th105@@6B@=??_7CFileReader@th105@@6B@",
   "__imp__CloseHandle@4=__imp__CloseHandle@4",
 ]
+
+[units.cross-v106a-ui-scalar-deleting-dtors]
+kind = "probe"
+source = "src/ui/MenuResult.cpp"
+object = "build/match-units/CrossV106a_MenuResultScalarDtor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a CMenuResult scalar-deleting destructor. Current CMenuResult vtable 0x006C2070 first slot points to 0x00447890, whose body calls the accepted current destructor 0x00447590 then conditionally deletes. Historical 27-byte body omitted ret 4; fresh VC8 tail is 30 bytes."
+
+[[units.cross-v106a-ui-scalar-deleting-dtors.functions]]
+address = "0x00447890"
+symbol_base = "CMenuResult_scalar_deleting_destructor"
+rel32_targets = [
+  "??1CMenuResult@th105@@UAE@XZ=0x00447590",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[units.cross-v106a-profile-menu-scalar-dtor]
+kind = "probe"
+source = "src/ui/ProfileMenu.cpp"
+object = "build/match-units/CrossV106a_ProfileMenuScalarDtor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a CProfileMenu scalar-deleting destructor. Current CProfileMenu vtable 0x006C2484 first slot points to 0x0044D6E0, whose body calls current CProfileMenu destructor 0x0044D340 then conditionally deletes. Historical 27-byte body omitted ret 4; fresh VC8 tail is 30 bytes. The 422-byte main destructor remains non-exact due register allocation/scheduling and is not promoted."
+
+[[units.cross-v106a-profile-menu-scalar-dtor.functions]]
+address = "0x0044D6E0"
+symbol_base = "CProfileMenu_scalar_deleting_destructor"
+rel32_targets = [
+  "??1CProfileMenu@th105@@UAE@XZ=0x0044D340",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[units.cross-v106a-effect-sprite-scalar-dtor]
+kind = "probe"
+source = "src/battle/EffectSprite.cpp"
+object = "build/match-units/CrossV106a_EffectSpriteScalarDtor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a CEffectSprite scalar-deleting destructor. Current CEffectSprite vtable 0x006C072C first slot points to 0x0041F6F0; the 31-byte body restores exact-backed IColor vtable 0x006C0624 and conditionally deletes. Scanner's 0x006A08C0 clone was rejected by vtable identity. Historical 28-byte body omitted ret 4."
+
+[[units.cross-v106a-effect-sprite-scalar-dtor.functions]]
+address = "0x0041F6F0"
+symbol_base = "CEffectSprite_scalar_deleting_destructor"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = ["??_7IColor@@6B@=??_7IColor@@6B@"]
+
+[units.cross-v106a-game-mode-getters]
+kind = "probe"
+source = "src/battle/GameMode.cpp"
+object = "build/match-units/CrossV106a_GameModeGetters.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a game-mode and MatchSetup accessors. Existing accepted battle units already resolve the current getter entries; stale 1.06 magic absolutes are replaced with semantic globals so VC8 emits ordinary DIR32 relocations."
+
+[[units.cross-v106a-game-mode-getters.functions]]
+address = "0x0043AC40"
+symbol_base = "get_game_mode"
+dir32_targets = ["?g_game_mode@th105@@3W4GameMode@1@C=?g_game_mode@th105@@3W4GameMode@1@C"]
+
+[[units.cross-v106a-game-mode-getters.functions]]
+address = "0x0043AC50"
+symbol_base = "get_match_setup"
+dir32_targets = ["?g_match_setup@th105@@3UMatchSetup@1@A=?g_match_setup@th105@@3UMatchSetup@1@A"]
+
+[units.cross-v106a-game-config-getter]
+kind = "probe"
+source = "src/config/GameConfig.cpp"
+object = "build/match-units/CrossV106a_GameConfigGetter.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a GameConfig accessor. Current SelectScenario enter calls 0x0043AF10 and reads +0x64 as default_game_type, closing the object identity; source now uses a semantic global instead of the retained 1.06 absolute."
+
+[[units.cross-v106a-game-config-getter.functions]]
+address = "0x0043AF10"
+symbol_base = "get_game_config"
+dir32_targets = ["?g_game_config@th105@@3UGameConfig@1@A=?g_game_config@th105@@3UGameConfig@1@A"]
+
+[units.cross-v106a-score-data-getter]
+kind = "probe"
+source = "src/config/ScoreData.cpp"
+object = "build/match-units/CrossV106a_ScoreDataGetter.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a ScoreData accessor. Accepted fighter-sequence finalization already resolves current 0x0043AF20 as get_score_data before invoking exact ScoreData record handling; source now uses the current semantic global."
+
+[[units.cross-v106a-score-data-getter.functions]]
+address = "0x0043AF20"
+symbol_base = "get_score_data"
+dir32_targets = ["?g_score_data@th105@@3UScoreData@1@A=?g_score_data@th105@@3UScoreData@1@A"]
+
+[units.cross-v106a-fighter-phase-tail-functions]
+kind = "probe"
+source = "src/battle/FighterPhases.cpp"
+object = "build/match-units/CrossV106a_FighterPhaseTailFunctions.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a source-level fighter phase functions recovered from IDA tail chunks. Exact wrappers 0x0046AF90/0x0046AFA0 load current fighter-phase context and tail-jump to 0x00464630/0x00464780. Fresh VC8 emits exactly 323/187 bytes with zero non-relocation mismatches; helper destinations are current-target-backed."
+
+[[units.cross-v106a-fighter-phase-tail-functions.functions]]
+address = "0x00464630"
+symbol_base = "run_active_character_and_owned_object_callbacks"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?run_common_character_update@th105@@YIXPAX@Z=0x0045B420",
+]
+
+[[units.cross-v106a-fighter-phase-tail-functions.functions]]
+address = "0x00464780"
+symbol_base = "commit_fighter_physics_status_timers"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?integrate_and_clamp_fighter_position@th105@@YIXPAX@Z=0x0045AE30",
+  "?process_fighter_transient_status@th105@@YIXPAX@Z=0x0045E3D0",
+  "?decrement_fighter_timers_and_cleanup@th105@@YIXPAX@Z=0x0045E500",
+]
