@@ -226,3 +226,17 @@ __ehhandler$??1?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@UAE@XZ,0
 __ehhandler$??1?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@UAE@XZ,0x006BC436,8b542408,0,Current 1.06a Aya TObjectManagerBase destructor directly pushes SEH handler 0x006BC436; canonical handler prefix is 8b542408 and class-specific teardown is current-target-backed; attested 2026-08-21,address
 __ehhandler$??1?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@UAE@XZ,0x006BC4D6,8b542408,0,Current 1.06a Iku TObjectManagerBase destructor directly pushes SEH handler 0x006BC4D6; canonical handler prefix is 8b542408 and class-specific teardown is current-target-backed; attested 2026-08-21,address
 __ehhandler$??1?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@UAE@XZ,0x006BC5B6,8b542408,0,Current 1.06a Tenshi TObjectManagerBase destructor directly pushes SEH handler 0x006BC5B6; canonical handler prefix is 8b542408 and class-specific teardown is current-target-backed; attested 2026-08-21,address
+??_7FrameData@th105@@6B@,0x006C0908,901a4200,0,IDA 1.06a current CharacterFrameData destructor restores FrameData vtable 0x006C0908 before releasing base +0x18 ownership; canonical first entry bytes 901a4200 attested 2026-08-21,address
+__real@42c80000,0x006D6EE4,0000c842,0,Alice event bridge cases 1/120 load canonical IEEE-754 100.0f here; target bytes attested 2026-08-21,literal
+__real@44200000,0x006C0574,00002044,0,Alice event bridge shared-state cases load canonical IEEE-754 640.0f here; target bytes attested 2026-08-21,literal
+__real@44480000,0x006C3B38,00004844,0,Alice event bridge case 6 loads canonical IEEE-754 800.0f here; target bytes attested 2026-08-21,literal
+__real@3e800000,0x006C3440,0000803e,0,Alice event bridge case 6 loads canonical IEEE-754 0.25f here; target bytes attested 2026-08-21,literal
+__real@428c0000,0x006C472C,00008c42,0,Alice event bridge cases 9/50 load canonical IEEE-754 70.0f here; target bytes attested 2026-08-21,literal
+__real@43700000,0x006C3764,00007043,0,Alice event bridge cases 9/50/101 load canonical IEEE-754 240.0f here; target bytes attested 2026-08-21,literal
+__real@44984000,0x006C4338,00409844,0,Alice event bridge case 101 loads canonical IEEE-754 1218.0f here; target bytes attested 2026-08-21,literal
+__real@44700000,0x006C0E90,00007044,0,Alice event bridge case 105 loads canonical IEEE-754 960.0f here; target bytes attested 2026-08-21,literal
+__real@41500000,0x006C4314,00005041,0,Alice event bridge case 120 loads canonical IEEE-754 13.0f here; target bytes attested 2026-08-21,literal
+__real@41700000,0x006C3EA0,00007041,0,Alice event bridge case 120 loads canonical IEEE-754 15.0f here; target bytes attested 2026-08-21,literal
+__real@3f000000,0x006CD140,0000003f,0,Alice event bridge case 120 loads canonical IEEE-754 0.5f here; target bytes attested 2026-08-21,literal
+??_7PatRecord88@th105@@6B@,0x006C2B84,e0014600,0,Current IDA names 0x006C2B84 CharacterFrameData vtable; retained PatRecord88 is the same recovered 0x88 frame-data lifetime view and exact dtor probe writes this vptr; alias attested 2026-08-21,address
+__ehhandler$??0PatRecord88@th105@@QAE@XZ,0x006BAE2E,8b542408,0,IDA 1.06a current PatRecord88/CharacterFrameData constructor 0x00460F90 pushes SEH handler 0x006BAE2E; canonical handler prefix is 8b542408; attested 2026-08-21,address

@@ -60,7 +60,7 @@ int CollisionContext::test_aabb_against_descriptor_shape(
     overlap &= second->top - descriptor->y1 - first->top;
     overlap &= first->left - second->right;
     overlap &= second->left - first->right;
-    if (overlap >= 0) {
+    if ((static_cast<unsigned>(overlap) & 0x80000000u) == 0) {
         return 0;
     }
 

@@ -250,3 +250,7 @@ KomachiObjectManagerBase_dtor
 AyaObjectManagerBase_dtor
 IkuObjectManagerBase_dtor
 TenshiObjectManagerBase_dtor
+PatRecord88_destroy
+Alice_handle_event_bridge
+PatRecord88_construct
+test_aabb_against_descriptor_shape

@@ -251,3 +251,7 @@ address,name,size,status,match_percent,unit,evidence
 0x006180F0,AyaObjectManagerBase_dtor,100,matching,100.00,cross-v106a-roster-manager-base-dtors,python3 scripts/build.py --unit cross-v106a-roster-manager-base-dtors --compare --json reports exact 100/100 against TH105 1.06a
 0x00630FA0,IkuObjectManagerBase_dtor,100,matching,100.00,cross-v106a-roster-manager-base-dtors,python3 scripts/build.py --unit cross-v106a-roster-manager-base-dtors --compare --json reports exact 100/100 against TH105 1.06a
 0x0064B370,TenshiObjectManagerBase_dtor,100,matching,100.00,cross-v106a-roster-manager-base-dtors,python3 scripts/build.py --unit cross-v106a-roster-manager-base-dtors --compare --json reports exact 100/100 against TH105 1.06a
+0x0045FFD0,PatRecord88_destroy,515,matching,100.00,cross-v106a-pat-record-lifetime,python3 scripts/build.py --unit cross-v106a-pat-record-lifetime --compare --json reports exact 515/515 against TH105 1.06a
+0x0050ED00,Alice_handle_event_bridge,1075,matching,100.00,cross-v106a-alice-event-bridge,python3 scripts/build.py --unit cross-v106a-alice-event-bridge --compare --json reports exact 1075/1075 against TH105 1.06a
+0x00460F90,PatRecord88_construct,300,matching,100.00,cross-v106a-pat-record-lifetime,python3 scripts/build.py --unit cross-v106a-pat-record-lifetime --compare --json reports exact 300/300 against TH105 1.06a
+0x0046B7B0,test_aabb_against_descriptor_shape,248,matching,100.00,cross-v106a-hit-geometry,python3 scripts/build.py --unit cross-v106a-hit-geometry --compare --json reports exact 248/248 against TH105 1.06a

@@ -203,6 +203,11 @@ notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fr
 address = "0x0046B8B0"
 symbol_base = "test_descriptor_point_inside"
 
+[[units.cross-v106a-hit-geometry.functions]]
+address = "0x0046B7B0"
+symbol_base = "test_aabb_against_descriptor_shape"
+rel32_targets = ["?accumulate_descriptor_extents@CollisionContext@th105@@QAEXPBUCollisionAabb@2@PBUShapeWords@2@0@Z=0x0046B590"]
+
 [units.cross-v106a-hit-quantities]
 kind = "probe"
 source = "src/battle/HitQuantities.cpp"
@@ -3359,4 +3364,65 @@ rel32_targets = [
 dir32_targets = [
   "__ehhandler$??1PatGroup@th105@@QAE@XZ=__ehhandler$??1PatGroup@th105@@QAE@XZ",
   "___security_cookie=___security_cookie",
+]
+
+[units.cross-v106a-alice-event-bridge]
+kind = "probe"
+source = "src/characters/AliceEventBridge.cpp"
+object = "build/match-units/CrossV106a_AliceEventBridge.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a Alice event bridge recovered from the header-only lifecycle root with a narrow current-target view. Byte return type, real virtual slots +0x08/+0x0C, current shared-state/helper identities, and the sparse 19-destination switch are target-backed. The compiler-owned jump/index tables trail the 1075-byte ledger body in the same COMDAT; canonical comparison uses the proven ledger boundary."
+
+[[units.cross-v106a-alice-event-bridge.functions]]
+address = "0x0050ED00"
+symbol_base = "handle_event_bridge"
+rel32_targets = [
+  "?set_target_20_enabled_2c@SharedEventState@th105@@QAEDDM@Z=0x00427290",
+  "?set_shared_second_target@AliceEventView@th105@@QAEDDM@Z=0x00476AD0",
+  "?set_target_28_enabled_2e@SharedEventState@th105@@QAEDDM@Z=0x004272D0",
+  "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
+  "?set_target_24_enabled_2d@SharedEventState@th105@@QAEDDM@Z=0x004272B0",
+  "?zero_velocity_acceleration@AliceEventView@th105@@QAEXXZ=0x0045AF40",
+  "?spawn_owned_object_via_manager@AliceEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+]
+dir32_targets = [
+  "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+]
+
+[units.cross-v106a-pat-record-lifetime]
+kind = "probe"
+source = "src/battle/PatRecordLifetime.cpp"
+object = "build/match-units/CrossV106a_PatRecordLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a PatRecord88/CharacterFrameData lifetime recovery. Current target proves a 0x1C FrameData base, +0x58/+0x68 checked vector<PatRaw16>, +0x78 checked vector<PatRaw16*>, guarded pointee/+0x54 ownership, three explicit clears, reverse member teardown, and FrameData base destruction. Natural C++ reproduces both the 300-byte constructor and 515-byte destructor exactly."
+
+[[units.cross-v106a-pat-record-lifetime.functions]]
+address = "0x00460F90"
+symbol_base = "PatRecord88_ctor"
+rel32_targets = [
+  "_memset=0x0068A440",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$vector@UPatRaw16@th105@@V?$allocator@UPatRaw16@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@UPatRaw16@th105@@V?$allocator@UPatRaw16@th105@@@std@@@2@V32@0@Z=0x0045FBD0",
+  "?erase@?$vector@PAUPatRaw16@th105@@V?$allocator@PAUPatRaw16@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@PAUPatRaw16@th105@@V?$allocator@PAUPatRaw16@th105@@@std@@@2@V32@0@Z=0x00464B40",
+]
+dir32_targets = [
+  "__ehhandler$??0PatRecord88@th105@@QAE@XZ=__ehhandler$??0PatRecord88@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7PatRecord88@th105@@6B@=??_7PatRecord88@th105@@6B@",
+]
+
+[[units.cross-v106a-pat-record-lifetime.functions]]
+address = "0x0045FFD0"
+symbol_base = "PatRecord88_dtor"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "??3@YAXPAX@Z=0x006898EA",
+  "_memmove_s=0x00689EB0",
+]
+dir32_targets = [
+  "??_7PatRecord88@th105@@6B@=??_7PatRecord88@th105@@6B@",
+  "??_7FrameData@th105@@6B@=??_7FrameData@th105@@6B@",
 ]

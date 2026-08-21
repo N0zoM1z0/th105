@@ -30,7 +30,7 @@ bool __thiscall Marisa_handle_event_bridge(Marisa *self, int event_code);
 void __thiscall Sakuya_update_sequence_lifecycle(Sakuya *self);
 bool __thiscall Sakuya_handle_event_bridge(Sakuya *self, int event_code);
 int __thiscall Alice_update_sequence_lifecycle(Alice *self);
-bool __thiscall Alice_handle_event_bridge(Alice *self, int event_code);
+unsigned char __thiscall Alice_handle_event_bridge(Alice *self, int event_code);
 void __thiscall Patchouli_update_sequence_lifecycle(Patchouli *self);
 bool __thiscall Patchouli_handle_event_bridge(Patchouli *self, int event_code);
 void __thiscall Youmu_update_sequence_lifecycle(Youmu *self);

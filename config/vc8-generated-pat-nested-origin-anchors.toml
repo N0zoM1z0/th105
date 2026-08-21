@@ -1,0 +1,12 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "scripts/probes/pat_nested_vectors.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+
+[[anchors]]
+address = "0x0045FBD0"
+size = 88
+symbol = "?erase@?$vector@UPatRaw16@th105@@V?$allocator@UPatRaw16@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@UPatRaw16@th105@@V?$allocator@UPatRaw16@th105@@@std@@@2@V32@0@Z"

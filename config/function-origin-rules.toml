@@ -123,3 +123,14 @@ subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
 evidence = "current vector<PatRecord88> copy construction and std::_Construct<PatGroup> are inventory-unique relocation-masked COMDAT fingerprints freshly generated from a tracked VC8 probe; only one explicit 0xCC alignment byte is permitted after the 249-byte vector copy constructor"
+
+[[rules]]
+id = "vc8-generated-pat-nested-value-erase-106a"
+vc8_generated_anchor_file = "config/vc8-generated-pat-nested-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 88
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "current 88-byte checked vector<PatRaw16>::erase is the inventory-unique relocation-masked COMDAT fingerprint freshly generated from the tracked PatRaw16 nested-vector probe by the SHA-pinned VC8 SP1 compiler"

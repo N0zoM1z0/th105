@@ -33,16 +33,31 @@ struct PatRaw16 {
     unsigned char bytes_00[0x10];
 };
 
-class PatRecord88 {
+class FrameData {
+public:
+    FrameData();
+    virtual ~FrameData();
+
+    unsigned raw_04;
+    unsigned raw_08;
+    unsigned raw_0c;
+    unsigned raw_10;
+    union {
+        unsigned raw_14;
+        struct {
+            unsigned char tag_14;
+            unsigned char padding_15[3];
+        };
+    };
+    PatOptionalModePayload20 *optional_mode_payload_18;
+};
+
+class PatRecord88 : public FrameData {
 public:
     PatRecord88();
     PatRecord88(PatRecord88 const &other);
     virtual ~PatRecord88();
 
-    short fields_04_to_12[8];
-    unsigned char tag_14;
-    unsigned char padding_15[3];
-    PatOptionalModePayload20 *optional_mode_payload_18;
     unsigned char fields_1c_to_3b[0x20];
     float scaled_3c;
     float scaled_40;
@@ -50,9 +65,9 @@ public:
     unsigned flags_4c;
     unsigned field_50;
     PatRaw16 *optional_raw16_54;
-    unsigned char raw16_vector_58[0x10];
-    unsigned char raw16_vector_68[0x10];
-    unsigned char raw16_pointer_vector_78[0x10];
+    std::vector<PatRaw16> raw16_vector_58;
+    std::vector<PatRaw16> raw16_vector_68;
+    std::vector<PatRaw16 *> raw16_pointer_vector_78;
 };
 
 struct PatGroup {
@@ -90,6 +105,8 @@ typedef char PatGroup_links_must_begin_at_0x18[
     offsetof(PatGroup, link_18) == 0x18 ? 1 : -1];
 typedef char PatOptionalModePayload20_size_must_be_0x20[
     sizeof(PatOptionalModePayload20) == 0x20 ? 1 : -1];
+typedef char FrameData_size_must_be_0x1c[
+    sizeof(FrameData) == 0x1C ? 1 : -1];
 typedef char PatRecord88_size_must_be_0x88[
     sizeof(PatRecord88) == 0x88 ? 1 : -1];
 typedef char PatRecord88_tag_must_be_at_0x14[

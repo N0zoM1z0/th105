@@ -14,15 +14,19 @@ seeds using current-target-backed structural remapping where appropriate.
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 252 authored functions, 677 classified exclusions, and 3,075 still awaiting origin/boundary review.
-- All 252 confirmed authored functions are source-present and canonical exact:
-  32,286 exact authored bytes across 123 configured VC8 units.
-- The newest retained-source migration wave added 136 functions / 17,165 bytes
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 256 authored functions, 678 classified exclusions, and 3,070 still awaiting origin/boundary review.
+- All 256 confirmed authored functions are source-present and canonical exact:
+  34,424 exact authored bytes across 125 configured VC8 units.
+- The newest retained-source migration wave added 156 functions / 20,937 bytes
   beyond the prior 100-function checkpoint. Structural instruction shape and
   relocation-masked bytes are used only for candidate ranking; every accepted
   function still requires current 1.06a semantic/relocation evidence and a fresh
   canonical zero-difference comparison.
-- The newest lifetime/template batch adds fourteen 100-byte roster `TObjectManagerBase` destructors plus exact `PatGroup` construction/destruction. SHA-pinned VC8 generated-COMDAT origin rules now exclude four checked/template helpers from the authored denominator: `vector<PatRecord88>::_Tidy`, `erase`, the vector copy constructor, and `std::_Construct<PatGroup>`. The copy-constructor rule permits exactly one generated `0xCC` COMDAT alignment byte beyond its 249-byte target body; no general exact comparator rule is weakened.
+- The newest lifetime/template batch adds fourteen 100-byte roster `TObjectManagerBase` destructors plus exact `PatGroup` construction/destruction. SHA-pinned VC8 generated-COMDAT origin rules now exclude five checked/template helpers from the authored denominator: `vector<PatRecord88>::_Tidy`, `erase`, the vector copy constructor, `std::_Construct<PatGroup>`, and checked `vector<PatRaw16>::erase`. The copy-constructor rule permits exactly one generated `0xCC` COMDAT alignment byte beyond its 249-byte target body; no general exact comparator rule is weakened.
+- `Alice_handle_event_bridge @ 0x0050ED00` is now 1075/1075 exact from a narrow natural C++ lifecycle view. Current 1.06a proves the byte return ABI, real virtual action/sequence slots, 22-event semantics, 19-destination jump table, and 121-byte sparse index table; the compiler-owned switch tables trail the accepted ledger body in the same COMDAT.
+- `PatRecord88_construct @ 0x00460F90` and `PatRecord88_destroy @ 0x0045FFD0` are 300/300 and 515/515 exact with the current FrameData base and three checked nested vectors; the same pinned VC8 model now classifies current `vector<PatRaw16>::erase @ 0x0045FBD0` as compiler-generated.
+- `test_aabb_against_descriptor_shape @ 0x0046B7B0` is 248/248 exact after expressing the already-proved signed broad-phase rejection as an equivalent bit-31 test; this preserves the target AND/TEST/JS schedule without assembly or register forcing.
+- The current lifecycle/PAT wave adds exact `Alice::handle_event_bridge` (1,075 bytes) plus full `PatRecord88` construction/destruction (300/515 bytes). The recovered PAT layout now has a 0x1C `FrameData` base, checked `vector<PatRaw16>` members at +0x58/+0x68 and checked `vector<PatRaw16*>` at +0x78; the unique 88-byte value-vector `erase` helper is independently excluded as generated VC8 template code.
 - `config/claims.csv` remains header-only. IDA Pro remains the sole semantic
   backend.
 
@@ -45,7 +49,7 @@ the current call target.
 ## Next bounded work
 
 Continue origin/boundary review so the authored denominator becomes meaningful,
-then expand exact recovery from the 252 accepted functions. Use
+then expand exact recovery from the 256 accepted functions. Use
 `scripts/rank_retained_exact.py --only-unconfigured` to prioritize historical
 exact source that never had an old match unit. Same-size zero non-relocation
 mismatch candidates are especially productive, but ambiguous template/clone
@@ -54,9 +58,9 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 3,075
+The 95% authored-function and authored-byte goals cannot be reported yet: 3,070
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 252/252
+global authored denominator is not established. Do not use the current 256/256
 exact subset as a substitute denominator.
 
 ## Routine checkpoint
