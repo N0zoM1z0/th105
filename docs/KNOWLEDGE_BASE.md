@@ -17,7 +17,7 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 300 functions / 50,865 bytes in 151
+- The accepted 1.06a authored set contains 308 functions / 51,335 bytes in 154
   VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 191
   functions / 36,775 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
@@ -285,7 +285,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,008
+- Accepted boundaries and authored/library origins for the remaining 3,000
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.
@@ -474,3 +474,19 @@ Unused-this ambiguity can also occur at linked helper edges inside a class islan
 Prefer direct semantic-global field access when it matches the source lifetime. `CBattleManager::run_info_phase_pipeline_472f10` initially used a local `InfoManagerPhaseCounter494View*`; VC8 cached `counter_494` in a register and produced a four-byte-longer body. Repeating the truthful `g_info_manager` view at the two field accesses lets VC8 naturally emit target memory `cmp [eax+0x494],30` / `add [eax+0x494],1`, making all 102 bytes exact. This is not permission to duplicate arbitrary expressions: the global identity and field are independently target-backed.
 
 The adjacent `CBattleManager` timer method `0x00472A70` is a deliberate non-acceptance example. Current semantics prove phase 2, pair-mode globals, a 16-bit timer, thresholds 499/999, exact event-effect helpers, and a common tail at `0x0046B160`. Multiple natural source shapes either reload the timer, spill it, or allocate a different 16-bit register; the target keeps one value in AX across the branch. Stop there. Do not use `register`, volatile, fake locals, assembly, or tautological control flow to force the standalone compiler.
+
+### Cross-xrefs can correct a plausible but wrong subsystem name
+
+Do not freeze a global's ownership from the first exact caller that exposes it. During `CBattleManagerArcade` transition recovery, `0x006FCF7C` and service object `0x007026E0` first appeared inside a scene-transition path and could plausibly have been named as generic scene-transition state. Current `0x0043CF00/0x0043CF80` are the stronger ownership evidence: both are BGM load/play bodies, replace the handle at `0x006FCF7C`, and call sibling members on `0x007026E0`. The durable names are therefore `g_bgm_handle` and `g_bgm_service`. Revisit provisional semantic names whenever broader xrefs expose a more specific owner before committing them.
+
+The resulting natural audio facade is exact without implementation tricks: `stop_bgm @ 0x0043B120` is 17/17, `fade_bgm @ 0x0043B140` is 40/40, and `set_bgm_volume @ 0x0043B170` is 47/47. The volume wrapper's second argument is converted through canonical double `100.0` before the service call. Keep this audio contract separate from screen-fade state even though both are orchestrated by the same scene transition.
+
+Screen-fade state lives independently in loader-zero globals `0x006FBD50` (value), `0x006FBD54` (signed delta), and `0x006FBD58` (color); current frame update `0x0043B4A0` integrates and clamps the value. `start_scene_fade_out @ 0x0043B240`, `start_scene_fade_in @ 0x0043B280`, and `is_scene_fade_in_progress @ 0x0043B2C0` reproduce 58/58, 58/58, and 24/24. Async request getter `0x0043AB90` is 6/6 from loader-zero `0x006FBD48`, whose ownership is independently established by loader thread `0x0043B580` and request publisher `0x0043B840`.
+
+### Derived overrides may compose exact base and facade contracts
+
+`CBattleManagerArcade::run_info_phase_pipeline @ 0x00473870` is owned by the derived vtable at `0x006C154C` and compiles 220/220 exact from a narrow derived view. Only `+0x5BC` and `+0x5C4` are exposed as derived accessors because the intervening layout is not yet proved; this is preferable to inventing a large fake padding/member block. The override reuses the exact base reset/info/phase contract, exact screen-fade/async helpers, and exact BGM fade facade.
+
+Preserve callee return contracts when a caller consumes only a byte. `is_scene_fade_in_progress` explicitly materializes integer EAX 0/1, while the Arcade override tests only AL. The caller source therefore narrows with `static_cast<unsigned char>(...)`; do not change the callee to `bool` merely to obtain `test al,al`. This is the same narrow-at-call-site rule used elsewhere in the reconstruction.
+
+The adjacent Arcade override `0x00472F80` is a useful stop condition. Ordinary derived C++ matches all 198 target bytes except the ordering of one final branch: target loads the vptr, increments derived state `+0x5B0`, then loads vslot `+0x34`; ordinary virtual-call source increments first, while explicitly saving the complete slot loads it too early. Reproducing the exact split would require manual vtable/evaluation-order shaping. Leave the method review-pending rather than using hand-written vtable access, comma-expression tricks, or register coercion.

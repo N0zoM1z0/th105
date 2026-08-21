@@ -48,3 +48,9 @@ address,name,module,confidence,evidence
 0x006FA890,g_event_effect_id,battle,observed,Current EventSubobject130::trigger_global_effect writes the requested event id here before effect lookup; canonical target bytes are zero
 0x006FBCAC,g_event_effect_state,battle,observed,Current trigger_global_effect and adjacent battle/event paths load this shared state-controller pointer before 0x00469DF0/0x00469D50 state publication
 0x006FA884,g_secondary_event_effect_id,battle,observed,Exact 0x00434E40 writes this id before lookup and exact 0x00435CE0 mirrors selected pair mode here; current 0x00473F90 reads it across the 15-way mode dispatch
+0x006FBD48,g_async_scene_load_request,ui,observed,Current async loader 0x0043B580 switches on this request and clears it; current 0x0043B840 publishes new requests; canonical PE maps loader-zero storage
+0x006FBD50,g_scene_fade_value,ui,observed,Current frame update 0x0043B4A0 integrates/clamps this 0..1 fade scalar; exact fade setup helpers initialize it on nonpositive durations
+0x006FBD54,g_scene_fade_delta,ui,observed,Current frame update 0x0043B4A0 adds this signed fade step and clears it at the 0/1 bounds; exact predicate 0x0043B2C0 tests it against zero
+0x006FBD58,g_scene_fade_color,ui,observed,Exact fade setup helpers 0x0043B240/0x0043B280 publish their color argument here before the current frame fade update
+0x006FCF7C,g_bgm_handle,audio,observed,Current BGM loaders 0x0043CF00/0x0043CF80 share this stream handle; exact stop/fade/volume wrappers at 0x0043B120/0x0043B140/0x0043B170 reuse it
+0x007026E0,g_bgm_service,audio,observed,Current BGM loaders and exact stop/fade/volume wrappers share this fixed stream service; 0x0043B120/0x0043B140/0x0043B170 call sibling members 0x004038D0/0x00403940/0x00403990

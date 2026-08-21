@@ -4157,3 +4157,104 @@ rel32_targets = [
 dir32_targets = [
   "?g_info_manager@th105@@3PAUInfoManager@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A",
 ]
+
+[units.cross-v106a-scene-transition-state]
+kind = "probe"
+source = "src/ui/SceneTransitionState.cpp"
+object = "build/match-units/CrossV106a_SceneTransitionState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a scene-transition facade cluster. Current frame update 0x0043B4A0 establishes fade value/delta semantics, current async loader 0x0043B580/0x0043B840 establishes the request state, and current transition wrappers establish handle/service identity. All virtual-tail state is canonical loader-zero."
+
+[[units.cross-v106a-scene-transition-state.functions]]
+address = "0x0043AB90"
+symbol_base = "get_async_scene_load_request"
+dir32_targets = ["?g_async_scene_load_request@th105@@3HA=?g_async_scene_load_request@th105@@3HA"]
+
+[[units.cross-v106a-scene-transition-state.functions]]
+address = "0x0043B240"
+symbol_base = "start_scene_fade_out"
+dir32_targets = [
+  "?g_scene_fade_color@th105@@3IA=?g_scene_fade_color@th105@@3IA",
+  "?g_scene_fade_delta@th105@@3MA=?g_scene_fade_delta@th105@@3MA",
+  "?g_scene_fade_value@th105@@3MA=?g_scene_fade_value@th105@@3MA",
+  "__real@bff0000000000000=__real@bff0000000000000",
+]
+
+[[units.cross-v106a-scene-transition-state.functions]]
+address = "0x0043B280"
+symbol_base = "start_scene_fade_in"
+dir32_targets = [
+  "?g_scene_fade_color@th105@@3IA=?g_scene_fade_color@th105@@3IA",
+  "?g_scene_fade_delta@th105@@3MA=?g_scene_fade_delta@th105@@3MA",
+  "?g_scene_fade_value@th105@@3MA=?g_scene_fade_value@th105@@3MA",
+]
+
+[[units.cross-v106a-scene-transition-state.functions]]
+address = "0x0043B2C0"
+symbol_base = "is_scene_fade_in_progress"
+dir32_targets = ["?g_scene_fade_delta@th105@@3MA=?g_scene_fade_delta@th105@@3MA"]
+
+
+
+[units.cross-v106a-bgm-transition]
+kind = "probe"
+source = "src/audio/BgmTransition.cpp"
+object = "build/match-units/CrossV106a_BgmTransition.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a BGM stream-handle facade cluster. Current play/load bodies 0x0043CF00/0x0043CF80 establish shared handle 0x006FCF7C and service 0x007026E0; exact wrappers call sibling service members for stop, fade and normalized-volume control."
+
+[[units.cross-v106a-bgm-transition.functions]]
+address = "0x0043B120"
+symbol_base = "stop_bgm"
+rel32_targets = ["?stop@BgmServiceView@th105@@QAEXH@Z=0x004038D0"]
+dir32_targets = [
+  "?g_bgm_handle@th105@@3HA=?g_bgm_handle@th105@@3HA",
+  "?g_bgm_service@th105@@3UBgmServiceView@1@A=?g_bgm_service@th105@@3UBgmServiceView@1@A",
+]
+
+[[units.cross-v106a-bgm-transition.functions]]
+address = "0x0043B140"
+symbol_base = "fade_bgm"
+rel32_targets = ["?fade@BgmServiceView@th105@@QAEXHHH_N@Z=0x00403940"]
+dir32_targets = [
+  "?g_bgm_handle@th105@@3HA=?g_bgm_handle@th105@@3HA",
+  "?g_bgm_service@th105@@3UBgmServiceView@1@A=?g_bgm_service@th105@@3UBgmServiceView@1@A",
+]
+
+[[units.cross-v106a-bgm-transition.functions]]
+address = "0x0043B170"
+symbol_base = "set_bgm_volume"
+rel32_targets = ["?set_level@BgmServiceView@th105@@QAEXHHHM@Z=0x00403990"]
+dir32_targets = [
+  "?g_bgm_handle@th105@@3HA=?g_bgm_handle@th105@@3HA",
+  "?g_bgm_service@th105@@3UBgmServiceView@1@A=?g_bgm_service@th105@@3UBgmServiceView@1@A",
+  "__real@4059000000000000=__real@4059000000000000",
+]
+
+
+[units.cross-v106a-battle-manager-arcade-info]
+kind = "probe"
+source = "src/battle/BattleManagerArcade.cpp"
+object = "build/match-units/CrossV106a_BattleManagerArcade.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a CBattleManagerArcade override at vtable 0x006C154C. The derived +0x5BC/+0x5C4 transition state composes exact screen-fade/async and BGM facades with the shared base reset/info/phase pipeline. The fade predicate remains int at its definition and is narrowed to AL only at this caller."
+
+[[units.cross-v106a-battle-manager-arcade-info.functions]]
+address = "0x00473870"
+symbol_base = "run_info_phase_pipeline_472f10"
+rel32_targets = [
+  "?is_scene_fade_in_progress@th105@@YAHXZ=0x0043B2C0",
+  "?get_async_scene_load_request@th105@@YAHXZ=0x0043AB90",
+  "?prepare_arcade_transition_473050@CBattleManagerArcade@th105@@QAEXXZ=0x00473050",
+  "?start_scene_fade_out@th105@@YAXIH@Z=0x0043B240",
+  "?reset_fighter_fields_6b4_728@th105@@YIXPAX@Z=0x0046B080",
+  "?fade_bgm@th105@@YAXHH@Z=0x0043B140",
+  "?start_scene_fade_in@th105@@YAXIH@Z=0x0043B280",
+  "?run_global_action_owned_phase_view@CBattleManager@th105@@QAEXXZ=0x0046AF90",
+  "?run_global_position_status_timer_phase_view@CBattleManager@th105@@QAEXXZ=0x0046AFA0",
+  "?run_post_update_callbacks_and_global_state@th105@@YIXPAX@Z=0x0046AFB0",
+]
+dir32_targets = ["?g_info_manager@th105@@3PAUInfoManager@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A"]
