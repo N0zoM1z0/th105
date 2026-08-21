@@ -289,3 +289,4 @@ address,name,size,status,match_percent,unit,evidence
 0x0046E9D0,InfoEffectEmitter_emit_effect,49,matching,100.00,cross-v106a-info-effect-emitter,python3 scripts/build.py --unit cross-v106a-info-effect-emitter --compare --json reports exact 49/49 against TH105 1.06a
 0x00434E40,EventSubobject130_trigger_secondary_event_effect,67,matching,100.00,cross-v106a-event-subobject130,python3 scripts/build.py --unit cross-v106a-event-subobject130 --compare --json reports exact 67/67 against TH105 1.06a
 0x00435CE0,PairEmbeddedModeView_select_pair_mode_434780,119,matching,100.00,cross-v106a-pair-embedded-mode,python3 scripts/build.py --unit cross-v106a-pair-embedded-mode --compare --json reports exact 119/119 against TH105 1.06a
+0x00473F90,Fighter_advance_secondary_event_effect_cycle,244,matching,100.00,cross-v106a-fighter-event-cycle,python3 scripts/build.py --unit cross-v106a-fighter-event-cycle --compare --json reports exact 244/244 against TH105 1.06a

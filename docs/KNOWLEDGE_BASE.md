@@ -17,9 +17,9 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 290 functions / 50,018 bytes in 149
-  VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 190
-  functions / 36,531 bytes beyond the previous 100-function checkpoint. Candidate
+- The accepted 1.06a authored set contains 291 functions / 50,262 bytes in 150
+  VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 191
+  functions / 36,775 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
   establish hypotheses; canonical VC8 zero-difference comparisons establish
   exactness.
@@ -285,7 +285,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,018
+- Accepted boundaries and authored/library origins for the remaining 3,017
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.
@@ -442,3 +442,23 @@ the same principle at larger scale. Its member identity comes from exact
 calling other unused-this members. Preserve caller-proved class ABI even when
 the body does not dereference ECX. A decompiler's free/stdcall presentation is
 not stronger than repeated current call-site evidence plus canonical codegen.
+### Promote repeated subobject offsets into shared layouts
+
+When many independently exact class views agree on the same embedded subobject,
+replace the corresponding unknown range in the shared layout instead of keeping
+the fact duplicated in per-function archaeology. Fourteen exact roster event
+bridges place `EventSubobject130` at Fighter `+0x130`. `Fighter::
+advance_secondary_event_effect_cycle @ 0x00473F90` provides independent
+cross-roster caller evidence: callers pass Fighter `this`, and each switch case
+adds exactly `0x130` before calling the exact secondary-event helper. Splitting
+`Fighter::unknown_105` around a real `EventSubobject130` therefore refines known
+layout without changing size or inventing padding. Replay every unit that sees
+the shared header after such a promotion.
+
+The same function is a dense-switch counterpart to the sparse event-bridge
+examples. Natural cases 0..14 compile to an exact 244-byte executable body and
+a 15-entry/60-byte jump table immediately after it in the same COMDAT. Keep the
+accepted function boundary at the target's RET-terminated 244 bytes while still
+auditing the compiler table shape; the comparator's same-section DIR32 handling
+resolves local case labels without treating the trailing table as authored
+function bytes.

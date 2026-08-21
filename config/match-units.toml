@@ -4043,3 +4043,22 @@ dir32_targets = [
   "__real@43a00000=__real@43a00000",
   "__real@42000000=__real@42000000",
 ]
+
+[units.cross-v106a-fighter-event-cycle]
+kind = "probe"
+source = "src/battle/FighterEventCycle.cpp"
+object = "build/match-units/CrossV106a_FighterEventCycle.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a common Fighter event-cycle dispatcher. Cross-roster current callers pass Fighter this; fourteen exact event bridges independently place EventSubobject130 at +0x130. Dense 0..14 switch rotates secondary effect id only while pair mode is 16; VC8 emits the 244-byte body plus a trailing 60-byte compiler jump table."
+
+[[units.cross-v106a-fighter-event-cycle.functions]]
+address = "0x00473F90"
+symbol_base = "advance_secondary_event_effect_cycle"
+rel32_targets = [
+  "?trigger_secondary_event_effect@EventSubobject130@th105@@QAEXH@Z=0x00434E40",
+]
+dir32_targets = [
+  "?g_pair_mode_primary@th105@@3HA=?g_fighter_state_4b8_default@th105@@3HA",
+  "?g_secondary_event_effect_id@th105@@3HA=?g_secondary_event_effect_id@th105@@3HA",
+]

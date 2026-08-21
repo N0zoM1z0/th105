@@ -1,5 +1,7 @@
 #pragma once
 
+#include "EventSubobject130.hpp"
+
 #include "CollisionList.hpp"
 #include "GameMode.hpp"
 
@@ -185,7 +187,8 @@ struct Fighter {
     float x_component_fc;
     float y_component_100;
     unsigned char facing_104;
-    unsigned char unknown_105[0x37];
+    unsigned char unknown_105[0x2b];
+    EventSubobject130 event_subobject_130;
     short state_13c;
     unsigned char unknown_13e[0x1a];
     FighterFrame *frame_158;
@@ -320,6 +323,7 @@ struct Fighter {
     void advance_fighter_sequence_55c();
     void finalize_sequence_entry_45bb10(int index);
     void reset_for_roster_45e040(Fighter *other);
+    void advance_secondary_event_effect_cycle();
     void update_scripted_input_state_462e20();
     bool is_front_sequence_entry_ready_55a(signed char index);
     unsigned char consume_spell_sequence_entry();

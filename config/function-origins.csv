@@ -2152,7 +2152,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00473C50,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00473CF0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00473DD0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00473F90,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00473F90,authored_game,battle,authored,observed,canonical-exact-authored
 0x004740C0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00476AB0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00476AD0,authored_game,characters,authored,observed,canonical-exact-authored

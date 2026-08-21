@@ -646,3 +646,12 @@ source compiles 67/67 exact; an `int` hypothesis makes VC8 materialize or preser
 a return and changes the branch/epilogue layout. This is an ABI correction from
 current caller evidence, not permission to change return types merely to improve
 bytes.
+### Dense switch tables can trail the accepted body
+
+`Fighter::advance_secondary_event_effect_cycle @ 0x00473F90` compiles to a
+244-byte RET-terminated body followed by a 60-byte 15-entry jump table in the
+same COMDAT. Compare the accepted current-target function boundary, not the
+whole COFF section tail, while letting same-section DIR32 relocations resolve
+case labels relative to the function entry. As with sparse switches, audit the
+trailing table as compiler metadata; do not inflate authored-byte totals to
+include it.
