@@ -18,9 +18,9 @@ notes or source hypotheses.
   object boundaries.
 - The current IDA database exposes 4,001 function candidates. Their auto-names
   and unreviewed sizes remain provisional analysis output.
-- The accepted 1.06a authored set contains 178 functions / 25,250 bytes in 100
-  VC8 match units. The newest whole-corpus retained-source wave added seventy-eight
-  functions / 11,763 bytes beyond the previous 100-function checkpoint. Candidate
+- The accepted 1.06a authored set contains 181 functions / 25,323 bytes in 101
+  VC8 match units. The newest whole-corpus retained-source wave added eighty-one
+  functions / 11,836 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
   establish hypotheses; canonical VC8 zero-difference comparisons establish
   exactness.
@@ -130,6 +130,22 @@ notes or source hypotheses.
   addend `+0x38`, not a separate global. Replacing retained 1.06 magic absolutes
   with these semantic externs made ten accessors naturally compile exact without
   changing control flow.
+- The battle phase wrappers at `0x0046AF90` and `0x0046AFA0` are a
+  reference normalized-clone tie that current tail destinations resolve. Both
+  load exact-backed fighter-phase context `0x006FBC9C`, but `0x0046AF90` jumps
+  to LTCG entry `0x00464630`, whose five passes are the action/owned-object
+  callback phase, while `0x0046AFA0` jumps to `0x00464780`, whose three passes
+  are position, transient-status, and timer cleanup. Both wrappers are 11/11
+  exact after semantic global migration.
+- A source-level callee may survive in the linked target only as an internal LTCG
+  entry. It is valid to map a REL32 relocation to that observed entry when its
+  body semantics establish identity; do not create or claim a standalone IDA
+  function boundary merely to make the comparator happy. The two battle phase
+  wrappers above are the reference case.
+- `run_post_update_callbacks_and_global_state @ 0x0046AFB0` is 51/51 exact after
+  replacing stale 1.06 globals with exact-backed `g_info_manager` at
+  `0x006FBCA8` and shared battle-setup state at `0x006FBCC0`; its current helper
+  destinations are `0x00426BB0` and `0x00426DF0`.
 - Structural clone ties need class/caller evidence, not old address order. The
   367-byte Yukari mirrored-command gate at `0x0058C170` was accepted only after
   its sole current fighter dispatcher, nearby exact Yukari anchors, and all five
@@ -157,7 +173,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,150
+- Accepted boundaries and authored/library origins for the remaining 3,147
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.

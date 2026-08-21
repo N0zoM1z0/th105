@@ -1991,9 +1991,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0046ABC0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0046AC30,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0046AE70,authored_game,battle,authored,observed,canonical-exact-authored
-0x0046AF90,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0046AFA0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0046AFB0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0046AF90,authored_game,battle,authored,observed,canonical-exact-authored
+0x0046AFA0,authored_game,battle,authored,observed,canonical-exact-authored
+0x0046AFB0,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046AFF0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0046B080,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0046B160,unknown,,review,unknown,ida-1.06a-initial-inventory

@@ -2373,3 +2373,35 @@ dir32_targets = ["?g_combined_menu_input_storage@th105@@3PAEA=?g_combined_menu_i
 address = "0x0043B060"
 symbol_base = "get_player2_input"
 dir32_targets = ["?g_player2_input_storage@th105@@3PAEA=?g_player2_input_storage@th105@@3PAEA"]
+
+[units.cross-v106a-battle-post-update-wrapper]
+kind = "probe"
+source = "src/battle/BattlePhaseWrappers.cpp"
+object = "build/match-units/CrossV106a_BattlePostUpdateWrapper.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a battle phase wrapper cluster. Retained 1.06 magic globals are replaced with exact-backed fighter/info/setup-state symbols. The two normalized-identical 11-byte wrappers are disambiguated by their current LTCG tail destinations: 0x00464630 is the five-pass action/owned-object body, while 0x00464780 is the three-pass position/status/timer body."
+
+[[units.cross-v106a-battle-post-update-wrapper.functions]]
+address = "0x0046AF90"
+symbol_base = "run_global_fighter_action_owned_object_phase"
+rel32_targets = ["?run_active_character_and_owned_object_callbacks@th105@@YIXPAX@Z=0x00464630"]
+dir32_targets = ["?g_fighter_phase_context@th105@@3PAUFighterPhaseContext@1@A=?g_fighter_phase_context@th105@@3PAUFighterPhaseContext@1@A"]
+
+[[units.cross-v106a-battle-post-update-wrapper.functions]]
+address = "0x0046AFA0"
+symbol_base = "run_global_fighter_position_status_timer_phase"
+rel32_targets = ["?commit_fighter_physics_status_timers@th105@@YIXPAX@Z=0x00464780"]
+dir32_targets = ["?g_fighter_phase_context@th105@@3PAUFighterPhaseContext@1@A=?g_fighter_phase_context@th105@@3PAUFighterPhaseContext@1@A"]
+
+[[units.cross-v106a-battle-post-update-wrapper.functions]]
+address = "0x0046AFB0"
+symbol_base = "run_post_update_callbacks_and_global_state"
+rel32_targets = [
+  "?update_global_battle_setup_state_first@th105@@YIXPAX@Z=0x00426BB0",
+  "?update_global_battle_setup_state_second@th105@@YIXPAX@Z=0x00426DF0",
+]
+dir32_targets = [
+  "?g_info_manager@th105@@3PAUInfoManager@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A",
+  "?g_global_battle_setup_state@th105@@3PAEA=?g_global_battle_setup_state@th105@@3PAEA",
+]

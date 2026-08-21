@@ -276,7 +276,7 @@ The pre-1.06a historical checkpoint used by default contains 152 old exact
 `.cpp` hypotheses that were absent from its match-unit graph; the migration
 survey could uniquely extract 147 of those COFF symbols. The first tracked
 migration wave raised the accepted 1.06a set from 100 functions / 13,487 bytes
-to 178 functions / 25,250 bytes. This is still a candidate queue only. Every promotion still requires a current boundary/semantic audit,
+to 181 functions / 25,323 bytes. This is still a candidate queue only. Every promotion still requires a current boundary/semantic audit,
 current-target relocation reconciliation, a tracked match unit, and canonical
 zero-difference replay.
 
@@ -371,3 +371,19 @@ ten accessors compare exact. The counter getter relocates the combined-input
 symbol with addend `0x38`, preserving one object identity instead of inventing a
 field global. This is preferable to carrying target-specific integer addresses
 inside source bodies.
+Normalized wrapper ties can be solved by the destination body rather than the
+wrapper bytes. `0x0046AF90` and `0x0046AFA0` are both eleven-byte `mov ecx,
+[global]; jmp rel32` wrappers and therefore tie under relocation-normalized
+ranking. Current 1.06a disassembly resolves them: the first jumps to LTCG entry
+`0x00464630`, a five-pass fighter/owned-object callback body, while the second
+jumps to `0x00464780`, a three-pass position/status/timer body. Mapping the
+source-level callees to those observed internal entries and replacing the stale
+phase-context absolute with `g_fighter_phase_context` produces 11/11 exact for
+both. An internal LTCG entry is a truthful relocation destination; it need not
+be promoted to a standalone IDA function to be used as evidence.
+
+The neighboring 51-byte post-update wrapper demonstrates the same semantic
+global migration at larger scale. Its control flow already matched; the only
+real changes were current `g_info_manager`, current shared battle-setup-state
+identity, and current helper destinations `0x00426BB0/0x00426DF0`. The natural
+C++ source then compares 51/51 exact.
