@@ -283,3 +283,4 @@ Menu_render_cursor
 is_menu_initial_press
 set_menu_input_state
 EventSubobject130_trigger_global_effect
+BattleAudioSetupView_set_stage_music_433860

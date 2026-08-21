@@ -17,9 +17,9 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 285 functions / 49,714 bytes in 145
-  VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 185
-  functions / 36,227 bytes beyond the previous 100-function checkpoint. Candidate
+- The accepted 1.06a authored set contains 286 functions / 49,754 bytes in 146
+  VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 186
+  functions / 36,267 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
   establish hypotheses; canonical VC8 zero-difference comparisons establish
   exactness.
@@ -285,7 +285,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,023
+- Accepted boundaries and authored/library origins for the remaining 3,022
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.
@@ -372,3 +372,19 @@ the right-to-left independent arguments before evaluating the nested first
 argument, exactly matching the target. This is a source-lifetime correction, not
 register shaping: only use it when current call semantics independently prove the
 nested expression and the temporary has no source-level lifetime of its own.
+
+### Exact callers can name nearby facade wrappers without guesswork
+
+`BattleAudioSetupView::set_stage_music_433860 @ 0x00434DE0` is 40/40 exact. The
+name and ownership come from canonical-exact `battle_initialize_or_transition_46fe80
+@ 0x00470880`, not from the stripped helper itself. Current disassembly then proves
+the wrapper forwards `(stage, value, true)` through battle-object manager
+`0x006FBCA0 -> 0x00467850` and mirrors `stage` through the shared event-effect
+state `0x006FBCAC -> 0x00469D50`. A narrow standalone TU reproduces the target
+without new relocations because both global identities were already established.
+
+When a review helper is stripped but an exact caller already carries a stable
+semantic declaration for that exact target address, treat the caller declaration
+as high-value naming evidence. Still verify the callee body and arguments in
+current IDA before promoting; the caller name is a hypothesis anchor, not a
+substitute for target semantics or canonical comparison.
