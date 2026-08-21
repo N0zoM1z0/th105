@@ -420,7 +420,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00412950,45,0x0041297C,sub_412950,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00412980,94,0x004129DD,sub_412980,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004129E0,51,0x00412A12,sub_4129E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00412A20,53,0x00412A54,sub_412A20,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00412A20,53,0x00412A54,string28_equals_c_string,string28_equals_c_string,assets,matching,100.00,__cdecl,"bool string28_equals_c_string(String28 const * value, char const * text)",false,src/assets/CompositeTextGlyph.cpp,python3 scripts/build.py --unit cross-v106a-string28-equals --compare --json reports exact 53/53 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay after structural remap; current target/IDA establishes the String28 compare helper at 0x00405C00.
 0x00412A60,167,0x00412B06,sub_412A60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00412B10,357,0x00412C74,sub_412B10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00412CA0,5,0x00412CA4,sub_412CA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -846,7 +846,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00428070,482,0x00428251,sub_428070,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00428260,553,0x00428488,sub_428260,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004284A0,31,0x004284BE,sub_4284A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x004284C0,60,0x004284FB,sub_4284C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x004284C0,60,0x004284FB,FixedSlotStoreView_select_slot,FixedSlotStoreView_select_slot,battle,matching,100.00,__thiscall,"FixedBattleSetupSlotView * FixedSlotStoreView_select_slot(FixedSlotStoreView * this, int slot)",false,src/battle/BattleSetupSlots.cpp,python3 scripts/build.py --unit cross-v106a-fixed-slot-select --compare --json reports exact 60/60 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of the checked 0x50-stride slot selector after structural remap; current IDA identifies the sole validation callee at 0x0068A143.
 0x00428500,89,0x00428558,sub_428500,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00428560,8,0x00428567,sub_428560,SynchronizedInputState_is_input_available,battle,matching,100.00,__thiscall,unsigned char SynchronizedInputState_is_input_available(SynchronizedInputState * this),false,src/battle/BattleInputState.cpp,python3 scripts/build.py --unit battle-input-state --compare --json reports exact 8/8 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay of a cross-version raw-identical authored candidate; old address/name evidence used only as a hypothesis seed.
 0x00428570,73,0x004285B8,sub_428570,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -887,8 +887,8 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0042AB10,1818,0x0042B229,sub_42AB10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0042B230,52,0x0042B263,sub_42B230,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0042B270,125,0x0042B2EC,sub_42B270,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0042B2F0,365,0x0042B45C,sub_42B2F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0042B460,224,0x0042B53F,sub_42B460,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0042B2F0,365,0x0042B45C,FixedSlotEnvelope_deserialize,FixedSlotEnvelope_deserialize,battle,matching,100.00,__thiscall,"bool FixedSlotEnvelope_deserialize(FixedSlotEnvelope * this, FileReader * reader)",false,src/battle/FixedSlotEnvelopeDeserialize.cpp,python3 scripts/build.py --unit cross-v106a-fixed-slot-deserialize --compare --json reports exact 365/365 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay after structural remap; current IDA establishes deque<short> push_back 0x0042AA90 and tidy helper 0x00420A80.
+0x0042B460,224,0x0042B53F,BattleInputGate_collect_battle_control_bits,BattleInputGate_collect_battle_control_bits,battle,matching,100.00,__thiscall,void BattleInputGate_collect_battle_control_bits(BattleInputGate * this),false,src/battle/BattleControlCollect.cpp,python3 scripts/build.py --unit cross-v106a-battle-control-collect --compare --json reports exact 224/224 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 zero-diff replay after structural-instruction fingerprinting; current IDA callees established network-session, menu-control, and queue helpers without cross-version delta guessing."
 0x0042B540,262,0x0042B645,sub_42B540,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0042B650,88,0x0042B6A7,sub_42B650,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0042B6B0,297,0x0042B7D8,sub_42B6B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -1786,7 +1786,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0045D7B0,115,0x0045D822,sub_45D7B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045D830,515,0x0045DA32,sub_45D830,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045DA40,341,0x0045DB94,sub_45DA40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0045DBA0,114,0x0045DC11,sub_45DBA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0045DBA0,114,0x0045DC11,FighterSequenceController_enqueue_record,FighterSequenceController_enqueue_record,battle,matching,100.00,__thiscall,"void FighterSequenceController_enqueue_record(FighterSequenceController * this, FighterSequenceSlot const * record)",false,src/battle/SequenceEnqueue.cpp,python3 scripts/build.py --unit cross-v106a-sequence-enqueue --compare --json reports exact 114/114 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 zero-diff replay after structural-instruction fingerprinting; current IDA callees established grow_storage 0x0045DA40, operator new 0x00689DCB, and sprite-copy helper 0x00455160."
 0x0045DC20,108,0x0045DC8B,sub_45DC20,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045DC90,259,0x0045DD92,sub_45DC90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045DDA0,265,0x0045DEA8,sub_45DDA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2201,7 +2201,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00493B40,258,0x00493C41,sub_493B40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00493C50,164,0x00493CF3,sub_493C50,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00493D00,50,0x00493D31,sub_493D00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00493D40,78,0x00493D8D,sub_493D40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00493D40,78,0x00493D8D,Fighter_lookup_command_gate_value,Fighter_lookup_command_gate_value,characters,matching,100.00,__thiscall,"short Fighter_lookup_command_gate_value(Fighter * this, short command_key)",false,src/characters/CommandGates.cpp,python3 scripts/build.py --unit cross-v106a-command-gate-lookup --compare --json reports exact 78/78 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay after structural remap; current IDA establishes CommandGateTree lower_bound 0x0045C320 and invalid-parameter helper 0x0068A143.
 0x00493D90,504,0x00493F87,sub_493D90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00493F90,333,0x004940DC,sub_493F90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004940E0,226,0x004941C1,sub_4940E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2359,7 +2359,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0053B410,6017,0x0053CB90,sub_53B410,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0053CBC0,450,0x0053CD81,sub_53CBC0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0053CD90,94,0x0053CDED,sub_53CD90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0053CDF0,175,0x0053CE9E,sub_53CDF0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0053CDF0,175,0x0053CE9E,YoumuObjectRecordState_apply_owner_record,YoumuObjectRecordState_apply_owner_record,characters,matching,100.00,__thiscall,"unsigned char YoumuObjectRecordState_apply_owner_record(YoumuObjectRecordState * this, unsigned int index)",false,src/characters/YoumuObjectRecords.cpp,python3 scripts/build.py --unit cross-v106a-youmu-object-record --compare --json reports exact 175/175 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay after structural-instruction fingerprinting remapped a retained old exact hypothesis; current IDA call graph established record-ring lookup 0x0053CD90 and reset callback 0x00436760 before acceptance.
 0x0053CEA0,25944,0x005433F7,sub_53CEA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00543670,5159,0x00544A96,sub_543670,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00544BF0,969,0x00544FB8,sub_544BF0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

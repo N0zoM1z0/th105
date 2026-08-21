@@ -444,3 +444,116 @@ notes = "TH105 1.06a cross-version exact logical-input mask builder with current
 address = "0x00409F70"
 symbol_base = "build_player_logical_input_mask"
 rel32_targets = ["CInputManager_update_player_input_counters_from_raw=0x00409DA0"]
+
+# Structural-fingerprint migration wave.  The normalized instruction shape was
+# used only to prioritize retained 1.06 source hypotheses; every address and
+# REL32 destination below was reconciled against current 1.06a target/IDA
+# evidence and then accepted by a fresh canonical zero-difference comparison.
+
+[units.cross-v106a-string28-equals]
+kind = "probe"
+source = "src/assets/CompositeTextGlyph.cpp"
+object = "build/match-units/CrossV106a_CompositeTextGlyph.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a structural-remap exact String28/C-string predicate; current compare helper is target-backed, not delta-derived."
+
+[[units.cross-v106a-string28-equals.functions]]
+address = "0x00412A20"
+symbol_base = "?string28_equals_c_string@th105@@YA_NPBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBD@Z"
+rel32_targets = ["compare=0x00405C00"]
+
+[units.cross-v106a-fixed-slot-select]
+kind = "probe"
+source = "src/battle/BattleSetupSlots.cpp"
+object = "build/match-units/CrossV106a_BattleSetupSlots.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a structural-remap exact checked fixed-slot selector with current invalid-parameter target."
+
+[[units.cross-v106a-fixed-slot-select.functions]]
+address = "0x004284C0"
+symbol_base = "select_slot_4275e0"
+rel32_targets = ["_invalid_parameter_noinfo=0x0068A143"]
+
+[units.cross-v106a-fixed-slot-deserialize]
+kind = "probe"
+source = "src/battle/FixedSlotEnvelopeDeserialize.cpp"
+object = "build/match-units/CrossV106a_FixedSlotEnvelopeDeserialize.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a structural-remap exact fixed-slot binary deserializer; deque helper destinations come from current target evidence."
+
+[[units.cross-v106a-fixed-slot-deserialize.functions]]
+address = "0x0042B2F0"
+symbol_base = "deserialize_fixed_slot_envelope"
+rel32_targets = [
+  "push_back=0x0042AA90",
+  "_Tidy=0x00420A80",
+]
+
+[units.cross-v106a-battle-control-collect]
+kind = "probe"
+source = "src/battle/BattleControlCollect.cpp"
+object = "build/match-units/CrossV106a_BattleControlCollect.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a structural-remap exact battle-control collector with all current-target callees independently reconciled."
+
+[[units.cross-v106a-battle-control-collect.functions]]
+address = "0x0042B460"
+symbol_base = "collect_battle_control_bits_42a560"
+rel32_targets = [
+  "?get_network_session_for_control_collect@th105@@YAPAUCNetworkBase@1@XZ=0x0043B090",
+  "?is_menu_control_pressed@th105@@YAEEEEE@Z=0x0043ABD0",
+  "?queue_control_word@BattleInputGate@th105@@QAEXG@Z=0x0042B270",
+]
+
+[units.cross-v106a-sequence-enqueue]
+kind = "probe"
+source = "src/battle/SequenceEnqueue.cpp"
+object = "build/match-units/CrossV106a_SequenceEnqueue.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a structural-remap exact fighter sequence enqueue; grow/allocation/copy calls use current 1.06a destinations."
+
+[[units.cross-v106a-sequence-enqueue.functions]]
+address = "0x0045DBA0"
+symbol_base = "enqueue_record"
+rel32_targets = [
+  "grow_storage=0x0045DA40",
+  "operator_new=0x00689DCB",
+  "copy_fighter_sequence_sprite=0x00455160",
+]
+
+[units.cross-v106a-command-gate-lookup]
+kind = "probe"
+source = "src/characters/CommandGates.cpp"
+object = "build/match-units/CrossV106a_CommandGates.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a structural-remap exact signed command-gate lookup with current tree and validation callees."
+
+[[units.cross-v106a-command-gate-lookup.functions]]
+address = "0x00493D40"
+symbol_base = "Fighter_lookup_command_gate_value"
+rel32_targets = [
+  "lower_bound=0x0045C320",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+
+[units.cross-v106a-youmu-object-record]
+kind = "probe"
+source = "src/characters/YoumuObjectRecords.cpp"
+object = "build/match-units/CrossV106a_YoumuObjectRecords.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a structural-remap exact Youmu owner-record adapter; both current callees were reconciled from complete target control flow."
+
+[[units.cross-v106a-youmu-object-record.functions]]
+address = "0x0053CDF0"
+symbol_base = "apply_owner_record"
+rel32_targets = [
+  "object_record_ring_at=0x0053CD90",
+  "reset_for_new_record=0x00436760",
+]

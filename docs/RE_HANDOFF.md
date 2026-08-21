@@ -2,9 +2,9 @@
 
 ## Phase
 
-First canonical 1.06a authored-exact wave is established. The active phase is
-expanding authored classification and exact source recovery beyond the
-cross-version raw-identity seed set.
+Two canonical 1.06a authored-exact waves are established. The active phase is
+expanding authored classification and exact source recovery beyond raw-identity
+seeds using current-target-backed structural remapping where appropriate.
 
 ## Verified state
 
@@ -15,11 +15,13 @@ cross-version raw-identity seed set.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
 - The IDA inventory has 4,001 provisional candidates. Current reviewed state is
-  47 authored functions and 3,954 still awaiting origin/boundary review.
-- All 47 confirmed authored functions are source-present and canonical exact:
-  3,304 exact authored bytes across 28 configured VC8 units.
-- `python3 scripts/verify-exact-units.py --all` cold-replays all 28 units and
-  reports zero differences for all 47 functions.
+  54 authored functions and 3,947 still awaiting origin/boundary review.
+- All 54 confirmed authored functions are source-present and canonical exact:
+  4,373 exact authored bytes across 35 configured VC8 units.
+- The second wave recovered seven functions / 1,069 bytes by using normalized
+  VC8 instruction structure only as a candidate-ranking signal, reconciling all
+  current 1.06a REL32 destinations with target/IDA evidence, then requiring a
+  fresh canonical zero-difference comparison.
 - `config/claims.csv` remains header-only. IDA Pro remains the sole semantic
   backend.
 
@@ -42,14 +44,16 @@ the current call target.
 ## Next bounded work
 
 Continue origin/boundary review so the authored denominator becomes meaningful,
-then expand exact recovery beyond the 47 raw-identical seed functions. Prefer
-small retained-source leaves and tightly coupled helpers with current-target
-IDA evidence. Treat every old 1.06 address, callee, name, and implementation as
-a hypothesis until independently reconciled against 1.06a.
+then expand exact recovery from the 54 accepted functions. Structural
+fingerprinting is now validated as a prioritization method for retained-source
+hypotheses, but ambiguous template/clone families must be disambiguated with
+current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
+name, and implementation as a hypothesis until independently reconciled
+against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 3,954
+The 95% authored-function and authored-byte goals cannot be reported yet: 3,947
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 47/47
+global authored denominator is not established. Do not use the current 54/54
 exact subset as a substitute denominator.
 
 ## Routine checkpoint

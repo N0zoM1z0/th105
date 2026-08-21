@@ -50,31 +50,31 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4001)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 47)
+        self.assertEqual(len(matching), 54)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 47)
+        self.assertEqual(len(implemented), 54)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 47
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 54
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 28)
+        self.assertEqual(len(manifest["units"]), 35)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            47,
+            54,
         )
 
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("IDA 1.06a function candidates | 4,001", markdown)
-        self.assertIn("Confirmed authored functions | 47", markdown)
-        self.assertIn("Canonical exact functions | 47", markdown)
-        self.assertIn("Canonical exact authored bytes | 3,304", markdown)
+        self.assertIn("Confirmed authored functions | 54", markdown)
+        self.assertIn("Canonical exact functions | 54", markdown)
+        self.assertIn("Canonical exact authored bytes | 4,373", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )

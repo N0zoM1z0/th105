@@ -68,6 +68,31 @@ real mismatch; current IDA disassembly identified `0x00434300`, which made the
 source comparison exact. Treat that failure mode as a general rule for moved
 callees.
 
+### Structural-fingerprint migration
+
+When raw identity no longer survives a patch, retained exact source can still
+provide a safe *ranking* signal without weakening acceptance. Compile the
+retained source with the pinned VC8 profile, disassemble both the COFF function
+and current 1.06a candidates, and normalize only relocation/address-sensitive
+operands (for example branch destinations and large absolute immediates). Rank
+candidates by instruction/operand shape, then return to the normal bounded
+function loop. A structural score is never a mapping or exact-match claim.
+
+The first target-backed use of this method recovered seven additional authored
+functions / 1,069 bytes: `0x00412A20`, `0x004284C0`, `0x0042B2F0`,
+`0x0042B460`, `0x0045DBA0`, `0x00493D40`, and `0x0053CDF0`. For every one,
+current-target call destinations were reconciled from the 1.06a instruction
+stream and IDA call graph before the canonical comparator was run; all seven
+then reached zero differences under fresh VC8 builds.
+
+Normalized signatures are intentionally non-unique for template and clone
+families. The roster object-manager spawn bodies and manager-base constructors,
+for example, produce multiple equally strong structural candidates. Do not
+break such ties by address order or old-version deltas. Use class-specific
+xrefs, vtables/RTTI, neighboring recovered anchors, and current relocation
+semantics to establish identity, then require the same canonical zero-difference
+comparison.
+
 The comparator's `symbol_base` identifies a COFF symbol and need not equal the
 durable semantic name in `reccmp-functions.csv`. This is useful when retained
 source still carries an old address suffix or when a class-qualified compiled

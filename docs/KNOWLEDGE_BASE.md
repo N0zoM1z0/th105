@@ -18,9 +18,11 @@ notes or source hypotheses.
   object boundaries.
 - The current IDA database exposes 4,001 function candidates. Their auto-names
   and unreviewed sizes remain provisional analysis output.
-- The first accepted 1.06a authored wave contains 47 functions / 3,304 bytes in
-  28 VC8 match units. A cold `scripts/verify-exact-units.py --all` replay passes
-  all 47 with zero differences.
+- The accepted 1.06a authored set contains 54 functions / 4,373 bytes in 35
+  VC8 match units. The second wave added seven functions / 1,069 bytes after
+  structural-instruction fingerprinting selected candidates and current-target
+  IDA/call evidence reconciled their relocations; canonical VC8 comparisons,
+  not the fingerprints, established exactness.
 
 ## Repository decisions
 
@@ -41,6 +43,13 @@ notes or source hypotheses.
   moved callee can violate the surrounding delta; current IDA disassembly gave
   the correct 1.06a target `0x00434300`, after which the canonical comparison
   became exact.
+- A normalized VC8 instruction/operand fingerprint of retained exact source is
+  useful for *prioritizing* 1.06a candidates when raw bytes changed. Normalize
+  relocation/address-sensitive operands only, then independently reconcile the
+  candidate boundary and current-target callees before comparing. Template and
+  clone families can have identical normalized signatures, so structural ties
+  must remain unresolved until class/xref/relocation evidence disambiguates
+  them.
 - A durable semantic mapping name and the COFF `symbol_base` used by the exact
   comparator may differ. Keep semantic names stable in the ledgers and use the
   actual compiled symbol for object extraction.
