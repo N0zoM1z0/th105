@@ -9,7 +9,7 @@ extern "C" const char title_bgm_path[];
 extern "C" float __cdecl lookup_orientation_cosine(int angle);
 
 const char title_bgm_path[] = "data/bgm/op.ogg";
-const unsigned int title_color_vtable_anchor[] = {0x0040A840};
+const unsigned int title_color_vtable_anchor[] = {0x0040AE80};
 
 namespace th105 {
 

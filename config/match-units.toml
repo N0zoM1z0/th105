@@ -215,6 +215,22 @@ notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fr
 address = "0x0045C090"
 symbol_base = "count_0x88_byte_stride_entries"
 
+[[units.cross-v106a-hit-quantities.functions]]
+address = "0x0045C0B0"
+symbol_base = "calculate_descriptor_scaled_quantity_1c"
+rel32_targets = [
+  "?calculate_base_hit_quantity@AttackCandidate@th105@@QAEMXZ=0x0045B600",
+  "__ftol2_sse=0x0068A1A0",
+]
+
+[[units.cross-v106a-hit-quantities.functions]]
+address = "0x0045C0E0"
+symbol_base = "calculate_descriptor_scaled_quantity_20"
+rel32_targets = [
+  "?calculate_base_hit_quantity@AttackCandidate@th105@@QAEMXZ=0x0045B600",
+  "__ftol2_sse=0x0068A1A0",
+]
+
 [units.cross-v106a-character-object-effects]
 kind = "probe"
 source = "src/characters/CharacterObjectEffects.cpp"
@@ -1266,3 +1282,954 @@ dir32_targets = [
   "___security_cookie=___security_cookie",
   "??_7?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@6B@",
 ]
+
+[units.cross-v106a-fighter-continuity]
+kind = "probe"
+source = "src/battle/FighterContinuity.cpp"
+object = "build/match-units/CrossV106a_FighterContinuity.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a fighter transient-status recovery using natural VC8 conditional normalization codegen; current target callees/global are independently attested."
+
+[[units.cross-v106a-fighter-continuity.functions]]
+address = "0x0045E3D0"
+symbol_base = "process_fighter_transient_status"
+rel32_targets = [
+  "?is_state_13c_in_32_95@th105@@YI_NPAUFighter@1@@Z=0x0045E0E0",
+  "?step@FighterEmbeddedState3d0@th105@@QAEXXZ=0x004652F0",
+]
+dir32_targets = ["?g_fighter_state_4b8_default@th105@@3HA=?g_fighter_state_4b8_default@th105@@3HA"]
+
+[units.cross-v106a-angle-lookup]
+kind = "probe"
+source = "src/engine/AngleLookup.cpp"
+object = "build/match-units/CrossV106a_AngleLookup.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a angle lookup family recovered from retained old-target exact source; current table, atan2 runtime callee, and literals are target-backed."
+
+[[units.cross-v106a-angle-lookup.functions]]
+address = "0x00406480"
+symbol_base = "lookup_orientation_sine"
+dir32_targets = ["?g_orientation_cosine_table@th105@@3PAMA=?g_orientation_cosine_table@th105@@3PAMA"]
+
+[[units.cross-v106a-angle-lookup.functions]]
+address = "0x004064B0"
+symbol_base = "lookup_orientation_cosine"
+dir32_targets = ["?g_orientation_cosine_table@th105@@3PAMA=?g_orientation_cosine_table@th105@@3PAMA"]
+
+[[units.cross-v106a-angle-lookup.functions]]
+address = "0x00406540"
+symbol_base = "atan2_degrees"
+rel32_targets = ["_runtime_atan2=0x0068BB70"]
+dir32_targets = [
+  "_orientation_degree_scale=_orientation_degree_scale",
+  "_orientation_pi=_orientation_pi",
+]
+
+[units.cross-v106a-collision-preparation]
+kind = "probe"
+source = "src/battle/CollisionPreparation.cpp"
+object = "build/match-units/CrossV106a_CollisionPreparation.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a collision-box preparation recovered by whole-corpus structural ranking; all non-relocation bytes match retained natural C++ and current runtime/game callees are target-backed."
+
+[[units.cross-v106a-collision-preparation.functions]]
+address = "0x0045B760"
+symbol_base = "transform_box_from_local_frame"
+rel32_targets = [
+  "_ceil=0x0068B510",
+  "__ftol2_sse=0x0068A1A0",
+]
+
+[[units.cross-v106a-collision-preparation.functions]]
+address = "0x0045B8B0"
+symbol_base = "transform_box_from_local_frame_flipped_y"
+rel32_targets = [
+  "_ceil=0x0068B510",
+  "__ftol2_sse=0x0068A1A0",
+]
+
+[[units.cross-v106a-collision-preparation.functions]]
+address = "0x0045BA70"
+symbol_base = "build_oriented_box_and_descriptor"
+rel32_targets = [
+  "?lookup_orientation_cosine@th105@@YAMH@Z=0x004064B0",
+  "?lookup_orientation_sine@th105@@YAMH@Z=0x00406480",
+  "__ftol2_sse=0x0068A1A0",
+]
+
+[units.cross-v106a-command-gates-family]
+kind = "probe"
+source = "src/characters/CommandGates.cpp"
+object = "build/match-units/CrossV106a_CommandGatesFamily.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a command-gate family recovered by whole-corpus retained-source ranking; all non-relocation bytes are exact and current fighter-phase/counter/lookup callees are IDA-backed."
+
+[[units.cross-v106a-command-gates-family.functions]]
+address = "0x00493AC0"
+symbol_base = "try_dispatch_signed_gate_actions_208_210"
+rel32_targets = ["?initialize_fighter_phase_631e0@th105@@YIHPAUFighter@1@@Z=0x00464200"]
+
+[[units.cross-v106a-command-gates-family.functions]]
+address = "0x00493C50"
+symbol_base = "try_dispatch_flagged_gate_actions_225_226"
+rel32_targets = [
+  "?initialize_fighter_phase_631e0@th105@@YIHPAUFighter@1@@Z=0x00464200",
+  "?consume_counter_484_steps@Fighter@th105@@QAEXD@Z=0x0045B260",
+]
+
+[[units.cross-v106a-command-gates-family.functions]]
+address = "0x00493D00"
+symbol_base = "set_action_and_finalize_command"
+rel32_targets = ["?initialize_fighter_phase_631e0@th105@@YIHPAUFighter@1@@Z=0x00464200"]
+
+[[units.cross-v106a-command-gates-family.functions]]
+address = "0x00493D90"
+symbol_base = "try_dispatch_threshold_gated_actions_208_210"
+rel32_targets = [
+  "?lookup_command_gate_value@Fighter@th105@@QAEFF@Z=0x00493D40",
+  "?initialize_fighter_phase_631e0@th105@@YIHPAUFighter@1@@Z=0x00464200",
+]
+
+[[units.cross-v106a-command-gates-family.functions]]
+address = "0x00493F90"
+symbol_base = "try_dispatch_mirrored_gate_actions_200_201"
+rel32_targets = [
+  "?lookup_command_gate_value@Fighter@th105@@QAEFF@Z=0x00493D40",
+  "?initialize_fighter_phase_631e0@th105@@YIHPAUFighter@1@@Z=0x00464200",
+]
+
+[units.cross-v106a-terminal-outcome]
+kind = "probe"
+source = "src/battle/TerminalOutcomes.cpp"
+object = "build/match-units/CrossV106a_TerminalOutcomes.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a terminal outcome recovered by whole-corpus ranking; all non-relocation bytes match and every current call destination is resolved from the target instruction stream."
+
+[[units.cross-v106a-terminal-outcome.functions]]
+address = "0x0046C6E0"
+symbol_base = "apply_terminal_outcome"
+rel32_targets = [
+  "?consume_counter_484_steps@Fighter@th105@@QAEXD@Z=0x0045B260",
+  "?reset_hit_exchange_scratch@CollisionContext@th105@@QAEXPAUFighter@2@0@Z=0x0046B350",
+  "?adjust_capped_counter_558@Fighter@th105@@QAEXF@Z=0x0045CED0",
+  "__ftol2_sse=0x0068A1A0",
+  "?update_fighter_facing_from_other_x@th105@@YI_NPAUFighter@1@@Z=0x0045E070",
+  "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
+  "?emit_effect_at_collision_center@CollisionContext@th105@@QAEXHH@Z=0x0046B650",
+  "?reset_collision_extents@CollisionContext@th105@@QAEXXZ=0x0046B6C0",
+]
+
+[units.cross-v106a-candidate-fighter-resolver]
+kind = "probe"
+source = "src/battle/CandidateFighterResolver.cpp"
+object = "build/match-units/CrossV106a_CandidateFighterResolver.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a attack-candidate resolver recovered by whole-corpus ranking; current call destinations are decoded at each COFF relocation offset instead of inferred by address delta."
+
+[[units.cross-v106a-candidate-fighter-resolver.functions]]
+address = "0x0046DA10"
+symbol_base = "resolve_attack_candidate_against_fighter"
+rel32_targets = [
+  "?is_positive_y_and_state_window@th105@@YIHPAUFighter@1@@Z=0x0045E390",
+  "?test_group_a_against_primary_box@CollisionContext@th105@@QAEHPAUCollisionObject@2@0@Z=0x0046B940",
+  "?test_group_a_against_group_b@CollisionContext@th105@@QAEHPAUCollisionObject@2@0@Z=0x0046BB10",
+  "?try_frame_flag_pair_outcome@CollisionContext@th105@@QAE_NPAUAttackCandidate@2@PAUFighter@2@@Z=0x0046C8A0",
+  "?try_candidate_flag_outcome@CollisionContext@th105@@QAE_NPAUAttackCandidate@2@PAUFighter@2@@Z=0x0046C7F0",
+  "?dispatch_outcome_path@CollisionContext@th105@@QAE_NPAUAttackCandidate@2@PAUFighter@2@@Z=0x0046D830",
+  "?resolve_general_attack_hit@CollisionContext@th105@@QAEXPAUAttackCandidate@2@PAUFighter@2@@Z=0x0046BF80",
+]
+
+[units.cross-v106a-character-effect-repeat]
+kind = "probe"
+source = "src/characters/CharacterObjectEffects.cpp"
+object = "build/match-units/CrossV106a_CharacterObjectEffectsRepeat.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a repeated character-object effect emitter recovered by whole-corpus ranking; both current calls resolve to the same effect-emission helper."
+
+[[units.cross-v106a-character-effect-repeat.functions]]
+address = "0x005575C0"
+symbol_base = "CharacterObjectEffectEmitter_emit_repeated_effects_for_owner_state"
+rel32_targets = ["?emit_fighter_effect_433cc0@CharacterObjectEffectEmitter@th105@@QAEXHMMHH@Z=0x00435240"]
+
+[units.cross-v106a-fighter-common-update]
+kind = "probe"
+source = "src/battle/FighterCommonUpdate.cpp"
+object = "build/match-units/CrossV106a_FighterCommonUpdate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Whole-corpus retained-source recovery of the TH105 1.06a common fighter update wrapper."
+
+[[units.cross-v106a-fighter-common-update.functions]]
+address = "0x0045B420"
+symbol_base = "run_common_character_update"
+rel32_targets = [
+  "?is_state_13c_below_32@th105@@YI_NPAX@Z=0x0045E0D0",
+  "?update_common_fighter_state_window@th105@@YIXPAX@Z=0x0045B0F0",
+]
+
+[units.cross-v106a-front-sequence-ready]
+kind = "probe"
+source = "src/battle/SpellRuntime.cpp"
+object = "build/match-units/CrossV106a_FrontSequenceReady.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Whole-corpus retained-source recovery of the front sequence-entry readiness check; both checked accesses resolve to the same current helper."
+
+[[units.cross-v106a-front-sequence-ready.functions]]
+address = "0x0045D1B0"
+symbol_base = "Fighter_is_front_sequence_entry_ready_55a"
+rel32_targets = ["?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0"]
+
+[units.cross-v106a-title-resource-load]
+kind = "probe"
+source = "src/ui/TitleResourceLoad.cpp"
+object = "build/match-units/CrossV106a_TitleResourceLoad.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Whole-corpus retained-source recovery of the title texture loader with current handle-manager and bitmap-loader callees decoded from target REL32 fields."
+
+[[units.cross-v106a-title-resource-load.functions]]
+address = "0x00404C90"
+symbol_base = "TitleResourceManager_load_texture"
+rel32_targets = [
+  "_CHandleManager_acquire_4byte_slot_edi=0x00405090",
+  "_TextureLoader_load_bitmap_to_resource_cell=0x00409080",
+  "_CHandleManager_release_token_eax@4=0x00405200",
+]
+
+[units.cross-v106a-character-runtime-oriented]
+kind = "probe"
+source = "src/characters/CharacterObjectRuntime.cpp"
+object = "build/match-units/CrossV106a_CharacterObjectRuntimeOriented.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Whole-corpus retained-source recovery of oriented CharacterObject components using current quantized sine/cosine helpers."
+
+[[units.cross-v106a-character-runtime-oriented.functions]]
+address = "0x00435160"
+symbol_base = "CharacterObjectRuntime_set_oriented_components_f0_f4"
+rel32_targets = [
+  "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
+  "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
+]
+
+[units.cross-v106a-input-state-reset]
+kind = "probe"
+source = "src/input/InputCluster.cpp"
+object = "build/match-units/CrossV106a_InputStateReset.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Whole-corpus retained-source recovery of input-state table reset; current memset and input-key-list cleanup destinations are target-backed."
+
+[[units.cross-v106a-input-state-reset.functions]]
+address = "0x0040A510"
+symbol_base = "reset_input_state_table"
+rel32_targets = [
+  "_memset=0x0068A440",
+  "?clear_input_key_list_storage@th105@@YGXPAX@Z=0x0040A790",
+]
+
+[units.cross-v106a-menu-select-update]
+kind = "probe"
+source = "src/ui/MenuSelect.cpp"
+object = "build/match-units/CrossV106a_MenuSelectUpdate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Whole-corpus retained-source recovery of CMenuSelect update with current overlay/player/primary update callees decoded from the target."
+
+[[units.cross-v106a-menu-select-update.functions]]
+address = "0x00448200"
+symbol_base = "CMenuSelect_update"
+rel32_targets = [
+  "?update@GuideOverlay@th105@@QAEXXZ=0x0043F450",
+  "?update_player_assignment@CMenuSelect@th105@@AAE_NXZ=0x00448060",
+  "?update_primary_selection@CMenuSelect@th105@@AAE_NXZ=0x00447D20",
+]
+
+[units.cross-v106a-alice-flight-state]
+kind = "probe"
+source = "src/characters/AliceObjectEffects.cpp"
+object = "build/match-units/CrossV106a_AliceObjectEffects.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Whole-corpus retained-source recovery of Alice flight-state update; current angle/sqrt callees and floating literals are target-backed."
+
+[[units.cross-v106a-alice-flight-state.functions]]
+address = "0x004FC7C0"
+symbol_base = "AliceObjectFlightState_update_from_owner_and_target"
+rel32_targets = [
+  "?atan2_degrees@th105@@YANMM@Z=0x00406540",
+  "__CIsqrt=0x0068A380",
+]
+dir32_targets = [
+  "__real@4059000000000000=__real@4059000000000000",
+  "__real@4066800000000000=__real@4066800000000000",
+  "__real@3f70000000000000=__real@3f70000000000000",
+]
+
+[units.cross-v106a-character-heading]
+kind = "probe"
+source = "src/characters/CharacterObjectEffects.cpp"
+object = "build/match-units/CrossV106a_CharacterHeading.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Whole-corpus retained-source recovery of CharacterObject heading adjustment; current angle/conversion callees and +/-180/360 literals are target-backed."
+
+[[units.cross-v106a-character-heading.functions]]
+address = "0x004E0BF0"
+symbol_base = "CharacterObjectEffectEmitter_turn_heading_toward_related"
+rel32_targets = [
+  "?atan2_degrees@th105@@YANMM@Z=0x00406540",
+  "__ftol2_sse=0x0068A1A0",
+]
+dir32_targets = [
+  "__real@43340000=__real@43340000",
+  "__real@4076800000000000=__real@4076800000000000",
+  "__real@c3340000=__real@c3340000",
+]
+
+[units.cross-v106a-fighter-position]
+kind = "probe"
+source = "src/battle/FighterPosition.cpp"
+object = "build/match-units/CrossV106a_FighterPosition.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Whole-corpus retained-source recovery of fighter position integration/clamping; current stage-geometry helpers and 0/40/1240 literals are target-backed."
+
+[[units.cross-v106a-fighter-position.functions]]
+address = "0x0045AE30"
+symbol_base = "integrate_and_clamp_fighter_position"
+rel32_targets = [
+  "?classify_fighter_x_boundary@Fighter@th105@@QAECXZ=0x00435910",
+  "?test_proposed_x_against_stage_height@Fighter@th105@@QAEHM@Z=0x00435950",
+  "?is_y_at_or_below_stage_surface@th105@@YIHPAUFighter@1@@Z=0x00435DC0",
+  "?stage_surface_height_at_x@th105@@YIMPAUFighter@1@@Z=0x00435D60",
+]
+dir32_targets = [
+  "__real@0000000000000000=__real@0000000000000000",
+  "__real@42200000=__real@42200000",
+  "__real@449b0000=__real@449b0000",
+]
+
+[units.cross-v106a-profile-state-six]
+kind = "probe"
+source = "src/ui/ProfileMenuStateSix.cpp"
+object = "build/match-units/CrossV106a_ProfileMenuStateSix.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Whole-corpus retained-source recovery of ProfileMenu state-six workflow; current SEH/controller/name-list/string identities and every REL32 destination are target-backed."
+
+[[units.cross-v106a-profile-state-six.functions]]
+address = "0x0044CF70"
+symbol_base = "CProfileMenu_update_state_six"
+rel32_targets = [
+  "_select_profile_pair@8=0x00440410",
+  "?set_mode@ProfileMenuController@th105@@QAEXH@Z=0x0040E7F0",
+  "?select_profile@ProfileMenuController@th105@@QAEXPBD@Z=0x0040EB90",
+  "?update_selection@ProfileEditor168@th105@@QAECXZ=0x00427C60",
+  "_dispatch_indexed_event=0x0043B1A0",
+  "?read_profile_name@ProfileEditor168@th105@@QAEXPAUMenuString28@2@@Z=0x0044C0E0",
+  "_profile_string_equals=0x00412A20",
+  "?concatenate_profile_string@@YA?AUProfileStringTemporary@th105@@ABUMenuString28@2@PBD@Z=0x00408C40",
+  "?assign@MenuString28@th105@@QAEAAU12@ABUProfileStringTemporary@2@II@Z=0x004020D0",
+  "??1ProfileStringTemporary@th105@@QAE@XZ=0x00401E00",
+  "__stricmp=0x0068B038",
+  "?contains@ProfileNameList@th105@@QBE_NPBUMenuString28@2@@Z=0x00439810",
+  "?show_profile_message@CProfileMenu@th105@@AAEXPBDH@Z=0x0043F640",
+  "_update_profile_confirmation=0x0043F870",
+  "_update_profile_message=0x0043F6E0",
+  "?commit_profile_change@CProfileMenu@th105@@AAECXZ=0x0044C860",
+]
+dir32_targets = [
+  "__ehhandler$?update_state_six@CProfileMenu@th105@@AAE_NXZ=__ehhandler$?update_state_six@CProfileMenu@th105@@AAE_NXZ",
+  "___security_cookie=___security_cookie",
+  "_g_profile_menu_controller=_g_profile_menu_controller",
+  "_g_profile_name_list=_g_profile_name_list",
+  "_profile_name_empty=_profile_name_empty",
+  "_profile_file_extension=_profile_file_extension",
+  "_profile_copy_suffix=_profile_copy_suffix",
+]
+
+[units.cross-v106a-command-gate-angle]
+kind = "probe"
+source = "src/characters/CommandGates.cpp"
+object = "build/match-units/CrossV106a_CommandGateAngle.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Whole-corpus retained-source recovery of action-214 direction-angle gating; current gate/phase callees and angle thresholds are target-backed."
+
+[[units.cross-v106a-command-gate-angle.functions]]
+address = "0x004942C0"
+symbol_base = "try_dispatch_action_214_with_direction_angle"
+rel32_targets = [
+  "?lookup_command_gate_value@Fighter@th105@@QAEFF@Z=0x00493D40",
+  "?initialize_fighter_phase_631e0@th105@@YIHPAUFighter@1@@Z=0x00464200",
+]
+dir32_targets = [
+  "__real@4059000000000000=__real@4059000000000000",
+  "__real@c2340000=__real@c2340000",
+  "__real@c3070000=__real@c3070000",
+  "__real@c2b40000=__real@c2b40000",
+  "__real@42340000=__real@42340000",
+  "__real@43070000=__real@43070000",
+  "__real@42b40000=__real@42b40000",
+  "__real@43340000=__real@43340000",
+]
+
+[units.cross-v106a-profile-menu-ctor]
+kind = "probe"
+source = "src/ui/ProfileMenu.cpp"
+object = "build/match-units/CrossV106a_ProfileMenuCtor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Whole-corpus retained-source recovery of CProfileMenu ctor; current SEH/vtable/scene/input/editor globals, GuideOverlay vector callbacks, design path, and all call targets are target-backed."
+
+[[units.cross-v106a-profile-menu-ctor.functions]]
+address = "0x0044D4F0"
+symbol_base = "CProfileMenu_ctor"
+rel32_targets = [
+  "??0ProfileMenuBaseData@th105@@QAE@XZ=0x0042D260",
+  "??0TitleDesignResource@th105@@QAE@XZ=0x004217F0",
+  "??0ProfileEditor168@th105@@QAE@XZ=0x00428000",
+  "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C",
+  "?initialize@ProfileEditor168@th105@@QAEXPAXH@Z=0x00427BD0",
+  "?bind_object_alt@TitleDesignResource@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
+  "?initialize_profile_menu@Menu@th105@@IAEXXZ=0x0043FBF0",
+  "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390",
+]
+dir32_targets = [
+  "__ehhandler$??0CProfileMenu@th105@@QAE@XZ=__ehhandler$??0CProfileMenu@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "_g_scene_mode=_g_scene_mode",
+  "??_7CProfileMenu@th105@@6B@=??_7CProfileMenu@th105@@6B@",
+  "??1GuideOverlay@th105@@QAE@XZ=??1GuideOverlay@th105@@QAE@XZ",
+  "??0GuideOverlay@th105@@QAE@XZ=??0GuideOverlay@th105@@QAE@XZ",
+  "_profile_editor_records=_profile_editor_records",
+  "_profile_menu_design_path=_profile_menu_design_path",
+  "_g_active_menu_input=_g_active_menu_input",
+]
+
+[units.cross-v106a-profile-menu-render]
+kind = "probe"
+source = "src/ui/ProfileMenu.cpp"
+object = "build/match-units/CrossV106a_ProfileMenuRender.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Whole-corpus retained-source recovery of ProfileMenu render; current menu/editor/guide/footer calls and cursor-layout constants are target-backed."
+
+[[units.cross-v106a-profile-menu-render.functions]]
+address = "0x0044BE10"
+symbol_base = "CProfileMenu_render"
+rel32_targets = [
+  "_render_menu_list@4=0x0043FA10",
+  "?render_cursor@Menu@th105@@IAEXMMM@Z=0x0043F9D0",
+  "?render@ProfileEditor168@th105@@QAEXMM@Z=0x00427DB0",
+  "?render@GuideOverlay@th105@@QAEXXZ=0x0043F4C0",
+  "?render_profile_menu_footer@CProfileMenu@th105@@AAEXXZ=0x0043F970",
+]
+dir32_targets = [
+  "__real@43800000=__real@43800000",
+  "__real@4010000000000000=__real@4010000000000000",
+  "__real@4039000000000000=__real@4039000000000000",
+  "__real@405d000000000000=__real@405d000000000000",
+]
+
+[units.cross-v106a-deferred-counter]
+kind = "probe"
+source = "src/battle/HitCounters.cpp"
+object = "build/match-units/CrossV106a_HitCounters.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Whole-corpus retained-source recovery of deferred counter handling; current effect/sequence callees and double-100 literal are target-backed."
+
+[[units.cross-v106a-deferred-counter.functions]]
+address = "0x0045D510"
+symbol_base = "apply_deferred_counter_558"
+rel32_targets = [
+  "?emit_fighter_effect_433cc0@Fighter@th105@@QAEXHMMHH@Z=0x00435240",
+  "?advance_fighter_sequence_55c@Fighter@th105@@QAEXXZ=0x0045D040",
+]
+dir32_targets = ["__real@4059000000000000=__real@4059000000000000"]
+
+[units.cross-v106a-hit-exchange-reset]
+kind = "probe"
+source = "src/battle/HitScratch.cpp"
+object = "build/match-units/CrossV106a_HitScratch.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Whole-corpus retained-source recovery of hit-exchange scratch reset; shared InfoManager and indexed-entry reset helper are current-target-backed."
+
+[[units.cross-v106a-hit-exchange-reset.functions]]
+address = "0x0046B350"
+symbol_base = "reset_hit_exchange_scratch"
+rel32_targets = ["?reset_info_manager_indexed_entry@HitExchangeIndexedEntry@th105@@QAEXXZ=0x0046A8A0"]
+dir32_targets = ["?g_info_manager@th105@@3PAUInfoManager@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A"]
+
+[units.cross-v106a-title-resource-release]
+kind = "probe"
+source = "src/ui/TitleResourceRelease.cpp"
+object = "build/match-units/CrossV106a_TitleResourceRelease.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Whole-corpus retained-source recovery of title resource release; current texture-cache host and handle-manager lookup/release helpers are target-backed."
+
+[[units.cross-v106a-title-resource-release.functions]]
+address = "0x00404D70"
+symbol_base = "TitleResourceManager_release_title_resource_handle"
+rel32_targets = [
+  "_CHandleManager_lookup_token=0x00417800",
+  "_CHandleManager_release_token_eax@4=0x00405200",
+]
+dir32_targets = ["?g_title_texture_cache_host@th105@@3PAXA=?g_title_texture_cache_host@th105@@3PAXA"]
+
+[units.cross-v106a-guide-overlay]
+kind = "probe"
+source = "src/ui/GuideOverlay.cpp"
+object = "build/match-units/CrossV106a_GuideOverlay.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Whole-corpus retained-source recovery of GuideOverlay load/render. Load uses /GS and current title-resource/path/import/literal evidence; render reuses the same object while the selected function itself has no GS prologue."
+
+[[units.cross-v106a-guide-overlay.functions]]
+address = "0x0043F390"
+symbol_base = "GuideOverlay_load"
+rel32_targets = [
+  "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "___security_cookie=___security_cookie",
+  "_guide_texture_path_format=_guide_texture_path_format",
+  "__imp__wsprintfA=__imp__wsprintfA",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+  "__real@4f800000=__real@4f800000",
+]
+
+[[units.cross-v106a-guide-overlay.functions]]
+address = "0x0043F4C0"
+symbol_base = "GuideOverlay_render"
+rel32_targets = ["?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750"]
+dir32_targets = [
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+  "__real@43e40000=__real@43e40000",
+]
+
+[units.cross-v106a-menu-select-family]
+kind = "probe"
+source = "src/ui/MenuSelect.cpp"
+object = "build/match-units/CrossV106a_MenuSelectFamily.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Whole-corpus retained-source recovery of CMenuSelect ctor/dtor/render; current scene/input globals, vtables, GuideOverlay callbacks, design path and render literals are target-backed."
+
+[[units.cross-v106a-menu-select-family.functions]]
+address = "0x004482E0"
+symbol_base = "CMenuSelect_ctor"
+rel32_targets = [
+  "??0TitleDesignResource@th105@@QAE@XZ=0x004217F0",
+  "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C",
+  "?bind_object_alt@TitleDesignResource@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
+  "?initialize_profile_menu@Menu@th105@@IAEXXZ=0x0043FBF0",
+  "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390",
+]
+dir32_targets = [
+  "__ehhandler$??0CMenuSelect@th105@@QAE@XZ=__ehhandler$??0CMenuSelect@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "_g_scene_mode=_g_scene_mode",
+  "??_7CMenuSelect@th105@@6B@=??_7CMenuSelect@th105@@6B@",
+  "??1GuideOverlay@th105@@QAE@XZ=??1GuideOverlay@th105@@QAE@XZ",
+  "??0GuideOverlay@th105@@QAE@XZ=??0GuideOverlay@th105@@QAE@XZ",
+  "_menu_select_design_path=_menu_select_design_path",
+  "_g_active_menu_input=_g_active_menu_input",
+]
+
+[[units.cross-v106a-menu-select-family.functions]]
+address = "0x00448250"
+symbol_base = "CMenuSelect_dtor"
+rel32_targets = [
+  "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
+  "??1TitleDesignResource@th105@@QAE@XZ=0x00421890",
+]
+dir32_targets = [
+  "__ehhandler$??1CMenuSelect@th105@@UAE@XZ=__ehhandler$??1CMenuSelect@th105@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7CMenuSelect@th105@@6B@=??_7CMenuSelect@th105@@6B@",
+  "??1GuideOverlay@th105@@QAE@XZ=??1GuideOverlay@th105@@QAE@XZ",
+  "??_7Menu@th105@@6B@=??_7Menu@th105@@6B@",
+  "_g_scene_mode=_g_scene_mode",
+]
+
+[[units.cross-v106a-menu-select-family.functions]]
+address = "0x00447FE0"
+symbol_base = "CMenuSelect_render"
+rel32_targets = [
+  "_render_menu_list@4=0x0043FA10",
+  "?render_cursor@Menu@th105@@IAEXMMM@Z=0x0043F9D0",
+  "?render@GuideOverlay@th105@@QAEXXZ=0x0043F4C0",
+]
+dir32_targets = [
+  "__real@43800000=__real@43800000",
+  "__real@4020000000000000=__real@4020000000000000",
+]
+
+
+[units.cross-v106a-result-list-ctor]
+kind = "probe"
+source = "src/ui/ResultList.cpp"
+object = "build/match-units/CrossV106a_ResultList.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a ResultList constructor recovered from relocation-masked whole-corpus ranking; current IDA establishes the sole base-ctor edge and ResultList vtable store."
+
+[[units.cross-v106a-result-list-ctor.functions]]
+address = "0x004471E0"
+symbol_base = "ResultList_ctor"
+rel32_targets = ["??0ResultListBase@th105@@QAE@XZ=0x00439F40"]
+dir32_targets = ["??_7ResultList@th105@@6B@=??_7ResultList@th105@@6B@"]
+
+[units.cross-v106a-package-file-reader-read]
+kind = "probe"
+source = "src/assets/FileReader.cpp"
+object = "build/match-units/CrossV106a_PackageFileReaderRead.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a package-file read path; body has zero non-relocation differences and the sole DIR32 resolves to the current KERNEL32 ReadFile IAT slot."
+
+[[units.cross-v106a-package-file-reader-read.functions]]
+address = "0x0041C110"
+symbol_base = "CPackageFileReader_read"
+dir32_targets = ["__imp__ReadFile@20=__imp__ReadFile@20"]
+
+
+[units.cross-v106a-stage-geometry]
+kind = "probe"
+source = "src/battle/StageGeometry.cpp"
+object = "build/match-units/CrossV106a_StageGeometry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a stage-boundary and surface helpers recovered by relocation-masked retained-source ranking. The +0x13FC DIR32 is the last element of the same 0x500-float surface array, not a second global."
+
+[[units.cross-v106a-stage-geometry.functions]]
+address = "0x00435910"
+symbol_base = "classify_fighter_x_boundary"
+dir32_targets = [
+  "__real@4044000000000000=__real@4044000000000000",
+  "__real@0000000000000000=__real@0000000000000000",
+  "__real@4094000000000000=__real@4094000000000000",
+]
+
+[[units.cross-v106a-stage-geometry.functions]]
+address = "0x00435950"
+symbol_base = "test_proposed_x_against_stage_height"
+rel32_targets = ["__ftol2_sse=0x0068A1A0"]
+dir32_targets = [
+  "?stage_surface_heights@@3PAMA=?g_stage_surface_heights@th105@@3PAMA",
+  "__real@3fe0000000000000=__real@3fe0000000000000",
+  "__real@4014000000000000=__real@4014000000000000",
+]
+
+[[units.cross-v106a-stage-geometry.functions]]
+address = "0x00435D60"
+symbol_base = "stage_surface_height_at_x"
+rel32_targets = ["__ftol2_sse=0x0068A1A0"]
+dir32_targets = [
+  "?stage_surface_heights@@3PAMA=?g_stage_surface_heights@th105@@3PAMA",
+  "__real@3fe0000000000000=__real@3fe0000000000000",
+]
+
+
+[units.cross-v106a-plain-file-reader]
+kind = "probe"
+source = "src/assets/FileReader.cpp"
+object = "build/match-units/CrossV106a_PlainFileReader.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a plain file-reader ReadFile/GetFileSize methods. Current IDA semantics disambiguate the ReadFile body from an instruction-identical WriteFile forwarding clone."
+
+[[units.cross-v106a-plain-file-reader.functions]]
+address = "0x0040CED0"
+symbol_base = "CFileReader_read"
+dir32_targets = ["__imp__ReadFile@20=__imp__ReadFile@20"]
+
+[[units.cross-v106a-plain-file-reader.functions]]
+address = "0x0040CF00"
+symbol_base = "CFileReader_size"
+dir32_targets = ["__imp__GetFileSize@8=__imp__GetFileSize@8"]
+
+
+[units.cross-v106a-hit-scratch-entry-reset]
+kind = "probe"
+source = "src/battle/HitScratchEntry.cpp"
+object = "build/match-units/CrossV106a_HitScratchEntryReset.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a InfoManager indexed-entry reset recovered from zero non-relocation differences; current field stores and owned-tail release callee are IDA-backed."
+
+[[units.cross-v106a-hit-scratch-entry-reset.functions]]
+address = "0x0046A8A0"
+symbol_base = "reset_info_manager_indexed_entry"
+rel32_targets = ["?release_owned_pointer_buffer@th105@@YIXPAX@Z=0x00420A80"]
+
+[units.cross-v106a-collision-list-init]
+kind = "probe"
+source = "src/battle/CollisionListInit.cpp"
+object = "build/match-units/CrossV106a_CollisionListInit.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a collision-list initializer; current IDA confirms sentinel factory and count reset before canonical comparison."
+
+[[units.cross-v106a-collision-list-init.functions]]
+address = "0x0046B1D0"
+symbol_base = "initialize_collision_list"
+rel32_targets = ["?create_collision_list_sentinel@th105@@YAPAXXZ=0x00435E50"]
+
+
+[units.cross-v106a-scene-state-map]
+kind = "probe"
+source = "src/engine/SceneBase.cpp"
+object = "build/match-units/CrossV106a_SceneBaseMap.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a battle-setup-state to scene mapper; current state-advance callee and 5/6 -> 13/10 mapping are IDA-backed."
+
+[[units.cross-v106a-scene-state-map.functions]]
+address = "0x00426280"
+symbol_base = "map_battle_setup_state_to_scene"
+rel32_targets = ["?advance_battle_setup_state@CSceneBase@th105@@QAEHXZ=0x0041F3F0"]
+
+[units.cross-v106a-title-scene-exit]
+kind = "probe"
+source = "src/ui/Title.cpp"
+object = "build/match-units/CrossV106a_TitleSceneExit.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a title scene-exit selection-state wrapper; both current UI-selection callees are IDA-backed."
+
+[[units.cross-v106a-title-scene-exit.functions]]
+address = "0x00425720"
+symbol_base = "on_scene_exit"
+rel32_targets = [
+  "_has_ui_selection_state_changed=0x0043B6E0",
+  "_set_ui_selection_state_tracking=0x0043B110",
+]
+
+[units.cross-v106a-select-scenario-scene-exit]
+kind = "probe"
+source = "src/ui/SelectScenarioHooks.cpp"
+object = "build/match-units/CrossV106a_SelectScenarioSceneExit.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a SelectScenario scene-exit wrapper; current target is an eight-byte forwarding method to clear_menu_objects."
+
+[[units.cross-v106a-select-scenario-scene-exit.functions]]
+address = "0x0041FB70"
+symbol_base = "CSelectScenario_on_scene_exit"
+rel32_targets = ["_clear_menu_objects=0x0043B100"]
+
+[units.cross-v106a-common-fighter-state-window]
+kind = "probe"
+source = "src/battle/FighterCommonUpdateHelpers.cpp"
+object = "build/match-units/CrossV106a_CommonFighterStateWindow.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a common fighter-state recovery: caller-side byte narrowing matches the current predicate use, and the stale old-target absolute input-gate address is replaced by the verified current semantic global."
+
+[[units.cross-v106a-common-fighter-state-window.functions]]
+address = "0x0045B0F0"
+symbol_base = "update_common_fighter_state_window"
+rel32_targets = [
+  "?is_y_at_or_below_stage_surface@th105@@YIHPAUFighter@1@@Z=0x00435DC0",
+  "?update_fighter_facing_from_other_x@th105@@YI_NPAUFighter@1@@Z=0x0045E070",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+]
+dir32_targets = ["?g_battle_input_gate@th105@@3PAUBattleInputGate@1@A=?g_battle_input_gate@th105@@3PAUBattleInputGate@1@A"]
+
+[units.cross-v106a-collision-effect-center]
+kind = "probe"
+source = "src/battle/HitEffects.cpp"
+object = "build/match-units/CrossV106a_HitEffects.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a collision-center effect emission recovered by replacing a stale 1.06 magic pointer with the already-verified current EffectSink semantic global."
+
+[[units.cross-v106a-collision-effect-center.functions]]
+address = "0x0046B650"
+symbol_base = "emit_effect_at_collision_center"
+dir32_targets = [
+  "?g_effect_sink@th105@@3PAUEffectSink@1@A=?g_effect_sink@th105@@3PAUEffectSink@1@A",
+  "__real@3fe0000000000000=__real@3fe0000000000000",
+]
+
+[units.cross-v106a-shared-battle-phase]
+kind = "probe"
+source = "src/battle/SharedBattlePhase.cpp"
+object = "build/match-units/CrossV106a_SharedBattlePhase.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a shared battle-phase chain recovered from zero non-relocation-difference retained source; current object/fighter/effect/info globals and the shared 0x006FA21C polymorphic service are independently target-backed."
+
+[[units.cross-v106a-shared-battle-phase.functions]]
+address = "0x00435240"
+symbol_base = "emit_fighter_effect_433cc0"
+dir32_targets = ["?g_effect_sink@th105@@3PAUEffectSink@1@A=?g_effect_sink@th105@@3PAUEffectSink@1@A"]
+
+[[units.cross-v106a-shared-battle-phase.functions]]
+address = "0x0046BE30"
+symbol_base = "run_shared_battle_phase_sequence"
+rel32_targets = [
+  "?phase_465b00@BattleObjectManager@th105@@QAEXXZ=0x00466980",
+  "?phase_04a10@PhaseStaticService@th105@@QAEXH@Z=0x004047E0",
+  "?phase_04980@PhaseStaticService@th105@@QAEXH@Z=0x00404750",
+  "?phase_463970@FighterPhaseContext@th105@@QAEXXZ=0x00464990",
+  "?phase_465b70@BattleObjectManager@th105@@QAEXXZ=0x004669F0",
+  "?phase_463a00@FighterPhaseContext@th105@@QAEXH@Z=0x00464A20",
+  "?phase_463ab0@FighterPhaseContext@th105@@QAEXXZ=0x00464AD0",
+  "?phase_463a60@FighterPhaseContext@th105@@QAEXXZ=0x00464A80",
+  "?phase_463820@FighterPhaseContext@th105@@QAEXXZ=0x00464840",
+  "?phase_465bd0@BattleObjectManager@th105@@QAEXXZ=0x00466A50",
+]
+dir32_targets = [
+  "?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A=?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A",
+  "?g_battle_phase_static_service@th105@@3UPhaseStaticService@1@A=?g_battle_phase_static_service@th105@@3UPhaseStaticService@1@A",
+  "?g_fighter_phase_context@th105@@3PAUFighterPhaseContext@1@A=?g_fighter_phase_context@th105@@3PAUFighterPhaseContext@1@A",
+  "?g_effect_sink@th105@@3PAUEffectSink@1@A=?g_effect_sink@th105@@3PAUEffectSink@1@A",
+]
+
+[[units.cross-v106a-shared-battle-phase.functions]]
+address = "0x0046BF00"
+symbol_base = "run_battle_phase_and_info_callback"
+rel32_targets = [
+  "?phase_010c0@PhaseStaticService@th105@@QAEXXZ=0x004010C0",
+  "?run_shared_battle_phase_sequence@SharedBattlePhaseController@th105@@QAEXXZ=0x0046BE30",
+]
+dir32_targets = [
+  "?g_battle_phase_static_service@th105@@3UPhaseStaticService@1@A=?g_battle_phase_static_service@th105@@3UPhaseStaticService@1@A",
+  "?g_info_manager@th105@@3PAUInfoManager@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A",
+]
+
+[units.cross-v106a-yukari-command-gates]
+kind = "probe"
+source = "src/characters/YukariCommandGates.cpp"
+object = "build/match-units/CrossV106a_YukariCommandGates.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a Yukari mirrored 200/201 command-gate specialization. Structural clones are disambiguated by the current 0x0058C2E0 Yukari action dispatcher, nearby exact Yukari manager/spawn anchors, and all current REL32 destinations."
+
+[[units.cross-v106a-yukari-command-gates.functions]]
+address = "0x0058C170"
+symbol_base = "Yukari_try_dispatch_mirrored_gate_actions_200_201"
+rel32_targets = [
+  "?lookup_command_gate_value@Fighter@th105@@QAEFF@Z=0x00493D40",
+  "?initialize_fighter_phase_631e0@th105@@YIHPAUFighter@1@@Z=0x00464200",
+  "?classify_fighter_x_boundary@Fighter@th105@@QAECXZ=0x00435910",
+]
+
+[units.cross-v106a-direct-sound-core]
+kind = "probe"
+source = "src/audio/DirectSound.cpp"
+object = "build/match-units/CrossV106a_DirectSoundCore.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a DirectSound create-buffer and volume conversion recovery. The current Japanese error string is restored in source; GUID/string/volume constants are literal-validated and only the shared zero-initialized DirectSoundGlobals object uses address validation."
+
+[[units.cross-v106a-direct-sound-core.functions]]
+address = "0x00418920"
+symbol_base = "create_secondary_buffer8"
+dir32_targets = [
+  "?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A=?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A",
+  "_direct_sound_error_title=_direct_sound_error_title",
+  "_create_sound_buffer_error=_create_sound_buffer_error",
+  "__imp__MessageBoxA@16=__imp__MessageBoxA@16",
+  "_iid_direct_sound_buffer8=_iid_direct_sound_buffer8",
+]
+
+[[units.cross-v106a-direct-sound-core.functions]]
+address = "0x00418990"
+symbol_base = "linear_gain_to_ds_volume"
+rel32_targets = [
+  "_log10=0x0068C0A0",
+  "__ftol2_sse=0x0068A1A0",
+]
+dir32_targets = [
+  "_logarithmic_volume_scale=_logarithmic_volume_scale",
+  "_direct_sound_volume_units=_direct_sound_volume_units",
+]
+
+[units.cross-v106a-select-scenario-apply]
+kind = "probe"
+source = "src/ui/SelectScenarioPreview.cpp"
+object = "build/match-units/CrossV106a_SelectScenarioApply.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a scenario stand-preview application recovered from zero non-relocation-difference retained source; title-resource anchors, scenario-name helper, stand path, wsprintf IAT and /GS metadata are current-target-backed."
+
+[[units.cross-v106a-select-scenario-apply.functions]]
+address = "0x004245D0"
+symbol_base = "CSelectScenario_apply_scenario"
+rel32_targets = [
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "_get_scenario_name=0x0043BF80",
+  "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "___security_cookie=___security_cookie",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+  "_scenario_stand_path_format=_scenario_stand_path_format",
+  "__imp__wsprintfA=__imp__wsprintfA",
+]
+
+[units.cross-v106a-title-dtor]
+kind = "probe"
+source = "src/ui/Title.cpp"
+object = "build/match-units/CrossV106a_TitleDtor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a /GS CTitle destructor recovered after current IColor/CTitle/IScene vtable identities were reconciled; source-owned title_color_vtable_anchor now names the current IColor scalar-deleting destructor target."
+
+[[units.cross-v106a-title-dtor.functions]]
+address = "0x00425D40"
+symbol_base = "CTitle_dtor"
+rel32_targets = [
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "??1TitleDesignResource@th105@@QAE@XZ=0x00421890",
+]
+dir32_targets = [
+  "__ehhandler$??1CTitle@th105@@UAE@XZ=__ehhandler$??1CTitle@th105@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7CTitle@th105@@6B@=??_7CTitle@th105@@6B@",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+  "_title_color_vtable_anchor=_title_color_vtable_anchor",
+  "??_7IScene@th105@@6B@=??_7IScene@th105@@6B@",
+]
+
+[units.cross-v106a-title-scene-enter]
+kind = "probe"
+source = "src/ui/Title.cpp"
+object = "build/match-units/CrossV106a_TitleSceneEnter.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a title/loading scene-entry hooks recovered from source-owned BGM path and current UI/network/BGM helpers."
+
+[[units.cross-v106a-title-scene-enter.functions]]
+address = "0x004256D0"
+symbol_base = "CTitle_on_scene_enter"
+rel32_targets = [
+  "_play_bgm=0x0043CF80",
+  "_clear_network_session=0x0043B0A0",
+  "_set_ui_selection_state_tracking=0x0043B110",
+]
+dir32_targets = ["_title_bgm_path=_title_bgm_path"]
+
+[[units.cross-v106a-title-scene-enter.functions]]
+address = "0x00426860"
+symbol_base = "CLoadingWatch_on_scene_enter"
+rel32_targets = ["_play_bgm=0x0043CF80"]
+dir32_targets = ["_title_bgm_path=_title_bgm_path"]

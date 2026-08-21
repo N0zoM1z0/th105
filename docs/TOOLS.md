@@ -64,4 +64,5 @@ the bounded reconstruction unit and fix/report IDA; do not route to Ghidra.
 - `scripts/compare-function.py`: canonical COFF/function comparator.
 - `scripts/verify-exact-units.py --all`: cold replay of all accepted units.
 - `scripts/report-reconstruction-status.py`: select work from current ledgers.
+- `scripts/rank_retained_exact.py`: target-attested retained-1.06 source ranking for 1.06a; dual `/GS` profiles, normalized instruction shape, and relocation-masked raw mismatch counts are prioritization signals only.
 - `scripts/ci.py`: target-independent public validation.

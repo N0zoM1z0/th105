@@ -13,3 +13,13 @@ address,name,module,confidence,evidence
 0x006FBCC0,global_battle_setup_state,battle,observed,Exact 0x0046AE70 and exact 0x00470880/0x00470A60 call pair/setup state helpers on this object
 0x006FCF70,g_scenario_event_name_map,battle,observed,Exact 0x0043BFD0 uses this std::map base/sentinel with head pointer at addend 4; current init/destruction xrefs agree
 0x00702798,g_title_resource_manager,assets,observed,Exact 0x00433A80 loads this manager immediately before the current title-resource release helper and broad asset/UI xrefs agree
+0x006FA880,g_fighter_state_4b8_default,battle,observed,Exact 0x0045E3D0 selects this dword as Fighter +0x4B8 default when +0x4B2 is clear; current IDA xrefs agree
+0x006FE8B0,g_orientation_cosine_table,engine,observed,Current IDA trigonometric lookup family indexes this 3600-entry float table; exact angle-lookup recovery uses the same address
+0x00702B80,g_profile_menu_controller,ui,observed,Current IDA profile-menu/editor xrefs share this controller; exact ProfileMenu recovery uses the same address
+0x006FD2C8,g_profile_name_list,ui,observed,Current IDA profile selection/copy xrefs share this name-list object; exact ProfileMenu recovery uses the same address
+0x006E694C,g_scene_mode,ui,observed,Current CProfileMenu ctor stores mode 22 here; other current scene/UI xrefs share this state
+0x006FD0B8,profile_editor_records,ui,observed,Current CProfileMenu ctor initializes 24 editor records from this storage
+0x006FD030,g_active_menu_input,input,observed,Current CProfileMenu ctor reads this input pointer and selects its +0x3C field when non-null
+0x007036C0,g_title_texture_cache_host,assets,observed,Current IDA asset/UI xrefs share this polymorphic texture cache host; exact title resource release uses its vtable slot +0x104
+0x006FA21C,g_render_mode_manager,rendering,observed,Extensive current IDA render-path xrefs share this initialized RenderModeManager object; exact GuideOverlay render uses it around overlay drawing
+0x00703858,g_direct_sound_globals,audio,observed,"Current IDA initialization xrefs establish primary/direct_sound/listener pointers at +0/+4/+8; exact create-buffer recovery uses the +4 field"

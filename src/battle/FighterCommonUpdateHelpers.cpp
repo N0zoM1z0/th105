@@ -2,6 +2,9 @@
 
 namespace th105 {
 
+struct BattleInputGate;
+extern BattleInputGate *g_battle_input_gate;
+
 namespace {
 
 struct FighterActionView {
@@ -28,7 +31,7 @@ void __fastcall update_common_fighter_state_window(void *raw_fighter)
     if ((fighter->frame_158->flags_4c & 0x100000) != 0 ||
         fighter->value_4a2 >= 100 ||
         fighter->value_174 <= 0 ||
-        is_y_at_or_below_stage_surface(fighter)) {
+        static_cast<unsigned char>(is_y_at_or_below_stage_surface(fighter))) {
         return;
     }
     if (fighter->field_49e != 0) {
@@ -40,7 +43,8 @@ void __fastcall update_common_fighter_state_window(void *raw_fighter)
         reinterpret_cast<FighterActionView *>(fighter);
     if (fighter->field_6b0 == 0 && fighter->state_72c == 3) {
         switch (*reinterpret_cast<int *>(
-            *reinterpret_cast<unsigned *>(0x006e4e28) + 0x28)) {
+            reinterpret_cast<unsigned char *>(g_battle_input_gate) +
+            0x28)) {
         case 0:
             fighter->value_4a2 = 0;
             update_fighter_facing_from_other_x(fighter);

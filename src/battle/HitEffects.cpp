@@ -6,7 +6,7 @@ void CollisionContext::emit_effect_at_collision_center(
     int effect_code,
     int direction)
 {
-    EffectSink *sink = *reinterpret_cast<EffectSink **>(0x006e6250);
+    EffectSink *sink = g_effect_sink;
     sink->emit_effect(
         effect_code,
         static_cast<float>(extent_1c + extent_24) * 0.5,

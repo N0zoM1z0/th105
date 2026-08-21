@@ -94,8 +94,8 @@ void __fastcall process_fighter_transient_status(Fighter *fighter)
         do {
             unsigned int const value =
                 static_cast<unsigned char>(entry[32]);
-            *entry++ = value &
-                ((static_cast<signed char>(value) < 0) - 1);
+            *entry++ = static_cast<signed char>(
+                static_cast<signed char>(value) < 0 ? 0 : value);
         } while (--remaining != 0);
     }
 }

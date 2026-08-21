@@ -24,7 +24,8 @@ static const Guid iid_direct_sound_buffer8 = {
 
 static const char direct_sound_error_title[] = "DSound-Error";
 static const char create_sound_buffer_error[] =
-    "\xc1\xd9\xca\xb1\xbb\xba\xb4\xe6\xc9\xfa\xb3\xc9\xca\xa7\xb0\xdc\xa1\xa3";
+    "\x83\x65\x83\x93\x83\x7c\x83\x89\x83\x8a\x83\x6f\x83\x62\x83\x74"
+    "\x83\x40\x82\xcc\x90\xb6\x90\xac\x82\xc9\x8e\xb8\x94\x73";
 
 static volatile const float logarithmic_volume_scale = 33.220001220703125f;
 static volatile const float direct_sound_volume_units = 100.0f;

@@ -250,3 +250,86 @@ The remaining fifteen explicitly write
 class-specific `CHandleManagerEx<ClassObject>` constructor. With `/GS` restored,
 all fifteen roster specializations fresh-compile to 103/103 exact. Structural
 shape alone would have over-promoted five unrelated template instantiations.
+
+## Whole-corpus retained-source ranking
+
+The retained 1.06 tree contains more useful source hypotheses than the old
+match-unit graph recorded. `scripts/rank_retained_exact.py` turns that corpus
+into a repeatable 1.06a work queue without weakening exact acceptance. It
+attests the canonical target, selects historical `matching` `.cpp` rows,
+compiles each retained source with the pinned VC8 probe under both `/GS-` and
+`/GS`, extracts the requested COFF symbol, ranks current non-excluded candidates
+by normalized GNU-objdump instruction shape, and for same-size candidates also
+reports raw byte mismatches with COFF relocation fields masked. Generated
+objects and reports stay under `.analysis/`.
+
+A focused replay looks like:
+
+```bash
+python3 scripts/rank_retained_exact.py \
+  --only-unconfigured \
+  --name build_oriented_box_and_descriptor \
+  --reuse-cache
+```
+
+The pre-1.06a historical checkpoint used by default contains 152 old exact
+`.cpp` hypotheses that were absent from its match-unit graph; the migration
+survey could uniquely extract 147 of those COFF symbols. The first tracked
+migration wave raised the accepted 1.06a set from 100 functions / 13,487 bytes
+to 162 functions / 24,878 bytes. This is still a candidate queue only. Every promotion still requires a current boundary/semantic audit,
+current-target relocation reconciliation, a tracked match unit, and canonical
+zero-difference replay.
+
+Relocation-masked equality is deliberately *not* identity proof. The retained
+`CFileReader::read` body ranked a current 35-byte forwarding clone with zero
+non-relocation differences, but IDA showed that candidate called `WriteFile`.
+Walking current `ReadFile` IAT xrefs identified `0x0040CED0` instead, which then
+compiled 35/35 exact after the `ReadFile` IAT was allowlisted. Use this as the
+reference failure mode whenever tiny wrappers or template/clone families tie.
+
+The same survey exposed useful linker addends. In the stage-geometry helpers,
+the retained `stage_surface_heights` symbol appears with addend `0x13FC`.
+Current IDA resolves that address to `0x006FBC94`, exactly `0x006FA898 +
+0x13FC`, or element `0x4FF` of the already-verified 0x500-float array. Record
+such addends on one semantic relocation symbol instead of inventing a second
+global.
+
+
+Caller-side width is part of reconstruction. `is_y_at_or_below_stage_surface`
+remains an independently exact `int`-returning helper, but the current
+`update_common_fighter_state_window` tests only `AL`. Expressing the narrowing
+at that call site and replacing its stale 1.06 input-gate absolute with the
+verified current `g_battle_input_gate` made the full 339-byte caller exact.
+Changing the shared callee's return type would have been an ABI guess, not a
+valid code-generation fix.
+
+Address validation can also express one polymorphic object through multiple
+source-level narrow views. Current exact UI code uses `0x006FA21C` as a
+`RenderModeManager`, while exact shared battle-phase code uses the same object
+as a phase service. Both identities are supported by independent current xrefs;
+there is no need to invent separate globals merely because the source views
+differ.
+
+Data-layout failures should be corrected at the semantic base, not hidden with
+relocation addends. The DirectSound create-buffer recovery initially modeled
+`0x0070385C` as `DirectSoundGlobals` and failed canonical comparison: that
+address is the `direct_sound` field. Current initialization xrefs establish the
+object at `0x00703858`, with fields at `+0/+4/+8`. Re-basing the semantic object
+and allowing the real `+4` field relocation made `create_secondary_buffer8`
+110/110 exact. Its Japanese error text is source-owned data, so it was restored
+to the canonical Shift-JIS bytes and literal-validated rather than masked by
+address validation.
+
+A normalized structural tie can be accepted only after an independent identity
+chain closes it. The 367-byte Yukari mirrored-command gate ties other clone
+shapes, but its sole current fighter dispatcher, nearby exact Yukari manager/
+spawn anchors, and five resolved calls to already-established gate/phase/stage
+helpers identify `0x0058C170`; fresh VC8 then matches 367/367.
+
+Standalone VC8 differences that survive semantic/layout correction remain
+valid LTCG blockers. Examples from this wave include the shared tail chunk
+entered by `0x0045E500`, two-byte EAX/EDX allocation differences in the roster
+release helper, and the remaining CEffectSprite constructor store scheduling.
+Do not respond to these with register coercion, inline assembly, raw bytes, or
+padding; move to another candidate until natural C++ or stronger TU/LTCG
+evidence explains them.

@@ -15,13 +15,14 @@ seeds using current-target-backed structural remapping where appropriate.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
 - The IDA inventory has 4,001 provisional candidates. Current reviewed state is
-  100 authored functions, 673 classified exclusions, and 3,228 still awaiting origin/boundary review.
-- All 100 confirmed authored functions are source-present and canonical exact:
-  13,487 exact authored bytes across 52 configured VC8 units.
-- The structural-remap waves recovered fifty-three functions / 10,183 bytes by using normalized
-  VC8 instruction structure only as a candidate-ranking signal, reconciling all
-  current 1.06a REL32 destinations with target/IDA evidence, then requiring a
-  fresh canonical zero-difference comparison.
+  162 authored functions, 673 classified exclusions, and 3,166 still awaiting origin/boundary review.
+- All 162 confirmed authored functions are source-present and canonical exact:
+  24,878 exact authored bytes across 94 configured VC8 units.
+- The newest retained-source migration wave added sixty-two functions / 11,391 bytes
+  beyond the prior 100-function checkpoint. Structural instruction shape and
+  relocation-masked bytes are used only for candidate ranking; every accepted
+  function still requires current 1.06a semantic/relocation evidence and a fresh
+  canonical zero-difference comparison.
 - `config/claims.csv` remains header-only. IDA Pro remains the sole semantic
   backend.
 
@@ -44,16 +45,18 @@ the current call target.
 ## Next bounded work
 
 Continue origin/boundary review so the authored denominator becomes meaningful,
-then expand exact recovery from the 100 accepted functions. Structural
-fingerprinting is now validated as a prioritization method for retained-source
-hypotheses, but ambiguous template/clone families must be disambiguated with
+then expand exact recovery from the 162 accepted functions. Use
+`scripts/rank_retained_exact.py --only-unconfigured` to prioritize historical
+exact source that never had an old match unit. Same-size zero non-relocation
+mismatch candidates are especially productive, but ambiguous template/clone
+families must be disambiguated with
 current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 3,228
+The 95% authored-function and authored-byte goals cannot be reported yet: 3,166
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 100/100
+global authored denominator is not established. Do not use the current 162/162
 exact subset as a substitute denominator.
 
 ## Routine checkpoint
