@@ -1,3 +1,5 @@
 coff_symbol,address,data_hex,addends,evidence,validation
 ??_7AttackObject@@6B@,0x006C2B3C,30f94500,0,IDA 1.06a disassembly at 0x0045FA4F names the target as AttackObject vtable; current target bytes attested 2026-08-21,address
 ??_7CharacterObject@@6B@,0x006C400C,702f4900,0,IDA 1.06a disassembly at 0x00492FD4 names the target as CharacterObject vtable; current target bytes attested 2026-08-21,address
+__real@c4200000,0x006C2D30,000020c4,0,TH105 1.06a target bytes at 0x006C2D30 are IEEE-754 -640.0f and IDA 0x004652B0 loads flt_6C2D30; attested 2026-08-21,literal
+?g_round_counter@th105@@3EA,0x006FA88E,00,0,IDA 1.06a 0x00470D00 increments byte_6FA88E only in the terminal round-resolution branch matching retained authored semantics; xrefs remain within current battle/UI state and target initial byte is zero; attested 2026-08-21,address
