@@ -14,9 +14,9 @@ seeds using current-target-backed structural remapping where appropriate.
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 319 authored functions, 696 classified exclusions, and 2,989 still awaiting origin/boundary review.
-- All 319 confirmed authored functions are source-present and canonical exact:
-  52,283 exact authored bytes across 159 configured VC8 units.
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 370 authored functions, 696 classified exclusions, and 2,938 still awaiting origin/boundary review.
+- All 370 confirmed authored functions are source-present and canonical exact:
+  59,132 exact authored bytes across 160 configured VC8 units.
 - The newest retained-source/lifecycle migration wave added 209 functions / 38,037 bytes
   beyond the prior 100-function checkpoint. Structural instruction shape and
   relocation-masked bytes are used only for candidate ranking; every accepted
@@ -38,6 +38,8 @@ seeds using current-target-backed structural remapping where appropriate.
 - `EventEffectStateView::set_event_id @ 0x00469DF0` is 29/29 exact. Changed ids update controller `+0` then ordinary `return publish_stage_state(g_battle_transition_mode)` naturally reuses the incoming stack slot and tail-jumps to `0x00469D50`; unchanged ids return directly. A shared `EventEffectState.hpp` now keeps the three recovered event/stage TUs on one ODR-consistent narrow contract.
 - `PostSequenceTransitionView::publish_transition_effect_46e040 @ 0x0046EA10` is 47/47 exact. Nine current battle callers converge on the same helper, including the canonical-exact round-transition dispatcher. The body forwards through a polymorphic emitter subobject at `this+4`, vslot `+0x0C`, with `(effect_id, 320.0f, 240.0f, 1, 0, 0)`. Both float literals were already exact-backed elsewhere; a shared narrow facade now replaces duplicated local declarations without changing the exact round-transition caller.
 - The InfoManager/effect wave adds nine authored exact functions / 712 bytes: `0x0046E960/0x0046E990` resource load/release (33/60), `0x0046EB00` checked-map position effect (144), Story override `0x00471E50` (97), effect spawn `0x0046F460` (115), InfoEffectObject manager-base ctor/dtor/scalar wrapper `0x0046EE40/0x0046F020/0x0046F4E0` (103/100/30), and resource/preallocate wrapper `0x0046F900` (30). Current initializer `0x00438F50` plus exact lookup prove `g_info_effect_lookup_map @ 0x006FBD2C` is `std::map<unsigned,unsigned short>`. Story stays in a separate TU because same-TU visibility inlines the base loader. Five semantically closed neighbors remain review-pending on register allocation; no register forcing was used.
+
+- The CHandleManagerEx lifetime wave adds 51 authored exact functions / 6,849 bytes in one template/class-lifetime checkpoint. `CriticalSectionWrapper` is now the target-backed polymorphic `CCriticalSection` layout: implicit vptr at `+0`, Win32 `CRITICAL_SECTION` at `+4`, with ctor `0x0040ABC0` (23), normal dtor `0x0040AC10` (17), and scalar deleting wrapper `0x0040ABE0` (41) exact while the existing enter/leave pair stays 11/11. Sixteen `CHandleManagerEx<T>` specializations (fifteen roster objects plus `InfoEffectObject`) each reproduce an exact 130-byte ctor, 263-byte dtor, and 30-byte scalar wrapper, for 6,768 family bytes. Every specialization is class-disambiguated by its own current vtable and owner edge; Yuyuko's normal dtor `0x0056D2A0` is independently tied to vtable `0x006C55BC`. All sixteen ctor EH prologues fold to `0x006BC551` and all dtor EH prologues to `0x006BBB3C`, but folded EH identity is never used as class identity. The adjacent 519-byte pool-acquire family remains pending: the natural retained source currently emits 514-byte sections, so it was not padded, forced, or promoted.
 - `InfoEffectEmitterView::emit_effect @ 0x0046E9D0` is 49/49 exact. Exact `trigger_global_effect @ 0x00434E90` establishes the caller identity; current IDA shows the facade takes its polymorphic emitter subobject at `this+4`, calls vslot `+0x0C`, forwards the five caller arguments, and appends a real trailing zero argument. Moving the narrow emitter contract into `InfoEffectEmitter.hpp` leaves the existing 34/34 and 74/74 `EventSubobject130` helpers exact.
 - `EventSubobject130::trigger_secondary_event_effect @ 0x00434E40` is 67/67 exact. Fifteen current dispatch cases all pass `ECX = Fighter+0x130` and immediately return after the call, proving an unused-receiver `void` member rather than the decompiler's incidental-EAX `int` guess. The helper ignores id 16, publishes `0x006FA884`, then emits `lookup(id)+4` at 320/32.
 - `PairEmbeddedModeView::select_pair_mode_434780 @ 0x00435CE0` is 119/119 exact. Exact battle-pair initialization already owns the member edge; current body optionally publishes the primary effect, emits `lookup(mode)+2`, synchronizes mode globals `0x006FA884/0x006FA880`, and uses exact `selector_random_roll(14)` for mode 14. Extracting the view into `PairEmbeddedMode.hpp` leaves the original 279/279 caller exact.
@@ -80,9 +82,9 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 2,989
+The 95% authored-function and authored-byte goals cannot be reported yet: 2,938
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 319/319
+global authored denominator is not established. Do not use the current 370/370
 exact subset as a substitute denominator.
 
 ## Routine checkpoint

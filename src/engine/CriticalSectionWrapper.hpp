@@ -15,17 +15,26 @@ struct Win32CriticalSection24 {
     unsigned spin_count_14;
 };
 
+extern "C" __declspec(dllimport) void __stdcall InitializeCriticalSection(
+    Win32CriticalSection24 *critical_section);
+extern "C" __declspec(dllimport) void __stdcall DeleteCriticalSection(
+    Win32CriticalSection24 *critical_section);
 extern "C" __declspec(dllimport) void __stdcall EnterCriticalSection(
     Win32CriticalSection24 *critical_section);
 extern "C" __declspec(dllimport) void __stdcall LeaveCriticalSection(
     Win32CriticalSection24 *critical_section);
 
+// Current RTTI/vtable ownership identifies the target type as CCriticalSection.
+// The implicit polymorphic vptr is the observed +0 dword; the Win32 critical
+// section begins at +4, so the total layout remains 0x1c.
 struct CriticalSectionWrapper {
-    unsigned state_00;
-    Win32CriticalSection24 critical_section_04;
+    CriticalSectionWrapper();
+    virtual ~CriticalSectionWrapper();
 
     void enter();
     void leave();
+
+    Win32CriticalSection24 critical_section_04;
 };
 
 typedef char CheckCriticalSectionWrapperSize[

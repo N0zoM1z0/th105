@@ -2493,6 +2493,31 @@ address = "0x0040AC40"
 symbol_base = "CriticalSectionWrapper_leave"
 dir32_targets = ["__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4"]
 
+[[units.cross-v106a-critical-section-wrapper.functions]]
+address = "0x0040ABC0"
+symbol_base = "??0CriticalSectionWrapper@th105@@QAE@XZ"
+dir32_targets = [
+  "??_7CriticalSectionWrapper@th105@@6B@=??_7CriticalSectionWrapper@th105@@6B@",
+  "__imp__InitializeCriticalSection@4=__imp__InitializeCriticalSection@4",
+]
+
+[[units.cross-v106a-critical-section-wrapper.functions]]
+address = "0x0040AC10"
+symbol_base = "??1CriticalSectionWrapper@th105@@UAE@XZ"
+dir32_targets = [
+  "??_7CriticalSectionWrapper@th105@@6B@=??_7CriticalSectionWrapper@th105@@6B@",
+  "__imp__DeleteCriticalSection@4=__imp__DeleteCriticalSection@4",
+]
+
+[[units.cross-v106a-critical-section-wrapper.functions]]
+address = "0x0040ABE0"
+symbol_base = "??_GCriticalSectionWrapper@th105@@UAEPAXI@Z"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = [
+  "??_7CriticalSectionWrapper@th105@@6B@=??_7CriticalSectionWrapper@th105@@6B@",
+  "__imp__DeleteCriticalSection@4=__imp__DeleteCriticalSection@4",
+]
+
 [units.cross-v106a-network-session-field-copy]
 kind = "probe"
 source = "src/network/NetworkSession.cpp"
@@ -4419,5 +4444,541 @@ address = "0x0046F4E0"
 symbol_base = "??_G?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@UAEPAXI@Z"
 rel32_targets = [
   "??1?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@UAE@XZ=0x0046F020",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[units.cross-v106a-chandle-manager-ex-lifetime]
+kind = "probe"
+source = "src/characters/CHandleManagerEx.cpp"
+object = "build/match-units/CrossV106a_CHandleManagerEx.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a CHandleManagerEx<T> lifetime family: sixteen class-disambiguated specializations, each with exact 130-byte ctor, 263-byte dtor, and 30-byte scalar deleting wrapper. Current exact TObjectManagerBase edges identify fifteen roster/Info ctor/dtor targets; Yuyuko dtor is independently fixed by its 0x006C55BC vtable xref. Natural checked-vector destruction uses one source-level object local per slot; ctor clears generation_counter only after the critical-section member ctor."
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x0046edb0"
+symbol_base = "??0?$CHandleManagerEx@VInfoEffectObject@@@@QAE@XZ"
+rel32_targets = [
+  "_Buynode=0x004040B0",
+  "??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CHandleManagerEx@VInfoEffectObject@@@@QAE@XZ=_chandle_manager_ctor_eh",
+  "??_7?$CHandleManagerEx@VInfoEffectObject@@@@6B@=??_7?$CHandleManagerEx@VInfoEffectObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x0046ec80"
+symbol_base = "??1?$CHandleManagerEx@VInfoEffectObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "??3@YAXPAX@Z=0x006898EA",
+  "_invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CHandleManagerEx@VInfoEffectObject@@@@UAE@XZ=_chandle_manager_dtor_eh",
+  "??_7?$CHandleManagerEx@VInfoEffectObject@@@@6B@=??_7?$CHandleManagerEx@VInfoEffectObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x0046ed90"
+symbol_base = "??_G?$CHandleManagerEx@VInfoEffectObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CHandleManagerEx@VInfoEffectObject@@@@UAE@XZ=0x0046ec80",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x004932b0"
+symbol_base = "??0?$CHandleManagerEx@VReimuObject@@@@QAE@XZ"
+rel32_targets = [
+  "_Buynode=0x004040B0",
+  "??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CHandleManagerEx@VReimuObject@@@@QAE@XZ=_chandle_manager_ctor_eh",
+  "??_7?$CHandleManagerEx@VReimuObject@@@@6B@=??_7?$CHandleManagerEx@VReimuObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x00492fe0"
+symbol_base = "??1?$CHandleManagerEx@VReimuObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "??3@YAXPAX@Z=0x006898EA",
+  "_invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CHandleManagerEx@VReimuObject@@@@UAE@XZ=_chandle_manager_dtor_eh",
+  "??_7?$CHandleManagerEx@VReimuObject@@@@6B@=??_7?$CHandleManagerEx@VReimuObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x004930f0"
+symbol_base = "??_G?$CHandleManagerEx@VReimuObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CHandleManagerEx@VReimuObject@@@@UAE@XZ=0x00492fe0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x004b9890"
+symbol_base = "??0?$CHandleManagerEx@VMarisaObject@@@@QAE@XZ"
+rel32_targets = [
+  "_Buynode=0x004040B0",
+  "??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CHandleManagerEx@VMarisaObject@@@@QAE@XZ=_chandle_manager_ctor_eh",
+  "??_7?$CHandleManagerEx@VMarisaObject@@@@6B@=??_7?$CHandleManagerEx@VMarisaObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x004b95a0"
+symbol_base = "??1?$CHandleManagerEx@VMarisaObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "??3@YAXPAX@Z=0x006898EA",
+  "_invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CHandleManagerEx@VMarisaObject@@@@UAE@XZ=_chandle_manager_dtor_eh",
+  "??_7?$CHandleManagerEx@VMarisaObject@@@@6B@=??_7?$CHandleManagerEx@VMarisaObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x004b96b0"
+symbol_base = "??_G?$CHandleManagerEx@VMarisaObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CHandleManagerEx@VMarisaObject@@@@UAE@XZ=0x004b95a0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x004dedb0"
+symbol_base = "??0?$CHandleManagerEx@VSakuyaObject@@@@QAE@XZ"
+rel32_targets = [
+  "_Buynode=0x004040B0",
+  "??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CHandleManagerEx@VSakuyaObject@@@@QAE@XZ=_chandle_manager_ctor_eh",
+  "??_7?$CHandleManagerEx@VSakuyaObject@@@@6B@=??_7?$CHandleManagerEx@VSakuyaObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x004deac0"
+symbol_base = "??1?$CHandleManagerEx@VSakuyaObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "??3@YAXPAX@Z=0x006898EA",
+  "_invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CHandleManagerEx@VSakuyaObject@@@@UAE@XZ=_chandle_manager_dtor_eh",
+  "??_7?$CHandleManagerEx@VSakuyaObject@@@@6B@=??_7?$CHandleManagerEx@VSakuyaObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x004debd0"
+symbol_base = "??_G?$CHandleManagerEx@VSakuyaObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CHandleManagerEx@VSakuyaObject@@@@UAE@XZ=0x004deac0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x004fa5a0"
+symbol_base = "??0?$CHandleManagerEx@VAliceObject@@@@QAE@XZ"
+rel32_targets = [
+  "_Buynode=0x004040B0",
+  "??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CHandleManagerEx@VAliceObject@@@@QAE@XZ=_chandle_manager_ctor_eh",
+  "??_7?$CHandleManagerEx@VAliceObject@@@@6B@=??_7?$CHandleManagerEx@VAliceObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x004fa250"
+symbol_base = "??1?$CHandleManagerEx@VAliceObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "??3@YAXPAX@Z=0x006898EA",
+  "_invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CHandleManagerEx@VAliceObject@@@@UAE@XZ=_chandle_manager_dtor_eh",
+  "??_7?$CHandleManagerEx@VAliceObject@@@@6B@=??_7?$CHandleManagerEx@VAliceObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x004fa360"
+symbol_base = "??_G?$CHandleManagerEx@VAliceObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CHandleManagerEx@VAliceObject@@@@UAE@XZ=0x004fa250",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x0051e860"
+symbol_base = "??0?$CHandleManagerEx@VPatchouliObject@@@@QAE@XZ"
+rel32_targets = [
+  "_Buynode=0x004040B0",
+  "??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CHandleManagerEx@VPatchouliObject@@@@QAE@XZ=_chandle_manager_ctor_eh",
+  "??_7?$CHandleManagerEx@VPatchouliObject@@@@6B@=??_7?$CHandleManagerEx@VPatchouliObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x0051e570"
+symbol_base = "??1?$CHandleManagerEx@VPatchouliObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "??3@YAXPAX@Z=0x006898EA",
+  "_invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CHandleManagerEx@VPatchouliObject@@@@UAE@XZ=_chandle_manager_dtor_eh",
+  "??_7?$CHandleManagerEx@VPatchouliObject@@@@6B@=??_7?$CHandleManagerEx@VPatchouliObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x0051e680"
+symbol_base = "??_G?$CHandleManagerEx@VPatchouliObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CHandleManagerEx@VPatchouliObject@@@@UAE@XZ=0x0051e570",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x0053ac20"
+symbol_base = "??0?$CHandleManagerEx@VYoumuObject@@@@QAE@XZ"
+rel32_targets = [
+  "_Buynode=0x004040B0",
+  "??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CHandleManagerEx@VYoumuObject@@@@QAE@XZ=_chandle_manager_ctor_eh",
+  "??_7?$CHandleManagerEx@VYoumuObject@@@@6B@=??_7?$CHandleManagerEx@VYoumuObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x0053a930"
+symbol_base = "??1?$CHandleManagerEx@VYoumuObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "??3@YAXPAX@Z=0x006898EA",
+  "_invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CHandleManagerEx@VYoumuObject@@@@UAE@XZ=_chandle_manager_dtor_eh",
+  "??_7?$CHandleManagerEx@VYoumuObject@@@@6B@=??_7?$CHandleManagerEx@VYoumuObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x0053aa40"
+symbol_base = "??_G?$CHandleManagerEx@VYoumuObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CHandleManagerEx@VYoumuObject@@@@UAE@XZ=0x0053a930",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x00555970"
+symbol_base = "??0?$CHandleManagerEx@VRemiliaObject@@@@QAE@XZ"
+rel32_targets = [
+  "_Buynode=0x004040B0",
+  "??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CHandleManagerEx@VRemiliaObject@@@@QAE@XZ=_chandle_manager_ctor_eh",
+  "??_7?$CHandleManagerEx@VRemiliaObject@@@@6B@=??_7?$CHandleManagerEx@VRemiliaObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x00555680"
+symbol_base = "??1?$CHandleManagerEx@VRemiliaObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "??3@YAXPAX@Z=0x006898EA",
+  "_invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CHandleManagerEx@VRemiliaObject@@@@UAE@XZ=_chandle_manager_dtor_eh",
+  "??_7?$CHandleManagerEx@VRemiliaObject@@@@6B@=??_7?$CHandleManagerEx@VRemiliaObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x00555790"
+symbol_base = "??_G?$CHandleManagerEx@VRemiliaObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CHandleManagerEx@VRemiliaObject@@@@UAE@XZ=0x00555680",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x0056d650"
+symbol_base = "??0?$CHandleManagerEx@VYuyukoObject@@@@QAE@XZ"
+rel32_targets = [
+  "_Buynode=0x004040B0",
+  "??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CHandleManagerEx@VYuyukoObject@@@@QAE@XZ=_chandle_manager_ctor_eh",
+  "??_7?$CHandleManagerEx@VYuyukoObject@@@@6B@=??_7?$CHandleManagerEx@VYuyukoObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x0056d2a0"
+symbol_base = "??1?$CHandleManagerEx@VYuyukoObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "??3@YAXPAX@Z=0x006898EA",
+  "_invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CHandleManagerEx@VYuyukoObject@@@@UAE@XZ=_chandle_manager_dtor_eh",
+  "??_7?$CHandleManagerEx@VYuyukoObject@@@@6B@=??_7?$CHandleManagerEx@VYuyukoObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x0056d3b0"
+symbol_base = "??_G?$CHandleManagerEx@VYuyukoObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CHandleManagerEx@VYuyukoObject@@@@UAE@XZ=0x0056d2a0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x0058b900"
+symbol_base = "??0?$CHandleManagerEx@VYukariObject@@@@QAE@XZ"
+rel32_targets = [
+  "_Buynode=0x004040B0",
+  "??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CHandleManagerEx@VYukariObject@@@@QAE@XZ=_chandle_manager_ctor_eh",
+  "??_7?$CHandleManagerEx@VYukariObject@@@@6B@=??_7?$CHandleManagerEx@VYukariObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x0058b610"
+symbol_base = "??1?$CHandleManagerEx@VYukariObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "??3@YAXPAX@Z=0x006898EA",
+  "_invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CHandleManagerEx@VYukariObject@@@@UAE@XZ=_chandle_manager_dtor_eh",
+  "??_7?$CHandleManagerEx@VYukariObject@@@@6B@=??_7?$CHandleManagerEx@VYukariObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x0058b720"
+symbol_base = "??_G?$CHandleManagerEx@VYukariObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CHandleManagerEx@VYukariObject@@@@UAE@XZ=0x0058b610",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x005ae5e0"
+symbol_base = "??0?$CHandleManagerEx@VSuikaObject@@@@QAE@XZ"
+rel32_targets = [
+  "_Buynode=0x004040B0",
+  "??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CHandleManagerEx@VSuikaObject@@@@QAE@XZ=_chandle_manager_ctor_eh",
+  "??_7?$CHandleManagerEx@VSuikaObject@@@@6B@=??_7?$CHandleManagerEx@VSuikaObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x005ae290"
+symbol_base = "??1?$CHandleManagerEx@VSuikaObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "??3@YAXPAX@Z=0x006898EA",
+  "_invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CHandleManagerEx@VSuikaObject@@@@UAE@XZ=_chandle_manager_dtor_eh",
+  "??_7?$CHandleManagerEx@VSuikaObject@@@@6B@=??_7?$CHandleManagerEx@VSuikaObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x005ae3a0"
+symbol_base = "??_G?$CHandleManagerEx@VSuikaObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CHandleManagerEx@VSuikaObject@@@@UAE@XZ=0x005ae290",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x005d2530"
+symbol_base = "??0?$CHandleManagerEx@VUdongeObject@@@@QAE@XZ"
+rel32_targets = [
+  "_Buynode=0x004040B0",
+  "??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CHandleManagerEx@VUdongeObject@@@@QAE@XZ=_chandle_manager_ctor_eh",
+  "??_7?$CHandleManagerEx@VUdongeObject@@@@6B@=??_7?$CHandleManagerEx@VUdongeObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x005d2260"
+symbol_base = "??1?$CHandleManagerEx@VUdongeObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "??3@YAXPAX@Z=0x006898EA",
+  "_invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CHandleManagerEx@VUdongeObject@@@@UAE@XZ=_chandle_manager_dtor_eh",
+  "??_7?$CHandleManagerEx@VUdongeObject@@@@6B@=??_7?$CHandleManagerEx@VUdongeObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x005d2370"
+symbol_base = "??_G?$CHandleManagerEx@VUdongeObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CHandleManagerEx@VUdongeObject@@@@UAE@XZ=0x005d2260",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x005f73b0"
+symbol_base = "??0?$CHandleManagerEx@VKomachiObject@@@@QAE@XZ"
+rel32_targets = [
+  "_Buynode=0x004040B0",
+  "??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CHandleManagerEx@VKomachiObject@@@@QAE@XZ=_chandle_manager_ctor_eh",
+  "??_7?$CHandleManagerEx@VKomachiObject@@@@6B@=??_7?$CHandleManagerEx@VKomachiObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x005f70c0"
+symbol_base = "??1?$CHandleManagerEx@VKomachiObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "??3@YAXPAX@Z=0x006898EA",
+  "_invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CHandleManagerEx@VKomachiObject@@@@UAE@XZ=_chandle_manager_dtor_eh",
+  "??_7?$CHandleManagerEx@VKomachiObject@@@@6B@=??_7?$CHandleManagerEx@VKomachiObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x005f71d0"
+symbol_base = "??_G?$CHandleManagerEx@VKomachiObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CHandleManagerEx@VKomachiObject@@@@UAE@XZ=0x005f70c0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x00617d60"
+symbol_base = "??0?$CHandleManagerEx@VAyaObject@@@@QAE@XZ"
+rel32_targets = [
+  "_Buynode=0x004040B0",
+  "??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CHandleManagerEx@VAyaObject@@@@QAE@XZ=_chandle_manager_ctor_eh",
+  "??_7?$CHandleManagerEx@VAyaObject@@@@6B@=??_7?$CHandleManagerEx@VAyaObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x00617a20"
+symbol_base = "??1?$CHandleManagerEx@VAyaObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "??3@YAXPAX@Z=0x006898EA",
+  "_invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CHandleManagerEx@VAyaObject@@@@UAE@XZ=_chandle_manager_dtor_eh",
+  "??_7?$CHandleManagerEx@VAyaObject@@@@6B@=??_7?$CHandleManagerEx@VAyaObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x00617b30"
+symbol_base = "??_G?$CHandleManagerEx@VAyaObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CHandleManagerEx@VAyaObject@@@@UAE@XZ=0x00617a20",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x00630c10"
+symbol_base = "??0?$CHandleManagerEx@VIkuObject@@@@QAE@XZ"
+rel32_targets = [
+  "_Buynode=0x004040B0",
+  "??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CHandleManagerEx@VIkuObject@@@@QAE@XZ=_chandle_manager_ctor_eh",
+  "??_7?$CHandleManagerEx@VIkuObject@@@@6B@=??_7?$CHandleManagerEx@VIkuObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x00630940"
+symbol_base = "??1?$CHandleManagerEx@VIkuObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "??3@YAXPAX@Z=0x006898EA",
+  "_invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CHandleManagerEx@VIkuObject@@@@UAE@XZ=_chandle_manager_dtor_eh",
+  "??_7?$CHandleManagerEx@VIkuObject@@@@6B@=??_7?$CHandleManagerEx@VIkuObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x00630a50"
+symbol_base = "??_G?$CHandleManagerEx@VIkuObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CHandleManagerEx@VIkuObject@@@@UAE@XZ=0x00630940",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x0064afe0"
+symbol_base = "??0?$CHandleManagerEx@VTenshiObject@@@@QAE@XZ"
+rel32_targets = [
+  "_Buynode=0x004040B0",
+  "??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CHandleManagerEx@VTenshiObject@@@@QAE@XZ=_chandle_manager_ctor_eh",
+  "??_7?$CHandleManagerEx@VTenshiObject@@@@6B@=??_7?$CHandleManagerEx@VTenshiObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x0064ac70"
+symbol_base = "??1?$CHandleManagerEx@VTenshiObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "??3@YAXPAX@Z=0x006898EA",
+  "_invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CHandleManagerEx@VTenshiObject@@@@UAE@XZ=_chandle_manager_dtor_eh",
+  "??_7?$CHandleManagerEx@VTenshiObject@@@@6B@=??_7?$CHandleManagerEx@VTenshiObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x0064ad80"
+symbol_base = "??_G?$CHandleManagerEx@VTenshiObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CHandleManagerEx@VTenshiObject@@@@UAE@XZ=0x0064ac70",
   "??3@YAXPAX@Z=0x006898EA",
 ]

@@ -17,7 +17,7 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 319 functions / 52,283 bytes in 159
+- The accepted 1.06a authored set contains 370 functions / 59,132 bytes in 160
   VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 191
   functions / 36,775 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
@@ -272,6 +272,12 @@ notes or source hypotheses.
 
 - `PatGroup` at `0x00461520/0x00461590` is now a concrete C++ lifetime anchor, not a raw 0x20-byte view. Its first 0x10 bytes are VC8 checked `std::vector<PatRecord88>` storage; both authored ctor and dtor explicitly call `records.clear()`, and natural `/GS` source compares 106/106 and 128/128 exact. Four adjacent template helpers are now replayably `compiler_generated`: `vector::_Tidy @ 0x0045FC30`, `vector::erase @ 0x00461320`, the 249-byte vector copy constructor at `0x00461420`, and `std::_Construct<PatGroup> @ 0x00461940`. The first two come directly from tracked `PatGroup.cpp`; the latter two come from tracked `scripts/probes/pat_vector_generated.cpp`. The copy-constructor COMDAT is 250 bytes only because of one terminal `0xCC` alignment byte, while the target body is 249 bytes followed by target `0xCC` padding; the origin validator permits only that manifest-bounded tail and forbids relocations in it.
 - Fourteen current roster `TObjectManagerBase<ClassObject,CharacterObject>` destructors are 100/100 exact from one natural template lifetime. Their identity is not address-order inference: each current body restores its class-specific template vtable, calls shared `release_all_tracked_objects`, destroys the same non-throwing `CollisionList`, then calls the class-specific `CHandleManagerEx<ClassObject>` destructor. Current SEH and handle-manager destinations must be read from each target body; several provisional rows were off by fixed-looking deltas and failed until corrected. Yuyuko remains outside this 100-byte family because current LTCG uses a different derived tail-jump shape.
+
+- `CriticalSectionWrapper` is now recovered as the target's polymorphic `CCriticalSection` lifetime rather than a trivial struct with a synthetic leading state dword. The compiler-owned vptr occupies `+0`, `Win32CriticalSection24` begins at `+4`, and `sizeof==0x1c`; natural VC8 gives ctor `0x0040ABC0` 23/23, dtor `0x0040AC10` 17/17, scalar deleting wrapper `0x0040ABE0` 41/41, while existing enter/leave remain 11/11. Prefer a real polymorphic member lifetime when target ctor/dtor/vtable evidence closes the layout; do not preserve a fake data field merely because it once made offsets convenient.
+- The sixteen-specialization `CHandleManagerEx<T>` family is 48/48 exact for 6,768 bytes from one natural template TU. Each ctor is 130 bytes, each normal dtor 263, and each scalar deleting wrapper 30. Fifteen identities come from already-exact `TObjectManagerBase` construction/destruction edges; Yuyuko's omitted parent-dtor edge is independently recovered because its ctor writes vtable `0x006C55BC`, whose only other code write/reference belongs to 263-byte dtor `0x0056D2A0`, and that vtable's first slot is 30-byte wrapper `0x0056D3B0`. Batch template code only after every specialization has its own target-backed class edge or vtable proof.
+- Two source-order details are byte-significant in `CHandleManagerEx<T>`. `generation_counter_30 = 0` belongs in the constructor body because current code performs the store only after the `CCriticalSection` member ctor returns; an initializer changes scheduling. In the destructor, read `ObjectType *object = slots_04[index]` once before the null check and virtual delete. Writing `if (slots[index]) delete slots[index]` makes VC8 emit a second checked `operator[]` path, growing the body from the target 263 bytes to 294; the local is target-proved dataflow, not artificial padding.
+- Linker-folded EH handlers are not class identity. All sixteen `CHandleManagerEx<T>` ctors push the same target handler `0x006BC551`, and all sixteen dtors push `0x006BBB3C`. That proves shared EH shape only. Class identity remains the specialization-specific vtable and its independently recovered owner/caller edge.
+- The neighboring roster pool `acquire` family is deliberately not part of this acceptance wave. Existing natural `/GS` `RosterObjectPools.cpp` produces 514-byte COMDAT bodies while current candidates are 519 bytes. Keep the semantic source as a probe and wait for stronger lifetime/TU evidence; do not add dead work, padding, assembly, or register tricks to manufacture five bytes.
 - Use one writable reconstruction session. Claims remain header-only.
 - Use IDA Pro exclusively after exact attestation. There is no Ghidra fallback.
 - Keep IDA client scripts independent of an interactive Python environment:
@@ -291,7 +297,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 2,989
+- Accepted boundaries and authored/library origins for the remaining 2,938
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.
