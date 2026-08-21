@@ -8,7 +8,8 @@ mechanics to TH105's VC8/LTCG executable.
 - `config/target.toml`: immutable target identity and PE facts.
 - verified IDA database: preferred semantic working state, never committed.
 - `config/functions.csv`: provisional function candidates and reviewed state.
-- `config/function-origins.csv`: authored/compiler/library disposition.
+- `config/function-origins.csv`: generated authored/compiler/library disposition.
+- `config/function-origin-rules.toml`: fail-closed current-target origin/exclusion rules.
 - `config/reccmp-functions.csv`: durable address/name/category mappings.
 - `config/implemented.csv`: mapped authored symbols whose source is present.
 - `config/matches.csv`: accepted 100% exact functions only.
@@ -63,6 +64,7 @@ accepted objects. Re-run every affected unit immediately. Before reporting
 aggregate exact totals, run a cold single-job replay:
 
 ```bash
+python3 scripts/function-origins.py --check
 python3 scripts/verify-exact-units.py --all
 ```
 

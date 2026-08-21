@@ -1,0 +1,81 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+
+# Current-target rules only. Historical 1.06 ranges/names may guide discovery,
+# but no old-version address is accepted as evidence here.
+
+[[rules]]
+id = "vc8-string-range-errors-106a"
+addresses = ["0x00665AF4", "0x00665B33"]
+expected_count = 2
+expected_bytes = 126
+expected_names = ["?_Xlen@_String_base@std@@SAXXZ", "?_Xran@_String_base@std@@SAXXZ"]
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "current IDA names the two std::_String_base range-error helpers immediately before the zlib island"
+
+[[rules]]
+id = "zlib-1.2.3-106a"
+start = "0x00665B90"
+end = "0x0066B81D"
+expected_count = 44
+expected_bytes = 22553
+required_target_strings = [
+  "deflate 1.2.3 Copyright 1995-2005 Jean-loup Gailly",
+  "inflate 1.2.3 Copyright 1995-2005 Mark Adler",
+]
+origin = "third_party"
+subsystem = "assets"
+disposition = "exclude"
+confidence = "observed"
+evidence = "current target embeds zlib 1.2.3 deflate/inflate provenance strings and this bounded 44-function static-library island ends immediately before imported IMM32 thunks"
+
+[[rules]]
+id = "imm32-import-thunks-106a"
+addresses = ["0x0066B81E", "0x0066B824", "0x0066B82A", "0x0066B830"]
+expected_count = 4
+expected_bytes = 24
+expected_names = ["ImmSetCandidateWindow", "ImmGetContext", "ImmReleaseContext", "ImmGetCompositionStringA"]
+opcode_prefix_hex = "ff25"
+origin = "import_thunk"
+subsystem = "input"
+disposition = "exclude"
+confidence = "observed"
+evidence = "current target functions are six-byte FF 25 jumps through IMM32 IAT slots"
+
+[[rules]]
+id = "late-external-import-thunks-106a"
+addresses = [
+  "0x00689890", "0x00689896", "0x0068989C", "0x006898A2", "0x006898A8",
+  "0x006898AE", "0x006898B4", "0x006898BA", "0x006898C0", "0x006898C6",
+  "0x006898CC", "0x006898D2", "0x006898D8", "0x006898DE", "0x006898E4",
+]
+expected_count = 15
+expected_bytes = 90
+expected_names = [
+  "D3DXVec2Hermite", "D3DXVec2Normalize", "D3DXCreateTexture", "D3DXCreateEffect",
+  "Direct3DCreate9", "inet_addr", "socket", "recvfrom", "bind", "closesocket",
+  "sendto", "ntohs", "htons", "htonl", "gethostbyname",
+]
+opcode_prefix_hex = "ff25"
+origin = "import_thunk"
+subsystem = "platform"
+disposition = "exclude"
+confidence = "observed"
+evidence = "current target functions are six-byte FF 25 jumps through D3DX9/D3D9/WS2_32 IAT slots"
+
+[[rules]]
+id = "vc8-pinned-archive-symbols-106a"
+start = "0x00689934"
+end = "0x006A0778"
+msvc_archive_defined_symbol = true
+exclude_name_prefixes = ["sub_", "start_", "unknown_libname_", "nullsub_"]
+expected_count = 415
+expected_bytes = 74170
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "current IDA function identity is a defined symbol in SHA-pinned VC8 SP1 libcmt.lib/libcpmt.lib; the selector parses the pinned COFF archives itself and remains bounded to the current static-runtime island"

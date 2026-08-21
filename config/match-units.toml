@@ -670,3 +670,30 @@ rel32_targets = [
   "?invoke_indexed_record@PlayerIndexedCallbackView@th105@@QAEXHH@Z=0x00432DE0",
 ]
 dir32_targets = ["?g_info_manager@th105@@3PAUInfoManager@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A"]
+
+[units.cross-v106a-battle-round-initialization]
+kind = "probe"
+source = "src/battle/BattleRoundInitialization.cpp"
+object = "build/match-units/CrossV106a_BattleRoundInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a structural-remap round initialization candidate; current IDA body is 306 bytes, matching the retained VC8 COMDAT tail rather than the stale historical 299-byte ledger span."
+
+[[units.cross-v106a-battle-round-initialization.functions]]
+address = "0x00470BC0"
+symbol_base = "initialize_round_state_4701c0"
+rel32_targets = [
+  "?get_session_setup_option@th105@@YAIXZ=0x0043B070",
+  "?get_player2_input@th105@@YAPAUBattleInputGate@1@XZ=0x0043B060",
+  "?publish_synchronized_control_bits_427ac0@BattleInputGate@th105@@QAEXXZ=0x004289A0",
+  "?update_scripted_input_state_462e20@Fighter@th105@@QAEXXZ=0x00463E40",
+  "?get_network_session@th105@@YAPAUCNetworkBase@1@XZ=0x0043B090",
+  "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
+  "operator_new=0x00689DCB",
+  "??0SceneExitTransition@th105@@QAE@PAUBattleController@1@@Z=0x00440B50",
+  "?install_menu_object@th105@@YAXPAX@Z=0x0043B0F0",
+  "?update_local_practice_battle_controls_427190@BattleInputGate@th105@@QAEXXZ=0x00428070",
+  "?collect_battle_control_bits_42a560@BattleInputGate@th105@@QAEXXZ=0x0042B460",
+  "?reset_fighter_fields_6bc_728@th105@@YIXPAUCollisionContext@1@@Z=0x0046AFF0",
+  "?reset_fighter_fields_6b4_728@th105@@YIXPAUCollisionContext@1@@Z=0x0046B080",
+]

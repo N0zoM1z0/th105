@@ -18,11 +18,12 @@ notes or source hypotheses.
   object boundaries.
 - The current IDA database exposes 4,001 function candidates. Their auto-names
   and unreviewed sizes remain provisional analysis output.
-- The accepted 1.06a authored set contains 61 functions / 5,515 bytes in 42
-  VC8 match units. The structural-remap waves added fourteen functions / 2,211 bytes after
+- The accepted 1.06a authored set contains 62 functions / 5,821 bytes in 43
+  VC8 match units. The structural-remap waves added fifteen functions / 2,517 bytes after
   structural-instruction fingerprinting selected candidates and current-target
   IDA/call evidence reconciled their relocations; canonical VC8 comparisons,
   not the fingerprints, established exactness.
+- The current origin census also has 480 target-backed exclusions: 417 VC8 runtime functions selected from SHA-pinned VC8 SP1 archives, 44 zlib 1.2.3 functions bounded by current-target provenance strings, and 19 direct import thunks whose current names/opcodes are attested. `config/function-origin-rules.toml` is fail-closed on expected counts/bytes and `scripts/function-origins.py` materializes the census only after target/archive identity checks.
 
 ## Repository decisions
 

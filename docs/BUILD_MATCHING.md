@@ -134,3 +134,12 @@ IDA names `0x006FBCB4` as `Block`, numerous current battle-controller xrefs use
 that address as the same `BattlePhaseBlock *`, and the 42-byte VC8 function then
 compares exactly after resolving that DIR32 address. This validates an address;
 it does not claim that file padding proves the global's initial contents.
+
+A stale historical boundary can sometimes be disproved without source surgery by
+triangulating all three lengths: old ledger, retained VC8 COMDAT tail, and
+current IDA function boundary. `BattleController::initialize_round_state` is the
+reference case: the old ledger claimed 299 bytes, while both the retained VC8
+COMDAT tail and current 1.06a IDA body are 306 bytes. After current REL32 and
+DIR32 identities were reconciled, all 306 bytes compared exactly. When the
+object tail and current control-flow boundary agree, prefer correcting the stale
+ledger span over editing already-matching C++ to reproduce an artificial cut.

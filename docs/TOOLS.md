@@ -58,6 +58,7 @@ the bounded reconstruction unit and fix/report IDA; do not route to Ghidra.
 
 ## Matching tools
 
+- `scripts/function-origins.py --check`: target-backed replay of generated authored/excluded origin census rules (requires canonical target and SHA-pinned VC8 archives).
 - `scripts/build.py --check`: validate the VC8 unit graph.
 - `scripts/build.py --unit NAME --compare`: focused build and strict compare.
 - `scripts/compare-function.py`: canonical COFF/function comparator.
