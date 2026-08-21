@@ -17,9 +17,9 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 286 functions / 49,754 bytes in 146
-  VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 186
-  functions / 36,267 bytes beyond the previous 100-function checkpoint. Candidate
+- The accepted 1.06a authored set contains 287 functions / 49,783 bytes in 147
+  VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 187
+  functions / 36,296 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
   establish hypotheses; canonical VC8 zero-difference comparisons establish
   exactness.
@@ -285,7 +285,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,022
+- Accepted boundaries and authored/library origins for the remaining 3,021
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.
@@ -388,3 +388,20 @@ semantic declaration for that exact target address, treat the caller declaration
 as high-value naming evidence. Still verify the callee body and arguments in
 current IDA before promoting; the caller name is a hypothesis anchor, not a
 substitute for target semantics or canonical comparison.
+
+### Same-signature state forwarding can naturally become a tail jump
+
+`EventEffectStateView::set_event_id @ 0x00469DF0` is 29/29 exact. When the id
+changes it stores the new `+0` value and returns
+`publish_stage_state(g_battle_transition_mode)`. Pinned VC8 naturally zero-extends
+the shared byte, overwrites the incoming integer argument slot, and emits a `jmp`
+to `publish_stage_state @ 0x00469D50`; unchanged ids return directly. No explicit
+tail-call syntax, stack manipulation, or register forcing is needed.
+
+This is a useful signal for short forwarding methods: when target code rewrites a
+current stack argument and jumps to another same-receiver/same-width member, first
+try a normal `return other_member(new_argument);`. Only accept the interpretation
+when current state layout, the source of the replacement argument, and the tail
+destination are independently established. Shared narrow contracts should live in
+a header so separately reconstructed callers do not drift into incompatible ODR
+views.

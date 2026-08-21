@@ -3977,3 +3977,17 @@ dir32_targets = [
   "?g_battle_object_manager_stage@th105@@3PAUBattleObjectManagerStageView@1@A=?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A",
   "?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A",
 ]
+
+[units.cross-v106a-event-effect-state]
+kind = "probe"
+source = "src/battle/EventEffectState.cpp"
+object = "build/match-units/CrossV106a_EventEffectState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a shared event-effect state id setter. Exact trigger/stage-music callers establish receiver 0x006FBCAC; unchanged ids return directly, changed ids update +0 then tail-call publish_stage_state with exact-backed loader-zero g_battle_transition_mode. Natural VC8 is 29/29 exact."
+
+[[units.cross-v106a-event-effect-state.functions]]
+address = "0x00469DF0"
+symbol_base = "set_event_id"
+rel32_targets = ["?publish_stage_state@EventEffectStateView@th105@@QAEHH@Z=0x00469D50"]
+dir32_targets = ["?g_battle_transition_mode@th105@@3EA=?g_battle_transition_mode@th105@@3EA"]

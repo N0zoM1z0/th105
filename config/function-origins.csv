@@ -1975,7 +1975,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00469B70,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00469CC0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00469D50,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00469DF0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00469DF0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00469E10,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00469EC0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00469F40,unknown,,review,unknown,ida-1.06a-initial-inventory

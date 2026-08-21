@@ -285,3 +285,4 @@ address,name,size,status,match_percent,unit,evidence
 0x0043ABF0,set_menu_input_state,21,matching,100.00,cross-v106a-global-input-state-facade,python3 scripts/build.py --unit cross-v106a-global-input-state-facade --compare --json reports exact 21/21 against TH105 1.06a
 0x00434E90,EventSubobject130_trigger_global_effect,74,matching,100.00,cross-v106a-event-subobject130,python3 scripts/build.py --unit cross-v106a-event-subobject130 --compare --json reports exact 74/74 against TH105 1.06a
 0x00434DE0,BattleAudioSetupView_set_stage_music_433860,40,matching,100.00,cross-v106a-battle-stage-music,python3 scripts/build.py --unit cross-v106a-battle-stage-music --compare --json reports exact 40/40 against TH105 1.06a
+0x00469DF0,EventEffectStateView_set_event_id,29,matching,100.00,cross-v106a-event-effect-state,python3 scripts/build.py --unit cross-v106a-event-effect-state --compare --json reports exact 29/29 against TH105 1.06a

@@ -285,3 +285,4 @@ is_menu_initial_press,0x0043ABD0,function
 set_menu_input_state,0x0043ABF0,function
 EventSubobject130_trigger_global_effect,0x00434E90,function
 BattleAudioSetupView_set_stage_music_433860,0x00434DE0,function
+EventEffectStateView_set_event_id,0x00469DF0,function

@@ -1975,7 +1975,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00469B70,325,0x00469CB4,sub_469B70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00469CC0,132,0x00469D43,sub_469CC0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00469D50,153,0x00469DE8,sub_469D50,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00469DF0,29,0x00469E0C,sub_469DF0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00469DF0,29,0x00469E0C,sub_469DF0,EventEffectStateView_set_event_id,battle,matching,100.00,__thiscall,"int EventEffectStateView_set_event_id(EventEffectStateView * this, int event_id)",false,src/battle/EventEffectState.cpp,python3 scripts/build.py --unit cross-v106a-event-effect-state --compare --json reports exact 29/29 against TH105 1.06a,root,"Exact trigger_global_effect and stage-music wrappers establish receiver 0x006FBCAC. Current body returns unchanged ids directly; changed ids update +0 and return publish_stage_state(g_battle_transition_mode), which VC8 naturally lowers to stack-slot reuse plus tail-jump 0x00469D50."
 0x00469E10,166,0x00469EB5,sub_469E10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00469EC0,123,0x00469F3A,sub_469EC0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00469F40,86,0x00469F95,sub_469F40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

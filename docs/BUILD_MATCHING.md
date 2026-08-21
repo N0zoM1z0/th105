@@ -617,3 +617,12 @@ a call result a real lifetime that the target does not have. Prefer the smallest
 source expression supported by current data/control dependencies. Conversely, do
 not nest unrelated calls just because it improves bytes; the target callee graph
 and argument values must already prove the dependency.
+
+### Let ordinary return forwarding form verified member tail calls
+
+A target `jmp` at the end of a member function does not require assembly or an
+explicit tail-call extension. In `EventEffectStateView::set_event_id @ 0x00469DF0`,
+ordinary `return publish_stage_state(g_battle_transition_mode);` gives VC8 exactly
+the target sequence: zero-extend the byte, reuse `[esp+4]`, and jump to the sibling
+member. Preserve the shared receiver and argument width in the source and let the
+optimizer choose the tail call.
