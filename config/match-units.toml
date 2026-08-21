@@ -780,3 +780,58 @@ dir32_targets = [
   "??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ",
   "??0?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??0?$deque@FV?$allocator@F@std@@@std@@QAE@XZ",
 ]
+
+[units.cross-v106a-battle-round-transition]
+kind = "probe"
+source = "src/battle/BattleRoundTransition.cpp"
+object = "build/match-units/CrossV106a_BattleRoundTransition.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a structural-remap exact seven-way battle phase transition; current SEH/data/string/global relocations are independently reconciled."
+
+[[units.cross-v106a-battle-round-transition.functions]]
+address = "0x00470F00"
+symbol_base = "dispatch_round_phase_34"
+rel32_targets = [
+  "?reset_transition_counters_45e010@FighterTransitionView@th105@@QAEXXZ=0x0045F610",
+  "?publish_transition_effect_46e040@PostSequenceTransitionView@th105@@QAEHH@Z=0x0046EA10",
+  "?publish_transition_effect_at_46e130@PostSequenceTransitionView@th105@@QAEXM@Z=0x0046EB00",
+  "?consume_transition_code_458d90@ScenarioTransitionView@th105@@QAECXZ=0x0045A360",
+  "?start_async_engine_scene_load@th105@@YAEH@Z=0x0043B840",
+  "??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@PBD@Z=0x00401DC0",
+  "?dispatch_owned_string_458e80@ScenarioTransitionView@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x0045A450",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0ContinueMenu@th105@@QAE@PAUBattleController@1@@Z=0x00444E80",
+  "??0EndMenu@th105@@QAE@PAUBattleController@1@@Z=0x00445100",
+  "?install_menu_object_thunk@th105@@YAXPAX@Z=0x0043B0F0",
+]
+dir32_targets = [
+  "__ehhandler$?dispatch_round_phase_34@BattleController@th105@@UAEXH@Z=__ehhandler$?dispatch_round_phase_34@BattleController@th105@@UAEXH@Z",
+  "___security_cookie=___security_cookie",
+  "__real@43f00000=__real@43f00000",
+  "?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A=?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A",
+  "?g_battle_transition_mode@th105@@3EA=?g_battle_transition_mode@th105@@3EA",
+  "??_C@_04IJKGBDBE@Lose?$AA@=??_C@_04IJKGBDBE@Lose?$AA@",
+  "??_C@_03DEBJKBHO@Win?$AA@=??_C@_03DEBJKBHO@Win?$AA@",
+]
+
+[units.cross-v106a-scenario-string-dispatch]
+kind = "probe"
+source = "src/battle/ScenarioStringDispatch.cpp"
+object = "build/match-units/CrossV106a_ScenarioStringDispatch.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a full-boundary exact owned String28 dispatch; current 130-byte body supersedes the stale historical 127-byte ledger boundary."
+
+[[units.cross-v106a-scenario-string-dispatch.functions]]
+address = "0x0045A450"
+symbol_base = "dispatch_owned_string_458e80"
+rel32_targets = [
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "?dispatch@ScenarioStringDispatchTarget@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x00455490",
+  "operator_delete=0x006898EA",
+]
+dir32_targets = [
+  "__ehhandler$?dispatch_owned_string_458e80@ScenarioTransitionView@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=__ehhandler$?dispatch_owned_string_458e80@ScenarioTransitionView@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z",
+  "___security_cookie=___security_cookie",
+]

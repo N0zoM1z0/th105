@@ -18,8 +18,8 @@ notes or source hypotheses.
   object boundaries.
 - The current IDA database exposes 4,001 function candidates. Their auto-names
   and unreviewed sizes remain provisional analysis output.
-- The accepted 1.06a authored set contains 66 functions / 6,867 bytes in 46
-  VC8 match units. The structural-remap waves added nineteen functions / 3,563 bytes after
+- The accepted 1.06a authored set contains 68 functions / 7,599 bytes in 48
+  VC8 match units. The structural-remap waves added twenty-one functions / 4,295 bytes after
   structural-instruction fingerprinting selected candidates and current-target
   IDA/call evidence reconciled their relocations; canonical VC8 comparisons,
   not the fingerprints, established exactness.
@@ -81,7 +81,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,455
+- Accepted boundaries and authored/library origins for the remaining 3,453
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.

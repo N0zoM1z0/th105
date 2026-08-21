@@ -167,3 +167,22 @@ a bad provisional deque-destructor row while recovering
 `configure_session_input_slots`. Use the actual current target bytes at the
 validated destination even when semantic address identity, rather than literal
 contents, is the reason the relocation is accepted.
+
+Current PE virtual-tail bytes are modeled as Windows-loader zero-fill, not as
+raw file padding. This matters for address-validated BSS globals such as
+`g_battle_transition_mode` at `0x006FA88F`: current IDA semantics establish the
+address identity, while `target_bytes()` verifies that the address lies in the
+mapped section's virtual tail and therefore has the loader-defined zero initial
+byte. Never substitute unrelated bytes beyond the section's initialized raw
+extent.
+
+A VC8 COMDAT can contain function-local jump-table data after the callable body.
+`BattleController::dispatch_round_phase_34` compares exactly for its 602-byte
+current IDA control-flow body even though the compiled `.text` section tail is
+632 bytes. The extra tail belongs to local switch data resolved through same-COMDAT
+DIR32 relocations; it is not permission to enlarge the function boundary.
+Conversely, `ScenarioTransitionView::dispatch_owned_string_458e80` demonstrates
+a genuinely stale old boundary: the historical ledger kept 127 bytes, while
+current IDA control flow and fresh VC8 output both end at 130 bytes and all 130
+bytes compare exactly. Use control-flow terminators plus COFF ownership to tell
+these cases apart.
