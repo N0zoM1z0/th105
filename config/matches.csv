@@ -281,3 +281,5 @@ address,name,size,status,match_percent,unit,evidence
 0x0043B6E0,has_ui_selection_state_changed,24,matching,100.00,cross-v106a-ui-selection-state,python3 scripts/build.py --unit cross-v106a-ui-selection-state --compare --json reports exact 24/24 against TH105 1.06a
 0x0043FFB0,set_ui_selection_state_tracking,88,matching,100.00,cross-v106a-ui-selection-state,python3 scripts/build.py --unit cross-v106a-ui-selection-state --compare --json reports exact 88/88 against TH105 1.06a
 0x0043F9D0,Menu_render_cursor,55,matching,100.00,cross-v106a-menu-render-cursor,python3 scripts/build.py --unit cross-v106a-menu-render-cursor --compare --json reports exact 55/55 against TH105 1.06a
+0x0043ABD0,is_menu_initial_press,31,matching,100.00,cross-v106a-global-input-state-facade,python3 scripts/build.py --unit cross-v106a-global-input-state-facade --compare --json reports exact 31/31 against TH105 1.06a
+0x0043ABF0,set_menu_input_state,21,matching,100.00,cross-v106a-global-input-state-facade,python3 scripts/build.py --unit cross-v106a-global-input-state-facade --compare --json reports exact 21/21 against TH105 1.06a

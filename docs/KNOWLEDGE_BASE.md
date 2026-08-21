@@ -17,9 +17,9 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 282 functions / 49,588 bytes in 144
-  VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 182
-  functions / 36,101 bytes beyond the previous 100-function checkpoint. Candidate
+- The accepted 1.06a authored set contains 284 functions / 49,640 bytes in 145
+  VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 184
+  functions / 36,153 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
   establish hypotheses; canonical VC8 zero-difference comparisons establish
   exactness.
@@ -285,7 +285,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,026
+- Accepted boundaries and authored/library origins for the remaining 3,024
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.
@@ -333,3 +333,24 @@ aggregate field whose object section bytes are not independently represented by
 the probe, address validation plus target-backed field identity is the truthful
 model. This is relocation evidence only: canonical zero-difference comparison
 still decides exactness.
+
+### Loader-zero input facade and stripped-target ABI aliases
+
+`is_menu_initial_press @ 0x0043ABD0` and `set_menu_input_state @ 0x0043ABF0`
+are thin authored facades over the shared input-state receiver at `0x006FC618`.
+Current target call flow proves the first forwards four stack byte/bool slots to
+canonical-exact `is_initial_press @ 0x0040A660`; the second forwards index/state
+to canonical-exact `set_input_state_table_entry @ 0x0040A6B0`. Ordinary C++
+with `bool` parameters naturally keeps the incoming four-byte stack slots intact
+and reproduces 31/31 plus 21/21 without normalization tricks.
+
+Do not trust a decompiler/global-value display as PE initialization evidence. IDA
+can present `0x006FC618` with a nonzero inferred value, while the canonical PE
+places the address beyond `.data` raw-backed bytes inside its virtual extent; the
+loader therefore supplies zero bytes initially. Relocation evidence must follow
+the mapped executable, not the inferred display value. Also keep stripped-target
+identity separate from source decoration: existing exact callers may compile
+under ABI-compatible retained declarations with different mangled names. Do not
+rewrite those callers merely to make one source spelling globally uniform when
+the target address, forwarded stack slots, and exact member ABI already establish
+the wrapper contract.

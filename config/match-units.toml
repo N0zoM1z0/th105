@@ -3921,3 +3921,23 @@ dir32_targets = [
   "?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A+0x8C=g_menu_cursor_sprite_scale_fields",
   "__real@3f60000000000000=__real@3f60000000000000",
 ]
+
+[units.cross-v106a-global-input-state-facade]
+kind = "probe"
+source = "src/input/GlobalInputStateFacade.cpp"
+object = "build/match-units/CrossV106a_GlobalInputStateFacade.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a shared input-state facade. Current 0x0043ABD0 forwards four byte/bool arguments to exact is_initial_press 0x0040A660; 0x0043ABF0 forwards index/state to exact set_input_state_table_entry 0x0040A6B0. Both load the same loader-zero receiver 0x006FC618."
+
+[[units.cross-v106a-global-input-state-facade.functions]]
+address = "0x0043ABD0"
+symbol_base = "is_menu_initial_press"
+rel32_targets = ["?is_initial_press@GlobalInputStateFacade@th105@@QBE_NE_N00@Z=0x0040A660"]
+dir32_targets = ["?g_global_input_state@th105@@3UGlobalInputStateFacade@1@A=?g_global_input_state@th105@@3UGlobalInputStateFacade@1@A"]
+
+[[units.cross-v106a-global-input-state-facade.functions]]
+address = "0x0043ABF0"
+symbol_base = "set_menu_input_state"
+rel32_targets = ["?set_input_state_table_entry@GlobalInputStateFacade@th105@@QAEXE_N@Z=0x0040A6B0"]
+dir32_targets = ["?g_global_input_state@th105@@3UGlobalInputStateFacade@1@A=?g_global_input_state@th105@@3UGlobalInputStateFacade@1@A"]

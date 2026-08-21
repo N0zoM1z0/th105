@@ -1193,8 +1193,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0043AAD0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043AB90,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043ABA0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0043ABD0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0043ABF0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0043ABD0,authored_game,input,authored,observed,canonical-exact-authored
+0x0043ABF0,authored_game,input,authored,observed,canonical-exact-authored
 0x0043AC10,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043AC40,authored_game,battle,authored,observed,canonical-exact-authored
 0x0043AC50,authored_game,battle,authored,observed,canonical-exact-authored

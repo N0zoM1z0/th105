@@ -585,3 +585,19 @@ observed addends and verify the canonical target bytes/address before exact
 acceptance. This mechanism is not permission to use arbitrary addends as byte
 patches; the object layout and each interior reference must come from current
 target semantics.
+
+### Verify virtual-tail globals against the PE, not an inferred IDA value
+
+A current IDA data display is semantic context, not proof of loader initialization.
+For `g_global_input_state @ 0x006FC618`, IDA exposes a nonzero-looking inferred
+value, but the canonical PE section mapping shows the address lies beyond the
+raw-backed `.data` span while remaining inside the section's virtual size. The
+correct initial bytes are therefore loader-zero. Recording `FF` from the IDA
+display made the canonical comparator fail closed; recording the mapped zero bytes
+with address provenance made both natural wrappers compare exact.
+
+When an address falls in this virtual tail, compute RVA-to-section membership and
+raw-size coverage from the pinned executable before adding a relocation key. This
+is the same storage rule used by the UI-selection globals. Do not weaken target
+byte validation or use a guessed initialized value just because a debugger or
+disassembler renders one.
