@@ -1,13 +1,7 @@
 #include "SystemEffectObject.hpp"
+#include "engine/RenderModeManager.hpp"
 
 #include "ui/Title.hpp"
-
-namespace th105 {
-struct RenderModeManager {
-    void set_mode(int mode);
-};
-extern RenderModeManager g_render_mode_manager;
-}
 
 SystemEffectObjectBase::~SystemEffectObjectBase()
 {

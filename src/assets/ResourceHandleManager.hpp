@@ -26,7 +26,7 @@ struct CHandleManager4 {
     unsigned char free_slot_list_38[0x0c];
     unsigned int next_generation_44;
     unsigned char lock_48[0x1c];
-    ResourceHandleToken cached_tokens_64[8];
+    unsigned int cached_handles_64[8];
 
     // Raw target layout contracts used by the shared acquire/recycle pair:
     // +0x14 is the next fresh slot, +0x2c is the generation dword array,

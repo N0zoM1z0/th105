@@ -455,3 +455,10 @@ address,name,size,status,match_percent,unit,evidence
 0x00660A00,SystemEffectObject_update_state,248,matching,100.00,cross-v106a-system-effect-object,canonical exact 248/248
 0x00660B00,SystemEffectObject_reset_state,35,matching,100.00,cross-v106a-system-effect-object,canonical exact 35/35
 0x00473CF0,SystemEffectObjectBase_render_effect,222,matching,100.00,cross-v106a-system-effect-object,canonical exact 222/222
+0x00401000,RenderModeManager_begin_frame,52,matching,100.00,cross-v106a-render-mode-manager,python3 scripts/build.py --unit cross-v106a-render-mode-manager --compare --json reports canonical exact 52/52 against TH105 1.06a
+0x00401040,RenderModeManager_finish_frame,26,matching,100.00,cross-v106a-render-mode-manager,python3 scripts/build.py --unit cross-v106a-render-mode-manager --compare --json reports canonical exact 26/26 against TH105 1.06a
+0x004010C0,RenderModeManager_prepare_frame,35,matching,100.00,cross-v106a-render-mode-manager,python3 scripts/build.py --unit cross-v106a-render-mode-manager --compare --json reports canonical exact 35/35 against TH105 1.06a
+0x004014C0,RenderModeManager_on_device_reset,329,matching,100.00,cross-v106a-render-mode-manager,python3 scripts/build.py --unit cross-v106a-render-mode-manager --compare --json reports canonical exact 329/329 against TH105 1.06a
+0x00404A40,RenderModeManager_set_state_22,66,matching,100.00,cross-v106a-render-mode-manager,python3 scripts/build.py --unit cross-v106a-render-mode-manager --compare --json reports canonical exact 66/66 against TH105 1.06a
+0x00404A90,RenderModeManager_apply_render_mode,482,matching,100.00,cross-v106a-render-mode-manager,python3 scripts/build.py --unit cross-v106a-render-mode-manager --compare --json reports canonical exact 482/482 against TH105 1.06a
+0x00414C50,shutdown_d3d_backend,82,matching,100.00,cross-v106a-d3d-backend,python3 scripts/build.py --unit cross-v106a-d3d-backend --compare --json reports canonical exact 82/82 against TH105 1.06a

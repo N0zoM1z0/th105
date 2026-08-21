@@ -1,16 +1,11 @@
 #include "SelectScenario.hpp"
+#include "engine/RenderModeManager.hpp"
 
 extern "C" __declspec(dllimport) int __cdecl wsprintfA(
     char *buffer, const char *format, ...);
 extern "C" const char guide_texture_path_format[];
 
 namespace th105 {
-
-struct RenderModeManager {
-    void set_mode(int mode);
-};
-
-extern RenderModeManager g_render_mode_manager;
 
 GuideOverlay::GuideOverlay()
 {

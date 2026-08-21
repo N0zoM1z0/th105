@@ -1,4 +1,5 @@
 #include "SelectScenario.hpp"
+#include "engine/RenderModeManager.hpp"
 
 #include <math.h>
 
@@ -6,15 +7,6 @@ extern "C" void __cdecl _invalid_parameter_noinfo();
 extern "C" void *__cdecl get_score_data();
 
 namespace th105 {
-
-struct RenderModeManager {
-    bool begin_frame();
-    void prepare_frame();
-    void finish_frame();
-    void set_mode(int mode);
-};
-
-extern RenderModeManager g_render_mode_manager;
 
 bool CSelectScenario::render()
 {

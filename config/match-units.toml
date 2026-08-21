@@ -5892,3 +5892,69 @@ rel32_targets = [
   "?finalize_render@CSpriteEx@@QAEXXZ=0x00407AD0",
 ]
 dir32_targets = ["?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A"]
+
+[units.cross-v106a-d3d-backend]
+kind = "probe"
+source = "src/engine/D3DBackend.cpp"
+object = "build/match-units/CrossV106a_D3DBackend.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a Direct3D9 backend shutdown. Current device Reset/GetSwapChain/SetTexture vslots close the aggregate identity at 0x007036A0; the accepted body releases swap-chain/device/Direct3D COM owners in target order."
+
+[[units.cross-v106a-d3d-backend.functions]]
+address = "0x00414C50"
+symbol_base = "shutdown_d3d_backend"
+dir32_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A=?g_d3d_backend@th105@@3UD3DBackend@1@A"]
+
+[units.cross-v106a-render-mode-manager]
+kind = "probe"
+source = "src/engine/RenderModeManager.cpp"
+object = "build/match-units/CrossV106a_RenderModeManager.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a RenderModeManager frame/state/reset family. Current vtable 0x006D6930 owns lost/reset callbacks; existing exact UI/SystemEffect callers own begin/finish/prepare/set_mode views. A 0x1C state aggregate at +0x0C and the D3D backend device contract reproduce the 329-byte reset callback and 482-byte mode policy without manual vtable arithmetic."
+
+[[units.cross-v106a-render-mode-manager.functions]]
+address = "0x00401000"
+symbol_base = "?begin_frame@RenderModeManager@th105@@QAE_NXZ"
+dir32_targets = [
+  "?g_d3d_backend@th105@@3UD3DBackend@1@A=?g_d3d_backend@th105@@3UD3DBackend@1@A",
+  "__imp__TryEnterCriticalSection@4=__imp__TryEnterCriticalSection@4",
+  "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4",
+]
+
+[[units.cross-v106a-render-mode-manager.functions]]
+address = "0x00401040"
+symbol_base = "?finish_frame@RenderModeManager@th105@@QAEXXZ"
+dir32_targets = [
+  "?g_d3d_backend@th105@@3UD3DBackend@1@A=?g_d3d_backend@th105@@3UD3DBackend@1@A",
+  "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4",
+]
+
+[[units.cross-v106a-render-mode-manager.functions]]
+address = "0x004010C0"
+symbol_base = "?prepare_frame@RenderModeManager@th105@@QAEXXZ"
+dir32_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A=?g_d3d_backend@th105@@3UD3DBackend@1@A"]
+
+[[units.cross-v106a-render-mode-manager.functions]]
+address = "0x00404A40"
+symbol_base = "?set_state_22@RenderModeManager@th105@@QAEXH@Z"
+dir32_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A=?g_d3d_backend@th105@@3UD3DBackend@1@A"]
+
+[[units.cross-v106a-render-mode-manager.functions]]
+address = "0x00404A90"
+symbol_base = "?apply_render_mode@RenderModeManager@th105@@QAEHHE@Z"
+dir32_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A=?g_d3d_backend@th105@@3UD3DBackend@1@A"]
+
+[[units.cross-v106a-render-mode-manager.functions]]
+address = "0x004014C0"
+symbol_base = "?on_device_reset@RenderModeManager@th105@@UAEXXZ"
+rel32_targets = [
+  "?set_pair_state@RenderModeManager@th105@@QAEEEE@Z=0x00404940",
+  "?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750",
+  "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
+]
+dir32_targets = [
+  "?g_d3d_backend@th105@@3UD3DBackend@1@A=?g_d3d_backend@th105@@3UD3DBackend@1@A",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+]
