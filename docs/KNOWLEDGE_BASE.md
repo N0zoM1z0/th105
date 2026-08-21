@@ -18,8 +18,8 @@ notes or source hypotheses.
   object boundaries.
 - The current IDA database exposes 4,001 function candidates. Their auto-names
   and unreviewed sizes remain provisional analysis output.
-- The accepted 1.06a authored set contains 85 functions / 11,942 bytes in 51
-  VC8 match units. The structural-remap waves added thirty-eight functions / 8,638 bytes after
+- The accepted 1.06a authored set contains 100 functions / 13,487 bytes in 52
+  VC8 match units. The structural-remap waves added fifty-three functions / 10,183 bytes after
   structural-instruction fingerprinting selected candidates and current-target
   IDA/call evidence reconciled their relocations; canonical VC8 comparisons,
   not the fingerprints, established exactness.
@@ -81,7 +81,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,436
+- Accepted boundaries and authored/library origins for the remaining 3,421
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.
@@ -105,3 +105,8 @@ accepted zero-difference functions; they are not cross-version delta guesses.
   by current allocator-chain vtable writes, not address order. Fourteen classes
   represented by `RosterObjectSpawns.cpp` are canonical exact; the fifteenth,
   Sakuya, is positively identified but remains non-exact in its separate source.
+
+- The 103-byte `TObjectManagerBase` ctor structural family contains twenty current
+  clones. Current template-vtable writes separate five effect/UI instantiations
+  from fifteen roster-character specializations; all fifteen roster ctors are
+  canonical exact under the retained `/GS` profile.

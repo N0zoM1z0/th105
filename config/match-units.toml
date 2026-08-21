@@ -1063,3 +1063,206 @@ rel32_targets = [
   "??_U@YAPAXI@Z=0x00665B8A",
   "_memcpy=0x0068AA30",
 ]
+
+[units.cross-v106a-roster-manager-base-ctors]
+kind = "probe"
+source = "src/characters/TObjectManagerBase.cpp"
+object = "build/match-units/CrossV106a_TObjectManagerBase.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a exact fifteen-member roster TObjectManagerBase ctor clone family; each specialization is class-disambiguated by its current template vtable and current handle-manager ctor."
+
+[[units.cross-v106a-roster-manager-base-ctors.functions]]
+address = "0x00493570"
+symbol_base = "??0?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VReimuObject@@@@QAE@XZ=0x004932B0",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x00435E50",
+]
+dir32_targets = [
+  "__ehhandler$??0?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@QAE@XZ=__ehhandler$??0?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-ctors.functions]]
+address = "0x004B9B30"
+symbol_base = "??0?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VMarisaObject@@@@QAE@XZ=0x004B9890",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x00435E50",
+]
+dir32_targets = [
+  "__ehhandler$??0?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@QAE@XZ=__ehhandler$??0?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-ctors.functions]]
+address = "0x004DF050"
+symbol_base = "??0?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VSakuyaObject@@@@QAE@XZ=0x004DEDB0",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x00435E50",
+]
+dir32_targets = [
+  "__ehhandler$??0?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@QAE@XZ=__ehhandler$??0?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-ctors.functions]]
+address = "0x004FA860"
+symbol_base = "??0?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VAliceObject@@@@QAE@XZ=0x004FA5A0",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x00435E50",
+]
+dir32_targets = [
+  "__ehhandler$??0?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@QAE@XZ=__ehhandler$??0?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-ctors.functions]]
+address = "0x0051EB00"
+symbol_base = "??0?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VPatchouliObject@@@@QAE@XZ=0x0051E860",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x00435E50",
+]
+dir32_targets = [
+  "__ehhandler$??0?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@QAE@XZ=__ehhandler$??0?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-ctors.functions]]
+address = "0x0053AEC0"
+symbol_base = "??0?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VYoumuObject@@@@QAE@XZ=0x0053AC20",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x00435E50",
+]
+dir32_targets = [
+  "__ehhandler$??0?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@QAE@XZ=__ehhandler$??0?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-ctors.functions]]
+address = "0x00555C10"
+symbol_base = "??0?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VRemiliaObject@@@@QAE@XZ=0x00555970",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x00435E50",
+]
+dir32_targets = [
+  "__ehhandler$??0?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@QAE@XZ=__ehhandler$??0?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-ctors.functions]]
+address = "0x0056D9C0"
+symbol_base = "??0?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VYuyukoObject@@@@QAE@XZ=0x0056D650",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x00435E50",
+]
+dir32_targets = [
+  "__ehhandler$??0?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@QAE@XZ=__ehhandler$??0?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-ctors.functions]]
+address = "0x0058BBA0"
+symbol_base = "??0?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VYukariObject@@@@QAE@XZ=0x0058B900",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x00435E50",
+]
+dir32_targets = [
+  "__ehhandler$??0?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@QAE@XZ=__ehhandler$??0?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-ctors.functions]]
+address = "0x005AE8A0"
+symbol_base = "??0?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VSuikaObject@@@@QAE@XZ=0x005AE5E0",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x00435E50",
+]
+dir32_targets = [
+  "__ehhandler$??0?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@QAE@XZ=__ehhandler$??0?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-ctors.functions]]
+address = "0x005D27F0"
+symbol_base = "??0?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VUdongeObject@@@@QAE@XZ=0x005D2530",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x00435E50",
+]
+dir32_targets = [
+  "__ehhandler$??0?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@QAE@XZ=__ehhandler$??0?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-ctors.functions]]
+address = "0x005F7650"
+symbol_base = "??0?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VKomachiObject@@@@QAE@XZ=0x005F73B0",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x00435E50",
+]
+dir32_targets = [
+  "__ehhandler$??0?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@QAE@XZ=__ehhandler$??0?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-ctors.functions]]
+address = "0x00618020"
+symbol_base = "??0?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VAyaObject@@@@QAE@XZ=0x00617D60",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x00435E50",
+]
+dir32_targets = [
+  "__ehhandler$??0?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@QAE@XZ=__ehhandler$??0?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-ctors.functions]]
+address = "0x00630ED0"
+symbol_base = "??0?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VIkuObject@@@@QAE@XZ=0x00630C10",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x00435E50",
+]
+dir32_targets = [
+  "__ehhandler$??0?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@QAE@XZ=__ehhandler$??0?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-ctors.functions]]
+address = "0x0064B2A0"
+symbol_base = "??0?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VTenshiObject@@@@QAE@XZ=0x0064AFE0",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x00435E50",
+]
+dir32_targets = [
+  "__ehhandler$??0?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@QAE@XZ=__ehhandler$??0?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@6B@",
+]

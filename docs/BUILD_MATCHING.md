@@ -239,3 +239,14 @@ proved by `??_7SakuyaObject@@6B@`, but the separate
 `SakuyaObjectSpawn.cpp` fresh object still mismatches at function offset `0x0D`.
 Identity, source presence, and exactness remain separate states even inside a
 clone family.
+
+Template-family filtering must happen before clone promotion. The current 103-byte
+`TObjectManagerBase<..., ...>` constructor signature appears in twenty structural
+clones, but current IDA vtable writes show that five instantiate effect/UI manager
+types (`CSelectObject`, `WeatherEffectObject`, `EffectObject`,
+`SystemEffectObject`, `InfoEffectObject`) rather than roster character managers.
+The remaining fifteen explicitly write
+`TObjectManagerBase<V<Class>Object,VCharacterObject>` vtables and each calls its
+class-specific `CHandleManagerEx<ClassObject>` constructor. With `/GS` restored,
+all fifteen roster specializations fresh-compile to 103/103 exact. Structural
+shape alone would have over-promoted five unrelated template instantiations.

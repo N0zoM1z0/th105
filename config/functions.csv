@@ -2181,7 +2181,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004932B0,130,0x00493331,sub_4932B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00493340,519,0x00493546,sub_493340,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00493550,30,0x0049356D,sub_493550,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00493570,103,0x004935D6,sub_493570,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00493570,103,0x004935D6,ReimuObjectManagerBase_ctor,ReimuObjectManagerBase_ctor,characters,matching,100.00,__thiscall,ReimuObjectManagerBase * ReimuObjectManagerBase_ctor(ReimuObjectManagerBase * this),false,src/characters/TObjectManagerBase.cpp,python3 scripts/build.py --unit cross-v106a-roster-manager-base-ctors --compare --json reports exact 103/103 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 /GS zero-diff clone-family ctor. Current IDA writes the TObjectManagerBase<ReimuObject,CharacterObject> vtable and current relocations establish the class-specific handle-manager ctor and SEH handler."
 0x004935E0,94,0x0049363D,sub_4935E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00493640,100,0x004936A3,sub_493640,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004936B0,30,0x004936CD,sub_4936B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2227,7 +2227,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004B9870,30,0x004B988D,sub_4B9870,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004B9890,130,0x004B9911,sub_4B9890,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004B9920,519,0x004B9B26,sub_4B9920,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x004B9B30,103,0x004B9B96,sub_4B9B30,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x004B9B30,103,0x004B9B96,MarisaObjectManagerBase_ctor,MarisaObjectManagerBase_ctor,characters,matching,100.00,__thiscall,MarisaObjectManagerBase * MarisaObjectManagerBase_ctor(MarisaObjectManagerBase * this),false,src/characters/TObjectManagerBase.cpp,python3 scripts/build.py --unit cross-v106a-roster-manager-base-ctors --compare --json reports exact 103/103 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 /GS zero-diff clone-family ctor. Current IDA writes the TObjectManagerBase<MarisaObject,CharacterObject> vtable and current relocations establish the class-specific handle-manager ctor and SEH handler."
 0x004B9BA0,94,0x004B9BFD,sub_4B9BA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004B9C00,100,0x004B9C63,sub_4B9C00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004B9C70,30,0x004B9C8D,sub_4B9C70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2253,7 +2253,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004DED90,30,0x004DEDAD,sub_4DED90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004DEDB0,130,0x004DEE31,sub_4DEDB0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004DEE40,519,0x004DF046,sub_4DEE40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x004DF050,103,0x004DF0B6,sub_4DF050,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x004DF050,103,0x004DF0B6,SakuyaObjectManagerBase_ctor,SakuyaObjectManagerBase_ctor,characters,matching,100.00,__thiscall,SakuyaObjectManagerBase * SakuyaObjectManagerBase_ctor(SakuyaObjectManagerBase * this),false,src/characters/TObjectManagerBase.cpp,python3 scripts/build.py --unit cross-v106a-roster-manager-base-ctors --compare --json reports exact 103/103 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 /GS zero-diff clone-family ctor. Current IDA writes the TObjectManagerBase<SakuyaObject,CharacterObject> vtable and current relocations establish the class-specific handle-manager ctor and SEH handler."
 0x004DF0C0,94,0x004DF11D,sub_4DF0C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004DF120,100,0x004DF183,sub_4DF120,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004DF190,30,0x004DF1AD,sub_4DF190,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2283,7 +2283,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004FA5A0,130,0x004FA621,sub_4FA5A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004FA630,519,0x004FA836,sub_4FA630,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004FA840,30,0x004FA85D,sub_4FA840,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x004FA860,103,0x004FA8C6,sub_4FA860,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x004FA860,103,0x004FA8C6,AliceObjectManagerBase_ctor,AliceObjectManagerBase_ctor,characters,matching,100.00,__thiscall,AliceObjectManagerBase * AliceObjectManagerBase_ctor(AliceObjectManagerBase * this),false,src/characters/TObjectManagerBase.cpp,python3 scripts/build.py --unit cross-v106a-roster-manager-base-ctors --compare --json reports exact 103/103 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 /GS zero-diff clone-family ctor. Current IDA writes the TObjectManagerBase<AliceObject,CharacterObject> vtable and current relocations establish the class-specific handle-manager ctor and SEH handler."
 0x004FA8D0,94,0x004FA92D,sub_4FA8D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004FA930,100,0x004FA993,sub_4FA930,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004FA9A0,30,0x004FA9BD,sub_4FA9A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2312,7 +2312,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0051E840,30,0x0051E85D,sub_51E840,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0051E860,130,0x0051E8E1,sub_51E860,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0051E8F0,519,0x0051EAF6,sub_51E8F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0051EB00,103,0x0051EB66,sub_51EB00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0051EB00,103,0x0051EB66,PatchouliObjectManagerBase_ctor,PatchouliObjectManagerBase_ctor,characters,matching,100.00,__thiscall,PatchouliObjectManagerBase * PatchouliObjectManagerBase_ctor(PatchouliObjectManagerBase * this),false,src/characters/TObjectManagerBase.cpp,python3 scripts/build.py --unit cross-v106a-roster-manager-base-ctors --compare --json reports exact 103/103 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 /GS zero-diff clone-family ctor. Current IDA writes the TObjectManagerBase<PatchouliObject,CharacterObject> vtable and current relocations establish the class-specific handle-manager ctor and SEH handler."
 0x0051EB70,94,0x0051EBCD,sub_51EB70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0051EBD0,100,0x0051EC33,sub_51EBD0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0051EC40,30,0x0051EC5D,sub_51EC40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2341,7 +2341,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0053AC00,30,0x0053AC1D,sub_53AC00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0053AC20,130,0x0053ACA1,sub_53AC20,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0053ACB0,519,0x0053AEB6,sub_53ACB0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0053AEC0,103,0x0053AF26,sub_53AEC0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0053AEC0,103,0x0053AF26,YoumuObjectManagerBase_ctor,YoumuObjectManagerBase_ctor,characters,matching,100.00,__thiscall,YoumuObjectManagerBase * YoumuObjectManagerBase_ctor(YoumuObjectManagerBase * this),false,src/characters/TObjectManagerBase.cpp,python3 scripts/build.py --unit cross-v106a-roster-manager-base-ctors --compare --json reports exact 103/103 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 /GS zero-diff clone-family ctor. Current IDA writes the TObjectManagerBase<YoumuObject,CharacterObject> vtable and current relocations establish the class-specific handle-manager ctor and SEH handler."
 0x0053AF30,94,0x0053AF8D,sub_53AF30,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0053AF90,100,0x0053AFF3,sub_53AF90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0053B000,30,0x0053B01D,sub_53B000,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2372,7 +2372,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00555950,30,0x0055596D,sub_555950,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00555970,130,0x005559F1,sub_555970,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00555A00,519,0x00555C06,sub_555A00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00555C10,103,0x00555C76,sub_555C10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00555C10,103,0x00555C76,RemiliaObjectManagerBase_ctor,RemiliaObjectManagerBase_ctor,characters,matching,100.00,__thiscall,RemiliaObjectManagerBase * RemiliaObjectManagerBase_ctor(RemiliaObjectManagerBase * this),false,src/characters/TObjectManagerBase.cpp,python3 scripts/build.py --unit cross-v106a-roster-manager-base-ctors --compare --json reports exact 103/103 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 /GS zero-diff clone-family ctor. Current IDA writes the TObjectManagerBase<RemiliaObject,CharacterObject> vtable and current relocations establish the class-specific handle-manager ctor and SEH handler."
 0x00555C80,94,0x00555CDD,sub_555C80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00555CE0,100,0x00555D43,sub_555CE0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00555D50,30,0x00555D6D,sub_555D50,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2401,7 +2401,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0056D6E0,519,0x0056D8E6,sub_56D6E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0056D8F0,170,0x0056D999,sub_56D8F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0056D9A0,30,0x0056D9BD,sub_56D9A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0056D9C0,103,0x0056DA26,sub_56D9C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0056D9C0,103,0x0056DA26,YuyukoObjectManagerBase_ctor,YuyukoObjectManagerBase_ctor,characters,matching,100.00,__thiscall,YuyukoObjectManagerBase * YuyukoObjectManagerBase_ctor(YuyukoObjectManagerBase * this),false,src/characters/TObjectManagerBase.cpp,python3 scripts/build.py --unit cross-v106a-roster-manager-base-ctors --compare --json reports exact 103/103 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 /GS zero-diff clone-family ctor. Current IDA writes the TObjectManagerBase<YuyukoObject,CharacterObject> vtable and current relocations establish the class-specific handle-manager ctor and SEH handler."
 0x0056DA30,94,0x0056DA8D,sub_56DA30,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0056DA90,122,0x0056DB09,sub_56DA90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0056DB10,100,0x0056DB73,sub_56DB10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2428,7 +2428,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0058B8E0,30,0x0058B8FD,sub_58B8E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0058B900,130,0x0058B981,sub_58B900,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0058B990,519,0x0058BB96,sub_58B990,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0058BBA0,103,0x0058BC06,sub_58BBA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0058BBA0,103,0x0058BC06,YukariObjectManagerBase_ctor,YukariObjectManagerBase_ctor,characters,matching,100.00,__thiscall,YukariObjectManagerBase * YukariObjectManagerBase_ctor(YukariObjectManagerBase * this),false,src/characters/TObjectManagerBase.cpp,python3 scripts/build.py --unit cross-v106a-roster-manager-base-ctors --compare --json reports exact 103/103 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 /GS zero-diff clone-family ctor. Current IDA writes the TObjectManagerBase<YukariObject,CharacterObject> vtable and current relocations establish the class-specific handle-manager ctor and SEH handler."
 0x0058BC10,94,0x0058BC6D,sub_58BC10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0058BC70,100,0x0058BCD3,sub_58BC70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0058BCE0,30,0x0058BCFD,sub_58BCE0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2462,7 +2462,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x005AE5E0,130,0x005AE661,sub_5AE5E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005AE670,519,0x005AE876,sub_5AE670,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005AE880,30,0x005AE89D,sub_5AE880,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x005AE8A0,103,0x005AE906,sub_5AE8A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x005AE8A0,103,0x005AE906,SuikaObjectManagerBase_ctor,SuikaObjectManagerBase_ctor,characters,matching,100.00,__thiscall,SuikaObjectManagerBase * SuikaObjectManagerBase_ctor(SuikaObjectManagerBase * this),false,src/characters/TObjectManagerBase.cpp,python3 scripts/build.py --unit cross-v106a-roster-manager-base-ctors --compare --json reports exact 103/103 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 /GS zero-diff clone-family ctor. Current IDA writes the TObjectManagerBase<SuikaObject,CharacterObject> vtable and current relocations establish the class-specific handle-manager ctor and SEH handler."
 0x005AE910,94,0x005AE96D,sub_5AE910,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005AE970,100,0x005AE9D3,sub_5AE970,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005AE9E0,30,0x005AE9FD,sub_5AE9E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2490,7 +2490,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x005D2530,130,0x005D25B1,sub_5D2530,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005D25C0,519,0x005D27C6,sub_5D25C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005D27D0,30,0x005D27ED,sub_5D27D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x005D27F0,103,0x005D2856,sub_5D27F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x005D27F0,103,0x005D2856,UdongeObjectManagerBase_ctor,UdongeObjectManagerBase_ctor,characters,matching,100.00,__thiscall,UdongeObjectManagerBase * UdongeObjectManagerBase_ctor(UdongeObjectManagerBase * this),false,src/characters/TObjectManagerBase.cpp,python3 scripts/build.py --unit cross-v106a-roster-manager-base-ctors --compare --json reports exact 103/103 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 /GS zero-diff clone-family ctor. Current IDA writes the TObjectManagerBase<UdongeObject,CharacterObject> vtable and current relocations establish the class-specific handle-manager ctor and SEH handler."
 0x005D2860,94,0x005D28BD,sub_5D2860,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005D28C0,100,0x005D2923,sub_5D28C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005D2930,30,0x005D294D,sub_5D2930,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2517,7 +2517,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x005F7390,30,0x005F73AD,sub_5F7390,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005F73B0,130,0x005F7431,sub_5F73B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005F7440,519,0x005F7646,sub_5F7440,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x005F7650,103,0x005F76B6,sub_5F7650,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x005F7650,103,0x005F76B6,KomachiObjectManagerBase_ctor,KomachiObjectManagerBase_ctor,characters,matching,100.00,__thiscall,KomachiObjectManagerBase * KomachiObjectManagerBase_ctor(KomachiObjectManagerBase * this),false,src/characters/TObjectManagerBase.cpp,python3 scripts/build.py --unit cross-v106a-roster-manager-base-ctors --compare --json reports exact 103/103 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 /GS zero-diff clone-family ctor. Current IDA writes the TObjectManagerBase<KomachiObject,CharacterObject> vtable and current relocations establish the class-specific handle-manager ctor and SEH handler."
 0x005F76C0,94,0x005F771D,sub_5F76C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005F7720,100,0x005F7783,sub_5F7720,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005F7790,30,0x005F77AD,sub_5F7790,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2546,7 +2546,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00617D60,130,0x00617DE1,sub_617D60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00617DF0,519,0x00617FF6,sub_617DF0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00618000,30,0x0061801D,sub_618000,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00618020,103,0x00618086,sub_618020,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00618020,103,0x00618086,AyaObjectManagerBase_ctor,AyaObjectManagerBase_ctor,characters,matching,100.00,__thiscall,AyaObjectManagerBase * AyaObjectManagerBase_ctor(AyaObjectManagerBase * this),false,src/characters/TObjectManagerBase.cpp,python3 scripts/build.py --unit cross-v106a-roster-manager-base-ctors --compare --json reports exact 103/103 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 /GS zero-diff clone-family ctor. Current IDA writes the TObjectManagerBase<AyaObject,CharacterObject> vtable and current relocations establish the class-specific handle-manager ctor and SEH handler."
 0x00618090,94,0x006180ED,sub_618090,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006180F0,100,0x00618153,sub_6180F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00618160,30,0x0061817D,sub_618160,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2573,7 +2573,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00630C10,130,0x00630C91,sub_630C10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00630CA0,519,0x00630EA6,sub_630CA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00630EB0,30,0x00630ECD,sub_630EB0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00630ED0,103,0x00630F36,sub_630ED0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00630ED0,103,0x00630F36,IkuObjectManagerBase_ctor,IkuObjectManagerBase_ctor,characters,matching,100.00,__thiscall,IkuObjectManagerBase * IkuObjectManagerBase_ctor(IkuObjectManagerBase * this),false,src/characters/TObjectManagerBase.cpp,python3 scripts/build.py --unit cross-v106a-roster-manager-base-ctors --compare --json reports exact 103/103 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 /GS zero-diff clone-family ctor. Current IDA writes the TObjectManagerBase<IkuObject,CharacterObject> vtable and current relocations establish the class-specific handle-manager ctor and SEH handler."
 0x00630F40,94,0x00630F9D,sub_630F40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00630FA0,100,0x00631003,sub_630FA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00631010,30,0x0063102D,sub_631010,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2602,7 +2602,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0064AFE0,130,0x0064B061,sub_64AFE0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0064B070,519,0x0064B276,sub_64B070,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0064B280,30,0x0064B29D,sub_64B280,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0064B2A0,103,0x0064B306,sub_64B2A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0064B2A0,103,0x0064B306,TenshiObjectManagerBase_ctor,TenshiObjectManagerBase_ctor,characters,matching,100.00,__thiscall,TenshiObjectManagerBase * TenshiObjectManagerBase_ctor(TenshiObjectManagerBase * this),false,src/characters/TObjectManagerBase.cpp,python3 scripts/build.py --unit cross-v106a-roster-manager-base-ctors --compare --json reports exact 103/103 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 /GS zero-diff clone-family ctor. Current IDA writes the TObjectManagerBase<TenshiObject,CharacterObject> vtable and current relocations establish the class-specific handle-manager ctor and SEH handler."
 0x0064B310,94,0x0064B36D,sub_64B310,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0064B370,100,0x0064B3D3,sub_64B370,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0064B3E0,30,0x0064B3FD,sub_64B3E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
