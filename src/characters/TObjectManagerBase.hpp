@@ -31,6 +31,8 @@ class CHandleManagerEx {
 public:
     CHandleManagerEx();
     virtual ~CHandleManagerEx();
+    ObjectType *acquire(unsigned *handle_token);
+    void release_handle(unsigned handle_token);
 
     std::vector<ObjectType *> slots_04;
     std::vector<unsigned> generations_14;
@@ -45,6 +47,7 @@ class TObjectManagerBase {
 public:
     TObjectManagerBase();
     virtual ~TObjectManagerBase();
+    ObjectType *acquire_and_link_object();
     void preallocate_object_pool(unsigned target_count);
     void release_all_tracked_objects();
 

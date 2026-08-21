@@ -7,6 +7,26 @@ public:
     virtual ~InfoEffectObject();
 };
 
+class CSelectObject {
+public:
+    virtual ~CSelectObject();
+};
+
+class WeatherEffectObject {
+public:
+    virtual ~WeatherEffectObject();
+};
+
+class EffectObject {
+public:
+    virtual ~EffectObject();
+};
+
+class SystemEffectObject {
+public:
+    virtual ~SystemEffectObject();
+};
+
 
 template <typename ObjectType>
 CHandleManagerEx<ObjectType>::CHandleManagerEx()
@@ -47,5 +67,9 @@ TH105_INSTANTIATE_HANDLE_MANAGER(AyaObject);
 TH105_INSTANTIATE_HANDLE_MANAGER(IkuObject);
 TH105_INSTANTIATE_HANDLE_MANAGER(TenshiObject);
 TH105_INSTANTIATE_HANDLE_MANAGER(InfoEffectObject);
+TH105_INSTANTIATE_HANDLE_MANAGER(CSelectObject);
+TH105_INSTANTIATE_HANDLE_MANAGER(WeatherEffectObject);
+TH105_INSTANTIATE_HANDLE_MANAGER(EffectObject);
+TH105_INSTANTIATE_HANDLE_MANAGER(SystemEffectObject);
 
 #undef TH105_INSTANTIATE_HANDLE_MANAGER

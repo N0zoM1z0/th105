@@ -694,3 +694,15 @@ A raw-exact generated `std::_Tree::find` COMDAT can be stable across different m
 ### A same-size register permutation is still a blocker
 
 Several InfoManager/effect functions now have complete current semantics and natural VC8 source but remain non-exact solely because standalone allocation differs: `0x0046E5A0` is the same 168-byte length with callee-saved register permutation, `0x0046F3D0` is the same 117-byte length with a different persistent `this` register, and `0x0046EB90/0x0046EF40/0x0046F370` differ by one spill or nearby scheduling choice. Do not use volatile locals, manual register variables, fake lifetime extensions, inline assembly, or vtable arithmetic to force these. Keep the semantic recovery as a handoff and wait for stronger TU/LTCG/layout evidence.
+
+### Prefer qualified base calls for proven secondary-base receivers
+
+In a multiple-inheritance member, assigning `SecondaryBase *base = this` is not always codegen-neutral. VC8 preserves C++ null-pointer conversion semantics and can emit a `test/jz` before applying the secondary-base adjustment. Current `CEffectManager<T>::spawn_effect` bodies instead go directly from the non-null member receiver to `lea ecx,[this+4]` before the linked `TObjectManagerBase<T,...>::acquire_and_link_object` call. A qualified base-member call expresses exactly that source relationship and reproduces all three 115-byte targets without register hints, volatile locals, or manual vtable arithmetic.
+
+### Treat trivial base-destructor visibility as TU evidence
+
+A semantically empty virtual base destructor can still change a derived destructor by several instructions depending on whether its definition is visible. The four `CEffectManager<T>` targets end by restoring the shared `IEffectManager` vptr. With only a declaration, pinned VC8 emits an out-of-line `IEffectManager::~IEffectManager()` call and the derived dtor is 203 bytes. Giving the TU the truthful empty definition lets VC8 inline that vptr restore and yields the target 194 bytes exactly. Prefer the TU visibility demonstrated by target code over `noinline`/`forceinline` attributes or synthetic cleanup calls.
+
+### Recover MI layout from dual vptr writes and symmetric member lifetime
+
+The `CEffectManager<T>` constructors and destructors independently write two derived vptrs: primary `IEffectManager` at `+0` and a specialization-specific `TObjectManagerBase<T,EffectObjectBase>` vptr at `+4`. Their construction/destruction symmetry then fixes a 16-byte checked vector at `+0x64`, a 20-byte owning deque at `+0x74`, and a 12-byte checked tree at `+0x88`. Model those as real bases/members so VC8 owns vptr and EH-state generation. Do not flatten the object into byte padding merely because individual methods can be matched from narrow offset views.

@@ -4453,7 +4453,7 @@ source = "src/characters/CHandleManagerEx.cpp"
 object = "build/match-units/CrossV106a_CHandleManagerEx.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "TH105 1.06a CHandleManagerEx<T> lifetime family: sixteen class-disambiguated specializations, each with exact 130-byte ctor, 263-byte dtor, and 30-byte scalar deleting wrapper. Current exact TObjectManagerBase edges identify fifteen roster/Info ctor/dtor targets; Yuyuko dtor is independently fixed by its 0x006C55BC vtable xref. Natural checked-vector destruction uses one source-level object local per slot; ctor clears generation_counter only after the critical-section member ctor."
+notes = "TH105 1.06a CHandleManagerEx<T> lifetime family: twenty class-disambiguated specializations, each with exact 130-byte ctor, 263-byte dtor, and 30-byte scalar deleting wrapper. Current TObjectManagerBase/vtable edges identify roster, Info, CSelect, Weather, Effect, and System specializations; Yuyuko dtor is independently fixed by its 0x006C55BC vtable xref. Natural checked-vector destruction uses one source-level object local per slot; ctor clears generation_counter only after the critical-section member ctor."
 
 [[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
 address = "0x0046edb0"
@@ -4980,5 +4980,482 @@ address = "0x0064ad80"
 symbol_base = "??_G?$CHandleManagerEx@VTenshiObject@@@@UAEPAXI@Z"
 rel32_targets = [
   "??1?$CHandleManagerEx@VTenshiObject@@@@UAE@XZ=0x0064ac70",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x004216f0"
+symbol_base = "??0?$CHandleManagerEx@VCSelectObject@@@@QAE@XZ"
+rel32_targets = [
+  "_Buynode=0x004040B0",
+  "??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CHandleManagerEx@VCSelectObject@@@@QAE@XZ=_chandle_manager_ctor_eh",
+  "??_7?$CHandleManagerEx@VCSelectObject@@@@6B@=??_7?$CHandleManagerEx@VCSelectObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x00420c60"
+symbol_base = "??1?$CHandleManagerEx@VCSelectObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "??3@YAXPAX@Z=0x006898EA",
+  "_invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CHandleManagerEx@VCSelectObject@@@@UAE@XZ=_chandle_manager_dtor_eh",
+  "??_7?$CHandleManagerEx@VCSelectObject@@@@6B@=??_7?$CHandleManagerEx@VCSelectObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x00420d70"
+symbol_base = "??_G?$CHandleManagerEx@VCSelectObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CHandleManagerEx@VCSelectObject@@@@UAE@XZ=0x00420C60",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x004368b0"
+symbol_base = "??0?$CHandleManagerEx@VWeatherEffectObject@@@@QAE@XZ"
+rel32_targets = [
+  "_Buynode=0x004040B0",
+  "??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CHandleManagerEx@VWeatherEffectObject@@@@QAE@XZ=_chandle_manager_ctor_eh",
+  "??_7?$CHandleManagerEx@VWeatherEffectObject@@@@6B@=??_7?$CHandleManagerEx@VWeatherEffectObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x00436090"
+symbol_base = "??1?$CHandleManagerEx@VWeatherEffectObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "??3@YAXPAX@Z=0x006898EA",
+  "_invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CHandleManagerEx@VWeatherEffectObject@@@@UAE@XZ=_chandle_manager_dtor_eh",
+  "??_7?$CHandleManagerEx@VWeatherEffectObject@@@@6B@=??_7?$CHandleManagerEx@VWeatherEffectObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x004363c0"
+symbol_base = "??_G?$CHandleManagerEx@VWeatherEffectObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CHandleManagerEx@VWeatherEffectObject@@@@UAE@XZ=0x00436090",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x00436940"
+symbol_base = "??0?$CHandleManagerEx@VEffectObject@@@@QAE@XZ"
+rel32_targets = [
+  "_Buynode=0x004040B0",
+  "??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CHandleManagerEx@VEffectObject@@@@QAE@XZ=_chandle_manager_ctor_eh",
+  "??_7?$CHandleManagerEx@VEffectObject@@@@6B@=??_7?$CHandleManagerEx@VEffectObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x004362b0"
+symbol_base = "??1?$CHandleManagerEx@VEffectObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "??3@YAXPAX@Z=0x006898EA",
+  "_invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CHandleManagerEx@VEffectObject@@@@UAE@XZ=_chandle_manager_dtor_eh",
+  "??_7?$CHandleManagerEx@VEffectObject@@@@6B@=??_7?$CHandleManagerEx@VEffectObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x00436400"
+symbol_base = "??_G?$CHandleManagerEx@VEffectObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CHandleManagerEx@VEffectObject@@@@UAE@XZ=0x004362B0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x004569a0"
+symbol_base = "??0?$CHandleManagerEx@VSystemEffectObject@@@@QAE@XZ"
+rel32_targets = [
+  "_Buynode=0x004040B0",
+  "??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CHandleManagerEx@VSystemEffectObject@@@@QAE@XZ=_chandle_manager_ctor_eh",
+  "??_7?$CHandleManagerEx@VSystemEffectObject@@@@6B@=??_7?$CHandleManagerEx@VSystemEffectObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x004361a0"
+symbol_base = "??1?$CHandleManagerEx@VSystemEffectObject@@@@UAE@XZ"
+rel32_targets = [
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "??3@YAXPAX@Z=0x006898EA",
+  "_invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CHandleManagerEx@VSystemEffectObject@@@@UAE@XZ=_chandle_manager_dtor_eh",
+  "??_7?$CHandleManagerEx@VSystemEffectObject@@@@6B@=??_7?$CHandleManagerEx@VSystemEffectObject@@@@6B@",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x004363e0"
+symbol_base = "??_G?$CHandleManagerEx@VSystemEffectObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CHandleManagerEx@VSystemEffectObject@@@@UAE@XZ=0x004361A0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[units.cross-v106a-effect-object-manager-base-lifetimes]
+kind = "probe"
+source = "src/battle/EffectObjectManagerBase.cpp"
+object = "build/match-units/CrossV106a_EffectObjectManagerBase.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a effect/UI TObjectManagerBase specialization family. Current class-specific vtables and handle-manager ctor/dtor edges identify CSelect, WeatherEffect, Effect, and SystemEffect bases independently; natural template lifetime emits exact 103/100/30-byte ctor/dtor/scalar triples."
+
+[[units.cross-v106a-effect-object-manager-base-lifetimes.functions]]
+address = "0x00421780"
+symbol_base = "??0?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VCSelectObject@@@@QAE@XZ=0x004216F0",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x00435E50",
+]
+dir32_targets = [
+  "__ehhandler$??0?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@QAE@XZ=__ehhandler$??0?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@6B@=??_7?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@6B@",
+]
+
+[[units.cross-v106a-effect-object-manager-base-lifetimes.functions]]
+address = "0x00421950"
+symbol_base = "??1?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@UAE@XZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@QAEXXZ=0x0046EEB0",
+  "??1CollisionList@th105@@QAE@XZ=0x00435EB0",
+  "??1?$CHandleManagerEx@VCSelectObject@@@@UAE@XZ=0x00420C60",
+]
+dir32_targets = [
+  "__ehhandler$??1?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@UAE@XZ=__ehhandler$??1?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@6B@=??_7?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@6B@",
+]
+
+[[units.cross-v106a-effect-object-manager-base-lifetimes.functions]]
+address = "0x004230b0"
+symbol_base = "??_G?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@UAE@XZ=0x00421950",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-effect-object-manager-base-lifetimes.functions]]
+address = "0x00436d80"
+symbol_base = "??0?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VWeatherEffectObject@@@@QAE@XZ=0x004368B0",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x00435E50",
+]
+dir32_targets = [
+  "__ehhandler$??0?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@QAE@XZ=__ehhandler$??0?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@6B@=??_7?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@6B@",
+]
+
+[[units.cross-v106a-effect-object-manager-base-lifetimes.functions]]
+address = "0x00437210"
+symbol_base = "??1?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@UAE@XZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@QAEXXZ=0x0046EEB0",
+  "??1CollisionList@th105@@QAE@XZ=0x00435EB0",
+  "??1?$CHandleManagerEx@VWeatherEffectObject@@@@UAE@XZ=0x00436090",
+]
+dir32_targets = [
+  "__ehhandler$??1?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@UAE@XZ=__ehhandler$??1?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@6B@=??_7?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@6B@",
+]
+
+[[units.cross-v106a-effect-object-manager-base-lifetimes.functions]]
+address = "0x004378c0"
+symbol_base = "??_G?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@UAE@XZ=0x00437210",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-effect-object-manager-base-lifetimes.functions]]
+address = "0x00436df0"
+symbol_base = "??0?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VEffectObject@@@@QAE@XZ=0x00436940",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x00435E50",
+]
+dir32_targets = [
+  "__ehhandler$??0?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@QAE@XZ=__ehhandler$??0?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@6B@=??_7?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@6B@",
+]
+
+[[units.cross-v106a-effect-object-manager-base-lifetimes.functions]]
+address = "0x004372f0"
+symbol_base = "??1?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@UAE@XZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@QAEXXZ=0x0046EEB0",
+  "??1CollisionList@th105@@QAE@XZ=0x00435EB0",
+  "??1?$CHandleManagerEx@VEffectObject@@@@UAE@XZ=0x004362B0",
+]
+dir32_targets = [
+  "__ehhandler$??1?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@UAE@XZ=__ehhandler$??1?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@6B@=??_7?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@6B@",
+]
+
+[[units.cross-v106a-effect-object-manager-base-lifetimes.functions]]
+address = "0x00437d00"
+symbol_base = "??_G?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@UAE@XZ=0x004372F0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-effect-object-manager-base-lifetimes.functions]]
+address = "0x00456e40"
+symbol_base = "??0?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VSystemEffectObject@@@@QAE@XZ=0x004569A0",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x00435E50",
+]
+dir32_targets = [
+  "__ehhandler$??0?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@QAE@XZ=__ehhandler$??0?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@6B@=??_7?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@6B@",
+]
+
+[[units.cross-v106a-effect-object-manager-base-lifetimes.functions]]
+address = "0x00437280"
+symbol_base = "??1?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@UAE@XZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@QAEXXZ=0x00436E60",
+  "??1CollisionList@th105@@QAE@XZ=0x00435EB0",
+  "??1?$CHandleManagerEx@VSystemEffectObject@@@@UAE@XZ=0x004361A0",
+]
+dir32_targets = [
+  "__ehhandler$??1?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@UAE@XZ=__ehhandler$??1?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@6B@=??_7?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@6B@",
+]
+
+[[units.cross-v106a-effect-object-manager-base-lifetimes.functions]]
+address = "0x004583c0"
+symbol_base = "??_G?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@UAE@XZ=0x00437280",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[units.cross-v106a-effect-manager-spawn-family]
+kind = "probe"
+source = "src/battle/EffectManagerSpawn.cpp"
+object = "build/match-units/CrossV106a_EffectManagerSpawn.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a CEffectManager<CSelectObject/WeatherEffectObject/EffectObject> spawn family. Current RTTI and the shared MI layout fix the secondary TObjectManagerBase receiver at +4; qualified base-member calls preserve the target out-of-line acquire-and-link edge without null-preserving pointer-conversion code."
+
+[[units.cross-v106a-effect-manager-spawn-family.functions]]
+address = "0x00422fb0"
+symbol_base = "?spawn_effect@?$CEffectManager@VCSelectObject@@@@QAEPAVCSelectObject@@HMMEEH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@QAEPAVCSelectObject@@XZ=0x00422EA0",
+]
+
+[[units.cross-v106a-effect-manager-spawn-family.functions]]
+address = "0x004377c0"
+symbol_base = "?spawn_effect@?$CEffectManager@VWeatherEffectObject@@@@QAEPAVWeatherEffectObject@@HMMEEH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@QAEPAVWeatherEffectObject@@XZ=0x00437760",
+]
+
+[[units.cross-v106a-effect-manager-spawn-family.functions]]
+address = "0x00437c00"
+symbol_base = "?spawn_effect@?$CEffectManager@VEffectObject@@@@QAEPAVEffectObject@@HMMEEH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@QAEPAVEffectObject@@XZ=0x00437BA0",
+]
+
+[units.cross-v106a-effect-manager-lifetimes]
+kind = "probe"
+source = "src/battle/EffectManagerLifetime.cpp"
+object = "build/match-units/CrossV106a_EffectManagerLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a CEffectManager<T> MI lifetime family for CSelect, WeatherEffect, Effect, and InfoEffect objects. Current RTTI/dual-vptr writes prove IEffectManager primary plus TObjectManagerBase secondary inheritance; vector/deque/tree tail layout is target-backed. The trivial IEffectManager destructor is visible in this TU so VC8 inlines the target vptr restore, yielding exact 169/194/30-byte ctor/dtor/scalar triples."
+
+[[units.cross-v106a-effect-manager-lifetimes.functions]]
+address = "0x004219c0"
+symbol_base = "??0?$CEffectManager@VCSelectObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@QAE@XZ=0x00421780",
+  "_Buynode=0x00420A40",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CEffectManager@VCSelectObject@@@@QAE@XZ=__ehhandler$??0?$CEffectManager@VCSelectObject@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7IEffectManager@@6B@=??_7IEffectManager@@6B@",
+  "??_7?$CEffectManager@VCSelectObject@@@@6BIEffectManager@@@=??_7?$CEffectManager@VCSelectObject@@@@6BIEffectManager@@@",
+  "??_7?$CEffectManager@VCSelectObject@@@@6B?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@@=??_7?$CEffectManager@VCSelectObject@@@@6B?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@@",
+]
+
+[[units.cross-v106a-effect-manager-lifetimes.functions]]
+address = "0x004230d0"
+symbol_base = "??1?$CEffectManager@VCSelectObject@@@@UAE@XZ"
+rel32_targets = [
+  "?erase@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z=0x0043D270",
+  "??3@YAXPAX@Z=0x006898EA",
+  "??1EffectOwnedDeque20@@QAE@XZ=0x00420AF0",
+  "??1?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@UAE@XZ=0x00421950",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CEffectManager@VCSelectObject@@@@UAE@XZ=__ehhandler$??1?$CEffectManager@VCSelectObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$CEffectManager@VCSelectObject@@@@6BIEffectManager@@@=??_7?$CEffectManager@VCSelectObject@@@@6BIEffectManager@@@",
+  "??_7?$CEffectManager@VCSelectObject@@@@6B?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@@=??_7?$CEffectManager@VCSelectObject@@@@6B?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@@",
+  "??_7IEffectManager@@6B@=??_7IEffectManager@@6B@",
+]
+
+[[units.cross-v106a-effect-manager-lifetimes.functions]]
+address = "0x00424240"
+symbol_base = "??_G?$CEffectManager@VCSelectObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CEffectManager@VCSelectObject@@@@UAE@XZ=0x004230D0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-effect-manager-lifetimes.functions]]
+address = "0x00437430"
+symbol_base = "??0?$CEffectManager@VWeatherEffectObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@QAE@XZ=0x00436D80",
+  "_Buynode=0x00420A40",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CEffectManager@VWeatherEffectObject@@@@QAE@XZ=__ehhandler$??0?$CEffectManager@VWeatherEffectObject@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7IEffectManager@@6B@=??_7IEffectManager@@6B@",
+  "??_7?$CEffectManager@VWeatherEffectObject@@@@6BIEffectManager@@@=??_7?$CEffectManager@VWeatherEffectObject@@@@6BIEffectManager@@@",
+  "??_7?$CEffectManager@VWeatherEffectObject@@@@6B?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@@=??_7?$CEffectManager@VWeatherEffectObject@@@@6B?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@@",
+]
+
+[[units.cross-v106a-effect-manager-lifetimes.functions]]
+address = "0x00437d20"
+symbol_base = "??1?$CEffectManager@VWeatherEffectObject@@@@UAE@XZ"
+rel32_targets = [
+  "?erase@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z=0x0043D270",
+  "??3@YAXPAX@Z=0x006898EA",
+  "??1EffectOwnedDeque20@@QAE@XZ=0x00420AF0",
+  "??1?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@UAE@XZ=0x00437210",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CEffectManager@VWeatherEffectObject@@@@UAE@XZ=__ehhandler$??1?$CEffectManager@VWeatherEffectObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$CEffectManager@VWeatherEffectObject@@@@6BIEffectManager@@@=??_7?$CEffectManager@VWeatherEffectObject@@@@6BIEffectManager@@@",
+  "??_7?$CEffectManager@VWeatherEffectObject@@@@6B?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@@=??_7?$CEffectManager@VWeatherEffectObject@@@@6B?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@@",
+  "??_7IEffectManager@@6B@=??_7IEffectManager@@6B@",
+]
+
+[[units.cross-v106a-effect-manager-lifetimes.functions]]
+address = "0x00438970"
+symbol_base = "??_G?$CEffectManager@VWeatherEffectObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CEffectManager@VWeatherEffectObject@@@@UAE@XZ=0x00437D20",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-effect-manager-lifetimes.functions]]
+address = "0x004378f0"
+symbol_base = "??0?$CEffectManager@VEffectObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@QAE@XZ=0x00436DF0",
+  "_Buynode=0x00420A40",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CEffectManager@VEffectObject@@@@QAE@XZ=__ehhandler$??0?$CEffectManager@VEffectObject@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7IEffectManager@@6B@=??_7IEffectManager@@6B@",
+  "??_7?$CEffectManager@VEffectObject@@@@6BIEffectManager@@@=??_7?$CEffectManager@VEffectObject@@@@6BIEffectManager@@@",
+  "??_7?$CEffectManager@VEffectObject@@@@6B?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@@=??_7?$CEffectManager@VEffectObject@@@@6B?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@@",
+]
+
+[[units.cross-v106a-effect-manager-lifetimes.functions]]
+address = "0x00437df0"
+symbol_base = "??1?$CEffectManager@VEffectObject@@@@UAE@XZ"
+rel32_targets = [
+  "?erase@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z=0x0043D270",
+  "??3@YAXPAX@Z=0x006898EA",
+  "??1EffectOwnedDeque20@@QAE@XZ=0x00420AF0",
+  "??1?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@UAE@XZ=0x004372F0",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CEffectManager@VEffectObject@@@@UAE@XZ=__ehhandler$??1?$CEffectManager@VEffectObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$CEffectManager@VEffectObject@@@@6BIEffectManager@@@=??_7?$CEffectManager@VEffectObject@@@@6BIEffectManager@@@",
+  "??_7?$CEffectManager@VEffectObject@@@@6B?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@@=??_7?$CEffectManager@VEffectObject@@@@6B?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@@",
+  "??_7IEffectManager@@6B@=??_7IEffectManager@@6B@",
+]
+
+[[units.cross-v106a-effect-manager-lifetimes.functions]]
+address = "0x00438990"
+symbol_base = "??_G?$CEffectManager@VEffectObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CEffectManager@VEffectObject@@@@UAE@XZ=0x00437DF0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-effect-manager-lifetimes.functions]]
+address = "0x0046f090"
+symbol_base = "??0?$CEffectManager@VInfoEffectObject@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@QAE@XZ=0x0046EE40",
+  "_Buynode=0x00420A40",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CEffectManager@VInfoEffectObject@@@@QAE@XZ=__ehhandler$??0?$CEffectManager@VInfoEffectObject@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7IEffectManager@@6B@=??_7IEffectManager@@6B@",
+  "??_7?$CEffectManager@VInfoEffectObject@@@@6BIEffectManager@@@=??_7?$CEffectManager@VInfoEffectObject@@@@6BIEffectManager@@@",
+  "??_7?$CEffectManager@VInfoEffectObject@@@@6B?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@@=??_7?$CEffectManager@VInfoEffectObject@@@@6B?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@@",
+]
+
+[[units.cross-v106a-effect-manager-lifetimes.functions]]
+address = "0x0046f500"
+symbol_base = "??1?$CEffectManager@VInfoEffectObject@@@@UAE@XZ"
+rel32_targets = [
+  "?erase@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z=0x0043D270",
+  "??3@YAXPAX@Z=0x006898EA",
+  "??1EffectOwnedDeque20@@QAE@XZ=0x00420AF0",
+  "??1?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@UAE@XZ=0x0046F020",
+]
+dir32_targets = [
+  "__ehhandler$??1?$CEffectManager@VInfoEffectObject@@@@UAE@XZ=__ehhandler$??1?$CEffectManager@VInfoEffectObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$CEffectManager@VInfoEffectObject@@@@6BIEffectManager@@@=??_7?$CEffectManager@VInfoEffectObject@@@@6BIEffectManager@@@",
+  "??_7?$CEffectManager@VInfoEffectObject@@@@6B?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@@=??_7?$CEffectManager@VInfoEffectObject@@@@6B?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@@",
+  "??_7IEffectManager@@6B@=??_7IEffectManager@@6B@",
+]
+
+[[units.cross-v106a-effect-manager-lifetimes.functions]]
+address = "0x0046f780"
+symbol_base = "??_G?$CEffectManager@VInfoEffectObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CEffectManager@VInfoEffectObject@@@@UAE@XZ=0x0046F500",
   "??3@YAXPAX@Z=0x006898EA",
 ]
