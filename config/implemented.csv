@@ -160,3 +160,9 @@ CSelectScenario_apply_scenario
 CTitle_dtor
 CTitle_on_scene_enter
 CLoadingWatch_on_scene_enter
+front_checked
+dispatch_indexed_event
+GuideOverlay_ctor
+CMenuResult_update
+shutdown_direct_sound
+create_collision_list_sentinel

@@ -1821,6 +1821,11 @@ dir32_targets = [
   "__real@43e40000=__real@43e40000",
 ]
 
+[[units.cross-v106a-guide-overlay.functions]]
+address = "0x0043F540"
+symbol_base = "GuideOverlay_ctor"
+dir32_targets = ["_select_sprite_vtable_anchor=_select_sprite_vtable_anchor"]
+
 [units.cross-v106a-menu-select-family]
 kind = "probe"
 source = "src/ui/MenuSelect.cpp"
@@ -2137,7 +2142,14 @@ source = "src/audio/DirectSound.cpp"
 object = "build/match-units/CrossV106a_DirectSoundCore.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a DirectSound create-buffer and volume conversion recovery. The current Japanese error string is restored in source; GUID/string/volume constants are literal-validated and only the shared zero-initialized DirectSoundGlobals object uses address validation."
+notes = "TH105 1.06a DirectSound shutdown/create-buffer/volume recovery. The same target-proved DirectSoundGlobals object is used at addends +0/+4/+8 for primary/device/listener; Japanese source-owned error data remains literal-validated."
+
+[[units.cross-v106a-direct-sound-core.functions]]
+address = "0x004188C0"
+symbol_base = "shutdown_direct_sound"
+dir32_targets = [
+  "?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A=?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A",
+]
 
 [[units.cross-v106a-direct-sound-core.functions]]
 address = "0x00418920"
@@ -2233,3 +2245,62 @@ address = "0x00426860"
 symbol_base = "CLoadingWatch_on_scene_enter"
 rel32_targets = ["_play_bgm=0x0043CF80"]
 dir32_targets = ["_title_bgm_path=_title_bgm_path"]
+
+[units.cross-v106a-short-deque-front]
+kind = "probe"
+source = "src/battle/ShortDequeAccess.cpp"
+object = "build/match-units/CrossV106a_ShortDequeFront.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a checked ShortDeque8 front accessor. Current body preserves the unsigned overflow/live-count guards and block wrap; multiple accepted callers already resolve this exact current address."
+
+[[units.cross-v106a-short-deque-front.functions]]
+address = "0x004321B0"
+symbol_base = "front_checked"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+
+[units.cross-v106a-menu-result-update]
+kind = "probe"
+source = "src/ui/MenuResult.cpp"
+object = "build/match-units/CrossV106a_MenuResultUpdate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a CMenuResult update guard. Its sole data xref is the CMenuResult vtable at 0x006C2070, independently named by the current 0x00447590 destructor; callees are current ResultList entry_count and the active-update body."
+
+[[units.cross-v106a-menu-result-update.functions]]
+address = "0x00447560"
+symbol_base = "CMenuResult_update"
+rel32_targets = [
+  "?entry_count@ResultListBase@th105@@QBEHXZ=0x004395E0",
+  "?update_active@CMenuResult@th105@@AAE_NXZ=0x004472A0",
+]
+
+[units.cross-v106a-battle-indexed-event]
+kind = "probe"
+source = "src/battle/BattleEvents.cpp"
+object = "build/match-units/CrossV106a_BattleEvents.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a indexed event dispatch. Current disassembly gives the <=0x7F guard, handle table 0x006FCA98, wave-service object 0x00702288, and dispatch callee 0x00401D50; several accepted authored callers already target this function."
+
+[[units.cross-v106a-battle-indexed-event.functions]]
+address = "0x0043B1A0"
+symbol_base = "dispatch_indexed_event"
+rel32_targets = ["?dispatch_wave_handle@OpaqueWaveHandleService@th105@@QAEXI@Z=0x00401D50"]
+dir32_targets = [
+  "?g_indexed_event_handles@th105@@3PAIA=?g_indexed_event_handles@th105@@3PAIA",
+  "?g_wave_handle_service@th105@@3UOpaqueWaveHandleService@1@A=?g_wave_handle_service@th105@@3UOpaqueWaveHandleService@1@A",
+]
+
+[units.cross-v106a-collision-list-sentinel]
+kind = "probe"
+source = "src/battle/CollisionList.cpp"
+object = "build/match-units/CrossV106a_CollisionListSentinel.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a CollisionList sentinel allocator. Current exact initialize_collision_list stores this return value as the list sentinel, and accepted roster object-manager units independently resolve the same current helper; generic node allocator 0x00421F30 remains unpromoted pending origin review."
+
+[[units.cross-v106a-collision-list-sentinel.functions]]
+address = "0x00435E50"
+symbol_base = "create_collision_list_sentinel"
+rel32_targets = ["?operator_new@th105@@YAPAXI@Z=0x00689DCB"]

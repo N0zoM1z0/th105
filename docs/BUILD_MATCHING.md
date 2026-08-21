@@ -276,7 +276,7 @@ The pre-1.06a historical checkpoint used by default contains 152 old exact
 `.cpp` hypotheses that were absent from its match-unit graph; the migration
 survey could uniquely extract 147 of those COFF symbols. The first tracked
 migration wave raised the accepted 1.06a set from 100 functions / 13,487 bytes
-to 162 functions / 24,878 bytes. This is still a candidate queue only. Every promotion still requires a current boundary/semantic audit,
+to 168 functions / 25,148 bytes. This is still a candidate queue only. Every promotion still requires a current boundary/semantic audit,
 current-target relocation reconciliation, a tracked match unit, and canonical
 zero-difference replay.
 
@@ -333,3 +333,29 @@ release helper, and the remaining CEffectSprite constructor store scheduling.
 Do not respond to these with register coercion, inline assembly, raw bytes, or
 padding; move to another candidate until natural C++ or stronger TU/LTCG
 evidence explains them.
+
+Authored ownership is a separate acceptance dimension from code-byte identity.
+The retained `create_collision_list_node` implementation structurally ranks
+`0x00421F30` with zero non-relocation mismatches, but that current helper has
+dozen-scale cross-subsystem container callers and no class-specific ownership
+chain yet. It therefore remains origin-review pending. The neighboring
+`create_collision_list_sentinel` is different: exact `initialize_collision_list`
+stores the result from `0x00435E50` as its list sentinel, and accepted roster
+manager units independently reference the same helper. That current identity
+chain plus a fresh 26/26 compare is sufficient for authored promotion. Never
+turn a comparator success into an authored-origin claim without independent
+ownership evidence.
+
+A target-proved aggregate global may legitimately accumulate additional field
+addends as sibling authored functions are recovered. The DirectSound base at
+`0x00703858` was first established by create-buffer code using the `+4` device
+field. `shutdown_direct_sound` then independently releases and zeros listener
+`+8`, primary buffer `+0`, and device `+4`, and fresh VC8 matches all 82 bytes.
+Extend one semantic relocation symbol to `0;4;8`; do not split fields into fake
+globals merely to satisfy DIR32 comparison.
+
+RDATA adjacency is not type identity. The accepted `ResultList` vtable starts at
+`0x006C2058`, but `CMenuResult::update` is referenced from a separate table at
+`0x006C2070`. Current `CMenuResult` destruction explicitly writes the latter
+vtable, whose `+8` slot is `0x00447560`; only after that class chain was closed
+was the zero-difference 43-byte update wrapper promoted.

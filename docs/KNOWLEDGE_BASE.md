@@ -18,9 +18,9 @@ notes or source hypotheses.
   object boundaries.
 - The current IDA database exposes 4,001 function candidates. Their auto-names
   and unreviewed sizes remain provisional analysis output.
-- The accepted 1.06a authored set contains 162 functions / 24,878 bytes in 94
-  VC8 match units. The newest whole-corpus retained-source wave added sixty-two
-  functions / 11,391 bytes beyond the previous 100-function checkpoint. Candidate
+- The accepted 1.06a authored set contains 168 functions / 25,148 bytes in 98
+  VC8 match units. The newest whole-corpus retained-source wave added sixty-eight
+  functions / 11,661 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
   establish hypotheses; canonical VC8 zero-difference comparisons establish
   exactness.
@@ -100,9 +100,28 @@ notes or source hypotheses.
   source while address-validating the shared object identity.
 - DirectSoundGlobals begins at `0x00703858`, with primary/direct-sound/listener
   pointers at addends `0/4/8`. A comparator mismatch caught the incorrect model
-  that treated the `direct_sound` field at `0x0070385C` as the object base. The
-  shutdown cluster at `0x007036BC..0x007036C4` is separate until independently
-  proved otherwise.
+  that treated the `direct_sound` field at `0x0070385C` as the object base.
+  `shutdown_direct_sound` independently exercises all three addends in listener,
+  primary, device order and now matches 82/82; this is positive evidence for the
+  full three-field layout. The unrelated shutdown cluster at
+  `0x007036BC..0x007036C4` remains separate until independently proved otherwise.
+- Exact byte recovery does not prove authored ownership. The retained
+  `create_collision_list_node` source has a zero-non-relocation-difference
+  51-byte candidate at `0x00421F30`, but current xrefs show that helper is shared
+  broadly across engine and roster container code. It remains origin-review
+  pending. By contrast, `create_collision_list_sentinel` at `0x00435E50` is
+  authored-accepted because exact `initialize_collision_list` stores its result
+  as the sentinel and accepted roster units independently resolve the same
+  helper; fresh VC8 is 26/26 exact.
+- Nearby vtables must not be conflated by address proximity. `ResultList` uses
+  the vtable at `0x006C2058`, while current `CMenuResult` destruction writes the
+  distinct vtable at `0x006C2070`; its slot `+8` points to the accepted 43-byte
+  `CMenuResult::update` at `0x00447560`.
+- Current indexed event dispatch uses the 128-entry handle table at `0x006FCA98`,
+  service object at `0x00702288`, and dispatch helper `0x00401D50`. The 28-byte
+  `dispatch_indexed_event` wrapper and multiple accepted callers agree on those
+  identities, so later event/audio work should reuse them rather than rediscover
+  old-target globals.
 - Structural clone ties need class/caller evidence, not old address order. The
   367-byte Yukari mirrored-command gate at `0x0058C170` was accepted only after
   its sole current fighter dispatcher, nearby exact Yukari anchors, and all five
@@ -130,7 +149,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,166
+- Accepted boundaries and authored/library origins for the remaining 3,160
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.

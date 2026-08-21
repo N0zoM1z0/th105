@@ -161,3 +161,9 @@ CSelectScenario_apply_scenario,0x004245D0,function
 CTitle_dtor,0x00425D40,function
 CTitle_on_scene_enter,0x004256D0,function
 CLoadingWatch_on_scene_enter,0x00426860,function
+front_checked,0x004321B0,function
+dispatch_indexed_event,0x0043B1A0,function
+GuideOverlay_ctor,0x0043F540,function
+CMenuResult_update,0x00447560,function
+shutdown_direct_sound,0x004188C0,function
+create_collision_list_sentinel,0x00435E50,function

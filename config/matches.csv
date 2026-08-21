@@ -161,3 +161,9 @@ address,name,size,status,match_percent,unit,evidence
 0x00425D40,CTitle_dtor,161,matching,100.00,cross-v106a-title-dtor,python3 scripts/build.py --unit cross-v106a-title-dtor --compare --json reports exact 161/161 against TH105 1.06a
 0x004256D0,CTitle_on_scene_enter,68,matching,100.00,cross-v106a-title-scene-enter,python3 scripts/build.py --unit cross-v106a-title-scene-enter --compare --json reports exact 68/68 against TH105 1.06a
 0x00426860,CLoadingWatch_on_scene_enter,21,matching,100.00,cross-v106a-title-scene-enter,python3 scripts/build.py --unit cross-v106a-title-scene-enter --compare --json reports exact 21/21 against TH105 1.06a
+0x004321B0,front_checked,71,matching,100.00,cross-v106a-short-deque-front,python3 scripts/build.py --unit cross-v106a-short-deque-front --compare --json reports exact 71/71 against TH105 1.06a
+0x0043B1A0,dispatch_indexed_event,28,matching,100.00,cross-v106a-battle-indexed-event,python3 scripts/build.py --unit cross-v106a-battle-indexed-event --compare --json reports exact 28/28 against TH105 1.06a
+0x0043F540,GuideOverlay_ctor,20,matching,100.00,cross-v106a-guide-overlay,python3 scripts/build.py --unit cross-v106a-guide-overlay --compare --json reports exact 20/20 against TH105 1.06a
+0x00447560,CMenuResult_update,43,matching,100.00,cross-v106a-menu-result-update,python3 scripts/build.py --unit cross-v106a-menu-result-update --compare --json reports exact 43/43 against TH105 1.06a
+0x004188C0,shutdown_direct_sound,82,matching,100.00,cross-v106a-direct-sound-core,python3 scripts/build.py --unit cross-v106a-direct-sound-core --compare --json reports exact 82/82 against TH105 1.06a
+0x00435E50,create_collision_list_sentinel,26,matching,100.00,cross-v106a-collision-list-sentinel,python3 scripts/build.py --unit cross-v106a-collision-list-sentinel --compare --json reports exact 26/26 against TH105 1.06a

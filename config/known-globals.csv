@@ -22,4 +22,6 @@ address,name,module,confidence,evidence
 0x006FD030,g_active_menu_input,input,observed,Current CProfileMenu ctor reads this input pointer and selects its +0x3C field when non-null
 0x007036C0,g_title_texture_cache_host,assets,observed,Current IDA asset/UI xrefs share this polymorphic texture cache host; exact title resource release uses its vtable slot +0x104
 0x006FA21C,g_render_mode_manager,rendering,observed,Extensive current IDA render-path xrefs share this initialized RenderModeManager object; exact GuideOverlay render uses it around overlay drawing
-0x00703858,g_direct_sound_globals,audio,observed,"Current IDA initialization xrefs establish primary/direct_sound/listener pointers at +0/+4/+8; exact create-buffer recovery uses the +4 field"
+0x00703858,g_direct_sound_globals,audio,observed,"Current IDA initialization xrefs establish primary/direct_sound/listener pointers at +0/+4/+8; exact shutdown uses all three fields and exact create-buffer uses +4"
+0x006FCA98,g_indexed_event_handles,battle,observed,Current 0x0043B1A9 indexes this 128-entry dword handle table under an unsigned <=0x7F guard before wave dispatch
+0x00702288,g_wave_handle_service,battle,observed,Current 0x0043B1B1 loads this object into ECX before 0x00401D50 dispatches the selected event handle
