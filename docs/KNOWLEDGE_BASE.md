@@ -18,9 +18,9 @@ notes or source hypotheses.
   object boundaries.
 - The current IDA database exposes 4,001 function candidates. Their auto-names
   and unreviewed sizes remain provisional analysis output.
-- The accepted 1.06a authored set contains 168 functions / 25,148 bytes in 98
-  VC8 match units. The newest whole-corpus retained-source wave added sixty-eight
-  functions / 11,661 bytes beyond the previous 100-function checkpoint. Candidate
+- The accepted 1.06a authored set contains 178 functions / 25,250 bytes in 100
+  VC8 match units. The newest whole-corpus retained-source wave added seventy-eight
+  functions / 11,763 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
   establish hypotheses; canonical VC8 zero-difference comparisons establish
   exactness.
@@ -122,6 +122,14 @@ notes or source hypotheses.
   `dispatch_indexed_event` wrapper and multiple accepted callers agree on those
   identities, so later event/audio work should reuse them rather than rediscover
   old-target globals.
+- The current input-selection global map is now exact-backed: player records at
+  `0x006FBF20` with stride `0x33C`, source bytes at `0x006FBD38`, selected-input
+  pointers at `0x006FBD3C`, session option at `0x006FBD44`, network-session
+  pointer at `0x006FBD5C`, player2 input storage at `0x006FBDD0`, and combined
+  menu input at `0x006FCF80`. The combined counter accessor is the same object at
+  addend `+0x38`, not a separate global. Replacing retained 1.06 magic absolutes
+  with these semantic externs made ten accessors naturally compile exact without
+  changing control flow.
 - Structural clone ties need class/caller evidence, not old address order. The
   367-byte Yukari mirrored-command gate at `0x0058C170` was accepted only after
   its sole current fighter dispatcher, nearby exact Yukari anchors, and all five
@@ -149,7 +157,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,160
+- Accepted boundaries and authored/library origins for the remaining 3,150
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.

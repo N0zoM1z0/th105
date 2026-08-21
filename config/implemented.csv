@@ -166,3 +166,13 @@ GuideOverlay_ctor
 CMenuResult_update
 shutdown_direct_sound
 create_collision_list_sentinel
+get_player_slot_record
+invalidate_selected_input
+get_selected_input
+get_combined_menu_input
+get_combined_menu_input_counters
+get_selected_input_source
+get_player2_input
+get_session_setup_option
+set_session_setup_option
+get_network_session

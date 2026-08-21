@@ -2,45 +2,54 @@
 
 namespace th105 {
 
+extern unsigned char g_player_slot_records[];
+extern PlayerInput *g_selected_inputs[];
+extern signed char g_selected_input_sources[];
+extern unsigned char g_combined_menu_input_storage[];
+extern volatile unsigned g_session_setup_option;
+extern CNetworkBase *g_network_session;
+
 PlayerSlotRecord *get_player_slot_record(unsigned slot)
 {
-    return reinterpret_cast<PlayerSlotRecord *>(0x006e64c0 + slot * 0x33c);
+    return reinterpret_cast<PlayerSlotRecord *>(
+        g_player_slot_records + slot * 0x33c);
 }
 
 void invalidate_selected_input(unsigned slot)
 {
-    *reinterpret_cast<PlayerInput **>(0x006e62dc + slot * 4) = 0;
-    *reinterpret_cast<signed char *>(0x006e62d8 + slot) = -2;
+    g_selected_inputs[slot] = 0;
+    g_selected_input_sources[slot] = -2;
 }
 
 PlayerInput *get_selected_input(unsigned slot)
 {
-    return *reinterpret_cast<PlayerInput **>(0x006e62dc + slot * 4);
+    return g_selected_inputs[slot];
 }
 
 signed char *get_combined_menu_input_counters()
 {
-    return reinterpret_cast<signed char *>(0x006e7558);
+    return reinterpret_cast<signed char *>(
+        g_combined_menu_input_storage + 0x38);
 }
 
 signed char get_selected_input_source(unsigned slot)
 {
-    return *reinterpret_cast<signed char *>(0x006e62d8 + slot);
+    return g_selected_input_sources[slot];
 }
 
 unsigned get_session_setup_option()
 {
-    return *reinterpret_cast<volatile unsigned *>(0x006e62e4);
+    return g_session_setup_option;
 }
 
 void set_session_setup_option(unsigned value)
 {
-    *reinterpret_cast<volatile unsigned *>(0x006e62e4) = value;
+    g_session_setup_option = value;
 }
 
 CNetworkBase *get_network_session()
 {
-    return *reinterpret_cast<CNetworkBase **>(0x006e62fc);
+    return g_network_session;
 }
 
 } // namespace th105

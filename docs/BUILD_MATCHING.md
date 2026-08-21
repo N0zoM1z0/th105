@@ -276,7 +276,7 @@ The pre-1.06a historical checkpoint used by default contains 152 old exact
 `.cpp` hypotheses that were absent from its match-unit graph; the migration
 survey could uniquely extract 147 of those COFF symbols. The first tracked
 migration wave raised the accepted 1.06a set from 100 functions / 13,487 bytes
-to 168 functions / 25,148 bytes. This is still a candidate queue only. Every promotion still requires a current boundary/semantic audit,
+to 178 functions / 25,250 bytes. This is still a candidate queue only. Every promotion still requires a current boundary/semantic audit,
 current-target relocation reconciliation, a tracked match unit, and canonical
 zero-difference replay.
 
@@ -359,3 +359,15 @@ RDATA adjacency is not type identity. The accepted `ResultList` vtable starts at
 `0x006C2070`. Current `CMenuResult` destruction explicitly writes the latter
 vtable, whose `+8` slot is `0x00447560`; only after that class chain was closed
 was the zero-difference 43-byte update wrapper promoted.
+Input accessor clusters are a productive case for semantic global migration.
+The retained `InputSelection.cpp` and `Input.cpp` bodies already had the correct
+VC8 instruction shapes, but their 1.06 magic absolutes pointed at stale storage.
+Current 1.06a disassembly and accepted callers establish player records
+`0x006FBF20` (stride `0x33C`), source/pointer tables `0x006FBD38/0x006FBD3C`,
+session option `0x006FBD44`, network pointer `0x006FBD5C`, player2 storage
+`0x006FBDD0`, and combined menu input `0x006FCF80`. Express these as extern
+semantic globals in C++; the compiler emits ordinary DIR32 relocations and all
+ten accessors compare exact. The counter getter relocates the combined-input
+symbol with addend `0x38`, preserving one object identity instead of inventing a
+field global. This is preferable to carrying target-specific integer addresses
+inside source bodies.

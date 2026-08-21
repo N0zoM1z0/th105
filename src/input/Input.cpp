@@ -2,14 +2,17 @@
 
 namespace th105 {
 
+extern unsigned char g_combined_menu_input_storage[];
+extern unsigned char g_player2_input_storage[];
+
 MenuInput *get_combined_menu_input()
 {
-    return reinterpret_cast<MenuInput *>(0x006e7520);
+    return reinterpret_cast<MenuInput *>(g_combined_menu_input_storage);
 }
 
 PlayerInput *get_player2_input()
 {
-    return reinterpret_cast<PlayerInput *>(0x006e6370);
+    return reinterpret_cast<PlayerInput *>(g_player2_input_storage);
 }
 
 } // namespace th105

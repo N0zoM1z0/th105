@@ -25,3 +25,10 @@ address,name,module,confidence,evidence
 0x00703858,g_direct_sound_globals,audio,observed,"Current IDA initialization xrefs establish primary/direct_sound/listener pointers at +0/+4/+8; exact shutdown uses all three fields and exact create-buffer uses +4"
 0x006FCA98,g_indexed_event_handles,battle,observed,Current 0x0043B1A9 indexes this 128-entry dword handle table under an unsigned <=0x7F guard before wave dispatch
 0x00702288,g_wave_handle_service,battle,observed,Current 0x0043B1B1 loads this object into ECX before 0x00401D50 dispatches the selected event handle
+0x006FBF20,g_player_slot_records,input,observed,Current get_player_slot_record uses this base with the unique 0x33C player-record stride
+0x006FBD38,g_selected_input_sources,input,observed,Current invalidate/read-source helpers share this indexed signed-byte source table
+0x006FBD3C,g_selected_inputs,input,observed,Current invalidate/get-selected-input helpers share this indexed pointer table
+0x006FCF80,g_combined_menu_input,input,observed,Current combined-menu-input accessor returns this base and current callers consume counter fields at +0x38/+0x3C
+0x006FBDD0,g_player2_input,input,observed,Current get_player2_input returns this storage and accepted battle/input callers resolve the helper
+0x006FBD44,g_session_setup_option,input,observed,Current getter/setter at 0x0043B070/0x0043B080 share this option dword
+0x006FBD5C,g_network_session,network,observed,Current 0x0043B090 returns this session pointer and accepted control/setup callers resolve it

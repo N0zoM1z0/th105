@@ -15,10 +15,10 @@ seeds using current-target-backed structural remapping where appropriate.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
 - The IDA inventory has 4,001 provisional candidates. Current reviewed state is
-  168 authored functions, 673 classified exclusions, and 3,160 still awaiting origin/boundary review.
-- All 168 confirmed authored functions are source-present and canonical exact:
-  25,148 exact authored bytes across 98 configured VC8 units.
-- The newest retained-source migration wave added sixty-eight functions / 11,661 bytes
+  178 authored functions, 673 classified exclusions, and 3,150 still awaiting origin/boundary review.
+- All 178 confirmed authored functions are source-present and canonical exact:
+  25,250 exact authored bytes across 100 configured VC8 units.
+- The newest retained-source migration wave added seventy-eight functions / 11,763 bytes
   beyond the prior 100-function checkpoint. Structural instruction shape and
   relocation-masked bytes are used only for candidate ranking; every accepted
   function still requires current 1.06a semantic/relocation evidence and a fresh
@@ -45,7 +45,7 @@ the current call target.
 ## Next bounded work
 
 Continue origin/boundary review so the authored denominator becomes meaningful,
-then expand exact recovery from the 168 accepted functions. Use
+then expand exact recovery from the 178 accepted functions. Use
 `scripts/rank_retained_exact.py --only-unconfigured` to prioritize historical
 exact source that never had an old match unit. Same-size zero non-relocation
 mismatch candidates are especially productive, but ambiguous template/clone
@@ -54,9 +54,9 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 3,160
+The 95% authored-function and authored-byte goals cannot be reported yet: 3,150
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 168/168
+global authored denominator is not established. Do not use the current 178/178
 exact subset as a substitute denominator.
 
 ## Routine checkpoint

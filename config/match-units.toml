@@ -2304,3 +2304,72 @@ notes = "TH105 1.06a CollisionList sentinel allocator. Current exact initialize_
 address = "0x00435E50"
 symbol_base = "create_collision_list_sentinel"
 rel32_targets = ["?operator_new@th105@@YAPAXI@Z=0x00689DCB"]
+
+[units.cross-v106a-input-selection-accessors]
+kind = "probe"
+source = "src/input/InputSelection.cpp"
+object = "build/match-units/CrossV106a_InputSelectionAccessors.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a input-selection accessor cluster recovered by replacing stale 1.06 magic absolutes with current semantic globals. Accepted battle callers establish selected-input/session/network helpers; current field use establishes the combined-menu base and +0x38 counters."
+
+[[units.cross-v106a-input-selection-accessors.functions]]
+address = "0x0043AFE0"
+symbol_base = "get_player_slot_record"
+dir32_targets = ["?g_player_slot_records@th105@@3PAEA=?g_player_slot_records@th105@@3PAEA"]
+
+[[units.cross-v106a-input-selection-accessors.functions]]
+address = "0x0043AFF0"
+symbol_base = "invalidate_selected_input"
+dir32_targets = [
+  "?g_selected_inputs@th105@@3PAPAUPlayerInput@1@A=?g_selected_inputs@th105@@3PAPAUPlayerInput@1@A",
+  "?g_selected_input_sources@th105@@3PACA=?g_selected_input_sources@th105@@3PACA",
+]
+
+[[units.cross-v106a-input-selection-accessors.functions]]
+address = "0x0043B010"
+symbol_base = "get_selected_input"
+dir32_targets = ["?g_selected_inputs@th105@@3PAPAUPlayerInput@1@A=?g_selected_inputs@th105@@3PAPAUPlayerInput@1@A"]
+
+[[units.cross-v106a-input-selection-accessors.functions]]
+address = "0x0043B030"
+symbol_base = "get_combined_menu_input_counters"
+dir32_targets = ["?g_combined_menu_input_storage@th105@@3PAEA=?g_combined_menu_input_storage@th105@@3PAEA"]
+
+[[units.cross-v106a-input-selection-accessors.functions]]
+address = "0x0043B040"
+symbol_base = "get_selected_input_source"
+dir32_targets = ["?g_selected_input_sources@th105@@3PACA=?g_selected_input_sources@th105@@3PACA"]
+
+[[units.cross-v106a-input-selection-accessors.functions]]
+address = "0x0043B070"
+symbol_base = "get_session_setup_option"
+dir32_targets = ["?g_session_setup_option@th105@@3IC=?g_session_setup_option@th105@@3IC"]
+
+[[units.cross-v106a-input-selection-accessors.functions]]
+address = "0x0043B080"
+symbol_base = "set_session_setup_option"
+dir32_targets = ["?g_session_setup_option@th105@@3IC=?g_session_setup_option@th105@@3IC"]
+
+[[units.cross-v106a-input-selection-accessors.functions]]
+address = "0x0043B090"
+symbol_base = "get_network_session"
+dir32_targets = ["?g_network_session@th105@@3PAUCNetworkBase@1@A=?g_network_session@th105@@3PAUCNetworkBase@1@A"]
+
+[units.cross-v106a-input-direct-accessors]
+kind = "probe"
+source = "src/input/Input.cpp"
+object = "build/match-units/CrossV106a_InputDirectAccessors.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a direct input accessors. Combined-menu base is independently established by current field consumers and the +0x38 counter sibling; player2 storage is already targeted by accepted battle/input callers."
+
+[[units.cross-v106a-input-direct-accessors.functions]]
+address = "0x0043B020"
+symbol_base = "get_combined_menu_input"
+dir32_targets = ["?g_combined_menu_input_storage@th105@@3PAEA=?g_combined_menu_input_storage@th105@@3PAEA"]
+
+[[units.cross-v106a-input-direct-accessors.functions]]
+address = "0x0043B060"
+symbol_base = "get_player2_input"
+dir32_targets = ["?g_player2_input_storage@th105@@3PAEA=?g_player2_input_storage@th105@@3PAEA"]
