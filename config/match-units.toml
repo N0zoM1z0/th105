@@ -835,3 +835,22 @@ dir32_targets = [
   "__ehhandler$?dispatch_owned_string_458e80@ScenarioTransitionView@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=__ehhandler$?dispatch_owned_string_458e80@ScenarioTransitionView@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z",
   "___security_cookie=___security_cookie",
 ]
+
+[units.cross-v106a-scenario-event-name-resolver]
+kind = "probe"
+source = "src/battle/ScenarioEventNameResolver.cpp"
+object = "build/match-units/CrossV106a_ScenarioEventNameResolver.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a full-boundary exact case-insensitive scenario event-name lookup; current map base/head uses one address-validated global with addends 0 and 4."
+
+[[units.cross-v106a-scenario-event-name-resolver.functions]]
+address = "0x0043BFD0"
+symbol_base = "resolve_scenario_event_name"
+rel32_targets = [
+  "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@HV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$less@H@2@V?$allocator@U?$pair@$$CBHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@2@$0A@@std@@@std@@QAEXXZ=0x006A1390",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "__stricmp=0x0068B038",
+  "operator_delete=0x006898EA",
+]
+dir32_targets = ["_g_scenario_event_name_map=_g_scenario_event_name_map"]

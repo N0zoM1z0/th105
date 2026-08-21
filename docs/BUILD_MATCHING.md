@@ -186,3 +186,12 @@ a genuinely stale old boundary: the historical ledger kept 127 bytes, while
 current IDA control flow and fresh VC8 output both end at 130 bytes and all 130
 bytes compare exactly. Use control-flow terminators plus COFF ownership to tell
 these cases apart.
+
+One C++ container object can legitimately generate several DIR32 references to
+one global symbol with different addends. `resolve_scenario_event_name` is the
+reference case: current IDA identifies the `std::map<int, String28>` object at
+`0x006FCF70`, while generated code addresses both the object/sentinel at addend
+0 and its head pointer at addend 4. Record one address-validated COFF symbol with
+an explicit `0;4` addend allowlist rather than inventing separate globals for
+individual fields. Fresh VC8 output then matches the full current 209-byte body;
+the old 203-byte ledger boundary was stale.

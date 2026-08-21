@@ -1258,7 +1258,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0043BF50,8,0x0043BF57,sub_43BF50,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0043BF60,17,0x0043BF70,sub_43BF60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0043BF80,78,0x0043BFCD,sub_43BF80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0043BFD0,209,0x0043C0A0,sub_43BFD0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0043BFD0,209,0x0043C0A0,resolve_scenario_event_name,resolve_scenario_event_name,battle,matching,100.00,__cdecl,int resolve_scenario_event_name(String28 value),false,src/battle/ScenarioEventNameResolver.cpp,python3 scripts/build.py --unit cross-v106a-scenario-event-name-resolver --compare --json reports exact 209/209 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 zero-diff replay over the full current 209-byte boundary; the historical 203-byte ledger was stale. Current std::map base/head, iterator increment, case-insensitive compare, validation, and free paths are reconciled."
 0x0043C0B0,72,0x0043C0F7,sub_43C0B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0043C100,72,0x0043C147,sub_43C100,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0043C150,72,0x0043C197,sub_43C150,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
