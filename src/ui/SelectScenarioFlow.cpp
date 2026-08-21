@@ -1,9 +1,9 @@
 #include "SelectScenario.hpp"
+#include "UiSelectionState.hpp"
 #include "MenuSelect.hpp"
 
 #include "../input/InputSelection.hpp"
 
-extern "C" bool __cdecl has_ui_selection_state_changed();
 extern "C" void __cdecl play_bgm(const char *path);
 extern "C" const char title_bgm_path[];
 extern "C" float __cdecl lookup_orientation_cosine(int angle);

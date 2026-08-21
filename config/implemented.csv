@@ -277,3 +277,5 @@ synchronize_targets
 set_global_pair
 set_shared_second_target
 character_key_to_name
+has_ui_selection_state_changed
+set_ui_selection_state_tracking

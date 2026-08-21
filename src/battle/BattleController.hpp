@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ui/UiSelectionState.hpp"
+
 #include "engine/CriticalSectionWrapper.hpp"
 
 namespace th105 {
@@ -17,7 +19,6 @@ struct SceneExitTransition {
     explicit SceneExitTransition(BattleController *controller);
 };
 
-bool __cdecl has_ui_selection_state_changed();
 bool __cdecl is_menu_initial_press(
     int index,
     int unused_1,

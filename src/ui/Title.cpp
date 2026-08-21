@@ -1,8 +1,7 @@
 #include "Title.hpp"
+#include "UiSelectionState.hpp"
 #include "LoadingWatch.hpp"
 
-extern "C" bool __cdecl has_ui_selection_state_changed();
-extern "C" void __cdecl set_ui_selection_state_tracking(int enabled);
 extern "C" void __cdecl play_bgm(const char *path);
 extern "C" void __cdecl clear_network_session();
 extern "C" const char title_bgm_path[];

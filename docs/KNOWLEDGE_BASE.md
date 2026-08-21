@@ -17,9 +17,9 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 279 functions / 49,421 bytes in 142
-  VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 179
-  functions / 35,934 bytes beyond the previous 100-function checkpoint. Candidate
+- The accepted 1.06a authored set contains 281 functions / 49,533 bytes in 143
+  VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 181
+  functions / 36,046 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
   establish hypotheses; canonical VC8 zero-difference comparisons establish
   exactness.
@@ -260,6 +260,8 @@ notes or source hypotheses.
   destructor `0x0040AE80`; that semantic correction makes the `/GS` CTitle
   destructor compare 161/161 exact.
 - Per-character wave-cache loading is now current-target exact-backed. `load_indexed_character_wave_resources @ 0x0045F680` loops exactly 64 slots, derives the character directory from Fighter `record_key_330` through `0x0043BF80`, formats the source-owned `data/se/%s/%03d.wav` literal at `0x006C2B20`, calls the verified wave-service object `0x00702288` via `0x00401AF0`, and publishes each returned handle through Fighter `+0x164`. Retained VC8 `/GS` source had zero non-relocation differences; only current relocation identities were reconciled before the 132/132 canonical match. Reuse these service/string identities for later fighter resource-loading recovery rather than applying old-version address deltas.
+- UI selection tracking is now an exact-backed shared contract rather than duplicated extern declarations. `set_ui_selection_state_tracking @ 0x0043FFB0` is 88/88 exact: enabled mode snapshots the low byte of `g_ui_selection_state @ 0x006FD290` into `g_ui_selection_snapshot @ 0x006FD046` and clears `g_ui_selection_fade @ 0x006FD047`; disabled mode clears the snapshot, sets fade to `0xFF`, and, when state is nonzero, performs VC8 checked `std::list<UiSelectionMenu*>::back()` through `g_ui_selection_menu_stack @ 0x006FD288` before tail-dispatching vslot `+0x04`. The companion `has_ui_selection_state_changed @ 0x0043B6E0` is 24/24 exact from the truthful unsigned `state - snapshot > 0` predicate. Keep the state as a dword and the snapshot as a byte: widening the snapshot would erase the target `movzx` and change the subtraction contract.
+- Loader-zero `.bss` globals are valid canonical relocation identities even when no initialized raw bytes exist in the PE. The four UI-selection globals above live in the image virtual tail; their initial zero state is supplied by the loader. For a checked STL object, preserve relocation addends: the list object is based at `0x006FD288`, while target code reads its sentinel pointer at base `+4` (`0x006FD28C`). Record the base symbol plus addend instead of inventing a second absolute global for the sentinel.
 - `character_key_to_name @ 0x0043BF80` closes the identity behind those resource/spell callers without inventing a second name table. Exact-backed `g_scenario_event_name_map @ 0x006FCF70` is already a checked `std::map<int,String28>` used by 209/209 exact `resolve_scenario_event_name`; the forward accessor is simply `find(character_key)->second.c_str()`. VC8 naturally emits the target checked-iterator owner/end validation plus the 16-byte `String28` SSO threshold, giving 78/78 exact. The same tracked compile emits `std::map<int,String28>::find @ 0x006A4D60` as a 105-byte raw-exact body with exactly one current-inventory hit, which independently classifies that callee compiler-generated. One shared container contract can therefore close both an authored accessor and its generated specialization; keep those ownership claims separate.
 - `try_dispatch_flagged_gate_actions_220_224 @ 0x00493B40` shows when an explicit source control-flow edge is legitimate. Current 1.06a disassembly independently proves three success tails: action 222 has a private consume-and-return path, action 220 has a second counter/return path, and actions 223/224 reuse the latter. The retained source was already semantically correct and differed only in four internal short-branch displacement bytes. Preserving the observed positive-path success node in ordinary C++ makes VC8 emit all 258 target bytes exactly. This is not a license for arbitrary gotos: the edge must already exist in target control flow and must not introduce dead work, padding, fabricated locals, or register coercion.
 - `process_fighter_transient_status` at `0x0045E3D0` demonstrates acceptable
@@ -283,7 +285,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,029
+- Accepted boundaries and authored/library origins for the remaining 3,027
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.

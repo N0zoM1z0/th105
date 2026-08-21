@@ -39,3 +39,7 @@ address,name,module,confidence,evidence
 0x006FCA48,g_match_setup,battle,observed,Current 0x0043AC50 returns this MatchSetup object; accepted roster setup and current SelectScenario enter use the getter
 0x006FC598,g_game_config,config,observed,Current 0x0043AF10 returns this object and SelectScenario enter reads default_game_type at +0x64
 0x006FCC98,g_score_data,config,observed,Current 0x0043AF20 returns this ScoreData object and accepted sequence-finalization code consumes it
+0x006FD290,g_ui_selection_state,ui,observed,Current 0x0043FFB0 snapshots the low byte of this dword when UI selection tracking is enabled; exact-candidate 0x0043B6E0 compares the same state against the snapshot and current transition paths share it
+0x006FD046,g_ui_selection_snapshot,ui,observed,Current 0x0043FFB0 writes the low byte of g_ui_selection_state here when tracking is enabled and clears it when disabled; 0x0043B6E0 compares this byte against the current state
+0x006FD047,g_ui_selection_fade,ui,observed,Current 0x0043FFB0 clears this byte when tracking is enabled and writes 0xFF when disabled; current 0x0043B4A0 and 0x00440010 transition paths update the same fade byte
+0x006FD288,g_ui_selection_menu_stack,ui,observed,Current 0x0043FFB0 performs VC8 checked std::list back traversal through sentinel pointer at +4 0x006FD28C and tail-calls the selected menu object virtual slot +4; current UI xrefs share this storage

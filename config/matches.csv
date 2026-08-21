@@ -278,3 +278,5 @@ address,name,size,status,match_percent,unit,evidence
 0x00434E10,set_global_pair,34,matching,100.00,cross-v106a-event-subobject130,python3 scripts/build.py --unit cross-v106a-event-subobject130 --compare --json reports exact 34/34 against TH105 1.06a
 0x00476AD0,set_shared_second_target,26,matching,100.00,cross-v106a-shared-event-forwarder,python3 scripts/build.py --unit cross-v106a-shared-event-forwarder --compare --json reports exact 26/26 against TH105 1.06a
 0x0043BF80,character_key_to_name,78,matching,100.00,cross-v106a-scenario-event-name-resolver,python3 scripts/build.py --unit cross-v106a-scenario-event-name-resolver --compare --json reports exact 78/78 against TH105 1.06a
+0x0043B6E0,has_ui_selection_state_changed,24,matching,100.00,cross-v106a-ui-selection-state,python3 scripts/build.py --unit cross-v106a-ui-selection-state --compare --json reports exact 24/24 against TH105 1.06a
+0x0043FFB0,set_ui_selection_state_tracking,88,matching,100.00,cross-v106a-ui-selection-state,python3 scripts/build.py --unit cross-v106a-ui-selection-state --compare --json reports exact 88/88 against TH105 1.06a

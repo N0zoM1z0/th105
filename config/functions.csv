@@ -1235,7 +1235,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0043B4A0,209,0x0043B570,sub_43B4A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0043B580,158,0x0043B61D,sub_43B580,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0043B640,153,0x0043B6D8,sub_43B640,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0043B6E0,24,0x0043B6F7,sub_43B6E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0043B6E0,24,0x0043B6F7,sub_43B6E0,has_ui_selection_state_changed,ui,matching,100.00,__cdecl,bool has_ui_selection_state_changed(),false,src/ui/UiSelectionState.cpp,python3 scripts/build.py --unit cross-v106a-ui-selection-state --compare --json reports exact 24/24 against TH105 1.06a,root,Current 0x0043FFB0 establishes g_ui_selection_snapshot as the low-byte snapshot of g_ui_selection_state while tracking is enabled. The current predicate is the truthful unsigned current-minus-snapshot > 0 test; natural VC8 reproduces all 24 bytes exactly.
 0x0043B700,82,0x0043B751,sub_43B700,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0043B760,101,0x0043B7C4,sub_43B760,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0043B7D0,101,0x0043B834,sub_43B7D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -1332,7 +1332,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0043FC40,94,0x0043FC9D,sub_43FC40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0043FCA0,666,0x0043FF39,sub_43FCA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0043FF40,101,0x0043FFA4,sub_43FF40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0043FFB0,88,0x00440007,sub_43FFB0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0043FFB0,88,0x00440007,sub_43FFB0,set_ui_selection_state_tracking,ui,matching,100.00,__cdecl,void set_ui_selection_state_tracking(char enabled),false,src/ui/UiSelectionState.cpp,python3 scripts/build.py --unit cross-v106a-ui-selection-state --compare --json reports exact 88/88 against TH105 1.06a,root,"Current enabled path snapshots the low byte of g_ui_selection_state and clears the fade byte. Disabled state clears the snapshot, sets fade to 0xFF, and when current state is nonzero performs VC8 checked std::list::back on g_ui_selection_menu_stack before tail-calling the selected menu virtual slot +4. Natural C-linkage VC8 source is 88/88 exact."
 0x00440010,185,0x004400C8,sub_440010,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00440170,359,0x004402D6,sub_440170,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004402E0,129,0x00440360,sub_4402E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

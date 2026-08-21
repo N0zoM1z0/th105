@@ -657,7 +657,7 @@ notes = "TH105 1.06a full-boundary exact central battle dispatcher; current 535-
 address = "0x00471340"
 symbol_base = "dispatch_battle_state_frame_470940"
 rel32_targets = [
-  "?has_ui_selection_state_changed@th105@@YA_NXZ=0x0043B6E0",
+  "_has_ui_selection_state_changed=0x0043B6E0",
   "?is_menu_initial_press@th105@@YA_NHHHH@Z=0x0043ABD0",
   "?get_session_setup_option@th105@@YAIXZ=0x0043B070",
   "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
@@ -3873,4 +3873,31 @@ rel32_targets = [
 ]
 dir32_targets = [
   "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+]
+
+[units.cross-v106a-ui-selection-state]
+kind = "probe"
+source = "src/ui/UiSelectionState.cpp"
+object = "build/match-units/CrossV106a_UiSelectionState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a UI selection tracking contract. Current tracking helper establishes the current dword/snapshot/fade globals and VC8 checked menu-list back traversal; the companion changed-state predicate consumes the same current/snapshot pair. C-linkage natural source reproduces both bodies exactly."
+
+[[units.cross-v106a-ui-selection-state.functions]]
+address = "0x0043B6E0"
+symbol_base = "_has_ui_selection_state_changed"
+dir32_targets = [
+  "?g_ui_selection_snapshot@th105@@3EA=?g_ui_selection_snapshot@th105@@3EA",
+  "?g_ui_selection_state@th105@@3IA=?g_ui_selection_state@th105@@3IA",
+]
+
+[[units.cross-v106a-ui-selection-state.functions]]
+address = "0x0043FFB0"
+symbol_base = "_set_ui_selection_state_tracking"
+rel32_targets = ["_invalid_parameter_noinfo=0x0068A143"]
+dir32_targets = [
+  "?g_ui_selection_state@th105@@3IA=?g_ui_selection_state@th105@@3IA",
+  "?g_ui_selection_snapshot@th105@@3EA=?g_ui_selection_snapshot@th105@@3EA",
+  "?g_ui_selection_fade@th105@@3EA=?g_ui_selection_fade@th105@@3EA",
+  "?g_ui_selection_menu_stack@th105@@3V?$list@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@std@@A=?g_ui_selection_menu_stack@th105@@3V?$list@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@std@@A",
 ]
