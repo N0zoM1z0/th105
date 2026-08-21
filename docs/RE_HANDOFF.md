@@ -15,7 +15,7 @@ seeds using current-target-backed structural remapping where appropriate.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
 - The IDA inventory has 4,001 provisional candidates. Current reviewed state is
-  100 authored functions, 519 classified exclusions, and 3,382 still awaiting origin/boundary review.
+  100 authored functions, 673 classified exclusions, and 3,228 still awaiting origin/boundary review.
 - All 100 confirmed authored functions are source-present and canonical exact:
   13,487 exact authored bytes across 52 configured VC8 units.
 - The structural-remap waves recovered fifty-three functions / 10,183 bytes by using normalized
@@ -51,7 +51,7 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 3,382
+The 95% authored-function and authored-byte goals cannot be reported yet: 3,228
 provisional candidates still need authored/excluded classification, so the
 global authored denominator is not established. Do not use the current 100/100
 exact subset as a substitute denominator.

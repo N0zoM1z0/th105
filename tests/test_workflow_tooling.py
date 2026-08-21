@@ -75,8 +75,8 @@ class WorkflowToolingTests(unittest.TestCase):
         markdown = self.progress.render()
         self.assertIn("IDA 1.06a function candidates | 4,001", markdown)
         self.assertIn("Confirmed authored functions | 100", markdown)
-        self.assertIn("Classified exclusions | 519", markdown)
-        self.assertIn("Origin/boundary review pending | 3,382", markdown)
+        self.assertIn("Classified exclusions | 673", markdown)
+        self.assertIn("Origin/boundary review pending | 3,228", markdown)
         self.assertIn("Canonical exact functions | 100", markdown)
         self.assertIn("Canonical exact authored bytes | 13,487", markdown)
         self.assertIn(
@@ -95,6 +95,21 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(len(rows), 39)
         self.assertEqual(len({row["address"] for row in rows}), 39)
         self.assertEqual(sum(row["size"] for row in rows), 2704)
+
+    def test_xiph_relocated_origin_anchor_manifest_is_pinned(self) -> None:
+        with (ROOT / "config" / "xiph-relocated-origin-anchors.toml").open("rb") as stream:
+            anchors = tomllib.load(stream)
+        self.assertEqual(
+            anchors["target_sha256"],
+            "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e",
+        )
+        self.assertEqual(anchors["sdk_sha256"], self.xiph_sdk.ARCHIVE_SHA256)
+        self.assertEqual(anchors["min_nonreloc_coverage"], 0.70)
+        self.assertEqual(anchors["min_nonreloc_bytes"], 24)
+        rows = anchors["anchors"]
+        self.assertEqual(len(rows), 154)
+        self.assertEqual(len({row["address"] for row in rows}), 154)
+        self.assertEqual(sum(row["size"] for row in rows), 57489)
 
     def test_inventory_pagination_normalization(self) -> None:
         data, next_offset = self.inventory.normalize_page(

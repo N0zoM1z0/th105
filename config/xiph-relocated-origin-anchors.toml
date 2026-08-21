@@ -1,0 +1,1242 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+sdk_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+
+# Current 1.06a candidates uniquely matching official SDK COMDATs after
+# masking only supported COFF link relocation fields. Validation rejects
+# relocations crossing the candidate boundary and requires strong exact
+# non-relocation coverage plus full-inventory uniqueness.
+
+[[anchors]]
+address = "0x0067A890"
+size = 246
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "_ov_clear"
+section_size = 256
+
+[[anchors]]
+address = "0x0067A990"
+size = 76
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "_ov_open_callbacks"
+section_size = 80
+
+[[anchors]]
+address = "0x0067A9E0"
+size = 274
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "__ov_open1"
+section_size = 288
+
+[[anchors]]
+address = "0x0067AB00"
+size = 321
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "__fetch_headers"
+section_size = 336
+
+[[anchors]]
+address = "0x0067AC50"
+size = 190
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "__get_next_page"
+section_size = 192
+
+[[anchors]]
+address = "0x0067AD10"
+size = 100
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "__get_data"
+section_size = 112
+
+[[anchors]]
+address = "0x0067AD80"
+size = 79
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "__ov_open2"
+section_size = 80
+
+[[anchors]]
+address = "0x0067ADD0"
+size = 249
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "__open_seekable2"
+section_size = 256
+
+[[anchors]]
+address = "0x0067AED0"
+size = 274
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "__get_prev_page"
+section_size = 288
+
+[[anchors]]
+address = "0x0067AFF0"
+size = 54
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "__seek_helper"
+section_size = 64
+
+[[anchors]]
+address = "0x0067B030"
+size = 540
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "__bisect_forward_serialno"
+section_size = 544
+
+[[anchors]]
+address = "0x0067B250"
+size = 733
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "__prefetch_all_headers"
+section_size = 736
+
+[[anchors]]
+address = "0x0067B530"
+size = 41
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "__decode_clear"
+section_size = 48
+
+[[anchors]]
+address = "0x0067B560"
+size = 103
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "_ov_pcm_total"
+section_size = 112
+
+[[anchors]]
+address = "0x0067B5D0"
+size = 139
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "_ov_time_total"
+section_size = 144
+
+[[anchors]]
+address = "0x0067B660"
+size = 787
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "_ov_raw_seek"
+section_size = 800
+
+[[anchors]]
+address = "0x0067B980"
+size = 1516
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "_ov_pcm_seek_page"
+section_size = 1520
+
+[[anchors]]
+address = "0x0067BF70"
+size = 763
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "_ov_pcm_seek"
+section_size = 768
+
+[[anchors]]
+address = "0x0067C270"
+size = 122
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "__make_decode_ready"
+section_size = 128
+
+[[anchors]]
+address = "0x0067C2F0"
+size = 708
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "__fetch_and_process_packet"
+section_size = 720
+
+[[anchors]]
+address = "0x0067C5C0"
+size = 247
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "_ov_time_seek"
+section_size = 256
+
+[[anchors]]
+address = "0x0067C6C0"
+size = 225
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "_ov_time_tell"
+section_size = 240
+
+[[anchors]]
+address = "0x0067C7F0"
+size = 860
+component = "vorbisfile"
+object = "vorbisfile.obj"
+symbol = "_ov_read"
+section_size = 864
+
+[[anchors]]
+address = "0x0067CB80"
+size = 108
+component = "vorbis"
+object = "info.obj"
+symbol = "_vorbis_comment_clear"
+section_size = 112
+
+[[anchors]]
+address = "0x0067CC10"
+size = 38
+component = "vorbis"
+object = "info.obj"
+symbol = "_vorbis_info_init"
+section_size = 48
+
+[[anchors]]
+address = "0x0067CC40"
+size = 355
+component = "vorbis"
+object = "info.obj"
+symbol = "_vorbis_info_clear"
+section_size = 368
+
+[[anchors]]
+address = "0x0067CDB0"
+size = 256
+component = "vorbis"
+object = "info.obj"
+symbol = "_vorbis_synthesis_headerin"
+section_size = 256
+
+[[anchors]]
+address = "0x0067CEB0"
+size = 46
+component = "vorbis"
+object = "info.obj"
+symbol = "__v_readstring"
+section_size = 48
+
+[[anchors]]
+address = "0x0067CEE0"
+size = 215
+component = "vorbis"
+object = "info.obj"
+symbol = "__vorbis_unpack_info"
+section_size = 224
+
+[[anchors]]
+address = "0x0067CFC0"
+size = 216
+component = "vorbis"
+object = "info.obj"
+symbol = "__vorbis_unpack_comment"
+section_size = 224
+
+[[anchors]]
+address = "0x0067D0A0"
+size = 631
+component = "vorbis"
+object = "info.obj"
+symbol = "__vorbis_unpack_books"
+section_size = 640
+
+[[anchors]]
+address = "0x0067D320"
+size = 76
+component = "vorbis"
+object = "block.obj"
+symbol = "_vorbis_block_init"
+section_size = 80
+
+[[anchors]]
+address = "0x0067D370"
+size = 108
+component = "vorbis"
+object = "block.obj"
+symbol = "__vorbis_block_alloc"
+section_size = 112
+
+[[anchors]]
+address = "0x0067D3E0"
+size = 105
+component = "vorbis"
+object = "block.obj"
+symbol = "__vorbis_block_ripcord"
+section_size = 112
+
+[[anchors]]
+address = "0x0067D450"
+size = 81
+component = "vorbis"
+object = "block.obj"
+symbol = "_vorbis_block_clear"
+section_size = 96
+
+[[anchors]]
+address = "0x0067D4B0"
+size = 919
+component = "vorbis"
+object = "block.obj"
+symbol = "__vds_shared_init"
+section_size = 928
+
+[[anchors]]
+address = "0x0067D870"
+size = 549
+component = "vorbis"
+object = "block.obj"
+symbol = "_vorbis_dsp_clear"
+section_size = 560
+
+[[anchors]]
+address = "0x0067DB10"
+size = 45
+component = "vorbis"
+object = "block.obj"
+symbol = "_vorbis_synthesis_init"
+section_size = 48
+
+[[anchors]]
+address = "0x0067DB40"
+size = 1615
+component = "vorbis"
+object = "block.obj"
+symbol = "_vorbis_synthesis_blockin"
+section_size = 1616
+
+[[anchors]]
+address = "0x0067E220"
+size = 336
+component = "vorbis"
+object = "synthesis.obj"
+symbol = "_vorbis_synthesis"
+section_size = 336
+
+[[anchors]]
+address = "0x0067E370"
+size = 213
+component = "vorbis"
+object = "synthesis.obj"
+symbol = "_vorbis_synthesis_trackonly"
+section_size = 224
+
+[[anchors]]
+address = "0x0067E450"
+size = 122
+component = "vorbis"
+object = "synthesis.obj"
+symbol = "_vorbis_packet_blocksize"
+section_size = 128
+
+[[anchors]]
+address = "0x0067E4D0"
+size = 31
+component = "vorbis"
+object = "psy.obj"
+symbol = "__vp_global_free"
+section_size = 32
+
+[[anchors]]
+address = "0x0067E4F0"
+size = 31
+component = "vorbis"
+object = "psy.obj"
+symbol = "__vi_psy_free"
+section_size = 32
+
+[[anchors]]
+address = "0x0067E510"
+size = 1352
+component = "vorbis"
+object = "psy.obj"
+symbol = "__vp_psy_init"
+section_size = 1360
+
+[[anchors]]
+address = "0x0067EA60"
+size = 1917
+component = "vorbis"
+object = "psy.obj"
+symbol = "_setup_tone_curves"
+section_size = 1920
+
+[[anchors]]
+address = "0x0067F260"
+size = 192
+component = "vorbis"
+object = "psy.obj"
+symbol = "__vp_psy_clear"
+section_size = 192
+
+[[anchors]]
+address = "0x0067F320"
+size = 96
+component = "vorbis"
+object = "psy.obj"
+symbol = "__vp_remove_floor"
+section_size = 96
+
+[[anchors]]
+address = "0x0067F380"
+size = 237
+component = "vorbis"
+object = "psy.obj"
+symbol = "__vp_noisemask"
+section_size = 240
+
+[[anchors]]
+address = "0x0067F470"
+size = 1479
+component = "vorbis"
+object = "psy.obj"
+symbol = "_bark_noise_hybridmp"
+section_size = 1488
+
+[[anchors]]
+address = "0x0067FA40"
+size = 159
+component = "vorbis"
+object = "psy.obj"
+symbol = "__vp_tonemask"
+section_size = 160
+
+[[anchors]]
+address = "0x0067FAE0"
+size = 224
+component = "vorbis"
+object = "psy.obj"
+symbol = "_seed_loop"
+section_size = 224
+
+[[anchors]]
+address = "0x0067FBC0"
+size = 194
+component = "vorbis"
+object = "psy.obj"
+symbol = "_seed_curve"
+section_size = 208
+
+[[anchors]]
+address = "0x0067FC90"
+size = 306
+component = "vorbis"
+object = "psy.obj"
+symbol = "_max_seeds"
+section_size = 320
+
+[[anchors]]
+address = "0x0067FDD0"
+size = 338
+component = "vorbis"
+object = "psy.obj"
+symbol = "_seed_chase"
+section_size = 352
+
+[[anchors]]
+address = "0x0067FFC0"
+size = 330
+component = "vorbis"
+object = "psy.obj"
+symbol = "__vp_quantize_couple_memo"
+section_size = 336
+
+[[anchors]]
+address = "0x00680110"
+size = 201
+component = "vorbis"
+object = "psy.obj"
+symbol = "_dipole_hypot"
+section_size = 208
+
+[[anchors]]
+address = "0x006801E0"
+size = 140
+component = "vorbis"
+object = "psy.obj"
+symbol = "_round_hypot"
+section_size = 144
+
+[[anchors]]
+address = "0x00680270"
+size = 351
+component = "vorbis"
+object = "psy.obj"
+symbol = "__vp_quantize_couple_sort"
+section_size = 352
+
+[[anchors]]
+address = "0x00680420"
+size = 195
+component = "vorbis"
+object = "psy.obj"
+symbol = "__vp_noise_normalize_sort"
+section_size = 208
+
+[[anchors]]
+address = "0x006804F0"
+size = 591
+component = "vorbis"
+object = "psy.obj"
+symbol = "__vp_noise_normalize"
+section_size = 592
+
+[[anchors]]
+address = "0x00680760"
+size = 995
+component = "vorbis"
+object = "psy.obj"
+symbol = "__vp_couple"
+section_size = 1008
+
+[[anchors]]
+address = "0x00680B50"
+size = 206
+component = "vorbis"
+object = "psy.obj"
+symbol = "_couple_lossless"
+section_size = 208
+
+[[anchors]]
+address = "0x00680C20"
+size = 101
+component = "vorbis"
+object = "psy.obj"
+symbol = "_precomputed_couple_point"
+section_size = 112
+
+[[anchors]]
+address = "0x00680C90"
+size = 79
+component = "vorbis"
+object = "sharedbook.obj"
+symbol = "__float32_unpack"
+section_size = 80
+
+[[anchors]]
+address = "0x00680CE0"
+size = 383
+component = "vorbis"
+object = "sharedbook.obj"
+symbol = "__make_words"
+section_size = 384
+
+[[anchors]]
+address = "0x00680E60"
+size = 102
+component = "vorbis"
+object = "sharedbook.obj"
+symbol = "__book_maptype1_quantvals"
+section_size = 112
+
+[[anchors]]
+address = "0x00680ED0"
+size = 491
+component = "vorbis"
+object = "sharedbook.obj"
+symbol = "__book_unquantize"
+section_size = 496
+
+[[anchors]]
+address = "0x006810C0"
+size = 193
+component = "vorbis"
+object = "sharedbook.obj"
+symbol = "_vorbis_staticbook_clear"
+section_size = 208
+
+[[anchors]]
+address = "0x006811B0"
+size = 96
+component = "vorbis"
+object = "sharedbook.obj"
+symbol = "_vorbis_book_clear"
+section_size = 96
+
+[[anchors]]
+address = "0x00681210"
+size = 83
+component = "vorbis"
+object = "sharedbook.obj"
+symbol = "_vorbis_book_init_encode"
+section_size = 96
+
+[[anchors]]
+address = "0x00681270"
+size = 968
+component = "vorbis"
+object = "sharedbook.obj"
+symbol = "_vorbis_book_init_decode"
+section_size = 976
+
+[[anchors]]
+address = "0x006816C0"
+size = 574
+component = "vorbis"
+object = "codebook.obj"
+symbol = "_vorbis_staticbook_unpack"
+section_size = 576
+
+[[anchors]]
+address = "0x00681900"
+size = 52
+component = "vorbis"
+object = "codebook.obj"
+symbol = "_vorbis_book_encode"
+section_size = 64
+
+[[anchors]]
+address = "0x00681940"
+size = 295
+component = "vorbis"
+object = "codebook.obj"
+symbol = "_vorbis_book_decode"
+section_size = 304
+
+[[anchors]]
+address = "0x00681A70"
+size = 507
+component = "vorbis"
+object = "codebook.obj"
+symbol = "_vorbis_book_decodevs_add"
+section_size = 512
+
+[[anchors]]
+address = "0x00682000"
+size = 373
+component = "vorbis"
+object = "codebook.obj"
+symbol = "_vorbis_book_decodev_set"
+section_size = 384
+
+[[anchors]]
+address = "0x00682180"
+size = 443
+component = "vorbis"
+object = "codebook.obj"
+symbol = "_vorbis_book_decodevv_add"
+section_size = 448
+
+[[anchors]]
+address = "0x00682340"
+size = 211
+component = "vorbis"
+object = "bitrate.obj"
+symbol = "_vorbis_bitrate_clear"
+section_size = 224
+
+[[anchors]]
+address = "0x00682440"
+size = 93
+component = "vorbis"
+object = "envelope.obj"
+symbol = "__ve_envelope_clear"
+section_size = 96
+
+[[anchors]]
+address = "0x006824A0"
+size = 38
+component = "vorbis"
+object = "smallft.obj"
+symbol = "_drft_forward"
+section_size = 48
+
+[[anchors]]
+address = "0x006824D0"
+size = 423
+component = "vorbis"
+object = "smallft.obj"
+symbol = "_drftf1"
+section_size = 432
+
+[[anchors]]
+address = "0x00682840"
+size = 1122
+component = "vorbis"
+object = "smallft.obj"
+symbol = "_dradf4"
+section_size = 1136
+
+[[anchors]]
+address = "0x00682CB0"
+size = 2992
+component = "vorbis"
+object = "smallft.obj"
+symbol = "_dradfg"
+section_size = 2992
+
+[[anchors]]
+address = "0x00683860"
+size = 55
+component = "vorbis"
+object = "smallft.obj"
+symbol = "_drft_init"
+section_size = 64
+
+[[anchors]]
+address = "0x006838A0"
+size = 32
+component = "vorbis"
+object = "smallft.obj"
+symbol = "_fdrffti"
+section_size = 32
+
+[[anchors]]
+address = "0x006838C0"
+size = 395
+component = "vorbis"
+object = "smallft.obj"
+symbol = "_drfti1"
+section_size = 400
+
+[[anchors]]
+address = "0x00683A50"
+size = 53
+component = "vorbis"
+object = "smallft.obj"
+symbol = "_drft_clear"
+section_size = 64
+
+[[anchors]]
+address = "0x00683A90"
+size = 469
+component = "vorbis"
+object = "mdct.obj"
+symbol = "_mdct_init"
+section_size = 480
+
+[[anchors]]
+address = "0x00683C70"
+size = 59
+component = "vorbis"
+object = "mdct.obj"
+symbol = "_mdct_clear"
+section_size = 64
+
+[[anchors]]
+address = "0x00683CB0"
+size = 1281
+component = "vorbis"
+object = "mdct.obj"
+symbol = "_mdct_backward"
+section_size = 1296
+
+[[anchors]]
+address = "0x006841C0"
+size = 1269
+component = "vorbis"
+object = "mdct.obj"
+symbol = "_mdct_butterfly_32"
+section_size = 1280
+
+[[anchors]]
+address = "0x00684870"
+size = 1152
+component = "vorbis"
+object = "mdct.obj"
+symbol = "_mdct_forward"
+section_size = 1152
+
+[[anchors]]
+address = "0x00684D00"
+size = 290
+component = "vorbis"
+object = "window.obj"
+symbol = "__vorbis_apply_window"
+section_size = 304
+
+[[anchors]]
+address = "0x00684E30"
+size = 31
+component = "vorbis"
+object = "mapping0.obj"
+symbol = "_mapping0_free_info"
+section_size = 32
+
+[[anchors]]
+address = "0x00684E50"
+size = 325
+component = "vorbis"
+object = "mapping0.obj"
+symbol = "_mapping0_pack"
+section_size = 336
+
+[[anchors]]
+address = "0x00684FA0"
+size = 456
+component = "vorbis"
+object = "mapping0.obj"
+symbol = "_mapping0_unpack"
+section_size = 464
+
+[[anchors]]
+address = "0x00685170"
+size = 2421
+component = "vorbis"
+object = "mapping0.obj"
+symbol = "_mapping0_forward"
+section_size = 2432
+
+[[anchors]]
+address = "0x00685AF0"
+size = 33
+component = "vorbis"
+object = "envelope.obj"
+symbol = "_todB"
+section_size = 48
+
+[[anchors]]
+address = "0x00685B20"
+size = 873
+component = "vorbis"
+object = "mapping0.obj"
+symbol = "_mapping0_inverse"
+section_size = 880
+
+[[anchors]]
+address = "0x00685E90"
+size = 31
+component = "vorbis"
+object = "res0.obj"
+symbol = "_res0_free_info"
+section_size = 32
+
+[[anchors]]
+address = "0x00685EB0"
+size = 122
+component = "vorbis"
+object = "res0.obj"
+symbol = "_res0_free_look"
+section_size = 128
+
+[[anchors]]
+address = "0x00685F30"
+size = 235
+component = "vorbis"
+object = "res0.obj"
+symbol = "_res0_pack"
+section_size = 240
+
+[[anchors]]
+address = "0x00686040"
+size = 311
+component = "vorbis"
+object = "res0.obj"
+symbol = "_res0_unpack"
+section_size = 320
+
+[[anchors]]
+address = "0x00686180"
+size = 468
+component = "vorbis"
+object = "res0.obj"
+symbol = "_res0_look"
+section_size = 480
+
+[[anchors]]
+address = "0x006863C0"
+size = 534
+component = "vorbis"
+object = "res0.obj"
+symbol = "__01inverse"
+section_size = 544
+
+[[anchors]]
+address = "0x006865E0"
+size = 286
+component = "vorbis"
+object = "res0.obj"
+symbol = "_res1_forward"
+section_size = 288
+
+[[anchors]]
+address = "0x00686700"
+size = 81
+component = "vorbis"
+object = "res0.obj"
+symbol = "__encodepart"
+section_size = 96
+
+[[anchors]]
+address = "0x00686760"
+size = 434
+component = "vorbis"
+object = "res0.obj"
+symbol = "_local_book_besterror"
+section_size = 448
+
+[[anchors]]
+address = "0x00686920"
+size = 618
+component = "vorbis"
+object = "res0.obj"
+symbol = "__01forward"
+section_size = 624
+
+[[anchors]]
+address = "0x00686B90"
+size = 83
+component = "vorbis"
+object = "res0.obj"
+symbol = "_res1_class"
+section_size = 96
+
+[[anchors]]
+address = "0x00686BF0"
+size = 554
+component = "vorbis"
+object = "res0.obj"
+symbol = "__01class"
+section_size = 560
+
+[[anchors]]
+address = "0x00686E80"
+size = 63
+component = "vorbis"
+object = "res0.obj"
+symbol = "_res2_class"
+section_size = 64
+
+[[anchors]]
+address = "0x00686EC0"
+size = 415
+component = "vorbis"
+object = "res0.obj"
+symbol = "__2class"
+section_size = 416
+
+[[anchors]]
+address = "0x00687060"
+size = 345
+component = "vorbis"
+object = "res0.obj"
+symbol = "_res2_forward"
+section_size = 352
+
+[[anchors]]
+address = "0x006871C0"
+size = 405
+component = "vorbis"
+object = "res0.obj"
+symbol = "_res2_inverse"
+section_size = 416
+
+[[anchors]]
+address = "0x00687360"
+size = 31
+component = "vorbis"
+object = "floor1.obj"
+symbol = "_floor1_free_info"
+section_size = 32
+
+[[anchors]]
+address = "0x00687380"
+size = 31
+component = "vorbis"
+object = "floor1.obj"
+symbol = "_floor1_free_look"
+section_size = 32
+
+[[anchors]]
+address = "0x006873A0"
+size = 446
+component = "vorbis"
+object = "floor1.obj"
+symbol = "_floor1_pack"
+section_size = 448
+
+[[anchors]]
+address = "0x00687560"
+size = 554
+component = "vorbis"
+object = "floor1.obj"
+symbol = "_floor1_unpack"
+section_size = 560
+
+[[anchors]]
+address = "0x006879D0"
+size = 1209
+component = "vorbis"
+object = "floor1.obj"
+symbol = "_floor1_fit"
+section_size = 1216
+
+[[anchors]]
+address = "0x00687EE0"
+size = 496
+component = "vorbis"
+object = "floor1.obj"
+symbol = "_accumulate_fit"
+section_size = 496
+
+[[anchors]]
+address = "0x006880D0"
+size = 47
+component = "vorbis"
+object = "floor1.obj"
+symbol = "_vorbis_dBquant"
+section_size = 48
+
+[[anchors]]
+address = "0x00688100"
+size = 528
+component = "vorbis"
+object = "floor1.obj"
+symbol = "_fit_line"
+section_size = 528
+
+[[anchors]]
+address = "0x00688310"
+size = 556
+component = "vorbis"
+object = "floor1.obj"
+symbol = "_inspect_error"
+section_size = 560
+
+[[anchors]]
+address = "0x00688570"
+size = 165
+component = "vorbis"
+object = "floor1.obj"
+symbol = "_floor1_interpolate_fit"
+section_size = 176
+
+[[anchors]]
+address = "0x00688CB0"
+size = 743
+component = "vorbis"
+object = "floor1.obj"
+symbol = "_floor1_inverse1"
+section_size = 752
+
+[[anchors]]
+address = "0x00688FA0"
+size = 261
+component = "vorbis"
+object = "floor1.obj"
+symbol = "_floor1_inverse2"
+section_size = 272
+
+[[anchors]]
+address = "0x006890B0"
+size = 188
+component = "vorbis"
+object = "floor1.obj"
+symbol = "_render_line"
+section_size = 192
+
+[[anchors]]
+address = "0x00689170"
+size = 31
+component = "vorbis"
+object = "floor0.obj"
+symbol = "_floor0_free_info"
+section_size = 32
+
+[[anchors]]
+address = "0x006891F0"
+size = 191
+component = "vorbis"
+object = "floor0.obj"
+symbol = "_floor0_unpack"
+section_size = 192
+
+[[anchors]]
+address = "0x006892E0"
+size = 316
+component = "vorbis"
+object = "floor0.obj"
+symbol = "_floor0_inverse1"
+section_size = 320
+
+[[anchors]]
+address = "0x00689420"
+size = 128
+component = "vorbis"
+object = "floor0.obj"
+symbol = "_floor0_inverse2"
+section_size = 128
+
+[[anchors]]
+address = "0x006894A0"
+size = 348
+component = "vorbis"
+object = "floor0.obj"
+symbol = "_floor0_map_lazy_init"
+section_size = 352
+
+[[anchors]]
+address = "0x00689600"
+size = 369
+component = "vorbis"
+object = "lsp.obj"
+symbol = "_vorbis_lsp_to_curve"
+section_size = 384
+
+[[anchors]]
+address = "0x00689780"
+size = 71
+component = "vorbis"
+object = "lsp.obj"
+symbol = "_vorbis_coslook"
+section_size = 80
+
+[[anchors]]
+address = "0x00689830"
+size = 90
+component = "vorbis"
+object = "lsp.obj"
+symbol = "_vorbis_fromdBlook"
+section_size = 96
+
+[[anchors]]
+address = "0x006B5F10"
+size = 215
+component = "ogg"
+object = "framing.obj"
+symbol = "_ogg_page_granulepos"
+section_size = 224
+
+[[anchors]]
+address = "0x006B6050"
+size = 98
+component = "ogg"
+object = "framing.obj"
+symbol = "_ogg_stream_init"
+section_size = 112
+
+[[anchors]]
+address = "0x006B60C0"
+size = 69
+component = "ogg"
+object = "framing.obj"
+symbol = "_ogg_stream_clear"
+section_size = 80
+
+[[anchors]]
+address = "0x006B6110"
+size = 161
+component = "ogg"
+object = "framing.obj"
+symbol = "_ogg_page_checksum_set"
+section_size = 176
+
+[[anchors]]
+address = "0x006B61C0"
+size = 47
+component = "ogg"
+object = "framing.obj"
+symbol = "__os_body_expand"
+section_size = 48
+
+[[anchors]]
+address = "0x006B61F0"
+size = 68
+component = "ogg"
+object = "framing.obj"
+symbol = "__os_lacing_expand"
+section_size = 80
+
+[[anchors]]
+address = "0x006B6260"
+size = 37
+component = "ogg"
+object = "framing.obj"
+symbol = "_ogg_sync_clear"
+section_size = 48
+
+[[anchors]]
+address = "0x006B6290"
+size = 122
+component = "ogg"
+object = "framing.obj"
+symbol = "_ogg_sync_buffer"
+section_size = 128
+
+[[anchors]]
+address = "0x006B6330"
+size = 327
+component = "ogg"
+object = "framing.obj"
+symbol = "_ogg_sync_pageseek"
+section_size = 336
+
+[[anchors]]
+address = "0x006B6480"
+size = 739
+component = "ogg"
+object = "framing.obj"
+symbol = "_ogg_stream_pagein"
+section_size = 752
+
+[[anchors]]
+address = "0x006B67E0"
+size = 28
+component = "ogg"
+object = "framing.obj"
+symbol = "_ogg_stream_reset_serialno"
+section_size = 32
+
+[[anchors]]
+address = "0x006B6970"
+size = 54
+component = "ogg"
+object = "bitwise.obj"
+symbol = "_oggpack_writeinit"
+section_size = 64
+
+[[anchors]]
+address = "0x006B69B0"
+size = 244
+component = "ogg"
+object = "bitwise.obj"
+symbol = "_oggpack_write"
+section_size = 256
+
+[[anchors]]
+address = "0x006B6AB0"
+size = 30
+component = "ogg"
+object = "bitwise.obj"
+symbol = "_oggpack_writealign"
+section_size = 32
+
+[[anchors]]
+address = "0x006B6AD0"
+size = 35
+component = "ogg"
+object = "bitwise.obj"
+symbol = "_oggpack_writeclear"
+section_size = 48
+
+[[anchors]]
+address = "0x006B6B30"
+size = 167
+component = "ogg"
+object = "bitwise.obj"
+symbol = "_oggpack_look"
+section_size = 176
+
+[[anchors]]
+address = "0x006B6C10"
+size = 205
+component = "ogg"
+object = "bitwise.obj"
+symbol = "_oggpack_read"
+section_size = 208

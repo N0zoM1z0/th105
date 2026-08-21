@@ -139,6 +139,106 @@ def load_xiph_sdk_module():
     return module
 
 
+def xiph_rel32_operand_kind(code: bytes, field_offset: int) -> str | None:
+    """Return the narrowly supported x86 instruction owning one REL32 field."""
+    if field_offset >= 1 and code[field_offset - 1] in (0xE8, 0xE9):
+        return "call" if code[field_offset - 1] == 0xE8 else "jmp"
+    if (
+        field_offset >= 2
+        and code[field_offset - 2] == 0x0F
+        and 0x80 <= code[field_offset - 1] <= 0x8F
+    ):
+        return "jcc"
+    return None
+
+
+def xiph_relocated_text(data: bytes, wanted_symbol: str) -> tuple[bytes, list[tuple[int, int]]]:
+    """Return one COMDAT body and its supported link relocations."""
+    if len(data) < 20 or struct.unpack_from("<H", data, 0)[0] != 0x014C:
+        raise ValueError("Xiph SDK member is not an i386 COFF object")
+    section_count = struct.unpack_from("<H", data, 2)[0]
+    symbol_pointer, symbol_count = struct.unpack_from("<II", data, 8)
+    optional_size = struct.unpack_from("<H", data, 16)[0]
+    section_base = 20 + optional_size
+    string_table = symbol_pointer + symbol_count * 18
+    sections: list[dict[str, object]] = []
+    for index in range(section_count):
+        offset = section_base + index * 40
+        raw_size, raw_pointer = struct.unpack_from("<II", data, offset + 16)
+        reloc_pointer = struct.unpack_from("<I", data, offset + 24)[0]
+        reloc_count = struct.unpack_from("<H", data, offset + 32)[0]
+        characteristics = struct.unpack_from("<I", data, offset + 36)[0]
+        sections.append({
+            "name": data[offset : offset + 8].rstrip(b"\0"),
+            "raw_size": raw_size,
+            "raw_pointer": raw_pointer,
+            "reloc_pointer": reloc_pointer,
+            "reloc_count": reloc_count,
+            "characteristics": characteristics,
+            "functions": [],
+        })
+
+    def symbol_name(offset: int) -> str:
+        raw = data[offset : offset + 8]
+        if raw[:4] == b"\0\0\0\0":
+            name_offset = struct.unpack_from("<I", raw, 4)[0]
+            start = string_table + name_offset
+            end = data.find(b"\0", start)
+            if end < 0:
+                raise ValueError("unterminated Xiph COFF symbol name")
+            return data[start:end].decode("ascii", errors="replace")
+        return raw.rstrip(b"\0").decode("ascii", errors="replace")
+
+    index = 0
+    while index < symbol_count:
+        offset = symbol_pointer + index * 18
+        name = symbol_name(offset)
+        value = struct.unpack_from("<I", data, offset + 8)[0]
+        section_number = struct.unpack_from("<h", data, offset + 12)[0]
+        symbol_type = struct.unpack_from("<H", data, offset + 14)[0]
+        storage_class = data[offset + 16]
+        auxiliary = data[offset + 17]
+        if (
+            0 < section_number <= section_count
+            and value == 0
+            and symbol_type == 0x20
+            and storage_class in (2, 3)
+        ):
+            sections[section_number - 1]["functions"].append(name)
+        index += 1 + auxiliary
+
+    matches: list[tuple[bytes, list[tuple[int, int]]]] = []
+    for section in sections:
+        if section["name"] != b".text" or section["functions"] != [wanted_symbol]:
+            continue
+        if int(section["characteristics"]) & 0x01000000:
+            raise ValueError(f"Xiph symbol {wanted_symbol} uses relocation overflow")
+        start = int(section["raw_pointer"])
+        size = int(section["raw_size"])
+        body = data[start : start + size]
+        relocations: list[tuple[int, int]] = []
+        for reloc_index in range(int(section["reloc_count"])):
+            offset = int(section["reloc_pointer"]) + reloc_index * 10
+            field_offset, _symbol_index, relocation_type = struct.unpack_from(
+                "<IIH", data, offset
+            )
+            if relocation_type not in (0x0006, 0x0014):
+                raise ValueError(
+                    f"Xiph symbol {wanted_symbol} has unsupported relocation {relocation_type:#x}"
+                )
+            if field_offset + 4 > size:
+                raise ValueError(
+                    f"Xiph symbol {wanted_symbol} relocation crosses its COMDAT body"
+                )
+            relocations.append((field_offset, relocation_type))
+        matches.append((body, relocations))
+    if len(matches) != 1:
+        raise ValueError(
+            f"Xiph symbol {wanted_symbol} has {len(matches)} function COMDAT bodies"
+        )
+    return matches[0]
+
+
 def xiph_relocation_free_text(data: bytes, wanted_symbol: str) -> bytes:
     """Return one zero-relocation COMDAT body for a named i386 COFF function."""
     if len(data) < 20 or struct.unpack_from("<H", data, 0)[0] != 0x014C:
@@ -296,6 +396,119 @@ def validate_xiph_anchor_evidence(
             )
     return errors
 
+def validate_xiph_relocated_anchor_evidence(
+    rule: dict[str, object],
+    selected: list[dict[str, str]],
+    rows: list[dict[str, str]],
+    read_pe,
+) -> list[str]:
+    """Validate link-agnostic exact Xiph fingerprints against current 1.06a."""
+    errors: list[str] = []
+    anchor_path = ROOT / str(rule["xiph_relocated_anchor_file"])
+    anchors_doc = tomllib.loads(anchor_path.read_text(encoding="utf-8"))
+    configured_hash = str(target_manifest()["target"]["sha256"])
+    if str(anchors_doc.get("target_sha256")) != configured_hash:
+        return [f"{rule['id']}: relocated Xiph anchor target SHA-256 differs from canonical target"]
+    module = load_xiph_sdk_module()
+    if str(anchors_doc.get("sdk_sha256")) != module.ARCHIVE_SHA256:
+        return [f"{rule['id']}: relocated Xiph anchor SDK SHA-256 differs from pinned extractor"]
+    cache = ROOT / ".tools/upstream/OggVorbis-win32sdk-1.0.1.zip"
+    if not cache.is_file():
+        return [f"{rule['id']}: pinned Xiph SDK cache is missing: {cache}"]
+    sdk = cache.read_bytes()
+    if hashlib.sha256(sdk).hexdigest() != module.ARCHIVE_SHA256:
+        return [f"{rule['id']}: cached Xiph SDK SHA-256 mismatch"]
+
+    anchors = anchors_doc.get("anchors", [])
+    selected_addresses = {row["address"] for row in selected}
+    anchor_addresses = {str(anchor["address"]) for anchor in anchors}
+    if selected_addresses != anchor_addresses:
+        return [f"{rule['id']}: selected addresses differ from relocated Xiph anchor file"]
+    min_coverage = float(anchors_doc.get("min_nonreloc_coverage", 0.0))
+    min_nonreloc = int(anchors_doc.get("min_nonreloc_bytes", 0))
+    if not 0.0 < min_coverage <= 1.0 or min_nonreloc < 1:
+        return [f"{rule['id']}: invalid relocated Xiph evidence thresholds"]
+
+    row_by_address = {row["address"]: row for row in rows}
+    object_cache: dict[tuple[str, str], bytes] = {}
+    candidate_bytes: dict[str, bytes] = {}
+    for row in rows:
+        try:
+            candidate_bytes[row["address"]] = read_pe(
+                int(row["address"], 0), int(row["size"], 0)
+            )
+        except ValueError:
+            pass
+    padding = {0x00, 0x90, 0xCC}
+
+    def candidate_matches(body: bytes, relocations: list[tuple[int, int]], candidate: bytes) -> bool:
+        size = len(candidate)
+        if size > len(body):
+            return False
+        wild: set[int] = set()
+        for field_offset, relocation_type in relocations:
+            if field_offset + 4 > size:
+                return False
+            if relocation_type == 0x0014 and xiph_rel32_operand_kind(body, field_offset) is None:
+                return False
+            wild.update(range(field_offset, field_offset + 4))
+        nonreloc = sum(index not in wild for index in range(size))
+        if nonreloc < min_nonreloc or nonreloc / size < min_coverage:
+            return False
+        if any(
+            index not in wild and candidate[index] != body[index]
+            for index in range(size)
+        ):
+            return False
+        # No relocation may hide bytes after the candidate boundary; the COMDAT
+        # tail must be ordinary compiler/linker alignment only.
+        if any(byte not in padding for byte in body[size:]):
+            return False
+        return True
+
+    for anchor in anchors:
+        address = str(anchor["address"])
+        row = row_by_address.get(address)
+        if row is None:
+            errors.append(f"{rule['id']}: missing relocated Xiph candidate {address}")
+            continue
+        size = int(anchor["size"])
+        if int(row["size"], 0) != size:
+            errors.append(f"{rule['id']}: {address} size differs from relocated Xiph anchor")
+            continue
+        key = (str(anchor["component"]), str(anchor["object"]))
+        if key not in object_cache:
+            object_cache[key] = module.extract_object(sdk, *key)
+        try:
+            body, relocations = xiph_relocated_text(
+                object_cache[key], str(anchor["symbol"])
+            )
+        except ValueError as exc:
+            errors.append(f"{rule['id']}: {address}: {exc}")
+            continue
+        if not relocations:
+            errors.append(f"{rule['id']}: {address} relocated anchor has no relocations")
+            continue
+        if len(body) != int(anchor["section_size"]):
+            errors.append(f"{rule['id']}: {address} Xiph section size changed")
+            continue
+        actual = candidate_bytes.get(address)
+        if actual is None or not candidate_matches(body, relocations, actual):
+            errors.append(f"{rule['id']}: {address} no longer matches strict relocated Xiph fingerprint")
+            continue
+        candidates = [
+            other["address"]
+            for other in rows
+            if (candidate := candidate_bytes.get(other["address"])) is not None
+            and candidate_matches(body, relocations, candidate)
+        ]
+        if candidates != [address]:
+            errors.append(
+                f"{rule['id']}: {address} relocated Xiph fingerprint is not inventory-unique: {candidates}"
+            )
+    return errors
+
+
 def baseline(row: dict[str, str]) -> dict[str, str]:
     if row["status"] == "matching":
         if row["module"] not in AUTHORED_MODULES:
@@ -306,9 +519,10 @@ def baseline(row: dict[str, str]) -> dict[str, str]:
 
 def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: set[str] | None = None) -> list[dict[str, str]]:
     explicit = {str(value).upper() for value in rule.get("addresses", [])}
-    if rule.get("xiph_anchor_file"):
+    xiph_manifest = rule.get("xiph_anchor_file") or rule.get("xiph_relocated_anchor_file")
+    if xiph_manifest:
         anchor_doc = tomllib.loads(
-            (ROOT / str(rule["xiph_anchor_file"])).read_text(encoding="utf-8")
+            (ROOT / str(xiph_manifest)).read_text(encoding="utf-8")
         )
         explicit = {str(anchor["address"]).upper() for anchor in anchor_doc.get("anchors", [])}
     start = int(str(rule["start"]), 0) if "start" in rule else None
@@ -363,6 +577,10 @@ def validate_rule_evidence(
             errors.append(f"{rule_id}: target string missing: {text!r}")
     if rule.get("xiph_anchor_file"):
         errors.extend(validate_xiph_anchor_evidence(rule, selected, rows, read_pe))
+    if rule.get("xiph_relocated_anchor_file"):
+        errors.extend(
+            validate_xiph_relocated_anchor_evidence(rule, selected, rows, read_pe)
+        )
     return errors
 
 
