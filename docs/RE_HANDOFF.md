@@ -14,10 +14,11 @@ seeds using current-target-backed structural remapping where appropriate.
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 442 authored functions, 696 classified exclusions, and 2,866 still awaiting origin/boundary review.
-- All 442 confirmed authored functions are source-present and canonical exact:
-  65,476 exact authored bytes across 163 configured VC8 units.
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 456 authored functions, 696 classified exclusions, and 2,852 still awaiting origin/boundary review.
+- All 456 confirmed authored functions are source-present and canonical exact:
+  66,790 exact authored bytes across 166 configured VC8 units.
 - The character-manager implicit-lifetime wave adds thirty-three authored exact functions / 1,803 bytes: shared `ICharacterObjectManager` dtor/scalar `0x00491B90/0x00491BA0`, fifteen 81-byte implicit derived manager dtors, fifteen 30-byte manager-base scalar wrappers, and Yuyuko base dtor `0x0056DB10`. TU-visible trivial primary-base destruction is required; user-defined empty derived destruction emits the wrong 91-byte shape.
+- The SystemEffect/sprite-pipeline wave adds fourteen authored exact functions / 1,314 bytes. Current RTTI and copy constructors close the real layout chain `IColor 0x08 -> CSpriteBase 0x80 -> CSpriteEx 0xE8 -> CEffectSprite 0x12C`, including four 0x1C render vertices and two four-point xyz quads. Exact additions are IColor dtor/scalar, three CSpriteBase color virtuals, four CSpriteEx transform methods, and five SystemEffectObject lifetime/state/render methods. The adjacent System manager spawn/acquire paths and CSpriteEx final render remain pending on stack/register/float-literal codegen; no forcing was used.
 
 - The newest retained-source/lifecycle migration wave added 209 functions / 38,037 bytes
   beyond the prior 100-function checkpoint. Structural instruction shape and
@@ -76,7 +77,7 @@ the current call target.
 ## Next bounded work
 
 Continue origin/boundary review so the authored denominator becomes meaningful,
-then expand exact recovery from the 309 accepted functions. Use
+then expand exact recovery from the 456 accepted functions. Use
 `scripts/rank_retained_exact.py --only-unconfigured` to prioritize historical
 exact source that never had an old match unit. Same-size zero non-relocation
 mismatch candidates are especially productive, but ambiguous template/clone
@@ -85,9 +86,9 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 2,866
+The 95% authored-function and authored-byte goals cannot be reported yet: 2,852
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 442/442
+global authored denominator is not established. Do not use the current 456/456
 exact subset as a substitute denominator.
 
 ## Routine checkpoint

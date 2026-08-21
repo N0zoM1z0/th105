@@ -713,3 +713,21 @@ A semantically empty virtual base destructor can still change a derived destruct
 ### Recover MI layout from dual vptr writes and symmetric member lifetime
 
 The `CEffectManager<T>` constructors and destructors independently write two derived vptrs: primary `IEffectManager` at `+0` and a specialization-specific `TObjectManagerBase<T,EffectObjectBase>` vptr at `+4`. Their construction/destruction symmetry then fixes a 16-byte checked vector at `+0x64`, a 20-byte owning deque at `+0x74`, and a 12-byte checked tree at `+0x88`. Model those as real bases/members so VC8 owns vptr and EH-state generation. Do not flatten the object into byte padding merely because individual methods can be matched from narrow offset views.
+
+### Recover sprite layouts from copy spans before naming transform methods
+
+Current copy construction can close a render layout more strongly than isolated offsets. `CSpriteBase` copy constructor `0x004396A0` copies its leading `IColor` state and then exactly `0x78` bytes from `+0x08`, proving size `0x80`; four color virtuals access a 0x1C stride, which is the standard `{x,y,z,rhw,color,u,v}` vertex record. `CSpriteEx` copy constructor `0x00450640` copies the full 0x80 base, then 0x30 bytes at `+0x80` and 0x38 at `+0xB0`, proving a 0xE8 object with two four-point xyz quads. Model those records first. The resulting C++ naturally reproduces the color/transform family and preserves the existing CEffectSprite offsets without a synthetic padding array.
+
+### Let ordinary integer promotion explain VC8 divide-by-255 color code
+
+For packed RGBA multiplication, `unsigned char` components promote to `int` before multiplication and division. Source `first * second / 255` therefore produces the target signed magic-multiply sequence using `0x80808081`. Adding explicit `unsigned int` casts changes the generated division and fails exactness. Prefer the language's proved promotion rules over casts introduced only because the packed storage is unsigned.
+
+### Duplicate truthful switch cases when the target owns a merged tail
+
+`SystemEffectObject::reset_state @ 0x00660B00` has three source cases with the same real reset semantics. Grouping `case 0: case 1: case 2:` lets VC8 replace the switch with a compact range check and emits 24 bytes. Spelling the three cases separately and repeating the same two stores lets VC8 perform its own tail merge, reproducing the target arithmetic three-case dispatch in 35 bytes. This is the same principle as duplicated event-case suffixes: duplicate real semantics and let the compiler choose the merge; do not add a goto solely to prescribe target control flow.
+
+`SystemEffectObject::update_state @ 0x00660A00` also demonstrates byte-significant source case order. Cases 0 and 2 contain a genuinely identical `alpha += 3; return` tail. Source order 2,1,0 makes VC8 keep the target case-2 copy and backward-cross-jump from case0, yielding 248/248; order 0,1,2 keeps the other copy and yields 244 bytes. Case order is legitimate source structure when each case's behavior is independently target-proved; it is not permission to insert inert branches.
+
+### Keep semantically closed stack/register/constant blockers pending
+
+A correct type/layout model does not guarantee standalone allocation. System manager spawn `0x00458340` reaches the target 125-byte instruction budget with the exact texture out-token/returned-handle distinction but still uses a 12-byte fresh frame instead of the target 8-byte coalesced frame. System acquire/link `0x00457110` is target-length with a callee-saved receiver permutation, while pool acquire `0x00456B70` has broader allocation drift. `CSpriteEx::finalize_render @ 0x00407AD0` closes the resource/D3D9 semantics but fresh VC8 pools 0.5 as double where the target uses a single-precision dword resident on the x87 stack. Do not solve these with parameter-slot aliasing, volatile, fake locals, register variables, hand-evaluated vtables, or assembly; preserve the semantic recovery as a future TU/LTCG/codegen lead.

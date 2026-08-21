@@ -2731,7 +2731,7 @@ source = "src/battle/EffectSprite.cpp"
 object = "build/match-units/CrossV106a_EffectSpriteScalarDtor.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a CEffectSprite scalar-deleting destructor. Current CEffectSprite vtable 0x006C072C first slot points to 0x0041F6F0; the 31-byte body restores exact-backed IColor vtable 0x006C0624 and conditionally deletes. Scanner's 0x006A08C0 clone was rejected by vtable identity. Historical 28-byte body omitted ret 4."
+notes = "TH105 1.06a IColor/CEffectSprite trivial lifetime unit. Current IColor/CSpriteBase vtables own the 7-byte IColor normal dtor and 31-byte IColor scalar wrapper; current CEffectSprite vtable 0x006C072C owns its separate 31-byte scalar wrapper. TU-visible empty IColor/CEffectSprite destructors are also required by exact SystemEffectObjectBase cleanup, and the shared header refactor replays all prior exact units."
 
 [[units.cross-v106a-effect-sprite-scalar-dtor.functions]]
 address = "0x0041F6F0"
@@ -5786,3 +5786,109 @@ rel32_targets = [
   "??1?$CEffectManager@VInfoEffectObject@@@@UAE@XZ=0x0046F500",
   "??3@YAXPAX@Z=0x006898EA",
 ]
+
+[[units.cross-v106a-effect-sprite-scalar-dtor.functions]]
+address = "0x0040AD50"
+symbol_base = "??1IColor@@UAE@XZ"
+dir32_targets = ["??_7IColor@@6B@=??_7IColor@@6B@"]
+
+[[units.cross-v106a-effect-sprite-scalar-dtor.functions]]
+address = "0x0040AE80"
+symbol_base = "??_GIColor@@UAEPAXI@Z"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = ["??_7IColor@@6B@=??_7IColor@@6B@"]
+
+[units.cross-v106a-effect-sprite-colors]
+kind = "probe"
+source = "src/battle/EffectSpriteColors.cpp"
+object = "build/match-units/CrossV106a_EffectSpriteColors.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a IColor/CSpriteBase color virtuals. Current RTTI and copy construction fix CSpriteBase at 0x80 with four 0x1c transformed vertices; the CSpriteBase/CSpriteEx/CEffectSprite vtables all own these same three implementations. Natural byte-component integer promotion reproduces the signed divide-by-255 lowering."
+
+[[units.cross-v106a-effect-sprite-colors.functions]]
+address = "0x0040AC50"
+symbol_base = "?set_color@CSpriteBase@@UAEXI@Z"
+
+[[units.cross-v106a-effect-sprite-colors.functions]]
+address = "0x0040AC70"
+symbol_base = "?set_vertex_colors@CSpriteBase@@UAEXPBI@Z"
+
+[[units.cross-v106a-effect-sprite-colors.functions]]
+address = "0x0040AC90"
+symbol_base = "?multiply_color@CSpriteBase@@UAEXI@Z"
+
+[units.cross-v106a-effect-sprite-transforms]
+kind = "probe"
+source = "src/battle/EffectSpriteTransforms.cpp"
+object = "build/match-units/CrossV106a_EffectSpriteTransforms.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a CSpriteEx transform core. Current copy construction fixes the 0x80 source quad and 0xb0 working quad as four 12-byte xyz points. A 0x30 memcpy naturally gives the target rep-movsd reset; explicit observed x87 operand order reproduces translation, while the axis-scale loops are direct natural matches."
+
+[[units.cross-v106a-effect-sprite-transforms.functions]]
+address = "0x004073A0"
+symbol_base = "?reset_transform@CSpriteEx@@QAEXXZ"
+
+[[units.cross-v106a-effect-sprite-transforms.functions]]
+address = "0x004073E0"
+symbol_base = "?translate@CSpriteEx@@QAEXMMM@Z"
+
+[[units.cross-v106a-effect-sprite-transforms.functions]]
+address = "0x004074E0"
+symbol_base = "?scale_x@CSpriteEx@@QAEXMM@Z"
+
+[[units.cross-v106a-effect-sprite-transforms.functions]]
+address = "0x00407580"
+symbol_base = "?scale_y@CSpriteEx@@QAEXMM@Z"
+
+[units.cross-v106a-system-effect-object]
+kind = "probe"
+source = "src/battle/SystemEffectObject.cpp"
+object = "build/match-units/CrossV106a_SystemEffectObject.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a SystemEffectObject family. Current RTTI proves CObjectBase at +4 and AnimationObjectBase at +0x0c; the pool allocates 0x144 bytes, fixing resource_handle +0x138 and derived mode/timer +0x13c/+0x140. Trivial sprite-base dtor visibility, duplicated reset cases, and source case order 2/1/0 reproduce the exact target lifetime/state-machine codegen."
+
+[[units.cross-v106a-system-effect-object.functions]]
+address = "0x00454F50"
+symbol_base = "??1SystemEffectObjectBase@@UAE@XZ"
+rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70"]
+dir32_targets = [
+  "__ehhandler$??1SystemEffectObjectBase@@UAE@XZ=__ehhandler$??1SystemEffectObjectBase@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7SystemEffectObjectBase@@6B@=??_7SystemEffectObjectBase@@6B@",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+  "??_7IColor@@6B@=??_7IColor@@6B@",
+]
+
+[[units.cross-v106a-system-effect-object.functions]]
+address = "0x00454FC0"
+symbol_base = "??_GSystemEffectObjectBase@@UAEPAXI@Z"
+rel32_targets = [
+  "??1SystemEffectObjectBase@@UAE@XZ=0x00454F50",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-system-effect-object.functions]]
+address = "0x00660A00"
+symbol_base = "?update_state@SystemEffectObject@@UAEXXZ"
+dir32_targets = ["__real@3fc99999a0000000=__real@3fc99999a0000000"]
+
+[[units.cross-v106a-system-effect-object.functions]]
+address = "0x00660B00"
+symbol_base = "?reset_state@SystemEffectObject@@UAEXXZ"
+
+[[units.cross-v106a-system-effect-object.functions]]
+address = "0x00473CF0"
+symbol_base = "?render_effect@SystemEffectObjectBase@@UAEXXZ"
+rel32_targets = [
+  "?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750",
+  "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0",
+  "?scale_x@CSpriteEx@@QAEXMM@Z=0x004074E0",
+  "?scale_y@CSpriteEx@@QAEXMM@Z=0x00407580",
+  "?transform_six@CSpriteEx@@QAEXMMMMMM@Z=0x00407680",
+  "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0",
+  "?finalize_render@CSpriteEx@@QAEXXZ=0x00407AD0",
+]
+dir32_targets = ["?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A"]

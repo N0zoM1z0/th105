@@ -6,14 +6,6 @@ IColor::IColor() : value_04(0)
 }
 
 
-IColor::~IColor()
-{
-}
-
-
-CEffectSprite::~CEffectSprite()
-{
-}
 
 
 CEffectSprite::CEffectSprite()
