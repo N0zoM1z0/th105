@@ -307,3 +307,4 @@ address,name,size,status,match_percent,unit,evidence
 0x00473870,CBattleManagerArcade_run_info_phase_pipeline_473870,220,matching,100.00,cross-v106a-battle-manager-arcade-info,python3 scripts/build.py --unit cross-v106a-battle-manager-arcade-info --compare --json reports exact 220/220 against TH105 1.06a
 0x0043B120,stop_bgm,17,matching,100.00,cross-v106a-bgm-transition,python3 scripts/build.py --unit cross-v106a-bgm-transition --compare --json reports exact 17/17 against TH105 1.06a
 0x0043B170,set_bgm_volume,47,matching,100.00,cross-v106a-bgm-transition,python3 scripts/build.py --unit cross-v106a-bgm-transition --compare --json reports exact 47/47 against TH105 1.06a
+0x00473050,CBattleManagerArcade_prepare_arcade_transition_473050,189,matching,100.00,cross-v106a-battle-manager-arcade-info,python3 scripts/build.py --unit cross-v106a-battle-manager-arcade-info --compare --json reports exact 189/189 against TH105 1.06a

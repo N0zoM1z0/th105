@@ -17,7 +17,7 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 308 functions / 51,335 bytes in 154
+- The accepted 1.06a authored set contains 309 functions / 51,524 bytes in 154
   VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 191
   functions / 36,775 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
@@ -285,7 +285,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,000
+- Accepted boundaries and authored/library origins for the remaining 2,999
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.
@@ -490,3 +490,11 @@ Screen-fade state lives independently in loader-zero globals `0x006FBD50` (value
 Preserve callee return contracts when a caller consumes only a byte. `is_scene_fade_in_progress` explicitly materializes integer EAX 0/1, while the Arcade override tests only AL. The caller source therefore narrows with `static_cast<unsigned char>(...)`; do not change the callee to `bool` merely to obtain `test al,al`. This is the same narrow-at-call-site rule used elsewhere in the reconstruction.
 
 The adjacent Arcade override `0x00472F80` is a useful stop condition. Ordinary derived C++ matches all 198 target bytes except the ordering of one final branch: target loads the vptr, increments derived state `+0x5B0`, then loads vslot `+0x34`; ordinary virtual-call source increments first, while explicitly saving the complete slot loads it too early. Reproducing the exact split would require manual vtable/evaluation-order shaping. Leave the method review-pending rather than using hand-written vtable access, comma-expression tricks, or register coercion.
+
+### Checked-container call ABI can be reconstructed from the call site
+
+`CBattleManagerArcade::prepare_arcade_transition @ 0x00473050` closes a checked-list ABI without recovering the entire container implementation first. Current target passes `ECX = this+0x5B4`, loads the sentinel from `+0x5B8`, then its first-node pointer, and calls `0x0043FC40` with three stack components: node/current, owner/container, and hidden return storage. This matches an 8-byte iterator `{owner,current}` passed by value to a member returning an 8-byte iterator by value. A narrow `ArcadeTransitionListView::erase(ArcadeTransitionIterator)` declaration plus ordinary `list.erase({&list, list.sentinel->next})` makes VC8 generate the exact call sequence. Do not hand-write pushes or model the first node as a separate global.
+
+The surrounding 189-byte function is a useful `/GS` reference. A real `char path[260]` naturally produces the 0x110 stack reservation and security-cookie lifetime; current setup services account for object-manager reset, stage/BGM publication through receiver `this+4`, BGM path formatting/loading, fighter-phase slot preparation, exact pair initialization, derived byte `+0x5B0`, and derived counter `+0x5C0`. The current path format at `0x006C1590` is the NUL-terminated `data/bgm/st%02d.ogg`. Because the probe only declares that external data symbol, its relocation is address-validated while canonical target bytes still attest the string; do not claim the probe object owns the literal.
+
+Keep incidental EAX out of ABI decisions. The only current caller, exact Arcade override `0x00473870`, calls `0x00473050` and immediately continues without consuming EAX. The target helper itself has no semantic return setup after the checked-list call/security check, so the tracked source is a `void` member despite decompiler output presenting the residual callee value as an `int` return. Caller use plus source semantics outrank incidental register residue.

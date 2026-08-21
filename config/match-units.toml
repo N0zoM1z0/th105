@@ -4239,8 +4239,30 @@ kind = "probe"
 source = "src/battle/BattleManagerArcade.cpp"
 object = "build/match-units/CrossV106a_BattleManagerArcade.obj"
 profile = "vc8-sp1-probe-o2"
-enable_gs = false
-notes = "TH105 1.06a CBattleManagerArcade override at vtable 0x006C154C. The derived +0x5BC/+0x5C4 transition state composes exact screen-fade/async and BGM facades with the shared base reset/info/phase pipeline. The fade predicate remains int at its definition and is narrowed to AL only at this caller."
+enable_gs = true
+notes = "TH105 1.06a CBattleManagerArcade transition TU. Natural /GS source reproduces 189-byte prepare helper with 260-byte BGM path buffer and checked-list erase(begin()) at +0x5B4, while the 220-byte info-phase override remains unchanged under /GS. Current derived vtable 0x006C154C owns the override and exact caller 0x00473870 owns the prepare member."
+
+[[units.cross-v106a-battle-manager-arcade-info.functions]]
+address = "0x00473050"
+symbol_base = "prepare_arcade_transition_473050"
+rel32_targets = [
+  "?get_match_setup@th105@@YAPAUMatchSetup@1@XZ=0x0043AC50",
+  "?reset_battle_render_state_and_signal_465f70@BattleObjectArcadeSetupManagerView@th105@@QAEXXZ=0x00466DF0",
+  "?set_stage_music_433860@BattleAudioArcadeSetupView@th105@@QAEXHH@Z=0x00434DE0",
+  "_load_bgm_source=0x0043CF00",
+  "?begin_slot_4641f0@FighterPhaseContextArcadeSetupView@th105@@QAEXH@Z=0x004650B0",
+  "?configure_slot_463290@FighterPhaseContextArcadeSetupView@th105@@QAEXHH@Z=0x004642B0",
+  "?initialize_battle_fighter_pair_46a490@BattleController@th105@@QAEXXZ=0x0046AE70",
+  "?erase@ArcadeTransitionListView@th105@@QAE?AUArcadeTransitionIterator@2@U32@@Z=0x0043FC40",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "?g_battle_object_manager@th105@@3PAUBattleObjectArcadeSetupManagerView@1@A=?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A",
+  "?g_fighter_phase_context@th105@@3PAUFighterPhaseContextArcadeSetupView@1@A=?g_fighter_phase_context@th105@@3PAUFighterPhaseContext@1@A",
+  "_arcade_bgm_path_format=_arcade_bgm_path_format",
+  "__imp__wsprintfA=__imp__wsprintfA",
+  "___security_cookie=___security_cookie",
+]
 
 [[units.cross-v106a-battle-manager-arcade-info.functions]]
 address = "0x00473870"

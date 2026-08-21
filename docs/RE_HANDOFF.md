@@ -14,10 +14,10 @@ seeds using current-target-backed structural remapping where appropriate.
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 308 authored functions, 696 classified exclusions, and 3,000 still awaiting origin/boundary review.
-- All 308 confirmed authored functions are source-present and canonical exact:
-  51,335 exact authored bytes across 154 configured VC8 units.
-- The newest retained-source/lifecycle migration wave added 208 functions / 37,848 bytes
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 309 authored functions, 696 classified exclusions, and 2,999 still awaiting origin/boundary review.
+- All 309 confirmed authored functions are source-present and canonical exact:
+  51,524 exact authored bytes across 154 configured VC8 units.
+- The newest retained-source/lifecycle migration wave added 209 functions / 38,037 bytes
   beyond the prior 100-function checkpoint. Structural instruction shape and
   relocation-masked bytes are used only for candidate ranking; every accepted
   function still requires current 1.06a semantic/relocation evidence and a fresh
@@ -42,6 +42,7 @@ seeds using current-target-backed structural remapping where appropriate.
 - `Fighter::advance_secondary_event_effect_cycle @ 0x00473F90` is 244/244 exact. Cross-roster current callers pass Fighter `this`; the fourteen exact event bridges already agree that `EventSubobject130` occupies Fighter `+0x130`, so the shared `Fighter` layout now names that subobject instead of leaving those 12 bytes unknown. While pair mode is 16, a dense 0..14 switch rotates the secondary event-effect id and dispatches the exact 67-byte member. VC8 places a 60-byte jump table after the accepted 244-byte body in the same COMDAT.
 - The CBattleManager shared-vtable wave adds nine authored exact functions / 603 bytes. Current constructors `0x00438CC0` and `0x00438D80` publish `CBattleManager` vtable `0x006C1504` and `CBattleManagerArcade` vtable `0x006C154C`; both tables share the recovered slots at `0x00471630`, `0x00471920`, `0x00472490`, `0x004724B0`, `0x00472D80`, `0x00472DC0`, `0x00472E10`, `0x00472EA0`, and `0x00472F10`. Natural VC8 preserves unsigned `frame_counter_04`, Fighter `+0x4EC/+0x4E9/+0x72C`, `this+0x8C` phase-object dispatch, and caller-backed unused-this views of linked phase helpers. The neighboring `0x00472A70` timer method remains review-pending: semantics/data are closed, but standalone VC8 does not reproduce the target 16-bit timer value scheduling without disallowed coercion.
 - The scene/audio transition + Arcade wave adds eight authored exact functions / 470 bytes. Screen-fade state helpers are `get_async_scene_load_request @ 0x0043AB90` (6), `start_scene_fade_out @ 0x0043B240` (58), `start_scene_fade_in @ 0x0043B280` (58), and `is_scene_fade_in_progress @ 0x0043B2C0` (24). Current BGM loaders `0x0043CF00/0x0043CF80` prove that `0x006FCF7C`/`0x007026E0` are BGM handle/service, supporting exact `stop_bgm @ 0x0043B120` (17), `fade_bgm @ 0x0043B140` (40), and `set_bgm_volume @ 0x0043B170` (47). With those facades, `CBattleManagerArcade::run_info_phase_pipeline @ 0x00473870` is 220/220 exact using current derived state `+0x5BC/+0x5C4` and the shared base pipeline. `0x00472F80` remains review-pending because one final branch differs only in target vptr/vslot load scheduling; manual vtable evaluation was rejected.
+- `CBattleManagerArcade::prepare_arcade_transition @ 0x00473050` is 189/189 exact in the same `/GS` TU as the 220-byte Arcade override. Current exact setup services establish MatchSetup stage/BGM bytes, object-manager reset, `this+4` stage/music facade, fighter-phase begin/configure, and pair initialization. The derived container at `+0x5B4` is a VC8 checked-list view with sentinel pointer `+4` and size `+8`; natural `erase(begin())` generates the target 8-byte iterator-by-value argument plus hidden 8-byte return storage. The 260-byte `data/bgm/st%02d.ogg` path buffer and security cookie reproduce without assembly or stack forcing.
 - The UI-selection state wave adds two authored exact helpers / 112 bytes. `has_ui_selection_state_changed @ 0x0043B6E0` is 24/24 exact from the current unsigned dword-state minus byte-snapshot predicate. `set_ui_selection_state_tracking @ 0x0043FFB0` is 88/88 exact and establishes `g_ui_selection_state @ 0x006FD290`, snapshot/fade bytes `0x006FD046/0x006FD047`, and checked `std::list<UiSelectionMenu*> @ 0x006FD288`; disabled nonzero state walks `back()` through the sentinel at base+4 and tail-calls the selected menu vslot +4. These globals are loader-zero virtual-tail storage, so relocation provenance must preserve that fact and the list's +4 addend.
 - `Menu::render_cursor @ 0x0043F9D0` is 55/55 exact from a narrow shared cursor-sprite view. Current IDA has twelve callers, proves receiver base `0x006E6958`, scale fields `+0x88/+0x8C`, direct render `0x00406BE0`, and the double `1/512` literal at `0x006C1860`. The match unit preserves one aggregate symbol and validates the two interior DIR32 references through symbol+addend mappings instead of inventing field globals.
 - The global input-state facade adds `is_menu_initial_press @ 0x0043ABD0` (31/31) and `set_menu_input_state @ 0x0043ABF0` (21/21). Both load receiver `0x006FC618` and forward unchanged byte/bool stack slots to already exact members `0x0040A660/0x0040A6B0`. Canonical PE mapping proves the receiver is loader-zero virtual-tail storage even though IDA presents a nonzero-looking inferred value; relocation provenance follows the PE mapping.
@@ -68,7 +69,7 @@ the current call target.
 ## Next bounded work
 
 Continue origin/boundary review so the authored denominator becomes meaningful,
-then expand exact recovery from the 308 accepted functions. Use
+then expand exact recovery from the 309 accepted functions. Use
 `scripts/rank_retained_exact.py --only-unconfigured` to prioritize historical
 exact source that never had an old match unit. Same-size zero non-relocation
 mismatch candidates are especially productive, but ambiguous template/clone
@@ -77,9 +78,9 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 3,000
+The 95% authored-function and authored-byte goals cannot be reported yet: 2,999
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 308/308
+global authored denominator is not established. Do not use the current 309/309
 exact subset as a substitute denominator.
 
 ## Routine checkpoint
