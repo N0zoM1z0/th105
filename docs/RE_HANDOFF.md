@@ -14,7 +14,7 @@ seeds using current-target-backed structural remapping where appropriate.
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 278 authored functions, 693 classified exclusions, and 3,033 still awaiting origin/boundary review.
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 278 authored functions, 695 classified exclusions, and 3,031 still awaiting origin/boundary review.
 - All 278 confirmed authored functions are source-present and canonical exact:
   49,343 exact authored bytes across 142 configured VC8 units.
 - The newest retained-source/lifecycle migration wave added 178 functions / 35,856 bytes
@@ -22,7 +22,7 @@ seeds using current-target-backed structural remapping where appropriate.
   relocation-masked bytes are used only for candidate ranking; every accepted
   function still requires current 1.06a semantic/relocation evidence and a fresh
   canonical zero-difference comparison.
-- The lifetime/template origin lane now excludes twenty compiler-generated functions through SHA-pinned VC8 replay. The newest six are current `SpellRecordView` `std::_Tree` COMDATs (615 bytes total) regenerated from tracked `scripts/probes/spell_tree.cpp`; each relocation-masked fingerprint is unique across the corrected inventory and is replayed by `config/vc8-generated-spell-tree-origin-anchors.toml`. The prior PAT/list/map rules remain fail-closed, and generated clone groups are accepted only when the complete current-inventory fingerprint hit set equals an explicitly declared equivalence group.
+- The lifetime/template origin lane now excludes twenty-two compiler-generated functions through SHA-pinned VC8 replay. The newest pair are 72-byte `std::list<void*>::_Tidy` clones at `0x004023E0/0x00435EB0`: a fresh pinned-VC8 COMDAT is canonical 72/72 at `0x00435EB0`, and masking only its two operator-delete REL32 fields yields a complete current-inventory hit set equal to exactly those two addresses. The preceding six `SpellRecordView` `std::_Tree` COMDATs remain replayed by `config/vc8-generated-spell-tree-origin-anchors.toml`; all generated clone groups stay fail-closed and must match their declared complete hit set.
 - `Alice_handle_event_bridge @ 0x0050ED00` is now 1075/1075 exact from a narrow natural C++ lifecycle view. Current 1.06a proves the byte return ABI, real virtual action/sequence slots, 22-event semantics, 19-destination jump table, and 121-byte sparse index table; the compiler-owned switch tables trail the accepted ledger body in the same COMDAT.
 - `PatRecord88_construct @ 0x00460F90` and `PatRecord88_destroy @ 0x0045FFD0` are 300/300 and 515/515 exact with the current FrameData base and three checked nested vectors; the same pinned VC8 model now classifies current `vector<PatRaw16>::erase @ 0x0045FBD0` as compiler-generated.
 - `test_aabb_against_descriptor_shape @ 0x0046B7B0` is 248/248 exact after expressing the already-proved signed broad-phase rejection as an equivalent bit-31 test; this preserves the target AND/TEST/JS schedule without assembly or register forcing.
@@ -64,7 +64,7 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 3,033
+The 95% authored-function and authored-byte goals cannot be reported yet: 3,031
 provisional candidates still need authored/excluded classification, so the
 global authored denominator is not established. Do not use the current 278/278
 exact subset as a substitute denominator.

@@ -179,3 +179,14 @@ subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
 evidence = "six current SpellRecordView std::_Tree COMDATs are inventory-unique relocation-masked matches of actual symbols freshly emitted from tracked scripts/probes/spell_tree.cpp by the SHA-pinned VC8 SP1 compiler; current find/insert callers stay inside the SpellDataOwner parser/lookup cluster"
+
+[[rules]]
+id = "vc8-generated-list-voidptr-tidy-106a"
+vc8_generated_anchor_file = "config/vc8-generated-list-voidptr-tidy-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 144
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 fresh std::list<void*>::_Tidy COMDAT is 72 bytes with only the two operator-delete REL32 fields masked; complete current-inventory fingerprint hit set is exactly 0x004023E0 and 0x00435EB0. Current callers use each body as +4 sentinel/+8 count list teardown across handle-manager and roster/container lifetimes."

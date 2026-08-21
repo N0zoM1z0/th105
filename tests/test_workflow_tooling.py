@@ -75,8 +75,8 @@ class WorkflowToolingTests(unittest.TestCase):
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,004", markdown)
         self.assertIn("Confirmed authored functions | 278", markdown)
-        self.assertIn("Classified exclusions | 693", markdown)
-        self.assertIn("Origin/boundary review pending | 3,033", markdown)
+        self.assertIn("Classified exclusions | 695", markdown)
+        self.assertIn("Origin/boundary review pending | 3,031", markdown)
         self.assertIn("Canonical exact functions | 278", markdown)
         self.assertIn("Canonical exact authored bytes | 49,343", markdown)
         self.assertIn(
@@ -192,6 +192,19 @@ class WorkflowToolingTests(unittest.TestCase):
             [
                 ("0x004129E0", 51, "list-voidptr-buynode-clones"),
                 ("0x00421F30", 51, "list-voidptr-buynode-clones"),
+            ],
+        )
+        with (ROOT / "config" / "vc8-generated-list-voidptr-tidy-origin-anchors.toml").open("rb") as stream:
+            list_tidy = tomllib.load(stream)
+        self.assertEqual(list_tidy["target_sha256"], anchors["target_sha256"])
+        self.assertEqual(list_tidy["compiler_sha256"], anchors["compiler_sha256"])
+        self.assertEqual(list_tidy["source"], "scripts/probes/list_voidptr_tidy_generated.cpp")
+        self.assertFalse(list_tidy["enable_gs"])
+        self.assertEqual(
+            [(row["address"], row["size"], row["equivalence_group"]) for row in list_tidy["anchors"]],
+            [
+                ("0x004023E0", 72, "list-voidptr-tidy-clones"),
+                ("0x00435EB0", 72, "list-voidptr-tidy-clones"),
             ],
         )
 

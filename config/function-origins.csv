@@ -45,7 +45,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004021C0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00402290,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00402320,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x004023E0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004023E0,compiler_generated,runtime,exclude,observed,vc8-generated-list-voidptr-tidy-106a
 0x00402430,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00402570,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00402590,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -1087,7 +1087,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00435DF0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00435E50,authored_game,battle,authored,observed,canonical-exact-authored
 0x00435E70,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00435EB0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00435EB0,compiler_generated,runtime,exclude,observed,vc8-generated-list-voidptr-tidy-106a
 0x00435F00,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00435F90,compiler_generated,battle,exclude,observed,vc8-generated-pat-nested-value-erase-106a
 0x00435FC0,unknown,,review,unknown,ida-1.06a-initial-inventory
