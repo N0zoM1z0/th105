@@ -15,10 +15,10 @@ seeds using current-target-backed structural remapping where appropriate.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
 - The IDA inventory has 4,001 provisional candidates. Current reviewed state is
-  59 authored functions and 3,942 still awaiting origin/boundary review.
-- All 59 confirmed authored functions are source-present and canonical exact:
-  5,319 exact authored bytes across 40 configured VC8 units.
-- The structural-remap waves recovered twelve functions / 2,015 bytes by using normalized
+  60 authored functions and 3,941 still awaiting origin/boundary review.
+- All 60 confirmed authored functions are source-present and canonical exact:
+  5,361 exact authored bytes across 41 configured VC8 units.
+- The structural-remap waves recovered thirteen functions / 2,057 bytes by using normalized
   VC8 instruction structure only as a candidate-ranking signal, reconciling all
   current 1.06a REL32 destinations with target/IDA evidence, then requiring a
   fresh canonical zero-difference comparison.
@@ -44,16 +44,16 @@ the current call target.
 ## Next bounded work
 
 Continue origin/boundary review so the authored denominator becomes meaningful,
-then expand exact recovery from the 59 accepted functions. Structural
+then expand exact recovery from the 60 accepted functions. Structural
 fingerprinting is now validated as a prioritization method for retained-source
 hypotheses, but ambiguous template/clone families must be disambiguated with
 current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 3,942
+The 95% authored-function and authored-byte goals cannot be reported yet: 3,941
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 59/59
+global authored denominator is not established. Do not use the current 60/60
 exact subset as a substitute denominator.
 
 ## Routine checkpoint

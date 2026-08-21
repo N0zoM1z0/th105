@@ -125,3 +125,12 @@ python3 scripts/verify-exact-units.py --all
 
 The replay is cold and sequential by default so stale or concurrent build
 products cannot support a published exact total.
+
+For shared runtime globals whose PE storage is genuinely uninitialized or whose
+file bytes are not meaningful evidence, use `validation=address` only after
+current-target semantics establish the address identity independently. The
+`BattleController::run_active_simulation_frame` recovery is the reference case:
+IDA names `0x006FBCB4` as `Block`, numerous current battle-controller xrefs use
+that address as the same `BattlePhaseBlock *`, and the 42-byte VC8 function then
+compares exactly after resolving that DIR32 address. This validates an address;
+it does not claim that file padding proves the global's initial contents.

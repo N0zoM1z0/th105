@@ -633,3 +633,20 @@ rel32_targets = [
   "?get_player2_input@th105@@YAPAUBattleInputGate@1@XZ=0x0043B060",
   "?poll_synchronized_input_4708b0@BattleInputGate@th105@@QAEEXZ=0x004712B0",
 ]
+
+[units.cross-v106a-battle-active-simulation]
+kind = "probe"
+source = "src/battle/BattleControllerRuntime.cpp"
+object = "build/match-units/CrossV106a_BattleControllerRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a structural-remap active simulation wrapper; shared BattlePhaseBlock pointer uses semantic address validation from current IDA xrefs."
+
+[[units.cross-v106a-battle-active-simulation.functions]]
+address = "0x00470ED0"
+symbol_base = "run_active_simulation_frame_4704d0"
+rel32_targets = [
+  "?run_battle_phase_and_info_callback@BattleController@th105@@QAEHXZ=0x0046BF00",
+  "?run_458cd0@BattlePhaseBlock@th105@@QAEHXZ=0x0045A2A0",
+]
+dir32_targets = ["?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A=?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A"]
