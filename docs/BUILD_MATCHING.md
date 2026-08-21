@@ -195,3 +195,14 @@ reference case: current IDA identifies the `std::map<int, String28>` object at
 an explicit `0;4` addend allowlist rather than inventing separate globals for
 individual fields. Fresh VC8 output then matches the full current 209-byte body;
 the old 203-byte ledger boundary was stale.
+
+A current-target global migration should be tested across every sibling function
+that shares the affected inline accessors before the mapping is treated as
+stable. `BattleControllerSetup.cpp` is the reference case: current IDA tied the
+retained setup globals to the 1.06a fighter context, setup state, effect sink,
+object manager, info manager, match identifier, round byte, and BGM format
+string. Updating those semantic identities made both
+`initialize_or_transition_46fe80` (479 bytes) and `prepare_match_roster_470060`
+(337 bytes) compile exactly from one `/GS` object. The accepted addresses are
+also mirrored into `config/known-globals.csv` so later agents need not rediscover
+the same cluster from magic constants.

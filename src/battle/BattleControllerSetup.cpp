@@ -53,22 +53,22 @@ extern "C" __declspec(dllimport) int __cdecl wsprintfA(
 
 inline FighterPhaseContextSetupView *fighter_phase_context_for_setup()
 {
-    return *reinterpret_cast<FighterPhaseContextSetupView **>(0x006e623c);
+    return *reinterpret_cast<FighterPhaseContextSetupView **>(0x006fbc9c);
 }
 
 inline GlobalBattleSetupStateView *global_battle_setup_state()
 {
-    return reinterpret_cast<GlobalBattleSetupStateView *>(0x006e6260);
+    return reinterpret_cast<GlobalBattleSetupStateView *>(0x006fbcc0);
 }
 
 inline EffectSink *effect_sink_for_setup()
 {
-    return *reinterpret_cast<EffectSink **>(0x006e6250);
+    return *reinterpret_cast<EffectSink **>(0x006fbcb0);
 }
 
 inline BattleObjectSetupManagerView *battle_object_setup_manager()
 {
-    return *reinterpret_cast<BattleObjectSetupManagerView **>(0x006e6240);
+    return *reinterpret_cast<BattleObjectSetupManagerView **>(0x006fbca0);
 }
 
 inline signed char current_phase_setup_slot()
@@ -132,7 +132,7 @@ void BattleController::initialize_or_transition_46fe80(MatchSetup *setup)
     }
 
     post_sequence_context_8c = reinterpret_cast<PostSequenceContextView *>(
-        *reinterpret_cast<void **>(0x006e6248));
+        *reinterpret_cast<void **>(0x006fbca8));
     if (g_battle_phase_block != 0) {
         g_battle_phase_block->initialize_character_story_script_458f10(
             setup->sides_08[0].character_key_00,
@@ -154,7 +154,7 @@ void BattleController::initialize_or_transition_46fe80(MatchSetup *setup)
     int match_identifier = setup->match_identifier_00;
     BattleObjectSetupManagerView *object_manager =
         battle_object_setup_manager();
-    *reinterpret_cast<int *>(0x006e4e34) = match_identifier;
+    *reinterpret_cast<int *>(0x006fa894) = match_identifier;
     object_manager->reset_battle_render_state_and_signal_465f70();
     fighter_phase_context_for_setup()->initialize_slot_464270(
         0, &setup->sides_08[0], 0);
@@ -177,13 +177,13 @@ void BattleController::initialize_or_transition_46fe80(MatchSetup *setup)
             ->set_stage_music_433860(setup->stage_04, 0);
         wsprintfA(
             path,
-            reinterpret_cast<const char *>(0x006ad598),
+            reinterpret_cast<const char *>(0x006c1590),
             setup->bgm_id_05);
         play_bgm(path);
         dispatch_round_phase_34(1);
     }
 
-    *reinterpret_cast<unsigned char *>(0x006e4e2e) = 0;
+    *reinterpret_cast<unsigned char *>(0x006fa88e) = 0;
     phase_a0 = 3;
     transition_a4 = 0;
     fighter_0c->terminal_delay_4e8 = 3;

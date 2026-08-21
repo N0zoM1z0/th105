@@ -854,3 +854,64 @@ rel32_targets = [
   "operator_delete=0x006898EA",
 ]
 dir32_targets = ["_g_scenario_event_name_map=_g_scenario_event_name_map"]
+
+[units.cross-v106a-battle-controller-setup]
+kind = "probe"
+source = "src/battle/BattleControllerSetup.cpp"
+object = "build/match-units/CrossV106a_BattleControllerSetup.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a exact controller setup pair after current-target migration of a shared retained global-address cluster; natural C++ only."
+
+[[units.cross-v106a-battle-controller-setup.functions]]
+address = "0x00470880"
+symbol_base = "initialize_or_transition_46fe80"
+rel32_targets = [
+  "get_game_mode=0x0043AC40",
+  "get_session_setup_option=0x0043B070",
+  "set_session_setup_option=0x0043B080",
+  "get_player2_input=0x0043B060",
+  "BattleInputGate_load_battle_setup_slot=0x0042BAF0",
+  "get_selected_input=0x0043B010",
+  "BattlePhaseBlock_initialize_character_story_script_458f10=0x0045A4E0",
+  "BattlePhaseBlock_parse_scenario_event_row_4591d0=0x0045A7A0",
+  "BattleInputGate_configure_session_input=0x0042C4D0",
+  "BattleInputGate_save_battle_setup_slot=0x0042B9B0",
+  "mt19937_seed_u32=0x00406670",
+  "BattleObjectSetupManagerView_reset_battle_render_state_and_signal_465f70=0x00466DF0",
+  "FighterPhaseContextSetupView_initialize_slot_464270=0x00465130",
+  "BattleController_initialize_battle_fighter_pair_46a490=0x0046AE70",
+  "BattlePhaseBlock_advance_scenario_script_page_458d10=0x0045A2E0",
+  "get_stage_for_character=0x0043C0B0",
+  "get_bgm_for_character=0x0043C100",
+  "BattleAudioSetupView_set_stage_music_433860=0x00434DE0",
+  "play_bgm=0x0043CF80",
+  "GlobalBattleSetupStateView_update_second_425f10=0x00426DF0",
+  "__security_check_cookie=0x00689D25",
+]
+dir32_targets = [
+  "__imp__wsprintfA=__imp__wsprintfA",
+  "___security_cookie=___security_cookie",
+  "?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A=?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A",
+]
+
+[[units.cross-v106a-battle-controller-setup.functions]]
+address = "0x00470A60"
+symbol_base = "prepare_match_roster_470060"
+rel32_targets = [
+  "get_session_setup_option=0x0043B070",
+  "get_match_setup=0x0043AC50",
+  "get_player2_input=0x0043B060",
+  "BattleInputGate_load_battle_setup_slot=0x0042BAF0",
+  "BattleInputGate_save_battle_setup_slot=0x0042B9B0",
+  "FighterPhaseContextSetupView_begin_slot_4641f0=0x004650B0",
+  "FighterPhaseContextSetupView_configure_slot_463290=0x004642B0",
+  "FighterPhaseContextSetupView_get_slot_character_463270=0x00464290",
+  "FighterPhaseContextSetupView_is_slot_active_463280=0x004642A0",
+  "Fighter_reset_for_roster_45e040=0x0045F640",
+  "FighterPhaseContextSetupView_finish_slot_464240=0x00465100",
+  "GlobalBattleSetupStateView_copy_roster_metadata_425cb0=0x00426B90",
+  "BattleRendererSetupView_refresh_roster_state_471470=0x00471EC0",
+  "BattlePhaseBlock_advance_scenario_script_page_458d10=0x0045A2E0",
+]
+dir32_targets = ["?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A=?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A"]

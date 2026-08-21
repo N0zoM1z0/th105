@@ -1,1 +1,15 @@
 address,name,module,confidence,evidence
+0x006FA888,g_battle_input_gate,battle,observed,Current IDA battle/input paths use this shared BattleInputGate pointer; 0x00470C8A call sequence and exact 0x00470BC0 establish identity
+0x006FA894,g_match_identifier,battle,observed,Exact 0x00470880 stores MatchSetup match_identifier here immediately before BattleObjectSetupManager reset
+0x006FA898,g_stage_surface_heights,battle,observed,Exact 0x0046AE70 passes this address to memset size 0x1400 as the retained 1280-float stage-surface array
+0x006FA88E,g_round_counter,battle,observed,Exact 0x00470D00 increments this byte in the terminal branch and exact 0x00470880 resets it during setup
+0x006FA88F,g_battle_transition_mode,battle,observed,Exact 0x00470F00 compares this byte with 6 in round phase 5; current PE virtual mapping defines zero initialization
+0x006FBC98,g_pair_state,battle,observed,Exact 0x0046AE70 clears this scalar immediately after collision reset in retained pair initialization semantics
+0x006FBC9C,fighter_phase_context,battle,observed,Exact 0x0046AE70 and exact 0x00470880/0x00470A60 repeatedly use this shared fighter slot context
+0x006FBCA0,battle_object_setup_manager,battle,observed,Exact 0x00470880 loads this pointer before the current battle render-state reset helper 0x00466DF0
+0x006FBCA8,g_info_manager,battle,observed,Exact 0x0045D110 indexes player callback records from this manager and exact 0x00470880 publishes it into controller field 0x8C
+0x006FBCB0,effect_sink,battle,observed,Exact 0x0046AE70 and exact 0x00470A60 dispatch effect/roster virtual calls through this shared pointer
+0x006FBCB4,g_battle_phase_block,battle,observed,Current IDA names this Block and accepted battle transition/runtime functions repeatedly use it as the shared BattlePhaseBlock pointer
+0x006FBCC0,global_battle_setup_state,battle,observed,Exact 0x0046AE70 and exact 0x00470880/0x00470A60 call pair/setup state helpers on this object
+0x006FCF70,g_scenario_event_name_map,battle,observed,Exact 0x0043BFD0 uses this std::map base/sentinel with head pointer at addend 4; current init/destruction xrefs agree
+0x00702798,g_title_resource_manager,assets,observed,Exact 0x00433A80 loads this manager immediately before the current title-resource release helper and broad asset/UI xrefs agree

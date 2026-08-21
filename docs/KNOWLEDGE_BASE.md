@@ -18,8 +18,8 @@ notes or source hypotheses.
   object boundaries.
 - The current IDA database exposes 4,001 function candidates. Their auto-names
   and unreviewed sizes remain provisional analysis output.
-- The accepted 1.06a authored set contains 69 functions / 7,808 bytes in 49
-  VC8 match units. The structural-remap waves added twenty-two functions / 4,504 bytes after
+- The accepted 1.06a authored set contains 71 functions / 8,624 bytes in 50
+  VC8 match units. The structural-remap waves added twenty-four functions / 5,320 bytes after
   structural-instruction fingerprinting selected candidates and current-target
   IDA/call evidence reconciled their relocations; canonical VC8 comparisons,
   not the fingerprints, established exactness.
@@ -81,7 +81,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,452
+- Accepted boundaries and authored/library origins for the remaining 3,450
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.
@@ -91,3 +91,12 @@ notes or source hypotheses.
 Add reusable facts here only after they survive a target-backed bounded
 investigation. Detailed compiler- and comparator-shaping patterns belong in
 `docs/BUILD_MATCHING.md` once supported by reproducible 1.06a examples.
+
+## Current battle globals
+
+`config/known-globals.csv` now carries the current-target semantic identities
+that have survived exact authored recovery: the battle input gate, match id,
+stage-surface array, round/transition bytes, pair state, fighter phase context,
+object/setup/effect/info managers, battle phase block, scenario-event map, and
+title resource manager. These mappings come from current IDA semantics plus
+accepted zero-difference functions; they are not cross-version delta guesses.
