@@ -2044,7 +2044,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0046E950,15,0x0046E95E,sub_46E950,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0046E960,33,0x0046E980,sub_46E960,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0046E990,60,0x0046E9CB,sub_46E990,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0046E9D0,49,0x0046EA00,sub_46E9D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0046E9D0,49,0x0046EA00,sub_46E9D0,InfoEffectEmitter_emit_effect,battle,matching,100.00,__thiscall,"int InfoEffectEmitter_emit_effect(InfoEffectEmitterView * this, int effect_id, float x, float y, int flag_a, int flag_b)",false,src/battle/InfoEffectEmitter.cpp,python3 scripts/build.py --unit cross-v106a-info-effect-emitter --compare --json reports exact 49/49 against TH105 1.06a,root,"Exact trigger_global_effect @ 0x00434E90 resolves this member; current body forwards through the polymorphic subobject at this+4, calls vslot +0x0C with the five caller arguments plus trailing zero, and returns the virtual result. Natural VC8 is 49/49 exact."
 0x0046EA10,47,0x0046EA3E,sub_46EA10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0046EA40,28,0x0046EA5B,sub_46EA40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0046EA60,105,0x0046EAC8,sub_46EA60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

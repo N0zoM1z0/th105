@@ -626,3 +626,13 @@ ordinary `return publish_stage_state(g_battle_transition_mode);` gives VC8 exact
 the target sequence: zero-extend the byte, reuse `[esp+4]`, and jump to the sibling
 member. Preserve the shared receiver and argument width in the source and let the
 optimizer choose the tail call.
+### Replay callers after extracting a polymorphic subobject contract
+
+A local member declaration can be promoted into a shared narrow header when the
+current target proves the receiver and virtual slot. `InfoEffectEmitterView` is
+the reference: `emit_effect @ 0x0046E9D0` forwards through its `this+4` subobject
+and vslot `+0x0C`, adding one trailing zero argument. Keep that as ordinary C++
+virtual dispatch. After replacing the local declaration in `EventSubobject130.cpp`
+with the shared header, rebuild both the new facade unit and the pre-existing
+caller unit; exactness of the new function does not by itself prove that header
+visibility/ODR changes left accepted callers unchanged.

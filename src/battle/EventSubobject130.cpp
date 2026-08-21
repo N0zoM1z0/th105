@@ -1,14 +1,10 @@
 #include "EventSubobject130.hpp"
 #include "EventEffectState.hpp"
+#include "InfoEffectEmitter.hpp"
 
 namespace th105 {
 
-struct InfoEffectEmitterView {
-    int emit_effect(int effect_id, float x, float y, int flag_a, int flag_b);
-};
-
 extern int g_event_effect_id;
-extern InfoEffectEmitterView *g_info_effect_emitter;
 int __cdecl lookup_event_effect_record(int event_id);
 
 struct BattleObjectManagerPairView {

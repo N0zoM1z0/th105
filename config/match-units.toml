@@ -3991,3 +3991,16 @@ address = "0x00469DF0"
 symbol_base = "set_event_id"
 rel32_targets = ["?publish_stage_state@EventEffectStateView@th105@@QAEHH@Z=0x00469D50"]
 dir32_targets = ["?g_battle_transition_mode@th105@@3EA=?g_battle_transition_mode@th105@@3EA"]
+
+
+[units.cross-v106a-info-effect-emitter]
+kind = "probe"
+source = "src/battle/InfoEffectEmitter.cpp"
+object = "build/match-units/CrossV106a_InfoEffectEmitter.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a info-effect emitter facade. Exact trigger_global_effect resolves this member at 0x0046E9D0. The body forwards through the polymorphic subobject at this+4, vslot +0x0C, appending trailing zero; natural VC8 is 49/49 exact with no absolute relocation."
+
+[[units.cross-v106a-info-effect-emitter.functions]]
+address = "0x0046E9D0"
+symbol_base = "emit_effect"
