@@ -4296,3 +4296,128 @@ dir32_targets = [
   "__real@43a00000=__real@43a00000",
   "__real@43700000=__real@43700000",
 ]
+
+[[units.cross-v106a-post-sequence-transition.functions]]
+address = "0x0046EB00"
+symbol_base = "publish_transition_effect_at_46e130"
+rel32_targets = [
+  "?current_info_effect_key_43bb90@th105@@YAIXZ=0x0043BB90",
+  "?find@?$_Tree@V?$_Tmap_traits@IGU?$less@I@std@@V?$allocator@U?$pair@$$CBIG@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0046EA60",
+  "_invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "?g_info_effect_lookup_map@th105@@3V?$map@IGU?$less@I@std@@V?$allocator@U?$pair@$$CBIG@std@@@2@@std@@A=?g_info_effect_lookup_map@th105@@3V?$map@IGU?$less@I@std@@V?$allocator@U?$pair@$$CBIG@std@@@2@@std@@A",
+  "__real@44fa0000=__real@44fa0000",
+]
+
+[units.cross-v106a-info-manager-resources]
+kind = "probe"
+source = "src/battle/InfoManagerResources.cpp"
+object = "build/match-units/CrossV106a_InfoManagerResources.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a CInfoManagerBase resource load/release facades. Current lifecycle and callers establish effect manager +0x04, design resources +0x98/+0xCC, and combo resource +0x100. Natural VC8 gives exact 33/33 and 60/60 bodies."
+
+[[units.cross-v106a-info-manager-resources.functions]]
+address = "0x0046E960"
+symbol_base = "load_info_effect_resources_46e960"
+rel32_targets = [
+  "?load_combo_resources_46a8c0@InfoComboResourceSubobject@th105@@QAEHXZ=0x0046A8C0",
+]
+dir32_targets = [
+  "??_C@_0BL@GKGBIJHA@data?1infoEffect?1effect?4pat?$AA@=??_C@_0BL@GKGBIJHA@data?1infoEffect?1effect?4pat?$AA@",
+]
+
+[[units.cross-v106a-info-manager-resources.functions]]
+address = "0x0046E990"
+symbol_base = "release_info_effect_resources_46e990"
+rel32_targets = [
+  "?release_combo_resources_46a610@InfoComboResourceSubobject@th105@@QAEHXZ=0x0046A610",
+]
+
+[units.cross-v106a-info-manager-story-resources]
+kind = "probe"
+source = "src/battle/InfoManagerStoryResources.cpp"
+object = "build/match-units/CrossV106a_InfoManagerStoryResources.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a Story info-manager resource override. Keeping the exact 0x0046E960 base resource loader in a separate TU is target-backed visibility evidence: same-TU visibility makes VC8 inline it, while declaration-only visibility reproduces the linked call."
+
+[[units.cross-v106a-info-manager-story-resources.functions]]
+address = "0x00471E50"
+symbol_base = "initialize_story_info_resources_471e50"
+rel32_targets = [
+  "?load_info_effect_resources_46e960@InfoManagerResourceView@th105@@QAEHXZ=0x0046E960",
+  "?initialize_46fd20@BattleInfoRecordF8@th105@@QAEXHPAUInfoDesignResourceSubobject@2@0PAUInfoEffectManagerSubobject@2@@Z=0x0046FD20",
+  "?initialize_story_471c10@BattleInfoRecordF8@th105@@QAEXPAUInfoDesignResourceSubobject@2@0PAUInfoEffectManagerSubobject@2@@Z=0x00471C10",
+]
+dir32_targets = [
+  "??_C@_0CB@ICILFCFK@data?1battle?1battleUpperStory?4dat@=??_C@_0CB@ICILFCFK@data?1battle?1battleUpperStory?4dat@",
+  "??_C@_0CB@FLBMPHPK@data?1battle?1battleUnderStory?4dat@=??_C@_0CB@FLBMPHPK@data?1battle?1battleUnderStory?4dat@",
+]
+
+[units.cross-v106a-info-effect-manager]
+kind = "probe"
+source = "src/battle/InfoEffectManager.cpp"
+object = "build/match-units/CrossV106a_InfoEffectManager.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a InfoEffectObject effect-manager virtual methods. The current effect-manager vtable owns the 115-byte spawn/configure method and the 30-byte resource/preallocate wrapper; both compile exact from narrow object/pool views without exposing allocator implementation."
+
+[[units.cross-v106a-info-effect-manager.functions]]
+address = "0x0046F460"
+symbol_base = "spawn_effect_46f460"
+rel32_targets = [
+  "?allocate_46f370@InfoEffectObjectPoolView@th105@@QAEPAUInfoEffectObjectView@2@XZ=0x0046F370",
+]
+
+[[units.cross-v106a-info-effect-manager.functions]]
+address = "0x0046F900"
+symbol_base = "load_effect_resource_and_preallocate_46f900"
+rel32_targets = [
+  "?load_effect_resource_437ec0@InfoEffectManagerSpawnView@th105@@QAEHPBD@Z=0x00437EC0",
+  "?preallocate_46f3d0@InfoEffectObjectPoolView@th105@@QAEXI@Z=0x0046F3D0",
+]
+
+[units.cross-v106a-info-effect-object-manager-base]
+kind = "probe"
+source = "src/battle/InfoEffectObjectManagerBase.cpp"
+object = "build/match-units/CrossV106a_InfoEffectObjectManagerBase.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a TObjectManagerBase<InfoEffectObject,EffectObjectBase> specialization. Current class vtable 0x006C37B0, class-specific handle manager edges, collision-list lifetime, and EH handlers identify the specialization. The existing natural template emits exact 103-byte ctor, 100-byte dtor, and 30-byte scalar deleting wrapper."
+
+[[units.cross-v106a-info-effect-object-manager-base.functions]]
+address = "0x0046EE40"
+symbol_base = "??0?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@QAE@XZ"
+rel32_targets = [
+  "??0?$CHandleManagerEx@VInfoEffectObject@@@@QAE@XZ=0x0046EDB0",
+  "?buy_sentinel@CollisionList@th105@@QAEPAUCollisionListNode@2@XZ=0x00435E50",
+]
+dir32_targets = [
+  "__ehhandler$??0?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@QAE@XZ=__ehhandler$??0?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@6B@=??_7?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@6B@",
+]
+
+[[units.cross-v106a-info-effect-object-manager-base.functions]]
+address = "0x0046F020"
+symbol_base = "??1?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@UAE@XZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@QAEXXZ=0x0046EEB0",
+  "??1CollisionList@th105@@QAE@XZ=0x00435EB0",
+  "??1?$CHandleManagerEx@VInfoEffectObject@@@@UAE@XZ=0x0046EC80",
+]
+dir32_targets = [
+  "__ehhandler$??1?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@UAE@XZ=__ehhandler$??1?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@6B@=??_7?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@6B@",
+]
+
+[[units.cross-v106a-info-effect-object-manager-base.functions]]
+address = "0x0046F4E0"
+symbol_base = "??_G?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@UAE@XZ=0x0046F020",
+  "??3@YAXPAX@Z=0x006898EA",
+]

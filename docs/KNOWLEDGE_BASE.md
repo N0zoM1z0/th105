@@ -17,7 +17,7 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 310 functions / 51,571 bytes in 155
+- The accepted 1.06a authored set contains 319 functions / 52,283 bytes in 159
   VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 191
   functions / 36,775 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
@@ -279,13 +279,19 @@ notes or source hypotheses.
   the selected interpreter does not provide it. This covers systemd/GPT-web
   login shells without modifying global Python packages.
 
+- A generated template-helper fingerprint does not necessarily prove the full source container schema. The pinned VC8 witness for `std::map<unsigned,void*>::find @ 0x0046EA60` correctly proves compiler ownership of the key-only `find` COMDAT, but current initializer `0x00438F50` and exact authored `publish_transition_effect_at_46e130 @ 0x0046EB00` prove the live container at `0x006FBD2C` is actually `std::map<unsigned,unsigned short>`: path hashes map to 16-bit effect/BGM ids and the authored caller consumes `iterator->second`. Use generated fingerprints for ownership/code shape; recover mapped/value types from current data flow and layout evidence.
+- Translation-unit visibility can be positive target evidence even when both functions are independently exact. `InfoManagerResourceView::initialize_story_info_resources_471e50 @ 0x00471E50` calls exact base loader `0x0046E960`. Defining both in one probe TU makes VC8 inline the 33-byte loader; keeping the Story override in its own TU with only the declaration visible preserves the linked call and gives exact 97/97. Do not substitute `noinline` when a truthful TU boundary explains the target.
+- The InfoManager resource wave cross-validates a narrow current layout: effect manager `+0x04`, design resources `+0x98/+0xCC`, combo resource `+0x100`, two 0x34 records at `+0x16C`, two 0x154 records at `+0x1D4`, bound inputs `+0x47C`, runtime tick `+0x484`, scalar `+0x488`, bound design entries `+0x48C/+0x490`, resource state `+0x494`, and two 0xF8 records at `+0x498`. Exact load/release/Story methods exercise the resource and 0xF8 portions; current ctor/dtor/runtime methods independently establish the remaining offsets.
+- `TObjectManagerBase<InfoEffectObject,EffectObjectBase>` is another current-target exact specialization of the existing natural manager-base template: ctor `0x0046EE40` is 103/103, dtor `0x0046F020` is 100/100, and the vtable-owned scalar deleting wrapper `0x0046F4E0` is 30/30. Current RTTI for `InfoEffectObject` independently places `CObjectBase` at `+0x158`, `AnimationObjectBase` at `+0x04`, and `Environment` at `+0x130`; a VC8 layout probe reproduces `sizeof(EffectObjectBase)==0x160` and `sizeof(InfoEffectObject)==0x170`. The 59-byte object constructor remains blocked by one scheduling difference and is not promoted.
+- Same-size or near-same-size semantic completion is still not exactness. `0x0046E5A0`, `0x0046EB90`, `0x0046EF40`, `0x0046F370`, and `0x0046F3D0` all have current semantics/layout closed far enough to reproduce their core control flow, and some fresh objects have the exact target length, but standalone VC8 selects different callee-saved registers or one spill. Leave them review-pending rather than adding volatile/register coercion, fake locals, assembly, or manual vtable evaluation.
+
 ## Unknown
 
 - Exact VC8 service pack and compiler/linker flags used for every original
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 2,998
+- Accepted boundaries and authored/library origins for the remaining 2,989
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.

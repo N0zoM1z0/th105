@@ -679,3 +679,15 @@ For external target strings, distinguish address ownership from object-owned lit
 ### Share proved polymorphic subobject contracts across facades
 
 `PostSequenceTransitionView::publish_transition_effect_46e040 @ 0x0046EA10` reuses the exact-backed `EffectEmitterSubobject` contract already used by `InfoEffectEmitterView`: the owner embeds it at `+0x04` and calls vslot `+0x0C`. With the already-attested 320.0f and 240.0f literals, ordinary VC8 source `emitter_04.emit(effect_id, 320.0f, 240.0f, 1, 0, 0)` is 47/47 exact. After replacing the round-transition TU's local ABI alias with the shared header, replay that caller; it remains exact. Prefer one narrow, target-backed subobject contract over multiple local vtable shapes whenever current ownership and slot evidence agree.
+
+### Do not infer a container's mapped type from a key-only template helper
+
+A raw-exact generated `std::_Tree::find` COMDAT can be stable across different mapped-value types when its machine code only compares keys and walks nodes. The pinned origin witness for current `0x0046EA60` uses `std::map<unsigned,void*>`, which is sufficient to prove compiler ownership of that helper. It is not sufficient to prove the live map schema. Current initializer `0x00438F50` writes path-hash/16-bit-id records, and exact authored `0x0046EB00` reads `iterator->second`, proving the actual object at `0x006FBD2C` is `std::map<unsigned,unsigned short>`. Treat generated template probes as code-shape/origin evidence unless the generated body actually touches the mapped value layout.
+
+### Use translation-unit visibility before compiler attributes
+
+`InfoManagerResourceView::initialize_story_info_resources_471e50 @ 0x00471E50` calls exact base loader `0x0046E960`. Putting both definitions in one probe TU lets VC8 inline the 33-byte loader and changes the target body. Moving only the truthful Story method to a separate TU, leaving the base declaration visible but not its definition, restores the target out-of-line call and gives 97/97 exact. This is positive source-partition evidence. Prefer a supported TU boundary over `noinline`, optimization changes, or dummy side effects.
+
+### A same-size register permutation is still a blocker
+
+Several InfoManager/effect functions now have complete current semantics and natural VC8 source but remain non-exact solely because standalone allocation differs: `0x0046E5A0` is the same 168-byte length with callee-saved register permutation, `0x0046F3D0` is the same 117-byte length with a different persistent `this` register, and `0x0046EB90/0x0046EF40/0x0046F370` differ by one spill or nearby scheduling choice. Do not use volatile locals, manual register variables, fake lifetime extensions, inline assembly, or vtable arithmetic to force these. Keep the semantic recovery as a handoff and wait for stronger TU/LTCG/layout evidence.
