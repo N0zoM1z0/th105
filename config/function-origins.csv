@@ -1774,7 +1774,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0045CF60,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0045CFB0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0045D040,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0045D110,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0045D110,authored_game,battle,authored,observed,th105-1.06a-structural-vc8-exact-replay-2026-08-21
 0x0045D1B0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0045D230,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0045D390,unknown,,review,unknown,ida-1.06a-initial-inventory

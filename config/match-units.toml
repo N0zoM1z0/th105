@@ -650,3 +650,23 @@ rel32_targets = [
   "?run_458cd0@BattlePhaseBlock@th105@@QAEHXZ=0x0045A2A0",
 ]
 dir32_targets = ["?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A=?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A"]
+
+[units.cross-v106a-fighter-sequence-finalize]
+kind = "probe"
+source = "src/battle/FighterSequenceFinalize.cpp"
+object = "build/match-units/CrossV106a_FighterSequenceFinalize.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a structural-remap sequence finalization helper; shared InfoManager pointer uses current-target semantic address validation."
+
+[[units.cross-v106a-fighter-sequence-finalize.functions]]
+address = "0x0045D110"
+symbol_base = "finalize_sequence_entry_45bb10"
+rel32_targets = [
+  "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
+  "?get_score_data@th105@@YAPAUScoreData@1@XZ=0x0043AF20",
+  "?record_sequence_result_42c060@ScoreData@th105@@QAEXHHH@Z=0x0042CF70",
+  "?finalize_4643f0@FighterSequenceEffectView@?A0x0fa9c17f@th105@@QAEXXZ=0x004652B0",
+  "?invoke_indexed_record@PlayerIndexedCallbackView@th105@@QAEXHH@Z=0x00432DE0",
+]
+dir32_targets = ["?g_info_manager@th105@@3PAUInfoManager@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A"]

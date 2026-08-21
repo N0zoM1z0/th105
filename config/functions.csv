@@ -1774,7 +1774,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0045CF60,67,0x0045CFA2,sub_45CF60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045CFB0,143,0x0045D03E,sub_45CFB0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045D040,198,0x0045D105,sub_45D040,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0045D110,154,0x0045D1A9,sub_45D110,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0045D110,154,0x0045D1A9,sub_45D110,Fighter_finalize_sequence_entry,battle,matching,100.00,__thiscall,"void Fighter_finalize_sequence_entry(Fighter * this, int outcome)",false,src/battle/FighterSequenceFinalize.cpp,python3 scripts/build.py --unit cross-v106a-fighter-sequence-finalize --compare --json reports exact 154/154 against TH105 1.06a,root,"Fresh TH105 1.06a VC8 zero-diff structural remap; current IDA confirms score publication, embedded sequence-effect finalization at 0x004652B0, and player-indexed InfoManager callback via 0x006FBCA8."
 0x0045D1B0,118,0x0045D225,sub_45D1B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045D230,346,0x0045D389,sub_45D230,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045D390,186,0x0045D449,sub_45D390,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
