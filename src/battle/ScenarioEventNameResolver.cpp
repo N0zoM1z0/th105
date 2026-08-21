@@ -9,6 +9,11 @@ typedef std::map<int, String28> ScenarioEventNameMap;
 
 extern "C" ScenarioEventNameMap g_scenario_event_name_map;
 
+const char *__cdecl character_key_to_name(int character_key)
+{
+    return g_scenario_event_name_map.find(character_key)->second.c_str();
+}
+
 int __cdecl resolve_scenario_event_name(String28 value)
 {
     for (ScenarioEventNameMap::iterator it =

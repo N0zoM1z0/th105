@@ -876,7 +876,16 @@ source = "src/battle/ScenarioEventNameResolver.cpp"
 object = "build/match-units/CrossV106a_ScenarioEventNameResolver.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a full-boundary exact case-insensitive scenario event-name lookup; current map base/head uses one address-validated global with addends 0 and 4."
+notes = "TH105 1.06a scenario-event name map accessors. Current exact callers establish the key-to-name accessor; the same exact-backed std::map<int,String28> supports the full-boundary case-insensitive reverse resolver. Fresh VC8 reproduces both bodies, while the map::find specialization is separately classified compiler-generated."
+
+[[units.cross-v106a-scenario-event-name-resolver.functions]]
+address = "0x0043BF80"
+symbol_base = "character_key_to_name"
+rel32_targets = [
+  "?find@?$_Tree@V?$_Tmap_traits@HV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$less@H@2@V?$allocator@U?$pair@$$CBHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x006A4D60",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = ["_g_scenario_event_name_map=_g_scenario_event_name_map"]
 
 [[units.cross-v106a-scenario-event-name-resolver.functions]]
 address = "0x0043BFD0"

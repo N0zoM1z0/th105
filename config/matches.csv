@@ -277,3 +277,4 @@ address,name,size,status,match_percent,unit,evidence
 0x004272F0,synchronize_targets,33,matching,100.00,cross-v106a-shared-event-state,python3 scripts/build.py --unit cross-v106a-shared-event-state --compare --json reports exact 33/33 against TH105 1.06a
 0x00434E10,set_global_pair,34,matching,100.00,cross-v106a-event-subobject130,python3 scripts/build.py --unit cross-v106a-event-subobject130 --compare --json reports exact 34/34 against TH105 1.06a
 0x00476AD0,set_shared_second_target,26,matching,100.00,cross-v106a-shared-event-forwarder,python3 scripts/build.py --unit cross-v106a-shared-event-forwarder --compare --json reports exact 26/26 against TH105 1.06a
+0x0043BF80,character_key_to_name,78,matching,100.00,cross-v106a-scenario-event-name-resolver,python3 scripts/build.py --unit cross-v106a-scenario-event-name-resolver --compare --json reports exact 78/78 against TH105 1.06a

@@ -276,3 +276,4 @@ set_target_28_enabled_2e
 synchronize_targets
 set_global_pair
 set_shared_second_target
+character_key_to_name

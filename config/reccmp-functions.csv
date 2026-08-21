@@ -277,3 +277,4 @@ set_target_28_enabled_2e,0x004272D0,function
 synchronize_targets,0x004272F0,function
 set_global_pair,0x00434E10,function
 set_shared_second_target,0x00476AD0,function
+character_key_to_name,0x0043BF80,function
