@@ -75,8 +75,8 @@ class WorkflowToolingTests(unittest.TestCase):
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,004", markdown)
         self.assertIn("Confirmed authored functions | 252", markdown)
-        self.assertIn("Classified exclusions | 675", markdown)
-        self.assertIn("Origin/boundary review pending | 3,077", markdown)
+        self.assertIn("Classified exclusions | 677", markdown)
+        self.assertIn("Origin/boundary review pending | 3,075", markdown)
         self.assertIn("Canonical exact functions | 252", markdown)
         self.assertIn("Canonical exact authored bytes | 32,286", markdown)
         self.assertIn(
@@ -131,6 +131,18 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(
             [(row["address"], row["size"]) for row in rows],
             [("0x0045FC30", 76), ("0x00461320", 129)],
+        )
+        with (ROOT / "config" / "vc8-generated-pat-copy-origin-anchors.toml").open("rb") as stream:
+            copy_anchors = tomllib.load(stream)
+        self.assertEqual(copy_anchors["target_sha256"], anchors["target_sha256"])
+        self.assertEqual(copy_anchors["compiler_sha256"], anchors["compiler_sha256"])
+        self.assertEqual(copy_anchors["source"], "scripts/probes/pat_vector_generated.cpp")
+        self.assertTrue(copy_anchors["enable_gs"])
+        self.assertEqual(copy_anchors["max_alignment_tail"], 1)
+        self.assertEqual(copy_anchors["alignment_tail_hex"], "cc")
+        self.assertEqual(
+            [(row["address"], row["size"]) for row in copy_anchors["anchors"]],
+            [("0x00461420", 249), ("0x00461940", 123)],
         )
 
     def test_inventory_pagination_normalization(self) -> None:

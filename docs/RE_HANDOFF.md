@@ -14,7 +14,7 @@ seeds using current-target-backed structural remapping where appropriate.
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 252 authored functions, 675 classified exclusions, and 3,077 still awaiting origin/boundary review.
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 252 authored functions, 677 classified exclusions, and 3,075 still awaiting origin/boundary review.
 - All 252 confirmed authored functions are source-present and canonical exact:
   32,286 exact authored bytes across 123 configured VC8 units.
 - The newest retained-source migration wave added 136 functions / 17,165 bytes
@@ -22,7 +22,7 @@ seeds using current-target-backed structural remapping where appropriate.
   relocation-masked bytes are used only for candidate ranking; every accepted
   function still requires current 1.06a semantic/relocation evidence and a fresh
   canonical zero-difference comparison.
-- The newest lifetime/template batch adds fourteen 100-byte roster `TObjectManagerBase` destructors plus exact `PatGroup` construction/destruction. A new SHA-pinned VC8 generated-COMDAT origin rule also excludes checked `vector<PatRecord88>::_Tidy` and `erase` from the authored denominator by recompiling tracked source and requiring an inventory-unique relocation-masked fingerprint.
+- The newest lifetime/template batch adds fourteen 100-byte roster `TObjectManagerBase` destructors plus exact `PatGroup` construction/destruction. SHA-pinned VC8 generated-COMDAT origin rules now exclude four checked/template helpers from the authored denominator: `vector<PatRecord88>::_Tidy`, `erase`, the vector copy constructor, and `std::_Construct<PatGroup>`. The copy-constructor rule permits exactly one generated `0xCC` COMDAT alignment byte beyond its 249-byte target body; no general exact comparator rule is weakened.
 - `config/claims.csv` remains header-only. IDA Pro remains the sole semantic
   backend.
 
@@ -54,7 +54,7 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 3,077
+The 95% authored-function and authored-byte goals cannot be reported yet: 3,075
 provisional candidates still need authored/excluded classification, so the
 global authored denominator is not established. Do not use the current 252/252
 exact subset as a substitute denominator.

@@ -1,0 +1,19 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "scripts/probes/pat_vector_generated.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 1
+alignment_tail_hex = "cc"
+
+[[anchors]]
+address = "0x00461420"
+size = 249
+symbol = "??0?$vector@VPatRecord88@th105@@V?$allocator@VPatRecord88@th105@@@std@@@std@@QAE@ABV01@@Z"
+
+[[anchors]]
+address = "0x00461940"
+size = 123
+symbol = "??$_Construct@UPatGroup@th105@@U12@@std@@YAXPAUPatGroup@th105@@ABU12@@Z"

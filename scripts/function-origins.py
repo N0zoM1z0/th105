@@ -554,7 +554,7 @@ def validate_vc8_generated_anchor_evidence(
     source = ROOT / str(anchors_doc["source"])
     if not source.is_file():
         return [f"{rule['id']}: VC8 generated anchor source is missing: {source}"]
-    object_path = ROOT / "build" / "origin-anchors" / "vc8-generated-pat-vector.obj"
+    object_path = ROOT / "build" / "origin-anchors" / f"{anchor_path.stem}.obj"
     object_path.parent.mkdir(parents=True, exist_ok=True)
     env = os.environ.copy()
     env["TH105_ENABLE_GS"] = "1" if bool(anchors_doc.get("enable_gs")) else "0"
@@ -600,13 +600,29 @@ def validate_vc8_generated_anchor_evidence(
             _name, body, wild, relocations = rank.read_coff_function(
                 object_path, symbol, size
             )
-            try:
-                rank.read_coff_function(object_path, symbol, size + 1)
-            except ValueError as exc:
-                if "exceeds section tail" not in str(exc):
-                    raise
-            else:
-                raise ValueError("generated COMDAT is larger than anchored candidate")
+            max_tail = int(anchors_doc.get("max_alignment_tail", 0))
+            allowed_tail = set(bytes.fromhex(str(anchors_doc.get("alignment_tail_hex", ""))))
+            final_tail = b""
+            saw_end = False
+            for extra in range(1, max_tail + 2):
+                try:
+                    _extended_name, extended, _extended_wild, extended_relocations = (
+                        rank.read_coff_function(object_path, symbol, size + extra)
+                    )
+                except ValueError as exc:
+                    if "exceeds section tail" not in str(exc):
+                        raise
+                    saw_end = True
+                    break
+                final_tail = extended[size:]
+                if any(offset >= size for offset, _kind, _symbol in extended_relocations):
+                    raise ValueError("generated COMDAT alignment tail contains a relocation")
+            if not saw_end:
+                raise ValueError("generated COMDAT exceeds permitted alignment tail")
+            if final_tail and (not allowed_tail or any(byte not in allowed_tail for byte in final_tail)):
+                raise ValueError(
+                    f"generated COMDAT has non-allowlisted alignment tail {final_tail.hex()}"
+                )
         except ValueError as exc:
             errors.append(f"{rule['id']}: {address}: {exc}")
             continue

@@ -1853,12 +1853,12 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00461320,compiler_generated,battle,exclude,observed,vc8-generated-pat-vector-anchors-106a
 0x004613B0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004613E0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00461420,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00461420,compiler_generated,battle,exclude,observed,vc8-generated-pat-copy-anchors-106a
 0x00461520,authored_game,battle,authored,observed,canonical-exact-authored
 0x00461590,authored_game,battle,authored,observed,canonical-exact-authored
 0x00461610,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00461640,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00461940,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00461940,compiler_generated,battle,exclude,observed,vc8-generated-pat-copy-anchors-106a
 0x004619C0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00461A30,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00461AF0,unknown,,review,unknown,ida-1.06a-initial-inventory
