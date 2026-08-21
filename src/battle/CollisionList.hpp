@@ -20,6 +20,7 @@ struct CollisionList {
     }
 
     CollisionListNode *buy_sentinel();
+    ~CollisionList() throw();
     CollisionListNode *create_node(
         CollisionListNode *next,
         CollisionListNode *previous,

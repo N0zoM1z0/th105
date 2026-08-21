@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stddef.h>
+#include <vector>
 
 namespace th105 {
 
@@ -15,17 +16,6 @@ struct PaletteHandleVectorView {
 
 struct PatGroupDequeView {
     unsigned char storage_00[0x14];
-};
-
-struct PatGroup {
-    unsigned char unknown_00[4];
-    unsigned char record_vector_04[0x0c];
-    short field_10;
-    short field_12;
-    unsigned char field_14;
-    unsigned char padding_15[3];
-    PatGroup *link_18;
-    PatGroup *link_1c;
 };
 
 struct PatOptionalModePayload20 {
@@ -43,8 +33,12 @@ struct PatRaw16 {
     unsigned char bytes_00[0x10];
 };
 
-struct PatRecord88 {
-    void *vtable_00;
+class PatRecord88 {
+public:
+    PatRecord88();
+    PatRecord88(PatRecord88 const &other);
+    virtual ~PatRecord88();
+
     short fields_04_to_12[8];
     unsigned char tag_14;
     unsigned char padding_15[3];
@@ -61,21 +55,30 @@ struct PatRecord88 {
     unsigned char raw16_pointer_vector_78[0x10];
 };
 
+struct PatGroup {
+    std::vector<PatRecord88> records_00;
+    short field_10;
+    short field_12;
+    unsigned char field_14;
+    // 0x15..0x17 are natural alignment padding; current copy construction does not copy them.
+    PatGroup *link_18;
+    PatGroup *link_1c;
+
+    PatGroup();
+    ~PatGroup();
+};
+
 struct PatTransientPairNode {
     PatTransientPairNode *next_00;
     PatTransientPairNode *previous_04;
     void *payload_08;
 };
 
-PatRecord88 *__thiscall PatRecord88_construct(PatRecord88 *self);
-void __thiscall PatRecord88_destroy(PatRecord88 *self);
-PatGroup *__thiscall PatGroup_construct(PatGroup *self);
-void __thiscall PatGroup_destroy(PatGroup *self);
-void __thiscall PatGroupDeque_grow_for_append(PatGroupDequeView *self);
-int __thiscall PatRecord88_finalize_owned_fields(PatRecord88 *self, int selector);
-int __thiscall PatRecord88_resize_raw16_values(void *self, int count, void *source);
+void PatGroupDeque_grow_for_append(PatGroupDequeView *self);
+int PatRecord88_finalize_owned_fields(PatRecord88 *self, int selector);
+int PatRecord88_resize_raw16_values(void *self, int count, void *source);
 int __cdecl PatGroup_copy_construct(void *destination, void const *source);
-int __thiscall PatGroup_resize_records(PatGroup *self, int count, void *source);
+int PatGroup_resize_records(PatGroup *self, int count, void *source);
 
 typedef char PaletteHandleVectorView_size_must_be_0x10[
     sizeof(PaletteHandleVectorView) == 0x10 ? 1 : -1];

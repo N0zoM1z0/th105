@@ -101,3 +101,14 @@ subsystem = "audio"
 disposition = "exclude"
 confidence = "observed"
 evidence = "each current candidate is the inventory-unique link-agnostic exact fingerprint of a relocation-bearing COMDAT re-extracted from the SHA-pinned official Ogg/Vorbis Win32 SDK 1.0.1; only supported 4-byte link fields are masked and strong non-relocation coverage is required"
+
+[[rules]]
+id = "vc8-generated-pat-vector-anchors-106a"
+vc8_generated_anchor_file = "config/vc8-generated-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 205
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "each current candidate is the inventory-unique non-relocation fingerprint of a checked std::vector<PatRecord88> COMDAT freshly generated from tracked PatGroup source by the SHA-pinned VC8 SP1 compiler; COMDAT size and relocation form are replayed fail-closed"

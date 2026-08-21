@@ -12,8 +12,10 @@ from collections import Counter
 import csv
 import hashlib
 import importlib.util
+import os
 from pathlib import Path
 import struct
+import subprocess
 import tomllib
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -509,6 +511,146 @@ def validate_xiph_relocated_anchor_evidence(
     return errors
 
 
+def load_retained_rank_module():
+    path = ROOT / "scripts/rank_retained_exact.py"
+    spec = importlib.util.spec_from_file_location("th105_retained_rank", path)
+    if spec is None or spec.loader is None:
+        raise ValueError("cannot load retained-source COFF helper")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def validate_vc8_generated_anchor_evidence(
+    rule: dict[str, object],
+    selected: list[dict[str, str]],
+    rows: list[dict[str, str]],
+    read_pe,
+) -> list[str]:
+    """Rebuild pinned VC8 template COMDATs and prove unique current fingerprints."""
+    errors: list[str] = []
+    anchor_path = ROOT / str(rule["vc8_generated_anchor_file"])
+    anchors_doc = tomllib.loads(anchor_path.read_text(encoding="utf-8"))
+    configured_hash = str(target_manifest()["target"]["sha256"])
+    if str(anchors_doc.get("target_sha256")) != configured_hash:
+        return [f"{rule['id']}: VC8 generated anchor target SHA-256 differs from canonical target"]
+
+    compiler_root = Path(
+        os.environ.get("TH105_MSVC8_ROOT", str(ROOT / ".tools" / "msvc80-sp1"))
+    )
+    compiler = compiler_root / "bin" / "cl.exe"
+    if not compiler.is_file():
+        return [f"{rule['id']}: pinned VC8 compiler is missing: {compiler}"]
+    compiler_hash = hashlib.sha256(compiler.read_bytes()).hexdigest()
+    if compiler_hash != str(anchors_doc.get("compiler_sha256")):
+        return [f"{rule['id']}: VC8 compiler SHA-256 differs from anchor manifest"]
+
+    anchors = anchors_doc.get("anchors", [])
+    selected_addresses = {row["address"] for row in selected}
+    anchor_addresses = {str(anchor["address"]) for anchor in anchors}
+    if selected_addresses != anchor_addresses:
+        return [f"{rule['id']}: selected addresses differ from VC8 generated anchor file"]
+
+    source = ROOT / str(anchors_doc["source"])
+    if not source.is_file():
+        return [f"{rule['id']}: VC8 generated anchor source is missing: {source}"]
+    object_path = ROOT / "build" / "origin-anchors" / "vc8-generated-pat-vector.obj"
+    object_path.parent.mkdir(parents=True, exist_ok=True)
+    env = os.environ.copy()
+    env["TH105_ENABLE_GS"] = "1" if bool(anchors_doc.get("enable_gs")) else "0"
+    proc = subprocess.run(
+        [str(ROOT / "scripts" / "compile-unit.sh"), str(source), str(object_path)],
+        cwd=ROOT,
+        env=env,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+    if proc.returncode != 0:
+        return [f"{rule['id']}: VC8 generated anchor source failed to compile: {proc.stdout.strip()}"]
+
+    min_coverage = float(anchors_doc.get("min_nonreloc_coverage", 0.0))
+    min_nonreloc = int(anchors_doc.get("min_nonreloc_bytes", 0))
+    if not 0.0 < min_coverage <= 1.0 or min_nonreloc < 1:
+        return [f"{rule['id']}: invalid VC8 generated anchor evidence thresholds"]
+
+    rank = load_retained_rank_module()
+    row_by_address = {row["address"]: row for row in rows}
+    candidate_bytes: dict[str, bytes] = {}
+    for row in rows:
+        try:
+            candidate_bytes[row["address"]] = read_pe(
+                int(row["address"], 0), int(row["size"], 0)
+            )
+        except ValueError:
+            pass
+
+    for anchor_row in anchors:
+        address = str(anchor_row["address"])
+        row = row_by_address.get(address)
+        if row is None:
+            errors.append(f"{rule['id']}: missing VC8 generated candidate {address}")
+            continue
+        size = int(anchor_row["size"])
+        if int(row["size"], 0) != size:
+            errors.append(f"{rule['id']}: {address} size differs from VC8 generated anchor")
+            continue
+        symbol = str(anchor_row["symbol"])
+        try:
+            _name, body, wild, relocations = rank.read_coff_function(
+                object_path, symbol, size
+            )
+            try:
+                rank.read_coff_function(object_path, symbol, size + 1)
+            except ValueError as exc:
+                if "exceeds section tail" not in str(exc):
+                    raise
+            else:
+                raise ValueError("generated COMDAT is larger than anchored candidate")
+        except ValueError as exc:
+            errors.append(f"{rule['id']}: {address}: {exc}")
+            continue
+
+        for field_offset, relocation_type, relocation_name in relocations:
+            if relocation_type not in (0x0006, 0x0014):
+                errors.append(
+                    f"{rule['id']}: {address} generated symbol has unsupported relocation "
+                    f"{relocation_type:#x} for {relocation_name}"
+                )
+            if relocation_type == 0x0014 and xiph_rel32_operand_kind(body, field_offset) is None:
+                errors.append(
+                    f"{rule['id']}: {address} REL32 at +{field_offset:#x} is not CALL/JMP/Jcc"
+                )
+        nonreloc = size - len(wild)
+        if nonreloc < min_nonreloc or nonreloc / size < min_coverage:
+            errors.append(f"{rule['id']}: {address} generated fingerprint coverage is too weak")
+            continue
+
+        actual = candidate_bytes.get(address)
+        if actual is None or any(
+            index not in wild and actual[index] != body[index]
+            for index in range(size)
+        ):
+            errors.append(f"{rule['id']}: {address} no longer matches generated VC8 fingerprint")
+            continue
+
+        candidates = []
+        for other in rows:
+            other_body = candidate_bytes.get(other["address"])
+            if other_body is None or len(other_body) != size:
+                continue
+            if all(
+                index in wild or other_body[index] == body[index]
+                for index in range(size)
+            ):
+                candidates.append(other["address"])
+        if candidates != [address]:
+            errors.append(
+                f"{rule['id']}: {address} generated VC8 fingerprint is not inventory-unique: {candidates}"
+            )
+    return errors
+
+
 def baseline(row: dict[str, str]) -> dict[str, str]:
     if row["status"] == "matching":
         if row["module"] not in AUTHORED_MODULES:
@@ -519,10 +661,14 @@ def baseline(row: dict[str, str]) -> dict[str, str]:
 
 def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: set[str] | None = None) -> list[dict[str, str]]:
     explicit = {str(value).upper() for value in rule.get("addresses", [])}
-    xiph_manifest = rule.get("xiph_anchor_file") or rule.get("xiph_relocated_anchor_file")
-    if xiph_manifest:
+    anchor_manifest = (
+        rule.get("xiph_anchor_file")
+        or rule.get("xiph_relocated_anchor_file")
+        or rule.get("vc8_generated_anchor_file")
+    )
+    if anchor_manifest:
         anchor_doc = tomllib.loads(
-            (ROOT / str(xiph_manifest)).read_text(encoding="utf-8")
+            (ROOT / str(anchor_manifest)).read_text(encoding="utf-8")
         )
         explicit = {str(anchor["address"]).upper() for anchor in anchor_doc.get("anchors", [])}
     start = int(str(rule["start"]), 0) if "start" in rule else None
@@ -580,6 +726,10 @@ def validate_rule_evidence(
     if rule.get("xiph_relocated_anchor_file"):
         errors.extend(
             validate_xiph_relocated_anchor_evidence(rule, selected, rows, read_pe)
+        )
+    if rule.get("vc8_generated_anchor_file"):
+        errors.extend(
+            validate_vc8_generated_anchor_evidence(rule, selected, rows, read_pe)
         )
     return errors
 

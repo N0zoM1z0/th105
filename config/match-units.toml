@@ -3124,3 +3124,239 @@ rel32_targets = [
   "??1?$CharacterObjectManager@VTenshi@@VTenshiObject@@@@UAE@XZ=0x0064B670",
   "??3@YAXPAX@Z=0x006898EA",
 ]
+
+[units.cross-v106a-roster-manager-base-dtors]
+kind = "probe"
+source = "src/characters/TObjectManagerBase.cpp"
+object = "build/match-units/CrossV106a_TObjectManagerBaseDtors.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a fourteen standalone TObjectManagerBase destructors recovered from the real template lifetime. CollisionList has a non-throwing destructor: VC8 therefore keeps EH state 1 while calling its normal destructor, matching target normal/EH cleanup paths exactly. Yuyuko is excluded because LTCG replaces its standalone 100-byte base dtor with a 27-byte derived tail-jump to the shared release helper."
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x00493640"
+symbol_base = "??1?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@UAE@XZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
+  "??1CollisionList@th105@@QAE@XZ=0x00435EB0",
+  "??1?$CHandleManagerEx@VReimuObject@@@@UAE@XZ=0x00492FE0",
+]
+dir32_targets = [
+  "__ehhandler$??1?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@UAE@XZ=__ehhandler$??1?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x004B9C00"
+symbol_base = "??1?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@UAE@XZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
+  "??1CollisionList@th105@@QAE@XZ=0x00435EB0",
+  "??1?$CHandleManagerEx@VMarisaObject@@@@UAE@XZ=0x004B95A0",
+]
+dir32_targets = [
+  "__ehhandler$??1?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@UAE@XZ=__ehhandler$??1?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x004DF120"
+symbol_base = "??1?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@UAE@XZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
+  "??1CollisionList@th105@@QAE@XZ=0x00435EB0",
+  "??1?$CHandleManagerEx@VSakuyaObject@@@@UAE@XZ=0x004DEAC0",
+]
+dir32_targets = [
+  "__ehhandler$??1?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@UAE@XZ=__ehhandler$??1?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x004FA930"
+symbol_base = "??1?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@UAE@XZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
+  "??1CollisionList@th105@@QAE@XZ=0x00435EB0",
+  "??1?$CHandleManagerEx@VAliceObject@@@@UAE@XZ=0x004FA250",
+]
+dir32_targets = [
+  "__ehhandler$??1?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@UAE@XZ=__ehhandler$??1?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x0051EBD0"
+symbol_base = "??1?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@UAE@XZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
+  "??1CollisionList@th105@@QAE@XZ=0x00435EB0",
+  "??1?$CHandleManagerEx@VPatchouliObject@@@@UAE@XZ=0x0051E570",
+]
+dir32_targets = [
+  "__ehhandler$??1?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@UAE@XZ=__ehhandler$??1?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x0053AF90"
+symbol_base = "??1?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@UAE@XZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
+  "??1CollisionList@th105@@QAE@XZ=0x00435EB0",
+  "??1?$CHandleManagerEx@VYoumuObject@@@@UAE@XZ=0x0053A930",
+]
+dir32_targets = [
+  "__ehhandler$??1?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@UAE@XZ=__ehhandler$??1?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x00555CE0"
+symbol_base = "??1?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@UAE@XZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
+  "??1CollisionList@th105@@QAE@XZ=0x00435EB0",
+  "??1?$CHandleManagerEx@VRemiliaObject@@@@UAE@XZ=0x00555680",
+]
+dir32_targets = [
+  "__ehhandler$??1?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@UAE@XZ=__ehhandler$??1?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x0058BC70"
+symbol_base = "??1?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@UAE@XZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
+  "??1CollisionList@th105@@QAE@XZ=0x00435EB0",
+  "??1?$CHandleManagerEx@VYukariObject@@@@UAE@XZ=0x0058B610",
+]
+dir32_targets = [
+  "__ehhandler$??1?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@UAE@XZ=__ehhandler$??1?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x005AE970"
+symbol_base = "??1?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@UAE@XZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
+  "??1CollisionList@th105@@QAE@XZ=0x00435EB0",
+  "??1?$CHandleManagerEx@VSuikaObject@@@@UAE@XZ=0x005AE290",
+]
+dir32_targets = [
+  "__ehhandler$??1?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@UAE@XZ=__ehhandler$??1?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x005D28C0"
+symbol_base = "??1?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@UAE@XZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
+  "??1CollisionList@th105@@QAE@XZ=0x00435EB0",
+  "??1?$CHandleManagerEx@VUdongeObject@@@@UAE@XZ=0x005D2260",
+]
+dir32_targets = [
+  "__ehhandler$??1?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@UAE@XZ=__ehhandler$??1?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x005F7720"
+symbol_base = "??1?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@UAE@XZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
+  "??1CollisionList@th105@@QAE@XZ=0x00435EB0",
+  "??1?$CHandleManagerEx@VKomachiObject@@@@UAE@XZ=0x005F70C0",
+]
+dir32_targets = [
+  "__ehhandler$??1?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@UAE@XZ=__ehhandler$??1?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x006180F0"
+symbol_base = "??1?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@UAE@XZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
+  "??1CollisionList@th105@@QAE@XZ=0x00435EB0",
+  "??1?$CHandleManagerEx@VAyaObject@@@@UAE@XZ=0x00617A20",
+]
+dir32_targets = [
+  "__ehhandler$??1?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@UAE@XZ=__ehhandler$??1?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x00630FA0"
+symbol_base = "??1?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@UAE@XZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
+  "??1CollisionList@th105@@QAE@XZ=0x00435EB0",
+  "??1?$CHandleManagerEx@VIkuObject@@@@UAE@XZ=0x00630940",
+]
+dir32_targets = [
+  "__ehhandler$??1?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@UAE@XZ=__ehhandler$??1?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@6B@",
+]
+
+[[units.cross-v106a-roster-manager-base-dtors.functions]]
+address = "0x0064B370"
+symbol_base = "??1?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@UAE@XZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
+  "??1CollisionList@th105@@QAE@XZ=0x00435EB0",
+  "??1?$CHandleManagerEx@VTenshiObject@@@@UAE@XZ=0x0064AC70",
+]
+dir32_targets = [
+  "__ehhandler$??1?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@UAE@XZ=__ehhandler$??1?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@6B@=??_7?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@6B@",
+]
+
+[units.cross-v106a-pat-group-lifetime]
+kind = "probe"
+source = "src/battle/PatGroup.cpp"
+object = "build/match-units/CrossV106a_PatGroup.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a PAT group lifetime recovery. Current target and pinned VC8 identify the first 0x10 bytes as checked std::vector<PatRecord88>; both authored ctor/dtor explicitly clear the vector. The neighboring erase/_Tidy/_Insert_n/_Assign_n bodies are compiler template machinery and remain separate origin work."
+
+[[units.cross-v106a-pat-group-lifetime.functions]]
+address = "0x00461520"
+symbol_base = "PatGroup_ctor"
+rel32_targets = [
+  "?erase@?$vector@VPatRecord88@th105@@V?$allocator@VPatRecord88@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@VPatRecord88@th105@@V?$allocator@VPatRecord88@th105@@@std@@@2@V32@0@Z=0x00461320",
+]
+dir32_targets = [
+  "__ehhandler$??0PatGroup@th105@@QAE@XZ=__ehhandler$??0PatGroup@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+]
+
+[[units.cross-v106a-pat-group-lifetime.functions]]
+address = "0x00461590"
+symbol_base = "PatGroup_dtor"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$vector@VPatRecord88@th105@@V?$allocator@VPatRecord88@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@VPatRecord88@th105@@V?$allocator@VPatRecord88@th105@@@std@@@2@V32@0@Z=0x00461320",
+  "?_Tidy@?$vector@VPatRecord88@th105@@V?$allocator@VPatRecord88@th105@@@std@@@std@@IAEXXZ=0x0045FC30",
+]
+dir32_targets = [
+  "__ehhandler$??1PatGroup@th105@@QAE@XZ=__ehhandler$??1PatGroup@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+]

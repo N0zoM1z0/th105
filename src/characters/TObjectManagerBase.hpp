@@ -46,6 +46,7 @@ public:
     TObjectManagerBase();
     virtual ~TObjectManagerBase();
     void preallocate_object_pool(unsigned target_count);
+    void release_all_tracked_objects();
 
     CHandleManagerEx<ObjectType> handle_pool_04;
     th105::CollisionList linked_objects_54;
@@ -57,6 +58,12 @@ template <typename ObjectType, typename BaseObjectType>
 TObjectManagerBase<ObjectType, BaseObjectType>::TObjectManagerBase()
     : handle_pool_04(), linked_objects_54()
 {
+}
+
+template <typename ObjectType, typename BaseObjectType>
+TObjectManagerBase<ObjectType, BaseObjectType>::~TObjectManagerBase()
+{
+    release_all_tracked_objects();
 }
 #endif
 

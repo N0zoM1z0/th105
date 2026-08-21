@@ -1,0 +1,17 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/battle/PatGroup.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+
+[[anchors]]
+address = "0x0045FC30"
+size = 76
+symbol = "?_Tidy@?$vector@VPatRecord88@th105@@V?$allocator@VPatRecord88@th105@@@std@@@std@@IAEXXZ"
+
+[[anchors]]
+address = "0x00461320"
+size = 129
+symbol = "?erase@?$vector@VPatRecord88@th105@@V?$allocator@VPatRecord88@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@VPatRecord88@th105@@V?$allocator@VPatRecord88@th105@@@std@@@2@V32@0@Z"
