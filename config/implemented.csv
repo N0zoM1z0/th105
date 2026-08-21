@@ -282,3 +282,4 @@ set_ui_selection_state_tracking
 Menu_render_cursor
 is_menu_initial_press
 set_menu_input_state
+EventSubobject130_trigger_global_effect

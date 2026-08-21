@@ -2,6 +2,19 @@
 
 namespace th105 {
 
+struct InfoEffectEmitterView {
+    int emit_effect(int effect_id, float x, float y, int flag_a, int flag_b);
+};
+
+struct EventEffectStateView {
+    int set_event_id(int event_id);
+};
+
+extern int g_event_effect_id;
+extern InfoEffectEmitterView *g_info_effect_emitter;
+extern EventEffectStateView *g_event_effect_state;
+int __cdecl lookup_event_effect_record(int event_id);
+
 struct BattleObjectManagerPairView {
     unsigned char reserved_00[0x10c];
     float shared_first_10c;
@@ -9,6 +22,14 @@ struct BattleObjectManagerPairView {
 };
 
 extern BattleObjectManagerPairView *g_battle_object_manager;
+
+int EventSubobject130::trigger_global_effect(int value)
+{
+    g_event_effect_id = value;
+    g_info_effect_emitter->emit_effect(
+        lookup_event_effect_record(value), 320.0f, 42.0f, 1, 1);
+    return g_event_effect_state->set_event_id(value);
+}
 
 void *EventSubobject130::set_global_pair(float first, float second)
 {

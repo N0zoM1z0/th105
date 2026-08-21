@@ -601,3 +601,19 @@ raw-size coverage from the pinned executable before adding a relocation key. Thi
 is the same storage rule used by the UI-selection globals. Do not weaken target
 byte validation or use a guessed initialized value just because a debugger or
 disassembler renders one.
+
+### Preserve nested argument dependencies before introducing temporaries
+
+MSVC argument preparation can move independent literal loads ahead of a nested
+call. For `EventSubobject130::trigger_global_effect @ 0x00434E90`, spelling the
+effect lookup as a separate local causes standalone VC8 to call the lookup first;
+the target instead prepares `42.0f`, flags, and `320.0f` before evaluating the
+lookup used as the first emit argument. Writing the truthful nested expression
+`emit(lookup(value), 320.0f, 42.0f, 1, 1)` reproduces the target 74-byte body
+without volatile variables, register hints, assembly, or dead work.
+
+Before creating a local merely for readability, compare whether that local gives
+a call result a real lifetime that the target does not have. Prefer the smallest
+source expression supported by current data/control dependencies. Conversely, do
+not nest unrelated calls just because it improves bytes; the target callee graph
+and argument values must already prove the dependency.

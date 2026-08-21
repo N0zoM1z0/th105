@@ -283,3 +283,4 @@ set_ui_selection_state_tracking,0x0043FFB0,function
 Menu_render_cursor,0x0043F9D0,function
 is_menu_initial_press,0x0043ABD0,function
 set_menu_input_state,0x0043ABF0,function
+EventSubobject130_trigger_global_effect,0x00434E90,function

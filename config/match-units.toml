@@ -3848,13 +3848,29 @@ source = "src/battle/EventSubobject130.cpp"
 object = "build/match-units/CrossV106a_EventSubobject130.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a EventSubobject130 global-pair helper. Current callers preserve a Fighter+0x130 member receiver even though the body leaves ECX unused; exact-backed battle object manager 0x006FBCA0 is the returned object and owns floats +0x10C/+0x110."
+notes = "TH105 1.06a EventSubobject130 helper family. Fourteen exact roster bridges establish the Fighter+0x130 receiver and trigger_global_effect call identity; nested lookup-as-first-argument evaluation naturally reproduces the target effect-call stack schedule. set_global_pair legitimately leaves ECX unused and writes exact-backed battle object manager +0x10C/+0x110."
 
 [[units.cross-v106a-event-subobject130.functions]]
 address = "0x00434E10"
 symbol_base = "set_global_pair"
 dir32_targets = [
   "?g_battle_object_manager@th105@@3PAUBattleObjectManagerPairView@1@A=?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A",
+]
+
+[[units.cross-v106a-event-subobject130.functions]]
+address = "0x00434E90"
+symbol_base = "trigger_global_effect"
+rel32_targets = [
+  "?lookup_event_effect_record@th105@@YAHH@Z=0x0043C150",
+  "?emit_effect@InfoEffectEmitterView@th105@@QAEHHMMHH@Z=0x0046E9D0",
+  "?set_event_id@EventEffectStateView@th105@@QAEHH@Z=0x00469DF0",
+]
+dir32_targets = [
+  "?g_event_effect_id@th105@@3HA=?g_event_effect_id@th105@@3HA",
+  "?g_info_effect_emitter@th105@@3PAUInfoEffectEmitterView@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A",
+  "?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A",
+  "__real@43a00000=__real@43a00000",
+  "__real@42280000=__real@42280000",
 ]
 
 [units.cross-v106a-shared-event-forwarder]

@@ -283,3 +283,4 @@ address,name,size,status,match_percent,unit,evidence
 0x0043F9D0,Menu_render_cursor,55,matching,100.00,cross-v106a-menu-render-cursor,python3 scripts/build.py --unit cross-v106a-menu-render-cursor --compare --json reports exact 55/55 against TH105 1.06a
 0x0043ABD0,is_menu_initial_press,31,matching,100.00,cross-v106a-global-input-state-facade,python3 scripts/build.py --unit cross-v106a-global-input-state-facade --compare --json reports exact 31/31 against TH105 1.06a
 0x0043ABF0,set_menu_input_state,21,matching,100.00,cross-v106a-global-input-state-facade,python3 scripts/build.py --unit cross-v106a-global-input-state-facade --compare --json reports exact 21/21 against TH105 1.06a
+0x00434E90,EventSubobject130_trigger_global_effect,74,matching,100.00,cross-v106a-event-subobject130,python3 scripts/build.py --unit cross-v106a-event-subobject130 --compare --json reports exact 74/74 against TH105 1.06a

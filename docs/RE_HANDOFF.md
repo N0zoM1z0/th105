@@ -14,10 +14,10 @@ seeds using current-target-backed structural remapping where appropriate.
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 284 authored functions, 696 classified exclusions, and 3,024 still awaiting origin/boundary review.
-- All 284 confirmed authored functions are source-present and canonical exact:
-  49,640 exact authored bytes across 145 configured VC8 units.
-- The newest retained-source/lifecycle migration wave added 184 functions / 36,153 bytes
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 285 authored functions, 696 classified exclusions, and 3,023 still awaiting origin/boundary review.
+- All 285 confirmed authored functions are source-present and canonical exact:
+  49,714 exact authored bytes across 145 configured VC8 units.
+- The newest retained-source/lifecycle migration wave added 185 functions / 36,227 bytes
   beyond the prior 100-function checkpoint. Structural instruction shape and
   relocation-masked bytes are used only for candidate ranking; every accepted
   function still requires current 1.06a semantic/relocation evidence and a fresh
@@ -33,6 +33,7 @@ seeds using current-target-backed structural remapping where appropriate.
 - Fourteen current character event bridges are now canonical exact from narrow current-target views: Alice plus Reimu, Marisa, Sakuya, Patchouli, Youmu, Remilia, Yuyuko, Suika, Udonge, Komachi, Aya, Iku, and Tenshi. Iku `0x0063CCB0` is 1553/1553 exact: two genuinely distinct `float[3]` spawn temporaries explain the target 0x18 stack frame, and all eight current callers of `0x00434E10` preserve an event-subobject receiver at `+0x130`, proving an unused-`this` member ABI that naturally recreates the target EDI lifetime. Tenshi `0x00659420` is 1412/1412 exact with one unused-`this` member view of `0x004359D0`; case 133 reaches it while ECX still holds `this`, whereas case 134 reloads ECX after shared-state calls clobber the receiver. Yukari remains outside the exact event-bridge set because standalone VC8 removes a target-only redundant `cmp ax,ax; jne` tail in case 156; do not reintroduce that dead test with tautological source or assembly.
 - `try_dispatch_flagged_gate_actions_220_224 @ 0x00493B40` is 258/258 exact. Current IDA shows calls from all fifteen roster fighter dispatchers and the established phase/counter callees. The target has three truthful success tails: action 222 keeps its own consume-and-return path, action 220 owns a second counter/return path, and actions 223/224 jump into the latter. Preserving that already-observed CFG in ordinary C++ makes VC8 reproduce all internal branch displacements exactly; no assembly, dead code, padding, or register forcing is used.
 - The shared event-helper wave adds five authored exact functions / 127 bytes without changing any of the fourteen exact roster event bridges. `SharedEventState` setters `0x004272B0/0x004272D0` are 17/17 each, `synchronize_targets @ 0x004272F0` is 33/33, `EventSubobject130::set_global_pair @ 0x00434E10` is 34/34, and the unused-receiver `set_shared_second_target @ 0x00476AD0` is 26/26. Fourteen exact callers establish the common state ABI, while the forwarder must remain in a separate TU: making the target setter body visible lets VC8 inline it, unlike the linked 1.06a call body.
+- `EventSubobject130::trigger_global_effect @ 0x00434E90` is 74/74 exact and is reached by all fourteen exact roster bridges. Current target fixes event-id publication `0x006FA890`, lookup `0x0043C150`, exact-backed info-manager emitter receiver `0x006FBCA8`, constants `320.0f/42.0f`, and shared state controller `0x006FBCAC`. Keeping the lookup nested as the first emitter argument reproduces the target argument-preparation order naturally; extracting it to a local changes VC8 scheduling.
 - The UI-selection state wave adds two authored exact helpers / 112 bytes. `has_ui_selection_state_changed @ 0x0043B6E0` is 24/24 exact from the current unsigned dword-state minus byte-snapshot predicate. `set_ui_selection_state_tracking @ 0x0043FFB0` is 88/88 exact and establishes `g_ui_selection_state @ 0x006FD290`, snapshot/fade bytes `0x006FD046/0x006FD047`, and checked `std::list<UiSelectionMenu*> @ 0x006FD288`; disabled nonzero state walks `back()` through the sentinel at base+4 and tail-calls the selected menu vslot +4. These globals are loader-zero virtual-tail storage, so relocation provenance must preserve that fact and the list's +4 addend.
 - `Menu::render_cursor @ 0x0043F9D0` is 55/55 exact from a narrow shared cursor-sprite view. Current IDA has twelve callers, proves receiver base `0x006E6958`, scale fields `+0x88/+0x8C`, direct render `0x00406BE0`, and the double `1/512` literal at `0x006C1860`. The match unit preserves one aggregate symbol and validates the two interior DIR32 references through symbol+addend mappings instead of inventing field globals.
 - The global input-state facade adds `is_menu_initial_press @ 0x0043ABD0` (31/31) and `set_menu_input_state @ 0x0043ABF0` (21/21). Both load receiver `0x006FC618` and forward unchanged byte/bool stack slots to already exact members `0x0040A660/0x0040A6B0`. Canonical PE mapping proves the receiver is loader-zero virtual-tail storage even though IDA presents a nonzero-looking inferred value; relocation provenance follows the PE mapping.
@@ -59,7 +60,7 @@ the current call target.
 ## Next bounded work
 
 Continue origin/boundary review so the authored denominator becomes meaningful,
-then expand exact recovery from the 284 accepted functions. Use
+then expand exact recovery from the 285 accepted functions. Use
 `scripts/rank_retained_exact.py --only-unconfigured` to prioritize historical
 exact source that never had an old match unit. Same-size zero non-relocation
 mismatch candidates are especially productive, but ambiguous template/clone
@@ -68,9 +69,9 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 3,024
+The 95% authored-function and authored-byte goals cannot be reported yet: 3,023
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 284/284
+global authored denominator is not established. Do not use the current 285/285
 exact subset as a substitute denominator.
 
 ## Routine checkpoint

@@ -17,9 +17,9 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 284 functions / 49,640 bytes in 145
-  VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 184
-  functions / 36,153 bytes beyond the previous 100-function checkpoint. Candidate
+- The accepted 1.06a authored set contains 285 functions / 49,714 bytes in 145
+  VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 185
+  functions / 36,227 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
   establish hypotheses; canonical VC8 zero-difference comparisons establish
   exactness.
@@ -285,7 +285,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,024
+- Accepted boundaries and authored/library origins for the remaining 3,023
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.
@@ -354,3 +354,21 @@ under ABI-compatible retained declarations with different mangled names. Do not
 rewrite those callers merely to make one source spelling globally uniform when
 the target address, forwarded stack slots, and exact member ABI already establish
 the wrapper contract.
+
+### Nested call arguments can recover the target evaluation schedule
+
+`EventSubobject130::trigger_global_effect @ 0x00434E90` is 74/74 exact and is
+called from all fourteen canonical-exact roster event bridges through the proven
+Fighter `+0x130` subobject. Current target semantics publish the event id, resolve
+an effect record through `0x0043C150`, emit it through exact-backed
+`g_info_manager @ 0x006FBCA8` with `320.0f`, `42.0f`, and flags `1,1`, then
+forward the same id to the shared state controller at `0x006FBCAC`.
+
+A semantically equivalent temporary `effect_id = lookup(value)` made VC8 perform
+the lookup before preparing the remaining call arguments and therefore produced
+the wrong schedule. Keeping the real dependency in the call expression,
+`emit(lookup(value), 320.0f, 42.0f, 1, 1)`, lets VC8 naturally preload and spill
+the right-to-left independent arguments before evaluating the nested first
+argument, exactly matching the target. This is a source-lifetime correction, not
+register shaping: only use it when current call semantics independently prove the
+nested expression and the temporary has no source-level lifetime of its own.
