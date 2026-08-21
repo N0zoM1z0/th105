@@ -52,33 +52,33 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4004)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 257)
+        self.assertEqual(len(matching), 259)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 257)
+        self.assertEqual(len(implemented), 259)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 257
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 259
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 126)
+        self.assertEqual(len(manifest["units"]), 127)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            257,
+            259,
         )
 
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,004", markdown)
-        self.assertIn("Confirmed authored functions | 257", markdown)
-        self.assertIn("Classified exclusions | 678", markdown)
-        self.assertIn("Origin/boundary review pending | 3,069", markdown)
-        self.assertIn("Canonical exact functions | 257", markdown)
-        self.assertIn("Canonical exact authored bytes | 34,556", markdown)
+        self.assertIn("Confirmed authored functions | 259", markdown)
+        self.assertIn("Classified exclusions | 685", markdown)
+        self.assertIn("Origin/boundary review pending | 3,060", markdown)
+        self.assertIn("Canonical exact functions | 259", markdown)
+        self.assertIn("Canonical exact authored bytes | 34,865", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
@@ -152,7 +152,34 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertTrue(nested_anchors["enable_gs"])
         self.assertEqual(
             [(row["address"], row["size"]) for row in nested_anchors["anchors"]],
-            [("0x0045FBD0", 88)],
+            [
+                ("0x0045FBD0", 88),
+                ("0x00460AD0", 317),
+                ("0x0040C240", 42),
+                ("0x00435F90", 42),
+                ("0x00464B40", 90),
+                ("0x0040DF70", 90),
+            ],
+        )
+        with (ROOT / "config" / "vc8-generated-pat-record-copy-origin-anchors.toml").open("rb") as stream:
+            record_copy = tomllib.load(stream)
+        self.assertEqual(record_copy["target_sha256"], anchors["target_sha256"])
+        self.assertEqual(record_copy["compiler_sha256"], anchors["compiler_sha256"])
+        self.assertEqual(record_copy["source"], "scripts/probes/pat_record_copy_generated.cpp")
+        self.assertTrue(record_copy["enable_gs"])
+        self.assertEqual(
+            [(row["address"], row["size"]) for row in record_copy["anchors"]],
+            [("0x00460C90", 311)],
+        )
+        with (ROOT / "config" / "vc8-generated-ui-map-origin-anchors.toml").open("rb") as stream:
+            ui_map = tomllib.load(stream)
+        self.assertEqual(ui_map["target_sha256"], anchors["target_sha256"])
+        self.assertEqual(ui_map["compiler_sha256"], anchors["compiler_sha256"])
+        self.assertEqual(ui_map["source"], "scripts/probes/ui_design_map_generated.cpp")
+        self.assertFalse(ui_map["enable_gs"])
+        self.assertEqual(
+            [(row["address"], row["size"]) for row in ui_map["anchors"]],
+            [("0x0046EA60", 105)],
         )
 
     def test_inventory_pagination_normalization(self) -> None:

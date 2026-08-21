@@ -256,3 +256,5 @@ address,name,size,status,match_percent,unit,evidence
 0x00460F90,PatRecord88_construct,300,matching,100.00,cross-v106a-pat-record-lifetime,python3 scripts/build.py --unit cross-v106a-pat-record-lifetime --compare --json reports exact 300/300 against TH105 1.06a
 0x0046B7B0,test_aabb_against_descriptor_shape,248,matching,100.00,cross-v106a-hit-geometry,python3 scripts/build.py --unit cross-v106a-hit-geometry --compare --json reports exact 248/248 against TH105 1.06a
 0x0045F680,load_indexed_character_wave_resources,132,matching,100.00,cross-v106a-fighter-wave-resources,python3 scripts/build.py --unit cross-v106a-fighter-wave-resources --compare --json reports exact 132/132 against TH105 1.06a
+0x00434300,load_spell_csv_via_325b0,148,matching,100.00,cross-v106a-spell-csv-wrappers,python3 scripts/build.py --unit cross-v106a-spell-csv-wrappers --compare --json reports exact 148/148 against TH105 1.06a
+0x00434A10,load_spell_csv_via_32e20,161,matching,100.00,cross-v106a-spell-csv-wrappers,python3 scripts/build.py --unit cross-v106a-spell-csv-wrappers --compare --json reports exact 161/161 against TH105 1.06a

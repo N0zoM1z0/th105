@@ -127,10 +127,32 @@ evidence = "current vector<PatRecord88> copy construction and std::_Construct<Pa
 [[rules]]
 id = "vc8-generated-pat-nested-value-erase-106a"
 vc8_generated_anchor_file = "config/vc8-generated-pat-nested-origin-anchors.toml"
-expected_count = 1
-expected_bytes = 88
+expected_count = 6
+expected_bytes = 669
 origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "current 88-byte checked vector<PatRaw16>::erase is the inventory-unique relocation-masked COMDAT fingerprint freshly generated from the tracked PatRaw16 nested-vector probe by the SHA-pinned VC8 SP1 compiler"
+evidence = "current checked PatRaw16 vector erase/assignment plus explicitly bounded destructor and pointer-vector erase clone groups are relocation-masked COMDAT fingerprints freshly generated from the tracked nested-vector probe by the SHA-pinned VC8 SP1 compiler; each equivalence group must equal the complete current-inventory fingerprint hit set"
+
+[[rules]]
+id = "vc8-generated-pat-record-copy-106a"
+vc8_generated_anchor_file = "config/vc8-generated-pat-record-copy-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 311
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "current PatRecord88 copy constructor is the inventory-unique relocation-masked implicit-copy COMDAT freshly generated from the tracked current 0x88 FrameData/vector layout by the SHA-pinned VC8 SP1 compiler"
+
+[[rules]]
+id = "vc8-generated-ui-map-find-106a"
+vc8_generated_anchor_file = "config/vc8-generated-ui-map-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 105
+origin = "compiler_generated"
+subsystem = "ui"
+disposition = "exclude"
+confidence = "observed"
+evidence = "current 0x0046EA60 is the inventory-unique raw-exact 105-byte checked std::map<unsigned int, void*>::find COMDAT freshly generated from a tracked probe by the SHA-pinned VC8 SP1 compiler; no relocation masking is needed"

@@ -3449,3 +3449,42 @@ dir32_targets = [
   "??_C@_0BE@KPICLJDF@data?1se?1?$CFs?1?$CF03d?4wav?$AA@=??_C@_0BE@KPICLJDF@data?1se?1?$CFs?1?$CF03d?4wav?$AA@",
   "?g_wave_handle_service@th105@@3UOpaqueWaveHandleService@1@A=?g_wave_handle_service@th105@@3UOpaqueWaveHandleService@1@A",
 ]
+[units.cross-v106a-spell-csv-wrappers]
+kind = "probe"
+source = "src/battle/SpellCsvWrappers.cpp"
+object = "build/match-units/CrossV106a_SpellCsvWrappers.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a spell CSV wrappers. Current callers prove the parser targets are SpellDataOwner thiscall members even though the parser bodies do not consume ECX; restoring that ABI naturally recovers the two missing mov ecx,esi instructions."
+
+[[units.cross-v106a-spell-csv-wrappers.functions]]
+address = "0x00434300"
+symbol_base = "load_spell_csv_via_325b0"
+rel32_targets = [
+  "?clear_spell_entries@SpellDataOwner@th105@@QAEXXZ=0x00433A80",
+  "?character_key_to_name@th105@@YAPBDH@Z=0x0043BF80",
+  "?parse_spell_csv_via_325b0@SpellDataOwner@th105@@QAEXPBD0PAUDwordDeque4@2@PAUSpellTree@2@PAX@Z=0x00433B30",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "___security_cookie=___security_cookie",
+  "__imp__wsprintfA=__imp__wsprintfA",
+  "??_C@_0BL@FDFMFODE@data?1csv?1?$CFs?1storySpell?4csv?$AA@=??_C@_0BL@FDFMFODE@data?1csv?1?$CFs?1storySpell?4csv?$AA@",
+  "??_C@_0BK@LLDEPKNL@data?1csv?1?$CFs?1spellcard?4csv?$AA@=??_C@_0BK@LLDEPKNL@data?1csv?1?$CFs?1spellcard?4csv?$AA@",
+]
+
+[[units.cross-v106a-spell-csv-wrappers.functions]]
+address = "0x00434A10"
+symbol_base = "load_spell_csv_via_32e20"
+rel32_targets = [
+  "?clear_spell_entries@SpellDataOwner@th105@@QAEXXZ=0x00433A80",
+  "?character_key_to_name@th105@@YAPBDH@Z=0x0043BF80",
+  "?parse_spell_csv_and_build_card_resources@SpellDataOwner@th105@@QAEXPBD0PAUDwordDeque4@2@PAUSpellTree@2@@Z=0x004343A0",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "___security_cookie=___security_cookie",
+  "__imp__wsprintfA=__imp__wsprintfA",
+  "??_C@_0BL@FDFMFODE@data?1csv?1?$CFs?1storySpell?4csv?$AA@=??_C@_0BL@FDFMFODE@data?1csv?1?$CFs?1storySpell?4csv?$AA@",
+  "??_C@_0BK@LLDEPKNL@data?1csv?1?$CFs?1spellcard?4csv?$AA@=??_C@_0BK@LLDEPKNL@data?1csv?1?$CFs?1spellcard?4csv?$AA@",
+]

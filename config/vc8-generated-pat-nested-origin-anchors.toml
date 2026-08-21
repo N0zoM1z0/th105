@@ -10,3 +10,32 @@ min_nonreloc_bytes = 24
 address = "0x0045FBD0"
 size = 88
 symbol = "?erase@?$vector@UPatRaw16@th105@@V?$allocator@UPatRaw16@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@UPatRaw16@th105@@V?$allocator@UPatRaw16@th105@@@std@@@2@V32@0@Z"
+
+[[anchors]]
+address = "0x00460AD0"
+size = 317
+symbol = "??4?$vector@UPatRaw16@th105@@V?$allocator@UPatRaw16@th105@@@std@@@std@@QAEAAV01@ABV01@@Z"
+
+[[anchors]]
+address = "0x0040C240"
+size = 42
+symbol = "??1?$vector@UPatRaw16@th105@@V?$allocator@UPatRaw16@th105@@@std@@@std@@QAE@XZ"
+equivalence_group = "pat-raw16-vector-dtor-clones"
+
+[[anchors]]
+address = "0x00435F90"
+size = 42
+symbol = "??1?$vector@UPatRaw16@th105@@V?$allocator@UPatRaw16@th105@@@std@@@std@@QAE@XZ"
+equivalence_group = "pat-raw16-vector-dtor-clones"
+
+[[anchors]]
+address = "0x00464B40"
+size = 90
+symbol = "?erase@?$vector@PAUPatRaw16@th105@@V?$allocator@PAUPatRaw16@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@PAUPatRaw16@th105@@V?$allocator@PAUPatRaw16@th105@@@std@@@2@V32@0@Z"
+equivalence_group = "pat-raw16-pointer-erase-clones"
+
+[[anchors]]
+address = "0x0040DF70"
+size = 90
+symbol = "?erase@?$vector@PAUPatRaw16@th105@@V?$allocator@PAUPatRaw16@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@PAUPatRaw16@th105@@V?$allocator@PAUPatRaw16@th105@@@std@@@2@V32@0@Z"
+equivalence_group = "pat-raw16-pointer-erase-clones"

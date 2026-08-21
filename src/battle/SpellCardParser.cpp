@@ -34,7 +34,7 @@ __forceinline unsigned &DwordDeque4::back_checked()
     return blocks_04[block][position & 3];
 }
 
-void __stdcall parse_spell_csv_and_build_card_resources(
+void SpellDataOwner::parse_spell_csv_and_build_card_resources(
     const char *character_name,
     const char *path,
     DwordDeque4 *image_owner,

@@ -585,6 +585,21 @@ def validate_vc8_generated_anchor_evidence(
         except ValueError:
             pass
 
+    equivalence_groups: dict[str, set[str]] = {}
+    group_shapes: dict[str, tuple[int, str]] = {}
+    for anchor_row in anchors:
+        group = str(anchor_row.get("equivalence_group", "")).strip()
+        if not group:
+            continue
+        address = str(anchor_row["address"])
+        shape = (int(anchor_row["size"]), str(anchor_row["symbol"]))
+        previous_shape = group_shapes.setdefault(group, shape)
+        if previous_shape != shape:
+            errors.append(
+                f"{rule['id']}: generated equivalence group {group!r} mixes symbols/sizes"
+            )
+        equivalence_groups.setdefault(group, set()).add(address)
+
     for anchor_row in anchors:
         address = str(anchor_row["address"])
         row = row_by_address.get(address)
@@ -660,9 +675,15 @@ def validate_vc8_generated_anchor_evidence(
                 for index in range(size)
             ):
                 candidates.append(other["address"])
-        if candidates != [address]:
+        group = str(anchor_row.get("equivalence_group", "")).strip()
+        expected_candidates = (
+            sorted(equivalence_groups[group]) if group else [address]
+        )
+        if sorted(candidates) != expected_candidates:
+            label = f"equivalence group {group!r}" if group else "unique anchor"
             errors.append(
-                f"{rule['id']}: {address} generated VC8 fingerprint is not inventory-unique: {candidates}"
+                f"{rule['id']}: {address} generated VC8 {label} mismatch: "
+                f"got {sorted(candidates)}, expected {expected_candidates}"
             )
     return errors
 

@@ -270,7 +270,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0040C0A0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040C100,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040C160,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0040C240,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0040C240,compiler_generated,battle,exclude,observed,vc8-generated-pat-nested-value-erase-106a
 0x0040C270,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040C2E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040C350,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -329,7 +329,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0040DE30,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040DE50,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040DEE0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0040DF70,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0040DF70,compiler_generated,battle,exclude,observed,vc8-generated-pat-nested-value-erase-106a
 0x0040DFD0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040E000,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040E060,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -1038,9 +1038,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00433990,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00433A80,authored_game,battle,authored,observed,canonical-exact-authored
 0x00433B30,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00434300,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00434300,authored_game,battle,authored,observed,canonical-exact-authored
 0x004343A0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00434A10,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00434A10,authored_game,battle,authored,observed,canonical-exact-authored
 0x00434AC0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00434C10,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00434C60,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -1089,7 +1089,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00435E70,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00435EB0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00435F00,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00435F90,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00435F90,compiler_generated,battle,exclude,observed,vc8-generated-pat-nested-value-erase-106a
 0x00435FC0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00435FF0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00436090,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -1838,9 +1838,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004607F0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004608E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00460980,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00460AD0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00460AD0,compiler_generated,battle,exclude,observed,vc8-generated-pat-nested-value-erase-106a
 0x00460C10,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00460C90,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00460C90,compiler_generated,battle,exclude,observed,vc8-generated-pat-record-copy-106a
 0x00460DD0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00460F10,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00460F50,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -1888,7 +1888,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00464A80,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00464AD0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00464B20,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00464B40,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00464B40,compiler_generated,battle,exclude,observed,vc8-generated-pat-nested-value-erase-106a
 0x00464BA0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00464D40,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00464DD0,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -2047,7 +2047,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0046E9D0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0046EA10,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0046EA40,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0046EA60,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0046EA60,compiler_generated,ui,exclude,observed,vc8-generated-ui-map-find-106a
 0x0046EAD0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0046EAF0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0046EB00,unknown,,review,unknown,ida-1.06a-initial-inventory

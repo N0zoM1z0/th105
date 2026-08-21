@@ -36,6 +36,7 @@ struct PatRaw16 {
 class FrameData {
 public:
     FrameData();
+    FrameData(FrameData const &other);
     virtual ~FrameData();
 
     unsigned raw_04;
@@ -55,13 +56,31 @@ public:
 class PatRecord88 : public FrameData {
 public:
     PatRecord88();
-    PatRecord88(PatRecord88 const &other);
     virtual ~PatRecord88();
 
-    unsigned char fields_1c_to_3b[0x20];
+    short field_1c;
+    short field_1e;
+    short field_20;
+    short field_22;
+    short field_24;
+    short field_26;
+    short field_28;
+    short field_2a;
+    short field_2c;
+    short field_2e;
+    short field_30;
+    short field_32;
+    short field_34;
+    short field_36;
+    short field_38;
+    // +0x3A..+0x3B are natural alignment padding and are not copy members.
     float scaled_3c;
     float scaled_40;
-    unsigned char fields_44_to_4b[8];
+    short field_44;
+    short field_46;
+    unsigned char field_48;
+    unsigned char field_49;
+    // +0x4A..+0x4B are natural alignment padding and are not copy members.
     unsigned flags_4c;
     unsigned field_50;
     PatRaw16 *optional_raw16_54;

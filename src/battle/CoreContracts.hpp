@@ -28,7 +28,7 @@ typedef void (CollisionContext::*ForwardedQuantityFunction)(
 typedef unsigned char (Fighter::*ConsumeSpellEntryFunction)();
 typedef void (Fighter::*PrepareSpellEntryFunction)();
 typedef void (Fighter::*InitializeFighterFunction)();
-typedef void (__stdcall *ParseSpellResourcesFunction)(
+typedef void (SpellDataOwner::*ParseSpellResourcesFunction)(
     const char *,
     const char *,
     DwordDeque4 *,

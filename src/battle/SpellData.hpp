@@ -179,6 +179,17 @@ struct SpellDataOwner {
     unsigned char selected_value_by_index_48[0x20];
 
     void clear_spell_entries();
+    void parse_spell_csv_via_325b0(
+        const char *character_name,
+        const char *path,
+        DwordDeque4 *image_owner,
+        SpellTree *destination,
+        void *mode_argument);
+    void parse_spell_csv_and_build_card_resources(
+        const char *character_name,
+        const char *path,
+        DwordDeque4 *image_owner,
+        SpellTree *destination);
     void finalize_loaded_spell_data();
     short select_spell_record_id();
     SpellRecordView *find_local_then_common_spell_record(int key);
@@ -198,17 +209,5 @@ struct SpellDataOwner {
 };
 
 extern SpellTree g_common_spell_tree;
-
-void __stdcall parse_spell_csv_via_325b0(
-    const char *character_name,
-    const char *path,
-    DwordDeque4 *image_owner,
-    SpellTree *destination,
-    void *mode_argument);
-void __stdcall parse_spell_csv_and_build_card_resources(
-    const char *character_name,
-    const char *path,
-    DwordDeque4 *image_owner,
-    SpellTree *destination);
 
 } // namespace th105

@@ -47,7 +47,7 @@ static __forceinline unsigned &dword_deque_back_checked(DwordDeque4 *deque)
     return deque->blocks_04[block][absolute & 3];
 }
 
-void __stdcall parse_spell_csv_via_325b0(
+void SpellDataOwner::parse_spell_csv_via_325b0(
     const char *character_name,
     const char *path,
     DwordDeque4 *image_owner,
