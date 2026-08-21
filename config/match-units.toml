@@ -2405,3 +2405,37 @@ dir32_targets = [
   "?g_info_manager@th105@@3PAUInfoManager@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A",
   "?g_global_battle_setup_state@th105@@3PAEA=?g_global_battle_setup_state@th105@@3PAEA",
 ]
+
+[units.cross-v106a-plain-file-reader-dtor]
+kind = "probe"
+source = "src/assets/FileReader.cpp"
+object = "build/match-units/CrossV106a_PlainFileReaderDtor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a plain CFileReader destructor. A canonical-PE wildcard scan over only the vtable and CloseHandle DIR32 fields found two exact destructor shapes: 0x00407BF0 belongs to the WriteFile vtable, while 0x0040CEB0 restores the vtable whose slots contain the accepted CFileReader read/last-read/seek/size methods."
+
+[[units.cross-v106a-plain-file-reader-dtor.functions]]
+address = "0x0040CEB0"
+symbol_base = "??1CFileReader@th105@@UAE@XZ"
+dir32_targets = [
+  "??_7CFileReader@th105@@6B@=??_7CFileReader@th105@@6B@",
+  "__imp__CloseHandle@4=__imp__CloseHandle@4",
+]
+
+[units.cross-v106a-mt19937-next]
+kind = "probe"
+source = "src/engine/Mt19937.cpp"
+object = "build/match-units/CrossV106a_Mt19937Next.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a MT19937 next-value recovery. Historical 271-byte exact boundary was stale: fresh VC8 section tail is exactly 279 bytes and current IDA confirms the full standard MT19937 loop/tempering through the final ret. Current index/state/twist globals and seed helper are target-backed."
+
+[[units.cross-v106a-mt19937-next.functions]]
+address = "0x004066B0"
+symbol_base = "mt19937_next_u32"
+rel32_targets = ["?mt19937_seed_u32@th105@@YAXI@Z=0x00406670"]
+dir32_targets = [
+  "?g_mt19937_index@th105@@3HA=?g_mt19937_index@th105@@3HA",
+  "?g_mt19937_state@th105@@3PAIA=?g_mt19937_state@th105@@3PAIA",
+  "?g_mt19937_twist_xor@th105@@3PAIA=?g_mt19937_twist_xor@th105@@3PAIA",
+]

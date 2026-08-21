@@ -40,7 +40,7 @@ until each boundary is reconciled with target control flow.
 
 | Measure | Count |
 | --- | ---: |
-| IDA 1.06a function candidates | {len(functions):,} |
+| Tracked 1.06a function candidates | {len(functions):,} |
 | Origin/boundary review pending | {review:,} |
 | Confirmed authored functions | {len(authored):,} |
 | Classified exclusions | {len(excluded):,} |

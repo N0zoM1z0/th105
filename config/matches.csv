@@ -180,3 +180,5 @@ address,name,size,status,match_percent,unit,evidence
 0x0046AFB0,run_post_update_callbacks_and_global_state,51,matching,100.00,cross-v106a-battle-post-update-wrapper,python3 scripts/build.py --unit cross-v106a-battle-post-update-wrapper --compare --json reports exact 51/51 against TH105 1.06a
 0x0046AF90,run_global_fighter_action_owned_object_phase,11,matching,100.00,cross-v106a-battle-post-update-wrapper,python3 scripts/build.py --unit cross-v106a-battle-post-update-wrapper --compare --json reports exact 11/11 against TH105 1.06a
 0x0046AFA0,run_global_fighter_position_status_timer_phase,11,matching,100.00,cross-v106a-battle-post-update-wrapper,python3 scripts/build.py --unit cross-v106a-battle-post-update-wrapper --compare --json reports exact 11/11 against TH105 1.06a
+0x0040CEB0,CFileReader_dtor,21,matching,100.00,cross-v106a-plain-file-reader-dtor,python3 scripts/build.py --unit cross-v106a-plain-file-reader-dtor --compare --json reports exact 21/21 against TH105 1.06a
+0x004066B0,mt19937_next_u32,279,matching,100.00,cross-v106a-mt19937-next,python3 scripts/build.py --unit cross-v106a-mt19937-next --compare --json reports exact 279/279 against TH105 1.06a

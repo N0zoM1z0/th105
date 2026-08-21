@@ -22,7 +22,7 @@ address,name,module,confidence,evidence
 0x006FD030,g_active_menu_input,input,observed,Current CProfileMenu ctor reads this input pointer and selects its +0x3C field when non-null
 0x007036C0,g_title_texture_cache_host,assets,observed,Current IDA asset/UI xrefs share this polymorphic texture cache host; exact title resource release uses its vtable slot +0x104
 0x006FA21C,g_render_mode_manager,rendering,observed,Extensive current IDA render-path xrefs share this initialized RenderModeManager object; exact GuideOverlay render uses it around overlay drawing
-0x00703858,g_direct_sound_globals,audio,observed,"Current IDA initialization xrefs establish primary/direct_sound/listener pointers at +0/+4/+8; exact shutdown uses all three fields and exact create-buffer uses +4"
+0x00703858,g_direct_sound_globals,audio,observed,Current IDA initialization xrefs establish primary/direct_sound/listener pointers at +0/+4/+8; exact shutdown uses all three fields and exact create-buffer uses +4
 0x006FCA98,g_indexed_event_handles,battle,observed,Current 0x0043B1A9 indexes this 128-entry dword handle table under an unsigned <=0x7F guard before wave dispatch
 0x00702288,g_wave_handle_service,battle,observed,Current 0x0043B1B1 loads this object into ECX before 0x00401D50 dispatches the selected event handle
 0x006FBF20,g_player_slot_records,input,observed,Current get_player_slot_record uses this base with the unique 0x33C player-record stride
@@ -32,3 +32,6 @@ address,name,module,confidence,evidence
 0x006FBDD0,g_player2_input,input,observed,Current get_player2_input returns this storage and accepted battle/input callers resolve the helper
 0x006FBD44,g_session_setup_option,input,observed,Current getter/setter at 0x0043B070/0x0043B080 share this option dword
 0x006FBD5C,g_network_session,network,observed,Current 0x0043B090 returns this session pointer and accepted control/setup callers resolve it
+0x006FA1FC,g_mt19937_index,engine,observed,Exact 0x004066B0 reads/writes this MT19937 index; target initial dword is 625
+0x006FDEF0,g_mt19937_state,engine,observed,Exact 0x004066B0 indexes this 624-word loader-zero MT19937 state array with standard 227/623 split
+0x006FA418,g_mt19937_twist_xor,engine,observed,Exact 0x004066B0 indexes this two-dword MT19937 twist table; target bytes are 0 and 0x9908B0DF

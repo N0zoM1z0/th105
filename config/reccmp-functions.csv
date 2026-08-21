@@ -180,3 +180,5 @@ get_network_session,0x0043B090,function
 run_post_update_callbacks_and_global_state,0x0046AFB0,function
 run_global_fighter_action_owned_object_phase,0x0046AF90,function
 run_global_fighter_position_status_timer_phase,0x0046AFA0,function
+CFileReader_dtor,0x0040CEB0,function
+mt19937_next_u32,0x004066B0,function

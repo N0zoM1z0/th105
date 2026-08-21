@@ -276,7 +276,7 @@ The pre-1.06a historical checkpoint used by default contains 152 old exact
 `.cpp` hypotheses that were absent from its match-unit graph; the migration
 survey could uniquely extract 147 of those COFF symbols. The first tracked
 migration wave raised the accepted 1.06a set from 100 functions / 13,487 bytes
-to 181 functions / 25,323 bytes. This is still a candidate queue only. Every promotion still requires a current boundary/semantic audit,
+to 183 functions / 25,623 bytes. This is still a candidate queue only. Every promotion still requires a current boundary/semantic audit,
 current-target relocation reconciliation, a tracked match unit, and canonical
 zero-difference replay.
 
@@ -387,3 +387,25 @@ global migration at larger scale. Its control flow already matched; the only
 real changes were current `g_info_manager`, current shared battle-setup-state
 identity, and current helper destinations `0x00426BB0/0x00426DF0`. The natural
 C++ source then compares 51/51 exact.
+A tiny destructor is a good example of why normalized similarity still needs
+class identity. Retained `CFileReader::~CFileReader` ranked a 21-byte
+`CBitmapData` destructor at `0x00419FD0` surprisingly high. Instead of tuning
+the scanner toward that false positive, extract the fresh VC8 destructor and
+scan the canonical PE while masking only its two DIR32 fields (vtable and
+CloseHandle IAT). Exactly two bodies match: the writer clone at `0x00407BF0` and
+the reader clone at `0x0040CEB0`. Their vtables disambiguate them: the first
+leads to WriteFile, the second to the already accepted CFileReader methods.
+
+Boundary correction can require adding a candidate the initial IDA export
+missed. `0x0040CEB0..0x0040CEC4` is surrounded on both sides by `INT3` padding
+and followed by accepted `CFileReader::read @ 0x0040CED0`, while IDA incorrectly
+attributes the address to a remote multi-chunk function. Add the observed
+21-byte candidate to `functions.csv` first so the normal ledger gate remains in
+force; only then run canonical comparison and promote it. This changed the
+corrected inventory from 4,001 to 4,002 candidates.
+
+Do not inherit historical function extents when source and current code agree on
+a larger body. `mt19937_next_u32` was historically recorded as 271 bytes, but
+fresh VC8 emits 279 bytes and current 1.06a contains the full standard MT19937
+twist/temper implementation through byte 279. The accepted boundary is therefore
+279 bytes, proven by current control flow and a 279/279 canonical compare.

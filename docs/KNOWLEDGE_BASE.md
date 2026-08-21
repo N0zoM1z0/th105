@@ -16,15 +16,14 @@ notes or source hypotheses.
 - Rich-header records point to compiler build 50727 and include 42 C++ LTCG
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
-- The current IDA database exposes 4,001 function candidates. Their auto-names
-  and unreviewed sizes remain provisional analysis output.
-- The accepted 1.06a authored set contains 181 functions / 25,323 bytes in 101
-  VC8 match units. The newest whole-corpus retained-source wave added eighty-one
-  functions / 11,836 bytes beyond the previous 100-function checkpoint. Candidate
+- The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,002 candidates because current EH/vtable/canonical evidence recovered a missed independent CFileReader destructor entry at `0x0040CEB0`; IDA had attached that code as a distant tail chunk. Auto-analysis ownership and unreviewed sizes remain provisional.
+- The accepted 1.06a authored set contains 183 functions / 25,623 bytes in 103
+  VC8 match units. The newest whole-corpus retained-source wave added eighty-three
+  functions / 12,136 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
   establish hypotheses; canonical VC8 zero-difference comparisons establish
   exactness.
-- The current origin census has 673 target-backed exclusions: 417 VC8 runtime functions selected from SHA-pinned VC8 SP1 archives, 44 zlib 1.2.3 functions bounded by current-target provenance strings, 19 direct import thunks whose current names/opcodes are attested, 39 Ogg/Vorbis functions whose current candidate bytes are inventory-unique matches of relocation-free COMDATs, and 154 additional Ogg/Vorbis functions whose non-relocation bytes uniquely match relocation-bearing COMDATs re-extracted from the SHA-pinned official Xiph Win32 SDK 1.0.1. The relocated anchors are fail-closed: every relocation must stay inside the candidate boundary, REL32 fields must belong to CALL/JMP/Jcc forms, at least 70% and 24 bytes of each candidate must remain exact non-relocation evidence, the COMDAT tail may contain only alignment bytes, and the fingerprint must be unique across all 4,001 candidates. `config/function-origin-rules.toml` and `scripts/function-origins.py` replay all target/archive checks before materializing the census.
+- The current origin census has 673 target-backed exclusions: 417 VC8 runtime functions selected from SHA-pinned VC8 SP1 archives, 44 zlib 1.2.3 functions bounded by current-target provenance strings, 19 direct import thunks whose current names/opcodes are attested, 39 Ogg/Vorbis functions whose current candidate bytes are inventory-unique matches of relocation-free COMDATs, and 154 additional Ogg/Vorbis functions whose non-relocation bytes uniquely match relocation-bearing COMDATs re-extracted from the SHA-pinned official Xiph Win32 SDK 1.0.1. The relocated anchors are fail-closed: every relocation must stay inside the candidate boundary, REL32 fields must belong to CALL/JMP/Jcc forms, at least 70% and 24 bytes of each candidate must remain exact non-relocation evidence, the COMDAT tail may contain only alignment bytes, and the fingerprint must be unique across all 4,002 tracked candidates. `config/function-origin-rules.toml` and `scripts/function-origins.py` replay all target/archive checks before materializing the census.
 
 ## Repository decisions
 
@@ -146,6 +145,28 @@ notes or source hypotheses.
   replacing stale 1.06 globals with exact-backed `g_info_manager` at
   `0x006FBCA8` and shared battle-setup state at `0x006FBCC0`; its current helper
   destinations are `0x00426BB0` and `0x00426DF0`.
+- Low non-relocation mismatch counts are still only ranking evidence. Retained
+  `CFileReader_dtor` initially ranked `0x00419FD0` with only three non-relocation
+  mismatches, but current IDA shows that target is a `CBitmapData` destructor
+  restoring its own vtable and freeing `this+0x1C`; it was rejected immediately.
+- The actual plain `CFileReader` destructor is `0x0040CEB0`. A canonical-PE
+  wildcard fingerprint masking only the vtable and CloseHandle IAT fields finds
+  two exact 21-byte destructor shapes: `0x00407BF0` restores the vtable whose
+  method slot is WriteFile, while `0x0040CEB0` restores `0x006C0F34`, whose
+  subsequent slots are the accepted reader methods `0x0040CED0`, `0x00407C40`,
+  `0x00407C50`, and `0x0040CF00`. This is the reference way to split tiny
+  polymorphic destructor clones.
+- IDA currently chunks `0x0040CEB0` under an unrelated large function and the
+  original 4,001-row inventory omitted it. Canonical target layout gives a hard
+  boundary: `INT3` padding at `0x0040CEA5..0x0040CEAF`, the 21-byte RET-terminated
+  body at `0x0040CEB0..0x0040CEC4`, more `INT3` padding through `0x0040CECF`,
+  then accepted `CFileReader::read @ 0x0040CED0`. The corrected inventory therefore
+  has 4,002 candidates. Preserve target-backed boundary corrections in the ledger
+  rather than mutating IDA to satisfy the build.
+- `mt19937_next_u32 @ 0x004066B0` is 279/279 exact. Current IDA confirms the
+  standard 624-word MT19937 twist loops, fallback seed 5489, and tempering masks.
+  The historical 271-byte row was a stale boundary; fresh VC8 and current target
+  both establish the full 279-byte extent.
 - Structural clone ties need class/caller evidence, not old address order. The
   367-byte Yukari mirrored-command gate at `0x0058C170` was accepted only after
   its sole current fighter dispatcher, nearby exact Yukari anchors, and all five
@@ -160,6 +181,7 @@ notes or source hypotheses.
   32-byte normalization loop restored the target VC8 schedule and all 301 bytes
   compare exactly. By contrast, shared-tail/LTCG register-allocation blockers
   remain blocked rather than being forced with assembly or register tricks.
+
 - Use one writable reconstruction session. Claims remain header-only.
 - Use IDA Pro exclusively after exact attestation. There is no Ghidra fallback.
 - Keep IDA client scripts independent of an interactive Python environment:
@@ -173,7 +195,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,147
+- Accepted boundaries and authored/library origins for the remaining 3,146
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.
