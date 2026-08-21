@@ -2365,7 +2365,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0053CDF0,175,0x0053CE9E,YoumuObjectRecordState_apply_owner_record,YoumuObjectRecordState_apply_owner_record,characters,matching,100.00,__thiscall,"unsigned char YoumuObjectRecordState_apply_owner_record(YoumuObjectRecordState * this, unsigned int index)",false,src/characters/YoumuObjectRecords.cpp,python3 scripts/build.py --unit cross-v106a-youmu-object-record --compare --json reports exact 175/175 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay after structural-instruction fingerprinting remapped a retained old exact hypothesis; current IDA call graph established record-ring lookup 0x0053CD90 and reset callback 0x00436760 before acceptance.
 0x0053CEA0,25944,0x005433F7,sub_53CEA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00543670,5159,0x00544A96,sub_543670,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00544BF0,969,0x00544FB8,sub_544BF0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00544BF0,969,0x00544FB8,sub_544BF0,Youmu_handle_event_bridge,characters,matching,100.00,__thiscall,"unsigned char Youmu_handle_event_bridge(Youmu * this, int event_code)",false,src/characters/YoumuEventBridge.cpp,python3 scripts/build.py --unit cross-v106a-youmu-event-bridge --compare --json reports exact 969/969 against TH105 1.06a,root,"Current IDA proves Youmu 160.0f case-50/101 height, case-104 launch state, effect id 3 and the common Fighter virtual ABI. Natural VC8 C++ is exact."
 0x00545090,61962,0x00554299,sub_545090,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005547F0,1093,0x00554C34,sub_5547F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00554D50,1802,0x00555459,sub_554D50,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2390,7 +2390,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x005575C0,200,0x00557687,sub_5575C0,CharacterObjectEffectEmitter_emit_repeated_effects_for_owner_state,characters,matching,100.00,__thiscall,"unsigned char CharacterObjectEffectEmitter_emit_repeated_effects_for_owner_state(CharacterObjectEffectEmitter * this, int mode, int effect_200_count, int effect_201_count)",false,src/characters/CharacterObjectEffects.cpp,python3 scripts/build.py --unit cross-v106a-character-effect-repeat --compare --json reports exact 200/200 against TH105 1.06a,root,Whole-corpus retained-source ranking produced a high-confidence structure-identical current candidate with zero non-relocation byte differences; each current call destination was reconciled from the 1.06a target instruction stream before canonical zero-difference comparison.
 0x00557690,17793,0x0055BC10,sub_557690,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0055BE70,4997,0x0055D1F4,sub_55BE70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0055D380,1043,0x0055D792,sub_55D380,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0055D380,1043,0x0055D792,sub_55D380,Remilia_handle_event_bridge,characters,matching,100.00,__thiscall,"unsigned char Remilia_handle_event_bridge(Remilia * this, int event_code)",false,src/characters/RemiliaEventBridge.cpp,python3 scripts/build.py --unit cross-v106a-remilia-event-bridge --compare --json reports exact 1043/1043 against TH105 1.06a,root,"Current IDA proves Remilia countdown/self-second-target camera cases, case-9 motion, effect id 6 and the absence of 120/121 cases. Natural VC8 C++ is exact."
 0x0055D850,58619,0x0056BD4A,sub_55D850,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0056C170,1653,0x0056C7E4,sub_56C170,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0056C810,43,0x0056C83A,sub_56C810,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2420,7 +2420,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0056DEB0,6180,0x0056F6D3,sub_56DEB0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0056F700,34278,0x00577CE5,sub_56F700,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00578000,10828,0x0057AA4B,sub_578000,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0057AB90,986,0x0057AF69,sub_57AB90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0057AB90,986,0x0057AF69,sub_57AB90,Yuyuko_handle_event_bridge,characters,matching,100.00,__thiscall,"unsigned char Yuyuko_handle_event_bridge(Yuyuko * this, int event_code)",false,src/characters/YuyukoEventBridge.cpp,python3 scripts/build.py --unit cross-v106a-yuyuko-event-bridge --compare --json reports exact 986/986 against TH105 1.06a,root,"Current IDA proves Yuyuko case-50/101 0.1f motion setup, effect id 7, case-120 7/15/0.3 launch state and the sparse byte-return switch. Natural VC8 C++ is exact."
 0x0057B030,57042,0x00588F01,sub_57B030,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005893C0,3934,0x0058A31D,sub_5893C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0058A470,125,0x0058A4EC,sub_58A470,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2480,7 +2480,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x005B0400,82,0x005B0451,sub_5B0400,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005B0460,52190,0x005BD03D,sub_5B0460,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005BD380,8956,0x005BF67B,sub_5BD380,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x005BF7D0,1203,0x005BFC82,sub_5BF7D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x005BF7D0,1203,0x005BFC82,sub_5BF7D0,Suika_handle_event_bridge,characters,matching,100.00,__thiscall,"unsigned char Suika_handle_event_bridge(Suika * this, int event_code)",false,src/characters/SuikaEventBridge.cpp,python3 scripts/build.py --unit cross-v106a-suika-event-bridge --compare --json reports exact 1203/1203 against TH105 1.06a,root,"Current IDA proves Suika typed +0x13E state sequence, +0x734 word and +0x740 float accesses, specialized action/sequence gates, effect id 9 and countdown camera cases. Natural VC8 C++ is exact."
 0x005BFD50,66787,0x005D0232,sub_5BFD50,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005D06D0,27,0x005D06EA,sub_5D06D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005D06F0,1797,0x005D0DF4,sub_5D06F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2508,7 +2508,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x005D2C70,6684,0x005D468B,sub_5D2C70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005D46C0,42688,0x005DED7F,sub_5D46C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005DF0E0,10723,0x005E1AC2,sub_5DF0E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x005E1C50,959,0x005E200E,sub_5E1C50,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x005E1C50,959,0x005E200E,sub_5E1C50,Udonge_handle_event_bridge,characters,matching,100.00,__thiscall,"unsigned char Udonge_handle_event_bridge(Udonge * this, int event_code)",false,src/characters/UdongeEventBridge.cpp,python3 scripts/build.py --unit cross-v106a-udonge-event-bridge --compare --json reports exact 959/959 against TH105 1.06a,root,"Current IDA proves Udonge 280/1000 coordinates, effect ids 11/0, launch motion and common Fighter virtual ABI. Natural VC8 C++ is exact."
 0x005E20E0,63993,0x005F1AD8,sub_5E20E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005F1F80,15910,0x005F5DA5,sub_5F1F80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005F6020,1421,0x005F65AC,sub_5F6020,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2536,7 +2536,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x005F9350,205,0x005F941C,sub_5F9350,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005F9420,27874,0x00600101,sub_5F9420,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00600390,6216,0x00601BD7,sub_600390,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00601D20,1118,0x0060217D,sub_601D20,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00601D20,1118,0x0060217D,sub_601D20,Komachi_handle_event_bridge,characters,matching,100.00,__thiscall,"unsigned char Komachi_handle_event_bridge(Komachi * this, int event_code)",false,src/characters/KomachiEventBridge.cpp,python3 scripts/build.py --unit cross-v106a-komachi-event-bridge --compare --json reports exact 1118/1118 against TH105 1.06a,root,"Current IDA proves the Komachi dynamic +0x730/+0x732 countdown, self second-target update, case-9 motion, effect id 12 and case-120 launch state. Natural VC8 C++ is exact."
 0x00602250,65601,0x00612290,sub_602250,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006126E0,16032,0x0061657F,sub_6126E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00616800,1726,0x00616EBD,sub_616800,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2565,7 +2565,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00618660,7161,0x0061A258,sub_618660,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0061A290,19522,0x0061EED1,sub_61A290,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0061F0B0,4531,0x00620262,sub_61F0B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006203B0,1177,0x00620848,sub_6203B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006203B0,1177,0x00620848,sub_6203B0,Aya_handle_event_bridge,characters,matching,100.00,__thiscall,"unsigned char Aya_handle_event_bridge(Aya * this, int event_code)",false,src/characters/AyaEventBridge.cpp,python3 scripts/build.py --unit cross-v106a-aya-event-bridge --compare --json reports exact 1177/1177 against TH105 1.06a,root,"Current IDA proves Aya countdown camera cases, cases 52/53 and signed +0x13E sequence gate, 360/600/920 coordinates and effect id 10. Natural VC8 C++ is exact."
 0x00620920,59038,0x0062EFBD,sub_620920,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0062F450,2609,0x0062FE80,sub_62F450,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0062FFC0,47,0x0062FFEE,sub_62FFC0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

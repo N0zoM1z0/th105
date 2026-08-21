@@ -3585,3 +3585,175 @@ rel32_targets = [
 dir32_targets = [
   "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
 ]
+
+[units.cross-v106a-yuyuko-event-bridge]
+kind = "probe"
+source = "src/characters/YuyukoEventBridge.cpp"
+object = "build/match-units/CrossV106a_YuyukoEventBridge.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a Yuyuko shared-epilogue event source, 0.1/7.0/0.3 motion literals and effect id 7 are current-target-backed. Natural C++ reproduces the accepted ledger body while compiler jump/index tables remain same-COMDAT trailing metadata."
+
+[[units.cross-v106a-yuyuko-event-bridge.functions]]
+address = "0x0057AB90"
+symbol_base = "handle_event_bridge"
+rel32_targets = [
+  "?set_target_20_enabled_2c@SharedEventState@th105@@QAEDDM@Z=0x00427290",
+  "?set_target_24_enabled_2d@SharedEventState@th105@@QAEDDM@Z=0x004272B0",
+  "?set_target_28_enabled_2e@SharedEventState@th105@@QAEDDM@Z=0x004272D0",
+  "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
+  "?zero_velocity_acceleration@YuyukoEventView@th105@@QAEXXZ=0x0045AF40",
+  "?spawn_owned_object_via_manager@YuyukoEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+]
+dir32_targets = [
+  "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+]
+
+[units.cross-v106a-komachi-event-bridge]
+kind = "probe"
+source = "src/characters/KomachiEventBridge.cpp"
+object = "build/match-units/CrossV106a_KomachiEventBridge.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a Komachi countdown event source, case-9 launch motion and effect id 12 are current-target-backed. Natural C++ reproduces the accepted ledger body while compiler jump/index tables remain same-COMDAT trailing metadata."
+
+[[units.cross-v106a-komachi-event-bridge.functions]]
+address = "0x00601D20"
+symbol_base = "handle_event_bridge"
+rel32_targets = [
+  "?set_target_20_enabled_2c@SharedEventState@th105@@QAEDDM@Z=0x00427290",
+  "?set_target_24_enabled_2d@SharedEventState@th105@@QAEDDM@Z=0x004272B0",
+  "?set_target_28_enabled_2e@SharedEventState@th105@@QAEDDM@Z=0x004272D0",
+  "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
+  "?set_shared_second_target@KomachiEventView@th105@@QAEDDM@Z=0x00476AD0",
+  "?zero_velocity_acceleration@KomachiEventView@th105@@QAEXXZ=0x0045AF40",
+  "?spawn_owned_object_via_manager@KomachiEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+]
+dir32_targets = [
+  "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+]
+
+[units.cross-v106a-remilia-event-bridge]
+kind = "probe"
+source = "src/characters/RemiliaEventBridge.cpp"
+object = "build/match-units/CrossV106a_RemiliaEventBridge.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a Remilia countdown event source, case-9 launch motion, no 120/121 cases, and effect id 6 are current-target-backed. Natural C++ reproduces the accepted ledger body while compiler jump/index tables remain same-COMDAT trailing metadata."
+
+[[units.cross-v106a-remilia-event-bridge.functions]]
+address = "0x0055D380"
+symbol_base = "handle_event_bridge"
+rel32_targets = [
+  "?set_target_20_enabled_2c@SharedEventState@th105@@QAEDDM@Z=0x00427290",
+  "?set_target_24_enabled_2d@SharedEventState@th105@@QAEDDM@Z=0x004272B0",
+  "?set_target_28_enabled_2e@SharedEventState@th105@@QAEDDM@Z=0x004272D0",
+  "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
+  "?set_shared_second_target@RemiliaEventView@th105@@QAEDDM@Z=0x00476AD0",
+  "?zero_velocity_acceleration@RemiliaEventView@th105@@QAEXXZ=0x0045AF40",
+  "?spawn_owned_object_via_manager@RemiliaEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+]
+dir32_targets = [
+  "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+]
+
+[units.cross-v106a-youmu-event-bridge]
+kind = "probe"
+source = "src/characters/YoumuEventBridge.cpp"
+object = "build/match-units/CrossV106a_YoumuEventBridge.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a Youmu event source, 160.0f case-50/101 height and case-104 launch state are current-target-backed. Natural C++ reproduces the accepted ledger body while compiler jump/index tables remain same-COMDAT trailing metadata."
+
+[[units.cross-v106a-youmu-event-bridge.functions]]
+address = "0x00544BF0"
+symbol_base = "handle_event_bridge"
+rel32_targets = [
+  "?set_target_20_enabled_2c@SharedEventState@th105@@QAEDDM@Z=0x00427290",
+  "?set_target_24_enabled_2d@SharedEventState@th105@@QAEDDM@Z=0x004272B0",
+  "?set_target_28_enabled_2e@SharedEventState@th105@@QAEDDM@Z=0x004272D0",
+  "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
+  "?zero_velocity_acceleration@YoumuEventView@th105@@QAEXXZ=0x0045AF40",
+  "?spawn_owned_object_via_manager@YoumuEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+]
+dir32_targets = [
+  "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+]
+
+[units.cross-v106a-udonge-event-bridge]
+kind = "probe"
+source = "src/characters/UdongeEventBridge.cpp"
+object = "build/match-units/CrossV106a_UdongeEventBridge.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a Udonge event source, 280/1000 case coordinates, effect ids 11/0 and case-120 launch state are current-target-backed. Natural C++ reproduces the accepted ledger body while compiler jump/index tables remain same-COMDAT trailing metadata."
+
+[[units.cross-v106a-udonge-event-bridge.functions]]
+address = "0x005E1C50"
+symbol_base = "handle_event_bridge"
+rel32_targets = [
+  "?set_target_20_enabled_2c@SharedEventState@th105@@QAEDDM@Z=0x00427290",
+  "?set_target_24_enabled_2d@SharedEventState@th105@@QAEDDM@Z=0x004272B0",
+  "?set_target_28_enabled_2e@SharedEventState@th105@@QAEDDM@Z=0x004272D0",
+  "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
+  "?zero_velocity_acceleration@UdongeEventView@th105@@QAEXXZ=0x0045AF40",
+  "?spawn_owned_object_via_manager@UdongeEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+]
+dir32_targets = [
+  "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+]
+
+[units.cross-v106a-suika-event-bridge]
+kind = "probe"
+source = "src/characters/SuikaEventBridge.cpp"
+object = "build/match-units/CrossV106a_SuikaEventBridge.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a Suika event source, typed +0x13E/+0x734/+0x740 fields and specialized state/sequence gates are current-target-backed. Natural C++ reproduces the accepted ledger body while compiler jump/index tables remain same-COMDAT trailing metadata."
+
+[[units.cross-v106a-suika-event-bridge.functions]]
+address = "0x005BF7D0"
+symbol_base = "handle_event_bridge"
+rel32_targets = [
+  "?set_target_20_enabled_2c@SharedEventState@th105@@QAEDDM@Z=0x00427290",
+  "?set_target_24_enabled_2d@SharedEventState@th105@@QAEDDM@Z=0x004272B0",
+  "?set_target_28_enabled_2e@SharedEventState@th105@@QAEDDM@Z=0x004272D0",
+  "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
+  "?set_shared_second_target@SuikaEventView@th105@@QAEDDM@Z=0x00476AD0",
+  "?zero_velocity_acceleration@SuikaEventView@th105@@QAEXXZ=0x0045AF40",
+  "?spawn_owned_object_via_manager@SuikaEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+]
+dir32_targets = [
+  "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+]
+
+[units.cross-v106a-aya-event-bridge]
+kind = "probe"
+source = "src/characters/AyaEventBridge.cpp"
+object = "build/match-units/CrossV106a_AyaEventBridge.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a Aya event source, cases 52/53, signed +0x13E sequence gate and 360/600/920 coordinates are current-target-backed. Natural C++ reproduces the accepted ledger body while compiler jump/index tables remain same-COMDAT trailing metadata."
+
+[[units.cross-v106a-aya-event-bridge.functions]]
+address = "0x006203B0"
+symbol_base = "handle_event_bridge"
+rel32_targets = [
+  "?set_target_20_enabled_2c@SharedEventState@th105@@QAEDDM@Z=0x00427290",
+  "?set_target_24_enabled_2d@SharedEventState@th105@@QAEDDM@Z=0x004272B0",
+  "?set_target_28_enabled_2e@SharedEventState@th105@@QAEDDM@Z=0x004272D0",
+  "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
+  "?set_shared_second_target@AyaEventView@th105@@QAEDDM@Z=0x00476AD0",
+  "?zero_velocity_acceleration@AyaEventView@th105@@QAEXXZ=0x0045AF40",
+  "?spawn_owned_object_via_manager@AyaEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+]
+dir32_targets = [
+  "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+]

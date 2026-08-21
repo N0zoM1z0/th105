@@ -156,3 +156,14 @@ subsystem = "ui"
 disposition = "exclude"
 confidence = "observed"
 evidence = "current 0x0046EA60 is the inventory-unique raw-exact 105-byte checked std::map<unsigned int, void*>::find COMDAT freshly generated from a tracked probe by the SHA-pinned VC8 SP1 compiler; no relocation masking is needed"
+
+[[rules]]
+id = "vc8-generated-list-voidptr-buynode-106a"
+vc8_generated_anchor_file = "config/vc8-generated-list-voidptr-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 102
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 fresh std::list<void*>::_Buynode COMDAT is 51 bytes with only operator-new REL32 masked; complete current-inventory fingerprint hit set is exactly 0x004129E0 and 0x00421F30, both broadly shared container helpers"

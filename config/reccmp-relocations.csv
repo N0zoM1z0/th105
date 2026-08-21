@@ -250,3 +250,9 @@ __real@3dcccccd,0x006C3450,cdcccc3d,0,IDA 1.06a Yuyuko event bridge cases 50/101
 __real@40e00000,0x006C12AC,0000e040,0,IDA 1.06a Yuyuko event bridge case 120 loads flt_6C12AC into velocity_x_f4; mapped bytes encode 7.0f; attested 2026-08-21,literal
 __real@3e99999a,0x006C3298,9a99993e,0,IDA 1.06a Yuyuko event bridge case 120 loads flt_6C3298 into acceleration_y_100; mapped bytes encode 0.30000001f; attested 2026-08-21,literal
 __real@408f400000000000,0x006C36C8,0000000000408f40,0,"TH105 1.06a target bytes at 0x006C36C8 are IEEE-754 double 1000.0; current apply_forwarded_quantity_to_pair divides scalar_per_thousand by this literal; attested 2026-08-21",literal
+__real@43200000,0x006C32D4,00002043,0,IDA 1.06a Youmu event bridge cases 50/101 load flt_6C32D4 into y_f0; mapped bytes encode 160.0f; attested 2026-08-21,literal
+__real@438c0000,0x006C3EF0,00008c43,0,IDA 1.06a Udonge event bridge case 50 loads flt_6C3EF0 into x_ec; mapped bytes encode 280.0f; attested 2026-08-21,literal
+__real@447a0000,0x006C5F24,00007a44,0,IDA 1.06a Udonge event bridge case 101 loads flt_6C5F24 into x_ec; mapped bytes encode 1000.0f; attested 2026-08-21,literal
+__real@43b40000,0x006C0EE0,0000b443,0,IDA 1.06a Aya event bridge case 50 loads flt_6C0EE0 into x_ec; mapped bytes encode 360.0f; attested 2026-08-21,literal
+__real@44160000,0x006C3F14,00001644,0,IDA 1.06a Aya event bridge cases 50/101 load flt_6C3F14 into y_f0; mapped bytes encode 600.0f; attested 2026-08-21,literal
+__real@44660000,0x006C57E8,00006644,0,IDA 1.06a Aya event bridge case 101 loads flt_6C57E8 into x_ec; mapped bytes encode 920.0f; attested 2026-08-21,literal

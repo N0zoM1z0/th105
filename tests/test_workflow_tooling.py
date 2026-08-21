@@ -52,33 +52,33 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4004)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 263)
+        self.assertEqual(len(matching), 270)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 263)
+        self.assertEqual(len(implemented), 270)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 263
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 270
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 131)
+        self.assertEqual(len(manifest["units"]), 138)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            263,
+            270,
         )
 
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,004", markdown)
-        self.assertIn("Confirmed authored functions | 263", markdown)
-        self.assertIn("Classified exclusions | 685", markdown)
-        self.assertIn("Origin/boundary review pending | 3,056", markdown)
-        self.assertIn("Canonical exact functions | 263", markdown)
-        self.assertIn("Canonical exact authored bytes | 38,538", markdown)
+        self.assertIn("Confirmed authored functions | 270", markdown)
+        self.assertIn("Classified exclusions | 687", markdown)
+        self.assertIn("Origin/boundary review pending | 3,047", markdown)
+        self.assertIn("Canonical exact functions | 270", markdown)
+        self.assertIn("Canonical exact authored bytes | 45,993", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
@@ -180,6 +180,19 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(
             [(row["address"], row["size"]) for row in ui_map["anchors"]],
             [("0x0046EA60", 105)],
+        )
+        with (ROOT / "config" / "vc8-generated-list-voidptr-origin-anchors.toml").open("rb") as stream:
+            list_nodes = tomllib.load(stream)
+        self.assertEqual(list_nodes["target_sha256"], anchors["target_sha256"])
+        self.assertEqual(list_nodes["compiler_sha256"], anchors["compiler_sha256"])
+        self.assertEqual(list_nodes["source"], "scripts/probes/list_voidptr_buynode_generated.cpp")
+        self.assertFalse(list_nodes["enable_gs"])
+        self.assertEqual(
+            [(row["address"], row["size"], row["equivalence_group"]) for row in list_nodes["anchors"]],
+            [
+                ("0x004129E0", 51, "list-voidptr-buynode-clones"),
+                ("0x00421F30", 51, "list-voidptr-buynode-clones"),
+            ],
         )
 
     def test_inventory_pagination_normalization(self) -> None:
