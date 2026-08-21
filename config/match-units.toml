@@ -3757,3 +3757,56 @@ rel32_targets = [
 dir32_targets = [
   "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
 ]
+
+[units.cross-v106a-tenshi-event-bridge]
+kind = "probe"
+source = "src/characters/TenshiEventBridge.cpp"
+object = "build/match-units/CrossV106a_TenshiEventBridge.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a Tenshi event bridge. Current target cases 133/134 prove 0x004359D0 is an unused-this fighter member: case 133 enters with ECX still holding this, while case 134 reloads ECX after shared-state calls clobber it. One natural member declaration reproduces both call sites and all 1412 body bytes; switch tables remain same-COMDAT trailing metadata."
+
+[[units.cross-v106a-tenshi-event-bridge.functions]]
+address = "0x00659420"
+symbol_base = "handle_event_bridge"
+rel32_targets = [
+  "?set_target_20_enabled_2c@SharedEventState@th105@@QAEDDM@Z=0x00427290",
+  "?set_target_24_enabled_2d@SharedEventState@th105@@QAEDDM@Z=0x004272B0",
+  "?set_target_28_enabled_2e@SharedEventState@th105@@QAEDDM@Z=0x004272D0",
+  "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
+  "?set_shared_second_target@TenshiEventView@th105@@QAEDDM@Z=0x00476AD0",
+  "?zero_velocity_acceleration@TenshiEventView@th105@@QAEXXZ=0x0045AF40",
+  "?spawn_owned_object_via_manager@TenshiEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+  "?set_shared_scalar@TenshiEventView@th105@@QAEHM@Z=0x004359D0",
+]
+dir32_targets = [
+  "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+]
+
+
+[units.cross-v106a-iku-event-bridge]
+kind = "probe"
+source = "src/characters/IkuEventBridge.cpp"
+object = "build/match-units/CrossV106a_IkuEventBridge.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a Iku event bridge. Two source-level float[3] spawn temporaries remain simultaneously live and naturally produce the target 0x18 stack frame. Current callers prove 0x00434E10 is an unused-this EventSubobject130 member, so reusing the +0x130 receiver naturally reproduces the target EDI lifetime. The complete 1553-byte body is canonical exact; trailing switch tables stay compiler-owned metadata."
+
+[[units.cross-v106a-iku-event-bridge.functions]]
+address = "0x0063CCB0"
+symbol_base = "handle_event_bridge"
+rel32_targets = [
+  "?set_target_20_enabled_2c@SharedEventState@th105@@QAEDDM@Z=0x00427290",
+  "?set_target_24_enabled_2d@SharedEventState@th105@@QAEDDM@Z=0x004272B0",
+  "?set_target_28_enabled_2e@SharedEventState@th105@@QAEDDM@Z=0x004272D0",
+  "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
+  "?set_shared_second_target@IkuEventView@th105@@QAEDDM@Z=0x00476AD0",
+  "?zero_velocity_acceleration@IkuEventView@th105@@QAEXXZ=0x0045AF40",
+  "?spawn_owned_object_via_manager@IkuEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+  "?set_global_pair@EventSubobject130@th105@@QAEPAXMM@Z=0x00434E10",
+]
+dir32_targets = [
+  "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+]

@@ -256,3 +256,7 @@ __real@447a0000,0x006C5F24,00007a44,0,IDA 1.06a Udonge event bridge case 101 loa
 __real@43b40000,0x006C0EE0,0000b443,0,IDA 1.06a Aya event bridge case 50 loads flt_6C0EE0 into x_ec; mapped bytes encode 360.0f; attested 2026-08-21,literal
 __real@44160000,0x006C3F14,00001644,0,IDA 1.06a Aya event bridge cases 50/101 load flt_6C3F14 into y_f0; mapped bytes encode 600.0f; attested 2026-08-21,literal
 __real@44660000,0x006C57E8,00006644,0,IDA 1.06a Aya event bridge case 101 loads flt_6C57E8 into x_ec; mapped bytes encode 920.0f; attested 2026-08-21,literal
+__real@44974000,0x006C6630,00409744,0,"TH105 1.06a Iku event bridge case 101 loads canonical IEEE-754 1210.0f from 0x006C6630; target instruction operand and mapped bytes attested 2026-08-21",literal
+__real@41c80000,0x006C3B3C,0000c841,0,"TH105 1.06a Tenshi event bridge case 134 loads canonical IEEE-754 25.0f from 0x006C3B3C before current 0x004359D0 shared-state scalar helper; attested 2026-08-21",literal
+__real@43960000,0x006C3F00,00009643,0,Current Iku event bridge cases 138/139 load 0x006C3F00 into +0x7B4 and pass the same 300.0f to current helper 0x00434E10; mapped bytes attested 2026-08-21,literal
+__real@44a00000,0x006C3C24,0000a044,0,Current Iku event bridge case 139 loads 0x006C3C24 into x_ec; mapped bytes encode 1280.0f; attested 2026-08-21,literal

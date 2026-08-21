@@ -269,3 +269,5 @@ Youmu_handle_event_bridge,0x00544BF0,function
 Udonge_handle_event_bridge,0x005E1C50,function
 Suika_handle_event_bridge,0x005BF7D0,function
 Aya_handle_event_bridge,0x006203B0,function
+Tenshi_handle_event_bridge,0x00659420,function
+Iku_handle_event_bridge,0x0063CCB0,function

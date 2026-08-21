@@ -50,8 +50,8 @@ unsigned char __thiscall Komachi_handle_event_bridge(Komachi *self, int event_co
 void __thiscall Aya_update_sequence_lifecycle(Aya *self);
 unsigned char __thiscall Aya_handle_event_bridge(Aya *self, int event_code);
 void __thiscall Iku_update_sequence_lifecycle(Iku *self);
-bool __thiscall Iku_handle_event_bridge(Iku *self, int event_code);
+unsigned char __thiscall Iku_handle_event_bridge(Iku *self, int event_code);
 void __thiscall Tenshi_update_sequence_lifecycle(Tenshi *self);
-bool __thiscall Tenshi_handle_event_bridge(Tenshi *self, int event_code);
+unsigned char __thiscall Tenshi_handle_event_bridge(Tenshi *self, int event_code);
 
 } // namespace th105

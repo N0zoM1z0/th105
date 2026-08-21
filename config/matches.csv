@@ -269,3 +269,5 @@ address,name,size,status,match_percent,unit,evidence
 0x005E1C50,Udonge_handle_event_bridge,959,matching,100.00,cross-v106a-udonge-event-bridge,python3 scripts/build.py --unit cross-v106a-udonge-event-bridge --compare --json reports exact 959/959 against TH105 1.06a
 0x005BF7D0,Suika_handle_event_bridge,1203,matching,100.00,cross-v106a-suika-event-bridge,python3 scripts/build.py --unit cross-v106a-suika-event-bridge --compare --json reports exact 1203/1203 against TH105 1.06a
 0x006203B0,Aya_handle_event_bridge,1177,matching,100.00,cross-v106a-aya-event-bridge,python3 scripts/build.py --unit cross-v106a-aya-event-bridge --compare --json reports exact 1177/1177 against TH105 1.06a
+0x00659420,Tenshi_handle_event_bridge,1412,matching,100.00,cross-v106a-tenshi-event-bridge,python3 scripts/build.py --unit cross-v106a-tenshi-event-bridge --compare --json reports exact 1412/1412 against TH105 1.06a
+0x0063CCB0,Iku_handle_event_bridge,1553,matching,100.00,cross-v106a-iku-event-bridge,python3 scripts/build.py --unit cross-v106a-iku-event-bridge --compare --json reports exact 1553/1553 against TH105 1.06a
