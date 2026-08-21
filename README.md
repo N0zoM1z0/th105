@@ -1,6 +1,13 @@
 # 東方緋想天 ～ Scarlet Weather Rhapsody
 
 <p align="center">
+  <img
+    src="resources/title-screen.jpg"
+    width="640"
+    alt="Original Japanese TH10.5 1.06a title screen">
+</p>
+
+<p align="center">
   <img src="resources/progress.svg" alt="TH105 exact source reconstruction progress">
 </p>
 
