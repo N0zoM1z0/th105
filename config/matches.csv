@@ -11,7 +11,7 @@ address,name,size,status,match_percent,unit,evidence
 0x0040D930,is_raw_key_down,16,matching,100.00,cross-v106a-input-manager,python3 scripts/build.py --unit cross-v106a-input-manager --compare --json reports exact 16/16 against TH105 1.06a
 0x00412A20,string28_equals_c_string,53,matching,100.00,cross-v106a-string28-equals,python3 scripts/build.py --unit cross-v106a-string28-equals --compare --json reports exact 53/53 against TH105 1.06a
 0x0041B880,CPackageFileReader_size,4,matching,100.00,cross-v106a-file-reader,python3 scripts/build.py --unit cross-v106a-file-reader --compare --json reports exact 4/4 against TH105 1.06a
-0x00427290,set_target_20_enabled_2c,17,matching,100.00,cross-v106a-camera-state,python3 scripts/build.py --unit cross-v106a-camera-state --compare --json reports exact 17/17 against TH105 1.06a
+0x00427290,set_target_20_enabled_2c,17,matching,100.00,cross-v106a-shared-event-state,python3 scripts/build.py --unit cross-v106a-shared-event-state --compare --json reports exact 17/17 against TH105 1.06a
 0x004284C0,FixedSlotStoreView_select_slot,60,matching,100.00,cross-v106a-fixed-slot-select,python3 scripts/build.py --unit cross-v106a-fixed-slot-select --compare --json reports exact 60/60 against TH105 1.06a
 0x00428560,SynchronizedInputState_is_input_available,8,matching,100.00,battle-input-state,python3 scripts/build.py --unit battle-input-state --compare --json reports exact 8/8 against TH105 1.06a
 0x0042B2F0,FixedSlotEnvelope_deserialize,365,matching,100.00,cross-v106a-fixed-slot-deserialize,python3 scripts/build.py --unit cross-v106a-fixed-slot-deserialize --compare --json reports exact 365/365 against TH105 1.06a
@@ -272,3 +272,8 @@ address,name,size,status,match_percent,unit,evidence
 0x00659420,Tenshi_handle_event_bridge,1412,matching,100.00,cross-v106a-tenshi-event-bridge,python3 scripts/build.py --unit cross-v106a-tenshi-event-bridge --compare --json reports exact 1412/1412 against TH105 1.06a
 0x0063CCB0,Iku_handle_event_bridge,1553,matching,100.00,cross-v106a-iku-event-bridge,python3 scripts/build.py --unit cross-v106a-iku-event-bridge --compare --json reports exact 1553/1553 against TH105 1.06a
 0x00493B40,try_dispatch_flagged_gate_actions_220_224,258,matching,100.00,cross-v106a-command-gates-family,python3 scripts/build.py --unit cross-v106a-command-gates-family --compare --json reports exact 258/258 against TH105 1.06a
+0x004272B0,set_target_24_enabled_2d,17,matching,100.00,cross-v106a-shared-event-state,python3 scripts/build.py --unit cross-v106a-shared-event-state --compare --json reports exact 17/17 against TH105 1.06a
+0x004272D0,set_target_28_enabled_2e,17,matching,100.00,cross-v106a-shared-event-state,python3 scripts/build.py --unit cross-v106a-shared-event-state --compare --json reports exact 17/17 against TH105 1.06a
+0x004272F0,synchronize_targets,33,matching,100.00,cross-v106a-shared-event-state,python3 scripts/build.py --unit cross-v106a-shared-event-state --compare --json reports exact 33/33 against TH105 1.06a
+0x00434E10,set_global_pair,34,matching,100.00,cross-v106a-event-subobject130,python3 scripts/build.py --unit cross-v106a-event-subobject130 --compare --json reports exact 34/34 against TH105 1.06a
+0x00476AD0,set_shared_second_target,26,matching,100.00,cross-v106a-shared-event-forwarder,python3 scripts/build.py --unit cross-v106a-shared-event-forwarder --compare --json reports exact 26/26 against TH105 1.06a

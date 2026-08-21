@@ -271,3 +271,8 @@ Aya_handle_event_bridge
 Tenshi_handle_event_bridge
 Iku_handle_event_bridge
 try_dispatch_flagged_gate_actions_220_224
+set_target_24_enabled_2d
+set_target_28_enabled_2e
+synchronize_targets
+set_global_pair
+set_shared_second_target

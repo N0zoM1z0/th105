@@ -304,17 +304,30 @@ symbol_base = "set_input_state_table_entry"
 address = "0x0040D930"
 symbol_base = "is_raw_key_down"
 
-[units.cross-v106a-camera-state]
+[units.cross-v106a-shared-event-state]
 kind = "probe"
-source = "src/ui/CameraState.cpp"
-object = "build/match-units/CrossV106a_CameraState.obj"
+source = "src/battle/SharedEventState.cpp"
+object = "build/match-units/CrossV106a_SharedEventState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fresh canonical VC8 zero-diff replay; no relocation overrides required."
+notes = "TH105 1.06a SharedEventState helper family recovered from fourteen canonical-exact roster event bridges. The three target setters establish +0x20/+0x24/+0x28 floats and +0x2C/+0x2D/+0x2E enable bytes; synchronize_targets mirrors +0/+4/+8 into +0x18/+0x1C/+0x14 around two current 0x00426BB0 update calls."
 
-[[units.cross-v106a-camera-state.functions]]
+[[units.cross-v106a-shared-event-state.functions]]
 address = "0x00427290"
 symbol_base = "set_target_20_enabled_2c"
+
+[[units.cross-v106a-shared-event-state.functions]]
+address = "0x004272B0"
+symbol_base = "set_target_24_enabled_2d"
+
+[[units.cross-v106a-shared-event-state.functions]]
+address = "0x004272D0"
+symbol_base = "set_target_28_enabled_2e"
+
+[[units.cross-v106a-shared-event-state.functions]]
+address = "0x004272F0"
+symbol_base = "synchronize_targets"
+rel32_targets = ["?update_global_battle_setup_state_first@th105@@YIHPAX@Z=0x00426BB0"]
 
 [units.cross-v106a-menu-cursor]
 kind = "probe"
@@ -3814,6 +3827,40 @@ rel32_targets = [
   "?spawn_owned_object_via_manager@IkuEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
   "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
   "?set_global_pair@EventSubobject130@th105@@QAEPAXMM@Z=0x00434E10",
+]
+dir32_targets = [
+  "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+]
+
+
+[units.cross-v106a-event-subobject130]
+kind = "probe"
+source = "src/battle/EventSubobject130.cpp"
+object = "build/match-units/CrossV106a_EventSubobject130.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a EventSubobject130 global-pair helper. Current callers preserve a Fighter+0x130 member receiver even though the body leaves ECX unused; exact-backed battle object manager 0x006FBCA0 is the returned object and owns floats +0x10C/+0x110."
+
+[[units.cross-v106a-event-subobject130.functions]]
+address = "0x00434E10"
+symbol_base = "set_global_pair"
+dir32_targets = [
+  "?g_battle_object_manager@th105@@3PAUBattleObjectManagerPairView@1@A=?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A",
+]
+
+[units.cross-v106a-shared-event-forwarder]
+kind = "probe"
+source = "src/battle/SharedEventStateForwarder.cpp"
+object = "build/match-units/CrossV106a_SharedEventStateForwarder.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a unused-receiver character-event forwarder into SharedEventState target +0x24. Keeping this wrapper in a separate TU is target-backed: with the setter definition visible VC8 inlines it, while the isolated TU naturally reproduces the linked 26-byte call body."
+
+[[units.cross-v106a-shared-event-forwarder.functions]]
+address = "0x00476AD0"
+symbol_base = "set_shared_second_target"
+rel32_targets = [
+  "?set_target_24_enabled_2d@SharedEventState@th105@@QAEDDM@Z=0x004272B0",
 ]
 dir32_targets = [
   "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",

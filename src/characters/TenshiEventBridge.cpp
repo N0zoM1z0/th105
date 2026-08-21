@@ -1,21 +1,12 @@
 #include <stddef.h>
+#include "battle/SharedEventState.hpp"
+#include "battle/EventSubobject130.hpp"
 
 // Narrow 1.06a source view for Tenshi's event bridge. Current target event
 // payloads and unused-this member-call liveness define the recovered ABI.
 
 namespace th105 {
-struct SharedEventState {
-    char set_target_20_enabled_2c(char enabled, float target);
-    char set_target_24_enabled_2d(char enabled, float target);
-    char set_target_28_enabled_2e(char enabled, float target);
-    int synchronize_targets();
-};
-extern SharedEventState g_shared_event_state;
 
-struct EventSubobject130 {
-    unsigned char storage_00[0x0c];
-    int trigger_global_effect(int value);
-};
 
 
 class TenshiEventView {
