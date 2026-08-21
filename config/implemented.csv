@@ -257,3 +257,7 @@ test_aabb_against_descriptor_shape
 load_indexed_character_wave_resources
 load_spell_csv_via_325b0
 load_spell_csv_via_32e20
+Sakuya_handle_event_bridge
+Reimu_handle_event_bridge
+Marisa_handle_event_bridge
+Patchouli_handle_event_bridge

@@ -2218,7 +2218,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00496420,274,0x00496531,sub_496420,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00496540,39853,0x004A00EC,sub_496540,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004A1CE0,4892,0x004A2FFB,sub_4A1CE0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x004A3220,1061,0x004A3644,sub_4A3220,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x004A3220,1061,0x004A3644,sub_4A3220,Reimu_handle_event_bridge,characters,matching,100.00,__thiscall,"unsigned char Reimu_handle_event_bridge(Reimu * this, int event_code)",false,src/characters/ReimuEventBridge.cpp,python3 scripts/build.py --unit cross-v106a-reimu-event-bridge --compare --json reports exact 1061/1061 against TH105 1.06a,root,"Current 1.06a IDA proves the Reimu sparse event switch, dynamic +0x730/+0x732 camera countdown, Reimu case-9 motion constants, effect id 0, and virtual action/sequence ABI. A narrow natural C++ view reproduces the complete 1061-byte body and trailing compiler switch metadata boundary."
 0x004A3710,66695,0x004B3B96,sub_4A3710,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004B4070,16229,0x004B7FD4,sub_4B4070,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004B8280,1771,0x004B896A,sub_4B8280,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2245,7 +2245,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004B9FA0,7664,0x004BBD8F,sub_4B9FA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004BBE00,48771,0x004C7C82,sub_4BBE00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004C8050,10126,0x004CA7DD,sub_4C8050,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x004CA980,865,0x004CACE0,sub_4CA980,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x004CA980,865,0x004CACE0,sub_4CA980,Marisa_handle_event_bridge,characters,matching,100.00,__thiscall,"unsigned char Marisa_handle_event_bridge(Marisa * this, int event_code)",false,src/characters/MarisaEventBridge.cpp,python3 scripts/build.py --unit cross-v106a-marisa-event-bridge --compare --json reports exact 865/865 against TH105 1.06a,root,"Current 1.06a IDA proves the Marisa event topology, +0x734 event-107 word, case-101 coordinates, effect id 1, and common Fighter virtual ABI. Duplicating the truthful case-9/50 motion suffix lets VC8 naturally tail-merge to the target cross-jump; canonical body compare is exact."
 0x004CADB0,41511,0x004D4FD6,sub_4CADB0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004DD7E0,1796,0x004DDEE3,sub_4DD7E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004DE030,38,0x004DE055,sub_4DE030,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2271,7 +2271,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004E0BF0,314,0x004E0D29,sub_4E0BF0,CharacterObjectEffectEmitter_turn_heading_toward_related,characters,matching,100.00,__thiscall,"void CharacterObjectEffectEmitter_turn_heading_toward_related(CharacterObjectEffectEmitter * this, float heading_bias, float max_step, float y_offset)",false,src/characters/CharacterObjectEffects.cpp,python3 scripts/build.py --unit cross-v106a-character-heading --compare --json reports exact 314/314 against TH105 1.06a,root,"Whole-corpus retained-source ranking selected the current candidate; all non-relocation bytes matched before acceptance, current callees/literals were independently reconciled, and the canonical VC8 comparison is zero-difference."
 0x004E0D30,28985,0x004E7E68,sub_4E0D30,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004E8060,6538,0x004E99E9,sub_4E8060,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x004E9B40,843,0x004E9E8A,sub_4E9B40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x004E9B40,843,0x004E9E8A,sub_4E9B40,Sakuya_handle_event_bridge,characters,matching,100.00,__thiscall,"unsigned char Sakuya_handle_event_bridge(Sakuya * this, int event_code)",false,src/characters/SakuyaEventBridge.cpp,python3 scripts/build.py --unit cross-v106a-sakuya-event-bridge --compare --json reports exact 843/843 against TH105 1.06a,root,"Current 1.06a IDA establishes the Sakuya event-code switch. Natural C++ reproduces the byte return ABI, real virtual action/sequence slots, shared battle-state setters, case 9/50 action-tail cross-jump, case 110/120 action-796 tail, and compiler switch metadata at body+0x34C/+0x394; canonical body compare is 843/843 exact."
 0x004E9F50,42721,0x004F4630,sub_4E9F50,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004F4B80,16354,0x004F8B61,sub_4F4B80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004F8E00,2284,0x004F96EB,sub_4F8E00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2330,7 +2330,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00520860,40,0x00520887,sub_520860,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00520890,50649,0x0052CE68,sub_520890,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0052D200,10831,0x0052FC4E,sub_52D200,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0052FDB0,904,0x00530137,sub_52FDB0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0052FDB0,904,0x00530137,sub_52FDB0,Patchouli_handle_event_bridge,characters,matching,100.00,__thiscall,"unsigned char Patchouli_handle_event_bridge(Patchouli * this, int event_code)",false,src/characters/PatchouliEventBridge.cpp,python3 scripts/build.py --unit cross-v106a-patchouli-event-bridge --compare --json reports exact 904/904 against TH105 1.06a,root,"Current 1.06a IDA proves the Patchouli event topology, Reimu-shaped case-9 motion with action 797, 900.0f case-50/101 coordinates, effects 5/1/5, and real virtual action/sequence slots. Natural C++ is canonical exact over all 904 bytes."
 0x00530200,37692,0x0053953B,sub_530200,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x005399A0,341,0x00539AF4,sub_5399A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00539B00,97,0x00539B60,sub_539B00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

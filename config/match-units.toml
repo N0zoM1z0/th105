@@ -3488,3 +3488,100 @@ dir32_targets = [
   "??_C@_0BL@FDFMFODE@data?1csv?1?$CFs?1storySpell?4csv?$AA@=??_C@_0BL@FDFMFODE@data?1csv?1?$CFs?1storySpell?4csv?$AA@",
   "??_C@_0BK@LLDEPKNL@data?1csv?1?$CFs?1spellcard?4csv?$AA@=??_C@_0BK@LLDEPKNL@data?1csv?1?$CFs?1spellcard?4csv?$AA@",
 ]
+
+[units.cross-v106a-sakuya-event-bridge]
+kind = "probe"
+source = "src/characters/SakuyaEventBridge.cpp"
+object = "build/match-units/CrossV106a_SakuyaEventBridge.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a Sakuya event bridge recovered from current IDA semantics using the exact-backed Alice sparse-switch method. The byte return ABI, real virtual slots +0x08/+0x0C, shared-state calls, 18-destination jump table at body+0x34C, and compiler cross-jumps for cases 9/50 and 110/120 are current-target-backed."
+
+[[units.cross-v106a-sakuya-event-bridge.functions]]
+address = "0x004E9B40"
+symbol_base = "handle_event_bridge"
+rel32_targets = [
+  "?set_target_20_enabled_2c@SharedEventState@th105@@QAEDDM@Z=0x00427290",
+  "?set_target_24_enabled_2d@SharedEventState@th105@@QAEDDM@Z=0x004272B0",
+  "?set_target_28_enabled_2e@SharedEventState@th105@@QAEDDM@Z=0x004272D0",
+  "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
+  "?zero_velocity_acceleration@SakuyaEventView@th105@@QAEXXZ=0x0045AF40",
+  "?spawn_owned_object_via_manager@SakuyaEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+]
+dir32_targets = [
+  "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+]
+
+[units.cross-v106a-reimu-event-bridge]
+kind = "probe"
+source = "src/characters/ReimuEventBridge.cpp"
+object = "build/match-units/CrossV106a_ReimuEventBridge.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a Reimu event bridge recovered from current IDA semantics using the exact-backed Alice sparse-switch pattern. Dynamic event-counter camera cases, Reimu case-9 motion, byte return ABI, and real virtual action/sequence slots are target-backed."
+
+[[units.cross-v106a-reimu-event-bridge.functions]]
+address = "0x004A3220"
+symbol_base = "handle_event_bridge"
+rel32_targets = [
+  "?set_target_20_enabled_2c@SharedEventState@th105@@QAEDDM@Z=0x00427290",
+  "?set_target_24_enabled_2d@SharedEventState@th105@@QAEDDM@Z=0x004272B0",
+  "?set_target_28_enabled_2e@SharedEventState@th105@@QAEDDM@Z=0x004272D0",
+  "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
+  "?zero_velocity_acceleration@ReimuEventView@th105@@QAEXXZ=0x0045AF40",
+  "?spawn_owned_object_via_manager@ReimuEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+  "?set_shared_second_target@ReimuEventView@th105@@QAEDDM@Z=0x00476AD0",
+]
+dir32_targets = [
+  "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+]
+
+[units.cross-v106a-marisa-event-bridge]
+kind = "probe"
+source = "src/characters/MarisaEventBridge.cpp"
+object = "build/match-units/CrossV106a_MarisaEventBridge.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a Marisa event bridge recovered from current IDA semantics. The Sakuya-shaped sparse switch plus Marisa case-101 coordinates, effect id 1, and event-107 +0x734 word are target-backed; duplicated case-9/50 suffixes let VC8 tail-merge naturally."
+
+[[units.cross-v106a-marisa-event-bridge.functions]]
+address = "0x004CA980"
+symbol_base = "handle_event_bridge"
+rel32_targets = [
+  "?set_target_20_enabled_2c@SharedEventState@th105@@QAEDDM@Z=0x00427290",
+  "?set_target_24_enabled_2d@SharedEventState@th105@@QAEDDM@Z=0x004272B0",
+  "?set_target_28_enabled_2e@SharedEventState@th105@@QAEDDM@Z=0x004272D0",
+  "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
+  "?zero_velocity_acceleration@MarisaEventView@th105@@QAEXXZ=0x0045AF40",
+  "?spawn_owned_object_via_manager@MarisaEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+]
+dir32_targets = [
+  "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+]
+
+[units.cross-v106a-patchouli-event-bridge]
+kind = "probe"
+source = "src/characters/PatchouliEventBridge.cpp"
+object = "build/match-units/CrossV106a_PatchouliEventBridge.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a Patchouli event bridge recovered from current IDA semantics. Current case-9/50/101 coordinates, effect ids 5/1/5, byte return ABI, and sparse switch topology are target-backed."
+
+[[units.cross-v106a-patchouli-event-bridge.functions]]
+address = "0x0052FDB0"
+symbol_base = "handle_event_bridge"
+rel32_targets = [
+  "?set_target_20_enabled_2c@SharedEventState@th105@@QAEDDM@Z=0x00427290",
+  "?set_target_24_enabled_2d@SharedEventState@th105@@QAEDDM@Z=0x004272B0",
+  "?set_target_28_enabled_2e@SharedEventState@th105@@QAEDDM@Z=0x004272D0",
+  "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
+  "?zero_velocity_acceleration@PatchouliEventView@th105@@QAEXXZ=0x0045AF40",
+  "?spawn_owned_object_via_manager@PatchouliEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+]
+dir32_targets = [
+  "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+]

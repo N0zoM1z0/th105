@@ -258,3 +258,7 @@ test_aabb_against_descriptor_shape,0x0046B7B0,function
 load_indexed_character_wave_resources,0x0045F680,function
 load_spell_csv_via_325b0,0x00434300,function
 load_spell_csv_via_32e20,0x00434A10,function
+Sakuya_handle_event_bridge,0x004E9B40,function
+Reimu_handle_event_bridge,0x004A3220,function
+Marisa_handle_event_bridge,0x004CA980,function
+Patchouli_handle_event_bridge,0x0052FDB0,function

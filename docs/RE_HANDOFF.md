@@ -14,10 +14,10 @@ seeds using current-target-backed structural remapping where appropriate.
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 259 authored functions, 685 classified exclusions, and 3,060 still awaiting origin/boundary review.
-- All 259 confirmed authored functions are source-present and canonical exact:
-  34,865 exact authored bytes across 127 configured VC8 units.
-- The newest retained-source migration wave added 159 functions / 21,378 bytes
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 263 authored functions, 685 classified exclusions, and 3,056 still awaiting origin/boundary review.
+- All 263 confirmed authored functions are source-present and canonical exact:
+  38,538 exact authored bytes across 131 configured VC8 units.
+- The newest retained-source/lifecycle migration wave added 163 functions / 25,051 bytes
   beyond the prior 100-function checkpoint. Structural instruction shape and
   relocation-masked bytes are used only for candidate ranking; every accepted
   function still requires current 1.06a semantic/relocation evidence and a fresh
@@ -30,6 +30,7 @@ seeds using current-target-backed structural remapping where appropriate.
 - The current lifecycle/PAT wave adds exact `Alice::handle_event_bridge` (1,075 bytes) plus full `PatRecord88` construction/destruction (300/515 bytes). The recovered PAT layout now has a 0x1C `FrameData` base, checked `vector<PatRaw16>` members at +0x58/+0x68 and checked `vector<PatRaw16*>` at +0x78; the unique 88-byte value-vector `erase` helper is independently excluded as generated VC8 template code.
 - Refined PAT layout evidence also removes `vector<PatRaw16>::operator= @ 0x00460AD0` and the implicit `PatRecord88` copy constructor `0x00460C90` from the authored denominator through SHA-pinned VC8 generated-COMDAT replay. The latter only matches after treating +0x3A/+0x4A as natural alignment gaps and the `FrameData` copy constructor as an out-of-line base lifetime; explicit padding-array members or an inlined implicit base copy do not reproduce the target.
 - `load_spell_csv_via_325b0 @ 0x00434300` and `load_spell_csv_via_32e20 @ 0x00434A10` are 148/148 and 161/161 exact after correcting the parser ABI: current wrappers and independent caller `0x00434AC0` all restore `ECX = SpellDataOwner*` immediately before the parser call. Modeling the parser bodies as unused-`this` member functions naturally restores the two missing `mov ecx, esi` instructions and preserves the owner register in the alternate branch.
+- Four current character event bridges are now canonical exact from narrow current-target views: `Reimu @ 0x004A3220` 1061/1061, `Marisa @ 0x004CA980` 865/865, `Sakuya @ 0x004E9B40` 843/843, and `Patchouli @ 0x0052FDB0` 904/904. Each identity is closed by its current role-specific event topology, virtual +0x08/+0x0C dispatch, and character-local address region.
 - `config/claims.csv` remains header-only. IDA Pro remains the sole semantic
   backend.
 
@@ -52,7 +53,7 @@ the current call target.
 ## Next bounded work
 
 Continue origin/boundary review so the authored denominator becomes meaningful,
-then expand exact recovery from the 259 accepted functions. Use
+then expand exact recovery from the 263 accepted functions. Use
 `scripts/rank_retained_exact.py --only-unconfigured` to prioritize historical
 exact source that never had an old match unit. Same-size zero non-relocation
 mismatch candidates are especially productive, but ambiguous template/clone
@@ -61,9 +62,9 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 3,060
+The 95% authored-function and authored-byte goals cannot be reported yet: 3,056
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 259/259
+global authored denominator is not established. Do not use the current 263/263
 exact subset as a substitute denominator.
 
 ## Routine checkpoint

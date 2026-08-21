@@ -1,0 +1,194 @@
+#include <stddef.h>
+
+// Narrow 1.06a source view for Patchouli's event bridge. Only current-target
+// proven Fighter fields and virtual slots are modeled here.
+
+
+namespace th105 {
+
+struct SharedEventState {
+    char set_target_20_enabled_2c(char enabled, float target);
+    char set_target_24_enabled_2d(char enabled, float target);
+    char set_target_28_enabled_2e(char enabled, float target);
+    int synchronize_targets();
+};
+extern SharedEventState g_shared_event_state;
+
+struct EventSubobject130 {
+    unsigned char storage_00[0x0c];
+    int trigger_global_effect(int value);
+};
+
+class PatchouliEventView {
+public:
+    virtual ~PatchouliEventView();
+    virtual void virtual_slot_04();
+    virtual void set_action(int action_id);
+    virtual void set_sequence(int sequence_id);
+
+    unsigned char handle_event_bridge(int event_code);
+    void zero_velocity_acceleration();
+    int spawn_owned_object_via_manager(
+        int object_id,
+        float x,
+        float y,
+        int direction,
+        int arg5,
+        int arg6,
+        int arg7);
+
+    unsigned char unknown_004[0xe8];
+    float x_ec;
+    float y_f0;
+    float velocity_x_f4;
+    float velocity_y_f8;
+    float acceleration_x_fc;
+    float acceleration_y_100;
+    unsigned char facing_104;
+    unsigned char unknown_105[0x2b];
+    EventSubobject130 event_subobject_130;
+    short state_13c;
+    unsigned char unknown_13e[0x32];
+    PatchouliEventView *other_fighter_170;
+    unsigned char unknown_174[0x5bc];
+    short event_counter_730;
+    short event_timer_732;
+    unsigned char unknown_734[0x25];
+    unsigned char event_flag_759;
+    unsigned char unknown_75a[2];
+    int event_value_75c;
+    int event_value_760;
+};
+
+typedef char SakuyaEvent_state_offset[
+    offsetof(PatchouliEventView, state_13c) == 0x13c ? 1 : -1];
+typedef char SakuyaEvent_other_offset[
+    offsetof(PatchouliEventView, other_fighter_170) == 0x170 ? 1 : -1];
+typedef char SakuyaEvent_counter_offset[
+    offsetof(PatchouliEventView, event_counter_730) == 0x730 ? 1 : -1];
+typedef char SakuyaEvent_flag_offset[
+    offsetof(PatchouliEventView, event_flag_759) == 0x759 ? 1 : -1];
+
+unsigned char PatchouliEventView::handle_event_bridge(int event_code)
+{
+    switch (event_code) {
+    case 1:
+        event_counter_730 = 640;
+        x_ec = 100.0f;
+        event_timer_732 = 0;
+        g_shared_event_state.set_target_20_enabled_2c(1, 640.0f);
+        g_shared_event_state.set_target_24_enabled_2d(1, 0.0f);
+        g_shared_event_state.set_target_28_enabled_2e(1, 1.0f);
+        g_shared_event_state.synchronize_targets();
+        return 0;
+
+    case 2:
+    case 11:
+        g_shared_event_state.set_target_20_enabled_2c(1, 640.0f);
+        g_shared_event_state.set_target_24_enabled_2d(1, 0.0f);
+        g_shared_event_state.set_target_28_enabled_2e(1, 1.0f);
+        g_shared_event_state.synchronize_targets();
+        return 0;
+
+    case 3:
+        g_shared_event_state.set_target_20_enabled_2c(0, 640.0f);
+        g_shared_event_state.set_target_24_enabled_2d(0, 0.0f);
+        g_shared_event_state.set_target_28_enabled_2e(0, 1.0f);
+        return 0;
+
+    case 4:
+        g_shared_event_state.set_target_20_enabled_2c(1, 640.0f);
+        g_shared_event_state.set_target_24_enabled_2d(1, 0.0f);
+        g_shared_event_state.set_target_28_enabled_2e(1, 1.0f);
+        return 0;
+
+    case 5:
+        x_ec = 0.0f;
+        y_f0 = 0.0f;
+        zero_velocity_acceleration();
+        set_action(0);
+        return 0;
+
+    case 6:
+        set_action(790);
+        set_sequence(2);
+        x_ec = 480.0f;
+        y_f0 = 800.0f;
+        velocity_x_f4 = 0.0f;
+        velocity_y_f8 = 0.0f;
+        acceleration_y_100 = 0.25f;
+        return 0;
+
+    case 7:
+    case 51:
+        return state_13c != 0;
+
+    case 8: {
+        set_action(139);
+        float copied_words[3] = {0.0f, 0.0f, 0.0f};
+        spawn_owned_object_via_manager(
+            999, x_ec, y_f0, 1, 1,
+            reinterpret_cast<int>(copied_words), 3);
+        return 0;
+    }
+
+    case 9:
+        x_ec = 100.0f;
+        y_f0 = 2.0f;
+        facing_104 = 1;
+        velocity_x_f4 = 6.0f;
+        velocity_y_f8 = 15.0f;
+        acceleration_y_100 = 0.5f;
+        set_action(797);
+        return 0;
+
+    case 50:
+        x_ec = 480.0f;
+        y_f0 = 900.0f;
+        set_action(797);
+        return 0;
+
+    case 101:
+        x_ec = 800.0f;
+        y_f0 = 900.0f;
+        set_action(798);
+        return 0;
+
+    case 102:
+    case 106:
+    case 111:
+        return state_13c != 700;
+
+    case 103:
+        event_subobject_130.trigger_global_effect(5);
+        event_flag_759 = 1;
+        event_value_75c = 0;
+        event_value_760 = 180;
+        return 0;
+
+    case 104:
+        event_subobject_130.trigger_global_effect(1);
+        return 0;
+
+    case 105: {
+        PatchouliEventView *const other = other_fighter_170;
+        y_f0 = 960.0f;
+        x_ec = other->x_ec +
+            250 * static_cast<signed char>(other->facing_104);
+        facing_104 = static_cast<unsigned char>(-other->facing_104);
+        set_action(795);
+        return 0;
+    }
+
+    case 110:
+        set_action(796);
+        return 0;
+
+    case 113:
+        event_subobject_130.trigger_global_effect(5);
+        return 0;
+    }
+    return 1;
+}
+
+} // namespace th105
