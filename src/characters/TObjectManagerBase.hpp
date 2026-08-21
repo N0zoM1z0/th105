@@ -45,17 +45,20 @@ class TObjectManagerBase {
 public:
     TObjectManagerBase();
     virtual ~TObjectManagerBase();
+    void preallocate_object_pool(unsigned target_count);
 
     CHandleManagerEx<ObjectType> handle_pool_04;
     th105::CollisionList linked_objects_54;
 };
 
 
+#ifndef TH105_TOBJECT_MANAGER_BASE_DECLARATIONS_ONLY
 template <typename ObjectType, typename BaseObjectType>
 TObjectManagerBase<ObjectType, BaseObjectType>::TObjectManagerBase()
     : handle_pool_04(), linked_objects_54()
 {
 }
+#endif
 
 
 typedef char SakuyaCHandleManagerEx_size_must_be_0x50[

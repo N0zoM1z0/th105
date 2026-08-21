@@ -17,9 +17,9 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 205 functions / 28,219 bytes in 119
-  VC8 match units. The newest whole-corpus retained-source wave added 105
-  functions / 14,732 bytes beyond the previous 100-function checkpoint. Candidate
+- The accepted 1.06a authored set contains 236 functions / 30,652 bytes in 121
+  VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 136
+  functions / 17,165 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
   establish hypotheses; canonical VC8 zero-difference comparisons establish
   exactness.
@@ -229,6 +229,9 @@ notes or source hypotheses.
 - ICF/shared code can still have target-backed authored ownership through vtables. The current `CFileReader` vtable `0x006C0F34` points to scalar deleting dtor `0x0041B890` and seek `0x00407C50` alongside accepted reader methods; that class chain closes the identity even if another class also reuses the same implementation address.
 - Vtable edges beat normalized clone ranking for scalar deleting destructors. Current `CMenuResult` vtable `0x006C2070` points to `0x00447890`, `CProfileMenu` vtable `0x006C2484` points to `0x0044D6E0`, and `CEffectSprite` vtable `0x006C072C` points to `0x0041F6F0`. Fresh VC8 matches those wrappers 30/30, 30/30, and 31/31. Structural candidates such as `0x006B4DE0` and `0x006A08C0` were rejected despite similar shapes.
 - The current game/config accessor globals are now exact-backed rather than retained magic absolutes: `g_game_mode @ 0x006FBD4C`, `g_match_setup @ 0x006FCA48`, `g_game_config @ 0x006FC598`, and `g_score_data @ 0x006FCC98`. The four six-byte getters compile exact from semantic externs and are independently consumed by accepted battle/UI paths.
+
+- Template-family acceptance can use current vtable ownership as a batch proof when every specialization is independently target-backed. The fifteen roster `CharacterObjectManager<Fighter,FighterObject>` constructors are each 123/123 exact: current code enters the exact class-specific `TObjectManagerBase` constructor, writes the shared interface vtable plus the specialization vtable, stores the owner at `+0x64`, then calls the specialization's preallocate helper with 256. The same primary vtables' first entries point one-for-one to fifteen 30-byte scalar-deleting destructors, and the common VC8 template TU reproduces all thirty functions exactly. Do not promote a template clone merely because bytes tie; require the class-specific vtable edge.
+- Header-only lifecycle declarations can be converted into exact authored source with a deliberately narrow C++ lifetime view when current target evidence fixes the touched base/layout. `Alice_construct @ 0x004FAC40` is the reference case: current IDA proves the Character base ctor `0x00462AB0`, Alice vtable `0x006C4BDC`, `-6.0f` store at `+0x138`, allocation of a 0x68 Alice object manager via `0x004FAA40`, and publication at `+0x658`. A natural derived `Alice : Character` constructor with only those proven fields causes VC8 `/GS`/EH/new-cleanup codegen to match all 138 bytes. This is the preferred seed for the larger lifecycle/event roots; do not transcribe decompiler pseudocode into source.
 - Structural clone ties need class/caller evidence, not old address order. The
   367-byte Yukari mirrored-command gate at `0x0058C170` was accepted only after
   its sole current fighter dispatcher, nearby exact Yukari anchors, and all five
@@ -257,7 +260,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,126
+- Accepted boundaries and authored/library origins for the remaining 3,095
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.

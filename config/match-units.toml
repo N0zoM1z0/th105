@@ -2748,3 +2748,379 @@ rel32_targets = [
   "?process_fighter_transient_status@th105@@YIXPAX@Z=0x0045E3D0",
   "?decrement_fighter_timers_and_cleanup@th105@@YIXPAX@Z=0x0045E500",
 ]
+
+[units.cross-v106a-alice-constructor]
+kind = "probe"
+source = "src/characters/AliceConstructor.cpp"
+object = "build/match-units/CrossV106a_AliceConstructor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a Alice lifecycle-root constructor seed. Current IDA proves Character base construction, Alice vptr publication, +0x138 = -6.0f, 0x68-byte Alice manager allocation/construction, and +0x658 ownership. Narrow natural C++ reproduces the complete /GS+EH body."
+
+[[units.cross-v106a-alice-constructor.functions]]
+address = "0x004FAC40"
+symbol_base = "Alice_ctor"
+rel32_targets = [
+  "??0Character@th105@@QAE@H@Z=0x00462AB0",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0AliceObjectManager@th105@@QAE@PAVAlice@1@@Z=0x004FAA40",
+]
+dir32_targets = [
+  "__ehhandler$??0Alice@th105@@QAE@H@Z=__ehhandler$??0Alice@th105@@QAE@H@Z",
+  "___security_cookie=___security_cookie",
+  "__real@c0c00000=__real@c0c00000",
+  "??_7Alice@th105@@6B@=??_7Alice@th105@@6B@",
+]
+
+[units.cross-v106a-character-object-manager-ctors]
+kind = "probe"
+source = "src/characters/CharacterObjectManagerCtors.cpp"
+object = "build/match-units/CrossV106a_CharacterObjectManagerCtors.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a fifteen-member CharacterObjectManager ctor family recovered from natural VC8 multiple inheritance. Candidate discovery requires an exact 123-byte non-relocation signature and a +0x3D REL32 call to the already-exact class-specific TObjectManagerBase ctor; current derived vtables/preallocate/SEH are then decoded from the same target body. No address-delta or clone-order inference is used."
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x00493750"
+symbol_base = "??0?$CharacterObjectManager@VReimu@@VReimuObject@@@@QAE@PAVReimu@@@Z"
+rel32_targets = [
+  "??0?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@QAE@XZ=0x00493570",
+  "?preallocate_object_pool@?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@QAEXI@Z=0x004936D0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CharacterObjectManager@VReimu@@VReimuObject@@@@QAE@PAVReimu@@@Z=__ehhandler$??0?$CharacterObjectManager@VReimu@@VReimuObject@@@@QAE@PAVReimu@@@Z",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+  "??_7?$CharacterObjectManager@VReimu@@VReimuObject@@@@6BICharacterObjectManager@@@=??_7?$CharacterObjectManager@VReimu@@VReimuObject@@@@6BICharacterObjectManager@@@",
+  "??_7?$CharacterObjectManager@VReimu@@VReimuObject@@@@6B?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@@=??_7?$CharacterObjectManager@VReimu@@VReimuObject@@@@6B?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x004B9D10"
+symbol_base = "??0?$CharacterObjectManager@VMarisa@@VMarisaObject@@@@QAE@PAVMarisa@@@Z"
+rel32_targets = [
+  "??0?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@QAE@XZ=0x004B9B30",
+  "?preallocate_object_pool@?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@QAEXI@Z=0x004B9C90",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CharacterObjectManager@VMarisa@@VMarisaObject@@@@QAE@PAVMarisa@@@Z=__ehhandler$??0?$CharacterObjectManager@VMarisa@@VMarisaObject@@@@QAE@PAVMarisa@@@Z",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+  "??_7?$CharacterObjectManager@VMarisa@@VMarisaObject@@@@6BICharacterObjectManager@@@=??_7?$CharacterObjectManager@VMarisa@@VMarisaObject@@@@6BICharacterObjectManager@@@",
+  "??_7?$CharacterObjectManager@VMarisa@@VMarisaObject@@@@6B?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@@=??_7?$CharacterObjectManager@VMarisa@@VMarisaObject@@@@6B?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x004DF230"
+symbol_base = "??0?$CharacterObjectManager@VSakuya@@VSakuyaObject@@@@QAE@PAVSakuya@@@Z"
+rel32_targets = [
+  "??0?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@QAE@XZ=0x004DF050",
+  "?preallocate_object_pool@?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@QAEXI@Z=0x004DF1B0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CharacterObjectManager@VSakuya@@VSakuyaObject@@@@QAE@PAVSakuya@@@Z=__ehhandler$??0?$CharacterObjectManager@VSakuya@@VSakuyaObject@@@@QAE@PAVSakuya@@@Z",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+  "??_7?$CharacterObjectManager@VSakuya@@VSakuyaObject@@@@6BICharacterObjectManager@@@=??_7?$CharacterObjectManager@VSakuya@@VSakuyaObject@@@@6BICharacterObjectManager@@@",
+  "??_7?$CharacterObjectManager@VSakuya@@VSakuyaObject@@@@6B?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@@=??_7?$CharacterObjectManager@VSakuya@@VSakuyaObject@@@@6B?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x004FAA40"
+symbol_base = "??0?$CharacterObjectManager@VAlice@@VAliceObject@@@@QAE@PAVAlice@@@Z"
+rel32_targets = [
+  "??0?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@QAE@XZ=0x004FA860",
+  "?preallocate_object_pool@?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@QAEXI@Z=0x004FA9C0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CharacterObjectManager@VAlice@@VAliceObject@@@@QAE@PAVAlice@@@Z=__ehhandler$??0?$CharacterObjectManager@VAlice@@VAliceObject@@@@QAE@PAVAlice@@@Z",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+  "??_7?$CharacterObjectManager@VAlice@@VAliceObject@@@@6BICharacterObjectManager@@@=??_7?$CharacterObjectManager@VAlice@@VAliceObject@@@@6BICharacterObjectManager@@@",
+  "??_7?$CharacterObjectManager@VAlice@@VAliceObject@@@@6B?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@@=??_7?$CharacterObjectManager@VAlice@@VAliceObject@@@@6B?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x0051ECE0"
+symbol_base = "??0?$CharacterObjectManager@VPatchouli@@VPatchouliObject@@@@QAE@PAVPatchouli@@@Z"
+rel32_targets = [
+  "??0?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@QAE@XZ=0x0051EB00",
+  "?preallocate_object_pool@?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@QAEXI@Z=0x0051EC60",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CharacterObjectManager@VPatchouli@@VPatchouliObject@@@@QAE@PAVPatchouli@@@Z=__ehhandler$??0?$CharacterObjectManager@VPatchouli@@VPatchouliObject@@@@QAE@PAVPatchouli@@@Z",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+  "??_7?$CharacterObjectManager@VPatchouli@@VPatchouliObject@@@@6BICharacterObjectManager@@@=??_7?$CharacterObjectManager@VPatchouli@@VPatchouliObject@@@@6BICharacterObjectManager@@@",
+  "??_7?$CharacterObjectManager@VPatchouli@@VPatchouliObject@@@@6B?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@@=??_7?$CharacterObjectManager@VPatchouli@@VPatchouliObject@@@@6B?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x0053B0A0"
+symbol_base = "??0?$CharacterObjectManager@VYoumu@@VYoumuObject@@@@QAE@PAVYoumu@@@Z"
+rel32_targets = [
+  "??0?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@QAE@XZ=0x0053AEC0",
+  "?preallocate_object_pool@?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@QAEXI@Z=0x0053B020",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CharacterObjectManager@VYoumu@@VYoumuObject@@@@QAE@PAVYoumu@@@Z=__ehhandler$??0?$CharacterObjectManager@VYoumu@@VYoumuObject@@@@QAE@PAVYoumu@@@Z",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+  "??_7?$CharacterObjectManager@VYoumu@@VYoumuObject@@@@6BICharacterObjectManager@@@=??_7?$CharacterObjectManager@VYoumu@@VYoumuObject@@@@6BICharacterObjectManager@@@",
+  "??_7?$CharacterObjectManager@VYoumu@@VYoumuObject@@@@6B?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@@=??_7?$CharacterObjectManager@VYoumu@@VYoumuObject@@@@6B?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x00555DF0"
+symbol_base = "??0?$CharacterObjectManager@VRemilia@@VRemiliaObject@@@@QAE@PAVRemilia@@@Z"
+rel32_targets = [
+  "??0?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@QAE@XZ=0x00555C10",
+  "?preallocate_object_pool@?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@QAEXI@Z=0x00555D70",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CharacterObjectManager@VRemilia@@VRemiliaObject@@@@QAE@PAVRemilia@@@Z=__ehhandler$??0?$CharacterObjectManager@VRemilia@@VRemiliaObject@@@@QAE@PAVRemilia@@@Z",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+  "??_7?$CharacterObjectManager@VRemilia@@VRemiliaObject@@@@6BICharacterObjectManager@@@=??_7?$CharacterObjectManager@VRemilia@@VRemiliaObject@@@@6BICharacterObjectManager@@@",
+  "??_7?$CharacterObjectManager@VRemilia@@VRemiliaObject@@@@6B?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@@=??_7?$CharacterObjectManager@VRemilia@@VRemiliaObject@@@@6B?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x0056DC20"
+symbol_base = "??0?$CharacterObjectManager@VYuyuko@@VYuyukoObject@@@@QAE@PAVYuyuko@@@Z"
+rel32_targets = [
+  "??0?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@QAE@XZ=0x0056D9C0",
+  "?preallocate_object_pool@?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@QAEXI@Z=0x0056DBA0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CharacterObjectManager@VYuyuko@@VYuyukoObject@@@@QAE@PAVYuyuko@@@Z=__ehhandler$??0?$CharacterObjectManager@VYuyuko@@VYuyukoObject@@@@QAE@PAVYuyuko@@@Z",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+  "??_7?$CharacterObjectManager@VYuyuko@@VYuyukoObject@@@@6BICharacterObjectManager@@@=??_7?$CharacterObjectManager@VYuyuko@@VYuyukoObject@@@@6BICharacterObjectManager@@@",
+  "??_7?$CharacterObjectManager@VYuyuko@@VYuyukoObject@@@@6B?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@@=??_7?$CharacterObjectManager@VYuyuko@@VYuyukoObject@@@@6B?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x0058BD80"
+symbol_base = "??0?$CharacterObjectManager@VYukari@@VYukariObject@@@@QAE@PAVYukari@@@Z"
+rel32_targets = [
+  "??0?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@QAE@XZ=0x0058BBA0",
+  "?preallocate_object_pool@?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@QAEXI@Z=0x0058BD00",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CharacterObjectManager@VYukari@@VYukariObject@@@@QAE@PAVYukari@@@Z=__ehhandler$??0?$CharacterObjectManager@VYukari@@VYukariObject@@@@QAE@PAVYukari@@@Z",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+  "??_7?$CharacterObjectManager@VYukari@@VYukariObject@@@@6BICharacterObjectManager@@@=??_7?$CharacterObjectManager@VYukari@@VYukariObject@@@@6BICharacterObjectManager@@@",
+  "??_7?$CharacterObjectManager@VYukari@@VYukariObject@@@@6B?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@@=??_7?$CharacterObjectManager@VYukari@@VYukariObject@@@@6B?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x005AEA80"
+symbol_base = "??0?$CharacterObjectManager@VSuika@@VSuikaObject@@@@QAE@PAVSuika@@@Z"
+rel32_targets = [
+  "??0?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@QAE@XZ=0x005AE8A0",
+  "?preallocate_object_pool@?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@QAEXI@Z=0x005AEA00",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CharacterObjectManager@VSuika@@VSuikaObject@@@@QAE@PAVSuika@@@Z=__ehhandler$??0?$CharacterObjectManager@VSuika@@VSuikaObject@@@@QAE@PAVSuika@@@Z",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+  "??_7?$CharacterObjectManager@VSuika@@VSuikaObject@@@@6BICharacterObjectManager@@@=??_7?$CharacterObjectManager@VSuika@@VSuikaObject@@@@6BICharacterObjectManager@@@",
+  "??_7?$CharacterObjectManager@VSuika@@VSuikaObject@@@@6B?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@@=??_7?$CharacterObjectManager@VSuika@@VSuikaObject@@@@6B?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x005D29D0"
+symbol_base = "??0?$CharacterObjectManager@VUdonge@@VUdongeObject@@@@QAE@PAVUdonge@@@Z"
+rel32_targets = [
+  "??0?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@QAE@XZ=0x005D27F0",
+  "?preallocate_object_pool@?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@QAEXI@Z=0x005D2950",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CharacterObjectManager@VUdonge@@VUdongeObject@@@@QAE@PAVUdonge@@@Z=__ehhandler$??0?$CharacterObjectManager@VUdonge@@VUdongeObject@@@@QAE@PAVUdonge@@@Z",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+  "??_7?$CharacterObjectManager@VUdonge@@VUdongeObject@@@@6BICharacterObjectManager@@@=??_7?$CharacterObjectManager@VUdonge@@VUdongeObject@@@@6BICharacterObjectManager@@@",
+  "??_7?$CharacterObjectManager@VUdonge@@VUdongeObject@@@@6B?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@@=??_7?$CharacterObjectManager@VUdonge@@VUdongeObject@@@@6B?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x005F7830"
+symbol_base = "??0?$CharacterObjectManager@VKomachi@@VKomachiObject@@@@QAE@PAVKomachi@@@Z"
+rel32_targets = [
+  "??0?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@QAE@XZ=0x005F7650",
+  "?preallocate_object_pool@?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@QAEXI@Z=0x005F77B0",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CharacterObjectManager@VKomachi@@VKomachiObject@@@@QAE@PAVKomachi@@@Z=__ehhandler$??0?$CharacterObjectManager@VKomachi@@VKomachiObject@@@@QAE@PAVKomachi@@@Z",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+  "??_7?$CharacterObjectManager@VKomachi@@VKomachiObject@@@@6BICharacterObjectManager@@@=??_7?$CharacterObjectManager@VKomachi@@VKomachiObject@@@@6BICharacterObjectManager@@@",
+  "??_7?$CharacterObjectManager@VKomachi@@VKomachiObject@@@@6B?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@@=??_7?$CharacterObjectManager@VKomachi@@VKomachiObject@@@@6B?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x00618200"
+symbol_base = "??0?$CharacterObjectManager@VAya@@VAyaObject@@@@QAE@PAVAya@@@Z"
+rel32_targets = [
+  "??0?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@QAE@XZ=0x00618020",
+  "?preallocate_object_pool@?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@QAEXI@Z=0x00618180",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CharacterObjectManager@VAya@@VAyaObject@@@@QAE@PAVAya@@@Z=__ehhandler$??0?$CharacterObjectManager@VAya@@VAyaObject@@@@QAE@PAVAya@@@Z",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+  "??_7?$CharacterObjectManager@VAya@@VAyaObject@@@@6BICharacterObjectManager@@@=??_7?$CharacterObjectManager@VAya@@VAyaObject@@@@6BICharacterObjectManager@@@",
+  "??_7?$CharacterObjectManager@VAya@@VAyaObject@@@@6B?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@@=??_7?$CharacterObjectManager@VAya@@VAyaObject@@@@6B?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x006310B0"
+symbol_base = "??0?$CharacterObjectManager@VIku@@VIkuObject@@@@QAE@PAVIku@@@Z"
+rel32_targets = [
+  "??0?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@QAE@XZ=0x00630ED0",
+  "?preallocate_object_pool@?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@QAEXI@Z=0x00631030",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CharacterObjectManager@VIku@@VIkuObject@@@@QAE@PAVIku@@@Z=__ehhandler$??0?$CharacterObjectManager@VIku@@VIkuObject@@@@QAE@PAVIku@@@Z",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+  "??_7?$CharacterObjectManager@VIku@@VIkuObject@@@@6BICharacterObjectManager@@@=??_7?$CharacterObjectManager@VIku@@VIkuObject@@@@6BICharacterObjectManager@@@",
+  "??_7?$CharacterObjectManager@VIku@@VIkuObject@@@@6B?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@@=??_7?$CharacterObjectManager@VIku@@VIkuObject@@@@6B?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x0064B480"
+symbol_base = "??0?$CharacterObjectManager@VTenshi@@VTenshiObject@@@@QAE@PAVTenshi@@@Z"
+rel32_targets = [
+  "??0?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@QAE@XZ=0x0064B2A0",
+  "?preallocate_object_pool@?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@QAEXI@Z=0x0064B400",
+]
+dir32_targets = [
+  "__ehhandler$??0?$CharacterObjectManager@VTenshi@@VTenshiObject@@@@QAE@PAVTenshi@@@Z=__ehhandler$??0?$CharacterObjectManager@VTenshi@@VTenshiObject@@@@QAE@PAVTenshi@@@Z",
+  "___security_cookie=___security_cookie",
+  "??_7ICharacterObjectManager@@6B@=??_7ICharacterObjectManager@@6B@",
+  "??_7?$CharacterObjectManager@VTenshi@@VTenshiObject@@@@6BICharacterObjectManager@@@=??_7?$CharacterObjectManager@VTenshi@@VTenshiObject@@@@6BICharacterObjectManager@@@",
+  "??_7?$CharacterObjectManager@VTenshi@@VTenshiObject@@@@6B?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@@=??_7?$CharacterObjectManager@VTenshi@@VTenshiObject@@@@6B?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@@",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x00493A20"
+symbol_base = "??_G?$CharacterObjectManager@VReimu@@VReimuObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectManager@VReimu@@VReimuObject@@@@UAE@XZ=0x004939C0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x004B9F00"
+symbol_base = "??_G?$CharacterObjectManager@VMarisa@@VMarisaObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectManager@VMarisa@@VMarisaObject@@@@UAE@XZ=0x004B9EA0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x004DF410"
+symbol_base = "??_G?$CharacterObjectManager@VSakuya@@VSakuyaObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectManager@VSakuya@@VSakuyaObject@@@@UAE@XZ=0x004DF3B0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x004FAC20"
+symbol_base = "??_G?$CharacterObjectManager@VAlice@@VAliceObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectManager@VAlice@@VAliceObject@@@@UAE@XZ=0x004FABC0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x0051EEC0"
+symbol_base = "??_G?$CharacterObjectManager@VPatchouli@@VPatchouliObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectManager@VPatchouli@@VPatchouliObject@@@@UAE@XZ=0x0051EE60",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x0053B310"
+symbol_base = "??_G?$CharacterObjectManager@VYoumu@@VYoumuObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectManager@VYoumu@@VYoumuObject@@@@UAE@XZ=0x0053B2B0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x00555FD0"
+symbol_base = "??_G?$CharacterObjectManager@VRemilia@@VRemiliaObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectManager@VRemilia@@VRemiliaObject@@@@UAE@XZ=0x00555F70",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x0056DE10"
+symbol_base = "??_G?$CharacterObjectManager@VYuyuko@@VYuyukoObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectManager@VYuyuko@@VYuyukoObject@@@@UAE@XZ=0x0056DDB0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x0058C0D0"
+symbol_base = "??_G?$CharacterObjectManager@VYukari@@VYukariObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectManager@VYukari@@VYukariObject@@@@UAE@XZ=0x0058C070",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x005AEC60"
+symbol_base = "??_G?$CharacterObjectManager@VSuika@@VSuikaObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectManager@VSuika@@VSuikaObject@@@@UAE@XZ=0x005AEC00",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x005D2BD0"
+symbol_base = "??_G?$CharacterObjectManager@VUdonge@@VUdongeObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectManager@VUdonge@@VUdongeObject@@@@UAE@XZ=0x005D2B70",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x005F7A10"
+symbol_base = "??_G?$CharacterObjectManager@VKomachi@@VKomachiObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectManager@VKomachi@@VKomachiObject@@@@UAE@XZ=0x005F79B0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x006185C0"
+symbol_base = "??_G?$CharacterObjectManager@VAya@@VAyaObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectManager@VAya@@VAyaObject@@@@UAE@XZ=0x00618560",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x00631290"
+symbol_base = "??_G?$CharacterObjectManager@VIku@@VIkuObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectManager@VIku@@VIkuObject@@@@UAE@XZ=0x00631230",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-manager-ctors.functions]]
+address = "0x0064B6D0"
+symbol_base = "??_G?$CharacterObjectManager@VTenshi@@VTenshiObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectManager@VTenshi@@VTenshiObject@@@@UAE@XZ=0x0064B670",
+  "??3@YAXPAX@Z=0x006898EA",
+]

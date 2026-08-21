@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 """Rank retained TH105 1.06 exact source against the canonical 1.06a target.
 
-This is a hypothesis-ranking tool, not an acceptance tool.  It compiles retained
-source with the pinned VC8 probe profile, compares normalized instruction shape
+This is a hypothesis-ranking tool, not an acceptance tool.  By default it ranks
+historical exact source; ``--historical-status`` can also opt into retained
+implemented/compiles hypotheses.  It compiles retained source with the pinned
+VC8 probe profile, compares normalized instruction shape
 against current IDA candidate spans, and reports raw byte differences with COFF
-relocation fields masked.  A result still needs current-target semantic/boundary
+relocation fields masked.  If a historical size is larger than the fresh COFF
+section tail, ranking falls back to that fresh tail while recording both sizes;
+this is candidate evidence only and never changes the acceptance boundary.  A result still needs current-target semantic/boundary
 review plus ``scripts/build.py --unit ... --compare`` before promotion.
 """
 
@@ -115,7 +119,7 @@ def is_function_symbol(name: str, symbol_base: str) -> bool:
 
 
 def read_coff_function(
-    path: Path, symbol_base: str, requested_size: int
+    path: Path, symbol_base: str, requested_size: int | None
 ) -> tuple[str, bytes, frozenset[int], list[tuple[int, int, str]]]:
     data = path.read_bytes()
     if len(data) < 20 or struct.unpack_from("<H", data, 0)[0] != 0x14C:
@@ -175,9 +179,13 @@ def read_coff_function(
     )
     if section_name != b".text":
         raise ValueError(f"{symbol_base}: unexpected section {section_name!r}")
-    if value + requested_size > raw_size:
+    section_tail_size = raw_size - value
+    if requested_size is None:
+        requested_size = section_tail_size
+    if requested_size > section_tail_size:
         raise ValueError(
-            f"{symbol_base}: requested {requested_size} bytes exceeds section tail"
+            f"{symbol_base}: requested {requested_size} bytes exceeds section tail "
+            f"{section_tail_size}"
         )
     raw = data[raw_pointer + value : raw_pointer + value + requested_size]
     wild: set[int] = set()
@@ -370,7 +378,11 @@ def load_current_candidates(
 
 
 def historical_rows(
-    revision: str, only_unconfigured: bool, sources: set[str], names: set[str]
+    revision: str,
+    only_unconfigured: bool,
+    sources: set[str],
+    names: set[str],
+    statuses: set[str],
 ) -> list[dict[str, str]]:
     rows = parse_csv_text(git_text(revision, "config/functions.csv"))
     configured: set[str] = set()
@@ -384,7 +396,7 @@ def historical_rows(
     selected = []
     for row in rows:
         source = row.get("source_file", "")
-        if row.get("status") != "matching" or not source.endswith(".cpp"):
+        if row.get("status") not in statuses or not source.endswith(".cpp"):
             continue
         if only_unconfigured and row["address"] in configured:
             continue
@@ -402,6 +414,16 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--historical-rev", default=DEFAULT_HISTORICAL_REV)
     parser.add_argument("--only-unconfigured", action="store_true")
+    parser.add_argument(
+        "--historical-status",
+        action="append",
+        choices=("matching", "implemented", "compiles"),
+        default=[],
+        help=(
+            "historical source status to rank; repeat to combine statuses "
+            "(default: matching)"
+        ),
+    )
     parser.add_argument("--source", action="append", default=[])
     parser.add_argument("--name", action="append", default=[])
     parser.add_argument("--max-size", type=int, default=4096)
@@ -423,14 +445,16 @@ def main() -> int:
         check=True,
     )
 
+    statuses = set(args.historical_status or ["matching"])
     rows = historical_rows(
         args.historical_rev,
         args.only_unconfigured,
         set(args.source),
         set(args.name),
+        statuses,
     )
     if not rows:
-        print("no historical exact source rows matched the filters")
+        print("no historical source rows matched the filters/statuses")
         return 0
 
     candidates = load_current_candidates(objdump, args.max_size)
@@ -455,23 +479,45 @@ def main() -> int:
                     {"enable_gs": enable_gs, "error": "compile", "detail": detail}
                 )
                 continue
+            used_section_tail_fallback = False
             try:
                 coff_symbol, raw, wild, relocations = read_coff_function(
                     object_path, row["proposed_name"], historical_size
                 )
+            except ValueError as exc:
+                if "exceeds section tail" not in str(exc):
+                    attempts.append(
+                        {"enable_gs": enable_gs, "error": "coff", "detail": str(exc)}
+                    )
+                    continue
+                try:
+                    coff_symbol, raw, wild, relocations = read_coff_function(
+                        object_path, row["proposed_name"], None
+                    )
+                    used_section_tail_fallback = True
+                except Exception as fallback_exc:
+                    attempts.append(
+                        {
+                            "enable_gs": enable_gs,
+                            "error": "coff",
+                            "detail": str(fallback_exc),
+                        }
+                    )
+                    continue
             except Exception as exc:  # analysis report should retain every failure
                 attempts.append(
                     {"enable_gs": enable_gs, "error": "coff", "detail": str(exc)}
                 )
                 continue
+            coff_size = len(raw)
             signature = disassemble_blob(
                 objdump, structural_object_bytes(raw, relocations)
             )
             scored: list[tuple[float, dict[str, str], int]] = []
             for candidate, candidate_size, candidate_signature in candidates:
-                if candidate_size < max(2, int(historical_size * 0.55)):
+                if candidate_size < max(2, int(coff_size * 0.55)):
                     continue
-                if candidate_size > int(historical_size * 1.8) + 8:
+                if candidate_size > int(coff_size * 1.8) + 8:
                     continue
                 scored.append(
                     (
@@ -483,7 +529,7 @@ def main() -> int:
             scored.sort(
                 key=lambda item: (
                     item[0],
-                    -abs(item[2] - historical_size),
+                    -abs(item[2] - coff_size),
                     item[1]["address"],
                 ),
                 reverse=True,
@@ -498,9 +544,9 @@ def main() -> int:
                     "current_name": candidate["current_name"],
                     "proposed_name": candidate["proposed_name"],
                 }
-                if candidate_size == historical_size:
+                if candidate_size == coff_size:
                     target = pe_bytes(
-                        TARGET, int(candidate["address"], 0), historical_size
+                        TARGET, int(candidate["address"], 0), coff_size
                     )
                     mismatches = [
                         index
@@ -515,6 +561,8 @@ def main() -> int:
             attempt = {
                 "enable_gs": enable_gs,
                 "coff_symbol": coff_symbol,
+                "coff_size": coff_size,
+                "used_section_tail_fallback": used_section_tail_fallback,
                 "relocation_count": len(relocations),
                 "top": top,
             }
@@ -529,6 +577,7 @@ def main() -> int:
             "historical_size": historical_size,
             "source": row["source_file"],
             "module": row["module"],
+            "historical_status": row["status"],
             "attempts": attempts,
             "best": best,
         }
