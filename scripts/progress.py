@@ -11,6 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "config"
 OUTPUT = ROOT / "docs" / "PROGRESS.md"
+SVG = ROOT / "resources" / "progress.svg"
 
 
 def csv_rows(name: str) -> list[dict[str, str]]:
@@ -54,19 +55,83 @@ zero-difference comparator and is recorded in both `config/matches.csv` and
 """
 
 
+def render_svg() -> str:
+    functions = csv_rows("functions.csv")
+    origins = {row["address"]: row for row in csv_rows("function-origins.csv")}
+    matches = csv_rows("matches.csv")
+    authored = [
+        row for row in functions if origins[row["address"]]["disposition"] == "authored"
+    ]
+    excluded = [
+        row for row in functions if origins[row["address"]]["disposition"] == "exclude"
+    ]
+    reviewed = len(authored) + len(excluded)
+    review_pending = len(functions) - reviewed
+    review_pct = 100 * reviewed / len(functions) if functions else 0.0
+    exact_bytes = sum(int(row["size"], 0) for row in matches)
+    authored_bytes = sum(int(row["size"], 0) for row in authored)
+
+    bar_width = 512
+    review_filled = bar_width * review_pct / 100
+    if review_pending:
+        authored_label = "denominator pending"
+        authored_filled = 0.0
+        authored_detail = f"{len(matches):,} exact functions · {exact_bytes:,} exact bytes"
+        aria_authored = "authored exact denominator pending"
+    else:
+        exact_byte_pct = 100 * exact_bytes / authored_bytes if authored_bytes else 0.0
+        authored_label = f"{exact_byte_pct:.2f}%"
+        authored_filled = bar_width * exact_byte_pct / 100
+        authored_detail = (
+            f"{len(matches):,} / {len(authored):,} functions · "
+            f"{exact_bytes:,} / {authored_bytes:,} bytes"
+        )
+        aria_authored = f"authored {exact_byte_pct:.2f}% exact bytes"
+
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="560" height="176" role="img" aria-label="TH105 reconstruction progress: {aria_authored}, origin review {review_pct:.2f}%">
+  <rect width="560" height="176" rx="8" fill="#1f2335"/>
+  <text x="24" y="28" fill="#f4f4f5" font-family="sans-serif" font-size="16" font-weight="600">TH105 reconstruction progress</text>
+
+  <text x="24" y="52" fill="#f4f4f5" font-family="sans-serif" font-size="13" font-weight="600">Authored exact</text>
+  <text x="536" y="52" fill="#f4f4f5" text-anchor="end" font-family="monospace" font-size="13">{authored_label}</text>
+  <rect x="24" y="60" width="{bar_width}" height="12" rx="6" fill="#3b4058"/>
+  <rect x="24" y="60" width="{authored_filled:.2f}" height="12" rx="6" fill="#9b6de3"/>
+  <text x="24" y="89" fill="#c8cad2" font-family="sans-serif" font-size="12">{authored_detail}</text>
+
+  <text x="24" y="116" fill="#f4f4f5" font-family="sans-serif" font-size="13" font-weight="600">Origin/boundary reviewed</text>
+  <text x="536" y="116" fill="#f4f4f5" text-anchor="end" font-family="monospace" font-size="13">{review_pct:.2f}%</text>
+  <rect x="24" y="124" width="{bar_width}" height="12" rx="6" fill="#3b4058"/>
+  <rect x="24" y="124" width="{review_filled:.2f}" height="12" rx="6" fill="#9b6de3"/>
+  <text x="24" y="153" fill="#c8cad2" font-family="sans-serif" font-size="12">{reviewed:,} / {len(functions):,} candidates · {review_pending:,} pending</text>
+</svg>
+'''
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
     content = render()
+    svg = render_svg()
     if args.check:
+        stale = []
         if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != content:
-            print("error: docs/PROGRESS.md is stale; run python3 scripts/progress.py")
+            stale.append(str(OUTPUT.relative_to(ROOT)))
+        if not SVG.exists() or SVG.read_text(encoding="utf-8") != svg:
+            stale.append(str(SVG.relative_to(ROOT)))
+        if stale:
+            print(
+                "error: stale generated progress: "
+                + ", ".join(stale)
+                + "; run python3 scripts/progress.py"
+            )
             return 1
-        print("progress snapshot is current")
+        print("progress artifacts are current")
         return 0
     OUTPUT.write_text(content, encoding="utf-8")
-    print(f"wrote {OUTPUT.relative_to(ROOT)}")
+    SVG.parent.mkdir(parents=True, exist_ok=True)
+    SVG.write_text(svg, encoding="utf-8")
+    print(f"wrote {OUTPUT.relative_to(ROOT)} and {SVG.relative_to(ROOT)}")
     return 0
 
 

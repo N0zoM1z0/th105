@@ -1,5 +1,9 @@
 # 東方緋想天 ～ Scarlet Weather Rhapsody
 
+<p align="center">
+  <img src="resources/progress.svg" alt="TH105 exact source reconstruction progress">
+</p>
+
 This project reconstructs the original Japanese TH10.5 version 1.06a
 executable with reproducible byte comparison as the acceptance criterion.
 
