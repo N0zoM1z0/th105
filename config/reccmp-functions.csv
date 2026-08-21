@@ -32,6 +32,7 @@ is_state_13c_below_32,0x0045E0D0,function
 is_state_13c_in_32_95,0x0045E0E0,function
 is_state_13c_in_96_c7,0x0045E100,function
 is_positive_y_and_state_window,0x0045E390,function
+AttackObject_ctor,0x0045FA30,function
 initialize_fighter_packed_input_history,0x00464200,function
 get_slot_character,0x00464290,function
 is_slot_active,0x004642A0,function
@@ -47,6 +48,7 @@ adjust_counter_482,0x0046BF30,function
 try_candidate_flag_outcome,0x0046C7F0,function
 try_frame_flag_pair_outcome,0x0046C8A0,function
 try_group_b_pair_response,0x0046C9E0,function
+CharacterObject_ctor,0x00492F90,function
 Fighter_lookup_command_gate_value,0x00493D40,function
 CharacterObject_advance_state_six_counter_conditional,0x004963A0,function
 CharacterObjectEffectEmitter_spawn_parented_related_object,0x004FCA60,function

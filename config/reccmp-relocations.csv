@@ -1,1 +1,3 @@
 coff_symbol,address,data_hex,addends,evidence,validation
+??_7AttackObject@@6B@,0x006C2B3C,30f94500,0,IDA 1.06a disassembly at 0x0045FA4F names the target as AttackObject vtable; current target bytes attested 2026-08-21,address
+??_7CharacterObject@@6B@,0x006C400C,702f4900,0,IDA 1.06a disassembly at 0x00492FD4 names the target as CharacterObject vtable; current target bytes attested 2026-08-21,address

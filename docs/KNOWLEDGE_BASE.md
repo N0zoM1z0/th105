@@ -18,8 +18,8 @@ notes or source hypotheses.
   object boundaries.
 - The current IDA database exposes 4,001 function candidates. Their auto-names
   and unreviewed sizes remain provisional analysis output.
-- The accepted 1.06a authored set contains 54 functions / 4,373 bytes in 35
-  VC8 match units. The second wave added seven functions / 1,069 bytes after
+- The accepted 1.06a authored set contains 56 functions / 4,644 bytes in 37
+  VC8 match units. The structural-remap waves added nine functions / 1,340 bytes after
   structural-instruction fingerprinting selected candidates and current-target
   IDA/call evidence reconciled their relocations; canonical VC8 comparisons,
   not the fingerprints, established exactness.
@@ -50,6 +50,11 @@ notes or source hypotheses.
   clone families can have identical normalized signatures, so structural ties
   must remain unresolved until class/xref/relocation evidence disambiguates
   them.
+- Current IDA vtable names can close DIR32 constructor blockers when paired
+  with exact target bytes. The `AttackObject` and `CharacterObject` constructors
+  were accepted only after their 1.06a vtable destinations (`0x006C2B3C` and
+  `0x006C400C`) were recorded in the relocation allowlist and the fresh VC8
+  comparison became zero-difference.
 - A durable semantic mapping name and the COFF `symbol_base` used by the exact
   comparator may differ. Keep semantic names stable in the ledgers and use the
   actual compiled symbol for object extraction.

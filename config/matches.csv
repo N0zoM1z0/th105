@@ -32,6 +32,7 @@ address,name,size,status,match_percent,unit,evidence
 0x0045E0E0,is_state_13c_in_32_95,28,matching,100.00,cross-v106a-fighter-gates,python3 scripts/build.py --unit cross-v106a-fighter-gates --compare --json reports exact 28/28 against TH105 1.06a
 0x0045E100,is_state_13c_in_96_c7,28,matching,100.00,cross-v106a-fighter-gates,python3 scripts/build.py --unit cross-v106a-fighter-gates --compare --json reports exact 28/28 against TH105 1.06a
 0x0045E390,is_positive_y_and_state_window,53,matching,100.00,cross-v106a-fighter-gates,python3 scripts/build.py --unit cross-v106a-fighter-gates --compare --json reports exact 53/53 against TH105 1.06a
+0x0045FA30,AttackObject_ctor,193,matching,100.00,cross-v106a-attack-object-ctor,python3 scripts/build.py --unit cross-v106a-attack-object-ctor --compare --json reports exact 193/193 against TH105 1.06a
 0x00464200,initialize_fighter_packed_input_history,136,matching,100.00,fighter-input-phase,python3 scripts/build.py --unit fighter-input-phase --compare --json reports exact 136/136 against TH105 1.06a
 0x00464290,get_slot_character,11,matching,100.00,cross-v106a-battle-setup,python3 scripts/build.py --unit cross-v106a-battle-setup --compare --json reports exact 11/11 against TH105 1.06a
 0x004642A0,is_slot_active,11,matching,100.00,cross-v106a-battle-setup,python3 scripts/build.py --unit cross-v106a-battle-setup --compare --json reports exact 11/11 against TH105 1.06a
@@ -47,6 +48,7 @@ address,name,size,status,match_percent,unit,evidence
 0x0046C7F0,try_candidate_flag_outcome,169,matching,100.00,cross-v106a-candidate-outcomes,python3 scripts/build.py --unit cross-v106a-candidate-outcomes --compare --json reports exact 169/169 against TH105 1.06a
 0x0046C8A0,try_frame_flag_pair_outcome,143,matching,100.00,cross-v106a-hit-detection,python3 scripts/build.py --unit cross-v106a-hit-detection --compare --json reports exact 143/143 against TH105 1.06a
 0x0046C9E0,try_group_b_pair_response,147,matching,100.00,cross-v106a-object-responses,python3 scripts/build.py --unit cross-v106a-object-responses --compare --json reports exact 147/147 against TH105 1.06a
+0x00492F90,CharacterObject_ctor,78,matching,100.00,cross-v106a-character-object-ctor,python3 scripts/build.py --unit cross-v106a-character-object-ctor --compare --json reports exact 78/78 against TH105 1.06a
 0x00493D40,Fighter_lookup_command_gate_value,78,matching,100.00,cross-v106a-command-gate-lookup,python3 scripts/build.py --unit cross-v106a-command-gate-lookup --compare --json reports exact 78/78 against TH105 1.06a
 0x004963A0,CharacterObject_advance_state_six_counter_conditional,66,matching,100.00,cross-v106a-character-object-runtime,python3 scripts/build.py --unit cross-v106a-character-object-runtime --compare --json reports exact 66/66 against TH105 1.06a
 0x004FCA60,CharacterObjectEffectEmitter_spawn_parented_related_object,77,matching,100.00,cross-v106a-character-object-effects,python3 scripts/build.py --unit cross-v106a-character-object-effects --compare --json reports exact 77/77 against TH105 1.06a

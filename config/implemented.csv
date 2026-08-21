@@ -52,3 +52,5 @@ BattleInputGate_collect_battle_control_bits
 FighterSequenceController_enqueue_record
 Fighter_lookup_command_gate_value
 YoumuObjectRecordState_apply_owner_record
+AttackObject_ctor
+CharacterObject_ctor

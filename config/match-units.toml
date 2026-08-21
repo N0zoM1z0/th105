@@ -557,3 +557,29 @@ rel32_targets = [
   "object_record_ring_at=0x0053CD90",
   "reset_for_new_record=0x00436760",
 ]
+
+[units.cross-v106a-attack-object-ctor]
+kind = "probe"
+source = "src/battle/AttackObject.cpp"
+object = "build/match-units/CrossV106a_AttackObject.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a structural-remap exact AttackObject constructor; vtable DIR32 is separately allowlisted from current IDA/target evidence."
+
+[[units.cross-v106a-attack-object-ctor.functions]]
+address = "0x0045FA30"
+symbol_base = "AttackObject_ctor"
+rel32_targets = ["??0CEffectSprite@@QAE@XZ=0x00421FF0"]
+
+[units.cross-v106a-character-object-ctor]
+kind = "probe"
+source = "src/characters/CharacterObject.cpp"
+object = "build/match-units/CrossV106a_CharacterObject.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a structural-remap exact CharacterObject constructor; base ctor and vtable identity come from current target evidence."
+
+[[units.cross-v106a-character-object-ctor.functions]]
+address = "0x00492F90"
+symbol_base = "CharacterObject_ctor"
+rel32_targets = ["??0AttackObject@@QAE@XZ=0x0045FA30"]

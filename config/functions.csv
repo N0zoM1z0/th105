@@ -1817,7 +1817,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0045F990,43,0x0045F9BA,sub_45F990,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045F9C0,50,0x0045F9F1,sub_45F9C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045FA00,48,0x0045FA2F,sub_45FA00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0045FA30,193,0x0045FAF0,sub_45FA30,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0045FA30,193,0x0045FAF0,AttackObject_ctor,AttackObject_ctor,battle,matching,100.00,__thiscall,AttackObject * AttackObject_ctor(AttackObject * this),false,src/battle/AttackObject.cpp,python3 scripts/build.py --unit cross-v106a-attack-object-ctor --compare --json reports exact 193/193 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay after unique structural remap. Current IDA disassembly names the primary vtable at 0x006C2B3C and the sole base-constructor callee at 0x00421FF0.
 0x0045FB00,43,0x0045FB2A,sub_45FB00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045FB30,57,0x0045FB68,sub_45FB30,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045FB70,41,0x0045FB98,sub_45FB70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -2174,7 +2174,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00491C40,3785,0x00492B08,sub_491C40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00492ED0,145,0x00492F60,sub_492ED0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00492F70,30,0x00492F8D,sub_492F70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00492F90,78,0x00492FDD,sub_492F90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00492F90,78,0x00492FDD,CharacterObject_ctor,CharacterObject_ctor,characters,matching,100.00,__thiscall,CharacterObject * CharacterObject_ctor(CharacterObject * this),false,src/characters/CharacterObject.cpp,python3 scripts/build.py --unit cross-v106a-character-object-ctor --compare --json reports exact 78/78 against TH105 1.06a,root,Fresh TH105 1.06a VC8 zero-diff replay after unique structural remap. Current IDA shows the call to exact AttackObject_ctor 0x0045FA30 and names the CharacterObject vtable at 0x006C400C.
 0x00492FE0,263,0x004930E6,sub_492FE0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004930F0,30,0x0049310D,sub_4930F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00493110,406,0x004932A5,sub_493110,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
