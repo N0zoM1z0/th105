@@ -276,7 +276,7 @@ The pre-1.06a historical checkpoint used by default contains 152 old exact
 `.cpp` hypotheses that were absent from its match-unit graph; the migration
 survey could uniquely extract 147 of those COFF symbols. The first tracked
 migration wave raised the accepted 1.06a set from 100 functions / 13,487 bytes
-to 183 functions / 25,623 bytes. This is still a candidate queue only. Every promotion still requires a current boundary/semantic audit,
+to 190 functions / 26,876 bytes. This is still a candidate queue only. Every promotion still requires a current boundary/semantic audit,
 current-target relocation reconciliation, a tracked match unit, and canonical
 zero-difference replay.
 
@@ -409,3 +409,27 @@ a larger body. `mt19937_next_u32` was historically recorded as 271 bytes, but
 fresh VC8 emits 279 bytes and current 1.06a contains the full standard MT19937
 twist/temper implementation through byte 279. The accepted boundary is therefore
 279 bytes, proven by current control flow and a 279/279 canonical compare.
+Imported API identity is another clean way to break a normalized clone tie.
+`CriticalSectionWrapper::enter` and `leave` compile to the same eleven-byte shape
+when the DIR32 call slot is masked, but current target `0x0040AC30` calls
+EnterCriticalSection and `0x0040AC40` calls LeaveCriticalSection after identical
+`this+4` adjustment. Record the two IAT entries with canonical raw thunk bytes
+and let the ordinary comparator prove each wrapper 11/11.
+
+A field-layout migration should be corroborated by independent current use before
+changing a retained struct. `copy_session_field_6c8_if_unset` decompiles at
+`0x00426160` as a guarded `+0x6C0 <- +0x6D8` copy. Its caller first obtains the
+object through the exact network-session getter and then repeats that same guarded
+copy inline on another path. Moving the two retained fields by `+0x10` is therefore
+a target-backed layout correction, not source shaping; fresh VC8 becomes 22/22
+exact without any control-flow change.
+
+When historical evidence says “exact” but its function size is shorter than the
+fresh section tail, re-establish the current boundary. CMenuResult render and
+destructor are both three bytes longer in 1.06a than their old ledger rows. Their
+current semantic bodies and fresh VC8 tails agree at 270 and 256 bytes respectively,
+and the canonical comparator matches those complete extents.
+
+The same stale-boundary pattern extends beyond one UI class. `CSelectScenario::~CSelectScenario` was historically 271 bytes but its current `/GS` VC8 section tail and target body are both 277 bytes; `CMenuSelect::update_player_assignment` was historically 400 but current/fresh is 406. In both cases the retained source behavior already matches current IDA semantics and the added bytes merely complete the final epilogue/security-check sequence. When a high-gap structural candidate differs only in size, inspect the full COFF section tail before touching source.
+
+An undefined COFF data symbol can still have a truthful address identity without weakening import checks. `MenuResult.cpp` and `SelectScenario.cpp` only declare the source-owned `_title_color_vtable_anchor`; the anchor itself is independently exact-backed at `0x006C0624`. Their probe objects therefore use a separate address-validated relocation view of that same symbol instead of pretending the undefined symbol is an import or copying bytes into the TU. Keep literal validation on the defining TU and use address validation only for independently established external views.

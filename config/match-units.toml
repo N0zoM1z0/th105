@@ -2439,3 +2439,131 @@ dir32_targets = [
   "?g_mt19937_state@th105@@3PAIA=?g_mt19937_state@th105@@3PAIA",
   "?g_mt19937_twist_xor@th105@@3PAIA=?g_mt19937_twist_xor@th105@@3PAIA",
 ]
+
+[units.cross-v106a-critical-section-wrapper]
+kind = "probe"
+source = "src/engine/CriticalSectionWrapper.cpp"
+object = "build/match-units/CrossV106a_CriticalSectionWrapper.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a CriticalSectionWrapper enter/leave pair. Relocation-normalized bodies tie structurally, but current 0x0040AC30 calls EnterCriticalSection and 0x0040AC40 calls LeaveCriticalSection after the same this+4 adjustment, giving exact semantic disambiguation."
+
+[[units.cross-v106a-critical-section-wrapper.functions]]
+address = "0x0040AC30"
+symbol_base = "CriticalSectionWrapper_enter"
+dir32_targets = ["__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4"]
+
+[[units.cross-v106a-critical-section-wrapper.functions]]
+address = "0x0040AC40"
+symbol_base = "CriticalSectionWrapper_leave"
+dir32_targets = ["__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4"]
+
+[units.cross-v106a-network-session-field-copy]
+kind = "probe"
+source = "src/network/NetworkSession.cpp"
+object = "build/match-units/CrossV106a_NetworkSessionFieldCopy.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a guarded NetworkSessionState field copy. Current callers obtain the object from exact get_network_session and independently inline the same +0x6C0 <- +0x6D8 copy, proving a +0x10 layout shift from the retained 1.06 source rather than a structural clone."
+
+[[units.cross-v106a-network-session-field-copy.functions]]
+address = "0x00426160"
+symbol_base = "copy_session_field_6c8_if_unset"
+
+[units.cross-v106a-menu-result-render-dtor]
+kind = "probe"
+source = "src/ui/MenuResult.cpp"
+object = "build/match-units/CrossV106a_MenuResultRenderDtor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a CMenuResult render/destructor boundary recovery. Historical exact sizes truncated the final instruction by three bytes in both functions; fresh VC8 section tails are 270 and 256 bytes. Current literals, UI callees, vtables, manager, destructor callbacks and SEH are target-backed; source behavior is unchanged."
+
+[[units.cross-v106a-menu-result-render-dtor.functions]]
+address = "0x00446F70"
+symbol_base = "CMenuResult_render"
+rel32_targets = [
+  "?render_cursor@Menu@th105@@IAEXMMM@Z=0x0043F9D0",
+  "?render_row@ResultListBase@th105@@QAEXMMI@Z=0x00439A20",
+  "?render@GuideOverlay@th105@@QAEXXZ=0x0043F4C0",
+]
+dir32_targets = [
+  "__real@c2800000=__real@c2800000",
+  "__real@4060000000000000=__real@4060000000000000",
+  "__real@44000000=__real@44000000",
+  "__real@4030000000000000=__real@4030000000000000",
+  "__real@4f800000=__real@4f800000",
+]
+
+[[units.cross-v106a-menu-result-render-dtor.functions]]
+address = "0x00447590"
+symbol_base = "CMenuResult_dtor"
+rel32_targets = [
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "??1GuideOverlay@th105@@QAE@XZ=0x0043F330",
+  "??1TitleDesignResource@th105@@QAE@XZ=0x00421890",
+  "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "__ehhandler$??1CMenuResult@th105@@UAE@XZ=__ehhandler$??1CMenuResult@th105@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7CMenuResult@th105@@6B@=??_7CMenuResult@th105@@6B@",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+  "??1ResultList@th105@@QAE@XZ=??1ResultList@th105@@QAE@XZ",
+  "_title_color_vtable_anchor=_title_color_vtable_anchor_external",
+  "??_7Menu@th105@@6B@=??_7Menu@th105@@6B@",
+  "_g_scene_mode=_g_scene_mode",
+]
+
+[units.cross-v106a-select-scenario-dtor]
+kind = "probe"
+source = "src/ui/SelectScenario.cpp"
+object = "build/match-units/CrossV106a_SelectScenarioDtor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a CSelectScenario destructor boundary recovery. Historical 271-byte exact size truncated the final epilogue; fresh VC8 section tail and current target are 277 bytes. Current four handle releases, design/guide cleanup, IColor/IScene vtables, SSO/vector frees and SEH are target-backed."
+
+[[units.cross-v106a-select-scenario-dtor.functions]]
+address = "0x00425230"
+symbol_base = "CSelectScenario_dtor"
+rel32_targets = [
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "??1GuideOverlay@th105@@QAE@XZ=0x0043F330",
+  "??1TitleDesignResource@th105@@QAE@XZ=0x00421890",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "__ehhandler$??1CSelectScenario@th105@@UAE@XZ=__ehhandler$??1CSelectScenario@th105@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7CSelectScenario@th105@@6B@=??_7CSelectScenario@th105@@6B@",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+  "_title_color_vtable_anchor=_title_color_vtable_anchor_external",
+  "??_7IScene@th105@@6B@=??_7IScene@th105@@6B@",
+]
+
+[units.cross-v106a-menu-select-player-assignment]
+kind = "probe"
+source = "src/ui/MenuSelectPlayer.cpp"
+object = "build/match-units/CrossV106a_MenuSelectPlayerAssignment.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a CMenuSelect player-assignment boundary recovery. Historical 400-byte exact size truncated the final security-check displacement/epilogue; fresh VC8 section tail is 406 bytes. Current profile/input callees and SEH/cookie are target-backed; source behavior is unchanged."
+
+[[units.cross-v106a-menu-select-player-assignment.functions]]
+address = "0x00448060"
+symbol_base = "CMenuSelect_update_player_assignment"
+rel32_targets = [
+  "?select_profile@CMenuSelect@th105@@AAEHPAUMenuString28@2@0@Z=0x00440410",
+  "?get_player_slot_record@th105@@YAPAUPlayerSlotRecord@1@I@Z=0x0043AFE0",
+  "?load_profile@PlayerSlotRecord@th105@@QAE_NPBD@Z=0x00431AC0",
+  "?set_profile_color@PlayerSlotRecord@th105@@QAEXEEE@Z=0x00431440",
+  "?invalidate_selected_input@th105@@YAXI@Z=0x0043AFF0",
+  "_select_input_slot=0x0043B640",
+  "_reload_selected_profiles=0x0043CDD0",
+  "??3@YAXPAX@Z=0x006898EA",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?update_player_assignment@CMenuSelect@th105@@AAE_NXZ=__ehhandler$?update_player_assignment@CMenuSelect@th105@@AAE_NXZ",
+  "___security_cookie=___security_cookie",
+]

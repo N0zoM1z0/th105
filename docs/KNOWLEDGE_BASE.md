@@ -17,9 +17,9 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,002 candidates because current EH/vtable/canonical evidence recovered a missed independent CFileReader destructor entry at `0x0040CEB0`; IDA had attached that code as a distant tail chunk. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 183 functions / 25,623 bytes in 103
-  VC8 match units. The newest whole-corpus retained-source wave added eighty-three
-  functions / 12,136 bytes beyond the previous 100-function checkpoint. Candidate
+- The accepted 1.06a authored set contains 190 functions / 26,876 bytes in 108
+  VC8 match units. The newest whole-corpus retained-source wave added ninety
+  functions / 13,389 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
   establish hypotheses; canonical VC8 zero-difference comparisons establish
   exactness.
@@ -167,6 +167,26 @@ notes or source hypotheses.
   standard 624-word MT19937 twist loops, fallback seed 5489, and tempering masks.
   The historical 271-byte row was a stale boundary; fresh VC8 and current target
   both establish the full 279-byte extent.
+- `CriticalSectionWrapper::enter/leave` are a relocation-normalized tie only.
+  Current `0x0040AC30` calls the `EnterCriticalSection` IAT at `0x006C0108`, while
+  `0x0040AC40` calls `LeaveCriticalSection` at `0x006C0104`; both perform the
+  same `this+4` adjustment. The imported destination is therefore sufficient to
+  disambiguate the two 11-byte authored wrappers, which both compile exact.
+- `NetworkSessionState` shifted by `+0x10` in the recovered field window between
+  retained 1.06 and current 1.06a: the guarded copy is now `+0x6C0 <- +0x6D8`.
+  This is not inferred from one clone: current caller `0x00426180` obtains the
+  object through exact `get_network_session @ 0x0043B090`, calls the helper, and
+  independently inlines the same guarded field copy. Updating only the struct
+  padding/field offsets makes `0x00426160` naturally 22/22 exact.
+- Historical exact rows can truncate a final instruction. `CMenuResult::render`
+  was recorded as 267 bytes but current/fresh VC8 is 270; `CMenuResult::~CMenuResult`
+  was 253 but current/fresh is 256. Current render semantics are the optional
+  stand, cursor, sixteen result rows, design, and GuideOverlay; current destructor
+  restores `CMenuResult` vtable `0x006C2070`, clears fifteen `0x108`-stride result
+  lists, and tears down design/guide/vector/base state. Accept the 270/256 current
+  boundaries, not the stale historical sizes.
+- Stale historical extents are now a recurring migration failure mode, not a one-off. In addition to MT19937 and CMenuResult render/dtor, `CSelectScenario::~CSelectScenario` grows from 271 to 277 bytes and `CMenuSelect::update_player_assignment` from 400 to 406; fresh VC8 section tails and current control flow agree exactly, and no source behavior change is required. Check full section tails before treating a size delta as codegen drift.
+- External source-owned vtable anchors need not be redefined just to satisfy a probe object. `_title_color_vtable_anchor` is independently established at `0x006C0624`; MenuResult/SelectScenario use an address-validated external relocation view while the defining TU retains literal validation. This preserves one semantic anchor without weakening the comparator's fail-closed import rule.
 - Structural clone ties need class/caller evidence, not old address order. The
   367-byte Yukari mirrored-command gate at `0x0058C170` was accepted only after
   its sole current fighter dispatcher, nearby exact Yukari anchors, and all five
@@ -195,7 +215,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 3,146
+- Accepted boundaries and authored/library origins for the remaining 3,139
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.
