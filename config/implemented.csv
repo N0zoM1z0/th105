@@ -270,3 +270,4 @@ Suika_handle_event_bridge
 Aya_handle_event_bridge
 Tenshi_handle_event_bridge
 Iku_handle_event_bridge
+try_dispatch_flagged_gate_actions_220_224

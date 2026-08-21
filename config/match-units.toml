@@ -1379,6 +1379,14 @@ symbol_base = "try_dispatch_signed_gate_actions_208_210"
 rel32_targets = ["?initialize_fighter_phase_631e0@th105@@YIHPAUFighter@1@@Z=0x00464200"]
 
 [[units.cross-v106a-command-gates-family.functions]]
+address = "0x00493B40"
+symbol_base = "try_dispatch_flagged_gate_actions_220_224"
+rel32_targets = [
+  "?initialize_fighter_phase_631e0@th105@@YIHPAUFighter@1@@Z=0x00464200",
+  "?consume_counter_484_steps@Fighter@th105@@QAEXD@Z=0x0045B260",
+]
+
+[[units.cross-v106a-command-gates-family.functions]]
 address = "0x00493C50"
 symbol_base = "try_dispatch_flagged_gate_actions_225_226"
 rel32_targets = [

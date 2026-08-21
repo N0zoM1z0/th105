@@ -81,8 +81,9 @@ unsigned char Fighter::try_dispatch_flagged_gate_actions_220_224()
                 set_fighter_action(this, 222);
                 if (state_4b8 != 0) {
                     consume_counter_484_steps(1);
+                    return 1;
                 }
-                return 1;
+                goto positive_success;
             }
             if (command_value != 0) {
                 return 0;
@@ -93,15 +94,16 @@ unsigned char Fighter::try_dispatch_flagged_gate_actions_220_224()
         if (state_4b8 != 0) {
             consume_counter_484_steps(1);
         }
+positive_success:
         return 1;
+    }
+
+    if (static_cast<signed char>(facing_104) * field_6b4 > 0) {
+        initialize_fighter_phase_631e0(this);
+        set_fighter_action(this, 223);
     } else {
-        if (static_cast<signed char>(facing_104) * field_6b4 > 0) {
-            initialize_fighter_phase_631e0(this);
-            set_fighter_action(this, 223);
-        } else {
-            initialize_fighter_phase_631e0(this);
-            set_fighter_action(this, 224);
-        }
+        initialize_fighter_phase_631e0(this);
+        set_fighter_action(this, 224);
     }
 
     if (state_4b8 != 0) {
