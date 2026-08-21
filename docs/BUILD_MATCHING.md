@@ -143,3 +143,27 @@ COMDAT tail and current 1.06a IDA body are 306 bytes. After current REL32 and
 DIR32 identities were reconciled, all 306 bytes compared exactly. When the
 object tail and current control-flow boundary agree, prefer correcting the stale
 ledger span over editing already-matching C++ to reproduce an artificial cut.
+
+Compiler-profile fidelity is part of semantic reconstruction, not a byte-forcing
+knob. `configure_session_input_slots` is a reference case: compiling the natural
+retained C++ with `/GS-` removed the current SEH prologue and produced a 223-byte
+body, while the retained unit metadata required `/GS`; recompiling with the
+correct `enable_gs = true` profile produced the current 238-byte body exactly.
+Before reshaping C++, replay the historically supported profile and explain any
+SEH/security-cookie structure from current IDA evidence.
+
+When a retained function embeds several old-version absolute globals, reconcile
+each use from the current instruction stream before editing the source.
+`initialize_battle_fighter_pair` moved a coherent battle-global cluster; current
+IDA established the fighter context, shared state, effect/renderer/reset/input
+pointers, pair-state scalar, and 0x1400-byte stage-surface array independently.
+Updating only those semantic global identities left the natural C++ unchanged
+and fresh VC8 output matched all 279 bytes. Do not derive such clusters from a
+single address delta.
+
+`validation=address` still records canonical destination bytes in
+`reccmp-relocations.csv`; the field is not an arbitrary placeholder. This caught
+a bad provisional deque-destructor row while recovering
+`configure_session_input_slots`. Use the actual current target bytes at the
+validated destination even when semantic address identity, rather than literal
+contents, is the reason the relocation is accepted.

@@ -697,3 +697,86 @@ rel32_targets = [
   "?reset_fighter_fields_6bc_728@th105@@YIXPAUCollisionContext@1@@Z=0x0046AFF0",
   "?reset_fighter_fields_6b4_728@th105@@YIXPAUCollisionContext@1@@Z=0x0046B080",
 ]
+
+[[units.cross-v106a-battle-round-resolution.functions]]
+address = "0x00470D60"
+symbol_base = "advance_round_resolution_470360"
+rel32_targets = [
+  "?finalize_sequence_entry_45bb10@Fighter@th105@@QAEXH@Z=0x0045D110",
+  "?consume_spell_sequence_entry@Fighter@th105@@QAEEXZ=0x0045D230",
+  "?update_after_sequence_consume_4712b0@PostSequenceContextView@th105@@QAEXXZ=0x00471D00",
+  "?add_clamped_counts_4531a0@PhaseTallyView@th105@@QAEXHHH@Z=0x004547E0",
+]
+dir32_targets = ["?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A=?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A"]
+
+[units.cross-v106a-battle-pair-initialization]
+kind = "probe"
+source = "src/battle/BattlePairInitialization.cpp"
+object = "build/match-units/CrossV106a_BattlePairInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a pair initialization exact recovery after current-target global-address reconciliation; no assembly or byte forcing."
+
+[[units.cross-v106a-battle-pair-initialization.functions]]
+address = "0x0046AE70"
+symbol_base = "initialize_battle_fighter_pair_46a490"
+rel32_targets = [
+  "?get_slot_character_463270@FighterPhaseContextPairView@th105@@QAEPAUFighter@2@I@Z=0x00464290",
+  "?reset_for_roster_45e040@Fighter@th105@@QAEXPAU12@@Z=0x0045F640",
+  "?finish_slot_464240@FighterPhaseContextPairView@th105@@QAEXH@Z=0x00465100",
+  "?initialize_pair_metadata_426440@GlobalBattlePairStateView@th105@@QAEXPAM000@Z=0x00427320",
+  "?reset_collision_extents@CollisionContext@th105@@QAEXXZ=0x0046B6C0",
+  "_memset=0x0068A440",
+  "?reset_pair_state_4694e0@PairPostResetView@th105@@QAEXXZ=0x00469F40",
+  "?select_pair_mode_434780@PairEmbeddedModeView@th105@@QAEXHE@Z=0x00435CE0",
+  "?reset_pair_input_427150@PairInputStateView@th105@@QAEXXZ=0x00428030",
+]
+dir32_targets = [
+  "?g_pair_state@th105@@3HA=?g_pair_state@th105@@3HA",
+  "?g_stage_surface_heights@th105@@3PAMA=?g_stage_surface_heights@th105@@3PAMA",
+]
+
+[units.cross-v106a-spell-data-clear]
+kind = "probe"
+source = "src/battle/SpellDataClear.cpp"
+object = "build/match-units/CrossV106a_SpellDataClear.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a structural-remap exact spell-data cleanup; title resource manager is current-target address validated."
+
+[[units.cross-v106a-spell-data-clear.functions]]
+address = "0x00433A80"
+symbol_base = "?clear_spell_entries@SpellDataOwner@th105@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?clear_storage@DwordDeque4@th105@@QAEXXZ=0x00413A90",
+  "?destroy_subtree@SpellTree@th105@@QAEXPAUSpellTreeNode@2@@Z=0x0042E370",
+]
+dir32_targets = ["?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A"]
+
+[units.cross-v106a-battle-input-slot-config]
+kind = "probe"
+source = "src/battle/BattleInputSlotConfig.cpp"
+object = "build/match-units/CrossV106a_BattleInputSlotConfig.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a structural-remap exact session slot configuration; /GS and VC8 EH callback addresses are current-target backed."
+
+[[units.cross-v106a-battle-input-slot-config.functions]]
+address = "0x0042C4D0"
+symbol_base = "configure_session_input_slots"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@2@V32@0@Z=0x0042BED0",
+  "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C",
+  "?_Assign_n@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@IAEXIABUFixedSlotEnvelope@th105@@@Z=0x0042C3F0",
+  "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
+  "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
+]
+dir32_targets = [
+  "__ehhandler$?configure_session_input_slots@BattleInputSlotConfigView@th105@@QAEXCC@Z=__ehhandler$?configure_session_input_slots@BattleInputSlotConfigView@th105@@QAEXCC@Z",
+  "___security_cookie=___security_cookie",
+  "??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ",
+  "??0?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??0?$deque@FV?$allocator@F@std@@@std@@QAE@XZ",
+]

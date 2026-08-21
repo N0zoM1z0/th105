@@ -39,12 +39,12 @@ struct PairRendererView {
     PairRendererCallback *vtable_00;
 };
 
-extern int g_pair_state_6e6238;
-extern float g_stage_surface_heights_6e4e38[1280];
+extern int g_pair_state;
+extern float g_stage_surface_heights[1280];
 
 __forceinline FighterPhaseContextPairView *fighter_phase_context_for_pair()
 {
-    return *reinterpret_cast<FighterPhaseContextPairView **>(0x006e623c);
+    return *reinterpret_cast<FighterPhaseContextPairView **>(0x006fbc9c);
 }
 
 void BattleController::initialize_battle_fighter_pair_46a490()
@@ -67,38 +67,38 @@ void BattleController::initialize_battle_fighter_pair_46a490()
     fighter_phase_context_for_pair()->finish_slot_464240(zero);
     fighter_phase_context_for_pair()->finish_slot_464240(1);
 
-    reinterpret_cast<GlobalBattlePairStateView *>(0x006e6260)
+    reinterpret_cast<GlobalBattlePairStateView *>(0x006fbcc0)
         ->initialize_pair_metadata_426440(
             &fighter_0c->x_ec,
             &fighter_0c->y_f0,
             &fighter_10->x_ec,
             &fighter_10->y_f0);
 
-    (*reinterpret_cast<EffectSink **>(0x006e6250))->unknown_10();
+    (*reinterpret_cast<EffectSink **>(0x006fbcb0))->unknown_10();
     reinterpret_cast<CollisionContext *>(this)->reset_collision_extents();
 
     result_84 = zero;
-    g_pair_state_6e6238 = zero;
+    g_pair_state = zero;
     frame_counter_04 = zero;
     *reinterpret_cast<int *>(unknown_08) = zero;
     std::memset(
-        g_stage_surface_heights_6e4e38,
+        g_stage_surface_heights,
         zero,
-        sizeof(g_stage_surface_heights_6e4e38));
+        sizeof(g_stage_surface_heights));
 
     PairRendererView *renderer =
-        *reinterpret_cast<PairRendererView **>(0x006e6248);
+        *reinterpret_cast<PairRendererView **>(0x006fbca8);
     renderer->vtable_00[3](renderer);
 
-    (*reinterpret_cast<PairPostResetView **>(0x006e624c))
+    (*reinterpret_cast<PairPostResetView **>(0x006fbcac))
         ->reset_pair_state_4694e0();
 
-    *reinterpret_cast<unsigned short *>(0x006e4e2c) =
+    *reinterpret_cast<unsigned short *>(0x006fa88c) =
         static_cast<unsigned short>(zero);
     reinterpret_cast<PairEmbeddedModeView *>(&frame_counter_04)
         ->select_pair_mode_434780(16, 1);
 
-    (*reinterpret_cast<PairInputStateView **>(0x006e4e28))
+    (*reinterpret_cast<PairInputStateView **>(0x006fa888))
         ->reset_pair_input_427150();
 
     result_84 = zero;
