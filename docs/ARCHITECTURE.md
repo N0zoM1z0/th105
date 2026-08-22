@@ -59,7 +59,7 @@ must first gain a supported 1.06a mapping and undergo semantic review.
 1. Reconcile high-confidence IDA candidate boundaries against exact control
    flow and record exceptions without inferring adjacency-based sizes.
 2. Separate authored code from compiler/runtime/third-party islands.
-3. Expand from the current 501 cold-replayable authored anchors while preserving
+3. Expand from the current 504 cold-replayable authored anchors while preserving
    current-target ABI/layout evidence and exact acceptance.
 4. Establish the authored/excluded denominator before reporting aggregate
    authored-function or authored-byte percentages.

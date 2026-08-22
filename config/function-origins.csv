@@ -1330,12 +1330,12 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0043FB60,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043FBF0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043FC40,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0043FCA0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0043FCA0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043FF40,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043FFB0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00440010,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00440170,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x004402E0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00440170,authored_game,ui,authored,observed,canonical-exact-authored
+0x004402E0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00440370,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00440410,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004404F0,unknown,,review,unknown,ida-1.06a-initial-inventory

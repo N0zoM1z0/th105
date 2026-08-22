@@ -6536,3 +6536,112 @@ dir32_targets = [
   "__real@4070400000000000=__real@4070400000000000",
   "__real@404e000000000000=__real@404e000000000000",
 ]
+
+[units.cross-v106a-profile-ui-init]
+kind = "probe"
+source = "src/ui/ProfileUiInit.cpp"
+object = "build/match-units/CrossV106a_ProfileUiInit.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current Profile UI global initialization: target-backed 0x128 effect record, four design/list resources, two player anchors, second MenuCursorState, and two texture loads. Ordinary /GS C++ is canonical exact 666/666."
+
+[[units.cross-v106a-profile-ui-init.functions]]
+address = "0x0043FCA0"
+symbol_base = "initialize_profile_ui"
+rel32_targets = [
+  "_strcpy_s=0x0068AD95",
+  "?configure@ProfileUiEffectOwnerView@th105@@QAEXPBUProfileUiEffectConfig@2@@Z=0x004115A0",
+  "?load@ProfileRenderListView@th105@@QAEXPBD@Z=0x0040B000",
+  "?bind_object_alt@ProfileRenderListView@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
+  "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+  "?set_texture@MenuCursorSpriteView@th105@@QAEXIHHII@Z=0x00406A60",
+  "?set_texture@ProfileSpriteView@th105@@QAEXIHHII@Z=0x00406A60",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "___security_cookie=___security_cookie",
+  "_profile_ui_effect_label=_profile_ui_effect_label",
+  "_g_active_menu_input=_g_active_menu_input",
+  "_profile_editor_records=_profile_editor_records",
+  "_profile_menu_back_path=_profile_menu_back_path",
+  "?g_profile_overlay_list@th105@@3UProfileRenderListView@1@A=?g_profile_overlay_list@th105@@3UProfileRenderListView@1@A",
+  "_profile_menu_profile_path=_profile_menu_profile_path",
+  "?g_profile_menu_background@th105@@3UProfileRenderListView@1@A=?g_profile_menu_background@th105@@3UProfileRenderListView@1@A",
+  "?g_profile_player_buttons@th105@@3PAPAUUiDesignObject@1@A=?g_profile_player_buttons@th105@@3PAPAUUiDesignObject@1@A",
+  "_profile_menu_window_path=_profile_menu_window_path",
+  "?g_profile_footer_background@th105@@3UProfileRenderListView@1@A=?g_profile_footer_background@th105@@3UProfileRenderListView@1@A",
+  "?g_profile_message_main@th105@@3PAUUiDesignObject@1@A=?g_profile_message_main@th105@@3PAUUiDesignObject@1@A",
+  "?g_profile_message_choice_a@th105@@3PAUUiDesignObject@1@A=?g_profile_message_choice_a@th105@@3PAUUiDesignObject@1@A",
+  "?g_profile_message_choice_b@th105@@3PAUUiDesignObject@1@A=?g_profile_message_choice_b@th105@@3PAUUiDesignObject@1@A",
+  "?g_profile_message_choice_c@th105@@3PAUUiDesignObject@1@A=?g_profile_message_choice_c@th105@@3PAUUiDesignObject@1@A",
+  "?g_profile_message_choice_d@th105@@3PAUUiDesignObject@1@A=?g_profile_message_choice_d@th105@@3PAUUiDesignObject@1@A",
+  "_profile_menu_profile_edit_path=_profile_menu_profile_edit_path",
+  "?g_profile_player_list@th105@@3UProfileRenderListView@1@A=?g_profile_player_list@th105@@3UProfileRenderListView@1@A",
+  "?g_profile_player_anchor@th105@@3PAUUiDesignObject@1@A=?g_profile_player_anchor@th105@@3PAUUiDesignObject@1@A",
+  "_profile_cursor_path=_profile_cursor_path",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+  "?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A=?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A",
+  "?g_profile_cursor_texture@th105@@3IA=?g_profile_cursor_texture@th105@@3IA",
+  "?g_profile_message_cursor@th105@@3UMenuCursorState@1@A=?g_profile_message_cursor@th105@@3UMenuCursorState@1@A",
+  "_profile_list_seat_path=_profile_list_seat_path",
+  "?g_profile_character_background@th105@@3UProfileSpriteView@1@A=?g_profile_character_background@th105@@3UProfileSpriteView@1@A",
+  "?g_profile_list_seat_texture@th105@@3IA=?g_profile_list_seat_texture@th105@@3IA",
+]
+
+[units.cross-v106a-profile-ui-lifecycle]
+kind = "probe"
+source = "src/ui/ProfileUiLifecycle.cpp"
+object = "build/match-units/CrossV106a_ProfileUiLifecycle.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current Profile UI frame rendering and shutdown. The frame source uses the established RenderModeManager/Profile UI globals plus checked std::list::back() ownership; shutdown mirrors the exact resource lifetime."
+
+[[units.cross-v106a-profile-ui-lifecycle.functions]]
+address = "0x00440170"
+symbol_base = "render_profile_ui_frame"
+rel32_targets = [
+  "?begin_frame@RenderModeManager@th105@@QAE_NXZ=0x00401000",
+  "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
+  "?draw_profile_overlay@th105@@YAXE@Z=0x0043F900",
+  "?set_color@ProfileRenderListView@th105@@QAEXI@Z=0x0040BFE0",
+  "?render@ProfileRenderListView@th105@@QAEXXZ=0x0040BC80",
+  "?get_network_session@th105@@YAPAUCNetworkBase@1@XZ=0x0043B090",
+  "?get_player_slot_record@th105@@YAPAUPlayerSlotRecord@1@I@Z=0x0043AFE0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?finish_frame@RenderModeManager@th105@@QAEXXZ=0x00401040",
+]
+dir32_targets = [
+  "?g_ui_selection_fade@th105@@3EA=?g_ui_selection_fade@th105@@3EA",
+  "?g_ui_selection_snapshot@th105@@3EA=?g_ui_selection_snapshot@th105@@3EA",
+  "?g_ui_selection_state@th105@@3IA=?g_ui_selection_state@th105@@3IA",
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+  "?g_profile_menu_background@th105@@3UProfileRenderListView@1@A=?g_profile_menu_background@th105@@3UProfileRenderListView@1@A",
+  "?g_profile_network_pair@th105@@3EA=?g_profile_network_pair@th105@@3EA",
+  "?g_profile_player_buttons@th105@@3PAPAUUiDesignObject@1@A=?g_profile_player_buttons@th105@@3PAPAUUiDesignObject@1@A",
+  "__real@4024000000000000=__real@4024000000000000",
+  "__real@4056000000000000=__real@4056000000000000",
+  "?g_ui_selection_menu_stack@th105@@3V?$list@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@std@@A=?g_ui_selection_menu_stack@th105@@3V?$list@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@std@@A",
+]
+
+[[units.cross-v106a-profile-ui-lifecycle.functions]]
+address = "0x004402E0"
+symbol_base = "shutdown_profile_ui"
+rel32_targets = [
+  "_trim_profile_ui_menu_stack=0x00440010",
+  "?shutdown@ProfileNameListShutdownView@th105@@QAEXXZ=0x0043A0A0",
+  "?clear@ProfileRenderListView@th105@@QAEXXZ=0x0040BB40",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+]
+dir32_targets = [
+  "?g_ui_selection_snapshot@th105@@3EA=?g_ui_selection_snapshot@th105@@3EA",
+  "_g_profile_name_list=_g_profile_name_list",
+  "?g_profile_overlay_list@th105@@3UProfileRenderListView@1@A=?g_profile_overlay_list@th105@@3UProfileRenderListView@1@A",
+  "?g_profile_menu_background@th105@@3UProfileRenderListView@1@A=?g_profile_menu_background@th105@@3UProfileRenderListView@1@A",
+  "?g_profile_player_list@th105@@3UProfileRenderListView@1@A=?g_profile_player_list@th105@@3UProfileRenderListView@1@A",
+  "?g_profile_footer_background@th105@@3UProfileRenderListView@1@A=?g_profile_footer_background@th105@@3UProfileRenderListView@1@A",
+  "?g_profile_back_texture@th105@@3IA=?g_profile_back_texture@th105@@3IA",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+  "?g_profile_list_seat_texture@th105@@3IA=?g_profile_list_seat_texture@th105@@3IA",
+  "?g_profile_cursor_texture@th105@@3IA=?g_profile_cursor_texture@th105@@3IA",
+  "?g_profile_message_texture@th105@@3IA=?g_profile_message_texture@th105@@3IA",
+]

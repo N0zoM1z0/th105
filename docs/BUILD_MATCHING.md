@@ -929,3 +929,28 @@ The same TU reproduces seven Profile render/state facades exactly: message hide 
 `Menu::render_profile_player_slot @ 0x0043FAF0` is a caller-proven unused-this member: callers place their Menu-derived receiver in ECX, while the body uses the player argument and shared UI globals. Keep the member ABI even though the body ignores ECX. `Menu::render_profile_tiles @ 0x0043FB60` similarly reuses the already-established shared byte at `0x006FA88E`; do not manufacture a duplicate global simply because the older semantic name is battle-oriented.
 
 `CProfileMenu::commit_state_one @ 0x0044C110` extends the exact ProfileMenu file-commit TU to 621 bytes. The target requires `/GS`, a real local `ProfileMenuBaseData` lifetime, initialization member `0x00432050`, save-to-profile member `0x004317A0`, and the same caller-TU `MenuString28` temporary-destructor visibility used by the other file commits. Do not flatten that local object into raw storage or hand-code EH cleanup.
+
+### Profile UI lifecycle: typed stack records and checked-list `back()`
+
+`initialize_profile_ui @ 0x0043FCA0` (666), `render_profile_ui_frame @
+0x00440170` (359), and `shutdown_profile_ui @ 0x004402E0` (129) form one
+canonical-exact Profile UI lifetime island.  The initializer's 0x128-byte local
+is not opaque padding: current `0x004115A0` copies exactly 0x128 bytes and then
+reads the six color bytes plus aligned dword fields.  Modeling it as a typed
+configuration record and compiling `/GS` reproduces the target 0x138 stack frame
+and all 666 function bytes.
+
+Two lifetime details are observable source evidence.  The initializer publishes
+the input argument to `g_active_menu_input` immediately, then later rereads that
+global while initializing a second `MenuCursorState @ 0x006FD018`; keeping the
+argument live across the whole function causes VC8 to save an extra register.
+This cursor is distinct from the already-established profile-list cursor at
+`0x006FCFFC`.  Preserve both aggregates rather than merging nearby UI globals.
+
+The frame condition naturally emits the target `test al,al; ja` only when the
+unsigned snapshot predicate is expressed as `snapshot <= 0` after the preceding
+state comparison.  More importantly, the current selection-menu stack uses
+`std::list<UiSelectionMenu *>::back()`, not `front()`.  VC8's checked `back()`
+emits the target sentinel-prev traversal and both invalid-parameter checks; a
+`front()` spelling is 14 bytes shorter.  This is semantic container evidence,
+not a license to hand-code iterator validation.

@@ -17,7 +17,7 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 501 functions / 74,199 bytes in 179
+- The accepted 1.06a authored set contains 504 functions / 75,353 bytes in 181
   VC8 match units. Current-target IDA/call evidence, relocation reconciliation,
   source archaeology, and layout recovery establish hypotheses; only canonical
   VC8 zero-difference comparisons establish exactness.
@@ -315,7 +315,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 2,807
+- Accepted boundaries and authored/library origins for the remaining 2,804
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.
@@ -587,3 +587,14 @@ global.  Only the loader-zero message UiDesignObject pointer at `0x006FD02C` is
 newly named.  Address adjacency alone is not enough to collapse these globals
 into one source aggregate, even though neighboring message-state storage is
 layout-compatible with MenuCursorState.
+
+- The Profile UI global lifetime now has a second exact-backed `MenuCursorState`
+  at `0x006FD018`, distinct from the profile-list cursor at `0x006FCFFC`.
+  `initialize_profile_ui @ 0x0043FCA0` is 666/666 exact from a real 0x128-byte
+  configuration record, four design/list resources, and two texture loads;
+  `render_profile_ui_frame @ 0x00440170` is 359/359 exact and proves the shared
+  selection-menu container is traversed with checked `std::list::back()`;
+  `shutdown_profile_ui @ 0x004402E0` is 129/129 exact and closes the matching
+  design/texture teardown.  The initializer must publish its input pointer to
+  the global and later reread it rather than keep the argument live across the
+  function; that lifetime difference is byte-significant under VC8.

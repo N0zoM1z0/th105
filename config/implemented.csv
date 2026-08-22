@@ -499,3 +499,6 @@ render_menu_list
 Menu_render_profile_player_slot
 Menu_render_profile_tiles
 CProfileMenu_commit_state_one
+initialize_profile_ui
+render_profile_ui_frame
+shutdown_profile_ui

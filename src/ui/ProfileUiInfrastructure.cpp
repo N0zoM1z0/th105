@@ -1,5 +1,6 @@
 #include "ProfileMenu.hpp"
 #include "UiPrimitives.hpp"
+#include "ProfileUiInfrastructure.hpp"
 
 #include "../engine/RenderModeManager.hpp"
 #include "../input/InputManager.hpp"
@@ -9,24 +10,6 @@ namespace th105 {
 extern "C" CInputManager *g_active_menu_input;
 extern "C" ProfileNameList g_profile_name_list;
 extern unsigned char g_round_counter;
-
-struct ProfileRenderListView {
-    void set_color(unsigned int color);
-    void render();
-    void render_offset(float x, float y);
-};
-
-struct ProfileSpriteView {
-    void render(float x, float y);
-};
-
-struct ProfileTileView {
-    void render(float x, float y, int column, int row);
-};
-
-struct MenuCursorSpriteView {
-    void render(float x, float y);
-};
 
 static float &menu_cursor_scale_x(MenuCursorSpriteView &sprite)
 {

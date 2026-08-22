@@ -500,3 +500,6 @@ render_menu_list,0x0043FA10,function
 Menu_render_profile_player_slot,0x0043FAF0,function
 Menu_render_profile_tiles,0x0043FB60,function
 CProfileMenu_commit_state_one,0x0044C110,function
+initialize_profile_ui,0x0043FCA0,function
+render_profile_ui_frame,0x00440170,function
+shutdown_profile_ui,0x004402E0,function
