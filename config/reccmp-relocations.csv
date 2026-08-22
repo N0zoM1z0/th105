@@ -441,3 +441,8 @@ __ehhandler$??1CMenuConfig@th105@@UAE@XZ,0x006B917C,8b542408,0,Current CMenuConf
 __real@43480000,0x006C1A8C,00004843,0,Current CMenuConfig render 0x00440F20 loads single-precision cursor scale 200.0f from 0x006C1A8C; canonical bytes attested 2026-08-22,literal
 _ui_sprite_icf_dtor_callback,0x0040AD50,c70124066c00c3,0,Current CMenuConfig dtor passes folded UiSprite94/IColor 7-byte destructor implementation 0x0040AD50 as VC8 array-dtor callback; current IColor dtor is canonical exact 7/7; attested 2026-08-22,address
 __real@4032000000000000,0x006C1F48,0000000000003240,0,Current CMenuPractice render 0x00445BA0 loads qword 18.0 from 0x006C1F48 for tile x-offset; canonical bytes attested 2026-08-22,literal
+??_7CProfileCharacterSelect@th105@@6B@,0x006C2150,208a4400,0,Current CProfileCharacterSelect RTTI owns primary vtable 0x006C2150; first slot points to scalar deleting dtor 0x00448A20; canonical bytes attested 2026-08-22,address
+__ehhandler$??1CProfileCharacterSelect@th105@@UAE@XZ,0x006B9D7D,8b542408,0,Current CProfileCharacterSelect normal dtor 0x00448730 pushes VC8 EH handler 0x006B9D7D; canonical prefix attested 2026-08-22,address
+??_7CProfileKeyConfig@th105@@6B@,0x006C22EC,d0bc4400,0,Current CProfileKeyConfig RTTI owns primary vtable 0x006C22EC; first slot points to scalar deleting dtor 0x0044BCD0; canonical bytes attested 2026-08-22,address
+??_7CProfileDeckEdit@th105@@6B@,0x006C222C,20b34400,0,Current CProfileDeckEdit RTTI owns primary vtable 0x006C222C; first slot points to scalar deleting dtor 0x0044B320; canonical bytes attested 2026-08-22,address
+__ehhandler$??1CProfileDeckEdit@th105@@UAE@XZ,0x006B9ECE,8b542408,0,Current CProfileDeckEdit normal dtor 0x0044A950 pushes VC8 EH handler 0x006B9ECE; canonical prefix attested 2026-08-22,address

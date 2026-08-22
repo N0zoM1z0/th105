@@ -14,9 +14,9 @@ seeds using current-target-backed structural remapping where appropriate.
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 512 authored functions, 696 classified exclusions, and 2,796 still awaiting origin/boundary review.
-- All 512 confirmed authored functions are source-present and canonical exact:
-  76,419 exact authored bytes across 182 configured VC8 units.
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 518 authored functions, 696 classified exclusions, and 2,790 still awaiting origin/boundary review.
+- All 518 confirmed authored functions are source-present and canonical exact:
+  77,550 exact authored bytes across 185 configured VC8 units.
 
 - The newest Menu overlay wave adds eight authored canonical-exact functions / 1,066 bytes: `CMenuBattle` normal/scalar destruction and render (`0x00440E70/0x00440F00/0x00440780`, 142/30/82), `CMenuConfig` normal/scalar destruction and render (`0x00441460/0x00441890/0x00440F20`, 179/30/197), `CMenuPractice::render @ 0x00445BA0` (211), and `CMenuConnect::update @ 0x00444B90` (195). Current RTTI/vtables own every accepted virtual/lifetime. `CMenuBattle` has a target-backed 0x78 real layout but its ctor remains 799/800 on stack coloring; do not force it. Practice render uses two checked-vector `UiDesignObject *&` element references and intentionally leaves the unobserved `+0x15C` layout gap unnamed. Connect update uses `state != 6` as the physical fallthrough choice, pointer-walk item traversal, and a 195-byte callable body followed by a 29-byte same-section jump table.
 - Latest battle-scene/network-lifetime wave: 12 new canonical-exact authored functions / 1,075 bytes. Current RTTI closes `CBattle -> IScene`, `CBattleSV/CL/Watch -> CBattle`, and `CLoadingWatch -> IScene`. Exact additions are CBattle ctor/dtor/scalar, three 18-byte derived ctors, base update/exit, folded SV/CL scene-enter, Watch enter/update, and CLoadingWatch update. The two network scene-enter bodies independently prove an 8-byte RAII wait object `{HANDLE handle; DWORD wait_ms}`; the three derived ctors require a separate TU so the 9-byte CBattle base ctor remains out of line. SV/CL update methods remain review-pending on later receiver/cross-jump scheduling and were not forced.
@@ -82,7 +82,7 @@ the current call target.
 ## Next bounded work
 
 Continue origin/boundary review so the authored denominator becomes meaningful,
-then expand exact recovery from the 512 accepted functions. Use
+then expand exact recovery from the 518 accepted functions. Use
 `scripts/rank_retained_exact.py --only-unconfigured` to prioritize historical
 exact source that never had an old match unit. Same-size zero non-relocation
 mismatch candidates are especially productive, but ambiguous template/clone
@@ -91,9 +91,9 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 2,796
+The 95% authored-function and authored-byte goals cannot be reported yet: 2,790
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 512/512
+global authored denominator is not established. Do not use the current 518/518
 exact subset as a substitute denominator.
 
 ## Routine checkpoint
@@ -125,3 +125,5 @@ git diff --check
   validation.  Do not replace that with `front()` or hand-written list-node
   logic.  The shared method-only `ProfileUiInfrastructure.hpp` intentionally
   asserts member ABIs without inventing storage layout.
+
+- The Profile submenu/DeckEdit lifetime wave adds six authored exact functions / 1,131 bytes. `CProfileDeckEdit::import_deck_counts @ 0x00449BE0` (395) and `export_deck_counts @ 0x00449DF0` (159) prove a checked `std::map<unsigned short,signed char> @ +0x3C0`; the same source naturally regenerates the neighboring tree/deque COMDAT helpers, which remain compiler-generated candidates rather than authored progress. `CProfileDeckEdit::~CProfileDeckEdit @ 0x0044A950` is 353/353 exact from the recovered 0x6B0 natural member chain, including the +0x398 resource group, map/deque, two MenuCursorState objects, four state bytes, and GuideOverlay[4]. Implicit CSpriteBase-derived 0x94/0xA4 lifetimes, not hand-written vptr stores, are required for the target teardown schedule. `CProfileCharacterSelect` normal/scalar dtors are 164/30 exact and `CProfileKeyConfig` scalar is 30 exact. KeyConfig's 188-byte normal dtor remains pending on one scheduler-only store/load swap; do not force it.

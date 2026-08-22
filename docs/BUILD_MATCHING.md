@@ -964,3 +964,34 @@ The current RTTI/vtable islands for `CMenuBattle`, `CMenuConfig`, `CMenuPractice
 `CMenuPractice::render @ 0x00445BA0` is a useful checked-vector lifetime case. The second checked `std::vector<UiDesignObject*>` at `+0x1BC` is accessed twice before one `CTile` render call. Loading both results immediately into pointer values changes the register lifetime; keeping the results as `UiDesignObject *&` element references lets VC8 preserve the first element-address reference across the second bounds check and yields 211/211 exact. Do not complete the Practice object layout just to obtain its destructor: no owned method currently explains the four bytes at `+0x15C`, so that gap remains deliberately unnamed.
 
 `CMenuConnect::update @ 0x00444B90` shows two control-flow details that are source evidence rather than cosmetic rearrangement. The target physically spells the UI-color branch as `state != 6` (all-white pointer walk) with state 6 in the alternate block, and the selected-color loop advances both an integer index and a `UiDesignObject**` pointer. An indexed `item[index]` spelling removes the target `add item,4` and shifts two branch bytes. With the target-backed pointer walk, the callable body is 195/195 exact; VC8 places a 29-byte jump table after the RET in the same 224-byte section. As elsewhere, compare the reviewed function boundary and audit trailing compiler metadata separately.
+
+### Profile submenu lifetimes and DeckEdit checked-container ownership
+
+The Profile submenu wave closes six authored functions / 1,131 bytes without
+inventing class padding. `CProfileDeckEdit::import_deck_counts @ 0x00449BE0`
+(395) and `export_deck_counts @ 0x00449DF0` (159) compile exactly from the
+native VC8 checked types `std::map<unsigned short, signed char>` at `+0x3C0`
+and `std::deque<unsigned short>` at the API boundary. The same compile emits
+tree/deque COMDATs matching current `find`, `insert`, iterator-increment and
+push-back helpers. Treat those helpers as compiler-generated candidates; an
+authored caller does not make the STL implementation authored.
+
+`CProfileDeckEdit::~CProfileDeckEdit @ 0x0044A950` is 353/353 exact from a
+natural 0x6B0 member layout. The late region is especially useful evidence: a
+0x20 `DwordDeque4 + SpellTree` resource group at `+0x398`, the count map at
+`+0x3C0`, `std::deque<map::iterator>` at `+0x3CC`, two `MenuCursorState`
+objects at `+0x3E4/+0x3F8`, four real state bytes at `+0x40C`, and
+`GuideOverlay[4] @ +0x410`, which ends exactly at 0x6B0. The UI subobjects use
+implicit `CSpriteBase`-derived 0x94/0xA4 lifetime views. Current copy/lifetime
+evidence proves five 32-bit extension values for the sprite and nine float
+values for the tile; letting their implicit destructors run naturally fixes the
+last target IColor-vptr scheduling difference. Do not replace this with manual
+vptr stores.
+
+Current vtables independently own `CProfileCharacterSelect` 0x288 and
+`CProfileKeyConfig` 0x330 layouts. CharacterSelect normal/scalar destructors
+are 164/164 and 30/30 exact; KeyConfig's scalar wrapper is 30/30 exact. The
+same truthful KeyConfig TU emits a 188-byte normal destructor whose semantics,
+length and member teardown are closed but one store/load scheduling swap
+remains. Keep that normal destructor review-pending rather than forcing the
+compiler merely because its scalar wrapper is exact.
