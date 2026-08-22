@@ -516,3 +516,5 @@ CProfileDeckEdit_dtor
 CProfileCharacterSelect_dtor
 CProfileCharacterSelect_scalar_deleting_destructor
 CProfileKeyConfig_scalar_deleting_destructor
+try_dispatch_action_202
+try_dispatch_action_203

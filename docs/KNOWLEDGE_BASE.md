@@ -17,7 +17,7 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 518 functions / 77,550 bytes in 185
+- The accepted 1.06a authored set contains 520 functions / 78,002 bytes in 185
   VC8 match units. Current-target IDA/call evidence, relocation reconciliation,
   source archaeology, and layout recovery establish hypotheses; only canonical
   VC8 zero-difference comparisons establish exactness.
@@ -317,7 +317,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 2,790
+- Accepted boundaries and authored/library origins for the remaining 2,788
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.
@@ -602,3 +602,6 @@ layout-compatible with MenuCursorState.
   function; that lifetime difference is byte-significant under VC8.
 
 - Profile submenu lifetime recovery closes a natural `CProfileDeckEdit` size of 0x6B0 without padding arrays: Title/UI members lead into a 0x20 `DwordDeque4 + SpellTree` resource group at +0x398, checked `map<unsigned short,signed char>` at +0x3C0, checked `deque<map::iterator>` at +0x3CC, two `MenuCursorState` values at +0x3E4/+0x3F8, four state bytes, and `GuideOverlay[4] @ +0x410`. Natural import/export are 395/159 exact and the normal dtor is 353 exact. The same compile emits matching STL tree/deque helpers; keep generated ownership separate from authored callers. `CProfileCharacterSelect` size 0x288 and `CProfileKeyConfig` size 0x330 are independently vtable/ctor/dtor-backed; their exact lifetime members add 164/30/30 bytes while the 188-byte KeyConfig normal dtor deliberately remains pending on one scheduler-only swap.
+
+- `Fighter::try_dispatch_action_202 @ 0x004940E0` and `try_dispatch_action_203 @ 0x004941D0` are a mirrored 226-byte pair. Current IDA shows the successful tail as `phase_reset; load vptr; load vslot[2]; ++byte[this+0x47F]; virtual set_action`. A layout-backed `FighterActionRepeatView` that exposes both the real third virtual slot and the observed repeat byte makes VC8 preserve that evaluation order; both bodies are canonical exact while the six earlier functions in the same TU remain exact. Keep the pair together when changing this view.
+- Three near-exact retained-source blockers are useful negative evidence for future waves: `adjust_capped_counter_558 @ 0x0045CED0` is 126 bytes and differs only in register scheduling around the 16-bit adjusted amount; IDA shows the join as adjusted value in EAX, sign-extended counter in EDX. `GuideOverlay::update @ 0x0043F450` is 112 bytes and target uses `sub al,0x0F` plus a vslot load before alpha writeback, unlike VC8's current equivalent `add al,0xF1` scheduling. `try_group_a_vs_group_b_interaction @ 0x0046C930` is 164 bytes and the remaining semantic-width difference is target `movzx r32, word [frame+0x2A]` before a 16-bit store versus the current direct 16-bit load/store. Do not close any of these with volatile/register/assembly forcing; recover the source/layout distinction that naturally explains the target schedule.

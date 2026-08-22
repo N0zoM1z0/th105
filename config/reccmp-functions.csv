@@ -517,3 +517,5 @@ CProfileDeckEdit_dtor,0x0044A950,function
 CProfileCharacterSelect_dtor,0x00448730,function
 CProfileCharacterSelect_scalar_deleting_destructor,0x00448A20,function
 CProfileKeyConfig_scalar_deleting_destructor,0x0044BCD0,function
+try_dispatch_action_202,0x004940E0,function
+try_dispatch_action_203,0x004941D0,function

@@ -1437,6 +1437,22 @@ rel32_targets = [
   "?initialize_fighter_phase_631e0@th105@@YIHPAUFighter@1@@Z=0x00464200",
 ]
 
+[[units.cross-v106a-command-gates-family.functions]]
+address = "0x004940E0"
+symbol_base = "try_dispatch_action_202"
+rel32_targets = [
+  "?lookup_command_gate_value@Fighter@th105@@QAEFF@Z=0x00493D40",
+  "?initialize_fighter_phase_631e0@th105@@YIHPAUFighter@1@@Z=0x00464200",
+]
+
+[[units.cross-v106a-command-gates-family.functions]]
+address = "0x004941D0"
+symbol_base = "try_dispatch_action_203"
+rel32_targets = [
+  "?lookup_command_gate_value@Fighter@th105@@QAEFF@Z=0x00493D40",
+  "?initialize_fighter_phase_631e0@th105@@YIHPAUFighter@1@@Z=0x00464200",
+]
+
 [units.cross-v106a-terminal-outcome]
 kind = "probe"
 source = "src/battle/TerminalOutcomes.cpp"

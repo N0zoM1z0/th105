@@ -13,6 +13,14 @@ namespace {
 
 typedef void (__thiscall *SetFighterAction)(Fighter *, int);
 
+struct FighterActionRepeatView {
+    virtual void slot_00();
+    virtual void slot_04();
+    virtual void set_action(int action);
+    unsigned char unknown_004[0x47b];
+    unsigned char repeat_count_47f;
+};
+
 __forceinline void set_fighter_action(Fighter *fighter, int action)
 {
     void **const vtable = *reinterpret_cast<void ***>(fighter);
@@ -294,8 +302,10 @@ unsigned char Fighter::try_dispatch_action_202(
     }
 
     initialize_fighter_phase_631e0(this);
-    ++field_byte(this, 0x47f);
-    set_fighter_action(this, 202);
+    FighterActionRepeatView *const action_view =
+        reinterpret_cast<FighterActionRepeatView *>(this);
+    ++action_view->repeat_count_47f;
+    action_view->set_action(202);
     return 1;
 }
 
@@ -329,8 +339,10 @@ unsigned char Fighter::try_dispatch_action_203(
     }
 
     initialize_fighter_phase_631e0(this);
-    ++field_byte(this, 0x47f);
-    set_fighter_action(this, 203);
+    FighterActionRepeatView *const action_view =
+        reinterpret_cast<FighterActionRepeatView *>(this);
+    ++action_view->repeat_count_47f;
+    action_view->set_action(203);
     return 1;
 }
 
