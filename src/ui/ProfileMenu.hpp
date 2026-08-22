@@ -1,5 +1,8 @@
 #pragma once
 
+#include <deque>
+#include <string>
+
 #include "GuideOverlay.hpp"
 #include "Menu.hpp"
 #include "MenuCursor.hpp"
@@ -9,11 +12,27 @@
 namespace th105 {
 
 struct ProfileMenuBaseData {
-    unsigned char storage[0x33C];
+    unsigned char reserved_000[0x98];
+    std::string string_098;
+    std::string string_0b4;
+    unsigned char reserved_0d0[0x6C];
+    unsigned char flag_13c;
+    unsigned char reserved_13d[3];
+    unsigned char block_140[0x34];
+    unsigned char block_174[0x34];
+    unsigned char flag_1a8;
+    unsigned char reserved_1a9[3];
+    std::deque<unsigned short> decks_1ac[20];
 
     ProfileMenuBaseData();
     ~ProfileMenuBaseData();
     void cleanup();
+    void initialize_defaults();
+    bool save_to_profile(const char *path);
+
+private:
+    void initialize_default_deck(std::deque<unsigned short> *deck, int index);
+    void normalize_profile_name();
 };
 
 struct ProfileStringTemporary {

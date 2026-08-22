@@ -1,16 +1,12 @@
 #include "FileList.hpp"
 #include "Title.hpp"
+#include "../platform/SystemUtilities.hpp"
 
 #include <string.h>
 #include <windows.h>
 
 namespace th105 {
 
-struct ModulePathTextView {
-    unsigned char extra_bytes(unsigned char value);
-};
-
-extern ModulePathTextView g_module_path_text;
 
 CFileList::CFileList()
     : field_a8(0), field_ac(4), field_b0(0)

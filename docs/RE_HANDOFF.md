@@ -14,9 +14,12 @@ seeds using current-target-backed structural remapping where appropriate.
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,006: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0`, source-level fighter phase entries `0x00464630`/`0x00464780`, standalone `CMenuReplay` scalar wrapper `0x00446F40`, and `CMenuReplay::update_mode_state @ 0x00446590`, all missed or tail-attached by auto-analysis. Current reviewed state is 553 authored functions, 696 classified exclusions, and 2,757 still awaiting origin/boundary review.
-- All 553 confirmed authored functions are source-present and canonical exact:
-  83,647 exact authored bytes across 194 configured VC8 units.
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,007: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0`, source-level fighter phase entries `0x00464630`/`0x00464780`, standalone `CMenuReplay` scalar wrapper `0x00446F40`, `CMenuReplay::update_mode_state @ 0x00446590`, and independent `CFileWriter_dtor @ 0x00407BF0`, all missed or tail-attached by auto-analysis. Current reviewed state is 562 authored functions, 696 classified exclusions, and 2,749 still awaiting origin/boundary review.
+- All 562 confirmed authored functions are source-present and canonical exact:
+  84,518 exact authored bytes across 196 configured VC8 units.
+
+- The newest profile-data/platform bootstrap wave adds nine authored canonical-exact functions / 871 bytes. `CFileWriter::~CFileWriter @ 0x00407BF0` (21), `write @ 0x00407C10` (35), and scalar wrapper `0x00407C70` (45) are owned by current RTTI/vtable `0x006C0F4C`; its last-size and seek slots physically fold with already-counted reader bodies and are not double-counted. `ProfileMenuBaseData::normalize_profile_name @ 0x00431690` is 145/145 after recovering the real 0x33C string/block/deque layout and source-size dependency. Platform/input adds exact path split `0x0040D0B0` (168), clipboard import `0x0040D160` (97), Shift-JIS width `0x0040D1D0` (34), DirectInput creation `0x0040D360` (138), and keyboard setup `0x0040D560` (188). The DirectInput code uses narrow ordinary C++ COM-vtable views; no inline assembly, manual byte emission, volatile scheduling, or register forcing is used.
+- Reusable negative evidence from the same wave: `ProfileMenuBaseData::initialize_defaults @ 0x00432050` stays non-exact after twenty legal source-order probes; `save_to_profile @ 0x004317A0` has the full natural `/GS`/EH/CFileWriter/twenty-deck serialization but remains 754/784 on register/loop scheduling. Module-path init `0x0040D020` is 137/137 with only global-store scheduling different, and DirectInput enumeration `0x0040D620` has an unresolved unused-ECX helper ABI. CRT-table-only `0x0040D200/0x0040D2A0` are not promoted as authored. Raw-exact retained aliases are still identity hypotheses: current callers proved `0x00684CF0` is Vorbis window code, and checked-STL clones remain compiler-generated.
 
 - The newest FileList/Replay pipeline wave adds four authored canonical-exact functions / 2,111 bytes: `CFileList::populate @ 0x0043A150` (1088), `CMenuReplay::update_mode_state @ 0x00446590` (186), `CMenuReplay::render @ 0x00446650` (282), and `CMenuReplay::update_delete_state @ 0x00446A60` (555). Populate needs a default-constructed then assigned search path and branch-local path destruction before the common virtual finalize tail. Replay mode is a newly recovered source boundary: current `CMenuReplay::update` restores registers/ECX and tail-jumps to a chunk with its own prologue and RET tails. Replay render uses direct branch-local cursor calls plus unsigned-index-to-float conversion before double spacing; delete uses signed state bytes, checked `list<int>` history, shared FileList navigation, Profile message ABIs and dllimport Win32 file calls.
 - Reusable negative evidence from the same wave: `CFileList::finalize @ 0x0043A590` has a fully current-backed 0x194 text-render owner but remains 1080/1106 on EH/iterator lifetime; `go_parent_directory @ 0x004398B0` is semantically 91/91 but differs only in which byte of a real 4-byte stack slot holds local `'/'`; Replay refresh is 231/229 on zero/EBX scheduling; Replay browse remains 559/511 because standalone VC8 duplicates `/GS` epilogues that target shares. The 350-byte Replay ctor still differs only in receiver scheduling. None were forced with padding, char-array stack coloring, goto-only CFG shaping, volatile, registers, or assembly.
@@ -90,7 +93,7 @@ the current call target.
 ## Next bounded work
 
 Continue origin/boundary review so the authored denominator becomes meaningful,
-then expand exact recovery from the 553 accepted functions. Use
+then expand exact recovery from the 562 accepted functions. Use
 `scripts/rank_retained_exact.py --only-unconfigured` to prioritize historical
 exact source that never had an old match unit. Same-size zero non-relocation
 mismatch candidates are especially productive, but ambiguous template/clone
@@ -99,9 +102,9 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 2,757
+The 95% authored-function and authored-byte goals cannot be reported yet: 2,749
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 553/553
+global authored denominator is not established. Do not use the current 562/562
 exact subset as a substitute denominator.
 
 ## Routine checkpoint
@@ -140,5 +143,12 @@ git diff --check
 
 - Added canonical exact `Fighter::try_dispatch_action_202 @ 0x004940E0` and `try_dispatch_action_203 @ 0x004941D0`, 226 bytes each, to the existing `cross-v106a-command-gates-family` unit.
 - Native IDA confirms both tails fetch vslot 2 before incrementing repeat byte `this+0x47F`; the tracked layout-backed `FighterActionRepeatView` reproduces that natural VC8 order without inline assembly or copied bytes.
-- The family replay keeps all six previously accepted command-gate functions exact. Current authored exact status is 553 functions / 83,647 bytes in 194 units; 2,757 origin candidates remain review-pending, so the global 95% denominator is still not established.
+- The family replay keeps all six previously accepted command-gate functions exact. The later profile-data/platform wave raises current authored exact status to 562 functions / 84,518 bytes in 196 units; 2,749 origin candidates remain review-pending, so the global 95% denominator is still not established.
 - Near-exact follow-ups are documented in `docs/KNOWLEDGE_BASE.md`: `adjust_capped_counter_558`, `GuideOverlay::update`, and `try_group_a_vs_group_b_interaction`.
+
+### Profile-data/platform bootstrap exact wave (2026-08-23)
+
+- Added nine canonical-exact authored functions / 871 bytes: three distinct `CFileWriter` bodies, `ProfileMenuBaseData::normalize_profile_name`, safe path splitting, clipboard text import, Shift-JIS width classification, DirectInput creation, and keyboard-device setup. Current target vtables, callers, PE IATs/data, and cold VC8 replay independently support every identity.
+- Recovered a missed independent source boundary at `CFileWriter::~CFileWriter @ 0x00407BF0`, raising the corrected ledger to 4,007. Folded writer last-size/seek slots reuse already-counted physical bodies and therefore do not inflate the function numerator.
+- Current authored exact status is 562 functions / 84,518 bytes in 196 units; 2,749 origin candidates remain review-pending, so the complete authored denominator required for the 95% goals is still not established.
+- Pending neighbors are documented in `docs/KNOWLEDGE_BASE.md`: ProfileMenuBaseData initialize/save scheduling, module-directory store scheduling, DirectInput enumeration's unused-ECX helper ABI, and CRT-only platform lifetime glue. None were forced with assembly, volatile state, fake locals, manual vptr writes, or register coercion.

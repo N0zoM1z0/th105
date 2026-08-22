@@ -7357,3 +7357,109 @@ rel32_targets = [
   "?item_count@CFileList@th105@@QBEHXZ=0x004395E0",
 ]
 dir32_targets = ["_g_active_menu_input=_g_active_menu_input"]
+
+[units.cross-v106a-profile-data-writer]
+kind = "probe"
+source = "src/ui/ProfileMenuData.cpp"
+object = "build/match-units/CrossV106a_ProfileDataWriter.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current ProfileMenuBaseData/CFileWriter serialization island. RTTI/vtable evidence recovers the writer normal/scalar lifetime and WriteFile virtual; ProfileMenuBaseData normalize uses the target-backed 0x33C string/deck layout and the same multibyte helper contract as exact CFileList trimming. Pending initialize/save bodies remain intentionally untracked until their compiler scheduling closes naturally."
+
+[[units.cross-v106a-profile-data-writer.functions]]
+address = "0x00407BF0"
+symbol_base = "??1CFileWriter@th105@@UAE@XZ"
+dir32_targets = [
+  "??_7CFileWriter@th105@@6B@=??_7CFileWriter@th105@@6B@",
+  "__imp__CloseHandle@4=__imp__CloseHandle@4",
+]
+
+[[units.cross-v106a-profile-data-writer.functions]]
+address = "0x00407C10"
+symbol_base = "CFileWriter_write"
+dir32_targets = ["__imp__WriteFile@20=__imp__WriteFile@20"]
+
+[[units.cross-v106a-profile-data-writer.functions]]
+address = "0x00407C70"
+symbol_base = "CFileWriter_scalar_deleting_destructor"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = [
+  "??_7CFileWriter@th105@@6B@=??_7CFileWriter@th105@@6B@",
+  "__imp__CloseHandle@4=__imp__CloseHandle@4",
+]
+
+[[units.cross-v106a-profile-data-writer.functions]]
+address = "0x00431690"
+symbol_base = "ProfileMenuBaseData_normalize_profile_name"
+rel32_targets = [
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "?erase@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@II@Z=0x00402290",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?extra_bytes@ModulePathTextView@th105@@QAEEE@Z=0x0040D1D0",
+]
+dir32_targets = ["?g_module_path_text@th105@@3UModulePathTextView@1@A=_path_buffer_receiver"]
+
+[units.cross-v106a-system-utilities]
+kind = "probe"
+source = "src/platform/SystemUtilities.cpp"
+object = "build/match-units/CrossV106a_SystemUtilities.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current platform/input utility island recovered entirely from 1.06a callers and API/vtable semantics: safe path splitting, ANSI clipboard import, Shift-JIS lead-byte width, DirectInput COM creation, and keyboard-device setup. Narrow COM vtable views are ordinary C++ ABI evidence. Module-directory init 0x0040D020 remains 137/137 but scheduler-different, device enumeration 0x0040D620 retains an unresolved unused-ECX helper ABI, and CRT-only 0x0040D200/0x0040D2A0 remain origin-review rather than authored progress."
+
+[[units.cross-v106a-system-utilities.functions]]
+address = "0x0040D0B0"
+symbol_base = "split_path_components"
+rel32_targets = [
+  "__splitpath_s=0x0068BE59",
+  "_strcat_s=0x0068BDE8",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = ["___security_cookie=___security_cookie"]
+
+[[units.cross-v106a-system-utilities.functions]]
+address = "0x0040D160"
+symbol_base = "read_clipboard_ansi"
+rel32_targets = ["_strncpy_s=0x0068B2A8"]
+dir32_targets = [
+  "__imp__OpenClipboard@4=__imp__OpenClipboard@4",
+  "__imp__GetClipboardData@4=__imp__GetClipboardData@4",
+  "__imp__GlobalLock@4=__imp__GlobalLock@4",
+  "__imp__GlobalUnlock@4=__imp__GlobalUnlock@4",
+  "__imp__CloseClipboard@0=__imp__CloseClipboard@0",
+]
+
+[[units.cross-v106a-system-utilities.functions]]
+address = "0x0040D1D0"
+symbol_base = "?extra_bytes@ModulePathTextView@th105@@QAEEE@Z"
+
+[[units.cross-v106a-system-utilities.functions]]
+address = "0x0040D360"
+symbol_base = "initialize_direct_input"
+dir32_targets = [
+  "?g_direct_input_interface@th105@@3PAUDirectInput8View@1@A=_direct_input_interface",
+  "?g_direct_input_window@th105@@3PAUHWND__@@A=_direct_input_window",
+  "?direct_input_class_id@th105@@3U_GUID@@B=_direct_input_class_id",
+  "?direct_input_interface_id@th105@@3U_GUID@@B=_direct_input_interface_id",
+  "?direct_input_create_error@th105@@3QBDB=_direct_input_create_error",
+  "?direct_input_initialize_error@th105@@3QBDB=_direct_input_initialize_error",
+  "?direct_input_error_title@th105@@3QBDB=_direct_input_error_title",
+  "__imp__CoCreateInstance@20=__imp__CoCreateInstance@20",
+  "__imp__MessageBoxA@16=__imp__MessageBoxA@16",
+]
+
+[[units.cross-v106a-system-utilities.functions]]
+address = "0x0040D560"
+symbol_base = "initialize_keyboard_device"
+dir32_targets = [
+  "?g_keyboard_device@th105@@3PAUDirectInputDevice8View@1@A=_keyboard_device",
+  "?g_direct_input_interface@th105@@3PAUDirectInput8View@1@A=_direct_input_interface",
+  "?g_direct_input_window@th105@@3PAUHWND__@@A=_direct_input_window",
+  "?keyboard_device_guid@th105@@3U_GUID@@B=_keyboard_device_guid",
+  "?keyboard_data_format@th105@@3QBEB=_keyboard_data_format",
+  "?direct_input_create_keyboard_error@th105@@3QBDB=_direct_input_create_keyboard_error",
+  "?direct_input_set_format_error@th105@@3QBDB=_direct_input_set_format_error",
+  "?direct_input_cooperative_error@th105@@3QBDB=_direct_input_cooperative_error",
+  "?direct_input_error_title@th105@@3QBDB=_direct_input_error_title",
+  "__imp__MessageBoxA@16=__imp__MessageBoxA@16",
+]
