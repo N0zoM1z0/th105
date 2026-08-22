@@ -36,8 +36,5 @@ ResultList::ResultList()
     field_a8 = 0;
 }
 
-ResultList::~ResultList()
-{
-}
 
 } // namespace th105

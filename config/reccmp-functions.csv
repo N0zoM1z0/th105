@@ -528,3 +528,13 @@ CMenuContinue_scalar_deleting_destructor,0x00444FA0,function
 CMenuEnd_ctor,0x00445100,function
 CMenuEnd_dtor,0x004451A0,function
 CMenuEnd_scalar_deleting_destructor,0x00445220,function
+CProfileList_populate,0x004313F0,function
+CProfileList_ctor,0x00431730,function
+CFileList_item_count,0x004395E0,function
+CFileList_contains,0x00439810,function
+CFileList_trim_item_text,0x00439910,function
+CFileList_render_item,0x00439A20,function
+CFileList_ctor,0x00439F40,function
+CFileList_dtor,0x00439FC0,function
+CFileList_shutdown,0x0043A0A0,function
+ResultList_dtor,0x00447260,function

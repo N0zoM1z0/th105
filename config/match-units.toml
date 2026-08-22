@@ -1950,6 +1950,15 @@ symbol_base = "ResultList_ctor"
 rel32_targets = ["??0ResultListBase@th105@@QAE@XZ=0x00439F40"]
 dir32_targets = ["??_7ResultList@th105@@6B@=??_7ResultList@th105@@6B@"]
 
+[[units.cross-v106a-result-list-ctor.functions]]
+address = "0x00447260"
+symbol_base = "ResultList_dtor"
+rel32_targets = [
+  "@release_owned_pointer_buffer@4=0x00420A80",
+  "@destroy_result_index_deque@4=0x0040FF90",
+  "??1ResultListBase@th105@@UAE@XZ=0x00439FC0",
+]
+
 [units.cross-v106a-package-file-reader-read]
 kind = "probe"
 source = "src/assets/FileReader.cpp"
@@ -2585,7 +2594,7 @@ dir32_targets = [
   "___security_cookie=___security_cookie",
   "??_7CMenuResult@th105@@6B@=??_7CMenuResult@th105@@6B@",
   "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
-  "??1ResultList@th105@@QAE@XZ=??1ResultList@th105@@QAE@XZ",
+  "??1ResultList@th105@@UAE@XZ=??1ResultList@th105@@UAE@XZ",
   "_title_color_vtable_anchor=_title_color_vtable_anchor_external",
   "??_7Menu@th105@@6B@=??_7Menu@th105@@6B@",
   "_g_scene_mode=_g_scene_mode",
@@ -6979,4 +6988,113 @@ symbol_base = "CMenuEnd_scalar_deleting_destructor"
 rel32_targets = [
   "??1CMenuEnd@th105@@UAE@XZ=0x004451A0",
   "??3@YAXPAX@Z=0x006898EA",
+]
+
+
+[units.cross-v106a-cfile-list]
+kind = "probe"
+source = "src/ui/FileList.cpp"
+object = "build/match-units/CrossV106a_CFileList.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current RTTI/vtable and independently exact Profile/Result callers close the shared 0xB8 CFileList object: checked deque<string> +0x04, deque<int> +0x18, deque<unsigned> +0x2C, deque<FileListTile> +0x40, std::string +0x54/+0x70/+0x8C, and tail state. Natural VC8 STL lifetime plus checked container operations reproduce the seven tracked authored bodies."
+
+[[units.cross-v106a-cfile-list.functions]]
+address = "0x004395E0"
+symbol_base = "CFileList_item_count"
+
+[[units.cross-v106a-cfile-list.functions]]
+address = "0x00439810"
+symbol_base = "CFileList_contains"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?c_str@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEPBDXZ=0x00401E30",
+  "__stricmp=0x0068B038",
+]
+
+[[units.cross-v106a-cfile-list.functions]]
+address = "0x00439910"
+symbol_base = "CFileList_trim_item_text"
+rel32_targets = [
+  "?erase@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@II@Z=0x00402290",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?extra_bytes@ModulePathTextView@th105@@QAEEE@Z=0x0040D1D0",
+]
+dir32_targets = [
+  "?g_module_path_text@th105@@3UModulePathTextView@1@A=_path_buffer_receiver",
+]
+
+[[units.cross-v106a-cfile-list.functions]]
+address = "0x00439A20"
+symbol_base = "CFileList_render_item"
+rel32_targets = [
+  "?at@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@QAEAAVFileListTile@th105@@I@Z=0x004399C0",
+  "?render@FileListTile@th105@@QAEXMMHH@Z=0x004099F0",
+]
+
+[[units.cross-v106a-cfile-list.functions]]
+address = "0x00439F40"
+symbol_base = "CFileList_ctor"
+dir32_targets = [
+  "??_7CFileList@th105@@6B@=_cfile_list_vtable",
+]
+
+[[units.cross-v106a-cfile-list.functions]]
+address = "0x00439FC0"
+symbol_base = "CFileList_dtor"
+rel32_targets = [
+  "??3@YAXPAX@Z=0x006898EA",
+  "?_Tidy@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@IAEXXZ=0x00420AF0",
+  "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90",
+  "?_Tidy@?$deque@HV?$allocator@H@std@@@std@@IAEXXZ=0x00420A80",
+  "?_Tidy@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXXZ=0x0040FF90",
+]
+dir32_targets = [
+  "??_7CFileList@th105@@6B@=_cfile_list_vtable",
+  "__ehhandler$??1CFileList@th105@@UAE@XZ=__ehhandler$??1CFileList@th105@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+]
+
+[[units.cross-v106a-cfile-list.functions]]
+address = "0x0043A0A0"
+symbol_base = "CFileList_shutdown"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?_Tidy@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@IAEXXZ=0x00420AF0",
+  "?_Tidy@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXXZ=0x0040FF90",
+  "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90",
+]
+dir32_targets = [
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+]
+
+[units.cross-v106a-profile-list]
+kind = "probe"
+source = "src/ui/ProfileList.cpp"
+object = "build/match-units/CrossV106a_ProfileList.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CProfileList RTTI/vtable closes the retained ProfileNameList facade as a CFileList-derived 0xB8 object. The ctor uses the current target-owned profile/*.dat pattern through the observed out-of-line String28/std::string assign ABI, while the slot-1 override repopulates once after creating a default profile if the inherited row deque is empty."
+
+[[units.cross-v106a-profile-list.functions]]
+address = "0x004313F0"
+symbol_base = "CProfileList_populate"
+rel32_targets = [
+  "?populate@CFileList@th105@@UAEXXZ=0x0043A150",
+  "?create_default_profile_for_list@th105@@YAXXZ=0x0043C1A0",
+]
+
+[[units.cross-v106a-profile-list.functions]]
+address = "0x00431730"
+symbol_base = "CProfileList_ctor"
+rel32_targets = [
+  "??0CFileList@th105@@QAE@XZ=0x00439F40",
+  "?assign_bytes@FileListStringAssignView@th105@@QAEXPBDI@Z=0x004021C0",
+]
+dir32_targets = [
+  "??_7CProfileList@th105@@6B@=_cprofile_list_vtable",
+  "__ehhandler$??0CProfileList@th105@@QAE@XZ=__ehhandler$??0CProfileList@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "?profile_file_pattern@th105@@3QBDB=_profile_file_pattern",
 ]

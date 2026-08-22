@@ -14,9 +14,12 @@ seeds using current-target-backed structural remapping where appropriate.
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 529 authored functions, 696 classified exclusions, and 2,779 still awaiting origin/boundary review.
-- All 529 confirmed authored functions are source-present and canonical exact:
-  78,950 exact authored bytes across 187 configured VC8 units.
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 539 authored functions, 696 classified exclusions, and 2,769 still awaiting origin/boundary review.
+- All 539 confirmed authored functions are source-present and canonical exact:
+  80,016 exact authored bytes across 189 configured VC8 units.
+
+- The newest CFileList/ProfileList wave adds ten authored canonical-exact functions / 1,066 bytes. Current RTTI names the shared 0xB8 base `CFileList`; real VC8 members are checked `deque<string> +0x04`, `deque<int> +0x18`, `deque<unsigned> +0x2C`, `deque<FileListTile> +0x40`, three `std::string` values +0x54/+0x70/+0x8C, and tail state. Exact base methods are item_count/contains/trim/render/ctor/dtor/shutdown at `0x004395E0/0x00439810/0x00439910/0x00439A20/0x00439F40/0x00439FC0/0x0043A0A0` (4/160/140/57/128/224/166). Binary `CProfileList : CFileList` ctor/populate `0x00431730/0x004313F0` are 103/29, and correcting the retained ResultList facade to a virtual base destructor makes implicit `ResultList::~ResultList @ 0x00447260` exact 55/55 without regressing its ctor or CMenuResult exacts.
+- Reusable CFileList compiler evidence: shutdown needs checked `deque<unsigned>::operator[]`, not `.at()` (166 vs 177); CProfileList ctor needs an out-of-line String28/std::string assign view because full inline visibility expands to 240 bytes; loader-zero `0x00702918` is a caller-backed unused receiver for byte-width helper `0x0040D1D0`. `CFileList::format_item @ 0x00439B20` remains pending despite a natural 233-byte source because one fresh COFF assign symbol would have to resolve to two distinct current string helpers (`0x004020D0/0x00408B40`), which is not an acceptable relocation shortcut.
 
 - The newest CDesignBase/Menu lifecycle wave adds nine authored canonical-exact functions / 948 bytes. Current RTTI fixes `CDesignBase` vtable `0x006C08AC`; retained `TitleDesignResource` is a compatible 0x34 facade for the same binary object. Exact base lifetime is ctor/dtor/scalar `0x004217F0/0x00421890/0x00421930` (153/154/30). The recovered natural layout is an IColor-like 0x08 primary base, a real 0x0C three-pointer handle owner at +0x08, checked `std::list<UiDesignObject*>` +0x14, checked `std::map<unsigned,UiDesignObject*>` +0x20, and checked list iterator +0x2C. VC8 implicit virtual destruction is required because the target does not republish the derived vptr at dtor entry.
 - The same wave closes `CMenuContinue` ctor/dtor/scalar `0x00444E80/0x00444F20/0x00444FA0` (160/114/30) and `CMenuEnd` `0x00445100/0x004451A0/0x00445220` (157/120/30). Both are natural 0x40 `Menu + state + CDesignBase@+8 + owner@+0x3C` lifetimes. Continue uses the target `data/menu/continue/continue.dat` path and owner/config byte gates; End uses `data/menu/result/result.dat`, caller-backed unused-this setup/message views, network-session publication, and the shared menu byte. Three adjacent 81-byte CDesignBase color virtuals remain pending: ordinary checked-list source is semantically correct but VC8 emits 74-byte register-only bodies instead of the target's EBP/8-byte-stack-aligned form, so no alignment/register forcing was used.
@@ -85,7 +88,7 @@ the current call target.
 ## Next bounded work
 
 Continue origin/boundary review so the authored denominator becomes meaningful,
-then expand exact recovery from the 529 accepted functions. Use
+then expand exact recovery from the 539 accepted functions. Use
 `scripts/rank_retained_exact.py --only-unconfigured` to prioritize historical
 exact source that never had an old match unit. Same-size zero non-relocation
 mismatch candidates are especially productive, but ambiguous template/clone
@@ -94,9 +97,9 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 2,779
+The 95% authored-function and authored-byte goals cannot be reported yet: 2,769
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 529/529
+global authored denominator is not established. Do not use the current 539/539
 exact subset as a substitute denominator.
 
 ## Routine checkpoint
@@ -135,5 +138,5 @@ git diff --check
 
 - Added canonical exact `Fighter::try_dispatch_action_202 @ 0x004940E0` and `try_dispatch_action_203 @ 0x004941D0`, 226 bytes each, to the existing `cross-v106a-command-gates-family` unit.
 - Native IDA confirms both tails fetch vslot 2 before incrementing repeat byte `this+0x47F`; the tracked layout-backed `FighterActionRepeatView` reproduces that natural VC8 order without inline assembly or copied bytes.
-- The family replay keeps all six previously accepted command-gate functions exact. Current authored exact status is 529 functions / 78,950 bytes in 187 units; 2,779 origin candidates remain review-pending, so the global 95% denominator is still not established.
+- The family replay keeps all six previously accepted command-gate functions exact. Current authored exact status is 539 functions / 80,016 bytes in 189 units; 2,769 origin candidates remain review-pending, so the global 95% denominator is still not established.
 - Near-exact follow-ups are documented in `docs/KNOWLEDGE_BASE.md`: `adjust_capped_counter_558`, `GuideOverlay::update`, and `try_group_a_vs_group_b_interaction`.

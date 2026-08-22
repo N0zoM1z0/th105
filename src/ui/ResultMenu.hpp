@@ -58,8 +58,7 @@ struct ResultStringDeque20 {
 class ResultListBase {
 public:
     ResultListBase();
-    ~ResultListBase();
-    virtual void destroy();
+    virtual ~ResultListBase();
     virtual void populate();
     virtual void finalize();
     virtual void clear_entries();
@@ -119,7 +118,6 @@ struct ResultReplayDeque20 {
 class ResultList : public ResultListBase {
 public:
     ResultList();
-    ~ResultList();
     virtual void populate();
 
     __forceinline void set_character_id(int character_id)

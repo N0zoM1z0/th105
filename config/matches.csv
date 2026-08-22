@@ -528,3 +528,13 @@ address,name,size,status,match_percent,unit,evidence
 0x00445100,CMenuEnd_ctor,157,matching,100.00,cross-v106a-menu-continue-end-lifetimes,python3 scripts/build.py --unit cross-v106a-menu-continue-end-lifetimes --compare --json reports canonical exact 157/157 against TH105 1.06a
 0x004451A0,CMenuEnd_dtor,120,matching,100.00,cross-v106a-menu-continue-end-lifetimes,python3 scripts/build.py --unit cross-v106a-menu-continue-end-lifetimes --compare --json reports canonical exact 120/120 against TH105 1.06a
 0x00445220,CMenuEnd_scalar_deleting_destructor,30,matching,100.00,cross-v106a-menu-continue-end-lifetimes,python3 scripts/build.py --unit cross-v106a-menu-continue-end-lifetimes --compare --json reports canonical exact 30/30 against TH105 1.06a
+0x004313F0,CProfileList_populate,29,matching,100.00,cross-v106a-profile-list,python3 scripts/build.py --unit cross-v106a-profile-list --compare --json reports canonical exact 29/29 against TH105 1.06a
+0x00431730,CProfileList_ctor,103,matching,100.00,cross-v106a-profile-list,python3 scripts/build.py --unit cross-v106a-profile-list --compare --json reports canonical exact 103/103 against TH105 1.06a
+0x004395E0,CFileList_item_count,4,matching,100.00,cross-v106a-cfile-list,python3 scripts/build.py --unit cross-v106a-cfile-list --compare --json reports canonical exact 4/4 against TH105 1.06a
+0x00439810,CFileList_contains,160,matching,100.00,cross-v106a-cfile-list,python3 scripts/build.py --unit cross-v106a-cfile-list --compare --json reports canonical exact 160/160 against TH105 1.06a
+0x00439910,CFileList_trim_item_text,140,matching,100.00,cross-v106a-cfile-list,python3 scripts/build.py --unit cross-v106a-cfile-list --compare --json reports canonical exact 140/140 against TH105 1.06a
+0x00439A20,CFileList_render_item,57,matching,100.00,cross-v106a-cfile-list,python3 scripts/build.py --unit cross-v106a-cfile-list --compare --json reports canonical exact 57/57 against TH105 1.06a
+0x00439F40,CFileList_ctor,128,matching,100.00,cross-v106a-cfile-list,python3 scripts/build.py --unit cross-v106a-cfile-list --compare --json reports canonical exact 128/128 against TH105 1.06a
+0x00439FC0,CFileList_dtor,224,matching,100.00,cross-v106a-cfile-list,python3 scripts/build.py --unit cross-v106a-cfile-list --compare --json reports canonical exact 224/224 against TH105 1.06a
+0x0043A0A0,CFileList_shutdown,166,matching,100.00,cross-v106a-cfile-list,python3 scripts/build.py --unit cross-v106a-cfile-list --compare --json reports canonical exact 166/166 against TH105 1.06a
+0x00447260,ResultList_dtor,55,matching,100.00,cross-v106a-result-list-ctor,python3 scripts/build.py --unit cross-v106a-result-list-ctor --compare --json reports canonical exact 55/55 against TH105 1.06a

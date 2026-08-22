@@ -527,3 +527,13 @@ CMenuContinue_scalar_deleting_destructor
 CMenuEnd_ctor
 CMenuEnd_dtor
 CMenuEnd_scalar_deleting_destructor
+CProfileList_populate
+CProfileList_ctor
+CFileList_item_count
+CFileList_contains
+CFileList_trim_item_text
+CFileList_render_item
+CFileList_ctor
+CFileList_dtor
+CFileList_shutdown
+ResultList_dtor
