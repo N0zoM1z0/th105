@@ -201,3 +201,14 @@ subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
 evidence = "SHA-pinned VC8 SP1 compilation of the tracked scenario-event name map accessor emits an inventory-unique raw-exact 105-byte std::map<int, String28>::find COMDAT matching current 0x006A4D60; current authored accessor 0x0043BF80 calls this exact specialization on g_scenario_event_name_map."
+
+[[rules]]
+id = "vc8-generated-direct-input-vectors-106a"
+vc8_generated_anchor_file = "config/vc8-generated-direct-input-vector-origin-anchors.toml"
+expected_count = 15
+expected_bytes = 1455
+origin = "compiler_generated"
+subsystem = "input"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 compilation of the tracked DirectInput vector probe regenerates checked std::vector<void*> and RawGamepadState COMDATs; every fingerprint must match its complete current-inventory hit set, with explicit equivalence groups only for true ICF/shape clones"

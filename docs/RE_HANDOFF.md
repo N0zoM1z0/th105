@@ -14,9 +14,12 @@ seeds using current-target-backed structural remapping where appropriate.
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,008: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0`, source-level fighter phase entries `0x00464630`/`0x00464780`, standalone `CMenuReplay` scalar wrapper `0x00446F40`, `CMenuReplay::update_mode_state @ 0x00446590`, independent `CFileWriter_dtor @ 0x00407BF0`, and independent `CSpriteEx::commit_transform @ 0x004073C0`, all missed or tail-attached by auto-analysis. Current reviewed state is 592 authored functions, 696 classified exclusions, and 2,720 still awaiting origin/boundary review.
-- All 592 confirmed authored functions are source-present and canonical exact:
-  87,625 exact authored bytes across 199 configured VC8 units.
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,009: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0`, source-level fighter phase entries `0x00464630`/`0x00464780`, standalone `CMenuReplay` scalar wrapper `0x00446F40`, `CMenuReplay::update_mode_state @ 0x00446590`, independent `CFileWriter_dtor @ 0x00407BF0`, independent `CSpriteEx::commit_transform @ 0x004073C0`, and independent `FrameData::~FrameData @ 0x00421A70`, all missed or tail-attached by auto-analysis. Current reviewed state is 600 authored functions, 711 classified exclusions, and 2,698 still awaiting origin/boundary review.
+- All 600 confirmed authored functions are source-present and canonical exact:
+  88,322 exact authored bytes across 199 configured VC8 units.
+
+- The newest DirectInput/runtime-origin/lifetime wave adds eight authored canonical-exact functions / 697 bytes while replayably excluding fifteen generated checked-vector functions / 1,455 bytes. Exact runtime is `poll_direct_input_gamepads @ 0x0040D6D0` (312), `get_gamepad_button_count @ 0x0040D940` (71), and `get_gamepad_state @ 0x0040D990` (88), closing one DirectInputBackend gamepad layout. Lifetime completion adds ResultList scalar `0x00447510` (76), Menu scalar `0x00440750` (41), AnimationObject ctor `0x00422040` (41), plus newly recovered `FrameData::~FrameData @ 0x00421A70` (21) and its scalar wrapper `0x00421A90` (47). The generated DirectInput-vector manifest uses SHA-pinned VC8 full-inventory fingerprints with explicit equivalence groups only for complete clone hit sets.
+- Reusable stop conditions from the same wave: gamepad initializer `0x0040D620` is target/fresh 176 bytes but linked `_Assign_n @ 0x0040DE50` has an LTCG-private EDX/stack ABI and extra checked lifetime slot; EnumDevices/axis callbacks likewise expose private vector helpers and a target-only 8-byte-aligned frame. Mouse init reaches private-EAX error helper `0x0040D540`. `/GS` CEffectSprite ctor reaches target length 79 but retains one vptr/EH-state scheduling swap, and current ResultList populate source is 1003 vs target 1133 due unresolved TU/header visibility. None were forced with register variables, fake locals, inline assembly, manual vptr stores, or copied bytes.
 
 - The newest sprite/background/lifetime wave adds sixteen authored canonical-exact functions / 1,220 bytes and one corrected source boundary. Five CSpriteEx bodies close reverse quad copy plus X/Y/Z origin scales and Z pivot scale (`0x004073C0/0x004074A0/0x00407540/0x004075E0/0x00407620`, 298 bytes). `RenderModeManager::set_sampler_state @ 0x00404730` is 32/32. Exact-backed global battle layout `0x006FBCC0` now owns `place_sprite @ 0x00427200` (128), and exact-backed event state `0x006FBCAC` owns +0x48 emitter facade `0x004695B0` (49) plus a real checked `deque<BackgroundRenderEntry>` at +0x28 whose typed render phase `0x004696E0` is 511/511. Two 26-byte SharedEventState forwarding siblings close the +0x20/+0x24/+0x28 trio. Five current-vtable-owned scalar wrappers for CSelectScenario, CTitle, CFileList, CMenuSelect and PatRecord88 add 150 bytes; every normal destructor was already canonical exact.
 - Reusable negative evidence from the same wave: three-axis CSpriteEx rotation `0x00407680` remains 1089/1095 because target keeps each angle live on x87 across its truth test while all ordinary zero-comparison spellings choose a different three-times-two-byte compare topology. EventEffectState +0x48 state dispatch `0x004695F0` is target 11/fresh 10 on vptr-versus-ECX scheduling only. RenderModeManager blend transition `0x004047E0` is a 256-byte old/new-mode transition jump table and remains source-unrecovered. None are forced with inline assembly, volatile/dummy state, manual vtable loads, or copied target bytes.
@@ -101,7 +104,7 @@ the current call target.
 ## Next bounded work
 
 Continue origin/boundary review so the authored denominator becomes meaningful,
-then expand exact recovery from the 592 accepted functions. Use
+then expand exact recovery from the 600 accepted functions. Use
 `scripts/rank_retained_exact.py --only-unconfigured` to prioritize historical
 exact source that never had an old match unit. Same-size zero non-relocation
 mismatch candidates are especially productive, but ambiguous template/clone
@@ -110,9 +113,9 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 2,720
+The 95% authored-function and authored-byte goals cannot be reported yet: 2,698
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 592/592
+global authored denominator is not established. Do not use the current 600/600
 exact subset as a substitute denominator.
 
 ## Routine checkpoint
@@ -158,5 +161,5 @@ git diff --check
 
 - Added nine canonical-exact authored functions / 871 bytes: three distinct `CFileWriter` bodies, `ProfileMenuBaseData::normalize_profile_name`, safe path splitting, clipboard text import, Shift-JIS width classification, DirectInput creation, and keyboard-device setup. Current target vtables, callers, PE IATs/data, and cold VC8 replay independently support every identity.
 - Recovered a missed independent source boundary at `CFileWriter::~CFileWriter @ 0x00407BF0`, raising the corrected ledger to 4,007. Folded writer last-size/seek slots reuse already-counted physical bodies and therefore do not inflate the function numerator.
-- Current authored exact status is 592 functions / 87,625 bytes in 199 units; 2,720 origin candidates remain review-pending, so the complete authored denominator required for the 95% goals is still not established.
+- Current authored exact status is 600 functions / 88,322 bytes in 199 units; 2,698 origin candidates remain review-pending, so the complete authored denominator required for the 95% goals is still not established.
 - Pending neighbors are documented in `docs/KNOWLEDGE_BASE.md`: ProfileMenuBaseData initialize/save scheduling, module-directory store scheduling, DirectInput enumeration's unused-ECX helper ABI, and CRT-only platform lifetime glue. None were forced with assembly, volatile state, fake locals, manual vptr writes, or register coercion.

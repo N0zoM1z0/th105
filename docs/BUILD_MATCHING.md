@@ -1038,6 +1038,16 @@ COM-heavy platform code does not require inline assembly or hand-written machine
 
 Stop when the remaining difference is not explained by a truthful source distinction. Module-directory init `0x0040D020` is 137/137 but differs only because standalone VC8 moves a real global context store across already-prepared GetModuleFileName arguments. DirectInput enumeration `0x0040D620` reaches the observed 80-byte temporary but calls helper `0x0040DE50` with an unresolved unused ECX plus EDX/stack arguments. Do not add volatile dependencies, fake locals, invented prototypes, inline assembly, or copied opcodes to close either gap.
 
+### Separate authored DirectInput runtime from generated vector machinery
+
+A recovered application aggregate can support both authored exact code and compiler-origin exclusions. `DirectInputBackend @ 0x00702A28` is the reference: natural `poll_direct_input_gamepads`, `get_gamepad_button_count`, and `get_gamepad_state` reproduce 312/71/88 target bytes while using checked vectors as ordinary members. Compile a second narrow probe that exercises those exact vector specializations and inventory-scan the emitted COMDATs. The current DirectInput probe excludes fifteen functions / 1,455 bytes only when each SHA-pinned relocation-masked fingerprint has the declared complete hit set. Do not classify `DCC0/DE30/...` as compiler code merely because IDA decompiles them like STL.
+
+LTCG can rewrite a generated helper ABI without invalidating the authored caller semantics. Current gamepad initializer `0x0040D620` and fresh VC8 are both 176 bytes with the same EnumDevices/error/count/zero-state flow, but linked helper `0x0040DE50` consumes its value in EDX and vector/count on the stack instead of the standalone thiscall form. Current `vector<void*>::push_back` helper `0x00404400` likewise has a private ESI receiver. Treat these as linker/TU evidence. Do not encode EDX/ESI contracts into fake source prototypes or register variables just to copy the linked ABI.
+
+### Use missed normal lifetimes to validate scalar wrappers
+
+A vtable-owned scalar deleting wrapper can expose a normal destructor boundary that auto-analysis missed. `FrameData` vtable `0x006C0908` owns scalar wrapper `0x00421A90`; exact PatRecord88 destruction independently reaches its base lifetime. Fresh VC8 emits a 21-byte `FrameData::~FrameData`, and the target has exactly that RET-terminated body at `0x00421A70..0x00421A84` between INT3 pads even though the initial inventory omitted it. Add the source boundary first, compare 21/21, then accept the 47-byte scalar wrapper. Do not manufacture a normal destructor solely because a scalar wrapper exists; require target boundary evidence plus an independent owner edge.
+
 ### Keep durable relocation identities out of anonymous namespaces
 
 A tracked match unit must survive a clean recompile, not only reuse of an old

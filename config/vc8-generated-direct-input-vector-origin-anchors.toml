@@ -1,0 +1,93 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "scripts/probes/direct_input_vectors_generated.cpp"
+enable_gs = false
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+
+[[anchors]]
+address = "0x0040DCC0"
+size = 43
+symbol = "??A?$vector@PAXV?$allocator@PAX@std@@@std@@QAEAAPAXI@Z"
+
+[[anchors]]
+address = "0x0040DE30"
+size = 31
+symbol = "?size@?$vector@URawGamepadState@th105@@V?$allocator@URawGamepadState@th105@@@std@@@std@@QBEIXZ"
+equivalence_group = "raw-gamepad-state-vector-size-clones"
+
+[[anchors]]
+address = "0x004284A0"
+size = 31
+symbol = "?size@?$vector@URawGamepadState@th105@@V?$allocator@URawGamepadState@th105@@@std@@@std@@QBEIXZ"
+equivalence_group = "raw-gamepad-state-vector-size-clones"
+
+[[anchors]]
+address = "0x006A29C0"
+size = 37
+symbol = "??D?$_Vector_iterator@PAXV?$allocator@PAX@std@@@std@@QBEAAPAXXZ"
+
+[[anchors]]
+address = "0x006A4DD0"
+size = 67
+symbol = "?back@?$vector@PAXV?$allocator@PAX@std@@@std@@QAEAAPAXXZ"
+
+[[anchors]]
+address = "0x0040E560"
+size = 48
+symbol = "??$_Umove@PAPAX@?$vector@PAXV?$allocator@PAX@std@@@std@@IAEPAPAXPAPAX00@Z"
+equivalence_group = "pointer-vector-umove-clones"
+
+[[anchors]]
+address = "0x004374F0"
+size = 48
+symbol = "??$_Umove@PAPAX@?$vector@PAXV?$allocator@PAX@std@@@std@@IAEPAPAXPAPAX00@Z"
+equivalence_group = "pointer-vector-umove-clones"
+
+[[anchors]]
+address = "0x0040DFD0"
+size = 46
+symbol = "?_Ufill@?$vector@PAXV?$allocator@PAX@std@@@std@@IAEPAPAXPAPAXIABQAX@Z"
+equivalence_group = "pointer-vector-ufill-clones"
+
+[[anchors]]
+address = "0x0064ADA0"
+size = 46
+symbol = "?_Ufill@?$vector@PAXV?$allocator@PAX@std@@@std@@IAEPAPAXPAPAXIABQAX@Z"
+equivalence_group = "pointer-vector-ufill-clones"
+
+[[anchors]]
+address = "0x00445F10"
+size = 437
+symbol = "?_Insert_n@?$vector@PAXV?$allocator@PAX@std@@@std@@IAEXV?$_Vector_iterator@PAXV?$allocator@PAX@std@@@2@IABQAX@Z"
+
+[[anchors]]
+address = "0x00425110"
+size = 137
+symbol = "?insert@?$vector@PAXV?$allocator@PAX@std@@@std@@QAE?AV?$_Vector_iterator@PAXV?$allocator@PAX@std@@@2@V32@ABQAX@Z"
+equivalence_group = "pointer-vector-insert-clones"
+
+[[anchors]]
+address = "0x004460E0"
+size = 137
+symbol = "?insert@?$vector@PAXV?$allocator@PAX@std@@@std@@QAE?AV?$_Vector_iterator@PAXV?$allocator@PAX@std@@@2@V32@ABQAX@Z"
+equivalence_group = "pointer-vector-insert-clones"
+
+[[anchors]]
+address = "0x006A8520"
+size = 137
+symbol = "?insert@?$vector@PAXV?$allocator@PAX@std@@@std@@QAE?AV?$_Vector_iterator@PAXV?$allocator@PAX@std@@@2@V32@ABQAX@Z"
+equivalence_group = "pointer-vector-insert-clones"
+
+[[anchors]]
+address = "0x0064AF70"
+size = 105
+symbol = "?push_back@?$vector@PAXV?$allocator@PAX@std@@@std@@QAEXABQAX@Z"
+equivalence_group = "pointer-vector-push-back-clones"
+
+[[anchors]]
+address = "0x006A9780"
+size = 105
+symbol = "?push_back@?$vector@PAXV?$allocator@PAX@std@@@std@@QAEXABQAX@Z"
+equivalence_group = "pointer-vector-push-back-clones"

@@ -290,7 +290,7 @@ source = "src/input/InputManager.cpp"
 object = "build/match-units/CrossV106a_InputManager.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fresh canonical VC8 zero-diff replay; no relocation overrides required."
+notes = "TH105 1.06a input runtime family. Existing counter/key helpers plus current-backed DirectInputBackend gamepad count/state vectors reproduce checked accessors and the 312-byte poll loop; pending gamepad enumeration/axis/mouse bootstrap remain outside the exact set where LTCG/private ABI or stack alignment differs."
 
 [[units.cross-v106a-input-manager.functions]]
 address = "0x00409F40"
@@ -303,6 +303,22 @@ symbol_base = "set_input_state_table_entry"
 [[units.cross-v106a-input-manager.functions]]
 address = "0x0040D930"
 symbol_base = "is_raw_key_down"
+
+[[units.cross-v106a-input-manager.functions]]
+address = "0x0040D6D0"
+symbol_base = "poll_direct_input_gamepads"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+dir32_targets = ["?g_direct_input_backend@th105@@3UDirectInputBackend@1@A=_direct_input_backend_gamepad_runtime"]
+
+[[units.cross-v106a-input-manager.functions]]
+address = "0x0040D940"
+symbol_base = "?get_gamepad_button_count@DirectInputBackend@th105@@QAEHH@Z"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+
+[[units.cross-v106a-input-manager.functions]]
+address = "0x0040D990"
+symbol_base = "?get_gamepad_state@DirectInputBackend@th105@@QAEPAURawGamepadState@2@H@Z"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
 
 [units.cross-v106a-shared-event-state]
 kind = "probe"
@@ -604,6 +620,12 @@ notes = "TH105 1.06a structural-remap exact AttackObject constructor; vtable DIR
 address = "0x0045FA30"
 symbol_base = "AttackObject_ctor"
 rel32_targets = ["??0CEffectSprite@@QAE@XZ=0x00421FF0"]
+
+[[units.cross-v106a-attack-object-ctor.functions]]
+address = "0x00422040"
+symbol_base = "??0AnimationObject@@QAE@XZ"
+rel32_targets = ["??0CEffectSprite@@QAE@XZ=0x00421FF0"]
+dir32_targets = ["??_7AnimationObject@@6B@=??_7AnimationObject@@6B@"]
 
 [units.cross-v106a-character-object-ctor]
 kind = "probe"
@@ -1943,6 +1965,15 @@ rel32_targets = [
   "??3@YAXPAX@Z=0x006898EA",
 ]
 
+[[units.cross-v106a-menu-select-family.functions]]
+address = "0x00440750"
+symbol_base = "??_GMenu@th105@@UAEPAXI@Z"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = [
+  "??_7Menu@th105@@6B@=??_7Menu@th105@@6B@",
+  "_g_scene_mode=_g_scene_mode",
+]
+
 [units.cross-v106a-result-list-ctor]
 kind = "probe"
 source = "src/ui/ResultList.cpp"
@@ -1964,6 +1995,16 @@ rel32_targets = [
   "@release_owned_pointer_buffer@4=0x00420A80",
   "@destroy_result_index_deque@4=0x0040FF90",
   "??1ResultListBase@th105@@UAE@XZ=0x00439FC0",
+]
+
+[[units.cross-v106a-result-list-ctor.functions]]
+address = "0x00447510"
+symbol_base = "??_GResultList@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "@release_owned_pointer_buffer@4=0x00420A80",
+  "@destroy_result_index_deque@4=0x0040FF90",
+  "??1ResultListBase@th105@@UAE@XZ=0x00439FC0",
+  "??3@YAXPAX@Z=0x006898EA",
 ]
 
 [units.cross-v106a-package-file-reader-read]
@@ -3864,6 +3905,18 @@ rel32_targets = [
   "??1PatRecord88@th105@@UAE@XZ=0x0045FFD0",
   "??3@YAXPAX@Z=0x006898EA",
 ]
+
+[[units.cross-v106a-pat-record-lifetime.functions]]
+address = "0x00421A70"
+symbol_base = "??1FrameData@th105@@UAE@XZ"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = ["??_7FrameData@th105@@6B@=??_7FrameData@th105@@6B@"]
+
+[[units.cross-v106a-pat-record-lifetime.functions]]
+address = "0x00421A90"
+symbol_base = "??_GFrameData@th105@@UAEPAXI@Z"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = ["??_7FrameData@th105@@6B@=??_7FrameData@th105@@6B@"]
 
 [units.cross-v106a-fighter-wave-resources]
 kind = "probe"

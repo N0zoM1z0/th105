@@ -58,15 +58,20 @@ struct RawGamepadState {
 struct DirectInputBackend {
     void *window_handle;
     void *direct_input;
-    unsigned char unknown_08[0x18];
+    void *keyboard_device;
+    void *mouse_device;
+    std::vector<void *> gamepad_devices;
     unsigned char raw_keyboard_state[256];
     int gamepad_count;
     std::vector<RawGamepadState> gamepad_states;
+    std::vector<int> gamepad_button_counts;
 
     bool is_raw_key_down(unsigned char scan_code) const;
     RawGamepadState *get_gamepad_state(int index);
+    int get_gamepad_button_count(int index);
 };
 
 extern DirectInputBackend g_direct_input_backend;
+void poll_direct_input_gamepads();
 
 } // namespace th105
