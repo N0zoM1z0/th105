@@ -6320,3 +6320,79 @@ dir32_targets = [
   "_g_active_menu_input=_g_active_menu_input",
   "?g_profile_message_main@th105@@3PAUUiDesignObject@1@A=?g_profile_message_main@th105@@3PAUUiDesignObject@1@A",
 ]
+
+[units.cross-v106a-profile-menu-file-commits]
+kind = "probe"
+source = "src/ui/ProfileMenuCommit.cpp"
+object = "build/match-units/CrossV106a_ProfileMenuCommit.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CProfileMenu copy/delete/rename commit helpers. File/string workflows use the exact-backed ProfileMenu layout, target-backed Win32 IATs/text literals, MenuString28 prefix/concatenation contracts, and caller-specific inline temporary destructor visibility proven by current 0x00429970/0x00408C40 bodies."
+
+[[units.cross-v106a-profile-menu-file-commits.functions]]
+address = "0x0044C380"
+symbol_base = "commit_state_four"
+rel32_targets = [
+  "?concatenate_profile_prefix@th105@@YA?AUMenuString28@1@PBDABU21@@Z=0x00429970",
+  "?concatenate_profile_commit_string@th105@@YA?AUMenuString28@1@ABU21@PBD@Z=0x00408C40",
+  "?assign@MenuString28@th105@@QAEAAU12@ABU12@II@Z=0x004020D0",
+  "??3@YAXPAX@Z=0x006898EA",
+  "MenuStringAppendBytesView_append_bytes=0x00408A50",
+  "MenuStringAssignBytesView_assign_bytes=0x004021C0",
+  "ProfileMenuMessageView_show_profile_result=0x0043F810",
+  "?initialize_profile_menu@Menu@th105@@IAEXXZ=0x0043FBF0",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?commit_state_four@CProfileMenu@th105@@AAE_NXZ=__ehhandler$?commit_state_four@CProfileMenu@th105@@AAE_NXZ",
+  "___security_cookie=___security_cookie",
+  "_profile_directory_prefix=_profile_directory_prefix",
+  "_profile_copy_stem_suffix=_profile_copy_stem_suffix",
+  "_profile_file_extension=_profile_file_extension",
+  "_profile_copy_failure_text=_profile_copy_failure_text",
+  "_profile_copy_success_text=_profile_copy_success_text",
+  "__imp__CopyFileA@12=__imp__CopyFileA@12",
+]
+
+[[units.cross-v106a-profile-menu-file-commits.functions]]
+address = "0x0044C710"
+symbol_base = "commit_state_five"
+rel32_targets = [
+  "?concatenate_profile_prefix@th105@@YA?AUMenuString28@1@PBDABU21@@Z=0x00429970",
+  "?assign@MenuString28@th105@@QAEAAU12@ABU12@II@Z=0x004020D0",
+  "??3@YAXPAX@Z=0x006898EA",
+  "MenuStringAssignBytesView_assign_bytes=0x004021C0",
+  "ProfileMenuMessageView_show_profile_result=0x0043F810",
+  "?initialize_profile_menu@Menu@th105@@IAEXXZ=0x0043FBF0",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?commit_state_five@CProfileMenu@th105@@AAE_NXZ=__ehhandler$?commit_state_five@CProfileMenu@th105@@AAE_NXZ",
+  "___security_cookie=___security_cookie",
+  "_profile_directory_prefix=_profile_directory_prefix",
+  "__imp__DeleteFileA@4=__imp__DeleteFileA@4",
+  "_profile_delete_success_text=_profile_delete_success_text",
+  "_profile_delete_failure_text=_profile_delete_failure_text",
+]
+
+[[units.cross-v106a-profile-menu-file-commits.functions]]
+address = "0x0044C860"
+symbol_base = "commit_profile_change"
+rel32_targets = [
+  "__mbschr=0x0068A6A9",
+  "?concatenate_profile_prefix@th105@@YA?AUMenuString28@1@PBDABU21@@Z=0x00429970",
+  "??3@YAXPAX@Z=0x006898EA",
+  "MenuStringAssignBytesView_assign_bytes=0x004021C0",
+  "ProfileMenuMessageView_show_profile_result=0x0043F810",
+  "?initialize_profile_menu@Menu@th105@@IAEXXZ=0x0043FBF0",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?commit_profile_change@CProfileMenu@th105@@AAECXZ=__ehhandler$?commit_profile_change@CProfileMenu@th105@@AAECXZ",
+  "___security_cookie=___security_cookie",
+  "_profile_directory_prefix=_profile_directory_prefix",
+  "__imp__DeleteFileA@4=__imp__DeleteFileA@4",
+  "__imp__MoveFileA@8=__imp__MoveFileA@8",
+  "_profile_rename_success_text=_profile_rename_success_text",
+  "_profile_rename_failure_text=_profile_rename_failure_text",
+]

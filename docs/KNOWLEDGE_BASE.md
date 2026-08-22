@@ -17,9 +17,9 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 490 functions / 71,052 bytes in 177
-  VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 191
-  functions / 36,775 bytes beyond the previous 100-function checkpoint. Candidate
+- The accepted 1.06a authored set contains 493 functions / 72,813 bytes in 178
+  VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 194
+  functions / 38,536 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
   establish hypotheses; canonical VC8 zero-difference comparisons establish
   exactness.
@@ -228,6 +228,8 @@ notes or source hypotheses.
 - Historical `size` can disagree with historical exact evidence itself. Fighter resets (127/219 rows vs 130/222 exact spans), `consume_counter_484_steps` (138 vs 149), and `advance_menu_item_wave` (137 vs 147) all reproduce the larger current/fresh VC8 extents. Treat old size columns as hypotheses even when the old row said matching.
 - ICF/shared code can still have target-backed authored ownership through vtables. The current `CFileReader` vtable `0x006C0F34` points to scalar deleting dtor `0x0041B890` and seek `0x00407C50` alongside accepted reader methods; that class chain closes the identity even if another class also reuses the same implementation address.
 - Vtable edges beat normalized clone ranking for scalar deleting destructors. Current `CMenuResult` vtable `0x006C2070` points to `0x00447890`, `CProfileMenu` vtable `0x006C2484` points to `0x0044D6E0`, and `CEffectSprite` vtable `0x006C072C` points to `0x0041F6F0`. Fresh VC8 matches those wrappers 30/30, 30/30, and 31/31. Structural candidates such as `0x006B4DE0` and `0x006A08C0` were rejected despite similar shapes.
+- Profile-menu file commits now provide a cross-checked string/file lifetime reference. `commit_state_four @ 0x0044C380` is 908/908, `commit_state_five @ 0x0044C710` is 324/324, and `commit_profile_change @ 0x0044C860` is 529/529. Current `0x00429970` initializes its hidden return exactly as `MenuString28` (capacity 15, size zero, inline buffer), correcting an earlier temporary-type hypothesis. Current `0x00408C40` initializes the same 0x1C layout, but destructor visibility is caller-TU evidence: the file-commit TU needs the inline SSO teardown while exact state six retains an out-of-line temporary-dtor view. Do not globally rewrite one caller view into the other. The copy retry limit tests the full destination path length after `.dat`; the rename helper performs two independent `string_56c.c_str()` evaluations before `_mbschr`, and caching that pointer changes VC8 alias/lifetime codegen.
+'
 - The current game/config accessor globals are now exact-backed rather than retained magic absolutes: `g_game_mode @ 0x006FBD4C`, `g_match_setup @ 0x006FCA48`, `g_game_config @ 0x006FC598`, and `g_score_data @ 0x006FCC98`. The four six-byte getters compile exact from semantic externs and are independently consumed by accepted battle/UI paths.
 
 - Template-family acceptance can use current vtable ownership as a batch proof when every specialization is independently target-backed. The fifteen roster `CharacterObjectManager<Fighter,FighterObject>` constructors are each 123/123 exact: current code enters the exact class-specific `TObjectManagerBase` constructor, writes the shared interface vtable plus the specialization vtable, stores the owner at `+0x64`, then calls the specialization's preallocate helper with 256. The same primary vtables' first entries point one-for-one to fifteen 30-byte scalar-deleting destructors, and the common VC8 template TU reproduces all thirty functions exactly. Do not promote a template clone merely because bytes tie; require the class-specific vtable edge.
@@ -313,7 +315,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 2,818
+- Accepted boundaries and authored/library origins for the remaining 2,815
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.

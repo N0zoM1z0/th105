@@ -892,3 +892,30 @@ fresh body is 246 bytes versus target 256 because VC8 folds one true-return
 case into the default epilogue; natural case/default reorderings merely move the
 folded tail.  Do not use register variables, volatile, fake branches, or cloned
 returns to force either function.
+
+### Profile-menu file commits: hidden returns and caller-TU destructor visibility
+
+`CProfileMenu::commit_state_four @ 0x0044C380` (908), `commit_state_five @
+0x0044C710` (324), and `commit_profile_change @ 0x0044C860` (529) form one
+canonical-exact file/string island.  The important correction is type/lifetime
+evidence, not hand-shaped cleanup.  Current helper `0x00429970` initializes its
+hidden return with the exact `MenuString28` SSO state (`capacity=15`, `size=0`,
+inline buffer NUL) before assignment.  Modeling that return as the older
+`ProfileStringTemporary` view makes delete-commit 314 bytes; the real
+`MenuString28` return naturally produces the target 324-byte body.
+
+Current `0x00408C40` initializes the same 0x1C SSO layout.  Its callers still
+prove a translation-unit visibility distinction: the file-commit TU inlines the
+returned temporary's `MenuString28` teardown, while the already-exact state-six
+TU intentionally keeps an out-of-line temporary-destructor view.  Preserve the
+caller-backed view that target codegen proves; do not globally unify same-layout
+views just because the callee address is shared.
+
+Two ordinary source details are byte-significant.  Copy retry checks the length
+of the complete destination path (including `.dat`) before appending another
+underscore to the stem; checking the stem instead keeps the same high-level
+intent but swaps temporary stack colors and fails comparison.  Rename validation
+must call `string_56c.c_str()` independently for the `/` and `\` `_mbschr`
+checks.  Caching the pointer removes the target's second SSO selection and makes
+the function 507 rather than 529 bytes.  These are observable alias/lifetime
+semantics, not permission to duplicate dead work.

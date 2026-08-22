@@ -489,3 +489,6 @@ update_profile_confirmation,0x0043F870,function
 CProfileMenu_update_state_four,0x0044CC50,function
 CProfileMenu_update_state_five,0x0044CDE0,function
 CProfileMenu_update,0x0044D240,function
+CProfileMenu_commit_state_four,0x0044C380,function
+CProfileMenu_commit_state_five,0x0044C710,function
+CProfileMenu_commit_profile_change,0x0044C860,function

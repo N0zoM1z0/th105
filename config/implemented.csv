@@ -488,3 +488,6 @@ update_profile_confirmation
 CProfileMenu_update_state_four
 CProfileMenu_update_state_five
 CProfileMenu_update
+CProfileMenu_commit_state_four
+CProfileMenu_commit_state_five
+CProfileMenu_commit_profile_change
