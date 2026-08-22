@@ -39,6 +39,8 @@ public:
     std::string *row_at(unsigned int index);
     unsigned char row_is_directory(unsigned int index);
     void enter_directory(unsigned int index);
+    unsigned char go_parent_directory();
+    std::string *current_directory();
 
 protected:
     std::deque<std::string> rows_004;

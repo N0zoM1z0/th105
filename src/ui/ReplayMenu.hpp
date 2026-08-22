@@ -20,16 +20,19 @@ public:
 
 private:
     void refresh_file_list();
+    unsigned char update_delete_state();
+    unsigned char update_mode_state();
 
-    unsigned char state_04;
-    unsigned char reserved_05[3];
+    signed char state_04;
+    signed char state_05;
+    unsigned char reserved_06[2];
     CReplayList replay_list_08;
     TitleDesignResource design_bc;
     UiDesignObject *items_f0[3];
     MenuCursorState mode_cursor_fc;
     MenuCursorState file_cursor_110;
     GuideOverlay guides_124[2];
-    std::list<void *> entries_274;
+    std::list<int> entries_274;
 };
 
 typedef char CMenuReplay_size_must_be_0x280[

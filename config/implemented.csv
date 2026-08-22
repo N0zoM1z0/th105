@@ -547,3 +547,7 @@ CMenuReplay_dtor
 CMenuReplay_scalar_deleting_destructor
 CMenuReplay_unknown_menu_method
 CReplayList_format_item
+CFileList_populate
+CMenuReplay_render
+CMenuReplay_update_delete_state
+CMenuReplay_update_mode_state

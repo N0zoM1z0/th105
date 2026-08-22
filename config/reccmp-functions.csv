@@ -548,3 +548,7 @@ CMenuReplay_dtor,0x00446D20,function
 CMenuReplay_scalar_deleting_destructor,0x00446F40,function
 CMenuReplay_unknown_menu_method,0x00446F60,function
 CReplayList_format_item,0x0042A150,function
+CFileList_populate,0x0043A150,function
+CMenuReplay_render,0x00446650,function
+CMenuReplay_update_delete_state,0x00446A60,function
+CMenuReplay_update_mode_state,0x00446590,function

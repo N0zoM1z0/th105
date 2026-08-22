@@ -2,6 +2,7 @@
 #include "Title.hpp"
 
 #include <string.h>
+#include <windows.h>
 
 namespace th105 {
 
@@ -106,6 +107,56 @@ void CFileList::enter_directory(unsigned int index)
 {
     if (index < rows_004.size() && flags_018[index])
         directory_08c.append("/" + rows_004[index]);
+}
+
+void CFileList::populate()
+{
+    rows_004.clear();
+    flags_018.clear();
+
+    WIN32_FIND_DATAA find_data;
+    if (field_b0) {
+        std::string pattern;
+        pattern = directory_08c + "/*";
+        HANDLE find = FindFirstFileA(pattern.c_str(), &find_data);
+        if (find != INVALID_HANDLE_VALUE) {
+            do {
+                if ((find_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0 &&
+                    strcmp(find_data.cFileName, ".") != 0 &&
+                    strcmp(find_data.cFileName, "..") != 0) {
+                    unsigned char directory = 1;
+                    flags_018.push_back(directory);
+                    rows_004.push_back(std::string(find_data.cFileName));
+                }
+            } while (FindNextFileA(find, &find_data));
+            FindClose(find);
+        }
+
+        pattern = directory_08c + "/" + path_054;
+        find = FindFirstFileA(pattern.c_str(), &find_data);
+        if (find != INVALID_HANDLE_VALUE) {
+            do {
+                if ((find_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0) {
+                    unsigned char directory = 0;
+                    flags_018.push_back(directory);
+                    rows_004.push_back(std::string(find_data.cFileName));
+                }
+            } while (FindNextFileA(find, &find_data));
+        }
+        FindClose(find);
+    } else {
+        const char *pattern = path_054.c_str();
+        HANDLE find = FindFirstFileA(pattern, &find_data);
+        if (find == INVALID_HANDLE_VALUE)
+            return;
+        do {
+            if ((find_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
+                rows_004.push_back(std::string(find_data.cFileName));
+        } while (FindNextFileA(find, &find_data));
+        FindClose(find);
+    }
+
+    finalize();
 }
 
 } // namespace th105

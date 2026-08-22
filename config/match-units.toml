@@ -6997,7 +6997,7 @@ source = "src/ui/FileList.cpp"
 object = "build/match-units/CrossV106a_CFileList.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current RTTI/vtable plus CMenuReplay member boundaries close the shared 0xB4 CFileList object: checked deque<string> +0x04, one-byte directory-flag deque +0x18, deque<unsigned> +0x2C, deque<FileListTile> +0x40, std::string +0x54/+0x70/+0x8C, and tail state through +0xB0. ResultList owns its extra character id at +0xB4. Natural VC8 STL lifetime, formatter append semantics, and checked navigation reproduce twelve authored bodies."
+notes = "Current RTTI/vtable plus CMenuReplay member boundaries close the shared 0xB4 CFileList object: checked deque<string> +0x04, one-byte directory-flag deque +0x18, deque<unsigned> +0x2C, deque<FileListTile> +0x40, std::string +0x54/+0x70/+0x8C, and tail state through +0xB0. ResultList owns its extra character id at +0xB4. Natural VC8 STL lifetime, checked navigation, formatter append semantics, and the Win32 filesystem population pipeline reproduce thirteen authored bodies. Populate requires a default-constructed then assigned path string whose branch-local lifetime ends before the common virtual finalize tail."
 
 [[units.cross-v106a-cfile-list.functions]]
 address = "0x004395E0"
@@ -7123,6 +7123,34 @@ dir32_targets = [
   "__ehhandler$?format_item@CFileList@th105@@UAEIPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$_Deque_iterator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@$00@4@@Z=__ehhandler$?format_item@CFileList@th105@@UAEIPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$_Deque_iterator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@$00@4@@Z",
 ]
 
+
+[[units.cross-v106a-cfile-list.functions]]
+address = "0x0043A150"
+symbol_base = "CFileList_populate"
+rel32_targets = [
+  "?_Tidy@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXXZ=0x0040FF90",
+  "?_Tidy@?$deque@EV?$allocator@E@std@@@std@@IAEXXZ=0x00420A80",
+  "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@PBD@Z=0x00408C40",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "??3@YAXPAX@Z=0x006898EA",
+  "?push_back@?$deque@EV?$allocator@E@std@@@std@@QAEXABE@Z=0x00439ED0",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
+  "?push_back@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@QAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z=0x0040F8F0",
+  "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@0@Z=0x00408D00",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?populate@CFileList@th105@@UAEXXZ=__ehhandler$?populate@CFileList@th105@@UAEXXZ",
+  "___security_cookie=___security_cookie",
+  "??_C@_02FMMEOLBI@?1?$CK?$AA@=??_C@_02FMMEOLBI@?1?$CK?$AA@",
+  "__imp__FindFirstFileA@8=__imp__FindFirstFileA@8",
+  "??_C@_01LFCBOECM@?4?$AA@=??_C@_01LFCBOECM@?4?$AA@",
+  "??_C@_02DJGKEECL@?4?4?$AA@=??_C@_02DJGKEECL@?4?4?$AA@",
+  "__imp__FindNextFileA@8=__imp__FindNextFileA@8",
+  "__imp__FindClose@4=__imp__FindClose@4",
+  "??_C@_01KMDKNFGN@?1?$AA@=??_C@_01KMDKNFGN@?1?$AA@",
+]
+
 [units.cross-v106a-profile-list]
 kind = "probe"
 source = "src/ui/ProfileList.cpp"
@@ -7209,13 +7237,13 @@ source = "src/ui/ReplayMenuLifetime.cpp"
 object = "build/match-units/CrossV106a_ReplayMenuLifetime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current RTTI owns CMenuReplay. The 0x280 layout closes naturally as Menu, state byte, CReplayList +0x08, TitleDesignResource +0xBC, three UiDesignObject pointers, two MenuCursorState values, GuideOverlay[2], and a checked list at +0x274. Normal destruction and the scene-mode virtual slot are exact; the 350-byte ctor remains deliberately pending on one receiver scheduling difference."
+notes = "Current RTTI owns CMenuReplay. The 0x280 layout closes naturally as Menu, signed state bytes +0x04/+0x05, CReplayList +0x08, TitleDesignResource +0xBC, three UiDesignObject pointers, two MenuCursorState values, GuideOverlay[2], and checked list<int> +0x274. Normal destruction and the scene-mode virtual slot remain exact under the refined list<int> identity; the 350-byte ctor remains deliberately pending on one receiver scheduling difference."
 
 [[units.cross-v106a-replay-menu-lifetime.functions]]
 address = "0x00446D20"
 symbol_base = "CMenuReplay_dtor"
 rel32_targets = [
-  "?_Tidy@?$list@PAXV?$allocator@PAX@std@@@std@@IAEXXZ=0x00435EB0",
+  "?_Tidy@?$list@HV?$allocator@H@std@@@std@@IAEXXZ=0x00435EB0",
   "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
   "??1TitleDesignResource@th105@@QAE@XZ=0x00421890",
   "??1CFileList@th105@@UAE@XZ=0x00439FC0",
@@ -7240,3 +7268,92 @@ rel32_targets = [
 address = "0x00446F60"
 symbol_base = "CMenuReplay_unknown_menu_method"
 dir32_targets = ["_g_scene_mode=_g_scene_mode"]
+
+
+[units.cross-v106a-replay-menu-render]
+kind = "probe"
+source = "src/ui/ReplayMenuRender.cpp"
+object = "build/match-units/CrossV106a_ReplayMenuRender.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CMenuReplay vtable slot 3 owns the 282-byte render. Direct branch-local Menu::render_cursor calls, target float/double conversion stages, inherited CFileList page rendering, design/GuideOverlay rendering and the caller-backed footer member reproduce the body without outer coordinate temporaries."
+
+[[units.cross-v106a-replay-menu-render.functions]]
+address = "0x00446650"
+symbol_base = "CMenuReplay_render"
+rel32_targets = [
+  "?render_cursor@Menu@th105@@IAEXMMM@Z=0x0043F9D0",
+  "?item_count@CFileList@th105@@QBEHXZ=0x004395E0",
+  "?render_item@CFileList@th105@@QAEXMMI@Z=0x00439A20",
+  "?render@GuideOverlay@th105@@QAEXXZ=0x0043F4C0",
+  "?render_profile_menu_footer@ReplayProfileFooterView@th105@@QAEXXZ=0x0043F970",
+]
+dir32_targets = [
+  "__real@43000000=__real@43000000",
+  "__real@4010000000000000=__real@4010000000000000",
+  "__real@43800000=__real@43800000",
+  "__real@4030000000000000=__real@4030000000000000",
+  "__real@4060000000000000=__real@4060000000000000",
+  "__real@43a80000=__real@43a80000",
+  "__real@4f800000=__real@4f800000",
+]
+
+[units.cross-v106a-replay-menu-delete]
+kind = "probe"
+source = "src/ui/ReplayMenuDelete.cpp"
+object = "build/match-units/CrossV106a_ReplayMenuDelete.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current ReplayMenu update dispatcher tail-calls this state-2 workflow. A signed byte switch owns browse/confirmation/result substates; the same long-lived input-record pointer as the adjacent replay states, checked list<int> history, FileList navigation/path helpers, Profile-message ABIs and DeleteFileA reproduce 555/555."
+
+[[units.cross-v106a-replay-menu-delete.functions]]
+address = "0x00446A60"
+symbol_base = "CMenuReplay_update_delete_state"
+rel32_targets = [
+  "_update_profile_confirmation=0x0043F870",
+  "_update_profile_message=0x0043F6E0",
+  "?row_at@CFileList@th105@@QAEPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@I@Z=0x004399A0",
+  "?current_directory@CFileList@th105@@QAEPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ=0x00439570",
+  "?show_profile_result@ReplayMenuMessageView@th105@@QAEXPBD@Z=0x0043F810",
+  "?refresh_file_list@CMenuReplay@th105@@AAEXXZ=0x00446770",
+  "_dispatch_indexed_event=0x0043B1A0",
+  "?move_page_forward@MenuCursorState@th105@@QAEXXZ=0x0043F5D0",
+  "?move_page_backward@MenuCursorState@th105@@QAEXXZ=0x0043F560",
+  "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20",
+  "?row_is_directory@CFileList@th105@@QAEEI@Z=0x00439A60",
+  "?push_back@?$list@HV?$allocator@H@std@@@std@@QAEXABH@Z=0x004229A0",
+  "?enter_directory@CFileList@th105@@QAEXI@Z=0x00439A80",
+  "?show_profile_message@ReplayMenuMessageView@th105@@QAEXPBDH@Z=0x0043F640",
+  "?go_parent_directory@CFileList@th105@@QAEEXZ=0x004398B0",
+  "?back@?$list@HV?$allocator@H@std@@@std@@QAEAAHXZ=0x004509A0",
+  "?pop_back@?$list@HV?$allocator@H@std@@@std@@QAEXXZ=0x004220D0",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "___security_cookie=___security_cookie",
+  "_g_active_menu_input=_g_active_menu_input",
+  "??_C@_05GFOLEBJA@?$CFs?1?$CFs?$AA@=??_C@_05GFOLEBJA@?$CFs?1?$CFs?$AA@",
+  "__imp__wsprintfA=__imp__wsprintfA",
+  "__imp__DeleteFileA@4=__imp__DeleteFileA@4",
+  "_replay_delete_success=_profile_delete_success_text",
+  "_replay_delete_failure=_profile_delete_failure_text",
+  "_replay_delete_prompt=_replay_delete_prompt",
+]
+
+[units.cross-v106a-replay-menu-mode]
+kind = "probe"
+source = "src/ui/ReplayMenuMode.cpp"
+object = "build/match-units/CrossV106a_ReplayMenuMode.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CMenuReplay::update case 0 restores ECX/registers and tail-jumps to 0x00446590. That target chunk has an independent push-esi/push-edi prologue and four RET tails, proving a source-level helper boundary missed by initial IDA inventory. Natural mode-cursor/input/state selection is 186/186."
+
+[[units.cross-v106a-replay-menu-mode.functions]]
+address = "0x00446590"
+symbol_base = "CMenuReplay_update_mode_state"
+rel32_targets = [
+  "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20",
+  "_dispatch_indexed_event=0x0043B1A0",
+  "?item_count@CFileList@th105@@QBEHXZ=0x004395E0",
+]
+dir32_targets = ["_g_active_menu_input=_g_active_menu_input"]
