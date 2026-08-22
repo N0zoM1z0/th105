@@ -502,3 +502,11 @@ CProfileMenu_commit_state_one
 initialize_profile_ui
 render_profile_ui_frame
 shutdown_profile_ui
+CMenuBattle_render
+CMenuBattle_dtor
+CMenuBattle_scalar_deleting_destructor
+CMenuConfig_render
+CMenuConfig_dtor
+CMenuConfig_scalar_deleting_destructor
+CMenuConnect_update
+CMenuPractice_render

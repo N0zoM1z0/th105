@@ -6645,3 +6645,108 @@ dir32_targets = [
   "?g_profile_cursor_texture@th105@@3IA=?g_profile_cursor_texture@th105@@3IA",
   "?g_profile_message_texture@th105@@3IA=?g_profile_message_texture@th105@@3IA",
 ]
+
+[units.cross-v106a-menu-overlay-wave]
+kind = "probe"
+source = "src/ui/MenuOverlayWave.cpp"
+object = "build/match-units/CrossV106a_MenuOverlayWave.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current Menu-derived overlay family. RTTI/vtable ownership fixes CMenuBattle/CMenuConfig lifetime and render identities; CMenuPractice render uses only target-backed offset/subobject evidence; CMenuConnect virtual update uses its current vtable and ordinary pointer/count loops. The Connect COFF section is 224 bytes because a 29-byte switch table follows the accepted 195-byte RET boundary."
+
+[[units.cross-v106a-menu-overlay-wave.functions]]
+address = "0x00440E70"
+symbol_base = "CMenuBattle_dtor"
+rel32_targets = [
+  "??1TitleDesignResource@th105@@QAE@XZ=0x00421890",
+  "operator_delete=0x006898EA",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$??1CMenuBattle@th105@@UAE@XZ=__ehhandler$??1CMenuBattle@th105@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7CMenuBattle@th105@@6B@=??_7CMenuBattle@th105@@6B@",
+]
+
+[[units.cross-v106a-menu-overlay-wave.functions]]
+address = "0x00440F00"
+symbol_base = "CMenuBattle_scalar_deleting_destructor"
+rel32_targets = [
+  "??1CMenuBattle@th105@@UAE@XZ=0x00440E70",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-menu-overlay-wave.functions]]
+address = "0x00440780"
+symbol_base = "CMenuBattle_render"
+rel32_targets = [
+  "?render_cursor@Menu@th105@@IAEXMMM@Z=0x0043F9D0",
+  "?render_profile_menu_footer@ProfileFooterMemberView@th105@@QAEXXZ=0x0043F970",
+]
+dir32_targets = [
+  "__real@43800000=__real@43800000",
+  "__real@4010000000000000=__real@4010000000000000",
+]
+
+[[units.cross-v106a-menu-overlay-wave.functions]]
+address = "0x00441460"
+symbol_base = "CMenuConfig_dtor"
+rel32_targets = [
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "??1TitleDesignResource@th105@@QAE@XZ=0x00421890",
+  "??1GuideOverlay@th105@@QAE@XZ=0x0043F330",
+  "@__security_check_cookie@4=0x00689D25",
+  "eh_vector_destructor_iterator=0x0068A2A9",
+]
+dir32_targets = [
+  "__ehhandler$??1CMenuConfig@th105@@UAE@XZ=__ehhandler$??1CMenuConfig@th105@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7CMenuConfig@th105@@6B@=??_7CMenuConfig@th105@@6B@",
+  "??1UiSprite94@th105@@QAE@XZ=_ui_sprite_icf_dtor_callback",
+]
+
+[[units.cross-v106a-menu-overlay-wave.functions]]
+address = "0x00441890"
+symbol_base = "CMenuConfig_scalar_deleting_destructor"
+rel32_targets = [
+  "??1CMenuConfig@th105@@UAE@XZ=0x00441460",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-menu-overlay-wave.functions]]
+address = "0x00440F20"
+symbol_base = "CMenuConfig_render"
+rel32_targets = [
+  "?render_cursor@Menu@th105@@IAEXMMM@Z=0x0043F9D0",
+  "?render@GuideOverlay@th105@@QAEXXZ=0x0043F4C0",
+]
+dir32_targets = [
+  "__real@43480000=__real@43480000",
+  "__real@4010000000000000=__real@4010000000000000",
+]
+
+[[units.cross-v106a-menu-overlay-wave.functions]]
+address = "0x00445BA0"
+symbol_base = "CMenuPractice_render"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?render_cursor@Menu@th105@@IAEXMMM@Z=0x0043F9D0",
+  "?render@CTileRenderView@th105@@QAEXMMHH@Z=0x004099F0",
+  "?render@GuideOverlay@th105@@QAEXXZ=0x0043F4C0",
+]
+dir32_targets = [
+  "__real@43800000=__real@43800000",
+  "__real@4010000000000000=__real@4010000000000000",
+  "__real@4032000000000000=__real@4032000000000000",
+]
+
+[[units.cross-v106a-menu-overlay-wave.functions]]
+address = "0x00444B90"
+symbol_base = "CMenuConnect_update"
+rel32_targets = [
+  "?update@GuideOverlay@th105@@QAEXXZ=0x0043F450",
+  "?update_state_zero@CMenuConnect@th105@@AAE_NXZ=0x00444830",
+  "?update_state_one@CMenuConnect@th105@@AAE_NXZ=0x00442790",
+  "?update_state_middle@CMenuConnect@th105@@AAE_NXZ=0x00444490",
+  "?update_state_six@CMenuConnect@th105@@AAE_NXZ=0x004428E0",
+]

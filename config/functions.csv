@@ -1342,17 +1342,17 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004406F0,54,0x00440725,sub_4406F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00440730,17,0x00440740,sub_440730,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00440750,41,0x00440778,sub_440750,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00440780,82,0x004407D1,sub_440780,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00440780,82,0x004407D1,sub_440780,CMenuBattle_render,ui,matching,100.00,__thiscall,void CMenuBattle_render(CMenuBattle * this),false,src/ui/MenuOverlayWave.cpp,python3 scripts/build.py --unit cross-v106a-menu-overlay-wave --compare --json reports canonical exact 82/82 against TH105 1.06a,root,Current CMenuBattle RTTI/vtable owns slot-3 render. Real Menu/TitleDesignResource/items/MenuCursorState layout plus the shared unused-this profile-footer member view reproduces all 82 bytes.
 0x004407E0,797,0x00440AFC,sub_4407E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00440B50,800,0x00440E6F,sub_440B50,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00440E70,142,0x00440EFD,sub_440E70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00440F00,30,0x00440F1D,sub_440F00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00440F20,197,0x00440FE4,sub_440F20,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00440E70,142,0x00440EFD,sub_440E70,CMenuBattle_dtor,ui,matching,100.00,__thiscall,void CMenuBattle_dtor(CMenuBattle * this),false,src/ui/MenuOverlayWave.cpp,python3 scripts/build.py --unit cross-v106a-menu-overlay-wave --compare --json reports canonical exact 142/142 against TH105 1.06a,root,Current CMenuBattle RTTI/vtable and scalar-wrapper edge own the 142-byte normal destructor. The target-backed 0x78 layout uses real TitleDesignResource and checked std::vector<int> lifetime; ordinary /GS teardown is exact.
+0x00440F00,30,0x00440F1D,sub_440F00,CMenuBattle_scalar_deleting_destructor,ui,matching,100.00,__thiscall,"void * CMenuBattle_scalar_deleting_destructor(CMenuBattle * this, unsigned int flags)",false,src/ui/MenuOverlayWave.cpp,python3 scripts/build.py --unit cross-v106a-menu-overlay-wave --compare --json reports canonical exact 30/30 against TH105 1.06a,root,"Current CMenuBattle vtable 0x006C1A5C first slot owns this scalar wrapper; it calls exact normal dtor 0x00440E70 and conditionally deletes, canonical exact 30/30."
+0x00440F20,197,0x00440FE4,sub_440F20,CMenuConfig_render,ui,matching,100.00,__thiscall,void CMenuConfig_render(CMenuConfig * this),false,src/ui/MenuOverlayWave.cpp,python3 scripts/build.py --unit cross-v106a-menu-overlay-wave --compare --json reports canonical exact 197/197 against TH105 1.06a,root,Current CMenuConfig RTTI/vtable owns render. Target-backed cursor/items/anchor offsets and real GuideOverlay/UiSprite94/TitleDesignResource members produce canonical exact 197/197.
 0x00440FF0,413,0x0044118C,sub_440FF0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004411B0,665,0x00441448,sub_4411B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00441460,179,0x00441512,sub_441460,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00441460,179,0x00441512,sub_441460,CMenuConfig_dtor,ui,matching,100.00,__thiscall,void CMenuConfig_dtor(CMenuConfig * this),false,src/ui/MenuOverlayWave.cpp,python3 scripts/build.py --unit cross-v106a-menu-overlay-wave --compare --json reports canonical exact 179/179 against TH105 1.06a,root,"Current CMenuConfig RTTI/vtable owns the normal destructor. Natural reverse teardown of TitleDesignResource, UiSprite94[2], GuideOverlay and Menu plus title-texture release is canonical exact 179/179."
 0x00441520,868,0x00441883,sub_441520,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00441890,30,0x004418AD,sub_441890,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00441890,30,0x004418AD,sub_441890,CMenuConfig_scalar_deleting_destructor,ui,matching,100.00,__thiscall,"void * CMenuConfig_scalar_deleting_destructor(CMenuConfig * this, unsigned int flags)",false,src/ui/MenuOverlayWave.cpp,python3 scripts/build.py --unit cross-v106a-menu-overlay-wave --compare --json reports canonical exact 30/30 against TH105 1.06a,root,"Current CMenuConfig vtable 0x006C1A94 first slot owns this scalar wrapper; it calls exact normal dtor 0x00441460 then conditionally deletes, canonical exact 30/30."
 0x004418B0,27,0x004418CA,sub_4418B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004418D0,752,0x00441BBF,sub_4418D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00441BD0,570,0x00441E09,sub_441BD0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -1401,7 +1401,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00444490,699,0x0044474A,sub_444490,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00444790,160,0x0044482F,sub_444790,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00444830,827,0x00444B6A,sub_444830,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00444B90,195,0x00444C52,sub_444B90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00444B90,195,0x00444C52,sub_444B90,CMenuConnect_update,ui,matching,100.00,__thiscall,bool CMenuConnect_update(CMenuConnect * this),false,src/ui/MenuOverlayWave.cpp,python3 scripts/build.py --unit cross-v106a-menu-overlay-wave --compare --json reports canonical exact 195/195 against TH105 1.06a,root,Current CMenuConnect RTTI/vtable owns the virtual update. Natural pointer/count walks over eight GuideOverlay entries and seven UI items plus source-order state dispatch are exact 195/195; the remaining 29 COFF bytes are the trailing switch table.
 0x00444C70,440,0x00444E27,sub_444C70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00444E60,22,0x00444E75,sub_444E60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00444E80,160,0x00444F1F,sub_444E80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -1421,7 +1421,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004456D0,318,0x0044580D,sub_4456D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00445810,30,0x0044582D,sub_445810,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00445830,867,0x00445B92,sub_445830,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00445BA0,211,0x00445C72,sub_445BA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00445BA0,211,0x00445C72,sub_445BA0,CMenuPractice_render,ui,matching,100.00,__thiscall,void CMenuPractice_render(CMenuPractice * this),false,src/ui/MenuOverlayWave.cpp,python3 scripts/build.py --unit cross-v106a-menu-overlay-wave --compare --json reports canonical exact 211/211 against TH105 1.06a,root,Current CMenuPractice RTTI/vtable owns render. Target-backed cursor/items/TitleDesignResource/checked vector/tile/GuideOverlay accesses use element-reference lifetimes and reproduce 211/211 without inventing the unresolved +0x15C layout gap.
 0x00445C80,269,0x00445D8C,sub_445C80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00445D90,381,0x00445F0C,sub_445D90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00445F10,437,0x004460C4,sub_445F10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

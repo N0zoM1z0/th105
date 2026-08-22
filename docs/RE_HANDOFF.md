@@ -14,10 +14,11 @@ seeds using current-target-backed structural remapping where appropriate.
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 504 authored functions, 696 classified exclusions, and 2,804 still awaiting origin/boundary review.
-- All 504 confirmed authored functions are source-present and canonical exact:
-  75,353 exact authored bytes across 181 configured VC8 units.
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 512 authored functions, 696 classified exclusions, and 2,796 still awaiting origin/boundary review.
+- All 512 confirmed authored functions are source-present and canonical exact:
+  76,419 exact authored bytes across 182 configured VC8 units.
 
+- The newest Menu overlay wave adds eight authored canonical-exact functions / 1,066 bytes: `CMenuBattle` normal/scalar destruction and render (`0x00440E70/0x00440F00/0x00440780`, 142/30/82), `CMenuConfig` normal/scalar destruction and render (`0x00441460/0x00441890/0x00440F20`, 179/30/197), `CMenuPractice::render @ 0x00445BA0` (211), and `CMenuConnect::update @ 0x00444B90` (195). Current RTTI/vtables own every accepted virtual/lifetime. `CMenuBattle` has a target-backed 0x78 real layout but its ctor remains 799/800 on stack coloring; do not force it. Practice render uses two checked-vector `UiDesignObject *&` element references and intentionally leaves the unobserved `+0x15C` layout gap unnamed. Connect update uses `state != 6` as the physical fallthrough choice, pointer-walk item traversal, and a 195-byte callable body followed by a 29-byte same-section jump table.
 - Latest battle-scene/network-lifetime wave: 12 new canonical-exact authored functions / 1,075 bytes. Current RTTI closes `CBattle -> IScene`, `CBattleSV/CL/Watch -> CBattle`, and `CLoadingWatch -> IScene`. Exact additions are CBattle ctor/dtor/scalar, three 18-byte derived ctors, base update/exit, folded SV/CL scene-enter, Watch enter/update, and CLoadingWatch update. The two network scene-enter bodies independently prove an 8-byte RAII wait object `{HANDLE handle; DWORD wait_ms}`; the three derived ctors require a separate TU so the 9-byte CBattle base ctor remains out of line. SV/CL update methods remain review-pending on later receiver/cross-jump scheduling and were not forced.
 - Latest render-primitive/scene-consumer wave: 11 new canonical-exact authored functions / 1,055 bytes. RenderModeManager now has target-backed D3D9 SetSamplerState/DrawPrimitiveUP/SetFVF contracts plus exact present/submit/int-rect/set-mode methods. Current RTTI identifies exact CFade, Ending, CLogo, Opening and CLoadingSV render consumers; the shared 43-byte scene delegate is present in multiple scene vtables including CBattleSV.
 - The D3D/render backend wave adds seven authored exact functions / 1,072 bytes: `RenderModeManager::begin_frame/finish_frame/prepare_frame` (`0x00401000/0x00401040/0x004010C0`, 52/26/35), `on_device_reset @ 0x004014C0` (329), `set_state_22 @ 0x00404A40` (66), `apply_render_mode @ 0x00404A90` (482), and `shutdown_d3d_backend @ 0x00414C50` (82). Current D3D9 vslots close one backend aggregate at `0x007036A0`; the reset callback uses a real 28-byte state snapshot plus `memset`, while the 482-byte policy requires one common source tail and source case order 4/1/2/3. Toggle/reset/init/texture-bind neighbors remain pending on register, stack-alignment, private-ABI, or liveness differences; none were forced.
@@ -81,7 +82,7 @@ the current call target.
 ## Next bounded work
 
 Continue origin/boundary review so the authored denominator becomes meaningful,
-then expand exact recovery from the 504 accepted functions. Use
+then expand exact recovery from the 512 accepted functions. Use
 `scripts/rank_retained_exact.py --only-unconfigured` to prioritize historical
 exact source that never had an old match unit. Same-size zero non-relocation
 mismatch candidates are especially productive, but ambiguous template/clone
@@ -90,9 +91,9 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 2,804
+The 95% authored-function and authored-byte goals cannot be reported yet: 2,796
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 504/504
+global authored denominator is not established. Do not use the current 512/512
 exact subset as a substitute denominator.
 
 ## Routine checkpoint
