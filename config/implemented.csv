@@ -472,3 +472,15 @@ Ending_render
 CLogo_render
 Opening_render
 CLoadingSV_render
+CBattle_ctor
+CBattle_dtor
+CBattle_scalar_deleting_destructor
+CBattleSV_ctor
+CBattleCL_ctor
+CBattleWatch_ctor
+CBattle_update
+CBattle_on_scene_exit
+CBattleSV_on_scene_enter
+CBattleWatch_on_scene_enter
+CBattleWatch_update
+CLoadingWatch_update

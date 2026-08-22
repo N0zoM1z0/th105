@@ -473,3 +473,15 @@ Ending_render,0x0041E920,function
 CLogo_render,0x0041F6A0,function
 Opening_render,0x0041F8A0,function
 CLoadingSV_render,0x0041F410,function
+CBattle_ctor,0x0041DF60,function
+CBattle_dtor,0x0041DF70,function
+CBattle_scalar_deleting_destructor,0x0041E770,function
+CBattleSV_ctor,0x0041E1A0,function
+CBattleCL_ctor,0x0041E200,function
+CBattleWatch_ctor,0x0041E220,function
+CBattle_update,0x0041DFF0,function
+CBattle_on_scene_exit,0x0041DFD0,function
+CBattleSV_on_scene_enter,0x00426090,function
+CBattleWatch_on_scene_enter,0x00426770,function
+CBattleWatch_update,0x004266C0,function
+CLoadingWatch_update,0x004268F0,function

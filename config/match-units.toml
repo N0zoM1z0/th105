@@ -6091,3 +6091,144 @@ dir32_targets = [
   "__real@43e00000=__real@43e00000",
   "__real@44000000=__real@44000000",
 ]
+
+[units.cross-v106a-battle-scene-lifetime]
+kind = "probe"
+source = "src/battle/BattleSceneLifetime.cpp"
+object = "build/match-units/CrossV106a_BattleSceneLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a CBattle base lifetime. Current RTTI owns vtable 0x006C0470; the normal dtor publishes the base vptr, requests async scene 5, then inlines the trivial IScene dtor."
+
+[[units.cross-v106a-battle-scene-lifetime.functions]]
+address = "0x0041DF60"
+symbol_base = "??0CBattle@th105@@QAE@XZ"
+dir32_targets = ["??_7CBattle@th105@@6B@=??_7CBattle@th105@@6B@"]
+
+[[units.cross-v106a-battle-scene-lifetime.functions]]
+address = "0x0041DF70"
+symbol_base = "??1CBattle@th105@@UAE@XZ"
+rel32_targets = ["?start_async_engine_scene_load@th105@@YAEH@Z=0x0043B840"]
+dir32_targets = [
+  "__ehhandler$??1CBattle@th105@@UAE@XZ=__ehhandler$??1CBattle@th105@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7CBattle@th105@@6B@=??_7CBattle@th105@@6B@",
+  "??_7IScene@th105@@6B@=??_7IScene@th105@@6B@",
+]
+
+[[units.cross-v106a-battle-scene-lifetime.functions]]
+address = "0x0041E770"
+symbol_base = "??_GCBattle@th105@@UAEPAXI@Z"
+rel32_targets = ["CBattle_dtor=0x0041DF70", "??3@YAXPAX@Z=0x006898EA"]
+
+[units.cross-v106a-battle-scene-derived-ctors]
+kind = "probe"
+source = "src/battle/BattleSceneDerivedCtors.cpp"
+object = "build/match-units/CrossV106a_BattleSceneDerivedCtors.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "CBattleSV/CL/Watch constructors see only the CBattle constructor declaration. That truthful TU boundary keeps the 9-byte base ctor out of line and yields the target 18-byte derived ctors."
+
+[[units.cross-v106a-battle-scene-derived-ctors.functions]]
+address = "0x0041E1A0"
+symbol_base = "??0CBattleSV@th105@@QAE@XZ"
+rel32_targets = ["??0CBattle@th105@@QAE@XZ=0x0041DF60"]
+dir32_targets = ["??_7CBattleSV@th105@@6B@=??_7CBattleSV@th105@@6B@"]
+
+[[units.cross-v106a-battle-scene-derived-ctors.functions]]
+address = "0x0041E200"
+symbol_base = "??0CBattleCL@th105@@QAE@XZ"
+rel32_targets = ["??0CBattle@th105@@QAE@XZ=0x0041DF60"]
+dir32_targets = ["??_7CBattleCL@th105@@6B@=??_7CBattleCL@th105@@6B@"]
+
+[[units.cross-v106a-battle-scene-derived-ctors.functions]]
+address = "0x0041E220"
+symbol_base = "??0CBattleWatch@th105@@QAE@XZ"
+rel32_targets = ["??0CBattle@th105@@QAE@XZ=0x0041DF60"]
+dir32_targets = ["??_7CBattleWatch@th105@@6B@=??_7CBattleWatch@th105@@6B@"]
+
+[units.cross-v106a-battle-scene-network]
+kind = "probe"
+source = "src/battle/BattleSceneNetwork.cpp"
+object = "build/match-units/CrossV106a_BattleSceneNetwork.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "CBattle scene virtual island. SV/CL share one linker-foldable 193-byte enter body using an 8-byte RAII event {handle,wait_ms}; Watch reuses the same event lifetime plus the player2-input critical-section state gate."
+
+[[units.cross-v106a-battle-scene-network.functions]]
+address = "0x0041DFF0"
+symbol_base = "?update@CBattle@th105@@UAEHXZ"
+rel32_targets = ["?get_session_setup_option@th105@@YAIXZ=0x0043B070", "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40"]
+dir32_targets = ["?g_scene_renderer@th105@@3PAUBattleSceneRendererView@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A"]
+
+[[units.cross-v106a-battle-scene-network.functions]]
+address = "0x0041DFD0"
+symbol_base = "?on_scene_exit@CBattle@th105@@UAEXH@Z"
+rel32_targets = ["_clear_menu_objects=0x0043B100", "?start_scene_fade_out@th105@@YAXIH@Z=0x0043B240"]
+
+[[units.cross-v106a-battle-scene-network.functions]]
+address = "0x00426090"
+symbol_base = "?on_scene_enter@CBattleSV@th105@@UAEXH@Z"
+rel32_targets = ["?get_network_session@th105@@YAPAUCNetworkBase@1@XZ=0x0043B090", "?get_player_slot_record@th105@@YAPAUPlayerSlotRecord@1@I@Z=0x0043AFE0"]
+dir32_targets = [
+  "__ehhandler$?on_scene_enter@CBattleSV@th105@@UAEXH@Z=__ehhandler$?on_scene_enter@CBattleSV@th105@@UAEXH@Z",
+  "___security_cookie=___security_cookie",
+  "__imp__CreateEventA@16=__imp__CreateEventA@16",
+  "__imp__WaitForSingleObject@8=__imp__WaitForSingleObject@8",
+  "__imp__CloseHandle@4=__imp__CloseHandle@4",
+]
+
+[[units.cross-v106a-battle-scene-network.functions]]
+address = "0x00426770"
+symbol_base = "?on_scene_enter@CBattleWatch@th105@@UAEXH@Z"
+rel32_targets = [
+  "?get_network_session@th105@@YAPAUCNetworkBase@1@XZ=0x0043B090",
+  "?get_player2_input@th105@@YAPAUPlayerInput@1@XZ=0x0043B060",
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "?pump_watch_44d880@BattleNetworkSessionView@th105@@QAEXXZ=0x0044D880",
+]
+dir32_targets = [
+  "__ehhandler$?on_scene_enter@CBattleWatch@th105@@UAEXH@Z=__ehhandler$?on_scene_enter@CBattleWatch@th105@@UAEXH@Z",
+  "___security_cookie=___security_cookie",
+  "__imp__CreateEventA@16=__imp__CreateEventA@16",
+  "__imp__WaitForSingleObject@8=__imp__WaitForSingleObject@8",
+  "__imp__CloseHandle@4=__imp__CloseHandle@4",
+]
+
+[[units.cross-v106a-battle-scene-network.functions]]
+address = "0x004266C0"
+symbol_base = "?update@CBattleWatch@th105@@UAEHXZ"
+rel32_targets = [
+  "?get_network_session@th105@@YAPAUCNetworkBase@1@XZ=0x0043B090",
+  "_is_menu_initial_press=0x0043ABD0",
+  "?get_combined_menu_input_counters@th105@@YAPACXZ=0x0043B030",
+  "?pump_watch_44d880@BattleNetworkSessionView@th105@@QAEXXZ=0x0044D880",
+  "?prepare_watch_transition_44e2c0@BattleNetworkSessionView@th105@@QAEXXZ=0x0044E2C0",
+]
+dir32_targets = ["?g_scene_renderer@th105@@3PAUBattleSceneRendererView@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A"]
+
+[units.cross-v106a-loading-watch-update]
+kind = "probe"
+source = "src/battle/LoadingWatch.cpp"
+object = "build/match-units/CrossV106a_LoadingWatch.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "CLoadingWatch update from current RTTI and network/input call graph. Direct call expressions preserve the target pre-C++17 receiver/argument evaluation order; explicit state-1 branching avoids a non-target branchless ternary lowering."
+
+[[units.cross-v106a-loading-watch-update.functions]]
+address = "0x004268F0"
+symbol_base = "?update@CLoadingWatch@th105@@UAEHXZ"
+rel32_targets = [
+  "?get_network_session@th105@@YAPAUCNetworkBase@1@XZ=0x0043B090",
+  "?pump_watch_44d880@LoadingNetworkSessionView@th105@@QAEXXZ=0x0044D880",
+  "_is_menu_initial_press=0x0043ABD0",
+  "?get_combined_menu_input_counters@th105@@YAPACXZ=0x0043B030",
+  "?get_match_setup@th105@@YAPAUMatchSetup@1@XZ=0x0043AC50",
+  "?get_player2_input@th105@@YAPAUPlayerInput@1@XZ=0x0043B060",
+  "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40",
+  "?configure_session_input_slots@LoadingPlayer2InputView@th105@@QAEXCC@Z=0x0042C4D0",
+  "?configure_watch_player_42bc40@LoadingPlayer2InputView@th105@@QAEXCPAUMatchSetup@2@@Z=0x0042BC40",
+  "?start_async_engine_scene_load@th105@@YAEH@Z=0x0043B840",
+  "?get_async_scene_load_request@th105@@YAHXZ=0x0043AB90",
+]

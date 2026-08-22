@@ -799,3 +799,66 @@ integer-store schedules for the same two vertices.  None reproduces the full
 148-byte target.  Keep that body and the 395-byte float rectangle renderer
 pending until truthful TU/floating-point evidence appears; do not mix profiles,
 volatile constants, or synthetic temporaries to manufacture the target.
+
+### Recover Win32 wait-object lifetime from EH and stack storage
+
+`CBattleSV/CBattleCL::on_scene_enter @ 0x00426090` and
+`CBattleWatch::on_scene_enter @ 0x00426770` independently prove the same local
+RAII object. A raw HANDLE plus explicit `CloseHandle` emits only 116 bytes for
+the SV/CL body; a one-dword RAII wrapper reaches 177. The target reserves two
+dwords, stores the `CreateEventA` result in the first and the literal wait
+interval 16 in the second, and owns normal VC8 EH cleanup. Truthful source
+`{ HANDLE handle; DWORD wait_ms; }`, with destructor `CloseHandle(handle)` and a
+`wait()` member, naturally keeps the 8-byte object store while constant-folding
+the actual `WaitForSingleObject` argument to `push 0x10`. With `/GS`, the two
+independent target bodies become 193/193 and 230/230 exact. Prefer a real RAII
+lifetime that explains both EH and local storage; never synthesize SEH or add a
+dummy stack word.
+
+### Let translation-unit visibility keep tiny base constructors out of line
+
+`CBattle::CBattle @ 0x0041DF60` is a natural 9-byte constructor that publishes
+the current RTTI-owned vptr. Defining `CBattleSV/CL/Watch` constructors in the
+same TU lets VC8 inline that tiny base constructor and emits 9-byte derived
+constructors, unlike the target. Placing the three truthful empty derived ctor
+definitions in another TU where `CBattle()` is declared but not defined makes
+VC8 emit `call CBattle::CBattle` followed by the derived vptr store, exactly
+18/18/18. Use source partition as evidence before reaching for `noinline` or
+other compiler attributes.
+
+### Preserve real shared tails in network scene state machines
+
+`CBattleWatch::update @ 0x004266C0` demonstrates two byte-significant source
+control-flow facts. Disconnect, menu-initial-press, and the combined-input
+counter all share one `return 2` tail. After the watch pump, the ordinary
+network path is the fallthrough (`transition_mode != 3`) and uses
+`while (continue_transition())`; phase 1..2 returns 12 directly, while renderer
+state 5 and transition mode 3 share the real `prepare_watch_transition` tail.
+Writing separate early-return blocks or placing the special transition block
+before the loop changes jump distances/alignment. Preserve target-backed common
+semantics and let VC8 merge them; do not add inert branches or gotos solely for
+bytes.
+
+### Pre-C++17 member-call evaluation order can be exact-match evidence
+
+`CLoadingWatch::update @ 0x004268F0` is 209/209 only when the source preserves
+the target's call-expression structure. For
+`session->accept_match_setup(get_match_setup())`, VC8 selects the virtual member
+before evaluating the argument getter. For the player2-input configuration
+calls, the target evaluates game-mode/match-setup arguments before resolving
+`get_player2_input()` as the receiver. Naming receiver/argument locals changes
+that order and grows the body. Likewise, the state-1 result must be an explicit
+branch; a ternary lets VC8 strength-reduce it into non-target branchless
+arithmetic. Treat observable call evaluation order as source evidence, not as a
+license for comma-expression tricks or register forcing.
+
+### Stop at closed semantics when receiver/cross-jump scheduling remains different
+
+`CBattleSV::update @ 0x00426180` and `CBattleCL::update @ 0x00426380` now have
+closed network/renderer semantics and a natural source formulation whose first
+47 target bytes match exactly. Their later loop/common-tail receiver scheduling
+still differs under standalone VC8: target reuses the same session receiver
+across success/failure edges and places cross-jumps differently. Keep these two
+review-pending. Do not introduce fake member calls, volatile state, manual
+register variables, or synthetic control flow merely to make the final schedule
+match.
