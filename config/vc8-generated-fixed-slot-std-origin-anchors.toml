@@ -1,0 +1,366 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/battle/FixedSlotEnvelope.cpp"
+enable_gs = false
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 1
+alignment_tail_hex = "cc"
+
+# Discovered from fresh exact-unit COFF output, but accepted only through
+# function-origins.py full-inventory replay of every fingerprint/hit set.
+
+[[anchors]]
+address = "0x00410F40"
+size = 115
+symbol = "??$copy_backward@V?$_Deque_iterator@FV?$allocator@F@std@@$00@std@@V12@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V10@00@Z"
+equivalence_group = "fixed-slot-std-01-clones"
+
+[[anchors]]
+address = "0x00410FC0"
+size = 115
+symbol = "??$copy_backward@V?$_Deque_iterator@FV?$allocator@F@std@@$00@std@@V12@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V10@00@Z"
+equivalence_group = "fixed-slot-std-01-clones"
+
+[[anchors]]
+address = "0x004178D0"
+size = 115
+symbol = "??$copy_backward@V?$_Deque_iterator@FV?$allocator@F@std@@$00@std@@V12@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V10@00@Z"
+equivalence_group = "fixed-slot-std-01-clones"
+
+[[anchors]]
+address = "0x00417950"
+size = 115
+symbol = "??$copy_backward@V?$_Deque_iterator@FV?$allocator@F@std@@$00@std@@V12@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V10@00@Z"
+equivalence_group = "fixed-slot-std-01-clones"
+
+[[anchors]]
+address = "0x00429340"
+size = 115
+symbol = "??$copy_backward@V?$_Deque_iterator@FV?$allocator@F@std@@$00@std@@V12@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V10@00@Z"
+equivalence_group = "fixed-slot-std-01-clones"
+
+[[anchors]]
+address = "0x00429870"
+size = 115
+symbol = "??$copy_backward@V?$_Deque_iterator@FV?$allocator@F@std@@$00@std@@V12@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V10@00@Z"
+equivalence_group = "fixed-slot-std-01-clones"
+
+[[anchors]]
+address = "0x004303F0"
+size = 115
+symbol = "??$copy_backward@V?$_Deque_iterator@FV?$allocator@F@std@@$00@std@@V12@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V10@00@Z"
+equivalence_group = "fixed-slot-std-01-clones"
+
+[[anchors]]
+address = "0x00430470"
+size = 115
+symbol = "??$copy_backward@V?$_Deque_iterator@FV?$allocator@F@std@@$00@std@@V12@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V10@00@Z"
+equivalence_group = "fixed-slot-std-01-clones"
+
+[[anchors]]
+address = "0x00451060"
+size = 115
+symbol = "??$copy_backward@V?$_Deque_iterator@FV?$allocator@F@std@@$00@std@@V12@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V10@00@Z"
+equivalence_group = "fixed-slot-std-01-clones"
+
+[[anchors]]
+address = "0x004510E0"
+size = 115
+symbol = "??$copy_backward@V?$_Deque_iterator@FV?$allocator@F@std@@$00@std@@V12@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V10@00@Z"
+equivalence_group = "fixed-slot-std-01-clones"
+
+[[anchors]]
+address = "0x0045D730"
+size = 115
+symbol = "??$copy_backward@V?$_Deque_iterator@FV?$allocator@F@std@@$00@std@@V12@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V10@00@Z"
+equivalence_group = "fixed-slot-std-01-clones"
+
+[[anchors]]
+address = "0x0045D7B0"
+size = 115
+symbol = "??$copy_backward@V?$_Deque_iterator@FV?$allocator@F@std@@$00@std@@V12@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V10@00@Z"
+equivalence_group = "fixed-slot-std-01-clones"
+
+[[anchors]]
+address = "0x004FA380"
+size = 115
+symbol = "??$copy_backward@V?$_Deque_iterator@FV?$allocator@F@std@@$00@std@@V12@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V10@00@Z"
+equivalence_group = "fixed-slot-std-01-clones"
+
+[[anchors]]
+address = "0x005AE3C0"
+size = 115
+symbol = "??$copy_backward@V?$_Deque_iterator@FV?$allocator@F@std@@$00@std@@V12@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V10@00@Z"
+equivalence_group = "fixed-slot-std-01-clones"
+
+[[anchors]]
+address = "0x004111C0"
+size = 187
+symbol = "??$_Copy_backward_opt@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@std@@V?$_Deque_iterator@FV?$allocator@F@std@@$00@2@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@0@0V10@Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "fixed-slot-std-02-clones"
+
+[[anchors]]
+address = "0x00417C50"
+size = 187
+symbol = "??$_Copy_backward_opt@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@std@@V?$_Deque_iterator@FV?$allocator@F@std@@$00@2@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@0@0V10@Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "fixed-slot-std-02-clones"
+
+[[anchors]]
+address = "0x00428AB0"
+size = 187
+symbol = "??$_Copy_backward_opt@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@std@@V?$_Deque_iterator@FV?$allocator@F@std@@$00@2@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@0@0V10@Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "fixed-slot-std-02-clones"
+
+[[anchors]]
+address = "0x00430120"
+size = 187
+symbol = "??$_Copy_backward_opt@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@std@@V?$_Deque_iterator@FV?$allocator@F@std@@$00@2@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@0@0V10@Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "fixed-slot-std-02-clones"
+
+[[anchors]]
+address = "0x00450D70"
+size = 187
+symbol = "??$_Copy_backward_opt@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@std@@V?$_Deque_iterator@FV?$allocator@F@std@@$00@2@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@0@0V10@Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "fixed-slot-std-02-clones"
+
+[[anchors]]
+address = "0x0045D5B0"
+size = 187
+symbol = "??$_Copy_backward_opt@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@std@@V?$_Deque_iterator@FV?$allocator@F@std@@$00@2@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@0@0V10@Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "fixed-slot-std-02-clones"
+
+[[anchors]]
+address = "0x004FA190"
+size = 187
+symbol = "??$_Copy_backward_opt@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@std@@V?$_Deque_iterator@FV?$allocator@F@std@@$00@2@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@0@0V10@Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "fixed-slot-std-02-clones"
+
+[[anchors]]
+address = "0x00411100"
+size = 183
+symbol = "??$_Copy_opt@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@std@@V?$_Deque_iterator@FV?$allocator@F@std@@$00@2@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@0@0V10@Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "fixed-slot-std-03-clones"
+
+[[anchors]]
+address = "0x00417D10"
+size = 183
+symbol = "??$_Copy_opt@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@std@@V?$_Deque_iterator@FV?$allocator@F@std@@$00@2@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@0@0V10@Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "fixed-slot-std-03-clones"
+
+[[anchors]]
+address = "0x004293C0"
+size = 183
+symbol = "??$_Copy_opt@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@std@@V?$_Deque_iterator@FV?$allocator@F@std@@$00@2@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@0@0V10@Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "fixed-slot-std-03-clones"
+
+[[anchors]]
+address = "0x004301E0"
+size = 183
+symbol = "??$_Copy_opt@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@std@@V?$_Deque_iterator@FV?$allocator@F@std@@$00@2@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@0@0V10@Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "fixed-slot-std-03-clones"
+
+[[anchors]]
+address = "0x00450CB0"
+size = 183
+symbol = "??$_Copy_opt@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@std@@V?$_Deque_iterator@FV?$allocator@F@std@@$00@2@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@0@0V10@Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "fixed-slot-std-03-clones"
+
+[[anchors]]
+address = "0x0045D670"
+size = 183
+symbol = "??$_Copy_opt@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@std@@V?$_Deque_iterator@FV?$allocator@F@std@@$00@2@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@0@0V10@Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "fixed-slot-std-03-clones"
+
+[[anchors]]
+address = "0x005AE1D0"
+size = 183
+symbol = "??$_Copy_opt@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@std@@V?$_Deque_iterator@FV?$allocator@F@std@@$00@2@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@0@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@0@0V10@Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "fixed-slot-std-03-clones"
+
+[[anchors]]
+address = "0x00429690"
+size = 472
+symbol = "?erase@?$deque@FV?$allocator@F@std@@@std@@QAE?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@2@V32@0@Z"
+
+[[anchors]]
+address = "0x0042A350"
+size = 344
+symbol = "?_Growmap@?$deque@FV?$allocator@F@std@@@std@@IAEXI@Z"
+
+[[anchors]]
+address = "0x0042B6B0"
+size = 297
+symbol = "??4?$deque@FV?$allocator@F@std@@@std@@QAEAAV01@ABV01@@Z"
+
+[[anchors]]
+address = "0x0042B650"
+size = 88
+symbol = "??$insert@V?$_Deque_const_iterator@FV?$allocator@F@std@@$00@std@@@?$deque@FV?$allocator@F@std@@@std@@QAEXV?$_Deque_iterator@FV?$allocator@F@std@@$00@1@V?$_Deque_const_iterator@FV?$allocator@F@std@@$00@1@1@Z"
+equivalence_group = "fixed-slot-std-07-clones"
+
+[[anchors]]
+address = "0x00452DA0"
+size = 88
+symbol = "??$insert@V?$_Deque_const_iterator@FV?$allocator@F@std@@$00@std@@@?$deque@FV?$allocator@F@std@@@std@@QAEXV?$_Deque_iterator@FV?$allocator@F@std@@$00@1@V?$_Deque_const_iterator@FV?$allocator@F@std@@$00@1@1@Z"
+equivalence_group = "fixed-slot-std-07-clones"
+
+[[anchors]]
+address = "0x00452E00"
+size = 88
+symbol = "??$insert@V?$_Deque_const_iterator@FV?$allocator@F@std@@$00@std@@@?$deque@FV?$allocator@F@std@@@std@@QAEXV?$_Deque_iterator@FV?$allocator@F@std@@$00@1@V?$_Deque_const_iterator@FV?$allocator@F@std@@$00@1@1@Z"
+equivalence_group = "fixed-slot-std-07-clones"
+
+[[anchors]]
+address = "0x004020D0"
+size = 218
+symbol = "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z"
+
+[[anchors]]
+address = "0x00413A90"
+size = 104
+symbol = "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ"
+equivalence_group = "fixed-slot-std-09-clones"
+
+[[anchors]]
+address = "0x00420A80"
+size = 104
+symbol = "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ"
+equivalence_group = "fixed-slot-std-09-clones"
+
+[[anchors]]
+address = "0x00428860"
+size = 203
+symbol = "??$_Copy_backward_opt@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@std@@V12@Uforward_iterator_tag@2@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$0A@@0@V10@00Uforward_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x004021C0"
+size = 193
+symbol = "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z"
+
+[[anchors]]
+address = "0x004287A0"
+size = 192
+symbol = "??$_Copy_opt@V?$_Deque_const_iterator@FV?$allocator@F@std@@$0A@@std@@V?$_Deque_iterator@FV?$allocator@F@std@@$0A@@2@Uforward_iterator_tag@2@@std@@YA?AV?$_Deque_iterator@FV?$allocator@F@std@@$0A@@0@V?$_Deque_const_iterator@FV?$allocator@F@std@@$0A@@0@0V10@Uforward_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x00402320"
+size = 188
+symbol = "?_Grow@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@IAE_NI_N@Z"
+
+[[anchors]]
+address = "0x0040E5B0"
+size = 90
+symbol = "??$_Allocate@PAF@std@@YAPAPAFIPAPAF@Z"
+equivalence_group = "fixed-slot-std-14-clones"
+
+[[anchors]]
+address = "0x00439580"
+size = 90
+symbol = "??$_Allocate@PAF@std@@YAPAPAFIPAPAF@Z"
+equivalence_group = "fixed-slot-std-14-clones"
+
+[[anchors]]
+address = "0x004016F0"
+size = 71
+symbol = "??_Glogic_error@std@@UAEPAXI@Z"
+equivalence_group = "fixed-slot-std-15-clones"
+
+[[anchors]]
+address = "0x006A4B80"
+size = 71
+symbol = "??_Glogic_error@std@@UAEPAXI@Z"
+equivalence_group = "fixed-slot-std-15-clones"
+
+[[anchors]]
+address = "0x00402290"
+size = 131
+symbol = "?erase@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@II@Z"
+
+[[anchors]]
+address = "0x0042A4B0"
+size = 122
+symbol = "?push_front@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z"
+
+[[anchors]]
+address = "0x0042AA90"
+size = 119
+symbol = "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z"
+
+[[anchors]]
+address = "0x00401740"
+size = 50
+symbol = "??1logic_error@std@@UAE@XZ"
+equivalence_group = "fixed-slot-std-19-clones"
+
+[[anchors]]
+address = "0x006A4B30"
+size = 50
+symbol = "??1logic_error@std@@UAE@XZ"
+equivalence_group = "fixed-slot-std-19-clones"
+
+[[anchors]]
+address = "0x00428740"
+size = 96
+symbol = "??A?$_Deque_iterator@FV?$allocator@F@std@@$00@std@@QBEAAFH@Z"
+
+[[anchors]]
+address = "0x006A1200"
+size = 86
+symbol = "??$_Allocate@F@std@@YAPAFIPAF@Z"
+
+[[anchors]]
+address = "0x00402620"
+size = 83
+symbol = "??$_Allocate@D@std@@YAPADIPAD@Z"
+
+[[anchors]]
+address = "0x00428570"
+size = 73
+symbol = "??D?$_Deque_const_iterator@FV?$allocator@F@std@@$00@std@@QBEABFXZ"
+
+[[anchors]]
+address = "0x00430000"
+size = 69
+symbol = "??G?$_Deque_iterator@FV?$allocator@F@std@@$00@std@@QBE?AV01@H@Z"
+
+[[anchors]]
+address = "0x0042FFB0"
+size = 65
+symbol = "??H?$_Deque_const_iterator@FV?$allocator@F@std@@$00@std@@QBE?AV01@H@Z"
+
+[[anchors]]
+address = "0x00401DC0"
+size = 59
+symbol = "??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@PBD@Z"
+
+[[anchors]]
+address = "0x00428700"
+size = 52
+symbol = "?pop_front@?$deque@FV?$allocator@F@std@@@std@@QAEXXZ"
+
+[[anchors]]
+address = "0x004286D0"
+size = 46
+symbol = "?end@?$deque@FV?$allocator@F@std@@@std@@QBE?AV?$_Deque_const_iterator@FV?$allocator@F@std@@$00@2@XZ"
+
+[[anchors]]
+address = "0x004286A0"
+size = 46
+symbol = "?begin@?$deque@FV?$allocator@F@std@@@std@@QBE?AV?$_Deque_const_iterator@FV?$allocator@F@std@@$00@2@XZ"
+
+[[anchors]]
+address = "0x00408990"
+size = 39
+symbol = "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBD@Z"
+
+[[anchors]]
+address = "0x00401E00"
+size = 38
+symbol = "??1?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@XZ"
+
+[[anchors]]
+address = "0x004025F0"
+size = 33
+symbol = "?_Copy_s@?$char_traits@D@std@@SAPADPADIPBDI@Z"

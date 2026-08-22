@@ -1,0 +1,162 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/ui/FileList.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 1
+alignment_tail_hex = "cc"
+
+# Discovery came from an already-exact match-unit object. Acceptance still
+# recompiles this source and verifies the complete current-inventory hit set.
+
+[[anchors]]
+address = "0x0040A8A0"
+size = 117
+symbol = "?_Xran@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@KAXXZ"
+equivalence_group = "cfile-list-std-01-clones"
+
+[[anchors]]
+address = "0x00431610"
+size = 117
+symbol = "?_Xran@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@KAXXZ"
+equivalence_group = "cfile-list-std-01-clones"
+
+[[anchors]]
+address = "0x0056D3D0"
+size = 117
+symbol = "?_Xran@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@KAXXZ"
+equivalence_group = "cfile-list-std-01-clones"
+
+[[anchors]]
+address = "0x006A5A20"
+size = 117
+symbol = "?_Xran@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@KAXXZ"
+equivalence_group = "cfile-list-std-01-clones"
+
+[[anchors]]
+address = "0x00439C10"
+size = 344
+symbol = "?_Growmap@?$deque@EV?$allocator@E@std@@@std@@IAEXI@Z"
+
+[[anchors]]
+address = "0x00408B40"
+size = 251
+symbol = "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z"
+
+[[anchors]]
+address = "0x00408A50"
+size = 237
+symbol = "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z"
+
+[[anchors]]
+address = "0x004103C0"
+size = 96
+symbol = "??$_Allocate@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@YAPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@IPAV10@@Z"
+equivalence_group = "cfile-list-std-05-clones"
+
+[[anchors]]
+address = "0x00421BC0"
+size = 96
+symbol = "??$_Allocate@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@YAPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@IPAV10@@Z"
+equivalence_group = "cfile-list-std-05-clones"
+
+[[anchors]]
+address = "0x00412980"
+size = 94
+symbol = "??A?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@QAEAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@I@Z"
+equivalence_group = "cfile-list-std-06-clones"
+
+[[anchors]]
+address = "0x004399C0"
+size = 94
+symbol = "??A?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@QAEAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@I@Z"
+equivalence_group = "cfile-list-std-06-clones"
+
+[[anchors]]
+address = "0x00408C40"
+size = 186
+symbol = "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@PBD@Z"
+
+[[anchors]]
+address = "0x00429970"
+size = 179
+symbol = "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@PBDABV10@@Z"
+
+[[anchors]]
+address = "0x00408D00"
+size = 165
+symbol = "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@0@Z"
+
+[[anchors]]
+address = "0x0040FF90"
+size = 152
+symbol = "?_Tidy@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXXZ"
+
+[[anchors]]
+address = "0x00420AF0"
+size = 135
+symbol = "?_Tidy@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@IAEXXZ"
+
+[[anchors]]
+address = "0x0040F990"
+size = 67
+symbol = "??D?$_Deque_const_iterator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@$00@std@@QBEABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@XZ"
+equivalence_group = "cfile-list-std-12-clones"
+
+[[anchors]]
+address = "0x0045CF60"
+size = 67
+symbol = "??D?$_Deque_const_iterator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@$00@std@@QBEABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@XZ"
+equivalence_group = "cfile-list-std-12-clones"
+
+[[anchors]]
+address = "0x00439ED0"
+size = 112
+symbol = "?push_back@?$deque@EV?$allocator@E@std@@@std@@QAEXABE@Z"
+
+[[anchors]]
+address = "0x0042D1B0"
+size = 100
+symbol = "??A?$deque@IV?$allocator@I@std@@@std@@QAEAAII@Z"
+
+[[anchors]]
+address = "0x00428F20"
+size = 99
+symbol = "??A?$deque@EV?$allocator@E@std@@@std@@QAEAAEI@Z"
+
+[[anchors]]
+address = "0x00410430"
+size = 97
+symbol = "??$_Construct@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@YAXPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@@Z"
+
+[[anchors]]
+address = "0x0053CD90"
+size = 94
+symbol = "?at@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@QAEAAVFileListTile@th105@@I@Z"
+
+[[anchors]]
+address = "0x0040F8F0"
+size = 91
+symbol = "?push_back@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@QAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z"
+
+[[anchors]]
+address = "0x00410190"
+size = 85
+symbol = "?pop_back@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@QAEXXZ"
+
+[[anchors]]
+address = "0x0041EB50"
+size = 57
+symbol = "?pop_back@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@QAEXXZ"
+
+[[anchors]]
+address = "0x00431410"
+size = 44
+symbol = "??A?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAADI@Z"
+
+[[anchors]]
+address = "0x004102D0"
+size = 42
+symbol = "?destroy@?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@QAEXPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z"

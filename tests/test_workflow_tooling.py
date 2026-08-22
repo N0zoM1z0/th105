@@ -75,8 +75,8 @@ class WorkflowToolingTests(unittest.TestCase):
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,009", markdown)
         self.assertIn("Confirmed authored functions | 600", markdown)
-        self.assertIn("Classified exclusions | 711", markdown)
-        self.assertIn("Origin/boundary review pending | 2,698", markdown)
+        self.assertIn("Classified exclusions | 917", markdown)
+        self.assertIn("Origin/boundary review pending | 2,492", markdown)
         self.assertIn("Canonical exact functions | 600", markdown)
         self.assertIn("Canonical exact authored bytes | 88,322", markdown)
         self.assertIn(
@@ -217,6 +217,27 @@ class WorkflowToolingTests(unittest.TestCase):
             [(row["address"], row["size"]) for row in scenario_map_find["anchors"]],
             [("0x006A4D60", 105)],
         )
+
+    def test_exact_tu_std_origin_manifests_are_pinned(self) -> None:
+        paths = sorted((ROOT / "config").glob("vc8-generated-*-std-origin-anchors.toml"))
+        self.assertEqual(len(paths), 15)
+        target_sha = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+        compiler_sha = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+        rows = []
+        for path in paths:
+            with path.open("rb") as stream:
+                manifest = tomllib.load(stream)
+            self.assertEqual(manifest["target_sha256"], target_sha)
+            self.assertEqual(manifest["compiler_sha256"], compiler_sha)
+            self.assertEqual(manifest["min_nonreloc_coverage"], 0.70)
+            self.assertEqual(manifest["min_nonreloc_bytes"], 24)
+            self.assertEqual(manifest["max_alignment_tail"], 1)
+            self.assertEqual(manifest["alignment_tail_hex"], "cc")
+            self.assertTrue(manifest["source"].startswith("src/"))
+            rows.extend(manifest["anchors"])
+        self.assertEqual(len(rows), 206)
+        self.assertEqual(len({row["address"] for row in rows}), 206)
+        self.assertEqual(sum(row["size"] for row in rows), 24_834)
 
     def test_inventory_pagination_normalization(self) -> None:
         data, next_offset = self.inventory.normalize_page(

@@ -1,0 +1,223 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/battle/EffectManagerLifetime.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 1
+alignment_tail_hex = "cc"
+
+# Discovered from fresh exact-unit COFF output, but accepted only through
+# function-origins.py full-inventory replay of every fingerprint/hit set.
+
+[[anchors]]
+address = "0x0041EFB0"
+size = 201
+symbol = "?erase@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z"
+equivalence_group = "effect-tree-01-clones"
+
+[[anchors]]
+address = "0x00421050"
+size = 201
+symbol = "?erase@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z"
+equivalence_group = "effect-tree-01-clones"
+
+[[anchors]]
+address = "0x0042E7B0"
+size = 201
+symbol = "?erase@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z"
+equivalence_group = "effect-tree-01-clones"
+
+[[anchors]]
+address = "0x004335C0"
+size = 201
+symbol = "?erase@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z"
+equivalence_group = "effect-tree-01-clones"
+
+[[anchors]]
+address = "0x00437360"
+size = 201
+symbol = "?erase@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z"
+equivalence_group = "effect-tree-01-clones"
+
+[[anchors]]
+address = "0x004388A0"
+size = 201
+symbol = "?erase@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z"
+equivalence_group = "effect-tree-01-clones"
+
+[[anchors]]
+address = "0x0043D100"
+size = 201
+symbol = "?erase@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z"
+equivalence_group = "effect-tree-01-clones"
+
+[[anchors]]
+address = "0x0043D270"
+size = 201
+symbol = "?erase@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z"
+equivalence_group = "effect-tree-01-clones"
+
+[[anchors]]
+address = "0x0043E0D0"
+size = 201
+symbol = "?erase@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z"
+equivalence_group = "effect-tree-01-clones"
+
+[[anchors]]
+address = "0x006A85B0"
+size = 201
+symbol = "?erase@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z"
+equivalence_group = "effect-tree-01-clones"
+
+[[anchors]]
+address = "0x006AE150"
+size = 201
+symbol = "?erase@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z"
+equivalence_group = "effect-tree-01-clones"
+
+[[anchors]]
+address = "0x006AE350"
+size = 201
+symbol = "?erase@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z"
+equivalence_group = "effect-tree-01-clones"
+
+[[anchors]]
+address = "0x006B1640"
+size = 201
+symbol = "?erase@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z"
+equivalence_group = "effect-tree-01-clones"
+
+[[anchors]]
+address = "0x00420D90"
+size = 695
+symbol = "?erase@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@@Z"
+equivalence_group = "effect-tree-02-clones"
+
+[[anchors]]
+address = "0x0043C660"
+size = 695
+symbol = "?erase@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@@Z"
+equivalence_group = "effect-tree-02-clones"
+
+[[anchors]]
+address = "0x0041F0C0"
+size = 52
+symbol = "?_Tidy@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@IAEXXZ"
+equivalence_group = "effect-tree-03-clones"
+
+[[anchors]]
+address = "0x00433950"
+size = 52
+symbol = "?_Tidy@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@IAEXXZ"
+equivalence_group = "effect-tree-03-clones"
+
+[[anchors]]
+address = "0x004389F0"
+size = 52
+symbol = "?_Tidy@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@IAEXXZ"
+equivalence_group = "effect-tree-03-clones"
+
+[[anchors]]
+address = "0x00438A30"
+size = 52
+symbol = "?_Tidy@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@IAEXXZ"
+equivalence_group = "effect-tree-03-clones"
+
+[[anchors]]
+address = "0x0043DED0"
+size = 52
+symbol = "?_Tidy@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@IAEXXZ"
+equivalence_group = "effect-tree-03-clones"
+
+[[anchors]]
+address = "0x006B2B10"
+size = 52
+symbol = "?_Tidy@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@IAEXXZ"
+equivalence_group = "effect-tree-03-clones"
+
+[[anchors]]
+address = "0x006B2B50"
+size = 52
+symbol = "?_Tidy@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@IAEXXZ"
+equivalence_group = "effect-tree-03-clones"
+
+[[anchors]]
+address = "0x006B32F0"
+size = 52
+symbol = "?_Tidy@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@IAEXXZ"
+equivalence_group = "effect-tree-03-clones"
+
+[[anchors]]
+address = "0x0040C7C0"
+size = 82
+symbol = "?_Rrotate@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@2@@Z"
+equivalence_group = "effect-tree-04-clones"
+
+[[anchors]]
+address = "0x0043B700"
+size = 82
+symbol = "?_Rrotate@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@2@@Z"
+equivalence_group = "effect-tree-04-clones"
+
+[[anchors]]
+address = "0x0040C770"
+size = 78
+symbol = "?_Lrotate@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@2@@Z"
+equivalence_group = "effect-tree-05-clones"
+
+[[anchors]]
+address = "0x0042CC40"
+size = 78
+symbol = "?_Lrotate@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@2@@Z"
+equivalence_group = "effect-tree-05-clones"
+
+[[anchors]]
+address = "0x00414450"
+size = 53
+symbol = "?_Erase@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@2@@Z"
+equivalence_group = "effect-tree-06-clones"
+
+[[anchors]]
+address = "0x0043BC40"
+size = 53
+symbol = "?_Erase@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@2@@Z"
+equivalence_group = "effect-tree-06-clones"
+
+[[anchors]]
+address = "0x0043B340"
+size = 99
+symbol = "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@QAEXXZ"
+
+[[anchors]]
+address = "0x0042CAD0"
+size = 92
+symbol = "??$_Allocate@U_Node@?$_Tree_nod@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@@std@@YAPAU_Node@?$_Tree_nod@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@0@IPAU120@@Z"
+
+[[anchors]]
+address = "0x0040CC30"
+size = 28
+symbol = "?_Max@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@KAPAU_Node@?$_Tree_nod@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@2@PAU342@@Z"
+equivalence_group = "effect-tree-09-clones"
+
+[[anchors]]
+address = "0x0041E9B0"
+size = 28
+symbol = "?_Max@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@KAPAU_Node@?$_Tree_nod@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@2@PAU342@@Z"
+equivalence_group = "effect-tree-09-clones"
+
+[[anchors]]
+address = "0x00420A40"
+size = 55
+symbol = "?_Buynode@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@2@XZ"
+
+[[anchors]]
+address = "0x0043E0A0"
+size = 43
+symbol = "??0?$map@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@@std@@QAE@XZ"
+
+[[anchors]]
+address = "0x0042C9C0"
+size = 27
+symbol = "?_Min@?$_Tree@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@std@@KAPAU_Node@?$_Tree_nod@V?$_Tmap_traits@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@$0A@@std@@@2@PAU342@@Z"

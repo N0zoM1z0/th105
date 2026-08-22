@@ -1,0 +1,57 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/ui/ReplayMenuDelete.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 1
+alignment_tail_hex = "cc"
+
+# Discovery came from an already-exact match-unit object. Acceptance still
+# recompiles this source and verifies the complete current-inventory hit set.
+
+[[anchors]]
+address = "0x004026A0"
+size = 94
+symbol = "?erase@?$list@HV?$allocator@H@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z"
+equivalence_group = "replay-menu-delete-std-01-clones"
+
+[[anchors]]
+address = "0x0043FC40"
+size = 94
+symbol = "?erase@?$list@HV?$allocator@H@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z"
+equivalence_group = "replay-menu-delete-std-01-clones"
+
+[[anchors]]
+address = "0x00440370"
+size = 160
+symbol = "?_Incsize@?$list@HV?$allocator@H@std@@@std@@IAEXI@Z"
+
+[[anchors]]
+address = "0x004229A0"
+size = 50
+symbol = "?push_back@?$list@HV?$allocator@H@std@@@std@@QAEXABH@Z"
+equivalence_group = "replay-menu-delete-std-03-clones"
+
+[[anchors]]
+address = "0x004540B0"
+size = 50
+symbol = "?push_back@?$list@HV?$allocator@H@std@@@std@@QAEXABH@Z"
+equivalence_group = "replay-menu-delete-std-03-clones"
+
+[[anchors]]
+address = "0x00466DB0"
+size = 50
+symbol = "?push_back@?$list@HV?$allocator@H@std@@@std@@QAEXABH@Z"
+equivalence_group = "replay-menu-delete-std-03-clones"
+
+[[anchors]]
+address = "0x004220D0"
+size = 42
+symbol = "?pop_back@?$list@HV?$allocator@H@std@@@std@@QAEXXZ"
+
+[[anchors]]
+address = "0x00421B90"
+size = 40
+symbol = "??E?$_Const_iterator@$00@?$list@HV?$allocator@H@std@@@std@@QAEAAV012@XZ"

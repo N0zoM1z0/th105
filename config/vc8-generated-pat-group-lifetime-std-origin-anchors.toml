@@ -1,0 +1,80 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/battle/PatGroup.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 1
+alignment_tail_hex = "cc"
+
+# Discovery came from an already-exact match-unit object. Acceptance still
+# recompiles this source and verifies the complete current-inventory hit set.
+
+[[anchors]]
+address = "0x00460980"
+size = 293
+symbol = "??4?$vector@PAUPatRaw16@th105@@V?$allocator@PAUPatRaw16@th105@@@std@@@std@@QAEAAV01@ABV01@@Z"
+
+[[anchors]]
+address = "0x0042C020"
+size = 57
+symbol = "?clear@?$vector@PAUPatRaw16@th105@@V?$allocator@PAUPatRaw16@th105@@@std@@@std@@QAEXXZ"
+equivalence_group = "pat-group-lifetime-std-02-clones"
+
+[[anchors]]
+address = "0x0045FB30"
+size = 57
+symbol = "?clear@?$vector@PAUPatRaw16@th105@@V?$allocator@PAUPatRaw16@th105@@@std@@@std@@QAEXXZ"
+equivalence_group = "pat-group-lifetime-std-02-clones"
+
+[[anchors]]
+address = "0x0045FD10"
+size = 57
+symbol = "?clear@?$vector@PAUPatRaw16@th105@@V?$allocator@PAUPatRaw16@th105@@@std@@@std@@QAEXXZ"
+equivalence_group = "pat-group-lifetime-std-02-clones"
+
+[[anchors]]
+address = "0x0045F7A0"
+size = 91
+symbol = "??$_Allocate@VPatRecord88@th105@@@std@@YAPAVPatRecord88@th105@@IPAV12@@Z"
+
+[[anchors]]
+address = "0x004610C0"
+size = 88
+symbol = "??$_Copy_opt@PAVPatRecord88@th105@@PAV12@@std@@YAPAVPatRecord88@th105@@PAV12@00Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x0040CD40"
+size = 86
+symbol = "??$_Allocate@UPatRaw16@th105@@@std@@YAPAUPatRaw16@th105@@IPAU12@@Z"
+
+[[anchors]]
+address = "0x004607A0"
+size = 72
+symbol = "?_Buy@?$vector@PAUPatRaw16@th105@@V?$allocator@PAUPatRaw16@th105@@@std@@@std@@IAE_NI@Z"
+
+[[anchors]]
+address = "0x0045F800"
+size = 68
+symbol = "??$_Copy_opt@PAUPatRaw16@th105@@PAU12@@std@@YAPAUPatRaw16@th105@@PAU12@00Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x00460F10"
+size = 56
+symbol = "??$_Copy_opt@PAVPatRecord88@th105@@PAV12@Uforward_iterator_tag@std@@@std@@YAPAVPatRecord88@th105@@PAV12@00Uforward_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x0045F850"
+size = 55
+symbol = "??$_Uninit_copy@PAUPatRaw16@th105@@PAU12@V?$allocator@UPatRaw16@th105@@@std@@@std@@YAPAUPatRaw16@th105@@PAU12@00AAV?$allocator@UPatRaw16@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x0045F9C0"
+size = 50
+symbol = "??$_Copy_opt@PAPAUPatRaw16@th105@@PAPAU12@Urandom_access_iterator_tag@std@@@std@@YAPAPAUPatRaw16@th105@@PAPAU12@00Urandom_access_iterator_tag@0@U_Scalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x0045FB70"
+size = 41
+symbol = "?_Destroy@?$vector@VPatRecord88@th105@@V?$allocator@VPatRecord88@th105@@@std@@@std@@IAEXPAVPatRecord88@th105@@0@Z"

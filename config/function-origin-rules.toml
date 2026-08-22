@@ -212,3 +212,169 @@ subsystem = "input"
 disposition = "exclude"
 confidence = "observed"
 evidence = "SHA-pinned VC8 SP1 compilation of the tracked DirectInput vector probe regenerates checked std::vector<void*> and RawGamepadState COMDATs; every fingerprint must match its complete current-inventory hit set, with explicit equivalence groups only for true ICF/shape clones"
+
+[[rules]]
+id = "vc8-generated-fixed-slot-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-fixed-slot-std-origin-anchors.toml"
+expected_count = 63
+expected_bytes = 8358
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of the already-exact FixedSlotEnvelope TU regenerates 32 checked deque/string/iterator COMDAT fingerprints whose complete current-inventory hit sets contain exactly 63 review candidates / 8358 bytes; clone groups are accepted only when the replayed fingerprint hit set equals the full manifest group"
+
+[[rules]]
+id = "vc8-generated-effect-manager-lifetimes-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-effect-manager-lifetimes-std-origin-anchors.toml"
+expected_count = 36
+expected_bytes = 5217
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of the already-exact EffectManager lifetime TU regenerates 12 checked std::_Tree/map COMDAT fingerprints whose complete current-inventory hit sets contain exactly 36 review candidates / 5217 bytes; target/compiler hashes, relocations, coverage, boundary tails and equivalence groups are replayed fail-closed"
+
+
+[[rules]]
+id = "vc8-generated-battle-input-slot-config-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-battle-input-slot-config-std-origin-anchors.toml"
+expected_count = 28
+expected_bytes = 2409
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/battle/BattleInputSlotConfig.cpp regenerates 13 standard-library COMDAT fingerprints whose complete current-inventory hit sets contain exactly 28 review candidates / 2409 bytes; target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed"
+
+[[rules]]
+id = "vc8-generated-cfile-list-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-cfile-list-std-origin-anchors.toml"
+expected_count = 28
+expected_bytes = 3452
+origin = "compiler_generated"
+subsystem = "ui"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/ui/FileList.cpp regenerates 22 standard-library COMDAT fingerprints whose complete current-inventory hit sets contain exactly 28 review candidates / 3452 bytes; target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed"
+
+[[rules]]
+id = "vc8-generated-input-cluster-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-input-cluster-std-origin-anchors.toml"
+expected_count = 5
+expected_bytes = 572
+origin = "compiler_generated"
+subsystem = "input"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/input/InputCluster.cpp regenerates 5 standard-library COMDAT fingerprints whose complete current-inventory hit sets contain exactly 5 review candidates / 572 bytes; target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed"
+
+[[rules]]
+id = "vc8-generated-pat-group-lifetime-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-pat-group-lifetime-std-origin-anchors.toml"
+expected_count = 13
+expected_bytes = 1071
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/battle/PatGroup.cpp regenerates 11 standard-library COMDAT fingerprints whose complete current-inventory hit sets contain exactly 13 review candidates / 1071 bytes; target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed"
+
+[[rules]]
+id = "vc8-generated-profile-data-writer-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-profile-data-writer-std-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 100
+origin = "compiler_generated"
+subsystem = "ui"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/ui/ProfileMenuData.cpp regenerates 1 standard-library COMDAT fingerprints whose complete current-inventory hit sets contain exactly 1 review candidates / 100 bytes; target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed"
+
+[[rules]]
+id = "vc8-generated-profile-deck-counts-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-profile-deck-counts-std-origin-anchors.toml"
+expected_count = 9
+expected_bytes = 651
+origin = "compiler_generated"
+subsystem = "ui"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/ui/ProfileDeckCounts.cpp regenerates 9 standard-library COMDAT fingerprints whose complete current-inventory hit sets contain exactly 9 review candidates / 651 bytes; target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed"
+
+[[rules]]
+id = "vc8-generated-profile-deck-lifetime-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-profile-deck-lifetime-std-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 695
+origin = "compiler_generated"
+subsystem = "ui"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/ui/ProfileDeckLifetime.cpp regenerates 1 standard-library COMDAT fingerprints whose complete current-inventory hit sets contain exactly 1 review candidates / 695 bytes; target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed"
+
+[[rules]]
+id = "vc8-generated-replay-menu-delete-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-replay-menu-delete-std-origin-anchors.toml"
+expected_count = 8
+expected_bytes = 580
+origin = "compiler_generated"
+subsystem = "ui"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/ui/ReplayMenuDelete.cpp regenerates 5 standard-library COMDAT fingerprints whose complete current-inventory hit sets contain exactly 8 review candidates / 580 bytes; target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed"
+
+[[rules]]
+id = "vc8-generated-roster-object-spawns-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-roster-object-spawns-std-origin-anchors.toml"
+expected_count = 4
+expected_bytes = 922
+origin = "compiler_generated"
+subsystem = "characters"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/characters/RosterObjectSpawns.cpp regenerates 2 standard-library COMDAT fingerprints whose complete current-inventory hit sets contain exactly 4 review candidates / 922 bytes; target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed"
+
+[[rules]]
+id = "vc8-generated-scenario-event-name-resolver-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-scenario-event-name-resolver-std-origin-anchors.toml"
+expected_count = 3
+expected_bytes = 162
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/battle/ScenarioEventNameResolver.cpp regenerates 3 standard-library COMDAT fingerprints whose complete current-inventory hit sets contain exactly 3 review candidates / 162 bytes; target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed"
+
+[[rules]]
+id = "vc8-generated-string28-equals-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-string28-equals-std-origin-anchors.toml"
+expected_count = 3
+expected_bytes = 297
+origin = "compiler_generated"
+subsystem = "assets"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/assets/CompositeTextGlyph.cpp regenerates 3 standard-library COMDAT fingerprints whose complete current-inventory hit sets contain exactly 3 review candidates / 297 bytes; target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed"
+
+[[rules]]
+id = "vc8-generated-ui-selection-state-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-ui-selection-state-std-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 73
+origin = "compiler_generated"
+subsystem = "ui"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/ui/UiSelectionState.cpp regenerates 2 standard-library COMDAT fingerprints whose complete current-inventory hit sets contain exactly 2 review candidates / 73 bytes; target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed"
+
+[[rules]]
+id = "vc8-generated-fighter-input-phase-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-fighter-input-phase-std-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 275
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/battle/FighterInitialization.cpp regenerates 2 standard-library COMDAT fingerprints whose complete current-inventory hit sets contain exactly 2 review candidates / 275 bytes; target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed"

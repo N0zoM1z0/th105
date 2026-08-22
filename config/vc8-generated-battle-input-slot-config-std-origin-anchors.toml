@@ -1,0 +1,171 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/battle/BattleInputSlotConfig.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 1
+alignment_tail_hex = "cc"
+
+# Discovery came from an already-exact match-unit object. Acceptance still
+# recompiles this source and verifies the complete current-inventory hit set.
+
+[[anchors]]
+address = "0x0042B7E0"
+size = 253
+symbol = "??0?$deque@FV?$allocator@F@std@@@std@@QAE@ABV01@@Z"
+equivalence_group = "battle-input-slot-config-std-01-clones"
+
+[[anchors]]
+address = "0x004539C0"
+size = 253
+symbol = "??0?$deque@FV?$allocator@F@std@@@std@@QAE@ABV01@@Z"
+equivalence_group = "battle-input-slot-config-std-01-clones"
+
+[[anchors]]
+address = "0x00453AC0"
+size = 253
+symbol = "??0?$deque@FV?$allocator@F@std@@@std@@QAE@ABV01@@Z"
+equivalence_group = "battle-input-slot-config-std-01-clones"
+
+[[anchors]]
+address = "0x0040CCD0"
+size = 41
+symbol = "??$_Umove@PAUFixedSlotEnvelope@th105@@@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@IAEPAUFixedSlotEnvelope@th105@@PAU23@00@Z"
+equivalence_group = "battle-input-slot-config-std-02-clones"
+
+[[anchors]]
+address = "0x004222B0"
+size = 41
+symbol = "??$_Umove@PAUFixedSlotEnvelope@th105@@@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@IAEPAUFixedSlotEnvelope@th105@@PAU23@00@Z"
+equivalence_group = "battle-input-slot-config-std-02-clones"
+
+[[anchors]]
+address = "0x00424E90"
+size = 41
+symbol = "??$_Umove@PAUFixedSlotEnvelope@th105@@@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@IAEPAUFixedSlotEnvelope@th105@@PAU23@00@Z"
+equivalence_group = "battle-input-slot-config-std-02-clones"
+
+[[anchors]]
+address = "0x0042C0A0"
+size = 41
+symbol = "??$_Umove@PAUFixedSlotEnvelope@th105@@@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@IAEPAUFixedSlotEnvelope@th105@@PAU23@00@Z"
+equivalence_group = "battle-input-slot-config-std-02-clones"
+
+[[anchors]]
+address = "0x0042D8F0"
+size = 41
+symbol = "??$_Umove@PAUFixedSlotEnvelope@th105@@@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@IAEPAUFixedSlotEnvelope@th105@@PAU23@00@Z"
+equivalence_group = "battle-input-slot-config-std-02-clones"
+
+[[anchors]]
+address = "0x0043C920"
+size = 41
+symbol = "??$_Umove@PAUFixedSlotEnvelope@th105@@@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@IAEPAUFixedSlotEnvelope@th105@@PAU23@00@Z"
+equivalence_group = "battle-input-slot-config-std-02-clones"
+
+[[anchors]]
+address = "0x0045FBA0"
+size = 41
+symbol = "??$_Umove@PAUFixedSlotEnvelope@th105@@@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@IAEPAUFixedSlotEnvelope@th105@@PAU23@00@Z"
+equivalence_group = "battle-input-slot-config-std-02-clones"
+
+[[anchors]]
+address = "0x00461610"
+size = 41
+symbol = "??$_Umove@PAUFixedSlotEnvelope@th105@@@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@IAEPAUFixedSlotEnvelope@th105@@PAU23@00@Z"
+equivalence_group = "battle-input-slot-config-std-02-clones"
+
+[[anchors]]
+address = "0x00465FF0"
+size = 41
+symbol = "??$_Umove@PAUFixedSlotEnvelope@th105@@@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@IAEPAUFixedSlotEnvelope@th105@@PAU23@00@Z"
+equivalence_group = "battle-input-slot-config-std-02-clones"
+
+[[anchors]]
+address = "0x006A4C70"
+size = 41
+symbol = "??$_Umove@PAUFixedSlotEnvelope@th105@@@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@IAEPAUFixedSlotEnvelope@th105@@PAU23@00@Z"
+equivalence_group = "battle-input-slot-config-std-02-clones"
+
+[[anchors]]
+address = "0x006A57B0"
+size = 41
+symbol = "??$_Umove@PAUFixedSlotEnvelope@th105@@@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@IAEPAUFixedSlotEnvelope@th105@@PAU23@00@Z"
+equivalence_group = "battle-input-slot-config-std-02-clones"
+
+[[anchors]]
+address = "0x006A5880"
+size = 41
+symbol = "??$_Umove@PAUFixedSlotEnvelope@th105@@@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@IAEPAUFixedSlotEnvelope@th105@@PAU23@00@Z"
+equivalence_group = "battle-input-slot-config-std-02-clones"
+
+[[anchors]]
+address = "0x004298F0"
+size = 117
+symbol = "?_Xlen@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@KAXXZ"
+equivalence_group = "battle-input-slot-config-std-03-clones"
+
+[[anchors]]
+address = "0x006A5AA0"
+size = 117
+symbol = "?_Xlen@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@KAXXZ"
+equivalence_group = "battle-input-slot-config-std-03-clones"
+
+[[anchors]]
+address = "0x004054E0"
+size = 117
+symbol = "?_Xlen@?$deque@FV?$allocator@F@std@@@std@@KAXXZ"
+equivalence_group = "battle-input-slot-config-std-04-clones"
+
+[[anchors]]
+address = "0x00449940"
+size = 117
+symbol = "?_Xlen@?$deque@FV?$allocator@F@std@@@std@@KAXXZ"
+equivalence_group = "battle-input-slot-config-std-04-clones"
+
+[[anchors]]
+address = "0x006A59A0"
+size = 113
+symbol = "??0logic_error@std@@QAE@ABV01@@Z"
+
+[[anchors]]
+address = "0x0042BED0"
+size = 108
+symbol = "?erase@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@2@V32@0@Z"
+
+[[anchors]]
+address = "0x006A5930"
+size = 107
+symbol = "??0logic_error@std@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@@Z"
+
+[[anchors]]
+address = "0x00428500"
+size = 89
+symbol = "??$_Allocate@UFixedSlotEnvelope@th105@@@std@@YAPAUFixedSlotEnvelope@th105@@IPAU12@@Z"
+
+[[anchors]]
+address = "0x00453FB0"
+size = 83
+symbol = "??$_Construct@UFixedSlotEnvelope@th105@@U12@@std@@YAXPAUFixedSlotEnvelope@th105@@ABU12@@Z"
+
+[[anchors]]
+address = "0x0042C060"
+size = 56
+symbol = "?_Ufill@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@IAEPAUFixedSlotEnvelope@th105@@PAU34@IABU34@@Z"
+
+[[anchors]]
+address = "0x0042B230"
+size = 52
+symbol = "??$_Destroy_range@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@YAXPAUFixedSlotEnvelope@th105@@0AAV?$allocator@UFixedSlotEnvelope@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x0045A2B0"
+size = 41
+symbol = "??9?$_Vector_const_iterator@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@QBE_NABV01@@Z"
+
+[[anchors]]
+address = "0x006A0CE0"
+size = 41
+symbol = "??8?$_Vector_const_iterator@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@QBE_NABV01@@Z"

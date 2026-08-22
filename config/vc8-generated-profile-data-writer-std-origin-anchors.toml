@@ -1,0 +1,17 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/ui/ProfileMenuData.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 1
+alignment_tail_hex = "cc"
+
+# Discovery came from an already-exact match-unit object. Acceptance still
+# recompiles this source and verifies the complete current-inventory hit set.
+
+[[anchors]]
+address = "0x0042D140"
+size = 100
+symbol = "??A?$deque@GV?$allocator@G@std@@@std@@QAEAAGI@Z"
