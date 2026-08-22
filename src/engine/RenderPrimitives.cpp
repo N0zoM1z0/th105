@@ -65,6 +65,12 @@ int RenderModeManager::draw_rect_int(
         filled);
 }
 
+D3DHResult RenderModeManager::set_sampler_state(
+    unsigned sampler, unsigned state, unsigned value)
+{
+    return device_04->SetSamplerState(sampler, state, value);
+}
+
 void RenderModeManager::set_mode(int mode)
 {
     if (state_0c.sampler_mode_04 == mode)

@@ -51,6 +51,8 @@ struct RenderModeManager : DeviceResetListener {
     void finish_frame();
     void prepare_frame();
     void set_mode(int mode);
+    D3DHResult set_sampler_state(
+        unsigned sampler, unsigned state, unsigned value);
     D3DHResult submit_primitive(
         unsigned primitive_type,
         unsigned primitive_count,

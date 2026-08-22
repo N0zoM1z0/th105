@@ -7,7 +7,9 @@ namespace th105 {
 // making the SharedEventState setter definition visible causes VC8 to inline it,
 // unlike the linked 1.06a body.
 struct SharedEventStateForwarder {
+    char set_shared_first_target(char enabled, float target);
     char set_shared_second_target(char enabled, float target);
+    char set_shared_third_target(char enabled, float target);
 };
 
 } // namespace th105

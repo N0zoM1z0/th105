@@ -1935,6 +1935,13 @@ dir32_targets = [
   "__real@4020000000000000=__real@4020000000000000",
 ]
 
+[[units.cross-v106a-menu-select-family.functions]]
+address = "0x00448400"
+symbol_base = "??_GCMenuSelect@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1CMenuSelect@th105@@UAE@XZ=0x00448250",
+  "??3@YAXPAX@Z=0x006898EA",
+]
 
 [units.cross-v106a-result-list-ctor]
 kind = "probe"
@@ -2282,6 +2289,14 @@ dir32_targets = [
   "??_7IScene@th105@@6B@=??_7IScene@th105@@6B@",
 ]
 
+[[units.cross-v106a-title-dtor.functions]]
+address = "0x00426060"
+symbol_base = "??_GCTitle@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1CTitle@th105@@UAE@XZ=0x00425D40",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
 [units.cross-v106a-title-scene-enter]
 kind = "probe"
 source = "src/ui/Title.cpp"
@@ -2624,6 +2639,14 @@ dir32_targets = [
   "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
   "_title_color_vtable_anchor=_title_color_vtable_anchor_external",
   "??_7IScene@th105@@6B@=??_7IScene@th105@@6B@",
+]
+
+[[units.cross-v106a-select-scenario-dtor.functions]]
+address = "0x004256B0"
+symbol_base = "??_GCSelectScenario@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1CSelectScenario@th105@@UAE@XZ=0x00425230",
+  "??3@YAXPAX@Z=0x006898EA",
 ]
 
 [units.cross-v106a-menu-select-player-assignment]
@@ -3834,6 +3857,14 @@ dir32_targets = [
   "??_7FrameData@th105@@6B@=??_7FrameData@th105@@6B@",
 ]
 
+[[units.cross-v106a-pat-record-lifetime.functions]]
+address = "0x004601E0"
+symbol_base = "??_GPatRecord88@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1PatRecord88@th105@@UAE@XZ=0x0045FFD0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
 [units.cross-v106a-fighter-wave-resources]
 kind = "probe"
 source = "src/battle/FighterResourceInitialization.cpp"
@@ -4256,7 +4287,7 @@ source = "src/battle/SharedEventStateForwarder.cpp"
 object = "build/match-units/CrossV106a_SharedEventStateForwarder.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a unused-receiver character-event forwarder into SharedEventState target +0x24. Keeping this wrapper in a separate TU is target-backed: with the setter definition visible VC8 inlines it, while the isolated TU naturally reproduces the linked 26-byte call body."
+notes = "TH105 1.06a unused-receiver character-event forwarding family into SharedEventState targets +0x20/+0x24/+0x28. Keeping these wrappers in a separate TU is target-backed: with setter definitions visible VC8 inlines them, while the isolated TU naturally reproduces all three linked 26-byte call bodies."
 
 [[units.cross-v106a-event-subobject130.functions]]
 address = "0x00434E40"
@@ -4273,14 +4304,22 @@ dir32_targets = [
 ]
 
 [[units.cross-v106a-shared-event-forwarder.functions]]
+address = "0x00476AB0"
+symbol_base = "set_shared_first_target"
+rel32_targets = ["?set_target_20_enabled_2c@SharedEventState@th105@@QAEDDM@Z=0x00427290"]
+dir32_targets = ["?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA"]
+
+[[units.cross-v106a-shared-event-forwarder.functions]]
 address = "0x00476AD0"
 symbol_base = "set_shared_second_target"
-rel32_targets = [
-  "?set_target_24_enabled_2d@SharedEventState@th105@@QAEDDM@Z=0x004272B0",
-]
-dir32_targets = [
-  "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
-]
+rel32_targets = ["?set_target_24_enabled_2d@SharedEventState@th105@@QAEDDM@Z=0x004272B0"]
+dir32_targets = ["?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA"]
+
+[[units.cross-v106a-shared-event-forwarder.functions]]
+address = "0x00476AF0"
+symbol_base = "set_shared_third_target"
+rel32_targets = ["?set_target_28_enabled_2e@SharedEventState@th105@@QAEDDM@Z=0x004272D0"]
+dir32_targets = ["?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA"]
 
 [units.cross-v106a-ui-selection-state]
 kind = "probe"
@@ -4375,7 +4414,7 @@ source = "src/battle/EventEffectState.cpp"
 object = "build/match-units/CrossV106a_EventEffectState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a shared event-effect state id setter. Exact trigger/stage-music callers establish receiver 0x006FBCAC; unchanged ids return directly, changed ids update +0 then tail-call publish_stage_state with exact-backed loader-zero g_battle_transition_mode. Natural VC8 is 29/29 exact."
+notes = "TH105 1.06a shared event/background state at receiver 0x006FBCAC. Exact trigger/stage-music callers establish id +0; current battle phases additionally prove checked deque<BackgroundRenderEntry> +0x28 and polymorphic effect emitter +0x48. The id setter, +0x48 emit facade, and 511-byte typed background render are canonical exact. The adjacent +0x48 dispatch-state facade remains deliberately untracked at target 11 vs fresh 10 because only vptr/receiver scheduling differs."
 
 [[units.cross-v106a-event-effect-state.functions]]
 address = "0x00469DF0"
@@ -4383,6 +4422,57 @@ symbol_base = "set_event_id"
 rel32_targets = ["?publish_stage_state@EventEffectStateView@th105@@QAEHH@Z=0x00469D50"]
 dir32_targets = ["?g_battle_transition_mode@th105@@3EA=?g_battle_transition_mode@th105@@3EA"]
 
+[[units.cross-v106a-event-effect-state.functions]]
+address = "0x004695B0"
+symbol_base = "?emit_effect@EventEffectStateView@th105@@QAEHHMMHH@Z"
+
+[[units.cross-v106a-event-effect-state.functions]]
+address = "0x004696E0"
+symbol_base = "?render_background_effects@EventEffectStateView@th105@@QAEXXZ"
+rel32_targets = [
+  "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
+  "?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750",
+  "?set_sampler_state@RenderModeManager@th105@@QAEJIII@Z=0x00404730",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0",
+  "?scale_x@CSpriteEx@@QAEXM@Z=0x004074A0",
+  "?scale_y@CSpriteEx@@QAEXM@Z=0x00407540",
+  "?scale_z@CSpriteEx@@QAEXM@Z=0x004075E0",
+  "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0",
+  "?place_sprite@BattleBackgroundLayoutView@th105@@QAEXPAVCSpriteEx@@MM@Z=0x00427200",
+  "?finalize_render@CSpriteEx@@QAEXXZ=0x00407AD0",
+  "?draw_rect@RenderModeManager@th105@@QAEHMMMMIE@Z=0x004012A0",
+]
+dir32_targets = [
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+  "?g_battle_background_layout@th105@@3UBattleBackgroundLayoutView@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+  "__real@40400000=__real@40400000",
+  "__real@c2c80000=__real@c2c80000",
+  "__real@43f00000=__real@43f00000",
+  "__real@44200000=__real@44200000",
+]
+
+[units.cross-v106a-battle-background-layout]
+kind = "probe"
+source = "src/battle/BattleBackgroundLayout.cpp"
+object = "build/match-units/CrossV106a_BattleBackgroundLayout.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a background placement helper on exact-backed global battle setup object 0x006FBCC0. Current callers pass CSpriteEx plus two scale factors; +0x14 scale and +0x18/+0x1C/+0x30/+0x34 viewport edges feed 420/640/320 placement math before exact translate and origin-scale methods. Natural VC8 is 128/128 exact."
+
+[[units.cross-v106a-battle-background-layout.functions]]
+address = "0x00427200"
+symbol_base = "?place_sprite@BattleBackgroundLayoutView@th105@@QAEXPAVCSpriteEx@@MM@Z"
+rel32_targets = [
+  "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0",
+  "?scale_x@CSpriteEx@@QAEXM@Z=0x004074A0",
+  "?scale_y@CSpriteEx@@QAEXM@Z=0x00407540",
+]
+dir32_targets = [
+  "__real@407a400000000000=__real@407a400000000000",
+  "__real@4084000000000000=__real@4084000000000000",
+  "__real@4074000000000000=_background_layout_center_x",
+]
 
 [units.cross-v106a-info-effect-emitter]
 kind = "probe"
@@ -5849,7 +5939,7 @@ source = "src/battle/EffectSpriteTransforms.cpp"
 object = "build/match-units/CrossV106a_EffectSpriteTransforms.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a CSpriteEx transform core. Current copy construction fixes the 0x80 source quad and 0xb0 working quad as four 12-byte xyz points. A 0x30 memcpy naturally gives the target rep-movsd reset; explicit observed x87 operand order reproduces translation, while the axis-scale loops are direct natural matches."
+notes = "TH105 1.06a CSpriteEx transform core. Current copy construction fixes the 0x80 source quad and 0xb0 working quad as four 12-byte xyz points. Both 0x30 quad copies, translation, three origin-scale overloads, and X/Y/Z pivot scales are natural exact. The origin-scale bodies preserve target x87 source evaluation order: points 0/3 use scale*field while points 1/2 use field*scale. The six-argument three-axis rotate remains deliberately untracked at 1089 vs target 1095 because three float truth tests have compiler-only x87 compare-topology differences."
 
 [[units.cross-v106a-effect-sprite-transforms.functions]]
 address = "0x004073A0"
@@ -5866,6 +5956,26 @@ symbol_base = "?scale_x@CSpriteEx@@QAEXMM@Z"
 [[units.cross-v106a-effect-sprite-transforms.functions]]
 address = "0x00407580"
 symbol_base = "?scale_y@CSpriteEx@@QAEXMM@Z"
+
+[[units.cross-v106a-effect-sprite-transforms.functions]]
+address = "0x004073C0"
+symbol_base = "?commit_transform@CSpriteEx@@QAEXXZ"
+
+[[units.cross-v106a-effect-sprite-transforms.functions]]
+address = "0x004074A0"
+symbol_base = "?scale_x@CSpriteEx@@QAEXM@Z"
+
+[[units.cross-v106a-effect-sprite-transforms.functions]]
+address = "0x00407540"
+symbol_base = "?scale_y@CSpriteEx@@QAEXM@Z"
+
+[[units.cross-v106a-effect-sprite-transforms.functions]]
+address = "0x004075E0"
+symbol_base = "?scale_z@CSpriteEx@@QAEXM@Z"
+
+[[units.cross-v106a-effect-sprite-transforms.functions]]
+address = "0x00407620"
+symbol_base = "?scale_z@CSpriteEx@@QAEXMM@Z"
 
 [units.cross-v106a-system-effect-object]
 kind = "probe"
@@ -6020,6 +6130,10 @@ rel32_targets = ["?draw_rect@RenderModeManager@th105@@QAEHMMMMIE@Z=0x004012A0"]
 [[units.cross-v106a-render-primitives.functions]]
 address = "0x00404750"
 symbol_base = "?set_mode@RenderModeManager@th105@@QAEXH@Z"
+
+[[units.cross-v106a-render-primitives.functions]]
+address = "0x00404730"
+symbol_base = "?set_sampler_state@RenderModeManager@th105@@QAEJIII@Z"
 
 [units.cross-v106a-render-scene-consumers]
 kind = "probe"
@@ -7149,6 +7263,14 @@ dir32_targets = [
   "__imp__FindNextFileA@8=__imp__FindNextFileA@8",
   "__imp__FindClose@4=__imp__FindClose@4",
   "??_C@_01KMDKNFGN@?1?$AA@=??_C@_01KMDKNFGN@?1?$AA@",
+]
+
+[[units.cross-v106a-cfile-list.functions]]
+address = "0x0043A9F0"
+symbol_base = "??_GCFileList@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1CFileList@th105@@UAE@XZ=0x00439FC0",
+  "??3@YAXPAX@Z=0x006898EA",
 ]
 
 [units.cross-v106a-profile-list]

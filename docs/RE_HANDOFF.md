@@ -14,9 +14,12 @@ seeds using current-target-backed structural remapping where appropriate.
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,007: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0`, source-level fighter phase entries `0x00464630`/`0x00464780`, standalone `CMenuReplay` scalar wrapper `0x00446F40`, `CMenuReplay::update_mode_state @ 0x00446590`, and independent `CFileWriter_dtor @ 0x00407BF0`, all missed or tail-attached by auto-analysis. Current reviewed state is 576 authored functions, 696 classified exclusions, and 2,735 still awaiting origin/boundary review.
-- All 576 confirmed authored functions are source-present and canonical exact:
-  86,405 exact authored bytes across 198 configured VC8 units.
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,008: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0`, source-level fighter phase entries `0x00464630`/`0x00464780`, standalone `CMenuReplay` scalar wrapper `0x00446F40`, `CMenuReplay::update_mode_state @ 0x00446590`, independent `CFileWriter_dtor @ 0x00407BF0`, and independent `CSpriteEx::commit_transform @ 0x004073C0`, all missed or tail-attached by auto-analysis. Current reviewed state is 592 authored functions, 696 classified exclusions, and 2,720 still awaiting origin/boundary review.
+- All 592 confirmed authored functions are source-present and canonical exact:
+  87,625 exact authored bytes across 199 configured VC8 units.
+
+- The newest sprite/background/lifetime wave adds sixteen authored canonical-exact functions / 1,220 bytes and one corrected source boundary. Five CSpriteEx bodies close reverse quad copy plus X/Y/Z origin scales and Z pivot scale (`0x004073C0/0x004074A0/0x00407540/0x004075E0/0x00407620`, 298 bytes). `RenderModeManager::set_sampler_state @ 0x00404730` is 32/32. Exact-backed global battle layout `0x006FBCC0` now owns `place_sprite @ 0x00427200` (128), and exact-backed event state `0x006FBCAC` owns +0x48 emitter facade `0x004695B0` (49) plus a real checked `deque<BackgroundRenderEntry>` at +0x28 whose typed render phase `0x004696E0` is 511/511. Two 26-byte SharedEventState forwarding siblings close the +0x20/+0x24/+0x28 trio. Five current-vtable-owned scalar wrappers for CSelectScenario, CTitle, CFileList, CMenuSelect and PatRecord88 add 150 bytes; every normal destructor was already canonical exact.
+- Reusable negative evidence from the same wave: three-axis CSpriteEx rotation `0x00407680` remains 1089/1095 because target keeps each angle live on x87 across its truth test while all ordinary zero-comparison spellings choose a different three-times-two-byte compare topology. EventEffectState +0x48 state dispatch `0x004695F0` is target 11/fresh 10 on vptr-versus-ECX scheduling only. RenderModeManager blend transition `0x004047E0` is a 256-byte old/new-mode transition jump table and remains source-unrecovered. None are forced with inline assembly, volatile/dummy state, manual vtable loads, or copied target bytes.
 
 - The newest roster-constructor/spawn wave adds fourteen authored canonical-exact functions / 1,887 bytes. Twelve standard fighter constructors are 126/126 from one narrow `Character(init_arg)` derived-lifetime TU: Reimu `0x00493A40`, Marisa `0x004B9F20`, Sakuya `0x004DF430`, Patchouli `0x0051EEE0`, Remilia `0x00555FF0`, Yuyuko `0x0056DE30`, Yukari `0x0058C0F0`, Suika `0x005AEC80`, Udonge `0x005D2BF0`, Komachi `0x005F7A30`, Aya `0x006185E0`, and Tenshi `0x0064B6F0`. Iku `0x006312B0` is the same lifetime plus the current-backed `field_138 = -6.0f` store and is 138/138. Every constructor is independently tied to its RTTI-owned class vtable and already-exact 123-byte ObjectManager constructor; all thirteen ctor EH prologues fold to current handler `0x006BBCE3`, which is shape evidence rather than class identity.
 - `SakuyaObjectManager::spawn_object @ 0x004DF2C0` is now 237/237, completing the roster spawn family 15/15. The retained Sakuya-only source had introduced `owner_field_160` and `child_refs` locals that advanced the parent load and changed register/dataflow beginning at body offset `0x0D`. Restoring the same direct owner-field, original-parent, and related-object source order as the other fourteen spawns makes ordinary VC8 reproduce the target; no volatile state, register forcing, assembly, or copied bytes are used. Youmu construction remains separate: current `0x0053B330` has a non-trivial member at `+0x7D0` whose EH cleanup calls `0x00448DE0`, plus four zeroed dwords at `+0x7D4..+0x7E0`, so it is not folded into the simple constructor family without recovering that member type.
@@ -98,7 +101,7 @@ the current call target.
 ## Next bounded work
 
 Continue origin/boundary review so the authored denominator becomes meaningful,
-then expand exact recovery from the 576 accepted functions. Use
+then expand exact recovery from the 592 accepted functions. Use
 `scripts/rank_retained_exact.py --only-unconfigured` to prioritize historical
 exact source that never had an old match unit. Same-size zero non-relocation
 mismatch candidates are especially productive, but ambiguous template/clone
@@ -107,9 +110,9 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 2,735
+The 95% authored-function and authored-byte goals cannot be reported yet: 2,720
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 576/576
+global authored denominator is not established. Do not use the current 592/592
 exact subset as a substitute denominator.
 
 ## Routine checkpoint
@@ -148,12 +151,12 @@ git diff --check
 
 - Added canonical exact `Fighter::try_dispatch_action_202 @ 0x004940E0` and `try_dispatch_action_203 @ 0x004941D0`, 226 bytes each, to the existing `cross-v106a-command-gates-family` unit.
 - Native IDA confirms both tails fetch vslot 2 before incrementing repeat byte `this+0x47F`; the tracked layout-backed `FighterActionRepeatView` reproduces that natural VC8 order without inline assembly or copied bytes.
-- The family replay keeps all six previously accepted command-gate functions exact. The later profile-data/platform wave raises current authored exact status to 576 functions / 86,405 bytes in 198 units; 2,735 origin candidates remain review-pending, so the global 95% denominator is still not established.
+- The family replay keeps all six previously accepted command-gate functions exact. The later profile-data/platform wave was the prior checkpoint at 576 functions / 86,405 bytes in 198 units; the current sprite/background wave supersedes those totals, so the global 95% denominator is still not established.
 - Near-exact follow-ups are documented in `docs/KNOWLEDGE_BASE.md`: `adjust_capped_counter_558`, `GuideOverlay::update`, and `try_group_a_vs_group_b_interaction`.
 
 ### Profile-data/platform bootstrap exact wave (2026-08-23)
 
 - Added nine canonical-exact authored functions / 871 bytes: three distinct `CFileWriter` bodies, `ProfileMenuBaseData::normalize_profile_name`, safe path splitting, clipboard text import, Shift-JIS width classification, DirectInput creation, and keyboard-device setup. Current target vtables, callers, PE IATs/data, and cold VC8 replay independently support every identity.
 - Recovered a missed independent source boundary at `CFileWriter::~CFileWriter @ 0x00407BF0`, raising the corrected ledger to 4,007. Folded writer last-size/seek slots reuse already-counted physical bodies and therefore do not inflate the function numerator.
-- Current authored exact status is 576 functions / 86,405 bytes in 198 units; 2,735 origin candidates remain review-pending, so the complete authored denominator required for the 95% goals is still not established.
+- Current authored exact status is 592 functions / 87,625 bytes in 199 units; 2,720 origin candidates remain review-pending, so the complete authored denominator required for the 95% goals is still not established.
 - Pending neighbors are documented in `docs/KNOWLEDGE_BASE.md`: ProfileMenuBaseData initialize/save scheduling, module-directory store scheduling, DirectInput enumeration's unused-ECX helper ABI, and CRT-only platform lifetime glue. None were forced with assembly, volatile state, fake locals, manual vptr writes, or register coercion.

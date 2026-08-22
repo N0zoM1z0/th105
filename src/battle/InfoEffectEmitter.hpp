@@ -15,6 +15,9 @@ struct EffectEmitterSubobject {
         int flag_a,
         int flag_b,
         int trailing_zero);
+    virtual void slot_10();
+    virtual void slot_14();
+    virtual int dispatch_state(int state);
 };
 
 struct InfoEffectEmitterView {

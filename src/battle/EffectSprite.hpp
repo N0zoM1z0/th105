@@ -52,9 +52,17 @@ class CSpriteEx : public CSpriteBase {
 public:
     virtual ~CSpriteEx() {}
     void reset_transform();
+    void commit_transform();
     void translate(float x, float y, float z);
+    void scale_x(float scale);
     void scale_x(float scale, float pivot);
+    void scale_y(float scale);
     void scale_y(float scale, float pivot);
+    void scale_z(float scale);
+    void scale_z(float scale, float pivot);
+    void rotate_xyz(
+        float x_angle, float y_angle, float z_angle,
+        float pivot_x, float pivot_y, float pivot_z);
     void transform_six(float a, float b, float c, float d, float e, float f);
     void finalize_render();
 

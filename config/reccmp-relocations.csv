@@ -522,3 +522,8 @@ _roster_character_ctor_eh,0x006BBCE3,8b542408,0,Current 1.06a twelve standard ro
 ??_7Aya@th105@@6B@,0x006C62D4,70b76400,0,Current 1.06a Aya constructor publishes RTTI-owned Aya vtable at 0x006C62D4; canonical first entry bytes attested 2026-08-23,address
 ??_7Tenshi@th105@@6B@,0x006C6794,70b76400,0,Current 1.06a Tenshi constructor publishes RTTI-owned Tenshi vtable at 0x006C6794; canonical first entry bytes attested 2026-08-23,address
 ??_7Iku@th105@@6B@,0x006C652C,70b76400,0,Current 1.06a Iku constructor publishes RTTI-owned Iku vtable at 0x006C652C; canonical first entry bytes attested 2026-08-23,address
+__real@407a400000000000,0x006C0EB8,0000000000407a40,0,Current 1.06a BattleBackgroundLayout::place_sprite 0x00427200 divides target-owned double 420.0 by scale_14; target operand and canonical bytes attested 2026-08-23,literal
+__real@4084000000000000,0x006C0EA0,0000000000008440,0,Current 1.06a BattleBackgroundLayout::place_sprite 0x00427200 subtracts edge sum from target-owned double 640.0; target operand and canonical bytes attested 2026-08-23,literal
+__real@40400000,0x006D6ED8,00004040,0,Current 1.06a EventEffectState background render 0x004696E0 loads target-owned float 3.0 before all three CSpriteEx origin-scale calls; target operands and canonical bytes attested 2026-08-23,literal
+__real@c2c80000,0x006C354C,0000c8c2,0,Current 1.06a EventEffectState background render 0x004696E0 loads target-owned float -100.0 for the CSpriteEx Y translation; target operand and canonical bytes attested 2026-08-23,literal
+_background_layout_center_x,0x006C0EC0,0000000000007440,0,Current 1.06a BattleBackgroundLayout::place_sprite 0x00427200 adds target-owned double 320.0 divided by scale_14; target operand and canonical bytes attested 2026-08-23,literal
