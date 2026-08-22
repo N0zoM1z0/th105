@@ -6232,3 +6232,91 @@ rel32_targets = [
   "?start_async_engine_scene_load@th105@@YAEH@Z=0x0043B840",
   "?get_async_scene_load_request@th105@@YAHXZ=0x0043AB90",
 ]
+
+[units.cross-v106a-profile-menu-state-four-five]
+kind = "probe"
+source = "src/ui/ProfileMenuState45.cpp"
+object = "build/match-units/CrossV106a_ProfileMenuState45.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a CProfileMenu state-four/state-five pair. Both natural switch bodies are 371 canonical-exact bytes; VC8 emits a 17-byte same-section switch jump table after each accepted RET boundary. The two states differ only in target-backed prompt suffix and commit member."
+
+[[units.cross-v106a-profile-menu-state-four-five.functions]]
+address = "0x0044CC50"
+symbol_base = "?update_state_four@CProfileMenu@th105@@AAE_NXZ"
+rel32_targets = [
+  "_select_profile_pair@8=0x00440410",
+  "?concatenate_profile_string@@YA?AUProfileStringTemporary@th105@@ABUMenuString28@2@PBD@Z=0x00408C40",
+  "?assign@MenuString28@th105@@QAEAAU12@ABUProfileStringTemporary@2@II@Z=0x004020D0",
+  "??1ProfileStringTemporary@th105@@QAE@XZ=0x00401E00",
+  "?show_profile_message@CProfileMenu@th105@@AAEXPBDH@Z=0x0043F640",
+  "_update_profile_confirmation=0x0043F870",
+  "_update_profile_message=0x0043F6E0",
+  "?commit_state_four@CProfileMenu@th105@@AAE_NXZ=0x0044C380",
+]
+dir32_targets = [
+  "__ehhandler$?update_state_four@CProfileMenu@th105@@AAE_NXZ=__ehhandler$?update_state_four@CProfileMenu@th105@@AAE_NXZ",
+  "___security_cookie=___security_cookie",
+  "_profile_copy_prompt_suffix=_profile_copy_prompt_suffix",
+]
+
+[[units.cross-v106a-profile-menu-state-four-five.functions]]
+address = "0x0044CDE0"
+symbol_base = "?update_state_five@CProfileMenu@th105@@AAE_NXZ"
+rel32_targets = [
+  "_select_profile_pair@8=0x00440410",
+  "?concatenate_profile_string@@YA?AUProfileStringTemporary@th105@@ABUMenuString28@2@PBD@Z=0x00408C40",
+  "?assign@MenuString28@th105@@QAEAAU12@ABUProfileStringTemporary@2@II@Z=0x004020D0",
+  "??1ProfileStringTemporary@th105@@QAE@XZ=0x00401E00",
+  "?show_profile_message@CProfileMenu@th105@@AAEXPBDH@Z=0x0043F640",
+  "_update_profile_confirmation=0x0043F870",
+  "_update_profile_message=0x0043F6E0",
+  "?commit_state_five@CProfileMenu@th105@@AAE_NXZ=0x0044C710",
+]
+dir32_targets = [
+  "__ehhandler$?update_state_five@CProfileMenu@th105@@AAE_NXZ=__ehhandler$?update_state_four@CProfileMenu@th105@@AAE_NXZ",
+  "___security_cookie=___security_cookie",
+  "_profile_delete_prompt_suffix=_profile_delete_prompt_suffix",
+]
+
+[units.cross-v106a-profile-menu-dispatch]
+kind = "probe"
+source = "src/ui/ProfileMenuUpdate.cpp"
+object = "build/match-units/CrossV106a_ProfileMenuDispatch.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a CProfileMenu virtual update dispatcher. The accepted body is 227 bytes; VC8 places a 29-byte alignment/jump-table tail after the RET in the same section. Current dispatcher edges independently identify all seven private state methods."
+
+[[units.cross-v106a-profile-menu-dispatch.functions]]
+address = "0x0044D240"
+symbol_base = "?update@CProfileMenu@th105@@UAE_NXZ"
+rel32_targets = [
+  "?update@GuideOverlay@th105@@QAEXXZ=0x0043F450",
+  "?update_primary@CProfileMenu@th105@@AAE_NXZ=0x0044BCF0",
+  "?update_state_one@CProfileMenu@th105@@AAE_NXZ=0x0044CA80",
+  "?update_state_two@CProfileMenu@th105@@AAE_NXZ=0x0044BEF0",
+  "?update_state_four@CProfileMenu@th105@@AAE_NXZ=0x0044CC50",
+  "?update_state_five@CProfileMenu@th105@@AAE_NXZ=0x0044CDE0",
+  "?update_state_six@CProfileMenu@th105@@AAE_NXZ=0x0044CF70",
+  "?update_state_three@CProfileMenu@th105@@AAE_NXZ=0x0044BFE0",
+]
+
+[units.cross-v106a-profile-confirmation]
+kind = "probe"
+source = "src/ui/ProfileMenuMessage.cpp"
+object = "build/match-units/CrossV106a_ProfileConfirmation.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a profile confirmation helper. Existing g_active_menu_input plus the independently observed loader-zero profile-message UiDesignObject pointer reproduce the 91-byte confirm/cancel gate exactly."
+
+[[units.cross-v106a-profile-confirmation.functions]]
+address = "0x0043F870"
+symbol_base = "_update_profile_confirmation"
+rel32_targets = [
+  "_dispatch_indexed_event=0x0043B1A0",
+  "_is_menu_initial_press=0x0043ABD0",
+]
+dir32_targets = [
+  "_g_active_menu_input=_g_active_menu_input",
+  "?g_profile_message_main@th105@@3PAUUiDesignObject@1@A=?g_profile_message_main@th105@@3PAUUiDesignObject@1@A",
+]

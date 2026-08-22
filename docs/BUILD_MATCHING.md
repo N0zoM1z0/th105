@@ -862,3 +862,33 @@ across success/failure edges and places cross-jumps differently. Keep these two
 review-pending. Do not introduce fake member calls, volatile state, manual
 register variables, or synthetic control flow merely to make the final schedule
 match.
+
+### Profile-menu switch bodies: trust the RET boundary, not the COMDAT tail
+
+`CProfileMenu::update_state_four @ 0x0044CC50` and `update_state_five @
+0x0044CDE0` are each 371-byte authored functions even though pinned VC8 emits a
+388-byte `.text` section for each.  The remaining 17 bytes are the switch jump
+table placed after the accepted `ret` in the same section.  The virtual
+`CProfileMenu::update @ 0x0044D240` shows the same pattern at larger fanout:
+227 authored bytes followed by a 29-byte alignment/jump-table tail in its
+256-byte section.  Canonical comparison must therefore use the reviewed ledger
+function boundary; section-tail size is codegen evidence, not an automatic
+function extent.
+
+The state-four/state-five pair is a useful source-shape reference.  Ordinary
+`switch (substate_344)` source, the existing exact profile string/confirmation/
+message contracts, and real CProfileMenu members reproduce both bodies exactly.
+The only semantic differences are the target-owned Shift-JIS prompt suffixes at
+`0x006C2458/0x006C246C` and the state-specific bool commit members at
+`0x0044C380/0x0044C710`.  Both functions use the same folded current EH handler
+at `0x006B8A58`; the folded handler is codegen evidence, not class identity.
+
+Keep adjacent near-matches pending rather than shaping registers or CFG.
+`update_profile_message @ 0x0043F6E0` has closed UI/input semantics but fresh
+ordinary C++ is 291 bytes versus target 298 because the target keeps integer one
+in a different register lifetime across several absolute UI-pointer loads.
+`CProfileMenu::update_primary @ 0x0044BCF0` has matching switch semantics but
+fresh body is 246 bytes versus target 256 because VC8 folds one true-return
+case into the default epilogue; natural case/default reorderings merely move the
+folded tail.  Do not use register variables, volatile, fake branches, or cloned
+returns to force either function.

@@ -485,3 +485,7 @@ CBattleSV_on_scene_enter,0x00426090,function
 CBattleWatch_on_scene_enter,0x00426770,function
 CBattleWatch_update,0x004266C0,function
 CLoadingWatch_update,0x004268F0,function
+update_profile_confirmation,0x0043F870,function
+CProfileMenu_update_state_four,0x0044CC50,function
+CProfileMenu_update_state_five,0x0044CDE0,function
+CProfileMenu_update,0x0044D240,function

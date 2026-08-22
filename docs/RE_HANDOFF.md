@@ -14,9 +14,9 @@ seeds using current-target-backed structural remapping where appropriate.
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 486 authored functions, 696 classified exclusions, and 2,822 still awaiting origin/boundary review.
-- All 486 confirmed authored functions are source-present and canonical exact:
-  69,992 exact authored bytes across 174 configured VC8 units.
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 490 authored functions, 696 classified exclusions, and 2,818 still awaiting origin/boundary review.
+- All 490 confirmed authored functions are source-present and canonical exact:
+  71,052 exact authored bytes across 177 configured VC8 units.
 
 - Latest battle-scene/network-lifetime wave: 12 new canonical-exact authored functions / 1,075 bytes. Current RTTI closes `CBattle -> IScene`, `CBattleSV/CL/Watch -> CBattle`, and `CLoadingWatch -> IScene`. Exact additions are CBattle ctor/dtor/scalar, three 18-byte derived ctors, base update/exit, folded SV/CL scene-enter, Watch enter/update, and CLoadingWatch update. The two network scene-enter bodies independently prove an 8-byte RAII wait object `{HANDLE handle; DWORD wait_ms}`; the three derived ctors require a separate TU so the 9-byte CBattle base ctor remains out of line. SV/CL update methods remain review-pending on later receiver/cross-jump scheduling and were not forced.
 - Latest render-primitive/scene-consumer wave: 11 new canonical-exact authored functions / 1,055 bytes. RenderModeManager now has target-backed D3D9 SetSamplerState/DrawPrimitiveUP/SetFVF contracts plus exact present/submit/int-rect/set-mode methods. Current RTTI identifies exact CFade, Ending, CLogo, Opening and CLoadingSV render consumers; the shared 43-byte scene delegate is present in multiple scene vtables including CBattleSV.
@@ -81,7 +81,7 @@ the current call target.
 ## Next bounded work
 
 Continue origin/boundary review so the authored denominator becomes meaningful,
-then expand exact recovery from the 486 accepted functions. Use
+then expand exact recovery from the 490 accepted functions. Use
 `scripts/rank_retained_exact.py --only-unconfigured` to prioritize historical
 exact source that never had an old match unit. Same-size zero non-relocation
 mismatch candidates are especially productive, but ambiguous template/clone
@@ -90,9 +90,9 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 2,822
+The 95% authored-function and authored-byte goals cannot be reported yet: 2,818
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 486/486
+global authored denominator is not established. Do not use the current 490/490
 exact subset as a substitute denominator.
 
 ## Routine checkpoint
@@ -107,3 +107,5 @@ python3 scripts/verify-exact-units.py --all
 python3 scripts/ci.py
 git diff --check
 ```
+
+- The ProfileMenu state-machine wave adds four authored canonical-exact functions / 1,060 bytes: state four/state five (`0x0044CC50/0x0044CDE0`, 371 each), virtual update dispatcher (`0x0044D240`, 227), and profile confirmation (`0x0043F870`, 91). Both state bodies use ordinary mirrored C++ plus target-backed prompt suffixes/commit members and one folded EH handler. Their VC8 sections are 388 bytes because 17-byte switch tables follow the RET; the dispatcher is 227 bytes in a 256-byte section with a 29-byte table/alignment tail. Keep function-byte accounting at the reviewed RET boundary. `update_profile_message` (291 vs 298) and `update_primary` (246 vs 256 body) remain pending on register/epilogue allocation; do not force them.

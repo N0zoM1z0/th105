@@ -64,6 +64,8 @@ private:
     bool update_state_four();
     bool update_state_five();
     bool update_state_six();
+    bool commit_state_four();
+    bool commit_state_five();
     signed char commit_profile_change();
     void show_profile_message(const char *message, int mode);
     void render_profile_menu_footer();

@@ -17,7 +17,7 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 486 functions / 69,992 bytes in 174
+- The accepted 1.06a authored set contains 490 functions / 71,052 bytes in 177
   VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 191
   functions / 36,775 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
@@ -313,7 +313,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 2,822
+- Accepted boundaries and authored/library origins for the remaining 2,818
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.
@@ -561,3 +561,27 @@ battle phase block at `0x006FBCB4`.
 - The battle-scene/network-lifetime wave adds twelve authored canonical-exact functions / 1,075 bytes. Current RTTI proves `CBattle -> IScene`, `CBattleSV/CL/Watch -> CBattle`, and `CLoadingWatch -> IScene`. Exact lifetime bodies are `CBattle` ctor/dtor/scalar (9/87/30) plus three 18-byte derived ctors; exact scene methods are base update/exit (72/20), folded SV/CL enter 193, Watch enter/update 230/171, and CLoadingWatch update 209. The SV and CL source symbols independently compare 193/193 against the one linked target body.
 - Two independent network scene-enter functions prove a reusable 8-byte RAII wait object `{HANDLE handle; DWORD wait_ms}`. The second dword is initialized to 16 even though VC8 constant-propagates the actual `WaitForSingleObject` argument; `/GS` plus the real destructor-driven `CloseHandle` EH lifetime reproduces 193/193 and 230/230 without hand-written SEH. The three derived CBattle ctors provide a separate TU-visibility reference: same-TU base-ctor visibility inlines the 9-byte base constructor, while a declaration-only base in the derived-ctor TU naturally gives the target 18-byte bodies.
 - `CBattleWatch::update` and `CLoadingWatch::update` are control/evaluation-order references. The Watch target owns shared return/prepare tails and a normal-path fallthrough into `while (continue_transition())`; LoadingWatch preserves pre-C++17 member-call receiver/argument evaluation ordering and an explicit state-1 branch. SV/CL updates remain pending despite closed semantics because their later receiver/cross-jump scheduling still differs; do not force them with volatile, registers, fake calls, or artificial CFG.
+
+### ProfileMenu state-machine island and post-RET switch tables
+
+The ProfileMenu recovery now includes exact state-four/state-five bodies
+`0x0044CC50/0x0044CDE0` (371 bytes each), virtual dispatcher `0x0044D240`
+(227), and profile confirmation helper `0x0043F870` (91), adding 1,060 authored
+bytes.  Existing exact state-six, ctor, render and scalar-dtor bodies independently
+anchor the class layout.  State four/five are true mirror workflows: they share
+profile-pair selection, temporary-string assignment, confirmation/message gates,
+and differ only in their copy/delete prompt suffix and final bool commit member.
+
+Do not equate a VC8 COMDAT section tail with the authored function boundary.
+Both 371-byte state methods live in 388-byte `.text` sections because their
+17-byte switch tables follow the RET; the 227-byte dispatcher similarly lives in
+a 256-byte section with 29 bytes of local table/alignment data.  The comparator's
+reviewed ledger-size boundary is intentional and still resolves local DIR32 case
+labels in the trailing table for codegen auditing.
+
+The confirmation helper also corrects an ownership temptation: keep
+`g_active_menu_input @ 0x006FD030` as the already-established independent input
+global.  Only the loader-zero message UiDesignObject pointer at `0x006FD02C` is
+newly named.  Address adjacency alone is not enough to collapse these globals
+into one source aggregate, even though neighboring message-state storage is
+layout-compatible with MenuCursorState.

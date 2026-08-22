@@ -484,3 +484,7 @@ CBattleSV_on_scene_enter
 CBattleWatch_on_scene_enter
 CBattleWatch_update
 CLoadingWatch_update
+update_profile_confirmation
+CProfileMenu_update_state_four
+CProfileMenu_update_state_five
+CProfileMenu_update
