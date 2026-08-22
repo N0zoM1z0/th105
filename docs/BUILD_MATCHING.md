@@ -919,3 +919,13 @@ must call `string_56c.c_str()` independently for the `/` and `\` `_mbschr`
 checks.  Caching the pointer removes the target's second SSO selection and makes
 the function 507 rather than 529 bytes.  These are observable alias/lifetime
 semantics, not permission to duplicate dead work.
+
+### Profile UI globals, aggregate lifetimes, and render facades
+
+The Profile UI helper island closes a real global `MenuCursorState` at `0x006FCFFC`: item_count, page_size, input_counter, selection, and window_start occupy +0/+4/+8/+0xC/+0x10. Do not split those field relocations into five invented globals. Source store order still matters: `Menu::initialize_profile_menu @ 0x0043FBF0` is 77/77 only when `ProfileNameList::item_count()` remains live while input_counter/selection/window_start are initialized and item_count is published afterward. Writing item_count immediately shortens the function to 75 bytes.
+
+The same TU reproduces seven Profile render/state facades exactly: message hide 48, initialization 77, overlay 97, footer 83, profile list 215, shared player-slot render 103, and tile render 142. `render_menu_list` gives a useful conversion rule: target converts the unsigned row index to `float` before that value participates in double-precision 16.0 spacing math. Direct unsigned-to-double conversion selects the wrong qword `2^32` correction. Recover the conversion stage from target literal width/FPU flow rather than changing the whole TU floating-point profile.
+
+`Menu::render_profile_player_slot @ 0x0043FAF0` is a caller-proven unused-this member: callers place their Menu-derived receiver in ECX, while the body uses the player argument and shared UI globals. Keep the member ABI even though the body ignores ECX. `Menu::render_profile_tiles @ 0x0043FB60` similarly reuses the already-established shared byte at `0x006FA88E`; do not manufacture a duplicate global simply because the older semantic name is battle-oriented.
+
+`CProfileMenu::commit_state_one @ 0x0044C110` extends the exact ProfileMenu file-commit TU to 621 bytes. The target requires `/GS`, a real local `ProfileMenuBaseData` lifetime, initialization member `0x00432050`, save-to-profile member `0x004317A0`, and the same caller-TU `MenuString28` temporary-destructor visibility used by the other file commits. Do not flatten that local object into raw storage or hand-code EH cleanup.

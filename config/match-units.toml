@@ -6396,3 +6396,143 @@ dir32_targets = [
   "_profile_rename_success_text=_profile_rename_success_text",
   "_profile_rename_failure_text=_profile_rename_failure_text",
 ]
+
+[[units.cross-v106a-profile-menu-file-commits.functions]]
+address = "0x0044C110"
+symbol_base = "commit_state_one"
+rel32_targets = [
+  "__mbschr=0x0068A6A9",
+  "??0ProfileMenuBaseData@th105@@QAE@XZ=0x0042D260",
+  "ProfileMenuBaseDataCommitView_initialize_defaults=0x00432050",
+  "ProfileMenuBaseDataCommitView_save_to_profile=0x004317A0",
+  "?concatenate_profile_commit_string@th105@@YA?AUMenuString28@1@ABU21@PBD@Z=0x00408C40",
+  "?assign@MenuString28@th105@@QAEAAU12@ABU12@II@Z=0x004020D0",
+  "??3@YAXPAX@Z=0x006898EA",
+  "operator_delete=0x006898EA",
+  "ProfileMenuMessageView_show_profile_result=0x0043F810",
+  "?initialize_profile_menu@Menu@th105@@IAEXXZ=0x0043FBF0",
+  "??1ProfileMenuBaseData@th105@@QAE@XZ=0x0042D320",
+  "@__security_check_cookie@4=0x00689D25",
+  "__security_check_cookie=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?commit_state_one@CProfileMenu@th105@@AAE_NXZ=__ehhandler$?commit_state_one@CProfileMenu@th105@@AAE_NXZ",
+  "___security_cookie=___security_cookie",
+  "_profile_commit_failure_suffix=_profile_commit_failure_suffix",
+  "_profile_commit_success_suffix=_profile_commit_success_suffix",
+]
+
+[units.cross-v106a-profile-ui-infrastructure]
+kind = "probe"
+source = "src/ui/ProfileUiInfrastructure.cpp"
+object = "build/match-units/CrossV106a_ProfileUiInfrastructure.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current Profile UI infrastructure recovered as one ordinary VC8 TU: message visibility, global MenuCursorState initialization, overlay/footer rendering, profile list rendering, shared player-slot rendering, and tile rendering. Current globals, CSprite/CTile receivers, row/count types, and render callees are independently target-backed."
+
+[[units.cross-v106a-profile-ui-infrastructure.functions]]
+address = "0x0043F8D0"
+symbol_base = "hide_profile_message"
+dir32_targets = [
+  "?g_profile_message_main@th105@@3PAUUiDesignObject@1@A=?g_profile_message_main@th105@@3PAUUiDesignObject@1@A",
+  "?g_profile_message_choice_a@th105@@3PAUUiDesignObject@1@A=?g_profile_message_choice_a@th105@@3PAUUiDesignObject@1@A",
+  "?g_profile_message_choice_b@th105@@3PAUUiDesignObject@1@A=?g_profile_message_choice_b@th105@@3PAUUiDesignObject@1@A",
+  "?g_profile_message_choice_c@th105@@3PAUUiDesignObject@1@A=?g_profile_message_choice_c@th105@@3PAUUiDesignObject@1@A",
+  "?g_profile_message_choice_d@th105@@3PAUUiDesignObject@1@A=?g_profile_message_choice_d@th105@@3PAUUiDesignObject@1@A",
+]
+
+[[units.cross-v106a-profile-ui-infrastructure.functions]]
+address = "0x0043FBF0"
+symbol_base = "Menu_initialize_profile_menu"
+rel32_targets = [
+  "?reset@ProfileNameList@th105@@QAEXXZ=0x004313F0",
+  "?item_count@ProfileNameList@th105@@QAEHXZ=0x004395E0",
+]
+dir32_targets = [
+  "_g_profile_name_list=_g_profile_name_list",
+  "_g_active_menu_input=_g_active_menu_input",
+  "?g_profile_global_cursor@th105@@3UMenuCursorState@1@A=?g_profile_global_cursor@th105@@3UMenuCursorState@1@A",
+]
+
+[[units.cross-v106a-profile-ui-infrastructure.functions]]
+address = "0x0043F900"
+symbol_base = "draw_profile_overlay"
+rel32_targets = [
+  "?draw_rect@RenderModeManager@th105@@QAEHMMMMIE@Z=0x004012A0",
+  "?set_color@ProfileRenderListView@th105@@QAEXI@Z=0x0040BFE0",
+  "?render@ProfileRenderListView@th105@@QAEXXZ=0x0040BC80",
+]
+dir32_targets = [
+  "__real@43f00000=__real@43f00000",
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+  "__real@44200000=__real@44200000",
+  "?g_profile_overlay_list@th105@@3UProfileRenderListView@1@A=?g_profile_overlay_list@th105@@3UProfileRenderListView@1@A",
+]
+
+[[units.cross-v106a-profile-ui-infrastructure.functions]]
+address = "0x0043F970"
+symbol_base = "CProfileMenu_render_profile_menu_footer"
+rel32_targets = [
+  "?render@ProfileRenderListView@th105@@QAEXXZ=0x0040BC80",
+  "?render@ProfileSpriteView@th105@@QAEXMM@Z=0x00406BE0",
+]
+dir32_targets = [
+  "?g_profile_message_main@th105@@3PAUUiDesignObject@1@A=?g_profile_message_main@th105@@3PAUUiDesignObject@1@A",
+  "?g_profile_footer_background@th105@@3UProfileRenderListView@1@A=?g_profile_footer_background@th105@@3UProfileRenderListView@1@A",
+  "__real@4024000000000000=__real@4024000000000000",
+  "?g_profile_message_sprite@th105@@3UProfileSpriteView@1@A=?g_profile_message_sprite@th105@@3UProfileSpriteView@1@A",
+  "__real@4010000000000000=__real@4010000000000000",
+]
+
+[[units.cross-v106a-profile-ui-infrastructure.functions]]
+address = "0x0043FA10"
+symbol_base = "_render_menu_list@4"
+rel32_targets = [
+  "?render@ProfileSpriteView@th105@@QAEXMM@Z=0x00406BE0",
+  "?render@MenuCursorSpriteView@th105@@QAEXMM@Z=0x00406BE0",
+  "?render_item@ProfileNameList@th105@@QAEXMMI@Z=0x00439A20",
+]
+dir32_targets = [
+  "__real@42b00000=__real@42b00000",
+  "?g_profile_character_background@th105@@3UProfileSpriteView@1@A=?g_profile_character_background@th105@@3UProfileSpriteView@1@A",
+  "__real@43b00000=__real@43b00000",
+  "?g_profile_global_cursor@th105@@3UMenuCursorState@1@A=?g_profile_global_cursor@th105@@3UMenuCursorState@1@A",
+  "__real@3f000000=__real@3f000000",
+  "?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A+0x88=g_menu_cursor_sprite_scale_fields",
+  "?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A+0x8C=g_menu_cursor_sprite_scale_fields",
+  "?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A=?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A",
+  "__real@4030000000000000=__real@4030000000000000",
+  "__real@4060000000000000=__real@4060000000000000",
+  "__real@43c20000=__real@43c20000",
+  "__real@4f800000=__real@4f800000",
+  "_g_profile_name_list=_g_profile_name_list",
+  "__real@43c40000=__real@43c40000",
+]
+
+[[units.cross-v106a-profile-ui-infrastructure.functions]]
+address = "0x0043FAF0"
+symbol_base = "Menu_render_profile_player_slot"
+rel32_targets = [
+  "?render_offset@ProfileRenderListView@th105@@QAEXMM@Z=0x0040BE20",
+]
+dir32_targets = [
+  "?g_profile_player_list@th105@@3UProfileRenderListView@1@A=?g_profile_player_list@th105@@3UProfileRenderListView@1@A",
+  "?g_profile_player_anchor@th105@@3PAUUiDesignObject@1@A=?g_profile_player_anchor@th105@@3PAUUiDesignObject@1@A",
+  "__real@4024000000000000=__real@4024000000000000",
+  "__real@4056000000000000=__real@4056000000000000",
+]
+
+[[units.cross-v106a-profile-ui-infrastructure.functions]]
+address = "0x0043FB60"
+symbol_base = "Menu_render_profile_tiles"
+rel32_targets = [
+  "?render@ProfileTileView@th105@@QAEXMMHH@Z=0x004099F0",
+]
+dir32_targets = [
+  "?g_round_counter@th105@@3EA=?g_round_counter@th105@@3EA",
+  "__real@4030000000000000=__real@4030000000000000",
+  "__real@405f400000000000=__real@405f400000000000",
+  "?g_profile_tile@th105@@3UProfileTileView@1@A=?g_profile_tile@th105@@3UProfileTileView@1@A",
+  "__real@4070400000000000=__real@4070400000000000",
+  "__real@404e000000000000=__real@404e000000000000",
+]

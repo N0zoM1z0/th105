@@ -4,6 +4,8 @@ extern "C" int g_scene_mode;
 
 namespace th105 {
 
+struct PlayerSlotRecord;
+
 class Menu {
 public:
     Menu() { g_scene_mode = 22; }
@@ -16,6 +18,9 @@ public:
 protected:
     void initialize_profile_menu();
     void render_cursor(float x, float y, float scale);
+    void render_profile_player_slot(
+        PlayerSlotRecord *player, float x, float y);
+    void render_profile_tiles();
 };
 
 typedef char Menu_size_must_be_0x04[sizeof(Menu) == 0x04 ? 1 : -1];

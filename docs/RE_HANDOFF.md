@@ -14,9 +14,9 @@ seeds using current-target-backed structural remapping where appropriate.
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 493 authored functions, 696 classified exclusions, and 2,815 still awaiting origin/boundary review.
-- All 493 confirmed authored functions are source-present and canonical exact:
-  72,813 exact authored bytes across 178 configured VC8 units.
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,004: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0` plus source-level fighter phase entries `0x00464630` and `0x00464780`, all of which IDA had attached as tail chunks instead of standalone entries. Current reviewed state is 501 authored functions, 696 classified exclusions, and 2,807 still awaiting origin/boundary review.
+- All 501 confirmed authored functions are source-present and canonical exact:
+  74,199 exact authored bytes across 179 configured VC8 units.
 
 - Latest battle-scene/network-lifetime wave: 12 new canonical-exact authored functions / 1,075 bytes. Current RTTI closes `CBattle -> IScene`, `CBattleSV/CL/Watch -> CBattle`, and `CLoadingWatch -> IScene`. Exact additions are CBattle ctor/dtor/scalar, three 18-byte derived ctors, base update/exit, folded SV/CL scene-enter, Watch enter/update, and CLoadingWatch update. The two network scene-enter bodies independently prove an 8-byte RAII wait object `{HANDLE handle; DWORD wait_ms}`; the three derived ctors require a separate TU so the 9-byte CBattle base ctor remains out of line. SV/CL update methods remain review-pending on later receiver/cross-jump scheduling and were not forced.
 - Latest render-primitive/scene-consumer wave: 11 new canonical-exact authored functions / 1,055 bytes. RenderModeManager now has target-backed D3D9 SetSamplerState/DrawPrimitiveUP/SetFVF contracts plus exact present/submit/int-rect/set-mode methods. Current RTTI identifies exact CFade, Ending, CLogo, Opening and CLoadingSV render consumers; the shared 43-byte scene delegate is present in multiple scene vtables including CBattleSV.
@@ -81,7 +81,7 @@ the current call target.
 ## Next bounded work
 
 Continue origin/boundary review so the authored denominator becomes meaningful,
-then expand exact recovery from the 493 accepted functions. Use
+then expand exact recovery from the 501 accepted functions. Use
 `scripts/rank_retained_exact.py --only-unconfigured` to prioritize historical
 exact source that never had an old match unit. Same-size zero non-relocation
 mismatch candidates are especially productive, but ambiguous template/clone
@@ -90,9 +90,9 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 2,815
+The 95% authored-function and authored-byte goals cannot be reported yet: 2,807
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 493/493
+global authored denominator is not established. Do not use the current 501/501
 exact subset as a substitute denominator.
 
 ## Routine checkpoint
@@ -111,3 +111,5 @@ git diff --check
 - The ProfileMenu state-machine wave adds four authored canonical-exact functions / 1,060 bytes: state four/state five (`0x0044CC50/0x0044CDE0`, 371 each), virtual update dispatcher (`0x0044D240`, 227), and profile confirmation (`0x0043F870`, 91). Both state bodies use ordinary mirrored C++ plus target-backed prompt suffixes/commit members and one folded EH handler. Their VC8 sections are 388 bytes because 17-byte switch tables follow the RET; the dispatcher is 227 bytes in a 256-byte section with a 29-byte table/alignment tail. Keep function-byte accounting at the reviewed RET boundary. `update_profile_message` (291 vs 298) and `update_primary` (246 vs 256 body) remain pending on register/epilogue allocation; do not force them.
 
 - The ProfileMenu file-commit wave adds three authored canonical-exact functions / 1,761 bytes: copy-with-collision-retry `commit_state_four @ 0x0044C380` (908), delete `commit_state_five @ 0x0044C710` (324), and rename `commit_profile_change @ 0x0044C860` (529). Current helper body `0x00429970` proves its hidden return is the 0x1C `MenuString28` SSO layout; `0x00408C40` initializes the same layout, while this caller TU inlines the temporary destructor and the already-exact state-six TU intentionally uses an out-of-line temporary-dtor view. Copy retry guards the complete destination path length, not only the stem. Rename must evaluate `string_56c.c_str()` independently for `/` and `\` checks; caching the pointer shortens the target by 22 bytes. Win32 CopyFileA/DeleteFileA/MoveFileA IATs and all target-owned prompt/result strings are canonical-byte attested.
+
+- The Profile UI infrastructure wave adds eight authored canonical-exact functions / 1,386 bytes: `hide_profile_message @ 0x0043F8D0` (48), `Menu::initialize_profile_menu @ 0x0043FBF0` (77), `draw_profile_overlay @ 0x0043F900` (97), `CProfileMenu::render_profile_menu_footer @ 0x0043F970` (83), `render_menu_list @ 0x0043FA10` (215), `Menu::render_profile_player_slot @ 0x0043FAF0` (103), `Menu::render_profile_tiles @ 0x0043FB60` (142), and `CProfileMenu::commit_state_one @ 0x0044C110` (621). The UI TU proves a real global `MenuCursorState @ 0x006FCFFC`; keep the `ProfileNameList::item_count()` result live until input/cursor/window fields are initialized, then publish item_count. `render_menu_list` requires unsigned-index-to-float conversion before double spacing math. `commit_state_one` stays in the existing `/GS` file-commit TU and uses a real local `ProfileMenuBaseData` lifetime plus the same caller-specific `MenuString28` hidden-return/destructor visibility. Adjacent `CProfileKeyConfig` update/scan/render and `CProfileCharacterSelect` render probes remain scheduler/CSE/x87 blockers and were not forced.

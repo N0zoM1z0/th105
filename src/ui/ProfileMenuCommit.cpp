@@ -17,6 +17,8 @@ extern "C" const char profile_delete_success_text[];
 extern "C" const char profile_delete_failure_text[];
 extern "C" const char profile_rename_success_text[];
 extern "C" const char profile_rename_failure_text[];
+extern "C" const char profile_commit_failure_suffix[];
+extern "C" const char profile_commit_success_suffix[];
 
 namespace th105 {
 
@@ -48,7 +50,48 @@ struct ProfileMenuMessageView {
     void show_profile_result(const char *text);
 };
 
+struct ProfileMenuBaseDataCommitView {
+    void initialize_defaults();
+    bool save_to_profile(const char *path);
+};
+
 } // namespace
+
+bool CProfileMenu::commit_state_one()
+{
+    MenuString28 message;
+
+    if (_mbschr(
+            reinterpret_cast<const unsigned char *>(string_56c.c_str()), '/') ||
+        _mbschr(
+            reinterpret_cast<const unsigned char *>(string_56c.c_str()), '\\')) {
+        message.assign(concatenate_profile_commit_string(
+            string_56c, profile_commit_failure_suffix));
+        reinterpret_cast<ProfileMenuMessageView *>(this)
+            ->show_profile_result(message.c_str());
+        return false;
+    }
+
+    ProfileMenuBaseData data;
+    reinterpret_cast<ProfileMenuBaseDataCommitView *>(&data)
+        ->initialize_defaults();
+
+    if (reinterpret_cast<ProfileMenuBaseDataCommitView *>(&data)
+            ->save_to_profile(string_550.c_str())) {
+        message.assign(concatenate_profile_commit_string(
+            string_56c, profile_commit_success_suffix));
+        reinterpret_cast<ProfileMenuMessageView *>(this)
+            ->show_profile_result(message.c_str());
+        initialize_profile_menu();
+        return true;
+    }
+
+    message.assign(concatenate_profile_commit_string(
+        string_56c, profile_commit_failure_suffix));
+    reinterpret_cast<ProfileMenuMessageView *>(this)
+        ->show_profile_result(message.c_str());
+    return false;
+}
 
 bool CProfileMenu::commit_state_four()
 {

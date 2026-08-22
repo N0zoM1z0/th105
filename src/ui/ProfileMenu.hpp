@@ -46,6 +46,9 @@ struct ProfileMenuController {
 };
 
 struct ProfileNameList {
+    void reset();
+    int item_count();
+    void render_item(float x, float y, unsigned int index);
     bool contains(const MenuString28 *profile) const;
 };
 
@@ -64,6 +67,7 @@ private:
     bool update_state_four();
     bool update_state_five();
     bool update_state_six();
+    bool commit_state_one();
     bool commit_state_four();
     bool commit_state_five();
     signed char commit_profile_change();
