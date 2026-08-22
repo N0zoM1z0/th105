@@ -5,13 +5,9 @@
 
 namespace th105 {
 
-namespace {
-
 struct FighterSequenceEffectView {
     void finalize_4643f0();
 };
-
-} // namespace
 
 void Fighter::finalize_sequence_entry_45bb10(int outcome)
 {

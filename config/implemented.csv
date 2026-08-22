@@ -560,3 +560,17 @@ read_clipboard_ansi
 ModulePathTextView_extra_bytes
 initialize_direct_input
 initialize_keyboard_device
+Reimu_construct
+Marisa_construct
+Sakuya_construct
+Patchouli_construct
+Remilia_construct
+Yuyuko_construct
+Yukari_construct
+Suika_construct
+Udonge_construct
+Komachi_construct
+Aya_construct
+Tenshi_construct
+Iku_construct
+SakuyaObjectManager_spawn_object

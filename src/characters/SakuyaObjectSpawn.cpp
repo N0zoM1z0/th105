@@ -30,16 +30,13 @@ SakuyaObject *SakuyaObjectManager::spawn_object(
     object->owner_348 = owner;
     object->state_158.owner_010 = owner;
     object->owner_field_000 = owner_field(owner, 0x130);
-    unsigned const owner_field_160 = owner_field(owner, 0x160);
+    object->state_158.owner_field_008 = owner_field(owner, 0x160);
 
     if (parent != 0) {
-        std::deque<SakuyaObject *> *child_refs = &parent->child_refs_350;
-        object->state_158.owner_field_008 = owner_field_160;
-        object->parent_34c = parent;
+        SakuyaObject *original_parent = parent;
+        object->parent_34c = original_parent;
         parent = object;
-        child_refs->push_back(parent);
-    } else {
-        object->state_158.owner_field_008 = owner_field_160;
+        original_parent->child_refs_350.push_back(parent);
     }
 
     if (copied_word_count > 0) {
@@ -53,10 +50,10 @@ SakuyaObject *SakuyaObjectManager::spawn_object(
     }
 
     object->state_158.related_014 = related;
+    object->state_158.related_018 = related->state_158.related_018;
     object->effect_000.object_x_0e8 = x;
     object->effect_000.object_facing_100 = facing;
     object->effect_000.object_y_0ec = y;
-    object->state_158.related_018 = related->state_158.related_018;
 
     object->field_33c = field_33c;
     object->set_action(action_id);

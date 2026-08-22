@@ -561,3 +561,17 @@ read_clipboard_ansi,0x0040D160,function
 ModulePathTextView_extra_bytes,0x0040D1D0,function
 initialize_direct_input,0x0040D360,function
 initialize_keyboard_device,0x0040D560,function
+Reimu_construct,0x00493A40,function
+Marisa_construct,0x004B9F20,function
+Sakuya_construct,0x004DF430,function
+Patchouli_construct,0x0051EEE0,function
+Remilia_construct,0x00555FF0,function
+Yuyuko_construct,0x0056DE30,function
+Yukari_construct,0x0058C0F0,function
+Suika_construct,0x005AEC80,function
+Udonge_construct,0x005D2BF0,function
+Komachi_construct,0x005F7A30,function
+Aya_construct,0x006185E0,function
+Tenshi_construct,0x0064B6F0,function
+Iku_construct,0x006312B0,function
+SakuyaObjectManager_spawn_object,0x004DF2C0,function

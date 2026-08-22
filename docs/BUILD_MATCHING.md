@@ -232,13 +232,7 @@ object-pool allocator and observing the concrete vtable written after
 | `0x00631140` | `0x00630CA0` | `IkuObject` |
 | `0x0064B580` | `0x0064B070` | `TenshiObject` |
 
-That evidence safely fans the retained shared `RosterObjectSpawns.cpp` source
-out to fourteen current functions, all of which fresh-compile to 237/237 exact.
-Sakuya is deliberately excluded from that exact wave: its current identity is
-proved by `??_7SakuyaObject@@6B@`, but the separate
-`SakuyaObjectSpawn.cpp` fresh object still mismatches at function offset `0x0D`.
-Identity, source presence, and exactness remain separate states even inside a
-clone family.
+That evidence safely fans the retained shared `RosterObjectSpawns.cpp` source out to fourteen current functions, all of which fresh-compile to 237/237 exact. Sakuya is now the fifteenth exact member through its separate `SakuyaObjectSpawn.cpp`: the old source introduced `owner_field_160` and `child_refs` locals, which moved the parent-argument load ahead of fixing the newly acquired object in ESI and caused the first mismatch at function offset `0x0D`. Restoring direct `owner_field(owner,0x160)`, `original_parent->child_refs_350.push_back(parent)`, and the common related-object field order preserves the same game semantics while making ordinary VC8 reproduce all 237 bytes. Class identity still comes from the current Sakuya allocator/vtable chain; zero-difference clone shape by itself is not enough.
 
 Template-family filtering must happen before clone promotion. The current 103-byte
 `TObjectManagerBase<..., ...>` constructor signature appears in twenty structural
@@ -478,6 +472,8 @@ Small retained absolute-address getters are best migrated as semantic globals, n
 
 ### Lifecycle roots and class-owned template families
 
+The same narrow-lifetime method closes a larger constructor family. Twelve standard roster fighters -- Reimu, Marisa, Sakuya, Patchouli, Remilia, Yuyuko, Yukari, Suika, Udonge, Komachi, Aya, and Tenshi -- each compile to the current 126-byte constructor from only `Character(init_arg)`, the derived class vptr, `new 0x68` class-specific ObjectManager construction, and publication at `+0x658`. Iku adds the current-backed `field_138 = -6.0f` assignment and is 138/138, matching the already-exact Alice pattern. The thirteen new constructors all push a linker-folded handler at `0x006BBCE3`, but acceptance maps every current RTTI-owned class vtable and every already-exact 123-byte ObjectManager ctor separately. Do not use the shared EH address as class identity. Youmu is not part of this simple family: current `0x0053B330` has a non-trivial member at `+0x7D0`, its EH cleanup reaches `0x00448DE0`, and `+0x7D4..+0x7E0` are explicitly zeroed; recover that member before attempting the 159-byte ctor.
+
 A header-only declaration can still seed exact source if current target evidence first fixes the C++ lifetime and the touched layout. `Alice_construct @ 0x004FAC40` was reconstructed with a narrow `Alice : Character` view containing only the proven `+0x138` float and `+0x658` manager pointer. The source performs ordinary base construction, assigns `-6.0f`, and allocates `new AliceObjectManager(this)`. VC8 naturally emits the target `/GS`, EH unwind, derived-vptr publication, allocation cleanup, and 138-byte body. Use this pattern to open large lifecycle/event families; do not paste decompiler output or invent unused fields.
 
 For template clone families, byte equality is not class identity. The fifteen `CharacterObjectManager<Fighter,FighterObject>` constructors are accepted because each current specialization writes its own target-backed primary/secondary vtables, calls its class-specific exact `TObjectManagerBase` ctor, stores the fighter owner at `+0x64`, and preallocates 256 objects. Each primary vtable's first slot also names the corresponding 30-byte scalar-deleting destructor. One natural template TU then compares all 30 functions exactly. Reuse vtable ownership to batch a family only after every specialization's current address is independently tied to its class.
@@ -701,6 +697,10 @@ To discover an implicit destructor in a probe, a direct destructor call may be f
 ### A same-size register permutation is still a blocker
 
 Several InfoManager/effect functions now have complete current semantics and natural VC8 source but remain non-exact solely because standalone allocation differs: `0x0046E5A0` is the same 168-byte length with callee-saved register permutation, `0x0046F3D0` is the same 117-byte length with a different persistent `this` register, and `0x0046EB90/0x0046EF40/0x0046F370` differ by one spill or nearby scheduling choice. Do not use volatile locals, manual register variables, fake lifetime extensions, inline assembly, or vtable arithmetic to force these. Keep the semantic recovery as a handoff and wait for stronger TU/LTCG/layout evidence. The roster `acquire_and_link_object` 94-byte and `preallocate_object_pool` 117-byte families show the same rule: source and target lengths/semantics agree, but target keeps `this` in EDI/EBP while standalone VC8 selects ESI/EBX. The fifteen 519-byte pool-acquire candidates are a different but equally forbidden liveness blocker: natural source is 514 bytes because fresh VC8 reuses EBX for the checked-list iterator instead of preserving the handle-output pointer across erase. Multiple truthful source formulations retain 514 bytes, so leave the family pending.
+
+The current roster preallocation/release research tightens that blocker further. Compiling the actual `TObjectManagerBase<T,CharacterObject>::preallocate_object_pool` specialization rather than the retained facade still emits 117 bytes with the same EBP/EBX permutation. Target-shaped `if + do/while`, block-local list pointers/references, and a named manager receiver do not recover target allocation; pointer/reference variants instead grow to 128/133 bytes. `release_all_tracked_objects @ 0x0056DA90` is likewise 122/122 with only target EAX versus fresh EDX for the object handle-token load. Treat these as TU/LTCG allocation evidence and stop source-spelling searches until new translation-unit evidence appears.
+
+SelectScenario and SpellRuntime show the same stopping rule on control-flow placement. Natural `CSelectScenario::update_selection` variants settle at 406/411/415 bytes around the 414-byte target depending on equivalent branch layout; target keeps the cold subtract block after the main return. SpellRuntime current evidence proves the sequence slot owns a real 0x94 `CSprite` member (`??_7CSprite@@6B@ @ 0x006C0668`) and that `prepare_next_spell_sequence_entry` stores the post-enqueue live count, but truthful member-lifetime source makes standalone VC8 zero-propagate the 198-byte advance path and produces 241/284-byte prepare variants rather than the 259-byte target. Preserve these semantic discoveries, but do not introduce gotos, manual vptr writes, fake liveness, or register constraints to imitate the original optimizer.
 
 ### Prefer qualified base calls for proven secondary-base receivers
 
@@ -1037,3 +1037,17 @@ Source branch topology can be recovered from target control flow without resorti
 COM-heavy platform code does not require inline assembly or hand-written machine bytes. For `initialize_direct_input @ 0x0040D360` and `initialize_keyboard_device @ 0x0040D560`, define narrow structs containing only the current observed vtable slots as typed `__stdcall` function pointers. Ordinary member-pointer dereference then reproduces the target `CoCreateInstance`, `Initialize`, `CreateDevice`, `SetDataFormat`, `SetCooperativeLevel`, and `Acquire` calls exactly (138 and 188 bytes). Treat the vtable indices, current caller chain, and actual PE constants as independent evidence. Read GUIDs, format descriptors, IAT cells, and localized error strings from the canonical PE; an initially plausible remembered DirectInput constant was wrong until target bytes corrected it.
 
 Stop when the remaining difference is not explained by a truthful source distinction. Module-directory init `0x0040D020` is 137/137 but differs only because standalone VC8 moves a real global context store across already-prepared GetModuleFileName arguments. DirectInput enumeration `0x0040D620` reaches the observed 80-byte temporary but calls helper `0x0040DE50` with an unresolved unused ECX plus EDX/stack arguments. Do not add volatile dependencies, fake locals, invented prototypes, inline assembly, or copied opcodes to close either gap.
+
+### Keep durable relocation identities out of anonymous namespaces
+
+A tracked match unit must survive a clean recompile, not only reuse of an old
+object. `Fighter::finalize_sequence_entry_45bb10 @ 0x0045D110` exposed a stale
+manifest mapping to an anonymous-namespace member whose decorated name contained
+compiler hash `?A0x0fa9c17f`; a clean compile of unchanged semantics emitted a
+different private hash and the comparator correctly failed closed before
+comparing bytes. The callee is current
+`FighterSequenceEffect_reset_and_set_color @ 0x004652B0`, independently visible
+in target code. Moving the narrow ABI-only `FighterSequenceEffectView`
+declaration into namespace `th105` produces a stable decorated symbol and keeps
+the function 154/154 exact. Do not use anonymous-namespace hash fragments as
+durable `rel32_targets` keys when the facade is meant to name an external target.

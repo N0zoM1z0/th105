@@ -700,7 +700,7 @@ rel32_targets = [
   "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
   "?get_score_data@th105@@YAPAUScoreData@1@XZ=0x0043AF20",
   "?record_sequence_result_42c060@ScoreData@th105@@QAEXHHH@Z=0x0042CF70",
-  "?finalize_4643f0@FighterSequenceEffectView@?A0x0fa9c17f@th105@@QAEXXZ=0x004652B0",
+  "?finalize_4643f0@FighterSequenceEffectView@th105@@QAEXXZ=0x004652B0",
   "?invoke_indexed_record@PlayerIndexedCallbackView@th105@@QAEXHH@Z=0x00432DE0",
 ]
 dir32_targets = ["?g_info_manager@th105@@3PAUInfoManager@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A"]
@@ -7462,4 +7462,213 @@ dir32_targets = [
   "?direct_input_cooperative_error@th105@@3QBDB=_direct_input_cooperative_error",
   "?direct_input_error_title@th105@@3QBDB=_direct_input_error_title",
   "__imp__MessageBoxA@16=__imp__MessageBoxA@16",
+]
+
+[units.cross-v106a-roster-character-constructors]
+kind = "probe"
+source = "src/characters/RosterCharacterConstructors.cpp"
+object = "build/match-units/CrossV106a_RosterCharacterConstructors.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a roster-character constructor family. Twelve standard 126-byte derived constructors share Character(init_arg), class-vptr publication, 0x68-byte ObjectManager allocation/construction and +0x658 ownership. Iku is the same lifetime plus current-backed -6.0f at +0x138. Current class vtables, exact manager constructors, shared Character ctor and folded EH handler disambiguate every specialization."
+
+[[units.cross-v106a-roster-character-constructors.functions]]
+address = "0x00493A40"
+symbol_base = "??0Reimu@th105@@QAE@H@Z"
+rel32_targets = [
+  "??0Character@th105@@QAE@H@Z=0x00462AB0",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0ReimuObjectManager@th105@@QAE@PAVReimu@1@@Z=0x00493750",
+]
+dir32_targets = [
+  "__ehhandler$??0Reimu@th105@@QAE@H@Z=_roster_character_ctor_eh",
+  "___security_cookie=___security_cookie",
+  "??_7Reimu@th105@@6B@=??_7Reimu@th105@@6B@",
+]
+
+[[units.cross-v106a-roster-character-constructors.functions]]
+address = "0x004B9F20"
+symbol_base = "??0Marisa@th105@@QAE@H@Z"
+rel32_targets = [
+  "??0Character@th105@@QAE@H@Z=0x00462AB0",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0MarisaObjectManager@th105@@QAE@PAVMarisa@1@@Z=0x004B9D10",
+]
+dir32_targets = [
+  "__ehhandler$??0Marisa@th105@@QAE@H@Z=_roster_character_ctor_eh",
+  "___security_cookie=___security_cookie",
+  "??_7Marisa@th105@@6B@=??_7Marisa@th105@@6B@",
+]
+
+[[units.cross-v106a-roster-character-constructors.functions]]
+address = "0x004DF430"
+symbol_base = "??0Sakuya@th105@@QAE@H@Z"
+rel32_targets = [
+  "??0Character@th105@@QAE@H@Z=0x00462AB0",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0SakuyaObjectManager@th105@@QAE@PAVSakuya@1@@Z=0x004DF230",
+]
+dir32_targets = [
+  "__ehhandler$??0Sakuya@th105@@QAE@H@Z=_roster_character_ctor_eh",
+  "___security_cookie=___security_cookie",
+  "??_7Sakuya@th105@@6B@=??_7Sakuya@th105@@6B@",
+]
+
+[[units.cross-v106a-roster-character-constructors.functions]]
+address = "0x0051EEE0"
+symbol_base = "??0Patchouli@th105@@QAE@H@Z"
+rel32_targets = [
+  "??0Character@th105@@QAE@H@Z=0x00462AB0",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0PatchouliObjectManager@th105@@QAE@PAVPatchouli@1@@Z=0x0051ECE0",
+]
+dir32_targets = [
+  "__ehhandler$??0Patchouli@th105@@QAE@H@Z=_roster_character_ctor_eh",
+  "___security_cookie=___security_cookie",
+  "??_7Patchouli@th105@@6B@=??_7Patchouli@th105@@6B@",
+]
+
+[[units.cross-v106a-roster-character-constructors.functions]]
+address = "0x00555FF0"
+symbol_base = "??0Remilia@th105@@QAE@H@Z"
+rel32_targets = [
+  "??0Character@th105@@QAE@H@Z=0x00462AB0",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0RemiliaObjectManager@th105@@QAE@PAVRemilia@1@@Z=0x00555DF0",
+]
+dir32_targets = [
+  "__ehhandler$??0Remilia@th105@@QAE@H@Z=_roster_character_ctor_eh",
+  "___security_cookie=___security_cookie",
+  "??_7Remilia@th105@@6B@=??_7Remilia@th105@@6B@",
+]
+
+[[units.cross-v106a-roster-character-constructors.functions]]
+address = "0x0056DE30"
+symbol_base = "??0Yuyuko@th105@@QAE@H@Z"
+rel32_targets = [
+  "??0Character@th105@@QAE@H@Z=0x00462AB0",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0YuyukoObjectManager@th105@@QAE@PAVYuyuko@1@@Z=0x0056DC20",
+]
+dir32_targets = [
+  "__ehhandler$??0Yuyuko@th105@@QAE@H@Z=_roster_character_ctor_eh",
+  "___security_cookie=___security_cookie",
+  "??_7Yuyuko@th105@@6B@=??_7Yuyuko@th105@@6B@",
+]
+
+[[units.cross-v106a-roster-character-constructors.functions]]
+address = "0x0058C0F0"
+symbol_base = "??0Yukari@th105@@QAE@H@Z"
+rel32_targets = [
+  "??0Character@th105@@QAE@H@Z=0x00462AB0",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0YukariObjectManager@th105@@QAE@PAVYukari@1@@Z=0x0058BD80",
+]
+dir32_targets = [
+  "__ehhandler$??0Yukari@th105@@QAE@H@Z=_roster_character_ctor_eh",
+  "___security_cookie=___security_cookie",
+  "??_7Yukari@th105@@6B@=??_7Yukari@th105@@6B@",
+]
+
+[[units.cross-v106a-roster-character-constructors.functions]]
+address = "0x005AEC80"
+symbol_base = "??0Suika@th105@@QAE@H@Z"
+rel32_targets = [
+  "??0Character@th105@@QAE@H@Z=0x00462AB0",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0SuikaObjectManager@th105@@QAE@PAVSuika@1@@Z=0x005AEA80",
+]
+dir32_targets = [
+  "__ehhandler$??0Suika@th105@@QAE@H@Z=_roster_character_ctor_eh",
+  "___security_cookie=___security_cookie",
+  "??_7Suika@th105@@6B@=??_7Suika@th105@@6B@",
+]
+
+[[units.cross-v106a-roster-character-constructors.functions]]
+address = "0x005D2BF0"
+symbol_base = "??0Udonge@th105@@QAE@H@Z"
+rel32_targets = [
+  "??0Character@th105@@QAE@H@Z=0x00462AB0",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0UdongeObjectManager@th105@@QAE@PAVUdonge@1@@Z=0x005D29D0",
+]
+dir32_targets = [
+  "__ehhandler$??0Udonge@th105@@QAE@H@Z=_roster_character_ctor_eh",
+  "___security_cookie=___security_cookie",
+  "??_7Udonge@th105@@6B@=??_7Udonge@th105@@6B@",
+]
+
+[[units.cross-v106a-roster-character-constructors.functions]]
+address = "0x005F7A30"
+symbol_base = "??0Komachi@th105@@QAE@H@Z"
+rel32_targets = [
+  "??0Character@th105@@QAE@H@Z=0x00462AB0",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0KomachiObjectManager@th105@@QAE@PAVKomachi@1@@Z=0x005F7830",
+]
+dir32_targets = [
+  "__ehhandler$??0Komachi@th105@@QAE@H@Z=_roster_character_ctor_eh",
+  "___security_cookie=___security_cookie",
+  "??_7Komachi@th105@@6B@=??_7Komachi@th105@@6B@",
+]
+
+[[units.cross-v106a-roster-character-constructors.functions]]
+address = "0x006185E0"
+symbol_base = "??0Aya@th105@@QAE@H@Z"
+rel32_targets = [
+  "??0Character@th105@@QAE@H@Z=0x00462AB0",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0AyaObjectManager@th105@@QAE@PAVAya@1@@Z=0x00618200",
+]
+dir32_targets = [
+  "__ehhandler$??0Aya@th105@@QAE@H@Z=_roster_character_ctor_eh",
+  "___security_cookie=___security_cookie",
+  "??_7Aya@th105@@6B@=??_7Aya@th105@@6B@",
+]
+
+[[units.cross-v106a-roster-character-constructors.functions]]
+address = "0x0064B6F0"
+symbol_base = "??0Tenshi@th105@@QAE@H@Z"
+rel32_targets = [
+  "??0Character@th105@@QAE@H@Z=0x00462AB0",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0TenshiObjectManager@th105@@QAE@PAVTenshi@1@@Z=0x0064B480",
+]
+dir32_targets = [
+  "__ehhandler$??0Tenshi@th105@@QAE@H@Z=_roster_character_ctor_eh",
+  "___security_cookie=___security_cookie",
+  "??_7Tenshi@th105@@6B@=??_7Tenshi@th105@@6B@",
+]
+
+[[units.cross-v106a-roster-character-constructors.functions]]
+address = "0x006312B0"
+symbol_base = "??0Iku@th105@@QAE@H@Z"
+rel32_targets = [
+  "??0Character@th105@@QAE@H@Z=0x00462AB0",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0IkuObjectManager@th105@@QAE@PAVIku@1@@Z=0x006310B0",
+]
+dir32_targets = [
+  "__ehhandler$??0Iku@th105@@QAE@H@Z=_roster_character_ctor_eh",
+  "___security_cookie=___security_cookie",
+  "__real@c0c00000=__real@c0c00000",
+  "??_7Iku@th105@@6B@=??_7Iku@th105@@6B@",
+]
+
+[units.cross-v106a-sakuya-object-spawn]
+kind = "probe"
+source = "src/characters/SakuyaObjectSpawn.cpp"
+object = "build/match-units/CrossV106a_SakuyaObjectSpawn.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a Sakuya roster spawn. Current allocator chain/class vtable proves identity; restoring the same direct owner-field/parent/related dataflow as the fourteen existing roster spawns removes retained-only locals and reproduces all 237 bytes."
+
+[[units.cross-v106a-sakuya-object-spawn.functions]]
+address = "0x004DF2C0"
+symbol_base = "?spawn_object@SakuyaObjectManager@th105@@QAEPAVSakuyaObject@@PAV3@0HMMCEPBIH@Z"
+rel32_targets = [
+  "?acquire_and_link_object@SakuyaObjectManagerBase@th105@@QAEPAVSakuyaObject@@XZ=0x004DF0C0",
+  "?push_back@?$deque@PAVSakuyaObject@@V?$allocator@PAVSakuyaObject@@@std@@@std@@QAEXABQAVSakuyaObject@@@Z=0x006183F0",
+  "??_U@YAPAXI@Z=0x00665B8A",
+  "_memcpy=0x0068AA30",
 ]

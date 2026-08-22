@@ -508,3 +508,17 @@ _keyboard_data_format,0x006CCFFC,18000000100000000200000000010000000100009098670
 _direct_input_create_keyboard_error,0x006D6B44,834c815b837b815b836882cc8f898afa89bb82c98eb8947300,0,Current keyboard CreateDevice failure path uses this target-owned Shift-JIS message; attested 2026-08-23,address
 _direct_input_set_format_error,0x006D6B60,8366815b835e83748348815b837d8362836782cc90dd92e882c98eb8947300,0,Current keyboard SetDataFormat failure path uses this target-owned Shift-JIS message; attested 2026-08-23,address
 _direct_input_cooperative_error,0x006D6B80,8ba692b2838c8378838b82cc90dd92e882c98eb8947300,0,Current keyboard SetCooperativeLevel failure path uses this target-owned Shift-JIS message; attested 2026-08-23,address
+_roster_character_ctor_eh,0x006BBCE3,8b542408,0,Current 1.06a twelve standard roster-character constructors all push folded EH handler 0x006BBCE3; canonical handler prefix attested 2026-08-23,address
+??_7Reimu@th105@@6B@,0x006C412C,70b76400,0,Current 1.06a Reimu constructor publishes RTTI-owned Reimu vtable at 0x006C412C; canonical first entry bytes attested 2026-08-23,address
+??_7Marisa@th105@@6B@,0x006C4584,70b76400,0,Current 1.06a Marisa constructor publishes RTTI-owned Marisa vtable at 0x006C4584; canonical first entry bytes attested 2026-08-23,address
+??_7Sakuya@th105@@6B@,0x006C4914,70b76400,0,Current 1.06a Sakuya constructor publishes RTTI-owned Sakuya vtable at 0x006C4914; canonical first entry bytes attested 2026-08-23,address
+??_7Patchouli@th105@@6B@,0x006C4EAC,70b76400,0,Current 1.06a Patchouli constructor publishes RTTI-owned Patchouli vtable at 0x006C4EAC; canonical first entry bytes attested 2026-08-23,address
+??_7Remilia@th105@@6B@,0x006C53C4,70b76400,0,Current 1.06a Remilia constructor publishes RTTI-owned Remilia vtable at 0x006C53C4; canonical first entry bytes attested 2026-08-23,address
+??_7Yuyuko@th105@@6B@,0x006C564C,70b76400,0,Current 1.06a Yuyuko constructor publishes RTTI-owned Yuyuko vtable at 0x006C564C; canonical first entry bytes attested 2026-08-23,address
+??_7Yukari@th105@@6B@,0x006C58CC,70b76400,0,Current 1.06a Yukari constructor publishes RTTI-owned Yukari vtable at 0x006C58CC; canonical first entry bytes attested 2026-08-23,address
+??_7Suika@th105@@6B@,0x006C5B8C,70b76400,0,Current 1.06a Suika constructor publishes RTTI-owned Suika vtable at 0x006C5B8C; canonical first entry bytes attested 2026-08-23,address
+??_7Udonge@th105@@6B@,0x006C5E2C,70b76400,0,Current 1.06a Udonge constructor publishes RTTI-owned Udonge vtable at 0x006C5E2C; canonical first entry bytes attested 2026-08-23,address
+??_7Komachi@th105@@6B@,0x006C6064,70b76400,0,Current 1.06a Komachi constructor publishes RTTI-owned Komachi vtable at 0x006C6064; canonical first entry bytes attested 2026-08-23,address
+??_7Aya@th105@@6B@,0x006C62D4,70b76400,0,Current 1.06a Aya constructor publishes RTTI-owned Aya vtable at 0x006C62D4; canonical first entry bytes attested 2026-08-23,address
+??_7Tenshi@th105@@6B@,0x006C6794,70b76400,0,Current 1.06a Tenshi constructor publishes RTTI-owned Tenshi vtable at 0x006C6794; canonical first entry bytes attested 2026-08-23,address
+??_7Iku@th105@@6B@,0x006C652C,70b76400,0,Current 1.06a Iku constructor publishes RTTI-owned Iku vtable at 0x006C652C; canonical first entry bytes attested 2026-08-23,address
