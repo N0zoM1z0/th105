@@ -17,7 +17,7 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 463 functions / 67,862 bytes in 168
+- The accepted 1.06a authored set contains 474 functions / 68,917 bytes in 170
   VC8 match units. The newest whole-corpus retained-source/lifecycle wave added 191
   functions / 36,775 bytes beyond the previous 100-function checkpoint. Candidate
   ranking, current-target IDA/call evidence, and relocation reconciliation only
@@ -313,7 +313,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 2,845
+- Accepted boundaries and authored/library origins for the remaining 2,834
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.
@@ -533,3 +533,27 @@ Keep incidental EAX out of ABI decisions. The only current caller, exact Arcade 
 - `RenderModeManager::on_device_reset @ 0x004014C0` is a useful aggregate-lifetime/codegen reference. The target copies the seven dwords at `this+0x0C..+0x27` with `rep movsd`, then clears exactly 28 bytes. Writing a truthful `RenderModeState28 saved = state_0c; memset(&state_0c, 0, sizeof(state_0c));` makes pinned VC8 emit the target copy plus `xor ecx,ecx` / seven dword stores; seven independent field assignments allow later state-call preparation to interleave and produce the wrong 324-byte body. Two store-order details are also real target data flow: cache `gate7/gate14` before replaying render-state 23, cache state23 after the call; state-22 restore intentionally reloads the global backend device rather than `this->device_04`. With those source facts the callback is 329/329 exact.
 - `RenderModeManager::apply_render_mode @ 0x00404A90` demonstrates that a shared source tail and physical case order can both be authored byte evidence. Keeping only one post-switch `current_mode = mode; mode_flag = flag; return result;` makes VC8 preserve the flag across the switch instead of reloading it per case. Ordering the source cases `4, 1, 2, 3` reproduces the target block order and accepted 482-byte body; VC8 places an 18-byte jump table after the accepted function body in the same COMDAT. Do not duplicate the tail or reorder cases for readability without replaying the target.
 - Several neighboring D3D/render helpers remain intentionally pending. `toggle_d3d_window_mode @ 0x00414B30` reaches the exact target length 286 after correcting its caller-backed ABI to `void`, but the windowed metrics branch still selects a different callee-saved temporary allocation; do not force EDI/EBX with register variables. `reset_d3d_device @ 0x00414A10` is semantically closed at 277 vs target 281 and differs in stack-alignment/shrink-wrapped iterator lifetime; a single long-lived iterator hypothesis instead bloats to 362 and is rejected. `init_d3d_backend @ 0x004147E0` is current-semantics-closed but its sole caller exposes a private/LTCG register ABI (`EAX=width`, `ESI=HWND`) that must not be faked. Texture-stage bind `0x00404DF0` is 97 vs 107 because target preserves stage/device-vtable values across handle lookup, and `set_pair_state @ 0x00404940` remains a first/second-byte register-lifetime permutation. Leave all review-pending until stronger source/TU evidence appears.
+
+### Render primitive and scene-consumer wave
+
+Current Direct3D9 call offsets now close `SetSamplerState` at vslot 69,
+`DrawPrimitiveUP` at vslot 83, and `SetFVF` at vslot 89.  The accepted
+RenderModeManager primitive family is `present_d3d_frame @ 0x00401060` (81),
+`submit_primitive @ 0x004010F0` (60), `submit_textured_primitive @ 0x00401130`
+(77), `draw_rect_int @ 0x00401260` (51), and `set_mode @ 0x00404750` (137).
+The two submit methods must reread `device_04` after SetFVF; caching the device
+pointer across that COM call is a different, shorter alias assumption and does
+not match the target.
+
+RTTI independently names the recovered frame consumers `CFade`, `Ending`,
+`CLogo`, `Opening`, and `CLoadingSV`; a 43-byte scene-render delegate is shared
+by several scene vtables including `CBattleSV`.  Their exact render bodies add
+43, 142, 132, 62, 53, and 217 bytes respectively.  `Ending` preserves the
+failed `begin_frame` byte result directly, while the others use an explicit
+false tail.  `CLoadingSV` reuses the existing exact `UiSprite94` vtable-cache
+pattern, and its phase word is at `+0xB8`.
+
+The current scene renderer pointer at `0x006FBCA4` is loader-zero in the
+canonical PE and is published/cleared by current scene transitions before the
+shared scene delegate calls virtual slot 14.  Keep this separate from the
+battle phase block at `0x006FBCB4`.

@@ -5958,3 +5958,136 @@ dir32_targets = [
   "?g_d3d_backend@th105@@3UD3DBackend@1@A=?g_d3d_backend@th105@@3UD3DBackend@1@A",
   "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
 ]
+
+[units.cross-v106a-render-primitives]
+kind = "probe"
+source = "src/engine/RenderPrimitives.cpp"
+object = "build/match-units/CrossV106a_RenderPrimitives.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a RenderModeManager primitive-submit/present/sampler family. Current D3D9 vslots independently identify SetSamplerState(69), DrawPrimitiveUP(83), and SetFVF(89); direct member reloads after COM calls preserve the target alias/lifetime behavior."
+
+[[units.cross-v106a-render-primitives.functions]]
+address = "0x00401060"
+symbol_base = "?present_d3d_frame@th105@@YA_NXZ"
+dir32_targets = [
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A+0x2A=g_render_mode_manager_reset_flag",
+  "?g_d3d_backend@th105@@3UD3DBackend@1@A=?g_d3d_backend@th105@@3UD3DBackend@1@A",
+  "__imp__TryEnterCriticalSection@4=__imp__TryEnterCriticalSection@4",
+  "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4",
+]
+
+[[units.cross-v106a-render-primitives.functions]]
+address = "0x004010F0"
+symbol_base = "?submit_primitive@RenderModeManager@th105@@QAEJIIPBXII@Z"
+
+[[units.cross-v106a-render-primitives.functions]]
+address = "0x00401130"
+symbol_base = "?submit_textured_primitive@RenderModeManager@th105@@QAEJIIIPBXII@Z"
+rel32_targets = ["?bind_texture@TitleResourceManager@th105@@QAEXIH@Z=0x00404DF0"]
+dir32_targets = ["?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A"]
+
+[[units.cross-v106a-render-primitives.functions]]
+address = "0x00401260"
+symbol_base = "?draw_rect_int@RenderModeManager@th105@@QAEHPBHIE@Z"
+rel32_targets = ["?draw_rect@RenderModeManager@th105@@QAEHMMMMIE@Z=0x004012A0"]
+
+[[units.cross-v106a-render-primitives.functions]]
+address = "0x00404750"
+symbol_base = "?set_mode@RenderModeManager@th105@@QAEXH@Z"
+
+[units.cross-v106a-render-scene-consumers]
+kind = "probe"
+source = "src/ui/RenderSceneConsumers.cpp"
+object = "build/match-units/CrossV106a_RenderSceneConsumers.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a scene/UI frame consumers. Current RTTI identifies CFade, Ending, CLogo, Opening and CLoadingSV owners; a shared scene-render virtual body appears in several scene vtables. The source keeps target branch/fallthrough order and the already exact UiSprite94 vtable-cache pattern."
+
+[[units.cross-v106a-render-scene-consumers.functions]]
+address = "0x0041E040"
+symbol_base = "?render@SharedSceneRenderDelegate@th105@@UAE_NXZ"
+rel32_targets = [
+  "?begin_frame@RenderModeManager@th105@@QAE_NXZ=0x00401000",
+  "?finish_frame@RenderModeManager@th105@@QAEXXZ=0x00401040",
+]
+dir32_targets = [
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+  "?g_scene_renderer@th105@@3PAUSceneRendererView@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A",
+]
+
+[[units.cross-v106a-render-scene-consumers.functions]]
+address = "0x0041E290"
+symbol_base = "?render@CFade@th105@@UAE_NXZ"
+rel32_targets = [
+  "?begin_frame@RenderModeManager@th105@@QAE_NXZ=0x00401000",
+  "?draw_rect@RenderModeManager@th105@@QAEHMMMMIE@Z=0x004012A0",
+  "?finish_frame@RenderModeManager@th105@@QAEXXZ=0x00401040",
+]
+dir32_targets = [
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+  "__real@43f00000=__real@43f00000",
+  "__real@44200000=__real@44200000",
+]
+
+[[units.cross-v106a-render-scene-consumers.functions]]
+address = "0x0041E920"
+symbol_base = "?render@Ending@th105@@UAEEXZ"
+rel32_targets = [
+  "?begin_frame@RenderModeManager@th105@@QAE_NXZ=0x00401000",
+  "?prepare_frame@RenderModeManager@th105@@QAEXXZ=0x004010C0",
+  "?run_458cd0@BattlePhaseBlock@th105@@QAEHXZ=0x0045A2A0",
+  "?render@EndingRenderCluster93@th105@@QAEXXZ=0x00450FC0",
+  "?draw_rect@RenderModeManager@th105@@QAEHMMMMIE@Z=0x004012A0",
+  "?finish_frame@RenderModeManager@th105@@QAEXXZ=0x00401040",
+]
+dir32_targets = [
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+  "?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A=?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A",
+  "__real@43f00000=__real@43f00000",
+  "__real@44200000=__real@44200000",
+]
+
+[[units.cross-v106a-render-scene-consumers.functions]]
+address = "0x0041F6A0"
+symbol_base = "?render@CLogo@th105@@UAE_NXZ"
+rel32_targets = [
+  "?begin_frame@RenderModeManager@th105@@QAE_NXZ=0x00401000",
+  "?prepare_frame@RenderModeManager@th105@@QAEXXZ=0x004010C0",
+  "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0",
+  "?finalize_render@CSpriteEx@@QAEXXZ=0x00407AD0",
+  "?finish_frame@RenderModeManager@th105@@QAEXXZ=0x00401040",
+]
+dir32_targets = ["?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A"]
+
+[[units.cross-v106a-render-scene-consumers.functions]]
+address = "0x0041F8A0"
+symbol_base = "?render@Opening@th105@@UAE_NXZ"
+rel32_targets = [
+  "?begin_frame@RenderModeManager@th105@@QAE_NXZ=0x00401000",
+  "?prepare_frame@RenderModeManager@th105@@QAEXXZ=0x004010C0",
+  "?render@OpeningRenderListView@th105@@QAEXXZ=0x00450FC0",
+  "?finish_frame@RenderModeManager@th105@@QAEXXZ=0x00401040",
+]
+dir32_targets = ["?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A"]
+
+[[units.cross-v106a-render-scene-consumers.functions]]
+address = "0x0041F410"
+symbol_base = "?render@CLoadingSV@th105@@UAE_NXZ"
+rel32_targets = [
+  "?begin_frame@RenderModeManager@th105@@QAE_NXZ=0x00401000",
+  "?prepare_frame@RenderModeManager@th105@@QAEXXZ=0x004010C0",
+  "?draw_rect@RenderModeManager@th105@@QAEHMMMMIE@Z=0x004012A0",
+  "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
+  "__ftol2_sse=0x0068A1A0",
+  "?finish_frame@RenderModeManager@th105@@QAEXXZ=0x00401040",
+]
+dir32_targets = [
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+  "__real@43f00000=__real@43f00000",
+  "__real@44200000=__real@44200000",
+  "__real@4014000000000000=__real@4014000000000000",
+  "__real@405fc00000000000=__real@405fc00000000000",
+  "__real@43e00000=__real@43e00000",
+  "__real@44000000=__real@44000000",
+]

@@ -51,6 +51,30 @@ struct RenderModeManager : DeviceResetListener {
     void finish_frame();
     void prepare_frame();
     void set_mode(int mode);
+    D3DHResult submit_primitive(
+        unsigned primitive_type,
+        unsigned primitive_count,
+        const void *vertices,
+        unsigned stride,
+        unsigned fvf);
+    D3DHResult submit_textured_primitive(
+        unsigned texture_handle,
+        unsigned primitive_type,
+        unsigned primitive_count,
+        const void *vertices,
+        unsigned stride,
+        unsigned fvf);
+    int draw_rect(
+        float left,
+        float top,
+        float right,
+        float bottom,
+        unsigned color,
+        unsigned char filled);
+    int draw_rect_int(
+        const int *rect,
+        unsigned color,
+        unsigned char filled);
     void set_blend_mode(int mode);
     unsigned char set_pair_state(
         unsigned char first, unsigned char second);
@@ -62,6 +86,8 @@ struct RenderModeManager : DeviceResetListener {
 };
 
 extern RenderModeManager g_render_mode_manager;
+
+bool present_d3d_frame();
 
 typedef char RenderModeState_size_must_be_0x1c[
     sizeof(RenderModeState28) == 0x1c ? 1 : -1];

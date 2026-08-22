@@ -19,6 +19,15 @@ struct D3DUnknown {
     virtual unsigned long __stdcall Release() = 0;
 };
 
+struct D3DSwapChain9 : D3DUnknown {
+    virtual D3DHResult __stdcall Present(
+        const void *source_rect,
+        const void *destination_rect,
+        D3DWindowHandle destination_window,
+        const void *dirty_region,
+        unsigned flags) = 0; // 3
+};
+
 struct D3DDevice9 : D3DUnknown {
     virtual D3DHResult __stdcall TestCooperativeLevel() = 0;        // 3
     virtual unsigned __stdcall GetAvailableTextureMem() = 0;       // 4
@@ -90,6 +99,41 @@ struct D3DDevice9 : D3DUnknown {
     TH105_D3D_SLOT(64)
 #undef TH105_D3D_SLOT
     virtual D3DHResult __stdcall SetTexture(unsigned, void *) = 0; // 65
+#define TH105_D3D_SLOT(N) virtual void __stdcall d3d_slot_##N() = 0;
+    TH105_D3D_SLOT(66)
+    TH105_D3D_SLOT(67)
+    TH105_D3D_SLOT(68)
+#undef TH105_D3D_SLOT
+    virtual D3DHResult __stdcall SetSamplerState(
+        unsigned sampler, unsigned type, unsigned value) = 0; // 69
+#define TH105_D3D_SLOT(N) virtual void __stdcall d3d_slot_##N() = 0;
+    TH105_D3D_SLOT(70)
+    TH105_D3D_SLOT(71)
+    TH105_D3D_SLOT(72)
+    TH105_D3D_SLOT(73)
+    TH105_D3D_SLOT(74)
+    TH105_D3D_SLOT(75)
+    TH105_D3D_SLOT(76)
+    TH105_D3D_SLOT(77)
+    TH105_D3D_SLOT(78)
+    TH105_D3D_SLOT(79)
+    TH105_D3D_SLOT(80)
+    TH105_D3D_SLOT(81)
+    TH105_D3D_SLOT(82)
+#undef TH105_D3D_SLOT
+    virtual D3DHResult __stdcall DrawPrimitiveUP(
+        unsigned primitive_type,
+        unsigned primitive_count,
+        const void *vertices,
+        unsigned stride) = 0; // 83
+#define TH105_D3D_SLOT(N) virtual void __stdcall d3d_slot_##N() = 0;
+    TH105_D3D_SLOT(84)
+    TH105_D3D_SLOT(85)
+    TH105_D3D_SLOT(86)
+    TH105_D3D_SLOT(87)
+    TH105_D3D_SLOT(88)
+#undef TH105_D3D_SLOT
+    virtual D3DHResult __stdcall SetFVF(unsigned fvf) = 0; // 89
 };
 
 struct D3DDisplayMode16 {
@@ -126,7 +170,7 @@ struct D3DBackend {
     CriticalSectionWrapper critical_section_000;
     D3DUnknown *direct3d_01c;
     D3DDevice9 *device_020;
-    D3DUnknown *swap_chain_024;
+    D3DSwapChain9 *swap_chain_024;
     D3DCaps130 caps_028;
     D3DPresentParameters38 presentation_158;
     D3DDisplayMode16 display_mode_190;

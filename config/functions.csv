@@ -1,13 +1,13 @@
 address,size,span_end,current_name,proposed_name,module,status,match_percent,calling_convention,signature,is_thunk,source_file,evidence,owner,notes
 0x00401000,52,0x00401033,sub_401000,RenderModeManager_begin_frame,engine,matching,100.00,__thiscall,bool RenderModeManager_begin_frame(RenderModeManager * this),false,src/engine/RenderModeManager.cpp,python3 scripts/build.py --unit cross-v106a-render-mode-manager --compare --json reports canonical exact 52/52 against TH105 1.06a,root,Current D3D9 vtable/global/layout evidence plus fresh pinned-VC8 zero-difference replay; no assembly/register forcing.
 0x00401040,26,0x00401059,sub_401040,RenderModeManager_finish_frame,engine,matching,100.00,__thiscall,void RenderModeManager_finish_frame(RenderModeManager * this),false,src/engine/RenderModeManager.cpp,python3 scripts/build.py --unit cross-v106a-render-mode-manager --compare --json reports canonical exact 26/26 against TH105 1.06a,root,Current D3D9 vtable/global/layout evidence plus fresh pinned-VC8 zero-difference replay; no assembly/register forcing.
-0x00401060,81,0x004010B0,sub_401060,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00401060,81,0x004010B0,sub_401060,present_d3d_frame,engine,matching,100.00,__cdecl,bool present_d3d_frame(void),false,src/engine/RenderPrimitives.cpp,python3 scripts/build.py --unit cross-v106a-render-primitives --compare --json reports canonical exact 81/81 against TH105 1.06a,root,Current frame-loop callers consume AL as a boolean; the target gates IDirect3DSwapChain9::Present behind the RenderModeManager reset byte and backend critical section. Formal manifest compare is canonical exact 81/81.
 0x004010C0,35,0x004010E2,sub_4010C0,RenderModeManager_prepare_frame,engine,matching,100.00,__thiscall,void RenderModeManager_prepare_frame(RenderModeManager * this),false,src/engine/RenderModeManager.cpp,python3 scripts/build.py --unit cross-v106a-render-mode-manager --compare --json reports canonical exact 35/35 against TH105 1.06a,root,Current D3D9 vtable/global/layout evidence plus fresh pinned-VC8 zero-difference replay; no assembly/register forcing.
-0x004010F0,60,0x0040112B,sub_4010F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00401130,77,0x0040117C,sub_401130,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x004010F0,60,0x0040112B,sub_4010F0,RenderModeManager_submit_primitive,engine,matching,100.00,__thiscall,"long RenderModeManager::submit_primitive(unsigned int,unsigned int,void const *,unsigned int,unsigned int)",false,src/engine/RenderPrimitives.cpp,python3 scripts/build.py --unit cross-v106a-render-primitives --compare --json reports canonical exact 60/60 against TH105 1.06a,root,Current D3D9 slots identify SetFVF(89) followed by DrawPrimitiveUP(83); direct member reload after the COM call reproduces target alias/lifetime behavior. Exact 60/60.
+0x00401130,77,0x0040117C,sub_401130,RenderModeManager_submit_textured_primitive,engine,matching,100.00,__thiscall,"long RenderModeManager::submit_textured_primitive(unsigned int,unsigned int,unsigned int,void const *,unsigned int,unsigned int)",false,src/engine/RenderPrimitives.cpp,python3 scripts/build.py --unit cross-v106a-render-primitives --compare --json reports canonical exact 77/77 against TH105 1.06a,root,"Target first binds the packed texture handle through current TitleResourceManager helper 0x00404DF0, then SetFVF/DrawPrimitiveUP using the same verified D3D slots. Exact 77/77."
 0x00401180,148,0x00401213,sub_401180,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00401220,50,0x00401251,sub_401220,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00401260,51,0x00401292,sub_401260,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00401260,51,0x00401292,sub_401260,RenderModeManager_draw_rect_int,engine,matching,100.00,__thiscall,"int RenderModeManager::draw_rect_int(int const *,unsigned int,unsigned char)",false,src/engine/RenderPrimitives.cpp,python3 scripts/build.py --unit cross-v106a-render-primitives --compare --json reports canonical exact 51/51 against TH105 1.06a,root,Current target converts the four integer rectangle coordinates to float and tail-forwards the color/fill flag to RenderModeManager draw_rect 0x004012A0 while preserving ECX. Exact 51/51.
 0x004012A0,395,0x0040142A,sub_4012A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00401430,142,0x004014BD,sub_401430,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004014C0,329,0x00401608,sub_4014C0,RenderModeManager_on_device_reset,engine,matching,100.00,__thiscall,void RenderModeManager_on_device_reset(RenderModeManager * this),false,src/engine/RenderModeManager.cpp,python3 scripts/build.py --unit cross-v106a-render-mode-manager --compare --json reports canonical exact 329/329 against TH105 1.06a,root,Current D3D9 vtable/global/layout evidence plus fresh pinned-VC8 zero-difference replay; no assembly/register forcing.
@@ -94,7 +94,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00404500,35,0x00404522,sub_404500,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00404530,502,0x00404725,sub_404530,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00404730,32,0x0040474F,sub_404730,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00404750,137,0x004047D8,sub_404750,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00404750,137,0x004047D8,sub_404750,RenderModeManager_set_mode,engine,matching,100.00,__thiscall,void RenderModeManager::set_mode(int),false,src/engine/RenderPrimitives.cpp,python3 scripts/build.py --unit cross-v106a-render-primitives --compare --json reports canonical exact 137/137 against TH105 1.06a,root,Existing exact callers already own this set_mode address; current D3D9 slot 69 is SetSamplerState and the cached sampler mode at +0x10 closes the method semantics. Exact 137/137.
 0x004047E0,256,0x004048DF,sub_4047E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00404940,121,0x004049B8,sub_404940,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004049C0,65,0x00404A00,sub_4049C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -633,7 +633,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0041DF70,87,0x0041DFC6,sub_41DF70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041DFD0,20,0x0041DFE3,sub_41DFD0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041DFF0,72,0x0041E037,sub_41DFF0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0041E040,43,0x0041E06A,sub_41E040,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0041E040,43,0x0041E06A,sub_41E040,SharedSceneRenderDelegate_render,ui,matching,100.00,__thiscall,bool SharedSceneRenderDelegate::render(void),false,src/ui/RenderSceneConsumers.cpp,python3 scripts/build.py --unit cross-v106a-render-scene-consumers --compare --json reports canonical exact 43/43 against TH105 1.06a,root,This render body is shared by several current scene vtables (including CBattleSV); it frames one virtual slot-14 call through the loader-zero current scene-renderer pointer. Exact 43/43.
 0x0041E120,25,0x0041E138,sub_41E120,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041E140,5,0x0041E144,sub_41E140,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041E150,5,0x0041E154,sub_41E150,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -647,13 +647,13 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0041E240,11,0x0041E24A,sub_41E240,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041E250,30,0x0041E26D,sub_41E250,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041E270,30,0x0041E28D,sub_41E270,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0041E290,142,0x0041E31D,sub_41E290,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0041E290,142,0x0041E31D,sub_41E290,CFade_render,ui,matching,100.00,__thiscall,bool CFade::render(void),false,src/ui/RenderSceneConsumers.cpp,python3 scripts/build.py --unit cross-v106a-render-scene-consumers --compare --json reports canonical exact 142/142 against TH105 1.06a,root,Current RTTI identifies CFade; fields +4/+8 are color/timer. Source branch order timer>60 keeps the target descending fade block as fallthrough before full-screen draw_rect. Exact 142/142.
 0x0041E320,980,0x0041E6F3,sub_41E320,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041E750,30,0x0041E76D,sub_41E750,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041E770,30,0x0041E78D,sub_41E770,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041E790,40,0x0041E7B7,sub_41E790,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041E7C0,352,0x0041E91F,sub_41E7C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0041E920,132,0x0041E9A3,sub_41E920,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0041E920,132,0x0041E9A3,sub_41E920,Ending_render,ui,matching,100.00,__thiscall,unsigned char Ending::render(void),false,src/ui/RenderSceneConsumers.cpp,python3 scripts/build.py --unit cross-v106a-render-scene-consumers --compare --json reports canonical exact 132/132 against TH105 1.06a,root,"Current RTTI identifies Ending. The +0x97 alpha byte gates BattlePhaseBlock/UI rendering and the full-screen fade; failure returns the begin_frame byte directly, matching target AL lifetime. Exact 132/132."
 0x0041E9B0,28,0x0041E9CB,sub_41E9B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041E9D0,78,0x0041EA1D,sub_41E9D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041EA20,28,0x0041EA3B,sub_41EA20,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -675,13 +675,13 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0041F360,106,0x0041F3C9,sub_41F360,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041F3D0,30,0x0041F3ED,sub_41F3D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041F3F0,23,0x0041F406,sub_41F3F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0041F410,217,0x0041F4E8,sub_41F410,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0041F410,217,0x0041F4E8,sub_41F410,CLoadingSV_render,ui,matching,100.00,__thiscall,bool CLoadingSV::render(void),false,src/ui/RenderSceneConsumers.cpp,python3 scripts/build.py --unit cross-v106a-render-scene-consumers --compare --json reports canonical exact 217/217 against TH105 1.06a,root,Current RTTI identifies CLoadingSV. UiSprite94 at +8 and phase word +0xB8 are target-backed; reusing the accepted vtable-cache pattern reproduces the target EDI/EBX/ESI lifetimes and quantized-cosine alpha path. Exact 217/217.
 0x0041F4F0,177,0x0041F5A0,sub_41F4F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041F5B0,109,0x0041F61C,sub_41F5B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041F620,30,0x0041F63D,sub_41F620,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041F640,37,0x0041F664,sub_41F640,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041F670,45,0x0041F69C,sub_41F670,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0041F6A0,62,0x0041F6DD,sub_41F6A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0041F6A0,62,0x0041F6DD,sub_41F6A0,CLogo_render,ui,matching,100.00,__thiscall,bool CLogo::render(void),false,src/ui/RenderSceneConsumers.cpp,python3 scripts/build.py --unit cross-v106a-render-scene-consumers --compare --json reports canonical exact 62/62 against TH105 1.06a,root,Current RTTI identifies CLogo; CSpriteEx is at +8 and the target frame body is prepare -> reset_transform -> finalize_render -> finish. Exact 62/62.
 0x0041F6E0,16,0x0041F6EF,sub_41F6E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041F6F0,31,0x0041F70E,sub_41F6F0,CEffectSprite_scalar_deleting_destructor,battle,matching,100.00,__thiscall,"void * CEffectSprite_scalar_deleting_destructor(CEffectSprite * this, unsigned int flags)",false,src/battle/EffectSprite.cpp,python3 scripts/build.py --unit cross-v106a-effect-sprite-scalar-dtor --compare --json reports exact 31/31 against TH105 1.06a,root,Current CEffectSprite vtable 0x006C072C first slot points to 0x0041F6F0. Body restores exact-backed IColor vtable 0x006C0624 and conditionally deletes. Scanner clone 0x006A08C0 was rejected by vtable identity; historical 28-byte extent omitted ret 4.
 0x0041F710,105,0x0041F778,sub_41F710,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -689,7 +689,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0041F830,30,0x0041F84D,sub_41F830,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041F850,52,0x0041F883,sub_41F850,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041F890,1,0x0041F890,nullsub_6,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0041F8A0,53,0x0041F8D4,sub_41F8A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0041F8A0,53,0x0041F8D4,sub_41F8A0,Opening_render,ui,matching,100.00,__thiscall,bool Opening::render(void),false,src/ui/RenderSceneConsumers.cpp,python3 scripts/build.py --unit cross-v106a-render-scene-consumers --compare --json reports canonical exact 53/53 against TH105 1.06a,root,Current RTTI identifies Opening; the target renders the +8 UI list between prepare_frame and finish_frame. Exact 53/53.
 0x0041F8E0,31,0x0041F8FE,sub_41F8E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041F900,101,0x0041F964,sub_41F900,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041F970,130,0x0041F9F1,sub_41F970,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
