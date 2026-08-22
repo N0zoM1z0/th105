@@ -67,4 +67,45 @@ void CFileList::trim_item_text(std::string *value)
     }
 }
 
+
+unsigned int CFileList::format_item(
+    std::string *output,
+    std::deque<std::string>::iterator current)
+{
+    std::string value = *current;
+    trim_item_text(&value);
+    output->append(value, 0, static_cast<unsigned int>(-1));
+    return value.size();
+}
+
+int CFileList::find_row(const std::string *value) const
+{
+    std::deque<std::string>::const_iterator current = rows_004.begin();
+    for (; current != rows_004.end(); ++current) {
+        if (_stricmp(current->c_str(), value->c_str()) == 0)
+            return current - rows_004.begin();
+    }
+    return -1;
+}
+
+std::string *CFileList::row_at(unsigned int index)
+{
+    if (index >= rows_004.size())
+        return 0;
+    return &rows_004[index];
+}
+
+unsigned char CFileList::row_is_directory(unsigned int index)
+{
+    if (index >= flags_018.size())
+        return 0;
+    return flags_018[index];
+}
+
+void CFileList::enter_directory(unsigned int index)
+{
+    if (index < rows_004.size() && flags_018[index])
+        directory_08c.append("/" + rows_004[index]);
+}
+
 } // namespace th105

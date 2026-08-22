@@ -537,3 +537,13 @@ CFileList_ctor
 CFileList_dtor
 CFileList_shutdown
 ResultList_dtor
+CReplayList_ctor
+CFileList_find_row
+CFileList_row_at
+CFileList_row_is_directory
+CFileList_enter_directory
+CFileList_format_item
+CMenuReplay_dtor
+CMenuReplay_scalar_deleting_destructor
+CMenuReplay_unknown_menu_method
+CReplayList_format_item

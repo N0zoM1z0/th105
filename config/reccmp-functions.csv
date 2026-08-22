@@ -538,3 +538,13 @@ CFileList_ctor,0x00439F40,function
 CFileList_dtor,0x00439FC0,function
 CFileList_shutdown,0x0043A0A0,function
 ResultList_dtor,0x00447260,function
+CReplayList_ctor,0x0042A0A0,function
+CFileList_find_row,0x00439750,function
+CFileList_row_at,0x004399A0,function
+CFileList_row_is_directory,0x00439A60,function
+CFileList_enter_directory,0x00439A80,function
+CFileList_format_item,0x00439B20,function
+CMenuReplay_dtor,0x00446D20,function
+CMenuReplay_scalar_deleting_destructor,0x00446F40,function
+CMenuReplay_unknown_menu_method,0x00446F60,function
+CReplayList_format_item,0x0042A150,function

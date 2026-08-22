@@ -6997,7 +6997,7 @@ source = "src/ui/FileList.cpp"
 object = "build/match-units/CrossV106a_CFileList.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current RTTI/vtable and independently exact Profile/Result callers close the shared 0xB8 CFileList object: checked deque<string> +0x04, deque<int> +0x18, deque<unsigned> +0x2C, deque<FileListTile> +0x40, std::string +0x54/+0x70/+0x8C, and tail state. Natural VC8 STL lifetime plus checked container operations reproduce the seven tracked authored bodies."
+notes = "Current RTTI/vtable plus CMenuReplay member boundaries close the shared 0xB4 CFileList object: checked deque<string> +0x04, one-byte directory-flag deque +0x18, deque<unsigned> +0x2C, deque<FileListTile> +0x40, std::string +0x54/+0x70/+0x8C, and tail state through +0xB0. ResultList owns its extra character id at +0xB4. Natural VC8 STL lifetime, formatter append semantics, and checked navigation reproduce twelve authored bodies."
 
 [[units.cross-v106a-cfile-list.functions]]
 address = "0x004395E0"
@@ -7046,7 +7046,7 @@ rel32_targets = [
   "??3@YAXPAX@Z=0x006898EA",
   "?_Tidy@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@IAEXXZ=0x00420AF0",
   "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90",
-  "?_Tidy@?$deque@HV?$allocator@H@std@@@std@@IAEXXZ=0x00420A80",
+  "?_Tidy@?$deque@EV?$allocator@E@std@@@std@@IAEXXZ=0x00420A80",
   "?_Tidy@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXXZ=0x0040FF90",
 ]
 dir32_targets = [
@@ -7069,13 +7069,67 @@ dir32_targets = [
   "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
 ]
 
+
+[[units.cross-v106a-cfile-list.functions]]
+address = "0x00439750"
+symbol_base = "CFileList_find_row"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?c_str@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEPBDXZ=0x00401E30",
+  "__stricmp=0x0068B038",
+]
+
+[[units.cross-v106a-cfile-list.functions]]
+address = "0x004399A0"
+symbol_base = "CFileList_row_at"
+rel32_targets = [
+  "??A?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@QAEAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@I@Z=0x00412980",
+]
+
+[[units.cross-v106a-cfile-list.functions]]
+address = "0x00439A60"
+symbol_base = "CFileList_row_is_directory"
+rel32_targets = [
+  "??A?$deque@EV?$allocator@E@std@@@std@@QAEAAEI@Z=0x00428F20",
+]
+
+[[units.cross-v106a-cfile-list.functions]]
+address = "0x00439A80"
+symbol_base = "CFileList_enter_directory"
+rel32_targets = [
+  "??A?$deque@EV?$allocator@E@std@@@std@@QAEAAEI@Z=0x00428F20",
+  "??A?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@QAEAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@I@Z=0x00412980",
+  "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@PBDABV10@@Z=0x00429970",
+  "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x00408B40",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "__ehhandler$?enter_directory@CFileList@th105@@QAEXI@Z=__ehhandler$?enter_directory@CFileList@th105@@QAEXI@Z",
+  "??_C@_01KMDKNFGN@?1?$AA@=??_C@_01KMDKNFGN@?1?$AA@",
+]
+
+[[units.cross-v106a-cfile-list.functions]]
+address = "0x00439B20"
+symbol_base = "CFileList_format_item"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "?trim_item_text@CFileList@th105@@QAEXPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x00439910",
+  "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x00408B40",
+  "??3@YAXPAX@Z=0x006898EA",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?format_item@CFileList@th105@@UAEIPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$_Deque_iterator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@$00@4@@Z=__ehhandler$?format_item@CFileList@th105@@UAEIPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$_Deque_iterator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@$00@4@@Z",
+]
+
 [units.cross-v106a-profile-list]
 kind = "probe"
 source = "src/ui/ProfileList.cpp"
 object = "build/match-units/CrossV106a_ProfileList.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current CProfileList RTTI/vtable closes the retained ProfileNameList facade as a CFileList-derived 0xB8 object. The ctor uses the current target-owned profile/*.dat pattern through the observed out-of-line String28/std::string assign ABI, while the slot-1 override repopulates once after creating a default profile if the inherited row deque is empty."
+notes = "Current CProfileList RTTI/vtable closes the retained ProfileNameList facade as a CFileList-derived 0xB4 object. The ctor uses the current target-owned profile/*.dat pattern through the observed out-of-line String28/std::string assign ABI, while the slot-1 override repopulates once after creating a default profile if the inherited row deque is empty."
 
 [[units.cross-v106a-profile-list.functions]]
 address = "0x004313F0"
@@ -7098,3 +7152,91 @@ dir32_targets = [
   "___security_cookie=___security_cookie",
   "?profile_file_pattern@th105@@3QBDB=_profile_file_pattern",
 ]
+
+[units.cross-v106a-replay-list]
+kind = "probe"
+source = "src/ui/ReplayList.cpp"
+object = "build/match-units/CrossV106a_ReplayList.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CReplayList RTTI/vtable identifies the replay-specific 0xB4 CFileList derivative embedded at CMenuReplay +0x08. The ctor keeps the linked string assign bodies out of line, chains the Replay directory assignment return into filter assignment, and configures width 96 plus directory mode. The slot-4 formatter uses the checked directory byte, replay header compatibility, target color tags and dllimport wsprintfA IAT visibility to reproduce the 501-byte override."
+
+[[units.cross-v106a-replay-list.functions]]
+address = "0x0042A0A0"
+symbol_base = "CReplayList_ctor"
+rel32_targets = [
+  "??0CFileList@th105@@QAE@XZ=0x00439F40",
+  "?assign_bytes@ReplayListStringAssignBytesView@th105@@QAEPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBDI@Z=0x004021C0",
+  "?assign_copy@ReplayListStringAssignCopyView@th105@@QAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@II@Z=0x004020D0",
+]
+dir32_targets = [
+  "__ehhandler$??0CReplayList@th105@@QAE@XZ=__ehhandler$??0CReplayList@th105@@QAE@XZ",
+  "??_7CReplayList@th105@@6B@=??_7CReplayList@th105@@6B@",
+  "?replay_list_pattern@th105@@3QBDB=?replay_list_pattern@th105@@3QBDB",
+  "?replay_extension_pattern@th105@@3QBDB=?replay_extension_pattern@th105@@3QBDB",
+  "?replay_directory_name@th105@@3QBDB=?replay_directory_name@th105@@3QBDB",
+]
+
+[[units.cross-v106a-replay-list.functions]]
+address = "0x0042A150"
+symbol_base = "CReplayList_format_item"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "??A?$deque@EV?$allocator@E@std@@@std@@QAEAAEI@Z=0x00428F20",
+  "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x00408A50",
+  "?get_replay_header_service@th105@@YAPAUReplayHeaderServiceView@1@XZ=0x0043B060",
+  "?read_header_code@ReplayHeaderServiceView@th105@@QAEHPBD@Z=0x00429A30",
+  "?get_current_replay_header_code@th105@@YAHXZ=0x0043AA40",
+  "?trim_item_text@CFileList@th105@@QAEXPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x00439910",
+  "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x00408B40",
+  "??3@YAXPAX@Z=0x006898EA",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?format_item@CReplayList@th105@@UAEIPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$_Deque_iterator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@$00@4@@Z=__ehhandler$?format_item@CReplayList@th105@@UAEIPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$_Deque_iterator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@$00@4@@Z",
+  "___security_cookie=___security_cookie",
+  "??_C@_0P@FLMJOIJD@?$DMcolor?540FF40?$DO?$AA@=??_C@_0P@FLMJOIJD@?$DMcolor?540FF40?$DO?$AA@",
+  "??_C@_05GFOLEBJA@?$CFs?1?$CFs?$AA@=??_C@_05GFOLEBJA@?$CFs?1?$CFs?$AA@",
+  "__imp__wsprintfA=__imp__wsprintfA",
+  "??_C@_0P@GLLBFBDG@?$DMcolor?5404040?$DO?$AA@=??_C@_0P@GLLBFBDG@?$DMcolor?5404040?$DO?$AA@",
+  "??_C@_08JLGOJJMA@?$DM?1color?$DO?$AA@=??_C@_08JLGOJJMA@?$DM?1color?$DO?$AA@",
+]
+
+[units.cross-v106a-replay-menu-lifetime]
+kind = "probe"
+source = "src/ui/ReplayMenuLifetime.cpp"
+object = "build/match-units/CrossV106a_ReplayMenuLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current RTTI owns CMenuReplay. The 0x280 layout closes naturally as Menu, state byte, CReplayList +0x08, TitleDesignResource +0xBC, three UiDesignObject pointers, two MenuCursorState values, GuideOverlay[2], and a checked list at +0x274. Normal destruction and the scene-mode virtual slot are exact; the 350-byte ctor remains deliberately pending on one receiver scheduling difference."
+
+[[units.cross-v106a-replay-menu-lifetime.functions]]
+address = "0x00446D20"
+symbol_base = "CMenuReplay_dtor"
+rel32_targets = [
+  "?_Tidy@?$list@PAXV?$allocator@PAX@std@@@std@@IAEXXZ=0x00435EB0",
+  "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
+  "??1TitleDesignResource@th105@@QAE@XZ=0x00421890",
+  "??1CFileList@th105@@UAE@XZ=0x00439FC0",
+]
+dir32_targets = [
+  "__ehhandler$??1CMenuReplay@th105@@UAE@XZ=__ehhandler$??1CMenuReplay@th105@@UAE@XZ",
+  "??_7CMenuReplay@th105@@6B@=??_7CMenuReplay@th105@@6B@",
+  "??1GuideOverlay@th105@@QAE@XZ=??1GuideOverlay@th105@@QAE@XZ",
+  "??_7Menu@th105@@6B@=??_7Menu@th105@@6B@",
+  "_g_scene_mode=_g_scene_mode",
+]
+
+[[units.cross-v106a-replay-menu-lifetime.functions]]
+address = "0x00446F40"
+symbol_base = "CMenuReplay_scalar_deleting_destructor"
+rel32_targets = [
+  "??1CMenuReplay@th105@@UAE@XZ=0x00446D20",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-replay-menu-lifetime.functions]]
+address = "0x00446F60"
+symbol_base = "CMenuReplay_unknown_menu_method"
+dir32_targets = ["_g_scene_mode=_g_scene_mode"]
