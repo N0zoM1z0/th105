@@ -17,7 +17,7 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,004 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0` plus source-level fighter phase entries at `0x00464630` and `0x00464780`; IDA had attached all three as distant/tail chunks. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 520 functions / 78,002 bytes in 185
+- The accepted 1.06a authored set contains 529 functions / 78,950 bytes in 187
   VC8 match units. Current-target IDA/call evidence, relocation reconciliation,
   source archaeology, and layout recovery establish hypotheses; only canonical
   VC8 zero-difference comparisons establish exactness.
@@ -311,13 +311,18 @@ notes or source hypotheses.
 - Several adjacent SystemEffect/sprite methods remain intentionally pending despite closed semantics. System manager `spawn @ 0x00458340` has the target 125-byte length once the texture API's out-token and returned loaded handle are modeled separately, but fresh VC8 uses a 12-byte frame instead of target 8 because it does not coalesce the dead token/path slot. `TObjectManagerBase<SystemEffectObject,...>::acquire_and_link @ 0x00457110` is 91 bytes with only a persistent-this register permutation, and `CHandleManagerEx<SystemEffectObject>::acquire @ 0x00456B70` has broader register allocation drift. `CSpriteEx::finalize_render @ 0x00407AD0` is semantically closed through resource binding plus D3D9 `SetFVF(324)`/`DrawPrimitiveUP(TRIANGLESTRIP,2,...,28)`, but target keeps a single-precision 0.5 literal on the x87 stack while fresh VC8 pools a double. Keep all of these review-pending; do not use parameter-slot aliasing, volatile constants, manual vtable arithmetic, or register coercion.
 - `SystemEffectManager<SystemEffectObject>` itself is a zero-extra-state facade, not a missing authored lifecycle body. Current RTTI locates its vtable at `0x006C288C`; `CScenarioData` construction calls the exact `TObjectManagerBase<SystemEffectObject,SystemEffectObjectBase>` ctor on the embedded subobject and only overwrites the vptr, while the manager vtable's first slot ICFs to the exact base scalar wrapper `0x004583C0`. Do not manufacture a standalone derived ctor/dtor merely because the RTTI type exists.
 
+- Current RTTI `CDesignBase` and the retained `TitleDesignResource` facade refer to the same 0x34 UI design-resource object. Exact ctor/dtor/scalar at `0x004217F0/0x00421890/0x00421930` fix the lifetime layout as an IColor-like 0x08 primary base, a target-observed 0x0C `{begin,end,capacity}` handle owner at +0x08, checked `std::list<UiDesignObject*>` at +0x14, checked `std::map<unsigned,UiDesignObject*>` at +0x20, and an 8-byte checked list iterator at +0x2C. The existing `Title.hpp` facade intentionally remains opaque so already-exact UI TUs do not acquire unrelated STL/TU visibility; `DesignBaseLifetime.hpp` is the durable lifetime/layout contract.
+- The 0x0C CDesignBase handle owner must not be replaced with the probe profile's checked `std::vector<unsigned>`, which is 0x10 bytes. A genuine three-pointer owner with real allocation teardown reproduces the target while preserving the 0x34 object size. The normal destructor is an implicit virtual special member: writing an explicit empty derived destructor makes VC8 republish the CDesignBase vptr at entry, which the target does not do. This repeats the broader rule that implicit lifetime source shape can be byte-significant and is preferable to manual vptr stores.
+- `CMenuContinue` and `CMenuEnd` are independently RTTI/vtable-owned 0x40 Menu-derived lifetimes: state byte +0x04, aligned CDesignBase +0x08, owner pointer +0x3C. Continue ctor/dtor/scalar are exact 160/114/30 and End is 157/120/30. Current End callers also reinforce an unused-this member ABI for the setup/message wrappers: the bodies ignore ECX, but menu callers preserve or reload the Menu receiver before calling them. Keep those narrow member views rather than rewriting shared helpers merely because a decompiler omits an unused receiver.
+- The three CDesignBase color-forwarding virtuals `0x0040BFE0/0x0040C040/0x0040C0A0` are a deliberate non-acceptance. Current bodies traverse the recovered checked list and dispatch UiDesignObject vslots +4/+8/+0x0C, but natural `/O2` VC8 source emits 74-byte register-only bodies while each target body is 81 bytes with `push ebp; mov ebp,esp; and esp,-8`. Treat this as a TU/compiler stack-alignment blocker; do not add aligned dummy locals, volatile state, attributes, assembly, or other artificial work solely to force the target frame.
+
 ## Unknown
 
 - Exact VC8 service pack and compiler/linker flags used for every original
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 2,788
+- Accepted boundaries and authored/library origins for the remaining 2,779
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.

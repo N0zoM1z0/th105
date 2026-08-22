@@ -995,3 +995,13 @@ same truthful KeyConfig TU emits a 188-byte normal destructor whose semantics,
 length and member teardown are closed but one store/load scheduling swap
 remains. Keep that normal destructor review-pending rather than forcing the
 compiler merely because its scalar wrapper is exact.
+
+### CDesignBase lifetime: owner width, implicit destruction, and alignment blockers
+
+Current RTTI/vtable evidence identifies `CDesignBase @ 0x006C08AC` as the binary class behind the retained 0x34 `TitleDesignResource` facade. A natural `/GS` lifetime probe becomes canonical exact only with the target's actual member widths: an IColor-like 0x08 primary base, a 0x0C three-pointer handle owner, checked `list<UiDesignObject*>`, checked `map<unsigned,UiDesignObject*>`, and an 8-byte checked list iterator. The probe profile's checked `std::vector<unsigned>` is 0x10 and therefore cannot truthfully occupy the handle slot. Use a real three-pointer owner with real delete/reset semantics; do not hide the four-byte mismatch behind padding.
+
+Special-member visibility is byte-significant here. A user-defined empty `CDesignBase` destructor republishes the derived vptr before member teardown, while current `0x00421890` starts directly with container/owner destruction and only restores the IColor vptr at the end. Leaving the virtual destructor implicit produces 154/154 exactly; its scalar wrapper is 30/30 and ctor is 153/153. This is the same compiler-lifetime principle seen in roster manager families: prefer the natural implicit special member when target vtable and teardown evidence support it.
+
+The recovered layout also explains a useful stop condition. The three color-forwarding vtable members at `0x0040BFE0/0x0040C040/0x0040C0A0` semantically traverse `objects_14` and call UiDesignObject color vslots, but ordinary checked-list source emits 74-byte register-only functions. The target emits 81-byte bodies with an EBP frame and 8-byte stack alignment. Once semantics, iterator validation and virtual slots agree, this remaining frame-policy difference is not permission to add an aligned dummy, volatile local, compiler attribute, register coercion, or assembly. Keep the methods pending until a truthful TU/compiler cause is recovered.
+
+`CMenuContinue`/`CMenuEnd` show how the exact base lifetime composes into derived UI objects. Both are 0x40 naturally: `Menu`, state byte, aligned `CDesignBase @ +8`, owner pointer `+0x3C`. Their six ctor/dtor/scalar bodies compile 160/114/30 and 157/120/30 exactly using ordinary virtual design load/cleanup, Menu base lifetime, target-owned paths and caller-backed unused-this member views. No hand-written vtable calls or destructor cleanup lists are required.

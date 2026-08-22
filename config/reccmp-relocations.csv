@@ -446,3 +446,13 @@ __ehhandler$??1CProfileCharacterSelect@th105@@UAE@XZ,0x006B9D7D,8b542408,0,Curre
 ??_7CProfileKeyConfig@th105@@6B@,0x006C22EC,d0bc4400,0,Current CProfileKeyConfig RTTI owns primary vtable 0x006C22EC; first slot points to scalar deleting dtor 0x0044BCD0; canonical bytes attested 2026-08-22,address
 ??_7CProfileDeckEdit@th105@@6B@,0x006C222C,20b34400,0,Current CProfileDeckEdit RTTI owns primary vtable 0x006C222C; first slot points to scalar deleting dtor 0x0044B320; canonical bytes attested 2026-08-22,address
 __ehhandler$??1CProfileDeckEdit@th105@@UAE@XZ,0x006B9ECE,8b542408,0,Current CProfileDeckEdit normal dtor 0x0044A950 pushes VC8 EH handler 0x006B9ECE; canonical prefix attested 2026-08-22,address
+_cdesign_base_vtable,0x006C08AC,30194200,0,Current 1.06a CDesignBase RTTI COL 0x006D7594 owns primary vtable 0x006C08AC; first slot points to scalar deleting dtor 0x00421930; canonical bytes attested 2026-08-22,address
+_cdesign_base_ctor_eh,0x006B70DE,8b542408,0,Current 1.06a CDesignBase ctor 0x004217F0 pushes EH handler 0x006B70DE; canonical handler prefix attested 2026-08-22,address
+_cdesign_base_dtor_eh,0x006B711E,8b542408,0,Current 1.06a CDesignBase normal dtor 0x00421890 pushes EH handler 0x006B711E; canonical handler prefix attested 2026-08-22,address
+_menu_design_lifetime_dtor_eh,0x006B9743,8b542408,0,Current 1.06a CMenuContinue/CMenuEnd design-resource dtors 0x00444F20/0x004451A0 share folded VC8 EH handler 0x006B9743; canonical prefix attested 2026-08-22,address
+??_7CMenuContinue@th105@@6B@,0x006C1E14,a04f4400,0,Current 1.06a RTTI owns CMenuContinue vtable 0x006C1E14; first slot points to scalar deleting dtor 0x00444FA0; canonical bytes attested 2026-08-22,address
+??_7CMenuEnd@th105@@6B@,0x006C1E64,20524400,0,Current 1.06a RTTI owns CMenuEnd vtable 0x006C1E64; first slot points to scalar deleting dtor 0x00445220; canonical bytes attested 2026-08-22,address
+?g_menu_end_flag@th105@@3EA,0x006FD045,00,0,Current 1.06a CMenuEnd normal dtor 0x004451A0 clears this loader-zero UI/menu byte before design-resource teardown; canonical byte attested 2026-08-22,address
+__ehhandler$??0CMenuContinue@th105@@QAE@PAX@Z,0x006B9713,8b542408,0,Current CMenuContinue ctor 0x00444E80 pushes VC8 EH handler 0x006B9713; canonical prefix attested 2026-08-22,address
+_menu_continue_design_path,0x006C1DF0,646174612f6d656e752f636f6e74696e75652f636f6e74696e75652e64617400,0,Current CMenuContinue ctor loads target-owned data/menu/continue/continue.dat at 0x006C1DF0; canonical bytes attested 2026-08-22,address
+_menu_end_design_path,0x006C1E44,646174612f6d656e752f726573756c742f726573756c742e64617400,0,Current CMenuEnd ctor loads target-owned data/menu/result/result.dat at 0x006C1E44; canonical bytes attested 2026-08-22,address

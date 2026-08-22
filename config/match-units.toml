@@ -6860,3 +6860,123 @@ rel32_targets = [
   "??1CProfileKeyConfig@th105@@UAE@XZ=0x0044B9D0",
   "??3@YAXPAX@Z=0x006898EA",
 ]
+
+[units.cross-v106a-design-base-lifetime]
+kind = "probe"
+source = "src/ui/DesignBaseLifetime.cpp"
+object = "build/match-units/CrossV106a_DesignBaseLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current RTTI/vtable-owned CDesignBase lifetime. The 0x34 layout is IColor-like primary base +0, a target-observed 0x0C three-pointer handle owner +8, checked list<UiDesignObject*> +0x14, checked map<unsigned,UiDesignObject*> +0x20, and checked list iterator +0x2C. VC8 implicit virtual destruction is required because the target does not republish the derived vptr at normal-dtor entry."
+
+[[units.cross-v106a-design-base-lifetime.functions]]
+address = "0x004217F0"
+symbol_base = "CDesignBase_ctor"
+rel32_targets = [
+  "?_Buynode@?$list@PAUUiDesignObject@th105@@V?$allocator@PAUUiDesignObject@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@PAUUiDesignObject@th105@@V?$allocator@PAUUiDesignObject@th105@@@std@@@2@XZ=0x00435E50",
+  "?_Buynode@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@2@XZ=0x00420A40",
+]
+dir32_targets = [
+  "??_7CDesignBase@th105@@6B@=_cdesign_base_vtable",
+  "__ehhandler$??0CDesignBase@th105@@QAE@XZ=_cdesign_base_ctor_eh",
+]
+
+[[units.cross-v106a-design-base-lifetime.functions]]
+address = "0x00421890"
+symbol_base = "CDesignBase_dtor"
+rel32_targets = [
+  "?erase@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z=0x00421050",
+  "??3@YAXPAX@Z=0x006898EA",
+  "?_Tidy@?$list@PAUUiDesignObject@th105@@V?$allocator@PAUUiDesignObject@th105@@@std@@@std@@IAEXXZ=0x00435EB0",
+]
+dir32_targets = [
+  "??_7DesignColorLifetimeView@th105@@6B@=_title_color_vtable_anchor_external",
+  "__ehhandler$??1CDesignBase@th105@@UAE@XZ=_cdesign_base_dtor_eh",
+]
+
+[[units.cross-v106a-design-base-lifetime.functions]]
+address = "0x00421930"
+symbol_base = "CDesignBase_scalar_deleting_destructor"
+rel32_targets = [
+  "??1CDesignBase@th105@@UAE@XZ=0x00421890",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[units.cross-v106a-menu-continue-end-lifetimes]
+kind = "probe"
+source = "src/ui/MenuContinueEndLifetime.cpp"
+object = "build/match-units/CrossV106a_MenuContinueEndLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current RTTI-owned CMenuContinue/CMenuEnd 0x40 lifetime island. Natural Menu base construction, CDesignBase member +8, owner +0x3C, target-backed design paths, and caller-proved unused-this CMenuEnd setup/message views reproduce all six ctor/dtor/scalar bodies."
+
+[[units.cross-v106a-menu-continue-end-lifetimes.functions]]
+address = "0x00444E80"
+symbol_base = "CMenuContinue_ctor"
+rel32_targets = [
+  "??0CDesignBase@th105@@QAE@XZ=0x004217F0",
+  "?get_game_config_for_continue@th105@@YAPAUContinueGameConfigView@1@XZ=0x0043AF10",
+  "?refresh_continue_network_state@th105@@YAXXZ=0x0043BAF0",
+]
+dir32_targets = [
+  "__ehhandler$??0CMenuContinue@th105@@QAE@PAX@Z=__ehhandler$??0CMenuContinue@th105@@QAE@PAX@Z",
+  "_g_scene_mode=_g_scene_mode",
+  "??_7CMenuContinue@th105@@6B@=??_7CMenuContinue@th105@@6B@",
+  "_menu_continue_design_path=_menu_continue_design_path",
+]
+
+[[units.cross-v106a-menu-continue-end-lifetimes.functions]]
+address = "0x00444F20"
+symbol_base = "CMenuContinue_dtor"
+rel32_targets = ["??1CDesignBase@th105@@UAE@XZ=0x00421890"]
+dir32_targets = [
+  "__ehhandler$??1CMenuContinue@th105@@UAE@XZ=_menu_design_lifetime_dtor_eh",
+  "??_7CMenuContinue@th105@@6B@=??_7CMenuContinue@th105@@6B@",
+  "??_7Menu@th105@@6B@=??_7Menu@th105@@6B@",
+  "_g_scene_mode=_g_scene_mode",
+]
+
+[[units.cross-v106a-menu-continue-end-lifetimes.functions]]
+address = "0x00444FA0"
+symbol_base = "CMenuContinue_scalar_deleting_destructor"
+rel32_targets = [
+  "??1CMenuContinue@th105@@UAE@XZ=0x00444F20",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-menu-continue-end-lifetimes.functions]]
+address = "0x00445100"
+symbol_base = "CMenuEnd_ctor"
+rel32_targets = [
+  "??0CDesignBase@th105@@QAE@XZ=0x004217F0",
+  "?initialize_runtime_4404f0@CMenuEnd@th105@@AAEXXZ=0x004404F0",
+  "?hide_profile_message_43f8d0@CMenuEnd@th105@@AAEXXZ=0x0043F8D0",
+  "?get_network_session_for_menu_end@th105@@YAPAUCNetworkBase@1@XZ=0x0043B090",
+]
+dir32_targets = [
+  "__ehhandler$??0CMenuEnd@th105@@QAE@PAX@Z=_menu_design_lifetime_dtor_eh",
+  "_g_scene_mode=_g_scene_mode",
+  "??_7CMenuEnd@th105@@6B@=??_7CMenuEnd@th105@@6B@",
+  "_menu_end_design_path=_menu_end_design_path",
+  "?g_menu_end_flag@th105@@3EA=?g_menu_end_flag@th105@@3EA",
+]
+
+[[units.cross-v106a-menu-continue-end-lifetimes.functions]]
+address = "0x004451A0"
+symbol_base = "CMenuEnd_dtor"
+rel32_targets = ["??1CDesignBase@th105@@UAE@XZ=0x00421890"]
+dir32_targets = [
+  "__ehhandler$??1CMenuEnd@th105@@UAE@XZ=_menu_design_lifetime_dtor_eh",
+  "??_7CMenuEnd@th105@@6B@=??_7CMenuEnd@th105@@6B@",
+  "?g_menu_end_flag@th105@@3EA=?g_menu_end_flag@th105@@3EA",
+  "??_7Menu@th105@@6B@=??_7Menu@th105@@6B@",
+  "_g_scene_mode=_g_scene_mode",
+]
+
+[[units.cross-v106a-menu-continue-end-lifetimes.functions]]
+address = "0x00445220"
+symbol_base = "CMenuEnd_scalar_deleting_destructor"
+rel32_targets = [
+  "??1CMenuEnd@th105@@UAE@XZ=0x004451A0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
