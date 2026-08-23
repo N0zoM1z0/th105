@@ -17,7 +17,7 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,010 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0`, source-level fighter phase entries at `0x00464630`/`0x00464780`, standalone `CMenuReplay` scalar wrapper `0x00446F40`, source helper `CMenuReplay::update_mode_state @ 0x00446590`, the independent `CFileWriter::~CFileWriter @ 0x00407BF0`, the independent reverse CSpriteEx quad-copy boundary `0x004073C0`, independent `FrameData::~FrameData @ 0x00421A70`, and the 284-byte Fighter counter-threshold body `0x0045B300`; IDA had attached or missed those boundaries during auto-analysis. The writer body is a complete 21-byte RET-terminated vtable-owned destructor surrounded by `INT3` padding. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 631 functions / 99,963 bytes in 208
+- The accepted 1.06a authored set contains 661 functions / 106,503 bytes in 209
   VC8 match units. Current-target IDA/call evidence, relocation reconciliation,
   source archaeology, and layout recovery establish hypotheses; only canonical
   VC8 zero-difference comparisons establish exactness.
@@ -370,13 +370,16 @@ notes or source hypotheses.
 - `FighterCutinResource::load_for_character` is also a positive anti-coercion reference. Older retained source used `volatile` solely around `state_9c = -1`; removing `volatile` and restoring the real post-configure sprite lifetime makes ordinary VC8 schedule the truthful store between `pop edi` and `pop esi`, yielding 199/199. Do not preserve a historical volatile/register hack merely because it once looked useful for matching.
 - Large UI follow-ups from the same investigation remain deliberate non-acceptances. `CSelectScenario` ctor is target 862 while truthful current source remains 856 after recovering more accurate SSO/checked-iterator lifetimes; its remaining differences are EH/evaluation scheduling. `on_scene_enter` is 261 vs 271 on member-input reload CSE, `update_selection` is 406 vs 414 after recovering the real `one=1` lifetime and `vertical > 0` branch but VC8 tail-merges the two float-rounding arms, and `update` remains 268 vs 247 around menu-allocation null tails. `CMenuResult::update_active` reaches 620 vs target 619 under the correct `/GS` profile but differs on final-return/CProfileMenu allocation tail merging; ctor is 493 vs 502 on scene-mode constant CSE; `refresh_selected_character` is 347 vs 342 on zero-register allocation. `/O1` and `/O2 /Os` truth tests both produce an unrelated 320-byte EBP-frame body, so do not change the project optimization profile to chase that helper.
 
+- The roster relationship lifetime is a real polymorphic intermediate layer, not just the flat tail used by constructor probes. Fifteen current 406-byte destructors write RTTI-owned `CharacterObjectEx<Fighter,FighterObject>` vtables distinct from the final `FighterObject` vtables, and fifteen unique 30-byte scalar wrappers call those normal destructors. A destructor-only template view reproduces all thirty bodies / 6,540 bytes exactly while leaving the already-exact pool-constructor TU untouched. This is a concrete example where one binary class needs different source visibility in different recovered TUs: making `CharacterObjectEx` visible to the pool TU changes constructor lowering and is therefore rejected.
+- Checked-deque source lifetime is byte-significant in those destructors. The parent search must keep `end()` ephemeral inside the loop condition; saving it as a local grows the 406-byte body to 410. The child walk must retain the target-observed `if (!child_refs.empty())` gate; removing it shrinks to 393. Replacing the loop with `std::find` grows to 440. Prefer these target-observed C++ lifetime/CFG distinctions over volatile/register/assembly shaping. `CharacterObject::~CharacterObject @ 0x00492ED0` is separately semantics-closed at target length 145 only when `AttackObject::~AttackObject` is non-throwing, but standalone VC8 still folds the target array-delete thunk into scalar delete; leave it pending until TU/link visibility explains that symbol naturally.
+
 ## Unknown
 
 - Exact VC8 service pack and compiler/linker flags used for every original
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 2,452
+- Accepted boundaries and authored/library origins for the remaining 2,422
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.

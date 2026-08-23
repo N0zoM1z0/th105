@@ -8426,3 +8426,296 @@ dir32_targets = [
   "?g_info_manager@th105@@3PAUInfoManager@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A",
   "__real@43c80000=_cbattle_manager_transition_position",
 ]
+
+[units.cross-v106a-character-object-ex-lifetimes]
+kind = "probe"
+source = "src/characters/CharacterObjectExDestructors.cpp"
+object = "build/match-units/CrossV106a_CharacterObjectExDestructors.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a fifteen-way CharacterObjectEx<Fighter,Object> relationship lifetime family. Current RTTI-owned intermediate vtables distinguish this destructor layer from the final FighterObject vtables. Ordinary checked-deque source keeps parent end() ephemeral and preserves the target child empty() gate; no register/assembly forcing."
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x00493110"
+symbol_base = "??1?$CharacterObjectEx@VReimu@@VReimuObject@@@@UAE@XZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$deque@PAVReimuObject@@V?$allocator@PAVReimuObject@@@std@@@std@@QAE?AV?$_Deque_iterator@PAVReimuObject@@V?$allocator@PAVReimuObject@@@std@@$00@2@V32@@Z=0x00617B50",
+  "?_Tidy@?$deque@PAVReimuObject@@V?$allocator@PAVReimuObject@@@std@@@std@@IAEXXZ=0x00420A80",
+  "??1CharacterObject@@UAE@XZ=0x00492ED0",
+]
+dir32_targets = ["??_7?$CharacterObjectEx@VReimu@@VReimuObject@@@@6B@=??_7?$CharacterObjectEx@VReimu@@VReimuObject@@@@6B@"]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x00493550"
+symbol_base = "??_G?$CharacterObjectEx@VReimu@@VReimuObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectEx@VReimu@@VReimuObject@@@@UAE@XZ=0x00493110",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x004B96D0"
+symbol_base = "??1?$CharacterObjectEx@VMarisa@@VMarisaObject@@@@UAE@XZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$deque@PAVMarisaObject@@V?$allocator@PAVMarisaObject@@@std@@@std@@QAE?AV?$_Deque_iterator@PAVMarisaObject@@V?$allocator@PAVMarisaObject@@@std@@$00@2@V32@@Z=0x00617B50",
+  "?_Tidy@?$deque@PAVMarisaObject@@V?$allocator@PAVMarisaObject@@@std@@@std@@IAEXXZ=0x00420A80",
+  "??1CharacterObject@@UAE@XZ=0x00492ED0",
+]
+dir32_targets = ["??_7?$CharacterObjectEx@VMarisa@@VMarisaObject@@@@6B@=??_7?$CharacterObjectEx@VMarisa@@VMarisaObject@@@@6B@"]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x004B9870"
+symbol_base = "??_G?$CharacterObjectEx@VMarisa@@VMarisaObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectEx@VMarisa@@VMarisaObject@@@@UAE@XZ=0x004B96D0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x004DEBF0"
+symbol_base = "??1?$CharacterObjectEx@VSakuya@@VSakuyaObject@@@@UAE@XZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$deque@PAVSakuyaObject@@V?$allocator@PAVSakuyaObject@@@std@@@std@@QAE?AV?$_Deque_iterator@PAVSakuyaObject@@V?$allocator@PAVSakuyaObject@@@std@@$00@2@V32@@Z=0x00617B50",
+  "?_Tidy@?$deque@PAVSakuyaObject@@V?$allocator@PAVSakuyaObject@@@std@@@std@@IAEXXZ=0x00420A80",
+  "??1CharacterObject@@UAE@XZ=0x00492ED0",
+]
+dir32_targets = ["??_7?$CharacterObjectEx@VSakuya@@VSakuyaObject@@@@6B@=??_7?$CharacterObjectEx@VSakuya@@VSakuyaObject@@@@6B@"]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x004DED90"
+symbol_base = "??_G?$CharacterObjectEx@VSakuya@@VSakuyaObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectEx@VSakuya@@VSakuyaObject@@@@UAE@XZ=0x004DEBF0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x004FA400"
+symbol_base = "??1?$CharacterObjectEx@VAlice@@VAliceObject@@@@UAE@XZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$deque@PAVAliceObject@@V?$allocator@PAVAliceObject@@@std@@@std@@QAE?AV?$_Deque_iterator@PAVAliceObject@@V?$allocator@PAVAliceObject@@@std@@$00@2@V32@@Z=0x00617B50",
+  "?_Tidy@?$deque@PAVAliceObject@@V?$allocator@PAVAliceObject@@@std@@@std@@IAEXXZ=0x00420A80",
+  "??1CharacterObject@@UAE@XZ=0x00492ED0",
+]
+dir32_targets = ["??_7?$CharacterObjectEx@VAlice@@VAliceObject@@@@6B@=??_7?$CharacterObjectEx@VAlice@@VAliceObject@@@@6B@"]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x004FA840"
+symbol_base = "??_G?$CharacterObjectEx@VAlice@@VAliceObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectEx@VAlice@@VAliceObject@@@@UAE@XZ=0x004FA400",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x0051E6A0"
+symbol_base = "??1?$CharacterObjectEx@VPatchouli@@VPatchouliObject@@@@UAE@XZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$deque@PAVPatchouliObject@@V?$allocator@PAVPatchouliObject@@@std@@@std@@QAE?AV?$_Deque_iterator@PAVPatchouliObject@@V?$allocator@PAVPatchouliObject@@@std@@$00@2@V32@@Z=0x00617B50",
+  "?_Tidy@?$deque@PAVPatchouliObject@@V?$allocator@PAVPatchouliObject@@@std@@@std@@IAEXXZ=0x00420A80",
+  "??1CharacterObject@@UAE@XZ=0x00492ED0",
+]
+dir32_targets = ["??_7?$CharacterObjectEx@VPatchouli@@VPatchouliObject@@@@6B@=??_7?$CharacterObjectEx@VPatchouli@@VPatchouliObject@@@@6B@"]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x0051E840"
+symbol_base = "??_G?$CharacterObjectEx@VPatchouli@@VPatchouliObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectEx@VPatchouli@@VPatchouliObject@@@@UAE@XZ=0x0051E6A0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x0053AA60"
+symbol_base = "??1?$CharacterObjectEx@VYoumu@@VYoumuObject@@@@UAE@XZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$deque@PAVYoumuObject@@V?$allocator@PAVYoumuObject@@@std@@@std@@QAE?AV?$_Deque_iterator@PAVYoumuObject@@V?$allocator@PAVYoumuObject@@@std@@$00@2@V32@@Z=0x00617B50",
+  "?_Tidy@?$deque@PAVYoumuObject@@V?$allocator@PAVYoumuObject@@@std@@@std@@IAEXXZ=0x00420A80",
+  "??1CharacterObject@@UAE@XZ=0x00492ED0",
+]
+dir32_targets = ["??_7?$CharacterObjectEx@VYoumu@@VYoumuObject@@@@6B@=??_7?$CharacterObjectEx@VYoumu@@VYoumuObject@@@@6B@"]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x0053AC00"
+symbol_base = "??_G?$CharacterObjectEx@VYoumu@@VYoumuObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectEx@VYoumu@@VYoumuObject@@@@UAE@XZ=0x0053AA60",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x005557B0"
+symbol_base = "??1?$CharacterObjectEx@VRemilia@@VRemiliaObject@@@@UAE@XZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$deque@PAVRemiliaObject@@V?$allocator@PAVRemiliaObject@@@std@@@std@@QAE?AV?$_Deque_iterator@PAVRemiliaObject@@V?$allocator@PAVRemiliaObject@@@std@@$00@2@V32@@Z=0x00617B50",
+  "?_Tidy@?$deque@PAVRemiliaObject@@V?$allocator@PAVRemiliaObject@@@std@@@std@@IAEXXZ=0x00420A80",
+  "??1CharacterObject@@UAE@XZ=0x00492ED0",
+]
+dir32_targets = ["??_7?$CharacterObjectEx@VRemilia@@VRemiliaObject@@@@6B@=??_7?$CharacterObjectEx@VRemilia@@VRemiliaObject@@@@6B@"]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x00555950"
+symbol_base = "??_G?$CharacterObjectEx@VRemilia@@VRemiliaObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectEx@VRemilia@@VRemiliaObject@@@@UAE@XZ=0x005557B0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x0056D4B0"
+symbol_base = "??1?$CharacterObjectEx@VYuyuko@@VYuyukoObject@@@@UAE@XZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$deque@PAVYuyukoObject@@V?$allocator@PAVYuyukoObject@@@std@@@std@@QAE?AV?$_Deque_iterator@PAVYuyukoObject@@V?$allocator@PAVYuyukoObject@@@std@@$00@2@V32@@Z=0x00617B50",
+  "?_Tidy@?$deque@PAVYuyukoObject@@V?$allocator@PAVYuyukoObject@@@std@@@std@@IAEXXZ=0x00420A80",
+  "??1CharacterObject@@UAE@XZ=0x00492ED0",
+]
+dir32_targets = ["??_7?$CharacterObjectEx@VYuyuko@@VYuyukoObject@@@@6B@=??_7?$CharacterObjectEx@VYuyuko@@VYuyukoObject@@@@6B@"]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x0056D9A0"
+symbol_base = "??_G?$CharacterObjectEx@VYuyuko@@VYuyukoObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectEx@VYuyuko@@VYuyukoObject@@@@UAE@XZ=0x0056D4B0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x0058B740"
+symbol_base = "??1?$CharacterObjectEx@VYukari@@VYukariObject@@@@UAE@XZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$deque@PAVYukariObject@@V?$allocator@PAVYukariObject@@@std@@@std@@QAE?AV?$_Deque_iterator@PAVYukariObject@@V?$allocator@PAVYukariObject@@@std@@$00@2@V32@@Z=0x00617B50",
+  "?_Tidy@?$deque@PAVYukariObject@@V?$allocator@PAVYukariObject@@@std@@@std@@IAEXXZ=0x00420A80",
+  "??1CharacterObject@@UAE@XZ=0x00492ED0",
+]
+dir32_targets = ["??_7?$CharacterObjectEx@VYukari@@VYukariObject@@@@6B@=??_7?$CharacterObjectEx@VYukari@@VYukariObject@@@@6B@"]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x0058B8E0"
+symbol_base = "??_G?$CharacterObjectEx@VYukari@@VYukariObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectEx@VYukari@@VYukariObject@@@@UAE@XZ=0x0058B740",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x005AE440"
+symbol_base = "??1?$CharacterObjectEx@VSuika@@VSuikaObject@@@@UAE@XZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$deque@PAVSuikaObject@@V?$allocator@PAVSuikaObject@@@std@@@std@@QAE?AV?$_Deque_iterator@PAVSuikaObject@@V?$allocator@PAVSuikaObject@@@std@@$00@2@V32@@Z=0x00617B50",
+  "?_Tidy@?$deque@PAVSuikaObject@@V?$allocator@PAVSuikaObject@@@std@@@std@@IAEXXZ=0x00420A80",
+  "??1CharacterObject@@UAE@XZ=0x00492ED0",
+]
+dir32_targets = ["??_7?$CharacterObjectEx@VSuika@@VSuikaObject@@@@6B@=??_7?$CharacterObjectEx@VSuika@@VSuikaObject@@@@6B@"]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x005AE880"
+symbol_base = "??_G?$CharacterObjectEx@VSuika@@VSuikaObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectEx@VSuika@@VSuikaObject@@@@UAE@XZ=0x005AE440",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x005D2390"
+symbol_base = "??1?$CharacterObjectEx@VUdonge@@VUdongeObject@@@@UAE@XZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$deque@PAVUdongeObject@@V?$allocator@PAVUdongeObject@@@std@@@std@@QAE?AV?$_Deque_iterator@PAVUdongeObject@@V?$allocator@PAVUdongeObject@@@std@@$00@2@V32@@Z=0x00617B50",
+  "?_Tidy@?$deque@PAVUdongeObject@@V?$allocator@PAVUdongeObject@@@std@@@std@@IAEXXZ=0x00420A80",
+  "??1CharacterObject@@UAE@XZ=0x00492ED0",
+]
+dir32_targets = ["??_7?$CharacterObjectEx@VUdonge@@VUdongeObject@@@@6B@=??_7?$CharacterObjectEx@VUdonge@@VUdongeObject@@@@6B@"]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x005D27D0"
+symbol_base = "??_G?$CharacterObjectEx@VUdonge@@VUdongeObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectEx@VUdonge@@VUdongeObject@@@@UAE@XZ=0x005D2390",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x005F71F0"
+symbol_base = "??1?$CharacterObjectEx@VKomachi@@VKomachiObject@@@@UAE@XZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$deque@PAVKomachiObject@@V?$allocator@PAVKomachiObject@@@std@@@std@@QAE?AV?$_Deque_iterator@PAVKomachiObject@@V?$allocator@PAVKomachiObject@@@std@@$00@2@V32@@Z=0x00617B50",
+  "?_Tidy@?$deque@PAVKomachiObject@@V?$allocator@PAVKomachiObject@@@std@@@std@@IAEXXZ=0x00420A80",
+  "??1CharacterObject@@UAE@XZ=0x00492ED0",
+]
+dir32_targets = ["??_7?$CharacterObjectEx@VKomachi@@VKomachiObject@@@@6B@=??_7?$CharacterObjectEx@VKomachi@@VKomachiObject@@@@6B@"]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x005F7390"
+symbol_base = "??_G?$CharacterObjectEx@VKomachi@@VKomachiObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectEx@VKomachi@@VKomachiObject@@@@UAE@XZ=0x005F71F0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x00617BC0"
+symbol_base = "??1?$CharacterObjectEx@VAya@@VAyaObject@@@@UAE@XZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$deque@PAVAyaObject@@V?$allocator@PAVAyaObject@@@std@@@std@@QAE?AV?$_Deque_iterator@PAVAyaObject@@V?$allocator@PAVAyaObject@@@std@@$00@2@V32@@Z=0x00617B50",
+  "?_Tidy@?$deque@PAVAyaObject@@V?$allocator@PAVAyaObject@@@std@@@std@@IAEXXZ=0x00420A80",
+  "??1CharacterObject@@UAE@XZ=0x00492ED0",
+]
+dir32_targets = ["??_7?$CharacterObjectEx@VAya@@VAyaObject@@@@6B@=??_7?$CharacterObjectEx@VAya@@VAyaObject@@@@6B@"]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x00618000"
+symbol_base = "??_G?$CharacterObjectEx@VAya@@VAyaObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectEx@VAya@@VAyaObject@@@@UAE@XZ=0x00617BC0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x00630A70"
+symbol_base = "??1?$CharacterObjectEx@VIku@@VIkuObject@@@@UAE@XZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$deque@PAVIkuObject@@V?$allocator@PAVIkuObject@@@std@@@std@@QAE?AV?$_Deque_iterator@PAVIkuObject@@V?$allocator@PAVIkuObject@@@std@@$00@2@V32@@Z=0x00617B50",
+  "?_Tidy@?$deque@PAVIkuObject@@V?$allocator@PAVIkuObject@@@std@@@std@@IAEXXZ=0x00420A80",
+  "??1CharacterObject@@UAE@XZ=0x00492ED0",
+]
+dir32_targets = ["??_7?$CharacterObjectEx@VIku@@VIkuObject@@@@6B@=??_7?$CharacterObjectEx@VIku@@VIkuObject@@@@6B@"]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x00630EB0"
+symbol_base = "??_G?$CharacterObjectEx@VIku@@VIkuObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectEx@VIku@@VIkuObject@@@@UAE@XZ=0x00630A70",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x0064ADD0"
+symbol_base = "??1?$CharacterObjectEx@VTenshi@@VTenshiObject@@@@UAE@XZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$deque@PAVTenshiObject@@V?$allocator@PAVTenshiObject@@@std@@@std@@QAE?AV?$_Deque_iterator@PAVTenshiObject@@V?$allocator@PAVTenshiObject@@@std@@$00@2@V32@@Z=0x00617B50",
+  "?_Tidy@?$deque@PAVTenshiObject@@V?$allocator@PAVTenshiObject@@@std@@@std@@IAEXXZ=0x00420A80",
+  "??1CharacterObject@@UAE@XZ=0x00492ED0",
+]
+dir32_targets = ["??_7?$CharacterObjectEx@VTenshi@@VTenshiObject@@@@6B@=??_7?$CharacterObjectEx@VTenshi@@VTenshiObject@@@@6B@"]
+
+[[units.cross-v106a-character-object-ex-lifetimes.functions]]
+address = "0x0064B280"
+symbol_base = "??_G?$CharacterObjectEx@VTenshi@@VTenshiObject@@@@UAEPAXI@Z"
+rel32_targets = [
+  "??1?$CharacterObjectEx@VTenshi@@VTenshiObject@@@@UAE@XZ=0x0064ADD0",
+  "??3@YAXPAX@Z=0x006898EA",
+]

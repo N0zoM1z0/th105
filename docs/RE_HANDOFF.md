@@ -14,9 +14,12 @@ seeds using current-target-backed structural remapping where appropriate.
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,010: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0`, source-level fighter phase entries `0x00464630`/`0x00464780`, standalone `CMenuReplay` scalar wrapper `0x00446F40`, `CMenuReplay::update_mode_state @ 0x00446590`, independent `CFileWriter_dtor @ 0x00407BF0`, independent `CSpriteEx::commit_transform @ 0x004073C0`, independent `FrameData::~FrameData @ 0x00421A70`, and independent `update_fighter_counter_thresholds @ 0x0045B300`, all missed or tail-attached by auto-analysis. Current reviewed state is 631 authored functions, 927 classified exclusions, and 2,452 still awaiting origin/boundary review.
-- All 631 confirmed authored functions are source-present and canonical exact:
-  99,963 exact authored bytes across 208 configured VC8 units.
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,010: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0`, source-level fighter phase entries `0x00464630`/`0x00464780`, standalone `CMenuReplay` scalar wrapper `0x00446F40`, `CMenuReplay::update_mode_state @ 0x00446590`, independent `CFileWriter_dtor @ 0x00407BF0`, independent `CSpriteEx::commit_transform @ 0x004073C0`, independent `FrameData::~FrameData @ 0x00421A70`, and independent `update_fighter_counter_thresholds @ 0x0045B300`, all missed or tail-attached by auto-analysis. Current reviewed state is 661 authored functions, 927 classified exclusions, and 2,422 still awaiting origin/boundary review.
+- All 661 confirmed authored functions are source-present and canonical exact:
+  106,503 exact authored bytes across 209 configured VC8 units.
+
+- The newest roster relationship-lifetime wave adds thirty authored canonical-exact functions / 6,540 bytes in one `/GS` TU: fifteen `CharacterObjectEx<Fighter,FighterObject>` normal destructors are 406/406 and their fifteen scalar deleting wrappers are 30/30. Current intermediate RTTI vtables independently identify every specialization; the normal destructor removes `this` from the parent checked deque, clears each child's parent link, destroys the deque, and tail-jumps `CharacterObject::~CharacterObject`. Exact source keeps the parent `end()` ephemeral and preserves the target-observed `if (!child_refs.empty())` gate. A saved end iterator emits 410 bytes, omitting the empty gate emits 393, and `std::find` emits 440, so these are real source-lifetime/CFG facts rather than codegen coercion.
+- Keep the `CharacterObjectEx` hierarchy view local to the destructor TU for now. Exposing the polymorphic intermediate base to the already-exact ObjectPool constructor TU changes the 519-byte acquire family at offset `0xA0`; current target therefore supports different TU visibility even though the RTTI hierarchy itself is real. The adjacent `CharacterObject::~CharacterObject @ 0x00492ED0` remains pending: declaring `AttackObject::~AttackObject` non-throwing naturally removes the exact eight-byte EH-state surplus and reaches target length 145, but current standalone VC8 still folds the target array-delete wrapper into scalar delete. Do not invent a helper or assembly solely to preserve that linker symbol.
 
 - The shared Menu profile wave adds `ProfileSpriteView::set_texture @ 0x00406A60` (39), `Menu::show_profile_result @ 0x0043F810` (93), `Menu::show_profile_message @ 0x0043F640` (160), and `Menu::select_profile @ 0x00440410` (224): four canonical-exact functions / 516 bytes. Exact Profile/Replay/MenuSelect callers cold-replay after replacing derived/local aliases with the common unused-this `Menu` ABI. `create_text_texture @ 0x00404D00` is modeled as a four-byte `TextureHandleResult` value return so VC8 naturally emits the hidden-sret caller shape.
 - Keep the profile-list cursor (`0x006FCFFC`, selection `0x006FD008`) separate from the message cursor (`0x006FD018`, selection `0x006FD024`). `Menu::select_profile` needs a real reference to the first `MenuString28::assign` return. `update_profile_message @ 0x0043F6E0` stays pending at 294/298 because standalone VC8 tail-merges the final false return; do not force the missing four-byte epilogue with goto/volatile/fake liveness.
@@ -117,7 +120,7 @@ the current call target.
 ## Next bounded work
 
 Continue origin/boundary review so the authored denominator becomes meaningful,
-then expand exact recovery from the 631 accepted functions. Use
+then expand exact recovery from the 661 accepted functions. Use
 `scripts/rank_retained_exact.py --only-unconfigured` to prioritize historical
 exact source that never had an old match unit. Same-size zero non-relocation
 mismatch candidates are especially productive, but ambiguous template/clone
@@ -126,9 +129,9 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 2,452
+The 95% authored-function and authored-byte goals cannot be reported yet: 2,422
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 631/631
+global authored denominator is not established. Do not use the current 661/661
 exact subset as a substitute denominator.
 
 - The newest CBattleManager dispatcher/transition wave adds two canonical-exact vtable methods / 969 bytes. `dispatch_battle_state_frame_472b20 @ 0x00472B20` is 572/572 under `/GS`; its network/menu/session paths and seven phase virtual calls are ordinary C++, and the trailing 28-byte switch table is outside the reviewed callable boundary. `transition_slot_34 @ 0x004728C0` is 397/397; repeated `g_info_manager` loads preserve target alias lifetime, current phase-1 position is 400.0f at `0x006C3A5C`, and phase 6 uses only the observed 0x44 CMenuEnd allocation extent before external ctor/install.
@@ -177,5 +180,5 @@ git diff --check
 
 - Added nine canonical-exact authored functions / 871 bytes: three distinct `CFileWriter` bodies, `ProfileMenuBaseData::normalize_profile_name`, safe path splitting, clipboard text import, Shift-JIS width classification, DirectInput creation, and keyboard-device setup. Current target vtables, callers, PE IATs/data, and cold VC8 replay independently support every identity.
 - Recovered a missed independent source boundary at `CFileWriter::~CFileWriter @ 0x00407BF0`, raising the corrected ledger to 4,007. Folded writer last-size/seek slots reuse already-counted physical bodies and therefore do not inflate the function numerator.
-- Current authored exact status is 631 functions / 99,963 bytes in 208 units; 2,452 origin candidates remain review-pending, so the complete authored denominator required for the 95% goals is still not established.
+- Current authored exact status is 661 functions / 106,503 bytes in 209 units; 2,422 origin candidates remain review-pending, so the complete authored denominator required for the 95% goals is still not established.
 - Pending neighbors are documented in `docs/KNOWLEDGE_BASE.md`: ProfileMenuBaseData initialize/save scheduling, module-directory store scheduling, DirectInput enumeration's unused-ECX helper ABI, and CRT-only platform lifetime glue. None were forced with assembly, volatile state, fake locals, manual vptr writes, or register coercion.
