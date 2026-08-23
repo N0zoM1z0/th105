@@ -25,7 +25,8 @@ bool CProfileMenu::update_state_six()
     switch (substate_344) {
     case 0: {
         guides_5a4[4].visible = true;
-        switch (select_profile(&string_518, &string_534)) {
+        switch (select_profile(reinterpret_cast<MenuString28 *>(&string_518),
+            reinterpret_cast<MenuString28 *>(&string_534))) {
         case 1:
             g_profile_menu_controller.set_mode(1);
             g_profile_menu_controller.select_profile(string_534.c_str());
@@ -45,15 +46,19 @@ bool CProfileMenu::update_state_six()
         if (result > 0) {
             dispatch_indexed_event(0x28);
             label_37c->enabled = false;
-            editor_3b0.read_profile_name(&string_56c);
-            if (!profile_string_equals(&string_56c, profile_name_empty)) {
-            string_550.assign(concatenate_profile_string(
-                string_56c, profile_file_extension));
+            editor_3b0.read_profile_name(reinterpret_cast<MenuString28 *>(&string_56c));
+            if (!profile_string_equals(reinterpret_cast<MenuString28 *>(&string_56c), profile_name_empty)) {
+            reinterpret_cast<MenuString28 *>(&string_550)->assign(
+                concatenate_profile_string(
+                    *reinterpret_cast<MenuString28 *>(&string_56c),
+                    profile_file_extension));
 
                 if (_stricmp(string_550.c_str(), string_518.c_str()) != 0) {
-                    if (g_profile_name_list.contains(&string_550)) {
-                        string_588.assign(concatenate_profile_string(
-                            string_56c, profile_copy_suffix));
+                    if (g_profile_name_list.contains(reinterpret_cast<MenuString28 *>(&string_550))) {
+                        reinterpret_cast<MenuString28 *>(&string_588)->assign(
+                            concatenate_profile_string(
+                                *reinterpret_cast<MenuString28 *>(&string_56c),
+                                profile_copy_suffix));
                         show_profile_message(string_588.c_str(), 0);
                         substate_344 = 3;
                         return true;

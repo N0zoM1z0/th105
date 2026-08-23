@@ -15,10 +15,13 @@ bool CProfileMenu::update_state_four()
     switch (substate_344) {
     case 0:
         guides_5a4[4].visible = true;
-        switch (select_profile(&string_518, &string_534)) {
+        switch (select_profile(reinterpret_cast<MenuString28 *>(&string_518),
+            reinterpret_cast<MenuString28 *>(&string_534))) {
         case 1:
-            string_588.assign(concatenate_profile_string(
-                string_534, profile_copy_prompt_suffix));
+            reinterpret_cast<MenuString28 *>(&string_588)->assign(
+                concatenate_profile_string(
+                    *reinterpret_cast<MenuString28 *>(&string_534),
+                    profile_copy_prompt_suffix));
             show_profile_message(string_588.c_str(), 0);
             substate_344 = 3;
             return true;
@@ -56,10 +59,13 @@ bool CProfileMenu::update_state_five()
     switch (substate_344) {
     case 0:
         guides_5a4[4].visible = true;
-        switch (select_profile(&string_518, &string_534)) {
+        switch (select_profile(reinterpret_cast<MenuString28 *>(&string_518),
+            reinterpret_cast<MenuString28 *>(&string_534))) {
         case 1:
-            string_588.assign(concatenate_profile_string(
-                string_534, profile_delete_prompt_suffix));
+            reinterpret_cast<MenuString28 *>(&string_588)->assign(
+                concatenate_profile_string(
+                    *reinterpret_cast<MenuString28 *>(&string_534),
+                    profile_delete_prompt_suffix));
             show_profile_message(string_588.c_str(), 0);
             substate_344 = 3;
             return true;

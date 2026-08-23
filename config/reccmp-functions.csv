@@ -689,3 +689,6 @@ apply_config_bgm_percent,0x0043B1C0,function
 apply_config_se_percent,0x0043B1F0,function
 close_config_menu,0x0043CDD0,function
 CMenuConfig_update,0x004411B0,function
+CProfileMenu_update_state_two,0x0044BEF0,function
+CProfileMenu_update_state_three,0x0044BFE0,function
+CProfileMenu_dtor,0x0044D340,function

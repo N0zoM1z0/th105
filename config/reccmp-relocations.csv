@@ -609,3 +609,5 @@ __imp__SendMessageA@16,0x006C0210,80532e00,0,Current CMenuConfig update indirect
 ?g_game_config_secondary@th105@@3UConfigResetView@1@A,0x006FC5B4,00000000,0,Exact config close helper uses this loader-zero secondary reset receiver at GameConfig base +0x1C; attested 2026-08-23,address
 ?g_config_source_first@th105@@3UOpaqueConfigSource@1@A,0x006FBFB8,00000000,0,Exact config close helper passes this loader-zero source object address to the primary reset receiver; attested 2026-08-23,address
 ?g_config_source_second@th105@@3UOpaqueConfigSource@1@A,0x006FC2F4,00000000,0,Exact config close helper passes this loader-zero source object address to the secondary reset receiver; attested 2026-08-23,address
+_profile_menu_state_two_three_eh,0x006B6E2B,8b542408,0,Current 1.06a CProfileMenu state-two/state-three bodies both push folded VC8 EH handler 0x006B6E2B; canonical prefix attested 2026-08-24,address
+__ehhandler$??1CProfileMenu@th105@@UAE@XZ,0x006BA330,8b542408,0,Current 1.06a CProfileMenu normal destructor 0x0044D340 pushes EH handler 0x006BA330; canonical prefix attested 2026-08-24,address

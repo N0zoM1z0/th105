@@ -10,6 +10,7 @@ namespace th105 {
 
 class CProfileCharacterSelect : public Menu {
 public:
+    explicit CProfileCharacterSelect(PlayerSlotRecord *player);
     virtual ~CProfileCharacterSelect();
     virtual bool update();
     virtual void render();
@@ -31,6 +32,7 @@ private:
 
 class CProfileKeyConfig : public Menu {
 public:
+    CProfileKeyConfig(PlayerSlotRecord *player, int input_slot);
     virtual ~CProfileKeyConfig();
     virtual bool update();
     virtual void render();

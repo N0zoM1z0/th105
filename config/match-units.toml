@@ -3129,7 +3129,29 @@ source = "src/ui/ProfileMenu.cpp"
 object = "build/match-units/CrossV106a_ProfileMenuScalarDtor.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "TH105 1.06a CProfileMenu scalar-deleting destructor. Current CProfileMenu vtable 0x006C2484 first slot points to 0x0044D6E0, whose body calls current CProfileMenu destructor 0x0044D340 then conditionally deletes. Historical 27-byte body omitted ret 4; fresh VC8 tail is 30 bytes. The 422-byte main destructor remains non-exact due register allocation/scheduling and is not promoted."
+notes = "TH105 1.06a CProfileMenu lifetime completion. Current vtable 0x006C2484 owns the 422-byte normal destructor and 30-byte scalar wrapper. Recovering the five +0x518..+0x588 members as real VC8 std::string storage makes the normal reverse lifetime canonical exact while existing ctor/render/state/commit TUs remain exact through ABI-compatible MenuString28 call views."
+
+[[units.cross-v106a-profile-menu-scalar-dtor.functions]]
+address = "0x0044D340"
+symbol_base = "??1CProfileMenu@th105@@UAE@XZ"
+rel32_targets = [
+  "?shutdown@ProfileEditor168@th105@@QAEXXZ=0x00427C40",
+  "?cleanup@ProfileMenuBaseData@th105@@QAEXXZ=0x00431390",
+  "_reset_profile_menu_data=0x0043AF30",
+  "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
+  "??3@YAXPAX@Z=0x006898EA",
+  "??1ProfileEditor168@th105@@QAE@XZ=0x00427BC0",
+  "??1TitleDesignResource@th105@@QAE@XZ=0x00421890",
+  "??1ProfileMenuBaseData@th105@@QAE@XZ=0x0042D320",
+]
+dir32_targets = [
+  "__ehhandler$??1CProfileMenu@th105@@UAE@XZ=__ehhandler$??1CProfileMenu@th105@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7CProfileMenu@th105@@6B@=??_7CProfileMenu@th105@@6B@",
+  "??1GuideOverlay@th105@@QAE@XZ=??1GuideOverlay@th105@@QAE@XZ",
+  "??_7Menu@th105@@6B@=??_7Menu@th105@@6B@",
+  "_g_scene_mode=_g_scene_mode",
+]
 
 [[units.cross-v106a-profile-menu-scalar-dtor.functions]]
 address = "0x0044D6E0"
@@ -9021,4 +9043,45 @@ symbol_base = "?set_sequence_mode@SpellDataOwner@th105@@QAEXE@Z"
 rel32_targets = [
   "??4?$deque@FV?$allocator@F@std@@@std@@QAEAAV01@ABV01@@Z=0x0042B6B0",
   "?shuffle_selection@SpellDataOwner@th105@@QAEXXZ=0x00432420",
+]
+
+[units.cross-v106a-profile-menu-state-two-three]
+kind = "probe"
+source = "src/ui/ProfileMenuStateTwoThree.cpp"
+object = "build/match-units/CrossV106a_ProfileMenuStateTwoThree.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CProfileMenu state-two/state-three pair from the exact dispatcher and submenu lifetimes. Both select a profile through the shared Menu ABI, load/color the +0x04 ProfileMenuBaseData through the exact-backed PlayerSlotRecord view, then construct the independently size/vtable-backed 0x288 CharacterSelect or 0x330 KeyConfig menu. C++ linkage on install_menu_object ends the new-expression EH state before the install call exactly as in the target."
+
+[[units.cross-v106a-profile-menu-state-two-three.functions]]
+address = "0x0044BEF0"
+symbol_base = "?update_state_two@CProfileMenu@th105@@AAE_NXZ"
+rel32_targets = [
+  "?select_profile@Menu@th105@@IAEHPAUMenuString28@2@0@Z=0x00440410",
+  "?load_profile@PlayerSlotRecord@th105@@QAE_NPBD@Z=0x00431AC0",
+  "?set_profile_color@PlayerSlotRecord@th105@@QAEXEEE@Z=0x00431440",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CProfileCharacterSelect@th105@@QAE@PAUPlayerSlotRecord@1@@Z=0x004487E0",
+  "?install_menu_object@th105@@YAXPAX@Z=0x0043B0F0",
+]
+dir32_targets = [
+  "__ehhandler$?update_state_two@CProfileMenu@th105@@AAE_NXZ=_profile_menu_state_two_three_eh",
+  "___security_cookie=___security_cookie",
+]
+
+[[units.cross-v106a-profile-menu-state-two-three.functions]]
+address = "0x0044BFE0"
+symbol_base = "?update_state_three@CProfileMenu@th105@@AAE_NXZ"
+rel32_targets = [
+  "?select_profile@Menu@th105@@IAEHPAUMenuString28@2@0@Z=0x00440410",
+  "?load_profile@PlayerSlotRecord@th105@@QAE_NPBD@Z=0x00431AC0",
+  "_dispatch_indexed_event=0x0043B1A0",
+  "?set_profile_color@PlayerSlotRecord@th105@@QAEXEEE@Z=0x00431440",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CProfileKeyConfig@th105@@QAE@PAUPlayerSlotRecord@1@H@Z=0x0044BA90",
+  "?install_menu_object@th105@@YAXPAX@Z=0x0043B0F0",
+]
+dir32_targets = [
+  "__ehhandler$?update_state_three@CProfileMenu@th105@@AAE_NXZ=_profile_menu_state_two_three_eh",
+  "___security_cookie=___security_cookie",
 ]

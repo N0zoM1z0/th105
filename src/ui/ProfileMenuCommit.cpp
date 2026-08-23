@@ -62,7 +62,7 @@ bool CProfileMenu::commit_state_one()
         _mbschr(
             reinterpret_cast<const unsigned char *>(string_56c.c_str()), '\\')) {
         message.assign(concatenate_profile_commit_string(
-            string_56c, profile_commit_failure_suffix));
+            *reinterpret_cast<MenuString28 *>(&string_56c), profile_commit_failure_suffix));
         show_profile_result(message.c_str());
         return false;
     }
@@ -74,14 +74,14 @@ bool CProfileMenu::commit_state_one()
     if (reinterpret_cast<ProfileMenuBaseDataCommitView *>(&data)
             ->save_to_profile(string_550.c_str())) {
         message.assign(concatenate_profile_commit_string(
-            string_56c, profile_commit_success_suffix));
+            *reinterpret_cast<MenuString28 *>(&string_56c), profile_commit_success_suffix));
         show_profile_result(message.c_str());
         initialize_profile_menu();
         return true;
     }
 
     message.assign(concatenate_profile_commit_string(
-        string_56c, profile_commit_failure_suffix));
+        *reinterpret_cast<MenuString28 *>(&string_56c), profile_commit_failure_suffix));
     show_profile_result(message.c_str());
     return false;
 }
@@ -93,10 +93,10 @@ bool CProfileMenu::commit_state_four()
     MenuString28 destination_stem;
 
     source_path.assign(concatenate_profile_prefix(
-        profile_directory_prefix, string_518));
+        profile_directory_prefix, *reinterpret_cast<MenuString28 *>(&string_518)));
 
     destination_stem.assign(concatenate_profile_commit_string(
-        concatenate_profile_prefix(profile_directory_prefix, string_534),
+        concatenate_profile_prefix(profile_directory_prefix, *reinterpret_cast<MenuString28 *>(&string_534)),
         profile_copy_stem_suffix));
 
     destination_path.assign(concatenate_profile_commit_string(
@@ -127,7 +127,7 @@ bool CProfileMenu::commit_state_five()
 {
     MenuString28 path;
     path.assign(concatenate_profile_prefix(
-        profile_directory_prefix, string_518));
+        profile_directory_prefix, *reinterpret_cast<MenuString28 *>(&string_518)));
 
     if (DeleteFileA(path.c_str())) {
         reinterpret_cast<MenuStringAssignBytesView *>(&string_588)
@@ -156,9 +156,9 @@ signed char CProfileMenu::commit_profile_change()
     }
 
     MenuString28 new_path = concatenate_profile_prefix(
-        profile_directory_prefix, string_550);
+        profile_directory_prefix, *reinterpret_cast<MenuString28 *>(&string_550));
     MenuString28 old_path = concatenate_profile_prefix(
-        profile_directory_prefix, string_518);
+        profile_directory_prefix, *reinterpret_cast<MenuString28 *>(&string_518));
 
     DeleteFileA(string_518.c_str());
     if (MoveFileA(old_path.c_str(), new_path.c_str())) {

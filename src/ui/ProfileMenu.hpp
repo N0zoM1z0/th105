@@ -103,11 +103,11 @@ private:
     UiDesignObject *items_380[7];
     MenuCursorState cursor_39c;
     ProfileEditor168 editor_3b0;
-    MenuString28 string_518;
-    MenuString28 string_534;
-    MenuString28 string_550;
-    MenuString28 string_56c;
-    MenuString28 string_588;
+    std::string string_518;
+    std::string string_534;
+    std::string string_550;
+    std::string string_56c;
+    std::string string_588;
     GuideOverlay guides_5a4[5];
 };
 
@@ -117,6 +117,8 @@ typedef char ProfileEditor168_size_must_be_0x168[
     sizeof(ProfileEditor168) == 0x168 ? 1 : -1];
 typedef char ProfileStringTemporary_size_must_be_0x1c[
     sizeof(ProfileStringTemporary) == 0x1C ? 1 : -1];
+typedef char ProfileMenu_std_string_size_must_be_0x1c[
+    sizeof(std::string) == 0x1C ? 1 : -1];
 typedef char CProfileMenu_size_must_be_0x8ec[
     sizeof(CProfileMenu) == 0x8EC ? 1 : -1];
 

@@ -688,3 +688,6 @@ apply_config_bgm_percent
 apply_config_se_percent
 close_config_menu
 CMenuConfig_update
+CProfileMenu_update_state_two
+CProfileMenu_update_state_three
+CProfileMenu_dtor
