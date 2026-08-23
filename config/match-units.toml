@@ -9238,3 +9238,388 @@ dir32_targets = [
   "__imp__WaitForSingleObject@8=__imp__WaitForSingleObject@8",
   "__imp__CloseHandle@4=__imp__CloseHandle@4",
 ]
+
+[units.cross-v106a-roster-object-tracked-list]
+kind = "probe"
+source = "src/characters/RosterOwnedObjects.cpp"
+object = "build/match-units/CrossV106a_RosterObjectTrackedList.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a fourteen-member roster TObjectManagerBase preallocate family. Current exact class-specific ObjectManager constructors call these entries with 256. Recovering the real checked std::list<CharacterObject *> append lifetime around pool acquire/handle publication makes ordinary VC8 emit all fourteen 117-byte target bodies exactly."
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x004936D0"
+symbol_base = "?preallocate_object_pool@ReimuObjectManagerBase@th105@@QAEXI@Z"
+rel32_targets = [
+  "ReimuObjectPool_acquire=0x00493340",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x004B9C90"
+symbol_base = "?preallocate_object_pool@MarisaObjectManagerBase@th105@@QAEXI@Z"
+rel32_targets = [
+  "MarisaObjectPool_acquire=0x004B9920",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x004FA9C0"
+symbol_base = "?preallocate_object_pool@AliceObjectManagerBase@th105@@QAEXI@Z"
+rel32_targets = [
+  "AliceObjectPool_acquire=0x004FA630",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x0051EC60"
+symbol_base = "?preallocate_object_pool@PatchouliObjectManagerBase@th105@@QAEXI@Z"
+rel32_targets = [
+  "PatchouliObjectPool_acquire=0x0051E8F0",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x0053B020"
+symbol_base = "?preallocate_object_pool@YoumuObjectManagerBase@th105@@QAEXI@Z"
+rel32_targets = [
+  "YoumuObjectPool_acquire=0x0053ACB0",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x00555D70"
+symbol_base = "?preallocate_object_pool@RemiliaObjectManagerBase@th105@@QAEXI@Z"
+rel32_targets = [
+  "RemiliaObjectPool_acquire=0x00555A00",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x0056DBA0"
+symbol_base = "?preallocate_object_pool@YuyukoObjectManagerBase@th105@@QAEXI@Z"
+rel32_targets = [
+  "YuyukoObjectPool_acquire=0x0056D6E0",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x0058BD00"
+symbol_base = "?preallocate_object_pool@YukariObjectManagerBase@th105@@QAEXI@Z"
+rel32_targets = [
+  "YukariObjectPool_acquire=0x0058B990",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x005AEA00"
+symbol_base = "?preallocate_object_pool@SuikaObjectManagerBase@th105@@QAEXI@Z"
+rel32_targets = [
+  "SuikaObjectPool_acquire=0x005AE670",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x005D2950"
+symbol_base = "?preallocate_object_pool@UdongeObjectManagerBase@th105@@QAEXI@Z"
+rel32_targets = [
+  "UdongeObjectPool_acquire=0x005D25C0",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x005F77B0"
+symbol_base = "?preallocate_object_pool@KomachiObjectManagerBase@th105@@QAEXI@Z"
+rel32_targets = [
+  "KomachiObjectPool_acquire=0x005F7440",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x00618180"
+symbol_base = "?preallocate_object_pool@AyaObjectManagerBase@th105@@QAEXI@Z"
+rel32_targets = [
+  "AyaObjectPool_acquire=0x00617DF0",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x00631030"
+symbol_base = "?preallocate_object_pool@IkuObjectManagerBase@th105@@QAEXI@Z"
+rel32_targets = [
+  "IkuObjectPool_acquire=0x00630CA0",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x0064B400"
+symbol_base = "?preallocate_object_pool@TenshiObjectManagerBase@th105@@QAEXI@Z"
+rel32_targets = [
+  "TenshiObjectPool_acquire=0x0064B070",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+]
+
+[units.cross-v106a-sakuya-object-tracked-list]
+kind = "probe"
+source = "src/characters/SakuyaOwnedObjects.cpp"
+object = "build/match-units/CrossV106a_SakuyaObjectTrackedList.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a Sakuya member of the roster preallocate family. Its exact ObjectManager constructor calls this entry and ignores EAX, proving the historical pointer return was incidental; a void member plus the same checked-list append lifetime is 117/117 exact."
+
+[[units.cross-v106a-sakuya-object-tracked-list.functions]]
+address = "0x004DF1B0"
+symbol_base = "?preallocate_object_pool@SakuyaObjectManagerBase@th105@@QAEXI@Z"
+rel32_targets = [
+  "SakuyaObjectPool_acquire=0x004DEE40",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+]
+
+[units.cross-v106a-effect-object-tracked-list]
+kind = "probe"
+source = "src/battle/EffectObjectManagerTrackedList.cpp"
+object = "build/match-units/CrossV106a_EffectObjectTrackedList.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a four-member effect/UI TObjectManagerBase preallocate family. Current CSelect/Weather/Effect callers and exact InfoEffect resource wrapper identify the specializations; target bodies share handle token +0x15C, checked std::list<BaseObject *> append, and folded release-all 0x0046EEB0. Natural VC8 emits all four 117-byte bodies exactly."
+
+[[units.cross-v106a-effect-object-tracked-list.functions]]
+address = "0x00423030"
+symbol_base = "?preallocate_object_pool@?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@QAEXI@Z"
+rel32_targets = [
+  "acquire=0x00422B70",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+  "release_all_tracked_objects=0x0046EEB0",
+]
+
+[[units.cross-v106a-effect-object-tracked-list.functions]]
+address = "0x00437840"
+symbol_base = "?preallocate_object_pool@?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@QAEXI@Z"
+rel32_targets = [
+  "acquire=0x00437520",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+  "release_all_tracked_objects=0x0046EEB0",
+]
+
+[[units.cross-v106a-effect-object-tracked-list.functions]]
+address = "0x00437C80"
+symbol_base = "?preallocate_object_pool@?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@QAEXI@Z"
+rel32_targets = [
+  "acquire=0x004379D0",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+  "release_all_tracked_objects=0x0046EEB0",
+]
+
+[[units.cross-v106a-effect-object-tracked-list.functions]]
+address = "0x0046F3D0"
+symbol_base = "?preallocate_object_pool@?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@QAEXI@Z"
+rel32_targets = [
+  "acquire=0x0046F190",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+  "release_all_tracked_objects=0x0046EEB0",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x004935E0"
+symbol_base = "?acquire_and_link_object@ReimuObjectManagerBase@th105@@QAEPAVReimuObject@@XZ"
+rel32_targets = [
+  "ReimuObjectPool_acquire=0x00493340",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x004B9BA0"
+symbol_base = "?acquire_and_link_object@MarisaObjectManagerBase@th105@@QAEPAVMarisaObject@@XZ"
+rel32_targets = [
+  "MarisaObjectPool_acquire=0x004B9920",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x004FA8D0"
+symbol_base = "?acquire_and_link_object@AliceObjectManagerBase@th105@@QAEPAVAliceObject@@XZ"
+rel32_targets = [
+  "AliceObjectPool_acquire=0x004FA630",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x0051EB70"
+symbol_base = "?acquire_and_link_object@PatchouliObjectManagerBase@th105@@QAEPAVPatchouliObject@@XZ"
+rel32_targets = [
+  "PatchouliObjectPool_acquire=0x0051E8F0",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x0053AF30"
+symbol_base = "?acquire_and_link_object@YoumuObjectManagerBase@th105@@QAEPAVYoumuObject@@XZ"
+rel32_targets = [
+  "YoumuObjectPool_acquire=0x0053ACB0",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x00555C80"
+symbol_base = "?acquire_and_link_object@RemiliaObjectManagerBase@th105@@QAEPAVRemiliaObject@@XZ"
+rel32_targets = [
+  "RemiliaObjectPool_acquire=0x00555A00",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x0056DA30"
+symbol_base = "?acquire_and_link_object@YuyukoObjectManagerBase@th105@@QAEPAVYuyukoObject@@XZ"
+rel32_targets = [
+  "YuyukoObjectPool_acquire=0x0056D6E0",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x0058BC10"
+symbol_base = "?acquire_and_link_object@YukariObjectManagerBase@th105@@QAEPAVYukariObject@@XZ"
+rel32_targets = [
+  "YukariObjectPool_acquire=0x0058B990",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x005AE910"
+symbol_base = "?acquire_and_link_object@SuikaObjectManagerBase@th105@@QAEPAVSuikaObject@@XZ"
+rel32_targets = [
+  "SuikaObjectPool_acquire=0x005AE670",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x005D2860"
+symbol_base = "?acquire_and_link_object@UdongeObjectManagerBase@th105@@QAEPAVUdongeObject@@XZ"
+rel32_targets = [
+  "UdongeObjectPool_acquire=0x005D25C0",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x005F76C0"
+symbol_base = "?acquire_and_link_object@KomachiObjectManagerBase@th105@@QAEPAVKomachiObject@@XZ"
+rel32_targets = [
+  "KomachiObjectPool_acquire=0x005F7440",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x00618090"
+symbol_base = "?acquire_and_link_object@AyaObjectManagerBase@th105@@QAEPAVAyaObject@@XZ"
+rel32_targets = [
+  "AyaObjectPool_acquire=0x00617DF0",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x00630F40"
+symbol_base = "?acquire_and_link_object@IkuObjectManagerBase@th105@@QAEPAVIkuObject@@XZ"
+rel32_targets = [
+  "IkuObjectPool_acquire=0x00630CA0",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+]
+
+[[units.cross-v106a-roster-object-tracked-list.functions]]
+address = "0x0064B310"
+symbol_base = "?acquire_and_link_object@TenshiObjectManagerBase@th105@@QAEPAVTenshiObject@@XZ"
+rel32_targets = [
+  "TenshiObjectPool_acquire=0x0064B070",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+]
+
+[[units.cross-v106a-sakuya-object-tracked-list.functions]]
+address = "0x004DF0C0"
+symbol_base = "?acquire_and_link_object@SakuyaObjectManagerBase@th105@@QAEPAVSakuyaObject@@XZ"
+rel32_targets = [
+  "SakuyaObjectPool_acquire=0x004DEE40",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+]
+
+[[units.cross-v106a-effect-object-tracked-list.functions]]
+address = "0x00422EA0"
+symbol_base = "?acquire_and_link_object@?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@QAEPAVCSelectObject@@XZ"
+rel32_targets = [
+  "acquire=0x00422B70",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+]
+
+[[units.cross-v106a-effect-object-tracked-list.functions]]
+address = "0x00437760"
+symbol_base = "?acquire_and_link_object@?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@QAEPAVWeatherEffectObject@@XZ"
+rel32_targets = [
+  "acquire=0x00437520",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+]
+
+[[units.cross-v106a-effect-object-tracked-list.functions]]
+address = "0x00437BA0"
+symbol_base = "?acquire_and_link_object@?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@QAEPAVEffectObject@@XZ"
+rel32_targets = [
+  "acquire=0x004379D0",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+]
+
+[[units.cross-v106a-effect-object-tracked-list.functions]]
+address = "0x0046F370"
+symbol_base = "?acquire_and_link_object@?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@QAEPAVInfoEffectObject@@XZ"
+rel32_targets = [
+  "acquire=0x0046F190",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+]

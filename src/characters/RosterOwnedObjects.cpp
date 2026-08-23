@@ -1,31 +1,52 @@
-#include "RosterOwnedObjects.hpp"
+#include "characters/RosterOwnedObjects.hpp"
 
 namespace th105 {
+
+#define TH105_DEFINE_ACQUIRE_FOR_TRACKED_LIST(FighterName)                    \
+    static ::FighterName##Object *acquire_##FighterName##_for_tracked_object( \
+            FighterName##ObjectPool *pool)                                    \
+    {                                                                         \
+        unsigned handle_token = 0;                                            \
+        ::FighterName##Object *object = pool->acquire(&handle_token);         \
+        reinterpret_cast<RosterOwnedObjectPrefix338 *>(object)                \
+            ->handle_token_334 = handle_token;                                \
+        return object;                                                        \
+    }                                                                         \
+                                                                              \
+    static CharacterObject *acquire_##FighterName##_for_tracked_list(         \
+            FighterName##ObjectPool *pool)                                    \
+    {                                                                         \
+        return reinterpret_cast<CharacterObject *>(                           \
+            acquire_##FighterName##_for_tracked_object(pool));                \
+    }
+
+TH105_DEFINE_ACQUIRE_FOR_TRACKED_LIST(Reimu)
+TH105_DEFINE_ACQUIRE_FOR_TRACKED_LIST(Marisa)
+TH105_DEFINE_ACQUIRE_FOR_TRACKED_LIST(Alice)
+TH105_DEFINE_ACQUIRE_FOR_TRACKED_LIST(Patchouli)
+TH105_DEFINE_ACQUIRE_FOR_TRACKED_LIST(Youmu)
+TH105_DEFINE_ACQUIRE_FOR_TRACKED_LIST(Remilia)
+TH105_DEFINE_ACQUIRE_FOR_TRACKED_LIST(Yuyuko)
+TH105_DEFINE_ACQUIRE_FOR_TRACKED_LIST(Yukari)
+TH105_DEFINE_ACQUIRE_FOR_TRACKED_LIST(Suika)
+TH105_DEFINE_ACQUIRE_FOR_TRACKED_LIST(Udonge)
+TH105_DEFINE_ACQUIRE_FOR_TRACKED_LIST(Komachi)
+TH105_DEFINE_ACQUIRE_FOR_TRACKED_LIST(Aya)
+TH105_DEFINE_ACQUIRE_FOR_TRACKED_LIST(Iku)
+TH105_DEFINE_ACQUIRE_FOR_TRACKED_LIST(Tenshi)
+
+#undef TH105_DEFINE_ACQUIRE_FOR_TRACKED_LIST
 
 #define TH105_DEFINE_ACQUIRE_AND_LINK(FighterName)                            \
     ::FighterName##Object *                                                   \
         FighterName##ObjectManagerBase::acquire_and_link_object()             \
     {                                                                         \
-        union LocalSlot {                                                      \
-            unsigned handle_token;                                            \
-            RosterOwnedObjectPrefix338 *object;                               \
-        } local;                                                               \
-                                                                              \
-        local.handle_token = 0;                                               \
+        RosterObjectManagerBase *const manager =                              \
+            reinterpret_cast<RosterObjectManagerBase *>(this);                \
         ::FighterName##Object *object =                                       \
-            pool_04.acquire(&local.handle_token);                             \
-        reinterpret_cast<RosterOwnedObjectPrefix338 *>(object)                \
-            ->handle_token_334 = local.handle_token;                          \
-                                                                              \
-        CollisionListNode *sentinel = linked_objects_54.sentinel;             \
-        local.object = reinterpret_cast<RosterOwnedObjectPrefix338 *>(object); \
-        CollisionListNode *node = linked_objects_54.create_node(              \
-            sentinel,                                                        \
-            sentinel->previous,                                              \
-            reinterpret_cast<void **>(&local.object));                        \
-        linked_objects_54.std_list_incsize_pointer(1);                        \
-        sentinel->previous = node;                                            \
-        node->previous->next = node;                                          \
+            acquire_##FighterName##_for_tracked_object(&pool_04);             \
+        manager->linked_objects_54.push_back(                                 \
+            reinterpret_cast<CharacterObject *>(object));                     \
         return object;                                                        \
     }
 
@@ -50,31 +71,15 @@ TH105_DEFINE_ACQUIRE_AND_LINK(Tenshi)
     void FighterName##ObjectManagerBase::preallocate_object_pool(             \
             unsigned target_count)                                           \
     {                                                                         \
-        while (linked_objects_54.count < target_count) {                     \
-            union LocalSlot {                                                 \
-                unsigned handle_token;                                        \
-                RosterOwnedObjectPrefix338 *object;                           \
-            } local;                                                          \
-                                                                              \
-            local.handle_token = 0;                                           \
-            ::FighterName##Object *object =                                   \
-                pool_04.acquire(&local.handle_token);                         \
-            reinterpret_cast<RosterOwnedObjectPrefix338 *>(object)            \
-                ->handle_token_334 = local.handle_token;                      \
-                                                                              \
-            CollisionListNode *sentinel = linked_objects_54.sentinel;         \
-            local.object =                                                    \
-                reinterpret_cast<RosterOwnedObjectPrefix338 *>(object);       \
-            CollisionListNode *node = linked_objects_54.create_node(          \
-                sentinel,                                                     \
-                sentinel->previous,                                           \
-                reinterpret_cast<void **>(&local.object));                    \
-            linked_objects_54.std_list_incsize_pointer(1);                    \
-            sentinel->previous = node;                                        \
-            node->previous->next = node;                                      \
+        RosterObjectManagerBase *const manager =                              \
+            reinterpret_cast<RosterObjectManagerBase *>(this);                \
+        if (manager->linked_objects_54.size() < target_count) {               \
+            do {                                                              \
+                manager->linked_objects_54.push_back(                         \
+                    acquire_##FighterName##_for_tracked_list(&pool_04));      \
+            } while (manager->linked_objects_54.size() < target_count);       \
         }                                                                     \
-        reinterpret_cast<RosterObjectManagerBase *>(this)                    \
-            ->release_all_tracked_objects();                                  \
+        manager->release_all_tracked_objects();                               \
     }
 
 TH105_DEFINE_PREALLOCATE(Reimu)

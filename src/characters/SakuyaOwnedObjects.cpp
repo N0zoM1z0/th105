@@ -1,54 +1,42 @@
-#include "Sakuya.hpp"
+#include "characters/Sakuya.hpp"
 
 namespace th105 {
 
-SakuyaObject *SakuyaObjectManagerBase::acquire_and_link_object()
+static SakuyaObject *acquire_sakuya_for_tracked_object(SakuyaObjectPool *pool)
 {
-    union LocalSlot {
-        unsigned handle_token;
-        SakuyaObject *object;
-    } local;
-
-    local.handle_token = 0;
-    SakuyaObject *object = pool_04.acquire(&local.handle_token);
-    object->handle_token_004 = local.handle_token;
-
-    CollisionListNode *sentinel = linked_objects_54.sentinel;
-    local.object = object;
-    CollisionListNode *node = linked_objects_54.create_node(
-        sentinel,
-        sentinel->previous,
-        reinterpret_cast<void **>(&local.object));
-    linked_objects_54.std_list_incsize_pointer(1);
-    sentinel->previous = node;
-    node->previous->next = node;
+    unsigned handle_token = 0;
+    SakuyaObject *object = pool->acquire(&handle_token);
+    object->handle_token_004 = handle_token;
     return object;
 }
 
-CollisionListNode *SakuyaObjectManagerBase::preallocate_object_pool(
-    unsigned target_count)
+static CharacterObject *acquire_sakuya_for_tracked_list(SakuyaObjectPool *pool)
 {
-    while (linked_objects_54.count < target_count) {
-        union LocalSlot {
-            unsigned handle_token;
-            SakuyaObject *object;
-        } local;
+    return reinterpret_cast<CharacterObject *>(
+        acquire_sakuya_for_tracked_object(pool));
+}
 
-        local.handle_token = 0;
-        SakuyaObject *object = pool_04.acquire(&local.handle_token);
-        object->handle_token_004 = local.handle_token;
+SakuyaObject *SakuyaObjectManagerBase::acquire_and_link_object()
+{
+    RosterObjectManagerBase *const manager =
+        reinterpret_cast<RosterObjectManagerBase *>(this);
+    SakuyaObject *object = acquire_sakuya_for_tracked_object(&pool_04);
+    manager->linked_objects_54.push_back(
+        reinterpret_cast<CharacterObject *>(object));
+    return object;
+}
 
-        CollisionListNode *sentinel = linked_objects_54.sentinel;
-        local.object = object;
-        CollisionListNode *node = linked_objects_54.create_node(
-            sentinel,
-            sentinel->previous,
-            reinterpret_cast<void **>(&local.object));
-        linked_objects_54.std_list_incsize_pointer(1);
-        sentinel->previous = node;
-        node->previous->next = node;
+void SakuyaObjectManagerBase::preallocate_object_pool(unsigned target_count)
+{
+    RosterObjectManagerBase *const manager =
+        reinterpret_cast<RosterObjectManagerBase *>(this);
+    if (manager->linked_objects_54.size() < target_count) {
+        do {
+            manager->linked_objects_54.push_back(
+                acquire_sakuya_for_tracked_list(&pool_04));
+        } while (manager->linked_objects_54.size() < target_count);
     }
-    return release_all_tracked_objects();
+    manager->release_all_tracked_objects();
 }
 
 } // namespace th105

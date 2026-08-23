@@ -22,7 +22,7 @@ struct SakuyaObjectManagerBase {
     CollisionList linked_objects_54;
 
     SakuyaObject *acquire_and_link_object();
-    CollisionListNode *preallocate_object_pool(unsigned target_count);
+    void preallocate_object_pool(unsigned target_count);
     CollisionListNode *release_all_tracked_objects();
 };
 
