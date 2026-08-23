@@ -14,9 +14,9 @@ seeds using current-target-backed structural remapping where appropriate.
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,010: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0`, source-level fighter phase entries `0x00464630`/`0x00464780`, standalone `CMenuReplay` scalar wrapper `0x00446F40`, `CMenuReplay::update_mode_state @ 0x00446590`, independent `CFileWriter_dtor @ 0x00407BF0`, independent `CSpriteEx::commit_transform @ 0x004073C0`, independent `FrameData::~FrameData @ 0x00421A70`, and independent `update_fighter_counter_thresholds @ 0x0045B300`, all missed or tail-attached by auto-analysis. Current reviewed state is 682 authored functions, 927 classified exclusions, and 2,401 still awaiting origin/boundary review.
-- All 682 confirmed authored functions are source-present and canonical exact:
-  108,852 exact authored bytes across 216 configured VC8 units.
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,010: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0`, source-level fighter phase entries `0x00464630`/`0x00464780`, standalone `CMenuReplay` scalar wrapper `0x00446F40`, `CMenuReplay::update_mode_state @ 0x00446590`, independent `CFileWriter_dtor @ 0x00407BF0`, independent `CSpriteEx::commit_transform @ 0x004073C0`, independent `FrameData::~FrameData @ 0x00421A70`, and independent `update_fighter_counter_thresholds @ 0x0045B300`, all missed or tail-attached by auto-analysis. Current reviewed state is 690 authored functions, 931 classified exclusions, and 2,389 still awaiting origin/boundary review.
+- All 690 confirmed authored functions are source-present and canonical exact:
+  109,878 exact authored bytes across 221 configured VC8 units.
 
 - The newest shared animation-sequence wave adds fourteen authored canonical-exact functions / 1,024 bytes across three ordinary `/O2` TUs. Current RTTI-owned `AnimationObject @ 0x006C0914`, `AttackObject @ 0x006C2B3C`, `CharacterObject @ 0x006C400C`, and all fifteen `CharacterObjectEx` intermediate vtables independently agree on the same sequence slots. Base setters `0x00435200/0x00435220` write action `+0x13C`; AttackObject/CharacterObject overrides `0x0045BFE0/0x0045C000` call those setters out of line then dispatch slot 15. Sequence frame/block/tree methods `0x0045C110/180/1A0/1F0/220/2B0/390/460` close a 0x88-byte frame record, block links `+0x18/+0x1C`, checked action tree `+0x160`, frame count `+0x148`, and frame pointers `+0x150/+0x158`. Character-wave dispatch `0x0045C030` and forwarded-hit adapter `0x0045C060` reuse current `g_wave_handle_service` and `g_scene_renderer` contracts. The checked-tree `lower_bound @ 0x0045C320` remains origin-review and is not counted authored.
 - Two source-shape details are reusable. `apply_sequence_frame @ 0x0045C110` is 111/111 only when the two published frame pointers retain the real chained assignment `frame_150 = frame_158 = begin + index`; spelling them as independent stores lets VC8 keep the pointer in EDI and changes store/load ordering. The two finalize overrides must live in a declaration-only TU: exposing the base setter definitions lets VC8 alter the wrapper codegen, while ordinary TU separation gives 26/26 and 33/33. This is source-partition evidence, not permission for `noinline`, register forcing, volatile state, or assembly.
@@ -128,7 +128,7 @@ the current call target.
 ## Next bounded work
 
 Continue origin/boundary review so the authored denominator becomes meaningful,
-then expand exact recovery from the 682 accepted functions. Use
+then expand exact recovery from the 690 accepted functions. Use
 `scripts/rank_retained_exact.py --only-unconfigured` to prioritize historical
 exact source that never had an old match unit. Same-size zero non-relocation
 mismatch candidates are especially productive, but ambiguous template/clone
@@ -137,9 +137,9 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 2,401
+The 95% authored-function and authored-byte goals cannot be reported yet: 2,389
 provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 682/682
+global authored denominator is not established. Do not use the current 690/690
 exact subset as a substitute denominator.
 
 - The newest CBattleManager dispatcher/transition wave adds two canonical-exact vtable methods / 969 bytes. `dispatch_battle_state_frame_472b20 @ 0x00472B20` is 572/572 under `/GS`; its network/menu/session paths and seven phase virtual calls are ordinary C++, and the trailing 28-byte switch table is outside the reviewed callable boundary. `transition_slot_34 @ 0x004728C0` is 397/397; repeated `g_info_manager` loads preserve target alias lifetime, current phase-1 position is 400.0f at `0x006C3A5C`, and phase 6 uses only the observed 0x44 CMenuEnd allocation extent before external ctor/install.
@@ -188,5 +188,12 @@ git diff --check
 
 - Added nine canonical-exact authored functions / 871 bytes: three distinct `CFileWriter` bodies, `ProfileMenuBaseData::normalize_profile_name`, safe path splitting, clipboard text import, Shift-JIS width classification, DirectInput creation, and keyboard-device setup. Current target vtables, callers, PE IATs/data, and cold VC8 replay independently support every identity.
 - Recovered a missed independent source boundary at `CFileWriter::~CFileWriter @ 0x00407BF0`, raising the corrected ledger to 4,007. Folded writer last-size/seek slots reuse already-counted physical bodies and therefore do not inflate the function numerator.
-- Current authored exact status is 682 functions / 108,852 bytes in 216 units; 2,401 origin candidates remain review-pending, so the complete authored denominator required for the 95% goals is still not established.
+- Current authored exact status is 690 functions / 109,878 bytes in 221 units; 2,389 origin candidates remain review-pending, so the complete authored denominator required for the 95% goals is still not established.
 - Pending neighbors are documented in `docs/KNOWLEDGE_BASE.md`: ProfileMenuBaseData initialize/save scheduling, module-directory store scheduling, DirectInput enumeration's unused-ECX helper ABI, and CRT-only platform lifetime glue. None were forced with assembly, volatile state, fake locals, manual vptr writes, or register coercion.
+
+## 2026-08-23 MenuConfig / SpellData exact wave
+
+- Current accepted baseline is **690 authored functions / 109,878 exact authored bytes / 221 VC8 units**. Origin census is **931 exclusions / 2,389 review-pending**.
+- Newly accepted exact bodies: MenuCursor horizontal/vertical binders `0x004204E0/0x00420520` (63+63), SpellData side-payload/mode methods `0x004324F0/0x00432520` (35+33), config BGM/SE helpers `0x0043B1C0/0x0043B1F0` (39+80), `close_config_menu @ 0x0043CDD0` (48), and RTTI-owned `CMenuConfig::update @ 0x004411B0` (665). Increment: **8 functions / 1,026 bytes**.
+- The pinned `std::deque<short>::erase(iterator)` probe resolves the complete generated equivalence group `0x004323B0/0x00443A30/0x0045DC20/0x00617B50`, removing **4 generated functions / 432 bytes** from authored-origin review. Keep the full-inventory hit set.
+- Pending stop conditions: `CMenuConfig::update_secondary_for_primary @ 0x00440FF0` still differs in redundant clamp lowering; `SpellDataOwner::shuffle_selection @ 0x00432420` is 196/196 with seven scheduler bytes pending; `initialize_fighter_battle_state @ 0x00460200` reaches 1247 bytes / 290 instructions with 29 allocator/scheduler bytes pending; `CMenuBattle::update @ 0x004407E0` remains a tail-merge/EH-lifetime problem. Do not force these with asm, volatile/register liveness, artificial gotos, or copied bytes.

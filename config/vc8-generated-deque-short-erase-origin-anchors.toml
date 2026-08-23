@@ -1,0 +1,36 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "scripts/probes/DequeShortEraseOrigin.cpp"
+enable_gs = false
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 0
+alignment_tail_hex = ""
+
+# The deque<short> erase specialization is ICF/shape-equivalent to three other
+# linked deque specializations in the current image. Full-inventory replay must
+# recover the complete four-address hit set; review-only discovery is insufficient.
+[[anchors]]
+address = "0x004323B0"
+size = 108
+symbol = "?erase@?$deque@FV?$allocator@F@std@@@std@@QAE?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@2@V32@@Z"
+equivalence_group = "deque-erase-108-clones"
+
+[[anchors]]
+address = "0x00443A30"
+size = 108
+symbol = "?erase@?$deque@FV?$allocator@F@std@@@std@@QAE?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@2@V32@@Z"
+equivalence_group = "deque-erase-108-clones"
+
+[[anchors]]
+address = "0x0045DC20"
+size = 108
+symbol = "?erase@?$deque@FV?$allocator@F@std@@@std@@QAE?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@2@V32@@Z"
+equivalence_group = "deque-erase-108-clones"
+
+[[anchors]]
+address = "0x00617B50"
+size = 108
+symbol = "?erase@?$deque@FV?$allocator@F@std@@@std@@QAE?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@2@V32@@Z"
+equivalence_group = "deque-erase-108-clones"

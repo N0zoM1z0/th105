@@ -60,3 +60,8 @@ address,name,module,confidence,evidence
 0x006FD02C,g_profile_message_main,ui,observed,Current profile confirmation/message helpers both clear this loader-zero UiDesignObject pointer's enabled byte at +0x14; exact confirmation recovery independently fixes the address
 0x006FBCB8,g_battle_render_pass,render,observed,Current auxiliary/main AnimationObject render paths reset/advance this pass byte and exact recovery reproduces those accesses
 0x006FD398,g_render_effect_service,render,observed,Current sprite render-effect facade family loads this shared service pointer and dispatches v4Arg0 through stable vtable slots
+0x00702A1C,g_main_window,platform,observed,Current window/bootstrap xrefs and exact CMenuConfig update share this HWND cell; config update passes it to SendMessageA
+0x00703818,g_config_window_mode_state,platform,observed,Current startup/window paths and exact CMenuConfig update share this dword; zero means config byte +0x70 is enabled
+0x006FC5B4,g_game_config_secondary_reset,ui,observed,Exact config close helper uses this GameConfig-adjacent secondary reset receiver
+0x006FBFB8,g_config_source_first,ui,observed,Exact config close helper passes this source object address to the primary config reset
+0x006FC2F4,g_config_source_second,ui,observed,Exact config close helper passes this source object address to the secondary config reset

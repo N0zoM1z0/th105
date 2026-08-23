@@ -17,7 +17,7 @@ notes or source hypotheses.
   inputs. This supports the VC8 family and warns against assuming independent
   object boundaries.
 - The fresh IDA database exposes 4,001 auto-analysis function candidates. The tracked ledger contains 4,010 candidates because current target evidence recovered a missed independent CFileReader destructor at `0x0040CEB0`, source-level fighter phase entries at `0x00464630`/`0x00464780`, standalone `CMenuReplay` scalar wrapper `0x00446F40`, source helper `CMenuReplay::update_mode_state @ 0x00446590`, the independent `CFileWriter::~CFileWriter @ 0x00407BF0`, the independent reverse CSpriteEx quad-copy boundary `0x004073C0`, independent `FrameData::~FrameData @ 0x00421A70`, and the 284-byte Fighter counter-threshold body `0x0045B300`; IDA had attached or missed those boundaries during auto-analysis. The writer body is a complete 21-byte RET-terminated vtable-owned destructor surrounded by `INT3` padding. Auto-analysis ownership and unreviewed sizes remain provisional.
-- The accepted 1.06a authored set contains 682 functions / 108,852 bytes in 216
+- The accepted 1.06a authored set contains 690 functions / 109,878 bytes in 221
   VC8 match units. Current-target IDA/call evidence, relocation reconciliation,
   source archaeology, and layout recovery establish hypotheses; only canonical
   VC8 zero-difference comparisons establish exactness.
@@ -386,7 +386,7 @@ notes or source hypotheses.
   object, despite the current probe profile reproducing the accepted wave.
 - Original translation-unit partition and which classes/functions underwent
   LTCG transformation.
-- Accepted boundaries and authored/library origins for the remaining 2,401
+- Accepted boundaries and authored/library origins for the remaining 2,389
   provisional candidates.
 - The complete authored denominator needed to measure the 95% function and byte
   goals honestly.
@@ -674,3 +674,19 @@ layout-compatible with MenuCursorState.
 
 - `Fighter::try_dispatch_action_202 @ 0x004940E0` and `try_dispatch_action_203 @ 0x004941D0` are a mirrored 226-byte pair. Current IDA shows the successful tail as `phase_reset; load vptr; load vslot[2]; ++byte[this+0x47F]; virtual set_action`. A layout-backed `FighterActionRepeatView` that exposes both the real third virtual slot and the observed repeat byte makes VC8 preserve that evaluation order; both bodies are canonical exact while the six earlier functions in the same TU remain exact. Keep the pair together when changing this view.
 - Three near-exact retained-source blockers are useful negative evidence for future waves: `adjust_capped_counter_558 @ 0x0045CED0` is 126 bytes and differs only in register scheduling around the 16-bit adjusted amount; IDA shows the join as adjusted value in EAX, sign-extended counter in EDX. `GuideOverlay::update @ 0x0043F450` is 112 bytes and target uses `sub al,0x0F` plus a vslot load before alpha writeback, unlike VC8's current equivalent `add al,0xF1` scheduling. `try_group_a_vs_group_b_interaction @ 0x0046C930` is 164 bytes and the remaining semantic-width difference is target `movzx r32, word [frame+0x2A]` before a 16-bit store versus the current direct 16-bit load/store. Do not close any of these with volatile/register/assembly forcing; recover the source/layout distinction that naturally explains the target schedule.
+
+### MenuConfig exact state machine and typed side effects
+
+`CMenuConfig::update @ 0x004411B0` is a 665-byte current RTTI-owned virtual. Exact source keeps accept/cancel in the final `else` of the primary/secondary cursor chain; moving those tests after a successful secondary update extends the input-pointer lifetime and changes callee-saved allocation. BGM/SE percentages and grid width are unsigned, selecting the target multiply/shift division by 100. The four option indicators use explicit `if/else` white-versus-gray branches; a ternary chooses a different branchless lowering. The VC8 COMDAT continues past the reviewed RET into a local switch table, so authored bytes stop at 665 rather than the section tail.
+
+The paired `MenuCursorState` binders `0x004204E0/0x00420520` are 63/63. They are real thiscall members: horizontal binds `input ? &input->hold.horizontal : 0`, vertical binds `input ? &input->hold.vertical : 0`, and both reset selection/window state while storing item/page counts.
+
+Config audio scaling preserves literal **type**. Target qword `0x006C1660` is the double promotion of `0.01f`, not mathematical double `0.01`; using the latter gives matching arithmetic instructions but the wrong pooled relocation literal. `apply_config_se_percent @ 0x0043B1F0` walks the full 128-entry handle array `0x006FCA98..0x006FCC98`, establishing a verified `+0x200` addend on the existing aggregate. Its loop uses the target's signed address comparison and returns the final per-handle setter result. `close_config_menu @ 0x0043CDD0` similarly proves `0x006FBFB8/0x006FC2F4` are source objects whose addresses are passed to reset receivers; declaring pointer variables inserts loads and grows 48 bytes to 51.
+
+### SpellData member ABI and generated erase equivalence
+
+`SpellDataOwner::set_sequence_mode @ 0x00432520` is a 33-byte thiscall member taking an unsigned-byte mode. The historical free/stdcall hypothesis was wrong: Fighter initialization forms `ECX = Fighter+0x4F0`, and the callee accesses `SpellDataOwner+0x20/+0x34`. Ordinary `std::deque<short>` assignment plus `if (mode) shuffle_selection()` is 33/33. Making this definition visible in the Fighter initialization TU lets VC8 inline it, while the target keeps the out-of-line call, so preserve a declaration-only TU boundary there. `initialize_side_payload @ 0x004324F0` remains 35/35 after removing its historical `__declspec(noinline)` reconstruction debt.
+
+The adjacent 108-byte `0x004323B0` body is compiler-generated `std::deque<short>::erase(iterator)`. A pinned VC8 probe regenerates a 108-byte / 41-instruction COMDAT with structural similarity 1.0000. Full 4,010-span replay finds the complete equivalence group `0x004323B0/0x00443A30/0x0045DC20/0x00617B50`; the committed manifest must resolve all four or fail closed. This is another case where review-only discovery cannot establish origin uniqueness.
+
+Three near-exact bodies remain intentionally pending. `SpellDataOwner::shuffle_selection @ 0x00432420` reaches 196/196 with normal checked-iterator semantics and an out-of-line generated erase contract, but seven bytes differ only in scheduling an independent stack adjustment and saved short value. `initialize_fighter_battle_state @ 0x00460200` reaches the target 1247-byte / 290-instruction shape after correcting the SpellData member ABI, with only 29 allocator/scheduler bytes remaining. `CMenuConfig::update_secondary_for_primary @ 0x00440FF0` closes its five-case semantics and binder ABI but pinned VC8 still folds the target's redundant clamp topology. Do not use register variables, volatile/dummy dependencies, artificial gotos, inline assembly, or copied bytes to close these residuals.

@@ -16,5 +16,6 @@ int __stdcall split_path_components(
 void __stdcall read_clipboard_ansi(char *destination, unsigned int size);
 unsigned char __stdcall initialize_direct_input(void *window, void *instance);
 unsigned char initialize_keyboard_device();
+unsigned char initialize_mouse_device();
 
 } // namespace th105

@@ -8923,3 +8923,102 @@ dir32_targets = [
   "?g_render_effect_service@th105@@3PAURenderEffectService@1@A=?g_render_effect_service@th105@@3PAURenderEffectService@1@A",
   "??_C@_06EELLHCJD@v4Arg0?$AA@=??_C@_06EELLHCJD@v4Arg0?$AA@",
 ]
+
+[units.cross-v106a-menu-cursor-bindings]
+kind = "probe"
+source = "src/ui/MenuCursorBindings.cpp"
+object = "build/match-units/CrossV106a_MenuCursorBindings.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current MenuCursorState horizontal/vertical input binders. The two 63-byte thiscall bodies differ only in HoldCounters horizontal +0x38 versus vertical +0x3C and reset selection/window state naturally."
+
+[[units.cross-v106a-menu-cursor-bindings.functions]]
+address = "0x004204E0"
+symbol_base = "?bind_horizontal@MenuCursorState@th105@@QAEXPAUCInputManager@2@HH@Z"
+
+[[units.cross-v106a-menu-cursor-bindings.functions]]
+address = "0x00420520"
+symbol_base = "?bind_vertical@MenuCursorState@th105@@QAEXPAUCInputManager@2@HH@Z"
+
+[units.cross-v106a-menu-config-update]
+kind = "probe"
+source = "src/ui/MenuConfigUpdate.cpp"
+object = "build/match-units/CrossV106a_MenuConfigUpdate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "RTTI-owned CMenuConfig update slot. Ordinary nested C++ preserves the primary/secondary cursor split, unsigned percentage scaling, explicit option-color branches, cancel/accept else-path, window toggle and common UI refresh. Reviewed callable boundary is 665 bytes; the same COMDAT continues into a local switch table after RET."
+
+[[units.cross-v106a-menu-config-update.functions]]
+address = "0x004411B0"
+symbol_base = "?update@CMenuConfigUpdateView@th105@@QAE_NXZ"
+rel32_targets = [
+  "?update@GuideOverlay@th105@@QAEXXZ=0x0043F450",
+  "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20",
+  "_dispatch_indexed_event=0x0043B1A0",
+  "?update_secondary_for_primary@CMenuConfigUpdateView@th105@@QAEXH@Z=0x00440FF0",
+  "?apply_bgm_percent@th105@@YAHH@Z=0x0043B1C0",
+  "?apply_se_percent@th105@@YAHH@Z=0x0043B1F0",
+  "?close_config_menu@th105@@YAXXZ=0x0043CDD0",
+  "_is_menu_initial_press=0x0043ABD0",
+]
+
+[units.cross-v106a-config-audio-helpers]
+kind = "probe"
+source = "src/ui/ConfigAudioHelpers.cpp"
+object = "build/match-units/CrossV106a_ConfigAudioHelpers.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Config BGM/SE percentage helpers. Target arithmetic proves 0.01f promoted to double before 0.75 scaling; SE walks the complete 128-entry indexed-event handle table and returns the final handle-volume call result."
+
+[[units.cross-v106a-config-audio-helpers.functions]]
+address = "0x0043B1C0"
+symbol_base = "?apply_bgm_percent@th105@@YAHH@Z"
+rel32_targets = ["?set_volume@BgmVolumeService@th105@@QAEHM@Z=0x00403A30"]
+dir32_targets = ["?g_bgm_volume_service@th105@@3UBgmVolumeService@1@A=?g_bgm_service@th105@@3UBgmServiceView@1@A"]
+
+[[units.cross-v106a-config-audio-helpers.functions]]
+address = "0x0043B1F0"
+symbol_base = "?apply_se_percent@th105@@YAHH@Z"
+rel32_targets = [
+  "?set_master_volume@SoundVolumeService@th105@@QAEXM@Z=0x00401C20",
+  "?set_handle_volume@SoundVolumeService@th105@@QAEHIM@Z=0x00401CE0",
+]
+dir32_targets = ["?g_sound_volume_service@th105@@3USoundVolumeService@1@A=?g_wave_handle_service@th105@@3UOpaqueWaveHandleService@1@A"]
+
+[units.cross-v106a-config-close]
+kind = "probe"
+source = "src/ui/ConfigClose.cpp"
+object = "build/match-units/CrossV106a_ConfigClose.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Config close/reload helper. Source objects at 0x006FBFB8/0x006FC2F4 are passed by address to primary/secondary reset receivers before the primary finalize tail, matching current call ABI without pointer-load aliases."
+
+[[units.cross-v106a-config-close.functions]]
+address = "0x0043CDD0"
+symbol_base = "?close_config_menu@th105@@YAXXZ"
+rel32_targets = [
+  "?reset@ConfigResetView@th105@@QAEXPAXHH@Z=0x004020D0",
+  "?finalize@ConfigResetView@th105@@QAEXXZ=0x00427390",
+]
+dir32_targets = ["?g_game_config_reset@th105@@3UConfigResetView@1@A=?g_game_config@th105@@3UGameConfig@1@A"]
+
+[units.cross-v106a-spell-data-input-setup]
+kind = "probe"
+source = "src/battle/SpellDataInputSetup.cpp"
+object = "build/match-units/CrossV106a_SpellDataInputSetup.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current SpellDataOwner side-payload copy plus sequence-mode selector. Natural std::deque<short> assignment reproduces both; the historical noinline annotation is unnecessary and removed. set_sequence_mode remains an out-of-line TU boundary for Fighter initialization."
+
+[[units.cross-v106a-spell-data-input-setup.functions]]
+address = "0x004324F0"
+symbol_base = "?initialize_side_payload_430f70@SpellDataOwner@th105@@QAEXPBUShortDeque8@2@@Z"
+rel32_targets = ["??4?$deque@FV?$allocator@F@std@@@std@@QAEAAV01@ABV01@@Z=0x0042B6B0"]
+
+[[units.cross-v106a-spell-data-input-setup.functions]]
+address = "0x00432520"
+symbol_base = "?set_sequence_mode@SpellDataOwner@th105@@QAEXE@Z"
+rel32_targets = [
+  "??4?$deque@FV?$allocator@F@std@@@std@@QAEAAV01@ABV01@@Z=0x0042B6B0",
+  "?shuffle_selection@SpellDataOwner@th105@@QAEXXZ=0x00432420",
+]

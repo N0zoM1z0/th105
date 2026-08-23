@@ -191,6 +191,8 @@ struct SpellDataOwner {
         DwordDeque4 *image_owner,
         SpellTree *destination);
     void finalize_loaded_spell_data();
+    void shuffle_selection();
+    void set_sequence_mode(unsigned char value);
     short select_spell_record_id();
     SpellRecordView *find_local_then_common_spell_record(int key);
     unsigned char load_spell_data(
