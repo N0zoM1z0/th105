@@ -8,9 +8,6 @@ extern "C" const char profile_name_empty[];
 extern "C" const char profile_file_extension[];
 extern "C" const char profile_copy_suffix[];
 
-extern "C" int __stdcall select_profile_pair(
-    th105::MenuString28 *selected,
-    th105::MenuString28 *alternate);
 extern "C" int __cdecl update_profile_confirmation();
 extern "C" int __cdecl update_profile_message();
 extern "C" bool __cdecl profile_string_equals(
@@ -28,7 +25,7 @@ bool CProfileMenu::update_state_six()
     switch (substate_344) {
     case 0: {
         guides_5a4[4].visible = true;
-        switch (select_profile_pair(&string_518, &string_534)) {
+        switch (select_profile(&string_518, &string_534)) {
         case 1:
             g_profile_menu_controller.set_mode(1);
             g_profile_menu_controller.select_profile(string_534.c_str());

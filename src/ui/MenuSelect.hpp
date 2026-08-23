@@ -76,7 +76,6 @@ public:
 private:
     bool update_primary_selection();
     bool update_player_assignment();
-    int select_profile(MenuString28 *selected, MenuString28 *alternate);
 
     signed char state_04;
     unsigned char reserved_05;

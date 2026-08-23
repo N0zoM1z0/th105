@@ -43,6 +43,10 @@ typedef char UiDesignTreeIterator_size_must_be_0x08[
 typedef char UiDesignTree_size_must_be_0x14[
     sizeof(UiDesignTree) == 0x14 ? 1 : -1];
 
+struct TextureHandleResult {
+    unsigned int value;
+};
+
 // 0x006ECD40 is the concrete CHandleManager<IDirect3DTexture9 *> instance.
 // In particular, its eight cache cells begin at +0x64.
 struct TitleResourceManager : CHandleManager4 {
@@ -51,6 +55,13 @@ struct TitleResourceManager : CHandleManager4 {
         const char *path,
         unsigned int *width,
         unsigned int *height);
+    TextureHandleResult create_text_texture(
+        const char *text,
+        const void *config,
+        unsigned int width,
+        unsigned int height,
+        int option_a,
+        int option_b);
     unsigned char release_title_resource_handle(unsigned int handle);
     void bind_texture(unsigned int handle, int stage);
 };

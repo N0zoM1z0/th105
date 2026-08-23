@@ -14,11 +14,6 @@ extern "C" const char replay_delete_failure[];
 
 namespace th105 {
 
-struct ReplayMenuMessageView {
-    void show_profile_message(const char *message, int mode);
-    void show_profile_result(const char *message);
-};
-
 unsigned char CMenuReplay::update_delete_state()
 {
     int *axis = &g_active_menu_input->hold.horizontal;
@@ -40,8 +35,7 @@ unsigned char CMenuReplay::update_delete_state()
                 replay_list_08.enter_directory(file_cursor_110.selection);
             } else {
                 if (replay_list_08.row_at(file_cursor_110.selection)) {
-                    reinterpret_cast<ReplayMenuMessageView *>(this)
-                        ->show_profile_message(replay_delete_prompt, 0);
+                    show_profile_message(replay_delete_prompt, 0);
                     state_05 = 1;
                 }
                 return 1;
@@ -74,12 +68,10 @@ unsigned char CMenuReplay::update_delete_state()
             char path[260];
             wsprintfA(path, "%s/%s", directory, name);
             if (DeleteFileA(path)) {
-                reinterpret_cast<ReplayMenuMessageView *>(this)
-                    ->show_profile_result(replay_delete_success);
+                show_profile_result(replay_delete_success);
                 refresh_file_list();
             } else {
-                reinterpret_cast<ReplayMenuMessageView *>(this)
-                    ->show_profile_result(replay_delete_failure);
+                show_profile_result(replay_delete_failure);
             }
             state_05 = 2;
             return 1;

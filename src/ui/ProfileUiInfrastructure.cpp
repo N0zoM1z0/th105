@@ -38,6 +38,21 @@ extern ProfileTileView g_profile_tile;
 extern UiDesignObject *g_profile_player_anchor;
 extern MenuCursorSpriteView g_menu_cursor_sprite;
 
+namespace {
+struct ProfileSpriteTextureVirtualView {
+    virtual void slot_00() = 0;
+    virtual void slot_04() = 0;
+    virtual void slot_08() = 0;
+    virtual void slot_0c() = 0;
+    virtual int set_texture_raw(unsigned int handle, int x, int y, unsigned int width, unsigned int height, int extra_a, int extra_b) = 0;
+};
+}
+
+void ProfileSpriteView::set_texture(unsigned int handle, int x, int y, unsigned int width, unsigned int height)
+{
+    reinterpret_cast<ProfileSpriteTextureVirtualView *>(this)->set_texture_raw(handle, x, y, width, height, 0, 0);
+}
+
 void hide_profile_message()
 {
     g_profile_message_main->enabled = false;

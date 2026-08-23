@@ -66,11 +66,12 @@ void FighterCutinResource::load_for_character(
         first_loader_extent - 1,
         second_loader_extent);
 
+    FighterCutinSpriteWork *const sprite = &sprite_04;
     if (selector_98 == 1) {
-        sprite_04.field_88 = -1.0f;
-        sprite_04.field_8c = 1.0f;
+        sprite->field_88 = -1.0f;
+        sprite->field_8c = 1.0f;
     }
-    *reinterpret_cast<volatile int *>(&state_9c) = -1;
+    state_9c = -1;
 }
 
 void Fighter::initialize_fighter_spell_resources()
@@ -110,9 +111,10 @@ void Fighter::initialize_fighter_spell_resources()
         first_loader_extent,
         second_loader_extent);
 
+    FighterCutinSpriteWork *const sprite = &face->sprite_04;
     if (player_index_334 == 1) {
-        face->sprite_04.field_88 = -1.0f;
-        face->sprite_04.field_8c = 1.0f;
+        sprite->field_88 = -1.0f;
+        sprite->field_8c = 1.0f;
     }
 
     DwordDeque4 *const back_resources =

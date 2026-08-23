@@ -195,7 +195,7 @@ struct SpellDataOwner {
     SpellRecordView *find_local_then_common_spell_record(int key);
     unsigned char load_spell_data(
         int character_key,
-        int arg2,
+        signed char arg2,
         unsigned char alternate_loader);
     void initialize_side_payload_430f70(const ShortDeque8 *payload);
     unsigned char load_spell_csv_via_325b0(

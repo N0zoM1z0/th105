@@ -675,6 +675,10 @@ A relocation address can be exact while its first semantic name is still wrong. 
 
 When one caller narrows a verified result, keep the unit boundary honest. `is_scene_fade_in_progress @ 0x0043B2C0` returns integer 0/1; `CBattleManagerArcade @ 0x00473870` tests AL. Express the narrowing at the caller rather than recompiling the helper under a false return ABI. Similarly, derived field offsets `+0x5BC/+0x5C4` can be exposed through narrow accessors when current code proves the offsets but not the intervening class layout; do not create a large synthetic padding array solely to land a field.
 
+### Small class returns can expose hidden-sret ABI
+
+`Menu::show_profile_result @ 0x0043F810` proves `TitleResourceManager::create_text_texture @ 0x00404D00` returns a four-byte class value. Declaring `TextureHandleResult { unsigned value; }` and returning it by value makes VC8 emit the hidden result pointer and naturally reuse a dead caller argument slot, giving 93/93. An explicit output local emits a two-byte-larger wrapper. Model the C++ value return; do not alias parameter slots or hand-manipulate the stack.
+
 ### Let VC8 generate hidden iterator returns; never synthesize the stack
 
 A checked STL-like call can expose enough ABI to write truthful C++ even when the callee remains review-pending. At `0x00473050`, target code passes an iterator as two dwords `{owner,current}` and reserves a hidden 8-byte result pointer before calling `0x0043FC40`. Declaring an 8-byte iterator class/struct and a member `erase(iterator)` that returns the iterator by value makes pinned VC8 emit exactly that hidden-return convention. Use this source-level ABI reconstruction rather than inline assembly, manual stack manipulation, or copied call bytes.
@@ -1110,3 +1114,14 @@ Separate source definitions when current code proves an out-of-line TU boundary.
 The dispatcher is also a function-boundary reference. Pinned VC8 emits a 600-byte `.text` COMDAT, but current control flow returns at byte 572 and the remaining 28 bytes are the local seven-entry switch table. The comparator resolves same-COMDAT DIR32 labels locally while comparing only the reviewed 572-byte function boundary. Do not extend a function merely because its COFF section continues into compiler-owned jump-table data.
 
 `CBattleManager::transition_slot_34` adds an alias-lifetime and current-literal lesson. Caching `g_info_manager` in a long-lived local makes VC8 save EDI and grows/reorders the function; the target reloads `0x006FBCA8` independently at each effect call, so truthful repeated global access is the exact source shape. Also read target literal bytes before reusing an older semantic constant: current phase-1 uses 400.0f at `0x006C3A5C`, while a separate exact BattleController transition uses 480.0f. Equal-looking subsystem behavior is not evidence that literal identity survived the version/link layout.
+
+
+### Narrow interface width can fix callers without changing the callee
+
+`SpellDataOwner::load_spell_data @ 0x00432360` is the reference. Its retained declaration used an `int` story-mode parameter even though the body only forwards that value to loaders whose corresponding parameter is `signed char`. With `int`, `Fighter::initialize_fighter_spell_resources @ 0x00463070` must zero EAX before `sete al`; the current target performs `sete al` and pushes that byte-derived value directly. Narrowing the source interface to `signed char` leaves the already-exact selector body byte-for-byte 71/71 while making the 333-byte caller emit the target promotion naturally. Test both caller and callee before changing an ABI width; a `bool` spelling made the selector 75 bytes and was rejected.
+
+### Start a subobject pointer lifetime where ownership actually begins
+
+The Fighter face/cutin texture loaders show a useful evaluation-order pattern. The virtual configure call should remain a direct member expression so VC8 fetches the vslot from the member exactly as the target does. A real sprite pointer is needed only by the subsequent mirror-scale writes; declaring it **after** configure lets the compiler start the long-lived EDI lifetime at the same point as the target while still using the member expression for virtual dispatch. Declaring the pointer before configure hoists EDI too early and changes the vslot load. This is a source-lifetime distinction, not register forcing.
+
+The same recovery removed a historical `volatile` store from `FighterCutinResource::load_for_character`. Ordinary `state_9c = -1` plus the correct sprite lifetime naturally schedules the store in the target epilogue and closes 199/199. Treat volatile/register/dummy-liveness constructs as suspect reconstruction debt: re-test them after neighboring ownership and ABI contracts improve rather than preserving them as matching mechanisms.

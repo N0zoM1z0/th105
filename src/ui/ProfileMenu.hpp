@@ -69,6 +69,8 @@ struct ProfileNameList {
     int item_count();
     void render_item(float x, float y, unsigned int index);
     bool contains(const MenuString28 *profile) const;
+    MenuString28 *row_at(unsigned int index);
+    void trim_item_text(MenuString28 *value);
 };
 
 class CProfileMenu : public Menu {
@@ -90,7 +92,6 @@ private:
     bool commit_state_four();
     bool commit_state_five();
     signed char commit_profile_change();
-    void show_profile_message(const char *message, int mode);
     void render_profile_menu_footer();
 
     ProfileMenuBaseData base_data_004;

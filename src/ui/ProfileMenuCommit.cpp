@@ -46,10 +46,6 @@ struct MenuStringAssignBytesView {
     MenuString28 &assign_bytes(const char *text, unsigned int count);
 };
 
-struct ProfileMenuMessageView {
-    void show_profile_result(const char *text);
-};
-
 struct ProfileMenuBaseDataCommitView {
     void initialize_defaults();
     bool save_to_profile(const char *path);
@@ -67,8 +63,7 @@ bool CProfileMenu::commit_state_one()
             reinterpret_cast<const unsigned char *>(string_56c.c_str()), '\\')) {
         message.assign(concatenate_profile_commit_string(
             string_56c, profile_commit_failure_suffix));
-        reinterpret_cast<ProfileMenuMessageView *>(this)
-            ->show_profile_result(message.c_str());
+        show_profile_result(message.c_str());
         return false;
     }
 
@@ -80,16 +75,14 @@ bool CProfileMenu::commit_state_one()
             ->save_to_profile(string_550.c_str())) {
         message.assign(concatenate_profile_commit_string(
             string_56c, profile_commit_success_suffix));
-        reinterpret_cast<ProfileMenuMessageView *>(this)
-            ->show_profile_result(message.c_str());
+        show_profile_result(message.c_str());
         initialize_profile_menu();
         return true;
     }
 
     message.assign(concatenate_profile_commit_string(
         string_56c, profile_commit_failure_suffix));
-    reinterpret_cast<ProfileMenuMessageView *>(this)
-        ->show_profile_result(message.c_str());
+    show_profile_result(message.c_str());
     return false;
 }
 
@@ -113,8 +106,7 @@ bool CProfileMenu::commit_state_four()
         if (destination_path.size >= 0x104) {
             reinterpret_cast<MenuStringAssignBytesView *>(&string_588)
                 ->assign_bytes(profile_copy_failure_text, 20);
-            reinterpret_cast<ProfileMenuMessageView *>(this)
-                ->show_profile_result(string_588.c_str());
+            show_profile_result(string_588.c_str());
             return false;
         }
 
@@ -126,8 +118,7 @@ bool CProfileMenu::commit_state_four()
 
     reinterpret_cast<MenuStringAssignBytesView *>(&string_588)
         ->assign_bytes(profile_copy_success_text, 14);
-    reinterpret_cast<ProfileMenuMessageView *>(this)
-        ->show_profile_result(string_588.c_str());
+    show_profile_result(string_588.c_str());
     initialize_profile_menu();
     return true;
 }
@@ -141,16 +132,14 @@ bool CProfileMenu::commit_state_five()
     if (DeleteFileA(path.c_str())) {
         reinterpret_cast<MenuStringAssignBytesView *>(&string_588)
             ->assign_bytes(profile_delete_success_text, 12);
-        reinterpret_cast<ProfileMenuMessageView *>(this)
-            ->show_profile_result(string_588.c_str());
+        show_profile_result(string_588.c_str());
         initialize_profile_menu();
         return true;
     }
 
     reinterpret_cast<MenuStringAssignBytesView *>(&string_588)
         ->assign_bytes(profile_delete_failure_text, 18);
-    reinterpret_cast<ProfileMenuMessageView *>(this)
-        ->show_profile_result(string_588.c_str());
+    show_profile_result(string_588.c_str());
     return false;
 }
 
@@ -162,8 +151,7 @@ signed char CProfileMenu::commit_profile_change()
             reinterpret_cast<const unsigned char *>(string_56c.c_str()), '\\')) {
         reinterpret_cast<MenuStringAssignBytesView *>(&string_588)
             ->assign_bytes(profile_rename_failure_text, 24);
-        reinterpret_cast<ProfileMenuMessageView *>(this)
-            ->show_profile_result(string_588.c_str());
+        show_profile_result(string_588.c_str());
         return 0;
     }
 
@@ -176,16 +164,14 @@ signed char CProfileMenu::commit_profile_change()
     if (MoveFileA(old_path.c_str(), new_path.c_str())) {
         reinterpret_cast<MenuStringAssignBytesView *>(&string_588)
             ->assign_bytes(profile_rename_success_text, 18);
-        reinterpret_cast<ProfileMenuMessageView *>(this)
-            ->show_profile_result(string_588.c_str());
+        show_profile_result(string_588.c_str());
         initialize_profile_menu();
         return 1;
     }
 
     reinterpret_cast<MenuStringAssignBytesView *>(&string_588)
         ->assign_bytes(profile_rename_failure_text, 24);
-    reinterpret_cast<ProfileMenuMessageView *>(this)
-        ->show_profile_result(string_588.c_str());
+    show_profile_result(string_588.c_str());
     return 0;
 }
 

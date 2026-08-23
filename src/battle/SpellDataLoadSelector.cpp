@@ -4,7 +4,7 @@ namespace th105 {
 
 unsigned char SpellDataOwner::load_spell_data(
     int character_key,
-    int arg2,
+    signed char arg2,
     unsigned char alternate_loader)
 {
     if (alternate_loader != 0) {

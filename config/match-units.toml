@@ -458,7 +458,7 @@ source = "src/battle/SpellDataLoadSelector.cpp"
 object = "build/match-units/CrossV106a_SpellDataLoadSelector.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a cross-version exact spell-data selector. The second loader moved independently in 1.06a and was taken from current IDA disassembly, not delta guessing."
+notes = "TH105 1.06a cross-version exact spell-data selector. The second loader moved independently in 1.06a and was taken from current IDA disassembly, not delta guessing. Exact Fighter resource caller 0x00463070 independently proves the middle story-mode parameter is signed char; narrowing that declaration leaves this 71-byte selector byte-identical."
 
 [[units.cross-v106a-spell-data-load-selector.functions]]
 address = "0x00432360"
@@ -1720,7 +1720,7 @@ notes = "Whole-corpus retained-source recovery of ProfileMenu state-six workflow
 address = "0x0044CF70"
 symbol_base = "CProfileMenu_update_state_six"
 rel32_targets = [
-  "_select_profile_pair@8=0x00440410",
+  "?select_profile@Menu@th105@@IAEHPAUMenuString28@2@0@Z=0x00440410",
   "?set_mode@ProfileMenuController@th105@@QAEXH@Z=0x0040E7F0",
   "?select_profile@ProfileMenuController@th105@@QAEXPBD@Z=0x0040EB90",
   "?update_selection@ProfileEditor168@th105@@QAECXZ=0x00427C60",
@@ -1732,7 +1732,7 @@ rel32_targets = [
   "??1ProfileStringTemporary@th105@@QAE@XZ=0x00401E00",
   "__stricmp=0x0068B038",
   "?contains@ProfileNameList@th105@@QBE_NPBUMenuString28@2@@Z=0x00439810",
-  "?show_profile_message@CProfileMenu@th105@@AAEXPBDH@Z=0x0043F640",
+  "?show_profile_message@Menu@th105@@IAEXPBD_N@Z=0x0043F640",
   "_update_profile_confirmation=0x0043F870",
   "_update_profile_message=0x0043F6E0",
   "?commit_profile_change@CProfileMenu@th105@@AAECXZ=0x0044C860",
@@ -2719,7 +2719,7 @@ notes = "TH105 1.06a CMenuSelect player-assignment boundary recovery. Historical
 address = "0x00448060"
 symbol_base = "CMenuSelect_update_player_assignment"
 rel32_targets = [
-  "?select_profile@CMenuSelect@th105@@AAEHPAUMenuString28@2@0@Z=0x00440410",
+  "?select_profile@Menu@th105@@IAEHPAUMenuString28@2@0@Z=0x00440410",
   "?get_player_slot_record@th105@@YAPAUPlayerSlotRecord@1@I@Z=0x0043AFE0",
   "?load_profile@PlayerSlotRecord@th105@@QAE_NPBD@Z=0x00431AC0",
   "?set_profile_color@PlayerSlotRecord@th105@@QAEXEEE@Z=0x00431440",
@@ -3941,7 +3941,7 @@ source = "src/battle/FighterResourceInitialization.cpp"
 object = "build/match-units/CrossV106a_FighterWaveResources.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "TH105 1.06a Fighter 64-entry character wave loader. Current target reads record_key_330, resolves the character name at 0x0043BF80, formats data/se/%s/%03d.wav, calls the wave service at 0x00702288 through 0x00401AF0, and publishes handles through Fighter +0x164. Retained C++ body has zero non-relocation differences before canonical reconciliation."
+notes = "TH105 1.06a Fighter resource TU. Existing 64-entry wave loading stays exact while current cutin/spell-resource recovery closes the same /GS object. Target-backed signed-char story-mode ABI removes a false integer zero-extension; post-configure sprite-subobject lifetimes reproduce the virtual receiver/evaluation order and remove the prior volatile state-store coercion."
 
 [[units.cross-v106a-fighter-wave-resources.functions]]
 address = "0x0045F680"
@@ -3956,6 +3956,44 @@ dir32_targets = [
   "__imp__wsprintfA=__imp__wsprintfA",
   "??_C@_0BE@KPICLJDF@data?1se?1?$CFs?1?$CF03d?4wav?$AA@=??_C@_0BE@KPICLJDF@data?1se?1?$CFs?1?$CF03d?4wav?$AA@",
   "?g_wave_handle_service@th105@@3UOpaqueWaveHandleService@1@A=?g_wave_handle_service@th105@@3UOpaqueWaveHandleService@1@A",
+]
+
+[[units.cross-v106a-fighter-wave-resources.functions]]
+address = "0x00463070"
+symbol_base = "?initialize_fighter_spell_resources@Fighter@th105@@QAEXXZ"
+rel32_targets = [
+  "?load_pat_data_and_palette_resources@Fighter@th105@@QAEXXZ=0x00461B70",
+  "?load_indexed_character_wave_resources@Fighter@th105@@QAEXXZ=0x0045F680",
+  "?load_spell_data@SpellDataOwner@th105@@QAEEHCE@Z=0x00432360",
+  "?character_key_to_name@th105@@YAPBDH@Z=0x0043BF80",
+  "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+  "?push_back@DwordDeque4@th105@@QAEXPBI@Z=0x00417240",
+  "?load_for_character@FighterCutinResource@th105@@QAEXHH@Z=0x004651E0",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "___security_cookie=___security_cookie",
+  "__imp__wsprintfA=__imp__wsprintfA",
+  "??_C@_0CE@NPKABDGF@data?1character?1?$CFs?1face?1face?$CF03d?4@=_fighter_face_path_format",
+  "??_C@_0CF@FHHKEGPJ@data?1character?1?$CFs?1back?1spell?$CF03d@=_fighter_spell_back_path_format",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+  "__real@bf800000=__real@bf800000",
+]
+
+[[units.cross-v106a-fighter-wave-resources.functions]]
+address = "0x004651E0"
+symbol_base = "?load_for_character@FighterCutinResource@th105@@QAEXHH@Z"
+rel32_targets = [
+  "?character_key_to_name@th105@@YAPBDH@Z=0x0043BF80",
+  "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "___security_cookie=___security_cookie",
+  "__imp__wsprintfA=__imp__wsprintfA",
+  "??_C@_0BI@LDOABOLK@data?1stand?1cutin?1?$CFs?4bmp?$AA@=_fighter_cutin_path_format",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+  "__real@bf800000=__real@bf800000",
 ]
 [units.cross-v106a-spell-csv-wrappers]
 kind = "probe"
@@ -6458,11 +6496,11 @@ notes = "TH105 1.06a CProfileMenu state-four/state-five pair. Both natural switc
 address = "0x0044CC50"
 symbol_base = "?update_state_four@CProfileMenu@th105@@AAE_NXZ"
 rel32_targets = [
-  "_select_profile_pair@8=0x00440410",
+  "?select_profile@Menu@th105@@IAEHPAUMenuString28@2@0@Z=0x00440410",
   "?concatenate_profile_string@@YA?AUProfileStringTemporary@th105@@ABUMenuString28@2@PBD@Z=0x00408C40",
   "?assign@MenuString28@th105@@QAEAAU12@ABUProfileStringTemporary@2@II@Z=0x004020D0",
   "??1ProfileStringTemporary@th105@@QAE@XZ=0x00401E00",
-  "?show_profile_message@CProfileMenu@th105@@AAEXPBDH@Z=0x0043F640",
+  "?show_profile_message@Menu@th105@@IAEXPBD_N@Z=0x0043F640",
   "_update_profile_confirmation=0x0043F870",
   "_update_profile_message=0x0043F6E0",
   "?commit_state_four@CProfileMenu@th105@@AAE_NXZ=0x0044C380",
@@ -6477,11 +6515,11 @@ dir32_targets = [
 address = "0x0044CDE0"
 symbol_base = "?update_state_five@CProfileMenu@th105@@AAE_NXZ"
 rel32_targets = [
-  "_select_profile_pair@8=0x00440410",
+  "?select_profile@Menu@th105@@IAEHPAUMenuString28@2@0@Z=0x00440410",
   "?concatenate_profile_string@@YA?AUProfileStringTemporary@th105@@ABUMenuString28@2@PBD@Z=0x00408C40",
   "?assign@MenuString28@th105@@QAEAAU12@ABUProfileStringTemporary@2@II@Z=0x004020D0",
   "??1ProfileStringTemporary@th105@@QAE@XZ=0x00401E00",
-  "?show_profile_message@CProfileMenu@th105@@AAEXPBDH@Z=0x0043F640",
+  "?show_profile_message@Menu@th105@@IAEXPBD_N@Z=0x0043F640",
   "_update_profile_confirmation=0x0043F870",
   "_update_profile_message=0x0043F6E0",
   "?commit_state_five@CProfileMenu@th105@@AAE_NXZ=0x0044C710",
@@ -6552,7 +6590,7 @@ rel32_targets = [
   "??3@YAXPAX@Z=0x006898EA",
   "MenuStringAppendBytesView_append_bytes=0x00408A50",
   "MenuStringAssignBytesView_assign_bytes=0x004021C0",
-  "ProfileMenuMessageView_show_profile_result=0x0043F810",
+  "?show_profile_result@Menu@th105@@IAEXPBD@Z=0x0043F810",
   "?initialize_profile_menu@Menu@th105@@IAEXXZ=0x0043FBF0",
   "@__security_check_cookie@4=0x00689D25",
 ]
@@ -6575,7 +6613,7 @@ rel32_targets = [
   "?assign@MenuString28@th105@@QAEAAU12@ABU12@II@Z=0x004020D0",
   "??3@YAXPAX@Z=0x006898EA",
   "MenuStringAssignBytesView_assign_bytes=0x004021C0",
-  "ProfileMenuMessageView_show_profile_result=0x0043F810",
+  "?show_profile_result@Menu@th105@@IAEXPBD@Z=0x0043F810",
   "?initialize_profile_menu@Menu@th105@@IAEXXZ=0x0043FBF0",
   "@__security_check_cookie@4=0x00689D25",
 ]
@@ -6596,7 +6634,7 @@ rel32_targets = [
   "?concatenate_profile_prefix@th105@@YA?AUMenuString28@1@PBDABU21@@Z=0x00429970",
   "??3@YAXPAX@Z=0x006898EA",
   "MenuStringAssignBytesView_assign_bytes=0x004021C0",
-  "ProfileMenuMessageView_show_profile_result=0x0043F810",
+  "?show_profile_result@Menu@th105@@IAEXPBD@Z=0x0043F810",
   "?initialize_profile_menu@Menu@th105@@IAEXXZ=0x0043FBF0",
   "@__security_check_cookie@4=0x00689D25",
 ]
@@ -6622,7 +6660,7 @@ rel32_targets = [
   "?assign@MenuString28@th105@@QAEAAU12@ABU12@II@Z=0x004020D0",
   "??3@YAXPAX@Z=0x006898EA",
   "operator_delete=0x006898EA",
-  "ProfileMenuMessageView_show_profile_result=0x0043F810",
+  "?show_profile_result@Menu@th105@@IAEXPBD@Z=0x0043F810",
   "?initialize_profile_menu@Menu@th105@@IAEXXZ=0x0043FBF0",
   "??1ProfileMenuBaseData@th105@@QAE@XZ=0x0042D320",
   "@__security_check_cookie@4=0x00689D25",
@@ -6642,6 +6680,10 @@ object = "build/match-units/CrossV106a_ProfileUiInfrastructure.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
 notes = "Current Profile UI infrastructure recovered as one ordinary VC8 TU: message visibility, global MenuCursorState initialization, overlay/footer rendering, profile list rendering, shared player-slot rendering, and tile rendering. Current globals, CSprite/CTile receivers, row/count types, and render callees are independently target-backed."
+
+[[units.cross-v106a-profile-ui-infrastructure.functions]]
+address = "0x00406A60"
+symbol_base = "?set_texture@ProfileSpriteView@th105@@QAEXIHHII@Z"
 
 [[units.cross-v106a-profile-ui-infrastructure.functions]]
 address = "0x0043F8D0"
@@ -7510,7 +7552,7 @@ rel32_targets = [
   "_update_profile_message=0x0043F6E0",
   "?row_at@CFileList@th105@@QAEPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@I@Z=0x004399A0",
   "?current_directory@CFileList@th105@@QAEPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ=0x00439570",
-  "?show_profile_result@ReplayMenuMessageView@th105@@QAEXPBD@Z=0x0043F810",
+  "?show_profile_result@Menu@th105@@IAEXPBD@Z=0x0043F810",
   "?refresh_file_list@CMenuReplay@th105@@AAEXXZ=0x00446770",
   "_dispatch_indexed_event=0x0043B1A0",
   "?move_page_forward@MenuCursorState@th105@@QAEXXZ=0x0043F5D0",
@@ -7519,7 +7561,7 @@ rel32_targets = [
   "?row_is_directory@CFileList@th105@@QAEEI@Z=0x00439A60",
   "?push_back@?$list@HV?$allocator@H@std@@@std@@QAEXABH@Z=0x004229A0",
   "?enter_directory@CFileList@th105@@QAEXI@Z=0x00439A80",
-  "?show_profile_message@ReplayMenuMessageView@th105@@QAEXPBDH@Z=0x0043F640",
+  "?show_profile_message@Menu@th105@@IAEXPBD_N@Z=0x0043F640",
   "?go_parent_directory@CFileList@th105@@QAEEXZ=0x004398B0",
   "?back@?$list@HV?$allocator@H@std@@@std@@QAEAAHXZ=0x004509A0",
   "?pop_back@?$list@HV?$allocator@H@std@@@std@@QAEXXZ=0x004220D0",
@@ -7867,6 +7909,47 @@ rel32_targets = [
   "?push_back@?$deque@PAVSakuyaObject@@V?$allocator@PAVSakuyaObject@@@std@@@std@@QAEXABQAVSakuyaObject@@@Z=0x006183F0",
   "??_U@YAPAXI@Z=0x00665B8A",
   "_memcpy=0x0068AA30",
+]
+
+
+[units.cross-v106a-profile-menu-shared]
+kind = "probe"
+source = "src/ui/ProfileMenuShared.cpp"
+object = "build/match-units/CrossV106a_ProfileMenuShared.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current common Menu profile-message/selection helpers. Exact callers across Profile/Replay/MenuSelect establish unused-this Menu ownership; TitleResourceManager text-texture creation uses a 4-byte hidden-sret handle value; profile selection reuses the exact global cursor and CFileList-compatible profile list facade."
+
+[[units.cross-v106a-profile-menu-shared.functions]]
+address = "0x0043F810"
+symbol_base = "?show_profile_result@Menu@th105@@IAEXPBD@Z"
+rel32_targets = [
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIHH@Z=0x00404D00",
+  "?set_texture@ProfileSpriteView@th105@@QAEXIHHII@Z=0x00406A60",
+]
+
+[[units.cross-v106a-profile-menu-shared.functions]]
+address = "0x0043F640"
+symbol_base = "?show_profile_message@Menu@th105@@IAEXPBD_N@Z"
+rel32_targets = [
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIHH@Z=0x00404D00",
+  "?set_texture@ProfileSpriteView@th105@@QAEXIHHII@Z=0x00406A60",
+]
+
+[[units.cross-v106a-profile-menu-shared.functions]]
+address = "0x00440410"
+symbol_base = "?select_profile@Menu@th105@@IAEHPAUMenuString28@2@0@Z"
+rel32_targets = [
+  "_dispatch_indexed_event=0x0043B1A0",
+  "?move_page_forward@MenuCursorState@th105@@QAEXXZ=0x0043F5D0",
+  "?move_page_backward@MenuCursorState@th105@@QAEXXZ=0x0043F560",
+  "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20",
+  "?row_at@ProfileNameList@th105@@QAEPAUMenuString28@2@I@Z=0x004399A0",
+  "?assign@MenuString28@th105@@QAEAAU12@ABU12@II@Z=0x004020D0",
+  "?trim_item_text@ProfileNameList@th105@@QAEXPAUMenuString28@2@@Z=0x00439910",
+  "_is_menu_initial_press=0x0043ABD0",
 ]
 
 [units.cross-v106a-battle-manager-setup]

@@ -2,9 +2,6 @@
 
 extern "C" const char profile_copy_prompt_suffix[];
 extern "C" const char profile_delete_prompt_suffix[];
-extern "C" int __stdcall select_profile_pair(
-    th105::MenuString28 *selected,
-    th105::MenuString28 *alternate);
 extern "C" int __cdecl update_profile_confirmation();
 extern "C" int __cdecl update_profile_message();
 th105::ProfileStringTemporary __cdecl concatenate_profile_string(
@@ -18,7 +15,7 @@ bool CProfileMenu::update_state_four()
     switch (substate_344) {
     case 0:
         guides_5a4[4].visible = true;
-        switch (select_profile_pair(&string_518, &string_534)) {
+        switch (select_profile(&string_518, &string_534)) {
         case 1:
             string_588.assign(concatenate_profile_string(
                 string_534, profile_copy_prompt_suffix));
@@ -59,7 +56,7 @@ bool CProfileMenu::update_state_five()
     switch (substate_344) {
     case 0:
         guides_5a4[4].visible = true;
-        switch (select_profile_pair(&string_518, &string_534)) {
+        switch (select_profile(&string_518, &string_534)) {
         case 1:
             string_588.assign(concatenate_profile_string(
                 string_534, profile_delete_prompt_suffix));
