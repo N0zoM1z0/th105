@@ -533,3 +533,6 @@ __imp__SetEvent@4,0x006C0040,02532e00,0,Current 1.06a FighterPhaseContext initia
 __real@bf000000,0x006C32A4,000000bf,0,Current 1.06a BattleObjectManager reset 0x00466DF0 loads canonical float -0.5 from 0x006C32A4 for reset geometry fields; target operand and bytes attested 2026-08-23,literal
 __real@441fe000,0x006C32A0,00e01f44,0,Current 1.06a BattleObjectManager reset 0x00466DF0 loads canonical float 639.5 from 0x006C32A0; target operand and bytes attested 2026-08-23,literal
 __real@43efc000,0x006C329C,00c0ef43,0,Current 1.06a BattleObjectManager reset 0x00466DF0 loads canonical float 479.5 from 0x006C329C; target operand and bytes attested 2026-08-23,literal
+_cbattle_manager_dispatch_eh,0x006BBA56,8b542408,0,Current 1.06a CBattleManager dispatch 0x00472B20 pushes this VC8 EH handler; canonical prefix attested from target,address
+_cbattle_manager_transition_eh,0x006BBA8B,8b542408,0,Current 1.06a CBattleManager transition 0x004728C0 pushes this VC8 EH handler; canonical prefix attested from target,address
+_cbattle_manager_transition_position,0x006C3A5C,0000c843,0,Current 1.06a CBattleManager transition 0x004728C0 loads target-owned float 400.0 for post-sequence transition effect placement; canonical bytes attested from target,literal

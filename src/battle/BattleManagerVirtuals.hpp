@@ -21,7 +21,7 @@ struct CBattleManager {
     virtual void slot_00();
     virtual void prepare_battle_setup_472110(MatchSetup *setup);
     virtual void slot_08();
-    virtual void slot_0c();
+    virtual int dispatch_battle_state_frame_472b20();
     virtual int run_pipeline_and_transition_472d80();
     virtual int run_reset_pipeline_472dc0();
     virtual int run_full_pipeline_471630();
@@ -52,6 +52,7 @@ struct CBattleManager {
     void run_global_position_status_timer_phase_view();
     void run_intermediate_phase_46dff0();
     void run_shared_pre_phase_46bf00();
+    void run_transition_phase_5_4724e0();
 
     __forceinline unsigned char &transition_state_5b0()
     {

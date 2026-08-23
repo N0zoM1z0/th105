@@ -2133,9 +2133,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00472490,authored_game,battle,authored,observed,canonical-exact-authored
 0x004724B0,authored_game,battle,authored,observed,canonical-exact-authored
 0x004724E0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x004728C0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004728C0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00472A70,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00472B20,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00472B20,authored_game,battle,authored,observed,canonical-exact-authored
 0x00472D80,authored_game,battle,authored,observed,canonical-exact-authored
 0x00472DC0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00472E10,authored_game,battle,authored,observed,canonical-exact-authored

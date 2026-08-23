@@ -7978,3 +7978,60 @@ rel32_targets = [
   "?initialize_slot_sync_4642f0@FighterPhaseContextRuntimeView@th105@@QAEXIPAUSide@MatchSetup@2@@Z=0x004642F0",
 ]
 dir32_targets = ["__imp__SetEvent@4=__imp__SetEvent@4"]
+
+[units.cross-v106a-battle-manager-dispatcher]
+kind = "probe"
+source = "src/battle/BattleManagerDispatcher.cpp"
+object = "build/match-units/CrossV106a_BattleManagerDispatcher.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CBattleManager vtable slot +0x0C polymorphic frame dispatcher. Ordinary virtual C++ reproduces the network/menu paths, 0x288/0x78 observed menu allocations, session-input gate, and seven-way phase switch; the callable body is 572 bytes followed by a 28-byte local switch table in the same COMDAT."
+
+[[units.cross-v106a-battle-manager-dispatcher.functions]]
+address = "0x00472B20"
+symbol_base = "?dispatch_battle_state_frame_472b20@CBattleManager@th105@@UAEHXZ"
+rel32_targets = [
+  "_has_ui_selection_state_changed=0x0043B6E0",
+  "?get_network_session@th105@@YAPAUCNetworkBase@1@XZ=0x0043B090",
+  "?is_menu_initial_press@th105@@YA_NHHHH@Z=0x0043ABD0",
+  "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
+  "?get_session_setup_option@th105@@YAIXZ=0x0043B070",
+  "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CMenuPracticeDispatchView@th105@@QAE@PAUCBattleManager@1@@Z=0x00446170",
+  "??0CMenuBattleDispatchView@th105@@QAE@PAUCBattleManager@1@@Z=0x00440B50",
+  "?install_menu_object@th105@@YAXPAX@Z=0x0043B0F0",
+  "?get_player2_input@th105@@YAPAUBattleInputGate@1@XZ=0x0043B060",
+  "?poll_synchronized_input_4708b0@BattleInputGate@th105@@QAEEXZ=0x004712B0",
+]
+dir32_targets = [
+  "__ehhandler$?dispatch_battle_state_frame_472b20@CBattleManager@th105@@UAEHXZ=_cbattle_manager_dispatch_eh",
+  "___security_cookie=___security_cookie",
+]
+
+[units.cross-v106a-battle-manager-transition]
+kind = "probe"
+source = "src/battle/BattleManagerTransition.cpp"
+object = "build/match-units/CrossV106a_BattleManagerTransition.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CBattleManager vtable slot +0x34 phase transition. Repeated exact-backed g_info_manager loads preserve target alias lifetime; phase-1 uses current 400.0f placement, and phase 6 relies only on the target-observed 0x44 CMenuEnd allocation extent before the external ctor/install path. Natural VC8 is 397/397."
+
+[[units.cross-v106a-battle-manager-transition.functions]]
+address = "0x004728C0"
+symbol_base = "?transition_slot_34@CBattleManager@th105@@UAEXH@Z"
+rel32_targets = [
+  "?reset_fighter_round_counters_45f610@th105@@YIXPAUFighter@1@@Z=0x0045F610",
+  "?publish_transition_effect_46e040@PostSequenceTransitionView@th105@@QAEHH@Z=0x0046EA10",
+  "?publish_transition_effect_at_46e130@PostSequenceTransitionView@th105@@QAEXM@Z=0x0046EB00",
+  "?run_transition_phase_5_4724e0@CBattleManager@th105@@QAEXXZ=0x004724E0",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CMenuEndDispatchView@th105@@QAE@PAUCBattleManager@1@@Z=0x00445100",
+  "?install_menu_object@th105@@YAXPAX@Z=0x0043B0F0",
+]
+dir32_targets = [
+  "__ehhandler$?transition_slot_34@CBattleManager@th105@@UAEXH@Z=_cbattle_manager_transition_eh",
+  "___security_cookie=___security_cookie",
+  "?g_info_manager@th105@@3PAUInfoManager@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A",
+  "__real@43c80000=_cbattle_manager_transition_position",
+]
