@@ -169,3 +169,66 @@ symbol = "??9?$_Vector_const_iterator@UFixedSlotEnvelope@th105@@V?$allocator@UFi
 address = "0x006A0CE0"
 size = 41
 symbol = "??8?$_Vector_const_iterator@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@QBE_NABV01@@Z"
+
+# A review-only orphan scan surfaced three additional generated shapes; the
+# promotion evidence below comes from replaying each fingerprint against all
+# 4,010 current function spans.  The 43-byte move-backward helper is one true
+# eight-address clone family; deque insert and unchecked-copy are inventory-unique.
+
+[[anchors]]
+address = "0x0042AB10"
+size = 1818
+symbol = "??$_Insert@V?$_Deque_const_iterator@FV?$allocator@F@std@@$00@std@@@?$deque@FV?$allocator@F@std@@@std@@QAEXV?$_Deque_iterator@FV?$allocator@F@std@@$00@1@V?$_Deque_const_iterator@FV?$allocator@F@std@@$00@1@1Ubidirectional_iterator_tag@1@@Z"
+
+[[anchors]]
+address = "0x00422070"
+size = 43
+symbol = "??$_Unchecked_move_backward@PAUFixedSlotEnvelope@th105@@PAU12@@stdext@@YAPAUFixedSlotEnvelope@th105@@PAU12@00@Z"
+equivalence_group = "battle-input-slot-config-unchecked-move-backward-8-clones"
+
+[[anchors]]
+address = "0x0042BF40"
+size = 43
+symbol = "??$_Unchecked_move_backward@PAUFixedSlotEnvelope@th105@@PAU12@@stdext@@YAPAUFixedSlotEnvelope@th105@@PAU12@00@Z"
+equivalence_group = "battle-input-slot-config-unchecked-move-backward-8-clones"
+
+[[anchors]]
+address = "0x0042CEF0"
+size = 43
+symbol = "??$_Unchecked_move_backward@PAUFixedSlotEnvelope@th105@@PAU12@@stdext@@YAPAUFixedSlotEnvelope@th105@@PAU12@00@Z"
+equivalence_group = "battle-input-slot-config-unchecked-move-backward-8-clones"
+
+[[anchors]]
+address = "0x0043BF20"
+size = 43
+symbol = "??$_Unchecked_move_backward@PAUFixedSlotEnvelope@th105@@PAU12@@stdext@@YAPAUFixedSlotEnvelope@th105@@PAU12@00@Z"
+equivalence_group = "battle-input-slot-config-unchecked-move-backward-8-clones"
+
+[[anchors]]
+address = "0x0045FB00"
+size = 43
+symbol = "??$_Unchecked_move_backward@PAUFixedSlotEnvelope@th105@@PAU12@@stdext@@YAPAUFixedSlotEnvelope@th105@@PAU12@00@Z"
+equivalence_group = "battle-input-slot-config-unchecked-move-backward-8-clones"
+
+[[anchors]]
+address = "0x004613B0"
+size = 43
+symbol = "??$_Unchecked_move_backward@PAUFixedSlotEnvelope@th105@@PAU12@@stdext@@YAPAUFixedSlotEnvelope@th105@@PAU12@00@Z"
+equivalence_group = "battle-input-slot-config-unchecked-move-backward-8-clones"
+
+[[anchors]]
+address = "0x00465DE0"
+size = 43
+symbol = "??$_Unchecked_move_backward@PAUFixedSlotEnvelope@th105@@PAU12@@stdext@@YAPAUFixedSlotEnvelope@th105@@PAU12@00@Z"
+equivalence_group = "battle-input-slot-config-unchecked-move-backward-8-clones"
+
+[[anchors]]
+address = "0x006A4190"
+size = 43
+symbol = "??$_Unchecked_move_backward@PAUFixedSlotEnvelope@th105@@PAU12@@stdext@@YAPAUFixedSlotEnvelope@th105@@PAU12@00@Z"
+equivalence_group = "battle-input-slot-config-unchecked-move-backward-8-clones"
+
+[[anchors]]
+address = "0x0045F990"
+size = 43
+symbol = "??$unchecked_copy@PAUFixedSlotEnvelope@th105@@PAU12@@stdext@@YAPAUFixedSlotEnvelope@th105@@PAU12@00@Z"

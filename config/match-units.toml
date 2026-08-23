@@ -981,6 +981,314 @@ rel32_targets = [
 ]
 dir32_targets = ["?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A=?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A"]
 
+[units.cross-v106a-roster-object-pool-acquire]
+kind = "probe"
+source = "src/characters/RosterObjectPools.cpp"
+object = "build/match-units/CrossV106a_RosterObjectPools.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a exact fifteen-member roster ObjectPool::acquire family. The reused-slot generation is a real unsigned source lifetime: saving handle->generation as unsigned after list erase makes VC8 preserve the target zero-extended value across checked-vector bounds. Every specialization is class-disambiguated by its RTTI-owned Object vptr written twice in the body."
+
+[[units.cross-v106a-roster-object-pool-acquire.functions]]
+address = "0x00493340"
+symbol_base = "?acquire@ReimuObjectPool@th105@@QAEPAVReimuObject@@PAI@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CharacterObject@@QAE@XZ=0x00492F90",
+  "?push_back@?$vector@PAVReimuObject@@V?$allocator@PAVReimuObject@@@std@@@std@@QAEXABQAVReimuObject@@@Z=0x0064AF70",
+  "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0",
+  "?at@?$vector@PAVReimuObject@@V?$allocator@PAVReimuObject@@@std@@@std@@QAEAAPAVReimuObject@@I@Z=0x0056D450",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+]
+dir32_targets = [
+  "__ehhandler$?acquire@ReimuObjectPool@th105@@QAEPAVReimuObject@@PAI@Z=_roster_object_pool_acquire_eh",
+  "___security_cookie=___security_cookie",
+  "??_7ReimuObject@@6B@=??_7ReimuObject@@6B@",
+]
+
+[[units.cross-v106a-roster-object-pool-acquire.functions]]
+address = "0x004B9920"
+symbol_base = "?acquire@MarisaObjectPool@th105@@QAEPAVMarisaObject@@PAI@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CharacterObject@@QAE@XZ=0x00492F90",
+  "?push_back@?$vector@PAVMarisaObject@@V?$allocator@PAVMarisaObject@@@std@@@std@@QAEXABQAVMarisaObject@@@Z=0x0064AF70",
+  "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0",
+  "?at@?$vector@PAVMarisaObject@@V?$allocator@PAVMarisaObject@@@std@@@std@@QAEAAPAVMarisaObject@@I@Z=0x0056D450",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+]
+dir32_targets = [
+  "__ehhandler$?acquire@MarisaObjectPool@th105@@QAEPAVMarisaObject@@PAI@Z=_roster_object_pool_acquire_eh",
+  "___security_cookie=___security_cookie",
+  "??_7MarisaObject@@6B@=??_7MarisaObject@@6B@",
+]
+
+[[units.cross-v106a-roster-object-pool-acquire.functions]]
+address = "0x004DEE40"
+symbol_base = "?acquire@SakuyaObjectPool@th105@@QAEPAVSakuyaObject@@PAI@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CharacterObject@@QAE@XZ=0x00492F90",
+  "?push_back@?$vector@PAVSakuyaObject@@V?$allocator@PAVSakuyaObject@@@std@@@std@@QAEXABQAVSakuyaObject@@@Z=0x0064AF70",
+  "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0",
+  "?at@?$vector@PAVSakuyaObject@@V?$allocator@PAVSakuyaObject@@@std@@@std@@QAEAAPAVSakuyaObject@@I@Z=0x0056D450",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+]
+dir32_targets = [
+  "__ehhandler$?acquire@SakuyaObjectPool@th105@@QAEPAVSakuyaObject@@PAI@Z=_roster_object_pool_acquire_eh",
+  "___security_cookie=___security_cookie",
+  "??_7SakuyaObject@@6B@=??_7SakuyaObject@@6B@",
+]
+
+[[units.cross-v106a-roster-object-pool-acquire.functions]]
+address = "0x004FA630"
+symbol_base = "?acquire@AliceObjectPool@th105@@QAEPAVAliceObject@@PAI@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CharacterObject@@QAE@XZ=0x00492F90",
+  "?push_back@?$vector@PAVAliceObject@@V?$allocator@PAVAliceObject@@@std@@@std@@QAEXABQAVAliceObject@@@Z=0x0064AF70",
+  "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0",
+  "?at@?$vector@PAVAliceObject@@V?$allocator@PAVAliceObject@@@std@@@std@@QAEAAPAVAliceObject@@I@Z=0x0056D450",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+]
+dir32_targets = [
+  "__ehhandler$?acquire@AliceObjectPool@th105@@QAEPAVAliceObject@@PAI@Z=_roster_object_pool_acquire_eh",
+  "___security_cookie=___security_cookie",
+  "??_7AliceObject@@6B@=??_7AliceObject@@6B@",
+]
+
+[[units.cross-v106a-roster-object-pool-acquire.functions]]
+address = "0x0051E8F0"
+symbol_base = "?acquire@PatchouliObjectPool@th105@@QAEPAVPatchouliObject@@PAI@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CharacterObject@@QAE@XZ=0x00492F90",
+  "?push_back@?$vector@PAVPatchouliObject@@V?$allocator@PAVPatchouliObject@@@std@@@std@@QAEXABQAVPatchouliObject@@@Z=0x0064AF70",
+  "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0",
+  "?at@?$vector@PAVPatchouliObject@@V?$allocator@PAVPatchouliObject@@@std@@@std@@QAEAAPAVPatchouliObject@@I@Z=0x0056D450",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+]
+dir32_targets = [
+  "__ehhandler$?acquire@PatchouliObjectPool@th105@@QAEPAVPatchouliObject@@PAI@Z=_roster_object_pool_acquire_eh",
+  "___security_cookie=___security_cookie",
+  "??_7PatchouliObject@@6B@=??_7PatchouliObject@@6B@",
+]
+
+[[units.cross-v106a-roster-object-pool-acquire.functions]]
+address = "0x0053ACB0"
+symbol_base = "?acquire@YoumuObjectPool@th105@@QAEPAVYoumuObject@@PAI@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CharacterObject@@QAE@XZ=0x00492F90",
+  "?push_back@?$vector@PAVYoumuObject@@V?$allocator@PAVYoumuObject@@@std@@@std@@QAEXABQAVYoumuObject@@@Z=0x0064AF70",
+  "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0",
+  "?at@?$vector@PAVYoumuObject@@V?$allocator@PAVYoumuObject@@@std@@@std@@QAEAAPAVYoumuObject@@I@Z=0x0056D450",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+]
+dir32_targets = [
+  "__ehhandler$?acquire@YoumuObjectPool@th105@@QAEPAVYoumuObject@@PAI@Z=_roster_object_pool_acquire_eh",
+  "___security_cookie=___security_cookie",
+  "??_7YoumuObject@@6B@=??_7YoumuObject@@6B@",
+]
+
+[[units.cross-v106a-roster-object-pool-acquire.functions]]
+address = "0x00555A00"
+symbol_base = "?acquire@RemiliaObjectPool@th105@@QAEPAVRemiliaObject@@PAI@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CharacterObject@@QAE@XZ=0x00492F90",
+  "?push_back@?$vector@PAVRemiliaObject@@V?$allocator@PAVRemiliaObject@@@std@@@std@@QAEXABQAVRemiliaObject@@@Z=0x0064AF70",
+  "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0",
+  "?at@?$vector@PAVRemiliaObject@@V?$allocator@PAVRemiliaObject@@@std@@@std@@QAEAAPAVRemiliaObject@@I@Z=0x0056D450",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+]
+dir32_targets = [
+  "__ehhandler$?acquire@RemiliaObjectPool@th105@@QAEPAVRemiliaObject@@PAI@Z=_roster_object_pool_acquire_eh",
+  "___security_cookie=___security_cookie",
+  "??_7RemiliaObject@@6B@=??_7RemiliaObject@@6B@",
+]
+
+[[units.cross-v106a-roster-object-pool-acquire.functions]]
+address = "0x0056D6E0"
+symbol_base = "?acquire@YuyukoObjectPool@th105@@QAEPAVYuyukoObject@@PAI@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CharacterObject@@QAE@XZ=0x00492F90",
+  "?push_back@?$vector@PAVYuyukoObject@@V?$allocator@PAVYuyukoObject@@@std@@@std@@QAEXABQAVYuyukoObject@@@Z=0x0064AF70",
+  "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0",
+  "?at@?$vector@PAVYuyukoObject@@V?$allocator@PAVYuyukoObject@@@std@@@std@@QAEAAPAVYuyukoObject@@I@Z=0x0056D450",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+]
+dir32_targets = [
+  "__ehhandler$?acquire@YuyukoObjectPool@th105@@QAEPAVYuyukoObject@@PAI@Z=_roster_object_pool_acquire_eh",
+  "___security_cookie=___security_cookie",
+  "??_7YuyukoObject@@6B@=??_7YuyukoObject@@6B@",
+]
+
+[[units.cross-v106a-roster-object-pool-acquire.functions]]
+address = "0x0058B990"
+symbol_base = "?acquire@YukariObjectPool@th105@@QAEPAVYukariObject@@PAI@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CharacterObject@@QAE@XZ=0x00492F90",
+  "?push_back@?$vector@PAVYukariObject@@V?$allocator@PAVYukariObject@@@std@@@std@@QAEXABQAVYukariObject@@@Z=0x0064AF70",
+  "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0",
+  "?at@?$vector@PAVYukariObject@@V?$allocator@PAVYukariObject@@@std@@@std@@QAEAAPAVYukariObject@@I@Z=0x0056D450",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+]
+dir32_targets = [
+  "__ehhandler$?acquire@YukariObjectPool@th105@@QAEPAVYukariObject@@PAI@Z=_roster_object_pool_acquire_eh",
+  "___security_cookie=___security_cookie",
+  "??_7YukariObject@@6B@=??_7YukariObject@@6B@",
+]
+
+[[units.cross-v106a-roster-object-pool-acquire.functions]]
+address = "0x005AE670"
+symbol_base = "?acquire@SuikaObjectPool@th105@@QAEPAVSuikaObject@@PAI@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CharacterObject@@QAE@XZ=0x00492F90",
+  "?push_back@?$vector@PAVSuikaObject@@V?$allocator@PAVSuikaObject@@@std@@@std@@QAEXABQAVSuikaObject@@@Z=0x0064AF70",
+  "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0",
+  "?at@?$vector@PAVSuikaObject@@V?$allocator@PAVSuikaObject@@@std@@@std@@QAEAAPAVSuikaObject@@I@Z=0x0056D450",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+]
+dir32_targets = [
+  "__ehhandler$?acquire@SuikaObjectPool@th105@@QAEPAVSuikaObject@@PAI@Z=_roster_object_pool_acquire_eh",
+  "___security_cookie=___security_cookie",
+  "??_7SuikaObject@@6B@=??_7SuikaObject@@6B@",
+]
+
+[[units.cross-v106a-roster-object-pool-acquire.functions]]
+address = "0x005D25C0"
+symbol_base = "?acquire@UdongeObjectPool@th105@@QAEPAVUdongeObject@@PAI@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CharacterObject@@QAE@XZ=0x00492F90",
+  "?push_back@?$vector@PAVUdongeObject@@V?$allocator@PAVUdongeObject@@@std@@@std@@QAEXABQAVUdongeObject@@@Z=0x0064AF70",
+  "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0",
+  "?at@?$vector@PAVUdongeObject@@V?$allocator@PAVUdongeObject@@@std@@@std@@QAEAAPAVUdongeObject@@I@Z=0x0056D450",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+]
+dir32_targets = [
+  "__ehhandler$?acquire@UdongeObjectPool@th105@@QAEPAVUdongeObject@@PAI@Z=_roster_object_pool_acquire_eh",
+  "___security_cookie=___security_cookie",
+  "??_7UdongeObject@@6B@=??_7UdongeObject@@6B@",
+]
+
+[[units.cross-v106a-roster-object-pool-acquire.functions]]
+address = "0x005F7440"
+symbol_base = "?acquire@KomachiObjectPool@th105@@QAEPAVKomachiObject@@PAI@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CharacterObject@@QAE@XZ=0x00492F90",
+  "?push_back@?$vector@PAVKomachiObject@@V?$allocator@PAVKomachiObject@@@std@@@std@@QAEXABQAVKomachiObject@@@Z=0x0064AF70",
+  "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0",
+  "?at@?$vector@PAVKomachiObject@@V?$allocator@PAVKomachiObject@@@std@@@std@@QAEAAPAVKomachiObject@@I@Z=0x0056D450",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+]
+dir32_targets = [
+  "__ehhandler$?acquire@KomachiObjectPool@th105@@QAEPAVKomachiObject@@PAI@Z=_roster_object_pool_acquire_eh",
+  "___security_cookie=___security_cookie",
+  "??_7KomachiObject@@6B@=??_7KomachiObject@@6B@",
+]
+
+[[units.cross-v106a-roster-object-pool-acquire.functions]]
+address = "0x00617DF0"
+symbol_base = "?acquire@AyaObjectPool@th105@@QAEPAVAyaObject@@PAI@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CharacterObject@@QAE@XZ=0x00492F90",
+  "?push_back@?$vector@PAVAyaObject@@V?$allocator@PAVAyaObject@@@std@@@std@@QAEXABQAVAyaObject@@@Z=0x0064AF70",
+  "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0",
+  "?at@?$vector@PAVAyaObject@@V?$allocator@PAVAyaObject@@@std@@@std@@QAEAAPAVAyaObject@@I@Z=0x0056D450",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+]
+dir32_targets = [
+  "__ehhandler$?acquire@AyaObjectPool@th105@@QAEPAVAyaObject@@PAI@Z=_roster_object_pool_acquire_eh",
+  "___security_cookie=___security_cookie",
+  "??_7AyaObject@@6B@=??_7AyaObject@@6B@",
+]
+
+[[units.cross-v106a-roster-object-pool-acquire.functions]]
+address = "0x00630CA0"
+symbol_base = "?acquire@IkuObjectPool@th105@@QAEPAVIkuObject@@PAI@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CharacterObject@@QAE@XZ=0x00492F90",
+  "?push_back@?$vector@PAVIkuObject@@V?$allocator@PAVIkuObject@@@std@@@std@@QAEXABQAVIkuObject@@@Z=0x0064AF70",
+  "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0",
+  "?at@?$vector@PAVIkuObject@@V?$allocator@PAVIkuObject@@@std@@@std@@QAEAAPAVIkuObject@@I@Z=0x0056D450",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+]
+dir32_targets = [
+  "__ehhandler$?acquire@IkuObjectPool@th105@@QAEPAVIkuObject@@PAI@Z=_roster_object_pool_acquire_eh",
+  "___security_cookie=___security_cookie",
+  "??_7IkuObject@@6B@=??_7IkuObject@@6B@",
+]
+
+[[units.cross-v106a-roster-object-pool-acquire.functions]]
+address = "0x0064B070"
+symbol_base = "?acquire@TenshiObjectPool@th105@@QAEPAVTenshiObject@@PAI@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CharacterObject@@QAE@XZ=0x00492F90",
+  "?push_back@?$vector@PAVTenshiObject@@V?$allocator@PAVTenshiObject@@@std@@@std@@QAEXABQAVTenshiObject@@@Z=0x0064AF70",
+  "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0",
+  "?at@?$vector@PAVTenshiObject@@V?$allocator@PAVTenshiObject@@@std@@@std@@QAEAAPAVTenshiObject@@I@Z=0x0056D450",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+]
+dir32_targets = [
+  "__ehhandler$?acquire@TenshiObjectPool@th105@@QAEPAVTenshiObject@@PAI@Z=_roster_object_pool_acquire_eh",
+  "___security_cookie=___security_cookie",
+  "??_7TenshiObject@@6B@=??_7TenshiObject@@6B@",
+]
+
 [units.cross-v106a-roster-object-spawns]
 kind = "probe"
 source = "src/characters/RosterObjectSpawns.cpp"

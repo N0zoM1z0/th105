@@ -239,13 +239,13 @@ evidence = "SHA-pinned VC8 SP1 /GS rebuild of the already-exact EffectManager li
 [[rules]]
 id = "vc8-generated-battle-input-slot-config-std-comdats-106a"
 vc8_generated_anchor_file = "config/vc8-generated-battle-input-slot-config-std-origin-anchors.toml"
-expected_count = 28
-expected_bytes = 2409
+expected_count = 38
+expected_bytes = 4614
 origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/battle/BattleInputSlotConfig.cpp regenerates 13 standard-library COMDAT fingerprints whose complete current-inventory hit sets contain exactly 28 review candidates / 2409 bytes; target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed"
+evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/battle/BattleInputSlotConfig.cpp regenerates 16 standard-library COMDAT fingerprints whose complete current-inventory hit sets contain exactly 38 review candidates / 4614 bytes; target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed"
 
 [[rules]]
 id = "vc8-generated-cfile-list-std-comdats-106a"

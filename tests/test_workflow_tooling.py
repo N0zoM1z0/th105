@@ -52,33 +52,33 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4010)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 616)
+        self.assertEqual(len(matching), 631)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 616)
+        self.assertEqual(len(implemented), 631)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 616
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 631
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 207)
+        self.assertEqual(len(manifest["units"]), 208)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            616,
+            631,
         )
 
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,010", markdown)
-        self.assertIn("Confirmed authored functions | 616", markdown)
-        self.assertIn("Classified exclusions | 917", markdown)
-        self.assertIn("Origin/boundary review pending | 2,477", markdown)
-        self.assertIn("Canonical exact functions | 616", markdown)
-        self.assertIn("Canonical exact authored bytes | 92,178", markdown)
+        self.assertIn("Confirmed authored functions | 631", markdown)
+        self.assertIn("Classified exclusions | 927", markdown)
+        self.assertIn("Origin/boundary review pending | 2,452", markdown)
+        self.assertIn("Canonical exact functions | 631", markdown)
+        self.assertIn("Canonical exact authored bytes | 99,963", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
@@ -235,9 +235,9 @@ class WorkflowToolingTests(unittest.TestCase):
             self.assertEqual(manifest["alignment_tail_hex"], "cc")
             self.assertTrue(manifest["source"].startswith("src/"))
             rows.extend(manifest["anchors"])
-        self.assertEqual(len(rows), 206)
-        self.assertEqual(len({row["address"] for row in rows}), 206)
-        self.assertEqual(sum(row["size"] for row in rows), 24_834)
+        self.assertEqual(len(rows), 216)
+        self.assertEqual(len({row["address"] for row in rows}), 216)
+        self.assertEqual(sum(row["size"] for row in rows), 27_039)
 
     def test_inventory_pagination_normalization(self) -> None:
         data, next_offset = self.inventory.normalize_page(

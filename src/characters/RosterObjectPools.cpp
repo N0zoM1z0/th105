@@ -63,7 +63,8 @@ private:
             static_cast<unsigned short>(storage.generation_counter_30);       \
                                                                               \
         storage.free_slots_24.erase(--storage.free_slots_24.end());           \
-        storage.generations_14[slot] = handle->generation;                    \
+        unsigned generation = handle->generation;                             \
+        storage.generations_14[slot] = generation;                            \
         new (storage.slots_04.at(slot)) FighterName##Object;                  \
     }                                                                         \
                                                                               \
