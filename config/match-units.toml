@@ -1338,7 +1338,7 @@ source = "src/battle/FighterContinuity.cpp"
 object = "build/match-units/CrossV106a_FighterContinuity.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a fighter transient-status recovery using natural VC8 conditional normalization codegen; current target callees/global are independently attested."
+notes = "TH105 1.06a Fighter continuity/counter family. Natural VC8 closes transient status, the independently recovered 0x0045B300 counter-threshold boundary, and 0x0045E500 timer cleanup. Current g_info_manager ownership, unused-this event forwarding, current CFG, and short-store order are target-backed; pending sequence/counter neighbors remain untracked when standalone allocation differs."
 
 [[units.cross-v106a-fighter-continuity.functions]]
 address = "0x0045E3D0"
@@ -1348,6 +1348,23 @@ rel32_targets = [
   "?step@FighterEmbeddedState3d0@th105@@QAEXXZ=0x004652F0",
 ]
 dir32_targets = ["?g_fighter_state_4b8_default@th105@@3HA=?g_fighter_state_4b8_default@th105@@3HA"]
+
+[[units.cross-v106a-fighter-continuity.functions]]
+address = "0x0045B300"
+symbol_base = "?update_fighter_counter_thresholds@th105@@YIXPAUFighter@1@@Z"
+dir32_targets = [
+  "?g_info_manager@th105@@3PAUInfoManager@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A",
+]
+
+[[units.cross-v106a-fighter-continuity.functions]]
+address = "0x0045E500"
+symbol_base = "?decrement_fighter_timers_and_cleanup@th105@@YIXPAX@Z"
+rel32_targets = [
+  "?is_state_13c_in_32_95@th105@@YI_NPAUFighter@1@@Z=0x0045E0E0",
+  "?prepare_next_spell_sequence_entry@Fighter@th105@@QAEXXZ=0x0045DC90",
+  "?dispatch_action_indexed_event@FighterIndexedEventDispatchView@th105@@QAEXI@Z=0x004359F0",
+  "?update_fighter_counter_thresholds@th105@@YIXPAUFighter@1@@Z=0x0045B300",
+]
 
 [units.cross-v106a-angle-lookup]
 kind = "probe"

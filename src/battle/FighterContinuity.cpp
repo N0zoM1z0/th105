@@ -23,8 +23,9 @@ struct BattleSceneRendererView {
     BattleSceneRendererVtable *vtable_00;
 };
 
-extern unsigned char *g_battle_scene_renderer;
-void __stdcall dispatch_action_indexed_event_434470(unsigned event_index);
+struct FighterIndexedEventDispatchView {
+    void dispatch_action_indexed_event(unsigned event_index);
+};
 
 namespace {
 
@@ -128,8 +129,7 @@ void __fastcall update_fighter_counter_thresholds(Fighter *fighter)
 
             if (fighter_short(fighter, 0x488) >= 4800) {
                 BattleSceneRendererView *renderer =
-                    reinterpret_cast<BattleSceneRendererView *>(
-                        g_battle_scene_renderer);
+                    reinterpret_cast<BattleSceneRendererView *>(g_info_manager);
                 renderer->vtable_00->notify_counter_threshold(
                     renderer,
                     2,
@@ -178,13 +178,13 @@ void __fastcall decrement_fighter_timers_and_cleanup(void *raw_fighter)
     if (fighter->value_4a2 != 0) {
         if (fighter->state_13c >= 197 && fighter->state_13c <= 199) {
             short *raw = reinterpret_cast<short *>(fighter);
-            raw[593] = 0;
             raw[594] = 0;
+            raw[593] = 0;
         } else if (fighter->field_4a4 == 0 &&
                    !is_state_13c_in_32_95(fighter)) {
             short *raw = reinterpret_cast<short *>(fighter);
-            raw[593] = 0;
             raw[594] = 0;
+            raw[593] = 0;
         }
     }
     if (fighter->field_4a4 != 0) {
@@ -226,15 +226,16 @@ void __fastcall decrement_fighter_timers_and_cleanup(void *raw_fighter)
         --gate_4b2;
     }
 
-    signed char const threshold_state = 5;
-    if (fighter->counter_558 >= 500) {
-        if (fighter->state_55a >= threshold_state) {
-            fighter->counter_558 = 0;
-        } else if (fighter->state_72c != 2) {
-            fighter->prepare_next_spell_sequence_entry();
-            dispatch_action_indexed_event_434470(0x24);
-            fighter->counter_558 = 0;
-        }
+    signed char threshold_state = 5;
+    if (fighter->counter_558 >= 500 &&
+        fighter->state_55a < threshold_state &&
+        fighter->state_72c != 2) {
+        fighter->prepare_next_spell_sequence_entry();
+        reinterpret_cast<FighterIndexedEventDispatchView *>(fighter)
+            ->dispatch_action_indexed_event(0x24);
+        fighter->counter_558 = 0;
+        update_fighter_counter_thresholds(fighter);
+        return;
     }
     if (fighter->state_55a >= threshold_state) {
         fighter->counter_558 = 0;

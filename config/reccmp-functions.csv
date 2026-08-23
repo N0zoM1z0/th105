@@ -599,3 +599,5 @@ FrameData_dtor,0x00421A70,function
 FrameData_scalar_deleting_destructor,0x00421A90,function
 Menu_scalar_deleting_destructor,0x00440750,function
 AnimationObject_ctor,0x00422040,function
+update_fighter_counter_thresholds,0x0045B300,function
+decrement_fighter_timers_and_cleanup,0x0045E500,function

@@ -598,3 +598,5 @@ FrameData_dtor
 FrameData_scalar_deleting_destructor
 Menu_scalar_deleting_destructor
 AnimationObject_ctor
+update_fighter_counter_thresholds
+decrement_fighter_timers_and_cleanup
