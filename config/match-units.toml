@@ -8820,3 +8820,106 @@ address = "0x0045C060"
 symbol_base = "forward_hit_quantity"
 rel32_targets = ["?apply_forwarded_quantity_to_pair@CollisionContext@th105@@QAEXPAUAttackCandidate@2@PAUFighter@2@HHFC@Z=0x0046C5B0"]
 dir32_targets = ["?g_scene_renderer@th105@@3PAUSceneRendererView@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A"]
+
+[units.cross-v106a-battle-render-helpers]
+kind = "probe"
+source = "src/battle/BattleRenderHelpers.cpp"
+object = "build/match-units/CrossV106a_BattleRenderHelpers.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current battle render helper pair: global layout transform and checked-list back() render dispatch. Ordinary CSpriteEx calls and real std::list validation reproduce both bodies exactly."
+
+[[units.cross-v106a-battle-render-helpers.functions]]
+address = "0x004271B0"
+symbol_base = "?transform_sprite@BattleBackgroundLayoutRenderView@th105@@QAEXPAVCSpriteEx@@@Z"
+rel32_targets = [
+  "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0",
+  "?scale_x@CSpriteEx@@QAEXM@Z=0x004074A0",
+  "?scale_y@CSpriteEx@@QAEXM@Z=0x00407540",
+]
+
+[[units.cross-v106a-battle-render-helpers.functions]]
+address = "0x00466AB0"
+symbol_base = "?dispatch_render_sprite@BattleObjectManagerRenderView@th105@@QAEXPAVCSpriteEx@@@Z"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+
+[units.cross-v106a-animation-render-main]
+kind = "probe"
+source = "src/battle/AnimationRenderMain.cpp"
+object = "build/match-units/CrossV106a_AnimationRenderMain.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "RTTI/vtable-owned AnimationObject shared render orchestrator. Preserves separate physical render-mode 0/1 source cases, frame mode-2 color multiplication, auxiliary renderer and pass-state tail."
+
+[[units.cross-v106a-animation-render-main.functions]]
+address = "0x00435280"
+symbol_base = "?render_main@AnimationRenderObjectView@th105@@UAEXXZ"
+rel32_targets = [
+  "?render_auxiliary@AuxiliarySpriteRenderView@th105@@QAEXXZ=0x00434F30",
+  "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
+  "?apply_render_mode@RenderModeManager@th105@@QAEHHE@Z=0x00404A90",
+]
+dir32_targets = [
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+  "?g_battle_render_pass@th105@@3EA=?g_battle_render_pass@th105@@3EA",
+]
+
+[units.cross-v106a-animation-render-color]
+kind = "probe"
+source = "src/battle/AnimationRenderColor.cpp"
+object = "build/match-units/CrossV106a_AnimationRenderColor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "RTTI/vtable-owned AnimationObject color/effect render switch. Reviewed callable boundary is 479 bytes; the same VC8 section carries a 25-byte local switch table/alignment tail after RET."
+
+[[units.cross-v106a-animation-render-color.functions]]
+address = "0x00435540"
+symbol_base = "?render_color_mode@AnimationRenderObjectView@th105@@UAEXXZ"
+rel32_targets = [
+  "?finalize_render@CSpriteEx@@QAEXXZ=0x00407AD0",
+  "?render_rgb@SpriteRenderEffectView@th105@@QAEXMMM@Z=0x006654D0",
+  "?render_alpha_rgb@SpriteRenderEffectView@th105@@QAEXMMMM@Z=0x006655A0",
+  "?render_luma@SpriteRenderEffectView@th105@@QAEXMMM@Z=0x00665650",
+  "?render_luma_alpha@SpriteRenderEffectView@th105@@QAEXMMMMMMM@Z=0x006656E0",
+]
+dir32_targets = [
+  "__real@3e991687=__real@3e991687",
+  "__real@3f1645a2=__real@3f1645a2",
+  "__real@3de978d5=__real@3de978d5",
+  "__real@406fe00000000000=__real@406fe00000000000",
+]
+
+[units.cross-v106a-sprite-render-effects]
+kind = "probe"
+source = "src/battle/SpriteRenderEffects.cpp"
+object = "build/match-units/CrossV106a_SpriteRenderEffects.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current game-side sprite render-effect facade trio. One loader-zero render service pointer and target v4Arg0 literal feed stable service vslots; mode-specific pipelines wrap CSpriteEx final rendering without copied bytes or register forcing."
+
+[[units.cross-v106a-sprite-render-effects.functions]]
+address = "0x006654D0"
+symbol_base = "?render_rgb@SpriteRenderEffectView@th105@@QAEXMMM@Z"
+rel32_targets = ["?finalize_render@CSpriteEx@@QAEXXZ=0x00407AD0"]
+dir32_targets = [
+  "?g_render_effect_service@th105@@3PAURenderEffectService@1@A=?g_render_effect_service@th105@@3PAURenderEffectService@1@A",
+  "??_C@_06EELLHCJD@v4Arg0?$AA@=??_C@_06EELLHCJD@v4Arg0?$AA@",
+]
+
+[[units.cross-v106a-sprite-render-effects.functions]]
+address = "0x006655A0"
+symbol_base = "?render_alpha_rgb@SpriteRenderEffectView@th105@@QAEXMMMM@Z"
+rel32_targets = ["?finalize_render@CSpriteEx@@QAEXXZ=0x00407AD0"]
+dir32_targets = [
+  "?g_render_effect_service@th105@@3PAURenderEffectService@1@A=?g_render_effect_service@th105@@3PAURenderEffectService@1@A",
+  "??_C@_06EELLHCJD@v4Arg0?$AA@=??_C@_06EELLHCJD@v4Arg0?$AA@",
+]
+
+[[units.cross-v106a-sprite-render-effects.functions]]
+address = "0x00665650"
+symbol_base = "?render_luma@SpriteRenderEffectView@th105@@QAEXMMM@Z"
+rel32_targets = ["?finalize_render@CSpriteEx@@QAEXXZ=0x00407AD0"]
+dir32_targets = [
+  "?g_render_effect_service@th105@@3PAURenderEffectService@1@A=?g_render_effect_service@th105@@3PAURenderEffectService@1@A",
+  "??_C@_06EELLHCJD@v4Arg0?$AA@=??_C@_06EELLHCJD@v4Arg0?$AA@",
+]
