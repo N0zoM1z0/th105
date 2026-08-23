@@ -9085,3 +9085,156 @@ dir32_targets = [
   "__ehhandler$?update_state_three@CProfileMenu@th105@@AAE_NXZ=_profile_menu_state_two_three_eh",
   "___security_cookie=___security_cookie",
 ]
+
+[units.cross-v106a-battle-info-record-core]
+kind = "probe"
+source = "src/battle/BattleInfoRecord.cpp"
+object = "build/match-units/CrossV106a_BattleInfoRecordCore.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a battle-info record core. Current callers and runtime access recover a real 0xF8 record with ten five-pointer UI groups, story/runtime overlay fields and five owned effect references. Natural C++ closes normal/story initialization plus Story fighter attachment without raw offsets or codegen forcing."
+
+[[units.cross-v106a-battle-info-record-core.functions]]
+address = "0x0046FD20"
+symbol_base = "?initialize_46fd20@BattleInfoRecordF8@th105@@QAEXHPAUInfoDesignResourceSubobject@2@0PAUInfoEffectManagerSubobject@2@@Z"
+rel32_targets = [
+  "?bind_object_alt@TitleDesignResource@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
+  "__ftol2_sse=0x0068A1A0",
+]
+
+[[units.cross-v106a-battle-info-record-core.functions]]
+address = "0x00471C10"
+symbol_base = "?initialize_story_471c10@BattleInfoRecordF8@th105@@QAEXPAUInfoDesignResourceSubobject@2@0PAUInfoEffectManagerSubobject@2@@Z"
+rel32_targets = [
+  "?bind_object_alt@TitleDesignResource@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
+]
+
+[[units.cross-v106a-battle-info-record-core.functions]]
+address = "0x00471BE0"
+symbol_base = "?attach_story_fighter_471be0@BattleInfoRecordF8@th105@@QAEXPAUFighter@2@@Z"
+rel32_targets = [
+  "?bind_story_values_471a80@BattleInfoRecordF8@th105@@QAEXXZ=0x00471A80",
+]
+
+[units.cross-v106a-info-manager-runtime-core]
+kind = "probe"
+source = "src/battle/InfoManagerRuntime.cpp"
+object = "build/match-units/CrossV106a_InfoManagerRuntimeCore.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a CInfoManagerBase runtime core. The recovered +0x498/+0x590 battle-info pair, +0x16C/+0x1D4 lane families, render-mode service and phase counter reproduce the per-frame update, Story binding forwarder and complete render orchestration."
+
+[[units.cross-v106a-info-manager-runtime-core.functions]]
+address = "0x00471C90"
+symbol_base = "?update_runtime_471c90@InfoManagerResourceView@th105@@QAEXXZ"
+rel32_targets = [
+  "?update_runtime_46ff30@BattleInfoRecordF8@th105@@QAEXXZ=0x0046FF30",
+  "?update_story_471930@BattleInfoRecordF8@th105@@QAEXXZ=0x00471930",
+  "?update_46ac30@InfoShortRuntimeView@th105@@QAEXXZ=0x0046AC30",
+  "?update_4327c0@InfoLongRuntimeView@th105@@QAEXXZ=0x004327C0",
+]
+
+[[units.cross-v106a-info-manager-runtime-core.functions]]
+address = "0x00471D00"
+symbol_base = "?bind_story_values_471d00@InfoManagerResourceView@th105@@QAEXXZ"
+rel32_targets = [
+  "?bind_story_values_471a80@BattleInfoRecordF8@th105@@QAEXXZ=0x00471A80",
+]
+
+[[units.cross-v106a-info-manager-runtime-core.functions]]
+address = "0x00471D10"
+symbol_base = "?render_runtime_471d10@InfoManagerResourceView@th105@@QAEXXZ"
+rel32_targets = [
+  "?set_state_22@RenderModeManager@th105@@QAEXH@Z=0x00404A40",
+  "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
+  "?lookup_orientation_cosine@th105@@YAMH@Z=0x004064B0",
+  "?render_46a800@InfoShortRuntimeView@th105@@QAEXXZ=0x0046A800",
+  "?render_470710@BattleInfoRenderView@th105@@QAEXM@Z=0x00470710",
+  "?render_470720@StoryInfoRenderView@th105@@QAEXM@Z=0x0044E8E0",
+  "?render_4325c0@InfoLongRuntimeView@th105@@QAEXXZ=0x004325C0",
+]
+dir32_targets = [
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+  "__real@4069000000000000=__real@4069000000000000",
+  "__real@44200000=__real@44200000",
+]
+
+
+[units.cross-v106a-battle-info-record-render]
+kind = "probe"
+source = "src/battle/BattleInfoRecordRender.cpp"
+object = "build/match-units/CrossV106a_BattleInfoRecordRender.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current BattleInfoRecordF8 render consumer. Target-backed Fighter sequence storage is a native checked std::deque<FighterSequenceSlot>; direct deque-element sprite receiver lifetime, branch-local out-of-line scale lookup, and reverse group_88 pointer walk reproduce all 353 bytes without register or assembly forcing."
+
+[[units.cross-v106a-battle-info-record-render.functions]]
+address = "0x00470710"
+symbol_base = "?render_470710@BattleInfoRecordF8@th105@@QAEXM@Z"
+rel32_targets = [
+  "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
+  "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+]
+
+[units.cross-v106a-battle-manager-story-core]
+kind = "probe"
+source = "src/battle/BattleManagerStory.cpp"
+object = "build/match-units/CrossV106a_BattleManagerStory.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "RTTI-owned CBattleManagerStory vtable 0x006C1374 core phase island. Natural unsigned frame gates, mode_90 threshold switch, direct battle-phase global rereads, Story terminal success nesting and real 8-byte event RAII lifetime reproduce three central phase virtuals together."
+
+[[units.cross-v106a-battle-manager-story-core.functions]]
+address = "0x00471670"
+symbol_base = "?run_threshold_pipeline_471670@CBattleManagerStory@th105@@UAEHXZ"
+rel32_targets = [
+  "?reset_fighter_fields_6b4_728_view@CBattleManagerStory@th105@@QAEXXZ=0x0046B080",
+  "?run_global_action_owned_phase_view@CBattleManagerStory@th105@@QAEXXZ=0x0046AF90",
+  "?run_intermediate_phase_46dff0@CBattleManagerStory@th105@@QAEXXZ=0x0046DFF0",
+  "?run_collision_phase_46cca0@CBattleManagerStory@th105@@QAEXXZ=0x0046CCA0",
+  "?run_global_position_status_timer_phase_view@CBattleManagerStory@th105@@QAEXXZ=0x0046AFA0",
+  "?run_post_update_callbacks_view@CBattleManagerStory@th105@@QAEXXZ=0x0046AFB0",
+]
+
+[[units.cross-v106a-battle-manager-story-core.functions]]
+address = "0x00471740"
+symbol_base = "?run_180_300_pipeline_471740@CBattleManagerStory@th105@@UAEHXZ"
+rel32_targets = [
+  "?reset_fighter_fields_6b4_728_view@CBattleManagerStory@th105@@QAEXXZ=0x0046B080",
+  "?run_global_action_owned_phase_view@CBattleManagerStory@th105@@QAEXXZ=0x0046AF90",
+  "?run_intermediate_phase_46dff0@CBattleManagerStory@th105@@QAEXXZ=0x0046DFF0",
+  "?run_collision_phase_46cca0@CBattleManagerStory@th105@@QAEXXZ=0x0046CCA0",
+  "?run_global_position_status_timer_phase_view@CBattleManagerStory@th105@@QAEXXZ=0x0046AFA0",
+  "?run_post_update_callbacks_view@CBattleManagerStory@th105@@QAEXXZ=0x0046AFB0",
+  "?get_session_setup_option@th105@@YAIXZ=0x0043B070",
+  "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40",
+]
+dir32_targets = [
+  "?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A=?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A",
+]
+
+[[units.cross-v106a-battle-manager-story-core.functions]]
+address = "0x004717E0"
+symbol_base = "?run_story_pipeline_4717e0@CBattleManagerStory@th105@@UAEHXZ"
+rel32_targets = [
+  "?reset_fighter_fields_6b4_728_view@CBattleManagerStory@th105@@QAEXXZ=0x0046B080",
+  "?status_45a290@BattlePhaseStoryView@th105@@QAECXZ=0x0045A290",
+  "?get_async_scene_load_request@th105@@YAHXZ=0x0043AB90",
+  "?prepare_match_roster_470060@CBattleManagerStory@th105@@QAEXXZ=0x00470A60",
+  "?run_global_action_owned_phase_view@CBattleManagerStory@th105@@QAEXXZ=0x0046AF90",
+  "?run_collision_phase_46cca0@CBattleManagerStory@th105@@QAEXXZ=0x0046CCA0",
+  "?run_global_position_status_timer_phase_view@CBattleManagerStory@th105@@QAEXXZ=0x0046AFA0",
+  "?run_post_update_callbacks_view@CBattleManagerStory@th105@@QAEXXZ=0x0046AFB0",
+]
+dir32_targets = [
+  "__ehhandler$?run_story_pipeline_4717e0@CBattleManagerStory@th105@@UAEHXZ=_cbattle_manager_story_pipeline_eh",
+  "___security_cookie=___security_cookie",
+  "?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A=?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A",
+  "__imp__CreateEventA@16=__imp__CreateEventA@16",
+  "__imp__WaitForSingleObject@8=__imp__WaitForSingleObject@8",
+  "__imp__CloseHandle@4=__imp__CloseHandle@4",
+]
