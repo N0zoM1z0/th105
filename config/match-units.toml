@@ -8719,3 +8719,104 @@ rel32_targets = [
   "??1?$CharacterObjectEx@VTenshi@@VTenshiObject@@@@UAE@XZ=0x0064ADD0",
   "??3@YAXPAX@Z=0x006898EA",
 ]
+
+[units.cross-v106a-animation-sequence-virtuals]
+kind = "probe"
+source = "src/characters/AnimationSequenceVirtuals.cpp"
+object = "build/match-units/CrossV106a_AnimationSequenceVirtuals.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current AnimationObject/AttackObject/CharacterObject/CharacterObjectEx vtable-owned shared sequence state machine. Narrow +0x13C..+0x170 ABI view and current frame/tree callees yield ten canonical-exact ordinary-C++ bodies."
+
+[[units.cross-v106a-animation-sequence-virtuals.functions]]
+address = "0x00435200"
+symbol_base = "set_action"
+
+[[units.cross-v106a-animation-sequence-virtuals.functions]]
+address = "0x00435220"
+symbol_base = "set_action_sequence"
+
+[[units.cross-v106a-animation-sequence-virtuals.functions]]
+address = "0x0045C110"
+symbol_base = "apply_sequence_frame"
+rel32_targets = [
+  "?apply_current_frame@AnimationSequenceObjectView@th105@@QAEHXZ=0x00436760",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+
+[[units.cross-v106a-animation-sequence-virtuals.functions]]
+address = "0x0045C180"
+symbol_base = "set_sequence_frame"
+rel32_targets = ["?apply_sequence_frame@AnimationSequenceObjectView@th105@@QAEHXZ=0x0045C110"]
+
+[[units.cross-v106a-animation-sequence-virtuals.functions]]
+address = "0x0045C1A0"
+symbol_base = "next_sequence_frame"
+rel32_targets = ["?apply_sequence_frame@AnimationSequenceObjectView@th105@@QAEHXZ=0x0045C110"]
+
+[[units.cross-v106a-animation-sequence-virtuals.functions]]
+address = "0x0045C1F0"
+symbol_base = "previous_sequence_frame"
+rel32_targets = ["?apply_sequence_frame@AnimationSequenceObjectView@th105@@QAEHXZ=0x0045C110"]
+
+[[units.cross-v106a-animation-sequence-virtuals.functions]]
+address = "0x0045C220"
+symbol_base = "next_sequence_block"
+
+[[units.cross-v106a-animation-sequence-virtuals.functions]]
+address = "0x0045C2B0"
+symbol_base = "previous_sequence_block"
+
+[[units.cross-v106a-animation-sequence-virtuals.functions]]
+address = "0x0045C390"
+symbol_base = "select_sequence"
+rel32_targets = [
+  "?lower_bound@AnimationSequenceTree@th105@@QAEPAUAnimationSequenceTreeIterator@2@PAU32@PBH@Z=0x0045C320",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+
+[[units.cross-v106a-animation-sequence-virtuals.functions]]
+address = "0x0045C460"
+symbol_base = "reset_sequence"
+rel32_targets = [
+  "?lower_bound@AnimationSequenceTree@th105@@QAEPAUAnimationSequenceTreeIterator@2@PAU32@PBH@Z=0x0045C320",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+
+[units.cross-v106a-animation-sequence-finalize]
+kind = "probe"
+source = "src/characters/AnimationSequenceFinalize.cpp"
+object = "build/match-units/CrossV106a_AnimationSequenceFinalize.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "AttackObject/CharacterObject sequence setter overrides. Kept in a declaration-only TU so pinned VC8 preserves the current out-of-line base setter call before virtual slot 15 finalization; same-TU visibility changes codegen."
+
+[[units.cross-v106a-animation-sequence-finalize.functions]]
+address = "0x0045BFE0"
+symbol_base = "set_action_and_finalize"
+rel32_targets = ["?set_action@AnimationSequenceObjectView@th105@@QAEXF@Z=0x00435200"]
+
+[[units.cross-v106a-animation-sequence-finalize.functions]]
+address = "0x0045C000"
+symbol_base = "set_action_sequence_and_finalize"
+rel32_targets = ["?set_action_sequence@AnimationSequenceObjectView@th105@@QAEXFH@Z=0x00435220"]
+
+[units.cross-v106a-animation-sequence-dispatch]
+kind = "probe"
+source = "src/characters/AnimationSequenceDispatch.cpp"
+object = "build/match-units/CrossV106a_AnimationSequenceDispatch.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Shared AttackObject helpers: bounded 64-entry character wave dispatch and forwarding through the current scene-renderer-owned CollisionContext contract. Historical names are only seeds; current globals/callees and canonical bytes close both functions."
+
+[[units.cross-v106a-animation-sequence-dispatch.functions]]
+address = "0x0045C030"
+symbol_base = "dispatch_character_wave_handle"
+rel32_targets = ["?dispatch_wave_handle@OpaqueWaveHandleService@th105@@QAEXI@Z=0x00401D50"]
+dir32_targets = ["?g_wave_handle_service@th105@@3UOpaqueWaveHandleService@1@A=?g_wave_handle_service@th105@@3UOpaqueWaveHandleService@1@A"]
+
+[[units.cross-v106a-animation-sequence-dispatch.functions]]
+address = "0x0045C060"
+symbol_base = "forward_hit_quantity"
+rel32_targets = ["?apply_forwarded_quantity_to_pair@CollisionContext@th105@@QAEXPAUAttackCandidate@2@PAUFighter@2@HHFC@Z=0x0046C5B0"]
+dir32_targets = ["?g_scene_renderer@th105@@3PAUSceneRendererView@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A"]
