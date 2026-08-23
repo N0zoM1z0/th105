@@ -15,9 +15,11 @@ struct BattleManagerPhaseObject {
 // Narrow current-target layout shared by CBattleManager and CBattleManagerArcade.
 // Current constructors publish vtables 0x006C1504 and 0x006C154C; both tables
 // share the nine methods implemented in BattleManagerVirtuals.cpp.
+struct MatchSetup;
+
 struct CBattleManager {
     virtual void slot_00();
-    virtual void slot_04();
+    virtual void prepare_battle_setup_472110(MatchSetup *setup);
     virtual void slot_08();
     virtual void slot_0c();
     virtual int run_pipeline_and_transition_472d80();
@@ -50,6 +52,11 @@ struct CBattleManager {
     void run_global_position_status_timer_phase_view();
     void run_intermediate_phase_46dff0();
     void run_shared_pre_phase_46bf00();
+
+    __forceinline unsigned char &transition_state_5b0()
+    {
+        return *(reinterpret_cast<unsigned char *>(this) + 0x5b0);
+    }
 };
 
 typedef char CBattleManager_phase_offset_must_be_0x88[

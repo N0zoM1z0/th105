@@ -4624,6 +4624,10 @@ address = "0x00471920"
 symbol_base = "constant_one_471920"
 
 [[units.cross-v106a-battle-manager-virtuals.functions]]
+address = "0x00472370"
+symbol_base = "post_pipeline_slot_30"
+
+[[units.cross-v106a-battle-manager-virtuals.functions]]
 address = "0x00472490"
 symbol_base = "mark_terminal_pending_if_state_not_3_472490"
 
@@ -7864,3 +7868,113 @@ rel32_targets = [
   "??_U@YAPAXI@Z=0x00665B8A",
   "_memcpy=0x0068AA30",
 ]
+
+[units.cross-v106a-battle-manager-setup]
+kind = "probe"
+source = "src/battle/BattleManagerSetup.cpp"
+object = "build/match-units/CrossV106a_BattleManagerSetup.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CBattleManager vtable slot-1 battle setup. Derived override call evidence proves a void MatchSetup* ABI; a real 260-byte BGM path buffer and /GS lifetime, current setup/input/audio services, and current round-state globals reproduce 276/276."
+
+[[units.cross-v106a-battle-manager-setup.functions]]
+address = "0x00472110"
+symbol_base = "?prepare_battle_setup_472110@CBattleManager@th105@@UAEXPAUMatchSetup@2@@Z"
+rel32_targets = [
+  "?get_session_setup_option@th105@@YAIXZ=0x0043B070",
+  "?get_player2_input@th105@@YAPAUBattleInputGate@1@XZ=0x0043B060",
+  "?load_battle_setup_slot@BattleInputGate@th105@@QAEXCPAUMatchSetup@2@@Z=0x0042BAF0",
+  "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40",
+  "?configure_session_input@BattleInputGate@th105@@QAEXCH@Z=0x0042C4D0",
+  "?save_battle_setup_slot@BattleInputGate@th105@@QAEXCPAUMatchSetup@2@@Z=0x0042B9B0",
+  "?mt19937_seed_u32@th105@@YAXI@Z=0x00406670",
+  "?reset_battle_render_state_and_signal_465f70@BattleObjectManagerSetupView@th105@@QAEXXZ=0x00466DF0",
+  "?set_stage_music_433860@BattleAudioManagerSetupView@th105@@QAEXHH@Z=0x00434DE0",
+  "_load_bgm_source=0x0043CF00",
+  "?initialize_slot_464270@FighterPhaseContextManagerSetupView@th105@@QAEXHPAUSide@MatchSetup@2@H@Z=0x00465130",
+  "?initialize_battle_fighter_pair_46a490@BattleController@th105@@QAEXXZ=0x0046AE70",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "?g_battle_object_manager@th105@@3PAUBattleObjectManagerSetupView@1@A=?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A",
+  "?g_fighter_phase_context@th105@@3PAUFighterPhaseContextManagerSetupView@1@A=?g_fighter_phase_context@th105@@3PAUFighterPhaseContext@1@A",
+  "_arcade_bgm_path_format=_arcade_bgm_path_format",
+  "__imp__wsprintfA=__imp__wsprintfA",
+  "?g_round_counter@th105@@3EA=?g_round_counter@th105@@3EA",
+  "___security_cookie=___security_cookie",
+]
+
+
+
+[units.cross-v106a-battle-object-manager-reset]
+kind = "probe"
+source = "src/battle/BattleObjectManagerReset.cpp"
+object = "build/match-units/CrossV106a_BattleObjectManagerReset.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current BattleObjectManager reset/list-transfer body. Early pending-list emptiness evaluation, branch-local active std::list<int> reference, unsigned 0xFF state byte, exact reset literals, and SetEvent IAT naturally reproduce all 332 bytes."
+
+[[units.cross-v106a-battle-object-manager-reset.functions]]
+address = "0x00466DF0"
+symbol_base = "?reset_battle_render_state_and_signal_465f70@BattleObjectManagerResetView@th105@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?_Buynode@?$list@HV?$allocator@H@std@@@std@@IAEPAU_Node@?$_List_nod@HV?$allocator@H@std@@@2@PAU342@0ABH@Z=0x00421F30",
+  "?_Incsize@?$list@HV?$allocator@H@std@@@std@@IAEXI@Z=0x00440370",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "__real@bf000000=__real@bf000000",
+  "__real@441fe000=__real@441fe000",
+  "__real@43efc000=__real@43efc000",
+  "__real@3e99999a=__real@3e99999a",
+  "__imp__SetEvent@4=__imp__SetEvent@4",
+]
+
+[units.cross-v106a-fighter-round-transition]
+kind = "probe"
+source = "src/battle/FighterRoundTransition.cpp"
+object = "build/match-units/CrossV106a_FighterRoundTransition.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current Fighter round-counter reset. ECX-only current callers establish the fastcall Fighter ABI; ordinary typed short writes reproduce 43/43."
+
+[[units.cross-v106a-fighter-round-transition.functions]]
+address = "0x0045F610"
+symbol_base = "reset_fighter_round_counters_45f610"
+
+[units.cross-v106a-fighter-phase-slot-begin]
+kind = "probe"
+source = "src/battle/FighterPhaseSlotBegin.cpp"
+object = "build/match-units/CrossV106a_FighterPhaseSlotBegin.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current FighterPhaseContext slot-begin body. Unsigned slot bounds, three handles at +0x28, three active bytes at +0x34, declaration-only list<int> push ABI at +0x48, and SetEvent +0x24 reproduce 69/69. Separate TU visibility is required because the target keeps this call out of initialize_slot."
+
+[[units.cross-v106a-fighter-phase-slot-begin.functions]]
+address = "0x004650B0"
+symbol_base = "?begin_slot_4641f0@FighterPhaseContextRuntimeView@th105@@QAEXI@Z"
+rel32_targets = [
+  "?reset_slot_state_465040@FighterPhaseContextRuntimeView@th105@@QAEXXZ=0x00465040",
+  "?push_back@IntListView@th105@@QAEXABH@Z=0x004229A0",
+]
+dir32_targets = ["__imp__SetEvent@4=__imp__SetEvent@4"]
+
+[units.cross-v106a-fighter-phase-initialization]
+kind = "probe"
+source = "src/battle/FighterPhaseInitialization.cpp"
+object = "build/match-units/CrossV106a_FighterPhaseInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current FighterPhaseContext initialize-slot body. Target unsigned slot check and low-byte async test fix the ABI; an 8-byte {slot,MatchSetup::Side*} request, out-of-line begin_slot TU, queue helper, and SetEvent +0x20 reproduce 88/88."
+
+[[units.cross-v106a-fighter-phase-initialization.functions]]
+address = "0x00465130"
+symbol_base = "?initialize_slot_464270@FighterPhaseContextRuntimeView@th105@@QAEXIPAUSide@MatchSetup@2@_N@Z"
+rel32_targets = [
+  "?begin_slot_4641f0@FighterPhaseContextRuntimeView@th105@@QAEXI@Z=0x004650B0",
+  "?queue_init_request_466db0@FighterPhaseContextRuntimeView@th105@@QAEXPBUFighterPhaseInitRequest@2@@Z=0x00466DB0",
+  "?initialize_slot_sync_4642f0@FighterPhaseContextRuntimeView@th105@@QAEXIPAUSide@MatchSetup@2@@Z=0x004642F0",
+]
+dir32_targets = ["__imp__SetEvent@4=__imp__SetEvent@4"]

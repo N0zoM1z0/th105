@@ -18,6 +18,57 @@ struct InfoManagerPhaseCounter494View {
 
 } // namespace
 
+void CBattleManager::post_pipeline_slot_30()
+{
+    Fighter *first = fighter_0c;
+    if (first->terminal_pending_4e9 != 0) {
+        Fighter *second = fighter_10;
+        if (second->terminal_pending_4e9 != 0) {
+            ++first->terminal_delay_4e8;
+            ++fighter_10->terminal_delay_4e8;
+            transition_state_5b0() = 2;
+
+            second = fighter_10;
+            first = fighter_0c;
+            if (first->terminal_delay_4e8 == second->terminal_delay_4e8) {
+                second->terminal_delay_4e8 = 1;
+                fighter_0c->terminal_delay_4e8 = 1;
+                transition_slot_34(3);
+                return;
+            }
+            if (first->terminal_delay_4e8 == 2)
+                second->terminal_finalize_4eb = 1;
+            else
+                first->terminal_finalize_4eb = 1;
+            transition_slot_34(4);
+            return;
+        }
+
+        ++second->terminal_delay_4e8;
+        if (fighter_10->terminal_delay_4e8 == 2) {
+            fighter_0c->terminal_finalize_4eb = 1;
+            transition_state_5b0() = 2;
+            transition_slot_34(4);
+            return;
+        }
+        ++transition_state_5b0();
+        transition_slot_34(3);
+        return;
+    }
+
+    if (fighter_10->terminal_pending_4e9 != 0) {
+        ++first->terminal_delay_4e8;
+        if (fighter_0c->terminal_delay_4e8 == 2) {
+            fighter_10->terminal_finalize_4eb = 1;
+            transition_state_5b0() = 2;
+            transition_slot_34(4);
+            return;
+        }
+        ++transition_state_5b0();
+        transition_slot_34(3);
+    }
+}
+
 int CBattleManager::constant_one_471920()
 {
     return 1;
