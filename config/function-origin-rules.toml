@@ -389,3 +389,25 @@ subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Pinned VC8 SP1 std::deque<short>::erase(iterator) probe regenerates a 108-byte / 41-instruction COMDAT structurally identical to current target 0x004323B0; full current-inventory fingerprint replay must resolve exactly one review candidate before exclusion"
+
+[[rules]]
+id = "vc8-generated-character-object-ex-deque-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-character-object-ex-deque-std-origin-anchors.toml"
+expected_count = 6
+expected_bytes = 1304
+origin = "compiler_generated"
+subsystem = "characters"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of the already-exact CharacterObjectEx destructor TU regenerates checked deque pop/copy/copy-backward/erase COMDAT fingerprints whose complete current-inventory hit sets contain exactly 6 review candidates / 1304 bytes; relocation coverage and clone groups replay fail-closed"
+
+[[rules]]
+id = "vc8-generated-script-command-registry-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-script-command-registry-std-origin-anchors.toml"
+expected_count = 19
+expected_bytes = 3876
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of the exact CScript registry TU regenerates nine checked std::_Tree/string COMDAT fingerprints whose complete current-inventory hit sets contain exactly 19 review candidates / 3876 bytes; the authored 385-byte register_command specializations are deliberately absent and full-inventory equivalence groups replay fail-closed"

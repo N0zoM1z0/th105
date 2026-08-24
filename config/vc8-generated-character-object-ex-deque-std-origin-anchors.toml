@@ -1,0 +1,43 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/characters/CharacterObjectExDestructors.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 1
+alignment_tail_hex = "cc"
+
+[[anchors]]
+address = "0x00417E20"
+size = 201
+symbol = "??$_Copy_backward_opt@V?$_Deque_iterator@PAVReimuObject@@V?$allocator@PAVReimuObject@@@std@@$0A@@std@@V12@Uforward_iterator_tag@2@@std@@YA?AV?$_Deque_iterator@PAVReimuObject@@V?$allocator@PAVReimuObject@@@std@@$0A@@0@V10@00Uforward_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "character-object-deque-copy-backward-clones"
+
+[[anchors]]
+address = "0x004FA0C0"
+size = 201
+symbol = "??$_Copy_backward_opt@V?$_Deque_iterator@PAVReimuObject@@V?$allocator@PAVReimuObject@@@std@@$0A@@std@@V12@Uforward_iterator_tag@2@@std@@YA?AV?$_Deque_iterator@PAVReimuObject@@V?$allocator@PAVReimuObject@@@std@@$0A@@0@V10@00Uforward_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "character-object-deque-copy-backward-clones"
+
+[[anchors]]
+address = "0x00417EF0"
+size = 190
+symbol = "??$_Copy_opt@V?$_Deque_iterator@PAVReimuObject@@V?$allocator@PAVReimuObject@@@std@@$0A@@std@@V12@Uforward_iterator_tag@2@@std@@YA?AV?$_Deque_iterator@PAVReimuObject@@V?$allocator@PAVReimuObject@@@std@@$0A@@0@V10@00Uforward_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "character-object-deque-copy-clones"
+
+[[anchors]]
+address = "0x005AE110"
+size = 190
+symbol = "??$_Copy_opt@V?$_Deque_iterator@PAVReimuObject@@V?$allocator@PAVReimuObject@@@std@@$0A@@std@@V12@Uforward_iterator_tag@2@@std@@YA?AV?$_Deque_iterator@PAVReimuObject@@V?$allocator@PAVReimuObject@@@std@@$0A@@0@V10@00Uforward_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "character-object-deque-copy-clones"
+
+[[anchors]]
+address = "0x00417200"
+size = 50
+symbol = "?pop_front@?$deque@PAVReimuObject@@V?$allocator@PAVReimuObject@@@std@@@std@@QAEXXZ"
+
+[[anchors]]
+address = "0x00473340"
+size = 472
+symbol = "?erase@?$deque@PAVReimuObject@@V?$allocator@PAVReimuObject@@@std@@@std@@QAE?AV?$_Deque_iterator@PAVReimuObject@@V?$allocator@PAVReimuObject@@@std@@$00@2@V32@0@Z"

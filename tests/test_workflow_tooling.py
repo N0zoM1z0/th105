@@ -52,15 +52,15 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4010)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 768)
+        self.assertEqual(len(matching), 772)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 768)
+        self.assertEqual(len(implemented), 772)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 768
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 772
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
@@ -68,17 +68,17 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(len(manifest["units"]), 234)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            768,
+            772,
         )
 
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,010", markdown)
-        self.assertIn("Confirmed authored functions | 768", markdown)
-        self.assertIn("Classified exclusions | 931", markdown)
-        self.assertIn("Origin/boundary review pending | 2,311", markdown)
-        self.assertIn("Canonical exact functions | 768", markdown)
-        self.assertIn("Canonical exact authored bytes | 123,566", markdown)
+        self.assertIn("Confirmed authored functions | 772", markdown)
+        self.assertIn("Classified exclusions | 956", markdown)
+        self.assertIn("Origin/boundary review pending | 2,282", markdown)
+        self.assertIn("Canonical exact functions | 772", markdown)
+        self.assertIn("Canonical exact authored bytes | 125,442", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
@@ -220,7 +220,7 @@ class WorkflowToolingTests(unittest.TestCase):
 
     def test_exact_tu_std_origin_manifests_are_pinned(self) -> None:
         paths = sorted((ROOT / "config").glob("vc8-generated-*-std-origin-anchors.toml"))
-        self.assertEqual(len(paths), 15)
+        self.assertEqual(len(paths), 17)
         target_sha = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
         compiler_sha = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
         rows = []
@@ -235,9 +235,9 @@ class WorkflowToolingTests(unittest.TestCase):
             self.assertEqual(manifest["alignment_tail_hex"], "cc")
             self.assertTrue(manifest["source"].startswith("src/"))
             rows.extend(manifest["anchors"])
-        self.assertEqual(len(rows), 216)
-        self.assertEqual(len({row["address"] for row in rows}), 216)
-        self.assertEqual(sum(row["size"] for row in rows), 27_039)
+        self.assertEqual(len(rows), 241)
+        self.assertEqual(len({row["address"] for row in rows}), 241)
+        self.assertEqual(sum(row["size"] for row in rows), 32_219)
 
     def test_deque_short_erase_origin_manifest_is_pinned(self) -> None:
         path = ROOT / "config" / "vc8-generated-deque-short-erase-origin-anchors.toml"

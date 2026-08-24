@@ -707,20 +707,23 @@ Three near-exact bodies remain intentionally pending. `SpellDataOwner::shuffle_s
 `this+0x35C` and immediately registers the scenario command vocabulary.  Its
 call sites plus the factory RTTI recover one authored template family rather
 than twelve unrelated stripped functions: `CScript::register_command<Command>`
-at `0x00452ED0/0x00453060/0x004536A0/0x00453830/0x00457170/0x00457300/
-0x00457490/0x00457620/0x004577B0/0x00457940/0x00457AD0/0x00457C60`.
+at `0x00452ED0/0x00453060/0x004531F0/0x00453380/0x00453510/0x004536A0/
+0x00453830/0x00457170/0x00457300/0x00457490/0x00457620/0x004577B0/
+0x00457940/0x00457AD0/0x00457C60`.
 Every specialization is 385 bytes and the current factory vtable identifies its
 `Command` type independently.  The family covers `CCommand0`, `CComCharacter`,
-and the observed `TCommand1/2/3/4` combinations used by commands including
+and the observed `TCommand1/2/3/4/5` combinations used by commands including
 Character, Face, Action, Object, CrossFadeBgm, PlaySE, CG, Font, and Window.
 
 Only the registry prefix is currently named: a checked
 `std::map<std::string, CScript::CCommandFactoryBase *> @ +0x00` followed by the
 default factory pointer at `+0x0C`.  Empty command names replace that default
 factory; named commands allocate a two-dword polymorphic
-`CCommandFactory<Command>` and insert it into the map.  All twelve target bodies
-share folded VC8 EH handler `0x006BAAA8`; their RTTI-owned factory vtables are
-at `0x006C25D4/25EC/261C/2628/27A0/27AC/27B8/27C4/27D0/27DC/27E8/27F4`.
+`CCommandFactory<Command>` and insert it into the map.  All fifteen target bodies share folded VC8 EH handler `0x006BAAA8`.  The three
+additional timeline specializations publish RTTI-owned factory vtables
+`0x006C25F8/0x006C2604/0x006C2610` for
+`TCommand5<int,string,int,int,int>`, `TCommand5<int,float,float,float,int>`,
+and `TCommand5<int,float,float,int,int>` respectively.
 
 The exact source-shape detail is reusable for other checked-map recovery.  The
 named insertion must be written as an *unnamed non-const pair expression*:
@@ -737,8 +740,32 @@ tail.  Direct `map::value_type(name, factory)` collapses one copy and emits 286
 bytes; `std::make_pair` adds another return temporary and emits 395; a named
 `std::pair` local emits 391 and introduces an additional `/GS` lifetime.  The
 unnamed explicit `std::pair` form produces 385/385 and 117/117 instructions for
-all twelve specializations under ordinary pinned VC8 `/O2 /GS`, with no
+all fifteen specializations under ordinary pinned VC8 `/O2 /GS`, with no
 register/volatile/assembly forcing.
+
+
+`SceneTimelineRegistry::register_builtin_commands @ 0x00453BC0` closes the
+shared Opening/StaffRoll command vocabulary on top of the same template family.
+Opening constructs this object at its `+0x08` subobject and StaffRoll at `+0x04`;
+`0x004540F0` independently proves the embedded `CScript` begins at timeline
+`+0x18`.  Natural source emits the target 721-byte body exactly while registering
+`bpm(0)`, `bgm(2)`, `pic(1)`, transform channels `x/y/u/v/sx/sy/angle`, color
+channels `r/g/b/alpha`, and `play/interval/notify/end`.  The current `.rdata`
+literals form one contiguous target-backed table at `0x006C2684..0x006C26E0`;
+the canonical literal validation caught and corrected an early `pic`/`bpm`
+source swap even though relocation-masked code bytes were otherwise identical.
+
+Exact-TU origin replay from this registry is also reusable denominator evidence.
+A fresh pinned `/GS` build regenerates nine checked `std::_Tree`/`std::less`
+COMDAT fingerprints whose **complete 4,010-candidate hit sets** contain 19
+review functions / 3,876 bytes.  A separate exact CharacterObjectEx destructor
+TU regenerates checked deque pop/copy/copy-backward/erase fingerprints covering
+6 review functions / 1,304 bytes.  The committed manifests require compiler and
+target SHA pins, relocation-masked non-relocation coverage, optional one-byte
+`0xCC` tails, and exact equivalence-group hit sets.  Critically, the 385-byte
+`register_command` bodies are absent from the generated rules: the same scan
+identified the three missing TCommand5 specializations as authored rather than
+using clone shape to erase them from the denominator.
 
 
 ### Scenario core layout, result-resource island, and member-pointer ABI
@@ -755,13 +782,33 @@ The text-entry subobject is also more specific than the old facade. `ScenarioTex
 
 `CComCharacter` is the custom authored bridge between the exact CScript registry and the Scenario command interpreter, not a generic `TCommandN` clone. RTTI names the two-slot vtable as `.?AVCComCharacter@@`; the physical command is 0x30 bytes with `std::string +0x08`, ints `+0x24/+0x28`, byte `+0x2C`, and RGB bytes `+0x2D..+0x2F`. `CComCharacter::parse @ 0x00455EF0` is 505/505 when the input `char *` parameter is reused as the `strtok_s` context, and the inline hex-nibble helper takes/returns ordinary **signed `char`** while doing range tests through unsigned-byte casts. Making that helper unsigned-char shortens the body to 500 and changes the second-nibble temporary allocation. This is source type evidence, not register forcing.
 
-`CScript` is a complete 0x34 layout: checked command map `+0x00`, default factory `+0x0C`, intentionally unnamed/uninitialized cell `+0x10`, checked pending-factory deque `+0x14`, and runtime cells `+0x28/+0x2C/+0x30`. `CScript::CScript @ 0x00405600` is 65/65 only when runtime cells are member-initialized and `default_factory_0c = 0` occurs in the ctor body afterward. The twelve previously exact 385-byte `register_command` specializations remain exact with the full header. Its dtor/clear lane still calls target-private helpers (`0x00405CD0` consumes EAX, `0x00405770` consumes ESI); do not fake those ABIs.
+`CScript` is a complete 0x34 layout: checked command map `+0x00`, default factory `+0x0C`, intentionally unnamed/uninitialized cell `+0x10`, checked pending-factory deque `+0x14`, and runtime cells `+0x28/+0x2C/+0x30`. `CScript::CScript @ 0x00405600` is 65/65 only when runtime cells are member-initialized and `default_factory_0c = 0` occurs in the ctor body afterward. All fifteen 385-byte `register_command` specializations remain exact with the full header. Its dtor/clear lane still calls target-private helpers (`0x00405CD0` consumes EAX, `0x00405770` consumes ESI); do not fake those ABIs.
 
 `ScenarioResultResource` is a reusable 0x128 core owner: `CDesignBase +0x08`, four primary pointers `+0x3C`, three secondary pointers `+0x4C`, texture `+0x58`, `UiTileA4 +0x5C`, values `+0x100`, colors `+0x10C`, scales `+0x118`, and alpha `+0x124`. Seven methods are canonical exact from this layout: `0x00454780` (76), `0x004547E0` (93), `0x00454840` (67), `0x00454890` (187), `0x00454950` (141), `0x004549E0` (99), and `/GS` dtor `0x00454BF0` (116). Exact reset code loads each position-object pointer once and reuses it for x/y stores; exact render walks the parallel arrays with one `UiTileA4 *` plus one `float *scale` cursor. A normal index loop changes VC8 lifetime/codegen. The 93-byte nonnegative adder preserves target source data flow `arg + value < 0 ? 0 : arg + value`; replacing it with `+=` plus clamp compiles shorter. `set_entry_level` is caller-backed `void`; its exact double literals are 7.5 at `0x006C2710` and 1.0 at `0x006CD160`.
 
 Object-manager invoke-each calls such as `0x0058BEE0` take an MSVC multiple-inheritance pointer-to-member function, not a free callback plus invented offset. `SystemEffectObjectBase` is multiply inherited; a normal `void (SystemEffectObjectBase::*)()` declaration naturally emits the two-word `{virtual thunk,this-adjustor}` representation seen in current callers.
 
 Large neighbors remain deliberate stops: `CScenarioData` ctor `0x00459C90` reaches 1528/1527 with 404/404 instructions after the real long-lived config lifetime and stops on persistent EDI/EBP allocation; `CScenarioData::render @ 0x00457F90` reaches 930/930 and 281/281 after recovering the true 0x9C list value, reused checked-list iterator, and member-pointer ABI but stops on EBX/EBP allocation; `reset_runtime_state @ 0x00457E40` is 339/334 after the correct out-of-line STL partition and stops on checked-iterator allocation; result update `0x00454A50` is 403/403 after correcting phases to 0/1/3 and phase-1 increment order; result ctor `0x00454C70` is 298/298 with six CTile/EH scheduling bytes; SystemEffect release `0x00436E60` is 119/119 with only EAX/EDX handle scheduling. Vslot 2 `CScenarioData::update @ 0x00458440` is the 6,121-byte command interpreter; its command registry, custom CComCharacter parser, text-entry update/render and effect-color/configure edges are now exact. Continue it by recovering real command object/source boundaries rather than transcribing decompiler output. Do not use register variables, volatile, fake locals, gotos, manual vtables, assembly, or copied bytes to close these.
+
+
+### Shared 0x194 text/effect owner: typed layout versus private LTCG entry ABIs
+
+Scenario and profile text paths share the same 0x194 owner shape already visible
+through `ScenarioEffectOwner194`: 0x128 config at `+0x0C`, color-table pointers
+`+0x154/+0x158`, checked payload list `+0x15C`, packed color `+0x168`, and
+`std::string +0x170`.  The standalone config default constructor
+`0x004113E0` naturally reproduces 67/67 with `duration=400`, three zero flags,
+`interval=100000`, and zero mode/state/options, confirming that these repeated
+writes in larger ctors are one real config-constructor contract.
+
+Do not promote the rest of this island from standalone facades yet.  Physical
+owner ctor/dtor/configure live at `0x00411430/0x004114C0/0x004115A0`; glyph/text
+helpers around `0x004118F0..0x00411DF0` expose target-private EAX/ESI entry
+assumptions and LTCG-visible STL/allocator bodies.  Ordinary `std::list` and
+`std::allocator<unsigned>` source changes those call boundaries, while forcing
+registers would violate the project rules.  Preserve the typed 0x194 layout and
+config-constructor evidence, but continue only when a real owning TU recovers
+the private ABI naturally.
 
 ### CHandleManagerEx release tokens: checked subscript visibility and dead-parameter reuse
 
