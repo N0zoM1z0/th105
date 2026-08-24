@@ -207,3 +207,28 @@ git diff --check
 - Newly accepted exact bodies: MenuCursor horizontal/vertical binders `0x004204E0/0x00420520` (63+63), SpellData side-payload/mode methods `0x004324F0/0x00432520` (35+33), config BGM/SE helpers `0x0043B1C0/0x0043B1F0` (39+80), `close_config_menu @ 0x0043CDD0` (48), and RTTI-owned `CMenuConfig::update @ 0x004411B0` (665). Increment: **8 functions / 1,026 bytes**.
 - The pinned `std::deque<short>::erase(iterator)` probe resolves the complete generated equivalence group `0x004323B0/0x00443A30/0x0045DC20/0x00617B50`, removing **4 generated functions / 432 bytes** from authored-origin review. Keep the full-inventory hit set.
 - Pending stop conditions: `CMenuConfig::update_secondary_for_primary @ 0x00440FF0` still differs in redundant clamp lowering; `SpellDataOwner::shuffle_selection @ 0x00432420` is 196/196 with seven scheduler bytes pending; `initialize_fighter_battle_state @ 0x00460200` reaches 1247 bytes / 290 instructions with 29 allocator/scheduler bytes pending; `CMenuBattle::update @ 0x004407E0` remains a tail-merge/EH-lifetime problem. Do not force these with asm, volatile/register liveness, artificial gotos, or copied bytes.
+
+- The CScript command-registry core wave adds twelve authored canonical-exact
+  functions / 4,620 bytes in one `/GS` template TU. `CScenarioData::CScenarioData
+  @ 0x00459C90` independently anchors the registry at `this+0x35C` and calls the
+  recovered specializations while registering Character/Face/Action/Object/BGM/
+  CG/Font/Window and related scenario commands. Factory RTTI disambiguates each
+  `CCommandFactory<Command>` specialization; the twelve 385-byte bodies share
+  folded EH handler `0x006BAAA8`.
+- Reuse the exact checked-map source lifetime rather than treating the bodies as
+  opaque clones. The registry prefix is `std::map<std::string,FactoryBase*>`
+  plus default factory pointer `+0x0C`. Named insertion is exact only with the
+  unnamed expression `std::pair<std::string,FactoryBase*>(name,factory)`: the
+  conversion to map `value_type` creates the target's second string/pair copy.
+  `map::value_type` collapses to 286 bytes, `make_pair` grows to 395, and a
+  named pair local grows to 391 with an extra `/GS` lifetime. Ordinary source is
+  385/385 for all twelve, with no asm, volatile, register forcing, fake
+  dependencies, or copied bytes.
+- High-leverage continuation: `CScenarioData` ctor itself is 1,527 bytes and now
+  has its largest repeated command-registration dependency recovered exactly.
+  The nearby SystemEffect manager lane also has a natural 91/91 exact
+  `TObjectManagerBase<SystemEffectObject,...>::acquire_and_link_object @
+  0x00457110`; its 499-byte handle-pool acquire is semantically 498/499 with
+  147/147 instruction shape after recovering `resource_handle_138 = 0`, and
+  remains allocator-only pending stronger TU/source evidence rather than
+  register forcing.

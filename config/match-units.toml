@@ -9623,3 +9623,215 @@ rel32_targets = [
   "_Buynode=0x00421F30",
   "_Incsize=0x00440370",
 ]
+
+[units.cross-v106a-script-command-registry]
+kind = "probe"
+source = "src/battle/ScriptCommandRegistry.cpp"
+object = "build/match-units/CrossV106a_ScriptCommandRegistry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "TH105 1.06a CScript command-factory registry template family. Current CScenarioData construction registers named Character/Face/Action/Object/BGM/CG/Font/Window commands through these specializations; RTTI-owned CScript::CCommandFactory<T> vtables disambiguate all twelve bodies. Ordinary checked std::map<std::string,FactoryBase*> insertion plus a non-const std::pair expression reproduces the target two-copy string/value lifetime without codegen forcing."
+
+[[units.cross-v106a-script-command-registry.functions]]
+address = "0x00452ED0"
+symbol_base = "??$register_command@V?$TCommand2@HH@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z"
+rel32_targets = [
+  "?compare@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEHIIPBDI@Z=0x00405C00",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "?insert@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@2@@Z=0x00452C70",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "__ehhandler$??$register_command@V?$TCommand2@HH@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=_script_command_register_eh",
+  "___security_cookie=___security_cookie",
+  "??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@",
+  "??_7?$CCommandFactory@V?$TCommand2@HH@@@CScript@@6B@=??_7?$CCommandFactory@V?$TCommand2@HH@@@CScript@@6B@",
+]
+
+[[units.cross-v106a-script-command-registry.functions]]
+address = "0x00453060"
+symbol_base = "??$register_command@V?$TCommand1@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z"
+rel32_targets = [
+  "?compare@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEHIIPBDI@Z=0x00405C00",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "?insert@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@2@@Z=0x00452C70",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "__ehhandler$??$register_command@V?$TCommand1@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=_script_command_register_eh",
+  "___security_cookie=___security_cookie",
+  "??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@",
+  "??_7?$CCommandFactory@V?$TCommand1@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@@@CScript@@6B@=??_7?$CCommandFactory@V?$TCommand1@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@@@CScript@@6B@",
+]
+
+[[units.cross-v106a-script-command-registry.functions]]
+address = "0x004536A0"
+symbol_base = "??$register_command@VCCommand0@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z"
+rel32_targets = [
+  "?compare@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEHIIPBDI@Z=0x00405C00",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "?insert@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@2@@Z=0x00452C70",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "__ehhandler$??$register_command@VCCommand0@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=_script_command_register_eh",
+  "___security_cookie=___security_cookie",
+  "??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@",
+  "??_7?$CCommandFactory@VCCommand0@@@CScript@@6B@=??_7?$CCommandFactory@VCCommand0@@@CScript@@6B@",
+]
+
+[[units.cross-v106a-script-command-registry.functions]]
+address = "0x00453830"
+symbol_base = "??$register_command@V?$TCommand1@H@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z"
+rel32_targets = [
+  "?compare@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEHIIPBDI@Z=0x00405C00",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "?insert@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@2@@Z=0x00452C70",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "__ehhandler$??$register_command@V?$TCommand1@H@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=_script_command_register_eh",
+  "___security_cookie=___security_cookie",
+  "??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@",
+  "??_7?$CCommandFactory@V?$TCommand1@H@@@CScript@@6B@=??_7?$CCommandFactory@V?$TCommand1@H@@@CScript@@6B@",
+]
+
+[[units.cross-v106a-script-command-registry.functions]]
+address = "0x00457170"
+symbol_base = "??$register_command@VCComCharacter@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z"
+rel32_targets = [
+  "?compare@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEHIIPBDI@Z=0x00405C00",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "?insert@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@2@@Z=0x00452C70",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "__ehhandler$??$register_command@VCComCharacter@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=_script_command_register_eh",
+  "___security_cookie=___security_cookie",
+  "??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@",
+  "??_7?$CCommandFactory@VCComCharacter@@@CScript@@6B@=??_7?$CCommandFactory@VCComCharacter@@@CScript@@6B@",
+]
+
+[[units.cross-v106a-script-command-registry.functions]]
+address = "0x00457300"
+symbol_base = "??$register_command@V?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z"
+rel32_targets = [
+  "?compare@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEHIIPBDI@Z=0x00405C00",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "?insert@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@2@@Z=0x00452C70",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "__ehhandler$??$register_command@V?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=_script_command_register_eh",
+  "___security_cookie=___security_cookie",
+  "??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@",
+  "??_7?$CCommandFactory@V?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@@@CScript@@6B@=??_7?$CCommandFactory@V?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@@@CScript@@6B@",
+]
+
+[[units.cross-v106a-script-command-registry.functions]]
+address = "0x00457490"
+symbol_base = "??$register_command@V?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z"
+rel32_targets = [
+  "?compare@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEHIIPBDI@Z=0x00405C00",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "?insert@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@2@@Z=0x00452C70",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "__ehhandler$??$register_command@V?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=_script_command_register_eh",
+  "___security_cookie=___security_cookie",
+  "??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@",
+  "??_7?$CCommandFactory@V?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@@@CScript@@6B@=??_7?$CCommandFactory@V?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@@@CScript@@6B@",
+]
+
+[[units.cross-v106a-script-command-registry.functions]]
+address = "0x00457620"
+symbol_base = "??$register_command@V?$TCommand4@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HMM@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z"
+rel32_targets = [
+  "?compare@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEHIIPBDI@Z=0x00405C00",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "?insert@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@2@@Z=0x00452C70",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "__ehhandler$??$register_command@V?$TCommand4@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HMM@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=_script_command_register_eh",
+  "___security_cookie=___security_cookie",
+  "??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@",
+  "??_7?$CCommandFactory@V?$TCommand4@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HMM@@@CScript@@6B@=??_7?$CCommandFactory@V?$TCommand4@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HMM@@@CScript@@6B@",
+]
+
+[[units.cross-v106a-script-command-registry.functions]]
+address = "0x004577B0"
+symbol_base = "??$register_command@V?$TCommand3@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H_N@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z"
+rel32_targets = [
+  "?compare@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEHIIPBDI@Z=0x00405C00",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "?insert@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@2@@Z=0x00452C70",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "__ehhandler$??$register_command@V?$TCommand3@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H_N@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=_script_command_register_eh",
+  "___security_cookie=___security_cookie",
+  "??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@",
+  "??_7?$CCommandFactory@V?$TCommand3@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H_N@@@CScript@@6B@=??_7?$CCommandFactory@V?$TCommand3@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H_N@@@CScript@@6B@",
+]
+
+[[units.cross-v106a-script-command-registry.functions]]
+address = "0x00457940"
+symbol_base = "??$register_command@V?$TCommand3@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HH@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z"
+rel32_targets = [
+  "?compare@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEHIIPBDI@Z=0x00405C00",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "?insert@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@2@@Z=0x00452C70",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "__ehhandler$??$register_command@V?$TCommand3@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HH@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=_script_command_register_eh",
+  "___security_cookie=___security_cookie",
+  "??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@",
+  "??_7?$CCommandFactory@V?$TCommand3@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HH@@@CScript@@6B@=??_7?$CCommandFactory@V?$TCommand3@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HH@@@CScript@@6B@",
+]
+
+[[units.cross-v106a-script-command-registry.functions]]
+address = "0x00457AD0"
+symbol_base = "??$register_command@V?$TCommand4@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHH@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z"
+rel32_targets = [
+  "?compare@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEHIIPBDI@Z=0x00405C00",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "?insert@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@2@@Z=0x00452C70",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "__ehhandler$??$register_command@V?$TCommand4@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHH@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=_script_command_register_eh",
+  "___security_cookie=___security_cookie",
+  "??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@",
+  "??_7?$CCommandFactory@V?$TCommand4@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHH@@@CScript@@6B@=??_7?$CCommandFactory@V?$TCommand4@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHH@@@CScript@@6B@",
+]
+
+[[units.cross-v106a-script-command-registry.functions]]
+address = "0x00457C60"
+symbol_base = "??$register_command@V?$TCommand4@EEEE@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z"
+rel32_targets = [
+  "?compare@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEHIIPBDI@Z=0x00405C00",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "?insert@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@2@@Z=0x00452C70",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "__ehhandler$??$register_command@V?$TCommand4@EEEE@@@CScript@@QAEXHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=_script_command_register_eh",
+  "___security_cookie=___security_cookie",
+  "??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@",
+  "??_7?$CCommandFactory@V?$TCommand4@EEEE@@@CScript@@6B@=??_7?$CCommandFactory@V?$TCommand4@EEEE@@@CScript@@6B@",
+]

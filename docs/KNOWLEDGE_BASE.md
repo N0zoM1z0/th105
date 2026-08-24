@@ -700,3 +700,42 @@ Config audio scaling preserves literal **type**. Target qword `0x006C1660` is th
 The adjacent 108-byte `0x004323B0` body is compiler-generated `std::deque<short>::erase(iterator)`. A pinned VC8 probe regenerates a 108-byte / 41-instruction COMDAT with structural similarity 1.0000. Full 4,010-span replay finds the complete equivalence group `0x004323B0/0x00443A30/0x0045DC20/0x00617B50`; the committed manifest must resolve all four or fail closed. This is another case where review-only discovery cannot establish origin uniqueness.
 
 Three near-exact bodies remain intentionally pending. `SpellDataOwner::shuffle_selection @ 0x00432420` reaches 196/196 with normal checked-iterator semantics and an out-of-line generated erase contract, but seven bytes differ only in scheduling an independent stack adjustment and saved short value. `initialize_fighter_battle_state @ 0x00460200` reaches the target 1247-byte / 290-instruction shape after correcting the SpellData member ABI, with only 29 allocator/scheduler bytes remaining. `CMenuConfig::update_secondary_for_primary @ 0x00440FF0` closes its five-case semantics and binder ABI but pinned VC8 still folds the target's redundant clamp topology. Do not use register variables, volatile/dummy dependencies, artificial gotos, inline assembly, or copied bytes to close these residuals.
+
+### CScript command registration: pair conversion lifetime is authored codegen evidence
+
+`CScenarioData::CScenarioData @ 0x00459C90` initializes a script registry at
+`this+0x35C` and immediately registers the scenario command vocabulary.  Its
+call sites plus the factory RTTI recover one authored template family rather
+than twelve unrelated stripped functions: `CScript::register_command<Command>`
+at `0x00452ED0/0x00453060/0x004536A0/0x00453830/0x00457170/0x00457300/
+0x00457490/0x00457620/0x004577B0/0x00457940/0x00457AD0/0x00457C60`.
+Every specialization is 385 bytes and the current factory vtable identifies its
+`Command` type independently.  The family covers `CCommand0`, `CComCharacter`,
+and the observed `TCommand1/2/3/4` combinations used by commands including
+Character, Face, Action, Object, CrossFadeBgm, PlaySE, CG, Font, and Window.
+
+Only the registry prefix is currently named: a checked
+`std::map<std::string, CScript::CCommandFactoryBase *> @ +0x00` followed by the
+default factory pointer at `+0x0C`.  Empty command names replace that default
+factory; named commands allocate a two-dword polymorphic
+`CCommandFactory<Command>` and insert it into the map.  All twelve target bodies
+share folded VC8 EH handler `0x006BAAA8`; their RTTI-owned factory vtables are
+at `0x006C25D4/25EC/261C/2628/27A0/27AC/27B8/27C4/27D0/27DC/27E8/27F4`.
+
+The exact source-shape detail is reusable for other checked-map recovery.  The
+named insertion must be written as an *unnamed non-const pair expression*:
+
+```
+commands.insert(
+    std::pair<std::string, FactoryBase *>(name, factory));
+```
+
+That source has one `pair<string, FactoryBase*>` expression temporary and one
+conversion into the map's `pair<const string, FactoryBase*>` value type, which
+naturally reproduces the target's two string/value copies and shared destruction
+tail.  Direct `map::value_type(name, factory)` collapses one copy and emits 286
+bytes; `std::make_pair` adds another return temporary and emits 395; a named
+`std::pair` local emits 391 and introduces an additional `/GS` lifetime.  The
+unnamed explicit `std::pair` form produces 385/385 and 117/117 instructions for
+all twelve specializations under ordinary pinned VC8 `/O2 /GS`, with no
+register/volatile/assembly forcing.
