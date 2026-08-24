@@ -739,3 +739,87 @@ bytes; `std::make_pair` adds another return temporary and emits 395; a named
 unnamed explicit `std::pair` form produces 385/385 and 117/117 instructions for
 all twelve specializations under ordinary pinned VC8 `/O2 /GS`, with no
 register/volatile/assembly forcing.
+
+
+### Scenario core layout, result-resource island, and member-pointer ABI
+
+Current `CScenarioData` vtable ownership and constructor/unwind paths close a 0x510 physical object. The stable layout is `SystemEffectManager<SystemEffectObject> +0x004` (0x60), scenario id `+0x064`, `ScenarioEffectOwner194 +0x068`, `ScenarioEffectConfig128 +0x1FC`, state dwords `+0x324/+0x328`, checked `map<string, ScenarioTextEntryDC> +0x32C`, three checked `list<ScenarioRenderEntry9C>` values at `+0x338/+0x344/+0x350`, `CScript +0x35C`, `ScenarioResultResource +0x390`, strings at `+0x4B8/+0x4D4/+0x4F0`, and four trailing state bytes at `+0x50C`. The old +4 string shift came from a false 0x12C result-owner hypothesis; current ctor stores and EH unwind independently prove the owner is 0x128.
+
+`CScript` is a complete 0x34 layout: checked command map `+0x00`, default factory `+0x0C`, intentionally unnamed/uninitialized cell `+0x10`, checked pending-factory deque `+0x14`, and runtime cells `+0x28/+0x2C/+0x30`. `CScript::CScript @ 0x00405600` is 65/65 only when runtime cells are member-initialized and `default_factory_0c = 0` occurs in the ctor body afterward. The twelve previously exact 385-byte `register_command` specializations remain exact with the full header. Its dtor/clear lane still calls target-private helpers (`0x00405CD0` consumes EAX, `0x00405770` consumes ESI); do not fake those ABIs.
+
+`ScenarioResultResource` is a reusable 0x128 core owner: `CDesignBase +0x08`, four primary pointers `+0x3C`, three secondary pointers `+0x4C`, texture `+0x58`, `UiTileA4 +0x5C`, values `+0x100`, colors `+0x10C`, scales `+0x118`, and alpha `+0x124`. Seven methods are canonical exact from this layout: `0x00454780` (76), `0x004547E0` (93), `0x00454840` (67), `0x00454890` (187), `0x00454950` (141), `0x004549E0` (99), and `/GS` dtor `0x00454BF0` (116). Exact reset code loads each position-object pointer once and reuses it for x/y stores; exact render walks the parallel arrays with one `UiTileA4 *` plus one `float *scale` cursor. A normal index loop changes VC8 lifetime/codegen. The 93-byte nonnegative adder preserves target source data flow `arg + value < 0 ? 0 : arg + value`; replacing it with `+=` plus clamp compiles shorter. `set_entry_level` is caller-backed `void`; its exact double literals are 7.5 at `0x006C2710` and 1.0 at `0x006CD160`.
+
+Object-manager invoke-each calls such as `0x0058BEE0` take an MSVC multiple-inheritance pointer-to-member function, not a free callback plus invented offset. `SystemEffectObjectBase` is multiply inherited; a normal `void (SystemEffectObjectBase::*)()` declaration naturally emits the two-word `{virtual thunk,this-adjustor}` representation seen in current callers.
+
+Large neighbors remain deliberate stops: `CScenarioData` ctor `0x00459C90` reaches 1528/1527 with 404/404 instructions after the real long-lived config lifetime and stops on persistent EDI/EBP allocation; `CScenarioData::render @ 0x00457F90` reaches 930/930 and 281/281 after recovering the true 0x9C list value, reused checked-list iterator, and member-pointer ABI but stops on EBX/EBP allocation; result update `0x00454A50` is 403/403 after correcting phases to 0/1/3 and phase-1 increment order; result ctor `0x00454C70` is 298/298 with six CTile/EH scheduling bytes; SystemEffect release `0x00436E60` is 119/119 with only EAX/EDX handle scheduling. Do not use register variables, volatile, fake locals, gotos, manual vtables, assembly, or copied bytes to close these.
+
+### CHandleManagerEx release tokens: checked subscript visibility and dead-parameter reuse
+
+`CHandleManagerEx<SystemEffectObject>::release_handle @ 0x0056D8F0` is the
+canonical 170/170 physical release body shared by the object-manager lifetime
+lane.  Current SystemEffect manager construction/destruction, the
+`CHandleManagerEx<SystemEffectObject>` vtable, and the SystemEffect
+`TObjectManagerBase` release caller independently identify the specialization;
+the pinned VC8 object then compares byte-for-byte after relocation resolution.
+
+The source contract is reusable.  A handle is one 32-bit value with a low
+16-bit slot and high 16-bit generation, exactly mirroring the already-exact
+handle acquire family.  The generation vector must use checked
+`generations_14[index]` twice: under the pinned VC8 checked-STL configuration,
+`operator[]` naturally inlines the two target bounds checks.  Replacing those
+accesses with `.at()` emits an out-of-line call, while manually spelling the
+checks gives a different register schedule.  The object slot deliberately uses
+`slots_04.at(index)` instead; target `0x0056D450` is the out-of-line checked
+pointer-vector accessor.
+
+After virtual destruction, the slot index is assigned back into the now-dead
+`handle_token` parameter and that parameter is passed by reference to
+`free_slots_24.push_back`.  This is real source-storage lifetime, not stack
+coloring: a separate address-taken index local introduces another stack slot
+and changes the prologue.  With parameter reuse, VC8 naturally emits the target
+list `_Buynode` / `_Incsize` sequence and all 170 bytes without asm, volatile,
+register forcing, fake dependencies, or copied bytes.
+
+The three higher-level `release_all_tracked_objects` bodies at `0x00436E60`,
+`0x0046EEB0`, and `0x0056DA90` remain deliberate stops.  They are respectively
+119/119, 122/122, and 122/122 with the same semantic checked-list loop and only
+the handle-load register differing (target EAX, standalone VC8 EDX).  Making
+the exact release_handle template visible in the same TU does not change that
+residual.  Treat it as allocator/TU evidence; do not coerce the callers.
+
+### Stable CTile 0xA4 class island across TH105 1.06 and 1.06a
+
+The ScenarioResult render path exposed a high-leverage shared `CTile` island.
+Current 1.06a owns `set_texture @ 0x004098B0` (37 bytes), the full texture/UV
+initializer `0x004098E0` (266), and `render @ 0x004099F0` (756).  The pre-reset
+TH105 1.06 ledger has the same three bodies at `0x00409410/0x00409440/
+0x00409550` with identical sizes and relative spacing; the 37-byte forwarding
+wrapper is raw-identical across versions.  This is a stable engine class, not a
+Scenario-only facade.
+
+Current target code plus the 164-byte physical copy-constructor probe establish
+a natural 0xA4 layout: vptr `+0x00`, signed texture handle `+0x04`, four 0x1C
+vertices from `+0x08`, float size `+0x78/+0x7C`, anchor `+0x80/+0x84`, scale
+`+0x88/+0x8C`, rotation `+0x90`, UV origin `+0x94/+0x98`, and UV step
+`+0x9C/+0xA0`.  Vtable `0x006C0718` has only destructor plus the three IColor
+methods; the texture setters and render method are non-virtual.  Declaring the
+37-byte wrapper virtual changes it to an indirect 39-byte body and is rejected.
+
+The 266-byte full setter also proves authored parameter-slot reuse.  After
+publishing the requested tile size/anchor, it reuses dead incoming argument
+slots as the two outputs of the texture-size query and later reads those slots
+as unsigned texture dimensions.  This is the same legitimate source-lifetime
+pattern seen in the exact HandleManager release path.  The setter initializes
+all four vertex colors, normalized UV origin/step, z=0.5f, rhw=1.0f, unit scale,
+and zero rotation.
+
+Do not promote the two large CTile methods yet.  Ordinary pinned `/O2` reaches
+242/266 for the full setter and roughly 734/756 for render because VC8 CSEs
+texture-dimension conversions and chooses different x87 lifetimes.  A bounded
+profile diagnostic found `/fp:strict` highly informative: the full setter grows
+to 270 bytes with a 204-byte exact non-relocation prefix and reproduces all four
+independent unsigned-dimension conversions; render reaches 754/756.  Its final
+constant-store/x87 schedule still differs, while `/fp:fast`, `/O1`, `/O2 /Os`,
+and `/fp:except` are clearly wrong.  Keep `/fp:strict` as TU-profile evidence,
+not an acceptance shortcut, and continue from the real CTile class/parameter
+lifetime rather than register, volatile, fake-local, or assembly experiments.

@@ -5337,7 +5337,7 @@ source = "src/characters/CHandleManagerEx.cpp"
 object = "build/match-units/CrossV106a_CHandleManagerEx.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "TH105 1.06a CHandleManagerEx<T> lifetime family: twenty class-disambiguated specializations, each with exact 130-byte ctor, 263-byte dtor, and 30-byte scalar deleting wrapper. Current TObjectManagerBase/vtable edges identify roster, Info, CSelect, Weather, Effect, and System specializations; Yuyuko dtor is independently fixed by its 0x006C55BC vtable xref. Natural checked-vector destruction uses one source-level object local per slot; ctor clears generation_counter only after the critical-section member ctor."
+notes = "TH105 1.06a CHandleManagerEx<T> lifetime family: twenty class-disambiguated specializations, each with exact 130-byte ctor, 263-byte dtor, and 30-byte scalar deleting wrapper, plus the canonical 170-byte SystemEffectObject release_handle specialization shared physically by manager release callers. Current TObjectManagerBase/vtable edges identify roster, Info, CSelect, Weather, Effect, and System specializations; Yuyuko dtor is independently fixed by its 0x006C55BC vtable xref. Natural checked-vector destruction uses one source-level object local per slot; release_handle uses the low16-slot/high16-generation token model, checked generations[index], out-of-line slots.at(index), and dead-parameter storage reuse for free-list push_back."
 
 [[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
 address = "0x0046edb0"
@@ -5997,6 +5997,18 @@ symbol_base = "??_G?$CHandleManagerEx@VSystemEffectObject@@@@UAEPAXI@Z"
 rel32_targets = [
   "??1?$CHandleManagerEx@VSystemEffectObject@@@@UAE@XZ=0x004361A0",
   "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-chandle-manager-ex-lifetime.functions]]
+address = "0x0056D8F0"
+symbol_base = "?release_handle@?$CHandleManagerEx@VSystemEffectObject@@@@QAEXI@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "_invalid_parameter_noinfo=0x0068A143",
+  "?at@?$vector@PAVSystemEffectObject@@V?$allocator@PAVSystemEffectObject@@@std@@@std@@QAEAAPAVSystemEffectObject@@I@Z=0x0056D450",
+  "?_Buynode@?$list@IV?$allocator@I@std@@@std@@IAEPAU_Node@?$_List_nod@IV?$allocator@I@std@@@2@PAU342@0ABI@Z=0x004129E0",
+  "?_Incsize@?$list@IV?$allocator@I@std@@@std@@IAEXI@Z=0x00402700",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
 ]
 
 [units.cross-v106a-effect-object-manager-base-lifetimes]
@@ -9834,4 +9846,95 @@ dir32_targets = [
   "___security_cookie=___security_cookie",
   "??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@",
   "??_7?$CCommandFactory@V?$TCommand4@EEEE@@@CScript@@6B@=??_7?$CCommandFactory@V?$TCommand4@EEEE@@@CScript@@6B@",
+]
+
+[units.cross-v106a-script-command-lifetime]
+kind = "probe"
+source = "src/battle/ScriptCommandLifetime.cpp"
+object = "build/match-units/CrossV106a_ScriptCommandLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current CScript 0x34 lifetime: checked command map +0x00, default factory +0x0C, checked pending-factory deque +0x14, runtime cells +0x28/+0x2C/+0x30. Constructor source order is target-backed and keeps existing register-command specializations exact."
+
+[[units.cross-v106a-script-command-lifetime.functions]]
+address = "0x00405600"
+symbol_base = "??0CScript@@QAE@XZ"
+rel32_targets = [
+  "?_Buynode@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@2@XZ=0x004061B0",
+]
+
+[units.cross-v106a-scenario-runtime]
+kind = "probe"
+source = "src/battle/ScenarioRuntime.cpp"
+object = "build/match-units/CrossV106a_ScenarioRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current CScenarioData vslot-1 runtime clear. The exact body independently exercises the checked text map at +0x32C, SystemEffect manager at +0x04 and CScript at +0x35C in the recovered 0x510 layout."
+
+[[units.cross-v106a-scenario-runtime.functions]]
+address = "0x00457DF0"
+symbol_base = "?clear_runtime@CScenarioData@th105@@UAEXXZ"
+rel32_targets = [
+  "?_Erase@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@std@@@2@$0A@@std@@@2@@Z=0x00436D30",
+  "?release_all_system_effects@?$SystemEffectManager@VSystemEffectObject@@@th105@@QAEXXZ=0x00436E60",
+  "?clear_commands@CScript@@QAEXXZ=0x004056C0",
+]
+
+[units.cross-v106a-scenario-result-runtime]
+kind = "probe"
+source = "src/battle/ScenarioResultRuntime.cpp"
+object = "build/match-units/CrossV106a_ScenarioResultRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current ScenarioResultResource 0x128 runtime island. Six exact methods share one CDesignBase/tile + parallel value/color/scale layout and target-backed object-pointer/cursor lifetimes."
+
+[[units.cross-v106a-scenario-result-runtime.functions]]
+address = "0x00454780"
+symbol_base = "?hide_and_reset@ScenarioResultResource@th105@@QAEXXZ"
+
+[[units.cross-v106a-scenario-result-runtime.functions]]
+address = "0x004547E0"
+symbol_base = "?add_nonnegative@ScenarioResultResource@th105@@QAEXHHH@Z"
+
+[[units.cross-v106a-scenario-result-runtime.functions]]
+address = "0x00454840"
+symbol_base = "?enter_phase_three@ScenarioResultResource@th105@@QAEXXZ"
+rel32_targets = ["?selector_random_roll@th105@@YAHH@Z=0x004067D0"]
+
+[[units.cross-v106a-scenario-result-runtime.functions]]
+address = "0x00454890"
+symbol_base = "?render@ScenarioResultResource@th105@@QAEXXZ"
+rel32_targets = [
+  "?draw_profile_overlay@th105@@YAXE@Z=0x0043F900",
+  "?render@ProfileTileView@th105@@QAEXMMHH@Z=0x004099F0",
+]
+
+[[units.cross-v106a-scenario-result-runtime.functions]]
+address = "0x00454950"
+symbol_base = "?set_entry_level@ScenarioResultResource@th105@@QAEXHH@Z"
+
+[[units.cross-v106a-scenario-result-runtime.functions]]
+address = "0x004549E0"
+symbol_base = "?reset@ScenarioResultResource@th105@@QAEXXZ"
+
+[units.cross-v106a-scenario-result-lifetime]
+kind = "probe"
+source = "src/battle/ScenarioResultLifetime.cpp"
+object = "build/match-units/CrossV106a_ScenarioResultLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current /GS ScenarioResultResource normal destructor. Texture release, virtual design cleanup and implicit tile/CDesignBase teardown reproduce the current SEH-backed 116-byte lifetime."
+
+[[units.cross-v106a-scenario-result-lifetime.functions]]
+address = "0x00454BF0"
+symbol_base = "??1ScenarioResultResource@th105@@QAE@XZ"
+rel32_targets = [
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "??1CDesignBase@th105@@UAE@XZ=0x00421890",
+]
+dir32_targets = [
+  "__ehhandler$??1ScenarioResultResource@th105@@QAE@XZ=__ehhandler$??1ScenarioResultResource@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+  "_title_color_vtable_anchor=_title_color_vtable_anchor_external",
 ]

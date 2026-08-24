@@ -47,6 +47,34 @@ CHandleManagerEx<ObjectType>::~CHandleManagerEx()
 }
 
 
+namespace {
+
+struct CHandleManagerObjectHandle32 {
+    unsigned short slot;
+    unsigned short generation;
+};
+
+} // namespace
+
+
+template <typename ObjectType>
+void CHandleManagerEx<ObjectType>::release_handle(unsigned handle_token)
+{
+    lock_34.enter();
+    const unsigned index =
+        reinterpret_cast<CHandleManagerObjectHandle32 *>(&handle_token)->slot;
+    if (generations_14[index] ==
+        reinterpret_cast<CHandleManagerObjectHandle32 *>(
+            &handle_token)->generation) {
+        generations_14[index] = 0;
+        slots_04.at(index)->~ObjectType();
+        handle_token = index;
+        free_slots_24.push_back(handle_token);
+    }
+    lock_34.leave();
+}
+
+
 #define TH105_INSTANTIATE_HANDLE_MANAGER(ObjectType) \
     template CHandleManagerEx<ObjectType>::CHandleManagerEx(); \
     template CHandleManagerEx<ObjectType>::~CHandleManagerEx()
@@ -71,5 +99,7 @@ TH105_INSTANTIATE_HANDLE_MANAGER(CSelectObject);
 TH105_INSTANTIATE_HANDLE_MANAGER(WeatherEffectObject);
 TH105_INSTANTIATE_HANDLE_MANAGER(EffectObject);
 TH105_INSTANTIATE_HANDLE_MANAGER(SystemEffectObject);
+
+template void CHandleManagerEx<SystemEffectObject>::release_handle(unsigned);
 
 #undef TH105_INSTANTIATE_HANDLE_MANAGER

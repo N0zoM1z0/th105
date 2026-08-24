@@ -232,3 +232,32 @@ git diff --check
   147/147 instruction shape after recovering `resource_handle_138 = 0`, and
   remains allocator-only pending stronger TU/source evidence rather than
   register forcing.
+
+
+- The newest Scenario core wave adds nine authored canonical-exact functions / 916 bytes while replacing prefix archaeology with reusable layouts. `CScript::CScript @ 0x00405600` is 65/65 from the complete 0x34 registry layout and the prior twelve 385-byte command-registration specializations remain exact after the header expansion. `CScenarioData::clear_runtime @ 0x00457DF0` is 72/72 and independently exercises the checked text map at +0x32C, SystemEffect manager at +0x04, and CScript at +0x35C in the recovered 0x510 Scenario object.
+- `ScenarioResultResource` is now a typed 0x128 runtime island with exact hide/reset `0x00454780` (76), add-nonnegative `0x004547E0` (93), enter-phase3 `0x00454840` (67), render `0x00454890` (187), level update `0x00454950` (141), reset `0x004549E0` (99), and `/GS` normal dtor `0x00454BF0` (116). The layout is CDesignBase +0x08, texture +0x58, UiTileA4 +0x5C, and parallel value/color/scale arrays at +0x100/+0x10C/+0x118 with alpha +0x124. Target-observed pointer/cursor lifetimes, not register coercion, are required for the exact reset/render bodies.
+- Continuation: manager invoke-each uses a real MSVC multiple-inheritance member-function pointer `{virtual thunk,this-adjustor}`. `CScenarioData::render @ 0x00457F90` reaches 930/930 and 281/281 but stops on persistent EBX/EBP allocation; Scenario ctor is 1528/1527, result update 403/403, result ctor 298/298, and SystemEffect release 119/119, all deliberate scheduler/private-ABI stops. Shared CTile/ProfileTile render `0x004099F0` remains an unclassified 756-byte high-leverage next target directly used by the exact result renderer.
+
+- The newest Scenario/handle-lifetime continuation adds one shared core body on
+  top of the nine-function Scenario wave: `CHandleManagerEx<SystemEffectObject>
+  ::release_handle @ 0x0056D8F0` is 170/170 canonical exact in the existing
+  61-function `/GS` handle-manager unit.  The exact source uses the same
+  low16-slot/high16-generation token model as the exact acquire family,
+  checked `generations[index]` (TU-inlined bounds checks), out-of-line
+  `slots.at(index)`, virtual destruction with flag 0, and reuse of the dead
+  `handle_token` parameter as the `list<unsigned>::push_back` value.  The
+  combined dirty wave is now 10 authored functions / 1,086 bytes and closes
+  CScenarioData -> SystemEffectManager -> CHandleManagerEx lifecycle ownership.
+- Do not restart the three release-all register experiments: SystemEffect
+  `0x00436E60`, effect `0x0046EEB0`, and roster `0x0056DA90` remain exact-length
+  semantic matches whose only relevant residual is target-EAX versus
+  fresh-EDX handle loading; same-TU visibility of the now-exact release_handle
+  does not change it.
+- High-leverage next target: the stable 0xA4 CTile island is now bounded across
+  both TH105 1.06 and 1.06a.  Current methods are `0x004098B0` (37),
+  `0x004098E0` (266), and `0x004099F0` (756); the old-target counterparts are
+  `0x00409410/0x00409440/0x00409550` with the same sizes.  Target code and the
+  physical copy constructor close texture/vertex/size/anchor/scale/rotation/UV
+  layout.  `/fp:strict` is a strong but non-acceptance TU clue (204-byte exact
+  prefix in the full setter, render 754/756); keep working source lifetime and
+  FP policy, not register/volatile/asm forcing.

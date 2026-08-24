@@ -64,6 +64,8 @@ struct TitleResourceManager : CHandleManager4 {
         int option_b);
     unsigned char release_title_resource_handle(unsigned int handle);
     void bind_texture(unsigned int handle, int stage);
+    void get_texture_size(
+        unsigned int handle, unsigned int *width, unsigned int *height);
 };
 
 extern TitleResourceManager g_title_resource_manager;
