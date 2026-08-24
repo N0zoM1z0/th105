@@ -9854,7 +9854,7 @@ source = "src/battle/ScriptCommandLifetime.cpp"
 object = "build/match-units/CrossV106a_ScriptCommandLifetime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current CScript 0x34 lifetime: checked command map +0x00, default factory +0x0C, checked pending-factory deque +0x14, runtime cells +0x28/+0x2C/+0x30. Constructor source order is target-backed and keeps existing register-command specializations exact."
+notes = "Current CScript/command runtime core: the 0x34 CScript lifetime plus RTTI-owned CComCharacter parser. CComCharacter is a 0x30 polymorphic command with std::string +0x08, integer payload +0x24/+0x28, byte +0x2C and RGB bytes +0x2D; parse reuses the input parameter as strtok_s context and an ordinary char hex-nibble helper naturally expands to the 505-byte target."
 
 [[units.cross-v106a-script-command-lifetime.functions]]
 address = "0x00405600"
@@ -9863,13 +9863,22 @@ rel32_targets = [
   "?_Buynode@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@2@XZ=0x004061B0",
 ]
 
+[[units.cross-v106a-script-command-lifetime.functions]]
+address = "0x00455EF0"
+symbol_base = "?parse@CComCharacter@@UAEXPAD@Z"
+rel32_targets = [
+  "_strtok_s=0x0068B1BC",
+  "_atol=0x0068B1B7",
+  "?assign_bytes@ScriptCommandStringAssignView@@QAEXPBDI@Z=0x004021C0",
+]
+
 [units.cross-v106a-scenario-runtime]
 kind = "probe"
 source = "src/battle/ScenarioRuntime.cpp"
 object = "build/match-units/CrossV106a_ScenarioRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current CScenarioData vslot-1 runtime clear. The exact body independently exercises the checked text map at +0x32C, SystemEffect manager at +0x04 and CScript at +0x35C in the recovered 0x510 layout."
+notes = "Current CScenarioData core runtime TU. Exact vslot-0 configure and vslot-1 clear share the recovered 0x524 physical class; exact ScenarioTextEntry dynamic render proves a real polymorphic 0x94 sprite member. The same TU carries a review-pending reset_runtime_state whose remaining five-byte-level difference is checked-iterator allocator/TU scheduling, not semantic drift."
 
 [[units.cross-v106a-scenario-runtime.functions]]
 address = "0x00457DF0"
@@ -9879,6 +9888,28 @@ rel32_targets = [
   "?release_all_system_effects@?$SystemEffectManager@VSystemEffectObject@@@th105@@QAEXXZ=0x00436E60",
   "?clear_commands@CScript@@QAEXXZ=0x004056C0",
 ]
+
+[[units.cross-v106a-scenario-runtime.functions]]
+address = "0x00454FE0"
+symbol_base = "?configure@CScenarioData@th105@@UAEXH@Z"
+rel32_targets = [
+  "?configure@ScenarioEffectOwner194@th105@@QAEXPBUScenarioEffectConfig128@2@@Z=0x004115A0",
+  "?reset@ScenarioResultResource@th105@@QAEXXZ=0x004549E0",
+]
+
+[[units.cross-v106a-scenario-runtime.functions]]
+address = "0x00454DA0"
+symbol_base = "?render_dynamic@ScenarioTextEntryRenderViewDC@th105@@QAEXXZ"
+rel32_targets = ["?scenario_text_wave@th105@@YAMH@Z=0x004064B0"]
+
+[[units.cross-v106a-scenario-runtime.functions]]
+address = "0x00454E50"
+symbol_base = "?update_dynamic_state@ScenarioTextEntryRenderViewDC@th105@@QAEHXZ"
+
+[[units.cross-v106a-scenario-runtime.functions]]
+address = "0x00454EC0"
+symbol_base = "?set_effect_color_bytes@CScenarioData@th105@@QAEXEEE@Z"
+rel32_targets = ["?configure@ScenarioEffectOwner194@th105@@QAEXPBUScenarioEffectConfig128@2@@Z=0x004115A0"]
 
 [units.cross-v106a-scenario-result-runtime]
 kind = "probe"

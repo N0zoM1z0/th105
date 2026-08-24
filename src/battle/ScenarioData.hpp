@@ -141,6 +141,8 @@ typedef char ScenarioTextEntryDC_size_must_be_0xdc[
 class CScenarioData {
 public:
     virtual void configure(int scenario_id);
+    void set_effect_color_bytes(
+        unsigned char c1, unsigned char c3, unsigned char c5);
     virtual void clear_runtime();
     virtual int update();
     virtual void render();
@@ -160,11 +162,23 @@ public:
     std::string string_4b8;
     std::string string_4d4;
     std::string string_4f0;
-    unsigned char tail_50c[4];
+    unsigned char state_50c;
+    unsigned char state_50d;
+    unsigned char state_50e;
+    unsigned char state_50f;
+    unsigned char state_510;
+    unsigned char state_511;
+    unsigned char reserved_512[2];
+    int field_514;
+    int field_518;
+    int field_51c;
+    int field_520;
+
+    void reset_runtime_state();
 };
 
-typedef char CScenarioData_size_must_be_0x510[
-    sizeof(CScenarioData) == 0x510 ? 1 : -1];
+typedef char CScenarioData_size_must_be_0x524[
+    sizeof(CScenarioData) == 0x524 ? 1 : -1];
 typedef char CScenarioData_map_offset_must_be_0x32c[
     offsetof(CScenarioData, text_entries_32c) == 0x32c ? 1 : -1];
 typedef char CScenarioData_script_offset_must_be_0x35c[

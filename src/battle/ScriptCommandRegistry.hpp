@@ -10,7 +10,22 @@
 // map, default factory, one checked pending-factory deque and three runtime
 // cells.  The +0x10 cell remains deliberately unnamed/uninitialized.
 class CCommand0 {};
-class CComCharacter {};
+
+class CComCharacter {
+public:
+    virtual ~CComCharacter();
+    virtual void parse(char *string);
+
+    int reserved_04;
+    std::string name_08;
+    int value_24;
+    int value_28;
+    unsigned char value_2c;
+    unsigned char color_2d[3];
+};
+
+typedef char CComCharacter_size_must_be_0x30[
+    sizeof(CComCharacter) == 0x30 ? 1 : -1];
 
 template <class A>
 class TCommand1 {};
