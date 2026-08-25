@@ -45,7 +45,13 @@ def require_header(path: Path, expected: list[str]) -> list[dict[str, str]]:
         reader = csv.DictReader(stream)
         if reader.fieldnames != expected:
             raise ValueError(f"{path.name}: unexpected columns: {reader.fieldnames}")
-        return list(reader)
+        entries = list(reader)
+        for line, row in enumerate(entries, start=2):
+            if None in row:
+                raise ValueError(f"{path.name}:{line}: too many CSV fields")
+            if any(row[field] is None for field in expected):
+                raise ValueError(f"{path.name}:{line}: too few CSV fields")
+        return entries
 
 
 def parse_address(raw: str, context: str) -> int:

@@ -411,3 +411,47 @@ subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
 evidence = "SHA-pinned VC8 SP1 /GS rebuild of the exact CScript registry TU regenerates nine checked std::_Tree/string COMDAT fingerprints whose complete current-inventory hit sets contain exactly 19 review candidates / 3876 bytes; the authored 385-byte register_command specializations are deliberately absent and full-inventory equivalence groups replay fail-closed"
+
+[[rules]]
+id = "vc8-generated-spell-tree-probe-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-spell-tree-probe-origin-anchors.toml"
+expected_count = 4
+expected_bytes = 935
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of the tracked SpellRecordView std::map probe regenerates two checked std::_Tree COMDATs, one std::pair destructor, and the implicit SpellRecordView copy constructor; all four relocation-masked fingerprints are unique across all 4010 current function spans and replay fail-closed"
+
+[[rules]]
+id = "vc8-generated-youmu-record-deque-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-youmu-record-deque-origin-anchors.toml"
+expected_count = 4
+expected_bytes = 615
+origin = "compiler_generated"
+subsystem = "characters"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of the tracked deque<YoumuObjectRecord> explicit-instantiation probe regenerates Growmap, push_front, checked iterator subscript, and back COMDATs; all four fingerprints are unique across all 4010 current function spans and replay fail-closed"
+
+[[rules]]
+id = "vc8-generated-scenario-event-parser-list-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-scenario-event-parser-std-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 374
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of src/battle/ScenarioEventParser.cpp regenerates the checked std::list<int> range insert and assign COMDATs; both relocation-masked fingerprints are unique across all 4010 current function spans and replay fail-closed"
+
+[[rules]]
+id = "vc8-generated-battle-input-recording-vector-comdat-106a"
+vc8_generated_anchor_file = "config/vc8-generated-battle-input-recording-std-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 218
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of src/battle/BattleInputRecording.cpp regenerates the checked vector<FixedSlotEnvelope>::_Assign_n COMDAT; its 166 non-relocation bytes select exactly 0x0042C3F0 across all 4010 current function spans"

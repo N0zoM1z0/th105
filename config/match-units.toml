@@ -10054,3 +10054,268 @@ dir32_targets = [
   "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
   "_title_color_vtable_anchor=_title_color_vtable_anchor_external",
 ]
+
+[units.cross-v106a-effect-animation-sequence-virtuals]
+kind = "probe"
+source = "src/battle/EffectAnimationSequenceVirtuals.cpp"
+object = "build/match-units/CrossV106a_EffectAnimationSequenceVirtuals.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current CSelectObject, WeatherEffectObject, EffectObject, and InfoEffectObject vtables share the complete effect-animation frame/block/tree sequence surface. A real checked std::vector<EffectAnimationFrame28> lives at block +0x04 (28-byte frames), with tree +0x160 and current block +0x168; ordinary C++ reproduces all eight physical methods exactly."
+
+[[units.cross-v106a-effect-animation-sequence-virtuals.functions]]
+address = "0x00473950"
+symbol_base = "apply_sequence_frame"
+rel32_targets = [
+  "?apply_current_frame@EffectAnimationSequenceView@th105@@QAEHXZ=0x00436760",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+
+[[units.cross-v106a-effect-animation-sequence-virtuals.functions]]
+address = "0x004739D0"
+symbol_base = "set_sequence_frame"
+rel32_targets = ["?apply_sequence_frame@EffectAnimationSequenceView@th105@@QAEHXZ=0x00473950"]
+
+[[units.cross-v106a-effect-animation-sequence-virtuals.functions]]
+address = "0x004739F0"
+symbol_base = "next_sequence_frame"
+rel32_targets = ["?apply_sequence_frame@EffectAnimationSequenceView@th105@@QAEHXZ=0x00473950"]
+
+[[units.cross-v106a-effect-animation-sequence-virtuals.functions]]
+address = "0x00473A40"
+symbol_base = "previous_sequence_frame"
+rel32_targets = ["?apply_sequence_frame@EffectAnimationSequenceView@th105@@QAEHXZ=0x00473950"]
+
+[[units.cross-v106a-effect-animation-sequence-virtuals.functions]]
+address = "0x00473A70"
+symbol_base = "next_sequence_block"
+
+[[units.cross-v106a-effect-animation-sequence-virtuals.functions]]
+address = "0x00473B00"
+symbol_base = "previous_sequence_block"
+
+[[units.cross-v106a-effect-animation-sequence-virtuals.functions]]
+address = "0x00473B80"
+symbol_base = "select_sequence"
+rel32_targets = [
+  "?lower_bound@EffectAnimationTree@th105@@QAEPAUEffectAnimationTreeIterator@2@PAU32@PBH@Z=0x0045C320",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+
+[[units.cross-v106a-effect-animation-sequence-virtuals.functions]]
+address = "0x00473C50"
+symbol_base = "reset_sequence"
+rel32_targets = [
+  "?lower_bound@EffectAnimationTree@th105@@QAEPAUEffectAnimationTreeIterator@2@PAU32@PBH@Z=0x0045C320",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+
+[units.cross-v106a-script-command-runtime]
+kind = "probe"
+source = "src/battle/ScriptCommandRuntime.cpp"
+object = "build/match-units/CrossV106a_ScriptCommandRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current RTTI-owned CScript command runtime family. Natural typed tokenizer templates reproduce all command parse specializations; factory create uses default construction followed by command-id publication, matching the target allocation-null CFG and string-member lifetime. Implicit command destructors are compiler-owned C++ lifetimes, not hand-written vptr stores."
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x0044E8E0"
+symbol_base = "?parse@CCommand0@@UAEXPAD@Z"
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x00450330"
+symbol_base = "?parse@?$TCommand2@HH@@UAEXPAD@Z"
+rel32_targets = ["_strtok_s=0x0068B1BC","_atol=0x0068B1B7"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x00450380"
+symbol_base = "?parse@?$TCommand5@HMMMH@@UAEXPAD@Z"
+rel32_targets = ["_strtok_s=0x0068B1BC","_atol=0x0068B1B7","_atof=0x0068B420"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x00450420"
+symbol_base = "?parse@?$TCommand5@HMMHH@@UAEXPAD@Z"
+rel32_targets = ["_strtok_s=0x0068B1BC","_atol=0x0068B1B7","_atof=0x0068B420"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x004504C0"
+symbol_base = "?parse@?$TCommand1@H@@UAEXPAD@Z"
+rel32_targets = ["_strtok_s=0x0068B1BC","_atol=0x0068B1B7"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x00451750"
+symbol_base = "?parse@?$TCommand1@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@@UAEXPAD@Z"
+rel32_targets = ["_strtok_s=0x0068B1BC","?assign_bytes@ScriptCommandStringAssignView@@QAEXPBDI@Z=0x004021C0"]
+dir32_targets = ["??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x004517B0"
+symbol_base = "?parse@?$TCommand5@HV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHH@@UAEXPAD@Z"
+rel32_targets = ["_strtok_s=0x0068B1BC","_atol=0x0068B1B7","?assign_bytes@ScriptCommandStringAssignView@@QAEXPBDI@Z=0x004021C0"]
+dir32_targets = ["??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x004550E0"
+symbol_base = "?parse@?$TCommand4@EEEE@@UAEXPAD@Z"
+rel32_targets = ["_strtok_s=0x0068B1BC","_atol=0x0068B1B7"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x004560F0"
+symbol_base = "?parse@?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@@UAEXPAD@Z"
+rel32_targets = ["_strtok_s=0x0068B1BC","?assign_bytes@ScriptCommandStringAssignView@@QAEXPBDI@Z=0x004021C0"]
+dir32_targets = ["??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x00456190"
+symbol_base = "?parse@?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@@UAEXPAD@Z"
+rel32_targets = ["_strtok_s=0x0068B1BC","_atol=0x0068B1B7","?assign_bytes@ScriptCommandStringAssignView@@QAEXPBDI@Z=0x004021C0"]
+dir32_targets = ["??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x00456210"
+symbol_base = "?parse@?$TCommand4@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HMM@@UAEXPAD@Z"
+rel32_targets = ["_strtok_s=0x0068B1BC","_atol=0x0068B1B7","_atof=0x0068B420","?assign_bytes@ScriptCommandStringAssignView@@QAEXPBDI@Z=0x004021C0"]
+dir32_targets = ["??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x004562C0"
+symbol_base = "?parse@?$TCommand3@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H_N@@UAEXPAD@Z"
+rel32_targets = ["_strtok_s=0x0068B1BC","_atol=0x0068B1B7","?assign_bytes@ScriptCommandStringAssignView@@QAEXPBDI@Z=0x004021C0"]
+dir32_targets = ["??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x00456360"
+symbol_base = "?parse@?$TCommand3@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HH@@UAEXPAD@Z"
+rel32_targets = ["_strtok_s=0x0068B1BC","_atol=0x0068B1B7","?assign_bytes@ScriptCommandStringAssignView@@QAEXPBDI@Z=0x004021C0"]
+dir32_targets = ["??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x004563F0"
+symbol_base = "?parse@?$TCommand4@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHH@@UAEXPAD@Z"
+rel32_targets = ["_strtok_s=0x0068B1BC","_atol=0x0068B1B7","?assign_bytes@ScriptCommandStringAssignView@@QAEXPBDI@Z=0x004021C0"]
+dir32_targets = ["??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x004506C0"
+symbol_base = "?create@?$CCommandFactory@V?$TCommand2@HH@@@CScript@@UAEPAVCCommandBase@@XZ"
+rel32_targets = ["??2@YAPAXI@Z=0x00689DCB"]
+dir32_targets = ["??_7?$TCommand2@HH@@6B@=??_7?$TCommand2@HH@@6B@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x004506F0"
+symbol_base = "?create@?$CCommandFactory@V?$TCommand5@HMMMH@@@CScript@@UAEPAVCCommandBase@@XZ"
+rel32_targets = ["??2@YAPAXI@Z=0x00689DCB"]
+dir32_targets = ["??_7?$TCommand5@HMMMH@@6B@=??_7?$TCommand5@HMMMH@@6B@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x00450720"
+symbol_base = "?create@?$CCommandFactory@V?$TCommand5@HMMHH@@@CScript@@UAEPAVCCommandBase@@XZ"
+rel32_targets = ["??2@YAPAXI@Z=0x00689DCB"]
+dir32_targets = ["??_7?$TCommand5@HMMHH@@6B@=??_7?$TCommand5@HMMHH@@6B@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x00450750"
+symbol_base = "?create@?$CCommandFactory@VCCommand0@@@CScript@@UAEPAVCCommandBase@@XZ"
+rel32_targets = ["??2@YAPAXI@Z=0x00689DCB"]
+dir32_targets = ["??_7CCommand0@@6B@=??_7CCommand0@@6B@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x00450780"
+symbol_base = "?create@?$CCommandFactory@V?$TCommand1@H@@@CScript@@UAEPAVCCommandBase@@XZ"
+rel32_targets = ["??2@YAPAXI@Z=0x00689DCB"]
+dir32_targets = ["??_7?$TCommand1@H@@6B@=??_7?$TCommand1@H@@6B@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x00450BF0"
+symbol_base = "?create@?$CCommandFactory@V?$TCommand1@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@@@CScript@@UAEPAVCCommandBase@@XZ"
+rel32_targets = ["??2@YAPAXI@Z=0x00689DCB"]
+dir32_targets = ["??_7?$TCommand1@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@@6B@=??_7?$TCommand1@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@@6B@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x00450C30"
+symbol_base = "?create@?$CCommandFactory@V?$TCommand5@HV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHH@@@CScript@@UAEPAVCCommandBase@@XZ"
+rel32_targets = ["??2@YAPAXI@Z=0x00689DCB"]
+dir32_targets = ["??_7?$TCommand5@HV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHH@@6B@=??_7?$TCommand5@HV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHH@@6B@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x00455240"
+symbol_base = "?create@?$CCommandFactory@V?$TCommand4@EEEE@@@CScript@@UAEPAVCCommandBase@@XZ"
+rel32_targets = ["??2@YAPAXI@Z=0x00689DCB"]
+dir32_targets = ["??_7?$TCommand4@EEEE@@6B@=??_7?$TCommand4@EEEE@@6B@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x00455620"
+symbol_base = "?create@?$CCommandFactory@VCComCharacter@@@CScript@@UAEPAVCCommandBase@@XZ"
+rel32_targets = ["??2@YAPAXI@Z=0x00689DCB"]
+dir32_targets = ["??_7CComCharacter@@6B@=??_7CComCharacter@@6B@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x00455660"
+symbol_base = "?create@?$CCommandFactory@V?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@@@CScript@@UAEPAVCCommandBase@@XZ"
+rel32_targets = ["??2@YAPAXI@Z=0x00689DCB"]
+dir32_targets = ["??_7?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@@6B@=??_7?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@@6B@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x004556B0"
+symbol_base = "?create@?$CCommandFactory@V?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@@@CScript@@UAEPAVCCommandBase@@XZ"
+rel32_targets = ["??2@YAPAXI@Z=0x00689DCB"]
+dir32_targets = ["??_7?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@@6B@=??_7?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@@6B@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x004556F0"
+symbol_base = "?create@?$CCommandFactory@V?$TCommand4@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HMM@@@CScript@@UAEPAVCCommandBase@@XZ"
+rel32_targets = ["??2@YAPAXI@Z=0x00689DCB"]
+dir32_targets = ["??_7?$TCommand4@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HMM@@6B@=??_7?$TCommand4@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HMM@@6B@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x00455730"
+symbol_base = "?create@?$CCommandFactory@V?$TCommand3@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H_N@@@CScript@@UAEPAVCCommandBase@@XZ"
+rel32_targets = ["??2@YAPAXI@Z=0x00689DCB"]
+dir32_targets = ["??_7?$TCommand3@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H_N@@6B@=??_7?$TCommand3@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H_N@@6B@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x00455770"
+symbol_base = "?create@?$CCommandFactory@V?$TCommand3@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HH@@@CScript@@UAEPAVCCommandBase@@XZ"
+rel32_targets = ["??2@YAPAXI@Z=0x00689DCB"]
+dir32_targets = ["??_7?$TCommand3@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HH@@6B@=??_7?$TCommand3@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HH@@6B@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x004557B0"
+symbol_base = "?create@?$CCommandFactory@V?$TCommand4@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHH@@@CScript@@UAEPAVCCommandBase@@XZ"
+rel32_targets = ["??2@YAPAXI@Z=0x00689DCB"]
+dir32_targets = ["??_7?$TCommand4@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHH@@6B@=??_7?$TCommand4@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHH@@6B@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x00450100"
+symbol_base = "??_GCCommandFactoryBase@CScript@@UAEPAXI@Z"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = ["??_7CCommandFactoryBase@CScript@@6B@=??_7CCommandFactoryBase@CScript@@6B@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x004504F0"
+symbol_base = "??_GCCommandBase@@UAEPAXI@Z"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = ["??_7CCommandBase@@6B@=??_7CCommandBase@@6B@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x00450C70"
+symbol_base = "??_G?$TCommand5@HV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHH@@UAEPAXI@Z"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = ["??_7CCommandBase@@6B@=??_7CCommandBase@@6B@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x00455310"
+symbol_base = "??1?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@@UAE@XZ"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = ["??_7CCommandBase@@6B@=??_7CCommandBase@@6B@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x004557F0"
+symbol_base = "??_G?$TCommand1@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@@UAEPAXI@Z"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = ["??_7CCommandBase@@6B@=??_7CCommandBase@@6B@"]
+
+[[units.cross-v106a-script-command-runtime.functions]]
+address = "0x00455830"
+symbol_base = "??_G?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@@UAEPAXI@Z"
+rel32_targets = ["??1?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@@UAE@XZ=0x00455310","??3@YAXPAX@Z=0x006898EA"]

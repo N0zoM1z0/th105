@@ -1,0 +1,34 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "scripts/probes/spell_tree.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 1
+alignment_tail_hex = "cc"
+
+# This probe forces the checked VC8 std::_Tree/map specialization used by
+# SpellRecordView.  The implicit SpellRecordView copy constructor is included:
+# it has no authored out-of-line source definition and is generated only
+# because the std::pair/tree machinery requires value copying.
+
+[[anchors]]
+address = "0x00433690"
+size = 509
+symbol = "?_Insert@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@IAE?AViterator@12@_NPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@2@ABU?$pair@$$CBHUSpellRecordView@th105@@@2@@Z"
+
+[[anchors]]
+address = "0x00433510"
+size = 166
+symbol = "?_Buynode@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@2@PAU342@00ABU?$pair@$$CBHUSpellRecordView@th105@@@2@D@Z"
+
+[[anchors]]
+address = "0x00432B90"
+size = 71
+symbol = "??1?$pair@$$CBHUSpellRecordView@th105@@@std@@QAE@XZ"
+
+[[anchors]]
+address = "0x00432ED0"
+size = 189
+symbol = "??0SpellRecordView@th105@@QAE@ABU01@@Z"

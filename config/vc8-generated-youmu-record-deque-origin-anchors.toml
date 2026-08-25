@@ -1,0 +1,32 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "scripts/probes/deque_youmu_record.cpp"
+enable_gs = false
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 0
+alignment_tail_hex = ""
+
+# The tracked probe explicitly instantiates checked deque<YoumuObjectRecord>.
+# Each selected fingerprint is unique across all 4,010 current function spans.
+
+[[anchors]]
+address = "0x005399A0"
+size = 341
+symbol = "?_Growmap@?$deque@UYoumuObjectRecord@th105@@V?$allocator@UYoumuObjectRecord@th105@@@std@@@std@@IAEXI@Z"
+
+[[anchors]]
+address = "0x00539B00"
+size = 97
+symbol = "?push_front@?$deque@UYoumuObjectRecord@th105@@V?$allocator@UYoumuObjectRecord@th105@@@std@@@std@@QAEXABUYoumuObjectRecord@th105@@@Z"
+
+[[anchors]]
+address = "0x004509D0"
+size = 90
+symbol = "??A?$_Deque_iterator@UYoumuObjectRecord@th105@@V?$allocator@UYoumuObjectRecord@th105@@@std@@$00@std@@QBEAAUYoumuObjectRecord@th105@@H@Z"
+
+[[anchors]]
+address = "0x00450B90"
+size = 87
+symbol = "?back@?$deque@UYoumuObjectRecord@th105@@V?$allocator@UYoumuObjectRecord@th105@@@std@@@std@@QAEAAUYoumuObjectRecord@th105@@XZ"

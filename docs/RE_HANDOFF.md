@@ -8,15 +8,19 @@ seeds using current-target-backed structural remapping where appropriate.
 
 ## Verified state
 
+- **Newest combined command/effect exact wave:** 43 canonical-exact authored functions / 3,659 bytes across two new ordinary `/O2` units. The CScript side contributes 35 / 2,803 bytes: fourteen RTTI-owned generic parse virtuals, fifteen factory-create virtuals, and six distinct command/factory lifetime bodies from the shared `CCommandBase` / `TCommand1..5` contract. The effect side contributes eight shared sequence methods / 856 bytes at `0x00473950..0x00473C50`; current four-vtable ownership plus native checked `std::vector<EffectAnimationFrame28> @ block+0x04` (0x1C-byte frames), tree `+0x160`, and current block `+0x168` make apply/frame/block/select/reset all zero-difference. No inline assembly, volatile/register forcing, manual vtables, copied bytes, or fake dependencies are used.
+- The same checkpoint replayably excludes **11 additional VC8-generated candidates / 2,142 bytes** through four SHA-pinned full-inventory manifests: SpellRecord tree/copy helpers (4 / 935), Youmu record deque helpers (4 / 615), Scenario event-parser checked-list helpers (2 / 374), and BattleInputRecording checked-vector `_Assign_n` (1 / 218). Every fingerprint is replayed across all 4,010 spans; no review-only discovery result is accepted directly.
+- Current checkpoint: **815 authored exact functions / 129,101 authored bytes / 236 units; 967 excluded; 2,228 review-pending** out of 4,010 tracked candidates. Relative to `92d7628`, this checkpoint removes 54 candidates from review (43 authored exact + 11 generated exclusions). The 95% authored-function/byte goals still cannot be stated honestly until the remaining origin review establishes the full authored denominator; continue pairing exact recovery with fail-closed compiler/library census rather than dividing by the currently classified subset.
+
 - Canonical SHA-256:
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 - `resources/th105.exe` is byte-identical to the executable extracted from the
   official `th105_update_106a.exe` payload.
 - IDA metadata, entry `0x0068B9D2`, five separated mapped-byte samples, required
   read tools, and a function query pass `scripts/check-ida-mcp.py`.
-- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,010: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0`, source-level fighter phase entries `0x00464630`/`0x00464780`, standalone `CMenuReplay` scalar wrapper `0x00446F40`, `CMenuReplay::update_mode_state @ 0x00446590`, independent `CFileWriter_dtor @ 0x00407BF0`, independent `CSpriteEx::commit_transform @ 0x004073C0`, independent `FrameData::~FrameData @ 0x00421A70`, and independent `update_fighter_counter_thresholds @ 0x0045B300`, all missed or tail-attached by auto-analysis. Current reviewed state is 741 authored functions, 931 classified exclusions, and 2,338 still awaiting origin/boundary review.
-- All 741 confirmed authored functions are source-present and canonical exact:
-  116,919 exact authored bytes across 229 configured VC8 units.
+- The fresh IDA auto-analysis inventory remains 4,001 candidates. The corrected tracked ledger has 4,010: current-target boundary evidence recovered `CFileReader_dtor @ 0x0040CEB0`, source-level fighter phase entries `0x00464630`/`0x00464780`, standalone `CMenuReplay` scalar wrapper `0x00446F40`, `CMenuReplay::update_mode_state @ 0x00446590`, independent `CFileWriter_dtor @ 0x00407BF0`, independent `CSpriteEx::commit_transform @ 0x004073C0`, independent `FrameData::~FrameData @ 0x00421A70`, and independent `update_fighter_counter_thresholds @ 0x0045B300`, all missed or tail-attached by auto-analysis. Current checkpoint after the combined command/effect/origin wave is 815 authored functions, 967 classified exclusions, and 2,228 still awaiting origin/boundary review.
+- All 815 confirmed authored functions are source-present and canonical exact:
+  129,101 exact authored bytes across 236 configured VC8 units.
 
 - The newest shared `TObjectManagerBase` tracked-list wave adds **38 core authored canonical-exact functions / 4,009 bytes** without register coercion. Fifteen roster specializations and CSelect/Weather/Effect/InfoEffect each close both `acquire_and_link_object` (94 bytes) and `preallocate_object_pool` (117 bytes). The decisive source fact is a real checked `std::list<BaseObject *>::push_back` after a small ordinary TU-local acquire/handle-publication helper; pinned VC8 inlines that helper naturally and selects the target persistent-register lifetime. Sakuya's preallocate ABI is corrected to `void` from caller evidence. The three tracked-list units replay 28/28, 2/2, and 8/8 exact respectively.
 
@@ -147,10 +151,9 @@ current xrefs/vtables/RTTI/relocations. Treat every old 1.06 address, callee,
 name, and implementation as a hypothesis until independently reconciled
 against 1.06a.
 
-The 95% authored-function and authored-byte goals cannot be reported yet: 2,389
-provisional candidates still need authored/excluded classification, so the
-global authored denominator is not established. Do not use the current 690/690
-exact subset as a substitute denominator.
+The 95% authored-function and authored-byte goals cannot be reported yet: 2,247
+provisional candidates still need authored/excluded classification at this committed checkpoint, so the
+global authored denominator is not established. Do not use the current exact subset as a substitute denominator.
 
 - The newest CBattleManager dispatcher/transition wave adds two canonical-exact vtable methods / 969 bytes. `dispatch_battle_state_frame_472b20 @ 0x00472B20` is 572/572 under `/GS`; its network/menu/session paths and seven phase virtual calls are ordinary C++, and the trailing 28-byte switch table is outside the reviewed callable boundary. `transition_slot_34 @ 0x004728C0` is 397/397; repeated `g_info_manager` loads preserve target alias lifetime, current phase-1 position is 400.0f at `0x006C3A5C`, and phase 6 uses only the observed 0x44 CMenuEnd allocation extent before external ctor/install.
 - Keep `BattleInputGate::poll_synchronized_input @ 0x004712B0` pending. Its RAII lock/input semantics and `/GS` EH layout are closed; a truthful bool local reaches 129/129, but target/fresh still choose opposite BL/CL allocation for callback availability versus equality. No register forcing, dummy lifetime, or inline assembly.

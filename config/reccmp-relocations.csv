@@ -651,3 +651,20 @@ __ehhandler$??1ScenarioResultResource@th105@@QAE@XZ,0x006BA816,8b542408,0,Curren
 ??_C@_08CBFCMNKF@interval?$AA@,0x006C2690,696e74657276616c00,0,Current 1.06a scene timeline registry 0x00453BC0 references literal 'interval' at 0x006C2690; canonical bytes attested from target 2026-08-24,address
 ??_C@_06LIGDCBBN@notify?$AA@,0x006C2688,6e6f7469667900,0,Current 1.06a scene timeline registry 0x00453BC0 references literal 'notify' at 0x006C2688; canonical bytes attested from target 2026-08-24,address
 ??_C@_03JBJLGPFL@end?$AA@,0x006C2684,656e6400,0,Current 1.06a scene timeline registry 0x00453BC0 references literal 'end' at 0x006C2684; canonical bytes attested from target 2026-08-24,address
+??_7CCommandFactoryBase@CScript@@6B@,0x006C25C0,000145003499680000000000,0,Current RTTI names the target base CScript::ICommandFactory; CCommandFactoryBase is the retained narrow source ABI alias. Factory deleting wrappers restore this vtable; 12-byte target prefix attested 2026-08-25,address
+??_7CCommandBase@@6B@,0x006C25E0,f004450034996800b08a6d00,0,Current RTTI-owned CCommandBase vtable; deleting command lifetimes restore it; 12-byte target prefix attested 2026-08-25,address
+??_7?$TCommand2@HH@@6B@,0x006C2634,f004450030034500c48c6d00,0,"Current RTTI-owned TCommand2<int,int> vtable; create/parse slots independently identify the specialization; attested 2026-08-25",address
+??_7?$TCommand5@HMMMH@@6B@,0x006C2640,f004450080034500108d6d00,0,"Current RTTI-owned TCommand5<int,float,float,float,int> vtable; attested 2026-08-25",address
+??_7?$TCommand5@HMMHH@@6B@,0x006C264C,f0044500200445005c8d6d00,0,"Current RTTI-owned TCommand5<int,float,float,int,int> vtable; attested 2026-08-25",address
+??_7CCommand0@@6B@,0x006C2658,f0044500e0e84400a88d6d00,0,Current RTTI-owned CCommand0 vtable; attested 2026-08-25,address
+??_7?$TCommand1@H@@6B@,0x006C2664,f0044500c0044500f48d6d00,0,Current RTTI-owned TCommand1<int> vtable; attested 2026-08-25,address
+??_7?$TCommand1@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@@6B@,0x006C2670,f057450050174500408e6d00,0,Current RTTI-owned TCommand1<std::string> vtable; attested 2026-08-25,address
+??_7?$TCommand5@HV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHH@@6B@,0x006C267C,700c4500b0174500656e6400,0,"Current RTTI-owned TCommand5<int,std::string,int,int,int> vtable; attested 2026-08-25",address
+??_7?$TCommand4@EEEE@@6B@,0x006C2800,f0044500e0504500c0916d00,0,"Current RTTI-owned TCommand4<unsigned char,unsigned char,unsigned char,unsigned char> vtable; attested 2026-08-25",address
+??_7CComCharacter@@6B@,0x006C280C,f0574500f05e45000c926d00,0,Current RTTI-owned CComCharacter vtable; create and already-exact parse independently identify the class; attested 2026-08-25,address
+??_7?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@@6B@,0x006C2818,30584500f060450058926d00,0,"Current RTTI-owned TCommand2<std::string,std::string> vtable; attested 2026-08-25",address
+??_7?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@@6B@,0x006C2824,f057450090614500a4926d00,0,"Current RTTI-owned TCommand2<std::string,int> vtable; attested 2026-08-25",address
+??_7?$TCommand4@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HMM@@6B@,0x006C2830,f057450010624500f0926d00,0,"Current RTTI-owned TCommand4<std::string,int,float,float> vtable; attested 2026-08-25",address
+??_7?$TCommand3@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H_N@@6B@,0x006C283C,f0574500c06245003c936d00,0,"Current RTTI-owned TCommand3<std::string,int,bool> vtable; attested 2026-08-25",address
+??_7?$TCommand3@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HH@@6B@,0x006C2848,f05745006063450088936d00,0,"Current RTTI-owned TCommand3<std::string,int,int> vtable; attested 2026-08-25",address
+??_7?$TCommand4@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHH@@6B@,0x006C2854,f0574500f0634500d4936d00,0,"Current RTTI-owned TCommand4<std::string,int,int,int> vtable; attested 2026-08-25",address

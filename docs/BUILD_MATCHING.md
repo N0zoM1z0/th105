@@ -20,6 +20,8 @@ An exact function requires all of the following:
 Build success, objdiff similarity, decompiler resemblance, and old 1.06
 reports do not satisfy this boundary.
 
+Tracking CSV row width is part of the acceptance boundary. `scripts/validate-tracking.py` now rejects both extra and missing CSV fields instead of silently accepting `csv.DictReader`'s `None` overflow key. The concrete failure was an older `functions.csv` signature containing an unquoted comma: a standard DictWriter round-trip could then truncate the inventory after the malformed row. Keep signatures/notes CSV-quoted and run tracking validation before any generated origin write; never mass-rewrite a tracking ledger after a parse-width warning.
+
 ## Focused loop
 
 ```bash
