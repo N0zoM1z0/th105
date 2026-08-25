@@ -14,8 +14,11 @@ struct BattleBackgroundLayoutView {
     unsigned char reserved_20[0x10];
     float right_30;
     float bottom_34;
+    unsigned char reserved_38[0x08];
+    float runtime_scalar_40;
 
     void place_sprite(CSpriteEx *sprite, float x_scale, float y_scale);
+    void set_runtime_scalar(float value);
 };
 
 extern BattleBackgroundLayoutView g_battle_background_layout;

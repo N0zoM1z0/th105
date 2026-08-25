@@ -1,0 +1,59 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "scripts/probes/spriteex_vector_generated.cpp"
+enable_gs = false
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 1
+alignment_tail_hex = "cc"
+
+[[anchors]]
+address = "0x00465D50"
+size = 129
+symbol = "?erase@?$vector@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@@std@@QAE?AV?$_Vector_iterator@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@@2@V32@0@Z"
+
+[[anchors]]
+address = "0x00465C30"
+size = 94
+symbol = "??$_Copy_backward_opt@PAVCSpriteEx@@PAV1@@std@@YAPAVCSpriteEx@@PAV1@00Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x00435C80"
+size = 91
+symbol = "??$_Allocate@VCSpriteEx@@@std@@YAPAVCSpriteEx@@IPAV1@@Z"
+
+[[anchors]]
+address = "0x00465BD0"
+size = 90
+symbol = "??$_Copy_opt@PAVCSpriteEx@@PAV1@@std@@YAPAVCSpriteEx@@PAV1@00Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x00465F90"
+size = 58
+symbol = "?_Ufill@?$vector@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@@std@@IAEPAVCSpriteEx@@PAV3@IABV3@@Z"
+
+[[anchors]]
+address = "0x00465B50"
+size = 56
+symbol = "??$_Copy_opt@PAVCSpriteEx@@PAV1@Uforward_iterator_tag@std@@@std@@YAPAVCSpriteEx@@PAV1@00Uforward_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x00465B90"
+size = 56
+symbol = "??$_Copy_backward_opt@PAVCSpriteEx@@PAV1@Uforward_iterator_tag@std@@@std@@YAPAVCSpriteEx@@PAV1@00Uforward_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x00435FC0"
+size = 41
+symbol = "?_Destroy@?$vector@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@@std@@IAEXPAVCSpriteEx@@0@Z"
+
+[[anchors]]
+address = "0x00465CE0"
+size = 41
+symbol = "??$_Fill@PAVCSpriteEx@@V1@@std@@YAXPAVCSpriteEx@@0ABV1@@Z"
+
+[[anchors]]
+address = "0x00465480"
+size = 33
+symbol = "?size@?$vector@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@@std@@QBEIXZ"

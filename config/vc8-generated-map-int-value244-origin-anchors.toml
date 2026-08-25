@@ -1,0 +1,44 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "scripts/probes/map_int_value244_generated.cpp"
+enable_gs = false
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 0
+alignment_tail_hex = ""
+
+[[anchors]]
+address = "0x00455040"
+size = 159
+symbol = "?_Dec@const_iterator@?$_Tree@V?$_Tmap_traits@HUTreeValue244@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUTreeValue244@th105@@@std@@@4@$0A@@std@@@std@@QAEXXZ"
+
+[[anchors]]
+address = "0x00435C00"
+size = 126
+symbol = "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@HUTreeValue244@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUTreeValue244@th105@@@std@@@4@$0A@@std@@@std@@QAEXXZ"
+
+[[anchors]]
+address = "0x00435B30"
+size = 85
+symbol = "?_Rrotate@?$_Tree@V?$_Tmap_traits@HUTreeValue244@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUTreeValue244@th105@@@std@@@4@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUTreeValue244@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUTreeValue244@th105@@@std@@@4@$0A@@std@@@2@@Z"
+
+[[anchors]]
+address = "0x00435DF0"
+size = 81
+symbol = "?_Lrotate@?$_Tree@V?$_Tmap_traits@HUTreeValue244@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUTreeValue244@th105@@@std@@@4@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUTreeValue244@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUTreeValue244@th105@@@std@@@4@$0A@@std@@@2@@Z"
+
+[[anchors]]
+address = "0x00455200"
+size = 64
+symbol = "?_Buynode@?$_Tree@V?$_Tmap_traits@HUTreeValue244@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUTreeValue244@th105@@@std@@@4@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUTreeValue244@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUTreeValue244@th105@@@std@@@4@$0A@@std@@@2@XZ"
+
+[[anchors]]
+address = "0x00435AF0"
+size = 31
+symbol = "?_Max@?$_Tree@V?$_Tmap_traits@HUTreeValue244@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUTreeValue244@th105@@@std@@@4@$0A@@std@@@std@@KAPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUTreeValue244@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUTreeValue244@th105@@@std@@@4@$0A@@std@@@2@PAU342@@Z"
+
+[[anchors]]
+address = "0x00435B10"
+size = 30
+symbol = "?_Min@?$_Tree@V?$_Tmap_traits@HUTreeValue244@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUTreeValue244@th105@@@std@@@4@$0A@@std@@@std@@KAPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUTreeValue244@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUTreeValue244@th105@@@std@@@4@$0A@@std@@@2@PAU342@@Z"

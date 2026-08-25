@@ -8,6 +8,11 @@ namespace th105 {
 
 struct AuxiliarySpriteRenderView {
     void render_auxiliary();
+    void finish_render_pass();
+};
+
+struct SecondaryAnimationRenderView {
+    void render_secondary();
 };
 
 struct AnimationRenderFrameView {
@@ -44,10 +49,16 @@ struct AnimationRenderObjectView {
     virtual void prepare_render_transform();
     virtual void render_color_mode();
 
+    void set_sprite_uv_size(float width, float height);
+    void render_group_callback(signed char group);
+
     CEffectSprite sprite_004;
     unsigned char unknown_130[0x20];
     AnimationRenderFrameView *frame_150;
     AuxiliarySpriteRenderView *aux_renderer_154;
+    unsigned char unknown_158[0x1e0];
+    SecondaryAnimationRenderView *secondary_renderer_338;
+    signed char render_group_33c;
 };
 
 typedef char AnimationRenderFrame_size_must_be_0x88[
@@ -58,6 +69,10 @@ typedef char AnimationRenderObject_frame_offset_must_be_0x150[
     offsetof(AnimationRenderObjectView, frame_150) == 0x150 ? 1 : -1];
 typedef char AnimationRenderObject_aux_offset_must_be_0x154[
     offsetof(AnimationRenderObjectView, aux_renderer_154) == 0x154 ? 1 : -1];
+typedef char AnimationRenderObject_secondary_offset_must_be_0x338[
+    offsetof(AnimationRenderObjectView, secondary_renderer_338) == 0x338 ? 1 : -1];
+typedef char AnimationRenderObject_group_offset_must_be_0x33c[
+    offsetof(AnimationRenderObjectView, render_group_33c) == 0x33c ? 1 : -1];
 
 extern unsigned char g_battle_render_pass;
 

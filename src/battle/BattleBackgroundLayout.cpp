@@ -15,4 +15,9 @@ void BattleBackgroundLayoutView::place_sprite(
     sprite->scale_y(scale_14);
 }
 
+void BattleBackgroundLayoutView::set_runtime_scalar(float value)
+{
+    runtime_scalar_40 = value;
+}
+
 } // namespace th105

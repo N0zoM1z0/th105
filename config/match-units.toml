@@ -4912,6 +4912,10 @@ dir32_targets = [
   "__real@4074000000000000=_background_layout_center_x",
 ]
 
+[[units.cross-v106a-battle-background-layout.functions]]
+address = "0x00427280"
+symbol_base = "set_runtime_scalar"
+
 [units.cross-v106a-info-effect-emitter]
 kind = "probe"
 source = "src/battle/InfoEffectEmitter.cpp"
@@ -6394,6 +6398,10 @@ object = "build/match-units/CrossV106a_EffectSpriteTransforms.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
 notes = "TH105 1.06a CSpriteEx transform core. Current copy construction fixes the 0x80 source quad and 0xb0 working quad as four 12-byte xyz points. Both 0x30 quad copies, translation, three origin-scale overloads, and X/Y/Z pivot scales are natural exact. The origin-scale bodies preserve target x87 source evaluation order: points 0/3 use scale*field while points 1/2 use field*scale. The six-argument three-axis rotate remains deliberately untracked at 1089 vs target 1095 because three float truth tests have compiler-only x87 compare-topology differences."
+
+[[units.cross-v106a-effect-sprite-transforms.functions]]
+address = "0x00407340"
+symbol_base = "?set_uv_size@CSpriteEx@@QAEXMM@Z"
 
 [[units.cross-v106a-effect-sprite-transforms.functions]]
 address = "0x004073A0"
@@ -10319,3 +10327,102 @@ dir32_targets = ["??_7CCommandBase@@6B@=??_7CCommandBase@@6B@"]
 address = "0x00455830"
 symbol_base = "??_G?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@@UAEPAXI@Z"
 rel32_targets = ["??1?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@@UAE@XZ=0x00455310","??3@YAXPAX@Z=0x006898EA"]
+
+[units.cross-v106a-fighter-landing-transition]
+kind = "probe"
+source = "src/battle/FighterLandingTransition.cpp"
+object = "build/match-units/CrossV106a_FighterLandingTransition.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current roster Fighter action dispatchers repeatedly call the shared stage-surface landing/runtime family. Exact stage-surface predicates, the exact-backed battle-background aggregate, caller-proven unused-this scalar/event wrappers, and virtual set_action slot are expressed as ordinary C++ without codegen coercion."
+
+[[units.cross-v106a-fighter-landing-transition.functions]]
+address = "0x00473DD0"
+symbol_base = "resolve_stage_surface_landing_transition"
+rel32_targets = [
+  "?is_y_at_or_below_stage_surface@th105@@YIHPAUFighter@1@@Z=0x00435DC0",
+  "?stage_surface_height_at_x@th105@@YIMPAUFighter@1@@Z=0x00435D60",
+]
+dir32_targets = [
+  "__real@4014000000000000=__real@4014000000000000",
+  "__real@3f000000=__real@3f000000",
+  "__real@41200000=__real@41200000",
+  "__real@c1200000=__real@c1200000",
+]
+
+[[units.cross-v106a-fighter-landing-transition.functions]]
+address = "0x005F9310"
+symbol_base = "has_crossed_stage_surface_while_descending"
+rel32_targets = ["?stage_surface_height_at_x@th105@@YIMPAUFighter@1@@Z=0x00435D60"]
+
+[[units.cross-v106a-fighter-landing-transition.functions]]
+address = "0x004359D0"
+symbol_base = "publish_battle_layout_scalar"
+rel32_targets = ["?set_runtime_scalar@BattleBackgroundLayoutView@th105@@QAEXM@Z=0x00427280"]
+dir32_targets = ["?g_battle_background_layout@th105@@3UBattleBackgroundLayoutView@1@A=?g_global_battle_setup_state@th105@@3PAEA"]
+
+[[units.cross-v106a-fighter-landing-transition.functions]]
+address = "0x004359F0"
+symbol_base = "dispatch_indexed_event_member"
+rel32_targets = ["?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0"]
+
+[units.cross-v106a-outcome-random-range]
+kind = "probe"
+source = "src/battle/OutcomeRandomRange.cpp"
+object = "build/match-units/CrossV106a_OutcomeRandomRange.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current gameplay callers use a shared stdcall half-open integer-range wrapper over exact selector_random_roll. The target preserves the roll call out of line, so the wrapper lives in a declaration-only TU rather than using noinline coercion."
+
+[[units.cross-v106a-outcome-random-range.functions]]
+address = "0x004351A0"
+symbol_base = "selector_random_range"
+rel32_targets = ["?selector_random_roll@th105@@YAHH@Z=0x004067D0"]
+
+[units.cross-v106a-animation-sprite-uv]
+kind = "probe"
+source = "src/battle/AnimationSpriteUv.cpp"
+object = "build/match-units/CrossV106a_AnimationSpriteUv.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current animation/effect callers use the shared CSpriteEx subobject at +0x04. The UV-size wrapper remains in a declaration-only TU so VC8 preserves the target out-of-line CSpriteEx::set_uv_size call rather than inlining it."
+
+[[units.cross-v106a-animation-sprite-uv.functions]]
+address = "0x00435520"
+symbol_base = "?set_sprite_uv_size@AnimationRenderObjectView@th105@@QAEXMM@Z"
+rel32_targets = ["?set_uv_size@CSpriteEx@@QAEXMM@Z=0x00407340"]
+
+[units.cross-v106a-animation-render-pass-finalizer]
+kind = "probe"
+source = "src/battle/AnimationRenderPassFinalizer.cpp"
+object = "build/match-units/CrossV106a_AnimationRenderPassFinalizer.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current render callback loads aux_renderer_154 into ECX before this helper, proving an unused-this member. Ordinary C++ restores render mode 1/0 and advances the shared battle-render pass byte by two."
+
+[[units.cross-v106a-animation-render-pass-finalizer.functions]]
+address = "0x004350F0"
+symbol_base = "?finish_render_pass@AuxiliarySpriteRenderView@th105@@QAEXXZ"
+rel32_targets = ["?apply_render_mode@RenderModeManager@th105@@QAEHHE@Z=0x00404A90"]
+dir32_targets = [
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+  "?g_battle_render_pass@th105@@3EA=?g_battle_render_pass@th105@@3EA",
+]
+
+[units.cross-v106a-animation-render-callback]
+kind = "probe"
+source = "src/battle/AnimationRenderCallback.cpp"
+object = "build/match-units/CrossV106a_AnimationRenderCallback.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current callback registration at 0x0064B560 passes target 0x00493820 as a function pointer. The body gates on render_group +0x33C, uses aux renderer +0x154 and secondary renderer +0x338, then reuses exact AnimationObject render_main and the out-of-line render-pass finalizer."
+
+[[units.cross-v106a-animation-render-callback.functions]]
+address = "0x00493820"
+symbol_base = "?render_group_callback@AnimationRenderObjectView@th105@@QAEXC@Z"
+rel32_targets = [
+  "?render_auxiliary@AuxiliarySpriteRenderView@th105@@QAEXXZ=0x00434F30",
+  "?render_secondary@SecondaryAnimationRenderView@th105@@QAEXXZ=0x004302A0",
+  "?render_main@AnimationRenderObjectView@th105@@UAEXXZ=0x00435280",
+  "?finish_render_pass@AuxiliarySpriteRenderView@th105@@QAEXXZ=0x004350F0",
+]

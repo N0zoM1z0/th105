@@ -31,8 +31,8 @@ public:
     virtual void set_vertex_colors(const unsigned int *colors);
     virtual void multiply_color(unsigned int color);
     SpriteVertex28 vertices_08[4];
-    unsigned int base_word_78;
-    unsigned int base_word_7c;
+    float texture_width_78;
+    float texture_height_7c;
 };
 
 class CSprite : public CSpriteBase {
@@ -65,6 +65,7 @@ public:
         float pivot_x, float pivot_y, float pivot_z);
     void transform_six(float a, float b, float c, float d, float e, float f);
     void finalize_render();
+    void set_uv_size(float width, float height);
 
     SpritePoint3 source_quad_080[4];
     SpritePoint3 working_quad_0b0[4];

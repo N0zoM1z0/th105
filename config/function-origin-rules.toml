@@ -455,3 +455,80 @@ subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
 evidence = "SHA-pinned VC8 SP1 /GS rebuild of src/battle/BattleInputRecording.cpp regenerates the checked vector<FixedSlotEnvelope>::_Assign_n COMDAT; its 166 non-relocation bytes select exactly 0x0042C3F0 across all 4010 current function spans"
+
+[[rules]]
+id = "vc8-generated-script-command-lifetime-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-script-command-lifetime-std-origin-anchors.toml"
+expected_count = 4
+expected_bytes = 282
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of exact src/battle/ScriptCommandLifetime.cpp regenerates checked CScript command-factory std::_Tree _Erase/_Buynode COMDATs; relocation-masked full-inventory replay must resolve exactly the two complete clone pairs (4 candidates / 282 bytes) across all 4010 spans"
+
+[[rules]]
+id = "vc8-generated-roster-object-pools-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-roster-object-pools-std-origin-anchors.toml"
+expected_count = 4
+expected_bytes = 154
+origin = "compiler_generated"
+subsystem = "characters"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of exact src/characters/RosterObjectPools.cpp regenerates pointer _Move_backward_opt and _Fill COMDATs; complete relocation-masked inventory hit sets must equal the declared two-address clone groups (4 candidates / 154 bytes)"
+
+[[rules]]
+id = "vc8-generated-chandle-manager-ex-std-comdat-106a"
+vc8_generated_anchor_file = "config/vc8-generated-chandle-manager-ex-std-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 90
+origin = "compiler_generated"
+subsystem = "characters"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of exact src/characters/CHandleManagerEx.cpp regenerates checked vector<SystemEffectObject*>::at; its relocation-masked fingerprint must remain inventory-unique at 0x0056D450"
+
+[[rules]]
+id = "vc8-generated-effect-animation-sequence-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-effect-animation-sequence-std-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 66
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of exact EffectAnimationSequenceVirtuals.cpp regenerates std::vector<EffectAnimationFrame28>::size; complete full-inventory fingerprint replay must resolve exactly the two 33-byte current clone addresses"
+
+[[rules]]
+id = "vc8-generated-spriteex-vector-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-spriteex-vector-origin-anchors.toml"
+expected_count = 10
+expected_bytes = 689
+origin = "compiler_generated"
+subsystem = "render"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of a tracked std::vector<CSpriteEx> probe using the exact-backed 0xE8 CSpriteEx layout regenerates allocation, destruction, copy, erase, fill, and size COMDATs; each relocation-masked fingerprint must resolve to its complete current-inventory hit set across all 4010 spans"
+
+[[rules]]
+id = "vc8-generated-map-int-value16-tree-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-map-int-value16-origin-anchors.toml"
+expected_count = 7
+expected_bytes = 506
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Current 0x24-byte checked-tree node shape (end/color flags +0x20/+0x21) is reproduced by a SHA-pinned VC8 std::map<int,16-byte-value> witness. Full-inventory fingerprints uniquely identify L/R rotate, Min/Max, _Buynode and checked iterator Inc/Dec as generated STL machinery"
+
+[[rules]]
+id = "vc8-generated-map-int-value244-tree-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-map-int-value244-origin-anchors.toml"
+expected_count = 7
+expected_bytes = 576
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Current checked-tree nodes with end/color flags at +0x104/+0x105 imply a 0xF8 pair payload. A SHA-pinned VC8 std::map<int,244-byte-value> witness regenerates the corresponding rotations, Min/Max, _Buynode and checked iterator Inc/Dec, each inventory-unique under relocation masking"

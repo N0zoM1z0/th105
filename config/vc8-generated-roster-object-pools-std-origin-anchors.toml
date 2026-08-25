@@ -1,0 +1,33 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/characters/RosterObjectPools.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 0
+alignment_tail_hex = ""
+
+[[anchors]]
+address = "0x004027B0"
+size = 47
+symbol = "??$_Move_backward_opt@PAPAVPatchouliObject@@PAPAV1@Urandom_access_iterator_tag@std@@U_Undefined_move_tag@3@@std@@YAPAPAVPatchouliObject@@PAPAV1@00Urandom_access_iterator_tag@0@U_Undefined_move_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "roster-object-pools-generated-group-1"
+
+[[anchors]]
+address = "0x005D2230"
+size = 47
+symbol = "??$_Move_backward_opt@PAPAVPatchouliObject@@PAPAV1@Urandom_access_iterator_tag@std@@U_Undefined_move_tag@3@@std@@YAPAPAVPatchouliObject@@PAPAV1@00Urandom_access_iterator_tag@0@U_Undefined_move_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "roster-object-pools-generated-group-1"
+
+[[anchors]]
+address = "0x0040E590"
+size = 30
+symbol = "??$_Fill@PAPAVPatchouliObject@@PAV1@@std@@YAXPAPAVPatchouliObject@@0ABQAV1@@Z"
+equivalence_group = "roster-object-pools-generated-group-2"
+
+[[anchors]]
+address = "0x004379B0"
+size = 30
+symbol = "??$_Fill@PAPAVPatchouliObject@@PAV1@@std@@YAXPAPAVPatchouliObject@@0ABQAV1@@Z"
+equivalence_group = "roster-object-pools-generated-group-2"

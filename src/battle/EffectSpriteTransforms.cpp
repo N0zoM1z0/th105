@@ -6,6 +6,22 @@ float __cdecl lookup_orientation_sine_quantized_abs(float phase);
 float __cdecl lookup_orientation_cosine_quantized_abs(float phase);
 
 
+void CSpriteEx::set_uv_size(float width, float height)
+{
+    const float u = width / texture_width_78;
+    vertices_08[0].u = u;
+    const float v = height / texture_height_7c;
+    vertices_08[0].v = v;
+    const float right = extra_e0 + u;
+    vertices_08[1].u = right;
+    vertices_08[1].v = v;
+    vertices_08[2].u = u;
+    const float bottom = extra_e4 + v;
+    vertices_08[2].v = bottom;
+    vertices_08[3].v = bottom;
+    vertices_08[3].u = right;
+}
+
 void CSpriteEx::reset_transform()
 {
     memcpy(working_quad_0b0, source_quad_080, sizeof(source_quad_080));
