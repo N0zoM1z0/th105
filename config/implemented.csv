@@ -865,3 +865,6 @@ InfoComboResource_render_combo
 InfoShortRecord34_render
 InfoShortRecord34_update
 CInfoManager_update_normal_runtime
+InfoLongRecord154_render
+InfoLongRecord154_update
+CInfoManager_render_normal_runtime

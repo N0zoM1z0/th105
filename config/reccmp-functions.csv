@@ -866,3 +866,6 @@ InfoComboResource_render_combo,0x0046A660,function
 InfoShortRecord34_render,0x0046A800,function
 InfoShortRecord34_update,0x0046AC30,function
 CInfoManager_update_normal_runtime,0x0046E5A0,function
+InfoLongRecord154_render,0x004325C0,function
+InfoLongRecord154_update,0x004327C0,function
+CInfoManager_render_normal_runtime,0x0046E650,function

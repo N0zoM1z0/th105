@@ -11062,3 +11062,48 @@ rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
   "push_back=0x0046ABC0",
 ]
+
+[units.cross-v106a-info-manager-normal-render]
+kind = "probe"
+source = "src/battle/InfoManagerNormalRender.cpp"
+object = "build/match-units/CrossV106a_InfoManagerNormalRender.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current RTTI-owned normal CInfoManager render root. Exact-backed profile sprites, player/network accessors, InfoShort/InfoLong/BattleInfo children, and render-mode/effect phases reproduce the full 753-byte profile-overlay path; a real polymorphic 0x94 sprite static type and explicit unsigned-to-float name-width rounding are source-significant."
+
+[[units.cross-v106a-info-manager-normal-render.functions]]
+address = "0x0046E650"
+symbol_base = "?render_normal_46e650@CInfoManagerNormalRenderView@th105@@QAEXXZ"
+rel32_targets = [
+  "?set_state_22@RenderModeManager@th105@@QAEXH@Z=0x00404A40",
+  "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
+  "?lookup_orientation_cosine@th105@@YAMH@Z=0x004064B0",
+  "?get_network_session@th105@@YAPAUCNetworkBase@1@XZ=0x0043B090",
+  "?get_session_setup_option@th105@@YAIXZ=0x0043B070",
+  "?get_player_slot_record@th105@@YAPAUPlayerSlotRecord@1@I@Z=0x0043AFE0",
+  "?render_46a800@InfoShortNormalRenderView@th105@@QAEXXZ=0x0046A800",
+  "?render_470710@BattleInfoNormalRenderView@th105@@QAEXM@Z=0x00470710",
+  "?render_4325c0@InfoLongNormalRenderView@th105@@QAEXXZ=0x004325C0",
+]
+dir32_targets = [
+  "?g_scene_renderer@th105@@3PAUNormalSceneRendererProfileView@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A",
+]
+
+[units.cross-v106a-info-long-record-runtime]
+kind = "probe"
+source = "src/battle/InfoLongRecordRuntime.cpp"
+object = "build/match-units/CrossV106a_InfoLongRecordRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current 0x154 InfoLongRecord render/update pair. Two real polymorphic 0x94 sprites occupy +0x04/+0x98 and share the tail animation state at +0x12C..+0x150. Primary receiver lifetime begins before the first color call; secondary begins after it, reproducing the target EBX/EDI schedule naturally."
+
+[[units.cross-v106a-info-long-record-runtime.functions]]
+address = "0x004325C0"
+symbol_base = "?render_4325c0@InfoLongRecord154Runtime@th105@@QAEXXZ"
+rel32_targets = [
+  "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
+]
+
+[[units.cross-v106a-info-long-record-runtime.functions]]
+address = "0x004327C0"
+symbol_base = "?update_4327c0@InfoLongRecord154Runtime@th105@@QAEXXZ"
