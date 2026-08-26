@@ -6,6 +6,7 @@
 
 class SystemEffectObjectBase : public CObjectBase, public AnimationObjectBase {
 public:
+    SystemEffectObjectBase() : resource_handle_138(0) {}
     virtual ~SystemEffectObjectBase();
     virtual void update_state() = 0;
     virtual void reset_state() = 0;

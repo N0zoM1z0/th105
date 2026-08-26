@@ -11176,3 +11176,62 @@ rel32_targets = [
   "??0TenshiFighterCtorView@?A0x1fe19b06@th105@@QAE@PBUSide@MatchSetup@2@@Z=0x0064B6F0",
   "?initialize_fighter_spell_resources@Fighter@th105@@QAEXXZ=0x00463070",
 ]
+
+[units.cross-v106a-battle-manager-arcade-setup-override]
+kind = "probe"
+source = "src/battle/BattleManagerArcadeSetup.cpp"
+object = "build/match-units/CrossV106a_BattleManagerArcadeSetup.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CBattleManagerArcade vtable slot +0x04 owns the 842-byte prepare_battle_setup override. Natural checked deque<int>/list<int> source recovers the seven-opponent roster, ScoreData-gated extra characters, PlayerSlot payload setup, stage/BGM selection, round reset and exact base-setup tail. The same TU keeps finalize_arcade_round_473110 as a semantics-complete pending caller target without claiming it exact."
+
+[[units.cross-v106a-battle-manager-arcade-setup-override.functions]]
+address = "0x00473520"
+symbol_base = "?prepare_battle_setup_472110@CBattleManagerArcade@th105@@UAEXPAUMatchSetup@2@@Z"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?push_back@?$deque@HV?$allocator@H@std@@@std@@QAEXABH@Z=0x006183F0",
+  "?_Buynode@?$list@HV?$allocator@H@std@@@std@@IAEPAU_Node@?$_List_nod@HV?$allocator@H@std@@@2@PAU342@0ABH@Z=0x00421F30",
+  "?_Incsize@?$list@HV?$allocator@H@std@@@std@@IAEXI@Z=0x00440370",
+  "?erase@?$deque@HV?$allocator@H@std@@@std@@QAE?AV?$_Deque_iterator@HV?$allocator@H@std@@$00@2@V32@0@Z=0x00473340",
+  "?get_score_data@th105@@YAPAUScoreData@1@XZ=0x0043AF20",
+  "?get_player_slot_record@th105@@YAPAUPlayerSlotRecord@1@I@Z=0x0043AFE0",
+  "?configure_character_payload_431e80@PlayerSlotRecordArcadeSetupView@th105@@QAEXPAEH@Z=0x00431E80",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+  "?get_stage_for_character@th105@@YAEH@Z=0x0043C0B0",
+  "?get_bgm_for_character@th105@@YAEH@Z=0x0043C100",
+  "?prepare_battle_setup_472110@CBattleManager@th105@@UAEXPAUMatchSetup@2@@Z=0x00472110",
+  "?_Tidy@?$deque@HV?$allocator@H@std@@@std@@IAEXXZ=0x00420A80",
+  "??3@YAXPAX@Z=0x006898EA",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "___security_cookie=___security_cookie",
+  "?g_round_counter@th105@@3EA=?g_round_counter@th105@@3EA",
+]
+
+[units.cross-v106a-battle-manager-arcade-transition-override]
+kind = "probe"
+source = "src/battle/BattleManagerArcadeTransition.cpp"
+object = "build/match-units/CrossV106a_BattleManagerArcadeTransition.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CBattleManagerArcade vtable slot +0x34 owns the 231-byte phase transition override. Sparse switch source preserves target phase-4/phase-6 lowering: phase 4 publishes effect 17 and advances the Arcade round through the out-of-line 0x00473110 helper using fighter_10 terminal fields; phase 6 installs the independently exact 0x44 CMenuEnd allocation; all other phases delegate to exact base transition_slot_34."
+
+[[units.cross-v106a-battle-manager-arcade-transition-override.functions]]
+address = "0x00473250"
+symbol_base = "?transition_slot_34@CBattleManagerArcade@th105@@UAEXH@Z"
+rel32_targets = [
+  "?transition_slot_34@CBattleManager@th105@@UAEXH@Z=0x004728C0",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CMenuEndArcadeDispatchView@th105@@QAE@PAUCBattleManager@1@@Z=0x00445100",
+  "?install_menu_object@th105@@YAXPAX@Z=0x0043B0F0",
+  "?publish_transition_effect_46e040@PostSequenceTransitionView@th105@@QAEHH@Z=0x0046EA10",
+  "?finalize_arcade_round_473110@CBattleManagerArcade@th105@@QAEXXZ=0x00473110",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "___security_cookie=___security_cookie",
+  "?g_info_manager@th105@@3PAUInfoManager@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A",
+  "?g_round_counter@th105@@3EA=?g_round_counter@th105@@3EA",
+]
