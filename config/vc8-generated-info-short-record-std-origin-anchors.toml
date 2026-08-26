@@ -1,0 +1,23 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/battle/InfoShortRecordRuntime.cpp"
+enable_gs = false
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 1
+alignment_tail_hex = "cc"
+
+# Discovered from the canonical-exact InfoShortRecord runtime TU.  Acceptance
+# still replays each relocation-masked fingerprint across all 4,010 target
+# spans; both current hits must remain inventory-unique.
+
+[[anchors]]
+address = "0x0046AA60"
+size = 341
+symbol = "?_Growmap@?$deque@UInfoComboEntry@th105@@V?$allocator@UInfoComboEntry@th105@@@std@@@std@@IAEXI@Z"
+
+[[anchors]]
+address = "0x0046ABC0"
+size = 101
+symbol = "?push_back@?$deque@UInfoComboEntry@th105@@V?$allocator@UInfoComboEntry@th105@@@std@@@std@@QAEXABUInfoComboEntry@th105@@@Z"

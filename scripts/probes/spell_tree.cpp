@@ -29,4 +29,9 @@ __declspec(noinline) SpellTreeProbe::iterator emit_spell_tree_find(
     return (tree.*member)(key);
 }
 
+__declspec(noinline) void emit_spell_tree_clear(SpellTreeProbe &tree)
+{
+    tree.clear();
+}
+
 } // namespace th105

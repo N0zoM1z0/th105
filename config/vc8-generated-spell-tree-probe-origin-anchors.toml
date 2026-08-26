@@ -32,3 +32,13 @@ symbol = "??1?$pair@$$CBHUSpellRecordView@th105@@@std@@QAE@XZ"
 address = "0x00432ED0"
 size = 189
 symbol = "??0SpellRecordView@th105@@QAE@ABU01@@Z"
+
+[[anchors]]
+address = "0x0042CF20"
+size = 71
+symbol = "??1SpellRecordView@th105@@QAE@XZ"
+
+[[anchors]]
+address = "0x0042E370"
+size = 125
+symbol = "?_Erase@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@2@@Z"

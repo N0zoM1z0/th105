@@ -9150,6 +9150,15 @@ enable_gs = false
 notes = "TH105 1.06a CInfoManagerBase runtime core. The recovered +0x498/+0x590 battle-info pair, +0x16C/+0x1D4 lane families, render-mode service and phase counter reproduce the per-frame update, Story binding forwarder and complete render orchestration."
 
 [[units.cross-v106a-info-manager-runtime-core.functions]]
+address = "0x0046E5A0"
+symbol_base = "?update_normal_46e5a0@InfoManagerResourceView@th105@@QAEXXZ"
+rel32_targets = [
+  "?update_runtime_46ff30@BattleInfoRecordF8@th105@@QAEXXZ=0x0046FF30",
+  "?update_46ac30@InfoShortRuntimeView@th105@@QAEXXZ=0x0046AC30",
+  "?update_4327c0@InfoLongRuntimeView@th105@@QAEXXZ=0x004327C0",
+]
+
+[[units.cross-v106a-info-manager-runtime-core.functions]]
 address = "0x00471C90"
 symbol_base = "?update_runtime_471c90@InfoManagerResourceView@th105@@QAEXXZ"
 rel32_targets = [
@@ -11013,4 +11022,43 @@ symbol_base = "??_GCInfoManagerNormalLifecycle@th105@@UAEPAXI@Z"
 rel32_targets = [
   "??1CInfoManagerNormalLifecycle@th105@@UAE@XZ=0x0046F850",
   "??3@YAXPAX@Z=0x006898EA",
+]
+
+
+[units.cross-v106a-info-combo-runtime]
+kind = "probe"
+source = "src/battle/InfoComboRuntime.cpp"
+object = "build/match-units/CrossV106a_InfoComboRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current InfoComboResource render core. A native checked std::deque<12-byte InfoComboEntry> uses VC8 block-size one, reproducing the target repeated checked subscript topology and six UI item updates without manual container arithmetic."
+
+[[units.cross-v106a-info-combo-runtime.functions]]
+address = "0x0046A660"
+symbol_base = "?render_combo_46a660@InfoComboResourceRuntimeView@th105@@QAEXMMPAUFighter@2@PAV?$deque@UInfoComboEntry@th105@@V?$allocator@UInfoComboEntry@th105@@@std@@@std@@@Z"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+
+[units.cross-v106a-info-short-record-runtime]
+kind = "probe"
+source = "src/battle/InfoShortRecordRuntime.cpp"
+object = "build/match-units/CrossV106a_InfoShortRecordRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current 0x34 InfoShortRecord update/render pair. Physical fields plus native checked deque<InfoComboEntry> reproduce push/update animation and render forwarding together; the combo render definition remains in a separate TU so the target call stays out of line."
+
+[[units.cross-v106a-info-short-record-runtime.functions]]
+address = "0x0046A800"
+symbol_base = "?render_46a800@InfoShortRecord34Runtime@th105@@QAEXXZ"
+rel32_targets = [
+  "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
+  "?render_combo_46a660@InfoComboResourceRuntimeView@th105@@QAEXMMPAUFighter@2@PAV?$deque@UInfoComboEntry@th105@@V?$allocator@UInfoComboEntry@th105@@@std@@@std@@@Z=0x0046A660",
+]
+
+[[units.cross-v106a-info-short-record-runtime.functions]]
+address = "0x0046AC30"
+symbol_base = "?update_46ac30@InfoShortRecord34Runtime@th105@@QAEXXZ"
+rel32_targets = [
+  "?lookup_orientation_cosine@th105@@YAMH@Z=0x004064B0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "push_back=0x0046ABC0",
 ]

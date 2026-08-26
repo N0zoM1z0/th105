@@ -52,33 +52,33 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4010)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 863)
+        self.assertEqual(len(matching), 867)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 863)
+        self.assertEqual(len(implemented), 867)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 863
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 867
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 261)
+        self.assertEqual(len(manifest["units"]), 263)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            863,
+            867,
         )
 
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,010", markdown)
-        self.assertIn("Confirmed authored functions | 863", markdown)
-        self.assertIn("Classified exclusions | 1,005", markdown)
-        self.assertIn("Origin/boundary review pending | 2,142", markdown)
-        self.assertIn("Canonical exact functions | 863", markdown)
-        self.assertIn("Canonical exact authored bytes | 135,889", markdown)
+        self.assertIn("Confirmed authored functions | 867", markdown)
+        self.assertIn("Classified exclusions | 1,009", markdown)
+        self.assertIn("Origin/boundary review pending | 2,134", markdown)
+        self.assertIn("Canonical exact functions | 867", markdown)
+        self.assertIn("Canonical exact authored bytes | 137,198", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
@@ -220,7 +220,7 @@ class WorkflowToolingTests(unittest.TestCase):
 
     def test_exact_tu_std_origin_manifests_are_pinned(self) -> None:
         paths = sorted((ROOT / "config").glob("vc8-generated-*-std-origin-anchors.toml"))
-        self.assertEqual(len(paths), 23)
+        self.assertEqual(len(paths), 24)
         target_sha = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
         compiler_sha = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
         rows = []
@@ -236,9 +236,9 @@ class WorkflowToolingTests(unittest.TestCase):
                 self.assertEqual(manifest["alignment_tail_hex"], "cc")
             self.assertTrue(manifest["source"].startswith("src/"))
             rows.extend(manifest["anchors"])
-        self.assertEqual(len(rows), 255)
-        self.assertEqual(len({row["address"] for row in rows}), 255)
-        self.assertEqual(sum(row["size"] for row in rows), 33_403)
+        self.assertEqual(len(rows), 257)
+        self.assertEqual(len({row["address"] for row in rows}), 257)
+        self.assertEqual(sum(row["size"] for row in rows), 33_845)
 
     def test_new_layout_probe_origin_manifests_are_pinned(self) -> None:
         expected = {
@@ -261,6 +261,17 @@ class WorkflowToolingTests(unittest.TestCase):
             self.assertFalse(manifest["enable_gs"])
             self.assertEqual(len(manifest["anchors"]), count)
             self.assertEqual(sum(row["size"] for row in manifest["anchors"]), byte_count)
+
+    def test_spell_tree_origin_manifest_is_expanded(self) -> None:
+        path = ROOT / "config" / "vc8-generated-spell-tree-probe-origin-anchors.toml"
+        with path.open("rb") as stream:
+            manifest = tomllib.load(stream)
+        self.assertEqual(manifest["source"], "scripts/probes/spell_tree.cpp")
+        self.assertTrue(manifest["enable_gs"])
+        self.assertEqual(len(manifest["anchors"]), 6)
+        self.assertEqual(sum(row["size"] for row in manifest["anchors"]), 1_131)
+        self.assertIn("0x0042CF20", {row["address"] for row in manifest["anchors"]})
+        self.assertIn("0x0042E370", {row["address"] for row in manifest["anchors"]})
 
     def test_short_set_origin_manifest_is_pinned(self) -> None:
         path = ROOT / "config" / "vc8-generated-short-set-origin-anchors.toml"

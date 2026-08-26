@@ -4,6 +4,8 @@
 namespace th105 {
 
 float __cdecl lookup_orientation_cosine(int angle);
+extern short g_info_mode_value_6fa88c;
+extern int g_fighter_state_4b8_default;
 
 struct InfoShortRuntimeView {
     void update_46ac30();
@@ -13,6 +15,11 @@ struct InfoShortRuntimeView {
 struct InfoLongRuntimeView {
     void update_4327c0();
     void render_4325c0();
+};
+
+struct InfoRuntimeUiGate {
+    unsigned char reserved_000[0x14];
+    unsigned char enabled_14;
 };
 
 struct InfoEffectRuntimeView {
@@ -47,6 +54,33 @@ struct StoryInfoRenderView {
 static __forceinline unsigned char *bytes(InfoManagerResourceView *manager)
 {
     return reinterpret_cast<unsigned char *>(manager);
+}
+
+
+void InfoManagerResourceView::update_normal_46e5a0()
+{
+    unsigned char *long_record = bytes(this) + 0x1d4;
+    unsigned char *short_record = bytes(this) + 0x16c;
+    BattleInfoRecordF8 *battle_record = battle_records_498();
+    for (int count = 2; count != 0; --count) {
+        battle_record->update_runtime_46ff30();
+        reinterpret_cast<InfoShortRuntimeView *>(short_record)->update_46ac30();
+        reinterpret_cast<InfoLongRuntimeView *>(long_record)->update_4327c0();
+        short_record += 0x34;
+        battle_record += 1;
+        long_record += 0x154;
+    }
+
+    *reinterpret_cast<float *>(bytes(this) + 0x488) =
+        static_cast<float>(g_info_mode_value_6fa88c) / 10.0f;
+    reinterpret_cast<InfoRuntimeUiGate *>(
+        *reinterpret_cast<void **>(bytes(this) + 0x48c))->enabled_14 =
+        g_fighter_state_4b8_default == 16;
+    reinterpret_cast<InfoRuntimeUiGate *>(
+        *reinterpret_cast<void **>(bytes(this) + 0x490))->enabled_14 =
+        g_fighter_state_4b8_default != 16;
+    reinterpret_cast<InfoEffectRuntimeView *>(bytes(this) + 0x04)->slot_14();
+    ++*reinterpret_cast<int *>(bytes(this) + 0x484);
 }
 
 void InfoManagerResourceView::update_runtime_471c90()

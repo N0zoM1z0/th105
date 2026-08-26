@@ -415,13 +415,13 @@ evidence = "SHA-pinned VC8 SP1 /GS rebuild of the exact CScript registry TU rege
 [[rules]]
 id = "vc8-generated-spell-tree-probe-comdats-106a"
 vc8_generated_anchor_file = "config/vc8-generated-spell-tree-probe-origin-anchors.toml"
-expected_count = 4
-expected_bytes = 935
+expected_count = 6
+expected_bytes = 1131
 origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 /GS rebuild of the tracked SpellRecordView std::map probe regenerates two checked std::_Tree COMDATs, one std::pair destructor, and the implicit SpellRecordView copy constructor; all four relocation-masked fingerprints are unique across all 4010 current function spans and replay fail-closed"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of the tracked SpellRecordView std::map probe regenerates checked std::_Tree insertion/allocation/erase COMDATs, the std::pair destructor, and implicit SpellRecordView copy/destructor special members; all six relocation-masked fingerprints are inventory-unique across all 4010 current spans and replay fail-closed"
 
 [[rules]]
 id = "vc8-generated-youmu-record-deque-comdats-106a"
@@ -543,3 +543,14 @@ subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
 evidence = "SHA-pinned VC8 SP1 /GS rebuild of a tracked std::set<short> witness regenerates the checked insert/_Insert/erase(iterator) COMDATs used by the SpellCsv filtered selected-id tree; every relocation-masked fingerprint must be inventory-unique across all 4010 tracked spans"
+
+[[rules]]
+id = "vc8-generated-info-short-record-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-info-short-record-std-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 442
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of the canonical-exact InfoShortRecord runtime TU regenerates the block-size-one checked std::deque<12-byte InfoComboEntry> _Growmap and push_back COMDATs; each relocation-masked fingerprint is inventory-unique across all 4010 tracked target spans"

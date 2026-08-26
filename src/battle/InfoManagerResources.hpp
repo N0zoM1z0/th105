@@ -124,6 +124,7 @@ struct InfoManagerResourceView {
     int load_info_effect_resources_46e960();
     int release_info_effect_resources_46e990();
     void initialize_story_info_resources_471e50();
+    void update_normal_46e5a0();
     void update_runtime_471c90();
     void bind_story_values_471d00();
     void render_runtime_471d10();

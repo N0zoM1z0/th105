@@ -941,7 +941,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0042CE60,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0042CEA0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0042CEF0,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
-0x0042CF20,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0042CF20,compiler_generated,battle,exclude,observed,vc8-generated-spell-tree-probe-comdats-106a
 0x0042CF70,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0042D010,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0042D0D0,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -960,7 +960,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0042DF10,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0042DFC0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0042E060,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0042E370,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0042E370,compiler_generated,battle,exclude,observed,vc8-generated-spell-tree-probe-comdats-106a
 0x0042E3F0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0042E750,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0042E7B0,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
@@ -1992,13 +1992,13 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0046A620,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046A640,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0046A650,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0046A660,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0046A800,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0046A660,authored_game,battle,authored,observed,canonical-exact-authored
+0x0046A800,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046A8A0,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046A8C0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0046AA60,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0046ABC0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0046AC30,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0046AA60,compiler_generated,battle,exclude,observed,vc8-generated-info-short-record-std-comdats-106a
+0x0046ABC0,compiler_generated,battle,exclude,observed,vc8-generated-info-short-record-std-comdats-106a
+0x0046AC30,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046AE70,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046AF90,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046AFA0,authored_game,battle,authored,observed,canonical-exact-authored
@@ -2045,7 +2045,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0046DB30,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046DD40,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0046DFF0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0046E5A0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0046E5A0,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046E650,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0046E950,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0046E960,authored_game,battle,authored,observed,canonical-exact-authored
