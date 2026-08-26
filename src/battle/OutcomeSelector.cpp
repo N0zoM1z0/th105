@@ -2,13 +2,20 @@
 
 namespace th105 {
 
+struct BattleInputGate;
+extern BattleInputGate *g_battle_input_gate;
+extern int g_match_identifier;
+
 int __cdecl selector_random_roll(int limit);
 
 int Fighter::select_outcome_path_from_frame_flags(unsigned frame_flags)
 {
     const unsigned char flags = static_cast<unsigned char>(frame_flags);
 
-    if ((flags & 0x10) != 0 || blocker_48e != 0) {
+    if ((flags & 0x10) != 0) {
+        return 0;
+    }
+    if (blocker_48e != 0) {
         return 0;
     }
 
@@ -20,17 +27,12 @@ int Fighter::select_outcome_path_from_frame_flags(unsigned frame_flags)
         return 0;
     }
 
-    int *const battle_state =
-        *reinterpret_cast<int **>(0x006e4e28);
-    const int roll_policy =
-        *reinterpret_cast<int *>(0x006e4e34);
-
-    if (is_state_13c_in_96_c7(this) != 0) {
+    if (static_cast<unsigned char>(is_state_13c_in_96_c7(this)) != 0) {
         if (field_6b0 == 0) {
             if (state_72c == 3) {
-                if (battle_state[8] == 2) {
+                if (reinterpret_cast<int *>(g_battle_input_gate)[8] == 2) {
                     field_6b8 = 0;
-                } else if (battle_state[8] == 3) {
+                } else if (reinterpret_cast<int *>(g_battle_input_gate)[8] == 3) {
                     field_6b8 = 1;
                 } else {
                     field_6b8 =
@@ -46,24 +48,27 @@ int Fighter::select_outcome_path_from_frame_flags(unsigned frame_flags)
             if (state_72c == 3) {
                 field_6b8 = 0;
                 field_6b4 = 0;
-                if (battle_state[3] <= 0) {
+                if (reinterpret_cast<int *>(g_battle_input_gate)[3] <= 0) {
                     goto after_refresh;
                 }
-            } else if (roll_policy == 0) {
+            } else if (g_match_identifier == 0) {
                 if (selector_random_roll(100) >= 70) {
                     goto after_refresh;
                 }
-            } else if (roll_policy == 1 &&
+            } else if (g_match_identifier == 1 &&
                        selector_random_roll(100) >= 95) {
                 goto after_refresh;
             }
 
-            field_6b4 =
-                other_fighter_170->x_ec - x_ec <= 0.0f ? 1 : -1;
+            if (other_fighter_170->x_ec - x_ec <= 0.0f) {
+                field_6b4 = 1;
+            } else {
+                field_6b4 = -1;
+            }
             if (state_72c == 3) {
-                if (battle_state[8] == 2) {
+                if (reinterpret_cast<int *>(g_battle_input_gate)[8] == 2) {
                     field_6b8 = 0;
-                } else if (battle_state[8] == 3) {
+                } else if (reinterpret_cast<int *>(g_battle_input_gate)[8] == 3) {
                     field_6b8 = 1;
                 } else {
                     field_6b8 =

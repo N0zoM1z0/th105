@@ -4,24 +4,22 @@ namespace th105 {
 
 float AttackCandidate::calculate_forwarded_quantity()
 {
-    Fighter *source = source_168;
-    Fighter *fighter = related_fighter_170;
-    float result = source->source_factor_4bc;
-    result = result * fighter->target_factor_4c0;
+    float result = source_168->source_factor_4bc *
+        related_fighter_170->target_factor_4c0;
     result = result * owner_16c->scalar_494;
 
-    if (fighter->value_174 < 0) {
+    if (related_fighter_170->value_174 < 0) {
         result = result * 0.7f;
-    } else if (fighter->value_174 < fighter->maximum_176) {
+    } else if (related_fighter_170->maximum_176 > related_fighter_170->value_174) {
         result =
-            ((static_cast<float>(fighter->value_174) /
-              static_cast<float>(fighter->maximum_176)) * 0.3f + 0.7f) *
+            ((static_cast<float>(related_fighter_170->value_174) /
+              static_cast<float>(related_fighter_170->maximum_176)) * 0.3f + 0.7f) *
             result;
     }
 
     if (scalar_table_index_17c >= 0 && scalar_table_index_17c < 0x20) {
         result =
-            ((static_cast<float>(source->scalar_modifier_table_604[
+            ((static_cast<float>(source_168->scalar_modifier_table_604[
                   scalar_table_index_17c]) / 10.0f) + 1.0f) * result;
     }
 
@@ -30,10 +28,10 @@ float AttackCandidate::calculate_forwarded_quantity()
             reinterpret_cast<unsigned char *>(this) + 0x158);
     const unsigned flags = frame->flags_50;
     if ((flags & 0x1000) != 0) {
-        result = source->source_modifier_4c8 * result;
+        result = source_168->source_modifier_4c8 * result;
     }
     if ((flags & 0x800) != 0) {
-        result = source->source_modifier_4cc * result;
+        result = source_168->source_modifier_4cc * result;
     }
 
     const unsigned char modifiers = owner_16c->flag_491;
@@ -57,33 +55,31 @@ float AttackCandidate::calculate_forwarded_quantity()
 
 float AttackCandidate::calculate_base_hit_quantity()
 {
-    Fighter *source = source_168;
-    Fighter *fighter = related_fighter_170;
-    float result = source->source_factor_4bc;
-    result = result * fighter->target_factor_4c0;
+    float result = source_168->source_factor_4bc *
+        related_fighter_170->target_factor_4c0;
     result = result * owner_16c->scalar_494;
 
-    if (fighter->scalar_quantity_198 < 0) {
+    if (related_fighter_170->scalar_quantity_198 < 0) {
         result = result * 0.7f;
-    } else if (fighter->scalar_quantity_198 < fighter->maximum_176) {
+    } else if (related_fighter_170->maximum_176 > related_fighter_170->scalar_quantity_198) {
         result =
-            ((static_cast<float>(fighter->scalar_quantity_198) /
-              static_cast<float>(fighter->maximum_176)) * 0.3f + 0.7f) *
+            ((static_cast<float>(related_fighter_170->scalar_quantity_198) /
+              static_cast<float>(related_fighter_170->maximum_176)) * 0.3f + 0.7f) *
             result;
     }
 
     if (scalar_table_index_17c >= 0 && scalar_table_index_17c < 0x20) {
         result =
-            ((static_cast<float>(source->scalar_modifier_table_604[
+            ((static_cast<float>(source_168->scalar_modifier_table_604[
                   scalar_table_index_17c]) / 10.0f) + 1.0f) * result;
     }
 
     const unsigned flags = frame_1a4->flags_50;
     if ((flags & 0x1000) != 0) {
-        result = source->source_modifier_4c8 * result;
+        result = source_168->source_modifier_4c8 * result;
     }
     if ((flags & 0x800) != 0) {
-        result = source->source_modifier_4cc * result;
+        result = source_168->source_modifier_4cc * result;
     }
 
     const unsigned char modifiers = owner_16c->flag_491;

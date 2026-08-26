@@ -27,7 +27,7 @@ void CollisionContext::apply_forwarded_quantity_to_pair(
     short forwarded_counter_delta,
     signed char use_dynamic_scalar)
 {
-    register int applied_quantity = quantity;
+    int applied_quantity = quantity;
     if (static_cast<signed char>(
             is_state_13c_in_32_95(fighter)) == 0 &&
         fighter->field_4a4 == 0) {

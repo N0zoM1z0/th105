@@ -2345,6 +2345,11 @@ address = "0x0041C110"
 symbol_base = "CPackageFileReader_read"
 dir32_targets = ["__imp__ReadFile@20=__imp__ReadFile@20"]
 
+[[units.cross-v106a-package-file-reader-read.functions]]
+address = "0x0041C180"
+symbol_base = "CPackageFileReader_seek"
+dir32_targets = ["__imp__SetFilePointer@16=__imp__SetFilePointer@16"]
+
 
 [units.cross-v106a-stage-geometry]
 kind = "probe"
@@ -10425,4 +10430,78 @@ rel32_targets = [
   "?render_secondary@SecondaryAnimationRenderView@th105@@QAEXXZ=0x004302A0",
   "?render_main@AnimationRenderObjectView@th105@@UAEXXZ=0x00435280",
   "?finish_render_pass@AuxiliarySpriteRenderView@th105@@QAEXXZ=0x004350F0",
+]
+
+[units.cross-v106a-hit-scalars]
+kind = "probe"
+source = "src/battle/HitScalars.cpp"
+object = "build/match-units/CrossV106a_HitScalars.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current TH105 1.06a shared attack-candidate scalar calculators. Current target preserves source/related-fighter as direct member expressions, combines the first source*target factor, and spells range gates as maximum > current; both 347-byte skeletons reproduce naturally."
+
+[[units.cross-v106a-hit-scalars.functions]]
+address = "0x0045B4A0"
+symbol_base = "calculate_forwarded_quantity"
+dir32_targets = [
+  "__real@3fe6666660000000=__real@3fe6666660000000",
+  "__real@3fd3333340000000=__real@3fd3333340000000",
+  "__real@4024000000000000=__real@4024000000000000",
+  "__real@3ff0000000000000=__real@3ff0000000000000",
+  "__real@3fe99999a0000000=__real@3fe99999a0000000",
+  "__real@3feb333340000000=__real@3feb333340000000",
+]
+
+[[units.cross-v106a-hit-scalars.functions]]
+address = "0x0045B600"
+symbol_base = "calculate_base_hit_quantity"
+dir32_targets = [
+  "__real@3fe6666660000000=__real@3fe6666660000000",
+  "__real@3fd3333340000000=__real@3fd3333340000000",
+  "__real@4024000000000000=__real@4024000000000000",
+  "__real@3ff0000000000000=__real@3ff0000000000000",
+  "__real@3fe99999a0000000=__real@3fe99999a0000000",
+  "__real@3feb333340000000=__real@3feb333340000000",
+]
+
+[units.cross-v106a-outcome-path-a]
+kind = "probe"
+source = "src/battle/OutcomePaths.cpp"
+object = "build/match-units/CrossV106a_OutcomePaths.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current TH105 1.06a outcome path A. Direct frame reload lifetime, counter <= 0 gate, and reuse of factor_4d0-adjusted short for deferred quantity are current-target-backed and reproduce the complete 530-byte authored body."
+
+[[units.cross-v106a-outcome-path-a.functions]]
+address = "0x0046D3F0"
+symbol_base = "try_outcome_path_a"
+rel32_targets = [
+  "is_state_13c_in_32_95=0x0045E0E0",
+  "CollisionContext_reset_hit_exchange_scratch=0x0046B350",
+  "AttackCandidate_calculate_descriptor_scaled_quantity_20=0x0045C0E0",
+  "__ftol2_sse=0x0068A1A0",
+  "Fighter_select_outcome_path_from_frame_flags=0x0045E120",
+  "CollisionContext_apply_terminal_outcome=0x0046C6E0",
+  "Fighter_adjust_capped_counter_558=0x0045CED0",
+  "update_fighter_facing_from_other_x=0x0045E070",
+  "dispatch_indexed_event=0x0043B1A0",
+  "CollisionContext_emit_effect_at_collision_center=0x0046B650",
+  "CollisionContext_reset_collision_extents=0x0046B6C0",
+]
+
+[units.cross-v106a-family2-dispatch]
+kind = "probe"
+source = "src/battle/Family2Dispatch.cpp"
+object = "build/match-units/CrossV106a_Family2Dispatch.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current TH105 1.06a family-2-vs-family-1 collision pass. Real checked end iterators retain owner/node state and validate owner at each loop condition, reproducing the linked iterator CFG without padding, volatile state, register forcing, or assembly."
+
+[[units.cross-v106a-family2-dispatch.functions]]
+address = "0x0046DB30"
+symbol_base = "dispatch_family2_against_family1"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?try_group_b_pair_response@CollisionContext@th105@@QAE_NPAUCollisionObject@2@0@Z=0x0046C9E0",
+  "?try_group_a_vs_group_b_interaction@CollisionContext@th105@@QAE_NPAUCollisionObject@2@0@Z=0x0046C930",
 ]

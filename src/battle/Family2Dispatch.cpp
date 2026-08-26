@@ -18,15 +18,15 @@ unsigned frame_flags_50(const CollisionObject *object)
 void CollisionContext::dispatch_family2_against_family1()
 {
     Fighter **fighter = fighters;
-    // The checked iterators retain three independent end-sentinel lifetimes.
-    struct EndSentinelLocals {
-        unsigned char source_padding[4];
-        CollisionListNode *source;
-        unsigned char other_padding[4];
-        CollisionListNode *other;
-        unsigned char same_padding[4];
-        CollisionListNode *same;
-    } end_sentinels;
+    struct CheckedEndIterator {
+        CollisionList *owner;
+        CollisionListNode *node;
+    };
+    struct EndIteratorLocals {
+        CheckedEndIterator source;
+        CheckedEndIterator other;
+        CheckedEndIterator same;
+    } ends;
     int fighter_count = 2;
 
     do {
@@ -35,14 +35,14 @@ void CollisionContext::dispatch_family2_against_family1()
         CollisionList *source_begin_list = &family_2[source_slot];
         CollisionList *source_end_list = &family_2[source_slot];
         CollisionListNode *source_it = source_begin_list->sentinel->next;
-        end_sentinels.source = source_end_list->sentinel;
-
-        if (source_begin_list != source_end_list) {
-            _invalid_parameter_noinfo();
-        }
+        ends.source.owner = source_end_list;
+        ends.source.node = source_end_list->sentinel;
 
 source_loop:
-        if (source_it == end_sentinels.source) {
+        if (source_begin_list != ends.source.owner) {
+            _invalid_parameter_noinfo();
+        }
+        if (source_it == ends.source.node) {
             goto source_done;
         }
             if (source_it == source_begin_list->sentinel) {
@@ -63,14 +63,14 @@ source_loop:
                     CollisionList *other_end_list = &family_1[other_slot];
                     CollisionListNode *other_it =
                         other_begin_list->sentinel->next;
-                    end_sentinels.other = other_end_list->sentinel;
-
-                    if (other_begin_list != other_end_list) {
-                        _invalid_parameter_noinfo();
-                    }
+                    ends.other.owner = other_end_list;
+                    ends.other.node = other_end_list->sentinel;
 
 other_loop:
-                    if (other_it == end_sentinels.other) {
+                    if (other_begin_list != ends.other.owner) {
+                        _invalid_parameter_noinfo();
+                    }
+                    if (other_it == ends.other.node) {
                         goto other_done;
                     }
                         if (other_it == other_begin_list->sentinel) {
@@ -112,14 +112,14 @@ other_done:
                         CollisionList *same_end_list = &family_1[source_slot];
                         CollisionListNode *same_it =
                             same_begin_list->sentinel->next;
-                        end_sentinels.same = same_end_list->sentinel;
-
-                        if (same_begin_list != same_end_list) {
-                            _invalid_parameter_noinfo();
-                        }
+                        ends.same.owner = same_end_list;
+                        ends.same.node = same_end_list->sentinel;
 
 same_loop:
-                        if (same_it == end_sentinels.same) {
+                        if (same_begin_list != ends.same.owner) {
+                            _invalid_parameter_noinfo();
+                        }
+                        if (same_it == ends.same.node) {
                             goto same_done;
                         }
                             if (source_it == source_begin_list->sentinel) {

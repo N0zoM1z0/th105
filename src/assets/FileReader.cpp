@@ -71,26 +71,25 @@ bool CPackageFileReader::read(void *destination, FileSize size)
 
 long CPackageFileReader::seek(long offset, int origin)
 {
-    long result;
     switch (origin) {
     case 0:
-        result = SetFilePointer(file, entry_offset + offset, 0, 0);
-        break;
+        position =
+            SetFilePointer(file, entry_offset + offset, 0, 0) - entry_offset;
+        return position;
     case 1:
-        result = SetFilePointer(file, offset, 0, 1);
-        break;
+        position = SetFilePointer(file, offset, 0, 1) - entry_offset;
+        return position;
     case 2:
-        result = SetFilePointer(
-            file,
-            entry_size - offset + entry_offset,
-            0,
-            0);
-        break;
+        position = SetFilePointer(
+                       file,
+                       entry_size - offset + entry_offset,
+                       0,
+                       0) -
+            entry_offset;
+        return position;
     default:
         return 0;
     }
-    position = result - entry_offset;
-    return position;
 }
 
 FileSize CPackageFileReader::size() const

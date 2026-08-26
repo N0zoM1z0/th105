@@ -67,9 +67,7 @@ void CollisionContext::dispatch_family1_object_clashes()
         ++list;
     } while (--list_count != 0);
 
-    // Preserve the target's saved-this lifetime across the cross-list pass.
-    CollisionContext * volatile context = this;
-    CollisionListNode *const left_sentinel = context->family_1[0].sentinel;
+    CollisionListNode *const left_sentinel = family_1[0].sentinel;
     CheckedCollisionListIterator outer = {
         left_sentinel->next, &family_1[0]
     };

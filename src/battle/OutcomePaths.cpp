@@ -50,16 +50,16 @@ bool CollisionContext::try_outcome_path_a(
 
     if (frame->amount_22 != 0) {
         const short before = fighter->counter_482;
-        if ((frame->flags_50 & 0x00400000) != 0) {
+        if ((candidate->frame_1a4->flags_50 & 0x00400000) != 0) {
             fighter->counter_482 -= frame->amount_22;
             fighter->floor_486 = 0x3c;
         } else if (fighter->select_outcome_path_from_frame_flags(
-                       frame->flags_50) == 5) {
+                       candidate->frame_1a4->flags_50) == 5) {
             fighter->counter_482 -=
-                static_cast<short>(frame->amount_22) / 2;
+                static_cast<short>(candidate->frame_1a4->amount_22) / 2;
             fighter->floor_486 = 0x3c;
         }
-        if (fighter->counter_482 < 1 && fighter->counter_482 < before) {
+        if (fighter->counter_482 <= 0 && fighter->counter_482 < before) {
             apply_terminal_outcome(candidate, fighter);
             return true;
         }
@@ -71,12 +71,13 @@ bool CollisionContext::try_outcome_path_a(
     fighter->result_186 = frame->result_30;
     fighter->response_18c = frame->response_3c;
     fighter->response_190 = frame->response_40;
-    candidate->owner_16c->adjust_capped_counter_558(static_cast<short>(
-        frame->amount_34 * candidate->owner_16c->factor_4d0));
+    const short adjusted_amount = static_cast<short>(
+        static_cast<short>(frame->amount_34) *
+        candidate->owner_16c->factor_4d0);
+    candidate->owner_16c->adjust_capped_counter_558(adjusted_amount);
     if (candidate->owner_16c->scale_4d8 > 0.0f) {
         deferred_7c[fighter->player_index_334] += static_cast<short>(
-            (static_cast<short>(frame->amount_34) / 2) *
-            candidate->owner_16c->scale_4d8);
+            (adjusted_amount / 2) * candidate->owner_16c->scale_4d8);
     }
     update_fighter_facing_from_other_x(fighter);
     dispatch_indexed_event(0x14);
@@ -109,7 +110,8 @@ bool CollisionContext::try_outcome_path_b(
         }
     }
 
-    if ((frame->flags_50 & 0x00080000) != 0 ||
+    const unsigned frame_flags = candidate->frame_1a4->flags_50;
+    if ((frame_flags & 0x00080000) != 0 ||
         candidate->source_168->gate_4e4 != 0) {
         apply_terminal_outcome(candidate, fighter);
         return true;
@@ -118,12 +120,12 @@ bool CollisionContext::try_outcome_path_b(
         const short before = fighter->counter_482;
         unsigned short amount =
             static_cast<unsigned short>(frame->amount_22);
-        if ((frame->flags_50 & 0x00400000) != 0) {
+        if ((frame_flags & 0x00400000) != 0) {
             amount *= 2;
         }
         fighter->counter_482 -= amount;
         fighter->floor_486 = 0x3c;
-        if (fighter->counter_482 < 1 && fighter->counter_482 < before) {
+        if (fighter->counter_482 <= 0 && fighter->counter_482 < before) {
             apply_terminal_outcome(candidate, fighter);
             return true;
         }
@@ -136,7 +138,8 @@ bool CollisionContext::try_outcome_path_b(
     fighter->response_18c = frame->response_3c;
     fighter->response_190 = frame->response_40;
     candidate->owner_16c->adjust_capped_counter_558(static_cast<short>(
-        frame->amount_34 * candidate->owner_16c->factor_4d0));
+        static_cast<short>(frame->amount_34) *
+        candidate->owner_16c->factor_4d0));
     if (candidate->owner_16c->scale_4d8 > 0.0f) {
         deferred_7c[fighter->player_index_334] += static_cast<short>(
             (static_cast<short>(frame->amount_34) / 2) *
