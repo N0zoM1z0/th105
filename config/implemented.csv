@@ -868,3 +868,6 @@ CInfoManager_update_normal_runtime
 InfoLongRecord154_render
 InfoLongRecord154_update
 CInfoManager_render_normal_runtime
+CSelectObjectPool_acquire
+InfoEffectObjectPool_acquire
+BattleSlotState_create_fighter_for_slot

@@ -11107,3 +11107,72 @@ rel32_targets = [
 [[units.cross-v106a-info-long-record-runtime.functions]]
 address = "0x004327C0"
 symbol_base = "?update_4327c0@InfoLongRecord154Runtime@th105@@QAEXXZ"
+
+[units.cross-v106a-effect-handle-pool-acquire]
+kind = "probe"
+source = "src/battle/EffectHandlePoolAcquire.cpp"
+object = "build/match-units/CrossV106a_EffectHandlePoolAcquire.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CSelectObject and InfoEffectObject CHandleManagerEx acquire roots. Exact object-manager callers prove pool ownership; ordinary checked vector/list source plus target-proved 0x170/0x178 physical extents reproduces both 434-byte roots. Weather/Effect siblings remain pending on one repeated receiver-hoist schedule."
+
+[[units.cross-v106a-effect-handle-pool-acquire.functions]]
+address = "0x00422B70"
+symbol_base = "?acquire@?$CHandleManagerEx@VCSelectObject@@@@QAEPAVCSelectObject@@PAI@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CSelectObject@@QAE@XZ=0x00422140",
+  "?push_back@?$vector@PAVCSelectObject@@V?$allocator@PAVCSelectObject@@@std@@@std@@QAEXABQAVCSelectObject@@@Z=0x0064AF70",
+  "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0",
+  "?at@?$vector@PAVCSelectObject@@V?$allocator@PAVCSelectObject@@@std@@@std@@QAEAAPAVCSelectObject@@I@Z=0x0056D450",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+]
+
+[[units.cross-v106a-effect-handle-pool-acquire.functions]]
+address = "0x0046F190"
+symbol_base = "?acquire@?$CHandleManagerEx@VInfoEffectObject@@@@QAEPAVInfoEffectObject@@PAI@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0InfoEffectObject@@QAE@XZ=0x0046F150",
+  "?push_back@?$vector@PAVInfoEffectObject@@V?$allocator@PAVInfoEffectObject@@@std@@@std@@QAEXABQAVInfoEffectObject@@@Z=0x0064AF70",
+  "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0",
+  "?at@?$vector@PAVInfoEffectObject@@V?$allocator@PAVInfoEffectObject@@@std@@@std@@QAEAAPAVInfoEffectObject@@I@Z=0x0056D450",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+]
+
+[units.cross-v106a-fighter-factory]
+kind = "probe"
+source = "src/battle/FighterFactory.cpp"
+object = "build/match-units/CrossV106a_FighterFactory.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current BattleSlotState fighter factory. Target allocation extents define narrow typed constructor views; ordinary typed new expressions reuse the dead setup argument as VC8 allocation-cleanup storage. Source case order 0/1/2/5/3/4/6/7/8/9/11/10/12/13/14 is independently encoded by target block addresses and EH state order."
+
+[[units.cross-v106a-fighter-factory.functions]]
+address = "0x004642F0"
+symbol_base = "?create_fighter_for_slot@BattleSlotState@th105@@QAEHHPBUSide@MatchSetup@2@@Z"
+rel32_targets = [
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0ReimuFighterCtorView@?A0x1fe19b06@th105@@QAE@PBUSide@MatchSetup@2@@Z=0x00493A40",
+  "??0MarisaFighterCtorView@?A0x1fe19b06@th105@@QAE@PBUSide@MatchSetup@2@@Z=0x004B9F20",
+  "??0SakuyaFighterCtorView@?A0x1fe19b06@th105@@QAE@PBUSide@MatchSetup@2@@Z=0x004DF430",
+  "??0AliceFighterCtorView@?A0x1fe19b06@th105@@QAE@PBUSide@MatchSetup@2@@Z=0x004FAC40",
+  "??0PatchouliFighterCtorView@?A0x1fe19b06@th105@@QAE@PBUSide@MatchSetup@2@@Z=0x0051EEE0",
+  "??0YoumuFighterCtorView@?A0x1fe19b06@th105@@QAE@PBUSide@MatchSetup@2@@Z=0x0053B330",
+  "??0RemiliaFighterCtorView@?A0x1fe19b06@th105@@QAE@PBUSide@MatchSetup@2@@Z=0x00555FF0",
+  "??0YuyukoFighterCtorView@?A0x1fe19b06@th105@@QAE@PBUSide@MatchSetup@2@@Z=0x0056DE30",
+  "??0YukariFighterCtorView@?A0x1fe19b06@th105@@QAE@PBUSide@MatchSetup@2@@Z=0x0058C0F0",
+  "??0SuikaFighterCtorView@?A0x1fe19b06@th105@@QAE@PBUSide@MatchSetup@2@@Z=0x005AEC80",
+  "??0UdongeFighterCtorView@?A0x1fe19b06@th105@@QAE@PBUSide@MatchSetup@2@@Z=0x005D2BF0",
+  "??0AyaFighterCtorView@?A0x1fe19b06@th105@@QAE@PBUSide@MatchSetup@2@@Z=0x006185E0",
+  "??0KomachiFighterCtorView@?A0x1fe19b06@th105@@QAE@PBUSide@MatchSetup@2@@Z=0x005F7A30",
+  "??0IkuFighterCtorView@?A0x1fe19b06@th105@@QAE@PBUSide@MatchSetup@2@@Z=0x006312B0",
+  "??0TenshiFighterCtorView@?A0x1fe19b06@th105@@QAE@PBUSide@MatchSetup@2@@Z=0x0064B6F0",
+  "?initialize_fighter_spell_resources@Fighter@th105@@QAEXXZ=0x00463070",
+]

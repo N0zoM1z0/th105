@@ -7,27 +7,32 @@ namespace th105 {
 
 namespace {
 
-// Constructor views retain only the observed member ABI: ECX receives the
-// freshly allocated derived object and the sole stack argument is a Side.
-// They intentionally do not assert original C++ class spellings or layouts.
-#define DECLARE_FIGHTER_CTOR_VIEW(name) \
-    struct name { explicit name(const MatchSetup::Side *setup); }
+// Constructor views retain the target-proved allocation extent and observed
+// member ABI: ECX receives the freshly allocated derived object and the sole
+// stack argument is a Side. They intentionally do not claim unobserved fields
+// or original class spellings; the physical extent is required so ordinary
+// typed new expressions reproduce the shipped new-expression lifetime.
+#define DECLARE_FIGHTER_CTOR_VIEW(name, extent) \
+    struct name { \
+        unsigned char storage_00[extent]; \
+        explicit name(const MatchSetup::Side *setup); \
+    }
 
-DECLARE_FIGHTER_CTOR_VIEW(ReimuFighterCtorView);
-DECLARE_FIGHTER_CTOR_VIEW(MarisaFighterCtorView);
-DECLARE_FIGHTER_CTOR_VIEW(SakuyaFighterCtorView);
-DECLARE_FIGHTER_CTOR_VIEW(AliceFighterCtorView);
-DECLARE_FIGHTER_CTOR_VIEW(PatchouliFighterCtorView);
-DECLARE_FIGHTER_CTOR_VIEW(YoumuFighterCtorView);
-DECLARE_FIGHTER_CTOR_VIEW(RemiliaFighterCtorView);
-DECLARE_FIGHTER_CTOR_VIEW(YuyukoFighterCtorView);
-DECLARE_FIGHTER_CTOR_VIEW(YukariFighterCtorView);
-DECLARE_FIGHTER_CTOR_VIEW(SuikaFighterCtorView);
-DECLARE_FIGHTER_CTOR_VIEW(UdongeFighterCtorView);
-DECLARE_FIGHTER_CTOR_VIEW(AyaFighterCtorView);
-DECLARE_FIGHTER_CTOR_VIEW(KomachiFighterCtorView);
-DECLARE_FIGHTER_CTOR_VIEW(IkuFighterCtorView);
-DECLARE_FIGHTER_CTOR_VIEW(TenshiFighterCtorView);
+DECLARE_FIGHTER_CTOR_VIEW(ReimuFighterCtorView, 0x7d0);
+DECLARE_FIGHTER_CTOR_VIEW(MarisaFighterCtorView, 0x7b4);
+DECLARE_FIGHTER_CTOR_VIEW(SakuyaFighterCtorView, 0x7a8);
+DECLARE_FIGHTER_CTOR_VIEW(AliceFighterCtorView, 0x7d8);
+DECLARE_FIGHTER_CTOR_VIEW(PatchouliFighterCtorView, 0x7b8);
+DECLARE_FIGHTER_CTOR_VIEW(YoumuFighterCtorView, 0x800);
+DECLARE_FIGHTER_CTOR_VIEW(RemiliaFighterCtorView, 0x7a4);
+DECLARE_FIGHTER_CTOR_VIEW(YuyukoFighterCtorView, 0x7b4);
+DECLARE_FIGHTER_CTOR_VIEW(YukariFighterCtorView, 0x7cc);
+DECLARE_FIGHTER_CTOR_VIEW(SuikaFighterCtorView, 0x7a8);
+DECLARE_FIGHTER_CTOR_VIEW(UdongeFighterCtorView, 0x7bc);
+DECLARE_FIGHTER_CTOR_VIEW(AyaFighterCtorView, 0x7a4);
+DECLARE_FIGHTER_CTOR_VIEW(KomachiFighterCtorView, 0x7ac);
+DECLARE_FIGHTER_CTOR_VIEW(IkuFighterCtorView, 0x7b8);
+DECLARE_FIGHTER_CTOR_VIEW(TenshiFighterCtorView, 0x844);
 
 #undef DECLARE_FIGHTER_CTOR_VIEW
 
@@ -41,93 +46,63 @@ int BattleSlotState::create_fighter_for_slot(
 
     switch (setup->character_key_00) {
     case 0: {
-        void *storage = operator new(0x7d0);
-        if (storage) fighter = reinterpret_cast<Fighter *>(
-            new (storage) ReimuFighterCtorView(setup));
+        fighter = reinterpret_cast<Fighter *>(new ReimuFighterCtorView(setup));
         break;
     }
     case 1: {
-        void *storage = operator new(0x7b4);
-        if (storage) fighter = reinterpret_cast<Fighter *>(
-            new (storage) MarisaFighterCtorView(setup));
+        fighter = reinterpret_cast<Fighter *>(new MarisaFighterCtorView(setup));
         break;
     }
     case 2: {
-        void *storage = operator new(0x7a8);
-        if (storage) fighter = reinterpret_cast<Fighter *>(
-            new (storage) SakuyaFighterCtorView(setup));
-        break;
-    }
-    case 3: {
-        void *storage = operator new(0x7d8);
-        if (storage) fighter = reinterpret_cast<Fighter *>(
-            new (storage) AliceFighterCtorView(setup));
-        break;
-    }
-    case 4: {
-        void *storage = operator new(0x7b8);
-        if (storage) fighter = reinterpret_cast<Fighter *>(
-            new (storage) PatchouliFighterCtorView(setup));
+        fighter = reinterpret_cast<Fighter *>(new SakuyaFighterCtorView(setup));
         break;
     }
     case 5: {
-        void *storage = operator new(0x800);
-        if (storage) fighter = reinterpret_cast<Fighter *>(
-            new (storage) YoumuFighterCtorView(setup));
+        fighter = reinterpret_cast<Fighter *>(new YoumuFighterCtorView(setup));
+        break;
+    }
+    case 3: {
+        fighter = reinterpret_cast<Fighter *>(new AliceFighterCtorView(setup));
+        break;
+    }
+    case 4: {
+        fighter = reinterpret_cast<Fighter *>(new PatchouliFighterCtorView(setup));
         break;
     }
     case 6: {
-        void *storage = operator new(0x7a4);
-        if (storage) fighter = reinterpret_cast<Fighter *>(
-            new (storage) RemiliaFighterCtorView(setup));
+        fighter = reinterpret_cast<Fighter *>(new RemiliaFighterCtorView(setup));
         break;
     }
     case 7: {
-        void *storage = operator new(0x7b4);
-        if (storage) fighter = reinterpret_cast<Fighter *>(
-            new (storage) YuyukoFighterCtorView(setup));
+        fighter = reinterpret_cast<Fighter *>(new YuyukoFighterCtorView(setup));
         break;
     }
     case 8: {
-        void *storage = operator new(0x7cc);
-        if (storage) fighter = reinterpret_cast<Fighter *>(
-            new (storage) YukariFighterCtorView(setup));
+        fighter = reinterpret_cast<Fighter *>(new YukariFighterCtorView(setup));
         break;
     }
     case 9: {
-        void *storage = operator new(0x7a8);
-        if (storage) fighter = reinterpret_cast<Fighter *>(
-            new (storage) SuikaFighterCtorView(setup));
-        break;
-    }
-    case 10: {
-        void *storage = operator new(0x7bc);
-        if (storage) fighter = reinterpret_cast<Fighter *>(
-            new (storage) UdongeFighterCtorView(setup));
+        fighter = reinterpret_cast<Fighter *>(new SuikaFighterCtorView(setup));
         break;
     }
     case 11: {
-        void *storage = operator new(0x7a4);
-        if (storage) fighter = reinterpret_cast<Fighter *>(
-            new (storage) AyaFighterCtorView(setup));
+        fighter = reinterpret_cast<Fighter *>(new AyaFighterCtorView(setup));
+        break;
+    }
+    case 10: {
+        fighter = reinterpret_cast<Fighter *>(new UdongeFighterCtorView(setup));
         break;
     }
     case 12: {
-        void *storage = operator new(0x7ac);
-        if (storage) fighter = reinterpret_cast<Fighter *>(
-            new (storage) KomachiFighterCtorView(setup));
+        fighter = reinterpret_cast<Fighter *>(new KomachiFighterCtorView(setup));
         break;
     }
     case 13: {
-        void *storage = operator new(0x7b8);
-        if (storage) fighter = reinterpret_cast<Fighter *>(
-            new (storage) IkuFighterCtorView(setup));
+        fighter = reinterpret_cast<Fighter *>(new IkuFighterCtorView(setup));
         break;
     }
     case 14: {
-        void *storage = operator new(0x844);
-        if (storage) fighter = reinterpret_cast<Fighter *>(
-            new (storage) TenshiFighterCtorView(setup));
+        fighter = reinterpret_cast<Fighter *>(new TenshiFighterCtorView(setup));
         break;
     }
     }
