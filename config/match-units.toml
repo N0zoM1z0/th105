@@ -10505,3 +10505,79 @@ rel32_targets = [
   "?try_group_b_pair_response@CollisionContext@th105@@QAE_NPAUCollisionObject@2@0@Z=0x0046C9E0",
   "?try_group_a_vs_group_b_interaction@CollisionContext@th105@@QAE_NPAUCollisionObject@2@0@Z=0x0046C930",
 ]
+
+[units.cross-v106a-scenario-effect-config-default]
+kind = "probe"
+source = "src/battle/ScenarioEffectConfigDefault.cpp"
+object = "build/match-units/CrossV106a_ScenarioEffectConfigDefault.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current 0x128 Scenario/profile text-effect config default lifetime. Ordinary C++ writes duration 400, interval 100000, zero flags/mode/state/options and reproduces the complete 67-byte constructor."
+
+[[units.cross-v106a-scenario-effect-config-default.functions]]
+address = "0x004113E0"
+symbol_base = "ScenarioEffectConfigDefaultView_ctor"
+
+[units.cross-v106a-player-slot-color]
+kind = "probe"
+source = "src/ui/PlayerSlotColor.cpp"
+object = "build/match-units/CrossV106a_PlayerSlotColor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current PlayerSlotRecord profile-color member. Exact callers close the 0x33C owner, texture+polymorphic-sprite prefix, std::string +0x98/+0xB4 and shared 0x194 text-owner pipeline; real virtual dispatch closes the 461-byte target without manual vtable loads."
+
+[[units.cross-v106a-player-slot-color.functions]]
+address = "0x00431440"
+symbol_base = "PlayerSlotRecord_set_profile_color"
+rel32_targets = [
+  "??0ProfileSlotEffectOwner194@th105@@QAE@XZ=0x00411430",
+  "_strcpy_s=0x0068AD95",
+  "?configure@ProfileSlotEffectOwner194@th105@@QAEXPBUProfileSlotEffectConfig@2@@Z=0x004115A0",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIHH@Z=0x00404D00",
+  "??1ProfileSlotEffectOwner194@th105@@QAE@XZ=0x004114C0",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?set_profile_color@PlayerSlotRecord@th105@@QAEXEEE@Z=__ehhandler$?set_profile_color@PlayerSlotRecord@th105@@QAEXEEE@Z",
+  "___security_cookie=___security_cookie",
+  "_profile_ui_effect_label=_profile_ui_effect_label",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+]
+
+[units.cross-v106a-player-slot-profile-reload]
+kind = "probe"
+source = "src/ui/PlayerSlotRecordReload.cpp"
+object = "build/match-units/CrossV106a_PlayerSlotRecordReload.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current PlayerSlotRecord reload wrapper. Real std::string copy construction from member +0x98 plus load_profile(c_str()) reproduces target /GS/EH and inline SSO cleanup naturally."
+
+[[units.cross-v106a-player-slot-profile-reload.functions]]
+address = "0x00431DA0"
+symbol_base = "reload_profile"
+rel32_targets = [
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "?load_profile@PlayerSlotRecord@th105@@QAE_NPBD@Z=0x00431AC0",
+  "??3@YAXPAX@Z=0x006898EA",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?reload_profile@PlayerSlotRecord@th105@@QAE_NXZ=__ehhandler$?reload_profile@PlayerSlotRecord@th105@@QAE_NXZ",
+  "___security_cookie=___security_cookie",
+]
+
+[units.cross-v106a-player-slot-deck-view]
+kind = "probe"
+source = "src/ui/PlayerSlotDeckView.cpp"
+object = "build/match-units/CrossV106a_PlayerSlotDeckView.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current PlayerSlotRecord indexed deck adapter. Nine callers prove optional output plus index ABI; checked deque<unsigned short> storage begins at +0x1AC. Recomputing the member after optional assignment, without a cached pointer, reproduces all 47 bytes."
+
+[[units.cross-v106a-player-slot-deck-view.functions]]
+address = "0x00431E50"
+symbol_base = "PlayerSlotDeckView_copy_deck"
+rel32_targets = [
+  "??4?$deque@GV?$allocator@G@std@@@std@@QAEAAV01@ABV01@@Z=0x0042B6B0",
+]

@@ -58,6 +58,7 @@ struct MenuString28 {
 
 struct PlayerSlotRecord {
     bool load_profile(const char *path);
+    bool reload_profile();
     void set_profile_color(
         unsigned char red, unsigned char green, unsigned char blue);
 };
