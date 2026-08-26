@@ -12,11 +12,41 @@ extern "C" bool __cdecl is_menu_initial_press(
     int primary, int modifier_a, int modifier_b, int modifier_c);
 extern "C" void __cdecl prepare_scenario_match(int player);
 extern "C" void __cdecl start_scene_fade(int duration, int color);
-extern "C" void __cdecl install_menu_object(void *object);
+void __cdecl install_menu_object(void *object);
 extern "C" void __cdecl _invalid_parameter_noinfo();
 extern "C" int g_scene_mode;
 
 namespace th105 {
+
+namespace {
+
+inline void bind_scenario_cursor_vertical(
+    MenuCursorState &cursor, CInputManager *input, int count, int page)
+{
+    if (input)
+        cursor.input_counter = &input->hold.vertical;
+    else
+        cursor.input_counter = 0;
+    cursor.selection = 0;
+    cursor.window_start = 0;
+    cursor.item_count = count;
+    cursor.page_size = page;
+}
+
+inline void bind_scenario_cursor_horizontal(
+    MenuCursorState &cursor, CInputManager *input, int count, int page)
+{
+    if (input)
+        cursor.input_counter = &input->hold.horizontal;
+    else
+        cursor.input_counter = 0;
+    cursor.selection = 0;
+    cursor.window_start = 0;
+    cursor.item_count = count;
+    cursor.page_size = page;
+}
+
+} // namespace
 
 extern MatchSetup *get_match_setup();
 extern GameConfig *get_game_config();
@@ -43,30 +73,17 @@ void CSelectScenario::on_scene_enter(int previous_scene)
     if (previous_scene != 2)
         play_bgm(title_bgm_path);
 
-    input_0c = reinterpret_cast<CInputManager *>(get_selected_input(0));
-
-    player_cursor_2bc.item_count = scenario_count_3c;
-    player_cursor_2bc.input_counter =
-        input_0c == 0 ? 0 : &input_0c->hold.vertical;
-    player_cursor_2bc.selection = 0;
-    player_cursor_2bc.window_start = 0;
-    player_cursor_2bc.page_size = 0;
-
-    scenario_cursor_2d0.item_count = 4;
-    scenario_cursor_2d0.input_counter =
-        input_0c == 0 ? 0 : &input_0c->hold.horizontal;
-    scenario_cursor_2d0.selection = 0;
-    scenario_cursor_2d0.window_start = 0;
-    scenario_cursor_2d0.page_size = 0;
+    CInputManager *player_input =
+        reinterpret_cast<CInputManager *>(get_selected_input(0));
+    input_0c = player_input;
+    bind_scenario_cursor_vertical(
+        player_cursor_2bc, player_input, scenario_count_3c, 0);
+    bind_scenario_cursor_horizontal(
+        scenario_cursor_2d0, input_0c, 4, 0);
 
     int index = 0;
     while (index < scenario_count_3c) {
-        if (scenario_ids_2c.begin == 0 ||
-            static_cast<unsigned int>(
-                scenario_ids_2c.end - scenario_ids_2c.begin) <=
-                static_cast<unsigned int>(index))
-            _invalid_parameter_noinfo();
-        if (match_setup_08->scenario_id == scenario_ids_2c.begin[index]) {
+        if (match_setup_08->scenario_id == scenario_ids_2c[index]) {
             player_cursor_2bc.selection = index;
             break;
         }
@@ -103,20 +120,17 @@ int CSelectScenario::update_selection()
     if (player_cursor_2bc.update()) {
         dispatch_indexed_event(0x27);
         unsigned int index = player_cursor_2bc.selection;
-        if (scenario_ids_2c.begin == 0 ||
-            static_cast<unsigned int>(
-                scenario_ids_2c.end - scenario_ids_2c.begin) <= index)
-            _invalid_parameter_noinfo();
-        match_setup_08->scenario_id = scenario_ids_2c.begin[index];
+        match_setup_08->scenario_id = scenario_ids_2c[index];
         apply_scenario(match_setup_08->scenario_id);
-        timer_338 = 10;
-        float transition;
-        if (input_0c->hold.vertical < one)
-            transition = transition_33c - 1.0;
-        else
-            transition = transition_33c + 1.0;
-        transition_33c = transition;
-        preview_alpha_340 = transition;
+        if (input_0c->hold.vertical > 0) {
+            timer_338 = 10;
+            transition_33c = static_cast<float>(transition_33c + 1.0);
+            preview_alpha_340 = transition_33c;
+        } else {
+            timer_338 = 10;
+            transition_33c = static_cast<float>(transition_33c - 1.0);
+            preview_alpha_340 = transition_33c;
+        }
         return 16;
     }
 

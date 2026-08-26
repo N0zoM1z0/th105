@@ -7,6 +7,8 @@
 #include "../input/InputManager.hpp"
 
 #include <new>
+#include <string>
+#include <vector>
 
 namespace th105 {
 
@@ -109,9 +111,8 @@ public:
 private:
     MatchSetup *match_setup_08;
     CInputManager *input_0c;
-    unsigned int reserved_10;
-    SelectString24 scenario_name_14;
-    SelectIntVector16 scenario_ids_2c;
+    std::string scenario_name_10;
+    std::vector<int> scenario_ids_2c;
     int scenario_count_3c;
     unsigned int texture_40;
     UiSprite94 color_44;
@@ -135,6 +136,7 @@ private:
     float preview_alpha_340;
     GuideOverlay guide_344;
 };
+
 
 typedef char CSelectScenario_size_must_be_0x3ec[
     sizeof(CSelectScenario) == 0x3EC ? 1 : -1];

@@ -11235,3 +11235,123 @@ dir32_targets = [
   "?g_info_manager@th105@@3PAUInfoManager@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A",
   "?g_round_counter@th105@@3EA=?g_round_counter@th105@@3EA",
 ]
+
+[units.cross-v106a-select-scenario-flow-core]
+kind = "probe"
+source = "src/ui/SelectScenarioFlow.cpp"
+object = "build/match-units/CrossV106a_SelectScenarioFlowCore.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CSelectScenario flow core. Real std::string/std::vector layout plus branch-local cursor-binding helpers recover the vtable-owned 247-byte update and 271-byte scene-enter body exactly. The same TU keeps update_selection pending at a truthful 414/414 compiler block-order residual and does not promote it."
+
+[[units.cross-v106a-select-scenario-flow-core.functions]]
+address = "0x00424690"
+symbol_base = "?update@CSelectScenario@th105@@UAEHXZ"
+rel32_targets = [
+  "_has_ui_selection_state_changed=0x0043B6E0",
+  "_dispatch_indexed_event=0x0043B1A0",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CMenuSelect@th105@@QAE@XZ=0x004482E0",
+  "?install_menu_object@@YAXPAX@Z=0x0043B0F0",
+  "_is_menu_initial_press=0x0043ABD0",
+]
+dir32_targets = ["_g_scene_mode=_g_scene_mode"]
+
+[[units.cross-v106a-select-scenario-flow-core.functions]]
+address = "0x00424790"
+symbol_base = "?on_scene_enter@CSelectScenario@th105@@UAEXH@Z"
+rel32_targets = [
+  "?get_match_setup@th105@@YAPAUMatchSetup@1@XZ=0x0043AC50",
+  "_play_bgm=0x0043CF80",
+  "?get_selected_input@th105@@YAPAUPlayerInput@1@I@Z=0x0043B010",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?get_game_config@th105@@YAPAUGameConfig@1@XZ=0x0043AF10",
+  "?apply_scenario@CSelectScenario@th105@@QAEXH@Z=0x004245D0",
+]
+dir32_targets = ["_title_bgm_path=_title_bgm_path"]
+
+[units.cross-v106a-character-stage-bgm-lookup]
+kind = "probe"
+source = "src/battle/CharacterStageBgmLookup.cpp"
+object = "build/match-units/CrossV106a_CharacterStageBgmLookup.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current character-to-stage/BGM checked-map wrappers. Each wrapper directly passes its own character_key argument slot to shared lower_bound 0x0045C320; extracting a common helper creates an extra key copy and grows 72-byte target bodies to 80 bytes."
+
+[[units.cross-v106a-character-stage-bgm-lookup.functions]]
+address = "0x0043C0B0"
+symbol_base = "?get_stage_for_character@th105@@YAEH@Z"
+rel32_targets = [
+  "?lower_bound@CharacterByteMapTree@th105@@QAEPAUCharacterByteMapIterator@2@PAU32@PBH@Z=0x0045C320",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = ["?g_stage_for_character_map@th105@@3UCharacterByteMapTree@1@A=?g_stage_for_character_map@th105@@3UCharacterByteMapTree@1@A"]
+
+[[units.cross-v106a-character-stage-bgm-lookup.functions]]
+address = "0x0043C100"
+symbol_base = "?get_bgm_for_character@th105@@YAEH@Z"
+rel32_targets = [
+  "?lower_bound@CharacterByteMapTree@th105@@QAEPAUCharacterByteMapIterator@2@PAU32@PBH@Z=0x0045C320",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = ["?g_bgm_for_character_map@th105@@3UCharacterByteMapTree@1@A=?g_bgm_for_character_map@th105@@3UCharacterByteMapTree@1@A"]
+
+[units.cross-v106a-scenario-match-preparation]
+kind = "probe"
+source = "src/ui/ScenarioMatchPreparation.cpp"
+object = "build/match-units/CrossV106a_ScenarioMatchPreparation.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current scenario-match runtime preparation. The contiguous 0x006FCA4C state block, exact-backed PlayerSlotRecord deck helpers and selected-input source establish the ordinary publication/copy/select/MT19937 flow. Flags 0x54/0x55/0x75 and 0x76=2 must publish before copy_deck to preserve shipped byte order."
+
+[[units.cross-v106a-scenario-match-preparation.functions]]
+address = "0x0043AE90"
+symbol_base = "?prepare_scenario_match@th105@@YAXH@Z"
+rel32_targets = [
+  "?copy_deck@PlayerSlotRecordScenarioView@th105@@QAEPAUScenarioDeckStorage20@2@PAU32@H@Z=0x00431E50",
+  "?select_deck@PlayerSlotRecordScenarioView@th105@@QAEXE@Z=0x004313B0",
+  "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
+]
+dir32_targets = [
+  "?g_scenario_match_runtime@th105@@3UScenarioMatchRuntimeState@1@A=?g_scenario_match_runtime@th105@@3UScenarioMatchRuntimeState@1@A",
+  "?g_scenario_deck_storage@th105@@3EA=?g_scenario_deck_storage@th105@@3EA",
+  "?g_player_slot_records@th105@@3PAEA=?g_player_slot_records@th105@@3PAEA",
+  "?g_selected_input_sources@th105@@3PACA=?g_selected_input_sources@th105@@3PACA",
+]
+
+[units.cross-v106a-player-slot-deck-selection]
+kind = "probe"
+source = "src/ui/PlayerSlotDeckSelection.cpp"
+object = "build/match-units/CrossV106a_PlayerSlotDeckSelection.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current PlayerSlotRecord selected-deck leaf. Publishing +0x1A8 then selecting +0x140 versus +0x174 and tail-calling the 0x00409D60 profile-block owner naturally makes VC8 reuse the original parameter slot for the block pointer exactly like the 59-byte target."
+
+[[units.cross-v106a-player-slot-deck-selection.functions]]
+address = "0x004313B0"
+symbol_base = "?select_deck@PlayerSlotRecordScenarioView@th105@@QAEXE@Z"
+rel32_targets = ["?assign_profile_block@PlayerProfileBlockOwnerView@th105@@QAEXPBUPlayerProfileBlock52@2@@Z=0x00409D60"]
+
+[units.cross-v106a-async-scene-load]
+kind = "probe"
+source = "src/ui/AsyncSceneLoad.cpp"
+object = "build/match-units/CrossV106a_AsyncSceneLoad.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current asynchronous scene-load launcher. Reusing the exact-backed 8-byte event RAII source shape from battle/network scenes gives CreateEvent/Wait/CloseHandle EH lifetime naturally; thread-control is_running/start and the current stdcall worker close the 171-byte launcher exactly."
+
+[[units.cross-v106a-async-scene-load.functions]]
+address = "0x0043B840"
+symbol_base = "?start_async_engine_scene_load@th105@@YAEH@Z"
+rel32_targets = [
+  "?is_running@AsyncSceneThreadControl@th105@@QAEEXZ=0x004146B0",
+  "?start@AsyncSceneThreadControl@th105@@QAEEP6GIPAX@Z0@Z=0x00414600",
+]
+dir32_targets = [
+  "?async_scene_load_worker@th105@@YGIPAX@Z=?async_scene_load_worker@th105@@YGIPAX@Z",
+  "?g_async_scene_thread@th105@@3UAsyncSceneThreadControl@1@A=?g_async_scene_thread@th105@@3UAsyncSceneThreadControl@1@A",
+  "?g_async_scene_load_request@th105@@3HA=?g_async_scene_load_request@th105@@3HA",
+  "__imp__CreateEventA@16=__imp__CreateEventA@16",
+  "__imp__WaitForSingleObject@8=__imp__WaitForSingleObject@8",
+  "__imp__CloseHandle@4=__imp__CloseHandle@4",
+]
