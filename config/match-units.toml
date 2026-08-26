@@ -10886,3 +10886,131 @@ symbol_base = "??0BattleInfoRecordF8Lifetime@th105@@QAE@XZ"
 [[units.cross-v106a-battle-info-record-lifetime.functions]]
 address = "0x0046F970"
 symbol_base = "??1BattleInfoRecordF8Lifetime@th105@@QAE@XZ"
+
+[units.cross-v106a-info-short-record-binding]
+kind = "probe"
+source = "src/battle/InfoShortRecordBinding.cpp"
+object = "build/match-units/CrossV106a_InfoShortRecordBinding.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current 0x34 InfoManager short-record binder. Native field layout publishes combo/fighter, sets duration 90, and clears state/active; kept in its own TU so manager callers retain the target out-of-line call."
+
+[[units.cross-v106a-info-short-record-binding.functions]]
+address = "0x0046A620"
+symbol_base = "?bind_46a620@InfoShortRecord34Bind@th105@@QAEXPAXPAUFighter@2@@Z"
+
+[units.cross-v106a-info-manager-base-binding]
+kind = "probe"
+source = "src/battle/InfoManagerBaseBinding.cpp"
+object = "build/match-units/CrossV106a_InfoManagerBaseBinding.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current normal InfoManager binding/runtime wrappers. Fighter *fighters[2] is a real local lifetime that reproduces target stack-relative pair traversal while binding both 0x34, 0xF8 and 0x154 records."
+
+[[units.cross-v106a-info-manager-base-binding.functions]]
+address = "0x0046EF40"
+symbol_base = "?bind_fighters_46ef40@CInfoManagerBaseBindView@th105@@QAEXXZ"
+rel32_targets = [
+  "?release_all_46eeb0@InfoEffectManagerReleaseView@th105@@QAEXXZ=0x0046EEB0",
+  "?bind_46a620@InfoShortRecordBindView@th105@@QAEXPAXPAUFighter@2@@Z=0x0046A620",
+  "?bind_fighter_46fa90@BattleInfoRecordBindView@th105@@QAEXPAUFighter@2@@Z=0x0046FA90",
+  "?bind_432550@InfoLongRecordBindView@th105@@QAEXPAXH@Z=0x00432550",
+]
+dir32_targets = [
+  "?g_scene_renderer@th105@@3PAUSceneRendererFighterPairView@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A",
+]
+
+[[units.cross-v106a-info-manager-base-binding.functions]]
+address = "0x0046F820"
+symbol_base = "?emit_effect_46f820@CInfoManagerNormalEffectView@th105@@QAEXHHH@Z"
+rel32_targets = [
+  "?emit_group_effect_46f9f0@BattleInfoRecordEffectView@th105@@QAEXHH@Z=0x0046F9F0",
+]
+
+[units.cross-v106a-info-manager-story-binding]
+kind = "probe"
+source = "src/battle/InfoManagerStoryBinding.cpp"
+object = "build/match-units/CrossV106a_InfoManagerStoryBinding.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current CInfoManagerStory roster refresh, pair bind and side-zero effect forwarder. The shared two-Fighter local and declaration-only record callees reproduce all linked bodies naturally."
+
+[[units.cross-v106a-info-manager-story-binding.functions]]
+address = "0x00471EC0"
+symbol_base = "?refresh_roster_state_471ec0@CInfoManagerStoryBindingView@th105@@QAEXXZ"
+rel32_targets = [
+  "?bind_46a620@InfoShortRecordBindView@th105@@QAEXPAXPAUFighter@2@@Z=0x0046A620",
+  "?attach_story_fighter_471be0@BattleInfoStoryRecordView@th105@@QAEXPAUFighter@2@@Z=0x00471BE0",
+  "?bind_432550@InfoLongRecordBindView@th105@@QAEXPAXH@Z=0x00432550",
+]
+dir32_targets = [
+  "?g_scene_renderer@th105@@3PAUSceneRendererFighterPairView@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A",
+]
+
+[[units.cross-v106a-info-manager-story-binding.functions]]
+address = "0x00471F10"
+symbol_base = "?bind_fighters_471f10@CInfoManagerStoryBindingView@th105@@QAEXXZ"
+rel32_targets = [
+  "?release_all_46eeb0@InfoEffectManagerReleaseView@th105@@QAEXXZ=0x0046EEB0",
+  "?bind_46a620@InfoShortRecordBindView@th105@@QAEXPAXPAUFighter@2@@Z=0x0046A620",
+  "?bind_fighter_46fa90@BattleInfoRecordBindView@th105@@QAEXPAUFighter@2@@Z=0x0046FA90",
+  "?bind_432550@InfoLongRecordBindView@th105@@QAEXPAXH@Z=0x00432550",
+  "?attach_story_fighter_471be0@BattleInfoStoryRecordView@th105@@QAEXPAUFighter@2@@Z=0x00471BE0",
+]
+dir32_targets = [
+  "?g_scene_renderer@th105@@3PAUSceneRendererFighterPairView@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A",
+]
+
+[[units.cross-v106a-info-manager-story-binding.functions]]
+address = "0x00472060"
+symbol_base = "?emit_effect_472060@CInfoManagerStoryBindingView@th105@@QAEXHHH@Z"
+rel32_targets = [
+  "?emit_group_effect_46f9f0@BattleInfoRecordEffectView@th105@@QAEXHH@Z=0x0046F9F0",
+]
+
+[units.cross-v106a-info-manager-normal-lifetime]
+kind = "probe"
+source = "src/battle/InfoManagerNormalLifetime.cpp"
+object = "build/match-units/CrossV106a_InfoManagerNormalLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current RTTI-owned CInfoManager normal lifetime. Exact base + two physical BattleInfoRecordF8 members naturally select VC8 EH-vector construction/destruction; scalar wrapper comes from the same TU."
+
+[[units.cross-v106a-info-manager-normal-lifetime.functions]]
+address = "0x0046F7A0"
+symbol_base = "??0CInfoManagerNormalLifecycle@th105@@QAE@XZ"
+rel32_targets = [
+  "??0InfoManagerBaseNormalDependency@th105@@QAE@XZ=0x0046F5D0",
+  "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C",
+  "?initialize_normal_runtime_46eb90@CInfoManagerNormalLifecycle@th105@@QAEXXZ=0x0046EB90",
+]
+dir32_targets = [
+  "__ehhandler$??0CInfoManagerNormalLifecycle@th105@@QAE@XZ=__ehhandler$??0CInfoManagerNormalLifecycle@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??1BattleInfoRecordF8NormalDependency@th105@@QAE@XZ=??1BattleInfoRecordF8NormalDependency@th105@@QAE@XZ",
+  "??0BattleInfoRecordF8NormalDependency@th105@@QAE@XZ=??0BattleInfoRecordF8NormalDependency@th105@@QAE@XZ",
+  "??_7CInfoManagerNormalLifecycle@th105@@6B@=??_7CInfoManagerNormalLifecycle@th105@@6B@",
+]
+
+[[units.cross-v106a-info-manager-normal-lifetime.functions]]
+address = "0x0046F850"
+symbol_base = "??1CInfoManagerNormalLifecycle@th105@@UAE@XZ"
+rel32_targets = [
+  "?release_combo_resources_46a610@InfoComboResourceSubobject@th105@@QAEHXZ=0x0046A610",
+  "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
+  "??1InfoManagerBaseNormalDependency@th105@@UAE@XZ=0x0046F6A0",
+]
+dir32_targets = [
+  "__ehhandler$??1CInfoManagerNormalLifecycle@th105@@UAE@XZ=__ehhandler$??1CInfoManagerNormalLifecycle@th105@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7CInfoManagerNormalLifecycle@th105@@6B@=??_7CInfoManagerNormalLifecycle@th105@@6B@",
+  "??1BattleInfoRecordF8NormalDependency@th105@@QAE@XZ=??1BattleInfoRecordF8NormalDependency@th105@@QAE@XZ",
+]
+
+[[units.cross-v106a-info-manager-normal-lifetime.functions]]
+address = "0x0046F920"
+symbol_base = "??_GCInfoManagerNormalLifecycle@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1CInfoManagerNormalLifecycle@th105@@UAE@XZ=0x0046F850",
+  "??3@YAXPAX@Z=0x006898EA",
+]
