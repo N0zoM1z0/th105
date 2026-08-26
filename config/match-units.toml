@@ -10581,3 +10581,308 @@ symbol_base = "PlayerSlotDeckView_copy_deck"
 rel32_targets = [
   "??4?$deque@GV?$allocator@G@std@@@std@@QAEAAV01@ABV01@@Z=0x0042B6B0",
 ]
+
+[units.cross-v106a-spell-record-lookup]
+kind = "probe"
+source = "src/battle/SpellRecordLookup.cpp"
+object = "build/match-units/CrossV106a_SpellRecordLookup.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current SpellDataOwner local/common record lookup. Native checked std::map<int,SpellRecordView> storage reproduces both owner/end validations and the current common-tree fallback without a manual tree facade."
+
+[[units.cross-v106a-spell-record-lookup.functions]]
+address = "0x00432D20"
+symbol_base = "?find_local_then_common_spell_record@SpellDataOwner@th105@@QAEPAUSpellRecordView@2@H@Z"
+rel32_targets = [
+  "?find@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x00432C40",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = ["?g_common_spell_tree@th105@@3USpellTree@1@A=?g_common_spell_tree@th105@@3USpellTree@1@A"]
+
+[units.cross-v106a-spell-display-callback]
+kind = "probe"
+source = "src/battle/SpellDisplayCallback.cpp"
+object = "build/match-units/CrossV106a_SpellDisplayCallback.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current indexed spell-display callback. Real name-length, unclamped-width and clamped-width lifetimes retain both values simultaneously and naturally reproduce the target register schedule; no register/volatile coercion is used."
+
+[[units.cross-v106a-spell-display-callback.functions]]
+address = "0x00432DE0"
+symbol_base = "?invoke_indexed_record@PlayerIndexedCallbackView@th105@@QAEXHH@Z"
+rel32_targets = ["?find_local_then_common_spell_record@SpellDataOwner@th105@@QAEPAUSpellRecordView@2@H@Z=0x00432D20"]
+dir32_targets = [
+  "__real@43b40000=__real@43b40000",
+  "__real@41400000=__real@41400000",
+  "__real@40e00000=__real@40e00000",
+  "__real@41a80000=__real@41a80000",
+]
+
+[units.cross-v106a-profile-deck-common-spell-resources]
+kind = "probe"
+source = "src/ui/ProfileDeckCommonSpellResources.cpp"
+object = "build/match-units/CrossV106a_ProfileDeckCommonSpellResources.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current ProfileDeck common-spell resource facade. Exact destructor callers prove the unused-this member ABI; native checked handle deque/map lifetimes and the target-backed 0x128 effect configuration close clear and reload together."
+
+[[units.cross-v106a-profile-deck-common-spell-resources.functions]]
+address = "0x00433990"
+symbol_base = "?clear_common_resources@ProfileDeckRefreshFacade@th105@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90",
+  "?_Erase@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@2@@Z=0x0042E370",
+]
+dir32_targets = [
+  "?g_common_spell_image_handles@th105@@3UDwordDeque4@1@A=?g_common_spell_image_handles@th105@@3V?$deque@IV?$allocator@I@std@@@std@@A",
+  "?g_common_spell_extra_handle@th105@@3IA=?g_common_spell_extra_handle@th105@@3IA",
+  "?g_common_spell_tree@th105@@3USpellTree@1@A=?g_common_spell_tree@th105@@3USpellTree@1@A",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+]
+
+[[units.cross-v106a-profile-deck-common-spell-resources.functions]]
+address = "0x00434AC0"
+symbol_base = "?reload_common_resources@ProfileDeckRefreshFacade@th105@@QAEEEEE@Z"
+rel32_targets = [
+  "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+  "_strcpy_s=0x0068AD95",
+  "?configure@ScenarioEffectOwner194@th105@@QAEXPBUScenarioEffectConfig128@2@@Z=0x004115A0",
+  "?parse_spell_csv_and_build_card_resources@SpellDataOwner@th105@@QAEXPBD0PAUDwordDeque4@2@PAUSpellTree@2@@Z=0x004343A0",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "___security_cookie=___security_cookie",
+  "_common_spell_bar_path=_common_spell_bar_path",
+  "_profile_ui_effect_label=_profile_ui_effect_label",
+  "?g_common_spell_extra_handle@th105@@3IA=?g_common_spell_extra_handle@th105@@3IA",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+  "?g_spell_composite_upload_state@th105@@3UCompositeTextureUploadState@1@A=?g_spell_composite_upload_state@th105@@3UCompositeTextureUploadState@1@A",
+  "?g_common_spell_tree@th105@@3USpellTree@1@A=?g_common_spell_tree@th105@@3USpellTree@1@A",
+  "?g_common_spell_image_handles@th105@@3UDwordDeque4@1@A=?g_common_spell_image_handles@th105@@3V?$deque@IV?$allocator@I@std@@@std@@A",
+  "_common_spell_csv_path=_common_spell_csv_path",
+  "_common_spell_name=_common_spell_name",
+]
+
+[units.cross-v106a-effect-sprite-scale-xyz]
+kind = "probe"
+source = "src/battle/EffectSpriteScaleXYZ.cpp"
+object = "build/match-units/CrossV106a_EffectSpriteScaleXYZ.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Independent CSpriteEx three-axis pivot-scale wrapper. The target preserves three out-of-line axis scale calls, so this source intentionally lives in a declaration-only TU; placing it beside the definitions lets VC8 inline to 72 bytes."
+
+[[units.cross-v106a-effect-sprite-scale-xyz.functions]]
+address = "0x00434C10"
+symbol_base = "?scale_xyz_pivots@CSpriteEx@@QAEXMMMMMM@Z"
+rel32_targets = [
+  "?scale_x@CSpriteEx@@QAEXMM@Z=0x004074E0",
+  "?scale_y@CSpriteEx@@QAEXMM@Z=0x00407580",
+  "?scale_z@CSpriteEx@@QAEXMM@Z=0x00407620",
+]
+
+[units.cross-v106a-story-load-runtime]
+kind = "probe"
+source = "src/battle/StoryLoadRuntime.cpp"
+object = "build/match-units/CrossV106a_StoryLoadRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current Story loading helper island. Three small current-global/virtual adapters remain ordinary leaf bodies under /GS, while the manager bootstrap uses natural implicit derived construction and two real VC8 new-expression cleanup states."
+
+[[units.cross-v106a-story-load-runtime.functions]]
+address = "0x00434CC0"
+symbol_base = "?apply_story_match_setup@th105@@YAHPAUMatchSetup@1@@Z"
+dir32_targets = ["?g_scene_renderer@th105@@3PAUStorySceneRendererView@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A"]
+
+[[units.cross-v106a-story-load-runtime.functions]]
+address = "0x00434CE0"
+symbol_base = "?initialize_story_slot_two@th105@@YAXXZ"
+rel32_targets = [
+  "get_match_setup=0x0043AC50",
+  "BattlePhaseBlock_parse_scenario_event_row_4591d0=0x0045A7A0",
+  "StoryFighterPhaseContextView_initialize_slot_464270=0x00465130",
+]
+dir32_targets = [
+  "?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A=?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A",
+  "?g_fighter_phase_context@th105@@3PAUStoryFighterPhaseContextView@1@A=?g_fighter_phase_context@th105@@3PAUFighterPhaseContext@1@A",
+]
+
+[[units.cross-v106a-story-load-runtime.functions]]
+address = "0x00434D10"
+symbol_base = "?reset_story_loading_runtime@th105@@YAXXZ"
+rel32_targets = [
+  "StoryBattleObjectManagerView_reset_battle_render_state_and_signal_465f70=0x00466DF0",
+  "StoryFighterPhaseContextView_reset_all_slots_and_signal_464f90=0x00464F90",
+]
+dir32_targets = [
+  "?g_battle_object_manager@th105@@3PAUStoryBattleObjectManagerView@1@A=?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A",
+  "?g_fighter_phase_context@th105@@3PAUStoryFighterPhaseContextView@1@A=?g_fighter_phase_context@th105@@3PAUFighterPhaseContext@1@A",
+  "?g_scene_renderer@th105@@3PAUStorySceneRendererView@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A",
+]
+
+[[units.cross-v106a-story-load-runtime.functions]]
+address = "0x00434D40"
+symbol_base = "?initialize_story_managers@th105@@YAXXZ"
+rel32_targets = [
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0BattleManagerBaseBootstrap@th105@@QAE@XZ=0x0046B200",
+  "??0InfoManagerStoryBootstrap@th105@@QAE@XZ=0x00471FF0",
+]
+dir32_targets = [
+  "__ehhandler$?initialize_story_managers@th105@@YAXXZ=_cbattle_manager_dispatch_eh",
+  "___security_cookie=___security_cookie",
+  "??_7BattleManagerStoryBootstrap@th105@@6B@=??_7CBattleManagerStory@@6B@",
+  "?g_story_battle_manager@th105@@3PAUBattleManagerStoryBootstrap@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A",
+  "?g_story_info_manager@th105@@3PAUInfoManagerStoryBootstrap@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A",
+]
+
+[units.cross-v106a-battle-manager-base-lifetime]
+kind = "probe"
+source = "src/battle/BattleManagerBaseLifetime.cpp"
+object = "build/match-units/CrossV106a_BattleManagerBaseLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CBattleManagerBase lifetime. Three 2x0x0C collision-list arrays at +0x2C/+0x44/+0x5C naturally select VC8 EH vector ctor/dtor iterators; current vtable 0x006C3624 owns the scalar wrapper."
+
+[[units.cross-v106a-battle-manager-base-lifetime.functions]]
+address = "0x0046B200"
+symbol_base = "??0CBattleManagerBaseLifecycle@th105@@QAE@XZ"
+rel32_targets = ["??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C"]
+dir32_targets = [
+  "__ehhandler$??0CBattleManagerBaseLifecycle@th105@@QAE@XZ=__ehhandler$??0CBattleManagerBaseLifecycle@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??1CollisionListArrayElement@th105@@QAE@XZ=??1CollisionListArrayElement@th105@@QAE@XZ",
+  "??0CollisionListArrayElement@th105@@QAE@XZ=??0CollisionListArrayElement@th105@@QAE@XZ",
+  "??_7CBattleManagerBaseLifecycle@th105@@6B@=??_7CBattleManagerBaseLifecycle@th105@@6B@",
+]
+
+[[units.cross-v106a-battle-manager-base-lifetime.functions]]
+address = "0x0046B2A0"
+symbol_base = "??1CBattleManagerBaseLifecycle@th105@@UAE@XZ"
+rel32_targets = ["??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9"]
+dir32_targets = [
+  "__ehhandler$??1CBattleManagerBaseLifecycle@th105@@UAE@XZ=__ehhandler$??1CBattleManagerBaseLifecycle@th105@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??1CollisionListArrayElement@th105@@QAE@XZ=??1CollisionListArrayElement@th105@@QAE@XZ",
+  "??_7CBattleManagerBaseLifecycle@th105@@6B@=??_7CBattleManagerBaseLifecycle@th105@@6B@",
+]
+
+[[units.cross-v106a-battle-manager-base-lifetime.functions]]
+address = "0x0046B330"
+symbol_base = "??_GCBattleManagerBaseLifecycle@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1CBattleManagerBaseLifecycle@th105@@UAE@XZ=0x0046B2A0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[units.cross-v106a-info-manager-base-lifetime]
+kind = "probe"
+source = "src/battle/InfoManagerBaseLifetime.cpp"
+object = "build/match-units/CrossV106a_InfoManagerBaseLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CInfoManagerBase lifetime. Exact effect-manager and CDesignBase lifetimes plus current 0x34/0x154 record-array callbacks recover the natural +0x04/+0x98/+0xCC/+0x100/+0x16C/+0x1D4 construction/destruction chain; ctor publishes g_info_manager at the target point."
+
+[[units.cross-v106a-info-manager-base-lifetime.functions]]
+address = "0x0046F5D0"
+symbol_base = "??0CInfoManagerBaseLifecycle@th105@@QAE@XZ"
+rel32_targets = [
+  "??0InfoEffectManagerLifecycle94@th105@@QAE@XZ=0x0046F090",
+  "??0DesignResource34Lifecycle@th105@@QAE@XZ=0x004217F0",
+  "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C",
+]
+dir32_targets = [
+  "__ehhandler$??0CInfoManagerBaseLifecycle@th105@@QAE@XZ=__ehhandler$??0CInfoManagerBaseLifecycle@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7CInfoManagerBaseLifecycle@th105@@6B@=??_7CInfoManagerBaseLifecycle@th105@@6B@",
+  "??0InfoRecord34Lifecycle@th105@@QAE@XZ=??0InfoRecord34Lifecycle@th105@@QAE@XZ",
+  "??1InfoRecord34Lifecycle@th105@@QAE@XZ=??1InfoRecord34Lifecycle@th105@@QAE@XZ",
+  "??0InfoRecord154Lifecycle@th105@@QAE@XZ=??0InfoRecord154Lifecycle@th105@@QAE@XZ",
+  "??1InfoRecord154Lifecycle@th105@@QAE@XZ=??1InfoRecord154Lifecycle@th105@@QAE@XZ",
+  "?g_info_manager_base_lifecycle@th105@@3PAUCInfoManagerBaseLifecycle@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A",
+]
+
+[[units.cross-v106a-info-manager-base-lifetime.functions]]
+address = "0x0046F6A0"
+symbol_base = "??1CInfoManagerBaseLifecycle@th105@@UAE@XZ"
+rel32_targets = [
+  "??1InfoEffectManagerLifecycle94@th105@@QAE@XZ=0x0046F500",
+  "??1DesignResource34Lifecycle@th105@@QAE@XZ=0x00421890",
+  "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
+]
+dir32_targets = [
+  "__ehhandler$??1CInfoManagerBaseLifecycle@th105@@UAE@XZ=__ehhandler$??1CInfoManagerBaseLifecycle@th105@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7CInfoManagerBaseLifecycle@th105@@6B@=??_7CInfoManagerBaseLifecycle@th105@@6B@",
+  "??1InfoRecord34Lifecycle@th105@@QAE@XZ=??1InfoRecord34Lifecycle@th105@@QAE@XZ",
+  "??1InfoRecord154Lifecycle@th105@@QAE@XZ=??1InfoRecord154Lifecycle@th105@@QAE@XZ",
+]
+
+[[units.cross-v106a-info-manager-base-lifetime.functions]]
+address = "0x0046F760"
+symbol_base = "??_GCInfoManagerBaseLifecycle@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1CInfoManagerBaseLifecycle@th105@@UAE@XZ=0x0046F6A0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[units.cross-v106a-info-manager-story-lifetime]
+kind = "probe"
+source = "src/battle/InfoManagerStoryLifetime.cpp"
+object = "build/match-units/CrossV106a_InfoManagerStoryLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CInfoManagerStory derived lifetime. The exact/new base lifetime stays out of line, one physical BattleInfoRecordF8 member lives at +0x498, and the ctor/dtor call the already exact Story resource initialize/release members in target order."
+
+[[units.cross-v106a-info-manager-story-lifetime.functions]]
+address = "0x00471FF0"
+symbol_base = "??0CInfoManagerStoryLifecycle@th105@@QAE@XZ"
+rel32_targets = [
+  "??0InfoManagerBaseStoryDependency@th105@@QAE@XZ=0x0046F5D0",
+  "??0BattleInfoRecordF8StoryDependency@th105@@QAE@XZ=0x0046F940",
+  "?initialize_story_info_resources_471e50@CInfoManagerStoryLifecycle@th105@@QAEXXZ=0x00471E50",
+]
+dir32_targets = [
+  "__ehhandler$??0CInfoManagerStoryLifecycle@th105@@QAE@XZ=__ehhandler$??0CInfoManagerStoryLifecycle@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7CInfoManagerStoryLifecycle@th105@@6B@=??_7CInfoManagerStoryLifecycle@th105@@6B@",
+]
+
+[[units.cross-v106a-info-manager-story-lifetime.functions]]
+address = "0x00472080"
+symbol_base = "??1CInfoManagerStoryLifecycle@th105@@UAE@XZ"
+rel32_targets = [
+  "?release_info_effect_resources_46e990@CInfoManagerStoryLifecycle@th105@@QAEHXZ=0x0046E990",
+  "??1BattleInfoRecordF8StoryDependency@th105@@QAE@XZ=0x0046F970",
+  "??1InfoManagerBaseStoryDependency@th105@@UAE@XZ=0x0046F6A0",
+]
+dir32_targets = [
+  "__ehhandler$??1CInfoManagerStoryLifecycle@th105@@UAE@XZ=__ehhandler$??1CInfoManagerStoryLifecycle@th105@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7CInfoManagerStoryLifecycle@th105@@6B@=??_7CInfoManagerStoryLifecycle@th105@@6B@",
+]
+
+[[units.cross-v106a-info-manager-story-lifetime.functions]]
+address = "0x004720F0"
+symbol_base = "??_GCInfoManagerStoryLifecycle@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1CInfoManagerStoryLifecycle@th105@@UAE@XZ=0x00472080",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[units.cross-v106a-battle-info-record-lifetime]
+kind = "probe"
+source = "src/battle/BattleInfoRecordF8Lifetime.cpp"
+object = "build/match-units/CrossV106a_BattleInfoRecordF8Lifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current BattleInfoRecordF8 lifetime used by exact CInfoManagerStory at +0x498. Five retained effect pointers at record +0xD8..+0xE8 are zero-constructed and released by decrementing the referenced +0x158 ownership count before clearing each pointer."
+
+[[units.cross-v106a-battle-info-record-lifetime.functions]]
+address = "0x0046F940"
+symbol_base = "??0BattleInfoRecordF8Lifetime@th105@@QAE@XZ"
+
+[[units.cross-v106a-battle-info-record-lifetime.functions]]
+address = "0x0046F970"
+symbol_base = "??1BattleInfoRecordF8Lifetime@th105@@QAE@XZ"

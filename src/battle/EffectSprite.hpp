@@ -60,6 +60,9 @@ public:
     void scale_y(float scale, float pivot);
     void scale_z(float scale);
     void scale_z(float scale, float pivot);
+    void scale_xyz_pivots(
+        float x_scale, float y_scale, float z_scale,
+        float x_pivot, float y_pivot, float z_pivot);
     void rotate_xyz(
         float x_angle, float y_angle, float z_angle,
         float pivot_x, float pivot_y, float pivot_z);

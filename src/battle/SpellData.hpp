@@ -211,5 +211,7 @@ struct SpellDataOwner {
 };
 
 extern SpellTree g_common_spell_tree;
+extern DwordDeque4 g_common_spell_image_handles;
+extern unsigned g_common_spell_extra_handle;
 
 } // namespace th105

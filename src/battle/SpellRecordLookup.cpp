@@ -1,52 +1,26 @@
 #include "SpellData.hpp"
 
+#include <map>
+
 namespace th105 {
 
-extern "C" void __cdecl _invalid_parameter_noinfo(void);
-
-// Define the common tree in this comparison unit so strict DIR32 validation
-// can verify its zero-filled target bytes and checked-iterator addends.
 SpellTree g_common_spell_tree;
+
+typedef std::map<int, SpellRecordView> NativeSpellMap;
 
 SpellRecordView *SpellDataOwner::find_local_then_common_spell_record(int key)
 {
-    SpellTree *local_tree = &local_tree_14;
-    SpellTreeIterator result;
-    local_tree->find_checked(&result, &key);
-    SpellTree *local_owner = result.owner;
-    if (local_owner == 0 || local_owner != local_tree) {
-        _invalid_parameter_noinfo();
-    }
+    NativeSpellMap &local =
+        *reinterpret_cast<NativeSpellMap *>(&local_tree_14);
+    NativeSpellMap::iterator it = local.find(key);
+    if (it != local.end())
+        return &it->second;
 
-    SpellTreeNode *local_node = result.node;
-    if (local_node != local_tree->end_node_04) {
-        if (local_owner == 0) {
-            _invalid_parameter_noinfo();
-        }
-        if (local_node == local_owner->end_node_04) {
-            _invalid_parameter_noinfo();
-        }
-        return reinterpret_cast<SpellRecordView *>(
-            reinterpret_cast<unsigned char *>(local_node) + 0x10);
-    }
-
-    SpellTreeIterator *common_result =
-        g_common_spell_tree.find_checked(&result, &key);
-    SpellTreeNode *common_node = common_result->node;
-    SpellTree *common_owner = common_result->owner;
-    if (common_owner == 0 || common_owner != &g_common_spell_tree) {
-        _invalid_parameter_noinfo();
-    }
-    if (common_node != g_common_spell_tree.end_node_04) {
-        if (common_owner == 0) {
-            _invalid_parameter_noinfo();
-        }
-        if (common_node == common_owner->end_node_04) {
-            _invalid_parameter_noinfo();
-        }
-        return reinterpret_cast<SpellRecordView *>(
-            reinterpret_cast<unsigned char *>(common_node) + 0x10);
-    }
+    NativeSpellMap &common =
+        *reinterpret_cast<NativeSpellMap *>(&g_common_spell_tree);
+    it = common.find(key);
+    if (it != common.end())
+        return &it->second;
     return 0;
 }
 

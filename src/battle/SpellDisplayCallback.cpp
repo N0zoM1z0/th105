@@ -23,9 +23,8 @@ void PlayerIndexedCallbackView::invoke_indexed_record(
     SpellRecordView *record =
         spell_data_00->find_local_then_common_spell_record(record_id);
     int name_length = record->name_00.size();
-    int width = name_length * 8;
-    if (width >= 272)
-        width = 272;
+    int unclamped_width = name_length * 8;
+    int width = unclamped_width >= 272 ? 272 : unclamped_width;
 
     if (!alternate_alignment_132) {
         display_sprite_098.configure_record_display(

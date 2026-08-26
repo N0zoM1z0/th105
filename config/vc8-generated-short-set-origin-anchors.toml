@@ -1,0 +1,22 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "scripts/probes/short_set_generated.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+
+[[anchors]]
+address = "0x00432F90"
+size = 509
+symbol = "?_Insert@?$_Tree@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@std@@IAE?AViterator@12@_NPAU_Node@?$_Tree_nod@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@2@ABF@Z"
+
+[[anchors]]
+address = "0x00433190"
+size = 695
+symbol = "?erase@?$_Tree@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@std@@QAE?AViterator@12@V312@@Z"
+
+[[anchors]]
+address = "0x00433450"
+size = 189
+symbol = "?insert@?$_Tree@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@std@@_N@2@ABF@Z"

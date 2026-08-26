@@ -532,3 +532,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Current checked-tree nodes with end/color flags at +0x104/+0x105 imply a 0xF8 pair payload. A SHA-pinned VC8 std::map<int,244-byte-value> witness regenerates the corresponding rotations, Min/Max, _Buynode and checked iterator Inc/Dec, each inventory-unique under relocation masking"
+
+[[rules]]
+id = "vc8-generated-short-set-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-short-set-origin-anchors.toml"
+expected_count = 3
+expected_bytes = 1393
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of a tracked std::set<short> witness regenerates the checked insert/_Insert/erase(iterator) COMDATs used by the SpellCsv filtered selected-id tree; every relocation-masked fingerprint must be inventory-unique across all 4010 tracked spans"
