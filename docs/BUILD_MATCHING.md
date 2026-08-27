@@ -1271,3 +1271,24 @@ address, so the authored-byte ledger counts that physical function once. Class
 identity comes from each current RTTI vtable; do not multiply the numerator by
 alias count, and do not hand-write a shared jump solely because the final PE has
 one address.
+
+### Let VC8 synthesize derived induction variables from source arithmetic
+
+`BG16::slot_0c @ 0x00468780` demonstrates that a target register which advances
+by a fixed amount need not correspond to a source counter.  An explicit
+`angle_step += 90` source variable produced the right values but the wrong
+EBX/EBP ownership and a three-byte-shorter `cmp i,4` latch.  Writing only the
+semantic expression `i * 90 + state_64 * (i + 4)` inside the ordinary
+`for (int i=0; i<4; ++i)` lets VC8 strength-reduce `i*90` into a second
+induction register, yielding the target `add ebp,90; add ebx,1; cmp ebp,360`
+loop.  Recover the source arithmetic and allow the optimizer to create the
+machine counter; do not introduce a source counter merely because IDA names a
+second induction register.
+
+The same phase and BG04 `slot_08 @ 0x00468360` also show why one-use floating
+locals should not be added for readability during byte matching.  Under x87,
+a named POD float can reserve a full function-lifetime spill slot even when its
+value has one consumer.  Keeping that computation directly in the call
+expression allows VC8 to reuse the target spill area and can remove a complete
+frame dword.  This is source-lifetime evidence, not a reason to use dummy
+locals, volatile, register annotations, or stack padding.

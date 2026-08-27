@@ -927,3 +927,6 @@ BGCommon_render_sprite,0x00469540,function
 ResultInputRecordTableView_at,0x0043B300,function
 NetworkSessionResultView_bind_result_input,0x0043B410,function
 NetworkSessionResultView_finalize_result_binding,0x0044DCB0,function
+BG04_slot_08,0x00468360,function
+BG16_slot_0c,0x00468780,function
+BG16_slot_08,0x00468D80,function

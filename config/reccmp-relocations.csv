@@ -135,7 +135,7 @@ _select_sprite_vtable_anchor,0x006C0668,80ae4000,0,IDA 1.06a disassembly of 0x00
 ?g_player2_input_storage@th105@@3PAEA,0x006FBDD0,00000000,0,IDA 1.06a 0x0043B060 returns 0x006FBDD0 and multiple accepted battle/input callers already resolve that helper as player2 input; attested 2026-08-21,address
 ?g_session_setup_option@th105@@3IC,0x006FBD44,00000000,0,IDA 1.06a 0x0043B070 reads and 0x0043B080 writes the shared session setup option at 0x006FBD44; accepted battle setup/dispatcher functions already resolve both helpers; attested 2026-08-21,address
 ?g_network_session@th105@@3PAUCNetworkBase@1@A,0x006FBD5C,00000000,0,IDA 1.06a 0x0043B090 returns the shared network-session pointer at 0x006FBD5C; accepted control/setup callers already resolve this helper; attested 2026-08-21,address
-?g_global_battle_setup_state@th105@@3PAEA,0x006FBCC0,00000000,0;64,"Current 1.06a post-update wrapper loads ECX with 0x006FBCC0 before helpers 0x00426BB0/0x00426DF0; exact pair/setup paths independently establish the same global battle setup state object; attested 2026-08-21; exact current Fighter scalar forwarder 0x004359D0 addresses the same aggregate at +0x40 (0x006FBD00), attested 2026-08-25",address
+?g_global_battle_setup_state@th105@@3PAEA,0x006FBCC0,00000000,0;12;64,"Current 1.06a post-update wrapper loads ECX with 0x006FBCC0 before helpers 0x00426BB0/0x00426DF0; exact pair/setup paths independently establish the same global battle setup state object; attested 2026-08-21; exact current Fighter scalar forwarder 0x004359D0 addresses the same aggregate at +0x40 (0x006FBD00), attested 2026-08-25",address
 ??_7CFileReader@th105@@6B@,0x006C0F34,90b84100,0,Current 1.06a vtable at 0x006C0F34 contains scalar deleting dtor then exact CFileReader read/last_read_size/seek/size slots; plain-reader destructor at 0x0040CEB0 restores this vptr; attested 2026-08-21,address
 __imp__CloseHandle@4,0x006C00A0,30522e00,0,TH105 1.06a PE import table maps IAT 0x006C00A0 to KERNEL32 CloseHandle; canonical raw thunk bytes are 30522e00; attested 2026-08-21,literal
 ?g_mt19937_index@th105@@3HA,0x006FA1FC,71020000,0,Current 1.06a mt19937_next_u32 reads/writes this scalar as the state index; canonical initial dword is 625 and accepted BattleController setup already resolves seed helper 0x00406670; attested 2026-08-21,literal
@@ -778,3 +778,22 @@ __ehhandler$??0BGCommon@th105@@QAE@HH@Z,0x006BB618,8b5424088d42f88b4af433c8e8fce
 ??_7BG16@th105@@6B@,0x006C34D8,70944600,0,Current 1.06a BG16 RTTI vtable at 0x006c34d8; slot0 owns class-specific scalar deleting destructor and constructor/factory edges independently identify the class; first target dword attested 2026-08-27,address
 __ehhandler$?finalize_result_binding_44dcb0@NetworkSessionResultView@th105@@QAEXXZ,0x006BA4E6,8b5424088d8210fdffff8b8a0cfdffff,0,Current NetworkSessionResultView finalize_result_binding 0x0044DCB0 pushes this VC8 EH handler; canonical mapped 16-byte handler prefix attested 2026-08-27,address
 ??_C@_0BD@GMLBIENH@?$DMbr?$DO?$DMcolor?5FF8080?$DO?$AA@,0x006C250C,3c62723e3c636f6c6f72204646383038303e00,0,Current NetworkSessionResultView finalize_result_binding 0x0044DCB0 appends NUL-terminated <br><color FF8080> target literal; canonical bytes attested 2026-08-27,literal
+__real@3fd0000000000000,0x006C33A8,000000000000d03f,0,Current BG04 phase 0x00468360 multiplies derived state by target IEEE-754 double 0.25 at 0x006C33A8; canonical target bytes attested 2026-08-27,literal
+__real@4004000000000000,0x006C33A0,0000000000000440,0,Current BG04 phase 0x00468360 divides camera_x by target IEEE-754 double 2.5 at 0x006C33A0; canonical target bytes attested 2026-08-27,literal
+__real@40200000,0x006C3398,00002040,0,Current BG04 phase 0x00468360 applies target IEEE-754 float 2.5 to CSpriteEx X/Y scale; canonical target bytes attested 2026-08-27,literal
+__real@4018000000000000,0x006C0848,0000000000001840,0,Current BG16 phase 0x00468D80 adds target IEEE-754 double 6.0 after orientation-sine lookup; canonical target bytes attested 2026-08-27,literal
+__real@3fb99999a0000000,0x006CD1E0,000000a09999b93f,0,Current BG16 phase 0x00468D80 multiplies by the double promotion of float 0.1f; canonical target bytes attested 2026-08-27,literal
+__real@c0000000,0x006C344C,000000c0,0,Current BG16 phase 0x00468D80 applies canonical IEEE-754 float -2.0 to the mirrored sprite X scale; canonical target bytes attested 2026-08-27,literal
+__real@40600000,0x006C3448,00006040,0,Current BG16 phase applies float 3.5 X scale to sprite[0]; canonical target bytes attested 2026-08-27,literal
+__real@3e600000,0x006C3444,0000603e,0,Current BG16 phase applies float 0.21875 Y scale to sprite[0]; canonical target bytes attested 2026-08-27,literal
+__real@40800000,0x006CD200,00008040,0,Current BG16 phase applies float 4.0 X scale to sprite[1]; canonical target bytes attested 2026-08-27,literal
+__real@433e0000,0x006C343C,00003e43,0,Current BG16 phase local X position 190.0; canonical target bytes attested 2026-08-27,literal
+__real@44088000,0x006C3438,00800844,0,Current BG16 phase local X position 546.0; canonical target bytes attested 2026-08-27,literal
+__real@44550000,0x006C3434,00005544,0,Current BG16 phase local X position 852.0; canonical target bytes attested 2026-08-27,literal
+__real@44972000,0x006C3430,00209744,0,Current BG16 phase local X position 1209.0; canonical target bytes attested 2026-08-27,literal
+__real@43ff8000,0x006C342C,0080ff43,0,Current BG16 phase local Y position 511.0; canonical target bytes attested 2026-08-27,literal
+__real@44118000,0x006C3428,00801144,0,Current BG16 phase local Y position 582.0; canonical target bytes attested 2026-08-27,literal
+__real@3f99999a,0x006C3424,9a99993f,0,Current BG16 phase local base scale 1.2; canonical target bytes attested 2026-08-27,literal
+__real@3f4ccccd,0x006C3420,cdcc4c3f,0,Current BG16 phase local base scale 0.8; canonical target bytes attested 2026-08-27,literal
+__real@408ae00000000000,0x006C3418,0000000000e08a40,0,Current BG16 phase subtracts double 860.0 from local Y positions; canonical target bytes attested 2026-08-27,literal
+__real@4085e00000000000,0x006C3410,0000000000e08540,0,Current BG16 phase subtracts double 700.0 from local X positions; canonical target bytes attested 2026-08-27,literal

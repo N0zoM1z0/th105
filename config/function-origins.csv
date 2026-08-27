@@ -1955,14 +1955,14 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00467A10,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00467F90,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00468330,authored_game,battle,authored,observed,canonical-exact-authored
-0x00468360,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00468360,authored_game,battle,authored,observed,canonical-exact-authored
 0x00468570,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004686C0,authored_game,battle,authored,observed,canonical-exact-authored
 0x004686F0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00468700,authored_game,battle,authored,observed,canonical-exact-authored
 0x00468710,authored_game,battle,authored,observed,canonical-exact-authored
-0x00468780,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00468D80,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00468780,authored_game,battle,authored,observed,canonical-exact-authored
+0x00468D80,authored_game,battle,authored,observed,canonical-exact-authored
 0x00469100,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00469470,authored_game,battle,authored,observed,canonical-exact-authored
 0x004694A0,authored_game,battle,authored,observed,canonical-exact-authored

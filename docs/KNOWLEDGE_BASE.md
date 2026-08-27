@@ -1060,18 +1060,16 @@ linker ICF explains the one physical target body. Count the physical target
 function once rather than inventing aliases or deleting legitimate class
 methods from source.
 
-Three nearby roots remain deliberate stops. `set_transition @ 0x004654F0`
+Two nearby roots remain deliberate stops. `set_transition @ 0x004654F0`
 reaches the 407-byte target boundary only after recovering cached vector counts,
 `if(count) do/while` loops, and **unsigned** alpha conversion (which naturally
 emits the target control-word truncate + `fistp qword` sequence); only two real
-stack slots are colored in the opposite order. `BG04::BG04 @ 0x00468570` reaches
-335/335 after reusing the assign-zero value as the later load-texture token,
-scoping the sprite fill around `_Assign_n`, and leaving width/height as genuine
-out-params, but its frame is still four bytes larger. `BG04` phase
-`0x00468360` improves 593 -> 519 against 515 when one checked `CSpriteEx&` is
-kept only across the three scale calls; the remaining four bytes are one frame
-allocation difference. Do not close any of these with fake stack objects,
-volatile/register forcing, manual vptr stores, inline assembly, or copied bytes.
+stack slots are colored in the opposite order. `BG04::BG04 @ 0x00468570` is
+335/335 and later work below closes its frame/local coloring, but a target-only
+CEffectSprite-vs-CSpriteEx temporary identity remains. The old BG04 phase stop is
+superseded by the exact phase wave below. Do not close the remaining roots with
+fake stack objects, volatile/register forcing, manual vptr stores, inline
+assembly, copied bytes, or relocation aliases between distinct RTTI classes.
 
 ## Result/network exact-reconstruction patterns (2026-08-27)
 
@@ -1107,3 +1105,74 @@ than these three functions:
 - Absolute EH handlers and target-owned literals must be promoted into
   `reccmp-relocations.csv` with attested mapped bytes before canonical compare;
   a raw address override is intentionally insufficient for `dir32` proof.
+
+
+### BG04/BG16 exact phase source-shape wave (2026-08-27)
+
+Three substantial virtual roots close together for **2,940 authored bytes**:
+`BG04::slot_08 @ 0x00468360` is 515/515, `BG16::slot_08 @ 0x00468D80` is
+889/889, and `BG16::slot_0c @ 0x00468780` is 1536/1536.  All three are ordinary
+`/O2` VC8 C++ over the already-proven 0x64 `BackgroundBase` / 0x68 stateful
+background layout, checked `vector<CSpriteEx>` storage, real RenderModeManager,
+and the current battle-layout object.  They do not use inline assembly,
+register annotations, volatile state, dummy locals, manual vtables, copied
+bytes, or fake ABI declarations.
+
+The BG04 phase closes a reusable x87 lifetime rule.  A named one-use
+`uv_width` and a named one-use translated-X value caused VC8 to reserve two
+persistent four-byte frame slots, giving 519 bytes and `sub esp,8`.  Writing the
+same calculations directly as the `set_uv_size(...)` and `translate(...)`
+arguments lets VC8 reuse one floating spill slot and naturally emits the target
+`push ecx` frame, with all 515 bytes exact.  Keep the short `CSpriteEx&` only
+across the three scale calls, where the target really reuses the checked vector
+reference.  A readability local is not free under x87; when a value has exactly
+one consumer, target spill reuse is evidence for an unnamed expression rather
+than permission to fabricate stack state.
+
+`BG16::slot_0c` gives a stronger loop-recovery example.  Named angle and
+translation temporaries first left a 4-byte frame hole; moving the one-use
+values into call expressions restored the target 0x34 frame.  The second angle
+must be written with single-precision source visibility so VC8 emits target
+`fild -> fchs -> fdiv` rather than `fdiv -> fchs` or a folded negative-5.0
+constant.  The decisive loop fact is that source should **not** carry an
+explicit `angle_step` induction variable.  Write the semantic angle as
+`i * 90 + state_64 * (i + 4)` inside a normal `for (int i=0; i<4; ++i)`.
+Pinned VC8 strength-reduces `i * 90` into EBP, increments it by 90, keeps EBX as
+the true array index, and canonicalizes the latch to `cmp ebp,360`; this
+reproduces the otherwise-mysterious three-byte-longer target loop tail exactly.
+When the target contains two related induction registers, first test whether
+one is compiler-derived from a source multiplication before declaring two
+source counters or trying to influence register allocation.
+
+`BG16::slot_08` independently closes the same static types and constants over a
+smaller mirrored phase: gate/state setup, orientation-sine Y offset, mirrored
+X scale, placement, final sprite render and state restoration all reproduce
+889/889.  Its success plus the 1536-byte sibling is strong cross-method evidence
+that the recovered BG16 layout and battle-layout ownership are source-level,
+not offset facades.
+
+The neighboring `BG04::BG04 @ 0x00468570` remains a bounded stop for a more
+specific reason than the old "frame +4" note.  Scoping texture width/height to
+the load call and representing the two throwaway out-params as one 8-byte
+aggregate recovers the exact 0xF8 target frame and exact scalar stack coloring.
+The first remaining canonical mismatch is then the local fill object's vptr:
+target stores RTTI-backed `CEffectSprite` vtable `0x006C072C`, while an ordinary
+`CSpriteEx` fill stores RTTI-backed `CSpriteEx` vtable `0x006C06E8`.  MSVC RTTI
+parsing confirms these are distinct types even though their leading virtual
+slots overlap.  The target temporary exposes only an approximately 0xE8 base
+slice although the complete CEffectSprite is 0x12C, suggesting inlined/LTCG
+dead-tail elimination.  Do **not** map one vtable relocation to the other or
+manually write the derived vptr; continue only with natural constructor/TU
+visibility evidence.
+
+Parallel bounded stops from the same pass should also be reused rather than
+restarted.  `prepare_result_match @ 0x0043B8F0` reaches the exact 286-byte
+boundary when mode 6 falls through to the common async-loader tail; VC8 then
+tail-duplicates the `call/pop/ret` sequence exactly, but the target preserves
+`player` before `mode` in global-store scheduling and current ordinary-source
+variants do not.  `update_player_input_counters_from_raw @ 0x00409DA0` remains
+on zero/mask lifetime: target reserves EBX for keyboard mask 0x80 and creates
+branch-local zero in EDI, while ordinary source hoists zero into EBX.  `OggDataSource::open
+@ 0x00418A10` exposes a target-private ESI-as-this entry ABI despite a normal
+standalone `__thiscall` body, so treat it as an LTCG/private-ABI stop rather than
+lying about the function signature.

@@ -927,3 +927,6 @@ address,name,size,status,match_percent,unit,evidence
 0x0043B300,ResultInputRecordTableView_at,59,matching,100.00,gpt-web-result-input-record-access,python3 scripts/build.py --unit gpt-web-result-input-record-access --compare --json reports canonical exact 59/59 against TH105 1.06a
 0x0043B410,NetworkSessionResultView_bind_result_input,136,matching,100.00,gpt-web-network-result-binding,python3 scripts/build.py --unit gpt-web-network-result-binding --compare --json reports canonical exact 136/136 against TH105 1.06a
 0x0044DCB0,NetworkSessionResultView_finalize_result_binding,623,matching,100.00,gpt-web-network-result-finalize,python3 scripts/build.py --unit gpt-web-network-result-finalize --compare --json reports canonical exact 623/623 against TH105 1.06a
+0x00468360,BG04_slot_08,515,matching,100.00,gpt-web-bg04-phase,python3 scripts/build.py --unit gpt-web-bg04-phase --compare --json reports canonical exact 515/515 against TH105 1.06a
+0x00468780,BG16_slot_0c,1536,matching,100.00,gpt-web-bg16-phase-0c,python3 scripts/build.py --unit gpt-web-bg16-phase-0c --compare --json reports canonical exact 1536/1536 against TH105 1.06a
+0x00468D80,BG16_slot_08,889,matching,100.00,gpt-web-bg16-phase-08,python3 scripts/build.py --unit gpt-web-bg16-phase-08 --compare --json reports canonical exact 889/889 against TH105 1.06a

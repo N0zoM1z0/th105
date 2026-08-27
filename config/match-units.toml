@@ -11989,3 +11989,119 @@ dir32_targets = [
   "??_C@_08JLGOJJMA@?$DM?1color?$DO?$AA@=??_C@_08JLGOJJMA@?$DM?1color?$DO?$AA@",
   "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
 ]
+
+[units.gpt-web-bg04-phase]
+kind = "probe"
+source = "src/battle/BG04Phase.cpp"
+object = "build/match-units/GptWeb_BG04Phase.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current BG04 vslot +0x08 phase. One-use x87 values stay as direct call expressions so VC8 reuses a single spill slot; the true battle-layout global supplies camera_x at +0x0C and the existing placement ABI."
+
+[[units.gpt-web-bg04-phase.functions]]
+address = "0x00468360"
+symbol_base = "?slot_08@BG04@th105@@UAEXXZ"
+rel32_targets = [
+  "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
+  "?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750",
+  "?set_sampler_state@RenderModeManager@th105@@QAEJIII@Z=0x00404730",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0",
+  "?set_uv_size@CSpriteEx@@QAEXMM@Z=0x00407340",
+  "?scale_x@CSpriteEx@@QAEXM@Z=0x004074A0",
+  "?scale_y@CSpriteEx@@QAEXM@Z=0x00407540",
+  "?scale_z@CSpriteEx@@QAEXM@Z=0x004075E0",
+  "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0",
+  "?place_sprite@BattleBackgroundLayoutView@th105@@QAEXPAVCSpriteEx@@MM@Z=0x00427200",
+  "?render_rgb@SpriteRenderEffectView@th105@@QAEXMMM@Z=0x006654D0",
+]
+dir32_targets = [
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+  "?g_battle_background_layout@th105@@3UBattleBackgroundLayoutView@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+  "__real@3fd0000000000000=__real@3fd0000000000000",
+  "__real@4004000000000000=__real@4004000000000000",
+  "__real@40200000=__real@40200000",
+]
+
+[units.gpt-web-bg16-phase-08]
+kind = "probe"
+source = "src/battle/BG16Phase08.cpp"
+object = "build/match-units/GptWeb_BG16Phase08.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current BG16 vslot +0x08 mirrored render phase. Natural checked vector access, orientation sine scaling and render-state restore reproduce all 889 bytes."
+
+[[units.gpt-web-bg16-phase-08.functions]]
+address = "0x00468D80"
+symbol_base = "?slot_08@BG16@th105@@UAEXXZ"
+rel32_targets = [
+  "?set_gate_states@RenderModeManager@th105@@QAEHEE@Z=0x004049C0",
+  "?set_state_23@RenderModeManager@th105@@QAEHH@Z=0x00404A10",
+  "?set_sampler_state@RenderModeManager@th105@@QAEJIII@Z=0x00404730",
+  "?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750",
+  "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
+  "?lookup_orientation_sine@th105@@YAMH@Z=0x00406480",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0",
+  "?scale_x@CSpriteEx@@QAEXM@Z=0x004074A0",
+  "?scale_y@CSpriteEx@@QAEXM@Z=0x00407540",
+  "?scale_z@CSpriteEx@@QAEXM@Z=0x004075E0",
+  "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0",
+  "?place_sprite@BattleBackgroundLayoutView@th105@@QAEXPAVCSpriteEx@@MM@Z=0x00427200",
+  "?finalize_render@CSpriteEx@@QAEXXZ=0x00407AD0",
+]
+dir32_targets = [
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+  "?g_battle_background_layout@th105@@3UBattleBackgroundLayoutView@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+  "__real@4018000000000000=__real@4018000000000000",
+  "__real@3fb99999a0000000=__real@3fb99999a0000000",
+  "__real@40000000=__real@40000000",
+  "__real@3dcccccd=__real@3dcccccd",
+  "__real@c0000000=__real@c0000000",
+]
+
+[units.gpt-web-bg16-phase-0c]
+kind = "probe"
+source = "src/battle/BG16Phase0C.cpp"
+object = "build/match-units/GptWeb_BG16Phase0C.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current BG16 vslot +0x0C 1,536-byte render phase. Direct one-use angle/translation expressions remove dead frame spills; source uses i*90 rather than an explicit angle counter, letting VC8 naturally strength-reduce the product into the target EBP induction and 360-degree loop latch."
+
+[[units.gpt-web-bg16-phase-0c.functions]]
+address = "0x00468780"
+symbol_base = "?slot_0c@BG16@th105@@UAEXXZ"
+rel32_targets = [
+  "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0",
+  "?rotate_xyz@CSpriteEx@@QAEXMMMMMM@Z=0x00407680",
+  "?scale_x@CSpriteEx@@QAEXM@Z=0x004074A0",
+  "?scale_y@CSpriteEx@@QAEXM@Z=0x00407540",
+  "?scale_z@CSpriteEx@@QAEXM@Z=0x004075E0",
+  "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0",
+  "?place_sprite@BattleBackgroundLayoutView@th105@@QAEXPAVCSpriteEx@@MM@Z=0x00427200",
+  "?finalize_render@CSpriteEx@@QAEXXZ=0x00407AD0",
+  "?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750",
+  "?lookup_orientation_sine@th105@@YAMH@Z=0x00406480",
+]
+dir32_targets = [
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+  "?g_battle_background_layout@th105@@3UBattleBackgroundLayoutView@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+  "__real@4014000000000000=__real@4014000000000000",
+  "__real@40600000=__real@40600000",
+  "__real@3e600000=__real@3e600000",
+  "__real@40800000=__real@40800000",
+  "__real@3e800000=__real@3e800000",
+  "__real@433e0000=__real@433e0000",
+  "__real@44088000=__real@44088000",
+  "__real@44550000=__real@44550000",
+  "__real@44972000=__real@44972000",
+  "__real@43ff8000=__real@43ff8000",
+  "__real@44118000=__real@44118000",
+  "__real@3f99999a=__real@3f99999a",
+  "__real@3f4ccccd=__real@3f4ccccd",
+  "__real@3fb99999a0000000=__real@3fb99999a0000000",
+  "__real@408ae00000000000=__real@408ae00000000000",
+  "__real@4085e00000000000=__real@4085e00000000000",
+]

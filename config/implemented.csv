@@ -926,3 +926,6 @@ BGCommon_render_sprite
 ResultInputRecordTableView_at
 NetworkSessionResultView_bind_result_input
 NetworkSessionResultView_finalize_result_binding
+BG04_slot_08
+BG16_slot_0c
+BG16_slot_08
