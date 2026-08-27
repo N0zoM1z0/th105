@@ -21,6 +21,10 @@ struct FighterPhaseRenderState {
     signed short alpha_divisor_0e;
     unsigned color_mask_10;
 
+    FighterPhaseRenderState();
+    signed char set_period(signed char value);
+    int set_color_mask(int value);
+    void pop_front_if_any();
     void render_45aa00();
     void enqueue_45ad40(const CSpriteEx *source, signed char blend);
 };
@@ -28,6 +32,31 @@ struct FighterPhaseRenderState {
 typedef char PhaseRenderState_period_off[(offsetof(FighterPhaseRenderState, period_0c) == 0x0c) ? 1 : -1];
 typedef char PhaseRenderState_divisor_off[(offsetof(FighterPhaseRenderState, alpha_divisor_0e) == 0x0e) ? 1 : -1];
 typedef char PhaseRenderState_mask_off[(offsetof(FighterPhaseRenderState, color_mask_10) == 0x10) ? 1 : -1];
+
+FighterPhaseRenderState::FighterPhaseRenderState()
+{
+    alpha_divisor_0e = 15;
+    period_0c = 5;
+    entries.clear();
+}
+
+signed char FighterPhaseRenderState::set_period(signed char value)
+{
+    period_0c = value;
+    return value;
+}
+
+int FighterPhaseRenderState::set_color_mask(int value)
+{
+    color_mask_10 = value;
+    return value;
+}
+
+void FighterPhaseRenderState::pop_front_if_any()
+{
+    if (entries.size() > 0)
+        entries.erase(entries.begin());
+}
 
 void FighterPhaseRenderState::render_45aa00()
 {

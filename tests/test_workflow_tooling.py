@@ -52,33 +52,33 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4010)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 953)
+        self.assertEqual(len(matching), 958)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 953)
+        self.assertEqual(len(implemented), 958)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 953
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 958
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 303)
+        self.assertEqual(len(manifest["units"]), 304)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            953,
+            958,
         )
 
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,010", markdown)
-        self.assertIn("Confirmed authored functions | 953", markdown)
-        self.assertIn("Classified exclusions | 1,028", markdown)
-        self.assertIn("Origin/boundary review pending | 2,029", markdown)
-        self.assertIn("Canonical exact functions | 953", markdown)
-        self.assertIn("Canonical exact authored bytes | 156,770", markdown)
+        self.assertIn("Confirmed authored functions | 958", markdown)
+        self.assertIn("Classified exclusions | 1,039", markdown)
+        self.assertIn("Origin/boundary review pending | 2,013", markdown)
+        self.assertIn("Canonical exact functions | 958", markdown)
+        self.assertIn("Canonical exact authored bytes | 156,904", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
@@ -243,22 +243,31 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_new_layout_probe_origin_manifests_are_pinned(self) -> None:
         expected = {
             "vc8-generated-spriteex-vector-origin-anchors.toml": (
-                "scripts/probes/spriteex_vector_generated.cpp", 10, 689
+                "scripts/probes/spriteex_vector_generated.cpp", False, 12, 829
             ),
             "vc8-generated-map-int-value16-origin-anchors.toml": (
-                "scripts/probes/map_int_value16_generated.cpp", 7, 506
+                "scripts/probes/map_int_value16_generated.cpp", False, 7, 506
             ),
             "vc8-generated-map-int-value244-origin-anchors.toml": (
-                "scripts/probes/map_int_value244_generated.cpp", 7, 576
+                "scripts/probes/map_int_value244_generated.cpp", False, 7, 576
+            ),
+            "vc8-generated-fighter-sequence-deque-origin-anchors.toml": (
+                "scripts/probes/fighter_sequence_deque_generated.cpp", False, 3, 713
+            ),
+            "vc8-generated-phase-render-list-origin-anchors.toml": (
+                "src/battle/FighterPhaseRenderState.cpp", True, 5, 430
+            ),
+            "vc8-generated-battle-render-request-list-origin-anchors.toml": (
+                "src/battle/BattleObjectStage.cpp", False, 1, 59
             ),
         }
-        for filename, (source, count, byte_count) in expected.items():
+        for filename, (source, enable_gs, count, byte_count) in expected.items():
             with (ROOT / "config" / filename).open("rb") as stream:
                 manifest = tomllib.load(stream)
             self.assertEqual(manifest["target_sha256"], "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e")
             self.assertEqual(manifest["compiler_sha256"], "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c")
             self.assertEqual(manifest["source"], source)
-            self.assertFalse(manifest["enable_gs"])
+            self.assertEqual(manifest["enable_gs"], enable_gs)
             self.assertEqual(len(manifest["anchors"]), count)
             self.assertEqual(sum(row["size"] for row in manifest["anchors"]), byte_count)
 

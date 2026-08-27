@@ -19,3 +19,19 @@ void probe_spriteex_vector_resize(std::vector<CSpriteEx> &items, unsigned count)
 }
 
 } // namespace th105
+
+namespace th105 {
+
+CSpriteEx *probe_spriteex_vector_index(
+    std::vector<CSpriteEx> &items,
+    unsigned index)
+{
+    return &items[index];
+}
+
+void probe_spriteex_vector_lifetime()
+{
+    std::vector<CSpriteEx> items;
+}
+
+} // namespace th105

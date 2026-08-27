@@ -11647,6 +11647,45 @@ dir32_targets = [
   "___security_cookie=___security_cookie",
 ]
 
+[[units.cross-v106a-fighter-phase-render-state.functions]]
+address = "0x0045A9C0"
+symbol_base = "?set_period@FighterPhaseRenderState@th105@@QAECC@Z"
+
+[[units.cross-v106a-fighter-phase-render-state.functions]]
+address = "0x0045A9D0"
+symbol_base = "?set_color_mask@FighterPhaseRenderState@th105@@QAEHH@Z"
+
+[[units.cross-v106a-fighter-phase-render-state.functions]]
+address = "0x0045AC00"
+symbol_base = "??0FighterPhaseRenderState@th105@@QAE@XZ"
+rel32_targets = [
+  "?_Buynode@?$list@UPhaseRenderEntry@th105@@V?$allocator@UPhaseRenderEntry@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@UPhaseRenderEntry@th105@@V?$allocator@UPhaseRenderEntry@th105@@@std@@@2@XZ=0x0045A9E0",
+  "?clear@?$list@UPhaseRenderEntry@th105@@V?$allocator@UPhaseRenderEntry@th105@@@std@@@std@@QAEXXZ=0x0045AB50",
+]
+
+[[units.cross-v106a-fighter-phase-render-state.functions]]
+address = "0x0045AC30"
+symbol_base = "?pop_front_if_any@FighterPhaseRenderState@th105@@QAEXXZ"
+rel32_targets = [
+  "?erase@?$list@UPhaseRenderEntry@th105@@V?$allocator@UPhaseRenderEntry@th105@@@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x0045AB90",
+]
+
+[units.gpt-web-fighter-render-history-config]
+kind = "probe"
+source = "src/battle/FighterRenderHistoryConfig.cpp"
+object = "build/match-units/GptWeb_FighterRenderHistoryConfig.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current Fighter +0x670/+0x674 render-history configuration wrapper. Real countdown storage plus the exact-backed render-state period/color setters reproduce the complete 45-byte thiscall body without register forcing or synthetic liveness."
+
+[[units.gpt-web-fighter-render-history-config.functions]]
+address = "0x0045E920"
+symbol_base = "?configure_render_history@FighterRenderHistoryConfigView@th105@@QAEHHCH@Z"
+rel32_targets = [
+  "?set_period@FighterPhaseRenderStateConfigView@th105@@QAECC@Z=0x0045A9C0",
+  "?set_color_mask@FighterPhaseRenderStateConfigView@th105@@QAEHH@Z=0x0045A9D0",
+]
+
 [units.cross-v106a-background-base-lifetime]
 kind = "probe"
 source = "src/battle/BackgroundBaseLifetime.cpp"

@@ -57,3 +57,13 @@ symbol = "??$_Fill@PAVCSpriteEx@@V1@@std@@YAXPAVCSpriteEx@@0ABV1@@Z"
 address = "0x00465480"
 size = 33
 symbol = "?size@?$vector@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@@std@@QBEIXZ"
+
+[[anchors]]
+address = "0x00436420"
+size = 76
+symbol = "?_Tidy@?$vector@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@@std@@IAEXXZ"
+
+[[anchors]]
+address = "0x004654B0"
+size = 64
+symbol = "??A?$vector@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@@std@@QAEAAVCSpriteEx@@I@Z"

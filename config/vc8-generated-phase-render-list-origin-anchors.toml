@@ -1,0 +1,32 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/battle/FighterPhaseRenderState.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+
+[[anchors]]
+address = "0x0045A9E0"
+size = 29
+symbol = "?_Buynode@?$list@UPhaseRenderEntry@th105@@V?$allocator@UPhaseRenderEntry@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@UPhaseRenderEntry@th105@@V?$allocator@UPhaseRenderEntry@th105@@@std@@@2@XZ"
+
+[[anchors]]
+address = "0x0045AB50"
+size = 60
+symbol = "?clear@?$list@UPhaseRenderEntry@th105@@V?$allocator@UPhaseRenderEntry@th105@@@std@@@std@@QAEXXZ"
+
+[[anchors]]
+address = "0x0045AB90"
+size = 101
+symbol = "?erase@?$list@UPhaseRenderEntry@th105@@V?$allocator@UPhaseRenderEntry@th105@@@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z"
+
+[[anchors]]
+address = "0x0045AC50"
+size = 80
+symbol = "?_Buynode@?$list@UPhaseRenderEntry@th105@@V?$allocator@UPhaseRenderEntry@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@UPhaseRenderEntry@th105@@V?$allocator@UPhaseRenderEntry@th105@@@std@@@2@PAU342@0ABUPhaseRenderEntry@th105@@@Z"
+
+[[anchors]]
+address = "0x0045ACA0"
+size = 160
+symbol = "?_Incsize@?$list@UPhaseRenderEntry@th105@@V?$allocator@UPhaseRenderEntry@th105@@@std@@@std@@IAEXI@Z"

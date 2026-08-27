@@ -503,13 +503,13 @@ evidence = "SHA-pinned VC8 SP1 rebuild of exact EffectAnimationSequenceVirtuals.
 [[rules]]
 id = "vc8-generated-spriteex-vector-comdats-106a"
 vc8_generated_anchor_file = "config/vc8-generated-spriteex-vector-origin-anchors.toml"
-expected_count = 10
-expected_bytes = 689
+expected_count = 12
+expected_bytes = 829
 origin = "compiler_generated"
 subsystem = "render"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 rebuild of a tracked std::vector<CSpriteEx> probe using the exact-backed 0xE8 CSpriteEx layout regenerates allocation, destruction, copy, erase, fill, and size COMDATs; each relocation-masked fingerprint must resolve to its complete current-inventory hit set across all 4010 spans"
+evidence = "SHA-pinned VC8 SP1 rebuild of a tracked std::vector<CSpriteEx> probe using the exact-backed 0xE8 CSpriteEx layout regenerates allocation, destruction, copy, erase, fill, size, checked indexing and _Tidy COMDATs; each relocation-masked fingerprint must resolve to its complete current-inventory hit set across all 4010 spans"
 
 [[rules]]
 id = "vc8-generated-map-int-value16-tree-comdats-106a"
@@ -587,3 +587,36 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "thirteen current unsigned-key/eight-byte-mapped std::_Tree COMDATs are inventory-unique relocation-masked matches of actual iterator/rotation/node/erase/find/insert symbols freshly emitted from tracked scripts/probes/tree_family_generated.cpp by the SHA-pinned VC8 SP1 compiler; current target caller 0x006B3DA0 reads and writes the mapped pair as two dwords at node +0x10/+0x14, independently fixing this +0x19-nil-node layout"
+
+[[rules]]
+id = "vc8-generated-phase-render-list-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-phase-render-list-origin-anchors.toml"
+expected_count = 5
+expected_bytes = 430
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of exact FighterPhaseRenderState.cpp regenerates the checked std::list<PhaseRenderEntry> sentinel/value node allocation, clear, erase(iterator), and length-growth COMDATs; relocation-masked full-inventory replay must remain unique at the five current 1.06a spans."
+
+[[rules]]
+id = "vc8-generated-battle-render-request-list-comdat-106a"
+vc8_generated_anchor_file = "config/vc8-generated-battle-render-request-list-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 59
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of exact BattleObjectStage.cpp regenerates the std::list<BattleRenderRequest> value-node allocator used by publish_stage; its relocation-masked fingerprint must remain inventory-unique at current 0x00466940."
+
+[[rules]]
+id = "vc8-generated-fighter-sequence-deque-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-fighter-sequence-deque-origin-anchors.toml"
+expected_count = 3
+expected_bytes = 713
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of a tracked 0x98-byte {short,ushort,CSprite} deque witness regenerates the nontrivial checked copy/copy-backward algorithms and pointer-map _Growmap used by the Fighter sequence controller; each relocation-masked fingerprint is unique across all current 4010 spans."
