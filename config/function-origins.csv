@@ -1192,8 +1192,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0043AA20,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043AA30,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043AA40,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0043AA50,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0043AAD0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0043AA50,authored_game,ui,authored,observed,canonical-exact-authored
+0x0043AAD0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043AB90,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043ABA0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043ABD0,authored_game,input,authored,observed,canonical-exact-authored
@@ -1201,11 +1201,11 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0043AC10,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043AC40,authored_game,battle,authored,observed,canonical-exact-authored
 0x0043AC50,authored_game,battle,authored,observed,canonical-exact-authored
-0x0043AC60,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0043AC60,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043AE90,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043AF10,authored_game,config,authored,observed,canonical-exact-authored
 0x0043AF20,authored_game,config,authored,observed,canonical-exact-authored
-0x0043AF30,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0043AF30,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043AFE0,authored_game,input,authored,observed,canonical-exact-authored
 0x0043AFF0,authored_game,input,authored,observed,canonical-exact-authored
 0x0043B010,authored_game,input,authored,observed,canonical-exact-authored
@@ -1236,7 +1236,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0043B3B0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043B410,authored_game,network,authored,observed,canonical-exact-authored
 0x0043B4A0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0043B580,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0043B580,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043B640,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043B6E0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043B700,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a

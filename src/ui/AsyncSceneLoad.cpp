@@ -28,10 +28,23 @@ struct AsyncSceneThreadControl {
     unsigned char start(
         unsigned (__stdcall *thread_proc)(void *), void *context);
     unsigned char is_running();
+    int set_priority(int priority);
 };
 
 extern AsyncSceneThreadControl g_async_scene_thread;
 extern int g_async_scene_load_request;
+
+extern "C" __declspec(dllimport) long __stdcall CoInitialize(void *);
+extern "C" __declspec(dllimport) void __stdcall CoUninitialize();
+
+struct MatchSetup;
+extern MatchSetup g_match_setup;
+int __cdecl load_indexed_event_wave_resources();
+void __cdecl prepare_scene_resources_by_mode();
+int __cdecl apply_story_match_setup(MatchSetup *setup);
+void __cdecl initialize_story_slot_two();
+void __cdecl reset_story_loading_runtime();
+
 unsigned __stdcall async_scene_load_worker(void *context);
 
 unsigned char __cdecl start_async_engine_scene_load(int scene)
@@ -44,6 +57,38 @@ unsigned char __cdecl start_async_engine_scene_load(int scene)
     unsigned char started =
         g_async_scene_thread.start(async_scene_load_worker, 0);
     return started;
+}
+
+
+unsigned __stdcall async_scene_load_worker(void *)
+{
+    if (CoInitialize(0) >= 0) {
+        switch (g_async_scene_load_request) {
+        case 1:
+            g_async_scene_thread.set_priority(0);
+            load_indexed_event_wave_resources();
+            break;
+        case 2:
+            g_async_scene_thread.set_priority(0);
+            prepare_scene_resources_by_mode();
+            break;
+        case 3:
+            g_async_scene_thread.set_priority(0);
+            apply_story_match_setup(&g_match_setup);
+            break;
+        case 4:
+            g_async_scene_thread.set_priority(0);
+            initialize_story_slot_two();
+            break;
+        case 5:
+            g_async_scene_thread.set_priority(-15);
+            reset_story_loading_runtime();
+            break;
+        }
+        CoUninitialize();
+        g_async_scene_load_request = 0;
+    }
+    return 0;
 }
 
 } // namespace th105
