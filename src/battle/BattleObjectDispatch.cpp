@@ -1,40 +1,7 @@
 #include "battle/BattleObjectManagerRuntime.hpp"
+#include "battle/BackgroundDerived.hpp"
 
 namespace th105 {
-
-#define TH105_BG_OVERRIDES() \
-    virtual void slot_04(); \
-    virtual void slot_08(); \
-    virtual void slot_0c(); \
-    virtual void slot_10(); \
-    virtual void render_sprite(CSpriteEx *sprite)
-
-struct BGCommon : BackgroundBase {
-    unsigned char observed_tail_5c[0x08];
-    BGCommon(int background_id, int variant);
-    TH105_BG_OVERRIDES();
-};
-struct BG02 : BackgroundBase {
-    unsigned char observed_tail_5c[0x0c];
-    BG02();
-    TH105_BG_OVERRIDES();
-};
-struct BG04 : BackgroundBase {
-    unsigned char observed_tail_5c[0x0c];
-    BG04();
-    TH105_BG_OVERRIDES();
-};
-struct BG16 : BackgroundBase {
-    unsigned char observed_tail_5c[0x0c];
-    BG16();
-    TH105_BG_OVERRIDES();
-};
-#undef TH105_BG_OVERRIDES
-
-typedef char bgcommon_dispatch_size[(sizeof(BGCommon) == 0x64) ? 1 : -1];
-typedef char bg02_dispatch_size[(sizeof(BG02) == 0x68) ? 1 : -1];
-typedef char bg04_dispatch_size[(sizeof(BG04) == 0x68) ? 1 : -1];
-typedef char bg16_dispatch_size[(sizeof(BG16) == 0x68) ? 1 : -1];
 
 void BattleObjectManager::dispatch_request_467380(unsigned kind, float value)
 {

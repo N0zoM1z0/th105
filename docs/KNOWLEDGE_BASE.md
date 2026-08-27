@@ -989,11 +989,15 @@ allowing pinned VC8 to emit the target local sprite construction naturally.
 This is source-partition evidence; do not replace it with `forceinline`,
 register variables, duplicated external definitions, or assembly.
 
-`BackgroundBase` is independently closed as a 0x5C polymorphic owner. Its
-layout is checked `vector<unsigned> +0x04`, `vector<CSpriteEx> +0x14`, a second
-handle vector `+0x24`, a second sprite vector `+0x34`, and six floats
-`+0x44..+0x58`. Ctor/dtor/scalar at `0x00466020/0x00465E10/0x00465FD0` are
-115/377/30 exact. Destruction releases handles from the second lane then the
+`BackgroundBase` is independently closed as a **0x64 polymorphic owner**. The
+original ctor/dtor wave proved the actively touched 0x5C prefix: checked
+`vector<unsigned> +0x04`, `vector<CSpriteEx> +0x14`, a second handle vector
+`+0x24`, a second sprite vector `+0x34`, and six floats `+0x44..+0x58`.
+Current factory allocation, `set_transition @ 0x004654F0`, and the exact shared
+renderer now extend the physical class with signed transition state `+0x5C`
+and float transition value `+0x60`. Ctor/dtor/scalar at
+`0x00466020/0x00465E10/0x00465FD0` remain 115/377/30 exact because those two
+tail fields are intentionally not initialized by the base ctor. Destruction releases handles from the second lane then the
 first through exact TitleResourceManager, after which ordinary reverse member
 destruction reproduces the target CSpriteEx/vector teardown. The constructor's
 six zero floats are one chained C++ assignment,
@@ -1018,8 +1022,53 @@ Deleting background pointers is target-backed virtual ownership: `BackgroundBase
 
 ### Background factory exactness can reveal the real list static type (2026-08-27)
 
-`BattleObjectManager::dispatch_request @ 0x00467380` is a useful example of recovering a **higher-level static type from a stack temporary**. Current target and RTTI already establish a 0x5C polymorphic `BackgroundBase`: scalar deleting destructor at vslot 0 and five purecall slots at `+0x04..+0x14`. The manager's +0x28 list was initially modeled as `std::list<BattleObjectRenderEntry*>`, which is layout-compatible and was sufficient for the earlier 51-byte back()/render call and phase loops. But a typed factory creating `BGCommon/BG02/BG04/BG16` then has to convert the derived pointer to the generic base type before binding `push_back(const T&)`; pinned VC8 materializes that converted pointer in an extra 4-byte local. Target has no such slot. Changing only the list static element type to the already-proven `BackgroundBase*` removes the temporary and makes the 986-byte factory exact **while every pre-existing BackgroundBase/manager/render caller remains exact**. Treat cross-unit elimination of a language-mandated temporary as stronger type evidence than an offset-compatible facade.
+`BattleObjectManager::dispatch_request @ 0x00467380` is a useful example of recovering a **higher-level static type from a stack temporary**. Current target and RTTI now establish a 0x64 polymorphic `BackgroundBase`: scalar deleting destructor at vslot 0 and five purecall slots at `+0x04..+0x14`. The manager's +0x28 list was initially modeled as `std::list<BattleObjectRenderEntry*>`, which is layout-compatible and was sufficient for the earlier 51-byte back()/render call and phase loops. But a typed factory creating `BGCommon/BG02/BG04/BG16` then has to convert the derived pointer to the generic base type before binding `push_back(const T&)`; pinned VC8 materializes that converted pointer in an extra 4-byte local. Target has no such slot. Changing only the list static element type to the already-proven `BackgroundBase*` removes the temporary and makes the 986-byte factory exact **while every pre-existing BackgroundBase/manager/render caller remains exact**. Treat cross-unit elimination of a language-mandated temporary as stronger type evidence than an offset-compatible facade.
 
 The factory itself is ordinary C++ rather than a handwritten allocator. Switch cases 0..18 use normal `new`: BGCommon has target allocation extent 0x64 and BG02/BG04/BG16 have 0x68; their constructors stay declaration-only and out of this TU. Pinned VC8 naturally emits the target 17 EH cleanup states and external constructor calls. The target-proved tail is source-order-sensitive: nonempty `renderers_28` is the fallthrough, empty is cold; within the nonempty arm, `value != 0.0f` is the fallthrough state-0 transition while zero selects state 1. This second spelling also preserves the target x87 parity/NaN behavior. Existing backgrounds receive state 2 with single-precision -0.01f before native checked `list<BackgroundBase*>::push_back`. With those semantic choices all 986 callable bytes match; the same COMDAT contains jump/EH tables beyond the reviewed function boundary and they are not counted as authored function bytes.
 
 `BattleObjectManager::publish_stage @ 0x00467850` closes the caller side of the same owner. Exact `BattleAudioSetupView::set_stage_music_433860` ignores EAX, so the truthful member ABI is `void(int stage, int count, bool notify)`. The method stores the low stage byte to `g_battle_transition_mode`, computes `count ? 1.0f / count : 0.0f`, and uses the manager's real list sizes: only `notify && !renderers_28.empty() && count > 0` creates a `BattleRenderRequest`, calls the generated `list<BattleRenderRequest>::push_back @ 0x00466DB0`, and signals event `+0x20`; all other cases synchronously call the exact dispatcher. Ordinary source gives 120/120 and the 40-byte caller remains exact. This is also an evidence boundary: the generated push_back/_Incsize helpers are not authored simply because an authored exact caller reaches them.
+
+### BackgroundBase 0x64 runtime and derived-vtable wave (2026-08-27)
+
+The background runtime continuation closes **10 authored functions / 827 bytes**
+without changing the evidence bar. `BackgroundBase::render_base_sprites @
+0x004659E0` is 362/362 exact. Its source is a signed `int` 0..29 loop; checked
+`std::vector::operator[]` still performs the implicit unsigned bounds compare.
+Only the nonzero-handle arm creates a `CSpriteEx&`, which VC8 naturally carries
+through reset/translate/placement/visibility/render while strength-reducing the
+0xE8 element stride. The four visibility tests are written as failure
+conditions (`x < 0`, `x > 640`, `y < 0`, `y > 480`) rather than one positive
+conjunction. That preserves the target x87 parity/NaN behavior and is why the
+final 362-byte body is exact.
+
+`BGCommon::BGCommon @ 0x004694A0` is 97/97 from ordinary `/GS` C++ with an
+out-of-line `initialize_common_4664a0`; this keeps the already-exact 986-byte
+factory's constructor boundary intact. BG02/BG04/BG16/BGCommon vtables also
+close four class-owned 36-byte scalar deleting wrappers. The target wrappers
+require **user-defined empty derived destructors**: VC8 republishes the derived
+vptr, calls `BackgroundBase::~BackgroundBase`, then conditionally deletes. This
+is the opposite source choice from the CharacterObjectManager implicit-dtor
+family and must be decided from the local vtable/lifetime evidence, not a global
+style rule.
+
+The physical 5-byte `++state_64` body is shared by BG02/BG04/BG16, and the
+5-byte base-render forwarder is shared by BG04/BG16/BGCommon. BG02/BG04/BGCommon
+also share the 107-byte sprite transform/color override while BG16 owns a
+107-byte sibling differing only in final color (`0x40FFFFFF` versus
+`0x80000000`). Tracked source keeps ordinary identical virtual definitions;
+linker ICF explains the one physical target body. Count the physical target
+function once rather than inventing aliases or deleting legitimate class
+methods from source.
+
+Three nearby roots remain deliberate stops. `set_transition @ 0x004654F0`
+reaches the 407-byte target boundary only after recovering cached vector counts,
+`if(count) do/while` loops, and **unsigned** alpha conversion (which naturally
+emits the target control-word truncate + `fistp qword` sequence); only two real
+stack slots are colored in the opposite order. `BG04::BG04 @ 0x00468570` reaches
+335/335 after reusing the assign-zero value as the later load-texture token,
+scoping the sprite fill around `_Assign_n`, and leaving width/height as genuine
+out-params, but its frame is still four bytes larger. `BG04` phase
+`0x00468360` improves 593 -> 519 against 515 when one checked `CSpriteEx&` is
+kept only across the three scale calls; the remaining four bytes are one frame
+allocation difference. Do not close any of these with fake stack objects,
+volatile/register forcing, manual vptr stores, inline assembly, or copied bytes.

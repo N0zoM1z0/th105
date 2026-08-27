@@ -11832,3 +11832,103 @@ dir32_targets = [
   "?g_battle_transition_mode@th105@@3EA=?g_battle_transition_mode@th105@@3EA",
   "__imp__SetEvent@4=__imp__SetEvent@4",
 ]
+
+[units.cross-v106a-background-runtime]
+kind = "probe"
+source = "src/battle/BackgroundRuntime.cpp"
+object = "build/match-units/CrossV106a_BackgroundRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current BackgroundBase shared sprite renderer. The true base is 0x64: four native checked vectors end at +0x44, color/translation state occupies +0x44..+0x58, and transition state/value live at +0x5C/+0x60. A signed 30-entry loop uses checked handle/vector access, keeps one CSpriteEx reference only inside the nonzero-handle arm, and preserves target x87 visibility semantics with explicit failure comparisons."
+
+[[units.cross-v106a-background-runtime.functions]]
+address = "0x004659E0"
+symbol_base = "?render_base_sprites_4659e0@BackgroundBase@th105@@QAEXXZ"
+rel32_targets = [
+  "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
+  "?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750",
+  "?set_sampler_state@RenderModeManager@th105@@QAEJIII@Z=0x00404730",
+  "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0",
+  "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0",
+  "?place_sprite@BattleBackgroundLayoutView@th105@@QAEXPAVCSpriteEx@@MM@Z=0x00427200",
+  "?render_rgb@SpriteRenderEffectView@th105@@QAEXMMM@Z=0x006654D0",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "?g_battle_background_layout@th105@@3UBattleBackgroundLayoutView@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+]
+
+[units.cross-v106a-background-derived-runtime]
+kind = "probe"
+source = "src/battle/BackgroundDerivedRuntime.cpp"
+object = "build/match-units/CrossV106a_BackgroundDerivedRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current BG02/BG04/BG16/BGCommon vtable-owned runtime surface over the corrected 0x64 BackgroundBase / 0x68 stateful derived layouts. Empty user-defined derived destructors naturally emit the four 36-byte class-owned scalar deleting wrappers. Identical BG02/BG04/BGCommon render overrides and identical BG04/BG16/BGCommon base-render forwarders are ordinary C++ bodies whose physical target copies are linker-folded; each accepted physical body is counted once."
+
+[[units.cross-v106a-background-derived-runtime.functions]]
+address = "0x004694A0"
+symbol_base = "??0BGCommon@th105@@QAE@HH@Z"
+rel32_targets = [
+  "??0BackgroundBase@th105@@QAE@XZ=0x00466020",
+  "??1BackgroundBase@th105@@UAE@XZ=0x00465E10",
+  "?initialize_common_4664a0@BackgroundBase@th105@@QAEXHH@Z=0x004664A0",
+]
+dir32_targets = [
+  "??_7BGCommon@th105@@6B@=??_7BGCommon@th105@@6B@",
+  "__ehhandler$??0BGCommon@th105@@QAE@HH@Z=__ehhandler$??0BGCommon@th105@@QAE@HH@Z",
+  "___security_cookie=___security_cookie",
+]
+
+[[units.cross-v106a-background-derived-runtime.functions]]
+address = "0x00468330"
+symbol_base = "??_GBG02@th105@@UAEPAXI@Z"
+rel32_targets = ["??1BackgroundBase@th105@@UAE@XZ=0x00465E10", "??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = ["??_7BG02@th105@@6B@=??_7BG02@th105@@6B@"]
+
+[[units.cross-v106a-background-derived-runtime.functions]]
+address = "0x004686C0"
+symbol_base = "??_GBG04@th105@@UAEPAXI@Z"
+rel32_targets = ["??1BackgroundBase@th105@@UAE@XZ=0x00465E10", "??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = ["??_7BG04@th105@@6B@=??_7BG04@th105@@6B@"]
+
+[[units.cross-v106a-background-derived-runtime.functions]]
+address = "0x00469470"
+symbol_base = "??_GBG16@th105@@UAEPAXI@Z"
+rel32_targets = ["??1BackgroundBase@th105@@UAE@XZ=0x00465E10", "??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = ["??_7BG16@th105@@6B@=??_7BG16@th105@@6B@"]
+
+[[units.cross-v106a-background-derived-runtime.functions]]
+address = "0x00469510"
+symbol_base = "??_GBGCommon@th105@@UAEPAXI@Z"
+rel32_targets = ["??1BackgroundBase@th105@@UAE@XZ=0x00465E10", "??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = ["??_7BGCommon@th105@@6B@=??_7BGCommon@th105@@6B@"]
+
+[[units.cross-v106a-background-derived-runtime.functions]]
+address = "0x004686F0"
+symbol_base = "?slot_04@BG04@th105@@UAEXXZ"
+
+[[units.cross-v106a-background-derived-runtime.functions]]
+address = "0x00468700"
+symbol_base = "?slot_10@BGCommon@th105@@UAEXXZ"
+rel32_targets = ["?render_base_sprites_4659e0@BackgroundBase@th105@@QAEXXZ=0x004659E0"]
+
+[[units.cross-v106a-background-derived-runtime.functions]]
+address = "0x00469540"
+symbol_base = "?render_sprite@BGCommon@th105@@UAEXPAVCSpriteEx@@@Z"
+rel32_targets = [
+  "?scale_x@CSpriteEx@@QAEXM@Z=0x004074A0",
+  "?scale_y@CSpriteEx@@QAEXM@Z=0x00407540",
+  "?scale_z@CSpriteEx@@QAEXM@Z=0x004075E0",
+  "?rotate_xyz@CSpriteEx@@QAEXMMMMMM@Z=0x00407680",
+]
+
+[[units.cross-v106a-background-derived-runtime.functions]]
+address = "0x00468710"
+symbol_base = "?render_sprite@BG16@th105@@UAEXPAVCSpriteEx@@@Z"
+rel32_targets = [
+  "?scale_x@CSpriteEx@@QAEXM@Z=0x004074A0",
+  "?scale_y@CSpriteEx@@QAEXM@Z=0x00407540",
+  "?scale_z@CSpriteEx@@QAEXM@Z=0x004075E0",
+  "?rotate_xyz@CSpriteEx@@QAEXMMMMMM@Z=0x00407680",
+]

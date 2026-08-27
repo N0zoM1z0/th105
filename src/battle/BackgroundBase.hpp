@@ -28,9 +28,13 @@ struct BackgroundBase {
     float value_50;
     float value_54;
     float value_58;
+    int transition_state_5c;
+    float transition_value_60;
 
     BackgroundBase();
+    void initialize_common_4664a0(int background_id, int variant);
     void set_transition_4654f0(int state, float value);
+    void render_base_sprites_4659e0();
 };
 
 typedef char BackgroundBase_handles_a_offset_must_be_0x04[
@@ -43,7 +47,11 @@ typedef char BackgroundBase_sprites_b_offset_must_be_0x34[
     offsetof(BackgroundBase, sprites_b_34) == 0x34 ? 1 : -1];
 typedef char BackgroundBase_value_44_offset_must_be_0x44[
     offsetof(BackgroundBase, value_44) == 0x44 ? 1 : -1];
-typedef char BackgroundBase_size_must_be_0x5c[
-    sizeof(BackgroundBase) == 0x5c ? 1 : -1];
+typedef char BackgroundBase_transition_state_offset_must_be_0x5c[
+    offsetof(BackgroundBase, transition_state_5c) == 0x5c ? 1 : -1];
+typedef char BackgroundBase_transition_value_offset_must_be_0x60[
+    offsetof(BackgroundBase, transition_value_60) == 0x60 ? 1 : -1];
+typedef char BackgroundBase_size_must_be_0x64[
+    sizeof(BackgroundBase) == 0x64 ? 1 : -1];
 
 } // namespace th105

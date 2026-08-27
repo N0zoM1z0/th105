@@ -1240,8 +1240,34 @@ Finally, worker-proc identity can close an asynchronous owner without promoting 
 
 ### Use a derived-to-base `push_back` temporary as static-type evidence
 
-A standard-container member can have the correct physical layout and still expose the wrong **source static type** only when a richer caller is recovered. `BattleObjectManager +0x28` originally worked as `list<BattleObjectRenderEntry*>` for destruction, iteration, and `back()->render_sprite`; those paths do not distinguish that facade from the real `list<BackgroundBase*>`. The 986-byte typed factory does: `BGxx* -> BattleObjectRenderEntry*` must be materialized before passing a reference to `push_back`, and VC8 allocates one extra 4-byte local. Target has no local. Using `BackgroundBase*`, independently fixed by its RTTI/vtable and exact 0x5C lifetime, removes the C++ conversion temporary. Replay all prior consumers; if they remain exact and the richer root closes, the shared static type has stronger evidence than the earlier facade. Do not fake away the temporary with aliasing, casts to dead stack slots, or register/liveness tricks.
+A standard-container member can have the correct physical layout and still expose the wrong **source static type** only when a richer caller is recovered. `BattleObjectManager +0x28` originally worked as `list<BattleObjectRenderEntry*>` for destruction, iteration, and `back()->render_sprite`; those paths do not distinguish that facade from the real `list<BackgroundBase*>`. The 986-byte typed factory does: `BGxx* -> BattleObjectRenderEntry*` must be materialized before passing a reference to `push_back`, and VC8 allocates one extra 4-byte local. Target has no local. Using `BackgroundBase*`, independently fixed by its RTTI/vtable and exact 0x64 lifetime, removes the C++ conversion temporary. Replay all prior consumers; if they remain exact and the richer root closes, the shared static type has stronger evidence than the earlier facade. Do not fake away the temporary with aliasing, casts to dead stack slots, or register/liveness tricks.
 
 ### Ordinary typed `new` can reproduce a large factory's entire EH surface
 
 For `BattleObjectManager::dispatch_request @ 0x00467380`, do not lower eighteen cases into `operator new + placement new`. Narrow target-proved derived class extents plus declaration-only constructors are sufficient: normal `new BGCommon(...)`, `new BG02`, `new BG04`, and `new BG16` naturally emit all 17 target unwind states. The remaining byte evidence is semantic CFG shape: keep `!renderers.empty()` as hot fallthrough and write the nonzero float path as `value != 0.0f` so the target x87 parity branch and NaN behavior are retained. Case/allocation extent and source block order are evidence; copied jump tables, inline assembly, or explicit EH state manipulation are not.
+
+
+### Use failure-form float guards when target NaN semantics require them
+
+`BackgroundBase::render_base_sprites @ 0x004659E0` is a useful x87 source
+oracle. A positive conjunction such as `x >= 0 && x <= 640 && ...` is
+mathematically attractive but makes VC8 reject unordered/NaN through parity
+branches that differ from the target. The shipped body instead behaves like
+four independent failure guards: `x3 < 0`, `x0 > 640`, `y3 < 0`, `y0 > 480`.
+Writing those ordinary C++ conditions reproduces the target `test ah` masks and
+cleanup edges exactly. The outer counter must be signed `int` (`jl` at 30),
+while passing it to checked vector `operator[]` still gives the target unsigned
+bounds checks. Recover comparison semantics and source type; do not patch Jcc
+opcodes or force x87 state.
+
+### Linker-folded virtual overrides are one physical authored function
+
+BG02/BG04/BG16/BGCommon provide a current ICF reference. Several classes have
+identical ordinary overrides: three stateful backgrounds increment signed
+`state_64`, three classes tail-forward to the same base renderer, and
+BG02/BG04/BGCommon use the same 107-byte sprite transform. Source should retain
+the class methods. The linked target may fold their identical COMDATs to one
+address, so the authored-byte ledger counts that physical function once. Class
+identity comes from each current RTTI vtable; do not multiply the numerator by
+alias count, and do not hand-write a shared jump solely because the final PE has
+one address.
