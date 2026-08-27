@@ -46,7 +46,7 @@ struct BattleObjectManager {
     BattleThreadHandle worker_b_18;
     HANDLE event_a_20;
     HANDLE event_b_24;
-    std::list<BattleObjectRenderEntry *> renderers_28;
+    std::list<BackgroundBase *> renderers_28;
     std::list<BattleOwnedObject *> owned_34;
     BattleBaseEffect effect_40;
     unsigned char render_state_48[0x90];
@@ -65,6 +65,7 @@ struct BattleObjectManager {
 
     void render_tail_4666a0();
     void dispatch_request_467380(unsigned kind, float value);
+    void publish_stage(int stage, int count, bool notify);
 };
 
 typedef char BattleObjectManager_size_must_be_0x118[

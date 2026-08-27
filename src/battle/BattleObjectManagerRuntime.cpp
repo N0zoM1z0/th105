@@ -50,7 +50,7 @@ void BattleObjectManager::phase_466980()
 {
     g_event_effect_state->render_background_effects();
     g_event_effect_state->dispatch_emitter_state(-2);
-    for (std::list<BattleObjectRenderEntry *>::iterator it = renderers_28.begin();
+    for (std::list<BackgroundBase *>::iterator it = renderers_28.begin();
          it != renderers_28.end(); ++it)
         (*it)->slot_10();
     render_tail_4666a0();
@@ -58,7 +58,7 @@ void BattleObjectManager::phase_466980()
 
 void BattleObjectManager::phase_4669f0()
 {
-    for (std::list<BattleObjectRenderEntry *>::iterator it = renderers_28.begin();
+    for (std::list<BackgroundBase *>::iterator it = renderers_28.begin();
          it != renderers_28.end(); ++it)
         (*it)->slot_0c();
     g_event_effect_state->dispatch_emitter_state(-1);
@@ -66,7 +66,7 @@ void BattleObjectManager::phase_4669f0()
 
 void BattleObjectManager::phase_466a50()
 {
-    for (std::list<BattleObjectRenderEntry *>::iterator it = renderers_28.begin();
+    for (std::list<BackgroundBase *>::iterator it = renderers_28.begin();
          it != renderers_28.end(); ++it)
         (*it)->slot_08();
     g_event_effect_state->dispatch_emitter_state(1);

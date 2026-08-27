@@ -4843,11 +4843,11 @@ notes = "TH105 1.06a stage/music facade recovered from exact battle_initialize_o
 address = "0x00434DE0"
 symbol_base = "set_stage_music_433860"
 rel32_targets = [
-  "?publish_stage@BattleObjectManagerStageView@th105@@QAEHHH_N@Z=0x00467850",
+  "?publish_stage@BattleObjectManager@th105@@QAEXHH_N@Z=0x00467850",
   "?publish_stage_state@EventEffectStateView@th105@@QAEHH@Z=0x00469D50",
 ]
 dir32_targets = [
-  "?g_battle_object_manager_stage@th105@@3PAUBattleObjectManagerStageView@1@A=?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A",
+  "?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A=?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A",
   "?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A",
 ]
 
@@ -11669,7 +11669,7 @@ source = "src/battle/BattleObjectManagerRuntime.cpp"
 object = "build/match-units/CrossV106a_BattleObjectManagerRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current BattleObjectManager 0x118 typed runtime/lifetime. Three native checked std::list members own render requests (+0), render-entry pointers (+0x28), and owned-object pointers (+0x34); two BattleThreadHandle members occupy +0x10/+0x18 and BattleBaseEffect begins +0x40. Exact run_shared_battle_phase_sequence owns the 0x466980/0x4669F0/0x466A50 phase entries; ctor/dtor and two COM worker lanes close the same layout without manual node arithmetic or ABI coercion."
+notes = "Current BattleObjectManager 0x118 typed runtime/lifetime. Three native checked std::list members own render requests (+0), BackgroundBase pointers (+0x28), and owned-object pointers (+0x34); two BattleThreadHandle members occupy +0x10/+0x18 and BattleBaseEffect begins +0x40. Exact run_shared_battle_phase_sequence owns the 0x466980/0x4669F0/0x466A50 phase entries; ctor/dtor and two COM worker lanes close the same layout without manual node arithmetic or ABI coercion."
 
 [[units.cross-v106a-battle-object-manager-runtime.functions]]
 address = "0x00466980"
@@ -11747,7 +11747,7 @@ rel32_targets = [
   "?shutdown@BattleBaseEffect@th105@@QAEXXZ=0x00418040",
   "??1BattleBaseEffect@th105@@QAE@XZ=0x00417FC0",
   "?_Tidy@?$list@PAUBattleOwnedObject@th105@@V?$allocator@PAUBattleOwnedObject@th105@@@std@@@std@@IAEXXZ=0x00435EB0",
-  "?_Tidy@?$list@PAUBattleObjectRenderEntry@th105@@V?$allocator@PAUBattleObjectRenderEntry@th105@@@std@@@std@@IAEXXZ=0x00435EB0",
+  "?_Tidy@?$list@PAUBackgroundBase@th105@@V?$allocator@PAUBackgroundBase@th105@@@std@@@std@@IAEXXZ=0x00435EB0",
   "??1BattleThreadHandle@th105@@QAE@XZ=0x004145F0",
   "?_Tidy@?$list@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@std@@IAEXXZ=0x00435EB0",
   "@__security_check_cookie@4=0x00689D25",
@@ -11765,7 +11765,7 @@ symbol_base = "??0BattleObjectManager@th105@@QAE@XZ"
 rel32_targets = [
   "?_Buynode@?$list@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@2@XZ=0x00464B20",
   "??0BattleThreadHandle@th105@@QAE@XZ=0x0040CF10",
-  "?_Buynode@?$list@PAUBattleObjectRenderEntry@th105@@V?$allocator@PAUBattleObjectRenderEntry@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@PAUBattleObjectRenderEntry@th105@@V?$allocator@PAUBattleObjectRenderEntry@th105@@@std@@@2@XZ=0x00435E50",
+  "?_Buynode@?$list@PAUBackgroundBase@th105@@V?$allocator@PAUBackgroundBase@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@PAUBackgroundBase@th105@@V?$allocator@PAUBackgroundBase@th105@@@std@@@2@XZ=0x00435E50",
   "?_Buynode@?$list@PAUBattleOwnedObject@th105@@V?$allocator@PAUBattleOwnedObject@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@PAUBattleOwnedObject@th105@@V?$allocator@PAUBattleOwnedObject@th105@@@std@@@2@XZ=0x00435E50",
   "??0BattleBaseEffect@th105@@QAE@XZ=0x00417FB0",
   "?initialize@BattleBaseEffect@th105@@QAE_NPBXI@Z=0x00417FF0",
@@ -11780,4 +11780,55 @@ dir32_targets = [
   "?battle_object_effect_blob_6c2db8@th105@@3QBEB=?battle_object_effect_blob_6c2db8@th105@@3QBEB",
   "?battle_object_render_worker_proc_4678d0@th105@@YGKPAX@Z=?battle_object_render_worker_proc_4678d0@th105@@YGKPAX@Z",
   "?battle_object_manager_worker_proc_466cf0@th105@@YGKPAX@Z=?battle_object_manager_worker_proc_466cf0@th105@@YGKPAX@Z",
+]
+
+
+[units.cross-v106a-battle-object-dispatch]
+kind = "probe"
+source = "src/battle/BattleObjectDispatch.cpp"
+object = "build/match-units/CrossV106a_BattleObjectDispatch.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current BattleObjectManager background request factory. The real +0x28 member is checked std::list<BackgroundBase*>; 18 source switch arms use ordinary typed new for BGCommon/BG02/BG04/BG16 and preserve target new-expression EH. Nonempty renderer state and nonzero transition value are the hot fallthrough choices; prior backgrounds receive -0.01f before the new BackgroundBase pointer is appended."
+
+[[units.cross-v106a-battle-object-dispatch.functions]]
+address = "0x00467380"
+symbol_base = "?dispatch_request_467380@BattleObjectManager@th105@@QAEXIM@Z"
+rel32_targets = [
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??3@YAXPAX@Z=0x006898EA",
+  "??0BGCommon@th105@@QAE@HH@Z=0x004694A0",
+  "??0BG02@th105@@QAE@XZ=0x00467F90",
+  "??0BG04@th105@@QAE@XZ=0x00468570",
+  "??0BG16@th105@@QAE@XZ=0x00469100",
+  "?set_transition_4654f0@BackgroundBase@th105@@QAEXHM@Z=0x004654F0",
+  "_Buynode=0x00421F30",
+  "_Incsize=0x00440370",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?dispatch_request_467380@BattleObjectManager@th105@@QAEXIM@Z=__ehhandler$?dispatch_request_467380@BattleObjectManager@th105@@QAEXIM@Z",
+  "___security_cookie=___security_cookie",
+  "__real@bc23d70a=__real@bc23d70a",
+]
+
+[units.cross-v106a-battle-object-stage]
+kind = "probe"
+source = "src/battle/BattleObjectStage.cpp"
+object = "build/match-units/CrossV106a_BattleObjectStage.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current BattleObjectManager stage publisher. Publishes the transition byte, computes count?1.0f/count:0, queues a real BattleRenderRequest through native checked list push_back only for notify+nonempty+positive count and signals event +0x20; otherwise synchronously calls the exact request dispatcher. Exact caller ignores EAX and proves the truthful void ABI."
+
+[[units.cross-v106a-battle-object-stage.functions]]
+address = "0x00467850"
+symbol_base = "?publish_stage@BattleObjectManager@th105@@QAEXHH_N@Z"
+rel32_targets = [
+  "?push_back@?$list@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@std@@QAEXABUBattleRenderRequest@th105@@@Z=0x00466DB0",
+  "?dispatch_request_467380@BattleObjectManager@th105@@QAEXIM@Z=0x00467380",
+]
+dir32_targets = [
+  "?g_battle_transition_mode@th105@@3EA=?g_battle_transition_mode@th105@@3EA",
+  "__imp__SetEvent@4=__imp__SetEvent@4",
 ]

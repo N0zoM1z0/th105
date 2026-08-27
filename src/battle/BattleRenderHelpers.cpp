@@ -14,8 +14,8 @@ void BattleBackgroundLayoutRenderView::transform_sprite(CSpriteEx *sprite)
 
 void BattleObjectManagerRenderView::dispatch_render_sprite(CSpriteEx *sprite)
 {
-    std::list<BattleObjectRenderEntry *> &renderers =
-        *reinterpret_cast<std::list<BattleObjectRenderEntry *> *>(
+    std::list<BackgroundBase *> &renderers =
+        *reinterpret_cast<std::list<BackgroundBase *> *>(
             reinterpret_cast<unsigned char *>(this) + 0x28);
     if (!renderers.empty())
         renderers.back()->render_sprite(sprite);

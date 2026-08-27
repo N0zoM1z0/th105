@@ -1,6 +1,6 @@
 #pragma once
 
-class CSpriteEx;
+#include "battle/BackgroundBase.hpp"
 
 namespace th105 {
 
@@ -11,15 +11,6 @@ struct BattleBackgroundLayoutRenderView {
     float scale_14;
 
     void transform_sprite(CSpriteEx *sprite);
-};
-
-struct BattleObjectRenderEntry {
-    virtual ~BattleObjectRenderEntry();
-    virtual void slot_04();
-    virtual void slot_08();
-    virtual void slot_0c();
-    virtual void slot_10();
-    virtual void render_sprite(CSpriteEx *sprite);
 };
 
 struct BattleObjectManagerRenderView {

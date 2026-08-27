@@ -1947,9 +1947,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00466DB0,compiler_generated,ui,exclude,observed,vc8-generated-replay-menu-delete-std-comdats-106a
 0x00466DF0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00466F40,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00467380,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00467380,authored_game,battle,authored,observed,canonical-exact-authored
 0x004677B0,authored_game,battle,authored,observed,canonical-exact-authored
-0x00467850,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00467850,authored_game,battle,authored,observed,canonical-exact-authored
 0x004678D0,authored_game,battle,authored,observed,canonical-exact-authored
 0x004678F0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00467A10,unknown,,review,unknown,ida-1.06a-initial-inventory
