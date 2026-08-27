@@ -931,3 +931,11 @@ BG16_slot_0c
 BG16_slot_08
 case_insensitive_crc32
 ScoreMusicLookupView_contains_bgm_path
+CMenuMusic_render
+CMenuMusic_update
+MusicList_ctor
+MusicList_scalar_deleting_destructor
+CMenuMusic_dtor
+CMenuMusic_ctor
+CMenuMusic_scalar_deleting_destructor
+CMenuMusic_update_primary

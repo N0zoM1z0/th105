@@ -12127,3 +12127,127 @@ rel32_targets = [
   "?find@?$_Tree@V?$_Tset_traits@IU?$less@I@std@@V?$allocator@I@2@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0042D0D0",
   "__invalid_parameter_noinfo=0x0068A143",
 ]
+
+[units.gpt-web-music-list-lifetime]
+kind = "probe"
+source = "src/ui/MusicListLifetime.cpp"
+object = "build/match-units/GptWeb_MusicListLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "RTTI-owned MusicList lifetime on current 1.06a. The true 0xDC CFileList-derived layout owns two std::deque<std::string> members at +0xB4/+0xC8. Constructor policy-word publication order is field_ac then field_a8; leaving the derived destructor implicit reproduces the target deque teardown and scalar-deleting lifetime without vptr forcing."
+
+[[units.gpt-web-music-list-lifetime.functions]]
+address = "0x00445550"
+symbol_base = "??0MusicList@th105@@QAE@XZ"
+rel32_targets = ["??0CFileList@th105@@QAE@XZ=0x00439F40"]
+dir32_targets = ["??_7MusicList@th105@@6B@=??_7MusicList@th105@@6B@"]
+
+[[units.gpt-web-music-list-lifetime.functions]]
+address = "0x004455D0"
+symbol_base = "??_GMusicList@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "_Tidy=0x0040FF90",
+  "??1CFileList@th105@@UAE@XZ=0x00439FC0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[units.gpt-web-menu-music-runtime]
+kind = "probe"
+source = "src/ui/MenuMusicRuntime.cpp"
+object = "build/match-units/GptWeb_MenuMusicRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current RTTI-owned CMenuMusic runtime island. The 0x1EC class embeds MusicList +0x04, TitleDesignResource +0xE0, object anchor +0x114, two contiguous MenuCursorState records +0x11C/+0x130, and GuideOverlay +0x144. The ctor reuses one active-input pointer and the exact cursor-binder publication order; render is the real two-column 2x16 grid and preserves unsigned-row-to-float conversion before the 16.0 double multiply."
+
+[[units.gpt-web-menu-music-runtime.functions]]
+address = "0x00445360"
+symbol_base = "?update_primary@CMenuMusic@th105@@AAE_NXZ"
+rel32_targets = [
+  "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20",
+  "_dispatch_indexed_event=0x0043B1A0",
+  "?at@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@QAEAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@I@Z=0x00412980",
+  "?get_score_data@th105@@YAPAUScoreData@1@XZ=0x0043AF20",
+  "?contains_bgm_path@ScoreMusicLookupView@th105@@QAE_NPBD@Z=0x0042D880",
+  "_play_bgm=0x0043CF80",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CProfileMenu@th105@@QAE@XZ=0x0044D4F0",
+  "?install_menu_object@th105@@YAXPAX@Z=0x0043B0F0",
+  "_is_menu_initial_press=0x0043ABD0",
+]
+dir32_targets = [
+  "__ehhandler$?update_primary@CMenuMusic@th105@@AAE_NXZ=__ehhandler$?update_primary@CMenuMusic@th105@@AAE_NXZ",
+  "___security_cookie=___security_cookie",
+  "_g_active_menu_input=_g_active_menu_input",
+  "_title_bgm_path=_title_bgm_path",
+]
+
+[[units.gpt-web-menu-music-runtime.functions]]
+address = "0x00445240"
+symbol_base = "?render@CMenuMusic@th105@@UAEXXZ"
+rel32_targets = [
+  "?item_count@CFileList@th105@@QBEHXZ=0x004395E0",
+  "?render_cursor@Menu@th105@@IAEXMMM@Z=0x0043F9D0",
+  "?render_item@CFileList@th105@@QAEXMMI@Z=0x00439A20",
+  "?render@GuideOverlay@th105@@QAEXXZ=0x0043F4C0",
+]
+dir32_targets = [
+  "__real@4010000000000000=__real@4010000000000000",
+  "__real@43800000=__real@43800000",
+  "__real@4030000000000000=__real@4030000000000000",
+  "__real@4070000000000000=__real@4070000000000000",
+  "__real@4f800000=__real@4f800000",
+]
+
+[[units.gpt-web-menu-music-runtime.functions]]
+address = "0x00445520"
+symbol_base = "?update@CMenuMusic@th105@@UAE_NXZ"
+rel32_targets = [
+  "?update@GuideOverlay@th105@@QAEXXZ=0x0043F450",
+  "?item_count@CFileList@th105@@QBEHXZ=0x004395E0",
+  "?update_primary@CMenuMusic@th105@@AAE_NXZ=0x00445360",
+]
+
+[[units.gpt-web-menu-music-runtime.functions]]
+address = "0x00445610"
+symbol_base = "??1CMenuMusic@th105@@UAE@XZ"
+rel32_targets = [
+  "??1GuideOverlay@th105@@QAE@XZ=0x0043F330",
+  "??1TitleDesignResource@th105@@QAE@XZ=0x00421890",
+  "_Tidy=0x0040FF90",
+  "??1CFileList@th105@@UAE@XZ=0x00439FC0",
+]
+dir32_targets = [
+  "__ehhandler$??1CMenuMusic@th105@@UAE@XZ=__ehhandler$??1CMenuMusic@th105@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7CMenuMusic@th105@@6B@=??_7CMenuMusic@th105@@6B@",
+  "??_7Menu@th105@@6B@=??_7Menu@th105@@6B@",
+  "_g_scene_mode=_g_scene_mode",
+]
+
+[[units.gpt-web-menu-music-runtime.functions]]
+address = "0x004456D0"
+symbol_base = "??0CMenuMusic@th105@@QAE@XZ"
+rel32_targets = [
+  "??0MusicList@th105@@QAE@XZ=0x00445550",
+  "??0TitleDesignResource@th105@@QAE@XZ=0x004217F0",
+  "??0GuideOverlay@th105@@QAE@XZ=0x0043F540",
+  "?bind_object_alt@TitleDesignResource@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
+  "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390",
+  "?item_count@CFileList@th105@@QBEHXZ=0x004395E0",
+]
+dir32_targets = [
+  "__ehhandler$??0CMenuMusic@th105@@QAE@XZ=__ehhandler$??0CMenuMusic@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7CMenuMusic@th105@@6B@=??_7CMenuMusic@th105@@6B@",
+  "_menu_music_design_path=_menu_music_design_path",
+  "_g_active_menu_input=_g_active_menu_input",
+  "_g_scene_mode=_g_scene_mode",
+]
+
+[[units.gpt-web-menu-music-runtime.functions]]
+address = "0x00445810"
+symbol_base = "??_GCMenuMusic@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1CMenuMusic@th105@@UAE@XZ=0x00445610",
+  "??3@YAXPAX@Z=0x006898EA",
+]

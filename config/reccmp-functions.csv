@@ -932,3 +932,11 @@ BG16_slot_0c,0x00468780,function
 BG16_slot_08,0x00468D80,function
 case_insensitive_crc32,0x00406930,function
 ScoreMusicLookupView_contains_bgm_path,0x0042D880,function
+CMenuMusic_render,0x00445240,function
+CMenuMusic_update,0x00445520,function
+MusicList_ctor,0x00445550,function
+MusicList_scalar_deleting_destructor,0x004455D0,function
+CMenuMusic_dtor,0x00445610,function
+CMenuMusic_ctor,0x004456D0,function
+CMenuMusic_scalar_deleting_destructor,0x00445810,function
+CMenuMusic_update_primary,0x00445360,function
