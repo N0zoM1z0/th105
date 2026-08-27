@@ -1,12 +1,6 @@
 #include "EffectSprite.hpp"
 
 
-IColor::IColor() : value_04(0)
-{
-}
-
-
-
 
 CEffectSprite::CEffectSprite()
 {

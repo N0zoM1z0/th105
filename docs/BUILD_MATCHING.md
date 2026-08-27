@@ -1209,3 +1209,23 @@ When several methods share the same four-byte displacement, first ask whether th
 String concatenation is a useful source-lifetime oracle under VC8 `/EHsc`. In `BattlePhaseBlock::initialize_character_story_script @ 0x0045A4E0`, the target calls generated `const char* + String28` followed by generated `String28 + const char*`. Writing two named locals (`prefix_path`, then `full_path`) keeps two user-visible String28 lifetimes and produces 316 bytes. Writing the real chained expression `String28 full_path = prefix + name + suffix;` leaves only the first result as an intermediate temporary and gives the exact 312-byte target, including unwind-state transitions.
 
 Use hidden-return/cleanup order as evidence for expression structure. Do not imitate the resulting stack layout with parameter aliases, dummy locals, manual destructor calls, or source-only padding.
+
+### Use special-member visibility and chained assignment as source evidence
+
+Two current TH105 bodies provide reusable compiler archaeology without codegen
+coercion. A trivial base constructor may need to be visible in the consuming TU
+for an implicit derived/local construction to match. Fighter phase render state
+`0x0045AA00` constructs a local `CSpriteEx`; making the truthful
+`IColor() : value_04(0) {}` class-body definition visible reproduces the target
+while the pre-existing IColor/CEffectSprite lifetime unit still cold-compares
+exact. Prefer such demonstrated TU visibility to `forceinline`, duplicate
+out-of-line bodies, fake locals, or register annotations.
+
+C++ chained assignment also carries observable evaluation/store order. The
+BackgroundBase ctor `0x00466020` zeroes six consecutive floats with a single
+x87 zero value in reverse-address order. Ordinary
+`a = b = c = d = e = f = 0.0f` is right-associative and naturally emits that
+reverse `fst` chain; six initializer-list/member assignments emit forward order.
+When the target shows one shared floating value feeding a reverse store chain,
+test the semantic assignment expression before considering compiler flags or
+stack/register shaping.

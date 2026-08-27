@@ -962,3 +962,44 @@ The five current FighterPhaseContext phases at `0x00464840/0x00464990/0x00464A20
 `phase_463820` adds two source-type/order constraints that are independently visible in the target. Fighter action state at `+0x13C` is signed-short compared against 300, and the shared ordering cell `0x006FD38C` is a **signed char** (`movsx` on both later reads). The target keeps the `action1 >= 300` branch as the physical first block; ordinary equivalent source in that order makes VC8 emit the exact threshold CFG. The phase then uses exact RenderModeManager gate-7/gate-14 and state-23 setters, dispatches Fighter virtual slot `+0x2C` in the selected order, clears the gates, and visits Fighters 2..N.
 
 The four siblings are reusable evidence for the same checked-vector contract: `phase_463970` walks Fighter `+0x658` subobject vslot 6 then Fighter vslot 12; `phase_463a00` forwards its signed phase value to subobject vslot 5; `phase_463a60` forwards each Fighter `+0x674` embedded render-state to `0x0045AA00`; and `phase_463ab0` forwards Fighter `+0x3D0` state to current finalizer `0x004653F0`. Keep these as normal high-level vector loops rather than lowering them into manual begin/end arithmetic.
+
+### Fighter +0x674 render-state and BackgroundBase lifetime wave (2026-08-27)
+
+The Fighter phase render lane is now a typed application owner rather than a
+callee-only offset. `FighterPhaseRenderState::render @ 0x0045AA00` is 333/333
+and `enqueue @ 0x0045AD40` is 240/240. Exact
+`FighterPhaseContext::phase_463a60 @ 0x00464A80` independently owns the state at
+Fighter `+0x674`. Its native checked `std::list<PhaseRenderEntry>` begins at
+state `+0`; one entry is a real `CSpriteEx` followed by a signed blend byte at
+entry `+0xE8`. State fields are signed period `+0x0C`, signed-short alpha
+divisor `+0x0E`, and color mask `+0x10`. Render keeps one real local
+`CSpriteEx`, selects blend modes through exact `RenderModeManager`, copies the
+entry sprite, derives alpha from the source high color byte and list index,
+then calls exact battle-layout transform and sprite finalization. Enqueue is
+ordinary checked-list `push_back` / `back` / `pop_front`; its linked
+`_Buynode`, `_Incsize`, assignment and erase boundaries remain generated/helper
+evidence rather than authored progress.
+
+A trivial base constructor can be byte-significant TU visibility. The local
+`CSpriteEx` in the 333-byte renderer reaches the target only when the truthful
+`IColor() : value_04(0) {}` definition is visible in the including header.
+Moving that trivial constructor from the old out-of-line TU into the class body
+leaves the already-exact CEffectSprite/IColor lifetime unit unchanged while
+allowing pinned VC8 to emit the target local sprite construction naturally.
+This is source-partition evidence; do not replace it with `forceinline`,
+register variables, duplicated external definitions, or assembly.
+
+`BackgroundBase` is independently closed as a 0x5C polymorphic owner. Its
+layout is checked `vector<unsigned> +0x04`, `vector<CSpriteEx> +0x14`, a second
+handle vector `+0x24`, a second sprite vector `+0x34`, and six floats
+`+0x44..+0x58`. Ctor/dtor/scalar at `0x00466020/0x00465E10/0x00465FD0` are
+115/377/30 exact. Destruction releases handles from the second lane then the
+first through exact TitleResourceManager, after which ordinary reverse member
+destruction reproduces the target CSpriteEx/vector teardown. The constructor's
+six zero floats are one chained C++ assignment,
+`v44 = v48 = v4c = v50 = v54 = v58 = 0.0f`. Right-associative assignment makes
+VC8 emit one `fldz` and target-observed reverse `fst` stores `+0x58 -> +0x44`.
+Independent initializer-list assignments store in member order and are wrong.
+The nearby `0x00465F90` body remains SHA-pinned compiler-generated
+`vector<CSpriteEx>` machinery and must not be counted as authored merely because
+this class now proves the vector element type.

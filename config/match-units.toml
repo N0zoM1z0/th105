@@ -11576,3 +11576,88 @@ rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
   "?phase_4653f0@FighterPhaseFinalizeView@th105@@QAEXXZ=0x004653F0",
 ]
+
+[units.cross-v106a-fighter-phase-render-state]
+kind = "probe"
+source = "src/battle/FighterPhaseRenderState.cpp"
+object = "build/match-units/CrossV106a_FighterPhaseRenderState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current Fighter +0x674 render-state family owned by exact FighterPhaseContext phase_463a60. A native checked std::list<PhaseRenderEntry> starts at +0; each entry is CSpriteEx + signed blend byte at +0xE8. The render body uses a real local CSpriteEx, source color/alpha lifetime, exact RenderModeManager blend policy and battle background transform. The enqueue body uses checked list push/back/pop with current generated helper addresses. IColor's truthful trivial constructor is header-visible so VC8 naturally emits the target local CSpriteEx construction without forceinline/register/asm tricks."
+
+[[units.cross-v106a-fighter-phase-render-state.functions]]
+address = "0x0045AA00"
+symbol_base = "?render_45aa00@FighterPhaseRenderState@th105@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
+  "?4CSpriteEx=0x00450810",
+  "?transform_sprite@BattleBackgroundLayoutRenderView@th105@@QAEXPAVCSpriteEx@@@Z=0x004271B0",
+  "?finalize_render@CSpriteEx@@QAEXXZ=0x00407AD0",
+  "??3@YAXPAX@Z=0x006898EA",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?render_45aa00@FighterPhaseRenderState@th105@@QAEXXZ=__ehhandler$?render_45aa00@FighterPhaseRenderState@th105@@QAEXXZ",
+  "??_7CSpriteEx@@6B@=??_7CSpriteEx@@6B@",
+  "___security_cookie=___security_cookie",
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+  "?g_battle_background_layout@th105@@3UBattleBackgroundLayoutRenderView@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+]
+
+[[units.cross-v106a-fighter-phase-render-state.functions]]
+address = "0x0045AD40"
+symbol_base = "?enqueue_45ad40@FighterPhaseRenderState@th105@@QAEXPBVCSpriteEx@@C@Z"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "_Buynode=0x0045AC50",
+  "_Incsize=0x0045ACA0",
+  "?4CSpriteEx=0x00450810",
+  "erase=0x0045AB90",
+  "??3@YAXPAX@Z=0x006898EA",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?enqueue_45ad40@FighterPhaseRenderState@th105@@QAEXPBVCSpriteEx@@C@Z=__ehhandler$?enqueue_45ad40@FighterPhaseRenderState@th105@@QAEXPBVCSpriteEx@@C@Z",
+  "??_7CSpriteEx@@6B@=??_7CSpriteEx@@6B@",
+  "___security_cookie=___security_cookie",
+]
+
+[units.cross-v106a-background-base-lifetime]
+kind = "probe"
+source = "src/battle/BackgroundBaseLifetime.cpp"
+object = "build/match-units/CrossV106a_BackgroundBaseLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current RTTI/vtable-owned BackgroundBase 0x5C lifetime. Four native checked vectors occupy +0x04/+0x14/+0x24/+0x34: unsigned handles paired with CSpriteEx values. Destructor releases both handle vectors through exact TitleResourceManager then lets natural reverse member destruction clean the CSpriteEx vectors. Constructor zeroes the six +0x44..+0x58 floats with one truthful chained assignment, naturally producing the target reverse x87 store order."
+
+[[units.cross-v106a-background-base-lifetime.functions]]
+address = "0x00466020"
+symbol_base = "??0BackgroundBase@th105@@QAE@XZ"
+rel32_targets = ["@__security_check_cookie@4=0x00689D25"]
+dir32_targets = [
+  "??_7BackgroundBase@th105@@6B@=??_7BackgroundBase@th105@@6B@",
+  "___security_cookie=___security_cookie",
+]
+
+[[units.cross-v106a-background-base-lifetime.functions]]
+address = "0x00465E10"
+symbol_base = "??1BackgroundBase@th105@@UAE@XZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "??3@YAXPAX@Z=0x006898EA",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "??_7BackgroundBase@th105@@6B@=??_7BackgroundBase@th105@@6B@",
+  "___security_cookie=___security_cookie",
+]
+
+[[units.cross-v106a-background-base-lifetime.functions]]
+address = "0x00465FD0"
+symbol_base = "??_GBackgroundBase@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "BackgroundBase_dtor=0x00465E10",
+  "??3@YAXPAX@Z=0x006898EA",
+]

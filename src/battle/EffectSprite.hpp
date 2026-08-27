@@ -6,7 +6,7 @@
 
 class IColor {
 public:
-    IColor();
+    IColor() : value_04(0) {}
     virtual ~IColor() {}
     virtual void set_color(unsigned int color) = 0;
     virtual void set_vertex_colors(const unsigned int *colors) = 0;
