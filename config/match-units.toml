@@ -7830,7 +7830,31 @@ source = "src/ui/ReplayMenuLifetime.cpp"
 object = "build/match-units/CrossV106a_ReplayMenuLifetime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current RTTI owns CMenuReplay. The 0x280 layout closes naturally as Menu, signed state bytes +0x04/+0x05, CReplayList +0x08, TitleDesignResource +0xBC, three UiDesignObject pointers, two MenuCursorState values, GuideOverlay[2], and checked list<int> +0x274. Normal destruction and the scene-mode virtual slot remain exact under the refined list<int> identity; the 350-byte ctor remains deliberately pending on one receiver scheduling difference."
+notes = "Current RTTI owns CMenuReplay. The 0x280 layout closes naturally as Menu, signed state bytes +0x04/+0x05, CReplayList +0x08, TitleDesignResource +0xBC, three UiDesignObject pointers, two MenuCursorState values, GuideOverlay[2], and checked list<int> +0x274. Restoring the ordinary inline vertical-cursor binder shared with refresh_file_list naturally delays the ctor receiver load and closes the former scheduling residual without fake liveness or register forcing."
+
+[[units.cross-v106a-replay-menu-lifetime.functions]]
+address = "0x00446DE0"
+symbol_base = "??0CMenuReplay@th105@@QAE@XZ"
+rel32_targets = [
+  "??0CReplayList@th105@@QAE@XZ=0x0042A0A0",
+  "??0TitleDesignResource@th105@@QAE@XZ=0x004217F0",
+  "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C",
+  "?_Buynode@?$list@HV?$allocator@H@std@@@std@@IAEPAU_Node@?$_List_nod@HV?$allocator@H@std@@@2@XZ=0x00435E50",
+  "?bind_object_alt@TitleDesignResource@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
+  "?refresh_file_list@CMenuReplay@th105@@AAEXXZ=0x00446770",
+  "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390",
+]
+dir32_targets = [
+  "__ehhandler$??0CMenuReplay@th105@@QAE@XZ=__ehhandler$??0CMenuReplay@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "_g_scene_mode=_g_scene_mode",
+  "??_7CMenuReplay@th105@@6B@=??_7CMenuReplay@th105@@6B@",
+  "??1GuideOverlay@th105@@QAE@XZ=??1GuideOverlay@th105@@QAE@XZ",
+  "??0GuideOverlay@th105@@QAE@XZ=??0GuideOverlay@th105@@QAE@XZ",
+  "_g_next_scene_mode=_g_next_scene_mode",
+  "_menu_replay_design_path=_menu_replay_design_path",
+  "_g_active_menu_input=_g_active_menu_input",
+]
 
 [[units.cross-v106a-replay-menu-lifetime.functions]]
 address = "0x00446D20"
@@ -12366,4 +12390,83 @@ dir32_targets = [
   "?g_ui_selection_snapshot@th105@@3EA=?g_ui_selection_snapshot@th105@@3EA",
   "?g_ui_selection_fade@th105@@3EA=?g_ui_selection_fade@th105@@3EA",
   "?g_ui_selection_active@th105@@3EA=?g_ui_selection_active@th105@@3EA",
+]
+
+
+[units.gpt-web-menu-practice-runtime]
+kind = "probe"
+source = "src/ui/MenuPracticeRuntime.cpp"
+object = "build/match-units/GptWeb_MenuPracticeRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current RTTI and the pre-existing exact render close the full 0x288 CMenuPractice layout. The subcursor helper is exact only when the repeated horizontal cursor initialization is expressed through the same ordinary inline binder semantics as the independently exact MenuCursorState binder siblings; the normal/scalar lifetime then validates the 10-vector array, CDesignBase, tile and GuideOverlay ownership."
+
+[[units.gpt-web-menu-practice-runtime.functions]]
+address = "0x00445C80"
+symbol_base = "?configure_subcursor@CMenuPractice@th105@@QAEXH@Z"
+dir32_targets = ["_g_active_menu_input=_g_active_menu_input"]
+
+[[units.gpt-web-menu-practice-runtime.functions]]
+address = "0x004464B0"
+symbol_base = "??1CMenuPractice@th105@@UAE@XZ"
+rel32_targets = [
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
+  "??1CDesignBase@th105@@UAE@XZ=0x00421890",
+  "??1GuideOverlay@th105@@QAE@XZ=0x0043F330",
+]
+dir32_targets = [
+  "__ehhandler$??1CMenuPractice@th105@@UAE@XZ=__ehhandler$??1CMenuPractice@th105@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7CMenuPractice@th105@@6B@=??_7CMenuPractice@th105@@6B@",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+  "??1?$vector@PAUUiDesignObject@th105@@V?$allocator@PAUUiDesignObject@th105@@@std@@@std@@QAE@XZ=??1?$vector@PAUUiDesignObject@th105@@V?$allocator@PAUUiDesignObject@th105@@@std@@@std@@QAE@XZ",
+  "_title_color_vtable_anchor=_title_color_vtable_anchor_external",
+  "??_7Menu@th105@@6B@=??_7Menu@th105@@6B@",
+  "_g_scene_mode=_g_scene_mode",
+]
+
+[[units.gpt-web-menu-practice-runtime.functions]]
+address = "0x00446570"
+symbol_base = "??_GCMenuPractice@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1CMenuPractice@th105@@UAE@XZ=0x004464B0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[units.gpt-web-replay-menu-refresh]
+kind = "probe"
+source = "src/ui/ReplayMenuRefresh.cpp"
+object = "build/match-units/GptWeb_ReplayMenuRefresh.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current Replay file-list refresh. Reusing the ordinary vertical cursor binder as a small inline source abstraction preserves the target EBX zero lifetime across the populated/empty branches and closes the prior 231/229 residual without artificial locals."
+
+[[units.gpt-web-replay-menu-refresh.functions]]
+address = "0x00446770"
+symbol_base = "?refresh_file_list@CMenuReplay@th105@@AAEXXZ"
+rel32_targets = [
+  "?item_count@CFileList@th105@@QBEHXZ=0x004395E0",
+  "?get_replay_header_service@th105@@YAPAUReplayHeaderServiceView@1@XZ=0x0043B060",
+  "?find_row@CFileList@th105@@QBEHPBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x00439750",
+]
+dir32_targets = ["_g_active_menu_input=_g_active_menu_input"]
+
+[units.gpt-web-replay-menu-update]
+kind = "probe"
+source = "src/ui/ReplayMenuUpdate.cpp"
+object = "build/match-units/GptWeb_ReplayMenuUpdate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current 132-byte CMenuReplay dispatcher. Two GuideOverlay updates publish the active guide, initial-press cancel exits early, and byte-sized state dispatch forwards to the already exact mode/browse/delete roots through call-site bool ABI views."
+
+[[units.gpt-web-replay-menu-update.functions]]
+address = "0x00446C90"
+symbol_base = "?update@CMenuReplay@th105@@UAE_NXZ"
+rel32_targets = [
+  "?update@GuideOverlay@th105@@QAEXXZ=0x0043F450",
+  "_is_menu_initial_press=0x0043ABD0",
+  "?update_delete_state@ReplayDeleteMemberView@th105@@QAE_NXZ=0x00446A60",
+  "?update_browse_state@ReplayBrowseMemberView@th105@@QAE_NXZ=0x00446860",
+  "?update_mode_state@ReplayModeMemberView@th105@@QAE_NXZ=0x00446590",
 ]

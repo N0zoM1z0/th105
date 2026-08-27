@@ -8,6 +8,19 @@ extern "C" const char menu_replay_design_path[];
 
 namespace th105 {
 
+static inline void bind_replay_vertical_cursor(
+    MenuCursorState *cursor, CInputManager *input, int count, int page)
+{
+    if (input)
+        cursor->input_counter = &input->hold.vertical;
+    else
+        cursor->input_counter = 0;
+    cursor->selection = 0;
+    cursor->window_start = 0;
+    cursor->item_count = count;
+    cursor->page_size = page;
+}
+
 CMenuReplay::CMenuReplay()
 {
     g_scene_mode = 22;
@@ -21,14 +34,7 @@ CMenuReplay::CMenuReplay()
         ++index;
     } while (index < 3);
 
-    if (g_active_menu_input != 0)
-        mode_cursor_fc.input_counter = &g_active_menu_input->hold.vertical;
-    else
-        mode_cursor_fc.input_counter = 0;
-    mode_cursor_fc.selection = 0;
-    mode_cursor_fc.window_start = 0;
-    mode_cursor_fc.item_count = 3;
-    mode_cursor_fc.page_size = 0;
+    bind_replay_vertical_cursor(&mode_cursor_fc, g_active_menu_input, 3, 0);
     file_cursor_110.selection = 0;
     refresh_file_list();
 

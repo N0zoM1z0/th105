@@ -1,5 +1,6 @@
 #include "Menu.hpp"
 #include "MenuCursor.hpp"
+#include "MenuPractice.hpp"
 #include "GuideOverlay.hpp"
 #include "Title.hpp"
 #include "UiPrimitives.hpp"
@@ -101,21 +102,6 @@ void CMenuConfig::render()
 
 struct CTileRenderView {
     void render(float x, float y, int column, int row);
-};
-
-class CMenuPractice : public Menu {
-public:
-    virtual ~CMenuPractice();
-    virtual void unknown_menu_method();
-    virtual bool update();
-    virtual void render();
-
-private:
-    template <typename T> T &field(unsigned offset)
-    {
-        return *reinterpret_cast<T *>(
-            reinterpret_cast<unsigned char *>(this) + offset);
-    }
 };
 
 void CMenuPractice::render()

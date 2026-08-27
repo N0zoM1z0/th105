@@ -945,3 +945,9 @@ CMenuContinue_update
 CMenuContinue_render
 CMenuEnd_update
 CMenuEnd_render
+CMenuPractice_configure_subcursor
+CMenuPractice_dtor
+CMenuPractice_scalar_deleting_destructor
+CMenuReplay_refresh_file_list
+CMenuReplay_update
+CMenuReplay_ctor

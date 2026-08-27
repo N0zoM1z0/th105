@@ -946,3 +946,9 @@ CMenuContinue_update,0x00444C70,function
 CMenuContinue_render,0x00444E60,function
 CMenuEnd_update,0x00444FC0,function
 CMenuEnd_render,0x004450E0,function
+CMenuPractice_configure_subcursor,0x00445C80,function
+CMenuPractice_dtor,0x004464B0,function
+CMenuPractice_scalar_deleting_destructor,0x00446570,function
+CMenuReplay_refresh_file_list,0x00446770,function
+CMenuReplay_update,0x00446C90,function
+CMenuReplay_ctor,0x00446DE0,function
