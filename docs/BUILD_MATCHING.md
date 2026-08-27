@@ -1229,3 +1229,11 @@ reverse `fst` chain; six initializer-list/member assignments emit forward order.
 When the target shows one shared floating value feeding a reverse store chain,
 test the semantic assignment expression before considering compiler flags or
 stack/register shaping.
+
+### A folded destructor helper does not erase constructor-proved container specialization
+
+`BattleObjectManager` provides a useful checked-STL identity rule. Its request list stores an 8-byte `{unsigned,float}` value, so VC8 allocates a 0x10-byte list node through target `_Buynode @ 0x00464B20`; its renderer/owned-object lists store pointers and allocate 0x0C-byte nodes through the body folded at `0x00435E50`. All three element types are trivially destructible, however, so their `_Tidy` specializations fold to the same `0x00435EB0` target. Do not flatten the source type merely because a teardown REL32 is shared. Constructor allocation extent, checked consumer access, and exact caller ownership are stronger specialization evidence.
+
+The same wave is a reminder to repair stale address-shaped method names before promotion. An older source called three methods `phase_465b00/70/d0`, but current exact caller `run_shared_battle_phase_sequence @ 0x0046BE30` physically reaches `0x00466980/0x004669F0/0x00466A50`; the `0x465Bxx` bodies are separate helpers. Rename the source to current-backed identities and replay the caller. Address history is a hypothesis, not a relocation contract.
+
+Finally, worker-proc identity can close an asynchronous owner without promoting its downstream dispatcher. The exact manager ctor passes `0x00466CF0/0x004678D0` as stdcall thread entries; each exact entry performs COM init/uninit around an exact member loop. The render loop calls pending `0x00467380`, which establishes its ABI/ownership but does not make its 986 bytes exact. Preserve that evidence boundary instead of expanding a match claim through the call graph.

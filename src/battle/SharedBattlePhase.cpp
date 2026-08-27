@@ -1,13 +1,9 @@
 #include "Collision.hpp"
 #include "FighterPhaseContext.hpp"
+#include "BattleObjectManagerRuntime.hpp"
 
 namespace th105 {
 
-struct BattleObjectManager {
-    void phase_465b00();
-    void phase_465b70();
-    void phase_465bd0();
-};
 
 struct PhaseStaticService {
     void *vtable_00;
@@ -50,12 +46,12 @@ void Fighter::emit_fighter_effect_433cc0(
 
 void SharedBattlePhaseController::run_shared_battle_phase_sequence()
 {
-    g_battle_object_manager->phase_465b00();
+    g_battle_object_manager->phase_466980();
     g_battle_phase_static_service.phase_04a10(1);
     g_battle_phase_static_service.phase_04980(2);
     g_fighter_phase_context->phase_463970();
     g_battle_phase_static_service.phase_04980(1);
-    g_battle_object_manager->phase_465b70();
+    g_battle_object_manager->phase_4669f0();
     g_fighter_phase_context->phase_463a00(-2);
     g_fighter_phase_context->phase_463ab0();
     g_fighter_phase_context->phase_463a60();
@@ -65,7 +61,7 @@ void SharedBattlePhaseController::run_shared_battle_phase_sequence()
     g_fighter_phase_context->phase_463a00(1);
     g_fighter_phase_context->phase_463a00(2);
     g_effect_sink->phase_18(1);
-    g_battle_object_manager->phase_465bd0();
+    g_battle_object_manager->phase_466a50();
 }
 
 void SharedBattlePhaseController::run_battle_phase_and_info_callback()

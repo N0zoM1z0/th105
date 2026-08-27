@@ -14,7 +14,7 @@ struct BattleBackgroundLayoutRenderView {
 };
 
 struct BattleObjectRenderEntry {
-    virtual void slot_00();
+    virtual ~BattleObjectRenderEntry();
     virtual void slot_04();
     virtual void slot_08();
     virtual void slot_0c();

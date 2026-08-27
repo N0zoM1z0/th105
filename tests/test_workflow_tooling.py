@@ -52,33 +52,33 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4010)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 904)
+        self.assertEqual(len(matching), 913)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 904)
+        self.assertEqual(len(implemented), 913)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 904
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 913
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 283)
+        self.assertEqual(len(manifest["units"]), 284)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            904,
+            913,
         )
 
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,010", markdown)
-        self.assertIn("Confirmed authored functions | 904", markdown)
+        self.assertIn("Confirmed authored functions | 913", markdown)
         self.assertIn("Classified exclusions | 1,009", markdown)
-        self.assertIn("Origin/boundary review pending | 2,097", markdown)
-        self.assertIn("Canonical exact functions | 904", markdown)
-        self.assertIn("Canonical exact authored bytes | 145,725", markdown)
+        self.assertIn("Origin/boundary review pending | 2,088", markdown)
+        self.assertIn("Canonical exact functions | 913", markdown)
+        self.assertIn("Canonical exact authored bytes | 146,983", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )

@@ -2527,16 +2527,16 @@ dir32_targets = ["?g_effect_sink@th105@@3PAUEffectSink@1@A=?g_effect_sink@th105@
 address = "0x0046BE30"
 symbol_base = "run_shared_battle_phase_sequence"
 rel32_targets = [
-  "?phase_465b00@BattleObjectManager@th105@@QAEXXZ=0x00466980",
+  "?phase_466980@BattleObjectManager@th105@@QAEXXZ=0x00466980",
   "?phase_04a10@PhaseStaticService@th105@@QAEXH@Z=0x004047E0",
   "?phase_04980@PhaseStaticService@th105@@QAEXH@Z=0x00404750",
   "?phase_463970@FighterPhaseContext@th105@@QAEXXZ=0x00464990",
-  "?phase_465b70@BattleObjectManager@th105@@QAEXXZ=0x004669F0",
+  "?phase_4669f0@BattleObjectManager@th105@@QAEXXZ=0x004669F0",
   "?phase_463a00@FighterPhaseContext@th105@@QAEXH@Z=0x00464A20",
   "?phase_463ab0@FighterPhaseContext@th105@@QAEXXZ=0x00464AD0",
   "?phase_463a60@FighterPhaseContext@th105@@QAEXXZ=0x00464A80",
   "?phase_463820@FighterPhaseContext@th105@@QAEXXZ=0x00464840",
-  "?phase_465bd0@BattleObjectManager@th105@@QAEXXZ=0x00466A50",
+  "?phase_466a50@BattleObjectManager@th105@@QAEXXZ=0x00466A50",
 ]
 dir32_targets = [
   "?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A=?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A",
@@ -11660,4 +11660,124 @@ symbol_base = "??_GBackgroundBase@th105@@UAEPAXI@Z"
 rel32_targets = [
   "BackgroundBase_dtor=0x00465E10",
   "??3@YAXPAX@Z=0x006898EA",
+]
+
+
+[units.cross-v106a-battle-object-manager-runtime]
+kind = "probe"
+source = "src/battle/BattleObjectManagerRuntime.cpp"
+object = "build/match-units/CrossV106a_BattleObjectManagerRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current BattleObjectManager 0x118 typed runtime/lifetime. Three native checked std::list members own render requests (+0), render-entry pointers (+0x28), and owned-object pointers (+0x34); two BattleThreadHandle members occupy +0x10/+0x18 and BattleBaseEffect begins +0x40. Exact run_shared_battle_phase_sequence owns the 0x466980/0x4669F0/0x466A50 phase entries; ctor/dtor and two COM worker lanes close the same layout without manual node arithmetic or ABI coercion."
+
+[[units.cross-v106a-battle-object-manager-runtime.functions]]
+address = "0x00466980"
+symbol_base = "?phase_466980@BattleObjectManager@th105@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "EventEffectStateView_render_background_effects=0x004696E0",
+  "EventEffectStateView_dispatch_emitter_state=0x004695F0",
+  "BattleObjectManager_render_tail_4666a0=0x004666A0",
+]
+dir32_targets = ["?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A"]
+
+[[units.cross-v106a-battle-object-manager-runtime.functions]]
+address = "0x004669F0"
+symbol_base = "?phase_4669f0@BattleObjectManager@th105@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "EventEffectStateView_dispatch_emitter_state=0x004695F0",
+]
+dir32_targets = ["?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A"]
+
+[[units.cross-v106a-battle-object-manager-runtime.functions]]
+address = "0x00466A50"
+symbol_base = "?phase_466a50@BattleObjectManager@th105@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "EventEffectStateView_dispatch_emitter_state=0x004695F0",
+]
+dir32_targets = ["?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A"]
+
+[[units.cross-v106a-battle-object-manager-runtime.functions]]
+address = "0x00466C70"
+symbol_base = "?manager_worker_loop_466c70@BattleObjectManager@th105@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = ["__imp__WaitForSingleObject@8=__imp__WaitForSingleObject@8"]
+
+[[units.cross-v106a-battle-object-manager-runtime.functions]]
+address = "0x00466CF0"
+symbol_base = "?battle_object_manager_worker_proc_466cf0@th105@@YGKPAX@Z"
+rel32_targets = ["?manager_worker_loop_466c70@BattleObjectManager@th105@@QAEXXZ=0x00466C70"]
+dir32_targets = [
+  "__imp__CoInitialize@4=__imp__CoInitialize@4",
+  "__imp__CoUninitialize@0=__imp__CoUninitialize@0",
+]
+
+[[units.cross-v106a-battle-object-manager-runtime.functions]]
+address = "0x004677B0"
+symbol_base = "?render_worker_loop_4677b0@BattleObjectManager@th105@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?dispatch_request_467380@BattleObjectManager@th105@@QAEXIM@Z=0x00467380",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = ["__imp__WaitForSingleObject@8=__imp__WaitForSingleObject@8"]
+
+[[units.cross-v106a-battle-object-manager-runtime.functions]]
+address = "0x004678D0"
+symbol_base = "?battle_object_render_worker_proc_4678d0@th105@@YGKPAX@Z"
+rel32_targets = ["?render_worker_loop_4677b0@BattleObjectManager@th105@@QAEXXZ=0x004677B0"]
+dir32_targets = [
+  "__imp__CoInitialize@4=__imp__CoInitialize@4",
+  "__imp__CoUninitialize@0=__imp__CoUninitialize@0",
+]
+
+[[units.cross-v106a-battle-object-manager-runtime.functions]]
+address = "0x00466AF0"
+symbol_base = "??1BattleObjectManager@th105@@QAE@XZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "??3@YAXPAX@Z=0x006898EA",
+  "?wait_for_exit@BattleThreadHandle@th105@@QAEXXZ=0x00414640",
+  "?shutdown@BattleBaseEffect@th105@@QAEXXZ=0x00418040",
+  "??1BattleBaseEffect@th105@@QAE@XZ=0x00417FC0",
+  "?_Tidy@?$list@PAUBattleOwnedObject@th105@@V?$allocator@PAUBattleOwnedObject@th105@@@std@@@std@@IAEXXZ=0x00435EB0",
+  "?_Tidy@?$list@PAUBattleObjectRenderEntry@th105@@V?$allocator@PAUBattleObjectRenderEntry@th105@@@std@@@std@@IAEXXZ=0x00435EB0",
+  "??1BattleThreadHandle@th105@@QAE@XZ=0x004145F0",
+  "?_Tidy@?$list@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@std@@IAEXXZ=0x00435EB0",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$??1BattleObjectManager@th105@@QAE@XZ=__ehhandler$??1BattleObjectManager@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "__imp__SetEvent@4=__imp__SetEvent@4",
+  "__imp__CloseHandle@4=__imp__CloseHandle@4",
+]
+
+[[units.cross-v106a-battle-object-manager-runtime.functions]]
+address = "0x004678F0"
+symbol_base = "??0BattleObjectManager@th105@@QAE@XZ"
+rel32_targets = [
+  "?_Buynode@?$list@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@2@XZ=0x00464B20",
+  "??0BattleThreadHandle@th105@@QAE@XZ=0x0040CF10",
+  "?_Buynode@?$list@PAUBattleObjectRenderEntry@th105@@V?$allocator@PAUBattleObjectRenderEntry@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@PAUBattleObjectRenderEntry@th105@@V?$allocator@PAUBattleObjectRenderEntry@th105@@@std@@@2@XZ=0x00435E50",
+  "?_Buynode@?$list@PAUBattleOwnedObject@th105@@V?$allocator@PAUBattleOwnedObject@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@PAUBattleOwnedObject@th105@@V?$allocator@PAUBattleOwnedObject@th105@@@std@@@2@XZ=0x00435E50",
+  "??0BattleBaseEffect@th105@@QAE@XZ=0x00417FB0",
+  "?initialize@BattleBaseEffect@th105@@QAE_NPBXI@Z=0x00417FF0",
+  "?start@BattleThreadHandle@th105@@QAE_NP6GKPAX@Z0@Z=0x00414600",
+  "?set_priority@BattleThreadHandle@th105@@QAEHH@Z=0x00414690",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$??0BattleObjectManager@th105@@QAE@XZ=__ehhandler$??0BattleObjectManager@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "__imp__CreateEventA@16=__imp__CreateEventA@16",
+  "?battle_object_effect_blob_6c2db8@th105@@3QBEB=?battle_object_effect_blob_6c2db8@th105@@3QBEB",
+  "?battle_object_render_worker_proc_4678d0@th105@@YGKPAX@Z=?battle_object_render_worker_proc_4678d0@th105@@YGKPAX@Z",
+  "?battle_object_manager_worker_proc_466cf0@th105@@YGKPAX@Z=?battle_object_manager_worker_proc_466cf0@th105@@YGKPAX@Z",
 ]
