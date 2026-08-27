@@ -1231,10 +1231,10 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0043B280,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043B2C0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043B2E0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0043B300,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0043B300,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043B340,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
 0x0043B3B0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0043B410,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0043B410,authored_game,network,authored,observed,canonical-exact-authored
 0x0043B4A0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043B580,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043B640,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -1526,7 +1526,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0044DAB0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0044DAC0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0044DB10,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0044DCB0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0044DCB0,authored_game,network,authored,observed,canonical-exact-authored
 0x0044DF20,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0044E050,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0044E0A0,unknown,,review,unknown,ida-1.06a-initial-inventory

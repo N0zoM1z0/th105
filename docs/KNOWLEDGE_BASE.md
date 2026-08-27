@@ -1072,3 +1072,38 @@ out-params, but its frame is still four bytes larger. `BG04` phase
 kept only across the three scale calls; the remaining four bytes are one frame
 allocation difference. Do not close any of these with fake stack objects,
 volatile/register forcing, manual vptr stores, inline assembly, or copied bytes.
+
+## Result/network exact-reconstruction patterns (2026-08-27)
+
+The current result-input/network island adds three ordinary-VC8 exact bodies at
+`0x0043B300`, `0x0043B410`, and `0x0044DCB0`.  The useful lessons are broader
+than these three functions:
+
+- For a checked contiguous record accessor, mathematically equivalent unsigned
+  predicates are not codegen-equivalent in VC8.  `count <= index` emitted
+  `cmp count,index / ja`, while the target spelling was recovered by keeping
+  the same fall-through invalid-parameter lifetime and writing
+  `!(index < count)`, which emits `cmp index,count / jb`.  Do not replace the
+  invalid branch with an early-return form: that changes register lifetimes and
+  the whole prologue.
+- Keep small checked accessors in their own translation unit when the target
+  contains a real call edge.  Defining `ResultInputRecordTableView::at` in the
+  caller TU caused VC8 to inline it into `prepare_result_match`; a declaration
+  in the caller plus an out-of-line definition preserves the target ownership
+  boundary naturally.
+- Assignment ownership order can be enough to recover VC8 scheduling without
+  fake dependencies.  In the 136-byte network result binder, publishing the
+  primary/alternate selected-input pointers before the two enable flags makes
+  VC8 emit the target `LEA -> flag stores -> vptr load -> selected stores`
+  schedule.  Typed-layout facades alone did not change the mismatch.
+- Large UI/network roots often reuse already-proven infrastructure verbatim.
+  The 623-byte result finalizer uses the same 0x128 config / 0x194 text-owner
+  pipeline and Shift-JIS label as the exact player-slot color path.  Modeling
+  the two source fields as real C strings, composing the target markup with a
+  real `std::string`, calling `TitleResourceManager::create_text_texture`, and
+  using genuine virtual 0x94 sprite `set_texture` calls reproduces the complete
+  `/GS` + EH body exactly.  Prefer this reuse over manual vtable arithmetic or
+  copied decompiler temporaries.
+- Absolute EH handlers and target-owned literals must be promoted into
+  `reccmp-relocations.csv` with attested mapped bytes before canonical compare;
+  a raw address override is intentionally insufficient for `dir32` proof.

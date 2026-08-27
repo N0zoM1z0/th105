@@ -11932,3 +11932,60 @@ rel32_targets = [
   "?scale_z@CSpriteEx@@QAEXM@Z=0x004075E0",
   "?rotate_xyz@CSpriteEx@@QAEXMMMMMM@Z=0x00407680",
 ]
+
+[units.gpt-web-result-input-record-access]
+kind = "probe"
+source = "src/ui/ResultInputRecordAccess.cpp"
+object = "build/match-units/GptWeb_ResultInputRecordAccess.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current result-input checked 0x68-stride accessor. The target's unsigned validity spelling is !(index < count), which preserves the canonical cmp index,count / jb success edge without assembly or register forcing."
+
+[[units.gpt-web-result-input-record-access.functions]]
+address = "0x0043B300"
+symbol_base = "?at@ResultInputRecordTableView@th105@@QAEPAUResultInputRecord68@2@I@Z"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+
+[units.gpt-web-network-result-binding]
+kind = "probe"
+source = "src/network/NetworkResultBinding.cpp"
+object = "build/match-units/GptWeb_NetworkResultBinding.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current network result-input binding member. Source-level ownership writes selected primary/alternate input pointers before enable flags; VC8 then emits the target LEA/flag/vptr/store schedule naturally."
+
+[[units.gpt-web-network-result-binding.functions]]
+address = "0x0043B410"
+symbol_base = "?bind_result_input@NetworkSessionResultView@th105@@QAEXPAX0@Z"
+rel32_targets = ["?finalize_result_binding_44dcb0@NetworkSessionResultView@th105@@QAEXXZ=0x0044DCB0"]
+
+[units.gpt-web-network-result-finalize]
+kind = "probe"
+source = "src/network/NetworkResultFinalize.cpp"
+object = "build/match-units/GptWeb_NetworkResultFinalize.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current 623-byte network result text finalizer. Reuses the independently exact 0x194 profile text-owner pipeline, target Shift-JIS label, natural std::string composition, TitleResourceManager text upload, and two genuine polymorphic 0x94 sprite texture slices."
+
+[[units.gpt-web-network-result-finalize.functions]]
+address = "0x0044DCB0"
+symbol_base = "?finalize_result_binding_44dcb0@NetworkSessionResultView@th105@@QAEXXZ"
+rel32_targets = [
+  "??0ResultEffectOwner194@th105@@QAE@XZ=0x00411430",
+  "_strcpy_s=0x0068AD95",
+  "?configure@ResultEffectOwner194@th105@@QAEXPBUResultEffectConfig128@2@@Z=0x004115A0",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
+  "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x00408A50",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIHH@Z=0x00404D00",
+  "operator_delete=0x006898EA",
+  "??1ResultEffectOwner194@th105@@QAE@XZ=0x004114C0",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?finalize_result_binding_44dcb0@NetworkSessionResultView@th105@@QAEXXZ=__ehhandler$?finalize_result_binding_44dcb0@NetworkSessionResultView@th105@@QAEXXZ",
+  "___security_cookie=___security_cookie",
+  "_profile_ui_effect_label=_profile_ui_effect_label",
+  "??_C@_0BD@GMLBIENH@?$DMbr?$DO?$DMcolor?5FF8080?$DO?$AA@=??_C@_0BD@GMLBIENH@?$DMbr?$DO?$DMcolor?5FF8080?$DO?$AA@",
+  "??_C@_08JLGOJJMA@?$DM?1color?$DO?$AA@=??_C@_08JLGOJJMA@?$DM?1color?$DO?$AA@",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+]
