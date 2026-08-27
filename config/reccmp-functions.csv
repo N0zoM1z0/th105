@@ -940,3 +940,9 @@ CMenuMusic_dtor,0x00445610,function
 CMenuMusic_ctor,0x004456D0,function
 CMenuMusic_scalar_deleting_destructor,0x00445810,function
 CMenuMusic_update_primary,0x00445360,function
+trim_profile_ui_menu_stack,0x00440010,function
+refresh_continue_network_state,0x0043BAF0,function
+CMenuContinue_update,0x00444C70,function
+CMenuContinue_render,0x00444E60,function
+CMenuEnd_update,0x00444FC0,function
+CMenuEnd_render,0x004450E0,function

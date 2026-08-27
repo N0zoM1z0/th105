@@ -1245,7 +1245,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0043B840,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043B8F0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043BA10,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0043BAF0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0043BAF0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043BB90,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043BBC0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043BC00,compiler_generated,battle,exclude,observed,vc8-generated-script-command-lifetime-std-comdats-106a
@@ -1336,7 +1336,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0043FCA0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043FF40,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043FFB0,authored_game,ui,authored,observed,canonical-exact-authored
-0x00440010,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00440010,authored_game,ui,authored,observed,canonical-exact-authored
 0x00440170,authored_game,ui,authored,observed,canonical-exact-authored
 0x004402E0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00440370,compiler_generated,ui,exclude,observed,vc8-generated-replay-menu-delete-std-comdats-106a
@@ -1405,13 +1405,13 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00444790,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00444830,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00444B90,authored_game,ui,authored,observed,canonical-exact-authored
-0x00444C70,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00444E60,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00444C70,authored_game,ui,authored,observed,canonical-exact-authored
+0x00444E60,authored_game,ui,authored,observed,canonical-exact-authored
 0x00444E80,authored_game,ui,authored,observed,canonical-exact-authored
 0x00444F20,authored_game,ui,authored,observed,canonical-exact-authored
 0x00444FA0,authored_game,ui,authored,observed,canonical-exact-authored
-0x00444FC0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x004450E0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00444FC0,authored_game,ui,authored,observed,canonical-exact-authored
+0x004450E0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00445100,authored_game,ui,authored,observed,canonical-exact-authored
 0x004451A0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00445220,authored_game,ui,authored,observed,canonical-exact-authored

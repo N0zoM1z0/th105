@@ -12251,3 +12251,119 @@ rel32_targets = [
   "??1CMenuMusic@th105@@UAE@XZ=0x00445610",
   "??3@YAXPAX@Z=0x006898EA",
 ]
+
+[units.gpt-web-menu-continue-end-runtime]
+kind = "probe"
+source = "src/ui/MenuContinueEndRuntime.cpp"
+object = "build/match-units/GptWeb_MenuContinueEndRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CMenuContinue/CMenuEnd runtime state machines. Shared switch-result ownership, allocation-only 0x44 CMenuEnd dispatch extent and caller-local AL fade-progress view reproduce the target without register forcing."
+
+[[units.gpt-web-menu-continue-end-runtime.functions]]
+address = "0x00444C70"
+symbol_base = "?update@CMenuContinue@th105@@UAE_NXZ"
+rel32_targets = [
+  "?show_profile_message@Menu@th105@@IAEXPBD_N@Z=0x0043F640",
+  "_update_profile_message=0x0043F6E0",
+  "?show_profile_result@Menu@th105@@IAEXPBD@Z=0x0043F810",
+  "?refresh_continue_network_state@th105@@YAXXZ=0x0043BAF0",
+  "_update_profile_confirmation=0x0043F870",
+  "?set_session_setup_option@th105@@YAXI@Z=0x0043B080",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CMenuEndDispatchView@th105@@QAE@PAX@Z=0x00445100",
+  "?install_menu_object@th105@@YAXPAX@Z=0x0043B0F0",
+  "?start_scene_fade_in@th105@@YAXIH@Z=0x0043B280",
+  "?is_scene_fade_in_progress@th105@@YA_NXZ=0x0043B2C0",
+  "?reset_battle_round_471180@ContinueOwnerRuntimeView@th105@@QAEXXZ=0x00471180",
+  "?start_scene_fade_out@th105@@YAXIH@Z=0x0043B240",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?update@CMenuContinue@th105@@UAE_NXZ=__ehhandler$?update@CMenuContinue@th105@@UAE_NXZ",
+  "___security_cookie=___security_cookie",
+  "_continue_save_prompt=_continue_save_prompt",
+  "_continue_save_success=_continue_save_success",
+  "_continue_count_prompt_format=_continue_count_prompt_format",
+  "__imp__wsprintfA=__imp__wsprintfA",
+]
+
+[[units.gpt-web-menu-continue-end-runtime.functions]]
+address = "0x00444E60"
+symbol_base = "?render@CMenuContinue@th105@@UAEXXZ"
+rel32_targets = ["?render_profile_menu_footer@ProfileFooterMemberView@th105@@QAEXXZ=0x0043F970"]
+
+[[units.gpt-web-menu-continue-end-runtime.functions]]
+address = "0x00444FC0"
+symbol_base = "?update@CMenuEnd@th105@@UAE_NXZ"
+rel32_targets = [
+  "?get_combined_menu_input_counters@th105@@YAPACXZ=0x0043B030",
+  "_is_menu_initial_press=0x0043ABD0",
+  "_dispatch_indexed_event=0x0043B1A0",
+  "?get_session_setup_option@th105@@YAIXZ=0x0043B070",
+  "?get_game_config_for_continue@th105@@YAPAUContinueGameConfigView@1@XZ=0x0043AF10",
+  "?refresh_continue_network_state@th105@@YAXXZ=0x0043BAF0",
+  "?show_profile_message@Menu@th105@@IAEXPBD_N@Z=0x0043F640",
+  "_update_profile_message=0x0043F6E0",
+  "?show_profile_result@Menu@th105@@IAEXPBD@Z=0x0043F810",
+  "_update_profile_confirmation=0x0043F870",
+]
+dir32_targets = [
+  "_continue_save_prompt=_continue_save_prompt",
+  "_continue_save_success=_continue_save_success",
+  "_g_scene_mode=_g_scene_mode",
+]
+
+[[units.gpt-web-menu-continue-end-runtime.functions]]
+address = "0x004450E0"
+symbol_base = "?render@CMenuEnd@th105@@UAEXXZ"
+rel32_targets = [
+  "?render_profile_tiles@Menu@th105@@IAEXXZ=0x0043FB60",
+  "?render_profile_menu_footer@ProfileFooterMemberView@th105@@QAEXXZ=0x0043F970",
+]
+
+[units.gpt-web-continue-replay-save]
+kind = "probe"
+source = "src/ui/ContinueReplaySave.cpp"
+object = "build/match-units/GptWeb_ContinueReplaySave.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current Continue/End replay-save adapter. Network mode passes two 0x20 inline names; offline mode uses PlayerSlot +0xB4 VC8 strings at 0x33C stride, then player2 replay storage builds and writes the 260-byte path."
+
+[[units.gpt-web-continue-replay-save.functions]]
+address = "0x0043BAF0"
+symbol_base = "?refresh_continue_network_state@th105@@YAXXZ"
+rel32_targets = [
+  "?build_replay_filename_42a560@ReplayInputStorageView@th105@@QAEXPADPBD1@Z=0x0042A560",
+  "?save_replay_428d90@ReplayInputStorageView@th105@@QAEXPBD@Z=0x00428D90",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "___security_cookie=___security_cookie",
+  "?g_session_setup_option@th105@@3IA=?g_session_setup_option@th105@@3IC",
+  "?g_network_session@th105@@3PAUNetworkReplayNamesView@1@A=?g_network_session@th105@@3PAUCNetworkBase@1@A",
+  "?g_player_slot_records@th105@@3PAEA=?g_player_slot_records@th105@@3PAEA",
+  "?g_player2_input_storage@th105@@3PAEA=?g_player2_input_storage@th105@@3PAEA",
+]
+
+[units.gpt-web-profile-ui-trim]
+kind = "probe"
+source = "src/ui/ProfileUiTrim.cpp"
+object = "build/match-units/GptWeb_ProfileUiTrim.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current Profile UI stack trim uses the exact-backed checked std::list<UiSelectionMenu*> aggregate. LIFO back()/pop_back() reproduces the double checked-end validation, virtual scalar delete, unlink/free and count decrement."
+
+[[units.gpt-web-profile-ui-trim.functions]]
+address = "0x00440010"
+symbol_base = "?trim_profile_ui_menu_stack@th105@@YAXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "?g_ui_selection_menu_stack@th105@@3V?$list@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@std@@A=?g_ui_selection_menu_stack@th105@@3V?$list@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@std@@A",
+  "?g_ui_selection_snapshot@th105@@3EA=?g_ui_selection_snapshot@th105@@3EA",
+  "?g_ui_selection_fade@th105@@3EA=?g_ui_selection_fade@th105@@3EA",
+  "?g_ui_selection_active@th105@@3EA=?g_ui_selection_active@th105@@3EA",
+]

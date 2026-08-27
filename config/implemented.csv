@@ -939,3 +939,9 @@ CMenuMusic_dtor
 CMenuMusic_ctor
 CMenuMusic_scalar_deleting_destructor
 CMenuMusic_update_primary
+trim_profile_ui_menu_stack
+refresh_continue_network_state
+CMenuContinue_update
+CMenuContinue_render
+CMenuEnd_update
+CMenuEnd_render
