@@ -11355,3 +11355,134 @@ dir32_targets = [
   "__imp__WaitForSingleObject@8=__imp__WaitForSingleObject@8",
   "__imp__CloseHandle@4=__imp__CloseHandle@4",
 ]
+
+[units.cross-v106a-render-state-policy]
+kind = "probe"
+source = "src/engine/RenderStatePolicy.cpp"
+object = "build/match-units/CrossV106a_RenderStatePolicy.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current RenderModeManager D3D9 state-policy island. Exact render/reset callers and current state fields own blend transition, gate-7/gate-14 publication and state-23 publication. The 256-byte blend body uses the target-observed old/new transition key and natural source fallthrough/case order; no manual jump table, register forcing or assembly."
+
+[[units.cross-v106a-render-state-policy.functions]]
+address = "0x004047E0"
+symbol_base = "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z"
+
+[[units.cross-v106a-render-state-policy.functions]]
+address = "0x004049C0"
+symbol_base = "?set_gate_states@RenderModeManager@th105@@QAEHEE@Z"
+
+[[units.cross-v106a-render-state-policy.functions]]
+address = "0x00404A10"
+symbol_base = "?set_state_23@RenderModeManager@th105@@QAEHH@Z"
+
+[units.cross-v106a-bgm-playback]
+kind = "probe"
+source = "src/audio/BgmPlayback.cpp"
+object = "build/match-units/CrossV106a_BgmPlayback.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current BGM load/play pair at the exact-backed service/global. Both preserve out-of-line String28 assignment and BGM service calls. A real four-byte BgmHandleResult value return naturally reuses the dead path argument slot as hidden return storage; play_bgm keeps the non-null path as hot fallthrough and the null schedule path at the cold tail."
+
+[[units.cross-v106a-bgm-playback.functions]]
+address = "0x0043CF00"
+symbol_base = "_load_bgm_source"
+rel32_targets = [
+  "?assign@String28CallGate@th105@@QAEXPBDI@Z=0x004021C0",
+  "?fade@BgmPlaybackServiceView@th105@@QAEXIHH_N@Z=0x00403940",
+  "?allocate_handle@BgmPlaybackServiceView@th105@@QAE?AUBgmHandleResult@2@XZ=0x004036C0",
+  "?play@BgmPlaybackServiceView@th105@@QAEXIPBD_NM@Z=0x004036E0",
+  "?publish_bgm_path@ScoreDataBgmView@th105@@QAEXPBD@Z=0x0042DEB0",
+]
+dir32_targets = [
+  "?g_bgm_service@th105@@3UBgmPlaybackServiceView@1@A=?g_bgm_service@th105@@3UBgmServiceView@1@A",
+  "?g_score_data@th105@@3UScoreDataBgmView@1@A=?g_score_data@th105@@3UScoreData@1@A",
+]
+
+[[units.cross-v106a-bgm-playback.functions]]
+address = "0x0043CF80"
+symbol_base = "_play_bgm"
+rel32_targets = [
+  "?assign@String28CallGate@th105@@QAEXPBDI@Z=0x004021C0",
+  "?fade@BgmPlaybackServiceView@th105@@QAEXIHH_N@Z=0x00403940",
+  "?allocate_handle@BgmPlaybackServiceView@th105@@QAE?AUBgmHandleResult@2@XZ=0x004036C0",
+  "?play@BgmPlaybackServiceView@th105@@QAEXIPBD_NM@Z=0x004036E0",
+  "?schedule_or_start@BgmPlaybackServiceView@th105@@QAEXIH@Z=0x00403840",
+  "?publish_bgm_path@ScoreDataBgmView@th105@@QAEXPBD@Z=0x0042DEB0",
+]
+dir32_targets = [
+  "?g_bgm_service@th105@@3UBgmPlaybackServiceView@1@A=?g_bgm_service@th105@@3UBgmServiceView@1@A",
+  "?g_score_data@th105@@3UScoreDataBgmView@1@A=?g_score_data@th105@@3UScoreData@1@A",
+]
+
+[units.cross-v106a-bgm-service-leaves]
+kind = "probe"
+source = "src/audio/BgmServiceLeaves.cpp"
+object = "build/match-units/CrossV106a_BgmServiceLeaves.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current BGM service leaves. link_handles uses the target-backed +0x20 critical section and +0x38 handle manager twice before linking two resolved streams. The two 28-byte stdcall thread entries are independently owned by BGM service construction at 0x00403460, which passes them as CreateThread function pointers; each performs ordinary COM apartment init/worker/uninit."
+
+[[units.cross-v106a-bgm-service-leaves.functions]]
+address = "0x004039E0"
+symbol_base = "?link_handles@BgmServiceLinkView@th105@@QAEXII@Z"
+rel32_targets = [
+  "?lookup@BgmHandleManagerLinkView@th105@@QAEPAUBgmStreamLinkView@2@I@Z=0x00404330",
+  "?link_with@BgmStreamLinkView@th105@@QAEXPAU12@@Z=0x00402FC0",
+]
+
+[[units.cross-v106a-bgm-service-leaves.functions]]
+address = "0x00403B50"
+symbol_base = "_bgm_thread_one@4"
+rel32_targets = ["_bgm_worker_one=0x00403B90"]
+
+[[units.cross-v106a-bgm-service-leaves.functions]]
+address = "0x00403B70"
+symbol_base = "_bgm_thread_two@4"
+rel32_targets = ["_bgm_worker_two=0x00403CE0"]
+
+[units.cross-v106a-render-timeline-entry]
+kind = "probe"
+source = "src/ui/RenderTimelineEntry.cpp"
+object = "build/match-units/CrossV106a_RenderTimelineEntry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current shared Opening/Ending render-timeline entry. Target and the existing generated-origin census prove a native checked std::deque<CSpriteEx> at +0x14; block-size-one operator[] returns the CSpriteEx element address directly. A real y-scale local remains live across scale_x, reproducing the target four-byte spill and all 282 bytes naturally."
+
+[[units.cross-v106a-render-timeline-entry.functions]]
+address = "0x00450EA0"
+symbol_base = "?render@RenderTimelineEntry@th105@@QAEXXZ"
+rel32_targets = [
+  "??A?$deque@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@@std@@QAEAAVCSpriteEx@@I@Z=0x004399C0",
+  "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0",
+  "?set_uv_size@CSpriteEx@@QAEXMM@Z=0x00407340",
+  "?scale_x@CSpriteEx@@QAEXM@Z=0x004074A0",
+  "?scale_y@CSpriteEx@@QAEXM@Z=0x00407540",
+  "?scale_z@CSpriteEx@@QAEXM@Z=0x004075E0",
+  "?rotate_xyz@CSpriteEx@@QAEXMMMMMM@Z=0x00407680",
+  "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0",
+  "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
+  "?set_sampler_state@RenderModeManager@th105@@QAEJIII@Z=0x00404730",
+  "?finalize_render@CSpriteEx@@QAEXXZ=0x00407AD0",
+]
+dir32_targets = ["?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A"]
+
+[units.cross-v106a-render-timeline-list]
+kind = "probe"
+source = "src/ui/RenderTimelineList.cpp"
+object = "build/match-units/CrossV106a_RenderTimelineList.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Shared Opening/Ending timeline-list renderer. Existing exact scene callers independently reach 0x00450FC0. A real checked std::list<RenderTimelineEntry> at +0x58 emits the target iterator owner/sentinel validation, node+8 entry receiver and out-of-line 0x00450EA0 render call before restoring render state."
+
+[[units.cross-v106a-render-timeline-list.functions]]
+address = "0x00450FC0"
+symbol_base = "?render@RenderTimelineList@th105@@QAEXXZ"
+rel32_targets = [
+  "?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750",
+  "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
+  "?render@RenderTimelineEntry@th105@@QAEXXZ=0x00450EA0",
+  "?set_sampler_state@RenderModeManager@th105@@QAEJIII@Z=0x00404730",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = ["?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A"]

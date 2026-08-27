@@ -80,6 +80,8 @@ struct RenderModeManager : DeviceResetListener {
     void set_blend_mode(int mode);
     unsigned char set_pair_state(
         unsigned char first, unsigned char second);
+    int set_gate_states(unsigned char gate7, unsigned char gate14);
+    int set_state_23(int value);
     void set_state_22(int mode);
     int apply_render_mode(int mode, unsigned char flag);
 

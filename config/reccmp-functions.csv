@@ -881,3 +881,13 @@ get_bgm_for_character,0x0043C100,function
 prepare_scenario_match,0x0043AE90,function
 PlayerSlotRecord_select_deck,0x004313B0,function
 start_async_engine_scene_load,0x0043B840,function
+BgmService_link_handles,0x004039E0,function
+BgmService_thread_one,0x00403B50,function
+BgmService_thread_two,0x00403B70,function
+RenderModeManager_set_blend_mode,0x004047E0,function
+RenderModeManager_set_gate_states,0x004049C0,function
+RenderModeManager_set_state_23,0x00404A10,function
+load_bgm_source,0x0043CF00,function
+play_bgm,0x0043CF80,function
+RenderTimelineEntry_render,0x00450EA0,function
+RenderTimelineList_render,0x00450FC0,function

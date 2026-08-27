@@ -880,3 +880,13 @@ get_bgm_for_character
 prepare_scenario_match
 PlayerSlotRecord_select_deck
 start_async_engine_scene_load
+BgmService_link_handles
+BgmService_thread_one
+BgmService_thread_two
+RenderModeManager_set_blend_mode
+RenderModeManager_set_gate_states
+RenderModeManager_set_state_23
+load_bgm_source
+play_bgm
+RenderTimelineEntry_render
+RenderTimelineList_render
