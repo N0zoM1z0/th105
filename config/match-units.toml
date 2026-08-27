@@ -11486,3 +11486,93 @@ rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
 ]
 dir32_targets = ["?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A"]
+
+[units.cross-v106a-story-script-runtime]
+kind = "probe"
+source = "src/battle/StoryScriptRuntime.cpp"
+object = "build/match-units/CrossV106a_StoryScriptRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current BattlePhaseBlock Story-script runtime. Exact setup callers own the two member addresses. Target fields prove String28 begins at +0, CsvReader at +0x38, the script subobject at +0x68, selected input/column at +0x58C/+0x590, and page/story bytes +0x594/+0x595. A real 260-byte path buffer owns /GS; the CSV path must remain one chained String28 expression so only the first operator+ result is a temporary."
+
+[[units.cross-v106a-story-script-runtime.functions]]
+address = "0x0045A2E0"
+symbol_base = "?advance_scenario_script_page_458d10@BattlePhaseBlock@th105@@QAEXXZ"
+rel32_targets = [
+  "?load_story_page_4583e0@StoryScriptSubobjectLayout@th105@@QAEXPBD@Z=0x004583E0",
+  "?advance_until_ready_454f10@StoryScriptSubobjectLayout@th105@@QAEHXZ=0x00454F10",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "_scenario_page_path_format=_scenario_page_path_format",
+  "__imp__wsprintfA=__imp__wsprintfA",
+  "___security_cookie=___security_cookie",
+]
+
+[[units.cross-v106a-story-script-runtime.functions]]
+address = "0x0045A4E0"
+symbol_base = "?initialize_character_story_script_458f10@BattlePhaseBlock@th105@@QAEXHPAXH@Z"
+rel32_targets = [
+  "?character_key_to_name@th105@@YAPBDH@Z=0x0043BF80",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
+  "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@PBDABV10@@Z=0x00429970",
+  "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@PBD@Z=0x00408C40",
+  "?load@CsvReader@th105@@QAE_NPBD@Z=0x0040F150",
+  "?next_int@CsvReader@th105@@QAEHXZ=0x0040F480",
+  "?advance_row@CsvReader@th105@@QAE_NXZ=0x0040F680",
+  "??3@YAXPAX@Z=0x006898EA",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?initialize_character_story_script_458f10@BattlePhaseBlock@th105@@QAEXHPAXH@Z=__ehhandler$?initialize_character_story_script_458f10@BattlePhaseBlock@th105@@QAEXHPAXH@Z",
+  "___security_cookie=___security_cookie",
+  "_scenario_csv_prefix=_scenario_csv_prefix",
+  "_scenario_story_suffix=_scenario_story_suffix",
+]
+
+[units.cross-v106a-fighter-phase-context-runtime]
+kind = "probe"
+source = "src/battle/FighterPhaseContextRuntime.cpp"
+object = "build/match-units/CrossV106a_FighterPhaseContextRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current FighterPhaseContext phase family owned by exact run_shared_battle_phase_sequence. The native checked std::vector<Fighter*> object begins at +0x38, so VC8 emits target begin/end fields +0x3C/+0x40. The 334-byte ordering phase uses signed action_13C threshold 300, signed global ordering byte, exact RenderModeManager state setters, and target branch order; the four sibling vector loops reuse the same physical contract."
+
+[[units.cross-v106a-fighter-phase-context-runtime.functions]]
+address = "0x00464840"
+symbol_base = "?phase_463820@FighterPhaseContext@th105@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?set_gate_states@RenderModeManager@th105@@QAEHEE@Z=0x004049C0",
+  "?set_state_23@RenderModeManager@th105@@QAEHH@Z=0x00404A10",
+]
+dir32_targets = [
+  "?g_fighter_phase_order_flag@th105@@3CA=?g_fighter_phase_order_flag@th105@@3CA",
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+]
+
+[[units.cross-v106a-fighter-phase-context-runtime.functions]]
+address = "0x00464990"
+symbol_base = "?phase_463970@FighterPhaseContext@th105@@QAEXXZ"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+
+[[units.cross-v106a-fighter-phase-context-runtime.functions]]
+address = "0x00464A20"
+symbol_base = "?phase_463a00@FighterPhaseContext@th105@@QAEXH@Z"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+
+[[units.cross-v106a-fighter-phase-context-runtime.functions]]
+address = "0x00464A80"
+symbol_base = "?phase_463a60@FighterPhaseContext@th105@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?render_45aa00@FighterPhaseRenderStateView@th105@@QAEXXZ=0x0045AA00",
+]
+
+[[units.cross-v106a-fighter-phase-context-runtime.functions]]
+address = "0x00464AD0"
+symbol_base = "?phase_463ab0@FighterPhaseContext@th105@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?phase_4653f0@FighterPhaseFinalizeView@th105@@QAEXXZ=0x004653F0",
+]

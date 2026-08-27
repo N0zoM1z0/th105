@@ -1197,3 +1197,15 @@ Generated-container identity is also caller-visible. `RenderTimelineEntry::rende
 ### Prefer real value-return and cross-call scalar lifetimes to stack shaping
 
 The BGM loader pair demonstrates legitimate parameter-slot reuse. `allocate_handle` returns a four-byte class value, and ordinary VC8 hidden-return lowering reuses the dead source-path argument slot in `load_bgm_source`/`play_bgm`. That source contract closes 123/123 and 168/168 without naming stack offsets. Likewise, the render-timeline entry becomes 282/282 only when the real Y-scale value is captured before `scale_x` and used after the call; VC8 then creates exactly the target spill. When a stack slot has a value that is independently visible before and after a call, recover that value lifetime rather than adding a dummy local.
+
+### Distinguish a checked-vector object base from its begin pointer
+
+VC8 checked STL can make a target member look four bytes later than the source object itself. The FighterPhaseContext family is the reference: target code repeatedly reads vector begin/end at `this+0x3C/+0x40`, but a real checked `std::vector<Fighter*>` contains a four-byte proxy/allocator prefix. Placing the vector object at `+0x38` makes pinned VC8 emit those exact begin/end addresses and closes five phase bodies at once. Placing the vector at `+0x3C` moves fresh begin/end to `+0x40/+0x44` even though every loop is otherwise correct.
+
+When several methods share the same four-byte displacement, first ask whether the observed target field is an internal STL pointer rather than the C++ member base. Recover the native container object and replay all callers before inventing a padding field or separate begin/end facade.
+
+### Let chained value expressions recover EH temporary lifetime
+
+String concatenation is a useful source-lifetime oracle under VC8 `/EHsc`. In `BattlePhaseBlock::initialize_character_story_script @ 0x0045A4E0`, the target calls generated `const char* + String28` followed by generated `String28 + const char*`. Writing two named locals (`prefix_path`, then `full_path`) keeps two user-visible String28 lifetimes and produces 316 bytes. Writing the real chained expression `String28 full_path = prefix + name + suffix;` leaves only the first result as an intermediate temporary and gives the exact 312-byte target, including unwind-state transitions.
+
+Use hidden-return/cleanup order as evidence for expression structure. Do not imitate the resulting stack layout with parameter aliases, dummy locals, manual destructor calls, or source-only padding.

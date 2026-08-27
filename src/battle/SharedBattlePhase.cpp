@@ -1,4 +1,5 @@
 #include "Collision.hpp"
+#include "FighterPhaseContext.hpp"
 
 namespace th105 {
 
@@ -6,14 +7,6 @@ struct BattleObjectManager {
     void phase_465b00();
     void phase_465b70();
     void phase_465bd0();
-};
-
-struct FighterPhaseContext {
-    void phase_463820();
-    void phase_463970();
-    void phase_463a00(int value);
-    void phase_463a60();
-    void phase_463ab0();
 };
 
 struct PhaseStaticService {
