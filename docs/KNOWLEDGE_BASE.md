@@ -1176,3 +1176,65 @@ branch-local zero in EDI, while ordinary source hoists zero into EBX.  `OggDataS
 @ 0x00418A10` exposes a target-private ESI-as-this entry ABI despite a normal
 standalone `__thiscall` body, so treat it as an LTCG/private-ABI stop rather than
 lying about the function signature.
+
+## Score music lookup and generated tree-family wave (2026-08-27)
+
+The current ScoreData/music lane adds two ordinary authored canonical-exact
+bodies for **392 bytes**: `case_insensitive_crc32 @ 0x00406930` is 293/293 and
+`ScoreMusicLookupView::contains_bgm_path @ 0x0042D880` is 99/99.  The same
+investigation removes **19 VC8-generated std::_Tree COMDATs / 1,900 bytes** from
+origin review with three SHA-pinned, inventory-unique origin manifests.  At this
+checkpoint the working census is **933 authored exact / 153,066 exact authored
+bytes / 295 units; 1,028 excluded; 2,049 review-pending**.
+
+The 293-byte hash closes a reusable source-lifetime rule.  Its semantics are an
+ASCII-case-folded CRC: every byte is masked with `0xDF`, the CRC table index is
+`(crc ^ folded_byte) & 0xFF`, blocks are processed eight bytes at a time, and a
+short tail follows.  Keep the incoming `length` itself as the tail counter and
+subtract `blocks * 8` from it; introducing a separate cross-branch `remaining`
+local makes EBP live from the prologue and destroys the target's branch-local
+EBX/EBP callee-save shrink wrapping.  Likewise, preserve the explicit `& 0xFF`
+index expression.  Replacing it with an `unsigned char` cast makes VC8 extract
+the low CRC byte into a separate register and produces a shorter non-target
+body.  Repeated `*bytes++` expressions then reproduce the target's pointer
+lifetime and all 293 bytes naturally.
+
+The 99-byte ScoreData lookup shows that naming an STL temporary can be
+byte-significant even when the semantics are identical.  The target hashes the
+path and performs a checked `std::set<unsigned>::find` on the tree at ScoreData
+`+0x44`.  Writing a named iterator followed by `it != tree.end()` lets VC8 know
+the hidden-sret local directly, discards the returned EAX value, and reloads the
+end node after `find`, yielding 98 bytes.  Writing the ordinary expression
+`tree.find(key) != tree.end()` lets VC8 evaluate/cache the end node before the
+call and preserve the returned iterator pointer across the checked comparison,
+which is canonical exact 99/99.  `tree.count(key)` is not equivalent for
+matching purposes: VC8 lowers it through `equal_range`, a different target call
+edge.
+
+The generated-origin side is deliberately compiler- and inventory-backed, not
+a clone-guessing shortcut.  `scripts/probes/tree_family_generated.cpp` forces
+three independently target-supported node layouts with the SHA-pinned VC8 SP1
+compiler: an unsigned set with nil byte at node `+0x11`, a signed-int/small-map
+layout with nil at `+0x15`, and an unsigned-key/eight-byte-mapped layout with nil
+at `+0x19`.  Current caller `0x006B3DA0` independently reads/writes the last
+layout's two mapped dwords at node `+0x10/+0x14`.  The three origin manifests
+cover find/insert, checked iterator increment/decrement, equal-range/distance,
+node allocation/erase, left/right rotations and min/max helpers.  Every anchor
+must rebuild from tracked source, match at least 70% non-relocation bytes, and
+have a **complete unique hit set across all 4,010 current candidates**.  This
+moves 19 functions / 1,900 bytes from `unknown/review` to
+`compiler_generated/exclude` without inflating the authored numerator.
+
+Two bounded negative results from the same pass should not be restarted without
+stronger TU evidence.  `CMenuSelect::update_primary_selection @ 0x00447D20`
+has target code through the switch cases but a target-only tail-duplication
+choice: natural structured variants converge on VC8 jump-table offsets `0x288`
+(680-byte section tail) or `0x228` (584-byte tail), while the target keeps a
+separate final true epilogue and places the table at function-relative `0x2A0`.
+Explicit gotos/default labels do not change the 680-byte fixed point.  Treat it
+as TU/optimizer tail ownership, not permission for artificial control flow.
+`InputStateTableStorage::update_input_state_table @ 0x0040A550` and
+`add_tracked_key @ 0x0040A6C0` likewise expose a target `push ebp; mov ebp,esp;
+and esp,-8` entry while their otherwise-proven ordinary sibling TU does not;
+this is real stack-alignment/source-partition evidence, not a reason to invent
+aligned locals or change the project optimization profile.

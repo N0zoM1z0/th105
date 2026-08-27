@@ -930,3 +930,5 @@ NetworkSessionResultView_finalize_result_binding,0x0044DCB0,function
 BG04_slot_08,0x00468360,function
 BG16_slot_0c,0x00468780,function
 BG16_slot_08,0x00468D80,function
+case_insensitive_crc32,0x00406930,function
+ScoreMusicLookupView_contains_bgm_path,0x0042D880,function

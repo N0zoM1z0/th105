@@ -554,3 +554,36 @@ subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
 evidence = "SHA-pinned VC8 SP1 rebuild of the canonical-exact InfoShortRecord runtime TU regenerates the block-size-one checked std::deque<12-byte InfoComboEntry> _Growmap and push_back COMDATs; each relocation-masked fingerprint is inventory-unique across all 4010 tracked target spans"
+
+[[rules]]
+id = "vc8-generated-uint-set-tree-family-106a"
+vc8_generated_anchor_file = "config/vc8-generated-uint-set-tree-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 290
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "two current unsigned-key std::set/std::_Tree COMDATs are inventory-unique relocation-masked matches of symbols freshly emitted from tracked scripts/probes/tree_family_generated.cpp by the SHA-pinned VC8 SP1 compiler; target caller 0x0042D880 hashes a string key and consumes the checked find iterator from the same +0x11-nil-node tree layout"
+
+[[rules]]
+id = "vc8-generated-int-byte-tree-family-106a"
+vc8_generated_anchor_file = "config/vc8-generated-int-byte-tree-origin-anchors.toml"
+expected_count = 4
+expected_bytes = 490
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "four current signed-int/small-mapped std::_Tree COMDATs are inventory-unique relocation-masked matches of actual find/insert/iterator/node-allocation symbols freshly emitted from tracked scripts/probes/tree_family_generated.cpp by the SHA-pinned VC8 SP1 compiler; current checked character/stage/BGM and animation tree callers independently establish the +0x15 nil-byte node layout"
+
+[[rules]]
+id = "vc8-generated-uint-value8-tree-family-106a"
+vc8_generated_anchor_file = "config/vc8-generated-uint-value8-tree-origin-anchors.toml"
+expected_count = 13
+expected_bytes = 1120
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "thirteen current unsigned-key/eight-byte-mapped std::_Tree COMDATs are inventory-unique relocation-masked matches of actual iterator/rotation/node/erase/find/insert symbols freshly emitted from tracked scripts/probes/tree_family_generated.cpp by the SHA-pinned VC8 SP1 compiler; current target caller 0x006B3DA0 reads and writes the mapped pair as two dwords at node +0x10/+0x14, independently fixing this +0x19-nil-node layout"

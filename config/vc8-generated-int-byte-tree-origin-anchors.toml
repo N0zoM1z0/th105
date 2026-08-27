@@ -1,0 +1,27 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "scripts/probes/tree_family_generated.cpp"
+enable_gs = false
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+
+[[anchors]]
+address = "0x0045C320"
+size = 105
+symbol = "?find@?$_Tree@V?$_Tmap_traits@HEU?$less@H@std@@V?$allocator@U?$pair@$$CBHE@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z"
+
+[[anchors]]
+address = "0x004606E0"
+size = 185
+symbol = "?insert@?$_Tree@V?$_Tmap_traits@HEU?$less@H@std@@V?$allocator@U?$pair@$$CBHE@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@HEU?$less@H@std@@V?$allocator@U?$pair@$$CBHE@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBHE@2@@Z"
+
+[[anchors]]
+address = "0x0045F710"
+size = 137
+symbol = "?_Dec@const_iterator@?$_Tree@V?$_Tmap_traits@HEU?$less@H@std@@V?$allocator@U?$pair@$$CBHE@std@@@2@$0A@@std@@@std@@QAEXXZ"
+
+[[anchors]]
+address = "0x0045F950"
+size = 63
+symbol = "?_Buynode@?$_Tree@V?$_Tmap_traits@HEU?$less@H@std@@V?$allocator@U?$pair@$$CBHE@std@@@2@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HEU?$less@H@std@@V?$allocator@U?$pair@$$CBHE@std@@@2@$0A@@std@@@2@PAU342@00ABU?$pair@$$CBHE@2@D@Z"

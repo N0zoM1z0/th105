@@ -930,3 +930,5 @@ address,name,size,status,match_percent,unit,evidence
 0x00468360,BG04_slot_08,515,matching,100.00,gpt-web-bg04-phase,python3 scripts/build.py --unit gpt-web-bg04-phase --compare --json reports canonical exact 515/515 against TH105 1.06a
 0x00468780,BG16_slot_0c,1536,matching,100.00,gpt-web-bg16-phase-0c,python3 scripts/build.py --unit gpt-web-bg16-phase-0c --compare --json reports canonical exact 1536/1536 against TH105 1.06a
 0x00468D80,BG16_slot_08,889,matching,100.00,gpt-web-bg16-phase-08,python3 scripts/build.py --unit gpt-web-bg16-phase-08 --compare --json reports canonical exact 889/889 against TH105 1.06a
+0x00406930,case_insensitive_crc32,293,matching,100.00,gpt-web-score-music-lookup,python3 scripts/build.py --unit gpt-web-score-music-lookup --compare --json reports canonical exact 293/293 against TH105 1.06a
+0x0042D880,ScoreMusicLookupView_contains_bgm_path,99,matching,100.00,gpt-web-score-music-lookup,python3 scripts/build.py --unit gpt-web-score-music-lookup --compare --json reports canonical exact 99/99 against TH105 1.06a

@@ -929,3 +929,5 @@ NetworkSessionResultView_finalize_result_binding
 BG04_slot_08
 BG16_slot_0c
 BG16_slot_08
+case_insensitive_crc32
+ScoreMusicLookupView_contains_bgm_path
