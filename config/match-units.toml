@@ -11385,7 +11385,7 @@ address = "0x0043B580"
 symbol_base = "?async_scene_load_worker@th105@@YGIPAX@Z"
 rel32_targets = [
   "?set_priority@AsyncSceneThreadControl@th105@@QAEHH@Z=0x00414690",
-  "?load_indexed_event_wave_resources@th105@@YAHXZ=0x0043AA50",
+  "?load_indexed_event_wave_resources@th105@@YAXXZ=0x0043AA50",
   "?prepare_scene_resources_by_mode@th105@@YAXXZ=0x0043AC10",
   "?apply_story_match_setup@th105@@YAHPAUMatchSetup@1@@Z=0x00434CC0",
   "?initialize_story_slot_two@th105@@YAXXZ=0x00434CE0",
@@ -12567,10 +12567,10 @@ notes = "Current 128-entry indexed system-SE preload. It reuses the independentl
 
 [[units.gpt-web-indexed-event-wave-resources.functions]]
 address = "0x0043AA50"
-symbol_base = "?load_indexed_event_wave_resources@th105@@YAHXZ"
+symbol_base = "?load_indexed_event_wave_resources@th105@@YAXXZ"
 rel32_targets = [
   "?load_wave_handle@OpaqueWaveHandleService@th105@@QAEPAIPAIPBD@Z=0x00401AF0",
-  "?initialize_info_effect_lookup_map@th105@@YAHXZ=0x00438F50",
+  "?initialize_shared_battle_runtime@th105@@YAXXZ=0x00438F50",
   "@__security_check_cookie@4=0x00689D25",
 ]
 dir32_targets = [
@@ -12628,4 +12628,124 @@ dir32_targets = [
   "?g_player_slot_records@th105@@3PAUPlayerSlotProfileRuntimeView@1@A=?g_player_slot_records@th105@@3PAEA",
   "??_C@_0O@PEIHJCHI@Profile1P?4dat?$AA@=??_C@_0O@PEIHJCHI@Profile1P?4dat?$AA@",
   "??_C@_0O@MFGPIIOF@Profile2P?4dat?$AA@=??_C@_0O@MFGPIIOF@Profile2P?4dat?$AA@",
+]
+
+
+[units.gpt-web-scene-manager-bootstrap]
+kind = "probe"
+source = "src/ui/SceneManagerBootstrap.cpp"
+object = "build/match-units/GptWeb_SceneManagerBootstrap.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current normal/Arcade/Story scene-manager lifecycle island. Target-backed physical new extents 0x5B4/0x5C8, exact normal/Story InfoManager ctors, exact CBattleManagerBase ctor plus RTTI-owned Story vtable, and ordinary virtual/nonvirtual delete recover three setup roots, teardown, and the mode dispatcher. Target-observed special mode value 7 remains unnamed until stronger semantic ownership appears."
+
+[[units.gpt-web-scene-manager-bootstrap.functions]]
+address = "0x00439130"
+symbol_base = "?initialize_normal_scene_managers@th105@@YAXXZ"
+rel32_targets = [
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0NormalSceneManagerBootstrap@th105@@QAE@XZ=0x00438CC0",
+  "??0InfoManagerNormalBootstrap@th105@@QAE@XZ=0x0046F7A0",
+]
+dir32_targets = [
+  "__ehhandler$?initialize_normal_scene_managers@th105@@YAXXZ=__ehhandler$?initialize_normal_scene_managers@th105@@YAXXZ",
+  "___security_cookie=___security_cookie",
+  "?g_scene_renderer_normal@th105@@3PAUNormalSceneManagerBootstrap@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A",
+  "?g_info_manager_normal@th105@@3PAUInfoManagerNormalBootstrap@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A",
+]
+
+[[units.gpt-web-scene-manager-bootstrap.functions]]
+address = "0x004392C0"
+symbol_base = "?initialize_arcade_scene_managers@th105@@YAXXZ"
+rel32_targets = [
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0ArcadeSceneManagerBootstrap@th105@@QAE@XZ=0x00438D80",
+  "??0InfoManagerNormalBootstrap@th105@@QAE@XZ=0x0046F7A0",
+]
+dir32_targets = [
+  "__ehhandler$?initialize_arcade_scene_managers@th105@@YAXXZ=__ehhandler$?initialize_arcade_scene_managers@th105@@YAXXZ",
+  "___security_cookie=___security_cookie",
+  "?g_scene_renderer_normal@th105@@3PAUNormalSceneManagerBootstrap@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A",
+  "?g_info_manager_normal@th105@@3PAUInfoManagerNormalBootstrap@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A",
+]
+
+[[units.gpt-web-scene-manager-bootstrap.functions]]
+address = "0x004393A0"
+symbol_base = "?initialize_story_scene_managers@th105@@YAXXZ"
+rel32_targets = [
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0BattleManagerBaseStoryDependency@th105@@QAE@XZ=0x0046B200",
+  "??0InfoManagerStoryBootstrap@th105@@QAE@XZ=0x00471FF0",
+  "??0BattlePhaseBlockBootstrap@th105@@QAE@XZ=0x00439200",
+]
+dir32_targets = [
+  "__ehhandler$?initialize_story_scene_managers@th105@@YAXXZ=__ehhandler$?initialize_story_scene_managers@th105@@YAXXZ",
+  "___security_cookie=___security_cookie",
+  "??_7StorySceneManagerBootstrap@th105@@6B@=??_7CBattleManagerStory@@6B@",
+  "?g_story_scene_renderer@th105@@3PAUStorySceneManagerBootstrap@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A",
+  "?g_story_info_manager@th105@@3PAUInfoManagerStoryBootstrap@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A",
+  "?g_battle_phase_block_bootstrap@th105@@3PAUBattlePhaseBlockBootstrap@1@A=?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A",
+]
+
+[[units.gpt-web-scene-manager-bootstrap.functions]]
+address = "0x00439480"
+symbol_base = "?destroy_scene_managers@th105@@YAXXZ"
+rel32_targets = [
+  "??1BattlePhaseBlockBootstrap@th105@@QAE@XZ=0x00438E90",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "?g_scene_renderer_delete@th105@@3PAUSceneRendererDeleteView@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A",
+  "?g_info_manager_delete@th105@@3PAUInfoManagerDeleteView@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A",
+  "?g_battle_phase_block_bootstrap@th105@@3PAUBattlePhaseBlockBootstrap@1@A=?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A",
+]
+
+[[units.gpt-web-scene-manager-bootstrap.functions]]
+address = "0x0043AC10"
+symbol_base = "?prepare_scene_resources_by_mode@th105@@YAXXZ"
+rel32_targets = [
+  "?destroy_scene_managers@th105@@YAXXZ=0x00439480",
+  "?initialize_normal_scene_managers@th105@@YAXXZ=0x00439130",
+  "?initialize_story_managers@th105@@YAXXZ=0x00434D40",
+  "?initialize_arcade_scene_managers@th105@@YAXXZ=0x004392C0",
+  "?initialize_story_scene_managers@th105@@YAXXZ=0x004393A0",
+]
+dir32_targets = [
+  "?g_game_mode@th105@@3W4GameMode@1@A=?g_game_mode@th105@@3W4GameMode@1@C",
+]
+
+[units.gpt-web-shared-scene-bootstrap]
+kind = "probe"
+source = "src/ui/SharedSceneBootstrap.cpp"
+object = "build/match-units/GptWeb_SharedSceneBootstrap.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current 465-byte shared battle-runtime bootstrap. Ordinary typed new expressions publish the FighterPhaseContext, BattleObjectManager, EventEffectState, EffectSink and 0x30 BattleInputGate owners; a real effect-sink virtual load initializes data/effect/effect.pat, then the exact-backed event-state initializer runs. A native checked std::map<unsigned,unsigned short> at 0x006FBD2C receives 23 case-insensitive CRC32 keys for data/bgm/st%02d.ogg mapped to ids 900..922; VC8 naturally emits the target hidden-sret insert temporary."
+
+[[units.gpt-web-shared-scene-bootstrap.functions]]
+address = "0x00438F50"
+symbol_base = "?initialize_shared_battle_runtime@th105@@YAXXZ"
+rel32_targets = [
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0FighterPhaseContextBootstrap@th105@@QAE@XZ=0x00464E90",
+  "??0BattleObjectManagerBootstrap@th105@@QAE@XZ=0x004678F0",
+  "??0EventEffectStateBootstrap@th105@@QAE@XZ=0x00438DF0",
+  "??0EffectSinkBootstrap@th105@@QAE@XZ=0x004378F0",
+  "?initialize_effect_runtime@EventEffectStateBootstrap@th105@@QAEXXZ=0x0046A260",
+  "?case_insensitive_crc32@th105@@YAIPBEH@Z=0x00406930",
+  "?insert@?$_Tree@V?$_Tmap_traits@IGU?$less@I@std@@V?$allocator@U?$pair@$$CBIG@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@IGU?$less@I@std@@V?$allocator@U?$pair@$$CBIG@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBIG@2@@Z=0x004366A0",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?initialize_shared_battle_runtime@th105@@YAXXZ=__ehhandler$?initialize_shared_battle_runtime@th105@@YAXXZ",
+  "___security_cookie=___security_cookie",
+  "?g_fighter_phase_context_bootstrap@th105@@3PAUFighterPhaseContextBootstrap@1@A=?g_fighter_phase_context@th105@@3PAUFighterPhaseContext@1@A",
+  "?g_battle_object_manager_bootstrap@th105@@3PAUBattleObjectManagerBootstrap@1@A=?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A",
+  "?g_event_effect_state_bootstrap@th105@@3PAUEventEffectStateBootstrap@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A",
+  "?g_effect_sink_bootstrap@th105@@3PAUEffectSinkBootstrap@1@A=?g_effect_sink@th105@@3PAUEffectSink@1@A",
+  "?g_battle_input_gate_bootstrap@th105@@3PAUBattleInputGateAllocationView@1@A=?g_battle_input_gate@th105@@3PAUBattleInputGate@1@A",
+  "?g_info_effect_lookup_map@th105@@3V?$map@IGU?$less@I@std@@V?$allocator@U?$pair@$$CBIG@std@@@2@@std@@A=?g_info_effect_lookup_map@th105@@3V?$map@IGU?$less@I@std@@V?$allocator@U?$pair@$$CBIG@std@@@2@@std@@A",
+  "__imp__wsprintfA=__imp__wsprintfA",
+  "??_C@_0BH@JBCJGMGH@data?1effect?1effect?4pat?$AA@=??_C@_0BH@JBCJGMGH@data?1effect?1effect?4pat?$AA@",
+  "??_C@_0BE@KBOJKDGH@data?1bgm?1st?$CF02d?4ogg?$AA@=_arcade_bgm_path_format",
 ]

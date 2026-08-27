@@ -39,7 +39,7 @@ extern "C" __declspec(dllimport) void __stdcall CoUninitialize();
 
 struct MatchSetup;
 extern MatchSetup g_match_setup;
-int __cdecl load_indexed_event_wave_resources();
+void __cdecl load_indexed_event_wave_resources();
 void __cdecl prepare_scene_resources_by_mode();
 int __cdecl apply_story_match_setup(MatchSetup *setup);
 void __cdecl initialize_story_slot_two();

@@ -15,9 +15,9 @@ struct OpaqueWaveHandleService {
 
 extern OpaqueWaveHandleService g_wave_handle_service;
 extern unsigned g_indexed_event_handles[128];
-int __cdecl initialize_info_effect_lookup_map();
+void __cdecl initialize_shared_battle_runtime();
 
-int __cdecl load_indexed_event_wave_resources()
+void __cdecl load_indexed_event_wave_resources()
 {
     unsigned loaded_handle;
     char path[260];
@@ -28,7 +28,7 @@ int __cdecl load_indexed_event_wave_resources()
             *g_wave_handle_service.load_wave_handle(&loaded_handle, path);
     }
 
-    return initialize_info_effect_lookup_map();
+    initialize_shared_battle_runtime();
 }
 
 } // namespace th105
