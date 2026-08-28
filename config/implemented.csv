@@ -1042,3 +1042,8 @@ CLoadingSV_ctor
 CLoadingCL_ctor
 CTitle_update
 CTitle_ctor
+CMenuConnect_reset_state
+CMenuConnect_finalize_state
+CMenuConnect_finalize_message
+CMenuConnect_update_state_one
+CMenuConnect_update_state_six

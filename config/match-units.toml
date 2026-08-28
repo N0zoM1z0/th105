@@ -13768,3 +13768,120 @@ dir32_targets = [
   "_g_scene_mode=_g_scene_mode",
   "_g_next_scene_mode=_g_next_scene_mode",
 ]
+
+
+[units.gpt-web-menu-connect-state-one]
+kind = "probe"
+source = "src/ui/MenuConnectStateOne.cpp"
+object = "build/match-units/GptWeb_MenuConnectStateOne.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current CMenuConnect private state-one runtime at 0x00442790. The already-exact CMenuConnect virtual update directly dispatches this method. Three nested substates preserve GuideOverlay visibility, profile-message transitions, connection success/cancel handling and current scene-mode publication; ordinary source is canonical exact."
+
+[[units.gpt-web-menu-connect-state-one.functions]]
+address = "0x00442790"
+symbol_base = "?update_state_one@CMenuConnectStateRuntimeView@th105@@QAE_NXZ"
+rel32_targets = [
+  "_dispatch_indexed_event=0x0043B1A0",
+  "_is_menu_initial_press=0x0043ABD0",
+  "?hide_profile_message_43f8d0@CMenuConnectStateRuntimeView@th105@@AAEXXZ=0x0043F8D0",
+  "_clear_network_session=0x0043B0A0",
+  "?reset_state_4422f0@CMenuConnectStateRuntimeView@th105@@QAEIXZ=0x004422F0",
+  "_update_profile_message=0x0043F6E0",
+  "?show_profile_result@Menu@th105@@IAEXPBD@Z=0x0043F810",
+  "?finalize_state_442530@CMenuConnectStateRuntimeView@th105@@QAEHXZ=0x00442530",
+  "?update_address_441bd0@CMenuConnectStateRuntimeView@th105@@AAEHXZ=0x00441BD0",
+  "?show_profile_message@Menu@th105@@IAEXPBD_N@Z=0x0043F640",
+]
+dir32_targets = [
+  "_g_scene_mode=_g_scene_mode",
+  "_g_next_scene_mode=_g_next_scene_mode",
+  "_g_active_menu_input=_g_active_menu_input",
+  "_connect_waiting_message=_connect_waiting_message",
+  "_connect_enable_prompt=_connect_enable_prompt",
+]
+
+[units.gpt-web-menu-connect-state-six]
+kind = "probe"
+source = "src/ui/MenuConnectStateSix.cpp"
+object = "build/match-units/GptWeb_MenuConnectStateSix.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CMenuConnect private state-six profile selection runtime at 0x004428E0. Exact CMenuConnect::update dispatches this state. Two real MenuString28 locals, profile load/color publication, config-close handling and natural /GS EH cleanup reproduce all 284 bytes."
+
+[[units.gpt-web-menu-connect-state-six.functions]]
+address = "0x004428E0"
+symbol_base = "?update_state_six@CMenuConnectStateRuntimeView@th105@@QAE_NXZ"
+rel32_targets = [
+  "?select_profile@Menu@th105@@IAEHPAUMenuString28@2@0@Z=0x00440410",
+  "?get_player_slot_record@th105@@YAPAUPlayerSlotRecord@1@I@Z=0x0043AFE0",
+  "?load_profile@PlayerSlotRecord@th105@@QAE_NPBD@Z=0x00431AC0",
+  "?set_profile_color@PlayerSlotRecord@th105@@QAEXEEE@Z=0x00431440",
+  "_close_config_menu=0x0043CDD0",
+  "??3@YAXPAX@Z=0x006898EA",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?update_state_six@CMenuConnectStateRuntimeView@th105@@QAE_NXZ=__ehhandler$?update_state_six@CMenuConnect@th105@@AAE_NXZ",
+  "___security_cookie=___security_cookie",
+]
+
+[units.gpt-web-menu-connect-state-utilities]
+kind = "probe"
+source = "src/ui/MenuConnectStateUtilities.cpp"
+object = "build/match-units/GptWeb_MenuConnectStateUtilities.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current CMenuConnect state-one utility pair. reset_state initializes two real MenuCursorState records from the combined menu input and derives the decimal port digit; finalize_state creates the connect session, applies the selected profile, configures the exact key/port pair and publishes session-ready state. Both are direct dependencies of canonical-exact state-one."
+
+[[units.gpt-web-menu-connect-state-utilities.functions]]
+address = "0x004422F0"
+symbol_base = "?reset_state_4422f0@CMenuConnectStateRuntimeView@th105@@QAEIXZ"
+rel32_targets = [
+  "?show_profile_result@Menu@th105@@IAEXPBD@Z=0x0043F810",
+  "?get_combined_menu_input@th105@@YAPAUMenuInput@1@XZ=0x0043B020",
+]
+dir32_targets = ["_connect_address_result=_connect_address_result"]
+
+[[units.gpt-web-menu-connect-state-utilities.functions]]
+address = "0x00442530"
+symbol_base = "?finalize_state_442530@CMenuConnectStateRuntimeView@th105@@QAEHXZ"
+rel32_targets = [
+  "_clear_network_session=0x0043B0A0",
+  "?create_connect_session_43ce00@th105@@YAPAUConnectSessionRuntimeView@1@XZ=0x0043CE00",
+  "?get_player_slot_record@th105@@YAPAUPlayerSlotRecord@1@I@Z=0x0043AFE0",
+  "?apply_profile_44d7d0@ConnectSessionRuntimeView@th105@@QAEXPBDE@Z=0x0044D7D0",
+  "?get_connect_key_43aba0@th105@@YAPAUConnectKey16@1@PAU21@@Z=0x0043ABA0",
+  "?configure_412e10@ConnectStatusRuntimeView@th105@@QAEHPBUConnectKey16@2@H@Z=0x00412E10",
+]
+
+[units.gpt-web-menu-connect-finalize-message]
+kind = "probe"
+source = "src/ui/MenuConnectFinalizeMessage.cpp"
+object = "build/match-units/GptWeb_MenuConnectFinalizeMessage.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CMenuConnect finalize-message runtime at 0x004425D0. The /GS body recreates client session setup, optional config.ini port lookup, current connection-key configuration, optional profile payload copy and exact endpoint send using a real 0x28 packet local."
+
+[[units.gpt-web-menu-connect-finalize-message.functions]]
+address = "0x004425D0"
+symbol_base = "?finalize_message_4425d0@CMenuConnectStateRuntimeView@th105@@QAEDXZ"
+rel32_targets = [
+  "_clear_network_session=0x0043B0A0",
+  "?create_connect_client_43ce80@th105@@YAPAUConnectSessionRuntimeView@1@XZ=0x0043CE80",
+  "?has_file_40f0b0@ConnectConfigIniView@th105@@QAE_NPBD@Z=0x0040F0B0",
+  "?read_uint_40f100@ConnectConfigIniView@th105@@QAEIPBD0@Z=0x0040F100",
+  "?get_connect_key_43aba0@th105@@YAPAUConnectKey16@1@PAU21@@Z=0x0043ABA0",
+  "?configure_412e10@ConnectStatusRuntimeView@th105@@QAEHPBUConnectKey16@2@H@Z=0x00412E10",
+  "?get_player_slot_record@th105@@YAPAUPlayerSlotRecord@1@I@Z=0x0043AFE0",
+  "_strcpy_s=0x0068AD95",
+  "?send_415340@ConnectStatusRuntimeView@th105@@QAEDPBDGPBUConnectPacket40@2@G@Z=0x00415340",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "___security_cookie=___security_cookie",
+  "_connect_config_file=_connect_config_file",
+  "_connect_config_key_port=_connect_config_key_port",
+  "_connect_config_section=_connect_config_section",
+  "?g_connect_config_ini@th105@@3UConnectConfigIniView@1@A=?g_connect_config_ini@th105@@3UConnectConfigIniView@1@A",
+]

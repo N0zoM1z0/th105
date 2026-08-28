@@ -1043,3 +1043,8 @@ CLoadingSV_ctor,0x0041E180,function
 CLoadingCL_ctor,0x0041E1E0,function
 CTitle_update,0x00425990,function
 CTitle_ctor,0x00425DF0,function
+CMenuConnect_reset_state,0x004422F0,function
+CMenuConnect_finalize_state,0x00442530,function
+CMenuConnect_finalize_message,0x004425D0,function
+CMenuConnect_update_state_one,0x00442790,function
+CMenuConnect_update_state_six,0x004428E0,function
