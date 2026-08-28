@@ -12997,3 +12997,73 @@ rel32_targets = [
   "?erase@?$vector@PAUFighterPhaseObjectView@th105@@V?$allocator@PAUFighterPhaseObjectView@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@PAUFighterPhaseObjectView@th105@@V?$allocator@PAUFighterPhaseObjectView@th105@@@std@@@2@V32@0@Z=0x00464B40",
   "?push_back@?$vector@PAUFighterPhaseObjectView@th105@@V?$allocator@PAUFighterPhaseObjectView@th105@@@std@@@std@@QAEXABQAUFighterPhaseObjectView@th105@@@Z=0x0064AF70",
 ]
+
+[units.gpt-web-game-config-load]
+kind = "probe"
+source = "src/config/GameConfigLoad.cpp"
+object = "build/match-units/GptWeb_GameConfigLoad.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current 953-byte GameConfig config.dat load. The physical 0x74 owner uses two real VC8 std::string values, checked deque<string> +0x48, and a CFileReader call-site lifetime view mapped to the exact CFileReader vtable. The recent-entry string must remain an unnamed std::string temporary inside push_back; naming it only swaps two stack-color slots by four bytes."
+
+[[units.gpt-web-game-config-load.functions]]
+address = "0x00427800"
+symbol_base = "?load_config_427800@GameConfigLoadView@th105@@QAEEXZ"
+rel32_targets = [
+  "_memset=0x0068A440",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
+  "?_Growmap@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXI@Z=0x0040FE30",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "??3@YAXPAX@Z=0x006898EA",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?load_config_427800@GameConfigLoadView@th105@@QAEEXZ=__ehhandler$?load_config_427800@GameConfigLoadView@th105@@QAEEXZ",
+  "___security_cookie=___security_cookie",
+  "??_C@_0L@DMKLMINN@config?4dat?$AA@=??_C@_0L@DMKLMINN@config?4dat?$AA@",
+  "??_7GameConfigFileReaderView@th105@@6B@=??_7CFileReader@th105@@6B@",
+  "__imp__CreateFileA@28=__imp__CreateFileA@28",
+  "__imp__ReadFile@20=__imp__ReadFile@20",
+  "__imp__CloseHandle@4=__imp__CloseHandle@4",
+]
+
+[units.gpt-web-game-config-profile-startup]
+kind = "probe"
+source = "src/ui/GameConfigProfileStartup.cpp"
+object = "build/match-units/GptWeb_GameConfigProfileStartup.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current 217-byte startup bridge. It loads the global GameConfig, uses the two exact-backed std::string profile paths as direct c_str() arguments, falls back to Profile1P.dat/Profile2P.dat through the same PlayerSlot loader, initializes/saves only on double failure, then publishes the observed player colors."
+
+[[units.gpt-web-game-config-profile-startup.functions]]
+address = "0x0043BA10"
+symbol_base = "?initialize_player_profiles_from_game_config@th105@@YAXXZ"
+rel32_targets = [
+  "?load_config_427800@GameConfigProfileRuntimeView@th105@@QAEEXZ=0x00427800",
+  "?load_profile@PlayerSlotProfileRuntimeView@th105@@QAE_NPBD@Z=0x00431AC0",
+  "?initialize_defaults@PlayerSlotProfileRuntimeView@th105@@QAEXXZ=0x00432050",
+  "?save_to_profile@PlayerSlotProfileRuntimeView@th105@@QAEXPBD@Z=0x004317A0",
+  "?set_profile_color@PlayerSlotProfileRuntimeView@th105@@QAEXEEE@Z=0x00431440",
+]
+dir32_targets = [
+  "?g_game_config@th105@@3UGameConfigProfileRuntimeView@1@A=?g_game_config@th105@@3UGameConfig@1@A",
+  "?g_player_slot_records@th105@@3PAUPlayerSlotProfileRuntimeView@1@A=?g_player_slot_records@th105@@3PAEA",
+  "??_C@_0O@PEIHJCHI@Profile1P?4dat?$AA@=??_C@_0O@PEIHJCHI@Profile1P?4dat?$AA@",
+  "??_C@_0O@MFGPIIOF@Profile2P?4dat?$AA@=??_C@_0O@MFGPIIOF@Profile2P?4dat?$AA@",
+]
+
+[units.gpt-web-profile-editor-runtime]
+kind = "probe"
+source = "src/ui/ProfileEditorRuntime.cpp"
+object = "build/match-units/GptWeb_ProfileEditorRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current ProfileEditor168 initialize member. Exact CProfileMenu ctor/state/render/dtor callers own the 0x168 object. The initializer publishes source +0x08 and record limit +0x164, clamps shared editor limit to 1023, reads outer width +0x114, then advances one real 0x0C record cursor before deriving x/y from inner bias +0x111 and offsets +0x118/+0x11C."
+
+[[units.gpt-web-profile-editor-runtime.functions]]
+address = "0x00427BD0"
+symbol_base = "?initialize@ProfileEditor168@th105@@QAEXPAXH@Z"
+dir32_targets = [
+  "?g_profile_editor_record_limit@th105@@3HA=?g_profile_editor_record_limit@th105@@3HA",
+]

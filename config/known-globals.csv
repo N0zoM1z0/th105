@@ -65,3 +65,4 @@ address,name,module,confidence,evidence
 0x006FC5B4,g_game_config_secondary_reset,ui,observed,Exact config close helper uses this GameConfig-adjacent secondary reset receiver
 0x006FBFB8,g_config_source_first,ui,observed,Exact config close helper passes this source object address to the primary config reset
 0x006FC2F4,g_config_source_second,ui,observed,Exact config close helper passes this source object address to the secondary config reset
+0x00703588,profile_editor_record_limit,ui,observed,Current ProfileEditor168 initialize 0x00427BD0 publishes and clamps this shared record limit to 1023; eleven current 0x40E7xx-0x40EFxx editor helpers read it

@@ -48,7 +48,14 @@ struct ProfileStringTemporary {
 };
 
 struct ProfileEditor168 {
-    unsigned char storage[0x168];
+    unsigned char reserved_000[0x08];
+    void *source_008;
+    unsigned char reserved_00c[0x148];
+    int width_154;
+    int x_158;
+    int y_15c;
+    int state_160;
+    int record_limit_164;
 
     ProfileEditor168();
     ~ProfileEditor168();
@@ -115,6 +122,12 @@ typedef char ProfileMenuBaseData_size_must_be_0x33c[
     sizeof(ProfileMenuBaseData) == 0x33C ? 1 : -1];
 typedef char ProfileEditor168_size_must_be_0x168[
     sizeof(ProfileEditor168) == 0x168 ? 1 : -1];
+typedef char ProfileEditor168_source_offset_must_be_0x08[
+    offsetof(ProfileEditor168, source_008) == 0x08 ? 1 : -1];
+typedef char ProfileEditor168_width_offset_must_be_0x154[
+    offsetof(ProfileEditor168, width_154) == 0x154 ? 1 : -1];
+typedef char ProfileEditor168_limit_offset_must_be_0x164[
+    offsetof(ProfileEditor168, record_limit_164) == 0x164 ? 1 : -1];
 typedef char ProfileStringTemporary_size_must_be_0x1c[
     sizeof(ProfileStringTemporary) == 0x1C ? 1 : -1];
 typedef char ProfileMenu_std_string_size_must_be_0x1c[
