@@ -971,8 +971,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0042ED70,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0042F6F0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0042FDC0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0042FE10,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0042FEE0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0042FE10,compiler_generated,battle,exclude,observed,vc8-generated-event-background-deque-comdats-106a
+0x0042FEE0,compiler_generated,battle,exclude,observed,vc8-generated-event-background-deque-comdats-106a
 0x0042FFB0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x00430000,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x00430050,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -983,7 +983,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004302A0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004303F0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x00430470,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
-0x004304F0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004304F0,compiler_generated,battle,exclude,observed,vc8-generated-event-background-deque-comdats-106a
 0x004306D0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00430750,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004309F0,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -1114,7 +1114,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00436DF0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00436E60,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00436EE0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x004371C0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004371C0,compiler_generated,battle,exclude,observed,vc8-generated-event-effect-state-container-comdats-106a
 0x00437210,authored_game,battle,authored,observed,canonical-exact-authored
 0x00437280,authored_game,battle,authored,observed,canonical-exact-authored
 0x004372F0,authored_game,battle,authored,observed,canonical-exact-authored
@@ -1480,9 +1480,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00448F60,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00449940,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
 0x004499C0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00449A80,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00449A80,compiler_generated,battle,exclude,observed,vc8-generated-event-effect-state-container-comdats-106a
 0x00449BE0,authored_game,ui,authored,observed,canonical-exact-authored
-0x00449D70,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00449D70,compiler_generated,battle,exclude,observed,vc8-generated-event-effect-state-container-comdats-106a
 0x00449DF0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00449E90,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0044A410,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -1974,7 +1974,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00469690,compiler_generated,input,exclude,observed,vc8-generated-input-cluster-std-comdats-106a
 0x004696B0,compiler_generated,input,exclude,observed,vc8-generated-input-cluster-std-comdats-106a
 0x004696E0,authored_game,battle,authored,observed,canonical-exact-authored
-0x004698E0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004698E0,compiler_generated,battle,exclude,observed,vc8-generated-event-effect-state-container-comdats-106a
 0x00469960,compiler_generated,input,exclude,observed,vc8-generated-input-cluster-std-comdats-106a
 0x00469990,compiler_generated,input,exclude,observed,vc8-generated-input-cluster-std-comdats-106a
 0x004699C0,compiler_generated,input,exclude,observed,vc8-generated-input-cluster-std-comdats-106a

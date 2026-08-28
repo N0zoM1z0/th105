@@ -75,8 +75,8 @@ class WorkflowToolingTests(unittest.TestCase):
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,010", markdown)
         self.assertIn("Confirmed authored functions | 1,008", markdown)
-        self.assertIn("Classified exclusions | 1,040", markdown)
-        self.assertIn("Origin/boundary review pending | 1,962", markdown)
+        self.assertIn("Classified exclusions | 1,047", markdown)
+        self.assertIn("Origin/boundary review pending | 1,955", markdown)
         self.assertIn("Canonical exact functions | 1,008", markdown)
         self.assertIn("Canonical exact authored bytes | 165,923", markdown)
         self.assertIn(

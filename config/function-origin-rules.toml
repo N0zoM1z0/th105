@@ -631,3 +631,25 @@ subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Current exact EventEffectState runtime establishes map<signed char, vector<unsigned char>> storage. A SHA-pinned VC8 SP1 probe regenerates the 132-byte vector<unsigned char> copy-constructor COMDAT, and relocation-masked replay must remain inventory-unique at current 0x00469CC0."
+
+[[rules]]
+id = "vc8-generated-event-background-deque-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-event-background-deque-origin-anchors.toml"
+expected_count = 3
+expected_bytes = 873
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Canonical-exact EventEffectState background maintenance instantiates the native checked deque<BackgroundRenderEntry> erase/copy-backward/copy helpers. SHA-pinned VC8 replay reproduces all three relocation-masked bodies and requires inventory-unique hits across all 4,010 current candidates."
+
+[[rules]]
+id = "vc8-generated-event-effect-state-container-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-event-effect-state-origin-anchors.toml"
+expected_count = 4
+expected_bytes = 658
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Canonical-exact EventEffectState runtime instantiates the native checked map<signed char,vector<unsigned char>> find/_Erase and deque<BackgroundRenderEntry> Growmap/push_back helpers. SHA-pinned VC8 replay reproduces all four relocation-masked bodies and requires inventory-unique hits across all 4,010 current candidates."

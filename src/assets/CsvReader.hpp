@@ -24,7 +24,8 @@ struct CsvReader {
     int next_int();
     void *next_string(void *out_string);
     bool advance_row();
-    void clear_rows();
+    void clear_rows() throw();
+    ~CsvReader() throw() { clear_rows(); }
 };
 
 } // namespace th105
