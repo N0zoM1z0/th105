@@ -13286,3 +13286,178 @@ rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
   "?erase@?$deque@UBackgroundRenderEntry@th105@@V?$allocator@UBackgroundRenderEntry@th105@@@std@@@std@@QAE?AV?$_Deque_iterator@UBackgroundRenderEntry@th105@@V?$allocator@UBackgroundRenderEntry@th105@@@std@@$00@2@V32@0@Z=0x004304F0",
 ]
+
+[units.gpt-web-scene-lifetime-wave]
+kind = "probe"
+source = "src/ui/SceneLifetimeWave.cpp"
+object = "build/match-units/GptWeb_SceneLifetimeWave.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current RTTI-owned scene lifetime island. Ending/Opening own one 0x93 render cluster whose explicit cleanup precedes automatic member destruction; CLoading owns a UiSprite94 plus checked deque<unsigned char> at +0xA4; CLogo owns consecutive CSpriteEx members at +0x08/+0xF0; CLoadingWatch owns the same handle/UiSprite94 prefix. Ordinary virtual C++ reproduces all normal/scalar dtors and the IScene base lifetime."
+
+[[units.gpt-web-scene-lifetime-wave.functions]]
+address = "0x0041DF50"
+symbol_base = "??1IScene@th105@@UAE@XZ"
+
+[[units.gpt-web-scene-lifetime-wave.functions]]
+address = "0x0041F8E0"
+symbol_base = "??_GIScene@th105@@UAEPAXI@Z"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = ["??_7IScene@th105@@6B@=??_7IScene@th105@@6B@"]
+
+[[units.gpt-web-scene-lifetime-wave.functions]]
+address = "0x0041F2F0"
+symbol_base = "??1EndingLifetimeView@th105@@UAE@XZ"
+rel32_targets = [
+  "?cleanup@SceneRenderCluster93@th105@@QAEXXZ=0x00452E60",
+  "??1SceneRenderCluster93@th105@@QAE@XZ=0x0041F1F0",
+]
+dir32_targets = ["??_7EndingLifetimeView@th105@@6B@=??_7Ending@@6B@"]
+
+[[units.gpt-web-scene-lifetime-wave.functions]]
+address = "0x0041F3D0"
+symbol_base = "??_GEndingLifetimeView@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1EndingLifetimeView@th105@@UAE@XZ=0x0041F2F0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.gpt-web-scene-lifetime-wave.functions]]
+address = "0x0041F5B0"
+symbol_base = "??1CLoadingLifetimeView@th105@@UAE@XZ"
+rel32_targets = [
+  "?release_title_resource_handle@TitleResourceManagerLifetimeView@th105@@QAEEI@Z=0x00404D70",
+  "?_Tidy@?$deque@EV?$allocator@E@std@@@std@@IAEXXZ=0x00420A80",
+]
+dir32_targets = [
+  "??_7CLoadingLifetimeView@th105@@6B@=??_7CLoading@@6B@",
+  "?g_title_resource_manager@th105@@3UTitleResourceManagerLifetimeView@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+  "_title_color_vtable_anchor=_title_color_vtable_anchor_external",
+]
+
+[[units.gpt-web-scene-lifetime-wave.functions]]
+address = "0x0041F620"
+symbol_base = "??_GCLoadingLifetimeView@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1CLoadingLifetimeView@th105@@UAE@XZ=0x0041F5B0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.gpt-web-scene-lifetime-wave.functions]]
+address = "0x0041F710"
+symbol_base = "??1CLogoLifetimeView@th105@@UAE@XZ"
+rel32_targets = ["?release_title_resource_handle@TitleResourceManagerLifetimeView@th105@@QAEEI@Z=0x00404D70"]
+dir32_targets = [
+  "??_7CLogoLifetimeView@th105@@6B@=??_7CLogo@@6B@",
+  "?g_title_resource_manager@th105@@3UTitleResourceManagerLifetimeView@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+]
+
+[[units.gpt-web-scene-lifetime-wave.functions]]
+address = "0x0041F830"
+symbol_base = "??_GCLogoLifetimeView@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1CLogoLifetimeView@th105@@UAE@XZ=0x0041F710",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.gpt-web-scene-lifetime-wave.functions]]
+address = "0x0041F900"
+symbol_base = "??1OpeningLifetimeView@th105@@UAE@XZ"
+rel32_targets = [
+  "?cleanup@SceneRenderCluster93@th105@@QAEXXZ=0x00452E60",
+  "??1SceneRenderCluster93@th105@@QAE@XZ=0x0041F1F0",
+]
+dir32_targets = ["??_7OpeningLifetimeView@th105@@6B@=??_7Opening@@6B@"]
+
+[[units.gpt-web-scene-lifetime-wave.functions]]
+address = "0x0041FA00"
+symbol_base = "??_GOpeningLifetimeView@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1OpeningLifetimeView@th105@@UAE@XZ=0x0041F900",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.gpt-web-scene-lifetime-wave.functions]]
+address = "0x00426880"
+symbol_base = "??1CLoadingWatchLifetimeView@th105@@UAE@XZ"
+rel32_targets = ["?release_title_resource_handle@TitleResourceManagerLifetimeView@th105@@QAEEI@Z=0x00404D70"]
+dir32_targets = [
+  "??_7CLoadingWatchLifetimeView@th105@@6B@=??_7CLoadingWatch@@6B@",
+  "?g_title_resource_manager@th105@@3UTitleResourceManagerLifetimeView@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+  "_title_color_vtable_anchor=_title_color_vtable_anchor_external",
+]
+
+[[units.gpt-web-scene-lifetime-wave.functions]]
+address = "0x00426B60"
+symbol_base = "??_GCLoadingWatchLifetimeView@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1CLoadingWatchLifetimeView@th105@@UAE@XZ=0x00426880",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[units.gpt-web-network-derived-lifetime]
+kind = "probe"
+source = "src/network/NetworkDerivedLifetime.cpp"
+object = "build/match-units/GptWeb_NetworkDerivedLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CNetworkServer/CNetworkClient derived lifetime. Exact session fields fix CNetworkBase physical extent 0x6DC; RTTI COLs at the secondary vtables independently prove a second polymorphic base at +0x6DC. Ordinary multiple inheritance naturally publishes both derived vfptrs, performs cleanup on the +0x3B4 session member, then calls the current CNetworkBase normal destructor."
+
+[[units.gpt-web-network-derived-lifetime.functions]]
+address = "0x0043CC10"
+symbol_base = "??1CNetworkServerLifetimeView@th105@@UAE@XZ"
+rel32_targets = [
+  "?cleanup@NetworkCleanupView@th105@@QAEXPAX@Z=0x00413360",
+  "??1CNetworkBaseLifetimeView@th105@@UAE@XZ=0x0043C950",
+]
+dir32_targets = [
+  "??_7CNetworkServerLifetimeView@th105@@6BCNetworkBaseLifetimeView@1@@=??_7CNetworkServer@@6B@",
+  "??_7CNetworkServerLifetimeView@th105@@6BNetworkSecondaryInterfaceView@1@@=??_7CNetworkServer@@6B@_0",
+]
+
+[[units.gpt-web-network-derived-lifetime.functions]]
+address = "0x0043CC80"
+symbol_base = "??_GCNetworkServerLifetimeView@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1CNetworkServerLifetimeView@th105@@UAE@XZ=0x0043CC10",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.gpt-web-network-derived-lifetime.functions]]
+address = "0x0043CD40"
+symbol_base = "??1CNetworkClientLifetimeView@th105@@UAE@XZ"
+rel32_targets = [
+  "?cleanup@NetworkCleanupView@th105@@QAEXPAX@Z=0x00413360",
+  "??1CNetworkBaseLifetimeView@th105@@UAE@XZ=0x0043C950",
+]
+dir32_targets = [
+  "??_7CNetworkClientLifetimeView@th105@@6BCNetworkBaseLifetimeView@1@@=??_7CNetworkClient@@6B@",
+  "??_7CNetworkClientLifetimeView@th105@@6BNetworkSecondaryInterfaceView@1@@=??_7CNetworkClient@@6B@_0",
+]
+
+[[units.gpt-web-network-derived-lifetime.functions]]
+address = "0x0043CDB0"
+symbol_base = "??_GCNetworkClientLifetimeView@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1CNetworkClientLifetimeView@th105@@UAE@XZ=0x0043CD40",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[units.gpt-web-input-manager-lifetime]
+kind = "probe"
+source = "src/input/InputManagerLifetime.cpp"
+object = "build/match-units/GptWeb_InputManagerLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current RTTI-owned CInputManager base lifetime. The existing input layout is 0x60 bytes; an ordinary empty virtual destructor publishes current CInputManager vtable 0x006C1674 and naturally emits the target 7-byte normal and 31-byte scalar deleting bodies."
+
+[[units.gpt-web-input-manager-lifetime.functions]]
+address = "0x00409D50"
+symbol_base = "??1CInputManagerLifetimeView@th105@@UAE@XZ"
+dir32_targets = ["??_7CInputManagerLifetimeView@th105@@6B@=??_7CInputManager@@6B@"]
+
+[[units.gpt-web-input-manager-lifetime.functions]]
+address = "0x00409D30"
+symbol_base = "??_GCInputManagerLifetimeView@th105@@UAEPAXI@Z"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = ["??_7CInputManagerLifetimeView@th105@@6B@=??_7CInputManager@@6B@"]
