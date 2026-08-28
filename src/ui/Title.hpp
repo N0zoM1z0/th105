@@ -2,6 +2,7 @@
 
 #include "assets/ResourceHandleManager.hpp"
 #include "../engine/SceneBase.hpp"
+#include "MenuCursor.hpp"
 
 extern "C" const unsigned int title_color_vtable_anchor[];
 extern "C" void __cdecl _invalid_parameter_noinfo();
@@ -147,6 +148,7 @@ typedef char TitleDesignResource_size_must_be_0x34[
 
 class CTitle : public CSceneBase {
 public:
+    CTitle();
     virtual ~CTitle();
     virtual int update();
     virtual bool render();
@@ -163,7 +165,8 @@ private:
     TitleColor94 color_a4;
     TitleColorA4 color_138;
     TitleDesignResource design_1dc;
-    unsigned char reserved_210[0x44];
+    MenuCursorState cursor_210;
+    UiDesignObject *menu_items_224[12];
     float menu_item_wave_offsets[12];
     int reserved_0284;
     int menu_item_wave_counter;

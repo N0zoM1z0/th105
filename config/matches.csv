@@ -1041,3 +1041,5 @@ address,name,size,status,match_percent,unit,evidence
 0x0041E1C0,CSelectCL_ctor,18,matching,100.00,gpt-web-scene-derived-select-loading-ctors,python3 scripts/build.py --unit gpt-web-scene-derived-select-loading-ctors --compare --json reports canonical exact 18/18 against TH105 1.06a
 0x0041E180,CLoadingSV_ctor,18,matching,100.00,gpt-web-scene-derived-select-loading-ctors,python3 scripts/build.py --unit gpt-web-scene-derived-select-loading-ctors --compare --json reports canonical exact 18/18 against TH105 1.06a
 0x0041E1E0,CLoadingCL_ctor,18,matching,100.00,gpt-web-scene-derived-select-loading-ctors,python3 scripts/build.py --unit gpt-web-scene-derived-select-loading-ctors --compare --json reports canonical exact 18/18 against TH105 1.06a
+0x00425990,CTitle_update,862,matching,100.00,gpt-web-title-update-runtime,python3 scripts/build.py --unit gpt-web-title-update-runtime --compare --json reports canonical exact 862/862 against TH105 1.06a
+0x00425DF0,CTitle_ctor,577,matching,100.00,gpt-web-title-constructor-runtime,python3 scripts/build.py --unit gpt-web-title-constructor-runtime --compare --json reports canonical exact 577/577 against TH105 1.06a

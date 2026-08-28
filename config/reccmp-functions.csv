@@ -1041,3 +1041,5 @@ CSelectSV_ctor,0x0041E160,function
 CSelectCL_ctor,0x0041E1C0,function
 CLoadingSV_ctor,0x0041E180,function
 CLoadingCL_ctor,0x0041E1E0,function
+CTitle_update,0x00425990,function
+CTitle_ctor,0x00425DF0,function

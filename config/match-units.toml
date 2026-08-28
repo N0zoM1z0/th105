@@ -13698,3 +13698,73 @@ address = "0x0041E1E0"
 symbol_base = "??0CLoadingCL@th105@@QAE@XZ"
 rel32_targets = ["??0CLoading@th105@@QAE@XZ=0x0041F4F0"]
 dir32_targets = ["??_7CLoadingCL@th105@@6B@=??_7CLoadingCL@th105@@6B@"]
+
+[units.gpt-web-title-constructor-runtime]
+kind = "probe"
+source = "src/ui/TitleConstructorRuntime.cpp"
+object = "build/match-units/GptWeb_TitleConstructorRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "RTTI-owned CTitle constructor at 0x00425DF0. A constructor-facing 0x28C physical view preserves the shipped polymorphic CSprite/CTile member visibility without disturbing the destructor-facing shared facade. Width/height span both texture loads while each load owns its own lexical handle local, naturally reproducing the target EH saved-this and stack coloring."
+
+[[units.gpt-web-title-constructor-runtime.functions]]
+address = "0x00425DF0"
+symbol_base = "??0CTitleConstructorView@th105@@QAE@XZ"
+rel32_targets = [
+  "??0TitleDesignResource@th105@@QAE@XZ=0x004217F0",
+  "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+  "?set_texture_options@CTile@th105@@QAEXIHHIIHH@Z=0x004098E0",
+  "_get_combined_menu_input=0x0043B020",
+  "?bind_object@TitleDesignResource@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x0040CC50",
+  "?get_session_setup_option@th105@@YAIXZ=0x0043B070",
+  "?get_game_mode@th105@@YAHXZ=0x0043AC40",
+]
+dir32_targets = [
+  "__ehhandler$??0CTitleConstructorView@th105@@QAE@XZ=__ehhandler$??0CTitle@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7CSceneBase@th105@@6B@=??_7CSceneBase@th105@@6B@",
+  "_g_active_scene_id=_g_active_scene_id",
+  "??_7CTitleConstructorView@th105@@6B@=??_7CTitle@th105@@6B@",
+  "??_7CSprite@th105@@6B@=_select_sprite_vtable_anchor",
+  "??_7CTile@th105@@6B@=??_7CTile@@6B@",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+  "_title_base_path=_title_base_path",
+  "_title_menu_item_path=_title_menu_item_path",
+  "_title_design_path=_title_design_path",
+]
+
+[units.gpt-web-title-update-runtime]
+kind = "probe"
+source = "src/ui/TitleUpdateRuntime.cpp"
+object = "build/match-units/GptWeb_TitleUpdateRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "RTTI/vtable-owned CTitle::update at 0x00425990. The recovered +0x210 MenuCursorState drives a two-level state machine: outer scene-mode transitions and the title menu selection. Six ordinary typed-new menu branches naturally reproduce all six allocation-cleanup EH states and both target jump tables."
+
+[[units.gpt-web-title-update-runtime.functions]]
+address = "0x00425990"
+symbol_base = "?update@CTitle@th105@@UAEHXZ"
+rel32_targets = [
+  "?advance_menu_item_wave@CTitle@th105@@QAEXXZ=0x004258F0",
+  "?prepare_title_match_mode@th105@@YAXHH@Z=0x0043B8F0",
+  "?get_player2_input@th105@@YAPAXXZ=0x0043B060",
+  "?fade_bgm@th105@@YAXHH@Z=0x0043B140",
+  "_has_ui_selection_state_changed=0x0043B6E0",
+  "_get_combined_menu_input_counters=0x0043B030",
+  "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20",
+  "_dispatch_indexed_event=0x0043B1A0",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CMenuConnect@th105@@QAE@XZ=0x00444190",
+  "??0CMenuReplay@th105@@QAE@XZ=0x00446DE0",
+  "??0CMenuMusic@th105@@QAE@XZ=0x004456D0",
+  "??0CMenuResult@th105@@QAE@XZ=0x00447690",
+  "??0CProfileMenu@th105@@QAE@XZ=0x0044D4F0",
+  "??0CMenuConfig@th105@@QAE@XZ=0x00441520",
+  "?install_menu_object@th105@@YAXPAX@Z=0x0043B0F0",
+]
+dir32_targets = [
+  "__ehhandler$?update@CTitle@th105@@UAEHXZ=__ehhandler$?update@CTitle@th105@@UAEHXZ",
+  "___security_cookie=___security_cookie",
+  "_g_scene_mode=_g_scene_mode",
+  "_g_next_scene_mode=_g_next_scene_mode",
+]

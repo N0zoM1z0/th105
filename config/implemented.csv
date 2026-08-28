@@ -1040,3 +1040,5 @@ CSelectSV_ctor
 CSelectCL_ctor
 CLoadingSV_ctor
 CLoadingCL_ctor
+CTitle_update
+CTitle_ctor
