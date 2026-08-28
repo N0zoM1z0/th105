@@ -653,3 +653,14 @@ subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Canonical-exact EventEffectState runtime instantiates the native checked map<signed char,vector<unsigned char>> find/_Erase and deque<BackgroundRenderEntry> Growmap/push_back helpers. SHA-pinned VC8 replay reproduces all four relocation-masked bodies and requires inventory-unique hits across all 4,010 current candidates."
+
+[[rules]]
+id = "vc8-generated-scene-render-cluster-node-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-scene-render-cluster-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 84
+origin = "compiler_generated"
+subsystem = "ui"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Canonical-exact SceneRenderCluster constructor instantiates checked list<0x7C scene record> and map<int,20-byte scene value> node allocators. SHA-pinned VC8 SP1 rebuild plus full 4,010-candidate relocation-masked replay requires both newly classified COMDAT fingerprints to remain inventory-unique; the map<int,void*> allocator at 0x00420A40 is already independently excluded by the effect-manager exact-TU manifest."

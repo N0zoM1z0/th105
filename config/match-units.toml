@@ -13461,3 +13461,115 @@ address = "0x00409D30"
 symbol_base = "??_GCInputManagerLifetimeView@th105@@UAEPAXI@Z"
 rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
 dir32_targets = ["??_7CInputManagerLifetimeView@th105@@6B@=??_7CInputManager@@6B@"]
+
+[units.gpt-web-scene-render-cluster-constructor]
+kind = "probe"
+source = "src/ui/SceneRenderClusterConstructor.cpp"
+object = "build/match-units/GptWeb_SceneRenderClusterConstructor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current Opening/Ending shared render-cluster constructor. Exact scene owners and current 0x0041F120 EH establish the +0x18 CScript, checked map<int,void*> +0x4C, list<0x7C record> +0x58, map<int,20-byte value> +0x64 and std::string +0x70 layout. Ordinary native containers reproduce 196/196 without codegen forcing."
+
+[[units.gpt-web-scene-render-cluster-constructor.functions]]
+address = "0x0041F120"
+symbol_base = "??0SceneRenderClusterConstructorLayout@th105@@QAE@XZ"
+rel32_targets = [
+  "??0CScript@@QAE@XZ=0x00405600",
+  "?_Buynode@?$_Tree@V?$_Tmap_traits@HPAXU?$less@H@std@@V?$allocator@U?$pair@$$CBHPAX@std@@@2@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HPAXU?$less@H@std@@V?$allocator@U?$pair@$$CBHPAX@std@@@2@$0A@@std@@@2@XZ=0x00420A40",
+  "?_Buynode@?$list@USceneListRecord124@th105@@V?$allocator@USceneListRecord124@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@USceneListRecord124@th105@@V?$allocator@USceneListRecord124@th105@@@std@@@2@XZ=0x0041EB30",
+  "?_Buynode@?$_Tree@V?$_Tmap_traits@HUSceneMapValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneMapValue20@th105@@@std@@@4@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUSceneMapValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneMapValue20@th105@@@std@@@4@$0A@@std@@@2@XZ=0x0041EB90",
+]
+dir32_targets = [
+  "__ehhandler$??0SceneRenderClusterConstructorLayout@th105@@QAE@XZ=__ehhandler$??0SceneRenderCluster@th105@@QAE@XZ",
+]
+
+[units.gpt-web-scene-constructor-runtime]
+kind = "probe"
+source = "src/ui/SceneConstructorWave.cpp"
+object = "build/match-units/GptWeb_SceneConstructorWave.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current RTTI-owned Ending/CLoading/CLogo/Opening/CLoadingWatch constructors plus CLoading/CLogo/Opening update slots. The source reuses the exact-backed scene lifetime layouts, keeps SceneRenderCluster construction out of line, and uses ordinary virtual/narrow polymorphic member types; all eight bodies are canonical zero-difference with no assembly/register/volatile/fake-liveness tricks."
+
+[[units.gpt-web-scene-constructor-runtime.functions]]
+address = "0x0041F360"
+symbol_base = "??0EndingConstructorView@th105@@QAE@XZ"
+rel32_targets = ["??0SceneRenderClusterOwner93@th105@@QAE@XZ=0x0041F120"]
+dir32_targets = [
+  "__ehhandler$??0EndingConstructorView@th105@@QAE@XZ=__ehhandler$??0Ending@th105@@QAE@XZ",
+  "??_7EndingConstructorView@th105@@6B@=??_7Ending@@6B@",
+]
+
+[[units.gpt-web-scene-constructor-runtime.functions]]
+address = "0x0041F3F0"
+symbol_base = "?update@CLoadingConstructorView@th105@@UAEHXZ"
+rel32_targets = ["?get_async_scene_load_request@th105@@YAHXZ=0x0043AB90"]
+
+[[units.gpt-web-scene-constructor-runtime.functions]]
+address = "0x0041F4F0"
+symbol_base = "??0CLoadingConstructorView@th105@@QAE@XZ"
+rel32_targets = [
+  "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+  "?start_async_engine_scene_load@th105@@YAEH@Z=0x0043B840",
+]
+dir32_targets = [
+  "__ehhandler$??0CLoadingConstructorView@th105@@QAE@XZ=__ehhandler$??0CLoading@th105@@QAE@XZ",
+  "??_7CLoadingConstructorView@th105@@6B@=??_7CLoading@@6B@",
+  "??_7SceneSprite94@th105@@6B@=_select_sprite_vtable_anchor",
+]
+
+[[units.gpt-web-scene-constructor-runtime.functions]]
+address = "0x0041F670"
+symbol_base = "?update@CLogoConstructorView@th105@@UAEHXZ"
+rel32_targets = [
+  "?get_async_scene_load_request@th105@@YAHXZ=0x0043AB90",
+  "?get_combined_menu_input_counters@th105@@YAPADXZ=0x0043B030",
+]
+
+[[units.gpt-web-scene-constructor-runtime.functions]]
+address = "0x0041F780"
+symbol_base = "??0CLogoConstructorView@th105@@QAE@XZ"
+rel32_targets = [
+  "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+  "?set_texture_options@LogoSpriteE8@th105@@QAEXIHHHHHH@Z=0x00407160",
+]
+dir32_targets = [
+  "__ehhandler$??0CLogoConstructorView@th105@@QAE@XZ=__ehhandler$??0CLogo@th105@@QAE@XZ",
+  "??_7CLogoConstructorView@th105@@6B@=??_7CLogo@@6B@",
+  "??_7LogoSpriteE8@th105@@6B@=??_7CEffectSprite@@6B@",
+  "??_7LogoTileA4@th105@@6B@=??_7CTile@@6B@",
+]
+
+[[units.gpt-web-scene-constructor-runtime.functions]]
+address = "0x0041F850"
+symbol_base = "?update@OpeningConstructorView@th105@@UAEHXZ"
+rel32_targets = [
+  "?update_451400@SceneRenderClusterOwner93@th105@@QAEEXZ=0x00451400",
+  "?get_combined_menu_input_counters@th105@@YAPADXZ=0x0043B030",
+]
+
+[[units.gpt-web-scene-constructor-runtime.functions]]
+address = "0x0041F970"
+symbol_base = "??0OpeningConstructorView@th105@@QAE@XZ"
+rel32_targets = [
+  "??0SceneRenderClusterOwner93@th105@@QAE@XZ=0x0041F120",
+  "?initialize@SceneRenderClusterOwner93@th105@@QAEXXZ=0x00453BC0",
+  "?load_script@SceneRenderClusterOwner93@th105@@QAEXPBD@Z=0x004540F0",
+]
+dir32_targets = [
+  "__ehhandler$??0OpeningConstructorView@th105@@QAE@XZ=__ehhandler$??0Opening@th105@@QAE@XZ",
+  "??_7OpeningConstructorView@th105@@6B@=??_7Opening@@6B@",
+]
+
+[[units.gpt-web-scene-constructor-runtime.functions]]
+address = "0x00426AB0"
+symbol_base = "??0CLoadingWatchConstructorView@th105@@QAE@XZ"
+rel32_targets = [
+  "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+  "?get_network_session@th105@@YAPAVNetworkSessionSceneControl@1@XZ=0x0043B090",
+]
+dir32_targets = [
+  "__ehhandler$??0CLoadingWatchConstructorView@th105@@QAE@XZ=__ehhandler$??0CLoadingWatch@th105@@QAE@XZ",
+  "??_7CLoadingWatchConstructorView@th105@@6B@=??_7CLoadingWatch@@6B@",
+  "??_7SceneSprite94@th105@@6B@=_select_sprite_vtable_anchor",
+]

@@ -1024,3 +1024,12 @@ CNetworkServer_dtor
 CNetworkServer_scalar_deleting_destructor
 CNetworkClient_dtor
 CNetworkClient_scalar_deleting_destructor
+SceneRenderCluster_ctor
+Ending_ctor
+CLoading_update
+CLoading_ctor
+CLogo_update
+CLogo_ctor
+Opening_update
+Opening_ctor
+CLoadingWatch_ctor

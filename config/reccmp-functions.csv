@@ -1025,3 +1025,12 @@ CNetworkServer_dtor,0x0043CC10,function
 CNetworkServer_scalar_deleting_destructor,0x0043CC80,function
 CNetworkClient_dtor,0x0043CD40,function
 CNetworkClient_scalar_deleting_destructor,0x0043CDB0,function
+SceneRenderCluster_ctor,0x0041F120,function
+Ending_ctor,0x0041F360,function
+CLoading_update,0x0041F3F0,function
+CLoading_ctor,0x0041F4F0,function
+CLogo_update,0x0041F670,function
+CLogo_ctor,0x0041F780,function
+Opening_update,0x0041F850,function
+Opening_ctor,0x0041F970,function
+CLoadingWatch_ctor,0x00426AB0,function
