@@ -986,3 +986,6 @@ FighterPhaseContext_reset_slot_state
 GameConfig_load_config
 initialize_player_profiles_from_game_config
 ProfileEditor168_initialize
+CProfileKeyConfig_render
+CProfileKeyConfig_update
+CProfileKeyConfig_ctor

@@ -13067,3 +13067,69 @@ symbol_base = "?initialize@ProfileEditor168@th105@@QAEXPAXH@Z"
 dir32_targets = [
   "?g_profile_editor_record_limit@th105@@3HA=?g_profile_editor_record_limit@th105@@3HA",
 ]
+
+[units.gpt-web-profile-key-config-runtime]
+kind = "probe"
+source = "src/ui/ProfileKeyConfigRuntime.cpp"
+object = "build/match-units/GptWeb_ProfileKeyConfigRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CProfileKeyConfig 0x330 runtime core. Exact ctor/render/update use the RTTI-owned class layout already fixed by the scalar dtor and ProfileMenu state-three caller. The ctor keeps player/input publication after member construction, uses a genuine virtual design-load call site and a 4-byte value-return texture-load view; render keeps direct repeated key-slot reads; update preserves the target shared true epilogue and nonpersistent player pointer lifetime."
+
+[[units.gpt-web-profile-key-config-runtime.functions]]
+address = "0x0044BA90"
+symbol_base = "??0CProfileKeyConfig@th105@@QAE@PAUPlayerSlotRecord@1@H@Z"
+rel32_targets = [
+  "??0TitleDesignResource@th105@@QAE@XZ=0x004217F0",
+  "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C",
+  "??1GuideOverlay@th105@@QAE@XZ=0x0043F330",
+  "??0GuideOverlay@th105@@QAE@XZ=0x0043F540",
+  "?get_active_input_source_43b050@th105@@YACXZ=0x0043B050",
+  "?bind_object_alt@TitleDesignResource@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
+  "?load_texture_value@TitleResourceManagerValueView@th105@@QAE?AUTextureHandleResult@2@PBDPAI1@Z=0x00404C90",
+  "?set_texture@UiTileA4@th105@@QAEXIHHII@Z=0x004098B0",
+  "?set_profile_color@PlayerSlotRecord@th105@@QAEXEEE@Z=0x00431440",
+  "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390",
+]
+dir32_targets = [
+  "__ehhandler$??0CProfileKeyConfig@th105@@QAE@PAUPlayerSlotRecord@1@H@Z=__ehhandler$??0CProfileKeyConfig@th105@@QAE@PAUPlayerSlotRecord@1@H@Z",
+  "___security_cookie=___security_cookie",
+  "_g_scene_mode=_g_scene_mode",
+  "??_7CProfileKeyConfig@th105@@6B@=??_7CProfileKeyConfig@th105@@6B@",
+  "_select_tile_vtable_anchor=_select_tile_vtable_anchor",
+  "??_C@_0CF@JDGDOFIG@data?1profile?1keyconfig?1keyconfig@=??_C@_0CF@JDGDOFIG@data?1profile?1keyconfig?1keyconfig@",
+  "??_C@_0CP@FMECPMDF@data?1profile?1keyconfig?1010_KeyCo@=??_C@_0CP@FMECPMDF@data?1profile?1keyconfig?1010_KeyCo@",
+  "??_C@_0CP@MNPOOKFL@data?1profile?1keyconfig?1011_KeyCo@=??_C@_0CP@MNPOOKFL@data?1profile?1keyconfig?1011_KeyCo@",
+  "?g_title_resource_manager_value@th105@@3UTitleResourceManagerValueView@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+]
+
+[[units.gpt-web-profile-key-config-runtime.functions]]
+address = "0x0044B340"
+symbol_base = "?render@CProfileKeyConfig@th105@@UAEXXZ"
+rel32_targets = [
+  "?render_cursor@Menu@th105@@IAEXMMM@Z=0x0043F9D0",
+  "?render@CTileRenderView@th105@@QAEXMMHH@Z=0x004099F0",
+  "?render_profile_player_slot@Menu@th105@@IAEXPAUPlayerSlotRecord@2@MM@Z=0x0043FAF0",
+  "?render@GuideOverlay@th105@@QAEXXZ=0x0043F4C0",
+]
+dir32_targets = [
+  "__real@44000000=__real@44000000",
+  "__real@4034000000000000=__real@4034000000000000",
+  "__real@4030000000000000=__real@4030000000000000",
+  "__real@4066000000000000=__real@4066000000000000",
+]
+
+[[units.gpt-web-profile-key-config-runtime.functions]]
+address = "0x0044B860"
+symbol_base = "?update@CProfileKeyConfig@th105@@UAE_NXZ"
+rel32_targets = [
+  "?update@GuideOverlay@th105@@QAEXXZ=0x0043F450",
+  "?is_menu_initial_press@th105@@YA_NE_N00@Z=0x0043ABD0",
+  "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
+  "?capture_key_input_44b540@ProfileKeyConfigCaptureView@th105@@QAE_NXZ=0x0044B540",
+  "?select_deck@PlayerSlotKeyConfigSaveView@th105@@QAEXE@Z=0x004313B0",
+  "?save_profile@PlayerSlotKeyConfigSaveView@th105@@QAEXPBD@Z=0x004317A0",
+  "?invalidate_selected_input@th105@@YAXI@Z=0x0043AFF0",
+  "?rebind_selected_input_43b640@th105@@YAXHC@Z=0x0043B640",
+]
+dir32_targets = ["_g_active_menu_input=_g_active_menu_input"]

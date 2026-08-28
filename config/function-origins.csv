@@ -1488,11 +1488,11 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0044A410,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0044A950,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044AAC0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0044B340,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0044B340,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044B540,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0044B860,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0044B860,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044B9D0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0044BA90,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0044BA90,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044BCD0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044BCF0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0044BE10,authored_game,ui,authored,observed,canonical-exact-authored

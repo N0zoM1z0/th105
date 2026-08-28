@@ -987,3 +987,6 @@ FighterPhaseContext_reset_slot_state,0x00465040,function
 GameConfig_load_config,0x00427800,function
 initialize_player_profiles_from_game_config,0x0043BA10,function
 ProfileEditor168_initialize,0x00427BD0,function
+CProfileKeyConfig_render,0x0044B340,function
+CProfileKeyConfig_update,0x0044B860,function
+CProfileKeyConfig_ctor,0x0044BA90,function
