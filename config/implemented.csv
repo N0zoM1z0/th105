@@ -1047,3 +1047,5 @@ CMenuConnect_finalize_state
 CMenuConnect_finalize_message
 CMenuConnect_update_state_one
 CMenuConnect_update_state_six
+CNumber_render
+CMenuConnect_ctor

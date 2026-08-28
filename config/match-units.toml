@@ -13885,3 +13885,50 @@ dir32_targets = [
   "_connect_config_section=_connect_config_section",
   "?g_connect_config_ini@th105@@3UConnectConfigIniView@1@A=?g_connect_config_ini@th105@@3UConnectConfigIniView@1@A",
 ]
+
+[units.gpt-web-cnumber-runtime]
+kind = "probe"
+source = "src/ui/CNumberRuntime.cpp"
+object = "build/match-units/GptWeb_CNumberRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current RTTI-owned CNumber numeric renderer at 0x00414F10. The 0xCC owner has glyph width/spacing/scale/column fields in its 0x28-byte prefix and a CTile-compatible object at +0x28. A named current_x local, signed suffix byte, target two-loop decimal decomposition and truthful void return recover all 312 bytes without register/asm forcing."
+
+[[units.gpt-web-cnumber-runtime.functions]]
+address = "0x00414F10"
+symbol_base = "?render@CNumber@th105@@QAEXHMMHD@Z"
+rel32_targets = [
+  "?render@CNumberTileA4@th105@@QAEXMMHH@Z=0x004099F0",
+]
+
+[units.gpt-web-menu-connect-constructor-runtime]
+kind = "probe"
+source = "src/ui/MenuConnectConstructorRuntime.cpp"
+object = "build/match-units/GptWeb_MenuConnectConstructorRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current RTTI-owned 0x118C CMenuConnect constructor at 0x00444190. Real CNumber/TNumberValue<int*> ownership, two zeroing texture handles, checked deque<string>, a separate +0x3B8 dword, cursor +0x3BC, endpoint +0x42C and eight GuideOverlay records +0xC4C reproduce all ten EH states and the complete 728-byte body. The caller-proved member view of hide_profile_message_43f8d0 is required."
+
+[[units.gpt-web-menu-connect-constructor-runtime.functions]]
+address = "0x00444190"
+symbol_base = "??0CMenuConnect@th105@@QAE@XZ"
+rel32_targets = [
+  "??0TitleDesignResource@th105@@QAE@XZ=0x004217F0",
+  "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C",
+  "?get_network_session@th105@@YAPAUCNetworkBase@1@XZ=0x0043B090",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIHH@Z=0x00404D00",
+  "?set_texture@UiTileA4@th105@@QAEXIHHII@Z=0x004098B0",
+  "?initialize@CNumber@th105@@QAEXIHHHHHMHHH@Z=0x00414E40",
+  "??3@YAXPAX@Z=0x006898EA",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "?bind_object_alt@TitleDesignResource@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
+  "?hide_profile_message_43f8d0@CMenuConnect@th105@@AAEXXZ=0x0043F8D0",
+  "?initialize_profile_menu@Menu@th105@@IAEXXZ=0x0043FBF0",
+  "?get_game_config@th105@@YAPAUGameConfig@1@XZ=0x0043AF10",
+  "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390",
+]
+dir32_targets = [
+  "_profile_editor_records=_profile_editor_records",
+  "_g_active_menu_input=_g_active_menu_input",
+  "___security_cookie=___security_cookie",
+]

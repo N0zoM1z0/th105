@@ -1048,3 +1048,5 @@ address,name,size,status,match_percent,unit,evidence
 0x004425D0,CMenuConnect_finalize_message,312,matching,100.00,gpt-web-menu-connect-finalize-message,python3 scripts/build.py --unit gpt-web-menu-connect-finalize-message --compare --json reports canonical exact 312/312 against TH105 1.06a
 0x00442790,CMenuConnect_update_state_one,322,matching,100.00,gpt-web-menu-connect-state-one,python3 scripts/build.py --unit gpt-web-menu-connect-state-one --compare --json reports canonical exact 322/322 against TH105 1.06a
 0x004428E0,CMenuConnect_update_state_six,284,matching,100.00,gpt-web-menu-connect-state-six,python3 scripts/build.py --unit gpt-web-menu-connect-state-six --compare --json reports canonical exact 284/284 against TH105 1.06a
+0x00414F10,CNumber_render,312,matching,100.00,gpt-web-cnumber-runtime,python3 scripts/build.py --unit gpt-web-cnumber-runtime --compare --json reports canonical exact 312/312 against TH105 1.06a
+0x00444190,CMenuConnect_ctor,728,matching,100.00,gpt-web-menu-connect-constructor-runtime,python3 scripts/build.py --unit gpt-web-menu-connect-constructor-runtime --compare --json reports canonical exact 728/728 against TH105 1.06a

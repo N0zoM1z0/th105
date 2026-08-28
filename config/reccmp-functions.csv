@@ -1048,3 +1048,5 @@ CMenuConnect_finalize_state,0x00442530,function
 CMenuConnect_finalize_message,0x004425D0,function
 CMenuConnect_update_state_one,0x00442790,function
 CMenuConnect_update_state_six,0x004428E0,function
+CNumber_render,0x00414F10,function
+CMenuConnect_ctor,0x00444190,function
