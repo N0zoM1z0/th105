@@ -7408,6 +7408,7 @@ rel32_targets = [
   "??1ProfileDeckResourceGroup20@th105@@QAE@XZ=0x0042E900",
   "??1TitleDesignResource@th105@@QAE@XZ=0x00421890",
   "?_Tidy@?$deque@Viterator@?$_Tree@V?$_Tmap_traits@GCU?$less@G@std@@V?$allocator@U?$pair@$$CBGC@std@@@2@$0A@@std@@@std@@V?$allocator@Viterator@?$_Tree@V?$_Tmap_traits@GCU?$less@G@std@@V?$allocator@U?$pair@$$CBGC@std@@@2@$0A@@std@@@std@@@3@@std@@IAEXXZ=0x00420A80",
+  "?_Tidy@?$deque@USpellTreeIterator@th105@@V?$allocator@USpellTreeIterator@th105@@@std@@@std@@IAEXXZ=0x00420A80",
   "erase=0x0043D100",
   "operator_delete=0x006898EA",
 ]
@@ -12998,6 +12999,49 @@ rel32_targets = [
   "?push_back@?$vector@PAUFighterPhaseObjectView@th105@@V?$allocator@PAUFighterPhaseObjectView@th105@@@std@@@std@@QAEXABQAUFighterPhaseObjectView@th105@@@Z=0x0064AF70",
 ]
 
+[[units.gpt-web-fighter-phase-context-lifetime.functions]]
+address = "0x004642B0"
+symbol_base = "?swap_slots_4642b0@FighterPhaseContextLifetime@th105@@QAEXII@Z"
+
+[[units.gpt-web-fighter-phase-context-lifetime.functions]]
+address = "0x00464D40"
+symbol_base = "?pending_worker_loop_464d40@FighterPhaseContextLifetime@th105@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?initialize_slot_sync@FighterPhaseContextLifetime@th105@@QAEXIPAUSide@MatchSetup@2@@Z=0x004642F0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = ["__imp__WaitForSingleObject@8=__imp__WaitForSingleObject@8"]
+
+[[units.gpt-web-fighter-phase-context-lifetime.functions]]
+address = "0x00464E50"
+symbol_base = "?pending_worker_entry@th105@@YGIPAX@Z"
+rel32_targets = ["?pending_worker_loop_464d40@FighterPhaseContextLifetime@th105@@QAEXXZ=0x00464D40"]
+dir32_targets = [
+  "__imp__CoInitialize@4=__imp__CoInitialize@4",
+  "__imp__CoUninitialize@0=__imp__CoUninitialize@0",
+]
+
+[[units.gpt-web-fighter-phase-context-lifetime.functions]]
+address = "0x00464E70"
+symbol_base = "?released_worker_entry@th105@@YGIPAX@Z"
+rel32_targets = ["?released_worker_loop_464dd0@FighterPhaseContextLifetime@th105@@QAEXXZ=0x00464DD0"]
+dir32_targets = [
+  "__imp__CoInitialize@4=__imp__CoInitialize@4",
+  "__imp__CoUninitialize@0=__imp__CoUninitialize@0",
+]
+
+[[units.gpt-web-fighter-phase-context-lifetime.functions]]
+address = "0x00464F90"
+symbol_base = "?release_slots_and_signal_464f90@FighterPhaseContextLifetime@th105@@QAEXXZ"
+rel32_targets = [
+  "?_Buynode@?$list@HV?$allocator@H@std@@@std@@IAEPAU_Node@?$_List_nod@HV?$allocator@H@std@@@2@PAU342@0ABH@Z=0x00421F30",
+  "?_Incsize@?$list@HV?$allocator@H@std@@@std@@IAEXI@Z=0x00440370",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "_memmove_s=0x00689EB0",
+]
+dir32_targets = ["__imp__SetEvent@4=__imp__SetEvent@4"]
+
 [units.gpt-web-game-config-load]
 kind = "probe"
 source = "src/config/GameConfigLoad.cpp"
@@ -13133,3 +13177,45 @@ rel32_targets = [
   "?rebind_selected_input_43b640@th105@@YAXHC@Z=0x0043B640",
 ]
 dir32_targets = ["_g_active_menu_input=_g_active_menu_input"]
+
+[units.gpt-web-fighter-embedded-state-runtime]
+kind = "probe"
+source = "src/battle/FighterEmbeddedStateRuntime.cpp"
+object = "build/match-units/GptWeb_FighterEmbeddedStateRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current Fighter embedded +0x3D0 state runtime. Ordinary VC8 state-machine source reproduces the 248-byte step and the 45-byte phase callback. The phase scale is target-attested 32.0f at 0x006CD228; the step uses the exact orientation-sine helper and target-backed double constants without relocation aliasing."
+
+[[units.gpt-web-fighter-embedded-state-runtime.functions]]
+address = "0x004652F0"
+symbol_base = "?step_4652f0@FighterEmbeddedState3d0Runtime@th105@@QAEXXZ"
+rel32_targets = ["?lookup_orientation_sine@th105@@YAMH@Z=0x00406480"]
+dir32_targets = [
+  "__real@3ff0000000000000=__real@3ff0000000000000",
+  "__real@407e000000000000=__real@407e000000000000",
+  "__real@4050000000000000=__real@4050000000000000",
+  "__real@4084000000000000=__real@4084000000000000",
+]
+
+[[units.gpt-web-fighter-embedded-state-runtime.functions]]
+address = "0x004653F0"
+symbol_base = "?phase_4653f0@FighterEmbeddedState3d0Runtime@th105@@QAEXXZ"
+dir32_targets = ["__real@42000000=__real@42000000"]
+
+[units.gpt-web-profile-deck-availability]
+kind = "probe"
+source = "src/ui/ProfileDeckAvailability.cpp"
+object = "build/match-units/GptWeb_ProfileDeckAvailability.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CProfileDeckEdit availability root. Recovered filtered_3cc is a checked deque<SpellTreeIterator>, not a deque of the local count-map iterator. The function queries the character score-count map first and common map second, caps counts at 99, and preserves the repeated get_score_data()/checked iterator lifetimes needed for canonical bytes."
+
+[[units.gpt-web-profile-deck-availability.functions]]
+address = "0x00448DF0"
+symbol_base = "?available_count_for_index_448df0@CProfileDeckEdit@th105@@QAEHH@Z"
+rel32_targets = [
+  "?at@SpellIteratorDequeAtView@th105@@QAEAAViterator@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@I@Z=0x004300B0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?get_score_data@th105@@YAPAUScoreData@1@XZ=0x0043AF20",
+  "?find@?$_Tree@V?$_Tmap_traits@HHU?$less@H@std@@V?$allocator@U?$pair@$$CBHH@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
+]

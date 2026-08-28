@@ -1338,3 +1338,38 @@ aligned locals or change the project optimization profile.
 - Do not replace a real polymorphic source call with a manual `vtable[n]` facade merely because the target slot is known. In this constructor, viewing `TitleDesignResource` as a genuine virtual interface whose fifth slot is `load(const char *)` naturally schedules the vptr/method load between the `alternate_320`, `state_328`, and `count_324` stores. The existing inline manual-vtable facade keeps those stores together and misses the target. This is static-type/source evidence, not permission to write manual vtable evaluation in authored reconstruction.
 - `CProfileKeyConfig::render` is 501/501 only when key slots are read directly in both the nonnegative check and the `%`/`/` tile expressions. Naming `int key = keys_2f0[i]` lets VC8 load then test; the target compares memory first and reloads the value inside the branch. The render also confirms a CTile call-site ABI of `render(float x, float y, int column, int row)` and the target double 176.0 literal at `0x006C22E0`.
 - `CProfileKeyConfig::update` closes 355/355 by preserving the source CFG rather than cloning returns. The raw-input capture success path jumps to one final true epilogue, so ordinary source should wrap the remaining logic in `if (!capture_key_input()) { ... }` and return true once at the tail. The confirm path must not hold a long-lived PlayerSlot pointer: copy the 0x34 key block and then reload `player_04` for alternate publication, deck selection, profile save, and input rebinding. A named persistent slot pointer makes VC8 save EBP and shortens/reorders the target path.
+
+## Fighter phase / profile availability exact wave (2026-08-28)
+
+Eight additional ordinary-VC8 authored bodies close for **1,076 bytes**: the
+FighterPhaseContext swap/pending-worker/two COM worker entries/release path at
+`0x004642B0`, `0x00464D40`, `0x00464E50`, `0x00464E70`, and `0x00464F90`;
+the embedded fighter state step/phase at `0x004652F0` and `0x004653F0`; and
+`CProfileDeckEdit::available_count_for_index @ 0x00448DF0`.
+
+The FighterPhaseContext layout lesson is that +0x34..+0x36 is a real three-byte
+active array.  Modeling it as `unsigned short + byte` preserved offsets but
+changed indexed byte scheduling in the 49-byte swap.  `unsigned char[3]`
+recovers that body while the already-exact destructor, released-worker loop,
+and reset path remain exact.  The 170-byte release path is then ordinary
+`list<int>::push_back`, ownership zeroing, `vector<Fighter*>::clear`, and
+`SetEvent`; no manual node operations are needed in source.
+
+For the embedded +0x3D0 state, do not trust a relocation match when the literal
+semantics disagree.  An exploratory probe used `0.025f`, but current target
+`0x004653F0` loads `0x006CD228`, whose attested bytes are IEEE-754 `32.0f`.
+Correcting source to `callback.apply(value, 32.0f)` naturally gives 45/45 exact.
+The adjacent 248-byte step uses the exact orientation-sine helper and the
+source-visible double constants 1.0, 480.0, 64.0 and 640.0.  Reject relocation
+aliases between numerically different literals even if they could make address
+bytes compare.
+
+`CProfileDeckEdit::filtered_3cc` is a checked `deque<SpellTreeIterator>`, not a
+deque of the local deck-count map iterator.  This source type is required by the
+358-byte availability root, which looks up the selected spell key in the
+per-character ScoreData count map first, then the common map, capping either at
+99.  Updating the durable header changes the generated `_Tidy` symbol used by
+the already-exact profile-deck destructor, but the correct
+`deque<SpellTreeIterator>::_Tidy` is linker-ICF identical at the existing
+physical target helper `0x00420A80`; mapping the correct template instance
+restores the destructor without lying about the element type.

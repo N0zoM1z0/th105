@@ -371,3 +371,24 @@ git diff --check
 
 - **Newest ProfileKeyConfig runtime wave:** three authored canonical-exact roots / **1,423 bytes**, moving the working checkpoint to **991 exact / 164,098 authored bytes / 320 units** with 1,039 classified exclusions and 1,980 review-pending candidates. `CProfileKeyConfig::CProfileKeyConfig @ 0x0044BA90` is 567/567, `render @ 0x0044B340` is 501/501, and virtual `update @ 0x0044B860` is 355/355. All three live in ordinary `src/ui/ProfileKeyConfigRuntime.cpp`; the existing 0x330 class layout, exact scalar wrapper, and exact ProfileMenu state-three caller own the class identity. The 188-byte normal destructor remains a deliberate scheduler stop and is not forced.
 - Reusable details from the wave: publish constructor `player_04`/`input_slot_32c` only after nontrivial members; preserve the 4-byte texture handle as a real value-return/hidden-sret instead of an explicit out local; use a genuine virtual design-load call-site rather than manual vtable indexing; keep render key slots as direct repeated member reads; and express update as one capture-false body with a shared return-true tail. These normal source choices reproduce the target without inline/native assembly, register or volatile coercion, fake liveness, padding, copied bytes, or manual target vtable dispatch.
+
+### 2026-08-28 fighter phase / profile availability wave
+
+- Promoted **8 authored canonical-exact functions / 1,076 bytes**, moving the
+  checkpoint from **991 / 164,098 bytes / 320 units** to **999 / 165,174 bytes /
+  322 units**; origin review drops from 1,980 to 1,972.
+- FighterPhaseContext additions: swap `0x004642B0` (49), pending worker
+  `0x00464D40` (142), COM entries `0x00464E50`/`0x00464E70` (32 each), release
+  slots `0x00464F90` (170).  Durable layout now records +0x34 as `byte[3]`.
+- Fighter embedded state additions: step `0x004652F0` (248) and phase
+  `0x004653F0` (45).  IDA-mapped `0x006CD228` proves the phase argument is
+  `32.0f`; the older `0.025f` probe was deliberately not relocation-aliased.
+- Profile deck availability `0x00448DF0` closes at 358 bytes and establishes
+  `filtered_3cc` as `deque<SpellTreeIterator>`.  Existing profile deck
+  count/lifetime/common-resource exact units were replayed after the shared
+  header correction; `deque<SpellTreeIterator>::_Tidy` legitimately resolves
+  to the existing ICF body at `0x00420A80`.
+- Dirty background-runtime work remains intentionally unpromoted: the large
+  `BattleObjectManager::update_background_runtime @ 0x00466F40` is still a
+  natural-source work in progress and must not be counted exact until its
+  canonical comparator is zero-difference.

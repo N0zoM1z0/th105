@@ -31,15 +31,18 @@ struct FighterPhaseContextLifetime {
     HANDLE wake_20;
     HANDLE done_24;
     int owned_28[3];
-    unsigned short active_34_35;
-    unsigned char active_36;
+    unsigned char active_34[3];
     unsigned char reserved_37;
     std::vector<FighterPhaseObjectView *> fighters_38;
     std::list<int> released_48;
 
     ~FighterPhaseContextLifetime();
+    void pending_worker_loop_464d40();
     void released_worker_loop_464dd0();
+    void release_slots_and_signal_464f90();
     void reset_slot_state_465040();
+    void initialize_slot_sync(unsigned slot, MatchSetup::Side *side);
+    void swap_slots_4642b0(unsigned first, unsigned second);
 };
 
 typedef char FighterPhaseContextLifetime_worker0_offset_must_be_0x10[
@@ -76,6 +79,62 @@ FighterPhaseContextLifetime::~FighterPhaseContextLifetime()
     }
 }
 
+
+void FighterPhaseContextLifetime::pending_worker_loop_464d40()
+{
+    while (running_0c) {
+        WaitForSingleObject(wake_20, INFINITE);
+        while (pending_00.size() != 0) {
+            initialize_slot_sync(
+                pending_00.front().slot,
+                pending_00.front().side);
+            pending_00.pop_front();
+        }
+    }
+}
+
+void FighterPhaseContextLifetime::release_slots_and_signal_464f90()
+{
+    for (int i = 0; i < 3; ++i) {
+        active_34[i] = 0;
+        released_48.push_back(owned_28[i]);
+        owned_28[i] = 0;
+    }
+    fighters_38.clear();
+    SetEvent(done_24);
+}
+
+void FighterPhaseContextLifetime::swap_slots_4642b0(
+    unsigned first,
+    unsigned second)
+{
+    int pointer = owned_28[first];
+    owned_28[first] = owned_28[second];
+    owned_28[second] = pointer;
+    unsigned char a = active_34[second];
+    unsigned char b = active_34[first];
+    active_34[first] = a;
+    active_34[second] = b;
+}
+
+unsigned __stdcall pending_worker_entry(void *context)
+{
+    if (CoInitialize(0) >= 0) {
+        static_cast<FighterPhaseContextLifetime *>(context)->pending_worker_loop_464d40();
+        CoUninitialize();
+    }
+    return 0;
+}
+
+unsigned __stdcall released_worker_entry(void *context)
+{
+    if (CoInitialize(0) >= 0) {
+        static_cast<FighterPhaseContextLifetime *>(context)->released_worker_loop_464dd0();
+        CoUninitialize();
+    }
+    return 0;
+}
+
 void FighterPhaseContextLifetime::released_worker_loop_464dd0()
 {
     while (running_0c) {
@@ -92,12 +151,10 @@ void FighterPhaseContextLifetime::released_worker_loop_464dd0()
 void FighterPhaseContextLifetime::reset_slot_state_465040()
 {
     fighters_38.clear();
-    unsigned char *active =
-        reinterpret_cast<unsigned char *>(&active_34_35);
     for (int i = 0; i < 3; ++i) {
         FighterPhaseObjectView *&owned =
             *reinterpret_cast<FighterPhaseObjectView **>(&owned_28[i]);
-        if (owned != 0 && active[i] != 0)
+        if (owned != 0 && active_34[i] != 0)
             fighters_38.push_back(owned);
     }
 }

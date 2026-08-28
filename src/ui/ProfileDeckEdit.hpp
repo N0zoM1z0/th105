@@ -14,7 +14,7 @@ namespace th105 {
 
 typedef std::map<unsigned short, signed char> ProfileDeckCountMap;
 typedef std::deque<unsigned short> ProfileDeckKeyDeque;
-typedef std::deque<ProfileDeckCountMap::iterator> ProfileDeckIteratorDeque;
+typedef std::deque<SpellTreeIterator> ProfileDeckIteratorDeque;
 
 // Current CProfileDeckEdit ctor/dtor and the CSprite copy families establish
 // five real 32-bit extension values after the 0x80-byte CSpriteBase prefix.
@@ -57,6 +57,7 @@ public:
 
     void import_deck_counts(const ProfileDeckKeyDeque &source);
     void export_deck_counts(ProfileDeckKeyDeque *destination);
+    int available_count_for_index_448df0(int index);
 
 private:
     PlayerSlotRecord *player_04;
@@ -74,8 +75,8 @@ private:
     unsigned texture_300;
     ProfileDeckSprite94 sprite_304;
     ProfileDeckResourceGroup20 resources_398;
-    void *local_tree_3b8;
-    void *common_tree_3bc;
+    SpellTree *local_tree_3b8;
+    SpellTree *common_tree_3bc;
     ProfileDeckCountMap counts_3c0;
     ProfileDeckIteratorDeque filtered_3cc;
     unsigned char color_3e0;
