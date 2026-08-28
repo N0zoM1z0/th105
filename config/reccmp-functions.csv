@@ -1034,3 +1034,10 @@ CLogo_ctor,0x0041F780,function
 Opening_update,0x0041F850,function
 Opening_ctor,0x0041F970,function
 CLoadingWatch_ctor,0x00426AB0,function
+create_scene_for_id_41e320,0x0041E320,function
+Ending_update,0x0041E7C0,function
+CLoadingWatch_render,0x004269D0,function
+CSelectSV_ctor,0x0041E160,function
+CSelectCL_ctor,0x0041E1C0,function
+CLoadingSV_ctor,0x0041E180,function
+CLoadingCL_ctor,0x0041E1E0,function

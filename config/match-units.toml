@@ -13573,3 +13573,128 @@ dir32_targets = [
   "??_7CLoadingWatchConstructorView@th105@@6B@=??_7CLoadingWatch@@6B@",
   "??_7SceneSprite94@th105@@6B@=_select_sprite_vtable_anchor",
 ]
+
+[units.gpt-web-scene-factory-runtime]
+kind = "probe"
+source = "src/engine/SceneFactoryRuntime.cpp"
+object = "build/match-units/GptWeb_SceneFactoryRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current 0x0041E320 scene factory. A real typed-new sparse switch over CLogo/Opening/CLoading/CTitle/CSelect/CSelectScenario/CBattle/Ending plus SV/CL/Watch derived scenes reproduces all sixteen new-expression EH states, target allocation extents, physical case order and the trailing 21-entry jump table."
+
+[[units.gpt-web-scene-factory-runtime.functions]]
+address = "0x0041E320"
+symbol_base = "?create_scene_for_id_41e320@th105@@YGPAXH@Z"
+rel32_targets = [
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CLogo@th105@@QAE@XZ=0x0041F780",
+  "??0Opening@th105@@QAE@XZ=0x0041F970",
+  "??0CLoading@th105@@QAE@XZ=0x0041F4F0",
+  "??0CTitle@th105@@QAE@XZ=0x00425DF0",
+  "??0CSelect@th105@@QAE@XZ=0x004231A0",
+  "??0CSelectScenario@th105@@QAE@XZ=0x00425350",
+  "??0CBattle@th105@@QAE@XZ=0x0041DF60",
+  "??0Ending@th105@@QAE@XZ=0x0041F360",
+  "??0CSelectSV@th105@@QAE@XZ=0x0041E160",
+  "??0CLoadingSV@th105@@QAE@XZ=0x0041E180",
+  "??0CBattleSV@th105@@QAE@XZ=0x0041E1A0",
+  "??0CSelectCL@th105@@QAE@XZ=0x0041E1C0",
+  "??0CLoadingCL@th105@@QAE@XZ=0x0041E1E0",
+  "??0CBattleCL@th105@@QAE@XZ=0x0041E200",
+  "??0CLoadingWatch@th105@@QAE@XZ=0x00426AB0",
+  "??0CBattleWatch@th105@@QAE@XZ=0x0041E220",
+]
+dir32_targets = [
+  "__ehhandler$?create_scene_for_id_41e320@th105@@YGPAXH@Z=__ehhandler$?create_scene_for_id_41e320@th105@@YGPAXH@Z",
+  "___security_cookie=___security_cookie",
+]
+
+[units.gpt-web-ending-update-runtime]
+kind = "probe"
+source = "src/ui/EndingUpdateRuntime.cpp"
+object = "build/match-units/GptWeb_EndingUpdateRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "RTTI/vtable-owned Ending::update at 0x0041E7C0. The truthful source keeps +0x94/+0x95/+0x96 cluster/phase/fade state, +0x97 alpha, current battle-phase ending state, menu-input skip handling and ordinary CMenuEnd allocation. Direct scene-mode equality is byte-significant and naturally emits the target subtract-based ternary lowering."
+
+[[units.gpt-web-ending-update-runtime.functions]]
+address = "0x0041E7C0"
+symbol_base = "?update@EndingUpdateView@th105@@QAEHXZ"
+rel32_targets = [
+  "_has_ui_selection_state_changed=0x0043B6E0",
+  "?status_45a290@BattlePhaseEndingView@th105@@QAECXZ=0x0045A290",
+  "?update_451400@EndingUpdateClusterMethodView@th105@@QAEEXZ=0x00451400",
+  "_get_combined_menu_input_counters=0x0043B030",
+  "_is_menu_initial_press=0x0043ABD0",
+  "?fade_bgm@th105@@YAXHH@Z=0x0043B140",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CMenuEndDispatchView@th105@@QAE@PAX@Z=0x00445100",
+  "?install_menu_object@th105@@YAXPAX@Z=0x0043B0F0",
+]
+dir32_targets = [
+  "__ehhandler$?update@EndingUpdateView@th105@@QAEHXZ=__ehhandler$?update@EndingUpdateView@th105@@QAEHXZ",
+  "___security_cookie=___security_cookie",
+  "?g_scene_mode@th105@@3HA=_g_scene_mode",
+  "?g_battle_phase_block_ending@th105@@3PAUBattlePhaseEndingView@1@A=?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A",
+]
+
+[units.gpt-web-loading-watch-render-runtime]
+kind = "probe"
+source = "src/ui/LoadingWatchRenderRuntime.cpp"
+object = "build/match-units/GptWeb_LoadingWatchRenderRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "RTTI/vtable-owned CLoadingWatch::render at 0x004269D0. Native phase +0x9C, 0x94 sprite +0x08, RenderModeManager frame/rect calls and the exact cosine/ftol alpha path reproduce all 217 bytes."
+
+[[units.gpt-web-loading-watch-render-runtime.functions]]
+address = "0x004269D0"
+symbol_base = "?render@CLoadingWatchRenderView@th105@@UAE_NXZ"
+rel32_targets = [
+  "?begin_frame@RenderModeManager@th105@@QAE_NXZ=0x00401000",
+  "?prepare_frame@RenderModeManager@th105@@QAEXXZ=0x004010C0",
+  "?draw_rect@RenderModeManager@th105@@QAEHMMMMIE@Z=0x004012A0",
+  "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
+  "__ftol2_sse=0x0068A1A0",
+  "?finish_frame@RenderModeManager@th105@@QAEXXZ=0x00401040",
+]
+dir32_targets = [
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+  "__real@43f00000=__real@43f00000",
+  "__real@44200000=__real@44200000",
+  "__real@4014000000000000=__real@4014000000000000",
+  "__real@405fc00000000000=__real@405fc00000000000",
+  "__real@43e00000=__real@43e00000",
+  "__real@44000000=__real@44000000",
+]
+
+[units.gpt-web-scene-derived-select-loading-ctors]
+kind = "probe"
+source = "src/ui/SceneDerivedSelectLoadingCtors.cpp"
+object = "build/match-units/GptWeb_SceneDerivedSelectLoadingCtors.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current RTTI-owned CSelectSV/CSelectCL/CLoadingSV/CLoadingCL constructors. Ordinary polymorphic inheritance calls the base ctor then publishes the derived class vtable; CSelect derived objects add one physical dword to the 0x2ED8 base while CLoading derived objects remain 0xBC."
+
+[[units.gpt-web-scene-derived-select-loading-ctors.functions]]
+address = "0x0041E160"
+symbol_base = "??0CSelectSV@th105@@QAE@XZ"
+rel32_targets = ["??0CSelect@th105@@QAE@XZ=0x004231A0"]
+dir32_targets = ["??_7CSelectSV@th105@@6B@=??_7CSelectSV@th105@@6B@"]
+
+[[units.gpt-web-scene-derived-select-loading-ctors.functions]]
+address = "0x0041E1C0"
+symbol_base = "??0CSelectCL@th105@@QAE@XZ"
+rel32_targets = ["??0CSelect@th105@@QAE@XZ=0x004231A0"]
+dir32_targets = ["??_7CSelectCL@th105@@6B@=??_7CSelectCL@th105@@6B@"]
+
+[[units.gpt-web-scene-derived-select-loading-ctors.functions]]
+address = "0x0041E180"
+symbol_base = "??0CLoadingSV@th105@@QAE@XZ"
+rel32_targets = ["??0CLoading@th105@@QAE@XZ=0x0041F4F0"]
+dir32_targets = ["??_7CLoadingSV@th105@@6B@=??_7CLoadingSV@th105@@6B@"]
+
+[[units.gpt-web-scene-derived-select-loading-ctors.functions]]
+address = "0x0041E1E0"
+symbol_base = "??0CLoadingCL@th105@@QAE@XZ"
+rel32_targets = ["??0CLoading@th105@@QAE@XZ=0x0041F4F0"]
+dir32_targets = ["??_7CLoadingCL@th105@@6B@=??_7CLoadingCL@th105@@6B@"]

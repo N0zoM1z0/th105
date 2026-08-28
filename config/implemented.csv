@@ -1033,3 +1033,10 @@ CLogo_ctor
 Opening_update
 Opening_ctor
 CLoadingWatch_ctor
+create_scene_for_id_41e320
+Ending_update
+CLoadingWatch_render
+CSelectSV_ctor
+CSelectCL_ctor
+CLoadingSV_ctor
+CLoadingCL_ctor
