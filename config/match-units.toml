@@ -12819,13 +12819,13 @@ source = "src/battle/EventEffectStateLifetime.cpp"
 object = "build/match-units/GptWeb_EventEffectStateLifetime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current 0xE8 EventEffectState lifetime. Exact current consumers close vector<unsigned> +0x08, vector<CSpriteEx> +0x18, deque<BackgroundRenderEntry> +0x28, map<signed char,vector<signed char>> +0x3C, and CEffectManager<WeatherEffectObject> +0x48. The final 0x0C runtime tail is intentionally left uninitialized by the ctor and is initialized later by the runtime setup path."
+notes = "Current 0xE8 EventEffectState lifetime. Exact current consumers close vector<unsigned> +0x08, vector<CSpriteEx> +0x18, deque<BackgroundRenderEntry> +0x28, map<signed char,vector<unsigned char>> +0x3C, and CEffectManager<WeatherEffectObject> +0x48. The final 0x0C runtime tail is intentionally left uninitialized by the ctor and is initialized later by the runtime setup path."
 
 [[units.gpt-web-event-effect-state-lifetime.functions]]
 address = "0x00438DF0"
 symbol_base = "??0EventEffectStateLifetime@th105@@QAE@XZ"
 rel32_targets = [
-  "?_Buynode@?$_Tree@V?$_Tmap_traits@CV?$vector@CV?$allocator@C@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@CV?$allocator@C@std@@@std@@@std@@@2@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@CV?$vector@CV?$allocator@C@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@CV?$allocator@C@std@@@std@@@std@@@2@$0A@@std@@@2@XZ=0x00435E70",
+  "?_Buynode@?$_Tree@V?$_Tmap_traits@CV?$vector@EV?$allocator@E@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@EV?$allocator@E@std@@@std@@@std@@@2@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@CV?$vector@EV?$allocator@E@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@EV?$allocator@E@std@@@std@@@std@@@2@$0A@@std@@@2@XZ=0x00435E70",
   "??0?$CEffectManager@VWeatherEffectObject@@@@QAE@XZ=0x00437430",
 ]
 dir32_targets = [
@@ -12839,7 +12839,7 @@ address = "0x00438C10"
 symbol_base = "??1EventEffectStateLifetime@th105@@QAE@XZ"
 rel32_targets = [
   "??1?$CEffectManager@VWeatherEffectObject@@@@UAE@XZ=0x00437D20",
-  "?erase@?$_Tree@V?$_Tmap_traits@CV?$vector@CV?$allocator@C@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@CV?$allocator@C@std@@@std@@@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z=0x004388A0",
+  "?erase@?$_Tree@V?$_Tmap_traits@CV?$vector@EV?$allocator@E@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@EV?$allocator@E@std@@@std@@@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z=0x004388A0",
   "??3@YAXPAX@Z=0x006898EA",
   "?_Tidy@?$deque@UBackgroundRenderEntry@th105@@V?$allocator@UBackgroundRenderEntry@th105@@@std@@@std@@IAEXXZ=0x00420A80",
   "?_Tidy@?$vector@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@@std@@IAEXXZ=0x00436420",
@@ -12908,4 +12908,92 @@ dir32_targets = [
   "?g_battle_object_manager_teardown@th105@@3PAUBattleObjectManagerTeardownView@1@A=?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A",
   "?g_fighter_phase_context_teardown@th105@@3PAUFighterPhaseContextTeardownView@1@A=?g_fighter_phase_context@th105@@3PAUFighterPhaseContext@1@A",
   "?g_battle_input_gate_teardown@th105@@3PAXA=?g_battle_input_gate@th105@@3PAUBattleInputGate@1@A",
+]
+
+[units.gpt-web-event-effect-state-runtime]
+kind = "probe"
+source = "src/battle/EventEffectStateRuntime.cpp"
+object = "build/match-units/GptWeb_EventEffectStateRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current EventEffectState authored runtime over the target-backed 0xE8 physical layout. A signed-char key maps to vector<unsigned char> at +0x3C; the generated 0x004699C0 _Insert_n symbol independently proves unsigned-byte mapped rows. Unnamed find(state)->second lifetime preserves the target hidden-sret iterator, and structured nonnegative sprite selection preserves the target branch orientation."
+
+[[units.gpt-web-event-effect-state-runtime.functions]]
+address = "0x00469D50"
+symbol_base = "?publish_stage_state_469d50@EventEffectStateRuntimeView@th105@@QAEXC@Z"
+rel32_targets = [
+  "?find@?$_Tree@V?$_Tmap_traits@CV?$vector@EV?$allocator@E@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@EV?$allocator@E@std@@@std@@@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@ABC@Z=0x004698E0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "??A?$vector@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@@std@@QAEAAVCSpriteEx@@I@Z=0x004654B0",
+  "?push_back@?$deque@UBackgroundRenderEntry@th105@@V?$allocator@UBackgroundRenderEntry@th105@@@std@@@std@@QAEXABUBackgroundRenderEntry@th105@@@Z=0x004306D0",
+]
+
+[[units.gpt-web-event-effect-state-runtime.functions]]
+address = "0x00469EC0"
+symbol_base = "?prepare_shutdown_469ec0@EventEffectStateRuntimeView@th105@@QAEXXZ"
+rel32_targets = [
+  "?_Erase@?$_Tree@V?$_Tmap_traits@CV?$vector@EV?$allocator@E@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@EV?$allocator@E@std@@@std@@@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@CV?$vector@EV?$allocator@E@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@EV?$allocator@E@std@@@std@@@std@@@2@$0A@@std@@@2@@Z=0x004371C0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+]
+dir32_targets = [
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+]
+
+[[units.gpt-web-event-effect-state-runtime.functions]]
+address = "0x00469F40"
+symbol_base = "?reset_runtime_state_469f40@EventEffectStateRuntimeView@th105@@QAEXXZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@QAEXXZ=0x0046EEB0",
+  "?_Tidy@?$deque@UBackgroundRenderEntry@th105@@V?$allocator@UBackgroundRenderEntry@th105@@@std@@@std@@IAEXXZ=0x00420A80",
+  "?publish_stage_state_469d50@EventEffectStateRuntimeView@th105@@QAEXC@Z=0x00469D50",
+]
+dir32_targets = [
+  "?g_event_runtime_state@th105@@3HA=?g_event_runtime_state@th105@@3HA",
+  "?g_event_runtime_zero@th105@@3HA=?g_event_runtime_zero@th105@@3HA",
+  "?g_battle_transition_mode@th105@@3EA=?g_battle_transition_mode@th105@@3EA",
+]
+
+[units.gpt-web-fighter-phase-context-lifetime]
+kind = "probe"
+source = "src/battle/FighterPhaseContextLifetime.cpp"
+object = "build/match-units/GptWeb_FighterPhaseContextLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current FighterPhaseContext 0x54 lifetime/runtime island. Native members are list<FighterPhaseInitRequest> +0, two 8-byte thread owners +0x10/+0x18, event handles +0x20/+0x24, three owned handles +0x28, checked vector<Fighter*> +0x38 and list<int> +0x48. The destructor uses stop/join in the body and lets implicit member destruction run at the tail; reset_slot_state passes owned handle members by reference directly to vector::push_back."
+
+[[units.gpt-web-fighter-phase-context-lifetime.functions]]
+address = "0x00464BA0"
+symbol_base = "??1FighterPhaseContextLifetime@th105@@QAE@XZ"
+rel32_targets = [
+  "?stop@FighterPhaseThreadOwner@th105@@QAEPAXXZ=0x00414640",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "??3@YAXPAX@Z=0x006898EA",
+  "??1FighterPhaseThreadOwner@th105@@QAE@XZ=0x004145F0",
+]
+dir32_targets = [
+  "__ehhandler$??1FighterPhaseContextLifetime@th105@@QAE@XZ=__ehhandler$??1FighterPhaseContextLifetime@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "__imp__SetEvent@4=__imp__SetEvent@4",
+  "__imp__CloseHandle@4=__imp__CloseHandle@4",
+]
+
+[[units.gpt-web-fighter-phase-context-lifetime.functions]]
+address = "0x00464DD0"
+symbol_base = "?released_worker_loop_464dd0@FighterPhaseContextLifetime@th105@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "__imp__WaitForSingleObject@8=__imp__WaitForSingleObject@8",
+]
+
+[[units.gpt-web-fighter-phase-context-lifetime.functions]]
+address = "0x00465040"
+symbol_base = "?reset_slot_state_465040@FighterPhaseContextLifetime@th105@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$vector@PAUFighterPhaseObjectView@th105@@V?$allocator@PAUFighterPhaseObjectView@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@PAUFighterPhaseObjectView@th105@@V?$allocator@PAUFighterPhaseObjectView@th105@@@std@@@2@V32@0@Z=0x00464B40",
+  "?push_back@?$vector@PAUFighterPhaseObjectView@th105@@V?$allocator@PAUFighterPhaseObjectView@th105@@@std@@@std@@QAEXABQAUFighterPhaseObjectView@th105@@@Z=0x0064AF70",
 ]

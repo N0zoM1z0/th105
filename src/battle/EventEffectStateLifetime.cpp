@@ -16,7 +16,7 @@ struct EventEffectStateLifetime {
     std::vector<unsigned> resources_08;
     std::vector<CSpriteEx> sprites_18;
     std::deque<BackgroundRenderEntry> background_entries_28;
-    std::map<signed char, std::vector<signed char> > stage_rows_3c;
+    std::map<signed char, std::vector<unsigned char> > stage_rows_3c;
     CEffectManager<WeatherEffectObject> emitter_48;
     unsigned char runtime_tail_dc[0x0c];
 
