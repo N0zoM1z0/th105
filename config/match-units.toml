@@ -12749,3 +12749,163 @@ dir32_targets = [
   "??_C@_0BH@JBCJGMGH@data?1effect?1effect?4pat?$AA@=??_C@_0BH@JBCJGMGH@data?1effect?1effect?4pat?$AA@",
   "??_C@_0BE@KBOJKDGH@data?1bgm?1st?$CF02d?4ogg?$AA@=_arcade_bgm_path_format",
 ]
+
+[units.gpt-web-battle-manager-scene-lifetime]
+kind = "probe"
+source = "src/battle/BattleManagerSceneLifetime.cpp"
+object = "build/match-units/GptWeb_BattleManagerSceneLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CBattleManager/CBattleManagerArcade lifetime island. Exact CBattleManagerBase + a target-backed 0x528 ScenarioData subobject produce the 0x5B4 normal owner; Arcade adds the real std::list<int> at +0x5B4 and two dwords at +0x5C0/+0x5C4 for total 0x5C8. Destructors are intentionally implicit: VC8 then omits the extra derived-vptr publication introduced by an explicit empty destructor and naturally emits the target scalar wrappers."
+
+[[units.gpt-web-battle-manager-scene-lifetime.functions]]
+address = "0x00438CC0"
+symbol_base = "??0NormalSceneManagerLifetime@th105@@QAE@XZ"
+rel32_targets = [
+  "??0BattleManagerBaseDependency@th105@@QAE@XZ=0x0046B200",
+  "??0ScenarioDataLifetime@th105@@QAE@XZ=0x00459C90",
+]
+dir32_targets = [
+  "__ehhandler$??0NormalSceneManagerLifetime@th105@@QAE@XZ=__ehhandler$??0NormalSceneManagerLifetime@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7NormalSceneManagerLifetime@th105@@6B@=??_7CBattleManager@@6B@",
+]
+
+[[units.gpt-web-battle-manager-scene-lifetime.functions]]
+address = "0x00438D20"
+symbol_base = "??1NormalSceneManagerLifetime@th105@@UAE@XZ"
+rel32_targets = [
+  "??1ScenarioDataLifetime@th105@@QAE@XZ=0x00438A70",
+  "??1BattleManagerBaseDependency@th105@@UAE@XZ=0x0046B2A0",
+]
+dir32_targets = [
+  "__ehhandler$??1NormalSceneManagerLifetime@th105@@UAE@XZ=__ehhandler$??1NormalSceneManagerLifetime@th105@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+]
+
+[[units.gpt-web-battle-manager-scene-lifetime.functions]]
+address = "0x004391E0"
+symbol_base = "??_GNormalSceneManagerLifetime@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1NormalSceneManagerLifetime@th105@@UAE@XZ=0x00438D20",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.gpt-web-battle-manager-scene-lifetime.functions]]
+address = "0x00438D80"
+symbol_base = "??0ArcadeSceneManagerLifetime@th105@@QAE@XZ"
+rel32_targets = [
+  "??0NormalSceneManagerLifetime@th105@@QAE@XZ=0x00438CC0",
+  "?_Buynode@?$list@HV?$allocator@H@std@@@std@@IAEPAU_Node@?$_List_nod@HV?$allocator@H@std@@@2@XZ=0x00435E50",
+]
+dir32_targets = [
+  "__ehhandler$??0ArcadeSceneManagerLifetime@th105@@QAE@XZ=__ehhandler$??0ArcadeSceneManagerLifetime@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7ArcadeSceneManagerLifetime@th105@@6B@=??_7CBattleManagerArcade@@6B@",
+]
+
+[[units.gpt-web-battle-manager-scene-lifetime.functions]]
+address = "0x00439370"
+symbol_base = "??_GArcadeSceneManagerLifetime@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "?_Tidy@?$list@HV?$allocator@H@std@@@std@@IAEXXZ=0x00435EB0",
+  "??1NormalSceneManagerLifetime@th105@@UAE@XZ=0x00438D20",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[units.gpt-web-event-effect-state-lifetime]
+kind = "probe"
+source = "src/battle/EventEffectStateLifetime.cpp"
+object = "build/match-units/GptWeb_EventEffectStateLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current 0xE8 EventEffectState lifetime. Exact current consumers close vector<unsigned> +0x08, vector<CSpriteEx> +0x18, deque<BackgroundRenderEntry> +0x28, map<signed char,vector<signed char>> +0x3C, and CEffectManager<WeatherEffectObject> +0x48. The final 0x0C runtime tail is intentionally left uninitialized by the ctor and is initialized later by the runtime setup path."
+
+[[units.gpt-web-event-effect-state-lifetime.functions]]
+address = "0x00438DF0"
+symbol_base = "??0EventEffectStateLifetime@th105@@QAE@XZ"
+rel32_targets = [
+  "?_Buynode@?$_Tree@V?$_Tmap_traits@CV?$vector@CV?$allocator@C@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@CV?$allocator@C@std@@@std@@@std@@@2@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@CV?$vector@CV?$allocator@C@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@CV?$allocator@C@std@@@std@@@std@@@2@$0A@@std@@@2@XZ=0x00435E70",
+  "??0?$CEffectManager@VWeatherEffectObject@@@@QAE@XZ=0x00437430",
+]
+dir32_targets = [
+  "__ehhandler$??0EventEffectStateLifetime@th105@@QAE@XZ=__ehhandler$??0EventEffectStateLifetime@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "?g_event_effect_state_lifetime@th105@@3PAUEventEffectStateLifetime@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A",
+]
+
+[[units.gpt-web-event-effect-state-lifetime.functions]]
+address = "0x00438C10"
+symbol_base = "??1EventEffectStateLifetime@th105@@QAE@XZ"
+rel32_targets = [
+  "??1?$CEffectManager@VWeatherEffectObject@@@@UAE@XZ=0x00437D20",
+  "?erase@?$_Tree@V?$_Tmap_traits@CV?$vector@CV?$allocator@C@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@CV?$allocator@C@std@@@std@@@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z=0x004388A0",
+  "??3@YAXPAX@Z=0x006898EA",
+  "?_Tidy@?$deque@UBackgroundRenderEntry@th105@@V?$allocator@UBackgroundRenderEntry@th105@@@std@@@std@@IAEXXZ=0x00420A80",
+  "?_Tidy@?$vector@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@@std@@IAEXXZ=0x00436420",
+]
+dir32_targets = [
+  "__ehhandler$??1EventEffectStateLifetime@th105@@QAE@XZ=__ehhandler$??1EventEffectStateLifetime@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+]
+
+[units.gpt-web-battle-phase-block-lifetime]
+kind = "probe"
+source = "src/battle/BattlePhaseBlockLifetime.cpp"
+object = "build/match-units/GptWeb_BattlePhaseBlockLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current 0x5B0 BattlePhaseBlock lifetime. Two checked std::strings occupy +0/+0x1C, the target-backed CsvReader lifetime is +0x38, a polymorphic 0x524 story-script subobject is +0x68, known story input/page fields occupy +0x58C..+0x597, and exact ScenarioEventParser consumers prove std::list<int> members at +0x598/+0x5A4. CsvReader cleanup is non-throwing in the shipped EH schedule; declaring both its dtor and clear_rows with throw() removes the otherwise spurious 5-byte state publication."
+
+[[units.gpt-web-battle-phase-block-lifetime.functions]]
+address = "0x00439200"
+symbol_base = "??0BattlePhaseBlockLifetime@th105@@QAE@XZ"
+rel32_targets = [
+  "??0StoryScriptSubobjectLifetime@th105@@QAE@XZ=0x00459C90",
+  "?_Buynode@?$list@HV?$allocator@H@std@@@std@@IAEPAU_Node@?$_List_nod@HV?$allocator@H@std@@@2@XZ=0x00435E50",
+]
+dir32_targets = [
+  "__ehhandler$??0BattlePhaseBlockLifetime@th105@@QAE@XZ=__ehhandler$??0BattlePhaseBlockLifetime@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+]
+
+[[units.gpt-web-battle-phase-block-lifetime.functions]]
+address = "0x00438E90"
+symbol_base = "??1BattlePhaseBlockLifetime@th105@@QAE@XZ"
+rel32_targets = [
+  "?_Tidy@?$list@HV?$allocator@H@std@@@std@@IAEXXZ=0x00435EB0",
+  "??1StoryScriptSubobjectLifetime@th105@@QAE@XZ=0x00438A70",
+  "?clear_rows@CsvReaderLifetime@th105@@QAEXXZ=0x0040FDB0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "__ehhandler$??1BattlePhaseBlockLifetime@th105@@QAE@XZ=__ehhandler$??1BattlePhaseBlockLifetime@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+]
+
+[units.gpt-web-shared-scene-teardown]
+kind = "probe"
+source = "src/ui/SharedSceneTeardown.cpp"
+object = "build/match-units/GptWeb_SharedSceneTeardown.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current shared battle-runtime teardown. It first destroys scene managers, invokes the EventEffectState shutdown member and EffectSink shutdown virtual, directly frees the 0x30 input-gate allocation, then uses ordinary C++ delete for EffectSink and nonvirtual EventEffectState/BattleObjectManager/FighterPhaseContext lifetimes."
+
+[[units.gpt-web-shared-scene-teardown.functions]]
+address = "0x004394E0"
+symbol_base = "?destroy_shared_battle_runtime@th105@@YAXXZ"
+rel32_targets = [
+  "?destroy_scene_managers@th105@@YAXXZ=0x00439480",
+  "?prepare_shutdown@EventEffectStateTeardownView@th105@@QAEXXZ=0x00469EC0",
+  "??1EventEffectStateTeardownView@th105@@QAE@XZ=0x00438C10",
+  "??1BattleObjectManagerTeardownView@th105@@QAE@XZ=0x00466AF0",
+  "??1FighterPhaseContextTeardownView@th105@@QAE@XZ=0x00464BA0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "?g_effect_sink_teardown@th105@@3PAUEffectSinkTeardownView@1@A=?g_effect_sink@th105@@3PAUEffectSink@1@A",
+  "?g_event_effect_state_teardown@th105@@3PAUEventEffectStateTeardownView@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A",
+  "?g_battle_object_manager_teardown@th105@@3PAUBattleObjectManagerTeardownView@1@A=?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A",
+  "?g_fighter_phase_context_teardown@th105@@3PAUFighterPhaseContextTeardownView@1@A=?g_fighter_phase_context@th105@@3PAUFighterPhaseContext@1@A",
+  "?g_battle_input_gate_teardown@th105@@3PAXA=?g_battle_input_gate@th105@@3PAUBattleInputGate@1@A",
+]
