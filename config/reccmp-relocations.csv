@@ -67,7 +67,7 @@ __real@0000000000000000,0x006CD148,0000000000000000,0,TH105 1.06a mapped bytes a
 __real@42200000,0x006C2A38,00002042,0,TH105 1.06a mapped bytes at 0x006C2A38 encode IEEE-754 float 40.0 used by current fighter-position clamp; attested 2026-08-21,literal
 __real@449b0000,0x006C2A34,00009b44,0,TH105 1.06a mapped bytes at 0x006C2A34 encode IEEE-754 float 1240.0 used by current fighter-position clamp; attested 2026-08-21,literal
 __ehhandler$?update_state_six@CProfileMenu@th105@@AAE_NXZ,0x006BA280,8b542408,0,IDA 1.06a 0x0044CF72 pushes this SEH handler; current xref directly ties it to update_state_six; attested 2026-08-21,address
-_g_profile_menu_controller,0x00702B80,00000000,0,"IDA 1.06a current profile-menu/editor xrefs share this controller address, including 0x0044CFF4/0x0044D00D; attested 2026-08-21",address
+_g_profile_menu_controller,0x00702B80,00000000,0;4;7;8;9;0xA;0x808;0x809;0x908;0xA08;0xA0C;0xA0D;0xA0E;0xA0F;0xA10,"Current 1.06a ProfileMenuController cluster 0x0040E720..0x0040EDC0 and exact ProfileMenu callers share aggregate 0x00702B80. IDA observes primary text +8 and DBCS boundary accesses through base+7/+9/+0xA, composition +0x808/+0x809, attributes +0x908, max length +0xA08, flags +0xA0C..+0xA0F and cursor +0xA10; attested 2026-08-28",address
 _g_profile_name_list,0x006FD2C8,00000000,0,"IDA 1.06a current profile-name selection/copy paths share this list address, including 0x0044D107; attested 2026-08-21",address
 _profile_name_empty,0x006D69D6,00,0,TH105 1.06a target byte is the empty NUL string used by current profile-name comparison; attested 2026-08-21,address
 _profile_file_extension,0x006C2408,2e64617400,0,TH105 1.06a mapped bytes encode the NUL-terminated .dat profile extension used at 0x0044D09C; attested 2026-08-21,address

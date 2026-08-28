@@ -13219,3 +13219,70 @@ rel32_targets = [
   "?get_score_data@th105@@YAPAUScoreData@1@XZ=0x0043AF20",
   "?find@?$_Tree@V?$_Tmap_traits@HHU?$less@H@std@@V?$allocator@U?$pair@$$CBHH@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
 ]
+
+[units.gpt-web-profile-menu-controller-runtime]
+kind = "probe"
+source = "src/ui/ProfileMenuControllerRuntime.cpp"
+object = "build/match-units/GptWeb_ProfileMenuControllerRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current 0xA14 ProfileMenuController runtime owner. Exact ProfileMenu callers independently own set_mode/select_profile; current 0x0040E720..0x0040EDC0 IDA layout fixes primary/composition/attribute buffers, max length, pending flags and cursor. IMM32 composition calls are intentionally ordinary extern stdcall declarations because the shipped image uses direct REL32 import-thunk calls rather than dllimport IAT calls."
+
+[[units.gpt-web-profile-menu-controller-runtime.functions]]
+address = "0x0040E720"
+symbol_base = "?initialize_profile_menu_controller@th105@@YAPAUProfileMenuControllerRuntime@1@XZ"
+rel32_targets = ["_memset=0x0068A440"]
+dir32_targets = ["_g_profile_menu_controller=_g_profile_menu_controller"]
+
+[[units.gpt-web-profile-menu-controller-runtime.functions]]
+address = "0x0040E7F0"
+symbol_base = "?set_mode@ProfileMenuControllerRuntime@th105@@QAEXE@Z"
+rel32_targets = ["_memset=0x0068A440"]
+
+[[units.gpt-web-profile-menu-controller-runtime.functions]]
+address = "0x0040E840"
+symbol_base = "?refresh_profile_ime_composition@th105@@YAJXZ"
+rel32_targets = [
+  "_ImmGetCompositionStringA@16=0x0066B830",
+  "?commit_profile_ime_composition@th105@@YAXXZ=0x0040E8B0",
+]
+dir32_targets = ["_g_profile_menu_controller=_g_profile_menu_controller"]
+
+[[units.gpt-web-profile-menu-controller-runtime.functions]]
+address = "0x0040EB60"
+symbol_base = "?take_primary_text@ProfileMenuControllerRuntime@th105@@QAEPADXZ"
+
+[[units.gpt-web-profile-menu-controller-runtime.functions]]
+address = "0x0040EB70"
+symbol_base = "?take_secondary_text@ProfileMenuControllerRuntime@th105@@QAEPADXZ"
+
+[[units.gpt-web-profile-menu-controller-runtime.functions]]
+address = "0x0040EB90"
+symbol_base = "?select_profile@ProfileMenuControllerRuntime@th105@@QAEXPBD@Z"
+rel32_targets = ["_strcpy_s=0x0068AD95"]
+
+[[units.gpt-web-profile-menu-controller-runtime.functions]]
+address = "0x0040ED90"
+symbol_base = "?request_profile_input_reset@th105@@YAXXZ"
+rel32_targets = ["_memset=0x0068A440"]
+dir32_targets = ["_g_profile_menu_controller=_g_profile_menu_controller"]
+
+[[units.gpt-web-profile-menu-controller-runtime.functions]]
+address = "0x0040EDC0"
+symbol_base = "?consume_reset@ProfileMenuControllerRuntime@th105@@QAEEXZ"
+
+[units.gpt-web-event-effect-background-runtime]
+kind = "probe"
+source = "src/battle/EventEffectBackgroundRuntime.cpp"
+object = "build/match-units/GptWeb_EventEffectBackgroundRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current EventEffectState background deque maintenance. The native checked deque<BackgroundRenderEntry> begins at +0x28; source deliberately increments begin() once so the current entry remains live while older layers fade by 15 alpha or erase through the checked hidden-return iterator. The emitter +0x48 vslot +0x14 is invoked after cleanup."
+
+[[units.gpt-web-event-effect-background-runtime.functions]]
+address = "0x00469B70"
+symbol_base = "?update_background_entries_469b70@EventEffectStateView@th105@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$deque@UBackgroundRenderEntry@th105@@V?$allocator@UBackgroundRenderEntry@th105@@@std@@@std@@QAE?AV?$_Deque_iterator@UBackgroundRenderEntry@th105@@V?$allocator@UBackgroundRenderEntry@th105@@@std@@$00@2@V32@0@Z=0x004304F0",
+]

@@ -28,6 +28,7 @@ struct EventEffectStateView {
     int emit_effect(int effect_id, float x, float y, int flag_a, int flag_b);
     int dispatch_emitter_state(int state);
     void render_background_effects();
+    void update_background_entries_469b70();
 };
 
 typedef char BackgroundRenderEntry_size_must_be_8[

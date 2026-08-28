@@ -620,3 +620,14 @@ subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
 evidence = "SHA-pinned VC8 SP1 rebuild of a tracked 0x98-byte {short,ushort,CSprite} deque witness regenerates the nontrivial checked copy/copy-backward algorithms and pointer-map _Growmap used by the Fighter sequence controller; each relocation-masked fingerprint is unique across all current 4010 spans."
+
+[[rules]]
+id = "vc8-generated-byte-vector-copy-comdat-106a"
+vc8_generated_anchor_file = "config/vc8-generated-byte-vector-copy-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 132
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Current exact EventEffectState runtime establishes map<signed char, vector<unsigned char>> storage. A SHA-pinned VC8 SP1 probe regenerates the 132-byte vector<unsigned char> copy-constructor COMDAT, and relocation-masked replay must remain inventory-unique at current 0x00469CC0."
