@@ -1052,3 +1052,9 @@ CNumber_render,0x00414F10,function
 CMenuConnect_ctor,0x00444190,function
 CMenuConnect_parse_endpoint,0x00442E30,function
 CMenuConnect_finish_transition,0x00443D70,function
+CNetworkBase_dtor,0x0043C950,function
+CNetworkBase_reset_runtime,0x0043CA60,function
+CNetworkBase_scalar_deleting_destructor,0x0043CB10,function
+CNetworkServer_consume_ack_record,0x0044F930,function
+CNetworkServer_import_state,0x0044FD80,function
+CNetworkServer_export_state,0x0044FFE0,function

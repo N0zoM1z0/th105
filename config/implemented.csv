@@ -1051,3 +1051,9 @@ CNumber_render
 CMenuConnect_ctor
 CMenuConnect_parse_endpoint
 CMenuConnect_finish_transition
+CNetworkBase_dtor
+CNetworkBase_reset_runtime
+CNetworkBase_scalar_deleting_destructor
+CNetworkServer_consume_ack_record
+CNetworkServer_import_state
+CNetworkServer_export_state

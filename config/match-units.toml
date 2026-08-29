@@ -13983,3 +13983,84 @@ dir32_targets = [
   "_connect_empty_string=_connect_empty_string",
   "___security_cookie=___security_cookie",
 ]
+
+[units.gpt-web-network-base-runtime]
+kind = "probe"
+source = "src/network/NetworkBaseRuntime.cpp"
+object = "build/match-units/GptWeb_NetworkBaseRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current RTTI-owned CNetworkBase 0x6DC lifetime and vslot-1 reset. Exact CNetworkServer/CNetworkClient derived lifetimes independently prove the base extent. Natural reverse member destruction uses CriticalSectionWrapper, deque<short>, two composed CInputManager+deque endpoints, two 0x20 queue slots, UiSprite94[2] and the target-backed 0x314 winsock member. The reset method keeps one short-lived endpoint pointer across queue.clear()+reset_counters() for each 0x7C element."
+
+[[units.gpt-web-network-base-runtime.functions]]
+address = "0x0043C950"
+symbol_base = "??1CNetworkBaseLifetimeView@th105@@UAE@XZ"
+rel32_targets = [
+  "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
+  "??1NetworkWinsockState314@th105@@UAE@XZ=0x00412CC0",
+  "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+]
+dir32_targets = [
+  "??1UiSprite94@th105@@QAE@XZ=_ui_sprite_icf_dtor_callback",
+  "??1NetworkQueueSlot20@th105@@QAE@XZ=??1NetworkQueueSlot20@th105@@QAE@XZ",
+  "??1NetworkInputEndpoint7C@th105@@QAE@XZ=??1NetworkInputEndpoint7C@th105@@QAE@XZ",
+  "??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ",
+  "??_7CNetworkBaseLifetimeView@th105@@6B@=??_7CNetworkBaseFullLifetimeView@th105@@6B@",
+  "__ehhandler$??1CNetworkBaseLifetimeView@th105@@UAE@XZ=__ehhandler$??1CNetworkBaseFullLifetimeView@th105@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+]
+
+[[units.gpt-web-network-base-runtime.functions]]
+address = "0x0043CB10"
+symbol_base = "??_GCNetworkBaseLifetimeView@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1CNetworkBaseLifetimeView@th105@@UAE@XZ=0x0043C950",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.gpt-web-network-base-runtime.functions]]
+address = "0x0043CA60"
+symbol_base = "?reset_runtime@CNetworkBaseResetView@th105@@QAEXXZ"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "?reset_counters@CInputManager@th105@@QAEXXZ=0x00409F40",
+  "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
+]
+
+[units.gpt-web-network-server-state-runtime]
+kind = "probe"
+source = "src/network/NetworkServerStateRuntime.cpp"
+object = "build/match-units/GptWeb_NetworkServerStateRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current CNetworkServer primary vtable 0x006C16EC owns state import/export at slots 2/3 and ACK-record consumption at slot 8. The 0x4C snapshot contains two native checked deque<short> objects; server-side fields occupy +0x210..+0x254 under CriticalSectionWrapper +0x25C. Export keeps the positive pending path as fallthrough and resets the +0x6B8 nonzero sequence plus +0x6C8 deque before publishing the snapshot."
+
+[[units.gpt-web-network-server-state-runtime.functions]]
+address = "0x0044FD80"
+symbol_base = "?import_state@CNetworkServerStateView@th105@@QAEXPBUNetworkStateRecord4C@2@@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "??4?$deque@FV?$allocator@F@std@@@std@@QAEAAV01@ABV01@@Z=0x0042B6B0",
+]
+
+[[units.gpt-web-network-server-state-runtime.functions]]
+address = "0x0044FFE0"
+symbol_base = "?export_state@CNetworkServerStateView@th105@@QAE_NPAUNetworkStateRecord4C@2@@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "??4?$deque@FV?$allocator@F@std@@@std@@QAEAAV01@ABV01@@Z=0x0042B6B0",
+  "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
+]
+
+[[units.gpt-web-network-server-state-runtime.functions]]
+address = "0x0044F930"
+symbol_base = "?consume_ack@CNetworkServerAckRecordView@th105@@QAEXPBUNetworkAckRecord24@2@@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?at@?$deque@FV?$allocator@F@std@@@std@@QBEABFI@Z=0x0042D140",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+]
