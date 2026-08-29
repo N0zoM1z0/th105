@@ -14283,3 +14283,74 @@ rel32_targets = [
   "?send_server@NetworkServerSend5View@th105@@QAEHIPBXIHPAI@Z=0x00416B60",
 ]
 dir32_targets = ["??_7NetworkTerminatePacket8@th105@@6B@=??_7NetworkTerminatePacket8@th105@@6B@"]
+
+[units.gpt-web-network-primary-state-runtime]
+kind = "probe"
+source = "src/network/NetworkPrimaryStateRuntime.cpp"
+object = "build/match-units/GptWeb_NetworkPrimaryStateRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current CNetworkClient/CNetworkServer primary-vtable state continuation. Existing 0x6E4 owner layout, critical sections, embedded packet serializers, checked deque<short> queue and send helpers reproduce mirrored peer-state gates plus the client input-value publication tail without private ABI or register forcing."
+
+[[units.gpt-web-network-primary-state-runtime.functions]]
+address = "0x0044E8F0"
+symbol_base = "?sync_peer_state@CNetworkClientPrimaryStateView@th105@@QAEEE@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "?send_client@NetworkClientSend4View@th105@@QAEHPBXIHPAI@Z=0x00416990",
+]
+
+[[units.gpt-web-network-primary-state-runtime.functions]]
+address = "0x0044ED10"
+symbol_base = "?publish_input_value@CNetworkClientPrimaryStateView@th105@@QAEXXZ"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "?at@?$deque@FV?$allocator@F@std@@@std@@QAEAAFI@Z=0x0042D140",
+  "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042AA90",
+  "?send_client@NetworkClientSend4View@th105@@QAEHPBXIHPAI@Z=0x00416990",
+]
+
+[[units.gpt-web-network-primary-state-runtime.functions]]
+address = "0x0044F730"
+symbol_base = "?sync_peer_state@CNetworkServerPrimaryStateView@th105@@QAEEE@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "?send_server@NetworkServerSend5View@th105@@QAEHIPBXIHPAI@Z=0x00416B60",
+]
+
+[units.gpt-web-network-client-secondary-dispatch-runtime]
+kind = "probe"
+source = "src/network/NetworkClientSecondaryDispatchRuntime.cpp"
+object = "build/match-units/GptWeb_NetworkClientSecondaryDispatchRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CNetworkClient secondary-vtable slot +0x08 packet dispatcher. Keeping ESI as the 8-byte secondary interface and forming the primary owner through repeated this-0x6DC expressions reproduces the target 582-byte callable. Real INPUT/ACK_INFO/REPLAY deque lifetimes generate three EH states; the same COMDAT carries a trailing 40-byte switch table outside the reviewed function boundary."
+
+[[units.gpt-web-network-client-secondary-dispatch-runtime.functions]]
+address = "0x0044EE80"
+symbol_base = "?dispatch_packet@CNetworkClientSecondaryDispatchView@th105@@UAEXPBEH@Z"
+dir32_targets = [
+  "__ehhandler$?dispatch_packet@CNetworkClientSecondaryDispatchView@th105@@UAEXPBEH@Z=__ehhandler$?dispatch_packet@CNetworkClientSecondaryDispatchView@th105@@UAEXPBEH@Z",
+  "??_7SceneAckPacket0C@th105@@6B@=??_7SceneAckPacket0C@th105@@6B@",
+  "??_7InputPacket24@th105@@6B@=??_7InputPacket24@th105@@6B@",
+  "??_7TerminatePacket8@th105@@6B@=??_7NetworkTerminatePacket8@th105@@6B@",
+  "??_7ReplayPacket28@th105@@6B@=??_7NetworkReplayPacket28@th105@@6B@",
+  "??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ",
+]
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "?send_scene_packet@NetworkClientPrimarySecondaryDispatchView@th105@@QAEHPAXH@Z=0x0044E6A0",
+  "?send_simple_packet@NetworkClientPrimarySecondaryDispatchView@th105@@QAEHPAXH@Z=0x0044D770",
+  "?parse@InputPacket24@th105@@QAEXPBE@Z=0x0044E050",
+  "??0AckInfoPacket40@th105@@QAE@XZ=0x0044DAC0",
+  "?parse@AckInfoPacket40@th105@@QAEDPBE@Z=0x0044E0A0",
+  "?parse_compressed@ReplayPacket28@th105@@QAEXPBE@Z=0x0044E160",
+  "?consume_replay@NetworkClientPrimarySecondaryDispatchView@th105@@QAEHPAVReplayPacket28@2@@Z=0x0044E210",
+  "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
+  "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
+  "@__security_check_cookie@4=0x00689D25",
+]

@@ -1546,15 +1546,15 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0044E870,authored_game,network,authored,observed,canonical-exact-authored
 0x0044E880,authored_game,network,authored,observed,canonical-exact-authored
 0x0044E8E0,authored_game,battle,authored,observed,canonical-exact-authored
-0x0044E8F0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0044E8F0,authored_game,network,authored,observed,canonical-exact-authored
 0x0044E9A0,authored_game,network,authored,observed,canonical-exact-authored
 0x0044E9E0,authored_game,network,authored,observed,canonical-exact-authored
 0x0044EA30,authored_game,network,authored,observed,canonical-exact-authored
 0x0044EA80,authored_game,network,authored,observed,canonical-exact-authored
 0x0044EAD0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0044ED10,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0044ED10,authored_game,network,authored,observed,canonical-exact-authored
 0x0044EDB0,authored_game,network,authored,observed,canonical-exact-authored
-0x0044EE80,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0044EE80,authored_game,network,authored,observed,canonical-exact-authored
 0x0044F0F0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0044F200,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0044F390,authored_game,network,authored,observed,canonical-exact-authored
@@ -1562,7 +1562,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0044F520,authored_game,network,authored,observed,canonical-exact-authored
 0x0044F550,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0044F600,authored_game,network,authored,observed,canonical-exact-authored
-0x0044F730,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0044F730,authored_game,network,authored,observed,canonical-exact-authored
 0x0044F7E0,authored_game,network,authored,observed,canonical-exact-authored
 0x0044F830,authored_game,network,authored,observed,canonical-exact-authored
 0x0044F8E0,authored_game,network,authored,observed,canonical-exact-authored
