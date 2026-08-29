@@ -15109,3 +15109,123 @@ dir32_targets = [
   "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
   "_title_color_vtable_anchor=_title_color_vtable_anchor_external",
 ]
+
+[units.gpt-web-battle-setup-state-helpers]
+kind = "probe"
+source = "src/battle/BattleSetupStateHelpers.cpp"
+object = "build/match-units/GptWeb_BattleSetupStateHelpers.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current 1.06a battle-pair metadata, input reset and slot-finalization helpers. Exact callers establish the global receiver and fighter pointer ordering; the typed packets close every field width and the two current update callees."
+
+[[units.gpt-web-battle-setup-state-helpers.functions]]
+address = "0x00426B90"
+symbol_base = "?copy_roster_metadata@GlobalBattlePairState@th105@@QAEXPAM000@Z"
+
+[[units.gpt-web-battle-setup-state-helpers.functions]]
+address = "0x00427320"
+symbol_base = "?initialize_pair_metadata@GlobalBattlePairState@th105@@QAEXPAM000@Z"
+rel32_targets = [
+  "?update_first@GlobalBattlePairState@th105@@QAEXXZ=0x00426BB0",
+  "?update_second@GlobalBattlePairState@th105@@QAEXXZ=0x00426DF0",
+]
+
+[[units.gpt-web-battle-setup-state-helpers.functions]]
+address = "0x00428030"
+symbol_base = "?reset@PairInputState@th105@@QAEXXZ"
+
+[[units.gpt-web-battle-setup-state-helpers.functions]]
+address = "0x00465100"
+symbol_base = "?finish_fighter_slot_setup@FighterPhaseContextSetupState@th105@@QAEEH@Z"
+rel32_targets = [
+  "?publish_slots@FighterPhaseContextSetupState@th105@@QAEXXZ=0x00465040",
+]
+
+[units.gpt-web-battle-phase-block-runtime]
+kind = "probe"
+source = "src/battle/BattlePhaseBlockRuntime.cpp"
+object = "build/match-units/GptWeb_BattlePhaseBlockRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current BattlePhaseBlock embeds its scenario-step runtime at +0x68. Natural virtual dispatch to slots 2 and 3 reproduces both target tail-call wrappers."
+
+[[units.gpt-web-battle-phase-block-runtime.functions]]
+address = "0x0045A290"
+symbol_base = "?run_scenario_step@BattlePhaseBlock@th105@@QAE_NXZ"
+
+[[units.gpt-web-battle-phase-block-runtime.functions]]
+address = "0x0045A2A0"
+symbol_base = "?run_458cd0@BattlePhaseBlock@th105@@QAEHXZ"
+
+[units.gpt-web-fighter-state-helpers]
+kind = "probe"
+source = "src/characters/FighterStateHelpers.cpp"
+object = "build/match-units/GptWeb_FighterStateHelpers.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current Fighter roster binding and action-word publication helpers. The owner at +0x658 binds the previous/current +0x170 fighters through vslot 8; the compact copy is truthfully void because all current callers discard AX."
+
+[[units.gpt-web-fighter-state-helpers.functions]]
+address = "0x0045B250"
+symbol_base = "?copy_action_word_176_to_174@Fighter@th105@@QAEXXZ"
+
+[[units.gpt-web-fighter-state-helpers.functions]]
+address = "0x0045F640"
+symbol_base = "?reset_for_roster_45e040@Fighter@th105@@QAEXPAU12@@Z"
+
+[units.gpt-web-ui-tile-texture]
+kind = "probe"
+source = "src/ui/UiTileTexture.cpp"
+object = "build/match-units/GptWeb_UiTileTexture.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current UiTileA4 five-argument texture wrapper. Fourteen exact or target-reviewed callers establish the receiver and parameters; it naturally forwards two zero options to the current seven-argument body."
+
+[[units.gpt-web-ui-tile-texture.functions]]
+address = "0x004098B0"
+symbol_base = "?set_texture@UiTileA4@th105@@QAEXIHHII@Z"
+rel32_targets = [
+  "?set_texture_options@UiTileTextureRuntime@th105@@QAEXIHHIIHH@Z=0x004098E0",
+]
+
+[units.gpt-web-select-scenario-ctor]
+kind = "probe"
+source = "src/ui/SelectScenarioCtor.cpp"
+object = "build/match-units/GptWeb_SelectScenarioCtor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CSelectScenario constructor. Target-backed 0x10 checked-vector and design-tree views, virtual texture/design calls, and the scoped texture handle reproduce all object/member initialization, lookup validation, EH state and final guide setup."
+
+[[units.gpt-web-select-scenario-ctor.functions]]
+address = "0x00425350"
+symbol_base = "??0CSelectScenario@th105@@QAE@XZ"
+rel32_targets = [
+  "??0TitleDesignResource@th105@@QAE@XZ=0x004217F0",
+  "??0GuideOverlay@th105@@QAE@XZ=0x0043F540",
+  "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+  "?set_texture@UiTileA4@th105@@QAEXIHHII@Z=0x004098B0",
+  "?get_player_slot_record@th105@@YAPAUPlayerSlotRecord@1@I@Z=0x0043AFE0",
+  "?erase@SelectIntVector16@th105@@QAE?AUSelectIntVectorIterator@2@U32@0@Z=0x00424E20",
+  "_get_score_data=0x0043AF20",
+  "?append@SelectIntVector16@th105@@QAEXABH@Z=0x004251A0",
+  "?bind_object@TitleDesignResource@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x0040CC50",
+  "?bind_object_alt@TitleDesignResource@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
+  "?find@UiDesignTree@th105@@QAE?AUUiDesignTreeIterator@2@PBI@Z=0x0040CDA0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$??0CSelectScenario@th105@@QAE@XZ=__ehhandler$??0CSelectScenario@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7CSceneBase@th105@@6B@=??_7CSceneBase@th105@@6B@",
+  "_g_active_scene_id=_g_active_scene_id",
+  "??_7CSelectScenario@th105@@6B@=??_7CSelectScenario@th105@@6B@",
+  "_select_sprite_vtable_anchor=_select_sprite_vtable_anchor",
+  "_select_tile_vtable_anchor=_select_tile_vtable_anchor",
+  "_select_background_path=_select_background_path",
+  "_select_clear_path=_select_clear_path",
+  "_select_character_name_path=_select_character_name_path",
+  "_select_design_path=_select_design_path",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+]

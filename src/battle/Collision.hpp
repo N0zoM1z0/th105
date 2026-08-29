@@ -323,6 +323,7 @@ struct Fighter {
     void advance_fighter_sequence_55c();
     void finalize_sequence_entry_45bb10(int index);
     void reset_for_roster_45e040(Fighter *other);
+    void copy_action_word_176_to_174();
     void advance_secondary_event_effect_cycle();
     void update_scripted_input_state_462e20();
     bool is_front_sequence_entry_ready_55a(signed char index);

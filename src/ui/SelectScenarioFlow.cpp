@@ -83,7 +83,8 @@ void CSelectScenario::on_scene_enter(int previous_scene)
 
     int index = 0;
     while (index < scenario_count_3c) {
-        if (match_setup_08->scenario_id == scenario_ids_2c[index]) {
+        if (match_setup_08->scenario_id ==
+            reinterpret_cast<std::vector<int> &>(scenario_ids_2c)[index]) {
             player_cursor_2bc.selection = index;
             break;
         }
@@ -120,7 +121,8 @@ int CSelectScenario::update_selection()
     if (player_cursor_2bc.update()) {
         dispatch_indexed_event(0x27);
         unsigned int index = player_cursor_2bc.selection;
-        match_setup_08->scenario_id = scenario_ids_2c[index];
+        match_setup_08->scenario_id =
+            reinterpret_cast<std::vector<int> &>(scenario_ids_2c)[index];
         apply_scenario(match_setup_08->scenario_id);
         if (input_0c->hold.vertical > 0) {
             timer_338 = 10;

@@ -127,6 +127,7 @@ struct BattleController {
 };
 
 struct BattlePhaseBlock {
+    bool run_scenario_step();
     int run_458cd0();
     void advance_scenario_script_page_458d10();
     void initialize_character_story_script_458f10(

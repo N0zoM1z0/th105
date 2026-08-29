@@ -112,7 +112,7 @@ private:
     MatchSetup *match_setup_08;
     CInputManager *input_0c;
     std::string scenario_name_10;
-    std::vector<int> scenario_ids_2c;
+    SelectIntVector16 scenario_ids_2c;
     int scenario_count_3c;
     unsigned int texture_40;
     UiSprite94 color_44;

@@ -1292,3 +1292,40 @@ value has one consumer.  Keeping that computation directly in the call
 expression allows VC8 to reuse the target spill area and can remove a complete
 frame dword.  This is source-lifetime evidence, not a reason to use dummy
 locals, volatile, register annotations, or stack padding.
+
+### Treat unconsumed residual registers as unknown, not return values
+
+Small leaf functions often leave a useful value in AX/EAX even when their
+authored contract is `void`. `Fighter_copy_action_word_176_to_174 @ 0x0045B250`
+loads word +0x176 into AX and stores it to +0x174; current callers discard AX.
+Declaring the method as `short` based only on the residual register makes VC8
+zero-extend the word and fails at byte zero. A void member assignment emits the
+canonical 15-byte body. Recover return types from caller use and ABI evidence,
+not from a decompiler's convenient expression result.
+
+This rule also keeps compact virtual forwards simple. BattlePhaseBlock embeds
+its scenario runtime at +0x68, and normal C++ calls to virtual slots 2 and 3
+produce the two exact 11-byte tail wrappers. Prefer a typed embedded object over
+manual vtable function pointers when current layout and callers establish the
+relationship.
+
+### Separate a physical container owner from a checked operation view
+
+`CSelectScenario::CSelectScenario @ 0x00425350` is the reference case for a
+shared member whose physical lifetime and consumer-facing operation surface are
+both byte-significant. The target-backed integer-vector member is 0x10 bytes in
+the constructor/destructor view. Two previously exact flow consumers still need
+VC8's checked `std::vector<int>::operator[]` lowering, so those TUs use a narrow
+operation view over the same independently proved storage. This is not license
+to invent layouts: require exact constructor/destructor evidence for the owner,
+exact checked consumers for the operation view, and replay every affected unit
+after changing the shared header.
+
+Local declaration points can carry the remaining optimizer evidence. In the
+exact 862-byte constructor, `width` and `height` span all three texture loads,
+but the one real texture `handle` ends before design loading. In the tree lookup,
+the iterator is compared with the tree head before a node local is materialized.
+Moving that declaration earlier emits a redundant two-byte register copy;
+moving it after the end check removes the copy naturally. Treat lexical lifetime
+as recoverable source structure, never as permission for dummy variables,
+volatile/register forcing, alias barriers, padding, or inline assembly.

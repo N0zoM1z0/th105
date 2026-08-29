@@ -105,6 +105,27 @@ struct TitleDesignResource {
 
     void bind_object(UiDesignObject **result, int object_id);
     void bind_object_alt(UiDesignObject **result, int object_id);
+    __forceinline void find_object_into(UiDesignObject **result, int object_id)
+    {
+        unsigned int key = object_id;
+        UiDesignTreeIterator found = object_tree_20.find(&key);
+        UiDesignTree &tree = object_tree_20;
+        UiDesignTreeNode *head = tree.head;
+
+        if (found.owner == 0 || found.owner != &tree)
+            _invalid_parameter_noinfo();
+        if (found.node == head) {
+            *result = 0;
+            return;
+        }
+        UiDesignTreeNode *node = found.node;
+        if (found.owner == 0)
+            _invalid_parameter_noinfo();
+        if (node == found.owner->head)
+            _invalid_parameter_noinfo();
+        *result = node->value;
+    }
+
     __forceinline UiDesignObject *find_object(int object_id)
     {
         unsigned int key = object_id;

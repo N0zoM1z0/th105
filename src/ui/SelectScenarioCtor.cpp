@@ -10,24 +10,51 @@ extern "C" const char select_design_path[];
 
 namespace th105 {
 
+namespace {
+
+struct SelectSpriteVirtualCallView {
+    virtual void slot_00();
+    virtual void slot_04();
+    virtual void slot_08();
+    virtual void slot_0c();
+    virtual void slot_10();
+    virtual void set_texture_14(
+        unsigned int handle, int x, int y, int width, int height);
+};
+
+struct SelectDesignVirtualCallView {
+    virtual void slot_00();
+    virtual void slot_04();
+    virtual void slot_08();
+    virtual void slot_0c();
+    virtual void load_10(const char *path);
+};
+
+} // namespace
+
 CSelectScenario::CSelectScenario()
     : texture_40(0), texture_d8(0), texture_170(0), texture_218(0)
 {
-    unsigned int handle;
     unsigned int width;
     unsigned int height;
 
-    texture_40 = *g_title_resource_manager.load_texture(
-        &handle, select_background_path, &width, &height);
-    color_44.set_texture(texture_40, 0, 0, width, height);
+    {
+        unsigned int handle;
 
-    texture_d8 = *g_title_resource_manager.load_texture(
-        &handle, select_clear_path, &width, &height);
-    color_dc.set_texture(texture_d8, 0, 0, width, height);
+        texture_40 = *g_title_resource_manager.load_texture(
+            &handle, select_background_path, &width, &height);
+        reinterpret_cast<SelectSpriteVirtualCallView *>(&color_44)
+            ->set_texture_14(texture_40, 0, 0, width, height);
 
-    texture_170 = *g_title_resource_manager.load_texture(
-        &handle, select_character_name_path, &width, &height);
-    color_174.set_texture(texture_170, 0, 0, width, 64);
+        texture_d8 = *g_title_resource_manager.load_texture(
+            &handle, select_clear_path, &width, &height);
+        reinterpret_cast<SelectSpriteVirtualCallView *>(&color_dc)
+            ->set_texture_14(texture_d8, 0, 0, width, height);
+
+        texture_170 = *g_title_resource_manager.load_texture(
+            &handle, select_character_name_path, &width, &height);
+        color_174.set_texture(texture_170, 0, 0, width, 64);
+    }
 
     preview_data_2b8 =
         reinterpret_cast<unsigned char *>(get_player_slot_record(0)) + 4;
@@ -42,7 +69,8 @@ CSelectScenario::CSelectScenario()
     } while (scenario_id < 15);
     scenario_count_3c = scenario_ids_2c.size();
 
-    design_2e4.load(select_design_path);
+    reinterpret_cast<SelectDesignVirtualCallView *>(&design_2e4)
+        ->load_10(select_design_path);
     design_2e4.bind_object(&selection_data_2b0, 200);
     design_2e4.bind_object_alt(&scenario_data_2b4, 300);
     scenario_data_2b4->enabled = true;
@@ -54,7 +82,7 @@ CSelectScenario::CSelectScenario()
         ++index;
     } while (index < 3);
 
-    design_100 = design_2e4.find_object(100);
+    design_2e4.find_object_into(&design_100, 100);
 
     index = 0;
     do {
