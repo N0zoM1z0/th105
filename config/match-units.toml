@@ -11752,7 +11752,7 @@ source = "src/battle/BattleObjectManagerRuntime.cpp"
 object = "build/match-units/CrossV106a_BattleObjectManagerRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current BattleObjectManager 0x118 typed runtime/lifetime. Three native checked std::list members own render requests (+0), BackgroundBase pointers (+0x28), and owned-object pointers (+0x34); two BattleThreadHandle members occupy +0x10/+0x18 and BattleBaseEffect begins +0x40. Exact run_shared_battle_phase_sequence owns the 0x466980/0x4669F0/0x466A50 phase entries; ctor/dtor and two COM worker lanes close the same layout without manual node arithmetic or ABI coercion."
+notes = "Current BattleObjectManager 0x118 typed runtime/lifetime. Three native checked std::list members own render requests (+0) and BackgroundBase pointers (+0x28/+0x34); two BattleThreadHandle members occupy +0x10/+0x18 and BattleBaseEffect begins +0x40. Exact run_shared_battle_phase_sequence owns the 0x466980/0x4669F0/0x466A50 phase entries; ctor/dtor and two COM worker lanes close the same layout without manual node arithmetic or ABI coercion."
 
 [[units.cross-v106a-battle-object-manager-runtime.functions]]
 address = "0x00466980"
@@ -11865,7 +11865,6 @@ dir32_targets = [
   "?battle_object_manager_worker_proc_466cf0@th105@@YGKPAX@Z=?battle_object_manager_worker_proc_466cf0@th105@@YGKPAX@Z",
 ]
 
-
 [units.cross-v106a-battle-object-dispatch]
 kind = "probe"
 source = "src/battle/BattleObjectDispatch.cpp"
@@ -11940,6 +11939,20 @@ rel32_targets = [
 dir32_targets = [
   "?g_battle_background_layout@th105@@3UBattleBackgroundLayoutView@1@A=?g_global_battle_setup_state@th105@@3PAEA",
 ]
+
+[units.gpt-web-background-transition-step-runtime]
+kind = "probe"
+source = "src/battle/BackgroundTransitionRuntime.cpp"
+object = "build/match-units/GptWeb_BackgroundTransitionRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current exact BackgroundBase transition stepper over the exact 0x64 layout. Both native checked vector<CSpriteEx> members publish the same alpha through the virtual IColor slot; branch-local loop initialization lets VC8 naturally share the target zero register while states 0/2 update the value and publish terminal states 1/3."
+
+[[units.gpt-web-background-transition-step-runtime.functions]]
+address = "0x004656A0"
+symbol_base = "?step_transition_4656a0@BackgroundBase@th105@@QAEXXZ"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+dir32_targets = ["__real@406fe00000000000=__real@406fe00000000000"]
 
 [units.cross-v106a-background-derived-runtime]
 kind = "probe"
@@ -14561,3 +14574,69 @@ notes = "Shared Fighter extended-state reset after base reset 0x00460200. Target
 address = "0x004776D0"
 symbol_base = "?reset_sparse_4776d0@FighterSparseResetView@th105@@QAEHXZ"
 rel32_targets = ["?reset_base_460200@FighterSparseResetView@th105@@QAEXXZ=0x00460200"]
+
+[units.gpt-web-fighter-input-runtime]
+kind = "probe"
+source = "src/battle/FighterInputRuntime.cpp"
+object = "build/match-units/GptWeb_FighterInputRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current Fighter bound-input sampler. A real polymorphic input source at binding +0x00 publishes counters +0x38..+0x54 into Fighter +0x6B4..+0x6D0; non-direct adjacent-min/max filtering is the physical fallthrough and six explicit falling-edge branches publish +0x6F4..+0x708."
+
+[[units.gpt-web-fighter-input-runtime.functions]]
+address = "0x004631C0"
+symbol_base = "?update_input_4631c0@FighterInputRuntimeView@th105@@QAEXXZ"
+
+[units.gpt-web-fighter-input-snapshot-reset]
+kind = "probe"
+source = "src/battle/FighterInputSnapshotResetRuntime.cpp"
+object = "build/match-units/GptWeb_FighterInputSnapshotResetRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current Fighter scripted-input snapshot reset. Clears +0x6D4..+0x6F0 and byte timer +0x70C in target publication order."
+
+[[units.gpt-web-fighter-input-snapshot-reset.functions]]
+address = "0x004633A0"
+symbol_base = "?reset_input_snapshot_4633a0@FighterInputSnapshotResetRuntimeView@th105@@QAEHXZ"
+
+[units.gpt-web-fighter-cpu-input-runtime]
+kind = "probe"
+source = "src/battle/FighterCpuInputRuntime.cpp"
+object = "build/match-units/GptWeb_FighterCpuInputRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current Fighter CPU/scripted input selector. Shared input policy +0x18/+0x1C drives vertical/horizontal fields; mode 1 uses target-backed 630.0f/650.0f x thresholds and modes 0/2 reuse exact Fighter x-boundary classification."
+
+[[units.gpt-web-fighter-cpu-input-runtime.functions]]
+address = "0x004633E0"
+symbol_base = "?update_cpu_input_4633e0@FighterCpuInputRuntimeView@th105@@QAEXXZ"
+rel32_targets = ["?classify_fighter_x_boundary@FighterCpuInputRuntimeView@th105@@QAECXZ=0x00435910"]
+dir32_targets = [
+  "?g_battle_input_gate_cpu_runtime@th105@@3PAUFighterCpuInputPolicyView@1@A=?g_battle_input_gate@th105@@3PAUBattleInputGate@1@A",
+  "__real@441d8000=__real@441d8000",
+  "__real@44228000=__real@44228000",
+]
+
+[units.gpt-web-network-ack-info-packet-runtime]
+kind = "probe"
+source = "src/network/NetworkAckInfoPacketRuntime.cpp"
+object = "build/match-units/GptWeb_NetworkAckInfoPacketRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current RTTI-owned 0x40 ACK_INFO packet serializer/parser. The packet has a four-byte non-polymorphic result base, derived vfptr, two checked deque<short> members and tail state. Serializer uses deque::at() range semantics; parser preserves byte-count gating and int temporary lifetime."
+
+[[units.gpt-web-network-ack-info-packet-runtime.functions]]
+address = "0x0044DF20"
+symbol_base = "?serialize@NetworkAckInfoPacket40Runtime@th105@@UAEIPAX@Z"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "_Xran=0x00431610",
+]
+
+[[units.gpt-web-network-ack-info-packet-runtime.functions]]
+address = "0x0044E0A0"
+symbol_base = "?parse@NetworkAckInfoPacket40Runtime@th105@@QAEDPBE@Z"
+rel32_targets = [
+  "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
+  "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042AA90",
+]

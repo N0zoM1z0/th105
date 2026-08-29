@@ -34,7 +34,21 @@ struct BackgroundBase {
     BackgroundBase();
     void initialize_common_4664a0(int background_id, int variant);
     void set_transition_4654f0(int state, float value);
+    void step_transition_4656a0();
     void render_base_sprites_4659e0();
+
+    void set_runtime_position(float x, float y, float z)
+    {
+        value_50 = x;
+        value_54 = y;
+        value_58 = z;
+    }
+
+    void set_runtime_offset(float x, float y)
+    {
+        value_44 = x;
+        value_48 = y;
+    }
 };
 
 typedef char BackgroundBase_handles_a_offset_must_be_0x04[

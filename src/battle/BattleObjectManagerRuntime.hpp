@@ -47,12 +47,25 @@ struct BattleObjectManager {
     HANDLE event_a_20;
     HANDLE event_b_24;
     std::list<BackgroundBase *> renderers_28;
-    std::list<BattleOwnedObject *> owned_34;
+    std::list<BackgroundBase *> owned_34;
     BattleBaseEffect effect_40;
     unsigned char render_state_48[0x90];
     unsigned texture_a_d8;
     unsigned texture_b_dc;
-    unsigned char tail_e0[0x38];
+    float drift_e0;
+    float drift_e4;
+    float drift_e8;
+    float drift_ec;
+    unsigned char reserved_f0[0x08];
+    unsigned char effect_level_f8;
+    unsigned char reserved_f9[0x03];
+    int effect_level_delta_fc;
+    float background_x_100;
+    float background_y_104;
+    float background_z_108;
+    float background_offset_x_10c;
+    float background_offset_y_110;
+    unsigned runtime_tick_114;
 
     BattleObjectManager();
     ~BattleObjectManager();
@@ -60,6 +73,7 @@ struct BattleObjectManager {
     void phase_466980();
     void phase_4669f0();
     void phase_466a50();
+    void update_background_runtime_466f40();
     void manager_worker_loop_466c70();
     void render_worker_loop_4677b0();
 
@@ -84,6 +98,15 @@ typedef char BattleObjectManager_effect_offset_must_be_0x40[
     offsetof(BattleObjectManager, effect_40) == 0x40 ? 1 : -1];
 typedef char BattleObjectManager_texture_a_offset_must_be_0xd8[
     offsetof(BattleObjectManager, texture_a_d8) == 0xd8 ? 1 : -1];
+
+typedef char BattleObjectManager_drift_offset_must_be_0xe0[
+    offsetof(BattleObjectManager, drift_e0) == 0xe0 ? 1 : -1];
+typedef char BattleObjectManager_effect_level_offset_must_be_0xf8[
+    offsetof(BattleObjectManager, effect_level_f8) == 0xf8 ? 1 : -1];
+typedef char BattleObjectManager_background_x_offset_must_be_0x100[
+    offsetof(BattleObjectManager, background_x_100) == 0x100 ? 1 : -1];
+typedef char BattleObjectManager_runtime_tick_offset_must_be_0x114[
+    offsetof(BattleObjectManager, runtime_tick_114) == 0x114 ? 1 : -1];
 
 extern BattleObjectManager *g_battle_object_manager;
 extern const unsigned char battle_object_effect_blob_6c2db8[];

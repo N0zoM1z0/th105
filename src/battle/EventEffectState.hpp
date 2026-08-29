@@ -29,6 +29,13 @@ struct EventEffectStateView {
     int dispatch_emitter_state(int state);
     void render_background_effects();
     void update_background_entries_469b70();
+
+    __forceinline float &background_target_x_dc()
+    { return *reinterpret_cast<float *>(reinterpret_cast<unsigned char *>(this) + 0xdc); }
+    __forceinline float &background_target_y_e0()
+    { return *reinterpret_cast<float *>(reinterpret_cast<unsigned char *>(this) + 0xe0); }
+    __forceinline float &background_target_z_e4()
+    { return *reinterpret_cast<float *>(reinterpret_cast<unsigned char *>(this) + 0xe4); }
 };
 
 typedef char BackgroundRenderEntry_size_must_be_8[

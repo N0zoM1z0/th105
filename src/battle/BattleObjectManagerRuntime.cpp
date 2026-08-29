@@ -115,3 +115,120 @@ DWORD WINAPI battle_object_manager_worker_proc_466cf0(void *argument)
 }
 
 } // namespace th105
+
+namespace th105 {
+
+void __cdecl update_background_pattern_660b30(int background_id);
+
+void BattleObjectManager::update_background_runtime_466f40()
+{
+    if (effect_level_delta_fc != 0) {
+        if ((int)effect_level_f8 + effect_level_delta_fc > 255) {
+            effect_level_f8 = 255;
+            effect_level_delta_fc = 0;
+            update_background_pattern_660b30(16);
+        } else if ((int)effect_level_f8 + effect_level_delta_fc < 60) {
+            effect_level_f8 = 60;
+            effect_level_delta_fc = 0;
+            update_background_pattern_660b30(16);
+        } else {
+            effect_level_f8 = static_cast<unsigned char>((int)effect_level_f8 + effect_level_delta_fc);
+            effect_level_delta_fc = 0;
+            update_background_pattern_660b30(16);
+        }
+    } else {
+        if (effect_level_f8 < 245)
+            effect_level_f8 += 10;
+        else
+            effect_level_f8 = 255;
+        update_background_pattern_660b30(g_event_effect_state->current_event_id);
+    }
+
+    drift_e0 += 0.005f;
+    drift_e8 += 0.005f;
+    drift_e4 += 0.005f;
+    drift_ec += 0.005f;
+
+    if (background_x_100 < g_event_effect_state->background_target_x_dc()) {
+        const double next = background_x_100 + 0.01f;
+        background_x_100 = static_cast<float>(
+            next < g_event_effect_state->background_target_x_dc()
+                ? next
+                : g_event_effect_state->background_target_x_dc());
+    } else if (background_x_100 > g_event_effect_state->background_target_x_dc()) {
+        const double next = background_x_100 - 0.01f;
+        background_x_100 = static_cast<float>(
+            next > g_event_effect_state->background_target_x_dc()
+                ? next
+                : g_event_effect_state->background_target_x_dc());
+    }
+
+    if (background_y_104 < g_event_effect_state->background_target_y_e0()) {
+        const double next = background_y_104 + 0.01f;
+        background_y_104 = static_cast<float>(
+            next < g_event_effect_state->background_target_y_e0()
+                ? next
+                : g_event_effect_state->background_target_y_e0());
+    } else if (background_y_104 > g_event_effect_state->background_target_y_e0()) {
+        const double next = background_y_104 - 0.01f;
+        background_y_104 = static_cast<float>(
+            next > g_event_effect_state->background_target_y_e0()
+                ? next
+                : g_event_effect_state->background_target_y_e0());
+    }
+
+    if (background_z_108 < g_event_effect_state->background_target_z_e4()) {
+        const double next = background_z_108 + 0.01f;
+        background_z_108 = static_cast<float>(
+            next < g_event_effect_state->background_target_z_e4()
+                ? next
+                : g_event_effect_state->background_target_z_e4());
+    } else if (background_z_108 > g_event_effect_state->background_target_z_e4()) {
+        const double next = background_z_108 - 0.01f;
+        background_z_108 = static_cast<float>(
+            next > g_event_effect_state->background_target_z_e4()
+                ? next
+                : g_event_effect_state->background_target_z_e4());
+    }
+
+    g_event_effect_state->update_background_entries_469b70();
+
+    if (!renderers_28.empty()) {
+        if (renderers_28.size() > 1) {
+            std::list<BackgroundBase *>::iterator it = renderers_28.begin();
+            while (it != renderers_28.end()) {
+                {
+                    BackgroundBase *background = *it;
+                    background->set_runtime_position(
+                        background_x_100, background_y_104, background_z_108);
+                }
+                {
+                    BackgroundBase *background = *it;
+                    background->set_runtime_offset(
+                        background_offset_x_10c, background_offset_y_110);
+                }
+                (*it)->step_transition_4656a0();
+
+                if ((*it)->transition_state_5c == 3) {
+                    owned_34.push_back(*it);
+                    SetEvent(event_b_24);
+                    it = renderers_28.erase(it);
+                } else {
+                    (*it)->slot_04();
+                    ++it;
+                }
+            }
+        } else {
+            renderers_28.front()->set_runtime_position(
+                background_x_100, background_y_104, background_z_108);
+            renderers_28.front()->set_runtime_offset(
+                background_offset_x_10c, background_offset_y_110);
+            renderers_28.front()->step_transition_4656a0();
+            renderers_28.front()->slot_04();
+        }
+    }
+
+    ++runtime_tick_114;
+}
+
+} // namespace th105
