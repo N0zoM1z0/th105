@@ -15537,3 +15537,163 @@ dir32_targets = [
   "__imp__wsprintfA=__imp__wsprintfA",
   "___security_cookie=___security_cookie",
 ]
+
+[units.gpt-web-csv-reader-next-int]
+kind = "probe"
+source = "src/assets/CsvReaderRuntime.cpp"
+object = "build/match-units/GptWeb_CsvReaderNextInt.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current CsvReader integer-field consumer. Native VC8 deque<deque<string>> plus checked row/field iterators fixes the 0x30 parser view; the leaf advances one field and feeds its c_str() to target atoi."
+
+[[units.gpt-web-csv-reader-next-int.functions]]
+address = "0x0040F480"
+symbol_base = "?next_int_40f480@CsvReaderNativeView@th105@@QAEHXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "??C?$_Deque_iterator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@$00@std@@QBEPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@XZ=0x0040F990",
+  "_atoi=0x0068B1B7",
+]
+
+[units.gpt-web-battle-input-flush]
+kind = "probe"
+source = "src/battle/BattleInputFlush.cpp"
+object = "build/match-units/GptWeb_BattleInputFlush.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current synchronized-input flush member. Exact queue consumers establish input_104 +0x104 and lock +0x124; native checked deque<short> access copies only the suffix not already present in destination and reloads the source owner after push_back."
+
+[[units.gpt-web-battle-input-flush.functions]]
+address = "0x0042B540"
+symbol_base = "?flush_to@NetworkInputSinkView@th105@@QAEXPAV?$deque@FV?$allocator@F@std@@@std@@@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042AA90",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?flush_to@NetworkInputSinkView@th105@@QAEXPAV?$deque@FV?$allocator@F@std@@@std@@@Z=__ehhandler$?flush_to@NetworkInputSinkView@th105@@QAEXPAV?$deque@FV?$allocator@F@std@@@std@@@Z",
+  "___security_cookie=___security_cookie",
+]
+
+[units.gpt-web-battle-thread-handle-runtime]
+kind = "probe"
+source = "src/platform/BattleThreadHandleRuntime.cpp"
+object = "build/match-units/GptWeb_BattleThreadHandleRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current 8-byte BattleThreadHandle utility shared by exact BattleObjectManager/Fighter-phase/async-scene owners. Ordinary Win32 thread creation, priority, exit-code polling and handle closure define the complete five-method family."
+
+[[units.gpt-web-battle-thread-handle-runtime.functions]]
+address = "0x004145F0"
+symbol_base = "??1BattleThreadHandle@th105@@QAE@XZ"
+rel32_targets = ["?wait_for_exit@BattleThreadHandle@th105@@QAEXXZ=0x00414640"]
+
+[[units.gpt-web-battle-thread-handle-runtime.functions]]
+address = "0x00414600"
+symbol_base = "?start@BattleThreadHandle@th105@@QAE_NP6GKPAX@Z0@Z"
+rel32_targets = ["?wait_for_exit@BattleThreadHandle@th105@@QAEXXZ=0x00414640"]
+dir32_targets = ["__imp__CreateThread@24=__imp__CreateThread@24"]
+
+[[units.gpt-web-battle-thread-handle-runtime.functions]]
+address = "0x00414640"
+symbol_base = "?wait_for_exit@BattleThreadHandle@th105@@QAEXXZ"
+dir32_targets = [
+  "__imp__SetThreadPriority@8=__imp__SetThreadPriority@8",
+  "__imp__GetExitCodeThread@8=__imp__GetExitCodeThread@8",
+  "__imp__CloseHandle@4=__imp__CloseHandle@4",
+]
+
+[[units.gpt-web-battle-thread-handle-runtime.functions]]
+address = "0x00414690"
+symbol_base = "?set_priority@BattleThreadHandle@th105@@QAEHH@Z"
+dir32_targets = ["__imp__SetThreadPriority@8=__imp__SetThreadPriority@8"]
+
+[[units.gpt-web-battle-thread-handle-runtime.functions]]
+address = "0x004146B0"
+symbol_base = "?is_running@BattleThreadHandle@th105@@QAE_NXZ"
+dir32_targets = ["__imp__GetExitCodeThread@8=__imp__GetExitCodeThread@8"]
+
+[units.gpt-web-profile-block-assign]
+kind = "probe"
+source = "src/input/InputProfileRuntime.cpp"
+object = "build/match-units/GptWeb_ProfileBlockAssign.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Exact PlayerSlot deck-selection caller owns this 0x34 profile-block assignment leaf. It copies the block, validates the signed leading source id against the exact-backed input-source limit and resets invalid blocks to sentinel -2."
+
+[[units.gpt-web-profile-block-assign.functions]]
+address = "0x00409D60"
+symbol_base = "?assign_profile_block@PlayerProfileBlockOwnerView@th105@@QAEXPBE@Z"
+rel32_targets = ["_memset=0x0068A440"]
+dir32_targets = ["?g_input_source_limit@th105@@3HA=?g_input_source_limit@th105@@3HA"]
+
+[units.gpt-web-story-page-load]
+kind = "probe"
+source = "src/battle/StoryPageLoad.cpp"
+object = "build/match-units/GptWeb_StoryPageLoad.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Shared CScenarioData story-page load wrapper. The exact-backed 0x524 layout clears text_entries_32c, resets runtime, hides exact ScenarioResultResource +0x390 and tail-forwards path/option 0 to the embedded CScript +0x35C load entry."
+
+[[units.gpt-web-story-page-load.functions]]
+address = "0x004583E0"
+symbol_base = "?load_story_page_4583e0@CScenarioData@th105@@QAEHPBD@Z"
+rel32_targets = [
+  "?_Erase@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@std@@@2@$0A@@std@@@2@@Z=0x00436D30",
+  "?reset_runtime_state@CScenarioData@th105@@QAEXXZ=0x00457E40",
+  "?hide_and_reset@ScenarioResultResource@th105@@QAEXXZ=0x00454780",
+  "?load@ScenarioScriptLoadGate@th105@@QAEHPBDH@Z=0x00405810",
+]
+
+[units.gpt-web-profile-editor-leaves]
+kind = "probe"
+source = "src/ui/ProfileEditorLeaves.cpp"
+object = "build/match-units/GptWeb_ProfileEditorLeaves.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Two exact ProfileEditor168 leaves on the exact-backed 0x168 layout: read_profile_name consumes current controller primary text into a caller-supplied MenuString28, while shutdown releases the two texture handles at +0/+4."
+
+[[units.gpt-web-profile-editor-leaves.functions]]
+address = "0x0044C0E0"
+symbol_base = "?read_profile_name@ProfileEditor168@th105@@QAEXPAUMenuString28@2@@Z"
+rel32_targets = [
+  "?take_primary_text@ProfileMenuControllerReadNameView@th105@@QAEPADXZ=0x0040EB60",
+  "?assign_bytes@ProfileReadStringAssignView@th105@@QAEXPBDI@Z=0x004021C0",
+]
+dir32_targets = ["_g_profile_menu_controller=_g_profile_menu_controller"]
+
+[[units.gpt-web-profile-editor-leaves.functions]]
+address = "0x00427C40"
+symbol_base = "?shutdown@ProfileEditor168@th105@@QAEXXZ"
+rel32_targets = [
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+]
+dir32_targets = [
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+]
+
+[[units.gpt-web-profile-editor-leaves.functions]]
+address = "0x00427BC0"
+symbol_base = "??1ProfileEditor168@th105@@QAE@XZ"
+dir32_targets = ["_title_color_vtable_anchor=_title_color_vtable_anchor_external"]
+
+[units.gpt-web-score-story-progress]
+kind = "probe"
+source = "src/config/ScoreStoryProgress.cpp"
+object = "build/match-units/GptWeb_ScoreStoryProgress.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current ScoreData story-progress event publication. Exact StoryEnding caller fixes the two int arguments; offline/non-session state independently computes the selected-column bit for aggregate/event masks, marks both dirty bytes and runs the two standard ScoreData maintenance members."
+
+[[units.gpt-web-score-story-progress.functions]]
+address = "0x0042E750"
+symbol_base = "?record_story_event_42e750@ScoreDataStoryProgressView@th105@@QAEXHH@Z"
+rel32_targets = [
+  "?get_session_setup_option@th105@@YAIXZ=0x0043B070",
+  "?get_network_session@th105@@YAPAXXZ=0x0043B090",
+  "?refresh_story_progress_42e3f0@ScoreDataStoryProgressView@th105@@QAEXXZ=0x0042E3F0",
+  "?persist_story_progress_42d3f0@ScoreDataStoryProgressView@th105@@QAEXXZ=0x0042D3F0",
+]

@@ -182,6 +182,7 @@ public:
     int field_51c;
     int field_520;
 
+    int load_story_page_4583e0(const char *path);
     void reset_runtime_state();
     void trim_render_entries_and_begin_fade_455cd0();
 };

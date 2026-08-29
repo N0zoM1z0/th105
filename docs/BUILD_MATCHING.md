@@ -58,6 +58,14 @@ local changes stack lifetime without changing behavior.  Return width must be
 proved at the callee too: `consume_transition_code` returns an int even though
 its current caller consumes only AL.
 
+### Container identity does not imply identical iterator visibility
+
+Recover native checked containers when the target proves their full physical header and operations, but keep translation-unit iterator visibility as a separate question. `CsvReader::next_int @ 0x0040F480` is the positive case: real `deque<deque<string>>` storage plus two native 0x0C iterators naturally produces all 249 target bytes. `ScoreData::refresh_story_progress @ 0x0042E3F0` is the counterexample: native `vector<int>` layout and business semantics are closed, but standalone `erase(begin,end)` keeps two always-true iterator-owner self-checks that the shipped TU omits. Changing the range to `begin + size()` changes the whole frame and is rejected. A proven container type is not permission to hand-write its iterator representation or delete safety checks manually.
+
+Exact destruction can also prove a member layout even when construction remains TU-sensitive. `ProfileEditor168::~ProfileEditor168 @ 0x00427BC0` is 15/15 only when the 0x168 owner contains real `UiTileA4` members at +0x0C and +0xB0; the corresponding constructor remains 28/33 with the shared constructor-facing visibility. Preserve the truthful header for exact consumers and keep the constructor pending rather than globally changing inline visibility to win five bytes.
+
+RAII remains the preferred source explanation for target EH frames. `NetworkInputSink::flush_to @ 0x0042B540` uses a scoped `CriticalSectionWrapper +0x124` around native deque suffix copying and naturally regenerates the target `/GS`/EH body. Likewise, standard Win32 declarations are sufficient for the 8-byte `BattleThreadHandle` family once the canonical IAT cells are attested; do not replace ordinary platform calls with private ABI facades when the target does not require them.
+
 ## Relocations and boundaries
 
 `compare-function.py` fails closed on unknown REL32/DIR32 targets, unexpected

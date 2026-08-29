@@ -48,9 +48,11 @@ struct ProfileStringTemporary {
 };
 
 struct ProfileEditor168 {
-    unsigned char reserved_000[0x08];
+    unsigned texture_primary_000;
+    unsigned texture_secondary_004;
     void *source_008;
-    unsigned char reserved_00c[0x148];
+    UiTileA4 primary_tile_00c;
+    UiTileA4 secondary_tile_0b0;
     int width_154;
     int x_158;
     int y_15c;
