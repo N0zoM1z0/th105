@@ -13864,7 +13864,7 @@ rel32_targets = [
   "?create_connect_session_43ce00@th105@@YAPAUConnectSessionRuntimeView@1@XZ=0x0043CE00",
   "?get_player_slot_record@th105@@YAPAUPlayerSlotRecord@1@I@Z=0x0043AFE0",
   "?apply_profile_44d7d0@ConnectSessionRuntimeView@th105@@QAEXPBDE@Z=0x0044D7D0",
-  "?get_connect_key_43aba0@th105@@YAPAUConnectKey16@1@PAU21@@Z=0x0043ABA0",
+  "?get_connect_key_43aba0@th105@@YA?AUConnectKey16@1@XZ=0x0043ABA0",
   "?configure_412e10@ConnectStatusRuntimeView@th105@@QAEHPBUConnectKey16@2@H@Z=0x00412E10",
 ]
 
@@ -13884,7 +13884,7 @@ rel32_targets = [
   "?create_connect_client_43ce80@th105@@YAPAUConnectSessionRuntimeView@1@XZ=0x0043CE80",
   "?has_file_40f0b0@ConnectConfigIniView@th105@@QAE_NPBD@Z=0x0040F0B0",
   "?read_uint_40f100@ConnectConfigIniView@th105@@QAEIPBD0@Z=0x0040F100",
-  "?get_connect_key_43aba0@th105@@YAPAUConnectKey16@1@PAU21@@Z=0x0043ABA0",
+  "?get_connect_key_43aba0@th105@@YA?AUConnectKey16@1@XZ=0x0043ABA0",
   "?configure_412e10@ConnectStatusRuntimeView@th105@@QAEHPBUConnectKey16@2@H@Z=0x00412E10",
   "?get_player_slot_record@th105@@YAPAUPlayerSlotRecord@1@I@Z=0x0043AFE0",
   "_strcpy_s=0x0068AD95",
@@ -14819,4 +14819,77 @@ rel32_targets = [
 dir32_targets = [
   "_g_replay_request_poll_counter=_g_replay_request_poll_counter",
   "??_7RequestReplayPacket10@th105@@6B@=??_7NetworkRequestReplay10@th105@@6B@",
+]
+[units.gpt-web-float-collision-extents]
+kind = "probe"
+source = "src/battle/FloatCollisionExtents.cpp"
+object = "build/match-units/GptWeb_FloatCollisionExtents.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Target-pinned 0x0046B440 float AABB extent accumulator. Ordinary comparisons and static_cast<int> preserve the target x87 status-word tests and __ftol2_sse conversions."
+
+[[units.gpt-web-float-collision-extents.functions]]
+address = "0x0046B440"
+symbol_base = "?accumulate_float_collision_extents@CollisionContext@th105@@QAEXPAUWorldAabb@2@0@Z"
+rel32_targets = ["__ftol2_sse=0x0068A1A0"]
+
+[units.gpt-web-input-selection-initialization]
+kind = "probe"
+source = "src/input/InputSelectionInitialization.cpp"
+object = "build/match-units/GptWeb_InputSelectionInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Target-pinned 0x0043B640 selected-input initialization. The combined input source, duplicate-slot policy, checked result table and fallback input are expressed through their current typed owners."
+
+[[units.gpt-web-input-selection-initialization.functions]]
+address = "0x0043B640"
+symbol_base = "?rebind_selected_input_43b640@th105@@YAXHC@Z"
+rel32_targets = [
+  "?get_active_source@CInputManagerCluster@th105@@QBECXZ=0x0040A4E0",
+  "?at@ResultInputRecordTableView@th105@@QAEPAUResultInputRecord68@2@I@Z=0x0043B300",
+]
+dir32_targets = [
+  "?g_selected_inputs@th105@@3PAPAUPlayerInput@1@A=?g_selected_inputs@th105@@3PAPAUPlayerInput@1@A",
+  "?g_selected_input_sources@th105@@3PADA=?g_selected_input_sources@th105@@3PACA",
+  "?g_combined_menu_input@th105@@3UCInputManagerCluster@1@A=?g_combined_menu_input_storage@th105@@3PAEA",
+  "?g_result_input_records@th105@@3UResultInputRecordTableView@1@A=?g_result_input_records@th105@@3UResultInputRecordTableView@1@A",
+  "?g_default_input@th105@@3UPlayerInput@1@A=?g_default_input@th105@@3UPlayerInput@1@A",
+]
+
+[units.gpt-web-network-session-clear]
+kind = "probe"
+source = "src/network/NetworkSessionClear.cpp"
+object = "build/match-units/GptWeb_NetworkSessionClear.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Target-pinned 0x0043B0A0 network-session teardown. It shuts down the +0x3B4 member, releases the +0x278 title handle, invokes the virtual scalar deleting destructor and clears the shared pointer."
+
+[[units.gpt-web-network-session-clear.functions]]
+address = "0x0043B0A0"
+symbol_base = "_clear_network_session"
+rel32_targets = [
+  "?shutdown_412fd0@NetworkShutdownStateView@th105@@QAEXXZ=0x00412FD0",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+]
+dir32_targets = [
+  "?g_network_session@th105@@3PAVCNetworkBase@1@A=?g_network_session@th105@@3PAUCNetworkBase@1@A",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+]
+
+[units.gpt-web-connect-key]
+kind = "probe"
+source = "src/ui/ConnectKey.cpp"
+object = "build/match-units/GptWeb_ConnectKey.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Target-pinned 0x0043ABA0 copy of the current immutable 16-byte connection key."
+
+[[units.gpt-web-connect-key.functions]]
+address = "0x0043ABA0"
+symbol_base = "?get_connect_key_43aba0@th105@@YA?AUConnectKey16@1@XZ"
+dir32_targets = [
+  "?g_connect_key@th105@@3UConnectKey16@1@B=?g_connect_key_word_0@th105@@3IB",
+  "?g_connect_key@th105@@3UConnectKey16@1@B+0x4=?g_connect_key_word_1@th105@@3IB",
+  "?g_connect_key@th105@@3UConnectKey16@1@B+0x8=?g_connect_key_word_2@th105@@3IB",
+  "?g_connect_key@th105@@3UConnectKey16@1@B+0xC=?g_connect_key_word_3@th105@@3IB",
 ]

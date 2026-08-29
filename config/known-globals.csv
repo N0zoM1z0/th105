@@ -66,3 +66,6 @@ address,name,module,confidence,evidence
 0x006FBFB8,g_config_source_first,ui,observed,Exact config close helper passes this source object address to the primary config reset
 0x006FC2F4,g_config_source_second,ui,observed,Exact config close helper passes this source object address to the secondary config reset
 0x00703588,profile_editor_record_limit,ui,observed,Current ProfileEditor168 initialize 0x00427BD0 publishes and clamps this shared record limit to 1023; eleven current 0x40E7xx-0x40EFxx editor helpers read it
+0x006FCA2C,g_result_input_records,input,observed,Current 0x0043B640 and 0x0043B8F0 pass this loader-zero object as the checked 0x68-stride result-input table receiver
+0x006FBD60,g_default_input,input,observed,Current 0x0043B640 stores this loader-zero input object as the fallback for a negative selected source; adjacent current setup paths agree
+0x006C161C,g_connect_key,network,observed,Current 0x0043ABA0 copies the four canonical dwords at this immutable 16-byte address into connection setup locals

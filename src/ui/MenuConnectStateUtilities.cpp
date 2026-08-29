@@ -45,8 +45,7 @@ int CMenuConnectStateRuntimeView::finalize_state_442530()
         ->apply_profile_44d7d0(
             profile_path->c_str(), field<unsigned char>(0x3B9));
 
-    ConnectKey16 temporary;
-    ConnectKey16 key = *get_connect_key_43aba0(&temporary);
+    ConnectKey16 key = get_connect_key_43aba0();
     int result =
         reinterpret_cast<ConnectSessionRuntimeView *>(field<void *>(0x04))
             ->status_3b4.configure_412e10(

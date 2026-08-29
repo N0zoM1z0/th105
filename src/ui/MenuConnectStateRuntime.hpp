@@ -69,7 +69,7 @@ typedef char ConnectSessionRuntimeView_status_offset_must_be_0x3b4[
 
 ConnectSessionRuntimeView *__cdecl create_connect_session_43ce00();
 ConnectSessionRuntimeView *__cdecl create_connect_client_43ce80();
-ConnectKey16 *__cdecl get_connect_key_43aba0(ConnectKey16 *output);
+ConnectKey16 __cdecl get_connect_key_43aba0();
 
 class CMenuConnectStateRuntimeView : public Menu {
 public:

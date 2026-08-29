@@ -1116,3 +1116,7 @@ CNetworkBase_ctor
 CNetworkClient_save_replay_if_enabled
 CNetworkClient_send_packet_with_result
 CNetworkServer_update_adaptive_delay
+get_connect_key
+clear_network_session
+rebind_selected_input
+accumulate_float_collision_extents

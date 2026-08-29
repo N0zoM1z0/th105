@@ -15,8 +15,7 @@ char CMenuConnectStateRuntimeView::finalize_message_4425d0()
             g_connect_config_ini.read_uint_40f100(
                 connect_config_section, connect_config_key_port));
 
-    ConnectKey16 temporary;
-    ConnectKey16 key = *get_connect_key_43aba0(&temporary);
+    ConnectKey16 key = get_connect_key_43aba0();
     reinterpret_cast<ConnectSessionRuntimeView *>(field<void *>(0x04))
         ->status_3b4.configure_412e10(&key, port);
     *reinterpret_cast<int *>(
