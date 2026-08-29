@@ -14640,3 +14640,97 @@ rel32_targets = [
   "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
   "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042AA90",
 ]
+
+[units.gpt-web-network-packet-leaf-runtime]
+kind = "probe"
+source = "src/network/NetworkPacketLeafRuntime.cpp"
+object = "build/match-units/GptWeb_NetworkPacketLeafRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current Client packet leaf/runtime cohort owned by the already-exact client/server secondary dispatchers and ACK_INFO serializer/parser. The unit keeps the real checked deque<short> packet members and the current 0x6DC primary-owner tail layout."
+
+[[units.gpt-web-network-packet-leaf-runtime.functions]]
+address = "0x0044D770"
+symbol_base = "?send_simple_packet@NetworkClientPacketOwnerView@th105@@QAEHPAVPacketSerializeView@2@H@Z"
+rel32_targets = [
+  "?send_client@NetworkClientSend4View@th105@@QAEHPBXIHPAI@Z=0x00416990",
+]
+
+[[units.gpt-web-network-packet-leaf-runtime.functions]]
+address = "0x0044D700"
+symbol_base = "?reset_locked_44d700@NetworkReplayStateView@th105@@QAEXXZ"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "?reset_428b70@NetworkReplayBufferView@th105@@QAEXXZ=0x00428B70",
+]
+dir32_targets = [
+  "__ehhandler$?reset_locked_44d700@NetworkReplayStateView@th105@@QAEXXZ=__ehhandler$?reset_locked_44d700@NetworkReplayStateView@th105@@QAEXXZ",
+  "___security_cookie=___security_cookie",
+]
+
+[[units.gpt-web-network-packet-leaf-runtime.functions]]
+address = "0x0044D800"
+symbol_base = "?flush_replay_values_44d800@NetworkClientPacketOwnerView@th105@@QAEXXZ"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "?flush_to@NetworkInputSinkView@th105@@QAEXPAX@Z=0x0042B540",
+]
+
+[[units.gpt-web-network-packet-leaf-runtime.functions]]
+address = "0x0044D7D0"
+symbol_base = "?apply_profile_44d7d0@ConnectSessionRuntimeView@th105@@QAEXPBDE@Z"
+rel32_targets = ["_strcpy_s=0x0068AD95"]
+
+[[units.gpt-web-network-packet-leaf-runtime.functions]]
+address = "0x0044D840"
+symbol_base = "?serialize@RequestReplayPacket10@th105@@UAEIPAX@Z"
+
+[[units.gpt-web-network-packet-leaf-runtime.functions]]
+address = "0x0044D860"
+symbol_base = "?parse@RequestReplayPacket10@th105@@QAEXPBE@Z"
+
+[[units.gpt-web-network-packet-leaf-runtime.functions]]
+address = "0x0044D920"
+symbol_base = "?serialize@InputPacket24@th105@@UAEIPAX@Z"
+rel32_targets = [
+  "?at@ShortDeque20CallView@th105@@QAEAAFI@Z=0x0042D140",
+]
+
+[[units.gpt-web-network-packet-leaf-runtime.functions]]
+address = "0x0044DAB0"
+symbol_base = "??1ReplayPacketDequeOwner28@th105@@QAE@XZ"
+rel32_targets = [
+  "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
+]
+
+[[units.gpt-web-network-packet-leaf-runtime.functions]]
+address = "0x0044E160"
+symbol_base = "?parse_compressed@ReplayPacket28@th105@@QAEXPBE@Z"
+rel32_targets = [
+  "_decompress_network_replay=0x00406890",
+  "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
+  "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042AA90",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = ["___security_cookie=___security_cookie"]
+
+[units.gpt-web-network-replay-request-pump]
+kind = "probe"
+source = "src/network/NetworkPacketLeafRuntime.cpp"
+object = "build/match-units/GptWeb_NetworkReplayRequestPump.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current Client replay request pump. This callable belongs to the non-/GS packet-sender partition: the ordinary 16-byte type-11 packet local and modulo-four gate reproduce the target without a security-cookie frame."
+
+[[units.gpt-web-network-replay-request-pump.functions]]
+address = "0x0044D880"
+symbol_base = "?pump_replay_request_44d880@NetworkClientPacketOwnerView@th105@@QAEXXZ"
+rel32_targets = [
+  "?send_client@NetworkClientSend4View@th105@@QAEHPBXIHPAI@Z=0x00416990",
+]
+dir32_targets = [
+  "_g_replay_request_poll_counter=_g_replay_request_poll_counter",
+  "??_7RequestReplayPacket10@th105@@6B@=??_7NetworkRequestReplay10@th105@@6B@",
+]
