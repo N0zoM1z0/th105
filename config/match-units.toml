@@ -852,7 +852,7 @@ rel32_targets = [
   "?reset_transition_counters_45e010@FighterTransitionView@th105@@QAEXXZ=0x0045F610",
   "?publish_transition_effect_46e040@PostSequenceTransitionView@th105@@QAEHH@Z=0x0046EA10",
   "?publish_transition_effect_at_46e130@PostSequenceTransitionView@th105@@QAEXM@Z=0x0046EB00",
-  "?consume_transition_code_458d90@ScenarioTransitionView@th105@@QAECXZ=0x0045A360",
+  "?consume_transition_code_458d90@ScenarioTransitionView@th105@@QAEHXZ=0x0045A360",
   "?start_async_engine_scene_load@th105@@YAEH@Z=0x0043B840",
   "??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@PBD@Z=0x00401DC0",
   "?dispatch_owned_string_458e80@ScenarioTransitionView@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x0045A450",
@@ -15434,5 +15434,106 @@ rel32_targets = [
 dir32_targets = [
   "?g_network_session@th105@@3PAVCNetworkBaseCtorDependency@1@A=?g_network_session@th105@@3PAUCNetworkBase@1@A",
   "__ehhandler$?create_connect_client_43ce80@th105@@YAPAVCNetworkBaseCtorDependency@1@XZ=__ehhandler$?create_connect_client_43ce80@th105@@YAPAVCNetworkBaseCtorDependency@1@XZ",
+  "___security_cookie=___security_cookie",
+]
+
+[units.gpt-web-profile-character-select-constructor]
+kind = "probe"
+source = "src/ui/ProfileCharacterSelectConstructor.cpp"
+object = "build/match-units/GptWeb_ProfileCharacterSelectConstructor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current RTTI-owned CProfileCharacterSelect constructor on the exact-backed 0x288 layout. Genuine polymorphic design-resource visibility keeps load at vslot +0x10 and preserves target vfptr/argument scheduling; ordinary member construction/binding/cursor publication is canonical exact."
+
+[[units.gpt-web-profile-character-select-constructor.functions]]
+address = "0x004487E0"
+symbol_base = "??0CProfileCharacterSelectConstructorView@th105@@QAE@PAUPlayerSlotRecord@1@@Z"
+rel32_targets = [
+  "??0ProfileCharacterDesignResource@th105@@QAE@XZ=0x004217F0",
+  "??1ProfileCharacterDesignResource@th105@@QAE@XZ=0x00421890",
+  "??0GuideOverlay@th105@@QAE@XZ=0x0043F540",
+  "?get_score_data_for_character_select@th105@@YAPAUScoreDataCharacterSelectView@1@XZ=0x0043AF20",
+  "?bind_object_alt@ProfileCharacterDesignResource@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
+  "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390",
+  "?refresh_character_preview_4484f0@CProfileCharacterSelectConstructorView@th105@@QAEXXZ=0x004484F0",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "??_7CProfileCharacterSelectConstructorView@th105@@6B@=??_7CProfileCharacterSelect@th105@@6B@",
+  "??_7ProfileCharacterSprite94@th105@@6B@=_select_sprite_vtable_anchor",
+  "__ehhandler$??0CProfileCharacterSelectConstructorView@th105@@QAE@PAUPlayerSlotRecord@1@@Z=__ehhandler$??0CProfileCharacterSelectConstructorView@th105@@QAE@PAUPlayerSlotRecord@1@@Z",
+  "___security_cookie=___security_cookie",
+  "?g_active_menu_input@3PAUCInputManager@th105@@A=_g_active_menu_input",
+  "_profile_character_select_design_path=_profile_character_select_design_path",
+]
+
+[units.gpt-web-profile-character-select-update]
+kind = "probe"
+source = "src/ui/ProfileCharacterSelectUpdate.cpp"
+object = "build/match-units/GptWeb_ProfileCharacterSelectUpdate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CProfileCharacterSelect update on the exact-backed 0x288 layout. Guide/cursor ownership, ordinary A/B early exits and typed 0x6B0 CProfileDeckEdit launch reproduce the target body."
+
+[[units.gpt-web-profile-character-select-update.functions]]
+address = "0x004485B0"
+symbol_base = "?update_4485b0@CProfileCharacterSelectUpdateView@th105@@QAE_NXZ"
+rel32_targets = [
+  "?update@GuideOverlay@th105@@QAEXXZ=0x0043F450",
+  "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0ProfileDeckEditLaunchView@th105@@QAE@PAUPlayerSlotRecord@1@HPAUUiSprite94@1@@Z=0x0044AAC0",
+  "?install_menu_object@th105@@YAXPAX@Z=0x0043B0F0",
+  "?is_menu_initial_press@th105@@YA_NE_N00@Z=0x0043ABD0",
+  "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20",
+  "?refresh_character_preview_4484f0@CProfileCharacterSelectUpdateView@th105@@QAEXXZ=0x004484F0",
+  "@__security_check_cookie@4=0x00689D25",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "__ehhandler$?update_4485b0@CProfileCharacterSelectUpdateView@th105@@QAE_NXZ=__ehhandler$?update_4485b0@CProfileCharacterSelectUpdateView@th105@@QAE_NXZ",
+  "___security_cookie=___security_cookie",
+  "_g_active_menu_input=_g_active_menu_input",
+]
+
+[units.gpt-web-scenario-transition-consume]
+kind = "probe"
+source = "src/battle/ScenarioTransitionConsume.cpp"
+object = "build/match-units/GptWeb_ScenarioTransitionConsume.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current BattlePhaseBlock transition-code consumer. Exact battle transition caller fixes the receiver; the +0x5A4 checked list<int> is consumed by front followed by erase(begin())."
+
+[[units.gpt-web-scenario-transition-consume.functions]]
+address = "0x0045A360"
+symbol_base = "?consume_transition_code_458d90@ScenarioTransitionConsumeView@th105@@QAEHXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$list@HV?$allocator@H@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x0043FC40",
+]
+
+[units.gpt-web-story-ending-runtime]
+kind = "probe"
+source = "src/battle/StoryEndingRuntime.cpp"
+object = "build/match-units/GptWeb_StoryEndingRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current BattlePhaseBlock story-ending bootstrap. The exact scenario-name resolver fixes the by-value String28 copy shape; selected-column ScoreData publication is followed by canonical ed.txt path formatting and the existing story-page/effect continuation."
+
+[[units.gpt-web-story-ending-runtime.functions]]
+address = "0x0045A3A0"
+symbol_base = "?load_story_ending_page_45a3a0@BattlePhaseEndingView@th105@@QAEXXZ"
+rel32_targets = [
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "?resolve_scenario_event_name@th105@@YAHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x0043BFD0",
+  "?get_score_data_story_progress@th105@@YAPAUScoreDataStoryProgressView@1@XZ=0x0043AF20",
+  "?record_story_event_42e750@ScoreDataStoryProgressView@th105@@QAEXHH@Z=0x0042E750",
+  "?load_story_page_4583e0@StoryEndingSubobjectView@th105@@QAEXPBD@Z=0x004583E0",
+  "?advance_until_ready_454f10@StoryEndingSubobjectView@th105@@QAEHXZ=0x00454F10",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "_scenario_ending_path_format=_scenario_ending_path_format",
+  "__imp__wsprintfA=__imp__wsprintfA",
   "___security_cookie=___security_cookie",
 ]

@@ -39,6 +39,25 @@ The existing unit format can group tightly coupled functions in one VC8 probe,
 which is useful when COMDATs, templates, inline dependencies, or LTCG-shaped
 ownership make TH08's one-function assumptions unsuitable.
 
+### Source-visible call surfaces and argument evaluation
+
+When target control flow proves a virtual call, prefer a genuine polymorphic C++
+view with the observed slot topology over a manual/shared facade.  The current
+`CProfileCharacterSelect` constructor is the reference: keeping four virtual
+slots before `load` makes the ordinary `design.load(path)` call use vslot +0x10
+and naturally preserves the shipped vptr-load/member-publication order.  A
+semantically equivalent facade moved the player store across the vptr load even
+though argument values were identical.
+
+Likewise, preserve source expression boundaries when VC8 argument evaluation is
+visible.  `BattlePhaseBlock::load_story_ending_page` is exact only when
+`record(resolve(String28(name,0,~0u)), selected_column)` stays one call
+expression: right-to-left evaluation pushes the simple second argument before
+opening the 0x1C by-value string slot.  Hoisting the resolver result to a named
+local changes stack lifetime without changing behavior.  Return width must be
+proved at the callee too: `consume_transition_code` returns an int even though
+its current caller consumes only AL.
+
 ## Relocations and boundaries
 
 `compare-function.py` fails closed on unknown REL32/DIR32 targets, unexpected

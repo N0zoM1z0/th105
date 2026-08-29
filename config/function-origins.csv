@@ -1463,9 +1463,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00448400,authored_game,ui,authored,observed,canonical-exact-authored
 0x00448420,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004484F0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x004485B0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004485B0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00448730,authored_game,ui,authored,observed,canonical-exact-authored
-0x004487E0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004487E0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00448A20,authored_game,ui,authored,observed,canonical-exact-authored
 0x00448A40,compiler_generated,ui,exclude,observed,vc8-generated-profile-deck-counts-std-comdats-106a
 0x00448AD0,compiler_generated,ui,exclude,observed,vc8-generated-profile-deck-counts-std-comdats-106a
@@ -1727,8 +1727,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0045A2A0,authored_game,battle,authored,observed,canonical-exact-authored
 0x0045A2B0,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
 0x0045A2E0,authored_game,battle,authored,observed,canonical-exact-authored
-0x0045A360,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0045A3A0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0045A360,authored_game,battle,authored,observed,canonical-exact-authored
+0x0045A3A0,authored_game,battle,authored,observed,canonical-exact-authored
 0x0045A450,authored_game,battle,authored,observed,canonical-exact-authored
 0x0045A4E0,authored_game,battle,authored,observed,canonical-exact-authored
 0x0045A620,compiler_generated,battle,exclude,observed,vc8-generated-scenario-event-parser-list-comdats-106a
