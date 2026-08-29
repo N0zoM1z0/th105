@@ -14169,3 +14169,117 @@ address = "0x0044EA30"
 symbol_base = "?handle_request@CNetworkClientSecondaryView@th105@@UAEHHPBUNetworkInboundReplay6@2@H@Z"
 rel32_targets = ["?dispatch_secondary_request@NetworkClientOwnerSecondaryView@th105@@QAEHHPBX@Z=0x0044E460"]
 dir32_targets = ["??_7NetworkRequestReplay10@th105@@6B@=??_7NetworkRequestReplay10@th105@@6B@"]
+
+
+[units.gpt-web-network-protocol-serializers]
+kind = "probe"
+source = "src/network/NetworkProtocolSerializers.cpp"
+object = "build/match-units/GptWeb_NetworkProtocolSerializers.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current network wire-format leaf methods. The primary/secondary packet call graph and IDA-named CDPP packet vtables establish packet-type bytes 1/2/5/7/8 and the shared payload byte at +0x08; ordinary one-buffer serializers and the type-1 parser are canonical exact."
+
+[[units.gpt-web-network-protocol-serializers.functions]]
+address = "0x0044D7A0"
+symbol_base = "?serialize_type1@NetworkPacketByte12@th105@@QBEIPAE@Z"
+
+[[units.gpt-web-network-protocol-serializers.functions]]
+address = "0x0044D7C0"
+symbol_base = "?parse_type1@NetworkPacketByte12@th105@@QAEXPBE@Z"
+
+[[units.gpt-web-network-protocol-serializers.functions]]
+address = "0x0044E720"
+symbol_base = "?serialize_type5@NetworkPacketTypeOnly8@th105@@QBEIPAE@Z"
+
+[[units.gpt-web-network-protocol-serializers.functions]]
+address = "0x0044E7C0"
+symbol_base = "?serialize_type7@NetworkPacketByte12@th105@@QBEIPAE@Z"
+
+[[units.gpt-web-network-protocol-serializers.functions]]
+address = "0x0044E850"
+symbol_base = "?serialize_type2@NetworkPacketByte12@th105@@QBEIPAE@Z"
+
+[[units.gpt-web-network-protocol-serializers.functions]]
+address = "0x0044E870"
+symbol_base = "?serialize_type8@NetworkPacketTypeOnly8@th105@@QBEIPAE@Z"
+
+[units.gpt-web-network-client-primary-protocol]
+kind = "probe"
+source = "src/network/NetworkClientPrimaryProtocol.cpp"
+object = "build/match-units/GptWeb_NetworkClientPrimaryProtocol.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current CNetworkClient primary-vtable protocol continuation. Byte-return state readiness, raw-byte pending capture, CDPP_DELAY packet construction, and the exact-backed ShortDeque8 front/advance sequence reproduce four current roots without private ABI or register forcing."
+
+[[units.gpt-web-network-client-primary-protocol.functions]]
+address = "0x0044E730"
+symbol_base = "?send_state_ready@CNetworkClientPrimaryProtocolView@th105@@QAEEXZ"
+rel32_targets = ["?status@NetworkSendStateView@th105@@QAEHXZ=0x00415D50"]
+
+[[units.gpt-web-network-client-primary-protocol.functions]]
+address = "0x0044E750"
+symbol_base = "?send_if_needed@CNetworkClientPrimaryProtocolView@th105@@QAE_NXZ"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "?send_client@NetworkClientSend4View@th105@@QAEHPBXIHPAI@Z=0x00416990",
+]
+
+[[units.gpt-web-network-client-primary-protocol.functions]]
+address = "0x0044E9E0"
+symbol_base = "?send_delay@CNetworkClientPrimaryProtocolView@th105@@QAEHE@Z"
+rel32_targets = ["?send_client@NetworkClientDelaySend4View@th105@@QAEHPBXIHPAX@Z=0x00416990"]
+dir32_targets = ["??_7NetworkDelayPacket12@th105@@6B@=??_7NetworkDelayPacket12@th105@@6B@"]
+
+[[units.gpt-web-network-client-primary-protocol.functions]]
+address = "0x0044EA80"
+symbol_base = "?advance_delay_queue@CNetworkClientDelayQueueView@th105@@QAEXXZ"
+rel32_targets = ["?front_checked@ShortDeque8@th105@@QAEPAFXZ=0x004321B0"]
+
+[units.gpt-web-network-secondary-route-runtime]
+kind = "probe"
+source = "src/network/NetworkSecondaryRouteRuntime.cpp"
+object = "build/match-units/GptWeb_NetworkSecondaryRouteRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current secondary-vtable slot-4 routes use the factory/RTTI-proved this-0x6DC owner relation. Client routing exposes the +0x04 0x44-byte state blob; Server routing uses unsigned direction plus a signed one-byte name length with separate unsigned upper and signed positive gates before secure copy."
+
+[[units.gpt-web-network-secondary-route-runtime.functions]]
+address = "0x0044E880"
+symbol_base = "?route_payload@CNetworkClientSecondaryRouteView@th105@@UAEHHPAHPBEHPAPAXPAG@Z"
+
+[[units.gpt-web-network-secondary-route-runtime.functions]]
+address = "0x0044F600"
+symbol_base = "?route_payload@CNetworkServerSecondaryRouteView@th105@@UAEHIPAHPBEHPAPAXPAG@Z"
+rel32_targets = ["_strncpy_s=0x0068B2A8"]
+
+[units.gpt-web-network-server-primary-protocol]
+kind = "probe"
+source = "src/network/NetworkServerPrimaryProtocol.cpp"
+object = "build/match-units/GptWeb_NetworkServerPrimaryProtocol.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current CNetworkServer primary-vtable protocol leaves. Positive check/process CFG preserves the explicit false tail; the generic packet sender proves outer five-argument send evaluation around a one-buffer virtual serializer; terminate/state send reuses the same rule with the local CDPP_TERMINATE packet."
+
+[[units.gpt-web-network-server-primary-protocol.functions]]
+address = "0x0044F520"
+symbol_base = "?flush_send_state@CNetworkServerPrimaryProtocolView@th105@@QAE_NXZ"
+rel32_targets = [
+  "?check@NetworkSendStateView@th105@@QAE_NH@Z=0x00413390",
+  "?process@NetworkSendStateView@th105@@QAEXH@Z=0x00413170",
+]
+
+[[units.gpt-web-network-server-primary-protocol.functions]]
+address = "0x0044F4E0"
+symbol_base = "?send_packet@CNetworkServerPrimaryProtocolView@th105@@QAEHIPAVNetworkGenericPacket8@2@H@Z"
+rel32_targets = ["?send_server@NetworkServerSend5View@th105@@QAEHIPBXIHPAI@Z=0x00416B60"]
+
+[[units.gpt-web-network-server-primary-protocol.functions]]
+address = "0x0044F830"
+symbol_base = "?send_state_or_terminate@CNetworkServerPrimaryProtocolView@th105@@QAEEXZ"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "?send_server@NetworkServerSend5View@th105@@QAEHIPBXIHPAI@Z=0x00416B60",
+]
+dir32_targets = ["??_7NetworkTerminatePacket8@th105@@6B@=??_7NetworkTerminatePacket8@th105@@6B@"]
