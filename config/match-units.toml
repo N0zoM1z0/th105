@@ -14431,3 +14431,61 @@ rel32_targets = [
   "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
   "@__security_check_cookie@4=0x00689D25",
 ]
+
+[units.gpt-web-scene-interpolation-easing]
+kind = "probe"
+source = "src/ui/SceneInterpolationEasing.cpp"
+object = "build/match-units/GptWeb_SceneInterpolationEasing.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current scene-timeline easing helper. Ordinary float C++ clamps progress to [0,1], keeps the target sparse mode switch and uses target-backed sine/cosine helpers after a double-precision 90.0 multiply. Canonical exact 131/131 without assembly or codegen forcing."
+
+[[units.gpt-web-scene-interpolation-easing.functions]]
+address = "0x00450120"
+symbol_base = "?apply_scene_easing_450120@th105@@YGMHM@Z"
+rel32_targets = [
+  "_scene_easing_sine=0x00406360",
+  "_scene_easing_cosine=0x004063D0",
+]
+dir32_targets = ["__real@4056800000000000=__real@4056800000000000"]
+
+[units.gpt-web-scene-render-cluster-runtime]
+kind = "probe"
+source = "src/ui/SceneRenderClusterRuntime.cpp"
+object = "build/match-units/GptWeb_SceneRenderClusterRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current Opening/Ending shared SceneRenderCluster update. The exact constructor-backed map/list/map/string composition, checked iterator source lifetimes, timeline smoothing, object lookup and target-observed physical switch order reproduce the 801-byte callable; its COMDAT carries the switch table after the reviewed RET boundary."
+
+[[units.gpt-web-scene-render-cluster-runtime.functions]]
+address = "0x00451400"
+symbol_base = "?update_451400@SceneRenderClusterUpdateView@th105@@QAE_NXZ"
+rel32_targets = [
+  "_begin_scene_timeline=0x0043CF00",
+  "_set_scene_timeline_mode=0x0043CF80",
+  "_invalid_parameter_noinfo=0x0068A143",
+  "?find@?$_Tree@V?$_Tmap_traits@HPAXU?$less@H@std@@V?$allocator@U?$pair@$$CBHPAX@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
+  "?interpolate_scene_byte_4501b0@SceneRenderClusterUpdateView@th105@@QAEXPAE0PBUSceneInterpolationEntry24@2@I@Z=0x004501B0",
+  "?interpolate_scene_float_450290@SceneRenderClusterUpdateView@th105@@QAEXPAM0PBUSceneInterpolationEntry24@2@I@Z=0x00450290",
+  "?erase@?$_Tree@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@V312@@Z=0x0041ECF0",
+  "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@std@@QAEXXZ=0x0041EAC0",
+]
+dir32_targets = ["__imp__GetTickCount@0=__imp__GetTickCount@0"]
+
+[units.gpt-web-scene-render-cluster-cleanup]
+kind = "probe"
+source = "src/ui/SceneRenderClusterCleanup.cpp"
+object = "build/match-units/GptWeb_SceneRenderClusterCleanup.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current SceneRenderCluster explicit cleanup owned by exact Ending/Opening destructors. Native values-map, nontrivial 0x7C-record list and objects-map clear operations followed by CScript::clear_commands naturally reproduce 104/104; the nontrivial list element lifetime is byte-significant and prevents the list clear from inlining into the authored root."
+
+[[units.gpt-web-scene-render-cluster-cleanup.functions]]
+address = "0x00452E60"
+symbol_base = "?cleanup_452e60@SceneRenderClusterCleanupView@th105@@QAEXXZ"
+rel32_targets = [
+  "?_Erase@?$_Tree@V?$_Tmap_traits@HUSceneMapValue20Cleanup@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneMapValue20Cleanup@th105@@@std@@@4@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUSceneMapValue20Cleanup@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneMapValue20Cleanup@th105@@@std@@@4@$0A@@std@@@2@@Z=0x0041EBD0",
+  "?clear@?$list@USceneListRecord124Cleanup@th105@@V?$allocator@USceneListRecord124Cleanup@th105@@@std@@@std@@QAEXXZ=0x0041F080",
+  "?_Erase@?$_Tree@V?$_Tmap_traits@HPAXU?$less@H@std@@V?$allocator@U?$pair@$$CBHPAX@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HPAXU?$less@H@std@@V?$allocator@U?$pair@$$CBHPAX@std@@@2@$0A@@std@@@2@@Z=0x0043BC40",
+  "?clear_commands@CScript@@QAEXXZ=0x004056C0",
+]

@@ -1574,7 +1574,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0044FF90,authored_game,network,authored,observed,canonical-exact-authored
 0x0044FFE0,authored_game,network,authored,observed,canonical-exact-authored
 0x00450100,authored_game,battle,authored,observed,canonical-exact-authored
-0x00450120,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00450120,authored_game,ui,authored,observed,canonical-exact-authored
 0x004501B0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00450290,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00450330,authored_game,battle,authored,observed,canonical-exact-authored
@@ -1610,7 +1610,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004510E0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x00451160,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00451200,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00451400,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00451400,authored_game,ui,authored,observed,canonical-exact-authored
 0x00451750,authored_game,battle,authored,observed,canonical-exact-authored
 0x004517B0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00451880,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -1625,7 +1625,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00452C70,compiler_generated,battle,exclude,observed,vc8-generated-script-command-registry-std-comdats-106a
 0x00452DA0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x00452E00,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
-0x00452E60,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00452E60,authored_game,ui,authored,observed,canonical-exact-authored
 0x00452ED0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00453060,authored_game,battle,authored,observed,canonical-exact-authored
 0x004531F0,authored_game,battle,authored,observed,canonical-exact-authored
