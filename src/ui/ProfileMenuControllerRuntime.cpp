@@ -34,6 +34,19 @@ struct ProfileMenuControllerRuntime {
 extern "C" ProfileMenuControllerRuntime g_profile_menu_controller;
 void __cdecl commit_profile_ime_composition();
 
+static bool profile_non_lead(unsigned char value)
+{
+    if (value < 0x81)
+        return true;
+    if (value < 0xa0)
+        return false;
+    if (value < 0xe0)
+        return true;
+    if (value < 0xff)
+        return false;
+    return true;
+}
+
 ProfileMenuControllerRuntime *__cdecl initialize_profile_menu_controller()
 {
     g_profile_menu_controller.ime_context_000 = 0;
@@ -87,6 +100,50 @@ LONG __cdecl refresh_profile_ime_composition()
     return result;
 }
 
+void __stdcall insert_profile_input_character(char value)
+{
+    if (strlen(g_profile_menu_controller.composition_808) != 0)
+        return;
+
+    char suffix[1024];
+    g_profile_menu_controller.composition_808[1] = 0;
+    strcpy_s(suffix, sizeof(suffix),
+        &g_profile_menu_controller.primary_008[
+            g_profile_menu_controller.cursor_a10]);
+    g_profile_menu_controller.primary_008[
+        g_profile_menu_controller.cursor_a10++] = value;
+
+    unsigned suffix_length;
+    if ((int)(1024 - g_profile_menu_controller.cursor_a10) <
+        (int)strlen(suffix))
+        suffix_length = 1024 - g_profile_menu_controller.cursor_a10;
+    else
+        suffix_length = strlen(suffix);
+    strncpy_s(
+        &g_profile_menu_controller.primary_008[
+            g_profile_menu_controller.cursor_a10],
+        1024 - g_profile_menu_controller.cursor_a10,
+        suffix,
+        suffix_length);
+
+    if (g_profile_menu_controller.cursor_a10 >
+        g_profile_menu_controller.max_length_a08)
+        --g_profile_menu_controller.cursor_a10;
+
+    char last = g_profile_menu_controller.primary_008[
+        g_profile_menu_controller.max_length_a08 - 1];
+    if (!profile_non_lead(last)) {
+        g_profile_menu_controller.primary_008[
+            g_profile_menu_controller.max_length_a08 - 1] = 0;
+        g_profile_menu_controller.primary_008[
+            g_profile_menu_controller.max_length_a08] = 0;
+    } else {
+        g_profile_menu_controller.primary_008[
+            g_profile_menu_controller.max_length_a08] = 0;
+    }
+    g_profile_menu_controller.primary_pending_a0d = 1;
+}
+
 char *ProfileMenuControllerRuntime::take_primary_text()
 {
     primary_pending_a0d = 0;
@@ -105,6 +162,52 @@ void ProfileMenuControllerRuntime::select_profile(const char *text)
 {
     strcpy_s(primary_008, sizeof(primary_008), text);
     cursor_a10 = 0;
+}
+
+void __cdecl delete_profile_input_character()
+{
+    char current = g_profile_menu_controller.primary_008[
+        g_profile_menu_controller.cursor_a10];
+    if (!current)
+        return;
+
+    char suffix[1024];
+    if (!profile_non_lead(current))
+        strcpy_s(suffix, sizeof(suffix),
+            &g_profile_menu_controller.primary_008[
+                g_profile_menu_controller.cursor_a10 + 2]);
+    else
+        strcpy_s(suffix, sizeof(suffix),
+            &g_profile_menu_controller.primary_008[
+                g_profile_menu_controller.cursor_a10 + 1]);
+    g_profile_menu_controller.primary_008[
+        g_profile_menu_controller.cursor_a10] = 0;
+
+    unsigned copy_length;
+    if ((int)(1023 - g_profile_menu_controller.cursor_a10) >=
+        (int)(strlen(suffix) + 2))
+        copy_length = strlen(suffix) + 2;
+    else
+        copy_length = 1023 - g_profile_menu_controller.cursor_a10;
+    strncpy_s(
+        &g_profile_menu_controller.primary_008[
+            g_profile_menu_controller.cursor_a10],
+        1024 - g_profile_menu_controller.cursor_a10,
+        suffix,
+        copy_length);
+
+    char last = g_profile_menu_controller.primary_008[
+        g_profile_menu_controller.max_length_a08 - 1];
+    if (!profile_non_lead(last)) {
+        g_profile_menu_controller.primary_008[
+            g_profile_menu_controller.max_length_a08 - 1] = 0;
+        g_profile_menu_controller.primary_008[
+            g_profile_menu_controller.max_length_a08] = 0;
+    } else {
+        g_profile_menu_controller.primary_008[
+            g_profile_menu_controller.max_length_a08] = 0;
+    }
+    g_profile_menu_controller.primary_pending_a0d = 1;
 }
 
 void __cdecl request_profile_input_reset()

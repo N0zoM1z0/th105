@@ -13238,8 +13238,8 @@ kind = "probe"
 source = "src/ui/ProfileMenuControllerRuntime.cpp"
 object = "build/match-units/GptWeb_ProfileMenuControllerRuntime.obj"
 profile = "vc8-sp1-probe-o2"
-enable_gs = false
-notes = "Current 0xA14 ProfileMenuController runtime owner. Exact ProfileMenu callers independently own set_mode/select_profile; current 0x0040E720..0x0040EDC0 IDA layout fixes primary/composition/attribute buffers, max length, pending flags and cursor. IMM32 composition calls are intentionally ordinary extern stdcall declarations because the shipped image uses direct REL32 import-thunk calls rather than dllimport IAT calls."
+enable_gs = true
+notes = "Current 0xA14 ProfileMenuController runtime owner. Exact ProfileMenu callers independently own set_mode/select_profile; current 0x0040E720..0x0040EDC0 IDA layout fixes primary/composition/attribute buffers, max length, pending flags and cursor. IMM32 composition calls are intentionally ordinary extern stdcall declarations because the shipped image uses direct REL32 import-thunk calls rather than dllimport IAT calls. The insert/delete pair uses real 1024-byte suffix buffers and the target Shift-JIS lead-byte ranges; direct remaining-capacity expressions preserve the target strlen/cursor schedule without compiler coercion."
 
 [[units.gpt-web-profile-menu-controller-runtime.functions]]
 address = "0x0040E720"
@@ -13262,6 +13262,19 @@ rel32_targets = [
 dir32_targets = ["_g_profile_menu_controller=_g_profile_menu_controller"]
 
 [[units.gpt-web-profile-menu-controller-runtime.functions]]
+address = "0x0040EA30"
+symbol_base = "?insert_profile_input_character@th105@@YGXD@Z"
+rel32_targets = [
+  "_strcpy_s=0x0068AD95",
+  "_strncpy_s=0x0068B2A8",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "_g_profile_menu_controller=_g_profile_menu_controller",
+  "___security_cookie=___security_cookie",
+]
+
+[[units.gpt-web-profile-menu-controller-runtime.functions]]
 address = "0x0040EB60"
 symbol_base = "?take_primary_text@ProfileMenuControllerRuntime@th105@@QAEPADXZ"
 
@@ -13275,6 +13288,19 @@ symbol_base = "?select_profile@ProfileMenuControllerRuntime@th105@@QAEXPBD@Z"
 rel32_targets = ["_strcpy_s=0x0068AD95"]
 
 [[units.gpt-web-profile-menu-controller-runtime.functions]]
+address = "0x0040EC60"
+symbol_base = "?delete_profile_input_character@th105@@YAXXZ"
+rel32_targets = [
+  "_strcpy_s=0x0068AD95",
+  "_strncpy_s=0x0068B2A8",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "_g_profile_menu_controller=_g_profile_menu_controller",
+  "___security_cookie=___security_cookie",
+]
+
+[[units.gpt-web-profile-menu-controller-runtime.functions]]
 address = "0x0040ED90"
 symbol_base = "?request_profile_input_reset@th105@@YAXXZ"
 rel32_targets = ["_memset=0x0068A440"]
@@ -13283,6 +13309,51 @@ dir32_targets = ["_g_profile_menu_controller=_g_profile_menu_controller"]
 [[units.gpt-web-profile-menu-controller-runtime.functions]]
 address = "0x0040EDC0"
 symbol_base = "?consume_reset@ProfileMenuControllerRuntime@th105@@QAEEXZ"
+
+[units.gpt-web-create-default-profile-for-list]
+kind = "probe"
+source = "src/ui/CreateDefaultProfileForList.cpp"
+object = "build/match-units/GptWeb_CreateDefaultProfileForList.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current default profile-list initializer. The sole 0x33C automatic object is the independently size-backed ProfileMenuBaseData owner; two fixed-file load/initialize/save branches and ordinary automatic destruction reproduce the complete VC8 /GS+EH body. The narrow view keeps the already-exact shared profile headers untouched while method relocations are resolved to the established target class."
+
+[[units.gpt-web-create-default-profile-for-list.functions]]
+address = "0x0043C1A0"
+symbol_base = "?create_default_profile_for_list@th105@@YAXXZ"
+rel32_targets = [
+  "??0ProfileMenuBaseDataView@th105@@QAE@XZ=0x0042D260",
+  "?load_profile@ProfileMenuBaseDataView@th105@@QAE_NPBD@Z=0x00431AC0",
+  "?initialize_defaults@ProfileMenuBaseDataView@th105@@QAEXXZ=0x00432050",
+  "?save_to_profile@ProfileMenuBaseDataView@th105@@QAE_NPBD@Z=0x004317A0",
+  "??1ProfileMenuBaseDataView@th105@@QAE@XZ=0x0042D320",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?create_default_profile_for_list@th105@@YAXXZ=__ehhandler$?create_default_profile_for_list@th105@@YAXXZ",
+  "___security_cookie=___security_cookie",
+  "??_C@_0O@PEIHJCHI@Profile1P?4dat?$AA@=??_C@_0O@PEIHJCHI@Profile1P?4dat?$AA@",
+  "??_C@_0O@MFGPIIOF@Profile2P?4dat?$AA@=??_C@_0O@MFGPIIOF@Profile2P?4dat?$AA@",
+]
+
+[units.gpt-web-event-effect-record-lookup]
+kind = "probe"
+source = "src/battle/EventEffectRecordLookup.cpp"
+object = "build/match-units/GptWeb_EventEffectRecordLookup.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current checked event-effect record lookup. The stack-slot address passed to std::map<char,int>::find proves a one-byte key contract; checked iterator dereference returns the mapped int at node+0x10. The map object at 0x006FBF14 is independently established in the loader-zero virtual .data tail."
+
+[[units.gpt-web-event-effect-record-lookup.functions]]
+address = "0x0043C150"
+symbol_base = "?lookup_event_effect_record@th105@@YAHD@Z"
+rel32_targets = [
+  "?find@?$_Tree@V?$_Tmap_traits@DHU?$less@D@std@@V?$allocator@U?$pair@$$CBDH@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@ABD@Z=0x0045C320",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "?g_event_effect_records@th105@@3V?$map@DHU?$less@D@std@@V?$allocator@U?$pair@$$CBDH@std@@@2@@std@@A=?g_event_effect_records@th105@@3V?$map@DHU?$less@D@std@@V?$allocator@U?$pair@$$CBDH@std@@@2@@std@@A",
+]
 
 [units.gpt-web-event-effect-background-runtime]
 kind = "probe"
