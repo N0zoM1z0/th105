@@ -1093,3 +1093,6 @@ CNetworkServer_send_ack_info_if_ready,0x0044FE30,function
 SceneTimeline_apply_easing,0x00450120,function
 SceneRenderCluster_update,0x00451400,function
 SceneRenderCluster_cleanup,0x00452E60,function
+Fighter_build_command_flags,0x00476B10,function
+Fighter_handle_system_command,0x004773A0,function
+Fighter_reset_extended_state,0x004776D0,function

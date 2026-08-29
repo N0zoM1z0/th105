@@ -1092,3 +1092,6 @@ CNetworkServer_send_ack_info_if_ready
 SceneTimeline_apply_easing
 SceneRenderCluster_update
 SceneRenderCluster_cleanup
+Fighter_build_command_flags
+Fighter_handle_system_command
+Fighter_reset_extended_state

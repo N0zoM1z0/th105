@@ -14489,3 +14489,75 @@ rel32_targets = [
   "?_Erase@?$_Tree@V?$_Tmap_traits@HPAXU?$less@H@std@@V?$allocator@U?$pair@$$CBHPAX@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HPAXU?$less@H@std@@V?$allocator@U?$pair@$$CBHPAX@std@@@2@$0A@@std@@@2@@Z=0x0043BC40",
   "?clear_commands@CScript@@QAEXXZ=0x004056C0",
 ]
+
+[units.gpt-web-fighter-command-flags-runtime]
+kind = "probe"
+source = "src/characters/FighterCommandFlagsRuntime.cpp"
+object = "build/match-units/GptWeb_FighterCommandFlagsRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Shared current Fighter command-pattern bitmask builder. Current per-character vtables share this body; ordinary member calls to matcher 0x00463500 plus target-owned command strings reproduce 497/497 exactly."
+
+[[units.gpt-web-fighter-command-flags-runtime.functions]]
+address = "0x00476B10"
+symbol_base = "?build_command_flags_476b10@FighterCommandFlagsView@th105@@QAEEXZ"
+rel32_targets = ["?match_command_463500@FighterCommandFlagsView@th105@@QAEEPBDHH@Z=0x00463500"]
+dir32_targets = [
+  "??_C@_04ENJDLGPP@NRNR?$AA@=??_C@_04ENJDLGPP@NRNR?$AA@",
+  "??_C@_04CJBEKJIM@NLNL?$AA@=??_C@_04CJBEKJIM@NLNL?$AA@",
+  "??_C@_03IPJPGHMH@N09?$AA@=??_C@_03IPJPGHMH@N09?$AA@",
+  "??_C@_03BBBMEKEJ@N07?$AA@=??_C@_03BBBMEKEJ@N07?$AA@",
+  "??_C@_03JGIEFGIG@N08?$AA@=??_C@_03JGIEFGIG@N08?$AA@",
+  "??_C@_02ODDIIJPA@DD?$AA@=??_C@_02ODDIIJPA@DD?$AA@",
+  "??_C@_04GAJFHOHF@421X?$AA@=??_C@_04GAJFHOHF@421X?$AA@",
+  "??_C@_04PLKLOGNA@214X?$AA@=??_C@_04PLKLOGNA@214X?$AA@",
+  "??_C@_04HAGGGPMC@412X?$AA@=??_C@_04HAGGGPMC@412X?$AA@",
+  "??_C@_04BJNBPJHL@623X?$AA@=??_C@_04BJNBPJHL@623X?$AA@",
+  "??_C@_04FCCGPKDF@236X?$AA@=??_C@_04FCCGPKDF@236X?$AA@",
+  "??_C@_05PNINJDOA@4136X?$AA@=??_C@_05PNINJDOA@4136X?$AA@",
+  "??_C@_05GDAIHNGO@6314X?$AA@=??_C@_05GDAIHNGO@6314X?$AA@",
+  "??_C@_04MMHKCKKI@2N2X?$AA@=??_C@_04MMHKCKKI@2N2X?$AA@",
+]
+
+[units.gpt-web-fighter-system-command-runtime]
+kind = "probe"
+source = "src/characters/FighterSystemCommandRuntime.cpp"
+object = "build/match-units/GptWeb_FighterSystemCommandRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Shared current Fighter system-command virtual. Sparse ordinary C++ switch reproduces the two-level VC8 jump table, shared-event/fade/BGM cases and the case-200 return-tail merge; callable is canonical exact 613/613."
+
+[[units.gpt-web-fighter-system-command-runtime.functions]]
+address = "0x004773A0"
+symbol_base = "?handle_system_command_4773a0@FighterSystemCommandView@th105@@QAEEH@Z"
+rel32_targets = [
+  "?set_target_20_enabled_2c@SharedEventStateSystemView@th105@@QAEEEM@Z=0x00427290",
+  "?set_shared_second_target_476ad0@FighterSystemCommandView@th105@@QAEEEM@Z=0x00476AD0",
+  "?set_target_28_enabled_2e@SharedEventStateSystemView@th105@@QAEEEM@Z=0x004272D0",
+  "?trigger_global_effect@FighterEvent130SystemView@th105@@QAEHH@Z=0x00434E90",
+  "?start_scene_fade_in@th105@@YAXIH@Z=0x0043B280",
+  "?start_scene_fade_out@th105@@YAXIH@Z=0x0043B240",
+  "?set_global_pair@FighterEvent130SystemView@th105@@QAEXMM@Z=0x00434E10",
+  "?set_stage_music@FighterEvent130SystemView@th105@@QAEXHH@Z=0x00434DE0",
+  "?play_bgm@th105@@YAXPBD@Z=0x0043CF80",
+]
+dir32_targets = [
+  "?g_shared_event_state_system@th105@@3USharedEventStateSystemView@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+  "?g_stage_music_mode@th105@@3EA=?g_battle_transition_mode@th105@@3EA",
+  "__real@44a00000=__real@44a00000",
+  "__real@44200000=__real@44200000",
+  "??_C@_0BC@JLKFHCCB@data?1bgm?1st05?4ogg?$AA@=??_C@_0BC@JLKFHCCB@data?1bgm?1st05?4ogg?$AA@",
+]
+
+[units.gpt-web-fighter-sparse-reset-runtime]
+kind = "probe"
+source = "src/characters/FighterSparseResetRuntime.cpp"
+object = "build/match-units/GptWeb_FighterSparseResetRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Shared Fighter extended-state reset after base reset 0x00460200. Target-observed sparse publication order lets VC8 naturally reuse one x87 zero and EAX=0 across typed float/word/byte/dword fields; canonical exact 346/346."
+
+[[units.gpt-web-fighter-sparse-reset-runtime.functions]]
+address = "0x004776D0"
+symbol_base = "?reset_sparse_4776d0@FighterSparseResetView@th105@@QAEHXZ"
+rel32_targets = ["?reset_base_460200@FighterSparseResetView@th105@@QAEXXZ=0x00460200"]
