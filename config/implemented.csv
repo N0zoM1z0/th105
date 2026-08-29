@@ -1120,3 +1120,5 @@ get_connect_key
 clear_network_session
 rebind_selected_input
 accumulate_float_collision_extents
+CInputManagerCluster_merge_menu_input_sources
+pop_profile_ui_menu

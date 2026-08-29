@@ -1121,3 +1121,5 @@ address,name,size,status,match_percent,unit,evidence
 0x0043B0A0,clear_network_session,70,matching,100.00,gpt-web-network-session-clear,python3 scripts/build.py --unit gpt-web-network-session-clear --compare --json reports canonical exact 70/70 against TH105 1.06a
 0x0043B640,rebind_selected_input,153,matching,100.00,gpt-web-input-selection-initialization,python3 scripts/build.py --unit gpt-web-input-selection-initialization --compare --json reports canonical exact 153/153 against TH105 1.06a
 0x0046B440,accumulate_float_collision_extents,333,matching,100.00,gpt-web-float-collision-extents,python3 scripts/build.py --unit gpt-web-float-collision-extents --compare --json reports canonical exact 333/333 against TH105 1.06a
+0x0040A0F0,CInputManagerCluster_merge_menu_input_sources,1003,matching,100.00,gpt-web-input-merge-runtime,python3 scripts/build.py --unit gpt-web-input-merge-runtime --compare --json reports canonical exact 1003/1003 against TH105 1.06a
+0x0043FF40,pop_profile_ui_menu,101,matching,100.00,gpt-web-profile-ui-pop,python3 scripts/build.py --unit gpt-web-profile-ui-pop --compare --json reports canonical exact 101/101 against TH105 1.06a

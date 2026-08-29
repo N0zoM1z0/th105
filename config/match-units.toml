@@ -14893,3 +14893,35 @@ dir32_targets = [
   "?g_connect_key@th105@@3UConnectKey16@1@B+0x8=?g_connect_key_word_2@th105@@3IB",
   "?g_connect_key@th105@@3UConnectKey16@1@B+0xC=?g_connect_key_word_3@th105@@3IB",
 ]
+
+[units.gpt-web-input-merge-runtime]
+kind = "probe"
+source = "src/input/InputMerge.cpp"
+object = "build/match-units/GptWeb_InputMergeRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Target-pinned 0x0040A0F0 combined-menu input merge. Natural checked deque begin()[i] indexing preserves the target VC8 iterator validation without per-read at() range gates; signed outer/button latches and the existing CInputManager hold layout close all 1003 bytes."
+
+[[units.gpt-web-input-merge-runtime.functions]]
+address = "0x0040A0F0"
+symbol_base = "?merge_menu_input_sources@CInputManagerCluster@th105@@QAEXXZ"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+
+[units.gpt-web-profile-ui-pop]
+kind = "probe"
+source = "src/ui/ProfileUiPop.cpp"
+object = "build/match-units/GptWeb_ProfileUiPop.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Target-pinned 0x0043FF40 single profile-UI menu pop. Ordinary checked list back(), virtual delete and pop_back() reproduce the current list base/sentinel walk and erase-one hidden return iterator."
+
+[[units.gpt-web-profile-ui-pop.functions]]
+address = "0x0043FF40"
+symbol_base = "?pop_profile_ui_menu_43ff40@th105@@YAXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$list@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x0043FC40",
+]
+dir32_targets = [
+  "?g_ui_selection_menu_stack@th105@@3V?$list@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@std@@A=?g_ui_selection_menu_stack@th105@@3V?$list@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@std@@A",
+]

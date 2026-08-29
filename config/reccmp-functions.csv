@@ -1121,3 +1121,5 @@ get_connect_key,0x0043ABA0,function
 clear_network_session,0x0043B0A0,function
 rebind_selected_input,0x0043B640,function
 accumulate_float_collision_extents,0x0046B440,function
+CInputManagerCluster_merge_menu_input_sources,0x0040A0F0,function
+pop_profile_ui_menu,0x0043FF40,function
