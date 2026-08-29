@@ -16,6 +16,8 @@ protected:
 class NetworkSecondaryInterfaceView {
 public:
     virtual void network_secondary_slot_0();
+
+    int state_04;
 };
 
 class CNetworkServerLifetimeView : public CNetworkBaseLifetimeView, public NetworkSecondaryInterfaceView {
@@ -39,5 +41,5 @@ CNetworkClientLifetimeView::~CNetworkClientLifetimeView()
 }
 
 typedef char Base_size[sizeof(CNetworkBaseLifetimeView)==0x6DC?1:-1];
-typedef char Server_size[sizeof(CNetworkServerLifetimeView)==0x6E0?1:-1];
+typedef char Server_size[sizeof(CNetworkServerLifetimeView)==0x6E4?1:-1];
 }
