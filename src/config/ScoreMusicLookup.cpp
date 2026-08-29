@@ -14,6 +14,7 @@ struct ScoreMusicLookupView {
     std::set<unsigned> path_hashes_044;
 
     bool contains_bgm_path(const char *path);
+    void publish_bgm_path(const char *path);
 };
 
 unsigned __cdecl case_insensitive_crc32(
@@ -54,6 +55,23 @@ bool ScoreMusicLookupView::contains_bgm_path(const char *path)
         reinterpret_cast<const unsigned char *>(path),
         static_cast<int>(std::strlen(path)));
     return path_hashes_044.find(key) != path_hashes_044.end();
+}
+
+} // namespace th105
+
+namespace th105 {
+
+unsigned __cdecl get_session_setup_option();
+void *__cdecl get_network_session();
+
+void ScoreMusicLookupView::publish_bgm_path(const char *path)
+{
+    if (get_session_setup_option() != 2 && get_network_session() == 0) {
+        unsigned key = case_insensitive_crc32(
+            reinterpret_cast<const unsigned char *>(path),
+            static_cast<int>(std::strlen(path)));
+        path_hashes_044.insert(key);
+    }
 }
 
 } // namespace th105

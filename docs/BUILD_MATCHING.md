@@ -1329,3 +1329,29 @@ Moving that declaration earlier emits a redundant two-byte register copy;
 moving it after the end check removes the copy naturally. Treat lexical lifetime
 as recoverable source structure, never as permission for dummy variables,
 volatile/register forcing, alias barriers, padding, or inline assembly.
+
+### Rank review callees from exact caller contracts, not stale handoff targets
+
+A useful current-target discovery pass is to invert the accepted match-unit call graph.
+Parse the `rel32_targets` of canonical-exact units, aggregate unresolved target
+addresses by the number of distinct exact callers/units, and retain the semantic
+aliases those callers already prove. Then remove CRT/import/generated candidates
+and every address already documented as a bounded compiler/TU stop. This is more
+reliable than an old “next target” list: several historical handoff targets had
+already been promoted by later waves, while the inverted graph surfaced current
+roots such as replay save, ProfileMenuBaseData lifetime, queue publication, and
+the CNetworkServer/CNetworkClient construction/factory quartet.
+
+An exact caller edge proves identity and a call-site ABI, **not callee exactness**.
+The callee can also reveal a stronger local source fact without requiring every
+caller facade to be rewritten. `BattleInputGate::queue_control_word @ 0x0042B270`
+is the reference case: its own target body proves a 32-bit argument slot whose
+low 16 bits are normalized in place before `deque<short>::push_back`, while an
+already-exact caller remains byte-correct with a narrower `unsigned short`
+declaration. Preserve both independently supported views and replay affected
+callers before changing a shared header. Do not “standardize” signatures merely
+for aesthetic consistency, and never use a caller alias as a substitute for the
+callee's canonical zero-difference comparison.
+### Keep same-size near-matches as negative source-lifetime evidence
+
+`apply_current_frame @ 0x00436760` is a useful example of when to stop despite a seemingly close result. Exact character/effect callers prove one shared 0x1C frame prefix: pivot shorts +0x04/+0x06, texture index/rectangle +0x0A..+0x12, transform mode +0x14, and optional scale/rotation payload +0x18. Reading the rectangle into real scalar locals in the target order naturally recovers the target 8-byte frame and all **335 bytes**, with the first **120 bytes** exact. The remaining mode-2 difference is receiver lifetime across two transform calls: the shipped TU keeps one frame identity live for the later payload while reloading pivots; a branch-local frame pointer instead shortens the body and changes the earlier mode receiver. Record that as TU/alias scheduling evidence rather than adding fake dependencies or register directives.

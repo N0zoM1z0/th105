@@ -4,7 +4,17 @@ int g_mt19937_index = 625;
 unsigned g_mt19937_state[624];
 unsigned g_mt19937_twist_xor[2] = { 0, 0x9908b0dfU };
 
-void __cdecl mt19937_seed_u32(unsigned seed);
+void __cdecl mt19937_seed_u32(unsigned seed)
+{
+    g_mt19937_state[0] = seed;
+    int index;
+    for (index = 1; index < 624; ++index) {
+        g_mt19937_state[index] = index + 1812433253U *
+            (g_mt19937_state[index - 1] ^
+             (g_mt19937_state[index - 1] >> 30));
+    }
+    g_mt19937_index = index;
+}
 
 unsigned __cdecl mt19937_next_u32()
 {

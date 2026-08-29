@@ -2877,6 +2877,14 @@ enable_gs = false
 notes = "TH105 1.06a MT19937 next-value recovery. Historical 271-byte exact boundary was stale: fresh VC8 section tail is exactly 279 bytes and current IDA confirms the full standard MT19937 loop/tempering through the final ret. Current index/state/twist globals and seed helper are target-backed."
 
 [[units.cross-v106a-mt19937-next.functions]]
+address = "0x00406670"
+symbol_base = "?mt19937_seed_u32@th105@@YAXI@Z"
+dir32_targets = [
+  "?g_mt19937_index@th105@@3HA=?g_mt19937_index@th105@@3HA",
+  "?g_mt19937_state@th105@@3PAIA=?g_mt19937_state@th105@@3PAIA",
+]
+
+[[units.cross-v106a-mt19937-next.functions]]
 address = "0x004066B0"
 symbol_base = "mt19937_next_u32"
 rel32_targets = ["?mt19937_seed_u32@th105@@YAXI@Z=0x00406670"]
@@ -12224,6 +12232,16 @@ rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
 ]
 
+[[units.gpt-web-score-music-lookup.functions]]
+address = "0x0042DEB0"
+symbol_base = "?publish_bgm_path@ScoreMusicLookupView@th105@@QAEXPBD@Z"
+rel32_targets = [
+  "?get_session_setup_option@th105@@YAIXZ=0x0043B070",
+  "?get_network_session@th105@@YAPAXXZ=0x0043B090",
+  "?case_insensitive_crc32@th105@@YAIPBEH@Z=0x00406930",
+  "?insert@?$_Tree@V?$_Tset_traits@IU?$less@I@std@@V?$allocator@I@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tset_traits@IU?$less@I@std@@V?$allocator@I@2@$0A@@std@@@std@@_N@2@ABI@Z=0x0042DB20",
+]
+
 [units.gpt-web-music-list-lifetime]
 kind = "probe"
 source = "src/ui/MusicListLifetime.cpp"
@@ -15033,6 +15051,7 @@ rel32_targets = [
   "?set_menu_input_state@th105@@YAXE_N@Z=0x0043ABF0",
 ]
 
+
 [units.gpt-web-battle-input-peek]
 kind = "probe"
 source = "src/battle/BattleInputConsume.cpp"
@@ -15228,4 +15247,192 @@ dir32_targets = [
   "_select_character_name_path=_select_character_name_path",
   "_select_design_path=_select_design_path",
   "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+]
+
+[units.gpt-web-battle-input-control-queue]
+kind = "probe"
+source = "src/battle/BattleInputControlQueue.cpp"
+object = "build/match-units/GptWeb_BattleInputControlQueue.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current BattleInputGate queue-control path. The target uses a 32-bit incoming argument slot, normalizes its low 16 bits in place, then publishes that slot through the checked deque<short> push while a scoped lock supplies the /GS EH lifetime."
+
+[[units.gpt-web-battle-input-control-queue.functions]]
+address = "0x0042B270"
+symbol_base = "?queue_control_word@BattleInputGateQueueView@th105@@QAEXI@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?push_back@ShortDeque8@th105@@QAEPAFPBF@Z=0x0042AA90",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?queue_control_word@BattleInputGateQueueView@th105@@QAEXI@Z=__ehhandler$?queue_control_word@BattleInputGate@th105@@QAEXG@Z",
+  "___security_cookie=___security_cookie",
+]
+
+[units.gpt-web-replay-input-save]
+kind = "probe"
+source = "src/battle/BattleInputRecordingSave.cpp"
+object = "build/match-units/GptWeb_ReplayInputRecordingSave.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current replay writer using the target-backed +0xE8 ten-byte header, +0xF4 checked vector<0x50 FixedSlotEnvelope>, concrete CFileWriter lifetime, and exact envelope serializer dependency."
+
+[[units.gpt-web-replay-input-save.functions]]
+address = "0x00428D90"
+symbol_base = "?save_replay_428d90@ReplayInputStorageSaveView@th105@@QAEXPBD@Z"
+rel32_targets = [
+  "_get_current_replay_header_code=0x0043AA40",
+  "__time64=0x0068A981",
+  "__localtime64_s=0x0068A6BC",
+  "?serialize_fixed_slot_envelope@ReplayFixedSlotEnvelope@th105@@QAEXPAUReplayFileWriterView@2@@Z=0x00428B80",
+  "_invalid_parameter_noinfo=0x0068A143",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "??_7CFileWriter@th105@@6B@=??_7CFileWriter@th105@@6B@",
+  "__imp__CreateFileA@28=__imp__CreateFileA@28",
+  "__imp__WriteFile@20=__imp__WriteFile@20",
+  "__imp__CloseHandle@4=__imp__CloseHandle@4",
+  "___security_cookie=___security_cookie",
+]
+
+[units.gpt-web-profile-menu-base-data-lifetime]
+kind = "probe"
+source = "src/ui/ProfileMenuBaseDataLifetime.cpp"
+object = "build/match-units/GptWeb_ProfileMenuBaseDataLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Target-backed 0x33c ProfileMenuBaseData lifetime using the real 0x94 polymorphic sprite, two VC8 std::string members, CInputManagerEx at +0xd0, body-published input owner +0x138, and twenty checked deque<unsigned short> decks at +0x1ac."
+
+[[units.gpt-web-profile-menu-base-data-lifetime.functions]]
+address = "0x0042D260"
+symbol_base = "??0ProfileMenuBaseDataLifetime@th105@@QAE@XZ"
+rel32_targets = [
+  "??0ProfileInputManagerLifetime@th105@@QAE@XZ=0x00409CF0",
+  "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "??0?$deque@GV?$allocator@G@std@@@std@@QAE@XZ=??0?$deque@GV?$allocator@G@std@@@std@@QAE@XZ",
+  "??1?$deque@GV?$allocator@G@std@@@std@@QAE@XZ=??1?$deque@GV?$allocator@G@std@@@std@@QAE@XZ",
+  "??_7ProfileCSpriteLifetime@th105@@6B@=??_7ProfileCSpriteLifetime@th105@@6B@",
+  "??_7ProfileInputManagerExLifetime@th105@@6B@=??_7CInputManagerEx@th105@@6B@",
+  "__ehhandler$??0ProfileMenuBaseDataLifetime@th105@@QAE@XZ=__ehhandler$??0ProfileMenuBaseDataLifetime@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+]
+
+[[units.gpt-web-profile-menu-base-data-lifetime.functions]]
+address = "0x0042D320"
+symbol_base = "??1ProfileMenuBaseDataLifetime@th105@@QAE@XZ"
+rel32_targets = [
+  "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
+  "??1ProfileInputManagerLifetime@th105@@UAE@XZ=0x00409D50",
+  "operator_delete=0x006898EA",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "??1?$deque@GV?$allocator@G@std@@@std@@QAE@XZ=??1?$deque@GV?$allocator@G@std@@@std@@QAE@XZ",
+  "??_7ProfileIColorLifetime@th105@@6B@=??_7IColor@@6B@",
+  "__ehhandler$??1ProfileMenuBaseDataLifetime@th105@@QAE@XZ=__ehhandler$??1ProfileMenuBaseDataLifetime@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+]
+
+[units.gpt-web-connect-config-file]
+kind = "probe"
+source = "src/ui/ConnectConfigFile.cpp"
+object = "build/match-units/GptWeb_ConnectConfigFile.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current ConnectConfigIni file-presence helper. Exact menu/network callers identify the receiver; a real 260-byte path buffer receives the current directory before safe slash/name concatenation and non-directory attribute check."
+
+[[units.gpt-web-connect-config-file.functions]]
+address = "0x0040F0B0"
+symbol_base = "?has_file_40f0b0@ConnectConfigIniView@th105@@QAE_NPBD@Z"
+rel32_targets = ["_strcat_s=0x0068BDE8"]
+dir32_targets = [
+  "__imp__GetCurrentDirectoryA@8=__imp__GetCurrentDirectoryA@8",
+  "__imp__GetFileAttributesA@4=__imp__GetFileAttributesA@4",
+]
+
+[[units.gpt-web-connect-config-file.functions]]
+address = "0x0040F100"
+symbol_base = "?read_uint_40f100@ConnectConfigIniView@th105@@QAEIPBD0@Z"
+dir32_targets = ["__imp__GetPrivateProfileIntA@16=__imp__GetPrivateProfileIntA@16"]
+
+[[units.gpt-web-connect-config-file.functions]]
+address = "0x0040F120"
+symbol_base = "?read_string_40f120@ConnectConfigIniView@th105@@QAEKPBD0PADK@Z"
+dir32_targets = [
+  "__imp__GetPrivateProfileStringA@24=__imp__GetPrivateProfileStringA@24",
+  "??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@",
+]
+
+[units.gpt-web-network-derived-constructor]
+kind = "probe"
+source = "src/network/NetworkDerivedConstructor.cpp"
+object = "build/match-units/GptWeb_NetworkDerivedConstructor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CNetworkServer/CNetworkClient derived constructors and factories. Exact CNetworkBase construction plus RTTI-backed secondary INetworkUDPEventProc at +0x6DC reproduce natural multiple-inheritance vfptr publication; factory extents are 0x6EC Server and 0x6E4 Client."
+
+[[units.gpt-web-network-derived-constructor.functions]]
+address = "0x0043CB30"
+symbol_base = "??0CNetworkServerCtorView@th105@@QAE@XZ"
+rel32_targets = [
+  "??0CNetworkBaseCtorDependency@th105@@QAE@XZ=0x0044DB10",
+  "?cleanup@NetworkCleanupCtorView@th105@@QAEXPAX@Z=0x00413360",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$??0CNetworkServerCtorView@th105@@QAE@XZ=__ehhandler$??0CNetworkServerCtorView@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7INetworkUDPEventProcCtorView@th105@@6B@=??_7INetworkUDPEventProcCtorView@th105@@6B@",
+  "??_7CNetworkServerCtorView@th105@@6BCNetworkBaseCtorDependency@1@@=??_7CNetworkServer@@6B@",
+  "??_7CNetworkServerCtorView@th105@@6BINetworkUDPEventProcCtorView@1@@=??_7CNetworkServer@@6B@_0",
+]
+[[units.gpt-web-network-derived-constructor.functions]]
+address = "0x0043CCA0"
+symbol_base = "??0CNetworkClientCtorView@th105@@QAE@XZ"
+rel32_targets = [
+  "??0CNetworkBaseCtorDependency@th105@@QAE@XZ=0x0044DB10",
+  "?cleanup@NetworkCleanupCtorView@th105@@QAEXPAX@Z=0x00413360",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$??0CNetworkClientCtorView@th105@@QAE@XZ=__ehhandler$??0CNetworkClientCtorView@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7INetworkUDPEventProcCtorView@th105@@6B@=??_7INetworkUDPEventProcCtorView@th105@@6B@",
+  "??_7CNetworkClientCtorView@th105@@6BCNetworkBaseCtorDependency@1@@=??_7CNetworkClient@@6B@",
+  "??_7CNetworkClientCtorView@th105@@6BINetworkUDPEventProcCtorView@1@@=??_7CNetworkClient@@6B@_0",
+]
+[[units.gpt-web-network-derived-constructor.functions]]
+address = "0x0043CE00"
+symbol_base = "?create_connect_session_43ce00@th105@@YAPAVCNetworkBaseCtorDependency@1@XZ"
+rel32_targets = [
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CNetworkServerCtorView@th105@@QAE@XZ=0x0043CB30",
+  "??3@YAXPAX@Z=0x006898EA",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "?g_network_session@th105@@3PAVCNetworkBaseCtorDependency@1@A=?g_network_session@th105@@3PAUCNetworkBase@1@A",
+  "__ehhandler$?create_connect_session_43ce00@th105@@YAPAVCNetworkBaseCtorDependency@1@XZ=__ehhandler$?create_connect_session_43ce00@th105@@YAPAVCNetworkBaseCtorDependency@1@XZ",
+  "___security_cookie=___security_cookie",
+]
+
+[[units.gpt-web-network-derived-constructor.functions]]
+address = "0x0043CE80"
+symbol_base = "?create_connect_client_43ce80@th105@@YAPAVCNetworkBaseCtorDependency@1@XZ"
+rel32_targets = [
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0CNetworkClientCtorView@th105@@QAE@XZ=0x0043CCA0",
+  "??3@YAXPAX@Z=0x006898EA",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "?g_network_session@th105@@3PAVCNetworkBaseCtorDependency@1@A=?g_network_session@th105@@3PAUCNetworkBase@1@A",
+  "__ehhandler$?create_connect_client_43ce80@th105@@YAPAVCNetworkBaseCtorDependency@1@XZ=__ehhandler$?create_connect_client_43ce80@th105@@YAPAVCNetworkBaseCtorDependency@1@XZ",
+  "___security_cookie=___security_cookie",
 ]
