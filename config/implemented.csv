@@ -1049,3 +1049,5 @@ CMenuConnect_update_state_one
 CMenuConnect_update_state_six
 CNumber_render
 CMenuConnect_ctor
+CMenuConnect_parse_endpoint
+CMenuConnect_finish_transition

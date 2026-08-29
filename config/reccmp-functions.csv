@@ -1050,3 +1050,5 @@ CMenuConnect_update_state_one,0x00442790,function
 CMenuConnect_update_state_six,0x004428E0,function
 CNumber_render,0x00414F10,function
 CMenuConnect_ctor,0x00444190,function
+CMenuConnect_parse_endpoint,0x00442E30,function
+CMenuConnect_finish_transition,0x00443D70,function

@@ -418,3 +418,11 @@ git diff --check
   `BattleObjectManager::update_background_runtime @ 0x00466F40` is still a
   natural-source work in progress and must not be counted exact until its
   canonical comparator is zero-difference.
+
+### 2026-08-29 CMenuConnect endpoint/history continuation
+
+- Two new authored roots are canonical exact from durable source: `CMenuConnect_parse_endpoint @ 0x00442E30` **269/269** in `src/ui/MenuConnectEndpointRuntime.cpp`, and `CMenuConnect_finish_transition @ 0x00443D70` **808/808** in `src/ui/MenuConnectHistoryRuntime.cpp`. Working checkpoint after promotion is **1,053 authored exact / 174,407 bytes / 343 units; 1,049 excluded; 1,908 review** before final aggregate replay.
+- Endpoint ownership is now exact-backed across constructor, parser, and history finalizer: port dword `+0x428`, SSO `std::string` endpoint `+0x42C`, nested owner pointer `+0xC48`, nested checked `deque<string> +0x48`. Parser callers pass either `deque<string>::operator[]` output or a temporary string by const reference.
+- Parser exactness depends on keeping native std::string input/c_str but naming the target's out-of-line known-length destination assignment through a narrow `assign_bytes(const char*, unsigned)` view mapped to `0x004021C0`. Full-header `assign(empty,0)` selects a different template path and is rejected. Canonical empty-string address is `0x006D69D6` (window `00 00 25 73`).
+- History exactness depends on `push_front(std::string(source))` as an unnamed temporary and repeated direct nested owner/deque member expressions. Do not refactor those expressions into a helper/reference merely for readability: tested variants change VC8 stack coloring / receiver allocation. `/GS` is required.
+- Keep the wide-format state helpers pending: `0x004418B0` is a private/LTCG helper ABI (size in EDX, varargs on stack). Ordinary VC8 `swprintf_s` truth probes do not reproduce that call boundary, so `state_mode_two 0x00442CE0`, mode-five `0x004424D0`, and mode-three/four `0x004430D0` must not be forced with fake calling conventions.

@@ -13932,3 +13932,54 @@ dir32_targets = [
   "_g_active_menu_input=_g_active_menu_input",
   "___security_cookie=___security_cookie",
 ]
+
+[units.gpt-web-menu-connect-history-runtime]
+kind = "probe"
+source = "src/ui/MenuConnectHistoryRuntime.cpp"
+object = "build/match-units/GptWeb_MenuConnectHistoryRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CMenuConnect endpoint-history finalizer at 0x00443D70. The exact source keeps the second history value as a std::string(source) temporary and spells the nested owner+0x48 checked deque member directly at each use; factoring that access through a helper/reference changes VC8 receiver allocation. Canonical exact 808/808."
+
+[[units.gpt-web-menu-connect-history-runtime.functions]]
+address = "0x00443D70"
+symbol_base = "?finish_transition_443d70@CMenuConnectHistoryView@th105@@QAEXXZ"
+rel32_targets = [
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?compare@?$char_traits@D@std@@SAHPBD0I@Z=0x00405560",
+  "?erase@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@QAE?AV?$_Deque_iterator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@$00@2@V32@@Z=0x00443A30",
+  "?_Growmap@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXI@Z=0x0040FE30",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "??3@YAXPAX@Z=0x006898EA",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?finish_transition_443d70@CMenuConnectHistoryView@th105@@QAEXXZ=__ehhandler$?finish_transition_443d70@CMenuConnectHistoryView@th105@@QAEXXZ",
+  "_connect_endpoint_port_format=_connect_endpoint_port_format",
+  "___security_cookie=___security_cookie",
+]
+
+[units.gpt-web-menu-connect-endpoint-runtime]
+kind = "probe"
+source = "src/ui/MenuConnectEndpointRuntime.cpp"
+object = "build/match-units/GptWeb_MenuConnectEndpointRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CMenuConnect endpoint parser at 0x00442E30. Native std::string input preserves the target SSO c_str branch; a declaration-only assign_bytes view names the already target-backed std::string::assign(const char*, unsigned) boundary and avoids VC8 selecting a different iterator-template overload for assign(empty,0). Canonical exact 269/269."
+
+[[units.gpt-web-menu-connect-endpoint-runtime.functions]]
+address = "0x00442E30"
+symbol_base = "?parse_endpoint_442e30@CMenuConnectEndpointParseView@th105@@QAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z"
+rel32_targets = [
+  "_strncpy_s=0x0068B2A8",
+  "_strtok_s=0x0068B1BC",
+  "_atol=0x0068B1B7",
+  "?assign_bytes@ConnectStringAssignView@th105@@QAEXPBDI@Z=0x004021C0",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "_connect_empty_string=_connect_empty_string",
+  "___security_cookie=___security_cookie",
+]
