@@ -10,9 +10,9 @@ void RenderTimelineEntry::render()
 
     CSpriteEx &sprite = sprites_14[frame_74 % sprites_14.size()];
     sprite.reset_transform();
-    unsigned color = static_cast<unsigned>(color_5a)
-        | (static_cast<unsigned>(color_58) << 8)
-        | (static_cast<unsigned>(color_56) << 16)
+    unsigned color = static_cast<unsigned>(colors_56[4])
+        | (static_cast<unsigned>(colors_56[2]) << 8)
+        | (static_cast<unsigned>(colors_56[0]) << 16)
         | (static_cast<unsigned>(alpha_54) << 24);
     sprite.set_color(color);
     sprite.set_uv_size(uv_width_30, uv_height_34);

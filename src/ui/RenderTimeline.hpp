@@ -9,7 +9,7 @@
 namespace th105 {
 
 struct RenderTimelineEntry {
-    unsigned char reserved_00[0x14];
+    std::deque<CSpriteEx> sprites_00;
     std::deque<CSpriteEx> sprites_14;
     float translate_x_28;
     float translate_y_2c;
@@ -18,20 +18,23 @@ struct RenderTimelineEntry {
     float scale_x_38;
     float scale_y_3c;
     float rotation_z_40;
-    unsigned char reserved_44[0x10];
+    float translate_secondary_x_44;
+    float translate_secondary_y_48;
+    float uv_secondary_width_4c;
+    float uv_secondary_height_50;
     unsigned char alpha_54;
-    unsigned char reserved_55;
-    unsigned char color_56;
-    unsigned char reserved_57;
-    unsigned char color_58;
-    unsigned char reserved_59;
-    unsigned char color_5a;
-    unsigned char reserved_5b[0x0d];
+    unsigned char flag_55;
+    unsigned char colors_56[6];
+    float scale_secondary_x_5c;
+    float scale_secondary_y_60;
+    float rotation_secondary_z_64;
     int blend_mode_68;
     int sampler_one_6c;
     int sampler_two_70;
     unsigned frame_74;
+    int duration_78;
 
+    RenderTimelineEntry();
     void render();
 };
 
@@ -44,6 +47,8 @@ struct RenderTimelineList {
 
 typedef char RenderTimelineEntry_deque_offset[
     offsetof(RenderTimelineEntry, sprites_14) == 0x14 ? 1 : -1];
+typedef char RenderTimelineEntry_size[
+    sizeof(RenderTimelineEntry) == 0x7c ? 1 : -1];
 typedef char RenderTimelineEntry_translate_offset[
     offsetof(RenderTimelineEntry, translate_x_28) == 0x28 ? 1 : -1];
 typedef char RenderTimelineEntry_alpha_offset[

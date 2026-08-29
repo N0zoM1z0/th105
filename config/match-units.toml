@@ -14925,3 +14925,116 @@ rel32_targets = [
 dir32_targets = [
   "?g_ui_selection_menu_stack@th105@@3V?$list@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@std@@A=?g_ui_selection_menu_stack@th105@@3V?$list@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@std@@A",
 ]
+
+[units.gpt-web-fixed-slot-serialize]
+kind = "probe"
+source = "src/battle/FixedSlotEnvelopeSerialize.cpp"
+object = "build/match-units/GptWeb_FixedSlotSerialize.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Target-pinned exact binary serializer for the 0x50-byte replay slot envelope. Natural VC8 checked deque begin/end iterators reproduce all three payload walks."
+
+[[units.gpt-web-fixed-slot-serialize.functions]]
+address = "0x00428B80"
+symbol_base = "serialize_fixed_slot_envelope"
+rel32_targets = ["_invalid_parameter_noinfo=0x0068A143"]
+
+[units.gpt-web-battle-input-queue]
+kind = "probe"
+source = "src/battle/BattleInputQueue.cpp"
+object = "build/match-units/GptWeb_BattleInputQueue.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Target-pinned exact synchronized control dequeue and synchronized control publication path. The explicit five-dword ShortDeque8 layout is corroborated by the checked front helper and neighboring queue consumers."
+
+[[units.gpt-web-battle-input-queue.functions]]
+address = "0x00428930"
+symbol_base = "?pop_control_word@SynchronizedInputState@th105@@QAEGPAG@Z"
+rel32_targets = ["?front_checked@ShortDeque8@th105@@QAEPAFXZ=0x004321B0"]
+
+[[units.gpt-web-battle-input-queue.functions]]
+address = "0x004289A0"
+symbol_base = "?publish_synchronized_control_bits_427ac0@BattleInputGate@th105@@QAEXXZ"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "?pop_control_word@SynchronizedInputState@th105@@QAEGPAG@Z=0x00428930",
+  "?set_menu_input_state@th105@@YAXE_N@Z=0x0043ABF0",
+]
+
+[units.gpt-web-battle-input-peek]
+kind = "probe"
+source = "src/battle/BattleInputConsume.cpp"
+object = "build/match-units/GptWeb_BattleInputConsume.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Target-pinned exact locked, non-consuming synchronized control-word peek. Callers independently identify the BattleInputGate receiver and later pop the same +0x3c queue under the same +0x124 lock."
+
+[[units.gpt-web-battle-input-peek.functions]]
+address = "0x004553C0"
+symbol_base = "?peek_front_control_word@BattleInputGate@th105@@QAEGPAG@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "?front_checked@ShortDeque8@th105@@QAEPAFXZ=0x004321B0",
+]
+
+[units.gpt-web-render-timeline-entry-lifetime]
+kind = "probe"
+source = "src/ui/RenderTimelineEntryLifetime.cpp"
+object = "build/match-units/GptWeb_RenderTimelineEntryLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Target-pinned exact RenderTimelineEntry constructor. Two checked deque<CSpriteEx> members and the recovered 0x7c field layout explain every initialization store."
+
+[[units.gpt-web-render-timeline-entry-lifetime.functions]]
+address = "0x00450E30"
+symbol_base = "??0RenderTimelineEntry@th105@@QAE@XZ"
+
+[units.gpt-web-scenario-effect-advance]
+kind = "probe"
+source = "src/battle/ScenarioEffectAdvance.cpp"
+object = "build/match-units/GptWeb_ScenarioEffectAdvance.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Target-pinned exact ScenarioEffectOwner virtual advance loop. The vtable +0x08 call and 0x194 layout are corroborated by neighboring scenario setup code."
+
+[[units.gpt-web-scenario-effect-advance.functions]]
+address = "0x00454F10"
+symbol_base = "?advance_until_ready_454f10@ScenarioEffectOwner194@th105@@QAE_NXZ"
+
+[units.gpt-web-scenario-text-entry-lifetime]
+kind = "probe"
+source = "src/battle/ScenarioTextEntryLifetime.cpp"
+object = "build/match-units/GptWeb_ScenarioTextEntryLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Target-pinned exact ScenarioTextEntryDC constructor. It fixes the UiSprite94, VC8 string, value and flag offsets in the 0xdc entry."
+
+[[units.gpt-web-scenario-text-entry-lifetime.functions]]
+address = "0x00455360"
+symbol_base = "??0ScenarioTextEntryDC@th105@@QAE@XZ"
+dir32_targets = ["_select_sprite_vtable_anchor=_select_sprite_vtable_anchor"]
+
+[units.gpt-web-scenario-render-entry-fade]
+kind = "probe"
+source = "src/battle/ScenarioRenderEntryFade.cpp"
+object = "build/match-units/GptWeb_ScenarioRenderEntryFade.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Target-pinned exact /GS scenario render-entry trimming and fade transition. Natural checked std::list pop_front inlines the resource and UiSprite94 destruction path."
+
+[[units.gpt-web-scenario-render-entry-fade.functions]]
+address = "0x00455CD0"
+symbol_base = "?trim_render_entries_and_begin_fade_455cd0@CScenarioData@th105@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "__ehhandler$?trim_render_entries_and_begin_fade_455cd0@CScenarioData@th105@@QAEXXZ=__ehhandler$?trim_render_entries_and_begin_fade_455cd0@CScenarioData@th105@@QAEXXZ",
+  "___security_cookie=___security_cookie",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+  "_title_color_vtable_anchor=_title_color_vtable_anchor_external",
+]

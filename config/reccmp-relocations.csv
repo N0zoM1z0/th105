@@ -997,3 +997,4 @@ __ehhandler$?save_replay_if_enabled_44e2c0@NetworkClientPacketOwnerView@th105@@Q
 ?g_connect_key_word_1@th105@@3IB,0x006C161C,bfcea645,4,Current connection-key copy 0x0043ABA0 loads canonical second dword 0x45A6CEBF from base+4; mapped bytes attested 2026-08-29,address
 ?g_connect_key_word_2@th105@@3IB,0x006C161C,91b774dc,8,Current connection-key copy 0x0043ABA0 loads canonical third dword 0xDC74B791 from base+8; mapped bytes attested 2026-08-29,address
 ?g_connect_key_word_3@th105@@3IB,0x006C161C,28fd7d96,12,Current connection-key copy 0x0043ABA0 loads canonical fourth dword 0x967DFD28 from base+12; mapped bytes attested 2026-08-29,address
+__ehhandler$?trim_render_entries_and_begin_fade_455cd0@CScenarioData@th105@@QAEXXZ,0x006BA96B,8b5424088d42e88b4ae433c8e8a9f3fc,0,Current CScenarioData render-entry fade helper 0x00455CD0 pushes SEH_455CD0 at 0x006BA96B; canonical 16-byte mapped handler prefix attested against the exact 1.06a target on 2026-08-29,address

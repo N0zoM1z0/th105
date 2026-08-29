@@ -35,7 +35,11 @@ typedef char ScenarioEffectConfig128_size_must_be_0x128[
     sizeof(ScenarioEffectConfig128) == 0x128 ? 1 : -1];
 
 struct ScenarioEffectOwner194 {
-    void *field_000;
+    virtual bool slot_00();
+    virtual bool slot_04();
+    virtual bool advance_08();
+    virtual bool slot_0c();
+
     void *field_004;
     void *field_008;
     ScenarioEffectConfig128 config_00c;
@@ -52,6 +56,7 @@ struct ScenarioEffectOwner194 {
     unsigned int field_190;
 
     void configure(const ScenarioEffectConfig128 *config);
+    bool advance_until_ready_454f10();
 };
 
 typedef char ScenarioEffectOwner194_size_must_be_0x194[
@@ -118,6 +123,8 @@ struct ScenarioRenderEntry9C {
     unsigned int resource_handle_000;
     UiSprite94 sprite_004;
     unsigned char reserved_098[4];
+
+    ~ScenarioRenderEntry9C();
 };
 
 typedef char ScenarioRenderEntry9C_size_must_be_0x9c[
@@ -132,6 +139,7 @@ struct ScenarioTextEntryDC {
     signed char flags_0d4[6];
     unsigned char reserved_0da[2];
 
+    ScenarioTextEntryDC();
     void render_dynamic();
 };
 
@@ -175,6 +183,7 @@ public:
     int field_520;
 
     void reset_runtime_state();
+    void trim_render_entries_and_begin_fade_455cd0();
 };
 
 typedef char CScenarioData_size_must_be_0x524[

@@ -3,6 +3,7 @@
 #include "ui/UiSelectionState.hpp"
 
 #include "engine/CriticalSectionWrapper.hpp"
+#include "SpellData.hpp"
 
 namespace th105 {
 
@@ -30,10 +31,11 @@ void __cdecl dispatch_indexed_event(unsigned index);
 void __cdecl install_menu_object(void *object);
 
 struct SynchronizedInputState {
-    unsigned char unknown_00[0x4c];
-    int pending_4c;
+    unsigned char unknown_00[0x3c];
+    ShortDeque8 controls_3c;
 
     unsigned char is_input_available_427680();
+    unsigned short pop_control_word(unsigned short *output);
 };
 
 struct FighterControlInput {
@@ -64,6 +66,7 @@ struct BattleInputGate {
     void load_battle_setup_slot(signed char slot, MatchSetup *setup);
     void configure_session_input(signed char character_key, int game_mode);
     void queue_control_word(unsigned short packed_control_bits);
+    unsigned short peek_front_control_word(unsigned short *output);
     void collect_battle_control_bits_42a560();
 };
 
