@@ -14042,6 +14042,39 @@ rel32_targets = [
   "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
 ]
 
+[units.gpt-web-network-base-constructor-runtime]
+kind = "probe"
+source = "src/network/NetworkBaseConstructorRuntime.cpp"
+object = "build/match-units/GptWeb_NetworkBaseConstructorRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current RTTI-owned CNetworkBase 0x6DC constructor. Three critical sections, two scene packets, INPUT packet, native deque arrays, two CInputManagerEx/deque endpoints, two queue slots, UiSprite94[2], winsock state and replay deque reproduce all ten unwind states and the current score-data initialization."
+
+[[units.gpt-web-network-base-constructor-runtime.functions]]
+address = "0x0044DB10"
+symbol_base = "??0CNetworkBaseConstructorView@th105@@QAE@XZ"
+rel32_targets = [
+  "??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0",
+  "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C",
+  "??0NetworkWinsockState314@th105@@QAE@XZ=0x00412B10",
+  "?get_score_data@th105@@YAPAUScoreDataView@1@XZ=0x0043AF20",
+]
+dir32_targets = [
+  "__ehhandler$??0CNetworkBaseConstructorView@th105@@QAE@XZ=__ehhandler$??0CNetworkBaseConstructorView@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7CNetworkBaseConstructorView@th105@@6B@=??_7CNetworkBaseFullLifetimeView@th105@@6B@",
+  "??_7ScenePacket0C@th105@@6B@=??_7ScenePacket0C@th105@@6B@",
+  "??_7InputPacket24ConstructorView@th105@@6B@=??_7InputPacket24@th105@@6B@",
+  "??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ",
+  "??0?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??0?$deque@FV?$allocator@F@std@@@std@@QAE@XZ",
+  "??1NetworkInputEndpoint7C@th105@@QAE@XZ=??1NetworkInputEndpoint7C@th105@@QAE@XZ",
+  "??0NetworkInputEndpoint7C@th105@@QAE@XZ=??0NetworkInputEndpoint7C@th105@@QAE@XZ",
+  "??1NetworkQueueSlot20@th105@@QAE@XZ=??1NetworkQueueSlot20@th105@@QAE@XZ",
+  "??0NetworkQueueSlot20@th105@@QAE@XZ=??0NetworkQueueSlot20@th105@@QAE@XZ",
+  "??1UiSprite94@th105@@QAE@XZ=_ui_sprite_icf_dtor_callback",
+  "??0UiSprite94@th105@@QAE@XZ=??0UiSprite94@th105@@QAE@XZ",
+]
+
 [units.gpt-web-network-server-state-runtime]
 kind = "probe"
 source = "src/network/NetworkServerStateRuntime.cpp"
@@ -14715,6 +14748,59 @@ rel32_targets = [
   "@__security_check_cookie@4=0x00689D25",
 ]
 dir32_targets = ["___security_cookie=___security_cookie"]
+
+[[units.gpt-web-network-packet-leaf-runtime.functions]]
+address = "0x0044D990"
+symbol_base = "?serialize@ReplayPacket28@th105@@UAEIPAX@Z"
+rel32_targets = [
+  "_compress_network_replay=0x004067F0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = ["___security_cookie=___security_cookie"]
+
+[[units.gpt-web-network-packet-leaf-runtime.functions]]
+address = "0x0044E2C0"
+symbol_base = "?save_replay_if_enabled_44e2c0@NetworkClientPacketOwnerView@th105@@QAEXXZ"
+rel32_targets = [
+  "?has_file_40f0b0@ConnectConfigIniView@th105@@QAE_NPBD@Z=0x0040F0B0",
+  "?read_uint_40f100@ConnectConfigIniView@th105@@QAEIPBD0@Z=0x0040F100",
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "?reset_locked_44d700@NetworkInputSinkView@th105@@QAEXXZ=0x0044D700",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?append_replay_value_42b270@NetworkInputSinkView@th105@@QAEXG@Z=0x0042B270",
+  "?build_replay_filename_42a560@NetworkInputSinkView@th105@@QAEXPADPBD1@Z=0x0042A560",
+  "?save_replay_428d90@NetworkInputSinkView@th105@@QAEXPBD@Z=0x00428D90",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?save_replay_if_enabled_44e2c0@NetworkClientPacketOwnerView@th105@@QAEXXZ=__ehhandler$?save_replay_if_enabled_44e2c0@NetworkClientPacketOwnerView@th105@@QAEXXZ",
+  "___security_cookie=___security_cookie",
+  "_connect_config_file=_connect_config_file",
+  "_connect_config_section=_connect_config_section",
+  "_network_save_replay_key=_network_save_replay_key",
+  "?g_connect_config_ini@th105@@3UConnectConfigIniView@1@A=?g_connect_config_ini@th105@@3UConnectConfigIniView@1@A",
+]
+
+[units.gpt-web-network-primary-packet-continuation]
+kind = "probe"
+source = "src/network/NetworkPrimaryPacketContinuationRuntime.cpp"
+object = "build/match-units/GptWeb_NetworkPrimaryPacketContinuationRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current Client packet/result send and ACK tail import plus Server adaptive-delay sampling. The narrow views share target-proved primary-owner offsets through +0x6E8 and preserve ordinary member calls and signed-byte clamping."
+
+[[units.gpt-web-network-primary-packet-continuation.functions]]
+address = "0x0044E6A0"
+symbol_base = "?send_packet_with_result_44e6a0@CNetworkClientPacketContinuationView@th105@@QAEHPAVNetworkPacketWithResult8@2@H@Z"
+rel32_targets = [
+  "?send_client@NetworkClientSend4View@th105@@QAEHPBXIHPAI@Z=0x00416990",
+]
+
+[[units.gpt-web-network-primary-packet-continuation.functions]]
+address = "0x0044F550"
+symbol_base = "?update_adaptive_delay_44f550@CNetworkServerAdaptiveDelayView@th105@@QAEXH@Z"
 
 [units.gpt-web-network-replay-request-pump]
 kind = "probe"

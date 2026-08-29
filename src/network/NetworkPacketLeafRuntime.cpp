@@ -78,7 +78,24 @@ public:
 class NetworkInputSinkView {
 public:
     void flush_to(void *destination);
+    void reset_locked_44d700();
+    void append_replay_value_42b270(unsigned short value);
+    void build_replay_filename_42a560(
+        char *output,
+        const char *player0_name,
+        const char *player1_name);
+    void save_replay_428d90(const char *path);
 };
+
+struct ConnectConfigIniView {
+    bool has_file_40f0b0(const char *path);
+    unsigned int read_uint_40f100(const char *section, const char *key);
+};
+
+extern ConnectConfigIniView g_connect_config_ini;
+extern "C" const char connect_config_file[];
+extern "C" const char connect_config_section[];
+extern "C" const char network_save_replay_key[];
 
 class NetworkClientPacketOwnerView {
 public:
@@ -86,8 +103,11 @@ public:
     int send_simple_packet(PacketSerializeView *packet, int option);
     void pump_replay_request_44d880();
     void flush_replay_values_44d800();
+    void save_replay_if_enabled_44e2c0();
 
-    unsigned char reserved_004[0xd8];
+    char player0_name_004[0x20];
+    char player1_name_024[0x20];
+    unsigned char reserved_044[0x98];
     CriticalSectionWrapper replay_critical_0dc;
     unsigned char reserved_0f8[0x2bc];
     NetworkClientSend4View sender_3b4;
@@ -157,6 +177,11 @@ extern "C" void __cdecl decompress_network_replay(
     unsigned int source_size,
     void *destination,
     unsigned int destination_size);
+extern "C" unsigned char __cdecl compress_network_replay(
+    const void *source,
+    unsigned int source_size,
+    void *destination,
+    unsigned int destination_size);
 extern "C" int g_replay_request_poll_counter;
 
 ReplayPacketDequeOwner28::~ReplayPacketDequeOwner28()
@@ -201,6 +226,36 @@ unsigned int InputPacket24::serialize(void *buffer)
     }
     return static_cast<unsigned int>(
         output - static_cast<unsigned char *>(buffer));
+}
+
+unsigned int ReplayPacket28::serialize(void *buffer)
+{
+    unsigned char *output = static_cast<unsigned char *>(buffer);
+    output[0] = 9;
+
+    ReplayDecoded256 decoded;
+    decoded.sequence_000 = sequence_008;
+    decoded.metadata_004 = metadata_00c;
+    decoded.tag_008 = tag_010;
+    const std::deque<short> &values = values_014;
+    decoded.count_009 = static_cast<unsigned char>(values.size());
+    short *value = decoded.values_00a;
+    unsigned int index = 0;
+    if (values.size() > 0) {
+        do {
+            *value++ = values[index];
+            ++index;
+        } while (index < values.size());
+    }
+
+    unsigned char compressed_size = compress_network_replay(
+        &decoded,
+        reinterpret_cast<unsigned char *>(value) -
+            reinterpret_cast<unsigned char *>(&decoded),
+        output + 2,
+        254);
+    output[1] = compressed_size;
+    return compressed_size + 2;
 }
 
 void ReplayPacket28::parse_compressed(const unsigned char *input)
@@ -260,6 +315,27 @@ void NetworkClientPacketOwnerView::pump_replay_request_44d880()
             request->serialize(packet_buffer_5b4),
             0x20,
             0);
+    }
+}
+
+void NetworkClientPacketOwnerView::save_replay_if_enabled_44e2c0()
+{
+    char path[260];
+    if (g_connect_config_ini.has_file_40f0b0(connect_config_file) &&
+        g_connect_config_ini.read_uint_40f100(
+            connect_config_section, network_save_replay_key)) {
+        ScopedNetworkCriticalSection scope(&replay_critical_0dc);
+        input_sink_6b4->reset_locked_44d700();
+        for (std::deque<short>::iterator it = replay_values_6c8.begin();
+             it != replay_values_6c8.end();
+             ++it) {
+            input_sink_6b4->append_replay_value_42b270(
+                static_cast<unsigned short>(*it));
+        }
+        input_sink_6b4->build_replay_filename_42a560(
+            path, player0_name_004, player1_name_024);
+        input_sink_6b4->save_replay_428d90(path);
+        input_sink_6b4->reset_locked_44d700();
     }
 }
 
