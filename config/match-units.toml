@@ -14354,3 +14354,80 @@ rel32_targets = [
   "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
   "@__security_check_cookie@4=0x00689D25",
 ]
+
+[units.gpt-web-network-ack-info-senders-runtime]
+kind = "probe"
+source = "src/network/NetworkAckInfoSendersRuntime.cpp"
+object = "build/match-units/GptWeb_NetworkAckInfoSendersRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current Client/Server primary ACK_INFO senders. Inline 0x40 ACK_INFO packet construction owns two checked deque<short> members and one EH state. The local packet is viewed through a slot-0 serialize-only polymorphic ABI at the call site so VC8 preserves the target indirect serializer call instead of devirtualizing the concrete local."
+
+[[units.gpt-web-network-ack-info-senders-runtime.functions]]
+address = "0x0044F0F0"
+symbol_base = "?send_ack_info_if_ready@CNetworkClientAckSenderView@th105@@QAEXXZ"
+dir32_targets = [
+  "__ehhandler$?send_ack_info_if_ready@CNetworkClientAckSenderView@th105@@QAEXXZ=__ehhandler$?send_ack_info_if_ready@CNetworkClientAckSenderView@th105@@QAEXXZ",
+  "??_7NetworkAckInfoPacket40@th105@@6B@=??_7NetworkAckInfoPacket40@th105@@6B@",
+  "??0?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??0?$deque@FV?$allocator@F@std@@@std@@QAE@XZ",
+  "??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ",
+]
+rel32_targets = [
+  "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C",
+  "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "??4?$deque@FV?$allocator@F@std@@@std@@QAEAAV01@ABV01@@Z=0x0042B6B0",
+  "?send_client@NetworkClientSend4View@th105@@QAEHPBXIHPAI@Z=0x00416990",
+  "@__security_check_cookie@4=0x00689D25",
+]
+
+[[units.gpt-web-network-ack-info-senders-runtime.functions]]
+address = "0x0044FE30"
+symbol_base = "?send_ack_info_if_ready@CNetworkServerAckSenderView@th105@@QAEXXZ"
+dir32_targets = [
+  "__ehhandler$?send_ack_info_if_ready@CNetworkServerAckSenderView@th105@@QAEXXZ=__ehhandler$?send_ack_info_if_ready@CNetworkServerAckSenderView@th105@@QAEXXZ",
+  "??_7NetworkAckInfoPacket40@th105@@6B@=??_7NetworkAckInfoPacket40@th105@@6B@",
+  "??0?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??0?$deque@FV?$allocator@F@std@@@std@@QAE@XZ",
+  "??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ",
+]
+rel32_targets = [
+  "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C",
+  "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "??4?$deque@FV?$allocator@F@std@@@std@@QAEAAV01@ABV01@@Z=0x0042B6B0",
+  "?send_server@NetworkServerSend5View@th105@@QAEHIPBXIHPAI@Z=0x00416B60",
+  "@__security_check_cookie@4=0x00689D25",
+]
+
+[units.gpt-web-network-server-secondary-dispatch-runtime]
+kind = "probe"
+source = "src/network/NetworkServerSecondaryDispatchRuntime.cpp"
+object = "build/match-units/GptWeb_NetworkServerSecondaryDispatchRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CNetworkServer secondary-vtable slot +0x0C. The standard ABI dispatcher preserves the 8-byte secondary interface, repeatedly forms the primary owner at this-0x6DC, forwards packet type 11 to the primary replay-request handler, and owns INPUT/ACK_INFO packet lifetimes plus the physical 1/2/3/8/4/5/7 switch order. The COMDAT contains a 32-byte switch table after the reviewed 532-byte RET boundary."
+
+[[units.gpt-web-network-server-secondary-dispatch-runtime.functions]]
+address = "0x0044FB40"
+symbol_base = "?dispatch_packet@CNetworkServerSecondaryDispatchView@th105@@UAEXIPBEH@Z"
+dir32_targets = [
+  "__ehhandler$?dispatch_packet@CNetworkServerSecondaryDispatchView@th105@@UAEXIPBEH@Z=__ehhandler$?dispatch_packet@CNetworkServerSecondaryDispatchView@th105@@UAEXIPBEH@Z",
+  "??_7NetworkRequestReplay10@th105@@6B@=??_7NetworkRequestReplay10@th105@@6B@",
+  "??_7SceneAckPacket0C@th105@@6B@=??_7SceneAckPacket0C@th105@@6B@",
+  "??_7InputPacket24@th105@@6B@=??_7InputPacket24@th105@@6B@",
+  "??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ",
+]
+rel32_targets = [
+  "?dispatch_secondary_request@NetworkServerPrimarySecondaryDispatchView@th105@@QAEHIPBVNetworkRequestReplay10@2@@Z=0x0044E460",
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "?send_packet@NetworkServerPrimarySecondaryDispatchView@th105@@QAEHIPAXH@Z=0x0044F4E0",
+  "?parse@InputPacket24@th105@@QAEXPBE@Z=0x0044E050",
+  "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
+  "??0AckInfoPacket40@th105@@QAE@XZ=0x0044DAC0",
+  "?parse@AckInfoPacket40@th105@@QAEDPBE@Z=0x0044E0A0",
+  "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
+  "@__security_check_cookie@4=0x00689D25",
+]
