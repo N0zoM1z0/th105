@@ -8,6 +8,39 @@ seeds using current-target-backed structural remapping where appropriate.
 
 ## Verified state
 
+- **Newest CEffectManager shared-virtual wave:** **12 authored
+  canonical-exact roots / 463 bytes**, moving the ledger to **1,234 exact /
+  199,511 authored bytes / 420 units; 1,095 excluded; 1,679 review-pending**.
+  The focused `gpt-web-effect-manager-virtuals` unit is 13/13 physical bodies
+  zero-difference: twelve authored bodies plus compiler-generated five-byte
+  virtual member-pointer thunk `0x00421D20`, which remains excluded.  The
+  authored roots are callbacks `0x00421AC0/0x00421AE0`, checked integer
+  iterator `0x004376F0`, shared virtuals `0x0041F890/0x00422E80/0x00422F00/
+  0x00437740/0x0046F350/0x0046F450`, and class-specific resource/preallocate
+  adapters `0x004245B0/0x004389B0/0x004389D0`.  The complete cold graph replay
+  passes **420/420 units**.
+- Reuse the ABI/source contracts from this wave.  `EffectObjectBase` is real
+  multiple inheritance: a polymorphic animation base occupies `+0x000..+0x157`
+  and non-polymorphic handle state begins at `+0x158/+0x15C`; context is
+  `+0x164` and render layer is signed byte `+0x16C`.  That secondary base makes
+  VC8 member pointers two dwords `{code,this-adjustor}` and naturally emits the
+  exact vslot-`+0x28` thunk.  Resource cleanup is native checked
+  `vector<unsigned>::at(i)` followed by an out-of-line
+  `erase(begin(),end())`; the declaration-only erase view records target TU
+  visibility without manual iterator or byte construction.
+- Keep `CEffectManager<T>::spawn_effect` non-virtual.  Its exact target symbols
+  decorate `QAE...`, while the recovered virtual lane decorates `UAE...`;
+  adding `virtual` suppresses the three existing standalone spawn symbols in
+  VC8.  The corrected declaration replays spawn 3/3, lifetimes 12/12, and the
+  new virtual lane 13/13 exactly.
+- Preserve `EffectObjectManagerBase_update_and_prune @ 0x00422D30` as a
+  bounded source-present nonexact result.  Natural multiple-inheritance and
+  checked-list source closes all semantics and the full **207/207-byte**
+  extent; the first residual at **+0xA5** is solely final inlined list-erase
+  EAX/ECX/EDX scheduling, matching the independent character-manager stop.
+  Do not force it with register/volatile state, manual nodes, fake liveness,
+  assembly, or copied bytes.
+
 - **Newest CharacterObjectManager runtime wave:** **13 authored canonical-exact
   roots / 492 bytes**, moving the ledger to **1,222 exact / 199,048 authored
   bytes / 419 units; 1,094 excluded; 1,693 review-pending**.  The focused

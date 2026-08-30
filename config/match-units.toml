@@ -16135,3 +16135,111 @@ dir32_targets = ["?replace_parent@CharacterManagerObjectRuntimeView@th105@@QAEXP
 [[units.gpt-web-character-object-manager-runtime.functions]]
 address = "0x004B9DA0"
 symbol_base = "?objects@CharacterObjectManagerRuntime@th105@@UAEAAV?$list@PAVCharacterManagerObjectRuntimeView@th105@@V?$allocator@PAVCharacterManagerObjectRuntimeView@th105@@@std@@@std@@XZ"
+[units.gpt-web-effect-manager-virtuals]
+kind = "probe"
+source = "src/battle/EffectManagerVirtuals.cpp"
+object = "build/match-units/GptWeb_EffectManagerVirtuals.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current RTTI-owned CEffectManager<CSelectObject/WeatherEffectObject/EffectObject/InfoEffectObject> shared virtual lane. The real primary animation plus secondary CObjectBase layout gives the target two-dword VC8 member-pointer ABI; native checked list/vector operations reproduce callbacks, iterators, resource cleanup and thin manager adapters without assembly or register forcing."
+
+[[units.gpt-web-effect-manager-virtuals.functions]]
+address = "0x0041F890"
+symbol_base = "?on_effect_manager_idle@?$CEffectManager@VCSelectObject@@@@UAEXXZ"
+
+[[units.gpt-web-effect-manager-virtuals.functions]]
+address = "0x00421AC0"
+symbol_base = "?clear_context_if@EffectObjectBase@@QAEXH@Z"
+
+[[units.gpt-web-effect-manager-virtuals.functions]]
+address = "0x00421AE0"
+symbol_base = "?render_if_layer@EffectObjectBase@@QAEXC@Z"
+rel32_targets = [
+  "?render_435280@EffectObjectBase@@QAEXXZ=0x00435280",
+]
+
+[[units.gpt-web-effect-manager-virtuals.functions]]
+address = "0x00421D20"
+symbol_base = "??_9EffectObjectBase@@$BCI@AE"
+
+[[units.gpt-web-effect-manager-virtuals.functions]]
+address = "0x00422E80"
+symbol_base = "?update_effects@?$CEffectManager@VCSelectObject@@@@UAEXXZ"
+rel32_targets = [
+  "?update_and_prune@?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@QAEXP8EffectObjectBase@@AEXXZ@Z=0x00422D30",
+]
+dir32_targets = [
+  "??_9EffectObjectBase@@$BCI@AE=??_9EffectObjectBase@@$BCI@AE",
+]
+
+[[units.gpt-web-effect-manager-virtuals.functions]]
+address = "0x00422F00"
+symbol_base = "?clear_effects_and_resources@?$CEffectManager@VCSelectObject@@@@UAEXXZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@QAEXXZ=0x0046EEB0",
+  "_invalid_parameter_noinfo=0x0068A143",
+  "?release@EffectResourceManager@th105@@QAEXI@Z=0x00404D70",
+  "?_Xran@?$vector@IV?$allocator@I@std@@@std@@KAXXZ=0x0040C350",
+  "?erase_range@EffectResourceVectorEraseView@@QAE?AV?$_Vector_iterator@IV?$allocator@I@std@@@std@@V23@0@Z=0x0040C270",
+]
+dir32_targets = [
+  "?g_effect_resource_manager@th105@@3VEffectResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+]
+
+[[units.gpt-web-effect-manager-virtuals.functions]]
+address = "0x004245B0"
+symbol_base = "?load_effect_resource_and_preallocate@?$CEffectManager@VCSelectObject@@@@UAEXPBDI@Z"
+rel32_targets = [
+  "?load_effect_resource@IEffectManager@@QAEHPBD@Z=0x00437EC0",
+  "?preallocate_object_pool@?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@QAEXI@Z=0x00423030",
+]
+
+[[units.gpt-web-effect-manager-virtuals.functions]]
+address = "0x004376F0"
+symbol_base = "?invoke_each@?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@QAEXP8EffectObjectBase@@AEXH@ZH@Z"
+rel32_targets = [
+  "_invalid_parameter_noinfo=0x0068A143",
+]
+
+[[units.gpt-web-effect-manager-virtuals.functions]]
+address = "0x00437740"
+symbol_base = "?clear_effect_context@?$CEffectManager@VCSelectObject@@@@UAEXH@Z"
+rel32_targets = [
+  "?invoke_each@?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@QAEXP8EffectObjectBase@@AEXH@ZH@Z=0x004376F0",
+]
+dir32_targets = [
+  "?clear_context_if@EffectObjectBase@@QAEXH@Z=?clear_context_if@EffectObjectBase@@QAEXH@Z",
+]
+
+[[units.gpt-web-effect-manager-virtuals.functions]]
+address = "0x004389B0"
+symbol_base = "?load_effect_resource_and_preallocate@?$CEffectManager@VWeatherEffectObject@@@@UAEXPBDI@Z"
+rel32_targets = [
+  "?load_effect_resource@IEffectManager@@QAEHPBD@Z=0x00437EC0",
+  "?preallocate_object_pool@?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@QAEXI@Z=0x00437840",
+]
+
+[[units.gpt-web-effect-manager-virtuals.functions]]
+address = "0x004389D0"
+symbol_base = "?load_effect_resource_and_preallocate@?$CEffectManager@VEffectObject@@@@UAEXPBDI@Z"
+rel32_targets = [
+  "?load_effect_resource@IEffectManager@@QAEHPBD@Z=0x00437EC0",
+  "?preallocate_object_pool@?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@QAEXI@Z=0x00437C80",
+]
+
+[[units.gpt-web-effect-manager-virtuals.functions]]
+address = "0x0046F350"
+symbol_base = "?render_effects_for_layer@?$CEffectManager@VCSelectObject@@@@UAEXC@Z"
+rel32_targets = [
+  "?invoke_each@?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@QAEXP8EffectObjectBase@@AEXC@ZC@Z=0x0064B510",
+]
+dir32_targets = [
+  "?render_if_layer@EffectObjectBase@@QAEXC@Z=?render_if_layer@EffectObjectBase@@QAEXC@Z",
+]
+
+[[units.gpt-web-effect-manager-virtuals.functions]]
+address = "0x0046F450"
+symbol_base = "?release_all_effects@?$CEffectManager@VCSelectObject@@@@UAEXXZ"
+rel32_targets = [
+  "?release_all_tracked_objects@?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@QAEXXZ=0x0046EEB0",
+]

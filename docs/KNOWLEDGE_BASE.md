@@ -5,6 +5,48 @@ notes or source hypotheses.
 
 ## Observed
 
+- The CEffectManager shared-virtual continuation adds **12 authored
+  canonical-exact roots / 463 bytes**, moving the tracked checkpoint to
+  **1,234 exact / 199,511 authored bytes / 420 units; 1,095 excluded; 1,679
+  review-pending**.  The focused unit compares 13/13 physical bodies exactly:
+  callbacks `0x00421AC0/0x00421AE0`, integer member-pointer iterator
+  `0x004376F0`, shared virtuals `0x0041F890/0x00422E80/0x00422F00/0x00437740/
+  0x0046F350/0x0046F450`, three load/preallocate adapters
+  `0x004245B0/0x004389B0/0x004389D0`, and compiler-generated vslot-`+0x28`
+  thunk `0x00421D20`.  The thunk is exact evidence but excluded from authored
+  progress.  A complete cold replay passes all **420/420** configured units.
+- The neighboring exact `CEffectManager<T>::spawn_effect` family must remain
+  non-virtual: its target names decorate `QAE...`, whereas the shared virtual
+  adapters decorate `UAE...`.  Marking spawn virtual suppresses the three
+  expected standalone template symbols in pinned VC8 despite unchanged source
+  bodies; the corrected shared declaration preserves spawn 3/3, lifetime
+  12/12, and virtual-lane 13/13 exact replays.
+- EffectObjectBase's actual multiple inheritance is codegen-visible.  Its
+  primary polymorphic animation base ends at `+0x158`; the source-first
+  non-polymorphic CObjectBase/handle state is physically secondary at
+  `+0x158/+0x15C`, followed by integer context `+0x164` and signed render-layer
+  byte `+0x16C`.  Modeling only one polymorphic base makes VC8 member pointers
+  four bytes and shortens all three checked-list helpers by four bytes.
+  Modeling the real secondary base produces the target two-dword
+  `{code,this-adjustor}` ABI, exact virtual thunk, 75/75 integer iterator and
+  independently replays the already-exact 77-byte signed-byte iterator.
+- `CEffectManager::clear_effects_and_resources @ 0x00422F00` is a positive
+  checked-STL/TU-visibility reference.  It releases the `+4` tracked-object
+  base, walks `vector<unsigned> +0x64` with real `.at(i)`, releases every id
+  through manager `0x00702798`, then erases the complete range.  `.at(i)` is
+  required for the target's second range gate plus checked-iterator
+  validations; `operator[]` is 41 bytes short and `begin()[i]` is 22 bytes
+  short.  The target keeps `erase(first,last)` out of line, so a
+  declaration-only derived vector view preserves the real VC8 iterator ABI and
+  call boundary while leaving all iteration native.  Do not replace this with
+  manual iterator fields or inline bytes.
+- Keep effect update/prune `0x00422D30` source-present nonexact.  The same
+  natural checked-list loop reaches the complete 207-byte target and first
+  differs only at `+0xA5` in final erase register scheduling.  This independent
+  sibling of character update/prune is allocator/TU evidence, not permission
+  for register/volatile forcing, manual nodes, fake dependencies, assembly, or
+  copied bytes.
+
 - The CharacterObjectManager runtime continuation adds **13 authored
   canonical-exact roots / 492 bytes**, moving the tracked checkpoint to
   **1,222 exact / 199,048 authored bytes / 419 units; 1,094 excluded; 1,693

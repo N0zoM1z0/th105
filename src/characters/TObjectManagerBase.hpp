@@ -50,6 +50,10 @@ public:
     ObjectType *acquire_and_link_object();
     void preallocate_object_pool(unsigned target_count);
     void release_all_tracked_objects();
+    void update_and_prune(void (BaseObjectType::*method)());
+    void invoke_each(
+        void (BaseObjectType::*method)(signed char), signed char value);
+    void invoke_each(void (BaseObjectType::*method)(int), int value);
 
     CHandleManagerEx<ObjectType> handle_pool_04;
     th105::CollisionList linked_objects_54;

@@ -749,6 +749,32 @@ In a multiple-inheritance member, assigning `SecondaryBase *base = this` is not 
 
 A semantically empty virtual base destructor can still change a derived destructor by several instructions depending on whether its definition is visible. The four `CEffectManager<T>` targets end by restoring the shared `IEffectManager` vptr. With only a declaration, pinned VC8 emits an out-of-line `IEffectManager::~IEffectManager()` call and the derived dtor is 203 bytes. Giving the TU the truthful empty definition lets VC8 inline that vptr restore and yields the target 194 bytes exactly. Prefer the TU visibility demonstrated by target code over `noinline`/`forceinline` attributes or synthetic cleanup calls.
 
+The shared `CEffectManager<T>` virtual lane adds two related ABI checks.  The
+managed `EffectObjectBase` must retain its real multiple inheritance: primary
+polymorphic animation storage through `+0x157`, then the non-polymorphic handle
+base at `+0x158/+0x15C`.  With a single base VC8 uses a four-byte member pointer
+and the list helpers are four bytes short; the real secondary base naturally
+selects the target two-dword `{code,this-adjustor}` representation and emits
+the five-byte virtual-slot thunk.  Treat member-pointer width as physical class
+evidence, not a typedef choice.
+
+Do not infer that every neighboring `CEffectManager<T>` member belongs to that
+virtual lane.  The exact `spawn_effect` family decorates as `QAE...`, while the
+virtual manager adapters decorate as `UAE...`; keeping `spawn_effect`
+non-virtual is required for VC8 to emit the three independently exact template
+symbols.  Adding `virtual` changes both the ABI claim and COMDAT emission even
+when the function body is unchanged.  Use the target decorated name as primary
+virtual/non-virtual evidence when extending a shared class declaration.
+
+For checked `vector<unsigned>` cleanup, source access spelling and callee
+visibility are independently observable.  In `0x00422F00`, `operator[]` and
+`begin()[i]` omit target range/iterator checks, while `.at(i)` produces the
+complete checked loop.  The shipped TU also keeps `erase(begin,end)` out of
+line.  A declaration-only zero-offset derived vector view can preserve that
+real iterator ABI/call boundary without exposing the erase definition; it must
+not be generalized into manual iterator layouts or used when the target
+actually inlines the STL body.
+
 ### Recover MI layout from dual vptr writes and symmetric member lifetime
 
 The `CEffectManager<T>` constructors and destructors independently write two derived vptrs: primary `IEffectManager` at `+0` and a specialization-specific `TObjectManagerBase<T,EffectObjectBase>` vptr at `+4`. Their construction/destruction symmetry then fixes a 16-byte checked vector at `+0x64`, a 20-byte owning deque at `+0x74`, and a 12-byte checked tree at `+0x88`. Model those as real bases/members so VC8 owns vptr and EH-state generation. Do not flatten the object into byte padding merely because individual methods can be matched from narrow offset views.

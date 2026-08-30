@@ -18,6 +18,8 @@ public:
     // Current CEffectManager<T> destructors inline this trivial primary-base
     // lifetime as a direct IEffectManager-vptr restore.
     virtual ~IEffectManager() {}
+
+    int load_effect_resource(const char *path);
 };
 
 
@@ -47,6 +49,9 @@ public:
     CEffectManager();
     virtual ~CEffectManager();
 
+    virtual void load_effect_resource_and_preallocate(
+        const char *path, unsigned target_count);
+    virtual void clear_effects_and_resources();
     ObjectType *spawn_effect(
         int effect_id,
         float x,
@@ -54,6 +59,11 @@ public:
         unsigned char facing,
         unsigned char spawn_flag,
         int spawn_context);
+    virtual void release_all_effects();
+    virtual void update_effects();
+    virtual void render_effects_for_layer(signed char layer);
+    virtual void on_effect_manager_idle();
+    virtual void clear_effect_context(int context);
 
     // VC8 checked containers observed at +0x64, +0x74, and +0x88.
     std::vector<unsigned> resources_64;
