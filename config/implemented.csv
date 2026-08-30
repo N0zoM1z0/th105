@@ -1193,3 +1193,4 @@ DirectSoundResourceBase_initialize
 DirectSoundResource_initialize
 ProfileDeckResourceGroup_ctor
 ProfileDeckResourceGroup_dtor
+ScenarioRenderEntry9C_dtor

@@ -1,0 +1,34 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/ui/SceneRenderClusterRuntime.cpp"
+enable_gs = false
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 0
+alignment_tail_hex = ""
+
+[[anchors]]
+address = "0x0041EAC0"
+size = 99
+symbol = "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@std@@QAEXXZ"
+
+[[anchors]]
+address = "0x0041EA60"
+size = 82
+symbol = "?_Rrotate@?$_Tree@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@2@@Z"
+
+[[anchors]]
+address = "0x0041E9D0"
+size = 78
+symbol = "?_Lrotate@?$_Tree@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@2@@Z"
+
+[[anchors]]
+address = "0x0041EA20"
+size = 28
+symbol = "?_Max@?$_Tree@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@std@@KAPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@2@PAU342@@Z"
+
+[[anchors]]
+address = "0x0041EA40"
+size = 27
+symbol = "?_Min@?$_Tree@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@std@@KAPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@2@PAU342@@Z"

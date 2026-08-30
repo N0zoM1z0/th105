@@ -1194,3 +1194,4 @@ DirectSoundResourceBase_initialize,0x00418310,function
 DirectSoundResource_initialize,0x00418180,function
 ProfileDeckResourceGroup_ctor,0x0042E880,function
 ProfileDeckResourceGroup_dtor,0x0042E900,function
+ScenarioRenderEntry9C_dtor,0x00434C60,function

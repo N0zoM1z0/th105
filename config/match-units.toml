@@ -15126,6 +15126,19 @@ enable_gs = true
 notes = "Target-pinned exact /GS scenario render-entry trimming and fade transition. Natural checked std::list pop_front inlines the resource and UiSprite94 destruction path."
 
 [[units.gpt-web-scenario-render-entry-fade.functions]]
+address = "0x00434C60"
+symbol_base = "??1ScenarioRenderEntry9C@th105@@QAE@XZ"
+rel32_targets = [
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+]
+dir32_targets = [
+  "__ehhandler$??1ScenarioRenderEntry9C@th105@@QAE@XZ=__ehhandler$??1ScenarioRenderEntry9C@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+  "_title_color_vtable_anchor=_title_color_vtable_anchor_external",
+]
+
+[[units.gpt-web-scenario-render-entry-fade.functions]]
 address = "0x00455CD0"
 symbol_base = "?trim_render_entries_and_begin_fade_455cd0@CScenarioData@th105@@QAEXXZ"
 rel32_targets = [

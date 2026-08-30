@@ -591,13 +591,13 @@ evidence = "thirteen current unsigned-key/eight-byte-mapped std::_Tree COMDATs a
 [[rules]]
 id = "vc8-generated-phase-render-list-comdats-106a"
 vc8_generated_anchor_file = "config/vc8-generated-phase-render-list-origin-anchors.toml"
-expected_count = 5
-expected_bytes = 430
+expected_count = 6
+expected_bytes = 825
 origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 /GS rebuild of exact FighterPhaseRenderState.cpp regenerates the checked std::list<PhaseRenderEntry> sentinel/value node allocation, clear, erase(iterator), and length-growth COMDATs; relocation-masked full-inventory replay must remain unique at the five current 1.06a spans."
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of exact FighterPhaseRenderState.cpp regenerates the checked std::list<PhaseRenderEntry> sentinel/value node allocation, clear, erase(iterator), and length-growth COMDATs plus the compiler-synthesized CSpriteEx copy-assignment operator; relocation-masked full-inventory replay must remain unique at the six current 1.06a spans."
 
 [[rules]]
 id = "vc8-generated-battle-render-request-list-comdat-106a"
@@ -664,3 +664,102 @@ subsystem = "ui"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Canonical-exact SceneRenderCluster constructor instantiates checked list<0x7C scene record> and map<int,20-byte scene value> node allocators. SHA-pinned VC8 SP1 rebuild plus full 4,010-candidate relocation-masked replay requires both newly classified COMDAT fingerprints to remain inventory-unique; the map<int,void*> allocator at 0x00420A40 is already independently excluded by the effect-manager exact-TU manifest."
+
+[[rules]]
+id = "vc8-generated-profile-deck-resource-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-profile-deck-resource-std-origin-anchors.toml"
+expected_count = 4
+expected_bytes = 951
+origin = "compiler_generated"
+subsystem = "ui"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of canonical-exact ProfileDeckResourceLifetime.cpp regenerates four checked map<int,SpellRecordView> COMDATs (erase, iterator increment, node allocation and Min); every relocation-masked fingerprint must remain inventory-unique across all 4,010 current spans."
+
+[[rules]]
+id = "vc8-generated-event-effect-state-lifetime-std-comdat-106a"
+vc8_generated_anchor_file = "config/vc8-generated-event-effect-state-lifetime-std-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 731
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of canonical-exact EventEffectStateLifetime.cpp regenerates checked map<signed char,vector<unsigned char>>::erase(iterator); its 731-byte relocation-masked fingerprint must remain inventory-unique across all current spans."
+
+[[rules]]
+id = "vc8-generated-menu-connect-history-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-menu-connect-history-std-origin-anchors.toml"
+expected_count = 5
+expected_bytes = 1062
+origin = "compiler_generated"
+subsystem = "ui"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of canonical-exact MenuConnectHistoryRuntime.cpp regenerates checked deque<string> erase, copy/copy-backward, push_front and pop_front COMDATs; every relocation-masked fingerprint must remain inventory-unique across the full current inventory."
+
+[[rules]]
+id = "vc8-generated-shared-scene-bootstrap-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-shared-scene-bootstrap-std-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 694
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of canonical-exact SharedSceneBootstrap.cpp regenerates the checked map<unsigned,short> insert and _Insert COMDATs; both relocation-masked fingerprints must remain inventory-unique across all 4,010 current spans."
+
+[[rules]]
+id = "vc8-generated-scenario-render-entry-std-comdat-106a"
+vc8_generated_anchor_file = "config/vc8-generated-scenario-render-entry-std-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 102
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of canonical-exact ScenarioRenderEntryFade.cpp regenerates checked list<ScenarioRenderEntry9C>::erase(iterator); its relocation-masked fingerprint must remain inventory-unique across all current spans."
+
+[[rules]]
+id = "vc8-generated-scene-render-cluster-runtime-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-scene-render-cluster-runtime-std-origin-anchors.toml"
+expected_count = 5
+expected_bytes = 314
+origin = "compiler_generated"
+subsystem = "ui"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of canonical-exact SceneRenderClusterRuntime.cpp regenerates five checked map<int,SceneTimelineValue20> iterator/rotation/Min/Max COMDATs; every relocation-masked fingerprint must remain inventory-unique across the full current inventory."
+
+[[rules]]
+id = "vc8-generated-input-merge-std-comdat-106a"
+vc8_generated_anchor_file = "config/vc8-generated-input-merge-std-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 96
+origin = "compiler_generated"
+subsystem = "input"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of canonical-exact InputMerge.cpp regenerates checked deque<CInputManager*>::iterator::operator[]; its relocation-masked fingerprint must remain inventory-unique across all current spans."
+
+[[rules]]
+id = "vc8-generated-scene-render-cluster-cleanup-std-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-scene-render-cluster-cleanup-std-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 115
+origin = "compiler_generated"
+subsystem = "ui"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of canonical-exact SceneRenderClusterCleanup.cpp regenerates list<SceneListRecord124>::clear and map<int,SceneMapValue20>::_Erase; both relocation-masked fingerprints must remain inventory-unique across all 4,010 current spans."
+
+[[rules]]
+id = "vc8-generated-network-base-array-constructor-helper-106a"
+vc8_generated_anchor_file = "config/vc8-generated-network-base-constructor-helper-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 50
+origin = "compiler_generated"
+subsystem = "network"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of canonical-exact NetworkBaseConstructorRuntime.cpp regenerates the compiler's vector-returning array-constructor helper ??_H; its relocation-masked 50-byte fingerprint must remain inventory-unique at current 0x00401220."

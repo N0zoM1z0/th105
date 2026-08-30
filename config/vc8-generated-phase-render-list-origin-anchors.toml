@@ -6,6 +6,15 @@ enable_gs = true
 min_nonreloc_coverage = 0.70
 min_nonreloc_bytes = 24
 
+# The TU also emits CSpriteEx's implicit copy-assignment operator for the
+# authored render loop.  Its body is compiler-synthesized rather than an
+# authored game method and has one complete-inventory hit.
+
+[[anchors]]
+address = "0x00450810"
+size = 395
+symbol = "??4CSpriteEx@@QAEAAV0@ABV0@@Z"
+
 [[anchors]]
 address = "0x0045A9E0"
 size = 29
