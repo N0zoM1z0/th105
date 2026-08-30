@@ -58,7 +58,7 @@ class WorkflowToolingTests(unittest.TestCase):
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1253)
+        self.assertEqual(len(implemented), 1254)
         self.assertEqual(
             len(self.validator.rows(ROOT / "config" / "matches.csv")), 1240
         )
@@ -74,9 +74,9 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,010", markdown)
-        self.assertIn("Confirmed authored functions | 1,240", markdown)
+        self.assertIn("Confirmed authored functions | 1,241", markdown)
         self.assertIn("Classified exclusions | 1,097", markdown)
-        self.assertIn("Origin/boundary review pending | 1,673", markdown)
+        self.assertIn("Origin/boundary review pending | 1,672", markdown)
         self.assertIn("Canonical exact functions | 1,240", markdown)
         self.assertIn("Canonical exact authored bytes | 202,226", markdown)
         self.assertIn(

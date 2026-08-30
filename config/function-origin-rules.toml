@@ -5,6 +5,18 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 # but no old-version address is accepted as evidence here.
 
 [[rules]]
+id = "secondary-animation-update-authored-106a"
+addresses = ["0x004309F0"]
+expected_count = 1
+expected_bytes = 2434
+expected_names = ["sub_4309F0"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "current target ownership joins the exact 0x54 secondary-animation lifetime/initialize/render island; the complete body mutates only its two checked Point2 deques and calls D3DX Vec2 interpolation/normalization imports"
+
+[[rules]]
 id = "vc8-string-range-errors-106a"
 addresses = ["0x00665AF4", "0x00665B33"]
 expected_count = 2

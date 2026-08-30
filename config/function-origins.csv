@@ -986,7 +986,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004304F0,compiler_generated,battle,exclude,observed,vc8-generated-event-background-deque-comdats-106a
 0x004306D0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00430750,authored_game,battle,authored,observed,canonical-exact-authored
-0x004309F0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004309F0,authored_game,battle,authored,observed,secondary-animation-update-authored-106a
 0x00431390,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004313B0,authored_game,ui,authored,observed,canonical-exact-authored
 0x004313F0,authored_game,ui,authored,observed,canonical-exact-authored

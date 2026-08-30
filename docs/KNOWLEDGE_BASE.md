@@ -909,6 +909,41 @@ The adjacent 108-byte `0x004323B0` body is compiler-generated `std::deque<short>
 
 Three near-exact bodies remain intentionally pending. `SpellDataOwner::shuffle_selection @ 0x00432420` reaches 196/196 with normal checked-iterator semantics and an out-of-line generated erase contract, but seven bytes differ only in scheduling an independent stack adjustment and saved short value. `initialize_fighter_battle_state @ 0x00460200` reaches the target 1247-byte / 290-instruction shape after correcting the SpellData member ABI, with only 29 allocator/scheduler bytes remaining. `CMenuConfig::update_secondary_for_primary @ 0x00440FF0` closes its five-case semantics and binder ABI but pinned VC8 still folds the target's redundant clamp topology. Do not use register variables, volatile/dummy dependencies, artificial gotos, inline assembly, or copied bytes to close these residuals.
 
+### Secondary-animation strip update boundary and source-shape stop
+
+`SecondaryAnimationRenderRuntimeView::update_secondary @ 0x004309F0` is one
+complete 2,434-byte authored method.  Its real compiler boundary ends with the
+`ret` at `0x00431371`; two alignment bytes follow, then a four-entry local
+switch table begins at `0x00431374`.  Do not count that table as part of the
+candidate body when comparing COFF section tails.  The method is an ordinary
+`thiscall void` over the exact-backed 0x54 renderer layout: signed update byte
+`+0x25`, render gate `+0x24`, source-point deque `+0x28`, generated strip deque
+`+0x3C`, and half-width/band counts `+0x10/+0x08`.
+
+Expiry removes the source deque's **back** element and erases the corresponding
+`2 * band_count * expired` generated points from the strip tail.  After
+appending owner coordinates `+0xEC/+0xF0`, source counts one, two, three and
+four-or-more select duplicate-front initialization, one zero-tangent Hermite
+segment, two linked segments, and a rolling two-tangent segment pair.  The
+generated centerline is normalized to a perpendicular, scaled by half-width,
+then appended as a plus/minus point pair.  The only external math calls are the
+current D3DX import thunks `D3DXVec2Hermite @ 0x00689890` and
+`D3DXVec2Normalize @ 0x00689896`; all other calls resolve to the already
+identified checked-deque helpers.
+
+The strongest local-lifetime fact is shared by cases two and three: construct a
+zero previous vector, copy it into the terminal tangent, then overwrite previous
+with the newest source point.  Pinned VC8 reproduces the target's interleaved
+`fldz/fst/mov/fstp/mov` sequence from exactly that relationship.  Consistent
+named-vector source remains nonexact: it emits a `0x88` frame and places the
+switch table at `+0x9A4`, versus target frame `0xA0` and table `+0x984`.
+Address-taking all six anonymous class rvalues expands the frame to `0xB0`;
+selecting only three gives `0xA0` accidentally and was rejected as unsupported
+slot shaping.  Continue only from a target-backed original `D3DXVECTOR2`
+constructor/operator definition or whole-TU/LTCG explanation.  Never bridge
+this residual with dummy locals, selective rvalue sites, register/volatile
+forcing, artificial gotos, assembly, copied bytes, padding, or an ABI lie.
+
 ### CScript command registration: pair conversion lifetime is authored codegen evidence
 
 `CScenarioData::CScenarioData @ 0x00459C90` initializes a script registry at

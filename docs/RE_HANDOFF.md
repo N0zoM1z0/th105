@@ -8,6 +8,37 @@ seeds using current-target-backed structural remapping where appropriate.
 
 ## Verified state
 
+- **Secondary-animation update handoff:** `SecondaryAnimationRenderRuntimeView::
+  update_secondary @ 0x004309F0` now has complete authored semantic source and
+  a reconciled **2,434-byte** boundary, but remains deliberately nonexact.  The
+  ledgers are **1,241 authored / 1,097 excluded / 1,672 review-pending** and
+  **1,257 mapped / 1,254 source-present / 1,240 exact (202,226 bytes) / 422
+  units**.  The current natural VC8 object uses a `0x88` frame and places its
+  local switch table at function `+0x9A4`; the target uses a `0xA0` frame,
+  returns through `+0x981`, and begins the four-entry table at `+0x984`.  The
+  first byte residual is therefore the frame size at target `0x004309F8`, not
+  a two-byte body-size difference.  This root is absent from `matches.csv`.
+- Reuse the recovered update contract rather than restarting it.  Signed byte
+  `+0x25` controls tail expiry; the source deque at `+0x28` drops its back
+  element, while the generated strip deque at `+0x3C` erases
+  `2 * band_count(+0x08) * expired` points from its end.  If rendering is
+  enabled at `+0x24`, the owner position `+0xEC/+0xF0` is appended and a
+  four-arm size switch handles duplicate-first-point, one Hermite segment, two
+  Hermite segments, or the rolling four-point tangent case.  D3DX
+  `Vec2Hermite`/`Vec2Normalize` imports and native checked-deque helpers account
+  for every call edge.  Case 2 and case 3 both construct a zero previous value,
+  copy it to the terminal tangent, then overwrite previous with the newest
+  point; that source relationship reproduces the target's otherwise surprising
+  zero/copy/store instruction sequence.
+- Do not resume with selective class-rvalue address-taking.  Making all six
+  normalization inputs anonymous MSVC rvalues naturally gives a `0xB0` frame;
+  choosing only three happens to color a `0xA0` frame but is an arbitrary
+  codegen constraint, not source evidence.  The consistent named-vector source
+  is retained.  The next truthful lever is the original DirectX
+  `D3DXVECTOR2` constructor/operator contract or whole-TU/LTCG provenance, not
+  dummy locals, rvalue-site selection, register/volatile forcing, artificial
+  gotos, assembly, copied bytes or padding.
+
 - **Newest secondary-animation runtime wave:** **4 authored canonical-exact
   roots / 1,071 bytes**, moving the ledger to **1,240 exact / 202,226 authored
   bytes / 422 units; 1,097 excluded; 1,673 review-pending**.  The exact roots
