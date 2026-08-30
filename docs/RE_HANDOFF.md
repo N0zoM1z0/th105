@@ -8,6 +8,32 @@ seeds using current-target-backed structural remapping where appropriate.
 
 ## Verified state
 
+- **Newest CharacterObjectManager runtime wave:** **13 authored canonical-exact
+  roots / 492 bytes**, moving the ledger to **1,222 exact / 199,048 authored
+  bytes / 419 units; 1,094 excluded; 1,693 review-pending**.  The focused
+  `gpt-web-character-object-manager-runtime` unit is 15/15 physical bodies
+  zero-difference: 13 authored bodies and exact compiler-generated five-byte
+  virtual member-pointer thunks `0x004938A0/0x004938B0`, which remain excluded
+  from authored progress.  The authored set is object update/parent replacement
+  `0x004937D0/0x00493880`, three checked-list member-pointer helpers
+  `0x0058BEE0/0x0053B130/0x0064B510`, and the eight shared primary-vtable slot
+  2..9 bodies `0x0056DDA0/0x005D2A60/0x0058BF30/0x0064B560/0x0058BF60/
+  0x0053B1A0/0x0053B180/0x004B9DA0`.  A complete aggregate rebuild passes
+  **419/419 cold units** with rc=0.
+- Reuse the physical contracts from this wave.  All fifteen RTTI-owned
+  `CharacterObjectManager<Fighter,Object>` primary vtables fold to the same
+  slot-2..9 lane; the manager's secondary base is +0x04, checked object list is
+  +0x58, and owner is +0x64.  The object view fixes handle state +0x330/+0x334,
+  linked callback +0x338, hitstop flag +0x344, Fighter +0x16C, parent +0x170,
+  and delay +0x186.  Real VC8 two-word `{code,this-adjustor}` member pointers
+  reproduce the secondary-base forwarding and compiler thunks naturally.
+- Preserve the bounded stop at `CharacterObjectManagerBase_update_and_prune @
+  0x0058BE10`: semantic source covers its complete 207-byte target extent, but
+  the first comparison residual at +0xA5 is the inlined checked-list erase
+  register schedule.  It is authored/source-present and intentionally not
+  exact; do not force it with register/volatile state, manual list internals,
+  fake liveness, assembly, or copied bytes.
+
 - **Newest character round-reset / BGM String28 hash wave:** **13 authored canonical-exact roots / 800 bytes**, moving the ledger to **1,209 exact / 198,556 authored bytes / 418 units; 1,092 excluded; 1,709 review-pending**. Twelve RTTI-owned Fighter vtable slot-17 bodies close Reimu `0x00491BD0` (97), Marisa `0x004B8980` (54), Sakuya `0x004DE030` (38), Alice `0x004F9800` (71), Patchouli `0x0051D5F0` (89), Yuyuko `0x0056C810` (43), Suika `0x005AD470` (38), Udonge `0x005D0E10` (77), Komachi `0x005F66D0` (37), shared Remilia/Aya `0x00616FE0` (17), Iku `0x0062FFC0` (47), and Tenshi `0x0064A000` (156). `current_info_effect_key @ 0x0043BB90` adds 36/36 from the already-exact BGM String28 and CRC path. Both focused units fresh-compare zero-difference, and the complete aggregate rebuild passes **418/418 cold units** with rc=0.
 - Reuse the physical contracts from this wave. The common Fighter prefix ends at **+0x7A4** for these overrides; slot 17 clears each character's typed short/dword/float/flag tail around exact `Fighter::reset_extended_state @ 0x004776D0`. Remilia and Aya legitimately point to the same 17-byte linker-folded implementation. The BGM source path at `0x006E68A8` is a VC8 String28 with inline-or-pointer storage **+0x04**, size **+0x14**, and capacity **+0x18**; the hash accessor selects SSO storage at capacity below 16 then calls exact `case_insensitive_crc32`.
 - Preserve two bounded findings. Yukari slot 17 `0x0058A470` is semantically complete and **125/125**, but standalone VC8 schedules an independent `xor eax,eax` before the gravity `fstp` while target schedules it after; do not force the order with register/volatile state or fake dependencies. Fighter field **+0x49E is signed `short`**: current general-hit target paths use signed short-to-float conversion, whereas an unsigned declaration produces control-word conversion paths and a much larger body. The pending hit resolver still has separate action-block/x87 TU scheduling residuals and is not an exact claim.

@@ -16050,3 +16050,88 @@ rel32_targets = ["?reset_extended_state@FighterResetBaseView@th105@@QAEHXZ=0x004
 address = "0x0064A000"
 symbol_base = "?reset_character_state@TenshiRoundResetView@th105@@QAEHXZ"
 rel32_targets = ["?reset_extended_state@FighterResetBaseView@th105@@QAEHXZ=0x004776D0"]
+
+[units.gpt-web-character-object-manager-runtime]
+kind = "probe"
+source = "src/characters/CharacterObjectManagerRuntime.cpp"
+object = "build/match-units/GptWeb_CharacterObjectManagerRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current target-pinned shared runtime lane behind all fifteen CharacterObjectManager<Fighter,Object> primary vtables. Slots 2..9 of every RTTI-owned primary vtable ICF to the same eight bodies. Ordinary VC8 multiple-inheritance member pointers reproduce the two-word {code,this-adjustor} calls, including compiler-generated virtual vslot thunks; checked std::list iteration reproduces three shared helper bodies. update_and_prune 0x0058BE10 is retained as source-present semantic evidence but remains review-pending on a final inlined erase register permutation."
+
+[[units.gpt-web-character-object-manager-runtime.functions]]
+address = "0x004937D0"
+symbol_base = "?update_for_manager@CharacterManagerObjectRuntimeView@th105@@QAEXXZ"
+rel32_targets = ["?on_character_object_update@CharacterManagerLinkedRuntimeView@th105@@QAEXXZ=0x004309F0"]
+
+[[units.gpt-web-character-object-manager-runtime.functions]]
+address = "0x00493880"
+symbol_base = "?replace_parent@CharacterManagerObjectRuntimeView@th105@@QAEXPAV12@0@Z"
+
+[[units.gpt-web-character-object-manager-runtime.functions]]
+address = "0x004938A0"
+symbol_base = "??_9CharacterManagerObjectRuntimeView@th105@@$BDA@AE"
+
+[[units.gpt-web-character-object-manager-runtime.functions]]
+address = "0x004938B0"
+symbol_base = "??_9CharacterManagerObjectRuntimeView@th105@@$BEA@AE"
+
+[[units.gpt-web-character-object-manager-runtime.functions]]
+address = "0x0058BEE0"
+symbol_base = "?invoke_each@CharacterObjectManagerBaseRuntime@th105@@QAEXP8CharacterManagerObjectRuntimeView@2@AEHXZ@Z"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+
+[[units.gpt-web-character-object-manager-runtime.functions]]
+address = "0x0053B130"
+symbol_base = "?invoke_each@CharacterObjectManagerBaseRuntime@th105@@QAEXP8CharacterManagerObjectRuntimeView@2@AEXPAV32@0@Z00@Z"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+
+[[units.gpt-web-character-object-manager-runtime.functions]]
+address = "0x0064B510"
+symbol_base = "?invoke_each@CharacterObjectManagerBaseRuntime@th105@@QAEXP8CharacterManagerObjectRuntimeView@2@AEXC@ZC@Z"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+
+[[units.gpt-web-character-object-manager-runtime.functions]]
+address = "0x0056DDA0"
+symbol_base = "?release_all@CharacterObjectManagerRuntime@th105@@UAEXXZ"
+rel32_targets = ["?release_all_tracked_objects@CharacterObjectManagerBaseRuntime@th105@@QAEXXZ=0x0056DA90"]
+
+[[units.gpt-web-character-object-manager-runtime.functions]]
+address = "0x005D2A60"
+symbol_base = "?invoke_slot_40_each@CharacterObjectManagerRuntime@th105@@UAEXXZ"
+rel32_targets = ["?invoke_each@CharacterObjectManagerBaseRuntime@th105@@QAEXP8CharacterManagerObjectRuntimeView@2@AEHXZ@Z=0x0058BEE0"]
+dir32_targets = ["??_9CharacterManagerObjectRuntimeView@th105@@$BEA@AE=??_9CharacterManagerObjectRuntimeView@th105@@$BEA@AE"]
+
+[[units.gpt-web-character-object-manager-runtime.functions]]
+address = "0x0058BF30"
+symbol_base = "?update_objects@CharacterObjectManagerRuntime@th105@@UAEXXZ"
+rel32_targets = ["?update_and_prune@CharacterObjectManagerBaseRuntime@th105@@QAEXP8CharacterManagerObjectRuntimeView@2@AEXXZ@Z=0x0058BE10"]
+dir32_targets = ["?update_for_manager@CharacterManagerObjectRuntimeView@th105@@QAEXXZ=?update_for_manager@CharacterManagerObjectRuntimeView@th105@@QAEXXZ"]
+
+[[units.gpt-web-character-object-manager-runtime.functions]]
+address = "0x0064B560"
+symbol_base = "?render_group_each@CharacterObjectManagerRuntime@th105@@UAEXC@Z"
+rel32_targets = ["?invoke_each@CharacterObjectManagerBaseRuntime@th105@@QAEXP8CharacterManagerObjectRuntimeView@2@AEXC@ZC@Z=0x0064B510"]
+dir32_targets = ["?render_group_callback@CharacterManagerObjectRuntimeView@th105@@QAEXC@Z=?render_group_callback@CharacterManagerObjectRuntimeView@th105@@QAEXC@Z"]
+
+[[units.gpt-web-character-object-manager-runtime.functions]]
+address = "0x0058BF60"
+symbol_base = "?invoke_slot_30_each@CharacterObjectManagerRuntime@th105@@UAEXXZ"
+rel32_targets = ["?invoke_each@CharacterObjectManagerBaseRuntime@th105@@QAEXP8CharacterManagerObjectRuntimeView@2@AEHXZ@Z=0x0058BEE0"]
+dir32_targets = ["??_9CharacterManagerObjectRuntimeView@th105@@$BDA@AE=??_9CharacterManagerObjectRuntimeView@th105@@$BDA@AE"]
+
+[[units.gpt-web-character-object-manager-runtime.functions]]
+address = "0x0053B1A0"
+symbol_base = "?render_each@CharacterObjectManagerRuntime@th105@@UAEXXZ"
+rel32_targets = ["?invoke_each@CharacterObjectManagerBaseRuntime@th105@@QAEXP8CharacterManagerObjectRuntimeView@2@AEHXZ@Z=0x0058BEE0"]
+dir32_targets = ["?render_special@CharacterManagerObjectRuntimeView@th105@@QAEHXZ=?render_special@CharacterManagerObjectRuntimeView@th105@@QAEHXZ"]
+
+[[units.gpt-web-character-object-manager-runtime.functions]]
+address = "0x0053B180"
+symbol_base = "?replace_parent_each@CharacterObjectManagerRuntime@th105@@UAEXPAVCharacterManagerObjectRuntimeView@2@0@Z"
+rel32_targets = ["?invoke_each@CharacterObjectManagerBaseRuntime@th105@@QAEXP8CharacterManagerObjectRuntimeView@2@AEXPAV32@0@Z00@Z=0x0053B130"]
+dir32_targets = ["?replace_parent@CharacterManagerObjectRuntimeView@th105@@QAEXPAV12@0@Z=?replace_parent@CharacterManagerObjectRuntimeView@th105@@QAEXPAV12@0@Z"]
+
+[[units.gpt-web-character-object-manager-runtime.functions]]
+address = "0x004B9DA0"
+symbol_base = "?objects@CharacterObjectManagerRuntime@th105@@UAEAAV?$list@PAVCharacterManagerObjectRuntimeView@th105@@V?$allocator@PAVCharacterManagerObjectRuntimeView@th105@@@std@@@std@@XZ"

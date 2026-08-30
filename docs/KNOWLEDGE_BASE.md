@@ -5,6 +5,38 @@ notes or source hypotheses.
 
 ## Observed
 
+- The CharacterObjectManager runtime continuation adds **13 authored
+  canonical-exact roots / 492 bytes**, moving the tracked checkpoint to
+  **1,222 exact / 199,048 authored bytes / 419 units; 1,094 excluded; 1,693
+  review-pending**.  The focused unit compares 15/15 physical bodies exactly:
+  the 13 authored roots plus two five-byte compiler-generated virtual
+  member-pointer thunks at `0x004938A0/0x004938B0`.  The thunks are deliberately
+  excluded from the authored numerator even though their fresh VC8 bytes are
+  exact.  A complete aggregate rebuild passes **419/419 cold units** with rc=0.
+- All fifteen RTTI-owned `CharacterObjectManager<Fighter,Object>` primary
+  vtables share slots 2..9 through linker folding.  The eight physical override
+  bodies are release `0x0056DDA0`, slot-40 iteration `0x005D2A60`, gated update
+  `0x0058BF30`, render-group iteration `0x0064B560`, slot-30 iteration
+  `0x0058BF60`, render iteration `0x0053B1A0`, parent replacement
+  `0x0053B180`, and checked-list access `0x004B9DA0`.  Their shared authored
+  callees are object update `0x004937D0`, parent replacement `0x00493880`, and
+  checked-list member-pointer iterators `0x0058BEE0/0x0053B130/0x0064B510`.
+- This lane is a positive VC8 multiple-inheritance/member-pointer reference.
+  `CharacterObjectManagerRuntime` has its manager base at **+0x04**, tracked
+  checked `std::list<CharacterObject*>` at **+0x58**, and owner at **+0x64**.
+  `CharacterObject` has the non-polymorphic handle state at **+0x330/+0x334**,
+  linked callback **+0x338**, hitstop override **+0x344**, related Fighter
+  **+0x16C**, parent **+0x170**, and update delay **+0x186**.  Expressing the
+  callbacks as real MSVC `{code,this-adjustor}` member pointers naturally emits
+  both virtual thunks and the target secondary-base adjustment; do not replace
+  them with raw function pointers or hand-written dispatch.
+- Keep `CharacterObjectManagerBase_update_and_prune @ 0x0058BE10` as a bounded
+  non-exact result.  Ordinary checked-list C++ closes all semantics and the
+  complete **207/207-byte** extent; the first residual is at **+0xA5**, solely
+  in the final inlined `list::erase` EAX/ECX/EDX schedule.  It is source-present
+  authored evidence, not an exact claim, and must not be forced with register,
+  volatile, manual-node, assembly, or fake-liveness techniques.
+
 - The character round-reset / BGM hash continuation adds **13 authored canonical-exact roots / 800 bytes**, moving the tracked checkpoint to **1,209 exact / 198,556 authored bytes / 418 units; 1,092 excluded; 1,709 review-pending**. Twelve roster Fighter slot-17 reset bodies contribute 764 bytes and `current_info_effect_key @ 0x0043BB90` contributes 36. The two focused units fresh-compare all configured functions zero-difference under the SHA-pinned VC8 compiler, and the complete aggregate rebuild passes **418/418 cold units** with rc=0.
 - Current RTTI-owned Reimu/Marisa/Sakuya/Alice/Patchouli/Yuyuko/Suika/Udonge/Komachi/Remilia/Aya/Iku/Tenshi vtables establish slot 17 as the character-tail reset override. Their common Fighter prefix ends at **+0x7A4**; ordinary typed fields after that boundary plus exact `Fighter::reset_extended_state @ 0x004776D0` reproduce all twelve accepted code bodies. Remilia and Aya share the same 17-byte body through legitimate linker folding. Alice's four-element short/float/float/flag lane and Tenshi's paired twelve-float lanes must remain real loops; expanding or hand-writing stores is neither necessary nor stronger evidence.
 - `g_bgm_source_path @ 0x006E68A8` now has a complete exact-backed VC8 String28 read contract: storage union **+0x04**, size **+0x14**, capacity **+0x18**, with initial capacity 15. `current_info_effect_key` loads the heap pointer candidate, selects the inline buffer when capacity is below 16, and calls exact `case_insensitive_crc32(bytes,size)`. Because the three aggregate addends hold different canonical dwords, relocation replay uses independently attested zero-field and capacity keys rather than pretending one literal validates every addend.
