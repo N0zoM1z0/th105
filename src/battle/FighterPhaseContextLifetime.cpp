@@ -1,13 +1,16 @@
 #include "FighterPhaseContextRuntime.hpp"
+#include "FighterPhaseContext.hpp"
 
 #include <list>
 #include <vector>
 #include <windows.h>
 #include <stddef.h>
+#include <string.h>
 
 namespace th105 {
 
 struct FighterPhaseObjectView;
+typedef unsigned (__stdcall *FighterPhaseThreadEntry)(void *);
 
 struct FighterPhaseThreadOwner {
     HANDLE handle_00;
@@ -15,7 +18,9 @@ struct FighterPhaseThreadOwner {
 
     FighterPhaseThreadOwner();
     ~FighterPhaseThreadOwner();
+    bool start(FighterPhaseThreadEntry procedure, void *argument);
     HANDLE stop();
+    int set_priority(int priority);
 };
 
 struct FighterPhaseOwnedHandle {
@@ -36,6 +41,7 @@ struct FighterPhaseContextLifetime {
     std::vector<FighterPhaseObjectView *> fighters_38;
     std::list<int> released_48;
 
+    FighterPhaseContextLifetime();
     ~FighterPhaseContextLifetime();
     void pending_worker_loop_464d40();
     void released_worker_loop_464dd0();
@@ -53,6 +59,25 @@ typedef char FighterPhaseContextLifetime_released_offset_must_be_0x48[
     offsetof(FighterPhaseContextLifetime, released_48) == 0x48 ? 1 : -1];
 typedef char FighterPhaseContextLifetime_size_must_be_0x54[
     sizeof(FighterPhaseContextLifetime) == 0x54 ? 1 : -1];
+
+unsigned __stdcall pending_worker_entry(void *context);
+unsigned __stdcall released_worker_entry(void *context);
+
+FighterPhaseContextLifetime::FighterPhaseContextLifetime()
+{
+    FighterPhaseThreadOwner *pending_worker = &worker0_10;
+    FighterPhaseThreadOwner *released_worker = &worker1_18;
+    g_fighter_phase_context =
+        reinterpret_cast<FighterPhaseContext *>(this);
+    running_0c = 1;
+    wake_20 = CreateEventA(0, FALSE, FALSE, 0);
+    done_24 = CreateEventA(0, FALSE, FALSE, 0);
+    pending_worker->start(pending_worker_entry, this);
+    released_worker->start(released_worker_entry, this);
+    released_worker->set_priority(THREAD_PRIORITY_IDLE);
+    memset(owned_28, 0, sizeof(owned_28));
+    memset(active_34, 0, sizeof(active_34));
+}
 
 FighterPhaseContextLifetime::~FighterPhaseContextLifetime()
 {

@@ -12115,6 +12115,40 @@ dir32_targets = [
   "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
 ]
 
+[units.gpt-web-bg02-phase-10]
+kind = "probe"
+source = "src/battle/BG02Phase10.cpp"
+object = "build/match-units/GptWeb_BG02Phase10.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current BG02 vslot +0x10 three-frame render phase. Signed state-derived frame selection, direct checked vector accesses, ordinary sprite transforms, battle-layout placement and RGB rendering reproduce the complete 1403-byte authored root."
+
+[[units.gpt-web-bg02-phase-10.functions]]
+address = "0x00467A10"
+symbol_base = "?slot_10@BG02@th105@@UAEXXZ"
+rel32_targets = [
+  "?render_base_sprites_4659e0@BackgroundBase@th105@@QAEXXZ=0x004659E0",
+  "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
+  "?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0",
+  "?scale_x@CSpriteEx@@QAEXM@Z=0x004074A0",
+  "?scale_y@CSpriteEx@@QAEXM@Z=0x00407540",
+  "?scale_z@CSpriteEx@@QAEXM@Z=0x004075E0",
+  "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0",
+  "?place_sprite@BattleBackgroundLayoutView@th105@@QAEXPAVCSpriteEx@@MM@Z=0x00427200",
+  "?render_rgb@SpriteRenderEffectView@th105@@QAEXMMM@Z=0x006654D0",
+]
+dir32_targets = [
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+  "?g_battle_background_layout@th105@@3UBattleBackgroundLayoutView@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+  "__real@40000000=__real@40000000",
+  "__real@439c0000=__real@439c0000",
+  "__real@42580000=__real@42580000",
+  "__real@c3a60000=__real@c3a60000",
+  "__real@c3ec0000=__real@c3ec0000",
+]
+
 [units.gpt-web-bg04-phase]
 kind = "probe"
 source = "src/battle/BG04Phase.cpp"
@@ -13016,6 +13050,11 @@ enable_gs = true
 notes = "Current FighterPhaseContext 0x54 lifetime/runtime island. Native members are list<FighterPhaseInitRequest> +0, two 8-byte thread owners +0x10/+0x18, event handles +0x20/+0x24, three owned handles +0x28, checked vector<Fighter*> +0x38 and list<int> +0x48. The destructor uses stop/join in the body and lets implicit member destruction run at the tail; reset_slot_state passes owned handle members by reference directly to vector::push_back."
 
 [[units.gpt-web-fighter-phase-context-lifetime.functions]]
+address = "0x00464B20"
+symbol_base = "?_Buynode@?$list@UFighterPhaseInitRequest@th105@@V?$allocator@UFighterPhaseInitRequest@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@UFighterPhaseInitRequest@th105@@V?$allocator@UFighterPhaseInitRequest@th105@@@std@@@2@XZ"
+rel32_targets = ["??2@YAPAXI@Z=0x00689DCB"]
+
+[[units.gpt-web-fighter-phase-context-lifetime.functions]]
 address = "0x00464BA0"
 symbol_base = "??1FighterPhaseContextLifetime@th105@@QAE@XZ"
 rel32_targets = [
@@ -13081,6 +13120,21 @@ rel32_targets = ["?released_worker_loop_464dd0@FighterPhaseContextLifetime@th105
 dir32_targets = [
   "__imp__CoInitialize@4=__imp__CoInitialize@4",
   "__imp__CoUninitialize@0=__imp__CoUninitialize@0",
+]
+
+[[units.gpt-web-fighter-phase-context-lifetime.functions]]
+address = "0x00464E90"
+symbol_base = "??0FighterPhaseContextLifetime@th105@@QAE@XZ"
+rel32_targets = [
+  "?_Buynode@?$list@UFighterPhaseInitRequest@th105@@V?$allocator@UFighterPhaseInitRequest@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@UFighterPhaseInitRequest@th105@@V?$allocator@UFighterPhaseInitRequest@th105@@@std@@@2@XZ=0x00464B20",
+  "??0FighterPhaseThreadOwner@th105@@QAE@XZ=0x0040CF10",
+  "?_Buynode@?$list@HV?$allocator@H@std@@@std@@IAEPAU_Node@?$_List_nod@HV?$allocator@H@std@@@2@XZ=0x00435E50",
+  "?start@FighterPhaseThreadOwner@th105@@QAE_NP6GIPAX@Z0@Z=0x00414600",
+  "?set_priority@FighterPhaseThreadOwner@th105@@QAEHH@Z=0x00414690",
+]
+dir32_targets = [
+  "?pending_worker_entry@th105@@YGIPAX@Z=?pending_worker_entry@th105@@YGIPAX@Z",
+  "?released_worker_entry@th105@@YGIPAX@Z=?released_worker_entry@th105@@YGIPAX@Z",
 ]
 
 [[units.gpt-web-fighter-phase-context-lifetime.functions]]
@@ -14651,7 +14705,7 @@ kind = "probe"
 source = "src/characters/FighterCommandFlagsRuntime.cpp"
 object = "build/match-units/GptWeb_FighterCommandFlagsRuntime.obj"
 profile = "vc8-sp1-probe-o2"
-enable_gs = false
+enable_gs = true
 notes = "Shared current Fighter command-pattern bitmask builder. Current per-character vtables share this body; ordinary member calls to matcher 0x00463500 plus target-owned command strings reproduce 497/497 exactly."
 
 [[units.gpt-web-fighter-command-flags-runtime.functions]]

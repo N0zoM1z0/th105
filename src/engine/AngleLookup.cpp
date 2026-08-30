@@ -34,7 +34,7 @@ double __cdecl atan2_degrees(float y, float x)
     return *value;
 }
 
-float __cdecl lookup_orientation_sine_quantized_abs(float phase)
+double __cdecl lookup_orientation_sine_quantized_abs(float phase)
 {
     float magnitude = phase * 10.0f - 900.0f;
     magnitude = static_cast<float>(fabs(static_cast<double>(magnitude)));
@@ -42,7 +42,7 @@ float __cdecl lookup_orientation_sine_quantized_abs(float phase)
     return g_orientation_cosine_table[index % 3600];
 }
 
-float __cdecl lookup_orientation_cosine_quantized_abs(float phase)
+double __cdecl lookup_orientation_cosine_quantized_abs(float phase)
 {
     float magnitude = phase * 10.0f;
     magnitude = static_cast<float>(fabs(static_cast<double>(magnitude)));

@@ -1,13 +1,114 @@
 #include <stddef.h>
+#include <deque>
 namespace th105 {
+
+extern const unsigned char g_command_pattern_map_left[];
+extern const unsigned char g_command_pattern_map_right[];
+
 struct FighterCommandFlagsView {
-    unsigned char reserved_000[0x724];
+    unsigned char reserved_000[0x104];
+    signed char facing_104;
+    unsigned char reserved_105[0x60b];
+    std::deque<short> input_history_710;
     unsigned flags_primary_724;
     unsigned flags_secondary_728;
     unsigned char match_command_463500(const char *pattern, int length, int window);
     unsigned char build_command_flags_476b10();
 };
+typedef char FighterCommandFlagsView_history_off[offsetof(FighterCommandFlagsView, input_history_710)==0x710?1:-1];
 typedef char FighterCommandFlagsView_secondary_off[offsetof(FighterCommandFlagsView, flags_secondary_728)==0x728?1:-1];
+
+unsigned char FighterCommandFlagsView::match_command_463500(
+    const char *pattern,
+    int length,
+    int window)
+{
+    typedef std::deque<short>::const_iterator InputIterator;
+
+    const std::deque<short> &history = input_history_710;
+    InputIterator cursor = history.end() - static_cast<signed char>(window);
+    char translated[20];
+
+    int i = 0;
+    if (facing_104 > 0) {
+        if (static_cast<signed char>(length) > 0) {
+            do {
+                translated[i] = g_command_pattern_map_right[
+                    static_cast<signed char>(pattern[i])];
+                ++i;
+            } while (i < static_cast<signed char>(length));
+        }
+    } else if (static_cast<signed char>(length) > 0) {
+        do {
+            translated[i] = g_command_pattern_map_left[
+                static_cast<signed char>(pattern[i])];
+            ++i;
+        } while (i < static_cast<signed char>(length));
+    }
+
+    int pattern_index = 0;
+    while (cursor != history.end()) {
+        unsigned char token = translated[pattern_index];
+
+        if (token == 0x0b) {
+            if ((static_cast<unsigned char>(*cursor) & 0x08) != 0) {
+                ++pattern_index;
+                if (pattern_index == static_cast<signed char>(length))
+                    return 1;
+            }
+        } else if (token < 0x10) {
+            if ((static_cast<unsigned char>(*cursor) & 0x0f) == token) {
+                ++pattern_index;
+                if (pattern_index == static_cast<signed char>(length))
+                    return 1;
+
+                token = translated[pattern_index];
+                if (token >= 0x10 &&
+                    pattern_index + 1 == static_cast<signed char>(length)) {
+                    if (token != 0xf0) {
+                        if ((static_cast<unsigned char>(*cursor) & 0xf0) == token) {
+                            ++pattern_index;
+                            if (pattern_index == static_cast<signed char>(length))
+                                return 1;
+                        }
+                    } else if ((static_cast<unsigned char>(*cursor) & 0xf0) != 0) {
+                        if ((static_cast<unsigned char>(*cursor) & 0x10) != 0)
+                            return 1;
+                        if ((static_cast<unsigned char>(*cursor) & 0x20) != 0)
+                            return 2;
+                        if ((static_cast<unsigned char>(*cursor) & 0x40) != 0)
+                            return 3;
+                        if ((static_cast<unsigned char>(*cursor) & 0x80) != 0)
+                            return 4;
+                    }
+                }
+            } else if ((static_cast<unsigned char>(*cursor) & 0xf0) != 0) {
+                pattern_index = 0;
+            }
+        } else if (token != 0xf0) {
+            if ((static_cast<unsigned char>(*cursor) & 0xf0) == token) {
+                ++pattern_index;
+                if (pattern_index == static_cast<signed char>(length))
+                    return 1;
+            }
+        } else if ((static_cast<unsigned char>(*cursor) & 0xf0) != 0) {
+            ++pattern_index;
+            if (pattern_index == static_cast<signed char>(length)) {
+                if ((static_cast<unsigned char>(*cursor) & 0x10) != 0)
+                    return 1;
+                if ((static_cast<unsigned char>(*cursor) & 0x20) != 0)
+                    return 2;
+                if ((static_cast<unsigned char>(*cursor) & 0x40) != 0)
+                    return 3;
+                if ((static_cast<unsigned char>(*cursor) & 0x80) != 0)
+                    return 4;
+            }
+        }
+        ++cursor;
+    }
+    return 0;
+}
+
 unsigned char FighterCommandFlagsView::build_command_flags_476b10()
 {
     flags_primary_724=0; flags_secondary_728=0;

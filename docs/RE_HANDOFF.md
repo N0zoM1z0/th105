@@ -8,6 +8,40 @@ seeds using current-target-backed structural remapping where appropriate.
 
 ## Verified state
 
+- **Newest fighter-phase / BG02 render-core wave:** **2 authored
+  canonical-exact roots / 1,644 bytes**, moving the ledger to **1,236 exact /
+  201,155 authored bytes / 421 units; 1,096 excluded; 1,678
+  review-pending**.  `FighterPhaseContext` construction at `0x00464E90` is
+  241/241 from the complete typed member lifetime, including the whole request
+  array zero-initialization.  RTTI/vtable-owned `BG02::slot_10 @ 0x00467A10`
+  is 1,403/1,403 from the three-frame background render path, with the signed
+  `3 * (state_64 / 6 % 16)` selection, target-backed sprite/layout access and
+  ordinary render calls.  Both focused units compare zero-difference and the
+  complete cold graph replay passes **421/421 units**.
+- The fighter-phase TU also regenerates compiler-generated checked-list
+  `_Buynode @ 0x00464B20` at 26/26.  Its new SHA-pinned exact-object anchor and
+  complete 4,010-span relocation-masked inventory replay classify it as
+  compiler-generated; it remains excluded from authored progress.  Reuse the
+  BG02 source contract: frames are selected as three consecutive checked
+  entries and rendered at `(-332,-472)`, `(54,-472)`, and `(312,-472)`, with
+  the left/right runtime offsets applied before layout placement and RGB
+  rendering.  `BG02::BG02 @ 0x00467F90` remains pending because the target
+  constructs a roughly 0xE8 default-value slice with the `CEffectSprite` RTTI
+  vptr, while truthful standalone `CSpriteEx` and full 0x12C `CEffectSprite`
+  types produce different construction contracts; do not bridge that with a
+  manual vptr, aliasing trick, padding, assembly, or copied bytes.
+- Five high-fanout shared roots now have durable semantic source but remain
+  deliberately nonexact: battle-pair updates `0x00426BB0/0x00426DF0`, Fighter
+  command matcher `0x00463500`, and quantized-angle roots
+  `0x00406360/0x004063D0`.  The first pair is blocked by final x87 operand/tail
+  scheduling (the first method matches 545 of 561 bytes before its last
+  midpoint-Y expression); the command matcher has complete checked-deque
+  semantics but a target-only larger `/GS` frame; the angle roots have the
+  caller-proved double x87 return ABI but target-only 64-byte alignment and
+  private x87/idiv scheduling.  They are source-present, not exact claims, and
+  must not be coerced with fake liveness, register/volatile forcing, fabricated
+  ABI, assembly, or copied bytes.
+
 - **Newest CEffectManager shared-virtual wave:** **12 authored
   canonical-exact roots / 463 bytes**, moving the ledger to **1,234 exact /
   199,511 authored bytes / 420 units; 1,095 excluded; 1,679 review-pending**.

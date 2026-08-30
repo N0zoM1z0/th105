@@ -785,3 +785,36 @@ subsystem = "network"
 disposition = "exclude"
 confidence = "observed"
 evidence = "SHA-pinned VC8 SP1 /GS rebuild of canonical-exact NetworkBaseConstructorRuntime.cpp regenerates the compiler's vector-returning array-constructor helper ??_H; its relocation-masked 50-byte fingerprint must remain inventory-unique at current 0x00401220."
+
+[[rules]]
+id = "vc8-generated-fighter-phase-request-list-buynode-106a"
+vc8_generated_anchor_file = "config/vc8-generated-fighter-phase-request-list-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 26
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of canonical-exact FighterPhaseContextLifetime.cpp regenerates the checked std::list<FighterPhaseInitRequest> sentinel _Buynode COMDAT. Its relocation-masked fingerprint must remain inventory-unique at current 0x00464B20 across all 4,010 spans."
+
+[[rules]]
+id = "vc8-character-object-member-pointer-thunks-106a"
+vc8_generated_anchor_file = "config/vc8-generated-character-object-member-pointer-thunks-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 10
+origin = "compiler_generated"
+subsystem = "characters"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of canonical-exact CharacterObjectManagerRuntime.cpp regenerates the two virtual member-pointer thunks for vslots +0x30 and +0x40. Each complete five-byte fingerprint must remain inventory-unique at current 0x004938A0/0x004938B0 across all 4,010 spans."
+
+[[rules]]
+id = "vc8-effect-object-member-pointer-thunk-106a"
+vc8_generated_anchor_file = "config/vc8-generated-effect-object-member-pointer-thunk-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 5
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 rebuild of canonical-exact EffectManagerVirtuals.cpp regenerates the virtual member-pointer thunk for vslot +0x28. Its complete five-byte fingerprint must remain inventory-unique at current 0x00421D20 across all 4,010 spans."
