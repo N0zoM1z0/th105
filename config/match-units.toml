@@ -16297,3 +16297,56 @@ symbol_base = "?release_all_effects@?$CEffectManager@VCSelectObject@@@@UAEXXZ"
 rel32_targets = [
   "?release_all_tracked_objects@?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@QAEXXZ=0x0046EEB0",
 ]
+
+[units.gpt-web-secondary-animation-runtime]
+kind = "probe"
+source = "src/battle/SecondaryAnimationRender.cpp"
+object = "build/match-units/GptWeb_SecondaryAnimationRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current 0x54 secondary-animation strip renderer owned by object callback 0x00496420 and shared render callback 0x00493820. Native checked deque<Point2> members at +0x28/+0x3C, a SpriteVertex28 buffer at +0x50, frame texture extents and current render facade reproduce the complete lifetime, initialization and render path without assembly, copied bytes, or register forcing."
+
+[[units.gpt-web-secondary-animation-runtime.functions]]
+address = "0x00430050"
+symbol_base = "??0SecondaryAnimationRenderRuntimeView@th105@@QAE@XZ"
+
+[[units.gpt-web-secondary-animation-runtime.functions]]
+address = "0x00430080"
+symbol_base = "??1SecondaryAnimationRenderRuntimeView@th105@@QAE@XZ"
+rel32_targets = [
+  "??_V@YAXPAX@Z=0x0068AA26",
+  "?_Tidy@?$deque@USecondaryAnimationPoint@th105@@V?$allocator@USecondaryAnimationPoint@th105@@@std@@@std@@IAEXXZ=0x00420A80",
+]
+
+[[units.gpt-web-secondary-animation-runtime.functions]]
+address = "0x004302A0"
+symbol_base = "?render_secondary@SecondaryAnimationRenderRuntimeView@th105@@QAEXXZ"
+rel32_targets = [
+  "??A?$deque@USecondaryAnimationPoint@th105@@V?$allocator@USecondaryAnimationPoint@th105@@@std@@@std@@QAEAAUSecondaryAnimationPoint@th105@@I@Z=0x004300B0",
+  "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
+  "?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750",
+  "?submit_textured_primitive@RenderModeManager@th105@@QAEJIIIPBXII@Z=0x00401130",
+]
+dir32_targets = [
+  "?g_secondary_animation_x_offset@th105@@3MA=?g_secondary_animation_x_offset@th105@@3MA",
+  "?g_secondary_animation_y_origin@th105@@3MA=?g_secondary_animation_y_origin@th105@@3MA",
+  "?g_secondary_animation_scale@th105@@3MA=?g_secondary_animation_scale@th105@@3MA",
+  "__real@4f800000=__real@4f800000",
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+]
+
+[[units.gpt-web-secondary-animation-runtime.functions]]
+address = "0x00430750"
+symbol_base = "?initialize@SecondaryAnimationRenderRuntimeView@th105@@QAEXPAUSecondaryAnimationOwnerRuntimeView@2@PBUSecondaryAnimationFrameRuntimeView@2@MHHH@Z"
+rel32_targets = [
+  "?_Tidy@?$deque@USecondaryAnimationPoint@th105@@V?$allocator@USecondaryAnimationPoint@th105@@@std@@@std@@IAEXXZ=0x00420A80",
+  "?push_back@?$deque@USecondaryAnimationPoint@th105@@V?$allocator@USecondaryAnimationPoint@th105@@@std@@@std@@QAEXABUSecondaryAnimationPoint@th105@@@Z=0x004306D0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?at@?$vector@IV?$allocator@I@std@@@std@@QAEAAII@Z=0x0040C100",
+  "?get_texture_size@TitleResourceManager@th105@@QAEXIPAI0@Z=0x00404E60",
+  "??_U@YAPAXI@Z=0x00665B8A",
+]
+dir32_targets = [
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+  "__real@4f800000=__real@4f800000",
+]

@@ -1429,6 +1429,33 @@ boundary. Exact callers prove the lookup identity; they do not license a fake
 `__fastcall`/standard member declaration. Leave that callee pending until a
 natural higher-level source reconstruction regenerates the private boundary.
 
+### Let one exact TU close both authored code and generated ownership
+
+An exact source TU may emit authored bodies and native checked-container
+COMDATs together.  Promote the authored functions only after canonical
+zero-difference comparison; classify an emitted template helper separately with
+a SHA-pinned origin manifest and a complete relocation-masked search over every
+tracked candidate.  The secondary-animation TU is the reference case:
+constructor/destructor/initializer/renderer are authored exact, while
+`deque<SecondaryAnimationPoint>::operator[] @ 0x004300B0` is a unique generated
+fingerprint and excluded.  Its neighboring `push_back @ 0x004306D0` did not
+match the regenerated helper and therefore stays review-pending.
+
+Source lifetime can be codegen-significant without being artificial.  In the
+secondary-animation initializer, rereading the stored owner member after native
+deque clears produces the shipped reload/register schedule; retaining the input
+argument does not.  Prefer the ownership/lifetime form supported by callers and
+object state, then compare affected owners.  This is distinct from fake locals,
+volatile/register forcing or fabricated dependencies.
+
+When a relocation names an uninitialized image-tail scalar, validate the PE's
+loader-zero mapping rather than copying IDA's virtual-memory display value.
+The three secondary-animation transform floats at
+`0x006FBCCC..0x006FBCD4` are the model: the database may display `FFFFFFFF`
+outside the raw section even though the image loader supplies zero.  Record the
+loader-backed relocation fact explicitly so canonical comparison remains
+reproducible.
+
 ### The accepted match-unit graph must contain only canonical-exact functions
 
 Semantic probes are valuable, but do not add a near-match to `match-units.toml`

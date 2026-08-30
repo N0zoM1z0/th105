@@ -8,6 +8,42 @@ seeds using current-target-backed structural remapping where appropriate.
 
 ## Verified state
 
+- **Newest secondary-animation runtime wave:** **4 authored canonical-exact
+  roots / 1,071 bytes**, moving the ledger to **1,240 exact / 202,226 authored
+  bytes / 422 units; 1,097 excluded; 1,673 review-pending**.  The exact roots
+  are the 0x54-byte runtime's constructor `0x00430050` (35), destructor
+  `0x00430080` (43), strip renderer `0x004302A0` (328), and initializer
+  `0x00430750` (665).  Exact owner `0x00493820` calls the renderer and
+  high-fanout allocation owner `0x00496420` constructs, replaces and initializes
+  the object, so this closes the physical layout and resource/render contracts
+  needed for the still-pending 2,434-byte update root `0x004309F0`.
+- Preserve the recovered layout: owner `+0x00`; subdivision/band/elapsed/
+  half-width/blend/texture extents `+0x04..+0x1C`; texture handle `+0x20`;
+  render/update bytes `+0x24/+0x25`; two checked
+  `deque<SecondaryAnimationPoint>` members `+0x28/+0x3C`; vertex array pointer
+  `+0x50`.  Initialization reads the owner's animation frame, texture index and
+  dimensions, sizes the two deques, allocates `2 * subdivision * band + 2`
+  vertices, and publishes alternating U coordinates.  Rendering applies the
+  loader-zero virtual-tail offsets/scales at `0x006FBCCC..0x006FBCD4`, updates
+  paired V coordinates, then submits the strip through the shared render
+  facade.  Ordinary C++ reproduces all bytes; the initializer must reuse the
+  stored owner member after deque clears, matching the real source lifetime.
+- Native exact TU emission also regenerates checked-deque `operator[]
+  @ 0x004300B0` (99).  Its SHA-pinned object anchor has a unique
+  relocation-masked fingerprint across all 4,010 candidates, so it is now
+  compiler-generated and excluded.  The adjacent `push_back @ 0x004306D0`
+  failed that complete origin replay and remains review-pending; similar code
+  shape is not sufficient origin evidence.
+- The inherited dirty workspace is now represented truthfully in the ledgers.
+  Natural semantic source is present but **not exact** for CNumber tile options
+  `0x004098E0`, Winsock-state ctor/dtor `0x00412B10/0x00412CC0`, CNumber
+  initialize `0x00414E40`, handle lookup `0x00417800`, and player-profile load
+  `0x00431AC0`; the previously documented Fighter command matcher
+  `0x00463500` also remains nonexact.  Their remaining residuals are bounded
+  store scheduling, private/LTCG helper selection, or checked-container tail
+  validation.  They are source-present evidence only and are deliberately absent
+  from `matches.csv` and the accepted match-unit graph.
+
 - **Newest fighter-phase / BG02 render-core wave:** **2 authored
   canonical-exact roots / 1,644 bytes**, moving the ledger to **1,236 exact /
   201,155 authored bytes / 421 units; 1,096 excluded; 1,678

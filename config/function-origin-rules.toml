@@ -666,6 +666,17 @@ confidence = "observed"
 evidence = "Canonical-exact EventEffectState background maintenance instantiates the native checked deque<BackgroundRenderEntry> erase/copy-backward/copy helpers. SHA-pinned VC8 replay reproduces all three relocation-masked bodies and requires inventory-unique hits across all 4,010 current candidates."
 
 [[rules]]
+id = "vc8-generated-secondary-animation-deque-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-secondary-animation-deque-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 99
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "The canonical-exact 0x54 SecondaryAnimation runtime TU instantiates checked deque<Point2>::operator[]. SHA-pinned VC8 SP1 relocation-masked replay reproduces the body and requires an inventory-unique hit across all 4,010 current candidates; the neighboring push_back remains review-pending because its generated body is not byte-identical."
+
+[[rules]]
 id = "vc8-generated-event-effect-state-container-comdats-106a"
 vc8_generated_anchor_file = "config/vc8-generated-event-effect-state-origin-anchors.toml"
 expected_count = 4

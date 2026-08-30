@@ -25,8 +25,8 @@ unsigned char FighterCommandFlagsView::match_command_463500(
 {
     typedef std::deque<short>::const_iterator InputIterator;
 
-    const std::deque<short> &history = input_history_710;
-    InputIterator cursor = history.end() - static_cast<signed char>(window);
+    InputIterator cursor = input_history_710.end() - static_cast<signed char>(window);
+    const InputIterator finish = input_history_710.end();
     char translated[20];
 
     int i = 0;
@@ -47,7 +47,7 @@ unsigned char FighterCommandFlagsView::match_command_463500(
     }
 
     int pattern_index = 0;
-    while (cursor != history.end()) {
+    while (cursor != finish) {
         unsigned char token = translated[pattern_index];
 
         if (token == 0x0b) {

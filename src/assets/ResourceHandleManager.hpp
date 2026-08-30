@@ -37,7 +37,7 @@ struct CHandleManager4 {
     // it a ledger/source contract until an original-TU or linked-island path
     // can express that ABI without a fabricated normal C++ member wrapper.
 
-    // Verified normal-ECX entry point at 0x00417010.  Its returned cell is
+    // Verified normal-ECX entry point at 0x00417800.  Its returned cell is
     // still owned by the manager; callers clear it before recycling its token.
     void **lookup_token(unsigned int packed_token);
 };
