@@ -75,8 +75,8 @@ class WorkflowToolingTests(unittest.TestCase):
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,010", markdown)
         self.assertIn("Confirmed authored functions | 1,196", markdown)
-        self.assertIn("Classified exclusions | 1,072", markdown)
-        self.assertIn("Origin/boundary review pending | 1,742", markdown)
+        self.assertIn("Classified exclusions | 1,092", markdown)
+        self.assertIn("Origin/boundary review pending | 1,722", markdown)
         self.assertIn("Canonical exact functions | 1,196", markdown)
         self.assertIn("Canonical exact authored bytes | 197,756", markdown)
         self.assertIn(
@@ -142,7 +142,18 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(copy_anchors["alignment_tail_hex"], "cc")
         self.assertEqual(
             [(row["address"], row["size"]) for row in copy_anchors["anchors"]],
-            [("0x00461420", 249), ("0x00461940", 123)],
+            [
+                ("0x00461420", 249),
+                ("0x00461940", 123),
+                ("0x004607F0", 230),
+                ("0x004608E0", 149),
+                ("0x00460F50", 56),
+                ("0x00461120", 92),
+                ("0x00461180", 177),
+                ("0x00461240", 41),
+                ("0x00461270", 166),
+                ("0x004613E0", 58),
+            ],
         )
         with (ROOT / "config" / "vc8-generated-pat-nested-origin-anchors.toml").open("rb") as stream:
             nested_anchors = tomllib.load(stream)
@@ -260,6 +271,12 @@ class WorkflowToolingTests(unittest.TestCase):
             "vc8-generated-battle-render-request-list-origin-anchors.toml": (
                 "src/battle/BattleObjectStage.cpp", False, 1, 59
             ),
+            "vc8-generated-list-u32-origin-anchors.toml": (
+                "scripts/probes/list_u32.cpp", False, 1, 184
+            ),
+            "vc8-generated-deque-u32-origin-anchors.toml": (
+                "scripts/probes/deque_push_back_4byte.cpp", False, 2, 213
+            ),
         }
         for filename, (source, enable_gs, count, byte_count) in expected.items():
             with (ROOT / "config" / filename).open("rb") as stream:
@@ -290,7 +307,19 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertTrue(manifest["enable_gs"])
         self.assertEqual(
             [(row["address"], row["size"]) for row in manifest["anchors"]],
-            [("0x00432F90", 509), ("0x00433190", 695), ("0x00433450", 189)],
+            [
+                ("0x00432F90", 509),
+                ("0x00433190", 695),
+                ("0x00433450", 189),
+                ("0x00432710", 28),
+                ("0x00432730", 27),
+                ("0x00432750", 99),
+                ("0x00432900", 78),
+                ("0x00432950", 82),
+                ("0x00432A40", 137),
+                ("0x00432AD0", 59),
+                ("0x00432B50", 53),
+            ],
         )
 
     def test_deque_short_erase_origin_manifest_is_pinned(self) -> None:

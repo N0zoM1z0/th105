@@ -116,13 +116,13 @@ evidence = "each current candidate is the inventory-unique non-relocation finger
 [[rules]]
 id = "vc8-generated-pat-copy-anchors-106a"
 vc8_generated_anchor_file = "config/vc8-generated-pat-copy-origin-anchors.toml"
-expected_count = 2
-expected_bytes = 372
+expected_count = 10
+expected_bytes = 1341
 origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "current vector<PatRecord88> copy construction and std::_Construct<PatGroup> are inventory-unique relocation-masked COMDAT fingerprints freshly generated from a tracked VC8 probe; only one explicit 0xCC alignment byte is permitted after the 249-byte vector copy constructor"
+evidence = "current PatGroup/PatRecord88/PatRaw16 vector copy, checked copy/fill, uninitialized construction and std::_Construct helpers are inventory-unique relocation-masked COMDAT fingerprints freshly generated from a tracked VC8 probe; only one explicit 0xCC alignment byte is permitted after any recorded body"
 
 [[rules]]
 id = "vc8-generated-pat-nested-value-erase-106a"
@@ -536,13 +536,35 @@ evidence = "Current checked-tree nodes with end/color flags at +0x104/+0x105 imp
 [[rules]]
 id = "vc8-generated-short-set-comdats-106a"
 vc8_generated_anchor_file = "config/vc8-generated-short-set-origin-anchors.toml"
-expected_count = 3
-expected_bytes = 1393
+expected_count = 11
+expected_bytes = 1956
 origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 /GS rebuild of a tracked std::set<short> witness regenerates the checked insert/_Insert/erase(iterator) COMDATs used by the SpellCsv filtered selected-id tree; every relocation-masked fingerprint must be inventory-unique across all 4010 tracked spans"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of a tracked std::set<short> witness regenerates the checked insert/_Insert/erase(iterator), traversal, rotation, allocation and recursive erase COMDATs used by the SpellCsv filtered selected-id tree; every relocation-masked fingerprint must be inventory-unique across all 4010 tracked spans"
+
+[[rules]]
+id = "vc8-generated-list-u32-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-list-u32-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 184
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "A tracked forced-instantiation witness rebuilt by the SHA-pinned VC8 SP1 compiler regenerates the checked four-byte-value std::list splice COMDAT; its relocation-masked fingerprint must remain unique across all 4010 target spans. The witness proves generated code shape, not the target template argument's semantic identity."
+
+[[rules]]
+id = "vc8-generated-deque-u32-comdats-106a"
+vc8_generated_anchor_file = "config/vc8-generated-deque-u32-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 213
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "A tracked forced-instantiation witness rebuilt by the SHA-pinned VC8 SP1 compiler regenerates the checked four-byte-value std::deque back and push_front COMDATs; both relocation-masked fingerprints must remain unique across all 4010 target spans. The witness proves generated code shape, not the target template argument's semantic identity."
 
 [[rules]]
 id = "vc8-generated-info-short-record-std-comdats-106a"
@@ -657,13 +679,13 @@ evidence = "Canonical-exact EventEffectState runtime instantiates the native che
 [[rules]]
 id = "vc8-generated-scene-render-cluster-node-comdats-106a"
 vc8_generated_anchor_file = "config/vc8-generated-scene-render-cluster-origin-anchors.toml"
-expected_count = 2
-expected_bytes = 84
+expected_count = 3
+expected_bytes = 779
 origin = "compiler_generated"
 subsystem = "ui"
 disposition = "exclude"
 confidence = "observed"
-evidence = "Canonical-exact SceneRenderCluster constructor instantiates checked list<0x7C scene record> and map<int,20-byte scene value> node allocators. SHA-pinned VC8 SP1 rebuild plus full 4,010-candidate relocation-masked replay requires both newly classified COMDAT fingerprints to remain inventory-unique; the map<int,void*> allocator at 0x00420A40 is already independently excluded by the effect-manager exact-TU manifest."
+evidence = "Canonical-exact SceneRenderCluster constructor instantiates checked list<0x7C scene record> and map<int,20-byte scene value> node allocators plus map erase(iterator). SHA-pinned VC8 SP1 rebuild plus full 4,010-candidate relocation-masked replay requires all three classified COMDAT fingerprints to remain inventory-unique; the map<int,void*> allocator at 0x00420A40 is already independently excluded by the effect-manager exact-TU manifest."
 
 [[rules]]
 id = "vc8-generated-profile-deck-resource-std-comdats-106a"

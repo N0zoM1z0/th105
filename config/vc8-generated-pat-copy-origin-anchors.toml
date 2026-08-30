@@ -17,3 +17,43 @@ symbol = "??0?$vector@VPatRecord88@th105@@V?$allocator@VPatRecord88@th105@@@std@
 address = "0x00461940"
 size = 123
 symbol = "??$_Construct@UPatGroup@th105@@U12@@std@@YAXPAUPatGroup@th105@@ABU12@@Z"
+
+[[anchors]]
+address = "0x004607F0"
+size = 230
+symbol = "??0?$vector@UPatRaw16@th105@@V?$allocator@UPatRaw16@th105@@@std@@@std@@QAE@ABV01@@Z"
+
+[[anchors]]
+address = "0x004608E0"
+size = 149
+symbol = "??0?$vector@PAUPatRaw16@th105@@V?$allocator@PAUPatRaw16@th105@@@std@@@std@@QAE@ABV01@@Z"
+
+[[anchors]]
+address = "0x00460F50"
+size = 56
+symbol = "??$_Copy_backward_opt@PAVPatRecord88@th105@@PAV12@Uforward_iterator_tag@std@@@std@@YAPAVPatRecord88@th105@@PAV12@00Uforward_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x00461120"
+size = 92
+symbol = "??$_Copy_backward_opt@PAVPatRecord88@th105@@PAV12@@std@@YAPAVPatRecord88@th105@@PAV12@00Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x00461180"
+size = 177
+symbol = "??$_Uninit_copy@PBVPatRecord88@th105@@PAV12@V?$allocator@VPatRecord88@th105@@@std@@@std@@YAPAVPatRecord88@th105@@PBV12@0PAV12@AAV?$allocator@VPatRecord88@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x00461240"
+size = 41
+symbol = "??$_Fill@PAVPatRecord88@th105@@V12@@std@@YAXPAVPatRecord88@th105@@0ABV12@@Z"
+
+[[anchors]]
+address = "0x00461270"
+size = 166
+symbol = "??$_Uninit_fill_n@PAVPatRecord88@th105@@IV12@V?$allocator@VPatRecord88@th105@@@std@@@std@@YAXPAVPatRecord88@th105@@IABV12@AAV?$allocator@VPatRecord88@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x004613E0"
+size = 58
+symbol = "?_Ufill@?$vector@VPatRecord88@th105@@V?$allocator@VPatRecord88@th105@@@std@@@std@@IAEPAVPatRecord88@th105@@PAV34@IABV34@@Z"

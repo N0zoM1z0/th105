@@ -20,3 +20,43 @@ symbol = "?erase@?$_Tree@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@s
 address = "0x00433450"
 size = 189
 symbol = "?insert@?$_Tree@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@std@@_N@2@ABF@Z"
+
+[[anchors]]
+address = "0x00432710"
+size = 28
+symbol = "?_Max@?$_Tree@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@std@@KAPAU_Node@?$_Tree_nod@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@2@PAU342@@Z"
+
+[[anchors]]
+address = "0x00432730"
+size = 27
+symbol = "?_Min@?$_Tree@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@std@@KAPAU_Node@?$_Tree_nod@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@2@PAU342@@Z"
+
+[[anchors]]
+address = "0x00432750"
+size = 99
+symbol = "?_Inc@const_iterator@?$_Tree@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@std@@QAEXXZ"
+
+[[anchors]]
+address = "0x00432900"
+size = 78
+symbol = "?_Lrotate@?$_Tree@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@2@@Z"
+
+[[anchors]]
+address = "0x00432950"
+size = 82
+symbol = "?_Rrotate@?$_Tree@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@2@@Z"
+
+[[anchors]]
+address = "0x00432A40"
+size = 137
+symbol = "?_Dec@const_iterator@?$_Tree@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@std@@QAEXXZ"
+
+[[anchors]]
+address = "0x00432AD0"
+size = 59
+symbol = "?_Buynode@?$_Tree@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@2@PAU342@00ABFD@Z"
+
+[[anchors]]
+address = "0x00432B50"
+size = 53
+symbol = "?_Erase@?$_Tree@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@2@@Z"
