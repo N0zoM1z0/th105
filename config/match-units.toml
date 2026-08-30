@@ -15810,3 +15810,152 @@ dir32_targets = [
   "_g_winsock_ref_lock=_g_winsock_ref_lock",
   "_g_winsock_refcount=_g_winsock_refcount",
 ]
+[units.gpt-web-ctile-copy-lifetime]
+kind = "probe"
+source = "src/battle/CTileCopyLifetime.cpp"
+object = "build/match-units/GptWeb_CTileCopyLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current CTile implicit copy constructor. Constructor-facing polymorphic CSpriteBase owns value +0x04, four 0x1C vertices and texture dimensions through +0x7C; CTile adds nine named float extension fields +0x80..+0xA0. Ordinary implicit copy construction reproduces target base rep-movsd plus nine x87 scalar copies."
+
+[[units.gpt-web-ctile-copy-lifetime.functions]]
+address = "0x004396A0"
+symbol_base = "??0CTileCopyProbe@th105@@QAE@ABV01@@Z"
+dir32_targets = [
+  "??_7TileSpriteBaseCopy@th105@@6B@=??_7CSpriteBase@@6B@",
+  "??_7CTileCopyProbe@th105@@6B@=??_7CTile@@6B@",
+]
+
+[units.gpt-web-ui-sprite-lifetime]
+kind = "probe"
+source = "src/ui/UiSpriteLifetime.cpp"
+object = "build/match-units/GptWeb_UiSpriteLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current CSprite/UiSprite94 constructor callback independently passed to VC8 array construction by exact CMenuConfig/Title owners. A normal 0x94 constructor clears color value +0x04 then publishes the canonical CSprite vtable."
+
+[[units.gpt-web-ui-sprite-lifetime.functions]]
+address = "0x0040ADA0"
+symbol_base = "??0UiSpriteCtorProbe@th105@@QAE@XZ"
+dir32_targets = ["_select_sprite_vtable_anchor=_select_sprite_vtable_anchor"]
+
+[units.gpt-web-battle-base-effect-lifetime]
+kind = "probe"
+source = "src/battle/BattleBaseEffectLifetime.cpp"
+object = "build/match-units/GptWeb_BattleBaseEffectLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current BattleBaseEffect +0x40 member lifetime from exact BattleObjectManager ctor/dtor. The 8-byte object has its own two-slot vtable and one COM-style resource pointer +0x04; ordinary constructor, nonvirtual destructor and shutdown use IUnknown::Release. initialize remains excluded from this unit because its helper boundary consumes a private EAX live-in."
+
+[[units.gpt-web-battle-base-effect-lifetime.functions]]
+address = "0x00417FB0"
+symbol_base = "??0BattleBaseEffectLifetimeView@th105@@QAE@XZ"
+dir32_targets = ["??_7BattleBaseEffectLifetimeView@th105@@6B@=??_7BattleBaseEffect@@6B@"]
+
+[[units.gpt-web-battle-base-effect-lifetime.functions]]
+address = "0x00417FC0"
+symbol_base = "??1BattleBaseEffectLifetimeView@th105@@QAE@XZ"
+dir32_targets = ["??_7BattleBaseEffectLifetimeView@th105@@6B@=??_7BattleBaseEffect@@6B@"]
+
+[[units.gpt-web-battle-base-effect-lifetime.functions]]
+address = "0x00418040"
+symbol_base = "?shutdown@BattleBaseEffectLifetimeView@th105@@QAEXXZ"
+rel32_targets = ["_remove_battle_base_effect@4=0x00414D50"]
+
+[units.gpt-web-direct-sound-resource-lifetime]
+kind = "probe"
+source = "src/audio/DirectSoundResourceLifetime.cpp"
+object = "build/match-units/GptWeb_DirectSoundResourceLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current DirectSound resource base/derived lifetime island adjacent to BattleBaseEffect. Both vtables expose one initialize slot followed by the scalar deleting destructor. Base is 0x0C with IUnknown resource +0x04 and state +0x08; derived is 0x10 and adds IUnknown resource +0x0C. Natural virtual construction/destruction reproduces the target redundant derived-body/base-body release ownership."
+
+[[units.gpt-web-direct-sound-resource-lifetime.functions]]
+address = "0x00418280"
+symbol_base = "??0DirectSoundResourceBaseLifetime@th105@@QAE@XZ"
+dir32_targets = ["??_7DirectSoundResourceBaseLifetime@th105@@6B@=??_7DirectSoundResourceBase@th105@@6B@"]
+
+[[units.gpt-web-direct-sound-resource-lifetime.functions]]
+address = "0x004182E0"
+symbol_base = "??1DirectSoundResourceBaseLifetime@th105@@UAE@XZ"
+dir32_targets = ["??_7DirectSoundResourceBaseLifetime@th105@@6B@=??_7DirectSoundResourceBase@th105@@6B@"]
+
+[[units.gpt-web-direct-sound-resource-lifetime.functions]]
+address = "0x004182A0"
+symbol_base = "??_GDirectSoundResourceBaseLifetime@th105@@UAEPAXI@Z"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = ["??_7DirectSoundResourceBaseLifetime@th105@@6B@=??_7DirectSoundResourceBase@th105@@6B@"]
+
+[[units.gpt-web-direct-sound-resource-lifetime.functions]]
+address = "0x004180D0"
+symbol_base = "??_GDirectSoundResourceLifetime@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1DirectSoundResourceLifetime@th105@@UAE@XZ=0x004180F0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.gpt-web-direct-sound-resource-lifetime.functions]]
+address = "0x00418310"
+symbol_base = "?initialize@DirectSoundResourceBaseLifetime@th105@@UAE_NPBXI@Z"
+rel32_targets = [
+  "?create_secondary_buffer8@th105@@YGJPBUDirectSoundBufferDescription@1@PAPAUDirectSoundBuffer8@1@@Z=0x00418920",
+  "@__security_check_cookie@4=0x00689D25",
+  "__security_check_cookie=0x00689D25",
+]
+dir32_targets = [
+  "__imp__MessageBoxA@16=__imp__MessageBoxA@16",
+  "_direct_sound_buffer8_acquire_error=_direct_sound_buffer8_acquire_error",
+  "??_C@_0N@DIEPJNLL@DSound?9Error?$AA@=_direct_sound_error_title",
+]
+
+[[units.gpt-web-direct-sound-resource-lifetime.functions]]
+address = "0x00418180"
+symbol_base = "?initialize@DirectSoundResourceLifetime@th105@@UAE_NPBXI@Z"
+rel32_targets = [
+  "?create_secondary_buffer8@th105@@YGJPBUDirectSoundBufferDescription@1@PAPAUDirectSoundBuffer8@1@@Z=0x00418920",
+  "@__security_check_cookie@4=0x00689D25",
+  "__security_check_cookie=0x00689D25",
+]
+dir32_targets = [
+  "__imp__MessageBoxA@16=__imp__MessageBoxA@16",
+  "_direct_sound_buffer8_acquire_error=_direct_sound_buffer8_acquire_error",
+  "_direct_sound_3d_buffer8_acquire_error=_direct_sound_3d_buffer8_acquire_error",
+  "?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B=?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B",
+  "??_C@_0N@DIEPJNLL@DSound?9Error?$AA@=_direct_sound_error_title",
+  "__real@40400000=__real@40400000",
+]
+
+[units.gpt-web-profile-deck-resource-lifetime]
+kind = "probe"
+source = "src/ui/ProfileDeckResourceLifetime.cpp"
+object = "build/match-units/GptWeb_ProfileDeckResourceLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CProfileDeckEdit +0x398 resource member lifetime. A native checked std::deque<unsigned> occupies +0x00 and native std::map<int,SpellRecordView> occupies +0x14; ordinary empty destructor lets VC8 emit the target reverse map/deque teardown rather than hand-written tree/node cleanup."
+
+[[units.gpt-web-profile-deck-resource-lifetime.functions]]
+address = "0x0042E900"
+symbol_base = "??1ProfileDeckResourceGroupNative20@th105@@QAE@XZ"
+rel32_targets = [
+  "??3@YAXPAX@Z=0x006898EA",
+  "@__security_check_cookie@4=0x00689D25",
+  "__security_check_cookie=0x00689D25",
+  "?erase@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z=0x0042E7B0",
+  "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90",
+]
+dir32_targets = [
+  "__ehhandler$??1ProfileDeckResourceGroupNative20@th105@@QAE@XZ=__ehhandler$??1ProfileDeckResourceGroupNative20@th105@@QAE@XZ",
+]
+
+
+[[units.gpt-web-profile-deck-resource-lifetime.functions]]
+address = "0x0042E880"
+symbol_base = "??0ProfileDeckResourceGroupNative20@th105@@QAE@XZ"
+rel32_targets = [
+  "?_Buynode@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@2@XZ=0x0042CE60",
+  "@__security_check_cookie@4=0x00689D25",
+  "__security_check_cookie=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$??0ProfileDeckResourceGroupNative20@th105@@QAE@XZ=__ehhandler$??0ProfileDeckResourceGroupNative20@th105@@QAE@XZ",
+]

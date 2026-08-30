@@ -124,7 +124,7 @@ bool FileReaderOwner::open(const char *path)
         CFileReader *plain_reader = new CFileReader;
         plain_reader->file = CreateFileA(
             path,
-            0x80000000,
+            1,
             1,
             0,
             3,
