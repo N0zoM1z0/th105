@@ -10531,6 +10531,17 @@ rel32_targets = [
   "CollisionContext_reset_collision_extents=0x0046B6C0",
 ]
 
+[[units.cross-v106a-outcome-path-a.functions]]
+address = "0x0046D830"
+symbol_base = "?dispatch_outcome_path@CollisionContext@th105@@QAE_NPAUAttackCandidate@2@PAUFighter@2@@Z"
+rel32_targets = [
+  "?select_outcome_path_from_frame_flags@Fighter@th105@@QAEHI@Z=0x0045E120",
+  "?try_outcome_path_a@CollisionContext@th105@@QAE_NPAUAttackCandidate@2@PAUFighter@2@@Z=0x0046D3F0",
+  "?try_outcome_path_b@CollisionContext@th105@@QAE_NPAUAttackCandidate@2@PAUFighter@2@@Z=0x0046D610",
+  "?reset_fighter_action_scratch@FighterActionScratch@th105@@QAEXXZ=0x00435110",
+  "?is_y_at_or_below_stage_surface_bool_view@th105@@YI_NPAUFighter@1@@Z=0x00435DC0",
+]
+
 [units.cross-v106a-family2-dispatch]
 kind = "probe"
 source = "src/battle/Family2Dispatch.cpp"
@@ -15696,4 +15707,106 @@ rel32_targets = [
   "?get_network_session@th105@@YAPAXXZ=0x0043B090",
   "?refresh_story_progress_42e3f0@ScoreDataStoryProgressView@th105@@QAEXXZ=0x0042E3F0",
   "?persist_story_progress_42d3f0@ScoreDataStoryProgressView@th105@@QAEXXZ=0x0042D3F0",
+]
+
+[units.gpt-web-network-send-state-check]
+kind = "probe"
+source = "src/network/NetworkSendStateCheck.cpp"
+object = "build/match-units/GptWeb_NetworkSendStateCheck.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current NetworkSendState owner: callback +0x80 under raw critical section +0x88, checked vector<0x20 record> +0x108 and record lock +0x124. Ordinary Win32 locking/native checked-vector source is canonical exact."
+
+[[units.gpt-web-network-send-state-check.functions]]
+address = "0x00413360"
+symbol_base = "?publish_callback@NetworkSendStateView@th105@@QAEXPAX@Z"
+dir32_targets = [
+  "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4",
+  "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4",
+]
+
+[[units.gpt-web-network-send-state-check.functions]]
+address = "0x00413390"
+symbol_base = "?check@NetworkSendStateView@th105@@QAE_NH@Z"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+dir32_targets = [
+  "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4",
+  "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4",
+]
+
+[units.gpt-web-sound-wave-dispatch]
+kind = "probe"
+source = "src/audio/SoundVolumeService.cpp"
+object = "build/match-units/GptWeb_SoundWaveDispatch.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current SoundVolumeService wave dispatch: exact handle lookup then IDirectSoundBuffer8 status/stop/seek/play sequence. Neighboring volume setters retain target-only aligned/x87 TU profiles and are intentionally not in this unit."
+
+[[units.gpt-web-sound-wave-dispatch.functions]]
+address = "0x00401D50"
+symbol_base = "?dispatch_wave_handle@SoundVolumeService@th105@@QAEXI@Z"
+rel32_targets = ["?lookup@SoundHandleManagerView@th105@@QAEPAUSoundHandleLookupResult@2@I@Z=0x00417800"]
+
+[units.gpt-web-menu-end-initialization]
+kind = "probe"
+source = "src/ui/MenuEndInitialization.cpp"
+object = "build/match-units/GptWeb_MenuEndInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current CMenuEnd result bootstrap. Game-mode switch chooses a two-key MatchSetup pair, up to 32 round-history names are appended with <br>, then a 512x512 text texture is uploaded to the shared profile tile and ScoreData progress is persisted."
+
+[[units.gpt-web-menu-end-initialization.functions]]
+address = "0x004404F0"
+symbol_base = "?initialize_runtime_4404f0@CMenuEnd@th105@@QAEXXZ"
+rel32_targets = [
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40",
+  "?get_match_setup@th105@@YAPAUMatchSetup@1@XZ=0x0043AC50",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+  "?get_score_data_end_view@th105@@YAPAUScoreDataEndView@1@XZ=0x0043AF20",
+  "?select_story_display_name@ScoreDataEndView@th105@@QAE_NHPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x0042E990",
+  "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@PBD@Z=0x00408C40",
+  "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x00408B40",
+  "??3@YAXPAX@Z=0x006898EA",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIHH@Z=0x00404D00",
+  "?set_texture@UiTileA4@th105@@QAEXIHHII@Z=0x004098B0",
+  "?persist_story_progress_42d3f0@ScoreDataEndView@th105@@QAEXXZ=0x0042D3F0",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?initialize_runtime_4404f0@CMenuEnd@th105@@QAEXXZ=__ehhandler$?initialize_runtime_4404f0@CMenuEnd@th105@@QAEXXZ",
+  "___security_cookie=___security_cookie",
+  "?g_round_counter@th105@@3EA=?g_round_counter@th105@@3EA",
+  "?g_profile_back_texture@th105@@3IA=?g_profile_back_texture@th105@@3IA",
+  "?g_profile_text_config@th105@@3PAEA=_profile_editor_records",
+  "?g_profile_tile_end_view@th105@@3UUiTileA4@1@A=?g_profile_tile@th105@@3UProfileTileView@1@A",
+  "??_C@_04NKJDMFKO@?$DMbr?$DO?$AA@=_connect_break_markup",
+]
+
+
+[units.gpt-web-network-winsock-shutdown]
+kind = "probe"
+source = "src/network/NetworkWinsockShutdown.cpp"
+object = "build/match-units/GptWeb_NetworkWinsockShutdown.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current CNetworkWinsock shutdown over the exact-backed 0x314 state member. Running +0x74, heap buffer +0x78, socket +0x28, four 8-byte BattleThreadHandle values and event +0x1E0 are torn down through ordinary KERNEL32/WS2_32 imports and the canonical 73-byte wait_for_exit helper."
+
+[[units.gpt-web-network-winsock-shutdown.functions]]
+address = "0x00412FD0"
+symbol_base = "?shutdown_412fd0@NetworkWinsockShutdownView@th105@@QAEXXZ"
+rel32_targets = [
+  "?prepare_shutdown_4130d0@NetworkWinsockShutdownView@th105@@QAEXXZ=0x004130D0",
+  "?wait_for_exit@BattleThreadHandleShutdownView@th105@@QAEXXZ=0x00414640",
+  "_free=0x0068AA26",
+]
+dir32_targets = [
+  "__imp__SetEvent@4=__imp__SetEvent@4",
+  "__imp__shutdown@8=__imp__shutdown@8",
+  "__imp__closesocket@4=__imp__closesocket@4",
+  "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4",
+  "__imp__WSACleanup@0=__imp__WSACleanup@0",
+  "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4",
+  "_g_winsock_ref_lock=_g_winsock_ref_lock",
+  "_g_winsock_refcount=_g_winsock_refcount",
 ]

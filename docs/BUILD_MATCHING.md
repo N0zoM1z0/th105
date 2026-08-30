@@ -1382,3 +1382,34 @@ callee's canonical zero-difference comparison.
 ### Keep same-size near-matches as negative source-lifetime evidence
 
 `apply_current_frame @ 0x00436760` is a useful example of when to stop despite a seemingly close result. Exact character/effect callers prove one shared 0x1C frame prefix: pivot shorts +0x04/+0x06, texture index/rectangle +0x0A..+0x12, transform mode +0x14, and optional scale/rotation payload +0x18. Reading the rectangle into real scalar locals in the target order naturally recovers the target 8-byte frame and all **335 bytes**, with the first **120 bytes** exact. The remaining mode-2 difference is receiver lifetime across two transform calls: the shipped TU keeps one frame identity live for the later payload while reloading pivots; a branch-local frame pointer instead shortens the body and changes the earlier mode receiver. Record that as TU/alias scheduling evidence rather than adding fake dependencies or register directives.
+
+### Recover ordinal imports and lock ownership before touching source shape
+
+`CNetworkWinsock::shutdown @ 0x00412FD0` is a useful example of a medium body that
+looks opaque until external ownership is reconciled. The PE imports WS2_32 by
+ordinal, so read the import descriptor and FirstThunk slots directly: in the
+current image FirstThunk is 0x006C0264, making ordinal 3 `closesocket` at
+0x006C0270, ordinal 22 `shutdown` at 0x006C0280 and ordinal 116 `WSACleanup` at
+0x006C0294. Once those cells, the global Winsock lock/refcount, four already
+exact 8-byte thread-handle lifetimes, socket/event/buffer offsets, and the
+out-of-line pre-shutdown member are identified, the first ordinary C++ source is
+175/175 exact. Do not replace ordinal import evidence with guessed REL32 helper
+names or custom calling conventions.
+
+The same wave illustrates a stopping rule for adjacent internals. Application
+`SoundHandleManager::lookup @ 0x00417800` is semantically simple, but its success
+path calls 0x00417A90 with the receiver in EAX, an original-TU/private optimized
+boundary. Exact callers prove the lookup identity; they do not license a fake
+`__fastcall`/standard member declaration. Leave that callee pending until a
+natural higher-level source reconstruction regenerates the private boundary.
+
+### The accepted match-unit graph must contain only canonical-exact functions
+
+Semantic probes are valuable, but do not add a near-match to `match-units.toml`
+just to preserve the experiment. The graph is an accepted-exact manifest: its
+unit/function counts are tested against the matching ledger and the aggregate
+cold replay. Keep source/KB evidence for useful pending bodies separately.
+`CMenuConnect::update_state_middle @ 0x00444490` demonstrates the distinction:
+restoring real nested switches and the case-5/case-10 common cleanup tail reduces
+the source to a well-bounded 708/699 TU residual, but it stays outside the exact
+manifest until canonical zero-difference is reached.

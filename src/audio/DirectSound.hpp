@@ -21,7 +21,29 @@ struct UnknownInterface {
 struct DirectSoundBufferDescription;
 struct OggDataSource;
 struct DirectSoundBuffer : UnknownInterface {};
-struct DirectSoundBuffer8 : UnknownInterface {};
+struct DirectSoundBuffer8 : UnknownInterface {
+    virtual HResult __stdcall get_caps(void *caps) = 0;
+    virtual HResult __stdcall get_current_position(ULong *play, ULong *write) = 0;
+    virtual HResult __stdcall get_format(void *format, ULong size, ULong *written) = 0;
+    virtual HResult __stdcall get_volume(long *volume) = 0;
+    virtual HResult __stdcall get_pan(long *pan) = 0;
+    virtual HResult __stdcall get_frequency(ULong *frequency) = 0;
+    virtual HResult __stdcall get_status(ULong *status) = 0;
+    virtual HResult __stdcall initialize(void *direct_sound, const void *description) = 0;
+    virtual HResult __stdcall lock(
+        ULong offset, ULong bytes, void **audio1, ULong *bytes1,
+        void **audio2, ULong *bytes2, ULong flags) = 0;
+    virtual HResult __stdcall play(ULong reserved1, ULong priority, ULong flags) = 0;
+    virtual HResult __stdcall set_current_position(ULong position) = 0;
+    virtual HResult __stdcall set_format(const void *format) = 0;
+    virtual HResult __stdcall set_volume(long volume) = 0;
+    virtual HResult __stdcall set_pan(long pan) = 0;
+    virtual HResult __stdcall set_frequency(ULong frequency) = 0;
+    virtual HResult __stdcall stop() = 0;
+    virtual HResult __stdcall unlock(
+        void *audio1, ULong bytes1, void *audio2, ULong bytes2) = 0;
+    virtual HResult __stdcall restore() = 0;
+};
 struct DirectSound3DListener8 : UnknownInterface {};
 
 struct DirectSound8 : UnknownInterface {

@@ -2,6 +2,10 @@
 
 namespace th105 {
 
+// This caller consumes only AL from the current helper.  Keep the shared
+// callee declaration unchanged and use a narrow caller-facing view here.
+bool __fastcall is_y_at_or_below_stage_surface_bool_view(Fighter *fighter);
+
 namespace {
 
 struct FighterVirtualView {
@@ -14,6 +18,7 @@ void set_fighter_action(Fighter *fighter, short action)
 {
     reinterpret_cast<FighterVirtualView *>(fighter)->set_action(action);
 }
+
 
 __forceinline void reset_fighter_action_scratch_after_outcome(Fighter *fighter)
 {
@@ -110,8 +115,7 @@ bool CollisionContext::try_outcome_path_b(
         }
     }
 
-    const unsigned frame_flags = candidate->frame_1a4->flags_50;
-    if ((frame_flags & 0x00080000) != 0 ||
+    if ((candidate->frame_1a4->flags_50 & 0x00080000) != 0 ||
         candidate->source_168->gate_4e4 != 0) {
         apply_terminal_outcome(candidate, fighter);
         return true;
@@ -120,7 +124,7 @@ bool CollisionContext::try_outcome_path_b(
         const short before = fighter->counter_482;
         unsigned short amount =
             static_cast<unsigned short>(frame->amount_22);
-        if ((frame_flags & 0x00400000) != 0) {
+        if ((candidate->frame_1a4->flags_50 & 0x00400000) != 0) {
             amount *= 2;
         }
         fighter->counter_482 -= amount;
@@ -161,53 +165,59 @@ bool CollisionContext::dispatch_outcome_path(
     case 0:
         return false;
     case 1:
-        set_fighter_action(
-            fighter,
-            try_outcome_path_a(candidate, fighter) ? 0x8f :
-                static_cast<short>(
-                    candidate->frame_1a4->action_offset_48 + 0x96));
-        reset_fighter_action_scratch_after_outcome(fighter);
-        return true;
-    case 2:
-        set_fighter_action(
-            fighter,
-            try_outcome_path_b(candidate, fighter) ? 0x8f :
-                static_cast<short>(
-                    candidate->frame_1a4->action_offset_48 + 0x9f));
-        reset_fighter_action_scratch_after_outcome(fighter);
-        return true;
-    case 3:
-        set_fighter_action(
-            fighter,
-            try_outcome_path_a(candidate, fighter) ? 0x8f :
-                static_cast<short>(
-                    candidate->frame_1a4->action_offset_48 + 0x9a));
-        reset_fighter_action_scratch_after_outcome(fighter);
-        return true;
-    case 4:
-        set_fighter_action(
-            fighter,
-            try_outcome_path_b(candidate, fighter) ? 0x8f :
-                static_cast<short>(
-                    candidate->frame_1a4->action_offset_48 + 0xa3));
-        reset_fighter_action_scratch_after_outcome(fighter);
-        return true;
-    case 5:
-        set_fighter_action(
-            fighter,
-            try_outcome_path_a(candidate, fighter) ? 0x91 : 0x9e);
-        reset_fighter_action_scratch_after_outcome(fighter);
-        return true;
-    case 6:
-        if (!try_outcome_path_a(candidate, fighter)) {
+        if (try_outcome_path_a(candidate, fighter)) {
+            set_fighter_action(fighter, 0x8f);
+            reset_fighter_action_scratch_after_outcome(fighter);
             return true;
         }
         set_fighter_action(
             fighter,
-            is_y_at_or_below_stage_surface(fighter) != 0 ? 0x8f : 0x91);
-        return true;
+            static_cast<short>(candidate->frame_1a4->action_offset_48 + 0x96));
+        // The common non-case cleanup is the physical fallthrough here.
     default:
         reset_fighter_action_scratch_after_outcome(fighter);
+        return true;
+    case 3:
+        if (try_outcome_path_a(candidate, fighter))
+            set_fighter_action(fighter, 0x8f);
+        else
+            set_fighter_action(
+                fighter,
+                static_cast<short>(candidate->frame_1a4->action_offset_48 + 0x9a));
+        reset_fighter_action_scratch_after_outcome(fighter);
+        return true;
+    case 5:
+        if (try_outcome_path_a(candidate, fighter))
+            set_fighter_action(fighter, 0x91);
+        else
+            set_fighter_action(fighter, 0x9e);
+        reset_fighter_action_scratch_after_outcome(fighter);
+        return true;
+    case 2:
+        if (try_outcome_path_b(candidate, fighter))
+            set_fighter_action(fighter, 0x8f);
+        else
+            set_fighter_action(
+                fighter,
+                static_cast<short>(candidate->frame_1a4->action_offset_48 + 0x9f));
+        reset_fighter_action_scratch_after_outcome(fighter);
+        return true;
+    case 4:
+        if (try_outcome_path_b(candidate, fighter))
+            set_fighter_action(fighter, 0x8f);
+        else
+            set_fighter_action(
+                fighter,
+                static_cast<short>(candidate->frame_1a4->action_offset_48 + 0xa3));
+        reset_fighter_action_scratch_after_outcome(fighter);
+        return true;
+    case 6:
+        if (!try_outcome_path_a(candidate, fighter))
+            return true;
+        if (is_y_at_or_below_stage_surface_bool_view(fighter))
+            set_fighter_action(fighter, 0x8f);
+        else
+            set_fighter_action(fighter, 0x91);
         return true;
     }
 }
