@@ -225,7 +225,7 @@ struct Fighter {
     short value_498;
     short value_49a;
     short value_49c;
-    unsigned short field_49e;
+    short field_49e;
     short value_4a0;
     short value_4a2;
     short field_4a4;

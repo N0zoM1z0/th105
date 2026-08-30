@@ -3,6 +3,14 @@
 namespace th105 {
 
 struct String28CallGate {
+    unsigned char allocator_00[4];
+    union {
+        char inline_buffer[16];
+        const char *allocated_data;
+    } storage_04;
+    unsigned size_14;
+    unsigned capacity_18;
+
     void assign(const char *source, unsigned source_size);
 };
 
@@ -25,6 +33,22 @@ extern String28CallGate g_bgm_source_path;
 extern BgmPlaybackServiceView g_bgm_service;
 extern ScoreDataBgmView g_score_data;
 extern int g_bgm_handle;
+
+unsigned __cdecl case_insensitive_crc32(
+    const unsigned char *bytes,
+    int length);
+
+unsigned __cdecl current_info_effect_key_43bb90()
+{
+    const unsigned char *source = reinterpret_cast<const unsigned char *>(
+        g_bgm_source_path.storage_04.allocated_data);
+    if (g_bgm_source_path.capacity_18 < 16)
+        source = reinterpret_cast<const unsigned char *>(
+            g_bgm_source_path.storage_04.inline_buffer);
+    return case_insensitive_crc32(
+        source,
+        static_cast<int>(g_bgm_source_path.size_14));
+}
 
 extern "C" void __cdecl load_bgm_source(const char *path)
 {

@@ -160,7 +160,7 @@ threshold_done:
         candidate->owner_16c->flag_491 |= 0x20;
         fighter->response_18c = frame->response_3c * 1.5;
         fighter->response_190 = frame->response_40 * 1.5;
-        fighter->field_49e = static_cast<unsigned short>(
+        fighter->field_49e = static_cast<short>(
             ((frame->boosted_response_quantity_24 * 3) / 2) *
             candidate->owner_16c->scalar_494);
         hit_quantity = static_cast<short>(
@@ -169,7 +169,7 @@ threshold_done:
     } else {
         fighter->response_18c = frame->response_3c;
         fighter->response_190 = frame->response_40;
-        fighter->field_49e = static_cast<unsigned short>(
+        fighter->field_49e = static_cast<short>(
             frame->boosted_response_quantity_24 *
             candidate->owner_16c->scalar_494);
         hit_quantity = static_cast<short>(

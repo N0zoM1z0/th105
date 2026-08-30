@@ -11445,7 +11445,7 @@ source = "src/audio/BgmPlayback.cpp"
 object = "build/match-units/CrossV106a_BgmPlayback.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current BGM load/play pair at the exact-backed service/global. Both preserve out-of-line String28 assignment and BGM service calls. A real four-byte BgmHandleResult value return naturally reuses the dead path argument slot as hidden return storage; play_bgm keeps the non-null path as hot fallthrough and the null schedule path at the cold tail."
+notes = "Current BGM load/play/hash trio at the exact-backed service/global. The load/play pair preserves out-of-line String28 assignment and BGM service calls. A real four-byte BgmHandleResult value return naturally reuses the dead path argument slot as hidden return storage; play_bgm keeps the non-null path as hot fallthrough and the null schedule path at the cold tail. The hash accessor exposes the VC8 String28 +0x04 storage, +0x14 size and +0x18 capacity layout before exact case-insensitive CRC32."
 
 [[units.cross-v106a-bgm-playback.functions]]
 address = "0x0043CF00"
@@ -11476,6 +11476,16 @@ rel32_targets = [
 dir32_targets = [
   "?g_bgm_service@th105@@3UBgmPlaybackServiceView@1@A=?g_bgm_service@th105@@3UBgmServiceView@1@A",
   "?g_score_data@th105@@3UScoreDataBgmView@1@A=?g_score_data@th105@@3UScoreData@1@A",
+]
+
+[[units.cross-v106a-bgm-playback.functions]]
+address = "0x0043BB90"
+symbol_base = "?current_info_effect_key_43bb90@th105@@YAIXZ"
+rel32_targets = ["?case_insensitive_crc32@th105@@YAIPBEH@Z=0x00406930"]
+dir32_targets = [
+  "?g_bgm_source_path@th105@@3UString28CallGate@1@A+0x4=g_bgm_source_path_zero_fields",
+  "?g_bgm_source_path@th105@@3UString28CallGate@1@A+0x14=g_bgm_source_path_zero_fields",
+  "?g_bgm_source_path@th105@@3UString28CallGate@1@A+0x18=g_bgm_source_path_capacity",
 ]
 
 [units.cross-v106a-bgm-service-leaves]
@@ -15972,3 +15982,71 @@ rel32_targets = [
 dir32_targets = [
   "__ehhandler$??0ProfileDeckResourceGroupNative20@th105@@QAE@XZ=__ehhandler$??0ProfileDeckResourceGroupNative20@th105@@QAE@XZ",
 ]
+
+[units.gpt-web-character-round-reset-runtime]
+kind = "probe"
+source = "src/characters/CharacterRoundResetRuntime.cpp"
+object = "build/match-units/GptWeb_CharacterRoundResetRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current RTTI-owned roster Fighter vtables place these character-tail reset overrides in slot 17. Every body uses the typed derived tail at +0x7A4 around canonical-exact Fighter::reset_extended_state 0x004776D0. Remilia and Aya legitimately share one linker-folded body."
+
+[[units.gpt-web-character-round-reset-runtime.functions]]
+address = "0x00491BD0"
+symbol_base = "?reset_character_state@ReimuRoundResetView@th105@@QAEHXZ"
+rel32_targets = ["?reset_extended_state@FighterResetBaseView@th105@@QAEHXZ=0x004776D0"]
+
+[[units.gpt-web-character-round-reset-runtime.functions]]
+address = "0x004B8980"
+symbol_base = "?reset_character_state@MarisaRoundResetView@th105@@QAEHXZ"
+rel32_targets = ["?reset_extended_state@FighterResetBaseView@th105@@QAEHXZ=0x004776D0"]
+
+[[units.gpt-web-character-round-reset-runtime.functions]]
+address = "0x004DE030"
+symbol_base = "?reset_character_state@SakuyaRoundResetView@th105@@QAEHXZ"
+rel32_targets = ["?reset_extended_state@FighterResetBaseView@th105@@QAEHXZ=0x004776D0"]
+
+[[units.gpt-web-character-round-reset-runtime.functions]]
+address = "0x004F9800"
+symbol_base = "?reset_character_state@AliceRoundResetView@th105@@QAEHXZ"
+rel32_targets = ["?reset_extended_state@FighterResetBaseView@th105@@QAEHXZ=0x004776D0"]
+
+[[units.gpt-web-character-round-reset-runtime.functions]]
+address = "0x0051D5F0"
+symbol_base = "?reset_character_state@PatchouliRoundResetView@th105@@QAEHXZ"
+rel32_targets = ["?reset_extended_state@FighterResetBaseView@th105@@QAEHXZ=0x004776D0"]
+
+[[units.gpt-web-character-round-reset-runtime.functions]]
+address = "0x0056C810"
+symbol_base = "?reset_character_state@YuyukoRoundResetView@th105@@QAEHXZ"
+rel32_targets = ["?reset_extended_state@FighterResetBaseView@th105@@QAEHXZ=0x004776D0"]
+
+[[units.gpt-web-character-round-reset-runtime.functions]]
+address = "0x005AD470"
+symbol_base = "?reset_character_state@SuikaRoundResetView@th105@@QAEHXZ"
+rel32_targets = ["?reset_extended_state@FighterResetBaseView@th105@@QAEHXZ=0x004776D0"]
+
+[[units.gpt-web-character-round-reset-runtime.functions]]
+address = "0x005D0E10"
+symbol_base = "?reset_character_state@UdongeRoundResetView@th105@@QAEHXZ"
+rel32_targets = ["?reset_extended_state@FighterResetBaseView@th105@@QAEHXZ=0x004776D0"]
+
+[[units.gpt-web-character-round-reset-runtime.functions]]
+address = "0x005F66D0"
+symbol_base = "?reset_character_state@KomachiRoundResetView@th105@@QAEHXZ"
+rel32_targets = ["?reset_extended_state@FighterResetBaseView@th105@@QAEHXZ=0x004776D0"]
+
+[[units.gpt-web-character-round-reset-runtime.functions]]
+address = "0x00616FE0"
+symbol_base = "?reset_character_state@RemiliaAyaRoundResetView@th105@@QAEHXZ"
+rel32_targets = ["?reset_extended_state@FighterResetBaseView@th105@@QAEHXZ=0x004776D0"]
+
+[[units.gpt-web-character-round-reset-runtime.functions]]
+address = "0x0062FFC0"
+symbol_base = "?reset_character_state@IkuRoundResetView@th105@@QAEHXZ"
+rel32_targets = ["?reset_extended_state@FighterResetBaseView@th105@@QAEHXZ=0x004776D0"]
+
+[[units.gpt-web-character-round-reset-runtime.functions]]
+address = "0x0064A000"
+symbol_base = "?reset_character_state@TenshiRoundResetView@th105@@QAEHXZ"
+rel32_targets = ["?reset_extended_state@FighterResetBaseView@th105@@QAEHXZ=0x004776D0"]
