@@ -1202,6 +1202,7 @@ Reimu_reset_character_state,0x00491BD0,function
 Marisa_reset_character_state,0x004B8980,function
 Sakuya_reset_character_state,0x004DE030,function
 Alice_reset_character_state,0x004F9800,function
+Alice_initialize_action_entry,0x004F9850,function
 Patchouli_reset_character_state,0x0051D5F0,function
 Yuyuko_reset_character_state,0x0056C810,function
 Suika_reset_character_state,0x005AD470,function

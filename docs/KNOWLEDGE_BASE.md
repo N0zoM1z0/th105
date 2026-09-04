@@ -14,30 +14,11 @@ notes or source hypotheses.
   rule without deleting their historical ownership witness.  This prevents
   origin rules from overlapping exact baseline while preserving evidence for
   future boundary review.
-- The current census is an important denominator warning.  With the full
-  roster ownership family classified, authored exact is **1,243 / 1,315
-  functions (94.525%)** but only **202,558 / 1,338,079 bytes (15.138%)**.
-  Fifteen vslot-`+0x28` action-state roots alone account for roughly 885 KiB.
-  Therefore function percentage cannot stand in for byte percentage, and the
-  95% byte goal cannot be reached by classifying more small helpers or trimming
-  review; the large authored roster roots must actually be reconstructed or
-  their boundaries must be independently disproved.
-- Youmu gives two positive ordinary-VC8 roster references.  Primary-vtable slot
-  `+0x44`, `Youmu_reset_character_state @ 0x0053A160`, is 97/97 with a typed
-  tail after Fighter `+0x7A4` and exact shared reset `0x004776D0`.  Slot `+0x40`,
-  `Youmu_update_history @ 0x00539B70`, is 198/198 with native checked
-  `deque<YoumuObjectRecord>`; each record is 44 bytes, current pose/facing is
-  pushed to the front, history is capped at 60, the transient phase byte is
-  cleared, and the shared +0x40 continuation is tail-called.  Adding Youmu to
-  the existing round-reset TU leaves all thirteen configured reset bodies exact.
-- `Youmu_update_control_mode @ 0x00539C40` is a useful source-lifetime stop.
-  Do not cache `action_13c`: doing so keeps EDI live as the action and moves the
-  zero register to EBP.  Direct member rereads reproduce the target prologue and
-  first 161 bytes exactly, including EDI-as-zero and the +0x724/+0x728/
-  +0x6B4..+0x6D0 clears.  The remaining first difference is only epilogue
-  placement for the `sequence_state_55a` gate (far target `jl` versus near
-  standalone-VC8 merged return).  Preserve the complete semantic source; do not
-  force branch distance with inert code or artificial control flow.
+- **Confirmed authored bytes must include reviewed remote source-function chunks, not only `functions.csv` main spans.**  The current working checkpoint is **1,248 / 1,315 authored functions exact (94.9049%)** and **208,049 / 1,371,530 confirmed authored code bytes exact (15.1691%)**.  Sakuya primary-vtable `+0x28 @ 0x004CADB0` is the only multi-chunk member among the fifteen giant `+0x28` roster roots: its `functions.csv` size 41,511 ends at `0x004D4FD6`, while current attested IDA control flow owns ten remote executable chunks / **33,451 bytes** ending at RET `0x004DD2D1`.  The 80 bytes between those chunks are VC8 alignment NOP sequences and are not authored function bytes.  `config/function-byte-ownership.toml` pins every remote span and target-byte SHA; `validate-tracking.py` forbids marking such a function matching while its remote chunks remain unverified.  Fourteen sibling `+0x28` roots end exactly at `start + size` and need no remote-byte override.
+- Fifteen vslot-`+0x28` action-state roots still dominate the byte goal.  Their primary-vtable ownership is target-proved, but `src/characters/Vslot28ActionStateRoots.hpp` is declaration/ABI evidence only, not retained gameplay source.  Function percentage therefore cannot stand in for byte percentage: the 95% byte goal requires real reconstruction of these large roots (including Sakuya's remote chunks), not more small-helper classifications or denominator trimming.
+- `Alice_initialize_action_entry @ 0x004F9850` is **1551/1551 canonical exact**.  The reusable source shape is two regional raw-action switches rather than pre-normalized selectors: low `action <= 500` keeps case 500 out of the switch, and high `action <= 797` includes case 797 while 798 is the outer sibling.  Writing `switch(action_13c)` with original case values lets VC8 naturally choose the shipped `SUB min` regional dispatch; spelling the selector as `action-min` repeatedly chooses the byte-equivalent `ADD -min` form instead.  Both independently rebuilt regional source variants hash exactly to the target body without goto, volatile/register forcing, assembly, padding or copied bytes.
+- `Youmu_update_control_mode @ 0x00539C40` is no longer a stop: target-backed sparse-switch **source case order** (`248..255` before `12..15`) makes ordinary pinned VC8 reproduce all **1027/1027** bytes.  The previous 161-byte-prefix result came from the wrong source order, not an unavoidable LTCG epilogue issue; a bounded `/GL + /LTCG` probe did not repair that wrong order.  Reuse this as evidence that sparse-switch source order is byte-significant before blaming whole-program optimization.
+- `Youmu initialize-action-entry +0x3C @ 0x0053A1D0` now has a complete 1.06a semantic body and a best **1115/1424 strict-exact prefix**.  Recovering the current regional switch/body semantics first reduced the high selector to the byte-equivalent `SUB 505`/`ADD -505` issue; a later natural case-525 source shape moves the first hard difference to the selector `<2` epilogue choice at `0x0053A629`: target shares the far plain epilogue at `0x0053A74C` with the 797/798 special path, while standalone VC8 repeatedly merges it to an earlier local epilogue.  Case order, positive/negative guards, break/post-switch returns, raw member/local switches and eight normal selector-lifetime variants do not move that backend choice without regressing earlier bytes.  Hex-Rays confirms the case-525 semantics themselves are simply `if (selector >= 2) set_sequence(...); return;`.  Keep this as an epilogue-canonicalization/backend stop; do not force it with assembly, fake flags or target bytes.  The same investigation corrected vslot `+0x0C` sequence selection to a probable **short** parameter: callers naturally emit target `movsx ax,al`, and the existing `0x0045C390` implementation remains 202/202 exact when compiled with the short parameter.
 - `Yukari_handle_event_bridge @ 0x005983B0` is the corresponding negative
   switch reference.  Natural source closes all meaningful cases and reaches the
   target final condition `state==794 && sequence!=1`, but standalone VC8 drops

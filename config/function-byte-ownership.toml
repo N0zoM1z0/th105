@@ -1,0 +1,76 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+
+# Source-level function byte ownership that cannot be represented by the
+# provisional contiguous functions.csv size/span_end pair.  Each remote span
+# is executable code owned by the same authored source function; alignment and
+# switch metadata between spans are intentionally excluded.
+[[functions]]
+address = "0x004CADB0"
+main_size = 41511
+main_end = "0x004D4FD6"
+extent_end = "0x004DD2D1"
+remote_bytes = 33451
+owned_bytes = 74962
+remote_exact = false
+evidence = "Current attested IDA disassembly for Sakuya primary-vtable +0x28 continues from the 41,511-byte entry chunk through ten remote code chunks ending at RET 0x004DD2D1. Every remote chunk entry has current code xrefs from sub_4CADB0-owned blocks; the 80 intervening bytes are VC8 alignment NOP sequences."
+
+[[functions.chunks]]
+start = "0x004D4FE0"
+end = "0x004D5177"
+size = 408
+sha256 = "c87285e5b0078331cec2e9b416d51f698a212889a7bf894d26b28e2d553a27ca"
+
+[[functions.chunks]]
+start = "0x004D5180"
+end = "0x004D5487"
+size = 776
+sha256 = "f94fbb8bce030f54e5c26abea86acefe9a9952bd23e763de4abb99826dfcf74c"
+
+[[functions.chunks]]
+start = "0x004D5490"
+end = "0x004D5EE3"
+size = 2644
+sha256 = "4316dfcb06d63e533ca1cbfc5b5577b80f00c6bff9508dc824363f1d87877370"
+
+[[functions.chunks]]
+start = "0x004D5EF0"
+end = "0x004D6087"
+size = 408
+sha256 = "aac9dd67a1644dfb3cc512cc1666a0c5486deb4489107a82cd8cd0819b520ee9"
+
+[[functions.chunks]]
+start = "0x004D6090"
+end = "0x004D6397"
+size = 776
+sha256 = "c36ea7f39b8cb828ea8f68453b10d79bf68e753d7c8ac0c75a6df36952917c5e"
+
+[[functions.chunks]]
+start = "0x004D63A0"
+end = "0x004DB92B"
+size = 21900
+sha256 = "e8206848adc6bed88b2f6d12908810d6f61de081f6db7adb1e2c13dd573f9cd7"
+
+[[functions.chunks]]
+start = "0x004DB930"
+end = "0x004DBA96"
+size = 359
+sha256 = "527409a1d721ddecefdf5caa39c98df5629da57478156bdbc52d717ee8270de1"
+
+[[functions.chunks]]
+start = "0x004DBAA0"
+end = "0x004DBC08"
+size = 361
+sha256 = "a8011211e903843c480d7a59c416a6272851db94247f8fa77767b291dd3a73b2"
+
+[[functions.chunks]]
+start = "0x004DBC10"
+end = "0x004DBD78"
+size = 361
+sha256 = "95c72063695bfba71a294239c14f0b9df051a310b33f817bc80ef3d2f9211aca"
+
+[[functions.chunks]]
+start = "0x004DBD80"
+end = "0x004DD2D1"
+size = 5458
+sha256 = "a482e1abaca46f91f8fb3b72ceecfa271305a6ad0ab0aca3cc1b9bd3ff718f84"

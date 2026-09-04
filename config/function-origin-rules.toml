@@ -20,13 +20,13 @@ evidence = "current target ownership joins the exact 0x54 secondary-animation li
 id = "roster-fighter-primary-vtable-authored-106a"
 pointer_anchor_file = "config/roster-fighter-vtable-origin-anchors.toml"
 skip_matching = true
-expected_count = 67
-expected_bytes = 1129147
+expected_count = 66
+expected_bytes = 1127596
 origin = "authored_game"
 subsystem = "characters"
 disposition = "authored"
 confidence = "observed"
-evidence = "Current 1.06a RTTI-owned Fighter primary vtables directly own this 73-root physical family; the origin selector skips roots already promoted by canonical exact evidence. A target-SHA-pinned pointer manifest replays every contributing vtable dword slot and every candidate byte size. This establishes authored class ownership only; source presence and exactness remain separate, and tail-chunk boundary representation remains provisional where the current contiguous span schema cannot express it."
+evidence = "Current 1.06a RTTI-owned Fighter primary vtables directly own this 73-root physical family; the origin selector skips roots already promoted by canonical exact evidence. A target-SHA-pinned pointer manifest replays every contributing vtable dword slot and every candidate byte size. This establishes authored class ownership only; source presence and exactness remain separate. Rule expected_bytes remain sums of provisional main candidate spans; reviewed remote source-function code ownership (currently Sakuya +0x28) is pinned separately in config/function-byte-ownership.toml."
 
 [[rules]]
 id = "vc8-string-range-errors-106a"

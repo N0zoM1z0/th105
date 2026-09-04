@@ -16453,3 +16453,37 @@ rel32_targets = [
   "?is_at_or_below_stage_surface@FighterMovementActionStateView@th105@@QAE_NXZ=0x00435DC0",
   "?update_facing_from_other_fighter@FighterMovementActionStateView@th105@@QAE_NXZ=0x0045E070",
 ]
+
+[units.gpt-web-alice-action-entry]
+kind = "probe"
+source = "src/characters/AliceActionEntry.cpp"
+object = "build/match-units/GptWeb_AliceActionEntry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current RTTI-owned Alice Fighter primary-vtable +0x3C action-entry initializer. Regional low/high action switches, source-owned 500/197/797/798 special paths, exact motion helpers and one final common-action fallback reproduce the complete 1551-byte body naturally; no assembly, volatile/register forcing, goto, padding or copied bytes."
+
+[[units.gpt-web-alice-action-entry.functions]]
+address = "0x004F9850"
+symbol_base = "?initialize_action_entry@AliceActionEntryView@th105@@QAEXXZ"
+rel32_targets = [
+  "?zero_velocity_acceleration@AliceActionEntryView@th105@@QAEXXZ=0x0045AF40",
+  "?reset_fighter_action_scratch@FighterActionScratchView@th105@@QAEXXZ=0x00435110",
+  "?dispatch_indexed_event_member@AliceActionEntryView@th105@@QAEXI@Z=0x004359F0",
+  "?initialize_common_action_state@AliceActionEntryView@th105@@QAEXXZ=0x00477830",
+]
+dir32_targets = [
+  "__real@c0c00000=__real@c0c00000",
+  "__real@40c00000=__real@40c00000",
+  "__real@41700000=__real@41700000",
+  "__real@c1700000=__real@c1700000",
+  "__real@3f19999a=__real@3f19999a",
+  "__real@42be0000=__real@42be0000",
+  "__real@41400000=__real@41400000",
+  "__real@3fd0000000000000=__real@3fd0000000000000",
+  "__real@3fc99999a0000000=__real@3fc99999a0000000",
+  "__real@3f000000=__real@3f000000",
+  "__real@401e000000000000=__real@401e000000000000",
+  "__real@40f00000=__real@40f00000",
+  "__real@3eb33333=__real@3eb33333",
+  "__real@41200000=__real@41200000",
+]

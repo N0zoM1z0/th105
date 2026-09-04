@@ -11,6 +11,7 @@ import re
 import tomllib
 
 from workflow_manifest import load_manifest
+from function_byte_ownership import load as load_byte_ownership
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -206,6 +207,15 @@ def main() -> int:
     try:
         manifest = validate_target(args.require_target and not args.skip_target_bytes)
         functions = validate_functions(manifest)
+        byte_ownership = load_byte_ownership(
+            functions,
+            require_bytes=args.require_target and not args.skip_target_bytes,
+        )
+        for address, ownership in byte_ownership.items():
+            if functions[address]["status"] == "matching" and not ownership["remote_exact"]:
+                raise ValueError(
+                    f"functions.csv: 0x{address:08X} is matching but remote chunks are not exact"
+                )
         validate_origins(functions)
         validate_claims()
         validate_named_ledger(

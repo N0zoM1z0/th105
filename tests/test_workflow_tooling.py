@@ -30,6 +30,7 @@ class WorkflowToolingTests(unittest.TestCase):
         cls.comparator = load_script("compare-function.py")
         cls.manifest = load_script("workflow_manifest.py")
         cls.progress = load_script("progress.py")
+        cls.byte_ownership = load_script("function_byte_ownership.py")
         cls.ida_check = load_script("check-ida-mcp.py")
         cls.inventory = load_script("export-ida-inventory.py")
         cls.typed = load_script("typed-re.py")
@@ -52,33 +53,34 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4010)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1247)
+        self.assertEqual(len(matching), 1248)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1262)
+        self.assertEqual(len(implemented), 1263)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1247
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1248
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 428)
+        self.assertEqual(len(manifest["units"]), 429)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1251,
+            1252,
         )
 
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,010", markdown)
         self.assertIn("Confirmed authored functions | 1,315", markdown)
+        self.assertIn("Confirmed authored code bytes | 1,371,530", markdown)
         self.assertIn("Classified exclusions | 1,266", markdown)
         self.assertIn("Origin/boundary review pending | 1,429", markdown)
-        self.assertIn("Canonical exact functions | 1,247", markdown)
-        self.assertIn("Canonical exact authored bytes | 206,498", markdown)
+        self.assertIn("Canonical exact functions | 1,248", markdown)
+        self.assertIn("Canonical exact authored bytes | 208,049", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
@@ -130,8 +132,8 @@ class WorkflowToolingTests(unittest.TestCase):
             if rule["id"] == "roster-fighter-primary-vtable-authored-106a"
         )
         self.assertTrue(roster["skip_matching"])
-        self.assertEqual(roster["expected_count"], 67)
-        self.assertEqual(roster["expected_bytes"], 1_129_147)
+        self.assertEqual(roster["expected_count"], 66)
+        self.assertEqual(roster["expected_bytes"], 1_127_596)
         with (ROOT / roster["pointer_anchor_file"]).open("rb") as stream:
             roster_manifest = tomllib.load(stream)
         roots = roster_manifest["anchors"]
@@ -141,6 +143,20 @@ class WorkflowToolingTests(unittest.TestCase):
             {row["address"] for row in roots if row["address"] in {"0x00539B70", "0x0053A160"}},
             {"0x00539B70", "0x0053A160"},
         )
+
+    def test_multichunk_function_byte_ownership_is_pinned(self) -> None:
+        with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
+            functions = {int(row["address"], 0): row for row in csv.DictReader(stream)}
+        ownership = self.byte_ownership.load(functions, require_bytes=True)
+        self.assertEqual(set(ownership), {0x004CADB0})
+        sakuya = ownership[0x004CADB0]
+        self.assertEqual(sakuya["main_size"], 41_511)
+        self.assertEqual(sakuya["remote_bytes"], 33_451)
+        self.assertEqual(sakuya["owned_bytes"], 74_962)
+        self.assertFalse(sakuya["remote_exact"])
+        self.assertEqual(len(sakuya["chunks"]), 10)
+        self.assertEqual(sakuya["chunks"][0]["start"], 0x004D4FE0)
+        self.assertEqual(sakuya["chunks"][-1]["end"], 0x004DD2D1)
 
     def test_secondary_animation_generated_manifest_covers_new_leaves(self) -> None:
         with (ROOT / "config" / "vc8-generated-secondary-animation-deque-origin-anchors.toml").open("rb") as stream:

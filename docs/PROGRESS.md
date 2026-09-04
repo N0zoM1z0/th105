@@ -8,12 +8,16 @@ until each boundary is reconciled with target control flow.
 | Tracked 1.06a function candidates | 4,010 |
 | Origin/boundary review pending | 1,429 |
 | Confirmed authored functions | 1,315 |
+| Confirmed authored code bytes | 1,371,530 |
 | Classified exclusions | 1,266 |
-| Source-present authored mappings | 1,262 |
-| Canonical exact functions | 1,247 |
-| Canonical exact authored bytes | 206,498 |
+| Source-present authored mappings | 1,263 |
+| Canonical exact functions | 1,248 |
+| Canonical exact authored bytes | 208,049 |
 
 The former 1.06 reconstruction state is intentionally excluded. Exact totals
 count only 1.06a functions whose configured VC8 unit passes the canonical
 zero-difference comparator and is recorded in both `config/matches.csv` and
-`config/functions.csv`.
+`config/functions.csv`. Confirmed authored byte ownership also includes reviewed
+remote source-function chunks from `config/function-byte-ownership.toml`; chunk
+alignment and compiler metadata are excluded, and unverified remote chunks do
+not contribute to the exact-byte numerator.

@@ -2282,7 +2282,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004F4B80,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
 0x004F8E00,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
 0x004F9800,authored_game,characters,authored,observed,canonical-exact-authored
-0x004F9850,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
+0x004F9850,authored_game,characters,authored,observed,canonical-exact-authored
 0x004FA0C0,compiler_generated,characters,exclude,observed,vc8-generated-character-object-ex-deque-comdats-106a
 0x004FA190,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x004FA250,authored_game,characters,authored,observed,canonical-exact-authored

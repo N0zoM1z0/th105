@@ -1105,3 +1105,10 @@ __real@4029000000000000,0x006C4828,0000000000002940,0,Current Sakuya action-entr
 __real@3f0ccccd,0x006C3E9C,cdcc0c3f,0,Current Sakuya action-entry target 0x004DE591 loads IEEE-754 float 0.55 from 0x006C3E9C; PE bytes attested 2026-09-04,literal
 __real@c0d00000,0x006C5024,0000d0c0,0,Current Remilia action-entry target 0x00554D88 loads canonical IEEE-754 -6.5f from 0x006C5024; PE bytes attested 2026-09-04,literal
 __real@40d00000,0x006C3DF0,0000d040,0,Current Remilia action-entry target 0x00554D97 loads canonical IEEE-754 6.5f from 0x006C3DF0; PE bytes attested 2026-09-04,literal
+__real@c0a00000,0x006C3B58,0000a0c0,0,Current Iku action-entry target 0x006306D3 loads canonical IEEE-754 float -5.0 from 0x006C3B58; PE bytes attested 2026-09-04,literal
+__real@bdf5c28f,0x006C6448,8fc2f5bd,0,Current Iku action-entry target 0x006306DF loads canonical IEEE-754 float -0.12 from 0x006C6448; PE bytes attested 2026-09-04,literal
+__real@41080000,0x006C3FF8,00000841,0,Current Iku action-entry target 0x0063012A loads canonical IEEE-754 float 8.5 from 0x006C3FF8; PE bytes attested 2026-09-04,literal
+__real@3fc3333340000000,0x006C42B8,000000403333c33f,0,Current Iku action-entry target 0x006303B9 loads the double representation of float 0.15000000596046448 from 0x006C42B8; PE bytes attested 2026-09-04,literal
+__real@4049000000000000,0x006C3C08,0000000000004940,0,Current Fighter common-history target 0x004770B8 subtracts IEEE-754 double 50.0 at 0x006C3C08; canonical PE bytes attested 2026-09-04,literal
+__real@c0400000,0x006C3B5C,000040c0,0,Current Fighter common-history target 0x004772D8 clamps with IEEE-754 float -3.0 at 0x006C3B5C; canonical PE bytes attested 2026-09-04,literal
+__real@3fa00000,0x006C3C00,0000a03f,0,Current Fighter common-history target modes 1/4 load IEEE-754 float 1.25 from 0x006C3C00; canonical PE bytes attested 2026-09-04,literal

@@ -9,6 +9,8 @@ import json
 from pathlib import Path
 import tomllib
 
+from function_byte_ownership import exact_extra_bytes, load as load_byte_ownership, owned_size
+
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "config"
@@ -21,6 +23,8 @@ def dict_rows(name: str) -> list[dict[str, str]]:
 
 def load() -> tuple[list[dict[str, object]], dict[str, object]]:
     functions = dict_rows("functions.csv")
+    function_map = {int(row["address"], 0): row for row in functions}
+    ownership = load_byte_ownership(function_map)
     origins = {row["address"]: row for row in dict_rows("function-origins.csv")}
     mapped = {row["address"]: row for row in dict_rows("reccmp-functions.csv")}
     exact = {row["address"]: row for row in dict_rows("matches.csv")}
@@ -46,10 +50,14 @@ def load() -> tuple[list[dict[str, object]], dict[str, object]]:
             if origin["disposition"] == "exclude"
             else "review"
         )
+        main_size = int(function["size"], 0)
+        numeric_address = int(address, 0)
         rows.append(
             {
                 "address": address,
-                "size": int(function["size"], 0),
+                "size": main_size,
+                "owned_bytes": owned_size(numeric_address, main_size, ownership),
+                "remote_bytes": int(ownership.get(numeric_address, {}).get("remote_bytes", 0)),
                 "name": name,
                 "status": function["status"],
                 "category": category,
@@ -66,11 +74,17 @@ def load() -> tuple[list[dict[str, object]], dict[str, object]]:
         "candidate_bytes": sum(int(row["size"]) for row in rows),
         "review": sum(row["category"] == "review" for row in rows),
         "authored": sum(row["category"] == "authored" for row in rows),
+        "authored_bytes": sum(int(row["owned_bytes"]) for row in rows if row["category"] == "authored"),
+        "remote_authored_bytes": sum(int(row["remote_bytes"]) for row in rows if row["category"] == "authored"),
         "excluded": sum(row["category"] == "excluded" for row in rows),
         "mapped": sum(bool(row["mapped"]) for row in rows),
         "source_present": sum(bool(row["source_present"]) for row in rows),
         "exact_functions": sum(bool(row["exact"]) for row in rows),
-        "exact_bytes": sum(int(row["size"]) for row in rows if row["exact"]),
+        "exact_bytes": sum(
+            int(row["size"]) + exact_extra_bytes(int(str(row["address"]), 0), ownership)
+            for row in rows
+            if row["exact"]
+        ),
         "configured_units": len(manifest.get("units", {})),
     }
     return rows, summary

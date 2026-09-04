@@ -78,6 +78,28 @@ EH funclets, thunks, and adjacent constants must be proven from control flow
 and COFF records. If LTCG makes a truthful standalone object impossible,
 record the blocker; do not weaken the comparator or invent a source boundary.
 
+### Main candidate spans can omit remote source-function chunks
+
+`functions.csv size/span_end` remains a provisional **main callable chunk** for
+canonical comparison; it is not automatically the complete source-function
+byte ownership.  Sakuya's primary-vtable `+0x28 @ 0x004CADB0` is the current
+reference: the main span is 41,511 bytes (`0x004CADB0..0x004D4FD6`), but
+attested IDA control-flow disassembly continues through ten separately aligned
+code chunks / 33,451 bytes and a final RET at `0x004DD2D1`.  Every remote chunk
+entry has current code xrefs from the same `sub_4CADB0` ownership lane.  The 80
+bytes between chunks are ordinary VC8 alignment NOP sequences, so counting the
+entire bounding extent would incorrectly treat alignment as authored function
+bytes.
+
+Keep the main span in `functions.csv` so existing single-span comparators remain
+fail-closed.  Record reviewed remote code in SHA-pinned
+`config/function-byte-ownership.toml`; status/progress then count main + remote
+code in the confirmed authored-byte denominator.  Remote chunks contribute to
+the exact numerator only after separate exact evidence, and tracking validation
+rejects a `matching` function while owned remote chunks remain unverified.  Do
+not solve multi-chunk ownership by inflating `span_end` across alignment or by
+splitting arbitrary tail blocks into fake source functions.
+
 ## Cross-version hypothesis migration
 
 Retained 1.06 source and raw-byte identity can accelerate selection, but neither

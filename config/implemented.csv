@@ -1201,6 +1201,7 @@ Reimu_reset_character_state
 Marisa_reset_character_state
 Sakuya_reset_character_state
 Alice_reset_character_state
+Alice_initialize_action_entry
 Patchouli_reset_character_state
 Yuyuko_reset_character_state
 Suika_reset_character_state
