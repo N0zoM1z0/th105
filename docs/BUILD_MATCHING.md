@@ -1512,3 +1512,9 @@ complete source and tightly bounded optimizer residuals, but remain source-only
 until zero-difference.  The accepted match-unit graph is reserved for canonical
 exact functions; pending experiments belong in source, the function ledger, the
 knowledge base, and disposable `.analysis` artifacts.
+
+### Shared Fighter source-ownership and ABI-equivalence lesson
+
+The exact `0x00476D10` shared Fighter vslot is a useful warning against solving long functions one instruction at a time. Its shipped 0x14-byte stack frame and EBX-zero lifetime only appeared after restoring ordinary source ownership: delayed/out-of-line spawn-timer decrement, right-to-left call argument evaluation, typed non-aliasing Fighter fields and the real mode-12 conditional assignment. Precomputing logically equivalent locals increased the frame or changed x87 scheduling even though the gameplay semantics were unchanged.
+
+A second lesson is that exact callee bytes can leave source ABI underdetermined. The 66-byte `0x00465190` forwarding wrapper is unchanged when direction/arg5 are modeled as several 32-bit-stack-compatible narrow/integer types. The shared +0x40 caller disambiguates arg5: byte-sized source naturally emits the target full-register initialization followed by low-byte arithmetic and direct push, while an `int` declaration inserts a zero-extension. Likewise `selector_random_roll @ 0x004067D0` remains 27/27 for signed and unsigned return declarations. When declarations are byte-equivalent in the callee, use independent caller codegen/value-domain evidence; do not promote a type merely because one declaration compiles exactly in isolation.

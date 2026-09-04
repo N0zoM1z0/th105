@@ -16487,3 +16487,68 @@ dir32_targets = [
   "__real@3eb33333=__real@3eb33333",
   "__real@41200000=__real@41200000",
 ]
+
+[units.gpt-web-fighter-sequence-window]
+kind = "probe"
+source = "src/battle/FighterSequenceWindow.cpp"
+object = "build/match-units/GptWeb_FighterSequenceWindow.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current TH105 1.06a Fighter sequence-window authored helper. Native checked std::deque<FighterSequenceSlot> iterator ownership, indexed battle callback publication and erase-by-value semantics reproduce the complete isolated 446-byte body."
+
+[[units.gpt-web-fighter-sequence-window.functions]]
+address = "0x0045DEB0"
+symbol_base = "?dispatch_indexed_sequence_window_45c8b0@Fighter@th105@@QAEXCHH@Z"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "??D?$_Deque_iterator@UFighterSequenceSlot@th105@@V?$allocator@UFighterSequenceSlot@th105@@@std@@$00@std@@QBEAAUFighterSequenceSlot@th105@@XZ=0x0045CF60",
+  "?reset_and_set_color@FighterSequenceEffectWindowView@th105@@QAEHXZ=0x004652B0",
+  "?invoke_indexed_record@PlayerIndexedCallbackView@th105@@QAEXHH@Z=0x00432DE0",
+  "?erase@?$deque@UFighterSequenceSlot@th105@@V?$allocator@UFighterSequenceSlot@th105@@@std@@@std@@QAE?AV?$_Deque_iterator@UFighterSequenceSlot@th105@@V?$allocator@UFighterSequenceSlot@th105@@@std@@$00@2@V32@@Z=0x0045DC20",
+]
+dir32_targets = [
+  "?g_battle_scene_renderer@th105@@3PAEA=?g_info_manager@th105@@3PAUInfoManager@1@A",
+]
+
+[units.gpt-web-fighter-texture-state]
+kind = "probe"
+source = "src/battle/FighterTextureState.cpp"
+object = "build/match-units/GptWeb_FighterTextureState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current TH105 1.06a Fighter texture-state publisher. Fighter +0x68C is the checked handle deque view, +0x6A0/+0x6A2 own duration/index state, and publication targets the exact-backed BattleObjectManager texture slots."
+
+[[units.gpt-web-fighter-texture-state.functions]]
+address = "0x0045F560"
+symbol_base = "?publish_texture_state@FighterTextureStateView@th105@@QAEXCF@Z"
+rel32_targets = [
+  "?entry_at_checked@FighterTextureHandleDequeView@th105@@QAEPAHH@Z=0x0042D1B0",
+]
+dir32_targets = [
+  "?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A=?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A",
+]
+
+[units.gpt-web-fighter-shared-update-40]
+kind = "probe"
+source = "src/battle/FighterSharedUpdate40.cpp"
+object = "build/match-units/GptWeb_FighterSharedUpdate40.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current TH105 1.06a roster-shared Fighter primary-vtable +0x40 runtime. Typed +0x4B0/+0x4E7 state, texture publishing, spawn-period ownership, sparse mode order and x87 mode-12 adjustment reproduce all 1608 bytes naturally."
+
+[[units.gpt-web-fighter-shared-update-40.functions]]
+address = "0x00476D10"
+symbol_base = "?update_shared_state_40@FighterSharedUpdate40View@th105@@QAEXXZ"
+rel32_targets = [
+  "?finalize_sequence_entry_45bb10@FighterSharedUpdate40View@th105@@QAEXH@Z=0x0045D110",
+  "?publish_texture_state@FighterSharedUpdate40View@th105@@QAEXCF@Z=0x0045F560",
+  "?is_state_13c_in_32_95@th105@@YI_NPAUFighterSharedUpdate40View@1@@Z=0x0045E0E0",
+  "?emit_fighter_effect_433cc0@FighterSharedUpdate40View@th105@@QAEXHMMHH@Z=0x00435240",
+  "?stage_surface_height_at_x@th105@@YIMPAUFighterSharedUpdate40View@1@@Z=0x00435D60",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+  "?spawn_owned_object_via_manager@FighterSharedUpdate40View@th105@@QAEHHMMHEHH@Z=0x00465190",
+]
+dir32_targets = [
+  "?g_fighter_state_4b8_default@th105@@3HA=?g_fighter_state_4b8_default@th105@@3HA",
+  "?g_info_mode_value_6fa88c@th105@@3FA=?g_info_mode_value_6fa88c@th105@@3FA",
+]
