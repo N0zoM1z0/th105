@@ -1,0 +1,583 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+
+# Each physical root below is selected only because one or more current 1.06a
+# RTTI-owned Fighter primary vtable slots contain its exact entry address.
+# pointer_slots are replayed directly from canonical PE bytes.  This proves
+# authored class ownership, not source presence or canonical exactness.
+
+[[anchors]]
+address = "0x00435740"
+size = 456
+pointer_slots = [
+  { address = "0x006C415C", owner = "Reimu", slot_offset = "0x30" },
+  { address = "0x006C45B4", owner = "Marisa", slot_offset = "0x30" },
+  { address = "0x006C4944", owner = "Sakuya", slot_offset = "0x30" },
+  { address = "0x006C4C0C", owner = "Alice", slot_offset = "0x30" },
+  { address = "0x006C4EDC", owner = "Patchouli", slot_offset = "0x30" },
+  { address = "0x006C5174", owner = "Youmu", slot_offset = "0x30" },
+  { address = "0x006C53F4", owner = "Remilia", slot_offset = "0x30" },
+  { address = "0x006C567C", owner = "Yuyuko", slot_offset = "0x30" },
+  { address = "0x006C58FC", owner = "Yukari", slot_offset = "0x30" },
+  { address = "0x006C5BBC", owner = "Suika", slot_offset = "0x30" },
+  { address = "0x006C5E5C", owner = "Udonge", slot_offset = "0x30" },
+  { address = "0x006C6094", owner = "Komachi", slot_offset = "0x30" },
+  { address = "0x006C6304", owner = "Aya", slot_offset = "0x30" },
+  { address = "0x006C655C", owner = "Iku", slot_offset = "0x30" },
+  { address = "0x006C67C4", owner = "Tenshi", slot_offset = "0x30" },
+]
+
+[[anchors]]
+address = "0x0045AF60"
+size = 399
+pointer_slots = [
+  { address = "0x006C4174", owner = "Reimu", slot_offset = "0x48" },
+  { address = "0x006C45CC", owner = "Marisa", slot_offset = "0x48" },
+  { address = "0x006C495C", owner = "Sakuya", slot_offset = "0x48" },
+  { address = "0x006C4C24", owner = "Alice", slot_offset = "0x48" },
+  { address = "0x006C4EF4", owner = "Patchouli", slot_offset = "0x48" },
+  { address = "0x006C518C", owner = "Youmu", slot_offset = "0x48" },
+  { address = "0x006C540C", owner = "Remilia", slot_offset = "0x48" },
+  { address = "0x006C5694", owner = "Yuyuko", slot_offset = "0x48" },
+  { address = "0x006C5914", owner = "Yukari", slot_offset = "0x48" },
+  { address = "0x006C5BD4", owner = "Suika", slot_offset = "0x48" },
+  { address = "0x006C5E74", owner = "Udonge", slot_offset = "0x48" },
+  { address = "0x006C60AC", owner = "Komachi", slot_offset = "0x48" },
+  { address = "0x006C631C", owner = "Aya", slot_offset = "0x48" },
+  { address = "0x006C6574", owner = "Iku", slot_offset = "0x48" },
+  { address = "0x006C67DC", owner = "Tenshi", slot_offset = "0x48" },
+]
+
+[[anchors]]
+address = "0x0045E6E0"
+size = 570
+pointer_slots = [
+  { address = "0x006C4160", owner = "Reimu", slot_offset = "0x34" },
+  { address = "0x006C45B8", owner = "Marisa", slot_offset = "0x34" },
+  { address = "0x006C4948", owner = "Sakuya", slot_offset = "0x34" },
+  { address = "0x006C4C10", owner = "Alice", slot_offset = "0x34" },
+  { address = "0x006C4EE0", owner = "Patchouli", slot_offset = "0x34" },
+  { address = "0x006C5178", owner = "Youmu", slot_offset = "0x34" },
+  { address = "0x006C53F8", owner = "Remilia", slot_offset = "0x34" },
+  { address = "0x006C5680", owner = "Yuyuko", slot_offset = "0x34" },
+  { address = "0x006C5900", owner = "Yukari", slot_offset = "0x34" },
+  { address = "0x006C5BC0", owner = "Suika", slot_offset = "0x34" },
+  { address = "0x006C5E60", owner = "Udonge", slot_offset = "0x34" },
+  { address = "0x006C6098", owner = "Komachi", slot_offset = "0x34" },
+  { address = "0x006C6308", owner = "Aya", slot_offset = "0x34" },
+  { address = "0x006C6560", owner = "Iku", slot_offset = "0x34" },
+  { address = "0x006C67C8", owner = "Tenshi", slot_offset = "0x34" },
+]
+
+[[anchors]]
+address = "0x00476D10"
+size = 1608
+pointer_slots = [
+  { address = "0x006C416C", owner = "Reimu", slot_offset = "0x40" },
+  { address = "0x006C45C4", owner = "Marisa", slot_offset = "0x40" },
+  { address = "0x006C4954", owner = "Sakuya", slot_offset = "0x40" },
+  { address = "0x006C4C1C", owner = "Alice", slot_offset = "0x40" },
+  { address = "0x006C4EEC", owner = "Patchouli", slot_offset = "0x40" },
+  { address = "0x006C5404", owner = "Remilia", slot_offset = "0x40" },
+  { address = "0x006C568C", owner = "Yuyuko", slot_offset = "0x40" },
+  { address = "0x006C590C", owner = "Yukari", slot_offset = "0x40" },
+  { address = "0x006C5BCC", owner = "Suika", slot_offset = "0x40" },
+  { address = "0x006C5E6C", owner = "Udonge", slot_offset = "0x40" },
+  { address = "0x006C60A4", owner = "Komachi", slot_offset = "0x40" },
+  { address = "0x006C6314", owner = "Aya", slot_offset = "0x40" },
+  { address = "0x006C656C", owner = "Iku", slot_offset = "0x40" },
+  { address = "0x006C67D4", owner = "Tenshi", slot_offset = "0x40" },
+]
+
+[[anchors]]
+address = "0x00478FA0"
+size = 81550
+pointer_slots = [
+  { address = "0x006C4154", owner = "Reimu", slot_offset = "0x28" },
+]
+
+[[anchors]]
+address = "0x0048D390"
+size = 15999
+pointer_slots = [
+  { address = "0x006C4184", owner = "Reimu", slot_offset = "0x58" },
+]
+
+[[anchors]]
+address = "0x00491450"
+size = 1566
+pointer_slots = [
+  { address = "0x006C4188", owner = "Reimu", slot_offset = "0x5C" },
+]
+
+[[anchors]]
+address = "0x00491C40"
+size = 3785
+pointer_slots = [
+  { address = "0x006C4168", owner = "Reimu", slot_offset = "0x3C" },
+]
+
+[[anchors]]
+address = "0x00494810"
+size = 6952
+pointer_slots = [
+  { address = "0x006C417C", owner = "Reimu", slot_offset = "0x50" },
+]
+
+[[anchors]]
+address = "0x004A3710"
+size = 66695
+pointer_slots = [
+  { address = "0x006C45AC", owner = "Marisa", slot_offset = "0x28" },
+]
+
+[[anchors]]
+address = "0x004B4070"
+size = 16229
+pointer_slots = [
+  { address = "0x006C45DC", owner = "Marisa", slot_offset = "0x58" },
+]
+
+[[anchors]]
+address = "0x004B8280"
+size = 1771
+pointer_slots = [
+  { address = "0x006C45E0", owner = "Marisa", slot_offset = "0x5C" },
+]
+
+[[anchors]]
+address = "0x004B89C0"
+size = 2446
+pointer_slots = [
+  { address = "0x006C45C0", owner = "Marisa", slot_offset = "0x3C" },
+]
+
+[[anchors]]
+address = "0x004B9FA0"
+size = 7664
+pointer_slots = [
+  { address = "0x006C45D4", owner = "Marisa", slot_offset = "0x50" },
+]
+
+[[anchors]]
+address = "0x004CADB0"
+size = 41511
+pointer_slots = [
+  { address = "0x006C493C", owner = "Sakuya", slot_offset = "0x28" },
+]
+
+[[anchors]]
+address = "0x004DD7E0"
+size = 1796
+pointer_slots = [
+  { address = "0x006C4970", owner = "Sakuya", slot_offset = "0x5C" },
+]
+
+[[anchors]]
+address = "0x004DE060"
+size = 2106
+pointer_slots = [
+  { address = "0x006C4950", owner = "Sakuya", slot_offset = "0x3C" },
+]
+
+[[anchors]]
+address = "0x004DF4B0"
+size = 5897
+pointer_slots = [
+  { address = "0x006C4964", owner = "Sakuya", slot_offset = "0x50" },
+]
+
+[[anchors]]
+address = "0x004E9F50"
+size = 42721
+pointer_slots = [
+  { address = "0x006C4C04", owner = "Alice", slot_offset = "0x28" },
+]
+
+[[anchors]]
+address = "0x004F4B80"
+size = 16354
+pointer_slots = [
+  { address = "0x006C4C34", owner = "Alice", slot_offset = "0x58" },
+]
+
+[[anchors]]
+address = "0x004F8E00"
+size = 2284
+pointer_slots = [
+  { address = "0x006C4C38", owner = "Alice", slot_offset = "0x5C" },
+]
+
+[[anchors]]
+address = "0x004F9850"
+size = 1551
+pointer_slots = [
+  { address = "0x006C4C18", owner = "Alice", slot_offset = "0x3C" },
+]
+
+[[anchors]]
+address = "0x004FACD0"
+size = 6677
+pointer_slots = [
+  { address = "0x006C4C2C", owner = "Alice", slot_offset = "0x50" },
+]
+
+[[anchors]]
+address = "0x0050F200"
+size = 54452
+pointer_slots = [
+  { address = "0x006C4ED4", owner = "Patchouli", slot_offset = "0x28" },
+]
+
+[[anchors]]
+address = "0x0051CB40"
+size = 2686
+pointer_slots = [
+  { address = "0x006C4F08", owner = "Patchouli", slot_offset = "0x5C" },
+]
+
+[[anchors]]
+address = "0x0051D650"
+size = 3132
+pointer_slots = [
+  { address = "0x006C4EE8", owner = "Patchouli", slot_offset = "0x3C" },
+]
+
+[[anchors]]
+address = "0x0051EF60"
+size = 6351
+pointer_slots = [
+  { address = "0x006C4EFC", owner = "Patchouli", slot_offset = "0x50" },
+]
+
+[[anchors]]
+address = "0x00530200"
+size = 37692
+pointer_slots = [
+  { address = "0x006C516C", owner = "Youmu", slot_offset = "0x28" },
+]
+
+[[anchors]]
+address = "0x00539B70"
+size = 198
+pointer_slots = [
+  { address = "0x006C5184", owner = "Youmu", slot_offset = "0x40" },
+]
+
+[[anchors]]
+address = "0x00539C40"
+size = 1027
+pointer_slots = [
+  { address = "0x006C51A0", owner = "Youmu", slot_offset = "0x5C" },
+]
+
+[[anchors]]
+address = "0x0053A160"
+size = 97
+pointer_slots = [
+  { address = "0x006C5188", owner = "Youmu", slot_offset = "0x44" },
+]
+
+[[anchors]]
+address = "0x0053A1D0"
+size = 1424
+pointer_slots = [
+  { address = "0x006C5180", owner = "Youmu", slot_offset = "0x3C" },
+]
+
+[[anchors]]
+address = "0x0053B410"
+size = 6017
+pointer_slots = [
+  { address = "0x006C5194", owner = "Youmu", slot_offset = "0x50" },
+]
+
+[[anchors]]
+address = "0x00545090"
+size = 61962
+pointer_slots = [
+  { address = "0x006C53EC", owner = "Remilia", slot_offset = "0x28" },
+]
+
+[[anchors]]
+address = "0x005547F0"
+size = 1093
+pointer_slots = [
+  { address = "0x006C5420", owner = "Remilia", slot_offset = "0x5C" },
+]
+
+[[anchors]]
+address = "0x00554D50"
+size = 1802
+pointer_slots = [
+  { address = "0x006C5400", owner = "Remilia", slot_offset = "0x3C" },
+]
+
+[[anchors]]
+address = "0x00556070"
+size = 5415
+pointer_slots = [
+  { address = "0x006C5414", owner = "Remilia", slot_offset = "0x50" },
+]
+
+[[anchors]]
+address = "0x0055D850"
+size = 58619
+pointer_slots = [
+  { address = "0x006C5674", owner = "Yuyuko", slot_offset = "0x28" },
+]
+
+[[anchors]]
+address = "0x0056C170"
+size = 1653
+pointer_slots = [
+  { address = "0x006C56A8", owner = "Yuyuko", slot_offset = "0x5C" },
+]
+
+[[anchors]]
+address = "0x0056C840"
+size = 2083
+pointer_slots = [
+  { address = "0x006C5688", owner = "Yuyuko", slot_offset = "0x3C" },
+]
+
+[[anchors]]
+address = "0x0056DEB0"
+size = 6180
+pointer_slots = [
+  { address = "0x006C569C", owner = "Yuyuko", slot_offset = "0x50" },
+]
+
+[[anchors]]
+address = "0x0057B030"
+size = 57042
+pointer_slots = [
+  { address = "0x006C58F4", owner = "Yukari", slot_offset = "0x28" },
+]
+
+[[anchors]]
+address = "0x005893C0"
+size = 3934
+pointer_slots = [
+  { address = "0x006C5928", owner = "Yukari", slot_offset = "0x5C" },
+]
+
+[[anchors]]
+address = "0x0058A470"
+size = 125
+pointer_slots = [
+  { address = "0x006C5910", owner = "Yukari", slot_offset = "0x44" },
+]
+
+[[anchors]]
+address = "0x0058A4F0"
+size = 3455
+pointer_slots = [
+  { address = "0x006C5908", owner = "Yukari", slot_offset = "0x3C" },
+]
+
+[[anchors]]
+address = "0x0058C2E0"
+size = 6233
+pointer_slots = [
+  { address = "0x006C591C", owner = "Yukari", slot_offset = "0x50" },
+]
+
+[[anchors]]
+address = "0x005983B0"
+size = 1247
+pointer_slots = [
+  { address = "0x006C592C", owner = "Yukari", slot_offset = "0x60" },
+]
+
+[[anchors]]
+address = "0x00598990"
+size = 79435
+pointer_slots = [
+  { address = "0x006C5BB4", owner = "Suika", slot_offset = "0x28" },
+]
+
+[[anchors]]
+address = "0x005AC680"
+size = 3292
+pointer_slots = [
+  { address = "0x006C5BE8", owner = "Suika", slot_offset = "0x5C" },
+]
+
+[[anchors]]
+address = "0x005AD4A0"
+size = 2577
+pointer_slots = [
+  { address = "0x006C5BC8", owner = "Suika", slot_offset = "0x3C" },
+]
+
+[[anchors]]
+address = "0x005AED00"
+size = 5849
+pointer_slots = [
+  { address = "0x006C5BDC", owner = "Suika", slot_offset = "0x50" },
+]
+
+[[anchors]]
+address = "0x005BFD50"
+size = 66787
+pointer_slots = [
+  { address = "0x006C5E54", owner = "Udonge", slot_offset = "0x28" },
+]
+
+[[anchors]]
+address = "0x005D06F0"
+size = 1797
+pointer_slots = [
+  { address = "0x006C5E88", owner = "Udonge", slot_offset = "0x5C" },
+]
+
+[[anchors]]
+address = "0x005D0E60"
+size = 4057
+pointer_slots = [
+  { address = "0x006C5E68", owner = "Udonge", slot_offset = "0x3C" },
+]
+
+[[anchors]]
+address = "0x005D2C70"
+size = 6684
+pointer_slots = [
+  { address = "0x006C5E7C", owner = "Udonge", slot_offset = "0x50" },
+]
+
+[[anchors]]
+address = "0x005E20E0"
+size = 63993
+pointer_slots = [
+  { address = "0x006C608C", owner = "Komachi", slot_offset = "0x28" },
+]
+
+[[anchors]]
+address = "0x005F1F80"
+size = 15910
+pointer_slots = [
+  { address = "0x006C496C", owner = "Sakuya", slot_offset = "0x58" },
+  { address = "0x006C4F04", owner = "Patchouli", slot_offset = "0x58" },
+  { address = "0x006C519C", owner = "Youmu", slot_offset = "0x58" },
+  { address = "0x006C541C", owner = "Remilia", slot_offset = "0x58" },
+  { address = "0x006C56A4", owner = "Yuyuko", slot_offset = "0x58" },
+  { address = "0x006C5924", owner = "Yukari", slot_offset = "0x58" },
+  { address = "0x006C5BE4", owner = "Suika", slot_offset = "0x58" },
+  { address = "0x006C5E84", owner = "Udonge", slot_offset = "0x58" },
+  { address = "0x006C60BC", owner = "Komachi", slot_offset = "0x58" },
+  { address = "0x006C6584", owner = "Iku", slot_offset = "0x58" },
+  { address = "0x006C67EC", owner = "Tenshi", slot_offset = "0x58" },
+]
+
+[[anchors]]
+address = "0x005F6020"
+size = 1421
+pointer_slots = [
+  { address = "0x006C60C0", owner = "Komachi", slot_offset = "0x5C" },
+]
+
+[[anchors]]
+address = "0x005F6700"
+size = 1971
+pointer_slots = [
+  { address = "0x006C60A0", owner = "Komachi", slot_offset = "0x3C" },
+]
+
+[[anchors]]
+address = "0x005F7AB0"
+size = 6181
+pointer_slots = [
+  { address = "0x006C60B4", owner = "Komachi", slot_offset = "0x50" },
+]
+
+[[anchors]]
+address = "0x00602250"
+size = 65601
+pointer_slots = [
+  { address = "0x006C62FC", owner = "Aya", slot_offset = "0x28" },
+]
+
+[[anchors]]
+address = "0x006126E0"
+size = 16032
+pointer_slots = [
+  { address = "0x006C632C", owner = "Aya", slot_offset = "0x58" },
+]
+
+[[anchors]]
+address = "0x00616800"
+size = 1726
+pointer_slots = [
+  { address = "0x006C6330", owner = "Aya", slot_offset = "0x5C" },
+]
+
+[[anchors]]
+address = "0x00617000"
+size = 2049
+pointer_slots = [
+  { address = "0x006C6310", owner = "Aya", slot_offset = "0x3C" },
+]
+
+[[anchors]]
+address = "0x00618660"
+size = 7161
+pointer_slots = [
+  { address = "0x006C6324", owner = "Aya", slot_offset = "0x50" },
+]
+
+[[anchors]]
+address = "0x00620920"
+size = 59038
+pointer_slots = [
+  { address = "0x006C6554", owner = "Iku", slot_offset = "0x28" },
+]
+
+[[anchors]]
+address = "0x0062F450"
+size = 2609
+pointer_slots = [
+  { address = "0x006C6588", owner = "Iku", slot_offset = "0x5C" },
+]
+
+[[anchors]]
+address = "0x0062FFF0"
+size = 1842
+pointer_slots = [
+  { address = "0x006C6568", owner = "Iku", slot_offset = "0x3C" },
+]
+
+[[anchors]]
+address = "0x00631340"
+size = 6302
+pointer_slots = [
+  { address = "0x006C657C", owner = "Iku", slot_offset = "0x50" },
+]
+
+[[anchors]]
+address = "0x0063D3E0"
+size = 47784
+pointer_slots = [
+  { address = "0x006C67BC", owner = "Tenshi", slot_offset = "0x28" },
+]
+
+[[anchors]]
+address = "0x00649330"
+size = 2973
+pointer_slots = [
+  { address = "0x006C67F0", owner = "Tenshi", slot_offset = "0x5C" },
+]
+
+[[anchors]]
+address = "0x0064A0A0"
+size = 2453
+pointer_slots = [
+  { address = "0x006C67D0", owner = "Tenshi", slot_offset = "0x3C" },
+]
+
+[[anchors]]
+address = "0x0064B7A0"
+size = 5352
+pointer_slots = [
+  { address = "0x006C67E4", owner = "Tenshi", slot_offset = "0x50" },
+]

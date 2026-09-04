@@ -8,6 +8,63 @@ seeds using current-target-backed structural remapping where appropriate.
 
 ## Verified state
 
+- **Newest origin-census / roster-vtable / Youmu wave:** the current checkpoint is
+  **1,243 canonical-exact authored functions / 202,558 bytes / 424 accepted
+  units; 1,315 authored / 1,266 excluded / 1,429 origin-boundary review;
+  1,277 mapped / 1,259 source-present**.  Relative to the clean `5ce9b88`
+  checkpoint, this batch resolves 243 review candidates: 74 become authored
+  (73 RTTI-owned Fighter primary-vtable roots plus the exact CSpriteEx texture
+  wrapper) and 169 become exclusions.  The exact numerator grows by three
+  functions / 332 bytes: `CSpriteEx::set_texture @ 0x0041F640` (37),
+  `Youmu::reset_character_state @ 0x0053A160` (97), and
+  `Youmu::update_history @ 0x00539B70` (198).
+- The new roster ownership rule is deliberately persistent rather than
+  self-erasing as functions become exact.  `config/roster-fighter-vtable-origin-
+  anchors.toml` keeps all **73 physical roots / 1,133,382 candidate bytes / 138
+  primary-vtable dword slots** across all fifteen Fighters.  Every slot is
+  replayed from the SHA-pinned PE and every owner must resolve to one consistent
+  primary-vtable base.  The origin rule uses `skip_matching = true`, so after
+  the two Youmu promotions its active set is **71 roots / 1,133,087 bytes**;
+  the full pointer evidence remains intact while canonical-exact baseline owns
+  the two graduated rows.
+- The exclusion census adds **169 current-target functions** with fail-closed
+  evidence: the bounded libpng 1.2.5 island contributes 139 / 54,952 bytes;
+  SHA-pinned VC8 SP1 runtime relocation-masked fingerprints contribute 24 /
+  7,735 bytes; Vorbis `_res0_inverse` contributes the complete two-address
+  clone family; ProfileDeck signed-short map find/insert add two generated
+  COMDATs; and the exact secondary-animation TU adds generated checked-deque
+  `front()` plus `_Allocate<SecondaryAnimationPoint>`.  Xiph/runtime clone
+  families are accepted only when their complete 4,010-candidate hit sets
+  match the committed manifests.
+- Reuse the new Youmu source facts.  Slot `+0x44` is a real derived-tail reset:
+  gravity `+0x138`, dword `+0x7A4`, flags `+0x7CD/+0x7E4/+0x7E5/+0x7FC`, four
+  shorts `+0x7E6`, and floats `+0x7F0/+0x7F4/+0x7F8` around exact
+  `Fighter::reset_extended_state @ 0x004776D0`; ordinary source is 97/97.
+  Slot `+0x40` stores a 44-byte `YoumuObjectRecord` in native checked
+  `deque<YoumuObjectRecord>`, trims the history to 60 entries, clears transient
+  phase `+0x7CD`, and tail-calls shared Fighter slot `+0x40`; ordinary source is
+  198/198.  The same 13-body round-reset TU remains 13/13 exact after adding
+  Youmu.
+- Two larger roster roots now have durable semantic source but remain outside
+  the accepted exact graph.  `Yukari_handle_event_bridge @ 0x005983B0` closes
+  the whole sparse event topology, but standalone VC8 removes the target's
+  final case-156 dead `cmp ax,ax; jne`, leaving an 11-byte callable residual.
+  `Youmu_update_control_mode @ 0x00539C40` closes the shared policy clears,
+  checked front-record families `0..15/248..255`, opponent/random gates and
+  vslot `+0x58` tail; after removing a false long-lived action local, target and
+  fresh are byte-identical for the first **161 bytes**, then differ only because
+  target sends `sequence_state_55a < 1` to the far final epilogue while
+  standalone VC8 merges the equivalent return into a near epilogue.  Keep both
+  as TU/optimizer evidence; do not add tautologies, fake liveness, volatile or
+  register forcing, padding, gotos solely for layout, assembly, or copied bytes.
+- Aggregate acceptance is clean.  `function-origins.py --check` replays all
+  4,010 origins successfully.  A cold `verify-exact-units.py --all` produced
+  fresh object/provenance pairs for all 424 accepted units; a subsequent
+  sequential compare validated units 1..405 and an explicit tail replay
+  validated 406..424, all zero-difference.  Pending Yukari/Youmu-control source
+  is intentionally absent from `match-units.toml`; the accepted graph contains
+  canonical-exact functions only.
+
 - **Secondary-animation update handoff:** `SecondaryAnimationRenderRuntimeView::
   update_secondary @ 0x004309F0` now has complete authored semantic source and
   a reconciled **2,434-byte** boundary, but remains deliberately nonexact.  The

@@ -1252,3 +1252,8 @@ NetworkWinsockState314CtorView_dtor
 CNumber_initialize
 CHandleManagerLookupView_lookup_token
 PlayerSlotRecord_load_profile
+CSpriteEx_set_texture
+Youmu_reset_character_state
+Youmu_update_history
+Yukari_handle_event_bridge
+Youmu_update_control_mode

@@ -138,6 +138,39 @@ int PatchouliRoundResetView::reset_character_state()
     return result;
 }
 
+struct YoumuRoundResetView : FighterResetBaseView {
+    unsigned value_7a4;
+    unsigned char unknown_7a8[0x25];
+    unsigned char flag_7cd;
+    unsigned char unknown_7ce[0x16];
+    unsigned char flag_7e4;
+    unsigned char flag_7e5;
+    unsigned short counters_7e6[4];
+    unsigned char unknown_7ee[2];
+    float values_7f0[3];
+    unsigned char flag_7fc;
+
+    int reset_character_state();
+};
+
+int YoumuRoundResetView::reset_character_state()
+{
+    gravity_138 = -6.0f;
+    value_7a4 = 0;
+    flag_7cd = 0;
+    values_7f0[0] = 0.0f;
+    flag_7e4 = 0;
+    values_7f0[1] = 0.0f;
+    flag_7e5 = 0;
+    values_7f0[2] = 0.0f;
+    counters_7e6[0] = 0;
+    counters_7e6[1] = 0;
+    counters_7e6[2] = 0;
+    counters_7e6[3] = 0;
+    flag_7fc = 0;
+    return reset_extended_state();
+}
+
 struct YuyukoRoundResetView : FighterResetBaseView {
     unsigned values_7a4[4];
 

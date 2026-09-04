@@ -6,7 +6,7 @@ enable_gs = false
 min_nonreloc_coverage = 0.70
 min_nonreloc_bytes = 24
 max_alignment_tail = 1
-alignment_tail_hex = "00"
+alignment_tail_hex = "00cc"
 
 # These COMDATs are emitted by the canonical-exact authored initializer and
 # renderer in the same TU.  Acceptance still requires relocation-masked replay
@@ -16,3 +16,13 @@ alignment_tail_hex = "00"
 address = "0x004300B0"
 size = 99
 symbol = "??A?$deque@USecondaryAnimationPoint@th105@@V?$allocator@USecondaryAnimationPoint@th105@@@std@@@std@@QAEAAUSecondaryAnimationPoint@th105@@I@Z"
+
+[[anchors]]
+address = "0x0042FDC0"
+size = 70
+symbol = "?front@?$deque@USecondaryAnimationPoint@th105@@V?$allocator@USecondaryAnimationPoint@th105@@@std@@@std@@QAEAAUSecondaryAnimationPoint@th105@@XZ"
+
+[[anchors]]
+address = "0x006A0C60"
+size = 90
+symbol = "??$_Allocate@USecondaryAnimationPoint@th105@@@std@@YAPAUSecondaryAnimationPoint@th105@@IPAU12@@Z"

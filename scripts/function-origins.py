@@ -76,14 +76,114 @@ def pe_reader(data: bytes):
 
 
 
-def load_msvc_archive_symbols() -> set[str]:
-    """Return all defined COFF symbols from the SHA-pinned VC8 SP1 archives."""
+def load_msvc_archive_module():
     extractor_path = ROOT / "scripts/extract-msvc-library-object.py"
     spec = importlib.util.spec_from_file_location("th105_msvc_extract", extractor_path)
     if spec is None or spec.loader is None:
         raise ValueError("cannot load pinned MSVC archive extractor")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
+    return module
+
+
+def msvc_runtime_function_text(
+    obj: bytes, symbol: str
+) -> tuple[bytes, list[tuple[int, int, str]]]:
+    """Return one exact COFF function extent plus relocations from a VC8 archive member."""
+    if len(obj) < 20 or struct.unpack_from("<H", obj, 0)[0] != 0x014C:
+        raise ValueError("VC8 runtime member is not an i386 COFF object")
+    section_count = struct.unpack_from("<H", obj, 2)[0]
+    symbol_pointer, symbol_count = struct.unpack_from("<II", obj, 8)
+    optional_header_size = struct.unpack_from("<H", obj, 16)[0]
+    section_table = 20 + optional_header_size
+    string_table = symbol_pointer + symbol_count * 18
+
+    sections: list[tuple[bytes, int, int, int, int]] = []
+    for index in range(section_count):
+        offset = section_table + index * 40
+        raw_name = obj[offset : offset + 8]
+        if raw_name.startswith(b"/"):
+            try:
+                start = string_table + int(raw_name[1:].rstrip(b"\0"))
+                end = obj.find(b"\0", start)
+                name = obj[start:end] if end >= 0 else raw_name.rstrip(b"\0")
+            except ValueError:
+                name = raw_name.rstrip(b"\0")
+        else:
+            name = raw_name.rstrip(b"\0")
+        raw_size, raw_pointer = struct.unpack_from("<II", obj, offset + 16)
+        relocation_pointer = struct.unpack_from("<I", obj, offset + 24)[0]
+        relocation_count = struct.unpack_from("<H", obj, offset + 32)[0]
+        sections.append((name, raw_size, raw_pointer, relocation_pointer, relocation_count))
+
+    def symbol_name(offset: int) -> str:
+        raw = obj[offset : offset + 8]
+        if raw[:4] == b"\0\0\0\0":
+            name_offset = struct.unpack_from("<I", raw, 4)[0]
+            start = string_table + name_offset
+            if not string_table + 4 <= start < len(obj):
+                return ""
+            end = obj.find(b"\0", start)
+            if end < 0:
+                end = len(obj)
+            return obj[start:end].decode("ascii", errors="replace")
+        return raw.rstrip(b"\0").decode("ascii", errors="replace")
+
+    symbols: dict[int, tuple[str, int, int]] = {}
+    functions: list[tuple[str, int, int, int]] = []
+    index = 0
+    while index < symbol_count:
+        offset = symbol_pointer + index * 18
+        name = symbol_name(offset)
+        value = struct.unpack_from("<I", obj, offset + 8)[0]
+        section_number = struct.unpack_from("<h", obj, offset + 12)[0]
+        symbol_type = struct.unpack_from("<H", obj, offset + 14)[0]
+        storage_class = obj[offset + 16]
+        auxiliary_count = obj[offset + 17]
+        symbols[index] = (name, value, section_number)
+        total_size = 0
+        if auxiliary_count and offset + 40 <= len(obj):
+            total_size = struct.unpack_from("<I", obj, offset + 22)[0]
+        if (
+            0 < section_number <= section_count
+            and symbol_type & 0x20
+            and storage_class in (2, 3, 105)
+        ):
+            functions.append((name, value, section_number, total_size))
+        index += 1 + auxiliary_count
+
+    matches = [entry for entry in functions if entry[0] == symbol]
+    if len(matches) != 1:
+        raise ValueError(f"{symbol}: expected one VC8 archive function, found {len(matches)}")
+    name, value, section_number, total_size = matches[0]
+    section_name, raw_size, raw_pointer, relocation_pointer, relocation_count = sections[section_number - 1]
+    if not section_name.startswith(b".text"):
+        raise ValueError(f"{symbol}: unexpected section {section_name!r}")
+    if not total_size:
+        later = sorted(
+            item[1]
+            for item in functions
+            if item[2] == section_number and item[1] > value
+        )
+        total_size = (later[0] if later else raw_size) - value
+    if total_size <= 0 or value + total_size > raw_size:
+        raise ValueError(f"{symbol}: invalid COFF function extent {total_size}")
+    body = obj[raw_pointer + value : raw_pointer + value + total_size]
+    relocations: list[tuple[int, int, str]] = []
+    for relocation_index in range(relocation_count):
+        offset = relocation_pointer + relocation_index * 10
+        virtual_address, symbol_index, relocation_type = struct.unpack_from("<IIH", obj, offset)
+        function_offset = virtual_address - value
+        if 0 <= function_offset < total_size:
+            relocations.append(
+                (function_offset, relocation_type, symbols.get(symbol_index, ("?", 0, 0))[0])
+            )
+    return body, relocations
+
+
+def load_msvc_archive_symbols() -> set[str]:
+    """Return all defined COFF symbols from the SHA-pinned VC8 SP1 archives."""
+    module = load_msvc_archive_module()
     symbols: set[str] = set()
     for _key, (filename, expected_hash) in module.LIBRARIES.items():
         archive_path = ROOT / ".tools/msvc80-sp1/lib" / filename
@@ -443,6 +543,26 @@ def validate_xiph_relocated_anchor_evidence(
             pass
     padding = {0x00, 0x90, 0xCC}
 
+    equivalence_groups: dict[str, set[str]] = {}
+    group_shapes: dict[str, tuple[int, str, str, str]] = {}
+    for anchor in anchors:
+        group = str(anchor.get("equivalence_group", "")).strip()
+        if not group:
+            continue
+        address = str(anchor["address"])
+        shape = (
+            int(anchor["size"]),
+            str(anchor["component"]),
+            str(anchor["object"]),
+            str(anchor["symbol"]),
+        )
+        previous_shape = group_shapes.setdefault(group, shape)
+        if previous_shape != shape:
+            errors.append(
+                f"{rule['id']}: relocated Xiph equivalence group {group!r} mixes witness shapes"
+            )
+        equivalence_groups.setdefault(group, set()).add(address)
+
     def candidate_matches(body: bytes, relocations: list[tuple[int, int]], candidate: bytes) -> bool:
         size = len(candidate)
         if size > len(body):
@@ -504,9 +624,141 @@ def validate_xiph_relocated_anchor_evidence(
             if (candidate := candidate_bytes.get(other["address"])) is not None
             and candidate_matches(body, relocations, candidate)
         ]
-        if candidates != [address]:
+        group = str(anchor.get("equivalence_group", "")).strip()
+        expected_candidates = sorted(equivalence_groups[group]) if group else [address]
+        if sorted(candidates) != expected_candidates:
+            label = f"equivalence group {group!r}" if group else "unique anchor"
             errors.append(
-                f"{rule['id']}: {address} relocated Xiph fingerprint is not inventory-unique: {candidates}"
+                f"{rule['id']}: {address} relocated Xiph {label} mismatch: "
+                f"got {sorted(candidates)}, expected {expected_candidates}"
+            )
+    return errors
+
+
+def validate_msvc_runtime_anchor_evidence(
+    rule: dict[str, object],
+    selected: list[dict[str, str]],
+    rows: list[dict[str, str]],
+    read_pe,
+) -> list[str]:
+    """Validate strict relocation-masked fingerprints from SHA-pinned VC8 runtime archives."""
+    errors: list[str] = []
+    anchor_path = ROOT / str(rule["msvc_runtime_anchor_file"])
+    anchors_doc = tomllib.loads(anchor_path.read_text(encoding="utf-8"))
+    configured_hash = str(target_manifest()["target"]["sha256"])
+    if str(anchors_doc.get("target_sha256")) != configured_hash:
+        return [f"{rule['id']}: MSVC runtime anchor target SHA-256 differs from canonical target"]
+
+    anchors = anchors_doc.get("anchors", [])
+    selected_addresses = {row["address"] for row in selected}
+    anchor_addresses = {str(anchor["address"]) for anchor in anchors}
+    if selected_addresses != anchor_addresses:
+        return [f"{rule['id']}: selected addresses differ from MSVC runtime anchor file"]
+    min_coverage = float(anchors_doc.get("min_nonreloc_coverage", 0.0))
+    min_nonreloc = int(anchors_doc.get("min_nonreloc_bytes", 0))
+    if not 0.0 < min_coverage <= 1.0 or min_nonreloc < 1:
+        return [f"{rule['id']}: invalid MSVC runtime evidence thresholds"]
+
+    module = load_msvc_archive_module()
+    archives: dict[str, bytes] = {}
+    members: dict[str, dict[str, bytes]] = {}
+    for library, (filename, expected_hash) in module.LIBRARIES.items():
+        archive_path = ROOT / ".tools/msvc80-sp1/lib" / filename
+        if not archive_path.is_file():
+            return [f"{rule['id']}: pinned VC8 archive is missing: {archive_path}"]
+        archive = archive_path.read_bytes()
+        actual_hash = hashlib.sha256(archive).hexdigest()
+        if actual_hash != expected_hash:
+            return [f"{rule['id']}: {filename} SHA-256 mismatch"]
+        archives[library] = archive
+        members[library] = {name: body for name, body in module.archive_members(archive)}
+
+    row_by_address = {row["address"]: row for row in rows}
+    candidate_bytes: dict[str, bytes] = {}
+    for row in rows:
+        try:
+            candidate_bytes[row["address"]] = read_pe(
+                int(row["address"], 0), int(row["size"], 0)
+            )
+        except ValueError:
+            pass
+
+    fingerprint_cache: dict[tuple[str, str, str], tuple[bytes, list[tuple[int, int, str]]]] = {}
+    for anchor in anchors:
+        address = str(anchor["address"])
+        row = row_by_address.get(address)
+        if row is None:
+            errors.append(f"{rule['id']}: missing MSVC runtime candidate {address}")
+            continue
+        size = int(anchor["size"])
+        if int(row["size"], 0) != size:
+            errors.append(f"{rule['id']}: {address} size differs from MSVC runtime anchor")
+            continue
+        library = str(anchor["library"])
+        object_name = str(anchor["object"]).replace("\\", "/")
+        symbol = str(anchor["symbol"])
+        key = (library, object_name, symbol)
+        if key not in fingerprint_cache:
+            archive_members = members.get(library)
+            if archive_members is None:
+                errors.append(f"{rule['id']}: unknown pinned VC8 archive {library}")
+                continue
+            obj = archive_members.get(object_name)
+            if obj is None:
+                errors.append(f"{rule['id']}: missing VC8 archive member {library}/{object_name}")
+                continue
+            try:
+                fingerprint_cache[key] = msvc_runtime_function_text(obj, symbol)
+            except ValueError as exc:
+                errors.append(f"{rule['id']}: {address}: {exc}")
+                continue
+        body, relocations = fingerprint_cache[key]
+        if len(body) != size:
+            errors.append(
+                f"{rule['id']}: {address} VC8 archive function extent changed: {len(body)} != {size}"
+            )
+            continue
+        wild: set[int] = set()
+        invalid_relocation = False
+        for field_offset, relocation_type, relocation_name in relocations:
+            if field_offset + 4 > size or relocation_type not in (0x0006, 0x0014):
+                errors.append(
+                    f"{rule['id']}: {address} unsupported VC8 relocation {relocation_type:#x} "
+                    f"at +{field_offset:#x} for {relocation_name}"
+                )
+                invalid_relocation = True
+                continue
+            if relocation_type == 0x0014 and xiph_rel32_operand_kind(body, field_offset) is None:
+                errors.append(
+                    f"{rule['id']}: {address} REL32 at +{field_offset:#x} is not CALL/JMP/Jcc"
+                )
+                invalid_relocation = True
+            wild.update(range(field_offset, field_offset + 4))
+        if invalid_relocation:
+            continue
+        nonreloc = size - len(wild)
+        if nonreloc < min_nonreloc or nonreloc / size < min_coverage:
+            errors.append(f"{rule['id']}: {address} MSVC runtime fingerprint coverage is too weak")
+            continue
+        actual = candidate_bytes.get(address)
+        if actual is None or any(
+            index not in wild and actual[index] != body[index]
+            for index in range(size)
+        ):
+            errors.append(f"{rule['id']}: {address} no longer matches MSVC runtime fingerprint")
+            continue
+        candidates = [
+            other["address"]
+            for other in rows
+            if int(other["size"], 0) == size
+            and (candidate := candidate_bytes.get(other["address"])) is not None
+            and all(index in wild or candidate[index] == body[index] for index in range(size))
+        ]
+        expected_hits = sorted(str(value) for value in anchor.get("inventory_hits", [address]))
+        if sorted(candidates) != expected_hits:
+            errors.append(
+                f"{rule['id']}: {address} MSVC runtime full-inventory hit set changed: "
+                f"got {sorted(candidates)}, expected {expected_hits}"
             )
     return errors
 
@@ -702,6 +954,8 @@ def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: se
         rule.get("xiph_anchor_file")
         or rule.get("xiph_relocated_anchor_file")
         or rule.get("vc8_generated_anchor_file")
+        or rule.get("msvc_runtime_anchor_file")
+        or rule.get("pointer_anchor_file")
     )
     if anchor_manifest:
         anchor_doc = tomllib.loads(
@@ -714,6 +968,8 @@ def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: se
     for row in rows:
         address = int(row["address"], 0)
         if explicit and row["address"].upper() not in explicit:
+            continue
+        if rule.get("skip_matching") and row["status"] == "matching":
             continue
         if start is not None and not (start <= address <= end):
             continue
@@ -728,6 +984,90 @@ def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: se
                 continue
         selected.append(row)
     return selected
+
+
+def validate_pointer_anchor_evidence(
+    rule: dict[str, object],
+    selected: list[dict[str, str]],
+    rows: list[dict[str, str]],
+    read_pe,
+) -> list[str]:
+    """Replay target-owned vtable/function pointer witnesses fail-closed."""
+    errors: list[str] = []
+    rule_id = str(rule["id"])
+    anchor_path = ROOT / str(rule["pointer_anchor_file"])
+    anchors_doc = tomllib.loads(anchor_path.read_text(encoding="utf-8"))
+    configured_hash = str(target_manifest()["target"]["sha256"])
+    if str(anchors_doc.get("target_sha256")) != configured_hash:
+        return [f"{rule_id}: pointer anchor target SHA-256 differs from canonical target"]
+
+    anchors = anchors_doc.get("anchors", [])
+    row_by_address = {row["address"]: row for row in rows}
+    selected_addresses = {row["address"] for row in selected}
+    anchor_addresses = {str(anchor["address"]) for anchor in anchors}
+    expected_selected = anchor_addresses
+    if rule.get("skip_matching"):
+        expected_selected = {
+            address
+            for address in anchor_addresses
+            if row_by_address.get(address, {}).get("status") != "matching"
+        }
+    if selected_addresses != expected_selected:
+        errors.append(f"{rule_id}: selected addresses differ from active pointer anchors")
+
+    seen_slots: dict[int, str] = {}
+    owner_bases: dict[str, int] = {}
+    for anchor in anchors:
+        address = str(anchor["address"])
+        row = row_by_address.get(address)
+        if row is None:
+            errors.append(f"{rule_id}: missing pointer-owned candidate {address}")
+            continue
+        size = int(anchor["size"])
+        if int(row["size"], 0) != size:
+            errors.append(f"{rule_id}: {address} size differs from pointer anchor")
+        slots = anchor.get("pointer_slots", [])
+        if not slots:
+            errors.append(f"{rule_id}: {address} has no pointer-slot witness")
+            continue
+        expected = int(address, 0)
+        for slot in slots:
+            slot_address = int(str(slot["address"]), 0)
+            owner = str(slot.get("owner", "")).strip()
+            if not owner:
+                errors.append(f"{rule_id}: {address} pointer slot 0x{slot_address:08X} lacks owner")
+                continue
+            try:
+                slot_offset = int(str(slot["slot_offset"]), 0)
+            except (KeyError, ValueError):
+                errors.append(f"{rule_id}: {address} pointer slot 0x{slot_address:08X} has invalid slot_offset")
+                continue
+            if slot_offset < 0 or slot_offset & 3:
+                errors.append(f"{rule_id}: {address} pointer slot 0x{slot_address:08X} has unaligned slot_offset")
+            base = slot_address - slot_offset
+            previous_base = owner_bases.setdefault(owner, base)
+            if previous_base != base:
+                errors.append(
+                    f"{rule_id}: owner {owner!r} has inconsistent primary-vtable bases "
+                    f"0x{previous_base:08X} and 0x{base:08X}"
+                )
+            previous_owner = seen_slots.setdefault(slot_address, address)
+            if previous_owner != address:
+                errors.append(
+                    f"{rule_id}: pointer slot 0x{slot_address:08X} is claimed by both "
+                    f"{previous_owner} and {address}"
+                )
+            try:
+                actual = struct.unpack("<I", read_pe(slot_address, 4))[0]
+            except ValueError as exc:
+                errors.append(f"{rule_id}: {exc}")
+                continue
+            if actual != expected:
+                errors.append(
+                    f"{rule_id}: pointer slot 0x{slot_address:08X} contains "
+                    f"0x{actual:08X}, expected {address}"
+                )
+    return errors
 
 
 def validate_rule_evidence(
@@ -758,6 +1098,19 @@ def validate_rule_evidence(
         encoded = str(text).encode("ascii")
         if encoded not in data:
             errors.append(f"{rule_id}: target string missing: {text!r}")
+    for check in rule.get("required_dword_values", []):
+        address = int(str(check["address"]), 0)
+        expected = int(str(check["value"]), 0)
+        try:
+            actual = struct.unpack("<I", read_pe(address, 4))[0]
+        except ValueError as exc:
+            errors.append(f"{rule_id}: {exc}")
+            continue
+        if actual != expected:
+            errors.append(
+                f"{rule_id}: dword 0x{address:08X} is 0x{actual:08X}, "
+                f"expected 0x{expected:08X}"
+            )
     if rule.get("xiph_anchor_file"):
         errors.extend(validate_xiph_anchor_evidence(rule, selected, rows, read_pe))
     if rule.get("xiph_relocated_anchor_file"):
@@ -767,6 +1120,14 @@ def validate_rule_evidence(
     if rule.get("vc8_generated_anchor_file"):
         errors.extend(
             validate_vc8_generated_anchor_evidence(rule, selected, rows, read_pe)
+        )
+    if rule.get("msvc_runtime_anchor_file"):
+        errors.extend(
+            validate_msvc_runtime_anchor_evidence(rule, selected, rows, read_pe)
+        )
+    if rule.get("pointer_anchor_file"):
+        errors.extend(
+            validate_pointer_anchor_evidence(rule, selected, rows, read_pe)
         )
     return errors
 

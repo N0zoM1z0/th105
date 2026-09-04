@@ -1466,3 +1466,27 @@ cold replay. Keep source/KB evidence for useful pending bodies separately.
 restoring real nested switches and the case-5/case-10 common cleanup tail reduces
 the source to a well-bounded 708/699 TU residual, but it stays outside the exact
 manifest until canonical zero-difference is reached.
+### Keep pointer-origin witnesses stable when exact rows graduate
+
+A class-vtable pointer manifest is durable ownership evidence, not a temporary
+list of non-matching rows.  The roster Fighter manifest is the reference case:
+73 physical roots are supported by 138 canonical PE dword slots and each named
+owner must imply one consistent primary-vtable base.  Keep all 73 anchors in the
+manifest even after source becomes canonical exact.  Let the origin selector
+skip rows whose function ledger status is already `matching`, and validate that
+the active selected set equals `all anchors - matching anchors`.  This avoids an
+overlap between the origin rule and the canonical-exact baseline without
+erasing the vtable evidence that established class ownership.
+
+The count/byte guard on the active origin rule must still change as exact roots
+graduate.  In the current checkpoint the full manifest stays 73 roots /
+1,133,382 bytes, while two exact Youmu roots leave an active 71 roots /
+1,133,087 bytes.  Continue replaying every pointer slot and every candidate size,
+including anchors currently skipped from disposition assignment.
+
+Do not put semantic near-matches into `match-units.toml` to make them easier to
+replay.  `Yukari_handle_event_bridge` and `Youmu_update_control_mode` both have
+complete source and tightly bounded optimizer residuals, but remain source-only
+until zero-difference.  The accepted match-unit graph is reserved for canonical
+exact functions; pending experiments belong in source, the function ledger, the
+knowledge base, and disposable `.analysis` artifacts.

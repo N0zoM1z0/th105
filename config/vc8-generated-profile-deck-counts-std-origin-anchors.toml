@@ -14,44 +14,54 @@ alignment_tail_hex = "cc"
 [[anchors]]
 address = "0x00448A40"
 size = 137
-symbol = "?_Dec@const_iterator@?$_Tree@V?$_Tmap_traits@GCU?$less@G@std@@V?$allocator@U?$pair@$$CBGC@std@@@2@$0A@@std@@@std@@QAEXXZ"
+symbol = "?_Dec@const_iterator@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@QAEXXZ"
 
 [[anchors]]
 address = "0x0042CD00"
 size = 99
-symbol = "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@GCU?$less@G@std@@V?$allocator@U?$pair@$$CBGC@std@@@2@$0A@@std@@@std@@QAEXXZ"
+symbol = "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@QAEXXZ"
 
 [[anchors]]
 address = "0x00442280"
 size = 90
-symbol = "??$_Allocate@U_Node@?$_Tree_nod@V?$_Tmap_traits@GCU?$less@G@std@@V?$allocator@U?$pair@$$CBGC@std@@@2@$0A@@std@@@std@@@std@@YAPAU_Node@?$_Tree_nod@V?$_Tmap_traits@GCU?$less@G@std@@V?$allocator@U?$pair@$$CBGC@std@@@2@$0A@@std@@@0@IPAU120@@Z"
+symbol = "??$_Allocate@U_Node@?$_Tree_nod@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@@std@@YAPAU_Node@?$_Tree_nod@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@0@IPAU120@@Z"
 
 [[anchors]]
 address = "0x0042CBE0"
 size = 82
-symbol = "?_Rrotate@?$_Tree@V?$_Tmap_traits@GCU?$less@G@std@@V?$allocator@U?$pair@$$CBGC@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@GCU?$less@G@std@@V?$allocator@U?$pair@$$CBGC@std@@@2@$0A@@std@@@2@@Z"
+symbol = "?_Rrotate@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@2@@Z"
 
 [[anchors]]
 address = "0x00448AD0"
 size = 78
-symbol = "?_Lrotate@?$_Tree@V?$_Tmap_traits@GCU?$less@G@std@@V?$allocator@U?$pair@$$CBGC@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@GCU?$less@G@std@@V?$allocator@U?$pair@$$CBGC@std@@@2@$0A@@std@@@2@@Z"
+symbol = "?_Lrotate@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@2@@Z"
 
 [[anchors]]
 address = "0x00448D30"
 size = 57
-symbol = "?_Buynode@?$_Tree@V?$_Tmap_traits@GCU?$less@G@std@@V?$allocator@U?$pair@$$CBGC@std@@@2@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@GCU?$less@G@std@@V?$allocator@U?$pair@$$CBGC@std@@@2@$0A@@std@@@2@PAU342@00ABU?$pair@$$CBGC@2@D@Z"
+symbol = "?_Buynode@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@2@PAU342@00ABU?$pair@$$CBFC@2@D@Z"
 
 [[anchors]]
 address = "0x0042CE20"
 size = 53
-symbol = "?_Erase@?$_Tree@V?$_Tmap_traits@GCU?$less@G@std@@V?$allocator@U?$pair@$$CBGC@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@GCU?$less@G@std@@V?$allocator@U?$pair@$$CBGC@std@@@2@$0A@@std@@@2@@Z"
+symbol = "?_Erase@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@2@@Z"
 
 [[anchors]]
 address = "0x0042C980"
 size = 28
-symbol = "?_Max@?$_Tree@V?$_Tmap_traits@GCU?$less@G@std@@V?$allocator@U?$pair@$$CBGC@std@@@2@$0A@@std@@@std@@KAPAU_Node@?$_Tree_nod@V?$_Tmap_traits@GCU?$less@G@std@@V?$allocator@U?$pair@$$CBGC@std@@@2@$0A@@std@@@2@PAU342@@Z"
+symbol = "?_Max@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@KAPAU_Node@?$_Tree_nod@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@2@PAU342@@Z"
 
 [[anchors]]
 address = "0x0042C9A0"
 size = 27
-symbol = "?_Min@?$_Tree@V?$_Tmap_traits@GCU?$less@G@std@@V?$allocator@U?$pair@$$CBGC@std@@@2@$0A@@std@@@std@@KAPAU_Node@?$_Tree_nod@V?$_Tmap_traits@GCU?$less@G@std@@V?$allocator@U?$pair@$$CBGC@std@@@2@$0A@@std@@@2@PAU342@@Z"
+symbol = "?_Min@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@KAPAU_Node@?$_Tree_nod@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@2@PAU342@@Z"
+
+[[anchors]]
+address = "0x00448D70"
+size = 109
+symbol = "?find@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@ABF@Z"
+
+[[anchors]]
+address = "0x004499C0"
+size = 189
+symbol = "?insert@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBFC@2@@Z"

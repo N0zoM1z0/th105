@@ -1240,3 +1240,21 @@ component = "ogg"
 object = "bitwise.obj"
 symbol = "_oggpack_read"
 section_size = 208
+
+[[anchors]]
+address = "0x00686360"
+size = 88
+component = "vorbis"
+object = "res0.obj"
+symbol = "_res0_inverse"
+section_size = 96
+equivalence_group = "vorbis-residue-inverse-clones"
+
+[[anchors]]
+address = "0x00686E20"
+size = 88
+component = "vorbis"
+object = "res0.obj"
+symbol = "_res0_inverse"
+section_size = 96
+equivalence_group = "vorbis-residue-inverse-clones"

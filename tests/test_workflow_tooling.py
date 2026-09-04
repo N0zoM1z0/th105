@@ -52,33 +52,33 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4010)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1240)
+        self.assertEqual(len(matching), 1243)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1254)
+        self.assertEqual(len(implemented), 1259)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1240
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1243
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 422)
+        self.assertEqual(len(manifest["units"]), 424)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1244,
+            1247,
         )
 
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,010", markdown)
-        self.assertIn("Confirmed authored functions | 1,241", markdown)
-        self.assertIn("Classified exclusions | 1,097", markdown)
-        self.assertIn("Origin/boundary review pending | 1,672", markdown)
-        self.assertIn("Canonical exact functions | 1,240", markdown)
-        self.assertIn("Canonical exact authored bytes | 202,226", markdown)
+        self.assertIn("Confirmed authored functions | 1,315", markdown)
+        self.assertIn("Classified exclusions | 1,266", markdown)
+        self.assertIn("Origin/boundary review pending | 1,429", markdown)
+        self.assertIn("Canonical exact functions | 1,243", markdown)
+        self.assertIn("Canonical exact authored bytes | 202,558", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
@@ -107,9 +107,51 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(anchors["min_nonreloc_coverage"], 0.70)
         self.assertEqual(anchors["min_nonreloc_bytes"], 24)
         rows = anchors["anchors"]
-        self.assertEqual(len(rows), 154)
-        self.assertEqual(len({row["address"] for row in rows}), 154)
-        self.assertEqual(sum(row["size"] for row in rows), 57489)
+        self.assertEqual(len(rows), 156)
+        self.assertEqual(len({row["address"] for row in rows}), 156)
+        self.assertEqual(sum(row["size"] for row in rows), 57665)
+        groups = [row for row in rows if row.get("equivalence_group") == "vorbis-residue-inverse-clones"]
+        self.assertEqual({row["address"] for row in groups}, {"0x00686360", "0x00686E20"})
+
+
+    def test_runtime_and_roster_origin_evidence_is_pinned(self) -> None:
+        with (ROOT / "config" / "msvc-runtime-relocated-origin-anchors.toml").open("rb") as stream:
+            runtime = tomllib.load(stream)
+        self.assertEqual(runtime["target_sha256"], "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e")
+        self.assertEqual(runtime["min_nonreloc_coverage"], 0.70)
+        self.assertEqual(len(runtime["anchors"]), 24)
+        self.assertEqual(sum(row["size"] for row in runtime["anchors"]), 7_735)
+
+        with (ROOT / "config" / "function-origin-rules.toml").open("rb") as stream:
+            rules = tomllib.load(stream)["rules"]
+        roster = next(
+            rule
+            for rule in rules
+            if rule["id"] == "roster-fighter-primary-vtable-authored-106a"
+        )
+        self.assertTrue(roster["skip_matching"])
+        self.assertEqual(roster["expected_count"], 71)
+        self.assertEqual(roster["expected_bytes"], 1_133_087)
+        with (ROOT / roster["pointer_anchor_file"]).open("rb") as stream:
+            roster_manifest = tomllib.load(stream)
+        roots = roster_manifest["anchors"]
+        self.assertEqual(len(roots), 73)
+        self.assertEqual(sum(row["size"] for row in roots), 1_133_382)
+        self.assertEqual(
+            {row["address"] for row in roots if row["address"] in {"0x00539B70", "0x0053A160"}},
+            {"0x00539B70", "0x0053A160"},
+        )
+
+    def test_secondary_animation_generated_manifest_covers_new_leaves(self) -> None:
+        with (ROOT / "config" / "vc8-generated-secondary-animation-deque-origin-anchors.toml").open("rb") as stream:
+            manifest = tomllib.load(stream)
+        rows = manifest["anchors"]
+        self.assertEqual(len(rows), 3)
+        self.assertEqual(sum(row["size"] for row in rows), 259)
+        self.assertEqual(
+            {row["address"] for row in rows},
+            {"0x004300B0", "0x0042FDC0", "0x006A0C60"},
+        )
 
 
     def test_vc8_generated_origin_anchor_manifest_is_pinned(self) -> None:
@@ -247,9 +289,9 @@ class WorkflowToolingTests(unittest.TestCase):
                 self.assertEqual(manifest["alignment_tail_hex"], "cc")
             self.assertTrue(manifest["source"].startswith("src/"))
             rows.extend(manifest["anchors"])
-        self.assertEqual(len(rows), 278)
-        self.assertEqual(len({row["address"] for row in rows}), 278)
-        self.assertEqual(sum(row["size"] for row in rows), 37_910)
+        self.assertEqual(len(rows), 280)
+        self.assertEqual(len({row["address"] for row in rows}), 280)
+        self.assertEqual(sum(row["size"] for row in rows), 38_208)
 
     def test_new_layout_probe_origin_manifests_are_pinned(self) -> None:
         expected = {

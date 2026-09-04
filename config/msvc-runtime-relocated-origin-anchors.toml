@@ -1,0 +1,201 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+
+# These anchors prove runtime ownership only. Some VC8 archive functions are
+# byte-identical accessors/clones, so semantic symbol identity may remain
+# unknown. inventory_hits records the complete 4,010-candidate fingerprint
+# hit set; it may include an address already excluded by the name-backed rule.
+
+[[anchors]]
+address = "0x0068B35B"
+size = 28
+library = "libcmt"
+object = "build/intel/mt_obj/sprintf.obj"
+symbol = "_sprintf_s"
+inventory_hits = ["0x0068B35B"]
+
+[[anchors]]
+address = "0x0068D8B0"
+size = 869
+library = "libcmt"
+object = "build/intel/mt_obj/memcpy.obj"
+symbol = "_memcpy"
+inventory_hits = ["0x0068AA30", "0x0068D8B0"]
+
+[[anchors]]
+address = "0x0068E20E"
+size = 55
+library = "libcmt"
+object = "build/intel/mt_obj/crt0dat.obj"
+symbol = "__get_osplatform"
+inventory_hits = ["0x0068E20E"]
+
+[[anchors]]
+address = "0x0068E245"
+size = 60
+library = "libcmt"
+object = "build/intel/mt_obj/sbheap.obj"
+symbol = "__get_amblksiz"
+inventory_hits = ["0x0068E245"]
+
+[[anchors]]
+address = "0x00690A00"
+size = 406
+library = "libcmt"
+object = "build/intel/mt_obj/chandler4.obj"
+symbol = "__except_handler4"
+inventory_hits = ["0x00690A00"]
+
+[[anchors]]
+address = "0x00691042"
+size = 47
+library = "libcmt"
+object = "build/intel/mt_obj/cpp_obj/mbctype.obj"
+symbol = "?CPtoLCID@@YAHH@Z"
+inventory_hits = ["0x00691042"]
+
+[[anchors]]
+address = "0x006923E5"
+size = 52
+library = "libcmt"
+object = "build/intel/mt_obj/setmode.obj"
+symbol = "__get_fmode"
+inventory_hits = ["0x006923E5", "0x00692419", "0x0069244D"]
+
+[[anchors]]
+address = "0x00692419"
+size = 52
+library = "libcmt"
+object = "build/intel/mt_obj/setmode.obj"
+symbol = "__get_fmode"
+inventory_hits = ["0x006923E5", "0x00692419", "0x0069244D"]
+
+[[anchors]]
+address = "0x0069244D"
+size = 52
+library = "libcmt"
+object = "build/intel/mt_obj/setmode.obj"
+symbol = "__get_fmode"
+inventory_hits = ["0x006923E5", "0x00692419", "0x0069244D"]
+
+[[anchors]]
+address = "0x006958A4"
+size = 36
+library = "libcmt"
+object = "../build/intel/mt_obj/initsect.obj"
+symbol = "__RTC_Initialize"
+inventory_hits = ["0x006958A4", "0x006958C8"]
+
+[[anchors]]
+address = "0x006958C8"
+size = 36
+library = "libcmt"
+object = "../build/intel/mt_obj/initsect.obj"
+symbol = "__RTC_Initialize"
+inventory_hits = ["0x006958A4", "0x006958C8"]
+
+[[anchors]]
+address = "0x00696EC0"
+size = 279
+library = "libcmt"
+object = "../build/intel/mt_obj/adj_fdiv.obj"
+symbol = "_fdiv_main_routine"
+inventory_hits = ["0x00696EC0"]
+
+[[anchors]]
+address = "0x00696FD7"
+size = 1183
+library = "libcmt"
+object = "../build/intel/mt_obj/adj_fdiv.obj"
+symbol = "__adj_fdiv_r"
+inventory_hits = ["0x00696FD7"]
+
+[[anchors]]
+address = "0x006976C6"
+size = 518
+library = "libcmt"
+object = "../build/intel/mt_obj/adj_fdiv.obj"
+symbol = "__fprem_common"
+inventory_hits = ["0x006976C6"]
+
+[[anchors]]
+address = "0x006978CC"
+size = 178
+library = "libcmt"
+object = "../build/intel/mt_obj/adj_fdiv.obj"
+symbol = "__adj_fprem"
+inventory_hits = ["0x006978CC"]
+
+[[anchors]]
+address = "0x0069797E"
+size = 518
+library = "libcmt"
+object = "../build/intel/mt_obj/adj_fdiv.obj"
+symbol = "__fprem1_common"
+inventory_hits = ["0x0069797E"]
+
+[[anchors]]
+address = "0x00697B84"
+size = 181
+library = "libcmt"
+object = "../build/intel/mt_obj/adj_fdiv.obj"
+symbol = "__adj_fprem1"
+inventory_hits = ["0x00697B84"]
+
+[[anchors]]
+address = "0x0069C4CC"
+size = 166
+library = "libcmt"
+object = "build/intel/mt_obj/cpp_obj/atodbl.obj"
+symbol = "__atodbl_l"
+inventory_hits = ["0x0069C4CC", "0x0069C572"]
+
+[[anchors]]
+address = "0x0069C572"
+size = 166
+library = "libcmt"
+object = "build/intel/mt_obj/cpp_obj/atodbl.obj"
+symbol = "__atodbl_l"
+inventory_hits = ["0x0069C4CC", "0x0069C572"]
+
+[[anchors]]
+address = "0x0069D655"
+size = 51
+library = "libcmt"
+object = "build/intel/mt_obj/cpp_obj/output.obj"
+symbol = "_write_char"
+inventory_hits = ["0x0069D655"]
+
+[[anchors]]
+address = "0x0069D688"
+size = 36
+library = "libcmt"
+object = "build/intel/mt_obj/cpp_obj/output.obj"
+symbol = "_write_multi_char"
+inventory_hits = ["0x0069D688"]
+
+[[anchors]]
+address = "0x0069D6AC"
+size = 74
+library = "libcmt"
+object = "build/intel/mt_obj/cpp_obj/output.obj"
+symbol = "_write_string"
+inventory_hits = ["0x0069D6AC"]
+
+[[anchors]]
+address = "0x0069E220"
+size = 1346
+library = "libcmt"
+object = "../build/intel/mt_obj/intrncvt.obj"
+symbol = "__ld12tod"
+inventory_hits = ["0x0069E220", "0x0069E762"]
+
+[[anchors]]
+address = "0x0069E762"
+size = 1346
+library = "libcmt"
+object = "../build/intel/mt_obj/intrncvt.obj"
+symbol = "__ld12tod"
+inventory_hits = ["0x0069E220", "0x0069E762"]

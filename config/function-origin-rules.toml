@@ -17,6 +17,18 @@ confidence = "observed"
 evidence = "current target ownership joins the exact 0x54 secondary-animation lifetime/initialize/render island; the complete body mutates only its two checked Point2 deques and calls D3DX Vec2 interpolation/normalization imports"
 
 [[rules]]
+id = "roster-fighter-primary-vtable-authored-106a"
+pointer_anchor_file = "config/roster-fighter-vtable-origin-anchors.toml"
+skip_matching = true
+expected_count = 71
+expected_bytes = 1133087
+origin = "authored_game"
+subsystem = "characters"
+disposition = "authored"
+confidence = "observed"
+evidence = "Current 1.06a RTTI-owned Fighter primary vtables directly own this 73-root physical family; the origin selector skips roots already promoted by canonical exact evidence. A target-SHA-pinned pointer manifest replays every contributing vtable dword slot and every candidate byte size. This establishes authored class ownership only; source presence and exactness remain separate, and tail-chunk boundary representation remains provisional where the current contiguous span schema cannot express it."
+
+[[rules]]
 id = "vc8-string-range-errors-106a"
 addresses = ["0x00665AF4", "0x00665B33"]
 expected_count = 2
@@ -58,6 +70,24 @@ confidence = "observed"
 evidence = "current target functions are six-byte FF 25 jumps through IMM32 IAT slots"
 
 [[rules]]
+id = "libpng-1.2.5-106a"
+start = "0x0066B840"
+end = "0x006793C0"
+expected_count = 139
+expected_bytes = 54952
+required_target_strings = [
+  "1.2.5",
+  "Application built with libpng-%.20s but running with %.20s",
+  "Too many bytes for PNG signature",
+  "Out of memory while processing unknown chunk",
+]
+origin = "third_party"
+subsystem = "assets"
+disposition = "exclude"
+confidence = "observed"
+evidence = "current target embeds the libpng 1.2.5 version/runtime diagnostics; the bounded island starts immediately after the four IMM32 import thunks, its first function reports the PNG-signature limit, and its last function owns libpng unknown-chunk allocation/error handling before the next function gap"
+
+[[rules]]
 id = "late-external-import-thunks-106a"
 addresses = [
   "0x00689890", "0x00689896", "0x0068989C", "0x006898A2", "0x006898A8",
@@ -93,6 +123,17 @@ confidence = "observed"
 evidence = "current IDA function identity is a defined symbol in SHA-pinned VC8 SP1 libcmt.lib/libcpmt.lib; the selector parses the pinned COFF archives itself and remains bounded to the current static-runtime island"
 
 [[rules]]
+id = "vc8-pinned-archive-relocated-clones-106a"
+msvc_runtime_anchor_file = "config/msvc-runtime-relocated-origin-anchors.toml"
+expected_count = 24
+expected_bytes = 7735
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 libcmt archive function extents and supported DIR32/REL32 fields reproduce strict relocation-masked fingerprints whose complete hit sets are replayed across all 4,010 current candidates; anchors may identify clone families without claiming a unique semantic accessor name"
+
+[[rules]]
 id = "xiph-sdk-relocation-free-anchors-106a"
 xiph_anchor_file = "config/xiph-origin-anchors.toml"
 expected_count = 39
@@ -106,8 +147,8 @@ evidence = "each current candidate is the inventory-unique raw-byte match of a r
 [[rules]]
 id = "xiph-sdk-relocated-anchors-106a"
 xiph_relocated_anchor_file = "config/xiph-relocated-origin-anchors.toml"
-expected_count = 154
-expected_bytes = 57489
+expected_count = 156
+expected_bytes = 57665
 origin = "third_party"
 subsystem = "audio"
 disposition = "exclude"
@@ -306,13 +347,13 @@ evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/ui/ProfileMenuData.c
 [[rules]]
 id = "vc8-generated-profile-deck-counts-std-comdats-106a"
 vc8_generated_anchor_file = "config/vc8-generated-profile-deck-counts-std-origin-anchors.toml"
-expected_count = 9
-expected_bytes = 651
+expected_count = 11
+expected_bytes = 949
 origin = "compiler_generated"
 subsystem = "ui"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/ui/ProfileDeckCounts.cpp regenerates 9 standard-library COMDAT fingerprints whose complete current-inventory hit sets contain exactly 9 review candidates / 651 bytes; target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed"
+evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/ui/ProfileDeckCounts.cpp regenerates 11 standard-library COMDAT fingerprints whose complete current-inventory hit sets contain exactly 11 target candidates / 949 bytes, including signed-short map find/insert; target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed"
 
 [[rules]]
 id = "vc8-generated-profile-deck-lifetime-std-comdats-106a"
@@ -680,13 +721,13 @@ evidence = "Canonical-exact EventEffectState background maintenance instantiates
 [[rules]]
 id = "vc8-generated-secondary-animation-deque-comdats-106a"
 vc8_generated_anchor_file = "config/vc8-generated-secondary-animation-deque-origin-anchors.toml"
-expected_count = 1
-expected_bytes = 99
+expected_count = 3
+expected_bytes = 259
 origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "The canonical-exact 0x54 SecondaryAnimation runtime TU instantiates checked deque<Point2>::operator[]. SHA-pinned VC8 SP1 relocation-masked replay reproduces the body and requires an inventory-unique hit across all 4,010 current candidates; the neighboring push_back remains review-pending because its generated body is not byte-identical."
+evidence = "The canonical-exact 0x54 SecondaryAnimation runtime TU instantiates checked deque<Point2>::operator[], front(), and the std::_Allocate<Point> leaf. SHA-pinned VC8 SP1 relocation-masked replay reproduces all three bodies and requires each complete full-inventory hit set across all 4,010 current candidates; the neighboring push_back remains review-pending because its generated body is not byte-identical."
 
 [[rules]]
 id = "vc8-generated-event-effect-state-container-comdats-106a"

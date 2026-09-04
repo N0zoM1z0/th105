@@ -5,6 +5,52 @@ notes or source hypotheses.
 
 ## Observed
 
+- **Primary-vtable ownership should outlive exact promotion.**  The roster
+  manifest now records all 73 nontrivial Fighter primary-vtable physical roots,
+  1,133,382 candidate bytes and 138 target dword slots.  Validate every slot
+  against the SHA-pinned PE, require one consistent primary-vtable base per
+  owner, and keep the full manifest stable.  The selector may use
+  `skip_matching = true`: canonical-exact rows then leave the active origin
+  rule without deleting their historical ownership witness.  This prevents
+  origin rules from overlapping exact baseline while preserving evidence for
+  future boundary review.
+- The current census is an important denominator warning.  With the full
+  roster ownership family classified, authored exact is **1,243 / 1,315
+  functions (94.525%)** but only **202,558 / 1,338,079 bytes (15.138%)**.
+  Fifteen vslot-`+0x28` action-state roots alone account for roughly 885 KiB.
+  Therefore function percentage cannot stand in for byte percentage, and the
+  95% byte goal cannot be reached by classifying more small helpers or trimming
+  review; the large authored roster roots must actually be reconstructed or
+  their boundaries must be independently disproved.
+- Youmu gives two positive ordinary-VC8 roster references.  Primary-vtable slot
+  `+0x44`, `Youmu_reset_character_state @ 0x0053A160`, is 97/97 with a typed
+  tail after Fighter `+0x7A4` and exact shared reset `0x004776D0`.  Slot `+0x40`,
+  `Youmu_update_history @ 0x00539B70`, is 198/198 with native checked
+  `deque<YoumuObjectRecord>`; each record is 44 bytes, current pose/facing is
+  pushed to the front, history is capped at 60, the transient phase byte is
+  cleared, and the shared +0x40 continuation is tail-called.  Adding Youmu to
+  the existing round-reset TU leaves all thirteen configured reset bodies exact.
+- `Youmu_update_control_mode @ 0x00539C40` is a useful source-lifetime stop.
+  Do not cache `action_13c`: doing so keeps EDI live as the action and moves the
+  zero register to EBP.  Direct member rereads reproduce the target prologue and
+  first 161 bytes exactly, including EDI-as-zero and the +0x724/+0x728/
+  +0x6B4..+0x6D0 clears.  The remaining first difference is only epilogue
+  placement for the `sequence_state_55a` gate (far target `jl` versus near
+  standalone-VC8 merged return).  Preserve the complete semantic source; do not
+  force branch distance with inert code or artificial control flow.
+- `Yukari_handle_event_bridge @ 0x005983B0` is the corresponding negative
+  switch reference.  Natural source closes all meaningful cases and reaches the
+  target final condition `state==794 && sequence!=1`, but standalone VC8 drops
+  the target's subsequent impossible `cmp ax,ax; jne`.  The residual is exactly
+  11 callable bytes.  A tautology written only to recover those bytes is not
+  authored-source evidence and remains forbidden.
+- A pinned-library origin fingerprint may legitimately have multiple exact
+  target hits.  VC8 runtime anchors and Xiph relocated anchors now record the
+  **complete** inventory hit set (or an explicit equivalence group), while still
+  requiring supported DIR32/REL32 forms, minimum non-relocation coverage and
+  target/compiler/archive hashes.  This is stronger than pretending clone
+  families are semantically unique symbols.
+
 - The CEffectManager shared-virtual continuation adds **12 authored
   canonical-exact roots / 463 bytes**, moving the tracked checkpoint to
   **1,234 exact / 199,511 authored bytes / 420 units; 1,095 excluded; 1,679

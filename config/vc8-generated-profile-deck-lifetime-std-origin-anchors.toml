@@ -14,4 +14,4 @@ alignment_tail_hex = "cc"
 [[anchors]]
 address = "0x0043C3A0"
 size = 695
-symbol = "?erase@?$_Tree@V?$_Tmap_traits@GCU?$less@G@std@@V?$allocator@U?$pair@$$CBGC@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@@Z"
+symbol = "?erase@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@@Z"

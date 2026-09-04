@@ -69,6 +69,8 @@ public:
     void transform_six(float a, float b, float c, float d, float e, float f);
     void finalize_render();
     void set_uv_size(float width, float height);
+    void set_texture(
+        unsigned int handle, int x, int y, int width, int height);
 
     SpritePoint3 source_quad_080[4];
     SpritePoint3 working_quad_0b0[4];

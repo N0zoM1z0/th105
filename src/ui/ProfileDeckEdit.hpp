@@ -12,8 +12,8 @@
 
 namespace th105 {
 
-typedef std::map<unsigned short, signed char> ProfileDeckCountMap;
-typedef std::deque<unsigned short> ProfileDeckKeyDeque;
+typedef std::map<short, signed char> ProfileDeckCountMap;
+typedef std::deque<short> ProfileDeckKeyDeque;
 typedef std::deque<SpellTreeIterator> ProfileDeckIteratorDeque;
 
 // Current CProfileDeckEdit ctor/dtor and the CSprite copy families establish

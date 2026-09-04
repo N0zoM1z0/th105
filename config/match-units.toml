@@ -16071,6 +16071,11 @@ symbol_base = "?reset_character_state@PatchouliRoundResetView@th105@@QAEHXZ"
 rel32_targets = ["?reset_extended_state@FighterResetBaseView@th105@@QAEHXZ=0x004776D0"]
 
 [[units.gpt-web-character-round-reset-runtime.functions]]
+address = "0x0053A160"
+symbol_base = "?reset_character_state@YoumuRoundResetView@th105@@QAEHXZ"
+rel32_targets = ["?reset_extended_state@FighterResetBaseView@th105@@QAEHXZ=0x004776D0"]
+
+[[units.gpt-web-character-round-reset-runtime.functions]]
 address = "0x0056C810"
 symbol_base = "?reset_character_state@YuyukoRoundResetView@th105@@QAEHXZ"
 rel32_targets = ["?reset_extended_state@FighterResetBaseView@th105@@QAEHXZ=0x004776D0"]
@@ -16349,4 +16354,35 @@ rel32_targets = [
 dir32_targets = [
   "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
   "__real@4f800000=__real@4f800000",
+]
+
+[units.gpt-web-sprite-texture-wrapper]
+kind = "probe"
+source = "src/battle/SpriteTextureWrapper.cpp"
+object = "build/match-units/GptWeb_SpriteTextureWrapper.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current CSpriteEx five-argument texture wrapper. Exact SceneRenderCluster load code at 0x004540F0 calls this 37-byte body; ordinary C++ forwards the five arguments plus zero anchor X/Y to the shared texture-options entry at 0x00407160. The adjacent texture-rectangle body at 0x00407230 has a target-private EAX receiver and is deliberately not modeled as a standard method."
+
+[[units.gpt-web-sprite-texture-wrapper.functions]]
+address = "0x0041F640"
+symbol_base = "?set_texture@CSpriteEx@@QAEXIHHHH@Z"
+rel32_targets = [
+  "?set_texture_options@CSpriteTextureOptionsView@th105@@QAEXIHHHHHH@Z=0x00407160",
+]
+
+[units.gpt-web-youmu-history-virtual]
+kind = "probe"
+source = "src/characters/YoumuHistoryVirtual.cpp"
+object = "build/match-units/GptWeb_YoumuHistoryVirtual.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current RTTI-owned Youmu Fighter primary-vtable +0x40 override. Native checked deque<YoumuObjectRecord> stores a 60-frame history before the shared Fighter +0x40 continuation."
+
+[[units.gpt-web-youmu-history-virtual.functions]]
+address = "0x00539B70"
+symbol_base = "?update_history@YoumuHistoryView@th105@@QAEXXZ"
+rel32_targets = [
+  "?push_front@?$deque@UYoumuObjectRecord@th105@@V?$allocator@UYoumuObjectRecord@th105@@@std@@@std@@QAEXABUYoumuObjectRecord@th105@@@Z=0x00539B00",
+  "?update_common_history@YoumuHistoryBaseView@th105@@QAEXXZ=0x00476D10",
 ]
