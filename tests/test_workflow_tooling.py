@@ -52,23 +52,23 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4010)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1243)
+        self.assertEqual(len(matching), 1247)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1259)
+        self.assertEqual(len(implemented), 1262)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1243
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1247
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 424)
+        self.assertEqual(len(manifest["units"]), 428)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1247,
+            1251,
         )
 
     def test_progress_reports_current_exact_baseline(self) -> None:
@@ -77,8 +77,8 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertIn("Confirmed authored functions | 1,315", markdown)
         self.assertIn("Classified exclusions | 1,266", markdown)
         self.assertIn("Origin/boundary review pending | 1,429", markdown)
-        self.assertIn("Canonical exact functions | 1,243", markdown)
-        self.assertIn("Canonical exact authored bytes | 202,558", markdown)
+        self.assertIn("Canonical exact functions | 1,247", markdown)
+        self.assertIn("Canonical exact authored bytes | 206,498", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
@@ -130,8 +130,8 @@ class WorkflowToolingTests(unittest.TestCase):
             if rule["id"] == "roster-fighter-primary-vtable-authored-106a"
         )
         self.assertTrue(roster["skip_matching"])
-        self.assertEqual(roster["expected_count"], 71)
-        self.assertEqual(roster["expected_bytes"], 1_133_087)
+        self.assertEqual(roster["expected_count"], 67)
+        self.assertEqual(roster["expected_bytes"], 1_129_147)
         with (ROOT / roster["pointer_anchor_file"]).open("rb") as stream:
             roster_manifest = tomllib.load(stream)
         roots = roster_manifest["anchors"]

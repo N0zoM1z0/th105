@@ -169,7 +169,7 @@ __imp__SetFilePointer@16,0x006C0090,6e522e00,0,TH105 1.06a CFileReader seek at 0
 ??_7IColor@@6B@,0x006C0624,80ae4000,0,IDA 1.06a CEffectSprite scalar-deleting destructor at 0x0041F6F0 writes the IColor vtable at 0x006C0624 before conditional delete; the same vtable identity is independently exact-backed by title/UI anchors; attested 2026-08-21,address
 ?g_game_mode@th105@@3W4GameMode@1@C,0x006FBD4C,00000000,0,Current 1.06a getter 0x0043AC40 reads this game-mode dword; accepted BattleController setup already resolves that getter semantically; attested 2026-08-21,address
 ?g_match_setup@th105@@3UMatchSetup@1@A,0x006FCA48,00000000,0,"Current 1.06a getter 0x0043AC50 returns this MatchSetup object; accepted prepare_match_roster already resolves the getter, and current SelectScenario enter stores the same pointer as match setup; attested 2026-08-21",address
-?g_game_config@th105@@3UGameConfig@1@A,0x006FC598,00000000,0;0x4;0x18;0x20;0x34;0x64,"Current 1.06a getter 0x0043AF10 returns this GameConfig object; current SelectScenario enter reads offset +0x64 as default_game_type. Current 0x0043BA10 profile bootstrap independently reads string c_str and capacity fields at +0x04/+0x18 and +0x20/+0x34; target-observed 2026-08-28",address
+?g_game_config@th105@@3UGameConfig@1@A,0x006FC598,00000000,0;0x4;0x18;0x20;0x34;0x64,Current 1.06a getter 0x0043AF10 returns this GameConfig object; current SelectScenario enter reads offset +0x64 as default_game_type. Current 0x0043BA10 profile bootstrap independently reads string c_str and capacity fields at +0x04/+0x18 and +0x20/+0x34; target-observed 2026-08-28,address
 ?g_score_data@th105@@3UScoreData@1@A,0x006FCC98,00000000,0,Current 1.06a getter 0x0043AF20 returns this ScoreData object; accepted fighter-sequence finalization already resolves the getter before ScoreData record updates; attested 2026-08-21,address
 __ehhandler$??0Alice@th105@@QAE@H@Z,0x006BBCE3,8b542408,0,IDA 1.06a current Alice ctor 0x004FAC40 pushes handler 0x006BBCE3 in its /GS SEH prologue; handler prefix bytes attested 2026-08-21,address
 __real@c0c00000,0x006C3C60,0000c0c0,0,TH105 1.06a current Alice ctor loads flt_6C3C60 immediately before storing Alice/Fighter +0x138; mapped bytes encode IEEE-754 -6.0f; attested 2026-08-21,literal
@@ -1078,3 +1078,30 @@ __ehhandler$??0NetworkWinsockState314CtorView@th105@@QAE@XZ,0x006BE255,8b5424088
 __ehhandler$??1NetworkWinsockState314CtorView@th105@@UAE@XZ,0x006BE63A,8b5424088d42ec8b4ae833c8e8dab6fc,0,Current CNetworkWinsock 0x314 member destructor 0x00412CC0 pushes VC8 EH handler 0x006BE63A; target handler prefix read from the hash-attested IDA image on 2026-08-30,address
 ??_7NetworkWinsockPolymorphicBase@th105@@6B@,0x006D6EA4,90dd4100000000000000000080bf0000,0,Current CNetworkWinsock 0x314 member destructor 0x00412CC0 restores the polymorphic base vtable 0x006D6EA4 after reverse member teardown; target vtable prefix read from the hash-attested IDA image on 2026-08-30,address
 ??_7Youmu@th105@@6B@,0x006C5144,d0b35300,0,Current 1.06a IDA RTTI names the Youmu primary vtable at 0x006C5144; slot +0x28 points to 0x00530200 and the first entry bytes are target-attested 2026-09-04,address
+__real@40a00000,0x006C3B70,0000a040,0,Current Komachi control-mode target 0x005F6223 loads canonical 5.0f literal from 0x006C3B70; PE bytes attested 2026-09-04,literal
+__real@44898000,0x006C41F0,00808944,0,Current Komachi control-mode target compares x_ec with canonical 1100.0f literal at 0x006C41F0; PE bytes attested 2026-09-04,literal
+__real@c0800000,0x006C3E98,000080c0,0,Current Komachi control-mode target stores canonical -4.0f motion literal from 0x006C3E98; PE bytes attested 2026-09-04,literal
+__real@4008000000000000,0x006C3B78,0000000000000840,0,Current Reimu control-mode target adds canonical double 3.0 literal from 0x006C3B78; PE bytes attested 2026-09-04,literal
+__real@3e4ccccd,0x006C3CC0,cdcc4c3e,0,Current Reimu control-mode target stores canonical 0.2f policy scale from 0x006C3CC0; PE bytes attested 2026-09-04,literal
+__real@4000000000000000,0x006C21C0,0000000000000040,0,Current Reimu control-mode target uses canonical double 2.0 literal at 0x006C21C0; PE bytes attested 2026-09-04,literal
+__real@402a000000000000,0x006C3F38,0000000000002a40,0,Current Reimu control-mode target uses canonical double 13.0 literal at 0x006C3F38; PE bytes attested 2026-09-04,literal
+__real@4036000000000000,0x006C3F30,0000000000003640,0,Current Reimu control-mode target uses canonical double 22.0 literal at 0x006C3F30; PE bytes attested 2026-09-04,literal
+__real@404c000000000000,0x006C21B0,0000000000004c40,0,Current Reimu control-mode target divides by canonical double 56.0 literal at 0x006C21B0; PE bytes attested 2026-09-04,literal
+__real@41600000,0x006C3C64,00006041,0,Current Reimu control-mode target stores canonical 14.0f policy value at 0x006C3C64; PE bytes attested 2026-09-04,literal
+__real@41800000,0x006C3CE8,00008041,0,Current Aya control-mode target stores canonical 16.0f policy value from 0x006C3CE8; PE bytes attested 2026-09-04,literal
+__real@3ecccccd,0x006C4480,cdcccc3e,0,Current Aya control-mode target stores canonical 0.4f policy scale from 0x006C4480; PE bytes attested 2026-09-04,literal
+__real@41480000,0x006C3C48,00004841,0,Current 1.06a Marisa +0x5C control-mode policy path loads IEEE-754 float 12.5 from 0x006C3C48; canonical PE bytes attested 2026-09-04,literal
+__real@44988000,0x006C4800,00809844,0,Current Sakuya control-mode target compares x_ec with canonical IEEE-754 1220.0f at 0x006C4800; PE bytes attested 2026-09-04,literal
+__real@3f19999a,0x006C3E94,9a99193f,0,Current Youmu action-entry target loads canonical IEEE-754 0.6f at 0x006C3E94; PE bytes attested 2026-09-04,literal
+__real@42be0000,0x006C4000,0000be42,0,Current Youmu action-entry target loads canonical IEEE-754 95.0f at 0x006C4000; PE bytes attested 2026-09-04,literal
+__real@41680000,0x006C4454,00006841,0,Current Youmu action-entry target loads canonical IEEE-754 14.5f at 0x006C4454; PE bytes attested 2026-09-04,literal
+__real@418c0000,0x006C3E60,00008c41,0,Current Youmu action-entry target loads canonical IEEE-754 17.5f at 0x006C3E60; PE bytes attested 2026-09-04,literal
+__real@c1700000,0x006C3C7C,000070c1,0,Current Alice action-entry target 0x004F98D8 loads canonical IEEE-754 -15.0f from 0x006C3C7C; PE bytes attested 2026-09-04,literal
+__real@40f00000,0x006C3E54,0000f040,0,Current Alice action-entry target 0x004F9BB5 loads canonical IEEE-754 float 7.5 from 0x006C3E54 after a separate double-7.5 comparison; PE bytes attested 2026-09-04,literal
+__real@3eb33333,0x006C3E90,3333b33e,0,Current Alice action-entry target 0x004F9BC4 loads canonical IEEE-754 float 0.35 from 0x006C3E90; PE bytes attested 2026-09-04,literal
+__real@42960000,0x006C3EE8,00009642,0,Current Sakuya action-entry target 0x004DE0DA loads IEEE-754 float 75.0 from 0x006C3EE8; PE bytes attested 2026-09-04,literal
+__real@41280000,0x006C4830,00002841,0,Current Sakuya action-entry target 0x004DE0E6 loads IEEE-754 float 10.5 from 0x006C4830; PE bytes attested 2026-09-04,literal
+__real@4029000000000000,0x006C4828,0000000000002940,0,Current Sakuya action-entry target compares against IEEE-754 double 12.5 at 0x006C4828 while assignments use separate float 12.5 at 0x006C3C48; PE bytes attested 2026-09-04,literal
+__real@3f0ccccd,0x006C3E9C,cdcc0c3f,0,Current Sakuya action-entry target 0x004DE591 loads IEEE-754 float 0.55 from 0x006C3E9C; PE bytes attested 2026-09-04,literal
+__real@c0d00000,0x006C5024,0000d0c0,0,Current Remilia action-entry target 0x00554D88 loads canonical IEEE-754 -6.5f from 0x006C5024; PE bytes attested 2026-09-04,literal
+__real@40d00000,0x006C3DF0,0000d040,0,Current Remilia action-entry target 0x00554D97 loads canonical IEEE-754 6.5f from 0x006C3DF0; PE bytes attested 2026-09-04,literal

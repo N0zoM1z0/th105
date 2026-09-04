@@ -208,6 +208,19 @@ void YoumuControlModeView::update_control_mode()
         }
         return;
 
+    case 248:
+    case 249:
+    case 250:
+    case 251:
+    case 252:
+    case 253:
+    case 254:
+    case 255:
+        if (action_13c == 700)
+            set_action(0);
+        update_cpu_action_policy();
+        return;
+
     case 12:
     case 13:
     case 14:
@@ -225,18 +238,6 @@ void YoumuControlModeView::update_control_mode()
         }
         return;
 
-    case 248:
-    case 249:
-    case 250:
-    case 251:
-    case 252:
-    case 253:
-    case 254:
-    case 255:
-        if (action_13c == 700)
-            set_action(0);
-        update_cpu_action_policy();
-        return;
         }
     }
 }

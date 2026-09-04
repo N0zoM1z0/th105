@@ -1747,7 +1747,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0045AD40,authored_game,battle,authored,observed,canonical-exact-authored
 0x0045AE30,authored_game,battle,authored,observed,canonical-exact-authored
 0x0045AF40,authored_game,characters,authored,observed,canonical-exact-authored
-0x0045AF60,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
+0x0045AF60,authored_game,characters,authored,observed,canonical-exact-authored
 0x0045B0F0,authored_game,battle,authored,observed,canonical-exact-authored
 0x0045B250,authored_game,battle,authored,observed,canonical-exact-authored
 0x0045B260,authored_game,battle,authored,observed,canonical-exact-authored
@@ -2341,7 +2341,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x005399A0,compiler_generated,characters,exclude,observed,vc8-generated-youmu-record-deque-comdats-106a
 0x00539B00,compiler_generated,characters,exclude,observed,vc8-generated-youmu-record-deque-comdats-106a
 0x00539B70,authored_game,characters,authored,observed,canonical-exact-authored
-0x00539C40,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
+0x00539C40,authored_game,characters,authored,observed,canonical-exact-authored
 0x0053A160,authored_game,characters,authored,observed,canonical-exact-authored
 0x0053A1D0,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
 0x0053A930,authored_game,characters,authored,observed,canonical-exact-authored
@@ -2373,7 +2373,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00543670,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00544BF0,authored_game,characters,authored,observed,canonical-exact-authored
 0x00545090,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
-0x005547F0,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
+0x005547F0,authored_game,characters,authored,observed,canonical-exact-authored
 0x00554D50,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
 0x00555680,authored_game,characters,authored,observed,canonical-exact-authored
 0x00555790,authored_game,characters,authored,observed,canonical-exact-authored
@@ -2517,7 +2517,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x005E1C50,authored_game,characters,authored,observed,canonical-exact-authored
 0x005E20E0,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
 0x005F1F80,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
-0x005F6020,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
+0x005F6020,authored_game,characters,authored,observed,canonical-exact-authored
 0x005F66D0,authored_game,characters,authored,observed,canonical-exact-authored
 0x005F6700,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
 0x005F70C0,authored_game,characters,authored,observed,canonical-exact-authored

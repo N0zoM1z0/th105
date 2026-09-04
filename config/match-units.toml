@@ -16386,3 +16386,70 @@ rel32_targets = [
   "?push_front@?$deque@UYoumuObjectRecord@th105@@V?$allocator@UYoumuObjectRecord@th105@@@std@@@std@@QAEXABUYoumuObjectRecord@th105@@@Z=0x00539B00",
   "?update_common_history@YoumuHistoryBaseView@th105@@QAEXXZ=0x00476D10",
 ]
+
+[units.gpt-web-remilia-control-mode]
+kind = "probe"
+source = "src/characters/RemiliaControlMode.cpp"
+object = "build/match-units/GptWeb_RemiliaControlMode.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Canonical-exact current Remilia Fighter primary-vtable +0x5C control-mode override. Restoring the physical sparse-switch source order with 248..255 before 12..15 lets ordinary VC8 /O2 reproduce the shipped far-default and shared action tails without LTCG or control-flow padding."
+
+[[units.gpt-web-remilia-control-mode.functions]]
+address = "0x005547F0"
+symbol_base = "?update_control_mode@RemiliaControlModeView@th105@@QAEXXZ"
+rel32_targets = [
+  "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
+  "?face_opponent_and_flip_horizontal_velocity@RemiliaControlModeView@th105@@QAEXXZ=0x00478E60",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+]
+
+[units.gpt-web-youmu-control-mode]
+kind = "probe"
+source = "src/characters/YoumuControlMode.cpp"
+object = "build/match-units/GptWeb_YoumuControlMode.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Canonical-exact current Youmu Fighter primary-vtable +0x5C control-mode override. The target-backed sparse-switch source order places 248..255 before 12..15; ordinary VC8 /O2 then reproduces all 1027 bytes."
+
+[[units.gpt-web-youmu-control-mode.functions]]
+address = "0x00539C40"
+symbol_base = "?update_control_mode@YoumuControlModeView@th105@@QAEXXZ"
+rel32_targets = [
+  "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
+  "?face_opponent_and_flip_horizontal_velocity@YoumuControlModeView@th105@@QAEXXZ=0x00478E60",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+]
+
+[units.gpt-web-komachi-control-mode]
+kind = "probe"
+source = "src/characters/KomachiControlMode.cpp"
+object = "build/match-units/GptWeb_KomachiControlMode.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Canonical-exact current Komachi Fighter primary-vtable +0x5C control-mode override. Native FighterSequenceController access, duplicated directional 705/706 source paths, state-owned timeout fallbacks and target sparse-switch order reproduce all 1421 bytes naturally."
+
+[[units.gpt-web-komachi-control-mode.functions]]
+address = "0x005F6020"
+symbol_base = "?update_control_mode@KomachiControlModeView@th105@@QAEXXZ"
+rel32_targets = [
+  "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
+  "?face_opponent_and_flip_horizontal_velocity@KomachiControlModeView@th105@@QAEXXZ=0x00478E60",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+]
+
+[units.gpt-web-fighter-movement-action-state]
+kind = "probe"
+source = "src/characters/FighterMovementActionState.cpp"
+object = "build/match-units/GptWeb_FighterMovementActionState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current shared Fighter primary-vtable +0x48 movement/action-state updater. Sequential vertical-state ifs plus one final shared facing-update tail reproduce the previously unexplained target CFG naturally; no redundant condition, goto, register/volatile forcing, assembly or padding is used."
+
+[[units.gpt-web-fighter-movement-action-state.functions]]
+address = "0x0045AF60"
+symbol_base = "?update_movement_action_state@FighterMovementActionStateView@th105@@QAEXXZ"
+rel32_targets = [
+  "?is_at_or_below_stage_surface@FighterMovementActionStateView@th105@@QAE_NXZ=0x00435DC0",
+  "?update_facing_from_other_fighter@FighterMovementActionStateView@th105@@QAE_NXZ=0x0045E070",
+]
