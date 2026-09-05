@@ -320,9 +320,7 @@ ACTION_54_60_690:
       case 63:
         resolve_stage_surface_landing_transition();
         if (velocity_x_f4 < 0.0f) {
-          const float adjusted = static_cast<float>(velocity_x_f4 + 1.5);
-          velocity_x_f4 = adjusted;
-          if (adjusted > 0.0f)
+          if ((velocity_x_f4 = static_cast<float>(velocity_x_f4 + 1.5)) > 0.0f)
             velocity_x_f4 = 0.0f;
         }
         if (classify_fighter_x_boundary() && unknown_490)
@@ -341,7 +339,7 @@ ACTION_54_60_690:
           peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
         if (advance_frame_and_dispatch())
           set_action(2);
-        return;
+        break;
 
       case 66:
         resolve_stage_surface_landing_transition();
@@ -1015,50 +1013,56 @@ LABEL_8:
         goto LABEL_11;
       case 163:
         resolve_stage_surface_landing_transition();
-        v5 = 0.0;
-        if (!(velocity_x_f4 < 0.0f))
-          goto LABEL_49;
-        v107 = velocity_x_f4 + 0.6000000238418579;
-        v108 = v107 + 0.6000000238418579;
-        v6 = v108;
-        goto LABEL_47;
+        if (velocity_x_f4 < 0.0f) {
+          v107 = velocity_x_f4 + 0.6000000238418579;
+          v108 = v107 + 0.6000000238418579;
+          if ((velocity_x_f4 = v108) > 0.0f)
+            velocity_x_f4 = 0.0f;
+        }
+        if (classify_fighter_x_boundary() && unknown_490)
+          peer_component_6ac = velocity_x_f4 * 0.75;
+        if ((unsigned __int8)advance_frame_and_dispatch())
+          set_action(2);
+        break;
       case 164:
         resolve_stage_surface_landing_transition();
-        v5 = 0.0;
-        if (!(velocity_x_f4 < 0.0f))
-          goto LABEL_49;
-        v109 = velocity_x_f4 + 0.6000000238418579;
-        v110 = v109 + 0.6000000238418579;
-        v6 = v110;
-        goto LABEL_47;
+        if (velocity_x_f4 < 0.0f) {
+          v109 = velocity_x_f4 + 0.6000000238418579;
+          v110 = v109 + 0.6000000238418579;
+          if ((velocity_x_f4 = v110) > 0.0f)
+            velocity_x_f4 = 0.0f;
+        }
+        if (classify_fighter_x_boundary() && unknown_490)
+          peer_component_6ac = velocity_x_f4 * 0.75;
+        if ((unsigned __int8)advance_frame_and_dispatch())
+          set_action(2);
+        break;
       case 165:
         resolve_stage_surface_landing_transition();
-        v5 = 0.0;
-        if (!(velocity_x_f4 < 0.0f))
-          goto LABEL_49;
-        v111 = velocity_x_f4 + 0.6000000238418579;
-        v112 = v111 + 0.6000000238418579;
-        v6 = v112;
-        goto LABEL_47;
+        if (velocity_x_f4 < 0.0f) {
+          v111 = velocity_x_f4 + 0.6000000238418579;
+          v112 = v111 + 0.6000000238418579;
+          if ((velocity_x_f4 = v112) > 0.0f)
+            velocity_x_f4 = 0.0f;
+        }
+        if (classify_fighter_x_boundary() && unknown_490)
+          peer_component_6ac = velocity_x_f4 * 0.75;
+        if ((unsigned __int8)advance_frame_and_dispatch())
+          set_action(2);
+        break;
       case 166:
         resolve_stage_surface_landing_transition();
-        v5 = 0.0;
-        if (!(velocity_x_f4 < 0.0f))
-          goto LABEL_49;
-        v113 = velocity_x_f4 + 0.6000000238418579;
-        v114 = v113 + 0.6000000238418579;
-        v6 = v114;
-LABEL_47:
-        velocity_x_f4 = v6;
-        if ( v6 > v5 )
-          velocity_x_f4 = v5;
-LABEL_49:
-        if ( classify_fighter_x_boundary() && unknown_490 )
+        if (velocity_x_f4 < 0.0f) {
+          v113 = velocity_x_f4 + 0.6000000238418579;
+          v114 = v113 + 0.6000000238418579;
+          if ((velocity_x_f4 = v114) > 0.0f)
+            velocity_x_f4 = 0.0f;
+        }
+        if (classify_fighter_x_boundary() && unknown_490)
           peer_component_6ac = velocity_x_f4 * 0.75;
-LABEL_52:
-        if ( (unsigned __int8)advance_frame_and_dispatch() )
+        if ((unsigned __int8)advance_frame_and_dispatch())
           set_action(2);
-        return;
+        break;
       case 167:
         velocity_y_f8 = velocity_y_f8 - acceleration_y_100;
         if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
