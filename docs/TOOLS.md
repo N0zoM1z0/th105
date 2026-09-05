@@ -62,7 +62,7 @@ the bounded reconstruction unit and fix/report IDA; do not route to Ghidra.
 - `scripts/build.py --check`: validate the VC8 unit graph.
 - `scripts/build.py --unit NAME --compare`: focused build and strict compare.
 - `scripts/compare-function.py`: canonical COFF/function comparator.
-- `scripts/verify-exact-units.py --all`: cold replay of all accepted units.
+- `scripts/verify-exact-units.py --all`: fail-fast cold replay of the **complete configured unit graph**. The manifest includes intentional nonexact probe units, so this command is not an accepted-exact-only verifier and may stop at the first known nonexact probe; read the unit notes before treating that stop as a regression.
 - `scripts/report-reconstruction-status.py`: select work from current ledgers.
 - `scripts/rank_retained_exact.py`: target-attested retained-1.06 source ranking for 1.06a; dual `/GS` profiles, normalized instruction shape, and relocation-masked raw mismatch counts are prioritization signals only. Repeatable `--historical-status` filters may widen the archaeology queue to old `implemented`/`compiles` rows without changing acceptance semantics.
 - `scripts/ci.py`: target-independent public validation.

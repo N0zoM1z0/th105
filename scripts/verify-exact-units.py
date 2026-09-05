@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Cold-build and compare every configured TH105 exact-match unit."""
+"""Cold-build and compare every configured TH105 match unit.
+
+The manifest also contains intentional nonexact probe units, so ``--all`` is a
+complete-graph fail-fast diagnostic rather than an accepted-exact-only replay.
+"""
 
 from __future__ import annotations
 
