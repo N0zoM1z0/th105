@@ -16676,3 +16676,75 @@ rel32_targets = [
   "?face_opponent_and_flip_horizontal_velocity@AyaControlModeView@th105@@QAEXXZ=0x00478E60",
   "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
 ]
+
+[units.gpt-web-fighter-common-action-state]
+kind = "probe"
+source = "src/battle/FighterCommonActionState.cpp"
+object = "build/match-units/GptWeb_FighterCommonActionState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete current-target semantic probe for the 10,219-byte shared Fighter action-state root called by all 15 roster +0x28 giants. The source preserves low-before-high action ownership, target-proven shared 62/67/66 tails, x87 operand order, native Fighter sequence access and high-691 unsigned RNG argument lifetime. It is intentionally nonexact: current standalone low switch preserves 50 of the target's 51 physical destinations and later regions still have source-shape residuals. No assembly, volatile/register forcing, padding, copied bytes or fabricated ABI is used."
+
+[[units.gpt-web-fighter-common-action-state.functions]]
+address = "0x004740C0"
+symbol_base = "?update_common_action_state@FighterCommonActionStateView@th105@@QAEXXZ"
+rel32_targets = [
+  "?resolve_stage_surface_landing_transition@FighterCommonActionStateView@th105@@QAEEXZ=0x00473DD0",
+  "?advance_frame_and_dispatch@FighterCommonActionStateView@th105@@QAEEXZ=0x004351C0",
+  "?classify_fighter_x_boundary@FighterCommonActionStateView@th105@@QAECXZ=0x00435910",
+  "?publish_battle_layout_scalar@FighterCommonActionStateView@th105@@QAEXM@Z=0x004359D0",
+  "?dispatch_indexed_event_member@FighterCommonActionStateView@th105@@QAEXI@Z=0x004359F0",
+  "?emit_fighter_effect_433cc0@FighterCommonActionStateView@th105@@QAEXHMMHH@Z=0x00435240",
+  "?dispatch_indexed_sequence_window_45c8b0@FighterCommonActionStateView@th105@@QAEXCHH@Z=0x0045DEB0",
+  "?zero_velocity_acceleration@FighterCommonActionStateView@th105@@QAEXXZ=0x0045AF40",
+  "?has_crossed_stage_surface_while_descending@FighterCommonActionStateView@th105@@QAEHXZ=0x005F9310",
+  "?stage_surface_height_at_x@th105@@YIMPAVFighterCommonActionStateView@1@@Z=0x00435D60",
+  "?copy_action_word_176_to_174@FighterCommonActionStateView@th105@@QAEXXZ=0x0045B250",
+  "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
+  "?select_pair_mode_434780@PairEmbeddedModeView@th105@@QAEXHE@Z=0x00435CE0",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+  "?reset@FighterActionScratchView@th105@@QAEXXZ=0x00435110",
+  "__ftol2_sse=0x0068A1A0",
+]
+dir32_targets = [
+  "?g_fighter_state_4b8_default@th105@@3HA=?g_fighter_state_4b8_default@th105@@3HA",
+  "?g_info_mode_value_6fa88c@th105@@3FA=?g_info_mode_value_6fa88c@th105@@3FA",
+  "?g_secondary_event_effect_id@th105@@3HA=?g_secondary_event_effect_id@th105@@3HA",
+  "__real@0000000000000000=__real@0000000000000000",
+  "__real@3e800000=__real@3e800000",
+  "__real@3e82d82e=__real@3e82d82e",
+  "__real@3f000000=__real@3f000000",
+  "__real@3f647ae140000000=__real@3f647ae140000000",
+  "__real@3f747ae140000000=__real@3f747ae140000000",
+  "__real@3fe0000000000000=__real@3fe0000000000000",
+  "__real@3fe3333340000000=__real@3fe3333340000000",
+  "__real@3fe8000000000000=__real@3fe8000000000000",
+  "__real@3ff0000000000000=__real@3ff0000000000000",
+  "__real@3ff8000000000000=__real@3ff8000000000000",
+  "__real@40000000=__real@40000000",
+  "__real@4000000000000000=__real@4000000000000000",
+  "__real@4004000000000000=__real@4004000000000000",
+  "__real@4008000000000000=__real@4008000000000000",
+  "__real@4024000000000000=__real@4024000000000000",
+  "__real@403e000000000000=__real@403e000000000000",
+  "__real@4044000000000000=__real@4044000000000000",
+  "__real@4056800000000000=__real@4056800000000000",
+  "__real@4059000000000000=__real@4059000000000000",
+  "__real@407e000000000000=__real@407e000000000000",
+  "__real@40800000=__real@40800000",
+  "__real@4089000000000000=__real@4089000000000000",
+  "__real@40a00000=__real@40a00000",
+  "__real@41380000=__real@41380000",
+  "__real@41c80000=__real@41c80000",
+  "__real@43f00000=__real@43f00000",
+  "__real@44480000=__real@44480000",
+  "__real@44c58000=__real@44c58000",
+  "__real@4f800000=__real@4f800000",
+  "__real@c0000000=__real@c0000000",
+  "__real@c000000000000000=__real@c000000000000000",
+  "__real@c02e000000000000=__real@c02e000000000000",
+  "__real@c039000000000000=__real@c039000000000000",
+  "__real@c0400000=__real@c0400000",
+  "__real@c0a00000=__real@c0a00000",
+  "__real@c1000000=__real@c1000000",
+]
