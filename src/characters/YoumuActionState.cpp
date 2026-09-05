@@ -2391,6 +2391,7 @@ if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 2 )
 dispatch_indexed_event_member(0x1Cu);
 *(_BYTE *)(raw +  1150) = 0;
 }
+return;
 case 0x141:
 resolve_stage_surface_landing_transition();
 if ( !(unsigned __int8)try_dispatch_directional_action_208_210(1) )
@@ -2458,6 +2459,7 @@ if ( *(_WORD *)(raw +  322) || *(_WORD *)(raw +  320) != 2 )
 return;
 dispatch_indexed_event_member(0x1Du);
 *(_BYTE *)(raw +  1150) = 0;
+return;
 case 0x190:
 resolve_stage_surface_landing_transition();
 if ( *(__int16 *)(raw +  318) < 2 && !*(_DWORD *)(raw +  1728) )
