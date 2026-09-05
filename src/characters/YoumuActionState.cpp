@@ -46,7 +46,7 @@ public:
     void dispatch_indexed_sequence_window_45c8b0(signed char relative_index, int outcome, int source_token);
     int configure_render_history(int countdown, signed char period, int color_mask);
     void publish_texture_state(signed char texture_index, short duration);
-    int spawn_owned_object_via_manager(int object_id, float x, float y, int direction, int arg5, int arg6, int arg7);
+    int spawn_owned_object_via_manager(int object_id, float x, float y, int direction, unsigned char arg5, int arg6, int arg7);
     void adjust_counter_482(short amount, int floor_value);
     void advance_secondary_event_effect_cycle();
     int add_phase_scaled_counter_558(int value);
@@ -72,13 +72,13 @@ double v7; // st7
 double v8; // st7
 bool v9; // zf
 bool v10; // cc
-double v11; // st7
+float v11; // target loads/stores single-precision field values
 bool v12; // cc
 bool v13; // cc
 void (__thiscall *v14)(void *, int); // edx
 __int16 v15; // ax
 void (__thiscall *v16)(void *, int); // edx
-double v17; // st7
+float v17; // target loads/stores single-precision field values
 __int16 v18; // ax
 void (__thiscall *v19)(void *, int); // eax
 void (__thiscall *v20)(void *, int); // edx
@@ -86,8 +86,8 @@ __int16 v21; // ax
 __int16 v22; // ax
 double v23; // st7
 double v24; // st7
-double v25; // st7
-double v26; // st7
+float v25; // target loads/stores single-precision field values
+float v26; // target loads/stores single-precision field values
 int v27; // eax
 int v28; // ecx
 bool v29; // sf
@@ -507,27 +507,17 @@ double v442; // [esp+40h] [ebp-220h]
 double v443; // [esp+40h] [ebp-220h]
 int v444[2]; // [esp+48h] [ebp-218h] BYREF
 float v445; // [esp+50h] [ebp-210h]
-int v446; // [esp+54h] [ebp-20Ch] BYREF
-float v447; // [esp+58h] [ebp-208h]
-float v448; // [esp+5Ch] [ebp-204h]
-int v449; // [esp+60h] [ebp-200h] BYREF
-float v450; // [esp+64h] [ebp-1FCh]
-float v451; // [esp+68h] [ebp-1F8h]
-int v452; // [esp+6Ch] [ebp-1F4h] BYREF
-float v453; // [esp+70h] [ebp-1F0h]
-float v454; // [esp+74h] [ebp-1ECh]
-int v455; // [esp+78h] [ebp-1E8h] BYREF
-float v456; // [esp+7Ch] [ebp-1E4h]
-float v457; // [esp+80h] [ebp-1E0h]
+float payload_446[3]; // target contiguous +54/+58/+5C BYREF
+float payload_449[3]; // target contiguous +60/+64/+68 BYREF
+float payload_452[3]; // target contiguous +6C/+70/+74 BYREF
+float payload_455[3]; // target contiguous +78/+7C/+80 BYREF
 int v458[3]; // [esp+84h] [ebp-1DCh] BYREF
 int v459[3]; // [esp+90h] [ebp-1D0h] BYREF
 int v460[3]; // [esp+9Ch] [ebp-1C4h] BYREF
 float v461; // [esp+A8h] [ebp-1B8h] BYREF
 int v462; // [esp+ACh] [ebp-1B4h] BYREF
-int v463[2]; // [esp+B0h] [ebp-1B0h] BYREF
-float v464; // [esp+B8h] [ebp-1A8h]
-float v465[2]; // [esp+BCh] [ebp-1A4h] BYREF
-float v466; // [esp+C4h] [ebp-19Ch]
+float payload_463[3]; // target contiguous +B0/+B4/+B8 BYREF
+float payload_465[3]; // target contiguous +BC/+C0/+C4 BYREF
 int v467[3]; // [esp+C8h] [ebp-198h] BYREF
 int v468[3]; // [esp+D4h] [ebp-18Ch] BYREF
 int v469[3]; // [esp+E0h] [ebp-180h] BYREF
@@ -569,7 +559,7 @@ if (*(__int16 *)(raw + 2026) > 0)
 {
   if (*(__int16 *)(raw + 2028) > 0)
     *(float *)(raw + 1232) = 0.0;
-  --*(_WORD *)(raw + 2026);
+  --*(__int16 *)(raw + 2026);
   if (*(__int16 *)(raw + 372) <= 0 || *(__int16 *)(*(_DWORD *)(raw + 368) + 372) <= 0)
     *(_WORD *)(raw + 2026) = 0;
   v4 = *(_WORD *)(raw + 316);
@@ -782,7 +772,7 @@ if ( *(_DWORD *)(raw +  324)
 {
 return;
 }
-v11 = 6.5;
+v11 = 6.5f;
 goto LABEL_71;
 case 8:
 v13 = *(_WORD *)(raw +  318) <= 0;
@@ -811,11 +801,11 @@ if ( *(_DWORD *)(raw +  324)
 {
 return;
 }
-v11 = -6.5;
+v11 = -6.5f;
 LABEL_71:
 *(float *)(raw +  244) = v11;
 *(float *)(raw +  248) = 16.0;
-*(float *)(raw +  256) = 0.80000001;
+*(float *)(raw +  256) = 0.8f;
 *(_BYTE *)(raw +  1150) = 0;
 return;
 case 9:
@@ -871,7 +861,7 @@ if ( *(_DWORD *)(raw +  324)
 return;
 }
 *(float *)(raw +  248) = 8.0;
-v17 = 13.5;
+v17 = 13.5f;
 goto LABEL_129;
 case 0xC6:
 v18 = *(_WORD *)(raw +  318);
@@ -917,7 +907,7 @@ if ( !*(_DWORD *)(raw +  324)
 && *(_WORD *)(raw +  318) == 1 )
 {
 *(float *)(raw +  248) = 8.0;
-v17 = -13.5;
+v17 = -13.5f;
 LABEL_129:
 *(float *)(raw +  244) = v17;
 *(float *)(raw +  256) = 0.5;
@@ -962,9 +952,9 @@ if ( !(*(_DWORD *)(raw +  324) % 5) )
 {
 v210 = *(unsigned __int8 *)(raw +  260);
 v433 = *(float *)(raw +  236) + 50.0;
-v234 = (double)(mt19937_next_u32() % 0xC8) + *(float *)(raw +  240);
+v234 = (float)(mt19937_next_u32() % 0xC8) + *(float *)(raw +  240);
 v186 = v234;
-v235 = v433 - (double)(mt19937_next_u32() % 0x64);
+v235 = v433 - (float)(mt19937_next_u32() % 0x64);
 emit_fighter_effect_433cc0(124, v235, v186, v210, 1);
 }
 if ( *(int *)(raw +  1720) >= 0 )
@@ -1014,9 +1004,9 @@ if ( !(*(_DWORD *)(raw +  324) % 5) )
 {
 v434 = *(float *)(raw +  236) + 50.0;
 v212 = (unsigned __int8)-*(_BYTE *)(raw +  260);
-v240 = (double)(mt19937_next_u32() % 0xC8) + *(float *)(raw +  240);
+v240 = (float)(mt19937_next_u32() % 0xC8) + *(float *)(raw +  240);
 v188 = v240;
-v241 = v434 - (double)(mt19937_next_u32() % 0x64);
+v241 = v434 - (float)(mt19937_next_u32() % 0x64);
 emit_fighter_effect_433cc0(124, v241, v188, v212, 1);
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
@@ -1040,9 +1030,9 @@ if ( (v22 == 1 || v22 == 2) && !(*(_DWORD *)(raw +  324) % 5) )
 {
 v213 = *(unsigned __int8 *)(raw +  260);
 v435 = *(float *)(raw +  236) + 50.0;
-v244 = (double)(mt19937_next_u32() % 0xC8) + *(float *)(raw +  240);
+v244 = (float)(mt19937_next_u32() % 0xC8) + *(float *)(raw +  240);
 v189 = v244;
-v245 = v435 - (double)(mt19937_next_u32() % 0x64);
+v245 = v435 - (float)(mt19937_next_u32() % 0x64);
 emit_fighter_effect_433cc0(124, v245, v189, v213, 1);
 }
 advance_frame_and_dispatch();
@@ -1076,9 +1066,9 @@ if ( *(__int16 *)(raw +  318) < 3 && !(*(_DWORD *)(raw +  324) % 5) )
 {
 v436 = *(float *)(raw +  236) + 50.0;
 v215 = (unsigned __int8)-*(_BYTE *)(raw +  260);
-v249 = (double)(mt19937_next_u32() % 0xC8) + *(float *)(raw +  240);
+v249 = (float)(mt19937_next_u32() % 0xC8) + *(float *)(raw +  240);
 v191 = v249;
-v250 = v436 - (double)(mt19937_next_u32() % 0x64);
+v250 = v436 - (float)(mt19937_next_u32() % 0x64);
 emit_fighter_effect_433cc0(124, v250, v191, v215, 1);
 }
 advance_frame_and_dispatch();
@@ -1169,7 +1159,7 @@ if ( *(_DWORD *)(raw +  324)
 {
 return;
 }
-v25 = 11.0;
+v25 = 11.0f;
 goto LABEL_261;
 case 0xD2:
 if ( !*(_WORD *)(raw +  318) )
@@ -1195,11 +1185,11 @@ if ( *(_DWORD *)(raw +  324)
 {
 return;
 }
-v25 = -11.0;
+v25 = -11.0f;
 LABEL_261:
 *(float *)(raw +  244) = v25;
 *(float *)(raw +  248) = 17.5;
-*(float *)(raw +  256) = 0.80000001;
+*(float *)(raw +  256) = 0.8f;
 *(_BYTE *)(raw +  1150) = 0;
 emit_fighter_effect_433cc0(63,
 *(float *)(raw +  236),
@@ -1262,7 +1252,7 @@ if ( *(_DWORD *)(raw +  324)
 {
 return;
 }
-v26 = 11.0;
+v26 = 11.0f;
 goto LABEL_313;
 case 0xD6:
 if ( (unsigned __int8)advance_frame_and_dispatch() )
@@ -1543,11 +1533,11 @@ if ( *(_DWORD *)(raw +  324)
 {
 return;
 }
-v26 = -11.0;
+v26 = -11.0f;
 LABEL_313:
 *(float *)(raw +  244) = v26;
 *(float *)(raw +  248) = 17.5;
-v24 = 0.80000001;
+v24 = 0.8f;
 LABEL_242:
 *(float *)(raw +  256) = v24;
 *(_BYTE *)(raw +  1150) = 0;
@@ -1563,9 +1553,9 @@ if ( !(*(_DWORD *)(raw +  324) % 5) )
 {
 v218 = *(unsigned __int8 *)(raw +  260);
 v437 = *(float *)(raw +  236) + 50.0;
-v266 = (double)(mt19937_next_u32() % 0xC8) + *(float *)(raw +  240);
+v266 = (float)(mt19937_next_u32() % 0xC8) + *(float *)(raw +  240);
 v193 = v266;
-v267 = v437 - (double)(mt19937_next_u32() % 0x64);
+v267 = v437 - (float)(mt19937_next_u32() % 0x64);
 emit_fighter_effect_433cc0(124, v267, v193, v218, 1);
 }
 v53 = ++*(_WORD *)(raw +  1840);
@@ -1608,9 +1598,9 @@ if ( !is_y_at_or_below_stage_surface(this) && !(*(_DWORD *)(raw +  324) % 5) )
 {
 v438 = *(float *)(raw +  236) + 50.0;
 v220 = (unsigned __int8)-*(_BYTE *)(raw +  260);
-v272 = (double)(mt19937_next_u32() % 0xC8) + *(float *)(raw +  240);
+v272 = (float)(mt19937_next_u32() % 0xC8) + *(float *)(raw +  240);
 v195 = v272;
-v273 = v438 - (double)(mt19937_next_u32() % 0x64);
+v273 = v438 - (float)(mt19937_next_u32() % 0x64);
 emit_fighter_effect_433cc0(124, v273, v195, v220, 1);
 }
 if ( *(__int16 *)(raw +  318) < 3
@@ -1650,9 +1640,9 @@ if ( *(__int16 *)(raw +  318) < 3 && !(*(_DWORD *)(raw +  324) % 5) )
 {
 v440 = *(float *)(raw +  236) + 50.0;
 v223 = (unsigned __int8)-*(_BYTE *)(raw +  260);
-v281 = (double)(mt19937_next_u32() % 0xC8) + *(float *)(raw +  240);
+v281 = (float)(mt19937_next_u32() % 0xC8) + *(float *)(raw +  240);
 v198 = v281;
-v282 = v440 - (double)(mt19937_next_u32() % 0x64);
+v282 = v440 - (float)(mt19937_next_u32() % 0x64);
 emit_fighter_effect_433cc0(124, v282, v198, v223, 1);
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
@@ -1695,9 +1685,9 @@ if ( (v55 == 1 || v55 == 2) && !(*(_DWORD *)(raw +  324) % 5) )
 {
 v221 = *(unsigned __int8 *)(raw +  260);
 v439 = *(float *)(raw +  236) + 50.0;
-v276 = (double)(mt19937_next_u32() % 0xC8) + *(float *)(raw +  240);
+v276 = (float)(mt19937_next_u32() % 0xC8) + *(float *)(raw +  240);
 v196 = v276;
-v277 = v439 - (double)(mt19937_next_u32() % 0x64);
+v277 = v439 - (float)(mt19937_next_u32() % 0x64);
 emit_fighter_effect_433cc0(124, v277, v196, v221, 1);
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
@@ -2758,12 +2748,12 @@ if ( (unsigned __int8)advance_frame_and_dispatch() )
 (*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
 if ( *(_WORD *)(raw +  322) || *(_WORD *)(raw +  320) != 6 )
 return;
-*(float *)v463 = 15.0;
-*(float *)&v463[1] = 0.0;
-v464 = 0.0;
+payload_463[0] = 15.0;
+payload_463[1] = 0.0;
+payload_463[2] = 0.0;
 if ( *(char *)(raw +  1544) >= 2 )
-v464 = 3.0;
-v225 = v463;
+payload_463[2] = 3.0;
+v225 = (int *)payload_463;
 v176 = *(unsigned __int8 *)(raw +  260);
 v159 = *(float *)(raw +  240);
 v326 = (double)(80 * (char)v176) + *(float *)(raw +  236);
@@ -2776,12 +2766,12 @@ if ( (unsigned __int8)advance_frame_and_dispatch() )
 (*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
 if ( *(_WORD *)(raw +  322) || *(_WORD *)(raw +  320) != 6 )
 return;
-v465[0] = 25.0;
-v465[1] = 0.0;
-v466 = 0.0;
+payload_465[0] = 25.0;
+payload_465[1] = 0.0;
+payload_465[2] = 0.0;
 if ( *(char *)(raw +  1544) >= 2 )
-v466 = 3.0;
-v225 = (int *)v465;
+payload_465[2] = 3.0;
+v225 = (int *)payload_465;
 v176 = *(unsigned __int8 *)(raw +  260);
 v159 = *(float *)(raw +  240);
 v327 = (double)(80 * (char)v176) + *(float *)(raw +  236);
@@ -3689,11 +3679,11 @@ dispatch_character_wave_handle(0x32u);
 }
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 9 )
 *(float *)(raw +  244) = 25.0;
-v105 = 0.2000000029802322;
+v105 = 0.2f;
 if ( *(_WORD *)(raw +  320) == 7 )
 {
-*(float *)(raw +  284) = *(float *)(raw +  284) + 0.2000000029802322;
-v354 = *(float *)(raw +  288) - 0.2000000029802322;
+*(float *)(raw +  284) = *(float *)(raw +  284) + 0.2f;
+v354 = *(float *)(raw +  288) - 0.2f;
 *(float *)(raw +  288) = v354;
 v106 = 0.0;
 if ( v354 < 0.0 )
@@ -3819,50 +3809,50 @@ if ( !*(_DWORD *)(raw +  324)
 {
 *(_WORD *)(raw +  2026) = 240;
 *(_WORD *)(raw +  2028) = 1;
-*(float *)&v446 = 0.0;
-v447 = 0.0;
-v448 = 0.0;
+payload_446[0] = 0.0;
+payload_446[1] = 0.0;
+payload_446[2] = 0.0;
 v381 = *(float *)(raw +  240) + 100.0;
 spawn_owned_object_via_manager(852,
 *(float *)(raw +  236),
 v381,
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)&v446,
+(int)payload_446,
 3);
-*(float *)&v446 = (float)selector_random_roll(0x168u);
-v448 = 1.0;
+payload_446[0] = (float)selector_random_roll(0x168u);
+payload_446[2] = 1.0;
 v382 = *(float *)(raw +  240) + 100.0;
 spawn_owned_object_via_manager(852,
 *(float *)(raw +  236),
 v382,
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)&v446,
+(int)payload_446,
 3);
-*(float *)&v446 = (float)selector_random_roll(0x168u);
+payload_446[0] = (float)selector_random_roll(0x168u);
 v383 = *(float *)(raw +  240) + 100.0;
 spawn_owned_object_via_manager(852,
 *(float *)(raw +  236),
 v383,
 (unsigned __int8)-*(_BYTE *)(raw +  260),
 1,
-(int)&v446,
+(int)payload_446,
 3);
 v360 = 0.0;
 v112 = (float)0.0;
 do
 {
-*(float *)&v446 = v112 * 60.0 + 30.0;
-v447 = 15.0;
-v448 = 2.0;
-if ( *(float *)&v446 < 0.0 || *(float *)&v446 > 180.0 )
+payload_446[0] = v112 * 60.0 + 30.0;
+payload_446[1] = 15.0;
+payload_446[2] = 2.0;
+if ( payload_446[0] < 0.0 || payload_446[0] > 180.0 )
 spawn_owned_object_via_manager(821,
 *(float *)(raw +  236),
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
 -1,
-(int)&v446,
+(int)payload_446,
 3);
 else
 spawn_owned_object_via_manager(821,
@@ -3870,7 +3860,7 @@ spawn_owned_object_via_manager(821,
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)&v446,
+(int)payload_446,
 3);
 v360 = v360 + 1.0;
 v112 = v360;
@@ -3952,8 +3942,8 @@ if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 9 )
 }
 if ( *(_WORD *)(raw +  320) == 7 )
 {
-*(float *)(raw +  284) = *(float *)(raw +  284) + 0.2000000029802322;
-v361 = *(float *)(raw +  288) - 0.2000000029802322;
+*(float *)(raw +  284) = *(float *)(raw +  284) + 0.2f;
+v361 = *(float *)(raw +  288) - 0.2f;
 *(float *)(raw +  288) = v361;
 v117 = 0.0;
 if ( v361 < 0.0 )
@@ -3967,9 +3957,9 @@ v117 = 0.0;
 }
 if ( *(_WORD *)(raw +  320) == 9 )
 {
-*(float *)(raw +  284) = *(float *)(raw +  284) - 0.2000000029802322;
+*(float *)(raw +  284) = *(float *)(raw +  284) - 0.2f;
 v118 = v117;
-v362 = *(float *)(raw +  288) + 0.2000000029802322;
+v362 = *(float *)(raw +  288) + 0.2f;
 *(float *)(raw +  288) = v362;
 if ( v362 > 1.0 )
 *(float *)(raw +  288) = 1.0;
@@ -4215,49 +4205,49 @@ if ( !*(_DWORD *)(raw +  324)
 && *(_WORD *)(raw +  318) == 3 )
 {
 *(_WORD *)(raw +  2026) = 600;
-*(float *)&v452 = 0.0;
-v453 = 0.0;
-v454 = 0.0;
+payload_452[0] = 0.0;
+payload_452[1] = 0.0;
+payload_452[2] = 0.0;
 v403 = *(float *)(raw +  240) + 100.0;
 spawn_owned_object_via_manager(855,
 *(float *)(raw +  236),
 v403,
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)&v452,
+(int)payload_452,
 3);
-*(float *)&v452 = (float)selector_random_roll(0x258u);
-v454 = 1.0;
+payload_452[0] = (float)selector_random_roll(0x258u);
+payload_452[2] = 1.0;
 v404 = *(float *)(raw +  240) + 100.0;
 spawn_owned_object_via_manager(855,
 *(float *)(raw +  236),
 v404,
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)&v452,
+(int)payload_452,
 3);
-*(float *)&v452 = (float)selector_random_roll(0x168u);
+payload_452[0] = (float)selector_random_roll(0x168u);
 v405 = *(float *)(raw +  240) + 100.0;
 spawn_owned_object_via_manager(855,
 *(float *)(raw +  236),
 v405,
 (unsigned __int8)-*(_BYTE *)(raw +  260),
 1,
-(int)&v452,
+(int)payload_452,
 3);
 v366 = 0.0;
 do
 {
-*(float *)&v452 = (float)selector_random_roll(0x168u);
-v453 = 0.0;
-v454 = 2.0;
+payload_452[0] = (float)selector_random_roll(0x168u);
+payload_452[1] = 0.0;
+payload_452[2] = 2.0;
 v406 = *(float *)(raw +  240) + 100.0;
 spawn_owned_object_via_manager(855,
 *(float *)(raw +  236),
 v406,
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)&v452,
+(int)payload_452,
 3);
 v366 = v366 + 1.0;
 }
@@ -4279,9 +4269,9 @@ if ( *(__int16 *)(raw +  1840) < 0 )
 v133 = (((*(_BYTE *)(raw +  1840) & 1) - 1) | 0xFFFFFFFE) == -1;
 if ( v133 )
 {
-*(float *)&v455 = 10.0 - (double)selector_random_roll(0x2Du);
-v456 = 0.0;
-v457 = 2.0;
+payload_455[0] = 10.0 - (double)selector_random_roll(0x2Du);
+payload_455[1] = 0.0;
+payload_455[2] = 2.0;
 v443 = *(float *)(raw +  240) + 20.0;
 v407 = v443 - (double)selector_random_roll(0x28u);
 *(float *)(raw +  1852) = v407;
@@ -4289,16 +4279,16 @@ v207 = (unsigned __int8)(2 * (*(float *)(raw +  240) >= (double)v407) - 1);
 v181 = *(unsigned __int8 *)(raw +  260);
 v167 = v407;
 v408 = (double)selector_random_roll(0x64u) + *(float *)(raw +  236) - 50.0;
-spawn_owned_object_via_manager(856, v408, v167, v181, v207, (int)&v455, 3);
-*(float *)&v455 = 0.0;
-v456 = (double)*(__int16 *)(raw +  1840) * 0.0 + 45.0;
-v457 = 5.0;
+spawn_owned_object_via_manager(856, v408, v167, v181, v207, (int)payload_455, 3);
+payload_455[0] = 0.0;
+payload_455[1] = (double)*(__int16 *)(raw +  1840) * 0.0 + 45.0;
+payload_455[2] = 5.0;
 spawn_owned_object_via_manager(856,
 *(float *)(raw +  236),
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)&v455,
+(int)payload_455,
 3);
 }
 ++*(_WORD *)(raw +  1840);
@@ -4334,11 +4324,11 @@ emit_fighter_effect_433cc0(128, v411, *(float *)(raw +  240), v135, -1);
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 9 )
 *(float *)(raw +  244) = 25.0;
 }
-v105 = 0.2000000029802322;
+v105 = 0.2f;
 if ( *(_WORD *)(raw +  320) == 7 )
 {
-*(float *)(raw +  284) = *(float *)(raw +  284) + 0.2000000029802322;
-v367 = *(float *)(raw +  288) - 0.2000000029802322;
+*(float *)(raw +  284) = *(float *)(raw +  284) + 0.2f;
+v367 = *(float *)(raw +  288) - 0.2f;
 *(float *)(raw +  288) = v367;
 v106 = 0.0;
 if ( v367 < 0.0 )
@@ -4474,33 +4464,33 @@ if ( (unsigned __int8)advance_frame_and_dispatch() )
 (*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 700);
 if ( !*(_WORD *)(raw +  318) && !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 7 )
 {
-*(float *)&v449 = -120.0;
-v450 = 0.0;
-v451 = 0.0;
+payload_449[0] = -120.0;
+payload_449[1] = 0.0;
+payload_449[2] = 0.0;
 v136 = *(unsigned __int8 *)(raw +  260);
 v419 = *(float *)(raw +  240) + 20.0;
 v169 = v419;
 v420 = (double)(140 * (char)v136) + *(float *)(raw +  236);
-spawn_owned_object_via_manager(900, v420, v169, v136, 1, (int)&v449, 3);
+spawn_owned_object_via_manager(900, v420, v169, v136, 1, (int)payload_449, 3);
 if ( g_match_identifier == 3 )
 {
-*(float *)&v449 = -95.0;
-v450 = 0.0;
-v451 = 0.0;
+payload_449[0] = -95.0;
+payload_449[1] = 0.0;
+payload_449[2] = 0.0;
 v137 = *(unsigned __int8 *)(raw +  260);
 v421 = *(float *)(raw +  240) + 20.0;
 v170 = v421;
 v422 = (double)(140 * (char)v137) + *(float *)(raw +  236);
-spawn_owned_object_via_manager(900, v422, v170, v137, 1, (int)&v449, 3);
+spawn_owned_object_via_manager(900, v422, v170, v137, 1, (int)payload_449, 3);
 }
 dispatch_character_wave_handle(0xCu);
 v368 = 0.0;
 do
 {
-*(float *)&v449 = (double)selector_random_roll(0x12u) + v368 * 45.0 + 22.5;
-v450 = 20.0;
-v451 = 5.0;
-if ( *(float *)&v449 < 0.0 || *(float *)&v449 > 180.0 )
+payload_449[0] = (double)selector_random_roll(0x12u) + v368 * 45.0 + 22.5;
+payload_449[1] = 20.0;
+payload_449[2] = 5.0;
+if ( payload_449[0] < 0.0 || payload_449[0] > 180.0 )
 {
 v209 = -1;
 v183 = *(unsigned __int8 *)(raw +  260);
@@ -4517,7 +4507,7 @@ v423 = (double)(140 * (char)v183) + *(float *)(raw +  236);
 v138 = v423;
 }
 v152 = v138;
-spawn_owned_object_via_manager(900, v152, v171, v183, v209, (int)&v449, 3);
+spawn_owned_object_via_manager(900, v152, v171, v183, v209, (int)payload_449, 3);
 v368 = v368 + 1.0;
 }
 while ( v368 < 8.0 );
@@ -4662,7 +4652,7 @@ if ( !*(_DWORD *)(raw +  324)
 goto LABEL_1765;
 }
 LABEL_1674:
-v142 = 0.2000000029802322;
+v142 = 0.2f;
 if ( *(_WORD *)(raw +  318) )
 goto LABEL_1683;
 if ( *(_WORD *)(raw +  322) )
@@ -4675,7 +4665,7 @@ emit_fighter_effect_433cc0(128, v428, *(float *)(raw +  240), *(unsigned __int8 
 *(float *)(raw +  264) = 35.0;
 *(float *)(raw +  268) = 70.0;
 dispatch_character_wave_handle(0x32u);
-v142 = 0.2000000029802322;
+v142 = 0.2f;
 LABEL_1678:
 if ( *(_WORD *)(raw +  320) == 7 )
 {
@@ -4784,8 +4774,8 @@ dispatch_character_wave_handle(0x32u);
 LABEL_1715:
 if ( *(_WORD *)(raw +  320) == 7 )
 {
-*(float *)(raw +  284) = *(float *)(raw +  284) + 0.2000000029802322;
-v375 = *(float *)(raw +  288) - 0.2000000029802322;
+*(float *)(raw +  284) = *(float *)(raw +  284) + 0.2f;
+v375 = *(float *)(raw +  288) - 0.2f;
 *(float *)(raw +  288) = v375;
 if ( v375 < 0.0 )
 *(float *)(raw +  288) = 0.0;
@@ -4836,7 +4826,7 @@ return;
 case 0x31B:
 if ( *(_WORD *)(raw +  318) )
 goto LABEL_1764;
-*(float *)(raw +  248) = *(float *)(raw +  248) - 0.300000011920929;
+*(float *)(raw +  248) = *(float *)(raw +  248) - 0.3f;
 if ( !has_crossed_stage_surface_while_descending() )
 goto LABEL_1764;
 (*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 1);
@@ -4854,7 +4844,7 @@ v3 = 0.0;
 }
 if ( *(_WORD *)(raw +  318) == 1 )
 {
-v376 = *(float *)(raw +  244) - 0.2000000029802322;
+v376 = *(float *)(raw +  244) - 0.2f;
 *(float *)(raw +  244) = v376;
 if ( v376 < v3 )
 *(float *)(raw +  244) = v3;
@@ -4885,7 +4875,7 @@ v3 = 0.0;
 }
 if ( *(_WORD *)(raw +  318) == 1 )
 {
-v377 = *(float *)(raw +  244) - 0.2000000029802322;
+v377 = *(float *)(raw +  244) - 0.2f;
 *(float *)(raw +  244) = v377;
 if ( v377 < v3 )
 *(float *)(raw +  244) = v3;

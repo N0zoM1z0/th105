@@ -1127,3 +1127,44 @@ __real@c000000000000000,0x006CD1F0,00000000000000c0,0,Current shared Fighter act
 __real@c02e000000000000,0x006C3B60,0000000000002ec0,0,Current shared Fighter action-state root 0x004740C0 compares against canonical double -15.0 from 0x006C3B60 in action 74/75 boundary transitions; PE bytes attested 2026-09-05.,literal
 __real@c039000000000000,0x006C3B68,00000000000039c0,0,Current shared Fighter action-state root 0x004740C0 compares against canonical double -25.0 from 0x006C3B68 in action 74/75 boundary transitions; PE bytes attested 2026-09-05.,literal
 __real@c1000000,0x006CD230,000000c1,0,Current shared Fighter action-state root 0x004740C0 compares canonical IEEE-754 float -8.0 from 0x006CD230 in shared bounce handling; PE bytes attested 2026-09-05.,literal
+__real@41300000,0x006C445C,00003041,0,Current Youmu vslot28 target loads canonical +11.0f at 0x005316C1/0x005319DA; PE bytes attested 2026-09-05,literal
+__real@41580000,0x006C47D0,00005841,0,Current Youmu vslot28 target loads canonical +13.5f at 0x005309DC; PE bytes attested 2026-09-05,literal
+__real@c1300000,0x006C3C6C,000030c1,0,Current Youmu vslot28 target loads canonical -11.0f at 0x005317FE/0x00532263; PE bytes attested 2026-09-05,literal
+__real@c1580000,0x006C5020,000058c1,0,Current Youmu vslot28 target loads canonical -13.5f at 0x00530B53; PE bytes attested 2026-09-05,literal
+__real@3f59999a,0x006C3DE8,9a99593f,0,Current Youmu vslot28 target directly references this exact literal at 0x00535B70; PE bytes attested 2026-09-05,literal
+__real@3fd99999a0000000,0x006C3D20,000000a09999d93f,0,"Current Youmu vslot28 target directly references this exact literal at 0x00534D8A, 0x0053502D; PE bytes attested 2026-09-05",literal
+__real@3ffc000000000000,0x006C5018,000000000000fc3f,0,Current Youmu vslot28 target directly references this exact literal at 0x00530E67; PE bytes attested 2026-09-05,literal
+__real@4036800000000000,0x006C4638,0000000000803640,0,"Current Youmu vslot28 target directly references this exact literal at 0x00536DB9, 0x00537B86, 0x00538776, 0x005388C7; PE bytes attested 2026-09-05",literal
+__real@4046800000000000,0x006C3D48,0000000000804640,0,"Current Youmu vslot28 target directly references this exact literal at 0x00536DB3, 0x00537B80, 0x005380B1, 0x00538770, 0x005388C1; PE bytes attested 2026-09-05",literal
+__real@4052800000000000,0x006C5000,0000000000805240,0,Current Youmu vslot28 target directly references this exact literal at 0x00534C83; PE bytes attested 2026-09-05,literal
+__real@4055c00000000000,0x006C4418,0000000000c05540,0,"Current Youmu vslot28 target directly references this exact literal at 0x00536C99, 0x00537A60; PE bytes attested 2026-09-05",literal
+__real@405a800000000000,0x006C4370,0000000000805a40,0,Current Youmu vslot28 target directly references this exact literal at 0x00532D70; PE bytes attested 2026-09-05,literal
+__real@405b800000000000,0x006C3E78,0000000000805b40,0,"Current Youmu vslot28 target directly references this exact literal at 0x00531153, 0x00531197, 0x005327CC, 0x00532812; PE bytes attested 2026-09-05",literal
+__real@405cc00000000000,0x006C4420,0000000000c05c40,0,Current Youmu vslot28 target directly references this exact literal at 0x00535D61; PE bytes attested 2026-09-05,literal
+__real@405d800000000000,0x006C47B8,0000000000805d40,0,Current Youmu vslot28 target directly references this exact literal at 0x005330B6; PE bytes attested 2026-09-05,literal
+__real@405e000000000000,0x006C3E70,0000000000005e40,0,"Current Youmu vslot28 target directly references this exact literal at 0x00531373, 0x005313A6, 0x005329D8, 0x00532A0D; PE bytes attested 2026-09-05",literal
+__real@4062c00000000000,0x006C3D80,0000000000c06240,0,"Current Youmu vslot28 target directly references this exact literal at 0x0053491F, 0x00534A1C, 0x00537746, 0x0053776A; PE bytes attested 2026-09-05",literal
+__real@406a400000000000,0x006C3EE0,0000000000406a40,0,Current Youmu vslot28 target directly references this exact literal at 0x00533CE7; PE bytes attested 2026-09-05,literal
+__real@406c200000000000,0x006C5010,0000000000206c40,0,"Current Youmu vslot28 target directly references this exact literal at 0x005340B1, 0x00534206; PE bytes attested 2026-09-05",literal
+__real@406f400000000000,0x006C3D30,0000000000406f40,0,"Current Youmu vslot28 target directly references this exact literal at 0x005377DE, 0x00537825; PE bytes attested 2026-09-05",literal
+__real@4075e00000000000,0x006C4750,0000000000e07540,0,Current Youmu vslot28 target directly references this exact literal at 0x005391EA; PE bytes attested 2026-09-05,literal
+__real@41000000,0x006C2874,00000041,0,"Current Youmu vslot28 target directly references this exact literal at 0x005309D0, 0x00530B47, 0x00536E91, 0x00537C5E, 0x0053884E, 0x00538966, 0x00538B16; PE bytes attested 2026-09-05",literal
+__real@41a00000,0x006C3E68,0000a041,0,"Current Youmu vslot28 target directly references this exact literal at 0x00532DB1, 0x00533389, 0x00535CC7, 0x00536DC5, 0x00537B92, 0x005385D5, 0x00538782, 0x005388D3, 0x005389D7, 0x00538B01; PE bytes attested 2026-09-05",literal
+__real@41b80000,0x006C3DE4,0000b841,0,"Current Youmu vslot28 target directly references this exact literal at 0x00531590, 0x00532155; PE bytes attested 2026-09-05",literal
+__real@41cc0000,0x006C5008,0000cc41,0,Current Youmu vslot28 target directly references this exact literal at 0x005342B3; PE bytes attested 2026-09-05,literal
+__real@41f00000,0x006C3DD4,0000f041,0,"Current Youmu vslot28 target directly references this exact literal at 0x00532E91, 0x00533589, 0x00533F01, 0x00534069, 0x005341BE, 0x00536425, 0x00536614, 0x00536A40, 0x005381C5, 0x00538D37, 0x005390A3, 0x00539207, 0x00539247; PE bytes attested 2026-09-05",literal
+__real@420c0000,0x006C42B4,00000c42,0,"Current Youmu vslot28 target directly references this exact literal at 0x00533C95, 0x00536A91, 0x00537405, 0x00538216, 0x00538D86, 0x005390F4; PE bytes attested 2026-09-05",literal
+__real@42700000,0x006D6EE0,00007042,0,"Current Youmu vslot28 target directly references this exact literal at 0x005341EC, 0x00535D2A, 0x005378B1; PE bytes attested 2026-09-05",literal
+__real@42f00000,0x006C4458,0000f042,0,Current Youmu vslot28 target directly references this exact literal at 0x00538FF7; PE bytes attested 2026-09-05,literal
+__real@43610000,0x006C3DAC,00006143,0,Current Youmu vslot28 target directly references this exact literal at 0x00537683; PE bytes attested 2026-09-05,literal
+__real@439d8000,0x006C4FFC,00809d43,0,Current Youmu vslot28 target directly references this exact literal at 0x005376BC; PE bytes attested 2026-09-05,literal
+__real@43af0000,0x006C3D70,0000af43,0,Current Youmu vslot28 target directly references this exact literal at 0x00539293; PE bytes attested 2026-09-05,literal
+__real@442a0000,0x006C3E58,00002a44,0,Current Youmu vslot28 target directly references this exact literal at 0x00531C1E; PE bytes attested 2026-09-05,literal
+__real@c03e000000000000,0x006C4658,0000000000003ec0,0,Current Youmu vslot28 target directly references this exact literal at 0x00539219; PE bytes attested 2026-09-05,literal
+__real@c1a00000,0x006C3C78,0000a0c1,0,"Current Youmu vslot28 target directly references this exact literal at 0x0053150C, 0x00531645, 0x00531782, 0x00531870, 0x0053195E, 0x005320D0, 0x005321E7; PE bytes attested 2026-09-05",literal
+__real@c1c80000,0x006C3C74,0000c8c1,0,"Current Youmu vslot28 target directly references this exact literal at 0x00530F6D, 0x00533F2F; PE bytes attested 2026-09-05",literal
+__real@c1f00000,0x006C3DD0,0000f0c1,0,Current Youmu vslot28 target directly references this exact literal at 0x00539228; PE bytes attested 2026-09-05,literal
+__real@c20c0000,0x006C435C,00000cc2,0,Current Youmu vslot28 target directly references this exact literal at 0x00533DC3; PE bytes attested 2026-09-05,literal
+__real@c2200000,0x006C4708,000020c2,0,Current Youmu vslot28 target directly references this exact literal at 0x00533664; PE bytes attested 2026-09-05,literal
+__real@c2be0000,0x006C4D48,0000bec2,0,Current Youmu vslot28 target directly references this exact literal at 0x005386D1; PE bytes attested 2026-09-05,literal
+__real@c2f00000,0x006C4764,0000f0c2,0,"Current Youmu vslot28 target directly references this exact literal at 0x00533EF2, 0x0053865B; PE bytes attested 2026-09-05",literal
