@@ -520,12 +520,21 @@ ACTION_62_67_ADVANCE:
           return;
         }
         advance_frame_and_dispatch();
-        if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 && 0.0 != velocity_y_f8) {
-          if (0.0 == velocity_x_f4)
-            set_sequence(3);
-          else
-            set_sequence(2);
-        }
+        if ( frame_counter_144 )
+          return;
+        if ( frame_timer_142 )
+          return;
+        if ( frame_index_140 )
+          return;
+        if ( sequence_13e != 1 )
+          return;
+        v19 = 0.0;
+        if ( 0.0 == velocity_y_f8 )
+          return;
+        if ( v19 == velocity_x_f4 )
+          set_sequence(3);
+        else
+          set_sequence(2);
         return;
 
       case 76:
