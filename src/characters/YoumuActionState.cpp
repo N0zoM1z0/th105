@@ -562,12 +562,11 @@ if (*(__int16 *)(raw + 2026) > 0)
   --*(__int16 *)(raw + 2026);
   if (*(__int16 *)(raw + 372) <= 0 || *(__int16 *)(*(_DWORD *)(raw + 368) + 372) <= 0)
     *(_WORD *)(raw + 2026) = 0;
-  v4 = *(_WORD *)(raw + 316);
-  if (v4 >= 600)
+  if (*(__int16 *)(raw + 316) >= 600)
   {
-    if (v4 <= 699)
+    if (*(__int16 *)(raw + 316) <= 699)
     {
-      if (v4 == 602 || v4 == 605)
+      if (*(__int16 *)(raw + 316) == 602 || *(__int16 *)(raw + 316) == 605)
       {
         if (!*(_WORD *)(raw + 318))
           *(_WORD *)(raw + 2026) = 0;
@@ -590,16 +589,39 @@ if (v5 <= 300)
 {
   if (v5 != 300)
   {
-switch ( *(_WORD *)(raw +  316) )
+switch ( v5 )
 {
 case 0:
 resolve_stage_surface_landing_transition();
-v6 = 0.0;
-if ( 0.0 == *(float *)(raw +  244) )
-*(_BYTE *)(raw +  1150) = 0;
-if ( !*(_BYTE *)(raw +  1150) )
-goto LABEL_25;
-goto LABEL_26;
+if ( !*(float *)(raw + 244) )
+  *(_BYTE *)(raw + 1150) = 0;
+if ( !*(_BYTE *)(raw + 1150) )
+{
+  zero_velocity_acceleration();
+  advance_frame_and_dispatch();
+  return;
+}
+if ( *(float *)(raw + 244) > 0.0f )
+{
+  v228 = *(float *)(raw + 244) - 0.5f;
+  *(float *)(raw + 244) = v228;
+  if ( v228 < 0.0f )
+  {
+    zero_velocity_acceleration();
+    *(_BYTE *)(raw + 1150) = 0;
+  }
+}
+if ( !(*(float *)(raw + 244) < 0.0f)
+  || (v229 = *(float *)(raw + 244) + 0.5f,
+      *(float *)(raw + 244) = v229,
+      !(v229 > 0.0f)) )
+{
+  goto LABEL_101;
+}
+zero_velocity_acceleration();
+*(_BYTE *)(raw + 1150) = 0;
+advance_frame_and_dispatch();
+return;
 case 1:
 resolve_stage_surface_landing_transition();
 if ( *(_BYTE *)(raw +  1150) )
@@ -636,40 +658,32 @@ if ( (unsigned __int8)advance_frame_and_dispatch() && !*(_WORD *)(raw +  320) )
 return;
 case 2:
 resolve_stage_surface_landing_transition();
-if ( *(_BYTE *)(raw +  1150) )
+if ( !*(_BYTE *)(raw + 1150) )
 {
-v6 = 0.0;
-LABEL_26:
-if ( v6 < *(float *)(raw +  244) )
+  zero_velocity_acceleration();
+  advance_frame_and_dispatch();
+  return;
+}
+if ( *(float *)(raw + 244) > 0.0f )
 {
-v228 = *(float *)(raw +  244) - 0.5;
-*(float *)(raw +  244) = v228;
-if ( v228 < v6 )
+  v228 = *(float *)(raw + 244) - 0.5f;
+  *(float *)(raw + 244) = v228;
+  if ( v228 < 0.0f )
+  {
+    zero_velocity_acceleration();
+    *(_BYTE *)(raw + 1150) = 0;
+  }
+}
+if ( !(*(float *)(raw + 244) < 0.0f)
+  || (v229 = *(float *)(raw + 244) + 0.5f,
+      *(float *)(raw + 244) = v229,
+      !(v229 > 0.0f)) )
 {
+  goto LABEL_101;
+}
 zero_velocity_acceleration();
-v6 = 0.0;
-*(_BYTE *)(raw +  1150) = 0;
-}
-}
-if ( v6 <= *(float *)(raw +  244)
-|| (v229 = *(float *)(raw +  244) + 0.5, *(float *)(raw +  244) = v229, v229 <= v6) )
-{
-LABEL_101:
+*(_BYTE *)(raw + 1150) = 0;
 advance_frame_and_dispatch();
-}
-else
-{
-zero_velocity_acceleration();
-*(_BYTE *)(raw +  1150) = 0;
-advance_frame_and_dispatch();
-}
-}
-else
-{
-LABEL_25:
-zero_velocity_acceleration();
-advance_frame_and_dispatch();
-}
 return;
 case 3:
 resolve_stage_surface_landing_transition();
@@ -704,8 +718,10 @@ zero_velocity_acceleration();
 }
 if ( !(unsigned __int8)advance_frame_and_dispatch() )
 return;
-v9 = *(_WORD *)(raw +  320) == 0;
-goto LABEL_55;
+if ( *(_WORD *)(raw +  320) )
+return;
+(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+return;
 case 4:
 resolve_stage_surface_landing_transition();
 *(float *)(raw +  244) = 4.0;
@@ -814,7 +830,9 @@ if ( 0.0 == *(float *)(raw +  256) )
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( has_crossed_stage_surface_while_descending() )
 goto LABEL_99;
-goto LABEL_101;
+LABEL_101:
+advance_frame_and_dispatch();
+return;
 case 0xA:
 resolve_stage_surface_landing_transition();
 zero_velocity_acceleration();
@@ -835,13 +853,23 @@ if ( *(__int16 *)(raw +  318) < 3 )
 {
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( has_crossed_stage_surface_while_descending() )
-goto LABEL_111;
+{
+*(float *)(raw +  240) = stage_surface_height_at_x(this);
+zero_velocity_acceleration();
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 3);
+return;
+}
 }
 if ( !(unsigned __int8)advance_frame_and_dispatch() )
 goto LABEL_117;
 v16 = *(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8);
 if ( *(_BYTE *)(raw +  1836) == 2 )
-goto LABEL_114;
+{
+v16(raw, 700);
+*(_WORD *)(raw +  1192) = 3;
+*(_WORD *)(raw +  1196) = 3;
+return;
+}
 v16(raw, 0);
 if ( *(int *)(raw +  1720) > 0 )
 (*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 1);
@@ -862,7 +890,9 @@ return;
 }
 *(float *)(raw +  248) = 8.0;
 v17 = 13.5f;
-goto LABEL_129;
+*(float *)(raw +  244) = v17;
+*(float *)(raw +  256) = 0.5;
+return;
 case 0xC6:
 v18 = *(_WORD *)(raw +  318);
 if ( !v18 || v18 == 3 )
@@ -872,7 +902,6 @@ if ( *(__int16 *)(raw +  318) < 3 )
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( has_crossed_stage_surface_while_descending() )
 {
-LABEL_111:
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
 (*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 3);
@@ -908,7 +937,6 @@ if ( !*(_DWORD *)(raw +  324)
 {
 *(float *)(raw +  248) = 8.0;
 v17 = -13.5f;
-LABEL_129:
 *(float *)(raw +  244) = v17;
 *(float *)(raw +  256) = 0.5;
 }
@@ -921,7 +949,6 @@ goto LABEL_156;
 v16 = *(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8);
 if ( *(_BYTE *)(raw +  1836) == 2 )
 {
-LABEL_114:
 v16(raw, 700);
 *(_WORD *)(raw +  1192) = 3;
 *(_WORD *)(raw +  1196) = 3;
@@ -1024,7 +1051,12 @@ return;
 case 0xCA:
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( has_crossed_stage_surface_while_descending() )
-goto LABEL_204;
+{
+zero_velocity_acceleration();
+*(float *)(raw +  240) = stage_surface_height_at_x(this);
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
+return;
+}
 v22 = *(_WORD *)(raw +  318);
 if ( (v22 == 1 || v22 == 2) && !(*(_DWORD *)(raw +  324) % 5) )
 {
@@ -1055,13 +1087,18 @@ if ( !*(_DWORD *)(raw +  324)
 && !*(_WORD *)(raw +  320)
 && *(_WORD *)(raw +  318) == 2 )
 {
-goto LABEL_508;
+face_opponent_and_flip_horizontal_velocity();
 }
 return;
 case 0xCB:
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( has_crossed_stage_surface_while_descending() )
-goto LABEL_204;
+{
+zero_velocity_acceleration();
+*(float *)(raw +  240) = stage_surface_height_at_x(this);
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
+return;
+}
 if ( *(__int16 *)(raw +  318) < 3 && !(*(_DWORD *)(raw +  324) % 5) )
 {
 v436 = *(float *)(raw +  236) + 50.0;
@@ -1090,7 +1127,7 @@ if ( !*(_DWORD *)(raw +  324)
 && !*(_WORD *)(raw +  320)
 && *(_WORD *)(raw +  318) == 2 )
 {
-goto LABEL_508;
+face_opponent_and_flip_horizontal_velocity();
 }
 }
 return;
@@ -1113,7 +1150,12 @@ case 0xD0:
 if ( !*(_WORD *)(raw +  318) )
 resolve_stage_surface_landing_transition();
 if ( has_crossed_stage_surface_while_descending() )
-goto LABEL_225;
+{
+(*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
+*(float *)(raw +  240) = stage_surface_height_at_x(this);
+zero_velocity_acceleration();
+return;
+}
 if ( is_y_at_or_below_stage_surface(this) || *(float *)(raw +  248) > 0.0 )
 *(_WORD *)(raw +  1198) = 2;
 if ( *(__int16 *)(raw +  318) > 0 )
@@ -1134,12 +1176,27 @@ if ( *(_DWORD *)(raw +  324)
 return;
 }
 v23 = 0.0;
-goto LABEL_241;
+*(float *)(raw +  244) = v23;
+*(float *)(raw +  248) = 23.0;
+v24 = 0.75;
+*(float *)(raw +  256) = v24;
+*(_BYTE *)(raw +  1150) = 0;
+v216 = *(unsigned __int8 *)(raw +  260);
+{
+emit_fighter_effect_433cc0(63, *(float *)(raw +  236), *(float *)(raw +  240), v216, 1);
+return;
+}
+return;
 case 0xD1:
 if ( !*(_WORD *)(raw +  318) )
 resolve_stage_surface_landing_transition();
 if ( has_crossed_stage_surface_while_descending() )
-goto LABEL_225;
+{
+(*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
+*(float *)(raw +  240) = stage_surface_height_at_x(this);
+zero_velocity_acceleration();
+return;
+}
 if ( is_y_at_or_below_stage_surface(this) || *(float *)(raw +  248) > 0.0 )
 *(_WORD *)(raw +  1198) = 2;
 if ( *(__int16 *)(raw +  318) > 0 )
@@ -1160,12 +1217,26 @@ if ( *(_DWORD *)(raw +  324)
 return;
 }
 v25 = 11.0f;
-goto LABEL_261;
+*(float *)(raw +  244) = v25;
+*(float *)(raw +  248) = 17.5;
+*(float *)(raw +  256) = 0.8f;
+*(_BYTE *)(raw +  1150) = 0;
+emit_fighter_effect_433cc0(63,
+*(float *)(raw +  236),
+*(float *)(raw +  240),
+*(unsigned __int8 *)(raw +  260),
+1);
+return;
 case 0xD2:
 if ( !*(_WORD *)(raw +  318) )
 resolve_stage_surface_landing_transition();
 if ( has_crossed_stage_surface_while_descending() )
-goto LABEL_225;
+{
+(*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
+*(float *)(raw +  240) = stage_surface_height_at_x(this);
+zero_velocity_acceleration();
+return;
+}
 if ( is_y_at_or_below_stage_surface(this) || *(float *)(raw +  248) > 0.0 )
 *(_WORD *)(raw +  1198) = 2;
 if ( *(__int16 *)(raw +  318) > 0 )
@@ -1186,7 +1257,7 @@ if ( *(_DWORD *)(raw +  324)
 return;
 }
 v25 = -11.0f;
-LABEL_261:
+{
 *(float *)(raw +  244) = v25;
 *(float *)(raw +  248) = 17.5;
 *(float *)(raw +  256) = 0.8f;
@@ -1197,11 +1268,17 @@ emit_fighter_effect_433cc0(63,
 *(unsigned __int8 *)(raw +  260),
 1);
 return;
+}
 case 0xD3:
 if ( !*(_WORD *)(raw +  318) )
 resolve_stage_surface_landing_transition();
 if ( has_crossed_stage_surface_while_descending() )
-goto LABEL_225;
+{
+(*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
+*(float *)(raw +  240) = stage_surface_height_at_x(this);
+zero_velocity_acceleration();
+return;
+}
 if ( is_y_at_or_below_stage_surface(this) || *(float *)(raw +  248) > 0.0 )
 *(_WORD *)(raw +  1198) = 2;
 if ( *(__int16 *)(raw +  318) > 0 )
@@ -1222,17 +1299,27 @@ if ( *(_DWORD *)(raw +  324)
 return;
 }
 v23 = 3.0;
-LABEL_241:
+{
 *(float *)(raw +  244) = v23;
 *(float *)(raw +  248) = 23.0;
 v24 = 0.75;
-goto LABEL_242;
+*(float *)(raw +  256) = v24;
+*(_BYTE *)(raw +  1150) = 0;
+v216 = *(unsigned __int8 *)(raw +  260);
+emit_fighter_effect_433cc0(63, *(float *)(raw +  236), *(float *)(raw +  240), v216, 1);
+return;
+}
 case 0xD4:
 case 0xDD:
 if ( !*(_WORD *)(raw +  318) )
 resolve_stage_surface_landing_transition();
 if ( has_crossed_stage_surface_while_descending() )
-goto LABEL_225;
+{
+(*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
+*(float *)(raw +  240) = stage_surface_height_at_x(this);
+zero_velocity_acceleration();
+return;
+}
 if ( is_y_at_or_below_stage_surface(this) || *(float *)(raw +  248) > 0.0 )
 *(_WORD *)(raw +  1198) = 2;
 if ( *(__int16 *)(raw +  318) > 0 )
@@ -1253,10 +1340,19 @@ if ( *(_DWORD *)(raw +  324)
 return;
 }
 v26 = 11.0f;
-goto LABEL_313;
+*(float *)(raw +  244) = v26;
+*(float *)(raw +  248) = 17.5;
+v24 = 0.8f;
+{
+*(float *)(raw +  256) = v24;
+*(_BYTE *)(raw +  1150) = 0;
+v216 = *(unsigned __int8 *)(raw +  260);
+emit_fighter_effect_433cc0(63, *(float *)(raw +  236), *(float *)(raw +  240), v216, 1);
+return;
+}
 case 0xD6:
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-goto LABEL_933;
+goto LABEL_933_A;
 if ( !*(_DWORD *)(raw +  324) )
 {
 if ( !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 1 )
@@ -1266,7 +1362,7 @@ if ( !*(_DWORD *)(raw +  324)
 && !*(_WORD *)(raw +  320)
 && *(_WORD *)(raw +  318) == 6 )
 {
-goto LABEL_933;
+goto LABEL_933_A;
 }
 }
 v27 = *(_DWORD *)(raw +  1720);
@@ -1505,7 +1601,6 @@ if ( !*(_DWORD *)(raw +  324)
 *(float *)(raw +  256) = 0.75;
 *(_BYTE *)(raw +  1150) = 0;
 v216 = *(unsigned __int8 *)(raw +  260);
-LABEL_243:
 emit_fighter_effect_433cc0(63, *(float *)(raw +  236), *(float *)(raw +  240), v216, 1);
 }
 return;
@@ -1513,7 +1608,12 @@ case 0xDE:
 if ( !*(_WORD *)(raw +  318) )
 resolve_stage_surface_landing_transition();
 if ( has_crossed_stage_surface_while_descending() )
-goto LABEL_225;
+{
+(*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
+*(float *)(raw +  240) = stage_surface_height_at_x(this);
+zero_velocity_acceleration();
+return;
+}
 if ( is_y_at_or_below_stage_surface(this) || *(float *)(raw +  248) > 0.0 )
 *(_WORD *)(raw +  1198) = 2;
 if ( *(__int16 *)(raw +  318) > 0 )
@@ -1534,15 +1634,16 @@ if ( *(_DWORD *)(raw +  324)
 return;
 }
 v26 = -11.0f;
-LABEL_313:
+{
 *(float *)(raw +  244) = v26;
 *(float *)(raw +  248) = 17.5;
 v24 = 0.8f;
-LABEL_242:
 *(float *)(raw +  256) = v24;
 *(_BYTE *)(raw +  1150) = 0;
 v216 = *(unsigned __int8 *)(raw +  260);
-goto LABEL_243;
+emit_fighter_effect_433cc0(63, *(float *)(raw +  236), *(float *)(raw +  240), v216, 1);
+return;
+}
 case 0xDF:
 resolve_stage_surface_landing_transition();
 *(_BYTE *)(raw +  1150) = 1;
@@ -1632,51 +1733,14 @@ emit_fighter_effect_433cc0(126, *(float *)(raw +  236), v275, (unsigned __int8)-
 dispatch_indexed_event_member(0x1Fu);
 }
 return;
-case 0xE1:
-*(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
-goto LABEL_204;
-if ( *(__int16 *)(raw +  318) < 3 && !(*(_DWORD *)(raw +  324) % 5) )
-{
-v440 = *(float *)(raw +  236) + 50.0;
-v223 = (unsigned __int8)-*(_BYTE *)(raw +  260);
-v281 = (float)(mt19937_next_u32() % 0xC8) + *(float *)(raw +  240);
-v198 = v281;
-v282 = v440 - (float)(mt19937_next_u32() % 0x64);
-emit_fighter_effect_433cc0(124, v282, v198, v223, 1);
-}
-if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 9);
-if ( !*(_DWORD *)(raw +  324) )
-{
-if ( !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 1 )
-{
-*(float *)(raw +  244) = -10.0;
-*(float *)(raw +  248) = 5.0;
-*(float *)(raw +  256) = 0.5;
-v283 = *(float *)(raw +  240) + 120.0;
-emit_fighter_effect_433cc0(125, *(float *)(raw +  236), v283, (unsigned __int8)-*(_BYTE *)(raw +  260), 1);
-v284 = *(float *)(raw +  240) + 120.0;
-emit_fighter_effect_433cc0(126, *(float *)(raw +  236), v284, (unsigned __int8)-*(_BYTE *)(raw +  260), 1);
-dispatch_indexed_event_member(0x1Fu);
-}
-if ( !*(_DWORD *)(raw +  324)
-&& !*(_WORD *)(raw +  322)
-&& !*(_WORD *)(raw +  320)
-&& *(_WORD *)(raw +  318) == 2 )
-{
-goto LABEL_508;
-}
-}
-return;
 case 0xE2:
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( has_crossed_stage_surface_while_descending() )
 {
-LABEL_204:
 zero_velocity_acceleration();
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 (*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
+return;
 }
 else
 {
@@ -1712,7 +1776,48 @@ if ( !*(_DWORD *)(raw +  324)
 && !*(_WORD *)(raw +  320)
 && *(_WORD *)(raw +  318) == 2 )
 {
-LABEL_508:
+face_opponent_and_flip_horizontal_velocity();
+}
+}
+return;
+case 0xE1:
+*(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
+if ( has_crossed_stage_surface_while_descending() )
+{
+zero_velocity_acceleration();
+*(float *)(raw +  240) = stage_surface_height_at_x(this);
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
+return;
+}
+if ( *(__int16 *)(raw +  318) < 3 && !(*(_DWORD *)(raw +  324) % 5) )
+{
+v440 = *(float *)(raw +  236) + 50.0;
+v223 = (unsigned __int8)-*(_BYTE *)(raw +  260);
+v281 = (float)(mt19937_next_u32() % 0xC8) + *(float *)(raw +  240);
+v198 = v281;
+v282 = v440 - (float)(mt19937_next_u32() % 0x64);
+emit_fighter_effect_433cc0(124, v282, v198, v223, 1);
+}
+if ( (unsigned __int8)advance_frame_and_dispatch() )
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 9);
+if ( !*(_DWORD *)(raw +  324) )
+{
+if ( !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 1 )
+{
+*(float *)(raw +  244) = -10.0;
+*(float *)(raw +  248) = 5.0;
+*(float *)(raw +  256) = 0.5;
+v283 = *(float *)(raw +  240) + 120.0;
+emit_fighter_effect_433cc0(125, *(float *)(raw +  236), v283, (unsigned __int8)-*(_BYTE *)(raw +  260), 1);
+v284 = *(float *)(raw +  240) + 120.0;
+emit_fighter_effect_433cc0(126, *(float *)(raw +  236), v284, (unsigned __int8)-*(_BYTE *)(raw +  260), 1);
+dispatch_indexed_event_member(0x1Fu);
+}
+if ( !*(_DWORD *)(raw +  324)
+&& !*(_WORD *)(raw +  322)
+&& !*(_WORD *)(raw +  320)
+&& *(_WORD *)(raw +  318) == 2 )
+{
 face_opponent_and_flip_horizontal_velocity();
 }
 }
@@ -1737,13 +1842,10 @@ if ( v285 < 0.0 )
 }
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-LABEL_514:
 (*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
-LABEL_515:
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 2 )
 {
 dispatch_indexed_event_member(0x1Cu);
-LABEL_518:
 *(_BYTE *)(raw +  1150) = 0;
 }
 }
@@ -1755,7 +1857,7 @@ else
   {
     if (v5 < 560)
     {
-switch ( *(_WORD *)(raw +  316) )
+switch ( v5 )
 {
 case 0x12D:
 resolve_stage_surface_landing_transition();
@@ -1787,22 +1889,20 @@ if ( (unsigned __int8)advance_frame_and_dispatch() )
 (*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 4 )
 *(float *)(raw +  244) = 5.0;
-if ( *(_WORD *)(raw +  322) )
-goto LABEL_538;
-v57 = *(_WORD *)(raw +  320) <= 3;
-if ( *(_WORD *)(raw +  320) == 3 )
+if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 3 )
 {
 *(float *)(raw +  244) = 10.0;
 dispatch_indexed_event_member(0x1Bu);
 *(_BYTE *)(raw +  1150) = 0;
-LABEL_538:
-v57 = *(_WORD *)(raw +  320) <= 3;
 }
-if ( v57 )
+if ( *(_WORD *)(raw +  320) <= 3 )
 return;
 v288 = *(float *)(raw +  244) - 1.0;
 v58 = v288;
-goto LABEL_541;
+*(float *)(raw +  244) = v58;
+if ( v58 < 0.0 )
+*(float *)(raw +  244) = 0.0;
+return;
 case 0x12E:
 resolve_stage_surface_landing_transition();
 if ( (unsigned __int8)try_dispatch_directional_action_208_210(1) )
@@ -1929,7 +2029,7 @@ if ( v294 < 0.0 )
 if ( (unsigned __int8)advance_frame_and_dispatch() )
 (*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 2);
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 1 )
-goto LABEL_585;
+dispatch_indexed_event_member(0x1Cu);
 }
 return;
 case 0x130:
@@ -1954,7 +2054,10 @@ if ( (unsigned __int8)advance_frame_and_dispatch()
 && !*(_WORD *)(raw +  320)
 && *(_WORD *)(raw +  318) == 1 )
 {
-goto LABEL_56;
+{
+(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+return;
+}
 }
 if ( *(_WORD *)(raw +  318) )
 goto LABEL_609;
@@ -2086,7 +2189,12 @@ return;
 case 0x132:
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( has_crossed_stage_surface_while_descending() )
-goto LABEL_225;
+{
+(*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
+*(float *)(raw +  240) = stage_surface_height_at_x(this);
+zero_velocity_acceleration();
+return;
+}
 if ( (unsigned __int8)advance_frame_and_dispatch() )
 (*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 9);
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 3 )
@@ -2158,7 +2266,11 @@ goto LABEL_100;
 if ( *(_WORD *)(raw +  318) == 1 && has_crossed_stage_surface_while_descending() )
 {
 (*(void (__stdcall **)(int))(*(_DWORD *)raw +  12))(2);
-goto LABEL_226;
+{
+*(float *)(raw +  240) = stage_surface_height_at_x(this);
+zero_velocity_acceleration();
+return;
+}
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
 (*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
@@ -2173,9 +2285,10 @@ case 0x135:
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( has_crossed_stage_surface_while_descending() )
 {
-LABEL_225:
 (*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
-goto LABEL_226;
+*(float *)(raw +  240) = stage_surface_height_at_x(this);
+zero_velocity_acceleration();
+return;
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
 (*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 9);
@@ -2187,7 +2300,10 @@ dispatch_indexed_event_member(0x1Du);
 *(float *)(raw +  256) = 0.75;
 }
 if ( *(_WORD *)(raw +  318) == 1 && *(int *)(raw +  324) >= 15 )
-goto LABEL_933;
+{
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 9);
+return;
+}
 return;
 case 0x136:
 if ( !*(_DWORD *)(raw +  324)
@@ -2240,11 +2356,16 @@ if ( stage_surface_height_at_x(this) >= v441 )
 {
 *(float *)(raw +  248) = 0.0;
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
-goto LABEL_933;
+LABEL_933_A:
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 9);
+return;
 }
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-goto LABEL_933;
+{
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 9);
+return;
+}
 return;
 case 0x137:
 resolve_stage_surface_landing_transition();
@@ -2281,8 +2402,12 @@ if ( v306 < 0.0 )
 *(float *)(raw +  244) = 0.0;
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-goto LABEL_514;
-goto LABEL_515;
+(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 2 )
+{
+dispatch_indexed_event_member(0x1Cu);
+*(_BYTE *)(raw +  1150) = 0;
+}
 case 0x141:
 resolve_stage_surface_landing_transition();
 if ( !(unsigned __int8)try_dispatch_directional_action_208_210(1) )
@@ -2322,7 +2447,10 @@ if ( !*(_WORD *)(raw +  322) )
 if ( *(_WORD *)(raw +  320) == 5 )
 *(float *)(raw +  244) = 15.0;
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 6 )
-goto LABEL_756;
+{
+dispatch_indexed_event_member(0x1Du);
+*(_BYTE *)(raw +  1150) = 0;
+}
 }
 }
 return;
@@ -2345,9 +2473,8 @@ if ( *(_WORD *)(raw +  320) == 3 )
 *(float *)(raw +  244) = 15.0;
 if ( *(_WORD *)(raw +  322) || *(_WORD *)(raw +  320) != 2 )
 return;
-LABEL_756:
 dispatch_indexed_event_member(0x1Du);
-goto LABEL_518;
+*(_BYTE *)(raw +  1150) = 0;
 case 0x190:
 resolve_stage_surface_landing_transition();
 if ( *(__int16 *)(raw +  318) < 2 && !*(_DWORD *)(raw +  1728) )
@@ -2388,7 +2515,10 @@ goto LABEL_790;
 if ( *(_WORD *)(raw +  322) )
 return;
 if ( !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 1 )
-goto LABEL_56;
+{
+(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+return;
+}
 LABEL_790:
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 4 )
 {
@@ -2417,7 +2547,10 @@ goto LABEL_802;
 if ( *(_WORD *)(raw +  322) )
 return;
 if ( !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 1 )
-goto LABEL_56;
+{
+(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+return;
+}
 LABEL_802:
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 4 )
 {
@@ -2451,7 +2584,7 @@ if ( !*(_DWORD *)(raw +  324)
 && !*(_WORD *)(raw +  320)
 && *(_WORD *)(raw +  318) == 1 )
 {
-goto LABEL_933;
+goto LABEL_933_B;
 }
 if ( !*(_WORD *)(raw +  318) && !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 4 )
 {
@@ -2480,7 +2613,11 @@ if ( has_crossed_stage_surface_while_descending() )
 LABEL_809:
 (*(void (__thiscall **)(void *))(*(_DWORD *)raw +  20))(raw);
 *(_BYTE *)(raw +  1151) = 0;
-goto LABEL_226;
+{
+*(float *)(raw +  240) = stage_surface_height_at_x(this);
+zero_velocity_acceleration();
+return;
+}
 }
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
@@ -2490,7 +2627,7 @@ if ( !*(_DWORD *)(raw +  324)
 && !*(_WORD *)(raw +  320)
 && *(_WORD *)(raw +  318) == 1 )
 {
-goto LABEL_933;
+goto LABEL_933_B;
 }
 if ( !*(_WORD *)(raw +  318) && !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 4 )
 {
@@ -2533,8 +2670,10 @@ zero_velocity_acceleration();
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 return;
 }
-if ( (unsigned __int8)advance_frame_and_dispatch() )
-goto LABEL_933;
+if ( !(unsigned __int8)advance_frame_and_dispatch() )
+return;
+LABEL_933_B:
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 9);
 return;
 case 0x19A:
 resolve_stage_surface_landing_transition();
@@ -2610,7 +2749,7 @@ adjust_counter_482(200, 60);
 v73 = *(_DWORD *)(raw +  324);
 if ( v73 || *(_WORD *)(raw +  322) || *(_WORD *)(raw +  320) || *(_WORD *)(raw +  318) != 4 )
 goto LABEL_890;
-goto LABEL_933;
+goto LABEL_933_B;
 case 0x19F:
 v71 = 3;
 if ( *(_WORD *)(raw +  318) == 3 )
@@ -2629,10 +2768,11 @@ if ( has_crossed_stage_surface_while_descending() )
 LABEL_875:
 (*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, v71);
 *(_BYTE *)(raw +  1151) = 0;
-LABEL_226:
+{
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
 return;
+}
 }
 }
 if ( *(__int16 *)(raw +  318) < 2 && !*(_DWORD *)(raw +  1732) )
@@ -2653,7 +2793,10 @@ if ( *(_DWORD *)(raw +  324)
 {
 return;
 }
-goto LABEL_933;
+{
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 9);
+return;
+}
 case 0x1A0:
 v71 = 4;
 v75 = *(_WORD *)(raw +  318) < 4;
@@ -2684,7 +2827,10 @@ adjust_counter_482(200, 60);
 }
 v73 = *(_DWORD *)(raw +  324);
 if ( !v73 && !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 4 )
-goto LABEL_933;
+{
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 9);
+return;
+}
 LABEL_890:
 if ( *(_WORD *)(raw +  318) == 2 && v73 >= 24 )
 {
@@ -2721,7 +2867,18 @@ v322 = *(float *)(raw +  240) + 150.0;
 v158 = v322;
 v323 = (double)(30 * (char)v175) + *(float *)(raw +  236);
 v76 = v323;
-goto LABEL_947;
+v147 = v76;
+spawn_owned_object_via_manager(810, v147, v158, v175, 1, (int)v224, 1);
+*(_DWORD *)(raw +  384) = 1;
+dispatch_character_wave_handle(3);
+emit_fighter_effect_433cc0(127,
+*(float *)(raw +  236),
+*(float *)(raw +  240),
+*(unsigned __int8 *)(raw +  260),
+-1);
+adjust_counter_482(200, 120);
+add_phase_scaled_counter_558(50);
+return;
 case 0x1F5:
 resolve_stage_surface_landing_transition();
 *(_BYTE *)(raw +  380) = 0;
@@ -2736,11 +2893,18 @@ v324 = *(float *)(raw +  240) + 150.0;
 v158 = v324;
 v325 = (double)(30 * (char)v175) + *(float *)(raw +  236);
 v76 = v325;
-LABEL_947:
 v147 = v76;
 spawn_owned_object_via_manager(810, v147, v158, v175, 1, (int)v224, 1);
-v227 = 3;
-goto LABEL_948;
+*(_DWORD *)(raw +  384) = 1;
+dispatch_character_wave_handle(3);
+emit_fighter_effect_433cc0(127,
+*(float *)(raw +  236),
+*(float *)(raw +  240),
+*(unsigned __int8 *)(raw +  260),
+-1);
+adjust_counter_482(200, 120);
+add_phase_scaled_counter_558(50);
+return;
 case 0x1F9:
 resolve_stage_surface_landing_transition();
 *(_BYTE *)(raw +  380) = 4;
@@ -2758,7 +2922,18 @@ v176 = *(unsigned __int8 *)(raw +  260);
 v159 = *(float *)(raw +  240);
 v326 = (double)(80 * (char)v176) + *(float *)(raw +  236);
 v77 = v326;
-goto LABEL_961;
+v148 = v77;
+spawn_owned_object_via_manager(815, v148, v159, v176, 1, (int)v225, 3);
+*(_DWORD *)(raw +  384) = 1;
+dispatch_character_wave_handle(7);
+emit_fighter_effect_433cc0(127,
+*(float *)(raw +  236),
+*(float *)(raw +  240),
+*(unsigned __int8 *)(raw +  260),
+-1);
+adjust_counter_482(200, 120);
+add_phase_scaled_counter_558(50);
+return;
 case 0x1FA:
 resolve_stage_surface_landing_transition();
 *(_BYTE *)(raw +  380) = 4;
@@ -2776,13 +2951,10 @@ v176 = *(unsigned __int8 *)(raw +  260);
 v159 = *(float *)(raw +  240);
 v327 = (double)(80 * (char)v176) + *(float *)(raw +  236);
 v77 = v327;
-LABEL_961:
 v148 = v77;
 spawn_owned_object_via_manager(815, v148, v159, v176, 1, (int)v225, 3);
-v227 = 7;
-LABEL_948:
 *(_DWORD *)(raw +  384) = 1;
-dispatch_character_wave_handle(v227);
+dispatch_character_wave_handle(7);
 emit_fighter_effect_433cc0(127,
 *(float *)(raw +  236),
 *(float *)(raw +  240),
@@ -2800,10 +2972,7 @@ if ( v78 == 1 || v78 == 2 )
 {
 if ( !*(_WORD *)(raw +  1840) )
 adjust_counter_482(200, 120);
-v79 = (*(__int16 *)(raw +  1840) & 0x80000003) == 0;
-if ( *(__int16 *)(raw +  1840) < 0 )
-v79 = (((*(_BYTE *)(raw +  1840) & 3) - 1) | 0xFFFFFFFC) == -1;
-if ( v79 )
+if ( *(__int16 *)(raw +  1840) % 4 == 0 )
 {
 dispatch_character_wave_handle(0xDu);
 *(float *)v489 = 0.0;
@@ -2822,12 +2991,13 @@ if ( v81 == 1 && *(int *)(raw +  324) >= 16 || v81 == 2 && *(int *)(raw +  324) 
 goto LABEL_898;
 if ( (unsigned __int8)advance_frame_and_dispatch() )
 (*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
-if ( !*(_DWORD *)(raw +  324) && !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) )
+if ( !*(_DWORD *)(raw +  324)
+&& !*(_WORD *)(raw +  322)
+&& !*(_WORD *)(raw +  320)
+&& *(_WORD *)(raw +  318) == 4 )
 {
-v9 = *(_WORD *)(raw +  318) == 4;
-LABEL_55:
-if ( v9 )
-goto LABEL_56;
+(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+return;
 }
 return;
 case 0x208:
@@ -2849,7 +3019,12 @@ if ( v330 < v3 )
 *(float *)(raw +  244) = v3;
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( has_crossed_stage_surface_while_descending() )
-goto LABEL_998;
+{
+zero_velocity_acceleration();
+*(float *)(raw +  240) = stage_surface_height_at_x(this);
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 3);
+return;
+}
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
 (*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
@@ -2924,7 +3099,6 @@ if ( v333 < v3 )
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( has_crossed_stage_surface_while_descending() )
 {
-LABEL_998:
 zero_velocity_acceleration();
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 (*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 3);
@@ -3076,7 +3250,10 @@ else
 }
 }
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 7 && *(_BYTE *)(raw +  1872) )
-goto LABEL_1097;
+{
+face_opponent_and_flip_horizontal_velocity();
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 529);
+}
 }
 }
 }
@@ -3091,12 +3268,21 @@ resolve_stage_surface_landing_transition();
 if ( !*(_DWORD *)(raw +  1732) )
 *(_BYTE *)(raw +  1872) = 0;
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-goto LABEL_56;
+{
+(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+return;
+}
 v91 = *(_DWORD *)(raw +  324);
 if ( !v91 && !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 1 )
-goto LABEL_56;
+{
+(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+return;
+}
 if ( !v91 && !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 2 )
-goto LABEL_56;
+{
+(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+return;
+}
 if ( !v91 && !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 3
 || !v91 && !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 4 )
 {
@@ -3177,7 +3363,6 @@ else
 }
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 7 && *(_BYTE *)(raw +  1872) )
 {
-LABEL_1097:
 face_opponent_and_flip_horizontal_velocity();
 (*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 529);
 }
@@ -3228,14 +3413,9 @@ goto LABEL_1174;
 if ( !*(_WORD *)(raw +  322) )
 {
 if ( !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 2 )
-{
-LABEL_933:
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 9);
-return;
-}
+goto LABEL_933_A;
 LABEL_1174:
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 4 )
-LABEL_585:
 dispatch_indexed_event_member(0x1Cu);
 }
 return;
@@ -3310,7 +3490,10 @@ if ( !*(_DWORD *)(raw +  324)
 || !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 2
 || !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 5) )
 {
-goto LABEL_56;
+{
+(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+return;
+}
 }
 if ( *(_WORD *)(raw +  318) )
 goto LABEL_1227;
@@ -3466,7 +3649,10 @@ if ( (unsigned __int8)advance_frame_and_dispatch() )
 (*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
 v101 = *(_DWORD *)(raw +  324);
 if ( !v101 && !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 1 )
-goto LABEL_56;
+{
+(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+return;
+}
 if ( !*(_WORD *)(raw +  318) )
 {
 if ( *(__int16 *)(raw +  320) <= 7 && !(v101 % 5) && *(float *)(raw +  244) > 0.0 )
@@ -3586,7 +3772,7 @@ add_phase_scaled_counter_558(50);
   }
   else
   {
-switch ( *(_WORD *)(raw +  316) )
+switch ( v5 )
 {
 case 0x235:
 case 0x236:
@@ -3690,9 +3876,37 @@ if ( v354 < 0.0 )
 *(float *)(raw +  288) = 0.0;
 if ( *(float *)(raw +  284) > 3.0 )
 *(float *)(raw +  284) = 3.0;
-goto LABEL_1367;
 }
-goto LABEL_1366;
+else
+{
+v106 = 0.0;
+}
+if ( *(_WORD *)(raw +  320) == 9 )
+{
+*(float *)(raw +  284) = *(float *)(raw +  284) - v105;
+v107 = v106;
+v108 = v105 + *(float *)(raw +  288);
+v109 = v107;
+v355 = v108;
+*(float *)(raw +  288) = v355;
+if ( v355 > 1.0 )
+*(float *)(raw +  288) = 1.0;
+if ( *(float *)(raw +  284) < 1.0 )
+*(float *)(raw +  284) = 1.0;
+}
+else
+{
+v109 = v106;
+}
+if ( *(__int16 *)(raw +  320) >= 9 )
+{
+v356 = *(float *)(raw +  244) - 1.0;
+*(float *)(raw +  244) = v356;
+if ( v356 < v109 )
+*(float *)(raw +  244) = v109;
+}
+if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 10 )
+reinterpret_cast<FighterActionScratchView *>(raw + 4)->reset();
 }
 }
 else
@@ -4338,10 +4552,8 @@ if ( *(float *)(raw +  284) > 3.0 )
 }
 else
 {
-LABEL_1366:
 v106 = 0.0;
 }
-LABEL_1367:
 if ( *(_WORD *)(raw +  320) == 9 )
 {
 *(float *)(raw +  284) = *(float *)(raw +  284) - v105;
@@ -4430,7 +4642,7 @@ if ( (unsigned __int8)advance_frame_and_dispatch()
 && !*(_WORD *)(raw +  320)
 && *(_WORD *)(raw +  318) == 1 )
 {
-LABEL_56:
+
 (*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
 return;
 }
@@ -4452,7 +4664,6 @@ if ( !v66 )
 {
 v305 = *(float *)(raw +  244) - 2.0;
 v58 = v305;
-LABEL_541:
 *(float *)(raw +  244) = v58;
 if ( v58 < 0.0 )
 *(float *)(raw +  244) = 0.0;

@@ -77,3 +77,12 @@ python3 scripts/map-giant-action-switches.py youmu-vslot28 --json
 ```
 
 Root/table witnesses live in `config/giant-action-switches.toml`.  The mapper reads `resources/th105.exe`, validates every byte index against the destination-table count, requires every decoded destination to stay inside the reviewed callable, checks retained call/RET/group census invariants, and annotates each physical action destination with direct callees from `config/functions.csv`.  Add new roster roots to the manifest only after independently attesting their callable and metadata boundaries.  The emitted spans are source-ownership evidence; they do not split the authored exact-byte ledger.
+
+Compare a compiled giant-root candidate against that target ownership map with:
+
+```bash
+python3 scripts/compare-giant-action-switches.py youmu-vslot28 build/match-units/GptWeb_YoumuActionState.obj
+python3 scripts/compare-giant-action-switches.py youmu-vslot28 build/match-units/GptWeb_YoumuActionState.obj --json
+```
+
+The candidate mapper parses i386 COFF directly and discovers each sparse destination table from relocation topology rather than compiler-generated `$LN...` symbol numbers: it requires the expected run of local `.text` `IMAGE_REL_I386_DIR32` relocations followed immediately by an in-range byte-index table.  It fails closed on ambiguous tables, wrong physical-group counts, destination-count changes, or target groups that split in the candidate.  Use its per-group `drift` and `span_diff` to find common-tail ownership inversions; never treat an exact action span as partial authored-byte acceptance.
