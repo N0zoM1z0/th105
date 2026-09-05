@@ -15236,7 +15236,7 @@ source = "src/battle/BattleSetupStateHelpers.cpp"
 object = "build/match-units/GptWeb_BattleSetupStateHelpers.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current 1.06a battle-pair metadata, input reset and slot-finalization helpers plus the exact 561-byte update-first camera synchronizer. Exact callers establish the global receiver and fighter pointer ordering; late Y-pointer alias lifetime closes the final x87 midpoint ordering without register coercion. Update-second remains source-present/nonexact and is not in this acceptance unit."
+notes = "Current 1.06a battle-pair camera/update family is canonical exact: update-first 561 bytes and update-second 948 bytes, alongside exact metadata/reset/setup helpers. Late Y-pointer alias lifetime closes update-first; update-second restores target x87 smoothing-tail ownership, double vertical-limit lifetime, and viewport assignment order without assembly or register coercion."
 
 [[units.gpt-web-battle-setup-state-helpers.functions]]
 address = "0x00426B90"
@@ -15247,6 +15247,14 @@ address = "0x00426BB0"
 symbol_base = "?update_first@GlobalBattlePairState@th105@@QAEXXZ"
 rel32_targets = [
   "_CIsqrt=0x0068A380",
+]
+
+[[units.gpt-web-battle-setup-state-helpers.functions]]
+address = "0x00426DF0"
+symbol_base = "?update_second@GlobalBattlePairState@th105@@QAEXXZ"
+rel32_targets = [
+  "battle_camera_wave_x=0x004063D0",
+  "battle_camera_wave_y=0x00406360",
 ]
 
 [[units.gpt-web-battle-setup-state-helpers.functions]]

@@ -154,15 +154,15 @@ void GlobalBattlePairState::update_second()
 
     float scaled_height = (mirrored_14 - 0.5f) * 2.0;
     if (enabled_2d) {
-        if (!(source_04 > mirrored_1c)) {
-            mirrored_1c = static_cast<float>(
-                mirrored_1c - ((mirrored_1c - source_04) / 10.0 + 1.0));
-            if (source_04 > mirrored_1c)
-                mirrored_1c = source_04;
-        } else {
+        if (mirrored_1c < source_04) {
             mirrored_1c = static_cast<float>(
                 mirrored_1c - ((mirrored_1c - source_04) / 10.0 - 1.0));
             if (source_04 < mirrored_1c)
+                mirrored_1c = source_04;
+        } else {
+            mirrored_1c = static_cast<float>(
+                mirrored_1c - ((mirrored_1c - source_04) / 10.0 + 1.0));
+            if (source_04 > mirrored_1c)
                 mirrored_1c = source_04;
         }
     } else if (mirrored_1c < source_04) {
@@ -176,15 +176,17 @@ void GlobalBattlePairState::update_second()
         if (upper_fighter > 270.0f) {
             mirrored_1c = static_cast<float>(
                 mirrored_1c - ((mirrored_1c - source_04) / 10.0 + 1.0));
+            if (source_04 > mirrored_1c)
+                mirrored_1c = source_04;
         } else {
             mirrored_1c = static_cast<float>(
                 mirrored_1c - ((mirrored_1c - source_04) / 30.0 + 1.0));
+            if (source_04 > mirrored_1c)
+                mirrored_1c = source_04;
         }
-        if (source_04 > mirrored_1c)
-            mirrored_1c = source_04;
     }
 
-    float vertical_limit = static_cast<float>(scaled_height * -420.0);
+    double vertical_limit = scaled_height * -420.0;
     if (mirrored_1c < vertical_limit)
         mirrored_1c = vertical_limit;
     else if (mirrored_1c > 0.0f)
@@ -212,8 +214,8 @@ void GlobalBattlePairState::update_second()
     source_10 = static_cast<float>(
         420.0 / mirrored_14 - (target_34 + mirrored_1c));
     viewport_left_5c = -source_0c;
-    viewport_top_60 = source_10;
     viewport_right_64 = static_cast<float>(640.0 / mirrored_14 - source_0c);
+    viewport_top_60 = source_10;
     viewport_bottom_68 = static_cast<float>(source_10 - 480.0 / mirrored_14);
 }
 
