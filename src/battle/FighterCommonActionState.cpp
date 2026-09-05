@@ -208,9 +208,12 @@ void FighterCommonActionStateView::update_common_action_state()
     {
       case 50:
         resolve_stage_surface_landing_transition();
+        v3 = 0.0;
         if (velocity_x_f4 < 0.0) {
-          if ((velocity_x_f4 = static_cast<float>(velocity_x_f4 + 3.0)) > 0.0f)
-            velocity_x_f4 = 0.0f;
+          v4 = static_cast<float>(velocity_x_f4 + 3.0);
+          velocity_x_f4 = static_cast<float>(v4);
+          if (v4 > v3)
+            velocity_x_f4 = static_cast<float>(v3);
         }
         if (classify_fighter_x_boundary() && unknown_490)
           peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
@@ -458,8 +461,10 @@ ACTION_54_60_690:
           return;
         }
         advance_frame_and_dispatch();
-        if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 && 0.0 != velocity_y_f8) {
-          if (0.0 == velocity_x_f4)
+        v19 = 0.0;
+        if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 && v19 != velocity_y_f8) {
+LABEL_126:
+          if (v19 == velocity_x_f4)
             set_sequence(3);
           else
             set_sequence(2);
@@ -533,11 +538,7 @@ ACTION_54_60_690:
         v19 = 0.0;
         if ( 0.0 == velocity_y_f8 )
           return;
-        if ( v19 == velocity_x_f4 )
-          set_sequence(3);
-        else
-          set_sequence(2);
-        return;
+        goto LABEL_126;
 
       case 76:
         if (sequence_13e > 0)
@@ -615,13 +616,9 @@ ACTION_54_60_690:
           return;
         }
         advance_frame_and_dispatch();
-        if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 && 0.0 != velocity_y_f8) {
-          if (0.0 == velocity_x_f4)
-            set_sequence(3);
-          else
-            set_sequence(2);
-          return;
-        }
+        v19 = 0.0;
+        if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 && v19 != velocity_y_f8)
+          goto LABEL_126;
         if (--word_730 < 0)
           word_730 = 0;
         if (classify_fighter_x_boundary() && velocity_x_f4 < 0.0) {
