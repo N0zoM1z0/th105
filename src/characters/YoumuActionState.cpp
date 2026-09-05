@@ -2701,8 +2701,8 @@ if ( (unsigned __int8)advance_frame_and_dispatch() )
 if ( !*(_WORD *)(raw +  318) && !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 5 )
 {
 add_phase_scaled_counter_558(50);
-*(_BYTE *)(raw +  2021) = 1;
 *(_WORD *)(raw +  2022) = 3;
+*(_BYTE *)(raw +  2021) = 1;
 adjust_counter_482(200, 60);
 }
 return;
@@ -4704,7 +4704,7 @@ dispatch_character_wave_handle(0xCu);
 v368 = 0.0;
 do
 {
-payload_449[0] = (double)selector_random_roll(0x12u) + v368 * 45.0 + 22.5;
+payload_449[0] = (float)(unsigned int)selector_random_roll(0x12u) + v368 * 45.0 + 22.5;
 payload_449[1] = 20.0;
 payload_449[2] = 5.0;
 if ( payload_449[0] < 0.0 || payload_449[0] > 180.0 )
@@ -4736,7 +4736,7 @@ dispatch_character_wave_handle(0xFu);
 v369 = 0.0;
 do
 {
-*(float *)v460 = (double)selector_random_roll(0x12u) + v369 * 45.0 + 22.5;
+*(float *)v460 = (float)(unsigned int)selector_random_roll(0x12u) + v369 * 45.0 + 22.5;
 *(float *)&v460[1] = 20.0;
 *(float *)&v460[2] = 5.0;
 if ( *(float *)v460 < 0.0 || *(float *)v460 > 180.0 )
@@ -4804,14 +4804,17 @@ if ( v141 >= 60
 && !(v141 % *(__int16 *)(raw +  1842))
 && *(_WORD *)(raw +  1840) < *(_WORD *)(raw +  1844) )
 {
-*(float *)v478 = (float)selector_random_roll(0x168u);
+*(float *)v478 = (float)(unsigned int)selector_random_roll(0x168u);
 *(float *)&v478[1] = 20.0;
 *(float *)&v478[2] = 8.0;
-v184 = *(unsigned __int8 *)(raw +  260);
-v426 = (double)selector_random_roll(0x280u) + 100.0;
-v172 = v426;
-v427 = (double)selector_random_roll(0x4B0u) + 40.0;
-spawn_owned_object_via_manager(901, v427, v172, v184, 1, (int)v478, 3);
+spawn_owned_object_via_manager(
+901,
+(float)(unsigned int)selector_random_roll(0x4B0u) + 40.0,
+(float)(unsigned int)selector_random_roll(0x280u) + 100.0,
+*(unsigned __int8 *)(raw +  260),
+1,
+(int)v478,
+3);
 v3 = 0.0;
 ++*(_WORD *)(raw +  1840);
 }
@@ -4833,7 +4836,7 @@ goto LABEL_1674;
 if ( !*(_WORD *)(raw +  322)
 && !*(_WORD *)(raw +  320)
 && *(_WORD *)(raw +  318) == 1
-&& selector_random_roll(0x64u) <= 0x32 )
+&& (unsigned int)selector_random_roll(0x64u) <= 0x32u )
 {
 switch ( g_match_identifier )
 {
