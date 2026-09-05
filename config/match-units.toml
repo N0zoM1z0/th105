@@ -9255,6 +9255,11 @@ dir32_targets = [
   "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
 ]
 
+[[units.cross-v106a-battle-info-record-render.functions]]
+address = "0x004399C0"
+symbol_base = "??A?$deque@UFighterSequenceSlot@th105@@V?$allocator@UFighterSequenceSlot@th105@@@std@@@std@@QAEAAUFighterSequenceSlot@th105@@I@Z"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+
 [units.cross-v106a-battle-manager-story-core]
 kind = "probe"
 source = "src/battle/BattleManagerStory.cpp"
@@ -16605,3 +16610,69 @@ notes = "Current cross-roster Fighter directional gate used throughout multiple 
 [[units.gpt-web-fighter-directional-action-gate.functions]]
 address = "0x00478EE0"
 symbol_base = "?try_dispatch_directional_action_208_210@FighterDirectionalActionGateView@th105@@QAEEH@Z"
+
+[units.gpt-web-reimu-control-mode]
+kind = "probe"
+source = "src/characters/ReimuControlMode.cpp"
+object = "build/match-units/GptWeb_ReimuControlMode.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Natural current-target +0x5C hypothesis retained as a probe. First canonical mismatch is +0x0C: target keeps -1 in EBX before decrementing +0x768, while this source lowers the decrement directly. Do not promote until the scheduler/register lifetime is recovered."
+[[units.gpt-web-reimu-control-mode.functions]]
+address = "0x00491450"
+symbol_base = "?update_control_mode@ReimuControlModeView@th105@@QAEXXZ"
+rel32_targets = [
+  "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
+  "?face_opponent_and_flip_horizontal_velocity@ReimuControlModeView@th105@@QAEXXZ=0x00478E60",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+]
+
+[units.gpt-web-marisa-control-mode]
+kind = "probe"
+source = "src/characters/MarisaControlMode.cpp"
+object = "build/match-units/GptWeb_MarisaControlMode.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Natural current-target +0x5C hypothesis retained as a probe. Canonical comparison matches through +0xA2; first mismatch +0xA3 is branch-layout displacement, so semantics/ABI are close but CFG source shape is not yet canonical."
+[[units.gpt-web-marisa-control-mode.functions]]
+address = "0x004B8280"
+symbol_base = "?update_control_mode@MarisaControlModeView@th105@@QAEXXZ"
+rel32_targets = [
+  "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
+  "?face_opponent_and_flip_horizontal_velocity@MarisaControlModeView@th105@@QAEXXZ=0x00478E60",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+  "__ftol2_sse=0x0068A1A0",
+]
+
+[units.gpt-web-sakuya-control-mode]
+kind = "probe"
+source = "src/characters/SakuyaControlMode.cpp"
+object = "build/match-units/GptWeb_SakuyaControlMode.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Natural current-target +0x5C hypothesis retained as a probe. Canonical comparison diverges in the prologue: target creates a zero-valued EBP lifetime immediately after push ebp; current source does not. Do not promote until that source lifetime is explained naturally."
+[[units.gpt-web-sakuya-control-mode.functions]]
+address = "0x004DD7E0"
+symbol_base = "?update_control_mode@SakuyaControlModeView@th105@@QAEXXZ"
+rel32_targets = [
+  "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
+  "?face_opponent_and_flip_horizontal_velocity@SakuyaControlModeView@th105@@QAEXXZ=0x00478E60",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+]
+dir32_targets = ["?g_match_identifier@th105@@3HA=?g_match_identifier@th105@@3HA"]
+
+[units.gpt-web-aya-control-mode]
+kind = "probe"
+source = "src/characters/AyaControlMode.cpp"
+object = "build/match-units/GptWeb_AyaControlMode.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Natural current-target +0x5C hypothesis retained as a probe. Canonical comparison matches through +0xA0; first mismatch +0xA1 is the default-epilogue jump displacement. Target places the case-8..11 counter==2 region before the shared epilogue; superficial case reordering and equivalent guards do not change VC8 layout."
+[[units.gpt-web-aya-control-mode.functions]]
+address = "0x00616800"
+symbol_base = "?update_control_mode@AyaControlModeView@th105@@QAEXXZ"
+rel32_targets = [
+  "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
+  "?face_opponent_and_flip_horizontal_velocity@AyaControlModeView@th105@@QAEXXZ=0x00478E60",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+]

@@ -760,3 +760,10 @@ git diff --check
 - Shared +0x40 exactness depends on byte-sized source arg5 for `spawn_owned_object_via_manager`; the 66-byte forwarding callee itself is byte-equivalent under multiple parameter declarations, so caller evidence is required. `selector_random_roll` has an analogous signed/unsigned declaration ambiguity at the callee-body level.
 - Yukari reset `0x0058A470` was rechecked against two actual VC8 `/GL + /LTCG` linked probes. Both preserve the same standalone `xor eax,eax` / gravity-`fstp` swap, so LTCG is now explicitly ruled out as a solution. Yukari event bridge `0x005983B0` likewise remains a stop: IDA confirms the 11-byte `cmp ax,ax; jne` artifact has no third semantic source predicate; do not add a tautology to manufacture it.
 - After promoting the two newly-authored helpers the denominator also grows. This batch alone yields **1251 exact / 1317 authored = 94.9886%**, so one additional already-authored root is still required to cross 95%. Aya `+0x5C @ 0x00616800` is the active lead: the dirty/current 8..11 family matches the shipped local 770 tail and strategy selector much better than the shorter `g8-member-cse` probe. Preserve the four dirty roster research sources and continue from their current state rather than resetting them.
+
+### 2026-09-05: shared Fighter action-state root is the next giant-root layer
+
+- `0x004740C0` is a 10219-byte authored shared Fighter action-state root. All 15 roster primary-vtable `+0x28` giants call it; recover it before duplicating shared semantics inside the 30-70 KB character roots.
+- Its low/high action regions dispatch `action_13c` across 50..181 and 691..799. The game-side direct callee closure is now canonical-exact, so use those helpers as fixed bricks while reconstructing the root.
+- `0x004399C0` is proven 94/94 exact as native VC8 `std::deque<FighterSequenceSlot>::operator[]`, not the old handwritten `SequenceAccess.cpp` shape.
+- Reimu/Marisa/Sakuya/Aya `+0x5C` natural sources are retained only as probe candidates with mismatch notes in `config/match-units.toml`; do not mark them exact until canonical compare closes.
