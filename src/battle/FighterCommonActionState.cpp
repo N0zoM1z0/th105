@@ -311,7 +311,11 @@ ACTION_54_60_690:
           if ((velocity_x_f4 = static_cast<float>(velocity_x_f4 + 1.5)) > 0.0f)
             velocity_x_f4 = 0.0f;
         }
-        goto ACTION_62_67_BOUNDARY;
+        if (classify_fighter_x_boundary() && unknown_490)
+          peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
+        if (advance_frame_and_dispatch())
+          set_action(2);
+        return;
 
       case 63:
         resolve_stage_surface_landing_transition();
@@ -341,7 +345,9 @@ ACTION_54_60_690:
 
       case 66:
         resolve_stage_surface_landing_transition();
-        goto ACTION_62_67_ADVANCE;
+        if (advance_frame_and_dispatch())
+          set_action(2);
+        break;
 
       case 67:
         resolve_stage_surface_landing_transition();
@@ -349,13 +355,11 @@ ACTION_54_60_690:
           if ((velocity_x_f4 = static_cast<float>(velocity_x_f4 - 1.5)) > 0.0f)
             velocity_x_f4 = 0.0f;
         }
-ACTION_62_67_BOUNDARY:
         if (classify_fighter_x_boundary() && unknown_490)
           peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
-ACTION_62_67_ADVANCE:
         if (advance_frame_and_dispatch())
           set_action(2);
-        return;
+        break;
 
       case 70: {
         const short direction = word_730;
@@ -565,19 +569,19 @@ ACTION_62_67_ADVANCE:
       case 77:
         angle_12c -= 30.0f;
         velocity_y_f8 -= acceleration_y_100;
-        if (!(unsigned __int8)has_crossed_stage_surface_while_descending()) {
-          advance_frame_and_dispatch();
+        if ((unsigned __int8)has_crossed_stage_surface_while_descending()) {
+          dispatch_indexed_event_member(0x16u);
+          word_730 = 100 * (int)velocity_x_f4;
+          word_732 = 100 * (int)velocity_y_f8;
+          zero_velocity_acceleration();
+          y_f0 = 0.0;
+          set_action(97);
+          angle_12c = 0.0f;
+          publish_battle_layout_scalar(2.0f);
+          reinterpret_cast<FighterActionScratchView *>(reinterpret_cast<unsigned char *>(this) + 4)->reset();
           return;
         }
-        dispatch_indexed_event_member(0x16u);
-        word_730 = 100 * (int)velocity_x_f4;
-        word_732 = 100 * (int)velocity_y_f8;
-        zero_velocity_acceleration();
-        y_f0 = 0.0;
-        set_action(97);
-        angle_12c = 0.0f;
-        publish_battle_layout_scalar(2.0f);
-        reinterpret_cast<FighterActionScratchView *>(reinterpret_cast<unsigned char *>(this) + 4)->reset();
+        advance_frame_and_dispatch();
         return;
 
       case 78:
@@ -599,7 +603,7 @@ ACTION_62_67_ADVANCE:
           acceleration_y_100 = 0.5f;
           facing_104 = -facing_104;
         }
-        return;
+        break;
 
       case 88:
         if ((unsigned __int8)has_crossed_stage_surface_while_descending()) {
@@ -654,7 +658,7 @@ ACTION_62_67_ADVANCE:
             v33 = word_7a2;
             v85 = -word_732;
             velocity_x_f4 = (double)word_730 * 0.0025f;
-            velocity_y_f8 = 0.0025f * (double)v85;
+            velocity_y_f8 = 0.0025f * v85;
             acceleration_y_100 = 0.25;
             float_108 = (float)v32;
             float_10c = (float)v33;
@@ -695,7 +699,7 @@ ACTION_62_67_ADVANCE:
           {
             v86 = -word_732;
             velocity_x_f4 = (double)word_730 * 0.005f;
-            velocity_y_f8 = 0.005f * (double)v86;
+            velocity_y_f8 = 0.005f * v86;
             acceleration_y_100 = 2.0;
           }
         }
@@ -826,7 +830,7 @@ ACTION_62_67_ADVANCE:
         } else if ((unsigned __int8)advance_frame_and_dispatch()) {
           set_sequence(5);
         }
-        return;
+        break;
       case 150:
         resolve_stage_surface_landing_transition();
         if ( velocity_x_f4 < 0.0 )
@@ -942,7 +946,12 @@ ACTION_62_67_ADVANCE:
       case 158:
         velocity_y_f8 = velocity_y_f8 - acceleration_y_100;
         if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
-          goto LABEL_357;
+        {
+          set_action(10);
+          y_f0 = 0.0;
+          zero_velocity_acceleration();
+          return;
+        }
         v40 = word_730;
         if ( v40 > 0 )
           word_730 = v40 - 1;
@@ -955,7 +964,9 @@ ACTION_62_67_ADVANCE:
           if ( unknown_490 )
             peer_component_6ac = (double)word_730 * -2.0;
         }
-        goto LABEL_366;
+        if ( (unsigned __int8)advance_frame_and_dispatch() )
+          set_action(9);
+        return;
       case 159:
         resolve_stage_surface_landing_transition();
         v3 = 0.0;
@@ -1051,7 +1062,12 @@ LABEL_52:
       case 167:
         velocity_y_f8 = velocity_y_f8 - acceleration_y_100;
         if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
-          goto LABEL_357;
+        {
+          set_action(10);
+          y_f0 = 0.0;
+          zero_velocity_acceleration();
+          return;
+        }
         v41 = word_730;
         if ( v41 > 0 )
           word_730 = v41 - 1;
@@ -1064,23 +1080,21 @@ LABEL_52:
           if ( unknown_490 )
             peer_component_6ac = (double)word_730 * -2.0;
         }
-LABEL_366:
-LABEL_367:
         if ( (unsigned __int8)advance_frame_and_dispatch() )
           set_action(9);
-        return;
+        break;
       case 180:
       case 181:
         velocity_y_f8 = velocity_y_f8 - acceleration_y_100;
         v42 = has_crossed_stage_surface_while_descending();
-        if (!v42) {
-          advance_frame_and_dispatch();
+        if (v42) {
+LABEL_357:
+          set_action(10);
+          y_f0 = 0.0;
+          zero_velocity_acceleration();
           return;
         }
-LABEL_357:
-        set_action(10);
-        y_f0 = 0.0;
-        zero_velocity_acceleration();
+        advance_frame_and_dispatch();
         return;
       default:
         return;
