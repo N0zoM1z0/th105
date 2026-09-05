@@ -16322,7 +16322,7 @@ source = "src/battle/SecondaryAnimationRender.cpp"
 object = "build/match-units/GptWeb_SecondaryAnimationRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current 0x54 secondary-animation strip renderer owned by object callback 0x00496420 and shared render callback 0x00493820. Native checked deque<Point2> members at +0x28/+0x3C, a SpriteVertex28 buffer at +0x50, frame texture extents and current render facade reproduce the complete lifetime, initialization and render path without assembly, copied bytes, or register forcing."
+notes = "Current 0x54 secondary-animation runtime owned by object callback 0x00496420 and shared render callback 0x00493820. Constructor/destructor/render/initialize are canonical exact. The 2434-byte update root is now formally comparator-covered with all 11 target-side direct callees mapped to native deque/D3DX/runtime symbols, but remains nonexact at the target A0-vs-current-88 Point2 frame lifetime. No assembly, copied bytes, arbitrary slot shaping or register forcing."
 
 [[units.gpt-web-secondary-animation-runtime.functions]]
 address = "0x00430050"
@@ -16351,6 +16351,23 @@ dir32_targets = [
   "?g_secondary_animation_scale@th105@@3MA=?g_secondary_animation_scale@th105@@3MA",
   "__real@4f800000=__real@4f800000",
   "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+]
+
+[[units.gpt-web-secondary-animation-runtime.functions]]
+address = "0x004309F0"
+symbol_base = "?update_secondary@SecondaryAnimationRenderRuntimeView@th105@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "??G?$_Deque_iterator@USecondaryAnimationPoint@th105@@V?$allocator@USecondaryAnimationPoint@th105@@@std@@$00@std@@QBE?AV01@H@Z=0x00430000",
+  "?erase@?$deque@USecondaryAnimationPoint@th105@@V?$allocator@USecondaryAnimationPoint@th105@@@std@@@std@@QAE?AV?$_Deque_iterator@USecondaryAnimationPoint@th105@@V?$allocator@USecondaryAnimationPoint@th105@@@std@@$00@2@V32@0@Z=0x004304F0",
+  "?_Tidy@?$deque@USecondaryAnimationPoint@th105@@V?$allocator@USecondaryAnimationPoint@th105@@@std@@@std@@IAEXXZ=0x00420A80",
+  "?push_back@?$deque@USecondaryAnimationPoint@th105@@V?$allocator@USecondaryAnimationPoint@th105@@@std@@@std@@QAEXABUSecondaryAnimationPoint@th105@@@Z=0x004306D0",
+  "?front@?$deque@USecondaryAnimationPoint@th105@@V?$allocator@USecondaryAnimationPoint@th105@@@std@@@std@@QAEAAUSecondaryAnimationPoint@th105@@XZ=0x0042FDC0",
+  "??A?$deque@USecondaryAnimationPoint@th105@@V?$allocator@USecondaryAnimationPoint@th105@@@std@@@std@@QAEAAUSecondaryAnimationPoint@th105@@I@Z=0x004300B0",
+  "_D3DXVec2Normalize@8=0x00689896",
+  "_D3DXVec2Hermite@24=0x00689890",
+  "?begin@?$deque@USecondaryAnimationPoint@th105@@V?$allocator@USecondaryAnimationPoint@th105@@@std@@@std@@QAE?AV?$_Deque_iterator@USecondaryAnimationPoint@th105@@V?$allocator@USecondaryAnimationPoint@th105@@@std@@$00@2@XZ=0x004286A0",
+  "??H?$_Deque_iterator@USecondaryAnimationPoint@th105@@V?$allocator@USecondaryAnimationPoint@th105@@@std@@$00@std@@QBE?AV01@H@Z=0x0042FFB0",
 ]
 
 [[units.gpt-web-secondary-animation-runtime.functions]]

@@ -967,15 +967,35 @@ identified checked-deque helpers.
 The strongest local-lifetime fact is shared by cases two and three: construct a
 zero previous vector, copy it into the terminal tangent, then overwrite previous
 with the newest source point.  Pinned VC8 reproduces the target's interleaved
-`fldz/fst/mov/fstp/mov` sequence from exactly that relationship.  Consistent
-named-vector source remains nonexact: it emits a `0x88` frame and places the
-switch table at `+0x9A4`, versus target frame `0xA0` and table `+0x984`.
-Address-taking all six anonymous class rvalues expands the frame to `0xB0`;
-selecting only three gives `0xA0` accidentally and was rejected as unsupported
-slot shaping.  Continue only from a target-backed original `D3DXVECTOR2`
-constructor/operator definition or whole-TU/LTCG explanation.  Never bridge
-this residual with dummy locals, selective rvalue sites, register/volatile
-forcing, artificial gotos, assembly, copied bytes, padding, or an ABI lie.
+`fldz/fst/mov/fstp/mov` sequence from exactly that relationship.  The update is
+now also a **formal match-unit function**, not only an eyeballed object: its
+2,434-byte comparator fails first at root `+0x08` because current source emits a
+`0x88` frame while target emits `0xA0`; constructor/destructor/render/initialize
+in the same unit remain exact.
+
+Fresh 1.06a IDA closes the update's complete eleven-target direct-callee set:
+checked deque iterator subtraction `0x00430000`, erase `0x004304F0`, front
+`0x0042FDC0`, `_Tidy 0x00420A80`, checked `operator[] 0x004300B0`, push_back
+`0x004306D0`, begin `0x004286A0`, iterator addition `0x0042FFB0`, D3DX Hermite
+`0x00689890`, D3DX Normalize `0x00689896`, and invalid-parameter runtime
+`0x0068A143`.  That closure is now encoded in the match unit, so future frame
+experiments use the canonical comparator rather than unresolved-call heuristics.
+
+Current target-backed negative evidence also closes several old guesses.  Adding
+the real D3DXVECTOR2-style `FLOAT*` conversion operators does not alter the
+`0x88` frame; changing `normal * width` to `normal *= width` shrinks it to
+`0x80`; scoped deque references change allocation to EBP/EDI but never produce
+target `ESI=this`; and a forced `/O2 /GL` + `/LTCG` caller-preserved build changes
+the function to an internal specialized convention with a `0x98` frame, so LTCG
+is not the shipped provenance.  Conversely, making the five real address-taken
+Normalize source Point2 objects non-overlapping at function scope grows the frame
+in exact eight-byte steps (`0x98/0xA0/0xA8` depending on the lifetime set).  This
+proves the missing 24 bytes belong to the Point2/BYREF lifetime graph, but many
+different subsets happen to yield `0xA0`; none is source evidence by itself.
+Continue by recovering the exact target stack-slot/lifetime graph, not by choosing
+an arbitrary subset to shape the frame.  Never bridge this residual with dummy
+locals, selective rvalue sites, register/volatile forcing, artificial gotos,
+assembly, copied bytes, padding, or an ABI lie.
 
 ### CScript command registration: pair conversion lifetime is authored codegen evidence
 
@@ -1833,7 +1853,7 @@ Four roster `+0x5C` control-mode hypotheses are retained as explicit probes rath
 
 `Fighter_update_common_action_state @ 0x004740C0` now has a complete natural C++ implementation in `src/battle/FighterCommonActionState.cpp` and a formal nonexact unit `gpt-web-fighter-common-action-state`.  It remains **source-present, not exact**.  The current canonical comparator still reports its first mismatch at root `+0x14` because the high-region branch displacement reflects remaining internal layout differences; this root must not enter `matches.csv` until the full 10,219-byte comparator is zero-difference.
 
-The physical-layout gap has narrowed substantially from the first complete source.  The current target high switch begins at root `+0x1D60`; the fresh VC8 candidate begins at `+0x1D51`, so only **15 bytes** of net low-region length remain.  Target callable final RET is root `+0x27EA`; current callable final RET is `+0x27A8`, leaving **66 bytes** of net callable-length deficit.  Do not compare `.text` section-tail size with the 10,219-byte authored callable: both low/high jump tables and byte-index tables trail live code in the COFF COMDAT.
+The physical-layout gap has narrowed substantially from the first complete source.  The current target high switch begins at root `+0x1D60`; after restoring actions 145/149 as duplicated natural source, the fresh VC8 candidate begins at `+0x1D5A`, so only **6 bytes** of net low-region length remain.  Target callable final RET is root `+0x27EA`; current callable final RET is `+0x27B1`, leaving **57 bytes** of net callable-length deficit.  Do not compare `.text` section-tail size with the 10,219-byte authored callable: both low/high jump tables and byte-index tables trail live code in the COFF COMDAT.
 
 The high action region is now a strong anchor rather than an open-ended decompile.  Target and candidate both have **15 physical high-switch destinations with identical case grouping**.  Relative to the high-switch entry, action starts for **691, 692, 693, 694, 700, 701/702/703, 704, 705, 706, 709, 789, 790 and 796 are all at the target offsets**.  Only action 799 begins early (currently by 21 bytes).  Important source facts that produced this convergence:
 
@@ -1843,7 +1863,7 @@ The high action region is now a strong anchor rather than an open-ended decompil
 - actions 701/702/703 are exact-sized **236/236** only when the post-resolve frame/motion tail is written naturally in both the zero-sequence and airborne source paths.  VC8 then performs the target backward common-tail merge.  A single refactored tail or source goto chooses the wrong physical owner;
 - actions 796/799 must re-read `sequence_13e` in the range predicate (`sequence_13e > 0 && sequence_13e < 4`).  A named `short` snapshot makes VC8 collapse the two target compares into a range-normalized form.
 
-The low switch still has **50 candidate destinations versus 51 target destinations**.  Target actions 50, 51 and 52 are three separate 134-byte blocks even though the emitted instructions are identical; ordinary `/O2` currently folds one pair.  Safe assignment/compound/local/const/double-to-float/bool variants can move which pair folds or create a 51st destination, but the tested 51-destination forms no longer reproduce the target 134-byte x87 rounding block.  Do not manufacture the missing owner with dummy liveness, volatile, padding, copied bytes or register forcing.
+The low switch still has **50 candidate destinations versus 51 target destinations**.  Target actions 50, 51 and 52 are three separate 134-byte blocks even though the emitted instructions are identical; ordinary `/O2` currently folds one pair.  Actions 145/149 are now written as duplicated ordinary source rather than a decompiler cross-case label; this restores the target `fld 2.0; fcomp [vy]; test ah,41h` threshold order and reduces the low-switch net deficit from 15 to 6 bytes, although VC8 still assigns their shared fallback tail to the wrong physical case.  Safe assignment/compound/local/const/double-to-float/bool variants can move which pair folds or create a 51st destination, but the tested 51-destination forms no longer reproduce the target 134-byte x87 rounding block.  Do not manufacture the missing owner with dummy liveness, volatile, padding, copied bytes or register forcing.
 
 Several other physical-owner facts are target-proven and should be preserved.  Low actions 140/143/144/150/151/152 and 154/155/156/157 own their virtual action terminal calls locally; routing them through one later label shortens each block by about eleven bytes.  Case 153 is the target physical owner of the `set_action(0)` tail later used by high action 790; a natural duplicated source with an early return after the 790 action transition improves both semantics and low layout.  Target case 75 uses sequential frame/sequence early-return guards; collapsing them into one conjunction is a wrong source CFG.  Target `def_4740F3` is physically the five-byte epilogue at root `+0xAD1` immediately before action 76; merely moving the textual `default:` label there does **not** make VC8 choose that owner, so default placement is a consequence of the surrounding case-75 CFG rather than a source-order knob.
 

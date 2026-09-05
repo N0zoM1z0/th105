@@ -785,37 +785,39 @@ ACTION_62_67_ADVANCE:
           set_action(0);
         return;
       case 145:
-        if (sequence_13e == 1) {
-          if (2.0f > velocity_y_f8)
-            goto LABEL_291;
+        if (sequence_13e == 1 && velocity_y_f8 < 2.0) {
+          slot_14();
+          return;
         }
-        goto LABEL_285;
+        velocity_y_f8 = velocity_y_f8 - acceleration_y_100;
+        if ((unsigned __int8)has_crossed_stage_surface_while_descending()) {
+          word_730 = 100 * (int)velocity_x_f4;
+          word_732 = 100 * (int)velocity_y_f8;
+          zero_velocity_acceleration();
+          y_f0 = 0.0f;
+          set_action(97);
+          publish_battle_layout_scalar(2.0f);
+        } else if ((unsigned __int8)advance_frame_and_dispatch()) {
+          set_sequence(5);
+        }
+        return;
       case 149:
-        if (sequence_13e == 1) {
-          if (2.0f > velocity_y_f8) {
-LABEL_291:
-            slot_14();
-            return;
-          }
+        if (sequence_13e == 1 && velocity_y_f8 < 2.0) {
+          slot_14();
+          return;
         }
-LABEL_285:
-        {
-          velocity_y_f8 = velocity_y_f8 - acceleration_y_100;
-          if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
-          {
-            v38 = velocity_y_f8;
-            word_730 = 100 * (int)velocity_x_f4;
-            word_732 = 100 * (int)v38;
-            zero_velocity_acceleration();y_f0 = 0.0;
-            set_action(97);
-            publish_battle_layout_scalar(2.0f);
-          }
-          else if ( (unsigned __int8)advance_frame_and_dispatch() )
-          {
-            set_sequence(5);
-          }
+        velocity_y_f8 = velocity_y_f8 - acceleration_y_100;
+        if ((unsigned __int8)has_crossed_stage_surface_while_descending()) {
+          word_730 = 100 * (int)velocity_x_f4;
+          word_732 = 100 * (int)velocity_y_f8;
+          zero_velocity_acceleration();
+          y_f0 = 0.0f;
+          set_action(97);
+          publish_battle_layout_scalar(2.0f);
+        } else if ((unsigned __int8)advance_frame_and_dispatch()) {
+          set_sequence(5);
         }
-        break;
+        return;
       case 150:
         resolve_stage_surface_landing_transition();
         if ( velocity_x_f4 < 0.0 )

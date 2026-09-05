@@ -98,14 +98,21 @@ seeds using current-target-backed structural remapping where appropriate.
   copy it to the terminal tangent, then overwrite previous with the newest
   point; that source relationship reproduces the target's otherwise surprising
   zero/copy/store instruction sequence.
-- Do not resume with selective class-rvalue address-taking.  Making all six
-  normalization inputs anonymous MSVC rvalues naturally gives a `0xB0` frame;
-  choosing only three happens to color a `0xA0` frame but is an arbitrary
-  codegen constraint, not source evidence.  The consistent named-vector source
-  is retained.  The next truthful lever is the original DirectX
-  `D3DXVECTOR2` constructor/operator contract or whole-TU/LTCG provenance, not
-  dummy locals, rvalue-site selection, register/volatile forcing, artificial
-  gotos, assembly, copied bytes or padding.
+- `0x004309F0` is now formally comparator-covered in the existing
+  `gpt-web-secondary-animation-runtime` unit.  All eleven direct target callees
+  are mapped from fresh 1.06a IDA evidence (native checked deque helpers,
+  D3DXVec2Hermite/Normalize and invalid-parameter runtime), while the other four
+  runtime methods remain canonical exact.  The update still first differs at
+  root `+0x08`: current frame `0x88`, target `0xA0`.
+- Do not resume with selective class-rvalue address-taking.  Current experiments
+  prove that real address-taken Normalize-source Point2 lifetimes grow the frame
+  in eight-byte steps and can naturally reach `0xA0`, but multiple unrelated
+  subsets do so and none fixes target `ESI=this`; choosing one is still arbitrary
+  slot shaping.  D3DXVECTOR2 conversion operators, `normal *= width`, scoped
+  deque aliases, and a real caller-preserved `/GL + /LTCG` build have all been
+  re-tested against current 1.06a and rejected.  Recover the exact Point2/BYREF
+  lifetime graph instead of using dummy locals, register/volatile forcing,
+  artificial gotos, assembly, copied bytes or padding.
 
 - **Newest secondary-animation runtime wave:** **4 authored canonical-exact
   roots / 1,071 bytes**, moving the ledger to **1,240 exact / 202,226 authored
