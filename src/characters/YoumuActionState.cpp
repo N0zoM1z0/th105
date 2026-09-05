@@ -733,103 +733,94 @@ resolve_stage_surface_landing_transition();
 advance_frame_and_dispatch();
 return;
 case 6:
-v10 = *(_WORD *)(raw +  318) <= 0;
-if ( !*(_WORD *)(raw +  318) )
+if ( !*(_WORD *)(raw + 318) )
 {
 resolve_stage_surface_landing_transition();
-v10 = *(_WORD *)(raw +  318) <= 0;
-if ( !*(_WORD *)(raw +  318) )
-{
-if ( !*(_BYTE *)(raw +  1150) )
+if ( !*(_WORD *)(raw + 318) && !*(_BYTE *)(raw + 1150) )
 zero_velocity_acceleration();
-v10 = *(_WORD *)(raw +  318) <= 0;
 }
-}
-if ( !v10 )
+if ( *(__int16 *)(raw + 318) > 0 )
 {
-*(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
-goto LABEL_99;
-}
-advance_frame_and_dispatch();
-if ( *(_DWORD *)(raw +  324)
-|| *(_WORD *)(raw +  322)
-|| *(_WORD *)(raw +  320)
-|| *(_WORD *)(raw +  318) != 1 )
+*(float *)(raw + 248) = *(float *)(raw + 248) - *(float *)(raw + 256);
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw + 8))(raw, 10);
+*(float *)(raw + 240) = stage_surface_height_at_x(this);
+zero_velocity_acceleration();
 return;
 }
-v11 = 0.0;
-goto LABEL_71;
+}
+advance_frame_and_dispatch();
+if ( *(_DWORD *)(raw + 324) || *(_WORD *)(raw + 322) || *(_WORD *)(raw + 320) || *(_WORD *)(raw + 318) != 1 )
+return;
+*(float *)(raw + 244) = 0.0f;
+*(float *)(raw + 248) = 16.0;
+*(float *)(raw + 256) = 0.8f;
+*(_BYTE *)(raw + 1150) = 0;
+return;
 case 7:
-v12 = *(_WORD *)(raw +  318) <= 0;
-if ( !*(_WORD *)(raw +  318) )
+if ( !*(_WORD *)(raw + 318) )
 {
 resolve_stage_surface_landing_transition();
-v12 = *(_WORD *)(raw +  318) <= 0;
-if ( !*(_WORD *)(raw +  318) )
-{
-if ( !*(_BYTE *)(raw +  1150) )
+if ( !*(_WORD *)(raw + 318) && !*(_BYTE *)(raw + 1150) )
 zero_velocity_acceleration();
-v12 = *(_WORD *)(raw +  318) <= 0;
 }
-}
-if ( !v12 )
+if ( *(__int16 *)(raw + 318) > 0 )
 {
-*(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
-goto LABEL_99;
-}
-advance_frame_and_dispatch();
-if ( *(_DWORD *)(raw +  324)
-|| *(_WORD *)(raw +  322)
-|| *(_WORD *)(raw +  320)
-|| *(_WORD *)(raw +  318) != 1 )
+*(float *)(raw + 248) = *(float *)(raw + 248) - *(float *)(raw + 256);
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw + 8))(raw, 10);
+*(float *)(raw + 240) = stage_surface_height_at_x(this);
+zero_velocity_acceleration();
 return;
 }
-v11 = 6.5f;
-goto LABEL_71;
+}
+advance_frame_and_dispatch();
+if ( *(_DWORD *)(raw + 324) || *(_WORD *)(raw + 322) || *(_WORD *)(raw + 320) || *(_WORD *)(raw + 318) != 1 )
+return;
+*(float *)(raw + 244) = 6.5f;
+*(float *)(raw + 248) = 16.0;
+*(float *)(raw + 256) = 0.8f;
+*(_BYTE *)(raw + 1150) = 0;
+return;
 case 8:
-v13 = *(_WORD *)(raw +  318) <= 0;
-if ( !*(_WORD *)(raw +  318) )
+if ( !*(_WORD *)(raw + 318) )
 {
 resolve_stage_surface_landing_transition();
-v13 = *(_WORD *)(raw +  318) <= 0;
-if ( !*(_WORD *)(raw +  318) )
-{
-if ( !*(_BYTE *)(raw +  1150) )
+if ( !*(_WORD *)(raw + 318) && !*(_BYTE *)(raw + 1150) )
 zero_velocity_acceleration();
-v13 = *(_WORD *)(raw +  318) <= 0;
 }
-}
-if ( !v13 )
+if ( *(__int16 *)(raw + 318) > 0 )
 {
-*(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
-goto LABEL_99;
-}
-advance_frame_and_dispatch();
-if ( *(_DWORD *)(raw +  324)
-|| *(_WORD *)(raw +  322)
-|| *(_WORD *)(raw +  320)
-|| *(_WORD *)(raw +  318) != 1 )
+*(float *)(raw + 248) = *(float *)(raw + 248) - *(float *)(raw + 256);
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw + 8))(raw, 10);
+*(float *)(raw + 240) = stage_surface_height_at_x(this);
+zero_velocity_acceleration();
 return;
 }
-v11 = -6.5f;
-LABEL_71:
-*(float *)(raw +  244) = v11;
-*(float *)(raw +  248) = 16.0;
-*(float *)(raw +  256) = 0.8f;
-*(_BYTE *)(raw +  1150) = 0;
+}
+advance_frame_and_dispatch();
+if ( *(_DWORD *)(raw + 324) || *(_WORD *)(raw + 322) || *(_WORD *)(raw + 320) || *(_WORD *)(raw + 318) != 1 )
+return;
+*(float *)(raw + 244) = -6.5f;
+*(float *)(raw + 248) = 16.0;
+*(float *)(raw + 256) = 0.8f;
+*(_BYTE *)(raw + 1150) = 0;
 return;
 case 9:
-if ( 0.0 == *(float *)(raw +  256) )
-*(float *)(raw +  256) = 0.60000002;
-*(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
-goto LABEL_99;
+if ( !*(float *)(raw + 256) )
+*(float *)(raw + 256) = 0.60000002;
+*(float *)(raw + 248) = *(float *)(raw + 248) - *(float *)(raw + 256);
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
+{
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw + 8))(raw, 10);
+*(float *)(raw + 240) = stage_surface_height_at_x(this);
+zero_velocity_acceleration();
+return;
+ }
 LABEL_101:
 advance_frame_and_dispatch();
 return;
@@ -852,7 +843,7 @@ resolve_stage_surface_landing_transition();
 if ( *(__int16 *)(raw +  318) < 3 )
 {
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
@@ -900,7 +891,7 @@ resolve_stage_surface_landing_transition();
 if ( *(__int16 *)(raw +  318) < 3 )
 {
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
@@ -1054,7 +1045,7 @@ dispatch_indexed_event_member(0x1Fu);
 return;
 case 0xCA:
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 zero_velocity_acceleration();
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
@@ -1096,7 +1087,7 @@ face_opponent_and_flip_horizontal_velocity();
 return;
 case 0xCB:
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 zero_velocity_acceleration();
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
@@ -1153,7 +1144,7 @@ return;
 case 0xD0:
 if ( !*(_WORD *)(raw +  318) )
 resolve_stage_surface_landing_transition();
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 (*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
@@ -1194,7 +1185,7 @@ return;
 case 0xD1:
 if ( !*(_WORD *)(raw +  318) )
 resolve_stage_surface_landing_transition();
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 (*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
@@ -1234,7 +1225,7 @@ return;
 case 0xD2:
 if ( !*(_WORD *)(raw +  318) )
 resolve_stage_surface_landing_transition();
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 (*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
@@ -1276,7 +1267,7 @@ return;
 case 0xD3:
 if ( !*(_WORD *)(raw +  318) )
 resolve_stage_surface_landing_transition();
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 (*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
@@ -1317,7 +1308,7 @@ case 0xD4:
 case 0xDD:
 if ( !*(_WORD *)(raw +  318) )
 resolve_stage_surface_landing_transition();
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 (*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
@@ -1482,7 +1473,7 @@ if ( ((v43 = *(_DWORD *)(raw +  1736)) != 0 || *(__int16 *)(raw +  1846) <= 10)
 || (v43 || *(__int16 *)(raw +  1846) <= 10) && *(__int16 *)(raw +  1154) > 0 )
 {
 LABEL_1771:
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 *(float *)(raw +  256) = 0.0;
@@ -1577,7 +1568,7 @@ return;
 case 0xDC:
 if ( !*(_WORD *)(raw +  318) )
 resolve_stage_surface_landing_transition();
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 LABEL_99:
 (*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
@@ -1611,7 +1602,7 @@ return;
 case 0xDE:
 if ( !*(_WORD *)(raw +  318) )
 resolve_stage_surface_landing_transition();
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 (*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
@@ -1709,7 +1700,7 @@ v273 = v438 - (float)(mt19937_next_u32() % 0x64);
 emit_fighter_effect_433cc0(124, v273, v195, v220, 1);
 }
 if ( *(__int16 *)(raw +  318) < 3
-&& (*(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256), has_crossed_stage_surface_while_descending()) )
+&& (*(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256), (unsigned __int8)has_crossed_stage_surface_while_descending()) )
 {
 *(float *)(raw +  248) = 0.0;
 *(float *)(raw +  256) = 0.0;
@@ -1738,7 +1729,7 @@ dispatch_indexed_event_member(0x1Fu);
 return;
 case 0xE2:
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 zero_velocity_acceleration();
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
@@ -1785,7 +1776,7 @@ face_opponent_and_flip_horizontal_velocity();
 return;
 case 0xE1:
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 zero_velocity_acceleration();
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
@@ -2173,7 +2164,7 @@ dispatch_indexed_event_member(0x1Bu);
 return;
 case 0x132:
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 (*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
@@ -2195,7 +2186,7 @@ if ( v301 < 0.0 )
 *(float *)(raw +  244) = 0.0;
 }
 if ( *(_WORD *)(raw +  318)
-|| (*(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256), !has_crossed_stage_surface_while_descending()) )
+|| (*(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256), !(unsigned __int8)has_crossed_stage_surface_while_descending()) )
 {
 if ( (unsigned __int8)advance_frame_and_dispatch() )
 (*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
@@ -2242,13 +2233,13 @@ case 0x134:
 if ( !*(_WORD *)(raw +  318) )
 {
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 (*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
 goto LABEL_100;
 }
 }
-if ( *(_WORD *)(raw +  318) == 1 && has_crossed_stage_surface_while_descending() )
+if ( *(_WORD *)(raw +  318) == 1 && (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 (*(void (__stdcall **)(int))(*(_DWORD *)raw +  12))(2);
 {
@@ -2268,7 +2259,7 @@ dispatch_indexed_event_member(0x1Du);
 return;
 case 0x135:
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 (*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
@@ -2559,7 +2550,7 @@ resolve_stage_surface_landing_transition();
 if ( !*(_WORD *)(raw +  318) )
 {
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 (*(void (__thiscall **)(void *))(*(_DWORD *)raw +  20))(raw);
 *(_BYTE *)(raw +  1151) = 0;
@@ -2599,7 +2590,7 @@ resolve_stage_surface_landing_transition();
 if ( !*(_WORD *)(raw +  318) )
 {
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 (*(void (__thiscall **)(void *))(*(_DWORD *)raw +  20))(raw);
 *(_BYTE *)(raw +  1151) = 0;
@@ -2653,7 +2644,7 @@ goto LABEL_843;
 return;
 case 0x199:
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 (*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
 zero_velocity_acceleration();
@@ -2719,7 +2710,7 @@ v72 = *(_WORD *)(raw +  318) < 4;
 if ( v72 )
 {
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 goto LABEL_875;
 }
 if ( *(__int16 *)(raw +  318) < 2 && !*(_DWORD *)(raw +  1732) )
@@ -2760,7 +2751,7 @@ goto LABEL_898;
 if ( v74 < 3 )
 {
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 LABEL_875:
 (*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, v71);
@@ -2805,7 +2796,7 @@ v75 = *(_WORD *)(raw +  318) < 4;
 if ( v75 )
 {
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 goto LABEL_875;
 }
 if ( *(__int16 *)(raw +  318) < 2 && !*(_DWORD *)(raw +  1732) )
@@ -3014,7 +3005,7 @@ v330 = *(float *)(raw +  244) - 0.4000000059604645;
 if ( v330 < v3 )
 *(float *)(raw +  244) = v3;
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 zero_velocity_acceleration();
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
@@ -3093,7 +3084,7 @@ v333 = *(float *)(raw +  244) - 0.4000000059604645;
 if ( v333 < v3 )
 *(float *)(raw +  244) = v3;
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 zero_velocity_acceleration();
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
@@ -3385,7 +3376,7 @@ if ( v346 < v3 )
 if ( *(_WORD *)(raw +  318) == 1 )
 {
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 *(float *)(raw +  244) = *(float *)(raw +  244) * 0.5;
@@ -3553,7 +3544,7 @@ if ( v99 != 2 && v99 != 3 && v99 != 4 )
 goto LABEL_1250;
 if ( v99 < 4 )
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 (*(void (__stdcall **)(int))(*(_DWORD *)raw +  12))(4);
 }
@@ -3597,7 +3588,7 @@ return;
 if ( v100 == 7 )
 LABEL_1254:
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( !has_crossed_stage_surface_while_descending() )
+if ( !(unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 if ( *(_WORD *)(raw +  318) == 6 && !*(_WORD *)(raw +  322) )
 {
@@ -4297,7 +4288,7 @@ if ( *(__int16 *)(raw +  320) >= 3 )
 if ( *(_WORD *)(raw +  318) == 4 )
 *(float *)(raw +  248) = *(float *)(raw +  248) - 1.0;
 v128 = *(_WORD *)(raw +  318);
-if ( (v128 == 3 || v128 == 4) && has_crossed_stage_surface_while_descending() )
+if ( (v128 == 3 || v128 == 4) && (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 zero_velocity_acceleration();
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
@@ -5034,7 +5025,7 @@ case 0x31B:
 if ( *(_WORD *)(raw +  318) )
 goto LABEL_1764;
 *(float *)(raw +  248) = *(float *)(raw +  248) - 0.3f;
-if ( !has_crossed_stage_surface_while_descending() )
+if ( !(unsigned __int8)has_crossed_stage_surface_while_descending() )
 goto LABEL_1764;
 (*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 1);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
@@ -5045,7 +5036,7 @@ case 0x31D:
 if ( !*(_WORD *)(raw +  318) )
 {
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 dispatch_indexed_event_member(0x1Eu);
 (*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 1);
@@ -5075,7 +5066,7 @@ case 0x31E:
 if ( !*(_WORD *)(raw +  318) )
 {
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( has_crossed_stage_surface_while_descending() )
+if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 dispatch_indexed_event_member(0x1Eu);
 (*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 1);
