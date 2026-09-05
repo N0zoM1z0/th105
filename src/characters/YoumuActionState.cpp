@@ -1930,8 +1930,8 @@ if ( (unsigned __int8)advance_frame_and_dispatch()
 {
 goto LABEL_1755;
 }
-if ( *(_WORD *)(raw +  318) )
-goto LABEL_567;
+if ( !*(_WORD *)(raw +  318) )
+{
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 4 )
 {
 if ( *(_BYTE *)(raw +  1872) == 1 )
@@ -1949,10 +1949,7 @@ else
 *(_BYTE *)(raw +  1150) = 0;
 }
 }
-if ( *(_WORD *)(raw +  322) )
-goto LABEL_563;
-v60 = *(_WORD *)(raw +  320) < 5;
-if ( *(_WORD *)(raw +  320) == 5 )
+if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 5 )
 {
 dispatch_indexed_event_member(0x1Du);
 *(float *)v475 = 0.0;
@@ -1965,28 +1962,19 @@ spawn_owned_object_via_manager(848,
 1,
 (int)v475,
 3);
-LABEL_563:
-v60 = *(_WORD *)(raw +  320) < 5;
 }
-if ( v60 )
-{
-LABEL_567:
-v61 = 0.0;
-}
-else
+if ( *(__int16 *)(raw +  320) >= 5 )
 {
 v292 = *(float *)(raw +  244) - 2.0;
 *(float *)(raw +  244) = v292;
-v61 = 0.0;
 if ( v292 < 0.0 )
 *(float *)(raw +  244) = 0.0;
 }
+}
+v61 = 0.0;
 if ( *(_WORD *)(raw +  318) != 1 )
 return;
-if ( *(_WORD *)(raw +  322) )
-goto LABEL_573;
-v62 = *(_WORD *)(raw +  320) < 2;
-if ( *(_WORD *)(raw +  320) == 2 )
+if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 2 )
 {
 *(float *)(raw +  244) = 30.0;
 *(_BYTE *)(raw +  1150) = 0;
@@ -2001,13 +1989,8 @@ spawn_owned_object_via_manager(848,
 1,
 (int)v469,
 3);
-LABEL_572:
-v61 = 0.0;
-LABEL_573:
-v62 = *(_WORD *)(raw +  320) < 2;
 }
-LABEL_574:
-if ( !v62 )
+if ( *(__int16 *)(raw +  320) >= 2 )
 {
 v293 = *(float *)(raw +  244) - 2.0;
 *(float *)(raw +  244) = v293;
@@ -2051,22 +2034,22 @@ if ( v295 < 0.0 )
 *(_BYTE *)(raw +  1150) = 0;
 }
 }
-if ( (unsigned __int8)advance_frame_and_dispatch()
-|| !*(_DWORD *)(raw +  324)
-&& !*(_WORD *)(raw +  322)
-&& !*(_WORD *)(raw +  320)
-&& *(_WORD *)(raw +  318) == 1 )
-{
+if ( (unsigned __int8)advance_frame_and_dispatch() )
 {
 (*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
 return;
 }
-}
-if ( *(_WORD *)(raw +  318) )
-goto LABEL_609;
-if ( !*(_WORD *)(raw +  322) )
+if ( !*(_DWORD *)(raw +  324)
+&& !*(_WORD *)(raw +  322)
+&& !*(_WORD *)(raw +  320)
+&& *(_WORD *)(raw +  318) == 1 )
 {
-if ( *(_WORD *)(raw +  320) == 5 )
+(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+return;
+}
+if ( !*(_WORD *)(raw +  318) )
+{
+if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 5 )
 {
 if ( *(_BYTE *)(raw +  1872) == 1 )
 {
@@ -2074,7 +2057,7 @@ if ( *(_BYTE *)(raw +  1872) == 1 )
 v63 = *(unsigned __int8 *)(raw +  260);
 v296 = *(float *)(raw +  240) + 118.0;
 v200 = v296;
-v297 = *(float *)(raw +  236) - (double)(95 * (char)v63);
+v297 = *(float *)(raw +  236) - 95 * (char)v63;
 emit_fighter_effect_433cc0(62, v297, v200, v63, 1);
 }
 else
@@ -2097,20 +2080,15 @@ spawn_owned_object_via_manager(848,
 (int)v483,
 3);
 }
-}
-if ( *(__int16 *)(raw +  320) < 5 )
-{
-LABEL_609:
-v61 = 0.0;
-}
-else
+if ( *(__int16 *)(raw +  320) >= 5 )
 {
 v298 = *(float *)(raw +  244) - 2.0;
 *(float *)(raw +  244) = v298;
-v61 = 0.0;
 if ( v298 < 0.0 )
 *(float *)(raw +  244) = 0.0;
 }
+}
+v61 = 0.0;
 if ( *(_WORD *)(raw +  318) != 1 )
 return;
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 1 )
@@ -2118,13 +2096,9 @@ if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 1 )
 *(float *)(raw +  244) = 15.0;
 *(_BYTE *)(raw +  1150) = 0;
 dispatch_indexed_event_member(0x1Du);
-v61 = 0.0;
 }
-if ( *(_WORD *)(raw +  322) )
-goto LABEL_573;
-v62 = *(_WORD *)(raw +  320) < 2;
-if ( *(_WORD *)(raw +  320) != 2 )
-goto LABEL_574;
+if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 2 )
+{
 v471[0] = v61;
 v471[1] = v61;
 v471[2] = 1.0;
@@ -2135,7 +2109,15 @@ spawn_owned_object_via_manager(848,
 1,
 (int)v471,
 3);
-goto LABEL_572;
+}
+if ( *(__int16 *)(raw +  320) >= 2 )
+{
+v293 = *(float *)(raw +  244) - 2.0;
+*(float *)(raw +  244) = v293;
+if ( v293 < v61 )
+*(float *)(raw +  244) = v61;
+}
+return;
 case 0x131:
 resolve_stage_surface_landing_transition();
 if ( (unsigned __int8)try_dispatch_directional_action_208_210(1) )
