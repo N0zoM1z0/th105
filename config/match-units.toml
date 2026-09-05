@@ -15236,11 +15236,18 @@ source = "src/battle/BattleSetupStateHelpers.cpp"
 object = "build/match-units/GptWeb_BattleSetupStateHelpers.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current 1.06a battle-pair metadata, input reset and slot-finalization helpers. Exact callers establish the global receiver and fighter pointer ordering; the typed packets close every field width and the two current update callees."
+notes = "Current 1.06a battle-pair metadata, input reset and slot-finalization helpers plus the exact 561-byte update-first camera synchronizer. Exact callers establish the global receiver and fighter pointer ordering; late Y-pointer alias lifetime closes the final x87 midpoint ordering without register coercion. Update-second remains source-present/nonexact and is not in this acceptance unit."
 
 [[units.gpt-web-battle-setup-state-helpers.functions]]
 address = "0x00426B90"
 symbol_base = "?copy_roster_metadata@GlobalBattlePairState@th105@@QAEXPAM000@Z"
+
+[[units.gpt-web-battle-setup-state-helpers.functions]]
+address = "0x00426BB0"
+symbol_base = "?update_first@GlobalBattlePairState@th105@@QAEXXZ"
+rel32_targets = [
+  "_CIsqrt=0x0068A380",
+]
 
 [[units.gpt-web-battle-setup-state-helpers.functions]]
 address = "0x00427320"
@@ -16322,7 +16329,7 @@ source = "src/battle/SecondaryAnimationRender.cpp"
 object = "build/match-units/GptWeb_SecondaryAnimationRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current 0x54 secondary-animation runtime owned by object callback 0x00496420 and shared render callback 0x00493820. Constructor/destructor/render/initialize are canonical exact. The 2434-byte update root is now formally comparator-covered with all 11 target-side direct callees mapped to native deque/D3DX/runtime symbols, but remains nonexact at the target A0-vs-current-88 Point2 frame lifetime. No assembly, copied bytes, arbitrary slot shaping or register forcing."
+notes = "Current 0x54 secondary-animation runtime owned by object callback 0x00496420 and shared render callback 0x00493820. Constructor/destructor/render/initialize are canonical exact. The 2434-byte update root now naturally reproduces the shipped 0xA0 frame by restoring the PE/IDA-proven shared Normalize destination, five distinct BYREF Normalize-source Point2 lifetimes, and in-place normal scaling; formal first mismatch advances to +0x0F at the remaining ESI=this/EDI=deque register-lifetime phase. No assembly, padding, copied bytes, arbitrary slot shaping or register forcing."
 
 [[units.gpt-web-secondary-animation-runtime.functions]]
 address = "0x00430050"

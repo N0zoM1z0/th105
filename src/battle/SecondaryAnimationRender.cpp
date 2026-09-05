@@ -36,6 +36,13 @@ struct SecondaryAnimationPoint {
         return SecondaryAnimationPoint(x * scale, y * scale);
     }
 
+    SecondaryAnimationPoint &operator*=(float scale)
+    {
+        x *= scale;
+        y *= scale;
+        return *this;
+    }
+
     SecondaryAnimationPoint &operator+=(const SecondaryAnimationPoint &other)
     {
         x += other.x;
@@ -147,6 +154,12 @@ void SecondaryAnimationRenderRuntimeView::update_secondary()
         owner_00->source_y_0f0));
 
     SecondaryAnimationPoint zero(0.0f, 0.0f);
+    SecondaryAnimationPoint normal;
+    SecondaryAnimationPoint normalize_source0;
+    SecondaryAnimationPoint normalize_source1;
+    SecondaryAnimationPoint normalize_source2;
+    SecondaryAnimationPoint normalize_source3;
+    SecondaryAnimationPoint normalize_source4;
     switch (source_points_28.size()) {
     case 0:
         return;
@@ -160,11 +173,9 @@ void SecondaryAnimationRenderRuntimeView::update_secondary()
     case 2: {
         SecondaryAnimationPoint *point0 = &source_points_28[0];
         SecondaryAnimationPoint *point1 = &source_points_28[1];
-        SecondaryAnimationPoint normal_source(
-            source_points_28[0].y - source_points_28[1].y,
-            source_points_28[1].x - source_points_28[0].x);
-        SecondaryAnimationPoint normal;
-        D3DXVec2Normalize(&normal, &normal_source);
+        normalize_source0.x = source_points_28[0].y - source_points_28[1].y;
+        normalize_source0.y = source_points_28[1].x - source_points_28[0].x;
+        D3DXVec2Normalize(&normal, &normalize_source0);
 
         points_3c[0] += normal * half_width_10;
         points_3c[1] -= normal * half_width_10;
@@ -181,13 +192,12 @@ void SecondaryAnimationRenderRuntimeView::update_secondary()
                 point1,
                 &end_tangent,
                 static_cast<float>(index) / band_count_08);
-            SecondaryAnimationPoint perpendicular_source(
-                previous.y - center.y,
-                center.x - previous.x);
-            D3DXVec2Normalize(&normal, &perpendicular_source);
-            SecondaryAnimationPoint offset = normal * half_width_10;
-            points_3c.push_back(center + offset);
-            points_3c.push_back(center - offset);
+            normalize_source1.x = previous.y - center.y;
+            normalize_source1.y = center.x - previous.x;
+            D3DXVec2Normalize(&normal, &normalize_source1);
+            normal *= half_width_10;
+            points_3c.push_back(center + normal);
+            points_3c.push_back(center - normal);
             previous = center;
         }
         return;
@@ -200,7 +210,6 @@ void SecondaryAnimationRenderRuntimeView::update_secondary()
         SecondaryAnimationPoint tangent(
             source_points_28[2].x - source_points_28[0].x,
             source_points_28[2].y - source_points_28[0].y);
-        SecondaryAnimationPoint normal;
 
         points_3c.erase(
             points_3c.begin(),
@@ -218,13 +227,12 @@ void SecondaryAnimationRenderRuntimeView::update_secondary()
                 point2,
                 &end_tangent,
                 static_cast<float>(index) / band_count_08);
-            SecondaryAnimationPoint perpendicular_source(
-                previous.y - center.y,
-                center.x - previous.x);
-            D3DXVec2Normalize(&normal, &perpendicular_source);
-            SecondaryAnimationPoint offset = normal * half_width_10;
-            points_3c.push_back(center + offset);
-            points_3c.push_back(center - offset);
+            normalize_source2.x = previous.y - center.y;
+            normalize_source2.y = center.x - previous.x;
+            D3DXVec2Normalize(&normal, &normalize_source2);
+            normal *= half_width_10;
+            points_3c.push_back(center + normal);
+            points_3c.push_back(center - normal);
             previous = center;
         }
 
@@ -237,13 +245,12 @@ void SecondaryAnimationRenderRuntimeView::update_secondary()
                 point1,
                 &tangent,
                 static_cast<float>(index) / band_count_08);
-            SecondaryAnimationPoint perpendicular_source(
-                previous.y - center.y,
-                center.x - previous.x);
-            D3DXVec2Normalize(&normal, &perpendicular_source);
-            SecondaryAnimationPoint offset = normal * half_width_10;
-            points_3c.push_back(center + offset);
-            points_3c.push_back(center - offset);
+            normalize_source3.x = previous.y - center.y;
+            normalize_source3.y = center.x - previous.x;
+            D3DXVec2Normalize(&normal, &normalize_source3);
+            normal *= half_width_10;
+            points_3c.push_back(center + normal);
+            points_3c.push_back(center - normal);
             previous = center;
         }
         return;
@@ -259,7 +266,6 @@ void SecondaryAnimationRenderRuntimeView::update_secondary()
         SecondaryAnimationPoint tangent2(
             source_points_28[3].x - source_points_28[1].x,
             source_points_28[3].y - source_points_28[1].y);
-        SecondaryAnimationPoint normal;
 
         points_3c.erase(
             points_3c.begin(),
@@ -275,13 +281,12 @@ void SecondaryAnimationRenderRuntimeView::update_secondary()
                 point2,
                 &tangent2,
                 static_cast<float>(index) / band_count_08);
-            SecondaryAnimationPoint perpendicular_source(
-                previous.y - center.y,
-                center.x - previous.x);
-            D3DXVec2Normalize(&normal, &perpendicular_source);
-            SecondaryAnimationPoint offset = normal * half_width_10;
-            points_3c.push_back(center + offset);
-            points_3c.push_back(center - offset);
+            normalize_source4.x = previous.y - center.y;
+            normalize_source4.y = center.x - previous.x;
+            D3DXVec2Normalize(&normal, &normalize_source4);
+            normal *= half_width_10;
+            points_3c.push_back(center + normal);
+            points_3c.push_back(center - normal);
             previous = center;
         }
 
@@ -298,9 +303,9 @@ void SecondaryAnimationRenderRuntimeView::update_secondary()
                 previous.y - center.y,
                 center.x - previous.x);
             D3DXVec2Normalize(&normal, &perpendicular_source);
-            SecondaryAnimationPoint offset = normal * half_width_10;
-            points_3c.push_back(center + offset);
-            points_3c.push_back(center - offset);
+            normal *= half_width_10;
+            points_3c.push_back(center + normal);
+            points_3c.push_back(center - normal);
             previous = center;
         }
         return;

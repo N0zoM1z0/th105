@@ -93,14 +93,16 @@ void GlobalBattlePairState::update_first()
         source_00 = horizontal_limit;
 
     float scaled_height = (mirrored_14 - 0.5f) * 2.0;
+    float *first_y = first_y_4c;
+    float *second_y = second_y_50;
     if (enabled_2d) {
         source_04 = -target_24 * scaled_height;
         if (source_04 < scaled_height * -420.0)
             source_04 = static_cast<float>(scaled_height * -420.0);
     } else {
-        float upper_fighter = *first_y_4c < *second_y_50
-            ? *first_y_4c : *second_y_50;
-        float separation = *first_y_4c - *second_y_50;
+        float upper_fighter = *first_y < *second_y
+            ? *first_y : *second_y;
+        float separation = *first_y - *second_y;
         separation = static_cast<float>(fabs(separation));
         source_04 = static_cast<float>(
             -separation * 0.2f * scaled_height);
@@ -111,7 +113,7 @@ void GlobalBattlePairState::update_first()
     }
 
     midpoint_x_54 = static_cast<float>((*first_x_44 + *second_x_48) * 0.5);
-    midpoint_y_58 = (*first_y_4c + *second_y_50) * 0.5f;
+    midpoint_y_58 = 0.5f * (*second_y + *first_y);
 }
 
 void GlobalBattlePairState::update_second()
