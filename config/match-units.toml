@@ -16786,3 +16786,15 @@ dir32_targets = [
 [[units.gpt-web-fighter-giant-shared-primitives.functions]]
 address = "0x00478E60"
 symbol_base = "?face_opponent_and_flip_horizontal_velocity@FighterFaceFlipView@th105@@QAEXXZ"
+
+[units.gpt-web-youmu-vslot28-full-root]
+kind = "probe"
+source = "src/characters/YoumuActionState.cpp"
+object = "build/match-units/GptWeb_YoumuActionState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete current-target ordinary-C++ semantic scaffold for Youmu primary-vtable +0x28 @ 0x00530200. This unit is deliberately compile-only while literal/helper relocation witnesses are being closed: current VC8 emits the target aligned-frame family (and esp,-8) with 0x208 local bytes versus target 0x230, target-shaped cmp/jg/je low-first outer dispatch, and 38,372 total .text bytes including compiler metadata versus target 38,816. Do not treat this source-present root as exact or add it to matches.csv until a full 37,692-byte canonical comparison closes."
+
+[[units.gpt-web-youmu-vslot28-full-root.functions]]
+address = "0x00530200"
+symbol_base = "?dispatch_action_state_vslot28@YoumuActionStateView@th105@@QAEXXZ"

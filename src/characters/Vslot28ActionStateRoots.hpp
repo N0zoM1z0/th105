@@ -2,10 +2,11 @@
 
 namespace th105 {
 
-// Declarations only. The exact-target manifests prove the receiver ABI,
-// numeric action selector, and void return topology for the complete roster.
-// Complete derived layouts and per-action gameplay names remain unresolved;
-// no placeholder implementation is emitted.
+// Roster ownership/ABI declarations. Exact-target manifests prove the receiver
+// ABI, numeric action selector, and void return topology for every +0x28 root.
+// Youmu now has a complete semantic source scaffold in YoumuActionState.cpp;
+// the remaining roster roots are still declaration-only until their action CFGs
+// are recovered.
 struct Alice;
 struct Aya;
 struct Iku;
