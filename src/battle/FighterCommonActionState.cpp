@@ -147,7 +147,6 @@ void FighterCommonActionStateView::update_common_action_state()
   __int16 v46; // ax
   __int16 v47; // ax
   __int16 v48; // ax
-  double v49; // st7
   char v50; // al
   int v52; // eax
   double v53; // st7
@@ -391,220 +390,234 @@ ACTION_62_67_ADVANCE:
       }
 
       case 71:
-        if ( sequence_13e == 1 && velocity_y_f8 < 2.0 )
-          goto LABEL_291;
+        if (sequence_13e == 1 && velocity_y_f8 < 2.0) {
+          slot_14();
+          return;
+        }
         v80 = velocity_y_f8 - acceleration_y_100;
         velocity_y_f8 = v80;
-        if ( v80 > 0.0 )
+        if (v80 > 0.0)
           velocity_y_f8 = v80 - acceleration_y_100;
-        if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
-          goto LABEL_98;
-        v15 = word_730;
-        if ( v15 > 0 )
-          word_730 = v15 - 1;
-        if ( !classify_fighter_x_boundary() || velocity_x_f4 >= 0.0 )
-          goto LABEL_108;
-        v81 = velocity_x_f4 + 1.0;
-        velocity_x_f4 = v81;
-        if ( v81 > 0.0 )
-          velocity_x_f4 = 0.0;
-        if ( !unknown_490 )
-          goto LABEL_108;
-        peer_component_6ac = (double)word_730 * -2.0;
-        advance_frame_and_dispatch();
-        return;
-      case 72:
-        if ( sequence_13e == 1 && velocity_y_f8 < 2.0 )
-          goto LABEL_291;
-        velocity_y_f8 = velocity_y_f8 - acceleration_y_100;
-        if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
-          goto LABEL_98;
-        if ( !classify_fighter_x_boundary() || velocity_x_f4 >= 0.0 )
-          goto LABEL_108;
-        v82 = velocity_x_f4 + 1.0;
-        velocity_x_f4 = v82;
-        if ( v82 > 0.0 )
-          velocity_x_f4 = 0.0;
-        if ( !unknown_490 )
-          goto LABEL_108;
-        peer_component_6ac = velocity_x_f4;
-        advance_frame_and_dispatch();
-        return;
-      case 73:
-        if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
-          goto LABEL_120;
-        advance_frame_and_dispatch();
-        v19 = 0.0;
-        if ( !frame_counter_144
-          && !frame_timer_142
-          && !frame_index_140
-          && sequence_13e == 1
-          && 0.0 != velocity_y_f8 )
-        {
-          goto LABEL_126;
-        }
-        if ( --word_730 < 0 )
-          word_730 = 0;
-        if ( classify_fighter_x_boundary() && velocity_x_f4 < 0.0 )
-        {
-          v83 = velocity_x_f4 + 2.5;
-          velocity_x_f4 = v83;
-          if ( v83 > 0.0 )
-            velocity_x_f4 = 0.0;
-          if ( unknown_490 )
-            peer_component_6ac = (double)word_730 * -2.0;
-        }
-        return;
-      case 74:
-        if ( sequence_13e == 1 && velocity_y_f8 < 2.0 )
-          goto LABEL_291;
-        if ( classify_fighter_x_boundary() && velocity_x_f4 <= -25.0 )
-          goto LABEL_141;
-        if ( classify_fighter_x_boundary() && velocity_x_f4 <= -15.0 )
-          goto LABEL_144;
-        velocity_y_f8 = velocity_y_f8 - acceleration_y_100;
-        if ( !(unsigned __int8)has_crossed_stage_surface_while_descending() )
-          goto LABEL_108;
-LABEL_98:
-        v12 = velocity_y_f8;
-        word_730 = 100 * (int)velocity_x_f4;
-        word_732 = 100 * (int)v12;
-        zero_velocity_acceleration();y_f0 = 0.0;
-        set_action(97);
-        publish_battle_layout_scalar(2.0f);
-        dispatch_indexed_event_member(0x16u);
-        return;
-      case 75:
-        if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
-        {
-LABEL_120:
-          v17 = velocity_y_f8;
+        if ((unsigned __int8)has_crossed_stage_surface_while_descending()) {
           word_730 = 100 * (int)velocity_x_f4;
-          word_732 = 100 * (int)v17;
-          zero_velocity_acceleration();y_f0 = 0.0;
+          word_732 = 100 * (int)velocity_y_f8;
+          zero_velocity_acceleration();
+          y_f0 = 0.0;
+          set_action(97);
+          publish_battle_layout_scalar(2.0f);
+          dispatch_indexed_event_member(0x16u);
+          return;
+        }
+        if (word_730 > 0)
+          --word_730;
+        if (classify_fighter_x_boundary() && velocity_x_f4 < 0.0) {
+          if ((velocity_x_f4 = static_cast<float>(velocity_x_f4 + 1.0)) > 0.0f)
+            velocity_x_f4 = 0.0f;
+          if (unknown_490)
+            peer_component_6ac = static_cast<float>((double)word_730 * -2.0);
+        }
+        advance_frame_and_dispatch();
+        return;
+
+      case 72:
+        if (sequence_13e == 1 && velocity_y_f8 < 2.0) {
+          slot_14();
+          return;
+        }
+        velocity_y_f8 -= acceleration_y_100;
+        if ((unsigned __int8)has_crossed_stage_surface_while_descending()) {
+          word_730 = 100 * (int)velocity_x_f4;
+          word_732 = 100 * (int)velocity_y_f8;
+          zero_velocity_acceleration();
+          y_f0 = 0.0;
+          set_action(97);
+          publish_battle_layout_scalar(2.0f);
+          dispatch_indexed_event_member(0x16u);
+          return;
+        }
+        if (classify_fighter_x_boundary() && velocity_x_f4 < 0.0) {
+          if ((velocity_x_f4 = static_cast<float>(velocity_x_f4 + 1.0)) > 0.0f)
+            velocity_x_f4 = 0.0f;
+          if (unknown_490)
+            peer_component_6ac = velocity_x_f4;
+        }
+        advance_frame_and_dispatch();
+        return;
+
+      case 73:
+        if ((unsigned __int8)has_crossed_stage_surface_while_descending()) {
+          word_730 = 100 * (int)velocity_x_f4;
+          word_732 = 100 * (int)velocity_y_f8;
+          zero_velocity_acceleration();
+          y_f0 = 0.0;
           set_action(97);
           publish_battle_layout_scalar(5.0f);
           dispatch_indexed_event_member(0x16u);
           return;
         }
-        if ( classify_fighter_x_boundary() && velocity_x_f4 <= -25.0 )
-        {
-LABEL_141:
+        advance_frame_and_dispatch();
+        if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 && 0.0 != velocity_y_f8) {
+          if (0.0 == velocity_x_f4)
+            set_sequence(3);
+          else
+            set_sequence(2);
+          return;
+        }
+        if (--word_730 < 0)
+          word_730 = 0;
+        if (classify_fighter_x_boundary() && velocity_x_f4 < 0.0) {
+          if ((velocity_x_f4 = static_cast<float>(velocity_x_f4 + 2.5)) > 0.0f)
+            velocity_x_f4 = 0.0f;
+          if (unknown_490)
+            peer_component_6ac = static_cast<float>((double)word_730 * -2.0);
+        }
+        return;
+
+      case 74:
+        if (sequence_13e == 1 && velocity_y_f8 < 2.0) {
+          slot_14();
+          return;
+        }
+        if (classify_fighter_x_boundary() && velocity_x_f4 <= -25.0) {
           set_action(76);
           return;
         }
-        if ( classify_fighter_x_boundary() && velocity_x_f4 <= -15.0 )
-        {
-LABEL_144:
+        if (classify_fighter_x_boundary() && velocity_x_f4 <= -15.0) {
+          set_action(78);
+          return;
+        }
+        velocity_y_f8 -= acceleration_y_100;
+        if ((unsigned __int8)has_crossed_stage_surface_while_descending()) {
+          word_730 = 100 * (int)velocity_x_f4;
+          word_732 = 100 * (int)velocity_y_f8;
+          zero_velocity_acceleration();
+          y_f0 = 0.0;
+          set_action(97);
+          publish_battle_layout_scalar(2.0f);
+          dispatch_indexed_event_member(0x16u);
+          return;
+        }
+        advance_frame_and_dispatch();
+        return;
+
+      case 75:
+        if ((unsigned __int8)has_crossed_stage_surface_while_descending()) {
+          word_730 = 100 * (int)velocity_x_f4;
+          word_732 = 100 * (int)velocity_y_f8;
+          zero_velocity_acceleration();
+          y_f0 = 0.0;
+          set_action(97);
+          publish_battle_layout_scalar(5.0f);
+          dispatch_indexed_event_member(0x16u);
+          return;
+        }
+        if (classify_fighter_x_boundary() && velocity_x_f4 <= -25.0) {
+          set_action(76);
+          return;
+        }
+        if (classify_fighter_x_boundary() && velocity_x_f4 <= -15.0) {
           set_action(78);
           return;
         }
         advance_frame_and_dispatch();
-        if ( frame_counter_144 )
-          return;
-        if ( frame_timer_142 )
-          return;
-        if ( frame_index_140 )
-          return;
-        if ( sequence_13e != 1 )
-          return;
-        v19 = 0.0;
-        if ( 0.0 == velocity_y_f8 )
-          return;
-        goto LABEL_126;
+        if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 && 0.0 != velocity_y_f8) {
+          if (0.0 == velocity_x_f4)
+            set_sequence(3);
+          else
+            set_sequence(2);
+        }
+        return;
+
       case 76:
-        if ( sequence_13e > 0 )
-          angle_12c = angle_12c - 30.0;
-        velocity_y_f8 = velocity_y_f8 - acceleration_y_100;
-        if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
-          goto LABEL_161;
-        advance_frame_and_dispatch();
-        if ( frame_counter_144 || frame_timer_142 || frame_index_140 || sequence_13e != 1 )
+        if (sequence_13e > 0)
+          angle_12c -= 30.0f;
+        velocity_y_f8 -= acceleration_y_100;
+        if ((unsigned __int8)has_crossed_stage_surface_while_descending()) {
+          dispatch_indexed_event_member(0x16u);
+          word_730 = 100 * (int)velocity_x_f4;
+          word_732 = 100 * (int)velocity_y_f8;
+          zero_velocity_acceleration();
+          y_f0 = 0.0;
+          set_action(97);
+          angle_12c = 0.0f;
+          publish_battle_layout_scalar(2.0f);
+          reinterpret_cast<FighterActionScratchView *>(reinterpret_cast<unsigned char *>(this) + 4)->reset();
           return;
-        velocity_x_f4 = -3.0;
-        v23 = 10.0;
-        goto LABEL_167;
+        }
+        advance_frame_and_dispatch();
+        if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1) {
+          velocity_x_f4 = -3.0f;
+          velocity_y_f8 = 10.0f;
+          acceleration_y_100 = 0.5f;
+          facing_104 = -facing_104;
+        }
+        return;
+
       case 77:
-        angle_12c = angle_12c - 30.0;
-        velocity_y_f8 = velocity_y_f8 - acceleration_y_100;
-        v25 = has_crossed_stage_surface_while_descending();
-        if ( !v25 )
-          goto LABEL_109;
-LABEL_161:
+        angle_12c -= 30.0f;
+        velocity_y_f8 -= acceleration_y_100;
+        if (!(unsigned __int8)has_crossed_stage_surface_while_descending()) {
+          advance_frame_and_dispatch();
+          return;
+        }
         dispatch_indexed_event_member(0x16u);
-        v21 = velocity_y_f8;
         word_730 = 100 * (int)velocity_x_f4;
-        word_732 = 100 * (int)v21;
-        zero_velocity_acceleration();y_f0 = 0.0;
+        word_732 = 100 * (int)velocity_y_f8;
+        zero_velocity_acceleration();
+        y_f0 = 0.0;
         set_action(97);
-        angle_12c = 0.0;
-        publish_battle_layout_scalar(2.0);
+        angle_12c = 0.0f;
+        publish_battle_layout_scalar(2.0f);
         reinterpret_cast<FighterActionScratchView *>(reinterpret_cast<unsigned char *>(this) + 4)->reset();
         return;
+
       case 78:
-        velocity_y_f8 = velocity_y_f8 - acceleration_y_100;
-        if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
-        {
+        velocity_y_f8 -= acceleration_y_100;
+        if ((unsigned __int8)has_crossed_stage_surface_while_descending()) {
           dispatch_indexed_event_member(0x16u);
-          v26 = velocity_y_f8;
           word_730 = 100 * (int)velocity_x_f4;
-          word_732 = 100 * (int)v26;
-          zero_velocity_acceleration();y_f0 = 0.0;
+          word_732 = 100 * (int)velocity_y_f8;
+          zero_velocity_acceleration();
+          y_f0 = 0.0;
           set_action(97);
-          goto LABEL_172;
+          publish_battle_layout_scalar(2.0f);
+          return;
         }
         advance_frame_and_dispatch();
-        if ( !frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 )
-        {
-          velocity_x_f4 = -5.0;
-          v23 = 3.0;
-LABEL_167:
-          v24 = facing_104;
-          velocity_y_f8 = v23;
-          acceleration_y_100 = 0.5;
-          facing_104 = -v24;
+        if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1) {
+          velocity_x_f4 = -5.0f;
+          velocity_y_f8 = 3.0f;
+          acceleration_y_100 = 0.5f;
+          facing_104 = -facing_104;
         }
-        break;
+        return;
+
       case 88:
-        if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
-        {
-          v28 = velocity_y_f8;
+        if ((unsigned __int8)has_crossed_stage_surface_while_descending()) {
           word_730 = 100 * (int)velocity_x_f4;
-          word_732 = 100 * (int)v28;
-          zero_velocity_acceleration();y_f0 = 0.0;
+          word_732 = 100 * (int)velocity_y_f8;
+          zero_velocity_acceleration();
+          y_f0 = 0.0;
           set_action(89);
           publish_battle_layout_scalar(5.0f);
           dispatch_indexed_event_member(0x16u);
+          return;
         }
-        else
-        {
-          advance_frame_and_dispatch();
-          v19 = 0.0;
-          if ( frame_counter_144
-            || frame_timer_142
-            || frame_index_140
-            || sequence_13e != 1
-            || 0.0 == velocity_y_f8 )
-          {
-            if ( --word_730 < 0 )
-              word_730 = 0;
-            if ( classify_fighter_x_boundary() && velocity_x_f4 < 0.0 )
-            {
-              v84 = velocity_x_f4 + 2.5;
-              velocity_x_f4 = v84;
-              if ( v84 > 0.0 )
-                velocity_x_f4 = 0.0;
-              if ( unknown_490 )
-                peer_component_6ac = (double)word_730 * -2.0;
-            }
-          }
+        advance_frame_and_dispatch();
+        if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 && 0.0 != velocity_y_f8) {
+          if (0.0 == velocity_x_f4)
+            set_sequence(3);
           else
-          {
-LABEL_126:if ( v19 == velocity_x_f4 )
-              set_sequence(3);
-            else
-              set_sequence(2);
-          }
+            set_sequence(2);
+          return;
+        }
+        if (--word_730 < 0)
+          word_730 = 0;
+        if (classify_fighter_x_boundary() && velocity_x_f4 < 0.0) {
+          if ((velocity_x_f4 = static_cast<float>(velocity_x_f4 + 2.5)) > 0.0f)
+            velocity_x_f4 = 0.0f;
+          if (unknown_490)
+            peer_component_6ac = static_cast<float>((double)word_730 * -2.0);
         }
         return;
       case 89:
@@ -740,8 +753,8 @@ LABEL_126:if ( v19 == velocity_x_f4 )
         }
         if ( classify_fighter_x_boundary() && unknown_490 )
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ( (unsigned __int8)advance_frame_and_dispatch() )
-          goto LABEL_323;
+        if ((unsigned __int8)advance_frame_and_dispatch())
+          set_action(0);
         return;
       case 143:
         resolve_stage_surface_landing_transition();
@@ -754,8 +767,8 @@ LABEL_126:if ( v19 == velocity_x_f4 )
         }
         if ( classify_fighter_x_boundary() && unknown_490 )
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ( (unsigned __int8)advance_frame_and_dispatch() )
-          goto LABEL_323;
+        if ((unsigned __int8)advance_frame_and_dispatch())
+          set_action(0);
         return;
       case 144:
         resolve_stage_surface_landing_transition();
@@ -768,8 +781,8 @@ LABEL_126:if ( v19 == velocity_x_f4 )
         }
         if ( classify_fighter_x_boundary() && unknown_490 )
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ( (unsigned __int8)advance_frame_and_dispatch() )
-          goto LABEL_323;
+        if ((unsigned __int8)advance_frame_and_dispatch())
+          set_action(0);
         return;
       case 145:
         if (sequence_13e == 1) {
@@ -795,8 +808,7 @@ LABEL_285:
             word_732 = 100 * (int)v38;
             zero_velocity_acceleration();y_f0 = 0.0;
             set_action(97);
-LABEL_172:
-            publish_battle_layout_scalar(2.0);
+            publish_battle_layout_scalar(2.0f);
           }
           else if ( (unsigned __int8)advance_frame_and_dispatch() )
           {
@@ -815,8 +827,8 @@ LABEL_172:
         }
         if ( classify_fighter_x_boundary() && unknown_490 )
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ( (unsigned __int8)advance_frame_and_dispatch() )
-          goto LABEL_323;
+        if ((unsigned __int8)advance_frame_and_dispatch())
+          set_action(0);
         return;
       case 151:
         resolve_stage_surface_landing_transition();
@@ -829,8 +841,8 @@ LABEL_172:
         }
         if ( classify_fighter_x_boundary() && unknown_490 )
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ( (unsigned __int8)advance_frame_and_dispatch() )
-          goto LABEL_323;
+        if ((unsigned __int8)advance_frame_and_dispatch())
+          set_action(0);
         return;
       case 152:
         resolve_stage_surface_landing_transition();
@@ -843,8 +855,8 @@ LABEL_172:
         }
         if ( classify_fighter_x_boundary() && unknown_490 )
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ( (unsigned __int8)advance_frame_and_dispatch() )
-          goto LABEL_323;
+        if ((unsigned __int8)advance_frame_and_dispatch())
+          set_action(0);
         return;
       case 153:
         resolve_stage_surface_landing_transition();
@@ -857,10 +869,8 @@ LABEL_172:
         }
         if ( classify_fighter_x_boundary() && unknown_490 )
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ( !(unsigned __int8)advance_frame_and_dispatch() )
-          return;
-LABEL_323:
-        set_action(0);
+        if ((unsigned __int8)advance_frame_and_dispatch())
+          set_action(0);
         return;
       case 154:
         resolve_stage_surface_landing_transition();
@@ -873,8 +883,8 @@ LABEL_323:
         }
         if ( classify_fighter_x_boundary() && unknown_490 )
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ( (unsigned __int8)advance_frame_and_dispatch() )
-          goto LABEL_355;
+        if ((unsigned __int8)advance_frame_and_dispatch())
+          set_action(2);
         return;
       case 155:
         resolve_stage_surface_landing_transition();
@@ -887,8 +897,8 @@ LABEL_323:
         }
         if ( classify_fighter_x_boundary() && unknown_490 )
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ( (unsigned __int8)advance_frame_and_dispatch() )
-          goto LABEL_355;
+        if ((unsigned __int8)advance_frame_and_dispatch())
+          set_action(2);
         return;
       case 156:
         resolve_stage_surface_landing_transition();
@@ -901,8 +911,8 @@ LABEL_323:
         }
         if ( classify_fighter_x_boundary() && unknown_490 )
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ( (unsigned __int8)advance_frame_and_dispatch() )
-          goto LABEL_355;
+        if ((unsigned __int8)advance_frame_and_dispatch())
+          set_action(2);
         return;
       case 157:
         resolve_stage_surface_landing_transition();
@@ -915,8 +925,8 @@ LABEL_323:
         }
         if ( classify_fighter_x_boundary() && unknown_490 )
           peer_component_6ac = velocity_x_f4 * 0.75;
-        if ( (unsigned __int8)advance_frame_and_dispatch() )
-          goto LABEL_355;
+        if ((unsigned __int8)advance_frame_and_dispatch())
+          set_action(2);
         return;
       case 158:
         velocity_y_f8 = velocity_y_f8 - acceleration_y_100;
@@ -1025,7 +1035,6 @@ LABEL_49:
           peer_component_6ac = velocity_x_f4 * 0.75;
 LABEL_52:
         if ( (unsigned __int8)advance_frame_and_dispatch() )
-LABEL_355:
           set_action(2);
         return;
       case 167:
@@ -1053,8 +1062,10 @@ LABEL_367:
       case 181:
         velocity_y_f8 = velocity_y_f8 - acceleration_y_100;
         v42 = has_crossed_stage_surface_while_descending();
-        if ( !v42 )
-          goto LABEL_109;
+        if (!v42) {
+          advance_frame_and_dispatch();
+          return;
+        }
 LABEL_357:
         set_action(10);
         y_f0 = 0.0;
@@ -1109,8 +1120,10 @@ LABEL_357:
             emit_fighter_effect_433cc0(153, x_ec, y_f0, facing_104, 1);
           if ( !(frame_counter_144 % 10) )
             emit_fighter_effect_433cc0(152, x_ec, y_f0, facing_104, -1);
-          if ( frame_counter_144 >= 67 )
-            goto LABEL_444;
+          if (frame_counter_144 >= 67) {
+            slot_14();
+            return;
+          }
         }
         if ( (unsigned __int8)advance_frame_and_dispatch() )
           set_action(0);
@@ -1119,8 +1132,10 @@ LABEL_357:
         break;
       case 693:
         resolve_stage_surface_landing_transition();
-        if ( sequence_13e == 1 && frame_counter_144 >= 40 )
-          goto LABEL_444;
+        if (sequence_13e == 1 && frame_counter_144 >= 40) {
+          slot_14();
+          return;
+        }
         if ( (unsigned __int8)advance_frame_and_dispatch() )
           set_action(0);
         if ( !frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 )
@@ -1136,11 +1151,8 @@ LABEL_357:
         if ( word_484 < 1000 )
         {
           v46 = word_488;
-          if ( v46 < 4800 )
-          {
-            v47 = v46 + 240;
-            word_488 = v47;
-            if ( v47 >= 4800 )
+          if (v46 < 4800) {
+            if ((word_488 += 240) >= 4800)
               word_488 = 4799;
           }
         }
@@ -1170,66 +1182,63 @@ LABEL_522:
         break;
       case 700:
         resolve_stage_surface_landing_transition();
-        v49 = 0.0;
-        if ( 0.0 == velocity_x_f4 )
+        if (!velocity_x_f4)
           byte_47e = 0;
-        if ( byte_47e )
-        {
-          if ( velocity_x_f4 > 0.0 )
-          {
-            v117 = velocity_x_f4 - 0.5;
-            velocity_x_f4 = v117;
-            if ( v117 < 0.0 )
-            {
-              zero_velocity_acceleration();
-              v49 = 0.0;
-              byte_47e = 0;
-            }
-          }
-          if ( v49 <= velocity_x_f4
-            || (v118 = velocity_x_f4 + 0.5, velocity_x_f4 = v118, v118 <= v49) )
-          {
-LABEL_108:
-                goto LABEL_109;
-          }
-          zero_velocity_acceleration();
-          byte_47e = 0;
-          advance_frame_and_dispatch();
-        }
-        else
-        {
+        if (!byte_47e) {
           zero_velocity_acceleration();
           advance_frame_and_dispatch();
+          return;
         }
-        break;
+        if (velocity_x_f4 > 0.0) {
+          v117 = velocity_x_f4 - 0.5;
+          velocity_x_f4 = v117;
+          if (v117 < 0.0) {
+            zero_velocity_acceleration();
+            byte_47e = 0;
+          }
+        }
+        if (!(velocity_x_f4 < 0.0f)
+          || (v118 = velocity_x_f4 + 0.5,
+              velocity_x_f4 = v118,
+              !(v118 > 0.0f))) {
+          advance_frame_and_dispatch();
+          return;
+        }
+        zero_velocity_acceleration();
+        byte_47e = 0;
+        advance_frame_and_dispatch();
+        return;
       case 701:
       case 702:
       case 703:
-        if ( sequence_13e )
-        {
-          velocity_y_f8 = velocity_y_f8 - acceleration_y_100;
-          if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
-          {
-            set_action(700);
-            y_f0 = stage_surface_height_at_x(this);
-            zero_velocity_acceleration();
-            return;
-          }
-        }
-        else
-        {
+        if (!sequence_13e) {
           resolve_stage_surface_landing_transition();
-        }
-        if ( sequence_13e == 1 && velocity_y_f8 < 4.0 )
+        if (sequence_13e == 1 && velocity_y_f8 < 4.0)
           slot_14();
         advance_frame_and_dispatch();
-        if ( !frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 )
-        {
+        if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1) {
           velocity_x_f4 = policy_x_780;
           velocity_y_f8 = policy_y_784;
           acceleration_y_100 = policy_scale_788;
         }
-        break;
+        return;
+        }
+        velocity_y_f8 = velocity_y_f8 - acceleration_y_100;
+        if ((unsigned __int8)has_crossed_stage_surface_while_descending()) {
+          set_action(700);
+          y_f0 = stage_surface_height_at_x(this);
+          zero_velocity_acceleration();
+          return;
+        }
+        if (sequence_13e == 1 && velocity_y_f8 < 4.0)
+          slot_14();
+        advance_frame_and_dispatch();
+        if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1) {
+          velocity_x_f4 = policy_x_780;
+          velocity_y_f8 = policy_y_784;
+          acceleration_y_100 = policy_scale_788;
+        }
+        return;
       case 704:
         velocity_y_f8 = velocity_y_f8 - acceleration_y_100;
         v50 = has_crossed_stage_surface_while_descending();
@@ -1241,7 +1250,6 @@ LABEL_108:
         }
         else
         {
-LABEL_109:
           advance_frame_and_dispatch();
         }
         break;
@@ -1257,9 +1265,9 @@ LABEL_109:
         break;
       case 709:
         resolve_stage_surface_landing_transition();
-        if ( (unsigned __int8)advance_frame_and_dispatch() )
-          goto LABEL_480;
-        break;
+        if ((unsigned __int8)advance_frame_and_dispatch())
+          set_action(700);
+        return;
       case 789:
         zero_velocity_acceleration();
         advance_frame_and_dispatch();
@@ -1292,8 +1300,10 @@ LABEL_109:
         }
         else
         {
-          if ( (unsigned __int8)advance_frame_and_dispatch() )
-            goto LABEL_323;
+          if ((unsigned __int8)advance_frame_and_dispatch()) {
+            set_action(0);
+            return;
+          }
           if ( !frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 )
           {
             v52 = facing_104;
@@ -1306,10 +1316,9 @@ LABEL_109:
         }
         break;
       case 796:
-        v54 = sequence_13e;
-        if ( v54 > 0
-          && v54 < 4
-          && (velocity_y_f8 = velocity_y_f8 - acceleration_y_100, (unsigned __int8)has_crossed_stage_surface_while_descending()) )
+        if (sequence_13e > 0
+          && sequence_13e < 4
+          && (velocity_y_f8 = velocity_y_f8 - acceleration_y_100, (unsigned __int8)has_crossed_stage_surface_while_descending()))
         {
           dispatch_indexed_event_member(0x1Eu);
           x_ec = 800.0;facing_104 = -1;
@@ -1319,7 +1328,6 @@ LABEL_109:
         }
         else if ( (unsigned __int8)advance_frame_and_dispatch() )
         {
-LABEL_480:
           set_action(700);
         }
         else if ( !frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 )
@@ -1335,10 +1343,9 @@ LABEL_480:
         }
         break;
       case 799:
-        v59 = sequence_13e;
-        if ( v59 > 0
-          && v59 < 4
-          && (velocity_y_f8 = velocity_y_f8 - acceleration_y_100, (unsigned __int8)has_crossed_stage_surface_while_descending()) )
+        if (sequence_13e > 0
+          && sequence_13e < 4
+          && (velocity_y_f8 = velocity_y_f8 - acceleration_y_100, (unsigned __int8)has_crossed_stage_surface_while_descending()))
         {
           dispatch_indexed_event_member(0x1Eu);
           x_ec = 480.0;facing_104 = 1;
