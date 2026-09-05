@@ -53,34 +53,34 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4010)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1251)
+        self.assertEqual(len(matching), 1255)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1266)
+        self.assertEqual(len(implemented), 1270)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1251
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1255
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 432)
+        self.assertEqual(len(manifest["units"]), 435)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1255,
+            1259,
         )
 
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,010", markdown)
-        self.assertIn("Confirmed authored functions | 1,317", markdown)
-        self.assertIn("Confirmed authored code bytes | 1,372,146", markdown)
+        self.assertIn("Confirmed authored functions | 1,320", markdown)
+        self.assertIn("Confirmed authored code bytes | 1,372,387", markdown)
         self.assertIn("Classified exclusions | 1,266", markdown)
-        self.assertIn("Origin/boundary review pending | 1,427", markdown)
-        self.assertIn("Canonical exact functions | 1,251", markdown)
-        self.assertIn("Canonical exact authored bytes | 210,273", markdown)
+        self.assertIn("Origin/boundary review pending | 1,424", markdown)
+        self.assertIn("Canonical exact functions | 1,255", markdown)
+        self.assertIn("Canonical exact authored bytes | 212,311", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
@@ -132,8 +132,8 @@ class WorkflowToolingTests(unittest.TestCase):
             if rule["id"] == "roster-fighter-primary-vtable-authored-106a"
         )
         self.assertTrue(roster["skip_matching"])
-        self.assertEqual(roster["expected_count"], 66)
-        self.assertEqual(roster["expected_bytes"], 1_127_596)
+        self.assertEqual(roster["expected_count"], 64)
+        self.assertEqual(roster["expected_bytes"], 1_124_191)
         with (ROOT / roster["pointer_anchor_file"]).open("rb") as stream:
             roster_manifest = tomllib.load(stream)
         roots = roster_manifest["anchors"]

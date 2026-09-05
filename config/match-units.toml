@@ -640,6 +640,14 @@ address = "0x00492F90"
 symbol_base = "CharacterObject_ctor"
 rel32_targets = ["??0AttackObject@@QAE@XZ=0x0045FA30"]
 
+[[units.cross-v106a-character-object-ctor.functions]]
+address = "0x00492F70"
+symbol_base = "??_GCharacterObject@@UAEPAXI@Z"
+rel32_targets = [
+  "??1CharacterObject@@UAE@XZ=0x00492ED0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
 [units.cross-v106a-fighter-sequence-effect]
 kind = "probe"
 source = "src/battle/FighterSequenceEffect.cpp"
@@ -16552,3 +16560,48 @@ dir32_targets = [
   "?g_fighter_state_4b8_default@th105@@3HA=?g_fighter_state_4b8_default@th105@@3HA",
   "?g_info_mode_value_6fa88c@th105@@3FA=?g_info_mode_value_6fa88c@th105@@3FA",
 ]
+
+[units.gpt-web-udonge-control-mode]
+kind = "probe"
+source = "src/characters/UdongeControlMode.cpp"
+object = "build/match-units/GptWeb_UdongeControlMode.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Canonical-exact current Udonge Fighter primary-vtable +0x5C control-mode override. Direct checked policy reads recover the target state/action CSE; object-910 spawn keeps x/y/facing in the real right-to-left call-expression lifetime; peer-positive state branches and duplicated 705/706 timer source let VC8 naturally select the shipped shared x87/action tails."
+
+[[units.gpt-web-udonge-control-mode.functions]]
+address = "0x005D06F0"
+symbol_base = "?update_control_mode@UdongeControlModeView@th105@@QAEXXZ"
+rel32_targets = [
+  "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
+  "?face_opponent_and_flip_horizontal_velocity@UdongeControlModeView@th105@@QAEXXZ=0x00478E60",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+  "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
+  "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
+  "?spawn_owned_object_via_manager@UdongeControlModeView@th105@@QAEHHMMHEHH@Z=0x00465190",
+  "?dispatch_character_wave_handle@UdongeControlModeView@th105@@QAEXI@Z=0x0045C030",
+]
+
+[units.gpt-web-udonge-action-visual-state]
+kind = "probe"
+source = "src/characters/UdongeActionVisualState.cpp"
+object = "build/match-units/GptWeb_UdongeActionVisualState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current Udonge action-entry tail helper. Fourteen current callers converge on the same thiscall; unsigned byte +0x113 and chained 255 publication make VC8 preserve the target EAX/AX/AL assignment-result lifetime naturally."
+
+[[units.gpt-web-udonge-action-visual-state.functions]]
+address = "0x005D06D0"
+symbol_base = "?reset_action_visual_state@UdongeActionVisualStateView@th105@@QAEHXZ"
+
+[units.gpt-web-fighter-directional-action-gate]
+kind = "probe"
+source = "src/battle/FighterDirectionalActionGate.cpp"
+object = "build/match-units/GptWeb_FighterDirectionalActionGate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current cross-roster Fighter directional gate used throughout multiple primary-vtable +0x28 action-state roots. Repeated vertical<0 source conditions preserve the shipped EAX vertical state and naturally dispatch actions 209/210/208 without manual vtable arithmetic or synthetic liveness."
+
+[[units.gpt-web-fighter-directional-action-gate.functions]]
+address = "0x00478EE0"
+symbol_base = "?try_dispatch_directional_action_208_210@FighterDirectionalActionGateView@th105@@QAEEH@Z"

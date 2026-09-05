@@ -1112,3 +1112,8 @@ __real@3fc3333340000000,0x006C42B8,000000403333c33f,0,Current Iku action-entry t
 __real@4049000000000000,0x006C3C08,0000000000004940,0,Current Fighter common-history target 0x004770B8 subtracts IEEE-754 double 50.0 at 0x006C3C08; canonical PE bytes attested 2026-09-04,literal
 __real@c0400000,0x006C3B5C,000040c0,0,Current Fighter common-history target 0x004772D8 clamps with IEEE-754 float -3.0 at 0x006C3B5C; canonical PE bytes attested 2026-09-04,literal
 __real@3fa00000,0x006C3C00,0000a03f,0,Current Fighter common-history target modes 1/4 load IEEE-754 float 1.25 from 0x006C3C00; canonical PE bytes attested 2026-09-04,literal
+__real@c014000000000000,0x006C5548,00000000000014c0,0,Current Yuyuko +0x5C target loads canonical IEEE-754 double -5.0 from 0x006C5548 in its horizontal random-motion path; PE bytes attested 2026-09-05,literal
+__real@406e000000000000,0x006C3CB0,0000000000006e40,0,Current Yuyuko +0x5C target loads canonical IEEE-754 double 240.0 from 0x006C3CB0 in its object-920 spawn path; PE bytes attested 2026-09-05,literal
+__real@4084500000000000,0x006C5540,0000000000508440,0,Current Yuyuko +0x5C target loads canonical IEEE-754 double 650.0 from 0x006C5540 in its object-920 spawn parameter path; PE bytes attested 2026-09-05,literal
+__real@41100000,0x006C3E5C,00001041,0,Current Yuyuko +0x3C action-entry target 0x0056C8CB loads canonical IEEE-754 float 9.0 from 0x006C3E5C for state +0x73C; PE bytes attested 2026-09-05,literal
+__real@3fe51eb860000000,0x006C3CA0,00000060b81ee53f,0,Current 1.06a Fighter scaled-counter helper 0x00478DF0 multiplies integer input by target-owned double 0.6600000262260437 before Fighter +0x4D0 scaling; canonical PE bytes attested 2026-09-05,literal
