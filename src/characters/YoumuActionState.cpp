@@ -1310,7 +1310,7 @@ if ( !*(_WORD *)(raw +  318) )
 resolve_stage_surface_landing_transition();
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
 return;
@@ -1604,7 +1604,7 @@ if ( !*(_WORD *)(raw +  318) )
 resolve_stage_surface_landing_transition();
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
 return;
