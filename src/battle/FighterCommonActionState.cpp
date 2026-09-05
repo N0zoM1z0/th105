@@ -269,44 +269,32 @@ LABEL_11:
           publish_battle_layout_scalar(2.0f);
           dispatch_indexed_event_member(0x16u);
         }
-        if (advance_frame_and_dispatch())
-          set_action(0);
-        return;
+        goto LABEL_11;
 
       case 54:
       case 60:
 ACTION_54_60_690:
         resolve_stage_surface_landing_transition();
-        if (advance_frame_and_dispatch())
-          set_action(0);
-        return;
+        goto LABEL_11;
 
       case 55:
       case 61:
         resolve_stage_surface_landing_transition();
-        if (velocity_x_f4 > 0.0) {
-          if ((velocity_x_f4 = static_cast<float>(velocity_x_f4 - 1.5)) < 0.0)
-            velocity_x_f4 = 0.0f;
-        }
-        if (classify_fighter_x_boundary() && unknown_490)
-          peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
-        if (advance_frame_and_dispatch())
-          set_action(0);
-        return;
+        v3 = 0.0;
+        if ( velocity_x_f4 <= 0.0 )
+          goto LABEL_8;
+        v4 = static_cast<float>(velocity_x_f4 - 1.5);
+        goto LABEL_6;
 
       case 56:
       case 57:
       case 58:
         resolve_stage_surface_landing_transition();
-        if (velocity_x_f4 < 0.0) {
-          if ((velocity_x_f4 = static_cast<float>(velocity_x_f4 + 1.5)) > 0.0)
-            velocity_x_f4 = 0.0f;
-        }
-        if (classify_fighter_x_boundary() && unknown_490)
-          peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
-        if (advance_frame_and_dispatch())
-          set_action(0);
-        return;
+        v3 = 0.0;
+        if ( velocity_x_f4 >= 0.0 )
+          goto LABEL_8;
+        v4 = static_cast<float>(velocity_x_f4 + 1.5);
+        goto LABEL_6;
 
       case 62:
         resolve_stage_surface_landing_transition();
