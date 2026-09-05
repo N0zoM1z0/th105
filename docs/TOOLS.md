@@ -66,3 +66,14 @@ the bounded reconstruction unit and fix/report IDA; do not route to Ghidra.
 - `scripts/report-reconstruction-status.py`: select work from current ledgers.
 - `scripts/rank_retained_exact.py`: target-attested retained-1.06 source ranking for 1.06a; dual `/GS` profiles, normalized instruction shape, and relocation-masked raw mismatch counts are prioritization signals only. Repeatable `--historical-status` filters may widen the archaeology queue to old `implemented`/`compiles` rows without changing acceptance semantics.
 - `scripts/ci.py`: target-independent public validation.
+
+## Giant authored action-switch topology
+
+For large Fighter vslot28 roots whose sparse switches use VC8 byte-index tables, use the fail-closed mapper instead of hand-decoding table bytes:
+
+```bash
+python3 scripts/map-giant-action-switches.py youmu-vslot28
+python3 scripts/map-giant-action-switches.py youmu-vslot28 --json
+```
+
+Root/table witnesses live in `config/giant-action-switches.toml`.  The mapper reads `resources/th105.exe`, validates every byte index against the destination-table count, requires every decoded destination to stay inside the reviewed callable, checks retained call/RET/group census invariants, and annotates each physical action destination with direct callees from `config/functions.csv`.  Add new roster roots to the manifest only after independently attesting their callable and metadata boundaries.  The emitted spans are source-ownership evidence; they do not split the authored exact-byte ledger.

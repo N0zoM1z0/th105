@@ -950,7 +950,7 @@ ACTION_62_67_ADVANCE:
       case 159:
         resolve_stage_surface_landing_transition();
         v3 = 0.0;
-        if ( velocity_x_f4 >= 0.0 )
+        if (!(velocity_x_f4 < 0.0f))
           goto LABEL_8;
         v99 = velocity_x_f4 + 0.6000000238418579;
         v100 = v99 + 0.6000000238418579;
@@ -959,7 +959,7 @@ ACTION_62_67_ADVANCE:
       case 160:
         resolve_stage_surface_landing_transition();
         v3 = 0.0;
-        if ( velocity_x_f4 >= 0.0 )
+        if (!(velocity_x_f4 < 0.0f))
           goto LABEL_8;
         v101 = velocity_x_f4 + 0.6000000238418579;
         v102 = v101 + 0.6000000238418579;
@@ -968,7 +968,7 @@ ACTION_62_67_ADVANCE:
       case 161:
         resolve_stage_surface_landing_transition();
         v3 = 0.0;
-        if ( velocity_x_f4 >= 0.0 )
+        if (!(velocity_x_f4 < 0.0f))
           goto LABEL_8;
         v103 = velocity_x_f4 + 0.6000000238418579;
         v104 = v103 + 0.6000000238418579;
@@ -977,7 +977,7 @@ ACTION_62_67_ADVANCE:
       case 162:
         resolve_stage_surface_landing_transition();
         v3 = 0.0;
-        if ( velocity_x_f4 >= 0.0 )
+        if (!(velocity_x_f4 < 0.0f))
           goto LABEL_8;
         v105 = velocity_x_f4 + 0.6000000238418579;
         v106 = v105 + 0.6000000238418579;
@@ -996,7 +996,7 @@ LABEL_8:
       case 163:
         resolve_stage_surface_landing_transition();
         v5 = 0.0;
-        if ( velocity_x_f4 >= 0.0 )
+        if (!(velocity_x_f4 < 0.0f))
           goto LABEL_49;
         v107 = velocity_x_f4 + 0.6000000238418579;
         v108 = v107 + 0.6000000238418579;
@@ -1005,7 +1005,7 @@ LABEL_8:
       case 164:
         resolve_stage_surface_landing_transition();
         v5 = 0.0;
-        if ( velocity_x_f4 >= 0.0 )
+        if (!(velocity_x_f4 < 0.0f))
           goto LABEL_49;
         v109 = velocity_x_f4 + 0.6000000238418579;
         v110 = v109 + 0.6000000238418579;
@@ -1014,7 +1014,7 @@ LABEL_8:
       case 165:
         resolve_stage_surface_landing_transition();
         v5 = 0.0;
-        if ( velocity_x_f4 >= 0.0 )
+        if (!(velocity_x_f4 < 0.0f))
           goto LABEL_49;
         v111 = velocity_x_f4 + 0.6000000238418579;
         v112 = v111 + 0.6000000238418579;
@@ -1023,7 +1023,7 @@ LABEL_8:
       case 166:
         resolve_stage_surface_landing_transition();
         v5 = 0.0;
-        if ( velocity_x_f4 >= 0.0 )
+        if (!(velocity_x_f4 < 0.0f))
           goto LABEL_49;
         v113 = velocity_x_f4 + 0.6000000238418579;
         v114 = v113 + 0.6000000238418579;

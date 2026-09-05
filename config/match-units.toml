@@ -16765,3 +16765,24 @@ dir32_targets = [
   "__real@c0a00000=__real@c0a00000",
   "__real@c1000000=__real@c1000000",
 ]
+
+[units.gpt-web-fighter-giant-shared-primitives]
+kind = "probe"
+source = "src/battle/FighterGiantSharedPrimitives.cpp"
+object = "build/match-units/GptWeb_FighterGiantSharedPrimitives.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Two current shared Fighter primitives on the bounded giant-root call graph. The 0x00478DF0 counter helper uses branch-local double accumulation to preserve target x87 operand order without /fp:fast; 0x00478E60 uses self-relative comparison spelling plus old-velocity source lifetime to reproduce target x87 comparisons and facing publication scheduler. Both are canonical exact under ordinary pinned VC8 /O2."
+
+[[units.gpt-web-fighter-giant-shared-primitives.functions]]
+address = "0x00478DF0"
+symbol_base = "?add_scaled_counter@FighterScaledCounterView@th105@@QAEHH@Z"
+rel32_targets = ["__ftol2_sse=0x0068A1A0"]
+dir32_targets = [
+  "__real@3fe0000000000000=__real@3fe0000000000000",
+  "__real@3fe51eb860000000=__real@3fe51eb860000000",
+]
+
+[[units.gpt-web-fighter-giant-shared-primitives.functions]]
+address = "0x00478E60"
+symbol_base = "?face_opponent_and_flip_horizontal_velocity@FighterFaceFlipView@th105@@QAEXXZ"

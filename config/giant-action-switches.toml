@@ -1,0 +1,40 @@
+# Target-backed byte-index switch topology for large authored Fighter roots.
+# These ranges are compiler metadata, not authored callable bytes.  The mapper
+# validates every index/destination against resources/th105.exe before use.
+
+[[roots]]
+name = "youmu-vslot28"
+address = "0x00530200"
+callable_end = "0x0053953C"
+metadata_end = "0x005399A0"
+expected_unique_destinations = 97
+expected_direct_call_sites = 598
+expected_direct_call_targets = 29
+expected_ret_opcodes = 114
+
+[[roots.regions]]
+name = "low"
+case_min = 0
+case_max = 226
+destination_table = "0x0053953C"
+destination_count = 33
+index_table = "0x005395C0"
+expected_physical_groups = 33
+
+[[roots.regions]]
+name = "mid"
+case_min = 301
+case_max = 546
+destination_table = "0x005396A4"
+destination_count = 44
+index_table = "0x00539754"
+expected_physical_groups = 44
+
+[[roots.regions]]
+name = "high"
+case_min = 565
+case_max = 798
+destination_table = "0x0053984C"
+destination_count = 22
+index_table = "0x005398A4"
+expected_physical_groups = 22
