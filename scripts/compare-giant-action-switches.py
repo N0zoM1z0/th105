@@ -171,38 +171,47 @@ def candidate_region_tables(
         case_max = int(region["case_max"])
         destination_count = int(region["destination_count"])
         case_count = case_max - case_min + 1
-        expected_groups = int(region.get("expected_physical_groups", destination_count))
-        candidates: list[tuple[int, int, list[int], bytes]] = []
+        configured_counts = region.get("candidate_destination_counts", [destination_count])
+        if isinstance(configured_counts, int):
+            candidate_destination_counts = [configured_counts]
+        else:
+            candidate_destination_counts = [int(value) for value in configured_counts]
+        candidates: list[tuple[int, int, int, list[int], bytes]] = []
         for start in sorted(obj.relocations):
             if start in used_starts:
                 continue
-            relocation_offsets = [start + index * 4 for index in range(destination_count)]
-            if not all(offset in obj.relocations for offset in relocation_offsets):
-                continue
-            try:
-                destinations = [obj.relocated_text_value(offset) for offset in relocation_offsets]
-            except ValueError:
-                continue
-            if any(not 0 <= destination < len(obj.text) for destination in destinations):
-                continue
-            index_start = start + destination_count * 4
-            index_end = index_start + case_count
-            if index_end > len(obj.text):
-                continue
-            indices = obj.text[index_start:index_end]
-            if not indices or max(indices) >= destination_count:
-                continue
-            mapping_destinations = {destinations[index] for index in indices}
-            if len(mapping_destinations) != expected_groups:
-                continue
-            candidates.append((start, index_start, destinations, indices))
+            for candidate_count in candidate_destination_counts:
+                relocation_offsets = [start + index * 4 for index in range(candidate_count)]
+                if not all(offset in obj.relocations for offset in relocation_offsets):
+                    continue
+                try:
+                    destinations = [obj.relocated_text_value(offset) for offset in relocation_offsets]
+                except ValueError:
+                    continue
+                if any(not 0 <= destination < len(obj.text) for destination in destinations):
+                    continue
+                index_start = start + candidate_count * 4
+                index_end = index_start + case_count
+                if index_end > len(obj.text):
+                    continue
+                indices = obj.text[index_start:index_end]
+                if not indices or max(indices) >= candidate_count:
+                    continue
+                mapping_destinations = {destinations[index] for index in indices}
+                # VC8 emits one destination-table entry per physical owner in these
+                # byte-index switches.  During reconstruction the candidate may have
+                # fewer owners than the target, so permit reviewed candidate counts
+                # without weakening the target PE validation.
+                if len(mapping_destinations) != candidate_count:
+                    continue
+                candidates.append((start, index_start, candidate_count, destinations, indices))
         if len(candidates) != 1:
-            detail = ", ".join(f"{start:#x}" for start, *_ in candidates) or "none"
+            detail = ", ".join(f"{start:#x}/{count}" for start, _, count, *_ in candidates) or "none"
             raise ValueError(
                 f"{region['name']}: expected one candidate COFF switch table, found "
                 f"{len(candidates)} ({detail})"
             )
-        start, index_start, destinations, indices = candidates[0]
+        start, index_start, candidate_count, destinations, indices = candidates[0]
         used_starts.add(start)
         mapping = {
             case_min + offset: destinations[index]
@@ -217,6 +226,7 @@ def candidate_region_tables(
                 "case_min": case_min,
                 "case_max": case_max,
                 "destination_table_offset": start,
+                "destination_count": candidate_count,
                 "index_table_offset": index_start,
                 "mapping": mapping,
                 "groups": groups,
@@ -231,9 +241,15 @@ def build_candidate_map(obj: CoffObject, root: dict[str, Any]) -> dict[str, Any]
         {destination for region in regions for destination in region["groups"]}
     )
     expected_unique = int(root.get("expected_unique_destinations", len(all_destinations)))
-    if len(all_destinations) != expected_unique:
+    configured_unique = root.get("candidate_unique_destination_counts", [expected_unique])
+    if isinstance(configured_unique, int):
+        candidate_unique_counts = [configured_unique]
+    else:
+        candidate_unique_counts = [int(value) for value in configured_unique]
+    if len(all_destinations) not in candidate_unique_counts:
+        allowed = ", ".join(str(value) for value in candidate_unique_counts)
         raise ValueError(
-            f"candidate has {len(all_destinations)} unique destinations; expected {expected_unique}"
+            f"candidate has {len(all_destinations)} unique destinations; expected one of {allowed}"
         )
     metadata_start = min(region["destination_table_offset"] for region in regions)
     if any(destination >= metadata_start for destination in all_destinations):
@@ -265,6 +281,7 @@ def build_candidate_map(obj: CoffObject, root: dict[str, Any]) -> dict[str, Any]
                 "case_max": region["case_max"],
                 "physical_group_count": len(groups),
                 "destination_table_offset": region["destination_table_offset"],
+                "destination_count": region["destination_count"],
                 "index_table_offset": region["index_table_offset"],
                 "groups": groups,
                 "mapping": region["mapping"],

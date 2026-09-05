@@ -85,6 +85,23 @@ class WorkflowToolingTests(unittest.TestCase):
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
 
+    def test_giant_action_switch_manifest_tracks_common_root(self) -> None:
+        with (ROOT / "config" / "giant-action-switches.toml").open("rb") as stream:
+            manifest = tomllib.load(stream)
+        root = next(row for row in manifest["roots"] if row["name"] == "fighter-common-action")
+        self.assertEqual(root["address"], "0x004740C0")
+        self.assertEqual(root["callable_end"], "0x004768AB")
+        self.assertEqual(root["expected_unique_destinations"], 65)
+        self.assertEqual(root["candidate_unique_destination_counts"], [64, 65])
+        self.assertEqual(root["expected_direct_call_sites"], 198)
+        self.assertEqual(root["expected_direct_call_targets"], 16)
+        self.assertEqual(root["expected_ret_opcodes"], 49)
+        regions = {row["name"]: row for row in root["regions"]}
+        self.assertEqual(regions["low"]["destination_count"], 51)
+        self.assertEqual(regions["low"]["candidate_destination_counts"], [50, 51])
+        self.assertEqual(regions["high"]["destination_count"], 15)
+        self.assertEqual(regions["high"]["candidate_destination_counts"], [15])
+
     def test_xiph_origin_anchor_manifest_is_pinned(self) -> None:
         with (ROOT / "config" / "xiph-origin-anchors.toml").open("rb") as stream:
             anchors = tomllib.load(stream)

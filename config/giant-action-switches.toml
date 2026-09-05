@@ -38,3 +38,35 @@ destination_table = "0x0053984C"
 destination_count = 22
 index_table = "0x005398A4"
 expected_physical_groups = 22
+
+
+[[roots]]
+name = "fighter-common-action"
+address = "0x004740C0"
+callable_end = "0x004768AB"
+metadata_end = "0x00476AB0"
+expected_unique_destinations = 65
+candidate_unique_destination_counts = [64, 65]
+expected_direct_call_sites = 198
+expected_direct_call_targets = 16
+expected_ret_opcodes = 49
+
+[[roots.regions]]
+name = "low"
+case_min = 50
+case_max = 181
+destination_table = "0x004768AC"
+destination_count = 51
+index_table = "0x00476978"
+expected_physical_groups = 51
+candidate_destination_counts = [50, 51]
+
+[[roots.regions]]
+name = "high"
+case_min = 691
+case_max = 799
+destination_table = "0x004769FC"
+destination_count = 15
+index_table = "0x00476A38"
+expected_physical_groups = 15
+candidate_destination_counts = [15]

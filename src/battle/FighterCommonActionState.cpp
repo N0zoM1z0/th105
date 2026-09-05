@@ -487,17 +487,17 @@ ACTION_62_67_ADVANCE:
           return;
         }
         velocity_y_f8 -= acceleration_y_100;
-        if ((unsigned __int8)has_crossed_stage_surface_while_descending()) {
-          word_730 = 100 * (int)velocity_x_f4;
-          word_732 = 100 * (int)velocity_y_f8;
-          zero_velocity_acceleration();
-          y_f0 = 0.0;
-          set_action(97);
-          publish_battle_layout_scalar(2.0f);
-          dispatch_indexed_event_member(0x16u);
+        if (!(unsigned __int8)has_crossed_stage_surface_while_descending()) {
+          advance_frame_and_dispatch();
           return;
         }
-        advance_frame_and_dispatch();
+        word_730 = 100 * (int)velocity_x_f4;
+        word_732 = 100 * (int)velocity_y_f8;
+        zero_velocity_acceleration();
+        y_f0 = 0.0;
+        set_action(97);
+        publish_battle_layout_scalar(2.0f);
+        dispatch_indexed_event_member(0x16u);
         return;
 
       case 75:
