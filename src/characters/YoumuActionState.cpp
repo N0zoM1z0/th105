@@ -3688,13 +3688,14 @@ adjust_counter_482(200, 120);
 add_phase_scaled_counter_558(50);
 *(float *)(raw +  244) = 30.0;
 dispatch_character_wave_handle(9u);
+float spawn_y = *(float *)(raw +  240);
 *(float *)v490 = 0.0;
 *(float *)&v490[1] = 0.0;
 *(float *)&v490[2] = 0.0;
 *(float *)&v490[3] = 1.0;
 spawn_owned_object_via_manager(817,
 *(float *)(raw +  236),
-*(float *)(raw +  240),
+spawn_y,
 *(unsigned __int8 *)(raw +  260),
 1,
 (int)v490,
