@@ -99,10 +99,6 @@ int v81; // eax
 int v82; // ecx
 int v83; // ecx
 __int16 v84; // ax
-bool v85; // c3
-bool v86; // c0
-bool v87; // c3
-double v88; // st7
 char v89; // dl
 bool v90; // zf
 char v91; // cl
@@ -1541,9 +1537,11 @@ case 0:
 if ( *(__int16 *)CPU_FIELD(1896) > 0 )
 return;
 v84 = selector_random_roll(0x64u);
-v85 = 0.0 == *(float *)CPU_FIELD(240);
 *(_WORD *)CPU_FIELD(1898) = v84;
-if ( !v85 )
+if ( *(float *)CPU_FIELD(240) == 0.0f )
+{
+}
+else
 {
 v98 = *(_DWORD *)CPU_FIELD(368);
 if ( 0.0 == *(float *)(v98 + 240) )
@@ -1746,12 +1744,12 @@ LABEL_975:
 *(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu);
 return;
 }
-v86 = v117 < 90.0;
-v87 = v117 == 90.0;
-v88 = v117;
-if ( 0.0 != *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) )
+if ( !*(float *)(*(_DWORD *)CPU_FIELD(368) + 240) )
 {
-if ( v86 || v87 )
+}
+else
+{
+if ( v117 <= 90.0 )
 {
 v95 = v118;
 if ( v118 > 100.0 )
@@ -1783,7 +1781,7 @@ goto LABEL_875;
 }
 goto LABEL_788;
 }
-if ( v88 <= 240.0 )
+if ( v117 <= 240.0 )
 {
 if ( (unsigned __int16)v84 <= 6u )
 goto LABEL_671;
@@ -1828,7 +1826,7 @@ if ( v89 != -1 || *(float *)CPU_FIELD(236) <= 1040.0f )
 goto LABEL_819;
 goto LABEL_815;
 }
-if ( v88 >= 520.0 )
+if ( v117 >= 520.0 )
 {
 if ( (unsigned __int16)v84 <= 9u )
 goto LABEL_826;
@@ -1858,7 +1856,7 @@ goto LABEL_875;
 }
 goto LABEL_863;
 }
-if ( v88 < 240.0 )
+if ( v117 < 240.0 )
 return;
 if ( (unsigned __int16)v84 <= 6u )
 goto LABEL_671;
@@ -1903,7 +1901,7 @@ LABEL_901:
 *(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu) + 20;
 return;
 }
-if ( v86 || v87 )
+if ( v117 <= 90.0 )
 {
 if ( (unsigned __int16)v84 >= 0xAu )
 {
@@ -1955,7 +1953,7 @@ LABEL_826:
 *(_WORD *)CPU_FIELD(1894) = 4;
 return;
 }
-if ( v88 <= 240.0 )
+if ( v117 <= 240.0 )
 {
 if ( (unsigned __int16)v84 <= 2u )
 {
@@ -2029,7 +2027,7 @@ LABEL_800:
 *(_WORD *)CPU_FIELD(1894) = 7;
 return;
 }
-if ( v88 >= 520.0 )
+if ( v117 >= 520.0 )
 {
 if ( (unsigned __int16)v84 <= 4u )
 goto LABEL_671;
@@ -2084,7 +2082,7 @@ goto LABEL_875;
 v93 = 0;
 goto LABEL_982;
 }
-if ( v88 >= 240.0 )
+if ( v117 >= 240.0 )
 {
 if ( (unsigned __int16)v84 <= 2u )
 goto LABEL_671;

@@ -128,7 +128,7 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(root["address"], "0x005F1F80")
         self.assertEqual(root["callable_end"], "0x005F5DA6")
         self.assertEqual(root["metadata_end"], "0x005F6020")
-        self.assertEqual(root["expected_unique_destinations"], 19)
+        self.assertEqual(root["expected_unique_destinations"], 40)
         self.assertEqual(root["expected_direct_call_sites"], 150)
         self.assertEqual(root["expected_direct_call_targets"], 5)
         self.assertEqual(root["expected_ret_opcodes"], 52)
@@ -139,6 +139,12 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(actions["index_table"], "0x005F5DF4")
         self.assertEqual(actions["destination_count"], 19)
         self.assertEqual(actions["expected_physical_groups"], 19)
+        policy = regions["policy"]
+        self.assertEqual((policy["case_min"], policy["case_max"]), (0, 100))
+        self.assertEqual(policy["destination_table"], "0x005F5F64")
+        self.assertEqual(policy["index_table"], "0x005F5FB8")
+        self.assertEqual(policy["destination_count"], 21)
+        self.assertEqual(policy["expected_physical_groups"], 21)
 
 
     def test_giant_action_switch_manifest_tracks_alice_root(self) -> None:

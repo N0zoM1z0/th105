@@ -117,7 +117,7 @@ name = "default-cpu-action-policy"
 address = "0x005F1F80"
 callable_end = "0x005F5DA6"
 metadata_end = "0x005F6020"
-expected_unique_destinations = 19
+expected_unique_destinations = 40
 expected_direct_call_sites = 150
 expected_direct_call_targets = 5
 expected_ret_opcodes = 52
@@ -130,3 +130,12 @@ destination_table = "0x005F5DA8"
 destination_count = 19
 index_table = "0x005F5DF4"
 expected_physical_groups = 19
+
+[[roots.regions]]
+name = "policy"
+case_min = 0
+case_max = 100
+destination_table = "0x005F5F64"
+destination_count = 21
+index_table = "0x005F5FB8"
+expected_physical_groups = 21
