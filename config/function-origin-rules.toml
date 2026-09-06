@@ -17,6 +17,18 @@ confidence = "observed"
 evidence = "current target ownership joins the exact 0x54 secondary-animation lifetime/initialize/render island; the complete body mutates only its two checked Point2 deques and calls D3DX Vec2 interpolation/normalization imports"
 
 [[rules]]
+id = "gpt-web-shared-fighter-action-root-106a"
+addresses = ["0x004740C0"]
+expected_count = 1
+expected_bytes = 10219
+expected_names = ["sub_4740C0"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "current 1.06a IDA caller closure proves all fifteen roster primary-vtable +0x28 action-state roots call this shared Fighter action dispatcher; its complete 10,219-byte body mutates Fighter state and dispatches gameplay actions while the only external runtime callee is __ftol2_sse"
+
+[[rules]]
 id = "roster-fighter-primary-vtable-authored-106a"
 pointer_anchor_file = "config/roster-fighter-vtable-origin-anchors.toml"
 skip_matching = true

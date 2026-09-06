@@ -11,6 +11,8 @@ import re
 import tomllib
 from typing import Any
 
+from match_literals import audit_real_literals
+
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "config" / "match-units.toml"
@@ -71,9 +73,8 @@ def load_manifest() -> dict[str, Any]:
     with FUNCTIONS.open(newline="", encoding="utf-8") as stream:
         ledger = {row["address"]: row for row in csv.DictReader(stream)}
     with RELOCATIONS.open(newline="", encoding="utf-8") as stream:
-        dir32_allowlist = {
-            row["coff_symbol"] for row in csv.DictReader(stream)
-        }
+        relocation_rows = list(csv.DictReader(stream))
+        dir32_allowlist = {row["coff_symbol"] for row in relocation_rows}
 
     units = manifest.get("units")
     if not isinstance(units, dict):
@@ -182,6 +183,7 @@ def load_manifest() -> dict[str, Any]:
                         f"match unit {name!r} function {address} references "
                         f"unknown DIR32 allowlist key {allowlist_key!r}"
                     )
+    audit_real_literals(relocation_rows, manifest)
     return manifest
 
 
@@ -241,6 +243,7 @@ def unit_input_digest(name: str, unit: dict[str, Any]) -> tuple[str, list[str]]:
         ROOT / "scripts" / "compile-unit.sh",
         ROOT / "scripts" / "fetch-xiph-sdk-object.py",
         ROOT / "scripts" / "extract-msvc-library-object.py",
+        ROOT / "scripts" / "match_literals.py",
         ROOT / "scripts" / "workflow_manifest.py",
         ROOT / "config" / "known-symbols.csv",
         ROOT / "config" / "reccmp-relocations.csv",

@@ -73,6 +73,23 @@ addends, unsupported COFF ownership, and target identity changes. Add a
 relocation mapping only after both target bytes and semantic ownership are
 supported.
 
+VC8 floating constants carry their value in symbols such as
+`__real@3f800000` (float 1.0) and `__real@4060000000000000` (double 128.0).
+Rewriting only the four-byte pointer field can otherwise make a function look
+exact even when source emitted a different value. Every such reference must be
+a zero-addend DIR32, its initialized COFF bytes must equal the value encoded in
+the symbol, and the resolved 1.06a PE bytes must equal that same value. This
+remains mandatory when an explicit `dir32_targets` override points at a named
+`validation=address` row: address identity cannot turn source 0.0 into target
+128.0.
+
+`scripts/check-match-literals.py --require-target` audits the full relocation
+ledger and match-unit graph locally. Public CI runs its target-independent mode,
+while `compare-function.py` repeats the object and target checks on every fresh
+comparison. The initial TH105 migration audited 263 real-symbol ledger rows and
+362 explicit real-symbol mappings with no existing mismatch; the guard is a
+future acceptance invariant, not evidence that a current exact row was wrong.
+
 IDA extents do not define compiler boundaries. Tail chunks, jump tables,
 EH funclets, thunks, and adjacent constants must be proven from control flow
 and COFF records. If LTCG makes a truthful standalone object impossible,

@@ -13,6 +13,8 @@ import struct
 import sys
 import tomllib
 
+from match_literals import real_literal_bytes
+
 
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "resources" / "th105.exe"
@@ -64,6 +66,12 @@ def failure_record(error: Exception) -> tuple[str, dict[str, object]]:
 
     patterns: list[tuple[str, str]] = [
         ("unknown absolute data relocation", "relocation.dir32.unknown_symbol"),
+        ("real literals must use DIR32", "relocation.literal.type_invalid"),
+        ("real literals must use a zero addend", "relocation.literal.addend_invalid"),
+        ("malformed __real", "relocation.literal.symbol_invalid"),
+        ("real literal mapping", "relocation.literal.mapping_mismatch"),
+        ("real literal has no initialized COFF bytes", "relocation.literal.object_missing"),
+        ("real literal COFF bytes", "relocation.literal.object_mismatch"),
         ("has unverified addend", "relocation.dir32.addend_unverified"),
         ("DIR32 target has an invalid object section", "relocation.dir32.target_section_invalid"),
         ("is not an allowlisted four-byte import", "relocation.dir32.import_unverified"),
@@ -377,16 +385,29 @@ def coff_symbol_bytes(
         if target_symbol is None:
             raise ValueError(f"relocation references invalid symbol index {symbol_index}")
         target_symbol_name = str(target_symbol["name"])
+        if target_symbol_name.startswith("__real@") and (
+            relocation_type != IMAGE_REL_I386_DIR32
+        ):
+            real_literal_bytes(
+                {"type": f"{relocation_type:#x}", "symbol": target_symbol_name}
+            )
 
         if relocation_type == IMAGE_REL_I386_DIR32:
             target_section_number = int(target_symbol["section_number"])
-            if target_section_number == section_number:
+            raw_addend = struct.unpack_from("<I", code, field_offset)[0]
+            source_real_literal = real_literal_bytes(
+                {
+                    "type": "DIR32",
+                    "symbol": target_symbol_name,
+                    "addend": raw_addend,
+                }
+            )
+            if target_section_number == section_number and source_real_literal is None:
                 # VC8 emits switch jump tables into the function's COMDAT and
                 # references both the table and its local labels through DIR32
                 # relocations.  These are code addresses, not allowlisted data
                 # literals.  Model the image linker by preserving the local
                 # symbol's offset from the function entry.
-                raw_addend = struct.unpack_from("<I", code, field_offset)[0]
                 addend = (
                     raw_addend
                     if raw_addend < (1 << 31)
@@ -400,7 +421,6 @@ def coff_symbol_bytes(
                 )
                 struct.pack_into("<I", code, field_offset, destination & 0xFFFFFFFF)
                 continue
-            raw_addend = struct.unpack_from("<I", code, field_offset)[0]
             data_target_key = dir32_target_key(
                 target_symbol_name, data_target_overrides, raw_addend
             )
@@ -422,7 +442,33 @@ def coff_symbol_bytes(
                 else raw_addend - (1 << 32)
             )
 
-            if validation == "address":
+            if source_real_literal is not None:
+                if source_real_literal != literal:
+                    raise ValueError(
+                        f"real literal mapping for {target_symbol_name} encodes "
+                        f"{source_real_literal.hex()}, but {data_target_key} declares "
+                        f"{literal.hex()}"
+                    )
+                if not 0 < target_section_number <= len(section_rows):
+                    raise ValueError("real literal has no initialized COFF bytes")
+                target_section = section_rows[target_section_number - 1]
+                if int(target_section["characteristics"]) & IMAGE_SCN_CNT_UNINITIALIZED_DATA:
+                    raise ValueError("real literal has no initialized COFF bytes")
+                target_value = int(target_symbol["value"])
+                if target_value < 0 or target_value + len(source_real_literal) > int(
+                    target_section["raw_size"]
+                ):
+                    raise ValueError("real literal has no initialized COFF bytes")
+                literal_offset = int(target_section["raw_pointer"]) + target_value
+                object_literal = data[
+                    literal_offset : literal_offset + len(source_real_literal)
+                ]
+                if object_literal != source_real_literal:
+                    raise ValueError(
+                        f"real literal COFF bytes for {target_symbol_name} are "
+                        f"{object_literal.hex()}, not encoded {source_real_literal.hex()}"
+                    )
+            elif validation == "address":
                 if target_section_number != 0 and not (
                     0 < target_section_number <= len(section_rows)
                 ):
