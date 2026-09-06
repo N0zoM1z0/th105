@@ -33,6 +33,8 @@ public:
     unsigned char try_dispatch_directional_action_208_210(int mode);
     void dispatch_indexed_event_member(unsigned int event_code);
     void emit_fighter_effect_433cc0(int effect_id, float x, float y, int facing, int arg5);
+    int spawn_owned_object_via_manager(
+        int object_id, float x, float y, int direction, int arg5, int arg6, int arg7);
     void zero_velocity_acceleration();
 
     bool try_dispatch_verified_action(int action);
@@ -295,6 +297,75 @@ bool AliceActionStateLowScaffoldView::try_dispatch_verified_action(int action)
             set_action(0);
         return true;
 
+    case 301: {
+        float spawn_payload[3];
+        int facing;
+
+        resolve_stage_surface_landing_transition();
+        if (try_dispatch_directional_action_208_210(0))
+            return true;
+        if (*reinterpret_cast<_BYTE *>(raw + 1150)) {
+            adjusted = static_cast<float>(*reinterpret_cast<float *>(raw + 244) - 0.5);
+            *reinterpret_cast<float *>(raw + 244) = adjusted;
+            if (adjusted < 0.0f) {
+                *reinterpret_cast<float *>(raw + 244) = 0.0f;
+                *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+            }
+        }
+        if (advance_frame_and_dispatch())
+            set_action(0);
+        if (!*reinterpret_cast<_WORD *>(raw + 322) && *reinterpret_cast<_WORD *>(raw + 320) == 2) {
+            spawn_payload[0] = 0.0f;
+            spawn_payload[1] = 0.0f;
+            spawn_payload[2] = 1.0f;
+            facing = *reinterpret_cast<unsigned char *>(raw + 260);
+            spawn_owned_object_via_manager(
+                849,
+                *reinterpret_cast<float *>(raw + 236) + static_cast<float>(30 * static_cast<signed char>(facing)),
+                static_cast<float>(*reinterpret_cast<float *>(raw + 240) + 100.0),
+                facing,
+                1,
+                reinterpret_cast<int>(spawn_payload),
+                3);
+        }
+        return true;
+    }
+
+    case 302: {
+        float spawn_payload[3];
+        int facing;
+
+        resolve_stage_surface_landing_transition();
+        if (try_dispatch_directional_action_208_210(1))
+            return true;
+        if (*reinterpret_cast<_BYTE *>(raw + 1150)) {
+            adjusted = static_cast<float>(*reinterpret_cast<float *>(raw + 244) - 0.5);
+            *reinterpret_cast<float *>(raw + 244) = adjusted;
+            if (adjusted < 0.0f) {
+                *reinterpret_cast<float *>(raw + 244) = 0.0f;
+                *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+            }
+        }
+        if (advance_frame_and_dispatch())
+            set_action(0);
+        if (!*reinterpret_cast<_WORD *>(raw + 322) && *reinterpret_cast<_WORD *>(raw + 320) == 3) {
+            dispatch_indexed_event_member(0x1Du);
+            spawn_payload[0] = 0.0f;
+            spawn_payload[1] = 0.0f;
+            spawn_payload[2] = 8.0f;
+            facing = *reinterpret_cast<unsigned char *>(raw + 260);
+            spawn_owned_object_via_manager(
+                849,
+                *reinterpret_cast<float *>(raw + 236) + static_cast<float>(110 * static_cast<signed char>(facing)),
+                static_cast<float>(*reinterpret_cast<float *>(raw + 240) + 105.0),
+                facing,
+                1,
+                reinterpret_cast<int>(spawn_payload),
+                3);
+        }
+        return true;
+    }
+
     case 303:
         resolve_stage_surface_landing_transition();
         if (try_dispatch_directional_action_208_210(0))
@@ -314,6 +385,22 @@ bool AliceActionStateLowScaffoldView::try_dispatch_verified_action(int action)
             *reinterpret_cast<float *>(raw + 244) = 6.0f;
         if (!*reinterpret_cast<_WORD *>(raw + 322) && *reinterpret_cast<_WORD *>(raw + 320) == 3)
             dispatch_indexed_event_member(0x1Cu);
+        return true;
+
+    case 305:
+        resolve_stage_surface_landing_transition();
+        if (try_dispatch_directional_action_208_210(1))
+            return true;
+        if (*reinterpret_cast<__int16 *>(raw + 320) > 3) {
+            adjusted = static_cast<float>(*reinterpret_cast<float *>(raw + 244) - 0.75);
+            *reinterpret_cast<float *>(raw + 244) = adjusted;
+            if (adjusted < 0.0f)
+                *reinterpret_cast<float *>(raw + 244) = 0.0f;
+        }
+        if (advance_frame_and_dispatch())
+            set_action(0);
+        if (!*reinterpret_cast<_WORD *>(raw + 322) && *reinterpret_cast<_WORD *>(raw + 320) == 2)
+            dispatch_indexed_event_member(0x1Du);
         return true;
 
     case 306:
@@ -375,6 +462,24 @@ bool AliceActionStateLowScaffoldView::try_dispatch_verified_action(int action)
         }
         return true;
     }
+
+    case 320:
+        resolve_stage_surface_landing_transition();
+        if (try_dispatch_directional_action_208_210(0))
+            return true;
+        if (*reinterpret_cast<__int16 *>(raw + 320) > 1) {
+            adjusted = static_cast<float>(*reinterpret_cast<float *>(raw + 244) - 2.0);
+            *reinterpret_cast<float *>(raw + 244) = adjusted;
+            if (adjusted < 0.0f)
+                *reinterpret_cast<float *>(raw + 244) = 0.0f;
+        }
+        if (advance_frame_and_dispatch())
+            set_action(0);
+        if (!*reinterpret_cast<_WORD *>(raw + 322) && *reinterpret_cast<_WORD *>(raw + 320) == 2) {
+            dispatch_indexed_event_member(0x1Cu);
+            *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+        }
+        return true;
 
     case 321:
         resolve_stage_surface_landing_transition();
