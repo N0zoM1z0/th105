@@ -173,8 +173,10 @@ void SecondaryAnimationRenderRuntimeView::update_secondary()
     case 2: {
         SecondaryAnimationPoint *point0 = &source_points_28[0];
         SecondaryAnimationPoint *point1 = &source_points_28[1];
-        normalize_source0.x = source_points_28[0].y - source_points_28[1].y;
-        normalize_source0.y = source_points_28[1].x - source_points_28[0].x;
+        float normal_source_x = source_points_28[0].y - source_points_28[1].y;
+        float normal_source_y = source_points_28[1].x - source_points_28[0].x;
+        normalize_source0.x = normal_source_x;
+        normalize_source0.y = normal_source_y;
         D3DXVec2Normalize(&normal, &normalize_source0);
 
         points_3c[0] += normal * half_width_10;
@@ -207,9 +209,8 @@ void SecondaryAnimationRenderRuntimeView::update_secondary()
         SecondaryAnimationPoint *point0 = &source_points_28[0];
         SecondaryAnimationPoint *point1 = &source_points_28[1];
         SecondaryAnimationPoint *point2 = &source_points_28[2];
-        SecondaryAnimationPoint tangent(
-            source_points_28[2].x - source_points_28[0].x,
-            source_points_28[2].y - source_points_28[0].y);
+        SecondaryAnimationPoint tangent;
+        tangent = source_points_28[2] - source_points_28[0];
 
         points_3c.erase(
             points_3c.begin(),
@@ -260,12 +261,10 @@ void SecondaryAnimationRenderRuntimeView::update_secondary()
         SecondaryAnimationPoint *point0 = &source_points_28[0];
         SecondaryAnimationPoint *point1 = &source_points_28[1];
         SecondaryAnimationPoint *point2 = &source_points_28[2];
-        SecondaryAnimationPoint tangent1(
-            source_points_28[2].x - source_points_28[0].x,
-            source_points_28[2].y - source_points_28[0].y);
-        SecondaryAnimationPoint tangent2(
-            source_points_28[3].x - source_points_28[1].x,
-            source_points_28[3].y - source_points_28[1].y);
+        SecondaryAnimationPoint tangent1;
+        tangent1 = source_points_28[2] - source_points_28[0];
+        SecondaryAnimationPoint tangent2;
+        tangent2 = source_points_28[3] - source_points_28[1];
 
         points_3c.erase(
             points_3c.begin(),
