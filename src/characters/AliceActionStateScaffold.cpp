@@ -295,6 +295,27 @@ bool AliceActionStateLowScaffoldView::try_dispatch_verified_action(int action)
             set_action(0);
         return true;
 
+    case 303:
+        resolve_stage_surface_landing_transition();
+        if (try_dispatch_directional_action_208_210(0))
+            return true;
+        if (*reinterpret_cast<signed char *>(raw + 1150) > 0
+            || *reinterpret_cast<float *>(raw + 244) > 0.0f) {
+            adjusted = static_cast<float>(*reinterpret_cast<float *>(raw + 244) - 0.6000000238418579);
+            *reinterpret_cast<float *>(raw + 244) = adjusted;
+            if (adjusted < 0.0f) {
+                *reinterpret_cast<float *>(raw + 244) = 0.0f;
+                *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+            }
+        }
+        if (advance_frame_and_dispatch())
+            set_action(2);
+        if (!*reinterpret_cast<_WORD *>(raw + 322) && *reinterpret_cast<_WORD *>(raw + 320) == 2)
+            *reinterpret_cast<float *>(raw + 244) = 6.0f;
+        if (!*reinterpret_cast<_WORD *>(raw + 322) && *reinterpret_cast<_WORD *>(raw + 320) == 3)
+            dispatch_indexed_event_member(0x1Cu);
+        return true;
+
     case 306:
         *reinterpret_cast<float *>(raw + 248) =
             *reinterpret_cast<float *>(raw + 248) - *reinterpret_cast<float *>(raw + 256);
@@ -309,6 +330,51 @@ bool AliceActionStateLowScaffoldView::try_dispatch_verified_action(int action)
         if (!*reinterpret_cast<_WORD *>(raw + 322) && *reinterpret_cast<_WORD *>(raw + 320) == 4)
             dispatch_indexed_event_member(0x1Bu);
         return true;
+
+    case 310: {
+        double next_y;
+
+        if (*reinterpret_cast<_DWORD *>(raw + 384)) {
+            if (static_cast<__int16>(++*reinterpret_cast<_WORD *>(raw + 1840)) > 5) {
+                *reinterpret_cast<_DWORD *>(raw + 384) = 0;
+                *reinterpret_cast<_WORD *>(raw + 1840) = 0;
+            }
+        }
+        if (*reinterpret_cast<_WORD *>(raw + 318) == 1) {
+            if (!*reinterpret_cast<_DWORD *>(raw + 324))
+                *reinterpret_cast<float *>(raw + 244) = 15.0f;
+            if (!(*reinterpret_cast<int *>(raw + 324) % 8))
+                dispatch_indexed_event_member(0x1Bu);
+            if (*reinterpret_cast<_DWORD *>(raw + 384)) {
+                if (static_cast<__int16>(++*reinterpret_cast<_WORD *>(raw + 1840)) > 5) {
+                    *reinterpret_cast<_DWORD *>(raw + 384) = 0;
+                    *reinterpret_cast<_WORD *>(raw + 1840) = 0;
+                }
+            }
+            if (*reinterpret_cast<int *>(raw + 324) > 30) {
+                slot_14();
+                *reinterpret_cast<float *>(raw + 248) = 6.0f;
+                *reinterpret_cast<float *>(raw + 244) =
+                    static_cast<float>(*reinterpret_cast<float *>(raw + 244) * 0.5);
+            }
+        }
+        if (*reinterpret_cast<_WORD *>(raw + 318) == 2) {
+            adjusted = *reinterpret_cast<float *>(raw + 248) - *reinterpret_cast<float *>(raw + 256);
+            *reinterpret_cast<float *>(raw + 248) = adjusted;
+            next_y = static_cast<double>(adjusted) + *reinterpret_cast<float *>(raw + 240);
+            if (alice_stage_surface_height_at_x(this) >= next_y) {
+                *reinterpret_cast<float *>(raw + 248) = 0.0f;
+                *reinterpret_cast<float *>(raw + 240) = alice_stage_surface_height_at_x(this);
+                set_action(9);
+                return true;
+            }
+        }
+        if (advance_frame_and_dispatch()) {
+            set_action(9);
+            return true;
+        }
+        return true;
+    }
 
     case 321:
         resolve_stage_surface_landing_transition();
@@ -374,6 +440,24 @@ bool AliceActionStateLowScaffoldView::try_dispatch_verified_action(int action)
         }
         return true;
     }
+
+    case 696:
+        resolve_stage_surface_landing_transition();
+        adjusted = static_cast<float>(*reinterpret_cast<float *>(raw + 244) - 1.5);
+        *reinterpret_cast<float *>(raw + 244) = adjusted;
+        if (adjusted < 0.0f)
+            *reinterpret_cast<float *>(raw + 244) = 0.0f;
+        if (advance_frame_and_dispatch())
+            set_action(0);
+        if (*reinterpret_cast<_WORD *>(raw + 318))
+            return true;
+        if (!*reinterpret_cast<_WORD *>(raw + 322) && *reinterpret_cast<_WORD *>(raw + 320) == 8)
+            *reinterpret_cast<float *>(raw + 244) = 15.0f;
+        if (!*reinterpret_cast<_WORD *>(raw + 322) && *reinterpret_cast<_WORD *>(raw + 320) == 9) {
+            dispatch_indexed_event_member(0x1Du);
+            *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+        }
+        return true;
 
     default:
         return false;
