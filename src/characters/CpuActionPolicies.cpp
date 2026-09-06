@@ -1574,7 +1574,11 @@ v89 = *(_BYTE *)CPU_FIELD(260);
 if ( (v89 != 1 || *(float *)CPU_FIELD(236) >= 240.0) && (v89 != -1 || *(float *)CPU_FIELD(236) <= 1040.0f) )
 goto LABEL_888;
 if ( v84 >= 0 && v84 <= 29 && v118 > 200.0 )
-goto LABEL_788;
+{
+*(_WORD *)CPU_FIELD(1894) = (v89 == -1) + 9;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu) + 15;
+return;
+}
 if ( v84 < 30 || v84 > 44 )
 {
 LABEL_888:
@@ -1779,7 +1783,11 @@ if ( v84 < 32 || v84 > 35 )
 {
 if ( v84 < 36 || v84 > 39 )
 goto LABEL_1025;
-goto LABEL_975;
+{
+*(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 1) + 9;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu);
+return;
+}
 }
 LABEL_969:
 *(_WORD *)CPU_FIELD(1894) = 18;
@@ -1834,7 +1842,11 @@ if ( v84 >= 70 && v84 <= 74 )
 goto LABEL_889;
 goto LABEL_875;
 }
-goto LABEL_788;
+{
+*(_WORD *)CPU_FIELD(1894) = (v89 == -1) + 9;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu) + 15;
+return;
+}
 }
 if ( v117 <= 240.0 )
 {
@@ -2226,7 +2238,10 @@ if ( v89 == 1 && *(float *)CPU_FIELD(236) < 240.0 || v89 == -1 && *(float *)CPU_
 if ( v84 >= 20 && v84 <= 29 )
 goto LABEL_860;
 if ( v84 >= 30 && v84 <= 39 )
-goto LABEL_757;
+{
+*(_WORD *)CPU_FIELD(1894) = 6;
+return;
+}
 }
 if ( v84 < 40 )
 goto LABEL_SIGNED_RANGE_26;
