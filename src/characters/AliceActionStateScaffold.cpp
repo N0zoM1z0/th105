@@ -265,6 +265,21 @@ bool AliceActionStateLowScaffoldView::try_dispatch_verified_action(int action)
         *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
         return true;
 
+
+    case 9:
+        if (!*reinterpret_cast<float *>(raw + 256))
+            *reinterpret_cast<float *>(raw + 256) = 0.6000000238418579f;
+        *reinterpret_cast<float *>(raw + 248) =
+            *reinterpret_cast<float *>(raw + 248) - *reinterpret_cast<float *>(raw + 256);
+        if (has_crossed_stage_surface_while_descending()) {
+            set_action(10);
+            *reinterpret_cast<float *>(raw + 240) = alice_stage_surface_height_at_x(this);
+            zero_velocity_acceleration();
+            return true;
+        }
+        advance_frame_and_dispatch();
+        return true;
+
     case 10:
         resolve_stage_surface_landing_transition();
         zero_velocity_acceleration();
@@ -1047,6 +1062,175 @@ bool AliceActionStateLowScaffoldView::try_dispatch_verified_action(int action)
                 1);
             dispatch_indexed_event_member(0x1Fu);
         }
+        return true;
+    }
+
+
+    case 224: {
+        int opposite_facing;
+
+        if (!*reinterpret_cast<_WORD *>(raw + 318) && !*reinterpret_cast<_WORD *>(raw + 320))
+            resolve_stage_surface_landing_transition();
+        if (*reinterpret_cast<_WORD *>(raw + 318) == 3) {
+            resolve_stage_surface_landing_transition();
+            adjusted = static_cast<float>(*reinterpret_cast<float *>(raw + 244) + 2.0);
+            *reinterpret_cast<float *>(raw + 244) = adjusted;
+            if (adjusted > 0.0f)
+                *reinterpret_cast<float *>(raw + 244) = 0.0f;
+        }
+        if (!is_y_at_or_below_stage_surface(this) && !(*reinterpret_cast<int *>(raw + 324) % 5)) {
+            opposite_facing = static_cast<unsigned char>(-*reinterpret_cast<signed char *>(raw + 260));
+            emit_fighter_effect_433cc0(
+                124,
+                static_cast<float>((*reinterpret_cast<float *>(raw + 236) + 50.0)
+                    - static_cast<float>(mt19937_next_u32() % 100)),
+                static_cast<float>(static_cast<float>(mt19937_next_u32() % 200)
+                    + *reinterpret_cast<float *>(raw + 240)),
+                opposite_facing,
+                1);
+        }
+        if (static_cast<short>(*reinterpret_cast<_WORD *>(raw + 318)) < 3) {
+            *reinterpret_cast<float *>(raw + 248) =
+                *reinterpret_cast<float *>(raw + 248) - *reinterpret_cast<float *>(raw + 256);
+            if (has_crossed_stage_surface_while_descending()) {
+                *reinterpret_cast<float *>(raw + 248) = 0.0f;
+                *reinterpret_cast<float *>(raw + 240) = alice_stage_surface_height_at_x(this);
+                set_sequence(3);
+                return true;
+            }
+        }
+        if (advance_frame_and_dispatch()) {
+            set_action(0);
+            *reinterpret_cast<float *>(raw + 244) = 0.0f;
+            return true;
+        }
+        if (!*reinterpret_cast<_WORD *>(raw + 318)
+            && !*reinterpret_cast<_WORD *>(raw + 322)
+            && *reinterpret_cast<_WORD *>(raw + 320) == 2) {
+            *reinterpret_cast<float *>(raw + 244) = -10.0f;
+            *reinterpret_cast<float *>(raw + 248) = 4.5f;
+            *reinterpret_cast<float *>(raw + 256) = 0.6000000238418579f;
+            opposite_facing = static_cast<unsigned char>(-*reinterpret_cast<signed char *>(raw + 260));
+            emit_fighter_effect_433cc0(
+                125,
+                *reinterpret_cast<float *>(raw + 236),
+                static_cast<float>(*reinterpret_cast<float *>(raw + 240) + 80.0),
+                opposite_facing,
+                1);
+            emit_fighter_effect_433cc0(
+                126,
+                *reinterpret_cast<float *>(raw + 236),
+                static_cast<float>(*reinterpret_cast<float *>(raw + 240) + 80.0),
+                opposite_facing,
+                1);
+            dispatch_indexed_event_member(0x1Fu);
+        }
+        return true;
+    }
+
+    case 225: {
+        int opposite_facing;
+
+        *reinterpret_cast<float *>(raw + 248) =
+            *reinterpret_cast<float *>(raw + 248) - *reinterpret_cast<float *>(raw + 256);
+        if (has_crossed_stage_surface_while_descending()) {
+            zero_velocity_acceleration();
+            *reinterpret_cast<float *>(raw + 240) = alice_stage_surface_height_at_x(this);
+            set_action(10);
+            return true;
+        }
+        if ((*reinterpret_cast<_WORD *>(raw + 318) == 1 || *reinterpret_cast<_WORD *>(raw + 318) == 2)
+            && !(*reinterpret_cast<int *>(raw + 324) % 5)) {
+            opposite_facing = static_cast<unsigned char>(-*reinterpret_cast<signed char *>(raw + 260));
+            emit_fighter_effect_433cc0(
+                124,
+                static_cast<float>((*reinterpret_cast<float *>(raw + 236) + 50.0)
+                    - static_cast<float>(mt19937_next_u32() % 100)),
+                static_cast<float>(static_cast<float>(mt19937_next_u32() % 200)
+                    + *reinterpret_cast<float *>(raw + 240)),
+                opposite_facing,
+                1);
+        }
+        if (advance_frame_and_dispatch())
+            set_action(9);
+        if (!*reinterpret_cast<int *>(raw + 324)
+            && !*reinterpret_cast<_WORD *>(raw + 322)
+            && !*reinterpret_cast<_WORD *>(raw + 320)
+            && *reinterpret_cast<_WORD *>(raw + 318) == 1) {
+            *reinterpret_cast<float *>(raw + 244) = -8.5f;
+            *reinterpret_cast<float *>(raw + 248) = 5.0f;
+            *reinterpret_cast<float *>(raw + 256) = 0.6000000238418579f;
+            opposite_facing = static_cast<unsigned char>(-*reinterpret_cast<signed char *>(raw + 260));
+            emit_fighter_effect_433cc0(
+                125,
+                *reinterpret_cast<float *>(raw + 236),
+                static_cast<float>(*reinterpret_cast<float *>(raw + 240) + 120.0),
+                opposite_facing,
+                1);
+            emit_fighter_effect_433cc0(
+                126,
+                *reinterpret_cast<float *>(raw + 236),
+                static_cast<float>(*reinterpret_cast<float *>(raw + 240) + 120.0),
+                opposite_facing,
+                1);
+            dispatch_indexed_event_member(0x1Fu);
+        }
+        return true;
+    }
+
+    case 226: {
+        int facing;
+
+        *reinterpret_cast<float *>(raw + 248) =
+            *reinterpret_cast<float *>(raw + 248) - *reinterpret_cast<float *>(raw + 256);
+        if (has_crossed_stage_surface_while_descending()) {
+            zero_velocity_acceleration();
+            *reinterpret_cast<float *>(raw + 240) = alice_stage_surface_height_at_x(this);
+            set_action(10);
+            return true;
+        }
+        if ((*reinterpret_cast<_WORD *>(raw + 318) == 1 || *reinterpret_cast<_WORD *>(raw + 318) == 2)
+            && !(*reinterpret_cast<int *>(raw + 324) % 5)) {
+            facing = *reinterpret_cast<unsigned char *>(raw + 260);
+            emit_fighter_effect_433cc0(
+                124,
+                static_cast<float>((*reinterpret_cast<float *>(raw + 236) + 50.0)
+                    - static_cast<float>(mt19937_next_u32() % 100)),
+                static_cast<float>(static_cast<float>(mt19937_next_u32() % 200)
+                    + *reinterpret_cast<float *>(raw + 240)),
+                facing,
+                1);
+        }
+        if (advance_frame_and_dispatch())
+            set_action(9);
+        if (!*reinterpret_cast<int *>(raw + 324)
+            && !*reinterpret_cast<_WORD *>(raw + 322)
+            && !*reinterpret_cast<_WORD *>(raw + 320)
+            && *reinterpret_cast<_WORD *>(raw + 318) == 1) {
+            *reinterpret_cast<_WORD *>(raw + 1840) = 0;
+            *reinterpret_cast<float *>(raw + 244) = 8.5f;
+            *reinterpret_cast<float *>(raw + 248) = 5.0f;
+            *reinterpret_cast<float *>(raw + 256) = 0.6000000238418579f;
+            facing = *reinterpret_cast<unsigned char *>(raw + 260);
+            emit_fighter_effect_433cc0(
+                125,
+                *reinterpret_cast<float *>(raw + 236) + static_cast<float>(80 * static_cast<signed char>(facing)),
+                static_cast<float>(*reinterpret_cast<float *>(raw + 240) + 110.0),
+                facing,
+                1);
+            emit_fighter_effect_433cc0(
+                126,
+                *reinterpret_cast<float *>(raw + 236),
+                static_cast<float>(*reinterpret_cast<float *>(raw + 240) + 110.0),
+                facing,
+                1);
+            dispatch_indexed_event_member(0x1Fu);
+        }
+        if (!*reinterpret_cast<int *>(raw + 324)
+            && !*reinterpret_cast<_WORD *>(raw + 322)
+            && !*reinterpret_cast<_WORD *>(raw + 320)
+            && *reinterpret_cast<_WORD *>(raw + 318) == 3)
+            face_opponent_and_flip_horizontal_velocity();
         return true;
     }
 
