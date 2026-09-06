@@ -4383,22 +4383,24 @@ do
 *(float *)&v459[2] = 2.0;
 if ( *(float *)v459 < 0.0 || *(float *)v459 > 180.0 )
 {
-v206 = -1;
-v180 = *(unsigned __int8 *)(raw +  260);
-v166 = *(float *)(raw +  240);
-v401 = (double)(175 * (char)v180) + *(float *)(raw +  236);
-v130 = v401;
+spawn_owned_object_via_manager(821,
+    (double)(175 * (char)*(unsigned __int8 *)(raw +  260)) + *(float *)(raw +  236),
+    *(float *)(raw +  240),
+    *(unsigned __int8 *)(raw +  260),
+    -1,
+    (int)v459,
+    3);
 }
 else
 {
-v206 = 1;
-v180 = *(unsigned __int8 *)(raw +  260);
-v166 = *(float *)(raw +  240);
-v400 = (double)(150 * (char)v180) + *(float *)(raw +  236);
-v130 = v400;
+spawn_owned_object_via_manager(821,
+    (double)(150 * (char)*(unsigned __int8 *)(raw +  260)) + *(float *)(raw +  236),
+    *(float *)(raw +  240),
+    *(unsigned __int8 *)(raw +  260),
+    1,
+    (int)v459,
+    3);
 }
-v151 = v130;
-spawn_owned_object_via_manager(821, v151, v166, v180, v206, (int)v459, 3);
 v365 = v365 + 1.0;
 }
 while ( v365 < 8.0 );
