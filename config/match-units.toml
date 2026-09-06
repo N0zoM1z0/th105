@@ -16963,7 +16963,7 @@ source = "src/characters/CpuActionPolicies.cpp"
 object = "build/match-units/GptWeb_DefaultCpuActionPolicy.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current-target default Fighter primary-vtable +0x58 CPU action-policy root. The formal 15910-byte comparator and default-cpu-action-policy giant-switch mapper cover two compiler-owned byte-index switches: actions 200..416 (19 physical groups) and policy state 0..100 (21 groups), for 40 unique destinations, 150 direct calls to 5 targets and 52 RETs. The retained candidate has the shipped 0x0C frame, target-backed atan float lifetimes, structured outer break-to-common-policy ownership and target-proved zero-gate else ownership in policy case 0; it remains nonexact and regional spans are diagnostics only."
+notes = "Current-target default Fighter primary-vtable +0x58 CPU action-policy root. The formal 15910-byte comparator and fail-closed giant mapper cover actions 200..416 (19 groups) plus policy state 0..100 (21 groups): 40 unique destinations, 150 direct calls to 5 targets and 52 RETs. The retained pinned-VC8 candidate has the shipped 0x0C frame and canonical prefix through +0x12D. Target-proven signed v84 ranges plus truthful selective duplicated state-3 semantics reduce policy span residual to 703 with 13/21 policy rows exact-sized; current case0/default spans are 230/241 and 4098/4613. The root remains nonexact and regional spans are diagnostics only."
 
 [[units.gpt-web-default-cpu-action-policy.functions]]
 address = "0x005F1F80"

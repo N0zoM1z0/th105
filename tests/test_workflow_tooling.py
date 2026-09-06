@@ -147,6 +147,33 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(policy["expected_physical_groups"], 21)
 
 
+    def test_default_cpu_policy_owner_source_checkpoint(self) -> None:
+        text = (ROOT / "src" / "characters" / "CpuActionPolicies.cpp").read_text(
+            encoding="utf-8"
+        )
+        self.assertNotIn("(unsigned __int16)v84", text)
+        self.assertEqual(text.count("goto LABEL_654;"), 0)
+        self.assertEqual(text.count("goto LABEL_860;"), 1)
+        self.assertEqual(text.count("goto LABEL_658;"), 1)
+        for predicate in [
+            "v84 >= 12 && v84 <= 14",
+            "v84 >= 18 && v84 <= 24",
+            "v84 >= 12 && v84 <= 15",
+            "v84 >= 30 && v84 <= 39",
+            "v84 >= 40 && v84 <= 49",
+        ]:
+            self.assertIn(
+                f"if ( {predicate} )\n{{\n*(_WORD *)CPU_FIELD(1894) = 3;\nreturn;\n}}",
+                text,
+            )
+        self.assertIn(
+            "if ( v84 >= 20 && v84 <= 29 )\ngoto LABEL_860;", text
+        )
+        self.assertIn(
+            "if ( v84 >= 45 && v84 <= 49 )\ngoto LABEL_658;", text
+        )
+
+
     def test_giant_action_switch_manifest_tracks_alice_root(self) -> None:
         with (ROOT / "config" / "giant-action-switches.toml").open("rb") as stream:
             manifest = tomllib.load(stream)

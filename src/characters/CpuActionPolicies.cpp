@@ -1552,7 +1552,7 @@ if ( v117 <= 90.0 )
 v89 = *(_BYTE *)CPU_FIELD(260);
 if ( (v89 != 1 || *(float *)CPU_FIELD(236) >= 240.0) && (v89 != -1 || *(float *)CPU_FIELD(236) <= 1040.0f) )
 goto LABEL_888;
-if ( (unsigned __int16)v84 <= 0x1Du && v118 > 200.0 )
+if ( v84 <= 29 && v118 > 200.0 )
 goto LABEL_788;
 if ( v84 < 30 || v84 > 44 )
 {
@@ -1568,7 +1568,7 @@ if ( v99 <= 240.0 )
 v89 = *(_BYTE *)CPU_FIELD(260);
 if ( (v89 != 1 || *(float *)CPU_FIELD(236) >= 240.0) && (v89 != -1 || *(float *)CPU_FIELD(236) <= 1040.0f) )
 goto LABEL_900;
-if ( (unsigned __int16)v84 <= 0x1Du && v118 > 100.0 )
+if ( v84 <= 29 && v118 > 100.0 )
 goto LABEL_960;
 if ( v84 < 30 || v84 > 44 )
 {
@@ -1588,7 +1588,7 @@ return;
 }
 if ( v99 >= 520.0 )
 {
-if ( (unsigned __int16)v84 > 0x22u )
+if ( v84 > 34 )
 {
 if ( v84 < 35 || v84 > 39 )
 goto LABEL_875;
@@ -1604,7 +1604,7 @@ return;
 }
 if ( v99 < 240.0 )
 return;
-if ( (unsigned __int16)v84 <= 9u )
+if ( v84 <= 9 )
 {
 *(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 0xFF) + 9;
 *(_WORD *)CPU_FIELD(1896) = selector_random_roll(0xFu) + 15;
@@ -1642,7 +1642,7 @@ if ( v100 <= 240.0 )
 v89 = *(_BYTE *)CPU_FIELD(260);
 if ( v89 == 1 && *(float *)CPU_FIELD(236) < 240.0 || v89 == -1 && *(float *)CPU_FIELD(236) > 1040.0f )
 {
-if ( (unsigned __int16)v84 <= 0xEu && *(float *)(v98 + 240) < (double)*(float *)CPU_FIELD(240) )
+if ( v84 <= 14 && *(float *)(v98 + 240) < (double)*(float *)CPU_FIELD(240) )
 goto LABEL_953;
 if ( v84 >= 15 && v84 <= 29 && v118 > 150.0 )
 goto LABEL_960;
@@ -1667,7 +1667,7 @@ if ( v100 < 520.0 )
 {
 if ( v100 < 240.0 )
 return;
-if ( (unsigned __int16)v84 <= 4u )
+if ( v84 <= 4 )
 {
 *(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 0xFF) + 9;
 *(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu);
@@ -1696,12 +1696,12 @@ LABEL_986:
 *(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x14u) + 5;
 return;
 }
-if ( (unsigned __int16)v84 < 4u )
+if ( v84 < 4 )
 goto LABEL_972;
 if ( v84 < 4 || v84 > 5 )
 goto LABEL_983;
 }
-else if ( (unsigned __int16)v84 > 5u )
+else if ( v84 > 5 )
 {
 if ( v118 <= 320.0 )
 goto LABEL_1025;
@@ -1754,7 +1754,7 @@ if ( v117 <= 90.0 )
 v95 = v118;
 if ( v118 > 100.0 )
 {
-if ( (unsigned __int16)v84 <= 6u )
+if ( v84 <= 6 )
 goto LABEL_671;
 if ( v84 >= 7 && v84 <= 10 && v95 >= 200.0 )
 goto LABEL_800;
@@ -1783,7 +1783,7 @@ goto LABEL_788;
 }
 if ( v117 <= 240.0 )
 {
-if ( (unsigned __int16)v84 <= 6u )
+if ( v84 <= 6 )
 goto LABEL_671;
 if ( v84 < 7 || v84 > 10 )
 {
@@ -1828,7 +1828,7 @@ goto LABEL_815;
 }
 if ( v117 >= 520.0 )
 {
-if ( (unsigned __int16)v84 <= 9u )
+if ( v84 <= 9 )
 goto LABEL_826;
 if ( v84 >= 10 && v84 <= 19 )
 goto LABEL_829;
@@ -1837,7 +1837,10 @@ goto LABEL_832;
 if ( v84 >= 25 && v84 <= 29 )
 goto LABEL_835;
 if ( v84 >= 30 && v84 <= 39 )
-goto LABEL_860;
+{
+*(_WORD *)CPU_FIELD(1894) = 3;
+return;
+}
 if ( v84 < 40 || v84 > 49 )
 {
 if ( v84 >= 50 && v84 <= 54 )
@@ -1858,7 +1861,7 @@ goto LABEL_863;
 }
 if ( v117 < 240.0 )
 return;
-if ( (unsigned __int16)v84 <= 6u )
+if ( v84 <= 6 )
 goto LABEL_671;
 if ( v84 >= 7 && v84 <= 12 )
 goto LABEL_800;
@@ -1870,7 +1873,10 @@ v89 = *(_BYTE *)CPU_FIELD(260);
 if ( v89 == 1 && *(float *)CPU_FIELD(236) < 240.0 || v89 == -1 && *(float *)CPU_FIELD(236) > 1040.0f )
 {
 if ( v84 >= 40 && v84 <= 49 )
-goto LABEL_860;
+{
+*(_WORD *)CPU_FIELD(1894) = 3;
+return;
+}
 if ( v84 >= 50 && v84 <= 59 )
 {
 LABEL_863:
@@ -1903,7 +1909,7 @@ return;
 }
 if ( v117 <= 90.0 )
 {
-if ( (unsigned __int16)v84 >= 0xAu )
+if ( v84 >= 10 )
 {
 if ( v84 < 10 || v84 > 14 )
 {
@@ -1955,7 +1961,7 @@ return;
 }
 if ( v117 <= 240.0 )
 {
-if ( (unsigned __int16)v84 <= 2u )
+if ( v84 <= 2 )
 {
 LABEL_671:
 *(_WORD *)CPU_FIELD(1894) = 4;
@@ -1968,7 +1974,10 @@ if ( v84 < 6 || v84 > 8 )
 if ( v84 < 9 || v84 > 11 )
 {
 if ( v84 >= 12 && v84 <= 14 )
-goto LABEL_654;
+{
+*(_WORD *)CPU_FIELD(1894) = 3;
+return;
+}
 if ( v84 >= 15 && v84 <= 17 )
 goto LABEL_682;
 v89 = *(_BYTE *)CPU_FIELD(260);
@@ -2029,7 +2038,7 @@ return;
 }
 if ( v117 >= 520.0 )
 {
-if ( (unsigned __int16)v84 <= 4u )
+if ( v84 <= 4 )
 goto LABEL_671;
 if ( v84 >= 5 && v84 <= 9 )
 goto LABEL_800;
@@ -2038,7 +2047,10 @@ goto LABEL_804;
 if ( v84 >= 15 && v84 <= 17 )
 goto LABEL_808;
 if ( v84 >= 18 && v84 <= 24 )
-goto LABEL_654;
+{
+*(_WORD *)CPU_FIELD(1894) = 3;
+return;
+}
 if ( v84 >= 25 && v84 <= 29 )
 {
 LABEL_658:
@@ -2084,7 +2096,7 @@ goto LABEL_982;
 }
 if ( v117 >= 240.0 )
 {
-if ( (unsigned __int16)v84 <= 2u )
+if ( v84 <= 2 )
 goto LABEL_671;
 if ( v84 >= 3 && v84 <= 5 )
 goto LABEL_800;
@@ -2093,7 +2105,10 @@ goto LABEL_804;
 if ( v84 >= 9 && v84 <= 11 )
 goto LABEL_808;
 if ( v84 >= 12 && v84 <= 15 )
-goto LABEL_654;
+{
+*(_WORD *)CPU_FIELD(1894) = 3;
+return;
+}
 if ( v84 >= 16 && v84 <= 18 )
 {
 LABEL_682:
