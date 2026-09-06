@@ -167,6 +167,13 @@ class WorkflowToolingTests(unittest.TestCase):
             "adjust_counter_482(200, 120)",
             "17 * static_cast<signed char>(facing)",
             "*reinterpret_cast<float *>(raw + 240) + 104.0",
+            "spawn_payload[0] = -74.0f",
+            "adjust_counter_482(200, 45)",
+            "*reinterpret_cast<int *>(raw + 324) >= 40",
+            "spawn_payload[1] = 7.0f",
+            "20 * static_cast<signed char>(facing)",
+            "spawn_payload[0] = -45.0f",
+            "adjust_counter_482(200, 60)",
         ]:
             self.assertIn(snippet, text)
         self.assertNotIn("Alice_dispatch_action_state_vslot28(", text)
