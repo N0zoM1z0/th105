@@ -3983,7 +3983,7 @@ if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 11 )
 v359 = 0.0;
 do
 {
-*(float *)v458 = (double)selector_random_roll(0x12u) + v359 * 45.0 + 22.5;
+*(float *)v458 = (float)(unsigned int)selector_random_roll(0x12u) + v359 * 45.0 + 22.5;
 *(float *)&v458[1] = 20.0;
 *(float *)&v458[2] = 2.0;
 if ( *(float *)v458 < 0.0 || *(float *)v458 > 180.0 )
@@ -4016,7 +4016,10 @@ case 0x25A:
 resolve_stage_surface_landing_transition();
 publish_texture_state(3, 2);
 if ( *(_WORD *)(raw +  318) == 1 && *(int *)(raw +  324) >= 40 )
-goto LABEL_898;
+{
+(*(void (__thiscall **)(void *))(*(_DWORD *)raw +  20))(raw);
+return;
+}
 if ( (unsigned __int8)advance_frame_and_dispatch() )
 (*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
 if ( !*(_DWORD *)(raw +  324) )
@@ -4446,7 +4449,7 @@ v403,
 1,
 (int)payload_452,
 3);
-payload_452[0] = (float)selector_random_roll(0x258u);
+payload_452[0] = (float)(unsigned int)selector_random_roll(0x258u);
 payload_452[2] = 1.0;
 v404 = *(float *)(raw +  240) + 100.0;
 spawn_owned_object_via_manager(855,
@@ -4456,7 +4459,7 @@ v404,
 1,
 (int)payload_452,
 3);
-payload_452[0] = (float)selector_random_roll(0x168u);
+payload_452[0] = (float)(unsigned int)selector_random_roll(0x168u);
 v405 = *(float *)(raw +  240) + 100.0;
 spawn_owned_object_via_manager(855,
 *(float *)(raw +  236),
@@ -4468,7 +4471,7 @@ v405,
 v366 = 0.0;
 do
 {
-payload_452[0] = (float)selector_random_roll(0x168u);
+payload_452[0] = (float)(unsigned int)selector_random_roll(0x168u);
 payload_452[1] = 0.0;
 payload_452[2] = 2.0;
 v406 = *(float *)(raw +  240) + 100.0;
