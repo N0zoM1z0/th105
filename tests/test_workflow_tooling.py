@@ -121,6 +121,26 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(regions["high"]["candidate_destination_counts"], [15])
 
 
+    def test_giant_action_switch_manifest_tracks_default_cpu_policy(self) -> None:
+        with (ROOT / "config" / "giant-action-switches.toml").open("rb") as stream:
+            manifest = tomllib.load(stream)
+        root = next(row for row in manifest["roots"] if row["name"] == "default-cpu-action-policy")
+        self.assertEqual(root["address"], "0x005F1F80")
+        self.assertEqual(root["callable_end"], "0x005F5DA6")
+        self.assertEqual(root["metadata_end"], "0x005F6020")
+        self.assertEqual(root["expected_unique_destinations"], 19)
+        self.assertEqual(root["expected_direct_call_sites"], 150)
+        self.assertEqual(root["expected_direct_call_targets"], 5)
+        self.assertEqual(root["expected_ret_opcodes"], 52)
+        regions = {row["name"]: row for row in root["regions"]}
+        actions = regions["actions"]
+        self.assertEqual((actions["case_min"], actions["case_max"]), (200, 416))
+        self.assertEqual(actions["destination_table"], "0x005F5DA8")
+        self.assertEqual(actions["index_table"], "0x005F5DF4")
+        self.assertEqual(actions["destination_count"], 19)
+        self.assertEqual(actions["expected_physical_groups"], 19)
+
+
     def test_giant_action_switch_manifest_tracks_alice_root(self) -> None:
         with (ROOT / "config" / "giant-action-switches.toml").open("rb") as stream:
             manifest = tomllib.load(stream)

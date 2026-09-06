@@ -16963,7 +16963,7 @@ source = "src/characters/CpuActionPolicies.cpp"
 object = "build/match-units/GptWeb_DefaultCpuActionPolicy.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current-target default Fighter primary-vtable +0x58 CPU action-policy root. The formal 15910-byte comparator and default-cpu-action-policy giant-switch mapper cover the natural C++ source: target owns one 217-case byte-index switch with 19 physical destinations, 150 direct calls to 5 targets and 52 RETs. The retained candidate has the shipped 0x0C frame and target-backed atan float-lifetime provenance but remains nonexact; regional spans are diagnostics only."
+notes = "Current-target default Fighter primary-vtable +0x58 CPU action-policy root. The formal 15910-byte comparator and default-cpu-action-policy giant-switch mapper cover the natural C++ source: target owns one 217-case byte-index switch with 19 physical destinations, 150 direct calls to 5 targets and 52 RETs. The retained candidate has the shipped 0x0C frame, target-backed atan float lifetimes, structured outer break-to-common-policy ownership and exact local self-first negated-strict X comparison semantics, but remains nonexact; regional spans are diagnostics only."
 
 [[units.gpt-web-default-cpu-action-policy.functions]]
 address = "0x005F1F80"

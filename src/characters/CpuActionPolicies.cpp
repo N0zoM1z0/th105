@@ -199,7 +199,7 @@ else
 *(_DWORD *)CPU_FIELD(1724) = 2;
 }
 }
-goto LABEL_350;
+break;
 case 0x12C:
 v9 = *(_DWORD *)CPU_FIELD(384);
 if ( v9 )
@@ -226,7 +226,7 @@ else
 *(_DWORD *)CPU_FIELD(1720) = 0;
 }
 }
-goto LABEL_350;
+break;
 case 0x12D:
 v11 = *(_DWORD *)CPU_FIELD(384);
 if ( v11 )
@@ -267,7 +267,7 @@ else
 *(_DWORD *)CPU_FIELD(1716) = 0;
 *(_DWORD *)CPU_FIELD(1720) = 0;
 }
-goto LABEL_350;
+break;
 case 0x12E:
 v13 = *(_DWORD *)CPU_FIELD(384);
 if ( v13 )
@@ -289,7 +289,7 @@ if ( *(__int16 *)CPU_FIELD(1154) >= 300 )
 *(_DWORD *)CPU_FIELD(1728) = 2;
 *(_DWORD *)CPU_FIELD(1716) = 0;
 *(_DWORD *)CPU_FIELD(1720) = 0;
-goto LABEL_350;
+break;
 }
 LABEL_68:
 if ( v14 < 30 )
@@ -302,7 +302,7 @@ if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
 *(_DWORD *)CPU_FIELD(1732) = 2;
 *(_DWORD *)CPU_FIELD(1716) = 0;
 *(_DWORD *)CPU_FIELD(1720) = 0;
-goto LABEL_350;
+break;
 }
 LABEL_72:
 if ( v14 < 50 )
@@ -332,7 +332,7 @@ goto LABEL_85;
 if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
 {
 *(_DWORD *)CPU_FIELD(1832) = 2;
-goto LABEL_350;
+break;
 }
 LABEL_84:
 if ( v14 < 75 )
@@ -373,7 +373,7 @@ else
 {
 *(_DWORD *)CPU_FIELD(1832) = 32;
 }
-goto LABEL_350;
+break;
 case 0x12F:
 v22 = *(_DWORD *)CPU_FIELD(384);
 if ( v22 )
@@ -412,7 +412,7 @@ v24 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1720) = 1;
 }
 }
-goto LABEL_350;
+break;
 case 0x130:
 v25 = *(_DWORD *)CPU_FIELD(384);
 if ( v25 )
@@ -434,7 +434,7 @@ if ( *(__int16 *)CPU_FIELD(1154) >= 300 )
 *(_DWORD *)CPU_FIELD(1728) = 2;
 *(_DWORD *)CPU_FIELD(1716) = 0;
 *(_DWORD *)CPU_FIELD(1720) = 0;
-goto LABEL_350;
+break;
 }
 LABEL_136:
 if ( v26 < 30 )
@@ -472,7 +472,7 @@ goto LABEL_152;
 if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
 {
 *(_DWORD *)CPU_FIELD(1832) = 2;
-goto LABEL_350;
+break;
 }
 LABEL_151:
 if ( v26 < 75 )
@@ -501,7 +501,7 @@ else
 {
 *(_DWORD *)CPU_FIELD(1832) = 32;
 }
-goto LABEL_350;
+break;
 case 0x131:
 v27 = *(_DWORD *)CPU_FIELD(384);
 if ( v27 )
@@ -516,7 +516,7 @@ else
 v28 = *(_WORD *)CPU_FIELD(1892);
 if ( v28 >= 65 && v28 <= 75 && *(__int16 *)CPU_FIELD(1154) >= 400 )
 *(_DWORD *)CPU_FIELD(1832) = 2;
-goto LABEL_350;
+break;
 case 0x132:
 v29 = *(_DWORD *)CPU_FIELD(384);
 if ( v29 )
@@ -539,7 +539,7 @@ v31 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1724) = 1;
 *(_DWORD *)CPU_FIELD(1716) = v31;
 *(_DWORD *)CPU_FIELD(1720) = 0;
-goto LABEL_350;
+break;
 }
 LABEL_178:
 if ( v30 < 15 )
@@ -556,7 +556,7 @@ v33 = *(char *)CPU_FIELD(260);
 float angle_x_32 = (float)((*(float *)(v32 + 236) - *(float *)CPU_FIELD(236)) * (double)v33);
 *(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)atan2_degrees(
     *(float *)(v32 + 240) - *(float *)CPU_FIELD(240), angle_x_32) >= 30;
-goto LABEL_350;
+break;
 }
 LABEL_182:
 if ( v30 < 25 )
@@ -567,7 +567,7 @@ goto LABEL_187;
 if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
 {
 *(_DWORD *)CPU_FIELD(1832) = 2;
-goto LABEL_350;
+break;
 }
 LABEL_186:
 if ( v30 < 30 )
@@ -594,7 +594,7 @@ else
 {
 *(_DWORD *)CPU_FIELD(1832) = 32;
 }
-goto LABEL_350;
+break;
 case 0x133:
 v34 = *(_DWORD *)CPU_FIELD(384);
 if ( v34 )
@@ -620,7 +620,7 @@ v37 = *(char *)CPU_FIELD(260);
 float angle_x_36 = (float)((*(float *)(v36 + 236) - *(float *)CPU_FIELD(236)) * (double)v37);
 *(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)atan2_degrees(
     *(float *)(v36 + 240) - *(float *)CPU_FIELD(240), angle_x_36) >= 30;
-goto LABEL_350;
+break;
 }
 LABEL_206:
 if ( v35 < 30 )
@@ -637,7 +637,7 @@ v40 = *(char *)CPU_FIELD(260);
 float angle_x_39 = (float)((*(float *)(v39 + 236) - *(float *)CPU_FIELD(236)) * (double)v40);
 *(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)atan2_degrees(
     *(float *)(v39 + 240) - *(float *)CPU_FIELD(240), angle_x_39) >= 30;
-goto LABEL_350;
+break;
 }
 LABEL_211:
 if ( v35 < 40 )
@@ -648,7 +648,7 @@ goto LABEL_216;
 if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
 {
 *(_DWORD *)CPU_FIELD(1832) = 2;
-goto LABEL_350;
+break;
 }
 LABEL_215:
 if ( v35 < 45 )
@@ -669,7 +669,7 @@ if ( v35 >= 95
 goto LABEL_413;
 }
 }
-goto LABEL_350;
+break;
 case 0x134:
 v41 = *(_DWORD *)CPU_FIELD(384);
 if ( v41 )
@@ -711,7 +711,7 @@ float angle_x_43 = (float)((*(float *)(v43 + 236) - *(float *)CPU_FIELD(236)) * 
 *(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)atan2_degrees(
     *(float *)(v43 + 240) - *(float *)CPU_FIELD(240), angle_x_43) >= 20;
 }
-goto LABEL_350;
+break;
 case 0x140:
 v46 = *(_DWORD *)CPU_FIELD(384);
 if ( v46 )
@@ -725,7 +725,7 @@ else
 }
 if ( *(_WORD *)CPU_FIELD(1892) <= 0x5Au )
 goto LABEL_263;
-goto LABEL_350;
+break;
 case 0x141:
 v47 = *(_DWORD *)CPU_FIELD(384);
 if ( v47 )
@@ -747,7 +747,7 @@ if ( v48 <= 65 )
 *(_DWORD *)CPU_FIELD(1724) = 2;
 *(_DWORD *)CPU_FIELD(1716) = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1720) = 0;
-goto LABEL_350;
+break;
 }
 if ( v48 <= 80 )
 {
@@ -755,7 +755,7 @@ v49 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1724) = 2;
 *(_DWORD *)CPU_FIELD(1716) = v49;
 *(_DWORD *)CPU_FIELD(1720) = 1;
-goto LABEL_350;
+break;
 }
 if ( v48 > 90 )
 goto LABEL_265;
@@ -779,7 +779,7 @@ LABEL_263:
 *(_DWORD *)CPU_FIELD(1716) = 0;
 *(_DWORD *)CPU_FIELD(1720) = 0;
 }
-goto LABEL_350;
+break;
 case 0x142:
 v50 = *(_DWORD *)CPU_FIELD(384);
 if ( v50 )
@@ -799,7 +799,7 @@ goto LABEL_279;
 if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
 {
 *(_DWORD *)CPU_FIELD(1832) = 2;
-goto LABEL_350;
+break;
 }
 LABEL_278:
 if ( v51 < 75 )
@@ -854,7 +854,7 @@ else
 {
 *(_DWORD *)CPU_FIELD(1832) = 32;
 }
-goto LABEL_350;
+break;
 case 0x190:
 case 0x191:
 v52 = *(_DWORD *)CPU_FIELD(384);
@@ -905,7 +905,7 @@ else
 {
 *(_DWORD *)CPU_FIELD(1832) = 2;
 }
-goto LABEL_350;
+break;
 case 0x192:
 v56 = *(_DWORD *)CPU_FIELD(384);
 if ( v56 )
@@ -928,7 +928,7 @@ LABEL_322:
 *(_DWORD *)CPU_FIELD(1732) = 2;
 *(_DWORD *)CPU_FIELD(1716) = 0;
 *(_DWORD *)CPU_FIELD(1720) = 0;
-goto LABEL_350;
+break;
 }
 LABEL_323:
 if ( v57 < 10 )
@@ -943,7 +943,7 @@ LABEL_326:
 LABEL_327:
 *(_DWORD *)CPU_FIELD(1716) = 0;
 *(_DWORD *)CPU_FIELD(1720) = 1;
-goto LABEL_350;
+break;
 }
 LABEL_328:
 if ( v57 < 20 )
@@ -957,15 +957,15 @@ if ( *(__int16 *)CPU_FIELD(1154) >= 400 && v117 < 450.0 && v118 < 100.0 )
 LABEL_334:
 *(_DWORD *)CPU_FIELD(1716) = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1720) = 0;
-goto LABEL_350;
+break;
 }
 LABEL_335:
 if ( v57 < 30 )
-goto LABEL_350;
+break;
 }
 if ( v57 <= 45 && *(__int16 *)CPU_FIELD(1154) >= 400 )
 *(_DWORD *)CPU_FIELD(1832) = 2;
-goto LABEL_350;
+break;
 case 0x194:
 case 0x195:
 case 0x196:
@@ -996,7 +996,7 @@ v62 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1716) = v62;
 LABEL_349:
 *(_DWORD *)CPU_FIELD(1720) = 0;
-goto LABEL_350;
+break;
 }
 }
 if ( v59 < 10 )
@@ -1010,7 +1010,7 @@ if ( *(__int16 *)CPU_FIELD(1154) >= 400
 *(_DWORD *)CPU_FIELD(1732) = 2;
 *(_DWORD *)CPU_FIELD(1716) = 0;
 *(_DWORD *)CPU_FIELD(1720) = 1;
-goto LABEL_350;
+break;
 }
 LABEL_371:
 if ( v59 < 20 )
@@ -1034,7 +1034,7 @@ if ( v59 <= 40
 && *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) < (double)*(float *)CPU_FIELD(240) )
 {
 *(_DWORD *)CPU_FIELD(1832) = 2;
-goto LABEL_350;
+break;
 }
 }
 if ( v59 >= 95 && v59 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
@@ -1042,14 +1042,154 @@ if ( v59 >= 95 && v59 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
 v65 = *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211;
 goto LABEL_434;
 }
+case 0x19A:
+case 0x19C:
+v66 = *(_DWORD *)CPU_FIELD(384);
+if ( v66 )
+{
+if ( v66 != 3 && !*(_WORD *)CPU_FIELD(1892) )
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
+}
+else
+{
+*(_WORD *)CPU_FIELD(1892) = 0;
+}
+v67 = *(_WORD *)CPU_FIELD(1892);
+if ( v67 < 50 )
+goto LABEL_394;
+if ( v67 > 75 )
+goto LABEL_395;
+if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
+{
+*(_DWORD *)CPU_FIELD(1832) = 2;
+break;
+}
+LABEL_394:
+if ( v67 < 75 )
+goto LABEL_399;
+LABEL_395:
+if ( v67 > 80 || *(__int16 *)CPU_FIELD(1154) < 400 || *(_DWORD *)CPU_FIELD(384) == 1 )
+{
+LABEL_399:
+if ( v67 >= 95 && v67 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
+{
+v17 = 960.0;
+switch ( *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) )
+{
+case 0xC8:
+if ( *(float *)CPU_FIELD(236) <= 960.0 || *(_BYTE *)CPU_FIELD(260) != 1 )
+{
+if ( *(float *)CPU_FIELD(236) >= 300.0 )
+goto LABEL_101;
+v18 = *(_BYTE *)CPU_FIELD(260) == 0xFF;
+LABEL_98:
+if ( !v18 )
+goto LABEL_101;
+}
+goto LABEL_99;
+case 0xC9:
+LABEL_101:
+if ( *(float *)CPU_FIELD(236) > v17 && *(_BYTE *)CPU_FIELD(260) == 1 )
+goto LABEL_435;
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_350;
+case 0xCA:
+LABEL_104:
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_350;
+case 0xCD:
+LABEL_99:
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_350;
+case 0xD4:
+v68 = *(float *)CPU_FIELD(236);
+v20 = v68 < 860.0;
+v21 = v68 == 860.0;
+LABEL_408:
+if ( !v20 && !v21 && *(_BYTE *)CPU_FIELD(260) == 1 )
+goto LABEL_413;
+if ( *(float *)CPU_FIELD(236) >= 400.0 )
+goto LABEL_350;
+v45 = *(_BYTE *)CPU_FIELD(260) == 0xFF;
+break;
+default:
+goto LABEL_350;
+}
+LABEL_412:
+if ( v45 )
+{
+LABEL_413:
+v65 = *(_DWORD *)CPU_FIELD(384) == 1;
+goto LABEL_434;
+}
+}
+}
+else
+{
+*(_DWORD *)CPU_FIELD(1832) = 32;
+}
+break;
+case 0x19E:
+case 0x19F:
+case 0x1A0:
+v69 = *(_DWORD *)CPU_FIELD(384);
+if ( v69 )
+{
+if ( v69 != 3 && !*(_WORD *)CPU_FIELD(1892) )
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
+}
+else
+{
+*(_WORD *)CPU_FIELD(1892) = 0;
+}
+v70 = *(_WORD *)CPU_FIELD(1892);
+if ( v70 < 40 )
+goto LABEL_423;
+if ( v70 > 45 )
+goto LABEL_424;
+if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
+{
+*(_DWORD *)CPU_FIELD(1832) = 2;
+break;
+}
+LABEL_423:
+if ( v70 < 45 )
+goto LABEL_428;
+LABEL_424:
+if ( v70 <= 55 && *(__int16 *)CPU_FIELD(1154) >= 400 && *(_DWORD *)CPU_FIELD(384) == 1 )
+{
+*(_DWORD *)CPU_FIELD(1832) = 32;
+}
+else
+{
+LABEL_428:
+if ( v70 >= 95 && v70 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
+{
+v71 = *(__int16 *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) - 211;
+if ( !v71 )
+goto LABEL_435;
+if ( v71 == 1 )
+{
+v65 = v118 < 150.0;
+LABEL_434:
+if ( v65 )
+LABEL_435:
+*(_DWORD *)CPU_FIELD(1744) = 2;
+}
+}
+}
+break;
+default:
+break;
+}
 LABEL_350:
 if ( *(_WORD *)CPU_FIELD(1894) )
 goto LABEL_523;
 if ( !*(_WORD *)CPU_FIELD(1900) )
 *(_WORD *)CPU_FIELD(1900) = selector_random_roll(0x64u);
 v63 = *(_DWORD *)CPU_FIELD(368);
-if ( (*(float *)(v63 + 236) >= (double)*(float *)CPU_FIELD(236) || *(_BYTE *)CPU_FIELD(260) != 0xFF)
-&& (*(float *)(v63 + 236) <= (double)*(float *)CPU_FIELD(236) || *(_BYTE *)CPU_FIELD(260) != 1) )
+if ( (!( *(float *)CPU_FIELD(236) > (double)*(float *)(v63 + 236) ) || *(_BYTE *)CPU_FIELD(260) != 0xFF)
+&& (!( *(float *)CPU_FIELD(236) < (double)*(float *)(v63 + 236) ) || *(_BYTE *)CPU_FIELD(260) != 1) )
 {
 goto LABEL_523;
 }
@@ -2135,146 +2275,6 @@ if ( *(_WORD *)CPU_FIELD(316) == 200 && v117 < 220.0 )
 return;
 default:
 return;
-}
-case 0x19A:
-case 0x19C:
-v66 = *(_DWORD *)CPU_FIELD(384);
-if ( v66 )
-{
-if ( v66 != 3 && !*(_WORD *)CPU_FIELD(1892) )
-*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
-}
-else
-{
-*(_WORD *)CPU_FIELD(1892) = 0;
-}
-v67 = *(_WORD *)CPU_FIELD(1892);
-if ( v67 < 50 )
-goto LABEL_394;
-if ( v67 > 75 )
-goto LABEL_395;
-if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
-{
-*(_DWORD *)CPU_FIELD(1832) = 2;
-goto LABEL_350;
-}
-LABEL_394:
-if ( v67 < 75 )
-goto LABEL_399;
-LABEL_395:
-if ( v67 > 80 || *(__int16 *)CPU_FIELD(1154) < 400 || *(_DWORD *)CPU_FIELD(384) == 1 )
-{
-LABEL_399:
-if ( v67 >= 95 && v67 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
-{
-v17 = 960.0;
-switch ( *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) )
-{
-case 0xC8:
-if ( *(float *)CPU_FIELD(236) <= 960.0 || *(_BYTE *)CPU_FIELD(260) != 1 )
-{
-if ( *(float *)CPU_FIELD(236) >= 300.0 )
-goto LABEL_101;
-v18 = *(_BYTE *)CPU_FIELD(260) == 0xFF;
-LABEL_98:
-if ( !v18 )
-goto LABEL_101;
-}
-goto LABEL_99;
-case 0xC9:
-LABEL_101:
-if ( *(float *)CPU_FIELD(236) > v17 && *(_BYTE *)CPU_FIELD(260) == 1 )
-goto LABEL_435;
-*(_DWORD *)CPU_FIELD(1744) = 2;
-goto LABEL_350;
-case 0xCA:
-LABEL_104:
-*(_DWORD *)CPU_FIELD(1744) = 2;
-goto LABEL_350;
-case 0xCD:
-LABEL_99:
-*(_DWORD *)CPU_FIELD(1744) = 2;
-goto LABEL_350;
-case 0xD4:
-v68 = *(float *)CPU_FIELD(236);
-v20 = v68 < 860.0;
-v21 = v68 == 860.0;
-LABEL_408:
-if ( !v20 && !v21 && *(_BYTE *)CPU_FIELD(260) == 1 )
-goto LABEL_413;
-if ( *(float *)CPU_FIELD(236) >= 400.0 )
-goto LABEL_350;
-v45 = *(_BYTE *)CPU_FIELD(260) == 0xFF;
-break;
-default:
-goto LABEL_350;
-}
-LABEL_412:
-if ( v45 )
-{
-LABEL_413:
-v65 = *(_DWORD *)CPU_FIELD(384) == 1;
-goto LABEL_434;
-}
-}
-}
-else
-{
-*(_DWORD *)CPU_FIELD(1832) = 32;
-}
-goto LABEL_350;
-case 0x19E:
-case 0x19F:
-case 0x1A0:
-v69 = *(_DWORD *)CPU_FIELD(384);
-if ( v69 )
-{
-if ( v69 != 3 && !*(_WORD *)CPU_FIELD(1892) )
-*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
-}
-else
-{
-*(_WORD *)CPU_FIELD(1892) = 0;
-}
-v70 = *(_WORD *)CPU_FIELD(1892);
-if ( v70 < 40 )
-goto LABEL_423;
-if ( v70 > 45 )
-goto LABEL_424;
-if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
-{
-*(_DWORD *)CPU_FIELD(1832) = 2;
-goto LABEL_350;
-}
-LABEL_423:
-if ( v70 < 45 )
-goto LABEL_428;
-LABEL_424:
-if ( v70 <= 55 && *(__int16 *)CPU_FIELD(1154) >= 400 && *(_DWORD *)CPU_FIELD(384) == 1 )
-{
-*(_DWORD *)CPU_FIELD(1832) = 32;
-}
-else
-{
-LABEL_428:
-if ( v70 >= 95 && v70 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
-{
-v71 = *(__int16 *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) - 211;
-if ( !v71 )
-goto LABEL_435;
-if ( v71 == 1 )
-{
-v65 = v118 < 150.0;
-LABEL_434:
-if ( v65 )
-LABEL_435:
-*(_DWORD *)CPU_FIELD(1744) = 2;
-}
-}
-}
-goto LABEL_350;
-default:
-goto LABEL_350;
 }
 }
 #undef CPU_FIELD
