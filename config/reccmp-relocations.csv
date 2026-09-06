@@ -1168,3 +1168,12 @@ __real@c20c0000,0x006C435C,00000cc2,0,Current Youmu vslot28 target directly refe
 __real@c2200000,0x006C4708,000020c2,0,Current Youmu vslot28 target directly references this exact literal at 0x00533664; PE bytes attested 2026-09-05,literal
 __real@c2be0000,0x006C4D48,0000bec2,0,Current Youmu vslot28 target directly references this exact literal at 0x005386D1; PE bytes attested 2026-09-05,literal
 __real@c2f00000,0x006C4764,0000f0c2,0,"Current Youmu vslot28 target directly references this exact literal at 0x00533EF2, 0x0053865B; PE bytes attested 2026-09-05",literal
+__real@407f400000000000,0x006C38A0,0000000000407f40,0,Current default CPU action-policy vslot +0x58 target directly references this exact literal at 0x005F332E and 0x005F46E8; PE bytes attested 2026-09-06,literal
+__real@43160000,0x006C3CEC,00001643,0,Current default CPU action-policy vslot +0x58 target directly references this exact literal at 0x005F21C9 and 0x005F3187; PE bytes attested 2026-09-06,literal
+__real@44820000,0x006C3ED8,00008244,0,Current default CPU action-policy vslot +0x58 target directly references this exact literal at 0x005F485A and 0x005F49DF; PE bytes attested 2026-09-06,literal
+__real@44020000,0x006C3EEC,00000244,0,Current default CPU action-policy vslot +0x58 target directly references this exact literal at 0x005F3C7B and 0x005F4A61; PE bytes attested 2026-09-06,literal
+__real@42a00000,0x006C3F10,0000a042,0,Current default CPU action-policy vslot +0x58 target directly references this exact literal at 0x005F26D4 and 0x005F2A86; PE bytes attested 2026-09-06,literal
+__real@4079000000000000,0x006C3F18,0000000000007940,0,Current default CPU action-policy vslot +0x58 target directly references this exact literal at 0x005F2653 and 0x005F307E; PE bytes attested 2026-09-06,literal
+__real@406b800000000000,0x006C3F20,0000000000806b40,0,Current default CPU action-policy vslot +0x58 target directly references this exact literal at 0x005F217D and 0x005F5D87; PE bytes attested 2026-09-06,literal
+__real@442f0000,0x006C3F28,00002f44,0,Current default CPU action-policy vslot +0x58 target directly references this exact literal at 0x005F20F3; PE bytes attested 2026-09-06,literal
+__real@407c200000000000,0x006C47F8,0000000000207c40,0,Current default CPU action-policy vslot +0x58 target directly references this exact literal at 0x005F325C and 0x005F3F0E; PE bytes attested 2026-09-06,literal

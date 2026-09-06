@@ -1,0 +1,2316 @@
+#include "CpuActionPolicies.hpp"
+
+#include "../battle/Collision.hpp"
+
+#include <stdlib.h>
+
+namespace th105 {
+
+typedef unsigned char _BYTE;
+typedef unsigned short _WORD;
+typedef unsigned int _DWORD;
+
+double __cdecl atan2_degrees(float y, float x);
+unsigned int __cdecl mt19937_next_u32();
+int __cdecl selector_random_roll(int limit);
+
+#define CPU_FIELD(offset) (reinterpret_cast<unsigned char *>(this) + (offset))
+void CpuActionPolicyView::update_default_cpu_action_policy()
+{
+int v2; // edi
+int v3; // eax
+int v4; // eax
+__int16 v5; // ax
+__int16 v6; // ax
+int v7; // edx
+int v8; // ecx
+int v9; // eax
+__int16 v10; // ax
+int v11; // eax
+__int16 v12; // ax
+int v13; // eax
+__int16 v14; // cx
+double v15; // st7
+double v16; // st6
+double v17; // st7
+bool v18; // zf
+double v19; // st6
+bool v20; // c0
+bool v21; // c3
+int v22; // eax
+__int16 v23; // cx
+int v24; // eax
+int v25; // eax
+__int16 v26; // cx
+int v27; // eax
+__int16 v28; // ax
+int v29; // eax
+__int16 v30; // cx
+int v31; // ecx
+int v32; // eax
+int v33; // edx
+int v34; // eax
+__int16 v35; // ax
+int v36; // eax
+int v37; // ecx
+double v38; // st7
+int v39; // eax
+int v40; // ecx
+int v41; // eax
+__int16 v42; // ax
+int v43; // eax
+int v44; // ecx
+bool v45; // zf
+int v46; // eax
+int v47; // eax
+__int16 v48; // ax
+int v49; // edx
+int v50; // eax
+__int16 v51; // ax
+int v52; // eax
+__int16 v53; // ax
+int v54; // eax
+int v55; // eax
+int v56; // eax
+__int16 v57; // cx
+int v58; // eax
+__int16 v59; // cx
+double v60; // st7
+double v61; // st6
+int v62; // eax
+int v63; // ecx
+__int16 v64; // ax
+bool v65; // zf
+int v66; // eax
+__int16 v67; // ax
+double v68; // st7
+int v69; // eax
+__int16 v70; // ax
+int v71; // eax
+int v72; // ecx
+int v73; // edx
+int v74; // ecx
+int v75; // eax
+int v76; // eax
+int v77; // eax
+int v78; // ecx
+int v79; // eax
+int v80; // eax
+int v81; // eax
+int v82; // ecx
+int v83; // ecx
+__int16 v84; // ax
+bool v85; // c3
+bool v86; // c0
+bool v87; // c3
+double v88; // st7
+char v89; // dl
+bool v90; // zf
+char v91; // cl
+bool v93; // zf
+bool v94; // zf
+double v95; // st7
+double v96; // st6
+double v97; // st7
+int v98; // edi
+double v99; // st7
+double v100; // st7
+bool v101; // cc
+char v102; // al
+int v103; // edx
+int v104; // ecx
+__int16 v105; // ax
+bool v106; // zf
+char v107; // al
+int v108; // ecx
+__int16 v109; // ax
+char v110; // al
+float v111; // [esp+0h] [ebp-24h]
+float v112; // [esp+4h] [ebp-20h]
+float v113; // [esp+4h] [ebp-20h]
+float v114; // [esp+4h] [ebp-20h]
+float v115; // [esp+4h] [ebp-20h]
+float v116; // [esp+4h] [ebp-20h]
+float v117; // [esp+18h] [ebp-Ch]
+float v118; // [esp+1Ch] [ebp-8h]
+float v119; // [esp+20h] [ebp-4h]
+float v120; // [esp+20h] [ebp-4h]
+float v121; // [esp+20h] [ebp-4h]
+float v122; // [esp+20h] [ebp-4h]
+float v123; // [esp+20h] [ebp-4h]
+float v124; // [esp+20h] [ebp-4h]
+float v125; // [esp+20h] [ebp-4h]
+float v126; // [esp+20h] [ebp-4h]
+float v127; // [esp+20h] [ebp-4h]
+float v128; // [esp+20h] [ebp-4h]
+float v129; // [esp+20h] [ebp-4h]
+float v130; // [esp+20h] [ebp-4h]
+v2 = *(_DWORD *)CPU_FIELD(368);
+*(_DWORD *)CPU_FIELD(1828) = 0;
+*(_DWORD *)CPU_FIELD(1832) = 0;
+v3 = (int)(*(float *)(v2 + 236) - *(float *)CPU_FIELD(236));
+v117 = (float)abs(v3);
+v4 = (int)(*(float *)(v2 + 240) - *(float *)CPU_FIELD(240));
+--*(_WORD *)CPU_FIELD(1896);
+v118 = (float)abs(v4);
+v5 = *(_WORD *)CPU_FIELD(316);
+*(_DWORD *)CPU_FIELD(1724) = 0;
+*(_DWORD *)CPU_FIELD(1728) = 0;
+*(_DWORD *)CPU_FIELD(1732) = 0;
+*(_DWORD *)CPU_FIELD(1736) = 0;
+*(_DWORD *)CPU_FIELD(1740) = 0;
+*(_DWORD *)CPU_FIELD(1744) = 0;
+if ( v5 > 49 && v5 < 150 )
+{
+*(_WORD *)CPU_FIELD(1900) = 0;
+*(_WORD *)CPU_FIELD(1898) = 0;
+*(_WORD *)CPU_FIELD(1894) = 0;
+*(_WORD *)CPU_FIELD(1896) = 0;
+*(_WORD *)CPU_FIELD(1892) = 0;
+if ( mt19937_next_u32() % 0x64 <= 0xA )
+{
+*(_DWORD *)CPU_FIELD(1724) = 1;
+*(_DWORD *)CPU_FIELD(1716) = selector_random_roll(3u) - 1;
+}
+}
+if ( *(__int16 *)CPU_FIELD(316) <= 199 )
+{
+*(_WORD *)CPU_FIELD(1900) = 0;
+*(_WORD *)CPU_FIELD(1892) = 0;
+}
+v6 = selector_random_roll(0x3E8u);
+v7 = *(_DWORD *)CPU_FIELD(368);
+*(_WORD *)CPU_FIELD(1902) = v6;
+if ( *(__int16 *)(v7 + 372) <= 0 )
+return;
+switch ( *(_WORD *)CPU_FIELD(316) )
+{
+case 0xC8:
+if ( !*(_WORD *)CPU_FIELD(1892) )
+{
+*(_WORD *)CPU_FIELD(1892) = 100;
+if ( v117 >= 700.0 )
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u) + 1;
+}
+v8 = *(_DWORD *)CPU_FIELD(368);
+if ( (*(float *)(v8 + 236) < (double)*(float *)CPU_FIELD(236) && *(_BYTE *)CPU_FIELD(260) == 0xFF
+|| *(float *)(v8 + 236) > (double)*(float *)CPU_FIELD(236) && *(_BYTE *)CPU_FIELD(260) == 1)
+&& *(__int16 *)CPU_FIELD(1892) >= 50 )
+{
+if ( v117 >= 220.0 || selector_random_roll(0x3E8u) >= 0x55 || v118 >= 50.0 )
+{
+if ( v117 < 150.0 || v117 > 300.0 || v118 >= 50.0 || selector_random_roll(0x3E8u) >= 0x32 )
+{
+if ( v117 >= 250.0 && v117 <= 300.0 && v118 > 50.0 && v118 < 150.0 && selector_random_roll(0x3E8u) < 0x32 )
+{
+*(_DWORD *)CPU_FIELD(1716) = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1732) = 2;
+}
+}
+else
+{
+*(_DWORD *)CPU_FIELD(1716) = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1728) = 2;
+}
+}
+else
+{
+*(_DWORD *)CPU_FIELD(1716) = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1724) = 2;
+}
+}
+goto LABEL_350;
+case 0x12C:
+v9 = *(_DWORD *)CPU_FIELD(384);
+if ( v9 )
+{
+if ( v9 != 3 && !*(_WORD *)CPU_FIELD(1892) )
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
+}
+else
+{
+*(_WORD *)CPU_FIELD(1892) = 0;
+}
+v10 = *(_WORD *)CPU_FIELD(1892);
+if ( v10 >= 10 )
+{
+*(_DWORD *)CPU_FIELD(1724) = 2;
+if ( v10 > 90 )
+{
+*(_DWORD *)CPU_FIELD(1716) = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1720) = 1;
+}
+else
+{
+*(_DWORD *)CPU_FIELD(1716) = 0;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+}
+}
+goto LABEL_350;
+case 0x12D:
+v11 = *(_DWORD *)CPU_FIELD(384);
+if ( v11 )
+{
+if ( v11 != 3 && !*(_WORD *)CPU_FIELD(1892) )
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
+}
+else
+{
+*(_WORD *)CPU_FIELD(1892) = 0;
+}
+v12 = *(_WORD *)CPU_FIELD(1892);
+if ( v12 < 20 )
+goto LABEL_54;
+if ( v12 <= 65 )
+{
+*(_DWORD *)CPU_FIELD(1724) = 2;
+goto LABEL_334;
+}
+if ( v12 > 85 )
+goto LABEL_55;
+if ( *(__int16 *)CPU_FIELD(1154) < 400 )
+{
+LABEL_54:
+if ( v12 >= 85 )
+{
+LABEL_55:
+if ( v12 <= 95 && *(__int16 *)CPU_FIELD(1154) >= 400 && 0.0 == *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) )
+{
+*(_DWORD *)CPU_FIELD(1728) = 2;
+goto LABEL_327;
+}
+}
+}
+else
+{
+*(_DWORD *)CPU_FIELD(1728) = 2;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+}
+goto LABEL_350;
+case 0x12E:
+v13 = *(_DWORD *)CPU_FIELD(384);
+if ( v13 )
+{
+if ( v13 != 3 && !*(_WORD *)CPU_FIELD(1892) )
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
+}
+else
+{
+*(_WORD *)CPU_FIELD(1892) = 0;
+}
+v14 = *(_WORD *)CPU_FIELD(1892);
+if ( v14 < 0 )
+goto LABEL_68;
+if ( v14 > 30 )
+goto LABEL_69;
+if ( *(__int16 *)CPU_FIELD(1154) >= 300 )
+{
+*(_DWORD *)CPU_FIELD(1728) = 2;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+goto LABEL_350;
+}
+LABEL_68:
+if ( v14 < 30 )
+goto LABEL_72;
+LABEL_69:
+if ( v14 > 50 )
+goto LABEL_73;
+if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
+{
+*(_DWORD *)CPU_FIELD(1732) = 2;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+goto LABEL_350;
+}
+LABEL_72:
+if ( v14 < 50 )
+goto LABEL_75;
+LABEL_73:
+if ( v14 <= 60 )
+{
+if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
+goto LABEL_326;
+LABEL_75:
+if ( v14 < 60 )
+goto LABEL_80;
+}
+if ( v14 <= 65 )
+{
+if ( *(__int16 *)CPU_FIELD(1154) >= 200 && 0.0 == *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) )
+{
+*(_DWORD *)CPU_FIELD(1728) = 2;
+goto LABEL_327;
+}
+LABEL_80:
+if ( v14 < 65 )
+goto LABEL_84;
+}
+if ( v14 > 75 )
+goto LABEL_85;
+if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
+{
+*(_DWORD *)CPU_FIELD(1832) = 2;
+goto LABEL_350;
+}
+LABEL_84:
+if ( v14 < 75 )
+goto LABEL_89;
+LABEL_85:
+if ( v14 > 85 || *(__int16 *)CPU_FIELD(1154) < 400 || *(_DWORD *)CPU_FIELD(384) == 1 )
+{
+LABEL_89:
+if ( v14 >= 95 && v14 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
+{
+v15 = 860.0;
+v16 = 960.0;
+switch ( *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) )
+{
+case 0xC8:
+goto LABEL_93;
+case 0xC9:
+goto LABEL_100;
+case 0xCA:
+goto LABEL_104;
+case 0xCD:
+if ( (*(float *)CPU_FIELD(236) <= 860.0 || *(_BYTE *)CPU_FIELD(260) != 1)
+&& (*(float *)CPU_FIELD(236) >= 400.0 || *(_BYTE *)CPU_FIELD(260) != 0xFF)
+|| *(_DWORD *)CPU_FIELD(384) != 1 )
+{
+goto LABEL_111;
+}
+*(_DWORD *)CPU_FIELD(1744) = 2;
+break;
+case 0xD4:
+goto LABEL_111;
+default:
+goto LABEL_350;
+}
+}
+}
+else
+{
+*(_DWORD *)CPU_FIELD(1832) = 32;
+}
+goto LABEL_350;
+case 0x12F:
+v22 = *(_DWORD *)CPU_FIELD(384);
+if ( v22 )
+{
+if ( v22 != 3 && !*(_WORD *)CPU_FIELD(1892) )
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
+}
+else
+{
+*(_WORD *)CPU_FIELD(1892) = 0;
+}
+v23 = *(_WORD *)CPU_FIELD(1892);
+if ( v23 < 0 )
+goto LABEL_121;
+if ( v23 > 30 )
+goto LABEL_122;
+if ( v117 < 80.0 )
+{
+*(_DWORD *)CPU_FIELD(1724) = 2;
+goto LABEL_327;
+}
+LABEL_121:
+if ( v23 >= 30 )
+{
+LABEL_122:
+if ( v23 <= 50 )
+{
+*(_DWORD *)CPU_FIELD(1724) = 2;
+goto LABEL_334;
+}
+if ( v23 <= 75 )
+{
+v24 = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1724) = 2;
+*(_DWORD *)CPU_FIELD(1716) = v24;
+*(_DWORD *)CPU_FIELD(1720) = 1;
+}
+}
+goto LABEL_350;
+case 0x130:
+v25 = *(_DWORD *)CPU_FIELD(384);
+if ( v25 )
+{
+if ( v25 != 3 && !*(_WORD *)CPU_FIELD(1892) )
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
+}
+else
+{
+*(_WORD *)CPU_FIELD(1892) = 0;
+}
+v26 = *(_WORD *)CPU_FIELD(1892);
+if ( v26 < 0 )
+goto LABEL_136;
+if ( v26 > 30 )
+goto LABEL_137;
+if ( *(__int16 *)CPU_FIELD(1154) >= 300 )
+{
+*(_DWORD *)CPU_FIELD(1728) = 2;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+goto LABEL_350;
+}
+LABEL_136:
+if ( v26 < 30 )
+goto LABEL_139;
+LABEL_137:
+if ( v26 <= 50 )
+{
+if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
+goto LABEL_322;
+LABEL_139:
+if ( v26 < 50 )
+goto LABEL_142;
+}
+if ( v26 <= 60 )
+{
+if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
+goto LABEL_326;
+LABEL_142:
+if ( v26 < 60 )
+goto LABEL_147;
+}
+if ( v26 <= 65 )
+{
+if ( *(__int16 *)CPU_FIELD(1154) >= 200 && 0.0 == *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) )
+{
+*(_DWORD *)CPU_FIELD(1728) = 2;
+goto LABEL_327;
+}
+LABEL_147:
+if ( v26 < 65 )
+goto LABEL_151;
+}
+if ( v26 > 75 )
+goto LABEL_152;
+if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
+{
+*(_DWORD *)CPU_FIELD(1832) = 2;
+goto LABEL_350;
+}
+LABEL_151:
+if ( v26 < 75 )
+goto LABEL_156;
+LABEL_152:
+if ( v26 > 85 || *(__int16 *)CPU_FIELD(1154) < 400 || *(_DWORD *)CPU_FIELD(384) == 1 )
+{
+LABEL_156:
+if ( v26 >= 95 && v26 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
+{
+switch ( *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) )
+{
+case 0xC8:
+case 0xC9:
+case 0xCA:
+goto LABEL_435;
+case 0xCD:
+case 0xD4:
+goto LABEL_413;
+default:
+goto LABEL_350;
+}
+}
+}
+else
+{
+*(_DWORD *)CPU_FIELD(1832) = 32;
+}
+goto LABEL_350;
+case 0x131:
+v27 = *(_DWORD *)CPU_FIELD(384);
+if ( v27 )
+{
+if ( v27 != 3 && !*(_WORD *)CPU_FIELD(1892) )
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
+}
+else
+{
+*(_WORD *)CPU_FIELD(1892) = 0;
+}
+v28 = *(_WORD *)CPU_FIELD(1892);
+if ( v28 >= 65 && v28 <= 75 && *(__int16 *)CPU_FIELD(1154) >= 400 )
+*(_DWORD *)CPU_FIELD(1832) = 2;
+goto LABEL_350;
+case 0x132:
+v29 = *(_DWORD *)CPU_FIELD(384);
+if ( v29 )
+{
+if ( v29 != 3 && !*(_WORD *)CPU_FIELD(1892) )
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
+}
+else
+{
+*(_WORD *)CPU_FIELD(1892) = 0;
+}
+v30 = *(_WORD *)CPU_FIELD(1892);
+if ( v30 < 0 )
+goto LABEL_178;
+if ( v30 > 15 )
+goto LABEL_179;
+if ( *(float *)CPU_FIELD(240) < (double)*(float *)(*(_DWORD *)CPU_FIELD(368) + 240) )
+{
+v31 = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1724) = 1;
+*(_DWORD *)CPU_FIELD(1716) = v31;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+goto LABEL_350;
+}
+LABEL_178:
+if ( v30 < 15 )
+goto LABEL_182;
+LABEL_179:
+if ( v30 > 25 )
+goto LABEL_183;
+if ( *(__int16 *)CPU_FIELD(1154) >= 300 )
+{
+v32 = *(_DWORD *)CPU_FIELD(368);
+v33 = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1728) = 2;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+v119 = (*(float *)(v32 + 236) - *(float *)CPU_FIELD(236)) * (double)v33;
+v112 = v119;
+v120 = *(float *)(v32 + 240) - *(float *)CPU_FIELD(240);
+atan2_degrees(v120, v112);
+*(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)v120 >= 30;
+goto LABEL_350;
+}
+LABEL_182:
+if ( v30 < 25 )
+goto LABEL_186;
+LABEL_183:
+if ( v30 > 30 )
+goto LABEL_187;
+if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
+{
+*(_DWORD *)CPU_FIELD(1832) = 2;
+goto LABEL_350;
+}
+LABEL_186:
+if ( v30 < 30 )
+goto LABEL_191;
+LABEL_187:
+if ( v30 > 35 )
+goto LABEL_192;
+if ( *(__int16 *)CPU_FIELD(1154) < 400 || v118 >= 80.0 )
+{
+LABEL_191:
+if ( v30 >= 35 )
+{
+LABEL_192:
+if ( v30 <= 40
+&& *(__int16 *)CPU_FIELD(1154) >= 400
+&& v118 > 100.0
+&& *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) < (double)*(float *)CPU_FIELD(240) )
+{
+*(_DWORD *)CPU_FIELD(1832) = 64;
+}
+}
+}
+else
+{
+*(_DWORD *)CPU_FIELD(1832) = 32;
+}
+goto LABEL_350;
+case 0x133:
+v34 = *(_DWORD *)CPU_FIELD(384);
+if ( v34 )
+{
+if ( v34 != 3 && !*(_WORD *)CPU_FIELD(1892) )
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
+}
+else
+{
+*(_WORD *)CPU_FIELD(1892) = 0;
+}
+v35 = *(_WORD *)CPU_FIELD(1892);
+if ( v35 < 0 )
+goto LABEL_206;
+if ( v35 > 30 )
+goto LABEL_207;
+if ( *(__int16 *)CPU_FIELD(1154) >= 300 )
+{
+v36 = *(_DWORD *)CPU_FIELD(368);
+v37 = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1728) = 2;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+v121 = (*(float *)(v36 + 236) - *(float *)CPU_FIELD(236)) * (double)v37;
+v113 = v121;
+v122 = *(float *)(v36 + 240) - *(float *)CPU_FIELD(240);
+v38 = v122;
+LABEL_210:
+v111 = v38;
+atan2_degrees(v111, v113);
+*(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)v38 >= 30;
+goto LABEL_350;
+}
+LABEL_206:
+if ( v35 < 30 )
+goto LABEL_211;
+LABEL_207:
+if ( v35 <= 40 )
+{
+if ( *(__int16 *)CPU_FIELD(1154) >= 300 )
+{
+v39 = *(_DWORD *)CPU_FIELD(368);
+v40 = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1732) = 2;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+v123 = (*(float *)(v39 + 236) - *(float *)CPU_FIELD(236)) * (double)v40;
+v113 = v123;
+v124 = *(float *)(v39 + 240) - *(float *)CPU_FIELD(240);
+v38 = v124;
+goto LABEL_210;
+}
+LABEL_211:
+if ( v35 < 40 )
+goto LABEL_215;
+}
+if ( v35 > 45 )
+goto LABEL_216;
+if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
+{
+*(_DWORD *)CPU_FIELD(1832) = 2;
+goto LABEL_350;
+}
+LABEL_215:
+if ( v35 < 45 )
+goto LABEL_220;
+LABEL_216:
+if ( v35 <= 55 && *(__int16 *)CPU_FIELD(1154) >= 400 && *(_DWORD *)CPU_FIELD(384) == 1 )
+{
+*(_DWORD *)CPU_FIELD(1832) = 32;
+}
+else
+{
+LABEL_220:
+if ( v35 >= 95
+&& v35 <= 100
+&& *(char *)CPU_FIELD(1370) > 0
+&& (unsigned int)(*(__int16 *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) - 211) < 2 )
+{
+goto LABEL_413;
+}
+}
+goto LABEL_350;
+case 0x134:
+v41 = *(_DWORD *)CPU_FIELD(384);
+if ( v41 )
+{
+if ( v41 != 3 && !*(_WORD *)CPU_FIELD(1892) )
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
+}
+else
+{
+*(_WORD *)CPU_FIELD(1892) = 0;
+}
+v42 = *(_WORD *)CPU_FIELD(1892);
+if ( v42 < 0 )
+goto LABEL_234;
+if ( v42 > 25 )
+goto LABEL_235;
+if ( *(__int16 *)CPU_FIELD(1154) < 300 )
+{
+LABEL_234:
+if ( v42 >= 25 )
+{
+LABEL_235:
+if ( v42 <= 35 && *(__int16 *)CPU_FIELD(1154) >= 300 )
+goto LABEL_326;
+}
+if ( v42 >= 95 && v42 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
+{
+v45 = *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211;
+goto LABEL_412;
+}
+}
+else
+{
+v43 = *(_DWORD *)CPU_FIELD(368);
+v44 = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1728) = 2;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+v125 = (*(float *)(v43 + 236) - *(float *)CPU_FIELD(236)) * (double)v44;
+v114 = v125;
+v126 = *(float *)(v43 + 240) - *(float *)CPU_FIELD(240);
+atan2_degrees(v126, v114);
+*(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)v126 >= 20;
+}
+goto LABEL_350;
+case 0x140:
+v46 = *(_DWORD *)CPU_FIELD(384);
+if ( v46 )
+{
+if ( v46 != 3 && !*(_WORD *)CPU_FIELD(1892) )
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
+}
+else
+{
+*(_WORD *)CPU_FIELD(1892) = 0;
+}
+if ( *(_WORD *)CPU_FIELD(1892) <= 0x5Au )
+goto LABEL_263;
+goto LABEL_350;
+case 0x141:
+v47 = *(_DWORD *)CPU_FIELD(384);
+if ( v47 )
+{
+if ( v47 != 3 && !*(_WORD *)CPU_FIELD(1892) )
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
+}
+else
+{
+*(_WORD *)CPU_FIELD(1892) = 0;
+}
+v48 = *(_WORD *)CPU_FIELD(1892);
+if ( v48 < 0 )
+goto LABEL_264;
+if ( v48 <= 50 )
+goto LABEL_263;
+if ( v48 <= 65 )
+{
+*(_DWORD *)CPU_FIELD(1724) = 2;
+*(_DWORD *)CPU_FIELD(1716) = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1720) = 0;
+goto LABEL_350;
+}
+if ( v48 <= 80 )
+{
+v49 = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1724) = 2;
+*(_DWORD *)CPU_FIELD(1716) = v49;
+*(_DWORD *)CPU_FIELD(1720) = 1;
+goto LABEL_350;
+}
+if ( v48 > 90 )
+goto LABEL_265;
+if ( *(__int16 *)CPU_FIELD(1154) < 400 )
+{
+LABEL_264:
+if ( v48 >= 90 )
+{
+LABEL_265:
+if ( v48 <= 95 && *(__int16 *)CPU_FIELD(1154) >= 400 && 0.0 == *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) )
+{
+*(_DWORD *)CPU_FIELD(1724) = 2;
+goto LABEL_327;
+}
+}
+}
+else
+{
+LABEL_263:
+*(_DWORD *)CPU_FIELD(1724) = 2;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+}
+goto LABEL_350;
+case 0x142:
+v50 = *(_DWORD *)CPU_FIELD(384);
+if ( v50 )
+{
+if ( v50 != 3 && !*(_WORD *)CPU_FIELD(1892) )
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
+}
+else
+{
+*(_WORD *)CPU_FIELD(1892) = 0;
+}
+v51 = *(_WORD *)CPU_FIELD(1892);
+if ( v51 < 50 )
+goto LABEL_278;
+if ( v51 > 75 )
+goto LABEL_279;
+if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
+{
+*(_DWORD *)CPU_FIELD(1832) = 2;
+goto LABEL_350;
+}
+LABEL_278:
+if ( v51 < 75 )
+goto LABEL_283;
+LABEL_279:
+if ( v51 > 85 || *(__int16 *)CPU_FIELD(1154) < 400 || *(_DWORD *)CPU_FIELD(384) == 1 )
+{
+LABEL_283:
+if ( v51 >= 95 && v51 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
+{
+v15 = 860.0;
+v16 = 960.0;
+switch ( *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) )
+{
+case 0xC8:
+LABEL_93:
+v17 = v16;
+if ( (*(float *)CPU_FIELD(236) <= v16 || *(_BYTE *)CPU_FIELD(260) != 1)
+&& (*(float *)CPU_FIELD(236) >= 300.0 || *(_BYTE *)CPU_FIELD(260) != 0xFF) )
+{
+goto LABEL_101;
+}
+v18 = *(_DWORD *)CPU_FIELD(384) == 1;
+goto LABEL_98;
+case 0xC9:
+LABEL_100:
+v17 = v16;
+goto LABEL_101;
+case 0xCA:
+goto LABEL_104;
+case 0xCD:
+if ( (*(float *)CPU_FIELD(236) <= 860.0 || *(_BYTE *)CPU_FIELD(260) != 1)
+&& (*(float *)CPU_FIELD(236) >= 400.0 || *(_BYTE *)CPU_FIELD(260) != 0xFF)
+|| *(_DWORD *)CPU_FIELD(384) != 1 )
+{
+goto LABEL_111;
+}
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_350;
+case 0xD4:
+LABEL_111:
+v19 = *(float *)CPU_FIELD(236);
+v20 = v19 < v15;
+v21 = v19 == v15;
+goto LABEL_408;
+default:
+goto LABEL_350;
+}
+}
+}
+else
+{
+*(_DWORD *)CPU_FIELD(1832) = 32;
+}
+goto LABEL_350;
+case 0x190:
+case 0x191:
+v52 = *(_DWORD *)CPU_FIELD(384);
+if ( v52 )
+{
+if ( v52 != 3 && !*(_WORD *)CPU_FIELD(1892) )
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
+}
+else
+{
+*(_WORD *)CPU_FIELD(1892) = 0;
+}
+v53 = *(_WORD *)CPU_FIELD(1892);
+if ( v53 < 0 )
+goto LABEL_302;
+if ( v53 <= 10 )
+{
+if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
+{
+*(_DWORD *)CPU_FIELD(1732) = 2;
+goto LABEL_327;
+}
+LABEL_302:
+if ( v53 < 10 )
+goto LABEL_308;
+}
+if ( v53 > 20 || *(__int16 *)CPU_FIELD(1154) < 400 )
+{
+LABEL_308:
+if ( v53 >= 95 && v53 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
+{
+v54 = *(__int16 *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) - 202;
+if ( !v54 )
+goto LABEL_435;
+v55 = v54 - 3;
+if ( v55 )
+{
+if ( v55 == 6 )
+goto LABEL_435;
+}
+else
+{
+*(_DWORD *)CPU_FIELD(1744) = 2;
+}
+}
+}
+else
+{
+*(_DWORD *)CPU_FIELD(1832) = 2;
+}
+goto LABEL_350;
+case 0x192:
+v56 = *(_DWORD *)CPU_FIELD(384);
+if ( v56 )
+{
+if ( v56 != 3 && !*(_WORD *)CPU_FIELD(1892) )
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
+}
+else
+{
+*(_WORD *)CPU_FIELD(1892) = 0;
+}
+v57 = *(_WORD *)CPU_FIELD(1892);
+if ( v57 < 0 )
+goto LABEL_323;
+if ( v57 > 10 )
+goto LABEL_324;
+if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
+{
+LABEL_322:
+*(_DWORD *)CPU_FIELD(1732) = 2;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+goto LABEL_350;
+}
+LABEL_323:
+if ( v57 < 10 )
+goto LABEL_328;
+LABEL_324:
+if ( v57 > 20 )
+goto LABEL_329;
+if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
+{
+LABEL_326:
+*(_DWORD *)CPU_FIELD(1732) = 2;
+LABEL_327:
+*(_DWORD *)CPU_FIELD(1716) = 0;
+*(_DWORD *)CPU_FIELD(1720) = 1;
+goto LABEL_350;
+}
+LABEL_328:
+if ( v57 < 20 )
+goto LABEL_335;
+LABEL_329:
+if ( v57 <= 30 )
+{
+if ( *(__int16 *)CPU_FIELD(1154) >= 400 && v117 < 450.0 && v118 < 100.0 )
+{
+*(_DWORD *)CPU_FIELD(1732) = 2;
+LABEL_334:
+*(_DWORD *)CPU_FIELD(1716) = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1720) = 0;
+goto LABEL_350;
+}
+LABEL_335:
+if ( v57 < 30 )
+goto LABEL_350;
+}
+if ( v57 <= 45 && *(__int16 *)CPU_FIELD(1154) >= 400 )
+*(_DWORD *)CPU_FIELD(1832) = 2;
+goto LABEL_350;
+case 0x194:
+case 0x195:
+case 0x196:
+v58 = *(_DWORD *)CPU_FIELD(384);
+if ( v58 )
+{
+if ( v58 != 3 && !*(_WORD *)CPU_FIELD(1892) )
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
+}
+else
+{
+*(_WORD *)CPU_FIELD(1892) = 0;
+}
+v59 = *(_WORD *)CPU_FIELD(1892);
+if ( (unsigned __int16)v59 > 0xAu || *(__int16 *)CPU_FIELD(1154) < 400 || v117 >= 500.0 )
+{
+v60 = v118;
+v61 = 100.0;
+}
+else
+{
+v60 = v118;
+v61 = 100.0;
+if ( v118 < 100.0 )
+{
+v62 = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1732) = 2;
+*(_DWORD *)CPU_FIELD(1716) = v62;
+LABEL_349:
+*(_DWORD *)CPU_FIELD(1720) = 0;
+goto LABEL_350;
+}
+}
+if ( v59 < 10 )
+goto LABEL_371;
+if ( v59 <= 20 )
+{
+if ( *(__int16 *)CPU_FIELD(1154) >= 400
+&& v61 > v60
+&& *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) < (double)*(float *)CPU_FIELD(240) )
+{
+*(_DWORD *)CPU_FIELD(1732) = 2;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+*(_DWORD *)CPU_FIELD(1720) = 1;
+goto LABEL_350;
+}
+LABEL_371:
+if ( v59 < 20 )
+goto LABEL_375;
+}
+if ( v59 > 30 )
+goto LABEL_379;
+if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
+{
+*(_DWORD *)CPU_FIELD(1732) = 2;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+goto LABEL_349;
+}
+LABEL_375:
+if ( v59 >= 30 )
+{
+LABEL_379:
+if ( v59 <= 40
+&& *(__int16 *)CPU_FIELD(1154) >= 400
+&& v61 < v60
+&& *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) < (double)*(float *)CPU_FIELD(240) )
+{
+*(_DWORD *)CPU_FIELD(1832) = 2;
+goto LABEL_350;
+}
+}
+if ( v59 >= 95 && v59 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
+{
+v65 = *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211;
+goto LABEL_434;
+}
+LABEL_350:
+if ( *(_WORD *)CPU_FIELD(1894) )
+goto LABEL_523;
+if ( !*(_WORD *)CPU_FIELD(1900) )
+*(_WORD *)CPU_FIELD(1900) = selector_random_roll(0x64u);
+v63 = *(_DWORD *)CPU_FIELD(368);
+if ( (*(float *)(v63 + 236) >= (double)*(float *)CPU_FIELD(236) || *(_BYTE *)CPU_FIELD(260) != 0xFF)
+&& (*(float *)(v63 + 236) <= (double)*(float *)CPU_FIELD(236) || *(_BYTE *)CPU_FIELD(260) != 1) )
+{
+goto LABEL_523;
+}
+v64 = *(_WORD *)(v63 + 316);
+if ( v64 > 95 && v64 < 140 )
+goto LABEL_523;
+if ( 0.0 != *(float *)CPU_FIELD(240) )
+{
+if ( 0.0 == *(float *)(v63 + 240) )
+{
+if ( *(char *)CPU_FIELD(1370) > 0 )
+{
+if ( v117 < 150.0 && selector_random_roll(0x3E8u) < 2 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211 )
+{
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_523;
+}
+if ( v117 > 150.0
+&& v118 < 200.0
+&& selector_random_roll(0x3E8u) < 5
+&& *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 212 )
+{
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_523;
+}
+}
+if ( v117 < 450.0 && v117 > 90.0 && selector_random_roll(0x3E8u) <= 5 && *(__int16 *)CPU_FIELD(1154) >= 600 )
+{
+*(_DWORD *)CPU_FIELD(1832) = 64;
+goto LABEL_523;
+}
+if ( v117 < 450.0
+&& *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) < (double)*(float *)CPU_FIELD(240)
+&& selector_random_roll(0x3E8u) <= 7
+&& *(__int16 *)CPU_FIELD(1154) >= 800 )
+{
+*(_DWORD *)CPU_FIELD(1832) = 2;
+goto LABEL_523;
+}
+if ( (double)(120 * ((*(float *)CPU_FIELD(244) > 0.0) + 1)) >= v117 )
+{
+v76 = *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) > (double)*(float *)CPU_FIELD(240)
+&& *(float *)CPU_FIELD(248) > 0.0;
+if ( (double)(150 * v76 + 100) > v118 && selector_random_roll(0x3E8u) < 0x32 )
+goto LABEL_607;
+}
+if ( v117 > 180.0
+|| *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) >= (double)*(float *)CPU_FIELD(240)
+|| selector_random_roll(0x3E8u) >= 0x4B )
+{
+if ( *(_WORD *)CPU_FIELD(1902) <= *(_WORD *)CPU_FIELD(1154) )
+{
+if ( (double)(180 * (v118 < 200.0) + 120) < v117 && selector_random_roll(0x3E8u) < 0x32 )
+{
+v77 = *(_DWORD *)CPU_FIELD(368);
+v78 = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1728) = 2;
+v127 = (*(float *)(v77 + 236) - *(float *)CPU_FIELD(236)) * (double)v78;
+v115 = v127;
+v128 = *(float *)(v77 + 240) - *(float *)CPU_FIELD(240);
+atan2_degrees(v128, v115);
+*(_DWORD *)CPU_FIELD(1716) = 0;
+*(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)v128 >= 30;
+}
+if ( v117 > 250.0 && v118 < 200.0 && selector_random_roll(0x3E8u) < 0x14 )
+{
+*(_DWORD *)CPU_FIELD(1732) = 2;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+}
+if ( v117 < 300.0
+&& v118 > 200.0
+&& *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) < (double)*(float *)CPU_FIELD(240)
+&& selector_random_roll(0x3E8u) < 0x19 )
+{
+*(_DWORD *)CPU_FIELD(1732) = 2;
+*(_DWORD *)CPU_FIELD(1720) = 1;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+}
+}
+goto LABEL_523;
+}
+}
+else
+{
+if ( *(char *)CPU_FIELD(1370) > 0 )
+{
+if ( v117 < 150.0 && selector_random_roll(0x3E8u) < 2 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211 )
+{
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_523;
+}
+if ( v117 > 150.0
+&& v118 < 200.0
+&& selector_random_roll(0x3E8u) < 5
+&& *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 212 )
+{
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_523;
+}
+}
+if ( (double)(120 * ((*(float *)CPU_FIELD(244) > 0.0) + 1)) >= v117 )
+{
+v79 = *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) > (double)*(float *)CPU_FIELD(240)
+&& *(float *)CPU_FIELD(248) > 0.0;
+if ( (double)(150 * v79 + 100) > v118 && selector_random_roll(0x3E8u) < 0x32 )
+goto LABEL_607;
+}
+if ( v117 > 180.0
+|| *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) >= (double)*(float *)CPU_FIELD(240)
+|| v118 <= 60.0
+|| selector_random_roll(0x3E8u) >= 0x4B )
+{
+if ( v117 > 280.0
+|| v117 < 90.0
+|| v118 >= 100.0
+|| *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) <= (double)*(float *)CPU_FIELD(240)
+|| selector_random_roll(0x3E8u) >= 0x4B )
+{
+if ( (double)(180 * (v118 < 200.0) + 120) < v117 && selector_random_roll(0x3E8u) < 0x32 )
+{
+v81 = *(_DWORD *)CPU_FIELD(368);
+v82 = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1728) = 2;
+v129 = (*(float *)(v81 + 236) - *(float *)CPU_FIELD(236)) * (double)v82;
+v116 = v129;
+v130 = *(float *)(v81 + 240) - *(float *)CPU_FIELD(240);
+atan2_degrees(v130, v116);
+*(_DWORD *)CPU_FIELD(1716) = 0;
+*(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)v130 >= 30;
+}
+if ( v117 > 250.0 && v118 < 200.0 && selector_random_roll(0x3E8u) < 0x14 )
+{
+*(_DWORD *)CPU_FIELD(1732) = 2;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+}
+if ( v117 > 150.0 && v117 < 500.0 && v118 < 100.0 && selector_random_roll(0x3E8u) < 0x14 )
+{
+v83 = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1732) = 2;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+*(_DWORD *)CPU_FIELD(1716) = v83;
+}
+if ( v117 < 300.0
+&& v118 > 200.0
+&& *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) < (double)*(float *)CPU_FIELD(240)
+&& selector_random_roll(0x3E8u) < 0x19 )
+{
+*(_DWORD *)CPU_FIELD(1732) = 2;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+}
+}
+else
+{
+v80 = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1724) = 2;
+*(_DWORD *)CPU_FIELD(1716) = v80;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+}
+goto LABEL_523;
+}
+}
+LABEL_612:
+*(_DWORD *)CPU_FIELD(1724) = 2;
+goto LABEL_613;
+}
+if ( 0.0 != *(float *)(v63 + 240) )
+{
+if ( v117 < 520.0 && v117 > 240.0 && v118 < 250.0 && selector_random_roll(0x3E8u) <= 2 && *(__int16 *)CPU_FIELD(1154) >= 600 )
+{
+*(_DWORD *)CPU_FIELD(1832) = 64;
+goto LABEL_523;
+}
+if ( *(char *)CPU_FIELD(1370) > 0
+&& (v117 < 300.0 && selector_random_roll(0x3E8u) < 5 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 200
+|| v117 < 150.0 && selector_random_roll(0x3E8u) < 5 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 201
+|| v117 > 200.0 && selector_random_roll(0x3E8u) < 3 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 202
+|| v117 > 150.0
+&& v118 < 150.0
+&& selector_random_roll(0x3E8u) < 5
+&& *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 205
+|| v117 < 150.0 && selector_random_roll(0x3E8u) < 2 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211
+|| v117 > 150.0
+&& v118 < 200.0
+&& selector_random_roll(0x3E8u) < 5
+&& *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 212) )
+{
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_523;
+}
+if ( selector_random_roll(0x3E8u) >= 0x4B || v117 >= 200.0 || v117 <= 120.0 || v118 >= 75.0 )
+{
+if ( *(_WORD *)CPU_FIELD(1902) <= *(_WORD *)CPU_FIELD(1154) )
+{
+if ( selector_random_roll(0x3E8u) >= 0xA || *(__int16 *)CPU_FIELD(1154) < 600 || v118 >= 200.0 || v117 >= 450.0 )
+{
+if ( selector_random_roll(0x3E8u) < 0xA && *(__int16 *)CPU_FIELD(1154) >= 600 && v118 < 200.0 && v117 < 450.0 )
+{
+v75 = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1728) = 2;
+*(_DWORD *)CPU_FIELD(1716) = v75;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+}
+}
+else
+{
+*(_DWORD *)CPU_FIELD(1732) = 2;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+}
+}
+goto LABEL_523;
+}
+goto LABEL_440;
+}
+if ( v117 <= 90.0 )
+{
+if ( selector_random_roll(0x3E8u) < 0x46 )
+{
+LABEL_607:
+*(_DWORD *)CPU_FIELD(1724) = 2;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+goto LABEL_523;
+}
+if ( selector_random_roll(0x3E8u) < 0x46 )
+goto LABEL_612;
+}
+if ( selector_random_roll(0x3E8u) >= 0x4B || v117 >= 350.0 || v117 <= 120.0 )
+{
+if ( *(char *)CPU_FIELD(1370) > 0 )
+{
+if ( v117 < 300.0 && selector_random_roll(0x3E8u) < 5 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 200 )
+{
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_523;
+}
+if ( v117 < 150.0 && selector_random_roll(0x3E8u) < 5 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 201 )
+{
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_523;
+}
+if ( v117 > 200.0 && selector_random_roll(0x3E8u) < 3 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 202 )
+{
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_523;
+}
+if ( v117 > 150.0
+&& v118 < 150.0
+&& selector_random_roll(0x3E8u) < 5
+&& *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 205 )
+{
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_523;
+}
+if ( v117 < 150.0 && selector_random_roll(0x3E8u) < 2 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211 )
+{
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_523;
+}
+if ( v117 > 150.0
+&& v118 < 200.0
+&& selector_random_roll(0x3E8u) < 5
+&& *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 212 )
+{
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_523;
+}
+}
+if ( v117 <= 180.0 )
+{
+if ( v117 >= 90.0 && selector_random_roll(0x3E8u) < 0x32 )
+goto LABEL_607;
+if ( v117 >= 120.0 && selector_random_roll(0x3E8u) <= 0x32 )
+{
+v72 = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1724) = 2;
+*(_DWORD *)CPU_FIELD(1716) = v72;
+*(_DWORD *)CPU_FIELD(1720) = 1;
+goto LABEL_523;
+}
+}
+if ( v117 <= 250.0 && v117 >= 90.0 && selector_random_roll(0x3E8u) <= 0x32 )
+{
+v73 = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1724) = 2;
+*(_DWORD *)CPU_FIELD(1716) = v73;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+goto LABEL_523;
+}
+if ( v117 < 640.0 && v117 > 350.0 && selector_random_roll(0x3E8u) <= 5 && *(__int16 *)CPU_FIELD(1154) >= 400 )
+{
+*(_DWORD *)CPU_FIELD(1832) = 32;
+goto LABEL_523;
+}
+if ( v117 > 90.0 && selector_random_roll(0x3E8u) <= 0xF && *(__int16 *)CPU_FIELD(1154) >= 400 )
+{
+*(_DWORD *)CPU_FIELD(1832) = 2;
+goto LABEL_523;
+}
+if ( *(_WORD *)CPU_FIELD(1902) > *(_WORD *)CPU_FIELD(1154) )
+goto LABEL_523;
+if ( v117 >= 120.0 && selector_random_roll(0x3E8u) <= 5 )
+{
+*(_DWORD *)CPU_FIELD(1728) = 2;
+LABEL_613:
+*(_DWORD *)CPU_FIELD(1716) = 0;
+*(_DWORD *)CPU_FIELD(1720) = 1;
+goto LABEL_523;
+}
+if ( v117 < 180.0 )
+goto LABEL_523;
+if ( selector_random_roll(0x3E8u) <= 0xA )
+{
+*(_DWORD *)CPU_FIELD(1728) = 2;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+goto LABEL_523;
+}
+if ( v117 < 240.0 )
+{
+if ( selector_random_roll(0x3E8u) <= 5 )
+{
+*(_DWORD *)CPU_FIELD(1732) = 2;
+goto LABEL_613;
+}
+}
+else if ( selector_random_roll(0x3E8u) <= 5 )
+{
+*(_DWORD *)CPU_FIELD(1732) = 2;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+goto LABEL_523;
+}
+if ( v117 <= 600.0 && selector_random_roll(0x3E8u) <= 5 )
+{
+v74 = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1732) = 2;
+*(_DWORD *)CPU_FIELD(1716) = v74;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+}
+goto LABEL_523;
+}
+LABEL_440:
+*(_WORD *)CPU_FIELD(1894) = 100;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x14u) + 10;
+LABEL_523:
+switch ( *(_WORD *)CPU_FIELD(1894) )
+{
+case 0:
+if ( *(__int16 *)CPU_FIELD(1896) > 0 )
+return;
+v84 = selector_random_roll(0x64u);
+v85 = 0.0 == *(float *)CPU_FIELD(240);
+*(_WORD *)CPU_FIELD(1898) = v84;
+if ( !v85 )
+{
+v98 = *(_DWORD *)CPU_FIELD(368);
+if ( 0.0 == *(float *)(v98 + 240) )
+{
+v99 = v117;
+if ( v117 <= 90.0 )
+{
+v89 = *(_BYTE *)CPU_FIELD(260);
+if ( (v89 != 1 || *(float *)CPU_FIELD(236) >= 240.0) && (v89 != -1 || *(float *)CPU_FIELD(236) <= 1040.0f) )
+goto LABEL_888;
+if ( (unsigned __int16)v84 <= 0x1Du && v118 > 200.0 )
+goto LABEL_788;
+if ( v84 < 30 || v84 > 44 )
+{
+LABEL_888:
+if ( v84 < 45 || v84 > 59 || v118 <= 150.0 )
+goto LABEL_1025;
+goto LABEL_889;
+}
+goto LABEL_953;
+}
+if ( v99 <= 240.0 )
+{
+v89 = *(_BYTE *)CPU_FIELD(260);
+if ( (v89 != 1 || *(float *)CPU_FIELD(236) >= 240.0) && (v89 != -1 || *(float *)CPU_FIELD(236) <= 1040.0f) )
+goto LABEL_900;
+if ( (unsigned __int16)v84 <= 0x1Du && v118 > 100.0 )
+goto LABEL_960;
+if ( v84 < 30 || v84 > 44 )
+{
+LABEL_900:
+if ( v84 >= 45 && v84 <= 54 )
+goto LABEL_901;
+if ( v84 >= 55 && v84 <= 64 )
+goto LABEL_889;
+LABEL_992:
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x28u);
+return;
+}
+LABEL_953:
+*(_WORD *)CPU_FIELD(1894) = 11;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu) + 15;
+return;
+}
+if ( v99 >= 520.0 )
+{
+if ( (unsigned __int16)v84 > 0x22u )
+{
+if ( v84 < 35 || v84 > 39 )
+goto LABEL_875;
+*(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 1) + 9;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu) + 10;
+}
+else
+{
+*(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 0xFF) + 9;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu) + 20;
+}
+return;
+}
+if ( v99 < 240.0 )
+return;
+if ( (unsigned __int16)v84 <= 9u )
+{
+*(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 0xFF) + 9;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0xFu) + 15;
+return;
+}
+if ( v84 >= 10 && v84 <= 19 )
+{
+*(_WORD *)CPU_FIELD(1894) = 11;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu) + 30;
+return;
+}
+if ( v84 >= 20 && v84 <= 24 )
+{
+*(_WORD *)CPU_FIELD(1894) = 12;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu) + 20;
+return;
+}
+if ( v84 < 45 || v84 > 54 )
+{
+if ( v84 < 55 || v84 > 64 )
+goto LABEL_875;
+*(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 1) + 9;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x14u) + 15;
+return;
+}
+LABEL_972:
+v93 = *(_BYTE *)CPU_FIELD(260) == 0xFF;
+goto LABEL_982;
+}
+v100 = v117;
+if ( v117 > 90.0 )
+{
+if ( v100 <= 240.0 )
+{
+v89 = *(_BYTE *)CPU_FIELD(260);
+if ( v89 == 1 && *(float *)CPU_FIELD(236) < 240.0 || v89 == -1 && *(float *)CPU_FIELD(236) > 1040.0f )
+{
+if ( (unsigned __int16)v84 <= 0xEu && *(float *)(v98 + 240) < (double)*(float *)CPU_FIELD(240) )
+goto LABEL_953;
+if ( v84 >= 15 && v84 <= 29 && v118 > 150.0 )
+goto LABEL_960;
+}
+if ( v84 >= 30 && v84 <= 34 )
+goto LABEL_960;
+if ( v84 >= 35 && v84 <= 44 )
+goto LABEL_889;
+if ( v84 < 45 || v84 > 47 )
+{
+if ( v84 < 48 || v84 > 50 )
+{
+if ( v84 < 51 || v84 > 54 )
+goto LABEL_1025;
+goto LABEL_969;
+}
+goto LABEL_989;
+}
+goto LABEL_986;
+}
+if ( v100 < 520.0 )
+{
+if ( v100 < 240.0 )
+return;
+if ( (unsigned __int16)v84 <= 4u )
+{
+*(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 0xFF) + 9;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu);
+return;
+}
+if ( v84 >= 5 && v84 <= 9 )
+{
+v93 = *(_BYTE *)CPU_FIELD(260) == 1;
+goto LABEL_982;
+}
+if ( v84 < 45 || v84 > 47 )
+{
+if ( v84 < 48 || v84 > 50 )
+{
+if ( v84 < 51 || v84 > 54 )
+goto LABEL_992;
+goto LABEL_969;
+}
+LABEL_989:
+*(_WORD *)CPU_FIELD(1894) = 16;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x14u) + 5;
+return;
+}
+LABEL_986:
+*(_WORD *)CPU_FIELD(1894) = 17;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x14u) + 5;
+return;
+}
+if ( (unsigned __int16)v84 < 4u )
+goto LABEL_972;
+if ( v84 < 4 || v84 > 5 )
+goto LABEL_983;
+}
+else if ( (unsigned __int16)v84 > 5u )
+{
+if ( v118 <= 320.0 )
+goto LABEL_1025;
+if ( *(float *)(v98 + 240) > (double)*(float *)CPU_FIELD(240) )
+{
+if ( v84 >= 5 && v84 <= 9 )
+{
+*(_WORD *)CPU_FIELD(1894) = 12;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu) + 15;
+return;
+}
+if ( v84 >= 10 && v84 <= 14 )
+goto LABEL_953;
+if ( v84 >= 15 && v84 <= 24 )
+goto LABEL_972;
+}
+if ( *(float *)(v98 + 240) >= (double)*(float *)CPU_FIELD(240) )
+goto LABEL_1025;
+if ( v84 < 25 || v84 > 27 )
+{
+if ( v84 < 28 || v84 > 31 )
+{
+if ( v84 < 32 || v84 > 35 )
+{
+if ( v84 < 36 || v84 > 39 )
+goto LABEL_1025;
+goto LABEL_975;
+}
+LABEL_969:
+*(_WORD *)CPU_FIELD(1894) = 18;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x14u) + 5;
+return;
+}
+goto LABEL_989;
+}
+goto LABEL_986;
+}
+LABEL_975:
+*(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 1) + 9;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu);
+return;
+}
+v86 = v117 < 90.0;
+v87 = v117 == 90.0;
+v88 = v117;
+if ( 0.0 != *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) )
+{
+if ( v86 || v87 )
+{
+v95 = v118;
+if ( v118 > 100.0 )
+{
+if ( (unsigned __int16)v84 <= 6u )
+goto LABEL_671;
+if ( v84 >= 7 && v84 <= 10 && v95 >= 200.0 )
+goto LABEL_800;
+if ( v84 >= 11 && v84 <= 18 )
+goto LABEL_804;
+if ( v84 >= 19 && v84 <= 24 && v95 >= 200.0 )
+goto LABEL_808;
+}
+v89 = *(_BYTE *)CPU_FIELD(260);
+if ( (v89 != 1 || *(float *)CPU_FIELD(236) >= 240.0) && (v89 != -1 || *(float *)CPU_FIELD(236) <= 1040.0f)
+|| v84 < 25
+|| v84 > 49
+|| v95 < 250.0 )
+{
+if ( v84 >= 50 && v84 <= 69 )
+{
+*(_WORD *)CPU_FIELD(1894) = (v89 == 1) + 1;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu) + 15;
+return;
+}
+if ( v84 >= 70 && v84 <= 74 )
+goto LABEL_889;
+goto LABEL_875;
+}
+goto LABEL_788;
+}
+if ( v88 <= 240.0 )
+{
+if ( (unsigned __int16)v84 <= 6u )
+goto LABEL_671;
+if ( v84 < 7 || v84 > 10 )
+{
+v96 = v118;
+}
+else
+{
+v96 = v118;
+if ( v118 >= 200.0 )
+goto LABEL_800;
+}
+if ( v84 >= 11 && v84 <= 18 )
+goto LABEL_804;
+if ( v84 >= 19 && v84 <= 24 && v96 >= 200.0 )
+goto LABEL_808;
+v89 = *(_BYTE *)CPU_FIELD(260);
+if ( v89 == 1 )
+{
+v97 = v96;
+if ( *(float *)CPU_FIELD(236) < 240.0 )
+{
+LABEL_815:
+if ( v84 >= 35 && v84 <= 50 && v97 >= 400.0 )
+goto LABEL_788;
+LABEL_819:
+if ( v84 < 50 || v84 > 69 )
+{
+if ( v84 < 70 || v84 > 74 )
+goto LABEL_875;
+goto LABEL_889;
+}
+goto LABEL_725;
+}
+}
+else
+{
+v97 = v96;
+}
+if ( v89 != -1 || *(float *)CPU_FIELD(236) <= 1040.0f )
+goto LABEL_819;
+goto LABEL_815;
+}
+if ( v88 >= 520.0 )
+{
+if ( (unsigned __int16)v84 <= 9u )
+goto LABEL_826;
+if ( v84 >= 10 && v84 <= 19 )
+goto LABEL_829;
+if ( v84 >= 20 && v84 <= 24 )
+goto LABEL_832;
+if ( v84 >= 25 && v84 <= 29 )
+goto LABEL_835;
+if ( v84 >= 30 && v84 <= 39 )
+goto LABEL_860;
+if ( v84 < 40 || v84 > 49 )
+{
+if ( v84 >= 50 && v84 <= 54 )
+{
+*(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 0xFF) + 1;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu) + 15;
+return;
+}
+if ( v84 >= 55 && v84 <= 95 )
+{
+*(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 0xFF) + 9;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu) + 45;
+return;
+}
+goto LABEL_875;
+}
+goto LABEL_863;
+}
+if ( v88 < 240.0 )
+return;
+if ( (unsigned __int16)v84 <= 6u )
+goto LABEL_671;
+if ( v84 >= 7 && v84 <= 12 )
+goto LABEL_800;
+if ( v84 >= 13 && v84 <= 20 )
+goto LABEL_804;
+if ( v84 >= 21 && v84 <= 30 )
+goto LABEL_808;
+v89 = *(_BYTE *)CPU_FIELD(260);
+if ( v89 == 1 && *(float *)CPU_FIELD(236) < 240.0 || v89 == -1 && *(float *)CPU_FIELD(236) > 1040.0f )
+{
+if ( v84 >= 40 && v84 <= 49 )
+goto LABEL_860;
+if ( v84 >= 50 && v84 <= 59 )
+{
+LABEL_863:
+*(_WORD *)CPU_FIELD(1894) = 6;
+return;
+}
+}
+if ( v84 >= 60 && v84 <= 64 )
+{
+*(_WORD *)CPU_FIELD(1894) = (v89 == -1) + 1;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu) + 10;
+return;
+}
+if ( v84 < 65 || v84 > 79 )
+{
+if ( v84 >= 80 && v84 <= 89 )
+{
+*(_WORD *)CPU_FIELD(1894) = (v89 == 1) + 1;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x28u) + 10;
+return;
+}
+if ( v84 >= 90 && v84 <= 99 )
+*(_WORD *)CPU_FIELD(1894) = (v89 == 1) + 9;
+goto LABEL_875;
+}
+LABEL_901:
+*(_WORD *)CPU_FIELD(1894) = (v89 == -1) + 9;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu) + 20;
+return;
+}
+if ( v86 || v87 )
+{
+if ( (unsigned __int16)v84 >= 0xAu )
+{
+if ( v84 < 10 || v84 > 14 )
+{
+if ( v84 < 15 || v84 > 29 )
+{
+if ( v84 < 30 || v84 > 39 )
+{
+v89 = *(_BYTE *)CPU_FIELD(260);
+if ( v89 == 1 && *(float *)CPU_FIELD(236) < 240.0 || v89 == -1 && *(float *)CPU_FIELD(236) > 1040.0f )
+{
+if ( v84 >= 40 && v84 <= 44 )
+{
+LABEL_654:
+*(_WORD *)CPU_FIELD(1894) = 3;
+return;
+}
+if ( v84 >= 45 && v84 <= 49 )
+goto LABEL_658;
+}
+if ( v84 < 50 || v84 > 74 )
+{
+if ( v84 >= 75
+&& v84 <= 89
+&& (v89 == 1 && *(float *)CPU_FIELD(236) >= 240.0 || v89 == -1 && *(float *)CPU_FIELD(236) <= 1040.0f) )
+{
+goto LABEL_889;
+}
+LABEL_875:
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0xAu);
+return;
+}
+goto LABEL_725;
+}
+LABEL_835:
+*(_WORD *)CPU_FIELD(1894) = 8;
+return;
+}
+LABEL_832:
+*(_WORD *)CPU_FIELD(1894) = 5;
+return;
+}
+LABEL_829:
+*(_WORD *)CPU_FIELD(1894) = 7;
+return;
+}
+LABEL_826:
+*(_WORD *)CPU_FIELD(1894) = 4;
+return;
+}
+if ( v88 <= 240.0 )
+{
+if ( (unsigned __int16)v84 <= 2u )
+{
+LABEL_671:
+*(_WORD *)CPU_FIELD(1894) = 4;
+return;
+}
+if ( v84 < 3 || v84 > 5 )
+{
+if ( v84 < 6 || v84 > 8 )
+{
+if ( v84 < 9 || v84 > 11 )
+{
+if ( v84 >= 12 && v84 <= 14 )
+goto LABEL_654;
+if ( v84 >= 15 && v84 <= 17 )
+goto LABEL_682;
+v89 = *(_BYTE *)CPU_FIELD(260);
+if ( (v89 != 1 || *(float *)CPU_FIELD(236) >= 240.0) && (v89 != -1 || *(float *)CPU_FIELD(236) <= 1040.0f) )
+{
+LABEL_691:
+if ( v84 >= 30 && v84 <= 39 )
+{
+v90 = v89 == -1;
+LABEL_726:
+*(_WORD *)CPU_FIELD(1894) = v90 + 1;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu) + 15;
+return;
+}
+if ( v84 < 40 || v84 > 54 )
+{
+if ( v84 < 55 || v84 > 69 )
+{
+if ( v84 < 70 || v84 > 89 )
+goto LABEL_875;
+LABEL_889:
+*(_WORD *)CPU_FIELD(1894) = (v89 == 1) + 9;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu);
+return;
+}
+LABEL_725:
+v90 = v89 == 1;
+goto LABEL_726;
+}
+LABEL_788:
+*(_WORD *)CPU_FIELD(1894) = (v89 == -1) + 9;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu) + 15;
+return;
+}
+if ( v84 < 20 || v84 > 24 )
+{
+if ( v84 < 25 || v84 > 29 )
+goto LABEL_691;
+LABEL_757:
+*(_WORD *)CPU_FIELD(1894) = 6;
+return;
+}
+LABEL_860:
+*(_WORD *)CPU_FIELD(1894) = 3;
+return;
+}
+LABEL_808:
+*(_WORD *)CPU_FIELD(1894) = 8;
+return;
+}
+LABEL_804:
+*(_WORD *)CPU_FIELD(1894) = 5;
+return;
+}
+LABEL_800:
+*(_WORD *)CPU_FIELD(1894) = 7;
+return;
+}
+if ( v88 >= 520.0 )
+{
+if ( (unsigned __int16)v84 <= 4u )
+goto LABEL_671;
+if ( v84 >= 5 && v84 <= 9 )
+goto LABEL_800;
+if ( v84 >= 10 && v84 <= 14 )
+goto LABEL_804;
+if ( v84 >= 15 && v84 <= 17 )
+goto LABEL_808;
+if ( v84 >= 18 && v84 <= 24 )
+goto LABEL_654;
+if ( v84 >= 25 && v84 <= 29 )
+{
+LABEL_658:
+*(_WORD *)CPU_FIELD(1894) = 6;
+return;
+}
+if ( v84 >= 30 && v84 <= 44 )
+{
+*(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 0xFF) + 1;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu) + 30;
+return;
+}
+if ( v84 >= 45 && v84 <= 79 )
+{
+*(_WORD *)CPU_FIELD(1894) = 9;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu) + 60;
+return;
+}
+if ( v84 >= 80 && v84 <= 82 )
+{
+v89 = *(_BYTE *)CPU_FIELD(260);
+if ( v89 == 1 && *(float *)CPU_FIELD(236) >= 240.0 )
+goto LABEL_725;
+if ( v89 == -1 && *(float *)CPU_FIELD(236) <= 1040.0f )
+goto LABEL_725;
+}
+if ( v84 < 83 || v84 > 89 )
+goto LABEL_875;
+v91 = *(_BYTE *)CPU_FIELD(260);
+if ( v91 == 1 && *(float *)CPU_FIELD(236) >= 240.0 )
+{
+v93 = 1;
+LABEL_982:
+*(_WORD *)CPU_FIELD(1894) = v93 + 9;
+LABEL_983:
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu);
+return;
+}
+if ( v91 != -1 || *(float *)CPU_FIELD(236) > 1040.0f )
+goto LABEL_875;
+v93 = 0;
+goto LABEL_982;
+}
+if ( v88 >= 240.0 )
+{
+if ( (unsigned __int16)v84 <= 2u )
+goto LABEL_671;
+if ( v84 >= 3 && v84 <= 5 )
+goto LABEL_800;
+if ( v84 >= 6 && v84 <= 8 )
+goto LABEL_804;
+if ( v84 >= 9 && v84 <= 11 )
+goto LABEL_808;
+if ( v84 >= 12 && v84 <= 15 )
+goto LABEL_654;
+if ( v84 >= 16 && v84 <= 18 )
+{
+LABEL_682:
+*(_WORD *)CPU_FIELD(1894) = 6;
+return;
+}
+v89 = *(_BYTE *)CPU_FIELD(260);
+if ( v89 == 1 && *(float *)CPU_FIELD(236) < 240.0 || v89 == -1 && *(float *)CPU_FIELD(236) > 1040.0f )
+{
+if ( v84 >= 20 && v84 <= 29 )
+goto LABEL_860;
+if ( v84 >= 30 && v84 <= 39 )
+goto LABEL_757;
+}
+if ( v84 >= 40 && v84 <= 54 )
+{
+v94 = v89 == -1;
+goto LABEL_766;
+}
+if ( v84 < 55 || v84 > 79 )
+{
+if ( v84 < 80 || v84 > 84 )
+{
+if ( v84 < 85 || v84 > 99 )
+goto LABEL_875;
+goto LABEL_889;
+}
+v94 = v89 == 1;
+LABEL_766:
+*(_WORD *)CPU_FIELD(1894) = v94 + 1;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu) + 10;
+return;
+}
+LABEL_960:
+*(_WORD *)CPU_FIELD(1894) = (v89 == -1) + 9;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu);
+}
+return;
+case 1:
+v101 = *(_WORD *)CPU_FIELD(1896) <= 0;
+*(_DWORD *)CPU_FIELD(1716) = 1;
+if ( v101 )
+goto LABEL_994;
+return;
+case 2:
+v101 = *(_WORD *)CPU_FIELD(1896) <= 0;
+*(_DWORD *)CPU_FIELD(1716) = -1;
+if ( v101 )
+{
+LABEL_994:
+*(_WORD *)CPU_FIELD(1894) = 0;
+v101 = selector_random_roll(0x64u) <= 0xA;
+goto LABEL_1024;
+}
+return;
+case 3:
+*(_DWORD *)CPU_FIELD(1716) = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1720) = -1;
+goto LABEL_1003;
+case 4:
+*(_DWORD *)CPU_FIELD(1716) = 0;
+*(_DWORD *)CPU_FIELD(1720) = -1;
+goto LABEL_1003;
+case 5:
+*(_DWORD *)CPU_FIELD(1716) = 1;
+*(_DWORD *)CPU_FIELD(1720) = -1;
+goto LABEL_1003;
+case 6:
+*(_DWORD *)CPU_FIELD(1828) = 16;
+goto LABEL_1003;
+case 7:
+*(_DWORD *)CPU_FIELD(1828) = 4;
+goto LABEL_1003;
+case 8:
+*(_DWORD *)CPU_FIELD(1828) = 8;
+LABEL_1003:
+if ( *(float *)CPU_FIELD(240) > 0.0 )
+goto LABEL_1023;
+return;
+case 9:
+v102 = *(_BYTE *)CPU_FIELD(260);
+v103 = v102 != 1;
+v104 = v102;
+v105 = *(_WORD *)CPU_FIELD(316);
+*(_DWORD *)CPU_FIELD(1716) = v104;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+*(_DWORD *)CPU_FIELD(1828) = v103 + 1;
+if ( v105 == 200 )
+goto LABEL_1022;
+v106 = v105 == 202;
+goto LABEL_1007;
+case 0xA:
+v107 = *(_BYTE *)CPU_FIELD(260);
+v108 = -v107;
+v18 = v107 == -1;
+v109 = *(_WORD *)CPU_FIELD(316);
+*(_DWORD *)CPU_FIELD(1716) = v108;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+*(_DWORD *)CPU_FIELD(1828) = !v18 + 1;
+if ( v109 == 201 )
+goto LABEL_1022;
+v106 = v109 == 203;
+LABEL_1007:
+if ( !v106 )
+goto LABEL_1008;
+goto LABEL_1022;
+case 0xB:
+*(_DWORD *)CPU_FIELD(1716) = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1720) = -1;
+*(_DWORD *)CPU_FIELD(1736) = 1;
+goto LABEL_1021;
+case 0xC:
+*(_DWORD *)CPU_FIELD(1716) = 0;
+*(_DWORD *)CPU_FIELD(1720) = -1;
+*(_DWORD *)CPU_FIELD(1736) = 1;
+goto LABEL_1021;
+case 0xD:
+*(_DWORD *)CPU_FIELD(1716) = -*(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1720) = -1;
+*(_DWORD *)CPU_FIELD(1736) = 1;
+goto LABEL_1021;
+case 0xE:
+*(_DWORD *)CPU_FIELD(1716) = *(char *)CPU_FIELD(260);
+goto LABEL_1016;
+case 0xF:
+*(_DWORD *)CPU_FIELD(1716) = -*(char *)CPU_FIELD(260);
+LABEL_1016:
+*(_DWORD *)CPU_FIELD(1720) = 0;
+*(_DWORD *)CPU_FIELD(1736) = 1;
+goto LABEL_1021;
+case 0x10:
+*(_DWORD *)CPU_FIELD(1716) = *(char *)CPU_FIELD(260);
+goto LABEL_1020;
+case 0x11:
+*(_DWORD *)CPU_FIELD(1716) = 0;
+goto LABEL_1020;
+case 0x12:
+*(_DWORD *)CPU_FIELD(1716) = -*(char *)CPU_FIELD(260);
+LABEL_1020:
+*(_DWORD *)CPU_FIELD(1720) = 1;
+*(_DWORD *)CPU_FIELD(1736) = 1;
+LABEL_1021:
+if ( *(_WORD *)CPU_FIELD(316) == 214 )
+{
+LABEL_1022:
+if ( *(__int16 *)CPU_FIELD(1896) <= 0 )
+{
+LABEL_1023:
+*(_WORD *)CPU_FIELD(1894) = 0;
+v101 = selector_random_roll(0x64u) <= 0x64;
+LABEL_1024:
+if ( v101 )
+LABEL_1025:
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x3Cu);
+}
+}
+else
+{
+LABEL_1008:
+*(_WORD *)CPU_FIELD(1894) = 0;
+}
+return;
+case 0x64:
+v110 = *(_BYTE *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1716) = v110;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+*(_DWORD *)CPU_FIELD(1724) = 0;
+v101 = *(_WORD *)CPU_FIELD(1896) <= 0;
+*(_DWORD *)CPU_FIELD(1828) = (v110 != 1) + 1;
+*(_DWORD *)CPU_FIELD(1728) = 0;
+*(_DWORD *)CPU_FIELD(1732) = 0;
+*(_DWORD *)CPU_FIELD(1736) = 0;
+if ( v101 )
+goto LABEL_1023;
+if ( *(_WORD *)CPU_FIELD(316) == 200 && v117 < 220.0 )
+*(_DWORD *)CPU_FIELD(1724) = 2;
+return;
+default:
+return;
+}
+case 0x19A:
+case 0x19C:
+v66 = *(_DWORD *)CPU_FIELD(384);
+if ( v66 )
+{
+if ( v66 != 3 && !*(_WORD *)CPU_FIELD(1892) )
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
+}
+else
+{
+*(_WORD *)CPU_FIELD(1892) = 0;
+}
+v67 = *(_WORD *)CPU_FIELD(1892);
+if ( v67 < 50 )
+goto LABEL_394;
+if ( v67 > 75 )
+goto LABEL_395;
+if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
+{
+*(_DWORD *)CPU_FIELD(1832) = 2;
+goto LABEL_350;
+}
+LABEL_394:
+if ( v67 < 75 )
+goto LABEL_399;
+LABEL_395:
+if ( v67 > 80 || *(__int16 *)CPU_FIELD(1154) < 400 || *(_DWORD *)CPU_FIELD(384) == 1 )
+{
+LABEL_399:
+if ( v67 >= 95 && v67 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
+{
+v17 = 960.0;
+switch ( *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) )
+{
+case 0xC8:
+if ( *(float *)CPU_FIELD(236) <= 960.0 || *(_BYTE *)CPU_FIELD(260) != 1 )
+{
+if ( *(float *)CPU_FIELD(236) >= 300.0 )
+goto LABEL_101;
+v18 = *(_BYTE *)CPU_FIELD(260) == 0xFF;
+LABEL_98:
+if ( !v18 )
+goto LABEL_101;
+}
+goto LABEL_99;
+case 0xC9:
+LABEL_101:
+if ( *(float *)CPU_FIELD(236) > v17 && *(_BYTE *)CPU_FIELD(260) == 1 )
+goto LABEL_435;
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_350;
+case 0xCA:
+LABEL_104:
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_350;
+case 0xCD:
+LABEL_99:
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_350;
+case 0xD4:
+v68 = *(float *)CPU_FIELD(236);
+v20 = v68 < 860.0;
+v21 = v68 == 860.0;
+LABEL_408:
+if ( !v20 && !v21 && *(_BYTE *)CPU_FIELD(260) == 1 )
+goto LABEL_413;
+if ( *(float *)CPU_FIELD(236) >= 400.0 )
+goto LABEL_350;
+v45 = *(_BYTE *)CPU_FIELD(260) == 0xFF;
+break;
+default:
+goto LABEL_350;
+}
+LABEL_412:
+if ( v45 )
+{
+LABEL_413:
+v65 = *(_DWORD *)CPU_FIELD(384) == 1;
+goto LABEL_434;
+}
+}
+}
+else
+{
+*(_DWORD *)CPU_FIELD(1832) = 32;
+}
+goto LABEL_350;
+case 0x19E:
+case 0x19F:
+case 0x1A0:
+v69 = *(_DWORD *)CPU_FIELD(384);
+if ( v69 )
+{
+if ( v69 != 3 && !*(_WORD *)CPU_FIELD(1892) )
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
+}
+else
+{
+*(_WORD *)CPU_FIELD(1892) = 0;
+}
+v70 = *(_WORD *)CPU_FIELD(1892);
+if ( v70 < 40 )
+goto LABEL_423;
+if ( v70 > 45 )
+goto LABEL_424;
+if ( *(__int16 *)CPU_FIELD(1154) >= 400 )
+{
+*(_DWORD *)CPU_FIELD(1832) = 2;
+goto LABEL_350;
+}
+LABEL_423:
+if ( v70 < 45 )
+goto LABEL_428;
+LABEL_424:
+if ( v70 <= 55 && *(__int16 *)CPU_FIELD(1154) >= 400 && *(_DWORD *)CPU_FIELD(384) == 1 )
+{
+*(_DWORD *)CPU_FIELD(1832) = 32;
+}
+else
+{
+LABEL_428:
+if ( v70 >= 95 && v70 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
+{
+v71 = *(__int16 *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) - 211;
+if ( !v71 )
+goto LABEL_435;
+if ( v71 == 1 )
+{
+v65 = v118 < 150.0;
+LABEL_434:
+if ( v65 )
+LABEL_435:
+*(_DWORD *)CPU_FIELD(1744) = 2;
+}
+}
+}
+goto LABEL_350;
+default:
+goto LABEL_350;
+}
+}
+#undef CPU_FIELD
+
+} // namespace th105

@@ -2175,3 +2175,60 @@ Alice low0..226 adds a **low-region closure rule** for sparse giants. Prove clos
 Alice500/501 versus505/506 add a **predecessor-carried tail argument** rule.  The groups eventually share code at `0x004EED6C`, but 500/501 execute `push 3` before jumping there, while the 505/506 path reaches a local `push 10` first.  Thus the same physical call site to `dispatch_character_wave_handle` has different logical arguments depending on predecessor.  Follow the incoming edge and x86 argument stack, not just the destination block.  Alice also diverges from Youmu semantically: 500/501 use object810 payloads `{20,30,0}`/`{-25,30,0}`, 505/506 use object811 `{0,25,0}`/`{-45,25,0}`, and all use counter `(200,120)` plus scaled30 without Youmu effect127/scaled50.
 
 Negative classification is equally reusable.  Alice214 is now independently modeled from Alice PE, completing the character-owned low197..223 family; Alice211/212/220/223 are likewise no longer pending.  Alice199/202/203 and mid303/310/high696 were earlier counterexamples to shared-template promotion and are likewise modeled from Alice PE.  Action214 still has an extra `+0x73C` adjustment/clamp block even though its direct callee set matches Youmu.  Do not promote a shared-family template from call-graph similarity alone.
+
+## 2026-09-06: roster CPU action-policy `+0x58` is a five-body giant family
+
+Fresh current-1.06a primary-vtable evidence reduces the fifteen roster slots at
+`+0x58` to five authored bodies: Reimu `0x0048D390` (15,999 bytes), Marisa
+`0x004B4070` (16,229), Alice `0x004F4B80` (16,354), the shared default
+`0x005F1F80` (15,910), and Aya `0x006126E0` (16,032).  The default body is owned
+by Sakuya, Patchouli, Youmu, Remilia, Yuyuko, Yukari, Suika, Udonge, Komachi,
+Iku, and Tenshi.  Fresh IDA call closure independently gives the same five
+direct callees for all five bodies: `__ftol2_sse`, `atan2_degrees @ 0x00406540`,
+`mt19937_next_u32 @ 0x004066B0`, `selector_random_roll @ 0x004067D0`, and
+`FighterSequenceController::entry_at_checked @ 0x004399C0`.  The four authored
+callees are already canonical exact, so policy differences live overwhelmingly
+inside the decision tree rather than in character-specific helper closure.
+
+The default and Aya bodies each decompile to six switches / 64 case labels and
+have a large common textual skeleton after addresses are stripped.  Reimu,
+Marisa, and Alice retain the same six-switch high-level topology with 72, 74,
+and 72 case labels respectively.  Recover the default first as the shared
+semantic skeleton and treat the character bodies as deltas; do not write five
+unrelated 16-KiB roots.
+
+`src/characters/CpuActionPolicies.cpp` now carries the complete current-target
+semantic candidate for default `0x005F1F80`, and
+`gpt-web-default-cpu-action-policy` gives it a formal pinned-VC8 comparator.
+Current ordinary C++ emits 15,537 bytes against the 15,910-byte target and first
+differs at function `+0x02`: target allocates a `0x0C` frame while the candidate
+allocates `0x18`.  This is deliberately source-present/nonexact and receives no
+authored-byte credit.  The first prologue already proves that Hex-Rays' initial
+`__int64`/`double` delta temporaries were false: target does `float difference ->
+__ftol2_sse -> EAX int -> cdq/xor/sub abs -> fild` for both axes and reuses one
+stack slot for the second integer scratch and its resulting float.  Continue by
+folding the artificial `v111..v130` x87 temporaries into their expression trees
+until VC8 naturally reaches the target `0x0C` frame; do not force stack slots.
+
+## 2026-09-06: giant-root decompiler order is CFG evidence, not source-order proof
+
+Two independent giant-root experiments now establish the same rule.  In shared
+Fighter `0x004740C0`, fresh target edges prove that actions 159--162 jump into
+case 50's clamp owner and that 73/88 borrow case 71's publish/event suffix, but
+copying Hex-Rays' displayed label placement back into C++ worsened the physical
+owner residual (311 -> 545 bytes summed absolute span difference).  The labels
+prove predecessor/successor and x87 lifetime relationships; their displayed
+lexical placement does **not** prove the authored C++ ordering that made VC8
+choose those owners.
+
+The CPU-policy root gives a second source-shape warning.  A pinned-VC8 minimal
+probe shows that `x <= 1040.0f` naturally emits `fld DWORD 1040.0f; fcomp [x]`,
+matching the target, while the algebraically equivalent `1040.0f >= x` promotes
+the constant to a QWORD comparison.  The target executable contains no double
+1040.0 literal.  Therefore preserve target-observed operand provenance and
+source order even for commutative/equivalent comparisons; never create a fake
+literal relocation merely to make a normalized decompiler expression link.
+Hex-Rays can also materialize an x87 value spanning adjacent action ranges as a
+pseudo-local (the former `v92` in the default policy).  Remove such locals only
+when target stack lifetime plus a normal source expression makes VC8 reproduce
+the real float literal/edge naturally.

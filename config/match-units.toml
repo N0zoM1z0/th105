@@ -16956,3 +16956,53 @@ dir32_targets = [
   "__real@c2be0000=__real@c2be0000",
   "__real@c2f00000=__real@c2f00000",
 ]
+
+[units.gpt-web-default-cpu-action-policy]
+kind = "probe"
+source = "src/characters/CpuActionPolicies.cpp"
+object = "build/match-units/GptWeb_DefaultCpuActionPolicy.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current-target default fighter vslot +0x58 CPU action-policy root. Initial semantic candidate is a pure-C++ transcription of the fresh IDA decision tree with the five direct callees rebound to already-exact repository symbols; keep nonexact until canonical comparison proves otherwise."
+
+[[units.gpt-web-default-cpu-action-policy.functions]]
+address = "0x005F1F80"
+symbol_base = "?update_default_cpu_action_policy@CpuActionPolicyView@th105@@QAEXXZ"
+rel32_targets = [
+  "?atan2_degrees@th105@@YANMM@Z=0x00406540",
+  "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+  "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
+  "__ftol2_sse=0x0068A1A0",
+]
+dir32_targets = [
+  "__real@0000000000000000=__real@0000000000000000",
+  "__real@4049000000000000=__real@4049000000000000",
+  "__real@404e000000000000=__real@404e000000000000",
+  "__real@4059000000000000=__real@4059000000000000",
+  "__real@405e000000000000=__real@405e000000000000",
+  "__real@4069000000000000=__real@4069000000000000",
+  "__real@406b800000000000=__real@406b800000000000",
+  "__real@406e000000000000=__real@406e000000000000",
+  "__real@406f400000000000=__real@406f400000000000",
+  "__real@4079000000000000=__real@4079000000000000",
+  "__real@407c200000000000=__real@407c200000000000",
+  "__real@407f400000000000=__real@407f400000000000",
+  "__real@4080400000000000=__real@4080400000000000",
+  "__real@408ae00000000000=__real@408ae00000000000",
+  "__real@408e000000000000=__real@408e000000000000",
+  "__real@42960000=__real@42960000",
+  "__real@42a00000=__real@42a00000",
+  "__real@42b40000=__real@42b40000",
+  "__real@43160000=__real@43160000",
+  "__real@43340000=__real@43340000",
+  "__real@438c0000=__real@438c0000",
+  "__real@43960000=__real@43960000",
+  "__real@43a00000=__real@43a00000",
+  "__real@43af0000=__real@43af0000",
+  "__real@44020000=__real@44020000",
+  "__real@44160000=__real@44160000",
+  "__real@44200000=__real@44200000",
+  "__real@442f0000=__real@442f0000",
+  "__real@44820000=__real@44820000",
+]
