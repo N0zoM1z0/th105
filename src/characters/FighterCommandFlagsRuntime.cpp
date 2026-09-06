@@ -31,13 +31,9 @@ unsigned char FighterCommandFlagsView::match_command_463500(
 
     int i = 0;
     if (facing_104 > 0) {
-        if (static_cast<signed char>(length) > 0) {
-            do {
-                translated[i] = g_command_pattern_map_right[
-                    static_cast<signed char>(pattern[i])];
-                ++i;
-            } while (i < static_cast<signed char>(length));
-        }
+        for (; i < static_cast<signed char>(length); ++i)
+            translated[i] = g_command_pattern_map_right[
+                static_cast<signed char>(pattern[i])];
     } else if (static_cast<signed char>(length) > 0) {
         do {
             translated[i] = g_command_pattern_map_left[
@@ -46,6 +42,7 @@ unsigned char FighterCommandFlagsView::match_command_463500(
         } while (i < static_cast<signed char>(length));
     }
 
+    int next_pattern_index;
     int pattern_index = 0;
     while (cursor != finish) {
         unsigned char token = translated[pattern_index];
@@ -63,11 +60,12 @@ unsigned char FighterCommandFlagsView::match_command_463500(
                     return 1;
 
                 token = translated[pattern_index];
+                next_pattern_index = pattern_index + 1;
                 if (token >= 0x10 &&
-                    pattern_index + 1 == static_cast<signed char>(length)) {
+                    next_pattern_index == static_cast<signed char>(length)) {
                     if (token != 0xf0) {
                         if ((static_cast<unsigned char>(*cursor) & 0xf0) == token) {
-                            ++pattern_index;
+                            pattern_index = next_pattern_index;
                             if (pattern_index == static_cast<signed char>(length))
                                 return 1;
                         }
