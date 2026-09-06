@@ -102,6 +102,24 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(regions["high"]["destination_count"], 15)
         self.assertEqual(regions["high"]["candidate_destination_counts"], [15])
 
+
+    def test_giant_action_switch_manifest_tracks_alice_root(self) -> None:
+        with (ROOT / "config" / "giant-action-switches.toml").open("rb") as stream:
+            manifest = tomllib.load(stream)
+        root = next(row for row in manifest["roots"] if row["name"] == "alice-vslot28")
+        self.assertEqual(root["address"], "0x004E9F50")
+        self.assertEqual(root["callable_end"], "0x004F4631")
+        self.assertEqual(root["metadata_end"], "0x004F4B80")
+        self.assertEqual(root["expected_unique_destinations"], 103)
+        self.assertEqual(root["expected_direct_call_sites"], 674)
+        self.assertEqual(root["expected_direct_call_targets"], 27)
+        self.assertEqual(root["expected_ret_opcodes"], 128)
+        regions = {row["name"]: row for row in root["regions"]}
+        self.assertEqual((regions["low"]["case_min"], regions["low"]["case_max"], regions["low"]["destination_count"]), (0, 226, 31))
+        self.assertEqual((regions["mid"]["case_min"], regions["mid"]["case_max"], regions["mid"]["destination_count"]), (301, 508, 34))
+        self.assertEqual((regions["high"]["case_min"], regions["high"]["case_max"], regions["high"]["destination_count"]), (521, 770, 40))
+
+
     def test_xiph_origin_anchor_manifest_is_pinned(self) -> None:
         with (ROOT / "config" / "xiph-origin-anchors.toml").open("rb") as stream:
             anchors = tomllib.load(stream)

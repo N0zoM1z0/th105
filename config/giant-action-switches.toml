@@ -70,3 +70,40 @@ destination_count = 15
 index_table = "0x00476A38"
 expected_physical_groups = 15
 candidate_destination_counts = [15]
+
+[[roots]]
+name = "alice-vslot28"
+address = "0x004E9F50"
+callable_end = "0x004F4631"
+metadata_end = "0x004F4B80"
+expected_unique_destinations = 103
+expected_direct_call_sites = 674
+expected_direct_call_targets = 27
+expected_ret_opcodes = 128
+
+[[roots.regions]]
+name = "low"
+case_min = 0
+case_max = 226
+destination_table = "0x004F4634"
+destination_count = 31
+index_table = "0x004F46B0"
+expected_physical_groups = 31
+
+[[roots.regions]]
+name = "mid"
+case_min = 301
+case_max = 508
+destination_table = "0x004F4794"
+destination_count = 34
+index_table = "0x004F481C"
+expected_physical_groups = 34
+
+[[roots.regions]]
+name = "high"
+case_min = 521
+case_max = 770
+destination_table = "0x004F4914"
+destination_count = 40
+index_table = "0x004F49B4"
+expected_physical_groups = 40
