@@ -82,12 +82,18 @@ repository ledgers. Read back IDA writes before relying on them.
 
 ## Handoff
 
-Run the focused build/comparison, then:
+Run the focused build/comparison, then run this final gate in the finished local
+worktree:
 
 ```bash
 python3 scripts/ci.py
 git diff --check
 ```
+
+This local `scripts/ci.py` pass is mandatory before every commit, push, or pull
+request. A GitHub Actions run does not substitute for it. Do not commit or push
+after a failure, and rerun the gate after any subsequent source, ledger, script,
+test, or generated-progress edit.
 
 Update `docs/RE_HANDOFF.md` when the phase or blocker changes. Report target
 addresses, evidence class, changed files, exact result, and remaining unknowns.

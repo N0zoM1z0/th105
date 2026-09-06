@@ -49,6 +49,10 @@ def main() -> int:
         if shell_files:
             run("Check shell syntax", ["bash", "-n", *shell_files])
         run(
+            "Audit floating relocation mappings",
+            [sys.executable, "scripts/check-match-literals.py", "--skip-target-bytes"],
+        )
+        run(
             "Validate reconstruction ledgers",
             [sys.executable, "scripts/validate-tracking.py", "--skip-target-bytes"],
         )

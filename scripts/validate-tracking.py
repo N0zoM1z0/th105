@@ -12,6 +12,7 @@ import tomllib
 
 from workflow_manifest import load_manifest
 from function_byte_ownership import load as load_byte_ownership
+from match_literals import audit_real_literals
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -158,6 +159,19 @@ def validate_reccmp_ledgers() -> dict[int, dict[str, str]]:
     return {int(row["address"], 0): row for row in functions}
 
 
+def validate_real_literal_relocations(
+    match_manifest: dict[str, object], require_bytes: bool
+) -> dict[str, int]:
+    relocation_rows = require_header(
+        CONFIG / "reccmp-relocations.csv",
+        ["coff_symbol", "address", "data_hex", "addends", "evidence", "validation"],
+    )
+    target_data = TARGET.read_bytes() if require_bytes else None
+    return audit_real_literals(
+        relocation_rows, match_manifest, target_data=target_data
+    )
+
+
 def read_implemented(reccmp: dict[int, dict[str, str]]) -> set[str]:
     known_names = {row["name"] for row in reccmp.values() if row["type"] == "function"}
     values: set[str] = set()
@@ -229,6 +243,10 @@ def main() -> int:
         reccmp = validate_reccmp_ledgers()
         implemented = read_implemented(reccmp)
         match_manifest = load_manifest()
+        validate_real_literal_relocations(
+            match_manifest,
+            require_bytes=args.require_target and not args.skip_target_bytes,
+        )
         matching = validate_matches(functions, reccmp, match_manifest["units"])
     except (OSError, KeyError, TypeError, ValueError, tomllib.TOMLDecodeError) as exc:
         print(f"error: tracking validation failed: {exc}")

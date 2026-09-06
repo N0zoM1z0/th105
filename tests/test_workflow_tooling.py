@@ -28,8 +28,10 @@ class WorkflowToolingTests(unittest.TestCase):
     def setUpClass(cls) -> None:
         cls.validator = load_script("validate-tracking.py")
         cls.comparator = load_script("compare-function.py")
+        cls.literals = load_script("match_literals.py")
         cls.manifest = load_script("workflow_manifest.py")
         cls.progress = load_script("progress.py")
+        cls.exact_replay = load_script("verify-exact-units.py")
         cls.byte_ownership = load_script("function_byte_ownership.py")
         cls.ida_check = load_script("check-ida-mcp.py")
         cls.inventory = load_script("export-ida-inventory.py")
@@ -72,13 +74,29 @@ class WorkflowToolingTests(unittest.TestCase):
             1271,
         )
 
+    def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
+        units = self.manifest.load_manifest()["units"]
+        accepted = self.exact_replay.accepted_functions(units)
+        self.assertEqual(len(accepted), 436)
+        self.assertEqual(sum(map(len, accepted.values())), 1259)
+        secondary = accepted["gpt-web-secondary-animation-runtime"]
+        self.assertEqual(
+            secondary,
+            {"0x00430050", "0x00430080", "0x004302A0", "0x00430750"},
+        )
+        self.assertNotIn("0x004309F0", secondary)
+        view = self.exact_replay.comparison_view(
+            units["gpt-web-secondary-animation-runtime"], secondary
+        )
+        self.assertEqual(len(view["functions"]), 4)
+
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,010", markdown)
-        self.assertIn("Confirmed authored functions | 1,323", markdown)
-        self.assertIn("Confirmed authored code bytes | 1,382,829", markdown)
+        self.assertIn("Confirmed authored functions | 1,325", markdown)
+        self.assertIn("Confirmed authored code bytes | 1,384,338", markdown)
         self.assertIn("Classified exclusions | 1,266", markdown)
-        self.assertIn("Origin/boundary review pending | 1,421", markdown)
+        self.assertIn("Origin/boundary review pending | 1,419", markdown)
         self.assertIn("Canonical exact functions | 1,259", markdown)
         self.assertIn("Canonical exact authored bytes | 214,043", markdown)
         self.assertIn(
@@ -562,6 +580,82 @@ class WorkflowToolingTests(unittest.TestCase):
         )
         self.assertEqual(result, "blocked")
         self.assertEqual(failure["category"], "relocation.dir32.unknown_symbol")
+
+    def test_vc8_real_literal_symbol_contract(self) -> None:
+        self.assertEqual(
+            self.literals.real_literal_bytes(
+                {"type": "DIR32", "symbol": "__real@3f800000"}
+            ),
+            bytes.fromhex("0000803f"),
+        )
+        self.assertEqual(
+            self.literals.real_literal_bytes(
+                {"type": "DIR32", "symbol": "__real@4060000000000000"}
+            ),
+            bytes.fromhex("0000000000006040"),
+        )
+        self.assertIsNone(
+            self.literals.real_literal_bytes(
+                {"type": "REL32", "symbol": "ordinary"}
+            )
+        )
+        with self.assertRaisesRegex(ValueError, "must use DIR32"):
+            self.literals.real_literal_bytes(
+                {"type": "REL32", "symbol": "__real@3f800000"}
+            )
+        with self.assertRaisesRegex(ValueError, "zero addend"):
+            self.literals.real_literal_bytes(
+                {
+                    "type": "DIR32",
+                    "symbol": "__real@3f800000",
+                    "addend": 4,
+                }
+            )
+        with self.assertRaisesRegex(ValueError, "malformed __real"):
+            self.literals.real_literal_bytes(
+                {"type": "DIR32", "symbol": "__real@xyz"}
+            )
+
+    def test_real_literal_override_cannot_hide_value_mismatch(self) -> None:
+        destination = {
+            "coff_symbol": "_named_scalar",
+            "address": "0x00600000",
+            "data_hex": "0000000000006040",
+            "addends": "0",
+            "evidence": "test fixture",
+            "validation": "address",
+        }
+        with self.assertRaisesRegex(ValueError, "source encodes .*destination declares"):
+            self.literals.validate_real_literal_mapping(
+                "__real@0000000000000000", "_named_scalar", destination
+            )
+        self.assertEqual(
+            self.literals.validate_real_literal_mapping(
+                "__real@4060000000000000", "_named_scalar", destination
+            ),
+            bytes.fromhex("0000000000006040"),
+        )
+
+    def test_repository_real_literal_mappings_are_consistent(self) -> None:
+        with (ROOT / "config" / "reccmp-relocations.csv").open(
+            newline="", encoding="utf-8"
+        ) as stream:
+            relocations = list(csv.DictReader(stream))
+        with (ROOT / "config" / "match-units.toml").open("rb") as stream:
+            manifest = tomllib.load(stream)
+        counts = self.literals.audit_real_literals(relocations, manifest)
+        self.assertEqual(counts["ledger_literals"], 263)
+        self.assertEqual(counts["explicit_mappings"], 362)
+        self.assertEqual(counts["target_checks"], 0)
+
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
+    def test_repository_real_literals_match_target_bytes(self) -> None:
+        counts = self.validator.validate_real_literal_relocations(
+            self.manifest.load_manifest(), require_bytes=True
+        )
+        self.assertEqual(counts["target_checks"], 625)
 
     def test_rel32_accepts_only_supported_instruction_forms(self) -> None:
         self.assertEqual(

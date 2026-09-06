@@ -8,6 +8,26 @@ seeds using current-target-backed structural remapping where appropriate.
 
 ## Verified state
 
+- **Newest workflow-hardening / Alice-mid checkpoint:** the current ledgers remain
+  **1,259 / 1,325 authored functions exact (95.0189%)** and **214,043 / 1,384,338
+  authored code bytes exact (15.4618%)**, with 442 configured match units and
+  436 units containing accepted exact functions. Alice actions
+  400/401/402/410 are now preserved as target-backed partial semantic source but
+  deliberately remain outside source/exact tracking. GitHub issue
+  [#1](https://github.com/N0zoM1z0/th105/issues/1) records the relocated-floating-
+  literal acceptance gap. The new shared audit proves all current 263 real-symbol
+  ledger rows, 362 explicit mappings, and 625 target references agree; manifest
+  loading, tracking validation, canonical comparison, and local CI now all fail
+  closed on a value mismatch even through `validation=address`. Local `ci.py` is
+  an explicit pre-commit/pre-push requirement; GitHub Actions is not a substitute.
+  The repaired accepted-ledger verifier cold-built **436/436 containing units**
+  and replayed **1,259/1,259 accepted functions exact**; mixed units compare only
+  addresses actually accepted by `matches.csv`, so intentional probes cannot
+  invalidate or masquerade as aggregate exact evidence.
+  The same cleanup adds the missing reproducible origin rule for shared Fighter
+  action root `0x004740C0` and materializes exact battle roots `0x00426BB0` and
+  `0x00426DF0`, so `function-origins.py --check` no longer depends on manual CSV
+  state.
 - **Newest shared-Fighter primitive-closure / giant-root checkpoint:** **1,257 / 1,323 authored functions are canonical exact (95.0113%)**, with **212,534 / 1,382,829 confirmed authored code bytes exact (15.3695%)**, 1,266 exclusions, 1,421 origin/boundary review candidates and 1,273 source-present mappings.  This wave promotes `Fighter_add_phase_scaled_counter_558 @ 0x00478DF0` (107) and `Fighter_face_opponent_and_flip_horizontal_velocity @ 0x00478E60` (116) as current-target-backed authored roots; their joint formal unit rebuilds both functions canonical zero-difference under the pinned ordinary `/O2` profile.
 - The old `0x005D06D0` scheduler-stop note is superseded.  The target's `mov eax,255 -> word +0x7A6 / byte +0x113` is the natural lowering of an **int-returning assignment expression** with `+0x113` viewed as unsigned byte: `scale_7a8=1.0f; return visual_state_113=(unsigned char)(opacity_7a6=255);`.  This is 27/27 exact without volatile/register state or inert work.  `CharacterObject` provides a complementary lifetime rule: the existing constructor TU naturally emits its 30-byte scalar wrapper as an out-of-line call to pending normal dtor `0x00492ED0`; wrapper exactness does not promote that 145-byte normal dtor.
 - The byte campaign now has a bounded first giant root: Youmu primary-vtable `+0x28 @ 0x00530200` is a **37,692-byte contiguous callable**, and the final RET at `0x0053953B` is exactly `start+size-1`.  Compiler-owned metadata begins immediately at `0x0053953C` and runs to the next function at `0x005399A0`: action regions are `0..226`, `301..546`, and `565..798` with pointer/index tables at `0x0053953C/0x005395C0`, `0x005396A4/0x00539754`, and `0x0053984C/0x005398A4`; a four-entry global-state table is at `0x00539990`.  The body has 114 RETs, 598 direct calls to only 29 targets, and 152 indirect virtual calls.  Fresh PE/Capstone closure recount now has **25 canonical-exact authored direct targets**, three authored targets still pending (`0x00406360`, `0x004063D0`, `0x004740C0`), and one compiler runtime (`__ftol2_sse`).  Recover this root by action region plus shared primitives; never count the 1,124 post-RET table/alignment bytes as authored function bytes.
@@ -829,7 +849,7 @@ git diff --check
 - Reusable rule: **source label position is not physical ownership**.  For short shared tails, duplicate the truthful action-local semantics at both source sites and let VC8 choose the merge owner, then accept only when PE CFG/call ownership and COFF spans move together.  Explicit cross-case gotos can make VC8 over-outline much larger regions: attempts to force case222 onto target-backed earlier landing/init owners collapsed unrelated owners and produced `.text 0x96E8`; fully localizing case304's `LABEL_572/573/574` tail duplicated both spawn blocks and grew `.text 0x9850`; a plain duplicate of case311/case696 `LABEL_728` fixed case311 but left case696 long and grew `.text 0x9830`.  Keep all three as negative evidence, not candidate source.
 - A lightweight label-definition/use graph is useful only to rank hypotheses.  Nested source switches can change the apparent current `case:` context, so label-to-case pairs are never evidence by themselves.  Always confirm each candidate with the SHA-pinned PE target branch destination and with `compare-giant-action-switches.py` after a fresh VC8 build.
 - Highest-leverage remaining clusters at this checkpoint are **302/304** (`+67 / -125` span residual; target304 has proven backward branches into case302's spawn/clamp tail), **case222** (`-78`; target reuses case208 landing at `0x5314A3` and the case212/221 init tail at `0x5319E0` but explicit owner gotos are unsafe), and the partially improved **case416** (`-33`).  Continue from source-lifetime/CFG recovery; do not convert these target edges into assembly, copied bytes, padding, `volatile`, register forcing, or fake dependencies.
-- Validation-tool correction: `scripts/verify-exact-units.py --all` currently iterates **all configured manifest units**, not just accepted exact functions.  It therefore reaches 1,247 exact function comparisons and then stops at the intentionally nonexact `SecondaryAnimationRenderRuntimeView::update_secondary @ 0x004309F0`; that source is byte-identical to `d1578dd` and its manifest note already records the `0xA0` target frame versus `0x88` fresh frame.  Do not interpret this complete-graph stop as a Youmu regression or claim `--all` is an accepted-only replay.
+- Validation-tool correction at that checkpoint: `scripts/verify-exact-units.py --all` then iterated **all configured manifest functions**, not just accepted exact functions.  It therefore reached 1,247 exact function comparisons and stopped at the intentionally nonexact `SecondaryAnimationRenderRuntimeView::update_secondary @ 0x004309F0`; that source was byte-identical to `d1578dd` and its manifest note already recorded the `0xA0` target frame versus `0x88` fresh frame.  The 2026-09-06 workflow-hardening checkpoint supersedes this limitation by selecting accepted addresses from `matches.csv`, including inside mixed exact/probe units.
 
 ### 2026-09-05: Youmu 302/304 giant blocker reduced to 3/0 bytes
 

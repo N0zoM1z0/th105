@@ -53,10 +53,16 @@ IDA auto-names do not imply mappings or implementations.
 7. Select or adapt the smallest natural source implementation. Add it to
    `implemented.csv` only when semantic coverage is supported.
 8. Configure one reproducible unit, compile with the pinned VC8 environment,
-   and compare the smallest extent first.
+   compare the smallest extent first, and audit floating relocations with
+   `python3 scripts/check-match-literals.py --require-target`.
 9. Add `matches.csv` only after strict zero-difference relocation replay against
    `resources/th105.exe`; update the candidate row at the same time.
-10. Run validation/CI, update the handoff, and commit a stable checkpoint.
+10. Update the handoff, then run the mandatory final local `python3 scripts/ci.py`
+    and `git diff --check` gate. Commit, push, or open a pull request only after
+    both commands pass in the finished worktree.
+
+GitHub Actions is a second check, not a substitute for the local gate. Any edit
+after the final pass invalidates that pass and requires another local run.
 
 ## Shared-change replay
 

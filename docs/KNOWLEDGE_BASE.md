@@ -5,7 +5,22 @@ notes or source hypotheses.
 
 ## Observed
 
-- **The authored-function 95% threshold is now genuinely crossed:** current target-backed census is **1,255 / 1,320 canonical-exact authored functions (95.0758%)** and **212,311 / 1,372,387 authored code bytes exact (15.4702%)**.  This did not come from shrinking the denominator: the latest wave also promotes three previously reviewed current gameplay/lifetime roots into authored ownership.  The byte percentage remains the binding target; the fifteen Fighter `+0x28` action-state roots still dominate it.
+- **Relocated floating values require three-way identity, not pointer equality.**
+  Decode each VC8 `__real@...` symbol into its little-endian 32- or 64-bit
+  value, require DIR32 with addend zero, verify the initialized COFF bytes, and
+  verify the resolved 1.06a PE bytes. Apply this even when a manifest override
+  targets a named `validation=address` row; otherwise source 0.0 can be linked
+  to a target 128.0 cell and the rewritten pointer operand can falsely appear
+  exact. `scripts/check-match-literals.py` makes this reusable and currently
+  audits **263 ledger literals / 362 explicit mappings / 625 target references**
+  without finding a stale TH105 mapping.
+- **Aggregate replay must select accepted functions, not whole probe units.**
+  TH105 units may deliberately mix exact leaves with a nonexact root. Cold-build
+  each unit named by `matches.csv`, then compare only its accepted addresses;
+  replaying every manifest function makes a healthy exact ledger fail at the
+  first intentional probe. `scripts/verify-exact-units.py --all` now enforces
+  this split and reports both the cold unit count and accepted function count.
+- **The authored-function 95% threshold is now genuinely crossed:** current target-backed census is **1,259 / 1,325 canonical-exact authored functions (95.0189%)** and **214,043 / 1,384,338 authored code bytes exact (15.4618%)**.  This does not come from shrinking the denominator: the shared 10,219-byte Fighter action root remains authored/nonexact, and the reproducible origin census now also includes two exact battle roots that had not been materialized into `function-origins.csv`.  The byte percentage remains the binding target; the fifteen Fighter `+0x28` action-state roots still dominate it.
 - **Udonge's 27-byte action-tail helper corrects an old scheduler diagnosis.**  Fourteen current calls from Udonge action-entry code own `Udonge_reset_action_visual_state @ 0x005D06D0`.  `+0x7A8` is float 1.0, `+0x7A6` receives 255 as a word, and `+0x113` is usefully modeled as an unsigned byte.  The truthful source `return visual_state_113 = (unsigned char)(opacity_7a6 = 255);` keeps the assignment result in EAX and naturally reuses AX/AL for both stores, giving 27/27.  Treat a decompiler's final `return 255` as possible assignment-result evidence before declaring a residual register reuse to be scheduler-only.
 - **Scalar deleting wrappers can be exact while their normal destructor remains pending.**  CharacterObject RTTI vtable `0x006C400C` uniquely owns wrapper `0x00492F70`.  Existing tracked `CharacterObject.cpp` already emits the target 30-byte wrapper from an unresolved out-of-line `~CharacterObject()` declaration: call normal dtor `0x00492ED0`, test deleting flag, optionally call operator delete, return `this`.  Fresh VC8 is 30/30 exact.  The normal 145-byte dtor still has its independent AttackObject/secondary-animation linker residual and is not promoted.
 - **`Fighter_try_dispatch_directional_action_208_210 @ 0x00478EE0` is a canonical shared gameplay primitive.**  Current xrefs span many roster giant `+0x28` action-state roots.  Ordinary source keeps three repeated `vertical_input_6b8 < 0` predicates, recomputes signed `facing_104 * horizontal_input_6b4` where the target does, and dispatches virtual actions 209/210/208.  VC8 naturally preserves the repeated EAX tests and produces all 184 bytes; do not prematurely factor those predicates into a convenience boolean.
