@@ -20,8 +20,7 @@ void CpuActionPolicyView::update_default_cpu_action_policy()
 int v2; // edi
 int v3; // eax
 int v4; // eax
-__int16 v5; // ax
-__int16 v6; // ax
+int v6; // eax
 int v7; // edx
 int v8; // ecx
 int v9; // eax
@@ -125,42 +124,23 @@ char v107; // al
 int v108; // ecx
 __int16 v109; // ax
 char v110; // al
-float v111; // [esp+0h] [ebp-24h]
-float v112; // [esp+4h] [ebp-20h]
-float v113; // [esp+4h] [ebp-20h]
-float v114; // [esp+4h] [ebp-20h]
-float v115; // [esp+4h] [ebp-20h]
-float v116; // [esp+4h] [ebp-20h]
 float v117; // [esp+18h] [ebp-Ch]
 float v118; // [esp+1Ch] [ebp-8h]
-float v119; // [esp+20h] [ebp-4h]
-float v120; // [esp+20h] [ebp-4h]
-float v121; // [esp+20h] [ebp-4h]
-float v122; // [esp+20h] [ebp-4h]
-float v123; // [esp+20h] [ebp-4h]
-float v124; // [esp+20h] [ebp-4h]
-float v125; // [esp+20h] [ebp-4h]
-float v126; // [esp+20h] [ebp-4h]
-float v127; // [esp+20h] [ebp-4h]
-float v128; // [esp+20h] [ebp-4h]
-float v129; // [esp+20h] [ebp-4h]
-float v130; // [esp+20h] [ebp-4h]
 v2 = *(_DWORD *)CPU_FIELD(368);
 *(_DWORD *)CPU_FIELD(1828) = 0;
 *(_DWORD *)CPU_FIELD(1832) = 0;
 v3 = (int)(*(float *)(v2 + 236) - *(float *)CPU_FIELD(236));
 v117 = (float)abs(v3);
 v4 = (int)(*(float *)(v2 + 240) - *(float *)CPU_FIELD(240));
---*(_WORD *)CPU_FIELD(1896);
+*(__int16 *)CPU_FIELD(1896) -= 1;
 v118 = (float)abs(v4);
-v5 = *(_WORD *)CPU_FIELD(316);
 *(_DWORD *)CPU_FIELD(1724) = 0;
 *(_DWORD *)CPU_FIELD(1728) = 0;
 *(_DWORD *)CPU_FIELD(1732) = 0;
 *(_DWORD *)CPU_FIELD(1736) = 0;
 *(_DWORD *)CPU_FIELD(1740) = 0;
 *(_DWORD *)CPU_FIELD(1744) = 0;
-if ( v5 > 49 && v5 < 150 )
+if ( *(__int16 *)CPU_FIELD(316) > 49 && *(__int16 *)CPU_FIELD(316) < 150 )
 {
 *(_WORD *)CPU_FIELD(1900) = 0;
 *(_WORD *)CPU_FIELD(1898) = 0;
@@ -183,7 +163,7 @@ v7 = *(_DWORD *)CPU_FIELD(368);
 *(_WORD *)CPU_FIELD(1902) = v6;
 if ( *(__int16 *)(v7 + 372) <= 0 )
 return;
-switch ( *(_WORD *)CPU_FIELD(316) )
+switch ( *(__int16 *)CPU_FIELD(316) )
 {
 case 0xC8:
 if ( !*(_WORD *)CPU_FIELD(1892) )
@@ -573,11 +553,9 @@ v32 = *(_DWORD *)CPU_FIELD(368);
 v33 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1728) = 2;
 *(_DWORD *)CPU_FIELD(1716) = 0;
-v119 = (*(float *)(v32 + 236) - *(float *)CPU_FIELD(236)) * (double)v33;
-v112 = v119;
-v120 = *(float *)(v32 + 240) - *(float *)CPU_FIELD(240);
-atan2_degrees(v120, v112);
-*(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)v120 >= 30;
+float angle_x_32 = (float)((*(float *)(v32 + 236) - *(float *)CPU_FIELD(236)) * (double)v33);
+*(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)atan2_degrees(
+    *(float *)(v32 + 240) - *(float *)CPU_FIELD(240), angle_x_32) >= 30;
 goto LABEL_350;
 }
 LABEL_182:
@@ -639,14 +617,9 @@ v36 = *(_DWORD *)CPU_FIELD(368);
 v37 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1728) = 2;
 *(_DWORD *)CPU_FIELD(1716) = 0;
-v121 = (*(float *)(v36 + 236) - *(float *)CPU_FIELD(236)) * (double)v37;
-v113 = v121;
-v122 = *(float *)(v36 + 240) - *(float *)CPU_FIELD(240);
-v38 = v122;
-LABEL_210:
-v111 = v38;
-atan2_degrees(v111, v113);
-*(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)v38 >= 30;
+float angle_x_36 = (float)((*(float *)(v36 + 236) - *(float *)CPU_FIELD(236)) * (double)v37);
+*(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)atan2_degrees(
+    *(float *)(v36 + 240) - *(float *)CPU_FIELD(240), angle_x_36) >= 30;
 goto LABEL_350;
 }
 LABEL_206:
@@ -661,11 +634,10 @@ v39 = *(_DWORD *)CPU_FIELD(368);
 v40 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1732) = 2;
 *(_DWORD *)CPU_FIELD(1716) = 0;
-v123 = (*(float *)(v39 + 236) - *(float *)CPU_FIELD(236)) * (double)v40;
-v113 = v123;
-v124 = *(float *)(v39 + 240) - *(float *)CPU_FIELD(240);
-v38 = v124;
-goto LABEL_210;
+float angle_x_39 = (float)((*(float *)(v39 + 236) - *(float *)CPU_FIELD(236)) * (double)v40);
+*(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)atan2_degrees(
+    *(float *)(v39 + 240) - *(float *)CPU_FIELD(240), angle_x_39) >= 30;
+goto LABEL_350;
 }
 LABEL_211:
 if ( v35 < 40 )
@@ -735,11 +707,9 @@ v43 = *(_DWORD *)CPU_FIELD(368);
 v44 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1728) = 2;
 *(_DWORD *)CPU_FIELD(1716) = 0;
-v125 = (*(float *)(v43 + 236) - *(float *)CPU_FIELD(236)) * (double)v44;
-v114 = v125;
-v126 = *(float *)(v43 + 240) - *(float *)CPU_FIELD(240);
-atan2_degrees(v126, v114);
-*(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)v126 >= 20;
+float angle_x_43 = (float)((*(float *)(v43 + 236) - *(float *)CPU_FIELD(236)) * (double)v44);
+*(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)atan2_degrees(
+    *(float *)(v43 + 240) - *(float *)CPU_FIELD(240), angle_x_43) >= 20;
 }
 goto LABEL_350;
 case 0x140:
@@ -1137,12 +1107,10 @@ if ( (double)(180 * (v118 < 200.0) + 120) < v117 && selector_random_roll(0x3E8u)
 v77 = *(_DWORD *)CPU_FIELD(368);
 v78 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1728) = 2;
-v127 = (*(float *)(v77 + 236) - *(float *)CPU_FIELD(236)) * (double)v78;
-v115 = v127;
-v128 = *(float *)(v77 + 240) - *(float *)CPU_FIELD(240);
-atan2_degrees(v128, v115);
 *(_DWORD *)CPU_FIELD(1716) = 0;
-*(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)v128 >= 30;
+float angle_x_77 = (float)((*(float *)(v77 + 236) - *(float *)CPU_FIELD(236)) * (double)v78);
+*(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)atan2_degrees(
+    *(float *)(v77 + 240) - *(float *)CPU_FIELD(240), angle_x_77) >= 30;
 }
 if ( v117 > 250.0 && v118 < 200.0 && selector_random_roll(0x3E8u) < 0x14 )
 {
@@ -1204,12 +1172,10 @@ if ( (double)(180 * (v118 < 200.0) + 120) < v117 && selector_random_roll(0x3E8u)
 v81 = *(_DWORD *)CPU_FIELD(368);
 v82 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1728) = 2;
-v129 = (*(float *)(v81 + 236) - *(float *)CPU_FIELD(236)) * (double)v82;
-v116 = v129;
-v130 = *(float *)(v81 + 240) - *(float *)CPU_FIELD(240);
-atan2_degrees(v130, v116);
 *(_DWORD *)CPU_FIELD(1716) = 0;
-*(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)v130 >= 30;
+float angle_x_81 = (float)((*(float *)(v81 + 236) - *(float *)CPU_FIELD(236)) * (double)v82);
+*(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)atan2_degrees(
+    *(float *)(v81 + 240) - *(float *)CPU_FIELD(240), angle_x_81) >= 30;
 }
 if ( v117 > 250.0 && v118 < 200.0 && selector_random_roll(0x3E8u) < 0x14 )
 {
