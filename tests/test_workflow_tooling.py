@@ -264,7 +264,11 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_multichunk_function_byte_ownership_is_pinned(self) -> None:
         with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
             functions = {int(row["address"], 0): row for row in csv.DictReader(stream)}
-        ownership = self.byte_ownership.load(functions, require_bytes=True)
+        ownership = self.byte_ownership.load(functions)
+        if (ROOT / "resources" / "th105.exe").is_file():
+            self.assertEqual(
+                self.byte_ownership.load(functions, require_bytes=True), ownership
+            )
         self.assertEqual(set(ownership), {0x004CADB0})
         sakuya = ownership[0x004CADB0]
         self.assertEqual(sakuya["main_size"], 41_511)

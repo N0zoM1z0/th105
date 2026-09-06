@@ -24,6 +24,10 @@ seeds using current-target-backed structural remapping where appropriate.
   and replayed **1,259/1,259 accepted functions exact**; mixed units compare only
   addresses actually accepted by `matches.csv`, so intentional probes cannot
   invalidate or masquerade as aggregate exact evidence.
+  The first GitHub run also exposed a pre-existing public-runner defect: the
+  multichunk ownership test unconditionally opened the intentionally untracked
+  target executable. It now always validates the public topology/ledger and
+  conditionally upgrades to byte-hash attestation when the private target exists.
   The same cleanup adds the missing reproducible origin rule for shared Fighter
   action root `0x004740C0` and materializes exact battle roots `0x00426BB0` and
   `0x00426DF0`, so `function-origins.py --check` no longer depends on manual CSV
