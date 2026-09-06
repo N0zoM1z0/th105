@@ -343,7 +343,25 @@ v16 = 960.0;
 switch ( *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) )
 {
 case 0xC8:
-goto LABEL_93;
+v17 = v16;
+if ( (*(float *)CPU_FIELD(236) <= v16 || *(_BYTE *)CPU_FIELD(260) != 1)
+&& (*(float *)CPU_FIELD(236) >= 300.0 || *(_BYTE *)CPU_FIELD(260) != 0xFF) )
+{
+if ( *(float *)CPU_FIELD(236) > v17 && *(_BYTE *)CPU_FIELD(260) == 1 )
+goto LABEL_435;
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_350;
+}
+v18 = *(_DWORD *)CPU_FIELD(384) == 1;
+if ( !v18 )
+{
+if ( *(float *)CPU_FIELD(236) > v17 && *(_BYTE *)CPU_FIELD(260) == 1 )
+goto LABEL_435;
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_350;
+}
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_350;
 case 0xC9:
 goto LABEL_100;
 case 0xCA:
@@ -1037,6 +1055,7 @@ if ( v59 >= 95 && v59 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
 v65 = *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211;
 goto LABEL_434;
 }
+break;
 case 0x19A:
 case 0x19C:
 v66 = *(_DWORD *)CPU_FIELD(384);
@@ -1191,82 +1210,12 @@ goto LABEL_523;
 v64 = *(_WORD *)(v63 + 316);
 if ( v64 > 95 && v64 < 140 )
 goto LABEL_523;
-if ( 0.0 != *(float *)CPU_FIELD(240) )
+if ( 0.0 == *(float *)CPU_FIELD(240) )
 {
-if ( 0.0 == *(float *)(v63 + 240) )
-{
-if ( *(char *)CPU_FIELD(1370) > 0 )
-{
-if ( v117 < 150.0 && selector_random_roll(0x3E8u) < 2 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211 )
-{
-*(_DWORD *)CPU_FIELD(1744) = 2;
-goto LABEL_523;
-}
-if ( v117 > 150.0
-&& v118 < 200.0
-&& selector_random_roll(0x3E8u) < 5
-&& *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 212 )
-{
-*(_DWORD *)CPU_FIELD(1744) = 2;
-goto LABEL_523;
-}
-}
-if ( v117 < 450.0 && v117 > 90.0 && selector_random_roll(0x3E8u) <= 5 && *(__int16 *)CPU_FIELD(1154) >= 600 )
-{
-*(_DWORD *)CPU_FIELD(1832) = 64;
-goto LABEL_523;
-}
-if ( v117 < 450.0
-&& *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) < (double)*(float *)CPU_FIELD(240)
-&& selector_random_roll(0x3E8u) <= 7
-&& *(__int16 *)CPU_FIELD(1154) >= 800 )
-{
-*(_DWORD *)CPU_FIELD(1832) = 2;
-goto LABEL_523;
-}
-if ( (double)(120 * ((*(float *)CPU_FIELD(244) > 0.0) + 1)) >= v117 )
-{
-v76 = *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) > (double)*(float *)CPU_FIELD(240)
-&& *(float *)CPU_FIELD(248) > 0.0;
-if ( (double)(150 * v76 + 100) > v118 && selector_random_roll(0x3E8u) < 0x32 )
-goto LABEL_607;
-}
-if ( v117 > 180.0
-|| *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) >= (double)*(float *)CPU_FIELD(240)
-|| selector_random_roll(0x3E8u) >= 0x4B )
-{
-if ( *(_WORD *)CPU_FIELD(1902) <= *(_WORD *)CPU_FIELD(1154) )
-{
-if ( (double)(180 * (v118 < 200.0) + 120) < v117 && selector_random_roll(0x3E8u) < 0x32 )
-{
-v77 = *(_DWORD *)CPU_FIELD(368);
-v78 = *(char *)CPU_FIELD(260);
-*(_DWORD *)CPU_FIELD(1728) = 2;
-*(_DWORD *)CPU_FIELD(1716) = 0;
-float angle_x_77 = (float)((*(float *)(v77 + 236) - *(float *)CPU_FIELD(236)) * (double)v78);
-*(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)atan2_degrees(
-    *(float *)(v77 + 240) - *(float *)CPU_FIELD(240), angle_x_77) >= 30;
-}
-if ( v117 > 250.0 && v118 < 200.0 && selector_random_roll(0x3E8u) < 0x14 )
-{
-*(_DWORD *)CPU_FIELD(1732) = 2;
-*(_DWORD *)CPU_FIELD(1720) = 0;
-*(_DWORD *)CPU_FIELD(1716) = 0;
-}
-if ( v117 < 300.0
-&& v118 > 200.0
-&& *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) < (double)*(float *)CPU_FIELD(240)
-&& selector_random_roll(0x3E8u) < 0x19 )
-{
-*(_DWORD *)CPU_FIELD(1732) = 2;
-*(_DWORD *)CPU_FIELD(1720) = 1;
-*(_DWORD *)CPU_FIELD(1716) = 0;
-}
-}
-goto LABEL_523;
-}
 }
 else
+{
+if ( *(float *)(v63 + 240) != 0.0f )
 {
 if ( *(char *)CPU_FIELD(1370) > 0 )
 {
@@ -1341,6 +1290,79 @@ v80 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1724) = 2;
 *(_DWORD *)CPU_FIELD(1716) = v80;
 *(_DWORD *)CPU_FIELD(1720) = 0;
+}
+goto LABEL_523;
+}
+}
+else
+{
+if ( *(char *)CPU_FIELD(1370) > 0 )
+{
+if ( v117 < 150.0 && selector_random_roll(0x3E8u) < 2 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211 )
+{
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_523;
+}
+if ( v117 > 150.0
+&& v118 < 200.0
+&& selector_random_roll(0x3E8u) < 5
+&& *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 212 )
+{
+*(_DWORD *)CPU_FIELD(1744) = 2;
+goto LABEL_523;
+}
+}
+if ( v117 < 450.0 && v117 > 90.0 && selector_random_roll(0x3E8u) <= 5 && *(__int16 *)CPU_FIELD(1154) >= 600 )
+{
+*(_DWORD *)CPU_FIELD(1832) = 64;
+goto LABEL_523;
+}
+if ( v117 < 450.0
+&& *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) < (double)*(float *)CPU_FIELD(240)
+&& selector_random_roll(0x3E8u) <= 7
+&& *(__int16 *)CPU_FIELD(1154) >= 800 )
+{
+*(_DWORD *)CPU_FIELD(1832) = 2;
+goto LABEL_523;
+}
+if ( (double)(120 * ((*(float *)CPU_FIELD(244) > 0.0) + 1)) >= v117 )
+{
+v76 = *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) > (double)*(float *)CPU_FIELD(240)
+&& *(float *)CPU_FIELD(248) > 0.0;
+if ( (double)(150 * v76 + 100) > v118 && selector_random_roll(0x3E8u) < 0x32 )
+goto LABEL_607;
+}
+if ( v117 > 180.0
+|| *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) >= (double)*(float *)CPU_FIELD(240)
+|| selector_random_roll(0x3E8u) >= 0x4B )
+{
+if ( *(_WORD *)CPU_FIELD(1902) <= *(_WORD *)CPU_FIELD(1154) )
+{
+if ( (double)(180 * (v118 < 200.0) + 120) < v117 && selector_random_roll(0x3E8u) < 0x32 )
+{
+v77 = *(_DWORD *)CPU_FIELD(368);
+v78 = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1728) = 2;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+float angle_x_77 = (float)((*(float *)(v77 + 236) - *(float *)CPU_FIELD(236)) * (double)v78);
+*(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)atan2_degrees(
+    *(float *)(v77 + 240) - *(float *)CPU_FIELD(240), angle_x_77) >= 30;
+}
+if ( v117 > 250.0 && v118 < 200.0 && selector_random_roll(0x3E8u) < 0x14 )
+{
+*(_DWORD *)CPU_FIELD(1732) = 2;
+*(_DWORD *)CPU_FIELD(1720) = 0;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+}
+if ( v117 < 300.0
+&& v118 > 200.0
+&& *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) < (double)*(float *)CPU_FIELD(240)
+&& selector_random_roll(0x3E8u) < 0x19 )
+{
+*(_DWORD *)CPU_FIELD(1732) = 2;
+*(_DWORD *)CPU_FIELD(1720) = 1;
+*(_DWORD *)CPU_FIELD(1716) = 0;
+}
 }
 goto LABEL_523;
 }
