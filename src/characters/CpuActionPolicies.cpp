@@ -115,7 +115,6 @@ char v102; // al
 int v103; // edx
 int v104; // ecx
 __int16 v105; // ax
-bool v106; // zf
 char v107; // al
 int v108; // ecx
 __int16 v109; // ax
@@ -2148,20 +2147,24 @@ LABEL_960:
 }
 return;
 case 1:
-v101 = *(_WORD *)CPU_FIELD(1896) <= 0;
+v101 = *(__int16 *)CPU_FIELD(1896) <= 0;
 *(_DWORD *)CPU_FIELD(1716) = 1;
 if ( v101 )
-goto LABEL_994;
+{
+*(_WORD *)CPU_FIELD(1894) = 0;
+if ( selector_random_roll(0x64u) <= 0xA )
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x3Cu);
+}
 return;
 case 2:
-v101 = *(_WORD *)CPU_FIELD(1896) <= 0;
+v101 = *(__int16 *)CPU_FIELD(1896) <= 0;
 *(_DWORD *)CPU_FIELD(1716) = -1;
 if ( v101 )
 {
 LABEL_994:
 *(_WORD *)CPU_FIELD(1894) = 0;
-v101 = selector_random_roll(0x64u) <= 0xA;
-goto LABEL_1024;
+if ( selector_random_roll(0x64u) <= 0xA )
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x3Cu);
 }
 return;
 case 3:
@@ -2198,8 +2201,9 @@ v105 = *(_WORD *)CPU_FIELD(316);
 *(_DWORD *)CPU_FIELD(1828) = v103 + 1;
 if ( v105 == 200 )
 goto LABEL_1022;
-v106 = v105 == 202;
-goto LABEL_1007;
+if ( v105 == 202 )
+goto LABEL_1022;
+goto LABEL_1008;
 case 0xA:
 v107 = *(_BYTE *)CPU_FIELD(260);
 v108 = -v107;
@@ -2210,11 +2214,9 @@ v109 = *(_WORD *)CPU_FIELD(316);
 *(_DWORD *)CPU_FIELD(1828) = !v18 + 1;
 if ( v109 == 201 )
 goto LABEL_1022;
-v106 = v109 == 203;
-LABEL_1007:
-if ( !v106 )
-goto LABEL_1008;
+if ( v109 == 203 )
 goto LABEL_1022;
+goto LABEL_1008;
 case 0xB:
 *(_DWORD *)CPU_FIELD(1716) = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1720) = -1;
@@ -2258,9 +2260,9 @@ if ( *(__int16 *)CPU_FIELD(1896) <= 0 )
 {
 LABEL_1023:
 *(_WORD *)CPU_FIELD(1894) = 0;
-v101 = selector_random_roll(0x64u) <= 0x64;
-LABEL_1024:
-if ( v101 )
+if ( selector_random_roll(0x64u) > 0x64 )
+return;
+goto LABEL_1025;
 LABEL_1025:
 *(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x3Cu);
 }
@@ -2276,13 +2278,18 @@ v110 = *(_BYTE *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1716) = v110;
 *(_DWORD *)CPU_FIELD(1720) = 0;
 *(_DWORD *)CPU_FIELD(1724) = 0;
-v101 = *(_WORD *)CPU_FIELD(1896) <= 0;
+v101 = *(__int16 *)CPU_FIELD(1896) <= 0;
 *(_DWORD *)CPU_FIELD(1828) = (v110 != 1) + 1;
 *(_DWORD *)CPU_FIELD(1728) = 0;
 *(_DWORD *)CPU_FIELD(1732) = 0;
 *(_DWORD *)CPU_FIELD(1736) = 0;
 if ( v101 )
-goto LABEL_1023;
+{
+*(_WORD *)CPU_FIELD(1894) = 0;
+if ( selector_random_roll(0x64u) <= 0x64 )
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x3Cu);
+return;
+}
 if ( *(_WORD *)CPU_FIELD(316) == 200 && v117 < 220.0 )
 *(_DWORD *)CPU_FIELD(1724) = 2;
 return;

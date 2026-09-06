@@ -172,6 +172,55 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertIn(
             "if ( v84 >= 45 && v84 <= 49 )\ngoto LABEL_658;", text
         )
+        self.assertEqual(
+            text.count("v101 = *(__int16 *)CPU_FIELD(1896) <= 0;"), 3
+        )
+        self.assertNotIn("v101 = *(_WORD *)CPU_FIELD(1896) <= 0;", text)
+        self.assertNotIn("v106 = v105 == 202;", text)
+        self.assertNotIn("v106 = v109 == 203;", text)
+        self.assertNotIn("bool v106;", text)
+        self.assertNotIn("LABEL_1024:", text)
+        self.assertEqual(text.count("if ( selector_random_roll(0x64u) <= 0xA )"), 2)
+        self.assertIn(
+            "case 1:\nv101 = *(__int16 *)CPU_FIELD(1896) <= 0;\n"
+            "*(_DWORD *)CPU_FIELD(1716) = 1;\nif ( v101 )\n{\n"
+            "*(_WORD *)CPU_FIELD(1894) = 0;\n"
+            "if ( selector_random_roll(0x64u) <= 0xA )\n"
+            "*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x3Cu);\n}\n"
+            "return;",
+            text,
+        )
+        self.assertIn(
+            "LABEL_994:\n*(_WORD *)CPU_FIELD(1894) = 0;\n"
+            "if ( selector_random_roll(0x64u) <= 0xA )\n"
+            "*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x3Cu);",
+            text,
+        )
+        self.assertIn(
+            "if ( v105 == 202 )\ngoto LABEL_1022;\ngoto LABEL_1008;",
+            text,
+        )
+        self.assertIn(
+            "if ( v109 == 203 )\ngoto LABEL_1022;\ngoto LABEL_1008;",
+            text,
+        )
+        self.assertIn(
+            "LABEL_1023:\n*(_WORD *)CPU_FIELD(1894) = 0;\n"
+            "if ( selector_random_roll(0x64u) > 0x64 )\nreturn;\n"
+            "goto LABEL_1025;\nLABEL_1025:\n"
+            "*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x3Cu);",
+            text,
+        )
+        self.assertIn(
+            "case 0x64:\nv110 = *(_BYTE *)CPU_FIELD(260);", text
+        )
+        self.assertIn(
+            "if ( v101 )\n{\n*(_WORD *)CPU_FIELD(1894) = 0;\n"
+            "if ( selector_random_roll(0x64u) <= 0x64 )\n"
+            "*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x3Cu);\n"
+            "return;\n}\nif ( *(_WORD *)CPU_FIELD(316) == 200",
+            text,
+        )
 
 
     def test_giant_action_switch_manifest_tracks_alice_root(self) -> None:
