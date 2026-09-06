@@ -160,6 +160,12 @@ void SecondaryAnimationRenderRuntimeView::update_secondary()
     SecondaryAnimationPoint normalize_source2;
     SecondaryAnimationPoint normalize_source3;
     SecondaryAnimationPoint normalize_source4;
+    SecondaryAnimationPoint shared_previous;
+    SecondaryAnimationPoint shared_center;
+    SecondaryAnimationPoint shared_tangent_a;
+    SecondaryAnimationPoint shared_tangent_b;
+    SecondaryAnimationPoint *shared_point1;
+    SecondaryAnimationPoint *point0;
     switch (source_points_28.size()) {
     case 0:
         return;
@@ -171,7 +177,7 @@ void SecondaryAnimationRenderRuntimeView::update_secondary()
         return;
 
     case 2: {
-        SecondaryAnimationPoint *point0 = &source_points_28[0];
+        point0 = &source_points_28[0];
         SecondaryAnimationPoint *point1 = &source_points_28[1];
         float normal_source_x = source_points_28[0].y - source_points_28[1].y;
         float normal_source_y = source_points_28[1].x - source_points_28[0].x;
@@ -182,130 +188,130 @@ void SecondaryAnimationRenderRuntimeView::update_secondary()
         points_3c[0] += normal * half_width_10;
         points_3c[1] -= normal * half_width_10;
 
-        SecondaryAnimationPoint previous(0.0f, 0.0f);
-        SecondaryAnimationPoint end_tangent = previous;
-        previous = *point1;
+        shared_previous.x = 0.0f;
+        shared_previous.y = 0.0f;
+        shared_tangent_a = shared_previous;
+        shared_previous = *point1;
         for (int index = band_count_08 - 1; index >= 0; --index) {
-            SecondaryAnimationPoint center;
+
             D3DXVec2Hermite(
-                &center,
+                &shared_center,
                 point0,
                 &zero,
                 point1,
-                &end_tangent,
+                &shared_tangent_a,
                 static_cast<float>(index) / band_count_08);
-            normalize_source1.x = previous.y - center.y;
-            normalize_source1.y = center.x - previous.x;
+            normalize_source1.x = shared_previous.y - shared_center.y;
+            normalize_source1.y = shared_center.x - shared_previous.x;
             D3DXVec2Normalize(&normal, &normalize_source1);
             normal *= half_width_10;
-            points_3c.push_back(center + normal);
-            points_3c.push_back(center - normal);
-            previous = center;
+            points_3c.push_back(shared_center + normal);
+            points_3c.push_back(shared_center - normal);
+            shared_previous = shared_center;
         }
         return;
     }
 
     case 3: {
-        SecondaryAnimationPoint *point0 = &source_points_28[0];
-        SecondaryAnimationPoint *point1 = &source_points_28[1];
+        point0 = &source_points_28[0];
+        shared_point1 = &source_points_28[1];
         SecondaryAnimationPoint *point2 = &source_points_28[2];
-        SecondaryAnimationPoint tangent;
-        tangent = source_points_28[2] - source_points_28[0];
+        shared_tangent_a = source_points_28[2] - source_points_28[0];
+
+        shared_previous.x = 0.0f;
+        shared_previous.y = 0.0f;
+        shared_tangent_b = shared_previous;
 
         points_3c.erase(
             points_3c.begin(),
             points_3c.begin() + 2 * band_count_08);
 
-        SecondaryAnimationPoint previous(0.0f, 0.0f);
-        SecondaryAnimationPoint end_tangent = previous;
-        previous = *point2;
+        shared_previous = *point2;
         for (int index = band_count_08 - 1; index >= 0; --index) {
-            SecondaryAnimationPoint center;
+
             D3DXVec2Hermite(
-                &center,
-                point1,
-                &tangent,
+                &shared_center,
+                shared_point1,
+                &shared_tangent_a,
                 point2,
-                &end_tangent,
+                &shared_tangent_b,
                 static_cast<float>(index) / band_count_08);
-            normalize_source2.x = previous.y - center.y;
-            normalize_source2.y = center.x - previous.x;
+            normalize_source2.x = shared_previous.y - shared_center.y;
+            normalize_source2.y = shared_center.x - shared_previous.x;
             D3DXVec2Normalize(&normal, &normalize_source2);
             normal *= half_width_10;
-            points_3c.push_back(center + normal);
-            points_3c.push_back(center - normal);
-            previous = center;
+            points_3c.push_back(shared_center + normal);
+            points_3c.push_back(shared_center - normal);
+            shared_previous = shared_center;
         }
 
         for (int index = band_count_08 - 1; index >= 0; --index) {
-            SecondaryAnimationPoint center;
+
             D3DXVec2Hermite(
-                &center,
+                &shared_center,
                 point0,
                 &zero,
-                point1,
-                &tangent,
+                shared_point1,
+                &shared_tangent_a,
                 static_cast<float>(index) / band_count_08);
-            normalize_source3.x = previous.y - center.y;
-            normalize_source3.y = center.x - previous.x;
+            normalize_source3.x = shared_previous.y - shared_center.y;
+            normalize_source3.y = shared_center.x - shared_previous.x;
             D3DXVec2Normalize(&normal, &normalize_source3);
             normal *= half_width_10;
-            points_3c.push_back(center + normal);
-            points_3c.push_back(center - normal);
-            previous = center;
+            points_3c.push_back(shared_center + normal);
+            points_3c.push_back(shared_center - normal);
+            shared_previous = shared_center;
         }
         return;
     }
 
     default: {
-        SecondaryAnimationPoint *point0 = &source_points_28[0];
-        SecondaryAnimationPoint *point1 = &source_points_28[1];
+        point0 = &source_points_28[0];
+        shared_point1 = &source_points_28[1];
         SecondaryAnimationPoint *point2 = &source_points_28[2];
-        SecondaryAnimationPoint tangent1;
-        tangent1 = source_points_28[2] - source_points_28[0];
-        SecondaryAnimationPoint tangent2;
-        tangent2 = source_points_28[3] - source_points_28[1];
+        shared_tangent_a = source_points_28[2] - source_points_28[0];
+        shared_tangent_b = source_points_28[3] - source_points_28[1];
 
         points_3c.erase(
             points_3c.begin(),
             points_3c.begin() + 2 * band_count_08);
 
-        SecondaryAnimationPoint previous = *point2;
+        shared_previous = *point2;
         for (int index = band_count_08 - 1; index >= 0; --index) {
-            SecondaryAnimationPoint center;
+
             D3DXVec2Hermite(
-                &center,
-                point1,
-                &tangent1,
+                &shared_center,
+                shared_point1,
+                &shared_tangent_a,
                 point2,
-                &tangent2,
+                &shared_tangent_b,
                 static_cast<float>(index) / band_count_08);
-            normalize_source4.x = previous.y - center.y;
-            normalize_source4.y = center.x - previous.x;
+            normalize_source4.x = shared_previous.y - shared_center.y;
+            normalize_source4.y = shared_center.x - shared_previous.x;
             D3DXVec2Normalize(&normal, &normalize_source4);
             normal *= half_width_10;
-            points_3c.push_back(center + normal);
-            points_3c.push_back(center - normal);
-            previous = center;
+            points_3c.push_back(shared_center + normal);
+            points_3c.push_back(shared_center - normal);
+            shared_previous = shared_center;
         }
 
         for (int index = band_count_08 - 1; index >= 0; --index) {
-            SecondaryAnimationPoint center;
+
             D3DXVec2Hermite(
-                &center,
+                &shared_center,
                 point0,
                 &zero,
-                point1,
-                &tangent1,
+                shared_point1,
+                &shared_tangent_a,
                 static_cast<float>(index) / band_count_08);
-            SecondaryAnimationPoint perpendicular_source(
-                previous.y - center.y,
-                center.x - previous.x);
+            SecondaryAnimationPoint perpendicular_source;
+            perpendicular_source.x = shared_previous.y - shared_center.y;
+            perpendicular_source.y = shared_center.x - shared_previous.x;
             D3DXVec2Normalize(&normal, &perpendicular_source);
             normal *= half_width_10;
-            points_3c.push_back(center + normal);
-            points_3c.push_back(center - normal);
-            previous = center;
+            points_3c.push_back(shared_center + normal);
+            points_3c.push_back(shared_center - normal);
+            shared_previous = shared_center;
         }
         return;
     }
