@@ -155,17 +155,22 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(text.count("goto LABEL_654;"), 0)
         self.assertEqual(text.count("goto LABEL_860;"), 1)
         self.assertEqual(text.count("goto LABEL_658;"), 1)
-        for predicate in [
-            "v84 >= 12 && v84 <= 14",
-            "v84 >= 18 && v84 <= 24",
-            "v84 >= 12 && v84 <= 15",
-            "v84 >= 30 && v84 <= 39",
-            "v84 >= 40 && v84 <= 49",
-        ]:
+        signed_guard_labels = [
+            1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 13, 14, 17, 18, 19, 20, 21, 22, 24, 25, 26
+        ]
+        for label in signed_guard_labels:
+            self.assertEqual(text.count(f"LABEL_SIGNED_RANGE_{label:02d}:"), 1)
+        for rejected_label in [8, 12, 15, 16, 23]:
+            self.assertNotIn(f"LABEL_SIGNED_RANGE_{rejected_label:02d}:", text)
+        self.assertIn(
+            "if ( v84 >= 30 && v84 <= 39 )\n{\n"
+            "*(_WORD *)CPU_FIELD(1894) = 3;\nreturn;\n}", text)
+        for low, high, label in [(40, 49, 11), (12, 14, 17), (18, 24, 19), (12, 15, 24)]:
             self.assertIn(
-                f"if ( {predicate} )\n{{\n*(_WORD *)CPU_FIELD(1894) = 3;\nreturn;\n}}",
-                text,
-            )
+                f"if ( v84 < {low} )\ngoto LABEL_SIGNED_RANGE_{label:02d};\n"
+                f"if ( v84 > {high} )\ngoto LABEL_SIGNED_RANGE_{label:02d};\n{{\n"
+                "*(_WORD *)CPU_FIELD(1894) = 3;\nreturn;\n}\n"
+                f"LABEL_SIGNED_RANGE_{label:02d}:", text)
         self.assertIn(
             "if ( v84 >= 20 && v84 <= 29 )\ngoto LABEL_860;", text
         )
