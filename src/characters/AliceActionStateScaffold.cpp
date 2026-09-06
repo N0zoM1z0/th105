@@ -30,12 +30,15 @@ public:
     unsigned char resolve_stage_surface_landing_transition();
     unsigned char advance_frame_and_dispatch();
     int has_crossed_stage_surface_while_descending();
+    unsigned char try_dispatch_directional_action_208_210(int mode);
+    void dispatch_indexed_event_member(unsigned int event_code);
+    void emit_fighter_effect_433cc0(int effect_id, float x, float y, int facing, int arg5);
     void zero_velocity_acceleration();
 
-    bool try_dispatch_verified_shared_low_action(int action);
+    bool try_dispatch_verified_action(int action);
 };
 
-bool AliceActionStateLowScaffoldView::try_dispatch_verified_shared_low_action(int action)
+bool AliceActionStateLowScaffoldView::try_dispatch_verified_action(int action)
 {
     unsigned char *raw = reinterpret_cast<unsigned char *>(this);
     float adjusted;
@@ -291,6 +294,86 @@ bool AliceActionStateLowScaffoldView::try_dispatch_verified_shared_low_action(in
         if (advance_frame_and_dispatch())
             set_action(0);
         return true;
+
+    case 306:
+        *reinterpret_cast<float *>(raw + 248) =
+            *reinterpret_cast<float *>(raw + 248) - *reinterpret_cast<float *>(raw + 256);
+        if (has_crossed_stage_surface_while_descending()) {
+            set_action(10);
+            *reinterpret_cast<float *>(raw + 240) = alice_stage_surface_height_at_x(this);
+            zero_velocity_acceleration();
+            return true;
+        }
+        if (advance_frame_and_dispatch())
+            set_action(9);
+        if (!*reinterpret_cast<_WORD *>(raw + 322) && *reinterpret_cast<_WORD *>(raw + 320) == 4)
+            dispatch_indexed_event_member(0x1Bu);
+        return true;
+
+    case 321:
+        resolve_stage_surface_landing_transition();
+        if (!try_dispatch_directional_action_208_210(1)) {
+            if (*reinterpret_cast<__int16 *>(raw + 320) > 3) {
+                adjusted = static_cast<float>(*reinterpret_cast<float *>(raw + 244) - 0.5);
+                *reinterpret_cast<float *>(raw + 244) = adjusted;
+                if (adjusted < 0.0f)
+                    *reinterpret_cast<float *>(raw + 244) = 0.0f;
+            }
+            if (advance_frame_and_dispatch())
+                set_action(0);
+            if (!*reinterpret_cast<_WORD *>(raw + 322) && *reinterpret_cast<_WORD *>(raw + 320) == 3) {
+                dispatch_indexed_event_member(0x1Cu);
+                *reinterpret_cast<float *>(raw + 244) = 7.5f;
+                *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+            }
+        }
+        return true;
+
+    case 409:
+        *reinterpret_cast<float *>(raw + 248) =
+            *reinterpret_cast<float *>(raw + 248) - *reinterpret_cast<float *>(raw + 256);
+        if (has_crossed_stage_surface_while_descending()) {
+            set_action(10);
+            zero_velocity_acceleration();
+            *reinterpret_cast<float *>(raw + 240) = alice_stage_surface_height_at_x(this);
+            return true;
+        }
+        if (!advance_frame_and_dispatch())
+            return true;
+        set_action(9);
+        return true;
+
+    case 695: {
+        float effect_y0;
+        float effect_y1;
+        float effect_y2;
+        float effect_y3;
+        int facing;
+
+        resolve_stage_surface_landing_transition();
+        if (advance_frame_and_dispatch())
+            set_action(0);
+        if (!*reinterpret_cast<_WORD *>(raw + 318)
+            && !*reinterpret_cast<_WORD *>(raw + 322)
+            && *reinterpret_cast<_WORD *>(raw + 320) == 7) {
+            dispatch_indexed_event_member(0x37u);
+            facing = *reinterpret_cast<unsigned char *>(raw + 260);
+            effect_y0 = *reinterpret_cast<float *>(raw + 240) + 100.0f;
+            emit_fighter_effect_433cc0(140, *reinterpret_cast<float *>(raw + 236), effect_y0, facing, 1);
+            effect_y1 = *reinterpret_cast<float *>(raw + 240) + 100.0f;
+            emit_fighter_effect_433cc0(140, *reinterpret_cast<float *>(raw + 236), effect_y1, facing, 1);
+            effect_y2 = *reinterpret_cast<float *>(raw + 240) + 100.0f;
+            emit_fighter_effect_433cc0(140, *reinterpret_cast<float *>(raw + 236), effect_y2, facing, 1);
+            effect_y3 = *reinterpret_cast<float *>(raw + 240) + 100.0f;
+            emit_fighter_effect_433cc0(141, *reinterpret_cast<float *>(raw + 236), effect_y3, facing, -1);
+            emit_fighter_effect_433cc0(142,
+                *reinterpret_cast<float *>(raw + 236),
+                *reinterpret_cast<float *>(raw + 240),
+                facing,
+                -1);
+        }
+        return true;
+    }
 
     default:
         return false;

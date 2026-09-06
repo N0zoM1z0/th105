@@ -80,9 +80,9 @@ expected_unique_destinations = 103
 expected_direct_call_sites = 674
 expected_direct_call_targets = 27
 expected_ret_opcodes = 128
-partial_semantic_scaffold = "src/characters/AliceActionStateLowScaffold.cpp"
+partial_semantic_scaffold = "src/characters/AliceActionStateScaffold.cpp"
 reference_semantic_root = "youmu-vslot28"
-verified_shared_low_cases = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 204, 215]
+verified_semantic_cases = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 204, 215, 306, 321, 409, 695]
 
 [[roots.regions]]
 name = "low"

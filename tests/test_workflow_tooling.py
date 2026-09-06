@@ -114,9 +114,9 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(root["expected_direct_call_sites"], 674)
         self.assertEqual(root["expected_direct_call_targets"], 27)
         self.assertEqual(root["expected_ret_opcodes"], 128)
-        self.assertEqual(root["partial_semantic_scaffold"], "src/characters/AliceActionStateLowScaffold.cpp")
+        self.assertEqual(root["partial_semantic_scaffold"], "src/characters/AliceActionStateScaffold.cpp")
         self.assertEqual(root["reference_semantic_root"], "youmu-vslot28")
-        self.assertEqual(root["verified_shared_low_cases"], [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 204, 215])
+        self.assertEqual(root["verified_semantic_cases"], [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 204, 215, 306, 321, 409, 695])
         regions = {row["name"]: row for row in root["regions"]}
         self.assertEqual((regions["low"]["case_min"], regions["low"]["case_max"], regions["low"]["destination_count"]), (0, 226, 31))
         self.assertEqual((regions["mid"]["case_min"], regions["mid"]["case_max"], regions["mid"]["destination_count"]), (301, 508, 34))
@@ -124,10 +124,10 @@ class WorkflowToolingTests(unittest.TestCase):
 
 
     def test_alice_partial_action_scaffold_stays_off_ledger(self) -> None:
-        scaffold = ROOT / "src" / "characters" / "AliceActionStateLowScaffold.cpp"
+        scaffold = ROOT / "src" / "characters" / "AliceActionStateScaffold.cpp"
         text = scaffold.read_text(encoding="utf-8")
-        self.assertIn("try_dispatch_verified_shared_low_action", text)
-        for case in [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 204, 215]:
+        self.assertIn("try_dispatch_verified_action", text)
+        for case in [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 204, 215, 306, 321, 409, 695]:
             self.assertIn(f"case {case}:", text)
         self.assertNotIn("Alice_dispatch_action_state_vslot28(", text)
 
