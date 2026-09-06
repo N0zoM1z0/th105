@@ -1574,8 +1574,11 @@ if ( v84 < 30 || v84 > 44 )
 LABEL_900:
 if ( v84 >= 45 && v84 <= 54 )
 goto LABEL_901;
-if ( v84 >= 55 && v84 <= 64 )
+if ( v84 < 55 )
+goto LABEL_SIGNED_RANGE_27;
+if ( v84 <= 64 )
 goto LABEL_889;
+LABEL_SIGNED_RANGE_27:
 LABEL_992:
 *(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x28u);
 return;
@@ -1635,7 +1638,9 @@ return;
 LABEL_SIGNED_RANGE_03:
 if ( v84 < 45 || v84 > 54 )
 {
-if ( v84 < 55 || v84 > 64 )
+if ( v84 < 55 )
+goto LABEL_875;
+if ( v84 > 64 )
 goto LABEL_875;
 *(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 1) + 9;
 *(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x14u) + 15;
@@ -1693,8 +1698,9 @@ goto LABEL_SIGNED_RANGE_05;
 if ( v84 > 9 )
 goto LABEL_SIGNED_RANGE_05;
 {
-v93 = *(_BYTE *)CPU_FIELD(260) == 1;
-goto LABEL_982;
+*(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 1) + 9;
+*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu);
+return;
 }
 LABEL_SIGNED_RANGE_05:
 if ( v84 < 45 || v84 > 47 )
@@ -1838,7 +1844,9 @@ goto LABEL_788;
 LABEL_819:
 if ( v84 < 50 || v84 > 69 )
 {
-if ( v84 < 70 || v84 > 74 )
+if ( v84 < 70 )
+goto LABEL_875;
+if ( v84 > 74 )
 goto LABEL_875;
 goto LABEL_889;
 }
@@ -2268,9 +2276,9 @@ goto LABEL_1003;
 case 8:
 *(_DWORD *)CPU_FIELD(1828) = 8;
 LABEL_1003:
-if ( *(float *)CPU_FIELD(240) > 0.0 )
-goto LABEL_1023;
+if ( !(*(float *)CPU_FIELD(240) > 0.0f) )
 return;
+goto LABEL_1023;
 case 9:
 v102 = *(_BYTE *)CPU_FIELD(260);
 v103 = v102 != 1;
