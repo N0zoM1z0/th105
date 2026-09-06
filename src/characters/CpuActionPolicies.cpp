@@ -342,7 +342,7 @@ if ( v14 >= 95 && v14 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
 {
 v15 = 860.0;
 v16 = 960.0;
-switch ( *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) )
+switch ( *(__int16 *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) )
 {
 case 0xC8:
 v17 = v16;
@@ -498,7 +498,7 @@ if ( v26 > 85 || *(__int16 *)CPU_FIELD(1154) < 400 || *(_DWORD *)CPU_FIELD(384) 
 LABEL_156:
 if ( v26 >= 95 && v26 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
 {
-switch ( *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) )
+switch ( *(__int16 *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) )
 {
 case 0xC8:
 case 0xC9:
@@ -832,7 +832,7 @@ if ( v51 >= 95 && v51 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
 {
 v15 = 860.0;
 v16 = 960.0;
-switch ( *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) )
+switch ( *(__int16 *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) )
 {
 case 0xC8:
 LABEL_93:
@@ -1082,7 +1082,7 @@ LABEL_399:
 if ( v67 >= 95 && v67 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
 {
 v17 = 960.0;
-switch ( *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) )
+switch ( *(__int16 *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) )
 {
 case 0xC8:
 if ( *(float *)CPU_FIELD(236) <= 960.0 || *(_BYTE *)CPU_FIELD(260) != 1 )
