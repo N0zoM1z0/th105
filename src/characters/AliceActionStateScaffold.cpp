@@ -21,6 +21,9 @@ class AliceActionStateLowScaffoldView;
 float __fastcall alice_stage_surface_height_at_x(AliceActionStateLowScaffoldView *fighter);
 int __fastcall is_y_at_or_below_stage_surface(void *fighter);
 unsigned int __cdecl mt19937_next_u32(void);
+double __cdecl lookup_orientation_sine_quantized_abs(float phase);
+double __cdecl lookup_orientation_cosine_quantized_abs(float phase);
+struct FighterActionScratchView { void reset(); };
 
 class AliceActionStateLowScaffoldView {
 public:
@@ -746,6 +749,202 @@ bool AliceActionStateLowScaffoldView::try_dispatch_verified_action(int action)
                 1);
         }
         return true;
+
+
+    case 214: {
+        int vertical_input;
+        int horizontal_input;
+        int input_product;
+        int facing;
+        int sequence;
+        short target_angle;
+        short angle_delta;
+        float phase;
+        float magnitude;
+        float velocity_x;
+        float velocity_y;
+        unsigned char *peer;
+
+        if (advance_frame_and_dispatch()) {
+            set_action(9);
+            return true;
+        }
+        if (!*reinterpret_cast<_DWORD *>(raw + 324)) {
+            if (!*reinterpret_cast<_WORD *>(raw + 322)
+                && !*reinterpret_cast<_WORD *>(raw + 320)
+                && *reinterpret_cast<_WORD *>(raw + 318) == 1)
+                dispatch_indexed_event_member(0x1Fu);
+            if (!*reinterpret_cast<_WORD *>(raw + 322)
+                && !*reinterpret_cast<_WORD *>(raw + 320)
+                && *reinterpret_cast<_WORD *>(raw + 318) == 6) {
+                set_action(9);
+                return true;
+            }
+        }
+
+        vertical_input = *reinterpret_cast<int *>(raw + 1720);
+        horizontal_input = *reinterpret_cast<int *>(raw + 1716);
+        facing = *reinterpret_cast<signed char *>(raw + 260);
+        input_product = facing * horizontal_input;
+        if (vertical_input > 0) {
+            if (input_product > 0)
+                *reinterpret_cast<_WORD *>(raw + 1842) = static_cast<_WORD>(-45);
+            else if (input_product < 0)
+                *reinterpret_cast<_WORD *>(raw + 1842) = static_cast<_WORD>(-135);
+            else
+                *reinterpret_cast<_WORD *>(raw + 1842) = static_cast<_WORD>(-90);
+        } else if (vertical_input < 0) {
+            if (input_product > 0)
+                *reinterpret_cast<_WORD *>(raw + 1842) = 45;
+            else if (input_product < 0)
+                *reinterpret_cast<_WORD *>(raw + 1842) = 135;
+            else
+                *reinterpret_cast<_WORD *>(raw + 1842) = 90;
+        } else {
+            if (input_product > 0)
+                *reinterpret_cast<_WORD *>(raw + 1842) = 0;
+            else if (input_product < 0)
+                *reinterpret_cast<_WORD *>(raw + 1842) = 180;
+        }
+
+        sequence = *reinterpret_cast<_WORD *>(raw + 318);
+        if (sequence == 5 || sequence == 6)
+            *reinterpret_cast<float *>(raw + 248) =
+                *reinterpret_cast<float *>(raw + 248) - *reinterpret_cast<float *>(raw + 256);
+
+        if (sequence > 0 && sequence < 5) {
+            ++*reinterpret_cast<_WORD *>(raw + 1846);
+            target_angle = *reinterpret_cast<short *>(raw + 1842);
+            phase = *reinterpret_cast<float *>(raw + 1856);
+            angle_delta = static_cast<short>(target_angle - static_cast<int>(phase));
+            *reinterpret_cast<_WORD *>(raw + 1844) = static_cast<_WORD>(angle_delta);
+            if (angle_delta > 180) {
+                angle_delta = static_cast<short>(angle_delta - 360);
+                *reinterpret_cast<_WORD *>(raw + 1844) = static_cast<_WORD>(angle_delta);
+            }
+            if (angle_delta < -180) {
+                angle_delta = static_cast<short>(angle_delta + 360);
+                *reinterpret_cast<_WORD *>(raw + 1844) = static_cast<_WORD>(angle_delta);
+            }
+
+            if (angle_delta > 0) {
+                phase = static_cast<float>(phase + (*reinterpret_cast<_DWORD *>(raw + 1208) ? 0.5 : 1.5));
+                *reinterpret_cast<float *>(raw + 1856) = phase;
+            }
+            if (angle_delta < 0) {
+                phase = static_cast<float>(phase - (*reinterpret_cast<_DWORD *>(raw + 1208) ? 0.5 : 1.5));
+                *reinterpret_cast<float *>(raw + 1856) = phase;
+            }
+
+            phase = *reinterpret_cast<float *>(raw + 1856);
+            magnitude = *reinterpret_cast<float *>(raw + 1852);
+            velocity_x = static_cast<float>(lookup_orientation_cosine_quantized_abs(phase) * magnitude);
+            *reinterpret_cast<float *>(raw + 244) = velocity_x;
+            velocity_y = static_cast<float>(lookup_orientation_sine_quantized_abs(phase) * magnitude);
+            *reinterpret_cast<float *>(raw + 248) = velocity_y;
+            if (*reinterpret_cast<float *>(raw + 240) > 680.0f && velocity_y > 0.0f)
+                *reinterpret_cast<float *>(raw + 248) = 0.0f;
+
+            magnitude = static_cast<float>(magnitude + 0.30000001192092896);
+            *reinterpret_cast<float *>(raw + 1852) = magnitude;
+            if (magnitude > 12.0f)
+                *reinterpret_cast<float *>(raw + 1852) = 12.0f;
+
+            if (*reinterpret_cast<_DWORD *>(raw + 1208))
+                adjust_counter_482(10, 1);
+            else
+                adjust_counter_482(5, 1);
+
+            *reinterpret_cast<float *>(raw + 300) = -phase;
+            if (*reinterpret_cast<float *>(raw + 244) < 0.0f)
+                *reinterpret_cast<float *>(raw + 300) = static_cast<float>(180.0 - phase);
+
+            velocity_x = *reinterpret_cast<float *>(raw + 244);
+            sequence = *reinterpret_cast<_WORD *>(raw + 318);
+            if (velocity_x < 0.0f && sequence == 1)
+                set_sequence(3);
+            if (velocity_x >= 0.0f && sequence == 3)
+                set_sequence(1);
+            if (velocity_x < 0.0f && sequence == 2)
+                set_sequence(4);
+            if (velocity_x >= 0.0f && sequence == 4)
+                set_sequence(2);
+
+            if (*reinterpret_cast<int *>(raw + 324) % 5 == 1) {
+                facing = *reinterpret_cast<unsigned char *>(raw + 260);
+                emit_fighter_effect_433cc0(
+                    125,
+                    static_cast<float>(lookup_orientation_cosine_quantized_abs(phase)
+                        * 100.0 * static_cast<signed char>(facing)
+                        + *reinterpret_cast<float *>(raw + 236)),
+                    static_cast<float>(lookup_orientation_sine_quantized_abs(phase)
+                        * 100.0 + *reinterpret_cast<float *>(raw + 240) + 100.0),
+                    facing,
+                    1);
+            }
+        }
+
+        if ((*reinterpret_cast<_DWORD *>(raw + 1736)
+                || *reinterpret_cast<short *>(raw + 1846) <= 10)
+            && *reinterpret_cast<short *>(raw + 1154) > 0) {
+            if (has_crossed_stage_surface_while_descending()) {
+                *reinterpret_cast<float *>(raw + 240) = alice_stage_surface_height_at_x(this);
+                *reinterpret_cast<float *>(raw + 256) = 0.0f;
+                *reinterpret_cast<float *>(raw + 248) = 0.0f;
+                if (*reinterpret_cast<short *>(raw + 318) >= 5) {
+                    set_action(10);
+                    zero_velocity_acceleration();
+                } else {
+                    reinterpret_cast<FighterActionScratchView *>(raw + 4)->reset();
+                    set_action(215);
+                }
+            }
+            return true;
+        }
+
+        reinterpret_cast<FighterActionScratchView *>(raw + 4)->reset();
+        sequence = *reinterpret_cast<_WORD *>(raw + 318);
+        peer = reinterpret_cast<unsigned char *>(*reinterpret_cast<_DWORD *>(raw + 368));
+        if (sequence == 1 || sequence == 2) {
+            facing = *reinterpret_cast<signed char *>(raw + 260);
+            if (facing == 1) {
+                if (*reinterpret_cast<float *>(peer + 236) < *reinterpret_cast<float *>(raw + 236)) {
+                    *reinterpret_cast<signed char *>(raw + 260) = -1;
+                    *reinterpret_cast<float *>(raw + 244) = -*reinterpret_cast<float *>(raw + 244);
+                    set_sequence(6);
+                } else {
+                    set_sequence(5);
+                }
+            } else if (*reinterpret_cast<float *>(peer + 236) > *reinterpret_cast<float *>(raw + 236)) {
+                *reinterpret_cast<signed char *>(raw + 260) = static_cast<signed char>(-facing);
+                *reinterpret_cast<float *>(raw + 244) = -*reinterpret_cast<float *>(raw + 244);
+                set_sequence(6);
+            } else {
+                set_sequence(5);
+            }
+        }
+
+        sequence = *reinterpret_cast<_WORD *>(raw + 318);
+        if (sequence == 3 || sequence == 4) {
+            facing = *reinterpret_cast<signed char *>(raw + 260);
+            if (facing == 1) {
+                if (*reinterpret_cast<float *>(peer + 236) < *reinterpret_cast<float *>(raw + 236)) {
+                    *reinterpret_cast<signed char *>(raw + 260) = -1;
+                    *reinterpret_cast<float *>(raw + 244) = -*reinterpret_cast<float *>(raw + 244);
+                    set_sequence(5);
+                } else {
+                    set_sequence(6);
+                }
+            } else if (*reinterpret_cast<float *>(peer + 236) > *reinterpret_cast<float *>(raw + 236)) {
+                *reinterpret_cast<signed char *>(raw + 260) = static_cast<signed char>(-facing);
+                *reinterpret_cast<float *>(raw + 244) = -*reinterpret_cast<float *>(raw + 244);
+                set_sequence(5);
+            } else {
+                set_sequence(6);
+            }
+        }
+        return true;
+    }
 
     case 215:
         resolve_stage_surface_landing_transition();

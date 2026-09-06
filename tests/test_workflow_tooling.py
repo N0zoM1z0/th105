@@ -116,7 +116,7 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(root["expected_ret_opcodes"], 128)
         self.assertEqual(root["partial_semantic_scaffold"], "src/characters/AliceActionStateScaffold.cpp")
         self.assertEqual(root["reference_semantic_root"], "youmu-vslot28")
-        self.assertEqual(root["verified_semantic_cases"], [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 197, 198, 199, 200, 201, 202, 203, 204, 208, 209, 210, 211, 212, 215, 220, 221, 222, 223, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 320, 321, 322, 408, 409, 411, 412, 695, 696])
+        self.assertEqual(root["verified_semantic_cases"], [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 197, 198, 199, 200, 201, 202, 203, 204, 208, 209, 210, 211, 212, 214, 215, 220, 221, 222, 223, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 320, 321, 322, 408, 409, 411, 412, 695, 696])
         regions = {row["name"]: row for row in root["regions"]}
         self.assertEqual((regions["low"]["case_min"], regions["low"]["case_max"], regions["low"]["destination_count"]), (0, 226, 31))
         self.assertEqual((regions["mid"]["case_min"], regions["mid"]["case_max"], regions["mid"]["destination_count"]), (301, 508, 34))
@@ -127,7 +127,7 @@ class WorkflowToolingTests(unittest.TestCase):
         scaffold = ROOT / "src" / "characters" / "AliceActionStateScaffold.cpp"
         text = scaffold.read_text(encoding="utf-8")
         self.assertIn("try_dispatch_verified_action", text)
-        for case in [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 197, 198, 199, 200, 201, 202, 203, 204, 208, 209, 210, 211, 212, 215, 220, 221, 222, 223, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 320, 321, 322, 408, 409, 411, 412, 695, 696]:
+        for case in [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 197, 198, 199, 200, 201, 202, 203, 204, 208, 209, 210, 211, 212, 214, 215, 220, 221, 222, 223, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 320, 321, 322, 408, 409, 411, 412, 695, 696]:
             self.assertIn(f"case {case}:", text)
         for snippet in [
             "-10.0 - 13.0 * spawn_index",
@@ -154,6 +154,11 @@ class WorkflowToolingTests(unittest.TestCase):
             "*reinterpret_cast<float *>(raw + 244) = 9.0f",
             "*reinterpret_cast<float *>(raw + 244) = -9.0f",
             "counter >= 13",
+            "0.30000001192092896",
+            "magnitude > 12.0f",
+            "adjust_counter_482(10, 1)",
+            "adjust_counter_482(5, 1)",
+            "set_action(215)",
         ]:
             self.assertIn(snippet, text)
         self.assertNotIn("Alice_dispatch_action_state_vslot28(", text)
