@@ -299,6 +299,27 @@ bool AliceActionStateLowScaffoldView::try_dispatch_verified_action(int action)
             set_action(0);
         return true;
 
+
+    case 300:
+        resolve_stage_surface_landing_transition();
+        if (try_dispatch_directional_action_208_210(0))
+            return true;
+        if (*reinterpret_cast<_BYTE *>(raw + 1150)) {
+            adjusted = static_cast<float>(*reinterpret_cast<float *>(raw + 244) - 0.5);
+            *reinterpret_cast<float *>(raw + 244) = adjusted;
+            if (adjusted < 0.0f) {
+                *reinterpret_cast<float *>(raw + 244) = 0.0f;
+                *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+            }
+        }
+        if (advance_frame_and_dispatch())
+            set_action(0);
+        if (!*reinterpret_cast<_WORD *>(raw + 322) && *reinterpret_cast<_WORD *>(raw + 320) == 2) {
+            dispatch_indexed_event_member(0x1Bu);
+            *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+        }
+        return true;
+
     case 301: {
         float spawn_payload[3];
         int facing;
@@ -673,6 +694,57 @@ bool AliceActionStateLowScaffoldView::try_dispatch_verified_action(int action)
             }
         }
         return true;
+
+
+    case 322: {
+        int facing;
+
+        resolve_stage_surface_landing_transition();
+        if (try_dispatch_directional_action_208_210(1))
+            return true;
+        adjusted = static_cast<float>(*reinterpret_cast<float *>(raw + 244) - 1.5);
+        *reinterpret_cast<float *>(raw + 244) = adjusted;
+        if (adjusted < 0.0f)
+            *reinterpret_cast<float *>(raw + 244) = 0.0f;
+        if (!*reinterpret_cast<_DWORD *>(raw + 1724))
+            *reinterpret_cast<_BYTE *>(raw + 1872) = 0;
+        if (advance_frame_and_dispatch())
+            set_action(0);
+        if (!*reinterpret_cast<_DWORD *>(raw + 324)
+            && !*reinterpret_cast<_WORD *>(raw + 322)
+            && !*reinterpret_cast<_WORD *>(raw + 320)
+            && *reinterpret_cast<_WORD *>(raw + 318) == 1) {
+            set_action(0);
+            return true;
+        }
+        if (!*reinterpret_cast<_WORD *>(raw + 318)) {
+            if (!*reinterpret_cast<_WORD *>(raw + 322) && *reinterpret_cast<_WORD *>(raw + 320) == 7) {
+                if (*reinterpret_cast<_BYTE *>(raw + 1872) == 1) {
+                    slot_14();
+                    facing = *reinterpret_cast<unsigned char *>(raw + 260);
+                    emit_fighter_effect_433cc0(
+                        62,
+                        *reinterpret_cast<float *>(raw + 236) - static_cast<float>(33 * static_cast<signed char>(facing)),
+                        static_cast<float>(*reinterpret_cast<float *>(raw + 240) + 112.0),
+                        facing,
+                        -1);
+                    return true;
+                }
+                *reinterpret_cast<float *>(raw + 244) = 15.0f;
+            }
+            if (!*reinterpret_cast<_WORD *>(raw + 322) && *reinterpret_cast<_WORD *>(raw + 320) == 9) {
+                dispatch_indexed_event_member(0x1Du);
+                *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+            }
+        }
+        if (*reinterpret_cast<_WORD *>(raw + 318) == 1) {
+            if (!*reinterpret_cast<_WORD *>(raw + 322) && *reinterpret_cast<_WORD *>(raw + 320) == 11)
+                *reinterpret_cast<float *>(raw + 244) = 19.0f;
+            if (!*reinterpret_cast<_WORD *>(raw + 322) && *reinterpret_cast<_WORD *>(raw + 320) == 12)
+                dispatch_indexed_event_member(0x1Du);
+        }
+        return true;
+    }
 
     case 409:
         *reinterpret_cast<float *>(raw + 248) =
