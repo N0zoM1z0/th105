@@ -1,0 +1,300 @@
+#include <stddef.h>
+
+namespace th105 {
+
+// Partial semantic reconstruction for Alice's primary-vtable +0x28 giant.
+//
+// This is deliberately NOT the target vslot28 root and is not referenced by
+// config/functions.csv or a match unit.  It records only action cases whose
+// current TH105 1.06a control/data flow has been checked against both the Alice
+// PE and the source-present Youmu shared family.  Unknown actions return false.
+// Keep this as a staging surface until the complete 42,721-byte root is
+// recovered; never promote this helper as authored exact/source-present credit.
+
+typedef unsigned char _BYTE;
+typedef unsigned short _WORD;
+typedef unsigned int _DWORD;
+
+class AliceActionStateLowScaffoldView;
+float __fastcall alice_stage_surface_height_at_x(AliceActionStateLowScaffoldView *fighter);
+
+class AliceActionStateLowScaffoldView {
+public:
+    virtual void slot_00();
+    virtual void slot_04();
+    virtual void set_action(int action);
+    virtual void set_sequence(int sequence);
+    virtual void slot_10();
+    virtual void slot_14();
+
+    unsigned char resolve_stage_surface_landing_transition();
+    unsigned char advance_frame_and_dispatch();
+    int has_crossed_stage_surface_while_descending();
+    void zero_velocity_acceleration();
+
+    bool try_dispatch_verified_shared_low_action(int action);
+};
+
+bool AliceActionStateLowScaffoldView::try_dispatch_verified_shared_low_action(int action)
+{
+    unsigned char *raw = reinterpret_cast<unsigned char *>(this);
+    float adjusted;
+    float zero;
+
+    switch (action) {
+    case 0:
+        resolve_stage_surface_landing_transition();
+        if (!*reinterpret_cast<float *>(raw + 244))
+            *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+        if (!*reinterpret_cast<_BYTE *>(raw + 1150)) {
+            zero_velocity_acceleration();
+            advance_frame_and_dispatch();
+            return true;
+        }
+        if (*reinterpret_cast<float *>(raw + 244) > 0.0f) {
+            adjusted = *reinterpret_cast<float *>(raw + 244) - 0.5f;
+            *reinterpret_cast<float *>(raw + 244) = adjusted;
+            if (adjusted < 0.0f) {
+                zero_velocity_acceleration();
+                *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+            }
+        }
+        if (*reinterpret_cast<float *>(raw + 244) < 0.0f) {
+            adjusted = *reinterpret_cast<float *>(raw + 244) + 0.5f;
+            *reinterpret_cast<float *>(raw + 244) = adjusted;
+            if (adjusted > 0.0f) {
+                zero_velocity_acceleration();
+                *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+            }
+        }
+        advance_frame_and_dispatch();
+        return true;
+
+    case 1:
+        resolve_stage_surface_landing_transition();
+        if (*reinterpret_cast<_BYTE *>(raw + 1150)) {
+            zero = 0.0f;
+            if (*reinterpret_cast<float *>(raw + 244) > zero) {
+                adjusted = *reinterpret_cast<float *>(raw + 244) - 0.5f;
+                *reinterpret_cast<float *>(raw + 244) = adjusted;
+                if (adjusted < zero) {
+                    zero_velocity_acceleration();
+                    *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+                }
+            }
+            if (zero > *reinterpret_cast<float *>(raw + 244)) {
+                adjusted = *reinterpret_cast<float *>(raw + 244) + 0.5f;
+                *reinterpret_cast<float *>(raw + 244) = adjusted;
+                if (adjusted > zero) {
+                    zero_velocity_acceleration();
+                    *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+                }
+            }
+        } else {
+            zero_velocity_acceleration();
+        }
+        if (advance_frame_and_dispatch() && !*reinterpret_cast<_WORD *>(raw + 320))
+            set_action(2);
+        return true;
+
+    case 2:
+        resolve_stage_surface_landing_transition();
+        if (!*reinterpret_cast<_BYTE *>(raw + 1150)) {
+            zero_velocity_acceleration();
+            advance_frame_and_dispatch();
+            return true;
+        }
+        if (*reinterpret_cast<float *>(raw + 244) > 0.0f) {
+            adjusted = *reinterpret_cast<float *>(raw + 244) - 0.5f;
+            *reinterpret_cast<float *>(raw + 244) = adjusted;
+            if (adjusted < 0.0f) {
+                zero_velocity_acceleration();
+                *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+            }
+        }
+        if (*reinterpret_cast<float *>(raw + 244) < 0.0f) {
+            adjusted = *reinterpret_cast<float *>(raw + 244) + 0.5f;
+            *reinterpret_cast<float *>(raw + 244) = adjusted;
+            if (adjusted > 0.0f) {
+                zero_velocity_acceleration();
+                *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+            }
+        }
+        advance_frame_and_dispatch();
+        return true;
+
+    case 3:
+        resolve_stage_surface_landing_transition();
+        if (*reinterpret_cast<_BYTE *>(raw + 1150)) {
+            zero = 0.0f;
+            if (*reinterpret_cast<float *>(raw + 244) > zero) {
+                adjusted = *reinterpret_cast<float *>(raw + 244) - 0.5f;
+                *reinterpret_cast<float *>(raw + 244) = adjusted;
+                if (adjusted < zero) {
+                    zero_velocity_acceleration();
+                    *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+                }
+            }
+            if (zero > *reinterpret_cast<float *>(raw + 244)) {
+                adjusted = *reinterpret_cast<float *>(raw + 244) + 0.5f;
+                *reinterpret_cast<float *>(raw + 244) = adjusted;
+                if (adjusted > zero) {
+                    zero_velocity_acceleration();
+                    *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+                }
+            }
+        } else {
+            zero_velocity_acceleration();
+        }
+        if (!advance_frame_and_dispatch())
+            return true;
+        if (*reinterpret_cast<_WORD *>(raw + 320))
+            return true;
+        set_action(0);
+        return true;
+
+    case 4:
+        resolve_stage_surface_landing_transition();
+        *reinterpret_cast<float *>(raw + 244) = 6.0f;
+        advance_frame_and_dispatch();
+        return true;
+
+    case 5:
+        resolve_stage_surface_landing_transition();
+        *reinterpret_cast<float *>(raw + 244) = -6.0f;
+        advance_frame_and_dispatch();
+        return true;
+
+    case 6:
+        if (!*reinterpret_cast<_WORD *>(raw + 318)) {
+            resolve_stage_surface_landing_transition();
+            if (!*reinterpret_cast<_WORD *>(raw + 318) && !*reinterpret_cast<_BYTE *>(raw + 1150))
+                zero_velocity_acceleration();
+        }
+        if (*reinterpret_cast<__int16 *>(raw + 318) > 0) {
+            *reinterpret_cast<float *>(raw + 248) =
+                *reinterpret_cast<float *>(raw + 248) - *reinterpret_cast<float *>(raw + 256);
+            if (has_crossed_stage_surface_while_descending()) {
+                set_action(10);
+                *reinterpret_cast<float *>(raw + 240) = alice_stage_surface_height_at_x(this);
+                zero_velocity_acceleration();
+                return true;
+            }
+        }
+        advance_frame_and_dispatch();
+        if (*reinterpret_cast<_DWORD *>(raw + 324)
+            || *reinterpret_cast<_WORD *>(raw + 322)
+            || *reinterpret_cast<_WORD *>(raw + 320)
+            || *reinterpret_cast<_WORD *>(raw + 318) != 1)
+            return true;
+        *reinterpret_cast<float *>(raw + 244) = 0.0f;
+        *reinterpret_cast<float *>(raw + 248) = 15.0f;
+        *reinterpret_cast<float *>(raw + 256) = 0.65f;
+        *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+        return true;
+
+    case 7:
+        if (!*reinterpret_cast<_WORD *>(raw + 318)) {
+            resolve_stage_surface_landing_transition();
+            if (!*reinterpret_cast<_WORD *>(raw + 318) && !*reinterpret_cast<_BYTE *>(raw + 1150))
+                zero_velocity_acceleration();
+        }
+        if (*reinterpret_cast<__int16 *>(raw + 318) > 0) {
+            *reinterpret_cast<float *>(raw + 248) =
+                *reinterpret_cast<float *>(raw + 248) - *reinterpret_cast<float *>(raw + 256);
+            if (has_crossed_stage_surface_while_descending()) {
+                set_action(10);
+                *reinterpret_cast<float *>(raw + 240) = alice_stage_surface_height_at_x(this);
+                zero_velocity_acceleration();
+                return true;
+            }
+        }
+        advance_frame_and_dispatch();
+        if (*reinterpret_cast<_DWORD *>(raw + 324)
+            || *reinterpret_cast<_WORD *>(raw + 322)
+            || *reinterpret_cast<_WORD *>(raw + 320)
+            || *reinterpret_cast<_WORD *>(raw + 318) != 1)
+            return true;
+        *reinterpret_cast<float *>(raw + 244) = 5.0f;
+        *reinterpret_cast<float *>(raw + 248) = 15.0f;
+        *reinterpret_cast<float *>(raw + 256) = 0.65f;
+        *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+        return true;
+
+    case 8:
+        if (!*reinterpret_cast<_WORD *>(raw + 318)) {
+            resolve_stage_surface_landing_transition();
+            if (!*reinterpret_cast<_WORD *>(raw + 318) && !*reinterpret_cast<_BYTE *>(raw + 1150))
+                zero_velocity_acceleration();
+        }
+        if (*reinterpret_cast<__int16 *>(raw + 318) > 0) {
+            *reinterpret_cast<float *>(raw + 248) =
+                *reinterpret_cast<float *>(raw + 248) - *reinterpret_cast<float *>(raw + 256);
+            if (has_crossed_stage_surface_while_descending()) {
+                set_action(10);
+                *reinterpret_cast<float *>(raw + 240) = alice_stage_surface_height_at_x(this);
+                zero_velocity_acceleration();
+                return true;
+            }
+        }
+        advance_frame_and_dispatch();
+        if (*reinterpret_cast<_DWORD *>(raw + 324)
+            || *reinterpret_cast<_WORD *>(raw + 322)
+            || *reinterpret_cast<_WORD *>(raw + 320)
+            || *reinterpret_cast<_WORD *>(raw + 318) != 1)
+            return true;
+        *reinterpret_cast<float *>(raw + 244) = -5.0f;
+        *reinterpret_cast<float *>(raw + 248) = 15.0f;
+        *reinterpret_cast<float *>(raw + 256) = 0.65f;
+        *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+        return true;
+
+    case 10:
+        resolve_stage_surface_landing_transition();
+        zero_velocity_acceleration();
+        if (advance_frame_and_dispatch()) {
+            if (*reinterpret_cast<_DWORD *>(raw + 1720))
+                set_action(2);
+            else
+                set_action(0);
+        }
+        return true;
+
+    case 204:
+        resolve_stage_surface_landing_transition();
+        adjusted = static_cast<float>(*reinterpret_cast<float *>(raw + 244) - 0.5);
+        *reinterpret_cast<float *>(raw + 244) = adjusted;
+        if (adjusted < 0.0f) {
+            *reinterpret_cast<float *>(raw + 244) = 0.0f;
+            *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+        }
+        if (advance_frame_and_dispatch()) {
+            set_action(0);
+            *reinterpret_cast<_BYTE *>(raw + 1150) = 0;
+        }
+        return true;
+
+    case 215:
+        resolve_stage_surface_landing_transition();
+        if (*reinterpret_cast<float *>(raw + 244) > 0.0f) {
+            adjusted = static_cast<float>(*reinterpret_cast<float *>(raw + 244) - 0.75);
+            *reinterpret_cast<float *>(raw + 244) = adjusted;
+            if (adjusted < 0.0f)
+                *reinterpret_cast<float *>(raw + 244) = 0.0f;
+        }
+        if (*reinterpret_cast<float *>(raw + 244) < 0.0f) {
+            adjusted = static_cast<float>(*reinterpret_cast<float *>(raw + 244) + 0.75);
+            *reinterpret_cast<float *>(raw + 244) = adjusted;
+            if (adjusted > 0.0f)
+                *reinterpret_cast<float *>(raw + 244) = 0.0f;
+        }
+        if (advance_frame_and_dispatch())
+            set_action(0);
+        return true;
+
+    default:
+        return false;
+    }
+}
+
+} // namespace th105

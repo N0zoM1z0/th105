@@ -4,9 +4,11 @@ namespace th105 {
 
 // Roster ownership/ABI declarations. Exact-target manifests prove the receiver
 // ABI, numeric action selector, and void return topology for every +0x28 root.
-// Youmu now has a complete semantic source scaffold in YoumuActionState.cpp;
-// the remaining roster roots are still declaration-only until their action CFGs
-// are recovered.
+// Youmu now has a complete semantic source scaffold in YoumuActionState.cpp.
+// Alice has a separate partial low-action semantic scaffold, but its vslot28
+// root remains declaration-only here and must not receive source/exact credit
+// until the complete 42,721-byte action CFG is recovered.  The other roster
+// roots remain declaration-only as well.
 struct Alice;
 struct Aya;
 struct Iku;

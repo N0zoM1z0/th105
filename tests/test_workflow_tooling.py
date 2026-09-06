@@ -114,10 +114,27 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(root["expected_direct_call_sites"], 674)
         self.assertEqual(root["expected_direct_call_targets"], 27)
         self.assertEqual(root["expected_ret_opcodes"], 128)
+        self.assertEqual(root["partial_semantic_scaffold"], "src/characters/AliceActionStateLowScaffold.cpp")
+        self.assertEqual(root["reference_semantic_root"], "youmu-vslot28")
+        self.assertEqual(root["verified_shared_low_cases"], [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 204, 215])
         regions = {row["name"]: row for row in root["regions"]}
         self.assertEqual((regions["low"]["case_min"], regions["low"]["case_max"], regions["low"]["destination_count"]), (0, 226, 31))
         self.assertEqual((regions["mid"]["case_min"], regions["mid"]["case_max"], regions["mid"]["destination_count"]), (301, 508, 34))
         self.assertEqual((regions["high"]["case_min"], regions["high"]["case_max"], regions["high"]["destination_count"]), (521, 770, 40))
+
+
+    def test_alice_partial_action_scaffold_stays_off_ledger(self) -> None:
+        scaffold = ROOT / "src" / "characters" / "AliceActionStateLowScaffold.cpp"
+        text = scaffold.read_text(encoding="utf-8")
+        self.assertIn("try_dispatch_verified_shared_low_action", text)
+        for case in [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 204, 215]:
+            self.assertIn(f"case {case}:", text)
+        self.assertNotIn("Alice_dispatch_action_state_vslot28(", text)
+
+        with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
+            row = next(row for row in csv.DictReader(stream) if row["address"].lower() == "0x004e9f50")
+        self.assertEqual(row["status"], "unclassified")
+        self.assertEqual(row["source_file"], "src/characters/Vslot28ActionStateRoots.hpp")
 
 
     def test_xiph_origin_anchor_manifest_is_pinned(self) -> None:
