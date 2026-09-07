@@ -6,6 +6,45 @@ Canonical 1.06a authored-exact waves are established. The active phase is
 expanding authored classification and exact source recovery beyond raw-identity
 seeds using current-target-backed structural remapping where appropriate.
 
+## 2026-09-07 instruction widths and shared-owner recovery
+
+- This checkpoint supersedes the older size-only "wrap-up" conclusion below.
+  The independently cold-built common Fighter root at `0x004740C0` improves
+  **32/66 -> 51/66 instruction/physical-edge-identical owners**, with no
+  initially identical owner lost. These are 65 unique destinations plus
+  entry, not the span mapper's duplicate-default rows. This is not exact
+  function/byte credit.
+- Ordinary C++ restores action 70's AL consumer, unsigned input thresholds in
+  97/98, action 99's branch order, and eight unsigned direction-byte effect
+  arguments in 691/692/694/790. A case-63 switch exit restores the target
+  **case-62** clamp/advance owner (`0x00474409/0x00474420/0x00474448`) for
+  **66/67/163/164/165/166**. The 72/73/74/75/88 landing terminals now join the
+  switch exit, restoring the **case-71 publisher** at `0x0047478F` and making
+  **71/72/77/700/704/799** instruction/edge-identical as well.
+- The span mapper improves **58/66 -> 60/66 same-sized rows** and
+  **239 -> 173 residual bytes**, still 65 destinations and zero splits.
+  Correct the stale metadata note: the cold initial source is **+0x282C**, not
+  +0x27E4. The final candidate is **+0x2840**, target **+0x27EC**; section tail
+  grows from 10,789 to **10,809 bytes**. The metadata-size tradeoff is not hidden:
+  physical owner recovery and lower span error, not text size alone, justify
+  this source checkpoint. Canonical comparison remains nonexact at **+0x14**
+  (target **48**, final candidate **9D**), with complete relocation closure.
+- Raw target traversal reaches **10,219 bytes / 2,799 instructions**, with no
+  unvisited range or internal direct-call subentry. All **16 direct external
+  targets** are already ledgered. **Eight indirect exits remain unresolved**
+  in this bounded check; this is not global inventory-completeness evidence.
+  No candidate/origin/implementation/exact counts are promoted.
+- Do not retain the earlier 50/66 natural action-0 cohort: its 159..162 owners
+  each expand to 146/61 and metadata becomes +0x2930. Inlining the sequence
+  follower bodies restores 73/88 sizes but damages case 75 (195/148). These
+  are rejected probes, not evidence that source-only recovery is exhausted.
+- Reproduce with `scripts/audit-giant-action-owners.py` alongside the strict
+  comparator. [GIANT_OWNER_AUDIT.md](GIANT_OWNER_AUDIT.md) records target
+  anchors, source reasoning, negative probes, dependencies and acceptance
+  limits. The next discriminators are the remaining **case-50/162 clamp**,
+  **case-73/75/88 sequence tails**, and selector encoding; the case-71
+  publisher must no longer be treated as an unrecovered owner.
+
 ## 2026-09-07 owner-order wrap-up audit
 
 - The bounded audit of `Fighter_update_common_action_state @ 0x004740C0` is

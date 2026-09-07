@@ -5,6 +5,23 @@ notes or source hypotheses.
 
 ## Observed
 
+- **Unreached bytes in a main-switch traversal are not automatically missing functions.** The new owner audit marks 76 bytes at `0x00544656..0x005446A1` inside Youmu Object action 901 as unreached because the auxiliary four-entry table at `0x00544BD4` is not in its main-switch map. Fresh IDA xrefs and independent PE guards/dwords identify all four existing sequence-6 mode arms. Keep the automatic report partial until that extra table is explicitly validated; do not invent candidate or exact credit. See `docs/GIANT_OWNER_AUDIT.md` for the cross-root check.
+
+- **Same-sized giant owners can have wrong operand widths and backward-edge
+  identities.** The common Fighter root at `0x004740C0` improves from 32/66 to
+  51/66 instruction/owner-edge-identical regions. AL/EAX tests, MOVZX/MOVSX
+  effect arguments, unsigned input predicates and case-99 branch order recover
+  seven owners. Natural switch-exit distinctions recover six case-62 clamp
+  consumers and six case-71 publisher/epilogue consumers. The old span metric
+  misses the first thirteen improvements entirely; the final source also
+  lowers its residual from 239 to 173 bytes. Fresh metadata is +0x282C for the
+  initial source and +0x2840 final, not the stale +0x27E4. This is positive
+  ordinary-C++ recovery, not proof that all remaining differences are LTCG.
+  Use the [instruction/physical-owner audit](GIANT_OWNER_AUDIT.md), which
+  preserves opcode, width, branch encoding and owner-offset distinctions.
+  It awards no partial exact credit; the full 10,219-byte root still differs
+  at +0x14. Recover the remaining 50/162 and 73/75/88 edges without regressing
+  the now-proved case-62 clamp or case-71 publisher.
 - **A giant root's target-sized historical build is not proof of an exact source/TU boundary.** For `Fighter_update_common_action_state @ 0x004740C0`, a fresh current-source `/GL + /LTCG` probe emits a `0x29A9` text section, an EBP/stack-alignment prologue, and `fldz; fcompp` instead of the target's three-register prologue and live x87 zero form. A historical target-shaped LTCG probe happens to measure `0x27EC`, but still has the wrong EBP prologue. The standalone `before-switch-v2` object has the target-like case-50 x87 body while measuring only `10,089` bytes versus target `10,219` and lacking comparator-recognizable switch-table ownership. Treat compiler mode, local body similarity, and section size as separate evidence; none is exact credit.
 - **When shared-tail source identities are exhausted, reject probes by owner topology rather than retaining their locally better case.** In the same common-action root, a combined case-50..52 probe kept **65 destinations / zero splits** but degraded case 50 to **74/134** and case 162 to **148/61**. Directly duplicating case-53/54 terminals lost a destination and shifted later owners. These results do not justify copying target bytes, dead locals, or forced gotos; the next useful evidence must identify the higher-level TU/LTCG merge that makes case 50 own both the action-0 tail and the 159..162 clamp.
 - **Giant-root exactness can come from restoring many small, independently proved lifetime identities rather than one dramatic rewrite.** AyaObject `+0x3C @ 0x0061F0B0` moved from **95 to 5 bytes** of summed owner residual while keeping **32/32 physical destinations / zero splits**. The successful source identities are heterogeneous but machine-proved: direct sequence reads for actions900/901, branch-local heading reloads for820/861, signed-int sequence values for817/822, direct owner-byte comparisons for826, bool elimination in852, a paired sequence/scale cleanup in853, an explicit int terminal chain in812, and an ordinary if/else sign branch in821. Screen each correction against its physical owner and then combine; the full cohort reaches **30/32 exact-sized rows** without changing the target topology.

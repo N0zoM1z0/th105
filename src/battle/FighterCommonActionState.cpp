@@ -26,6 +26,8 @@ public:
     signed char classify_fighter_x_boundary();
     void publish_battle_layout_scalar(float value);
     void dispatch_indexed_event_member(unsigned index);
+    // Callers pass the stored direction byte without sign extension in the
+    // int stack slot; signed facing arithmetic is a separate consumer.
     void emit_fighter_effect_433cc0(int effect_code, float x, float y, int direction, int trailing_value);
     void dispatch_indexed_sequence_window_45c8b0(signed char relative_index, int outcome, int source_token);
     void zero_velocity_acceleration();
@@ -334,7 +336,9 @@ ACTION_54_60_690:
           peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
         if (advance_frame_and_dispatch())
           set_action(2);
-        return;
+        // The shared action-2 clamp belongs to case 62, not this sibling.
+        // Joining the switch exit preserves its 66/67 and 163..166 edges.
+        break;
 
       case 64:
         resolve_stage_surface_landing_transition();
@@ -387,7 +391,7 @@ ACTION_54_60_690:
           if (unknown_490)
             peer_component_6ac = velocity_x_f4;
         }
-        if (has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
           zero_velocity_acceleration();
           y_f0 = 0.0f;
           set_action(10);
@@ -399,6 +403,8 @@ ACTION_54_60_690:
       }
 
       case 71:
+        // This return owns the publisher/event tail. The later landing
+        // consumers join the switch exit instead of owning another copy.
         if (sequence_13e == 1 && velocity_y_f8 < 2.0) {
           slot_14();
           return;
@@ -442,7 +448,7 @@ ACTION_54_60_690:
           set_action(97);
           publish_battle_layout_scalar(2.0f);
           dispatch_indexed_event_member(0x16u);
-          return;
+          break;
         }
         if (classify_fighter_x_boundary() && velocity_x_f4 < 0.0) {
           if ((velocity_x_f4 = static_cast<float>(velocity_x_f4 + 1.0)) > 0.0f)
@@ -462,7 +468,7 @@ ACTION_54_60_690:
           set_action(97);
           publish_battle_layout_scalar(5.0f);
           dispatch_indexed_event_member(0x16u);
-          return;
+          break;
         }
         advance_frame_and_dispatch();
         if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 && velocity_y_f8) {
@@ -508,7 +514,7 @@ LABEL_126:
         set_action(97);
         publish_battle_layout_scalar(2.0f);
         dispatch_indexed_event_member(0x16u);
-        return;
+        break;
 
       case 75:
         if ((unsigned __int8)has_crossed_stage_surface_while_descending()) {
@@ -519,7 +525,7 @@ LABEL_126:
           set_action(97);
           publish_battle_layout_scalar(5.0f);
           dispatch_indexed_event_member(0x16u);
-          return;
+          break;
         }
         if (classify_fighter_x_boundary() && velocity_x_f4 <= -25.0) {
           set_action(76);
@@ -615,7 +621,7 @@ LABEL_126:
           set_action(89);
           publish_battle_layout_scalar(5.0f);
           dispatch_indexed_event_member(0x16u);
-          return;
+          break;
         }
         advance_frame_and_dispatch();
         if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 && velocity_y_f8)
@@ -662,16 +668,24 @@ LABEL_126:
         }
         return;
       case 97:
+        // These input dwords use unsigned thresholds (JA/JBE), not signed
+        // comparisons; retain that interpretation independently of storage.
         if ( sequence_13e == 3 )
           resolve_stage_surface_landing_transition();
         v34 = field_6b4 * facing_104;
         if ( v34 > 0
-          && (field_6bc || field_6c0 || field_6c4 || field_6c8) )
+          && (static_cast<unsigned>(field_6bc) > 0
+            || static_cast<unsigned>(field_6c0) > 0
+            || static_cast<unsigned>(field_6c4) > 0
+            || static_cast<unsigned>(field_6c8) > 0) )
         {
           word_730 = 1;
         }
         if ( v34 < 0
-          && (field_6bc || field_6c0 || field_6c4 || field_6c8) )
+          && (static_cast<unsigned>(field_6bc) > 0
+            || static_cast<unsigned>(field_6c0) > 0
+            || static_cast<unsigned>(field_6c4) > 0
+            || static_cast<unsigned>(field_6c8) > 0) )
         {
           word_730 = 2;
         }
@@ -704,12 +718,18 @@ LABEL_126:
         resolve_stage_surface_landing_transition();
         v36 = field_6b4 * facing_104;
         if ( v36 > 0
-          && (field_6bc || field_6c0 || field_6c4 || field_6c8) )
+          && (static_cast<unsigned>(field_6bc) > 0
+            || static_cast<unsigned>(field_6c0) > 0
+            || static_cast<unsigned>(field_6c4) > 0
+            || static_cast<unsigned>(field_6c8) > 0) )
         {
           word_730 = 1;
         }
         if ( v36 < 0
-          && (field_6bc || field_6c0 || field_6c4 || field_6c8) )
+          && (static_cast<unsigned>(field_6bc) > 0
+            || static_cast<unsigned>(field_6c0) > 0
+            || static_cast<unsigned>(field_6c4) > 0
+            || static_cast<unsigned>(field_6c8) > 0) )
         {
           word_730 = 2;
         }
@@ -728,10 +748,10 @@ LABEL_126:
         {
           v37 = byte_113;
           event_130.storage_00[5] = 0;
-          if ( v37 <= 3u )
-            byte_113 = 0;
-          else
+          if ( v37 > 3u )
             byte_113 = v37 - 3;
+          else
+            byte_113 = 0;
         }
         advance_frame_and_dispatch();
         if ( !frame_counter_144
@@ -1103,7 +1123,7 @@ LABEL_357:
           set_action(0);
         if ( frame_counter_144 == 20 )
         {
-          emit_fighter_effect_433cc0(70, x_ec, y_f0, facing_104, 1);
+          emit_fighter_effect_433cc0(70, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1);
           if ( g_fighter_state_4b8_default == 16 )
           {
             g_info_mode_value_6fa88c = 999;
@@ -1117,14 +1137,14 @@ LABEL_357:
           dispatch_indexed_sequence_window_45c8b0(0, 1, 60);
         }
         if ( frame_counter_144 >= 20 && !(frame_counter_144 % 7) )
-          emit_fighter_effect_433cc0(135, x_ec, y_f0, facing_104, -1);
+          emit_fighter_effect_433cc0(135, x_ec, y_f0, static_cast<unsigned char>(facing_104), -1);
         if ( frame_counter_144 >= 20 && !(frame_counter_144 % 5) )
           emit_fighter_effect_433cc0(
               136,
               static_cast<float>(static_cast<unsigned int>(selector_random_roll(200)))
                   + x_ec - 100.0,
               y_f0,
-              facing_104,
+              static_cast<unsigned char>(facing_104),
               1);
         break;
       case 692:
@@ -1134,9 +1154,9 @@ LABEL_357:
           v45 = frame_counter_144 % 15;
           counter_558 += 15;
           if ( !v45 )
-            emit_fighter_effect_433cc0(153, x_ec, y_f0, facing_104, 1);
+            emit_fighter_effect_433cc0(153, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1);
           if ( !(frame_counter_144 % 10) )
-            emit_fighter_effect_433cc0(152, x_ec, y_f0, facing_104, -1);
+            emit_fighter_effect_433cc0(152, x_ec, y_f0, static_cast<unsigned char>(facing_104), -1);
           if (frame_counter_144 >= 67) {
             slot_14();
             return;
@@ -1174,9 +1194,9 @@ LABEL_357:
           }
         }
         if ( !(frame_counter_144 % 15) )
-          emit_fighter_effect_433cc0(155, x_ec, y_f0, facing_104, 1);
+          emit_fighter_effect_433cc0(155, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1);
         if ( !(frame_counter_144 % 10) )
-          emit_fighter_effect_433cc0(154, x_ec, y_f0, facing_104, -1);
+          emit_fighter_effect_433cc0(154, x_ec, y_f0, static_cast<unsigned char>(facing_104), -1);
         if ( frame_counter_144 >= 20 )
         {
 LABEL_444:
@@ -1323,7 +1343,7 @@ LABEL_522:
           }
           if ( !frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1 )
           {
-            v52 = facing_104;
+            v52 = static_cast<unsigned char>(facing_104);
             velocity_y_f8 = 25.0;
             v53 = y_f0;
             word_738 = 0;

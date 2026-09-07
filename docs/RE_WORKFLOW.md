@@ -64,6 +64,20 @@ IDA auto-names do not imply mappings or implementations.
 GitHub Actions is a second check, not a substitute for the local gate. Any edit
 after the final pass invalidates that pass and requires another local run.
 
+## Giant-root owner diagnostics
+
+For roots covered by `config/giant-action-switches.toml`, pair the target and
+candidate span mapper with `scripts/audit-giant-action-owners.py ROOT OBJECT
+--unit UNIT`. The latter preserves instruction encodings and compares internal
+edges by physical owner plus intra-owner offset; it also traverses raw target
+control flow to identify unledgered direct targets and visible indirect-exit
+unknowns. A same-sized arm or a higher diagnostic count is never exact credit.
+Run the strict full-function comparator independently. See
+[GIANT_OWNER_AUDIT.md](GIANT_OWNER_AUDIT.md) for the common Fighter counterexample
+and reproducible commands. Public CI dependencies are pinned in
+`scripts/requirements-ci.txt`; install them before `scripts/ci.py` on a fresh
+Python environment.
+
 ## Shared-change replay
 
 Headers, class layouts, inline functions, compiler flags, translation-unit

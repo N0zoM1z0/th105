@@ -1,0 +1,5 @@
+# Match the decoder used for the target-backed giant-owner audit and its tests.
+# No game executable, IDA instance, or proprietary compiler is needed in CI.
+capstone==4.0.2
+# Upstream Capstone 4 uses distutils, which Python 3.12 removed from stdlib.
+setuptools==75.8.0; python_version >= "3.12"
