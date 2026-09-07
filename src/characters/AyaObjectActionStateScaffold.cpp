@@ -7,6 +7,17 @@
 
 namespace th105 {
 
+class AyaObjectActionStateScaffoldView;
+float __fastcall aya_stage_surface_height_at_x(AyaObjectActionStateScaffoldView *object);
+int __cdecl selector_random_roll(int limit);
+
+class FighterOwnedObjectSpawnView {
+public:
+    int spawn_owned_object_via_manager(
+        int object_id, float x, float y,
+        int direction, int arg5, int arg6, int arg7);
+};
+
 // Partial semantic reconstruction for AyaObject's RTTI-owned primary-vtable
 // +0x28 update root @ 0x0061A290.
 //
@@ -178,6 +189,64 @@ bool AyaObjectActionStateScaffoldView::try_dispatch_verified_update_action(int a
         advance_and_expire();
         return true;
 
+    case 801: {
+        if (phase_state_180 == 5) {
+            expire();
+            return true;
+        }
+        if (sequence_index_13e == 0) {
+            if (effect_emitter()->emit_repeated_effects_for_owner_state(0, 3, 7)) {
+                expire();
+                return true;
+            }
+            if (!(time_counter_144 % 2)) {
+                float payload[3] = {heading_340[0], 0.0f, 2.0f};
+                effect_emitter()->spawn_unparented_related_object(
+                    801, sprite_004.object_x_0e8, sprite_004.object_y_0ec,
+                    static_cast<unsigned char>(sprite_004.object_facing_100), 1,
+                    reinterpret_cast<const unsigned *>(payload), 3);
+            }
+            if (phase_state_180 == 6 && ++state_six_counter_384 < 5) {
+                ++phase_index_184;
+                phase_state_180 = 0;
+            }
+            if (phase_state_180) {
+                next_sequence_block();
+                return true;
+            }
+            heading_340[0] = static_cast<float>(heading_340[0] + heading_340[1]);
+            motion_core()->set_oriented_components_f0_f4(heading_340[0], 40.0f);
+            sprite_004.reset_zero_128 = heading_340[0];
+            advance_position();
+        }
+        unsigned char &alpha = reinterpret_cast<unsigned char *>(this)[0x113];
+        if (sequence_index_13e == 1) {
+            sprite_004.reset_one_118 = static_cast<float>(
+                sprite_004.reset_one_118 + 0.1000000014901161);
+            sprite_004.reset_one_11c = static_cast<float>(
+                sprite_004.reset_one_11c + 0.1000000014901161);
+            if (alpha < 5) {
+                expire();
+                return true;
+            }
+            alpha -= 5;
+        }
+        if (sequence_index_13e == 2) {
+            if (alpha < 20) {
+                expire();
+                return true;
+            }
+            alpha -= 20;
+        }
+        if (motion_core()->advance_frame_and_dispatch())
+            expire();
+        if (!time_counter_144 && !frame_timer_142 && !frame_index_140
+            && sequence_index_13e == 2) {
+            expire();
+        }
+        return true;
+    }
+
     case 804:
         if (phase_state_180 == 5) {
             expire();
@@ -212,6 +281,124 @@ bool AyaObjectActionStateScaffoldView::try_dispatch_verified_update_action(int a
         advance_position();
         advance_and_expire();
         return true;
+
+    case 807: {
+        if (phase_state_180 == 5
+            || (!sequence_index_13e
+                && effect_emitter()->emit_repeated_effects_for_owner_state(0, 0, 10))) {
+            expire();
+            return true;
+        }
+        if (sequence_index_13e == 0) {
+            if (phase_state_180 == 6 && ++state_six_counter_384 < 5) {
+                ++phase_index_184;
+                phase_state_180 = 0;
+            }
+            if (phase_state_180) {
+                select_sequence(2);
+                return true;
+            }
+            if (!(time_counter_144 % 5)) {
+                float payload[3] = {0.0f, 0.0f, 1.0f};
+                reinterpret_cast<FighterOwnedObjectSpawnView *>(fighter_owner_348)
+                    ->spawn_owned_object_via_manager(
+                        807, sprite_004.object_x_0e8, sprite_004.object_y_0ec,
+                        static_cast<unsigned char>(sprite_004.object_facing_100),
+                        1, reinterpret_cast<int>(payload), 3);
+            }
+        }
+        unsigned char &alpha = reinterpret_cast<unsigned char *>(this)[0x113];
+        if (sequence_index_13e == 1) {
+            if (alpha <= 15) {
+                expire();
+                return true;
+            }
+            alpha -= 15;
+            sprite_004.reset_zero_128 =
+                static_cast<float>(sprite_004.reset_zero_128 + 10.0);
+            sprite_004.reset_one_118 = static_cast<float>(
+                sprite_004.reset_one_118 + 0.05000000074505806);
+            sprite_004.reset_one_11c = static_cast<float>(
+                sprite_004.reset_one_11c + 0.05000000074505806);
+        }
+        if (sequence_index_13e == 0) {
+            motion_core()->component_f0 =
+                static_cast<float>(motion_core()->component_f0 - 0.6000000238418579);
+            sprite_004.reset_zero_128 =
+                static_cast<float>(sprite_004.reset_zero_128 + 40.0);
+        }
+        if (sequence_index_13e == 2) {
+            motion_core()->component_f0 =
+                static_cast<float>(motion_core()->component_f0 * 0.8999999761581421);
+        }
+        advance_position();
+        if (motion_core()->advance_frame_and_dispatch())
+            expire();
+        if (!time_counter_144 && !frame_timer_142 && !frame_index_140
+            && sequence_index_13e == 2) {
+            expire();
+        }
+        return true;
+    }
+
+    case 811: {
+        if (phase_state_180 == 5) {
+            expire();
+            return true;
+        }
+        if (sequence_index_13e == 0) {
+            if (effect_emitter()->emit_repeated_effects_for_owner_state(0, 0, 7)) {
+                expire();
+                return true;
+            }
+            if (!(time_counter_144 % 3)) {
+                float payload[3] = {heading_340[0], 0.0f, 2.0f};
+                effect_emitter()->spawn_unparented_related_object(
+                    811, sprite_004.object_x_0e8, sprite_004.object_y_0ec,
+                    static_cast<unsigned char>(sprite_004.object_facing_100), 1,
+                    reinterpret_cast<const unsigned *>(payload), 3);
+            }
+            if (phase_state_180 == 6 && ++state_six_counter_384 < 15) {
+                ++phase_index_184;
+                phase_state_180 = 0;
+            }
+            if (phase_state_180)
+                next_sequence_block();
+            heading_340[0] = static_cast<float>(heading_340[0] - 1.0);
+            heading_340[1] = static_cast<float>(heading_340[1] - 0.5);
+            if (heading_340[1] < 15.0f)
+                heading_340[1] = 15.0f;
+            motion_core()->set_oriented_components_f0_f4(heading_340[0], heading_340[1]);
+            sprite_004.reset_zero_128 = heading_340[0];
+            advance_position();
+        }
+        unsigned char &alpha = reinterpret_cast<unsigned char *>(this)[0x113];
+        if (sequence_index_13e == 1) {
+            sprite_004.reset_one_118 = static_cast<float>(
+                sprite_004.reset_one_118 + 0.1000000014901161);
+            sprite_004.reset_one_11c = static_cast<float>(
+                sprite_004.reset_one_11c + 0.1000000014901161);
+            if (alpha < 5) {
+                expire();
+                return true;
+            }
+            alpha -= 5;
+        }
+        if (sequence_index_13e == 2) {
+            if (alpha < 20) {
+                expire();
+                return true;
+            }
+            alpha -= 20;
+        }
+        if (motion_core()->advance_frame_and_dispatch())
+            expire();
+        if (!time_counter_144 && !frame_timer_142 && !frame_index_140
+            && sequence_index_13e == 2) {
+            expire();
+        }
+        return true;
+    }
 
     case 815: {
         if (phase_state_180 == 5) {
@@ -278,6 +465,153 @@ bool AyaObjectActionStateScaffoldView::try_dispatch_verified_update_action(int a
             }
         }
         advance_and_expire();
+        return true;
+    }
+
+    case 817: {
+        if (phase_state_180 == 5) {
+            expire();
+            return true;
+        }
+        unsigned char &alpha = reinterpret_cast<unsigned char *>(this)[0x113];
+        if (sequence_index_13e == 0) {
+            if (effect_emitter()->emit_repeated_effects_for_owner_state(0, 4, 3)) {
+                expire();
+                return true;
+            }
+            if (!(time_counter_144 % 2)) {
+                float payload[3] = {heading_340[0], 0.0f, 2.0f};
+                effect_emitter()->spawn_unparented_related_object(
+                    817, sprite_004.object_x_0e8, sprite_004.object_y_0ec,
+                    static_cast<unsigned char>(sprite_004.object_facing_100), 1,
+                    reinterpret_cast<const unsigned *>(payload), 3);
+            }
+            if (phase_state_180 == 6 && ++state_six_counter_384 < 10) {
+                ++phase_index_184;
+                phase_state_180 = 0;
+            }
+            motion_core()->advance_phase_counter_conditional(3);
+            if (time_counter_144 >= 10)
+                phase_index_184 = 0;
+            if (!phase_index_184) {
+                heading_340[1] = static_cast<float>(
+                    heading_340[1] * 0.8500000238418579);
+                if (alpha < 10) {
+                    expire();
+                    return true;
+                }
+                alpha -= 10;
+            }
+            motion_core()->set_oriented_components_f0_f4(heading_340[0], heading_340[1]);
+            advance_position();
+        } else if (sequence_index_13e == 1) {
+            float const scale = static_cast<float>(
+                sprite_004.reset_one_118 + 0.1000000014901161);
+            sprite_004.reset_one_118 = scale;
+            sprite_004.reset_one_11c = scale;
+            sprite_004.reset_zero_128 = static_cast<float>(
+                sprite_004.reset_zero_128 + 10.0);
+            if (alpha < 15) {
+                expire();
+                return true;
+            }
+            alpha -= 15;
+        } else if (sequence_index_13e == 2) {
+            sprite_004.reset_zero_128 = static_cast<float>(
+                sprite_004.reset_zero_128 + state_370);
+            state_370 = static_cast<float>(state_370 * 0.949999988079071);
+            float const scale = static_cast<float>(
+                sprite_004.reset_one_118 + 0.1000000014901161);
+            sprite_004.reset_one_118 = scale;
+            sprite_004.reset_one_11c = scale;
+            if (alpha < 20) {
+                expire();
+                return true;
+            }
+            alpha -= 20;
+        }
+        if (motion_core()->advance_frame_and_dispatch())
+            expire();
+        if (!time_counter_144 && !frame_timer_142 && !frame_index_140
+            && sequence_index_13e == 2) {
+            expire();
+        }
+        return true;
+    }
+
+    case 822: {
+        if (phase_state_180 == 5) {
+            expire();
+            return true;
+        }
+        unsigned char &alpha = reinterpret_cast<unsigned char *>(this)[0x113];
+        if (sequence_index_13e == 0) {
+            if (effect_emitter()->emit_repeated_effects_for_owner_state(0, 4, 3)) {
+                expire();
+                return true;
+            }
+            if (!(time_counter_144 % 2)) {
+                float payload[3] = {heading_340[0], 0.0f, 2.0f};
+                effect_emitter()->spawn_unparented_related_object(
+                    822, sprite_004.object_x_0e8, sprite_004.object_y_0ec,
+                    static_cast<unsigned char>(sprite_004.object_facing_100), 1,
+                    reinterpret_cast<const unsigned *>(payload), 3);
+            }
+            if (phase_state_180 == 6) {
+                ++state_six_counter_384;
+                ++phase_index_184;
+                phase_state_180 = 0;
+            }
+            if (!phase_index_184) {
+                heading_340[1] = static_cast<float>(
+                    heading_340[1] * 0.8500000238418579);
+                if (alpha < 10) {
+                    expire();
+                    return true;
+                }
+                alpha -= 10;
+            }
+            motion_core()->set_oriented_components_f0_f4(heading_340[0], heading_340[1]);
+            advance_position();
+            if (sprite_004.object_x_0e8 > 1480.0f
+                || sprite_004.object_x_0e8 < -200.0f
+                || sprite_004.object_y_0ec > 1480.0f
+                || sprite_004.object_y_0ec < -400.0f) {
+                expire();
+                return true;
+            }
+        } else if (sequence_index_13e == 1) {
+            float const scale = static_cast<float>(
+                sprite_004.reset_one_118 + 0.1000000014901161);
+            sprite_004.reset_one_118 = scale;
+            sprite_004.reset_one_11c = scale;
+            sprite_004.reset_zero_128 = static_cast<float>(
+                sprite_004.reset_zero_128 + 10.0);
+            if (alpha < 15) {
+                expire();
+                return true;
+            }
+            alpha -= 15;
+        } else if (sequence_index_13e == 2) {
+            sprite_004.reset_zero_128 = static_cast<float>(
+                sprite_004.reset_zero_128 + state_370);
+            state_370 = static_cast<float>(state_370 * 0.949999988079071);
+            float const scale = static_cast<float>(
+                sprite_004.reset_one_118 + 0.1000000014901161);
+            sprite_004.reset_one_118 = scale;
+            sprite_004.reset_one_11c = scale;
+            if (alpha < 20) {
+                expire();
+                return true;
+            }
+            alpha -= 20;
+        }
+        if (motion_core()->advance_frame_and_dispatch())
+            expire();
+        if (!time_counter_144 && !frame_timer_142 && !frame_index_140
+            && sequence_index_13e == 2) {
+            expire();
+        }
         return true;
     }
 
@@ -430,6 +764,54 @@ bool AyaObjectActionStateScaffoldView::try_dispatch_verified_update_action(int a
         return true;
     }
 
+    case 854: {
+        unsigned char &alpha = reinterpret_cast<unsigned char *>(this)[0x113];
+        if (sequence_index_13e == 0) {
+            if (!(time_counter_144 % 2)) {
+                float payload[3] = {heading_340[0], 0.0f, 2.0f};
+                effect_emitter()->spawn_unparented_related_object(
+                    854, sprite_004.object_x_0e8, sprite_004.object_y_0ec,
+                    static_cast<unsigned char>(sprite_004.object_facing_100), 1,
+                    reinterpret_cast<const unsigned *>(payload), 3);
+            }
+            if (phase_state_180 == 6) {
+                ++phase_index_184;
+                phase_state_180 = 0;
+            }
+            if (phase_state_180)
+                next_sequence_block();
+            heading_340[0] = static_cast<float>(heading_340[0] + heading_340[1]);
+            motion_core()->set_oriented_components_f0_f4(heading_340[0], 40.0f);
+            sprite_004.reset_zero_128 = heading_340[0];
+            advance_position();
+        }
+        if (sequence_index_13e == 1) {
+            sprite_004.reset_one_118 = static_cast<float>(
+                sprite_004.reset_one_118 + 0.1000000014901161);
+            sprite_004.reset_one_11c = static_cast<float>(
+                sprite_004.reset_one_11c + 0.1000000014901161);
+            if (alpha < 5) {
+                expire();
+                return true;
+            }
+            alpha -= 5;
+        }
+        if (sequence_index_13e == 2) {
+            if (alpha < 20) {
+                expire();
+                return true;
+            }
+            alpha -= 20;
+        }
+        if (motion_core()->advance_frame_and_dispatch())
+            expire();
+        if (!time_counter_144 && !frame_timer_142 && !frame_index_140
+            && sequence_index_13e == 2) {
+            expire();
+        }
+        return true;
+    }
+
     case 855:
         if (sequence_index_13e == 1) {
             if (!(time_counter_144 % 5)) {
@@ -471,6 +853,69 @@ bool AyaObjectActionStateScaffoldView::try_dispatch_verified_update_action(int a
         if (motion_core()->advance_frame_and_dispatch())
             expire();
         return true;
+
+    case 861: {
+        if (sequence_index_13e == 0) {
+            CharacterObjectEffectEmitter *const owner = fighter_owner_348;
+            short const owner_action = *reinterpret_cast<short *>(
+                reinterpret_cast<unsigned char *>(owner) + 0x13c);
+            if (owner_action >= 50 && owner_action <= 149) {
+                expire();
+                return true;
+            }
+            if (!phase_index_184) {
+                expire();
+                return true;
+            }
+            float const owner_y = owner->y_f0;
+            float const stage_height = aya_stage_surface_height_at_x(this);
+            if (stage_height >= owner_y && heading_340[0] == 1.0f) {
+                expire();
+                return true;
+            }
+            if (stage_height < owner_y && heading_340[0] == 0.0f) {
+                expire();
+                return true;
+            }
+            sprite_004.object_x_0e8 = owner->x_ec;
+            sprite_004.object_y_0ec = static_cast<float>(
+                static_cast<double>(owner->y_f0) + 100.0);
+            float payload[3];
+            payload[0] = static_cast<float>(selector_random_roll(100) - 50);
+            payload[1] = static_cast<float>(selector_random_roll(100) - 50);
+            payload[2] = 1.0f;
+            if (!(time_counter_144 % 15)) {
+                effect_emitter()->spawn_unparented_related_object(
+                    861, sprite_004.object_x_0e8, sprite_004.object_y_0ec,
+                    static_cast<unsigned char>(sprite_004.object_facing_100), 1,
+                    reinterpret_cast<const unsigned *>(payload), 3);
+            }
+        }
+        if (phase_state_180) {
+            if (++state_364 >= 6) {
+                phase_state_180 = 0;
+                state_364 = 0;
+            }
+        }
+        if (sequence_index_13e == 1) {
+            CharacterObjectEffectEmitter *const owner = fighter_owner_348;
+            sprite_004.object_x_0e8 = owner->x_ec;
+            reinterpret_cast<unsigned char *>(this)[0x113] -= 10;
+            sprite_004.object_y_0ec = static_cast<float>(
+                static_cast<double>(owner->y_f0) + 100.0);
+            float const scale = static_cast<float>(
+                sprite_004.reset_one_118 + state_370);
+            sprite_004.reset_one_118 = scale;
+            sprite_004.reset_one_11c = scale;
+            sprite_004.reset_zero_128 = static_cast<float>(
+                sprite_004.reset_zero_128 + 20.0);
+            state_370 = static_cast<float>(state_370 - 0.02999999932944775);
+            if (state_370 < 0.0099999998f)
+                state_370 = 0.0099999998f;
+        }
+        advance_and_expire();
+        return true;
+    }
 
     case 862: {
         CharacterObjectEffectEmitter *const owner = fighter_owner_348;
