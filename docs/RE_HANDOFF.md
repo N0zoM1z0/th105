@@ -6,6 +6,14 @@ Canonical 1.06a authored-exact waves are established. The active phase is
 expanding authored classification and exact source recovery beyond raw-identity
 seeds using current-target-backed structural remapping where appropriate.
 
+
+## 2026-09-08 Object giant leaf closure: Alice/Iku/Tenshi/Komachi
+
+- Three additional current-target authored leaves are canonical exact, **439 bytes** total: `fill_stage_surface_range @ 0x00434EE0` (**69/69**), `AliceObject_update_owner_tracking_and_proximity @ 0x004FC900` (**343/343**), and `CharacterObjectEffectEmitter_set_secondary_animation_runtime_flags @ 0x00632C10` (**27/27**). Their direct caller sets are independently contained in RTTI-owned TenshiObject, AliceObject, and IkuObject `+0x28` giants respectively; exactness alone was not used as ownership evidence.
+- `KomachiObject_emit_owner_gated_object_826_pair @ 0x005F9350` moves from review to **authored/source-present** on ten direct calls from the RTTI-owned KomachiObject `+0x28` root. Target and source both gate on owner `+0x7A8` and spawn object 826 twice with payloads `{0,1,1}` then `{0,1,2}`. Pinned `/GS` output is **203/205**; the first difference is a branch displacement caused by first-spawn owner/manager call-evaluation scheduling. It remains nonexact and receives no byte credit.
+- The raw-PE Object callee census is nearly saturated for small unresolved leaves: with `--min-roots 1`, the only review candidates at or below 2.5 KiB are `0x00406330` (46-byte aligned fabs wrapper) and `0x004064D0` (107-byte PatchouliObject ratio helper). The latter now has a truthful inline lookup source with **43 canonical prefix bytes / 97-byte candidate**; result/numerator lifetime matrices do not reproduce target's extra live x87 zero and float numerator round-trip. Keep both math-island roots pending rather than adding aligned/dummy locals.
+- Current conservative tracking is **1,272 exact / 1,372 authored functions (92.7114%)**, **215,400 exact / 2,063,270 authored bytes (10.4397%)**, **1,295 source-present**, and **1,373 review candidates**. The 99% byte objective therefore still requires whole 25--80 KiB roster roots; this leaf closure is input to those roots, not a substitute for them.
+
 ## 2026-09-08 roster Object shared-primitive and missed-tail candidate wave
 
 - Five current-target authored roots are newly canonical exact, **662 bytes** total: `SecondaryAnimationRenderRuntimeView_set_vertex_color @ 0x0042FD80` (52), `CharacterObjectEffectEmitter_set_secondary_animation_alpha @ 0x00496370` (35), `CharacterObjectEffectEmitter_release_secondary_animation_renderer @ 0x004963F0` (43), `CharacterObjectEffectEmitter_update_ping_pong_motion_and_periodic_spawn @ 0x0053CBC0` (450), and `CharacterObjectEffectEmitter_position_relative_to_owner_offsets @ 0x005B0400` (82). All five replay from ordinary pinned VC8 C++; no assembly, copied bytes, padding, fake liveness, volatile/register forcing, or ABI lies are used.

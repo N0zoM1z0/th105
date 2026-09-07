@@ -34,7 +34,41 @@ struct AnimationSequenceBlockVectorView {
 typedef char CheckAnimationSequenceBlockVectorViewSize[
     sizeof(AnimationSequenceBlockVectorView) == 0x20 ? 1 : -1];
 
+struct CharacterObjectPairSpawnOwnerView {
+    unsigned char reserved_000[0x7a8];
+    int object_826_spawn_gate_7a8;
+};
+
+typedef char CheckCharacterObjectPairSpawnGateOffset[
+    offsetof(CharacterObjectPairSpawnOwnerView, object_826_spawn_gate_7a8) == 0x7a8 ? 1 : -1];
+
 } // namespace
+
+struct KomachiObjectPairEmitterView {
+    CharacterObjectEffectEmitter object_000;
+
+    unsigned char emit_owner_gated_object_826_pair();
+};
+
+unsigned char KomachiObjectPairEmitterView::emit_owner_gated_object_826_pair()
+{
+    CharacterObjectPairSpawnOwnerView *const owner =
+        reinterpret_cast<CharacterObjectPairSpawnOwnerView *>(object_000.owner_348);
+    if (owner->object_826_spawn_gate_7a8) {
+        float payload[3] = {0.0f, 1.0f, 1.0f};
+        object_000.spawn_unparented_related_object(
+            826, object_000.x_ec, object_000.y_f0,
+            static_cast<unsigned char>(object_000.facing_104), 1,
+            reinterpret_cast<const unsigned *>(payload), 3);
+        payload[2] = 2.0f;
+        object_000.spawn_unparented_related_object(
+            826, object_000.x_ec, object_000.y_f0,
+            static_cast<unsigned char>(object_000.facing_104), 1,
+            reinterpret_cast<const unsigned *>(payload), 3);
+        return 1;
+    }
+    return 0;
+}
 
 void CharacterObjectEffectEmitter::turn_heading_toward_related(
     float heading_bias,
@@ -120,6 +154,14 @@ void CharacterObjectEffectEmitter::set_secondary_animation_alpha(unsigned char a
     if (secondary_renderer_338)
         secondary_renderer_338->set_vertex_color(
             (static_cast<unsigned int>(alpha) << 24) | 0x00ffffffu);
+}
+
+void CharacterObjectEffectEmitter::set_secondary_animation_runtime_flags(
+    unsigned char render_enabled, unsigned char update_step)
+{
+    SecondaryAnimationRenderRuntimeView *const renderer = secondary_renderer_338;
+    if (renderer)
+        renderer->set_runtime_flags(render_enabled, update_step);
 }
 
 void CharacterObjectEffectEmitter::replace_secondary_animation(

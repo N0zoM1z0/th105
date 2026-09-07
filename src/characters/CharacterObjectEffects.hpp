@@ -69,6 +69,8 @@ struct CharacterObjectEffectEmitter {
     Fighter *position_relative_to_owner_offsets(int x_offset, int y_offset);
     void release_secondary_animation_renderer();
     void set_secondary_animation_alpha(unsigned char alpha);
+    void set_secondary_animation_runtime_flags(
+        unsigned char render_enabled, unsigned char update_step);
     void replace_secondary_animation(int key, float half_width, int subdivision_count, int band_count, int blend_mode);
     void turn_heading_toward_related(
         float heading_bias,

@@ -292,6 +292,15 @@ address = "0x005B0400"
 symbol_base = "CharacterObjectEffectEmitter_position_relative_to_owner_offsets"
 
 [[units.cross-v106a-character-object-effects.functions]]
+address = "0x00632C10"
+symbol_base = "?set_secondary_animation_runtime_flags@CharacterObjectEffectEmitter@th105@@QAEXEE@Z"
+
+[[units.cross-v106a-character-object-effects.functions]]
+address = "0x005F9350"
+symbol_base = "?emit_owner_gated_object_826_pair@KomachiObjectPairEmitterView@th105@@QAEEXZ"
+dir32_targets = ["__real@40000000=__real@40000000"]
+
+[[units.cross-v106a-character-object-effects.functions]]
 address = "0x0064CCB0"
 symbol_base = "CharacterObjectEffectEmitter_spawn_unparented_related_object"
 
@@ -2056,7 +2065,7 @@ source = "src/characters/AliceObjectEffects.cpp"
 object = "build/match-units/CrossV106a_AliceObjectEffects.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Whole-corpus retained-source recovery of Alice flight-state update; current angle/sqrt callees and floating literals are target-backed."
+notes = "Alice Object shared/action leaf recovery. The original flight-state update remains exact; owner-tracking/proximity @ 0x004FC900 is independently backed by 17 direct calls from the RTTI-owned AliceObject +0x28 giant and reuses exact atan2/oriented-motion primitives. Its single float stack color naturally rounds both atan2 arguments before becoming heading/speed/distance scratch."
 
 [[units.cross-v106a-alice-flight-state.functions]]
 address = "0x004FC7C0"
@@ -2069,6 +2078,19 @@ dir32_targets = [
   "__real@4059000000000000=__real@4059000000000000",
   "__real@4066800000000000=__real@4066800000000000",
   "__real@3f70000000000000=__real@3f70000000000000",
+]
+
+[[units.cross-v106a-alice-flight-state.functions]]
+address = "0x004FC900"
+symbol_base = "?update_owner_tracking_and_proximity@AliceObjectOwnerTrackingView@th105@@QAEEXZ"
+rel32_targets = [
+  "?atan2_degrees@th105@@YANMM@Z=0x00406540",
+  "?set_oriented_components_f0_f4@CharacterObjectRuntime@th105@@QAEXMM@Z=0x00435160",
+]
+dir32_targets = [
+  "__real@4059000000000000=__real@4059000000000000",
+  "__real@4000000000000000=__real@4000000000000000",
+  "__real@41a00000=__real@41a00000",
 ]
 
 [units.cross-v106a-character-heading]
@@ -2484,6 +2506,14 @@ rel32_targets = ["__ftol2_sse=0x0068A1A0"]
 dir32_targets = [
   "?stage_surface_heights@@3PAMA=?g_stage_surface_heights@th105@@3PAMA",
   "__real@3fe0000000000000=__real@3fe0000000000000",
+]
+
+[[units.cross-v106a-stage-geometry.functions]]
+address = "0x00434EE0"
+symbol_base = "?fill_stage_surface_range@th105@@YGXMMM@Z"
+rel32_targets = ["__ftol2_sse=0x0068A1A0"]
+dir32_targets = [
+  "?stage_surface_heights@@3PAMA=?g_stage_surface_heights@th105@@3PAMA",
 ]
 
 

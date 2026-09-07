@@ -5,6 +5,18 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 # but no old-version address is accepted as evidence here.
 
 [[rules]]
+id = "komachi-object-pair-emitter-authored-106a"
+addresses = ["0x005F9350"]
+expected_count = 1
+expected_bytes = 205
+expected_names = ["sub_5F9350"]
+origin = "authored_game"
+subsystem = "characters"
+disposition = "authored"
+confidence = "observed"
+evidence = "Current canonical PE has ten direct E8 callers inside the RTTI-owned KomachiObject +0x28 giant root. The 205-byte helper gates on owner +0x7A8 and owns the paired object826 spawn policy; complete natural source is formally compared but remains 203/205 on call-evaluation scheduling."
+
+[[rules]]
 id = "roster-object-secondary-animation-replacement-authored-106a"
 addresses = ["0x00496420"]
 expected_count = 1

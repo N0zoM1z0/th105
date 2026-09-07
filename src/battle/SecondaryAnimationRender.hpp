@@ -89,6 +89,11 @@ public:
     void update_secondary();
     void render_secondary();
     void set_vertex_color(unsigned int color);
+    void set_runtime_flags(unsigned char render_enabled, unsigned char update_step)
+    {
+        render_enabled_24 = render_enabled;
+        update_step_25 = update_step;
+    }
 
 private:
     SecondaryAnimationOwnerRuntimeView *owner_00;

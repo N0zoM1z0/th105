@@ -38,6 +38,23 @@ int Fighter::test_proposed_x_against_stage_height(float x_delta)
     return 0;
 }
 
+void __stdcall fill_stage_surface_range(
+    float begin_x, float end_x, float height)
+{
+    int begin = static_cast<int>(begin_x);
+    if (begin < 0)
+        begin = 0;
+
+    int end = static_cast<int>(end_x);
+    if (end >= 0x500)
+        end = 0x4ff;
+
+    if (begin <= end) {
+        for (int index = begin; index <= end; ++index)
+            stage_surface_heights[index] = height;
+    }
+}
+
 float __fastcall stage_surface_height_at_x(Fighter *fighter)
 {
     float result;
