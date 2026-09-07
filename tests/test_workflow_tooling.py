@@ -197,6 +197,43 @@ class WorkflowToolingTests(unittest.TestCase):
             self.assertEqual(region["index_table"], index_table)
             self.assertEqual(region["expected_physical_groups"], destinations)
 
+    def test_aya_object_partial_action_scaffold_stays_off_ledger(self) -> None:
+        with (ROOT / "config" / "giant-action-switches.toml").open("rb") as stream:
+            manifest = tomllib.load(stream)
+        root = next(row for row in manifest["roots"] if row["name"] == "aya-object-vslot28")
+        self.assertEqual(
+            root["partial_semantic_scaffold"],
+            "src/characters/AyaObjectActionStateScaffold.cpp",
+        )
+        self.assertEqual(
+            root["verified_semantic_cases"],
+            [800, 804, 815, 816, 825, 850, 851, 855, 862, 980, 990, 997, 998],
+        )
+        self.assertEqual(root["verified_shared_default_owner"], "0x0061EEC5")
+
+        scaffold = ROOT / "src" / "characters" / "AyaObjectActionStateScaffold.cpp"
+        text = scaffold.read_text(encoding="utf-8")
+        self.assertIn("try_dispatch_verified_update_action", text)
+        for case in root["verified_semantic_cases"]:
+            self.assertIn(f"case {case}:", text)
+        for snippet in [
+            "owner_action >= 520 && owner_action <= 524",
+            "owner_action < 525 || owner_action > 529",
+            "motion_core()->component_f0 * 0.1f",
+            "time_counter_144 > 90",
+            "owner_action != 601",
+            "sprite_004.reset_one_11c * 0.8999999761581421",
+            "owner_action == 612 || owner_action == 662",
+        ]:
+            self.assertIn(snippet, text)
+        self.assertNotIn("AyaObject_dispatch_action_state_vslot28(", text)
+
+        with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
+            row = next(row for row in csv.DictReader(stream) if row["address"].lower() == "0x0061a290")
+        self.assertEqual(row["status"], "unclassified")
+        self.assertEqual(row["source_file"], "")
+
+
     def test_default_cpu_policy_owner_source_checkpoint(self) -> None:
         text = (ROOT / "src" / "characters" / "CpuActionPolicies.cpp").read_text(
             encoding="utf-8"

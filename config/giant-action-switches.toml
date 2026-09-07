@@ -249,6 +249,9 @@ expected_unique_destinations = 33
 expected_direct_call_sites = 122
 expected_direct_call_targets = 17
 expected_ret_opcodes = 40
+partial_semantic_scaffold = "src/characters/AyaObjectActionStateScaffold.cpp"
+verified_semantic_cases = [800, 804, 815, 816, 825, 850, 851, 855, 862, 980, 990, 997, 998]
+verified_shared_default_owner = "0x0061EEC5"
 
 [[roots.regions]]
 name = "actions"
