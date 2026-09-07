@@ -41,6 +41,18 @@ confidence = "observed"
 evidence = "Current 1.06a RTTI-owned Fighter primary vtables directly own this 73-root physical family; the origin selector skips roots already promoted by canonical exact evidence. A target-SHA-pinned pointer manifest replays every contributing vtable dword slot and every candidate byte size. This establishes authored class ownership only; source presence and exactness remain separate. Rule expected_bytes remain sums of provisional main candidate spans; reviewed remote source-function code ownership (currently Sakuya +0x28) is pinned separately in config/function-byte-ownership.toml."
 
 [[rules]]
+id = "roster-character-object-vtable-authored-106a"
+pointer_anchor_file = "config/roster-character-object-vtable-origin-anchors.toml"
+skip_matching = true
+expected_count = 31
+expected_bytes = 676773
+origin = "authored_game"
+subsystem = "characters"
+disposition = "authored"
+confidence = "observed"
+evidence = "Current 1.06a RTTI-owned ReimuObject..TenshiObject vtables directly own thirty class-specific +0x28/+0x3C roots plus shared vslot +0x34 @ 0x00435360. The fifteen Object vtable identities are independently class-disambiguated by exact roster object-spawn allocator chains already attested in config/reccmp-relocations.csv. A target-SHA-pinned pointer manifest replays every contributing vtable dword and provisional candidate span fail-closed. This establishes authored class ownership only; semantic naming, source presence, exact callable boundaries and canonical exactness remain separate work."
+
+[[rules]]
 id = "vc8-string-range-errors-106a"
 addresses = ["0x00665AF4", "0x00665B33"]
 expected_count = 2

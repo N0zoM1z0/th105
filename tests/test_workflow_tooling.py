@@ -93,10 +93,10 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,010", markdown)
-        self.assertIn("Confirmed authored functions | 1,325", markdown)
-        self.assertIn("Confirmed authored code bytes | 1,384,338", markdown)
+        self.assertIn("Confirmed authored functions | 1,356", markdown)
+        self.assertIn("Confirmed authored code bytes | 2,061,111", markdown)
         self.assertIn("Classified exclusions | 1,266", markdown)
-        self.assertIn("Origin/boundary review pending | 1,419", markdown)
+        self.assertIn("Origin/boundary review pending | 1,388", markdown)
         self.assertIn("Canonical exact functions | 1,259", markdown)
         self.assertIn("Canonical exact authored bytes | 214,043", markdown)
         self.assertIn(
@@ -367,6 +367,27 @@ class WorkflowToolingTests(unittest.TestCase):
             {row["address"] for row in roots if row["address"] in {"0x00539B70", "0x0053A160"}},
             {"0x00539B70", "0x0053A160"},
         )
+
+        object_roster = next(
+            rule
+            for rule in rules
+            if rule["id"] == "roster-character-object-vtable-authored-106a"
+        )
+        self.assertTrue(object_roster["skip_matching"])
+        self.assertEqual(object_roster["expected_count"], 31)
+        self.assertEqual(object_roster["expected_bytes"], 676_773)
+        with (ROOT / object_roster["pointer_anchor_file"]).open("rb") as stream:
+            object_manifest = tomllib.load(stream)
+        object_roots = object_manifest["anchors"]
+        self.assertEqual(len(object_roots), 31)
+        self.assertEqual(sum(row["size"] for row in object_roots), 676_773)
+        self.assertEqual(
+            {row["address"] for row in object_roots if row["address"] in {"0x00496540", "0x00520890", "0x00657150"}},
+            {"0x00496540", "0x00520890", "0x00657150"},
+        )
+        shared_render = next(row for row in object_roots if row["address"] == "0x00435360")
+        self.assertEqual(len(shared_render["pointer_slots"]), 15)
+        self.assertEqual({slot["slot_offset"] for slot in shared_render["pointer_slots"]}, {"0x34"})
 
     def test_multichunk_function_byte_ownership_is_pinned(self) -> None:
         with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
