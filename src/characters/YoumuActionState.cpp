@@ -1776,13 +1776,8 @@ face_opponent_and_flip_horizontal_velocity();
 return;
 case 0xE1:
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
-if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
+if ( !(unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-zero_velocity_acceleration();
-*(float *)(raw +  240) = stage_surface_height_at_x(this);
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
-return;
-}
 if ( *(__int16 *)(raw +  318) < 3 && !(*(int *)(raw +  324) % 5) )
 {
 emit_fighter_effect_433cc0(
@@ -1816,6 +1811,14 @@ face_opponent_and_flip_horizontal_velocity();
 }
 }
 return;
+}
+else
+{
+zero_velocity_acceleration();
+*(float *)(raw +  240) = stage_surface_height_at_x(this);
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
+return;
+}
 default:
 goto LABEL_1766;
 }
