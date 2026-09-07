@@ -2169,7 +2169,7 @@ case 0x132:
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
 return;
@@ -2264,7 +2264,7 @@ case 0x135:
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
 return;
@@ -3577,7 +3577,7 @@ if ( v99 < 4 )
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__stdcall **)(int))(*(_DWORD *)raw +  12))(4);
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 4);
 }
 else
 {
@@ -3652,7 +3652,7 @@ spawn_owned_object_via_manager(812,
 }
 return;
 }
-(*(void (__stdcall **)(int))(*(_DWORD *)raw +  12))(8);
+(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 8);
 }
 LABEL_100:
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
@@ -3994,16 +3994,14 @@ if ( *(float *)v458 < 0.0 || *(float *)v458 > 180.0 )
 v203 = -1;
 v177 = *(unsigned __int8 *)(raw +  260);
 v162 = *(float *)(raw +  240);
-v379 = (double)(175 * (char)v177) + *(float *)(raw +  236);
-v111 = v379;
+v111 = (double)(175 * (char)v177) + *(float *)(raw +  236);
 }
 else
 {
 v203 = 1;
 v177 = *(unsigned __int8 *)(raw +  260);
 v162 = *(float *)(raw +  240);
-v378 = (double)(150 * (char)v177) + *(float *)(raw +  236);
-v111 = v378;
+v111 = (double)(150 * (char)v177) + *(float *)(raw +  236);
 }
 v149 = v111;
 spawn_owned_object_via_manager(821, v149, v162, v177, v203, (int)v458, 3);
@@ -4381,7 +4379,7 @@ if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 11 )
 v365 = 0.0;
 do
 {
-*(float *)v459 = (double)selector_random_roll(0x12u) + v365 * 45.0 + 22.5;
+*(float *)v459 = (float)(unsigned int)selector_random_roll(0x12u) + v365 * 45.0 + 22.5;
 *(float *)&v459[1] = 20.0;
 *(float *)&v459[2] = 2.0;
 if ( *(float *)v459 < 0.0 || *(float *)v459 > 180.0 )
@@ -4679,8 +4677,7 @@ if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 5 )
 dispatch_indexed_event_member(0x1Du);
 if ( *(__int16 *)(raw +  320) >= 5 )
 {
-v305 = *(float *)(raw +  244) - 2.0;
-v58 = v305;
+v58 = *(float *)(raw +  244) - 2.0;
 *(float *)(raw +  244) = v58;
 if ( v58 < 0.0 )
 *(float *)(raw +  244) = 0.0;
