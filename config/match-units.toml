@@ -17120,3 +17120,25 @@ rel32_targets = [
   "?set_oriented_components_f0_f4@CharacterObjectRuntime@th105@@QAEXMM@Z=0x00435160",
   "__ftol2_sse=0x0068A1A0",
 ]
+
+[units.gpt-web-aya-object-action-entry]
+kind = "probe"
+source = "src/characters/AyaObjectActionEntry.cpp"
+object = "build/match-units/GptWeb_AyaObjectActionEntry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current 1.06a RTTI-owned AyaObject vslot +0x3C @ 0x0061F0B0. Complete ordinary-C++ semantic scaffold over the target-proved 800..998 sparse action initializer. Fresh pinned VC8 uses the shipped 0x10 frame, preserves 32/32 physical destinations with zero splits, reaches 30/32 exact-sized mapper rows and only 5 bytes summed span residual; candidate metadata begins at +0x11B4 versus target callable end +0x11B3. All non-default action owners except856 are exact-sized. The retained source graph closes 900/901 direct sequence consumers, 820/861 branch-local heading lifetimes, target phase byte +0x184 in861, 852 bool elimination, paired853 cleanup, 903 shared float rounding plus seq7 reread, 817/822 signed-int sequence lifetimes, direct826 owner-mode compares, the812 int terminal chain and821 if/else sign/heading lifetime. Action856 remains 404/406 with 106/106 instructions; target directly stores the atan2 ST0 result to heading while the candidate round-trips through a float slot. Sequence-cache/else, pointer, shared-angle/scalar and extra argument-local matrices are neutral or worse. Keep nonexact until canonical zero-difference; no partial authored-byte credit."
+
+[[units.gpt-web-aya-object-action-entry.functions]]
+address = "0x0061F0B0"
+symbol_base = "?initialize_action_entry@AyaObjectActionEntryView@th105@@UAEXXZ"
+rel32_targets = [
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+  "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
+  "?atan2_degrees@th105@@YANMM@Z=0x00406540",
+  "?set_oriented_components_f0_f4@CharacterObjectRuntime@th105@@QAEXMM@Z=0x00435160",
+  "?spawn_parented_related_object@CharacterObjectEffectEmitter@th105@@QAEPAXHMMHHPBIH@Z=0x004FCA60",
+  "?spawn_unparented_related_object@CharacterObjectEffectEmitter@th105@@QAEPAXHMMHHPBIH@Z=0x0064CCB0",
+  "?continue_action_980_596370@AyaObjectActionEntryView@th105@@QAEXXZ=0x00596370",
+  "__ftol2_sse=0x0068A1A0",
+]
