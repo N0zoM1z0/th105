@@ -250,8 +250,9 @@ expected_direct_call_sites = 122
 expected_direct_call_targets = 17
 expected_ret_opcodes = 40
 partial_semantic_scaffold = "src/characters/AyaObjectActionStateScaffold.cpp"
-verified_semantic_cases = [800, 801, 804, 807, 810, 811, 812, 815, 816, 817, 820, 821, 822, 825, 826, 850, 851, 852, 854, 855, 856, 861, 862, 980, 990, 997, 998]
+verified_semantic_cases = [800, 801, 804, 807, 810, 811, 812, 815, 816, 817, 820, 821, 822, 825, 826, 850, 851, 852, 853, 854, 855, 856, 861, 862, 900, 901, 902, 903, 980, 990, 997, 998]
 verified_shared_default_owner = "0x0061EEC5"
+verified_semantic_closed_regions = ["actions"]
 
 [[roots.regions]]
 name = "actions"
