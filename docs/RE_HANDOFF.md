@@ -6,6 +6,28 @@ Canonical 1.06a authored-exact waves are established. The active phase is
 expanding authored classification and exact source recovery beyond raw-identity
 seeds using current-target-backed structural remapping where appropriate.
 
+## 2026-09-07 owner-order wrap-up audit
+
+- The bounded audit of `Fighter_update_common_action_state @ 0x004740C0` is
+  complete for the current standalone source shape. The cold baseline remains
+  **10,789** candidate text bytes, **65/65** physical destinations, zero target
+  group splits, **58/66** exact-sized rows, and summed owner-span residual
+  **239** bytes. The strict comparator still first differs at root `+0x14`
+  (`target 48`, candidate 86), with metadata at candidate `+0x27E4` versus
+  target `+0x27EC`; the root is nonexact and receives no partial credit.
+- A full lexical swap of the case-71 and case-88 source blocks lowered the
+  diagnostic residual to **219**, but put candidate case 88 at the target
+  case-71 publisher anchor and candidate case 71 in the target case-88 region.
+  Because the semantic owners were exchanged, this is not a valid recovery.
+  Member-function-pointer action calls, scalar-2 label placement, and
+  case-50 fall-through variants likewise failed to recover the target owner
+  graph and were reverted.
+- No source, candidate, origin, implementation, or match ledger is promoted by
+  these probes. The remaining unknown is the original TU/LTCG physical-owner
+  boundary (especially the case-71/73/88 publisher chain and the case-159..162
+  backward-owner chain), not an untested Boolean spelling. Future work should
+  resume only with new ownership/source-provenance evidence.
+
 ## 2026-09-07 focused giant-root checkpoint
 
 - **Fresh working-tree recheck supersedes the older 271/76-byte snapshot below.**

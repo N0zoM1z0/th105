@@ -2488,3 +2488,25 @@ of case 50's target-owned `+0x62`/`+0x79` entries. The retained root remains
 no partial byte credit is recorded. The reusable rule is to decode x87
 `fnstsw` masks together with the source branch shape, then solve the tail/TU
 owner separately.
+
+### 2026-09-07: owner-order probes close the standalone hybrid
+
+The final bounded probe set tested whether the remaining case-71/73/88 and
+case-159..162 drift could be recovered by ordinary source ordering alone. A
+complete lexical swap of the case-71 and case-88 blocks lowered the diagnostic
+owner-span residual from **239** to **219**, but exchanged semantic owners:
+candidate case 88 occupied the target case-71 publisher anchor (its row became
+the target-sized 310-byte region), while candidate case 71 moved into the
+target case-88 region. The lower residual is therefore a misleading score, not
+an acceptable reconstruction. Standard member-function-pointer spellings for
+the scalar-5 action calls also failed to retain the target owner graph.
+
+The scalar-2 `LABEL_98` cohort and case-50 fall-through variants were similarly
+reverted: they either moved the physical label before the wrong sibling or
+shrunk case 50 away from its target-owned 134-byte body. These probes add no
+`matches.csv` credit. The reusable conclusion is that the remaining hybrid
+requires the original translation-unit/LTCG physical ownership (or a
+source-level abstraction that reproduces it); another local label, lifetime,
+or equivalent-call spelling is not evidence of recovery. The retained baseline
+is still **10,789** candidate bytes, **239** residual, and **58/66** exact-sized
+rows, with no durable source or ledger change from this audit.
