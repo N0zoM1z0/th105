@@ -34,14 +34,30 @@ seeds using current-target-backed structural remapping where appropriate.
   likewise not promotable: it makes case 50 locally 134/134 but moves the
   strict/global layout, with metadata at `+0x282C` and first mismatch still at
   root `+0x14`.
+- The compiler-mode question is now bounded by two independent probes. A fresh
+  one-thread `/GL + /LTCG` build of the current source produces a `0x29A9`
+  text section, an EBP/stack-alignment prologue instead of target's
+  `push ecx; push ebx; push esi`, and the wrong `fldz; fcompp` case-50 form;
+  simply enabling LTCG does not recover this root. Conversely, the historical
+  target-shaped LTCG probe happens to have a `0x27EC` text length but still has
+  the wrong EBP prologue, so size is not matching evidence.
+- Historical `before-switch-v2` source provides useful provenance but not a
+  solution: its standalone object reproduces the target-like case-50 x87 body
+  and 134-byte local owner, yet its text tail is only `10,089` bytes versus
+  target `10,219` and the comparator cannot recognize its switch-table
+  ownership. A combined case-50..52 source probe retains 65 destinations and
+  zero splits but makes case 50 `74/134` and case 162 `148/61`; a direct
+  case-53/54 duplicate-tail probe loses a destination and shifts the whole
+  root. All are rejected, with no partial exact credit.
 - The current strict pinned-VC8 comparison is reproducibly nonexact: target
   and ledger size are both 10,219 bytes, object section tail is 10,717 bytes,
   and the first mismatch is `0x004740D4` (`target 48`, candidate `3E`). Do
   not add this root to `matches.csv` or claim partial authored bytes. Next
-  work should search for the higher-level source graph or recovered LTCG
-  owner identity that makes case 50 own both the independent action-0 tail
-  and the 159..162 shared clamp, not repeat label placement or arithmetic
-  spelling probes.
+  work should recover the higher-level source/TU owner identity that makes
+  case 50 own both the independent action-0 tail and the 159..162 shared
+  clamp. The label-placement, arithmetic-spelling, and compiler-flag probes
+  are exhausted for this source graph; do not repeat them without new target
+  owner evidence.
 
 ## Verified state
 
