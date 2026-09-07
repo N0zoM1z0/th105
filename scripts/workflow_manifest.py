@@ -28,6 +28,7 @@ ALLOWED_KINDS = {
 }
 ALLOWED_PROFILES = {
     "vc8-sp1-probe-o2",
+    "vc8-sp1-probe-o2-fp-strict",
     "xiph-win32sdk-1.0.1",
     "vc8-sp1-libcmt",
 }

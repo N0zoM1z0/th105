@@ -1,16 +1,13 @@
 #pragma once
 
 #include "battle/Collision.hpp"
+#include "battle/SecondaryAnimationRender.hpp"
 
 #include <stddef.h>
 
 namespace th105 {
 
-class SecondaryAnimationRenderRuntimeView {
-public:
-    ~SecondaryAnimationRenderRuntimeView();
-    void set_vertex_color(unsigned int color);
-};
+struct AnimationSequenceTree;
 
 // Shared observed prefix used by all roster-owned CharacterObject families.
 // Concrete character objects continue beyond +0x377.
@@ -33,7 +30,9 @@ struct CharacterObjectEffectEmitter {
     short update_mode_13e;
     unsigned char unknown_140[0x04];
     int time_counter_144;
-    unsigned char unknown_148[0x24];
+    unsigned char unknown_148[0x18];
+    AnimationSequenceTree *sequence_tree_160;
+    unsigned char unknown_164[0x08];
     void *related_16c;
     CharacterObjectEffectEmitter *target_170;
     unsigned char unknown_174[0x1bc];
@@ -70,6 +69,7 @@ struct CharacterObjectEffectEmitter {
     Fighter *position_relative_to_owner_offsets(int x_offset, int y_offset);
     void release_secondary_animation_renderer();
     void set_secondary_animation_alpha(unsigned char alpha);
+    void replace_secondary_animation(int key, float half_width, int subdivision_count, int band_count, int blend_mode);
     void turn_heading_toward_related(
         float heading_bias,
         float max_step,
@@ -87,6 +87,8 @@ struct CharacterObjectEffectEmitter {
         int effect_201_count);
 };
 
+typedef char CheckCharacterObjectEffectSequenceTreeOffset[
+    offsetof(CharacterObjectEffectEmitter, sequence_tree_160) == 0x160 ? 1 : -1];
 typedef char CheckCharacterObjectEffectSecondaryRendererOffset[
     offsetof(CharacterObjectEffectEmitter, secondary_renderer_338) == 0x338 ? 1 : -1];
 typedef char CheckCharacterObjectEffectOwnerOffset[

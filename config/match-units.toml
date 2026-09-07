@@ -241,8 +241,8 @@ kind = "probe"
 source = "src/characters/CharacterObjectEffects.cpp"
 object = "build/match-units/CrossV106a_CharacterObjectEffects.obj"
 profile = "vc8-sp1-probe-o2"
-enable_gs = false
-notes = "Shared CharacterObjectEffectEmitter primitives recovered from RTTI-owned roster Object giant-root callers and accepted only by canonical VC8 zero-difference replay. The 0x53CBC0 motion helper uses target-backed cold-expire CFG; 0x4963F0 uses ordinary delete lifetime; 0x5B0400 uses owner-relative positioning. No assembly, padding, fake liveness, or ABI forcing."
+enable_gs = true
+notes = "Shared CharacterObjectEffectEmitter primitives recovered from RTTI-owned roster Object giant-root callers. /GS is target-backed and leaves all accepted functions exact. 0x496420 is source-present/nonexact at 274/274 with only a 4-byte stack-color/frame difference after true checked-vector and EH recovery; the exact siblings remain canonical zero-difference. No assembly, padding, fake liveness, volatile/register forcing, or ABI forcing."
 
 [[units.cross-v106a-character-object-effects.functions]]
 address = "0x004963F0"
@@ -257,6 +257,23 @@ address = "0x00496370"
 symbol_base = "?set_secondary_animation_alpha@CharacterObjectEffectEmitter@th105@@QAEXE@Z"
 rel32_targets = [
   "?set_vertex_color@SecondaryAnimationRenderRuntimeView@th105@@QAEXI@Z=0x0042FD80",
+]
+
+[[units.cross-v106a-character-object-effects.functions]]
+address = "0x00496420"
+symbol_base = "?replace_secondary_animation@CharacterObjectEffectEmitter@th105@@QAEXHMHHH@Z"
+rel32_targets = [
+  "??1SecondaryAnimationRenderRuntimeView@th105@@QAE@XZ=0x00430080",
+  "??3@YAXPAX@Z=0x006898EA",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0SecondaryAnimationRenderRuntimeView@th105@@QAE@XZ=0x00430050",
+  "?lower_bound@AnimationSequenceTree@th105@@QAEPAUAnimationSequenceTreeIterator@2@PAU32@PBH@Z=0x0045C320",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?initialize@SecondaryAnimationRenderRuntimeView@th105@@QAEXPAUSecondaryAnimationOwnerRuntimeView@2@PBUSecondaryAnimationFrameRuntimeView@2@MHHH@Z=0x00430750",
+]
+dir32_targets = [
+  "__ehhandler$?replace_secondary_animation@CharacterObjectEffectEmitter@th105@@QAEXHMHHH@Z=__ehhandler$?replace_secondary_animation@CharacterObjectEffectEmitter@th105@@QAEXHMHHH@Z",
+  "___security_cookie=___security_cookie",
 ]
 
 [[units.cross-v106a-character-object-effects.functions]]
@@ -1707,6 +1724,54 @@ rel32_targets = [
   "?dispatch_action_indexed_event@FighterIndexedEventDispatchView@th105@@QAEXI@Z=0x004359F0",
   "?update_fighter_counter_thresholds@th105@@YIXPAUFighter@1@@Z=0x0045B300",
 ]
+
+[units.gpt-web-strict-fp-math-primitives]
+kind = "probe"
+source = "src/engine/StrictFpMathPrimitives.cpp"
+object = "build/match-units/GptWeb_StrictFpMathPrimitives.obj"
+profile = "vc8-sp1-probe-o2-fp-strict"
+enable_gs = false
+notes = "Target-backed math utility island used by roster Object giant roots. The float square requires genuine VC8 /fp:strict semantics: float -> double spill, double self-multiply, float round-trip. Default FP mode emits a different 15-byte body. The integer overload is the adjacent 8-byte self-multiply."
+
+[[units.gpt-web-strict-fp-math-primitives.functions]]
+address = "0x00406580"
+symbol_base = "?square_float_value@th105@@YAMM@Z"
+
+[[units.gpt-web-strict-fp-math-primitives.functions]]
+address = "0x004065A0"
+symbol_base = "?square_int_value@th105@@YAHH@Z"
+
+[units.gpt-web-sqrt-float-value]
+kind = "probe"
+source = "src/engine/SqrtFloat.cpp"
+object = "build/match-units/GptWeb_SqrtFloat.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Shared float sqrt round-trip called from multiple roster Fighter/Object giant roots. Natural (float)sqrt((double)value) selects target __CIsqrt and the shipped float store/reload; /fp:strict is intentionally not used because it selects an external sqrt call instead."
+
+[[units.gpt-web-sqrt-float-value.functions]]
+address = "0x00478DD0"
+symbol_base = "?sqrt_float_value@th105@@YAMM@Z"
+rel32_targets = ["__CIsqrt=0x0068A380"]
+
+[units.gpt-web-character-object-shared-primitives]
+kind = "probe"
+source = "src/characters/CharacterObjectSharedPrimitives.cpp"
+object = "build/match-units/GptWeb_CharacterObjectSharedPrimitives.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Shared roster Object giant-root primitives recovered from raw PE caller closure. Bounds publication lazily owns a 0x18 POD and normalizes x/y endpoint pairs. Auxiliary renderer ownership is a non-polymorphic wrapper whose first member is CEffectSprite; ordinary delete naturally destroys that member to the IColor base vptr before free."
+
+[[units.gpt-web-character-object-shared-primitives.functions]]
+address = "0x004FC710"
+symbol_base = "?publish_bounds_descriptor@CharacterObjectBoundsView@th105@@QAEXHHHHFFF@Z"
+rel32_targets = ["??2@YAPAXI@Z=0x00689DCB"]
+
+[[units.gpt-web-character-object-shared-primitives.functions]]
+address = "0x00520860"
+symbol_base = "?release_auxiliary_renderer@CharacterObjectAuxiliaryRendererSlotView@th105@@QAEXXZ"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = ["??_7IColor@@6B@=??_7IColor@@6B@"]
 
 [units.cross-v106a-angle-lookup]
 kind = "probe"

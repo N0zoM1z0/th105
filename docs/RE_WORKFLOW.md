@@ -78,6 +78,8 @@ and reproducible commands. Public CI dependencies are pinned in
 `scripts/requirements-ci.txt`; install them before `scripts/ci.py` on a fresh
 Python environment.
 
+For roster Object giant roots, run `scripts/rank-roster-object-shared-callees.py` before decompiling another action family. It discovers direct external callees from raw canonical root bytes and only then annotates candidate/origin state, so missing IDA functions or stale classifications remain visible. Use the result as candidate/primitive evidence only; canonical exact acceptance still requires the normal match unit/comparator.
+
 ## Shared-change replay
 
 Headers, class layouts, inline functions, compiler flags, translation-unit

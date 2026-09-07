@@ -5,6 +5,18 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 # but no old-version address is accepted as evidence here.
 
 [[rules]]
+id = "roster-object-secondary-animation-replacement-authored-106a"
+addresses = ["0x00496420"]
+expected_count = 1
+expected_bytes = 274
+expected_names = ["sub_496420"]
+origin = "authored_game"
+subsystem = "characters"
+disposition = "authored"
+confidence = "observed"
+evidence = "Raw canonical PE direct-call census over the fifteen RTTI-owned Object +0x28 roots proves 48 calls from nine independent class-owned giant roots to this shared secondary-animation replacement. The 274-byte body is semantically source-complete with exact renderer lifetime/tree/vector dependencies and a target-attested SEH chunk; formal pinned /GS output differs only by a four-byte stack-color/frame allocation and remains nonexact."
+
+[[rules]]
 id = "secondary-animation-update-authored-106a"
 addresses = ["0x004309F0"]
 expected_count = 1

@@ -75,11 +75,22 @@ if [[ "${TH105_ENABLE_GS:-0}" == 1 ]]; then
   gs_flag=/GS
 fi
 
+fp_args=()
+case "${TH105_FP_MODE:-default}" in
+  default) ;;
+  strict) fp_args+=(/fp:strict) ;;
+  *)
+    echo "unsupported TH105_FP_MODE: ${TH105_FP_MODE}" >&2
+    exit 2
+    ;;
+esac
+
 "${compiler[@]}" \
   /nologo \
   /c \
   /O2 \
   "$gs_flag" \
+  "${fp_args[@]}" \
   /GR \
   /EHsc \
   /MT \
