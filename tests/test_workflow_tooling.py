@@ -61,17 +61,17 @@ class WorkflowToolingTests(unittest.TestCase):
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1295)
+        self.assertEqual(len(implemented), 1296)
         self.assertEqual(
             len(self.validator.rows(ROOT / "config" / "matches.csv")), 1272
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 450)
+        self.assertEqual(len(manifest["units"]), 451)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1292,
+            1293,
         )
 
     def test_strict_fp_profile_is_explicit_and_local(self) -> None:
@@ -106,6 +106,7 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertIn("Origin/boundary review pending | 1,373", markdown)
         self.assertIn("Canonical exact functions | 1,272", markdown)
         self.assertIn("Canonical exact authored bytes | 215,400", markdown)
+        self.assertIn("Source-present authored mappings | 1,296", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
@@ -197,7 +198,7 @@ class WorkflowToolingTests(unittest.TestCase):
             self.assertEqual(region["index_table"], index_table)
             self.assertEqual(region["expected_physical_groups"], destinations)
 
-    def test_aya_object_partial_action_scaffold_stays_off_ledger(self) -> None:
+    def test_aya_object_semantic_scaffold_and_full_source_are_both_tracked(self) -> None:
         with (ROOT / "config" / "giant-action-switches.toml").open("rb") as stream:
             manifest = tomllib.load(stream)
         root = next(row for row in manifest["roots"] if row["name"] == "aya-object-vslot28")
@@ -252,8 +253,23 @@ class WorkflowToolingTests(unittest.TestCase):
 
         with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
             row = next(row for row in csv.DictReader(stream) if row["address"].lower() == "0x0061a290")
-        self.assertEqual(row["status"], "unclassified")
-        self.assertEqual(row["source_file"], "")
+        self.assertEqual(row["status"], "implemented")
+        self.assertEqual(row["source_file"], "src/characters/AyaObjectActionState.cpp")
+        self.assertEqual(row["proposed_name"], "AyaObject_update_action_state_vslot28")
+
+        units = self.manifest.load_manifest()["units"]
+        unit = units["gpt-web-aya-object-vslot28-full-root"]
+        self.assertEqual(unit["source"], "src/characters/AyaObjectActionState.cpp")
+        self.assertEqual(unit["functions"][0]["address"], "0x0061A290")
+        self.assertNotIn("0x0061A290", self.exact_replay.accepted_functions(units).get(
+            "gpt-web-aya-object-vslot28-full-root", set()
+        ))
+        full = (ROOT / "src" / "characters" / "AyaObjectActionState.cpp").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("void AyaObjectActionStateView::update_action_state()", full)
+        self.assertIn("case 856:", full)
+        self.assertIn("double object_y;", full)
 
 
     def test_default_cpu_policy_owner_source_checkpoint(self) -> None:
@@ -907,7 +923,7 @@ class WorkflowToolingTests(unittest.TestCase):
         with (ROOT / "config" / "match-units.toml").open("rb") as stream:
             manifest = tomllib.load(stream)
         counts = self.literals.audit_real_literals(relocations, manifest)
-        self.assertEqual(counts["ledger_literals"], 278)
+        self.assertEqual(counts["ledger_literals"], 304)
         self.assertEqual(counts["explicit_mappings"], 424)
         self.assertEqual(counts["target_checks"], 0)
 
@@ -918,7 +934,7 @@ class WorkflowToolingTests(unittest.TestCase):
         counts = self.validator.validate_real_literal_relocations(
             self.manifest.load_manifest(), require_bytes=True
         )
-        self.assertEqual(counts["target_checks"], 702)
+        self.assertEqual(counts["target_checks"], 728)
 
     def test_rel32_accepts_only_supported_instruction_forms(self) -> None:
         self.assertEqual(

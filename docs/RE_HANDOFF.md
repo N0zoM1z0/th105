@@ -6,6 +6,15 @@ Canonical 1.06a authored-exact waves are established. The active phase is
 expanding authored classification and exact source recovery beyond raw-identity
 seeds using current-target-backed structural remapping where appropriate.
 
+## 2026-09-08 AyaObject complete +0x28 root formalization
+
+- `AyaObject_update_action_state_vslot28 @ 0x0061A290` is now **complete source-present / nonexact** in `src/characters/AyaObjectActionState.cpp` with formal unit `gpt-web-aya-object-vslot28-full-root`. Target is 19,522 authored bytes; the full candidate is 19,348. The target-backed mapper remains **33/33 physical destinations, zero splits**, and all character-owned actions plus the shared default have semantic closure. No partial byte credit is recorded.
+- Correcting helper ownership was essential: `set_oriented_components_f0_f4` is a `this+4` motion-subobject call, while frame advance and phase counters consume root `this`. Removing the temporary scaffold helpers lets VC8 own shared tails. Target case856 is a distinct six-sequence state machine, not duplicated 854 source; restoring it recovers the missing physical owner and makes action856 **570/570 exact-sized**.
+- The root's aligned EBP frame is now explained by real source lifetime. Target has ten qword store/compare pairs at one `[esp+0x18]` stack color across actions 810/820/821/826/853/861. Restoring the missing double y-value lifetimes and repeated stage-height calls makes pinned VC8 naturally emit `push ebp; mov ebp,esp; and esp,-8`; do not use `/Oy-`, fake aligned locals, attributes or padding. Candidate frame is still `0x28` versus target `0x20`, which is the formal first mismatch at root +0x08.
+- All currently emitted `__real@...` references have target-root operand witnesses. Several earlier decimal spellings were wrong-width source (`0.02..0.3` must be float literals before promotion), and action998 uses integer `57 * signed_facing`. Those were source fixes, not relocation masking. Current exact-sized physical owners are 800, 811, 856, 980 and 990; case800 is also drift-zero and is the entry anchor for the next owner-by-owner convergence.
+- Tracking consequence: authored denominator is unchanged because RTTI/vtable ownership already classified this root; source-present mappings increase by one. Exact function/byte numerators stay unchanged until the whole root is byte-identical.
+
+
 
 ## 2026-09-08 roster Object giant boundary and action-map correction
 

@@ -10,7 +10,7 @@ until each boundary is reconciled with target control flow.
 | Confirmed authored functions | 1,372 |
 | Confirmed authored code bytes | 2,069,524 |
 | Classified exclusions | 1,266 |
-| Source-present authored mappings | 1,295 |
+| Source-present authored mappings | 1,296 |
 | Canonical exact functions | 1,272 |
 | Canonical exact authored bytes | 215,400 |
 

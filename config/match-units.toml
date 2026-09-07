@@ -17267,3 +17267,33 @@ rel32_targets = [
   "?continue_action_980_596370@AyaObjectActionEntryView@th105@@QAEXXZ=0x00596370",
   "__ftol2_sse=0x0068A1A0",
 ]
+
+[units.gpt-web-aya-object-vslot28-full-root]
+kind = "probe"
+source = "src/characters/AyaObjectActionState.cpp"
+object = "build/match-units/GptWeb_AyaObjectActionState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete current-target semantic source for the RTTI-owned AyaObject primary-vtable +0x28 root @ 0x0061A290. All character-owned action owners plus the shared default are semantically closed; pinned VC8 preserves 33/33 physical destinations with zero splits. Recovering the root-vs-motion-subobject receiver split and target-backed double y-comparison lifetimes naturally restores the shipped 8-byte realigned giant-frame family. Current candidate is 19,348 bytes versus target 19,522 and first formal mismatch is frame allocation 0x28 versus target 0x20 at root +0x08. No partial exact-byte credit."
+
+[[units.gpt-web-aya-object-vslot28-full-root.functions]]
+address = "0x0061A290"
+symbol_base = "?update_action_state@AyaObjectActionStateView@th105@@QAEXXZ"
+rel32_targets = [
+  "?advance_frame_and_dispatch@AyaObjectActionStateView@th105@@QAEEXZ=0x004351C0",
+  "?advance_phase_counter_conditional@AyaObjectActionStateView@th105@@QAEEH@Z=0x0064CD00",
+  "?aya_is_y_at_or_below_stage_surface@th105@@YIHPAVAyaObjectActionStateView@1@@Z=0x00435DC0",
+  "?aya_stage_surface_height_at_x@th105@@YIMPAVAyaObjectActionStateView@1@@Z=0x00435D60",
+  "?emit_fighter_effect_433cc0@CharacterObjectEffectEmitter@th105@@QAEXHMMHH@Z=0x00435240",
+  "?emit_repeated_effects_for_owner_state@CharacterObjectEffectEmitter@th105@@QAEEHHH@Z=0x005575C0",
+  "?has_crossed_stage_surface_while_descending@AyaObjectActionStateView@th105@@QAEHXZ=0x005F9310",
+  "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
+  "?lookup_orientation_sine@th105@@YAMH@Z=0x00406480",
+  "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+  "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+  "?set_oriented_components_f0_f4@CharacterObjectRuntime@th105@@QAEXMM@Z=0x00435160",
+  "?spawn_owned_object_via_manager@FighterOwnedObjectSpawnView@th105@@QAEHHMMHHHH@Z=0x00465190",
+  "?spawn_unparented_related_object@CharacterObjectEffectEmitter@th105@@QAEPAXHMMHHPBIH@Z=0x0064CCB0",
+  "?update_ping_pong_motion_and_periodic_spawn@CharacterObjectEffectEmitter@th105@@QAEXXZ=0x0053CBC0",
+]

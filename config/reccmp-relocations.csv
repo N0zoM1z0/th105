@@ -1184,3 +1184,29 @@ __real@4060400000000000,0x006C4430,0000000000406040,0,"Current AyaObject +0x3C t
 __real@3fa99999a0000000,0x006C41D0,000000a09999a93f,0,TH105 1.06a CharacterObject shared ping-pong primitive 0x0053CBC0 adds double-promoted float 0.05f from 0x006C41D0 at 0x0053CCAB; PE qword attested 2026-09-08,literal
 __real@3fefae1480000000,0x006C41D8,0000008014aeef3f,0,TH105 1.06a CharacterObject shared ping-pong primitive 0x0053CBC0 multiplies by double-promoted float 0.99f from 0x006C41D8 at 0x0053CC4C; PE qword attested 2026-09-08,literal
 __ehhandler$?replace_secondary_animation@CharacterObjectEffectEmitter@th105@@QAEXHMHHH@Z,0x006BBC0B,8b542408,0,"TH105 1.06a secondary-animation replacement 0x00496420 pushes 0x006BBC0B as its SEH handler; IDA associates the remote chunk with the same function and raw PE begins 8B 54 24 08; attested 2026-09-08",address
+__real@3c23d70a,0x006C4680,0ad7233c,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@3f947ae140000000,0x006C42A8,00000040e17a943f,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@3f999999a0000000,0x006C4270,000000a09999993f,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@3f9eb851e0000000,0x006C4D88,000000e051b89e3f,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@3fecccccc0000000,0x006C42A0,000000c0ccccec3f,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@3fed70a3e0000000,0x006C4228,000000e0a370ed3f,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@3fef5c2900000000,0x006C4298,00000000295cef3f,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@4057800000000000,0x006C3EB0,0000000000805740,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@4061800000000000,0x006C4A98,0000000000806140,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@4065400000000000,0x006C46A0,0000000000406540,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@409a400000000000,0x006C4258,0000000000409a40,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@409d600000000000,0x006C56F8,0000000000609d40,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@409f400000000000,0x006C4688,0000000000409f40,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@44960000,0x006C49D0,00009644,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@44ac8000,0x006C42E0,0080ac44,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@44b90000,0x006C4268,0000b944,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@45020000,0x006C6378,00000245,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@c051800000000000,0x006C47B0,00000000008051c0,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@c059000000000000,0x006C42D8,00000000000059c0,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@c069000000000000,0x006C4260,00000000000069c0,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@c079000000000000,0x006C4290,00000000000079c0,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@c089000000000000,0x006C4210,00000000000089c0,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@c3200000,0x006C49D8,000020c3,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@c3960000,0x006C4204,000096c3,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@c4160000,0x006C4F50,000016c4,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@c4340000,0x006C43E8,000034c4,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
