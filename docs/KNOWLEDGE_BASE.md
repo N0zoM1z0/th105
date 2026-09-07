@@ -2363,3 +2363,42 @@ The formal comparator still fails at root `+0x14` (`target 48`, candidate 86),
 and the candidate retains the equivalent `add eax,-0x32` selector where the
 target encodes `sub eax,0x32`. The owner recovery is substantial but the root
 must remain nonexact until the complete canonical byte comparison is zero.
+
+### 2026-09-07: common Fighter tail placement is now a bounded blocker
+
+The current target-backed work remains concentrated on
+`Fighter_update_common_action_state @ 0x004740C0`; no unrelated root was opened.
+IDA v1.06a evidence and the typed packet establish the following physical
+ownership facts which the retained source still does not reproduce:
+
+- Case 71 starts at root `+0x61B` and physically owns the action-97 setup,
+  `fld 2.0`, and the publisher tail beginning at `+0x6CF` before case 72.
+  Case 73 starts at `+0x83B`, owns the action-97 prefix at `+0x844`, and
+  branches back to that publisher. Case 74 starts at `+0x993` and owns the
+  terminal fallthrough/dispatch arrangement; case 75 starts at `+0xA3D` and
+  reuses the case-73 action prefix. Case 88 starts at `+0xD60` and has its own
+  action-89 setup before the same publisher family. These are physical-owner
+  facts, not claims that equal callees imply equal source templates.
+- Cases 159..162 begin at `+0x1A8C`, `+0x1AC9`, `+0x1B06`, and `+0x1B43`.
+  Each target block is 61 bytes and performs the same x87 `+0.6 + 0.6`
+  update before a long backward branch into the case-50 clamp at root `+0x62`
+  or `+0x79`. A probe with four ordinary independent clamp bodies made all four
+  candidate blocks 146 bytes and increased the mapper residual from 239 to
+  573, so that seemingly natural source is rejected rather than promoted.
+- Rewriting the low selector as an explicit `switch(v2 - 50)` and shifting the
+  low labels was byte-neutral: the compiler emitted the same candidate and the
+  same mapper rows. The first mismatch remains root `+0x14` (`target 48`,
+  candidate 86), where the target uses `sub eax,0x32` and the candidate uses
+  the equivalent `add eax,-0x32`. This is a code-generation/merge decision,
+  not evidence that the selector's semantic range is wrong.
+
+The clean baseline remains candidate text 10789 bytes, metadata start
+`+0x27E4`, mapper residual 239, and 58 exact-sized rows. The remaining
+nonzero physical rows are 71 **342/362**, 73 **287/344**, 74 **178/170**, 88
+**364/310**, 160 **58/61**, 161 **54/61**, 162 **148/61**, and high799
+**291/288**; case 159 is exact-sized but inherits downstream drift. The
+high799 three-byte excess is the candidate's alignment before jump-table
+metadata and is not currently a semantic source candidate. The next useful
+work is therefore compiler-shaped owner/merge recovery around cases 71/73/74/88
+and the backward case-50 clamp topology, followed by a cold exact comparison;
+no partial or probe-only result earns `config/matches.csv` credit.
