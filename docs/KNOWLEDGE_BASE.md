@@ -2402,3 +2402,30 @@ metadata and is not currently a semantic source candidate. The next useful
 work is therefore compiler-shaped owner/merge recovery around cases 71/73/74/88
 and the backward case-50 clamp topology, followed by a cold exact comparison;
 no partial or probe-only result earns `config/matches.csv` credit.
+
+### 2026-09-07: target pseudocode confirms the merge shape, but not a standalone recipe
+
+The fresh IDA decompiler output is useful as source-shape evidence even though
+it is not source. Target case 50 sets `v3=0`, branches nonnegative `vx` to
+`LABEL_8`, computes a float temporary (`v68`) and `v4` for the negative path,
+and falls through to `LABEL_6`; cases 55/61 and 56/57/58 do the same with
+`v73`/`v74`, while 159..162 use the `v99..v106` two-step `+0.6` temporaries.
+The physical `LABEL_6` clamp entry is root `+0x62`, `LABEL_8` is `+0x79`, and
+the target's 159..162 blocks therefore backward-enter a case-50-owned x87
+tail. Reproducing that pseudocode with labels after case 162, and a second
+legal variant placing the labels inside case-50's `if/else`, both produced the
+same standalone VC8 result: candidate text 10701, case 50 **49/134**, residual
+**321**. This is stronger evidence that the target decompiler shape alone does
+not control the shipped physical layout; the missing input is the LTCG/TU
+layout context, not a reason to retain the regressing source.
+
+The same packet explains the event owner inversion. Target cases 71/72/74
+enter `LABEL_98` with scalar2, cases 73/75 enter `LABEL_120` with scalar5,
+case 88's action-89 path supplies scalar5, and `LABEL_99` at root `+0x6CF`
+publishes the live scalar and event22. A faithful C++ label/value probe using
+real `double v14`/`float v67` lifetimes made candidate text 10797 and residual
+**509** (rows 71 **265/362**, 73 **233/344**, 74 **255/170**, 75 **202/148**,
+88 **372/310**), so it is rejected. The retained direct source remains the
+best 239-residual baseline; these target-shaped failures now bound the next
+search to TU/LTCG physical owner recovery rather than more decompiler-label
+transcription.
