@@ -61,17 +61,17 @@ class WorkflowToolingTests(unittest.TestCase):
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1278)
+        self.assertEqual(len(implemented), 1279)
         self.assertEqual(
             len(self.validator.rows(ROOT / "config" / "matches.csv")), 1259
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 445)
+        self.assertEqual(len(manifest["units"]), 446)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1275,
+            1276,
         )
 
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
@@ -93,10 +93,10 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,010", markdown)
-        self.assertIn("Confirmed authored functions | 1,356", markdown)
-        self.assertIn("Confirmed authored code bytes | 2,061,111", markdown)
+        self.assertIn("Confirmed authored functions | 1,357", markdown)
+        self.assertIn("Confirmed authored code bytes | 2,061,434", markdown)
         self.assertIn("Classified exclusions | 1,266", markdown)
-        self.assertIn("Origin/boundary review pending | 1,388", markdown)
+        self.assertIn("Origin/boundary review pending | 1,387", markdown)
         self.assertIn("Canonical exact functions | 1,259", markdown)
         self.assertIn("Canonical exact authored bytes | 214,043", markdown)
         self.assertIn(

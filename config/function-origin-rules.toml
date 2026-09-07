@@ -53,6 +53,17 @@ confidence = "observed"
 evidence = "Current 1.06a RTTI-owned ReimuObject..TenshiObject vtables directly own thirty class-specific +0x28/+0x3C roots plus shared vslot +0x34 @ 0x00435360. The fifteen Object vtable identities are independently class-disambiguated by exact roster object-spawn allocator chains already attested in config/reccmp-relocations.csv. A target-SHA-pinned pointer manifest replays every contributing vtable dword and provisional candidate span fail-closed. This establishes authored class ownership only; semantic naming, source presence, exact callable boundaries and canonical exactness remain separate work."
 
 [[rules]]
+id = "roster-character-object-action980-shared-authored-106a"
+addresses = ["0x00596370"]
+expected_count = 1
+expected_bytes = 323
+origin = "authored_game"
+subsystem = "characters"
+disposition = "authored"
+confidence = "observed"
+evidence = "Current 1.06a IDA xrefs prove exactly one direct call from each of the fifteen RTTI-owned roster Object +0x3C action-entry roots into this shared action980 continuation. The 323-byte body performs gameplay sequence selection, RNG-derived state, owner-relative coordinates and motion setup; ordinary pinned-VC8 source reproduces all 323 bytes in size and 81/82 normalized instructions, excluding generic compiler/container ownership."
+
+[[rules]]
 id = "vc8-string-range-errors-106a"
 addresses = ["0x00665AF4", "0x00665B33"]
 expected_count = 2

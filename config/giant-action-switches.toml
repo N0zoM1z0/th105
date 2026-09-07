@@ -160,3 +160,22 @@ destination_count = 29
 index_table = "0x00544B0C"
 expected_physical_groups = 29
 candidate_destination_counts = [28, 29]
+
+[[roots]]
+name = "aya-object-action-entry"
+address = "0x0061F0B0"
+callable_end = "0x00620263"
+metadata_end = "0x006203B0"
+expected_unique_destinations = 32
+expected_direct_call_sites = 59
+expected_direct_call_targets = 7
+expected_ret_opcodes = 32
+
+[[roots.regions]]
+name = "actions"
+case_min = 800
+case_max = 998
+destination_table = "0x00620264"
+destination_count = 32
+index_table = "0x006202E4"
+expected_physical_groups = 32

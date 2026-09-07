@@ -17056,7 +17056,7 @@ source = "src/characters/YoumuObjectActionEntry.cpp"
 object = "build/match-units/GptWeb_YoumuObjectActionEntry.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current 1.06a RTTI-owned YoumuObject vslot +0x3C @ 0x00543670. Complete ordinary-C++ semantic scaffold covers the target-proved 800..999 sparse action initializer. Fresh pinned VC8 preserves 29/29 target physical destinations with zero splits, 25/29 exact-sized owner rows and 41 bytes summed span residual; candidate metadata begins at +0x1428 versus target callable end +0x1427. Remaining nonzero owners are 820 26/12, 850 37/57, 857 229/225 and default 10/7. Action851 is 40/40 only with a double source lifetime; float/ref/int forms merge it incorrectly with 854. Unsigned RNG conversions are float-width before later double arithmetic, eliminating non-target __real@41f0000000000000. Formal first mismatch is frame 0x14 versus target 0x10. No authored exact credit until canonical zero-difference."
+notes = "Current 1.06a RTTI-owned YoumuObject vslot +0x3C @ 0x00543670. Complete ordinary-C++ semantic scaffold covers the target-proved 800..999 sparse action initializer. Fresh pinned VC8 now uses the shipped 0x10 frame and preserves 29/29 physical destinations with zero splits. Removing only the two one-use case800 atan2 argument scratches moves formal first mismatch from +0x04 to +0x80 without changing owner topology. Target action902 sequence10 performs the 5.0-minus-unsigned-float RNG arithmetic before phase_index_184=1; restoring that side-effect order makes action857 225/225 and keeps action902 671/671. The owner mapper is 26/29 exact-sized with 37 bytes summed residual; the remaining logical inversion is action820 26/12 versus action850 37/57, plus post-RET alignment in the mapper default row. Action851 retains its target-backed double source lifetime so 851/854 remain distinct. No authored exact credit until canonical zero-difference."
 
 [[units.gpt-web-youmu-object-action-entry.functions]]
 address = "0x00543670"
@@ -17102,4 +17102,21 @@ dir32_targets = [
   "__real@4f800000=__real@4f800000",
   "__real@c0400000=__real@c0400000",
   "__real@c2700000=__real@c2700000",
+]
+
+[units.gpt-web-object-action-980]
+kind = "probe"
+source = "src/characters/ObjectAction980.cpp"
+object = "build/match-units/GptWeb_ObjectAction980.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Target-backed shared action980 continuation called exactly once from each of the fifteen roster Object +0x3C action-entry roots. Branch-local heading lifetime removes a false EBX save and a direct scale expression keeps the sequence1 x87 product live across the real byte store. Fresh pinned VC8 is exact-sized 323/323 and matches 81/82 normalized instructions; only ECX=this versus push-eax ordering before the virtual +0x0C call remains. Keep nonexact until canonical byte order closes; no volatile/register forcing or fake liveness."
+
+[[units.gpt-web-object-action-980.functions]]
+address = "0x00596370"
+symbol_base = "?continue_action_980@ObjectAction980View@th105@@QAEXXZ"
+rel32_targets = [
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+  "?set_oriented_components_f0_f4@CharacterObjectRuntime@th105@@QAEXMM@Z=0x00435160",
+  "__ftol2_sse=0x0068A1A0",
 ]

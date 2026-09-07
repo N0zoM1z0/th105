@@ -166,12 +166,10 @@ void YoumuObjectActionEntryView::initialize_action_entry()
         sprite_004.reset_zero_128 = heading_340[0];
         select_sequence(static_cast<int>(heading_340[2]));
         if (sequence_index_13e == 1) {
-            float const delta_x =
+            state_378 = static_cast<float>(-atan2_degrees(
+                static_cast<float>((target_170->y_f0 - sprite_004.object_y_0ec) + 100.0),
                 (target_170->x_ec - sprite_004.object_x_0e8) *
-                static_cast<float>(sprite_004.object_facing_100);
-            float const delta_y = static_cast<float>(
-                (target_170->y_f0 - sprite_004.object_y_0ec) + 100.0);
-            state_378 = static_cast<float>(-atan2_degrees(delta_y, delta_x));
+                    static_cast<float>(sprite_004.object_facing_100)));
             if (state_378 > heading_340[4] + 10.0f)
                 state_378 = heading_340[4] + 10.0f;
             if (state_378 < heading_340[4] - 10.0f)
@@ -581,8 +579,8 @@ action848_select:
                 heading_340[0], heading_340[1]);
             unsigned int const decay_roll =
                 static_cast<unsigned int>(selector_random_roll(10));
-            phase_index_184 = 1;
             state_370 = 5.0f - static_cast<float>(decay_roll);
+            phase_index_184 = 1;
         }
         return;
 
