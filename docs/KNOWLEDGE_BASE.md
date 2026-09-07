@@ -2429,3 +2429,41 @@ real `double v14`/`float v67` lifetimes made candidate text 10797 and residual
 best 239-residual baseline; these target-shaped failures now bound the next
 search to TU/LTCG physical owner recovery rather than more decompiler-label
 transcription.
+
+### 2026-09-07: fresh cold recheck isolates the 62-byte high-switch drift
+
+The clean working-tree recheck supersedes older 271/76-byte snapshots in this
+file. The retained ordinary-C++ baseline currently maps **65/65 physical
+destinations**, **zero target-group splits**, and **58/66 exact-sized rows**;
+the summed absolute span residual is **239 bytes**. Candidate text is 10,789
+bytes with metadata at root `+0x27E4` versus target `+0x27EC`. Case 50 is
+134/134 in this baseline, but the root remains nonexact and the formal first
+mismatch is root `+0x14` (`target 48`, candidate 86).
+
+Target cases 159..162 start at root offsets
+`+0x1A8C/+0x1AC9/+0x1B06/+0x1B43`, each occupies 61 bytes, and each ends in a
+long backward branch to the case-50-owned entries at `+0x62` or `+0x79`.
+The candidate starts them at `+0x1A7D/+0x1ABA/+0x1AF4/+0x1B2A`, with spans
+61/58/54/148: case 162 owns the duplicated shared suffix. Candidate case 163
+therefore starts 62 bytes after target, and the high-switch entry is candidate
+`+0x1D9E` versus target `+0x1D60`. The target 163..181 bytes are internally
+exact-sized; their physical anchor is the displaced quantity. This explains
+why the residual cannot be fixed by changing only the `+0.6` arithmetic.
+
+The target publisher graph is independently fixed: case 71 physically owns
+`LABEL_99` at `0x0047478F` (root `+0x6CF`), case 73 owns its `LABEL_120`
+landing prefix and jumps back to that publisher, while case 88 is another
+scalar-5 consumer. The candidate places the publisher at object offset
+`0xD70` in case 88 and lets case 73 reuse the case-88 landing suffix. The
+remaining 71/73/88 spans are therefore one standalone physical-merge/LTCG
+problem, not three unrelated missing actions.
+
+Two target-backed probes were run and reverted. Moving action 690 into a
+sibling outer-CFG arm compiled but made the mapper reject the low switch
+(`expected one candidate COFF switch table, found 0`). Adding the
+decompiler's `v19=0.0` lifetime to actions 73/75/88 and comparing through it
+raised residual **239 -> 275** (73 **285/344**, 75 **167/148**, 88
+**368/310**). These negative results close source-only explanations without
+changing retained reconstruction state; the next search must recover the
+translation-unit/LTCG owner context, not repeat label or branch-spelling
+matrices.

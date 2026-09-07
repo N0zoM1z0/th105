@@ -8,6 +8,44 @@ seeds using current-target-backed structural remapping where appropriate.
 
 ## 2026-09-07 focused giant-root checkpoint
 
+- **Fresh working-tree recheck supersedes the older 271/76-byte snapshot below.**
+  The retained baseline source is clean and reproducibly maps the target-backed
+  switch to **65/65 physical destinations**, **zero target-group splits**, and
+  **58/66 exact-sized rows** with summed absolute span residual **239 bytes**.
+  Candidate text is **10,789** bytes and metadata starts at root `+0x27E4`
+  versus target `+0x27EC`; these are diagnostics only and do not grant partial
+  authored-byte credit. The current nonzero rows are 71 **342/362**, 73
+  **287/344**, 74 **178/170**, 88 **364/310**, 160 **58/61**, 161 **54/61**,
+  162 **148/61**, and high799 **291/288**. Case 50 is now **134/134** in
+  this baseline; the formal comparator still first differs at root `+0x14`
+  (`target 48`, candidate 86) and the entire root remains nonexact.
+- The remaining 160..high drift is now measured as one physical-owner chain,
+  not four independent arithmetic failures. Target cases 159..162 begin at
+  root offsets `+0x1A8C/+0x1AC9/+0x1B06/+0x1B43`, each spans **61** bytes, and
+  each ends in a long backward branch to the case-50-owned entries at `+0x62`
+  or `+0x79`. Candidate begins them at `+0x1A7D/+0x1ABA/+0x1AF4/+0x1B2A`
+  with spans **61/58/54/148**; case 162 owns the otherwise shared suffix.
+  Consequently candidate case 163 starts 62 bytes after target and the
+  high-switch entry is candidate `+0x1D9E` versus target `+0x1D60`. The target
+  bytes are internally exact-sized through the 163..181 cohort; only their
+  physical anchor is displaced.
+- Fresh target disassembly also fixes the other residual as an owner graph:
+  target case 71 owns publisher `LABEL_99` at `0x0047478F` (root `+0x6CF`),
+  case 73 owns its `LABEL_120` landing prefix and jumps back to that publisher,
+  and case 88's landing path is another scalar-5 consumer. The candidate puts
+  the publisher at object offset `0xD70` inside case 88 and lets case 73 reuse
+  case 88's landing suffix. This accounts for the 71/73/88 span deltas and is
+  the same standalone physical-merge/LTCG boundary as the case-50 chain.
+- Two new probes were run and reverted. Moving action 690 into a sibling
+  outer-CFG arm compiled but made the mapper reject the low switch entirely
+  (`expected one candidate COFF switch table, found 0`). Adding the
+  target-decompiler `v19=0.0` lifetime to actions 73/75/88 and comparing
+  through it raised residual **239 -> 275** (case 73 **285/344**, case 75
+  **167/148**, case 88 **368/310**). Neither is retained. These results close
+  two tempting source-only explanations without changing reconstruction state;
+  the next useful work is TU/LTCG owner recovery, not another label or branch
+  spelling matrix.
+
 - Keep the active bounded target at `Fighter_update_common_action_state @
   0x004740C0`; do not switch to another roster giant until this action-0
   ownership blocker is either recovered or proven to require a different
