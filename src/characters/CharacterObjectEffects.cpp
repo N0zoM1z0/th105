@@ -101,6 +101,32 @@ void *CharacterObjectEffectEmitter::spawn_parented_related_object(
             copied_word_count);
 }
 
+void CharacterObjectEffectEmitter::set_secondary_animation_alpha(unsigned char alpha)
+{
+    if (secondary_renderer_338)
+        secondary_renderer_338->set_vertex_color(
+            (static_cast<unsigned int>(alpha) << 24) | 0x00ffffffu);
+}
+
+void CharacterObjectEffectEmitter::release_secondary_animation_renderer()
+{
+    if (secondary_renderer_338) {
+        delete secondary_renderer_338;
+        secondary_renderer_338 = 0;
+    }
+}
+
+Fighter *CharacterObjectEffectEmitter::position_relative_to_owner_offsets(
+    int x_offset, int y_offset)
+{
+    Fighter *const owner = owner_348;
+    facing_104 = owner->facing_104;
+    x_ec = (velocity_x_f4 + x_offset) *
+        static_cast<signed char>(owner->facing_104) + owner->x_ec;
+    y_f0 = owner->y_f0 + y_offset + velocity_y_f8;
+    return owner;
+}
+
 void CharacterObjectEffectEmitter::update_ping_pong_motion_and_periodic_spawn()
 {
     float copied_words[3];
@@ -116,10 +142,11 @@ void CharacterObjectEffectEmitter::update_ping_pong_motion_and_periodic_spawn()
                 ping_pong_direction_364 = 1;
             }
         } else {
-            if (ping_pong_phase_113 < 4u) {
+            if (ping_pong_phase_113 >= 4u) {
+                ping_pong_phase_113 -= 4;
+            } else {
                 goto expire;
             }
-            ping_pong_phase_113 -= 4;
         }
 
         value = scale_x_11c + 0.0025f;

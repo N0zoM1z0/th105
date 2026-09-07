@@ -95,6 +95,7 @@ claims.
 
 ## Analysis lifecycle
 
+- Audit direct branch targets that IDA represents only as remote tail chunks. If raw PE shows an independently isolated callable (for example INT3/alignment boundary plus its own return), do not inherit IDA ownership automatically. Split/add a candidate only after control-flow/xref review and an independently reproducible source/object comparison; a tail jump alone proves neither chunk nor separate-function ownership.
 - `.analysis/` contains disposable exports, packets, and reports.
 - `scripts/export-ida-inventory.py --write` deliberately replaces the entire
   candidate/origin baseline and never merges old status. Use it only for a

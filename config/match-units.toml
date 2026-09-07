@@ -242,11 +242,37 @@ source = "src/characters/CharacterObjectEffects.cpp"
 object = "build/match-units/CrossV106a_CharacterObjectEffects.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fresh canonical VC8 zero-diff replay; no relocation overrides required."
+notes = "Shared CharacterObjectEffectEmitter primitives recovered from RTTI-owned roster Object giant-root callers and accepted only by canonical VC8 zero-difference replay. The 0x53CBC0 motion helper uses target-backed cold-expire CFG; 0x4963F0 uses ordinary delete lifetime; 0x5B0400 uses owner-relative positioning. No assembly, padding, fake liveness, or ABI forcing."
+
+[[units.cross-v106a-character-object-effects.functions]]
+address = "0x004963F0"
+symbol_base = "CharacterObjectEffectEmitter_release_secondary_animation_renderer"
+rel32_targets = [
+  "??1SecondaryAnimationRenderRuntimeView@th105@@QAE@XZ=0x00430080",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.cross-v106a-character-object-effects.functions]]
+address = "0x00496370"
+symbol_base = "?set_secondary_animation_alpha@CharacterObjectEffectEmitter@th105@@QAEXE@Z"
+rel32_targets = [
+  "?set_vertex_color@SecondaryAnimationRenderRuntimeView@th105@@QAEXI@Z=0x0042FD80",
+]
 
 [[units.cross-v106a-character-object-effects.functions]]
 address = "0x004FCA60"
 symbol_base = "CharacterObjectEffectEmitter_spawn_parented_related_object"
+
+[[units.cross-v106a-character-object-effects.functions]]
+address = "0x0053CBC0"
+symbol_base = "CharacterObjectEffectEmitter_update_ping_pong_motion_and_periodic_spawn"
+rel32_targets = [
+  "?spawn_unparented_related_object@CharacterObjectEffectEmitter@th105@@QAEPAXHMMHHPBIH@Z=0x0064CCB0",
+]
+
+[[units.cross-v106a-character-object-effects.functions]]
+address = "0x005B0400"
+symbol_base = "CharacterObjectEffectEmitter_position_relative_to_owner_offsets"
 
 [[units.cross-v106a-character-object-effects.functions]]
 address = "0x0064CCB0"
@@ -16381,6 +16407,10 @@ object = "build/match-units/GptWeb_SecondaryAnimationRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
 notes = "Current 0x54 secondary-animation runtime owned by object callback 0x00496420 and shared render callback 0x00493820. Constructor/destructor/render/initialize remain canonical exact. The 2434-byte update root retains the shipped 0xA0 frame and ESI=this/EDI=deque allocator phase. Target-backed shared value-role families (previous/center, two specific tangent cohorts, point0 across 2/3/default, point1 only across 3/default), target case3 zero-before-erase order, and loop-local field staging for the sixth Normalize source advance first mismatch +0x24 -> +0x43. Normalized whole-function diagnostics are 702/728 shape, 725/728 register-aware ignoring stack displacement, and 702/728 stack-aware. Candidate callable RET is +0x971 versus target +0x981; the 16-byte deficit is the remaining checked-iterator coloring/alignment phase, not missing behavior. Keep nonexact and do not award regional authored bytes; no assembly, copied bytes, padding, arbitrary slot shaping, volatile, fake liveness or register forcing."
+
+[[units.gpt-web-secondary-animation-runtime.functions]]
+address = "0x0042FD80"
+symbol_base = "?set_vertex_color@SecondaryAnimationRenderRuntimeView@th105@@QAEXI@Z"
 
 [[units.gpt-web-secondary-animation-runtime.functions]]
 address = "0x00430050"

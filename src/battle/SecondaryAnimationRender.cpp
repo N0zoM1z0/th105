@@ -103,6 +103,7 @@ public:
         int blend_mode);
     void update_secondary();
     void render_secondary();
+    void set_vertex_color(unsigned int color);
 
 private:
     SecondaryAnimationOwnerRuntimeView *owner_00;
@@ -121,6 +122,13 @@ private:
     std::deque<SecondaryAnimationPoint> points_3c;
     SpriteVertex28 *vertices_50;
 };
+
+void SecondaryAnimationRenderRuntimeView::set_vertex_color(unsigned int color)
+{
+    int count = 2 * subdivision_count_04 * band_count_08 + 2;
+    for (int index = 0; index < count; ++index)
+        vertices_50[index].color = color;
+}
 
 void SecondaryAnimationRenderRuntimeView::update_secondary()
 {

@@ -6,6 +6,12 @@
 
 namespace th105 {
 
+class SecondaryAnimationRenderRuntimeView {
+public:
+    ~SecondaryAnimationRenderRuntimeView();
+    void set_vertex_color(unsigned int color);
+};
+
 // Shared observed prefix used by all roster-owned CharacterObject families.
 // Concrete character objects continue beyond +0x377.
 struct CharacterObjectEffectEmitter {
@@ -32,7 +38,8 @@ struct CharacterObjectEffectEmitter {
     CharacterObjectEffectEmitter *target_170;
     unsigned char unknown_174[0x1bc];
     int lifetime_330;
-    unsigned char unknown_334[0x08];
+    unsigned char unknown_334[0x04];
+    SecondaryAnimationRenderRuntimeView *secondary_renderer_338;
     unsigned char spawn_field_33c;
     unsigned char unknown_33d[0x03];
     float *heading_340;
@@ -60,6 +67,9 @@ struct CharacterObjectEffectEmitter {
         int field_33c,
         const unsigned *copied_words,
         int copied_word_count);
+    Fighter *position_relative_to_owner_offsets(int x_offset, int y_offset);
+    void release_secondary_animation_renderer();
+    void set_secondary_animation_alpha(unsigned char alpha);
     void turn_heading_toward_related(
         float heading_bias,
         float max_step,
@@ -77,6 +87,8 @@ struct CharacterObjectEffectEmitter {
         int effect_201_count);
 };
 
+typedef char CheckCharacterObjectEffectSecondaryRendererOffset[
+    offsetof(CharacterObjectEffectEmitter, secondary_renderer_338) == 0x338 ? 1 : -1];
 typedef char CheckCharacterObjectEffectOwnerOffset[
     offsetof(CharacterObjectEffectEmitter, owner_348) == 0x348 ? 1 : -1];
 typedef char CheckCharacterObjectEffectRelatedOffset[

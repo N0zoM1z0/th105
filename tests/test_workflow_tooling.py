@@ -53,17 +53,17 @@ class WorkflowToolingTests(unittest.TestCase):
             newline="", encoding="utf-8"
         ) as stream:
             functions = list(csv.DictReader(stream))
-        self.assertEqual(len(functions), 4010)
+        self.assertEqual(len(functions), 4011)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1259)
+        self.assertEqual(len(matching), 1264)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1280)
+        self.assertEqual(len(implemented), 1285)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1259
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1264
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
@@ -71,34 +71,34 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(len(manifest["units"]), 447)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1277,
+            1282,
         )
 
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
         self.assertEqual(len(accepted), 436)
-        self.assertEqual(sum(map(len, accepted.values())), 1259)
+        self.assertEqual(sum(map(len, accepted.values())), 1264)
         secondary = accepted["gpt-web-secondary-animation-runtime"]
         self.assertEqual(
             secondary,
-            {"0x00430050", "0x00430080", "0x004302A0", "0x00430750"},
+            {"0x0042FD80", "0x00430050", "0x00430080", "0x004302A0", "0x00430750"},
         )
         self.assertNotIn("0x004309F0", secondary)
         view = self.exact_replay.comparison_view(
             units["gpt-web-secondary-animation-runtime"], secondary
         )
-        self.assertEqual(len(view["functions"]), 4)
+        self.assertEqual(len(view["functions"]), 5)
 
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
-        self.assertIn("Tracked 1.06a function candidates | 4,010", markdown)
-        self.assertIn("Confirmed authored functions | 1,357", markdown)
-        self.assertIn("Confirmed authored code bytes | 2,061,434", markdown)
+        self.assertIn("Tracked 1.06a function candidates | 4,011", markdown)
+        self.assertIn("Confirmed authored functions | 1,362", markdown)
+        self.assertIn("Confirmed authored code bytes | 2,062,096", markdown)
         self.assertIn("Classified exclusions | 1,266", markdown)
-        self.assertIn("Origin/boundary review pending | 1,387", markdown)
-        self.assertIn("Canonical exact functions | 1,259", markdown)
-        self.assertIn("Canonical exact authored bytes | 214,043", markdown)
+        self.assertIn("Origin/boundary review pending | 1,383", markdown)
+        self.assertIn("Canonical exact functions | 1,264", markdown)
+        self.assertIn("Canonical exact authored bytes | 214,705", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
@@ -776,7 +776,7 @@ class WorkflowToolingTests(unittest.TestCase):
         with (ROOT / "config" / "match-units.toml").open("rb") as stream:
             manifest = tomllib.load(stream)
         counts = self.literals.audit_real_literals(relocations, manifest)
-        self.assertEqual(counts["ledger_literals"], 276)
+        self.assertEqual(counts["ledger_literals"], 278)
         self.assertEqual(counts["explicit_mappings"], 420)
         self.assertEqual(counts["target_checks"], 0)
 
@@ -787,7 +787,7 @@ class WorkflowToolingTests(unittest.TestCase):
         counts = self.validator.validate_real_literal_relocations(
             self.manifest.load_manifest(), require_bytes=True
         )
-        self.assertEqual(counts["target_checks"], 696)
+        self.assertEqual(counts["target_checks"], 698)
 
     def test_rel32_accepts_only_supported_instruction_forms(self) -> None:
         self.assertEqual(
