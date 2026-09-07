@@ -6,6 +6,43 @@ Canonical 1.06a authored-exact waves are established. The active phase is
 expanding authored classification and exact source recovery beyond raw-identity
 seeds using current-target-backed structural remapping where appropriate.
 
+## 2026-09-07 focused giant-root checkpoint
+
+- Keep the active bounded target at `Fighter_update_common_action_state @
+  0x004740C0`; do not switch to another roster giant until this action-0
+  ownership blocker is either recovered or proven to require a different
+  translation-unit/LTCG boundary. The retained ordinary-C++ source remains
+  source-present and canonical-nonexact.
+- Fresh baseline mapping is **65/65 physical destinations**, **zero target
+  group splits**, **58/66 exact-sized rows**, and **271 bytes** summed absolute
+  owner-span residual. Candidate metadata begins at root `+0x27E4` versus the
+  target `+0x27EC`; these regional metrics are diagnostic only and do not add
+  authored exact-byte credit.
+- IDA/PE owner evidence is closed for the current action-0 question: target
+  case 50 owns the 134-byte body at `0x004740FA..0x0047417F`, with the shared
+  x87 drop at `0x00474139`, boundary/advance tail at `0x0047413B`, and action-0
+  advance at `0x00474161`. Cases 55/61 and 56/57/58 are 49-byte prefixes into
+  those owners; cases 159..162 are 61-byte prefixes into the same `0x474122`
+  / `0x474139` pair. The current candidate instead has 50=`76/134` and
+  162=`128/61`, which explains the 58-byte outer displacement delta.
+- A focused source-CFG matrix tested the remaining obvious label hypothesis.
+  Embedding `LABEL_6` inside case 50's clamp branch or moving the complete
+  clamp block immediately after case 50 reduced case 50 to 55/49 bytes and
+  made 159..162 non-target; restoring independent ordinary bodies for 55/56
+  expanded both to 134-byte owners and raised whole-root residual to 523.
+  These forms are rejected. The earlier case-50-independent-return probe is
+  likewise not promotable: it makes case 50 locally 134/134 but moves the
+  strict/global layout, with metadata at `+0x282C` and first mismatch still at
+  root `+0x14`.
+- The current strict pinned-VC8 comparison is reproducibly nonexact: target
+  and ledger size are both 10,219 bytes, object section tail is 10,717 bytes,
+  and the first mismatch is `0x004740D4` (`target 48`, candidate `3E`). Do
+  not add this root to `matches.csv` or claim partial authored bytes. Next
+  work should search for the higher-level source graph or recovered LTCG
+  owner identity that makes case 50 own both the independent action-0 tail
+  and the 159..162 shared clamp, not repeat label placement or arithmetic
+  spelling probes.
+
 ## Verified state
 
 - **Newest AyaObject +0x3C owner-closure checkpoint:** the conservative census remains **1,357 confirmed authored functions / 2,061,434 authored code bytes**, **1,280 source-present mappings**, **1,259 canonical exact functions / 214,043 exact bytes**, and **1,387** origin/boundary candidates under review. `AyaObject_initialize_action_entry @ 0x0061F0B0` remains source-present/nonexact and receives no partial byte credit.

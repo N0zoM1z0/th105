@@ -2288,3 +2288,41 @@ Hex-Rays can also materialize an x87 value spanning adjacent action ranges as a
 pseudo-local (the former `v92` in the default policy).  Remove such locals only
 when target stack lifetime plus a normal source expression makes VC8 reproduce
 the real float literal/edge naturally.
+
+## 2026-09-07: Fighter action-0 owner placement is a source-graph blocker
+
+The active bounded root remains `Fighter_update_common_action_state @
+0x004740C0`.  Fresh target/IDA decoding fixes the action-0 ownership facts:
+case 50 owns the 134-byte body at `0x004740FA..0x0047417F`; its shared x87
+drop is `0x00474139`, its boundary/advance tail begins at `0x0047413B`, and
+the action-0 transition begins at `0x00474161`.  Cases 55/61 and 56/57/58
+are 49-byte prefixes that jump into this body, while cases 159..162 are
+61-byte prefixes that reuse the same `0x474122` / `0x474139` pair.  These are
+physical PE edges, not ownership inferred from a Hex-Rays label name.
+
+The retained ordinary-C++ baseline has target cardinality but not target
+placement: **65/65 destinations, zero splits, 58/66 exact-sized rows, and
+271 bytes** summed absolute span residual.  The remaining rows are
+50=`76/134`, 71=`342/362`, 73=`287/344`, 74=`178/170`, 88=`364/310`,
+161=`57/61`, 162=`128/61`, and high 799=`291/288`.  The candidate metadata
+starts at root `+0x27E4`, four bytes before target `+0x27EC`.
+
+A focused source-CFG matrix tested whether the target owner could be recovered
+by moving the decompiler labels alone.  Putting `LABEL_6` inside case 50's
+clamp branch or moving the complete clamp block immediately after case 50
+made case 50 only 55/49 bytes and broke the 159..162 prefix phase.  Restoring
+independent ordinary bodies for 55/56 produced 134-byte owners instead of
+the target 49-byte prefixes and raised whole-root residual to 523.  These
+forms are rejected.  The independent-return case-50 probe is a useful local
+diagnostic—case 50 becomes 134/134—but it moves the global VC8 layout,
+metadata reaches `+0x282C`, and the strict comparator still fails at root
+`+0x14`; it is not retained source.
+
+The strict pinned-VC8 baseline is reproducible: target and ledger size are
+10,219 bytes, the candidate object section tail is 10,717 bytes, and the
+first mismatch is `0x004740D4` (`target 48`, candidate `3E`).  The next
+useful search is therefore a higher-level source graph or translation-unit /
+LTCG owner identity that lets VC8 place the independent case-50 action-0
+tail and the 159..162 shared clamp together.  Repeating label placement,
+equivalent arithmetic, or standalone local-object tricks is closed; no
+partial regional span is an authored exact-byte claim.
