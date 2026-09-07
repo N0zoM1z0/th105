@@ -7,7 +7,7 @@ import argparse
 import csv
 from pathlib import Path
 
-from function_byte_ownership import exact_extra_bytes, load as load_byte_ownership, owned_size
+from function_byte_ownership import exact_owned_size, load as load_byte_ownership, owned_size
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -37,7 +37,7 @@ def render() -> str:
     ]
     review = len(functions) - len(authored) - len(excluded)
     exact_bytes = sum(
-        int(row["size"], 0) + exact_extra_bytes(int(row["address"], 0), ownership)
+        exact_owned_size(int(row["address"], 0), int(row["size"], 0), ownership)
         for row in matches
     )
     authored_bytes = sum(
@@ -86,7 +86,7 @@ def render_svg() -> str:
     review_pending = len(functions) - reviewed
     review_pct = 100 * reviewed / len(functions) if functions else 0.0
     exact_bytes = sum(
-        int(row["size"], 0) + exact_extra_bytes(int(row["address"], 0), ownership)
+        exact_owned_size(int(row["address"], 0), int(row["size"], 0), ownership)
         for row in matches
     )
     authored_bytes = sum(

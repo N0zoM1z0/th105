@@ -179,3 +179,82 @@ destination_table = "0x00620264"
 destination_count = 32
 index_table = "0x006202E4"
 expected_physical_groups = 32
+
+# Roster Object +0x28 update roots. Reimu's callable envelope spans reviewed
+# IDA-owned remote chunks and therefore includes compiler alignment gaps; authored
+# byte accounting is separately pinned in function-byte-ownership.toml.
+[[roots]]
+name = "reimu-object-vslot28"
+address = "0x00496540"
+callable_end = "0x004A197A"
+metadata_end = "0x004A1CE0"
+expected_unique_destinations = 42
+expected_direct_call_sites = 405
+expected_direct_call_targets = 26
+expected_ret_opcodes = 68
+
+[[roots.regions]]
+name = "actions"
+case_min = 800
+case_max = 999
+destination_table = "0x004A197C"
+destination_count = 42
+index_table = "0x004A1A24"
+expected_physical_groups = 42
+
+[[roots]]
+name = "alice-object-vslot28"
+address = "0x004FCAB0"
+callable_end = "0x0050BDF6"
+metadata_end = "0x0050C1C0"
+expected_unique_destinations = 39
+expected_direct_call_sites = 425
+expected_direct_call_targets = 29
+expected_ret_opcodes = 120
+
+[[roots.regions]]
+name = "actions"
+case_min = 800
+case_max = 999
+destination_table = "0x0050BDF8"
+destination_count = 39
+index_table = "0x0050BE94"
+expected_physical_groups = 39
+
+[[roots]]
+name = "youmu-object-vslot28"
+address = "0x0053CEA0"
+callable_end = "0x005433F8"
+metadata_end = "0x00543670"
+expected_unique_destinations = 29
+expected_direct_call_sites = 224
+expected_direct_call_targets = 20
+expected_ret_opcodes = 49
+
+[[roots.regions]]
+name = "actions"
+case_min = 800
+case_max = 999
+destination_table = "0x005433F8"
+destination_count = 29
+index_table = "0x0054346C"
+expected_physical_groups = 29
+
+[[roots]]
+name = "aya-object-vslot28"
+address = "0x0061A290"
+callable_end = "0x0061EED2"
+metadata_end = "0x0061F0B0"
+expected_unique_destinations = 33
+expected_direct_call_sites = 122
+expected_direct_call_targets = 17
+expected_ret_opcodes = 40
+
+[[roots.regions]]
+name = "actions"
+case_min = 800
+case_max = 998
+destination_table = "0x0061EED4"
+destination_count = 33
+index_table = "0x0061EF58"
+expected_physical_groups = 33

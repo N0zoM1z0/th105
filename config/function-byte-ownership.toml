@@ -2,18 +2,37 @@ schema_version = 1
 target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
 
 # Source-level function byte ownership that cannot be represented by the
-# provisional contiguous functions.csv size/span_end pair.  Each remote span
-# is executable code owned by the same authored source function; alignment and
-# switch metadata between spans are intentionally excluded.
+# provisional contiguous functions.csv size/span_end pair. Main-span exclusions
+# and remote chunks are target-hashed separately so compiler alignment and switch
+# metadata never enter authored byte counts.
 [[functions]]
 address = "0x004CADB0"
 main_size = 41511
 main_end = "0x004D4FD6"
+main_excluded_bytes = 21
 extent_end = "0x004DD2D1"
 remote_bytes = 33451
-owned_bytes = 74962
+owned_bytes = 74941
 remote_exact = false
-evidence = "Current attested IDA disassembly for Sakuya primary-vtable +0x28 continues from the 41,511-byte entry chunk through ten remote code chunks ending at RET 0x004DD2D1. Every remote chunk entry has current code xrefs from sub_4CADB0-owned blocks; the 80 intervening bytes are VC8 alignment NOP sequences."
+evidence = "Current attested IDA disassembly for Sakuya primary-vtable +0x28 continues from the 41,511-byte entry span through ten remote code chunks ending at RET 0x004DD2D1. IDA-owned instruction ranges also exclude three seven-byte alignment NOPs inside that provisional main span; all remote chunk entries have current code xrefs from sub_4CADB0-owned blocks."
+
+[[functions.main_exclusions]]
+start = "0x004D2839"
+end = "0x004D283F"
+size = 7
+sha256 = "4fe06c07aad18cb5faea1a925ff71a52931084bbb3f844ffd60bae6a9ce14cce"
+
+[[functions.main_exclusions]]
+start = "0x004D2C79"
+end = "0x004D2C7F"
+size = 7
+sha256 = "4fe06c07aad18cb5faea1a925ff71a52931084bbb3f844ffd60bae6a9ce14cce"
+
+[[functions.main_exclusions]]
+start = "0x004D2E19"
+end = "0x004D2E1F"
+size = 7
+sha256 = "4fe06c07aad18cb5faea1a925ff71a52931084bbb3f844ffd60bae6a9ce14cce"
 
 [[functions.chunks]]
 start = "0x004D4FE0"
@@ -74,3 +93,26 @@ start = "0x004DBD80"
 end = "0x004DD2D1"
 size = 5458
 sha256 = "a482e1abaca46f91f8fb3b72ceecfa271305a6ad0ab0aca3cc1b9bd3ff718f84"
+
+[[functions]]
+address = "0x00496540"
+main_size = 39853
+main_end = "0x004A00EC"
+main_excluded_bytes = 7
+extent_end = "0x004A1979"
+remote_bytes = 6282
+owned_bytes = 46128
+remote_exact = false
+evidence = "Current attested IDA function ownership for ReimuObject primary-vtable +0x28 is three executable chunks: [0x00496540,0x0049D169), [0x0049D170,0x004A00ED), and [0x004A00F0,0x004A197A). The provisional main span contains one seven-byte alignment NOP, while the 6,282-byte final chunk lies beyond functions.csv and carries top-level actions 908/951/980/998/999 plus the default owner. The top-level PE switch table at 0x004A197C uses all 42 destinations and directly targets those remote owners; no other candidate starts inside the remote chunk."
+
+[[functions.main_exclusions]]
+start = "0x0049D169"
+end = "0x0049D16F"
+size = 7
+sha256 = "4fe06c07aad18cb5faea1a925ff71a52931084bbb3f844ffd60bae6a9ce14cce"
+
+[[functions.chunks]]
+start = "0x004A00F0"
+end = "0x004A1979"
+size = 6282
+sha256 = "b523e6ad1a2344a1576ded336b4306475d8dc27957b970fe58f559a2d418db88"

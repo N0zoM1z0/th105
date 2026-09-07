@@ -98,6 +98,42 @@ def load(
             if int(row["size"], 0) != main_size or int(row["span_end"], 0) != main_end:
                 raise ValueError(f"{context}: main chunk disagrees with functions.csv")
 
+        main_exclusions: list[dict[str, Any]] = []
+        previous_exclusion_end = address - 1
+        for exclusion_index, exclusion in enumerate(raw.get("main_exclusions", []), start=1):
+            exclusion_context = f"{context}.main_exclusions[{exclusion_index}]"
+            start = parse_address(exclusion.get("start"), exclusion_context)
+            end = parse_address(exclusion.get("end"), exclusion_context)
+            size = int(exclusion.get("size", 0))
+            digest = str(exclusion.get("sha256", ""))
+            if (
+                start < address
+                or end > main_end
+                or start <= previous_exclusion_end
+                or end < start
+                or size != end - start + 1
+            ):
+                raise ValueError(
+                    f"{exclusion_context}: invalid or overlapping main exclusion"
+                )
+            if not SHA256.fullmatch(digest):
+                raise ValueError(f"{exclusion_context}: invalid SHA-256")
+            if read_target is not None:
+                actual = hashlib.sha256(read_target(start, size)).hexdigest()
+                if actual != digest:
+                    raise ValueError(f"{exclusion_context}: canonical bytes changed")
+            main_exclusions.append(
+                {"start": start, "end": end, "size": size, "sha256": digest}
+            )
+            previous_exclusion_end = end
+
+        main_excluded_bytes = sum(exclusion["size"] for exclusion in main_exclusions)
+        if int(raw.get("main_excluded_bytes", 0)) != main_excluded_bytes:
+            raise ValueError(f"{context}: main_excluded_bytes mismatch")
+        owned_main_bytes = main_size - main_excluded_bytes
+        if owned_main_bytes <= 0:
+            raise ValueError(f"{context}: main exclusions consume the entire main span")
+
         chunks: list[dict[str, Any]] = []
         previous_end = main_end
         for chunk_index, chunk in enumerate(raw.get("chunks", []), start=1):
@@ -135,7 +171,7 @@ def load(
             raise ValueError(f"{context}: extent_end does not match last remote chunk")
         if int(raw.get("remote_bytes", -1)) != remote_bytes:
             raise ValueError(f"{context}: remote_bytes mismatch")
-        owned_bytes = main_size + remote_bytes
+        owned_bytes = owned_main_bytes + remote_bytes
         if int(raw.get("owned_bytes", -1)) != owned_bytes:
             raise ValueError(f"{context}: owned_bytes mismatch")
         remote_exact = bool(raw.get("remote_exact", False))
@@ -145,6 +181,9 @@ def load(
             "address": address,
             "main_size": main_size,
             "main_end": main_end,
+            "main_excluded_bytes": main_excluded_bytes,
+            "owned_main_bytes": owned_main_bytes,
+            "main_exclusions": main_exclusions,
             "extent_end": extent_end,
             "remote_bytes": remote_bytes,
             "owned_bytes": owned_bytes,
@@ -166,3 +205,15 @@ def exact_extra_bytes(address: int, ownership: dict[int, dict[str, Any]]) -> int
     if row is None or not row["remote_exact"]:
         return 0
     return int(row["remote_bytes"])
+
+
+def exact_owned_size(
+    address: int, main_size: int, ownership: dict[int, dict[str, Any]]
+) -> int:
+    row = ownership.get(address)
+    if row is None:
+        return main_size
+    size = main_size - int(row["main_excluded_bytes"])
+    if row["remote_exact"]:
+        size += int(row["remote_bytes"])
+    return size

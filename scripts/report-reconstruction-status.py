@@ -9,7 +9,7 @@ import json
 from pathlib import Path
 import tomllib
 
-from function_byte_ownership import exact_extra_bytes, load as load_byte_ownership, owned_size
+from function_byte_ownership import exact_owned_size, load as load_byte_ownership, owned_size
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -81,7 +81,7 @@ def load() -> tuple[list[dict[str, object]], dict[str, object]]:
         "source_present": sum(bool(row["source_present"]) for row in rows),
         "exact_functions": sum(bool(row["exact"]) for row in rows),
         "exact_bytes": sum(
-            int(row["size"]) + exact_extra_bytes(int(str(row["address"]), 0), ownership)
+            exact_owned_size(int(str(row["address"]), 0), int(row["size"]), ownership)
             for row in rows
             if row["exact"]
         ),

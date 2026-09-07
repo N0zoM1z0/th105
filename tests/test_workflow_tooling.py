@@ -101,7 +101,7 @@ class WorkflowToolingTests(unittest.TestCase):
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,011", markdown)
         self.assertIn("Confirmed authored functions | 1,372", markdown)
-        self.assertIn("Confirmed authored code bytes | 2,063,270", markdown)
+        self.assertIn("Confirmed authored code bytes | 2,069,524", markdown)
         self.assertIn("Classified exclusions | 1,266", markdown)
         self.assertIn("Origin/boundary review pending | 1,373", markdown)
         self.assertIn("Canonical exact functions | 1,272", markdown)
@@ -153,6 +153,49 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(policy["destination_count"], 21)
         self.assertEqual(policy["expected_physical_groups"], 21)
 
+
+    def test_giant_action_switch_manifest_tracks_roster_object_roots(self) -> None:
+        with (ROOT / "config" / "giant-action-switches.toml").open("rb") as stream:
+            manifest = tomllib.load(stream)
+        roots = {row["name"]: row for row in manifest["roots"]}
+        expected = {
+            "reimu-object-vslot28": (
+                "0x00496540", "0x004A197A", "0x004A1CE0", 42, 405, 26, 68,
+                800, 999, "0x004A197C", 42, "0x004A1A24",
+            ),
+            "alice-object-vslot28": (
+                "0x004FCAB0", "0x0050BDF6", "0x0050C1C0", 39, 425, 29, 120,
+                800, 999, "0x0050BDF8", 39, "0x0050BE94",
+            ),
+            "youmu-object-vslot28": (
+                "0x0053CEA0", "0x005433F8", "0x00543670", 29, 224, 20, 49,
+                800, 999, "0x005433F8", 29, "0x0054346C",
+            ),
+            "aya-object-vslot28": (
+                "0x0061A290", "0x0061EED2", "0x0061F0B0", 33, 122, 17, 40,
+                800, 998, "0x0061EED4", 33, "0x0061EF58",
+            ),
+        }
+        for name, values in expected.items():
+            root = roots[name]
+            (
+                address, callable_end, metadata_end, destinations,
+                calls, targets, rets, case_min, case_max,
+                destination_table, destination_count, index_table,
+            ) = values
+            self.assertEqual(root["address"], address)
+            self.assertEqual(root["callable_end"], callable_end)
+            self.assertEqual(root["metadata_end"], metadata_end)
+            self.assertEqual(root["expected_unique_destinations"], destinations)
+            self.assertEqual(root["expected_direct_call_sites"], calls)
+            self.assertEqual(root["expected_direct_call_targets"], targets)
+            self.assertEqual(root["expected_ret_opcodes"], rets)
+            region = root["regions"][0]
+            self.assertEqual((region["case_min"], region["case_max"]), (case_min, case_max))
+            self.assertEqual(region["destination_table"], destination_table)
+            self.assertEqual(region["destination_count"], destination_count)
+            self.assertEqual(region["index_table"], index_table)
+            self.assertEqual(region["expected_physical_groups"], destinations)
 
     def test_default_cpu_policy_owner_source_checkpoint(self) -> None:
         text = (ROOT / "src" / "characters" / "CpuActionPolicies.cpp").read_text(
@@ -404,15 +447,37 @@ class WorkflowToolingTests(unittest.TestCase):
             self.assertEqual(
                 self.byte_ownership.load(functions, require_bytes=True), ownership
             )
-        self.assertEqual(set(ownership), {0x004CADB0})
+        self.assertEqual(set(ownership), {0x00496540, 0x004CADB0})
         sakuya = ownership[0x004CADB0]
         self.assertEqual(sakuya["main_size"], 41_511)
+        self.assertEqual(sakuya["main_excluded_bytes"], 21)
+        self.assertEqual(sakuya["owned_main_bytes"], 41_490)
         self.assertEqual(sakuya["remote_bytes"], 33_451)
-        self.assertEqual(sakuya["owned_bytes"], 74_962)
+        self.assertEqual(sakuya["owned_bytes"], 74_941)
         self.assertFalse(sakuya["remote_exact"])
+        self.assertEqual(len(sakuya["main_exclusions"]), 3)
         self.assertEqual(len(sakuya["chunks"]), 10)
         self.assertEqual(sakuya["chunks"][0]["start"], 0x004D4FE0)
         self.assertEqual(sakuya["chunks"][-1]["end"], 0x004DD2D1)
+        self.assertEqual(
+            self.byte_ownership.exact_owned_size(0x004CADB0, 41_511, ownership),
+            41_490,
+        )
+
+        reimu_object = ownership[0x00496540]
+        self.assertEqual(reimu_object["main_size"], 39_853)
+        self.assertEqual(reimu_object["main_excluded_bytes"], 7)
+        self.assertEqual(reimu_object["owned_main_bytes"], 39_846)
+        self.assertEqual(reimu_object["remote_bytes"], 6_282)
+        self.assertEqual(reimu_object["owned_bytes"], 46_128)
+        self.assertFalse(reimu_object["remote_exact"])
+        self.assertEqual(len(reimu_object["main_exclusions"]), 1)
+        self.assertEqual(reimu_object["chunks"][0]["start"], 0x004A00F0)
+        self.assertEqual(reimu_object["chunks"][0]["end"], 0x004A1979)
+        self.assertEqual(
+            self.byte_ownership.exact_owned_size(0x00496540, 39_853, ownership),
+            39_846,
+        )
 
     def test_secondary_animation_generated_manifest_covers_new_leaves(self) -> None:
         with (ROOT / "config" / "vc8-generated-secondary-animation-deque-origin-anchors.toml").open("rb") as stream:
