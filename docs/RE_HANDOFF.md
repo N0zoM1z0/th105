@@ -45,6 +45,14 @@ seeds using current-target-backed structural remapping where appropriate.
   two tempting source-only explanations without changing reconstruction state;
   the next useful work is TU/LTCG owner recovery, not another label or branch
   spelling matrix.
+- Case 55/61 and 56/57/58 now use target-backed ordered-condition source
+  forms: the positive/negative adjustment is the `if` body and the other path
+  explicitly enters the shared tail. Pinned VC8 consequently emits the target
+  status-word branch forms (`test ah,5; jp` and `test ah,41; jnz`) instead of
+  the previous `test ah,1; je`/`jnp`. Text size, physical destination map,
+  residual **239**, and exact-sized-row count **58/66** are unchanged because
+  the unresolved backward branch still lands in the standalone-generated tail;
+  this is a local source-shape correction, not exact-byte credit.
 
 - Keep the active bounded target at `Fighter_update_common_action_state @
   0x004740C0`; do not switch to another roster giant until this action-0

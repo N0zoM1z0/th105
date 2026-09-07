@@ -295,20 +295,22 @@ ACTION_54_60_690:
       case 61:
         resolve_stage_surface_landing_transition();
         v3 = 0.0;
-        if ( velocity_x_f4 <= 0.0 )
-          goto LABEL_8;
-        v4 = static_cast<float>(velocity_x_f4 - 1.5);
-        goto LABEL_6;
+        if ( velocity_x_f4 > 0.0 ) {
+          v4 = static_cast<float>(velocity_x_f4 - 1.5);
+          goto LABEL_6;
+        }
+        goto LABEL_8;
 
       case 56:
       case 57:
       case 58:
         resolve_stage_surface_landing_transition();
         v3 = 0.0;
-        if ( velocity_x_f4 >= 0.0 )
-          goto LABEL_8;
-        v4 = static_cast<float>(velocity_x_f4 + 1.5);
-        goto LABEL_6;
+        if ( velocity_x_f4 < 0.0 ) {
+          v4 = static_cast<float>(velocity_x_f4 + 1.5);
+          goto LABEL_6;
+        }
+        goto LABEL_8;
 
       case 62:
         resolve_stage_surface_landing_transition();

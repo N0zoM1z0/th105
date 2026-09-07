@@ -2467,3 +2467,24 @@ raised residual **239 -> 275** (73 **285/344**, 75 **167/148**, 88
 changing retained reconstruction state; the next search must recover the
 translation-unit/LTCG owner context, not repeat label or branch-spelling
 matrices.
+
+### 2026-09-07: x87 ordered-condition spelling recovers two target branch forms
+
+The action-0 owner work also exposed a local source-shape distinction that is
+not visible in the decompiler's ordinary Boolean wording. Target case 55/61
+uses `test ah,5; jp` before its `vx - 1.5` prefix, while case 56/57/58 uses
+`test ah,41; jnz` before its `vx + 1.5` prefix. Rewriting the retained source
+so each adjustment is the positive/negative `if` body and the other path is a
+normal `goto LABEL_8` makes pinned VC8 emit those exact condition-code forms.
+The earlier logically equivalent negated conditions emitted `test ah,1; je`
+and `jnp`; under x87 unordered inputs the explicit ordered-body form also
+better reflects the target fallback path.
+
+This is a valid local source recovery, but it does not solve the physical
+owner: both probe variants keep the same 49-byte destination spans because
+their branches still land in the candidate's later `fldz/fcompp` tail instead
+of case 50's target-owned `+0x62`/`+0x79` entries. The retained root remains
+10,789 candidate text bytes, residual **239**, and **58/66** exact-sized rows;
+no partial byte credit is recorded. The reusable rule is to decode x87
+`fnstsw` masks together with the source branch shape, then solve the tail/TU
+owner separately.
