@@ -2328,3 +2328,38 @@ LTCG owner identity that lets VC8 place the independent case-50 action-0
 tail and the 159..162 shared clamp together.  Repeating label placement,
 equivalent arithmetic, or standalone local-object tricks is closed; no
 partial regional span is an authored exact-byte claim.
+
+## 2026-09-07: promote the case-50 physical owner into retained source
+
+The next bounded source step is now retained in
+`src/battle/FighterCommonActionState.cpp`. Target PE/IDA ownership proves that
+case 50, not the later 55/56 or 159..162 prefixes, owns the independent
+134-byte action-0 body. The source therefore gives case 50 its ordinary
+resolve/clamp/classify/advance body, places the shared `LABEL_6/LABEL_8`
+clamp/boundary tail immediately after it, and enters that tail from case 162
+with a normal `goto`. This is a source-level reconstruction of observed
+control-flow ownership; it uses no inline assembly, copied bytes, padding,
+fake liveness, volatile/register forcing, or ABI lie.
+
+The fresh pinned-VC8 mapper keeps **65/65 physical destinations**, zero target
+group splits, and **58/66 exact-sized rows**, while reducing summed absolute
+owner-span residual **271 -> 239 bytes**. The newly aligned rows are case 50,
+51, and 52 at **134/134**; 53/59/65 at **233/233**; 54/60 at **10/10**;
+55/61 at **49/49**; 56/57/58 at **49/49**; case 75 at **148/148**; and case
+159 at **61/61**. The candidate section tail is 10,789 bytes and metadata
+starts at `+0x27E4`, still eight bytes before target `+0x27EC`; these spans are
+diagnostics, not partial authored-byte credit.
+
+This promotion also closes several tempting source-only branches. Directly
+placing target-like case-71/73/88 publish labels or a shared `v14` tail
+worsens residual to **481/509** or **399/407**, and changing switch-selector
+spelling is byte-neutral. The remaining nonzero rows are 71 **342/362**, 73
+**287/344**, 74 **178/170**, 88 **364/310**, 160 **58/61**, 161 **54/61**,
+162 **148/61**, and high799 **291/288**; case 159 is exact-sized but carries
+15 bytes of downstream drift. The 71/73/88 publisher and 160..162
+branch-distance differences therefore remain higher-level merge/LTCG evidence.
+
+The formal comparator still fails at root `+0x14` (`target 48`, candidate 86),
+and the candidate retains the equivalent `add eax,-0x32` selector where the
+target encodes `sub eax,0x32`. The owner recovery is substantial but the root
+must remain nonexact until the complete canonical byte comparison is zero.

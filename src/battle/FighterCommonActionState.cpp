@@ -208,15 +208,29 @@ void FighterCommonActionStateView::update_common_action_state()
     {
       case 50:
         resolve_stage_surface_landing_transition();
-        v3 = 0.0;
         if (velocity_x_f4 < 0.0) {
-          v4 = static_cast<float>(velocity_x_f4 + 3.0);
-          velocity_x_f4 = static_cast<float>(v4);
-          if (v4 > v3)
-            velocity_x_f4 = static_cast<float>(v3);
+          const float adjusted = static_cast<float>(velocity_x_f4 + 3.0);
+          velocity_x_f4 = adjusted;
+          if (adjusted > 0.0f)
+            velocity_x_f4 = 0.0f;
         }
         if (classify_fighter_x_boundary() && unknown_490)
           peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
+        if (advance_frame_and_dispatch())
+          set_action(0);
+        return;
+
+LABEL_6:
+        velocity_x_f4 = v4;
+        if ( v4 > v3 )
+          velocity_x_f4 = v3;
+LABEL_8:
+        if ( classify_fighter_x_boundary() )
+        {
+          if ( unknown_490 )
+            peer_component_6ac = velocity_x_f4 * 0.75;
+        }
+        goto LABEL_11;
 LABEL_11:
         if (advance_frame_and_dispatch())
           set_action(0);
@@ -982,17 +996,7 @@ LABEL_126:
         v105 = velocity_x_f4 + 0.6000000238418579;
         v106 = v105 + 0.6000000238418579;
         v4 = v106;
-LABEL_6:
-        velocity_x_f4 = v4;
-        if ( v4 > v3 )
-          velocity_x_f4 = v3;
-LABEL_8:
-        if ( classify_fighter_x_boundary() )
-        {
-          if ( unknown_490 )
-            peer_component_6ac = velocity_x_f4 * 0.75;
-        }
-        goto LABEL_11;
+        goto LABEL_6;
       case 163:
         resolve_stage_surface_landing_transition();
         if (velocity_x_f4 < 0.0f) {

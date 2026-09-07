@@ -13,6 +13,36 @@ seeds using current-target-backed structural remapping where appropriate.
   ownership blocker is either recovered or proven to require a different
   translation-unit/LTCG boundary. The retained ordinary-C++ source remains
   source-present and canonical-nonexact.
+- **Promoted case-50 owner checkpoint:** the retained source now expresses the
+  target-backed physical owner graph in ordinary C++. Case 50 owns an
+  independent 134-byte body, `LABEL_6/LABEL_8` (the clamp/boundary tail) is
+  placed immediately after that body, and case 162 enters it with a normal
+  `goto`; this is the source-level form of the target's case-50 owner and
+  backward edges, with no inline assembly, copied bytes, padding, fake
+  liveness, volatile/register forcing, or ABI lie. The fresh mapper remains
+  **65/65 destinations**, **zero target-group splits**, and **58/66
+  exact-sized rows**, while summed absolute owner-span residual improves
+  **271 -> 239 bytes**. Case 50/51/52 are now **134/134** each;
+  53/59/65 are **233/233**, 54/60 **10/10**, 55/61 **49/49**,
+  56/57/58 **49/49**, case 75 **148/148**, and case 159 **61/61**. The
+  candidate section tail is **10,789** bytes and metadata still begins at
+  root `+0x27E4`, versus target `+0x27EC`; these regional results are
+  diagnostics only and do not add authored exact-byte credit.
+- The promoted shape also closes the local source-graph question: direct
+  target-like placements of the case-71/73/88 publish labels or a shared
+  `v14` tail all worsen the mapper (residuals **481/509** and **399/407**),
+  while switch-selector spellings are byte-neutral. The remaining nonzero
+  rows are 71 **342/362**, 73 **287/344**, 74 **178/170**, 88 **364/310**,
+  160 **58/61**, 161 **54/61**, 162 **148/61**, and high799 **291/288**;
+  case 159 is exact-sized but has 15 bytes of downstream drift. The 71/73/88
+  publisher ownership and the 160..162 branch-distance fallout remain
+  merge/LTCG blockers, not reasons to add artificial source constructs.
+- The strict compare after this promotion still fails canonically at root
+  `+0x14` (`target 48`, candidate `86`): the changed displacement reflects
+  the recovered internal owner placement, while the target's selector still
+  has the `sub eax,0x32` encoding and the standalone candidate has the
+  equivalent `add eax,-0x32`. Keep the whole root nonexact until every byte
+  matches.
 - Fresh baseline mapping is **65/65 physical destinations**, **zero target
   group splits**, **58/66 exact-sized rows**, and **271 bytes** summed absolute
   owner-span residual. Candidate metadata begins at root `+0x27E4` versus the
