@@ -8931,6 +8931,49 @@ address = "0x00466AB0"
 symbol_base = "?dispatch_render_sprite@BattleObjectManagerRenderView@th105@@QAEXPAVCSpriteEx@@@Z"
 rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
 
+[units.gpt-web-animation-render-transforms]
+kind = "probe"
+source = "src/battle/AnimationRenderTransforms.cpp"
+object = "build/match-units/GptWeb_AnimationRenderTransforms.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "RTTI-owned shared AnimationObject/CharacterObject/Object render-transform vslots +0x30/+0x34. Fresh pinned VC8 emits exact-sized 439/456-byte candidates with complete helper/global relocation closure. Both remain nonexact only on the same early lazy-EDI scheduler window: target converts pivot-x before saving EDI, candidate saves EDI first. Common reset/scale/rotate/translate semantics are source-present; no partial authored-byte credit until canonical zero-difference."
+
+[[units.gpt-web-animation-render-transforms.functions]]
+address = "0x00435360"
+symbol_base = "?prepare_render_transform@AnimationRenderObjectView@th105@@QAEXXZ"
+rel32_targets = [
+  "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0",
+  "?scale_x@CSpriteEx@@QAEXM@Z=0x004074A0",
+  "?scale_x@CSpriteEx@@QAEXMM@Z=0x004074E0",
+  "?scale_y@CSpriteEx@@QAEXMM@Z=0x00407580",
+  "?rotate_xyz@CSpriteEx@@QAEXMMMMMM@Z=0x00407680",
+  "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0",
+  "?transform_sprite@BattleBackgroundLayoutRenderView@th105@@QAEXPAVCSpriteEx@@@Z=0x004271B0",
+]
+dir32_targets = [
+  "?g_battle_background_layout@th105@@3UBattleBackgroundLayoutRenderView@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+]
+
+[[units.gpt-web-animation-render-transforms.functions]]
+address = "0x00435740"
+symbol_base = "?render_to_battle_scene@AnimationRenderObjectView@th105@@QAEXXZ"
+rel32_targets = [
+  "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0",
+  "?scale_x@CSpriteEx@@QAEXM@Z=0x004074A0",
+  "?scale_x@CSpriteEx@@QAEXMM@Z=0x004074E0",
+  "?scale_y@CSpriteEx@@QAEXMM@Z=0x00407580",
+  "?rotate_xyz@CSpriteEx@@QAEXMMMMMM@Z=0x00407680",
+  "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0",
+  "?dispatch_render_sprite@BattleObjectManagerRenderView@th105@@QAEXPAVCSpriteEx@@@Z=0x00466AB0",
+  "?transform_sprite@BattleBackgroundLayoutRenderView@th105@@QAEXPAVCSpriteEx@@@Z=0x004271B0",
+  "?finalize_render@CSpriteEx@@QAEXXZ=0x00407AD0",
+]
+dir32_targets = [
+  "?g_battle_object_manager@th105@@3PAUBattleObjectManagerRenderView@1@A=?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A",
+  "?g_battle_background_layout@th105@@3UBattleBackgroundLayoutRenderView@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+]
+
 [units.cross-v106a-animation-render-main]
 kind = "probe"
 source = "src/battle/AnimationRenderMain.cpp"
@@ -17005,4 +17048,58 @@ dir32_targets = [
   "__real@44200000=__real@44200000",
   "__real@442f0000=__real@442f0000",
   "__real@44820000=__real@44820000",
+]
+
+[units.gpt-web-youmu-object-action-entry]
+kind = "probe"
+source = "src/characters/YoumuObjectActionEntry.cpp"
+object = "build/match-units/GptWeb_YoumuObjectActionEntry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current 1.06a RTTI-owned YoumuObject vslot +0x3C @ 0x00543670. Complete ordinary-C++ semantic scaffold covers the target-proved 800..999 sparse action initializer. Fresh pinned VC8 preserves 29/29 target physical destinations with zero splits, 25/29 exact-sized owner rows and 41 bytes summed span residual; candidate metadata begins at +0x1428 versus target callable end +0x1427. Remaining nonzero owners are 820 26/12, 850 37/57, 857 229/225 and default 10/7. Action851 is 40/40 only with a double source lifetime; float/ref/int forms merge it incorrectly with 854. Unsigned RNG conversions are float-width before later double arithmetic, eliminating non-target __real@41f0000000000000. Formal first mismatch is frame 0x14 versus target 0x10. No authored exact credit until canonical zero-difference."
+
+[[units.gpt-web-youmu-object-action-entry.functions]]
+address = "0x00543670"
+symbol_base = "?initialize_action_entry@YoumuObjectActionEntryView@th105@@UAEXXZ"
+rel32_targets = [
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+  "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
+  "?atan2_degrees@th105@@YANMM@Z=0x00406540",
+  "?set_oriented_components_f0_f4@CharacterObjectRuntime@th105@@QAEXMM@Z=0x00435160",
+  "?spawn_unparented_related_object@CharacterObjectEffectEmitter@th105@@QAEPAXHMMHHPBIH@Z=0x0064CCB0",
+  "?rebuild_aux_renderer_45cd70@YoumuObjectActionEntryView@th105@@QAEXF@Z=0x0045CD70",
+  "?continue_action_980_596370@YoumuObjectActionEntryView@th105@@QAEXXZ=0x00596370",
+  "__ftol2_sse=0x0068A1A0",
+]
+dir32_targets = [
+  "?g_match_identifier@th105@@3HA=?g_match_identifier@th105@@3HA",
+  "__real@3dcccccd=__real@3dcccccd",
+  "__real@3e4ccccd=__real@3e4ccccd",
+  "__real@3e800000=__real@3e800000",
+  "__real@3f000000=__real@3f000000",
+  "__real@3f847ae140000000=__real@3f847ae140000000",
+  "__real@3fb99999a0000000=__real@3fb99999a0000000",
+  "__real@3fd0000000000000=__real@3fd0000000000000",
+  "__real@3fd99999a0000000=__real@3fd99999a0000000",
+  "__real@3fe0000000000000=__real@3fe0000000000000",
+  "__real@3fe3333340000000=__real@3fe3333340000000",
+  "__real@3fe8000000000000=__real@3fe8000000000000",
+  "__real@3ff0000000000000=__real@3ff0000000000000",
+  "__real@40000000=__real@40000000",
+  "__real@4004000000000000=__real@4004000000000000",
+  "__real@4008000000000000=__real@4008000000000000",
+  "__real@4014000000000000=__real@4014000000000000",
+  "__real@4018000000000000=__real@4018000000000000",
+  "__real@4024000000000000=__real@4024000000000000",
+  "__real@403e000000000000=__real@403e000000000000",
+  "__real@40400000=__real@40400000",
+  "__real@4044000000000000=__real@4044000000000000",
+  "__real@4059000000000000=__real@4059000000000000",
+  "__real@40800000=__real@40800000",
+  "__real@41200000=__real@41200000",
+  "__real@41a00000=__real@41a00000",
+  "__real@435c0000=__real@435c0000",
+  "__real@4f800000=__real@4f800000",
+  "__real@c0400000=__real@c0400000",
+  "__real@c2700000=__real@c2700000",
 ]

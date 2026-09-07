@@ -24,6 +24,7 @@ from pathlib import Path
 from typing import Any
 
 IMAGE_REL_I386_DIR32 = 0x0006
+IMAGE_SCN_LNK_COMDAT = 0x00001000
 
 
 def load_target_mapper() -> Any:
@@ -44,6 +45,7 @@ class CoffSection:
     raw_offset: int
     reloc_offset: int
     reloc_count: int
+    characteristics: int
 
 
 @dataclass(frozen=True)
@@ -76,12 +78,18 @@ class CoffObject:
             raw_size, raw_offset = struct.unpack_from("<II", self.data, off + 16)
             reloc_offset = struct.unpack_from("<I", self.data, off + 24)[0]
             reloc_count = struct.unpack_from("<H", self.data, off + 32)[0]
-            sections.append(CoffSection(name, raw_size, raw_offset, reloc_offset, reloc_count))
+            characteristics = struct.unpack_from("<I", self.data, off + 36)[0]
+            sections.append(CoffSection(name, raw_size, raw_offset, reloc_offset, reloc_count, characteristics))
         self.sections = sections
-        self.text_section_number = next(
-            index + 1 for index, section in enumerate(sections) if section.name == ".text"
-        )
-        self.text_section = sections[self.text_section_number - 1]
+        text_candidates = [(index + 1, section) for index, section in enumerate(sections) if section.name == ".text"]
+        if not text_candidates:
+            raise ValueError(f"{path}: no .text section")
+        authored_text_candidates = [item for item in text_candidates if not (item[1].characteristics & IMAGE_SCN_LNK_COMDAT)]
+        if len(authored_text_candidates) == 1:
+            self.text_section_number, self.text_section = authored_text_candidates[0]
+        else:
+            # Probe TUs may carry tiny inline/template COMDAT .text sections before the authored root.
+            self.text_section_number, self.text_section = max(text_candidates, key=lambda item: item[1].raw_size)
         self.text = self._read_raw(self.text_section.raw_offset, self.text_section.raw_size)
 
         string_table = symbol_table + symbol_count * 18

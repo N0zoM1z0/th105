@@ -1177,3 +1177,5 @@ __real@4079000000000000,0x006C3F18,0000000000007940,0,Current default CPU action
 __real@406b800000000000,0x006C3F20,0000000000806b40,0,Current default CPU action-policy vslot +0x58 target directly references this exact literal at 0x005F217D and 0x005F5D87; PE bytes attested 2026-09-06,literal
 __real@442f0000,0x006C3F28,00002f44,0,Current default CPU action-policy vslot +0x58 target directly references this exact literal at 0x005F20F3; PE bytes attested 2026-09-06,literal
 __real@407c200000000000,0x006C47F8,0000000000207c40,0,Current default CPU action-policy vslot +0x58 target directly references this exact literal at 0x005F325C and 0x005F3F0E; PE bytes attested 2026-09-06,literal
+__real@c2700000,0x006C3DC8,000070c2,0,"YoumuObject vslot+0x3C action810 loads this target dword at 0x00543897 before storing root+0x128; canonical PE bytes encode IEEE-754 -60.0f; attested 2026-09-07",literal
+__real@435c0000,0x006C5218,00005c43,0,"YoumuObject vslot+0x3C action817 loads this target dword at 0x00543AD6 before storing root+0x108; canonical PE bytes encode IEEE-754 220.0f; attested 2026-09-07",literal
