@@ -207,7 +207,7 @@ class WorkflowToolingTests(unittest.TestCase):
         )
         self.assertEqual(
             root["verified_semantic_cases"],
-            [800, 801, 804, 807, 811, 815, 816, 817, 822, 825, 850, 851, 854, 855, 861, 862, 980, 990, 997, 998],
+            [800, 801, 804, 807, 810, 811, 812, 815, 816, 817, 820, 821, 822, 825, 826, 850, 851, 852, 854, 855, 856, 861, 862, 980, 990, 997, 998],
         )
         self.assertEqual(root["verified_shared_default_owner"], "0x0061EEC5")
 
@@ -231,6 +231,13 @@ class WorkflowToolingTests(unittest.TestCase):
             "state_370 * 0.949999988079071",
             "heading_340[0] + heading_340[1]",
             "selector_random_roll(100) - 50",
+            "emit_repeated_effects_for_owner_state(0, 5, 10)",
+            "lookup_orientation_sine_quantized_abs",
+            "mt19937_next_u32() & 1u",
+            "owner_action != 545 || owner_sequence == 2",
+            "owner_action == 565 || owner_action == 567",
+            "time_counter_144 == 240",
+            "spawn_unparented_related_object(852",
         ]:
             self.assertIn(snippet, text)
         self.assertNotIn("AyaObject_dispatch_action_state_vslot28(", text)
