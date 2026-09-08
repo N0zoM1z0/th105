@@ -29,6 +29,7 @@ class InputPacket24 : public PacketResultBase4 {
 public:
     InputPacket24() {}
     virtual unsigned int serialize(void *buffer);
+    void parse(const unsigned char *input);
 
     unsigned int sequence_008;
     unsigned char tag_00c;
@@ -201,6 +202,27 @@ void RequestReplayPacket10::parse(const unsigned char *input)
 {
     sequence_008 = *reinterpret_cast<const unsigned int *>(input + 1);
     tag_00c = input[5];
+}
+
+void InputPacket24::parse(const unsigned char *input)
+{
+    ++input;
+    sequence_008 = *reinterpret_cast<const unsigned int *>(input);
+    input += 4;
+    tag_00c = *input++;
+    unsigned char count = *input++;
+
+    values_010.clear();
+    if (count >= 100)
+        return;
+    if (count == 0)
+        return;
+
+    int remaining = count;
+    do {
+        values_010.push_back(*reinterpret_cast<const short *>(input));
+        input += 2;
+    } while (--remaining != 0);
 }
 
 unsigned int InputPacket24::serialize(void *buffer)

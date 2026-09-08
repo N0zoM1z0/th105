@@ -57,23 +57,23 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4019)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1297)
+        self.assertEqual(len(matching), 1298)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1354)
+        self.assertEqual(len(implemented), 1360)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1297
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1298
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 478)
+        self.assertEqual(len(manifest["units"]), 481)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1359,
+            1365,
         )
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:
@@ -253,8 +253,8 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 452)
-        self.assertEqual(sum(map(len, accepted.values())), 1297)
+        self.assertEqual(len(accepted), 453)
+        self.assertEqual(sum(map(len, accepted.values())), 1298)
         secondary = accepted["gpt-web-secondary-animation-runtime"]
         self.assertEqual(
             secondary,
@@ -515,16 +515,57 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(update["symbol_base"], "?update_slot_28@EffectObjectBase@@UAEXXZ")
         self.assertEqual(update["rel32_targets"], ["?advance_frame_and_dispatch@CharacterObjectRuntime@th105@@QAEEXZ=0x004351C0"])
 
+    def test_profile_editor_wave_and_network_packet_wave_is_pinned(self) -> None:
+        with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
+            functions = {row["address"].upper(): row for row in csv.DictReader(stream)}
+        with (ROOT / "config" / "function-origins.csv").open(newline="", encoding="utf-8") as stream:
+            origins = {row["address"].upper(): row for row in csv.DictReader(stream)}
+
+        editor = functions["0X00428000"]
+        self.assertEqual(editor["proposed_name"], "ProfileEditor168_ctor")
+        self.assertEqual(editor["status"], "matching")
+        self.assertEqual(editor["match_percent"], "100.00")
+        self.assertIn("33/33", editor["evidence"])
+
+        for address, name, residual in (
+            ("0X00419590", "load_cv3_wave_data", "250/247"),
+            ("0X00419690", "load_wave_data", "439/459"),
+            ("0X00419950", "FileBufferEncodedView_load_encoded", "275/267"),
+            ("0X0044DAC0", "NetworkAckInfoPacket40_ctor", "43/41"),
+            ("0X0044E050", "InputPacket24_parse", "78/78"),
+        ):
+            row = functions[address]
+            self.assertEqual(row["proposed_name"], name)
+            self.assertEqual(row["status"], "implemented")
+            self.assertIn(residual, row["evidence"])
+            self.assertEqual(origins[address]["origin"], "authored_game")
+            self.assertEqual(origins[address]["disposition"], "authored")
+
+        for address in ("0X00428A90", "0X00448DE0"):
+            self.assertEqual(origins[address]["origin"], "compiler_generated")
+            self.assertEqual(origins[address]["disposition"], "exclude")
+
+        units = self.manifest.load_manifest()["units"]
+        editor_unit = units["gpt-web-profile-editor-constructor"]
+        self.assertEqual(editor_unit["source"], "src/ui/ProfileEditorConstructor.cpp")
+        self.assertEqual(editor_unit["functions"][0]["address"].upper(), "0X00428000")
+        wave = units["gpt-web-wave-data-runtime"]
+        self.assertEqual(wave["source"], "src/audio/WaveDataRuntime.cpp")
+        self.assertTrue(wave["enable_gs"])
+        encoded = units["gpt-web-file-buffer-encoded-runtime"]
+        self.assertEqual(encoded["source"], "src/assets/FileBufferEncodedRuntime.cpp")
+        self.assertTrue(encoded["enable_gs"])
+
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,019", markdown)
-        self.assertIn("Confirmed authored functions | 1,442", markdown)
-        self.assertIn("Confirmed authored code bytes | 2,083,961", markdown)
-        self.assertIn("Classified exclusions | 1,295", markdown)
-        self.assertIn("Origin/boundary review pending | 1,282", markdown)
-        self.assertIn("Canonical exact functions | 1,297", markdown)
-        self.assertIn("Canonical exact authored bytes | 216,354", markdown)
-        self.assertIn("Source-present authored mappings | 1,354", markdown)
+        self.assertIn("Confirmed authored functions | 1,448", markdown)
+        self.assertIn("Confirmed authored code bytes | 2,085,086", markdown)
+        self.assertIn("Classified exclusions | 1,297", markdown)
+        self.assertIn("Origin/boundary review pending | 1,274", markdown)
+        self.assertIn("Canonical exact functions | 1,298", markdown)
+        self.assertIn("Canonical exact authored bytes | 216,387", markdown)
+        self.assertIn("Source-present authored mappings | 1,360", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )

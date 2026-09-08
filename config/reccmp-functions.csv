@@ -1372,3 +1372,9 @@ CSelectObject_ctor,0x00422140,function
 AnimationObject_scalar_deleting_destructor,0x00422190,function
 InfoEffectObject_ctor,0x0046F150,function
 EffectObjectBase_update_slot_28,0x00422180,function
+ProfileEditor168_ctor,0x00428000,function
+load_cv3_wave_data,0x00419590,function
+load_wave_data,0x00419690,function
+FileBufferEncodedView_load_encoded,0x00419950,function
+NetworkAckInfoPacket40_ctor,0x0044DAC0,function
+InputPacket24_parse,0x0044E050,function

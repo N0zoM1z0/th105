@@ -1334,3 +1334,51 @@ subsystem = "battle"
 disposition = "authored"
 confidence = "observed"
 evidence = "Current RTTI COLs 0x006D782C/0x006D98B4 identify CSelectObject and InfoEffectObject. Their base descriptors independently fix EffectObjectBase at +0, non-polymorphic CObjectBase at +0x158, AnimationObject at +0 and AnimationObjectBase at +4. Canonical-exact CHandleManagerEx<CSelectObject/InfoEffectObject>::acquire roots directly instantiate these constructors. Natural inheritance reproduces both 59-byte extents; the only residual is a target LEA/store scheduler at +0x06."
+
+[[rules]]
+id = "wave-data-resource-loaders-authored-106a"
+addresses = ["0x00419590", "0x00419690"]
+expected_count = 2
+expected_bytes = 706
+expected_names = ["sub_419590", "sub_419690"]
+origin = "authored_game"
+subsystem = "audio"
+disposition = "authored"
+confidence = "observed"
+evidence = "DirectSound resource dispatcher 0x00408ED0 owns both current WaveData loaders. Encoded mode rewrites the path to .cv3 and calls ordinary stdcall 0x00419590; plain mode calls 0x00419690, whose constants are RIFF/WAVE/fmt /data and whose target LTCG scalar-replaces the same 0x1C WaveData fields. Typed FileReaderOwner source closes both behaviors without inventing private registers."
+
+[[rules]]
+id = "file-buffer-encoded-loader-authored-106a"
+addresses = ["0x00419950"]
+expected_count = 1
+expected_bytes = 267
+expected_names = ["sub_419950"]
+origin = "authored_game"
+subsystem = "assets"
+disposition = "authored"
+confidence = "observed"
+evidence = "Current resource wrappers 0x00408DB0/0x00408E40 rewrite encoded paths to .cv0/.cv1 and call 0x00419950; disabled encoded mode calls source-backed plain sibling 0x00419860. The target body owns size+1 allocation, NUL termination, FileReader payload read and deterministic XOR decoding. Target receiver is private ESI; natural member source is retained nonexact."
+
+[[rules]]
+id = "network-packet-ctor-parse-authored-106a"
+addresses = ["0x0044DAC0", "0x0044E050"]
+expected_count = 2
+expected_bytes = 119
+expected_names = ["sub_44DAC0", "sub_44E050"]
+origin = "authored_game"
+subsystem = "network"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact client/server secondary packet dispatchers call both entries. Existing typed NetworkAckInfoPacket40 source emits the complete two-deque constructor at 43/41; existing InputPacket24 source reproduces its sequential parser at 78/78 with only the zero-gate branch opcode different. Both remain source-present nonexact."
+
+[[rules]]
+id = "network-deque-ushort-lifetime-generated-106a"
+addresses = ["0x00428A90", "0x00448DE0"]
+expected_count = 2
+expected_bytes = 22
+expected_names = ["sub_428A90", "sub_448DE0"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Fresh pinned-VC8 NetworkAckInfoPacket40 construction names the two EH-vector callbacks as std::deque<unsigned short> constructor/destructor identities. Target 0x0044DAC0 passes exactly 0x00428A90/0x00448DE0 with element size 0x14 and count2 to eh vector ctor iterator; these are generated container lifetimes, not authored packet functions."

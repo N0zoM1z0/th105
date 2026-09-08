@@ -14892,6 +14892,16 @@ enable_gs = true
 notes = "Current Client/Server primary ACK_INFO senders. Inline 0x40 ACK_INFO packet construction owns two checked deque<short> members and one EH state. The local packet is viewed through a slot-0 serialize-only polymorphic ABI at the call site so VC8 preserves the target indirect serializer call instead of devirtualizing the concrete local."
 
 [[units.gpt-web-network-ack-info-senders-runtime.functions]]
+address = "0x0044DAC0"
+symbol_base = "??0NetworkAckInfoPacket40@th105@@QAE@XZ"
+rel32_targets = ["??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C"]
+dir32_targets = [
+  "??_7NetworkAckInfoPacket40@th105@@6B@=??_7NetworkAckInfoPacket40@th105@@6B@",
+  "??0?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??0?$deque@GV?$allocator@G@std@@@std@@QAE@XZ",
+  "??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??1?$deque@GV?$allocator@G@std@@@std@@QAE@XZ",
+]
+
+[[units.gpt-web-network-ack-info-senders-runtime.functions]]
 address = "0x0044F0F0"
 symbol_base = "?send_ack_info_if_ready@CNetworkClientAckSenderView@th105@@QAEXXZ"
 dir32_targets = [
@@ -15177,6 +15187,14 @@ object = "build/match-units/GptWeb_NetworkPacketLeafRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
 notes = "Current Client packet leaf/runtime cohort owned by the already-exact client/server secondary dispatchers and ACK_INFO serializer/parser. The unit keeps the real checked deque<short> packet members and the current 0x6DC primary-owner tail layout."
+
+[[units.gpt-web-network-packet-leaf-runtime.functions]]
+address = "0x0044E050"
+symbol_base = "?parse@InputPacket24@th105@@QAEXPBE@Z"
+rel32_targets = [
+  "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
+  "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042AA90",
+]
 
 [[units.gpt-web-network-packet-leaf-runtime.functions]]
 address = "0x0044D770"
@@ -16086,6 +16104,19 @@ rel32_targets = [
   "?hide_and_reset@ScenarioResultResource@th105@@QAEXXZ=0x00454780",
   "?load@ScenarioScriptLoadGate@th105@@QAEHPBDH@Z=0x00405810",
 ]
+
+[units.gpt-web-profile-editor-constructor]
+kind = "probe"
+source = "src/ui/ProfileEditorConstructor.cpp"
+object = "build/match-units/GptWeb_ProfileEditorConstructor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Constructor-facing physical view for current CProfileMenu editor_3b0. Exact caller 0x0044D4F0 constructs the 0x168 subobject at +0x3B0; two real polymorphic CTile members at +0x0C/+0xB0 make VC8 clear each IColor/color-base +4 before publishing the CTile vptr. This avoids forcing the runtime UiTileA4 facade to model constructor-only vptr scheduling."
+
+[[units.gpt-web-profile-editor-constructor.functions]]
+address = "0x00428000"
+symbol_base = "??0ProfileEditor168@th105@@QAE@XZ"
+dir32_targets = ["??_7CTile@th105@@6B@=??_7CTile@@6B@"]
 
 [units.gpt-web-profile-editor-leaves]
 kind = "probe"
@@ -18105,5 +18136,63 @@ rel32_targets = [
 ]
 dir32_targets = [
   "__ehhandler$?load_raw_palette@PaletteDataView@th105@@QAE_NPBD@Z=__ehhandler$?load_raw_palette@PaletteDataView@th105@@QAE_NPBD@Z",
+  "___security_cookie=___security_cookie",
+]
+
+[units.gpt-web-wave-data-runtime]
+kind = "probe"
+source = "src/audio/WaveDataRuntime.cpp"
+object = "build/match-units/GptWeb_WaveDataRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current game-side WaveData loaders owned by DirectSound resource dispatch. .cv3 uses ordinary stdcall WaveData/path ABI; RIFF/WAVE target is LTCG scalar-replaced across ECX/stack fields, so tracked source preserves the natural 0x1C WaveData API and accepts a formal nonexact ABI residual rather than inventing registers."
+
+[[units.gpt-web-wave-data-runtime.functions]]
+address = "0x00419590"
+symbol_base = "?load_cv3_wave_data@th105@@YG_NPAUWaveData@1@PBD@Z"
+rel32_targets = [
+  "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
+  "??2@YAPAXI@Z=0x00665B8A",
+  "_free=0x0068AA26",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?load_cv3_wave_data@th105@@YG_NPAUWaveData@1@PBD@Z=__ehhandler$?load_cv3_wave_data@th105@@YG_NPAUWaveData@1@PBD@Z",
+  "___security_cookie=___security_cookie",
+]
+
+[[units.gpt-web-wave-data-runtime.functions]]
+address = "0x00419690"
+symbol_base = "?load_wave_data@th105@@YG_NPAUWaveData@1@PBD@Z"
+rel32_targets = [
+  "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
+  "??2@YAPAXI@Z=0x00665B8A",
+  "_free=0x0068AA26",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?load_wave_data@th105@@YG_NPAUWaveData@1@PBD@Z=__ehhandler$?load_wave_data@th105@@YG_NPAUWaveData@1@PBD@Z",
+  "___security_cookie=___security_cookie",
+]
+
+[units.gpt-web-file-buffer-encoded-runtime]
+kind = "probe"
+source = "src/assets/FileBufferEncodedRuntime.cpp"
+object = "build/match-units/GptWeb_FileBufferEncodedRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current .cv0/.cv1 decoded 8-byte file-buffer loader @ 0x00419950. Exact wrappers rewrite the extension and enter a target-private ESI receiver; source preserves the normal member API and exact XOR key schedule, with private ABI retained as a formal nonexact blocker."
+
+[[units.gpt-web-file-buffer-encoded-runtime.functions]]
+address = "0x00419950"
+symbol_base = "?load_encoded@FileBufferEncodedView@th105@@QAE_NPBD@Z"
+rel32_targets = [
+  "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
+  "??2@YAPAXI@Z=0x00665B8A",
+  "_free=0x0068AA26",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?load_encoded@FileBufferEncodedView@th105@@QAE_NPBD@Z=__ehhandler$?load_encoded@FileBufferEncodedView@th105@@QAE_NPBD@Z",
   "___security_cookie=___security_cookie",
 ]

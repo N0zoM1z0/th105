@@ -1352,3 +1352,9 @@ CSelectObject_ctor
 AnimationObject_scalar_deleting_destructor
 InfoEffectObject_ctor
 EffectObjectBase_update_slot_28
+ProfileEditor168_ctor
+load_cv3_wave_data
+load_wave_data
+FileBufferEncodedView_load_encoded
+NetworkAckInfoPacket40_ctor
+InputPacket24_parse
