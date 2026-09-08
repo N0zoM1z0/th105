@@ -1131,3 +1131,63 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Canonical-exact CScenarioData::clear_runtime 0x00457DF0 and load_story_page 0x004583E0 both carry the complete current VC8 decorated std::map<string,ScenarioTextEntryDC>::_Tree::_Erase REL32 identity to 0x00436D30. The target recursively erases child nodes, destroys the pair payload and frees the node. Fresh standalone VC8 emits a larger private variant, so classification relies on exact-caller decorated template identity plus the target STL lowering rather than a false byte fingerprint."
+
+[[rules]]
+id = "guide-overlay-runtime-authored-106a"
+addresses = ["0x0043F330", "0x0043F450"]
+expected_count = 2
+expected_bytes = 204
+expected_names = ["sub_43F330", "sub_43F450"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact Menu/Profile/Replay constructors and updates carry the current decorated GuideOverlay destructor/update identities to 0x0043F330/0x0043F450; the same typed GuideOverlay TU already reproduces exact load/render/ctor members and fixes the 0xA8 layout. Fresh ordinary C++ keeps the dtor at 90/92 on one texture-handle CSE and update at 112/112 on AL subtraction/vtable-load scheduling, so both are source-present nonexact without volatile/register/manual-vtable coercion."
+
+[[rules]]
+id = "menu-cursor-update-authored-106a"
+addresses = ["0x0041FA20"]
+expected_count = 1
+expected_bytes = 117
+expected_names = ["sub_41FA20"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Seven canonical-exact Profile/Replay/MenuConfig owners carry the current decorated MenuCursorState::update identity to 0x0041FA20; exact page-forward/backward siblings in the same tracked MenuCursor.cpp fix the five-dword layout. Natural source remains 131/117 because standalone VC8 strength-reduces signed %6 while target retains idiv 6; no arithmetic/register forcing is allowed."
+
+[[rules]]
+id = "effect-sprite-constructor-authored-106a"
+addresses = ["0x00421FF0"]
+expected_count = 1
+expected_bytes = 79
+expected_names = ["sub_421FF0"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact AttackObject/AnimationObject constructors call the decorated CEffectSprite constructor at 0x00421FF0; current CEffectSprite RTTI/vtable and exact scalar lifetime fix the 0x12C object, while exact reset_fighter_action_scratch fixes the constructor body call. The tracked ordinary constructor is 67/79 and diverges only in shipped-TU EH/base visibility; keep source-present nonexact rather than forcing SEH/vptr scheduling."
+
+[[rules]]
+id = "vc8-vector-uint-at-caller-identity-106a"
+addresses = ["0x0040C100"]
+expected_count = 1
+expected_bytes = 95
+expected_names = ["sub_40C100"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Canonical-exact SecondaryAnimationRenderRuntimeView::initialize carries the full VC8 decorated std::vector<unsigned>::at identity to 0x0040C100. Target code is the checked-vector bounds/iterator validation lowering with _Xran and invalid-parameter calls. Exact-caller template identity proves compiler ownership; no authored credit is assigned."
+
+[[rules]]
+id = "vc8-vector-uint-push-back-caller-identity-106a"
+addresses = ["0x0040DCF0"]
+expected_count = 1
+expected_bytes = 110
+expected_names = ["sub_40DCF0"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Seventeen canonical-exact CHandleManagerEx acquire roots across roster/effect pools all carry the same full VC8 decorated std::vector<unsigned>::push_back identity to 0x0040DCF0. Target code performs checked capacity testing, direct four-byte append, and the shared growth helper path. This repeated exact-caller template identity proves compiler ownership independently of IDA naming."

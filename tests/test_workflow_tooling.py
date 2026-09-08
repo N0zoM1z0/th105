@@ -61,7 +61,7 @@ class WorkflowToolingTests(unittest.TestCase):
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1314)
+        self.assertEqual(len(implemented), 1318)
         self.assertEqual(
             len(self.validator.rows(ROOT / "config" / "matches.csv")), 1284
         )
@@ -71,7 +71,7 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(len(manifest["units"]), 465)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1318,
+            1322,
         )
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:
@@ -104,6 +104,10 @@ class WorkflowToolingTests(unittest.TestCase):
         checks = [
             ("0x004036C0", "src/audio/BgmHandleAllocation.cpp", "gpt-web-bgm-handle-allocation"),
             ("0x004064D0", "src/engine/AngleLookup.cpp", "cross-v106a-angle-lookup"),
+            ("0x0041FA20", "src/ui/MenuCursor.cpp", "cross-v106a-menu-cursor"),
+            ("0x00421FF0", "src/battle/EffectSprite.cpp", "cross-v106a-effect-sprite-scalar-dtor"),
+            ("0x0043F330", "src/ui/GuideOverlay.cpp", "cross-v106a-guide-overlay"),
+            ("0x0043F450", "src/ui/GuideOverlay.cpp", "cross-v106a-guide-overlay"),
             ("0x004695F0", "src/battle/EventEffectState.cpp", "cross-v106a-event-effect-state"),
             ("0x0046EEB0", "src/battle/EffectObjectManagerRelease.cpp", "gpt-web-effect-object-manager-release"),
             ("0x0056DA90", "src/characters/RosterObjectRelease.cpp", "gpt-web-roster-object-release-all"),
@@ -125,7 +129,8 @@ class WorkflowToolingTests(unittest.TestCase):
             origins = {row["address"].upper(): row for row in csv.DictReader(stream)}
         for address in [
             "0x004036C0", "0x00406360", "0x004063D0", "0x004064D0",
-            "0x00422D30", "0x004695F0", "0x0046EEB0", "0x0056DA90",
+            "0x0041FA20", "0x00421FF0", "0x00422D30", "0x0043F330", "0x0043F450",
+            "0x004695F0", "0x0046EEB0", "0x0056DA90",
         ]:
             self.assertEqual(origins[address.upper()]["origin"], "authored_game")
             self.assertEqual(origins[address.upper()]["disposition"], "authored")
@@ -209,6 +214,8 @@ class WorkflowToolingTests(unittest.TestCase):
             self.assertEqual(origins[address]["disposition"], "authored")
 
         generated = {
+            "0X0040C100": "vc8-vector-uint-at-caller-identity-106a",
+            "0X0040DCF0": "vc8-vector-uint-push-back-caller-identity-106a",
             "0X004306D0": "event-background-deque-push-generated-106a",
             "0X00436D30": "scenario-text-tree-erase-generated-106a",
         }
@@ -247,13 +254,13 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,011", markdown)
-        self.assertIn("Confirmed authored functions | 1,400", markdown)
-        self.assertIn("Confirmed authored code bytes | 2,073,471", markdown)
-        self.assertIn("Classified exclusions | 1,289", markdown)
-        self.assertIn("Origin/boundary review pending | 1,322", markdown)
+        self.assertIn("Confirmed authored functions | 1,404", markdown)
+        self.assertIn("Confirmed authored code bytes | 2,073,871", markdown)
+        self.assertIn("Classified exclusions | 1,291", markdown)
+        self.assertIn("Origin/boundary review pending | 1,316", markdown)
         self.assertIn("Canonical exact functions | 1,284", markdown)
         self.assertIn("Canonical exact authored bytes | 215,583", markdown)
-        self.assertIn("Source-present authored mappings | 1,314", markdown)
+        self.assertIn("Source-present authored mappings | 1,318", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )

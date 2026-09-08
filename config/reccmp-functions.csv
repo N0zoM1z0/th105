@@ -1331,3 +1331,7 @@ CInputManager_ctor,0x00409CF0,function
 push_ui_selection_menu,0x004406F0,function
 BgmPlaybackServiceView_allocate_handle,0x004036C0,function
 EventEffectState_dispatch_emitter_state,0x004695F0,function
+MenuCursorState_update,0x0041FA20,function
+CEffectSprite_ctor,0x00421FF0,function
+GuideOverlay_dtor,0x0043F330,function
+GuideOverlay_update,0x0043F450,function

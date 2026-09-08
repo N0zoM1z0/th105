@@ -1312,3 +1312,7 @@ CInputManager_ctor
 push_ui_selection_menu
 BgmPlaybackServiceView_allocate_handle
 EventEffectState_dispatch_emitter_state
+MenuCursorState_update
+CEffectSprite_ctor
+GuideOverlay_dtor
+GuideOverlay_update

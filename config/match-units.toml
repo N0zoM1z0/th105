@@ -406,6 +406,10 @@ enable_gs = false
 notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fresh canonical VC8 zero-diff replay; no relocation overrides required."
 
 [[units.cross-v106a-menu-cursor.functions]]
+address = "0x0041FA20"
+symbol_base = "?update@MenuCursorState@th105@@QAE_NXZ"
+
+[[units.cross-v106a-menu-cursor.functions]]
 address = "0x0043F560"
 symbol_base = "MenuCursorState_move_page_backward"
 
@@ -2375,6 +2379,21 @@ dir32_targets = [
 ]
 
 [[units.cross-v106a-guide-overlay.functions]]
+address = "0x0043F330"
+symbol_base = "??1GuideOverlay@th105@@QAE@XZ"
+rel32_targets = [
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+]
+dir32_targets = [
+  "_title_color_vtable_anchor=_title_color_vtable_anchor_external",
+  "__ehhandler$??1GuideOverlay@th105@@QAE@XZ=__ehhandler$??1GuideOverlay@th105@@QAE@XZ",
+]
+
+[[units.cross-v106a-guide-overlay.functions]]
+address = "0x0043F450"
+symbol_base = "?update@GuideOverlay@th105@@QAEXXZ"
+
+[[units.cross-v106a-guide-overlay.functions]]
 address = "0x0043F540"
 symbol_base = "GuideOverlay_ctor"
 dir32_targets = ["_select_sprite_vtable_anchor=_select_sprite_vtable_anchor"]
@@ -3344,6 +3363,17 @@ object = "build/match-units/CrossV106a_EffectSpriteScalarDtor.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
 notes = "TH105 1.06a IColor/CEffectSprite trivial lifetime unit. Current IColor/CSpriteBase vtables own the 7-byte IColor normal dtor and 31-byte IColor scalar wrapper; current CEffectSprite vtable 0x006C072C owns its separate 31-byte scalar wrapper. TU-visible empty IColor/CEffectSprite destructors are also required by exact SystemEffectObjectBase cleanup, and the shared header refactor replays all prior exact units."
+
+[[units.cross-v106a-effect-sprite-scalar-dtor.functions]]
+address = "0x00421FF0"
+symbol_base = "??0CEffectSprite@@QAE@XZ"
+rel32_targets = [
+  "?reset_fighter_action_scratch@FighterActionScratch@th105@@QAEXXZ=0x00435110",
+]
+dir32_targets = [
+  "__ehhandler$??0CEffectSprite@@QAE@XZ=__ehhandler$??0CEffectSprite@@QAE@XZ",
+  "??_7CEffectSprite@@6B@=??_7CEffectSprite@@6B@",
+]
 
 [[units.cross-v106a-effect-sprite-scalar-dtor.functions]]
 address = "0x0041F6F0"
