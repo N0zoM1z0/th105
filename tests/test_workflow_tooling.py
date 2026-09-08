@@ -55,25 +55,25 @@ class WorkflowToolingTests(unittest.TestCase):
             newline="", encoding="utf-8"
         ) as stream:
             functions = list(csv.DictReader(stream))
-        self.assertEqual(len(functions), 4012)
+        self.assertEqual(len(functions), 4018)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1285)
+        self.assertEqual(len(matching), 1289)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1327)
+        self.assertEqual(len(implemented), 1334)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1285
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1289
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 467)
+        self.assertEqual(len(manifest["units"]), 471)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1332,
+            1339,
         )
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:
@@ -253,8 +253,8 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 448)
-        self.assertEqual(sum(map(len, accepted.values())), 1285)
+        self.assertEqual(len(accepted), 449)
+        self.assertEqual(sum(map(len, accepted.values())), 1289)
         secondary = accepted["gpt-web-secondary-animation-runtime"]
         self.assertEqual(
             secondary,
@@ -308,16 +308,73 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertNotIn("0X0041E070", uncovered)
         self.assertIn("0X006BE770", uncovered)
 
+
+    def test_ida_missed_ogg_callbacks_and_audio_runtime_are_pinned(self) -> None:
+        with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
+            functions = {row["address"].upper(): row for row in csv.DictReader(stream)}
+        with (ROOT / "config" / "function-origins.csv").open(newline="", encoding="utf-8") as stream:
+            origins = {row["address"].upper(): row for row in csv.DictReader(stream)}
+
+        callbacks = {
+            "0X00418B40": ("read_ogg_data_source", "39"),
+            "0X00418C70": ("seek_ogg_data_source", "81"),
+            "0X00418CD0": ("close_ogg_data_source", "25"),
+            "0X00418CF0": ("tell_ogg_data_source", "23"),
+        }
+        for address, (name, size) in callbacks.items():
+            row = functions[address]
+            self.assertEqual(row["proposed_name"], name)
+            self.assertEqual(row["size"], size)
+            self.assertEqual(row["status"], "matching")
+            self.assertEqual(row["match_percent"], "100.00")
+            self.assertEqual(origins[address]["origin"], "authored_game")
+            self.assertEqual(origins[address]["disposition"], "authored")
+
+        for address, name, source in (
+            ("0X00418A10", "OggDataSource_open", "src/audio/DirectSound.cpp"),
+            ("0X00418B70", "fill_ogg_pcm_block", "src/audio/OggPcmRuntime.cpp"),
+            ("0X00418D10", "load_sfl_loop_metadata", "src/audio/OggMetadata.cpp"),
+        ):
+            self.assertEqual(functions[address]["proposed_name"], name)
+            self.assertEqual(functions[address]["status"], "implemented")
+            self.assertEqual(functions[address]["source_file"], source)
+            self.assertEqual(origins[address]["origin"], "authored_game")
+            self.assertEqual(origins[address]["disposition"], "authored")
+
+        scheduler = functions["0X00419100"]
+        self.assertEqual(scheduler["proposed_name"], "AudioScheduler_thread_main")
+        self.assertEqual(origins["0X00419100"]["origin"], "authored_game")
+        self.assertEqual(origins["0X00419100"]["disposition"], "authored")
+        for address in ("0X00689190", "0X006892B0"):
+            self.assertEqual(origins[address]["origin"], "third_party")
+            self.assertEqual(origins[address]["disposition"], "exclude")
+
+        units = self.manifest.load_manifest()["units"]
+        self.assertEqual(len(units["gpt-web-ogg-data-source-callbacks"]["functions"]), 4)
+        self.assertEqual(units["gpt-web-ogg-data-source-open"]["source"], "src/audio/DirectSound.cpp")
+        self.assertEqual(units["gpt-web-ogg-pcm-runtime"]["source"], "src/audio/OggPcmRuntime.cpp")
+        self.assertTrue(units["gpt-web-ogg-metadata"]["enable_gs"])
+
+        data_pointers = self.rdata_text_pointers.census(".data")
+        self.assertEqual(data_pointers["source_section"], ".data")
+        self.assertEqual(data_pointers["unique_text_pointer_count"], 69)
+        self.assertEqual(data_pointers["uncovered_count"], 10)
+        uncovered = {row["address"].upper() for row in data_pointers["uncovered"]}
+        for address in callbacks:
+            self.assertNotIn(address, uncovered)
+        self.assertNotIn("0X00689190", uncovered)
+        self.assertNotIn("0X006892B0", uncovered)
+
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
-        self.assertIn("Tracked 1.06a function candidates | 4,012", markdown)
-        self.assertIn("Confirmed authored functions | 1,414", markdown)
-        self.assertIn("Confirmed authored code bytes | 2,075,924", markdown)
-        self.assertIn("Classified exclusions | 1,293", markdown)
-        self.assertIn("Origin/boundary review pending | 1,305", markdown)
-        self.assertIn("Canonical exact functions | 1,285", markdown)
-        self.assertIn("Canonical exact authored bytes | 215,745", markdown)
-        self.assertIn("Source-present authored mappings | 1,327", markdown)
+        self.assertIn("Tracked 1.06a function candidates | 4,018", markdown)
+        self.assertIn("Confirmed authored functions | 1,422", markdown)
+        self.assertIn("Confirmed authored code bytes | 2,077,710", markdown)
+        self.assertIn("Classified exclusions | 1,295", markdown)
+        self.assertIn("Origin/boundary review pending | 1,301", markdown)
+        self.assertIn("Canonical exact functions | 1,289", markdown)
+        self.assertIn("Canonical exact authored bytes | 215,913", markdown)
+        self.assertIn("Source-present authored mappings | 1,334", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
@@ -685,9 +742,9 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(anchors["min_nonreloc_coverage"], 0.70)
         self.assertEqual(anchors["min_nonreloc_bytes"], 24)
         rows = anchors["anchors"]
-        self.assertEqual(len(rows), 156)
-        self.assertEqual(len({row["address"] for row in rows}), 156)
-        self.assertEqual(sum(row["size"] for row in rows), 57665)
+        self.assertEqual(len(rows), 158)
+        self.assertEqual(len({row["address"] for row in rows}), 158)
+        self.assertEqual(sum(row["size"] for row in rows), 57799)
         groups = [row for row in rows if row.get("equivalence_group") == "vorbis-residue-inverse-clones"]
         self.assertEqual({row["address"] for row in groups}, {"0x00686360", "0x00686E20"})
 
@@ -1190,8 +1247,8 @@ class WorkflowToolingTests(unittest.TestCase):
         with (ROOT / "config" / "match-units.toml").open("rb") as stream:
             manifest = tomllib.load(stream)
         counts = self.literals.audit_real_literals(relocations, manifest)
-        self.assertEqual(counts["ledger_literals"], 306)
-        self.assertEqual(counts["explicit_mappings"], 429)
+        self.assertEqual(counts["ledger_literals"], 307)
+        self.assertEqual(counts["explicit_mappings"], 430)
         self.assertEqual(counts["target_checks"], 0)
 
     @unittest.skipUnless(
@@ -1201,7 +1258,7 @@ class WorkflowToolingTests(unittest.TestCase):
         counts = self.validator.validate_real_literal_relocations(
             self.manifest.load_manifest(), require_bytes=True
         )
-        self.assertEqual(counts["target_checks"], 735)
+        self.assertEqual(counts["target_checks"], 737)
 
     def test_rel32_accepts_only_supported_instruction_forms(self) -> None:
         self.assertEqual(

@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
-"""Rank aligned .rdata pointers into .text that are outside tracked code ownership.
+"""Rank aligned PE data pointers into .text outside tracked code ownership.
 
 The scanner reads the SHA-pinned PE directly and deliberately does not trust IDA
 function discovery. Candidate main spans from functions.csv plus reviewed remote
 chunks from function-byte-ownership.toml define current code ownership. Aligned
-.rdata dwords that point into .text are classified as candidate starts, owned
-interiors, or uncovered targets. Uncovered targets are discovery leads only:
-compiler startup/EH tables, deleting destructors, jump-table data and authored
-callbacks all occur on this surface and require provenance review.
+dwords from .rdata by default, or another requested data section such as .data,
+are classified as candidate starts, owned interiors, or uncovered targets.
+Uncovered targets are discovery leads only: compiler startup/EH tables, deleting
+destructors, callback tables and authored private entries all occur on this
+surface and require independent provenance review.
 """
 from __future__ import annotations
 
@@ -83,25 +84,27 @@ def containing_span(address: int, spans: list[tuple[int, int, str, str]]) -> tup
     return None
 
 
-def census() -> dict[str, Any]:
+def census(section_name: str = ".rdata") -> dict[str, Any]:
     compare = load_compare()
     target_sha = compare.verify_target()
     data = (ROOT / "resources" / "th105.exe").read_bytes()
     sections = pe_sections(data)
-    if ".text" not in sections or ".rdata" not in sections:
-        raise ValueError("target must contain .text and .rdata")
+    if ".text" not in sections or section_name not in sections:
+        raise ValueError(f"target must contain .text and {section_name}")
+    if section_name == ".text":
+        raise ValueError("source section must not be .text")
     text = sections[".text"]
-    rdata = sections[".rdata"]
+    source = sections[section_name]
     starts, spans = load_ownership()
-    blob = data[rdata["raw_pointer"] : rdata["raw_pointer"] + rdata["raw_size"]]
-    if len(blob) != rdata["raw_size"]:
-        raise ValueError("target .rdata raw data is truncated")
+    blob = data[source["raw_pointer"] : source["raw_pointer"] + source["raw_size"]]
+    if len(blob) != source["raw_size"]:
+        raise ValueError(f"target {section_name} raw data is truncated")
 
     targets: dict[int, list[int]] = {}
     for offset in range(0, len(blob) - 3, 4):
         pointer = struct.unpack_from("<I", blob, offset)[0]
         if text["start"] <= pointer < text["end"]:
-            targets.setdefault(pointer, []).append(rdata["start"] + offset)
+            targets.setdefault(pointer, []).append(source["start"] + offset)
 
     rows = []
     for address, sites in sorted(targets.items()):
@@ -135,16 +138,17 @@ def census() -> dict[str, Any]:
     uncovered = [row for row in rows if row["classification"] == "uncovered"]
     uncovered.sort(key=lambda row: (-row["reference_count"], row["address"]))
     return {
-        "schema": "th105-rdata-text-pointer-census-v1",
+        "schema": "th105-section-text-pointer-census-v1",
         "target_sha256": target_sha,
+        "source_section": section_name,
         "text_range": [f"0x{text['start']:08X}", f"0x{text['end']:08X}"],
-        "rdata_range": [f"0x{rdata['start']:08X}", f"0x{rdata['end']:08X}"],
+        "source_range": [f"0x{source['start']:08X}", f"0x{source['end']:08X}"],
         "unique_text_pointer_count": len(rows),
         "ledger_start_count": sum(row["classification"] == "ledger_start" for row in rows),
         "owned_interior_count": sum(row["classification"] == "owned_interior" for row in rows),
         "uncovered_count": len(uncovered),
         "uncovered": uncovered,
-        "scope": "aligned canonical .rdata dwords only; uncovered pointers are discovery leads and receive no authored/exact credit without independent provenance",
+        "scope": f"aligned canonical {section_name} dwords only; uncovered pointers are discovery leads and receive no authored/exact credit without independent provenance",
     }
 
 
@@ -152,19 +156,24 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--limit", type=int, default=50)
+    parser.add_argument(
+        "--section",
+        default=".rdata",
+        help="PE source section containing aligned pointers (default: .rdata; use .data for mutable callback tables)",
+    )
     args = parser.parse_args()
     if args.limit < 0:
         parser.error("--limit must be >= 0")
     try:
-        result = census()
+        result = census(args.section)
     except (KeyError, OSError, RuntimeError, TypeError, ValueError, struct.error) as error:
-        print(f"rdata pointer census failed: {error}", file=sys.stderr)
+        print(f"section pointer census failed: {error}", file=sys.stderr)
         return 2
     if args.json:
         print(json.dumps(result, indent=2))
     else:
         print(
-            f"target {result['target_sha256']}: {result['unique_text_pointer_count']} unique .rdata->.text pointers; "
+            f"target {result['target_sha256']}: {result['unique_text_pointer_count']} unique {result['source_section']}->.text pointers; "
             f"{result['ledger_start_count']} starts, {result['owned_interior_count']} owned interiors, "
             f"{result['uncovered_count']} uncovered"
         )

@@ -64,11 +64,8 @@ extern "C" int __cdecl ov_open_callbacks(
     long initial_data_size,
     OggCallbacks callbacks);
 extern "C" VorbisInfo *__cdecl ov_info(OggVorbisFile *file, int link);
-extern void __cdecl initialize_ogg_audio(
-    const char *path,
-    OggDataSource *source);
 
-static const OggCallbacks ogg_callbacks = {
+static OggCallbacks ogg_callbacks = {
     read_ogg_data_source,
     seek_ogg_data_source,
     close_ogg_data_source,
@@ -131,6 +128,48 @@ int __stdcall linear_gain_to_ds_volume(float gain)
     return volume;
 }
 
+unsigned long __cdecl read_ogg_data_source(
+    void *buffer,
+    unsigned long item_size,
+    unsigned long item_count,
+    void *data_source)
+{
+    OggDataSource *source = static_cast<OggDataSource *>(data_source);
+    source->reader->read(buffer, item_size * item_count);
+    return source->reader->last_read_size();
+}
+
+int __cdecl seek_ogg_data_source(
+    void *data_source,
+    OggOffset offset,
+    int origin)
+{
+    OggDataSource *source = static_cast<OggDataSource *>(data_source);
+    long position;
+    int reader_origin;
+
+    switch (origin) {
+    case 0:
+        position = source->position_adjustment;
+        reader_origin = 0;
+        position += static_cast<long>(offset);
+        break;
+    case 1:
+        position = static_cast<long>(offset);
+        reader_origin = 1;
+        break;
+    case 2:
+        position = source->position_adjustment + source->stream_size;
+        reader_origin = 0;
+        position += static_cast<long>(offset);
+        break;
+    default:
+        return -1;
+    }
+
+    return source->reader->seek(position, reader_origin) == -1 ? -1 : 0;
+}
+
 int __cdecl close_ogg_data_source(void *data_source)
 {
     OggDataSource *source = static_cast<OggDataSource *>(data_source);
@@ -185,7 +224,7 @@ bool OggDataSource::open(const char *path)
     wave_format.average_bytes_per_second =
         wave_format.block_align * wave_format.samples_per_second;
     wave_format.extra_size = 0;
-    initialize_ogg_audio(path, this);
+    load_sfl_loop_metadata(path, this);
     return true;
 }
 

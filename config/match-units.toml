@@ -17764,3 +17764,94 @@ dir32_targets = [
   "?g_bgm_bootstrap_service@th105@@3UBgmBootstrapServiceView@1@A=?g_bgm_service@th105@@3UBgmServiceView@1@A",
   "?g_wave_bootstrap_service@th105@@3UWaveBootstrapServiceView@1@A=?g_wave_handle_service@th105@@3UOpaqueWaveHandleService@1@A",
 ]
+
+[units.gpt-web-ogg-data-source-callbacks]
+kind = "probe"
+source = "src/audio/DirectSound.cpp"
+object = "build/match-units/GptWeb_OggDataSourceCallbacks.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Raw writable callback table 0x006FA194..0x006FA1A0 plus OggDataSource::open proves four IDA-missed game-side adapters passed to separately excluded Xiph ov_open_callbacks. Each entry is independently INT3-padded and natural CFileReader-compatible C++ is canonical exact: read 39/39, seek 81/81, close 25/25, tell 23/23."
+
+[[units.gpt-web-ogg-data-source-callbacks.functions]]
+address = "0x00418B40"
+symbol_base = "?read_ogg_data_source@th105@@YAKPAXKK0@Z"
+
+[[units.gpt-web-ogg-data-source-callbacks.functions]]
+address = "0x00418C70"
+symbol_base = "?seek_ogg_data_source@th105@@YAHPAX_JH@Z"
+
+[[units.gpt-web-ogg-data-source-callbacks.functions]]
+address = "0x00418CD0"
+symbol_base = "?close_ogg_data_source@th105@@YAHPAX@Z"
+
+[[units.gpt-web-ogg-data-source-callbacks.functions]]
+address = "0x00418CF0"
+symbol_base = "?tell_ogg_data_source@th105@@YAJPAX@Z"
+
+[units.gpt-web-ogg-data-source-open]
+kind = "probe"
+source = "src/audio/DirectSound.cpp"
+object = "build/match-units/GptWeb_OggDataSourceOpen.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Game-authored OggDataSource open path @ 0x00418A10. Raw caller 0x00402A1E passes this in ESI and only path on the stack, proving an LTCG/private entry ABI. Ordinary member C++ closes cleanup/open/Xiph callback/wave-format/SFL semantics but remains 292/291 from the first byte; no private-register ABI is fabricated."
+
+[[units.gpt-web-ogg-data-source-open.functions]]
+address = "0x00418A10"
+symbol_base = "?open@OggDataSource@th105@@QAE_NPBD@Z"
+rel32_targets = [
+  "ov_clear=0x0067A890",
+  "?open_reader@OggDataSource@th105@@QAE_NPBD@Z=0x0040CF40",
+  "ov_open_callbacks=0x0067A990",
+  "ov_info=0x0067C7B0",
+  "?load_sfl_loop_metadata@th105@@YAXPBDPAUOggDataSource@1@@Z=0x00418D10",
+]
+dir32_targets = [
+  "_ogg_callbacks=_ogg_callbacks",
+  "_ogg_callbacks+0x4=_ogg_callbacks_slot_04",
+  "_ogg_callbacks+0x8=_ogg_callbacks_slot_08",
+  "_ogg_callbacks+0xC=_ogg_callbacks_slot_0C",
+]
+
+[units.gpt-web-ogg-pcm-runtime]
+kind = "probe"
+source = "src/audio/OggPcmRuntime.cpp"
+object = "build/match-units/GptWeb_OggPcmRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Game-side Ogg PCM fill/loop wrapper @ 0x00418B70. Two current audio callers pass OggDataSource+0x30 and an 0x8000-byte destination with stdcall cleanup. Xiph ov_read/ov_time_tell/ov_time_seek identities are independently pinned. Natural source is semantically closed but 255/252 and begins with a non-target aligned EBP frame; a separate clean TU reproduces the same result, rejecting DirectSound TU contamination."
+
+[[units.gpt-web-ogg-pcm-runtime.functions]]
+address = "0x00418B70"
+symbol_base = "?fill_ogg_pcm_block@th105@@YGIPAUOggDataSource@1@PAX@Z"
+rel32_targets = [
+  "ov_read=0x0067C7F0",
+  "ov_time_tell=0x0067C6C0",
+  "ov_time_seek=0x0067C5C0",
+  "memset=0x0068A440",
+]
+
+[units.gpt-web-ogg-metadata]
+kind = "probe"
+source = "src/audio/OggMetadata.cpp"
+object = "build/match-units/GptWeb_OggMetadata.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Game-side SFL loop metadata loader @ 0x00418D10, called from OggDataSource open success. Real FileReaderOwner RAII, 260-byte path buffer, cue/adtl parsing and unsigned sample-rate conversions select the target /GS+EH family. Natural /GS source is 463/484 with first mismatch +0x10 (target frame 0x118 versus candidate 0x110); /GS- is 452 bytes and rejected."
+
+[[units.gpt-web-ogg-metadata.functions]]
+address = "0x00418D10"
+symbol_base = "?load_sfl_loop_metadata@th105@@YAXPBDPAUOggDataSource@1@@Z"
+rel32_targets = [
+  "strcpy_s=0x0068AD95",
+  "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
+  "malloc=0x00665B8A",
+  "free=0x0068AA26",
+  "FileReaderOwner_dtor=0x0040CF20",
+  "__security_check_cookie=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?load_sfl_loop_metadata@th105@@YAXPBDPAUOggDataSource@1@@Z=__ehhandler$?load_sfl_loop_metadata@th105@@YAXPBDPAUOggDataSource@1@@Z",
+  "__real@41f0000000000000=__real@41f0000000000000",
+]

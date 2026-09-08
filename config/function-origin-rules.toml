@@ -290,8 +290,8 @@ evidence = "each current candidate is the inventory-unique raw-byte match of a r
 [[rules]]
 id = "xiph-sdk-relocated-anchors-106a"
 xiph_relocated_anchor_file = "config/xiph-relocated-origin-anchors.toml"
-expected_count = 156
-expected_bytes = 57665
+expected_count = 158
+expected_bytes = 57799
 origin = "third_party"
 subsystem = "audio"
 disposition = "exclude"
@@ -1263,3 +1263,15 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Canonical-exact CFileList owners carry the complete current VC8 std::deque<std::string>::_Growmap decorated identity to 0x0040FE30. Three independent tracked VC8 objects emit the same 341-byte _Growmap symbol, each calling the corresponding decorated deque<string>::_Xlen helper; fresh _Xlen is 118 bytes versus target 123 because of private SEH/string-error shaping. Target 0x004101F0 builds the deque length-error exception path. Template identity and target STL semantics prove compiler ownership; no authored or byte-exact credit is assigned."
+
+[[rules]]
+id = "ogg-game-audio-runtime-authored-106a"
+addresses = ["0x00418A10", "0x00418B70", "0x00418D10", "0x00419100"]
+expected_count = 4
+expected_bytes = 1618
+expected_names = ["sub_418A10", "sub_418B70", "sub_418D10", "sub_419100"]
+origin = "authored_game"
+subsystem = "audio"
+disposition = "authored"
+confidence = "observed"
+evidence = "Current raw audio ownership closes this game-side Ogg/scheduler island independently of exactness. OggDataSource open 0x00418A10 copies the writable callback table 0x006FA194 into separately pinned Xiph ov_open_callbacks and is called with a private ESI receiver by 0x00402A1E. PCM wrapper 0x00418B70 has two game audio callers and invokes independently Xiph-anchored ov_read/ov_time_tell/ov_time_seek. Open success calls SFL metadata loader 0x00418D10, whose FileReader/cue/adtl semantics are source-recovered. Startup audio initialization passes 0x00419100 directly to CreateThread; its body implements game cadence and listener signaling."

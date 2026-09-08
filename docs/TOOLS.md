@@ -91,3 +91,7 @@ python3 scripts/compare-giant-action-switches.py youmu-vslot28 build/match-units
 ```
 
 The candidate mapper parses i386 COFF directly and discovers each sparse destination table from relocation topology rather than compiler-generated `$LN...` symbol numbers: it requires the expected run of local `.text` `IMAGE_REL_I386_DIR32` relocations followed immediately by an in-range byte-index table.  It fails closed on ambiguous tables, wrong physical-group counts, destination-count changes, or target groups that split in the candidate.  Use its per-group `drift` and `span_diff` to find common-tail ownership inversions; never treat an exact action span as partial authored-byte acceptance.
+
+## Raw data-pointer boundary discovery
+
+Use `python3 scripts/rank-unledgered-rdata-text-pointers.py` to scan aligned `.rdata` dwords into canonical `.text` without trusting IDA function inventory. Use `--section .data` for writable callback/function-pointer tables. The scanner subtracts tracked main spans plus reviewed remote byte ownership and reports ledger starts, owned interiors, and uncovered targets. An uncovered pointer is only a discovery lead: require raw boundary/isolation and independent provenance before creating or classifying a candidate. The Ogg callback table at `0x006FA194` is the positive `.data` reference case.

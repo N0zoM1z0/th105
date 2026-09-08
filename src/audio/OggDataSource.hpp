@@ -26,10 +26,10 @@ struct WaveFormat {
 
 struct OggDataSourceReader {
     virtual ~OggDataSourceReader() = 0;
-    virtual long unknown_04() = 0;
-    virtual long unknown_08() = 0;
+    virtual bool read(void *destination, unsigned long size) = 0;
+    virtual unsigned long last_read_size() const = 0;
     virtual long seek(long offset, int origin) = 0;
-    virtual long size() = 0;
+    virtual unsigned long size() const = 0;
 };
 
 struct OggDataSource {

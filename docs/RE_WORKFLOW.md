@@ -114,3 +114,7 @@ claims.
 A target hash change invalidates every address, boundary, name, origin rule,
 match unit, exact report, and architecture note unless explicitly re-proven.
 This rule is why all former 1.06 progress was reset when 1.06a was established.
+
+### Writable callback-table boundary audit
+
+Direct CALL/JMP closure and RTTI vtables do not cover mutable function-pointer tables. Periodically run `scripts/rank-unledgered-rdata-text-pointers.py --section .data` and inspect uncovered `.text` targets against raw padding, complete return closure, callers/consumers, and library/runtime provenance. Do not auto-promote a pointer target: compiler startup tables and runtime callbacks share the same surface. Conversely, when a writable table is copied into a known callback ABI and raw PE isolates the pointed body, treat that as first-class missed-candidate evidence even when IDA has no function object at the target.
