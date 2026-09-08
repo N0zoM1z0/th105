@@ -1288,3 +1288,7 @@ address,name,size,status,match_percent,unit,evidence
 0x00418C70,seek_ogg_data_source,81,matching,100.00,gpt-web-ogg-data-source-callbacks,python3 scripts/build.py --unit gpt-web-ogg-data-source-callbacks --compare --json reports canonical exact 81/81 against TH105 1.06a
 0x00418CD0,close_ogg_data_source,25,matching,100.00,gpt-web-ogg-data-source-callbacks,python3 scripts/build.py --unit gpt-web-ogg-data-source-callbacks --compare --json reports canonical exact 25/25 against TH105 1.06a
 0x00418CF0,tell_ogg_data_source,23,matching,100.00,gpt-web-ogg-data-source-callbacks,python3 scripts/build.py --unit gpt-web-ogg-data-source-callbacks --compare --json reports canonical exact 23/23 against TH105 1.06a
+0x00419F80,CBitmapData_ctor,23,matching,100.00,gpt-web-cbitmap-data-runtime,python3 scripts/build.py --unit gpt-web-cbitmap-data-runtime --compare --json reports canonical exact 23/23 against TH105 1.06a
+0x00419FA0,CBitmapData_scalar_deleting_destructor,47,matching,100.00,gpt-web-cbitmap-data-runtime,python3 scripts/build.py --unit gpt-web-cbitmap-data-runtime --compare --json reports canonical exact 47/47 against TH105 1.06a
+0x00419FD0,CBitmapData_dtor,21,matching,100.00,gpt-web-cbitmap-data-runtime,python3 scripts/build.py --unit gpt-web-cbitmap-data-runtime --compare --json reports canonical exact 21/21 against TH105 1.06a
+0x0041ABD0,CBitmapData_copy_from,196,matching,100.00,gpt-web-cbitmap-data-runtime,python3 scripts/build.py --unit gpt-web-cbitmap-data-runtime --compare --json reports canonical exact 196/196 against TH105 1.06a

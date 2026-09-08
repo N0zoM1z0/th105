@@ -17855,3 +17855,85 @@ dir32_targets = [
   "__ehhandler$?load_sfl_loop_metadata@th105@@YAXPBDPAUOggDataSource@1@@Z=__ehhandler$?load_sfl_loop_metadata@th105@@YAXPBDPAUOggDataSource@1@@Z",
   "__real@41f0000000000000=__real@41f0000000000000",
 ]
+
+[units.gpt-web-audio-scheduler-listeners]
+kind = "probe"
+source = "src/audio/AudioSchedulerListeners.cpp"
+object = "build/match-units/GptWeb_AudioSchedulerListeners.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current game audio scheduler listener API over global state 0x00703864. Raw main-loop ownership proves create/remove/wait handle contracts and checked std::list<void*> +0x2C. Natural VC8 source is retained; exactness is gated per function. Target 0x40C6D0 is the LTCG constant-1 specialization of list::_Incsize and 0x414DE0 is the checked erase helper, so standalone helper ABI differences are not papered over."
+
+[[units.gpt-web-audio-scheduler-listeners.functions]]
+address = "0x00419350"
+symbol_base = "?create_audio_scheduler_listener_event@th105@@YAPAXXZ"
+rel32_targets = [
+  "?_Buynode@?$list@PAXV?$allocator@PAX@std@@@std@@IAEPAU_Node@?$_List_nod@PAXV?$allocator@PAX@std@@@2@PAU342@0ABQAX@Z=0x004129E0",
+  "?_Incsize@?$list@PAXV?$allocator@PAX@std@@@std@@IAEXI@Z=0x0040C6D0",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+
+[[units.gpt-web-audio-scheduler-listeners.functions]]
+address = "0x00419400"
+symbol_base = "?remove_audio_scheduler_listener_event@th105@@YGHPAX@Z"
+rel32_targets = [
+  "??3@YAXPAX@Z=0x006898EA",
+  "?erase@?$list@PAXV?$allocator@PAX@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x00414DE0",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+
+[[units.gpt-web-audio-scheduler-listeners.functions]]
+address = "0x004194D0"
+symbol_base = "?wait_audio_scheduler_listener_event@th105@@YGHPAX@Z"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+
+[units.gpt-web-audio-scheduler-finalizer]
+kind = "probe"
+source = "src/audio/AudioSchedulerFinalizer.cpp"
+object = "build/match-units/GptWeb_AudioSchedulerFinalizer.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "IDA-missed 241-byte atexit finalizer body @ 0x00419000. Raw dynamic initializer 0x006BE8A0 registers wrapper 0x006BEED0, which tail-jumps here. Natural no-arg global finalizer reproduces scheduler stop/listener cleanup/member destruction semantics. Standalone VC8 keeps ordinary list::_Tidy and cross-TU member destructor boundaries while target LTCG specializes/inlines them; no private ESI ABI is fabricated."
+
+[[units.gpt-web-audio-scheduler-finalizer.functions]]
+address = "0x00419000"
+symbol_base = "?finalize_audio_scheduler_state@th105@@YAXXZ"
+rel32_targets = [
+  "??3@YAXPAX@Z=0x006898EA",
+  "?wait_for_exit@BattleThreadHandle@th105@@QAEXXZ=0x00414640",
+  "?_Tidy@?$list@PAXV?$allocator@PAX@std@@@std@@IAEXXZ=0x00408A00",
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+
+[units.gpt-web-cbitmap-data-runtime]
+kind = "probe"
+source = "src/assets/CBitmapDataRuntime.cpp"
+object = "build/match-units/GptWeb_CBitmapDataRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current RTTI/COL 0x006DCFB0 names CBitmapData and vtable 0x006D6E10 owns the scalar deleting destructor plus virtual slot4 0x0041ABD0. Ordinary 0x20-byte class/0x18-byte source-view C++ reproduces ctor 23/23, scalar dtor 47/47, normal dtor 21/21 and descriptor copy 196/196 canonical exact without shaping."
+
+[[units.gpt-web-cbitmap-data-runtime.functions]]
+address = "0x00419F80"
+symbol_base = "??0CBitmapData@th105@@QAE@XZ"
+dir32_targets = ["??_7CBitmapData@th105@@6B@=??_7CBitmapData@th105@@6B@"]
+
+[[units.gpt-web-cbitmap-data-runtime.functions]]
+address = "0x00419FA0"
+symbol_base = "??_GCBitmapData@th105@@UAEPAXI@Z"
+rel32_targets = ["_free=0x0068AA26", "??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = ["??_7CBitmapData@th105@@6B@=??_7CBitmapData@th105@@6B@"]
+
+[[units.gpt-web-cbitmap-data-runtime.functions]]
+address = "0x00419FD0"
+symbol_base = "??1CBitmapData@th105@@UAE@XZ"
+rel32_targets = ["_free=0x0068AA26"]
+dir32_targets = ["??_7CBitmapData@th105@@6B@=??_7CBitmapData@th105@@6B@"]
+
+[[units.gpt-web-cbitmap-data-runtime.functions]]
+address = "0x0041ABD0"
+symbol_base = "?copy_from@CBitmapData@th105@@QAEXPBUCBitmapSourceView@2@@Z"
+rel32_targets = ["??2@YAPAXI@Z=0x00665B8A", "_memcpy=0x0068AA30"]

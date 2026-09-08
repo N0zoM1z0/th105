@@ -55,25 +55,25 @@ class WorkflowToolingTests(unittest.TestCase):
             newline="", encoding="utf-8"
         ) as stream:
             functions = list(csv.DictReader(stream))
-        self.assertEqual(len(functions), 4018)
+        self.assertEqual(len(functions), 4019)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1289)
+        self.assertEqual(len(matching), 1293)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1334)
+        self.assertEqual(len(implemented), 1342)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1289
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1293
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 471)
+        self.assertEqual(len(manifest["units"]), 474)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1339,
+            1347,
         )
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:
@@ -253,8 +253,8 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 449)
-        self.assertEqual(sum(map(len, accepted.values())), 1289)
+        self.assertEqual(len(accepted), 450)
+        self.assertEqual(sum(map(len, accepted.values())), 1293)
         secondary = accepted["gpt-web-secondary-animation-runtime"]
         self.assertEqual(
             secondary,
@@ -365,16 +365,74 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertNotIn("0X00689190", uncovered)
         self.assertNotIn("0X006892B0", uncovered)
 
+    def test_audio_scheduler_boundary_and_cbitmap_exact_wave_are_pinned(self) -> None:
+        with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
+            functions = {row["address"].upper(): row for row in csv.DictReader(stream)}
+        with (ROOT / "config" / "function-origins.csv").open(newline="", encoding="utf-8") as stream:
+            origins = {row["address"].upper(): row for row in csv.DictReader(stream)}
+        with (ROOT / "config" / "reccmp-relocations.csv").open(newline="", encoding="utf-8") as stream:
+            relocations = {row["coff_symbol"]: row for row in csv.DictReader(stream)}
+
+        finalizer = functions["0X00419000"]
+        self.assertEqual(finalizer["current_name"], "")
+        self.assertEqual(finalizer["proposed_name"], "finalize_audio_scheduler_state")
+        self.assertEqual(finalizer["status"], "implemented")
+        self.assertEqual(finalizer["source_file"], "src/audio/AudioSchedulerFinalizer.cpp")
+        self.assertIn("259/241", finalizer["evidence"])
+        self.assertEqual(origins["0X00419000"]["origin"], "authored_game")
+        self.assertEqual(origins["0X00419000"]["disposition"], "authored")
+
+        listener_rows = {
+            "0X00419350": ("create_audio_scheduler_listener_event", "166/169"),
+            "0X00419400": ("remove_audio_scheduler_listener_event", "174/193"),
+            "0X004194D0": ("wait_audio_scheduler_listener_event", "126/184"),
+        }
+        for address, (name, residual) in listener_rows.items():
+            row = functions[address]
+            self.assertEqual(row["proposed_name"], name)
+            self.assertEqual(row["status"], "implemented")
+            self.assertEqual(row["source_file"], "src/audio/AudioSchedulerListeners.cpp")
+            self.assertIn(residual, row["evidence"])
+            self.assertEqual(origins[address]["origin"], "authored_game")
+            self.assertEqual(origins[address]["disposition"], "authored")
+
+        bitmap_rows = {
+            "0X00419F80": ("CBitmapData_ctor", "23"),
+            "0X00419FA0": ("CBitmapData_scalar_deleting_destructor", "47"),
+            "0X00419FD0": ("CBitmapData_dtor", "21"),
+            "0X0041ABD0": ("CBitmapData_copy_from", "196"),
+        }
+        for address, (name, size) in bitmap_rows.items():
+            row = functions[address]
+            self.assertEqual(row["proposed_name"], name)
+            self.assertEqual(row["size"], size)
+            self.assertEqual(row["status"], "matching")
+            self.assertEqual(row["match_percent"], "100.00")
+            self.assertEqual(row["source_file"], "src/assets/CBitmapDataRuntime.cpp")
+            self.assertEqual(origins[address]["origin"], "authored_game")
+            self.assertEqual(origins[address]["disposition"], "authored")
+
+        vtable = relocations["??_7CBitmapData@th105@@6B@"]
+        self.assertEqual(vtable["address"].upper(), "0X006D6E10")
+        self.assertEqual(vtable["data_hex"], "a09f4100")
+
+        units = self.manifest.load_manifest()["units"]
+        self.assertEqual(len(units["gpt-web-audio-scheduler-listeners"]["functions"]), 3)
+        self.assertEqual(len(units["gpt-web-audio-scheduler-finalizer"]["functions"]), 1)
+        bitmap = units["gpt-web-cbitmap-data-runtime"]
+        self.assertEqual(bitmap["source"], "src/assets/CBitmapDataRuntime.cpp")
+        self.assertEqual(len(bitmap["functions"]), 4)
+
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
-        self.assertIn("Tracked 1.06a function candidates | 4,018", markdown)
-        self.assertIn("Confirmed authored functions | 1,422", markdown)
-        self.assertIn("Confirmed authored code bytes | 2,077,710", markdown)
+        self.assertIn("Tracked 1.06a function candidates | 4,019", markdown)
+        self.assertIn("Confirmed authored functions | 1,430", markdown)
+        self.assertIn("Confirmed authored code bytes | 2,078,784", markdown)
         self.assertIn("Classified exclusions | 1,295", markdown)
-        self.assertIn("Origin/boundary review pending | 1,301", markdown)
-        self.assertIn("Canonical exact functions | 1,289", markdown)
-        self.assertIn("Canonical exact authored bytes | 215,913", markdown)
-        self.assertIn("Source-present authored mappings | 1,334", markdown)
+        self.assertIn("Origin/boundary review pending | 1,294", markdown)
+        self.assertIn("Canonical exact functions | 1,293", markdown)
+        self.assertIn("Canonical exact authored bytes | 216,200", markdown)
+        self.assertIn("Source-present authored mappings | 1,342", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )

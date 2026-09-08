@@ -457,6 +457,7 @@ scan the canonical PE while masking only its two DIR32 fields (vtable and
 CloseHandle IAT). Exactly two bodies match: the writer clone at `0x00407BF0` and
 the reader clone at `0x0040CEB0`. Their vtables disambiguate them: the first
 leads to WriteFile, the second to the already accepted CFileReader methods.
+The CBitmapData identity is now independently exact-backed rather than remaining only a negative-control clone: current RTTI/vtable `0x006D6E10` plus `src/assets/CBitmapDataRuntime.cpp` reproduce ctor 23/23, scalar deleting destructor 47/47, normal destructor 21/21, and virtual copy-from-source 196/196. The original lesson still stands: use class/vtable ownership to reject a normalized clone before attempting source tuning.
 
 Boundary correction can require adding a candidate the initial IDA export
 missed. `0x0040CEB0..0x0040CEC4` is surrounded on both sides by `INT3` padding

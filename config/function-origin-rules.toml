@@ -1275,3 +1275,14 @@ subsystem = "audio"
 disposition = "authored"
 confidence = "observed"
 evidence = "Current raw audio ownership closes this game-side Ogg/scheduler island independently of exactness. OggDataSource open 0x00418A10 copies the writable callback table 0x006FA194 into separately pinned Xiph ov_open_callbacks and is called with a private ESI receiver by 0x00402A1E. PCM wrapper 0x00418B70 has two game audio callers and invokes independently Xiph-anchored ov_read/ov_time_tell/ov_time_seek. Open success calls SFL metadata loader 0x00418D10, whose FileReader/cue/adtl semantics are source-recovered. Startup audio initialization passes 0x00419100 directly to CreateThread; its body implements game cadence and listener signaling."
+
+[[rules]]
+id = "audio-scheduler-runtime-authored-106a"
+addresses = ["0x00419000", "0x00419350", "0x00419400", "0x004194D0"]
+expected_count = 4
+expected_bytes = 787
+origin = "authored_game"
+subsystem = "audio"
+disposition = "authored"
+confidence = "observed"
+evidence = "Current audio scheduler ownership is closed independently of IDA boundaries. Dynamic initializer 0x006BE8A0 calls scheduler construction then registers atexit wrapper 0x006BEED0, whose sole tail target is the independently padded IDA-missed 241-byte finalizer at 0x00419000. Main loop 0x004081E0 calls 0x00419350 to create a listener event, passes the returned handle to 0x004194D0 during frames, and closes it through 0x00419400 at exit. All four use the same target-proved global CriticalSection + checked std::list<void*> state at 0x00703864."

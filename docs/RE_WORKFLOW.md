@@ -118,3 +118,7 @@ This rule is why all former 1.06 progress was reset when 1.06a was established.
 ### Writable callback-table boundary audit
 
 Direct CALL/JMP closure and RTTI vtables do not cover mutable function-pointer tables. Periodically run `scripts/rank-unledgered-rdata-text-pointers.py --section .data` and inspect uncovered `.text` targets against raw padding, complete return closure, callers/consumers, and library/runtime provenance. Do not auto-promote a pointer target: compiler startup tables and runtime callbacks share the same surface. Conversely, when a writable table is copied into a known callback ABI and raw PE isolates the pointed body, treat that as first-class missed-candidate evidence even when IDA has no function object at the target.
+
+### Qualifying raw code islands before candidate promotion
+
+A padding-isolated, RET-terminated `.text` island is only a boundary lead. Before adding it to `functions.csv`, classify every incoming edge. EH/unwind tails that first derive a subobject from `EBP`/another live enclosing-frame register are remote cleanup chunks, even when the destination has padding on both sides. Strong independent-boundary evidence includes a normal call/thread/vtable/callback edge or an atexit wrapper that targets a complete prologue/epilogue body without inherited frame state. `0x00419000` is the positive atexit case; `0x00418A00`, `0x00426080`, and `0x004422E0` are current negative EH-funclet cases.
