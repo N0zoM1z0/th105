@@ -580,22 +580,39 @@ void AyaObjectActionStateView::update_action_state()
         CharacterObjectEffectEmitter *const owner = fighter_owner_348;
         short const owner_action = *reinterpret_cast<short *>(
             reinterpret_cast<unsigned char *>(owner) + 0x13c);
-        short const owner_sequence = *reinterpret_cast<short *>(
-            reinterpret_cast<unsigned char *>(owner) + 0x13e);
-        if (owner_action >= 520 && owner_action <= 524) {
-            if (owner_sequence > 1 && sequence_index_13e <= 1) {
+        if (owner_action < 520) {
+            if (sequence_index_13e <= 1) {
                 select_sequence(2);
                 return;
             }
-        } else if (sequence_index_13e <= 1) {
+        } else if (owner_action > 524) {
+            if (sequence_index_13e <= 1) {
+                select_sequence(2);
+                return;
+            }
+        } else if (*reinterpret_cast<short *>(
+                       reinterpret_cast<unsigned char *>(owner) + 0x13e) > 1
+                   && sequence_index_13e <= 1) {
             select_sequence(2);
             return;
         }
         if (sequence_index_13e < 2) {
-            if (owner_action >= 520 && owner_action <= 523) {
+            if (owner_action == 520) {
                 sprite_004.object_x_0e8 = owner->x_ec;
                 sprite_004.object_y_0ec = static_cast<float>(
                     static_cast<double>(owner->y_f0) + 90.0);
+            }
+            if (*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(owner) + 0x13c) == 521) {
+                sprite_004.object_x_0e8 = owner->x_ec;
+                sprite_004.object_y_0ec = static_cast<float>(static_cast<double>(owner->y_f0) + 90.0);
+            }
+            if (*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(owner) + 0x13c) == 522) {
+                sprite_004.object_x_0e8 = owner->x_ec;
+                sprite_004.object_y_0ec = static_cast<float>(static_cast<double>(owner->y_f0) + 90.0);
+            }
+            if (*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(owner) + 0x13c) == 523) {
+                sprite_004.object_x_0e8 = owner->x_ec;
+                sprite_004.object_y_0ec = static_cast<float>(static_cast<double>(owner->y_f0) + 90.0);
             }
         }
         if (advance_frame_and_dispatch())
@@ -611,8 +628,6 @@ void AyaObjectActionStateView::update_action_state()
         CharacterObjectEffectEmitter *const owner = fighter_owner_348;
         short const owner_action = *reinterpret_cast<short *>(
             reinterpret_cast<unsigned char *>(owner) + 0x13c);
-        short const owner_sequence = *reinterpret_cast<short *>(
-            reinterpret_cast<unsigned char *>(owner) + 0x13e);
         if (owner_action < 525 || owner_action > 529) {
             if (sequence_index_13e < 2) {
                 select_sequence(2);
@@ -620,19 +635,26 @@ void AyaObjectActionStateView::update_action_state()
             }
         } else if (sequence_index_13e < 2) {
             if (owner_action == 529) {
-                if (owner_sequence == 0 || owner_sequence >= 16) {
+                short const owner_sequence = *reinterpret_cast<short *>(
+                    reinterpret_cast<unsigned char *>(owner) + 0x13e);
+                if (owner_sequence >= 16 || owner_sequence == 0) {
                     select_sequence(2);
                     return;
                 }
-            } else if (owner_sequence >= 3) {
+            } else if (*reinterpret_cast<short *>(
+                           reinterpret_cast<unsigned char *>(owner) + 0x13e) >= 3) {
                 select_sequence(2);
                 return;
             }
+        }
+        if (sequence_index_13e < 2) {
             if (owner_action >= 525 && owner_action <= 528) {
                 sprite_004.object_x_0e8 = owner->x_ec;
                 sprite_004.object_y_0ec = static_cast<float>(
                     static_cast<double>(owner->y_f0) + 90.0);
-            } else if (owner_action == 529) {
+            }
+            if (*reinterpret_cast<short *>(
+                    reinterpret_cast<unsigned char *>(owner) + 0x13c) == 529) {
                 sprite_004.object_x_0e8 = owner->x_ec;
                 sprite_004.object_y_0ec = owner->y_f0 + heading_340[1];
             }
@@ -983,7 +1005,8 @@ void AyaObjectActionStateView::update_action_state()
             --lifetime_330;
             return;
         }
-        if (sequence_index_13e == 0) {
+        switch (sequence_index_13e) {
+        case 0:
             motion_core()->component_f0 = static_cast<float>(
                 (static_cast<double>(heading_340[0] - sprite_004.object_x_0e8) / 1280.0)
                 * 40.0 * static_cast<double>(sprite_004.object_facing_100));
@@ -1001,7 +1024,8 @@ void AyaObjectActionStateView::update_action_state()
                 motion_core()->component_f4 = -30.0f;
                 return;
             }
-        } else if (sequence_index_13e == 1) {
+            break;
+        case 1:
             if (state_174 < 0 || time_counter_144 >= 15
                 || static_cast<signed char>(phase_index_184) <= 0) {
                 select_sequence(2);
@@ -1011,7 +1035,8 @@ void AyaObjectActionStateView::update_action_state()
                     static_cast<float>(motion_core()->component_f4 * 0.1f);
                 return;
             }
-        } else if (sequence_index_13e == 2) {
+            break;
+        case 2:
             motion_core()->component_f4 =
                 static_cast<float>(motion_core()->component_f4 + 0.5);
             motion_core()->component_f0 =
@@ -1023,6 +1048,9 @@ void AyaObjectActionStateView::update_action_state()
                 --lifetime_330;
                 return;
             }
+            break;
+        default:
+            break;
         }
         sprite_004.object_x_0e8 +=
             static_cast<float>(sprite_004.object_facing_100) * motion_core()->component_f0;

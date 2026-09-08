@@ -274,6 +274,18 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertNotIn("float payload[3] =", full)
         self.assertIn("direction = 1;", full)
         self.assertIn("time_counter_144 >= 180", full)
+        action815 = full[full.index("    case 815: {"):full.index("    case 816: {")]
+        self.assertIn("if (owner_action < 520)", action815)
+        self.assertIn("else if (owner_action > 524)", action815)
+        for owner_action in [520, 521, 522, 523]:
+            self.assertIn(f"== {owner_action}", action815)
+        action816 = full[full.index("    case 816: {"):full.index("    case 817: {")]
+        self.assertGreaterEqual(action816.count("if (sequence_index_13e < 2)"), 2)
+        self.assertIn("owner_sequence >= 16 || owner_sequence == 0", action816)
+        action825 = full[full.index("    case 825:"):full.index("    case 826: {")]
+        self.assertIn("switch (sequence_index_13e)", action825)
+        for sequence in [0, 1, 2]:
+            self.assertIn(f"case {sequence}:", action825)
 
 
     def test_default_cpu_policy_owner_source_checkpoint(self) -> None:
