@@ -71,8 +71,32 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(len(manifest["units"]), 454)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1300,
+            1302,
         )
+
+    def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:
+        with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
+            functions = {row["address"].upper(): row for row in csv.DictReader(stream)}
+        with (ROOT / "config" / "function-origins.csv").open(newline="", encoding="utf-8") as stream:
+            origins = {row["address"].upper(): row for row in csv.DictReader(stream)}
+        pending = [
+            address for address, row in functions.items()
+            if row["status"] == "implemented"
+            and origins[address]["disposition"] == "review"
+        ]
+        self.assertEqual(pending, [])
+        for address in [
+            "0x004098E0", "0x00414E40", "0x00417800",
+            "0x00412B10", "0x00412CC0", "0x00431AC0", "0x00463500",
+        ]:
+            self.assertEqual(origins[address.upper()]["origin"], "authored_game")
+            self.assertEqual(origins[address.upper()]["disposition"], "authored")
+
+        units = self.manifest.load_manifest()["units"]
+        cnumber = units["gpt-web-cnumber-runtime"]
+        fighter = units["gpt-web-fighter-command-flags-runtime"]
+        self.assertTrue(any(row["address"].upper() == "0X00414E40" for row in cnumber["functions"]))
+        self.assertTrue(any(row["address"].upper() == "0X00463500" for row in fighter["functions"]))
 
     def test_new_authored_nonexact_helper_contracts_stay_nonexact(self) -> None:
         units = self.manifest.load_manifest()["units"]
@@ -130,10 +154,10 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,011", markdown)
-        self.assertIn("Confirmed authored functions | 1,378", markdown)
-        self.assertIn("Confirmed authored code bytes | 2,070,276", markdown)
+        self.assertIn("Confirmed authored functions | 1,385", markdown)
+        self.assertIn("Confirmed authored code bytes | 2,073,220", markdown)
         self.assertIn("Classified exclusions | 1,285", markdown)
-        self.assertIn("Origin/boundary review pending | 1,348", markdown)
+        self.assertIn("Origin/boundary review pending | 1,341", markdown)
         self.assertIn("Canonical exact functions | 1,272", markdown)
         self.assertIn("Canonical exact authored bytes | 215,400", markdown)
         self.assertIn("Source-present authored mappings | 1,299", markdown)

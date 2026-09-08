@@ -208,7 +208,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004094E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004097A0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004098B0,authored_game,ui,authored,observed,canonical-exact-authored
-0x004098E0,unknown,ui,review,unknown,ida-1.06a-initial-inventory
+0x004098E0,authored_game,ui,authored,observed,ui-source-present-exact-caller-helpers-authored-106a
 0x004099F0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00409CF0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00409D30,authored_game,input,authored,observed,canonical-exact-authored
@@ -425,10 +425,10 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004129E0,compiler_generated,runtime,exclude,observed,vc8-generated-list-voidptr-buynode-106a
 0x00412A20,authored_game,assets,authored,observed,canonical-exact-authored
 0x00412A60,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00412B10,unknown,network,review,unknown,ida-1.06a-initial-inventory
+0x00412B10,authored_game,network,authored,observed,network-winsock-member-lifetime-authored-106a
 0x00412CA0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00412CB0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00412CC0,unknown,network,review,unknown,ida-1.06a-initial-inventory
+0x00412CC0,authored_game,network,authored,observed,network-winsock-member-lifetime-authored-106a
 0x00412E10,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00412FD0,authored_game,network,authored,observed,canonical-exact-authored
 0x00413080,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -484,7 +484,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00414CB0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00414D50,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00414DE0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00414E40,unknown,ui,review,unknown,ida-1.06a-initial-inventory
+0x00414E40,authored_game,ui,authored,observed,ui-source-present-exact-caller-helpers-authored-106a
 0x00414EB0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00414F10,authored_game,ui,authored,observed,canonical-exact-authored
 0x00415050,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -520,7 +520,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00417330,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00417500,compiler_generated,characters,exclude,observed,vc8-generated-roster-object-spawns-std-comdats-106a
 0x00417660,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00417800,unknown,assets,review,unknown,ida-1.06a-initial-inventory
+0x00417800,authored_game,assets,authored,observed,resource-handle-lookup-authored-106a
 0x004178D0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x00417950,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x004179D0,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -997,7 +997,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00431690,authored_game,ui,authored,observed,canonical-exact-authored
 0x00431730,authored_game,ui,authored,observed,canonical-exact-authored
 0x004317A0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00431AC0,unknown,ui,review,unknown,ida-1.06a-initial-inventory
+0x00431AC0,authored_game,ui,authored,observed,ui-source-present-exact-caller-helpers-authored-106a
 0x00431DA0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00431E50,authored_game,ui,authored,observed,canonical-exact-authored
 0x00431E80,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -1878,7 +1878,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004633A0,authored_game,battle,authored,observed,canonical-exact-authored
 0x004633E0,authored_game,battle,authored,observed,canonical-exact-authored
 0x004634A0,compiler_generated,battle,exclude,observed,vc8-generated-fighter-input-phase-std-comdats-106a
-0x00463500,unknown,characters,review,unknown,ida-1.06a-initial-inventory
+0x00463500,authored_game,characters,authored,observed,fighter-command-matcher-authored-106a
 0x004638C0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00463E40,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00464140,compiler_generated,battle,exclude,observed,vc8-generated-fighter-input-phase-std-comdats-106a

@@ -17,6 +17,54 @@ confidence = "observed"
 evidence = "Current SHA-pinned raw gameplay call graph proves 0x00406360/0x004063D0 are consumed across all fifteen RTTI-owned roster Object +0x28 giant roots (295/205 direct calls), while 0x004064D0 is called from PatchouliObject +0x28 at 0x005264DF in an owner-relative motion path and feeds the adjacent exact authored atan2 helper. All three index the same game-owned 3600-entry orientation table at 0x006FE8B0 as canonical-exact authored 0x00406480/0x004064B0. Ordinary VC8 source is formally nonexact and receives no exact credit."
 
 [[rules]]
+id = "ui-source-present-exact-caller-helpers-authored-106a"
+addresses = ["0x004098E0", "0x00414E40", "0x00431AC0"]
+expected_count = 3
+expected_bytes = 1098
+expected_names = ["sub_4098E0", "sub_414E40", "sub_431AC0"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Current raw PE direct edges tie each source-present helper to canonical-exact UI gameplay owners: UiTileA4_set_texture 0x004098B0 calls the 266-byte full tile setter 0x004098E0; CMenuConnect ctor 0x00444190 calls CNumber initialize 0x00414E40; initialize_player_profiles_from_game_config 0x0043BA10 calls PlayerSlotRecord_load_profile 0x00431AC0 four times. Exactness of the callees is separate; these edges prove game-authored ownership."
+
+[[rules]]
+id = "network-winsock-member-lifetime-authored-106a"
+addresses = ["0x00412B10", "0x00412CC0"]
+expected_count = 2
+expected_bytes = 690
+expected_names = ["sub_412B10", "sub_412CC0"]
+origin = "authored_game"
+subsystem = "network"
+disposition = "authored"
+confidence = "observed"
+evidence = "Current canonical-exact CNetworkBase ctor 0x0044DB10 directly constructs its +0x314 Winsock member through 0x00412B10, and canonical-exact CNetworkBase dtor 0x0043C950 directly destroys the same member through 0x00412CC0. The source-present 0x314 member layout and raw PE edges prove authored network lifetime ownership independently of the remaining ctor/dtor codegen residuals."
+
+[[rules]]
+id = "resource-handle-lookup-authored-106a"
+addresses = ["0x00417800"]
+expected_count = 1
+expected_bytes = 196
+expected_names = ["sub_417800"]
+origin = "authored_game"
+subsystem = "assets"
+disposition = "authored"
+confidence = "observed"
+evidence = "Raw current PE contains eleven direct calls to the checked handle lookup, including canonical-exact TitleResourceManager_release_title_resource_handle 0x00404D70 at call site 0x00404DB7. Source-present scoped-lock/generation/slot-vector semantics are game resource-manager behavior; the remaining exact-sized mismatch is scheduling only."
+
+[[rules]]
+id = "fighter-command-matcher-authored-106a"
+addresses = ["0x00463500"]
+expected_count = 1
+expected_bytes = 960
+expected_names = ["sub_463500"]
+origin = "authored_game"
+subsystem = "characters"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact Fighter_build_command_flags 0x00476B10 makes fourteen raw current PE calls to this command-pattern matcher. The matcher consumes game-owned command strings/maps and checked Fighter input history; its private deque dereference target 0x00428570 is independently classified compiler-generated, separating authored matcher policy from generated STL machinery."
+
+[[rules]]
 id = "effect-object-manager-shared-helpers-authored-106a"
 addresses = ["0x00422D30", "0x0046EEB0"]
 expected_count = 2

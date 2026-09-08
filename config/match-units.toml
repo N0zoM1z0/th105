@@ -14280,7 +14280,14 @@ source = "src/ui/CNumberRuntime.cpp"
 object = "build/match-units/GptWeb_CNumberRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current RTTI-owned CNumber numeric renderer at 0x00414F10. The 0xCC owner has glyph width/spacing/scale/column fields in its 0x28-byte prefix and a CTile-compatible object at +0x28. A named current_x local, signed suffix byte, target two-loop decimal decomposition and truthful void return recover all 312 bytes without register/asm forcing."
+notes = "Current CNumber runtime. Render 0x00414F10 is canonical exact 312/312. Initialize 0x00414E40 is source-present 102/104 and formally nonexact: target keeps a four-byte push-ecx frame that IDA exposes no local for, while truthful glyph-width/glyph-height/mode locals compile byte-identically to the 102-byte baseline. Exact CMenuConnect construction independently proves its authored ownership; no dummy scratch is used."
+
+[[units.gpt-web-cnumber-runtime.functions]]
+address = "0x00414E40"
+symbol_base = "?initialize@CNumber@th105@@QAEXIHHHHHMHHH@Z"
+rel32_targets = [
+  "?set_texture_options@CNumberTileA4@th105@@QAEXIHHHHHH@Z=0x004098E0",
+]
 
 [[units.gpt-web-cnumber-runtime.functions]]
 address = "0x00414F10"
@@ -14917,7 +14924,21 @@ source = "src/characters/FighterCommandFlagsRuntime.cpp"
 object = "build/match-units/GptWeb_FighterCommandFlagsRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Shared current Fighter command-pattern bitmask builder. Current per-character vtables share this body; ordinary member calls to matcher 0x00463500 plus target-owned command strings reproduce 497/497 exactly."
+notes = "Shared current Fighter command-pattern runtime. Builder 0x00476B10 is canonical exact 497/497 and makes fourteen raw PE calls to matcher 0x00463500. The matcher is now formally replayed at 1006/960 with a canonical +0x8A prefix; its private checked-deque dereference maps to compiler-generated 0x00428570. Matcher remains authored/source-present nonexact; no STL/register coercion is used."
+
+[[units.gpt-web-fighter-command-flags-runtime.functions]]
+address = "0x00463500"
+symbol_base = "?match_command_463500@FighterCommandFlagsView@th105@@QAEEPBDHH@Z"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "@__security_check_cookie@4=0x00689D25",
+  "??D?$_Deque_const_iterator@FV?$allocator@F@std@@$00@std@@QBEABFXZ=0x00428570",
+]
+dir32_targets = [
+  "?g_command_pattern_map_right@th105@@3QBEB=?g_command_pattern_map_right@th105@@3QBEB",
+  "?g_command_pattern_map_left@th105@@3QBEB=?g_command_pattern_map_left@th105@@3QBEB",
+  "___security_cookie=___security_cookie",
+]
 
 [[units.gpt-web-fighter-command-flags-runtime.functions]]
 address = "0x00476B10"
