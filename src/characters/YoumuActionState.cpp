@@ -624,7 +624,11 @@ advance_frame_and_dispatch();
 return;
 case 1:
 resolve_stage_surface_landing_transition();
-if ( *(_BYTE *)(raw +  1150) )
+if ( !*(_BYTE *)(raw +  1150) )
+{
+zero_velocity_acceleration();
+}
+else
 {
 v7 = 0.0;
 if ( *(float *)(raw +  244) > 0.0 )
@@ -638,7 +642,7 @@ v7 = 0.0;
 *(_BYTE *)(raw +  1150) = 0;
 }
 }
-if ( v7 > *(float *)(raw +  244) )
+if ( *(float *)(raw +  244) < v7 )
 {
 v231 = *(float *)(raw +  244) + 0.5;
 *(float *)(raw +  244) = v231;
@@ -648,10 +652,6 @@ zero_velocity_acceleration();
 *(_BYTE *)(raw +  1150) = 0;
 }
 }
-}
-else
-{
-zero_velocity_acceleration();
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() && !*(_WORD *)(raw +  320) )
 (*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 2);
@@ -687,7 +687,11 @@ advance_frame_and_dispatch();
 return;
 case 3:
 resolve_stage_surface_landing_transition();
-if ( *(_BYTE *)(raw +  1150) )
+if ( !*(_BYTE *)(raw +  1150) )
+{
+zero_velocity_acceleration();
+}
+else
 {
 v8 = 0.0;
 if ( *(float *)(raw +  244) > 0.0 )
@@ -701,7 +705,7 @@ v8 = 0.0;
 *(_BYTE *)(raw +  1150) = 0;
 }
 }
-if ( v8 > *(float *)(raw +  244) )
+if ( *(float *)(raw +  244) < v8 )
 {
 v233 = *(float *)(raw +  244) + 0.5;
 *(float *)(raw +  244) = v233;
@@ -711,10 +715,6 @@ zero_velocity_acceleration();
 *(_BYTE *)(raw +  1150) = 0;
 }
 }
-}
-else
-{
-zero_velocity_acceleration();
 }
 if ( !(unsigned __int8)advance_frame_and_dispatch() )
 return;
@@ -2488,7 +2488,7 @@ add_phase_scaled_counter_558(50);
 v174 = *(unsigned __int8 *)(raw +  260);
 v310 = *(float *)(raw +  240) + 210.0;
 v153 = v310;
-v311 = *(float *)(raw +  236) - (double)(80 * (char)v174);
+v311 = *(float *)(raw +  236) - 80 * (char)v174;
 spawn_owned_object_via_manager(800, v311, v153, v174, 1, (int)v495, 5);
 }
 return;
@@ -2520,7 +2520,7 @@ add_phase_scaled_counter_558(50);
 v67 = *(unsigned __int8 *)(raw +  260);
 v312 = *(float *)(raw +  240) + 25.0;
 v154 = v312;
-v313 = *(float *)(raw +  236) - (double)(150 * (char)v67);
+v313 = *(float *)(raw +  236) - 150 * (char)v67;
 spawn_owned_object_via_manager(800, v313, v154, v67, 1, (int)v492, 5);
 }
 return;
@@ -2592,7 +2592,7 @@ add_phase_scaled_counter_558(50);
 v69 = *(unsigned __int8 *)(raw +  260);
 v316 = *(float *)(raw +  240) + 225.0;
 v156 = v316;
-v317 = *(float *)(raw +  236) - (double)(45 * (char)v69);
+v317 = *(float *)(raw +  236) - 45 * (char)v69;
 spawn_owned_object_via_manager(800, v317, v156, v69, 1, (int)v494, 5);
 }
 return;
@@ -2634,7 +2634,7 @@ add_phase_scaled_counter_558(50);
 v70 = *(unsigned __int8 *)(raw +  260);
 v318 = *(float *)(raw +  240) + 225.0;
 v157 = v318;
-v319 = *(float *)(raw +  236) - (double)(45 * (char)v70);
+v319 = *(float *)(raw +  236) - 45 * (char)v70;
 spawn_owned_object_via_manager(800, v319, v157, v70, 1, (int)v496, 5);
 }
 return;
@@ -2706,8 +2706,8 @@ if ( (unsigned __int8)advance_frame_and_dispatch() )
 if ( !*(_WORD *)(raw +  318) && !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 5 )
 {
 add_phase_scaled_counter_558(50);
-*(_WORD *)(raw +  2022) = 3;
 *(_BYTE *)(raw +  2021) = 1;
+*(_WORD *)(raw +  2022) = 3;
 adjust_counter_482(200, 60);
 }
 return;

@@ -1191,11 +1191,28 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertIn(
             "case 0xD7:", source
         )
+        self.assertEqual(source.count("if ( !*(_BYTE *)(raw +  1150) )"), 2)
+        self.assertIn("if ( *(float *)(raw +  244) < v7 )", source)
+        self.assertIn("if ( *(float *)(raw +  244) < v8 )", source)
+        mid412 = source[source.index("case 0x19C:") : source.index("case 0x19E:")]
+        self.assertLess(
+            mid412.index("*(_BYTE *)(raw +  2021) = 1;"),
+            mid412.index("*(_WORD *)(raw +  2022) = 3;"),
+        )
+        for expression in (
+            "*(float *)(raw +  236) - 80 * (char)v174",
+            "*(float *)(raw +  236) - 150 * (char)v67",
+            "*(float *)(raw +  236) - 45 * (char)v69",
+            "*(float *)(raw +  236) - 45 * (char)v70",
+        ):
+            self.assertIn(expression, source)
+        self.assertNotIn("- (double)(45 * (char)v69)", source)
         units = self.manifest.load_manifest()["units"]
         unit = units["gpt-web-youmu-vslot28-full-root"]
-        self.assertIn("12 -> 14", unit["notes"])
-        self.assertIn("354 -> 336", unit["notes"])
-        self.assertIn("+0x9344", unit["notes"])
+        self.assertIn("20/98", unit["notes"])
+        self.assertIn("51 -> 57", unit["notes"])
+        self.assertIn("336 -> 320", unit["notes"])
+        self.assertIn("+0x9334", unit["notes"])
 
 
 if __name__ == "__main__":
