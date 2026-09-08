@@ -1047,3 +1047,15 @@ subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
 evidence = "SHA-pinned VC8 SP1 /GS rebuild of exact CEffectManager multiple-inheritance lifetimes emits the four CSelect/Weather/Effect/Info secondary-base deleting-destructor W3 adjustor thunks. Each 8-byte target has an RTTI/vtable data reference and generated REL32 symbol/target validation pins the derived deleting destructor."
+
+[[rules]]
+id = "handle-manager-list-uint-sentinel-generated-106a"
+addresses = ["0x004040B0"]
+expected_count = 1
+expected_bytes = 26
+expected_names = ["sub_4040B0"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "All twenty canonical-exact CHandleManagerEx<T> constructors in the current SHA-pinned PE call 0x004040B0 exactly once while constructing their checked std::list<unsigned> free-handle sentinel. Their exact source owns that list specialization. A fresh VC8 _Buynode body has the same 26-byte shape, but raw fingerprint identity is deliberately not used because authored collision-list sentinel 0x00435E50 folds to identical bytes. Caller/container ownership, not byte uniqueness, proves this helper is generated STL machinery."

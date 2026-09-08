@@ -86,6 +86,13 @@ typedef char BattleInfoRecordF8_owned_effect_offset_must_be_0xd8[
     offsetof(BattleInfoRecordF8, owned_effect_d8) == 0xd8 ? 1 : -1];
 
 struct InfoComboResourceSubobject {
+    virtual int resource_slot_00();
+    virtual int resource_slot_04();
+    virtual int resource_slot_08();
+    virtual int resource_slot_0c();
+    virtual int resource_slot_10();
+    virtual int release_resource_slot_14();
+
     int load_combo_resources_46a8c0();
     int release_combo_resources_46a610();
 };

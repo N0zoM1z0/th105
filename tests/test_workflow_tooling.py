@@ -55,23 +55,23 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4011)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1272)
+        self.assertEqual(len(matching), 1277)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1299)
+        self.assertEqual(len(implemented), 1304)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1272
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1277
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 454)
+        self.assertEqual(len(manifest["units"]), 458)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1302,
+            1308,
         )
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:
@@ -128,6 +128,35 @@ class WorkflowToolingTests(unittest.TestCase):
             self.assertEqual(origins[address.upper()]["origin"], "authored_game")
             self.assertEqual(origins[address.upper()]["disposition"], "authored")
 
+    def test_exact_owner_callee_promotions_and_generated_collision_are_pinned(self) -> None:
+        with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
+            functions = {row["address"].upper(): row for row in csv.DictReader(stream)}
+        with (ROOT / "config" / "function-origins.csv").open(newline="", encoding="utf-8") as stream:
+            origins = {row["address"].upper(): row for row in csv.DictReader(stream)}
+
+        expected_exact = {
+            "0X0040CF10": ("BattleThreadHandle_ctor", "src/platform/BattleThreadHandleRuntime.cpp"),
+            "0X0043AA40": ("get_current_replay_header_code", "src/ui/ReplayHeaderVersion.cpp"),
+            "0X0043B100": ("trim_profile_ui_menu_stack_facade", "src/ui/UiSceneStateFacades.cpp"),
+            "0X0043B110": ("set_ui_selection_state_tracking_facade", "src/ui/UiSceneStateFacades.cpp"),
+            "0X0046A610": ("InfoComboResourceSubobject_release_combo_resources_46a610", "src/battle/InfoComboResourceRelease.cpp"),
+        }
+        for address, (name, source) in expected_exact.items():
+            self.assertEqual(functions[address]["status"], "matching")
+            self.assertEqual(functions[address]["proposed_name"], name)
+            self.assertEqual(functions[address]["source_file"], source)
+            self.assertEqual(origins[address]["origin"], "authored_game")
+            self.assertEqual(origins[address]["disposition"], "authored")
+
+        generated = origins["0X004040B0"]
+        self.assertEqual(generated["origin"], "compiler_generated")
+        self.assertEqual(generated["disposition"], "exclude")
+        self.assertEqual(generated["evidence_id"], "handle-manager-list-uint-sentinel-generated-106a")
+        # Its 26-byte machine-code twin is independently game-authored, which
+        # is why raw fingerprint uniqueness is not accepted as origin proof.
+        self.assertEqual(functions["0X00435E50"]["status"], "matching")
+        self.assertEqual(origins["0X00435E50"]["origin"], "authored_game")
+
     def test_strict_fp_profile_is_explicit_and_local(self) -> None:
         manifest = self.manifest.load_manifest()
         unit = manifest["units"]["gpt-web-strict-fp-math-primitives"]
@@ -138,8 +167,8 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 439)
-        self.assertEqual(sum(map(len, accepted.values())), 1272)
+        self.assertEqual(len(accepted), 442)
+        self.assertEqual(sum(map(len, accepted.values())), 1277)
         secondary = accepted["gpt-web-secondary-animation-runtime"]
         self.assertEqual(
             secondary,
@@ -154,13 +183,13 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,011", markdown)
-        self.assertIn("Confirmed authored functions | 1,385", markdown)
-        self.assertIn("Confirmed authored code bytes | 2,073,220", markdown)
-        self.assertIn("Classified exclusions | 1,285", markdown)
-        self.assertIn("Origin/boundary review pending | 1,341", markdown)
-        self.assertIn("Canonical exact functions | 1,272", markdown)
-        self.assertIn("Canonical exact authored bytes | 215,400", markdown)
-        self.assertIn("Source-present authored mappings | 1,299", markdown)
+        self.assertIn("Confirmed authored functions | 1,390", markdown)
+        self.assertIn("Confirmed authored code bytes | 2,073,252", markdown)
+        self.assertIn("Classified exclusions | 1,286", markdown)
+        self.assertIn("Origin/boundary review pending | 1,335", markdown)
+        self.assertIn("Canonical exact functions | 1,277", markdown)
+        self.assertIn("Canonical exact authored bytes | 215,432", markdown)
+        self.assertIn("Source-present authored mappings | 1,304", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )

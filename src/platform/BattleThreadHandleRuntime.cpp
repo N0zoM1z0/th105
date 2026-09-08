@@ -12,7 +12,7 @@ extern "C" __declspec(dllimport) int __stdcall CloseHandle(void *handle);
 
 class BattleThreadHandle {
 public:
-    BattleThreadHandle() : handle_(0), thread_id_(0) {}
+    BattleThreadHandle();
     ~BattleThreadHandle();
 
     bool start(unsigned long (__stdcall *entry)(void *), void *parameter);
@@ -24,6 +24,11 @@ private:
     void *handle_;
     unsigned long thread_id_;
 };
+
+BattleThreadHandle::BattleThreadHandle()
+    : handle_(0)
+{
+}
 
 BattleThreadHandle::~BattleThreadHandle()
 {

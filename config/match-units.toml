@@ -15919,7 +15919,11 @@ source = "src/platform/BattleThreadHandleRuntime.cpp"
 object = "build/match-units/GptWeb_BattleThreadHandleRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current 8-byte BattleThreadHandle utility shared by exact BattleObjectManager/Fighter-phase/async-scene owners. Ordinary Win32 thread creation, priority, exit-code polling and handle closure define the complete five-method family."
+notes = "Current 8-byte BattleThreadHandle utility shared by exact BattleObjectManager/Fighter-phase/async-scene owners. Constructor plus five lifetime/control methods are canonical exact. Target ctor initializes only handle_00; thread_id_04 is first written by CreateThread through its real out-parameter. Ordinary Win32 thread creation, priority, exit-code polling and handle closure define the complete six-method family."
+
+[[units.gpt-web-battle-thread-handle-runtime.functions]]
+address = "0x0040CF10"
+symbol_base = "??0BattleThreadHandle@th105@@QAE@XZ"
 
 [[units.gpt-web-battle-thread-handle-runtime.functions]]
 address = "0x004145F0"
@@ -17420,3 +17424,66 @@ rel32_targets = [
   "?release_handle@?$CharacterObjectPoolStorageT@URosterOwnedObjectPrefix338@th105@@@th105@@QAEXI@Z=0x0056D8F0",
   "??3@YAXPAX@Z=0x006898EA",
 ]
+
+[units.gpt-web-resource-handle-lookup]
+kind = "probe"
+source = "src/assets/ResourceHandleLookupRuntime.cpp"
+object = "build/match-units/GptWeb_ResourceHandleLookupRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current authored resource-handle lookup used by eleven raw PE callers including canonical-exact title-resource release. Natural scoped-lock/vector source is 196/196. Formal residuals are the post-EnterCriticalSection unwind-state store schedule and the original-TU/private vector::at boundary 0x00417A90, whose target receiver is EAX while normal standalone member ABI uses ECX. Keep nonexact; do not invent a private calling convention."
+
+[[units.gpt-web-resource-handle-lookup.functions]]
+address = "0x00417800"
+symbol_base = "?lookup_token_417800@CHandleManagerLookupView@th105@@QAEPAPAXI@Z"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?at@?$vector@PAPAXV?$allocator@PAPAX@std@@@std@@QAEAAPAPAXI@Z=0x00417A90",
+]
+dir32_targets = [
+  "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4",
+  "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4",
+  "___security_cookie=___security_cookie",
+]
+
+[units.gpt-web-replay-header-version]
+kind = "probe"
+source = "src/ui/ReplayHeaderVersion.cpp"
+object = "build/match-units/GptWeb_ReplayHeaderVersion.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Game-owned replay-format version service. Canonical-exact ReplayList and replay-save paths consume the value; ordinary C++ return 0x6A reproduces all six target bytes exactly."
+
+[[units.gpt-web-replay-header-version.functions]]
+address = "0x0043AA40"
+symbol_base = "?get_current_replay_header_code@th105@@YAHXZ"
+
+[units.gpt-web-info-combo-resource-release]
+kind = "probe"
+source = "src/battle/InfoComboResourceRelease.cpp"
+object = "build/match-units/GptWeb_InfoComboResourceRelease.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current InfoManager combo-resource subobject virtual-release facade @ 0x0046A610. Canonical-exact InfoManager release/dtor callers prove the receiver; target dispatches vslot +0x14. Ordinary typed virtual forwarding is canonical 7/7 exact in a separate TU, preserving the already-exact resource facade TU boundary."
+
+[[units.gpt-web-info-combo-resource-release.functions]]
+address = "0x0046A610"
+symbol_base = "?release_combo_resources_46a610@InfoComboResourceSubobject@th105@@QAEHXZ"
+
+[units.gpt-web-ui-scene-state-facades]
+kind = "probe"
+source = "src/ui/UiSceneStateFacades.cpp"
+object = "build/match-units/GptWeb_UiSceneStateFacades.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Two current UI scene facades recovered from exact callers and exact callees. Scene-exit owners call the no-arg trim facade; CTitle enter/exit calls the tracking facade with explicit 0/1. Natural C++ tail forwarding reproduces both 5-byte bodies exactly."
+
+[[units.gpt-web-ui-scene-state-facades.functions]]
+address = "0x0043B100"
+symbol_base = "?trim_profile_ui_menu_stack_facade@th105@@YAXXZ"
+rel32_targets = ["?trim_profile_ui_menu_stack@th105@@YAXXZ=0x00440010"]
+
+[[units.gpt-web-ui-scene-state-facades.functions]]
+address = "0x0043B110"
+symbol_base = "?set_ui_selection_state_tracking_facade@th105@@YAXD@Z"
+rel32_targets = ["?set_ui_selection_state_tracking@th105@@YAXD@Z=0x0043FFB0"]
