@@ -55,23 +55,23 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4011)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1277)
+        self.assertEqual(len(matching), 1282)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1304)
+        self.assertEqual(len(implemented), 1310)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1277
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1282
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 458)
+        self.assertEqual(len(manifest["units"]), 462)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1308,
+            1314,
         )
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:
@@ -157,6 +157,39 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(functions["0X00435E50"]["status"], "matching")
         self.assertEqual(origins["0X00435E50"]["origin"], "authored_game")
 
+    def test_second_exact_owner_leaf_wave_is_pinned(self) -> None:
+        with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
+            functions = {row["address"].upper(): row for row in csv.DictReader(stream)}
+        with (ROOT / "config" / "function-origins.csv").open(newline="", encoding="utf-8") as stream:
+            origins = {row["address"].upper(): row for row in csv.DictReader(stream)}
+
+        exact = {
+            "0X00415D50": "NetworkSendStateView_status",
+            "0X00428B70": "NetworkReplayBufferView_reset_428b70",
+            "0X00439570": "CFileList_current_directory",
+            "0X0043B050": "get_active_input_source_43b050",
+            "0X0043B0F0": "push_ui_selection_menu_facade",
+        }
+        for address, name in exact.items():
+            self.assertEqual(functions[address]["status"], "matching")
+            self.assertEqual(functions[address]["proposed_name"], name)
+            self.assertEqual(origins[address]["origin"], "authored_game")
+
+        cleanup = functions["0X00431390"]
+        self.assertEqual(cleanup["status"], "implemented")
+        self.assertEqual(cleanup["source_file"], "src/ui/ProfileMenuCleanup.cpp")
+        self.assertEqual(origins["0X00431390"]["evidence_id"], "profile-menu-base-cleanup-authored-106a")
+
+        c_str = origins["0X00401E30"]
+        self.assertEqual(c_str["origin"], "compiler_generated")
+        self.assertEqual(c_str["disposition"], "exclude")
+        self.assertEqual(c_str["evidence_id"], "std-string-c-str-generated-106a")
+
+        units = self.manifest.load_manifest()["units"]
+        self.assertEqual(len(units["gpt-web-ui-scene-state-facades"]["functions"]), 3)
+        self.assertEqual(len(units["gpt-web-network-small-accessors"]["functions"]), 2)
+        self.assertIn("gpt-web-profile-menu-base-cleanup", units)
+
     def test_strict_fp_profile_is_explicit_and_local(self) -> None:
         manifest = self.manifest.load_manifest()
         unit = manifest["units"]["gpt-web-strict-fp-math-primitives"]
@@ -167,8 +200,8 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 442)
-        self.assertEqual(sum(map(len, accepted.values())), 1277)
+        self.assertEqual(len(accepted), 445)
+        self.assertEqual(sum(map(len, accepted.values())), 1282)
         secondary = accepted["gpt-web-secondary-animation-runtime"]
         self.assertEqual(
             secondary,
@@ -183,13 +216,13 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,011", markdown)
-        self.assertIn("Confirmed authored functions | 1,390", markdown)
-        self.assertIn("Confirmed authored code bytes | 2,073,252", markdown)
-        self.assertIn("Classified exclusions | 1,286", markdown)
-        self.assertIn("Origin/boundary review pending | 1,335", markdown)
-        self.assertIn("Canonical exact functions | 1,277", markdown)
-        self.assertIn("Canonical exact authored bytes | 215,432", markdown)
-        self.assertIn("Source-present authored mappings | 1,304", markdown)
+        self.assertIn("Confirmed authored functions | 1,396", markdown)
+        self.assertIn("Confirmed authored code bytes | 2,073,318", markdown)
+        self.assertIn("Classified exclusions | 1,287", markdown)
+        self.assertIn("Origin/boundary review pending | 1,328", markdown)
+        self.assertIn("Canonical exact functions | 1,282", markdown)
+        self.assertIn("Canonical exact authored bytes | 215,469", markdown)
+        self.assertIn("Source-present authored mappings | 1,310", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )

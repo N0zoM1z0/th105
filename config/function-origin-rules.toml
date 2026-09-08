@@ -1059,3 +1059,27 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "All twenty canonical-exact CHandleManagerEx<T> constructors in the current SHA-pinned PE call 0x004040B0 exactly once while constructing their checked std::list<unsigned> free-handle sentinel. Their exact source owns that list specialization. A fresh VC8 _Buynode body has the same 26-byte shape, but raw fingerprint identity is deliberately not used because authored collision-list sentinel 0x00435E50 folds to identical bytes. Caller/container ownership, not byte uniqueness, proves this helper is generated STL machinery."
+
+[[rules]]
+id = "profile-menu-base-cleanup-authored-106a"
+addresses = ["0x00431390"]
+expected_count = 1
+expected_bytes = 29
+expected_names = ["sub_431390"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact CProfileMenu_dtor 0x0044D340 directly calls this cleanup on its embedded ProfileMenuBaseData. Current ProfileMenu lifetime source independently proves the texture handle at +0 and exact TitleResourceManager_release_title_resource_handle @ 0x00404D70. Natural source is formally 28/29 nonexact; the edge/layout evidence proves authored ownership independently of codegen acceptance."
+
+[[rules]]
+id = "std-string-c-str-generated-106a"
+addresses = ["0x00401E30"]
+expected_count = 1
+expected_bytes = 14
+expected_names = ["unknown_libname_2"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Canonical-exact CFileList_find_row 0x00439750 and CFileList_contains 0x00439810 both carry current VC8 COFF REL32 identity for std::basic_string<char>::c_str to 0x00401E30. The SHA-pinned target body is the canonical VC8 SSO accessor: capacity +0x18 below 16 returns inline buffer +4, otherwise heap pointer +4. This is generated STL machinery, not a game-authored helper."

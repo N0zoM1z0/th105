@@ -17476,7 +17476,12 @@ source = "src/ui/UiSceneStateFacades.cpp"
 object = "build/match-units/GptWeb_UiSceneStateFacades.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Two current UI scene facades recovered from exact callers and exact callees. Scene-exit owners call the no-arg trim facade; CTitle enter/exit calls the tracking facade with explicit 0/1. Natural C++ tail forwarding reproduces both 5-byte bodies exactly."
+notes = "Three current UI scene-stack facades recovered from exact callers and typed callees. Fourteen exact update owners pass newly constructed menu objects through 0x0043B0F0 into the checked menu-stack insertion body; scene-exit owners call the no-arg trim facade; CTitle enter/exit calls the tracking facade with explicit 0/1. Natural C++ tail forwarding reproduces all three 5-byte bodies exactly."
+
+[[units.gpt-web-ui-scene-state-facades.functions]]
+address = "0x0043B0F0"
+symbol_base = "?push_ui_selection_menu_facade@th105@@YAXPAX@Z"
+rel32_targets = ["?push_ui_selection_menu@th105@@YAXPAX@Z=0x004406F0"]
 
 [[units.gpt-web-ui-scene-state-facades.functions]]
 address = "0x0043B100"
@@ -17487,3 +17492,60 @@ rel32_targets = ["?trim_profile_ui_menu_stack@th105@@YAXXZ=0x00440010"]
 address = "0x0043B110"
 symbol_base = "?set_ui_selection_state_tracking_facade@th105@@YAXD@Z"
 rel32_targets = ["?set_ui_selection_state_tracking@th105@@YAXD@Z=0x0043FFB0"]
+
+[units.gpt-web-network-small-accessors]
+kind = "probe"
+source = "src/network/NetworkSmallAccessors.cpp"
+object = "build/match-units/GptWeb_NetworkSmallAccessors.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Two current network leaf methods recovered from canonical-exact callers. NetworkSendStateView::status reads the proved state dword at +0x144. NetworkReplayBufferView::reset forwards this+0x3C to the already-classified generated deque _Tidy body. Ordinary C++ reproduces 7/7 and 8/8 exactly in a separate TU."
+
+[[units.gpt-web-network-small-accessors.functions]]
+address = "0x00415D50"
+symbol_base = "?status@NetworkSendStateView@th105@@QAEHXZ"
+
+[[units.gpt-web-network-small-accessors.functions]]
+address = "0x00428B70"
+symbol_base = "?reset_428b70@NetworkReplayBufferView@th105@@QAEXXZ"
+rel32_targets = ["?tidy@NetworkReplayStorage@th105@@QAEXXZ=0x00420A80"]
+
+[units.gpt-web-input-active-source-facade]
+kind = "probe"
+source = "src/input/InputActiveSourceFacade.cpp"
+object = "build/match-units/GptWeb_InputActiveSourceFacade.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current combined-menu-input active-source facade @ 0x0043B050. Exact CProfileKeyConfig construction calls it and the existing 4/4 CInputManagerCluster::get_active_source plus current global 0x006FCF80 prove the receiver. Natural global receiver load plus tail call is canonical 10/10 exact."
+
+[[units.gpt-web-input-active-source-facade.functions]]
+address = "0x0043B050"
+symbol_base = "?get_active_input_source_43b050@th105@@YACXZ"
+rel32_targets = ["?get_active_source@CInputManagerCluster@th105@@QBECXZ=0x0040A4E0"]
+dir32_targets = ["?g_combined_menu_input_storage@th105@@3PAEA=?g_combined_menu_input_storage@th105@@3PAEA"]
+
+[units.gpt-web-file-list-current-directory]
+kind = "probe"
+source = "src/ui/FileListCurrentDirectory.cpp"
+object = "build/match-units/GptWeb_FileListCurrentDirectory.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "CFileList directory accessor @ 0x00439570. The current 0xB4 CFileList layout independently fixes std::string directory_08c and canonical-exact replay-delete code consumes this method. Ordinary return &directory_08c is canonical 7/7 exact."
+
+[[units.gpt-web-file-list-current-directory.functions]]
+address = "0x00439570"
+symbol_base = "?current_directory@CFileList@th105@@QAEPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ"
+
+[units.gpt-web-profile-menu-base-cleanup]
+kind = "probe"
+source = "src/ui/ProfileMenuCleanup.cpp"
+object = "build/match-units/GptWeb_ProfileMenuCleanup.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current ProfileMenuBaseData cleanup @ 0x00431390, called by the canonical-exact CProfileMenu destructor. Existing lifetime source proves texture handle +0 and exact TitleResourceManager release. Natural source is 28/29: standalone VC8 hoists the handle load before the null test, while target compares memory then reloads. Keep nonexact; do not use volatile or fake reloads."
+
+[[units.gpt-web-profile-menu-base-cleanup.functions]]
+address = "0x00431390"
+symbol_base = "?cleanup@ProfileMenuBaseData@th105@@QAEXXZ"
+rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70"]
+dir32_targets = ["?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A"]

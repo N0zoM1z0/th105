@@ -1,7 +1,13 @@
 namespace th105 {
 
+void push_ui_selection_menu(void *menu);
 void trim_profile_ui_menu_stack();
 void set_ui_selection_state_tracking(char enabled);
+
+void push_ui_selection_menu_facade(void *menu)
+{
+    push_ui_selection_menu(menu);
+}
 
 void trim_profile_ui_menu_stack_facade()
 {
