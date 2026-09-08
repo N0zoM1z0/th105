@@ -1286,3 +1286,15 @@ subsystem = "audio"
 disposition = "authored"
 confidence = "observed"
 evidence = "Current audio scheduler ownership is closed independently of IDA boundaries. Dynamic initializer 0x006BE8A0 calls scheduler construction then registers atexit wrapper 0x006BEED0, whose sole tail target is the independently padded IDA-missed 241-byte finalizer at 0x00419000. Main loop 0x004081E0 calls 0x00419350 to create a listener event, passes the returned handle to 0x004194D0 during frames, and closes it through 0x00419400 at exit. All four use the same target-proved global CriticalSection + checked std::list<void*> state at 0x00703864."
+
+[[rules]]
+id = "cbitmap-data-loaders-authored-106a"
+addresses = ["0x0041A910", "0x0041ACA0"]
+expected_count = 2
+expected_bytes = 1151
+expected_names = ["sub_41A910", "sub_41ACA0"]
+origin = "authored_game"
+subsystem = "assets"
+disposition = "authored"
+confidence = "observed"
+evidence = "Current CBitmapData RTTI/COL 0x006DCFB0 and primary vtable 0x006D6E10 own slots2/3 at 0x0041A910/0x0041ACA0. Slot2 passes canonical-exact game callback 0x0041A8E0 into the embedded libpng read path; slot3 is the adjacent native FileReaderOwner bitmap loader. Typed source closes both behaviors; formal clean VC8 remains nonexact only on documented FileReaderOwner late-inline/EH scheduling."

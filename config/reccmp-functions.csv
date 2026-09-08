@@ -1360,3 +1360,6 @@ CBitmapData_ctor,0x00419F80,function
 CBitmapData_scalar_deleting_destructor,0x00419FA0,function
 CBitmapData_dtor,0x00419FD0,function
 CBitmapData_copy_from,0x0041ABD0,function
+CBitmapData_png_read,0x0041A8E0,function
+CBitmapData_load_png,0x0041A910,function
+CBitmapData_load_from_file,0x0041ACA0,function

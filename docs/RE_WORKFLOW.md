@@ -122,3 +122,7 @@ Direct CALL/JMP closure and RTTI vtables do not cover mutable function-pointer t
 ### Qualifying raw code islands before candidate promotion
 
 A padding-isolated, RET-terminated `.text` island is only a boundary lead. Before adding it to `functions.csv`, classify every incoming edge. EH/unwind tails that first derive a subobject from `EBP`/another live enclosing-frame register are remote cleanup chunks, even when the destination has padding on both sides. Strong independent-boundary evidence includes a normal call/thread/vtable/callback edge or an atexit wrapper that targets a complete prologue/epilogue body without inherited frame state. `0x00419000` is the positive atexit case; `0x00418A00`, `0x00426080`, and `0x004422E0` are current negative EH-funclet cases.
+
+### Separate third-party provenance from authored call-site constants
+
+A library fingerprint identifies the origin of the callee bytes, not the values an authored caller passed to that library. When reconstructing wrappers around third-party code, pin call-site literals from the canonical PE independently. The CBitmap PNG path is the current counterexample: the embedded implementation is classified as libpng 1.2.5, while the game caller at `0x0041A910` passes the literal `"1.5.2"` from `0x006D6E04`. Exact reconstruction follows the target-owned call-site bytes rather than normalizing them to the detected library version.

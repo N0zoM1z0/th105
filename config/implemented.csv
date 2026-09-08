@@ -1340,3 +1340,6 @@ CBitmapData_ctor
 CBitmapData_scalar_deleting_destructor
 CBitmapData_dtor
 CBitmapData_copy_from
+CBitmapData_png_read
+CBitmapData_load_png
+CBitmapData_load_from_file

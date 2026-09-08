@@ -17913,8 +17913,8 @@ kind = "probe"
 source = "src/assets/CBitmapDataRuntime.cpp"
 object = "build/match-units/GptWeb_CBitmapDataRuntime.obj"
 profile = "vc8-sp1-probe-o2"
-enable_gs = false
-notes = "Current RTTI/COL 0x006DCFB0 names CBitmapData and vtable 0x006D6E10 owns the scalar deleting destructor plus virtual slot4 0x0041ABD0. Ordinary 0x20-byte class/0x18-byte source-view C++ reproduces ctor 23/23, scalar dtor 47/47, normal dtor 21/21 and descriptor copy 196/196 canonical exact without shaping."
+enable_gs = true
+notes = "Current RTTI/COL 0x006DCFB0 names CBitmapData and vtable 0x006D6E10 owns the complete recovered runtime lane. /GS leaves ctor 23/23, scalar dtor 47/47, normal dtor 21/21 and descriptor copy 196/196 exact; png read callback 0x0041A8E0 is also 33/33 exact. Typed PNG/file loaders are source-closed but remain nonexact on FileReaderOwner late-inline/LTCG scheduling (680/703 and 440/448)."
 
 [[units.gpt-web-cbitmap-data-runtime.functions]]
 address = "0x00419F80"
@@ -17937,3 +17937,48 @@ dir32_targets = ["??_7CBitmapData@th105@@6B@=??_7CBitmapData@th105@@6B@"]
 address = "0x0041ABD0"
 symbol_base = "?copy_from@CBitmapData@th105@@QAEXPBUCBitmapSourceView@2@@Z"
 rel32_targets = ["??2@YAPAXI@Z=0x00665B8A", "_memcpy=0x0068AA30"]
+
+
+[[units.gpt-web-cbitmap-data-runtime.functions]]
+address = "0x0041A8E0"
+symbol_base = "?CBitmapData_png_read@th105@@YAXPAUPngStruct@1@PAEK@Z"
+rel32_targets = ["_png_get_io_ptr=0x0066BEF0"]
+
+[[units.gpt-web-cbitmap-data-runtime.functions]]
+address = "0x0041A910"
+symbol_base = "?load_png@CBitmapData@th105@@QAE_NPBD@Z"
+rel32_targets = [
+  "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
+  "??1FileReaderOwner@th105@@QAE@XZ=0x0040CF20",
+  "_png_sig_cmp=0x0066B870",
+  "_png_create_read_struct=0x0066FD60",
+  "_png_create_info_struct=0x0066CC20",
+  "_png_destroy_read_struct=0x0066FD90",
+  "_png_set_read_fn=0x00670280",
+  "_png_set_sig_bytes=0x0066B840",
+  "_png_read_info=0x0066D130",
+  "_png_set_bgr=0x0066FE60",
+  "??2@YAPAXI@Z=0x00665B8A",
+  "_png_read_row=0x0066E400",
+  "_png_read_end=0x0066E940",
+]
+dir32_targets = [
+  "__ehhandler$?load_png@CBitmapData@th105@@QAE_NPBD@Z=__ehhandler$?load_png@CBitmapData@th105@@QAE_NPBD@Z",
+  "___security_cookie=___security_cookie",
+  "??_C@_05OHLMCMDJ@1?45?42?$AA@=??_C@_05OHLMCMDJ@1?45?42?$AA@",
+  "?CBitmapData_png_read@th105@@YAXPAUPngStruct@1@PAEK@Z=?CBitmapData_png_read@th105@@YAXPAUPngStruct@1@PAEK@Z",
+]
+
+[[units.gpt-web-cbitmap-data-runtime.functions]]
+address = "0x0041ACA0"
+symbol_base = "?load_from_file@CBitmapData@th105@@QAE_NPBD@Z"
+rel32_targets = [
+  "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
+  "??1FileReaderOwner@th105@@QAE@XZ=0x0040CF20",
+  "_free=0x0068AA26",
+  "??2@YAPAXI@Z=0x00665B8A",
+]
+dir32_targets = [
+  "__ehhandler$?load_from_file@CBitmapData@th105@@QAE_NPBD@Z=__ehhandler$?load_from_file@CBitmapData@th105@@QAE_NPBD@Z",
+  "___security_cookie=___security_cookie",
+]
