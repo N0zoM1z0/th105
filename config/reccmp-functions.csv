@@ -1378,3 +1378,4 @@ load_wave_data,0x00419690,function
 FileBufferEncodedView_load_encoded,0x00419950,function
 NetworkAckInfoPacket40_ctor,0x0044DAC0,function
 InputPacket24_parse,0x0044E050,function
+BattleInputGate_save_battle_setup_slot,0x0042B9B0,function

@@ -1358,3 +1358,4 @@ load_wave_data
 FileBufferEncodedView_load_encoded
 NetworkAckInfoPacket40_ctor
 InputPacket24_parse
+BattleInputGate_save_battle_setup_slot

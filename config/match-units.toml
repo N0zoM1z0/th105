@@ -585,7 +585,7 @@ source = "src/battle/BattleSetupSlots.cpp"
 object = "build/match-units/CrossV106a_BattleSetupSlots.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a structural-remap exact checked fixed-slot selector with current invalid-parameter target."
+notes = "TH105 1.06a battle setup slot lane. Exact checked selector 0x004284C0 remains 60/60. Recovered checked-vector size provenance plus the always-store maximum-slot lifetime makes save_battle_setup_slot 0x0042B9B0 canonical exact 305/305; load_battle_setup_slot remains 332/332 with first mismatch +0x92 after the same vector-view and selector-publication recovery."
 
 [[units.cross-v106a-fixed-slot-select.functions]]
 address = "0x004284C0"
@@ -595,6 +595,14 @@ rel32_targets = ["_invalid_parameter_noinfo=0x0068A143"]
 [[units.cross-v106a-fixed-slot-select.functions]]
 address = "0x0042BAF0"
 symbol_base = "?load_battle_setup_slot@BattleInputGate@th105@@QAEXCPAUMatchSetup@2@@Z"
+rel32_targets = [
+  "?select_slot_4275e0@FixedSlotStoreView@th105@@QAEPAUFixedBattleSetupSlotView@2@H@Z=0x004284C0",
+  "??4?$deque@FV?$allocator@F@std@@@std@@QAEAAV01@ABV01@@Z=0x0042B6B0",
+]
+
+[[units.cross-v106a-fixed-slot-select.functions]]
+address = "0x0042B9B0"
+symbol_base = "?save_battle_setup_slot@BattleInputGate@th105@@QAEXCPAUMatchSetup@2@@Z"
 rel32_targets = [
   "?select_slot_4275e0@FixedSlotStoreView@th105@@QAEPAUFixedBattleSetupSlotView@2@H@Z=0x004284C0",
   "??4?$deque@FV?$allocator@F@std@@@std@@QAEAAV01@ABV01@@Z=0x0042B6B0",

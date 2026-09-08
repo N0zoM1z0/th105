@@ -2,6 +2,7 @@
 #include "GameMode.hpp"
 
 #include <deque>
+#include <vector>
 
 namespace th105 {
 
@@ -27,6 +28,10 @@ struct FixedSlotEnvelopeView {
     FixedBattleSetupSlotView setup_00;
     SidePayloadView private_payload_3c;
 };
+
+typedef std::vector<FixedSlotEnvelopeView> FixedSlotVectorView;
+typedef char FixedSlotVectorView_size_must_be_0x10[
+    sizeof(FixedSlotVectorView) == 0x10 ? 1 : -1];
 
 struct SetupTokenInput {
     unsigned value_00;
@@ -109,10 +114,9 @@ void BattleInputGate::save_battle_setup_slot(
 
     BattleInputGateSetupView *owner =
         reinterpret_cast<BattleInputGateSetupView *>(this);
-    if (slot > static_cast<signed char>(
-                   owner->slots_f4.begin_04 != 0
-                       ? owner->slots_f4.end_08 - owner->slots_f4.begin_04
-                       : 0)) {
+    FixedSlotVectorView *slots =
+        reinterpret_cast<FixedSlotVectorView *>(&owner->slots_f4);
+    if (slot > static_cast<signed char>(slots->size())) {
         return;
     }
 
@@ -157,9 +161,10 @@ void BattleInputGate::save_battle_setup_slot(
     owner->selected_slot_104->tail_dword_38 =
         *reinterpret_cast<const unsigned *>(
             reinterpret_cast<const unsigned char *>(setup) + 0x48);
-    if (slot > owner->maximum_saved_slot_140) {
-        owner->maximum_saved_slot_140 = slot;
-    }
+    owner->maximum_saved_slot_140 =
+        slot > owner->maximum_saved_slot_140
+            ? slot
+            : owner->maximum_saved_slot_140;
 }
 
 void BattleInputGate::load_battle_setup_slot(
@@ -173,20 +178,22 @@ void BattleInputGate::load_battle_setup_slot(
     BattleInputGateSetupView *owner =
         reinterpret_cast<BattleInputGateSetupView *>(this);
     FixedSlotStoreView *slots = &owner->slots_f4;
-    if (slot > static_cast<signed char>(
-                   slots->begin_04 != 0
-                       ? slots->end_08 - slots->begin_04
-                       : 0)) {
+    FixedSlotVectorView *slot_vector =
+        reinterpret_cast<FixedSlotVectorView *>(slots);
+    if (slot > static_cast<signed char>(slot_vector->size())) {
         return;
     }
 
-    owner->selected_slot_104 = slots->select_slot_4275e0(slot);
-    owner->loaded_slot_141 = slot;
+    FixedBattleSetupSlotView *selected = slots->select_slot_4275e0(slot);
     unsigned char *destination =
-        reinterpret_cast<unsigned char *>(setup) + 0x0d;
+        reinterpret_cast<unsigned char *>(setup);
+    owner->loaded_slot_141 = slot;
+    int side = 0;
+    int payload_offset = 0;
+    owner->selected_slot_104 = selected;
     SavedTokenMetadata *metadata = owner->saved_tokens_d8;
-    for (int side = 0, payload_offset = 0;
-         payload_offset < 0x28;
+    destination += 0x0d;
+    for (; payload_offset < 0x28;
          payload_offset += 0x14, ++side, destination += 0x20, ++metadata) {
         *reinterpret_cast<int *>(destination - 5) =
             static_cast<signed char>(

@@ -57,15 +57,15 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4019)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1298)
+        self.assertEqual(len(matching), 1299)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1360)
+        self.assertEqual(len(implemented), 1361)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1298
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1299
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
@@ -73,7 +73,7 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(len(manifest["units"]), 481)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1365,
+            1366,
         )
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:
@@ -254,7 +254,7 @@ class WorkflowToolingTests(unittest.TestCase):
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
         self.assertEqual(len(accepted), 453)
-        self.assertEqual(sum(map(len, accepted.values())), 1298)
+        self.assertEqual(sum(map(len, accepted.values())), 1299)
         secondary = accepted["gpt-web-secondary-animation-runtime"]
         self.assertEqual(
             secondary,
@@ -556,16 +556,52 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(encoded["source"], "src/assets/FileBufferEncodedRuntime.cpp")
         self.assertTrue(encoded["enable_gs"])
 
+    def test_battle_setup_slot_coupled_exact_checkpoint(self) -> None:
+        with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
+            functions = {row["address"].upper(): row for row in csv.DictReader(stream)}
+        with (ROOT / "config" / "function-origins.csv").open(newline="", encoding="utf-8") as stream:
+            origins = {row["address"].upper(): row for row in csv.DictReader(stream)}
+        with (ROOT / "config" / "matches.csv").open(newline="", encoding="utf-8") as stream:
+            matches = {row["address"].upper(): row for row in csv.DictReader(stream)}
+
+        saved = functions["0X0042B9B0"]
+        self.assertEqual(saved["proposed_name"], "BattleInputGate_save_battle_setup_slot")
+        self.assertEqual(saved["status"], "matching")
+        self.assertEqual(saved["match_percent"], "100.00")
+        self.assertEqual(saved["source_file"], "src/battle/BattleSetupSlots.cpp")
+        self.assertEqual(origins["0X0042B9B0"]["origin"], "authored_game")
+        self.assertEqual(origins["0X0042B9B0"]["disposition"], "authored")
+        self.assertEqual(origins["0X0042B9B0"]["evidence_id"], "canonical-exact-authored")
+        self.assertEqual(matches["0X0042B9B0"]["unit"], "cross-v106a-fixed-slot-select")
+
+        loaded = functions["0X0042BAF0"]
+        self.assertEqual(loaded["status"], "implemented")
+        self.assertNotIn("0X0042BAF0", matches)
+        self.assertIn("+0x92", loaded["evidence"])
+
+        unit = self.manifest.load_manifest()["units"]["cross-v106a-fixed-slot-select"]
+        self.assertEqual(
+            {row["address"].upper() for row in unit["functions"]},
+            {"0X004284C0", "0X0042B9B0", "0X0042BAF0"},
+        )
+        self.assertIn("305/305", unit["notes"])
+        self.assertIn("+0x92", unit["notes"])
+
+        source = (ROOT / "src" / "battle" / "BattleSetupSlots.cpp").read_text(encoding="utf-8")
+        self.assertIn("typedef std::vector<FixedSlotEnvelopeView> FixedSlotVectorView;", source)
+        self.assertIn("slot > owner->maximum_saved_slot_140", source)
+        self.assertNotIn("int side_bit = 1 << side;", source)
+
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,019", markdown)
-        self.assertIn("Confirmed authored functions | 1,448", markdown)
-        self.assertIn("Confirmed authored code bytes | 2,085,086", markdown)
+        self.assertIn("Confirmed authored functions | 1,449", markdown)
+        self.assertIn("Confirmed authored code bytes | 2,085,391", markdown)
         self.assertIn("Classified exclusions | 1,297", markdown)
-        self.assertIn("Origin/boundary review pending | 1,274", markdown)
-        self.assertIn("Canonical exact functions | 1,298", markdown)
-        self.assertIn("Canonical exact authored bytes | 216,387", markdown)
-        self.assertIn("Source-present authored mappings | 1,360", markdown)
+        self.assertIn("Origin/boundary review pending | 1,273", markdown)
+        self.assertIn("Canonical exact functions | 1,299", markdown)
+        self.assertIn("Canonical exact authored bytes | 216,692", markdown)
+        self.assertIn("Source-present authored mappings | 1,361", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
