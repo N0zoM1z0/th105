@@ -495,6 +495,16 @@ rel32_targets = [
   "CollisionContext_reset_collision_extents=0x0046B6C0",
 ]
 
+[[units.cross-v106a-object-responses.functions]]
+address = "0x0046C930"
+symbol_base = "?try_group_a_vs_group_b_interaction@CollisionContext@th105@@QAE_NPAUCollisionObject@2@0@Z"
+rel32_targets = [
+  "?test_group_a_against_group_b@CollisionContext@th105@@QAEHPAUCollisionObject@2@0@Z=0x0046BB10",
+  "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
+  "?emit_effect_at_collision_center@CollisionContext@th105@@QAEXHH@Z=0x0046B650",
+  "?reset_collision_extents@CollisionContext@th105@@QAEXXZ=0x0046B6C0",
+]
+
 [units.cross-v106a-outcome-random]
 kind = "probe"
 source = "src/battle/OutcomeRandom.cpp"
@@ -581,6 +591,14 @@ notes = "TH105 1.06a structural-remap exact checked fixed-slot selector with cur
 address = "0x004284C0"
 symbol_base = "select_slot_4275e0"
 rel32_targets = ["_invalid_parameter_noinfo=0x0068A143"]
+
+[[units.cross-v106a-fixed-slot-select.functions]]
+address = "0x0042BAF0"
+symbol_base = "?load_battle_setup_slot@BattleInputGate@th105@@QAEXCPAUMatchSetup@2@@Z"
+rel32_targets = [
+  "?select_slot_4275e0@FixedSlotStoreView@th105@@QAEPAUFixedBattleSetupSlotView@2@H@Z=0x004284C0",
+  "??4?$deque@FV?$allocator@F@std@@@std@@QAEAAV01@ABV01@@Z=0x0042B6B0",
+]
 
 [units.cross-v106a-fixed-slot-deserialize]
 kind = "probe"
@@ -2031,6 +2049,30 @@ address = "0x0045D1B0"
 symbol_base = "Fighter_is_front_sequence_entry_ready_55a"
 rel32_targets = ["?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0"]
 
+[[units.cross-v106a-front-sequence-ready.functions]]
+address = "0x0045D040"
+symbol_base = "?advance_fighter_sequence_55c@Fighter@th105@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
+  "?find_local_then_common_spell_record@SpellDataOwner@th105@@QAEPAUSpellRecordView@2@H@Z=0x00432D20",
+]
+
+[[units.cross-v106a-front-sequence-ready.functions]]
+address = "0x0045D230"
+symbol_base = "?consume_spell_sequence_entry@Fighter@th105@@QAEEXZ"
+rel32_targets = [
+  "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
+  "?invoke_indexed_record@PlayerIndexedCallbackView@th105@@QAEXHH@Z=0x00432DE0",
+  "?get_score_data@th105@@YAPAUScoreData@1@XZ=0x0043AF20",
+  "?update_observed_record_statistics@ScoreData@th105@@QAEXHHHH@Z=0x0042D010",
+  "?advance_fighter_sequence_55c@Fighter@th105@@QAEXXZ=0x0045D040",
+  "?find_local_then_common_spell_record@SpellDataOwner@th105@@QAEPAUSpellRecordView@2@H@Z=0x00432D20",
+]
+dir32_targets = [
+  "?g_info_manager@th105@@3PAUInfoManager@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A",
+]
+
 [units.cross-v106a-title-resource-load]
 kind = "probe"
 source = "src/ui/TitleResourceLoad.cpp"
@@ -2314,6 +2356,10 @@ rel32_targets = [
   "?advance_fighter_sequence_55c@Fighter@th105@@QAEXXZ=0x0045D040",
 ]
 dir32_targets = ["__real@4059000000000000=__real@4059000000000000"]
+
+[[units.cross-v106a-deferred-counter.functions]]
+address = "0x0045CED0"
+symbol_base = "?adjust_capped_counter_558@Fighter@th105@@QAEXF@Z"
 
 [units.cross-v106a-hit-exchange-reset]
 kind = "probe"
@@ -7651,6 +7697,26 @@ symbol_base = "CProfileCharacterSelect_scalar_deleting_destructor"
 rel32_targets = [
   "??1CProfileCharacterSelect@th105@@UAE@XZ=0x00448730",
   "??3@YAXPAX@Z=0x006898EA",
+]
+
+
+[[units.cross-v106a-profile-submenu-lifetimes.functions]]
+address = "0x0044B9D0"
+symbol_base = "??1CProfileKeyConfig@th105@@UAE@XZ"
+rel32_targets = [
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
+  "??1TitleDesignResource@th105@@QAE@XZ=0x00421890",
+]
+dir32_targets = [
+  "__ehhandler$??1CProfileKeyConfig@th105@@UAE@XZ=__ehhandler$??1CProfileKeyConfig@th105@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7CProfileKeyConfig@th105@@6B@=??_7CProfileKeyConfig@th105@@6B@",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+  "??1GuideOverlay@th105@@QAE@XZ=??1GuideOverlay@th105@@QAE@XZ",
+  "_title_color_vtable_anchor=_title_color_vtable_anchor_external",
+  "??_7Menu@th105@@6B@=??_7Menu@th105@@6B@",
+  "_g_scene_mode=_g_scene_mode",
 ]
 
 [[units.cross-v106a-profile-submenu-lifetimes.functions]]
@@ -16249,6 +16315,16 @@ rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
 dir32_targets = ["??_7DirectSoundResourceBaseLifetime@th105@@6B@=??_7DirectSoundResourceBase@th105@@6B@"]
 
 [[units.gpt-web-direct-sound-resource-lifetime.functions]]
+address = "0x004180F0"
+symbol_base = "??1DirectSoundResourceLifetime@th105@@UAE@XZ"
+dir32_targets = [
+  "__ehhandler$??1DirectSoundResourceLifetime@th105@@UAE@XZ=__ehhandler$??1DirectSoundResourceLifetime@th105@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7DirectSoundResourceLifetime@th105@@6B@=??_7DirectSoundResourceDerived@th105@@6B@",
+  "??_7DirectSoundResourceBaseLifetime@th105@@6B@=??_7DirectSoundResourceBase@th105@@6B@",
+]
+
+[[units.gpt-web-direct-sound-resource-lifetime.functions]]
 address = "0x004180D0"
 symbol_base = "??_GDirectSoundResourceLifetime@th105@@UAEPAXI@Z"
 rel32_targets = [
@@ -16402,6 +16478,16 @@ object = "build/match-units/GptWeb_CharacterObjectManagerRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
 notes = "Current target-pinned shared runtime lane behind all fifteen CharacterObjectManager<Fighter,Object> primary vtables. Slots 2..9 of every RTTI-owned primary vtable ICF to the same eight bodies. Ordinary VC8 multiple-inheritance member pointers reproduce the two-word {code,this-adjustor} calls, including compiler-generated virtual vslot thunks; checked std::list iteration reproduces three shared helper bodies. update_and_prune 0x0058BE10 is retained as source-present semantic evidence but remains review-pending on a final inlined erase register permutation."
+
+
+[[units.gpt-web-character-object-manager-runtime.functions]]
+address = "0x0058BE10"
+symbol_base = "?update_and_prune@CharacterObjectManagerBaseRuntime@th105@@QAEXP8CharacterManagerObjectRuntimeView@2@AEXXZ@Z"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?release_handle@CharacterObjectPoolRuntime50@th105@@QAEXI@Z=0x0056D8F0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
 
 [[units.gpt-web-character-object-manager-runtime.functions]]
 address = "0x004937D0"
@@ -17631,4 +17717,21 @@ address = "0x004036C0"
 symbol_base = "?allocate_handle@BgmPlaybackServiceView@th105@@QAE?AUBgmHandleResult@2@XZ"
 rel32_targets = [
   "?allocate_handle@BgmHandleManagerAllocateView@th105@@QAE?AUBgmHandleResult@2@XZ=0x004040D0",
+]
+
+[units.gpt-web-score-observations]
+kind = "probe"
+source = "src/config/ScoreObservations.cpp"
+object = "build/match-units/GptWeb_ScoreObservations.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Second-order ScoreData observed-record statistic updater reached from the source-recovered Fighter spell-sequence consumer. The exact-owner direct-edge census does not reach this callee, so the unit preserves nested call-graph boundary evidence. Natural checked-vector source is 182/191 and remains nonexact."
+
+[[units.gpt-web-score-observations.functions]]
+address = "0x0042D010"
+symbol_base = "?update_observed_record_statistics@ScoreData@th105@@QAEXHHHH@Z"
+rel32_targets = [
+  "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40",
+  "?get_session_setup_option@th105@@YAIXZ=0x0043B070",
+  "__invalid_parameter_noinfo=0x0068A143",
 ]

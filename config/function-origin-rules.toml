@@ -1191,3 +1191,75 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Seventeen canonical-exact CHandleManagerEx acquire roots across roster/effect pools all carry the same full VC8 decorated std::vector<unsigned>::push_back identity to 0x0040DCF0. Target code performs checked capacity testing, direct four-byte append, and the shared growth helper path. This repeated exact-caller template identity proves compiler ownership independently of IDA naming."
+
+[[rules]]
+id = "existing-object-battle-source-stops-authored-106a"
+addresses = ["0x0042BAF0", "0x0045CED0", "0x0045D040", "0x0045D230", "0x0046C930"]
+expected_count = 5
+expected_bytes = 1166
+expected_names = ["sub_42BAF0", "sub_45CED0", "sub_45D040", "sub_45D230", "sub_46C930"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact target callers carry the current decorated game-method identities for all five entries, and the existing tracked VC8 probe objects independently emit same-name same-size bodies from BattleSetupSlots.cpp, HitCounters.cpp, SpellRuntime.cpp and ObjectResponses.cpp. Canonical comparisons remain nonexact only on previously documented checked-container visibility/register allocation or 16-bit load-width scheduling; same-size emission is discovery evidence, not exact credit."
+
+[[rules]]
+id = "direct-sound-resource-normal-dtor-authored-106a"
+addresses = ["0x004180F0"]
+expected_count = 1
+expected_bytes = 139
+expected_names = ["sub_4180F0"]
+origin = "authored_game"
+subsystem = "audio"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact DirectSoundResource scalar deleting destructor 0x004180D0 calls this normal destructor, while exact base lifetime and initialize methods plus current derived/base vtables fix the 0x10 object layout. Fresh tracked DirectSoundResourceLifetime.cpp emits a 139-byte normal dtor; canonical comparison closes SEH/vtable relocations and first differs at +0x2F on zero-register/load scheduling only."
+
+[[rules]]
+id = "profile-key-config-normal-dtor-authored-106a"
+addresses = ["0x0044B9D0"]
+expected_count = 1
+expected_bytes = 188
+expected_names = ["sub_44B9D0"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact CProfileKeyConfig scalar deleting destructor 0x0044BCD0 directly calls this normal destructor; current vtable/ctor and the exact Profile submenu lifetime family fix the 0x330 natural layout. The same tracked ProfileSubmenuLifetime.cpp emits 188 bytes, with the sole known residual a scheduler-only store/load swap; keep source-present nonexact."
+
+[[rules]]
+id = "character-object-manager-update-prune-authored-106a"
+addresses = ["0x0058BE10"]
+expected_count = 1
+expected_bytes = 207
+expected_names = ["sub_58BE10"]
+origin = "authored_game"
+subsystem = "characters"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact CharacterObjectManager::update_objects 0x0058BF30 calls this decorated shared manager method, and all fifteen RTTI-owned manager vtables share the same runtime lane. Tracked CharacterObjectManagerRuntime.cpp emits 207/207; the only residual is the documented final inlined checked-list erase register permutation."
+
+[[rules]]
+id = "score-observed-statistics-authored-106a"
+addresses = ["0x0042D010"]
+expected_count = 1
+expected_bytes = 191
+expected_names = ["sub_42D010"]
+origin = "authored_game"
+subsystem = "config"
+disposition = "authored"
+confidence = "observed"
+evidence = "Raw current Fighter spell-sequence body 0x0045D230 calls 0x0042D010 at 0x0045D2C6 after get_score_data, matching the tracked ScoreData::update_observed_record_statistics contract over the +0x198 observed-record vector. Fresh ScoreObservations.cpp emits 182 bytes and canonical comparison closes game-mode/session/invalid-parameter callees; keep source-present nonexact rather than treating the second-order callee as an IDA-only unknown."
+
+[[rules]]
+id = "vc8-deque-string-growmap-xlen-caller-identity-106a"
+addresses = ["0x0040FE30", "0x004101F0"]
+expected_count = 2
+expected_bytes = 464
+expected_names = ["sub_40FE30", "sub_4101F0"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Canonical-exact CFileList owners carry the complete current VC8 std::deque<std::string>::_Growmap decorated identity to 0x0040FE30. Three independent tracked VC8 objects emit the same 341-byte _Growmap symbol, each calling the corresponding decorated deque<string>::_Xlen helper; fresh _Xlen is 118 bytes versus target 123 because of private SEH/string-error shaping. Target 0x004101F0 builds the deque length-error exception path. Template identity and target STL semantics prove compiler ownership; no authored or byte-exact credit is assigned."
