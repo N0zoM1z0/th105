@@ -1563,7 +1563,7 @@ if ( v263 > 0.0 )
 *(float *)(raw +  244) = 0.0;
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-goto LABEL_1755;
+(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
 return;
 case 0xDC:
 if ( !*(_WORD *)(raw +  318) )
@@ -2651,7 +2651,7 @@ if ( !*(_WORD *)(raw +  322) )
 if ( *(_WORD *)(raw +  320) == 4 )
 *(float *)(raw +  244) = 25.5;
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 5 )
-goto LABEL_843;
+dispatch_indexed_event_member(0x1Du);
 }
 return;
 case 0x199:
@@ -5043,7 +5043,8 @@ if ( !*(_WORD *)(raw +  318) && !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320
 finalize_sequence_entry(-1);
 publish_texture_state(2, -1);
 copy_action_word_176_to_174();
-*(_DWORD *)(raw +  1898) = 1;
+*(_WORD *)(raw +  1900) = 0;
+*(_WORD *)(raw +  1898) = 1;
 *(_WORD *)(raw +  1894) = 0;
 *(_WORD *)(raw +  1896) = 0;
 *(_WORD *)(raw +  1892) = 0;

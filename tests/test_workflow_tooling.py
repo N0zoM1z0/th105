@@ -1174,5 +1174,29 @@ class WorkflowToolingTests(unittest.TestCase):
         )
 
 
+    def test_youmu_giant_owner_locality_checkpoint(self) -> None:
+        source = (ROOT / "src" / "characters" / "YoumuActionState.cpp").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn(
+            "*(_WORD *)(raw +  1900) = 0;\n*(_WORD *)(raw +  1898) = 1;",
+            source,
+        )
+        self.assertNotIn("*(_DWORD *)(raw +  1898) = 1;", source)
+        self.assertIn(
+            "if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 5 )\n"
+            "dispatch_indexed_event_member(0x1Du);",
+            source,
+        )
+        self.assertIn(
+            "case 0xD7:", source
+        )
+        units = self.manifest.load_manifest()["units"]
+        unit = units["gpt-web-youmu-vslot28-full-root"]
+        self.assertIn("12 -> 14", unit["notes"])
+        self.assertIn("354 -> 336", unit["notes"])
+        self.assertIn("+0x9344", unit["notes"])
+
+
 if __name__ == "__main__":
     unittest.main()
