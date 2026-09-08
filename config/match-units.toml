@@ -10313,13 +10313,22 @@ source = "src/battle/ScriptCommandLifetime.cpp"
 object = "build/match-units/CrossV106a_ScriptCommandLifetime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current CScript/command runtime core: the 0x34 CScript lifetime plus RTTI-owned CComCharacter parser. CComCharacter is a 0x30 polymorphic command with std::string +0x08, integer payload +0x24/+0x28, byte +0x2C and RGB bytes +0x2D; parse reuses the input parameter as strtok_s context and an ordinary char hex-nibble helper naturally expands to the 505-byte target."
+notes = "Current CScript/command runtime core: exact 0x34 CScript ctor plus RTTI-owned CComCharacter parser. Existing authored clear_commands source is now formally replayed at 296/170: target extracts the pending-deque delete/pop loop to private ESI helper 0x00405770 and map-iterator increment to private ESI helper 0x004061F0, so the standalone body is intentionally nonexact without fabricated live-ins."
 
 [[units.cross-v106a-script-command-lifetime.functions]]
 address = "0x00405600"
 symbol_base = "??0CScript@@QAE@XZ"
 rel32_targets = [
   "?_Buynode@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@2@XZ=0x004061B0",
+]
+
+[[units.cross-v106a-script-command-lifetime.functions]]
+address = "0x004056C0"
+symbol_base = "?clear_commands@CScript@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@QAEXXZ=0x004061F0",
+  "?_Erase@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@2@@Z=0x00405C70",
 ]
 
 [[units.cross-v106a-script-command-lifetime.functions]]
@@ -16312,7 +16321,7 @@ source = "src/battle/BattleBaseEffectLifetime.cpp"
 object = "build/match-units/GptWeb_BattleBaseEffectLifetime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current BattleBaseEffect +0x40 member lifetime from exact BattleObjectManager ctor/dtor. The 8-byte object has its own two-slot vtable and one COM-style resource pointer +0x04; ordinary constructor, nonvirtual destructor and shutdown use IUnknown::Release. initialize remains excluded from this unit because its helper boundary consumes a private EAX live-in."
+notes = "Current BattleBaseEffect +0x40 member lifetime from exact BattleObjectManager ctor/dtor. Constructor/dtor/shutdown remain canonical exact. initialize is now formally included at 71/71 with first mismatch +0x11: target forms g_d3d_backend in EAX for private listener-registration entry 0x00414CB0, while ordinary source correctly uses normal thiscall ECX before the same call. D3DXCreateEffect/device/effect+0x04 semantics are source-closed; no private ABI is fabricated."
 
 [[units.gpt-web-battle-base-effect-lifetime.functions]]
 address = "0x00417FB0"
@@ -18202,5 +18211,117 @@ rel32_targets = [
 ]
 dir32_targets = [
   "__ehhandler$?load_encoded@FileBufferEncodedView@th105@@QAE_NPBD@Z=__ehhandler$?load_encoded@FileBufferEncodedView@th105@@QAE_NPBD@Z",
+  "___security_cookie=___security_cookie",
+]
+
+[units.gpt-web-bgm-service-runtime]
+kind = "probe"
+source = "src/audio/BgmServiceRuntime.cpp"
+object = "build/match-units/GptWeb_BgmServiceRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current exact BGM facades own the service stop/fade/set-level member boundaries. Natural C++ uses the target +0x20 CriticalSection, +0x38 handle manager, COM DirectSoundBuffer status/stop, and a normal stream transition method. The shipped transition callee 0x00402B70 is LTCG-private (EAX=stream, EDI=one service argument), so no custom ABI is fabricated."
+
+[[units.gpt-web-bgm-service-runtime.functions]]
+address = "0x00403840"
+symbol_base = "?schedule_or_start@BgmServiceView@th105@@QAEXHH@Z"
+rel32_targets = [
+  "?lookup@BgmHandleManagerView@th105@@QAEPAUBgmStreamView@2@H@Z=0x00404330",
+]
+
+[[units.gpt-web-bgm-service-runtime.functions]]
+address = "0x004038D0"
+symbol_base = "?stop@BgmServiceView@th105@@QAEXH@Z"
+rel32_targets = [
+  "?lookup@BgmHandleManagerView@th105@@QAEPAUBgmStreamView@2@H@Z=0x00404330",
+]
+
+[[units.gpt-web-bgm-service-runtime.functions]]
+address = "0x00403940"
+symbol_base = "?fade@BgmServiceView@th105@@QAEXHHH_N@Z"
+rel32_targets = [
+  "?lookup@BgmHandleManagerView@th105@@QAEPAUBgmStreamView@2@H@Z=0x00404330",
+  "?transition@BgmStreamView@th105@@QAEXHMHH@Z=0x00402B70",
+]
+
+[[units.gpt-web-bgm-service-runtime.functions]]
+address = "0x00403990"
+symbol_base = "?set_level@BgmServiceView@th105@@QAEXHHHM@Z"
+rel32_targets = [
+  "?lookup@BgmHandleManagerView@th105@@QAEPAUBgmStreamView@2@H@Z=0x00404330",
+  "?transition@BgmStreamView@th105@@QAEXHMHH@Z=0x00402B70",
+]
+
+[units.gpt-web-battle-info-record-effect-runtime]
+kind = "probe"
+source = "src/battle/BattleInfoRecordEffectRuntime.cpp"
+object = "build/match-units/GptWeb_BattleInfoRecordEffectRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Two canonical-exact CInfoManager/CInfoManagerStory wrappers own BattleInfoRecordF8 group-effect entry 0x0046F9F0. The target-backed view fixes side byte +0, emitter +0x14, group-pointer table +0x60, position x/y +0x0C/+0x10 and emitter vslot +0x0C. Ordinary source is retained without register/stack forcing."
+
+[[units.gpt-web-battle-info-record-effect-runtime.functions]]
+address = "0x0046F9F0"
+symbol_base = "?emit_group_effect_46f9f0@BattleInfoRecordEffectRuntimeView@th105@@QAEXHH@Z"
+
+[units.gpt-web-d3d-backend-listener-runtime]
+kind = "probe"
+source = "src/engine/D3DBackendListenerRuntime.cpp"
+object = "build/match-units/GptWeb_D3DBackendListenerRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current D3D backend +0x1AC reset-listener list is independently exact-backed by the g_d3d_backend aggregate. Natural member source locks the embedded CriticalSection, deduplicates the checked std::list<DeviceResetListener*> and appends when absent. Target 0x00414CB0 consumes the backend receiver privately in EAX; source keeps ordinary thiscall and does not fabricate that ABI."
+
+[[units.gpt-web-d3d-backend-listener-runtime.functions]]
+address = "0x00414CB0"
+symbol_base = "?register_reset_listener@D3DBackendListenerRuntimeView@th105@@QAEXPAUDeviceResetListener@2@@Z"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?_Buynode@?$list@PAUDeviceResetListener@th105@@V?$allocator@PAUDeviceResetListener@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@PAUDeviceResetListener@th105@@V?$allocator@PAUDeviceResetListener@th105@@@std@@@2@PAU342@0ABQAUDeviceResetListener@th105@@@Z=0x004129E0",
+  "?_Incsize@?$list@PAUDeviceResetListener@th105@@V?$allocator@PAUDeviceResetListener@th105@@@std@@@std@@IAEXI@Z=0x0040C6D0",
+]
+
+[[units.gpt-web-battle-base-effect-lifetime.functions]]
+address = "0x00417FF0"
+symbol_base = "?initialize@BattleBaseEffectLifetimeView@th105@@QAE_NPBXI@Z"
+rel32_targets = [
+  "?register_reset_listener@D3DBackendListenerRuntimeView@th105@@QAEXPAUDeviceResetListener@2@@Z=0x00414CB0",
+  "_D3DXCreateEffect@36=0x006898A2",
+]
+dir32_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A=?g_d3d_backend@th105@@3UD3DBackend@1@A"]
+
+[units.gpt-web-profile-render-list-color-runtime]
+kind = "probe"
+source = "src/ui/ProfileRenderListColorRuntime.cpp"
+object = "build/match-units/GptWeb_ProfileRenderListColorRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current exact profile overlay/frame callers own the global render-list color method. Raw target fixes a checked std::list<polymorphic item*> at +0x14 and dispatches item vslot +0x04 for every node."
+
+[[units.gpt-web-profile-render-list-color-runtime.functions]]
+address = "0x0040BFE0"
+symbol_base = "?set_color@ProfileRenderListColorRuntimeView@th105@@QAEXI@Z"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+
+[units.gpt-web-battle-input-ready]
+kind = "probe"
+source = "src/battle/BattleInputReady.cpp"
+object = "build/match-units/GptWeb_BattleInputReady.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current exact battle-state dispatch roots own this synchronized-input readiness method. Target layout is input +0x104, scoped CriticalSection +0x124, published/consumed bytes +0x140/+0x141; exact input-availability callee is 0x00428560."
+
+[[units.gpt-web-battle-input-ready.functions]]
+address = "0x004712B0"
+symbol_base = "is_ready_4712b0"
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "?is_input_available_427680@SynchronizedInputState@th105@@QAEEXZ=0x00428560",
+]
+dir32_targets = [
+  "__ehhandler$?is_ready_4712b0@BattleInputReadyView@th105@@QAEEXZ=__ehhandler$?is_ready_4712b0@BattleInputReadyView@th105@@QAEEXZ",
   "___security_cookie=___security_cookie",
 ]

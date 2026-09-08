@@ -1382,3 +1382,135 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Fresh pinned-VC8 NetworkAckInfoPacket40 construction names the two EH-vector callbacks as std::deque<unsigned short> constructor/destructor identities. Target 0x0044DAC0 passes exactly 0x00428A90/0x00448DE0 with element size 0x14 and count2 to eh vector ctor iterator; these are generated container lifetimes, not authored packet functions."
+
+[[rules]]
+id = "bgm-service-members-authored-106a"
+addresses = ["0x00403840", "0x004038D0", "0x00403940", "0x00403990"]
+expected_count = 4
+expected_bytes = 380
+expected_names = ["sub_403840", "sub_4038D0", "sub_403940", "sub_403990"]
+origin = "authored_game"
+subsystem = "audio"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact play_bgm/stop_bgm/fade_bgm/set_bgm_volume and load/play BGM facades directly call these four service members. Raw target code fixes CriticalSection +0x20, handle manager +0x38 and DirectSound stream state/buffer fields. schedule_or_start uses the target-proved KERNEL32 GetTickCount IAT and replays 142/143; stop/fade/set-level replay 96/98, 76/70 and 70/69. Fade/set-level stop only on target-private transition worker 0x00402B70 (EAX stream, EDI one service argument), which is not encoded into source."
+
+[[rules]]
+id = "cscript-clear-commands-authored-106a"
+addresses = ["0x004056C0"]
+expected_count = 1
+expected_bytes = 170
+expected_names = ["sub_4056C0"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact SceneRenderCluster_cleanup and CScenarioData_clear_runtime tail-call this method on their embedded CScript subobjects; existing ScriptCommandLifetime.cpp defines the complete pending-factory/map/default-factory clear semantics. Formal standalone VC8 is 296/170 because the target extracts private ESI deque/map helper phases rather than because source behavior is missing."
+
+[[rules]]
+id = "d3d-backend-reset-listener-authored-106a"
+addresses = ["0x00414CB0"]
+expected_count = 1
+expected_bytes = 157
+expected_names = ["sub_414CB0"]
+origin = "authored_game"
+subsystem = "rendering"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact-backed g_d3d_backend layout fixes CriticalSection +0 and std::list<DeviceResetListener*> +0x1AC. BattleBaseEffect initialize passes itself here before D3DXCreateEffect. Natural member source deduplicates and appends listeners, formally 134/157; target uniquely consumes the backend receiver in EAX and uses LTCG list helper variants."
+
+[[rules]]
+id = "battle-base-effect-initialize-authored-106a"
+addresses = ["0x00417FF0"]
+expected_count = 1
+expected_bytes = 71
+expected_names = ["sub_417FF0"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact BattleObjectManager constructor passes target effect blob 0x006C2DB8 with size 0x4D0 to this 8-byte BattleBaseEffect member. Natural source checks effect+0x04, registers with g_d3d_backend, then calls D3DXCreateEffect through device+0x20 and is exact-sized 71/71; first mismatch +0x11 is solely target EAX versus ordinary ECX receiver formation for 0x00414CB0."
+
+[[rules]]
+id = "battle-info-record-effect-authored-106a"
+addresses = ["0x0046F9F0"]
+expected_count = 1
+expected_bytes = 85
+expected_names = ["sub_46F9F0"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact CInfoManager and CInfoManagerStory emit wrappers call this BattleInfoRecordF8 method. Raw target accesses side byte +0, emitter +0x14, group pointer table +0x60 and group x/y +0x0C/+0x10, then invokes the established effect-emitter vslot with effect/x/y/direction/1/0. Ordinary source is 66/85 and source-closed."
+
+[[rules]]
+id = "cscript-private-container-helpers-generated-106a"
+addresses = ["0x00405770", "0x004061F0"]
+expected_count = 2
+expected_bytes = 244
+expected_names = ["sub_405770", "sub_4061F0"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Both entries are compiler-extracted implementation phases inside authored CScript::clear_commands. Target 0x00405770 consumes live ESI=CScript and implements the pending deque delete/pop loop; 0x004061F0 consumes live ESI=map iterator and implements checked tree-iterator increment. Neither has an independent source-level call boundary; the authored root remains 0x004056C0."
+
+[[rules]]
+id = "checked-vector-range-erase-clones-generated-106a"
+addresses = ["0x0040C270", "0x00424E20"]
+expected_count = 2
+expected_bytes = 198
+expected_names = ["sub_40C270", "sub_424E20"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Canonical-exact CEffectManager_clear_effects_and_resources and CSelectScenario construction identify these 99-byte entries as checked vector range-erase helpers. Their raw instruction bodies are the same iterator validation/move/update-end implementation; source-level ownership belongs to the callers/containers, not standalone authored functions."
+
+[[rules]]
+id = "input-tracked-key-vector-clear-generated-106a"
+addresses = ["0x0040A790"]
+expected_count = 1
+expected_bytes = 87
+expected_names = ["sub_40A790"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Canonical-exact reset_input_state_table calls this entry only to clear its real std::vector<unsigned char> tracked_keys member. The tracked source facade exists solely to preserve the target helper boundary; raw target performs checked iterator/range movement, and fresh pinned VC8 vector<unsigned char>::erase is the same generated semantic family."
+
+[[rules]]
+id = "csprite-implicit-copy-ctor-generated-106a"
+addresses = ["0x00455160"]
+expected_count = 1
+expected_bytes = 116
+expected_names = ["sub_455160"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Canonical-exact FighterSequenceController enqueue calls this body to copy its embedded sprite record. Target first publishes canonical CSpriteBase vtable 0x006C0654, copies the base/POD/float fields, then publishes canonical CSprite vtable 0x006C0668: the standard implicit derived copy-constructor pattern rather than an authored gameplay function."
+
+[[rules]]
+id = "profile-render-list-color-authored-106a"
+addresses = ["0x0040BFE0"]
+expected_count = 1
+expected_bytes = 81
+expected_names = ["sub_40BFE0"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact draw_profile_overlay 0x0043F900 and render_profile_ui_frame 0x00440170 call this method on loader-zero ProfileRenderList globals. Raw target fixes a checked std::list<polymorphic item*> at +0x14 and dispatches item vslot +0x04(color). Natural source is 74/81; target alone keeps an 8-byte-aligned TU frame, so no fake aligned local is introduced."
+
+[[rules]]
+id = "checked-tree-lower-bound-clone-generated-106a"
+addresses = ["0x0040CDA0"]
+expected_count = 1
+expected_bytes = 105
+expected_names = ["sub_40CDA0"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Canonical-exact CSelectScenario construction is the direct owner. Raw target walks MSVC checked-tree left/right nodes, tests the nil byte at +0x15, compares the unsigned key at node+0x0C and returns the lower_bound iterator pair. This is a compiler-generated std::_Tree/map lower-bound clone, not an independent game source function."

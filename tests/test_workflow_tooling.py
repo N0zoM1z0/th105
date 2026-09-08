@@ -57,23 +57,23 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4019)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1299)
+        self.assertEqual(len(matching), 1300)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1361)
+        self.assertEqual(len(implemented), 1371)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1299
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1300
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 481)
+        self.assertEqual(len(manifest["units"]), 486)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1366,
+            1376,
         )
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:
@@ -253,8 +253,8 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 453)
-        self.assertEqual(sum(map(len, accepted.values())), 1299)
+        self.assertEqual(len(accepted), 454)
+        self.assertEqual(sum(map(len, accepted.values())), 1300)
         secondary = accepted["gpt-web-secondary-animation-runtime"]
         self.assertEqual(
             secondary,
@@ -592,16 +592,74 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertIn("slot > owner->maximum_saved_slot_140", source)
         self.assertNotIn("int side_bit = 1 << side;", source)
 
+    def test_service_and_battle_readiness_wave_is_pinned(self) -> None:
+        with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
+            functions = {row["address"].upper(): row for row in csv.DictReader(stream)}
+        with (ROOT / "config" / "function-origins.csv").open(newline="", encoding="utf-8") as stream:
+            origins = {row["address"].upper(): row for row in csv.DictReader(stream)}
+
+        authored = {
+            "0X00403840": ("BgmService_schedule_or_start", "142/143"),
+            "0X004038D0": ("BgmService_stop", "96/98"),
+            "0X00403940": ("BgmService_fade", "76/70"),
+            "0X00403990": ("BgmService_set_level", "70/69"),
+            "0X004056C0": ("CScript_clear_commands", "296/170"),
+            "0X0040BFE0": ("ProfileRenderListView_set_color", "74/81"),
+            "0X00414CB0": ("D3DBackend_register_reset_listener", "134/157"),
+            "0X00417FF0": ("BattleBaseEffect_initialize", "71/71"),
+            "0X0046F9F0": ("BattleInfoRecord_emit_group_effect", "66/85"),
+        }
+        for address, (name, residual) in authored.items():
+            self.assertEqual(functions[address]["proposed_name"], name)
+            self.assertEqual(functions[address]["status"], "implemented")
+            self.assertIn(residual, functions[address]["evidence"])
+            self.assertEqual(origins[address]["origin"], "authored_game")
+            self.assertEqual(origins[address]["disposition"], "authored")
+
+        ready = functions["0X004712B0"]
+        self.assertEqual(ready["proposed_name"], "BattleInputGate_is_synchronized_input_ready")
+        self.assertEqual(ready["status"], "matching")
+        self.assertEqual(ready["match_percent"], "100.00")
+        self.assertIn("129/129", ready["evidence"])
+        self.assertEqual(origins["0X004712B0"]["evidence_id"], "canonical-exact-authored")
+
+        for address in (
+            "0X00405770", "0X004061F0", "0X0040C270", "0X00424E20",
+            "0X0040A790", "0X00455160", "0X0040CDA0",
+        ):
+            self.assertEqual(origins[address]["origin"], "compiler_generated")
+            self.assertEqual(origins[address]["disposition"], "exclude")
+
+        units = self.manifest.load_manifest()["units"]
+        self.assertEqual(
+            units["gpt-web-battle-input-ready"]["functions"][0]["address"].upper(),
+            "0X004712B0",
+        )
+        self.assertEqual(
+            units["gpt-web-profile-render-list-color-runtime"]["source"],
+            "src/ui/ProfileRenderListColorRuntime.cpp",
+        )
+        bgm = units["gpt-web-bgm-service-runtime"]
+        self.assertTrue(any(row["address"].upper() == "0X00403840" for row in bgm["functions"]))
+        bgm_source = (ROOT / "src" / "audio" / "BgmServiceRuntime.cpp").read_text(encoding="utf-8")
+        self.assertIn("GetTickCount()", bgm_source)
+        self.assertNotIn("timeGetTime()", bgm_source)
+
+        source = (ROOT / "src" / "battle" / "BattleInputReady.cpp").read_text(encoding="utf-8")
+        self.assertIn("published_140 == consumed_141", source)
+        self.assertIn("input_104->is_input_available_427680()", source)
+        self.assertNotIn("unsigned char available =", source)
+
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,019", markdown)
-        self.assertIn("Confirmed authored functions | 1,449", markdown)
-        self.assertIn("Confirmed authored code bytes | 2,085,391", markdown)
-        self.assertIn("Classified exclusions | 1,297", markdown)
-        self.assertIn("Origin/boundary review pending | 1,273", markdown)
-        self.assertIn("Canonical exact functions | 1,299", markdown)
-        self.assertIn("Canonical exact authored bytes | 216,692", markdown)
-        self.assertIn("Source-present authored mappings | 1,361", markdown)
+        self.assertIn("Confirmed authored functions | 1,459", markdown)
+        self.assertIn("Confirmed authored code bytes | 2,086,464", markdown)
+        self.assertIn("Classified exclusions | 1,304", markdown)
+        self.assertIn("Origin/boundary review pending | 1,256", markdown)
+        self.assertIn("Canonical exact functions | 1,300", markdown)
+        self.assertIn("Canonical exact authored bytes | 216,821", markdown)
+        self.assertIn("Source-present authored mappings | 1,371", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
