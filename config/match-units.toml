@@ -1788,7 +1788,7 @@ source = "src/engine/AngleLookup.cpp"
 object = "build/match-units/CrossV106a_AngleLookup.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a angle lookup family recovered from retained old-target exact source; current table, atan2 runtime callee, and literals are target-backed."
+notes = "TH105 1.06a angle lookup family. 0x00406480/0x004064B0/0x00406540 are canonical exact; current raw Object +0x28 call graph independently proves 0x00406360/0x004063D0/0x004064D0 authored gameplay ownership. The three quantized helpers are deliberately formal nonexact probes: natural VC8 preserves semantics but not the shipped aligned/x87/idiv code shape, and receives no exact credit."
 
 [[units.cross-v106a-angle-lookup.functions]]
 address = "0x00406480"
@@ -1807,6 +1807,40 @@ rel32_targets = ["_runtime_atan2=0x0068BB70"]
 dir32_targets = [
   "_orientation_degree_scale=_orientation_degree_scale",
   "_orientation_pi=_orientation_pi",
+]
+
+[[units.cross-v106a-angle-lookup.functions]]
+address = "0x00406360"
+symbol_base = "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z"
+rel32_targets = [
+  "_fabs=0x0068BAAE",
+  "__ftol2_sse=0x0068A1A0",
+]
+dir32_targets = [
+  "?g_orientation_cosine_table@th105@@3PAMA=?g_orientation_cosine_table@th105@@3PAMA",
+  "__real@4024000000000000=__real@4024000000000000",
+  "__real@408c200000000000=__real@408c200000000000",
+  "__real@3fe0000000000000=__real@3fe0000000000000",
+]
+
+[[units.cross-v106a-angle-lookup.functions]]
+address = "0x004063D0"
+symbol_base = "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z"
+rel32_targets = [
+  "_fabs=0x0068BAAE",
+  "__ftol2_sse=0x0068A1A0",
+]
+dir32_targets = [
+  "?g_orientation_cosine_table@th105@@3PAMA=?g_orientation_cosine_table@th105@@3PAMA",
+  "__real@4024000000000000=__real@4024000000000000",
+  "__real@3fe0000000000000=__real@3fe0000000000000",
+]
+
+[[units.cross-v106a-angle-lookup.functions]]
+address = "0x004064D0"
+symbol_base = "?lookup_orientation_ratio_quantized_abs@th105@@YANH@Z"
+dir32_targets = [
+  "?g_orientation_cosine_table@th105@@3PAMA=?g_orientation_cosine_table@th105@@3PAMA",
 ]
 
 [units.cross-v106a-collision-preparation]
@@ -16414,6 +16448,15 @@ address = "0x00421D20"
 symbol_base = "??_9EffectObjectBase@@$BCI@AE"
 
 [[units.gpt-web-effect-manager-virtuals.functions]]
+address = "0x00422D30"
+symbol_base = "?update_and_prune@?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@QAEXP8EffectObjectBase@@AEXXZ@Z"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?release_handle@?$CHandleManagerEx@VCSelectObject@@@@QAEXI@Z=0x0056D8F0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.gpt-web-effect-manager-virtuals.functions]]
 address = "0x00422E80"
 symbol_base = "?update_effects@?$CEffectManager@VCSelectObject@@@@UAEXXZ"
 rel32_targets = [
@@ -17296,4 +17339,63 @@ rel32_targets = [
   "?spawn_owned_object_via_manager@FighterOwnedObjectSpawnView@th105@@QAEHHMMHHHH@Z=0x00465190",
   "?spawn_unparented_related_object@CharacterObjectEffectEmitter@th105@@QAEPAXHMMHHPBIH@Z=0x0064CCB0",
   "?update_ping_pong_motion_and_periodic_spawn@CharacterObjectEffectEmitter@th105@@QAEXXZ=0x0053CBC0",
+]
+
+[units.gpt-web-yukari-event-bridge]
+kind = "probe"
+source = "src/characters/YukariEventBridge.cpp"
+object = "build/match-units/GptWeb_YukariEventBridge.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "RTTI-owned Yukari primary-vtable +0x60 event bridge @ 0x005983B0. Uses the same exact-backed SharedEventState/Fighter/EventSubobject contracts as the fourteen accepted sibling event bridges. Keep nonexact until the target-retained case156 tail is reproduced without dead-code/register forcing."
+
+[[units.gpt-web-yukari-event-bridge.functions]]
+address = "0x005983B0"
+symbol_base = "?handle_event_bridge@YukariEventView@th105@@QAEEH@Z"
+rel32_targets = [
+  "?set_target_20_enabled_2c@SharedEventState@th105@@QAEDDM@Z=0x00427290",
+  "?set_shared_second_target@YukariEventView@th105@@QAEDDM@Z=0x00476AD0",
+  "?set_target_28_enabled_2e@SharedEventState@th105@@QAEDDM@Z=0x004272D0",
+  "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
+  "?set_target_24_enabled_2d@SharedEventState@th105@@QAEDDM@Z=0x004272B0",
+  "?zero_velocity_acceleration@YukariEventView@th105@@QAEXXZ=0x0045AF40",
+  "?spawn_owned_object_via_manager@YukariEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+]
+dir32_targets = [
+  "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+]
+
+[units.gpt-web-effect-object-manager-release]
+kind = "probe"
+source = "src/battle/EffectObjectManagerRelease.cpp"
+object = "build/match-units/GptWeb_EffectObjectManagerRelease.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current effect TObjectManagerBase release helper. Exact CEffectManager wrappers and exact preallocate specializations prove the +0x04 handle pool/+0x54 checked list layout; EffectObjectBase callers prove handle token +0x15C. Ordinary std::list source is 122/122 and remains nonexact only on EAX/EDX handle-token scheduling, with no manual node/register coercion."
+
+[[units.gpt-web-effect-object-manager-release.functions]]
+address = "0x0046EEB0"
+symbol_base = "?release_all_tracked_objects@EffectObjectManagerReleaseView@th105@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?release_handle@EffectHandlePool50View@th105@@QAEXI@Z=0x0056D8F0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[units.gpt-web-roster-object-release-all]
+kind = "probe"
+source = "src/characters/RosterObjectRelease.cpp"
+object = "build/match-units/GptWeb_RosterObjectRelease.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Shared roster TObjectManagerBase release helper called by all fifteen canonical-exact normal manager destructors. Natural checked-list source is 122/122 against current target and differs only in EAX/EDX scheduling of the +0x334 object handle before the shared release_handle call."
+
+[[units.gpt-web-roster-object-release-all.functions]]
+address = "0x0056DA90"
+symbol_base = "?release_all_tracked_objects@RosterObjectManagerBase@th105@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?release_handle@?$CharacterObjectPoolStorageT@URosterOwnedObjectPrefix338@th105@@@th105@@QAEXI@Z=0x0056D8F0",
+  "??3@YAXPAX@Z=0x006898EA",
 ]

@@ -61,18 +61,48 @@ class WorkflowToolingTests(unittest.TestCase):
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1296)
+        self.assertEqual(len(implemented), 1299)
         self.assertEqual(
             len(self.validator.rows(ROOT / "config" / "matches.csv")), 1272
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 451)
+        self.assertEqual(len(manifest["units"]), 454)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1293,
+            1300,
         )
+
+    def test_new_authored_nonexact_helper_contracts_stay_nonexact(self) -> None:
+        units = self.manifest.load_manifest()["units"]
+        accepted = self.exact_replay.accepted_functions(units)
+        checks = [
+            ("0x004064D0", "src/engine/AngleLookup.cpp", "cross-v106a-angle-lookup"),
+            ("0x0046EEB0", "src/battle/EffectObjectManagerRelease.cpp", "gpt-web-effect-object-manager-release"),
+            ("0x0056DA90", "src/characters/RosterObjectRelease.cpp", "gpt-web-roster-object-release-all"),
+        ]
+        with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
+            rows = {row["address"].upper(): row for row in csv.DictReader(stream)}
+        for address, source, unit_name in checks:
+            row = rows[address.upper()]
+            self.assertEqual(row["status"], "implemented")
+            self.assertEqual(row["source_file"], source)
+            self.assertIn(unit_name, units)
+            self.assertNotIn(address.upper(), {value.upper() for value in accepted.get(unit_name, set())})
+
+        effect = units["gpt-web-effect-manager-virtuals"]
+        self.assertTrue(any(function["address"].upper() == "0X00422D30" for function in effect["functions"]))
+        self.assertNotIn("0x00422D30", {value.lower() for value in accepted.get("gpt-web-effect-manager-virtuals", set())})
+
+        with (ROOT / "config" / "function-origins.csv").open(newline="", encoding="utf-8") as stream:
+            origins = {row["address"].upper(): row for row in csv.DictReader(stream)}
+        for address in [
+            "0x00406360", "0x004063D0", "0x004064D0",
+            "0x00422D30", "0x0046EEB0", "0x0056DA90",
+        ]:
+            self.assertEqual(origins[address.upper()]["origin"], "authored_game")
+            self.assertEqual(origins[address.upper()]["disposition"], "authored")
 
     def test_strict_fp_profile_is_explicit_and_local(self) -> None:
         manifest = self.manifest.load_manifest()
@@ -100,13 +130,13 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,011", markdown)
-        self.assertIn("Confirmed authored functions | 1,372", markdown)
-        self.assertIn("Confirmed authored code bytes | 2,069,524", markdown)
+        self.assertIn("Confirmed authored functions | 1,378", markdown)
+        self.assertIn("Confirmed authored code bytes | 2,070,276", markdown)
         self.assertIn("Classified exclusions | 1,285", markdown)
-        self.assertIn("Origin/boundary review pending | 1,354", markdown)
+        self.assertIn("Origin/boundary review pending | 1,348", markdown)
         self.assertIn("Canonical exact functions | 1,272", markdown)
         self.assertIn("Canonical exact authored bytes | 215,400", markdown)
-        self.assertIn("Source-present authored mappings | 1,296", markdown)
+        self.assertIn("Source-present authored mappings | 1,299", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
@@ -979,8 +1009,8 @@ class WorkflowToolingTests(unittest.TestCase):
         with (ROOT / "config" / "match-units.toml").open("rb") as stream:
             manifest = tomllib.load(stream)
         counts = self.literals.audit_real_literals(relocations, manifest)
-        self.assertEqual(counts["ledger_literals"], 304)
-        self.assertEqual(counts["explicit_mappings"], 424)
+        self.assertEqual(counts["ledger_literals"], 306)
+        self.assertEqual(counts["explicit_mappings"], 429)
         self.assertEqual(counts["target_checks"], 0)
 
     @unittest.skipUnless(
@@ -990,7 +1020,7 @@ class WorkflowToolingTests(unittest.TestCase):
         counts = self.validator.validate_real_literal_relocations(
             self.manifest.load_manifest(), require_bytes=True
         )
-        self.assertEqual(counts["target_checks"], 728)
+        self.assertEqual(counts["target_checks"], 735)
 
     def test_rel32_accepts_only_supported_instruction_forms(self) -> None:
         self.assertEqual(

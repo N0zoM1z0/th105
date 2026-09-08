@@ -5,6 +5,42 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 # but no old-version address is accepted as evidence here.
 
 [[rules]]
+id = "orientation-quantized-gameplay-helpers-authored-106a"
+addresses = ["0x00406360", "0x004063D0", "0x004064D0"]
+expected_count = 3
+expected_bytes = 301
+expected_names = ["sub_406360", "sub_4063D0", "sub_4064D0"]
+origin = "authored_game"
+subsystem = "engine"
+disposition = "authored"
+confidence = "observed"
+evidence = "Current SHA-pinned raw gameplay call graph proves 0x00406360/0x004063D0 are consumed across all fifteen RTTI-owned roster Object +0x28 giant roots (295/205 direct calls), while 0x004064D0 is called from PatchouliObject +0x28 at 0x005264DF in an owner-relative motion path and feeds the adjacent exact authored atan2 helper. All three index the same game-owned 3600-entry orientation table at 0x006FE8B0 as canonical-exact authored 0x00406480/0x004064B0. Ordinary VC8 source is formally nonexact and receives no exact credit."
+
+[[rules]]
+id = "effect-object-manager-shared-helpers-authored-106a"
+addresses = ["0x00422D30", "0x0046EEB0"]
+expected_count = 2
+expected_bytes = 329
+expected_names = ["sub_422D30", "sub_46EEB0"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Current exact CEffectManager<CSelectObject> update wrapper 0x00422E80 owns update_and_prune 0x00422D30 with a real two-dword EffectObjectBase member pointer, while exact release/preallocate wrappers across four effect/UI specializations converge on release_all_tracked_objects 0x0046EEB0. Natural checked-list source formally reproduces both complete target extents (207/207 and 122/122); each remains nonexact only on final list-node/handle-token register coloring. The target release body is independently instruction-isomorphic to the roster release helper except the game-owned +0x15C handle field."
+
+[[rules]]
+id = "roster-object-manager-release-authored-106a"
+addresses = ["0x0056DA90"]
+expected_count = 1
+expected_bytes = 122
+expected_names = ["sub_56DA90"]
+origin = "authored_game"
+subsystem = "characters"
+disposition = "authored"
+confidence = "observed"
+evidence = "All fifteen canonical-exact roster TObjectManagerBase destructors call this shared release_all_tracked_objects helper before destroying the list and class-specific handle pool. Existing ordinary std::list source compiles to the full 122-byte target extent; the only canonical residual is EAX-versus-EDX scheduling when reading the independently proved CharacterObject handle at +0x334. Its target body is instruction-isomorphic to effect release helper 0x0046EEB0 apart from that handle offset."
+
+[[rules]]
 id = "komachi-object-pair-emitter-authored-106a"
 addresses = ["0x005F9350"]
 expected_count = 1

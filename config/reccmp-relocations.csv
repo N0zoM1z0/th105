@@ -1210,3 +1210,5 @@ __real@c3200000,0x006C49D8,000020c3,0,TH105 1.06a AyaObject +0x28 target direct 
 __real@c3960000,0x006C4204,000096c3,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
 __real@c4160000,0x006C4F50,000016c4,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
 __real@c4340000,0x006C43E8,000034c4,0,TH105 1.06a AyaObject +0x28 target direct literal operand attested from canonical PE on 2026-09-08,literal
+__real@4041800000000000,0x006C3D08,0000000000804140,0,TH105 1.06a AyaObject +0x28 action852 directly adds qword 35.0 from 0x006C3D08 at 0x0061C76D; raw target operand and canonical PE bytes attested 2026-09-08,literal
+__real@408c200000000000,0x006C4230,0000000000208c40,0,Current TH105 1.06a PE stores unique IEEE-754 double 900.0 at 0x006C4230; gameplay roots directly reference it via qword compares at 0x0049CBD9/0x0051BFE7/0x00529AFC; canonical PE bytes attested 2026-09-08,literal
