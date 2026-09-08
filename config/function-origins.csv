@@ -571,8 +571,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00419690,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00419860,authored_game,assets,authored,observed,plain-file-buffer-authored-106a
 0x00419950,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00419A60,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00419E80,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00419A60,authored_game,assets,authored,observed,palette-data-runtime-authored-106a
+0x00419E80,authored_game,assets,authored,observed,palette-data-runtime-authored-106a
 0x00419F80,authored_game,assets,authored,observed,canonical-exact-authored
 0x00419FA0,authored_game,assets,authored,observed,canonical-exact-authored
 0x00419FD0,authored_game,assets,authored,observed,canonical-exact-authored
@@ -759,9 +759,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004220A0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004220D0,compiler_generated,ui,exclude,observed,vc8-generated-replay-menu-delete-std-comdats-106a
 0x00422100,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00422140,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00422180,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00422190,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00422140,authored_game,battle,authored,observed,effect-object-derived-ctors-authored-106a
+0x00422180,authored_game,battle,authored,observed,canonical-exact-authored
+0x00422190,authored_game,battle,authored,observed,canonical-exact-authored
 0x004221E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00422260,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004222B0,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
@@ -2075,7 +2075,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0046F020,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046F090,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046F140,compiler_generated,battle,exclude,observed,vc8-effect-manager-adjustor-thunks-106a
-0x0046F150,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0046F150,authored_game,battle,authored,observed,effect-object-derived-ctors-authored-106a
 0x0046F190,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046F350,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046F370,authored_game,battle,authored,observed,canonical-exact-authored

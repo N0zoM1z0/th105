@@ -20,6 +20,11 @@ public:
 };
 
 
+struct AnimationAuxiliaryRendererOwner {
+    CEffectSprite sprite_000;
+};
+
+
 class AnimationObject : public AnimationObjectBase, public Environment {
 public:
     AnimationObject()
@@ -28,7 +33,13 @@ public:
         flag_004 = 0;
         flag_005 = 0;
     }
-    virtual ~AnimationObject();
+    virtual ~AnimationObject()
+    {
+        if (pointer_154 != 0) {
+            delete static_cast<AnimationAuxiliaryRendererOwner *>(pointer_154);
+            pointer_154 = 0;
+        }
+    }
     virtual void unknown_vslot_04();
     virtual void set_action(int action_id);
     virtual void unknown_vslot_0c();

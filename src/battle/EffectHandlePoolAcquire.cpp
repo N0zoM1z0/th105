@@ -1,30 +1,15 @@
 #include "characters/TObjectManagerBase.hpp"
+#include "battle/EffectObjectHierarchy.hpp"
+#include "characters/CharacterObjectRuntime.hpp"
 
 #include <new>
 
 
-class CSelectObject {
-public:
-    CSelectObject();
-    virtual ~CSelectObject();
-
-    unsigned char storage_004[0x16c];
-};
-
-
-class InfoEffectObject {
-public:
-    InfoEffectObject();
-    virtual ~InfoEffectObject();
-
-    unsigned char storage_004[0x174];
-};
-
-
-typedef char CSelectObject_size_must_be_0x170[
-    sizeof(CSelectObject) == 0x170 ? 1 : -1];
-typedef char InfoEffectObject_size_must_be_0x178[
-    sizeof(InfoEffectObject) == 0x178 ? 1 : -1];
+void EffectObjectBase::update_slot_28()
+{
+    reinterpret_cast<th105::CharacterObjectRuntime *>(this)
+        ->advance_frame_and_dispatch();
+}
 
 
 namespace {

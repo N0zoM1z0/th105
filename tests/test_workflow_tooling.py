@@ -57,23 +57,23 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4019)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1295)
+        self.assertEqual(len(matching), 1297)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1348)
+        self.assertEqual(len(implemented), 1354)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1295
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1297
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 476)
+        self.assertEqual(len(manifest["units"]), 478)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1353,
+            1359,
         )
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:
@@ -253,8 +253,8 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 451)
-        self.assertEqual(sum(map(len, accepted.values())), 1295)
+        self.assertEqual(len(accepted), 452)
+        self.assertEqual(sum(map(len, accepted.values())), 1297)
         secondary = accepted["gpt-web-secondary-animation-runtime"]
         self.assertEqual(
             secondary,
@@ -473,16 +473,58 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(slot1_unit["symbol_base"], "?load_bitmap@CBitmapData@th105@@UAE_NPBD@Z")
         self.assertTrue(bitmap["enable_gs"])
 
+    def test_palette_and_effect_object_hierarchy_wave_is_pinned(self) -> None:
+        with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
+            functions = {row["address"].upper(): row for row in csv.DictReader(stream)}
+        with (ROOT / "config" / "function-origins.csv").open(newline="", encoding="utf-8") as stream:
+            origins = {row["address"].upper(): row for row in csv.DictReader(stream)}
+
+        for address, name, residual in (
+            ("0X00419A60", "PaletteDataView_load_bmp_palette", "1007/1047"),
+            ("0X00419E80", "PaletteDataView_load_raw_palette", "247/243"),
+            ("0X00422140", "CSelectObject_ctor", "59/59"),
+            ("0X0046F150", "InfoEffectObject_ctor", "59/59"),
+        ):
+            row = functions[address]
+            self.assertEqual(row["proposed_name"], name)
+            self.assertEqual(row["status"], "implemented")
+            self.assertIn(residual, row["evidence"])
+            self.assertEqual(origins[address]["origin"], "authored_game")
+            self.assertEqual(origins[address]["disposition"], "authored")
+
+        exact = {
+            "0X00422190": ("AnimationObject_scalar_deleting_destructor", "73"),
+            "0X00422180": ("EffectObjectBase_update_slot_28", "5"),
+        }
+        for address, (name, size) in exact.items():
+            row = functions[address]
+            self.assertEqual(row["proposed_name"], name)
+            self.assertEqual(row["size"], size)
+            self.assertEqual(row["status"], "matching")
+            self.assertEqual(row["match_percent"], "100.00")
+            self.assertEqual(origins[address]["origin"], "authored_game")
+            self.assertEqual(origins[address]["disposition"], "authored")
+
+        units = self.manifest.load_manifest()["units"]
+        palette = units["gpt-web-palette-data-runtime"]
+        self.assertEqual(palette["source"], "src/assets/PaletteDataRuntime.cpp")
+        self.assertTrue(palette["enable_gs"])
+        hierarchy = units["gpt-web-effect-object-hierarchy-lifetime"]
+        self.assertEqual(hierarchy["source"], "src/battle/EffectHandlePoolAcquire.cpp")
+        update = next(row for row in hierarchy["functions"] if row["address"].upper() == "0X00422180")
+        self.assertEqual(update["symbol_base"], "?update_slot_28@EffectObjectBase@@UAEXXZ")
+        self.assertEqual(update["rel32_targets"], ["?advance_frame_and_dispatch@CharacterObjectRuntime@th105@@QAEEXZ=0x004351C0"])
+
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,019", markdown)
-        self.assertIn("Confirmed authored functions | 1,436", markdown)
-        self.assertIn("Confirmed authored code bytes | 2,082,475", markdown)
+        self.assertIn("Confirmed authored functions | 1,442", markdown)
+        self.assertIn("Confirmed authored code bytes | 2,083,961", markdown)
         self.assertIn("Classified exclusions | 1,295", markdown)
-        self.assertIn("Origin/boundary review pending | 1,288", markdown)
-        self.assertIn("Canonical exact functions | 1,295", markdown)
-        self.assertIn("Canonical exact authored bytes | 216,276", markdown)
-        self.assertIn("Source-present authored mappings | 1,348", markdown)
+        self.assertIn("Origin/boundary review pending | 1,282", markdown)
+        self.assertIn("Canonical exact functions | 1,297", markdown)
+        self.assertIn("Canonical exact authored bytes | 216,354", markdown)
+        self.assertIn("Source-present authored mappings | 1,354", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )

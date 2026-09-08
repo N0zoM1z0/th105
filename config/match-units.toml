@@ -18037,3 +18037,73 @@ rel32_targets = [
   "??1PackageFileIndexNode@th105@@QAE@XZ=0x0041B850",
   "??3@YAXPAX@Z=0x006898EA",
 ]
+
+[units.gpt-web-effect-object-hierarchy-lifetime]
+kind = "probe"
+source = "src/battle/EffectHandlePoolAcquire.cpp"
+object = "build/match-units/GptWeb_EffectObjectHierarchyLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current RTTI PMDs prove CSelectObject/InfoEffectObject share EffectObjectBase with physical AnimationObject +0 and CObjectBase +0x158. The real handle-pool acquire TU instantiates their inline constructors and therefore emits the AnimationObject scalar lifetime COMDAT. AnimationObject +0x154 owns the same non-polymorphic {CEffectSprite} wrapper independently exact-backed by CharacterObject_release_auxiliary_renderer. Scalar lifetime is canonical 73/73 and CSelectObject-owned update slot +0x28 is a natural 5/5 tail-jump facade to exact advance_frame_and_dispatch; both derived ctors are 59/59 but retain only the target LEA/store scheduler residual at +0x06."
+
+[[units.gpt-web-effect-object-hierarchy-lifetime.functions]]
+address = "0x00422180"
+symbol_base = "?update_slot_28@EffectObjectBase@@UAEXXZ"
+rel32_targets = ["?advance_frame_and_dispatch@CharacterObjectRuntime@th105@@QAEEXZ=0x004351C0"]
+
+[[units.gpt-web-effect-object-hierarchy-lifetime.functions]]
+address = "0x00422190"
+symbol_base = "??_GAnimationObject@@UAEPAXI@Z"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = [
+  "??_7AnimationObject@@6B@=??_7AnimationObject@@6B@",
+  "??_7IColor@@6B@=??_7IColor@@6B@",
+]
+
+[[units.gpt-web-effect-object-hierarchy-lifetime.functions]]
+address = "0x00422140"
+symbol_base = "??0CSelectObject@@QAE@XZ"
+rel32_targets = ["??0CEffectSprite@@QAE@XZ=0x00421FF0"]
+dir32_targets = ["??_7CSelectObject@@6B@=??_7CSelectObject@@6B@"]
+
+[[units.gpt-web-effect-object-hierarchy-lifetime.functions]]
+address = "0x0046F150"
+symbol_base = "??0InfoEffectObject@@QAE@XZ"
+rel32_targets = ["??0CEffectSprite@@QAE@XZ=0x00421FF0"]
+dir32_targets = ["??_7InfoEffectObject@@6B@=??_7InfoEffectObject@@6B@"]
+
+[units.gpt-web-palette-data-runtime]
+kind = "probe"
+source = "src/assets/PaletteDataRuntime.cpp"
+object = "build/match-units/GptWeb_PaletteDataRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Game-side 8-byte palette owner used by resource path 0x00408F70. BMP loader 0x00419A60 parses 8-bit BMP palettes and converts to requested 16/24/32-bit entries; making the real FileReaderOwner destructor visible in this TU naturally recovers the shipped inline cleanup. It remains 1007/1047 because target uniquely realigns ESP to 8 bytes, which standalone and bounded /GL+/LTCG probes do not reproduce. Adjacent raw palette loader 0x00419E80 is 247/243 and target receives its object privately in EDI; no private calling convention is fabricated."
+
+[[units.gpt-web-palette-data-runtime.functions]]
+address = "0x00419A60"
+symbol_base = "?load_bmp_palette@PaletteDataView@th105@@QAE_NPBDE@Z"
+rel32_targets = [
+  "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
+  "??2@YAPAXI@Z=0x00665B8A",
+  "_free=0x0068AA26",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?load_bmp_palette@PaletteDataView@th105@@QAE_NPBDE@Z=__ehhandler$?load_bmp_palette@PaletteDataView@th105@@QAE_NPBDE@Z",
+  "___security_cookie=___security_cookie",
+]
+
+[[units.gpt-web-palette-data-runtime.functions]]
+address = "0x00419E80"
+symbol_base = "?load_raw_palette@PaletteDataView@th105@@QAE_NPBD@Z"
+rel32_targets = [
+  "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
+  "??2@YAPAXI@Z=0x00665B8A",
+  "_free=0x0068AA26",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "__ehhandler$?load_raw_palette@PaletteDataView@th105@@QAE_NPBD@Z=__ehhandler$?load_raw_palette@PaletteDataView@th105@@QAE_NPBD@Z",
+  "___security_cookie=___security_cookie",
+]

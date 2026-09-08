@@ -1,16 +1,7 @@
 #include "RosterObjectPools.hpp"
 #include "TObjectManagerBase.hpp"
+#include "battle/EffectObjectHierarchy.hpp"
 
-
-class InfoEffectObject {
-public:
-    virtual ~InfoEffectObject();
-};
-
-class CSelectObject {
-public:
-    virtual ~CSelectObject();
-};
 
 class WeatherEffectObject {
 public:

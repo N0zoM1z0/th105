@@ -81,7 +81,15 @@ public:
 class FileReaderOwner {
 public:
     FileReaderOwner() : reader(0) {}
+#ifdef TH105_FILE_READER_OWNER_DTOR_VISIBLE
+    ~FileReaderOwner()
+    {
+        if (reader != 0)
+            delete reader;
+    }
+#else
     ~FileReaderOwner();
+#endif
 
     bool open(const char *path);
 
