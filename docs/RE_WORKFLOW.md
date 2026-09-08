@@ -126,3 +126,15 @@ A padding-isolated, RET-terminated `.text` island is only a boundary lead. Befor
 ### Separate third-party provenance from authored call-site constants
 
 A library fingerprint identifies the origin of the callee bytes, not the values an authored caller passed to that library. When reconstructing wrappers around third-party code, pin call-site literals from the canonical PE independently. The CBitmap PNG path is the current counterexample: the embedded implementation is classified as libpng 1.2.5, while the game caller at `0x0041A910` passes the literal `"1.5.2"` from `0x006D6E04`. Exact reconstruction follows the target-owned call-site bytes rather than normalizing them to the detected library version.
+
+### Main body versus adjacent switch metadata
+
+A source function may branch through compiler-emitted destination/index tables placed immediately after its RET. Do not extend the callable or authored-byte boundary solely to absorb those tables. Prove the main RET boundary independently, record adjacent metadata as structural/switch evidence, and compare callable bytes against that main boundary. `CBitmapData::load_bitmap 0x00419FF0` is the reference case: RET at `0x0041A8A6`, alignment at `0x0041A8A6..A7`, destination table from `0x0041A8A8`, index table from `0x0041A8BC`.
+
+### Preserve allocator provenance inside one object lifetime
+
+Do not infer one allocator family for an entire function from decompiler-style `free` calls. Recover ownership from the allocation site of each field. A parent object can legally contain a CRT-allocated payload and a C++-allocated child: `PackageFileIndexNode::~PackageFileIndexNode @ 0x0041B850` is the current exact example, with `path_00` released by CRT `free` and `next_10` recursively destroyed by `delete`. A same-size candidate that calls the wrong allocator is nonexact and semantically suspect even if every other instruction matches.
+
+### Same-size compiler-phase witnesses are still nonexact
+
+A target-sized candidate is useful diagnostic evidence, never acceptance. `FileBufferView_load_plain @ 0x00419860` becomes 234/234 when the real FileReaderOwner destructor is visible, yet canonical comparison still first differs at +0x0E because the target owns a different frame lifetime. Record such witnesses as compiler/TU-phase evidence and keep the clean source nonexact; do not add dummy locals, fake cleanup CFG, custom calling conventions, or register forcing to convert a size coincidence into a byte claim.

@@ -57,23 +57,23 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4019)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1294)
+        self.assertEqual(len(matching), 1295)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1345)
+        self.assertEqual(len(implemented), 1348)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1294
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1295
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 474)
+        self.assertEqual(len(manifest["units"]), 476)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1350,
+            1353,
         )
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:
@@ -253,8 +253,8 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 450)
-        self.assertEqual(sum(map(len, accepted.values())), 1294)
+        self.assertEqual(len(accepted), 451)
+        self.assertEqual(sum(map(len, accepted.values())), 1295)
         secondary = accepted["gpt-web-secondary-animation-runtime"]
         self.assertEqual(
             secondary,
@@ -422,6 +422,15 @@ class WorkflowToolingTests(unittest.TestCase):
         callback_ptr = relocations["?CBitmapData_png_read@th105@@YAXPAUPngStruct@1@PAEK@Z"]
         self.assertEqual(callback_ptr["address"].upper(), "0X0041A8E0")
 
+        slot1 = functions["0X00419FF0"]
+        self.assertEqual(slot1["proposed_name"], "CBitmapData_load_bitmap")
+        self.assertEqual(slot1["status"], "implemented")
+        self.assertEqual(slot1["size"], "2230")
+        self.assertEqual(slot1["source_file"], "src/assets/CBitmapDataRuntime.cpp")
+        self.assertIn("2197/2230", slot1["evidence"])
+        self.assertEqual(origins["0X00419FF0"]["origin"], "authored_game")
+        self.assertEqual(origins["0X00419FF0"]["disposition"], "authored")
+
         for address, name, residual in (
             ("0X0041A910", "CBitmapData_load_png", "680/703"),
             ("0X0041ACA0", "CBitmapData_load_from_file", "440/448"),
@@ -434,24 +443,46 @@ class WorkflowToolingTests(unittest.TestCase):
             self.assertEqual(origins[address]["origin"], "authored_game")
             self.assertEqual(origins[address]["disposition"], "authored")
 
+        file_buffer = functions["0X00419860"]
+        self.assertEqual(file_buffer["proposed_name"], "FileBufferView_load_plain")
+        self.assertEqual(file_buffer["status"], "implemented")
+        self.assertEqual(file_buffer["source_file"], "src/assets/FileBufferRuntime.cpp")
+        self.assertIn("224/234", file_buffer["evidence"])
+        self.assertEqual(origins["0X00419860"]["origin"], "authored_game")
+        self.assertEqual(origins["0X00419860"]["disposition"], "authored")
+
+        package_dtor = functions["0X0041B850"]
+        self.assertEqual(package_dtor["proposed_name"], "PackageFileIndexNode_dtor")
+        self.assertEqual(package_dtor["status"], "matching")
+        self.assertEqual(package_dtor["match_percent"], "100.00")
+        self.assertEqual(package_dtor["source_file"], "src/assets/PackageFileIndexRuntime.cpp")
+        self.assertEqual(origins["0X0041B850"]["origin"], "authored_game")
+        self.assertEqual(origins["0X0041B850"]["disposition"], "authored")
+        self.assertEqual(relocations["__ehhandler$?load_plain@FileBufferView@th105@@QAE_NPBD@Z"]["address"].upper(), "0X006BDCC8")
+
         units = self.manifest.load_manifest()["units"]
+        self.assertEqual(units["gpt-web-file-buffer-runtime"]["source"], "src/assets/FileBufferRuntime.cpp")
+        self.assertTrue(units["gpt-web-file-buffer-runtime"]["enable_gs"])
+        self.assertEqual(units["gpt-web-package-file-index-runtime"]["source"], "src/assets/PackageFileIndexRuntime.cpp")
         self.assertEqual(len(units["gpt-web-audio-scheduler-listeners"]["functions"]), 3)
         self.assertEqual(len(units["gpt-web-audio-scheduler-finalizer"]["functions"]), 1)
         bitmap = units["gpt-web-cbitmap-data-runtime"]
         self.assertEqual(bitmap["source"], "src/assets/CBitmapDataRuntime.cpp")
-        self.assertEqual(len(bitmap["functions"]), 7)
+        self.assertEqual(len(bitmap["functions"]), 8)
+        slot1_unit = next(row for row in bitmap["functions"] if row["address"].upper() == "0X00419FF0")
+        self.assertEqual(slot1_unit["symbol_base"], "?load_bitmap@CBitmapData@th105@@UAE_NPBD@Z")
         self.assertTrue(bitmap["enable_gs"])
 
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,019", markdown)
-        self.assertIn("Confirmed authored functions | 1,433", markdown)
-        self.assertIn("Confirmed authored code bytes | 2,079,968", markdown)
+        self.assertIn("Confirmed authored functions | 1,436", markdown)
+        self.assertIn("Confirmed authored code bytes | 2,082,475", markdown)
         self.assertIn("Classified exclusions | 1,295", markdown)
-        self.assertIn("Origin/boundary review pending | 1,291", markdown)
-        self.assertIn("Canonical exact functions | 1,294", markdown)
-        self.assertIn("Canonical exact authored bytes | 216,233", markdown)
-        self.assertIn("Source-present authored mappings | 1,345", markdown)
+        self.assertIn("Origin/boundary review pending | 1,288", markdown)
+        self.assertIn("Canonical exact functions | 1,295", markdown)
+        self.assertIn("Canonical exact authored bytes | 216,276", markdown)
+        self.assertIn("Source-present authored mappings | 1,348", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )

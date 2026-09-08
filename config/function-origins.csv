@@ -569,14 +569,14 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004194D0,authored_game,audio,authored,observed,audio-scheduler-runtime-authored-106a
 0x00419590,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00419690,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00419860,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00419860,authored_game,assets,authored,observed,plain-file-buffer-authored-106a
 0x00419950,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00419A60,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00419E80,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00419F80,authored_game,assets,authored,observed,canonical-exact-authored
 0x00419FA0,authored_game,assets,authored,observed,canonical-exact-authored
 0x00419FD0,authored_game,assets,authored,observed,canonical-exact-authored
-0x00419FF0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00419FF0,authored_game,assets,authored,observed,cbitmap-data-loaders-authored-106a
 0x0041A8E0,authored_game,assets,authored,observed,canonical-exact-authored
 0x0041A910,authored_game,assets,authored,observed,cbitmap-data-loaders-authored-106a
 0x0041ABD0,authored_game,assets,authored,observed,canonical-exact-authored
@@ -585,7 +585,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0041B280,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041B3F0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041B7F0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0041B850,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0041B850,authored_game,assets,authored,observed,canonical-exact-authored
 0x0041B880,authored_game,assets,authored,observed,canonical-exact-authored
 0x0041B890,authored_game,assets,authored,observed,canonical-exact-authored
 0x0041B8C0,unknown,,review,unknown,ida-1.06a-initial-inventory

@@ -1343,3 +1343,6 @@ CBitmapData_copy_from
 CBitmapData_png_read
 CBitmapData_load_png
 CBitmapData_load_from_file
+CBitmapData_load_bitmap
+FileBufferView_load_plain
+PackageFileIndexNode_dtor

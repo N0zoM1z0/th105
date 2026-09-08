@@ -21,9 +21,10 @@ public:
     CBitmapData();
     virtual ~CBitmapData();
 
-    bool load_png(const char *path);
-    bool load_from_file(const char *path);
-    void copy_from(const CBitmapSourceView *source);
+    virtual bool load_bitmap(const char *path);
+    virtual bool load_png(const char *path);
+    virtual bool load_from_file(const char *path);
+    virtual void copy_from(const CBitmapSourceView *source);
 
 private:
     unsigned char format_04;
@@ -58,6 +59,260 @@ CBitmapData::~CBitmapData()
 {
     if (buffer_1c != 0)
         free(buffer_1c);
+}
+
+#pragma pack(push, 2)
+struct BitmapFileHeader14 {
+    unsigned short type_00;
+    unsigned int file_size_02;
+    unsigned short reserved_06;
+    unsigned short reserved_08;
+    unsigned int bits_offset_0a;
+};
+#pragma pack(pop)
+
+struct BitmapInfoHeader40 {
+    unsigned int size_00;
+    int width_04;
+    int height_08;
+    unsigned short planes_0c;
+    unsigned short bit_count_0e;
+    unsigned int compression_10;
+    unsigned int image_size_14;
+    int x_pixels_per_meter_18;
+    int y_pixels_per_meter_1c;
+    unsigned int colors_used_20;
+    unsigned int colors_important_24;
+};
+
+struct BitmapPaletteColor {
+    unsigned char red;
+    unsigned char green;
+    unsigned char blue;
+    unsigned char alpha;
+};
+
+struct BitmapSourcePaletteColor {
+    unsigned char blue;
+    unsigned char green;
+    unsigned char red;
+    unsigned char alpha;
+};
+
+bool CBitmapData::load_bitmap(const char *path)
+{
+    FileReaderOwner file;
+    if (!file.open(path))
+        return false;
+
+    CFileReader *reader = file.reader;
+
+    unsigned short *palette16;
+    unsigned int *palette32;
+    unsigned short type;
+    palette16 = 0;
+    palette32 = 0;
+    reader->read(&type, 2);
+    if (type != 0x4D42)
+        return load_png(path);
+
+    reader->seek(0, 0);
+    unsigned int file_size = reader->size();
+    unsigned char *file_data = new unsigned char[file_size];
+    reader->read(file_data, file_size);
+
+    BitmapFileHeader14 *file_header =
+        reinterpret_cast<BitmapFileHeader14 *>(file_data);
+    BitmapInfoHeader40 *info = reinterpret_cast<BitmapInfoHeader40 *>(
+        file_data + sizeof(BitmapFileHeader14));
+    unsigned char *source = file_data + file_header->bits_offset_0a;
+    unsigned char source_bpp = static_cast<unsigned char>(info->bit_count_0e);
+
+    if (format_04 == 0) {
+        format_04 = source_bpp;
+        if (format_04 < 8)
+            format_04 = 8;
+    }
+    if (format_04 == 32 && source_bpp <= 24)
+        format_04 = 24;
+    if (format_04 == 8 && field_18 == 0)
+        format_04 = 16;
+
+    field_08 = info->width_04;
+    field_0c = info->height_08;
+    field_10 = (field_08 + 3) & ~3;
+    int source_stride = (field_08 * source_bpp / 8 + 3) & ~3;
+
+    BitmapPaletteColor palette[256];
+    if (source_bpp <= 8 && format_04 >= 16) {
+        int color_count = 1 << source_bpp;
+        BitmapSourcePaletteColor *source_palette =
+            reinterpret_cast<BitmapSourcePaletteColor *>(file_data + 54);
+        for (int index = 0; index < color_count; ++index) {
+            palette[index].red = source_palette[index].red;
+            palette[index].green = source_palette[index].green;
+            palette[index].blue = source_palette[index].blue;
+            palette[index].alpha = source_palette[index].alpha;
+        }
+
+        if (format_04 == 16) {
+            palette16 = new unsigned short[256];
+            for (int index = 0; index < 256; index += 4) {
+                palette16[index + 0] = static_cast<unsigned short>(
+                    0x8000 | ((palette[index + 0].red & 0xF8) << 7) |
+                    ((palette[index + 0].green & 0xF8) << 2) |
+                    (palette[index + 0].blue >> 3));
+                palette16[index + 1] = static_cast<unsigned short>(
+                    0x8000 | ((palette[index + 1].red & 0xF8) << 7) |
+                    ((palette[index + 1].green & 0xF8) << 2) |
+                    (palette[index + 1].blue >> 3));
+                palette16[index + 2] = static_cast<unsigned short>(
+                    0x8000 | ((palette[index + 2].red & 0xF8) << 7) |
+                    ((palette[index + 2].green & 0xF8) << 2) |
+                    (palette[index + 2].blue >> 3));
+                palette16[index + 3] = static_cast<unsigned short>(
+                    0x8000 | ((palette[index + 3].red & 0xF8) << 7) |
+                    ((palette[index + 3].green & 0xF8) << 2) |
+                    (palette[index + 3].blue >> 3));
+            }
+            palette16[0] &= 0x7FFF;
+        } else if (format_04 == 24) {
+            palette32 = new unsigned int[256];
+            for (int index = 0; index < 256; index += 4) {
+                palette32[index + 0] =
+                    0xFF000000u | (palette[index + 0].red << 16) |
+                    (palette[index + 0].green << 8) |
+                    palette[index + 0].blue;
+                palette32[index + 1] =
+                    0xFF000000u | (palette[index + 1].red << 16) |
+                    (palette[index + 1].green << 8) |
+                    palette[index + 1].blue;
+                palette32[index + 2] =
+                    0xFF000000u | (palette[index + 2].red << 16) |
+                    (palette[index + 2].green << 8) |
+                    palette[index + 2].blue;
+                palette32[index + 3] =
+                    0xFF000000u | (palette[index + 3].red << 16) |
+                    (palette[index + 3].green << 8) |
+                    palette[index + 3].blue;
+            }
+            reinterpret_cast<unsigned char *>(palette32)[3] = 0;
+        }
+    }
+
+    switch (format_04) {
+    case 8: {
+        unsigned char *destination =
+            new unsigned char[field_10 * field_0c];
+        buffer_1c = destination;
+        for (int y = 0; y < field_0c; ++y) {
+            for (int x = 0; x < field_08; ++x)
+                destination[x + field_10 * (field_0c - y - 1)] = source[x];
+            source += source_stride;
+        }
+        break;
+    }
+    case 16: {
+        unsigned short *destination =
+            new unsigned short[field_10 * field_0c];
+        buffer_1c = reinterpret_cast<unsigned char *>(destination);
+        if (source_bpp <= 8) {
+            for (int y = 0; y < field_0c; ++y) {
+                for (int x = 0; x < field_08; ++x) {
+                    destination[x + field_10 * (field_0c - y - 1)] =
+                        palette16[source[x]];
+                }
+                source += source_stride;
+            }
+        } else {
+            for (int y = 0; y < field_0c; ++y) {
+                unsigned char *pixel = source + 1;
+                for (int x = 0; x < field_08; ++x) {
+                    destination[x + field_10 * (field_0c - y - 1)] =
+                        static_cast<unsigned short>(pixel[-1] >> 3);
+                    destination[x + field_10 * (field_0c - y - 1)] |=
+                        static_cast<unsigned short>((pixel[0] & 0xF8) << 2);
+                    destination[x + field_10 * (field_0c - y - 1)] |=
+                        static_cast<unsigned short>((pixel[1] & 0xF8) << 7);
+                    if ((pixel[-1] | pixel[0] | pixel[1]) == 0)
+                        destination[x + field_10 * (field_0c - y - 1)] &= 0x7FFF;
+                    else
+                        destination[x + field_10 * (field_0c - y - 1)] |= 0x8000;
+                    pixel += 3;
+                }
+                source += source_stride;
+            }
+        }
+        break;
+    }
+    case 24: {
+        unsigned int *destination =
+            new unsigned int[field_10 * field_0c];
+        buffer_1c = reinterpret_cast<unsigned char *>(destination);
+        if (source_bpp <= 8) {
+            for (int y = 0; y < field_0c; ++y) {
+                for (int x = 0; x < field_08; ++x) {
+                    destination[x + field_10 * (field_0c - y - 1)] =
+                        palette32[source[x]];
+                }
+                source += source_stride;
+            }
+        } else {
+            for (int y = 0; y < field_0c; ++y) {
+                unsigned char *pixel = source + 2;
+                for (int x = 0; x < field_08; ++x) {
+                    destination[x + field_10 * (field_0c - y - 1)] =
+                        static_cast<unsigned int>(pixel[-2]);
+                    destination[x + field_10 * (field_0c - y - 1)] |=
+                        static_cast<unsigned int>(pixel[-1]) << 8;
+                    destination[x + field_10 * (field_0c - y - 1)] |=
+                        static_cast<unsigned int>(pixel[0]) << 16;
+                    if (pixel[-2] == 0 && pixel[-1] == 0xFF && pixel[0] == 0)
+                        destination[x + field_10 * (field_0c - y - 1)] = 0;
+                    else
+                        destination[x + field_10 * (field_0c - y - 1)] |=
+                            0xFF000000u;
+                    pixel += 3;
+                }
+                source += source_stride;
+            }
+        }
+        break;
+    }
+    case 32: {
+        unsigned int *destination =
+            new unsigned int[field_10 * field_0c];
+        buffer_1c = reinterpret_cast<unsigned char *>(destination);
+        if (source_bpp <= 8) {
+            for (int y = 0; y < field_0c; ++y) {
+                for (int x = 0; x < field_08; ++x) {
+                    destination[x + field_10 * (field_0c - y - 1)] =
+                        palette32[source[x]];
+                }
+                source += source_stride;
+            }
+        } else {
+            for (int y = 0; y < field_0c; ++y) {
+                unsigned int *pixel = reinterpret_cast<unsigned int *>(source);
+                for (int x = 0; x < field_08; ++x) {
+                    destination[x + field_10 * (field_0c - y - 1)] = *pixel;
+                    ++pixel;
+                }
+                source += source_stride;
+            }
+        }
+        break;
+    }
+    default:
+        break;
+    }
+
+    if (palette16 != 0)
+        free(palette16);
+    else if (palette32 != 0)
+        free(palette32);
+    free(file_data);
+    return true;
 }
 
 bool CBitmapData::load_png(const char *path)

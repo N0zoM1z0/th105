@@ -1289,12 +1289,24 @@ evidence = "Current audio scheduler ownership is closed independently of IDA bou
 
 [[rules]]
 id = "cbitmap-data-loaders-authored-106a"
-addresses = ["0x0041A910", "0x0041ACA0"]
-expected_count = 2
-expected_bytes = 1151
-expected_names = ["sub_41A910", "sub_41ACA0"]
+addresses = ["0x00419FF0", "0x0041A910", "0x0041ACA0"]
+expected_count = 3
+expected_bytes = 3381
+expected_names = ["sub_419FF0", "sub_41A910", "sub_41ACA0"]
 origin = "authored_game"
 subsystem = "assets"
 disposition = "authored"
 confidence = "observed"
-evidence = "Current CBitmapData RTTI/COL 0x006DCFB0 and primary vtable 0x006D6E10 own slots2/3 at 0x0041A910/0x0041ACA0. Slot2 passes canonical-exact game callback 0x0041A8E0 into the embedded libpng read path; slot3 is the adjacent native FileReaderOwner bitmap loader. Typed source closes both behaviors; formal clean VC8 remains nonexact only on documented FileReaderOwner late-inline/EH scheduling."
+evidence = "Current CBitmapData RTTI/COL 0x006DCFB0 and primary vtable 0x006D6E10 own authored loader slots1/2/3 at 0x00419FF0/0x0041A910/0x0041ACA0. Slot1 is the 2230-byte BMP loader with PNG fallback and target-proved palette/pixel topology; slot2 passes canonical-exact game callback 0x0041A8E0 into embedded libpng; slot3 is the native FileReaderOwner bitmap loader. Typed source closes all three behaviors; formal clean VC8 remains nonexact only on documented stack-coloring/FileReaderOwner late-inline and scheduling phases."
+
+[[rules]]
+id = "plain-file-buffer-authored-106a"
+addresses = ["0x00419860"]
+expected_count = 1
+expected_bytes = 234
+expected_names = ["sub_419860"]
+origin = "authored_game"
+subsystem = "assets"
+disposition = "authored"
+confidence = "observed"
+evidence = "Current wrappers 0x00408DB0/0x00408E40 preserve their incoming receiver in ECX and directly call 0x00419860 with only the original path on the stack when encoded-resource mode is disabled. The alternate branches rewrite the extension to .cv0/.cv1 and call adjacent private encoded loader 0x00419950. Natural FileBuffer source closes the plain loader semantics; canonical exactness remains separately gated."
