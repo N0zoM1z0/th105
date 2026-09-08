@@ -80,6 +80,8 @@ Python environment.
 
 For roster Object giant roots, run `scripts/rank-roster-object-shared-callees.py` before decompiling another action family. It discovers direct external callees from raw canonical root bytes and only then annotates candidate/origin state, so missing IDA functions or stale classifications remain visible. Use the result as candidate/primitive evidence only; canonical exact acceptance still requires the normal match unit/comparator.
 
+Candidate-boundary review must also cover indirect/data-driven call surfaces. Run `scripts/audit-roster-primary-vtable-coverage.py` to close the current Fighter/Object primary vtables against candidate starts, and use `scripts/rank-unledgered-rdata-text-pointers.py` to rank aligned canonical `.rdata` pointers that land outside all tracked main spans and reviewed remote chunks. Neither report assigns authored or exact credit. A raw pointer can name a compiler startup thunk, EH helper, deleting destructor, jump-table byte sequence or a real authored virtual/callback. Promote only after raw boundary isolation plus ownership/RTTI/caller evidence; then require the ordinary canonical comparator before exact acceptance. `CSceneManager::initialize @ 0x0041E070` is the current positive example: IDA had no containing function, but RTTI/vtable ownership plus a separately padded 162-byte body established the candidate and ordinary VC8 source subsequently matched 162/162.
+
 ## Shared-change replay
 
 Headers, class layouts, inline functions, compiler flags, translation-unit

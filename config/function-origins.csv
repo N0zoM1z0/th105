@@ -636,6 +636,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0041DFD0,authored_game,battle,authored,observed,canonical-exact-authored
 0x0041DFF0,authored_game,battle,authored,observed,canonical-exact-authored
 0x0041E040,authored_game,ui,authored,observed,canonical-exact-authored
+0x0041E070,authored_game,engine,authored,observed,canonical-exact-authored
 0x0041E120,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041E140,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041E150,unknown,,review,unknown,ida-1.06a-initial-inventory

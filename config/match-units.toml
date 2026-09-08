@@ -17735,3 +17735,32 @@ rel32_targets = [
   "?get_session_setup_option@th105@@YAIXZ=0x0043B070",
   "__invalid_parameter_noinfo=0x0068A143",
 ]
+
+[units.gpt-web-scene-manager-initialize]
+kind = "probe"
+source = "src/engine/SceneManagerRuntime.cpp"
+object = "build/match-units/GptWeb_SceneManagerRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Raw target RTTI proves CSceneManager : ISceneManager vtable 0x006C74AC. IDA omits the 0x0041E070 first virtual slot entirely; surrounding padding and four following tracked vtable slots prove the callable boundary independently of IDA. Natural VC8 startup source is canonical exact 162/162 with no shaping."
+
+[[units.gpt-web-scene-manager-initialize.functions]]
+address = "0x0041E070"
+symbol_base = "?initialize@CSceneManager@th105@@UAEXXZ"
+rel32_targets = [
+  "?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750",
+  "?set_state_22@RenderModeManager@th105@@QAEXH@Z=0x00404A40",
+  "?set_gate_states@RenderModeManager@th105@@QAEHEE@Z=0x004049C0",
+  "?set_pair_state@RenderModeManager@th105@@QAEEEE@Z=0x00404940",
+  "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
+  "?set_sampler_state@RenderModeManager@th105@@QAEJIII@Z=0x00404730",
+  "?initialize_403460@BgmBootstrapServiceView@th105@@QAEXXZ=0x00403460",
+  "?initialize_401990@WaveBootstrapServiceView@th105@@QAEXXZ=0x00401990",
+  "?initialize_scene_resources_43e2e0@th105@@YAXXZ=0x0043E2E0",
+  "?start_async_engine_scene_load@th105@@YAEH@Z=0x0043B840",
+]
+dir32_targets = [
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+  "?g_bgm_bootstrap_service@th105@@3UBgmBootstrapServiceView@1@A=?g_bgm_service@th105@@3UBgmServiceView@1@A",
+  "?g_wave_bootstrap_service@th105@@3UWaveBootstrapServiceView@1@A=?g_wave_handle_service@th105@@3UOpaqueWaveHandleService@1@A",
+]

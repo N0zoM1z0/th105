@@ -38,6 +38,8 @@ class WorkflowToolingTests(unittest.TestCase):
         cls.typed = load_script("typed-re.py")
         cls.mcp_runtime = load_script("mcp_runtime.py")
         cls.xiph_sdk = load_script("fetch-xiph-sdk-object.py")
+        cls.roster_vtable_coverage = load_script("audit-roster-primary-vtable-coverage.py")
+        cls.rdata_text_pointers = load_script("rank-unledgered-rdata-text-pointers.py")
 
     def test_corrected_target_identity(self) -> None:
         manifest = self.validator.validate_target(require_bytes=False)
@@ -53,25 +55,25 @@ class WorkflowToolingTests(unittest.TestCase):
             newline="", encoding="utf-8"
         ) as stream:
             functions = list(csv.DictReader(stream))
-        self.assertEqual(len(functions), 4011)
+        self.assertEqual(len(functions), 4012)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1284)
+        self.assertEqual(len(matching), 1285)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1326)
+        self.assertEqual(len(implemented), 1327)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1284
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1285
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 466)
+        self.assertEqual(len(manifest["units"]), 467)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1331,
+            1332,
         )
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:
@@ -251,8 +253,8 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 447)
-        self.assertEqual(sum(map(len, accepted.values())), 1284)
+        self.assertEqual(len(accepted), 448)
+        self.assertEqual(sum(map(len, accepted.values())), 1285)
         secondary = accepted["gpt-web-secondary-animation-runtime"]
         self.assertEqual(
             secondary,
@@ -264,16 +266,58 @@ class WorkflowToolingTests(unittest.TestCase):
         )
         self.assertEqual(len(view["functions"]), 5)
 
+    def test_ida_missed_cscene_manager_virtual_and_raw_pointer_audits_are_pinned(self) -> None:
+        with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
+            functions = {row["address"].upper(): row for row in csv.DictReader(stream)}
+        with (ROOT / "config" / "function-origins.csv").open(newline="", encoding="utf-8") as stream:
+            origins = {row["address"].upper(): row for row in csv.DictReader(stream)}
+
+        scene = functions["0X0041E070"]
+        self.assertEqual(scene["proposed_name"], "CSceneManager_initialize")
+        self.assertEqual(scene["status"], "matching")
+        self.assertEqual(scene["match_percent"], "100.00")
+        self.assertEqual(scene["size"], "162")
+        self.assertEqual(scene["source_file"], "src/engine/SceneManagerRuntime.cpp")
+        self.assertEqual(origins["0X0041E070"]["origin"], "authored_game")
+        self.assertEqual(origins["0X0041E070"]["disposition"], "authored")
+
+        units = self.manifest.load_manifest()["units"]
+        unit = units["gpt-web-scene-manager-initialize"]
+        self.assertEqual(unit["source"], "src/engine/SceneManagerRuntime.cpp")
+        self.assertEqual(unit["functions"][0]["address"].upper(), "0X0041E070")
+
+        vtable = self.roster_vtable_coverage.audit()
+        surfaces = {surface["surface"]: surface for surface in vtable["surfaces"]}
+        self.assertEqual(
+            (surfaces["fighter"]["owner_count"], surfaces["fighter"]["slot_count"],
+             surfaces["fighter"]["unique_pointer_count"]),
+            (15, 360, 99),
+        )
+        self.assertEqual(surfaces["fighter"]["ledger_interior"], [])
+        self.assertEqual(surfaces["fighter"]["unledgered"], [])
+        self.assertEqual(
+            (surfaces["object"]["owner_count"], surfaces["object"]["slot_count"],
+             surfaces["object"]["unique_pointer_count"]),
+            (15, 255, 59),
+        )
+        self.assertEqual(surfaces["object"]["ledger_interior"], [])
+        self.assertEqual(surfaces["object"]["unledgered"], [])
+
+        rdata = self.rdata_text_pointers.census()
+        uncovered = {row["address"].upper() for row in rdata["uncovered"]}
+        self.assertNotIn("0X0041E070", uncovered)
+        self.assertIn("0X006BE770", uncovered)
+
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
-        self.assertIn("Tracked 1.06a function candidates | 4,011", markdown)
-        self.assertIn("Confirmed authored functions | 1,413", markdown)
-        self.assertIn("Confirmed authored code bytes | 2,075,762", markdown)
+        self.assertIn("Tracked 1.06a function candidates | 4,012", markdown)
+        self.assertIn("Confirmed authored functions | 1,414", markdown)
+        self.assertIn("Confirmed authored code bytes | 2,075,924", markdown)
         self.assertIn("Classified exclusions | 1,293", markdown)
         self.assertIn("Origin/boundary review pending | 1,305", markdown)
-        self.assertIn("Canonical exact functions | 1,284", markdown)
-        self.assertIn("Canonical exact authored bytes | 215,583", markdown)
-        self.assertIn("Source-present authored mappings | 1,326", markdown)
+        self.assertIn("Canonical exact functions | 1,285", markdown)
+        self.assertIn("Canonical exact authored bytes | 215,745", markdown)
+        self.assertIn("Source-present authored mappings | 1,327", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
