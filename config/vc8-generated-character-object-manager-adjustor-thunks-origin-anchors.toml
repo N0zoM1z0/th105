@@ -1,0 +1,119 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/characters/CharacterObjectManagerCtors.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.50
+min_nonreloc_bytes = 4
+max_alignment_tail = 0
+alignment_tail_hex = ""
+
+# Secondary-base deleting-destructor adjustor thunks.  Fresh VC8 multiple
+# inheritance emits each W3 thunk as `sub ecx,4; jmp derived deleting dtor`.
+# REL32 targets are part of the fail-closed fingerprint, so unrelated thunks
+# with the same four non-relocation bytes cannot enter this family.
+
+[[anchors]]
+address = "0x004FAAC0"
+size = 8
+symbol = "??_E?$CharacterObjectManager@VAlice@@VAliceObject@@@@W3AEPAXI@Z"
+pointer_slots = ["0x006C4BA4"]
+rel32_targets = ["??_E?$CharacterObjectManager@VAlice@@VAliceObject@@@@UAEPAXI@Z=0x004FAC20"]
+
+[[anchors]]
+address = "0x00618280"
+size = 8
+symbol = "??_E?$CharacterObjectManager@VAya@@VAyaObject@@@@W3AEPAXI@Z"
+pointer_slots = ["0x006C629C"]
+rel32_targets = ["??_E?$CharacterObjectManager@VAya@@VAyaObject@@@@UAEPAXI@Z=0x006185C0"]
+
+[[anchors]]
+address = "0x00631130"
+size = 8
+symbol = "??_E?$CharacterObjectManager@VIku@@VIkuObject@@@@W3AEPAXI@Z"
+pointer_slots = ["0x006C64F4"]
+rel32_targets = ["??_E?$CharacterObjectManager@VIku@@VIkuObject@@@@UAEPAXI@Z=0x00631290"]
+
+[[anchors]]
+address = "0x005F78B0"
+size = 8
+symbol = "??_E?$CharacterObjectManager@VKomachi@@VKomachiObject@@@@W3AEPAXI@Z"
+pointer_slots = ["0x006C602C"]
+rel32_targets = ["??_E?$CharacterObjectManager@VKomachi@@VKomachiObject@@@@UAEPAXI@Z=0x005F7A10"]
+
+[[anchors]]
+address = "0x004B9D90"
+size = 8
+symbol = "??_E?$CharacterObjectManager@VMarisa@@VMarisaObject@@@@W3AEPAXI@Z"
+pointer_slots = ["0x006C454C"]
+rel32_targets = ["??_E?$CharacterObjectManager@VMarisa@@VMarisaObject@@@@UAEPAXI@Z=0x004B9F00"]
+
+[[anchors]]
+address = "0x0051ED60"
+size = 8
+symbol = "??_E?$CharacterObjectManager@VPatchouli@@VPatchouliObject@@@@W3AEPAXI@Z"
+pointer_slots = ["0x006C4E74"]
+rel32_targets = ["??_E?$CharacterObjectManager@VPatchouli@@VPatchouliObject@@@@UAEPAXI@Z=0x0051EEC0"]
+
+[[anchors]]
+address = "0x004938C0"
+size = 8
+symbol = "??_E?$CharacterObjectManager@VReimu@@VReimuObject@@@@W3AEPAXI@Z"
+pointer_slots = ["0x006C40F4"]
+rel32_targets = ["??_E?$CharacterObjectManager@VReimu@@VReimuObject@@@@UAEPAXI@Z=0x00493A20"]
+
+[[anchors]]
+address = "0x00555E70"
+size = 8
+symbol = "??_E?$CharacterObjectManager@VRemilia@@VRemiliaObject@@@@W3AEPAXI@Z"
+pointer_slots = ["0x006C538C"]
+rel32_targets = ["??_E?$CharacterObjectManager@VRemilia@@VRemiliaObject@@@@UAEPAXI@Z=0x00555FD0"]
+
+[[anchors]]
+address = "0x004DF2B0"
+size = 8
+symbol = "??_E?$CharacterObjectManager@VSakuya@@VSakuyaObject@@@@W3AEPAXI@Z"
+pointer_slots = ["0x006C48DC"]
+rel32_targets = ["??_E?$CharacterObjectManager@VSakuya@@VSakuyaObject@@@@UAEPAXI@Z=0x004DF410"]
+
+[[anchors]]
+address = "0x005AEB00"
+size = 8
+symbol = "??_E?$CharacterObjectManager@VSuika@@VSuikaObject@@@@W3AEPAXI@Z"
+pointer_slots = ["0x006C5B54"]
+rel32_targets = ["??_E?$CharacterObjectManager@VSuika@@VSuikaObject@@@@UAEPAXI@Z=0x005AEC60"]
+
+[[anchors]]
+address = "0x0064B500"
+size = 8
+symbol = "??_E?$CharacterObjectManager@VTenshi@@VTenshiObject@@@@W3AEPAXI@Z"
+pointer_slots = ["0x006C675C"]
+rel32_targets = ["??_E?$CharacterObjectManager@VTenshi@@VTenshiObject@@@@UAEPAXI@Z=0x0064B6D0"]
+
+[[anchors]]
+address = "0x005D2A50"
+size = 8
+symbol = "??_E?$CharacterObjectManager@VUdonge@@VUdongeObject@@@@W3AEPAXI@Z"
+pointer_slots = ["0x006C5DF4"]
+rel32_targets = ["??_E?$CharacterObjectManager@VUdonge@@VUdongeObject@@@@UAEPAXI@Z=0x005D2BD0"]
+
+[[anchors]]
+address = "0x0053B120"
+size = 8
+symbol = "??_E?$CharacterObjectManager@VYoumu@@VYoumuObject@@@@W3AEPAXI@Z"
+pointer_slots = ["0x006C510C"]
+rel32_targets = ["??_E?$CharacterObjectManager@VYoumu@@VYoumuObject@@@@UAEPAXI@Z=0x0053B310"]
+
+[[anchors]]
+address = "0x0058BE00"
+size = 8
+symbol = "??_E?$CharacterObjectManager@VYukari@@VYukariObject@@@@W3AEPAXI@Z"
+pointer_slots = ["0x006C5894"]
+rel32_targets = ["??_E?$CharacterObjectManager@VYukari@@VYukariObject@@@@UAEPAXI@Z=0x0058C0D0"]
+
+[[anchors]]
+address = "0x0056DCA0"
+size = 8
+symbol = "??_E?$CharacterObjectManager@VYuyuko@@VYuyukoObject@@@@W3AEPAXI@Z"
+pointer_slots = ["0x006C5614"]
+rel32_targets = ["??_E?$CharacterObjectManager@VYuyuko@@VYuyukoObject@@@@UAEPAXI@Z=0x0056DE10"]

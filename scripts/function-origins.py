@@ -862,6 +862,22 @@ def validate_vc8_generated_anchor_evidence(
         if int(row["size"], 0) != size:
             errors.append(f"{rule['id']}: {address} size differs from VC8 generated anchor")
             continue
+        expected_address = int(address, 0)
+        for pointer_text in anchor_row.get("pointer_slots", []):
+            try:
+                pointer_address = int(str(pointer_text), 0)
+                pointer_value = struct.unpack("<I", read_pe(pointer_address, 4))[0]
+            except (ValueError, struct.error) as exc:
+                errors.append(
+                    f"{rule['id']}: {address} invalid generated pointer witness {pointer_text!r}: {exc}"
+                )
+                continue
+            if pointer_value != expected_address:
+                errors.append(
+                    f"{rule['id']}: {address} pointer witness 0x{pointer_address:08X} contains "
+                    f"0x{pointer_value:08X}, expected 0x{expected_address:08X}"
+                )
+
         symbol = str(anchor_row["symbol"])
         try:
             _name, body, wild, relocations = rank.read_coff_function(
@@ -894,16 +910,47 @@ def validate_vc8_generated_anchor_evidence(
             errors.append(f"{rule['id']}: {address}: {exc}")
             continue
 
+        expected_rel32: dict[str, int] = {}
+        for mapping in anchor_row.get("rel32_targets", []):
+            text = str(mapping)
+            symbol_name, separator, target_text = text.rpartition("=")
+            if not separator or not symbol_name or not target_text:
+                errors.append(
+                    f"{rule['id']}: {address} has invalid generated REL32 target mapping {text!r}"
+                )
+                continue
+            try:
+                expected_rel32[symbol_name] = int(target_text, 0)
+            except ValueError:
+                errors.append(
+                    f"{rule['id']}: {address} has invalid generated REL32 target address {target_text!r}"
+                )
+
+        rel32_offsets: dict[str, list[int]] = {}
         for field_offset, relocation_type, relocation_name in relocations:
             if relocation_type not in (0x0006, 0x0014):
                 errors.append(
                     f"{rule['id']}: {address} generated symbol has unsupported relocation "
                     f"{relocation_type:#x} for {relocation_name}"
                 )
-            if relocation_type == 0x0014 and xiph_rel32_operand_kind(body, field_offset) is None:
+            if relocation_type == 0x0014:
+                rel32_offsets.setdefault(relocation_name, []).append(field_offset)
+                if xiph_rel32_operand_kind(body, field_offset) is None:
+                    errors.append(
+                        f"{rule['id']}: {address} REL32 at +{field_offset:#x} is not CALL/JMP/Jcc"
+                    )
+        if expected_rel32:
+            if set(rel32_offsets) != set(expected_rel32):
                 errors.append(
-                    f"{rule['id']}: {address} REL32 at +{field_offset:#x} is not CALL/JMP/Jcc"
+                    f"{rule['id']}: {address} generated REL32 symbols differ: "
+                    f"got {sorted(rel32_offsets)}, expected {sorted(expected_rel32)}"
                 )
+            for relocation_name, offsets in rel32_offsets.items():
+                if len(offsets) != 1:
+                    errors.append(
+                        f"{rule['id']}: {address} generated REL32 symbol {relocation_name!r} "
+                        f"occurs {len(offsets)} times, expected exactly once"
+                    )
         nonreloc = size - len(wild)
         if nonreloc < min_nonreloc or nonreloc / size < min_coverage:
             errors.append(f"{rule['id']}: {address} generated fingerprint coverage is too weak")
@@ -917,16 +964,40 @@ def validate_vc8_generated_anchor_evidence(
             errors.append(f"{rule['id']}: {address} no longer matches generated VC8 fingerprint")
             continue
 
+        rel32_expectations: list[tuple[int, int, str]] = []
+        for relocation_name, expected_target in expected_rel32.items():
+            offsets = rel32_offsets.get(relocation_name, [])
+            if len(offsets) != 1:
+                continue
+            field_offset = offsets[0]
+            displacement = struct.unpack_from("<i", actual, field_offset)[0]
+            actual_target = int(address, 0) + field_offset + 4 + displacement
+            if actual_target != expected_target:
+                errors.append(
+                    f"{rule['id']}: {address} REL32 {relocation_name!r} targets "
+                    f"0x{actual_target:08X}, expected 0x{expected_target:08X}"
+                )
+            rel32_expectations.append((field_offset, expected_target, relocation_name))
+
         candidates = []
         for other in rows:
             other_body = candidate_bytes.get(other["address"])
             if other_body is None or len(other_body) != size:
                 continue
-            if all(
+            if not all(
                 index in wild or other_body[index] == body[index]
                 for index in range(size)
             ):
-                candidates.append(other["address"])
+                continue
+            other_address = int(other["address"], 0)
+            if any(
+                other_address + field_offset + 4
+                + struct.unpack_from("<i", other_body, field_offset)[0]
+                != expected_target
+                for field_offset, expected_target, _relocation_name in rel32_expectations
+            ):
+                continue
+            candidates.append(other["address"])
         group = str(anchor_row.get("equivalence_group", "")).strip()
         expected_candidates = (
             sorted(equivalence_groups[group]) if group else [address]

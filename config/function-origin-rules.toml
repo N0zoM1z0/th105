@@ -941,3 +941,25 @@ subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
 evidence = "SHA-pinned VC8 SP1 rebuild of canonical-exact EffectManagerVirtuals.cpp regenerates the virtual member-pointer thunk for vslot +0x28. Its complete five-byte fingerprint must remain inventory-unique at current 0x00421D20 across all 4,010 spans."
+
+[[rules]]
+id = "vc8-character-object-manager-adjustor-thunks-106a"
+vc8_generated_anchor_file = "config/vc8-generated-character-object-manager-adjustor-thunks-origin-anchors.toml"
+expected_count = 15
+expected_bytes = 120
+origin = "compiler_generated"
+subsystem = "characters"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of the exact CharacterObjectManager multiple-inheritance lifetime emits all fifteen secondary-base deleting-destructor W3 adjustor thunks. Each 8-byte target is vtable-owned and must match `sub ecx,4; jmp derived deleting dtor`; generated REL32 symbol/target validation prevents unrelated same-shape thunks from entering the family."
+
+[[rules]]
+id = "vc8-effect-manager-adjustor-thunks-106a"
+vc8_generated_anchor_file = "config/vc8-generated-effect-manager-adjustor-thunks-origin-anchors.toml"
+expected_count = 4
+expected_bytes = 32
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of exact CEffectManager multiple-inheritance lifetimes emits the four CSelect/Weather/Effect/Info secondary-base deleting-destructor W3 adjustor thunks. Each 8-byte target has an RTTI/vtable data reference and generated REL32 symbol/target validation pins the derived deleting destructor."

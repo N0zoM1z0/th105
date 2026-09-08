@@ -1,0 +1,40 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/battle/EffectManagerLifetime.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.50
+min_nonreloc_bytes = 4
+max_alignment_tail = 0
+alignment_tail_hex = ""
+
+# The same VC8 MI deleting-destructor adjustor shape for the four effect
+# manager specializations.  Each target is independently vtable-referenced.
+
+[[anchors]]
+address = "0x00421D10"
+size = 8
+symbol = "??_E?$CEffectManager@VCSelectObject@@@@W3AEPAXI@Z"
+pointer_slots = ["0x006C08D8"]
+rel32_targets = ["??_E?$CEffectManager@VCSelectObject@@@@UAEPAXI@Z=0x00424240"]
+
+[[anchors]]
+address = "0x004374E0"
+size = 8
+symbol = "??_E?$CEffectManager@VWeatherEffectObject@@@@W3AEPAXI@Z"
+pointer_slots = ["0x006C1410"]
+rel32_targets = ["??_E?$CEffectManager@VWeatherEffectObject@@@@UAEPAXI@Z=0x00438970"]
+
+[[anchors]]
+address = "0x004379A0"
+size = 8
+symbol = "??_E?$CEffectManager@VEffectObject@@@@W3AEPAXI@Z"
+pointer_slots = ["0x006C1488"]
+rel32_targets = ["??_E?$CEffectManager@VEffectObject@@@@UAEPAXI@Z=0x00438990"]
+
+[[anchors]]
+address = "0x0046F140"
+size = 8
+symbol = "??_E?$CEffectManager@VInfoEffectObject@@@@W3AEPAXI@Z"
+pointer_slots = ["0x006C37B8"]
+rel32_targets = ["??_E?$CEffectManager@VInfoEffectObject@@@@UAEPAXI@Z=0x0046F780"]

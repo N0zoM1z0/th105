@@ -136,6 +136,7 @@ typedef char AyaObjectActionState_size[
 
 void AyaObjectActionStateView::update_action_state()
 {
+    float payload[3];
     switch (action_id_13c) {
     case 800:
         if (phase_state_180 == 5) {
@@ -187,7 +188,7 @@ void AyaObjectActionStateView::update_action_state()
                 return;
             }
             if (!(time_counter_144 % 2)) {
-                float payload[3] = {heading_340[0], 0.0f, 2.0f};
+                payload[0] = heading_340[0]; payload[1] = 0.0f; payload[2] = 2.0f;
                 effect_emitter()->spawn_unparented_related_object(
                     801, sprite_004.object_x_0e8, sprite_004.object_y_0ec,
                     static_cast<unsigned char>(sprite_004.object_facing_100), 1,
@@ -294,7 +295,7 @@ void AyaObjectActionStateView::update_action_state()
                 return;
             }
             if (!(time_counter_144 % 5)) {
-                float payload[3] = {0.0f, 0.0f, 1.0f};
+                payload[0] = 0.0f; payload[1] = 0.0f; payload[2] = 1.0f;
                 reinterpret_cast<FighterOwnedObjectSpawnView *>(fighter_owner_348)
                     ->spawn_owned_object_via_manager(
                         807, sprite_004.object_x_0e8, sprite_004.object_y_0ec,
@@ -387,7 +388,7 @@ void AyaObjectActionStateView::update_action_state()
                 heading_340[0] = 0.0f;
                 heading_340[1] = 6.0f;
                 sprite_004.reset_zero_128 = heading_340[0];
-                float payload[3] = {heading_340[0], 0.0f, 3.0f};
+                payload[0] = heading_340[0]; payload[1] = 0.0f; payload[2] = 3.0f;
                 effect_emitter()->spawn_unparented_related_object(
                     810, sprite_004.object_x_0e8, sprite_004.object_y_0ec,
                     static_cast<unsigned char>(sprite_004.object_facing_100), 1,
@@ -431,7 +432,7 @@ void AyaObjectActionStateView::update_action_state()
                 return;
             }
             if (!(time_counter_144 % 3)) {
-                float payload[3] = {heading_340[0], 0.0f, 2.0f};
+                payload[0] = heading_340[0]; payload[1] = 0.0f; payload[2] = 2.0f;
                 effect_emitter()->spawn_unparented_related_object(
                     811, sprite_004.object_x_0e8, sprite_004.object_y_0ec,
                     static_cast<unsigned char>(sprite_004.object_facing_100), 1,
@@ -653,7 +654,7 @@ void AyaObjectActionStateView::update_action_state()
                 return;
             }
             if (!(time_counter_144 % 2)) {
-                float payload[3] = {heading_340[0], 0.0f, 2.0f};
+                payload[0] = heading_340[0]; payload[1] = 0.0f; payload[2] = 2.0f;
                 effect_emitter()->spawn_unparented_related_object(
                     817, sprite_004.object_x_0e8, sprite_004.object_y_0ec,
                     static_cast<unsigned char>(sprite_004.object_facing_100), 1,
@@ -733,11 +734,7 @@ void AyaObjectActionStateView::update_action_state()
             sprite_004.object_x_0e8 = owner->x_ec;
             sprite_004.object_y_0ec = owner->y_f0;
             if (!(time_counter_144 % 5)) {
-                float payload[3] = {
-                    0.0f,
-                    0.0f,
-                    static_cast<float>((mt19937_next_u32() & 1u) + 2u),
-                };
+                payload[0] = 0.0f; payload[1] = 0.0f; payload[2] = static_cast<float>((mt19937_next_u32() & 1u) + 2u);
                 effect_emitter()->spawn_unparented_related_object(
                     820, sprite_004.object_x_0e8, sprite_004.object_y_0ec,
                     static_cast<unsigned char>(sprite_004.object_facing_100), 1,
@@ -915,7 +912,7 @@ void AyaObjectActionStateView::update_action_state()
                 return;
             }
             if (!(time_counter_144 % 2)) {
-                float payload[3] = {heading_340[0], 0.0f, 2.0f};
+                payload[0] = heading_340[0]; payload[1] = 0.0f; payload[2] = 2.0f;
                 effect_emitter()->spawn_unparented_related_object(
                     822, sprite_004.object_x_0e8, sprite_004.object_y_0ec,
                     static_cast<unsigned char>(sprite_004.object_facing_100), 1,
@@ -1056,7 +1053,6 @@ void AyaObjectActionStateView::update_action_state()
                 && heading_340[0] == 0.0f) { --lifetime_330; return; }
             sprite_004.object_x_0e8 = owner->x_ec;
             sprite_004.object_y_0ec = static_cast<float>(static_cast<double>(owner->y_f0) + 100.0);
-            float payload[3];
             payload[0] = static_cast<float>(selector_random_roll(100) - 50);
             payload[1] = static_cast<float>(selector_random_roll(100) - 50);
             payload[2] = 1.0f;
@@ -1075,7 +1071,7 @@ void AyaObjectActionStateView::update_action_state()
                 if (++state_364 >= 6) { phase_state_180 = 0; state_364 = 0; }
             }
         }
-        if (sequence_index_13e == 1) {
+        if (sequence == 1) {
             CharacterObjectEffectEmitter *const owner = fighter_owner_348;
             sprite_004.object_x_0e8 = owner->x_ec;
             reinterpret_cast<unsigned char *>(this)[0x113] -= 10;
@@ -1198,22 +1194,58 @@ void AyaObjectActionStateView::update_action_state()
         short const sequence = sequence_index_13e;
         if (sequence == 0) {
             if (!(time_counter_144 % 12)) {
-                float payload[3] = {static_cast<float>(20 - selector_random_roll(40)), static_cast<float>(selector_random_roll(10) + 50), 2.0f};
-                float const x = sprite_004.object_facing_100 == 1 ? -100.0f : 1380.0f;
-                float const y = static_cast<float>(selector_random_roll(640));
-                effect_emitter()->spawn_unparented_related_object(852, x, y, static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3);
+                payload[0] = static_cast<float>(20 - selector_random_roll(40));
+                payload[1] = static_cast<float>(selector_random_roll(10) + 50);
+                payload[2] = 2.0f;
+                float x;
+                float y;
+                int direction;
+                if (sprite_004.object_facing_100 == 1) {
+                    direction = 1;
+                    y = static_cast<float>(selector_random_roll(640));
+                    x = -100.0f;
+                } else {
+                    direction = static_cast<unsigned char>(sprite_004.object_facing_100);
+                    y = static_cast<float>(selector_random_roll(640));
+                    x = 1380.0f;
+                }
+                effect_emitter()->spawn_unparented_related_object(852, x, y, direction, 1, reinterpret_cast<const unsigned *>(payload), 3);
             }
             if (!(time_counter_144 % 40)) {
-                float payload[3] = {static_cast<float>(15 - selector_random_roll(30)), static_cast<float>(selector_random_roll(10) + 35), 3.0f};
-                float const x = sprite_004.object_facing_100 == 1 ? -100.0f : 1380.0f;
-                float const y = static_cast<float>(selector_random_roll(640));
-                effect_emitter()->spawn_unparented_related_object(852, x, y, static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3);
+                payload[0] = static_cast<float>(15 - selector_random_roll(30));
+                payload[1] = static_cast<float>(selector_random_roll(10) + 35);
+                payload[2] = 3.0f;
+                float x;
+                float y;
+                int direction;
+                if (sprite_004.object_facing_100 == 1) {
+                    direction = 1;
+                    y = static_cast<float>(selector_random_roll(640));
+                    x = -100.0f;
+                } else {
+                    direction = static_cast<unsigned char>(sprite_004.object_facing_100);
+                    y = static_cast<float>(selector_random_roll(640));
+                    x = 1380.0f;
+                }
+                effect_emitter()->spawn_unparented_related_object(852, x, y, direction, 1, reinterpret_cast<const unsigned *>(payload), 3);
             }
             if (!(time_counter_144 % 15)) {
-                float payload[3] = {0.0f, 0.0f, 1.0f};
-                float const y = static_cast<float>(selector_random_roll(640) - 180);
-                float const x = sprite_004.object_facing_100 == 1 ? static_cast<float>(-400 - selector_random_roll(128)) : static_cast<float>(selector_random_roll(128) + 1680);
-                effect_emitter()->spawn_unparented_related_object(852, x, y, static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3);
+                payload[0] = 0.0f;
+                payload[1] = 0.0f;
+                payload[2] = 1.0f;
+                float x;
+                float y;
+                int direction;
+                if (sprite_004.object_facing_100 == 1) {
+                    direction = 1;
+                    y = static_cast<float>(selector_random_roll(640) - 180);
+                    x = static_cast<float>(-400 - selector_random_roll(128));
+                } else {
+                    direction = static_cast<unsigned char>(sprite_004.object_facing_100);
+                    y = static_cast<float>(selector_random_roll(640) - 180);
+                    x = static_cast<float>(selector_random_roll(128) + 1680);
+                }
+                effect_emitter()->spawn_unparented_related_object(852, x, y, direction, 1, reinterpret_cast<const unsigned *>(payload), 3);
             }
             if (time_counter_144 >= 240) { state_374 = static_cast<float>(state_374 - 0.5); if (state_374 < 0.0f) state_374 = 0.0f; }
             else { state_374 = static_cast<float>(state_374 + 0.5); if (state_374 > 7.0f) state_374 = 7.0f; }
@@ -1251,7 +1283,7 @@ void AyaObjectActionStateView::update_action_state()
             sprite_004.object_x_0e8 = owner->x_ec;
             sprite_004.object_y_0ec = owner->y_f0;
             if (!(time_counter_144 % 5)) {
-                float payload[3] = {0.0f, 0.0f, static_cast<float>((mt19937_next_u32() & 1u) + 2u)};
+                payload[0] = 0.0f; payload[1] = 0.0f; payload[2] = static_cast<float>((mt19937_next_u32() & 1u) + 2u);
                 effect_emitter()->spawn_unparented_related_object(853, sprite_004.object_x_0e8, sprite_004.object_y_0ec, static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3);
             }
             short const owner_action = *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(owner) + 0x13c);
@@ -1337,7 +1369,7 @@ void AyaObjectActionStateView::update_action_state()
         unsigned char &alpha = reinterpret_cast<unsigned char *>(this)[0x113];
         if (sequence_index_13e == 0) {
             if (!(time_counter_144 % 2)) {
-                float payload[3] = {heading_340[0], 0.0f, 2.0f};
+                payload[0] = heading_340[0]; payload[1] = 0.0f; payload[2] = 2.0f;
                 effect_emitter()->spawn_unparented_related_object(
                     854, sprite_004.object_x_0e8, sprite_004.object_y_0ec,
                     static_cast<unsigned char>(sprite_004.object_facing_100), 1,
@@ -1513,7 +1545,8 @@ void AyaObjectActionStateView::update_action_state()
         return;
 
     case 861: {
-        if (sequence_index_13e == 0) {
+        short const sequence = sequence_index_13e;
+        if (sequence == 0) {
             CharacterObjectEffectEmitter *const owner = fighter_owner_348;
             short const owner_action = *reinterpret_cast<short *>(
                 reinterpret_cast<unsigned char *>(owner) + 0x13c);
@@ -1540,7 +1573,6 @@ void AyaObjectActionStateView::update_action_state()
             sprite_004.object_x_0e8 = owner->x_ec;
             sprite_004.object_y_0ec = static_cast<float>(
                 static_cast<double>(owner->y_f0) + 100.0);
-            float payload[3];
             payload[0] = static_cast<float>(selector_random_roll(100) - 50);
             payload[1] = static_cast<float>(selector_random_roll(100) - 50);
             payload[2] = 1.0f;
@@ -1625,13 +1657,13 @@ void AyaObjectActionStateView::update_action_state()
             if (((sprite_004.object_x_0e8 >= 1280.0f && sprite_004.object_facing_100 == 1) || (sprite_004.object_x_0e8 <= 0.0f && sprite_004.object_facing_100 == -1)) && !state_364) {
             switch (g_match_identifier) {
             case 0: {
-                float i = 0.0f; do { float payload[3] = {static_cast<float>(i * 20.0f + 170.0f), 6.0f, 3.0f}; effect_emitter()->spawn_unparented_related_object(900, sprite_004.object_x_0e8, static_cast<float>(sprite_004.object_y_0ec + 100.0), static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3); i += 1.0f; } while (i < 2.0f); break; }
+                float i = 0.0f; do { payload[0] = static_cast<float>(i * 20.0f + 170.0f); payload[1] = 6.0f; payload[2] = 3.0f; effect_emitter()->spawn_unparented_related_object(900, sprite_004.object_x_0e8, static_cast<float>(sprite_004.object_y_0ec + 100.0), static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3); i += 1.0f; } while (i < 2.0f); break; }
             case 1: {
-                float i = 0.0f; do { float payload[3] = {static_cast<float>(i * 20.0f + 150.0f), 6.0f, 3.0f}; effect_emitter()->spawn_unparented_related_object(900, sprite_004.object_x_0e8, static_cast<float>(sprite_004.object_y_0ec + 100.0), static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3); i += 1.0f; } while (i < 4.0f); break; }
+                float i = 0.0f; do { payload[0] = static_cast<float>(i * 20.0f + 150.0f); payload[1] = 6.0f; payload[2] = 3.0f; effect_emitter()->spawn_unparented_related_object(900, sprite_004.object_x_0e8, static_cast<float>(sprite_004.object_y_0ec + 100.0), static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3); i += 1.0f; } while (i < 4.0f); break; }
             case 2: {
-                float i = 0.0f; do { float payload[3] = {static_cast<float>(i * 20.0f + 140.0f), 6.0f, 3.0f}; effect_emitter()->spawn_unparented_related_object(900, sprite_004.object_x_0e8, static_cast<float>(sprite_004.object_y_0ec + 100.0), static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3); i += 1.0f; } while (i < 5.0f); break; }
+                float i = 0.0f; do { payload[0] = static_cast<float>(i * 20.0f + 140.0f); payload[1] = 6.0f; payload[2] = 3.0f; effect_emitter()->spawn_unparented_related_object(900, sprite_004.object_x_0e8, static_cast<float>(sprite_004.object_y_0ec + 100.0), static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3); i += 1.0f; } while (i < 5.0f); break; }
             case 3: {
-                float i = 0.0f; do { float payload[3] = {static_cast<float>(i * 20.0f + 120.0f), 6.0f, 3.0f}; effect_emitter()->spawn_unparented_related_object(900, sprite_004.object_x_0e8, static_cast<float>(sprite_004.object_y_0ec + 100.0), static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3); i += 1.0f; } while (i < 6.0f); break; }
+                float i = 0.0f; do { payload[0] = static_cast<float>(i * 20.0f + 120.0f); payload[1] = 6.0f; payload[2] = 3.0f; effect_emitter()->spawn_unparented_related_object(900, sprite_004.object_x_0e8, static_cast<float>(sprite_004.object_y_0ec + 100.0), static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3); i += 1.0f; } while (i < 6.0f); break; }
             default: break;
             }
                 if (*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(owner) + 0x13e) == 1)
@@ -1692,7 +1724,7 @@ void AyaObjectActionStateView::update_action_state()
         switch (sequence_index_13e) {
         case 0:
             if (!(time_counter_144 % 10)) {
-                float payload[3] = {heading_340[0], 0.0f, 1.0f};
+                payload[0] = heading_340[0]; payload[1] = 0.0f; payload[2] = 1.0f;
                 effect_emitter()->spawn_unparented_related_object(901, sprite_004.object_x_0e8, sprite_004.object_y_0ec, static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3);
             }
             heading_340[0] = static_cast<float>(state_370 + state_374 - 90.0);
@@ -1724,7 +1756,7 @@ void AyaObjectActionStateView::update_action_state()
             break;
         case 3:
             if (!(time_counter_144 % 10)) {
-                float payload[3] = {heading_340[0], 0.0f, 1.0f};
+                payload[0] = heading_340[0]; payload[1] = 0.0f; payload[2] = 1.0f;
                 effect_emitter()->spawn_unparented_related_object(901, sprite_004.object_x_0e8, sprite_004.object_y_0ec, static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3);
             }
             if (phase_state_180 == 6 && ++state_six_counter_384 < 20) { ++phase_index_184; phase_state_180 = 0; }
@@ -1759,7 +1791,7 @@ void AyaObjectActionStateView::update_action_state()
             if (!(time_counter_144 % 3)) {
                 state_370 = static_cast<float>(state_370 - 16.0);
                 if (state_370 <= -180.0f) state_370 = static_cast<float>(state_370 + 360.0);
-                float payload[3] = {state_370, 15.0f, 1.0f};
+                payload[0] = state_370; payload[1] = 15.0f; payload[2] = 1.0f;
                 int const spawn_side = (state_370 < 0.0f || state_370 > 180.0f) ? -1 : 1;
                 effect_emitter()->spawn_unparented_related_object(821, sprite_004.object_x_0e8, sprite_004.object_y_0ec, static_cast<unsigned char>(sprite_004.object_facing_100), spawn_side, reinterpret_cast<const unsigned *>(payload), 3);
             }
@@ -1804,6 +1836,14 @@ void AyaObjectActionStateView::update_action_state()
             if (sprite_004.object_x_0e8 > 1380.0f || sprite_004.object_x_0e8 < -100.0f) { --lifetime_330; return; }
             break;
         case 1:
+            if (*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x174) <= 0) { --lifetime_330; return; }
+            if (phase_state_180 == 6) { ++state_six_counter_384; ++phase_index_184; phase_state_180 = 0; }
+            motion_core()->set_oriented_components_f0_f4(heading_340[0], heading_340[1]);
+            sprite_004.object_x_0e8 +=
+                static_cast<float>(sprite_004.object_facing_100) * motion_core()->component_f0;
+            sprite_004.object_y_0ec += motion_core()->component_f4;
+            if (time_counter_144 >= 180) { --lifetime_330; return; }
+            break;
         case 6:
             if (*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x174) <= 0) { --lifetime_330; return; }
             if (phase_state_180 == 6) { ++state_six_counter_384; ++phase_index_184; phase_state_180 = 0; }
@@ -1890,11 +1930,7 @@ void AyaObjectActionStateView::update_action_state()
                 static_cast<float>(sprite_004.object_facing_100) * motion_core()->component_f0;
             sprite_004.object_y_0ec += motion_core()->component_f4;
             if (!(time_counter_144 % 3)) {
-                float payload[3] = {
-                    static_cast<float>(-70.0 - selector_random_roll(40)),
-                    static_cast<float>(selector_random_roll(60) * 0.1f + 4.0),
-                    7.0f,
-                };
+                payload[0] = static_cast<float>(-70.0 - selector_random_roll(40)); payload[1] = static_cast<float>(selector_random_roll(60) * 0.1f + 4.0); payload[2] = 7.0f;
                 effect_emitter()->spawn_unparented_related_object(903, sprite_004.object_x_0e8, sprite_004.object_y_0ec, static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3);
             }
             if (sprite_004.object_x_0e8 > 1380.0f || sprite_004.object_x_0e8 < -100.0f || sprite_004.object_y_0ec > 1000.0f || sprite_004.object_y_0ec < -160.0f || time_counter_144 >= 60) { --lifetime_330; return; }

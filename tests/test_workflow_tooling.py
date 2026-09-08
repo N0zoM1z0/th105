@@ -102,8 +102,8 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertIn("Tracked 1.06a function candidates | 4,011", markdown)
         self.assertIn("Confirmed authored functions | 1,372", markdown)
         self.assertIn("Confirmed authored code bytes | 2,069,524", markdown)
-        self.assertIn("Classified exclusions | 1,266", markdown)
-        self.assertIn("Origin/boundary review pending | 1,373", markdown)
+        self.assertIn("Classified exclusions | 1,285", markdown)
+        self.assertIn("Origin/boundary review pending | 1,354", markdown)
         self.assertIn("Canonical exact functions | 1,272", markdown)
         self.assertIn("Canonical exact authored bytes | 215,400", markdown)
         self.assertIn("Source-present authored mappings | 1,296", markdown)
@@ -270,6 +270,10 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertIn("void AyaObjectActionStateView::update_action_state()", full)
         self.assertIn("case 856:", full)
         self.assertIn("double object_y;", full)
+        self.assertEqual(full.count("float payload[3];"), 1)
+        self.assertNotIn("float payload[3] =", full)
+        self.assertIn("direction = 1;", full)
+        self.assertIn("time_counter_144 >= 180", full)
 
 
     def test_default_cpu_policy_owner_source_checkpoint(self) -> None:
@@ -504,8 +508,8 @@ class WorkflowToolingTests(unittest.TestCase):
         with (ROOT / object_roster["pointer_anchor_file"]).open("rb") as stream:
             object_manifest = tomllib.load(stream)
         object_roots = object_manifest["anchors"]
-        self.assertEqual(len(object_roots), 31)
-        self.assertEqual(sum(row["size"] for row in object_roots), 676_773)
+        self.assertEqual(len(object_roots), 32)
+        self.assertEqual(sum(row["size"] for row in object_roots), 676_774)
         self.assertEqual(
             {row["address"] for row in object_roots if row["address"] in {"0x00496540", "0x00520890", "0x00657150"}},
             {"0x00496540", "0x00520890", "0x00657150"},
@@ -513,6 +517,46 @@ class WorkflowToolingTests(unittest.TestCase):
         shared_render = next(row for row in object_roots if row["address"] == "0x00435360")
         self.assertEqual(len(shared_render["pointer_slots"]), 15)
         self.assertEqual({slot["slot_offset"] for slot in shared_render["pointer_slots"]}, {"0x34"})
+        shared_idle = next(row for row in object_roots if row["address"] == "0x0041F890")
+        self.assertEqual(shared_idle["size"], 1)
+        self.assertEqual(len(shared_idle["pointer_slots"]), 15)
+        self.assertEqual({slot["slot_offset"] for slot in shared_idle["pointer_slots"]}, {"0x40"})
+
+    def test_adjustor_thunk_origin_manifests_are_pinned(self) -> None:
+        expected = [
+            (
+                "config/vc8-generated-character-object-manager-adjustor-thunks-origin-anchors.toml",
+                "src/characters/CharacterObjectManagerCtors.cpp",
+                15,
+                120,
+            ),
+            (
+                "config/vc8-generated-effect-manager-adjustor-thunks-origin-anchors.toml",
+                "src/battle/EffectManagerLifetime.cpp",
+                4,
+                32,
+            ),
+        ]
+        for relpath, source, count, byte_total in expected:
+            with (ROOT / relpath).open("rb") as stream:
+                manifest = tomllib.load(stream)
+            self.assertEqual(
+                manifest["target_sha256"],
+                "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e",
+            )
+            self.assertEqual(
+                manifest["compiler_sha256"],
+                "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c",
+            )
+            self.assertEqual(manifest["source"], source)
+            self.assertTrue(manifest["enable_gs"])
+            self.assertEqual(manifest["min_nonreloc_coverage"], 0.50)
+            rows = manifest["anchors"]
+            self.assertEqual(len(rows), count)
+            self.assertEqual(sum(row["size"] for row in rows), byte_total)
+            self.assertTrue(all(row["size"] == 8 for row in rows))
+            self.assertTrue(all(len(row["pointer_slots"]) == 1 for row in rows))
+            self.assertTrue(all(len(row["rel32_targets"]) == 1 for row in rows))
 
     def test_multichunk_function_byte_ownership_is_pinned(self) -> None:
         with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:

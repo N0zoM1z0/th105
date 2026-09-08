@@ -6,7 +6,9 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 # config/reccmp-relocations.csv.  Each root below is selected only because the
 # canonical PE contains its exact entry address in the stated virtual slot.
 # This proves authored class ownership; semantic source recovery and exact
-# callable/table boundaries remain separate work.
+# callable/table boundaries remain separate work.  The primary Object vtable
+# continues through shared slot +0x40; +0x44 begins the adjacent RTTI/COL
+# island for ObjectManager base-subobject vtables.
 
 [[anchors]]
 address = "0x00435360"
@@ -178,3 +180,24 @@ pointer_slots = [{ address = "0x006C6734", owner = "TenshiObject", slot_offset =
 address = "0x00657150"
 size = 8590
 pointer_slots = [{ address = "0x006C6748", owner = "TenshiObject", slot_offset = "0x3C" }]
+
+[[anchors]]
+address = "0x0041F890"
+size = 1
+pointer_slots = [
+  { address = "0x006C4B94", owner = "AliceObject", slot_offset = "0x40" },
+  { address = "0x006C628C", owner = "AyaObject", slot_offset = "0x40" },
+  { address = "0x006C64E4", owner = "IkuObject", slot_offset = "0x40" },
+  { address = "0x006C601C", owner = "KomachiObject", slot_offset = "0x40" },
+  { address = "0x006C453C", owner = "MarisaObject", slot_offset = "0x40" },
+  { address = "0x006C4E64", owner = "PatchouliObject", slot_offset = "0x40" },
+  { address = "0x006C40E4", owner = "ReimuObject", slot_offset = "0x40" },
+  { address = "0x006C537C", owner = "RemiliaObject", slot_offset = "0x40" },
+  { address = "0x006C48CC", owner = "SakuyaObject", slot_offset = "0x40" },
+  { address = "0x006C5B44", owner = "SuikaObject", slot_offset = "0x40" },
+  { address = "0x006C674C", owner = "TenshiObject", slot_offset = "0x40" },
+  { address = "0x006C5DE4", owner = "UdongeObject", slot_offset = "0x40" },
+  { address = "0x006C50FC", owner = "YoumuObject", slot_offset = "0x40" },
+  { address = "0x006C5884", owner = "YukariObject", slot_offset = "0x40" },
+  { address = "0x006C5604", owner = "YuyukoObject", slot_offset = "0x40" },
+]
