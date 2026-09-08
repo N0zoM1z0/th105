@@ -68,7 +68,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004033C0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00403460,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004034F0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x004036C0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004036C0,authored_game,audio,authored,observed,bgm-handle-allocation-authored-106a
 0x004036E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00403840,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004038D0,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -210,7 +210,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004098B0,authored_game,ui,authored,observed,canonical-exact-authored
 0x004098E0,authored_game,ui,authored,observed,ui-source-present-exact-caller-helpers-authored-106a
 0x004099F0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00409CF0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00409CF0,authored_game,input,authored,observed,canonical-exact-authored
 0x00409D30,authored_game,input,authored,observed,canonical-exact-authored
 0x00409D50,authored_game,input,authored,observed,canonical-exact-authored
 0x00409D60,authored_game,input,authored,observed,canonical-exact-authored
@@ -985,7 +985,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004303F0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x00430470,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x004304F0,compiler_generated,battle,exclude,observed,vc8-generated-event-background-deque-comdats-106a
-0x004306D0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004306D0,compiler_generated,runtime,exclude,observed,event-background-deque-push-generated-106a
 0x00430750,authored_game,battle,authored,observed,canonical-exact-authored
 0x004309F0,authored_game,battle,authored,observed,secondary-animation-update-authored-106a
 0x00431390,authored_game,ui,authored,observed,profile-menu-base-cleanup-authored-106a
@@ -1110,7 +1110,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004368B0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00436940,authored_game,battle,authored,observed,canonical-exact-authored
 0x004369D0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00436D30,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00436D30,compiler_generated,runtime,exclude,observed,scenario-text-tree-erase-generated-106a
 0x00436D80,authored_game,battle,authored,observed,canonical-exact-authored
 0x00436DF0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00436E60,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -1343,7 +1343,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00440370,compiler_generated,ui,exclude,observed,vc8-generated-replay-menu-delete-std-comdats-106a
 0x00440410,authored_game,ui,authored,observed,canonical-exact-authored
 0x004404F0,authored_game,ui,authored,observed,canonical-exact-authored
-0x004406F0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004406F0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00440730,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00440750,authored_game,ui,authored,observed,canonical-exact-authored
 0x00440780,authored_game,ui,authored,observed,canonical-exact-authored
@@ -1970,7 +1970,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00469510,authored_game,battle,authored,observed,canonical-exact-authored
 0x00469540,authored_game,battle,authored,observed,canonical-exact-authored
 0x004695B0,authored_game,battle,authored,observed,canonical-exact-authored
-0x004695F0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004695F0,authored_game,battle,authored,observed,event-effect-emitter-dispatch-authored-106a
 0x00469600,compiler_generated,runtime,exclude,observed,vc8-generated-map-int-value16-tree-comdats-106a
 0x00469690,compiler_generated,input,exclude,observed,vc8-generated-input-cluster-std-comdats-106a
 0x004696B0,compiler_generated,input,exclude,observed,vc8-generated-input-cluster-std-comdats-106a

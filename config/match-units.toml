@@ -5041,6 +5041,10 @@ address = "0x004695B0"
 symbol_base = "?emit_effect@EventEffectStateView@th105@@QAEHHMMHH@Z"
 
 [[units.cross-v106a-event-effect-state.functions]]
+address = "0x004695F0"
+symbol_base = "?dispatch_emitter_state@EventEffectStateView@th105@@QAEHH@Z"
+
+[[units.cross-v106a-event-effect-state.functions]]
 address = "0x004696E0"
 symbol_base = "?render_background_effects@EventEffectStateView@th105@@QAEXXZ"
 rel32_targets = [
@@ -17481,7 +17485,7 @@ notes = "Three current UI scene-stack facades recovered from exact callers and t
 [[units.gpt-web-ui-scene-state-facades.functions]]
 address = "0x0043B0F0"
 symbol_base = "?push_ui_selection_menu_facade@th105@@YAXPAX@Z"
-rel32_targets = ["?push_ui_selection_menu@th105@@YAXPAX@Z=0x004406F0"]
+rel32_targets = ["?push_ui_selection_menu@th105@@YAXPAUUiSelectionMenu@1@@Z=0x004406F0"]
 
 [[units.gpt-web-ui-scene-state-facades.functions]]
 address = "0x0043B100"
@@ -17549,3 +17553,52 @@ address = "0x00431390"
 symbol_base = "?cleanup@ProfileMenuBaseData@th105@@QAEXXZ"
 rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70"]
 dir32_targets = ["?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A"]
+
+
+[units.gpt-web-input-manager-constructor]
+kind = "probe"
+source = "src/input/InputManagerConstructor.cpp"
+object = "build/match-units/GptWeb_InputManagerConstructor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current CInputManager base constructor @ 0x00409CF0. Canonical-exact ProfileMenuBaseData construction owns a real CInputManagerEx subobject and calls this base constructor; current RTTI/vtable and exact scalar/normal destructor lifetimes fix the 0x60 base layout. Value-initializing only the 40-byte hold counters and then memset-zeroing the 52-byte bindings in the constructor body naturally reproduces the target store/memset schedule."
+
+[[units.gpt-web-input-manager-constructor.functions]]
+address = "0x00409CF0"
+symbol_base = "??0CInputManager@th105@@QAE@XZ"
+rel32_targets = ["_memset=0x0068A440"]
+dir32_targets = ["??_7CInputManager@th105@@6B@=??_7CInputManager@@6B@"]
+
+[units.gpt-web-ui-selection-menu-stack]
+kind = "probe"
+source = "src/ui/UiSelectionMenuStack.cpp"
+object = "build/match-units/GptWeb_UiSelectionMenuStack.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current authored UI selection-menu stack insertion @ 0x004406F0. The canonical-exact 5-byte facade at 0x0043B0F0 plus fourteen exact scene/update callers establish the semantic boundary. A typed UiSelectionMenu* parameter lets VC8 borrow the caller argument slot directly for checked std::list<UiSelectionMenu*>::push_back; using void* creates an extra temporary and is rejected. The generated _Buynode/_Incsize callees and global list aggregate are independently target-backed."
+
+[[units.gpt-web-ui-selection-menu-stack.functions]]
+address = "0x004406F0"
+symbol_base = "?push_ui_selection_menu@th105@@YAXPAUUiSelectionMenu@1@@Z"
+rel32_targets = [
+  "?_Buynode@?$list@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@2@PAU342@0ABQAUUiSelectionMenu@th105@@@Z=0x00421F30",
+  "?_Incsize@?$list@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@std@@IAEXI@Z=0x00440370",
+]
+dir32_targets = [
+  "?g_ui_selection_menu_stack@th105@@3V?$list@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@std@@A=?g_ui_selection_menu_stack@th105@@3V?$list@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@std@@A",
+]
+
+[units.gpt-web-bgm-handle-allocation]
+kind = "probe"
+source = "src/audio/BgmHandleAllocation.cpp"
+object = "build/match-units/GptWeb_BgmHandleAllocation.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current BgmPlaybackServiceView::allocate_handle @ 0x004036C0. Exact load/play callers prove the authored service boundary and exact BgmService_link_handles fixes the +0x38 manager subobject. Normal C++ remains 20/28 because target manager allocator 0x004040D0 uses an original-TU private EDI/hidden-result ABI; keep nonexact without inventing that ABI."
+
+[[units.gpt-web-bgm-handle-allocation.functions]]
+address = "0x004036C0"
+symbol_base = "?allocate_handle@BgmPlaybackServiceView@th105@@QAE?AUBgmHandleResult@2@XZ"
+rel32_targets = [
+  "?allocate_handle@BgmHandleManagerAllocateView@th105@@QAE?AUBgmHandleResult@2@XZ=0x004040D0",
+]

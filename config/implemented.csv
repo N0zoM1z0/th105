@@ -1308,3 +1308,7 @@ CFileList_current_directory
 get_active_input_source_43b050
 push_ui_selection_menu_facade
 ProfileMenuBaseData_cleanup
+CInputManager_ctor
+push_ui_selection_menu
+BgmPlaybackServiceView_allocate_handle
+EventEffectState_dispatch_emitter_state

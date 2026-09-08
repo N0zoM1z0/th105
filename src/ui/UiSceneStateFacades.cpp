@@ -1,12 +1,13 @@
 namespace th105 {
 
-void push_ui_selection_menu(void *menu);
+struct UiSelectionMenu;
+void push_ui_selection_menu(UiSelectionMenu *menu);
 void trim_profile_ui_menu_stack();
 void set_ui_selection_state_tracking(char enabled);
 
 void push_ui_selection_menu_facade(void *menu)
 {
-    push_ui_selection_menu(menu);
+    push_ui_selection_menu(static_cast<UiSelectionMenu *>(menu));
 }
 
 void trim_profile_ui_menu_stack_facade()

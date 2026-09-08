@@ -1327,3 +1327,7 @@ CFileList_current_directory,0x00439570,function
 get_active_input_source_43b050,0x0043B050,function
 push_ui_selection_menu_facade,0x0043B0F0,function
 ProfileMenuBaseData_cleanup,0x00431390,function
+CInputManager_ctor,0x00409CF0,function
+push_ui_selection_menu,0x004406F0,function
+BgmPlaybackServiceView_allocate_handle,0x004036C0,function
+EventEffectState_dispatch_emitter_state,0x004695F0,function

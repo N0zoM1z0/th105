@@ -1083,3 +1083,51 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Canonical-exact CFileList_find_row 0x00439750 and CFileList_contains 0x00439810 both carry current VC8 COFF REL32 identity for std::basic_string<char>::c_str to 0x00401E30. The SHA-pinned target body is the canonical VC8 SSO accessor: capacity +0x18 below 16 returns inline buffer +4, otherwise heap pointer +4. This is generated STL machinery, not a game-authored helper."
+
+[[rules]]
+id = "bgm-handle-allocation-authored-106a"
+addresses = ["0x004036C0"]
+expected_count = 1
+expected_bytes = 28
+expected_names = ["sub_4036C0"]
+origin = "authored_game"
+subsystem = "audio"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact load_bgm_source 0x0043CF00 and play_bgm 0x0043CF80 both carry the current decorated BgmPlaybackServiceView::allocate_handle REL32 identity to 0x004036C0. Canonical-exact BgmService_link_handles 0x004039E0 independently fixes the service lock at +0x20 and handle-manager subobject at +0x38. Ordinary source is formally 20/28 because target 0x004040D0 retains an original-TU private EDI/hidden-result ABI; that codegen residual does not weaken authored ownership."
+
+[[rules]]
+id = "event-effect-emitter-dispatch-authored-106a"
+addresses = ["0x004695F0"]
+expected_count = 1
+expected_bytes = 11
+expected_names = ["sub_4695F0"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Three canonical-exact BattleObjectManager phase methods 0x00466980/0x004669F0/0x00466A50 call current 0x004695F0 on g_event_effect_state. Canonical-exact EventEffectState emit/render methods independently fix the polymorphic emitter subobject at +0x48. Ordinary member forwarding is 10/11; the sole residual is target vptr-load-before-ECX-adjust scheduling, so no register or manual-vtable forcing is used."
+
+[[rules]]
+id = "event-background-deque-push-generated-106a"
+addresses = ["0x004306D0"]
+expected_count = 1
+expected_bytes = 120
+expected_names = ["sub_4306D0"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Canonical-exact EventEffectState publish and SecondaryAnimation initializer TUs independently carry current VC8 decorated REL32 identities for checked std::deque<BackgroundRenderEntry>::push_back and std::deque<SecondaryAnimationPoint>::push_back to the same 0x004306D0 target. Both element types are trivial 8-byte records; the target body is the checked deque growmap/block-allocation/copy/size increment lowering. This exact-caller template identity proves compiler ownership even though standalone regeneration does not reproduce the private/folded target body byte-for-byte."
+
+[[rules]]
+id = "scenario-text-tree-erase-generated-106a"
+addresses = ["0x00436D30"]
+expected_count = 1
+expected_bytes = 67
+expected_names = ["sub_436D30"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Canonical-exact CScenarioData::clear_runtime 0x00457DF0 and load_story_page 0x004583E0 both carry the complete current VC8 decorated std::map<string,ScenarioTextEntryDC>::_Tree::_Erase REL32 identity to 0x00436D30. The target recursively erases child nodes, destroys the pair payload and frees the node. Fresh standalone VC8 emits a larger private variant, so classification relies on exact-caller decorated template identity plus the target STL lowering rather than a false byte fingerprint."
