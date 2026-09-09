@@ -1304,3 +1304,4 @@ address,name,size,status,match_percent,unit,evidence
 0x00492ED0,CharacterObject_dtor,145,matching,100.00,cross-v106a-character-object-ctor,python3 scripts/build.py --unit cross-v106a-character-object-ctor --compare --json reports canonical exact 145/145 against TH105 1.06a
 0x0046FA50,TGageValue_int_ptr_value,20,matching,100.00,gpt-web-battle-info-gauge-runtime,python3 scripts/build.py --unit gpt-web-battle-info-gauge-runtime --compare --json reports canonical exact 20/20 against TH105 1.06a
 0x0046FA70,TGageValue_short_ptr_value,27,matching,100.00,gpt-web-battle-info-gauge-runtime,python3 scripts/build.py --unit gpt-web-battle-info-gauge-runtime --compare --json reports canonical exact 27/27 against TH105 1.06a
+0x0042E980,CsvReader_dtor,5,matching,100.00,gpt-web-csv-reader-lifetime,python3 scripts/build.py --unit gpt-web-csv-reader-lifetime --compare --json reports canonical exact 5/5 against TH105 1.06a

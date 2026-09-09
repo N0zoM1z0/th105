@@ -57,23 +57,23 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4019)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1305)
+        self.assertEqual(len(matching), 1306)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1377)
+        self.assertEqual(len(implemented), 1381)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1305
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1306
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 488)
+        self.assertEqual(len(manifest["units"]), 489)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1382,
+            1386,
         )
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:
@@ -253,8 +253,8 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 456)
-        self.assertEqual(sum(map(len, accepted.values())), 1305)
+        self.assertEqual(len(accepted), 457)
+        self.assertEqual(sum(map(len, accepted.values())), 1306)
         secondary = accepted["gpt-web-secondary-animation-runtime"]
         self.assertEqual(
             secondary,
@@ -743,16 +743,65 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertIn("start + 200.0f", source)
         self.assertNotIn("volatile", source)
 
+    def test_csv_reader_family_wave_is_pinned(self) -> None:
+        with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
+            functions = {row["address"].upper(): row for row in csv.DictReader(stream)}
+        with (ROOT / "config" / "function-origins.csv").open(newline="", encoding="utf-8") as stream:
+            origins = {row["address"].upper(): row for row in csv.DictReader(stream)}
+
+        checks = (
+            ("0X0040F580", "CsvReader_next_string", "245/245", "+0x2B"),
+            ("0X0040F680", "CsvReader_advance_row", "169/167", "+0x02"),
+            ("0X0040FDB0", "CsvReader_clear_rows", "5/125", "+0x00"),
+        )
+        for address, name, residual, mismatch in checks:
+            row = functions[address]
+            self.assertEqual(row["proposed_name"], name)
+            self.assertEqual(row["status"], "implemented")
+            self.assertEqual(row["source_file"], "src/assets/CsvReaderRuntime.cpp")
+            self.assertIn(residual, row["evidence"])
+            self.assertIn(mismatch, row["evidence"])
+            self.assertEqual(origins[address]["origin"], "authored_game")
+            self.assertEqual(origins[address]["evidence_id"], "csv-reader-public-methods-authored-106a")
+
+        dtor = functions["0X0042E980"]
+        self.assertEqual(dtor["proposed_name"], "CsvReader_dtor")
+        self.assertEqual(dtor["status"], "matching")
+        self.assertEqual(dtor["match_percent"], "100.00")
+        self.assertIn("5/5", dtor["evidence"])
+        self.assertEqual(origins["0X0042E980"]["evidence_id"], "canonical-exact-authored")
+
+        for address in ("0X0040F730", "0X0040F7D0", "0X0040F840", "0X0040F8E0"):
+            self.assertEqual(origins[address]["origin"], "compiler_generated")
+            self.assertEqual(origins[address]["disposition"], "exclude")
+            self.assertEqual(origins[address]["evidence_id"], "csv-reader-private-load-helpers-generated-106a")
+
+        units = self.manifest.load_manifest()["units"]
+        core = units["gpt-web-csv-reader-next-int"]
+        self.assertEqual(core["source"], "src/assets/CsvReaderRuntime.cpp")
+        self.assertEqual(
+            {row["address"].upper() for row in core["functions"]},
+            {"0X0040F480", "0X0040F580", "0X0040F680", "0X0040FDB0"},
+        )
+        life = units["gpt-web-csv-reader-lifetime"]
+        self.assertEqual(life["source"], "src/assets/CsvReaderLifetime.cpp")
+        self.assertEqual(life["functions"][0]["address"].upper(), "0X0042E980")
+
+        source = (ROOT / "src" / "assets" / "CsvReaderRuntime.cpp").read_text(encoding="utf-8")
+        self.assertIn("std::string *next_string_40f580(std::string *out)", source)
+        self.assertIn("rows_00.clear();", source)
+        self.assertNotIn("volatile", source)
+
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,019", markdown)
-        self.assertIn("Confirmed authored functions | 1,465", markdown)
-        self.assertIn("Confirmed authored code bytes | 2,087,412", markdown)
-        self.assertIn("Classified exclusions | 1,304", markdown)
-        self.assertIn("Origin/boundary review pending | 1,250", markdown)
-        self.assertIn("Canonical exact functions | 1,305", markdown)
-        self.assertIn("Canonical exact authored bytes | 217,121", markdown)
-        self.assertIn("Source-present authored mappings | 1,377", markdown)
+        self.assertIn("Confirmed authored functions | 1,469", markdown)
+        self.assertIn("Confirmed authored code bytes | 2,087,954", markdown)
+        self.assertIn("Classified exclusions | 1,308", markdown)
+        self.assertIn("Origin/boundary review pending | 1,242", markdown)
+        self.assertIn("Canonical exact functions | 1,306", markdown)
+        self.assertIn("Canonical exact authored bytes | 217,126", markdown)
+        self.assertIn("Source-present authored mappings | 1,381", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )

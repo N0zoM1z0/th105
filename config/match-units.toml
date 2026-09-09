@@ -16029,7 +16029,7 @@ source = "src/assets/CsvReaderRuntime.cpp"
 object = "build/match-units/GptWeb_CsvReaderNextInt.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current CsvReader integer-field consumer. Native VC8 deque<deque<string>> plus checked row/field iterators fixes the 0x30 parser view; the leaf advances one field and feeds its c_str() to target atoi."
+notes = "Current native CsvReader operation lane. next_int remains canonical exact 249/249. next_string uses the explicit output-string ABI and target-backed out-of-line string assignment gates; advance_row uses checked row iterators; clear_rows expresses rows_00.clear() but shipped LTCG inlines the nested _Tidy phase. Nonexact residuals stay explicit rather than fabricating private helper ABIs."
 
 [[units.gpt-web-csv-reader-next-int.functions]]
 address = "0x0040F480"
@@ -16039,6 +16039,30 @@ rel32_targets = [
   "??C?$_Deque_iterator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@$00@std@@QBEPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@XZ=0x0040F990",
   "_atoi=0x0068B1B7",
 ]
+
+[[units.gpt-web-csv-reader-next-int.functions]]
+address = "0x0040F580"
+symbol_base = "?next_string_40f580@CsvReaderNativeView@th105@@QAEPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAV34@@Z"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?assign_bytes@CsvStringAssignCallView@th105@@QAEPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBDI@Z=0x004021C0",
+  "??D?$_Deque_iterator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@$00@std@@QBEAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@XZ=0x0040F990",
+  "?assign_string@CsvStringAssignCallView@th105@@QAEPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@ABV34@II@Z=0x004020D0",
+]
+dir32_targets = ["??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@"]
+
+[[units.gpt-web-csv-reader-next-int.functions]]
+address = "0x0040F680"
+symbol_base = "?advance_row_40f680@CsvReaderNativeView@th105@@QAE_NXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "??C?$_Deque_iterator@V?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@V?$allocator@V?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@@2@$00@std@@QBEPAV?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@1@XZ=0x0040F950",
+]
+
+[[units.gpt-web-csv-reader-next-int.functions]]
+address = "0x0040FDB0"
+symbol_base = "?clear_rows_40fdb0@CsvReaderNativeView@th105@@QAEXXZ"
+rel32_targets = ["_Tidy=0x0040FF90"]
 
 [units.gpt-web-battle-input-flush]
 kind = "probe"
@@ -18398,3 +18422,16 @@ dir32_targets = [
   "__real@40b2c00000000000=__real@40b2c00000000000",
   "__real@407f400000000000=__real@407f400000000000",
 ]
+
+[units.gpt-web-csv-reader-lifetime]
+kind = "probe"
+source = "src/assets/CsvReaderLifetime.cpp"
+object = "build/match-units/GptWeb_CsvReaderLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Target EH cleanup proves a real non-throwing CsvReader destructor entry at 0x0042E980 which tail-enters clear_rows 0x0040FDB0. The 0x30 lifetime facade intentionally keeps the already-proved native container members opaque so C++ emits the source-level destructor call rather than recursively destroying a duplicate native view."
+
+[[units.gpt-web-csv-reader-lifetime.functions]]
+address = "0x0042E980"
+symbol_base = "??1CsvReaderLifetimeView@th105@@QAE@XZ"
+rel32_targets = ["?clear_rows@CsvReaderLifetimeView@th105@@QAEXXZ=0x0040FDB0"]

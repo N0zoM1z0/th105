@@ -1375,3 +1375,7 @@ CharacterObject_dtor
 TGageValue_int_ptr_value
 TGageValue_short_ptr_value
 BattleInfoRecordF8_bind_fighter
+CsvReader_next_string
+CsvReader_advance_row
+CsvReader_clear_rows
+CsvReader_dtor

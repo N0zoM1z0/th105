@@ -1526,3 +1526,27 @@ subsystem = "battle"
 disposition = "authored"
 confidence = "observed"
 evidence = "BattleInfoRecordF8::bind_fighter 0x0046FA90 is called by canonical-exact normal/story pair binders and constructs 16-byte game TGageValue<int*> / TGageValue<short*> objects. Canonical tables 0x006C3890/0x006C3898 own their one-slot value virtuals 0x0046FA50/0x0046FA70. Ordinary template source reproduces the two virtuals exactly and closes bind_fighter gauge/end-point ownership without treating game-authored templates as std/compiler helpers."
+
+[[rules]]
+id = "csv-reader-public-methods-authored-106a"
+addresses = ["0x0040F580", "0x0040F680", "0x0040FDB0"]
+expected_count = 3
+expected_bytes = 537
+expected_names = ["sub_40F580", "sub_40F680", "sub_40FDB0"]
+origin = "authored_game"
+subsystem = "assets"
+disposition = "authored"
+confidence = "observed"
+evidence = "Current Story/deck/event CSV callers and the canonical-exact next_int lane prove the native 0x30 CsvReader layout. next_string uses an explicit output std::string pointer and checked field iterator; advance_row advances the checked outer iterator then installs the new row begin; normal and EH destruction converge on clear_rows. All three are source-level CsvReader methods even where shipped LTCG keeps private iterator/_Tidy phases."
+
+[[rules]]
+id = "csv-reader-private-load-helpers-generated-106a"
+addresses = ["0x0040F730", "0x0040F7D0", "0x0040F840", "0x0040F8E0"]
+expected_count = 4
+expected_bytes = 407
+expected_names = ["sub_40F730", "sub_40F7D0", "sub_40F840", "sub_40F8E0"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "These entries are target-private checked-container phases, not independent source callables. 0x0040F730 consumes CsvReader in live ESI and is called only by load; 0x0040F7D0/0x0040F840 are ESI/usercall helpers reachable only from the load helper chain; 0x0040F8E0 is an EH-only five-byte thunk to inner deque _Tidy 0x0040FF90. Do not count extracted LTCG/container phases as authored functions."
