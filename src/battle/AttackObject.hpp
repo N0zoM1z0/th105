@@ -33,7 +33,7 @@ public:
         flag_004 = 0;
         flag_005 = 0;
     }
-    virtual ~AnimationObject()
+    virtual ~AnimationObject() throw()
     {
         if (pointer_154 != 0) {
             delete static_cast<AnimationAuxiliaryRendererOwner *>(pointer_154);
@@ -114,7 +114,7 @@ public:
 class AttackObject : public AnimationObject {
 public:
     AttackObject();
-    virtual ~AttackObject();
+    virtual ~AttackObject() throw();
     virtual void unknown_vslot_04();
     virtual void set_action(int action_id);
     virtual void unknown_vslot_0c();

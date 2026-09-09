@@ -57,23 +57,23 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4019)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1300)
+        self.assertEqual(len(matching), 1305)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1371)
+        self.assertEqual(len(implemented), 1377)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1300
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1305
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 486)
+        self.assertEqual(len(manifest["units"]), 488)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1376,
+            1382,
         )
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:
@@ -253,8 +253,8 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 454)
-        self.assertEqual(sum(map(len, accepted.values())), 1300)
+        self.assertEqual(len(accepted), 456)
+        self.assertEqual(sum(map(len, accepted.values())), 1305)
         secondary = accepted["gpt-web-secondary-animation-runtime"]
         self.assertEqual(
             secondary,
@@ -650,16 +650,109 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertIn("input_104->is_input_available_427680()", source)
         self.assertNotIn("unsigned char available =", source)
 
+    def test_attack_character_object_lifetime_exact_wave_is_pinned(self) -> None:
+        with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
+            functions = {row["address"].upper(): row for row in csv.DictReader(stream)}
+        with (ROOT / "config" / "function-origins.csv").open(newline="", encoding="utf-8") as stream:
+            origins = {row["address"].upper(): row for row in csv.DictReader(stream)}
+        with (ROOT / "config" / "reccmp-relocations.csv").open(newline="", encoding="utf-8") as stream:
+            relocations = {row["coff_symbol"]: row for row in csv.DictReader(stream)}
+
+        for address, name, exact_size, source_file in (
+            ("0X0045F8E0", "AttackObject_dtor", "78/78", "src/battle/AttackObjectLifetime.cpp"),
+            ("0X0045F930", "AttackObject_scalar_deleting_destructor", "30/30", "src/battle/AttackObjectLifetime.cpp"),
+            ("0X00492ED0", "CharacterObject_dtor", "145/145", "src/characters/CharacterObject.cpp"),
+        ):
+            row = functions[address]
+            self.assertEqual(row["proposed_name"], name)
+            self.assertEqual(row["status"], "matching")
+            self.assertEqual(row["match_percent"], "100.00")
+            self.assertEqual(row["source_file"], source_file)
+            self.assertIn(exact_size, row["evidence"])
+            self.assertEqual(origins[address]["origin"], "authored_game")
+            self.assertEqual(origins[address]["disposition"], "authored")
+            self.assertEqual(origins[address]["evidence_id"], "canonical-exact-authored")
+
+        units = self.manifest.load_manifest()["units"]
+        attack = units["gpt-web-attack-object-lifetime"]
+        self.assertEqual(attack["source"], "src/battle/AttackObjectLifetime.cpp")
+        self.assertEqual(
+            {row["address"].upper() for row in attack["functions"]},
+            {"0X0045F8E0", "0X0045F930"},
+        )
+        character = units["cross-v106a-character-object-ctor"]
+        self.assertTrue(character["enable_gs"])
+        self.assertEqual(
+            {row["address"].upper() for row in character["functions"]},
+            {"0X00492F90", "0X00492ED0", "0X00492F70"},
+        )
+
+        attack_header = (ROOT / "src" / "battle" / "AttackObject.hpp").read_text(encoding="utf-8")
+        self.assertIn("virtual ~AnimationObject() throw()", attack_header)
+        self.assertIn("virtual ~AttackObject() throw();", attack_header)
+        character_source = (ROOT / "src" / "characters" / "CharacterObject.cpp").read_text(encoding="utf-8")
+        self.assertIn("CharacterObject::~CharacterObject()", character_source)
+        self.assertIn("free(copied_words_340)", character_source)
+        self.assertIn("SecondaryAnimationRenderRuntimeView", character_source)
+        self.assertEqual(
+            relocations["__ehhandler$??1CharacterObject@@UAE@XZ"]["address"].upper(),
+            "0X006BBAE8",
+        )
+
+    def test_battle_info_gauge_runtime_wave_is_pinned(self) -> None:
+        with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
+            functions = {row["address"].upper(): row for row in csv.DictReader(stream)}
+        with (ROOT / "config" / "function-origins.csv").open(newline="", encoding="utf-8") as stream:
+            origins = {row["address"].upper(): row for row in csv.DictReader(stream)}
+        with (ROOT / "config" / "reccmp-relocations.csv").open(newline="", encoding="utf-8") as stream:
+            relocations = {row["coff_symbol"]: row for row in csv.DictReader(stream)}
+
+        for address, name, size in (
+            ("0X0046FA50", "TGageValue_int_ptr_value", "20/20"),
+            ("0X0046FA70", "TGageValue_short_ptr_value", "27/27"),
+        ):
+            row = functions[address]
+            self.assertEqual(row["proposed_name"], name)
+            self.assertEqual(row["status"], "matching")
+            self.assertEqual(row["match_percent"], "100.00")
+            self.assertEqual(row["source_file"], "src/battle/BattleInfoGaugeRuntime.cpp")
+            self.assertIn(size, row["evidence"])
+            self.assertEqual(origins[address]["origin"], "authored_game")
+            self.assertEqual(origins[address]["evidence_id"], "canonical-exact-authored")
+
+        bind = functions["0X0046FA90"]
+        self.assertEqual(bind["proposed_name"], "BattleInfoRecordF8_bind_fighter")
+        self.assertEqual(bind["status"], "implemented")
+        self.assertIn("655/648", bind["evidence"])
+        self.assertIn("+0x02", bind["evidence"])
+        self.assertEqual(origins["0X0046FA90"]["origin"], "authored_game")
+        self.assertEqual(origins["0X0046FA90"]["evidence_id"], "battle-info-gauge-runtime-authored-106a")
+
+        self.assertEqual(relocations["??_7?$TGageValue@PAH@th105@@6B@"]["address"].upper(), "0X006C3890")
+        self.assertEqual(relocations["??_7?$TGageValue@PAF@th105@@6B@"]["address"].upper(), "0X006C3898")
+        self.assertEqual(relocations["__real@40b2c00000000000"]["address"].upper(), "0X006C38A8")
+
+        unit = self.manifest.load_manifest()["units"]["gpt-web-battle-info-gauge-runtime"]
+        self.assertEqual(unit["source"], "src/battle/BattleInfoGaugeRuntime.cpp")
+        self.assertEqual(
+            {row["address"].upper() for row in unit["functions"]},
+            {"0X0046FA50", "0X0046FA70", "0X0046FA90"},
+        )
+        source = (ROOT / "src" / "battle" / "BattleInfoGaugeRuntime.cpp").read_text(encoding="utf-8")
+        self.assertIn("span_0c(span - start)", source)
+        self.assertIn("start + 200.0f", source)
+        self.assertNotIn("volatile", source)
+
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
         self.assertIn("Tracked 1.06a function candidates | 4,019", markdown)
-        self.assertIn("Confirmed authored functions | 1,459", markdown)
-        self.assertIn("Confirmed authored code bytes | 2,086,464", markdown)
+        self.assertIn("Confirmed authored functions | 1,465", markdown)
+        self.assertIn("Confirmed authored code bytes | 2,087,412", markdown)
         self.assertIn("Classified exclusions | 1,304", markdown)
-        self.assertIn("Origin/boundary review pending | 1,256", markdown)
-        self.assertIn("Canonical exact functions | 1,300", markdown)
-        self.assertIn("Canonical exact authored bytes | 216,821", markdown)
-        self.assertIn("Source-present authored mappings | 1,371", markdown)
+        self.assertIn("Origin/boundary review pending | 1,250", markdown)
+        self.assertIn("Canonical exact functions | 1,305", markdown)
+        self.assertIn("Canonical exact authored bytes | 217,121", markdown)
+        self.assertIn("Source-present authored mappings | 1,377", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
@@ -1532,8 +1625,8 @@ class WorkflowToolingTests(unittest.TestCase):
         with (ROOT / "config" / "match-units.toml").open("rb") as stream:
             manifest = tomllib.load(stream)
         counts = self.literals.audit_real_literals(relocations, manifest)
-        self.assertEqual(counts["ledger_literals"], 307)
-        self.assertEqual(counts["explicit_mappings"], 430)
+        self.assertEqual(counts["ledger_literals"], 308)
+        self.assertEqual(counts["explicit_mappings"], 434)
         self.assertEqual(counts["target_checks"], 0)
 
     @unittest.skipUnless(
@@ -1543,7 +1636,7 @@ class WorkflowToolingTests(unittest.TestCase):
         counts = self.validator.validate_real_literal_relocations(
             self.manifest.load_manifest(), require_bytes=True
         )
-        self.assertEqual(counts["target_checks"], 737)
+        self.assertEqual(counts["target_checks"], 742)
 
     def test_rel32_accepts_only_supported_instruction_forms(self) -> None:
         self.assertEqual(

@@ -72,6 +72,7 @@ struct BattleInfoRecordF8 {
         InfoDesignResourceSubobject *lower,
         InfoEffectManagerSubobject *context);
     void attach_story_fighter_471be0(Fighter *fighter);
+    void bind_fighter_46fa90(Fighter *fighter);
     void bind_story_values_471a80();
     void update_runtime_46ff30();
     void update_story_471930();

@@ -1514,3 +1514,15 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Canonical-exact CSelectScenario construction is the direct owner. Raw target walks MSVC checked-tree left/right nodes, tests the nil byte at +0x15, compares the unsigned key at node+0x0C and returns the lower_bound iterator pair. This is a compiler-generated std::_Tree/map lower-bound clone, not an independent game source function."
+
+[[rules]]
+id = "battle-info-gauge-runtime-authored-106a"
+addresses = ["0x0046FA90"]
+expected_count = 1
+expected_bytes = 648
+expected_names = ["sub_46FA90"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "BattleInfoRecordF8::bind_fighter 0x0046FA90 is called by canonical-exact normal/story pair binders and constructs 16-byte game TGageValue<int*> / TGageValue<short*> objects. Canonical tables 0x006C3890/0x006C3898 own their one-slot value virtuals 0x0046FA50/0x0046FA70. Ordinary template source reproduces the two virtuals exactly and closes bind_fighter gauge/end-point ownership without treating game-authored templates as std/compiler helpers."

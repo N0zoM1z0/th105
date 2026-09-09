@@ -714,13 +714,28 @@ kind = "probe"
 source = "src/characters/CharacterObject.cpp"
 object = "build/match-units/CrossV106a_CharacterObject.obj"
 profile = "vc8-sp1-probe-o2"
-enable_gs = false
-notes = "TH105 1.06a structural-remap exact CharacterObject constructor; base ctor and vtable identity come from current target evidence."
+enable_gs = true
+notes = "Canonical /GS CharacterObject lifetime unit. Constructor remains 78/78, normal destructor is 145/145 with target EH/cookie phase and exact AttackObject base cleanup, and scalar deleting wrapper remains 30/30."
 
 [[units.cross-v106a-character-object-ctor.functions]]
 address = "0x00492F90"
 symbol_base = "CharacterObject_ctor"
 rel32_targets = ["??0AttackObject@@QAE@XZ=0x0045FA30"]
+
+[[units.cross-v106a-character-object-ctor.functions]]
+address = "0x00492ED0"
+symbol_base = "??1CharacterObject@@UAE@XZ"
+rel32_targets = [
+  "_free=0x0068AA26",
+  "??1SecondaryAnimationRenderRuntimeView@th105@@QAE@XZ=0x00430080",
+  "??3@YAXPAX@Z=0x006898EA",
+  "??1AttackObject@@UAE@XZ=0x0045F8E0",
+]
+dir32_targets = [
+  "??_7CharacterObject@@6B@=??_7CharacterObject@@6B@",
+  "__ehhandler$??1CharacterObject@@UAE@XZ=__ehhandler$??1CharacterObject@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+]
 
 [[units.cross-v106a-character-object-ctor.functions]]
 address = "0x00492F70"
@@ -18324,4 +18339,62 @@ rel32_targets = [
 dir32_targets = [
   "__ehhandler$?is_ready_4712b0@BattleInputReadyView@th105@@QAEEXZ=__ehhandler$?is_ready_4712b0@BattleInputReadyView@th105@@QAEEXZ",
   "___security_cookie=___security_cookie",
+]
+
+[units.gpt-web-attack-object-lifetime]
+kind = "probe"
+source = "src/battle/AttackObjectLifetime.cpp"
+object = "build/match-units/GptWeb_AttackObjectLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Canonical AttackObject normal/scalar destructor lane. AttackObjectState frame_03c is whole-object +0x194; ordinary throw() derived destruction deletes it and naturally inlines the throw() AnimationObject base cleanup. Normal/scalar are 78/78 and 30/30 exact."
+
+[[units.gpt-web-attack-object-lifetime.functions]]
+address = "0x0045F8E0"
+symbol_base = "??1AttackObject@@UAE@XZ"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = [
+  "??_7AttackObject@@6B@=??_7AttackObject@@6B@",
+  "??_7AnimationObject@@6B@=??_7AnimationObject@@6B@",
+  "??_7IColor@@6B@=??_7IColor@@6B@",
+]
+
+[[units.gpt-web-attack-object-lifetime.functions]]
+address = "0x0045F930"
+symbol_base = "??_GAttackObject@@UAEPAXI@Z"
+rel32_targets = [
+  "??1AttackObject@@UAE@XZ=0x0045F8E0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
+[units.gpt-web-battle-info-gauge-runtime]
+kind = "probe"
+source = "src/battle/BattleInfoGaugeRuntime.cpp"
+object = "build/match-units/GptWeb_BattleInfoGaugeRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current BattleInfoRecordF8 fighter binding owns game TGageValue<int*> / TGageValue<short*> specializations. Ordinary template value() bodies are canonical exact 20/20 and 27/27. bind_fighter uses exact-backed record fields and start/end gauge construction and formally replays 655/648, first mismatch +0x02: target keeps a 0x0C conversion frame while standalone VC8 keeps 0x08. No dummy stack state."
+
+[[units.gpt-web-battle-info-gauge-runtime.functions]]
+address = "0x0046FA50"
+symbol_base = "?value@?$TGageValue@PAH@th105@@UAEMXZ"
+
+[[units.gpt-web-battle-info-gauge-runtime.functions]]
+address = "0x0046FA70"
+symbol_base = "?value@?$TGageValue@PAF@th105@@UAEMXZ"
+
+[[units.gpt-web-battle-info-gauge-runtime.functions]]
+address = "0x0046FA90"
+symbol_base = "?bind_fighter_46fa90@BattleInfoRecordF8@th105@@QAEXPAUFighter@2@@Z"
+rel32_targets = [
+  "??2@YAPAXI@Z=0x00665B8A",
+  "_free=0x0068AA26",
+]
+dir32_targets = [
+  "??_7?$TGageValue@PAH@th105@@6B@=??_7?$TGageValue@PAH@th105@@6B@",
+  "??_7?$TGageValue@PAF@th105@@6B@=??_7?$TGageValue@PAF@th105@@6B@",
+  "__real@0000000000000000=__real@0000000000000000",
+  "__real@4069000000000000=__real@4069000000000000",
+  "__real@40b2c00000000000=__real@40b2c00000000000",
+  "__real@407f400000000000=__real@407f400000000000",
 ]

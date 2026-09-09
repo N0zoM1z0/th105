@@ -1825,8 +1825,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0045F800,compiler_generated,battle,exclude,observed,vc8-generated-pat-group-lifetime-std-comdats-106a
 0x0045F850,compiler_generated,battle,exclude,observed,vc8-generated-pat-group-lifetime-std-comdats-106a
 0x0045F890,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0045F8E0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0045F930,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0045F8E0,authored_game,battle,authored,observed,canonical-exact-authored
+0x0045F930,authored_game,battle,authored,observed,canonical-exact-authored
 0x0045F950,compiler_generated,battle,exclude,observed,vc8-generated-int-byte-tree-family-106a
 0x0045F990,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
 0x0045F9C0,compiler_generated,battle,exclude,observed,vc8-generated-pat-group-lifetime-std-comdats-106a
@@ -2096,9 +2096,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0046F940,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046F970,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046F9F0,authored_game,battle,authored,observed,battle-info-record-effect-authored-106a
-0x0046FA50,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0046FA70,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0046FA90,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0046FA50,authored_game,battle,authored,observed,canonical-exact-authored
+0x0046FA70,authored_game,battle,authored,observed,canonical-exact-authored
+0x0046FA90,authored_game,battle,authored,observed,battle-info-gauge-runtime-authored-106a
 0x0046FD20,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046FF30,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00470710,authored_game,battle,authored,observed,canonical-exact-authored
@@ -2188,7 +2188,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00491BC0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00491BD0,authored_game,characters,authored,observed,canonical-exact-authored
 0x00491C40,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
-0x00492ED0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00492ED0,authored_game,characters,authored,observed,canonical-exact-authored
 0x00492F70,authored_game,characters,authored,observed,canonical-exact-authored
 0x00492F90,authored_game,characters,authored,observed,canonical-exact-authored
 0x00492FE0,authored_game,characters,authored,observed,canonical-exact-authored
