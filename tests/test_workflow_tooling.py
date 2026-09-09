@@ -1735,12 +1735,43 @@ class WorkflowToolingTests(unittest.TestCase):
         ):
             self.assertIn(expression, source)
         self.assertNotIn("- (double)(45 * (char)v69)", source)
+        for machine_temp in (
+            "void (__thiscall *v14)(void *, int);",
+            "void (__thiscall *v16)(void *, int);",
+            "void (__thiscall *v19)(void *, int);",
+            "void (__thiscall *v20)(void *, int);",
+        ):
+            self.assertNotIn(machine_temp, source)
+        self.assertNotIn("LABEL_173", source)
+        self.assertEqual(
+            source.count(
+                "if ( *(float *)(raw +  236) > (double)*(float *)(*(_DWORD *)(raw +  368) + 236) )"
+            ),
+            3,
+        )
+        self.assertEqual(
+            source.count(
+                "if ( *(float *)(raw +  236) < (double)*(float *)(*(_DWORD *)(raw +  368) + 236) )"
+            ),
+            3,
+        )
+        c6 = source[source.index("case 0xC6:") : source.index("case 0xC7:")]
+        call700 = c6.index(")(*(_DWORD *)raw +  8))(raw, 700);")
+        self.assertLess(c6.index("return;", call700), c6.index("else", call700))
+        self.assertIn("if ( *(__int16 *)(raw +  320) <= 3 )", source)
+        self.assertIn(
+            "reinterpret_cast<CharacterObjectRuntime *>(raw + 4)->set_oriented_components_f0_f4",
+            source,
+        )
+        self.assertIn("int facing_600 = *(unsigned __int8 *)(raw +  260);", source)
+        self.assertIn("int facing = *(unsigned __int8 *)(raw +  260);", source)
         units = self.manifest.load_manifest()["units"]
         unit = units["gpt-web-youmu-vslot28-full-root"]
-        self.assertIn("20/98", unit["notes"])
-        self.assertIn("51 -> 57", unit["notes"])
-        self.assertIn("336 -> 320", unit["notes"])
-        self.assertIn("+0x9334", unit["notes"])
+        self.assertIn("24/98", unit["notes"])
+        self.assertIn("57 -> 60", unit["notes"])
+        self.assertIn("320 -> 298", unit["notes"])
+        self.assertIn("+0x9354", unit["notes"])
+        self.assertIn("target 0x64, candidate 0x79", unit["notes"])
 
 
 if __name__ == "__main__":
