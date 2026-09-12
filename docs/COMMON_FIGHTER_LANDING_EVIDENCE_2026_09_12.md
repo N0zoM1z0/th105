@@ -258,3 +258,8 @@ The focused canonical comparison reproduces the retained hash
 and the full-root diagnostic remains 53/66 with metadata 10296. Together
 with the explicitly normalized-selector control above, this rejects these
 two simple selector-expression hypotheses for SUB versus ADD-negative.
+
+The subsequent exit/ABI/visibility batch is recorded in
+[COMMON_FIGHTER_EXIT_PHASE_EVIDENCE_2026_09_12.md](COMMON_FIGHTER_EXIT_PHASE_EVIDENCE_2026_09_12.md).
+It preserves the 53/66 checkpoint and demonstrates that a single native
+switch can emit the target SUB encoding, but still fails complete ownership.

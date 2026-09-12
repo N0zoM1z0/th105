@@ -37,6 +37,15 @@ rounding stages are observed in that candidate, so do not repeat the older
 claim that rounding itself cannot be generated. Explicit late labels,
 alternate ordinary exits, and size optimization also fail to recover the
 simultaneous owner layout. The production 53/66 checkpoint is unchanged.
+The next follow-up revalidates all 15 +8/+0xC vtable slots and corrects the
+local action parameter to `short`, verified byte-neutral. No additional owner
+closes. Fresh single-switch VC8 output does emit both target SUB selectors,
+but incorrectly merges distinct action owners or regresses their tails;
+selector encoding alone is therefore not a compiler-version/LTCG blocker.
+Export versus retained-only LTCG still produces a non-target aligned frame.
+See [COMMON_FIGHTER_EXIT_PHASE_EVIDENCE_2026_09_12.md](COMMON_FIGHTER_EXIT_PHASE_EVIDENCE_2026_09_12.md)
+and the tracked `scripts/probe-ltcg-visibility.sh` for the evidence and safe,
+non-executable visibility control. Production remains nonexact, 53/66.
 Continue this root, not the manager or a character-completion sweep.
 
 Shared secondary-animation replacement `0x00496420` is now **274/274 exact**

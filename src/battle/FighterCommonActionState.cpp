@@ -16,7 +16,9 @@ class FighterCommonActionStateView {
 public:
     virtual void slot_00();
     virtual void slot_04();
-    virtual void set_action(int action);
+    // All roster +8 slots forward to 0x00435200, which reads the low word
+    // of its four-byte argument slot. This root ignores virtual return values.
+    virtual void set_action(short action);
     virtual void set_sequence(int sequence);
     virtual void slot_10();
     virtual void slot_14();
