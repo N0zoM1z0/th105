@@ -18,6 +18,28 @@ project from scratch. Keep the quick `scripts/ci.py` and `git diff --check`
 commit gates.
 The completed aggregate replay below is a checkpoint, not a required inner loop.
 
+## 2026-09-12 shared-boss discrimination after the angle checkpoint
+
+Fresh common-Fighter experiments were all reverted. Ordinary inline clamp
+extraction leaves a non-target call; force-inlining reaches only 50/66
+diagnostic owners, and float temporaries remove required rounding. Separate
+sequence exits remain 49/66. Aligning local virtual declarations with the
+animation facade is byte-neutral; the historical declarations are not thereby
+proved original. A native switch with case690 listed first still moves its
+shared case54 body to the high region and collapses distinct destinations.
+
+Microsoft RTM compiler media is now locally available and independently pinned.
+The RTM and SP1 comparison-window hashes for this common-root source are
+identical, so that version substitution does not solve the root. Reproduction
+and installation provenance are in [VC8_RTM_PROBE.md](VC8_RTM_PROBE.md).
+`scripts/compare-unit-object.py UNIT OBJECT --address ADDRESS --json` replays
+one existing object without compiling anything or claiming build provenance.
+
+The next bounded investigation is shared default CPU policy `0x005F1F80`,
+not a roster-by-roster completion wave. Its freshly attested instruction/owner
+audit is only 15/41 identical owners; old near-sized policy counts do not prove
+semantic closure. Common Fighter `0x004740C0` remains nonexact and unchanged.
+
 ## 2026-09-12 natural shared angle contract
 
 `atan2_degrees @ 0x00406540` is now **63/63 canonical exact** from ordinary
