@@ -3,6 +3,8 @@
 #include <windows.h>
 #include <stddef.h>
 
+extern "C" __declspec(dllimport) unsigned long __stdcall timeGetTime(void);
+
 namespace th105 {
 
 struct BgmStreamView {
@@ -39,7 +41,7 @@ void BgmServiceView::schedule_or_start(int handle, int delay)
     if (stream != 0) {
         stream->state_1c = 0;
         if (delay != 0) {
-            stream->scheduled_time_134c = GetTickCount() + delay;
+            stream->scheduled_time_134c = timeGetTime() + delay;
             LeaveCriticalSection(&lock_20);
             return;
         }
@@ -48,7 +50,7 @@ void BgmServiceView::schedule_or_start(int handle, int delay)
             if (stream->buffer_28 != 0)
                 stream->buffer_28->play(0, 0, 1);
         } else {
-            stream->scheduled_time_134c = GetTickCount();
+            stream->scheduled_time_134c = timeGetTime();
         }
     }
     LeaveCriticalSection(&lock_20);

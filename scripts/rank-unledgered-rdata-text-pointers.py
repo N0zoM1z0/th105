@@ -84,6 +84,25 @@ def containing_span(address: int, spans: list[tuple[int, int, str, str]]) -> tup
     return None
 
 
+def containing_msvc_rtti_name(blob: bytes, offset: int) -> tuple[int, int, str] | None:
+    """Return a containing decorated MSVC RTTI type-name run, if any."""
+    if offset < 0 or offset + 4 > len(blob):
+        return None
+    lower = max(0, offset - 512)
+    previous_nul = blob.rfind(b"\0", lower, offset)
+    start = previous_nul + 1 if previous_nul >= 0 else lower
+    upper = min(len(blob), offset + 512)
+    end = blob.find(b"\0", offset, upper)
+    if end < 0 or not (start <= offset < end):
+        return None
+    raw = blob[start:end]
+    if not raw.startswith((b".?AV", b".?AU", b".?AW4")):
+        return None
+    if not raw.endswith(b"@@") or any(byte < 0x20 or byte > 0x7E for byte in raw):
+        return None
+    return start, end, raw.decode("ascii")
+
+
 def census(section_name: str = ".rdata") -> dict[str, Any]:
     compare = load_compare()
     target_sha = compare.verify_target()
@@ -101,10 +120,22 @@ def census(section_name: str = ".rdata") -> dict[str, Any]:
         raise ValueError(f"target {section_name} raw data is truncated")
 
     targets: dict[int, list[int]] = {}
+    ignored_rtti_name_dwords: list[dict[str, str]] = []
     for offset in range(0, len(blob) - 3, 4):
         pointer = struct.unpack_from("<I", blob, offset)[0]
-        if text["start"] <= pointer < text["end"]:
-            targets.setdefault(pointer, []).append(source["start"] + offset)
+        if not (text["start"] <= pointer < text["end"]):
+            continue
+        rtti_name = containing_msvc_rtti_name(blob, offset)
+        if rtti_name is not None:
+            name_start, _, decorated_name = rtti_name
+            ignored_rtti_name_dwords.append({
+                "reference_site": f"0x{source['start'] + offset:08X}",
+                "decoded_address": f"0x{pointer:08X}",
+                "type_name_site": f"0x{source['start'] + name_start:08X}",
+                "decorated_name": decorated_name,
+            })
+            continue
+        targets.setdefault(pointer, []).append(source["start"] + offset)
 
     rows = []
     for address, sites in sorted(targets.items()):
@@ -138,12 +169,14 @@ def census(section_name: str = ".rdata") -> dict[str, Any]:
     uncovered = [row for row in rows if row["classification"] == "uncovered"]
     uncovered.sort(key=lambda row: (-row["reference_count"], row["address"]))
     return {
-        "schema": "th105-section-text-pointer-census-v1",
+        "schema": "th105-section-text-pointer-census-v2",
         "target_sha256": target_sha,
         "source_section": section_name,
         "text_range": [f"0x{text['start']:08X}", f"0x{text['end']:08X}"],
         "source_range": [f"0x{source['start']:08X}", f"0x{source['end']:08X}"],
         "unique_text_pointer_count": len(rows),
+        "ignored_rtti_name_dword_count": len(ignored_rtti_name_dwords),
+        "ignored_rtti_name_dwords": ignored_rtti_name_dwords,
         "ledger_start_count": sum(row["classification"] == "ledger_start" for row in rows),
         "owned_interior_count": sum(row["classification"] == "owned_interior" for row in rows),
         "uncovered_count": len(uncovered),
@@ -175,7 +208,8 @@ def main() -> int:
         print(
             f"target {result['target_sha256']}: {result['unique_text_pointer_count']} unique {result['source_section']}->.text pointers; "
             f"{result['ledger_start_count']} starts, {result['owned_interior_count']} owned interiors, "
-            f"{result['uncovered_count']} uncovered"
+            f"{result['uncovered_count']} uncovered, "
+            f"{result['ignored_rtti_name_dword_count']} RTTI-name dwords ignored"
         )
         for row in result["uncovered"][:args.limit]:
             sites = ",".join(row["reference_sites"][:4])

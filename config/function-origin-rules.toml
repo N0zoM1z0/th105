@@ -29,6 +29,17 @@ confidence = "observed"
 evidence = "Current raw PE direct edges tie each source-present helper to canonical-exact UI gameplay owners: UiTileA4_set_texture 0x004098B0 calls the 266-byte full tile setter 0x004098E0; CMenuConnect ctor 0x00444190 calls CNumber initialize 0x00414E40; initialize_player_profiles_from_game_config 0x0043BA10 calls PlayerSlotRecord_load_profile 0x00431AC0 four times. Exactness of the callees is separate; these edges prove game-authored ownership."
 
 [[rules]]
+id = "cnumber-normal-lifetime-authored-106a"
+addresses = ["0x0040ADB0"]
+expected_count = 1
+expected_bytes = 40
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Current CNumber RTTI hierarchy at COL 0x006DCBEC proves CNumber with a zero-offset IColor base; primary vtable 0x006C1B60 plus EH cleanup entries 0x006B9477/0x006B95B7 establish the independently padded 0x0040ADB0 normal destructor as reusable game-class lifetime code. Natural VC8 source reproduces the complete 40-byte extent and differs only in the order of the final member/base vptr stores; exact credit remains separate."
+
+[[rules]]
 id = "network-winsock-member-lifetime-authored-106a"
 addresses = ["0x00412B10", "0x00412CC0"]
 expected_count = 2
@@ -1393,7 +1404,7 @@ origin = "authored_game"
 subsystem = "audio"
 disposition = "authored"
 confidence = "observed"
-evidence = "Canonical-exact play_bgm/stop_bgm/fade_bgm/set_bgm_volume and load/play BGM facades directly call these four service members. Raw target code fixes CriticalSection +0x20, handle manager +0x38 and DirectSound stream state/buffer fields. schedule_or_start uses the target-proved KERNEL32 GetTickCount IAT and replays 142/143; stop/fade/set-level replay 96/98, 76/70 and 70/69. Fade/set-level stop only on target-private transition worker 0x00402B70 (EAX stream, EDI one service argument), which is not encoded into source."
+evidence = "Canonical-exact play_bgm/stop_bgm/fade_bgm/set_bgm_volume and load/play BGM facades directly call these four service members. Raw target code fixes CriticalSection +0x20, handle manager +0x38 and DirectSound stream state/buffer fields. schedule_or_start uses the target-proved WINMM timeGetTime IAT and replays 142/143; stop/fade/set-level replay 96/98, 76/70 and 70/69. Fade/set-level stop only on target-private transition worker 0x00402B70 (EAX stream, EDI one service argument), which is not encoded into source."
 
 [[rules]]
 id = "cscript-clear-commands-authored-106a"

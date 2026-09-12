@@ -2,9 +2,62 @@
 
 ## Phase
 
-Canonical 1.06a authored-exact waves are established. The active phase is
-expanding authored classification and exact source recovery beyond raw-identity
-seeds using current-target-backed structural remapping where appropriate.
+The active objective is exact recovery of the highest-reuse shared gameplay
+blockers, not completion of every character. Prioritize the common Fighter
+action-state root `0x004740C0`, shared default CPU policy `0x005F1F80`, and
+their high-reuse dependencies. Character-specific roots are bounded witnesses
+only when they discriminate a shared ABI/source hypothesis. Work on one root
+at a time, preserve existing accepted units, and accept only whole canonical
+matches. Historical diagnostics below are hypotheses to revalidate, not proof
+that the remaining differences are merely compiler tail merging.
+
+Session-specific user authorization (2026-09-12): do not rerun unrelated
+accepted modules or the full cold suite on each boss iteration. Use focused
+build/comparison and only necessary directly affected witnesses for shared
+changes. Keep the quick `scripts/ci.py` and `git diff --check` commit gates.
+The completed aggregate replay below is a checkpoint, not a required inner loop.
+
+## 2026-09-12 main-worktree CI recovery and return-contract audit
+
+- The previously incomplete main-worktree lifetime wave is now reconciled.
+  Fresh canonical builds confirm CNumber color virtuals at
+  `0x0040ADE0/0x0040ADF0/0x0040AE00` (11 bytes each), its scalar deleting
+  destructor `0x0040AE10` (60), NetworkWinsock scalar destructor
+  `0x00412C80` (30), and ProfileDeck scalar destructor `0x0044B320` (30).
+  The six match rows, seven source-present mappings and their durable names
+  are synchronized. CNumber normal destructor `0x0040ADB0` remains nonexact
+  at +0x1A; its same-size body is not credited.
+- The second CI layer was stale test expectations: inventory/match-unit counts,
+  RTTI-name false-positive counts, and an incorrect assertion requiring
+  GetTickCount in BGM scheduling. The canonical PE import descriptor names
+  WINMM timeGetTime at IAT `0x006C0258`; KERNEL32 GetTickCount is independently
+  at `0x006C00E0`. Regression tests pin both addresses/name RVAs and keep
+  RTTI-name exclusions observable. No validation rule was disabled.
+- GitHub run `34672645944` independently failed because two mixed workflow
+  tests unconditionally read the private `resources/th105.exe`. Split their
+  target-byte census checks into explicitly target-dependent tests; public
+  ledger assertions still run. A fresh source-only export (no target, compiler,
+  IDB or generated reports) passes `CI=1 python3 scripts/ci.py`: 91 tests,
+  four private-target checks skipped. The main worktree passes all 91 tests.
+- Local CI passes after repairing these expectations and regenerating progress.
+  `python3 scripts/verify-exact-units.py --all` completed successfully in the
+  finished worktree: **459 cold units / 1,312 exact functions / 217,279 bytes**.
+  The full replay includes accepted consumers of the shared relocation ledger;
+  its local log is `build/ci-repair-cold-replay.log`. No giant-root exact credit
+  is added by this maintenance checkpoint.
+- The Aya dependency audit now has a reusable tracked command:
+  `python3 scripts/audit-x87-return-sites.py 0x00406540`.
+  Fresh IDA exposes 339 direct calls, all confirmed as canonical E8 calls.
+  Bounded windows include both direct member stores and explicit stack rounding;
+  they do not uniquely prove a float return declaration. Independent accepted
+  Alice callers `0x004FC7C0/0x004FC900` exemplify the distinction.
+  The script stops at control transfers and does not claim full return-value
+  dataflow or exhaustive indirect-call coverage. Output belongs under build/.
+- Small no-volatile compiler witnesses distinguish direct CRT double calls
+  from the official VC8 math.h float overload chain. Under strict FP, the
+  overload chain introduces genuine extra m32 return rounding. This is a
+  new source-level explanation worth testing against `0x00406540`, not an
+  accepted change to the current angle definition or caller ABI.
 
 ## 2026-09-12 Aya action-entry revalidation
 
@@ -25,8 +78,8 @@ coherent callee and independent-caller audit. Fresh speed/size single-TU
 LTCG probes still have non-target frames, without excluding other contexts.
 
 See [the bounded evidence and reproduction note](AYA_ENTRY_EVIDENCE_2026_09_12.md).
-The main worktree's pre-existing tracking mismatch remains separate from
-these source corrections; it must not be bypassed to commit that worktree.
+The main worktree's pre-existing tracking mismatch was separate from these
+source corrections; its subsequent repair is recorded in the section above.
 
 ## 2026-09-12 fresh common-root experiments and official VC8 reference
 
@@ -1162,7 +1215,7 @@ git diff --check
 ### 2026-08-29 SceneRenderCluster timeline continuation
 
 - Promoted **3 authored canonical-exact roots / 1,036 bytes**: easing `0x00450120` (131), shared cluster update `0x00451400` (801), and shared cleanup `0x00452E60` (104). The working checkpoint is **1,094 authored exact / 180,727 bytes / 360 units; 1,049 excluded; 1,867 review** before aggregate cold replay.
-- `SceneRenderCluster::update` is now a strong source-shape anchor for the exact constructor layout. Preserve repeated checked iterator dereferences, direct `objects.find(it->first)->second`, source switch order `3,4,7,8,9,5,6,10,11,12,13`, and the two-step `GetTickCount()-start` delta. Refactoring any of those normal expressions changes VC8 frame/guard/block layout.
+- `SceneRenderCluster::update` is now a strong source-shape anchor for the exact constructor layout. Preserve repeated checked iterator dereferences, direct `objects.find(it->first)->second`, source switch order `3,4,7,8,9,5,6,10,11,12,13`, and the two-step `timeGetTime()-start` delta. Refactoring any of those normal expressions changes VC8 frame/guard/block layout.
 - Cleanup proves the `list<0x7C record>` element is nontrivial: that lifetime keeps list clear out of line and closes 104/104. A trivial element inlines node release and is not the shipped source shape.
 - Leave interpolation helpers `0x004501B0/0x00450290` review-pending at 216/211 and 162/160; the remaining difference is allocator/TU register assignment after normal source-lifetime variants were exhausted. Also do not count the adjacent tree/deque machinery (`0x00451200`, `0x004505E0`, `0x00451B70`, `0x00451BD0`, `0x004505A0`, `0x00450640`) as authored without separate origin proof.
 
@@ -1531,7 +1584,7 @@ git diff --check
 
 - 2026-09-09 service/battle readiness checkpoint: generated census is **4019 candidates / 1459 authored / 1304 excluded / 1256 review / 1371 source-present / 1300 exact**, with **216821 exact authored bytes / 2086464 confirmed authored bytes**. This wave moves ten real game roots from review to authored and seven compiler/container helpers to exclusions; it does not hide nonexact work to improve the headline.
 - `BattleInputGate_is_synchronized_input_ready @ 0x004712B0` is new canonical **129/129 exact**. Exact BattleController/CBattleManager dispatch owners call it on the `get_player2_input` receiver. Existing layout already fixes `input_104`, scoped `CriticalSectionWrapper +0x124`, and published/consumed bytes `+0x140/+0x141`; the availability callee `0x00428560` is independently 8/8 exact. The decisive source shape is one bitwise expression `(published == consumed) & input_available()`: VC8 evaluates the right call first, preserves it in BL, then computes equality in AL/CL. Statement-splitting changes the physical lifetime and must not be repeated.
-- BGM service ownership now includes `schedule_or_start 0x00403840` plus stop/fade/set-level. `schedule_or_start` is source-closed at **142/143 +0x02**: exact `play_bgm` calls it with `(handle,500)` and `(handle,0)`, and target uses service lock `+0x20`, handle manager `+0x38`, stream state `+0x1C`, buffer `+0x28`, and scheduled tick `+0x134C`. The canonical IAT `0x006C0258` is **GetTickCount**, not `timeGetTime`; the comparator caught that API error. The remaining byte is lazy callee-save/register allocation. `stop` remains 96/98 on buffer-field CSE; fade/set-level remain private-transition-ABI stops. No volatile/register forcing.
+- BGM service ownership now includes `schedule_or_start 0x00403840` plus stop/fade/set-level. `schedule_or_start` is source-closed at **142/143 +0x02**: exact `play_bgm` calls it with `(handle,500)` and `(handle,0)`, and target uses service lock `+0x20`, handle manager `+0x38`, stream state `+0x1C`, buffer `+0x28`, and scheduled tick `+0x134C`. The canonical IAT `0x006C0258` is **WINMM `timeGetTime`**; SHA-pinned import descriptors and fresh IDA correct the earlier GetTickCount label. KERNEL32 `GetTickCount` is at `0x006C00E0`. The remaining byte is lazy callee-save/register allocation. `stop` remains 96/98 on buffer-field CSE; fade/set-level remain private-transition-ABI stops. No volatile/register forcing.
 - `ProfileRenderListView_set_color @ 0x0040BFE0` is authored/source-present **74/81 +0x00** from two exact profile-render callers. Target fixes a checked `std::list<polymorphic item*> @ +0x14` and vslot+4 color dispatch, but only the shipped TU realigns ESP to 8 bytes. There is no source-level 8-byte object, so do not manufacture one. `0x0040CDA0` is separately excluded as a compiler-generated checked `_Tree` lower-bound clone: raw code walks left/right/nil nodes and returns the iterator pair for the exact CSelectScenario owner.
 
 - 2026-09-09 AttackObject/CharacterObject lifetime checkpoint: `AttackObject_dtor @ 0x0045F8E0` is **78/78**, `AttackObject_scalar_deleting_destructor @ 0x0045F930` is **30/30**, and `CharacterObject_dtor @ 0x00492ED0` is **145/145 canonical exact**. The decisive source facts are C++ ABI/profile facts rather than instruction shaping: `AnimationObject` and `AttackObject` virtual destructors are `throw()`, which removes a non-target AttackObject SEH frame and lets the base cleanup inline naturally; the CharacterObject lifetime TU is `/GS`, which preserves its existing exact ctor/scalar wrapper while reproducing handler `0x006BBAE8` and the target security-cookie phase. CharacterObject frees `copied_words_340`, deletes exact secondary renderer `+0x338`, then calls exact AttackObject destruction. Live generated totals become **4019 candidates / 1462 authored / 1304 excluded / 1253 review / 1374 source-present / 1303 exact / 217074 exact bytes / 2086717 authored bytes**.

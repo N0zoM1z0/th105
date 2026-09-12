@@ -3,7 +3,7 @@
 #include <string>
 #include <stddef.h>
 
-extern "C" __declspec(dllimport) unsigned long __stdcall GetTickCount(void);
+extern "C" __declspec(dllimport) unsigned long __stdcall timeGetTime(void);
 extern "C" void __cdecl begin_scene_timeline(const char *path);
 extern "C" void __cdecl set_scene_timeline_mode(int mode);
 
@@ -119,9 +119,9 @@ bool SceneRenderClusterUpdateView::update_451400()
         timeline_00.elapsed_08 = 0;
         begin_scene_timeline(path_70.c_str());
         set_scene_timeline_mode(0);
-        timeline_00.start_tick_04 = GetTickCount();
+        timeline_00.start_tick_04 = timeGetTime();
     } else {
-        unsigned int delta = GetTickCount() - timeline_00.start_tick_04;
+        unsigned int delta = timeGetTime() - timeline_00.start_tick_04;
         unsigned int elapsed = (delta + timeline_00.elapsed_08 + 16) >> 1;
         timeline_00.elapsed_08 = elapsed;
         if (elapsed >= *reinterpret_cast<unsigned int *>(

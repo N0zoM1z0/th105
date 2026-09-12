@@ -73,6 +73,13 @@ do not exclude other original TU/caller contexts.
 
 ## Reproduction
 
+Follow-up caller census: `python3 scripts/audit-x87-return-sites.py 0x00406540`
+attests the active IDA target, verifies each listed CALL against canonical PE
+bytes, and captures bounded post-call windows. The current inventory has 339
+direct sites. Both direct stores (Alice `0x004FC7C0`) and stack-rounding consumers
+(Alice `0x004FC900`) exist. These windows stop at control transfers; they are
+not a proof of the unique source return type or complete x87 dataflow.
+
 Run target and IDA preflight before semantic work:
 
 ```sh

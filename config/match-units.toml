@@ -7692,6 +7692,15 @@ dir32_targets = [
   "_title_color_vtable_anchor=_title_color_vtable_anchor_external",
 ]
 
+
+[[units.cross-v106a-profile-deck-lifetime.functions]]
+address = "0x0044B320"
+symbol_base = "??_GCProfileDeckEdit@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1CProfileDeckEdit@th105@@UAE@XZ=0x0044A950",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
 [units.cross-v106a-profile-submenu-lifetimes]
 kind = "probe"
 source = "src/ui/ProfileSubmenuLifetime.cpp"
@@ -14406,6 +14415,44 @@ dir32_targets = [
   "?g_connect_config_ini@th105@@3UConnectConfigIniView@1@A=?g_connect_config_ini@th105@@3UConnectConfigIniView@1@A",
 ]
 
+[units.gpt-web-cnumber-lifetime]
+kind = "probe"
+source = "src/ui/CNumberLifetime.cpp"
+object = "build/match-units/GptWeb_CNumberLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Raw CNumber RTTI COL 0x006DCBEC proves a zero-offset IColor base and vtable 0x006C1B60 owns deleting destructor plus three color-forwarding slots. Natural C++ recovers all three 11-byte forwarding virtuals and the 60-byte scalar deleting destructor exactly. The independently padded 40-byte normal destructor is source-present/same-size but retains only the final member/base vptr-store ordering residual."
+
+[[units.gpt-web-cnumber-lifetime.functions]]
+address = "0x0040ADB0"
+symbol_base = "??1CNumberLifetime@th105@@UAE@XZ"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = [
+  "??_7CNumberLifetime@th105@@6B@=??_7CNumber@th105@@6B@",
+  "??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@",
+]
+
+[[units.gpt-web-cnumber-lifetime.functions]]
+address = "0x0040ADE0"
+symbol_base = "?set_color@CNumberLifetime@th105@@UAEXI@Z"
+
+[[units.gpt-web-cnumber-lifetime.functions]]
+address = "0x0040ADF0"
+symbol_base = "?set_vertex_colors@CNumberLifetime@th105@@UAEXPBI@Z"
+
+[[units.gpt-web-cnumber-lifetime.functions]]
+address = "0x0040AE00"
+symbol_base = "?multiply_color@CNumberLifetime@th105@@UAEXI@Z"
+
+[[units.gpt-web-cnumber-lifetime.functions]]
+address = "0x0040AE10"
+symbol_base = "??_GCNumberLifetime@th105@@UAEPAXI@Z"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = [
+  "??_7CNumberLifetime@th105@@6B@=??_7CNumber@th105@@6B@",
+  "??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@",
+]
+
 [units.gpt-web-cnumber-runtime]
 kind = "probe"
 source = "src/ui/CNumberRuntime.cpp"
@@ -14509,6 +14556,22 @@ rel32_targets = [
 dir32_targets = [
   "_connect_empty_string=_connect_empty_string",
   "___security_cookie=___security_cookie",
+]
+
+[units.gpt-web-network-winsock-scalar-dtor]
+kind = "probe"
+source = "src/network/NetworkWinsockConstructorRuntime.cpp"
+object = "build/match-units/GptWeb_NetworkWinsockScalarDtor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "RTTI-backed NetworkWinsockState314 primary vtable 0x006D6C5C owns the previously unledgered scalar deleting destructor at 0x00412C80. The existing natural 0x314 lifetime source emits the 30-byte wrapper exactly while ctor/dtor remain separately tracked nonexact roots."
+
+[[units.gpt-web-network-winsock-scalar-dtor.functions]]
+address = "0x00412C80"
+symbol_base = "??_GNetworkWinsockState314CtorView@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1NetworkWinsockState314CtorView@th105@@UAE@XZ=0x00412CC0",
+  "??3@YAXPAX@Z=0x006898EA",
 ]
 
 [units.gpt-web-network-base-runtime]
@@ -15040,7 +15103,7 @@ rel32_targets = [
   "?erase@?$_Tree@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@V312@@Z=0x0041ECF0",
   "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@std@@QAEXXZ=0x0041EAC0",
 ]
-dir32_targets = ["__imp__GetTickCount@0=__imp__GetTickCount@0"]
+dir32_targets = ["__imp__timeGetTime@0=__imp__timeGetTime@0"]
 
 [units.gpt-web-scene-render-cluster-cleanup]
 kind = "probe"

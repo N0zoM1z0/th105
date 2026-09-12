@@ -243,9 +243,11 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0040AD50,authored_game,battle,authored,observed,canonical-exact-authored
 0x0040AD60,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040ADA0,authored_game,ui,authored,observed,canonical-exact-authored
-0x0040ADE0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0040ADF0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0040AE00,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0040ADB0,authored_game,ui,authored,observed,cnumber-normal-lifetime-authored-106a
+0x0040ADE0,authored_game,ui,authored,observed,canonical-exact-authored
+0x0040ADF0,authored_game,ui,authored,observed,canonical-exact-authored
+0x0040AE00,authored_game,ui,authored,observed,canonical-exact-authored
+0x0040AE10,authored_game,ui,authored,observed,canonical-exact-authored
 0x0040AE50,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040AE60,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040AE70,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -426,6 +428,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00412A20,authored_game,assets,authored,observed,canonical-exact-authored
 0x00412A60,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00412B10,authored_game,network,authored,observed,network-winsock-member-lifetime-authored-106a
+0x00412C80,authored_game,network,authored,observed,canonical-exact-authored
 0x00412CA0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00412CB0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00412CC0,authored_game,network,authored,observed,network-winsock-member-lifetime-authored-106a
@@ -1495,6 +1498,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0044A410,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0044A950,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044AAC0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0044B320,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044B340,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044B540,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0044B860,authored_game,ui,authored,observed,canonical-exact-authored

@@ -55,25 +55,25 @@ class WorkflowToolingTests(unittest.TestCase):
             newline="", encoding="utf-8"
         ) as stream:
             functions = list(csv.DictReader(stream))
-        self.assertEqual(len(functions), 4019)
+        self.assertEqual(len(functions), 4023)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1306)
+        self.assertEqual(len(matching), 1312)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1381)
+        self.assertEqual(len(implemented), 1388)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1306
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1312
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 489)
+        self.assertEqual(len(manifest["units"]), 491)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1386,
+            1393,
         )
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:
@@ -253,8 +253,8 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 457)
-        self.assertEqual(sum(map(len, accepted.values())), 1306)
+        self.assertEqual(len(accepted), 459)
+        self.assertEqual(sum(map(len, accepted.values())), 1312)
         secondary = accepted["gpt-web-secondary-animation-runtime"]
         self.assertEqual(
             secondary,
@@ -286,6 +286,8 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(unit["source"], "src/engine/SceneManagerRuntime.cpp")
         self.assertEqual(unit["functions"][0]["address"].upper(), "0X0041E070")
 
+    @unittest.skipUnless((ROOT / "resources" / "th105.exe").exists(), "private target is unavailable")
+    def test_roster_vtable_and_rdata_census_against_target(self) -> None:
         vtable = self.roster_vtable_coverage.audit()
         surfaces = {surface["surface"]: surface for surface in vtable["surfaces"]}
         self.assertEqual(
@@ -355,15 +357,71 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(units["gpt-web-ogg-pcm-runtime"]["source"], "src/audio/OggPcmRuntime.cpp")
         self.assertTrue(units["gpt-web-ogg-metadata"]["enable_gs"])
 
+    @unittest.skipUnless((ROOT / "resources" / "th105.exe").exists(), "private target is unavailable")
+    def test_data_pointer_census_against_target(self) -> None:
         data_pointers = self.rdata_text_pointers.census(".data")
         self.assertEqual(data_pointers["source_section"], ".data")
-        self.assertEqual(data_pointers["unique_text_pointer_count"], 69)
-        self.assertEqual(data_pointers["uncovered_count"], 10)
+        self.assertEqual(data_pointers["unique_text_pointer_count"], 49)
+        self.assertEqual(data_pointers["uncovered_count"], 8)
+        self.assertEqual(data_pointers["ignored_rtti_name_dword_count"], 81)
         uncovered = {row["address"].upper() for row in data_pointers["uncovered"]}
-        for address in callbacks:
+        for address in ("0X00418B40", "0X00418C70", "0X00418CD0", "0X00418CF0"):
             self.assertNotIn(address, uncovered)
         self.assertNotIn("0X00689190", uncovered)
         self.assertNotIn("0X006892B0", uncovered)
+
+    def test_rtti_name_tail_is_not_a_code_pointer(self) -> None:
+        blob = b"\0.?AVCSelectSV@@\0"
+        offset = blob.index(b"V@@\0")
+        self.assertEqual(int.from_bytes(blob[offset:offset + 4], "little"), 0x00404056)
+        self.assertEqual(
+            self.rdata_text_pointers.containing_msvc_rtti_name(blob, offset),
+            (1, len(blob) - 1, ".?AVCSelectSV@@"),
+        )
+        for invalid, at in ((b"\0V@@\0", 1), (blob[:-1], offset), (blob, -1), (blob, len(blob))):
+            self.assertIsNone(self.rdata_text_pointers.containing_msvc_rtti_name(invalid, at))
+
+    def test_lifetime_checkpoint_ledgers_are_complete(self) -> None:
+        functions = {
+            row["address"]: row
+            for row in self.validator.rows(ROOT / "config" / "functions.csv")
+        }
+        matches = {
+            row["address"]: row
+            for row in self.validator.rows(ROOT / "config" / "matches.csv")
+        }
+        mappings = self.validator.validate_reccmp_ledgers()
+        implemented = self.validator.read_implemented(mappings)
+        for address, size in (
+            ("0x0040ADE0", 11), ("0x0040ADF0", 11), ("0x0040AE00", 11),
+            ("0x0040AE10", 60), ("0x00412C80", 30), ("0x0044B320", 30),
+        ):
+            self.assertEqual(functions[address]["status"], "matching")
+            self.assertEqual(int(matches[address]["size"]), size)
+            self.assertEqual(matches[address]["name"], mappings[int(address, 0)]["name"])
+            self.assertIn(matches[address]["name"], implemented)
+        self.assertEqual(functions["0x0040ADB0"]["status"], "implemented")
+        self.assertNotIn("0x0040ADB0", matches)
+        self.assertIn("CNumber_dtor", implemented)
+
+    def test_timer_import_contract_is_pinned(self) -> None:
+        relocations = {
+            row["coff_symbol"]: row
+            for row in self.validator.rows(ROOT / "config" / "reccmp-relocations.csv")
+        }
+        for symbol, address, raw in (
+            ("__imp__timeGetTime@0", "0x006C0258", "72542e00"),
+            ("__imp__GetTickCount@0", "0x006C00E0", "ec592e00"),
+        ):
+            self.assertEqual(relocations[symbol]["address"], address)
+            self.assertEqual(relocations[symbol]["data_hex"], raw)
+        if (ROOT / "resources" / "th105.exe").exists():
+            self.comparator.verify_target()
+            self.assertEqual(self.comparator.target_bytes(0x006C0258, 4).hex(), "72542e00")
+            self.assertEqual(self.comparator.target_bytes(0x006C00E0, 4).hex(), "ec592e00")
+            self.assertEqual(self.comparator.target_bytes(0x006E5474, 12), b"timeGetTime\0")
+            self.assertEqual(self.comparator.target_bytes(0x006E59EE, 13), b"GetTickCount\0")
+            self.assertEqual(self.comparator.target_bytes(0x006E5492, 10), b"WINMM.dll\0")
 
     def test_audio_scheduler_boundary_and_cbitmap_exact_wave_are_pinned(self) -> None:
         with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
@@ -642,8 +700,8 @@ class WorkflowToolingTests(unittest.TestCase):
         bgm = units["gpt-web-bgm-service-runtime"]
         self.assertTrue(any(row["address"].upper() == "0X00403840" for row in bgm["functions"]))
         bgm_source = (ROOT / "src" / "audio" / "BgmServiceRuntime.cpp").read_text(encoding="utf-8")
-        self.assertIn("GetTickCount()", bgm_source)
-        self.assertNotIn("timeGetTime()", bgm_source)
+        self.assertIn("timeGetTime()", bgm_source)
+        self.assertNotIn("GetTickCount()", bgm_source)
 
         source = (ROOT / "src" / "battle" / "BattleInputReady.cpp").read_text(encoding="utf-8")
         self.assertIn("published_140 == consumed_141", source)
@@ -794,14 +852,14 @@ class WorkflowToolingTests(unittest.TestCase):
 
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
-        self.assertIn("Tracked 1.06a function candidates | 4,019", markdown)
-        self.assertIn("Confirmed authored functions | 1,469", markdown)
-        self.assertIn("Confirmed authored code bytes | 2,087,954", markdown)
+        self.assertIn("Tracked 1.06a function candidates | 4,023", markdown)
+        self.assertIn("Confirmed authored functions | 1,476", markdown)
+        self.assertIn("Confirmed authored code bytes | 2,088,147", markdown)
         self.assertIn("Classified exclusions | 1,308", markdown)
-        self.assertIn("Origin/boundary review pending | 1,242", markdown)
-        self.assertIn("Canonical exact functions | 1,306", markdown)
-        self.assertIn("Canonical exact authored bytes | 217,126", markdown)
-        self.assertIn("Source-present authored mappings | 1,381", markdown)
+        self.assertIn("Origin/boundary review pending | 1,239", markdown)
+        self.assertIn("Canonical exact functions | 1,312", markdown)
+        self.assertIn("Canonical exact authored bytes | 217,279", markdown)
+        self.assertIn("Source-present authored mappings | 1,388", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
