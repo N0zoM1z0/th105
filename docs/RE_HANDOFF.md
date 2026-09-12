@@ -20,6 +20,17 @@ The completed aggregate replay below is a checkpoint, not a required inner loop.
 
 ## Current bounded dependency investigation
 
+**Paused at the user's request:** the final 2026-09-12 instruction is to
+organize the attempted methods, obstacles and handoff, then commit/push only.
+Do not begin another reconstruction iteration until asked. Production remains
+the `379a551` common-Fighter source: 53/66 diagnostic owners, 13 pending,
+whole canonical function nonexact at +0x14. The latest focused build reproduces
+the existing window hash; no new owner or exact credit was retained.
+Start with [COMMON_FIGHTER_HANDOFF_2026_09_12.md](COMMON_FIGHTER_HANDOFF_2026_09_12.md)
+for the compact experiment index, fresh negative controls, remaining-owner
+map, and safe resume commands. It consolidates the route through the larger
+historical notes below without treating those notes as proof.
+
 The active work remains common Fighter `0x004740C0`. After action 74's
 landing recovery, the next batch recovers high action 790's shared action-140
 terminal. Ordinary completion uses `break` in actions 143/144/150..153,
