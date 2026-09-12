@@ -249,3 +249,12 @@ comparisons. For future work, preserve the distinction between reproducible
 local instruction sequences and simultaneous whole-root owner placement;
 do not retain NOP removal, padding or manufactured liveness to compensate
 for these source regressions.
+
+Finally, `build/common13-unsigned-selectors.cpp` preserves the signed outer
+690 partition but casts both inner switch selectors to unsigned. All listed
+case values are unchanged; negative low actions still select default.
+The focused canonical comparison reproduces the retained hash
+`99563500433bccf1f68e7c256b438595de9cdcf5b18aee4816f19e69e1cda835`,
+and the full-root diagnostic remains 53/66 with metadata 10296. Together
+with the explicitly normalized-selector control above, this rejects these
+two simple selector-expression hypotheses for SUB versus ADD-negative.
