@@ -18,6 +18,22 @@ project from scratch. Keep the quick `scripts/ci.py` and `git diff --check`
 commit gates.
 The completed aggregate replay below is a checkpoint, not a required inner loop.
 
+## 2026-09-12 shared CPU predicate checkpoint
+
+Active root remains `0x005F1F80`. Fresh target instructions support 54 unsigned
+full-RNG-result source comparisons, but three stored-word comparisons at
++0x76E versus +0x482 are signed. The source now preserves that distinction,
+uses the action200 positive predicate ladder, and removes duplicated x87
+temporaries in action404. Range-helper, cascade and policy-load scheduling
+experiments were reverted. A real single-TU LTCG link still has a non-target
+aligned EBP frame; it does not exclude other original contexts.
+
+The whole 15,910-byte root remains nonexact at +0x12E, with a 16,481-byte
+section tail and 14/41 diagnostic owners. No exact credit is added.
+See [CPU_PREDICATE_EVIDENCE_2026_09_12.md](CPU_PREDICATE_EVIDENCE_2026_09_12.md)
+for evidence classes, remaining differences and focused reproduction.
+Remote CI for pushed checkpoint `2ed112e` passed (run `34674930831`).
+
 ## 2026-09-12 shared-boss discrimination after the angle checkpoint
 
 Fresh common-Fighter experiments were all reverted. Ordinary inline clamp

@@ -1100,19 +1100,19 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertNotIn("v106 = v109 == 203;", text)
         self.assertNotIn("bool v106;", text)
         self.assertNotIn("LABEL_1024:", text)
-        self.assertEqual(text.count("if ( selector_random_roll(0x64u) <= 0xA )"), 2)
+        self.assertEqual(text.count("if ( selector_random_roll(0x64u) <= 0xAu )"), 2)
         self.assertIn(
             "case 1:\nv101 = *(__int16 *)CPU_FIELD(1896) <= 0;\n"
             "*(_DWORD *)CPU_FIELD(1716) = 1;\nif ( v101 )\n{\n"
             "*(_WORD *)CPU_FIELD(1894) = 0;\n"
-            "if ( selector_random_roll(0x64u) <= 0xA )\n"
+            "if ( selector_random_roll(0x64u) <= 0xAu )\n"
             "*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x3Cu);\n}\n"
             "return;",
             text,
         )
         self.assertIn(
             "LABEL_994:\n*(_WORD *)CPU_FIELD(1894) = 0;\n"
-            "if ( selector_random_roll(0x64u) <= 0xA )\n"
+            "if ( selector_random_roll(0x64u) <= 0xAu )\n"
             "*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x3Cu);",
             text,
         )
@@ -1126,7 +1126,7 @@ class WorkflowToolingTests(unittest.TestCase):
         )
         self.assertIn(
             "LABEL_1023:\n*(_WORD *)CPU_FIELD(1894) = 0;\n"
-            "if ( selector_random_roll(0x64u) > 0x64 )\nreturn;\n"
+            "if ( selector_random_roll(0x64u) > 0x64u )\nreturn;\n"
             "goto LABEL_1025;\nLABEL_1025:\n"
             "*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x3Cu);",
             text,
@@ -1136,7 +1136,7 @@ class WorkflowToolingTests(unittest.TestCase):
         )
         self.assertIn(
             "if ( v101 )\n{\n*(_WORD *)CPU_FIELD(1894) = 0;\n"
-            "if ( selector_random_roll(0x64u) <= 0x64 )\n"
+            "if ( selector_random_roll(0x64u) <= 0x64u )\n"
             "*(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x3Cu);\n"
             "return;\n}\nif ( *(_WORD *)CPU_FIELD(316) == 200",
             text,

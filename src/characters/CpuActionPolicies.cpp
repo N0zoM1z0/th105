@@ -74,8 +74,6 @@ int v56; // eax
 __int16 v57; // cx
 int v58; // eax
 __int16 v59; // cx
-double v60; // st7
-double v61; // st6
 int v62; // eax
 int v63; // ecx
 __int16 v64; // ax
@@ -168,43 +166,38 @@ if ( v117 >= 700.0 )
 *(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u) + 1;
 }
 v8 = *(_DWORD *)CPU_FIELD(368);
-if ( (*(float *)(v8 + 236) < (double)*(float *)CPU_FIELD(236) && *(_BYTE *)CPU_FIELD(260) == 0xFF
-|| *(float *)(v8 + 236) > (double)*(float *)CPU_FIELD(236) && *(_BYTE *)CPU_FIELD(260) == 1)
+if ( (*(float *)CPU_FIELD(236) > *(float *)(v8 + 236) && *(_BYTE *)CPU_FIELD(260) == 0xFF
+|| *(float *)CPU_FIELD(236) < *(float *)(v8 + 236) && *(_BYTE *)CPU_FIELD(260) == 1)
 && *(__int16 *)CPU_FIELD(1892) >= 50 )
 {
-if ( v117 >= 220.0 || selector_random_roll(0x3E8u) >= 0x55 || v118 >= 50.0 )
+if ( v117 < 220.0 && static_cast<unsigned>(selector_random_roll(0x3E8u)) < 0x55u && v118 < 50.0 )
 {
-if ( v117 < 150.0 || v117 > 300.0 || v118 >= 50.0 || selector_random_roll(0x3E8u) >= 0x32 )
+*(_DWORD *)CPU_FIELD(1716) = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1724) = 2;
+}
+else if ( v117 >= 150.0 && v117 <= 300.0 && v118 < 50.0
+          && static_cast<unsigned>(selector_random_roll(0x3E8u)) < 0x32u )
 {
-if ( v117 >= 250.0 && v117 <= 300.0 && v118 > 50.0 && v118 < 150.0 && selector_random_roll(0x3E8u) < 0x32 )
+*(_DWORD *)CPU_FIELD(1716) = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1728) = 2;
+}
+else if ( v117 >= 250.0 && v117 <= 300.0 && v118 > 50.0 && v118 < 150.0
+          && static_cast<unsigned>(selector_random_roll(0x3E8u)) < 0x32u )
 {
 *(_DWORD *)CPU_FIELD(1716) = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1732) = 2;
 }
 }
-else
-{
-*(_DWORD *)CPU_FIELD(1716) = *(char *)CPU_FIELD(260);
-*(_DWORD *)CPU_FIELD(1728) = 2;
-}
-}
-else
-{
-*(_DWORD *)CPU_FIELD(1716) = *(char *)CPU_FIELD(260);
-*(_DWORD *)CPU_FIELD(1724) = 2;
-}
-}
 break;
 case 0x12C:
 v9 = *(_DWORD *)CPU_FIELD(384);
-if ( v9 )
-{
-if ( v9 != 3 && !*(_WORD *)CPU_FIELD(1892) )
-*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
-}
-else
+if ( !v9 )
 {
 *(_WORD *)CPU_FIELD(1892) = 0;
+}
+else if ( v9 != 3 && !*(_WORD *)CPU_FIELD(1892) )
+{
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
 }
 v10 = *(_WORD *)CPU_FIELD(1892);
 if ( v10 >= 10 )
@@ -224,14 +217,13 @@ else
 break;
 case 0x12D:
 v11 = *(_DWORD *)CPU_FIELD(384);
-if ( v11 )
-{
-if ( v11 != 3 && !*(_WORD *)CPU_FIELD(1892) )
-*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
-}
-else
+if ( !v11 )
 {
 *(_WORD *)CPU_FIELD(1892) = 0;
+}
+else if ( v11 != 3 && !*(_WORD *)CPU_FIELD(1892) )
+{
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
 }
 v12 = *(_WORD *)CPU_FIELD(1892);
 if ( v12 < 20 )
@@ -991,26 +983,17 @@ case 0x194:
 case 0x195:
 case 0x196:
 v58 = *(_DWORD *)CPU_FIELD(384);
-if ( v58 )
-{
-if ( v58 != 3 && !*(_WORD *)CPU_FIELD(1892) )
-*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
-}
-else
+if ( !v58 )
 {
 *(_WORD *)CPU_FIELD(1892) = 0;
 }
-v59 = *(_WORD *)CPU_FIELD(1892);
-if ( (unsigned __int16)v59 > 0xAu || *(__int16 *)CPU_FIELD(1154) < 400 || v117 >= 500.0 )
+else if ( v58 != 3 && !*(_WORD *)CPU_FIELD(1892) )
 {
-v60 = v118;
-v61 = 100.0;
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
 }
-else
-{
-v60 = v118;
-v61 = 100.0;
-if ( v118 < 100.0 )
+v59 = *(_WORD *)CPU_FIELD(1892);
+if ( v59 >= 0 && v59 <= 10 && *(__int16 *)CPU_FIELD(1154) >= 400
+     && v117 < 500.0 && v118 < 100.0 )
 {
 v62 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1732) = 2;
@@ -1019,11 +1002,10 @@ LABEL_349:
 *(_DWORD *)CPU_FIELD(1720) = 0;
 break;
 }
-}
 if ( v59 >= 10 && v59 <= 20
 && *(__int16 *)CPU_FIELD(1154) >= 400
-&& v61 > v60
-&& *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) < (double)*(float *)CPU_FIELD(240) )
+&& v118 < 100.0
+&& *(float *)CPU_FIELD(240) > *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) )
 {
 *(_DWORD *)CPU_FIELD(1732) = 2;
 *(_DWORD *)CPU_FIELD(1716) = 0;
@@ -1039,8 +1021,8 @@ break;
 }
 if ( v59 >= 30 && v59 <= 40
 && *(__int16 *)CPU_FIELD(1154) >= 400
-&& v61 < v60
-&& *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) < (double)*(float *)CPU_FIELD(240) )
+&& v118 > 100.0
+&& *(float *)CPU_FIELD(240) > *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) )
 {
 *(_DWORD *)CPU_FIELD(1832) = 2;
 break;
@@ -1212,14 +1194,14 @@ if ( *(float *)(v63 + 240) != 0.0f )
 {
 if ( *(char *)CPU_FIELD(1370) > 0 )
 {
-if ( v117 < 150.0 && selector_random_roll(0x3E8u) < 2 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211 )
+if ( v117 < 150.0 && selector_random_roll(0x3E8u) < 2u && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211 )
 {
 *(_DWORD *)CPU_FIELD(1744) = 2;
 goto LABEL_523;
 }
 if ( v117 > 150.0
 && v118 < 200.0
-&& selector_random_roll(0x3E8u) < 5
+&& selector_random_roll(0x3E8u) < 5u
 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 212 )
 {
 *(_DWORD *)CPU_FIELD(1744) = 2;
@@ -1230,21 +1212,21 @@ if ( (double)(120 * ((*(float *)CPU_FIELD(244) > 0.0) + 1)) >= v117 )
 {
 v79 = *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) > (double)*(float *)CPU_FIELD(240)
 && *(float *)CPU_FIELD(248) > 0.0;
-if ( (double)(150 * v79 + 100) > v118 && selector_random_roll(0x3E8u) < 0x32 )
+if ( (double)(150 * v79 + 100) > v118 && selector_random_roll(0x3E8u) < 0x32u )
 goto LABEL_607;
 }
 if ( v117 > 180.0
 || *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) >= (double)*(float *)CPU_FIELD(240)
 || v118 <= 60.0
-|| selector_random_roll(0x3E8u) >= 0x4B )
+|| selector_random_roll(0x3E8u) >= 0x4Bu )
 {
 if ( v117 > 280.0
 || v117 < 90.0
 || v118 >= 100.0
 || *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) <= (double)*(float *)CPU_FIELD(240)
-|| selector_random_roll(0x3E8u) >= 0x4B )
+|| selector_random_roll(0x3E8u) >= 0x4Bu )
 {
-if ( (double)(180 * (v118 < 200.0) + 120) < v117 && selector_random_roll(0x3E8u) < 0x32 )
+if ( (double)(180 * (v118 < 200.0) + 120) < v117 && selector_random_roll(0x3E8u) < 0x32u )
 {
 v81 = *(_DWORD *)CPU_FIELD(368);
 v82 = *(char *)CPU_FIELD(260);
@@ -1254,13 +1236,13 @@ float angle_x_81 = (float)((*(float *)(v81 + 236) - *(float *)CPU_FIELD(236)) * 
 *(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)atan2_degrees(
     *(float *)(v81 + 240) - *(float *)CPU_FIELD(240), angle_x_81) >= 30;
 }
-if ( v117 > 250.0 && v118 < 200.0 && selector_random_roll(0x3E8u) < 0x14 )
+if ( v117 > 250.0 && v118 < 200.0 && selector_random_roll(0x3E8u) < 0x14u )
 {
 *(_DWORD *)CPU_FIELD(1732) = 2;
 *(_DWORD *)CPU_FIELD(1720) = 0;
 *(_DWORD *)CPU_FIELD(1716) = 0;
 }
-if ( v117 > 150.0 && v117 < 500.0 && v118 < 100.0 && selector_random_roll(0x3E8u) < 0x14 )
+if ( v117 > 150.0 && v117 < 500.0 && v118 < 100.0 && selector_random_roll(0x3E8u) < 0x14u )
 {
 v83 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1732) = 2;
@@ -1270,7 +1252,7 @@ v83 = *(char *)CPU_FIELD(260);
 if ( v117 < 300.0
 && v118 > 200.0
 && *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) < (double)*(float *)CPU_FIELD(240)
-&& selector_random_roll(0x3E8u) < 0x19 )
+&& selector_random_roll(0x3E8u) < 0x19u )
 {
 *(_DWORD *)CPU_FIELD(1732) = 2;
 *(_DWORD *)CPU_FIELD(1720) = 0;
@@ -1291,28 +1273,28 @@ else
 {
 if ( *(char *)CPU_FIELD(1370) > 0 )
 {
-if ( v117 < 150.0 && selector_random_roll(0x3E8u) < 2 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211 )
+if ( v117 < 150.0 && selector_random_roll(0x3E8u) < 2u && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211 )
 {
 *(_DWORD *)CPU_FIELD(1744) = 2;
 goto LABEL_523;
 }
 if ( v117 > 150.0
 && v118 < 200.0
-&& selector_random_roll(0x3E8u) < 5
+&& selector_random_roll(0x3E8u) < 5u
 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 212 )
 {
 *(_DWORD *)CPU_FIELD(1744) = 2;
 goto LABEL_523;
 }
 }
-if ( v117 < 450.0 && v117 > 90.0 && selector_random_roll(0x3E8u) <= 5 && *(__int16 *)CPU_FIELD(1154) >= 600 )
+if ( v117 < 450.0 && v117 > 90.0 && selector_random_roll(0x3E8u) <= 5u && *(__int16 *)CPU_FIELD(1154) >= 600 )
 {
 *(_DWORD *)CPU_FIELD(1832) = 64;
 goto LABEL_523;
 }
 if ( v117 < 450.0
 && *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) < (double)*(float *)CPU_FIELD(240)
-&& selector_random_roll(0x3E8u) <= 7
+&& selector_random_roll(0x3E8u) <= 7u
 && *(__int16 *)CPU_FIELD(1154) >= 800 )
 {
 *(_DWORD *)CPU_FIELD(1832) = 2;
@@ -1322,16 +1304,16 @@ if ( (double)(120 * ((*(float *)CPU_FIELD(244) > 0.0) + 1)) >= v117 )
 {
 v76 = *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) > (double)*(float *)CPU_FIELD(240)
 && *(float *)CPU_FIELD(248) > 0.0;
-if ( (double)(150 * v76 + 100) > v118 && selector_random_roll(0x3E8u) < 0x32 )
+if ( (double)(150 * v76 + 100) > v118 && selector_random_roll(0x3E8u) < 0x32u )
 goto LABEL_607;
 }
 if ( v117 > 180.0
 || *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) >= (double)*(float *)CPU_FIELD(240)
-|| selector_random_roll(0x3E8u) >= 0x4B )
+|| selector_random_roll(0x3E8u) >= 0x4Bu )
 {
-if ( *(_WORD *)CPU_FIELD(1902) <= *(_WORD *)CPU_FIELD(1154) )
+if ( *(__int16 *)CPU_FIELD(1902) <= *(__int16 *)CPU_FIELD(1154) )
 {
-if ( (double)(180 * (v118 < 200.0) + 120) < v117 && selector_random_roll(0x3E8u) < 0x32 )
+if ( (double)(180 * (v118 < 200.0) + 120) < v117 && selector_random_roll(0x3E8u) < 0x32u )
 {
 v77 = *(_DWORD *)CPU_FIELD(368);
 v78 = *(char *)CPU_FIELD(260);
@@ -1341,7 +1323,7 @@ float angle_x_77 = (float)((*(float *)(v77 + 236) - *(float *)CPU_FIELD(236)) * 
 *(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)atan2_degrees(
     *(float *)(v77 + 240) - *(float *)CPU_FIELD(240), angle_x_77) >= 30;
 }
-if ( v117 > 250.0 && v118 < 200.0 && selector_random_roll(0x3E8u) < 0x14 )
+if ( v117 > 250.0 && v118 < 200.0 && selector_random_roll(0x3E8u) < 0x14u )
 {
 *(_DWORD *)CPU_FIELD(1732) = 2;
 *(_DWORD *)CPU_FIELD(1720) = 0;
@@ -1350,7 +1332,7 @@ if ( v117 > 250.0 && v118 < 200.0 && selector_random_roll(0x3E8u) < 0x14 )
 if ( v117 < 300.0
 && v118 > 200.0
 && *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) < (double)*(float *)CPU_FIELD(240)
-&& selector_random_roll(0x3E8u) < 0x19 )
+&& selector_random_roll(0x3E8u) < 0x19u )
 {
 *(_DWORD *)CPU_FIELD(1732) = 2;
 *(_DWORD *)CPU_FIELD(1720) = 1;
@@ -1366,35 +1348,35 @@ goto LABEL_613;
 }
 if ( 0.0 != *(float *)(v63 + 240) )
 {
-if ( v117 < 520.0 && v117 > 240.0 && v118 < 250.0 && selector_random_roll(0x3E8u) <= 2 && *(__int16 *)CPU_FIELD(1154) >= 600 )
+if ( v117 < 520.0 && v117 > 240.0 && v118 < 250.0 && selector_random_roll(0x3E8u) <= 2u && *(__int16 *)CPU_FIELD(1154) >= 600 )
 {
 *(_DWORD *)CPU_FIELD(1832) = 64;
 goto LABEL_523;
 }
 if ( *(char *)CPU_FIELD(1370) > 0
-&& (v117 < 300.0 && selector_random_roll(0x3E8u) < 5 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 200
-|| v117 < 150.0 && selector_random_roll(0x3E8u) < 5 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 201
-|| v117 > 200.0 && selector_random_roll(0x3E8u) < 3 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 202
+&& (v117 < 300.0 && selector_random_roll(0x3E8u) < 5u && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 200
+|| v117 < 150.0 && selector_random_roll(0x3E8u) < 5u && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 201
+|| v117 > 200.0 && selector_random_roll(0x3E8u) < 3u && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 202
 || v117 > 150.0
 && v118 < 150.0
-&& selector_random_roll(0x3E8u) < 5
+&& selector_random_roll(0x3E8u) < 5u
 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 205
-|| v117 < 150.0 && selector_random_roll(0x3E8u) < 2 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211
+|| v117 < 150.0 && selector_random_roll(0x3E8u) < 2u && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211
 || v117 > 150.0
 && v118 < 200.0
-&& selector_random_roll(0x3E8u) < 5
+&& selector_random_roll(0x3E8u) < 5u
 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 212) )
 {
 *(_DWORD *)CPU_FIELD(1744) = 2;
 goto LABEL_523;
 }
-if ( selector_random_roll(0x3E8u) >= 0x4B || v117 >= 200.0 || v117 <= 120.0 || v118 >= 75.0 )
+if ( selector_random_roll(0x3E8u) >= 0x4Bu || v117 >= 200.0 || v117 <= 120.0 || v118 >= 75.0 )
 {
-if ( *(_WORD *)CPU_FIELD(1902) <= *(_WORD *)CPU_FIELD(1154) )
+if ( *(__int16 *)CPU_FIELD(1902) <= *(__int16 *)CPU_FIELD(1154) )
 {
-if ( selector_random_roll(0x3E8u) >= 0xA || *(__int16 *)CPU_FIELD(1154) < 600 || v118 >= 200.0 || v117 >= 450.0 )
+if ( selector_random_roll(0x3E8u) >= 0xAu || *(__int16 *)CPU_FIELD(1154) < 600 || v118 >= 200.0 || v117 >= 450.0 )
 {
-if ( selector_random_roll(0x3E8u) < 0xA && *(__int16 *)CPU_FIELD(1154) >= 600 && v118 < 200.0 && v117 < 450.0 )
+if ( selector_random_roll(0x3E8u) < 0xAu && *(__int16 *)CPU_FIELD(1154) >= 600 && v118 < 200.0 && v117 < 450.0 )
 {
 v75 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1728) = 2;
@@ -1415,7 +1397,7 @@ goto LABEL_440;
 }
 if ( v117 <= 90.0 )
 {
-if ( selector_random_roll(0x3E8u) < 0x46 )
+if ( selector_random_roll(0x3E8u) < 0x46u )
 {
 LABEL_607:
 *(_DWORD *)CPU_FIELD(1724) = 2;
@@ -1423,44 +1405,44 @@ LABEL_607:
 *(_DWORD *)CPU_FIELD(1720) = 0;
 goto LABEL_523;
 }
-if ( selector_random_roll(0x3E8u) < 0x46 )
+if ( selector_random_roll(0x3E8u) < 0x46u )
 goto LABEL_612;
 }
-if ( selector_random_roll(0x3E8u) >= 0x4B || v117 >= 350.0 || v117 <= 120.0 )
+if ( selector_random_roll(0x3E8u) >= 0x4Bu || v117 >= 350.0 || v117 <= 120.0 )
 {
 if ( *(char *)CPU_FIELD(1370) > 0 )
 {
-if ( v117 < 300.0 && selector_random_roll(0x3E8u) < 5 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 200 )
+if ( v117 < 300.0 && selector_random_roll(0x3E8u) < 5u && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 200 )
 {
 *(_DWORD *)CPU_FIELD(1744) = 2;
 goto LABEL_523;
 }
-if ( v117 < 150.0 && selector_random_roll(0x3E8u) < 5 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 201 )
+if ( v117 < 150.0 && selector_random_roll(0x3E8u) < 5u && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 201 )
 {
 *(_DWORD *)CPU_FIELD(1744) = 2;
 goto LABEL_523;
 }
-if ( v117 > 200.0 && selector_random_roll(0x3E8u) < 3 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 202 )
+if ( v117 > 200.0 && selector_random_roll(0x3E8u) < 3u && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 202 )
 {
 *(_DWORD *)CPU_FIELD(1744) = 2;
 goto LABEL_523;
 }
 if ( v117 > 150.0
 && v118 < 150.0
-&& selector_random_roll(0x3E8u) < 5
+&& selector_random_roll(0x3E8u) < 5u
 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 205 )
 {
 *(_DWORD *)CPU_FIELD(1744) = 2;
 goto LABEL_523;
 }
-if ( v117 < 150.0 && selector_random_roll(0x3E8u) < 2 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211 )
+if ( v117 < 150.0 && selector_random_roll(0x3E8u) < 2u && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211 )
 {
 *(_DWORD *)CPU_FIELD(1744) = 2;
 goto LABEL_523;
 }
 if ( v117 > 150.0
 && v118 < 200.0
-&& selector_random_roll(0x3E8u) < 5
+&& selector_random_roll(0x3E8u) < 5u
 && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 212 )
 {
 *(_DWORD *)CPU_FIELD(1744) = 2;
@@ -1469,9 +1451,9 @@ goto LABEL_523;
 }
 if ( v117 <= 180.0 )
 {
-if ( v117 >= 90.0 && selector_random_roll(0x3E8u) < 0x32 )
+if ( v117 >= 90.0 && selector_random_roll(0x3E8u) < 0x32u )
 goto LABEL_607;
-if ( v117 >= 120.0 && selector_random_roll(0x3E8u) <= 0x32 )
+if ( v117 >= 120.0 && selector_random_roll(0x3E8u) <= 0x32u )
 {
 v72 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1724) = 2;
@@ -1480,7 +1462,7 @@ v72 = *(char *)CPU_FIELD(260);
 goto LABEL_523;
 }
 }
-if ( v117 <= 250.0 && v117 >= 90.0 && selector_random_roll(0x3E8u) <= 0x32 )
+if ( v117 <= 250.0 && v117 >= 90.0 && selector_random_roll(0x3E8u) <= 0x32u )
 {
 v73 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1724) = 2;
@@ -1488,19 +1470,19 @@ v73 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1720) = 0;
 goto LABEL_523;
 }
-if ( v117 < 640.0 && v117 > 350.0 && selector_random_roll(0x3E8u) <= 5 && *(__int16 *)CPU_FIELD(1154) >= 400 )
+if ( v117 < 640.0 && v117 > 350.0 && selector_random_roll(0x3E8u) <= 5u && *(__int16 *)CPU_FIELD(1154) >= 400 )
 {
 *(_DWORD *)CPU_FIELD(1832) = 32;
 goto LABEL_523;
 }
-if ( v117 > 90.0 && selector_random_roll(0x3E8u) <= 0xF && *(__int16 *)CPU_FIELD(1154) >= 400 )
+if ( v117 > 90.0 && selector_random_roll(0x3E8u) <= 0xFu && *(__int16 *)CPU_FIELD(1154) >= 400 )
 {
 *(_DWORD *)CPU_FIELD(1832) = 2;
 goto LABEL_523;
 }
-if ( *(_WORD *)CPU_FIELD(1902) > *(_WORD *)CPU_FIELD(1154) )
+if ( *(__int16 *)CPU_FIELD(1902) > *(__int16 *)CPU_FIELD(1154) )
 goto LABEL_523;
-if ( v117 >= 120.0 && selector_random_roll(0x3E8u) <= 5 )
+if ( v117 >= 120.0 && selector_random_roll(0x3E8u) <= 5u )
 {
 *(_DWORD *)CPU_FIELD(1728) = 2;
 LABEL_613:
@@ -1510,7 +1492,7 @@ goto LABEL_523;
 }
 if ( v117 < 180.0 )
 goto LABEL_523;
-if ( selector_random_roll(0x3E8u) <= 0xA )
+if ( selector_random_roll(0x3E8u) <= 0xAu )
 {
 *(_DWORD *)CPU_FIELD(1728) = 2;
 *(_DWORD *)CPU_FIELD(1716) = 0;
@@ -1519,20 +1501,20 @@ goto LABEL_523;
 }
 if ( v117 < 240.0 )
 {
-if ( selector_random_roll(0x3E8u) <= 5 )
+if ( selector_random_roll(0x3E8u) <= 5u )
 {
 *(_DWORD *)CPU_FIELD(1732) = 2;
 goto LABEL_613;
 }
 }
-else if ( selector_random_roll(0x3E8u) <= 5 )
+else if ( selector_random_roll(0x3E8u) <= 5u )
 {
 *(_DWORD *)CPU_FIELD(1732) = 2;
 *(_DWORD *)CPU_FIELD(1716) = 0;
 *(_DWORD *)CPU_FIELD(1720) = 0;
 goto LABEL_523;
 }
-if ( v117 <= 600.0 && selector_random_roll(0x3E8u) <= 5 )
+if ( v117 <= 600.0 && selector_random_roll(0x3E8u) <= 5u )
 {
 v74 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1732) = 2;
@@ -2270,7 +2252,7 @@ v101 = *(__int16 *)CPU_FIELD(1896) <= 0;
 if ( v101 )
 {
 *(_WORD *)CPU_FIELD(1894) = 0;
-if ( selector_random_roll(0x64u) <= 0xA )
+if ( selector_random_roll(0x64u) <= 0xAu )
 *(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x3Cu);
 }
 return;
@@ -2281,7 +2263,7 @@ if ( v101 )
 {
 LABEL_994:
 *(_WORD *)CPU_FIELD(1894) = 0;
-if ( selector_random_roll(0x64u) <= 0xA )
+if ( selector_random_roll(0x64u) <= 0xAu )
 *(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x3Cu);
 }
 return;
@@ -2378,7 +2360,7 @@ if ( *(__int16 *)CPU_FIELD(1896) <= 0 )
 {
 LABEL_1023:
 *(_WORD *)CPU_FIELD(1894) = 0;
-if ( selector_random_roll(0x64u) > 0x64 )
+if ( selector_random_roll(0x64u) > 0x64u )
 return;
 goto LABEL_1025;
 LABEL_1025:
@@ -2404,7 +2386,7 @@ v101 = *(__int16 *)CPU_FIELD(1896) <= 0;
 if ( v101 )
 {
 *(_WORD *)CPU_FIELD(1894) = 0;
-if ( selector_random_roll(0x64u) <= 0x64 )
+if ( selector_random_roll(0x64u) <= 0x64u )
 *(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x3Cu);
 return;
 }
