@@ -778,7 +778,7 @@ LABEL_126:
           peer_component_6ac = velocity_x_f4 * 0.75;
         if ((unsigned __int8)advance_frame_and_dispatch())
           set_action(0);
-        return;
+        break;
       case 144:
         resolve_stage_surface_landing_transition();
         if ( velocity_x_f4 < 0.0 )
@@ -792,7 +792,7 @@ LABEL_126:
           peer_component_6ac = velocity_x_f4 * 0.75;
         if ((unsigned __int8)advance_frame_and_dispatch())
           set_action(0);
-        return;
+        break;
       case 145:
         if (sequence_13e == 1 && velocity_y_f8 < 2.0) {
           slot_14();
@@ -840,7 +840,7 @@ LABEL_126:
           peer_component_6ac = velocity_x_f4 * 0.75;
         if ((unsigned __int8)advance_frame_and_dispatch())
           set_action(0);
-        return;
+        break;
       case 151:
         resolve_stage_surface_landing_transition();
         if ( velocity_x_f4 < 0.0 )
@@ -854,7 +854,7 @@ LABEL_126:
           peer_component_6ac = velocity_x_f4 * 0.75;
         if ((unsigned __int8)advance_frame_and_dispatch())
           set_action(0);
-        return;
+        break;
       case 152:
         resolve_stage_surface_landing_transition();
         if ( velocity_x_f4 < 0.0 )
@@ -868,7 +868,7 @@ LABEL_126:
           peer_component_6ac = velocity_x_f4 * 0.75;
         if ((unsigned __int8)advance_frame_and_dispatch())
           set_action(0);
-        return;
+        break;
       case 153:
         resolve_stage_surface_landing_transition();
         if ( velocity_x_f4 < 0.0 )
@@ -882,7 +882,7 @@ LABEL_126:
           peer_component_6ac = velocity_x_f4 * 0.75;
         if ((unsigned __int8)advance_frame_and_dispatch())
           set_action(0);
-        return;
+        break;
       case 154:
         resolve_stage_surface_landing_transition();
         if ( velocity_x_f4 < 0.0 )

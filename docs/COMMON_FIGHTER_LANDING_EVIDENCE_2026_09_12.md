@@ -79,8 +79,10 @@ These experiments remain below `build/`; none is incorporated into production:
   relocates epilogues. A fully structured sequence cohort also fails its
   target-owner destinations. Neither is accepted based on same-size spans.
 - Independent action-0 clamps with real float intermediates still expand
-  159..162 from 61 to 146 bytes each and lose required rounding reloads in
-  55/56. Promoting the rounded results to double changes comparison opcodes
+  159..162 from 61 to 146 bytes each and change the local rounding/reload
+  sequence in 55/56. Local span changes alone do not establish lost rounding:
+  a shared destination must also be traced. Promoting the rounded results
+  to double changes comparison opcodes
   and produces 148-byte late owners. Neither numerical spelling closes the
   original shared clamp contract.
 - A source-local action-790 positive `else if` chain is byte-neutral to the
@@ -131,3 +133,51 @@ audit returning zero only means the diagnostic succeeded. Final local reports:
 `build/common-fighter-landing-final-owners.json`, and
 `build/common-fighter-landing-final-map.json`. Only this function was rebuilt;
 there was no unrelated module replay or global cold build.
+
+## Follow-up: action-790 terminal ownership (52 -> 53)
+
+Fresh IDA attestation and the complete bounded instruction packet are
+`build/common-fourteen-preflight.json` and
+`build/common-fourteen-typed.json`. This follow-up changes only the same
+function; the landing result above is the preceding checkpoint.
+
+**Observed target:** after advance-frame dispatch, high action 790's
+`JNZ` at `0x004765ED` reaches `0x00475440`, the action-140 `set_action(0)`
+terminal. The terminal loads the vtable slot at +8, pushes action zero,
+calls with ECX=this, then restores the frame and returns. The previous
+candidate instead chose the identical terminal physically owned by action 150.
+
+**Retained source inference:** preserve action 140's `return`, but express
+ordinary completion in actions 143, 144, 150, 151, 152 and 153 with `break`.
+The switch has no subsequent observable statements. Calls, stores, field
+widths and ABI are unchanged. This coherent exit cohort makes VC8 choose
+the target terminal and reproduces all instructions and edges of the
+296-byte action-790 owner. It does not uniquely identify original syntax.
+
+The production rebuild has **53/66** instruction/edge-identical owners,
+with all previous 52 preserved. Metadata remains +0x2838 and section tail
+10801 bytes. The canonical 10219-byte comparison remains nonexact at +0x14;
+its comparison-window hash is
+`99563500433bccf1f68e7c256b438595de9cdcf5b18aee4816f19e69e1cda835`.
+No exact ledger, compiler profile, layout or relocation mapping is changed.
+Reports: `build/common14-checkpoint-formal.json` and
+`build/common14-checkpoint-owners.json`; use the focused commands above.
+
+Additional negative controls, compiled only as private single-root probes:
+
+- Moving the common action-0 advance label into action 50 moves its entire
+  boundary/advance tail to action 162, losing action 50 despite a smaller body.
+- Making action-51/52 and the generic action-0 completion use `break` does not
+  repair the clamp/advance owner cohort.
+- Duplicating a genuinely used sequence-selection terminal lets action 73
+  match locally, but loses action 799 and leaves 75/88 routed to a second
+  selection owner. No local improvement with that regression is retained.
+  Giving the secondary terminal `return` instead is diagnostically neutral.
+- Explicitly spelling `switch (v2 - 50)` and the corresponding high-switch
+  subtraction, with algebraically shifted labels, produces the same canonical
+  comparison-window hash. It does not fix SUB versus ADD-negative.
+
+The remaining **13** diagnostic owners are entry, low 53/54/55/56,
+73/75/88, 159/160/161/162 and low 180 (including the high dispatcher).
+They remain three shared control-flow/code-generation questions, not 13
+independent exact-function claims.
