@@ -135,3 +135,47 @@ been corrected: the type remains unresolved.
 The older handoff/knowledge-base statements that strict FP is ruled out for
 the ratio are superseded by this complete result. They tested different
 source contracts, so their negative conclusions must not be generalized.
+
+## Follow-up: retained alignment discrimination fixture
+
+`tests/fixtures/vc8/angle_alignment.cpp` preserves three ordinary C++ probes
+outside production reconstruction source. It uses the existing strict profile
+and local exception control; no new compiler flags or ledgers are introduced.
+
+```bash
+TH105_FP_MODE=strict bash scripts/compile-unit.sh \
+  tests/fixtures/vc8/angle_alignment.cpp build/angle-alignment-witness.obj
+python3 scripts/compare-function.py 0x00406330 build/angle-alignment-witness.obj \
+  --symbol-base '?aligned_absolute_phase_probe@th105@@YAMM@Z' \
+  --rel32-target _fabs=0x0068BAAE --json
+python3 scripts/compare-function.py 0x00406360 build/angle-alignment-witness.obj \
+  --symbol-base '?aligned_index_sine_probe@th105@@YAMM@Z' \
+  --rel32-target _fabs=0x0068BAAE --rel32-target __ftol2_sse=0x0068A1A0 --json
+python3 scripts/compare-function.py 0x00406360 build/angle-alignment-witness.obj \
+  --symbol-base '?inlined_absolute_sine_probe@th105@@YAMM@Z' \
+  --rel32-target _fabs=0x0068BAAE --rel32-target __ftol2_sse=0x0068A1A0 --json
+```
+
+The first probe uses a genuinely consumed aligned float input copy and `fabsf`.
+It reproduces all **46 bytes** of `0x00406330`: the compiler removes the
+input copy's store but retains the aligned frame, with the correct two float
+round trips. Thus an aligned, used float need not always pin the scratch at
+ESP+0; the earlier aligned *result* probes did pin it there.
+
+This is **not accepted authored progress**. The function's origin and original
+alignment reason remain unresolved. Inlining this helper into sine pins its
+scratch at ESP+0 rather than ESP+0x3C: 110 bytes, first mismatch +0x1E.
+The standalone spelling cannot simply be transferred to the shared family.
+The aligned-index sine remains 121 bytes, first mismatch +0x51. Reports are
+`build/angle-alignment-witness-{abs,sine,inline}.json`.
+
+Other negative controls: an aligned scalar parameter is rejected by VC8
+C2719; `/Ot-` is not a supported command-line option. The supported
+`optimize("t", off)` pragma changes size/inlining choices, while a
+size-optimized modulo helper inlined into a speed-optimized caller still
+gives magic remainder. `/Oi-` is byte-neutral for the 121-byte sine probe.
+Direct CRT `div` adds a call; no fake alias or instruction override is used.
+
+The next bounded main-root check is strict rounding with exceptions off on
+the shared CPU root. The ratio is a positive whole-function witness that the
+old strict-only `_ftol2_sse_excpt` failure does not rule out this setting.

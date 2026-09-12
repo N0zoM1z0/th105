@@ -30,16 +30,24 @@ out. The accepted integer sine/cosine functions remain exact after the TU split.
 
 The 100-byte quantized sine remains nonexact. A discarded aligned used-index
 probe matches the first 81 bytes, then emits magic-constant remainder instead
-of IDIV (121 total bytes). The independent 46-byte abs wrapper still has no
-truthful common alignment explanation. No partial span is credited and no
-aligned probe source is retained. Continue this high-reuse pair after the
-ratio checkpoint; do not rerun unrelated modules or the global cold suite.
+of IDIV (121 total bytes). The independent 46-byte abs wrapper now has a
+complete diagnostic reproduction using a genuinely consumed aligned input
+copy and `fabsf`, but inlining it into sine pins the wrong scratch home.
+The common source cause and abs origin remain unresolved. These probes are
+retained only in `tests/fixtures/vc8/angle_alignment.cpp`, not production
+source or accepted progress. See the evidence note's follow-up replay commands.
+Checkpoint `38806b7` is pushed; remote CI `34676984697` passed.
+
+Next, test strict rounding with exceptions off on the shared CPU root. The
+ratio is a positive witness that the old strict-only failure was insufficient
+to rule out this mode. Keep this to one affected function, without unrelated
+modules or a global cold replay.
 
 CPU checkpoint `b27b668` is pushed; remote CI run `34675650720` passed.
 Subsequent range-order and LTCG visibility trials were reverted, including
 the temporary virtual facade. CPU and common-Fighter roots remain nonexact.
 
-The next bounded target is the shared quantized-angle island, beginning with
+The preceding bounded target was the shared quantized-angle island, beginning with
 `0x00406360`. A fresh raw-PE roster Object call census again finds 295 calls
 to this sine helper and 205 to `0x004063D0`, each from all 15 roots. Investigate
 the observed 64-byte stack alignment through genuine used local types and
