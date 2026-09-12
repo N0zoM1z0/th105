@@ -38,10 +38,17 @@ retained only in `tests/fixtures/vc8/angle_alignment.cpp`, not production
 source or accepted progress. See the evidence note's follow-up replay commands.
 Checkpoint `38806b7` is pushed; remote CI `34676984697` passed.
 
-Next, test strict rounding with exceptions off on the shared CPU root. The
-ratio is a positive witness that the old strict-only failure was insufficient
-to rule out this mode. Keep this to one affected function, without unrelated
-modules or a global cold replay.
+The shared CPU strict-rounding/exception-off trial is now resolved negative:
+16,509 bytes, first mismatch +0x02 (0x10 stack allocation versus target 0x0C),
+13/41 diagnostic owners. Three exact-value double literal mappings unblock
+the formal comparison without waiving operand width. A geometry-ladder trial
+was also reverted. The default CPU source/profile and checkpoint hash remain
+unchanged; see the CPU evidence note for the focused command.
+
+Next bounded high-reuse dependency: secondary-animation replacement
+`0x00496420` (48 calls from nine roster Object roots). Revalidate the old
+four-byte stack-color explanation instead of assuming it is the sole issue.
+Keep work to the affected function, without unrelated modules or cold replay.
 
 CPU checkpoint `b27b668` is pushed; remote CI run `34675650720` passed.
 Subsequent range-order and LTCG visibility trials were reverted, including

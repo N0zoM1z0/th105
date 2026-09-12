@@ -1772,7 +1772,7 @@ class WorkflowToolingTests(unittest.TestCase):
         with (ROOT / "config" / "match-units.toml").open("rb") as stream:
             manifest = tomllib.load(stream)
         counts = self.literals.audit_real_literals(relocations, manifest)
-        self.assertEqual(counts["ledger_literals"], 308)
+        self.assertEqual(counts["ledger_literals"], 311)
         self.assertEqual(counts["explicit_mappings"], 435)
         self.assertEqual(counts["target_checks"], 0)
 
@@ -1783,7 +1783,7 @@ class WorkflowToolingTests(unittest.TestCase):
         counts = self.validator.validate_real_literal_relocations(
             self.manifest.load_manifest(), require_bytes=True
         )
-        self.assertEqual(counts["target_checks"], 743)
+        self.assertEqual(counts["target_checks"], 746)
 
     def test_rel32_accepts_only_supported_instruction_forms(self) -> None:
         self.assertEqual(

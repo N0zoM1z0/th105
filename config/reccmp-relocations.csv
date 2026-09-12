@@ -1,4 +1,7 @@
 coff_symbol,address,data_hex,addends,evidence,validation
+__real@4071800000000000,0x006C3CE0,0000000000807140,0,Pinned JP 1.06a .rdata contains the exact IEEE-754 double 280.0 bytes at this address; read-only literal search 2026-09-12. CPU profile probes remain nonexact and no instruction-width mismatch is waived.,literal
+__real@4052c00000000000,0x006C3E10,0000000000c05240,0,Pinned JP 1.06a .rdata contains the exact IEEE-754 double 75.0 bytes at this address; read-only literal search 2026-09-12. This resolves a CPU probe literal without asserting that the target CPU instruction uses double rather than float.,literal
+__real@4082c00000000000,0x006C5788,0000000000c08240,0,Pinned JP 1.06a .rdata contains the exact IEEE-754 double 600.0 bytes at this address; read-only literal search 2026-09-12. Probe-only source differences remain subject to canonical instruction comparison.,literal
 ??_7AttackObject@@6B@,0x006C2B3C,30f94500,0,IDA 1.06a disassembly at 0x0045FA4F names the target as AttackObject vtable; current target bytes attested 2026-08-21,address
 ??_7CharacterObject@@6B@,0x006C400C,702f4900,0,IDA 1.06a disassembly at 0x00492FD4 names the target as CharacterObject vtable; current target bytes attested 2026-08-21,address
 __real@c4200000,0x006C2D30,000020c4,0,TH105 1.06a target bytes at 0x006C2D30 are IEEE-754 -640.0f and IDA 0x004652B0 loads flt_6C2D30; attested 2026-08-21,literal

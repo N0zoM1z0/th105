@@ -73,6 +73,39 @@ guard the signedness distinction; they do not replace canonical comparison.
 
 ## Reproduction
 
+### Strict rounding with exceptions disabled: resolved negative control
+
+The successful angle-ratio recovery justified rechecking this distinction,
+not assuming the old strict-only runtime blocker was conclusive. On the
+unchanged `b27b668` CPU source, `/fp:strict /fp:except-` does select the correct
+`__ftol2_sse`, but canonical comparison fails at **+0x02**: local allocation
+is 0x10 instead of target 0x0C. Its section is 16,509 bytes, metadata begins
+at 15,884, and only 13/41 diagnostic owners agree. This profile is rejected
+for the retained source; the default profile is unchanged.
+
+```bash
+TH105_FP_MODE=strict _CL_=/fp:except- bash scripts/compile-unit.sh \
+  src/characters/CpuActionPolicies.cpp build/cpu-strict-noexcept.obj
+python3 scripts/compare-unit-object.py gpt-web-default-cpu-action-policy \
+  build/cpu-strict-noexcept.obj --address 0x005F1F80 --json
+```
+
+The strict object exposed three previously unmapped real literals. A verified
+read-only search of the pinned PE found their complete double representations:
+75.0 at `0x006C3E10`, 280.0 at `0x006C3CE0`, and 600.0 at `0x006C5788`.
+These exact-value mappings are now retained in `reccmp-relocations.csv`; no
+float/double alias or runtime substitution was used. They permit a formal
+negative comparison, not a claim that the target CPU operands use these
+double constants. Existing accepted objects already resolved their symbols;
+the three new keys do not change any pre-existing mapping.
+
+A temporary positive geometry ladder at `0x5F3E82..0x5F3FA0` preserves the
+two separate random calls but still emits a different 75.0 operand form and
+branch layout. It gives the same 16,481-byte total and 14/41 owners, not a
+whole match, and was reverted. The restored default object again hashes to
+the checkpoint hash above; report `build/cpu-after-strict-trials-restored.json`.
+There are no retained CPU source changes from these trials.
+
 ### Post-checkpoint discriminators
 
 After `b27b668`, placing the resource predicate between action305's lower and
