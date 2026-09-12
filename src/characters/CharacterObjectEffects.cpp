@@ -22,18 +22,6 @@ typedef void *(__thiscall *SpawnOwnedObject)(
     const unsigned *copied_words,
     int copied_word_count);
 
-struct AnimationSequenceBlockVectorView {
-    std::vector<AnimationSequenceFrame> frames_00;
-    unsigned int unknown_10;
-    unsigned char mode_14;
-    unsigned char unknown_15[3];
-    void *previous_18;
-    void *next_1c;
-};
-
-typedef char CheckAnimationSequenceBlockVectorViewSize[
-    sizeof(AnimationSequenceBlockVectorView) == 0x20 ? 1 : -1];
-
 struct CharacterObjectPairSpawnOwnerView {
     unsigned char reserved_000[0x7a8];
     int object_826_spawn_gate_7a8;
@@ -162,34 +150,6 @@ void CharacterObjectEffectEmitter::set_secondary_animation_runtime_flags(
     SecondaryAnimationRenderRuntimeView *const renderer = secondary_renderer_338;
     if (renderer)
         renderer->set_runtime_flags(render_enabled, update_step);
-}
-
-void CharacterObjectEffectEmitter::replace_secondary_animation(
-    int key, float half_width, int subdivision_count,
-    int band_count, int blend_mode)
-{
-    {
-        if (secondary_renderer_338)
-            delete secondary_renderer_338;
-        secondary_renderer_338 = new SecondaryAnimationRenderRuntimeView;
-    }
-
-    key = static_cast<short>(key);
-    AnimationSequenceTreeIterator found;
-    AnimationSequenceTreeIterator *const result =
-        sequence_tree_160->lower_bound(&found, &key);
-    if (!result->owner_00)
-        _invalid_parameter_noinfo();
-    if (result->node_04 == result->owner_00->end_node_04)
-        _invalid_parameter_noinfo();
-
-    AnimationSequenceBlockVectorView *const block =
-        reinterpret_cast<AnimationSequenceBlockVectorView *>(result->node_04->value_10);
-    AnimationSequenceFrame &frame = block->frames_00[0];
-    secondary_renderer_338->initialize(
-        reinterpret_cast<SecondaryAnimationOwnerRuntimeView *>(this),
-        reinterpret_cast<const SecondaryAnimationFrameRuntimeView *>(&frame),
-        half_width, subdivision_count, band_count, blend_mode);
 }
 
 void CharacterObjectEffectEmitter::release_secondary_animation_renderer()

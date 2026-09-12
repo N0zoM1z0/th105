@@ -20,6 +20,19 @@ The completed aggregate replay below is a checkpoint, not a required inner loop.
 
 ## Current bounded dependency investigation
 
+Shared secondary-animation replacement `0x00496420` is now **274/274 exact**
+in `gpt-web-secondary-animation-replacement`. Native `std::map::find(key)->second`
+recovers the temporary iterator's lifetime and reuses the allocation cleanup
+slot, removing the former explicit-output facade's extra four stack bytes.
+The generated `find @ 0x0045C320` independently matches 105/105 but remains
+excluded compiler code. The three adjacent accepted renderer-control methods
+remain exact after the dedicated TU split. See
+[SECONDARY_ANIMATION_REPLACEMENT_EVIDENCE_2026_09_12.md](SECONDARY_ANIMATION_REPLACEMENT_EVIDENCE_2026_09_12.md).
+
+Next bounded shared root: secondary-animation update `0x004309F0` (2,434 bytes).
+Revalidate its native iterator/lifetime contracts using the new positive
+witness; do not assume the old stack-color diagnosis is complete.
+
 The shared angle island now has one additional whole exact result:
 `0x004064D0`, 107/107, in `gpt-web-angle-ratio-natural`. Ordinary float
 numerator/denominator lifetimes, a nonzero branch and locally disabled
@@ -45,10 +58,9 @@ the formal comparison without waiving operand width. A geometry-ladder trial
 was also reverted. The default CPU source/profile and checkpoint hash remain
 unchanged; see the CPU evidence note for the focused command.
 
-Next bounded high-reuse dependency: secondary-animation replacement
-`0x00496420` (48 calls from nine roster Object roots). Revalidate the old
-four-byte stack-color explanation instead of assuming it is the sole issue.
-Keep work to the affected function, without unrelated modules or cold replay.
+The replacement just completed above has 48 direct calls from nine roster
+Object roots. Continue similarly high-reuse work, one affected function at a
+time, without unrelated modules or a global cold replay.
 
 CPU checkpoint `b27b668` is pushed; remote CI run `34675650720` passed.
 Subsequent range-order and LTCG visibility trials were reverted, including

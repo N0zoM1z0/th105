@@ -242,7 +242,7 @@ source = "src/characters/CharacterObjectEffects.cpp"
 object = "build/match-units/CrossV106a_CharacterObjectEffects.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Shared CharacterObjectEffectEmitter primitives recovered from RTTI-owned roster Object giant-root callers. /GS is target-backed and leaves all accepted functions exact. 0x496420 is source-present/nonexact at 274/274 with only a 4-byte stack-color/frame difference after true checked-vector and EH recovery; the exact siblings remain canonical zero-difference. No assembly, padding, fake liveness, volatile/register forcing, or ABI forcing."
+notes = "Shared CharacterObjectEffectEmitter primitives recovered from RTTI-owned roster Object giant-root callers. /GS is target-backed. The exact secondary-animation replacement 0x00496420 now has its own native std::map unit; the other source and calling contracts are unchanged."
 
 [[units.cross-v106a-character-object-effects.functions]]
 address = "0x004963F0"
@@ -257,23 +257,6 @@ address = "0x00496370"
 symbol_base = "?set_secondary_animation_alpha@CharacterObjectEffectEmitter@th105@@QAEXE@Z"
 rel32_targets = [
   "?set_vertex_color@SecondaryAnimationRenderRuntimeView@th105@@QAEXI@Z=0x0042FD80",
-]
-
-[[units.cross-v106a-character-object-effects.functions]]
-address = "0x00496420"
-symbol_base = "?replace_secondary_animation@CharacterObjectEffectEmitter@th105@@QAEXHMHHH@Z"
-rel32_targets = [
-  "??1SecondaryAnimationRenderRuntimeView@th105@@QAE@XZ=0x00430080",
-  "??3@YAXPAX@Z=0x006898EA",
-  "??2@YAPAXI@Z=0x00689DCB",
-  "??0SecondaryAnimationRenderRuntimeView@th105@@QAE@XZ=0x00430050",
-  "?lower_bound@AnimationSequenceTree@th105@@QAEPAUAnimationSequenceTreeIterator@2@PAU32@PBH@Z=0x0045C320",
-  "__invalid_parameter_noinfo=0x0068A143",
-  "?initialize@SecondaryAnimationRenderRuntimeView@th105@@QAEXPAUSecondaryAnimationOwnerRuntimeView@2@PBUSecondaryAnimationFrameRuntimeView@2@MHHH@Z=0x00430750",
-]
-dir32_targets = [
-  "__ehhandler$?replace_secondary_animation@CharacterObjectEffectEmitter@th105@@QAEXHMHHH@Z=__ehhandler$?replace_secondary_animation@CharacterObjectEffectEmitter@th105@@QAEXHMHHH@Z",
-  "___security_cookie=___security_cookie",
 ]
 
 [[units.cross-v106a-character-object-effects.functions]]
@@ -303,6 +286,31 @@ dir32_targets = ["__real@40000000=__real@40000000"]
 [[units.cross-v106a-character-object-effects.functions]]
 address = "0x0064CCB0"
 symbol_base = "CharacterObjectEffectEmitter_spawn_unparented_related_object"
+
+[units.gpt-web-secondary-animation-replacement]
+kind = "probe"
+source = "src/characters/CharacterObjectSecondaryAnimation.cpp"
+object = "build/match-units/GptWeb_SecondaryAnimationReplacement.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "All 274 bytes at 0x00496420 match using native checked std::map::find(key)->second and vector frame selection. The genuine temporary iterator reuses the finished new-expression cleanup slot, eliminating the former facade's extra 4 bytes. Native find itself independently matches excluded compiler helper 0x0045C320; no authored credit for that helper. See docs/SECONDARY_ANIMATION_REPLACEMENT_EVIDENCE_2026_09_12.md."
+
+[[units.gpt-web-secondary-animation-replacement.functions]]
+address = "0x00496420"
+symbol_base = "?replace_secondary_animation@CharacterObjectEffectEmitter@th105@@QAEXHMHHH@Z"
+rel32_targets = [
+  "??1SecondaryAnimationRenderRuntimeView@th105@@QAE@XZ=0x00430080",
+  "??3@YAXPAX@Z=0x006898EA",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??0SecondaryAnimationRenderRuntimeView@th105@@QAE@XZ=0x00430050",
+  "?find@?$_Tree@V?$_Tmap_traits@HPAUAnimationSequenceBlockVectorView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUAnimationSequenceBlockVectorView@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?initialize@SecondaryAnimationRenderRuntimeView@th105@@QAEXPAUSecondaryAnimationOwnerRuntimeView@2@PBUSecondaryAnimationFrameRuntimeView@2@MHHH@Z=0x00430750",
+]
+dir32_targets = [
+  "__ehhandler$?replace_secondary_animation@CharacterObjectEffectEmitter@th105@@QAEXHMHHH@Z=__ehhandler$?replace_secondary_animation@CharacterObjectEffectEmitter@th105@@QAEXHMHHH@Z",
+  "___security_cookie=___security_cookie",
+]
 
 [units.cross-v106a-character-object-runtime]
 kind = "probe"
