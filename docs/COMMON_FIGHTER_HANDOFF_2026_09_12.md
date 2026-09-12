@@ -165,6 +165,21 @@ runtime is restored, do not claim fresh IDA semantic evidence. Build-only
 compiler controls may continue to use already recorded raw-PE/owner facts, but
 tracked semantic reconstruction should remain at the 53-owner checkpoint.
 
+## Canonical receiver identity recovered
+
+Raw 1.06a MSVC RTTI now proves the common 0x7A4-byte Fighter receiver belongs
+to the real `CharacterEx` layer. The fifteen roster classes share
+`Derived -> CharacterEx -> Character -> AttackObject -> AnimationObject ->
+AnimationObjectBase` (plus the `Environment` secondary base). `CharacterEx`
+has its own RTTI vtable at `0x006C3F94`, while the exact character reset family
+independently proves derived state starts at `+0x7A4`. A pinned-VC8 diagnostic
+showed that renaming only `FighterCommonActionStateView` to `CharacterEx`
+changes no `.text` byte at all; it changes only decorated COFF references.
+Production source/match-unit now use that canonical class identity. This does
+not by itself solve the 13 owner residuals, but it removes a reconstruction-only
+class name from the TU and provides the correct basis for future real
+inheritance/TU-visibility work.
+
 ## Resume discipline and open questions
 
 The unresolved issues are original switch/source partition, simultaneous tail

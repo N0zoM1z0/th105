@@ -12,7 +12,8 @@ extern short g_info_mode_value_6fa88c;
 
 struct FighterActionScratchView { void reset(); };
 
-class FighterCommonActionStateView {
+// Canonical 1.06a RTTI names this shared Fighter layer CharacterEx.
+class CharacterEx {
 public:
     virtual void slot_00();
     virtual void slot_04();
@@ -110,16 +111,16 @@ public:
     short word_7a2;
 };
 
-#define OFFCHECK(field, off) typedef char FighterCommonActionState_##field[(offsetof(FighterCommonActionStateView, field)==off)?1:-1]
+#define OFFCHECK(field, off) typedef char FighterCommonActionState_##field[(offsetof(CharacterEx, field)==off)?1:-1]
 OFFCHECK(action_13c,0x13c); OFFCHECK(frame_counter_144,0x144); OFFCHECK(byte_47e,0x47e);
 OFFCHECK(sequence_controller_55c,0x55c); OFFCHECK(peer_component_6ac,0x6ac); OFFCHECK(state_72c,0x72c);
 OFFCHECK(word_730,0x730); OFFCHECK(flag_776,0x776); OFFCHECK(word_7a2,0x7a2);
-typedef char FighterCommonActionState_size[(sizeof(FighterCommonActionStateView)==0x7a4)?1:-1];
+typedef char FighterCommonActionState_size[(sizeof(CharacterEx)==0x7a4)?1:-1];
 #undef OFFCHECK
 
-float __fastcall stage_surface_height_at_x(FighterCommonActionStateView *fighter);
+float __fastcall stage_surface_height_at_x(CharacterEx *fighter);
 
-void FighterCommonActionStateView::update_common_action_state()
+void CharacterEx::update_common_action_state()
 {
   int v2; // eax
   double v3; // st7

@@ -142,7 +142,7 @@ The reusable diagnostic is now tracked as
 ```bash
 bash scripts/probe-ltcg-visibility.sh \
   src/battle/FighterCommonActionState.cpp \
-  '?update_common_action_state@FighterCommonActionStateView@th105@@QAEXXZ'
+  '?update_common_action_state@CharacterEx@th105@@QAEXXZ'
 ```
 
 It compiles one real source TU once and performs two serial links of that
@@ -227,6 +227,29 @@ found is broken and contains `mcp 1.28.1`, so it was not substituted. No new
 semantic IDA observation is claimed from this batch. All diagnostics above use
 already tracked canonical owner/raw-PE facts plus the pinned VC8 compiler, and
 all generated artifacts remain under `build/`.
+
+## Canonical CharacterEx identity
+
+Raw MSVC x86 RTTI from the attested 1.06a PE identifies the shared roster
+fighter layer as `CharacterEx`, not the reconstruction-only
+`FighterCommonActionStateView` name. All fifteen primary roster classes have the
+same base chain: derived character -> `CharacterEx` -> `Character` ->
+`AttackObject` -> `AnimationObject` -> `AnimationObjectBase`, with the
+`Environment` secondary base recorded at PMD `mdisp=0x130`. The standalone
+`CharacterEx` vtable is at `0x006C3F94`; its shared Fighter overrides include
+`+0x40 = 0x00476D10`, `+0x44 = 0x004776D0`, `+0x4C = 0x004773A0`, and
+`+0x54 = 0x00476B10`. The base `Character` vtable at `0x006C2BE4` keeps those
+slots at the lower-layer implementations/pure entries.
+
+Independent exact round-reset source already proves that the shared Fighter
+prefix ends at `+0x7A4`, with character-specific state beginning at `+0x7A4`.
+That is exactly the size of the common-action receiver view. Renaming only the
+receiver class to `CharacterEx` is code-generation neutral under pinned VC8:
+the complete 10,801-byte `.text` section is byte-for-byte identical (same
+SHA-256) and only COFF decorated relocation names change. The tracked common
+TU and match-unit therefore now use the canonical RTTI class identity without
+claiming that the remaining base-class inheritance/TU visibility has been
+fully reconstructed.
 
 ## Focused final gate
 
