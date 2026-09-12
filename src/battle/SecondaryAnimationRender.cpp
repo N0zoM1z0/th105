@@ -63,10 +63,6 @@ void SecondaryAnimationRenderRuntimeView::update_secondary()
     SecondaryAnimationPoint zero(0.0f, 0.0f);
     SecondaryAnimationPoint normal;
     SecondaryAnimationPoint normalize_source0;
-    SecondaryAnimationPoint normalize_source1;
-    SecondaryAnimationPoint normalize_source2;
-    SecondaryAnimationPoint normalize_source3;
-    SecondaryAnimationPoint normalize_source4;
     SecondaryAnimationPoint shared_previous;
     SecondaryAnimationPoint shared_center;
     SecondaryAnimationPoint shared_tangent_a;
@@ -108,9 +104,8 @@ void SecondaryAnimationRenderRuntimeView::update_secondary()
                 point1,
                 &shared_tangent_a,
                 static_cast<float>(index) / band_count_08);
-            normalize_source1.x = shared_previous.y - shared_center.y;
-            normalize_source1.y = shared_center.x - shared_previous.x;
-            D3DXVec2Normalize(&normal, &normalize_source1);
+            D3DXVec2Normalize(&normal, &SecondaryAnimationPoint(
+                shared_previous.y - shared_center.y, shared_center.x - shared_previous.x));
             normal *= half_width_10;
             points_3c.push_back(shared_center + normal);
             points_3c.push_back(shared_center - normal);
@@ -143,9 +138,8 @@ void SecondaryAnimationRenderRuntimeView::update_secondary()
                 point2,
                 &shared_tangent_b,
                 static_cast<float>(index) / band_count_08);
-            normalize_source2.x = shared_previous.y - shared_center.y;
-            normalize_source2.y = shared_center.x - shared_previous.x;
-            D3DXVec2Normalize(&normal, &normalize_source2);
+            D3DXVec2Normalize(&normal, &SecondaryAnimationPoint(
+                shared_previous.y - shared_center.y, shared_center.x - shared_previous.x));
             normal *= half_width_10;
             points_3c.push_back(shared_center + normal);
             points_3c.push_back(shared_center - normal);
@@ -161,9 +155,8 @@ void SecondaryAnimationRenderRuntimeView::update_secondary()
                 shared_point1,
                 &shared_tangent_a,
                 static_cast<float>(index) / band_count_08);
-            normalize_source3.x = shared_previous.y - shared_center.y;
-            normalize_source3.y = shared_center.x - shared_previous.x;
-            D3DXVec2Normalize(&normal, &normalize_source3);
+            D3DXVec2Normalize(&normal, &SecondaryAnimationPoint(
+                shared_previous.y - shared_center.y, shared_center.x - shared_previous.x));
             normal *= half_width_10;
             points_3c.push_back(shared_center + normal);
             points_3c.push_back(shared_center - normal);
@@ -193,9 +186,8 @@ void SecondaryAnimationRenderRuntimeView::update_secondary()
                 point2,
                 &shared_tangent_b,
                 static_cast<float>(index) / band_count_08);
-            normalize_source4.x = shared_previous.y - shared_center.y;
-            normalize_source4.y = shared_center.x - shared_previous.x;
-            D3DXVec2Normalize(&normal, &normalize_source4);
+            D3DXVec2Normalize(&normal, &SecondaryAnimationPoint(
+                shared_previous.y - shared_center.y, shared_center.x - shared_previous.x));
             normal *= half_width_10;
             points_3c.push_back(shared_center + normal);
             points_3c.push_back(shared_center - normal);
@@ -211,10 +203,8 @@ void SecondaryAnimationRenderRuntimeView::update_secondary()
                 shared_point1,
                 &shared_tangent_a,
                 static_cast<float>(index) / band_count_08);
-            SecondaryAnimationPoint perpendicular_source;
-            perpendicular_source.x = shared_previous.y - shared_center.y;
-            perpendicular_source.y = shared_center.x - shared_previous.x;
-            D3DXVec2Normalize(&normal, &perpendicular_source);
+            D3DXVec2Normalize(&normal, &SecondaryAnimationPoint(
+                shared_previous.y - shared_center.y, shared_center.x - shared_previous.x));
             normal *= half_width_10;
             points_3c.push_back(shared_center + normal);
             points_3c.push_back(shared_center - normal);

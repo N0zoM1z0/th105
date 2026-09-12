@@ -57,7 +57,7 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4023)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1314)
+        self.assertEqual(len(matching), 1315)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
@@ -65,7 +65,7 @@ class WorkflowToolingTests(unittest.TestCase):
             implemented = [row[0] for row in csv.reader(stream) if row]
         self.assertEqual(len(implemented), 1388)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1314
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1315
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
@@ -253,17 +253,17 @@ class WorkflowToolingTests(unittest.TestCase):
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
         self.assertEqual(len(accepted), 462)
-        self.assertEqual(sum(map(len, accepted.values())), 1314)
+        self.assertEqual(sum(map(len, accepted.values())), 1315)
         secondary = accepted["gpt-web-secondary-animation-runtime"]
         self.assertEqual(
             secondary,
-            {"0x0042FD80", "0x00430050", "0x00430080", "0x004302A0", "0x00430750"},
+            {"0x0042FD80", "0x00430050", "0x00430080", "0x004302A0", "0x00430750", "0x004309F0"},
         )
-        self.assertNotIn("0x004309F0", secondary)
+        self.assertNotIn("0x005F1F80", set().union(*accepted.values()))
         view = self.exact_replay.comparison_view(
             units["gpt-web-secondary-animation-runtime"], secondary
         )
-        self.assertEqual(len(view["functions"]), 5)
+        self.assertEqual(len(view["functions"]), 6)
 
     def test_secondary_replacement_uses_native_temporary_find(self) -> None:
         units = self.manifest.load_manifest()["units"]
@@ -919,8 +919,8 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertIn("Confirmed authored code bytes | 2,088,147", markdown)
         self.assertIn("Classified exclusions | 1,308", markdown)
         self.assertIn("Origin/boundary review pending | 1,239", markdown)
-        self.assertIn("Canonical exact functions | 1,314", markdown)
-        self.assertIn("Canonical exact authored bytes | 217,660", markdown)
+        self.assertIn("Canonical exact functions | 1,315", markdown)
+        self.assertIn("Canonical exact authored bytes | 220,094", markdown)
         self.assertIn("Source-present authored mappings | 1,388", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown

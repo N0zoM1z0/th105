@@ -114,8 +114,8 @@ raise SystemExit(subprocess.call([
 PY
 ```
 
-The following shared root to investigate is the 2,434-byte secondary-animation
-update at `0x004309F0`. This result makes native checked-iterator lifetimes a
-concrete source hypothesis there, not permission to impose arbitrary stack
-slots. CPU `0x005F1F80`, common Fighter `0x004740C0`, and that update root are
-still nonexact.
+The subsequent 2,434-byte secondary-animation update at `0x004309F0` is now
+also canonical exact through genuine vector-expression temporary lifetimes;
+see [its separate evidence note](SECONDARY_ANIMATION_UPDATE_EVIDENCE_2026_09_12.md).
+This is not permission to impose arbitrary stack slots. CPU `0x005F1F80`
+and common Fighter `0x004740C0` remain nonexact.

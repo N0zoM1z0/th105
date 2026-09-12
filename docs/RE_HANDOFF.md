@@ -29,9 +29,20 @@ excluded compiler code. The three adjacent accepted renderer-control methods
 remain exact after the dedicated TU split. See
 [SECONDARY_ANIMATION_REPLACEMENT_EVIDENCE_2026_09_12.md](SECONDARY_ANIMATION_REPLACEMENT_EVIDENCE_2026_09_12.md).
 
-Next bounded shared root: secondary-animation update `0x004309F0` (2,434 bytes).
-Revalidate its native iterator/lifetime contracts using the new positive
-witness; do not assume the old stack-color diagnosis is complete.
+Shared secondary-animation update `0x004309F0` is now **2434/2434 exact** in
+the existing runtime unit. Keep its first Normalize input named and use
+ordinary address-taken vector expression temporaries at the five loop sites.
+Their real lifetimes reproduce every checked-iterator stack home and loop
+alignment under the unchanged compiler profile. All-six-temporary source is
+a negative control with seven different bytes, not an accepted equivalent.
+See [SECONDARY_ANIMATION_UPDATE_EVIDENCE_2026_09_12.md](SECONDARY_ANIMATION_UPDATE_EVIDENCE_2026_09_12.md).
+The complete secondary-animation runtime unit now has six accepted functions;
+historical nonexact notes below are superseded. This iteration built the
+affected object and compared only the changed function, without a cold suite.
+
+Next shared candidate: manager `update_and_prune @ 0x0058BE10`. Revalidate its
+native checked-list erase expression/lifetime contract; old register-color
+diagnostics are hypotheses, not permission to force registers or storage.
 
 The shared angle island now has one additional whole exact result:
 `0x004064D0`, 107/107, in `gpt-web-angle-ratio-natural`. Ordinary float
