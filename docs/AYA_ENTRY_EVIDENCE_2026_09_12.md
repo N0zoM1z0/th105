@@ -101,3 +101,10 @@ at `build/aya-angle-return-typed.json`. Float-hypothesis reports use
 The retained source uses `retained-formal.json` and `retained-audit.json`.
 The diagnostic link commands are in `build/probe-aya-entry-ltcg.sh`.
 Reports are regenerable and deliberately not committed.
+# Subsequent shared dependency correction
+
+The natural `atan2f` strict-FP implementation and coherent float-return
+contract are now accepted for dependency `0x00406540`; see
+[ANGLE_ATAN2_EVIDENCE_2026_09_12.md](ANGLE_ATAN2_EVIDENCE_2026_09_12.md).
+The updated Aya probe remains nonexact at +0xDF, with a 4,859-byte section
+tail. The earlier double-return checkpoint below is historical.

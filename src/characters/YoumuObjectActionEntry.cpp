@@ -1,4 +1,5 @@
 #include "battle/EffectSprite.hpp"
+#include "engine/AngleAtan2.hpp"
 #include "characters/AnimationSequenceVirtuals.hpp"
 #include "characters/CharacterObjectEffects.hpp"
 #include "characters/CharacterObjectRuntime.hpp"
@@ -9,7 +10,6 @@ namespace th105 {
 
 int __cdecl selector_random_roll(int limit);
 unsigned int __cdecl mt19937_next_u32();
-double __cdecl atan2_degrees(float y, float x);
 extern int g_match_identifier;
 
 struct YoumuObjectAuxRendererView {

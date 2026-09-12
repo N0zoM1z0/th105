@@ -12,10 +12,29 @@ matches. Historical diagnostics below are hypotheses to revalidate, not proof
 that the remaining differences are merely compiler tail merging.
 
 Session-specific user authorization (2026-09-12): do not rerun unrelated
-accepted modules or the full cold suite on each boss iteration. Use focused
-build/comparison and only necessary directly affected witnesses for shared
-changes. Keep the quick `scripts/ci.py` and `git diff --check` commit gates.
+accepted modules or the full cold suite on each boss iteration. Build and
+compare only the function changed in that iteration; do not cold-build the
+project from scratch. Keep the quick `scripts/ci.py` and `git diff --check`
+commit gates.
 The completed aggregate replay below is a checkpoint, not a required inner loop.
+
+## 2026-09-12 natural shared angle contract
+
+`atan2_degrees @ 0x00406540` is now **63/63 canonical exact** from ordinary
+VC8 `atan2f` and float arithmetic in a dedicated strict-FP unit. The former
+volatile/self-assignment construction is removed. A shared float-return
+header replaces local declarations; the three accepted direct consumers
+remain exact, including the heading caller's observed double-to-float
+materialization. See [ANGLE_ATAN2_EVIDENCE_2026_09_12.md](ANGLE_ATAN2_EVIDENCE_2026_09_12.md).
+This strengthens an existing dependency and adds no exact-count credit.
+The next main authored target remains shared Fighter `0x004740C0`.
+The current Aya formal first mismatch is now +0xDF, not the older +0x7F
+reported below; the full body remains nonexact. CPU/Youmu probe results
+and the IDA prototype readback are recorded in the angle evidence note.
+
+CI checkpoint `24111a7` was pushed to main; GitHub run `34673978118`
+completed successfully. Later iterations use focused builds, not another
+global cold replay, per the session-specific user authorization above.
 
 ## 2026-09-12 main-worktree CI recovery and return-contract audit
 

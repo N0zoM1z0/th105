@@ -1,4 +1,5 @@
 #include "CpuActionPolicies.hpp"
+#include "engine/AngleAtan2.hpp"
 
 #include "../battle/Collision.hpp"
 
@@ -10,7 +11,6 @@ typedef unsigned char _BYTE;
 typedef unsigned short _WORD;
 typedef unsigned int _DWORD;
 
-double __cdecl atan2_degrees(float y, float x);
 unsigned int __cdecl mt19937_next_u32();
 int __cdecl selector_random_roll(int limit);
 

@@ -1827,13 +1827,27 @@ symbol_base = "?release_auxiliary_renderer@CharacterObjectAuxiliaryRendererSlotV
 rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
 dir32_targets = ["??_7IColor@@6B@=??_7IColor@@6B@"]
 
+[units.gpt-web-angle-atan2-natural]
+kind = "probe"
+source = "src/engine/AngleAtan2.cpp"
+object = "build/match-units/GptWeb_AngleAtan2.obj"
+profile = "vc8-sp1-probe-o2-fp-strict"
+enable_gs = false
+notes = "Natural VC8 math.h atan2f plus float degree conversion reproduces all 63 bytes at 0x00406540. Separate strict-FP TU removes the former volatile/self-assignment construction without changing unrelated lookup profiles. Float return is a coherent source contract supported by this callee and the three accepted direct consumer functions; it is not a claim of unique original source spelling. See docs/ANGLE_ATAN2_EVIDENCE_2026_09_12.md."
+
+[[units.gpt-web-angle-atan2-natural.functions]]
+address = "0x00406540"
+symbol_base = "?atan2_degrees@th105@@YAMMM@Z"
+rel32_targets = ["_atan2=0x0068BB70"]
+dir32_targets = ["__real@40490fdb=_orientation_pi"]
+
 [units.cross-v106a-angle-lookup]
 kind = "probe"
 source = "src/engine/AngleLookup.cpp"
 object = "build/match-units/CrossV106a_AngleLookup.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a angle lookup family. 0x00406480/0x004064B0/0x00406540 are canonical exact; current raw Object +0x28 call graph independently proves 0x00406360/0x004063D0/0x004064D0 authored gameplay ownership. The three quantized helpers are deliberately formal nonexact probes: natural VC8 preserves semantics but not the shipped aligned/x87/idiv code shape, and receives no exact credit."
+notes = "TH105 1.06a angle lookup family. 0x00406480/0x004064B0 are canonical exact; atan2-degrees has its own natural strict-FP unit. Current raw Object +0x28 call graph independently proves 0x00406360/0x004063D0/0x004064D0 authored gameplay ownership. The three quantized helpers remain formal nonexact probes with no exact credit."
 
 [[units.cross-v106a-angle-lookup.functions]]
 address = "0x00406480"
@@ -1844,15 +1858,6 @@ dir32_targets = ["?g_orientation_cosine_table@th105@@3PAMA=?g_orientation_cosine
 address = "0x004064B0"
 symbol_base = "lookup_orientation_cosine"
 dir32_targets = ["?g_orientation_cosine_table@th105@@3PAMA=?g_orientation_cosine_table@th105@@3PAMA"]
-
-[[units.cross-v106a-angle-lookup.functions]]
-address = "0x00406540"
-symbol_base = "atan2_degrees"
-rel32_targets = ["_runtime_atan2=0x0068BB70"]
-dir32_targets = [
-  "_orientation_degree_scale=_orientation_degree_scale",
-  "_orientation_pi=_orientation_pi",
-]
 
 [[units.cross-v106a-angle-lookup.functions]]
 address = "0x00406360"
@@ -2174,7 +2179,7 @@ notes = "Alice Object shared/action leaf recovery. The original flight-state upd
 address = "0x004FC7C0"
 symbol_base = "AliceObjectFlightState_update_from_owner_and_target"
 rel32_targets = [
-  "?atan2_degrees@th105@@YANMM@Z=0x00406540",
+  "?atan2_degrees@th105@@YAMMM@Z=0x00406540",
   "__CIsqrt=0x0068A380",
 ]
 dir32_targets = [
@@ -2187,7 +2192,7 @@ dir32_targets = [
 address = "0x004FC900"
 symbol_base = "?update_owner_tracking_and_proximity@AliceObjectOwnerTrackingView@th105@@QAEEXZ"
 rel32_targets = [
-  "?atan2_degrees@th105@@YANMM@Z=0x00406540",
+  "?atan2_degrees@th105@@YAMMM@Z=0x00406540",
   "?set_oriented_components_f0_f4@CharacterObjectRuntime@th105@@QAEXMM@Z=0x00435160",
 ]
 dir32_targets = [
@@ -2208,7 +2213,7 @@ notes = "Whole-corpus retained-source recovery of CharacterObject heading adjust
 address = "0x004E0BF0"
 symbol_base = "CharacterObjectEffectEmitter_turn_heading_toward_related"
 rel32_targets = [
-  "?atan2_degrees@th105@@YANMM@Z=0x00406540",
+  "?atan2_degrees@th105@@YAMMM@Z=0x00406540",
   "__ftol2_sse=0x0068A1A0",
 ]
 dir32_targets = [
@@ -17476,7 +17481,7 @@ notes = "Current-target default Fighter primary-vtable +0x58 CPU action-policy r
 address = "0x005F1F80"
 symbol_base = "?update_default_cpu_action_policy@CpuActionPolicyView@th105@@QAEXXZ"
 rel32_targets = [
-  "?atan2_degrees@th105@@YANMM@Z=0x00406540",
+  "?atan2_degrees@th105@@YAMMM@Z=0x00406540",
   "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
   "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
   "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
@@ -17528,7 +17533,7 @@ symbol_base = "?initialize_action_entry@YoumuObjectActionEntryView@th105@@UAEXXZ
 rel32_targets = [
   "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
   "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
-  "?atan2_degrees@th105@@YANMM@Z=0x00406540",
+  "?atan2_degrees@th105@@YAMMM@Z=0x00406540",
   "?set_oriented_components_f0_f4@CharacterObjectRuntime@th105@@QAEXMM@Z=0x00435160",
   "?spawn_unparented_related_object@CharacterObjectEffectEmitter@th105@@QAEPAXHMMHHPBIH@Z=0x0064CCB0",
   "?rebuild_aux_renderer_45cd70@YoumuObjectActionEntryView@th105@@QAEXF@Z=0x0045CD70",
@@ -17599,7 +17604,7 @@ symbol_base = "?initialize_action_entry@AyaObjectActionEntryView@th105@@UAEXXZ"
 rel32_targets = [
   "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
   "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
-  "?atan2_degrees@th105@@YANMM@Z=0x00406540",
+  "?atan2_degrees@th105@@YAMMM@Z=0x00406540",
   "?set_oriented_components_f0_f4@CharacterObjectRuntime@th105@@QAEXMM@Z=0x00435160",
   "?spawn_parented_related_object@CharacterObjectEffectEmitter@th105@@QAEPAXHMMHHPBIH@Z=0x004FCA60",
   "?spawn_unparented_related_object@CharacterObjectEffectEmitter@th105@@QAEPAXHMMHHPBIH@Z=0x0064CCB0",

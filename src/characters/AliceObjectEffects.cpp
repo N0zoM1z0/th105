@@ -1,12 +1,11 @@
 #include "AliceObjectEffects.hpp"
+#include "engine/AngleAtan2.hpp"
 #include "CharacterObjectEffects.hpp"
 #include "CharacterObjectRuntime.hpp"
 
 #include <math.h>
 
 namespace th105 {
-
-double __cdecl atan2_degrees(float y, float x);
 
 struct AliceObjectOwnerTrackingView {
     CharacterObjectEffectEmitter object_000;

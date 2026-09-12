@@ -1,11 +1,11 @@
 #include "CharacterObjectEffects.hpp"
+#include "engine/AngleAtan2.hpp"
 #include "AnimationSequenceVirtuals.hpp"
 
 #include <math.h>
 
 namespace th105 {
 
-double __cdecl atan2_degrees(float y, float x);
 extern "C" void __cdecl _invalid_parameter_noinfo(void);
 
 namespace {
@@ -75,9 +75,9 @@ void CharacterObjectEffectEmitter::turn_heading_toward_related(
     float max_step,
     float y_offset)
 {
-    y_offset = static_cast<float>(-atan2_degrees(
+    y_offset = static_cast<float>(-static_cast<double>(atan2_degrees(
         target_170->y_f0 + y_offset - y_f0,
-        (target_170->x_ec - x_ec) * static_cast<float>(facing_104)));
+        (target_170->x_ec - x_ec) * static_cast<float>(facing_104))));
     double const desired_heading = y_offset + heading_bias;
     float delta = static_cast<float>(desired_heading - *heading_340);
     delta = static_cast<float>(static_cast<int>(delta) % 360);

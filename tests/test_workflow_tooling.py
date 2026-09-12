@@ -70,7 +70,7 @@ class WorkflowToolingTests(unittest.TestCase):
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 491)
+        self.assertEqual(len(manifest["units"]), 492)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
             1393,
@@ -253,7 +253,7 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 459)
+        self.assertEqual(len(accepted), 460)
         self.assertEqual(sum(map(len, accepted.values())), 1312)
         secondary = accepted["gpt-web-secondary-animation-runtime"]
         self.assertEqual(
@@ -265,6 +265,27 @@ class WorkflowToolingTests(unittest.TestCase):
             units["gpt-web-secondary-animation-runtime"], secondary
         )
         self.assertEqual(len(view["functions"]), 5)
+
+    def test_natural_atan2_contract_has_one_dedicated_strict_unit(self) -> None:
+        units = self.manifest.load_manifest()["units"]
+        unit = units["gpt-web-angle-atan2-natural"]
+        self.assertEqual(unit["profile"], "vc8-sp1-probe-o2-fp-strict")
+        self.assertEqual(unit["source"], "src/engine/AngleAtan2.cpp")
+        self.assertEqual([row["address"] for row in unit["functions"]], ["0x00406540"])
+        self.assertEqual(unit["functions"][0]["symbol_base"], "?atan2_degrees@th105@@YAMMM@Z")
+        source = (ROOT / unit["source"]).read_text(encoding="utf-8")
+        self.assertIn("return atan2f(y, x) * 180.0f / 3.1415927f;", source)
+        self.assertNotIn("volatile", source)
+        self.assertNotIn("atan2_degrees", (ROOT / "src/engine/AngleLookup.cpp").read_text())
+        for name in ("AliceObjectEffects", "CharacterObjectEffects", "CpuActionPolicies",
+                     "AyaObjectActionEntry", "YoumuObjectActionEntry"):
+            caller = (ROOT / "src/characters" / (name + ".cpp")).read_text()
+            self.assertIn('#include "engine/AngleAtan2.hpp"', caller)
+            self.assertNotIn("double __cdecl atan2_degrees", caller)
+        for item in units.values():
+            for function in item["functions"]:
+                self.assertNotIn("?atan2_degrees@th105@@YANMM@Z=0x00406540",
+                                 function.get("rel32_targets", []))
 
     def test_ida_missed_cscene_manager_virtual_and_raw_pointer_audits_are_pinned(self) -> None:
         with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
@@ -1733,7 +1754,7 @@ class WorkflowToolingTests(unittest.TestCase):
             manifest = tomllib.load(stream)
         counts = self.literals.audit_real_literals(relocations, manifest)
         self.assertEqual(counts["ledger_literals"], 308)
-        self.assertEqual(counts["explicit_mappings"], 434)
+        self.assertEqual(counts["explicit_mappings"], 435)
         self.assertEqual(counts["target_checks"], 0)
 
     @unittest.skipUnless(
@@ -1743,7 +1764,7 @@ class WorkflowToolingTests(unittest.TestCase):
         counts = self.validator.validate_real_literal_relocations(
             self.manifest.load_manifest(), require_bytes=True
         )
-        self.assertEqual(counts["target_checks"], 742)
+        self.assertEqual(counts["target_checks"], 743)
 
     def test_rel32_accepts_only_supported_instruction_forms(self) -> None:
         self.assertEqual(

@@ -102,7 +102,7 @@ address,name,size,status,match_percent,unit,evidence
 0x0045E3D0,process_fighter_transient_status,301,matching,100.00,cross-v106a-fighter-continuity,python3 scripts/build.py --unit cross-v106a-fighter-continuity --compare --json reports exact 301/301 against TH105 1.06a
 0x00406480,lookup_orientation_sine,34,matching,100.00,cross-v106a-angle-lookup,python3 scripts/build.py --unit cross-v106a-angle-lookup --compare --json reports exact 34/34 against TH105 1.06a
 0x004064B0,lookup_orientation_cosine,30,matching,100.00,cross-v106a-angle-lookup,python3 scripts/build.py --unit cross-v106a-angle-lookup --compare --json reports exact 30/30 against TH105 1.06a
-0x00406540,atan2_degrees,63,matching,100.00,cross-v106a-angle-lookup,python3 scripts/build.py --unit cross-v106a-angle-lookup --compare --json reports exact 63/63 against TH105 1.06a
+0x00406540,atan2_degrees,63,matching,100.00,gpt-web-angle-atan2-natural,python3 scripts/build.py --unit gpt-web-angle-atan2-natural --compare --json; docs/ANGLE_ATAN2_EVIDENCE_2026_09_12.md; exact 63/63 without volatile/self-assignment
 0x0045B760,transform_box_from_local_frame,335,matching,100.00,cross-v106a-collision-preparation,python3 scripts/build.py --unit cross-v106a-collision-preparation --compare --json reports exact 335/335 against TH105 1.06a
 0x0045B8B0,transform_box_from_local_frame_flipped_y,445,matching,100.00,cross-v106a-collision-preparation,python3 scripts/build.py --unit cross-v106a-collision-preparation --compare --json reports exact 445/445 against TH105 1.06a
 0x0045BA70,build_oriented_box_and_descriptor,1386,matching,100.00,cross-v106a-collision-preparation,python3 scripts/build.py --unit cross-v106a-collision-preparation --compare --json reports exact 1386/1386 against TH105 1.06a
