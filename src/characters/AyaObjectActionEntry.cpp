@@ -216,15 +216,16 @@ void AyaObjectActionEntryView::initialize_action_entry()
         state_374 = owner->y_f0 + 130.0f;
         select_sequence(static_cast<int>(heading_340[2]));
         int const sequence = sequence_index_13e;
-        if (sequence == 0) {
+        switch (sequence) {
+        case 0:
             sprite_004.reset_zero_128 =
                 -heading_340[0] - static_cast<float>(90 * sprite_004.object_facing_100);
             return;
-        }
-        if (sequence != 2)
+        case 2:
+            sprite_004.reset_zero_128 = unsigned_random_as_float(360);
+            state_374 = unsigned_random_as_float(20) * 0.1f - 1.0f;
             return;
-        sprite_004.reset_zero_128 = unsigned_random_as_float(360);
-        state_374 = unsigned_random_as_float(20) * 0.1f - 1.0f;
+        }
         return;
     }
 
@@ -243,9 +244,8 @@ void AyaObjectActionEntryView::initialize_action_entry()
             select_sequence(static_cast<int>(heading[2]));
         }
         int const sequence = sequence_index_13e;
-        if (sequence != 0) {
-            if (sequence != 2)
-                return;
+        switch (sequence) {
+        case 2: {
             float const scale = unsigned_mt_mod_as_float(10) * 0.1f + 1.0f;
             sprite_004.reset_one_118 = scale;
             sprite_004.reset_one_11c = scale;
@@ -256,18 +256,22 @@ void AyaObjectActionEntryView::initialize_action_entry()
                 static_cast<float>(sprite_004.object_facing_100) * heading_340[0];
             return;
         }
-        float *const heading = heading_340;
-        phase_index_184 = 1;
-        sprite_004.reset_zero_128 = heading[0];
-        float payload[3] = {0.0f, 0.0f, 1.0f};
-        effect_emitter()->spawn_unparented_related_object(
-            817,
-            sprite_004.object_x_0e8,
-            sprite_004.object_y_0ec,
-            static_cast<unsigned char>(sprite_004.object_facing_100),
-            1,
-            reinterpret_cast<const unsigned int *>(payload),
-            3);
+        case 0: {
+            float *const heading = heading_340;
+            phase_index_184 = 1;
+            sprite_004.reset_zero_128 = heading[0];
+            float payload[3] = {0.0f, 0.0f, 1.0f};
+            effect_emitter()->spawn_unparented_related_object(
+                817,
+                sprite_004.object_x_0e8,
+                sprite_004.object_y_0ec,
+                static_cast<unsigned char>(sprite_004.object_facing_100),
+                1,
+                reinterpret_cast<const unsigned int *>(payload),
+                3);
+            return;
+        }
+        }
         return;
     }
 
@@ -302,10 +306,10 @@ void AyaObjectActionEntryView::initialize_action_entry()
             select_sequence(static_cast<int>(heading[2]));
         }
         if (sequence_index_13e == 1) {
-            if (selector_random_roll(100) > 49)
-                state_374 = -1.0f;
-            else
+            if (static_cast<unsigned int>(selector_random_roll(100)) <= 49u)
                 state_374 = 1.0f;
+            else
+                state_374 = -1.0f;
         }
         if (sequence_index_13e == 3) {
             float *const heading = heading_340;
@@ -328,9 +332,8 @@ void AyaObjectActionEntryView::initialize_action_entry()
             select_sequence(static_cast<int>(heading[2]));
         }
         int const sequence = sequence_index_13e;
-        if (sequence != 0) {
-            if (sequence != 2)
-                return;
+        switch (sequence) {
+        case 2: {
             float const scale = unsigned_mt_mod_as_float(10) * 0.1f + 1.0f;
             sprite_004.reset_one_118 = scale;
             sprite_004.reset_one_11c = scale;
@@ -341,18 +344,22 @@ void AyaObjectActionEntryView::initialize_action_entry()
                 static_cast<float>(sprite_004.object_facing_100) * heading_340[0];
             return;
         }
-        float *const heading = heading_340;
-        phase_index_184 = 1;
-        sprite_004.reset_zero_128 = heading[0];
-        float payload[3] = {0.0f, 0.0f, 1.0f};
-        effect_emitter()->spawn_unparented_related_object(
-            822,
-            sprite_004.object_x_0e8,
-            sprite_004.object_y_0ec,
-            static_cast<unsigned char>(sprite_004.object_facing_100),
-            1,
-            reinterpret_cast<const unsigned int *>(payload),
-            3);
+        case 0: {
+            float *const heading = heading_340;
+            phase_index_184 = 1;
+            sprite_004.reset_zero_128 = heading[0];
+            float payload[3] = {0.0f, 0.0f, 1.0f};
+            effect_emitter()->spawn_unparented_related_object(
+                822,
+                sprite_004.object_x_0e8,
+                sprite_004.object_y_0ec,
+                static_cast<unsigned char>(sprite_004.object_facing_100),
+                1,
+                reinterpret_cast<const unsigned int *>(payload),
+                3);
+            return;
+        }
+        }
         return;
     }
 
@@ -423,15 +430,15 @@ void AyaObjectActionEntryView::initialize_action_entry()
         if (sequence_index_13e == 4 || sequence_index_13e == 6)
             motion_core()->set_oriented_components_f0_f4(heading_340[0], heading_340[1]);
         if (sequence_index_13e == 4 || sequence_index_13e == 5 || sequence_index_13e == 6 || sequence_index_13e == 7) {
-            phase_index_184 = 1;
             sprite_004.reset_one_118 = unsigned_random_as_float(35) * 0.01f + 0.85f;
+            phase_index_184 = 1;
             sprite_004.reset_zero_128 = heading_340[0];
         }
         return;
     }
 
     case 855:
-        state_17c = 10;
+        phase_index_184 = 10;
         velocity_x_f4() = 30.0f;
         sprite_004.reset_one_118 = 2.0f;
         sprite_004.reset_one_11c = 2.0f;
@@ -439,24 +446,23 @@ void AyaObjectActionEntryView::initialize_action_entry()
 
     case 856: {
         select_sequence(static_cast<int>(heading_340[2]));
-        if (sequence_index_13e == 1) {
-            CharacterObjectEffectEmitter *const target = target_170;
-            float const dx = (target->x_ec - sprite_004.object_x_0e8) *
-                static_cast<float>(sprite_004.object_facing_100);
-            heading_340[0] = static_cast<float>(-atan2_degrees(
-                (target->y_f0 + 100.0f) - sprite_004.object_y_0ec, dx));
-            if (heading_340[0] > 10.0f)
-                heading_340[0] = 10.0f;
-            if (heading_340[0] < -10.0f)
-                heading_340[0] = -10.0f;
-            goto action856_publish_heading;
-        }
-        if (sequence_index_13e == 2 || sequence_index_13e == 3) {
-            sprite_004.reset_one_118 = 2.0f;
-            sprite_004.reset_one_11c = unsigned_random_as_float(8) * 0.1f + 0.25f;
-        action856_publish_heading:
-            phase_index_184 = 1;
+        if (sequence_index_13e == 1 || sequence_index_13e == 2 || sequence_index_13e == 3) {
+            if (sequence_index_13e == 1) {
+                CharacterObjectEffectEmitter *const target = target_170;
+                float const dx = (target->x_ec - sprite_004.object_x_0e8) *
+                    static_cast<float>(sprite_004.object_facing_100);
+                heading_340[0] = -atan2_degrees(
+                    (target->y_f0 + 100.0f) - sprite_004.object_y_0ec, dx);
+                if (heading_340[0] > 10.0f)
+                    heading_340[0] = 10.0f;
+                if (heading_340[0] < -10.0f)
+                    heading_340[0] = -10.0f;
+            } else {
+                sprite_004.reset_one_118 = 2.0f;
+                sprite_004.reset_one_11c = unsigned_random_as_float(8) * 0.1f + 0.25f;
+            }
             sprite_004.reset_zero_128 = heading_340[0];
+            phase_index_184 = 1;
             motion_core()->set_oriented_components_f0_f4(heading_340[0], heading_340[1]);
         }
         if (sequence_index_13e == 4)
@@ -528,9 +534,9 @@ void AyaObjectActionEntryView::initialize_action_entry()
         select_sequence(static_cast<int>(heading_340[2]));
         if (sequence_index_13e == 0) {
             sprite_004.reset_zero_128 = heading_340[0];
-            phase_index_184 = 1;
             state_370 = heading_340[0];
             state_374 = 270.0f;
+            phase_index_184 = 1;
         }
         if (sequence_index_13e == 1)
             sprite_004.reset_zero_128 = heading_340[0];

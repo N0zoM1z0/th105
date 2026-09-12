@@ -6,6 +6,28 @@ Canonical 1.06a authored-exact waves are established. The active phase is
 expanding authored classification and exact source recovery beyond raw-identity
 seeds using current-target-backed structural remapping where appropriate.
 
+## 2026-09-12 Aya action-entry revalidation
+
+Fresh 1.06a evidence for `0x0061F0B0` disproves the old implication that
+near-equal owner sizes leave only a tail-merger problem. The starting source
+had a wrong +0x17C store in action855, a signed-versus-unsigned comparison in
+821, and non-target branch/store order elsewhere. Those are corrected.
+The retained double-return source remains canonical-nonexact at +0x7F,
+with 13/33 instruction/edge-identical diagnostic owners and action856
+414/406 bytes. No exact ledger or authored-byte numerator is changed.
+
+A reverted float-return hypothesis for dependency `0x00406540` restores
+action856 to 406/406 and reproduces its floating-point/branch/shared-tail
+body; only its entry register and virtual-call setup differ. The m32-rounded
+callee return supports investigating this hypothesis but does not uniquely
+prove a float declaration. Do not change shared ABI contracts without a
+coherent callee and independent-caller audit. Fresh speed/size single-TU
+LTCG probes still have non-target frames, without excluding other contexts.
+
+See [the bounded evidence and reproduction note](AYA_ENTRY_EVIDENCE_2026_09_12.md).
+The main worktree's pre-existing tracking mismatch remains separate from
+these source corrections; it must not be bypassed to commit that worktree.
+
 ## 2026-09-12 fresh common-root experiments and official VC8 reference
 
 - User direction: do not assume historical handoff/KB conclusions are correct.
