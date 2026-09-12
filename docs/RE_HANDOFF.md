@@ -18,6 +18,19 @@ project from scratch. Keep the quick `scripts/ci.py` and `git diff --check`
 commit gates.
 The completed aggregate replay below is a checkpoint, not a required inner loop.
 
+## Current bounded dependency investigation
+
+CPU checkpoint `b27b668` is pushed; remote CI run `34675650720` passed.
+Subsequent range-order and LTCG visibility trials were reverted, including
+the temporary virtual facade. CPU and common-Fighter roots remain nonexact.
+
+The next bounded target is the shared quantized-angle island, beginning with
+`0x00406360`. A fresh raw-PE roster Object call census again finds 295 calls
+to this sine helper and 205 to `0x004063D0`, each from all 15 roots. Investigate
+the observed 64-byte stack alignment through genuine used local types and
+floating-point contracts, not aligned dummy storage or padding. These are
+high-reuse dependencies of the main boss objective, not a character sweep.
+
 ## 2026-09-12 shared CPU predicate checkpoint
 
 Active root remains `0x005F1F80`. Fresh target instructions support 54 unsigned

@@ -73,6 +73,40 @@ guard the signedness distinction; they do not replace canonical comparison.
 
 ## Reproduction
 
+### Post-checkpoint discriminators
+
+After `b27b668`, placing the resource predicate between action305's lower and
+upper bounds prevents range folding but leaves the resource comparison in the
+wrong position. This trial was reverted. A size-optimized `/GL /Os` link still
+aligns ESP to eight bytes, with a 0x0C local allocation instead of 0x10.
+
+A separate exported C caller of the non-exported CPU method lets LTCG change
+the private `this` register to ESI; its aligned EBP frame remains. A temporary
+minimal virtual facade (22 preceding slots, CPU at +0x58, opaque prefix reduced
+by four bytes to preserve all field offsets) plus an escaped static object
+restores ECX `this`, but also retains the aligned EBP frame. The complete
+original hierarchy/call graph is not represented by that fixture. All facade
+and caller experiments are excluded from retained reconstruction state;
+generated diagnostics are under `build/cpu-ltcg-*`. None proves that every
+possible original LTCG context has been ruled out.
+
+The nonvirtual caller fixture was simply:
+
+```cpp
+#include "characters/CpuActionPolicies.hpp"
+extern "C" __declspec(dllexport)
+void cpu_policy_caller(th105::CpuActionPolicyView *fighter) {
+    fighter->update_default_cpu_action_policy();
+}
+```
+
+Compile it with `/GL`, link it alongside the CPU `/GL` object using the flags
+below, and omit the direct CPU-method `/EXPORT` option. The virtual trial
+additionally published a static fixture object and used the virtual facade;
+it is a visibility discriminator, not a proposed class definition.
+
+### Focused canonical checks
+
 Only this root is rebuilt in the inner loop, per the user's session-specific
 authorization. All generated packets, reports, objects and linked images
 remain under `build/`.
