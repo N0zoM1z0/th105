@@ -1,0 +1,75 @@
+schema_version = 1
+
+[vc8_cpp]
+title = "Visual Studio 2005 retired documentation: Visual C++"
+publisher = "Microsoft"
+language = "en-US"
+product_version = "Visual Studio 2005 / Visual C++ 8.0"
+edition_limit = "Retired documentation collection; not proof of the exact SP1 backend or TH105 build options."
+landing_url = "https://www.microsoft.com/en-us/download/details.aspx?id=55984"
+download_url = "https://download.microsoft.com/download/1/6/d/16d24ada-5317-4de1-b2b2-890b51813d6e/VS2005_CPP_en-us.pdf"
+retrieved_utc_date = "2026-09-12"
+landing_page_publication_date = "2024-07-15"
+pdf_creation_date = "2017-01-17"
+sha256 = "ca6831ccd92d5198fc9f71e0f49c0603b00202acd47b11d500d8e786fcfab509"
+size_bytes = 109198568
+pages = 28890
+local_pdf = "build/references/vc8/VS2005_CPP_en-us.pdf"
+local_text = "build/references/vc8/VS2005_CPP_en-us.txt"
+distribution = "Download the original locally from Microsoft; keep PDF and derived text out of Git."
+
+# One-based physical PDF pages, not source-topic or printed page numbers.
+[[vc8_cpp.topics]]
+topic = "Compiler options by category and alphabetically"
+first_page = 1577
+last_page = 1590
+
+[[vc8_cpp.topics]]
+topic = "x86 architecture selection: /arch"
+first_page = 1591
+last_page = 1592
+
+[[vc8_cpp.topics]]
+topic = "Exception model: /EH"
+first_page = 1606
+last_page = 1608
+
+[[vc8_cpp.topics]]
+topic = "Floating-point model: /fp"
+first_page = 1627
+last_page = 1628
+
+[[vc8_cpp.topics]]
+topic = "Whole-program compilation: /GL"
+first_page = 1638
+last_page = 1639
+
+[[vc8_cpp.topics]]
+topic = "Security cookie and vulnerable parameters: /GS"
+first_page = 1641
+last_page = 1643
+
+[[vc8_cpp.topics]]
+topic = "Function COMDAT packaging: /Gy"
+first_page = 1646
+last_page = 1646
+
+[[vc8_cpp.topics]]
+topic = "Optimization bundles, inlining, global optimization and frame omission"
+first_page = 1660
+last_page = 1672
+
+[[vc8_cpp.topics]]
+topic = "LTCG, private calling conventions and stack double alignment"
+first_page = 1804
+last_page = 1806
+
+[[vc8_cpp.topics]]
+topic = "Argument passing and x86 calling conventions"
+first_page = 26784
+last_page = 26794
+
+[[vc8_cpp.topics]]
+topic = "Function floating-point control pragma"
+first_page = 27035
+last_page = 27037

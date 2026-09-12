@@ -6,6 +6,55 @@ Canonical 1.06a authored-exact waves are established. The active phase is
 expanding authored classification and exact source recovery beyond raw-identity
 seeds using current-target-backed structural remapping where appropriate.
 
+## 2026-09-12 fresh common-root experiments and official VC8 reference
+
+- User direction: do not assume historical handoff/KB conclusions are correct.
+  Fresh target SHA, IDA mapped-byte/semantic attestation and the complete
+  `0x004740C0` typed packet passed. A cold baseline build independently
+  reproduces the 10,219-byte root's canonical mismatch at `+0x14`, 10,809-byte
+  section tail and 51/66 instruction/physical-edge-identical diagnostic owners.
+  These regional figures are not partial exact credit.
+- New ordinary-C++ experiments: moving the shared clamp into case50 gives
+  49/66 owners; narrowing its intermediate to float removes target rounding
+  steps. Independently expressing the clamp cohort merges distinct physical
+  entries. Separate sequence exits alter the 73/75/88 owner graph but regress
+  other owners. All these experiments were reverted, not accepted.
+- A **single native switch** independently emits the target `sub eax,0x32`
+  selector; the prior manually split switches emit `add eax,-0x32`. This is
+  positive source-shape evidence, not proof of the entire original switch.
+  Target-like local rounding forms can recover all 65 physical destinations,
+  but the final diagnostic is only 42/66 identical owners, with metadata at
+  `+0x28B0`; whole-function comparison still fails. The experiment is archived
+  locally as `build/common-native-switch.patch`, with fresh formal/audit JSON
+  under `build/common-native-double64-*`. The tracked source was restored.
+  Do not accept a selector-only improvement or treat old spelling matrices as
+  proof that source recovery or LTCG alternatives are exhausted.
+- Official Visual Studio 2005 C++ documentation is now pinned in
+  `config/reference-documents.toml`. See [VC8_REFERENCE.md](VC8_REFERENCE.md)
+  for retrieval, bounded searching, physical page ranges and local Markdown
+  extracts. The original 28,890-page PDF and derived text stay below `build/`.
+  In particular, pp.1804–1806 explain the different x86 alignment behavior
+  under speed/size LTCG profiles; a wrong `/O2 /GL` frame alone cannot exclude
+  every LTCG source/profile explanation. No new profile is accepted here.
+- The new manual lead was also tested, rather than accepted as a conclusion:
+  fresh `/O2 /Ot /GL` and `/O2 /Os /GL` diagnostic DLL links of the restored
+  common source both retain `push ebp; mov ebp,esp; and esp,-8`, unlike the
+  target. The size profile also changes the selector/register schedule.
+  Commands are in local `build/probe-common-ltcg-profiles.sh`; results are
+  under `build/common-ltcg-Ot/` and `build/common-ltcg-Os/`. These exported,
+  unresolved-symbol diagnostic links were not executed and cannot establish
+  canonical exactness or the original TU's visibility/caller context.
+- Text conversion is complete: the full manual is about 30 MiB of searchable
+  TXT, with 11 bounded topic Markdown extracts and JSON page/line siblings.
+  LeanToken indexed `read` rejects ignored `build/` paths, but its live JSON
+  lane was tested successfully on the floating-point topic. Use the documented
+  JSON route or the reference CLI, not a claimed indexed-read capability.
+- Entry worktree already contained unfinished CNumber/network/profile ledger
+  edits and a timer-import correction. Initial tracking validation failed:
+  `matches.csv and functions.csv matching statuses differ`. Preserve those
+  existing edits; this session does not turn their proposed matching statuses
+  into accepted results or claim a clean aggregate baseline.
+
 ## 2026-09-08 source-present / authored boundary audit
 
 - A full cross-check of `config/functions.csv` against generated `function-origins.csv` found **seven source-present rows / 2,944 bytes** that were still incorrectly left in origin review. None is promoted merely because source exists: raw canonical PE direct edges tie every helper to a canonical-exact game owner. The corrected roots are CTile full setter `0x004098E0` (exact `UiTileA4_set_texture @ 0x004098B0` caller), CNumber initialize `0x00414E40` (exact `CMenuConnect_ctor @ 0x00444190` caller), HandleManager lookup `0x00417800` (11 raw callers including exact title-resource release `0x00404D70`), Network Winsock member ctor/dtor `0x00412B10/0x00412CC0` (exact `CNetworkBase` ctor/dtor owners), PlayerSlot profile load `0x00431AC0` (13 raw callers including four inside exact profile startup `0x0043BA10`), and Fighter command matcher `0x00463500` (14 calls from exact builder `0x00476B10`). Full fail-closed origin regeneration now reports **1,385 authored / 1,285 excluded / 1,341 review** over the same 4,011 candidates.

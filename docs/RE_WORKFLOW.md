@@ -66,6 +66,12 @@ after the final pass invalidates that pass and requires another local run.
 
 ## Giant-root owner diagnostics
 
+For compiler behavior questions, consult [VC8_REFERENCE.md](VC8_REFERENCE.md)
+and its SHA-pinned official Visual Studio 2005 text/Markdown library. Treat
+official documentation and previous experiment notes as external corroboration,
+not proof of source shape, compiler profile, or exactness; revalidate the
+specific claim against the target and a fresh build.
+
 For roots covered by `config/giant-action-switches.toml`, pair the target and
 candidate span mapper with `scripts/audit-giant-action-owners.py ROOT OBJECT
 --unit UNIT`. The latter preserves instruction encodings and compares internal
