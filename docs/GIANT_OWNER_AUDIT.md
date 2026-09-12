@@ -61,6 +61,10 @@ claim to have audited external callee bodies.
 
 ## 2026-09-07 common Fighter recovery
 
+Later checkpoint: the [2026-09-12 landing recovery](COMMON_FIGHTER_LANDING_EVIDENCE_2026_09_12.md)
+improves the current source to 52/66 owners and metadata +0x2838. The numbers
+in this dated section remain historical observations, not current totals.
+
 Target: `Fighter_update_common_action_state @ 0x004740C0`, original Japanese
 TH105 1.06a, SHA-256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.

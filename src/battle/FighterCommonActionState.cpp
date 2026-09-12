@@ -122,18 +122,6 @@ void FighterCommonActionStateView::update_common_action_state()
   int v2; // eax
   double v3; // st7
   double v4; // st6
-  double v5; // st7
-  double v6; // st6
-  double v12; // st7
-  __int16 v15; // ax
-  double v17; // st7
-  double v19; // st7
-  double v21; // st7
-  double v23; // st7
-  char v24; // cl
-  char v25; // al
-  double v26; // st7
-  double v28; // st7
   double v30; // st7
   int v32; // eax
   int v33; // ecx
@@ -141,29 +129,21 @@ void FighterCommonActionStateView::update_common_action_state()
   __int16 v35; // ax
   int v36; // eax
   unsigned __int8 v37; // al
-  double v38; // st7
   __int16 v40; // ax
   __int16 v41; // ax
   char v42; // al
   int v45; // edx
   __int16 v46; // ax
-  __int16 v47; // ax
   __int16 v48; // ax
   char v50; // al
   int v52; // eax
   double v53; // st7
-  __int16 v54; // ax
   int v57; // ecx
   double v58; // st7
-  __int16 v59; // ax
   int v62; // ecx
   double v63; // st7
   float v65; // [esp+8h] [ebp-1Ch]
   float v80; // [esp+20h] [ebp-4h]
-  float v81; // [esp+20h] [ebp-4h]
-  float v82; // [esp+20h] [ebp-4h]
-  float v83; // [esp+20h] [ebp-4h]
-  float v84; // [esp+20h] [ebp-4h]
   int v85; // [esp+20h] [ebp-4h]
   int v86; // [esp+20h] [ebp-4h]
   float v87; // [esp+20h] [ebp-4h]
@@ -503,17 +483,17 @@ LABEL_126:
           return;
         }
         velocity_y_f8 -= acceleration_y_100;
-        if (!(unsigned __int8)has_crossed_stage_surface_while_descending()) {
+        if ((unsigned __int8)has_crossed_stage_surface_while_descending()) {
+          word_730 = 100 * (int)velocity_x_f4;
+          word_732 = 100 * (int)velocity_y_f8;
+          zero_velocity_acceleration();
+          y_f0 = 0.0;
+          set_action(97);
+          publish_battle_layout_scalar(2.0f);
+          dispatch_indexed_event_member(0x16u);
+        } else {
           advance_frame_and_dispatch();
-          return;
         }
-        word_730 = 100 * (int)velocity_x_f4;
-        word_732 = 100 * (int)velocity_y_f8;
-        zero_velocity_acceleration();
-        y_f0 = 0.0;
-        set_action(97);
-        publish_battle_layout_scalar(2.0f);
-        dispatch_indexed_event_member(0x16u);
         break;
 
       case 75:

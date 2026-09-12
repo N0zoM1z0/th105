@@ -20,6 +20,20 @@ The completed aggregate replay below is a checkpoint, not a required inner loop.
 
 ## Current bounded dependency investigation
 
+The user explicitly redirected the active work to common Fighter
+`0x004740C0`. A fresh single-function batch recovers action 74's landing
+`if/else`: the nonlanding arm now joins the target case-72 advance owner
+instead of generating an extra tail-call epilogue. Instruction/edge-identical
+owners improve **51/66 -> 52/66**, losing none; absolute owner-span residual
+falls **173 -> 165 bytes**, and metadata moves **+0x2840 -> +0x2838**.
+Twenty unused decompiler locals were removed and verified byte-neutral.
+The full 10,219-byte function remains **nonexact at +0x14**; no exact ledger
+credit was added. Its fresh comparison hash is
+`bfa18b3551f6ac4f1c2782b40f5e63aa63ab195fd2765cb5c74146b648877caf`.
+See [COMMON_FIGHTER_LANDING_EVIDENCE_2026_09_12.md](COMMON_FIGHTER_LANDING_EVIDENCE_2026_09_12.md)
+for fresh target evidence, rejected cohort probes and the remaining 14 owners.
+Continue this root, not the manager or a character-completion sweep.
+
 Shared secondary-animation replacement `0x00496420` is now **274/274 exact**
 in `gpt-web-secondary-animation-replacement`. Native `std::map::find(key)->second`
 recovers the temporary iterator's lifetime and reuses the allocation cleanup
