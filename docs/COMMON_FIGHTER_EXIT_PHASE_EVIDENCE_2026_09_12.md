@@ -156,6 +156,78 @@ canonical comparison inputs.** The tool adds no fake providers, ABI stubs or
 synthetic callers. Exit zero means the inspection pipeline completed only.
 It does not replace the normal object comparator or establish exact progress.
 
+## Post-checkpoint VC8 visibility and switch controls
+
+This resume adds compiler-phase controls only. It does **not** change the
+retained common-Fighter source, match unit, target boundary, relocation policy,
+or 53/66 owner baseline.
+
+The local VC8 reference was re-verified with `scripts/reference-vc8.py` against
+`build/references/vc8/VS2005_CPP_en-us.pdf` (SHA-256
+`ca6831ccd92d5198fc9f71e0f49c0603b00202acd47b11d500d8e786fcfab509`).
+The relevant Microsoft documentation states that `/GL` plus `/LTCG` may use a
+custom x86 calling convention when all call sites are visible, but must retain
+the public convention when a function may be called from a module that was not
+compiled with `/GL`. It separately documents x86 stack double-alignment and
+profile-guided basic-block, branch, switch-value and function-layout
+optimizations. These capabilities are compiler controls, not evidence that this
+specific target function used them.
+
+A new mixed-visibility diagnostic follows that documented distinction without
+inventing a target ABI. `build/common-mixed-ltcg.9j4mMJ/` compiles the real
+common source with `/O2 /GL`, compiles one ordinary calling TU without `/GL`,
+and links the unresolved inspection-only image with `/LTCG`. The common entry
+keeps the public thiscall handoff (`ECX` copied to `ESI`) rather than the
+private `ESI=this` convention observed when both caller and callee are `/GL`.
+It nevertheless still begins `PUSH EBP; MOV EBP,ESP; AND ESP,-8` and still
+normalizes both switch selectors with ADD-negative immediates. Therefore caller
+visibility explains the private-ABI change in the all-GL control, but does not
+explain the target's non-realigned frame, SUB selectors or shared-tail owners.
+
+`build/common-mixed-ltcg-o1.nTWGwE/` repeats the mixed-visibility control with
+the common source compiled using `/O1` (the documented size-oriented profile).
+It still realigns the stack and shrinks the linked common body far away from the
+target phase. The VC8 reference explicitly permits a size-oriented function to
+inherit alignment requirements from called speed-oriented code, so this is a
+negative diagnostic rather than a contradiction of the manual.
+
+The same manual documents PGO passes capable of basic-block and conditional
+branch reordering, including extracting frequent switch values. The target
+manifest proves 42 VC8 C++ LTCG Rich records, but the repository currently has
+no independent target-specific PGO record/profile evidence for this root. No
+synthetic PGO profile was created and no PGO result is used as reconstruction
+evidence.
+
+Two older helper probes were replayed after the independently proved
+`set_action(short)` correction, satisfying the workflow rule that old negative
+experiments are only revisited after new target-backed phase evidence:
+
+- `common13-next-inline-slide-short` remains **54/66**, with the same action-799
+  regression and 159..162 expansion as the old int-ABI diagnostic.
+- `common13-next-inline-body-short` remains **51/66**, including the action-68,
+  action-75 and action-799 regressions.
+
+Thus the caller-width correction is neutral for those helper hypotheses; their
+old negative conclusion stands.
+
+The native single-switch 690-owner question was also narrowed from the target
+edge already recorded in the owner audit. Starting from the 47/66
+`common-native-6364-return` diagnostic, making case690 repeat the low54/60
+`resolve; goto action0-terminal` source drops to **45/66** and moves the low54
+owner into the high partition. Repeating complete ordinary
+`resolve + advance + set_action(0) + return` semantics in both low54/60 and 690
+fails closed because the candidate merges target-distinct physical owners.
+These results reject both natural-repeat forms as a way to combine the native
+single-switch SUB lowering with the shipped `JE 690 -> low54` ownership.
+
+The IDA command-line preflight could not be completed in this resume because
+the available system Python lacks the repository-pinned `mcp==1.26.0` runtime;
+`uv` and a compatible cached environment are absent. The only ignored MCP venv
+found is broken and contains `mcp 1.28.1`, so it was not substituted. No new
+semantic IDA observation is claimed from this batch. All diagnostics above use
+already tracked canonical owner/raw-PE facts plus the pinned VC8 compiler, and
+all generated artifacts remain under `build/`.
+
 ## Focused final gate
 
 ```bash

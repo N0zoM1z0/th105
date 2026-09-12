@@ -131,6 +131,40 @@ without a newly demonstrated type, lifetime, source or TU distinction:
   objects. These negatives do not prove all truthful original TU contexts
   impossible.
 
+## 2026-09-12 mixed-visibility follow-up
+
+Production is still unchanged at **53/66** diagnostic owners. A verified local
+VC8-manual read and two new `/GL` controls separate three previously coupled
+questions. When the common source is `/GL` but an ordinary caller is compiled
+without `/GL`, LTCG retains the public thiscall receiver instead of specializing
+it to the all-GL `ESI=this` convention; the common body still has the wrong
+aligned EBP frame and ADD-negative selectors. `/O1 /GL` with the same non-GL
+caller also retains the alignment and is much too small. This makes caller
+visibility a real private-ABI discriminator, but not the missing common-Fighter
+layout discriminator.
+
+The manual confirms that VC8 PGO can perform basic-block, branch, switch-value
+and function-layout optimization. The current target evidence proves 42 C++
+LTCG Rich records but does **not** identify PGO for this root, so no synthetic
+profile experiment is justified yet.
+
+The independently proved `set_action(short)` ABI correction was used to replay
+the old explicit helper controls. `inline-slide` remains 54/66 with its old
+high799 and late-clamp regressions; `inline-body` remains 51/66. The new ABI
+therefore does not reopen those helper hypotheses. Native-single-switch case690
+was also retested only from the already-proved target edge: repeating the
+low54/60 terminal source drops the 47-owner native diagnostic to 45/66, while
+repeating the complete natural terminal fails the owner audit by merging
+target-distinct destinations. Do not repeat either 690 form.
+
+The local `scripts/check-ida-mcp.py` preflight is currently blocked before
+session creation because system Python lacks pinned `mcp==1.26.0`; no `uv` or
+compatible cached environment is present. A broken ignored venv contains
+`mcp 1.28.1` and was correctly rejected rather than substituted. Until that
+runtime is restored, do not claim fresh IDA semantic evidence. Build-only
+compiler controls may continue to use already recorded raw-PE/owner facts, but
+tracked semantic reconstruction should remain at the 53-owner checkpoint.
+
 ## Resume discipline and open questions
 
 The unresolved issues are original switch/source partition, simultaneous tail
