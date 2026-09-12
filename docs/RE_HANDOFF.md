@@ -31,6 +31,12 @@ credit was added. Its fresh comparison hash is
 `99563500433bccf1f68e7c256b438595de9cdcf5b18aee4816f19e69e1cda835`.
 See [COMMON_FIGHTER_LANDING_EVIDENCE_2026_09_12.md](COMMON_FIGHTER_LANDING_EVIDENCE_2026_09_12.md)
 for target evidence, rejected cohort probes and the remaining **13** owners.
+The subsequent native assignment cohort aligns 53/54/55/56 locally, but
+expands 159..162 and loses action 799; it is rejected. Both required float
+rounding stages are observed in that candidate, so do not repeat the older
+claim that rounding itself cannot be generated. Explicit late labels,
+alternate ordinary exits, and size optimization also fail to recover the
+simultaneous owner layout. The production 53/66 checkpoint is unchanged.
 Continue this root, not the manager or a character-completion sweep.
 
 Shared secondary-animation replacement `0x00496420` is now **274/274 exact**

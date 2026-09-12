@@ -181,3 +181,71 @@ The remaining **13** diagnostic owners are entry, low 53/54/55/56,
 73/75/88, 159/160/161/162 and low 180 (including the high dispatcher).
 They remain three shared control-flow/code-generation questions, not 13
 independent exact-function claims.
+
+## Follow-up discriminators on the remaining 13 owners
+
+IDA preflight was repeated successfully in `build/common13-preflight.json`.
+The retained production checkpoint is still 53/66; none of the following
+private single-function probes replaces it. Remote CI for `2dde1fd` passed
+in run `34679459245`; the local commit gate passed all 101 tests.
+
+### Native action-0 assignment cohort
+
+`build/common13-native-assignment.cpp` tests the same source form as the
+already matching action-2 cohort: use a rounded assignment expression in
+the clamp, retain action 50's `return`, and use ordinary `break` completion
+in 51/52/53/54/55/56 and 159..162. Remove the explicit shared clamp labels.
+For 159..162, retain the two genuinely consumed float intermediates before
+assigning and testing the field. Unlike the earlier independent-clamp probe,
+51/52 also join the switch exit and the clamp tests the field assignment:
+
+```cpp
+if (velocity_x_f4 < 0.0f) {
+    first = velocity_x_f4 + 0.6000000238418579;
+    second = first + 0.6000000238418579;
+    if ((velocity_x_f4 = second) > 0.0f)
+        velocity_x_f4 = 0.0f;
+}
+// Existing boundary/peer update, advance and set_action(0), then break.
+```
+
+The audit reaches **56/66**, gaining all of **53/54/55/56**, but loses
+action 799 through an extra NOP. The late four owners each expand from
+61 to 146 bytes; metadata grows to 10560. This is a rejected regression,
+not four newly accepted blocks or evidence of a smaller canonical residual.
+
+The fresh target at `0x00475B64..0x00475B80` loads velocity and the double
+0.6000000238418579 constant, adds, exchanges, stores the first float stage,
+adds that stage, and stores/reloads the second float stage. The native
+candidate emits this same sequence at +0x1AA0..+0x1ABC. Its following
+clamp/boundary/advance tail is duplicated locally, whereas the target jumps
+to action 50 at `0x00474122`. The two-stage rounding sequence is therefore
+reproducible; this experiment does not establish a fundamental rounding
+limitation or an unavoidable LTCG cause.
+
+Further controls:
+
+| Private probe suffix (`build/common13-*.cpp`) | Diagnostic result | Rejection reason |
+| --- | --- | --- |
+| `adjacent-clone` | 56/66, metadata 10560 | Exact adjacent action-2 peer/call cast spelling does not repair late ownership. |
+| `rounded-expression` | 56/66, metadata 10560 | Nesting both float casts in the assignment does not repair late ownership. |
+| `native-early` | 52/66, metadata 10320 | Restoring explicit late shared labels also steals the early four owners again. |
+| `late-returns` | 46/66, metadata 10924 | Late return completion additionally regresses action-2 owners 66/67/163..166 and action 799. |
+| `direct-primary` | 51/66, metadata 10212 | Putting shared labels directly in action 50's real clamp still moves the tail to 162; action 50 shrinks to 49 bytes and no longer matches. |
+| `sequence-exit` | 53/66, metadata 10296 | Action 88's ordinary completion as break does not move the selection owner. |
+| `sequence-conditional` | 53/66, metadata 10296 | One ternary-argument set_sequence call does not move the selection owner. |
+
+The `native-size` control adds source-local `#pragma optimize("s", on)` to
+the native cohort. Its canonical comparison fails at entry +0x00: it starts
+with an EBP frame rather than the target PUSH ECX. Section tail is 7791
+bytes, and the owner audit cannot identify the expected low switch table.
+There is **no completed owner count** for that profile; no compiler setting
+is retained. Its empty failed-audit JSON must not be treated as a zero score.
+
+All completed owner results above come from the full-root
+`audit-giant-action-owners.py` command, with the corresponding
+`build/common13-<suffix>-audit.json` report. They are not canonical byte
+comparisons. For future work, preserve the distinction between reproducible
+local instruction sequences and simultaneous whole-root owner placement;
+do not retain NOP removal, padding or manufactured liveness to compensate
+for these source regressions.
