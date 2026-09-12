@@ -56,14 +56,25 @@ def consumer_window(code: bytes, address: int) -> dict:
     return {"first_x87": first_x87, "stop": stop, "instructions": instructions}
 
 
+def caller_rows(value: object) -> list[dict]:
+    # MCP may encode one caller as one text block/object rather than an array.
+    if isinstance(value, dict) and "address" in value:
+        value = [value]
+    if not isinstance(value, list) or any(
+        not isinstance(row, dict) or not isinstance(row.get("address"), str)
+        for row in value
+    ):
+        raise ValueError("IDA caller result is not a caller row or list of rows")
+    return value
+
+
 async def collect(callee: int) -> dict:
     typed = load_typed()
     data, manifest = typed.verify_local_target()
     async with open_session() as (session, _):
         metadata = await require_target(session)
         callers = await call_json(session, "get_callers", {"function_address": f"0x{callee:08X}"})
-    if not isinstance(callers, list):
-        raise ValueError("IDA caller result is not a list")
+    callers = caller_rows(callers)
     seen = set()
     rows = []
     for caller in callers:

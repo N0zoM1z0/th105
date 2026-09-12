@@ -1,4 +1,5 @@
 address,name,size,status,match_percent,unit,evidence
+0x004064D0,lookup_orientation_ratio_quantized_abs,107,matching,100.00,gpt-web-angle-ratio-natural,python3 scripts/build.py --unit gpt-web-angle-ratio-natural --compare --json reports canonical exact 107/107; build/angle-ratio-natural-formal.json; docs/ANGLE_RATIO_EVIDENCE_2026_09_12.md
 0x004067D0,selector_random_roll,27,matching,100.00,cross-v106a-outcome-random,python3 scripts/build.py --unit cross-v106a-outcome-random --compare --json reports exact 27/27 against TH105 1.06a
 0x00407C40,CFileReader_last_read_size,4,matching,100.00,cross-v106a-file-reader,python3 scripts/build.py --unit cross-v106a-file-reader --compare --json reports exact 4/4 against TH105 1.06a
 0x00409F40,reset_counters,33,matching,100.00,cross-v106a-input-manager,python3 scripts/build.py --unit cross-v106a-input-manager --compare --json reports exact 33/33 against TH105 1.06a

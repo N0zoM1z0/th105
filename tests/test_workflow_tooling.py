@@ -57,7 +57,7 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4023)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1312)
+        self.assertEqual(len(matching), 1313)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
@@ -65,12 +65,12 @@ class WorkflowToolingTests(unittest.TestCase):
             implemented = [row[0] for row in csv.reader(stream) if row]
         self.assertEqual(len(implemented), 1388)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1312
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1313
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 492)
+        self.assertEqual(len(manifest["units"]), 493)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
             1393,
@@ -105,7 +105,6 @@ class WorkflowToolingTests(unittest.TestCase):
         accepted = self.exact_replay.accepted_functions(units)
         checks = [
             ("0x004036C0", "src/audio/BgmHandleAllocation.cpp", "gpt-web-bgm-handle-allocation"),
-            ("0x004064D0", "src/engine/AngleLookup.cpp", "cross-v106a-angle-lookup"),
             ("0x004180F0", "src/audio/DirectSoundResourceLifetime.cpp", "gpt-web-direct-sound-resource-lifetime"),
             ("0x0041FA20", "src/ui/MenuCursor.cpp", "cross-v106a-menu-cursor"),
             ("0x00421FF0", "src/battle/EffectSprite.cpp", "cross-v106a-effect-sprite-scalar-dtor"),
@@ -253,8 +252,8 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 460)
-        self.assertEqual(sum(map(len, accepted.values())), 1312)
+        self.assertEqual(len(accepted), 461)
+        self.assertEqual(sum(map(len, accepted.values())), 1313)
         secondary = accepted["gpt-web-secondary-animation-runtime"]
         self.assertEqual(
             secondary,
@@ -265,6 +264,26 @@ class WorkflowToolingTests(unittest.TestCase):
             units["gpt-web-secondary-animation-runtime"], secondary
         )
         self.assertEqual(len(view["functions"]), 5)
+
+    def test_natural_angle_ratio_contract_has_one_dedicated_strict_unit(self) -> None:
+        units = self.manifest.load_manifest()["units"]
+        unit = units["gpt-web-angle-ratio-natural"]
+        self.assertEqual(unit["profile"], "vc8-sp1-probe-o2-fp-strict")
+        self.assertEqual(unit["source"], "src/engine/AngleRatio.cpp")
+        self.assertEqual([row["address"] for row in unit["functions"]], ["0x004064D0"])
+        self.assertEqual(unit["functions"][0]["symbol_base"],
+                         "?lookup_orientation_ratio_quantized_abs@th105@@YAMH@Z")
+        self.assertEqual(self.exact_replay.accepted_functions(units)["gpt-web-angle-ratio-natural"],
+                         {"0x004064D0"})
+        source = (ROOT / unit["source"]).read_text()
+        self.assertIn("#pragma float_control(except, off, push)", source)
+        self.assertIn("#pragma float_control(pop)", source)
+        self.assertIn("if (denominator != 0.0f)", source)
+        self.assertIn("float const numerator", source)
+        self.assertNotIn("volatile", source)
+        self.assertNotIn("__declspec(align", source)
+        self.assertNotIn("lookup_orientation_ratio_quantized_abs",
+                         (ROOT / "src/engine/AngleLookup.cpp").read_text())
 
     def test_natural_atan2_contract_has_one_dedicated_strict_unit(self) -> None:
         units = self.manifest.load_manifest()["units"]
@@ -878,8 +897,8 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertIn("Confirmed authored code bytes | 2,088,147", markdown)
         self.assertIn("Classified exclusions | 1,308", markdown)
         self.assertIn("Origin/boundary review pending | 1,239", markdown)
-        self.assertIn("Canonical exact functions | 1,312", markdown)
-        self.assertIn("Canonical exact authored bytes | 217,279", markdown)
+        self.assertIn("Canonical exact functions | 1,313", markdown)
+        self.assertIn("Canonical exact authored bytes | 217,386", markdown)
         self.assertIn("Source-present authored mappings | 1,388", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown

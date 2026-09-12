@@ -37,19 +37,4 @@ double __cdecl lookup_orientation_cosine_quantized_abs(float phase)
     return g_orientation_cosine_table[index % 3600];
 }
 
-double __cdecl lookup_orientation_ratio_quantized_abs(int angle)
-{
-    int scaled = angle * 5;
-    scaled += scaled;
-    float const denominator =
-        g_orientation_cosine_table[abs(scaled) % 3600];
-    if (0.0f == denominator)
-        return 0.0;
-
-    scaled = angle * 5 - 450;
-    scaled += scaled;
-    return static_cast<float>(
-        g_orientation_cosine_table[abs(scaled) % 3600] / denominator);
-}
-
 } // namespace th105

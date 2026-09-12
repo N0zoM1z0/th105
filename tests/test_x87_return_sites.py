@@ -12,6 +12,18 @@ SPEC.loader.exec_module(audit)
 
 
 class X87ReturnSitesTests(unittest.TestCase):
+    def test_singleton_and_array_caller_results(self):
+        row = {"address": "0x5264df", "name": "sub_520890"}
+        self.assertEqual(audit.caller_rows(row), [row])
+        self.assertEqual(audit.caller_rows([row]), [row])
+        self.assertEqual(audit.caller_rows([]), [])
+
+    def test_malformed_caller_results_fail_closed(self):
+        for value in (None, "error", {}, {"error": "unavailable"}, [None],
+                      [{"address": None}], [{"address": 0x5264df}]):
+            with self.assertRaises(ValueError):
+                audit.caller_rows(value)
+
     def test_direct_call_uses_signed_displacement(self):
         self.assertEqual(audit.direct_call_target(b"\xe8" + struct.pack("<i", -0x105), 0x401100), 0x401000)
 

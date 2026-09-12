@@ -73,3 +73,8 @@ last_page = 26794
 topic = "Function floating-point control pragma"
 first_page = 27035
 last_page = 27037
+
+[[vc8_cpp.topics]]
+topic = "Explicit data alignment and aligned typedefs"
+first_page = 26805
+last_page = 26808

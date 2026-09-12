@@ -20,6 +20,21 @@ The completed aggregate replay below is a checkpoint, not a required inner loop.
 
 ## Current bounded dependency investigation
 
+The shared angle island now has one additional whole exact result:
+`0x004064D0`, 107/107, in `gpt-web-angle-ratio-natural`. Ordinary float
+numerator/denominator lifetimes, a nonzero branch and locally disabled
+exception-sensitive scheduling reproduce the target under strict FP.
+See [ANGLE_RATIO_EVIDENCE_2026_09_12.md](ANGLE_RATIO_EVIDENCE_2026_09_12.md).
+This supersedes old statements that the ratio's strict-FP profile was ruled
+out. The accepted integer sine/cosine functions remain exact after the TU split.
+
+The 100-byte quantized sine remains nonexact. A discarded aligned used-index
+probe matches the first 81 bytes, then emits magic-constant remainder instead
+of IDIV (121 total bytes). The independent 46-byte abs wrapper still has no
+truthful common alignment explanation. No partial span is credited and no
+aligned probe source is retained. Continue this high-reuse pair after the
+ratio checkpoint; do not rerun unrelated modules or the global cold suite.
+
 CPU checkpoint `b27b668` is pushed; remote CI run `34675650720` passed.
 Subsequent range-order and LTCG visibility trials were reverted, including
 the temporary virtual facade. CPU and common-Fighter roots remain nonexact.
