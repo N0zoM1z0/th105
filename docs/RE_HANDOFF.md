@@ -43,6 +43,16 @@ affected object and compared only the changed function, without a cold suite.
 Next shared candidate: manager `update_and_prune @ 0x0058BE10`. Revalidate its
 native checked-list erase expression/lifetime contract; old register-color
 diagnostics are hypotheses, not permission to force registers or storage.
+Fresh isolated replay after `38bf8c2` confirms 207 bytes and first mismatch
++0xA5: only the final list-unlink scratch-register choices differ. RTM
+14.00.50727.42, a native templated manager class, and an active-object early
+`continue` all reproduce the baseline canonical window hash
+`6af113e1d91700990344018fbb3ef1742cf1f97b84000871670c4d67f2dd76cc`.
+`erase(it++)` changes the entry/frame despite retaining 207 bytes; putting
+the zero-state arm first produces 210 bytes and first mismatch +0x29.
+None is accepted; production manager source and all profiles are unchanged.
+See [MANAGER_PRUNE_DISCRIMINATORS_2026_09_12.md](MANAGER_PRUNE_DISCRIMINATORS_2026_09_12.md).
+The secondary-update checkpoint `38bf8c2` is pushed and remote CI passed.
 
 The shared angle island now has one additional whole exact result:
 `0x004064D0`, 107/107, in `gpt-web-angle-ratio-natural`. Ordinary float
