@@ -1789,3 +1789,22 @@ required_direct_edges = [
   { caller = "0x0043F810", site = "0x0043F83F", target = "0x00404D00", caller_status = "matching" },
   { caller = "0x0044DCB0", site = "0x0044DE75", target = "0x00404D00", caller_status = "matching" },
 ]
+
+[[rules]]
+id = "profile-message-update-authored-106a"
+addresses = ["0x0043F6E0"]
+expected_count = 1
+expected_bytes = 298
+expected_names = ["sub_43F6E0"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Hash-attested raw PE CFG reaches all 298 candidate bytes and five RET paths; the following bytes are INT3 padding. The body updates game menu-cursor state, dispatches UI events 0x27/0x28/0x29, and toggles visibility byte +0x14 through five game UI globals before returning menu-state codes. Seven independent canonical-exact UI callers have eight E8 sites; sites in two separate caller functions are replayed here. The retained update_profile_message name agrees with behavior but source codegen remains nonexact. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_body_hashes = [
+  { address = "0x0043F6E0", size = 298, sha256 = "7cd81ee125c1ed51f0c66aec0e25e1be8f8652d63af1e0f14f1c51d3395172ed" },
+]
+required_direct_edges = [
+  { caller = "0x00442790", site = "0x00442844", target = "0x0043F6E0", caller_status = "matching" },
+  { caller = "0x0044CC50", site = "0x0044CD73", target = "0x0043F6E0", caller_status = "matching" },
+]

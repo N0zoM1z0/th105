@@ -308,3 +308,30 @@ behavior are the evidence here, without source-present or exact-match credit.
 python3 scripts/audit-candidate-boundaries.py 0x00404D00 --json
 python3 scripts/function-origins.py --check
 ```
+
+## Profile message update at `0x0043F6E0`
+
+The hash-attested target CFG reaches 298/298 bytes from the candidate entry,
+with five plain returns at `0x0043F72E`, `0x0043F75A`, `0x0043F7B2`,
+`0x0043F7CD`, and `0x0043F809`. There are no unreachable candidate bytes,
+indirect exits, or outgoing direct jumps; `INT3` follows the last return. The
+body SHA-256 is
+`7cd81ee125c1ed51f0c66aec0e25e1be8f8652d63af1e0f14f1c51d3395172ed`.
+
+The body calls the game menu cursor update at `0x0041FA20`, dispatches UI
+events `0x27`, `0x28`, and `0x29` through `0x0043B1A0`, and changes byte
+`+0x14` on menu object pointers stored at five nearby globals
+`0x006FD02C/34/38/3C/40`. Its return paths produce zero, two, three, or
+four depending on cursor and message state. Seven separate canonical-exact
+UI callers contain eight direct E8 calls. The origin rule replays sites
+`0x00442844` in exact `CMenuConnect::update_state_one @ 0x00442790` and
+`0x0044CD73` in exact `CProfileMenu::update_state_four @ 0x0044CC50`.
+These target observations support `authored_game/ui` and the provisional
+main-span boundary. `update_profile_message` is a retained working label;
+its existing ordinary C++ probe is still 291 bytes versus target 298 and
+does not gain source-present or exact credit from this review.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py 0x0043F6E0 --json
+python3 scripts/function-origins.py --check
+```
