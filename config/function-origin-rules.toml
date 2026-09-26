@@ -1968,3 +1968,35 @@ required_vc8_eh_unwind = { owner = "0x00431E80", handler_push_site = "0x00431E82
   { address = "0x006B81B0", size = 8, sha256 = "ff78c313efa7bb494cd0779df476feffadbd5d9341390ede001e3b71f776654e", target = "0x00401E00" },
   { address = "0x006B81B8", size = 11, sha256 = "7b111109fd45e2ab0c352d5d6de9ac142681b50eeb2d5dab139887c5f90323dc", target = "0x0042E980" },
 ] }
+
+[[rules]]
+id = "profile-binary-writer-authored-106a"
+addresses = ["0x004317A0"]
+expected_count = 1
+expected_bytes = 784
+expected_names = ["sub_4317A0"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Hash-attested PE CFG reaches all 784 candidate bytes. The normal RET 4 path opens profile/<name> with KERNEL32 CreateFileA, writes two 0x34-byte profile blocks, flags and twenty counted short decks via WriteFile, then closes the handle. A second terminal path calls generated throw helper 0x00431610, whose complete candidate body ends in VC8 __CxxThrowException followed by INT3; the boundary auditor's outgoing fallthrough is therefore not a live path. VC8 EH handler 0x006B8108 has three unwind states and three actions cleaning temporary strings and exact CFileWriter. Five separate exact profile callers have eight E8 sites; two are replayed. Retained ProfileMenuBaseData::save_to_profile is a source/class-name hypothesis without standalone exact credit. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_target_strings = ["profile/"]
+required_body_hashes = [
+  { address = "0x004317A0", size = 784, sha256 = "2cce2b6f179d22fdbe4a2e6863501072dea6be3a4600680e2c93c7e6f46f5126" },
+]
+required_direct_edges = [
+  { caller = "0x0043AF30", site = "0x0043AF65", target = "0x004317A0", caller_status = "matching" },
+  { caller = "0x0044C110", site = "0x0044C1E7", target = "0x004317A0", caller_status = "matching" },
+]
+required_terminal_noreturn_calls = [
+  { owner = "0x004317A0", site = "0x00431AAB", callee = "0x00431610", callee_size = 117, callee_sha256 = "e1a1f687798b5c12f88fdec572f37b04da5b84a5c610b5f7113c4c2dee8a771d", throw_target = "0x0068A153" },
+]
+required_vc8_eh_unwind = { owner = "0x004317A0", handler_push_site = "0x004317A2", handler = "0x006B8108", handler_size = 40, handler_sha256 = "7d32d49d5dcb00d6ce5a67a759445b6d35589c7b913ecfd1645908fe335b9a70", func_info_site = "0x006B8126", func_info = "0x006DE338", func_info_sha256 = "cd10b83c2c65af863362bb6ca2f31ef65d159cb87705a6b5b9fc22f8af7ac2bd", unwind_map = "0x006DE320", unwind_map_sha256 = "a1f6d792ee610c15a71bf7bc89ad9cc7d0b5c1a2827030b56d6f5adbf98a6e80", unwind_entries = [
+  { to_state = -1, action = "0x006B80F0" },
+  { to_state = 0, action = "0x006B80F8" },
+  { to_state = 0, action = "0x006B8100" },
+], actions = [
+  { address = "0x006B80F0", size = 8, sha256 = "8553d94d5ba8a1315ba94bbb867a56897c41434a52905b5ca90d5082ff41de2e", target = "0x00401E00" },
+  { address = "0x006B80F8", size = 8, sha256 = "20a416c11b180bd8d803461b96b559006bea4289fa29dfc7d3d8f9200a1d4aef", target = "0x00401E00" },
+  { address = "0x006B8100", size = 8, sha256 = "e244d3eab23070a962e9c098d7185a694fdf0d7ff59f4c03f9059441e6b5b848", target = "0x00407BF0" },
+] }

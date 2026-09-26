@@ -1612,6 +1612,44 @@ def validate_rule_evidence(
                 or actual_target != target
             ):
                 errors.append(f"{rule_id}: VC8 EH action 0x{address:08X} differs")
+    for terminal in rule.get("required_terminal_noreturn_calls", []):
+        owner = int(str(terminal["owner"]), 0)
+        site = int(str(terminal["site"]), 0)
+        callee = int(str(terminal["callee"]), 0)
+        callee_size = int(terminal["callee_size"])
+        throw_target = int(str(terminal["throw_target"]), 0)
+        owner_key = f"0x{owner:08X}".upper()
+        callee_key = f"0x{callee:08X}".upper()
+        if (
+            owner_key not in selected_addresses
+            or callee_key not in row_by_address
+            or int(row_by_address[callee_key]["size"], 0) != callee_size
+            or site + 5 != owner + int(row_by_address[owner_key]["size"], 0)
+        ):
+            errors.append(f"{rule_id}: terminal no-return call has wrong candidate boundary")
+            continue
+        try:
+            caller_call = read_pe(site, 5)
+            callee_body = read_pe(callee, callee_size)
+            caller_padding = read_pe(site + 5, 8)
+            callee_padding = read_pe(callee + callee_size, 8)
+        except ValueError as exc:
+            errors.append(f"{rule_id}: terminal no-return call: {exc}")
+            continue
+        caller_target = site + 5 + struct.unpack_from("<i", caller_call, 1)[0]
+        throw_call = callee_body[-5:]
+        actual_throw = callee + callee_size + struct.unpack_from("<i", throw_call, 1)[0]
+        if (
+            caller_call[0] != 0xE8
+            or caller_target != callee
+            or hashlib.sha256(callee_body).hexdigest() != terminal["callee_sha256"]
+            or throw_call[0] != 0xE8
+            or actual_throw != throw_target
+            or caller_padding != b"\xCC" * 8
+            or callee_padding != b"\xCC" * 8
+            or f"0x{throw_target:08X}".upper() not in row_by_address
+        ):
+            errors.append(f"{rule_id}: terminal no-return call or throw callee differs")
     for body in rule.get("required_body_hashes", []):
         address = int(str(body["address"]), 0)
         size = int(body["size"])

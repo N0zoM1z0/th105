@@ -1005,7 +1005,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00431610,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
 0x00431690,authored_game,ui,authored,observed,canonical-exact-authored
 0x00431730,authored_game,ui,authored,observed,canonical-exact-authored
-0x004317A0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004317A0,authored_game,ui,authored,observed,profile-binary-writer-authored-106a
 0x00431AC0,authored_game,ui,authored,observed,ui-source-present-exact-caller-helpers-authored-106a
 0x00431DA0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00431E50,authored_game,ui,authored,observed,canonical-exact-authored

@@ -556,3 +556,38 @@ source, and exact codegen remain unresolved.
 python3 scripts/audit-candidate-boundaries.py 0x00431E80 --json
 python3 scripts/function-origins.py --check
 ```
+
+## Profile binary writer at `0x004317A0`
+
+The original PE candidate reaches all 784 bytes from its entry. The normal
+path returns with `RET 4` at `0x00431AA8`; a second path ends with a CALL
+at `0x00431AAB` to generated helper `0x00431610`. That helper's entire
+117-byte body is pinned and ends in a direct call to VC8
+`__CxxThrowException @ 0x0068A153`, followed by `INT3`. The candidate's
+next bytes are also `INT3`. The boundary auditor reports an outgoing
+fallthrough to `0x00431AB0` because it assumes that terminal call returns;
+the pinned no-return helper resolves that edge. The main body SHA-256 is
+`2cce2b6f179d22fdbe4a2e6863501072dea6be3a4600680e2c93c7e6f46f5126`.
+
+The receiver is carried from ECX in ESI, and the body uses target
+`profile/` prefix, KERNEL32 `CreateFileA`, `WriteFile`, and `CloseHandle`
+imports. It writes two `0x34`-byte profile blocks, two one-byte flags,
+then twenty deck counts and their short entries. Five separate exact
+profile setup/UI callers make eight direct E8 calls; the rule replays exact
+`initialize_default_player_profiles @ 0x0043AF30` and
+`CProfileMenu_commit_state_one @ 0x0044C110` sites.
+
+The 40-byte EH handler `0x006B8108` points to FuncInfo `0x006DE338`
+with three unwind states. Two actions at `0x006B80F0/F8` tail-call
+generated string cleanup `0x00401E00`; the third at `0x006B8100`
+tail-calls exact `CFileWriter_dtor @ 0x00407BF0`. The origin rule pins the
+full handler, FuncInfo/map, all action bytes/targets, and the no-return
+throw callee. This establishes `authored_game/ui` and the 784-byte main
+span with separate EH actions. Retained
+`ProfileMenuBaseData::save_to_profile` is a working class/source model, not
+standalone exact evidence or an independently attested class name.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py 0x004317A0 --json
+python3 scripts/function-origins.py --check
+```

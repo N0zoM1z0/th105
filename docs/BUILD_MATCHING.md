@@ -1033,7 +1033,7 @@ The same TU reproduces seven Profile render/state facades exactly: message hide 
 
 `Menu::render_profile_player_slot @ 0x0043FAF0` is a caller-proven unused-this member: callers place their Menu-derived receiver in ECX, while the body uses the player argument and shared UI globals. Keep the member ABI even though the body ignores ECX. `Menu::render_profile_tiles @ 0x0043FB60` similarly reuses the already-established shared byte at `0x006FA88E`; do not manufacture a duplicate global simply because the older semantic name is battle-oriented.
 
-`CProfileMenu::commit_state_one @ 0x0044C110` extends the exact ProfileMenu file-commit TU to 621 bytes. The target requires `/GS`, a real local `ProfileMenuBaseData` lifetime, initialization member `0x00432050`, save-to-profile member `0x004317A0`, and the same caller-TU `MenuString28` temporary-destructor visibility used by the other file commits. Do not flatten that local object into raw storage or hand-code EH cleanup.
+`CProfileMenu::commit_state_one @ 0x0044C110` extends the exact ProfileMenu file-commit TU to 621 bytes. Its exact caller build models a real local `ProfileMenuBaseData` lifetime under `/GS` and calls the target initialization and profile-writing bodies at `0x00432050` and `0x004317A0`. Those bodies' game-authored origins are independently reviewed, while the class label remains a source model and both standalone bodies are nonexact. The same caller-TU `MenuString28` temporary-destructor visibility is needed for the other file commits. Do not flatten that local object into raw storage or hand-code EH cleanup.
 
 ### Profile UI lifecycle: typed stack records and checked-list `back()`
 
