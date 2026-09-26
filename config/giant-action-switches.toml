@@ -161,6 +161,12 @@ index_table = "0x00544B0C"
 expected_physical_groups = 29
 candidate_destination_counts = [28, 29]
 
+[[roots.auxiliary_switches]]
+name = "sequence6_match_state"
+dispatch = "0x0054464F"
+destination_table = "0x00544BD4"
+destinations = ["0x00544692", "0x0054467E", "0x0054466A", "0x00544656"]
+
 [[roots]]
 name = "aya-object-action-entry"
 address = "0x0061F0B0"

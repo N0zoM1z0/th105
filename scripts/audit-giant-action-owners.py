@@ -76,8 +76,26 @@ def audit(root_name: str, object_path: Path, unit_name: str) -> dict[str, Any]:
         candidate_tables.extend([(cd, cd + 4 * built["destination_count"], name + ".destinations"),
                                  (ci, ci + cases, name + ".indices")])
         switches[dt] = (name, [group["destination"] for group in actual["groups"]])
+    auxiliary_switches = root.get("auxiliary_switches", [])
+    for auxiliary in auxiliary_switches:
+        table = target_mapper.parse_int(auxiliary["destination_table"])
+        destinations = [target_mapper.parse_int(value) for value in auxiliary["destinations"]]
+        if not destinations or table in switches:
+            raise ValueError("empty or duplicate auxiliary switch destination table")
+        observed = [int.from_bytes(canonical.target_bytes(table + 4 * index, 4), "little")
+                    for index in range(len(destinations))]
+        if observed != destinations:
+            raise ValueError(f"auxiliary switch {auxiliary['name']} differs from target table bytes")
+        if any(not address <= destination < address + len(target_code) for destination in destinations):
+            raise ValueError(f"auxiliary switch {auxiliary['name']} escapes target callable")
+        switches[table] = (auxiliary["name"], destinations)
     owners = compare_owner_instructions(target_code, candidate_code, address, pairs, target_tables, candidate_tables)
     boundary = reachable_boundary_audit(target_code, address, switches)
+    for auxiliary in auxiliary_switches:
+        dispatch = target_mapper.parse_int(auxiliary["dispatch"])
+        if not any(edge["address"] == dispatch and edge["table"] == auxiliary["name"]
+                   for edge in boundary["switch_jumps"]):
+            raise ValueError(f"auxiliary switch {auxiliary['name']} has no target dispatch edge")
     with (ROOT / "config/functions.csv").open(newline="") as handle:
         ledger = {int(row["address"], 0): row for row in csv.DictReader(handle)}
     with (ROOT / "config/function-origins.csv").open(newline="") as handle:

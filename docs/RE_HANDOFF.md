@@ -1,5 +1,21 @@
 # Current reconstruction handoff
 
+## 2026-09-26 YoumuObject action-entry switch closure
+
+At the user's request, the current bounded large-function target is
+`YoumuObject_initialize_action_entry @ 0x00543670` (5,159 bytes). Fresh raw
+target bytes identify its previously unmodeled four-entry sequence-6 match
+state table at `0x00544BD4`. Recording and checking that table closes the
+target owner audit from **5,083/5,159 to 5,159/5,159 reachable bytes**, with
+zero unresolved indirect exits. The 820/850 common tail remains inversely
+placed in the standalone candidate; its call is now expressed as a natural
+virtual call, verified byte-neutral. Whole-function comparison remains
+nonexact at +0x80; no match ledger credit changed. See
+[YOUMU_OBJECT_ENTRY_SWITCH_CLOSURE_2026_09_26.md](YOUMU_OBJECT_ENTRY_SWITCH_CLOSURE_2026_09_26.md)
+for addresses, table entries, focused commands and the remaining blocker.
+Older common-Fighter priority text below is historical for this user-directed
+switch of roots.
+
 ## 2026-09-26 action-73/75/88 sequence-join checkpoint
 
 The resumed bounded root is common Fighter `0x004740C0`. Exact target bytes
@@ -23,14 +39,13 @@ resume request.
 
 ## Phase
 
-The active objective is exact recovery of the highest-reuse shared gameplay
-blockers, not completion of every character. Prioritize the common Fighter
-action-state root `0x004740C0`, shared default CPU policy `0x005F1F80`, and
-their high-reuse dependencies. Character-specific roots are bounded witnesses
-only when they discriminate a shared ABI/source hypothesis. Work on one root
-at a time, preserve existing accepted units, and accept only whole canonical
-matches. Historical diagnostics below are hypotheses to revalidate, not proof
-that the remaining differences are merely compiler tail merging.
+The current bounded objective is YoumuObject action-entry `0x00543670`, chosen
+as a more tractable large function after the common Fighter action-state
+investigation. Preserve existing accepted units and accept only whole
+canonical matches. The shared Fighter root `0x004740C0` and default CPU policy
+`0x005F1F80` remain pending. Historical diagnostics below are hypotheses to
+revalidate, not proof that remaining differences are merely compiler tail
+merging.
 
 Session-specific user authorization (2026-09-12): do not rerun unrelated
 accepted modules or the full cold suite on each boss iteration. Build and

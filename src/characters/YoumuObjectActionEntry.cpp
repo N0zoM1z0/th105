@@ -289,6 +289,7 @@ void YoumuObjectActionEntryView::initialize_action_entry()
 
     case 820:
         phase_index_184 = 1;
+        // The target enters action 850 after its two scale stores.
         goto action850_angle_and_select;
     case 821:
         sprite_004.reset_zero_128 = heading_340[0];
@@ -327,14 +328,10 @@ void YoumuObjectActionEntryView::initialize_action_entry()
     case 850:
         sprite_004.reset_one_118 = 2.0f;
         sprite_004.reset_one_11c = 2.0f;
-action850_angle_and_select: {
-        float *const heading = heading_340;
-        void **const vtable = *reinterpret_cast<void ***>(this);
-        sprite_004.reset_zero_128 = heading[0];
-        typedef int (__thiscall *SelectSequenceFn)(YoumuObjectActionEntryView *, int);
-        reinterpret_cast<SelectSequenceFn>(vtable[3])(this, static_cast<int>(heading[2]));
+action850_angle_and_select:
+        sprite_004.reset_zero_128 = heading_340[0];
+        select_sequence(static_cast<int>(heading_340[2]));
         return;
-    }
 
     case 851: {
         double const sequence_value = heading_340[2];
