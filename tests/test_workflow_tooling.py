@@ -575,6 +575,40 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_selected_body_calls"] = calls
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    def test_select_constructor_requires_rtti_padding_and_mixed_eh_actions(self) -> None:
+        with self.origins.RULES.open("rb") as stream:
+            document = tomllib.load(stream)
+        rule = next(
+            row for row in document["rules"]
+            if row["id"] == "select-base-constructor-authored-106a"
+        )
+        rows = self.origins.read_csv(self.origins.FUNCTIONS)
+        selected = [row for row in rows if row["address"] in rule["addresses"]]
+        data = self.origins.attest_target(document)
+        read_pe = self.origins.pe_reader(data)
+        validate = self.origins.validate_rule_evidence
+        self.assertEqual(validate(rule, selected, rows, data, read_pe), [])
+
+        changed = dict(rule)
+        padding = [dict(entry) for entry in rule["required_branch_skipped_padding"]]
+        padding[0]["padding_hex"] = "8d9b00000001"
+        changed["required_branch_skipped_padding"] = padding
+        self.assertTrue(validate(changed, selected, rows, data, read_pe))
+
+        changed = dict(rule)
+        vptrs = [dict(entry) for entry in rule["required_rtti_primary_vptr_writes"]]
+        vptrs[1]["type_name"] = ".?AVCSelectSV@@"
+        changed["required_rtti_primary_vptr_writes"] = vptrs
+        self.assertTrue(validate(changed, selected, rows, data, read_pe))
+
+        changed = dict(rule)
+        eh = dict(rule["required_vc8_eh_unwind"])
+        actions = [dict(entry) for entry in eh["actions"]]
+        actions[5]["terminal_kind"] = "jump"  # target action is call; ret
+        eh["actions"] = actions
+        changed["required_vc8_eh_unwind"] = eh
+        self.assertTrue(validate(changed, selected, rows, data, read_pe))
+
     def test_boost_throw_virtual_requires_terminal_runtime_edge(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)

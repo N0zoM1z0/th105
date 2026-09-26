@@ -1970,11 +1970,27 @@ def validate_rule_evidence(
             except ValueError as exc:
                 errors.append(f"{rule_id}: VC8 EH action 0x{address:08X}: {exc}")
                 continue
-            tail = body[-5:]
-            actual_target = address + size + struct.unpack_from("<i", tail, 1)[0]
+            terminal_kind = str(action.get("terminal_kind", "jump"))
+            if terminal_kind == "jump":
+                if len(body) < 5:
+                    errors.append(f"{rule_id}: VC8 EH action 0x{address:08X} is too short")
+                    continue
+                terminal = body[-5:]
+                actual_target = address + size + struct.unpack_from("<i", terminal, 1)[0]
+                terminal_valid = terminal[0] == 0xE9
+            elif terminal_kind == "call_ret":
+                if len(body) < 6:
+                    errors.append(f"{rule_id}: VC8 EH action 0x{address:08X} is too short")
+                    continue
+                terminal = body[-6:-1]
+                actual_target = address + size - 1 + struct.unpack_from("<i", terminal, 1)[0]
+                terminal_valid = terminal[0] == 0xE8 and body[-1] == 0xC3
+            else:
+                errors.append(f"{rule_id}: unsupported VC8 EH action terminal {terminal_kind!r}")
+                continue
             if (
                 hashlib.sha256(body).hexdigest() != action["sha256"]
-                or tail[0] != 0xE9
+                or not terminal_valid
                 or actual_target != target
             ):
                 errors.append(f"{rule_id}: VC8 EH action 0x{address:08X} differs")
@@ -2016,6 +2032,73 @@ def validate_rule_evidence(
             or f"0x{throw_target:08X}".upper() not in row_by_address
         ):
             errors.append(f"{rule_id}: terminal no-return call or throw callee differs")
+    for witness in rule.get("required_rtti_primary_vptr_writes", []):
+        owner = int(str(witness["owner"]), 0)
+        site = int(str(witness["site"]), 0)
+        vptr = int(str(witness["vptr"]), 0)
+        col = int(str(witness["col"]), 0)
+        type_descriptor = int(str(witness["type_descriptor"]), 0)
+        type_name = str(witness["type_name"]).encode("ascii") + b"\0"
+        owner_key = f"0x{owner:08X}".upper()
+        if owner_key not in selected_addresses:
+            errors.append(f"{rule_id}: RTTI vptr owner 0x{owner:08X} is not selected")
+            continue
+        owner_size = int(row_by_address[owner_key]["size"], 0)
+        if not owner <= site <= owner + owner_size - 6:
+            errors.append(f"{rule_id}: RTTI vptr write 0x{site:08X} is outside owner")
+            continue
+        try:
+            if (
+                pe_raw_section_name(data, vptr) != ".rdata"
+                or pe_raw_section_name(data, col) != ".rdata"
+                or pe_raw_section_name(data, type_descriptor) != ".data"
+            ):
+                raise ValueError("RTTI witness has wrong PE sections")
+            write = read_pe(site, 6)
+            col_pointer = struct.unpack("<I", read_pe(vptr - 4, 4))[0]
+            col_body = read_pe(col, 20)
+            actual_name = read_pe(type_descriptor + 8, len(type_name))
+        except ValueError as exc:
+            errors.append(f"{rule_id}: RTTI vptr witness: {exc}")
+            continue
+        signature, offset, cd_offset, actual_type_descriptor, _ = struct.unpack("<5I", col_body)
+        if (
+            write != b"\xC7\x06" + struct.pack("<I", vptr)
+            or col_pointer != col
+            or (signature, offset, cd_offset) != (0, 0, 0)
+            or actual_type_descriptor != type_descriptor
+            or actual_name != type_name
+        ):
+            errors.append(f"{rule_id}: RTTI primary vptr write 0x{site:08X} differs")
+    for witness in rule.get("required_branch_skipped_padding", []):
+        owner = int(str(witness["owner"]), 0)
+        jump_site = int(str(witness["jump_site"]), 0)
+        padding_site = int(str(witness["padding_site"]), 0)
+        padding = bytes.fromhex(str(witness["padding_hex"]))
+        owner_key = f"0x{owner:08X}".upper()
+        if owner_key not in selected_addresses:
+            errors.append(f"{rule_id}: skipped-padding owner 0x{owner:08X} is not selected")
+            continue
+        owner_size = int(row_by_address[owner_key]["size"], 0)
+        if (
+            not padding
+            or padding_site != jump_site + 2
+            or not owner <= jump_site < padding_site + len(padding) <= owner + owner_size
+        ):
+            errors.append(f"{rule_id}: skipped-padding span is outside owner")
+            continue
+        try:
+            jump = read_pe(jump_site, 2)
+            actual_padding = read_pe(padding_site, len(padding))
+        except ValueError as exc:
+            errors.append(f"{rule_id}: skipped-padding witness: {exc}")
+            continue
+        if (
+            jump[0] != 0xEB
+            or jump_site + 2 + struct.unpack_from("<b", jump, 1)[0] != padding_site + len(padding)
+            or actual_padding != padding
+        ):
+            errors.append(f"{rule_id}: skipped padding at 0x{padding_site:08X} differs")
     for body in rule.get("required_body_hashes", []):
         address = int(str(body["address"]), 0)
         size = int(body["size"])

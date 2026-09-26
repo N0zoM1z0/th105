@@ -1001,3 +1001,48 @@ claim, or exact credit was added.
 python3 scripts/audit-candidate-boundaries.py 0x00407680 --json
 python3 scripts/function-origins.py --check
 ```
+
+## `CSelect` base constructor main span at `0x004231A0`
+
+The hash-attested target PE's provisional 4,247-byte candidate ends in a
+single `RET` at `0x00424236` and is `INT3`-separated from adjacent code.
+Raw CFG reaches 4,241 bytes. Its sole skipped range
+`0x004239AA..0x004239AF` is the six-byte alignment instruction
+`lea ebx,[ebx]` (`8D 9B 00 00 00 00`); the preceding `jmp +6` at
+`0x004239A8` lands at `0x004239B0`. There is no remote direct branch,
+indirect jump, or overlapping decode in the main span. The full 4,247-byte
+SHA-256, including this padding, is
+`9b34d6dea240fd40eede0bba84ffd3a81daeeea29dcf98296b19ee83d5551bea`.
+
+The constructor first writes the zero-offset `CSceneBase` primary vptr
+`0x006C077C` at `0x004231E2`, then writes `CSelect` primary vptr
+`0x006C0BC4` at `0x00423202`. Their VC8 RTTI locators and type
+descriptors in the target PE name `CSceneBase` and `CSelect` respectively.
+The body constructs nested input/scene records through VC8 array
+constructor calls, initializes selection/render resources, and finishes
+with a repeated setup loop over fifteen records. Canonical-exact
+`CSelectSV_ctor @ 0x0041E160`, `CSelectCL_ctor @ 0x0041E1C0`, and
+`create_scene_for_id_41e320 @ 0x0041E320` call this entry at
+`0x0041E163`, `0x0041E1C3`, and `0x0041E45F`.
+
+This is a VC8 EH-protected constructor. The push at `0x004231A8`
+identifies handler `0x006B751F`, whose two cookie checks lead to
+`__CxxFrameHandler3` with FuncInfo `0x006DD6CC`. The FuncInfo has 19
+unwind states in map `0x006DD6F0`. All 19 remote actions at
+`0x006B7380..0x006B751E` are separately byte-hashed and linked to the
+map. They contain both tail-jump destructors and array cleanup calls
+followed by `RET`; those actions are outside the 4,247-byte main span.
+The rule replays the complete handler, FuncInfo, map, action extents and
+targets, along with RTTI, padding, main hash and exact caller edges.
+
+These independent observations support `authored_game/ui` origin and the
+reviewed callable main extent. The prior `CSelect` source declarations
+remain type/layout hypotheses; no constructor implementation was selected
+or granted exact credit. The remote EH actions are tied to this lifetime,
+but this review does not infer an original source TU boundary from their
+placement.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py 0x004231A0 --json
+python3 scripts/function-origins.py --check
+```

@@ -2390,3 +2390,71 @@ required_selected_body_calls = [
   { owner = "0x00407680", site = "0x0040796D", target = "0x004063D0", target_status = "implemented" },
   { owner = "0x00407680", site = "0x0040797D", target = "0x00406360", target_status = "implemented" },
 ]
+
+[[rules]]
+id = "select-base-constructor-authored-106a"
+addresses = ["0x004231A0"]
+expected_count = 1
+expected_bytes = 4247
+expected_names = ["sub_4231A0"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Target CFG reaches 4241 of 4247 bytes through one RET; the six skipped bytes at 0x004239AA are an exact alignment LEA jumped over by EB 06, not a second function. The constructor publishes CSceneBase then RTTI-identified CSelect primary vptrs, initializes nested scene/input/sprite arrays and selection resources, and is directly called by two canonical-exact derived constructors plus the exact scene factory. The VC8 EH handler at 0x006B751F references 19 unwind states/actions outside the main span; all handler/FuncInfo/map/action bytes and targets are pinned. This establishes authored CSelect construction and a reviewed main extent, not a standalone TU boundary or exact source claim. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_body_hashes = [
+  { address = "0x004231A0", size = 4247, sha256 = "9b34d6dea240fd40eede0bba84ffd3a81daeeea29dcf98296b19ee83d5551bea" },
+]
+required_branch_skipped_padding = [
+  { owner = "0x004231A0", jump_site = "0x004239A8", padding_site = "0x004239AA", padding_hex = "8d9b00000000" },
+]
+required_direct_edges = [
+  { caller = "0x0041E160", site = "0x0041E163", target = "0x004231A0", caller_status = "matching" },
+  { caller = "0x0041E1C0", site = "0x0041E1C3", target = "0x004231A0", caller_status = "matching" },
+  { caller = "0x0041E320", site = "0x0041E45F", target = "0x004231A0", caller_status = "matching" },
+]
+required_rtti_primary_vptr_writes = [
+  { owner = "0x004231A0", site = "0x004231E2", vptr = "0x006C077C", col = "0x006D740C", type_descriptor = "0x006E6068", type_name = ".?AVCSceneBase@@" },
+  { owner = "0x004231A0", site = "0x00423202", vptr = "0x006C0BC4", col = "0x006D78D0", type_descriptor = "0x006E6050", type_name = ".?AVCSelect@@" },
+]
+required_vc8_eh_unwind = { owner = "0x004231A0", handler_push_site = "0x004231A8", handler = "0x006B751F", handler_size = 46, handler_sha256 = "fc3b17196e6cede1cb072a883066d65e71811e1334fb811176085276775f3c21", func_info_site = "0x006B7543", func_info = "0x006DD6CC", func_info_sha256 = "944d03faad80d65ebd4c51c6c99029eecaaf247d7cf4467bd09fba77da6c4401", unwind_map = "0x006DD6F0", unwind_map_sha256 = "0551c310db2825a03756c74cce46878d407ddae6fb3b7c823a4d9078d3fb4a4e", unwind_entries = [
+  { to_state = -1, action = "0x006B7380" },
+  { to_state = 0, action = "0x006B738B" },
+  { to_state = 1, action = "0x006B7399" },
+  { to_state = 2, action = "0x006B73AA" },
+  { to_state = 3, action = "0x006B73BB" },
+  { to_state = 4, action = "0x006B73CC" },
+  { to_state = 5, action = "0x006B73E7" },
+  { to_state = 6, action = "0x006B73F8" },
+  { to_state = 7, action = "0x006B7416" },
+  { to_state = 8, action = "0x006B7427" },
+  { to_state = 9, action = "0x006B7438" },
+  { to_state = 10, action = "0x006B7449" },
+  { to_state = 11, action = "0x006B7467" },
+  { to_state = 12, action = "0x006B7485" },
+  { to_state = 13, action = "0x006B74A3" },
+  { to_state = 14, action = "0x006B74B4" },
+  { to_state = 15, action = "0x006B74D2" },
+  { to_state = 16, action = "0x006B74F0" },
+  { to_state = 17, action = "0x006B7501" },
+], actions = [
+  { address = "0x006B7380", size = 11, sha256 = "6821f44b1afd70a522d28a3e56d0aa1db34aced21184dec487430443323b65c1", target = "0x0041DF50", terminal_kind = "jump" },
+  { address = "0x006B738B", size = 14, sha256 = "d36e715225308ea847266054c47fd001bd9a5849ba0e9ff3cd195a38bbb3dc71", target = "0x00420C10", terminal_kind = "jump" },
+  { address = "0x006B7399", size = 17, sha256 = "1520dedcd60804ae3e1ea40ffe3e1683a436c86798f69c0c6c16972522d49c89", target = "0x0040C240", terminal_kind = "jump" },
+  { address = "0x006B73AA", size = 17, sha256 = "7743de3ca9bfa5d4792db8dc918d59a705b42d65a15ac0cdfee246450ef03c12", target = "0x0040C240", terminal_kind = "jump" },
+  { address = "0x006B73BB", size = 17, sha256 = "cbbce1ce89fb1eb1ef6d40c5642796cd6cf356bb6954142f67d9f6616747bf3e", target = "0x0040C240", terminal_kind = "jump" },
+  { address = "0x006B73CC", size = 27, sha256 = "165b793809be38453895dcb372e89968d05f9a0dc78e1d7f46ea9de59950219f", target = "0x0068A2A9", terminal_kind = "call_ret" },
+  { address = "0x006B73E7", size = 17, sha256 = "0c840ae179b161f525b62f9377bf31faa157306beea8a8b93efa84dd82c42be2", target = "0x00421890", terminal_kind = "jump" },
+  { address = "0x006B73F8", size = 30, sha256 = "02c7f2ad5afc7a37f4cbd847ec945fcda2399760f2703354822fe35de1cbaa58", target = "0x0068A2A9", terminal_kind = "call_ret" },
+  { address = "0x006B7416", size = 17, sha256 = "5a525776afcef34f3a39779bac27f311ec7773a81506058daf6640ed6f6d2aa9", target = "0x0040AD50", terminal_kind = "jump" },
+  { address = "0x006B7427", size = 17, sha256 = "16d1521a66a10234742affa16414cbbcf343773e63093e83554bfff17ede6edc", target = "0x0040AD50", terminal_kind = "jump" },
+  { address = "0x006B7438", size = 17, sha256 = "b11bed6321a274d23496ab3b9be59af968f2afc0f5378406e9a40a58b10ee80b", target = "0x0040AD50", terminal_kind = "jump" },
+  { address = "0x006B7449", size = 30, sha256 = "8ff802d52ebcf86f51c47be7d9143381b24476994ad9d4bf11806082d26f32fc", target = "0x0068A2A9", terminal_kind = "call_ret" },
+  { address = "0x006B7467", size = 30, sha256 = "bb32460c25cd8b27de1197ee0ea6713da690c21d1889da0cfe70b6f2a30b1ca7", target = "0x0068A2A9", terminal_kind = "call_ret" },
+  { address = "0x006B7485", size = 30, sha256 = "5fd798dbcbf25e10466a0f6c90d267857d2d4a45fdc4f4f412504bf3b7807402", target = "0x0068A2A9", terminal_kind = "call_ret" },
+  { address = "0x006B74A3", size = 17, sha256 = "c28b3f075d1559905730357976b1ec7206e4c197669314fe47e4303ebe2665c9", target = "0x00421890", terminal_kind = "jump" },
+  { address = "0x006B74B4", size = 30, sha256 = "8c002fed07010f31154aa2a23e2287121746dad13078f282c634aca7094ca36e", target = "0x0068A2A9", terminal_kind = "call_ret" },
+  { address = "0x006B74D2", size = 30, sha256 = "7df02e2421475f029668a171a33760b415c3bbdbc72b1cf9434ca9af174e476c", target = "0x0068A2A9", terminal_kind = "call_ret" },
+  { address = "0x006B74F0", size = 17, sha256 = "a47570010a33bb773a6056b885e0ccc51cdbf5ee3e23cdd8147391cd4488de9f", target = "0x0040AD50", terminal_kind = "jump" },
+  { address = "0x006B7501", size = 30, sha256 = "d30fcc075d2f86d922d753374f5bfae60ab496308c6543e9e62e6c40b87e6350", target = "0x0068A2A9", terminal_kind = "call_ret" },
+] }
