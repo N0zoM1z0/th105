@@ -1839,6 +1839,31 @@ required_rtti_adjustor_thunks = [
 ]
 
 [[rules]]
+id = "rtti-inline-scalar-deleting-destructors-106a"
+addresses = ["0x0040BA90", "0x0041DD90", "0x0041FAB0", "0x006A0890", "0x006A08C0"]
+expected_count = 5
+expected_bytes = 162
+expected_names = ["sub_40BA90", "sub_41DD90", "sub_41FAB0", "sub_6A0890", "sub_6A08C0"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "inferred"
+evidence = "Five complete 31/38-byte RET 4 scalar deleting wrappers test the low deletion-flag bit, restore a class/base vptr, conditionally call excluded free alias 0x006898EA, and return this. Each occupies a VC8 RTTI-owned virtual slot; the Boost clone_base wrapper is the third virtual slot after two purecall entries. Exact body hashes, COL/type descriptors, vtable links, vptr constants and free E8 sites are replayed. The CDesignSprite wrapper also restores its IColor base vptr at +0x18. No class destructor is called in these wrappers, so the inline lifetime effect is limited to observed vptr stores and optional free. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_dword_values = [
+  { address = "0x006D5E04", value = "0x006A08C0" },
+  { address = "0x006D5E18", value = "0x006A08C0" },
+  { address = "0x006D5E2C", value = "0x006A08C0" },
+  { address = "0x006D690C", value = "0x006A08C0" },
+]
+required_rtti_inline_deleting_dtors = [
+  { address = "0x0040BA90", size = 38, sha256 = "457b2df6c0d4b2611c1262b770d0d953fd228eb715790f9c7fea134fde87d7de", slot = "0x006D6A80", col_slot = "0x006D6A7C", col = "0x006DCB50", type_descriptor = "0x006FA4B0", type_name_contains = "CDesignSprite", vptr = "0x006C0624", free_site = "0x0040BAA8" },
+  { address = "0x0041DD90", size = 31, sha256 = "42b701daaa722641fb6fd7fe98ef3b24b3822471cd8f3b4e82a918446703741f", slot = "0x006D6EA4", col_slot = "0x006D6EA0", col = "0x006DD044", type_descriptor = "0x006FA5EC", type_name_contains = "CNetworkWinsock", vptr = "0x006D6EA4", free_site = "0x0041DDA1" },
+  { address = "0x0041FAB0", size = 31, sha256 = "fc34b0887cb53ea433397cab8f64d1801d908e350ae467b4e6153e0680550d6b", slot = "0x006C07F4", col_slot = "0x006C07F0", col = "0x006D7470", type_descriptor = "0x006E62C8", type_name_contains = "IEffectManager", vptr = "0x006C07F4", free_site = "0x0041FAC1" },
+  { address = "0x006A0890", size = 31, sha256 = "f651651ece36ed6704ae2e3440975a2305dbd06e72e7dd1ec836f4c689a130a6", slot = "0x006D5DD8", col_slot = "0x006D5DCC", col = "0x006DBEE8", type_descriptor = "0x006F9314", type_name_contains = "clone_base@exception_detail@boost", vptr = "0x006D5DD0", free_site = "0x006A08A1" },
+  { address = "0x006A08C0", size = 31, sha256 = "685fc30ee84f3d1ff2dc8d42c3d0cd637cf2e3f093a2386cd20c1d1f84eac4a9", slot = "0x006D5DE0", col_slot = "0x006D5DDC", col = "0x006DBF30", type_descriptor = "0x006F9344", type_name_contains = "sp_counted_base@detail@boost", vptr = "0x006D5DE0", free_site = "0x006A08D1" },
+]
+
+[[rules]]
 id = "boost-exception-rtti-deleting-destructors-106a"
 addresses = ["0x006A5320", "0x006A5360", "0x006A55D0", "0x006A5610", "0x006B4D40", "0x006B4D80", "0x006B4DA0", "0x006B4DE0"]
 expected_count = 8

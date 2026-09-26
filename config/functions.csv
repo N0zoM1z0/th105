@@ -261,7 +261,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0040AF80,55,0x0040AFB6,sub_40AF80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0040AFC0,63,0x0040AFFE,sub_40AFC0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0040B000,2666,0x0040BA69,sub_40B000,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0040BA90,38,0x0040BAB5,sub_40BA90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0040BA90,38,0x0040BAB5,sub_40BA90,,,identified,0.00,__thiscall,,false,,Target PE full CFG and RTTI/vtable/code/free-call evidence; see origin rule rtti-inline-scalar-deleting-destructors-106a,,Compiler-generated scalar deleting wrapper for CDesignSprite; restores IColor vptr at +0x18 and primary vptr before optional free; no exact credit.
 0x0040BAC0,64,0x0040BAFF,sub_40BAC0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0040BB00,61,0x0040BB3C,sub_40BB00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0040BB40,310,0x0040BC75,sub_40BB40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -633,7 +633,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0041D720,132,0x0041D7A3,sub_41D720,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041D7B0,14,0x0041D7BD,sub_41D7B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041D7C0,1424,0x0041DD4F,sub_41D7C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0041DD90,31,0x0041DDAE,sub_41DD90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0041DD90,31,0x0041DDAE,sub_41DD90,,,identified,0.00,__thiscall,,false,,Target PE full CFG and RTTI/vtable/code/free-call evidence; see origin rule rtti-inline-scalar-deleting-destructors-106a,,Compiler-generated scalar deleting wrapper for CNetworkWinsock; conditional free follows vptr store; no exact credit.
 0x0041DDB0,7,0x0041DDB6,sub_41DDB0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041DDC0,148,0x0041DE53,sub_41DDC0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041DEC0,47,0x0041DEEE,sub_41DEC0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -707,7 +707,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0041FA00,30,0x0041FA1D,sub_41FA00,Opening_scalar_deleting_destructor,ui,matching,100.00,__thiscall,"void * Opening_scalar_deleting_destructor(OpeningLifetimeView * this, unsigned flags)",false,src/ui/SceneLifetimeWave.cpp,python3 scripts/build.py --unit gpt-web-scene-lifetime-wave --compare --json reports canonical exact 30/30 against TH105 1.06a,root,Opening RTTI vtable first slot owns this scalar deleting wrapper; canonical exact 30/30.
 0x0041FA20,117,0x0041FA94,sub_41FA20,MenuCursorState_update,ui,implemented,0.00,__thiscall,bool MenuCursorState_update(MenuCursorState * this),false,src/ui/MenuCursor.cpp,Seven canonical-exact Profile/Replay/MenuConfig owners call the decorated MenuCursorState::update entry. Exact move_page_backward/move_page_forward siblings fix the same five-dword layout; formal ordinary C++ is 131/117 because standalone VC8 strength-reduces signed %6 while target retains idiv 6.,root,Source-present nonexact menu cursor update. Preserve the natural signed remainder source; do not force idiv with volatile/register tricks or inline assembly.
 0x0041FAA0,7,0x0041FAA6,sub_41FAA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0041FAB0,31,0x0041FACE,sub_41FAB0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0041FAB0,31,0x0041FACE,sub_41FAB0,,,identified,0.00,__thiscall,,false,,Target PE full CFG and RTTI/vtable/code/free-call evidence; see origin rule rtti-inline-scalar-deleting-destructors-106a,,Compiler-generated scalar deleting wrapper for IEffectManager; conditional free follows vptr store; no exact credit.
 0x0041FAD0,154,0x0041FB69,sub_41FAD0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041FB70,8,0x0041FB77,sub_41FB70,CSelectScenario_on_scene_exit,ui,matching,100.00,__thiscall,"void CSelectScenario_on_scene_exit(CSelectScenario * this, int next_scene)",false,src/ui/SelectScenarioHooks.cpp,python3 scripts/build.py --unit cross-v106a-select-scenario-scene-exit --compare --json reports exact 8/8 against TH105 1.06a,root,Current IDA marks the tiny body as a forwarding thunk/wrapper to clear_menu_objects; retained virtual scene-exit source fresh-compiles to the exact eight target bytes.
 0x0041FB80,258,0x0041FC81,sub_41FB80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -3555,9 +3555,9 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006A0778,80,0x006A07C7,__strdup,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A07D0,162,0x006A0871,sub_6A07D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A0880,7,0x006A0886,sub_6A0880,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006A0890,31,0x006A08AE,sub_6A0890,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006A0890,31,0x006A08AE,sub_6A0890,,,identified,0.00,__thiscall,,false,,Target PE full CFG and RTTI/vtable/code/free-call evidence; see origin rule rtti-inline-scalar-deleting-destructors-106a,,Compiler-generated scalar deleting wrapper in Boost clone_base third virtual slot; two preceding purecall slots; no exact credit.
 0x006A08B0,13,0x006A08BC,sub_6A08B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006A08C0,31,0x006A08DE,sub_6A08C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006A08C0,31,0x006A08DE,sub_6A08C0,,,identified,0.00,__thiscall,,false,,Target PE full CFG and RTTI/vtable/code/free-call evidence; see origin rule rtti-inline-scalar-deleting-destructors-106a,,Compiler-generated scalar deleting wrapper in Boost sp_counted_base virtual slot; same body used by four further vtables; no exact credit.
 0x006A0910,60,0x006A094B,sub_6A0910,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A0950,206,0x006A0A1D,sub_6A0950,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A0A20,56,0x006A0A57,sub_6A0A20,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

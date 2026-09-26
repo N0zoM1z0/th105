@@ -628,3 +628,39 @@ python3 scripts/audit-candidate-boundaries.py \
   0x0041E750 0x004226F0 0x0042CBC0 0x00444470 --json
 python3 scripts/function-origins.py --check
 ```
+
+## Five inline scalar deleting destructors
+
+Five more pending candidates have complete 31/38-byte main spans, with one
+`RET 4` each, no unreached bytes, indirect jumps, or outgoing edges. All test
+bit 0 of the deletion flag, write a vptr to `this`, optionally call the
+excluded free alias `0x006898EA`, and return the original `this`. Unlike the
+earlier destructor wrappers, these do not call a separate class destructor.
+`0x0040BA90` also writes its base `IColor` vptr at `this+0x18`.
+
+| Address | RTTI type | Virtual slot / COL slot | Body SHA-256 |
+| --- | --- | --- | --- |
+| `0x0040BA90` | `CDesignSprite` | `0x006D6A80` / `0x006D6A7C` | `457b2df6c0d4b2611c1262b770d0d953fd228eb715790f9c7fea134fde87d7de` |
+| `0x0041DD90` | `CNetworkWinsock` | `0x006D6EA4` / `0x006D6EA0` | `42b701daaa722641fb6fd7fe98ef3b24b3822471cd8f3b4e82a918446703741f` |
+| `0x0041FAB0` | `IEffectManager` | `0x006C07F4` / `0x006C07F0` | `fc34b0887cb53ea433397cab8f64d1801d908e350ae467b4e6153e0680550d6b` |
+| `0x006A0890` | Boost `clone_base` | `0x006D5DD8` / `0x006D5DCC` | `f651651ece36ed6704ae2e3440975a2305dbd06e72e7dd1ec836f4c689a130a6` |
+| `0x006A08C0` | Boost `sp_counted_base` | `0x006D5DE0` / `0x006D5DDC` | `685fc30ee84f3d1ff2dc8d42c3d0cd637cf2e3f093a2386cd20c1d1f84eac4a9` |
+
+The target PE vtable pointers, zero-offset VC8 RTTI locators, type
+descriptors, stored vptr immediates, body hashes, and direct free-call edges
+are all replayed by the origin rule. The Boost `clone_base` entry is the
+third virtual slot: two preceding slots point to `__purecall`, so its COL
+is twelve bytes before the wrapper slot. The `sp_counted_base` body pointer
+also occurs in four other Boost vtables at `0x006D5E04`, `0x006D5E18`,
+`0x006D5E2C`, and `0x006D690C`; that reuse does not make it the
+`CEffectSprite` destructor despite a similar 31-byte shape.
+
+These are compiler-generated wrapper entries. Their observed lifetime work
+is vptr restoration and conditional free; the class implementation and any
+source TU remain separate questions. There is no new exact-match credit.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py \
+  0x0040BA90 0x0041DD90 0x0041FAB0 0x006A0890 0x006A08C0 --json
+python3 scripts/function-origins.py --check
+```

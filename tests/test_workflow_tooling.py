@@ -330,6 +330,31 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_rtti_deleting_dtors"] = dtors
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    def test_inline_deleting_destructors_require_rtti_slot_and_free_edge(self) -> None:
+        with self.origins.RULES.open("rb") as stream:
+            document = tomllib.load(stream)
+        rule = next(
+            row for row in document["rules"]
+            if row["id"] == "rtti-inline-scalar-deleting-destructors-106a"
+        )
+        rows = self.origins.read_csv(self.origins.FUNCTIONS)
+        selected = [row for row in rows if row["address"] in rule["addresses"]]
+        data = self.origins.attest_target(document)
+        read_pe = self.origins.pe_reader(data)
+        validate = self.origins.validate_rule_evidence
+        self.assertEqual(validate(rule, selected, rows, data, read_pe), [])
+
+        for field, value in (
+            ("col_slot", "0x006D5DD4"),  # clone_base purecall slot, not its COL
+            ("type_name_contains", "IEffectManager"),
+            ("free_site", "0x006A08A2"),
+        ):
+            changed = dict(rule)
+            dtors = [dict(entry) for entry in rule["required_rtti_inline_deleting_dtors"]]
+            dtors[3][field] = value
+            changed["required_rtti_inline_deleting_dtors"] = dtors
+            self.assertTrue(validate(changed, selected, rows, data, read_pe), field)
+
     def test_boost_throw_virtual_requires_terminal_runtime_edge(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)

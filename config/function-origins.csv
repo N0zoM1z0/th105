@@ -261,7 +261,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0040AF80,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040AFC0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040B000,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0040BA90,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0040BA90,compiler_generated,runtime,exclude,inferred,rtti-inline-scalar-deleting-destructors-106a
 0x0040BAC0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040BB00,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040BB40,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -633,7 +633,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0041D720,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041D7B0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041D7C0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0041DD90,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0041DD90,compiler_generated,runtime,exclude,inferred,rtti-inline-scalar-deleting-destructors-106a
 0x0041DDB0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041DDC0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041DEC0,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -707,7 +707,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0041FA00,authored_game,ui,authored,observed,canonical-exact-authored
 0x0041FA20,authored_game,ui,authored,observed,menu-cursor-update-authored-106a
 0x0041FAA0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0041FAB0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0041FAB0,compiler_generated,runtime,exclude,inferred,rtti-inline-scalar-deleting-destructors-106a
 0x0041FAD0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041FB70,authored_game,ui,authored,observed,canonical-exact-authored
 0x0041FB80,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -3555,9 +3555,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006A0778,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x006A07D0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006A0880,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x006A0890,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006A0890,compiler_generated,runtime,exclude,inferred,rtti-inline-scalar-deleting-destructors-106a
 0x006A08B0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x006A08C0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006A08C0,compiler_generated,runtime,exclude,inferred,rtti-inline-scalar-deleting-destructors-106a
 0x006A0910,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006A0950,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006A0A20,unknown,,review,unknown,ida-1.06a-initial-inventory

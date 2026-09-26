@@ -1412,6 +1412,73 @@ def validate_rule_evidence(
             or free_target != 0x006898EA
         ):
             errors.append(f"{rule_id}: RTTI deleting destructor 0x{address:08X} body/vtable/calls differ")
+    inline_dtors = rule.get("required_rtti_inline_deleting_dtors", [])
+    if inline_dtors and (
+        len(inline_dtors) != len(selected_addresses)
+        or {str(dtor["address"]).upper() for dtor in inline_dtors} != selected_addresses
+    ):
+        errors.append(f"{rule_id}: inline deleting-destructor witnesses do not cover selected candidates exactly")
+    for dtor in inline_dtors:
+        address = int(str(dtor["address"]), 0)
+        size = int(dtor["size"])
+        slot = int(str(dtor["slot"]), 0)
+        col_slot = int(str(dtor["col_slot"]), 0)
+        expected_col = int(str(dtor["col"]), 0)
+        expected_type = int(str(dtor["type_descriptor"]), 0)
+        expected_vptr = int(str(dtor["vptr"]), 0)
+        free_site = int(str(dtor["free_site"]), 0)
+        key = f"0x{address:08X}".upper()
+        if key not in selected_addresses or int(row_by_address[key]["size"], 0) != size:
+            errors.append(f"{rule_id}: inline deleting destructor 0x{address:08X} has wrong selection or size")
+            continue
+        if size not in (31, 38) or not address <= free_site <= address + size - 5:
+            errors.append(f"{rule_id}: inline deleting destructor 0x{address:08X} has invalid free site")
+            continue
+        try:
+            if any(pe_raw_section_name(data, pointer) != ".rdata" for pointer in (slot, col_slot, expected_col)):
+                raise ValueError("vtable slot or RTTI locator is outside .rdata")
+            if not col_slot < slot or (slot - col_slot) % 4 or slot - col_slot > 16:
+                raise ValueError("vtable slot is not near its RTTI locator")
+            body = read_pe(address, size)
+            pointed = struct.unpack("<I", read_pe(slot, 4))[0]
+            col = struct.unpack("<I", read_pe(col_slot, 4))[0]
+            intervening = [
+                struct.unpack("<I", read_pe(pointer, 4))[0]
+                for pointer in range(col_slot + 4, slot, 4)
+            ]
+            intervening_in_text = all(
+                pe_raw_section_name(data, pointer) == ".text" for pointer in intervening
+            )
+            signature, offset, cd_offset, type_descriptor, _hierarchy = struct.unpack(
+                "<IIIII", read_pe(col, 20)
+            )
+            type_name = read_pe(type_descriptor + 8, 192).split(b"\x00", 1)[0]
+            free_call = read_pe(free_site, 5)
+        except (ValueError, struct.error) as exc:
+            errors.append(f"{rule_id}: inline deleting destructor 0x{address:08X}: {exc}")
+            continue
+        free_target = free_site + 5 + struct.unpack_from("<i", free_call, 1)[0]
+        type_fragment = str(dtor["type_name_contains"]).encode("ascii")
+        branch_offset = 21 if size == 38 else 14
+        if (
+            hashlib.sha256(body).hexdigest() != dtor["sha256"]
+            or body[:8] != b"\xF6\x44\x24\x04\x01\x56\x8B\xF1"
+            or body[-6:] != b"\x8B\xC6\x5E\xC2\x04\x00"
+            or body[branch_offset : branch_offset + 2] != b"\x74\x09"
+            or struct.pack("<I", expected_vptr) not in body
+            or pointed != address
+            or col != expected_col
+            or not intervening_in_text
+            or signature != 0
+            or offset != 0
+            or cd_offset != 0
+            or type_descriptor != expected_type
+            or not type_name.startswith((b".?AU", b".?AV"))
+            or type_fragment not in type_name
+            or free_call[0] != 0xE8
+            or free_target != 0x006898EA
+        ):
+            errors.append(f"{rule_id}: inline deleting destructor 0x{address:08X} body/vtable/call differs")
     rtti_virtuals = rule.get("required_rtti_virtual_bodies", [])
     if rtti_virtuals and (
         len(rtti_virtuals) != len(selected_addresses)
