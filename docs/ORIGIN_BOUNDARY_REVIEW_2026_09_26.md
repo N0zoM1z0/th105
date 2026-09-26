@@ -513,11 +513,46 @@ seven E8 sites. The rule replays sites in exact
 profile/deck state updates support `authored_game/ui`. Retained source
 `ProfileMenuBaseData::initialize_defaults` agrees with these observations,
 but its class label, source selection, and standalone codegen are not
-accepted as exact by this origin review. `0x00431E80` is separately pending;
-its own `data/csv/.../deck.csv` behavior and EH path require a separate
-boundary decision.
+accepted as exact by this origin review. The separately reviewed deck loader
+at `0x00431E80` has its own EH chain and unresolved calling convention.
 
 ```bash
 python3 scripts/audit-candidate-boundaries.py 0x00432050 --json
+python3 scripts/function-origins.py --check
+```
+
+## Character deck CSV loader at `0x00431E80`
+
+The hash-attested candidate has 463/463 reachable bytes, no indirect or
+outgoing direct jump, and `RET 8` at `0x0043204C` before `INT3`. Its main
+body SHA-256 is
+`aaee5a80c6dfc0305066fd25e5118dcbe98df5337f067db310529fd0badf6697`.
+The body obtains a character-specific name, joins target strings
+`data/csv/` and `/deck.csv`, uses string/CSV helpers, and reads twenty
+short deck values into a caller-supplied container. Exact
+`prepare_match_runtime_by_mode @ 0x0043AC60` and exact arcade battle setup
+`0x00473520` both call it; the reviewed profile defaults function calls it
+for fifteen character slots.
+
+This body registers VC8 EH handler `0x006B81C3`. The complete 46-byte
+handler checks two security cookies and passes FuncInfo `0x006DE3C4` to
+the excluded `__CxxFrameHandler3`. Its FuncInfo has six unwind states in
+map `0x006DE3E8`. Three distinct remote actions at
+`0x006B81A0/A8/B0` tail-jump to generated string cleanup
+`0x00401E00`; the fourth at `0x006B81B8` tail-jumps to exact
+`CsvReader_dtor @ 0x0042E980`. The rule replays the handler push, all
+external body hashes, FuncInfo/map links, each state transition, and action
+targets. Those shared EH actions remain separate from the 463-byte main
+span.
+
+The game-specific deck path and exact battle/profile callers support
+`authored_game/config`. Retained sources use incompatible member/class
+labels for this address. The callee does not read ECX, and `RET 8` alone
+does not distinguish a two-argument member from a two-argument stdcall
+function. Its durable name, calling convention, original TU, standalone
+source, and exact codegen remain unresolved.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py 0x00431E80 --json
 python3 scripts/function-origins.py --check
 ```

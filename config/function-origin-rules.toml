@@ -1934,3 +1934,37 @@ required_direct_edges = [
   { caller = "0x0043AF30", site = "0x0043AF56", target = "0x00432050", caller_status = "matching" },
   { caller = "0x0044C110", site = "0x0044C1C7", target = "0x00432050", caller_status = "matching" },
 ]
+
+[[rules]]
+id = "character-deck-csv-loader-authored-106a"
+addresses = ["0x00431E80"]
+expected_count = 1
+expected_bytes = 463
+expected_names = ["sub_431E80"]
+origin = "authored_game"
+subsystem = "config"
+disposition = "authored"
+confidence = "observed"
+evidence = "Hash-attested raw CFG reaches all 463 main-span bytes through RET 8 with no visible gap/indirect/outgoing jump, and INT3 separation. The body obtains a character-specific directory, constructs data/csv/.../deck.csv, uses game CSV/string helpers, and transfers twenty short values into a deque. Two canonical-exact battle/profile setup callers and the separately reviewed profile-slot default initializer call this entry. The VC8 EH handler 0x006B81C3 points to FuncInfo 0x006DE3C4 with six unwind states and four remote actions for string and CSV-reader cleanup; the rule pins that entire chain. Retained class/method labels conflict and ECX use is absent, so this review assigns neither a durable name nor a calling convention beyond observed RET 8. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_target_strings = ["data/csv/", "/deck.csv"]
+required_body_hashes = [
+  { address = "0x00431E80", size = 463, sha256 = "aaee5a80c6dfc0305066fd25e5118dcbe98df5337f067db310529fd0badf6697" },
+]
+required_direct_edges = [
+  { caller = "0x0043AC60", site = "0x0043ACE3", target = "0x00431E80", caller_status = "matching" },
+  { caller = "0x00473520", site = "0x004737C0", target = "0x00431E80", caller_status = "matching" },
+  { caller = "0x00432050", site = "0x00432189", target = "0x00431E80", caller_status = "identified" },
+]
+required_vc8_eh_unwind = { owner = "0x00431E80", handler_push_site = "0x00431E82", handler = "0x006B81C3", handler_size = 46, handler_sha256 = "e643886c85fd017975197045e1bb187914deb06dec27c58e4d0758768021ae6a", func_info_site = "0x006B81E7", func_info = "0x006DE3C4", func_info_sha256 = "59917baea26be235444a1b8b73496caf91a46ca29a1cc4152787d4de332afac8", unwind_map = "0x006DE3E8", unwind_map_sha256 = "7a4042ee39e33992229557ee76d505f94fd474ed7f20a8fa3799eddf51cb0c15", unwind_entries = [
+  { to_state = -1, action = "0x006B81A0" },
+  { to_state = 0, action = "0x006B81A8" },
+  { to_state = 1, action = "0x006B81B0" },
+  { to_state = 0, action = "0x006B81B0" },
+  { to_state = -1, action = "0x006B81B0" },
+  { to_state = 4, action = "0x006B81B8" },
+], actions = [
+  { address = "0x006B81A0", size = 8, sha256 = "1a53cf421c764a68851bb707d9077e9d920f30db01666336c9b24c92743ca6df", target = "0x00401E00" },
+  { address = "0x006B81A8", size = 8, sha256 = "2158267448c99cf9ddfce8d3bac7ad607c1ae4f00652266f5b46d8519d760130", target = "0x00401E00" },
+  { address = "0x006B81B0", size = 8, sha256 = "ff78c313efa7bb494cd0779df476feffadbd5d9341390ede001e3b71f776654e", target = "0x00401E00" },
+  { address = "0x006B81B8", size = 11, sha256 = "7b111109fd45e2ab0c352d5d6de9ac142681b50eeb2d5dab139887c5f90323dc", target = "0x0042E980" },
+] }

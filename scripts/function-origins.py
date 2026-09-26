@@ -1532,6 +1532,86 @@ def validate_rule_evidence(
                 continue
             if prolog[:3] != b"\x6A\xFF\x68" or struct.unpack_from("<I", prolog, 3)[0] != handler:
                 errors.append(f"{rule_id}: shared EH prolog 0x{address:08X} does not push handler")
+    eh_unwind = rule.get("required_vc8_eh_unwind")
+    if eh_unwind:
+        owner = int(str(eh_unwind["owner"]), 0)
+        push_site = int(str(eh_unwind["handler_push_site"]), 0)
+        handler = int(str(eh_unwind["handler"]), 0)
+        handler_size = int(eh_unwind["handler_size"])
+        info_site = int(str(eh_unwind["func_info_site"]), 0)
+        func_info = int(str(eh_unwind["func_info"]), 0)
+        unwind_map = int(str(eh_unwind["unwind_map"]), 0)
+        entries = eh_unwind["unwind_entries"]
+        actions = eh_unwind["actions"]
+        if f"0x{owner:08X}".upper() not in selected_addresses:
+            errors.append(f"{rule_id}: VC8 EH owner 0x{owner:08X} is not selected")
+        elif not owner <= push_site <= owner + int(row_by_address[f"0x{owner:08X}".upper()]["size"], 0) - 5:
+            errors.append(f"{rule_id}: VC8 EH handler push lies outside owner")
+        if (
+            not entries
+            or not actions
+            or len({str(action["address"]).upper() for action in actions}) != len(actions)
+            or {str(entry["action"]).upper() for entry in entries}
+            != {str(action["address"]).upper() for action in actions}
+        ):
+            errors.append(f"{rule_id}: VC8 EH unwind entries/actions are incomplete")
+        try:
+            if (
+                pe_raw_section_name(data, handler) != ".text"
+                or pe_raw_section_name(data, func_info) != ".rdata"
+                or pe_raw_section_name(data, unwind_map) != ".rdata"
+            ):
+                raise ValueError("VC8 EH handler or metadata has the wrong PE section")
+            push = read_pe(push_site, 5)
+            handler_body = read_pe(handler, handler_size)
+            info_instruction = read_pe(info_site, 5)
+            info_body = read_pe(func_info, 36)
+            map_body = read_pe(unwind_map, len(entries) * 8)
+        except ValueError as exc:
+            errors.append(f"{rule_id}: VC8 EH evidence: {exc}")
+        else:
+            magic, max_state, actual_map = struct.unpack_from("<III", info_body)
+            frame_tail = handler_body[-5:]
+            frame_target = handler + handler_size + struct.unpack_from("<i", frame_tail, 1)[0]
+            if (
+                push[0] != 0x68
+                or struct.unpack_from("<I", push, 1)[0] != handler
+                or hashlib.sha256(handler_body).hexdigest() != eh_unwind["handler_sha256"]
+                or not handler <= info_site <= handler + handler_size - 5
+                or info_instruction[0] != 0xB8
+                or struct.unpack_from("<I", info_instruction, 1)[0] != func_info
+                or frame_tail[0] != 0xE9
+                or frame_target != 0x006899E7
+                or hashlib.sha256(info_body).hexdigest() != eh_unwind["func_info_sha256"]
+                or magic != 0x19930522
+                or max_state != len(entries)
+                or actual_map != unwind_map
+                or hashlib.sha256(map_body).hexdigest() != eh_unwind["unwind_map_sha256"]
+            ):
+                errors.append(f"{rule_id}: VC8 EH handler/FuncInfo/unwind map differs")
+            for index, entry in enumerate(entries):
+                to_state, action = struct.unpack_from("<iI", map_body, index * 8)
+                if to_state != int(entry["to_state"]) or action != int(str(entry["action"]), 0):
+                    errors.append(f"{rule_id}: VC8 EH unwind state {index} differs")
+        for action in actions:
+            address = int(str(action["address"]), 0)
+            size = int(action["size"])
+            target = int(str(action["target"]), 0)
+            try:
+                if pe_raw_section_name(data, address) != ".text":
+                    raise ValueError("EH action is outside .text")
+                body = read_pe(address, size)
+            except ValueError as exc:
+                errors.append(f"{rule_id}: VC8 EH action 0x{address:08X}: {exc}")
+                continue
+            tail = body[-5:]
+            actual_target = address + size + struct.unpack_from("<i", tail, 1)[0]
+            if (
+                hashlib.sha256(body).hexdigest() != action["sha256"]
+                or tail[0] != 0xE9
+                or actual_target != target
+            ):
+                errors.append(f"{rule_id}: VC8 EH action 0x{address:08X} differs")
     for body in rule.get("required_body_hashes", []):
         address = int(str(body["address"]), 0)
         size = int(body["size"])

@@ -350,6 +350,28 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_shared_eh"] = shared_eh
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    def test_deck_csv_loader_requires_six_state_eh_map(self) -> None:
+        with self.origins.RULES.open("rb") as stream:
+            document = tomllib.load(stream)
+        rule = next(
+            row for row in document["rules"]
+            if row["id"] == "character-deck-csv-loader-authored-106a"
+        )
+        rows = self.origins.read_csv(self.origins.FUNCTIONS)
+        selected = [row for row in rows if row["address"] in rule["addresses"]]
+        data = self.origins.attest_target(document)
+        read_pe = self.origins.pe_reader(data)
+        validate = self.origins.validate_rule_evidence
+        self.assertEqual(validate(rule, selected, rows, data, read_pe), [])
+
+        changed = dict(rule)
+        eh = dict(rule["required_vc8_eh_unwind"])
+        states = [dict(entry) for entry in eh["unwind_entries"]]
+        states[5]["to_state"] = 0
+        eh["unwind_entries"] = states
+        changed["required_vc8_eh_unwind"] = eh
+        self.assertTrue(validate(changed, selected, rows, data, read_pe))
+
     def test_atexit_callback_pins_entire_body_and_registration(self) -> None:
         source = {"address": "0x00401000", "size": "2", "status": "identified"}
         body = b"\x90\xC3"

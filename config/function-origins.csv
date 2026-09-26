@@ -1009,7 +1009,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00431AC0,authored_game,ui,authored,observed,ui-source-present-exact-caller-helpers-authored-106a
 0x00431DA0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00431E50,authored_game,ui,authored,observed,canonical-exact-authored
-0x00431E80,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00431E80,authored_game,config,authored,observed,character-deck-csv-loader-authored-106a
 0x00432050,authored_game,ui,authored,observed,profile-slot-defaults-authored-106a
 0x004321A0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004321B0,authored_game,battle,authored,observed,canonical-exact-authored
