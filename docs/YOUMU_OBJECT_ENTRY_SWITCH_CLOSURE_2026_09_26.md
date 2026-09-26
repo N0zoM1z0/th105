@@ -136,3 +136,10 @@ Replacing action 851's retained early `double` value with an early heading
 pointer and later conversion made VC8 merge distinct target owners 851/854;
 the owner audit rejected it. Both probes were reverted. This supports keeping
 the currently distinct 851 lifetime but does not prove its exact source form.
+
+A separate control moved the shared 820/850 tail to ordinary code after the
+`switch`, with both action arms leaving by `break` and all other arms still
+returning. VC8 generated the same canonical candidate window and the same
+26/37 owner spans as the retained labeled form. It was reverted. The observed
+tail inversion is therefore not explained by choosing a source label versus
+an ordinary post-switch join in this standalone TU.
