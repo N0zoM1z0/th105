@@ -966,3 +966,38 @@ and source/exact status remain open.
 python3 scripts/audit-candidate-boundaries.py 0x00416B60 --json
 python3 scripts/function-origins.py --check
 ```
+
+## Four-vertex three-axis pivot rotation at `0x00407680`
+
+The SHA-attested target CFG covers all 1,095 bytes of the provisional
+candidate. There are no unreachable bytes, indirect jumps, outgoing direct
+branches, or overlapping decodes. Two exits at `0x00407ABB/0x00407AC4`
+both use `RET 0x18`; `INT3` bytes follow the final exit. The complete
+body SHA-256 is
+`313f3bb25a5e3c835faf60c91a2196b0a2d22d3507c01bcac149fe3debb69dde`.
+
+The six stack arguments are three angles followed by three pivot scalars.
+The target tests the Z angle first, then Y, then X using x87 comparisons
+against zero. Each active axis calls `0x004063D0` and `0x00406360`
+(currently mapped as cosine/sine quantized lookups) and updates four xyz
+working vertices in receiver `+0xB0..+0xDC`, with 12-byte vertex stride.
+The three axis phases account for six individually replayed lookup E8
+sites. The lookup bodies are source-present but nonexact; their retained
+return signatures are not needed for this origin classification.
+
+Five separate canonical-exact renderers call this body at six E8 sites:
+`RenderTimelineEntry_render @ 0x00450F57`, `BG16_render_sprite @
+0x00468764`, `BG16_slot_0c @ 0x00468819/0x004689C0`,
+`BGCommon_render_sprite @ 0x00469594`, and
+`SystemEffectObjectBase_render_effect @ 0x00473D80`.
+Canonical-exact neighboring sprite reset/translate/scale methods use the
+same four-vertex working layout. This supports `authored_game/render`
+origin and the reviewed main span. The `CSpriteEx::rotate_xyz` source
+label is plausible but remains a hypothesis; earlier 1089/1095 source
+probe notes were not revalidated here. No source selection, original TU
+claim, or exact credit was added.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py 0x00407680 --json
+python3 scripts/function-origins.py --check
+```

@@ -12,9 +12,9 @@ instructions are not the active queue.
 - User-directed phase: clean misleading documentation/code, then review the
   remaining origin and candidate-boundary queue. The initial census was
   **4,023 candidates, 1,476 authored, 1,308 excluded, 1,239 in review**.
-  Twenty-nine evidence-linked origin/boundary batches are recorded in
+  Thirty evidence-linked origin/boundary batches are recorded in
   [the focused review](ORIGIN_BOUNDARY_REVIEW_2026_09_26.md). The current
-  census is **1,495 authored / 1,414 excluded / 1,114 review**. Source-present
+  census is **1,496 authored / 1,414 excluded / 1,113 review**. Source-present
   remains 1,388; canonical exact remains 1,315 functions / 220,094 bytes.
   Recompute from `scripts/report-reconstruction-status.py --summary` after
   every promotion.
@@ -144,6 +144,11 @@ The 548-byte Server send path `0x00416B60` has a complete RET 0x14 span,
 type-0x0D queue item, timestamp/critical-section/event sequence and six
 replayed E8 sites in five exact Server callers. Its queue/acquire/release
 callees remain separate origin work; no source or exact credit was added.
+The 1,095-byte three-axis sprite pivot rotation `0x00407680` has complete
+reachability, two RET 0x18 paths, six target trig-helper calls and six E8s
+from five exact renderers. Its neighboring sprite transform functions are
+canonical exact; the retained `rotate_xyz` source is still unselected and
+was not recompiled in this origin-only review.
 
 ```bash
 python3 scripts/verify-target.py
