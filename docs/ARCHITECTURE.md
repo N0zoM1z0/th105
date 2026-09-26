@@ -18,7 +18,7 @@ claims from the former 1.06 target.
 | Rich compiler build | `50727` |
 | C++ / C / LTCG C++ records | `279` / `179` / `42` |
 | PDB record | `c:\Nonotaro\works\東方緋想天\th105.pdb`, age 2 |
-| Fresh IDA candidate inventory | 4,001 functions |
+| Initial IDA candidate inventory | 4,001 functions (historical first pass) |
 
 The section layout, hashes, timestamp, CodeView GUID, and complete provenance
 are machine-readable in `config/target.toml`.
@@ -50,18 +50,20 @@ UI/script/network, battle, character families, and third-party/runtime code.
 Move or split source only after 1.06a xrefs, RTTI/vtables, static initialization,
 and comparison evidence establish ownership.
 
-The existing `src/` tree is a retained hypothesis corpus from the old target.
-It is intentionally absent from `config/implemented.csv`: each selected symbol
-must first gain a supported 1.06a mapping and undergo semantic review.
+The original `src/` tree was a retained hypothesis corpus from the old target.
+Selected 1.06a-reviewed symbols are now recorded in `config/implemented.csv`;
+the rest of the retained tree still does not establish target semantics. Use
+the current status report and ledgers for counts, not this baseline document.
 
 ## Current gates
 
 1. Reconcile high-confidence IDA candidate boundaries against exact control
    flow and record exceptions without inferring adjacency-based sizes.
 2. Separate authored code from compiler/runtime/third-party islands.
-3. Expand from the current 553 cold-replayable authored anchors while preserving
-   current-target ABI/layout evidence and exact acceptance.
-4. Establish the authored/excluded denominator before reporting aggregate
-   authored-function or authored-byte percentages.
+3. Expand the cold-replayable authored anchors while preserving current-target
+   ABI/layout evidence and exact acceptance. The historical 553-anchor count
+   is superseded; obtain the current count from the tracking report.
+4. Maintain the reviewed authored/excluded denominator and recompute it from
+   tracking ledgers before reporting aggregate function or byte percentages.
 5. Treat standalone-object failure under LTCG as a classification result, not
    permission to weaken exact acceptance.

@@ -73,10 +73,36 @@ python3 scripts/audit-giant-action-owners.py youmu-object-action-entry \
   --unit gpt-web-youmu-object-action-entry --json
 ```
 
-The complete canonical comparison remains **nonexact** at `+0x80`
-(`0x005436F0`); the 5,159-byte target and current candidate window hash
-`b800b08d6f4fe213079dfccf0653a652d9095350ab76985b63237b0b1f1ca6da`
-are unchanged. The current owner audit has 6/30 instruction-and-edge-identical
-diagnostic owners. No partial or whole exact credit is added. The original
-source/TU condition that places the shared 820/850 tail in action 850 remains
-unknown.
+At this checkpoint the complete canonical comparison was **nonexact** at
+`+0x80` (`0x005436F0`), with candidate window SHA-256
+`b800b08d6f4fe213079dfccf0653a652d9095350ab76985b63237b0b1f1ca6da`.
+The subsequent action-901 arm-order improvement has its own comparison below.
+The original source/TU condition that places the shared 820/850 tail in
+action 850 remains unknown.
+
+## Subsequent action-901 arm-order checkpoint
+
+Raw target table order is case 0, 1, 2, 3, but the physical target bodies are
+laid out case 3, 2, 1, 0 at `0x00544656`, `0x0054466A`, `0x0054467E`,
+`0x00544692`. The retained source now lists those four ordinary `case` arms in
+physical order while preserving each case's state writes. A fresh pinned
+single-core VC8 build keeps the action-901 span at 597 bytes and the whole
+candidate metadata start at +5,156. The action-901 diagnostic difference
+blocks drop from four to three; the four branch bodies now align, while its
+virtual-call push scheduling and table address still differ. The owner audit
+remains **6/30** instruction-and-edge-identical; action 820/850 remains
+**26/37 candidate versus 12/57 target**.
+
+Strict comparison of the full 5,159-byte callable still fails at `+0x80`.
+The new compared-window SHA-256 is
+`0b174356a268e762184a61f94774ae9af698df7af1ae230a548e055594de1acb`.
+No partial or whole exact credit was added. An RTM `/O2` probe reproduced the
+previous SP1 candidate window, and two linked `/GL` visibility controls began
+with an EBP/aligned frame absent from the target. These probes only exclude
+those tested contexts.
+
+An additional bounded action-848 probe gave its `heading_340[2]` conversion
+a real local `double` lifetime. The scoped arm preserved action 821's goto
+entry. VC8 generated the same candidate window hash and 820/850 owner spans
+as the retained source. The probe was reverted: this call-site spelling did
+not change the tail placement.

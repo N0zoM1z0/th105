@@ -1,9 +1,13 @@
-# Verified knowledge base
+# Reconstruction evidence notebook
 
-This is the small stable layer that new sessions should load before historical
-notes or source hypotheses.
+This is a historical collection of target observations, source-shape
+experiments, and dated diagnostic checkpoints. It is not a current work queue
+or a ledger of exact matches. Numbers described below as "current" or "now"
+refer to the checkpoint when that entry was written and may be superseded.
+Start from [the current handoff](RE_HANDOFF.md), then verify any reused claim
+against the exact target, current source, and tracking ledgers.
 
-## Observed
+## Observations and dated diagnostic checkpoints
 
 - **Common Fighter receiver identity is canonical RTTI `CharacterEx`, not a synthetic Fighter view.** All fifteen roster primary classes share the MSVC base chain derived -> `CharacterEx` -> `Character` -> `AttackObject` -> `AnimationObject` -> `AnimationObjectBase`, with `Environment` as the secondary base. The standalone `CharacterEx` vtable at `0x006C3F94` owns the shared Fighter overrides at slots +0x40/+0x44/+0x4C/+0x54, and independently exact round-reset bodies prove character-specific state begins at +0x7A4. `Fighter_update_common_action_state` uses exactly that 0x7A4 prefix. Renaming its narrow receiver to `CharacterEx` changes no pinned-VC8 `.text` byte, only decorated relocation names, so the semantic identity can be retained without changing the current 53/66 owner checkpoint.
 - **Expression temporaries can close a whole shared root without extra storage.** Secondary-animation update `0x004309F0` is 2434/2434 exact under the unchanged VC8 profile. Five loop-local Normalize calls take addresses of actual vector expression temporaries; the first input stays named and field-staged. This recovers checked-deque stack homes and loop alignment naturally. Making all six inputs temporary still differs by seven bytes in floating operand order. See [the full boundary, discriminator and reproduction](SECONDARY_ANIMATION_UPDATE_EVIDENCE_2026_09_12.md). Old normalized scores and named-sixth-input conclusions are superseded, not upgraded into exact evidence.
@@ -20,9 +24,9 @@ notes or source hypotheses.
 
 - **Strict FP must be tested with the correct source contract and exception setting.** The angle ratio `0x004064D0` is now 107/107 exact with float return, real numerator/denominator lifetimes, a nonzero branch and strict rounding with exception-sensitive scheduling disabled. Old failures using different source contracts did not exclude that mode. The sine/cosine pair remains nonexact; an independently reproducible 46-byte aligned-abs probe does not yet explain their shared source structure. See [the angle evidence](ANGLE_RATIO_EVIDENCE_2026_09_12.md). The same FP mode was tested on unchanged CPU source and fails at +0x02; it is not a global build flag.
 
-- **Unreached bytes in a main-switch traversal are not automatically missing functions.** The new owner audit marks 76 bytes at `0x00544656..0x005446A1` inside Youmu Object action 901 as unreached because the auxiliary four-entry table at `0x00544BD4` is not in its main-switch map. Fresh IDA xrefs and independent PE guards/dwords identify all four existing sequence-6 mode arms. Keep the automatic report partial until that extra table is explicitly validated; do not invent candidate or exact credit. See `docs/GIANT_OWNER_AUDIT.md` for the cross-root check.
+- **A main-switch traversal can miss an auxiliary switch inside the same function.** The first Youmu Object audit left 76 bytes at `[0x00544656, 0x005446A2)` unreached because it traversed only the main action table. Raw target guards and four dwords at `0x00544BD4` identify the action-901 sequence-6 arms. The auxiliary table is now explicitly validated in `config/giant-action-switches.toml`; a fresh target traversal reaches all **5,159/5,159 callable bytes** with zero unresolved indirect exits. This closes reachability, not exact candidate code or original TU ownership. See [the current table evidence](YOUMU_OBJECT_ENTRY_SWITCH_CLOSURE_2026_09_26.md).
 
-- **Same-sized giant owners can have wrong operand widths and backward-edge
+- **Historical 51/66 common Fighter checkpoint: same-sized giant owners can have wrong operand widths and backward-edge
   identities.** The common Fighter root at `0x004740C0` improves from 32/66 to
   51/66 instruction/owner-edge-identical regions. AL/EAX tests, MOVZX/MOVSX
   effect arguments, unsigned input predicates and case-99 branch order recover
@@ -113,7 +117,7 @@ notes or source hypotheses.
   the same test to target-byte/hash attestation when the file is locally
   available. Do not skip an entire useful test merely because its strongest
   evidence tier is private.
-- **The authored-function 95% threshold is now genuinely crossed:** current target-backed census is **1,259 / 1,325 canonical-exact authored functions (95.0189%)** and **214,043 / 1,384,338 authored code bytes exact (15.4618%)**.  This does not come from shrinking the denominator: the shared 10,219-byte Fighter action root remains authored/nonexact, and the reproducible origin census now also includes two exact battle roots that had not been materialized into `function-origins.csv`.  The byte percentage remains the binding target; the fifteen Fighter `+0x28` action-state roots still dominate it.
+- **Historical authored-function threshold checkpoint:** the census at the time was **1,259 / 1,325 canonical-exact authored functions (95.0189%)** and **214,043 / 1,384,338 authored code bytes exact (15.4618%)**. Those figures are superseded by the current ledgers. At that checkpoint the shared 10,219-byte Fighter action root remained authored/nonexact, and the reproducible origin census included two exact battle roots not yet materialized into `function-origins.csv`. The byte percentage remained the binding target; the fifteen Fighter `+0x28` action-state roots dominated it.
 - **Udonge's 27-byte action-tail helper corrects an old scheduler diagnosis.**  Fourteen current calls from Udonge action-entry code own `Udonge_reset_action_visual_state @ 0x005D06D0`.  `+0x7A8` is float 1.0, `+0x7A6` receives 255 as a word, and `+0x113` is usefully modeled as an unsigned byte.  The truthful source `return visual_state_113 = (unsigned char)(opacity_7a6 = 255);` keeps the assignment result in EAX and naturally reuses AX/AL for both stores, giving 27/27.  Treat a decompiler's final `return 255` as possible assignment-result evidence before declaring a residual register reuse to be scheduler-only.
 - **Scalar deleting wrappers can be exact while their normal destructor remains pending.**  CharacterObject RTTI vtable `0x006C400C` uniquely owns wrapper `0x00492F70`.  Existing tracked `CharacterObject.cpp` already emits the target 30-byte wrapper from an unresolved out-of-line `~CharacterObject()` declaration: call normal dtor `0x00492ED0`, test deleting flag, optionally call operator delete, return `this`.  Fresh VC8 is 30/30 exact.  The normal 145-byte dtor still has its independent AttackObject/secondary-animation linker residual and is not promoted.
 - **`Fighter_try_dispatch_directional_action_208_210 @ 0x00478EE0` is a canonical shared gameplay primitive.**  Current xrefs span many roster giant `+0x28` action-state roots.  Ordinary source keeps three repeated `vertical_input_6b8 < 0` predicates, recomputes signed `facing_104 * horizontal_input_6b4` where the target does, and dispatches virtual actions 209/210/208.  VC8 naturally preserves the repeated EAX tests and produces all 184 bytes; do not prematurely factor those predicates into a convenience boolean.

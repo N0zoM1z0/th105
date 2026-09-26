@@ -507,21 +507,21 @@ action848_select:
         }
         if (sequence_index_13e == 6) {
             switch (g_match_identifier) {
-            case 0:
-                state_366 = 30;
-                state_368 = 4;
-                break;
-            case 1:
-                state_366 = 25;
-                state_368 = 7;
+            case 3:
+                state_366 = 15;
+                state_368 = 12;
                 break;
             case 2:
                 state_366 = 20;
                 state_368 = 10;
                 break;
-            case 3:
-                state_366 = 15;
-                state_368 = 12;
+            case 1:
+                state_366 = 25;
+                state_368 = 7;
+                break;
+            case 0:
+                state_366 = 30;
+                state_368 = 4;
                 break;
             default:
                 break;

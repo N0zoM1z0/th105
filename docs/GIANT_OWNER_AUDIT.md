@@ -146,17 +146,16 @@ proof that the entire image inventory is complete, nor that all indirect
 callee implementations are exact. Continue the global review census separately;
 do not shrink its denominator because this root's direct-edge closure passed.
 
-## Cross-root smoke check: an unexpanded nested switch is not a new function
+## Cross-root smoke check: an auxiliary switch is not a new function
 
-The same CLI was exercised against the existing Youmu/Aya Object action-entry
-probe objects without recompiling those unrelated sources. This tests tool
-reuse, not fresh source exactness. Aya's raw target traversal reaches all
-4,531 callable bytes. Youmu's main-table-only traversal reaches 5,083 of
-5,159 bytes and explicitly reports the indirect jump at `0x0054464F` plus the
-unreached interval `[0x00544656, 0x005446A2)` (76 bytes).
+An initial smoke check exercised the CLI against existing Youmu/Aya Object
+action-entry probe objects without recompiling those unrelated sources. Aya's
+raw target traversal reached all 4,531 callable bytes. Youmu's then-main-table-only
+traversal reached 5,083 of 5,159 bytes and reported the indirect jump at
+`0x0054464F` plus `[0x00544656, 0x005446A2)` (76 bytes).
 
-Fresh IDA xrefs to `0x00544656` identify both the jump at `0x0054464F` and a
-data reference from `0x00544BD4`. Independent pinned-PE decoding confirms
+The earlier IDA xrefs to `0x00544656` identified both the jump at `0x0054464F`
+and a data reference from `0x00544BD4`. Independent pinned-PE decoding confirms
 `cmp eax,3; ja 0x005446A2` followed by the indexed jump through that table.
 Its four dwords, in index order, point to `0x00544692`, `0x0054467E`,
 `0x0054466A`, and `0x00544656`. These are the four existing action-901,
@@ -164,12 +163,13 @@ sequence-6 `g_match_identifier` arms in `YoumuObjectActionEntry.cpp`; they
 write the +0x366/+0x368 state pairs and rejoin at `0x005446A2`.
 
 These 76 bytes are therefore not evidence for a new authored function. The
-unmodified automatic report intentionally leaves the supplemental table
-unresolved because only the configured main action tables are expanded.
-Do not silently add arbitrary table edges, call the partial traversal complete,
-or promote unreachable spans to candidates without tracing their incoming
-control flow. This is a concrete additional inventory check, with no candidate,
-origin, source-present, or exact-count promotion.
+auxiliary table and dispatch are now recorded in `config/giant-action-switches.toml`
+and checked against raw target dwords. The updated audit traverses both tables
+and reaches **5,159/5,159** Youmu callable bytes with no unresolved indirect
+exit. See [the later bounded evidence](YOUMU_OBJECT_ENTRY_SWITCH_CLOSURE_2026_09_26.md).
+The reachability correction made no candidate, origin, source-present, or
+exact-count promotion. Any future indirect table must likewise be backed by
+its guard, raw entries, dispatch, and bounded destinations.
 
 ## Rejected source hypotheses and next discriminator
 
