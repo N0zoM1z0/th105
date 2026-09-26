@@ -1645,3 +1645,35 @@ required_tail_jumps = [
   { address = "0x0068AA26", target = "0x006898EA", target_origin = "compiler_generated" },
   { address = "0x0068B1B7", target = "0x0068B1A6", target_origin = "vc8_runtime" },
 ]
+
+[[rules]]
+id = "vc8-global-static-destructor-aliases-106a"
+addresses = ["0x006BEDE0", "0x006BEF00", "0x006BEF10", "0x006BEFA0", "0x006BEFB0", "0x006BF090", "0x006BF0E0", "0x006BF170", "0x006BF180", "0x006BF1D0", "0x006BF220", "0x006BF230", "0x006BF240", "0x006BF250", "0x006BF260", "0x006BF270", "0x006BF280", "0x006BF300"]
+expected_count = 18
+expected_bytes = 180
+expected_names = ["sub_6BEDE0", "sub_6BEF00", "sub_6BEF10", "sub_6BEFA0", "sub_6BEFB0", "sub_6BF090", "sub_6BF0E0", "sub_6BF170", "sub_6BF180", "sub_6BF1D0", "sub_6BF220", "sub_6BF230", "sub_6BF240", "sub_6BF250", "sub_6BF260", "sub_6BF270", "sub_6BF280", "sub_6BF300"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "inferred"
+evidence = "Eighteen complete ten-byte MOV ECX,global; JMP aliases are each pushed as a callback then passed to the independently excluded VC8 _atexit function. Every receiver lies in target .data; the exact alias body, registration PUSH, intervening instruction bytes, and E8 destination are replayed against the hash-attested PE. Their uniform callback form supports compiler-generated global static destruction adapters; the individual destination semantics and original TU placement remain separate. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_global_dtor_aliases = [
+  { address = "0x006BEDE0", object = "0x00702798", target = "0x00404FD0", register_site = "0x006BE737", atexit_site = "0x006BE764", gap_hex = "a3fc277000a300287000a304287000a308287000a30c287000a310287000a314287000a318287000" },
+  { address = "0x006BEF00", object = "0x006FA6E0", target = "0x004114C0", register_site = "0x006BE93A", atexit_site = "0x006BE93F", gap_hex = "" },
+  { address = "0x006BEF10", object = "0x006FA6C8", target = "0x00413A90", register_site = "0x006BE8E0", atexit_site = "0x006BE8E5", gap_hex = "" },
+  { address = "0x006BEFA0", object = "0x006FBDC8", target = "0x004145F0", register_site = "0x006BE9AA", atexit_site = "0x006BE9AF", gap_hex = "" },
+  { address = "0x006BEFB0", object = "0x006FBD60", target = "0x00409D50", register_site = "0x006BEB4C", atexit_site = "0x006BEB66", gap_hex = "c70560bd6f0054116c00a2c4bd6f0066a3c0bd6f00" },
+  { address = "0x006BF090", object = "0x006FCA2C", target = "0x0043C280", register_site = "0x006BEB70", atexit_site = "0x006BEB75", gap_hex = "" },
+  { address = "0x006BF0E0", object = "0x006FC598", target = "0x0043DC70", register_site = "0x006BEC1A", atexit_site = "0x006BEC1F", gap_hex = "" },
+  { address = "0x006BF170", object = "0x006FCC98", target = "0x0043DF10", register_site = "0x006BEC3A", atexit_site = "0x006BEC3F", gap_hex = "" },
+  { address = "0x006BF180", object = "0x006FBDD0", target = "0x0043F260", register_site = "0x006BE9FA", atexit_site = "0x006BE9FF", gap_hex = "" },
+  { address = "0x006BF1D0", object = "0x006FD0B8", target = "0x004114C0", register_site = "0x006BEC5A", atexit_site = "0x006BEC5F", gap_hex = "" },
+  { address = "0x006BF220", object = "0x006FD2C8", target = "0x00439FC0", register_site = "0x006BECAA", atexit_site = "0x006BECAF", gap_hex = "" },
+  { address = "0x006BF230", object = "0x006FD288", target = "0x00435EB0", register_site = "0x006BED5A", atexit_site = "0x006BED6E", gap_hex = "a38cd26f00c70590d26f0000000000" },
+  { address = "0x006BF240", object = "0x006FD24C", target = "0x00421890", register_site = "0x006BECFA", atexit_site = "0x006BECFF", gap_hex = "" },
+  { address = "0x006BF250", object = "0x006FD048", target = "0x00421890", register_site = "0x006BED1A", atexit_site = "0x006BED1F", gap_hex = "" },
+  { address = "0x006BF260", object = "0x006FD294", target = "0x00421890", register_site = "0x006BED3A", atexit_site = "0x006BED3F", gap_hex = "" },
+  { address = "0x006BF270", object = "0x006FD07C", target = "0x00421890", register_site = "0x006BECDA", atexit_site = "0x006BECDF", gap_hex = "" },
+  { address = "0x006BF280", object = "0x006FD394", target = "0x00417FC0", register_site = "0x006BED8A", atexit_site = "0x006BED8F", gap_hex = "" },
+  { address = "0x006BF300", object = "0x006FDEC4", target = "0x006B0390", register_site = "0x006B3DF4", atexit_site = "0x006B3DF9", gap_hex = "" },
+]

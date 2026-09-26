@@ -14,8 +14,9 @@ instructions are not the active queue.
   **4,023 candidates, 1,476 authored, 1,308 excluded, 1,239 in review**.
   The first reviewed batch moves four complete game-owned bodies to authored;
   the second excludes ten five-byte E9 tail aliases; the third positively
-  identifies VC8 runtime security-cookie check `0x00689D25`. The resulting
-  census is **1,480 authored / 1,319 excluded / 1,224 review**. Source-present remains
+  identifies VC8 runtime security-cookie check `0x00689D25`; the fourth
+  excludes 18 `_atexit`-registered global destructor callbacks. The resulting
+  census is **1,480 authored / 1,337 excluded / 1,206 review**. Source-present remains
   1,388; canonical exact remains 1,315 functions / 220,094 bytes. Recompute from
   `scripts/report-reconstruction-status.py --summary` after every promotion.
 - The local target file passes hash verification. The attached IDA session
@@ -60,7 +61,9 @@ review rows: 935 had full provisional-span reachability with no visible exit;
 The same note also records ten five-byte tail aliases whose signed E9 target
 and excluded destination origin are replayed in `function-origins.py`, plus
 the 15-byte `0x00689D25` function matched against SHA-pinned VC8 SP1
-`secchk.obj` with both COFF relocation targets resolved.
+`secchk.obj` with both COFF relocation targets resolved. Eighteen ten-byte
+global destructor adapters are tied to actual `_atexit` registration sites;
+three similar candidates without that witness stay in review.
 
 ```bash
 python3 scripts/verify-target.py

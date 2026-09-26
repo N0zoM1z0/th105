@@ -109,3 +109,48 @@ This is `vc8_runtime/exclude`, with a complete 15-byte boundary and no game
 source or canonical exact credit. The narrow short-anchor threshold applies
 only with explicit relocation destinations; the established broader runtime
 anchor threshold remains unchanged.
+
+## Eighteen global static destructor callbacks
+
+A separate batch reviewed 18 complete ten-byte candidates. Each contains only
+`MOV ECX, <.data object>` followed by `E9` to a cleanup target or container
+teardown. Raw target code pushes each callback address and calls `_atexit @
+0x0068AF1E`, whose VC8 runtime origin is already independently established.
+Three registrations perform only target-pinned global stores between the push
+and `_atexit`; the other fifteen call immediately. The origin rule checks each
+ten-byte body, object address in the PE `.data` virtual section, direct tail
+target, callback PUSH, intervening bytes, and signed `_atexit` CALL. Raw CFG
+review covers 10/10 bytes at every entry with no gap or indirect exit.
+
+| Callback | Receiver global | Tail destination | Registration PUSH |
+| --- | --- | --- | --- |
+| `0x006BEDE0` | `0x00702798` | `0x00404FD0` | `0x006BE737` |
+| `0x006BEF00` | `0x006FA6E0` | `0x004114C0` | `0x006BE93A` |
+| `0x006BEF10` | `0x006FA6C8` | `0x00413A90` | `0x006BE8E0` |
+| `0x006BEFA0` | `0x006FBDC8` | `0x004145F0` | `0x006BE9AA` |
+| `0x006BEFB0` | `0x006FBD60` | `0x00409D50` | `0x006BEB4C` |
+| `0x006BF090` | `0x006FCA2C` | `0x0043C280` | `0x006BEB70` |
+| `0x006BF0E0` | `0x006FC598` | `0x0043DC70` | `0x006BEC1A` |
+| `0x006BF170` | `0x006FCC98` | `0x0043DF10` | `0x006BEC3A` |
+| `0x006BF180` | `0x006FBDD0` | `0x0043F260` | `0x006BE9FA` |
+| `0x006BF1D0` | `0x006FD0B8` | `0x004114C0` | `0x006BEC5A` |
+| `0x006BF220` | `0x006FD2C8` | `0x00439FC0` | `0x006BECAA` |
+| `0x006BF230` | `0x006FD288` | `0x00435EB0` | `0x006BED5A` |
+| `0x006BF240` | `0x006FD24C` | `0x00421890` | `0x006BECFA` |
+| `0x006BF250` | `0x006FD048` | `0x00421890` | `0x006BED1A` |
+| `0x006BF260` | `0x006FD294` | `0x00421890` | `0x006BED3A` |
+| `0x006BF270` | `0x006FD07C` | `0x00421890` | `0x006BECDA` |
+| `0x006BF280` | `0x006FD394` | `0x00417FC0` | `0x006BED8A` |
+| `0x006BF300` | `0x006FDEC4` | `0x006B0390` | `0x006B3DF4` |
+
+The uniform callback shape and actual `_atexit` registration support an
+**inferred** compiler-generated global destruction-adapter origin. Several tail destinations
+are authored game destructors, several are generated container teardowns, and
+others still await origin review. Excluding the callbacks makes no assertion
+about their destinations, source TUs, or exact game-code matches. Three similar
+ten-byte candidates without a verified `_atexit` registration remain pending.
+
+```bash
+python3 scripts/function-origins.py --check
+python3 scripts/audit-candidate-boundaries.py --review --json > build/current-review-boundaries.json
+```

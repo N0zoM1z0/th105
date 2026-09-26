@@ -1285,6 +1285,50 @@ def validate_rule_evidence(
             errors.append(
                 f"{rule_id}: 0x{address:08X} is not E9 to 0x{target:08X}"
             )
+    for thunk in rule.get("required_global_dtor_aliases", []):
+        address = int(str(thunk["address"]), 0)
+        object_address = int(str(thunk["object"]), 0)
+        target = int(str(thunk["target"]), 0)
+        register_site = int(str(thunk["register_site"]), 0)
+        atexit_site = int(str(thunk["atexit_site"]), 0)
+        gap = bytes.fromhex(str(thunk["gap_hex"]))
+        key = f"0x{address:08X}".upper()
+        if key not in selected_addresses or int(row_by_address[key]["size"], 0) != 10:
+            errors.append(f"{rule_id}: 0x{address:08X} is not a selected ten-byte thunk")
+            continue
+        if f"0x{target:08X}".upper() not in row_by_address:
+            errors.append(f"{rule_id}: 0x{address:08X} destructor target is not a candidate")
+            continue
+        if not 0 <= len(gap) <= 64 or atexit_site != register_site + 5 + len(gap):
+            errors.append(f"{rule_id}: 0x{address:08X} registration interval differs")
+            continue
+        data_section = next(
+            section for section in target_manifest()["pe"]["sections"]
+            if section["name"] == ".data"
+        )
+        data_start = int(target_manifest()["pe"]["image_base"], 0) + int(data_section["rva"], 0)
+        if not data_start <= object_address < data_start + int(data_section["virtual_size"]):
+            errors.append(f"{rule_id}: 0x{address:08X} receiver is not in .data")
+            continue
+        try:
+            body = read_pe(address, 10)
+            pushed = read_pe(register_site, 5)
+            actual_gap = read_pe(register_site + 5, len(gap)) if gap else b""
+            call = read_pe(atexit_site, 5)
+        except ValueError as exc:
+            errors.append(f"{rule_id}: {exc}")
+            continue
+        body_target = address + 10 + struct.unpack_from("<i", body, 6)[0]
+        call_target = atexit_site + 5 + struct.unpack_from("<i", call, 1)[0]
+        if (
+            body[0] != 0xB9 or body[5] != 0xE9
+            or struct.unpack_from("<I", body, 1)[0] != object_address
+            or body_target != target
+            or pushed[0] != 0x68 or struct.unpack_from("<I", pushed, 1)[0] != address
+            or actual_gap != gap
+            or call[0] != 0xE8 or call_target != 0x0068AF1E
+        ):
+            errors.append(f"{rule_id}: 0x{address:08X} static destructor registration differs")
     if rule.get("xiph_anchor_file"):
         errors.extend(validate_xiph_anchor_evidence(rule, selected, rows, read_pe))
     if rule.get("xiph_relocated_anchor_file"):
@@ -1353,6 +1397,10 @@ def materialize() -> tuple[list[dict[str, str]], list[str]]:
                 errors.append(
                     f"{rule['id']}: jump target {target} is not an excluded {target_origin} candidate"
                 )
+        if rule.get("required_global_dtor_aliases"):
+            atexit = census.get("0x0068AF1E")
+            if atexit is None or atexit["origin"] != "vc8_runtime" or atexit["disposition"] != "exclude":
+                errors.append(f"{rule['id']}: _atexit runtime destination is not excluded")
     return [census[row["address"]] for row in rows], errors
 
 

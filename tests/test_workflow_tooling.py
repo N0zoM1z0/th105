@@ -214,6 +214,35 @@ class WorkflowToolingTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.origins.replayed_msvc_relocation_target(code, base, 2, 0x9999)
 
+    def test_global_destructor_alias_requires_atexit_registration(self) -> None:
+        source = {"address": "0x00401000", "size": "10", "status": "identified"}
+        target = {"address": "0x00401200", "size": "12", "status": "identified"}
+        register_site = 0x401100
+        atexit_site = register_site + 5
+        body = b"\xB9" + struct.pack("<I", 0x6E6000) + b"\xE9" + struct.pack(
+            "<i", 0x401200 - 0x401000 - 10
+        )
+        push = b"\x68" + struct.pack("<I", 0x401000)
+        call = b"\xE8" + struct.pack("<i", 0x68AF1E - atexit_site - 5)
+        rule = {
+            "id": "global-dtor-control",
+            "required_global_dtor_aliases": [{
+                "address": source["address"], "object": "0x006E6000",
+                "target": target["address"], "register_site": "0x00401100",
+                "atexit_site": "0x00401105", "gap_hex": "",
+            }],
+        }
+        code = {0x401000: body, register_site: push, atexit_site: call}
+        verify = self.origins.validate_rule_evidence
+        self.assertEqual(
+            verify(rule, [source], [source, target], b"", lambda address, _size: code[address]),
+            [],
+        )
+        bad_code = {**code, atexit_site: b"\xE8\0\0\0\0"}
+        self.assertTrue(verify(
+            rule, [source], [source, target], b"", lambda address, _size: bad_code[address]
+        ))
+
     def test_candidate_boundary_audit_keeps_branches_and_gaps_distinct(self) -> None:
         start = 0x401000
         code = b"\x74\x01\xC3\xC3"

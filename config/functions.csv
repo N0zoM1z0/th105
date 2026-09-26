@@ -3987,38 +3987,38 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006B6D00,31,0x006B6D1E,__allshl,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006BE950,10,0x006BE959,sub_6BE950,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006BEDB0,11,0x006BEDBA,sub_6BEDB0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006BEDE0,10,0x006BEDE9,sub_6BEDE0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006BEDE0,10,0x006BEDE9,sub_6BEDE0,,,identified,0.00,,,true,,Hash-attested 1.06a 10/10 MOV ECX global at 0x00702798 then E9 to 0x00404FD0; PUSH callback at 0x006BE737 reaches VC8 _atexit at 0x006BE764; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Likely compiler-generated global static destruction callback; destination function origin is separate.
 0x006BEE70,1,0x006BEE70,nullsub_14,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006BEE90,1,0x006BEE90,nullsub_15,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006BEEA0,1,0x006BEEA0,nullsub_16,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006BEEC0,5,0x006BEEC4,sub_6BEEC0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006BEF00,10,0x006BEF09,sub_6BEF00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006BEF10,10,0x006BEF19,sub_6BEF10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006BEF00,10,0x006BEF09,sub_6BEF00,,,identified,0.00,,,true,,Hash-attested 1.06a 10/10 MOV ECX global at 0x006FA6E0 then E9 to 0x004114C0; PUSH callback at 0x006BE93A reaches VC8 _atexit at 0x006BE93F; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Likely compiler-generated global static destruction callback; destination function origin is separate.
+0x006BEF10,10,0x006BEF19,sub_6BEF10,,,identified,0.00,,,true,,Hash-attested 1.06a 10/10 MOV ECX global at 0x006FA6C8 then E9 to 0x00413A90; PUSH callback at 0x006BE8E0 reaches VC8 _atexit at 0x006BE8E5; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Likely compiler-generated global static destruction callback; destination function origin is separate.
 0x006BEF20,64,0x006BEF5F,sub_6BEF20,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006BEF60,64,0x006BEF9F,sub_6BEF60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006BEFA0,10,0x006BEFA9,sub_6BEFA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006BEFB0,10,0x006BEFB9,sub_6BEFB0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006BF090,10,0x006BF099,sub_6BF090,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006BEFA0,10,0x006BEFA9,sub_6BEFA0,,,identified,0.00,,,true,,Hash-attested 1.06a 10/10 MOV ECX global at 0x006FBDC8 then E9 to 0x004145F0; PUSH callback at 0x006BE9AA reaches VC8 _atexit at 0x006BE9AF; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Likely compiler-generated global static destruction callback; destination function origin is separate.
+0x006BEFB0,10,0x006BEFB9,sub_6BEFB0,,,identified,0.00,,,true,,Hash-attested 1.06a 10/10 MOV ECX global at 0x006FBD60 then E9 to 0x00409D50; PUSH callback at 0x006BEB4C reaches VC8 _atexit at 0x006BEB66; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Likely compiler-generated global static destruction callback; destination function origin is separate.
+0x006BF090,10,0x006BF099,sub_6BF090,,,identified,0.00,,,true,,Hash-attested 1.06a 10/10 MOV ECX global at 0x006FCA2C then E9 to 0x0043C280; PUSH callback at 0x006BEB70 reaches VC8 _atexit at 0x006BEB75; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Likely compiler-generated global static destruction callback; destination function origin is separate.
 0x006BF0A0,64,0x006BF0DF,sub_6BF0A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006BF0E0,10,0x006BF0E9,sub_6BF0E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006BF0E0,10,0x006BF0E9,sub_6BF0E0,,,identified,0.00,,,true,,Hash-attested 1.06a 10/10 MOV ECX global at 0x006FC598 then E9 to 0x0043DC70; PUSH callback at 0x006BEC1A reaches VC8 _atexit at 0x006BEC1F; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Likely compiler-generated global static destruction callback; destination function origin is separate.
 0x006BF0F0,64,0x006BF12F,sub_6BF0F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006BF130,64,0x006BF16F,sub_6BF130,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006BF170,10,0x006BF179,sub_6BF170,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006BF180,10,0x006BF189,sub_6BF180,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006BF170,10,0x006BF179,sub_6BF170,,,identified,0.00,,,true,,Hash-attested 1.06a 10/10 MOV ECX global at 0x006FCC98 then E9 to 0x0043DF10; PUSH callback at 0x006BEC3A reaches VC8 _atexit at 0x006BEC3F; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Likely compiler-generated global static destruction callback; destination function origin is separate.
+0x006BF180,10,0x006BF189,sub_6BF180,,,identified,0.00,,,true,,Hash-attested 1.06a 10/10 MOV ECX global at 0x006FBDD0 then E9 to 0x0043F260; PUSH callback at 0x006BE9FA reaches VC8 _atexit at 0x006BE9FF; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Likely compiler-generated global static destruction callback; destination function origin is separate.
 0x006BF190,64,0x006BF1CF,sub_6BF190,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006BF1D0,10,0x006BF1D9,sub_6BF1D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006BF1D0,10,0x006BF1D9,sub_6BF1D0,,,identified,0.00,,,true,,Hash-attested 1.06a 10/10 MOV ECX global at 0x006FD0B8 then E9 to 0x004114C0; PUSH callback at 0x006BEC5A reaches VC8 _atexit at 0x006BEC5F; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Likely compiler-generated global static destruction callback; destination function origin is separate.
 0x006BF1E0,11,0x006BF1EA,sub_6BF1E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006BF1F0,11,0x006BF1FA,sub_6BF1F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006BF200,11,0x006BF20A,sub_6BF200,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006BF210,11,0x006BF21A,sub_6BF210,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006BF220,10,0x006BF229,sub_6BF220,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006BF230,10,0x006BF239,sub_6BF230,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006BF240,10,0x006BF249,sub_6BF240,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006BF250,10,0x006BF259,sub_6BF250,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006BF260,10,0x006BF269,sub_6BF260,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006BF270,10,0x006BF279,sub_6BF270,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006BF280,10,0x006BF289,sub_6BF280,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006BF220,10,0x006BF229,sub_6BF220,,,identified,0.00,,,true,,Hash-attested 1.06a 10/10 MOV ECX global at 0x006FD2C8 then E9 to 0x00439FC0; PUSH callback at 0x006BECAA reaches VC8 _atexit at 0x006BECAF; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Likely compiler-generated global static destruction callback; destination function origin is separate.
+0x006BF230,10,0x006BF239,sub_6BF230,,,identified,0.00,,,true,,Hash-attested 1.06a 10/10 MOV ECX global at 0x006FD288 then E9 to 0x00435EB0; PUSH callback at 0x006BED5A reaches VC8 _atexit at 0x006BED6E; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Likely compiler-generated global static destruction callback; destination function origin is separate.
+0x006BF240,10,0x006BF249,sub_6BF240,,,identified,0.00,,,true,,Hash-attested 1.06a 10/10 MOV ECX global at 0x006FD24C then E9 to 0x00421890; PUSH callback at 0x006BECFA reaches VC8 _atexit at 0x006BECFF; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Likely compiler-generated global static destruction callback; destination function origin is separate.
+0x006BF250,10,0x006BF259,sub_6BF250,,,identified,0.00,,,true,,Hash-attested 1.06a 10/10 MOV ECX global at 0x006FD048 then E9 to 0x00421890; PUSH callback at 0x006BED1A reaches VC8 _atexit at 0x006BED1F; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Likely compiler-generated global static destruction callback; destination function origin is separate.
+0x006BF260,10,0x006BF269,sub_6BF260,,,identified,0.00,,,true,,Hash-attested 1.06a 10/10 MOV ECX global at 0x006FD294 then E9 to 0x00421890; PUSH callback at 0x006BED3A reaches VC8 _atexit at 0x006BED3F; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Likely compiler-generated global static destruction callback; destination function origin is separate.
+0x006BF270,10,0x006BF279,sub_6BF270,,,identified,0.00,,,true,,Hash-attested 1.06a 10/10 MOV ECX global at 0x006FD07C then E9 to 0x00421890; PUSH callback at 0x006BECDA reaches VC8 _atexit at 0x006BECDF; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Likely compiler-generated global static destruction callback; destination function origin is separate.
+0x006BF280,10,0x006BF289,sub_6BF280,,,identified,0.00,,,true,,Hash-attested 1.06a 10/10 MOV ECX global at 0x006FD394 then E9 to 0x00417FC0; PUSH callback at 0x006BED8A reaches VC8 _atexit at 0x006BED8F; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Likely compiler-generated global static destruction callback; destination function origin is separate.
 0x006BF28A,20,0x006BF29D,sub_6BF28A,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006BF2A0,46,0x006BF2CD,sub_6BF2A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006BF2D0,46,0x006BF2FD,sub_6BF2D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006BF300,10,0x006BF309,sub_6BF300,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006BF300,10,0x006BF309,sub_6BF300,,,identified,0.00,,,true,,Hash-attested 1.06a 10/10 MOV ECX global at 0x006FDEC4 then E9 to 0x006B0390; PUSH callback at 0x006B3DF4 reaches VC8 _atexit at 0x006B3DF9; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Likely compiler-generated global static destruction callback; destination function origin is separate.
