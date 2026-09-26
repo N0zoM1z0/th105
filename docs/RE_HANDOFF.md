@@ -10,10 +10,11 @@ instructions are not the active queue.
 - Target: original Japanese TH10.5 v1.06a, SHA-256
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 - User-directed phase: clean misleading documentation/code, then review the
-  remaining origin and candidate-boundary queue. At the start of this phase,
-  the census has **4,023 candidates, 1,476 authored, 1,308 excluded, and 1,239
-  still in review**. Source-present is 1,388; canonical exact is 1,315
-  functions / 220,094 bytes. Recompute counts from
+  remaining origin and candidate-boundary queue. The initial census was
+  **4,023 candidates, 1,476 authored, 1,308 excluded, 1,239 in review**.
+  The first reviewed batch moves four complete game-owned bodies to authored:
+  **1,480 authored / 1,308 excluded / 1,235 review**. Source-present remains
+  1,388; canonical exact remains 1,315 functions / 220,094 bytes. Recompute from
   `scripts/report-reconstruction-status.py --summary` after every promotion.
 - The local target file passes hash verification. The attached IDA session
   currently exposes a different executable (SHA-256 beginning `10350095`),
@@ -43,6 +44,14 @@ normal tracking validator. Any new rule needs a fixed candidate count/byte sum
 and target-backed provenance. Record reviewed boundary evidence in
 `functions.csv` and a focused note; do not treat name mappings or source
 presence as exact credit. `config/claims.csv` remains header-only.
+
+The first [origin/boundary evidence batch](ORIGIN_BOUNDARY_REVIEW_2026_09_26.md)
+reviews `0x00407AD0`, `0x004099F0`, `0x00420B90`, and `0x00462AB0` using
+complete raw CFG spans, RET/padding, game-specific behavior, and replayed E8/E9
+edges from exact callers. The new boundary auditor triaged all 1,239 initial
+review rows: 935 had full provisional-span reachability with no visible exit;
+159 had unreached bytes, 62 indirect jumps, and 137 outgoing direct edges
+(overlapping groups). These are leads, not automatic origin promotions.
 
 ```bash
 python3 scripts/verify-target.py

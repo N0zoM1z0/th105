@@ -1182,6 +1182,61 @@ def validate_rule_evidence(
                 f"{rule_id}: dword 0x{address:08X} is 0x{actual:08X}, "
                 f"expected 0x{expected:08X}"
             )
+    row_by_address = {row["address"].upper(): row for row in rows}
+    selected_addresses = {row["address"].upper() for row in selected}
+    for body in rule.get("required_body_hashes", []):
+        address = int(str(body["address"]), 0)
+        size = int(body["size"])
+        key = f"0x{address:08X}".upper()
+        if key not in selected_addresses or key not in row_by_address:
+            errors.append(f"{rule_id}: body 0x{address:08X} is not selected")
+            continue
+        if int(row_by_address[key]["size"], 0) != size:
+            errors.append(f"{rule_id}: body 0x{address:08X} has wrong candidate size")
+            continue
+        try:
+            actual_hash = hashlib.sha256(read_pe(address, size)).hexdigest()
+        except ValueError as exc:
+            errors.append(f"{rule_id}: {exc}")
+            continue
+        if actual_hash != body["sha256"]:
+            errors.append(f"{rule_id}: body 0x{address:08X} SHA-256 differs")
+    for edge in rule.get("required_direct_edges", []):
+        site = int(str(edge["site"]), 0)
+        target = int(str(edge["target"]), 0)
+        caller = str(edge["caller"]).upper()
+        kind = str(edge.get("kind", "call"))
+        if kind not in {"call", "jump"}:
+            errors.append(f"{rule_id}: unsupported direct-edge kind {kind!r}")
+            continue
+        if f"0x{target:08X}".upper() not in selected_addresses:
+            errors.append(f"{rule_id}: edge target 0x{target:08X} is not selected")
+        caller_row = row_by_address.get(caller)
+        if caller_row is None:
+            errors.append(f"{rule_id}: missing caller {caller}")
+            continue
+        caller_start = int(caller, 0)
+        caller_end = caller_start + int(caller_row["size"], 0)
+        if not caller_start <= site <= caller_end - 5:
+            errors.append(f"{rule_id}: edge site 0x{site:08X} is outside caller {caller}")
+            continue
+        if edge.get("caller_status") and caller_row["status"] != edge["caller_status"]:
+            errors.append(f"{rule_id}: caller {caller} status is not {edge['caller_status']}")
+        try:
+            code = read_pe(site, 5)
+        except ValueError as exc:
+            errors.append(f"{rule_id}: {exc}")
+            continue
+        expected_opcode = 0xE8 if kind == "call" else 0xE9
+        if code[0] != expected_opcode:
+            errors.append(f"{rule_id}: 0x{site:08X} is not a direct {kind}")
+            continue
+        actual_target = site + 5 + struct.unpack_from("<i", code, 1)[0]
+        if actual_target != target:
+            errors.append(
+                f"{rule_id}: 0x{site:08X} {kind} lands at 0x{actual_target:08X}, "
+                f"expected 0x{target:08X}"
+            )
     if rule.get("xiph_anchor_file"):
         errors.extend(validate_xiph_anchor_evidence(rule, selected, rows, read_pe))
     if rule.get("xiph_relocated_anchor_file"):

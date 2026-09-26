@@ -172,7 +172,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004075E0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00407620,authored_game,battle,authored,observed,canonical-exact-authored
 0x00407680,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00407AD0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00407AD0,authored_game,render,authored,observed,sprite-render-finalizer-authored-106a
 0x00407BB0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00407BF0,authored_game,assets,authored,observed,canonical-exact-authored
 0x00407C10,authored_game,assets,authored,observed,canonical-exact-authored
@@ -209,7 +209,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004097A0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004098B0,authored_game,ui,authored,observed,canonical-exact-authored
 0x004098E0,authored_game,ui,authored,observed,ui-source-present-exact-caller-helpers-authored-106a
-0x004099F0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004099F0,authored_game,ui,authored,observed,shared-ui-design-binding-and-tile-render-authored-106a
 0x00409CF0,authored_game,input,authored,observed,canonical-exact-authored
 0x00409D30,authored_game,input,authored,observed,canonical-exact-authored
 0x00409D50,authored_game,input,authored,observed,canonical-exact-authored
@@ -721,7 +721,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00420A80,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x00420AF0,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
 0x00420B80,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00420B90,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00420B90,authored_game,ui,authored,observed,shared-ui-design-binding-and-tile-render-authored-106a
 0x00420C30,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00420C60,authored_game,battle,authored,observed,canonical-exact-authored
 0x00420D70,authored_game,battle,authored,observed,canonical-exact-authored
@@ -1881,7 +1881,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00461AF0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00461B70,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00462AA0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00462AB0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00462AB0,authored_game,characters,authored,observed,character-base-constructor-authored-106a
 0x00462CE0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00463070,authored_game,battle,authored,observed,canonical-exact-authored
 0x004631C0,authored_game,battle,authored,observed,canonical-exact-authored

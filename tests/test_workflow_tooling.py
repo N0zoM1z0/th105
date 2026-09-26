@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import importlib.util
 from pathlib import Path
+import struct
 import sys
 import tomllib
 import unittest
@@ -40,6 +42,8 @@ class WorkflowToolingTests(unittest.TestCase):
         cls.xiph_sdk = load_script("fetch-xiph-sdk-object.py")
         cls.roster_vtable_coverage = load_script("audit-roster-primary-vtable-coverage.py")
         cls.rdata_text_pointers = load_script("rank-unledgered-rdata-text-pointers.py")
+        cls.origins = load_script("function-origins.py")
+        cls.boundaries = load_script("audit-candidate-boundaries.py")
 
     def test_corrected_target_identity(self) -> None:
         manifest = self.validator.validate_target(require_bytes=False)
@@ -121,6 +125,80 @@ class WorkflowToolingTests(unittest.TestCase):
                 str(address).upper() for address in rule.get("addresses", [])
             )
             self.assertFalse(overlap, f"{rule['id']} reclaims exact functions: {sorted(overlap)}")
+
+    def test_origin_direct_edge_witness_replays_target_call(self) -> None:
+        site = 0x401002
+        target = 0x401100
+        code = b"\xE8" + struct.pack("<i", target - site - 5)
+        rows = [
+            {"address": "0x00401000", "size": "16", "status": "matching"},
+            {"address": "0x00401100", "size": "5", "status": "identified"},
+        ]
+        rule = {
+            "id": "direct-edge-control",
+            "required_direct_edges": [{
+                "site": "0x00401002", "caller": "0x00401000",
+                "target": "0x00401100", "caller_status": "matching",
+            }],
+        }
+
+        def read_pe(address: int, size: int) -> bytes:
+            self.assertEqual((address, size), (site, 5))
+            return code
+
+        self.assertEqual(
+            self.origins.validate_rule_evidence(rule, rows[1:], rows, b"", read_pe),
+            [],
+        )
+        self.assertTrue(self.origins.validate_rule_evidence(
+            rule, rows[1:], rows, b"", lambda _address, _size: b"\xE9" + code[1:]
+        ))
+        self.assertTrue(self.origins.validate_rule_evidence(
+            rule, rows[1:], rows, b"", lambda _address, _size: b"\xE8\0\0\0\0"
+        ))
+
+    def test_origin_body_witness_checks_full_candidate_extent(self) -> None:
+        body = b"\x90\xC3"
+        row = {"address": "0x00401100", "size": "2", "status": "identified"}
+        rule = {
+            "id": "body-control",
+            "required_body_hashes": [{
+                "address": row["address"], "size": 2,
+                "sha256": hashlib.sha256(body).hexdigest(),
+            }],
+        }
+        self.assertEqual(
+            self.origins.validate_rule_evidence(
+                rule, [row], [row], b"", lambda _address, _size: body
+            ),
+            [],
+        )
+        self.assertTrue(self.origins.validate_rule_evidence(
+            rule, [row], [row], b"", lambda _address, _size: b"\xC3\x90"
+        ))
+        self.assertTrue(self.origins.validate_rule_evidence(
+            rule, [row], [{**row, "size": "3"}], b"", lambda _address, _size: body
+        ))
+
+    def test_candidate_boundary_audit_keeps_branches_and_gaps_distinct(self) -> None:
+        start = 0x401000
+        code = b"\x74\x01\xC3\xC3"
+
+        def read(address: int, size: int) -> bytes:
+            if start <= address and address + size <= start + len(code):
+                return code[address - start : address - start + size]
+            raise ValueError("outside test bytes")
+
+        result = self.boundaries.analyze_body(read, start, len(code))
+        self.assertEqual(result["reachable_bytes"], 4)
+        self.assertEqual(result["unreached_ranges"], [])
+        self.assertEqual(len(result["return_sites"]), 2)
+        self.assertEqual(result["outgoing_direct_edges"], [])
+
+        code = b"\xEB\x02\x90\x90\xC3"
+        result = self.boundaries.analyze_body(read, start, len(code))
+        self.assertEqual(result["reachable_bytes"], 3)
+        self.assertEqual(result["unreached_ranges"], [["0x00401002", "0x00401004"]])
 
     def test_new_authored_nonexact_helper_contracts_stay_nonexact(self) -> None:
         units = self.manifest.load_manifest()["units"]
@@ -936,11 +1014,25 @@ class WorkflowToolingTests(unittest.TestCase):
 
     def test_progress_reports_current_exact_baseline(self) -> None:
         markdown = self.progress.render()
+        functions = self.progress.csv_rows("functions.csv")
+        origins = {row["address"]: row for row in self.progress.csv_rows("function-origins.csv")}
+        authored = [row for row in functions if origins[row["address"]]["disposition"] == "authored"]
+        excluded = [row for row in functions if origins[row["address"]]["disposition"] == "exclude"]
+        ownership = self.progress.load_byte_ownership(
+            {int(row["address"], 0): row for row in functions}
+        )
+        authored_bytes = sum(
+            self.progress.owned_size(int(row["address"], 0), int(row["size"], 0), ownership)
+            for row in authored
+        )
         self.assertIn("Tracked 1.06a function candidates | 4,023", markdown)
-        self.assertIn("Confirmed authored functions | 1,476", markdown)
-        self.assertIn("Confirmed authored code bytes | 2,088,147", markdown)
-        self.assertIn("Classified exclusions | 1,308", markdown)
-        self.assertIn("Origin/boundary review pending | 1,239", markdown)
+        self.assertIn(f"Confirmed authored functions | {len(authored):,}", markdown)
+        self.assertIn(f"Confirmed authored code bytes | {authored_bytes:,}", markdown)
+        self.assertIn(f"Classified exclusions | {len(excluded):,}", markdown)
+        self.assertIn(
+            f"Origin/boundary review pending | {len(functions) - len(authored) - len(excluded):,}",
+            markdown,
+        )
         self.assertIn("Canonical exact functions | 1,315", markdown)
         self.assertIn("Canonical exact authored bytes | 220,094", markdown)
         self.assertIn("Source-present authored mappings | 1,388", markdown)

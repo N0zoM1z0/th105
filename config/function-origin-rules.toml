@@ -1537,3 +1537,61 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "These entries are target-private checked-container phases, not independent source callables. 0x0040F730 consumes CsvReader in live ESI and is called only by load; 0x0040F7D0/0x0040F840 are ESI/usercall helpers reachable only from the load helper chain; 0x0040F8E0 is an EH-only five-byte thunk to inner deque _Tidy 0x0040FF90. Do not count extracted LTCG/container phases as authored functions."
+
+[[rules]]
+id = "shared-ui-design-binding-and-tile-render-authored-106a"
+addresses = ["0x004099F0", "0x00420B90"]
+expected_count = 2
+expected_bytes = 874
+expected_names = ["sub_4099F0", "sub_420B90"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Fresh raw PE CFG review covers all 756/118 candidate bytes through complete RETs with INT3 padding on both sides. The tile renderer consumes game orientation helpers 0x00406360/0x004063D0, game handle lookup 0x00417800, and a draw virtual; the design binder looks up the receiver's +0x20 object tree, writes the selected game object or null to its output pointer, and has 43 calls from exact UI/game constructors. Exact UI renderers call the tile body. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md; neither body has canonical exact credit."
+required_body_hashes = [
+  { address = "0x004099F0", size = 756, sha256 = "c521a6318217f285e593bff562969f8b7b7ef4687b7e26884df446cb476416eb" },
+  { address = "0x00420B90", size = 118, sha256 = "663afb38180408beed34f80e9d9c0ddb44feec986aac016287f387669af51541" },
+]
+required_direct_edges = [
+  { caller = "0x00454890", site = "0x00454939", target = "0x004099F0", caller_status = "matching" },
+  { caller = "0x0043FCA0", site = "0x0043FDB8", target = "0x00420B90", caller_status = "matching" },
+]
+
+[[rules]]
+id = "sprite-render-finalizer-authored-106a"
+addresses = ["0x00407AD0"]
+expected_count = 1
+expected_bytes = 219
+expected_names = ["sub_407AD0"]
+origin = "authored_game"
+subsystem = "render"
+disposition = "authored"
+confidence = "observed"
+evidence = "Raw target CFG reaches the complete 219-byte RET-terminated body between INT3 pads. It reads sprite fields, calls texture-stage binder 0x00404DF0 (whose own origin remains under review), and dispatches D3D9 draw operations; exact AnimationObject and SpriteRenderEffect callers use it on game sprite subobjects. The independent target behavior and caller ownership support a game-authored render finalizer without claiming exact source bytes. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_body_hashes = [
+  { address = "0x00407AD0", size = 219, sha256 = "5b4ed5412715bbb05c9c311f9c72fcc9548ab93fb1c5aad0dcb039a43002b698" },
+]
+required_direct_edges = [
+  { caller = "0x00435540", site = "0x0043555D", target = "0x00407AD0", kind = "jump", caller_status = "matching" },
+  { caller = "0x006654D0", site = "0x0066550F", target = "0x00407AD0", caller_status = "matching" },
+]
+
+[[rules]]
+id = "character-base-constructor-authored-106a"
+addresses = ["0x00462AB0"]
+expected_count = 1
+expected_bytes = 557
+expected_names = ["sub_462AB0"]
+origin = "authored_game"
+subsystem = "characters"
+disposition = "authored"
+confidence = "observed"
+evidence = "Raw target CFG reaches the full 557-byte RET 4 constructor body between INT3 pads. It calls exact AttackObject base construction 0x0045FA30, constructs game-specific Fighter/SpellData members, and is called by fourteen independent canonical-exact roster derived constructors with this adjusted to their Character base. RTTI and member layout separate it from a VC8 library helper. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md; natural /GS source remains nonexact."
+required_body_hashes = [
+  { address = "0x00462AB0", size = 557, sha256 = "6843409d8f8d40e4f3ebf4d1bd9615a666c72f0abda652943492913297aaa5a5" },
+]
+required_direct_edges = [
+  { caller = "0x00493A40", site = "0x00493A6D", target = "0x00462AB0", caller_status = "matching" },
+  { caller = "0x004FAC40", site = "0x004FAC6D", target = "0x00462AB0", caller_status = "matching" },
+]
