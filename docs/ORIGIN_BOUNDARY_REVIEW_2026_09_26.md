@@ -879,3 +879,53 @@ python3 scripts/audit-candidate-boundaries.py \
   0x00401180 0x004012A0 0x00404DF0 --json
 python3 scripts/function-origins.py --check
 ```
+
+## Shared visual effect owner lifetime and configuration
+
+The exact target PE has three individually padding-isolated complete
+candidate main spans. Raw reachability covers every byte, with no indirect
+jump, outgoing direct branch, or invalid decode:
+
+| Entry | Bytes | Body SHA-256 | Return |
+| --- | ---: | --- | --- |
+| `0x00411430` | 138 | `de916b659088e2537ea0915c832bd7df93a934638ac508840ae8260a018ef6ee` | `0x004114B9` (`RET`) |
+| `0x004114C0` | 210 | `bca6292e5e37ba2aadd6231017c3dcc9e10d28807ba36ae84fec4e4af07aa2de` | `0x00411591` (`RET`) |
+| `0x004115A0` | 439 | `956579b761782920fcbd5bace551efbd03e12c27f8ab1adeefb4dd0a4147e535` | `0x00411754` (`RET 4`) |
+
+At `0x00411430`, the receiver gets effect defaults `+0x118 = 400` and
+`+0x120 = 100000`, cleared flags at `+0x11C..+0x11E`, and zeroed owner
+fields including `+0x154/+0x158/+0x164`. A helper call returns the
+pointer stored at `+0x160`; the string-like member at `+0x174` gets
+length zero and capacity 15. `0x004114C0` walks and frees the list-like
+nodes under `+0x160/+0x164`, frees the optional `+0x158` color table and
+long-string buffer, and tears down the member at `+0x15C`. Its calls to
+`0x0068A143`, `0x0068AA26`, `0x006898EA`, and `0x00408A00` are observed
+outgoing edges. The constructor's `0x004040B0` callee and the destructor's
+`0x00408A00` callee remain in separate origin review.
+
+`0x004115A0` copies 74 dwords (`0x128` bytes) from its argument into
+receiver `+0x0C`. It compares three start/end color byte pairs at
+`+0x10C..+0x111`. Equal pairs yield a packed RGB value at `+0x168`;
+otherwise it frees the previous `+0x158` table, allocates four bytes per
+step from count `+0x114`, and fills it with integer-interpolated colors.
+Both paths then clear existing list payloads when `+0x164` is nonzero.
+These are target instruction and field-access observations; the retained
+`ScenarioEffectOwner194`, `ProfileSlotEffectOwner194`, and
+`ResultEffectOwner194` names are source hypotheses.
+
+Two distinct canonical-exact callers each construct and destruct this
+owner: `PlayerSlotRecord_set_profile_color @ 0x00431440` and
+`NetworkSessionResultView_finalize_result_binding @ 0x0044DCB0`.
+Those two plus exact `ProfileDeckRefreshFacade_reload_common_resources`,
+`initialize_profile_ui`, `CScenarioData_set_effect_color_bytes`, and
+`CScenarioData_configure` call `0x004115A0`. The origin rule replays all
+ten E8 sites and the three complete body hashes. The cross-subsystem
+usage and game effect/color behavior support `authored_game/engine` for
+these three spans. Original class and TU boundaries, source selection,
+exact codegen, and the adjacent helper origins remain unresolved.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py \
+  0x00411430 0x004114C0 0x004115A0 --json
+python3 scripts/function-origins.py --check
+```

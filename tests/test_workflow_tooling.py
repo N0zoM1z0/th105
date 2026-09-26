@@ -515,6 +515,26 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_direct_edges"] = edges
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    def test_visual_effect_owner_family_requires_exact_callers(self) -> None:
+        with self.origins.RULES.open("rb") as stream:
+            document = tomllib.load(stream)
+        rule = next(
+            row for row in document["rules"]
+            if row["id"] == "shared-visual-effect-owner-lifetime-configure-authored-106a"
+        )
+        rows = self.origins.read_csv(self.origins.FUNCTIONS)
+        selected = [row for row in rows if row["address"] in rule["addresses"]]
+        data = self.origins.attest_target(document)
+        read_pe = self.origins.pe_reader(data)
+        validate = self.origins.validate_rule_evidence
+        self.assertEqual(validate(rule, selected, rows, data, read_pe), [])
+
+        changed = dict(rule)
+        edges = [dict(entry) for entry in rule["required_direct_edges"]]
+        edges[-1]["target"] = "0x004114C0"  # exact scenario call is configure
+        changed["required_direct_edges"] = edges
+        self.assertTrue(validate(changed, selected, rows, data, read_pe))
+
     def test_boost_throw_virtual_requires_terminal_runtime_edge(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)

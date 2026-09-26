@@ -12,9 +12,9 @@ instructions are not the active queue.
 - User-directed phase: clean misleading documentation/code, then review the
   remaining origin and candidate-boundary queue. The initial census was
   **4,023 candidates, 1,476 authored, 1,308 excluded, 1,239 in review**.
-  Twenty-seven evidence-linked origin/boundary batches are recorded in
+  Twenty-eight evidence-linked origin/boundary batches are recorded in
   [the focused review](ORIGIN_BOUNDARY_REVIEW_2026_09_26.md). The current
-  census is **1,491 authored / 1,414 excluded / 1,118 review**. Source-present
+  census is **1,494 authored / 1,414 excluded / 1,115 review**. Source-present
   remains 1,388; canonical exact remains 1,315 functions / 220,094 bytes.
   Recompute from `scripts/report-reconstruction-status.py --summary` after
   every promotion.
@@ -134,6 +134,12 @@ untextured lines or one untextured triangle strip. The binder also has an
 independent canonical-exact textured-primitive caller; its resource lookup
 callee is source-present. Their original class/TU boundaries and source
 implementations remain unselected.
+The 138/210/439-byte visual effect owner constructor/destructor/configure
+spans at `0x00411430/0x004114C0/0x004115A0` are complete and tied to ten
+E8 sites in six exact profile, network, and scenario callers. Configuration
+copies 0x128 bytes and creates a packed color or gradient table. The
+retained per-subsystem `0x194` class models are hypotheses; nearby runtime
+allocator/list helper origins remain separate pending work.
 
 ```bash
 python3 scripts/verify-target.py

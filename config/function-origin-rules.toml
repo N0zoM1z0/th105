@@ -2307,3 +2307,32 @@ required_selected_body_calls = [
   { owner = "0x004012A0", site = "0x00401347", target = "0x00401180", target_status = "identified" },
   { owner = "0x004012A0", site = "0x004013F5", target = "0x00404DF0", target_status = "identified" },
 ]
+
+[[rules]]
+id = "shared-visual-effect-owner-lifetime-configure-authored-106a"
+addresses = ["0x00411430", "0x004114C0", "0x004115A0"]
+expected_count = 3
+expected_bytes = 787
+expected_names = ["sub_411430", "sub_4114C0", "sub_4115A0"]
+origin = "authored_game"
+subsystem = "engine"
+disposition = "authored"
+confidence = "observed"
+evidence = "Three padding-isolated complete main spans form a 0x194-byte visual effect owner lifetime/configuration family. The 138-byte constructor writes game effect timing/flags and initializes owned color/list/string state; the 210-byte destructor releases that state; the 439-byte configure body copies 0x128 config bytes, creates a packed color or interpolated color table, and retires list payloads. Exact PlayerSlotRecord and NetworkSessionResult callers use the constructor/destructor, and six distinct exact profile/network/scenario callers configure the object. Ten exact E8 edges and all three body hashes are replayed. The original class/TU and source codegen remain unresolved; nearby allocator/list helpers retain separate origin review. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_body_hashes = [
+  { address = "0x00411430", size = 138, sha256 = "de916b659088e2537ea0915c832bd7df93a934638ac508840ae8260a018ef6ee" },
+  { address = "0x004114C0", size = 210, sha256 = "bca6292e5e37ba2aadd6231017c3dcc9e10d28807ba36ae84fec4e4af07aa2de" },
+  { address = "0x004115A0", size = 439, sha256 = "956579b761782920fcbd5bace551efbd03e12c27f8ab1adeefb4dd0a4147e535" },
+]
+required_direct_edges = [
+  { caller = "0x00431440", site = "0x00431482", target = "0x00411430", caller_status = "matching" },
+  { caller = "0x0044DCB0", site = "0x0044DCF4", target = "0x00411430", caller_status = "matching" },
+  { caller = "0x00431440", site = "0x004315E0", target = "0x004114C0", caller_status = "matching" },
+  { caller = "0x0044DCB0", site = "0x0044DEF2", target = "0x004114C0", caller_status = "matching" },
+  { caller = "0x00431440", site = "0x0043156B", target = "0x004115A0", caller_status = "matching" },
+  { caller = "0x00434AC0", site = "0x00434BD1", target = "0x004115A0", caller_status = "matching" },
+  { caller = "0x0043FCA0", site = "0x0043FD89", target = "0x004115A0", caller_status = "matching" },
+  { caller = "0x0044DCB0", site = "0x0044DDCA", target = "0x004115A0", caller_status = "matching" },
+  { caller = "0x00454EC0", site = "0x00454EFC", target = "0x004115A0", caller_status = "matching" },
+  { caller = "0x00454FE0", site = "0x00455026", target = "0x004115A0", caller_status = "matching" },
+]
