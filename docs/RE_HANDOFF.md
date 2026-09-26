@@ -5,19 +5,19 @@ session notes are preserved in [the dated rolling log](RE_HANDOFF_HISTORY_2026_0
 and the focused evidence files; their old "current", "paused", and "next"
 instructions are not the active queue.
 
-## Target and active phase
+## Target and current phase
 
 - Target: original Japanese TH10.5 v1.06a, SHA-256
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
-- User-directed phase: clean misleading documentation/code, then review the
-  remaining origin and candidate-boundary queue. The initial census was
+- User-directed cleanup and origin/boundary review work is paused after this
+  checkpoint. The initial census was
   **4,023 candidates, 1,476 authored, 1,308 excluded, 1,239 in review**.
-  Thirty-three evidence-linked origin/boundary batches are recorded in
+  Thirty-four evidence-linked origin/boundary batches are recorded in
   [the focused review](ORIGIN_BOUNDARY_REVIEW_2026_09_26.md). The current
-  census is **1,500 authored / 1,414 excluded / 1,109 review**. Source-present
+  census is **1,502 authored / 1,414 excluded / 1,107 review**. Source-present
   remains 1,388; canonical exact remains 1,315 functions / 220,094 bytes.
   Recompute from `scripts/report-reconstruction-status.py --summary` after
-  every promotion.
+  every promotion. Resume the remaining 1,107 reviews on user request.
 - The local target file passes hash verification. The attached IDA session
   currently exposes a different executable (SHA-256 beginning `10350095`),
   so do not use that session's output. Raw target PE disassembly is available.
@@ -164,7 +164,14 @@ The 686-byte family-1 checked-list traversal `0x0046DD40` and its
 542-byte pair resolver `0x0046CA80` both have complete target spans.
 The reviewed intermediate phase calls the traversal; it calls the pair
 resolver twice, which has eight terminal calls to exact collision-extents
-reset. Pair predicates, original source/TU and exact results stay open.
+reset. The pair predicate is reviewed below; original source/TU and exact
+results stay open.
+
+The 398-byte collision descriptor-pair test `0x0046BCA0` and its 252-byte
+nested shape test `0x0046BA10` have complete main spans. Their caller
+chain runs from the reviewed object-pair resolver, and nine outgoing
+calls land in exact game geometry helpers. Source/TU and exact status
+remain unresolved.
 
 ```bash
 python3 scripts/verify-target.py
@@ -174,8 +181,8 @@ python3 scripts/validate-tracking.py --require-target
 python3 scripts/function-origins.py --check
 ```
 
-The previous bounded YoumuObject action-entry root at `0x00543670` is parked
-while the review queue is active. Its target control flow reaches all
+The previous bounded YoumuObject action-entry root at `0x00543670` is parked.
+Its target control flow reaches all
 5,159/5,159 callable bytes, but the standalone candidate remains nonexact at
 `+0x80` with 6/30 instruction-and-edge-identical diagnostic owners. The
 820/850 tail-owner inversion and other physical differences are documented in

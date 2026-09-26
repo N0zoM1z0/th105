@@ -1110,8 +1110,8 @@ calls `0x0046CA80` for an accepted object pair at `0x0046DE75` and
 `0x0046DFB7`. The separately reviewed intermediate battle phase
 `0x0046DFF0` calls the traversal at `0x0046E48B`.
 
-`0x0046CA80` first calls still-unclassified pair predicate
-`0x0046BCA0`. On acceptance, it compares frame property words reached
+`0x0046CA80` first calls pair predicate `0x0046BCA0`, reviewed in the
+next section. On acceptance, it compares frame property words reached
 through each object's `+0x1A8` pointer, writes outcome codes 4/5/8 at
 object `+0x180`, adjusts a byte at `+0x184`, and calls canonical-exact
 `reset_collision_extents @ 0x0046B6C0` on each of its eight terminal
@@ -1119,10 +1119,45 @@ outcome paths. This is game collision state, independent of how the
 retained `Family1Clashes.cpp` spells the loops. The rule replays both
 full bodies, the three connecting E8 edges and all eight exact reset
 calls. These observations support `authored_game/battle` for both main
-spans. Pair-predicate ownership, original class/TU and source/exact
-codegen remain open.
+spans. Original class/TU and source/exact codegen remain open.
 
 ```bash
 python3 scripts/audit-candidate-boundaries.py 0x0046DD40 0x0046CA80 --json
+python3 scripts/function-origins.py --check
+```
+
+## Collision descriptor pair and nested shape tests
+
+Both target PE candidate spans are complete from entry with no
+unreached bytes, outgoing direct branch, indirect jump, or invalid
+decode; `INT3` bytes separate each from its neighbors:
+
+| Entry | Bytes | Full body SHA-256 | Returns |
+| --- | ---: | --- | --- |
+| `0x0046BCA0` | 398 | `16e4c866f3f10ab7056cc41a4e7d29389a94e62799d33384c1d00b406e146e4b` | `0x0046BE2B` (`RET 8`) |
+| `0x0046BA10` | 252 | `3be2cc0099c532a34618e3294822af7e05ae13518319cfa40a2a0570b49e247f` | `0x0046BB00/0x0046BB09` (`RET 0x10`) |
+
+`0x0046BCA0` receives two collision objects from the reviewed pair
+resolver `0x0046CA80` at E8 site `0x0046CA8F`. It walks each object's
+signed shape count at `+0x1B0`, its 0x10-byte descriptors at `+0x1B4`
+and an optional descriptor-pointer array at `+0x318`. Depending on
+which pointer is present, it calls the nested `0x0046BA10` test at
+`0x0046BD27`, canonical-exact
+`test_aabb_against_descriptor_shape @ 0x0046B7B0` at
+`0x0046BD41/0x0046BD9F`, or an inline AABB gate followed by exact
+`accumulate_collision_extents @ 0x0046B3B0` at `0x0046BDDD`.
+
+`0x0046BA10` performs an initial coarse signed-overlap check on two
+descriptors. On possible overlap it calls canonical-exact
+`test_descriptor_point_inside @ 0x0046B8B0` for five corner tests and,
+on success, `accumulate_descriptor_pair_extents @ 0x0046B5E0` at
+`0x0046BAF2`. The rule pins both complete bodies, the two connecting
+E8 sites and all nine exact helper E8s. The custom collision-object
+field layout and these exact game helper relationships support
+`authored_game/battle` origin at inferred confidence. Original class,
+TU boundary, source implementation and exact codegen remain unresolved.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py 0x0046BCA0 0x0046BA10 --json
 python3 scripts/function-origins.py --check
 ```

@@ -2502,7 +2502,7 @@ origin = "authored_game"
 subsystem = "battle"
 disposition = "authored"
 confidence = "observed"
-evidence = "Both 542/686-byte target PE main spans are entirely reachable and RET-terminated with no gaps or indirect/outgoing branches. The 686-byte body traverses two checked collision-object list passes and gates on object frame flags/status before calling the 542-byte pair resolver twice. The pair resolver reads each object's +0x1A8 frame property words, publishes outcomes at +0x180/+0x184, and calls exact reset_collision_extents on all eight terminal paths. The separately reviewed 0x0046DFF0 intermediate battle phase calls the list traversal. All three inbound E8 sites, eight exact reset-helper E8s and both body hashes are replayed. Upstream pair predicate 0x0046BCA0 and original source/TU remain unresolved. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+evidence = "Both 542/686-byte target PE main spans are entirely reachable and RET-terminated with no gaps or indirect/outgoing branches. The 686-byte body traverses two checked collision-object list passes and gates on object frame flags/status before calling the 542-byte pair resolver twice. The pair resolver reads each object's +0x1A8 frame property words, publishes outcomes at +0x180/+0x184, and calls exact reset_collision_extents on all eight terminal paths. The separately reviewed 0x0046DFF0 intermediate battle phase calls the list traversal. All three inbound E8 sites, eight exact reset-helper E8s and both body hashes are replayed. Pair predicate 0x0046BCA0 has its own later origin review; original source/TU remain unresolved. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
 required_body_hashes = [
   { address = "0x0046CA80", size = 542, sha256 = "ea54fb25e5ab2ac5e4b7c2dc17792e6073ef654b22b20a06fce6a9887c1257d6" },
   { address = "0x0046DD40", size = 686, sha256 = "aa250ed95904cbc1b0d78f04b2f4a09ef1bcd53f844cc298140474e89f2ea8ec" },
@@ -2521,4 +2521,35 @@ required_selected_body_calls = [
   { owner = "0x0046CA80", site = "0x0046CC2F", target = "0x0046B6C0" },
   { owner = "0x0046CA80", site = "0x0046CC57", target = "0x0046B6C0" },
   { owner = "0x0046CA80", site = "0x0046CC93", target = "0x0046B6C0" },
+]
+
+[[rules]]
+id = "collision-descriptor-pair-tests-authored-106a"
+addresses = ["0x0046BA10", "0x0046BCA0"]
+expected_count = 2
+expected_bytes = 650
+expected_names = ["sub_46BA10", "sub_46BCA0"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "inferred"
+evidence = "Both target PE spans are fully reachable with plain RET 0x10/RET 8 paths and INT3-separated boundaries. The 398-byte pair test iterates game collision-object shape counts at +0x1B0, 0x10-byte descriptors at +0x1B4 and descriptor pointers at +0x318; it calls exact target descriptor/AABB and extent helpers. Its 252-byte nested four-argument shape test first checks coarse overlap, then uses the exact point-inside helper on five corners and exact descriptor-pair extent accumulation on success. The reviewed object-pair resolver 0x0046CA80 calls the pair test, which calls the shape test. Two connecting E8s, nine exact helper E8s and both complete body hashes are replayed. This supports game collision ownership, with original class/TU and source codegen unproved. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_body_hashes = [
+  { address = "0x0046BA10", size = 252, sha256 = "3be2cc0099c532a34618e3294822af7e05ae13518319cfa40a2a0570b49e247f" },
+  { address = "0x0046BCA0", size = 398, sha256 = "16e4c866f3f10ab7056cc41a4e7d29389a94e62799d33384c1d00b406e146e4b" },
+]
+required_direct_edges = [
+  { caller = "0x0046CA80", site = "0x0046CA8F", target = "0x0046BCA0", caller_status = "identified" },
+  { caller = "0x0046BCA0", site = "0x0046BD27", target = "0x0046BA10", caller_status = "identified" },
+]
+required_selected_body_calls = [
+  { owner = "0x0046BCA0", site = "0x0046BD41", target = "0x0046B7B0" },
+  { owner = "0x0046BCA0", site = "0x0046BD9F", target = "0x0046B7B0" },
+  { owner = "0x0046BCA0", site = "0x0046BDDD", target = "0x0046B3B0" },
+  { owner = "0x0046BA10", site = "0x0046BA6F", target = "0x0046B8B0" },
+  { owner = "0x0046BA10", site = "0x0046BA84", target = "0x0046B8B0" },
+  { owner = "0x0046BA10", site = "0x0046BAA5", target = "0x0046B8B0" },
+  { owner = "0x0046BA10", site = "0x0046BAC7", target = "0x0046B8B0" },
+  { owner = "0x0046BA10", site = "0x0046BADF", target = "0x0046B8B0" },
+  { owner = "0x0046BA10", site = "0x0046BAF2", target = "0x0046B5E0" },
 ]
