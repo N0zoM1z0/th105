@@ -198,6 +198,22 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertTrue(verify(rule, [source], [source], b"", lambda *_: body))
         self.assertTrue(verify(rule, [source], [{**source, "size": "6"}, target], b"", lambda *_: body))
 
+    def test_msvc_runtime_relocation_targets_use_linked_x86_fields(self) -> None:
+        base = 0x401000
+        code = b"\x3B\x0D" + struct.pack("<I", 0x6F7A88) + b"\xE9" + struct.pack(
+            "<i", 0x68FCFC - (base + 11)
+        )
+        self.assertEqual(
+            self.origins.replayed_msvc_relocation_target(code, base, 2, 0x0006),
+            0x6F7A88,
+        )
+        self.assertEqual(
+            self.origins.replayed_msvc_relocation_target(code, base, 7, 0x0014),
+            0x68FCFC,
+        )
+        with self.assertRaises(ValueError):
+            self.origins.replayed_msvc_relocation_target(code, base, 2, 0x9999)
+
     def test_candidate_boundary_audit_keeps_branches_and_gaps_distinct(self) -> None:
         start = 0x401000
         code = b"\x74\x01\xC3\xC3"

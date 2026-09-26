@@ -1,0 +1,19 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+min_nonreloc_coverage = 0.45
+min_nonreloc_bytes = 7
+
+# This short function has only seven non-relocation bytes. The complete
+# inventory fingerprint is unique, and both COFF relocation symbols and their
+# actual target addresses are checked before granting runtime provenance.
+[[anchors]]
+address = "0x00689D25"
+size = 15
+library = "libcmt"
+object = "build/intel/mt_obj/secchk.obj"
+symbol = "@__security_check_cookie@4"
+inventory_hits = ["0x00689D25"]
+relocation_targets = [
+  { offset = 2, type = 6, symbol = "___security_cookie", target = "0x006F7A88" },
+  { offset = 11, type = 20, symbol = "___report_gsfailure", target = "0x0068FCFC" },
+]

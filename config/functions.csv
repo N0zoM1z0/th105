@@ -3065,7 +3065,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00689C5A,33,0x00689C7A,__IsExceptionObjectToBeDestroyed,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00689C7B,76,0x00689CC6,__FindAndUnlinkFrame,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00689CC7,94,0x00689D24,?_CallCatchBlock2@@YAPAXPAUEHRegistrationNode@@PBU_s_FuncInfo@@PAXHK@Z,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00689D25,15,0x00689D33,sub_689D25,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00689D25,15,0x00689D33,sub_689D25,__security_check_cookie,,identified,0.00,,,false,,Hash-attested 1.06a 15/15 CFG with RET and failure tail; full non-relocation bytes and both COFF relocations replay against SHA-pinned VC8 SP1 libcmt secchk.obj; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Runtime archive symbol @__security_check_cookie@4; not authored source or exact game-match credit.
 0x00689D34,96,0x00689D93,__cfltcvt_init,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00689D94,30,0x00689DB1,__fpmath,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00689DB2,25,0x00689DCA,??0bad_alloc@std@@QAE@XZ,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

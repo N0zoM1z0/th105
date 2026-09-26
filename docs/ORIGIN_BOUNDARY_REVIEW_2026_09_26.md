@@ -91,3 +91,21 @@ python3 scripts/audit-candidate-boundaries.py \
   0x0046B1F0 0x00665B8A 0x006898EA 0x0068AA26 0x0068B1B7 --json
 python3 scripts/function-origins.py --check
 ```
+
+## VC8 security-cookie check at `0x00689D25`
+
+The hash-attested raw PE candidate spans 15 bytes. Its reachable code compares
+ECX against `[0x006F7A88]`, returns on equality, and tail-jumps to
+`0x0068FCFC` on failure. SHA-pinned VC8 SP1 `libcmt.lib`, member
+`build/intel/mt_obj/secchk.obj`, defines the 15-byte
+`@__security_check_cookie@4` function. All seven non-relocation bytes agree;
+the complete 4,023-candidate fingerprint hit set is only `0x00689D25`.
+The member's DIR32 `___security_cookie` field resolves to `0x006F7A88`,
+and its REL32 `___report_gsfailure` field resolves to `0x0068FCFC` in the
+target. The short-anchor rule checks the archive hash, COFF function extent,
+full hit set, relocation types/symbols, and both resolved addresses.
+
+This is `vc8_runtime/exclude`, with a complete 15-byte boundary and no game
+source or canonical exact credit. The narrow short-anchor threshold applies
+only with explicit relocation destinations; the established broader runtime
+anchor threshold remains unchanged.

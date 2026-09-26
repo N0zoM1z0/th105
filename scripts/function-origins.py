@@ -181,6 +181,14 @@ def msvc_runtime_function_text(
     return body, relocations
 
 
+def replayed_msvc_relocation_target(code: bytes, base: int, offset: int, kind: int) -> int:
+    if kind == 0x0006:
+        return struct.unpack_from("<I", code, offset)[0]
+    if kind == 0x0014:
+        return base + offset + 4 + struct.unpack_from("<i", code, offset)[0]
+    raise ValueError(f"unsupported VC8 relocation kind {kind:#x}")
+
+
 def load_msvc_archive_symbols() -> set[str]:
     """Return all defined COFF symbols from the SHA-pinned VC8 SP1 archives."""
     module = load_msvc_archive_module()
@@ -747,6 +755,25 @@ def validate_msvc_runtime_anchor_evidence(
         ):
             errors.append(f"{rule['id']}: {address} no longer matches MSVC runtime fingerprint")
             continue
+        expected_relocations = anchor.get("relocation_targets")
+        if expected_relocations is not None:
+            expected = sorted(
+                (
+                    int(item["offset"]), int(str(item["type"]), 0),
+                     str(item["symbol"]), int(str(item["target"]), 0))
+                for item in expected_relocations
+            )
+            observed = sorted(
+                (
+                    offset, kind, name,
+                     replayed_msvc_relocation_target(actual, int(address, 0), offset, kind))
+                for offset, kind, name in relocations
+            )
+            if expected != observed:
+                errors.append(
+                    f"{rule['id']}: {address} VC8 relocation symbols or target addresses differ"
+                )
+                continue
         candidates = [
             other["address"]
             for other in rows
