@@ -398,3 +398,29 @@ python3 scripts/audit-candidate-boundaries.py \
   0x006B4D40 0x006B4D80 0x006B4DA0 0x006B4DE0 --json
 python3 scripts/function-origins.py --check
 ```
+
+## Four Boost `clone_impl` throw virtuals
+
+The four 55-byte candidates `0x006A84E0`, `0x006A96B0`, `0x006B5110`,
+and `0x006B5400` are the second virtual-function slots in distinct Boost
+`exception_detail::clone_impl` RTTI vtables. Each body reaches all 55 bytes,
+copies a class-specific exception into a stack temporary through its own
+helper, writes the vptrs belonging to that RTTI class, and ends in a direct
+E8 to the independently identified VC8 `__CxxThrowException @ 0x0068A153`.
+`INT3` follows each terminal call. There is no ordinary RET; the boundary
+auditor conservatively reports an outgoing fallthrough because it does not
+model the runtime call as no-return.
+
+The origin rule pins full body hashes, both E8 destinations, vtable slots,
+adjacent VC8 RTTI locators, Boost type descriptors, and the terminal throw
+edge. These virtual throw/rethrow implementations belong to Boost template
+code (`third_party/exclude`, inferred). Their helper callees remain separate
+pending candidates. The four related 120-byte clone/allocate methods have EH
+registration and are still under boundary and origin review, as is the exact
+Boost release. No source-present or canonical exact credit changes.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py \
+  0x006A84E0 0x006A96B0 0x006B5110 0x006B5400 --json
+python3 scripts/function-origins.py --check
+```

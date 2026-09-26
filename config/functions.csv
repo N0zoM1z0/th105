@@ -3762,7 +3762,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006A8370,46,0x006A839D,sub_6A8370,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A83A0,185,0x006A8458,sub_6A83A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A8460,120,0x006A84D7,sub_6A8460,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006A84E0,55,0x006A8516,sub_6A84E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006A84E0,55,0x006A8516,sub_6A84E0,,,identified,0.00,__thiscall,,false,,All 55 target bytes decode through a terminal E8 to VC8 __CxxThrowException with INT3 after; Boost clone_impl RTTI vtable slot and copied exception code pinned in origin rule,,No RET because throw runtime does not return; related clone allocation methods remain pending
 0x006A8520,137,0x006A85A8,sub_6A8520,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A85B0,201,0x006A8678,sub_6A85B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A8680,151,0x006A8716,sub_6A8680,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -3785,7 +3785,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006A95D0,46,0x006A95FD,sub_6A95D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A9600,39,0x006A9626,sub_6A9600,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A9630,120,0x006A96A7,sub_6A9630,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006A96B0,55,0x006A96E6,sub_6A96B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006A96B0,55,0x006A96E6,sub_6A96B0,,,identified,0.00,__thiscall,,false,,All 55 target bytes decode through a terminal E8 to VC8 __CxxThrowException with INT3 after; Boost clone_impl RTTI vtable slot and copied exception code pinned in origin rule,,No RET because throw runtime does not return; related clone allocation methods remain pending
 0x006A96F0,31,0x006A970E,sub_6A96F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A9710,96,0x006A976F,sub_6A9710,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A9780,105,0x006A97E8,sub_6A9780,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -3924,7 +3924,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006B4FC0,154,0x006B5059,sub_6B4FC0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B5060,46,0x006B508D,sub_6B5060,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B5090,120,0x006B5107,sub_6B5090,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006B5110,55,0x006B5146,sub_6B5110,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006B5110,55,0x006B5146,sub_6B5110,,,identified,0.00,__thiscall,,false,,All 55 target bytes decode through a terminal E8 to VC8 __CxxThrowException with INT3 after; Boost clone_impl RTTI vtable slot and copied exception code pinned in origin rule,,No RET because throw runtime does not return; related clone allocation methods remain pending
 0x006B5150,87,0x006B51A6,sub_6B5150,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B51B0,67,0x006B51F2,sub_6B51B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B5200,31,0x006B521E,sub_6B5200,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -3932,7 +3932,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006B52E0,96,0x006B533F,sub_6B52E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B5350,46,0x006B537D,sub_6B5350,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B5380,120,0x006B53F7,sub_6B5380,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006B5400,55,0x006B5436,sub_6B5400,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006B5400,55,0x006B5436,sub_6B5400,,,identified,0.00,__thiscall,,false,,All 55 target bytes decode through a terminal E8 to VC8 __CxxThrowException with INT3 after; Boost clone_impl RTTI vtable slot and copied exception code pinned in origin rule,,No RET because throw runtime does not return; related clone allocation methods remain pending
 0x006B5440,31,0x006B545E,sub_6B5440,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B5460,6,0x006B5465,sub_6B5460,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B5470,194,0x006B5531,sub_6B5470,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

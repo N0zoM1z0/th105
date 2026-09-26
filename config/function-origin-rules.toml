@@ -1856,3 +1856,21 @@ required_rtti_deleting_dtors = [
   { address = "0x006B4DA0", size = 57, sha256 = "75ac774b65877033a2ae7d0aa4265f6eebca8e23b43de88443aeb58b6b82fe45", slot = "0x006D68A0", col = "0x006DC5E8", type_descriptor = "0x006F9BE0", destructor_site = "0x006B4DBE", destructor = "0x006B4C90", free_site = "0x006B4DCB" },
   { address = "0x006B4DE0", size = 30, sha256 = "c8edbd6ada5ff1a863ccce22d0af139e24c2fdd105b43c91b5b1b2ed00b1eb0b", slot = "0x006D687C", col = "0x006DC580", type_descriptor = "0x006F9B90", destructor_site = "0x006B4DE3", destructor = "0x006B4C90", free_site = "0x006B4DF0" },
 ]
+
+[[rules]]
+id = "boost-exception-clone-throw-virtuals-106a"
+addresses = ["0x006A84E0", "0x006A96B0", "0x006B5110", "0x006B5400"]
+expected_count = 4
+expected_bytes = 220
+expected_names = ["sub_6A84E0", "sub_6A96B0", "sub_6B5110", "sub_6B5400"]
+origin = "third_party"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "inferred"
+evidence = "Four 55-byte no-return clone_impl virtual methods occupy Boost exception RTTI vtable slots. Each copies its class-specific exception object into a stack temporary, pins the associated vptr writes in a full target body hash, then ends with a direct call to the independently excluded VC8 __CxxThrowException runtime entry; INT3 immediately follows. The rule replays the exact virtual pointer, adjacent VC8 COL and Boost type descriptor, both signed E8 edges, full body hash, and terminal throw call. These are Boost-defined throw/rethrow template methods, not game-authored; four 120-byte clone/allocate methods with EH registration remain separate under review. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_rtti_virtual_bodies = [
+  { address = "0x006A84E0", size = 55, sha256 = "b7a526721fa7aa5370f546e09394bb99d4807649fffa855bd3f6d02c5621a50c", slot = "0x006D5EA4", col_slot = "0x006D5E9C", col = "0x006DC328", type_descriptor = "0x006F96A0", type_name_contains = "exception_detail@boost@@", terminal_call = "0x0068A153", calls = [{ site = "0x006A84EB", target = "0x006A5E40" }, { site = "0x006A8512", target = "0x0068A153" }] },
+  { address = "0x006A96B0", size = 55, sha256 = "ced27893b68d7899fcb1f144be5a344a085200d87c2b4f00f44a6ce42762e0c3", slot = "0x006D5E6C", col_slot = "0x006D5E64", col = "0x006DC23C", type_descriptor = "0x006F95D0", type_name_contains = "exception_detail@boost@@", terminal_call = "0x0068A153", calls = [{ site = "0x006A96BB", target = "0x006A7310" }, { site = "0x006A96E2", target = "0x0068A153" }] },
+  { address = "0x006B5110", size = 55, sha256 = "02de7453d61fc6d4f345df560e84e7706ec5574da19b4316925e27d8d7f9fc43", slot = "0x006D688C", col_slot = "0x006D6884", col = "0x006DC658", type_descriptor = "0x006F9BE0", type_name_contains = "exception_detail@boost@@", terminal_call = "0x0068A153", calls = [{ site = "0x006B511B", target = "0x006B4E60" }, { site = "0x006B5142", target = "0x0068A153" }] },
+  { address = "0x006B5400", size = 55, sha256 = "5345f95174e632fb5904712b7695738279247ce66185a6450712348c0c95a329", slot = "0x006D6854", col_slot = "0x006D684C", col = "0x006DC56C", type_descriptor = "0x006F9B18", type_name_contains = "exception_detail@boost@@", terminal_call = "0x0068A153", calls = [{ site = "0x006B540B", target = "0x006B4FC0" }, { site = "0x006B5432", target = "0x0068A153" }] },
+]

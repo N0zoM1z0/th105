@@ -1411,6 +1411,72 @@ def validate_rule_evidence(
             or free_target != 0x006898EA
         ):
             errors.append(f"{rule_id}: RTTI deleting destructor 0x{address:08X} body/vtable/calls differ")
+    rtti_virtuals = rule.get("required_rtti_virtual_bodies", [])
+    if rtti_virtuals and (
+        len(rtti_virtuals) != len(selected_addresses)
+        or {str(method["address"]).upper() for method in rtti_virtuals} != selected_addresses
+    ):
+        errors.append(f"{rule_id}: RTTI virtual witnesses do not cover selected candidates exactly")
+    for method in rtti_virtuals:
+        address = int(str(method["address"]), 0)
+        size = int(method["size"])
+        slot = int(str(method["slot"]), 0)
+        col_slot = int(str(method["col_slot"]), 0)
+        expected_col = int(str(method["col"]), 0)
+        expected_type = int(str(method["type_descriptor"]), 0)
+        key = f"0x{address:08X}".upper()
+        if key not in selected_addresses or int(row_by_address[key]["size"], 0) != size:
+            errors.append(f"{rule_id}: RTTI virtual 0x{address:08X} has wrong selection or size")
+            continue
+        if slot % 4 or col_slot % 4 or not 4 <= slot - col_slot <= 64:
+            errors.append(f"{rule_id}: RTTI virtual 0x{address:08X} has invalid vtable slot spacing")
+            continue
+        try:
+            if any(pe_raw_section_name(data, pointer) != ".rdata" for pointer in (slot, col_slot, expected_col)):
+                raise ValueError("vtable or RTTI locator is outside .rdata")
+            body = read_pe(address, size)
+            pointed = struct.unpack("<I", read_pe(slot, 4))[0]
+            col = struct.unpack("<I", read_pe(col_slot, 4))[0]
+            vtable_is_text = all(
+                pe_raw_section_name(data, struct.unpack("<I", read_pe(pointer, 4))[0]) == ".text"
+                for pointer in range(col_slot + 4, slot + 4, 4)
+            )
+            signature, _offset, cd_offset, type_descriptor, _hierarchy = struct.unpack(
+                "<IIIII", read_pe(col, 20)
+            )
+            type_name = read_pe(type_descriptor + 8, 192).split(b"\x00", 1)[0]
+        except (ValueError, struct.error) as exc:
+            errors.append(f"{rule_id}: RTTI virtual 0x{address:08X}: {exc}")
+            continue
+        expected_fragment = str(method["type_name_contains"]).encode("ascii")
+        if (
+            hashlib.sha256(body).hexdigest() != method["sha256"]
+            or pointed != address
+            or not vtable_is_text
+            or col != expected_col
+            or signature != 0
+            or cd_offset != 0
+            or type_descriptor != expected_type
+            or expected_fragment not in type_name
+        ):
+            errors.append(f"{rule_id}: RTTI virtual 0x{address:08X} body/vtable/type differs")
+        for edge in method.get("calls", []):
+            site = int(str(edge["site"]), 0)
+            target = int(str(edge["target"]), 0)
+            if not address <= site <= address + size - 5:
+                errors.append(f"{rule_id}: RTTI virtual 0x{address:08X} has out-of-body E8 site")
+                continue
+            code = read_pe(site, 5)
+            actual = site + 5 + struct.unpack_from("<i", code, 1)[0]
+            if code[0] != 0xE8 or actual != target:
+                errors.append(f"{rule_id}: RTTI virtual 0x{address:08X} E8 site 0x{site:08X} differs")
+        terminal_call = method.get("terminal_call")
+        if terminal_call is not None:
+            target = int(str(terminal_call), 0)
+            code = body[-5:]
+            actual = address + size + struct.unpack_from("<i", code, 1)[0]
+            if code[0] != 0xE8 or actual != target:
+                errors.append(f"{rule_id}: RTTI virtual 0x{address:08X} does not end in the pinned call")
     for body in rule.get("required_body_hashes", []):
         address = int(str(body["address"]), 0)
         size = int(body["size"])

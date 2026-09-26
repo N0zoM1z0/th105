@@ -24,8 +24,9 @@ instructions are not the active queue.
   text-texture wrapper `0x00404D00`; the eleventh establishes authored profile
   message update `0x0043F6E0`; the twelfth identifies twelve compiler-emitted
   Boost exception RTTI adjustor thunks; the thirteenth reviews eight related
-  scalar deleting destructors. The resulting census is
-  **1,483 authored / 1,379 excluded / 1,161 review**. Source-present remains
+  scalar deleting destructors; the fourteenth reviews four Boost `clone_impl`
+  throw virtuals. The resulting census is
+  **1,483 authored / 1,383 excluded / 1,157 review**. Source-present remains
   1,388; canonical exact remains 1,315 functions / 220,094 bytes. Recompute from
   `scripts/report-reconstruction-status.py --summary` after every promotion.
 - The local target file passes hash verification. The attached IDA session
@@ -93,7 +94,9 @@ still nonexact. Twelve eight-byte Boost exception vtable entries subtract the
 offset in their adjacent VC8 RTTI locator from ECX and tail-jump to a separate
 candidate. Eight primary virtual deleting destructors in the same Boost RTTI
 families have complete 30/57-byte bodies and a conditional call to the
-excluded free alias. Their underlying destructor origins remain open.
+excluded free alias. Four `clone_impl` virtuals end in the pinned VC8
+`__CxxThrowException` call after copying an exception temporary. Their
+underlying destructor/copy-helper origins remain open.
 
 ```bash
 python3 scripts/verify-target.py
