@@ -1598,6 +1598,124 @@ def validate_rule_evidence(
                 or b"exception_detail@boost@@" not in type_name
             ):
                 errors.append(f"{rule_id}: RTTI copy helper 0x{address:08X} vptr/COL differs")
+    array_adjustors = rule.get("required_array_adjustor_callbacks", [])
+    if array_adjustors and (
+        len(array_adjustors) != len(selected_addresses)
+        or {str(item["address"]).upper() for item in array_adjustors} != selected_addresses
+    ):
+        errors.append(f"{rule_id}: array adjustor witnesses do not cover selected candidates exactly")
+    for item in array_adjustors:
+        address = int(str(item["address"]), 0)
+        key = f"0x{address:08X}".upper()
+        target = int(str(item["target"]), 0)
+        target_key = f"0x{target:08X}".upper()
+        if (
+            key not in selected_addresses
+            or int(row_by_address[key]["size"], 0) != 8
+            or target_key not in row_by_address
+            or int(row_by_address[target_key]["size"], 0) != int(item["target_size"])
+        ):
+            errors.append(f"{rule_id}: array adjustor 0x{address:08X} has wrong selection or target")
+            continue
+        try:
+            body = read_pe(address, 8)
+            target_body = read_pe(target, int(item["target_size"]))
+        except ValueError as exc:
+            errors.append(f"{rule_id}: array adjustor 0x{address:08X}: {exc}")
+            continue
+        actual_target = address + 8 + struct.unpack_from("<i", body, 4)[0]
+        if (
+            hashlib.sha256(body).hexdigest() != item["sha256"]
+            or body[:2] != b"\x83\xC1"
+            or body[2] != int(item["this_offset"])
+            or body[3] != 0xE9
+            or actual_target != target
+            or hashlib.sha256(target_body).hexdigest() != item["target_sha256"]
+            or len(item["array_uses"]) != 2
+        ):
+            errors.append(f"{rule_id}: array adjustor 0x{address:08X} body/target differs")
+        for use in item["array_uses"]:
+            owner = int(str(use["owner"]), 0)
+            owner_key = f"0x{owner:08X}".upper()
+            pointer_site = int(str(use["pointer_site"]), 0)
+            call_site = int(str(use["array_call_site"]), 0)
+            expected_array_target = int(str(use["array_target"]), 0)
+            owner_row = row_by_address.get(owner_key)
+            if (
+                owner_row is None
+                or owner_row["status"] != "matching"
+                or not owner <= pointer_site - 1 < call_site < owner + int(owner_row["size"], 0) - 4
+                or call_site - pointer_site > 32
+            ):
+                errors.append(f"{rule_id}: array adjustor 0x{address:08X} has invalid exact-owner use")
+                continue
+            try:
+                push = read_pe(pointer_site - 1, 5)
+                call = read_pe(call_site, 5)
+            except ValueError as exc:
+                errors.append(f"{rule_id}: array adjustor 0x{address:08X} use: {exc}")
+                continue
+            actual_array_target = call_site + 5 + struct.unpack_from("<i", call, 1)[0]
+            if (
+                push[0] != 0x68
+                or struct.unpack_from("<I", push, 1)[0] != address
+                or call[0] != 0xE8
+                or actual_array_target != expected_array_target
+            ):
+                errors.append(f"{rule_id}: array adjustor 0x{address:08X} callback path differs")
+    cleanup_tail = rule.get("required_rtti_eh_cleanup_tail")
+    if cleanup_tail:
+        address = int(str(cleanup_tail["address"]), 0)
+        target = int(str(cleanup_tail["target"]), 0)
+        action = int(str(cleanup_tail["action"]), 0)
+        vptr = int(str(cleanup_tail["vptr"]), 0)
+        expected_col = int(str(cleanup_tail["col"]), 0)
+        expected_type = int(str(cleanup_tail["type_descriptor"]), 0)
+        key = f"0x{address:08X}".upper()
+        target_key = f"0x{target:08X}".upper()
+        if (
+            selected_addresses != {key}
+            or int(row_by_address[key]["size"], 0) != 11
+            or target_key not in row_by_address
+            or int(row_by_address[target_key]["size"], 0) != int(cleanup_tail["target_size"])
+        ):
+            errors.append(f"{rule_id}: RTTI EH cleanup tail has wrong selection or target")
+        else:
+            try:
+                if any(pe_raw_section_name(data, pointer) != ".rdata" for pointer in (vptr, expected_col)):
+                    raise ValueError("vtable or RTTI locator outside .rdata")
+                body = read_pe(address, 11)
+                target_body = read_pe(target, int(cleanup_tail["target_size"]))
+                action_body = read_pe(action, 8)
+                col = struct.unpack("<I", read_pe(vptr - 4, 4))[0]
+                signature, offset, cd_offset, type_descriptor, _hierarchy = struct.unpack(
+                    "<IIIII", read_pe(col, 20)
+                )
+                type_name = read_pe(type_descriptor + 8, 120).split(b"\x00", 1)[0]
+            except (ValueError, struct.error) as exc:
+                errors.append(f"{rule_id}: RTTI EH cleanup tail: {exc}")
+            else:
+                actual_target = address + 11 + struct.unpack_from("<i", body, 7)[0]
+                action_target = action + 8 + struct.unpack_from("<i", action_body, 4)[0]
+                if (
+                    hashlib.sha256(body).hexdigest() != cleanup_tail["sha256"]
+                    or body[:2] != b"\xC7\x01"
+                    or struct.unpack_from("<I", body, 2)[0] != vptr
+                    or body[6] != 0xE9
+                    or actual_target != target
+                    or hashlib.sha256(target_body).hexdigest() != cleanup_tail["target_sha256"]
+                    or hashlib.sha256(action_body).hexdigest() != cleanup_tail["action_sha256"]
+                    or action_body[:3] != b"\x8B\x4D\xF0"
+                    or action_body[3] != 0xE9
+                    or action_target != address
+                    or col != expected_col
+                    or signature != 0
+                    or offset != 0
+                    or cd_offset != 0
+                    or type_descriptor != expected_type
+                    or b"invalid_argument@std@@" not in type_name
+                ):
+                    errors.append(f"{rule_id}: RTTI EH cleanup tail body/action/RTTI differs")
     rtti_virtuals = rule.get("required_rtti_virtual_bodies", [])
     if rtti_virtuals and (
         len(rtti_virtuals) != len(selected_addresses)

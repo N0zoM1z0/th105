@@ -12,9 +12,9 @@ instructions are not the active queue.
 - User-directed phase: clean misleading documentation/code, then review the
   remaining origin and candidate-boundary queue. The initial census was
   **4,023 candidates, 1,476 authored, 1,308 excluded, 1,239 in review**.
-  Twenty-three evidence-linked origin/boundary batches are recorded in
+  Twenty-four evidence-linked origin/boundary batches are recorded in
   [the focused review](ORIGIN_BOUNDARY_REVIEW_2026_09_26.md). The current
-  census is **1,487 authored / 1,409 excluded / 1,127 review**. Source-present
+  census is **1,487 authored / 1,412 excluded / 1,124 review**. Source-present
   remains 1,388; canonical exact remains 1,315 functions / 220,094 bytes.
   Recompute from `scripts/report-reconstruction-status.py --summary` after
   every promotion.
@@ -67,7 +67,8 @@ free-call edges, and the same registration mechanism. Ten smaller callback
 bodies have direct `_atexit` registration and complete main spans. Three
 simple aliases without that witness stay in review. The bounded proximity
 screen's two other hits `0x0043BF50/60` feed the VC8 array constructor
-before the nearby `_atexit` call and also remain in review. The KERNEL32
+before the nearby `_atexit` call; `0x0043BF50` now has a separate generated
+destructor-callback review, while `0x0043BF60` remains in review. The KERNEL32
 `0x006B55C0/0x006B5ECA` thunks have exact six-byte boundaries and IAT
 name/slot witnesses. The 400-byte `__free_lc_time @ 0x0069CCD9` and 31-byte
 `__allshl @ 0x006B6D00` have complete VC8 archive extents and full-inventory
@@ -113,8 +114,12 @@ remains unresolved despite identical instruction shape.
 Four 147/153/147/154-byte Boost exception injector copy helpers now have
 complete main spans, two reviewed clone callers each, primary/secondary
 Boost RTTI vptr links and three pinned one-state VC8 EH cleanup chains.
-Their source TU boundaries and two underlying cleanup/base origins remain
-separate questions.
+Their source TU boundaries and the underlying `0x004017A0` base-copy origin
+remain separate questions.
+Two eight-byte subobject destructor adjustors are pinned by exact
+constructor/destructor callback pushes into VC8 vector lifetime iterators;
+an 11-byte `std::invalid_argument` EH cleanup thunk is pinned by RTTI and
+the Boost injector unwind action. Unreferenced lookalikes stay in review.
 
 ```bash
 python3 scripts/verify-target.py

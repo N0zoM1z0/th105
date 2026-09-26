@@ -2016,6 +2016,35 @@ required_vc8_eh_unwind = { owner = "0x006B4E60", handler_push_site = "0x006B4E62
 ] }
 
 [[rules]]
+id = "vc8-array-subobject-dtor-adjustors-106a"
+addresses = ["0x0043BF50", "0x0046EAF0"]
+expected_count = 2
+expected_bytes = 16
+expected_names = ["sub_43BF50", "sub_46EAF0"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "inferred"
+evidence = "Two complete 8-byte ECX subobject adjustors tail-jump to separately excluded 104-byte checked-container destructor 0x00420A80. Canonical-exact CNetworkBase and CInfoManagerBase constructors/destructors each push the address of their respective adjustor into excluded VC8 vector constructor/destructor iterator calls. The rule pins all four exact callback uses, array-runtime E8 destinations, complete thunk and destination bodies. Similar unreferenced 0x0043BE90 remains under review. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_array_adjustor_callbacks = [
+  { address = "0x0043BF50", sha256 = "8c5c9e55bb5492953d56331a1f06857650f9606a15a98aeef152f096d1efb6ae", this_offset = 8, target = "0x00420A80", target_size = 104, target_sha256 = "62132bfbd9ff6659ada63f911f31b33e1ece341386256c4fec59826882e92f73", array_uses = [{ owner = "0x0043C950", pointer_site = "0x0043C9CA", array_call_site = "0x0043C9DE", array_target = "0x0068A2A9" }, { owner = "0x0044DB10", pointer_site = "0x0044DBD5", array_call_site = "0x0044DBEE", array_target = "0x0068A30C" }] },
+  { address = "0x0046EAF0", sha256 = "598d95a6fd7086c336fcf822d55fa9f8ff71f8125501640b9b974d0bca9b8a90", this_offset = 32, target = "0x00420A80", target_size = 104, target_sha256 = "62132bfbd9ff6659ada63f911f31b33e1ece341386256c4fec59826882e92f73", array_uses = [{ owner = "0x0046F5D0", pointer_site = "0x0046F63A", array_call_site = "0x0046F653", array_target = "0x0068A30C" }, { owner = "0x0046F6A0", pointer_site = "0x0046F6EF", array_call_site = "0x0046F703", array_target = "0x0068A2A9" }] },
+]
+
+[[rules]]
+id = "boost-invalid-argument-eh-cleanup-tail-106a"
+addresses = ["0x00665AC7"]
+expected_count = 1
+expected_bytes = 11
+expected_names = ["sub_665AC7"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "inferred"
+evidence = "Complete 11-byte target EH cleanup thunk publishes the VC8 RTTI-owned std::invalid_argument vptr and tail-jumps to the separately excluded generated base cleanup 0x00401740. The one-state Boost error_info_injector copy-helper EH action 0x006BC9D0 tail-jumps to this thunk. Body/action hashes, RTTI locator/type and target body are pinned. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_rtti_eh_cleanup_tail = { address = "0x00665AC7", sha256 = "ce053ba90f6be1d9048be5a83e2aac3d20916137d1abc40eb85e58c86a240a6b", vptr = "0x006C7548", col = "0x006DBDF0", type_descriptor = "0x006E9160", target = "0x00401740", target_size = 50, target_sha256 = "5c856497eaf9580adf0d1076fc7803e24180b72d6728c8b7a03ddf1ca8104939", action = "0x006BC9D0", action_sha256 = "36a3331d40df9eebb59524018f3a173addd4b824425454ac40b876f009445f56" }
+
+[[rules]]
 id = "network-client-send-packet-authored-106a"
 addresses = ["0x00416990"]
 expected_count = 1

@@ -1269,7 +1269,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0043BEA0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043BEF0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043BF20,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
-0x0043BF50,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0043BF50,compiler_generated,runtime,exclude,inferred,vc8-array-subobject-dtor-adjustors-106a
 0x0043BF60,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043BF80,authored_game,battle,authored,observed,canonical-exact-authored
 0x0043BFD0,authored_game,battle,authored,observed,canonical-exact-authored
@@ -2066,7 +2066,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0046EA40,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0046EA60,compiler_generated,ui,exclude,observed,vc8-generated-ui-map-find-106a
 0x0046EAD0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0046EAF0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0046EAF0,compiler_generated,runtime,exclude,inferred,vc8-array-subobject-dtor-adjustors-106a
 0x0046EB00,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046EB90,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0046EC80,authored_game,battle,authored,observed,canonical-exact-authored
@@ -2663,7 +2663,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006656E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006657E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00665810,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00665AC7,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00665AC7,compiler_generated,runtime,exclude,inferred,boost-invalid-argument-eh-cleanup-tail-106a
 0x00665AF4,vc8_runtime,runtime,exclude,observed,vc8-string-range-errors-106a
 0x00665B33,vc8_runtime,runtime,exclude,observed,vc8-string-range-errors-106a
 0x00665B72,unknown,,review,unknown,ida-1.06a-initial-inventory

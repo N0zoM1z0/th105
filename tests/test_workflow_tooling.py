@@ -407,6 +407,39 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_rtti_copy_helpers"] = helpers
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    def test_generated_cleanup_tails_require_exact_callback_and_rtti(self) -> None:
+        with self.origins.RULES.open("rb") as stream:
+            document = tomllib.load(stream)
+        rows = self.origins.read_csv(self.origins.FUNCTIONS)
+        data = self.origins.attest_target(document)
+        read_pe = self.origins.pe_reader(data)
+        validate = self.origins.validate_rule_evidence
+
+        adjustors = next(
+            row for row in document["rules"]
+            if row["id"] == "vc8-array-subobject-dtor-adjustors-106a"
+        )
+        selected = [row for row in rows if row["address"] in adjustors["addresses"]]
+        self.assertEqual(validate(adjustors, selected, rows, data, read_pe), [])
+        changed = dict(adjustors)
+        witnesses = [dict(entry) for entry in adjustors["required_array_adjustor_callbacks"]]
+        witnesses[0]["array_uses"] = [dict(entry) for entry in witnesses[0]["array_uses"]]
+        witnesses[0]["array_uses"][0]["pointer_site"] = "0x0043C9CB"
+        changed["required_array_adjustor_callbacks"] = witnesses
+        self.assertTrue(validate(changed, selected, rows, data, read_pe))
+
+        cleanup = next(
+            row for row in document["rules"]
+            if row["id"] == "boost-invalid-argument-eh-cleanup-tail-106a"
+        )
+        selected = [row for row in rows if row["address"] in cleanup["addresses"]]
+        self.assertEqual(validate(cleanup, selected, rows, data, read_pe), [])
+        changed = dict(cleanup)
+        witness = dict(cleanup["required_rtti_eh_cleanup_tail"])
+        witness["col"] = "0x006DBEE8"  # Boost clone_base COL, not std::invalid_argument
+        changed["required_rtti_eh_cleanup_tail"] = witness
+        self.assertTrue(validate(changed, selected, rows, data, read_pe))
+
     def test_boost_throw_virtual_requires_terminal_runtime_edge(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)

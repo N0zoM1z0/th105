@@ -217,8 +217,10 @@ addresses near raw calls to `_atexit`. The 36 callbacks above had a verified
 PUSH-to-first-CALL path. The other two, `0x0043BF50/0x0043BF60`, are pushed
 as destructor/constructor arguments to VC8 array-construction helper
 `0x0068A30C` first; a later nearby `_atexit` call belongs to another
-registration. They remain in origin review. This screen does not enumerate
-registrations made through a different instruction form or beyond its window.
+registration. A later callback review below excludes destructor adjustor
+`0x0043BF50`; constructor callback `0x0043BF60` remains in review. This
+screen does not enumerate registrations made through a different instruction
+form or beyond its window.
 
 ## Two KERNEL32 import thunks
 
@@ -720,13 +722,43 @@ separate from the four main candidate spans.
 
 The target RTTI and clone virtual ownership support Boost template
 provenance (`third_party/exclude`, inferred). The original source TU
-boundaries remain unresolved. The base-copy callee `0x004017A0` and the
-action target `0x00665AC7` remain under their own origin review; the
-other called cleanup/base helpers were classified separately. No exact
-credit is assigned here.
+boundaries remain unresolved. The base-copy callee `0x004017A0` remains
+under its own origin review; the action target `0x00665AC7` has a later,
+separate EH cleanup-tail review below. Other called cleanup/base helpers
+were classified separately. No exact credit is assigned here.
 
 ```bash
 python3 scripts/audit-candidate-boundaries.py \
   0x006A5E40 0x006A7310 0x006B4E60 0x006B4FC0 --json
+python3 scripts/function-origins.py --check
+```
+
+## Three generated subobject cleanup tails
+
+`0x0043BF50` and `0x0046EAF0` have complete eight-byte bodies:
+`add ecx,8/0x20; jmp 0x00420A80`. Their destination is a separately
+excluded 104-byte checked-container destructor. Canonical-exact
+`CNetworkBase` and `CInfoManagerBase` constructors and destructors each
+push their corresponding adjustor address as a callback to VC8's
+`??_L` vector constructor or `??_M` vector destructor iterator. The
+rule replays all four exact callback pushes, the iterator E8 calls, both
+adjustor hashes, and the full destination hash. The boundary auditor's
+outgoing E9 is the intended tail transfer.
+
+`0x00665AC7` is a complete 11-byte EH cleanup thunk. It restores the
+`std::invalid_argument` vptr `0x006C7548`, then tail-jumps to separately
+excluded generated cleanup `0x00401740`. The vptr's zero-offset VC8
+RTTI COL and type descriptor identify `std::invalid_argument`. The
+one-state Boost injector copy-helper EH action at `0x006BC9D0` calls this
+thunk by tail jump; both action and destination bodies are pinned. These
+three thunks are `compiler_generated/exclude` with no exact credit.
+
+The analogous `0x0043BE90` tail has no independently established callback
+use, and the constructor callback `0x0043BF60` has different behavior;
+both remain in origin review.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py \
+  0x0043BF50 0x0046EAF0 0x00665AC7 --json
 python3 scripts/function-origins.py --check
 ```
