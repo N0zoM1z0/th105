@@ -1290,6 +1290,62 @@ def validate_rule_evidence(
             )
     row_by_address = {row["address"].upper(): row for row in rows}
     selected_addresses = {row["address"].upper() for row in selected}
+    msvc_setters = rule.get("required_msvc_short_setters", [])
+    if msvc_setters and (
+        len(msvc_setters) != len(selected_addresses)
+        or {str(item["address"]).upper() for item in msvc_setters} != selected_addresses
+    ):
+        errors.append(f"{rule_id}: VC8 short-setter witnesses do not cover selected candidates exactly")
+    if msvc_setters:
+        extractor = load_msvc_archive_module()
+        filename, expected_archive_hash = extractor.LIBRARIES["libcmt"]
+        archive = (ROOT / ".tools/msvc80-sp1/lib" / filename).read_bytes()
+        if hashlib.sha256(archive).hexdigest() != expected_archive_hash:
+            errors.append(f"{rule_id}: pinned VC8 libcmt archive hash differs")
+            members = {}
+        else:
+            members = {name: body for name, body in extractor.archive_members(archive)}
+    for item in msvc_setters:
+        address = int(str(item["address"]), 0)
+        key = f"0x{address:08X}".upper()
+        consumer = int(str(item["consumer"]), 0)
+        consumer_key = f"0x{consumer:08X}".upper()
+        consumer_site = int(str(item["consumer_site"]), 0)
+        target_global = int(str(item["global"]), 0)
+        if (
+            key not in selected_addresses
+            or int(row_by_address[key]["size"], 0) != 10
+            or consumer_key not in row_by_address
+        ):
+            errors.append(f"{rule_id}: VC8 short setter 0x{address:08X} has wrong selection or consumer")
+            continue
+        consumer_size = int(row_by_address[consumer_key]["size"], 0)
+        if not consumer <= consumer_site <= consumer + consumer_size - 4:
+            errors.append(f"{rule_id}: VC8 short setter 0x{address:08X} has out-of-body consumer site")
+            continue
+        try:
+            member = members[str(item["object"])]
+            target = read_pe(address, 10)
+            consumer_body = read_pe(consumer, consumer_size)
+            consumed_global = struct.unpack("<I", read_pe(consumer_site, 4))[0]
+            source, relocations = msvc_runtime_function_text(member, str(item["symbol"]))
+        except (KeyError, ValueError, struct.error) as exc:
+            errors.append(f"{rule_id}: VC8 short setter 0x{address:08X}: {exc}")
+            continue
+        if (
+            hashlib.sha256(member).hexdigest() != item["object_sha256"]
+            or len(source) != 10
+            or source[:5] != b"\x8B\x44\x24\x04\xA3"
+            or source[9:] != b"\xC3"
+            or relocations != [(5, 0x0006, item["relocation_symbol"])]
+            or target[:5] != source[:5]
+            or target[9:] != source[9:]
+            or hashlib.sha256(target).hexdigest() != item["sha256"]
+            or struct.unpack_from("<I", target, 5)[0] != target_global
+            or consumed_global != target_global
+            or hashlib.sha256(consumer_body).hexdigest() != item["consumer_sha256"]
+        ):
+            errors.append(f"{rule_id}: VC8 short setter 0x{address:08X} COFF/consumer replay differs")
     adjustor_thunks = rule.get("required_rtti_adjustor_thunks", [])
     if adjustor_thunks and (
         len(adjustor_thunks) != len(selected_addresses)

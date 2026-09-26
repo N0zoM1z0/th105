@@ -3079,7 +3079,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00689FDA,22,0x00689FEF,sub_689FDA,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00689FF0,13,0x00689FFC,?what@exception@@UBEPBDXZ,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00689FFD,28,0x0068A018,sub_689FFD,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0068A019,10,0x0068A022,sub_68A019,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0068A019,10,0x0068A022,sub_68A019,,,identified,0.00,__cdecl,,false,,Target PE full CFG plus SHA-pinned VC8 SP1 invarg.obj COFF/DIR32 replay and invalid-parameter consumer; see vc8-short-runtime-global-setters-106a,,Archive symbol __initp_misc_invarg; writes handler pointer at 0x006FD3BC; no authored or exact credit.
 0x0068A023,252,0x0068A11E,__invoke_watson,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0068A11F,36,0x0068A142,__invalid_parameter,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0068A143,16,0x0068A152,__invalid_parameter_noinfo,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -3223,7 +3223,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0068ECC1,24,0x0068ECD8,__getptd,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0068ECD9,289,0x0068EDF9,__freefls@4,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0068EDFA,388,0x0068EF7D,__mtinit,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0068EF7E,10,0x0068EF87,sub_68EF7E,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0068EF7E,10,0x0068EF87,sub_68EF7E,,,identified,0.00,__cdecl,,false,,Target PE full CFG plus SHA-pinned VC8 SP1 inithelp.obj COFF/DIR32 replay and purecall consumer; see vc8-short-runtime-global-setters-106a,,Archive symbol __initp_misc_purevirt; writes hook at 0x006FD754; no authored or exact credit.
 0x0068EF88,11,0x0068EF92,sub_68EF88,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0068EF93,34,0x0068EFB4,sub_68EF93,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0068EFB5,92,0x0068F010,___TypeMatch,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -3268,7 +3268,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006908CD,41,0x006908F5,__setdefaultprecision,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006908F6,60,0x00690931,__ms_p5_test_fdiv,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00690932,41,0x0069095A,__ms_p5_mp_test_fdiv,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0069095B,10,0x00690964,sub_69095B,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0069095B,10,0x00690964,sub_69095B,,,identified,0.00,__cdecl,,false,,Target PE full CFG plus SHA-pinned VC8 SP1 handler.obj COFF/DIR32 replay and new-handler consumer; see vc8-short-runtime-global-setters-106a,,Archive symbol __initp_heap_handler; writes handler pointer at 0x006FDA84; no authored or exact credit.
 0x00690965,34,0x00690986,__callnewh,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00690987,8,0x0069098E,sub_690987,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0069098F,20,0x006909A2,__sse2_mathfcns_init,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -3482,7 +3482,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0069BA48,13,0x0069BA54,sub_69BA48,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0069BA55,432,0x0069BC04,_raise,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0069BC05,10,0x0069BC0E,sub_69BC05,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0069BC0F,10,0x0069BC18,sub_69BC0F,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0069BC0F,10,0x0069BC18,sub_69BC0F,,,identified,0.00,__cdecl,,false,,Target PE full CFG plus SHA-pinned VC8 SP1 initcrit.obj COFF/DIR32 replay and critical-section consumer; see vc8-short-runtime-global-setters-106a,,Archive symbol __initp_misc_initcrit; writes callback at 0x006FDE14; same-shape 0x0069BC05 stays unresolved.
 0x0069BC19,16,0x0069BC28,___crtInitCritSecNoSpinCount@8,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0069BC29,197,0x0069BCED,___crtInitCritSecAndSpinCount,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0069BCF0,24,0x0069BD07,__CIacos_pentium4,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

@@ -3079,7 +3079,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00689FDA,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00689FF0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00689FFD,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0068A019,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0068A019,vc8_runtime,runtime,exclude,observed,vc8-short-runtime-global-setters-106a
 0x0068A023,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068A11F,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068A143,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
@@ -3223,7 +3223,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0068ECC1,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068ECD9,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068EDFA,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
-0x0068EF7E,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0068EF7E,vc8_runtime,runtime,exclude,observed,vc8-short-runtime-global-setters-106a
 0x0068EF88,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0068EF93,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0068EFB5,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
@@ -3268,7 +3268,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006908CD,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x006908F6,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x00690932,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
-0x0069095B,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0069095B,vc8_runtime,runtime,exclude,observed,vc8-short-runtime-global-setters-106a
 0x00690965,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x00690987,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0069098F,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
@@ -3482,7 +3482,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0069BA48,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0069BA55,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0069BC05,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0069BC0F,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0069BC0F,vc8_runtime,runtime,exclude,observed,vc8-short-runtime-global-setters-106a
 0x0069BC19,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0069BC29,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0069BCF0,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a

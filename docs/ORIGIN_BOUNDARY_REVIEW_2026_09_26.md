@@ -664,3 +664,32 @@ python3 scripts/audit-candidate-boundaries.py \
   0x0040BA90 0x0041DD90 0x0041FAB0 0x006A0890 0x006A08C0 --json
 python3 scripts/function-origins.py --check
 ```
+
+## Four VC8 runtime global setters
+
+Four pending 10-byte candidates each decode fully as `mov eax,[esp+4]`,
+`mov [global],eax`, `ret`. Their raw target bytes match individually named
+functions in the SHA-256-pinned VC8 SP1 `libcmt.lib` after replaying one
+`IMAGE_REL_I386_DIR32` field at offset five. Each COFF member SHA, symbol,
+relocation symbol, target body hash, and runtime consumer body is pinned in
+`vc8-short-runtime-global-setters-106a`.
+
+| Target setter | VC8 SP1 member / symbol | Relocated global | Target consumer |
+| --- | --- | --- | --- |
+| `0x0068A019` | `invarg.obj` / `__initp_misc_invarg` | `0x006FD3BC` | `__invalid_parameter @ 0x0068A11F` |
+| `0x0068EF7E` | `inithelp.obj` / `__initp_misc_purevirt` | `0x006FD754` | `__purecall @ 0x00689934` |
+| `0x0069095B` | `handler.obj` / `__initp_heap_handler` | `0x006FDA84` | `__callnewh @ 0x00690965` |
+| `0x0069BC0F` | `initcrit.obj` / `__initp_misc_initcrit` | `0x006FDE14` | `___crtInitCritSecAndSpinCount @ 0x0069BC29` |
+
+The adjacent setter `0x0069BC05` has the same six invariant bytes, but its
+global at `0x006FDE10` has no separate consumer read in the tracked target
+body inventory and no resolved VC8 object/symbol identity. Shape and
+proximity are insufficient to assign it to a particular library member, so
+it remains under origin review. The four supported setters are
+`vc8_runtime/exclude`; no source or exact-match status changes.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py \
+  0x0068A019 0x0068EF7E 0x0069095B 0x0069BC0F --json
+python3 scripts/function-origins.py --check
+```

@@ -288,6 +288,24 @@ confidence = "observed"
 evidence = "SHA-pinned VC8 SP1 libcmt inittime.obj ___free_lc_time reproduces the complete 400-byte target body apart from 43 REL32 _free fields; every field resolves to the independently excluded CRT free at 0x0068C686, and its 228 invariant bytes have a unique complete-inventory hit. libcmt llshl.obj __allshl reproduces the unique 31-byte target body exactly, with no relocations. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
 
 [[rules]]
+id = "vc8-short-runtime-global-setters-106a"
+addresses = ["0x0068A019", "0x0068EF7E", "0x0069095B", "0x0069BC0F"]
+expected_count = 4
+expected_bytes = 40
+expected_names = ["sub_68A019", "sub_68EF7E", "sub_69095B", "sub_69BC0F"]
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Four full 10-byte target bodies reproduce named functions in SHA-pinned VC8 SP1 libcmt objects after exactly one DIR32 relocation at +5. Each relocated global is independently read by a full-body-pinned runtime consumer: __invalid_parameter, __purecall, __callnewh, or ___crtInitCritSecAndSpinCount. The fifth identical-shape setter 0x0069BC05 has no confirmed object/global identity and remains in review. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_msvc_short_setters = [
+  { address = "0x0068A019", sha256 = "5fa3c57fbbd3d135d00c6ec8c72d9e40bcdccb19d4e3e22b1ef1ff490b0c65c8", object = "build/intel/mt_obj/cpp_obj/invarg.obj", object_sha256 = "e1397d77abfe2cccea14d4330c23cc9066e989b35da5a6ded641f9e7691d4512", symbol = "__initp_misc_invarg", relocation_symbol = "___pInvalidArgHandler", global = "0x006FD3BC", consumer = "0x0068A11F", consumer_site = "0x0068A124", consumer_sha256 = "2e6ed341b02592683a956e7d33e17b82c1d58d25be7877466350e0de976957ec" },
+  { address = "0x0068EF7E", sha256 = "dcbc320cc1a6b007ec22e42f580acb7d8d443789aee2d54bf81e8d841f089ab3", object = "build/intel/mt_obj/inithelp.obj", object_sha256 = "91e70aed31d9e8a26c75827552b2b436f457bbfd366b1471b154681158e15314", symbol = "__initp_misc_purevirt", relocation_symbol = "___pPurecall", global = "0x006FD754", consumer = "0x00689934", consumer_site = "0x00689936", consumer_sha256 = "6144b254eee7fe8bfad7952833fe765fe4624faa08f778534ac1cee818c75812" },
+  { address = "0x0069095B", sha256 = "a91cf80efa916c157b9be27bcdc1763b85300ee1092bee0ffeea3019439577b3", object = "build/intel/mt_obj/handler.obj", object_sha256 = "ab787cd08f72d23bbcfc0479c6fe9dc3afffb636f65683d0988ce1a3cf2e925d", symbol = "__initp_heap_handler", relocation_symbol = "?_pnhHeap@@3P6AHI@ZA", global = "0x006FDA84", consumer = "0x00690965", consumer_site = "0x00690967", consumer_sha256 = "31a9179df2ac42c8e1f057b3d1a94f90b25acc88547d371919f834067f406e11" },
+  { address = "0x0069BC0F", sha256 = "86c097431269a2ee1acf372131a33dbcba3c5a20059d7d53bd5597027a2e014c", object = "build/intel/mt_obj/initcrit.obj", object_sha256 = "133f3f54d1fb7139a543c7bf965059a4224e1a48720e34ae3540ee635e10ac3c", symbol = "__initp_misc_initcrit", relocation_symbol = "___pfnInitCritSecAndSpinCount", global = "0x006FDE14", consumer = "0x0069BC29", consumer_site = "0x0069BC3C", consumer_sha256 = "91977cd232ec83b76d063191af6f80156d872a4369fdf61e736e40e3b8050d3e" },
+]
+
+[[rules]]
 id = "xiph-sdk-relocation-free-anchors-106a"
 xiph_anchor_file = "config/xiph-origin-anchors.toml"
 expected_count = 39

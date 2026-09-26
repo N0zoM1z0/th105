@@ -355,6 +355,31 @@ class WorkflowToolingTests(unittest.TestCase):
             changed["required_rtti_inline_deleting_dtors"] = dtors
             self.assertTrue(validate(changed, selected, rows, data, read_pe), field)
 
+    def test_vc8_short_setters_require_coff_identity_and_runtime_consumer(self) -> None:
+        with self.origins.RULES.open("rb") as stream:
+            document = tomllib.load(stream)
+        rule = next(
+            row for row in document["rules"]
+            if row["id"] == "vc8-short-runtime-global-setters-106a"
+        )
+        rows = self.origins.read_csv(self.origins.FUNCTIONS)
+        selected = [row for row in rows if row["address"] in rule["addresses"]]
+        data = self.origins.attest_target(document)
+        read_pe = self.origins.pe_reader(data)
+        validate = self.origins.validate_rule_evidence
+        self.assertEqual(validate(rule, selected, rows, data, read_pe), [])
+
+        for field, value in (
+            ("symbol", "__initp_heap_handler"),
+            ("global", "0x006FDA84"),
+            ("consumer_site", "0x0068A125"),
+        ):
+            changed = dict(rule)
+            setters = [dict(entry) for entry in rule["required_msvc_short_setters"]]
+            setters[0][field] = value
+            changed["required_msvc_short_setters"] = setters
+            self.assertTrue(validate(changed, selected, rows, data, read_pe), field)
+
     def test_boost_throw_virtual_requires_terminal_runtime_edge(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
