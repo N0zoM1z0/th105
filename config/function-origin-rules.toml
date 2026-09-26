@@ -6,15 +6,15 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 
 [[rules]]
 id = "orientation-quantized-gameplay-helpers-authored-106a"
-addresses = ["0x00406360", "0x004063D0", "0x004064D0"]
-expected_count = 3
-expected_bytes = 301
-expected_names = ["sub_406360", "sub_4063D0", "sub_4064D0"]
+addresses = ["0x00406360", "0x004063D0"]
+expected_count = 2
+expected_bytes = 194
+expected_names = ["sub_406360", "sub_4063D0"]
 origin = "authored_game"
 subsystem = "engine"
 disposition = "authored"
 confidence = "observed"
-evidence = "Current SHA-pinned raw gameplay call graph proves 0x00406360/0x004063D0 are consumed across all fifteen RTTI-owned roster Object +0x28 giant roots (295/205 direct calls), while 0x004064D0 is called from PatchouliObject +0x28 at 0x005264DF in an owner-relative motion path and feeds the adjacent exact authored atan2 helper. All three index the same game-owned 3600-entry orientation table at 0x006FE8B0 as canonical-exact authored 0x00406480/0x004064B0. Ordinary VC8 source is formally nonexact and receives no exact credit."
+evidence = "Current SHA-pinned raw gameplay call graph proves 0x00406360/0x004063D0 are consumed across all fifteen RTTI-owned roster Object +0x28 giant roots (295/205 direct calls). Both index the game-owned 3600-entry orientation table at 0x006FE8B0, as do canonical-exact authored 0x00406480/0x004064B0. The adjacent ratio 0x004064D0 has independently become canonical exact and is classified by the exact baseline. These two helpers remain formally nonexact."
 
 [[rules]]
 id = "ui-source-present-exact-caller-helpers-authored-106a"
@@ -110,30 +110,6 @@ subsystem = "characters"
 disposition = "authored"
 confidence = "observed"
 evidence = "Current canonical PE has ten direct E8 callers inside the RTTI-owned KomachiObject +0x28 giant root. The 205-byte helper gates on owner +0x7A8 and owns the paired object826 spawn policy; complete natural source is formally compared but remains 203/205 on call-evaluation scheduling."
-
-[[rules]]
-id = "roster-object-secondary-animation-replacement-authored-106a"
-addresses = ["0x00496420"]
-expected_count = 1
-expected_bytes = 274
-expected_names = ["sub_496420"]
-origin = "authored_game"
-subsystem = "characters"
-disposition = "authored"
-confidence = "observed"
-evidence = "Raw canonical PE direct-call census over the fifteen RTTI-owned Object +0x28 roots proves 48 calls from nine independent class-owned giant roots to this shared secondary-animation replacement. The 274-byte body is semantically source-complete with exact renderer lifetime/tree/vector dependencies and a target-attested SEH chunk; formal pinned /GS output differs only by a four-byte stack-color/frame allocation and remains nonexact."
-
-[[rules]]
-id = "secondary-animation-update-authored-106a"
-addresses = ["0x004309F0"]
-expected_count = 1
-expected_bytes = 2434
-expected_names = ["sub_4309F0"]
-origin = "authored_game"
-subsystem = "battle"
-disposition = "authored"
-confidence = "observed"
-evidence = "current target ownership joins the exact 0x54 secondary-animation lifetime/initialize/render island; the complete body mutates only its two checked Point2 deques and calls D3DX Vec2 interpolation/normalization imports"
 
 [[rules]]
 id = "gpt-web-shared-fighter-action-root-106a"

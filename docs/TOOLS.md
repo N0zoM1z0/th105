@@ -53,8 +53,12 @@ Funnel route is intentionally enabled. Do not expose raw IDA MCP directly.
 
 ## Backend policy
 
-IDA Pro is the sole semantic backend. If `scripts/check-ida-mcp.py` fails, stop
-the bounded reconstruction unit and fix/report IDA; do not route to Ghidra.
+If `scripts/check-ida-mcp.py` fails, do not query or write through that IDA
+session. Exact target PE disassembly remains a valid bounded evidence source.
+Use a Ghidra database only after independently checking the imported target
+hash, entry point, and mapped bytes; treat its decompiler output as a
+hypothesis. Keep one Ghidra process at a time. This workflow does not require
+the factory MCP adapter.
 
 ## Matching tools
 

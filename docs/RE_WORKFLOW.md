@@ -6,7 +6,9 @@ mechanics to TH105's VC8/LTCG executable.
 ## Sources of truth
 
 - `config/target.toml`: immutable target identity and PE facts.
-- verified IDA database: preferred semantic working state, never committed.
+- hash-attested target PE: byte, edge, and boundary evidence.
+- verified IDA or target-attested Ghidra database: optional semantic working
+  state, never committed; decompiler output remains a hypothesis.
 - `config/functions.csv`: provisional function candidates and reviewed state.
 - `config/function-origins.csv`: generated authored/compiler/library disposition.
 - `config/function-origin-rules.toml`: fail-closed current-target origin/exclusion rules.
@@ -27,7 +29,8 @@ record accepted names, types, boundaries, and evidence in the repository.
 
 These transitions must remain separate:
 
-1. **Candidate:** IDA sees a function-like region; boundary is provisional.
+1. **Candidate:** a disassembler or raw target edge suggests a function-like
+   region; boundary is provisional.
 2. **Identified/decompiled:** role, ABI, and control flow have target evidence.
 3. **Mapped:** a durable name/category exists in `reccmp-functions.csv`.
 4. **Source-present:** the authored name appears in `implemented.csv`.
@@ -48,7 +51,8 @@ IDA auto-names do not imply mappings or implementations.
    RTTI/vtables, access widths, cleanup, saved registers, and EH behavior.
 4. Reconcile the full target control flow with the candidate extent. Record
    observations, inferences, and unknowns separately.
-5. Apply supported names/types in IDA; read them back and update durable ledgers.
+5. Apply supported names/types in an attested analysis database when available;
+   read them back and update durable ledgers.
 6. Recover ABI, layout, ownership, and behavior before code-generation tuning.
 7. Select or adapt the smallest natural source implementation. Add it to
    `implemented.csv` only when semantic coverage is supported.
@@ -110,9 +114,12 @@ claims.
 - `scripts/export-ida-inventory.py --write` deliberately replaces the entire
   candidate/origin baseline and never merges old status. Use it only for a
   target reset or an explicitly reviewed inventory refresh.
-- IDA Pro is the only semantic backend. If it is unavailable or fails exact
-  attestation, stop that reconstruction unit rather than substituting another
-  analysis database.
+- A failed IDA preflight forbids using that IDA session. Raw PE instruction
+  decoding remains available; a Ghidra database requires separate target-file,
+  entry-point, and mapped-byte attestation before semantic use. Never treat
+  auto-analysis boundaries, decompiler output, or an unverified project name
+  as a target fact. Use at most one Ghidra process and keep private projects
+  under `.analysis/`.
 - Never patch the original image or commit private databases/logs.
 
 ## Target changes

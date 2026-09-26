@@ -1,6 +1,6 @@
 ---
 name: th105-re
-description: Reconstruct bounded functions from the original Japanese TH10.5 v1.06a executable using hash-attested IDA evidence, provisional boundary/origin ledgers, and retained source only as a hypothesis. Use for TH105 disassembly, naming, ABI/layout recovery, source selection, implementation, or semantic review.
+description: Reconstruct bounded functions from the original Japanese TH10.5 v1.06a executable using hash-attested target bytes or analysis databases, provisional boundary/origin ledgers, and retained source only as a hypothesis. Use for TH105 disassembly, naming, ABI/layout recovery, source selection, implementation, or semantic review.
 ---
 
 # TH105 reconstruction
@@ -24,8 +24,8 @@ image base `0x00400000`, entry `0x0068B9D2`, `.text`
    ```
 
 3. Keep `config/claims.csv` header-only and one bounded writable scope.
-4. Confirm the candidate in `functions.csv` and its origin row. Reconcile IDA's
-   complete control flow; its extent and auto-name are provisional.
+4. Confirm the candidate in `functions.csv` and its origin row. Reconcile
+   complete target control flow; database extents and auto-names are provisional.
 
 ## Recover and implement
 

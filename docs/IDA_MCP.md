@@ -70,5 +70,7 @@ patch tool. See `docs/TOOLS.md`.
 
 ## Failure policy
 
-If any preflight stage fails, stop using semantic-analysis output and report
-the IDA blocker. This repository does not route to Ghidra or another fallback.
+If any preflight stage fails, stop using output from that IDA session. The
+canonical PE can still be inspected directly. A separate Ghidra project needs
+its own target identity and mapped-byte checks before its analysis is used;
+an IDA title or a Ghidra project name is not sufficient attestation.

@@ -100,6 +100,28 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertTrue(any(row["address"].upper() == "0X00414E40" for row in cnumber["functions"]))
         self.assertTrue(any(row["address"].upper() == "0X00463500" for row in fighter["functions"]))
 
+    def test_exact_functions_use_the_exact_origin_baseline(self) -> None:
+        with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
+            matching = {
+                row["address"].upper()
+                for row in csv.DictReader(stream)
+                if row["status"] == "matching"
+            }
+        with (ROOT / "config" / "function-origins.csv").open(newline="", encoding="utf-8") as stream:
+            origins = {row["address"].upper(): row for row in csv.DictReader(stream)}
+        self.assertTrue(all(
+            origins[address]["evidence_id"] == "canonical-exact-authored"
+            for address in matching
+        ))
+        rules = tomllib.loads((ROOT / "config" / "function-origin-rules.toml").read_text())
+        for rule in rules["rules"]:
+            if rule.get("skip_matching"):
+                continue
+            overlap = matching.intersection(
+                str(address).upper() for address in rule.get("addresses", [])
+            )
+            self.assertFalse(overlap, f"{rule['id']} reclaims exact functions: {sorted(overlap)}")
+
     def test_new_authored_nonexact_helper_contracts_stay_nonexact(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)

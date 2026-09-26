@@ -18,7 +18,7 @@ Do not analyze or substitute 1.06, a localized executable, or another patch.
    python3 scripts/validate-tracking.py --require-target
    ```
 
-3. Confirm the address in `config/functions.csv`. Its IDA size is provisional;
+3. Confirm the address in `config/functions.csv`. Its candidate size is provisional;
    reconcile the complete control flow before accepting a compiler boundary.
 4. Confirm any durable name in `config/reccmp-functions.csv` and any source
    selection in `config/implemented.csv`. Neither is an exact-match claim.
@@ -32,7 +32,7 @@ Do not analyze or substitute 1.06, a localized executable, or another patch.
   file as an unverified hypothesis until 1.06a instructions and ABI support it.
 - `config/functions.csv` is the candidate/boundary ledger.
   `config/function-origins.csv` separately classifies authored, compiler, or
-  library ownership. IDA auto-analysis proves neither.
+  library ownership. Disassembler auto-analysis proves neither.
 - `config/implemented.csv` means source-present only.
 - `config/matches.csv` means a canonical 100% result against the exact target.
   A mapping, build success, visual similarity, or stale 1.06 report is not
@@ -48,11 +48,16 @@ must attest target metadata, entry point, mapped bytes, required tools, and a
 function-inventory probe. Never call `patch_address_assembles` or patch target
 bytes.
 
-IDA Pro is the only semantic-analysis backend for this repository. If its
-preflight cannot pass, stop semantic reconstruction and report the blocker;
-do not substitute Ghidra or another database. The IDB is working state, not the
-durable record: mirror accepted names, types, boundaries, and evidence into the
-repository ledgers. Read back IDA writes before relying on them.
+An IDA preflight failure blocks use of that IDA session, not inspection of the
+hash-attested target PE. Raw target disassembly can establish bounded byte,
+edge, ABI, and boundary facts. A Ghidra database may be used only after its
+imported executable identity, entry point, mapped bytes, and analysis target
+are independently checked against `resources/th105.exe`; record decompiler
+output as a hypothesis. Do not launch multiple Ghidra processes or use a
+factory MCP adapter when direct analysis is available. Analysis databases are
+working state, not the durable record: mirror accepted names, types,
+boundaries, and evidence into the repository ledgers. Read back metadata
+writes before relying on them.
 
 ## TH105 ABI and architecture
 
