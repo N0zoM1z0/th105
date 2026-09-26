@@ -54,6 +54,11 @@ action 820 and makes 850 jump backward. Source-order reversal and duplicated
 tail probes regress; a natural virtual call is byte-neutral. The missing
 source lifetime/TU condition is unknown. Other nonidentical owners and call
 operand scheduling remain; the +0x80 mismatch does not imply only one fix.
+The [30-owner difference inventory](YOUMU_OBJECT_ENTRY_SWITCH_CLOSURE_2026_09_26.md#current-owner-difference-inventory)
+separates six identical owners, sixteen with one moved call-setup instruction,
+and eight with other physical differences. Scoped sequence-value probes for
+850 and 851 were reverted after a byte-neutral result and an invalid owner
+merge, respectively.
 
 ## Next bounded step
 

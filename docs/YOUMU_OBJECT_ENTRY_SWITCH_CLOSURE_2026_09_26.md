@@ -106,3 +106,33 @@ a real local `double` lifetime. The scoped arm preserved action 821's goto
 entry. VC8 generated the same candidate window hash and 820/850 owner spans
 as the retained source. The probe was reverted: this call-site spelling did
 not change the tail placement.
+
+## Current owner-difference inventory
+
+The fresh post-revert SP1 object was rebuilt with one compiler process. Its
+full callable still differs at +0x80, and the owner audit compares 30 physical
+regions including entry:
+
+| Diagnostic group | Count | Owners / observed difference |
+| --- | ---: | --- |
+| Instruction and internal edge identical | 6 | entry, 810, 812, 817, 854, 980 |
+| One instruction moves within the same-sized owner | 16 | 800, 801, 811, 813, 815, 818, 852, 853, 848, 855, 856, 857, 899, 900, 930, 999; each audit delta is one `push eax` or `mov ecx, esi` deletion plus insertion |
+| Other physical differences | 8 | 820, 821, 823, 850, 851, 901, 902, 802 |
+
+The last eight need separate treatment. The 820/850 pair has the tail-owner
+inversion described above. Action 821's jump lands at a different intra-owner
+offset. Action 823 changes virtual-call register/scheduling and effect-spawn
+argument registers. Action 851 changes the heading-pointer register and x87
+load position. Action 901 has one `push eax` move plus the shifted auxiliary
+table operand. Action 902 moves the phase-byte store across the signed-RNG
+correction branch. Action 802 has a candidate-only three-byte alignment NOP.
+These are raw diagnostic distinctions; the table does not establish semantic
+equivalence or award partial exact credit.
+
+Two further ordinary-C++ probes tested the local lifetime hypothesis. Giving
+action 850's sequence conversion a scoped `double` local was byte-identical
+to the retained source, including the 26/37 candidate spans for 820/850.
+Replacing action 851's retained early `double` value with an early heading
+pointer and later conversion made VC8 merge distinct target owners 851/854;
+the owner audit rejected it. Both probes were reverted. This supports keeping
+the currently distinct 851 lifetime but does not prove its exact source form.
