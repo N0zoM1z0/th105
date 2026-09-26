@@ -1751,3 +1751,22 @@ required_iat_imports = [
   { address = "0x006B55C0", iat_slot = "0x006C008C", dll = "KERNEL32.dll", name = "GetUserDefaultLCID" },
   { address = "0x006B5ECA", iat_slot = "0x006C0144", dll = "KERNEL32.dll", name = "RtlUnwind" },
 ]
+
+[[rules]]
+id = "title-match-mode-setup-authored-106a"
+addresses = ["0x0043B8F0"]
+expected_count = 1
+expected_bytes = 286
+expected_names = ["sub_43B8F0"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Hash-attested raw PE CFG reaches all 286 candidate bytes and both RET paths between INT3 pads. The body writes game-mode, session setup, selected-input and scenario state globals, then conditionally publishes the player-two input pointer into the session object at +0x6B4 and invokes setup helpers. Canonical-exact CTitle::update calls this body at nine sites in one function; two independent branches are replayed as E8 witnesses. This establishes game-authored origin, not an exact standalone source match. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_body_hashes = [
+  { address = "0x0043B8F0", size = 286, sha256 = "beaf3460ffa40456b209c220f737c4b74565b3ec45cb5b2a916540123ce18b59" },
+]
+required_direct_edges = [
+  { caller = "0x00425990", site = "0x004259D6", target = "0x0043B8F0", caller_status = "matching" },
+  { caller = "0x00425990", site = "0x00425B29", target = "0x0043B8F0", caller_status = "matching" },
+]

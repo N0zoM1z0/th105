@@ -1253,7 +1253,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0043B760,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043B7D0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043B840,authored_game,ui,authored,observed,canonical-exact-authored
-0x0043B8F0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0043B8F0,authored_game,battle,authored,observed,title-match-mode-setup-authored-106a
 0x0043BA10,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043BAF0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043BB90,authored_game,audio,authored,observed,canonical-exact-authored

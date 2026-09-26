@@ -19,8 +19,9 @@ instructions are not the active queue.
   excludes eight registered global container/string cleanup bodies; the sixth
   excludes ten small registered static lifetime callbacks; the seventh
   identifies two KERNEL32 import thunks from the PE import table; the eighth
-  identifies two VC8 SP1 archive functions. The resulting census is
-  **1,480 authored / 1,359 excluded / 1,184 review**. Source-present remains
+  identifies two VC8 SP1 archive functions; the ninth establishes authored
+  match-mode setup `0x0043B8F0`. The resulting census is
+  **1,481 authored / 1,359 excluded / 1,183 review**. Source-present remains
   1,388; canonical exact remains 1,315 functions / 220,094 bytes. Recompute from
   `scripts/report-reconstruction-status.py --summary` after every promotion.
 - The local target file passes hash verification. The attached IDA session
@@ -77,6 +78,9 @@ before the nearby `_atexit` call and also remain in review. The KERNEL32
 name/slot witnesses. The 400-byte `__free_lc_time @ 0x0069CCD9` and 31-byte
 `__allshl @ 0x006B6D00` have complete VC8 archive extents and full-inventory
 fingerprints; all 43 `__free_lc_time` relocations resolve to CRT `_free`.
+The 286-byte match-mode setup has complete raw CFG, game state writes and two
+replayed E8 sites in exact `CTitle::update`; the nine observed E8 calls all
+belong to that one exact caller.
 
 ```bash
 python3 scripts/verify-target.py

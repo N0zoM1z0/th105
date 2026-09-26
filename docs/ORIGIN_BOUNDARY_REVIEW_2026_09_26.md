@@ -256,3 +256,29 @@ positive archive anchor.
 Both are `vc8_runtime/exclude`. The archive matches prove runtime provenance
 and candidate boundaries; they do not grant canonical authored source or
 exact-game comparison credit.
+
+## Match-mode setup at `0x0043B8F0`
+
+Fresh raw-PE CFG traversal reaches all 286 candidate bytes, both returns at
+`0x0043B9C7/0x0043BA0D`, and no visible indirect or outgoing jump. `INT3`
+separates both sides of the main span. The full body SHA-256 is
+`beaf3460ffa40456b209c220f737c4b74565b3ec45cb5b2a916540123ce18b59`.
+Target instructions write mode `0x006FBD4C`, setup option `0x006FBD44`,
+selected-input state around `0x006FBD38`, and scenario state `0x006FCA70`;
+one branch writes the player-two input address `0x006FBDD0` to the object
+loaded from session pointer `0x006FBD5C` at `+0x6B4`. The current global names
+are ledger annotations, while those addresses and widths are raw observations.
+
+Canonical-exact `CTitle::update @ 0x00425990` calls the body at nine E8 sites
+covering different title choices. All nine belong to **one** exact caller;
+the rule replays sites `0x004259D6` and `0x00425B29`. An additional call
+comes from nonexact `0x004472A0`. These calls plus the game-specific state
+transitions support `authored_game/battle`; they do not prove a canonical
+function name or exact standalone source. The exact caller uses the local
+alias `prepare_title_match_mode`, while historical notes use
+`prepare_result_match`. Neither alias is promoted to a durable name here.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py 0x0043B8F0 --json
+python3 scripts/function-origins.py --check
+```
