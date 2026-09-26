@@ -3506,7 +3506,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0069C9E5,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0069CAE1,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0069CC99,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
-0x0069CCD9,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0069CCD9,vc8_runtime,runtime,exclude,observed,vc8-locale-time-cleanup-and-shift-106a
 0x0069CE69,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0069CEA9,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0069CF32,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
@@ -3984,7 +3984,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006B6BE0,third_party,audio,exclude,observed,xiph-sdk-relocation-free-anchors-106a
 0x006B6C10,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
 0x006B6CE0,third_party,audio,exclude,observed,xiph-sdk-relocation-free-anchors-106a
-0x006B6D00,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006B6D00,vc8_runtime,runtime,exclude,observed,vc8-locale-time-cleanup-and-shift-106a
 0x006BE950,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006BEDB0,compiler_generated,runtime,exclude,inferred,vc8-static-lifetime-small-atexit-callbacks-106a
 0x006BEDE0,compiler_generated,runtime,exclude,inferred,vc8-global-static-destructor-aliases-106a

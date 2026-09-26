@@ -18,8 +18,9 @@ instructions are not the active queue.
   excludes 18 `_atexit`-registered global destructor callbacks; the fifth
   excludes eight registered global container/string cleanup bodies; the sixth
   excludes ten small registered static lifetime callbacks; the seventh
-  identifies two KERNEL32 import thunks from the PE import table. The
-  resulting census is **1,480 authored / 1,357 excluded / 1,186 review**. Source-present remains
+  identifies two KERNEL32 import thunks from the PE import table; the eighth
+  identifies two VC8 SP1 archive functions. The resulting census is
+  **1,480 authored / 1,359 excluded / 1,184 review**. Source-present remains
   1,388; canonical exact remains 1,315 functions / 220,094 bytes. Recompute from
   `scripts/report-reconstruction-status.py --summary` after every promotion.
 - The local target file passes hash verification. The attached IDA session
@@ -73,7 +74,9 @@ simple aliases without that witness stay in review. The bounded proximity
 screen's two other hits `0x0043BF50/60` feed the VC8 array constructor
 before the nearby `_atexit` call and also remain in review. The KERNEL32
 `0x006B55C0/0x006B5ECA` thunks have exact six-byte boundaries and IAT
-name/slot witnesses.
+name/slot witnesses. The 400-byte `__free_lc_time @ 0x0069CCD9` and 31-byte
+`__allshl @ 0x006B6D00` have complete VC8 archive extents and full-inventory
+fingerprints; all 43 `__free_lc_time` relocations resolve to CRT `_free`.
 
 ```bash
 python3 scripts/verify-target.py

@@ -3506,7 +3506,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0069C9E5,252,0x0069CAE0,__87except,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0069CAE1,440,0x0069CC98,?__crtGetStringTypeA_stat@@YAHPAUlocaleinfo_struct@@KPBDHPAGHHH@Z,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0069CC99,64,0x0069CCD8,___crtGetStringTypeA,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0069CCD9,400,0x0069CE68,__free_lc_time,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0069CCD9,400,0x0069CE68,__free_lc_time,,,identified,0.00,,,false,,Hash-attested 1.06a complete 400/400 boundary; SHA-pinned VC8 SP1 libcmt inittime.obj ___free_lc_time: 228 invariant bytes and all 43 REL32 _free destinations replayed; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Positive VC8 runtime archive ownership; no authored source or canonical exact-game credit.
 0x0069CE69,64,0x0069CEA8,___free_lconv_num,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0069CEA9,137,0x0069CF31,___free_lconv_mon,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0069CF32,38,0x0069CF57,____lc_codepage_func,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -3984,7 +3984,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006B6BE0,45,0x006B6C0C,sub_6B6BE0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B6C10,205,0x006B6CDC,sub_6B6C10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B6CE0,24,0x006B6CF7,sub_6B6CE0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006B6D00,31,0x006B6D1E,__allshl,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006B6D00,31,0x006B6D1E,__allshl,,,identified,0.00,,,false,,Hash-attested 1.06a complete 31/31 boundary; SHA-pinned VC8 SP1 libcmt llshl.obj __allshl: full 31-byte relocation-free archive match; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Positive VC8 runtime archive ownership; no authored source or canonical exact-game credit.
 0x006BE950,10,0x006BE959,sub_6BE950,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006BEDB0,11,0x006BEDBA,sub_6BEDB0,,,identified,0.00,,,false,,Hash-attested 1.06a complete 11-byte boundary and full body SHA; direct PUSH at 0x006BE6E0 passes this callback to VC8 _atexit at 0x006BE6E5; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Inferred compiler-generated static lifetime callback; called target and original source TU remain separate.
 0x006BEDE0,10,0x006BEDE9,sub_6BEDE0,,,identified,0.00,,,true,,Hash-attested 1.06a 10/10 MOV ECX global at 0x00702798 then E9 to 0x00404FD0; PUSH callback at 0x006BE737 reaches VC8 _atexit at 0x006BE764; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Likely compiler-generated global static destruction callback; destination function origin is separate.

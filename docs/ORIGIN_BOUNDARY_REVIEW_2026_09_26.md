@@ -232,3 +232,27 @@ are one reachable jump instruction, with no body continuation. The first is
 `INT3` separated; the second follows a return and precedes a new function.
 Both are `import_thunk/exclude`, with no independent source or canonical
 exact-game credit.
+
+## Two VC8 SP1 runtime functions
+
+`__free_lc_time @ 0x0069CCD9` has a complete 400/400-byte RET-terminated
+target boundary. SHA-pinned VC8 SP1 `libcmt.lib` member
+`build/intel/mt_obj/inittime.obj` defines `___free_lc_time` with the same
+400-byte extent. Its 228 non-relocation bytes all agree, and the complete
+candidate-inventory fingerprint hit set is only `0x0069CCD9`. All 43 COFF
+relocations are `REL32` calls to `_free`; all 43 target calls resolve to the
+already excluded CRT `free @ 0x0068C686`. The archive symbol has one more
+leading underscore than the current candidate name, so the broad
+name-based runtime selector did not claim it. The explicit archive anchor
+replays the function body and every relocation symbol and destination.
+
+`__allshl @ 0x006B6D00` has a complete 31/31-byte boundary with three RET
+paths. SHA-pinned `libcmt.lib` member `build/intel/mt_obj/llshl.obj` defines
+the same 31-byte `__allshl` body with no COFF relocations. The full byte
+sequence is unique among current candidate spans. Its address lies outside
+the broad name-based runtime rule's bounded island, so it receives its own
+positive archive anchor.
+
+Both are `vc8_runtime/exclude`. The archive matches prove runtime provenance
+and candidate boundaries; they do not grant canonical authored source or
+exact-game comparison credit.

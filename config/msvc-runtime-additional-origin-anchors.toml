@@ -1,0 +1,69 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+min_nonreloc_coverage = 0.55
+min_nonreloc_bytes = 31
+
+# The 400-byte time-locale cleanup has 228 invariant bytes; all 43 COFF
+# REL32 fields are verified below to call the same pinned CRT free function.
+[[anchors]]
+address = "0x0069CCD9"
+size = 400
+library = "libcmt"
+object = "build/intel/mt_obj/inittime.obj"
+symbol = "___free_lc_time"
+inventory_hits = ["0x0069CCD9"]
+relocation_targets = [
+  { offset = 17, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 25, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 33, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 41, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 49, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 57, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 64, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 72, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 80, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 88, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 96, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 104, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 112, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 120, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 128, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 136, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 147, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 155, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 163, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 171, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 179, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 187, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 195, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 203, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 211, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 219, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 227, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 235, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 243, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 251, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 259, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 267, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 281, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 292, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 303, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 314, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 325, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 336, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 347, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 358, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 369, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 380, type = 20, symbol = "_free", target = "0x0068C686" },
+  { offset = 391, type = 20, symbol = "_free", target = "0x0068C686" },
+]
+
+# This compiler helper is 31 bytes with no COFF relocations; the complete
+# target body and archive member text are identical.
+[[anchors]]
+address = "0x006B6D00"
+size = 31
+library = "libcmt"
+object = "build/intel/mt_obj/llshl.obj"
+symbol = "__allshl"
+inventory_hits = ["0x006B6D00"]

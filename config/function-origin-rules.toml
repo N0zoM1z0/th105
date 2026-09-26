@@ -276,6 +276,18 @@ confidence = "observed"
 evidence = "SHA-pinned VC8 SP1 libcmt secchk.obj @__security_check_cookie@4 is a full 15-byte match to 0x00689D25 after its two COFF relocation fields. Its seven invariant bytes have a unique complete candidate-inventory hit, and DIR32/REL32 symbols and resolved targets are replayed explicitly. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
 
 [[rules]]
+id = "vc8-locale-time-cleanup-and-shift-106a"
+msvc_runtime_anchor_file = "config/msvc-runtime-additional-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 431
+expected_names = ["__free_lc_time", "__allshl"]
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "SHA-pinned VC8 SP1 libcmt inittime.obj ___free_lc_time reproduces the complete 400-byte target body apart from 43 REL32 _free fields; every field resolves to the independently excluded CRT free at 0x0068C686, and its 228 invariant bytes have a unique complete-inventory hit. libcmt llshl.obj __allshl reproduces the unique 31-byte target body exactly, with no relocations. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+
+[[rules]]
 id = "xiph-sdk-relocation-free-anchors-106a"
 xiph_anchor_file = "config/xiph-origin-anchors.toml"
 expected_count = 39
