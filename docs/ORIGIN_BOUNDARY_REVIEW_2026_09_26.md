@@ -57,3 +57,37 @@ RTTI class-name proof. `0x00404DF0` remains under origin review. Existing
 standalone source probes for the sprite finalizer and Character constructor
 remain nonexact, and neither the UI renderer nor binder receives source-present
 or canonical exact credit from this origin decision.
+
+## Ten five-byte tail aliases
+
+The second bounded batch found ten review candidates whose entire provisional
+span is one reachable `E9 rel32` instruction. The preceding code terminates
+at a return, another jump, or `INT3`, so there is no visible fallthrough into
+the alias. The origin rules independently replay the signed jump displacement,
+require a five-byte candidate, and require an excluded destination origin.
+
+| Alias | Destination | Destination evidence |
+| --- | --- | --- |
+| `0x004021B0` | `0x004023E0` | VC8-generated `std::list<void*>::_Tidy` anchor |
+| `0x00413770` | `0x00413A90` | VC8-generated fixed-slot container anchor |
+| `0x00420B80` | `0x00420AF0` | VC8-generated CFileList container anchor |
+| `0x00436470` | `0x00436420` | VC8-generated SpriteEx vector anchor |
+| `0x0045FD50` | `0x0045FC30` | VC8-generated PatRecord vector anchor |
+| `0x0046B1F0` | `0x00435EB0` | VC8-generated `std::list<void*>::_Tidy` anchor |
+| `0x00665B8A` | `0x00689DCB` | VC8 SP1 archive-defined operator new |
+| `0x006898EA` | `0x0068C686` | VC8 SP1 archive-defined `free` |
+| `0x0068AA26` | `0x006898EA` | The preceding excluded `free` alias |
+| `0x0068B1B7` | `0x0068B1A6` | VC8 SP1 archive-defined `atol` |
+
+These are compiler/linker aliases, classified `compiler_generated/exclude`:
+they contain no independent authored or runtime function body. The destination
+rules supply positive provenance; name prefixes by themselves were not used
+to classify them. This establishes the five-byte entry boundary and jump
+target, without claiming the linker mechanism or original TU placement.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py \
+  0x004021B0 0x00413770 0x00420B80 0x00436470 0x0045FD50 \
+  0x0046B1F0 0x00665B8A 0x006898EA 0x0068AA26 0x0068B1B7 --json
+python3 scripts/function-origins.py --check
+```

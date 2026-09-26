@@ -1595,3 +1595,41 @@ required_direct_edges = [
   { caller = "0x00493A40", site = "0x00493A6D", target = "0x00462AB0", caller_status = "matching" },
   { caller = "0x004FAC40", site = "0x004FAC6D", target = "0x00462AB0", caller_status = "matching" },
 ]
+
+[[rules]]
+id = "generated-container-tail-aliases-106a"
+addresses = ["0x004021B0", "0x00413770", "0x00420B80", "0x00436470", "0x0045FD50", "0x0046B1F0"]
+expected_count = 6
+expected_bytes = 30
+expected_names = ["sub_4021B0", "sub_413770", "sub_420B80", "sub_436470", "sub_45FD50", "sub_46B1F0"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Each hash-attested target candidate is one complete five-byte E9 tail alias to an independently excluded VC8-generated container COMDAT. The six destinations have pinned VC8-generated anchor rules; these aliases contain no separate source body. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_tail_jumps = [
+  { address = "0x004021B0", target = "0x004023E0", target_origin = "compiler_generated" },
+  { address = "0x00413770", target = "0x00413A90", target_origin = "compiler_generated" },
+  { address = "0x00420B80", target = "0x00420AF0", target_origin = "compiler_generated" },
+  { address = "0x00436470", target = "0x00436420", target_origin = "compiler_generated" },
+  { address = "0x0045FD50", target = "0x0045FC30", target_origin = "compiler_generated" },
+  { address = "0x0046B1F0", target = "0x00435EB0", target_origin = "compiler_generated" },
+]
+
+[[rules]]
+id = "vc8-runtime-tail-aliases-106a"
+addresses = ["0x00665B8A", "0x006898EA", "0x0068AA26", "0x0068B1B7"]
+expected_count = 4
+expected_bytes = 20
+expected_names = ["j_??2@YAPAXI@Z", "j__free", "j_j__free", "j__atol"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Each hash-attested candidate is one complete five-byte E9 tail alias with no independent source body. Three jump to VC8 SP1 archive-defined operator new/free/atol symbols; j_j__free jumps to the first free alias. All four edges and the excluded destination origins are replayed. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_tail_jumps = [
+  { address = "0x00665B8A", target = "0x00689DCB", target_origin = "vc8_runtime" },
+  { address = "0x006898EA", target = "0x0068C686", target_origin = "vc8_runtime" },
+  { address = "0x0068AA26", target = "0x006898EA", target_origin = "compiler_generated" },
+  { address = "0x0068B1B7", target = "0x0068B1A6", target_origin = "vc8_runtime" },
+]

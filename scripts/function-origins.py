@@ -1237,6 +1237,29 @@ def validate_rule_evidence(
                 f"{rule_id}: 0x{site:08X} {kind} lands at 0x{actual_target:08X}, "
                 f"expected 0x{target:08X}"
             )
+    for jump in rule.get("required_tail_jumps", []):
+        address = int(str(jump["address"]), 0)
+        target = int(str(jump["target"]), 0)
+        key = f"0x{address:08X}".upper()
+        if key not in selected_addresses:
+            errors.append(f"{rule_id}: tail jump 0x{address:08X} is not selected")
+            continue
+        if int(row_by_address[key]["size"], 0) != 5:
+            errors.append(f"{rule_id}: tail jump 0x{address:08X} is not five bytes")
+            continue
+        if f"0x{target:08X}".upper() not in row_by_address:
+            errors.append(f"{rule_id}: tail jump target 0x{target:08X} is not a candidate")
+            continue
+        try:
+            code = read_pe(address, 5)
+        except ValueError as exc:
+            errors.append(f"{rule_id}: {exc}")
+            continue
+        actual_target = address + 5 + struct.unpack_from("<i", code, 1)[0]
+        if code[0] != 0xE9 or actual_target != target:
+            errors.append(
+                f"{rule_id}: 0x{address:08X} is not E9 to 0x{target:08X}"
+            )
     if rule.get("xiph_anchor_file"):
         errors.extend(validate_xiph_anchor_evidence(rule, selected, rows, read_pe))
     if rule.get("xiph_relocated_anchor_file"):
@@ -1296,6 +1319,15 @@ def materialize() -> tuple[list[dict[str, str]], list[str]]:
                 "confidence": str(rule["confidence"]),
                 "evidence_id": rule_id,
             }
+    for rule in rules:
+        for jump in rule.get("required_tail_jumps", []):
+            target = f"0x{int(str(jump['target']), 0):08X}"
+            target_origin = str(jump["target_origin"])
+            target_row = census.get(target)
+            if target_row is None or target_row["origin"] != target_origin or target_row["disposition"] != "exclude":
+                errors.append(
+                    f"{rule['id']}: jump target {target} is not an excluded {target_origin} candidate"
+                )
     return [census[row["address"]] for row in rows], errors
 
 

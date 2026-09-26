@@ -12,8 +12,9 @@ instructions are not the active queue.
 - User-directed phase: clean misleading documentation/code, then review the
   remaining origin and candidate-boundary queue. The initial census was
   **4,023 candidates, 1,476 authored, 1,308 excluded, 1,239 in review**.
-  The first reviewed batch moves four complete game-owned bodies to authored:
-  **1,480 authored / 1,308 excluded / 1,235 review**. Source-present remains
+  The first reviewed batch moves four complete game-owned bodies to authored;
+  the second excludes ten five-byte E9 tail aliases. The resulting census is
+  **1,480 authored / 1,318 excluded / 1,225 review**. Source-present remains
   1,388; canonical exact remains 1,315 functions / 220,094 bytes. Recompute from
   `scripts/report-reconstruction-status.py --summary` after every promotion.
 - The local target file passes hash verification. The attached IDA session
@@ -52,6 +53,8 @@ edges from exact callers. The new boundary auditor triaged all 1,239 initial
 review rows: 935 had full provisional-span reachability with no visible exit;
 159 had unreached bytes, 62 indirect jumps, and 137 outgoing direct edges
 (overlapping groups). These are leads, not automatic origin promotions.
+The same note also records ten five-byte tail aliases whose signed E9 target
+and excluded destination origin are replayed in `function-origins.py`.
 
 ```bash
 python3 scripts/verify-target.py

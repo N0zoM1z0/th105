@@ -180,6 +180,24 @@ class WorkflowToolingTests(unittest.TestCase):
             rule, [row], [{**row, "size": "3"}], b"", lambda _address, _size: body
         ))
 
+    def test_origin_tail_jump_requires_complete_alias_and_candidate_target(self) -> None:
+        source = {"address": "0x00401000", "size": "5", "status": "identified"}
+        target = {"address": "0x00401100", "size": "7", "status": "unclassified"}
+        rule = {
+            "id": "tail-alias-control",
+            "required_tail_jumps": [{
+                "address": source["address"], "target": target["address"],
+                "target_origin": "compiler_generated",
+            }],
+        }
+        body = b"\xE9" + struct.pack("<i", 0x401100 - 0x401000 - 5)
+        verify = self.origins.validate_rule_evidence
+        self.assertEqual(verify(rule, [source], [source, target], b"", lambda *_: body), [])
+        self.assertTrue(verify(rule, [source], [source, target], b"", lambda *_: b"\xE8" + body[1:]))
+        self.assertTrue(verify(rule, [source], [source, target], b"", lambda *_: b"\xE9\0\0\0\0"))
+        self.assertTrue(verify(rule, [source], [source], b"", lambda *_: body))
+        self.assertTrue(verify(rule, [source], [{**source, "size": "6"}, target], b"", lambda *_: body))
+
     def test_candidate_boundary_audit_keeps_branches_and_gaps_distinct(self) -> None:
         start = 0x401000
         code = b"\x74\x01\xC3\xC3"

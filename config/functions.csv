@@ -41,7 +41,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00402090,30,0x004020AD,sub_402090,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004020B0,30,0x004020CD,sub_4020B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004020D0,218,0x004021A9,sub_4020D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x004021B0,5,0x004021B4,sub_4021B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x004021B0,5,0x004021B4,sub_4021B0,,,identified,0.00,,,true,,Hash-attested 1.06a raw PE: complete five-byte E9 tail jump to 0x004023E0; see origin rule and docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,No independent function body; destination origin is separately evidenced.
 0x004021C0,193,0x00402280,sub_4021C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00402290,131,0x00402312,sub_402290,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00402320,188,0x004023DB,sub_402320,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -442,7 +442,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00413420,703,0x004136DE,sub_413420,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004136E0,90,0x00413739,sub_4136E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00413740,33,0x00413760,sub_413740,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00413770,5,0x00413774,sub_413770,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00413770,5,0x00413774,sub_413770,,,identified,0.00,,,true,,Hash-attested 1.06a raw PE: complete five-byte E9 tail jump to 0x00413A90; see origin rule and docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,No independent function body; destination origin is separately evidenced.
 0x00413780,145,0x00413810,sub_413780,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00413820,98,0x00413881,sub_413820,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00413890,32,0x004138AF,sub_413890,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -720,7 +720,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00420A40,55,0x00420A76,sub_420A40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00420A80,104,0x00420AE7,sub_420A80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00420AF0,135,0x00420B76,sub_420AF0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00420B80,5,0x00420B84,sub_420B80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00420B80,5,0x00420B84,sub_420B80,,,identified,0.00,,,true,,Hash-attested 1.06a raw PE: complete five-byte E9 tail jump to 0x00420AF0; see origin rule and docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,No independent function body; destination origin is separately evidenced.
 0x00420B90,118,0x00420C05,sub_420B90,UiDesignResource_bind_object_alt,ui,identified,0.00,__thiscall,,false,,118/118 target bytes reachable; RETs 0x00420BDE/0x00420C03; INT3 padding; exact call 0x0043FDB8; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,"Receiver +0x20 checked object tree lookup writes object or null through output pointer; game-specific UI wrapper, distinct from generated tree lower_bound 0x0040CDA0; source/TU exactness pending."
 0x00420C30,40,0x00420C57,sub_420C30,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00420C60,263,0x00420D66,sub_420C60,CSelectObject_HandleManager_dtor,battle,matching,100.00,__thiscall,void CSelectObject_HandleManager_dtor(CHandleManagerEx<CSelectObject> * this),false,src/characters/CHandleManagerEx.cpp,python3 scripts/build.py --unit cross-v106a-chandle-manager-ex-lifetime --compare --json reports exact 263/263 against TH105 1.06a,root,Natural CHandleManagerEx<CSelectObject> checked-container/member lifetime is exact 263/263; one source-level slots[index] local avoids duplicated checked bounds code.
@@ -1112,7 +1112,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004363E0,30,0x004363FD,sub_4363E0,SystemEffectObject_HandleManager_scalar_deleting_destructor,battle,matching,100.00,__thiscall,"void * SystemEffectObject_HandleManager_scalar_deleting_destructor(CHandleManagerEx<SystemEffectObject> * this, unsigned int flags)",false,src/characters/CHandleManagerEx.cpp,python3 scripts/build.py --unit cross-v106a-chandle-manager-ex-lifetime --compare --json reports exact 30/30 against TH105 1.06a,root,Current CHandleManagerEx<SystemEffectObject> vtable first slot owns this implicit scalar deleting wrapper; exact 30/30.
 0x00436400,30,0x0043641D,sub_436400,EffectObject_HandleManager_scalar_deleting_destructor,battle,matching,100.00,__thiscall,"void * EffectObject_HandleManager_scalar_deleting_destructor(CHandleManagerEx<EffectObject> * this, unsigned int flags)",false,src/characters/CHandleManagerEx.cpp,python3 scripts/build.py --unit cross-v106a-chandle-manager-ex-lifetime --compare --json reports exact 30/30 against TH105 1.06a,root,Current CHandleManagerEx<EffectObject> vtable first slot owns this implicit scalar deleting wrapper; exact 30/30.
 0x00436420,76,0x0043646B,sub_436420,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00436470,5,0x00436474,sub_436470,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00436470,5,0x00436474,sub_436470,,,identified,0.00,,,true,,Hash-attested 1.06a raw PE: complete five-byte E9 tail jump to 0x00436420; see origin rule and docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,No independent function body; destination origin is separately evidenced.
 0x004364A0,509,0x0043669C,sub_4364A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004366A0,185,0x00436758,sub_4366A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00436760,335,0x004368AE,sub_436760,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -1844,7 +1844,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0045FC30,76,0x0045FC7B,sub_45FC30,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045FC80,135,0x0045FD06,sub_45FC80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045FD10,57,0x0045FD48,sub_45FD10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0045FD50,5,0x0045FD54,sub_45FD50,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0045FD50,5,0x0045FD54,sub_45FD50,,,identified,0.00,,,true,,Hash-attested 1.06a raw PE: complete five-byte E9 tail jump to 0x0045FC30; see origin rule and docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,No independent function body; destination origin is separately evidenced.
 0x0045FD60,5,0x0045FD64,sub_45FD60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045FD70,600,0x0045FFC7,sub_45FD70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0045FFD0,515,0x004601D2,sub_45FFD0,PatRecord88_destroy,battle,matching,100.00,__thiscall,void PatRecord88_destroy(PatRecord88 * this),false,src/battle/PatRecordLifetime.cpp,python3 scripts/build.py --unit cross-v106a-pat-record-lifetime --compare --json reports exact 515/515 against TH105 1.06a,root,"Current target lifetime proves FrameData base ownership plus checked vector<PatRaw16> at +0x58/+0x68 and vector<PatRaw16*> at +0x78. Natural index-based pointer cleanup, guarded deletes, explicit clears, automatic reverse vector teardown and FrameData base destruction reproduce all 515 bytes."
@@ -2018,7 +2018,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0046B080,222,0x0046B15D,sub_46B080,reset_fighter_fields_6b4_728,battle,matching,100.00,__fastcall,void reset_fighter_fields_6b4_728(void * context),false,src/battle/FighterResets.cpp,python3 scripts/build.py --unit cross-v106a-fighter-reset-fields --compare --json reports exact 222/222 against TH105 1.06a,root,Current 1.06a iterates exactly two fighter pointers from context+0x0C and clears the retained 24-field 0x6B4..0x728 set. Relocation-free fresh VC8 matches all 222 bytes; historical body-set extent omitted the final three bytes.
 0x0046B160,105,0x0046B1C8,sub_46B160,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0046B1D0,22,0x0046B1E5,sub_46B1D0,initialize_collision_list,battle,matching,100.00,__fastcall,CollisionList * initialize_collision_list(CollisionList * list),false,src/battle/CollisionListInit.cpp,python3 scripts/build.py --unit cross-v106a-collision-list-init --compare --json reports exact 22/22 against TH105 1.06a,root,Current IDA confirms sentinel factory 0x00435E50 is stored into the list and count is cleared; source body has zero non-relocation differences and canonical comparison is exact.
-0x0046B1F0,5,0x0046B1F4,sub_46B1F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0046B1F0,5,0x0046B1F4,sub_46B1F0,,,identified,0.00,,,true,,Hash-attested 1.06a raw PE: complete five-byte E9 tail jump to 0x00435EB0; see origin rule and docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,No independent function body; destination origin is separately evidenced.
 0x0046B200,147,0x0046B292,sub_46B200,CBattleManagerBase_ctor,battle,matching,100.00,__thiscall,CBattleManagerBase * CBattleManagerBase_ctor(CBattleManagerBase * this),false,src/battle/BattleManagerBaseLifetime.cpp,python3 scripts/build.py --unit cross-v106a-battle-manager-base-lifetime --compare --json reports canonical exact 147/147 against TH105 1.06a,root,Current base vtable 0x006C3624 plus three 2x0x0C collision-list arrays at +0x2C/+0x44/+0x5C reproduce the complete /GS ctor.
 0x0046B2A0,138,0x0046B329,sub_46B2A0,CBattleManagerBase_dtor,battle,matching,100.00,__thiscall,void CBattleManagerBase_dtor(CBattleManagerBase * this),false,src/battle/BattleManagerBaseLifetime.cpp,python3 scripts/build.py --unit cross-v106a-battle-manager-base-lifetime --compare --json reports canonical exact 138/138 against TH105 1.06a,root,Reverse EH-vector teardown independently validates the same three collision-list arrays and base vtable.
 0x0046B330,30,0x0046B34D,sub_46B330,CBattleManagerBase_scalar_deleting_destructor,battle,matching,100.00,__thiscall,"void * CBattleManagerBase_scalar_deleting_destructor(CBattleManagerBase * this, unsigned int flags)",false,src/battle/BattleManagerBaseLifetime.cpp,python3 scripts/build.py --unit cross-v106a-battle-manager-base-lifetime --compare --json reports canonical exact 30/30 against TH105 1.06a,root,Current CBattleManagerBase vtable 0x006C3624 first slot owns this scalar wrapper over the exact normal destructor.
@@ -2667,7 +2667,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00665AF4,63,0x00665B32,?_Xlen@_String_base@std@@SAXXZ,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00665B33,63,0x00665B71,?_Xran@_String_base@std@@SAXXZ,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00665B72,24,0x00665B89,sub_665B72,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00665B8A,5,0x00665B8E,j_??2@YAPAXI@Z,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00665B8A,5,0x00665B8E,j_??2@YAPAXI@Z,,,identified,0.00,,,true,,Hash-attested 1.06a raw PE: complete five-byte E9 tail jump to 0x00689DCB; see origin rule and docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,No independent function body; destination origin is separately evidenced.
 0x00665B90,39,0x00665BB6,sub_665B90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00665BC0,79,0x00665C0E,sub_665BC0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00665C10,2014,0x006663ED,sub_665C10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -3048,7 +3048,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006898D8,6,0x006898DD,htons,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006898DE,6,0x006898E3,htonl,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006898E4,6,0x006898E9,gethostbyname,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006898EA,5,0x006898EE,j__free,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006898EA,5,0x006898EE,j__free,,,identified,0.00,,,true,,Hash-attested 1.06a raw PE: complete five-byte E9 tail jump to 0x0068C686; see origin rule and docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,No independent function body; destination origin is separately evidenced.
 0x006898EF,14,0x006898FC,sub_6898EF,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006898FD,28,0x00689918,sub_6898FD,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00689919,27,0x00689933,unknown_libname_4,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -3099,7 +3099,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0068A6BC,709,0x0068A980,__localtime64_s,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0068A981,60,0x0068A9BC,__time64,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0068A9BD,105,0x0068AA25,??__C@YGXPAX0IHP6EX00@ZP6EX0@Z@Z,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0068AA26,5,0x0068AA2A,j_j__free,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0068AA26,5,0x0068AA2A,j_j__free,,,identified,0.00,,,true,,Hash-attested 1.06a raw PE: complete five-byte E9 tail jump to 0x006898EA; see origin rule and docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,No independent function body; destination origin is separately evidenced.
 0x0068AA30,869,0x0068AD94,_memcpy,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0068AD95,101,0x0068ADF9,_strcpy_s,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0068ADFA,185,0x0068AEB2,__onexit_nolock,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -3112,7 +3112,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0068B088,246,0x0068B17D,__vswprintf_helper,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0068B17E,40,0x0068B1A5,__vswprintf_c_l,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0068B1A6,17,0x0068B1B6,_atol,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0068B1B7,5,0x0068B1BB,j__atol,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0068B1B7,5,0x0068B1BB,j__atol,,,identified,0.00,,,true,,Hash-attested 1.06a raw PE: complete five-byte E9 tail jump to 0x0068B1A6; see origin rule and docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,No independent function body; destination origin is separately evidenced.
 0x0068B1BC,236,0x0068B2A7,_strtok_s,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0068B2A8,179,0x0068B35A,_strncpy_s,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0068B35B,28,0x0068B376,sub_68B35B,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
