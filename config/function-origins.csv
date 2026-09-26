@@ -5,10 +5,10 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004010C0,authored_game,engine,authored,observed,canonical-exact-authored
 0x004010F0,authored_game,engine,authored,observed,canonical-exact-authored
 0x00401130,authored_game,engine,authored,observed,canonical-exact-authored
-0x00401180,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00401180,authored_game,engine,authored,inferred,render-mode-line-primitive-authored-106a
 0x00401220,compiler_generated,network,exclude,observed,vc8-generated-network-base-array-constructor-helper-106a
 0x00401260,authored_game,engine,authored,observed,canonical-exact-authored
-0x004012A0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004012A0,authored_game,engine,authored,observed,render-mode-rectangle-authored-106a
 0x00401430,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004014C0,authored_game,engine,authored,observed,canonical-exact-authored
 0x00401610,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -104,7 +104,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00404C90,authored_game,ui,authored,observed,canonical-exact-authored
 0x00404D00,authored_game,ui,authored,observed,text-texture-resource-wrapper-authored-106a
 0x00404D70,authored_game,ui,authored,observed,canonical-exact-authored
-0x00404DF0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00404DF0,authored_game,assets,authored,observed,render-texture-slot-binding-authored-106a
 0x00404E60,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00404F00,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00404FD0,unknown,,review,unknown,ida-1.06a-initial-inventory

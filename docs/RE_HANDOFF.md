@@ -12,9 +12,9 @@ instructions are not the active queue.
 - User-directed phase: clean misleading documentation/code, then review the
   remaining origin and candidate-boundary queue. The initial census was
   **4,023 candidates, 1,476 authored, 1,308 excluded, 1,239 in review**.
-  Twenty-six evidence-linked origin/boundary batches are recorded in
+  Twenty-seven evidence-linked origin/boundary batches are recorded in
   [the focused review](ORIGIN_BOUNDARY_REVIEW_2026_09_26.md). The current
-  census is **1,488 authored / 1,414 excluded / 1,121 review**. Source-present
+  census is **1,491 authored / 1,414 excluded / 1,118 review**. Source-present
   remains 1,388; canonical exact remains 1,315 functions / 220,094 bytes.
   Recompute from `scripts/report-reconstruction-status.py --summary` after
   every promotion.
@@ -127,6 +127,13 @@ The 1,862-byte fighter body-collision phase `0x0046CCA0` has complete
 main-span reachability, five RET paths, ten calls to exact game collision
 helpers and nine distinct exact BattleManager/Story callers. Its retained
 source/class identity and standalone exact codegen remain unresolved.
+The 148-byte line renderer `0x00401180`, 395-byte outline/filled rectangle
+renderer `0x004012A0`, and 107-byte texture-slot binder `0x00404DF0` have
+complete main spans and replayed call edges. The rectangle draws four
+untextured lines or one untextured triangle strip. The binder also has an
+independent canonical-exact textured-primitive caller; its resource lookup
+callee is source-present. Their original class/TU boundaries and source
+implementations remain unselected.
 
 ```bash
 python3 scripts/verify-target.py

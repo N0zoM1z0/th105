@@ -2043,8 +2043,14 @@ def validate_rule_evidence(
             errors.append(f"{rule_id}: body-call owner 0x{owner:08X} is not selected")
             continue
         target_row = row_by_address.get(target_key)
-        if target_row is None or target_row["status"] != "matching":
-            errors.append(f"{rule_id}: body-call target 0x{target:08X} is not canonical exact")
+        expected_status = str(edge.get("target_status", "matching"))
+        if expected_status not in {"matching", "implemented", "identified"}:
+            errors.append(f"{rule_id}: unsupported body-call target status {expected_status!r}")
+            continue
+        if target_row is None or target_row["status"] != expected_status:
+            errors.append(
+                f"{rule_id}: body-call target 0x{target:08X} status is not {expected_status}"
+            )
             continue
         owner_size = int(row_by_address[owner_key]["size"], 0)
         if not owner <= site <= owner + owner_size - 5:

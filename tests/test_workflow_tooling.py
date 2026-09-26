@@ -480,6 +480,41 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_selected_body_calls"] = calls
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    def test_render_rectangle_chain_requires_reviewed_edges_and_status(self) -> None:
+        with self.origins.RULES.open("rb") as stream:
+            document = tomllib.load(stream)
+        rules = [
+            next(row for row in document["rules"] if row["id"] == rule_id)
+            for rule_id in (
+                "render-texture-slot-binding-authored-106a",
+                "render-mode-line-primitive-authored-106a",
+                "render-mode-rectangle-authored-106a",
+            )
+        ]
+        rows = self.origins.read_csv(self.origins.FUNCTIONS)
+        data = self.origins.attest_target(document)
+        read_pe = self.origins.pe_reader(data)
+        validate = self.origins.validate_rule_evidence
+        for rule in rules:
+            selected = [row for row in rows if row["address"] in rule["addresses"]]
+            self.assertEqual(validate(rule, selected, rows, data, read_pe), [])
+
+        binder = rules[0]
+        selected = [row for row in rows if row["address"] in binder["addresses"]]
+        changed = dict(binder)
+        calls = [dict(entry) for entry in binder["required_selected_body_calls"]]
+        calls[0]["target_status"] = "identified"  # lookup is source-present
+        changed["required_selected_body_calls"] = calls
+        self.assertTrue(validate(changed, selected, rows, data, read_pe))
+
+        rectangle = rules[2]
+        selected = [row for row in rows if row["address"] in rectangle["addresses"]]
+        changed = dict(rectangle)
+        edges = [dict(entry) for entry in rectangle["required_direct_edges"]]
+        edges[0]["site"] = "0x0040128C"  # off the canonical-exact E8 opcode
+        changed["required_direct_edges"] = edges
+        self.assertTrue(validate(changed, selected, rows, data, read_pe))
+
     def test_boost_throw_virtual_requires_terminal_runtime_edge(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)

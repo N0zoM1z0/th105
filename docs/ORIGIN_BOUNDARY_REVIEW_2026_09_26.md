@@ -832,3 +832,50 @@ select it in `implemented.csv` or add exact-match credit.
 python3 scripts/audit-candidate-boundaries.py 0x0046CCA0 --json
 python3 scripts/function-origins.py --check
 ```
+
+## Render rectangle, line, and texture-slot chain
+
+The hash-attested target PE reaches every byte of these three provisional
+candidate spans with no indirect jump, outgoing direct branch, or invalid
+decode:
+
+| Entry | Bytes | Body SHA-256 | Return sites |
+| --- | ---: | --- | --- |
+| `0x00401180` | 148 | `8fab1b24e1ad32aa03203b28ed4c80a795f9d83f6f21e9890e154bb531b3f28d` | `0x00401211` (`RET 0x14`) |
+| `0x004012A0` | 395 | `71aa186253ca2f14ce6ffc30ac72ef5a5ff29b01f2e2e85e3493c4f6d113b347` | `0x00401351`, `0x00401428` (both `RET 0x18`) |
+| `0x00404DF0` | 107 | `c507bdb541478a700181ff1d1bfd3637cbc78261eed2de6390ec68fa1fb239fc` | `0x00404E22`, `0x00404E58` (both `RET 8`) |
+
+At `0x00401180`, the target constructs **two** 20-byte color vertices,
+passes zero texture handle and slot to `0x00404DF0`, then calls the D3D9
+device's `SetFVF` and `DrawPrimitiveUP` slots (`+0x164`, `+0x14C`). The
+draw call passes primitive type 2, count 1, and stride `0x14`: one line
+segment. An earlier draft incorrectly described it as a textured quad.
+
+`0x004012A0` has an outline path that calls this line helper four times
+at `0x004012D5`, `0x004012FB`, `0x00401321`, and `0x00401347`. Its filled
+path clears texture slot zero through `0x00404DF0`, constructs four
+20-byte color vertices, and calls the same D3D9 slots with primitive type
+5, count 2, and stride `0x14`: a triangle strip. Eight distinct
+canonical-exact callers have pinned E8 sites, including
+`RenderModeManager_draw_rect_int @ 0x00401260`. The retained class label
+is supported by that caller but does not prove source/TU ownership.
+
+`0x00404DF0` itself clears a D3D9 texture slot on zero handle, or resolves
+a nonzero handle through source-present resource lookup `0x00417800`,
+binds its texture through device vslot `+0x104`, and caches the handle in
+its receiver's `+0x64` slot array. Canonical-exact
+`RenderModeManager_submit_textured_primitive @ 0x00401130` calls it at
+`0x0040113F`; the line and filled rectangle paths call it with zero
+handle. Thus the zero-handle calls do not make either primitive textured.
+
+The rule pins all three bodies, eight exact rectangle call sites, four
+line-helper call sites, the texture-slot calls, and the lookup call.
+These observations support `authored_game` origin and the reviewed main
+spans. The original class names, TU boundaries, full semantics, and exact
+source codegen remain open. No source-present or exact credit was added.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py \
+  0x00401180 0x004012A0 0x00404DF0 --json
+python3 scripts/function-origins.py --check
+```

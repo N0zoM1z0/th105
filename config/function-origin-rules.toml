@@ -2228,3 +2228,82 @@ required_selected_body_calls = [
   { owner = "0x0046CCA0", site = "0x0046D2CC", target = "0x00435950" },
   { owner = "0x0046CCA0", site = "0x0046D303", target = "0x00435950" },
 ]
+
+[[rules]]
+id = "render-texture-slot-binding-authored-106a"
+addresses = ["0x00404DF0"]
+expected_count = 1
+expected_bytes = 107
+expected_names = ["sub_404DF0"]
+origin = "authored_game"
+subsystem = "assets"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete 107-byte two-RET target body binds or clears a texture handle through D3D device vslot 0x104, caches the handle in receiver slot array +0x64, and calls the separately reviewed game resource lookup 0x00417800 for nonzero handles. Canonical-exact RenderModeManager_submit_textured_primitive calls this binder; rendering helpers 0x00401180/0x004012A0 call it with zero handle. Full body and exact/identified E8 edges are replayed. Source class/TU and standalone exact result remain unresolved. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_body_hashes = [
+  { address = "0x00404DF0", size = 107, sha256 = "c507bdb541478a700181ff1d1bfd3637cbc78261eed2de6390ec68fa1fb239fc" },
+]
+required_direct_edges = [
+  { caller = "0x00401130", site = "0x0040113F", target = "0x00404DF0", caller_status = "matching" },
+  { caller = "0x00401180", site = "0x004011DF", target = "0x00404DF0", caller_status = "identified" },
+  { caller = "0x004012A0", site = "0x004013F5", target = "0x00404DF0", caller_status = "identified" },
+]
+required_selected_body_calls = [
+  { owner = "0x00404DF0", site = "0x00404E37", target = "0x00417800", target_status = "implemented" },
+]
+
+[[rules]]
+id = "render-mode-line-primitive-authored-106a"
+addresses = ["0x00401180"]
+expected_count = 1
+expected_bytes = 148
+expected_names = ["sub_401180"]
+origin = "authored_game"
+subsystem = "engine"
+disposition = "authored"
+confidence = "inferred"
+evidence = "Complete 148-byte RET 0x14 body constructs two color vertices at stride 0x14, clears texture slot zero through 0x00404DF0, then calls D3D9 SetFVF and DrawPrimitiveUP for one line-list primitive through receiver +0x04. The reviewed rectangle renderer 0x004012A0 calls it four times for outline mode; all four E8 sites plus the binder E8 and full body are replayed. Original class/TU and exact source remain unresolved. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_body_hashes = [
+  { address = "0x00401180", size = 148, sha256 = "8fab1b24e1ad32aa03203b28ed4c80a795f9d83f6f21e9890e154bb531b3f28d" },
+]
+required_direct_edges = [
+  { caller = "0x004012A0", site = "0x004012D5", target = "0x00401180", caller_status = "identified" },
+  { caller = "0x004012A0", site = "0x004012FB", target = "0x00401180", caller_status = "identified" },
+  { caller = "0x004012A0", site = "0x00401321", target = "0x00401180", caller_status = "identified" },
+  { caller = "0x004012A0", site = "0x00401347", target = "0x00401180", caller_status = "identified" },
+]
+required_selected_body_calls = [
+  { owner = "0x00401180", site = "0x004011DF", target = "0x00404DF0", target_status = "identified" },
+]
+
+[[rules]]
+id = "render-mode-rectangle-authored-106a"
+addresses = ["0x004012A0"]
+expected_count = 1
+expected_bytes = 395
+expected_names = ["sub_4012A0"]
+origin = "authored_game"
+subsystem = "engine"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete 395-byte two-RET target body branches on filled/outline mode. Outline draws four untextured line segments through helper 0x00401180; filled mode clears texture slot zero through 0x00404DF0, constructs four color vertices and calls D3D9 SetFVF/DrawPrimitiveUP for a two-primitive triangle strip. Eight distinct canonical-exact scene/fade/profile/effect renderers call it, including exact RenderModeManager_draw_rect_int. Full body, all eight exact inbound E8s, and all five helper E8s are replayed. Class/TU and exact source remain unresolved. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_body_hashes = [
+  { address = "0x004012A0", size = 395, sha256 = "71aa186253ca2f14ce6ffc30ac72ef5a5ff29b01f2e2e85e3493c4f6d113b347" },
+]
+required_direct_edges = [
+  { caller = "0x00401260", site = "0x0040128B", target = "0x004012A0", caller_status = "matching" },
+  { caller = "0x0041E290", site = "0x0041E307", target = "0x004012A0", caller_status = "matching" },
+  { caller = "0x0041E920", site = "0x0041E991", target = "0x004012A0", caller_status = "matching" },
+  { caller = "0x0041F410", site = "0x0041F45E", target = "0x004012A0", caller_status = "matching" },
+  { caller = "0x004269D0", site = "0x00426A1E", target = "0x004012A0", caller_status = "matching" },
+  { caller = "0x0043AAD0", site = "0x0043AB67", target = "0x004012A0", caller_status = "matching" },
+  { caller = "0x0043F900", site = "0x0043F93D", target = "0x004012A0", caller_status = "matching" },
+  { caller = "0x004696E0", site = "0x004698A1", target = "0x004012A0", caller_status = "matching" },
+]
+required_selected_body_calls = [
+  { owner = "0x004012A0", site = "0x004012D5", target = "0x00401180", target_status = "identified" },
+  { owner = "0x004012A0", site = "0x004012FB", target = "0x00401180", target_status = "identified" },
+  { owner = "0x004012A0", site = "0x00401321", target = "0x00401180", target_status = "identified" },
+  { owner = "0x004012A0", site = "0x00401347", target = "0x00401180", target_status = "identified" },
+  { owner = "0x004012A0", site = "0x004013F5", target = "0x00404DF0", target_status = "identified" },
+]
