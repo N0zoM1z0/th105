@@ -1874,3 +1874,22 @@ required_rtti_virtual_bodies = [
   { address = "0x006B5110", size = 55, sha256 = "02de7453d61fc6d4f345df560e84e7706ec5574da19b4316925e27d8d7f9fc43", slot = "0x006D688C", col_slot = "0x006D6884", col = "0x006DC658", type_descriptor = "0x006F9BE0", type_name_contains = "exception_detail@boost@@", terminal_call = "0x0068A153", calls = [{ site = "0x006B511B", target = "0x006B4E60" }, { site = "0x006B5142", target = "0x0068A153" }] },
   { address = "0x006B5400", size = 55, sha256 = "5345f95174e632fb5904712b7695738279247ce66185a6450712348c0c95a329", slot = "0x006D6854", col_slot = "0x006D684C", col = "0x006DC56C", type_descriptor = "0x006F9B18", type_name_contains = "exception_detail@boost@@", terminal_call = "0x0068A153", calls = [{ site = "0x006B540B", target = "0x006B4FC0" }, { site = "0x006B5432", target = "0x0068A153" }] },
 ]
+
+[[rules]]
+id = "boost-exception-clone-allocate-virtuals-106a"
+addresses = ["0x006A8460", "0x006A9630", "0x006B5090", "0x006B5380"]
+expected_count = 4
+expected_bytes = 480
+expected_names = ["sub_6A8460", "sub_6A9630", "sub_6B5090", "sub_6B5380"]
+origin = "third_party"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "inferred"
+evidence = "Four complete 120-byte RET-terminated virtual clone/allocate bodies are directly owned by Boost exception_detail::clone_impl RTTI vtables. Each calls the separately excluded VC8 operator new and a candidate class copy helper, then publishes the same Boost class vptrs. All four push the same EH handler 0x006B6E2B; its VC8 FuncInfo 0x006DD140 has one unwind action at 0x006B6E20, which calls the excluded free alias for the allocated object on an exceptional copy path. The rule pins full bodies, vtable/COL/type links, both E8 edges, and the complete shared handler/FuncInfo/unwind-map/action chain. This supports Boost template ownership; four copy helpers remain under review. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_rtti_virtual_bodies = [
+  { address = "0x006A8460", size = 120, sha256 = "8f3336cf74f63678d3803e1dbf61cfa2a390d27cedd5d133f975649f5ffbbf19", slot = "0x006D5EA0", col_slot = "0x006D5E9C", col = "0x006DC328", type_descriptor = "0x006F96A0", type_name_contains = "exception_detail@boost@@", calls = [{ site = "0x006A8487", target = "0x00689DCB" }, { site = "0x006A84A5", target = "0x006A5E40" }] },
+  { address = "0x006A9630", size = 120, sha256 = "056373e968924e94eb57f27d83fac91b2418c7b06fcb0f82372d7a27fc118ed3", slot = "0x006D5E68", col_slot = "0x006D5E64", col = "0x006DC23C", type_descriptor = "0x006F95D0", type_name_contains = "exception_detail@boost@@", calls = [{ site = "0x006A9657", target = "0x00689DCB" }, { site = "0x006A9675", target = "0x006A7310" }] },
+  { address = "0x006B5090", size = 120, sha256 = "0ed1bbe6a0bb1d1f43fd6da3b81b204eec0c272e2919567e1fe9c60cef400612", slot = "0x006D6888", col_slot = "0x006D6884", col = "0x006DC658", type_descriptor = "0x006F9BE0", type_name_contains = "exception_detail@boost@@", calls = [{ site = "0x006B50B7", target = "0x00689DCB" }, { site = "0x006B50D5", target = "0x006B4E60" }] },
+  { address = "0x006B5380", size = 120, sha256 = "40c735957c57db8beaf3ed0584922c9dc52b5bcbb97768dbdcd4d834cf2616b5", slot = "0x006D6850", col_slot = "0x006D684C", col = "0x006DC56C", type_descriptor = "0x006F9B18", type_name_contains = "exception_detail@boost@@", calls = [{ site = "0x006B53A7", target = "0x00689DCB" }, { site = "0x006B53C5", target = "0x006B4FC0" }] },
+]
+required_shared_eh = { handler = "0x006B6E2B", handler_sha256 = "f76b546e336af1ff350bf4439a37d44e0ca4a6ba8f3e563f775cc6601e96cad5", func_info = "0x006DD140", func_info_sha256 = "57ea4abdfbba71ab5e6f87b847354876acde4c3514423f58bcb322024e1a891a", unwind_map = "0x006DD138", unwind_map_sha256 = "d7022bd48f6ca29d2365e95756eed3a2d5bd302457834f637bbdbe01084f45a2", action = "0x006B6E20", action_sha256 = "a49d674fdb250d4ca4f567068100638ef6475a5eab292cc659c68c62cc318512" }

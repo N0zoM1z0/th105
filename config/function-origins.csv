@@ -3761,7 +3761,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006A8310,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006A8370,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006A83A0,compiler_generated,runtime,exclude,observed,vc8-generated-uint-value8-tree-family-106a
-0x006A8460,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006A8460,third_party,runtime,exclude,inferred,boost-exception-clone-allocate-virtuals-106a
 0x006A84E0,third_party,runtime,exclude,inferred,boost-exception-clone-throw-virtuals-106a
 0x006A8520,compiler_generated,input,exclude,observed,vc8-generated-direct-input-vectors-106a
 0x006A85B0,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
@@ -3784,7 +3784,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006A94F0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006A95D0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006A9600,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x006A9630,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006A9630,third_party,runtime,exclude,inferred,boost-exception-clone-allocate-virtuals-106a
 0x006A96B0,third_party,runtime,exclude,inferred,boost-exception-clone-throw-virtuals-106a
 0x006A96F0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006A9710,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -3923,7 +3923,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006B4F00,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B4FC0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B5060,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x006B5090,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006B5090,third_party,runtime,exclude,inferred,boost-exception-clone-allocate-virtuals-106a
 0x006B5110,third_party,runtime,exclude,inferred,boost-exception-clone-throw-virtuals-106a
 0x006B5150,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B51B0,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -3931,7 +3931,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006B5220,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B52E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B5350,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x006B5380,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006B5380,third_party,runtime,exclude,inferred,boost-exception-clone-allocate-virtuals-106a
 0x006B5400,third_party,runtime,exclude,inferred,boost-exception-clone-throw-virtuals-106a
 0x006B5440,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B5460,unknown,,review,unknown,ida-1.06a-initial-inventory

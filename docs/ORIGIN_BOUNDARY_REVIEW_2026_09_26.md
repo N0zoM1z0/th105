@@ -416,11 +416,44 @@ adjacent VC8 RTTI locators, Boost type descriptors, and the terminal throw
 edge. These virtual throw/rethrow implementations belong to Boost template
 code (`third_party/exclude`, inferred). Their helper callees remain separate
 pending candidates. The four related 120-byte clone/allocate methods have EH
-registration and are still under boundary and origin review, as is the exact
-Boost release. No source-present or canonical exact credit changes.
+registration; their shared unwind path is reviewed in the next section. The
+exact Boost release remains unknown. No source-present or canonical exact
+credit changes.
 
 ```bash
 python3 scripts/audit-candidate-boundaries.py \
   0x006A84E0 0x006A96B0 0x006B5110 0x006B5400 --json
+python3 scripts/function-origins.py --check
+```
+
+## Four Boost `clone_impl` allocate virtuals and their EH cleanup
+
+The four first-slot virtuals `0x006A8460`, `0x006A9630`, `0x006B5090`,
+and `0x006B5380` belong to the same four `clone_impl` RTTI types. Each
+120-byte main span is fully reachable and ends in a plain RET. Raw code calls
+the separately excluded VC8 operator new `0x00689DCB`, invokes a
+class-specific copy helper, then publishes vptrs for the corresponding
+Boost class. All four register EH handler `0x006B6E2B` in their prologues.
+
+The handler's complete 27-byte code checks the security cookie through
+`0x00689D25`, loads VC8 FuncInfo `0x006DD140`, and tail-jumps to the
+already excluded `__CxxFrameHandler3 @ 0x006899E7`. That 36-byte FuncInfo
+has one unwind state and points at map `0x006DD138`; the map's action is
+`0x006B6E20`. The action is an 11-byte cleanup that reads the allocated
+pointer from `[ebp-0x10]` and calls excluded free alias `0x006898EA`.
+This closes the observed exceptional allocation cleanup path without
+folding the shared EH code into any of the four 120-byte main spans.
+
+The origin rule checks all body hashes, virtual slots, RTTI locators, type
+descriptors, both direct E8 sites per body, handler prologues, and the exact
+shared handler/FuncInfo/unwind map/action bytes and references. The methods
+are Boost template implementations (`third_party/exclude`, inferred). The
+four copy helpers `0x006A5E40`, `0x006A7310`, `0x006B4E60`, and
+`0x006B4FC0` remain separate pending candidates; their origins and any
+original TU boundaries are still unknown.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py \
+  0x006A8460 0x006A9630 0x006B5090 0x006B5380 --json
 python3 scripts/function-origins.py --check
 ```

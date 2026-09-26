@@ -1477,6 +1477,61 @@ def validate_rule_evidence(
             actual = address + size + struct.unpack_from("<i", code, 1)[0]
             if code[0] != 0xE8 or actual != target:
                 errors.append(f"{rule_id}: RTTI virtual 0x{address:08X} does not end in the pinned call")
+    shared_eh = rule.get("required_shared_eh")
+    if shared_eh:
+        handler = int(str(shared_eh["handler"]), 0)
+        func_info = int(str(shared_eh["func_info"]), 0)
+        unwind_map = int(str(shared_eh["unwind_map"]), 0)
+        action = int(str(shared_eh["action"]), 0)
+        try:
+            if (
+                pe_raw_section_name(data, handler) != ".text"
+                or pe_raw_section_name(data, action) != ".text"
+                or pe_raw_section_name(data, func_info) != ".rdata"
+                or pe_raw_section_name(data, unwind_map) != ".rdata"
+            ):
+                raise ValueError("shared EH code or metadata has the wrong PE section")
+            handler_body = read_pe(handler, 27)
+            info_body = read_pe(func_info, 36)
+            map_body = read_pe(unwind_map, 8)
+            action_body = read_pe(action, 11)
+        except ValueError as exc:
+            errors.append(f"{rule_id}: shared EH evidence: {exc}")
+        else:
+            info_magic, max_state, actual_map = struct.unpack_from("<III", info_body)
+            to_state, actual_action = struct.unpack("<iI", map_body)
+            security_target = handler + 17 + struct.unpack_from("<i", handler_body, 13)[0]
+            frame_target = handler + 27 + struct.unpack_from("<i", handler_body, 23)[0]
+            free_target = action + 9 + struct.unpack_from("<i", action_body, 5)[0]
+            if (
+                hashlib.sha256(handler_body).hexdigest() != shared_eh["handler_sha256"]
+                or hashlib.sha256(info_body).hexdigest() != shared_eh["func_info_sha256"]
+                or hashlib.sha256(map_body).hexdigest() != shared_eh["unwind_map_sha256"]
+                or hashlib.sha256(action_body).hexdigest() != shared_eh["action_sha256"]
+                or handler_body[12] != 0xE8
+                or security_target != 0x00689D25
+                or handler_body[17] != 0xB8
+                or struct.unpack_from("<I", handler_body, 18)[0] != func_info
+                or handler_body[22] != 0xE9
+                or frame_target != 0x006899E7
+                or info_magic != 0x19930522
+                or max_state != 1
+                or actual_map != unwind_map
+                or to_state != -1
+                or actual_action != action
+                or action_body[4] != 0xE8
+                or free_target != 0x006898EA
+            ):
+                errors.append(f"{rule_id}: shared EH handler/FuncInfo/unwind action differs")
+        for method in rtti_virtuals:
+            address = int(str(method["address"]), 0)
+            try:
+                prolog = read_pe(address, 7)
+            except ValueError as exc:
+                errors.append(f"{rule_id}: shared EH prolog 0x{address:08X}: {exc}")
+                continue
+            if prolog[:3] != b"\x6A\xFF\x68" or struct.unpack_from("<I", prolog, 3)[0] != handler:
+                errors.append(f"{rule_id}: shared EH prolog 0x{address:08X} does not push handler")
     for body in rule.get("required_body_hashes", []):
         address = int(str(body["address"]), 0)
         size = int(body["size"])

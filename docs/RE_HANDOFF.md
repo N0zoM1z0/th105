@@ -25,8 +25,9 @@ instructions are not the active queue.
   message update `0x0043F6E0`; the twelfth identifies twelve compiler-emitted
   Boost exception RTTI adjustor thunks; the thirteenth reviews eight related
   scalar deleting destructors; the fourteenth reviews four Boost `clone_impl`
-  throw virtuals. The resulting census is
-  **1,483 authored / 1,383 excluded / 1,157 review**. Source-present remains
+  throw virtuals; the fifteenth closes the shared EH path of four Boost
+  clone/allocate virtuals. The resulting census is
+  **1,483 authored / 1,387 excluded / 1,153 review**. Source-present remains
   1,388; canonical exact remains 1,315 functions / 220,094 bytes. Recompute from
   `scripts/report-reconstruction-status.py --summary` after every promotion.
 - The local target file passes hash verification. The attached IDA session
@@ -96,7 +97,9 @@ candidate. Eight primary virtual deleting destructors in the same Boost RTTI
 families have complete 30/57-byte bodies and a conditional call to the
 excluded free alias. Four `clone_impl` virtuals end in the pinned VC8
 `__CxxThrowException` call after copying an exception temporary. Their
-underlying destructor/copy-helper origins remain open.
+underlying destructor/copy-helper origins remain open. Four clone/allocate
+virtuals have complete 120-byte main spans; their common VC8 FuncInfo names
+a single unwind action that frees the allocated object on copy failure.
 
 ```bash
 python3 scripts/verify-target.py
