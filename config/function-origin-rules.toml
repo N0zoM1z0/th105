@@ -1677,3 +1677,25 @@ required_global_dtor_aliases = [
   { address = "0x006BF280", object = "0x006FD394", target = "0x00417FC0", register_site = "0x006BED8A", atexit_site = "0x006BED8F", gap_hex = "" },
   { address = "0x006BF300", object = "0x006FDEC4", target = "0x006B0390", register_site = "0x006B3DF4", atexit_site = "0x006B3DF9", gap_hex = "" },
 ]
+
+[[rules]]
+id = "vc8-global-stl-destruction-callbacks-106a"
+addresses = ["0x006BEF20", "0x006BEF60", "0x006BF0A0", "0x006BF0F0", "0x006BF130", "0x006BF190", "0x006BF2A0", "0x006BF2D0"]
+expected_count = 8
+expected_bytes = 476
+expected_names = ["sub_6BEF20", "sub_6BEF60", "sub_6BF0A0", "sub_6BF0F0", "sub_6BF130", "sub_6BF190", "sub_6BF2A0", "sub_6BF2D0"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "inferred"
+evidence = "Six 64-byte global container cleanup bodies and two 46-byte std::string cleanup bodies are independently pushed as callbacks and registered with VC8 _atexit. Each complete RET-terminated body has a pinned target SHA-256 and calls the separately excluded free alias 0x006898EA; callback PUSH, intervening stores, and _atexit E8 are replayed. The repeated checked-container/string destruction shapes support compiler-generated global cleanup ownership, with individual source TUs unknown. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_atexit_callbacks = [
+  { address = "0x006BEF20", size = 64, sha256 = "7f5e58aabcb710826518f6c74238a7635361da42e03e93f85d92d718b8f14445", register_site = "0x006BE91A", atexit_site = "0x006BE929", gap_hex = "c7057ca86f0000000000", free_call_site = "0x006BEF47" },
+  { address = "0x006BEF60", size = 64, sha256 = "941707a9307660c9ada90b03305bb60236aca494cfad4fa04e1a51299009f3e9", register_site = "0x006BE98A", atexit_site = "0x006BE999", gap_hex = "c70534bd6f0000000000", free_call_site = "0x006BEF87" },
+  { address = "0x006BF0A0", size = 64, sha256 = "66bfcc7b8c885e806a698449c751a7c2bddf98561d608b386c82d16ab0bbaea3", register_site = "0x006BEABA", atexit_site = "0x006BEAC9", gap_hex = "c70544ca6f0000000000", free_call_site = "0x006BF0C7" },
+  { address = "0x006BF0F0", size = 64, sha256 = "f45797774306f4965ca0de6ce767db8dabba5fb7613401a63e24aaaa3ae353aa", register_site = "0x006BEA7A", atexit_site = "0x006BEA89", gap_hex = "c70514c66f0000000000", free_call_site = "0x006BF117" },
+  { address = "0x006BF130", size = 64, sha256 = "f40532860a538c9275ae2dd6ee9c2698d09d4fb68af407318207d9bed4b152f8", register_site = "0x006BEAFA", atexit_site = "0x006BEB09", gap_hex = "c7051cbf6f0000000000", free_call_site = "0x006BF157" },
+  { address = "0x006BF190", size = 64, sha256 = "6bd9b43254231ecbe7c0036c13e93bde523b18d37ebf558164db68fb3d8600f8", register_site = "0x006BEA3A", atexit_site = "0x006BEA49", gap_hex = "c70578cf6f0000000000", free_call_site = "0x006BF1B7" },
+  { address = "0x006BF2A0", size = 46, sha256 = "9faf2264de9259a546d9f4e718332f6e9d179ecbcae8f6ac63cdbc1dbf2eacaa", register_site = "0x006B3B69", atexit_site = "0x006B3B8C", gap_hex = "c68424b80000000dc705bcde6f000f000000891db8de6f00881da8de6f00", free_call_site = "0x006BF2AF" },
+  { address = "0x006BF2D0", size = 46, sha256 = "57ed1c10d2a198148634f7926af6bf06b445f4b097f89b37211b506fb5826b09", register_site = "0x006A5115", atexit_site = "0x006A5132", gap_hex = "89442410c7059cde6f000f000000a398de6f00a288de6f00", free_call_site = "0x006BF2DF" },
+]

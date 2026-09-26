@@ -243,6 +243,60 @@ class WorkflowToolingTests(unittest.TestCase):
             rule, [source], [source, target], b"", lambda address, _size: bad_code[address]
         ))
 
+    def test_atexit_callback_pins_entire_body_and_registration(self) -> None:
+        source = {"address": "0x00401000", "size": "2", "status": "identified"}
+        body = b"\x90\xC3"
+        register_site = 0x401100
+        atexit_site = 0x401105
+        callback = {
+            "address": source["address"], "size": 2,
+            "sha256": hashlib.sha256(body).hexdigest(),
+            "register_site": "0x00401100", "atexit_site": "0x00401105",
+            "gap_hex": "",
+        }
+        rule = {"id": "atexit-body-control", "required_atexit_callbacks": [callback]}
+        code = {
+            0x401000: body,
+            register_site: b"\x68" + struct.pack("<I", 0x401000),
+            atexit_site: b"\xE8" + struct.pack("<i", 0x68AF1E - atexit_site - 5),
+        }
+        verify = self.origins.validate_rule_evidence
+        self.assertEqual(verify(rule, [source], [source], b"", lambda address, _size: code[address]), [])
+        self.assertTrue(verify(rule, [source], [source], b"", lambda address, _size: {
+            **code, 0x401000: b"\xC3\x90"
+        }[address]))
+        self.assertTrue(verify(rule, [source], [source], b"", lambda address, _size: {
+            **code, register_site: b"\x68\0\0\0\0"
+        }[address]))
+
+    def test_atexit_cleanup_requires_pinned_free_call(self) -> None:
+        address = 0x401000
+        register_site = 0x401100
+        atexit_site = register_site + 5
+        body = b"\xE8" + struct.pack("<i", 0x6898EA - address - 5) + b"\xC3"
+        row = {"address": "0x00401000", "size": "6", "status": "identified"}
+        callback = {
+            "address": row["address"], "size": 6,
+            "sha256": hashlib.sha256(body).hexdigest(),
+            "register_site": "0x00401100", "atexit_site": "0x00401105",
+            "gap_hex": "", "free_call_site": row["address"],
+        }
+        rule = {"id": "free-callback-control", "required_atexit_callbacks": [callback]}
+        code = {
+            address: body,
+            register_site: b"\x68" + struct.pack("<I", address),
+            atexit_site: b"\xE8" + struct.pack("<i", 0x68AF1E - atexit_site - 5),
+        }
+        verify = self.origins.validate_rule_evidence
+        self.assertEqual(verify(rule, [row], [row], b"", lambda site, _size: code[site]), [])
+        wrong_call = b"\xE8" + struct.pack("<i", 0x6898E0 - address - 5) + b"\xC3"
+        bad_rule = {"id": "free-callback-control", "required_atexit_callbacks": [{
+            **callback, "sha256": hashlib.sha256(wrong_call).hexdigest()
+        }]}
+        self.assertTrue(verify(bad_rule, [row], [row], b"", lambda site, _size: {
+            **code, address: wrong_call
+        }[site]))
+
     def test_candidate_boundary_audit_keeps_branches_and_gaps_distinct(self) -> None:
         start = 0x401000
         code = b"\x74\x01\xC3\xC3"

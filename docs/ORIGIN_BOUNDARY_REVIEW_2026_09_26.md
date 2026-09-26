@@ -154,3 +154,32 @@ ten-byte candidates without a verified `_atexit` registration remain pending.
 python3 scripts/function-origins.py --check
 python3 scripts/audit-candidate-boundaries.py --review --json > build/current-review-boundaries.json
 ```
+
+## Eight registered global container cleanup bodies
+
+The next group has six 64-byte RET-terminated callbacks and two 46-byte
+RET-terminated callbacks. Every provisional span is fully reachable with no
+unreached byte or outgoing jump. The six larger bodies load a global container
+range, call its element-destruction helper, free backing storage through the
+already excluded `0x006898EA` alias, and clear the range pointers. The two
+smaller bodies test a global `std::string` capacity against 16, free heap
+storage when needed, then reset capacity, size, and the small-string first
+byte. All eight callback addresses are pushed and passed to VC8 `_atexit @
+0x0068AF1E` by target code. The rule pins the full body hash, free-call edge,
+PUSH, intervening registration bytes, and `_atexit` CALL.
+
+| Callback | Body | Registration PUSH | Free call |
+| --- | ---: | --- | --- |
+| `0x006BEF20` | 64 | `0x006BE91A` | `0x006BEF47` |
+| `0x006BEF60` | 64 | `0x006BE98A` | `0x006BEF87` |
+| `0x006BF0A0` | 64 | `0x006BEABA` | `0x006BF0C7` |
+| `0x006BF0F0` | 64 | `0x006BEA7A` | `0x006BF117` |
+| `0x006BF130` | 64 | `0x006BEAFA` | `0x006BF157` |
+| `0x006BF190` | 64 | `0x006BEA3A` | `0x006BF1B7` |
+| `0x006BF2A0` | 46 | `0x006B3B69` | `0x006BF2AF` |
+| `0x006BF2D0` | 46 | `0x006A5115` | `0x006BF2DF` |
+
+The repeated destructor shapes and registrations support an **inferred**
+compiler-generated static cleanup origin. The exact source TU and semantic
+type of each container value remain unknown. These exclusions make no
+canonical exact-source claim.
