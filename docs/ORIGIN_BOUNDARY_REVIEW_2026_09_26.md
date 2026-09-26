@@ -335,3 +335,35 @@ does not gain source-present or exact credit from this review.
 python3 scripts/audit-candidate-boundaries.py 0x0043F6E0 --json
 python3 scripts/function-origins.py --check
 ```
+
+## Twelve Boost exception RTTI adjustor thunks
+
+Twelve eight-byte candidates in two exception-code clusters each consist of
+`sub ecx, imm8; jmp rel32`. Every candidate byte is reachable; each outgoing
+direct jump lands on a distinct inventoried callee entry. The exact PE
+`.rdata` contains a function-pointer slot for each thunk. Immediately before
+each slot's virtual-function group is a VC8 RTTI CompleteObjectLocator. Its
+secondary-base `offset` equals that thunk's `sub ecx` immediate, and its type
+descriptor names a `boost::exception_detail::error_info_injector` or
+`boost::exception_detail::clone_impl` specialization.
+
+| RTTI exception family | Adjustor entries (ECX subtraction) | Direct tail targets |
+| --- | --- | --- |
+| `std::invalid_argument` | `0x006A4D00` (`0x28`), `0x006A4D40` (`0x28`), `0x006A4D50` (`0x3C`) | `0x006A5360`, `0x006A5320`, `0x006A5320` |
+| `std::runtime_error` | `0x006A4F40` (`0x28`), `0x006A4F70` (`0x28`), `0x006A4F80` (`0x3C`) | `0x006A5610`, `0x006A55D0`, `0x006A55D0` |
+| `boost::regex_error` | `0x006B4C40` (`0x30`), `0x006B4C70` (`0x44`), `0x006B4C80` (`0x30`) | `0x006B4D80`, `0x006B4D40`, `0x006B4D40` |
+| `std::logic_error` | `0x006B4CF0` (`0x28`), `0x006B4D20` (`0x3C`), `0x006B4D30` (`0x28`) | `0x006B4DE0`, `0x006B4DA0`, `0x006B4DA0` |
+
+The origin rule replays each instruction, signed target, `.rdata` slot, RTTI
+locator, offset, type descriptor, and Boost type name against the attested
+target. This supports `compiler_generated/exclude`: the callable is a VC8
+secondary-base `this` adjustment emitted for a Boost-owned virtual class. It
+does not classify the twelve target callees or assign an upstream Boost
+release. The source and exact-match ledgers receive no promotion.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py \
+  0x006A4D00 0x006A4D40 0x006A4D50 0x006A4F40 0x006A4F70 0x006A4F80 \
+  0x006B4C40 0x006B4C70 0x006B4C80 0x006B4CF0 0x006B4D20 0x006B4D30 --json
+python3 scripts/function-origins.py --check
+```

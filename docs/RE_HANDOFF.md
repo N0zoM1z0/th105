@@ -22,8 +22,9 @@ instructions are not the active queue.
   identifies two VC8 SP1 archive functions; the ninth establishes authored
   match-mode setup `0x0043B8F0`; the tenth establishes the authored UI
   text-texture wrapper `0x00404D00`; the eleventh establishes authored profile
-  message update `0x0043F6E0`. The resulting census is
-  **1,483 authored / 1,359 excluded / 1,181 review**. Source-present remains
+  message update `0x0043F6E0`; the twelfth identifies twelve compiler-emitted
+  Boost exception RTTI adjustor thunks. The resulting census is
+  **1,483 authored / 1,371 excluded / 1,169 review**. Source-present remains
   1,388; canonical exact remains 1,315 functions / 220,094 bytes. Recompute from
   `scripts/report-reconstruction-status.py --summary` after every promotion.
 - The local target file passes hash verification. The attached IDA session
@@ -87,7 +88,9 @@ raw CFG, handle lifetime/error cleanup, and independent exact UI/network
 callers; its retained class label remains a hypothesis. The 298-byte profile
 message update has five complete return paths, game UI state writes, and direct
 calls from seven separate exact menu functions; its retained source probe is
-still nonexact.
+still nonexact. Twelve eight-byte Boost exception vtable entries subtract the
+offset in their adjacent VC8 RTTI locator from ECX and tail-jump to a separate
+candidate; the callee origins remain open.
 
 ```bash
 python3 scripts/verify-target.py

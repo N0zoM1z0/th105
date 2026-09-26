@@ -270,6 +270,26 @@ class WorkflowToolingTests(unittest.TestCase):
             rule, [source], [source, target], b"", lambda address, _size: bad_code[address]
         ))
 
+    def test_boost_rtti_adjustor_requires_matching_locator_and_slot(self) -> None:
+        with self.origins.RULES.open("rb") as stream:
+            document = tomllib.load(stream)
+        rule = next(
+            row for row in document["rules"]
+            if row["id"] == "boost-exception-rtti-adjustor-thunks-106a"
+        )
+        rows = self.origins.read_csv(self.origins.FUNCTIONS)
+        selected = [row for row in rows if row["address"] in rule["addresses"]]
+        data = self.origins.attest_target(document)
+        read_pe = self.origins.pe_reader(data)
+        validate = self.origins.validate_rule_evidence
+        self.assertEqual(validate(rule, selected, rows, data, read_pe), [])
+
+        changed = dict(rule)
+        thunks = [dict(entry) for entry in rule["required_rtti_adjustor_thunks"]]
+        thunks[0]["slot"] = "0x006D5E58"  # next RTTI locator, not this thunk's slot
+        changed["required_rtti_adjustor_thunks"] = thunks
+        self.assertTrue(validate(changed, selected, rows, data, read_pe))
+
     def test_atexit_callback_pins_entire_body_and_registration(self) -> None:
         source = {"address": "0x00401000", "size": "2", "status": "identified"}
         body = b"\x90\xC3"

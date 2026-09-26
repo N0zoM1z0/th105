@@ -3692,20 +3692,20 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006A4C30,54,0x006A4C65,sub_6A4C30,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A4C70,41,0x006A4C98,sub_6A4C70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A4CA0,87,0x006A4CF6,sub_6A4CA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006A4D00,8,0x006A4D07,sub_6A4D00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006A4D00,8,0x006A4D07,sub_6A4D00,,,identified,0.00,__thiscall,,true,,Complete eight-byte sub ecx offset and E9 thunk; .rdata vtable pointer and adjacent VC8 RTTI COL offset agree with adjustment; target Boost type descriptor and jump destination pinned in origin rule,,Compiler-generated secondary-base adjustor; target callee origin reviewed separately
 0x006A4D10,32,0x006A4D2F,sub_6A4D10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A4D30,11,0x006A4D3A,sub_6A4D30,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006A4D40,8,0x006A4D47,sub_6A4D40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006A4D50,8,0x006A4D57,sub_6A4D50,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006A4D40,8,0x006A4D47,sub_6A4D40,,,identified,0.00,__thiscall,,true,,Complete eight-byte sub ecx offset and E9 thunk; .rdata vtable pointer and adjacent VC8 RTTI COL offset agree with adjustment; target Boost type descriptor and jump destination pinned in origin rule,,Compiler-generated secondary-base adjustor; target callee origin reviewed separately
+0x006A4D50,8,0x006A4D57,sub_6A4D50,,,identified,0.00,__thiscall,,true,,Complete eight-byte sub ecx offset and E9 thunk; .rdata vtable pointer and adjacent VC8 RTTI COL offset agree with adjustment; target Boost type descriptor and jump destination pinned in origin rule,,Compiler-generated secondary-base adjustor; target callee origin reviewed separately
 0x006A4D60,105,0x006A4DC8,sub_6A4D60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A4DD0,67,0x006A4E12,sub_6A4DD0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A4E20,71,0x006A4E66,sub_6A4E20,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A4E70,105,0x006A4ED8,sub_6A4E70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A4EE0,87,0x006A4F36,sub_6A4EE0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006A4F40,8,0x006A4F47,sub_6A4F40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006A4F40,8,0x006A4F47,sub_6A4F40,,,identified,0.00,__thiscall,,true,,Complete eight-byte sub ecx offset and E9 thunk; .rdata vtable pointer and adjacent VC8 RTTI COL offset agree with adjustment; target Boost type descriptor and jump destination pinned in origin rule,,Compiler-generated secondary-base adjustor; target callee origin reviewed separately
 0x006A4F50,32,0x006A4F6F,sub_6A4F50,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006A4F70,8,0x006A4F77,sub_6A4F70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006A4F80,8,0x006A4F87,sub_6A4F80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006A4F70,8,0x006A4F77,sub_6A4F70,,,identified,0.00,__thiscall,,true,,Complete eight-byte sub ecx offset and E9 thunk; .rdata vtable pointer and adjacent VC8 RTTI COL offset agree with adjustment; target Boost type descriptor and jump destination pinned in origin rule,,Compiler-generated secondary-base adjustor; target callee origin reviewed separately
+0x006A4F80,8,0x006A4F87,sub_6A4F80,,,identified,0.00,__thiscall,,true,,Complete eight-byte sub ecx offset and E9 thunk; .rdata vtable pointer and adjacent VC8 RTTI COL offset agree with adjustment; target Boost type descriptor and jump destination pinned in origin rule,,Compiler-generated secondary-base adjustor; target callee origin reviewed separately
 0x006A4F90,51,0x006A4FC2,sub_6A4F90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A4FD0,104,0x006A5037,sub_6A4FD0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A5040,83,0x006A5092,sub_6A5040,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -3904,15 +3904,15 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006B4BC0,10,0x006B4BC9,sub_6B4BC0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B4BD0,12,0x006B4BDB,sub_6B4BD0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B4BE0,87,0x006B4C36,sub_6B4BE0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006B4C40,8,0x006B4C47,sub_6B4C40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006B4C40,8,0x006B4C47,sub_6B4C40,,,identified,0.00,__thiscall,,true,,Complete eight-byte sub ecx offset and E9 thunk; .rdata vtable pointer and adjacent VC8 RTTI COL offset agree with adjustment; target Boost type descriptor and jump destination pinned in origin rule,,Compiler-generated secondary-base adjustor; target callee origin reviewed separately
 0x006B4C50,32,0x006B4C6F,sub_6B4C50,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006B4C70,8,0x006B4C77,sub_6B4C70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006B4C80,8,0x006B4C87,sub_6B4C80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006B4C70,8,0x006B4C77,sub_6B4C70,,,identified,0.00,__thiscall,,true,,Complete eight-byte sub ecx offset and E9 thunk; .rdata vtable pointer and adjacent VC8 RTTI COL offset agree with adjustment; target Boost type descriptor and jump destination pinned in origin rule,,Compiler-generated secondary-base adjustor; target callee origin reviewed separately
+0x006B4C80,8,0x006B4C87,sub_6B4C80,,,identified,0.00,__thiscall,,true,,Complete eight-byte sub ecx offset and E9 thunk; .rdata vtable pointer and adjacent VC8 RTTI COL offset agree with adjustment; target Boost type descriptor and jump destination pinned in origin rule,,Compiler-generated secondary-base adjustor; target callee origin reviewed separately
 0x006B4C90,87,0x006B4CE6,sub_6B4C90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006B4CF0,8,0x006B4CF7,sub_6B4CF0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006B4CF0,8,0x006B4CF7,sub_6B4CF0,,,identified,0.00,__thiscall,,true,,Complete eight-byte sub ecx offset and E9 thunk; .rdata vtable pointer and adjacent VC8 RTTI COL offset agree with adjustment; target Boost type descriptor and jump destination pinned in origin rule,,Compiler-generated secondary-base adjustor; target callee origin reviewed separately
 0x006B4D00,32,0x006B4D1F,sub_6B4D00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006B4D20,8,0x006B4D27,sub_6B4D20,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006B4D30,8,0x006B4D37,sub_6B4D30,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006B4D20,8,0x006B4D27,sub_6B4D20,,,identified,0.00,__thiscall,,true,,Complete eight-byte sub ecx offset and E9 thunk; .rdata vtable pointer and adjacent VC8 RTTI COL offset agree with adjustment; target Boost type descriptor and jump destination pinned in origin rule,,Compiler-generated secondary-base adjustor; target callee origin reviewed separately
+0x006B4D30,8,0x006B4D37,sub_6B4D30,,,identified,0.00,__thiscall,,true,,Complete eight-byte sub ecx offset and E9 thunk; .rdata vtable pointer and adjacent VC8 RTTI COL offset agree with adjustment; target Boost type descriptor and jump destination pinned in origin rule,,Compiler-generated secondary-base adjustor; target callee origin reviewed separately
 0x006B4D40,57,0x006B4D78,sub_6B4D40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B4D80,30,0x006B4D9D,sub_6B4D80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B4DA0,57,0x006B4DD8,sub_6B4DA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

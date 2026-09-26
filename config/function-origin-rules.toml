@@ -1808,3 +1808,29 @@ required_direct_edges = [
   { caller = "0x00442790", site = "0x00442844", target = "0x0043F6E0", caller_status = "matching" },
   { caller = "0x0044CC50", site = "0x0044CD73", target = "0x0043F6E0", caller_status = "matching" },
 ]
+
+[[rules]]
+id = "boost-exception-rtti-adjustor-thunks-106a"
+addresses = ["0x006A4D00", "0x006A4D40", "0x006A4D50", "0x006A4F40", "0x006A4F70", "0x006A4F80", "0x006B4C40", "0x006B4C70", "0x006B4C80", "0x006B4CF0", "0x006B4D20", "0x006B4D30"]
+expected_count = 12
+expected_bytes = 96
+expected_names = ["sub_6A4D00", "sub_6A4D40", "sub_6A4D50", "sub_6A4F40", "sub_6A4F70", "sub_6A4F80", "sub_6B4C40", "sub_6B4C70", "sub_6B4C80", "sub_6B4CF0", "sub_6B4D20", "sub_6B4D30"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "inferred"
+evidence = "Twelve complete eight-byte sub ecx, offset; E9 thunks are referenced by Boost exception_info_injector/clone_impl vtables in PE .rdata. For each, the sub immediate equals the secondary-base offset in its adjacent VC8 RTTI CompleteObjectLocator, and the direct jump lands on an independently inventoried candidate. The rule replays code, signed jump, vtable slot, COL, type descriptor, and Boost type name from hash-attested target bytes. These are compiler-emitted this adjustors; destinations remain in review. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_rtti_adjustor_thunks = [
+  { address = "0x006A4D00", slot = "0x006D5E54", col_slot = "0x006D5E50", col = "0x006DC198", type_descriptor = "0x006F9578", target = "0x006A5360" },
+  { address = "0x006A4D40", slot = "0x006D5E78", col_slot = "0x006D5E74", col = "0x006DC228", type_descriptor = "0x006F95D0", target = "0x006A5320" },
+  { address = "0x006A4D50", slot = "0x006D5E70", col_slot = "0x006D5E64", col = "0x006DC23C", type_descriptor = "0x006F95D0", target = "0x006A5320" },
+  { address = "0x006A4F40", slot = "0x006D5E8C", col_slot = "0x006D5E88", col = "0x006DC2A4", type_descriptor = "0x006F9650", target = "0x006A5610" },
+  { address = "0x006A4F70", slot = "0x006D5EB0", col_slot = "0x006D5EAC", col = "0x006DC314", type_descriptor = "0x006F96A0", target = "0x006A55D0" },
+  { address = "0x006A4F80", slot = "0x006D5EA8", col_slot = "0x006D5E9C", col = "0x006DC328", type_descriptor = "0x006F96A0", target = "0x006A55D0" },
+  { address = "0x006B4C40", slot = "0x006D683C", col_slot = "0x006D6838", col = "0x006DC4C8", type_descriptor = "0x006F9AA8", target = "0x006B4D80" },
+  { address = "0x006B4C70", slot = "0x006D6858", col_slot = "0x006D684C", col = "0x006DC56C", type_descriptor = "0x006F9B18", target = "0x006B4D40" },
+  { address = "0x006B4C80", slot = "0x006D6860", col_slot = "0x006D685C", col = "0x006DC558", type_descriptor = "0x006F9B18", target = "0x006B4D40" },
+  { address = "0x006B4CF0", slot = "0x006D6874", col_slot = "0x006D6870", col = "0x006DC5D4", type_descriptor = "0x006F9B90", target = "0x006B4DE0" },
+  { address = "0x006B4D20", slot = "0x006D6890", col_slot = "0x006D6884", col = "0x006DC658", type_descriptor = "0x006F9BE0", target = "0x006B4DA0" },
+  { address = "0x006B4D30", slot = "0x006D6898", col_slot = "0x006D6894", col = "0x006DC644", type_descriptor = "0x006F9BE0", target = "0x006B4DA0" },
+]

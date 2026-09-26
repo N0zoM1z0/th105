@@ -74,6 +74,21 @@ def pe_reader(data: bytes):
     return read
 
 
+def pe_raw_section_name(data: bytes, address: int) -> str:
+    pe = struct.unpack_from("<I", data, 0x3C)[0]
+    count = struct.unpack_from("<H", data, pe + 6)[0]
+    opt_size = struct.unpack_from("<H", data, pe + 20)[0]
+    image_base = struct.unpack_from("<I", data, pe + 52)[0]
+    for index in range(count):
+        off = pe + 24 + opt_size + index * 40
+        name = data[off : off + 8].split(b"\x00", 1)[0].decode("ascii")
+        rva = struct.unpack_from("<I", data, off + 12)[0]
+        raw_size = struct.unpack_from("<I", data, off + 16)[0]
+        if image_base + rva <= address < image_base + rva + raw_size:
+            return name
+    raise ValueError(f"0x{address:08X}: no initialized PE section")
+
+
 def pe_import_names_by_iat(data: bytes, read_pe) -> dict[int, tuple[str, str]]:
     pe = struct.unpack_from("<I", data, 0x3C)[0]
     optional = pe + 24
@@ -1275,6 +1290,64 @@ def validate_rule_evidence(
             )
     row_by_address = {row["address"].upper(): row for row in rows}
     selected_addresses = {row["address"].upper() for row in selected}
+    adjustor_thunks = rule.get("required_rtti_adjustor_thunks", [])
+    if adjustor_thunks and (
+        len(adjustor_thunks) != len(selected_addresses)
+        or {str(thunk["address"]).upper() for thunk in adjustor_thunks} != selected_addresses
+    ):
+        errors.append(f"{rule_id}: RTTI adjustor witnesses do not cover selected candidates exactly")
+    for thunk in adjustor_thunks:
+        address = int(str(thunk["address"]), 0)
+        slot = int(str(thunk["slot"]), 0)
+        col_slot = int(str(thunk["col_slot"]), 0)
+        expected_col = int(str(thunk["col"]), 0)
+        expected_type = int(str(thunk["type_descriptor"]), 0)
+        expected_target = int(str(thunk["target"]), 0)
+        key = f"0x{address:08X}".upper()
+        if key not in selected_addresses or int(row_by_address[key]["size"], 0) != 8:
+            errors.append(f"{rule_id}: RTTI adjustor 0x{address:08X} is not an eight-byte selected candidate")
+            continue
+        if f"0x{expected_target:08X}".upper() not in row_by_address:
+            errors.append(f"{rule_id}: RTTI adjustor 0x{address:08X} target is not a candidate")
+            continue
+        if slot % 4 or col_slot % 4 or not 4 <= slot - col_slot <= 12:
+            errors.append(f"{rule_id}: RTTI adjustor 0x{address:08X} has invalid vtable slot spacing")
+            continue
+        try:
+            if any(pe_raw_section_name(data, pointer) != ".rdata" for pointer in (slot, col_slot, expected_col)):
+                raise ValueError("vtable or RTTI locator is outside .rdata")
+            code = read_pe(address, 8)
+            pointed = struct.unpack("<I", read_pe(slot, 4))[0]
+            vtable_is_text = all(
+                pe_raw_section_name(
+                    data, struct.unpack("<I", read_pe(pointer, 4))[0]
+                ) == ".text"
+                for pointer in range(col_slot + 4, slot + 4, 4)
+            )
+            col = struct.unpack("<I", read_pe(col_slot, 4))[0]
+            signature, offset, cd_offset, type_descriptor, _hierarchy = struct.unpack(
+                "<IIIII", read_pe(col, 20)
+            )
+            type_name = read_pe(type_descriptor + 8, 192).split(b"\x00", 1)[0]
+        except (ValueError, struct.error) as exc:
+            errors.append(f"{rule_id}: RTTI adjustor 0x{address:08X}: {exc}")
+            continue
+        target = address + 8 + struct.unpack_from("<i", code, 4)[0]
+        if (
+            code[:2] != b"\x83\xE9"
+            or code[3] != 0xE9
+            or code[2] != offset
+            or target != expected_target
+            or pointed != address
+            or not vtable_is_text
+            or col != expected_col
+            or signature != 0
+            or cd_offset != 0
+            or type_descriptor != expected_type
+            or not type_name.startswith((b".?AU", b".?AV"))
+            or b"exception_detail@boost@@" not in type_name
+        ):
+            errors.append(f"{rule_id}: RTTI adjustor 0x{address:08X} code/vtable/Boost RTTI differs")
     for body in rule.get("required_body_hashes", []):
         address = int(str(body["address"]), 0)
         size = int(body["size"])
