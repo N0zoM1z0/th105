@@ -1,5 +1,26 @@
 # Current reconstruction handoff
 
+## 2026-09-26 action-73/75/88 sequence-join checkpoint
+
+The resumed bounded root is common Fighter `0x004740C0`. Exact target bytes
+confirm that actions 75 and 88 jump to action 73's selection at `0x00474992`
+with a live x87 zero; their other paths drop that zero. Four fresh single-core
+VC8 source-shape controls were compared against the complete 10,219-byte
+callable. Three reproduce the production canonical window byte for byte; the
+fourth changes its hash but gains no diagnostic owner. Production remains
+**53/66 diagnostic owners, canonical-nonexact at +0x14**. No source or exact
+ledger credit is retained. Read
+[COMMON_FIGHTER_SEQUENCE_JOIN_EVIDENCE_2026_09_26.md](COMMON_FIGHTER_SEQUENCE_JOIN_EVIDENCE_2026_09_26.md)
+before another sequence-tail experiment.
+
+The local target SHA and tracking checks pass. IDA MCP currently reports a
+different executable SHA, so its semantic preflight fails. A resource-limited
+Ghidra import did not finish and yielded no semantic evidence; this checkpoint
+uses raw target assembly plus canonical VC8 comparison. Continue with an
+independently evidenced discriminator when an attested analysis backend is
+available. The prior 2026-09-12 pause is superseded by the user's explicit
+resume request.
+
 ## Phase
 
 The active objective is exact recovery of the highest-reuse shared gameplay
