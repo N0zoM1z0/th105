@@ -493,3 +493,31 @@ the origin rule replays this network call. No source or exact ledger changes.
 python3 scripts/audit-candidate-boundaries.py 0x00416990 --json
 python3 scripts/function-origins.py --check
 ```
+
+## Profile slot defaults at `0x00432050`
+
+The original PE entry has a complete 334/334-byte reachable main span,
+one plain RET at `0x0043219D`, and `INT3` separation on both sides. Its
+body SHA-256 is
+`dec4a6bb8c88010804f180e336b81f779f689abbf9907a2a331a0e207157fcb1`.
+The thiscall body initializes two profile strings at `+0x98/+0xB4`, zeros
+two 0x34-byte key-setting blocks at `+0x140/+0x174`, writes fixed game key
+codes `200,208,203,205,44,45,46,30,31,32,16` and `0..6`, sets profile
+flags, initializes twenty deck slots of stride `0x14`, then calls
+`0x00431E80` for fifteen character-specific default decks.
+
+Four distinct canonical-exact profile setup/UI functions call this body at
+seven E8 sites. The rule replays sites in exact
+`initialize_default_player_profiles @ 0x0043AF30` and
+`CProfileMenu_commit_state_one @ 0x0044C110`. The game key table and
+profile/deck state updates support `authored_game/ui`. Retained source
+`ProfileMenuBaseData::initialize_defaults` agrees with these observations,
+but its class label, source selection, and standalone codegen are not
+accepted as exact by this origin review. `0x00431E80` is separately pending;
+its own `data/csv/.../deck.csv` behavior and EH path require a separate
+boundary decision.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py 0x00432050 --json
+python3 scripts/function-origins.py --check
+```

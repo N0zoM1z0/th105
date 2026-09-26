@@ -12,26 +12,12 @@ instructions are not the active queue.
 - User-directed phase: clean misleading documentation/code, then review the
   remaining origin and candidate-boundary queue. The initial census was
   **4,023 candidates, 1,476 authored, 1,308 excluded, 1,239 in review**.
-  The first reviewed batch moves four complete game-owned bodies to authored;
-  the second excludes ten five-byte E9 tail aliases; the third positively
-  identifies VC8 runtime security-cookie check `0x00689D25`; the fourth
-  excludes 18 `_atexit`-registered global destructor callbacks; the fifth
-  excludes eight registered global container/string cleanup bodies; the sixth
-  excludes ten small registered static lifetime callbacks; the seventh
-  identifies two KERNEL32 import thunks from the PE import table; the eighth
-  identifies two VC8 SP1 archive functions; the ninth establishes authored
-  match-mode setup `0x0043B8F0`; the tenth establishes the authored UI
-  text-texture wrapper `0x00404D00`; the eleventh establishes authored profile
-  message update `0x0043F6E0`; the twelfth identifies twelve compiler-emitted
-  Boost exception RTTI adjustor thunks; the thirteenth reviews eight related
-  scalar deleting destructors; the fourteenth reviews four Boost `clone_impl`
-  throw virtuals; the fifteenth closes the shared EH path of four Boost
-  clone/allocate virtuals; the sixteenth establishes authored network sender
-  `0x00416990` and corrects a generic deque fingerprint's subsystem. The
-  resulting census is **1,484 authored / 1,387 excluded / 1,152 review**.
-  Source-present remains
-  1,388; canonical exact remains 1,315 functions / 220,094 bytes. Recompute from
-  `scripts/report-reconstruction-status.py --summary` after every promotion.
+  Seventeen evidence-linked origin/boundary batches are recorded in
+  [the focused review](ORIGIN_BOUNDARY_REVIEW_2026_09_26.md). The current
+  census is **1,485 authored / 1,387 excluded / 1,151 review**. Source-present
+  remains 1,388; canonical exact remains 1,315 functions / 220,094 bytes.
+  Recompute from `scripts/report-reconstruction-status.py --summary` after
+  every promotion.
 - The local target file passes hash verification. The attached IDA session
   currently exposes a different executable (SHA-256 beginning `10350095`),
   so do not use that session's output. Raw target PE disassembly is available.
@@ -106,6 +92,9 @@ a single unwind action that frees the allocated object on copy failure. The
 construction, Win32 queue/event behavior and nine distinct exact callers.
 The old `ReimuObject*` deque fingerprint also matches code used by this
 network sender, so its subsystem is now neutral runtime rather than characters.
+The 334-byte profile-slot default initializer has a complete main span,
+fixed game key codes, twenty deck slots and exact profile UI callers; the
+called deck loader `0x00431E80` remains under its own EH/boundary review.
 
 ```bash
 python3 scripts/verify-target.py

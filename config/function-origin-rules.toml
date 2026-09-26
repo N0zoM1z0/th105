@@ -1915,3 +1915,22 @@ required_direct_edges = [
   { caller = "0x0044D770", site = "0x0044D794", target = "0x00416990", caller_status = "matching" },
   { caller = "0x0044E6A0", site = "0x0044E6C6", target = "0x00416990", caller_status = "matching" },
 ]
+
+[[rules]]
+id = "profile-slot-defaults-authored-106a"
+addresses = ["0x00432050"]
+expected_count = 1
+expected_bytes = 334
+expected_names = ["sub_432050"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Hash-attested PE CFG reaches all 334 bytes and the plain RET between INT3 separators. The thiscall body initializes two profile strings, clears two 0x34-byte key-setting blocks, writes game-specific primary/secondary key codes and flags, initializes twenty 0x14-byte deck slots and invokes a per-character default deck initializer for fifteen slots. Four distinct canonical-exact profile UI/setup callers have seven E8 sites; two independent caller functions are replayed. Retained ProfileMenuBaseData::initialize_defaults is a source hypothesis, not a standalone exact claim or independently proved class name. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_body_hashes = [
+  { address = "0x00432050", size = 334, sha256 = "dec4a6bb8c88010804f180e336b81f779f689abbf9907a2a331a0e207157fcb1" },
+]
+required_direct_edges = [
+  { caller = "0x0043AF30", site = "0x0043AF56", target = "0x00432050", caller_status = "matching" },
+  { caller = "0x0044C110", site = "0x0044C1C7", target = "0x00432050", caller_status = "matching" },
+]
