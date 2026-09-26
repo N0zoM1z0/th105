@@ -12,9 +12,9 @@ instructions are not the active queue.
 - User-directed phase: clean misleading documentation/code, then review the
   remaining origin and candidate-boundary queue. The initial census was
   **4,023 candidates, 1,476 authored, 1,308 excluded, 1,239 in review**.
-  Twenty-five evidence-linked origin/boundary batches are recorded in
+  Twenty-six evidence-linked origin/boundary batches are recorded in
   [the focused review](ORIGIN_BOUNDARY_REVIEW_2026_09_26.md). The current
-  census is **1,487 authored / 1,414 excluded / 1,122 review**. Source-present
+  census is **1,488 authored / 1,414 excluded / 1,121 review**. Source-present
   remains 1,388; canonical exact remains 1,315 functions / 220,094 bytes.
   Recompute from `scripts/report-reconstruction-status.py --summary` after
   every promotion.
@@ -123,6 +123,10 @@ the Boost injector unwind action. Unreferenced lookalikes stay in review.
 Two 17-byte array-record default constructors have complete target bodies,
 exact parent callback paths, and paired checked-container destructor
 adjustors; one also reproduces natural VC8 implicit constructor code.
+The 1,862-byte fighter body-collision phase `0x0046CCA0` has complete
+main-span reachability, five RET paths, ten calls to exact game collision
+helpers and nine distinct exact BattleManager/Story callers. Its retained
+source/class identity and standalone exact codegen remain unresolved.
 
 ```bash
 python3 scripts/verify-target.py

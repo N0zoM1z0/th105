@@ -793,3 +793,42 @@ default-constructor callbacks.
 python3 scripts/audit-candidate-boundaries.py 0x0043BF60 0x0046EAD0 --json
 python3 scripts/function-origins.py --check
 ```
+
+## Fighter body-collision phase at `0x0046CCA0`
+
+The hash-attested target PE decodes all 1,862 candidate bytes from entry,
+with no unreached bytes, indirect jumps, invalid overlap, or outgoing
+direct branch exits. Its five `RET` sites are `0x0046D0DB`, `0x0046D285`,
+`0x0046D3CF`, `0x0046D3DB`, and `0x0046D3E5`; eight `INT3` bytes follow
+the last one. The complete body SHA-256 is
+`c6ef9cab92b2106d93cd532e0074493d3ed0b3d53abaa3ae3ad16f06f0a10cd2`.
+
+The entry loads two Fighter pointers from receiver `+0x0C/+0x10`, clears
+each Fighter's `+0x6A4` body-overlap float, and gates the active path on
+the two `frame_158 +0x54` body AABB pointers. It computes horizontal
+motion, updates two byte-sized boundary-owner globals at
+`0x006E7B6C/0x006E7B6D`, transforms both body boxes, tests overlap, and
+adjusts fighter positions/overlap fields. These are direct target
+instruction and data-access observations, independent of the retained
+`BodyCollision.cpp` source hypothesis.
+
+The rule pins ten outgoing E8 calls to five separately canonical-exact
+game helpers: boundary classification `0x00435910` twice, world AABB
+transform `0x0046B6E0` twice, overlap test `0x0046B740`, extent reset
+`0x0046B6C0`, and stage-height proposal test `0x00435950` four times.
+Nine distinct canonical-exact BattleManager/Story pipeline functions
+call this candidate at `0x0047164A`, `0x00471703`, `0x00471778`,
+`0x004718ED`, `0x00472D8A`, `0x00472DDA`, `0x00472E5B`, `0x00472ED8`,
+and `0x00472F5F`. Their individual targets and exact statuses are
+replayed, rather than inferred from a call count.
+
+This establishes `authored_game/battle` origin and the reviewed 1,862-byte
+main span. The original class name, source TU, and complete semantic
+coverage of the retained file remain unresolved. The standalone source
+still differs from target in x87/stack lifetime, so this review does not
+select it in `implemented.csv` or add exact-match credit.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py 0x0046CCA0 --json
+python3 scripts/function-origins.py --check
+```

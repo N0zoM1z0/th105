@@ -2033,6 +2033,31 @@ def validate_rule_evidence(
             continue
         if actual_hash != body["sha256"]:
             errors.append(f"{rule_id}: body 0x{address:08X} SHA-256 differs")
+    for edge in rule.get("required_selected_body_calls", []):
+        owner = int(str(edge["owner"]), 0)
+        site = int(str(edge["site"]), 0)
+        target = int(str(edge["target"]), 0)
+        owner_key = f"0x{owner:08X}".upper()
+        target_key = f"0x{target:08X}".upper()
+        if owner_key not in selected_addresses:
+            errors.append(f"{rule_id}: body-call owner 0x{owner:08X} is not selected")
+            continue
+        target_row = row_by_address.get(target_key)
+        if target_row is None or target_row["status"] != "matching":
+            errors.append(f"{rule_id}: body-call target 0x{target:08X} is not canonical exact")
+            continue
+        owner_size = int(row_by_address[owner_key]["size"], 0)
+        if not owner <= site <= owner + owner_size - 5:
+            errors.append(f"{rule_id}: body-call site 0x{site:08X} is outside owner")
+            continue
+        try:
+            code = read_pe(site, 5)
+        except ValueError as exc:
+            errors.append(f"{rule_id}: body-call site 0x{site:08X}: {exc}")
+            continue
+        actual_target = site + 5 + struct.unpack_from("<i", code, 1)[0]
+        if code[0] != 0xE8 or actual_target != target:
+            errors.append(f"{rule_id}: body CALL at 0x{site:08X} differs")
     for edge in rule.get("required_direct_edges", []):
         site = int(str(edge["site"]), 0)
         target = int(str(edge["target"]), 0)

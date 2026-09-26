@@ -2190,3 +2190,41 @@ required_rtti_deleting_dtors = [
   { address = "0x0042CBC0", size = 30, sha256 = "c201aea00c46831696fdbe09cfbee2458ce3e3fecbeafc35807204728b75626d", slot = "0x006C1154", col = "0x006D7A50", type_descriptor = "0x006E6588", type_name_contains = "CInputManagerEx", destructor_site = "0x0042CBC3", destructor = "0x00409D50", free_site = "0x0042CBD0" },
   { address = "0x00444470", size = 30, sha256 = "dd3b80f2e2c07818e608dd9cde849a8c5ce2c8d1d93fd87f0765a1975418a5fa", slot = "0x006C1C3C", col = "0x006D8280", type_descriptor = "0x006E6C5C", type_name_contains = "CMenuConnect", destructor_site = "0x00444473", destructor = "0x00443C30", free_site = "0x00444480" },
 ]
+
+[[rules]]
+id = "fighter-body-collision-phase-authored-106a"
+addresses = ["0x0046CCA0"]
+expected_count = 1
+expected_bytes = 1862
+expected_names = ["sub_46CCA0"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "The hash-attested 1,862-byte main span reaches every byte and has five RET paths, no indirect jumps or outgoing direct branch exits, and INT3 padding after its final RET. It loads two Fighter pointers at receiver +0x0C/+0x10, clears both +0x6A4 body-overlap fields, checks their frame +0x158 body AABB pointers at +0x54, tracks game-owned boundary-owner bytes at 0x006E7B6C/6D, and calls five independently canonical-exact game collision/stage helpers at ten E8 sites. Nine distinct canonical-exact BattleManager/Story pipeline functions call it. This establishes authored battle behavior and the provisional main boundary; retained BodyCollision.cpp and class naming remain hypotheses, and the standalone function is nonexact. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_body_hashes = [
+  { address = "0x0046CCA0", size = 1862, sha256 = "c6ef9cab92b2106d93cd532e0074493d3ed0b3d53abaa3ae3ad16f06f0a10cd2" },
+]
+required_direct_edges = [
+  { caller = "0x00471630", site = "0x0047164A", target = "0x0046CCA0", caller_status = "matching" },
+  { caller = "0x00471670", site = "0x00471703", target = "0x0046CCA0", caller_status = "matching" },
+  { caller = "0x00471740", site = "0x00471778", target = "0x0046CCA0", caller_status = "matching" },
+  { caller = "0x004717E0", site = "0x004718ED", target = "0x0046CCA0", caller_status = "matching" },
+  { caller = "0x00472D80", site = "0x00472D8A", target = "0x0046CCA0", caller_status = "matching" },
+  { caller = "0x00472DC0", site = "0x00472DDA", target = "0x0046CCA0", caller_status = "matching" },
+  { caller = "0x00472E10", site = "0x00472E5B", target = "0x0046CCA0", caller_status = "matching" },
+  { caller = "0x00472EA0", site = "0x00472ED8", target = "0x0046CCA0", caller_status = "matching" },
+  { caller = "0x00472F10", site = "0x00472F5F", target = "0x0046CCA0", caller_status = "matching" },
+]
+required_selected_body_calls = [
+  { owner = "0x0046CCA0", site = "0x0046CD33", target = "0x00435910" },
+  { owner = "0x0046CCA0", site = "0x0046CD3F", target = "0x00435910" },
+  { owner = "0x0046CCA0", site = "0x0046CDD2", target = "0x0046B6E0" },
+  { owner = "0x0046CCA0", site = "0x0046CDEC", target = "0x0046B6E0" },
+  { owner = "0x0046CCA0", site = "0x0046CDFD", target = "0x0046B740" },
+  { owner = "0x0046CCA0", site = "0x0046CE0C", target = "0x0046B6C0" },
+  { owner = "0x0046CCA0", site = "0x0046D16D", target = "0x00435950" },
+  { owner = "0x0046CCA0", site = "0x0046D1AE", target = "0x00435950" },
+  { owner = "0x0046CCA0", site = "0x0046D2CC", target = "0x00435950" },
+  { owner = "0x0046CCA0", site = "0x0046D303", target = "0x00435950" },
+]

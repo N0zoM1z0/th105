@@ -1,5 +1,9 @@
 #include "Collision.hpp"
 
+// Retained source hypothesis for target 0x0046CCA0. Its authored battle origin
+// and main boundary are reviewed, but this TU/class view is not selected in
+// implemented.csv and the standalone VC8 body is not canonical exact.
+
 namespace th105 {
 
 // Each byte remembers which fighter owns one stage-boundary side.  The target
