@@ -1723,3 +1723,19 @@ required_atexit_callbacks = [
   { address = "0x006BF210", size = 11, sha256 = "baeb0746d4afb1234b365f7ba49921c7ef5f933c075c07d743814e1fea097d3c", register_site = "0x006BECC0", atexit_site = "0x006BECC5", gap_hex = "" },
   { address = "0x006BF28A", size = 20, sha256 = "3f9d342d254b90dce19e2ea223bcdef428f0aca11e5cf3ec2dbba56eae6dd3f8", register_site = "0x00689E0B", atexit_site = "0x00689E10", gap_hex = "" },
 ]
+
+[[rules]]
+id = "kernel32-late-import-thunks-106a"
+addresses = ["0x006B55C0", "0x006B5ECA"]
+expected_count = 2
+expected_bytes = 12
+expected_names = ["GetUserDefaultLCID", "RtlUnwind"]
+origin = "import_thunk"
+subsystem = "platform"
+disposition = "exclude"
+confidence = "observed"
+evidence = "The two complete six-byte FF25 indirect jumps reference PE IAT slots 0x006C008C and 0x006C0144. The hash-attested PE import descriptors map those exact slots to KERNEL32.dll GetUserDefaultLCID and RtlUnwind, replayed by function-origins.py. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_iat_imports = [
+  { address = "0x006B55C0", iat_slot = "0x006C008C", dll = "KERNEL32.dll", name = "GetUserDefaultLCID" },
+  { address = "0x006B5ECA", iat_slot = "0x006C0144", dll = "KERNEL32.dll", name = "RtlUnwind" },
+]

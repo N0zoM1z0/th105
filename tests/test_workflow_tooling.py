@@ -198,6 +198,33 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertTrue(verify(rule, [source], [source], b"", lambda *_: body))
         self.assertTrue(verify(rule, [source], [{**source, "size": "6"}, target], b"", lambda *_: body))
 
+    def test_import_thunk_witness_resolves_pe_iat_name(self) -> None:
+        data = bytearray(0x1500)
+        struct.pack_into("<I", data, 0x3C, 0x80)
+        struct.pack_into("<H", data, 0x80 + 6, 1)
+        struct.pack_into("<H", data, 0x80 + 20, 0xE0)
+        optional = 0x80 + 24
+        struct.pack_into("<H", data, optional, 0x10B)
+        struct.pack_into("<I", data, optional + 28, 0x400000)
+        struct.pack_into("<I", data, optional + 96 + 8, 0x1100)
+        section = optional + 0xE0
+        data[section:section + 8] = b".rdata\0\0"
+        struct.pack_into("<IIII", data, section + 8, 0x1000, 0x1000, 0x1000, 0x400)
+        struct.pack_into("<IIIII", data, 0x500, 0x1200, 0, 0, 0x1300, 0x1400)
+        struct.pack_into("<I", data, 0x600, 0x1500)
+        data[0x700:0x70D] = b"KERNEL32.dll\0"
+        data[0x900:0x900 + 21] = b"\0\0GetUserDefaultLCID\0"
+        data[0x410:0x416] = b"\xFF\x25" + struct.pack("<I", 0x401400)
+        read_pe = self.origins.pe_reader(bytes(data))
+        row = {"address": "0x00401010", "size": "6", "status": "identified"}
+        entry = {"address": row["address"], "iat_slot": "0x00401400",
+                 "dll": "KERNEL32.dll", "name": "GetUserDefaultLCID"}
+        rule = {"id": "iat-control", "required_iat_imports": [entry]}
+        verify = self.origins.validate_rule_evidence
+        self.assertEqual(verify(rule, [row], [row], bytes(data), read_pe), [])
+        wrong = {"id": "iat-control", "required_iat_imports": [{**entry, "name": "RtlUnwind"}]}
+        self.assertTrue(verify(wrong, [row], [row], bytes(data), read_pe))
+
     def test_msvc_runtime_relocation_targets_use_linked_x86_fields(self) -> None:
         base = 0x401000
         code = b"\x3B\x0D" + struct.pack("<I", 0x6F7A88) + b"\xE9" + struct.pack(

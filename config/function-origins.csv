@@ -3938,7 +3938,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006B5470,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B5540,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B55B0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x006B55C0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006B55C0,import_thunk,platform,exclude,observed,kernel32-late-import-thunks-106a
 0x006B55D0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B55E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B55F0,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -3950,7 +3950,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006B5E50,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B5E90,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B5EB0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x006B5ECA,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006B5ECA,import_thunk,platform,exclude,observed,kernel32-late-import-thunks-106a
 0x006B5ED0,third_party,audio,exclude,observed,xiph-sdk-relocation-free-anchors-106a
 0x006B5EE0,third_party,audio,exclude,observed,xiph-sdk-relocation-free-anchors-106a
 0x006B5EF0,third_party,audio,exclude,observed,xiph-sdk-relocation-free-anchors-106a

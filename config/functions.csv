@@ -3938,7 +3938,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006B5470,194,0x006B5531,sub_6B5470,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B5540,99,0x006B55A2,sub_6B5540,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B55B0,6,0x006B55B5,sub_6B55B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006B55C0,6,0x006B55C5,GetUserDefaultLCID,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006B55C0,6,0x006B55C5,GetUserDefaultLCID,,,identified,0.00,,,true,,Hash-attested 1.06a complete six-byte FF25 indirect jump through 0x006C008C; PE import descriptor names KERNEL32.dll!GetUserDefaultLCID; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Direct IAT import thunk; no independent source body.
 0x006B55D0,12,0x006B55DB,sub_6B55D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B55E0,11,0x006B55EA,sub_6B55E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B55F0,34,0x006B5611,sub_6B55F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -3950,7 +3950,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006B5E50,61,0x006B5E8C,sub_6B5E50,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B5E90,31,0x006B5EAE,sub_6B5E90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B5EB0,26,0x006B5EC9,sub_6B5EB0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006B5ECA,6,0x006B5ECF,RtlUnwind,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006B5ECA,6,0x006B5ECF,RtlUnwind,,,identified,0.00,,,true,,Hash-attested 1.06a complete six-byte FF25 indirect jump through 0x006C0144; PE import descriptor names KERNEL32.dll!RtlUnwind; see docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,Direct IAT import thunk; no independent source body.
 0x006B5ED0,12,0x006B5EDB,sub_6B5ED0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B5EE0,13,0x006B5EEC,sub_6B5EE0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B5EF0,13,0x006B5EFC,sub_6B5EF0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

@@ -74,6 +74,49 @@ def pe_reader(data: bytes):
     return read
 
 
+def pe_import_names_by_iat(data: bytes, read_pe) -> dict[int, tuple[str, str]]:
+    pe = struct.unpack_from("<I", data, 0x3C)[0]
+    optional = pe + 24
+    if struct.unpack_from("<H", data, optional)[0] != 0x10B:
+        raise ValueError("target import parser requires PE32")
+    image_base = struct.unpack_from("<I", data, optional + 28)[0]
+    import_rva = struct.unpack_from("<I", data, optional + 96 + 8)[0]
+
+    def c_string(address: int) -> str:
+        raw = bytearray()
+        for offset in range(256):
+            byte = read_pe(address + offset, 1)[0]
+            if byte == 0:
+                return raw.decode("ascii")
+            raw.append(byte)
+        raise ValueError(f"unterminated PE import name at 0x{address:08X}")
+
+    imports: dict[int, tuple[str, str]] = {}
+    for descriptor_index in range(256):
+        descriptor = read_pe(image_base + import_rva + 20 * descriptor_index, 20)
+        original_thunk, _timestamp, _forwarder, name_rva, first_thunk = struct.unpack(
+            "<IIIII", descriptor
+        )
+        if not any((original_thunk, name_rva, first_thunk)):
+            return imports
+        dll = c_string(image_base + name_rva)
+        for index in range(4096):
+            name_pointer = struct.unpack(
+                "<I", read_pe(image_base + (original_thunk or first_thunk) + index * 4, 4)
+            )[0]
+            if name_pointer == 0:
+                break
+            name = (
+                f"#{name_pointer & 0xFFFF}"
+                if name_pointer & 0x80000000
+                else c_string(image_base + name_pointer + 2)
+            )
+            imports[image_base + first_thunk + index * 4] = (dll, name)
+        else:
+            raise ValueError(f"PE import thunk list for {dll} did not terminate")
+    raise ValueError("PE import descriptor list did not terminate")
+
+
 
 
 def load_msvc_archive_module():
@@ -1308,6 +1351,25 @@ def validate_rule_evidence(
             errors.append(
                 f"{rule_id}: 0x{address:08X} is not E9 to 0x{target:08X}"
             )
+    if rule.get("required_iat_imports"):
+        try:
+            imports = pe_import_names_by_iat(data, read_pe)
+        except ValueError as exc:
+            errors.append(f"{rule_id}: {exc}")
+            imports = {}
+        for import_entry in rule["required_iat_imports"]:
+            address = int(str(import_entry["address"]), 0)
+            slot = int(str(import_entry["iat_slot"]), 0)
+            key = f"0x{address:08X}".upper()
+            if key not in selected_addresses or int(row_by_address[key]["size"], 0) != 6:
+                errors.append(f"{rule_id}: 0x{address:08X} is not a selected six-byte import thunk")
+                continue
+            code = read_pe(address, 6)
+            if code[:2] != b"\xFF\x25" or struct.unpack_from("<I", code, 2)[0] != slot:
+                errors.append(f"{rule_id}: 0x{address:08X} FF25 IAT slot differs")
+            expected_name = (str(import_entry["dll"]), str(import_entry["name"]))
+            if imports.get(slot) != expected_name:
+                errors.append(f"{rule_id}: IAT slot 0x{slot:08X} import name differs")
     for thunk in rule.get("required_global_dtor_aliases", []):
         address = int(str(thunk["address"]), 0)
         object_address = int(str(thunk["object"]), 0)

@@ -219,3 +219,16 @@ as destructor/constructor arguments to VC8 array-construction helper
 `0x0068A30C` first; a later nearby `_atexit` call belongs to another
 registration. They remain in origin review. This screen does not enumerate
 registrations made through a different instruction form or beyond its window.
+
+## Two KERNEL32 import thunks
+
+`0x006B55C0` and `0x006B5ECA` each have a complete six-byte `FF 25` body:
+an indirect jump through IAT slots `0x006C008C` and `0x006C0144`,
+respectively. The hash-attested PE import descriptors map those slots to
+`KERNEL32.dll!GetUserDefaultLCID` and `KERNEL32.dll!RtlUnwind`.
+`function-origins.py` now replays the PE32 import table and checks the
+instruction bytes, referenced slot, DLL, and imported name. Both boundaries
+are one reachable jump instruction, with no body continuation. The first is
+`INT3` separated; the second follows a return and precedes a new function.
+Both are `import_thunk/exclude`, with no independent source or canonical
+exact-game credit.
