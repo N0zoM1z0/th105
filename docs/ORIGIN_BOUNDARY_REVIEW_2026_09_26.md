@@ -367,3 +367,34 @@ python3 scripts/audit-candidate-boundaries.py \
   0x006B4C40 0x006B4C70 0x006B4C80 0x006B4CF0 0x006B4D20 0x006B4D30 --json
 python3 scripts/function-origins.py --check
 ```
+
+## Eight Boost exception scalar deleting destructors
+
+The same four Boost exception RTTI families each have two primary-vtable
+deleting destructors: a 30-byte `error_info_injector` wrapper and a 57-byte
+`clone_impl` wrapper. All eight provisional spans are fully reachable and end
+in `RET 4`. Each preserves the `this` pointer, calls its class destructor,
+tests the low bit of the deletion flag, conditionally calls the previously
+excluded free alias `0x006898EA`, and returns `this`. The longer four publish
+class vptrs before the destructor call.
+
+| RTTI exception family | 30-byte / 57-byte wrappers | Underlying destructor |
+| --- | --- | --- |
+| `std::invalid_argument` | `0x006A5360` / `0x006A5320` | `0x006A4CA0` |
+| `std::runtime_error` | `0x006A5610` / `0x006A55D0` | `0x006A4EE0` |
+| `boost::regex_error` | `0x006B4D80` / `0x006B4D40` | `0x006B4BE0` |
+| `std::logic_error` | `0x006B4DE0` / `0x006B4DA0` | `0x006B4C90` |
+
+The origin rule pins each full target body hash, primary vtable pointer,
+adjacent VC8 RTTI locator and Boost type descriptor, and both signed E8
+destinations. This class-specific scalar deletion code is
+`compiler_generated/exclude`. The eight underlying destructor candidates
+are separate and remain under review; the RTTI association does not by
+itself resolve their complete code ownership or original TU boundaries.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py \
+  0x006A5320 0x006A5360 0x006A55D0 0x006A5610 \
+  0x006B4D40 0x006B4D80 0x006B4DA0 0x006B4DE0 --json
+python3 scripts/function-origins.py --check
+```

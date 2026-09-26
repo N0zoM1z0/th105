@@ -1834,3 +1834,25 @@ required_rtti_adjustor_thunks = [
   { address = "0x006B4D20", slot = "0x006D6890", col_slot = "0x006D6884", col = "0x006DC658", type_descriptor = "0x006F9BE0", target = "0x006B4DA0" },
   { address = "0x006B4D30", slot = "0x006D6898", col_slot = "0x006D6894", col = "0x006DC644", type_descriptor = "0x006F9BE0", target = "0x006B4DA0" },
 ]
+
+[[rules]]
+id = "boost-exception-rtti-deleting-destructors-106a"
+addresses = ["0x006A5320", "0x006A5360", "0x006A55D0", "0x006A5610", "0x006B4D40", "0x006B4D80", "0x006B4DA0", "0x006B4DE0"]
+expected_count = 8
+expected_bytes = 348
+expected_names = ["sub_6A5320", "sub_6A5360", "sub_6A55D0", "sub_6A5610", "sub_6B4D40", "sub_6B4D80", "sub_6B4DA0", "sub_6B4DE0"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "inferred"
+evidence = "Eight complete RET 4 bodies are primary virtual entries of RTTI-declared Boost exception_info_injector/clone_impl classes. Each wrapper invokes the class destructor, conditionally invokes the independently excluded free alias 0x006898EA when the scalar-deleting flag is set, and returns this. Four clone_impl wrappers also publish vptrs before calling the underlying destructor. The rule pins full body hashes, both signed E8 destinations, vtable slots, adjacent VC8 COLs and Boost type descriptors. These scalar deleting destructors are compiler-generated; underlying destructor candidate origins remain separate. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_rtti_deleting_dtors = [
+  { address = "0x006A5320", size = 57, sha256 = "8640f22d9e5197a53a30698d9c32ca6911a7872842a36c3344883717b51dd093", slot = "0x006D5E80", col = "0x006DC1AC", type_descriptor = "0x006F95D0", destructor_site = "0x006A533E", destructor = "0x006A4CA0", free_site = "0x006A534B" },
+  { address = "0x006A5360", size = 30, sha256 = "99a73b6fdf7a1cbe05957ba3fc250c2941adb98ef6179537e4d6d73cd00b8cfc", slot = "0x006D5E5C", col = "0x006DC124", type_descriptor = "0x006F9578", destructor_site = "0x006A5363", destructor = "0x006A4CA0", free_site = "0x006A5370" },
+  { address = "0x006A55D0", size = 57, sha256 = "41bcd7f8bce96de055ff35f3ec4177ad3044ed216b1932dcd9cd9819361f71f8", slot = "0x006D5EB8", col = "0x006DC2B8", type_descriptor = "0x006F96A0", destructor_site = "0x006A55EE", destructor = "0x006A4EE0", free_site = "0x006A55FB" },
+  { address = "0x006A5610", size = 30, sha256 = "6c3c61be468166a6f8416ae44a20ecd1cb957c4fe0f430794f9caa21c4625ac0", slot = "0x006D5E94", col = "0x006DC250", type_descriptor = "0x006F9650", destructor_site = "0x006A5613", destructor = "0x006A4EE0", free_site = "0x006A5620" },
+  { address = "0x006B4D40", size = 57, sha256 = "50f207d5ada0fd736cd29c914b2c751ea2d1a0e63f0e8f0525c0993e5371125d", slot = "0x006D6868", col = "0x006DC4DC", type_descriptor = "0x006F9B18", destructor_site = "0x006B4D5E", destructor = "0x006B4BE0", free_site = "0x006B4D6B" },
+  { address = "0x006B4D80", size = 30, sha256 = "d437a9690a286902119424b0a684c88210633d517b01db7b3411672a27494b72", slot = "0x006D6844", col = "0x006DC418", type_descriptor = "0x006F9AA8", destructor_site = "0x006B4D83", destructor = "0x006B4BE0", free_site = "0x006B4D90" },
+  { address = "0x006B4DA0", size = 57, sha256 = "75ac774b65877033a2ae7d0aa4265f6eebca8e23b43de88443aeb58b6b82fe45", slot = "0x006D68A0", col = "0x006DC5E8", type_descriptor = "0x006F9BE0", destructor_site = "0x006B4DBE", destructor = "0x006B4C90", free_site = "0x006B4DCB" },
+  { address = "0x006B4DE0", size = 30, sha256 = "c8edbd6ada5ff1a863ccce22d0af139e24c2fdd105b43c91b5b1b2ed00b1eb0b", slot = "0x006D687C", col = "0x006DC580", type_descriptor = "0x006F9B90", destructor_site = "0x006B4DE3", destructor = "0x006B4C90", free_site = "0x006B4DF0" },
+]

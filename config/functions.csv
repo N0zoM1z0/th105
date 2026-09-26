@@ -3713,13 +3713,13 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006A50E0,111,0x006A514E,sub_6A50E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A5150,338,0x006A52A1,sub_6A5150,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A52B0,56,0x006A52E7,sub_6A52B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006A5320,57,0x006A5358,sub_6A5320,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006A5360,30,0x006A537D,sub_6A5360,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006A5320,57,0x006A5358,sub_6A5320,,,identified,0.00,__thiscall,,false,,Full target CFG and body hash pin scalar deleting destructor with conditional free call; primary vtable slot and adjacent VC8 Boost RTTI locator verified by origin rule,,Compiler-generated wrapper; called class destructor origin remains separate
+0x006A5360,30,0x006A537D,sub_6A5360,,,identified,0.00,__thiscall,,false,,Full target CFG and body hash pin scalar deleting destructor with conditional free call; primary vtable slot and adjacent VC8 Boost RTTI locator verified by origin rule,,Compiler-generated wrapper; called class destructor origin remains separate
 0x006A5380,142,0x006A540D,sub_6A5380,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A5410,70,0x006A5455,sub_6A5410,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A5460,364,0x006A55CB,sub_6A5460,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006A55D0,57,0x006A5608,sub_6A55D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006A5610,30,0x006A562D,sub_6A5610,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006A55D0,57,0x006A5608,sub_6A55D0,,,identified,0.00,__thiscall,,false,,Full target CFG and body hash pin scalar deleting destructor with conditional free call; primary vtable slot and adjacent VC8 Boost RTTI locator verified by origin rule,,Compiler-generated wrapper; called class destructor origin remains separate
+0x006A5610,30,0x006A562D,sub_6A5610,,,identified,0.00,__thiscall,,false,,Full target CFG and body hash pin scalar deleting destructor with conditional free call; primary vtable slot and adjacent VC8 Boost RTTI locator verified by origin rule,,Compiler-generated wrapper; called class destructor origin remains separate
 0x006A5630,122,0x006A56A9,sub_6A5630,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A56B0,151,0x006A5746,sub_6A56B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A5750,94,0x006A57AD,sub_6A5750,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -3913,10 +3913,10 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006B4D00,32,0x006B4D1F,sub_6B4D00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B4D20,8,0x006B4D27,sub_6B4D20,,,identified,0.00,__thiscall,,true,,Complete eight-byte sub ecx offset and E9 thunk; .rdata vtable pointer and adjacent VC8 RTTI COL offset agree with adjustment; target Boost type descriptor and jump destination pinned in origin rule,,Compiler-generated secondary-base adjustor; target callee origin reviewed separately
 0x006B4D30,8,0x006B4D37,sub_6B4D30,,,identified,0.00,__thiscall,,true,,Complete eight-byte sub ecx offset and E9 thunk; .rdata vtable pointer and adjacent VC8 RTTI COL offset agree with adjustment; target Boost type descriptor and jump destination pinned in origin rule,,Compiler-generated secondary-base adjustor; target callee origin reviewed separately
-0x006B4D40,57,0x006B4D78,sub_6B4D40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006B4D80,30,0x006B4D9D,sub_6B4D80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006B4DA0,57,0x006B4DD8,sub_6B4DA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006B4DE0,30,0x006B4DFD,sub_6B4DE0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006B4D40,57,0x006B4D78,sub_6B4D40,,,identified,0.00,__thiscall,,false,,Full target CFG and body hash pin scalar deleting destructor with conditional free call; primary vtable slot and adjacent VC8 Boost RTTI locator verified by origin rule,,Compiler-generated wrapper; called class destructor origin remains separate
+0x006B4D80,30,0x006B4D9D,sub_6B4D80,,,identified,0.00,__thiscall,,false,,Full target CFG and body hash pin scalar deleting destructor with conditional free call; primary vtable slot and adjacent VC8 Boost RTTI locator verified by origin rule,,Compiler-generated wrapper; called class destructor origin remains separate
+0x006B4DA0,57,0x006B4DD8,sub_6B4DA0,,,identified,0.00,__thiscall,,false,,Full target CFG and body hash pin scalar deleting destructor with conditional free call; primary vtable slot and adjacent VC8 Boost RTTI locator verified by origin rule,,Compiler-generated wrapper; called class destructor origin remains separate
+0x006B4DE0,30,0x006B4DFD,sub_6B4DE0,,,identified,0.00,__thiscall,,false,,Full target CFG and body hash pin scalar deleting destructor with conditional free call; primary vtable slot and adjacent VC8 Boost RTTI locator verified by origin rule,,Compiler-generated wrapper; called class destructor origin remains separate
 0x006B4E00,39,0x006B4E26,sub_6B4E00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B4E30,39,0x006B4E56,sub_6B4E30,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B4E60,147,0x006B4EF2,sub_6B4E60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

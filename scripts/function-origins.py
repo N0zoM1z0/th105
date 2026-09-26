@@ -1348,6 +1348,69 @@ def validate_rule_evidence(
             or b"exception_detail@boost@@" not in type_name
         ):
             errors.append(f"{rule_id}: RTTI adjustor 0x{address:08X} code/vtable/Boost RTTI differs")
+    deleting_dtors = rule.get("required_rtti_deleting_dtors", [])
+    if deleting_dtors and (
+        len(deleting_dtors) != len(selected_addresses)
+        or {str(dtor["address"]).upper() for dtor in deleting_dtors} != selected_addresses
+    ):
+        errors.append(f"{rule_id}: RTTI deleting-destructor witnesses do not cover selected candidates exactly")
+    for dtor in deleting_dtors:
+        address = int(str(dtor["address"]), 0)
+        size = int(dtor["size"])
+        slot = int(str(dtor["slot"]), 0)
+        expected_col = int(str(dtor["col"]), 0)
+        expected_type = int(str(dtor["type_descriptor"]), 0)
+        destructor_site = int(str(dtor["destructor_site"]), 0)
+        destructor = int(str(dtor["destructor"]), 0)
+        free_site = int(str(dtor["free_site"]), 0)
+        key = f"0x{address:08X}".upper()
+        if key not in selected_addresses or int(row_by_address[key]["size"], 0) != size:
+            errors.append(f"{rule_id}: RTTI deleting destructor 0x{address:08X} has wrong selection or size")
+            continue
+        if (
+            size not in (30, 57)
+            or not address <= destructor_site <= address + size - 5
+            or not destructor_site < free_site <= address + size - 5
+            or f"0x{destructor:08X}".upper() not in row_by_address
+        ):
+            errors.append(f"{rule_id}: RTTI deleting destructor 0x{address:08X} has invalid call sites")
+            continue
+        try:
+            if any(pe_raw_section_name(data, pointer) != ".rdata" for pointer in (slot, expected_col)):
+                raise ValueError("vtable slot or RTTI locator is outside .rdata")
+            body = read_pe(address, size)
+            pointed = struct.unpack("<I", read_pe(slot, 4))[0]
+            col = struct.unpack("<I", read_pe(slot - 4, 4))[0]
+            signature, offset, cd_offset, type_descriptor, _hierarchy = struct.unpack(
+                "<IIIII", read_pe(col, 20)
+            )
+            type_name = read_pe(type_descriptor + 8, 192).split(b"\x00", 1)[0]
+            first_call = read_pe(destructor_site, 5)
+            free_call = read_pe(free_site, 5)
+        except (ValueError, struct.error) as exc:
+            errors.append(f"{rule_id}: RTTI deleting destructor 0x{address:08X}: {exc}")
+            continue
+        first_target = destructor_site + 5 + struct.unpack_from("<i", first_call, 1)[0]
+        free_target = free_site + 5 + struct.unpack_from("<i", free_call, 1)[0]
+        if (
+            hashlib.sha256(body).hexdigest() != dtor["sha256"]
+            or body[:3] != b"\x56\x8B\xF1"
+            or b"\xF6\x44\x24\x08\x01" not in body
+            or body[-3:] != b"\xC2\x04\x00"
+            or pointed != address
+            or col != expected_col
+            or signature != 0
+            or offset != 0
+            or cd_offset != 0
+            or type_descriptor != expected_type
+            or not type_name.startswith((b".?AU", b".?AV"))
+            or b"exception_detail@boost@@" not in type_name
+            or first_call[0] != 0xE8
+            or first_target != destructor
+            or free_call[0] != 0xE8
+            or free_target != 0x006898EA
+        ):
+            errors.append(f"{rule_id}: RTTI deleting destructor 0x{address:08X} body/vtable/calls differ")
     for body in rule.get("required_body_hashes", []):
         address = int(str(body["address"]), 0)
         size = int(body["size"])

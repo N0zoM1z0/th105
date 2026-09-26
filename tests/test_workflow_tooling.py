@@ -290,6 +290,26 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_rtti_adjustor_thunks"] = thunks
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    def test_boost_deleting_destructor_requires_rtti_and_free_edge(self) -> None:
+        with self.origins.RULES.open("rb") as stream:
+            document = tomllib.load(stream)
+        rule = next(
+            row for row in document["rules"]
+            if row["id"] == "boost-exception-rtti-deleting-destructors-106a"
+        )
+        rows = self.origins.read_csv(self.origins.FUNCTIONS)
+        selected = [row for row in rows if row["address"] in rule["addresses"]]
+        data = self.origins.attest_target(document)
+        read_pe = self.origins.pe_reader(data)
+        validate = self.origins.validate_rule_evidence
+        self.assertEqual(validate(rule, selected, rows, data, read_pe), [])
+
+        changed = dict(rule)
+        dtors = [dict(entry) for entry in rule["required_rtti_deleting_dtors"]]
+        dtors[0]["free_site"] = "0x006A5350"  # stack cleanup, not the free call
+        changed["required_rtti_deleting_dtors"] = dtors
+        self.assertTrue(validate(changed, selected, rows, data, read_pe))
+
     def test_atexit_callback_pins_entire_body_and_registration(self) -> None:
         source = {"address": "0x00401000", "size": "2", "status": "identified"}
         body = b"\x90\xC3"
