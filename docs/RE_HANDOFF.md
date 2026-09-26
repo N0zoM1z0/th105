@@ -12,9 +12,9 @@ instructions are not the active queue.
 - User-directed phase: clean misleading documentation/code, then review the
   remaining origin and candidate-boundary queue. The initial census was
   **4,023 candidates, 1,476 authored, 1,308 excluded, 1,239 in review**.
-  Thirty-one evidence-linked origin/boundary batches are recorded in
+  Thirty-two evidence-linked origin/boundary batches are recorded in
   [the focused review](ORIGIN_BOUNDARY_REVIEW_2026_09_26.md). The current
-  census is **1,497 authored / 1,414 excluded / 1,112 review**. Source-present
+  census is **1,498 authored / 1,414 excluded / 1,111 review**. Source-present
   remains 1,388; canonical exact remains 1,315 functions / 220,094 bytes.
   Recompute from `scripts/report-reconstruction-status.py --summary` after
   every promotion.
@@ -155,6 +155,11 @@ reviewed. Its only unreachable six bytes are a branch-skipped alignment
 and a 19-state VC8 EH cleanup chain are replayed. The 19 remote unwind
 actions are separately pinned; original TU ownership and source/exact
 codegen remain unresolved.
+The 1,452-byte intermediate battle collision phase `0x0046DFF0` has
+1,434 reachable bytes plus three branch-skipped alignment ranges of
+3/8/7 bytes, five exact BattleManager/Story callers and four calls to
+exact collision/counter helpers. Adjacent family and list helpers remain
+separate origin work; source and exact credit are unchanged.
 
 ```bash
 python3 scripts/verify-target.py

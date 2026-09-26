@@ -1046,3 +1046,46 @@ placement.
 python3 scripts/audit-candidate-boundaries.py 0x004231A0 --json
 python3 scripts/function-origins.py --check
 ```
+
+## Intermediate battle collision phase at `0x0046DFF0`
+
+Raw target CFG reaches 1,434 of the 1,452 provisional candidate bytes
+through a single `RET` at `0x0046E59B`. Its three otherwise unreachable
+ranges are internal compiler alignment instructions, each directly
+skipped by a preceding short jump:
+
+| Jump | Skipped range | Exact bytes | Landing |
+| --- | --- | --- | --- |
+| `0x0046E07B` | `0x0046E07D..0x0046E07F` | `8D 49 00` (`lea ecx,[ecx]`) | `0x0046E080` |
+| `0x0046E3E6` | `0x0046E3E8..0x0046E3EF` | `8D A4 24 00 00 00 00 90` (`lea esp,[esp]; nop`) | `0x0046E3F0` |
+| `0x0046E4A7` | `0x0046E4A9..0x0046E4AF` | `8D A4 24 00 00 00 00` (`lea esp,[esp]`) | `0x0046E4B0` |
+
+There is no visible outgoing direct branch, indirect jump, or invalid
+decode. The full 1,452-byte body SHA-256, including those 18 padding
+bytes, is
+`ca24d275c213508fd8a634e8712736c20297637739051f98147bebbd8f8bca53`.
+
+The entry uses the same battle manager receiver passed by exact pipeline
+callers. It resets and frees two sides of linked collision lists, processes
+fighter/object candidate pairs with game-specific Fighter flags and
+collision state, invokes the neighboring family collision passes, and
+applies capped deferred counters to each fighter. Exact outgoing calls
+include `dispatch_family2_against_family1 @ 0x0046DB30` at
+`0x0046E492`, `resolve_attack_candidate_against_fighter @ 0x0046DA10`
+at `0x0046E4E4/0x0046E518`, and `apply_deferred_counter_558 @
+0x0045D510` at `0x0046E587`.
+
+Five distinct canonical-exact BattleManager/Story pipelines call this
+body at `0x00471643`, `0x004716FC`, `0x00471771`, `0x00472E54`, and
+`0x00472ED1`. The rule replays those five E8 sites, four outgoing exact
+helper E8s, all three padding jumps and the full body hash. Together
+with the target's collision state accesses, these establish
+`authored_game/battle` and the reviewed main span. The adjacent
+`0x0046DD40` family pass and other nonexact callees retain separate
+origin review. Original method name/TU and source/exact codegen remain
+unresolved.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py 0x0046DFF0 --json
+python3 scripts/function-origins.py --check
+```

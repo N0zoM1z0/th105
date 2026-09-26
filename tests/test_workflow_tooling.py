@@ -609,6 +609,26 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_vc8_eh_unwind"] = eh
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    def test_intermediate_battle_phase_requires_all_alignment_gaps(self) -> None:
+        with self.origins.RULES.open("rb") as stream:
+            document = tomllib.load(stream)
+        rule = next(
+            row for row in document["rules"]
+            if row["id"] == "battle-intermediate-collision-phase-authored-106a"
+        )
+        rows = self.origins.read_csv(self.origins.FUNCTIONS)
+        selected = [row for row in rows if row["address"] in rule["addresses"]]
+        data = self.origins.attest_target(document)
+        read_pe = self.origins.pe_reader(data)
+        validate = self.origins.validate_rule_evidence
+        self.assertEqual(validate(rule, selected, rows, data, read_pe), [])
+
+        changed = dict(rule)
+        gaps = [dict(entry) for entry in rule["required_branch_skipped_padding"]]
+        gaps[1]["padding_hex"] = "8da4240000000000"  # target ends in NOP
+        changed["required_branch_skipped_padding"] = gaps
+        self.assertTrue(validate(changed, selected, rows, data, read_pe))
+
     def test_boost_throw_virtual_requires_terminal_runtime_edge(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)

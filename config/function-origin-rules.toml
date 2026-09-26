@@ -2458,3 +2458,36 @@ required_vc8_eh_unwind = { owner = "0x004231A0", handler_push_site = "0x004231A8
   { address = "0x006B74F0", size = 17, sha256 = "a47570010a33bb773a6056b885e0ccc51cdbf5ee3e23cdd8147391cd4488de9f", target = "0x0040AD50", terminal_kind = "jump" },
   { address = "0x006B7501", size = 30, sha256 = "d30fcc075d2f86d922d753374f5bfae60ab496308c6543e9e62e6c40b87e6350", target = "0x0068A2A9", terminal_kind = "call_ret" },
 ] }
+
+[[rules]]
+id = "battle-intermediate-collision-phase-authored-106a"
+addresses = ["0x0046DFF0"]
+expected_count = 1
+expected_bytes = 1452
+expected_names = ["sub_46DFF0"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Target PE CFG reaches 1434/1452 bytes through a single RET; its three skipped 3/8/7-byte ranges are exact alignment LEA/NOP instructions bypassed by short jumps. The body resets two sides of collision lists, iterates fighter/object pairs, calls exact family2-vs-family1 and candidate-vs-fighter collision helpers, then publishes capped per-fighter deferred counters. Five distinct canonical-exact BattleManager/Story pipelines call it; three exact helper destinations are replayed from four E8 sites. The adjacent family1 helper and other nonexact callees retain independent origin questions. Full body, all padding jumps, five inbound E8s and four selected outgoing E8s are pinned. Source class/TU and exact codegen remain unresolved. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_body_hashes = [
+  { address = "0x0046DFF0", size = 1452, sha256 = "ca24d275c213508fd8a634e8712736c20297637739051f98147bebbd8f8bca53" },
+]
+required_branch_skipped_padding = [
+  { owner = "0x0046DFF0", jump_site = "0x0046E07B", padding_site = "0x0046E07D", padding_hex = "8d4900" },
+  { owner = "0x0046DFF0", jump_site = "0x0046E3E6", padding_site = "0x0046E3E8", padding_hex = "8da4240000000090" },
+  { owner = "0x0046DFF0", jump_site = "0x0046E4A7", padding_site = "0x0046E4A9", padding_hex = "8da42400000000" },
+]
+required_direct_edges = [
+  { caller = "0x00471630", site = "0x00471643", target = "0x0046DFF0", caller_status = "matching" },
+  { caller = "0x00471670", site = "0x004716FC", target = "0x0046DFF0", caller_status = "matching" },
+  { caller = "0x00471740", site = "0x00471771", target = "0x0046DFF0", caller_status = "matching" },
+  { caller = "0x00472E10", site = "0x00472E54", target = "0x0046DFF0", caller_status = "matching" },
+  { caller = "0x00472EA0", site = "0x00472ED1", target = "0x0046DFF0", caller_status = "matching" },
+]
+required_selected_body_calls = [
+  { owner = "0x0046DFF0", site = "0x0046E492", target = "0x0046DB30" },
+  { owner = "0x0046DFF0", site = "0x0046E4E4", target = "0x0046DA10" },
+  { owner = "0x0046DFF0", site = "0x0046E518", target = "0x0046DA10" },
+  { owner = "0x0046DFF0", site = "0x0046E587", target = "0x0045D510" },
+]
