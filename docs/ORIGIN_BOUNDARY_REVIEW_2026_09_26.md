@@ -929,3 +929,40 @@ python3 scripts/audit-candidate-boundaries.py \
   0x00411430 0x004114C0 0x004115A0 --json
 python3 scripts/function-origins.py --check
 ```
+
+## Server type-0x0D network send path at `0x00416B60`
+
+Raw target CFG reaches all 548 bytes through a single `RET 0x14` at
+`0x00416D81`. There is no unreached range, indirect jump, outgoing direct
+branch, or overlapping decode. Both sides are separated by `INT3` padding.
+The full body SHA-256 is
+`f9c4811900e4c22873f2176f36dd601d1e2fc4782308c183d1c9c863a7e8d3f9`.
+
+The body indexes receiver `+0x10C` as 0x20-byte records and skips a slot
+whose `+0x10` field is `-1`. It creates a queue item through
+`0x00417660` for receiver `+0x17C`, writes packet type `0x0D` at item
+`+0x1C`, stores a timestamp from the SHA-attested PE's WINMM
+`timeGetTime` IAT `0x006C0258`, copies the selected record prefix and a
+caller payload to item `+0x1D`, and serializes the payload length at
+item `+0x18`. The target PE import table independently identifies
+`0x006C0108/0x006C0104` as `EnterCriticalSection`/
+`LeaveCriticalSection` and `0x006C0040` as `SetEvent`. An optional
+result-pointer path searches the receiver deque at `+0x168` and updates
+the caller's handle before the event signal.
+
+Five distinct canonical-exact Server methods call this candidate at six
+E8 sites: `CNetworkServer_send_packet @ 0x0044F50B`,
+`sync_peer_state @ 0x0044F76C`, `send_request_info @ 0x0044F816`,
+`send_state_or_terminate @ 0x0044F877/0x0044F8B9`, and
+`send_ack_info_if_ready @ 0x0044FF3F`. The rule replays each site and
+the full body hash. Protocol type, game queue fields, Win32 ordering,
+and independent exact Server callers establish `authored_game/network`
+for this main span. `0x00417240` is separately excluded generated
+deque code; `0x00417660`, `0x004172C0`, and `0x00405200` still need
+individual origin review. The original method signature, TU boundary,
+and source/exact status remain open.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py 0x00416B60 --json
+python3 scripts/function-origins.py --check
+```

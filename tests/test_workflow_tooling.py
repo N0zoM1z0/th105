@@ -535,6 +535,26 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_direct_edges"] = edges
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    def test_network_server_sender_requires_exact_server_edges(self) -> None:
+        with self.origins.RULES.open("rb") as stream:
+            document = tomllib.load(stream)
+        rule = next(
+            row for row in document["rules"]
+            if row["id"] == "network-server-send-packet-authored-106a"
+        )
+        rows = self.origins.read_csv(self.origins.FUNCTIONS)
+        selected = [row for row in rows if row["address"] in rule["addresses"]]
+        data = self.origins.attest_target(document)
+        read_pe = self.origins.pe_reader(data)
+        validate = self.origins.validate_rule_evidence
+        self.assertEqual(validate(rule, selected, rows, data, read_pe), [])
+
+        changed = dict(rule)
+        edges = [dict(entry) for entry in rule["required_direct_edges"]]
+        edges[0]["site"] = "0x0044F50C"  # not the exact Server E8 opcode
+        changed["required_direct_edges"] = edges
+        self.assertTrue(validate(changed, selected, rows, data, read_pe))
+
     def test_boost_throw_virtual_requires_terminal_runtime_edge(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)

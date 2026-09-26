@@ -513,7 +513,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00416910,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00416950,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00416990,authored_game,network,authored,observed,network-client-send-packet-authored-106a
-0x00416B60,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00416B60,authored_game,network,authored,observed,network-server-send-packet-authored-106a
 0x00416D90,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00416DB0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00416F40,unknown,,review,unknown,ida-1.06a-initial-inventory

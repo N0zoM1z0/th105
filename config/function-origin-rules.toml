@@ -2336,3 +2336,26 @@ required_direct_edges = [
   { caller = "0x00454EC0", site = "0x00454EFC", target = "0x004115A0", caller_status = "matching" },
   { caller = "0x00454FE0", site = "0x00455026", target = "0x004115A0", caller_status = "matching" },
 ]
+
+[[rules]]
+id = "network-server-send-packet-authored-106a"
+addresses = ["0x00416B60"]
+expected_count = 1
+expected_bytes = 548
+expected_names = ["sub_416B60"]
+origin = "authored_game"
+subsystem = "network"
+disposition = "authored"
+confidence = "observed"
+evidence = "Hash-attested target PE reaches the complete 548-byte RET 0x14 body between INT3 pads. It checks a 0x20-byte peer/slot record, constructs a type-0x0D send item at the receiver queue +0x17C, records a WINMM timeGetTime timestamp, copies a caller payload under Win32 critical sections, optionally searches a result-handle deque, and calls KERNEL32 SetEvent. Six direct E8 sites in five separate canonical-exact CNetworkServer send/sync functions are replayed. The generated deque helper 0x00417240 and the unresolved queue/acquire/release helpers are distinct origin questions. Retained source signatures and original TU remain unresolved. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_body_hashes = [
+  { address = "0x00416B60", size = 548, sha256 = "f9c4811900e4c22873f2176f36dd601d1e2fc4782308c183d1c9c863a7e8d3f9" },
+]
+required_direct_edges = [
+  { caller = "0x0044F4E0", site = "0x0044F50B", target = "0x00416B60", caller_status = "matching" },
+  { caller = "0x0044F730", site = "0x0044F76C", target = "0x00416B60", caller_status = "matching" },
+  { caller = "0x0044F7E0", site = "0x0044F816", target = "0x00416B60", caller_status = "matching" },
+  { caller = "0x0044F830", site = "0x0044F877", target = "0x00416B60", caller_status = "matching" },
+  { caller = "0x0044F830", site = "0x0044F8B9", target = "0x00416B60", caller_status = "matching" },
+  { caller = "0x0044FE30", site = "0x0044FF3F", target = "0x00416B60", caller_status = "matching" },
+]
