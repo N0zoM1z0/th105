@@ -10,6 +10,9 @@ alignment_tail_hex = "cc"
 
 # Discovery came from an already-exact match-unit object. Acceptance still
 # recompiles this source and verifies the complete current-inventory hit set.
+# The ReimuObject* symbol is the compiled witness, not a proven type identity
+# for every code-equivalent target clone: 0x00417240 is called by the network
+# sender 0x00416990. The generated std::deque origin remains supported.
 
 [[anchors]]
 address = "0x00417500"

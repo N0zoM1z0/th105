@@ -512,7 +512,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004168D0,59,0x0041690A,sub_4168D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00416910,54,0x00416945,sub_416910,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00416950,54,0x00416985,sub_416950,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00416990,464,0x00416B5F,sub_416990,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00416990,464,0x00416B5F,sub_416990,,network,identified,0.00,__thiscall,,false,,Raw 1.06a CFG covers 464/464 bytes through RET 0x10; packet type 0x0E and timestamp are queued under Win32 critical sections; nine exact NetworkClient callers; see origin rule and dated boundary review,,Retained send_client signatures conflict; standalone source and exact codegen remain unproved
 0x00416B60,548,0x00416D83,sub_416B60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00416D90,18,0x00416DA1,sub_416D90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00416DB0,395,0x00416F3A,sub_416DB0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

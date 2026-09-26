@@ -26,8 +26,10 @@ instructions are not the active queue.
   Boost exception RTTI adjustor thunks; the thirteenth reviews eight related
   scalar deleting destructors; the fourteenth reviews four Boost `clone_impl`
   throw virtuals; the fifteenth closes the shared EH path of four Boost
-  clone/allocate virtuals. The resulting census is
-  **1,483 authored / 1,387 excluded / 1,153 review**. Source-present remains
+  clone/allocate virtuals; the sixteenth establishes authored network sender
+  `0x00416990` and corrects a generic deque fingerprint's subsystem. The
+  resulting census is **1,484 authored / 1,387 excluded / 1,152 review**.
+  Source-present remains
   1,388; canonical exact remains 1,315 functions / 220,094 bytes. Recompute from
   `scripts/report-reconstruction-status.py --summary` after every promotion.
 - The local target file passes hash verification. The attached IDA session
@@ -99,7 +101,11 @@ excluded free alias. Four `clone_impl` virtuals end in the pinned VC8
 `__CxxThrowException` call after copying an exception temporary. Their
 underlying destructor/copy-helper origins remain open. Four clone/allocate
 virtuals have complete 120-byte main spans; their common VC8 FuncInfo names
-a single unwind action that frees the allocated object on copy failure.
+a single unwind action that frees the allocated object on copy failure. The
+464-byte network sender `0x00416990` has complete raw CFG, type-0x0E packet
+construction, Win32 queue/event behavior and nine distinct exact callers.
+The old `ReimuObject*` deque fingerprint also matches code used by this
+network sender, so its subsystem is now neutral runtime rather than characters.
 
 ```bash
 python3 scripts/verify-target.py

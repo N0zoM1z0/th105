@@ -537,10 +537,13 @@ vc8_generated_anchor_file = "config/vc8-generated-roster-object-spawns-std-origi
 expected_count = 4
 expected_bytes = 922
 origin = "compiler_generated"
-subsystem = "characters"
+subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/characters/RosterObjectSpawns.cpp regenerates 2 standard-library COMDAT fingerprints whose complete current-inventory hit sets contain exactly 4 review candidates / 922 bytes; target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed"
+evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/characters/RosterObjectSpawns.cpp regenerates two std::deque pointer-template COMDAT fingerprints whose complete current-inventory hit sets contain four candidates / 922 bytes. The 0x00417240 clone is also called by the network sender at 0x00416990, so the rebuild proves generated std::deque code shape and relocation identity, not a unique ReimuObject* instantiation or characters-only ownership. Target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed."
+required_direct_edges = [
+  { caller = "0x00416990", site = "0x00416B37", target = "0x00417240", caller_status = "identified" },
+]
 
 [[rules]]
 id = "vc8-generated-scenario-event-name-resolver-std-comdats-106a"
@@ -1893,3 +1896,22 @@ required_rtti_virtual_bodies = [
   { address = "0x006B5380", size = 120, sha256 = "40c735957c57db8beaf3ed0584922c9dc52b5bcbb97768dbdcd4d834cf2616b5", slot = "0x006D6850", col_slot = "0x006D684C", col = "0x006DC56C", type_descriptor = "0x006F9B18", type_name_contains = "exception_detail@boost@@", calls = [{ site = "0x006B53A7", target = "0x00689DCB" }, { site = "0x006B53C5", target = "0x006B4FC0" }] },
 ]
 required_shared_eh = { handler = "0x006B6E2B", handler_sha256 = "f76b546e336af1ff350bf4439a37d44e0ca4a6ba8f3e563f775cc6601e96cad5", func_info = "0x006DD140", func_info_sha256 = "57ea4abdfbba71ab5e6f87b847354876acde4c3514423f58bcb322024e1a891a", unwind_map = "0x006DD138", unwind_map_sha256 = "d7022bd48f6ca29d2365e95756eed3a2d5bd302457834f637bbdbe01084f45a2", action = "0x006B6E20", action_sha256 = "a49d674fdb250d4ca4f567068100638ef6475a5eab292cc659c68c62cc318512" }
+
+[[rules]]
+id = "network-client-send-packet-authored-106a"
+addresses = ["0x00416990"]
+expected_count = 1
+expected_bytes = 464
+expected_names = ["sub_416990"]
+origin = "authored_game"
+subsystem = "network"
+disposition = "authored"
+confidence = "observed"
+evidence = "Hash-attested raw CFG reaches the complete 464-byte RET 0x10 body with no gap or indirect exit. The receiver's packet queue at +0x17C receives a type-0x0E record, timeGetTime timestamp and copied payload under Win32 critical sections; an optional queue search updates a result handle before SetEvent. Nine independently exact CNetworkClient methods call this body; two distinct direct E8 sites are replayed here. A generic generated std::deque pointer push_back at 0x00417240 is a callee, not the origin of this game/network sender. Retained send_client signatures conflict and remain working ABI hypotheses. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_body_hashes = [
+  { address = "0x00416990", size = 464, sha256 = "5b83746b7004fc7e95b134b175b5b03d11feb738ac0e177d7d1b735506f48031" },
+]
+required_direct_edges = [
+  { caller = "0x0044D770", site = "0x0044D794", target = "0x00416990", caller_status = "matching" },
+  { caller = "0x0044E6A0", site = "0x0044E6C6", target = "0x00416990", caller_status = "matching" },
+]

@@ -457,3 +457,39 @@ python3 scripts/audit-candidate-boundaries.py \
   0x006A8460 0x006A9630 0x006B5090 0x006B5380 --json
 python3 scripts/function-origins.py --check
 ```
+
+## Network packet sender at `0x00416990` and deque provenance correction
+
+The attested PE CFG reaches all 464 candidate bytes and ends with `RET
+0x10` at `0x00416B5D`; there are no unreachable bytes, indirect exits, or
+outgoing direct jumps. The body SHA-256 is
+`5b83746b7004fc7e95b134b175b5b03d11feb738ac0e177d7d1b735506f48031`.
+`INT3` precedes the entry, and the next candidate begins immediately after
+the return. The receiver retains packet state at offsets `+0x17C` and
+`+0x168`. The body writes packet tag `0x0E`, a WINMM `timeGetTime`
+timestamp, and a copied payload under KERNEL32 critical sections; it can
+search the second queue for a matching result, update an output handle, and
+signals a KERNEL32 event before returning.
+
+Nine separate canonical-exact `CNetworkClient` functions each make one
+direct E8 call to `0x00416990`. The rule replays sites `0x0044D794` in
+exact `CNetworkClient_send_simple_packet` and `0x0044E6C6` in exact
+`CNetworkClient_send_packet_with_result`. The game-specific packet tag,
+state coupling, Win32 synchronization, and independent exact callers support
+`authored_game/network`. Retained callers use conflicting `send_client`
+prototypes; their names and argument models are working hypotheses, with no
+standalone source or exact credit for this callee.
+
+The sender also calls `std::deque` pointer `push_back` body `0x00417240`.
+That body and `0x00417500` were previously labeled `characters` because a
+SHA-pinned VC8 rebuild of exact `RosterObjectSpawns.cpp` supplied equivalent
+`ReimuObject*` template fingerprints. Their target placement and this network
+call show that the fingerprint does not prove each target clone's template
+argument or characters-only ownership. The generated STL origin remains
+supported; the four clone records now use neutral `runtime` subsystem, and
+the origin rule replays this network call. No source or exact ledger changes.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py 0x00416990 --json
+python3 scripts/function-origins.py --check
+```
