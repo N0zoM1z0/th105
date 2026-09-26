@@ -748,7 +748,7 @@ When one caller narrows a verified result, keep the unit boundary honest. `is_sc
 
 ### Small class returns can expose hidden-sret ABI
 
-`Menu::show_profile_result @ 0x0043F810` proves `TitleResourceManager::create_text_texture @ 0x00404D00` returns a four-byte class value. Declaring `TextureHandleResult { unsigned value; }` and returning it by value makes VC8 emit the hidden result pointer and naturally reuse a dead caller argument slot, giving 93/93. An explicit output local emits a two-byte-larger wrapper. Model the C++ value return; do not alias parameter slots or hand-manipulate the stack.
+Exact `Menu::show_profile_result @ 0x0043F810` and target `0x00404D00` support a four-byte class-value return with a hidden result pointer. `TitleResourceManager::create_text_texture` is the retained caller's working name, not separate RTTI class-name proof. Declaring `TextureHandleResult { unsigned value; }` and returning it by value makes VC8 emit the hidden result pointer and naturally reuse a dead caller argument slot, giving 93/93. An explicit output local emits a two-byte-larger wrapper. Model the C++ value return; do not alias parameter slots or hand-manipulate the stack.
 
 ### Let VC8 generate hidden iterator returns; never synthesize the stack
 

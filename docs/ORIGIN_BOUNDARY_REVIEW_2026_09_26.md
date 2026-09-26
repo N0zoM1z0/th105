@@ -282,3 +282,29 @@ alias `prepare_title_match_mode`, while historical notes use
 python3 scripts/audit-candidate-boundaries.py 0x0043B8F0 --json
 python3 scripts/function-origins.py --check
 ```
+
+## UI text-texture resource wrapper at `0x00404D00`
+
+The exact PE main span is 111/111 reachable bytes with `RET 0x1C` at
+`0x00404D5C/0x00404D6C`, no visible indirect or outgoing exit, and `INT3`
+separation. Its body SHA-256 is
+`fc2a1d60bc6b46699dfaace27231d5e7135b47105b7493cd04ce864ea9f8ee0c`.
+Raw code keeps its receiver in EDI, obtains a resource handle through
+`0x00405090`, calls `0x004097A0` to create a texture, invokes `0x00405200`
+to release the handle on a negative HRESULT, and writes the resulting
+four-byte handle through the hidden return pointer. `0x004097A0` itself
+calls the PE import thunk `D3DXCreateTexture @ 0x0068989C`.
+
+Six different canonical-exact UI/network functions call `0x00404D00`;
+the rule replays E8 sites in exact `Menu_show_profile_result @ 0x0043F810`
+and `NetworkSessionResultView_finalize_result_binding @ 0x0044DCB0`.
+The wrapper's handle lifetime and game UI callers support
+`authored_game/ui`. Retained source calls it
+`TitleResourceManager::create_text_texture` and models a four-byte class
+return; that class name is a working label. The target ABI and caller
+behavior are the evidence here, without source-present or exact-match credit.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py 0x00404D00 --json
+python3 scripts/function-origins.py --check
+```

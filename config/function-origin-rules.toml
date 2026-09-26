@@ -1770,3 +1770,22 @@ required_direct_edges = [
   { caller = "0x00425990", site = "0x004259D6", target = "0x0043B8F0", caller_status = "matching" },
   { caller = "0x00425990", site = "0x00425B29", target = "0x0043B8F0", caller_status = "matching" },
 ]
+
+[[rules]]
+id = "text-texture-resource-wrapper-authored-106a"
+addresses = ["0x00404D00"]
+expected_count = 1
+expected_bytes = 111
+expected_names = ["sub_404D00"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Raw target CFG reaches the complete 111-byte thiscall wrapper and both RET 0x1C paths between INT3 pads. It obtains a resource handle via 0x00405090, invokes texture creation 0x004097A0, cleans the handle via 0x00405200 on HRESULT failure, and returns the handle through a hidden four-byte result pointer. The nested creator calls the D3DXCreateTexture import; exact UI and network result functions independently call this wrapper. Its retained TitleResourceManager::create_text_texture label is a working hypothesis, not class-name proof or exact source credit. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_body_hashes = [
+  { address = "0x00404D00", size = 111, sha256 = "fc2a1d60bc6b46699dfaace27231d5e7135b47105b7493cd04ce864ea9f8ee0c" },
+]
+required_direct_edges = [
+  { caller = "0x0043F810", site = "0x0043F83F", target = "0x00404D00", caller_status = "matching" },
+  { caller = "0x0044DCB0", site = "0x0044DE75", target = "0x00404D00", caller_status = "matching" },
+]

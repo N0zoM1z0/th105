@@ -20,8 +20,9 @@ instructions are not the active queue.
   excludes ten small registered static lifetime callbacks; the seventh
   identifies two KERNEL32 import thunks from the PE import table; the eighth
   identifies two VC8 SP1 archive functions; the ninth establishes authored
-  match-mode setup `0x0043B8F0`. The resulting census is
-  **1,481 authored / 1,359 excluded / 1,183 review**. Source-present remains
+  match-mode setup `0x0043B8F0`; the tenth establishes the authored UI
+  text-texture wrapper `0x00404D00`. The resulting census is
+  **1,482 authored / 1,359 excluded / 1,182 review**. Source-present remains
   1,388; canonical exact remains 1,315 functions / 220,094 bytes. Recompute from
   `scripts/report-reconstruction-status.py --summary` after every promotion.
 - The local target file passes hash verification. The attached IDA session
@@ -80,7 +81,9 @@ name/slot witnesses. The 400-byte `__free_lc_time @ 0x0069CCD9` and 31-byte
 fingerprints; all 43 `__free_lc_time` relocations resolve to CRT `_free`.
 The 286-byte match-mode setup has complete raw CFG, game state writes and two
 replayed E8 sites in exact `CTitle::update`; the nine observed E8 calls all
-belong to that one exact caller.
+belong to that one exact caller. The 111-byte text-texture wrapper has complete
+raw CFG, handle lifetime/error cleanup, and independent exact UI/network
+callers; its retained class label remains a hypothesis.
 
 ```bash
 python3 scripts/verify-target.py
