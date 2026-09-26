@@ -183,3 +183,39 @@ The repeated destructor shapes and registrations support an **inferred**
 compiler-generated static cleanup origin. The exact source TU and semantic
 type of each container value remain unknown. These exclusions make no
 canonical exact-source claim.
+
+## Ten small static lifetime callbacks
+
+These ten remaining callbacks have a direct `PUSH <entry>; CALL _atexit`
+registration with no instruction between the PUSH and CALL. Their complete
+1–20 byte main spans are raw-CFG reachable. The full body SHA-256 and
+registration instruction pair are replayed by the origin rule. Body behavior
+is summarized below; an outgoing E9 is a boundary exit, not a RET.
+
+| Callback | Bytes | Target body | Registration PUSH |
+| --- | ---: | --- | --- |
+| `0x006BEDB0` | 11 | global vptr store; RET | `0x006BE6E0` |
+| `0x006BEE70` | 1 | RET only | `0x006BE7E4` |
+| `0x006BEE90` | 1 | RET only | `0x006BE825` |
+| `0x006BEEA0` | 1 | RET only | `0x006BE854` |
+| `0x006BEEC0` | 5 | E9 to authored `shutdown_direct_sound` | `0x006BE890` |
+| `0x006BF1E0` | 11 | global vptr store; RET | `0x006BEC70` |
+| `0x006BF1F0` | 11 | global vptr store; RET | `0x006BEC80` |
+| `0x006BF200` | 11 | global vptr store; RET | `0x006BEC90` |
+| `0x006BF210` | 11 | global vptr store; RET | `0x006BECC0` |
+| `0x006BF28A` | 20 | global vptr store; E9 to `0x00689FDA` (origin pending) | `0x00689E0B` |
+
+The actual registrations and isolated callback bodies are **observed**.
+Compiler-generated static lifetime origin is **inferred** from the repeated
+forms and placement. In particular, excluding the callback alias at
+`0x006BEEC0` does not exclude its authored DirectSound shutdown destination,
+and the origin of `0x00689FDA` remains pending. No source TU or canonical
+exact-match claim follows from these registrations.
+
+A bounded 75-byte proximity screen found 38 initially pending candidate
+addresses near raw calls to `_atexit`. The 36 callbacks above had a verified
+PUSH-to-first-CALL path. The other two, `0x0043BF50/0x0043BF60`, are pushed
+as destructor/constructor arguments to VC8 array-construction helper
+`0x0068A30C` first; a later nearby `_atexit` call belongs to another
+registration. They remain in origin review. This screen does not enumerate
+registrations made through a different instruction form or beyond its window.

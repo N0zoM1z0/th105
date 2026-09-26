@@ -1699,3 +1699,27 @@ required_atexit_callbacks = [
   { address = "0x006BF2A0", size = 46, sha256 = "9faf2264de9259a546d9f4e718332f6e9d179ecbcae8f6ac63cdbc1dbf2eacaa", register_site = "0x006B3B69", atexit_site = "0x006B3B8C", gap_hex = "c68424b80000000dc705bcde6f000f000000891db8de6f00881da8de6f00", free_call_site = "0x006BF2AF" },
   { address = "0x006BF2D0", size = 46, sha256 = "57ed1c10d2a198148634f7926af6bf06b445f4b097f89b37211b506fb5826b09", register_site = "0x006A5115", atexit_site = "0x006A5132", gap_hex = "89442410c7059cde6f000f000000a398de6f00a288de6f00", free_call_site = "0x006BF2DF" },
 ]
+
+[[rules]]
+id = "vc8-static-lifetime-small-atexit-callbacks-106a"
+addresses = ["0x006BEDB0", "0x006BEE70", "0x006BEE90", "0x006BEEA0", "0x006BEEC0", "0x006BF1E0", "0x006BF1F0", "0x006BF200", "0x006BF210", "0x006BF28A"]
+expected_count = 10
+expected_bytes = 83
+expected_names = ["sub_6BEDB0", "nullsub_14", "nullsub_15", "nullsub_16", "sub_6BEEC0", "sub_6BF1E0", "sub_6BF1F0", "sub_6BF200", "sub_6BF210", "sub_6BF28A"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "inferred"
+evidence = "Ten complete one-to-twenty-byte callbacks are each directly pushed and passed to independently excluded VC8 _atexit. Their full target body hashes are pinned: three are RET-only, five set a global vptr then RET, one tail-aliases authored DirectSound shutdown, and one sets a global vptr before tail-calling a still-unreviewed teardown. These runtime registrations and concentrated static-lifetime code forms support compiler-generated callback ownership, while target callee origins and source TU placement remain separate. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_atexit_callbacks = [
+  { address = "0x006BEDB0", size = 11, sha256 = "72b6ea1651926f142ab775f9915f47c612a7d53cc5815d04b19dae91af22c2db", register_site = "0x006BE6E0", atexit_site = "0x006BE6E5", gap_hex = "" },
+  { address = "0x006BEE70", size = 1, sha256 = "ae3f4619b0413d70d3004b9131c3752153074e45725be13b9a148978895e359e", register_site = "0x006BE7E4", atexit_site = "0x006BE7E9", gap_hex = "" },
+  { address = "0x006BEE90", size = 1, sha256 = "ae3f4619b0413d70d3004b9131c3752153074e45725be13b9a148978895e359e", register_site = "0x006BE825", atexit_site = "0x006BE82A", gap_hex = "" },
+  { address = "0x006BEEA0", size = 1, sha256 = "ae3f4619b0413d70d3004b9131c3752153074e45725be13b9a148978895e359e", register_site = "0x006BE854", atexit_site = "0x006BE859", gap_hex = "" },
+  { address = "0x006BEEC0", size = 5, sha256 = "d8876f8a910b80071d970100f74c3bfb032627547cc8f282a3055b967519d325", register_site = "0x006BE890", atexit_site = "0x006BE895", gap_hex = "" },
+  { address = "0x006BF1E0", size = 11, sha256 = "b5eaefa917c35a7adc144fe0e5041c14ef7cd604ffcc70e3f30b8f7abab2fbe6", register_site = "0x006BEC70", atexit_site = "0x006BEC75", gap_hex = "" },
+  { address = "0x006BF1F0", size = 11, sha256 = "0023845ba4df28ade4e76e016a055438c2c4f5c653b9a8656832aa2ac5e92fb3", register_site = "0x006BEC80", atexit_site = "0x006BEC85", gap_hex = "" },
+  { address = "0x006BF200", size = 11, sha256 = "ac4558aebd0cd69442f76e223e7d2b27e79316126d78e55f67144d7f478edf67", register_site = "0x006BEC90", atexit_site = "0x006BEC95", gap_hex = "" },
+  { address = "0x006BF210", size = 11, sha256 = "baeb0746d4afb1234b365f7ba49921c7ef5f933c075c07d743814e1fea097d3c", register_site = "0x006BECC0", atexit_site = "0x006BECC5", gap_hex = "" },
+  { address = "0x006BF28A", size = 20, sha256 = "3f9d342d254b90dce19e2ea223bcdef428f0aca11e5cf3ec2dbba56eae6dd3f8", register_site = "0x00689E0B", atexit_site = "0x00689E10", gap_hex = "" },
+]

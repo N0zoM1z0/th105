@@ -16,8 +16,9 @@ instructions are not the active queue.
   the second excludes ten five-byte E9 tail aliases; the third positively
   identifies VC8 runtime security-cookie check `0x00689D25`; the fourth
   excludes 18 `_atexit`-registered global destructor callbacks; the fifth
-  excludes eight registered global container/string cleanup bodies. The
-  resulting census is **1,480 authored / 1,345 excluded / 1,198 review**. Source-present remains
+  excludes eight registered global container/string cleanup bodies; the sixth
+  excludes ten small registered static lifetime callbacks. The resulting
+  census is **1,480 authored / 1,355 excluded / 1,188 review**. Source-present remains
   1,388; canonical exact remains 1,315 functions / 220,094 bytes. Recompute from
   `scripts/report-reconstruction-status.py --summary` after every promotion.
 - The local target file passes hash verification. The attached IDA session
@@ -65,8 +66,11 @@ the 15-byte `0x00689D25` function matched against SHA-pinned VC8 SP1
 `secchk.obj` with both COFF relocation targets resolved. Eighteen ten-byte
 global destructor adapters are tied to actual `_atexit` registration sites;
 eight larger checked-container/string cleanup bodies are pinned by full hashes,
-free-call edges, and the same registration mechanism. Three simple aliases
-without that witness stay in review.
+free-call edges, and the same registration mechanism. Ten smaller callback
+bodies have direct `_atexit` registration and complete main spans. Three
+simple aliases without that witness stay in review. The bounded proximity
+screen's two other hits `0x0043BF50/60` feed the VC8 array constructor
+before the nearby `_atexit` call and also remain in review.
 
 ```bash
 python3 scripts/verify-target.py
