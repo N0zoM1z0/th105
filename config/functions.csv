@@ -3734,7 +3734,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006A5B20,348,0x006A5C7B,sub_6A5B20,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A5C80,152,0x006A5D17,sub_6A5C80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A5D20,277,0x006A5E34,sub_6A5D20,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006A5E40,147,0x006A5ED2,sub_6A5E40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006A5E40,147,0x006A5ED2,sub_6A5E40,,,identified,0.00,__thiscall,,false,,Complete target CFG and Boost injector RTTI primary/secondary vptr plus clone callers and VC8 EH unwind; see boost-error-injector-copy-runtime-regex-106a,,Third-party Boost std::runtime_error injector copy helper; source TU and standalone exact result unresolved.
 0x006A5EE0,90,0x006A5F39,sub_6A5EE0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A5F60,509,0x006A615C,sub_6A5F60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A6160,560,0x006A638F,sub_6A6160,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -3747,7 +3747,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006A6CC0,87,0x006A6D16,sub_6A6CC0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A6D20,758,0x006A7015,sub_6A6D20,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A7020,703,0x006A72DE,sub_6A7020,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006A7310,153,0x006A73A8,sub_6A7310,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006A7310,153,0x006A73A8,sub_6A7310,,,identified,0.00,__thiscall,,false,,Complete target CFG and Boost injector RTTI primary/secondary vptr plus clone callers and VC8 EH unwind; see boost-error-injector-copy-invalid-argument-106a,,Third-party Boost std::invalid_argument injector copy helper; source TU and standalone exact result unresolved.
 0x006A73B0,34,0x006A73D1,sub_6A73B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A73E0,67,0x006A7422,sub_6A73E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A7430,200,0x006A74F7,sub_6A7430,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -3761,8 +3761,8 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006A8310,84,0x006A8363,sub_6A8310,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A8370,46,0x006A839D,sub_6A8370,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A83A0,185,0x006A8458,sub_6A83A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006A8460,120,0x006A84D7,sub_6A8460,,,identified,0.00,__thiscall,,false,,Complete 120-byte target main span and Boost clone_impl RTTI vtable slot; VC8 operator new and class copy call; shared EH handler 0x006B6E2B uses FuncInfo and free unwind action pinned in origin rule,,Class-specific copy helper origin and original TU boundary remain unresolved
-0x006A84E0,55,0x006A8516,sub_6A84E0,,,identified,0.00,__thiscall,,false,,All 55 target bytes decode through a terminal E8 to VC8 __CxxThrowException with INT3 after; Boost clone_impl RTTI vtable slot and copied exception code pinned in origin rule,,No RET because throw runtime does not return; related clone allocation methods remain pending
+0x006A8460,120,0x006A84D7,sub_6A8460,,,identified,0.00,__thiscall,,false,,Complete 120-byte target main span and Boost clone_impl RTTI vtable slot; VC8 operator new and class copy call; shared EH handler 0x006B6E2B uses FuncInfo and free unwind action pinned in origin rule,,Copy helper now has Boost origin review; original TU boundary unresolved
+0x006A84E0,55,0x006A8516,sub_6A84E0,,,identified,0.00,__thiscall,,false,,All 55 target bytes decode through a terminal E8 to VC8 __CxxThrowException with INT3 after; Boost clone_impl RTTI vtable slot and copied exception code pinned in origin rule,,No RET because throw runtime does not return; related clone allocation methods have separate Boost origin review
 0x006A8520,137,0x006A85A8,sub_6A8520,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A85B0,201,0x006A8678,sub_6A85B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A8680,151,0x006A8716,sub_6A8680,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -3784,8 +3784,8 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006A94F0,132,0x006A9573,sub_6A94F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A95D0,46,0x006A95FD,sub_6A95D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A9600,39,0x006A9626,sub_6A9600,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006A9630,120,0x006A96A7,sub_6A9630,,,identified,0.00,__thiscall,,false,,Complete 120-byte target main span and Boost clone_impl RTTI vtable slot; VC8 operator new and class copy call; shared EH handler 0x006B6E2B uses FuncInfo and free unwind action pinned in origin rule,,Class-specific copy helper origin and original TU boundary remain unresolved
-0x006A96B0,55,0x006A96E6,sub_6A96B0,,,identified,0.00,__thiscall,,false,,All 55 target bytes decode through a terminal E8 to VC8 __CxxThrowException with INT3 after; Boost clone_impl RTTI vtable slot and copied exception code pinned in origin rule,,No RET because throw runtime does not return; related clone allocation methods remain pending
+0x006A9630,120,0x006A96A7,sub_6A9630,,,identified,0.00,__thiscall,,false,,Complete 120-byte target main span and Boost clone_impl RTTI vtable slot; VC8 operator new and class copy call; shared EH handler 0x006B6E2B uses FuncInfo and free unwind action pinned in origin rule,,Copy helper now has Boost origin review; original TU boundary unresolved
+0x006A96B0,55,0x006A96E6,sub_6A96B0,,,identified,0.00,__thiscall,,false,,All 55 target bytes decode through a terminal E8 to VC8 __CxxThrowException with INT3 after; Boost clone_impl RTTI vtable slot and copied exception code pinned in origin rule,,No RET because throw runtime does not return; related clone allocation methods have separate Boost origin review
 0x006A96F0,31,0x006A970E,sub_6A96F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A9710,96,0x006A976F,sub_6A9710,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006A9780,105,0x006A97E8,sub_6A9780,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -3919,20 +3919,20 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x006B4DE0,30,0x006B4DFD,sub_6B4DE0,,,identified,0.00,__thiscall,,false,,Full target CFG and body hash pin scalar deleting destructor with conditional free call; primary vtable slot and adjacent VC8 Boost RTTI locator verified by origin rule,,Compiler-generated wrapper; called class destructor origin remains separate
 0x006B4E00,39,0x006B4E26,sub_6B4E00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B4E30,39,0x006B4E56,sub_6B4E30,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006B4E60,147,0x006B4EF2,sub_6B4E60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006B4E60,147,0x006B4EF2,sub_6B4E60,,,identified,0.00,__thiscall,,false,,Complete target CFG and Boost injector RTTI primary/secondary vptr plus clone callers and VC8 EH unwind; see boost-error-injector-copy-logic-error-106a,,Third-party Boost std::logic_error injector copy helper; source TU and standalone exact result unresolved.
 0x006B4F00,177,0x006B4FB0,sub_6B4F00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006B4FC0,154,0x006B5059,sub_6B4FC0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x006B4FC0,154,0x006B5059,sub_6B4FC0,,,identified,0.00,__thiscall,,false,,Complete target CFG and Boost injector RTTI primary/secondary vptr plus clone callers and shared VC8 EH unwind; see boost-error-injector-copy-runtime-regex-106a,,Third-party Boost regex_error injector copy helper; source TU and standalone exact result unresolved.
 0x006B5060,46,0x006B508D,sub_6B5060,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006B5090,120,0x006B5107,sub_6B5090,,,identified,0.00,__thiscall,,false,,Complete 120-byte target main span and Boost clone_impl RTTI vtable slot; VC8 operator new and class copy call; shared EH handler 0x006B6E2B uses FuncInfo and free unwind action pinned in origin rule,,Class-specific copy helper origin and original TU boundary remain unresolved
-0x006B5110,55,0x006B5146,sub_6B5110,,,identified,0.00,__thiscall,,false,,All 55 target bytes decode through a terminal E8 to VC8 __CxxThrowException with INT3 after; Boost clone_impl RTTI vtable slot and copied exception code pinned in origin rule,,No RET because throw runtime does not return; related clone allocation methods remain pending
+0x006B5090,120,0x006B5107,sub_6B5090,,,identified,0.00,__thiscall,,false,,Complete 120-byte target main span and Boost clone_impl RTTI vtable slot; VC8 operator new and class copy call; shared EH handler 0x006B6E2B uses FuncInfo and free unwind action pinned in origin rule,,Copy helper now has Boost origin review; original TU boundary unresolved
+0x006B5110,55,0x006B5146,sub_6B5110,,,identified,0.00,__thiscall,,false,,All 55 target bytes decode through a terminal E8 to VC8 __CxxThrowException with INT3 after; Boost clone_impl RTTI vtable slot and copied exception code pinned in origin rule,,No RET because throw runtime does not return; related clone allocation methods have separate Boost origin review
 0x006B5150,87,0x006B51A6,sub_6B5150,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B51B0,67,0x006B51F2,sub_6B51B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B5200,31,0x006B521E,sub_6B5200,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B5220,177,0x006B52D0,sub_6B5220,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B52E0,96,0x006B533F,sub_6B52E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B5350,46,0x006B537D,sub_6B5350,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x006B5380,120,0x006B53F7,sub_6B5380,,,identified,0.00,__thiscall,,false,,Complete 120-byte target main span and Boost clone_impl RTTI vtable slot; VC8 operator new and class copy call; shared EH handler 0x006B6E2B uses FuncInfo and free unwind action pinned in origin rule,,Class-specific copy helper origin and original TU boundary remain unresolved
-0x006B5400,55,0x006B5436,sub_6B5400,,,identified,0.00,__thiscall,,false,,All 55 target bytes decode through a terminal E8 to VC8 __CxxThrowException with INT3 after; Boost clone_impl RTTI vtable slot and copied exception code pinned in origin rule,,No RET because throw runtime does not return; related clone allocation methods remain pending
+0x006B5380,120,0x006B53F7,sub_6B5380,,,identified,0.00,__thiscall,,false,,Complete 120-byte target main span and Boost clone_impl RTTI vtable slot; VC8 operator new and class copy call; shared EH handler 0x006B6E2B uses FuncInfo and free unwind action pinned in origin rule,,Copy helper now has Boost origin review; original TU boundary unresolved
+0x006B5400,55,0x006B5436,sub_6B5400,,,identified,0.00,__thiscall,,false,,All 55 target bytes decode through a terminal E8 to VC8 __CxxThrowException with INT3 after; Boost clone_impl RTTI vtable slot and copied exception code pinned in origin rule,,No RET because throw runtime does not return; related clone allocation methods have separate Boost origin review
 0x006B5440,31,0x006B545E,sub_6B5440,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B5460,6,0x006B5465,sub_6B5460,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006B5470,194,0x006B5531,sub_6B5470,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

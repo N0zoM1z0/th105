@@ -3734,7 +3734,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006A5B20,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006A5C80,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006A5D20,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x006A5E40,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006A5E40,third_party,runtime,exclude,inferred,boost-error-injector-copy-runtime-regex-106a
 0x006A5EE0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006A5F60,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006A6160,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -3747,7 +3747,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006A6CC0,compiler_generated,battle,exclude,observed,vc8-generated-script-command-registry-std-comdats-106a
 0x006A6D20,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006A7020,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x006A7310,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006A7310,third_party,runtime,exclude,inferred,boost-error-injector-copy-invalid-argument-106a
 0x006A73B0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006A73E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006A7430,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -3919,9 +3919,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006B4DE0,compiler_generated,runtime,exclude,inferred,boost-exception-rtti-deleting-destructors-106a
 0x006B4E00,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B4E30,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x006B4E60,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006B4E60,third_party,runtime,exclude,inferred,boost-error-injector-copy-logic-error-106a
 0x006B4F00,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x006B4FC0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006B4FC0,third_party,runtime,exclude,inferred,boost-error-injector-copy-runtime-regex-106a
 0x006B5060,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B5090,third_party,runtime,exclude,inferred,boost-exception-clone-allocate-virtuals-106a
 0x006B5110,third_party,runtime,exclude,inferred,boost-exception-clone-throw-virtuals-106a

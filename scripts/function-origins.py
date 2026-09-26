@@ -1535,6 +1535,69 @@ def validate_rule_evidence(
             or free_target != 0x006898EA
         ):
             errors.append(f"{rule_id}: inline deleting destructor 0x{address:08X} body/vtable/call differs")
+    copy_helpers = rule.get("required_rtti_copy_helpers", [])
+    if copy_helpers and (
+        len(copy_helpers) != len(selected_addresses)
+        or {str(item["address"]).upper() for item in copy_helpers} != selected_addresses
+    ):
+        errors.append(f"{rule_id}: RTTI copy-helper witnesses do not cover selected candidates exactly")
+    for item in copy_helpers:
+        address = int(str(item["address"]), 0)
+        size = int(item["size"])
+        key = f"0x{address:08X}".upper()
+        handler = int(str(item["handler"]), 0)
+        base_site = int(str(item["base_site"]), 0)
+        base_target = int(str(item["base_target"]), 0)
+        if key not in selected_addresses or int(row_by_address[key]["size"], 0) != size:
+            errors.append(f"{rule_id}: RTTI copy helper 0x{address:08X} has wrong selection or size")
+            continue
+        if not address <= base_site <= address + size - 5:
+            errors.append(f"{rule_id}: RTTI copy helper 0x{address:08X} has out-of-body base call")
+            continue
+        try:
+            body = read_pe(address, size)
+            base_call = read_pe(base_site, 5)
+        except ValueError as exc:
+            errors.append(f"{rule_id}: RTTI copy helper 0x{address:08X}: {exc}")
+            continue
+        actual_base = base_site + 5 + struct.unpack_from("<i", base_call, 1)[0]
+        if (
+            hashlib.sha256(body).hexdigest() != item["sha256"]
+            or body[:3] != b"\x6A\xFF\x68"
+            or struct.unpack_from("<I", body, 3)[0] != handler
+            or body[-3:] != b"\xC2\x04\x00"
+            or base_call[0] != 0xE8
+            or actual_base != base_target
+            or len(item["vptrs"]) != 2
+        ):
+            errors.append(f"{rule_id}: RTTI copy helper 0x{address:08X} body/base call differs")
+        expected_type = int(str(item["type_descriptor"]), 0)
+        for vptr_entry in item["vptrs"]:
+            vptr = int(str(vptr_entry["vptr"]), 0)
+            expected_col = int(str(vptr_entry["col"]), 0)
+            expected_offset = int(vptr_entry["offset"])
+            try:
+                if any(pe_raw_section_name(data, pointer) != ".rdata" for pointer in (vptr, expected_col)):
+                    raise ValueError("vtable or RTTI locator is outside .rdata")
+                col = struct.unpack("<I", read_pe(vptr - 4, 4))[0]
+                signature, offset, cd_offset, descriptor, _hierarchy = struct.unpack(
+                    "<IIIII", read_pe(col, 20)
+                )
+                type_name = read_pe(descriptor + 8, 192).split(b"\x00", 1)[0]
+            except (ValueError, struct.error) as exc:
+                errors.append(f"{rule_id}: RTTI copy helper 0x{address:08X} vptr: {exc}")
+                continue
+            if (
+                struct.pack("<I", vptr) not in body
+                or col != expected_col
+                or signature != 0
+                or offset != expected_offset
+                or cd_offset != 0
+                or descriptor != expected_type
+                or b"error_info_injector@" not in type_name
+                or b"exception_detail@boost@@" not in type_name
+            ):
+                errors.append(f"{rule_id}: RTTI copy helper 0x{address:08X} vptr/COL differs")
     rtti_virtuals = rule.get("required_rtti_virtual_bodies", [])
     if rtti_virtuals and (
         len(rtti_virtuals) != len(selected_addresses)

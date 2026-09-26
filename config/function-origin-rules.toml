@@ -1941,6 +1941,81 @@ required_rtti_virtual_bodies = [
 required_shared_eh = { handler = "0x006B6E2B", handler_sha256 = "f76b546e336af1ff350bf4439a37d44e0ca4a6ba8f3e563f775cc6601e96cad5", func_info = "0x006DD140", func_info_sha256 = "57ea4abdfbba71ab5e6f87b847354876acde4c3514423f58bcb322024e1a891a", unwind_map = "0x006DD138", unwind_map_sha256 = "d7022bd48f6ca29d2365e95756eed3a2d5bd302457834f637bbdbe01084f45a2", action = "0x006B6E20", action_sha256 = "a49d674fdb250d4ca4f567068100638ef6475a5eab292cc659c68c62cc318512" }
 
 [[rules]]
+id = "boost-error-injector-copy-runtime-regex-106a"
+addresses = ["0x006A5E40", "0x006B4FC0"]
+expected_count = 2
+expected_bytes = 301
+expected_names = ["sub_6A5E40", "sub_6B4FC0"]
+origin = "third_party"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "inferred"
+evidence = "Two complete VC8 EH-protected copy-helper bodies are called by already-reviewed Boost clone_impl allocate/throw virtuals. They construct Boost exception_detail::error_info_injector specializations for std::runtime_error and boost::regex_error, pin both zero-offset primary and +0x28/+0x30 secondary RTTI vptrs, and share the 0x006BD458 one-state unwind handler/action. The action tail-calls the separately excluded generated cleanup 0x006A4B30; their base-copy callee 0x006A59A0 is separately excluded. Source TU ownership remains unknown. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_rtti_copy_helpers = [
+  { address = "0x006A5E40", size = 147, sha256 = "4d40a0405a1332bf60fd5d41d5a1aaa3dc487fd5e8b23fe4d0b0636c55e13c9a", handler = "0x006BD458", base_site = "0x006A5E6E", base_target = "0x006A59A0", type_descriptor = "0x006F9650", vptrs = [{ vptr = "0x006D5E94", col = "0x006DC250", offset = 0 }, { vptr = "0x006D5E8C", col = "0x006DC2A4", offset = 40 }] },
+  { address = "0x006B4FC0", size = 154, sha256 = "1cc2a3d1686048422315b5493e01acfe38d42e7dac9059c85cb80aef91a64e83", handler = "0x006BD458", base_site = "0x006B4FEE", base_target = "0x006A59A0", type_descriptor = "0x006F9AA8", vptrs = [{ vptr = "0x006D6844", col = "0x006DC418", offset = 0 }, { vptr = "0x006D683C", col = "0x006DC4C8", offset = 48 }] },
+]
+required_direct_edges = [
+  { caller = "0x006A8460", site = "0x006A84A5", target = "0x006A5E40", caller_status = "identified" },
+  { caller = "0x006A84E0", site = "0x006A84EB", target = "0x006A5E40", caller_status = "identified" },
+  { caller = "0x006B5380", site = "0x006B53C5", target = "0x006B4FC0", caller_status = "identified" },
+  { caller = "0x006B5400", site = "0x006B540B", target = "0x006B4FC0", caller_status = "identified" },
+]
+required_vc8_eh_unwind = { owner = "0x006A5E40", handler_push_site = "0x006A5E42", handler = "0x006BD458", handler_size = 27, handler_sha256 = "53eb7ed53ec03bf2d59c40593ae7348f93b6c3e2d604e34455820695519cbdbe", func_info_site = "0x006BD469", func_info = "0x006E3834", func_info_sha256 = "49256fdaaae22fc3778a4cfad06ffaa7fba161e0a197fb26a030b68ebccc1e4c", unwind_map = "0x006E382C", unwind_map_sha256 = "8aef9920913286fc25f8e006472f70580bddd1680b766ac8168643d804fff9dc", unwind_entries = [
+  { to_state = -1, action = "0x006BD450" },
+], actions = [
+  { address = "0x006BD450", size = 8, sha256 = "41008e6598b283fa8beb73428f83905eead768b8ed6085a8f7ddb96def8cfc03", target = "0x006A4B30" },
+] }
+
+[[rules]]
+id = "boost-error-injector-copy-invalid-argument-106a"
+addresses = ["0x006A7310"]
+expected_count = 1
+expected_bytes = 153
+expected_names = ["sub_6A7310"]
+origin = "third_party"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "inferred"
+evidence = "Complete EH-protected Boost error_info_injector<std::invalid_argument> copy helper called by the reviewed clone_impl allocate/throw virtuals. Primary and +0x28 RTTI vptrs, base-copy E8, full target body, and one-state VC8 EH cleanup action are pinned. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_rtti_copy_helpers = [
+  { address = "0x006A7310", size = 153, sha256 = "f4efe1b942fd69a6adf801a3a247ad335737a147fd9a6b1f843f31aff8925b47", handler = "0x006BC9D8", base_site = "0x006A733E", base_target = "0x004017A0", type_descriptor = "0x006F9578", vptrs = [{ vptr = "0x006D5E5C", col = "0x006DC124", offset = 0 }, { vptr = "0x006D5E54", col = "0x006DC198", offset = 40 }] },
+]
+required_direct_edges = [
+  { caller = "0x006A9630", site = "0x006A9675", target = "0x006A7310", caller_status = "identified" },
+  { caller = "0x006A96B0", site = "0x006A96BB", target = "0x006A7310", caller_status = "identified" },
+]
+required_vc8_eh_unwind = { owner = "0x006A7310", handler_push_site = "0x006A7312", handler = "0x006BC9D8", handler_size = 27, handler_sha256 = "9fa41627a8f8ccce70c3425c01bdc8e280de277594efe149cfd1b2bb95cdb700", func_info_site = "0x006BC9E9", func_info = "0x006E2C70", func_info_sha256 = "4fec75f10211bc6c46e2e1c97972f8a7db0cd5d5d962177127419fc30d79bd85", unwind_map = "0x006E2C68", unwind_map_sha256 = "c90f4e7105565cd4d744617659944e85468dc8a2a9b49c3e7e1fb17b8a5a0ead", unwind_entries = [
+  { to_state = -1, action = "0x006BC9D0" },
+], actions = [
+  { address = "0x006BC9D0", size = 8, sha256 = "36a3331d40df9eebb59524018f3a173addd4b824425454ac40b876f009445f56", target = "0x00665AC7" },
+] }
+
+[[rules]]
+id = "boost-error-injector-copy-logic-error-106a"
+addresses = ["0x006B4E60"]
+expected_count = 1
+expected_bytes = 147
+expected_names = ["sub_6B4E60"]
+origin = "third_party"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "inferred"
+evidence = "Complete EH-protected Boost error_info_injector<std::logic_error> copy helper called by the reviewed clone_impl allocate/throw virtuals. Primary and +0x28 RTTI vptrs, base-copy E8, full target body, and one-state VC8 EH cleanup action are pinned. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_rtti_copy_helpers = [
+  { address = "0x006B4E60", size = 147, sha256 = "3224a125e3fd843eac40349442db5576d595f44a586319cd219cd815523066ec", handler = "0x006BD3F8", base_site = "0x006B4E8E", base_target = "0x004017A0", type_descriptor = "0x006F9B90", vptrs = [{ vptr = "0x006D687C", col = "0x006DC580", offset = 0 }, { vptr = "0x006D6874", col = "0x006DC5D4", offset = 40 }] },
+]
+required_direct_edges = [
+  { caller = "0x006B5090", site = "0x006B50D5", target = "0x006B4E60", caller_status = "identified" },
+  { caller = "0x006B5110", site = "0x006B511B", target = "0x006B4E60", caller_status = "identified" },
+]
+required_vc8_eh_unwind = { owner = "0x006B4E60", handler_push_site = "0x006B4E62", handler = "0x006BD3F8", handler_size = 27, handler_sha256 = "fa08c69fdf88b1ecacb47d3532c7ac7719537e526841b29765213d44c5416999", func_info_site = "0x006BD409", func_info = "0x006E37D4", func_info_sha256 = "02e7a736135180bd3578fead4bf9981832b15aa6e558e5c88b5bde5cdb05b51a", unwind_map = "0x006E37CC", unwind_map_sha256 = "f9e8c5850405626a28f4322f7eb4b501dfa0091925bde3da692cb28a7d8f7b40", unwind_entries = [
+  { to_state = -1, action = "0x006BD3F0" },
+], actions = [
+  { address = "0x006BD3F0", size = 8, sha256 = "e5208c31bdd0d1bdec95656712d491169cf401e86944aba8857808a4524be1e0", target = "0x00401740" },
+] }
+
+[[rules]]
 id = "network-client-send-packet-authored-106a"
 addresses = ["0x00416990"]
 expected_count = 1

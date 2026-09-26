@@ -448,9 +448,8 @@ The origin rule checks all body hashes, virtual slots, RTTI locators, type
 descriptors, both direct E8 sites per body, handler prologues, and the exact
 shared handler/FuncInfo/unwind map/action bytes and references. The methods
 are Boost template implementations (`third_party/exclude`, inferred). The
-four copy helpers `0x006A5E40`, `0x006A7310`, `0x006B4E60`, and
-`0x006B4FC0` remain separate pending candidates; their origins and any
-original TU boundaries are still unknown.
+four called copy helpers have a later, separate origin and EH review below;
+their original TU boundaries remain unknown.
 
 ```bash
 python3 scripts/audit-candidate-boundaries.py \
@@ -691,5 +690,43 @@ it remains under origin review. The four supported setters are
 ```bash
 python3 scripts/audit-candidate-boundaries.py \
   0x0068A019 0x0068EF7E 0x0069095B 0x0069BC0F --json
+python3 scripts/function-origins.py --check
+```
+
+## Four Boost exception injector copy helpers
+
+The four 147/153/147/154-byte candidates at `0x006A5E40`, `0x006A7310`,
+`0x006B4E60`, and `0x006B4FC0` have fully reachable main spans with one
+`RET 4` each. Every body registers a VC8 EH handler, calls a base-copy
+helper, writes primary and secondary vptrs, copies the Boost exception
+payload, and returns `this`. Two already-reviewed Boost `clone_impl`
+virtuals, one allocate and one throw method, directly call each helper.
+
+| Helper | Boost RTTI specialization | Primary / secondary vptr | EH handler / unwind action |
+| --- | --- | --- | --- |
+| `0x006A5E40` | `error_info_injector<std::runtime_error>` | `0x006D5E94` / `0x006D5E8C` | `0x006BD458` / `0x006BD450` |
+| `0x006A7310` | `error_info_injector<std::invalid_argument>` | `0x006D5E5C` / `0x006D5E54` | `0x006BC9D8` / `0x006BC9D0` |
+| `0x006B4E60` | `error_info_injector<std::logic_error>` | `0x006D687C` / `0x006D6874` | `0x006BD3F8` / `0x006BD3F0` |
+| `0x006B4FC0` | `error_info_injector<boost::regex_error>` | `0x006D6844` / `0x006D683C` | `0x006BD458` / `0x006BD450` |
+
+The corresponding VC8 RTTI COLs have zero primary offset and secondary
+offset `0x28`, except `regex_error` at `0x30`. The rules replay all four
+body hashes, eight caller E8 edges, the base-copy calls, both RTTI
+locators and type descriptors per helper, and the three complete
+handler/FuncInfo/unwind-map/action chains. Each FuncInfo has one unwind
+state returning to `-1`. The remote actions tail-call `0x006A4B30`,
+`0x00665AC7`, and `0x00401740` respectively. These action bytes are
+separate from the four main candidate spans.
+
+The target RTTI and clone virtual ownership support Boost template
+provenance (`third_party/exclude`, inferred). The original source TU
+boundaries remain unresolved. The base-copy callee `0x004017A0` and the
+action target `0x00665AC7` remain under their own origin review; the
+other called cleanup/base helpers were classified separately. No exact
+credit is assigned here.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py \
+  0x006A5E40 0x006A7310 0x006B4E60 0x006B4FC0 --json
 python3 scripts/function-origins.py --check
 ```

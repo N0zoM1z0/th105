@@ -12,9 +12,9 @@ instructions are not the active queue.
 - User-directed phase: clean misleading documentation/code, then review the
   remaining origin and candidate-boundary queue. The initial census was
   **4,023 candidates, 1,476 authored, 1,308 excluded, 1,239 in review**.
-  Twenty-two evidence-linked origin/boundary batches are recorded in
+  Twenty-three evidence-linked origin/boundary batches are recorded in
   [the focused review](ORIGIN_BOUNDARY_REVIEW_2026_09_26.md). The current
-  census is **1,487 authored / 1,405 excluded / 1,131 review**. Source-present
+  census is **1,487 authored / 1,409 excluded / 1,127 review**. Source-present
   remains 1,388; canonical exact remains 1,315 functions / 220,094 bytes.
   Recompute from `scripts/report-reconstruction-status.py --summary` after
   every promotion.
@@ -110,6 +110,11 @@ Four 10-byte VC8 CRT global setters match named functions in the SHA-pinned
 SP1 archive after one DIR32 replay each, and their globals are read by
 independently pinned runtime consumers. The adjacent `0x0069BC05` setter
 remains unresolved despite identical instruction shape.
+Four 147/153/147/154-byte Boost exception injector copy helpers now have
+complete main spans, two reviewed clone callers each, primary/secondary
+Boost RTTI vptr links and three pinned one-state VC8 EH cleanup chains.
+Their source TU boundaries and two underlying cleanup/base origins remain
+separate questions.
 
 ```bash
 python3 scripts/verify-target.py

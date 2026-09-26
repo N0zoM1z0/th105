@@ -380,6 +380,33 @@ class WorkflowToolingTests(unittest.TestCase):
             changed["required_msvc_short_setters"] = setters
             self.assertTrue(validate(changed, selected, rows, data, read_pe), field)
 
+    def test_boost_copy_helpers_require_primary_and_secondary_rtti(self) -> None:
+        with self.origins.RULES.open("rb") as stream:
+            document = tomllib.load(stream)
+        rule = next(
+            row for row in document["rules"]
+            if row["id"] == "boost-error-injector-copy-runtime-regex-106a"
+        )
+        rows = self.origins.read_csv(self.origins.FUNCTIONS)
+        selected = [row for row in rows if row["address"] in rule["addresses"]]
+        data = self.origins.attest_target(document)
+        read_pe = self.origins.pe_reader(data)
+        validate = self.origins.validate_rule_evidence
+        self.assertEqual(validate(rule, selected, rows, data, read_pe), [])
+
+        changed = dict(rule)
+        helpers = [dict(entry) for entry in rule["required_rtti_copy_helpers"]]
+        helpers[0]["vptrs"] = [dict(entry) for entry in helpers[0]["vptrs"]]
+        helpers[0]["vptrs"][1]["offset"] = 0
+        changed["required_rtti_copy_helpers"] = helpers
+        self.assertTrue(validate(changed, selected, rows, data, read_pe))
+
+        changed = dict(rule)
+        helpers = [dict(entry) for entry in rule["required_rtti_copy_helpers"]]
+        helpers[1]["handler"] = "0x006BC9D8"
+        changed["required_rtti_copy_helpers"] = helpers
+        self.assertTrue(validate(changed, selected, rows, data, read_pe))
+
     def test_boost_throw_virtual_requires_terminal_runtime_edge(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
