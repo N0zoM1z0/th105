@@ -217,8 +217,8 @@ addresses near raw calls to `_atexit`. The 36 callbacks above had a verified
 PUSH-to-first-CALL path. The other two, `0x0043BF50/0x0043BF60`, are pushed
 as destructor/constructor arguments to VC8 array-construction helper
 `0x0068A30C` first; a later nearby `_atexit` call belongs to another
-registration. A later callback review below excludes destructor adjustor
-`0x0043BF50`; constructor callback `0x0043BF60` remains in review. This
+registration. Later callback reviews below exclude destructor adjustor
+`0x0043BF50` and its paired constructor `0x0043BF60`. This
 screen does not enumerate registrations made through a different instruction
 form or beyond its window.
 
@@ -754,11 +754,42 @@ thunk by tail jump; both action and destination bodies are pinned. These
 three thunks are `compiler_generated/exclude` with no exact credit.
 
 The analogous `0x0043BE90` tail has no independently established callback
-use, and the constructor callback `0x0043BF60` has different behavior;
-both remain in origin review.
+use and remains in origin review. The constructor callback `0x0043BF60`
+has a separate review below.
 
 ```bash
 python3 scripts/audit-candidate-boundaries.py \
   0x0043BF50 0x0046EAF0 0x00665AC7 --json
+python3 scripts/function-origins.py --check
+```
+
+## Two array-record default constructors
+
+The 17-byte candidates `0x0043BF60` and `0x0046EAD0` have complete
+straight-line bodies and one `RET` each. Both return `this` after zeroing
+four consecutive dwords: at `+0x0C..+0x18` and `+0x24..+0x30`. Their paired
+eight-byte destructor callbacks adjust `this` by `+8` and `+0x20` before
+tail-calling the same generated checked-container cleanup; the first
+cleared dword is therefore at subobject `+4` in each case.
+
+Canonical-exact `CNetworkBase` constructor `0x0044DB10` pushes both
+`0x0043BF50` and `0x0043BF60` into VC8 `??_L @ 0x0068A30C` for a
+two-element, `0x20`-byte record array. Canonical-exact
+`CInfoManagerBase` constructor `0x0046F5D0` does likewise with
+`0x0046EAF0` and `0x0046EAD0` for two `0x34`-byte records. The origin
+rule replays both callback pairs, the iterator E8 calls and all four
+target bodies.
+
+As external codegen corroboration, the existing natural VC8
+`GptWeb_NetworkBaseConstructorRuntime.obj` emits the implicit
+`NetworkQueueSlot20` constructor as the same 17 target bytes at
+`0x0043BF60`. This probe does not establish the original class name or
+standalone exact credit. The analogous battle record class and original
+TU remain unresolved. The target array lifetime and zero-field source
+shape support `compiler_generated/exclude`, inferred, for these two
+default-constructor callbacks.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py 0x0043BF60 0x0046EAD0 --json
 python3 scripts/function-origins.py --check
 ```

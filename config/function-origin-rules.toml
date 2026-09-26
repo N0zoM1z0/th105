@@ -2045,6 +2045,22 @@ evidence = "Complete 11-byte target EH cleanup thunk publishes the VC8 RTTI-owne
 required_rtti_eh_cleanup_tail = { address = "0x00665AC7", sha256 = "ce053ba90f6be1d9048be5a83e2aac3d20916137d1abc40eb85e58c86a240a6b", vptr = "0x006C7548", col = "0x006DBDF0", type_descriptor = "0x006E9160", target = "0x00401740", target_size = 50, target_sha256 = "5c856497eaf9580adf0d1076fc7803e24180b72d6728c8b7a03ddf1ca8104939", action = "0x006BC9D0", action_sha256 = "36a3331d40df9eebb59524018f3a173addd4b824425454ac40b876f009445f56" }
 
 [[rules]]
+id = "vc8-array-record-default-constructors-106a"
+addresses = ["0x0043BF60", "0x0046EAD0"]
+expected_count = 2
+expected_bytes = 34
+expected_names = ["sub_43BF60", "sub_46EAD0"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "inferred"
+evidence = "Two complete 17-byte callbacks each zero the four dwords of a checked-container subobject, beginning four bytes after the receiver adjustment used by their separately excluded array destructor callback. Canonical-exact CNetworkBase and CInfoManagerBase constructors push each default-constructor address with its paired destructor into VC8 ??_L vector construction. The natural VC8 CNetworkBase probe also emits the same 17-byte implicit NetworkQueueSlot20 constructor, corroborating source shape without claiming a standalone exact unit. Both target bodies, paired destructor hashes, exact callback pointers and vector-constructor E8 edges are replayed. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_array_zero_constructors = [
+  { address = "0x0043BF60", sha256 = "f04fc1c4d29b9fa181a724f42d607ce3736031e6a06bf354426d3a88ce7e9367", first_field = 12, paired_dtor = "0x0043BF50", paired_dtor_sha256 = "8c5c9e55bb5492953d56331a1f06857650f9606a15a98aeef152f096d1efb6ae", owner = "0x0044DB10", dtor_site = "0x0044DBD5", ctor_site = "0x0044DBDA", array_call_site = "0x0044DBEE" },
+  { address = "0x0046EAD0", sha256 = "9e6337dc507184787df1f777b27937b45e220cbf918b6e7aecc8f3c3edbee9f2", first_field = 36, paired_dtor = "0x0046EAF0", paired_dtor_sha256 = "598d95a6fd7086c336fcf822d55fa9f8ff71f8125501640b9b974d0bca9b8a90", owner = "0x0046F5D0", dtor_site = "0x0046F63A", ctor_site = "0x0046F63F", array_call_site = "0x0046F653" },
+]
+
+[[rules]]
 id = "network-client-send-packet-authored-106a"
 addresses = ["0x00416990"]
 expected_count = 1

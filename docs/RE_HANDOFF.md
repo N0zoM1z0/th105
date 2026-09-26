@@ -12,9 +12,9 @@ instructions are not the active queue.
 - User-directed phase: clean misleading documentation/code, then review the
   remaining origin and candidate-boundary queue. The initial census was
   **4,023 candidates, 1,476 authored, 1,308 excluded, 1,239 in review**.
-  Twenty-four evidence-linked origin/boundary batches are recorded in
+  Twenty-five evidence-linked origin/boundary batches are recorded in
   [the focused review](ORIGIN_BOUNDARY_REVIEW_2026_09_26.md). The current
-  census is **1,487 authored / 1,412 excluded / 1,124 review**. Source-present
+  census is **1,487 authored / 1,414 excluded / 1,122 review**. Source-present
   remains 1,388; canonical exact remains 1,315 functions / 220,094 bytes.
   Recompute from `scripts/report-reconstruction-status.py --summary` after
   every promotion.
@@ -67,8 +67,8 @@ free-call edges, and the same registration mechanism. Ten smaller callback
 bodies have direct `_atexit` registration and complete main spans. Three
 simple aliases without that witness stay in review. The bounded proximity
 screen's two other hits `0x0043BF50/60` feed the VC8 array constructor
-before the nearby `_atexit` call; `0x0043BF50` now has a separate generated
-destructor-callback review, while `0x0043BF60` remains in review. The KERNEL32
+before the nearby `_atexit` call; both now have separate generated lifetime
+callback reviews. The KERNEL32
 `0x006B55C0/0x006B5ECA` thunks have exact six-byte boundaries and IAT
 name/slot witnesses. The 400-byte `__free_lc_time @ 0x0069CCD9` and 31-byte
 `__allshl @ 0x006B6D00` have complete VC8 archive extents and full-inventory
@@ -120,6 +120,9 @@ Two eight-byte subobject destructor adjustors are pinned by exact
 constructor/destructor callback pushes into VC8 vector lifetime iterators;
 an 11-byte `std::invalid_argument` EH cleanup thunk is pinned by RTTI and
 the Boost injector unwind action. Unreferenced lookalikes stay in review.
+Two 17-byte array-record default constructors have complete target bodies,
+exact parent callback paths, and paired checked-container destructor
+adjustors; one also reproduces natural VC8 implicit constructor code.
 
 ```bash
 python3 scripts/verify-target.py

@@ -440,6 +440,26 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_rtti_eh_cleanup_tail"] = witness
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    def test_array_record_constructors_require_paired_lifetime_callbacks(self) -> None:
+        with self.origins.RULES.open("rb") as stream:
+            document = tomllib.load(stream)
+        rule = next(
+            row for row in document["rules"]
+            if row["id"] == "vc8-array-record-default-constructors-106a"
+        )
+        rows = self.origins.read_csv(self.origins.FUNCTIONS)
+        selected = [row for row in rows if row["address"] in rule["addresses"]]
+        data = self.origins.attest_target(document)
+        read_pe = self.origins.pe_reader(data)
+        validate = self.origins.validate_rule_evidence
+        self.assertEqual(validate(rule, selected, rows, data, read_pe), [])
+
+        changed = dict(rule)
+        constructors = [dict(entry) for entry in rule["required_array_zero_constructors"]]
+        constructors[0]["paired_dtor"] = "0x0046EAF0"
+        changed["required_array_zero_constructors"] = constructors
+        self.assertTrue(validate(changed, selected, rows, data, read_pe))
+
     def test_boost_throw_virtual_requires_terminal_runtime_edge(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)

@@ -1663,6 +1663,67 @@ def validate_rule_evidence(
                 or actual_array_target != expected_array_target
             ):
                 errors.append(f"{rule_id}: array adjustor 0x{address:08X} callback path differs")
+    array_ctors = rule.get("required_array_zero_constructors", [])
+    if array_ctors and (
+        len(array_ctors) != len(selected_addresses)
+        or {str(item["address"]).upper() for item in array_ctors} != selected_addresses
+    ):
+        errors.append(f"{rule_id}: array zero-constructor witnesses do not cover selected candidates exactly")
+    for item in array_ctors:
+        address = int(str(item["address"]), 0)
+        key = f"0x{address:08X}".upper()
+        dtor = int(str(item["paired_dtor"]), 0)
+        dtor_key = f"0x{dtor:08X}".upper()
+        owner = int(str(item["owner"]), 0)
+        owner_key = f"0x{owner:08X}".upper()
+        ctor_site = int(str(item["ctor_site"]), 0)
+        dtor_site = int(str(item["dtor_site"]), 0)
+        call_site = int(str(item["array_call_site"]), 0)
+        first_field = int(item["first_field"])
+        owner_row = row_by_address.get(owner_key)
+        if (
+            key not in selected_addresses
+            or int(row_by_address[key]["size"], 0) != 17
+            or dtor_key not in row_by_address
+            or int(row_by_address[dtor_key]["size"], 0) != 8
+            or owner_row is None
+            or owner_row["status"] != "matching"
+            or not owner <= dtor_site - 1 < ctor_site - 1 < call_site < owner + int(owner_row["size"], 0) - 4
+            or ctor_site - dtor_site != 5
+            or call_site - ctor_site > 32
+        ):
+            errors.append(f"{rule_id}: array constructor 0x{address:08X} has wrong selection or owner use")
+            continue
+        if not 4 <= first_field <= 0x70:
+            errors.append(f"{rule_id}: array constructor 0x{address:08X} has invalid field offset")
+            continue
+        try:
+            body = read_pe(address, 17)
+            dtor_body = read_pe(dtor, 8)
+            dtor_push = read_pe(dtor_site - 1, 5)
+            ctor_push = read_pe(ctor_site - 1, 5)
+            call = read_pe(call_site, 5)
+        except ValueError as exc:
+            errors.append(f"{rule_id}: array constructor 0x{address:08X}: {exc}")
+            continue
+        expected_body = b"\x8B\xC1\x33\xC9" + b"".join(
+            b"\x89\x48" + bytes([first_field + 4 * index]) for index in range(4)
+        ) + b"\xC3"
+        array_target = call_site + 5 + struct.unpack_from("<i", call, 1)[0]
+        if (
+            hashlib.sha256(body).hexdigest() != item["sha256"]
+            or body != expected_body
+            or hashlib.sha256(dtor_body).hexdigest() != item["paired_dtor_sha256"]
+            or dtor_body[:2] != b"\x83\xC1"
+            or dtor_body[2] + 4 != first_field
+            or dtor_push[0] != 0x68
+            or struct.unpack_from("<I", dtor_push, 1)[0] != dtor
+            or ctor_push[0] != 0x68
+            or struct.unpack_from("<I", ctor_push, 1)[0] != address
+            or call[0] != 0xE8
+            or array_target != 0x0068A30C
+        ):
+            errors.append(f"{rule_id}: array constructor 0x{address:08X} body/callback path differs")
     cleanup_tail = rule.get("required_rtti_eh_cleanup_tail")
     if cleanup_tail:
         address = int(str(cleanup_tail["address"]), 0)
