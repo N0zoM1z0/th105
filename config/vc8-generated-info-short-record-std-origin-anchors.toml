@@ -9,8 +9,8 @@ max_alignment_tail = 1
 alignment_tail_hex = "cc"
 
 # Discovered from the canonical-exact InfoShortRecord runtime TU.  Acceptance
-# still replays each relocation-masked fingerprint across all 4,010 target
-# spans; both current hits must remain inventory-unique.
+# still replays each relocation-masked fingerprint across the complete current
+# candidate inventory; both hits must remain inventory-unique.
 
 [[anchors]]
 address = "0x0046AA60"

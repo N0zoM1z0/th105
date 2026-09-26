@@ -10,7 +10,7 @@ alignment_tail_hex = "00cc"
 
 # These COMDATs are emitted by the canonical-exact authored initializer and
 # renderer in the same TU.  Acceptance still requires relocation-masked replay
-# to hit only the declared current candidate across the full 4,010 inventory.
+# to hit only the declared current candidate across the full current inventory.
 
 [[anchors]]
 address = "0x004300B0"

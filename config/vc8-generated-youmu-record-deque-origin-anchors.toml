@@ -9,7 +9,7 @@ max_alignment_tail = 0
 alignment_tail_hex = ""
 
 # The tracked probe explicitly instantiates checked deque<YoumuObjectRecord>.
-# Each selected fingerprint is unique across all 4,010 current function spans.
+# Each selected fingerprint is unique across the complete current candidate inventory.
 
 [[anchors]]
 address = "0x005399A0"

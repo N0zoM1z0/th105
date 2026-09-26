@@ -668,7 +668,6 @@ def validate_msvc_runtime_anchor_evidence(
         return [f"{rule['id']}: invalid MSVC runtime evidence thresholds"]
 
     module = load_msvc_archive_module()
-    archives: dict[str, bytes] = {}
     members: dict[str, dict[str, bytes]] = {}
     for library, (filename, expected_hash) in module.LIBRARIES.items():
         archive_path = ROOT / ".tools/msvc80-sp1/lib" / filename
@@ -678,7 +677,6 @@ def validate_msvc_runtime_anchor_evidence(
         actual_hash = hashlib.sha256(archive).hexdigest()
         if actual_hash != expected_hash:
             return [f"{rule['id']}: {filename} SHA-256 mismatch"]
-        archives[library] = archive
         members[library] = {name: body for name, body in module.archive_members(archive)}
 
     row_by_address = {row["address"]: row for row in rows}

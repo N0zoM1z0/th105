@@ -41,6 +41,9 @@ make the count look complete.
 pass, three stale rules were found to overlap functions already promoted to
 canonical exact (`0x004064D0`, `0x004309F0`, `0x00496420`). Those rows belong to
 the exact baseline; the stale nonexact rule text has been removed or narrowed.
+Active origin-rule and anchor comments now refer to the full current inventory
+instead of the historical 4,010-row snapshot. The 4,010 and 1,002 figures in
+`docs/KNOWLEDGE_BASE.md` are labeled as dated checkpoints, not live totals.
 Run `scripts/function-origins.py --check` after origin edits as well as the
 normal tracking validator. Any new rule needs a fixed candidate count/byte sum
 and target-backed provenance. Record reviewed boundary evidence in

@@ -171,8 +171,8 @@ size = 41
 symbol = "??8?$_Vector_const_iterator@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@QBE_NABV01@@Z"
 
 # A review-only orphan scan surfaced three additional generated shapes; the
-# promotion evidence below comes from replaying each fingerprint against all
-# 4,010 current function spans.  The 43-byte move-backward helper is one true
+# promotion evidence below comes from replaying each fingerprint against the
+# complete current candidate inventory. The 43-byte move-backward helper is one true
 # eight-address clone family; deque insert and unchecked-copy are inventory-unique.
 
 [[anchors]]

@@ -261,7 +261,7 @@ origin = "vc8_runtime"
 subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 libcmt archive function extents and supported DIR32/REL32 fields reproduce strict relocation-masked fingerprints whose complete hit sets are replayed across all 4,010 current candidates; anchors may identify clone families without claiming a unique semantic accessor name"
+evidence = "SHA-pinned VC8 SP1 libcmt archive function extents and supported DIR32/REL32 fields reproduce strict relocation-masked fingerprints whose complete hit sets are replayed across the complete current candidate inventory; anchors may identify clone families without claiming a unique semantic accessor name"
 
 [[rules]]
 id = "vc8-short-security-cookie-check-106a"
@@ -616,7 +616,7 @@ origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 /GS rebuild of the tracked SpellRecordView std::map probe regenerates checked std::_Tree insertion/allocation/erase COMDATs, the std::pair destructor, and implicit SpellRecordView copy/destructor special members; all six relocation-masked fingerprints are inventory-unique across all 4010 current spans and replay fail-closed"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of the tracked SpellRecordView std::map probe regenerates checked std::_Tree insertion/allocation/erase COMDATs, the std::pair destructor, and implicit SpellRecordView copy/destructor special members; all six relocation-masked fingerprints are inventory-unique across the complete current candidate inventory and replay fail-closed"
 
 [[rules]]
 id = "vc8-generated-youmu-record-deque-comdats-106a"
@@ -627,7 +627,7 @@ origin = "compiler_generated"
 subsystem = "characters"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 rebuild of the tracked deque<YoumuObjectRecord> explicit-instantiation probe regenerates Growmap, push_front, checked iterator subscript, and back COMDATs; all four fingerprints are unique across all 4010 current function spans and replay fail-closed"
+evidence = "SHA-pinned VC8 SP1 rebuild of the tracked deque<YoumuObjectRecord> explicit-instantiation probe regenerates Growmap, push_front, checked iterator subscript, and back COMDATs; all four fingerprints are unique across the complete current candidate inventory and replay fail-closed"
 
 [[rules]]
 id = "vc8-generated-scenario-event-parser-list-comdats-106a"
@@ -638,7 +638,7 @@ origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 /GS rebuild of src/battle/ScenarioEventParser.cpp regenerates the checked std::list<int> range insert and assign COMDATs; both relocation-masked fingerprints are unique across all 4010 current function spans and replay fail-closed"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of src/battle/ScenarioEventParser.cpp regenerates the checked std::list<int> range insert and assign COMDATs; both relocation-masked fingerprints are unique across the complete current candidate inventory and replay fail-closed"
 
 [[rules]]
 id = "vc8-generated-battle-input-recording-vector-comdat-106a"
@@ -649,7 +649,7 @@ origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 /GS rebuild of src/battle/BattleInputRecording.cpp regenerates the checked vector<FixedSlotEnvelope>::_Assign_n COMDAT; its 166 non-relocation bytes select exactly 0x0042C3F0 across all 4010 current function spans"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of src/battle/BattleInputRecording.cpp regenerates the checked vector<FixedSlotEnvelope>::_Assign_n COMDAT; its 166 non-relocation bytes select exactly 0x0042C3F0 across the complete current candidate inventory"
 
 [[rules]]
 id = "vc8-generated-script-command-lifetime-std-comdats-106a"
@@ -660,7 +660,7 @@ origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 rebuild of exact src/battle/ScriptCommandLifetime.cpp regenerates checked CScript command-factory std::_Tree _Erase/_Buynode COMDATs; relocation-masked full-inventory replay must resolve exactly the two complete clone pairs (4 candidates / 282 bytes) across all 4010 spans"
+evidence = "SHA-pinned VC8 SP1 rebuild of exact src/battle/ScriptCommandLifetime.cpp regenerates checked CScript command-factory std::_Tree _Erase/_Buynode COMDATs; relocation-masked full-inventory replay must resolve exactly the two complete clone pairs (4 candidates / 282 bytes) across the complete current candidate inventory"
 
 [[rules]]
 id = "vc8-generated-roster-object-pools-std-comdats-106a"
@@ -704,7 +704,7 @@ origin = "compiler_generated"
 subsystem = "render"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 rebuild of a tracked std::vector<CSpriteEx> probe using the exact-backed 0xE8 CSpriteEx layout regenerates allocation, destruction, copy, erase, fill, size, checked indexing and _Tidy COMDATs; each relocation-masked fingerprint must resolve to its complete current-inventory hit set across all 4010 spans"
+evidence = "SHA-pinned VC8 SP1 rebuild of a tracked std::vector<CSpriteEx> probe using the exact-backed 0xE8 CSpriteEx layout regenerates allocation, destruction, copy, erase, fill, size, checked indexing and _Tidy COMDATs; each relocation-masked fingerprint must resolve to its complete current-inventory hit set across the complete current candidate inventory"
 
 [[rules]]
 id = "vc8-generated-map-int-value16-tree-comdats-106a"
@@ -737,7 +737,7 @@ origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 /GS rebuild of a tracked std::set<short> witness regenerates the checked insert/_Insert/erase(iterator), traversal, rotation, allocation and recursive erase COMDATs used by the SpellCsv filtered selected-id tree; every relocation-masked fingerprint must be inventory-unique across all 4010 tracked spans"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of a tracked std::set<short> witness regenerates the checked insert/_Insert/erase(iterator), traversal, rotation, allocation and recursive erase COMDATs used by the SpellCsv filtered selected-id tree; every relocation-masked fingerprint must be inventory-unique across the complete current candidate inventory"
 
 [[rules]]
 id = "vc8-generated-list-u32-comdats-106a"
@@ -748,7 +748,7 @@ origin = "compiler_generated"
 subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
-evidence = "A tracked forced-instantiation witness rebuilt by the SHA-pinned VC8 SP1 compiler regenerates the checked four-byte-value std::list splice COMDAT; its relocation-masked fingerprint must remain unique across all 4010 target spans. The witness proves generated code shape, not the target template argument's semantic identity."
+evidence = "A tracked forced-instantiation witness rebuilt by the SHA-pinned VC8 SP1 compiler regenerates the checked four-byte-value std::list splice COMDAT; its relocation-masked fingerprint must remain unique across the complete current candidate inventory. The witness proves generated code shape, not the target template argument's semantic identity."
 
 [[rules]]
 id = "vc8-generated-deque-u32-comdats-106a"
@@ -759,7 +759,7 @@ origin = "compiler_generated"
 subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
-evidence = "A tracked forced-instantiation witness rebuilt by the SHA-pinned VC8 SP1 compiler regenerates the checked four-byte-value std::deque back and push_front COMDATs; both relocation-masked fingerprints must remain unique across all 4010 target spans. The witness proves generated code shape, not the target template argument's semantic identity."
+evidence = "A tracked forced-instantiation witness rebuilt by the SHA-pinned VC8 SP1 compiler regenerates the checked four-byte-value std::deque back and push_front COMDATs; both relocation-masked fingerprints must remain unique across the complete current candidate inventory. The witness proves generated code shape, not the target template argument's semantic identity."
 
 [[rules]]
 id = "vc8-generated-info-short-record-std-comdats-106a"
@@ -770,7 +770,7 @@ origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 rebuild of the canonical-exact InfoShortRecord runtime TU regenerates the block-size-one checked std::deque<12-byte InfoComboEntry> _Growmap and push_back COMDATs; each relocation-masked fingerprint is inventory-unique across all 4010 tracked target spans"
+evidence = "SHA-pinned VC8 SP1 rebuild of the canonical-exact InfoShortRecord runtime TU regenerates the block-size-one checked std::deque<12-byte InfoComboEntry> _Growmap and push_back COMDATs; each relocation-masked fingerprint is inventory-unique across the complete current candidate inventory"
 
 [[rules]]
 id = "vc8-generated-uint-set-tree-family-106a"
@@ -836,7 +836,7 @@ origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 rebuild of a tracked 0x98-byte {short,ushort,CSprite} deque witness regenerates the nontrivial checked copy/copy-backward algorithms and pointer-map _Growmap used by the Fighter sequence controller; each relocation-masked fingerprint is unique across all current 4010 spans."
+evidence = "SHA-pinned VC8 SP1 rebuild of a tracked 0x98-byte {short,ushort,CSprite} deque witness regenerates the nontrivial checked copy/copy-backward algorithms and pointer-map _Growmap used by the Fighter sequence controller; each relocation-masked fingerprint is unique across the complete current candidate inventory."
 
 [[rules]]
 id = "vc8-generated-byte-vector-copy-comdat-106a"
@@ -858,7 +858,7 @@ origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "Canonical-exact EventEffectState background maintenance instantiates the native checked deque<BackgroundRenderEntry> erase/copy-backward/copy helpers. SHA-pinned VC8 replay reproduces all three relocation-masked bodies and requires inventory-unique hits across all 4,010 current candidates."
+evidence = "Canonical-exact EventEffectState background maintenance instantiates the native checked deque<BackgroundRenderEntry> erase/copy-backward/copy helpers. SHA-pinned VC8 replay reproduces all three relocation-masked bodies and requires inventory-unique hits across the complete current candidate inventory."
 
 [[rules]]
 id = "vc8-generated-secondary-animation-deque-comdats-106a"
@@ -869,7 +869,7 @@ origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "The canonical-exact 0x54 SecondaryAnimation runtime TU instantiates checked deque<Point2>::operator[], front(), and the std::_Allocate<Point> leaf. SHA-pinned VC8 SP1 relocation-masked replay reproduces all three bodies and requires each complete full-inventory hit set across all 4,010 current candidates; the neighboring push_back remains review-pending because its generated body is not byte-identical."
+evidence = "The canonical-exact 0x54 SecondaryAnimation runtime TU instantiates checked deque<Point2>::operator[], front(), and the std::_Allocate<Point> leaf. SHA-pinned VC8 SP1 relocation-masked replay reproduces all three bodies and requires each complete full-inventory hit set across the complete current candidate inventory; the neighboring push_back remains review-pending because its generated body is not byte-identical."
 
 [[rules]]
 id = "vc8-generated-event-effect-state-container-comdats-106a"
@@ -880,7 +880,7 @@ origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "Canonical-exact EventEffectState runtime instantiates the native checked map<signed char,vector<unsigned char>> find/_Erase and deque<BackgroundRenderEntry> Growmap/push_back helpers. SHA-pinned VC8 replay reproduces all four relocation-masked bodies and requires inventory-unique hits across all 4,010 current candidates."
+evidence = "Canonical-exact EventEffectState runtime instantiates the native checked map<signed char,vector<unsigned char>> find/_Erase and deque<BackgroundRenderEntry> Growmap/push_back helpers. SHA-pinned VC8 replay reproduces all four relocation-masked bodies and requires inventory-unique hits across the complete current candidate inventory."
 
 [[rules]]
 id = "vc8-generated-scene-render-cluster-node-comdats-106a"
@@ -891,7 +891,7 @@ origin = "compiler_generated"
 subsystem = "ui"
 disposition = "exclude"
 confidence = "observed"
-evidence = "Canonical-exact SceneRenderCluster constructor instantiates checked list<0x7C scene record> and map<int,20-byte scene value> node allocators plus map erase(iterator). SHA-pinned VC8 SP1 rebuild plus full 4,010-candidate relocation-masked replay requires all three classified COMDAT fingerprints to remain inventory-unique; the map<int,void*> allocator at 0x00420A40 is already independently excluded by the effect-manager exact-TU manifest."
+evidence = "Canonical-exact SceneRenderCluster constructor instantiates checked list<0x7C scene record> and map<int,20-byte scene value> node allocators plus map erase(iterator). SHA-pinned VC8 SP1 rebuild plus full-inventory relocation-masked replay requires all three classified COMDAT fingerprints to remain inventory-unique; the map<int,void*> allocator at 0x00420A40 is already independently excluded by the effect-manager exact-TU manifest."
 
 [[rules]]
 id = "vc8-generated-profile-deck-resource-std-comdats-106a"
@@ -902,7 +902,7 @@ origin = "compiler_generated"
 subsystem = "ui"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 /GS rebuild of canonical-exact ProfileDeckResourceLifetime.cpp regenerates four checked map<int,SpellRecordView> COMDATs (erase, iterator increment, node allocation and Min); every relocation-masked fingerprint must remain inventory-unique across all 4,010 current spans."
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of canonical-exact ProfileDeckResourceLifetime.cpp regenerates four checked map<int,SpellRecordView> COMDATs (erase, iterator increment, node allocation and Min); every relocation-masked fingerprint must remain inventory-unique across the complete current candidate inventory."
 
 [[rules]]
 id = "vc8-generated-event-effect-state-lifetime-std-comdat-106a"
@@ -935,7 +935,7 @@ origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 /GS rebuild of canonical-exact SharedSceneBootstrap.cpp regenerates the checked map<unsigned,short> insert and _Insert COMDATs; both relocation-masked fingerprints must remain inventory-unique across all 4,010 current spans."
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of canonical-exact SharedSceneBootstrap.cpp regenerates the checked map<unsigned,short> insert and _Insert COMDATs; both relocation-masked fingerprints must remain inventory-unique across the complete current candidate inventory."
 
 [[rules]]
 id = "vc8-generated-scenario-render-entry-std-comdat-106a"
@@ -979,7 +979,7 @@ origin = "compiler_generated"
 subsystem = "ui"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 rebuild of canonical-exact SceneRenderClusterCleanup.cpp regenerates list<SceneListRecord124>::clear and map<int,SceneMapValue20>::_Erase; both relocation-masked fingerprints must remain inventory-unique across all 4,010 current spans."
+evidence = "SHA-pinned VC8 SP1 rebuild of canonical-exact SceneRenderClusterCleanup.cpp regenerates list<SceneListRecord124>::clear and map<int,SceneMapValue20>::_Erase; both relocation-masked fingerprints must remain inventory-unique across the complete current candidate inventory."
 
 [[rules]]
 id = "vc8-generated-network-base-array-constructor-helper-106a"
@@ -1001,7 +1001,7 @@ origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 /GS rebuild of canonical-exact FighterPhaseContextLifetime.cpp regenerates the checked std::list<FighterPhaseInitRequest> sentinel _Buynode COMDAT. Its relocation-masked fingerprint must remain inventory-unique at current 0x00464B20 across all 4,010 spans."
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of canonical-exact FighterPhaseContextLifetime.cpp regenerates the checked std::list<FighterPhaseInitRequest> sentinel _Buynode COMDAT. Its relocation-masked fingerprint must remain inventory-unique at current 0x00464B20 across the complete current candidate inventory."
 
 [[rules]]
 id = "vc8-character-object-member-pointer-thunks-106a"
@@ -1012,7 +1012,7 @@ origin = "compiler_generated"
 subsystem = "characters"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 rebuild of canonical-exact CharacterObjectManagerRuntime.cpp regenerates the two virtual member-pointer thunks for vslots +0x30 and +0x40. Each complete five-byte fingerprint must remain inventory-unique at current 0x004938A0/0x004938B0 across all 4,010 spans."
+evidence = "SHA-pinned VC8 SP1 rebuild of canonical-exact CharacterObjectManagerRuntime.cpp regenerates the two virtual member-pointer thunks for vslots +0x30 and +0x40. Each complete five-byte fingerprint must remain inventory-unique at current 0x004938A0/0x004938B0 across the complete current candidate inventory."
 
 [[rules]]
 id = "vc8-effect-object-member-pointer-thunk-106a"
@@ -1023,7 +1023,7 @@ origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 rebuild of canonical-exact EffectManagerVirtuals.cpp regenerates the virtual member-pointer thunk for vslot +0x28. Its complete five-byte fingerprint must remain inventory-unique at current 0x00421D20 across all 4,010 spans."
+evidence = "SHA-pinned VC8 SP1 rebuild of canonical-exact EffectManagerVirtuals.cpp regenerates the virtual member-pointer thunk for vslot +0x28. Its complete five-byte fingerprint must remain inventory-unique at current 0x00421D20 across the complete current candidate inventory."
 
 [[rules]]
 id = "vc8-character-object-manager-adjustor-thunks-106a"

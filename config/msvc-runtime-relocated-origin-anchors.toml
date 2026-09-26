@@ -5,7 +5,7 @@ min_nonreloc_bytes = 24
 
 # These anchors prove runtime ownership only. Some VC8 archive functions are
 # byte-identical accessors/clones, so semantic symbol identity may remain
-# unknown. inventory_hits records the complete 4,010-candidate fingerprint
+# unknown. inventory_hits records the complete current-inventory fingerprint
 # hit set; it may include an address already excluded by the name-backed rule.
 
 [[anchors]]

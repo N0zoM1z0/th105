@@ -11,7 +11,7 @@ alignment_tail_hex = ""
 # Exact EventEffectState runtime fixes the application type as
 # map<signed char, vector<unsigned char>>.  This tracked probe isolates the
 # vector value copy constructor; its relocation-masked body must remain unique
-# across the complete current 4,010-candidate inventory.
+# across the complete current candidate inventory.
 [[anchors]]
 address = "0x00469CC0"
 size = 132
