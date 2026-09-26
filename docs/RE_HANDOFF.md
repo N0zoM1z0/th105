@@ -12,9 +12,9 @@ instructions are not the active queue.
 - User-directed phase: clean misleading documentation/code, then review the
   remaining origin and candidate-boundary queue. The initial census was
   **4,023 candidates, 1,476 authored, 1,308 excluded, 1,239 in review**.
-  Nineteen evidence-linked origin/boundary batches are recorded in
+  Twenty evidence-linked origin/boundary batches are recorded in
   [the focused review](ORIGIN_BOUNDARY_REVIEW_2026_09_26.md). The current
-  census is **1,487 authored / 1,387 excluded / 1,149 review**. Source-present
+  census is **1,487 authored / 1,396 excluded / 1,140 review**. Source-present
   remains 1,388; canonical exact remains 1,315 functions / 220,094 bytes.
   Recompute from `scripts/report-reconstruction-status.py --summary` after
   every promotion.
@@ -99,6 +99,9 @@ and six-state VC8 EH cleanup chain. Its class/ABI identity remains unknown.
 The 784-byte profile writer `0x004317A0` has a normal RET 4 and a separate
 terminal throw path, plus a three-state EH cleanup map; its retained
 ProfileMenuBaseData class label remains a source hypothesis.
+Nine 30-byte primary-vtable scalar deleting destructors now have pinned
+RTTI owners, class destructor E8 sites and conditional free calls; most
+underlying destructors still need separate origin review.
 
 ```bash
 python3 scripts/verify-target.py

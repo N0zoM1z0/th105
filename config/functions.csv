@@ -38,8 +38,8 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00401F10,98,0x00401F71,sub_401F10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00401F80,145,0x00402010,sub_401F80,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00402020,98,0x00402081,sub_402020,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00402090,30,0x004020AD,sub_402090,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x004020B0,30,0x004020CD,sub_4020B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00402090,30,0x004020AD,sub_402090,,,identified,0.00,__thiscall,,false,,Complete thirty-byte VC8 scalar deleting destructor with primary RTTI vtable slot; conditional call to excluded free alias and class destructor E8 are target-pinned in origin rule,,Compiler-generated wrapper; underlying class destructor origin reviewed separately
+0x004020B0,30,0x004020CD,sub_4020B0,,,identified,0.00,__thiscall,,false,,Complete thirty-byte VC8 scalar deleting destructor with primary RTTI vtable slot; conditional call to excluded free alias and class destructor E8 are target-pinned in origin rule,,Compiler-generated wrapper; underlying class destructor origin reviewed separately
 0x004020D0,218,0x004021A9,sub_4020D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004021B0,5,0x004021B4,sub_4021B0,,,identified,0.00,,,true,,Hash-attested 1.06a raw PE: complete five-byte E9 tail jump to 0x004023E0; see origin rule and docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md,,No independent function body; destination origin is separately evidenced.
 0x004021C0,193,0x00402280,sub_4021C0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -84,7 +84,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00403ED0,133,0x00403F54,sub_403ED0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00403F60,279,0x00404076,sub_403F60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00404080,5,0x00404084,sub_404080,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00404090,30,0x004040AD,sub_404090,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00404090,30,0x004040AD,sub_404090,,,identified,0.00,__thiscall,,false,,Complete thirty-byte VC8 scalar deleting destructor with primary RTTI vtable slot; conditional call to excluded free alias and class destructor E8 are target-pinned in origin rule,,Compiler-generated wrapper; underlying class destructor origin reviewed separately
 0x004040B0,26,0x004040C9,sub_4040B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004040D0,401,0x00404260,sub_4040D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00404270,184,0x00404327,sub_404270,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -108,7 +108,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00404E60,148,0x00404EF3,sub_404E60,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00404F00,193,0x00404FC0,sub_404F00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00404FD0,98,0x00405031,sub_404FD0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00405040,30,0x0040505D,sub_405040,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00405040,30,0x0040505D,sub_405040,,,identified,0.00,__thiscall,,false,,Complete thirty-byte VC8 scalar deleting destructor with primary RTTI vtable slot; conditional call to excluded free alias and class destructor E8 are target-pinned in origin rule,,Compiler-generated wrapper; underlying class destructor origin reviewed separately
 0x00405090,364,0x004051FB,sub_405090,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00405200,167,0x004052A6,sub_405200,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004052B0,91,0x0040530A,sub_4052B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -446,7 +446,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00413780,145,0x00413810,sub_413780,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00413820,98,0x00413881,sub_413820,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00413890,32,0x004138AF,sub_413890,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x004138B0,30,0x004138CD,sub_4138B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x004138B0,30,0x004138CD,sub_4138B0,,,identified,0.00,__thiscall,,false,,Complete thirty-byte VC8 scalar deleting destructor with primary RTTI vtable slot; conditional call to excluded free alias and class destructor E8 are target-pinned in origin rule,,Compiler-generated wrapper; underlying class destructor origin reviewed separately
 0x004138D0,76,0x0041391B,sub_4138D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00413920,28,0x0041393B,sub_413920,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00413940,80,0x0041398F,sub_413940,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -660,7 +660,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0041E270,30,0x0041E28D,sub_41E270,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041E290,142,0x0041E31D,sub_41E290,CFade_render,ui,matching,100.00,__thiscall,bool CFade::render(void),false,src/ui/RenderSceneConsumers.cpp,python3 scripts/build.py --unit cross-v106a-render-scene-consumers --compare --json reports canonical exact 142/142 against TH105 1.06a,root,Current RTTI identifies CFade; fields +4/+8 are color/timer. Source branch order timer>60 keeps the target descending fade block as fallthrough before full-screen draw_rect. Exact 142/142.
 0x0041E320,980,0x0041E6F3,sub_41E320,create_scene_for_id_41e320,engine,matching,100.00,__stdcall,void * create_scene_for_id_41e320(int scene),false,src/engine/SceneFactoryRuntime.cpp,python3 scripts/build.py --unit gpt-web-scene-factory-runtime --compare --json reports canonical exact 980/980 against TH105 1.06a,root,"RTTI/current constructor graph fixes all sixteen typed-new scene cases, target allocation extents and physical case order; VC8 naturally emits sixteen new-expression EH states and the trailing 21-entry jump table."
-0x0041E750,30,0x0041E76D,sub_41E750,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0041E750,30,0x0041E76D,sub_41E750,,,identified,0.00,__thiscall,,false,,Complete thirty-byte VC8 scalar deleting destructor with primary RTTI vtable slot; conditional call to excluded free alias and class destructor E8 are target-pinned in origin rule,,Compiler-generated wrapper; underlying class destructor origin reviewed separately
 0x0041E770,30,0x0041E78D,sub_41E770,CBattle_scalar_deleting_destructor,battle,matching,100.00,__thiscall,"void * CBattle_scalar_deleting_destructor(CBattle * this, unsigned int flags)",false,src/battle/BattleSceneLifetime.cpp,python3 scripts/build.py --unit cross-v106a-battle-scene-lifetime --compare --json reports canonical exact 30/30 against TH105 1.06a,root,CBattle/SV/CL/Watch vtables share this scalar deleting wrapper; exact normal-dtor and operator-delete edges; formal exact 30/30.
 0x0041E790,40,0x0041E7B7,sub_41E790,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0041E7C0,352,0x0041E91F,sub_41E7C0,Ending_update,ui,matching,100.00,__thiscall,int Ending_update(EndingUpdateView * this),false,src/ui/EndingUpdateRuntime.cpp,python3 scripts/build.py --unit gpt-web-ending-update-runtime --compare --json reports canonical exact 352/352 against TH105 1.06a,root,"Ending vtable 0x006C05E8 owns this update slot. Source preserves +0x94..+0x97 phase/fade state, battle-phase ending coordination, menu skip handling and ordinary CMenuEnd allocation."
@@ -771,7 +771,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004222E0,5,0x004222E4,sub_4222E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004222F0,880,0x0042265F,sub_4222F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00422660,135,0x004226E6,sub_422660,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x004226F0,30,0x0042270D,sub_4226F0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x004226F0,30,0x0042270D,sub_4226F0,,,identified,0.00,__thiscall,,false,,Complete thirty-byte VC8 scalar deleting destructor with primary RTTI vtable slot; conditional call to excluded free alias and class destructor E8 are target-pinned in origin rule,,Compiler-generated wrapper; underlying class destructor origin reviewed separately
 0x00422710,81,0x00422760,sub_422710,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00422770,341,0x004228C4,sub_422770,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004228D0,202,0x00422999,sub_4228D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -939,7 +939,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0042CAD0,92,0x0042CB2B,sub_42CAD0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0042CB30,60,0x0042CB6B,sub_42CB30,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0042CB70,65,0x0042CBB0,sub_42CB70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0042CBC0,30,0x0042CBDD,sub_42CBC0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0042CBC0,30,0x0042CBDD,sub_42CBC0,,,identified,0.00,__thiscall,,false,,Complete thirty-byte VC8 scalar deleting destructor with primary RTTI vtable slot; conditional call to excluded free alias and class destructor E8 are target-pinned in origin rule,,Compiler-generated wrapper; underlying class destructor origin reviewed separately
 0x0042CBE0,82,0x0042CC31,sub_42CBE0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0042CC40,78,0x0042CC8D,sub_42CC40,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0042CC90,99,0x0042CCF2,sub_42CC90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -1410,7 +1410,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00443D70,808,0x00444097,sub_443D70,CMenuConnect_finish_transition,ui,matching,100.00,__thiscall,void CMenuConnect_finish_transition(CMenuConnect * this),false,src/ui/MenuConnectHistoryRuntime.cpp,python3 scripts/build.py --unit gpt-web-menu-connect-history-runtime --compare --json reports canonical exact 808/808 against TH105 1.06a,root,"Exact endpoint-history finalizer. The second history entry is a std::string(source) temporary, and the nested owner+0x48 deque is spelled directly at each use; helper/reference factoring changes VC8 receiver allocation and is rejected."
 0x004440A0,235,0x0044418A,sub_4440A0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00444190,728,0x00444467,sub_444190,CMenuConnect_ctor,ui,matching,100.00,__thiscall,CMenuConnect * CMenuConnect_ctor(CMenuConnect * this),false,src/ui/MenuConnectConstructorRuntime.cpp,python3 scripts/build.py --unit gpt-web-menu-connect-constructor-runtime --compare --json reports canonical exact 728/728 against TH105 1.06a,root,"Current CMenuConnect RTTI/vtable owns this 0x118C constructor. Real CNumber/TNumberValue<int*> ownership, two zeroing texture handles, checked deque<string> plus separate +0x3B8 dword, cursor +0x3BC, endpoint +0x42C and GuideOverlay[8] +0xC4C reproduce all ten EH states and all 728 bytes; hide_profile_message uses the caller-proved member ABI."
-0x00444470,30,0x0044448D,sub_444470,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00444470,30,0x0044448D,sub_444470,,,identified,0.00,__thiscall,,false,,Complete thirty-byte VC8 scalar deleting destructor with primary RTTI vtable slot; conditional call to excluded free alias and class destructor E8 are target-pinned in origin rule,,Compiler-generated wrapper; underlying class destructor origin reviewed separately
 0x00444490,699,0x0044474A,sub_444490,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00444790,160,0x0044482F,sub_444790,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00444830,827,0x00444B6A,sub_444830,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

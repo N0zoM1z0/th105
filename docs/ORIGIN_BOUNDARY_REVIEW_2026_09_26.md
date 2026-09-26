@@ -591,3 +591,40 @@ standalone exact evidence or an independently attested class name.
 python3 scripts/audit-candidate-boundaries.py 0x004317A0 --json
 python3 scripts/function-origins.py --check
 ```
+
+## Nine game-class scalar deleting destructors
+
+Nine pending candidates each have a fully reachable 30-byte body and one
+`RET 4`. Their instructions preserve ECX as `this`, call a class
+destructor, test the low deletion-flag bit, conditionally call excluded
+free alias `0x006898EA`, and return the original pointer. Each address is
+an exact primary vtable entry preceded by a zero-offset VC8 RTTI locator.
+The rule pins full body hashes, vtable pointers, locators, type descriptors,
+class-destructor E8 calls, and free E8 calls.
+
+| Deleting wrapper | RTTI class family | Underlying destructor |
+| --- | --- | --- |
+| `0x00402090` | `CHandleManager<CWaveBuffer*>` | `0x00401F10` |
+| `0x004020B0` | `CHandleManager<CDSBuffer*>` | `0x00402020` |
+| `0x00404090` | `CHandleManagerEx<BgmBuffer>` | `0x00403F60` |
+| `0x00405040` | `CHandleManager<IDirect3DTexture9*>` | `0x00404FD0` |
+| `0x004138B0` | `CHandleManager<NET_PACKET_UDP_BUFFER>` | `0x00413820` |
+| `0x0041E750` | `CSelectSV`, also shared by `CSelectCL`/`CSelect` | `0x00424260` |
+| `0x004226F0` | `PatternData` | `0x00422660` |
+| `0x0042CBC0` | `CInputManagerEx` | `0x00409D50` |
+| `0x00444470` | `CMenuConnect` | `0x00443C30` |
+
+The primary vtable slot for `0x0041E750` is `0x006C04AC`; the same function
+pointer also appears at `0x006C0504` and `0x006C0BC4` in the other two
+`CSelect` vtables. This reuse does not change the wrapper's compiler origin.
+All nine are `compiler_generated/exclude` scalar deletion wrappers. The
+class destructors are separate functions; eight remain under origin review,
+while `0x00409D50` already has authored provenance. This batch does not
+assign a source TU or exact-match credit to any wrapper.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py \
+  0x00402090 0x004020B0 0x00404090 0x00405040 0x004138B0 \
+  0x0041E750 0x004226F0 0x0042CBC0 0x00444470 --json
+python3 scripts/function-origins.py --check
+```

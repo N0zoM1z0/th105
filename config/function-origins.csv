@@ -38,8 +38,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00401F10,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00401F80,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00402020,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00402090,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x004020B0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00402090,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a
+0x004020B0,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a
 0x004020D0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x004021B0,compiler_generated,runtime,exclude,observed,generated-container-tail-aliases-106a
 0x004021C0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
@@ -84,7 +84,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00403ED0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00403F60,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00404080,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00404090,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00404090,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a
 0x004040B0,compiler_generated,runtime,exclude,observed,handle-manager-list-uint-sentinel-generated-106a
 0x004040D0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00404270,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -108,7 +108,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00404E60,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00404F00,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00404FD0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00405040,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00405040,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a
 0x00405090,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00405200,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004052B0,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -446,7 +446,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00413780,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00413820,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00413890,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x004138B0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004138B0,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a
 0x004138D0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00413920,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00413940,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -660,7 +660,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0041E270,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041E290,authored_game,ui,authored,observed,canonical-exact-authored
 0x0041E320,authored_game,engine,authored,observed,canonical-exact-authored
-0x0041E750,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0041E750,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a
 0x0041E770,authored_game,battle,authored,observed,canonical-exact-authored
 0x0041E790,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041E7C0,authored_game,ui,authored,observed,canonical-exact-authored
@@ -771,7 +771,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004222E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004222F0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00422660,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x004226F0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004226F0,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a
 0x00422710,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00422770,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004228D0,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -939,7 +939,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0042CAD0,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
 0x0042CB30,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0042CB70,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0042CBC0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0042CBC0,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a
 0x0042CBE0,compiler_generated,ui,exclude,observed,vc8-generated-profile-deck-counts-std-comdats-106a
 0x0042CC40,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
 0x0042CC90,compiler_generated,ui,exclude,observed,vc8-generated-profile-deck-resource-std-comdats-106a
@@ -1410,7 +1410,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00443D70,authored_game,ui,authored,observed,canonical-exact-authored
 0x004440A0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00444190,authored_game,ui,authored,observed,canonical-exact-authored
-0x00444470,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00444470,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a
 0x00444490,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00444790,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00444830,unknown,,review,unknown,ida-1.06a-initial-inventory

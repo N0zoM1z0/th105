@@ -2000,3 +2000,30 @@ required_vc8_eh_unwind = { owner = "0x004317A0", handler_push_site = "0x004317A2
   { address = "0x006B80F8", size = 8, sha256 = "20a416c11b180bd8d803461b96b559006bea4289fa29dfc7d3d8f9200a1d4aef", target = "0x00401E00" },
   { address = "0x006B8100", size = 8, sha256 = "e244d3eab23070a962e9c098d7185a694fdf0d7ff59f4c03f9059441e6b5b848", target = "0x00407BF0" },
 ] }
+
+[[rules]]
+id = "game-primary-vtable-scalar-deleting-destructors-106a"
+addresses = ["0x00402090", "0x004020B0", "0x00404090", "0x00405040", "0x004138B0", "0x0041E750", "0x004226F0", "0x0042CBC0", "0x00444470"]
+expected_count = 9
+expected_bytes = 270
+expected_names = ["sub_402090", "sub_4020B0", "sub_404090", "sub_405040", "sub_4138B0", "sub_41E750", "sub_4226F0", "sub_42CBC0", "sub_444470"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "inferred"
+evidence = "Nine complete 30-byte primary-vtable entries have the VC8 scalar deleting destructor pattern: preserve this, call a class destructor, test the delete flag, conditionally call excluded free alias 0x006898EA, return this with RET 4. Each exact vtable pointer, adjacent zero-offset VC8 RTTI COL and class type descriptor, body SHA, and both E8 targets are replayed. The 0x0041E750 wrapper is shared by three separately named CSelect vtables. This supports compiler-generated wrapper ownership; most underlying class destructors remain under origin review. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_dword_values = [
+  { address = "0x006C0504", value = "0x0041E750" },
+  { address = "0x006C0BC4", value = "0x0041E750" },
+]
+required_rtti_deleting_dtors = [
+  { address = "0x00402090", size = 30, sha256 = "f7f9106c69792e72937b051a9cfe4b10f252ae3306a1739a6a64faec27bd931d", slot = "0x006D6994", col = "0x006DC794", type_descriptor = "0x006FA2DC", type_name_contains = "CWaveBuffer", destructor_site = "0x00402093", destructor = "0x00401F10", free_site = "0x004020A0" },
+  { address = "0x004020B0", size = 30, sha256 = "a0dc5c9f18312f6eae62a818477693b62908ebc226a52f75b98cd6c7e9e9014b", slot = "0x006D699C", col = "0x006DC74C", type_descriptor = "0x006FA2AC", type_name_contains = "CDSBuffer", destructor_site = "0x004020B3", destructor = "0x00402020", free_site = "0x004020C0" },
+  { address = "0x00404090", size = 30, sha256 = "a7b635f1ab3096b5945491764e2060c2370a525a896a05b2752c8a4f5174dfc3", slot = "0x006D69A4", col = "0x006DC948", type_descriptor = "0x006FA3A4", type_name_contains = "BgmBuffer", destructor_site = "0x00404093", destructor = "0x00403F60", free_site = "0x004040A0" },
+  { address = "0x00405040", size = 30, sha256 = "29c2294b03610e5250e938d78f157bcf27010f4f7d98b1c1954f330954d7363c", slot = "0x006D69AC", col = "0x006DC990", type_descriptor = "0x006FA3D4", type_name_contains = "IDirect3DTexture9", destructor_site = "0x00405043", destructor = "0x00404FD0", free_site = "0x00405050" },
+  { address = "0x004138B0", size = 30, sha256 = "58e4f9f275e78197e7a9bc8fead74f8f3b33a2a4198562c0b6c5e73715b46782", slot = "0x006D6C64", col = "0x006DCE08", type_descriptor = "0x006FA5B4", type_name_contains = "NET_PACKET_UDP_BUFFER", destructor_site = "0x004138B3", destructor = "0x00413820", free_site = "0x004138C0" },
+  { address = "0x0041E750", size = 30, sha256 = "ae5895fc5f1185d286f09326fb7da0b363ecc736a4344fa5e563ee35d770cbc7", slot = "0x006C04AC", col = "0x006D6FD8", type_descriptor = "0x006E6038", type_name_contains = "CSelectSV", destructor_site = "0x0041E753", destructor = "0x00424260", free_site = "0x0041E760" },
+  { address = "0x004226F0", size = 30, sha256 = "b16cc9b0523e628a63fd40c219628ca43a6accc3a1c006f277c67e371a6f7438", slot = "0x006C0998", col = "0x006D7888", type_descriptor = "0x006E64A4", type_name_contains = "PatternData", destructor_site = "0x004226F3", destructor = "0x00422660", free_site = "0x00422700" },
+  { address = "0x0042CBC0", size = 30, sha256 = "c201aea00c46831696fdbe09cfbee2458ce3e3fecbeafc35807204728b75626d", slot = "0x006C1154", col = "0x006D7A50", type_descriptor = "0x006E6588", type_name_contains = "CInputManagerEx", destructor_site = "0x0042CBC3", destructor = "0x00409D50", free_site = "0x0042CBD0" },
+  { address = "0x00444470", size = 30, sha256 = "dd3b80f2e2c07818e608dd9cde849a8c5ce2c8d1d93fd87f0765a1975418a5fa", slot = "0x006C1C3C", col = "0x006D8280", type_descriptor = "0x006E6C5C", type_name_contains = "CMenuConnect", destructor_site = "0x00444473", destructor = "0x00443C30", free_site = "0x00444480" },
+]

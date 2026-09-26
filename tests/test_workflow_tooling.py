@@ -310,6 +310,26 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_rtti_deleting_dtors"] = dtors
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    def test_game_deleting_destructors_require_own_rtti_types(self) -> None:
+        with self.origins.RULES.open("rb") as stream:
+            document = tomllib.load(stream)
+        rule = next(
+            row for row in document["rules"]
+            if row["id"] == "game-primary-vtable-scalar-deleting-destructors-106a"
+        )
+        rows = self.origins.read_csv(self.origins.FUNCTIONS)
+        selected = [row for row in rows if row["address"] in rule["addresses"]]
+        data = self.origins.attest_target(document)
+        read_pe = self.origins.pe_reader(data)
+        validate = self.origins.validate_rule_evidence
+        self.assertEqual(validate(rule, selected, rows, data, read_pe), [])
+
+        changed = dict(rule)
+        dtors = [dict(entry) for entry in rule["required_rtti_deleting_dtors"]]
+        dtors[0]["type_name_contains"] = "CMenuConnect"
+        changed["required_rtti_deleting_dtors"] = dtors
+        self.assertTrue(validate(changed, selected, rows, data, read_pe))
+
     def test_boost_throw_virtual_requires_terminal_runtime_edge(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)

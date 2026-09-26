@@ -1392,6 +1392,7 @@ def validate_rule_evidence(
             continue
         first_target = destructor_site + 5 + struct.unpack_from("<i", first_call, 1)[0]
         free_target = free_site + 5 + struct.unpack_from("<i", free_call, 1)[0]
+        type_fragment = str(dtor.get("type_name_contains", "exception_detail@boost@@")).encode("ascii")
         if (
             hashlib.sha256(body).hexdigest() != dtor["sha256"]
             or body[:3] != b"\x56\x8B\xF1"
@@ -1404,7 +1405,7 @@ def validate_rule_evidence(
             or cd_offset != 0
             or type_descriptor != expected_type
             or not type_name.startswith((b".?AU", b".?AV"))
-            or b"exception_detail@boost@@" not in type_name
+            or type_fragment not in type_name
             or first_call[0] != 0xE8
             or first_target != destructor
             or free_call[0] != 0xE8
