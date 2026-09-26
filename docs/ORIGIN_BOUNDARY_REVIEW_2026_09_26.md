@@ -1089,3 +1089,40 @@ unresolved.
 python3 scripts/audit-candidate-boundaries.py 0x0046DFF0 --json
 python3 scripts/function-origins.py --check
 ```
+
+## Family-1 object clash traversal and pair resolver
+
+The target PE independently reaches all bytes of two `INT3`-separated
+candidate main spans, with no indirect jump, outgoing direct branch,
+unreached byte, or overlapping decode:
+
+| Entry | Bytes | Full body SHA-256 | Return closure |
+| --- | ---: | --- | --- |
+| `0x0046DD40` | 686 | `aa250ed95904cbc1b0d78f04b2f4a09ef1bcd53f844cc298140474e89f2ea8ec` | One `RET` at `0x0046DFED` |
+| `0x0046CA80` | 542 | `ea54fb25e5ab2ac5e4b7c2dc17792e6073ef654b22b20a06fce6a9887c1257d6` | Eight `RET 8` paths, ending at `0x0046CC9B` |
+
+`0x0046DD40` traverses two collision-object lists at receiver `+0x44`
+and a cross-list pass. Repeated checked-iterator guards call VC8
+`__invalid_parameter_noinfo` when a node is its list sentinel. Each
+candidate object's `+0x1A4` frame pointer supplies flag words at frame
+`+0x4C/+0x50`; the object also gates on a byte at `+0x1A0`. The target
+calls `0x0046CA80` for an accepted object pair at `0x0046DE75` and
+`0x0046DFB7`. The separately reviewed intermediate battle phase
+`0x0046DFF0` calls the traversal at `0x0046E48B`.
+
+`0x0046CA80` first calls still-unclassified pair predicate
+`0x0046BCA0`. On acceptance, it compares frame property words reached
+through each object's `+0x1A8` pointer, writes outcome codes 4/5/8 at
+object `+0x180`, adjusts a byte at `+0x184`, and calls canonical-exact
+`reset_collision_extents @ 0x0046B6C0` on each of its eight terminal
+outcome paths. This is game collision state, independent of how the
+retained `Family1Clashes.cpp` spells the loops. The rule replays both
+full bodies, the three connecting E8 edges and all eight exact reset
+calls. These observations support `authored_game/battle` for both main
+spans. Pair-predicate ownership, original class/TU and source/exact
+codegen remain open.
+
+```bash
+python3 scripts/audit-candidate-boundaries.py 0x0046DD40 0x0046CA80 --json
+python3 scripts/function-origins.py --check
+```

@@ -2047,14 +2047,14 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0046C8A0,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046C930,authored_game,battle,authored,observed,existing-object-battle-source-stops-authored-106a
 0x0046C9E0,authored_game,battle,authored,observed,canonical-exact-authored
-0x0046CA80,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0046CA80,authored_game,battle,authored,observed,family1-object-clash-and-pair-resolution-authored-106a
 0x0046CCA0,authored_game,battle,authored,observed,fighter-body-collision-phase-authored-106a
 0x0046D3F0,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046D610,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0046D830,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046DA10,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046DB30,authored_game,battle,authored,observed,canonical-exact-authored
-0x0046DD40,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0046DD40,authored_game,battle,authored,observed,family1-object-clash-and-pair-resolution-authored-106a
 0x0046DFF0,authored_game,battle,authored,observed,battle-intermediate-collision-phase-authored-106a
 0x0046E5A0,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046E650,authored_game,battle,authored,observed,canonical-exact-authored

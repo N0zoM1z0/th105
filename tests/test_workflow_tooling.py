@@ -629,6 +629,26 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_branch_skipped_padding"] = gaps
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    def test_family1_clash_pair_chain_requires_exact_reset_edges(self) -> None:
+        with self.origins.RULES.open("rb") as stream:
+            document = tomllib.load(stream)
+        rule = next(
+            row for row in document["rules"]
+            if row["id"] == "family1-object-clash-and-pair-resolution-authored-106a"
+        )
+        rows = self.origins.read_csv(self.origins.FUNCTIONS)
+        selected = [row for row in rows if row["address"] in rule["addresses"]]
+        data = self.origins.attest_target(document)
+        read_pe = self.origins.pe_reader(data)
+        validate = self.origins.validate_rule_evidence
+        self.assertEqual(validate(rule, selected, rows, data, read_pe), [])
+
+        changed = dict(rule)
+        calls = [dict(entry) for entry in rule["required_selected_body_calls"]]
+        calls[-1]["site"] = "0x0046CC92"
+        changed["required_selected_body_calls"] = calls
+        self.assertTrue(validate(changed, selected, rows, data, read_pe))
+
     def test_boost_throw_virtual_requires_terminal_runtime_edge(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)

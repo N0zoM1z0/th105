@@ -2491,3 +2491,34 @@ required_selected_body_calls = [
   { owner = "0x0046DFF0", site = "0x0046E518", target = "0x0046DA10" },
   { owner = "0x0046DFF0", site = "0x0046E587", target = "0x0045D510" },
 ]
+
+[[rules]]
+id = "family1-object-clash-and-pair-resolution-authored-106a"
+addresses = ["0x0046CA80", "0x0046DD40"]
+expected_count = 2
+expected_bytes = 1228
+expected_names = ["sub_46CA80", "sub_46DD40"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Both 542/686-byte target PE main spans are entirely reachable and RET-terminated with no gaps or indirect/outgoing branches. The 686-byte body traverses two checked collision-object list passes and gates on object frame flags/status before calling the 542-byte pair resolver twice. The pair resolver reads each object's +0x1A8 frame property words, publishes outcomes at +0x180/+0x184, and calls exact reset_collision_extents on all eight terminal paths. The separately reviewed 0x0046DFF0 intermediate battle phase calls the list traversal. All three inbound E8 sites, eight exact reset-helper E8s and both body hashes are replayed. Upstream pair predicate 0x0046BCA0 and original source/TU remain unresolved. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_body_hashes = [
+  { address = "0x0046CA80", size = 542, sha256 = "ea54fb25e5ab2ac5e4b7c2dc17792e6073ef654b22b20a06fce6a9887c1257d6" },
+  { address = "0x0046DD40", size = 686, sha256 = "aa250ed95904cbc1b0d78f04b2f4a09ef1bcd53f844cc298140474e89f2ea8ec" },
+]
+required_direct_edges = [
+  { caller = "0x0046DFF0", site = "0x0046E48B", target = "0x0046DD40", caller_status = "identified" },
+  { caller = "0x0046DD40", site = "0x0046DE75", target = "0x0046CA80", caller_status = "identified" },
+  { caller = "0x0046DD40", site = "0x0046DFB7", target = "0x0046CA80", caller_status = "identified" },
+]
+required_selected_body_calls = [
+  { owner = "0x0046CA80", site = "0x0046CAFD", target = "0x0046B6C0" },
+  { owner = "0x0046CA80", site = "0x0046CB40", target = "0x0046B6C0" },
+  { owner = "0x0046CA80", site = "0x0046CB6C", target = "0x0046B6C0" },
+  { owner = "0x0046CA80", site = "0x0046CBAA", target = "0x0046B6C0" },
+  { owner = "0x0046CA80", site = "0x0046CBFC", target = "0x0046B6C0" },
+  { owner = "0x0046CA80", site = "0x0046CC2F", target = "0x0046B6C0" },
+  { owner = "0x0046CA80", site = "0x0046CC57", target = "0x0046B6C0" },
+  { owner = "0x0046CA80", site = "0x0046CC93", target = "0x0046B6C0" },
+]
