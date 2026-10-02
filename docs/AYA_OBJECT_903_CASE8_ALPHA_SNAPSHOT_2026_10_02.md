@@ -1,0 +1,19 @@
+# AyaObject 903 case 8 alpha read, 2026-10-02
+
+## Bounded result
+
+This continues [the 903 sequence-order checkpoint](AYA_OBJECT_903_SEQUENCE_ORDER_2026_10_02.md) at `AyaObject_update_action_state_vslot28 @ 0x0061A290`. The executable is the original Japanese 1.06a target with SHA-256 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`; the 19,522-byte target callable SHA-256 is `18c813a20cea427b2c3577e2612e3f2e949a191ee2496dc9204331758bebb895`.
+
+**Target observation:** case 8 at `61EB3C` loads alpha byte `+113` and compares it with 20 before the x87 multiply of reset field `+11C`. The previous candidate loaded alpha after storing the multiplied value into `+11C/+120`. Retained source now takes a real `prior_alpha` snapshot before the reset expression and uses that value for the later guard and subtraction. A private single-change control moves the candidate `MOV AL` and `CMP AL` to the target's instruction positions without changing the case's size or behavior.
+
+The configured candidate case 8 starts at `61EB7D`, 65 bytes after the target. Across the first 59 bytes/11 instructions, the forms, memory operands, and external death edges agree after placement translation. The two external conditional branches have different REL32 displacement bytes. Immediately afterward the target jumps from `61EB77` to the shared fade tail at `61E83D` in case 2. The candidate instead begins its local fade tail at `61EBB8`; cases 2/3 branch there. This tail ownership and case 2/3 x87 store scheduling remain open, so the prefix is **not canonical byte equality**.
+
+The preceding ten-entry auxiliary table ordering and case 4/5 218-byte/40-instruction translated proof still pass on the configured object. Case 6 remains 106 bytes/21 instructions with four register operand differences. The full-root comparison remains **nonexact at +0x22**, target `0F` / candidate `27`. Source SHA-256 is `c43803581d5b219e06adb875c238002e52bb89fd0dfd4496516c393c4ced36cd`; configured object SHA-256 is `d4597550ab3bae25232ebbb7fddb6f813441c068244edf6d1eba52941ab1cd73`; comparator-window SHA-256 is `1f445fc211117bb8bf8679055aab715e7547ea6f47a8fdb033cc98d976727e80`. Candidate metadata starts at 19,548 versus target 19,524; section tail is 20,016. The comparator window ends 26 bytes before candidate metadata. No exact-ledger credit is added.
+
+## Verification and remaining unknowns
+
+The hash-bound private checker `.analysis/aya-903-order-20261002/prove-case8-alpha-snapshot.py` verifies the source/object/PE hashes, 59-byte region, 11 instruction forms and death edges, and the differing tail sites. The control object and reports are under `build/aya-903-order-20261002/case8-prior-alpha-*`; configured final reports share `build/aya-903-case8-final-*20261002.json`. Existing-object controls lack configured build provenance; the retained source was rebuilt through `scripts/build.py --unit gpt-web-aya-object-vslot28-full-root --compare --json`.
+
+The final object retains 903 at 1,726 bytes/372 instructions versus target 1,697 bytes/364 instructions, raw diagnostics 3/34 (entry/800/980), 33 main switch destinations with zero splits, and full target traversal of 4,630 instructions/all 19,522 bytes. The 124/124 guard model, all 18 unsigned selector conversions, 826 postspawn and 861 owner/payload paths, two 641-value unsigned-Y paths, 450 scoped emission cases, RTTI byte-call widths, and 852 translated patterns were rerun on this object. These are scoped checks. No shared ABI/header/helper/compiler/object-partition or accepted-unit relocation contract changed.
+
+The fade tail's physical owner, case 2/3 x87 stack/store scheduling, other 903 cases, 852 FILD/facing/scratch homes, 826/861 sharing and original TU/LTCG context remain unresolved. The attached IDA session still fails target identity and was not used. No Ghidra import or aggregate cold replay is claimed. The local CI/whitespace gate is required before commit.

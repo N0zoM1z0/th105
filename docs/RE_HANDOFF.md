@@ -28,8 +28,24 @@ instructions are not the active queue.
 
 ## Active matching checkpoint: AyaObject action-state root
 
-`AyaObject_update_action_state_vslot28 @ 0x0061A290` now places the existing
-903 sequence 6 source block after sequence 5. The hash-bound target auxiliary
+`AyaObject_update_action_state_vslot28 @ 0x0061A290` now snapshots 903 case8's
+alpha byte before the x87 reset multiply, as the target loads and compares
+it before that multiply. The configured candidate's first59 bytes/11
+instruction forms and death edges correspond to target case8 after65-byte
+placement translation. Target case8 jumps to the fade tail in case2;
+candidate case8 owns the tail locally. See
+[the case8 alpha evidence](AYA_OBJECT_903_CASE8_ALPHA_SNAPSHOT_2026_10_02.md).
+The whole19522-byte root remains nonexact at+22 target0F/candidate27, with
+9031726/372 against target1697/364 and rawdiagnostics3/34. No exact credit.
+Ten auxiliary table entries remain distinct and physically ordered0–9;
+case4/5 and case6 scoped proofs still pass. Prior guard, selector,826,861,
+450, RTTI and852 models were rerun. Fade-tail ownership, case2/3 x87 store
+scheduling, other903 cases and TU/LTCG context remain unresolved.
+
+The following paragraphs record the preceding 903 checkpoints.
+
+At the preceding sequence-order checkpoint, the existing 903 sequence 6
+source block moved after sequence 5. The hash-bound target auxiliary
 table at61F080 and relocated candidate table at61F098 each have ten distinct
 entries in physical index order0–9. Case4/5 still agree over218 bytes/40
 instruction forms and edges under76-byte placement translation; case6 has

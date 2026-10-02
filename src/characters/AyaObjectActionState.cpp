@@ -1988,14 +1988,16 @@ void AyaObjectActionStateView::update_action_state()
             sprite_004.object_y_0ec += motion_core()->component_f4;
             if (sprite_004.object_x_0e8 > 1380.0f || sprite_004.object_x_0e8 < -100.0f || sprite_004.object_y_0ec > 1000.0f || sprite_004.object_y_0ec < -160.0f) { --lifetime_330; return; }
             break;
-        case 8:
+        case 8: {
+            unsigned char const prior_alpha = alpha;
             sprite_004.reset_one_118 = static_cast<float>(sprite_004.reset_one_118 * 0.9200000166893005);
             sprite_004.reset_one_11c = sprite_004.reset_one_118;
-            if (alpha < 20 || time_counter_144 < 5) { --lifetime_330; return; }
-            alpha -= 20;
+            if (prior_alpha < 20 || time_counter_144 < 5) { --lifetime_330; return; }
+            alpha = static_cast<unsigned char>(prior_alpha - 20);
             reinterpret_cast<unsigned char *>(this)[0x111] -= 20;
             reinterpret_cast<unsigned char *>(this)[0x110] -= 20;
             break;
+        }
         case 9:
             motion_core()->set_oriented_components_f0_f4(heading_340[0], heading_340[1]);
             sprite_004.object_x_0e8 +=
