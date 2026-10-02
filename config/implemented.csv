@@ -1386,3 +1386,4 @@ CNumber_multiply_color
 CNumber_scalar_deleting_destructor
 NetworkWinsockState314CtorView_scalar_deleting_destructor
 CProfileDeckEdit_scalar_deleting_destructor
+CSpriteEx_rotate_xyz

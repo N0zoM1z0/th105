@@ -6697,7 +6697,7 @@ source = "src/battle/EffectSpriteTransforms.cpp"
 object = "build/match-units/CrossV106a_EffectSpriteTransforms.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a CSpriteEx transform core. Current copy construction fixes the 0x80 source quad and 0xb0 working quad as four 12-byte xyz points. Both 0x30 quad copies, translation, three origin-scale overloads, and X/Y/Z pivot scales are natural exact. The origin-scale bodies preserve target x87 source evaluation order: points 0/3 use scale*field while points 1/2 use field*scale. The six-argument three-axis rotate remains deliberately untracked at 1089 vs target 1095 because three float truth tests have compiler-only x87 compare-topology differences."
+notes = "TH105 1.06a CSpriteEx transform core. Current copy construction fixes the 0x80 source quad and 0xb0 working quad as four 12-byte xyz points. Both 0x30 quad copies, translation, three origin-scale overloads, and X/Y/Z pivot scales are natural exact. The origin-scale bodies preserve target x87 source evaluation order: points 0/3 use scale*field while points 1/2 use field*scale. The six-argument three-axis rotate is source-present but remains outside the accepted unit graph: corrected target-proven sum grouping emits 1095 bytes with 67 differing bytes from zero-test topology and temporary stack slots (docs/SPRITE_PIVOT_ROTATION_2026_10_02.md)."
 
 [[units.cross-v106a-effect-sprite-transforms.functions]]
 address = "0x00407340"

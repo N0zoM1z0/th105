@@ -1406,3 +1406,4 @@ CNumber_multiply_color,0x0040AE00,function
 CNumber_scalar_deleting_destructor,0x0040AE10,function
 NetworkWinsockState314CtorView_scalar_deleting_destructor,0x00412C80,function
 CProfileDeckEdit_scalar_deleting_destructor,0x0044B320,function
+CSpriteEx_rotate_xyz,0x00407680,function

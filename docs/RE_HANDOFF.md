@@ -15,7 +15,7 @@ instructions are not the active queue.
   Thirty-four evidence-linked origin/boundary batches are recorded in
   [the focused review](ORIGIN_BOUNDARY_REVIEW_2026_09_26.md). The current
   census is **1,502 authored / 1,414 excluded / 1,107 review**. Source-present
-  remains 1,388; canonical exact remains 1,315 functions / 220,094 bytes.
+  is now 1,389 after the rotation source audit; canonical exact remains 1,315 functions / 220,094 bytes.
   Recompute from `scripts/report-reconstruction-status.py --summary` after
   every promotion. Resume the remaining 1,107 reviews on user request.
 - The local target file passes hash verification. The attached IDA session
@@ -24,6 +24,28 @@ instructions are not the active queue.
   A Ghidra project would need independent target identity, entry point, and
   mapped-byte attestation before using its analysis. Do not launch multiple
   Ghidra processes or use the factory MCP adapter for this work.
+
+## Active matching checkpoint: sprite pivot rotation
+
+User-directed byte reconstruction is active; the separate origin-only cleanup
+queue remains parked. `CSpriteEx_rotate_xyz @ 0x00407680` now has reviewed
+source in `src/battle/EffectSpriteTransforms.cpp`. The original 1089-byte probe
+had three incorrect floating-point sum associations. Correct first-vertex
+parentheses produce 1095 bytes, with **67 differing bytes** from three x87
+zero-test regions and temporary stack-slot allocation. All 54 ordered
+value/store expressions agree with the target in the bounded symbolic audit;
+all ten accepted functions in the same object remain canonical exact.
+See [the focused evidence](SPRITE_PIVOT_ROTATION_2026_10_02.md) for commands,
+body hashes, direct Ghidra attestation and rejected hypotheses. Exact credit
+is unchanged; the rotation stays outside the accepted match-unit graph.
+
+Direct Ghidra 12.1 headless import, full mapped `.text` byte verification,
+entry/language/compiler checks and bounded 1095-byte decompilation succeeded.
+Use an isolated script directory: scanning the broad `.analysis` tree entered
+recursive worktree paths. No factory adapter or IDA analysis was used.
+The remaining rotation work needs original TU/compiler ownership evidence;
+ordinary condition/type/scope variants and a bounded `/GL` diagnostic have
+not reproduced the target comparison or stack allocation.
 
 ## Origin and boundary review discipline
 

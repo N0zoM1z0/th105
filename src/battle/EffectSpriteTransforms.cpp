@@ -2,8 +2,13 @@
 
 #include <string.h>
 
-float __cdecl lookup_orientation_sine_quantized_abs(float phase);
-float __cdecl lookup_orientation_cosine_quantized_abs(float phase);
+namespace th105 {
+double __cdecl lookup_orientation_sine_quantized_abs(float phase);
+double __cdecl lookup_orientation_cosine_quantized_abs(float phase);
+}
+
+using th105::lookup_orientation_sine_quantized_abs;
+using th105::lookup_orientation_cosine_quantized_abs;
 
 
 void CSpriteEx::set_uv_size(float width, float height)
@@ -105,7 +110,7 @@ void CSpriteEx::rotate_xyz(
 
         float y0 = working_quad_0b0[0].y - pivot_y;
         float x0 = working_quad_0b0[0].x - pivot_x;
-        working_quad_0b0[0].y = y0 * cosine + x0 * sine + pivot_y;
+        working_quad_0b0[0].y = y0 * cosine + (x0 * sine + pivot_y);
         working_quad_0b0[0].x = x0 * cosine + pivot_x - y0 * sine;
 
         float y1 = working_quad_0b0[1].y - pivot_y;
@@ -130,7 +135,7 @@ void CSpriteEx::rotate_xyz(
 
         float x0 = working_quad_0b0[0].x - pivot_x;
         float z0 = working_quad_0b0[0].z - pivot_z;
-        working_quad_0b0[0].x = x0 * cosine + z0 * sine + pivot_x;
+        working_quad_0b0[0].x = x0 * cosine + (z0 * sine + pivot_x);
         working_quad_0b0[0].z = z0 * cosine + pivot_z - x0 * sine;
 
         float x1 = working_quad_0b0[1].x - pivot_x;
@@ -155,7 +160,7 @@ void CSpriteEx::rotate_xyz(
 
         float y0 = working_quad_0b0[0].y - pivot_y;
         float z0 = working_quad_0b0[0].z - pivot_z;
-        working_quad_0b0[0].y = y0 * cosine + z0 * sine + pivot_y;
+        working_quad_0b0[0].y = y0 * cosine + (z0 * sine + pivot_y);
         working_quad_0b0[0].z = z0 * cosine + pivot_z - y0 * sine;
 
         float y1 = working_quad_0b0[1].y - pivot_y;
