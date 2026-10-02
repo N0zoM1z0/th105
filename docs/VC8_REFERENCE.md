@@ -24,22 +24,26 @@ The full provenance and physical page ranges are in
 
 ## Agent reading route
 
-Start with the small [local Markdown index](../build/references/vc8/INDEX.md).
+After running the fetch and extraction commands below, start with the small
+local Markdown index at `build/references/vc8/INDEX.md`. The ignored `build/`
+cache may be absent after a cleanup; the link is not a committed document.
 Each topic extract records the source URL, PDF hash and one-based physical PDF
 page numbers. Plain-text code blocks preserve the extracted layout without
 pretending that PDF tables have been reconstructed perfectly.
 
-The full searchable text is
-`build/references/vc8/VS2005_CPP_en-us.txt`. The original PDF stays available for
-checking ambiguous tables. All downloaded and generated material stays below
-`build/`, outside Git; this guide, source manifest and retrieval script are the
-durable repository records. No compiler binaries are downloaded by this tool.
+When generated, the full searchable text is
+`build/references/vc8/VS2005_CPP_en-us.txt`. The original PDF can be retained
+for checking ambiguous tables. All downloaded and generated material stays
+below `build/`, outside Git, and may be removed during handoff cleanup; this
+guide, source manifest and retrieval script are the durable repository records.
+No compiler binaries are downloaded by this tool.
 
-LeanToken's indexed `read` currently rejects these ignored local files. Use its
-live `json` lane instead: each topic has a `.json` sibling with `pages`, each
-containing `number` and `lines`. For example, query
+LeanToken's indexed `read` rejects these ignored local files. Once topic
+extraction has run, use its live `json` lane instead: each topic has a `.json`
+sibling with `pages`, each containing `number` and `lines`. For example, query
 `build/references/vc8/topics/1627-1628-floating-point-model-fp.json` with
-JMESPath `pages[0].lines[0:35]`. This route was tested against the actual MCP.
+JMESPath `pages[0].lines[0:35]`. This route was previously tested against the
+actual MCP; regenerate the ignored topic file before querying it.
 `scripts/reference-vc8.py --topics` prints the exact Markdown paths; `--search`
 returns bounded hits with physical page numbers. Use `--pages FIRST:LAST` to
 read directly from the hash-verified PDF when the text cache is unavailable.

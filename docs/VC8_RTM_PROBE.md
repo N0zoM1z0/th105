@@ -51,7 +51,9 @@ The compiler and C++ headers are RTM; Platform SDK headers deliberately reuse
 the existing private SDK. This is a bounded compiler experiment, not a claim
 that the original game's complete toolchain installation has been recovered.
 Binary/compiler files remain ignored. An earlier incomplete full ISO download
-is only `build/references/vc8/VC2005Express.iso.partial`, not verified media.
+was never verified and was removed from `build/` during handoff cleanup. It is
+not evidence for the extracted compiler payload or a replacement for the
+pinned `Ixpvc.exe` retrieval above.
 
 | Extracted file | SHA-256 |
 | --- | --- |
