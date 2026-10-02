@@ -39,6 +39,14 @@ destination_count = 22
 index_table = "0x005398A4"
 expected_physical_groups = 22
 
+# Action 720's match-identifier switch is inside the callable, with its table
+# after the three primary dispatch structures. Entries are in selector order.
+[[roots.auxiliary_switches]]
+name = "action720-match-identifier"
+dispatch = "0x00538C6A"
+destination_table = "0x00539990"
+destinations = ["0x00538CA9", "0x00538C95", "0x00538C81", "0x00538C71"]
+
 
 [[roots]]
 name = "fighter-common-action"

@@ -4805,9 +4805,10 @@ v3 = 0.0;
 if ( *(_WORD *)(raw +  318) == 2 )
 {
 v141 = *(_DWORD *)(raw +  324);
+// The target consumes +0x730/+0x734 as signed words (JGE at 0x538AD1).
 if ( v141 >= 60
 && !(v141 % *(__int16 *)(raw +  1842))
-&& *(_WORD *)(raw +  1840) < *(_WORD *)(raw +  1844) )
+&& *(__int16 *)(raw +  1840) < *(__int16 *)(raw +  1844) )
 {
 *(float *)v478 = (float)(unsigned int)selector_random_roll(0x168u);
 *(float *)&v478[1] = 20.0;
@@ -4843,23 +4844,24 @@ if ( !*(_WORD *)(raw +  322)
 && *(_WORD *)(raw +  318) == 1
 && (unsigned int)selector_random_roll(0x64u) <= 0x32u )
 {
+// Target physical branch order is 3, 2, 1, 0.
 switch ( g_match_identifier )
 {
-case 0:
-*(_WORD *)(raw +  1842) = 20;
-*(_WORD *)(raw +  1844) = 10;
-break;
-case 1:
-*(_WORD *)(raw +  1842) = 16;
-*(_WORD *)(raw +  1844) = 12;
+case 3:
+*(_WORD *)(raw +  1842) = 10;
+*(_WORD *)(raw +  1844) = 20;
 break;
 case 2:
 *(_WORD *)(raw +  1842) = 13;
 *(_WORD *)(raw +  1844) = 15;
 break;
-case 3:
-*(_WORD *)(raw +  1842) = 10;
-*(_WORD *)(raw +  1844) = 20;
+case 1:
+*(_WORD *)(raw +  1842) = 16;
+*(_WORD *)(raw +  1844) = 12;
+break;
+case 0:
+*(_WORD *)(raw +  1842) = 20;
+*(_WORD *)(raw +  1844) = 10;
 break;
 default:
 break;

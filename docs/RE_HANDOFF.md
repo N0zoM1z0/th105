@@ -26,9 +26,26 @@ instructions are not the active queue.
   Attest any new project before relying on it. Do not launch multiple
   Ghidra processes or use the factory MCP adapter for this work.
 
-## Active matching checkpoint: common Fighter giant root
+## Active matching checkpoint: Youmu giant root
 
-The current bounded root is `Fighter_update_common_action_state @ 0x004740C0`.
+The current bounded root is `Youmu_dispatch_action_state_vslot28 @ 0x00530200`,
+37,692 callable bytes. Fresh focused build reproduces **24/98** diagnostic
+owners and canonical failure at `+0xCA`. Action 720 now uses the target's signed
+word comparison at `0x538AD1`, and its ordinary inner switch lists branches
+in physical order 3/2/1/0. The 70-byte branch region is byte-identical at a
+different root offset; the whole function remains nonexact with zero new
+exact credit. See [the focused evidence](YOUMU_ACTION720_2026_10_02.md).
+
+The newly recorded auxiliary table at `0x539990` closes raw reachability from
+37,622 to **37,692 bytes / 9,912 instructions**, with no unresolved indirect
+jumps. Source/target metadata still differ (`+0x9354` versus `+0x933C`). Shared
+tails, temporary stack lifetimes and remaining numerical contracts need
+target-first review. No shared header, compiler profile or relocation target
+changed; only this unit was rebuilt. Exact totals remain unchanged.
+
+## Previous diagnostic checkpoint: common Fighter giant root
+
+The previous bounded root is `Fighter_update_common_action_state @ 0x004740C0`.
 Fresh focused build and complete owner audit reproduce **53/66** diagnostic
 owners, metadata `+0x2838`, and canonical failure at `+0x14`; the 10,219-byte
 function remains nonexact. Direct Ghidra identity/mapped-byte checks passed.
