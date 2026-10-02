@@ -26,7 +26,21 @@ instructions are not the active queue.
   Attest any new project before relying on it. Do not launch multiple
   Ghidra processes or use the factory MCP adapter for this work.
 
-## Active matching checkpoint: AyaObject action-entry root
+## Active matching checkpoint: shared Object action 980
+
+Fresh configured `CharacterObject_continue_action_980 @ 0x00596370` is
+323 bytes but remains nonexact at+0x21: target loads `ECX=this` before
+pushing the converted sequence; the candidate reverses the order. VC8
+explicitly ignores private `/G7`, yielding an identical comparison window.
+A single-TU `/GL` diagnostic DLL is also323 bytes but retains the candidate
+order; unresolved externals and `/FORCE` make it noncanonical. See
+[the compiler-scheduling control](OBJECT_ACTION980_COMPILER_SCHEDULING_2026_10_02.md).
+No source, accepted unit, compiler profile or relocation change. The
+AyaObject entry has11 analogous vslot+0x0C sites; an accepted exact control
+elsewhere emits both orders in one function. Seek original source/TU/LTCG
+context, not a global flag guess or register forcing.
+
+## Preceding matching checkpoint: AyaObject action-entry root
 
 Fresh configured `AyaObject_initialize_action_entry @ 0x0061F0B0` remains
 nonexact over4,531 bytes, first mismatch+0xDF in action803. All11 vtable

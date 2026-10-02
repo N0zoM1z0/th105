@@ -17628,7 +17628,7 @@ source = "src/characters/ObjectAction980.cpp"
 object = "build/match-units/GptWeb_ObjectAction980.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Target-backed shared action980 continuation called exactly once from each of the fifteen roster Object +0x3C action-entry roots. Branch-local heading lifetime removes a false EBX save and a direct scale expression keeps the sequence1 x87 product live across the real byte store. Fresh pinned VC8 is exact-sized 323/323 and matches 81/82 normalized instructions; only ECX=this versus push-eax ordering before the virtual +0x0C call remains. Keep nonexact until canonical byte order closes; no volatile/register forcing or fake liveness."
+notes = "Target-backed shared action980 continuation called once from each of fifteen roster Object +0x3C action-entry roots. Configured VC8 rebuild remains nonexact323/323, first mismatch+0x21: target sets ECX=this before PUSH EAX and virtual+0x0C call; candidate pushes first. Prior normalized81/82 diagnosis remains scoped. Branch-local heading lifetime and direct scale expression preserve target-backed semantics without volatile/register forcing. VC8 explicitly ignores private /G7 with identical comparison window; single-TU /GL diagnostic DLL remains323 bytes and keeps candidate order but has unresolved externals. No source/ABI/profile/relocation change or exact credit. See docs/OBJECT_ACTION980_COMPILER_SCHEDULING_2026_10_02.md."
 
 [[units.gpt-web-object-action-980.functions]]
 address = "0x00596370"
