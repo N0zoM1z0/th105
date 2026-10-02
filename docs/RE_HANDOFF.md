@@ -26,7 +26,23 @@ instructions are not the active queue.
   Attest any new project before relying on it. Do not launch multiple
   Ghidra processes or use the factory MCP adapter for this work.
 
-## Active matching checkpoint: AyaObject action-state root
+## Active matching checkpoint: AyaObject action-entry root
+
+Fresh configured `AyaObject_initialize_action_entry @ 0x0061F0B0` remains
+nonexact over4,531 bytes, first mismatch+0xDF in action803. All11 vtable
+slot+0x0C sequence calls encode `MOV ECX,ESI; PUSH EAX; CALL EDX` in the
+target and the reversed first two instructions in the relocated candidate.
+The action803 owner is otherwise the same60 bytes/18 instructions. A direct
+heading-read source control is byte-neutral; private VC8 `/O2 /Os` changes
+the prologue at byte0 and loses the configured switch shape. See
+[the vslot scheduling evidence](AYA_ENTRY_VSLOT0C_SCHEDULING_2026_10_02.md).
+The fresh target traversal closes1,195 instructions/all4,531 bytes through
+one32-destination switch. Configured audit13/33 owners, metadata4532 and
+sectiontail4859 are diagnostics, not exact credit. No source/ABI/flag or
+accepted-unit change. Seek independent original compiler/TU/LTCG evidence
+for the repeated call scheduling before changing this call class.
+
+## Preceding matching checkpoint: AyaObject action-state root
 
 The latest bounded 903 case2/3 controls leave retained source unchanged.
 Target case2 orders `FMULP, MOV AL, FSTP, CMP`; retained candidate orders

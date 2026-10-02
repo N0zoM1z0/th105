@@ -17645,7 +17645,7 @@ source = "src/characters/AyaObjectActionEntry.cpp"
 object = "build/match-units/GptWeb_AyaObjectActionEntry.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Source-present nonexact 4531-byte root. Fresh 2026-09-12 target/IDA audit corrects action855 member +0x184, unsigned821 threshold, nested812/817/822 sequence switches, phase-store order853/901 and structured856 graph. Retained double-return ABI yields 13/33 instruction-edge-identical audit owners, action856 414/406 and metadata +0x11BC; canonical first mismatch remains +0x7F. A reverted float-return dependency hypothesis yields action856 406/406 with only entry register/virtual-call scheduling differences; it is not accepted ABI evidence. See docs/AYA_ENTRY_EVIDENCE_2026_09_12.md for commands and unresolved cross-caller/type audit. No partial exact credit."
+notes = "Source-present nonexact AyaObject entry root@61F0B0. Fresh configured target traversal closes4531 bytes/1195 instructions through one32-destination switch. First mismatch+0xDF in action803; all11 target vslot+0x0C calls order MOV ECX,ESI before PUSH EAX, while current VC8 candidate reverses them. Action803 otherwise60 bytes/18 instructions each. Direct-heading source control byte-neutral; /O2 /Os private control changes prologue at byte0 and loses switch. Audit13/33 identical owners, metadata4532, sectiontail4859. Current shared float-return atan2_degrees dependency is independently accepted; old double-return checkpoint was superseded. No exact credit or source/ABI/flag/relocation change. See docs/AYA_ENTRY_VSLOT0C_SCHEDULING_2026_10_02.md and docs/AYA_ENTRY_EVIDENCE_2026_09_12.md."
 
 [[units.gpt-web-aya-object-action-entry.functions]]
 address = "0x0061F0B0"
