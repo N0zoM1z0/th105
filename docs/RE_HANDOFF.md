@@ -28,6 +28,27 @@ instructions are not the active queue.
 
 ## Active matching checkpoint: Youmu giant root
 
+Current bounded return/width controls leave the retained source unchanged:
+canonical first mismatch remains`+0xCA` target64/candidate38, metadata`+0x9310`
+versus target`+0x933C`, and31/98 diagnostic owners with zero new exact credit.
+Raw target has13 incoming jumps to low3's action-zero tail; baseline has9.
+696-only sharing recovers two edges but displaces four correct ones; explicit
+sharing across all seven incoming owners moves the common call into high797
+and overmerges other tails. Shared decrement controls place the body in696,
+whereas target places it in311. A caller-only float-return probe is byte-neutral;
+float-table return origin does not uniquely prove the helper prototype.
+710 branch-call/direction-snapshot controls also regress owners. None is retained.
+TH08's FSINCOS/FRNDINT reference does not establish assembly necessity for this
+root or its two decoded lookup helpers, which contain neither instruction.
+Original lifetime/compiler/TU context remains open. See
+[the shared-return and x87 controls](YOUMU_SHARED_ZERO_RETURN_AND_CONTROLS_2026_10_02.md).
+Next bounded matching work: freshly attest/build the source-present
+`YoumuObject_initialize_action_entry @ 0x00543670` (5,159 bytes), then inspect its
+residual owners. Do not resume source permutations on this root without new
+independent evidence.
+
+The following paragraphs record preceding checkpoints.
+
 The spawn view now uses an opaque copied-input pointer, supported by raw
 forwarder465190/consumer53B1C0 and manager ctor/table observations. All56
 original integer-address casts are removed byte-neutrally. Action601 now
