@@ -1951,16 +1951,32 @@ void AyaObjectActionStateView::update_action_state()
             }
             break;
         }
-        case 4:
+        case 4: {
+            CharacterObjectEffectEmitter *const owner = fighter_owner_348;
+            short const owner_action = *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(owner) + 0x13c);
+            if (owner_action != 740) { --lifetime_330; return; }
+            short const owner_sequence = *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(owner) + 0x13e);
+            if (owner_sequence != 1 && owner_sequence != 2) { --lifetime_330; return; }
+            sprite_004.object_x_0e8 = owner->x_ec;
+            sprite_004.object_y_0ec = static_cast<float>(static_cast<double>(owner->y_f0) + 100.0);
+            unsigned char const prior_alpha = alpha;
+            sprite_004.reset_zero_128 = static_cast<float>(sprite_004.reset_zero_128 + 1.0);
+            if (prior_alpha <= 245) alpha = static_cast<unsigned char>(prior_alpha + 10);
+            else alpha = 255;
+            break;
+        }
         case 5: {
             CharacterObjectEffectEmitter *const owner = fighter_owner_348;
             short const owner_action = *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(owner) + 0x13c);
+            if (owner_action != 740) { --lifetime_330; return; }
             short const owner_sequence = *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(owner) + 0x13e);
-            if (owner_action != 740 || (owner_sequence != 1 && owner_sequence != 2)) { --lifetime_330; return; }
+            if (owner_sequence != 1 && owner_sequence != 2) { --lifetime_330; return; }
             sprite_004.object_x_0e8 = owner->x_ec;
             sprite_004.object_y_0ec = static_cast<float>(static_cast<double>(owner->y_f0) + 100.0);
-            sprite_004.reset_zero_128 = static_cast<float>(sprite_004.reset_zero_128 + (sequence_index_13e == 4 ? 1.0 : -1.0));
-            alpha = alpha > 245 ? 255 : static_cast<unsigned char>(alpha + 10);
+            unsigned char const prior_alpha = alpha;
+            sprite_004.reset_zero_128 = static_cast<float>(sprite_004.reset_zero_128 + -1.0);
+            if (prior_alpha <= 245) alpha = static_cast<unsigned char>(prior_alpha + 10);
+            else alpha = 255;
             break;
         }
         case 7:

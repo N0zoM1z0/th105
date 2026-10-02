@@ -28,41 +28,34 @@ instructions are not the active queue.
 
 ## Active matching checkpoint: AyaObject action-state root
 
-`AyaObject_update_action_state_vslot28 @ 0x0061A290` now restores826's
-fresh owner reads around both435D60 calls and current sequence WORD13E read
-after optional spawn/counters. Target loads61C0CB/61C163/61C19A and current
-sequence61C2A7 support the boundaries; actual helper writes to owner/sequence
-remain unproven.140 decoded mocked postspawn paths agree, with26 old-candidate
-differences.826/903 unsigned selector payloads recover all18 native sites'
-conditional FADD DWORD2^32 forms;903 negative70 uses a float literal to avoid
-the double-control QWORD correction. Actual bounded payload values still agree
-with old expressions. See [the selector/current-sequence evidence](AYA_OBJECT_REMAINING_SELECTOR_CONVERSIONS_2026_10_02.md).
-826131-byte/32-instruction interval now agrees25 bytes later with fixed RNG
-calls;852's446-byte pattern is27 bytes later and194-byte rate/sequence pattern
-32 bytes later. These are placement-translated diagnostics, not canonical bytes.
-Fresh configured19522 comparison remains nonexact at+22 target0F/candidateE0.
-Metadata19476 versus target19524 narrows gap144->48; sectiontail19944/window
-includes46 metadata bytes, so its hash is not a candidate-body hash.
-Rawdiagnostics3/34 entry/800/980,33 destinations/zero splits; no exact credit.
-Physical826660/153 versus target660/155 remains nonexact;861467/109 versus
-358/89,9031655/363 versus1697/364. Tail sharing and instruction order remain
-unrecovered despite size proximity.
-852 converted-facing control restores one MOVSX but hoists FILD before the
-branch. Strict control still hoists conversion and adds QWORD stores; canonical
-comparison stops on unmapped __real@3d4ccccd, so only unrelocated order evidence
-is claimed. Alpha/scale source-order control does not restore scheduling.
-Explicit real shared-tail labels move the tail into861 and lose800's diagnostic.
-None is retained; do not repeat without new independent evidence.
+`AyaObject_update_action_state_vslot28 @ 0x0061A290` now restores903's
+separate sequence4/5 auxiliary entries, action740-before-owner-sequence read,
+prior alpha snapshot, and addition-first saturation. Target table61F080 has
+entries61E926/61E9A5; candidate table61F098 now has distinct61E9DC/61EA5B.
+The two target/candidate cases agree over218 bytes/40 instruction forms and
+edges after182-byte placement translation. See
+[the903 branch evidence](AYA_OBJECT_903_DISTINCT_SEQUENCE_BRANCHES_2026_10_02.md).
+The configured whole-root19522 comparison remains nonexact at+22 target0F/
+candidate27. Metadata19548 extends24 bytes beyond target19524; sectiontail
+20016 and comparison window ends26 bytes before candidate metadata. Its hash
+is a prefix-window diagnostic, not candidate body equality or exact credit.
+903 candidate1726/372 versus target1697/364; other auxiliary cases and
+physical tails remain different. Rawdiagnostics3/34 entry/800/980,33 main
+switch destinations/zero splits. Temporary4/34 with just split branches
+included802 alignment and was not accepted.
 Full raw traversal closes4630 instructions/all19522 bytes through seven
-switches; guards124/124 retain853 roles/902 path reconciliation. Prior450 mocked
-emission cases, RTTI byte-contract checks, two641-value unsignedY paths,
-853 select7/current-owner/twelve-role and861 owner/conversion/range proofs pass.
-No shared ABI/header/helper/compiler/object partition or accepted-unit relocation
-change. Full numerical/control-word/exception closure remains unknown.
-Remaining852 FILD/facing/scratch homes,826/861 physical sharing/alpha/scale,
-903 auxiliary sharing/field read boundaries, other values/lifetimes and original
-TU/LTCG context are open. Continue from independent target dataflow/ABI/type or
-compiler-context evidence; no assembly requirement is established.
+switches. Guards124/124 retain853 roles and902 path reconciliation. Prior
+all18 selector unsigned conversion forms,826140 mocked postspawn paths and
+131-byte interval,861 read/payload checks, two641-value unsignedY paths,
+450 mocked emission cases, RTTI byte-call widths,852446-byte/194-byte
+translated patterns all pass on the final object. Their scopes do not prove
+whole-game or global x87 behavior. No shared ABI/header/helper/compiler/
+object-partition or accepted-unit relocation contract change.
+Remaining903 auxiliary cases/registers/tail ownership,852 FILD/facing/scratch
+homes,826/861 physical sharing, and original TU/LTCG context are open. Full
+numerical/control-word/exception closure remains unknown. Continue from
+independent target dataflow/ABI/type or compiler-context evidence; no assembly
+requirement is established by this interval.
 
 ## Preceding matching checkpoint: YoumuObject action-entry root
 
