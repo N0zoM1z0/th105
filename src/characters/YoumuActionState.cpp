@@ -3936,10 +3936,12 @@ if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 11 )
 v359 = 0.0;
 do
 {
-*(float *)v458 = (float)(unsigned int)selector_random_roll(0x12u) + v359 * 45.0 + 22.5;
+// Target adds 22.5 to index*45 before adding the unsigned random roll.
+*(float *)v458 = (float)(unsigned int)selector_random_roll(0x12u) + (v359 * 45.0 + 22.5);
 *(float *)&v458[1] = 20.0;
 *(float *)&v458[2] = 2.0;
-if ( *(float *)v458 < 0.0 || *(float *)v458 > 180.0 )
+// The target sends unordered angles to the outside path as well.
+if ( !(*(float *)v458 >= 0.0 && *(float *)v458 <= 180.0) )
 {
 v203 = -1;
 v177 = *(unsigned __int8 *)(raw +  260);
@@ -4030,7 +4032,8 @@ do
 payload_446[0] = v112 * 60.0 + 30.0;
 payload_446[1] = 15.0;
 payload_446[2] = 2.0;
-if ( payload_446[0] < 0.0 || payload_446[0] > 180.0 )
+// The target sends unordered angles to the outside path as well.
+if ( !(payload_446[0] >= 0.0 && payload_446[0] <= 180.0) )
 spawn_owned_object_via_manager(821,
 *(float *)(raw +  236),
 *(float *)(raw +  240),
@@ -4329,10 +4332,12 @@ if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 11 )
 v365 = 0.0;
 do
 {
-*(float *)v459 = (float)(unsigned int)selector_random_roll(0x12u) + v365 * 45.0 + 22.5;
+// Target adds 22.5 to index*45 before adding the unsigned random roll.
+*(float *)v459 = (float)(unsigned int)selector_random_roll(0x12u) + (v365 * 45.0 + 22.5);
 *(float *)&v459[1] = 20.0;
 *(float *)&v459[2] = 2.0;
-if ( *(float *)v459 < 0.0 || *(float *)v459 > 180.0 )
+// The target sends unordered angles to the outside path as well.
+if ( !(*(float *)v459 >= 0.0 && *(float *)v459 <= 180.0) )
 {
 spawn_owned_object_via_manager(821,
     (double)(175 * (char)*(unsigned __int8 *)(raw +  260)) + *(float *)(raw +  236),

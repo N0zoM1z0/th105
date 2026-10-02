@@ -28,6 +28,15 @@ instructions are not the active queue.
 
 ## Active matching checkpoint: Youmu giant root
 
+The latest bounded numerical audit corrects actions 601/602/604 to send
+unordered angles outside the inclusive 0..180 interval, and preserves
+`roll + (index*45 + 22.5)` in actions 601/604. Fresh natural VC8 code reproduces
+the target comparison masks/branches and addition order. Full comparison
+still fails at `+0xCA`; 24/98 diagnostic owners and metadata `+0x92B4` remain.
+The TH08 reference contains real FSINCOS/FRNDINT assembly islands, but neither
+instruction occurs in this Youmu callable. This does not establish a rule for
+its callees or other roots. See [the angle audit and TH08 reference](YOUMU_ANGLE_RANGE_2026_10_02.md).
+
 The current bounded root is `Youmu_dispatch_action_state_vslot28 @ 0x00530200`,
 37,692 callable bytes. Source now restores the observed ordinary-jump and
 209/210 shared effect paths using real field stores and control-flow joins.

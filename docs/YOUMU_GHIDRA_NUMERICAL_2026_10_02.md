@@ -1,6 +1,10 @@
 # Youmu Ghidra cross-check and ordered facing guard, 2026-10-02
 
-## Current result
+Follow-up: [the angle-range and TH08 x87 audit](YOUMU_ANGLE_RANGE_2026_10_02.md)
+adds three unordered range corrections and two addition-association corrections.
+The one-byte COFF change and hashes below describe this earlier checkpoint.
+
+## Checkpoint result
 
 `Youmu_dispatch_action_state_vslot28 @ 0x00530200` remains **nonexact** over
 37,692 target bytes. Action 214's final non-1-facing branch now preserves the
