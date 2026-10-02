@@ -26,7 +26,24 @@ instructions are not the active queue.
   Attest any new project before relying on it. Do not launch multiple
   Ghidra processes or use the factory MCP adapter for this work.
 
-## Active matching checkpoint: Youmu giant root
+## Active matching checkpoint: YoumuObject action-entry root
+
+Freshly rebuilt`YoumuObject_initialize_action_entry @ 0x00543670` remains
+nonexact over5159 bytes at`+0x80` target9D/candidate97; metadata5156 versus
+target5160,29 distinct destinations/zero splits,6/30 instruction-edge diagnostics.
+Raw traversal reaches1294 instructions/all5159 bytes including both switches.
+A target851 state-write-before-value-load source control merges distinct851/854
+owners (29->28), so it is not retained. A real converted-int argument carrier
+in800 is caller-byte-neutral and also not retained. Full-root source and
+exact ledgers stay unchanged. Target/candidate spans are82012/26 and85057/37;
+original tail placement, selector-call lowering, value/register lifetimes and
+compiler/TU/LTCG context remain unknown. See
+[the load-timing checkpoint](YOUMU_OBJECT_ENTRY_LOAD_TIMING_2026_10_02.md).
+Continue with independently supported ABI/compiler-context or value-lifetime
+evidence; do not repeat these two source spellings or earlier negative join
+permutations as a search strategy.
+
+## Preceding matching checkpoint: Youmu giant root
 
 Current bounded return/width controls leave the retained source unchanged:
 canonical first mismatch remains`+0xCA` target64/candidate38, metadata`+0x9310`
@@ -445,7 +462,8 @@ python3 scripts/validate-tracking.py --require-target
 python3 scripts/function-origins.py --check
 ```
 
-The previous bounded YoumuObject action-entry root at `0x00543670` is parked.
+The September YoumuObject action-entry checkpoint below is historical; the
+fresh October load-timing checkpoint above is current.
 Its target control flow reaches all
 5,159/5,159 callable bytes, but the standalone candidate remains nonexact at
 `+0x80` with 6/30 instruction-and-edge-identical diagnostic owners. The
