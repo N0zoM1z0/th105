@@ -703,18 +703,20 @@ void AyaObjectActionStateView::update_action_state()
                 static_cast<float>(sprite_004.object_facing_100) * motion_core()->component_f0;
             sprite_004.object_y_0ec += motion_core()->component_f4;
         } else if (sequence_index_13e == 1) {
+            unsigned char const current_alpha = alpha;
             float const scale = static_cast<float>(
                 sprite_004.reset_one_118 + 0.1f);
             sprite_004.reset_one_118 = scale;
             sprite_004.reset_one_11c = scale;
             sprite_004.reset_zero_128 = static_cast<float>(
                 sprite_004.reset_zero_128 + 10.0);
-            if (alpha < 15) {
+            if (current_alpha < 15) {
                 --lifetime_330;
                 return;
             }
-            alpha -= 15;
+            alpha = static_cast<unsigned char>(current_alpha - 15);
         } else if (sequence_index_13e == 2) {
+            unsigned char const current_alpha = alpha;
             sprite_004.reset_zero_128 = static_cast<float>(
                 sprite_004.reset_zero_128 + state_370);
             state_370 = static_cast<float>(state_370 * 0.949999988079071);
@@ -722,11 +724,11 @@ void AyaObjectActionStateView::update_action_state()
                 sprite_004.reset_one_118 + 0.1f);
             sprite_004.reset_one_118 = scale;
             sprite_004.reset_one_11c = scale;
-            if (alpha < 20) {
+            if (current_alpha < 20) {
                 --lifetime_330;
                 return;
             }
-            alpha -= 20;
+            alpha = static_cast<unsigned char>(current_alpha - 20);
         }
         if (advance_frame_and_dispatch())
             --lifetime_330;
@@ -966,18 +968,20 @@ void AyaObjectActionStateView::update_action_state()
                 return;
             }
         } else if (sequence_index_13e == 1) {
+            unsigned char const current_alpha = alpha;
             float const scale = static_cast<float>(
                 sprite_004.reset_one_118 + 0.1f);
             sprite_004.reset_one_118 = scale;
             sprite_004.reset_one_11c = scale;
             sprite_004.reset_zero_128 = static_cast<float>(
                 sprite_004.reset_zero_128 + 10.0);
-            if (alpha < 15) {
+            if (current_alpha < 15) {
                 --lifetime_330;
                 return;
             }
-            alpha -= 15;
+            alpha = static_cast<unsigned char>(current_alpha - 15);
         } else if (sequence_index_13e == 2) {
+            unsigned char const current_alpha = alpha;
             sprite_004.reset_zero_128 = static_cast<float>(
                 sprite_004.reset_zero_128 + state_370);
             state_370 = static_cast<float>(state_370 * 0.949999988079071);
@@ -985,11 +989,11 @@ void AyaObjectActionStateView::update_action_state()
                 sprite_004.reset_one_118 + 0.1f);
             sprite_004.reset_one_118 = scale;
             sprite_004.reset_one_11c = scale;
-            if (alpha < 20) {
+            if (current_alpha < 20) {
                 --lifetime_330;
                 return;
             }
-            alpha -= 20;
+            alpha = static_cast<unsigned char>(current_alpha - 20);
         }
         if (advance_frame_and_dispatch())
             --lifetime_330;

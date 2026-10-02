@@ -28,26 +28,30 @@ instructions are not the active queue.
 
 ## Active matching checkpoint: AyaObject action-state root
 
-`AyaObject_update_action_state_vslot28 @ 0x0061A290` now corrects900's
-unordered outside-range behavior and902's unordered spawn-side selection.
-902 reads the owner state only inside its time/owner predicates, matching
-target conditional dereference timing. Match900/902 bodies follow target's
-physical3/2/1/0 order;900 block spans148/152/152/147 agree individually while
-instructions remain nonexact.902 shrinks783->644 versus target652 but still
-merges target's two callback suffixes. Six exact auxiliary table records close
-raw traversal14451->19522 bytes, reaching all4630 instructions with seven
-validated indexed jumps and no unresolved indirect exits. BL-mask proof
-extends guard coverage to124/124; one residual ordinal902 lead is a role-order
-artifact, with the upper angle's unordered path filtered by its lower guard.
-Fresh canonical request19522 remains nonexact at+22 target0F/candidate19;
-candidate section tail19488 is34 bytes short. Metadata19020 versus target19524
-widens the body gap364->504, so closer902 size is not whole-root recovery.
-Diagnostics2->3/34 gain only physical default802, without losing entry/980;
-33 destinations/zero splits remain. No exact credit is added. See
-[the AyaObject predicate/read/switch evidence](AYA_OBJECT_UNORDERED_AND_SWITCH_CLOSURE_2026_10_02.md).
-Original physical tails, argument/virtual-call scheduling, stack homes and
-compiler/TU context remain unknown. Continue with independently pinned value/
-control-flow evidence in this root; avoid register forcing or copied bytes.
+`AyaObject_update_action_state_vslot28 @ 0x0061A290` now captures817/822's
+sequence1/2 alpha value before floating updates. VC8 naturally recovers the
+target early MOV/CMP without additional instructions; corresponding11/14
+float-update instructions agree only after scratch-role normalization+14/+18,
+not byte acceptance. Candidate822 still shares sequence1 with817; target
+keeps it local. Natural nested-switch controls recover signed sequence
+dispatch but retain incorrect sharing and lose default802; early-bool control
+adds SETB/TEST. None of those controls is retained. Ordinary source already
+reproduces the target qword0.1f FADD and822's rounded X/Y values kept on the
+x87 stack for bounds checks, so these paths do not justify assembly.
+Fresh configured19522-byte request remains nonexact at+22 target0F/candidate19;
+available section tail19488 is34 bytes short, metadata19020 versus target19524,
+3/34 diagnostics (entry,980,physical default802),33 destinations/zero splits.
+No exact credit is added. See
+[the alpha-read and natural x87 evidence](AYA_OBJECT_ALPHA_READ_AND_X87_2026_10_02.md).
+Previous900/902 unordered predicates,902 conditional owner reads, match-body
+order and six auxiliary switch records remain; raw target traversal reaches
+all4630 instructions/all19522 bytes, with seven validated switches. Guards
+remain124/124 with the previously reconciled902 role-order/path lead. See
+[the predicate and switch checkpoint](AYA_OBJECT_UNORDERED_AND_SWITCH_CLOSURE_2026_10_02.md).
+Original physical successful/failure suffixes, stack homes and compiler/TU/LTCG
+context remain unknown. Resolve independently pinned value/control-flow or
+compiler-context evidence in this root; do not repeat the negative dispatch
+spellings or force registers/bytes. Full numerical/exception closure is open.
 
 ## Preceding matching checkpoint: YoumuObject action-entry root
 
