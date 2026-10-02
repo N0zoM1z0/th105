@@ -40,6 +40,9 @@ TH08's `fsincos`/`frndint` special-instruction cases. Five exact-backed helper
 ABI declarations were added to the private Ghidra working state and read back
 in a later process; typed decompilation still drops some reachable blocks. See
 [the Iku boundary and action map](IKU_VSLOT28_BOUNDARY_ACTION_MAP_2026_10_02.md).
+Raw action 0–3 traversal additionally pins the `+0xF4` float damping path,
+double `0.5` constant, single-precision scratch store, live x87 comparison,
+and cross-case/remote shared tails; no source or exact claim follows.
 Both decompiler outputs remain private hypotheses. The target's
 authored vtable identity and callable span are established, so the candidate
 is now identified; action bodies,
