@@ -26,7 +26,27 @@ instructions are not the active queue.
   Attest any new project before relying on it. Do not launch multiple
   Ghidra processes or use the factory MCP adapter for this work.
 
-## Active matching checkpoint: shared Object action 980
+## Active reconstruction checkpoint: Iku Fighter vslot +0x28
+
+`Iku_dispatch_action_state_vslot28 @ 0x00620920` now has a hash-attested
+complete target boundary: `[620920,62EFBE)` contains59,038 reachable bytes,
+15,132 instructions,131 returns and no unreached ranges or external direct
+jumps. Three compressed switch tables have33/42/35 distinct entries; their
+lookup arrays identify108 nondefault action IDs, plus direct actions300/560.
+A separate single-process Ghidra import and sequential readback verified
+executable SHA-256, entry, full mapped `.text`, body SHA-256 and a59,038-byte
+working function. The complete body has4,676 x87 instructions and none of
+TH08's `fsincos`/`frndint` special-instruction cases. Five exact-backed helper
+ABI declarations were added to the private Ghidra working state and read back
+in a later process; typed decompilation still drops some reachable blocks. See
+[the Iku boundary and action map](IKU_VSLOT28_BOUNDARY_ACTION_MAP_2026_10_02.md).
+Both decompiler outputs remain private hypotheses. The target's
+authored vtable identity and callable span are established, so the candidate
+is now identified; action bodies,
+helper ABI, x87 lifetimes and original TU/LTCG context remain to recover.
+No source-present or exact claim and no accepted-unit change.
+
+## Preceding matching checkpoint: shared Object action 980
 
 Fresh configured `CharacterObject_continue_action_980 @ 0x00596370` is
 323 bytes but remains nonexact at+0x21: target loads `ECX=this` before
