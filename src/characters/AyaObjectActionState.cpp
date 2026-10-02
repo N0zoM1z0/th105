@@ -1900,15 +1900,6 @@ void AyaObjectActionStateView::update_action_state()
             sprite_004.object_y_0ec += motion_core()->component_f4;
             if (time_counter_144 >= 180) { --lifetime_330; return; }
             break;
-        case 6:
-            if (*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x174) <= 0) { --lifetime_330; return; }
-            if (phase_state_180 == 6) { ++state_six_counter_384; ++phase_index_184; phase_state_180 = 0; }
-            motion_core()->set_oriented_components_f0_f4(heading_340[0], heading_340[1]);
-            sprite_004.object_x_0e8 +=
-                static_cast<float>(sprite_004.object_facing_100) * motion_core()->component_f0;
-            sprite_004.object_y_0ec += motion_core()->component_f4;
-            if (time_counter_144 >= 180) { --lifetime_330; return; }
-            break;
         case 2: {
             if (*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x174) <= 0) { --lifetime_330; return; }
             if (phase_state_180 == 6) { ++state_six_counter_384; ++phase_index_184; phase_state_180 = 0; }
@@ -1979,6 +1970,15 @@ void AyaObjectActionStateView::update_action_state()
             else alpha = 255;
             break;
         }
+        case 6:
+            if (*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x174) <= 0) { --lifetime_330; return; }
+            if (phase_state_180 == 6) { ++state_six_counter_384; ++phase_index_184; phase_state_180 = 0; }
+            motion_core()->set_oriented_components_f0_f4(heading_340[0], heading_340[1]);
+            sprite_004.object_x_0e8 +=
+                static_cast<float>(sprite_004.object_facing_100) * motion_core()->component_f0;
+            sprite_004.object_y_0ec += motion_core()->component_f4;
+            if (time_counter_144 >= 180) { --lifetime_330; return; }
+            break;
         case 7:
             if (phase_state_180) { next_sequence_block(); return; }
             motion_core()->component_f4 = static_cast<float>(motion_core()->component_f4 - 0.2f);

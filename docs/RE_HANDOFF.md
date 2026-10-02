@@ -28,10 +28,26 @@ instructions are not the active queue.
 
 ## Active matching checkpoint: AyaObject action-state root
 
-`AyaObject_update_action_state_vslot28 @ 0x0061A290` now restores903's
-separate sequence4/5 auxiliary entries, action740-before-owner-sequence read,
+`AyaObject_update_action_state_vslot28 @ 0x0061A290` now places the existing
+903 sequence 6 source block after sequence 5. The hash-bound target auxiliary
+table at61F080 and relocated candidate table at61F098 each have ten distinct
+entries in physical index order0–9. Case4/5 still agree over218 bytes/40
+instruction forms and edges under76-byte placement translation; case6 has
+106 bytes/21 instructions on each side but four register operand differences.
+See [the sequence-order evidence](AYA_OBJECT_903_SEQUENCE_ORDER_2026_10_02.md).
+The configured full-root comparison remains nonexact at+22 target0F/candidate27;
+903 remains1726/372 versus target1697/364, with rawdiagnostics3/34. The
+source-order change adds no exact credit. Scoped prior models were rerun on
+the final object. Remaining903 cases, physical tails, case1/6 register
+lifetimes,852 FILD/facing/scratch homes,826/861 sharing and TU/LTCG context
+are unresolved. No shared contract or accepted-unit relocation changed.
+
+The following paragraph records the preceding 903 checkpoint.
+
+At the preceding checkpoint, the root restored903's separate sequence4/5
+auxiliary entries, action740-before-owner-sequence read,
 prior alpha snapshot, and addition-first saturation. Target table61F080 has
-entries61E926/61E9A5; candidate table61F098 now has distinct61E9DC/61EA5B.
+entries61E926/61E9A5; the prior candidate table61F098 had distinct61E9DC/61EA5B.
 The two target/candidate cases agree over218 bytes/40 instruction forms and
 edges after182-byte placement translation. See
 [the903 branch evidence](AYA_OBJECT_903_DISTINCT_SEQUENCE_BRANCHES_2026_10_02.md).
