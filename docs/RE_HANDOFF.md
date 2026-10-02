@@ -46,6 +46,13 @@ ownership and action-73/75/88 sequence ownership are not evidence that inline
 assembly or LTCG is required. Continue with target-supported source structure
 and helper/TU visibility; preserve actual per-operation float rounding.
 
+The subsequent actual-helper visibility check is also negative: making the
+complete landing helper visible is byte-neutral, while exposing the boundary
+classifier removes a target receiver reload and folds target-distinct bodies. Its
+root section drops to 9,145 bytes; it is not retained. See the follow-up
+section in the same focused note. Common-root source and exact ledgers remain
+unchanged. Do not repeat these two helper bodies as a generic TU remedy.
+
 ## Previous exact checkpoint: fighter body collision
 
 User-directed byte reconstruction is active; the separate origin-only cleanup

@@ -139,3 +139,46 @@ boundaries. Any special-instruction island needs its own target evidence;
 there is no demonstrated `fsincos`/`frndint` requirement in this root. Original
 TU ownership, link-time transformation, and complete indirect owner sets
 remain unresolved. Exact credit added by this batch: zero.
+
+## Actual helper-definition visibility follow-up
+
+A second fresh baseline rebuild reproduces the same canonical candidate hash
+and failure at `+0x14`. Two isolated same-TU probes then use actual recovered
+helper bodies rather than a newly invented slide/sequence helper:
+
+| Definition made visible | Fresh observation |
+| --- | --- |
+| `resolve_stage_surface_landing_transition` from `FighterLandingTransition.cpp` | Root remains byte-neutral: same compared hash, 10,801-byte section and 53/66 owners. Its 43 landing and 30 boundary direct-call relocations remain. |
+| `classify_fighter_x_boundary` from `StageGeometry.cpp` | Root section shrinks to 9,145 bytes, first formal mismatch remains `+0x14`, now candidate `4D`. Only 31 landing and 18 boundary direct-call relocations remain. The configured 51-destination low table cannot be paired, so no owner score is assigned. |
+
+For the landing probe, the private `CharacterEx` view exposes the already
+observed floats at `+0x18C/+0x190` by splitting its opaque `+0x148..+0x47E`
+region; all existing offsets and total size remain unchanged. The helper body
+uses the existing `Fighter*` surface-helper ABI and the existing virtual
+action slot. The classifier body changes only its receiver's source class
+name. Neither probe uses forced inlining, `noinline`, alignment attributes,
+new compiler flags, assembly, or dummy source statements. Definitions occur
+after the root, and COFF inspection isolates the root's own `.text` section
+from helper COMDATs before counting E8/E9 REL32 sites.
+
+The first classifier call remains an ordinary E8 at root `+0x7D`; its
+definition is emitted separately. The significant caller change is after
+that call: baseline/target `+0xA1` reloads `ECX = ESI` before calling the
+frame helper, whereas this probe calls the frame helper directly there.
+The classifier body does not modify ECX, so visible register-preservation
+information explains this safe elimination without changing its thiscall ABI.
+The low table also loses target-distinct destinations through block folding;
+fewer call sites alone must not be described as proof of inlining.
+These changes regress against target topology and receiver setup, not
+progress in exact bytes. The unchanged landing probe
+shows that visibility of this particular larger helper does not fix the
+remaining source/owner discrepancy under this profile. These two results do
+not establish the original compiler's inlining settings or exclude every
+possible original TU context. Both probes are discarded from reconstruction
+state. The earlier blanket TU/LTCG explanation remains unproven.
+
+Private inputs, logs, existing-object comparator reports, owner reports and
+per-root call-site counts live in `.analysis/common-fighter-visibility-20261002/`;
+objects are under `build/common-fighter-visibility-20261002/`. The production
+baseline report is `build/common-fighter-visibility-baseline-20261002.json`.
+No source or exact ledger changes, and no aggregate cold replay, are involved.
