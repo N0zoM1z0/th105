@@ -1,5 +1,9 @@
 # Youmu floating value order and integer operands, 2026-10-02
 
+Follow-up: [spawn argument schedules](YOUMU_SPAWN_ARGUMENT_SCHEDULE_2026_10_02.md)
+recovers two action603 call-expression schedules. Metrics and source/candidate
+hashes below describe the preceding value-order checkpoint.
+
 ## Retained result
 
 **Observed:** `Youmu_dispatch_action_state_vslot28 @ 0x00530200` remains

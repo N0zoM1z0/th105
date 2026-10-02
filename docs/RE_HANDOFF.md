@@ -28,11 +28,23 @@ instructions are not the active queue.
 
 ## Active matching checkpoint: Youmu giant root
 
-The latest bounded floating-value audit recovers action603's
+Action603 now computes both offset object853 spawn coordinates inside the
+actual call arguments. Fresh VC8 prepares the trailing arguments before the
+remaining sine-Y/cosine-X helpers, matching the observed target order, and
+removes two extra dword copies. Ten unused scalar hypotheses are removed.
+Whole-root comparison remains nonexact at `+0xCA`, target64/candidateCC;
+metadata is `+0x92A4`, with26/98 diagnostic owners and no gains/losses.
+The retained49 physical payload sites remain resolved. Direct/late action545
+Y reads instead merge its spawn with546 (49->48); those probes and double-Y,
+label-placement, zero-carrier and declaration-order variants are not retained.
+Snapshot timing/type and physical tail placement remain unknown. See
+[the spawn argument schedule evidence](YOUMU_SPAWN_ARGUMENT_SCHEDULE_2026_10_02.md).
+
+The preceding bounded floating-value audit recovers action603's
 `sineScale + (peerY + 100)` grouping, action696's dword rounding before
 its sign comparison, and action526's three natural integer FISUB operands.
-Fresh whole-root comparison remains nonexact at `+0xCA`, target64/candidateDC;
-metadata is `+0x92B4` and diagnostics remain 26/98 with no gains/losses.
+Fresh whole-root comparison remains nonexact at `+0xCA`, target64/candidateCC;
+metadata is `+0x92A4` and diagnostics remain 26/98 with no gains/losses.
 All138 target floating comparisons are covered by the guard scan, but operand,
 precision and exception closure remain open. Arithmetic multiset leads reduce
 from five owners to three; the remaining hoisting/sharing differences do not
@@ -45,14 +57,14 @@ uses one rounded float loop index, and joins the existing sequence-advance
 return path. Its target loop-test template is recovered. The candidate's
 physical slot14 sites decrease from 14 to 13, versus target 12; the action740
 shared return and actual tail placement remain unresolved. Full comparison
-still fails at `+0xCA`, target64/candidateDC, with metadata `+0x92B4` and
+still fails at `+0xCA`, target64/candidateCC, with metadata `+0x92A4` and
 26/98 diagnostic owners. No exact credit is added. Static site counts do not
 prove missing runtime calls. See
 [the action-602 and call-path evidence](YOUMU_ACTION602_CALLS_2026_10_02.md).
 
 Actions 601 and 710 retain float X-argument carriers supported by target
 branch-local dword stores/reloads. Fresh whole-root comparison remains
-nonexact at `+0xCA`, target64/candidateDC; metadata is `+0x92B4` and strict
+nonexact at `+0xCA`, target64/candidateCC; metadata is `+0x92A4` and strict
 owner diagnostics previously improved from 24/98 to **26/98**, gaining low11/high798
 without losing previous identical owners. This adds no exact-byte credit.
 The extended x87 scan covers 138 target/candidate guards with zero
@@ -71,7 +83,7 @@ The preceding bounded numerical audit corrects actions 601/602/604 to send
 unordered angles outside the inclusive 0..180 interval, and preserves
 `roll + (index*45 + 22.5)` in actions 601/604. Fresh natural VC8 code reproduces
 the target comparison masks/branches and addition order. Full comparison
-still fails at `+0xCA`; 26/98 diagnostic owners and metadata `+0x92B4` now apply.
+still fails at `+0xCA`; 26/98 diagnostic owners and metadata `+0x92A4` now apply.
 The TH08 reference contains real FSINCOS/FRNDINT assembly islands, but neither
 instruction occurs in this Youmu callable. This does not establish a rule for
 its callees or other roots. See [the angle audit and TH08 reference](YOUMU_ANGLE_RANGE_2026_10_02.md).
@@ -85,7 +97,7 @@ merges of target-distinct owners. Fresh strict owner auditing runs and reports
 **26/98** diagnostic identical owners. This is not exact-byte credit.
 
 Fresh focused comparison remains nonexact at `+0xCA`, target `64`, candidate
-`DC`. Candidate metadata starts at `+0x92B4`, versus target `+0x933C`.
+`CC`. Candidate metadata starts at `+0x92A4`, versus target `+0x933C`.
 Raw traversal still reaches **37,692 bytes / 9,912 instructions**, with no
 unresolved indirect jumps, including the auxiliary table at `0x539990`.
 See [the shared-tail evidence](YOUMU_SHARED_EFFECT_TAILS_2026_10_02.md).

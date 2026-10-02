@@ -198,7 +198,6 @@ double v146; // st7
 float v147; // [esp+8h] [ebp-258h]
 float v148; // [esp+8h] [ebp-258h]
 float v149; // [esp+8h] [ebp-258h]
-float v150; // [esp+8h] [ebp-258h]
 float v151; // [esp+8h] [ebp-258h]
 float v152; // [esp+8h] [ebp-258h]
 float v153; // [esp+Ch] [ebp-254h]
@@ -211,9 +210,6 @@ float v159; // [esp+Ch] [ebp-254h]
 float v160; // [esp+Ch] [ebp-254h]
 float v161; // [esp+Ch] [ebp-254h]
 float v162; // [esp+Ch] [ebp-254h]
-float v163; // [esp+Ch] [ebp-254h]
-float v164; // [esp+Ch] [ebp-254h]
-float v165; // [esp+Ch] [ebp-254h]
 float v166; // [esp+Ch] [ebp-254h]
 float v167; // [esp+Ch] [ebp-254h]
 float v168; // [esp+Ch] [ebp-254h]
@@ -439,12 +435,6 @@ float v387; // [esp+3Ch] [ebp-224h]
 float v388; // [esp+3Ch] [ebp-224h]
 float v389; // [esp+3Ch] [ebp-224h]
 float v390; // [esp+3Ch] [ebp-224h]
-float v391; // [esp+3Ch] [ebp-224h]
-float v392; // [esp+3Ch] [ebp-224h]
-float v393; // [esp+3Ch] [ebp-224h]
-float v394; // [esp+3Ch] [ebp-224h]
-float v395; // [esp+3Ch] [ebp-224h]
-float v396; // [esp+3Ch] [ebp-224h]
 float v397; // [esp+3Ch] [ebp-224h]
 float v398; // [esp+3Ch] [ebp-224h]
 float v399; // [esp+3Ch] [ebp-224h]
@@ -4218,21 +4208,21 @@ v442 = lookup_orientation_sine_quantized_abs(v389) * 200.0 + (*(float *)(*(_DWOR
 v390 = 90.0 - payload_444[0];
 v364 = lookup_orientation_cosine_quantized_abs(v390) * 200.0;
 v178 = *(unsigned __int8 *)(raw +  260);
-v163 = -payload_444[0];
-v391 = v442 - lookup_orientation_sine_quantized_abs(v163) * 150.0;
-v164 = v391;
-v150 = -payload_444[0];
-v392 = (v364 - lookup_orientation_cosine_quantized_abs(v150) * 150.0) * (double)*(char *)(raw +  260)
-+ *(float *)(*(_DWORD *)(raw +  368) + 236);
-spawn_owned_object_via_manager(853, v392, v164, v178, 1, (int)payload_444, 3);
+// Target prepares trailing spawn arguments before the remaining sine-Y/cosine-X calls.
+spawn_owned_object_via_manager(853,
+(v364 - lookup_orientation_cosine_quantized_abs(-payload_444[0]) * 150.0) * (double)*(char *)(raw +  260)
++ *(float *)(*(_DWORD *)(raw +  368) + 236),
+v442 - lookup_orientation_sine_quantized_abs(-payload_444[0]) * 150.0,
+v178, 1, (int)payload_444, 3);
 payload_444[2] = 3.0;
-v393 = 90.0 - payload_444[0];
+// Target computes these coordinates within the spawn argument schedule.
 v179 = *(unsigned __int8 *)(raw +  260);
-v394 = lookup_orientation_sine_quantized_abs(v393) * 250.0 + (*(float *)(*(_DWORD *)(raw +  368) + 240) + 100.0);
-v165 = v394;
-v395 = 90.0 - payload_444[0];
-v396 = lookup_orientation_cosine_quantized_abs(v395) * 250.0 * (double)*(char *)(raw +  260) + *(float *)(*(_DWORD *)(raw +  368) + 236);
-spawn_owned_object_via_manager(853, v396, v165, v179, 1, (int)payload_444, 3);
+spawn_owned_object_via_manager(853,
+lookup_orientation_cosine_quantized_abs((float)(90.0 - payload_444[0])) * 250.0 * (double)*(char *)(raw +  260)
++ *(float *)(*(_DWORD *)(raw +  368) + 236),
+lookup_orientation_sine_quantized_abs((float)(90.0 - payload_444[0])) * 250.0
++ (*(float *)(*(_DWORD *)(raw +  368) + 240) + 100.0),
+v179, 1, (int)payload_444, 3);
 v118 = 0.0;
 ++*(_WORD *)(raw +  1840);
 LABEL_1499:
