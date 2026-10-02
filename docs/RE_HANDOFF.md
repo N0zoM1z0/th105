@@ -15,7 +15,7 @@ instructions are not the active queue.
   Thirty-four evidence-linked origin/boundary batches are recorded in
   [the focused review](ORIGIN_BOUNDARY_REVIEW_2026_09_26.md). The current
   census is **1,502 authored / 1,414 excluded / 1,107 review**. Source-present
-  is now 1,389 after the rotation source audit; the exact ledger now records 1,316 functions / 221,189 bytes after the focused rotation replay.
+  is now 1,390 after the body-collision source audit; the exact ledger now records 1,317 functions / 223,051 bytes after focused body-collision replay.
   Recompute from `scripts/report-reconstruction-status.py --summary` after
   every promotion. Resume the remaining 1,107 reviews on user request.
 - The local target file passes hash verification. The attached IDA session
@@ -25,34 +25,42 @@ instructions are not the active queue.
   mapped-byte attestation before using its analysis. Do not launch multiple
   Ghidra processes or use the factory MCP adapter for this work.
 
-## Active matching checkpoint: exact sprite pivot rotation
+## Active matching checkpoint: exact fighter body collision
 
 User-directed byte reconstruction is active; the separate origin-only cleanup
-queue remains parked. `CSpriteEx_rotate_xyz @ 0x00407680` is now canonical
-**1095/1095 exact** in `cross-v106a-effect-sprite-transforms`. Correct
-first-vertex sum association, local `fenv_access(on)` and shared real
-`cosine/sine/x/y/z` temporaries reproduce the complete target callable.
-The formal focused build/replay reports all eleven unit functions exact,
-including all ten pre-existing accepted siblings. See
-[the focused evidence](SPRITE_PIVOT_ROTATION_2026_10_02.md) for hashes, commands,
-direct Ghidra attestation, the prior nonexact checkpoint and final closure.
+queue remains parked. `CollisionContext_resolve_fighter_body_collision @
+0x0046CCA0` is now canonical **1862/1862 exact** in
+`cross-v106a-body-collision`. Fresh raw target comparison corrected the retained
+source's inverted vertical center tie and missing float-rounded directional
+velocities. Structured edge-owner chains replace every retained goto, and one
+real average-motion lifetime shared across the two ordinary resolution paths
+closes the final two stack-slot bytes. See
+[the focused evidence](FIGHTER_BODY_COLLISION_2026_10_02.md) for the complete
+CFG/ABI, numerical contract, scratch lifetime caveat, hashes and command.
 
-The exact ledger gains one function / 1095 bytes; source count remains 1389.
+The exact ledger gains one function / 1862 bytes and source count gains one.
 These are ledger totals after focused replay, not a new aggregate cold replay.
-Original class spelling, TU partition and whether environment control came
-from a pragma or compiler option remain inferred. No global compiler profile
-or shared header was changed. The old origin rule is archived as accepted
-provenance; its hash and twelve call witnesses remain checked by public CI.
+Original class/TU spelling and explicit-union versus compiler slot-coalescing
+provenance remain unknown. The accepted source reads only the scratch member
+written in its active phase. No shared header, compiler profile or relocation
+ledger changed. Archived origin evidence retains its body hash, nine incoming
+and ten outgoing call witnesses, replayed by the existing public workflow test.
 
-The next bounded source candidate is the reviewed 1862-byte Fighter body
-collision phase `0x0046CCA0`, which calls existing exact geometry helpers.
-Re-attest target, inspect its complete raw CFG and retained source before
-selection. The giant common Fighter and YoumuObject switch roots stay at
-their documented earlier nonexact checkpoints.
+The previous `CSpriteEx_rotate_xyz @ 0x00407680` checkpoint remains canonical
+1095/1095 in its eleven-function unit. See
+[the rotation evidence](SPRITE_PIVOT_ROTATION_2026_10_02.md); its function-local
+floating environment control is not a general x87 cure.
+
+Next resume the common Fighter giant switch root `0x004740C0` from its
+owner-audit checkpoint. Re-attest target, current source and canonical failure
+before accepting old semantic-closure/TU assumptions. The two numerical
+corrections here demonstrate why residual stack differences should not be
+classified as LTCG until full ordered arithmetic has been audited.
 
 Direct Ghidra 12.1 import and full mapped `.text` attestation succeeded for
 the rotation. Use an isolated script directory to avoid recursive scanning
 of old `.analysis` worktree paths. No factory adapter or IDA analysis was used.
+The body-collision unit used hash-attested raw PE disassembly directly.
 
 ## Origin and boundary review discipline
 
@@ -154,8 +162,9 @@ exact parent callback paths, and paired checked-container destructor
 adjustors; one also reproduces natural VC8 implicit constructor code.
 The 1,862-byte fighter body-collision phase `0x0046CCA0` has complete
 main-span reachability, five RET paths, ten calls to exact game collision
-helpers and nine distinct exact BattleManager/Story callers. Its retained
-source/class identity and standalone exact codegen remain unresolved.
+helpers and nine distinct exact BattleManager/Story callers. The later
+source audit now closes canonical exact codegen as described above; original
+class/TU spelling remains unknown.
 The 148-byte line renderer `0x00401180`, 395-byte outline/filled rectangle
 renderer `0x004012A0`, and 107-byte texture-slot binder `0x00404DF0` have
 complete main spans and replayed call edges. The rectangle draws four

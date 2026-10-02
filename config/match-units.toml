@@ -103,6 +103,31 @@ symbol_base = "get_slot_character"
 address = "0x004642A0"
 symbol_base = "is_slot_active"
 
+[units.cross-v106a-body-collision]
+kind = "probe"
+source = "src/battle/BodyCollision.cpp"
+object = "build/match-units/CrossV106a_BodyCollision.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "TH105 1.06a body-collision phase. Target-pinned ordered/unordered center ties, explicit rounded directional velocities and one common average lifetime reproduce the full 1862-byte callable. The two real scratch phases use the observed byte/float stack location; no inactive union member is read. Original class/TU spelling is unknown. See docs/FIGHTER_BODY_COLLISION_2026_10_02.md."
+
+[[units.cross-v106a-body-collision.functions]]
+address = "0x0046CCA0"
+symbol_base = "?resolve_fighter_body_collision@CollisionContext@th105@@QAEXXZ"
+rel32_targets = [
+  "?classify_fighter_x_boundary@Fighter@th105@@QAECXZ=0x00435910",
+  "?test_proposed_x_against_stage_height@Fighter@th105@@QAEHM@Z=0x00435950",
+  "?transform_local_aabb_to_world@CollisionContext@th105@@QAEXPBUActorPosition@2@PBULocalAabb@2@PAUWorldAabb@2@@Z=0x0046B6E0",
+  "?test_and_accumulate_float_aabb_overlap@CollisionContext@th105@@QAEHPAUWorldAabb@2@0@Z=0x0046B740",
+  "?reset_collision_extents@CollisionContext@th105@@QAEXXZ=0x0046B6C0",
+]
+dir32_targets = [
+  "?g_body_collision_edge_owner_a@th105@@3CA=?g_body_collision_edge_owner_a@th105@@3CA",
+  "?g_body_collision_edge_owner_b@th105@@3CA=?g_body_collision_edge_owner_b@th105@@3CA",
+  "__real@3ff0000000000000=__real@3ff0000000000000",
+  "__real@3fe0000000000000=__real@3fe0000000000000",
+]
+
 [units.cross-v106a-collision]
 kind = "probe"
 source = "src/battle/Collision.cpp"
