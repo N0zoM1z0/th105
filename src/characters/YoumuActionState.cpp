@@ -44,7 +44,7 @@ public:
     void dispatch_indexed_sequence_window_45c8b0(signed char relative_index, int outcome, int source_token);
     int configure_render_history(int countdown, signed char period, int color_mask);
     void publish_texture_state(signed char texture_index, short duration);
-    int spawn_owned_object_via_manager(int object_id, float x, float y, int direction, unsigned char arg5, int arg6, int arg7);
+    int spawn_owned_object_via_manager(int object_id, float x, float y, int direction, unsigned char field_33c, const void *payload, int payload_count);
     void adjust_counter_482(short amount, int floor_value);
     void advance_secondary_event_effect_cycle();
     int add_phase_scaled_counter_558(int value);
@@ -156,7 +156,6 @@ double v107; // rt0
 double v108; // st6
 double v109; // st7
 int v110; // eax
-float v111; // action601 X argument is rounded to a target dword
 __int16 v113; // ax
 __int16 v114; // ax
 __int16 v115; // ax
@@ -192,7 +191,6 @@ double v145; // st6
 double v146; // st7
 float v147; // [esp+8h] [ebp-258h]
 float v148; // [esp+8h] [ebp-258h]
-float v149; // [esp+8h] [ebp-258h]
 float v151; // [esp+8h] [ebp-258h]
 float v152; // [esp+8h] [ebp-258h]
 float v153; // [esp+Ch] [ebp-254h]
@@ -204,7 +202,6 @@ float v158; // [esp+Ch] [ebp-254h]
 float v159; // [esp+Ch] [ebp-254h]
 float v160; // [esp+Ch] [ebp-254h]
 float v161; // [esp+Ch] [ebp-254h]
-float v162; // [esp+Ch] [ebp-254h]
 float v166; // [esp+Ch] [ebp-254h]
 float v167; // [esp+Ch] [ebp-254h]
 float v168; // [esp+Ch] [ebp-254h]
@@ -241,7 +238,6 @@ float v199; // [esp+14h] [ebp-24Ch]
 float v200; // [esp+14h] [ebp-24Ch]
 float v201; // [esp+14h] [ebp-24Ch]
 float v202; // [esp+14h] [ebp-24Ch]
-int v203; // [esp+14h] [ebp-24Ch]
 float v204; // [esp+14h] [ebp-24Ch]
 float v205; // [esp+14h] [ebp-24Ch]
 int v206; // [esp+14h] [ebp-24Ch]
@@ -1880,7 +1876,7 @@ spawn_owned_object_via_manager(848,
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)v475,
+v475,
 3);
 }
 if ( *(__int16 *)(raw +  320) >= 5 )
@@ -1907,7 +1903,7 @@ spawn_owned_object_via_manager(848,
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)v469,
+v469,
 3);
 }
 if ( *(__int16 *)(raw +  320) >= 2 )
@@ -1997,7 +1993,7 @@ spawn_owned_object_via_manager(848,
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)v483,
+v483,
 3);
 }
 if ( *(__int16 *)(raw +  320) >= 5 )
@@ -2027,7 +2023,7 @@ spawn_owned_object_via_manager(848,
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)v471,
+v471,
 3);
 }
 if ( *(__int16 *)(raw +  320) >= 2 )
@@ -2415,7 +2411,7 @@ v174 = *(unsigned __int8 *)(raw +  260);
 v310 = *(float *)(raw +  240) + 210.0;
 v153 = v310;
 v311 = *(float *)(raw +  236) - 80 * (char)v174;
-spawn_owned_object_via_manager(800, v311, v153, v174, 1, (int)v495, 5);
+spawn_owned_object_via_manager(800, v311, v153, v174, 1, v495, 5);
 }
 return;
 case 0x191:
@@ -2447,7 +2443,7 @@ v67 = *(unsigned __int8 *)(raw +  260);
 v312 = *(float *)(raw +  240) + 25.0;
 v154 = v312;
 v313 = *(float *)(raw +  236) - 150 * (char)v67;
-spawn_owned_object_via_manager(800, v313, v154, v67, 1, (int)v492, 5);
+spawn_owned_object_via_manager(800, v313, v154, v67, 1, v492, 5);
 }
 return;
 case 0x192:
@@ -2479,7 +2475,7 @@ v68 = *(unsigned __int8 *)(raw +  260);
 v314 = *(float *)(raw +  240) + 25.0;
 v155 = v314;
 v315 = (double)(170 * (char)v68) + *(float *)(raw +  236);
-spawn_owned_object_via_manager(800, v315, v155, v68, 1, (int)v493, 5);
+spawn_owned_object_via_manager(800, v315, v155, v68, 1, v493, 5);
 }
 return;
 case 0x194:
@@ -2519,7 +2515,7 @@ v69 = *(unsigned __int8 *)(raw +  260);
 v316 = *(float *)(raw +  240) + 225.0;
 v156 = v316;
 v317 = *(float *)(raw +  236) - 45 * (char)v69;
-spawn_owned_object_via_manager(800, v317, v156, v69, 1, (int)v494, 5);
+spawn_owned_object_via_manager(800, v317, v156, v69, 1, v494, 5);
 }
 return;
 case 0x196:
@@ -2561,7 +2557,7 @@ v70 = *(unsigned __int8 *)(raw +  260);
 v318 = *(float *)(raw +  240) + 225.0;
 v157 = v318;
 v319 = *(float *)(raw +  236) - 45 * (char)v70;
-spawn_owned_object_via_manager(800, v319, v157, v70, 1, (int)v496, 5);
+spawn_owned_object_via_manager(800, v319, v157, v70, 1, v496, 5);
 }
 return;
 case 0x198:
@@ -2796,7 +2792,7 @@ v158 = v322;
 v323 = (double)(30 * (char)v175) + *(float *)(raw +  236);
 v76 = v323;
 v147 = v76;
-spawn_owned_object_via_manager(810, v147, v158, v175, 1, (int)v224, 1);
+spawn_owned_object_via_manager(810, v147, v158, v175, 1, v224, 1);
 *(_DWORD *)(raw +  384) = 1;
 dispatch_character_wave_handle(3);
 emit_fighter_effect_433cc0(127,
@@ -2822,7 +2818,7 @@ v158 = v324;
 v325 = (double)(30 * (char)v175) + *(float *)(raw +  236);
 v76 = v325;
 v147 = v76;
-spawn_owned_object_via_manager(810, v147, v158, v175, 1, (int)v224, 1);
+spawn_owned_object_via_manager(810, v147, v158, v175, 1, v224, 1);
 *(_DWORD *)(raw +  384) = 1;
 dispatch_character_wave_handle(3);
 emit_fighter_effect_433cc0(127,
@@ -2851,7 +2847,7 @@ v159 = *(float *)(raw +  240);
 v326 = (double)(80 * (char)v176) + *(float *)(raw +  236);
 v77 = v326;
 v148 = v77;
-spawn_owned_object_via_manager(815, v148, v159, v176, 1, (int)v225, 3);
+spawn_owned_object_via_manager(815, v148, v159, v176, 1, v225, 3);
 *(_DWORD *)(raw +  384) = 1;
 dispatch_character_wave_handle(7);
 emit_fighter_effect_433cc0(127,
@@ -2880,7 +2876,7 @@ v159 = *(float *)(raw +  240);
 v327 = (double)(80 * (char)v176) + *(float *)(raw +  236);
 v77 = v327;
 v148 = v77;
-spawn_owned_object_via_manager(815, v148, v159, v176, 1, (int)v225, 3);
+spawn_owned_object_via_manager(815, v148, v159, v176, 1, v225, 3);
 *(_DWORD *)(raw +  384) = 1;
 dispatch_character_wave_handle(7);
 emit_fighter_effect_433cc0(127,
@@ -2910,7 +2906,7 @@ v80 = *(unsigned __int8 *)(raw +  260);
 v328 = *(float *)(raw +  240) + 74.0;
 v160 = v328;
 v329 = (double)(170 * (char)v80) + *(float *)(raw +  236);
-spawn_owned_object_via_manager(820, v329, v160, v80, 1, (int)v489, 2);
+spawn_owned_object_via_manager(820, v329, v160, v80, 1, v489, 2);
 }
 ++*(_WORD *)(raw +  1840);
 }
@@ -2966,7 +2962,7 @@ spawn_owned_object_via_manager(811,
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)v473,
+v473,
 3);
 }
 if ( !*(_DWORD *)(raw +  324)
@@ -3049,7 +3045,7 @@ spawn_owned_object_via_manager(811,
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)v488,
+v488,
 3);
 }
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 14 )
@@ -3062,7 +3058,7 @@ spawn_owned_object_via_manager(811,
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)v467,
+v467,
 3);
 }
 }
@@ -3406,7 +3402,7 @@ v95 = *(unsigned __int8 *)(raw +  260);
 v347 = *(float *)(raw +  240) + 115.0;
 v161 = v347;
 v348 = (double)(150 * (char)v95) + *(float *)(raw +  236);
-spawn_owned_object_via_manager(821, v348, v161, v95, 1, (int)v486, 3);
+spawn_owned_object_via_manager(821, v348, v161, v95, 1, v486, 3);
 }
 }
 }
@@ -3453,7 +3449,7 @@ spawn_owned_object_via_manager(812,
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)v477,
+v477,
 3);
 *(float *)(raw +  244) = 12.5;
 v98 = *(unsigned __int8 *)(raw +  260);
@@ -3479,7 +3475,7 @@ spawn_owned_object_via_manager(812,
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)v484,
+v484,
 3);
 *(float *)(raw +  244) = 12.5;
 emit_fighter_effect_433cc0(127,
@@ -3527,7 +3523,7 @@ spawn_owned_object_via_manager(812,
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)v479,
+v479,
 3);
 }
 }
@@ -3567,7 +3563,7 @@ spawn_owned_object_via_manager(812,
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)v485,
+v485,
 3);
 }
 }
@@ -3622,7 +3618,7 @@ spawn_owned_object_via_manager(817,
 spawn_y,
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)v490,
+v490,
 4);
 }
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 7 )
@@ -3678,7 +3674,7 @@ spawn_owned_object_via_manager(817,
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)v491,
+v491,
 4);
 }
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 7 )
@@ -3771,7 +3767,7 @@ spawn_owned_object_via_manager(850,
 v350,
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)v481,
+v481,
 3);
 dispatch_character_wave_handle(0x33u);
 }
@@ -3896,7 +3892,7 @@ spawn_owned_object_via_manager(851,
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)v487,
+v487,
 3);
 }
 if ( !*(_WORD *)(raw +  322) )
@@ -3915,20 +3911,20 @@ do
 // The target sends unordered angles to the outside path as well.
 if ( !(*(float *)v458 >= 0.0 && *(float *)v458 <= 180.0) )
 {
-v203 = -1;
-v177 = *(unsigned __int8 *)(raw +  260);
-v162 = *(float *)(raw +  240);
-v111 = (double)(175 * (char)v177) + *(float *)(raw +  236);
+v177 = *(unsigned __int8 *)(raw + 260);
+spawn_owned_object_via_manager(821,
+(float)((double)(175 * (char)v177) + *(float *)(raw + 236)),
+*(float *)(raw + 240),
+v177, -1, v458, 3);
 }
 else
 {
-v203 = 1;
-v177 = *(unsigned __int8 *)(raw +  260);
-v162 = *(float *)(raw +  240);
-v111 = (double)(150 * (char)v177) + *(float *)(raw +  236);
+v177 = *(unsigned __int8 *)(raw + 260);
+spawn_owned_object_via_manager(821,
+(float)((double)(150 * (char)v177) + *(float *)(raw + 236)),
+*(float *)(raw + 240),
+v177, 1, v458, 3);
 }
-v149 = v111;
-spawn_owned_object_via_manager(821, v149, v162, v177, v203, (int)v458, 3);
 v359 = v359 + 1.0;
 }
 while ( v359 < 8.0 );
@@ -3976,7 +3972,7 @@ spawn_owned_object_via_manager(852,
 v381,
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)payload_446,
+payload_446,
 3);
 // Target converts each roll as unsigned before the float payload store.
 payload_446[0] = (float)(unsigned int)selector_random_roll(0x168u);
@@ -3987,7 +3983,7 @@ spawn_owned_object_via_manager(852,
 v382,
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)payload_446,
+payload_446,
 3);
 payload_446[0] = (float)(unsigned int)selector_random_roll(0x168u);
 v383 = *(float *)(raw +  240) + 100.0;
@@ -3996,7 +3992,7 @@ spawn_owned_object_via_manager(852,
 v383,
 (unsigned __int8)-*(_BYTE *)(raw +  260),
 1,
-(int)payload_446,
+payload_446,
 3);
 // Target keeps one rounded float counter through this six-step loop.
 v360 = 0.0;
@@ -4012,7 +4008,7 @@ spawn_owned_object_via_manager(821,
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
 -1,
-(int)payload_446,
+payload_446,
 3);
 else
 spawn_owned_object_via_manager(821,
@@ -4020,7 +4016,7 @@ spawn_owned_object_via_manager(821,
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)payload_446,
+payload_446,
 3);
 v360 = v360 + 1.0;
 }
@@ -4054,7 +4050,7 @@ spawn_owned_object_via_manager(853,
 v384,
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)v468,
+v468,
 3);
 zero_velocity_acceleration();
 next_sequence_block();
@@ -4158,7 +4154,7 @@ spawn_owned_object_via_manager(853,
 v388,
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)payload_444,
+payload_444,
 3);
 payload_444[2] = 1.0;
 v120 = *(_WORD *)(raw +  1840);
@@ -4196,7 +4192,7 @@ spawn_owned_object_via_manager(853,
 (v364 - lookup_orientation_cosine_quantized_abs(-payload_444[0]) * 150.0) * (double)*(char *)(raw +  260)
 + *(float *)(*(_DWORD *)(raw +  368) + 236),
 v442 - lookup_orientation_sine_quantized_abs(-payload_444[0]) * 150.0,
-v178, 1, (int)payload_444, 3);
+v178, 1, payload_444, 3);
 payload_444[2] = 3.0;
 // Target computes these coordinates within the spawn argument schedule.
 v179 = *(unsigned __int8 *)(raw +  260);
@@ -4205,7 +4201,7 @@ lookup_orientation_cosine_quantized_abs((float)(90.0 - payload_444[0])) * 250.0 
 + *(float *)(*(_DWORD *)(raw +  368) + 236),
 lookup_orientation_sine_quantized_abs((float)(90.0 - payload_444[0])) * 250.0
 + (*(float *)(*(_DWORD *)(raw +  368) + 240) + 100.0),
-v179, 1, (int)payload_444, 3);
+v179, 1, payload_444, 3);
 v118 = 0.0;
 ++*(_WORD *)(raw +  1840);
 LABEL_1499:
@@ -4236,7 +4232,7 @@ spawn_owned_object_via_manager(853,
 v397,
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)v470,
+v470,
 3);
 *(_DWORD *)(raw +  384) = 0;
 *(_BYTE *)(raw +  388) = 0;
@@ -4293,7 +4289,7 @@ spawn_owned_object_via_manager(854,
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)v472,
+v472,
 3);
 }
 if ( !*(_WORD *)(raw +  322) )
@@ -4317,7 +4313,7 @@ spawn_owned_object_via_manager(821,
     *(float *)(raw +  240),
     *(unsigned __int8 *)(raw +  260),
     -1,
-    (int)v459,
+    v459,
     3);
 }
 else
@@ -4327,7 +4323,7 @@ spawn_owned_object_via_manager(821,
     *(float *)(raw +  240),
     *(unsigned __int8 *)(raw +  260),
     1,
-    (int)v459,
+    v459,
     3);
 }
 v365 = v365 + 1.0;
@@ -4378,7 +4374,7 @@ spawn_owned_object_via_manager(855,
 v403,
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)payload_452,
+payload_452,
 3);
 payload_452[0] = (float)(unsigned int)selector_random_roll(0x258u);
 payload_452[2] = 1.0;
@@ -4388,7 +4384,7 @@ spawn_owned_object_via_manager(855,
 v404,
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)payload_452,
+payload_452,
 3);
 payload_452[0] = (float)(unsigned int)selector_random_roll(0x168u);
 v405 = *(float *)(raw +  240) + 100.0;
@@ -4397,7 +4393,7 @@ spawn_owned_object_via_manager(855,
 v405,
 (unsigned __int8)-*(_BYTE *)(raw +  260),
 1,
-(int)payload_452,
+payload_452,
 3);
 v366 = 0.0;
 do
@@ -4411,7 +4407,7 @@ spawn_owned_object_via_manager(855,
 v406,
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)payload_452,
+payload_452,
 3);
 v366 = v366 + 1.0;
 }
@@ -4440,7 +4436,7 @@ v207 = (unsigned __int8)(2 * (*(float *)(raw +  240) >= (double)v407) - 1);
 v181 = *(unsigned __int8 *)(raw +  260);
 v167 = v407;
 v408 = (float)(unsigned int)selector_random_roll(0x64u) + *(float *)(raw +  236) - 50.0;
-spawn_owned_object_via_manager(856, v408, v167, v181, v207, (int)payload_455, 3);
+spawn_owned_object_via_manager(856, v408, v167, v181, v207, payload_455, 3);
 payload_455[0] = 0.0;
 payload_455[1] = (double)*(__int16 *)(raw +  1840) * 0.0 + 45.0;
 payload_455[2] = 5.0;
@@ -4449,7 +4445,7 @@ spawn_owned_object_via_manager(856,
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)payload_455,
+payload_455,
 3);
 }
 ++*(_WORD *)(raw +  1840);
@@ -4554,7 +4550,7 @@ v182 = *(unsigned __int8 *)(raw +  260);
 v413 = *(float *)(raw +  240) - 20.0;
 v168 = v413;
 v414 = (double)(50 * (char)v182) + *(float *)(raw +  236);
-spawn_owned_object_via_manager(857, v414, v168, v182, 1, (int)v474, 3);
+spawn_owned_object_via_manager(857, v414, v168, v182, 1, v474, 3);
 dispatch_character_wave_handle(0x37u);
 publish_battle_layout_scalar(10.0);
 }
@@ -4623,7 +4619,7 @@ v136 = *(unsigned __int8 *)(raw +  260);
 v419 = *(float *)(raw +  240) + 20.0;
 v169 = v419;
 v420 = (double)(140 * (char)v136) + *(float *)(raw +  236);
-spawn_owned_object_via_manager(900, v420, v169, v136, 1, (int)payload_449, 3);
+spawn_owned_object_via_manager(900, v420, v169, v136, 1, payload_449, 3);
 if ( g_match_identifier == 3 )
 {
 payload_449[0] = -95.0;
@@ -4633,7 +4629,7 @@ v137 = *(unsigned __int8 *)(raw +  260);
 v421 = *(float *)(raw +  240) + 20.0;
 v170 = v421;
 v422 = (double)(140 * (char)v137) + *(float *)(raw +  236);
-spawn_owned_object_via_manager(900, v422, v170, v137, 1, (int)payload_449, 3);
+spawn_owned_object_via_manager(900, v422, v170, v137, 1, payload_449, 3);
 }
 dispatch_character_wave_handle(0xCu);
 v368 = 0.0;
@@ -4659,7 +4655,7 @@ v424 = (double)(140 * (char)v183) + *(float *)(raw +  236);
 v138 = v424;
 }
 v152 = v138;
-spawn_owned_object_via_manager(900, v152, v171, v183, v209, (int)payload_449, 3);
+spawn_owned_object_via_manager(900, v152, v171, v183, v209, payload_449, 3);
 v368 = v368 + 1.0;
 }
 while ( v368 < 8.0 );
@@ -4680,7 +4676,7 @@ spawn_owned_object_via_manager(900,
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)v460,
+v460,
 3);
 else
 spawn_owned_object_via_manager(900,
@@ -4688,7 +4684,7 @@ spawn_owned_object_via_manager(900,
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
 -1,
-(int)v460,
+v460,
 3);
 v369 = v369 + 1.0;
 }
@@ -4716,7 +4712,7 @@ spawn_owned_object_via_manager(901,
 v425,
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)v476,
+v476,
 3);
 v3 = 0.0;
 }
@@ -4749,7 +4745,7 @@ spawn_owned_object_via_manager(
 (float)(unsigned int)selector_random_roll(0x280u) + 100.0,
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)v478,
+v478,
 3);
 v3 = 0.0;
 ++*(_WORD *)(raw +  1840);
@@ -4886,7 +4882,7 @@ v429,
 *(float *)(raw +  240),
 facing,
 1,
-(int)v480,
+v480,
 3);
 dispatch_character_wave_handle(0x34u);
 goto LABEL_1593;
@@ -4905,7 +4901,7 @@ v185 = *(unsigned __int8 *)(raw +  260);
 v430 = *(float *)(raw +  240) - 20.0;
 v173 = v430;
 v431 = (double)(100 * (char)v185) + *(float *)(raw +  236);
-spawn_owned_object_via_manager(902, v431, v173, v185, 1, (int)v482, 3);
+spawn_owned_object_via_manager(902, v431, v173, v185, 1, v482, 3);
 dispatch_character_wave_handle(0x37u);
 LABEL_1593:
 publish_battle_layout_scalar(10.0);

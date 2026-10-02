@@ -1,5 +1,9 @@
 # Youmu facing branches and return paths, 2026-10-02
 
+Follow-up: [the copied-input and601 audit](YOUMU_COPIED_INPUT_AND_ACTION601_2026_10_02.md)
+retains these facing paths, adds four diagnostic owners and closes four
+payload-address leads. Measurements below describe the preceding checkpoint.
+
 ## Retained source and exact status
 
 `Youmu_dispatch_action_state_vslot28 @ 0x00530200` remains **nonexact** over

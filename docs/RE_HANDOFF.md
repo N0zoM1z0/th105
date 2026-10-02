@@ -28,6 +28,26 @@ instructions are not the active queue.
 
 ## Active matching checkpoint: Youmu giant root
 
+The spawn view now uses an opaque copied-input pointer, supported by raw
+forwarder465190/consumer53B1C0 and manager ctor/table observations. All56
+original integer-address casts are removed byte-neutrally. Action601 now
+rounds X in each branch call argument and retains one real unsigned direction
+snapshot for signed multiplication/full direction passing. Four unused scalar
+hypotheses are removed. Fresh canonical comparison remains nonexact at`+0xCA`,
+target64/candidate38; metadata`+0x9310` versus target`+0x933C` (44 bytes short).
+Diagnostics improve27->31/98, gaining mid500/501/505/506 without losses or
+exact credit;97 destinations/33 low entries remain distinct. All138 guards
+and49 physical spawn payloads remain covered/resolved. Payload-address leads
+decrease6->2, leaving605/710; arithmetic349/349 has two multiset leads696/710.
+710-only and combined601/710 probes regress owners despite near-target size
+and remain private. Only this unit's spawn REL32 spelling changes, with the
+same465190 destination; shared ABI/helpers/flags/global maps stay unchanged.
+Original types, narrow-control upper bits, register/temporary homes, physical
+tails, compiler/TU context and numerical/exception closure remain open. See
+[the copied-input and601 evidence](YOUMU_COPIED_INPUT_AND_ACTION601_2026_10_02.md).
+
+The following paragraphs record preceding checkpoints.
+
 Action214 now uses mirrored nested facing decisions. Natural VC8 recovers
 all11 physical sequence-call sites in this owner, versus9 previously and11
 in the target; unordered positions retain facing and select the original
