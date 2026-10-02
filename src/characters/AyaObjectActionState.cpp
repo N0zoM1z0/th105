@@ -511,7 +511,6 @@ void AyaObjectActionStateView::update_action_state()
             bool const negative_counter = time_counter_144 < 0;
             sprite_004.object_x_0e8 +=
                 static_cast<float>(sprite_004.object_facing_100) * motion_core()->component_f0;
-            sprite_004.object_y_0ec += motion_core()->component_f4;
             sprite_004.object_y_0ec = static_cast<float>(
                 sprite_004.object_y_0ec + motion_core()->component_f4 * 0.25);
             sprite_004.reset_zero_128 = static_cast<float>(
@@ -541,18 +540,19 @@ void AyaObjectActionStateView::update_action_state()
             if (state_364 > 90)
                 state_364 = 90;
             heading_340[0] = static_cast<float>(heading_340[0] + 5.0);
-            float const stage_phase = static_cast<float>(state_364);
             state_378 = static_cast<float>(
-                lookup_orientation_sine_quantized_abs(stage_phase) * heading_340[1]);
-            float const oriented_phase = static_cast<float>(
-                static_cast<double>(heading_340[0])
-                * static_cast<signed char>(sprite_004.object_facing_100));
+                lookup_orientation_sine_quantized_abs(static_cast<float>(state_364))
+                * heading_340[1]);
             sprite_004.object_x_0e8 = static_cast<float>(
-                lookup_orientation_cosine_quantized_abs(oriented_phase) * state_378
-                + state_370);
+                lookup_orientation_cosine_quantized_abs(static_cast<float>(
+                    static_cast<double>(heading_340[0])
+                    * static_cast<signed char>(sprite_004.object_facing_100)))
+                * state_378 + state_370);
             sprite_004.object_y_0ec = static_cast<float>(
-                lookup_orientation_sine_quantized_abs(oriented_phase) * state_378
-                + state_374);
+                lookup_orientation_sine_quantized_abs(static_cast<float>(
+                    static_cast<double>(heading_340[0])
+                    * static_cast<signed char>(sprite_004.object_facing_100)))
+                * state_378 + state_374);
             sprite_004.reset_zero_128 = static_cast<float>(
                 -heading_340[0]
                 - 90 * static_cast<signed char>(sprite_004.object_facing_100));
@@ -751,6 +751,7 @@ void AyaObjectActionStateView::update_action_state()
                 return;
             }
         }
+        sequence = sequence_index_13e;
         if (sequence == 0) {
             CharacterObjectEffectEmitter *const owner = fighter_owner_348;
             sprite_004.reset_zero_128 = static_cast<float>(
@@ -758,17 +759,17 @@ void AyaObjectActionStateView::update_action_state()
             sprite_004.object_x_0e8 = owner->x_ec;
             sprite_004.object_y_0ec = owner->y_f0;
             if (!(time_counter_144 % 5)) {
-                payload[0] = 0.0f; payload[1] = 0.0f; payload[2] = static_cast<float>((mt19937_next_u32() & 1u) + 2u);
+                payload[0] = 0.0f; payload[1] = 0.0f; payload[2] = static_cast<float>((mt19937_next_u32() & 1u) + 2.0f);
                 effect_emitter()->spawn_unparented_related_object(
                     820, sprite_004.object_x_0e8, sprite_004.object_y_0ec,
                     static_cast<unsigned char>(sprite_004.object_facing_100), 1,
                     reinterpret_cast<const unsigned *>(payload), 3);
             }
-            short const owner_action = *reinterpret_cast<short *>(
-                reinterpret_cast<unsigned char *>(owner) + 0x13c);
-            short const owner_sequence = *reinterpret_cast<short *>(
-                reinterpret_cast<unsigned char *>(owner) + 0x13e);
-            if (owner_action != 540 || owner_sequence > 1)
+            CharacterObjectEffectEmitter *const current_owner = fighter_owner_348;
+            if (*reinterpret_cast<short *>(
+                    reinterpret_cast<unsigned char *>(current_owner) + 0x13c) != 540
+                || *reinterpret_cast<short *>(
+                    reinterpret_cast<unsigned char *>(current_owner) + 0x13e) > 1)
                 next_sequence_block();
         }
 
@@ -867,7 +868,6 @@ void AyaObjectActionStateView::update_action_state()
             bool const negative_counter = time_counter_144 < 0;
             sprite_004.object_x_0e8 +=
                 static_cast<float>(sprite_004.object_facing_100) * motion_core()->component_f0;
-            sprite_004.object_y_0ec += motion_core()->component_f4;
             sprite_004.object_y_0ec = static_cast<float>(sprite_004.object_y_0ec + motion_core()->component_f4 * 0.25);
             sprite_004.reset_zero_128 = static_cast<float>(sprite_004.reset_zero_128 + state_374);
             float const scale = static_cast<float>(sprite_004.reset_one_118 + 0.02f);

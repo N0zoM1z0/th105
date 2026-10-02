@@ -184,3 +184,10 @@ all new target observations are from the verified PE, without new database
 output. Original source types, physical tails, virtual-call and argument
 schedules, temporary homes, compiler/TU/LTCG context and full numerical/
 exception closure remain open.
+
+The later [motion/callback checkpoint](AYA_OBJECT_MOTION_AND_CALLBACK_READS_2026_10_02.md)
+shows that default802 diagnostic spans can include candidate post-RET alignment.
+The historical2->3/34 count above is an auditor score, not independent evidence
+of a functional change in that default. Candidate raw decoding is now explicitly
+sliced at metadata start; earlier annotations of zeroed adjacent tables are not
+callable instruction facts. Reviewed predicates and target traversal are unchanged.

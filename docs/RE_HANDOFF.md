@@ -28,30 +28,33 @@ instructions are not the active queue.
 
 ## Active matching checkpoint: AyaObject action-state root
 
-`AyaObject_update_action_state_vslot28 @ 0x0061A290` now captures817/822's
-sequence1/2 alpha value before floating updates. VC8 naturally recovers the
-target early MOV/CMP without additional instructions; corresponding11/14
-float-update instructions agree only after scratch-role normalization+14/+18,
-not byte acceptance. Candidate822 still shares sequence1 with817; target
-keeps it local. Natural nested-switch controls recover signed sequence
-dispatch but retain incorrect sharing and lose default802; early-bool control
-adds SETB/TEST. None of those controls is retained. Ordinary source already
-reproduces the target qword0.1f FADD and822's rounded X/Y values kept on the
-x87 stack for bounds checks, so these paths do not justify assembly.
-Fresh configured19522-byte request remains nonexact at+22 target0F/candidate19;
-available section tail19488 is34 bytes short, metadata19020 versus target19524,
-3/34 diagnostics (entry,980,physical default802),33 destinations/zero splits.
-No exact credit is added. See
-[the alpha-read and natural x87 evidence](AYA_OBJECT_ALPHA_READ_AND_X87_2026_10_02.md).
-Previous900/902 unordered predicates,902 conditional owner reads, match-body
-order and six auxiliary switch records remain; raw target traversal reaches
-all4630 instructions/all19522 bytes, with seven validated switches. Guards
-remain124/124 with the previously reconciled902 role-order/path lead. See
-[the predicate and switch checkpoint](AYA_OBJECT_UNORDERED_AND_SWITCH_CLOSURE_2026_10_02.md).
-Original physical successful/failure suffixes, stack homes and compiler/TU/LTCG
-context remain unknown. Resolve independently pinned value/control-flow or
-compiler-context evidence in this root; do not repeat the negative dispatch
-spellings or force registers/bytes. Full numerical/exception closure is open.
+`AyaObject_update_action_state_vslot28 @ 0x0061A290` now corrects812/821's
+Y movement to add onlyone quarter of vertical velocity; the old source first
+added a full velocity as well.812 re-evaluates projection arguments at each
+call, reloading heading afterXstore.820 reloads own sequence after5575C0 and
+owner348 after64CCB0, and performs its variant+2 in the floating domain after
+RNG conversion. Two24-byte Y intervals and the35-byte owner-check suffix agree
+with target after replay, without regional or function acceptance.
+Fresh configured19522 request remains nonexact at+22 target0F/candidate1C;
+available section tail19492 is30 bytes short, metadata19024 versus target19524,
+33 destinations/zero splits. Raw diagnostics2/34 preserve entry/980; default802
+callable instructions are unchanged, but its last candidate span includes a
+postRET alignmentNOP. Earlier claims of losing that default diagnostic are
+corrected as alignment artifacts, not behavior regressions. Other controls
+have postRET LEA/MOV alignment. No exact credit is added. See
+[the quarter-motion and callback-read evidence](AYA_OBJECT_MOTION_AND_CALLBACK_READS_2026_10_02.md).
+Previous900/902 NaN predicates,902 conditional owner reads, match-body order,
+six auxiliary switch records and817/822 earlyalpha reads remain. Target raw
+traversal reaches all4630 instructions/all19522 bytes through seven validated
+switches; guards remain124/124 with the reviewed902 role/path lead. The private
+raw exporter now explicitly stops candidate decoding at metadata, removing
+zeroed adjacent-table annotations; reviewed code intervals remain valid.
+No shared ABI/header/helper/compiler/relocation/partition change. Original
+stack homes, successful/failure suffixes, argument/virtual-call scheduling,
+remaining float operands/lifetimes and TU/LTCG context are open. Continue
+from independently pinned value/control-flow evidence; full numerical and
+exception closure remains unknown. Avoid repeated negative source spellings
+or register/byte forcing.
 
 ## Preceding matching checkpoint: YoumuObject action-entry root
 

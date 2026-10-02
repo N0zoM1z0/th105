@@ -70,13 +70,16 @@ naturally produces MOVSX and subtract dispatch in VC8.
 
 That control still shares822's entire nonzero dispatch into817, whereas
 target822 has its own sequence1 body. It changes candidate metadata to19,024
-and owner diagnostics3->2/34, losing physical default802 while preserving
-entry/980. It is **not retained**. Capturing alpha on top of the switch
-recovers its early MOV/CMP but preserves those same sharing/diagnostic
-limitations, so that combination is also not retained.
+and owner diagnostics3->2/34 while preserving entry/980. Subsequent raw
+review shows default802's diagnostic difference is a post-RET alignment NOP,
+with its callable instructions unchanged. It is **not retained**. Capturing alpha on top of the switch
+recovers its early MOV/CMP but preserves the incorrect sequence1 sharing,
+so that combination is also not retained. Its count difference has the same
+post-RET alignment cause.
 
 A separate early `bool fade_finished = alpha < limit` control emits SETB
-and TEST, with metadata19,032 and2/34 diagnostics. It is not retained.
+and TEST, with metadata19,032 and2/34 diagnostics. Its default span includes
+3-byte LEA alignment after RET. It is not retained.
 The isolated alpha-value capture leaves metadata19,020, spans817600/822423
 versus target505/501 and3/34 diagnostics unchanged, while recovering the
 target's actual load/compare order. These controls distinguish dispatch,
@@ -132,3 +135,8 @@ helper, compiler profile, relocation mapping, object partition or accepted
 unit changes; no aggregate cold replay is claimed. Next evidence should
 resolve physical successful/failure suffixes, +14/+18 stack homes and original
 TU/LTCG context rather than repeat these negative dispatch spellings.
+
+The later [motion/callback checkpoint](AYA_OBJECT_MOTION_AND_CALLBACK_READS_2026_10_02.md)
+corrects these alignment interpretations and bounds candidate raw decoding
+explicitly before adjacent metadata. Historical counts remain literal auditor
+outputs, not evidence that default802 behavior changed.
