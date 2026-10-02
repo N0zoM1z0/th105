@@ -1,5 +1,10 @@
 # Youmu object-853 payload extent and stack facts, 2026-10-02
 
+Follow-up: [float X carriers and extended x87 guard coverage](YOUMU_FLOAT_CARRIERS_2026_10_02.md)
+now report 26/98 diagnostic owners, metadata `+0x92B0` and first mismatch
+`+0xCA`, target64/candidateD8. Measurements below describe the preceding
+payload-extent checkpoint; its three-float correction remains retained.
+
 ## Retained result
 
 **Observed:** the three object-853 requests in action 603 of

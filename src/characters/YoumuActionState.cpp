@@ -161,7 +161,7 @@ double v107; // rt0
 double v108; // st6
 double v109; // st7
 int v110; // eax
-double v111; // st7
+float v111; // action601 X argument is rounded to a target dword
 double v112; // st7
 __int16 v113; // ax
 __int16 v114; // ax
@@ -187,7 +187,7 @@ int v134; // eax
 int v135; // eax
 int v136; // eax
 int v137; // eax
-double v138; // st7
+float v138; // action710 X carrier contains branch-rounded float values
 __int16 v139; // ax
 int v140; // eax
 int v141; // eax

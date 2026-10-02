@@ -28,23 +28,28 @@ instructions are not the active queue.
 
 ## Active matching checkpoint: Youmu giant root
 
-Action 603 now uses one contiguous three-float object-853 payload. The old
-two-element array plus independent scalar lost all third-element stores;
-VC8 now retains target values 2/1/3 and the target payload base. Fresh
-whole-root comparison remains nonexact at `+0xCA`, target64/candidateF5;
-metadata is `+0x92D0` and strict owner diagnostics remain 24/98.
-A raw stack/def-use packet resolves all 49 physical spawn payloads and closes
-the action-603 address discrepancy. Six owners still have different payload
-address sequences. Simple float-type changes are byte-neutral; branch-local
-601 calls and an int forwarding-parameter view are not retained. The actual
-manager consumes that control parameter's low byte. See
-[the payload extent and stack evidence](YOUMU_PAYLOAD_EXTENT_2026_10_02.md).
+Actions 601 and 710 now use float X-argument carriers supported by target
+branch-local dword stores/reloads. Fresh whole-root comparison remains
+nonexact at `+0xCA`, target64/candidateD8; metadata is `+0x92B0` and strict
+owner diagnostics improve from 24/98 to **26/98**, gaining low11/high798
+without losing previous identical owners. This adds no exact-byte credit.
+The extended x87 scan covers 138 target/candidate guards with zero
+unordered-only leads; two CL masks are independently proved as divisor5.
+It does not close full numerical or exception behavior. RTM compiler,
+array-scope and named-prefix probes do not improve this retained result.
+See [the float carriers and TH08 reference](YOUMU_FLOAT_CARRIERS_2026_10_02.md).
+
+Action 603 retains one contiguous three-float object-853 payload and its
+third-element values 2/1/3. A raw stack/def-use packet still resolves all
+49 physical spawn payloads; six owners retain different address sequences.
+The actual manager consumes its control parameter's low byte. See
+[the preceding payload extent checkpoint](YOUMU_PAYLOAD_EXTENT_2026_10_02.md).
 
 The preceding bounded numerical audit corrects actions 601/602/604 to send
 unordered angles outside the inclusive 0..180 interval, and preserves
 `roll + (index*45 + 22.5)` in actions 601/604. Fresh natural VC8 code reproduces
 the target comparison masks/branches and addition order. Full comparison
-still fails at `+0xCA`; 24/98 diagnostic owners and metadata `+0x92D0` now apply.
+still fails at `+0xCA`; 26/98 diagnostic owners and metadata `+0x92B0` now apply.
 The TH08 reference contains real FSINCOS/FRNDINT assembly islands, but neither
 instruction occurs in this Youmu callable. This does not establish a rule for
 its callees or other roots. See [the angle audit and TH08 reference](YOUMU_ANGLE_RANGE_2026_10_02.md).
@@ -55,10 +60,10 @@ The current bounded root is `Youmu_dispatch_action_state_vslot28 @ 0x00530200`,
 Correct ECX virtual calls and the accepted animation/sequence prefix remain.
 Candidate again has **97 physical destinations / 33 low entries**, with no
 merges of target-distinct owners. Fresh strict owner auditing runs and reports
-**24/98** diagnostic identical owners. This is not exact-byte credit.
+**26/98** diagnostic identical owners. This is not exact-byte credit.
 
 Fresh focused comparison remains nonexact at `+0xCA`, target `64`, candidate
-`F5`. Candidate metadata starts at `+0x92D0`, versus target `+0x933C`.
+`D8`. Candidate metadata starts at `+0x92B0`, versus target `+0x933C`.
 Raw traversal still reaches **37,692 bytes / 9,912 instructions**, with no
 unresolved indirect jumps, including the auxiliary table at `0x539990`.
 See [the shared-tail evidence](YOUMU_SHARED_EFFECT_TAILS_2026_10_02.md).
