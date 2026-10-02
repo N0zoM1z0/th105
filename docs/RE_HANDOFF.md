@@ -26,7 +26,24 @@ instructions are not the active queue.
   Attest any new project before relying on it. Do not launch multiple
   Ghidra processes or use the factory MCP adapter for this work.
 
-## Active reconstruction checkpoint: Iku opening action family
+## Active reconstruction checkpoint: Iku object 818 action family
+
+The hash-attested Iku high-switch actions 565–568 occupy four consecutive
+physical case regions totaling **8,390 bytes** and 2,063 linearly decoded
+instructions. Each region has 14 static calls to exact-backed object-spawn
+helper `0x00465190` with object ID `0x332` (818), gated by word state/counter
+fields `+0x730/+0x732/+0x734`. Actions 565/567 check dword `+0x6C0`;
+566/568 check `+0x6C4`. Actions 567/568 add a descending stage-crossing
+path. There are 23 direct branch sites that leave their physical case region
+but remain in the Iku root, including 568-to-567 shared tails. See
+[the object 818 family evidence](IKU_565_568_OBJECT_818_FAMILY_2026_10_02.md).
+This is target control-flow and ABI evidence only: no complete source,
+configured root comparison, source-present claim or exact bytes have been
+added. Resolve payload meaning, x87 lifetimes and shared-tail conditions
+before a natural VC8 source trial; TH08's `FSINCOS` inline assembly is not
+supported by this TH105 instruction inventory or its repository rules.
+
+## Preceding reconstruction checkpoint: Iku opening action family
 
 Hash-attested target-to-target comparison now covers Iku actions 0–10
 against Youmu's corresponding physical entries. Both roots reuse the exact
