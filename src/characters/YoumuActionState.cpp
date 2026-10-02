@@ -77,10 +77,6 @@ __int16 v15; // ax
 float v17; // target loads/stores single-precision field values
 __int16 v18; // ax
 __int16 v22; // ax
-double v23; // st7
-double v24; // st7
-float v25; // target loads/stores single-precision field values
-float v26; // target loads/stores single-precision field values
 int v27; // eax
 int v28; // ecx
 bool v29; // sf
@@ -1159,17 +1155,15 @@ if ( *(_DWORD *)(raw +  324)
 {
 return;
 }
-v23 = 0.0;
-*(float *)(raw +  244) = v23;
-*(float *)(raw +  248) = 23.0;
-v24 = 0.75;
-*(float *)(raw +  256) = v24;
-*(_BYTE *)(raw +  1150) = 0;
-v216 = *(unsigned __int8 *)(raw +  260);
-{
-emit_fighter_effect_433cc0(63, *(float *)(raw +  236), *(float *)(raw +  240), v216, 1);
-return;
-}
+*(float *)(raw + 244) = 0.0f;
+// Raw target 0x5318F2 joins the ordinary-jump velocity stores.
+Jump208WriteVelocityY:
+*(float *)(raw + 248) = 23.0f;
+*(float *)(raw + 256) = 0.75f;
+// Actions 212/221/222 share the ordinary-jump effect tail in the target.
+Jump208EmitEffect:
+*(_BYTE *)(raw + 1150) = 0;
+emit_fighter_effect_433cc0(63, *(float *)(raw + 236), *(float *)(raw + 240), *(unsigned __int8 *)(raw + 260), 1);
 return;
 case 0xD1:
 if ( !*(_WORD *)(raw +  318) )
@@ -1200,16 +1194,13 @@ if ( *(_DWORD *)(raw +  324)
 {
 return;
 }
-v25 = 11.0f;
-*(float *)(raw +  244) = v25;
-*(float *)(raw +  248) = 17.5;
-*(float *)(raw +  256) = 0.8f;
-*(_BYTE *)(raw +  1150) = 0;
-emit_fighter_effect_433cc0(63,
-*(float *)(raw +  236),
-*(float *)(raw +  240),
-*(unsigned __int8 *)(raw +  260),
-1);
+*(float *)(raw + 244) = 11.0f;
+// The 209/210 effect path remains distinct from the ordinary-jump tail.
+Jump209WriteVelocityY:
+*(float *)(raw + 248) = 17.5f;
+*(float *)(raw + 256) = 0.8f;
+*(_BYTE *)(raw + 1150) = 0;
+emit_fighter_effect_433cc0(63, *(float *)(raw + 236), *(float *)(raw + 240), *(unsigned __int8 *)(raw + 260), 1);
 return;
 case 0xD2:
 if ( !*(_WORD *)(raw +  318) )
@@ -1240,19 +1231,8 @@ if ( *(_DWORD *)(raw +  324)
 {
 return;
 }
-v25 = -11.0f;
-{
-*(float *)(raw +  244) = v25;
-*(float *)(raw +  248) = 17.5;
-*(float *)(raw +  256) = 0.8f;
-*(_BYTE *)(raw +  1150) = 0;
-emit_fighter_effect_433cc0(63,
-*(float *)(raw +  236),
-*(float *)(raw +  240),
-*(unsigned __int8 *)(raw +  260),
-1);
-return;
-}
+*(float *)(raw + 244) = -11.0f;
+goto Jump209WriteVelocityY;
 case 0xD3:
 if ( !*(_WORD *)(raw +  318) )
 resolve_stage_surface_landing_transition();
@@ -1282,17 +1262,8 @@ if ( *(_DWORD *)(raw +  324)
 {
 return;
 }
-v23 = 3.0;
-{
-*(float *)(raw +  244) = v23;
-*(float *)(raw +  248) = 23.0;
-v24 = 0.75;
-*(float *)(raw +  256) = v24;
-*(_BYTE *)(raw +  1150) = 0;
-v216 = *(unsigned __int8 *)(raw +  260);
-emit_fighter_effect_433cc0(63, *(float *)(raw +  236), *(float *)(raw +  240), v216, 1);
-return;
-}
+*(float *)(raw + 244) = 3.0f;
+goto Jump208WriteVelocityY;
 case 0xD4:
 case 0xDD:
 if ( !*(_WORD *)(raw +  318) )
@@ -1323,17 +1294,11 @@ if ( *(_DWORD *)(raw +  324)
 {
 return;
 }
-v26 = 11.0f;
-*(float *)(raw +  244) = v26;
-*(float *)(raw +  248) = 17.5;
-v24 = 0.8f;
-{
-*(float *)(raw +  256) = v24;
-*(_BYTE *)(raw +  1150) = 0;
-v216 = *(unsigned __int8 *)(raw +  260);
-emit_fighter_effect_433cc0(63, *(float *)(raw +  236), *(float *)(raw +  240), v216, 1);
-return;
-}
+*(float *)(raw + 244) = 11.0f;
+Jump212WriteVelocityY:
+*(float *)(raw + 248) = 17.5f;
+*(float *)(raw + 256) = 0.8f;
+goto Jump208EmitEffect;
 case 0xD6:
 if ( (unsigned __int8)advance_frame_and_dispatch() )
 goto LABEL_933_A;
@@ -1617,17 +1582,8 @@ if ( *(_DWORD *)(raw +  324)
 {
 return;
 }
-v26 = -11.0f;
-{
-*(float *)(raw +  244) = v26;
-*(float *)(raw +  248) = 17.5;
-v24 = 0.8f;
-*(float *)(raw +  256) = v24;
-*(_BYTE *)(raw +  1150) = 0;
-v216 = *(unsigned __int8 *)(raw +  260);
-emit_fighter_effect_433cc0(63, *(float *)(raw +  236), *(float *)(raw +  240), v216, 1);
-return;
-}
+*(float *)(raw + 244) = -11.0f;
+goto Jump212WriteVelocityY;
 case 0xDF:
 resolve_stage_surface_landing_transition();
 *(_BYTE *)(raw +  1150) = 1;

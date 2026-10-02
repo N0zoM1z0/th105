@@ -29,36 +29,34 @@ instructions are not the active queue.
 ## Active matching checkpoint: Youmu giant root
 
 The current bounded root is `Youmu_dispatch_action_state_vslot28 @ 0x00530200`,
-37,692 callable bytes. Three retained `__stdcall` virtual calls in actions
-209/210/211 have now been corrected to the target's ECX receiver ABI. The
-local view uses the existing animation/sequence prefix and named self calls
-through slots +8/+0C/+14. Raw Youmu RTTI, vtable pointers and accepted callee
-contracts support that prefix. The geometry predicate does not preserve ECX;
-target explicitly reloads the receiver before its true/false branch.
+37,692 callable bytes. Source now restores the observed ordinary-jump and
+209/210 shared effect paths using real field stores and control-flow joins.
+Correct ECX virtual calls and the accepted animation/sequence prefix remain.
+Candidate again has **97 physical destinations / 33 low entries**, with no
+merges of target-distinct owners. Fresh strict owner auditing runs and reports
+**24/98** diagnostic identical owners. This is not exact-byte credit.
 
 Fresh focused comparison remains nonexact at `+0xCA`, target `64`, candidate
-`39`. Candidate metadata now begins at `+0x9114`, versus target `+0x933C`.
-Candidate has **95 physical destinations**, target 97: VC8 merges
-`[209,212,221]` and `[210,222]`. Reviewed candidate counts permit span mapping,
-while the strict instruction/edge auditor still rejects these merges. The old
-24/98 score is a historical checkpoint, not a current result. The previous
-rejection of correct thiscalls because they collapsed topology is superseded;
-do not reintroduce an incorrect ABI to recover that score. See
-[the virtual ABI evidence](YOUMU_VIRTUAL_ABI_2026_10_02.md).
+`D9`. Candidate metadata starts at `+0x92B4`, versus target `+0x933C`.
+Raw traversal still reaches **37,692 bytes / 9,912 instructions**, with no
+unresolved indirect jumps, including the auxiliary table at `0x539990`.
+See [the shared-tail evidence](YOUMU_SHARED_EFFECT_TAILS_2026_10_02.md).
 
-Fresh raw traversal still reaches **37,692 bytes / 9,912 instructions**, with
-no unresolved indirect jumps, including the auxiliary table at `0x539990`.
-The preceding action-720 signed comparison/switch-arm recovery and action
-606/710 numerical corrections remain in source; their earlier size/owner
-metrics are historical. See [action 720](YOUMU_ACTION720_2026_10_02.md) and
-[the numerical audit](YOUMU_NUMERICAL_CONTRACTS_2026_10_02.md).
+Local floating-environment and numerical carry-join probes are not retained:
+they introduce different literal widths, extra destinations or float spills.
+Field-store joins avoid those new carry-value spills but place shared stores
+and tails in later physical owners than the target. Next resolve actual tail
+placement, effect argument schedules and real floating-value lifetimes, then
+continue ordered numerical closure across the root. Distinct shared paths are
+observed; original labels, TU visibility and compiler context remain unknown.
+Do not infer an assembly or LTCG requirement from these discrepancies.
 
-Next recover the genuine source/context distinction between 209 and 212/221,
-and between 210 and 222. Shared tails, temporary stack lifetimes and numerical
-closure remain open. Ignored return-type changes, a short action call view,
-local versus inherited typed-prefix calls and constant-temporary removal do
-not explain those folds. No shared header, compiler profile or relocation
-target changed; only this unit was rebuilt. Exact totals remain unchanged.
+The preceding [virtual ABI correction](YOUMU_VIRTUAL_ABI_2026_10_02.md) remains:
+wrong stdcall declarations cannot be used to obtain a topology score. Its
+95-destination metrics are historical. The [action-720 recovery](YOUMU_ACTION720_2026_10_02.md)
+and [action-606/710 numerical corrections](YOUMU_NUMERICAL_CONTRACTS_2026_10_02.md)
+also remain. No shared header, compiler profile or relocation target changed;
+only this unit was rebuilt. Exact totals remain unchanged.
 
 ## Previous diagnostic checkpoint: common Fighter giant root
 

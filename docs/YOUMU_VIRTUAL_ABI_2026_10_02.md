@@ -1,5 +1,10 @@
 # Youmu virtual ABI correction, 2026-10-02
 
+The correct virtual ABI below remains in source. Its 95-destination and
+metadata metrics describe the preceding checkpoint; current shared-tail source
+and fresh diagnostics are recorded in
+[the shared-tail follow-up](YOUMU_SHARED_EFFECT_TAILS_2026_10_02.md).
+
 ## Current result and superseded assumption
 
 `Youmu_dispatch_action_state_vslot28 @ 0x00530200` remains **nonexact** over
