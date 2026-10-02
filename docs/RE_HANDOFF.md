@@ -26,7 +26,22 @@ instructions are not the active queue.
   Attest any new project before relying on it. Do not launch multiple
   Ghidra processes or use the factory MCP adapter for this work.
 
-## Active matching checkpoint: KomachiObject pair-spawn helper
+## Active reconstruction checkpoint: Iku opening action family
+
+Hash-attested target-to-target comparison now covers Iku actions 0–10
+against Youmu's corresponding physical entries. Both roots reuse the exact
+Fighter landing/frame/zero-velocity helpers, but Youmu carries a live x87 zero
+through its dispatcher and drops it on actions 0–5; Iku does not. Iku action
+4/5 horizontal speeds are `2.5/-3.0` versus Youmu `4/-4`; Iku actions 6–8
+also use distinct vertical/acceleration constants while sharing action-6 and
+action-9 terminal code. Raw edges pin Iku's action-9 crossing transition to
+action 10 and action-10 choice between actions 0 and 2. See
+[the opening target comparison](IKU_OPENING_ACTION_TARGET_COMPARISON_2026_10_02.md).
+The declaration-only Iku root remains identified, not source-present or exact.
+Continue through the remaining action families without copying Youmu's
+character-specific constants or x87 lifetime.
+
+## Preceding matching checkpoint: KomachiObject pair-spawn helper
 
 The 205-byte authored/source-present `KomachiObject_emit_owner_gated_object_826_pair
 @ 0x005F9350` has a fresh hash-attested, gap-free 61-instruction target
