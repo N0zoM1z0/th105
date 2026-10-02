@@ -15,7 +15,7 @@ instructions are not the active queue.
   Thirty-four evidence-linked origin/boundary batches are recorded in
   [the focused review](ORIGIN_BOUNDARY_REVIEW_2026_09_26.md). The current
   census is **1,502 authored / 1,414 excluded / 1,107 review**. Source-present
-  is now 1,389 after the rotation source audit; canonical exact remains 1,315 functions / 220,094 bytes.
+  is now 1,389 after the rotation source audit; the exact ledger now records 1,316 functions / 221,189 bytes after the focused rotation replay.
   Recompute from `scripts/report-reconstruction-status.py --summary` after
   every promotion. Resume the remaining 1,107 reviews on user request.
 - The local target file passes hash verification. The attached IDA session
@@ -25,27 +25,34 @@ instructions are not the active queue.
   mapped-byte attestation before using its analysis. Do not launch multiple
   Ghidra processes or use the factory MCP adapter for this work.
 
-## Active matching checkpoint: sprite pivot rotation
+## Active matching checkpoint: exact sprite pivot rotation
 
 User-directed byte reconstruction is active; the separate origin-only cleanup
-queue remains parked. `CSpriteEx_rotate_xyz @ 0x00407680` now has reviewed
-source in `src/battle/EffectSpriteTransforms.cpp`. The original 1089-byte probe
-had three incorrect floating-point sum associations. Correct first-vertex
-parentheses produce 1095 bytes, with **67 differing bytes** from three x87
-zero-test regions and temporary stack-slot allocation. All 54 ordered
-value/store expressions agree with the target in the bounded symbolic audit;
-all ten accepted functions in the same object remain canonical exact.
-See [the focused evidence](SPRITE_PIVOT_ROTATION_2026_10_02.md) for commands,
-body hashes, direct Ghidra attestation and rejected hypotheses. Exact credit
-is unchanged; the rotation stays outside the accepted match-unit graph.
+queue remains parked. `CSpriteEx_rotate_xyz @ 0x00407680` is now canonical
+**1095/1095 exact** in `cross-v106a-effect-sprite-transforms`. Correct
+first-vertex sum association, local `fenv_access(on)` and shared real
+`cosine/sine/x/y/z` temporaries reproduce the complete target callable.
+The formal focused build/replay reports all eleven unit functions exact,
+including all ten pre-existing accepted siblings. See
+[the focused evidence](SPRITE_PIVOT_ROTATION_2026_10_02.md) for hashes, commands,
+direct Ghidra attestation, the prior nonexact checkpoint and final closure.
 
-Direct Ghidra 12.1 headless import, full mapped `.text` byte verification,
-entry/language/compiler checks and bounded 1095-byte decompilation succeeded.
-Use an isolated script directory: scanning the broad `.analysis` tree entered
-recursive worktree paths. No factory adapter or IDA analysis was used.
-The remaining rotation work needs original TU/compiler ownership evidence;
-ordinary condition/type/scope variants and a bounded `/GL` diagnostic have
-not reproduced the target comparison or stack allocation.
+The exact ledger gains one function / 1095 bytes; source count remains 1389.
+These are ledger totals after focused replay, not a new aggregate cold replay.
+Original class spelling, TU partition and whether environment control came
+from a pragma or compiler option remain inferred. No global compiler profile
+or shared header was changed. The old origin rule is archived as accepted
+provenance; its hash and twelve call witnesses remain checked by public CI.
+
+The next bounded source candidate is the reviewed 1862-byte Fighter body
+collision phase `0x0046CCA0`, which calls existing exact geometry helpers.
+Re-attest target, inspect its complete raw CFG and retained source before
+selection. The giant common Fighter and YoumuObject switch roots stay at
+their documented earlier nonexact checkpoints.
+
+Direct Ghidra 12.1 import and full mapped `.text` attestation succeeded for
+the rotation. Use an isolated script directory to avoid recursive scanning
+of old `.analysis` worktree paths. No factory adapter or IDA analysis was used.
 
 ## Origin and boundary review discipline
 

@@ -56,3 +56,14 @@ python3 scripts/verify-exact-units.py --all
 
 Do not add a reusable pattern to this skill until a clean 1.06a unit, command,
 and exact result make it reproducible.
+
+## Target-proven x87 environment control
+
+`CSpriteEx_rotate_xyz @ 0x00407680` is canonical 1095/1095 under
+`python3 scripts/build.py --unit cross-v106a-effect-sprite-transforms --compare --json`.
+Local `fenv_access(on)` reproduces its three angle-preserving zero comparisons;
+shared real cosine/sine/x/y/z lifetimes recover its temporary stack slots.
+Immediate exception delivery is a separate contract: plain strict mode did not
+match. Keep this control local, preserve source sum association, and replay the
+whole affected object. See `docs/SPRITE_PIVOT_ROTATION_2026_10_02.md`; do not
+assume that other x87 residuals have the same cause.

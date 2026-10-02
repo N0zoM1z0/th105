@@ -100,82 +100,88 @@ void CSpriteEx::scale_z(float scale, float pivot)
 }
 
 
+// Preserve the runtime floating-point environment for the rotation tests.
+#pragma fenv_access(on)
 void CSpriteEx::rotate_xyz(
     float x_angle, float y_angle, float z_angle,
     float pivot_x, float pivot_y, float pivot_z)
 {
+    float cosine, sine;
+    float x, y, z;
+
     if (z_angle) {
-        float cosine = lookup_orientation_cosine_quantized_abs(z_angle);
-        float sine = lookup_orientation_sine_quantized_abs(z_angle);
+        cosine = lookup_orientation_cosine_quantized_abs(z_angle);
+        sine = lookup_orientation_sine_quantized_abs(z_angle);
 
-        float y0 = working_quad_0b0[0].y - pivot_y;
-        float x0 = working_quad_0b0[0].x - pivot_x;
-        working_quad_0b0[0].y = y0 * cosine + (x0 * sine + pivot_y);
-        working_quad_0b0[0].x = x0 * cosine + pivot_x - y0 * sine;
+        y = working_quad_0b0[0].y - pivot_y;
+        x = working_quad_0b0[0].x - pivot_x;
+        working_quad_0b0[0].y = y * cosine + (x * sine + pivot_y);
+        working_quad_0b0[0].x = x * cosine + pivot_x - y * sine;
 
-        float y1 = working_quad_0b0[1].y - pivot_y;
-        float x1 = working_quad_0b0[1].x - pivot_x;
-        working_quad_0b0[1].y = x1 * sine + pivot_y + y1 * cosine;
-        working_quad_0b0[1].x = x1 * cosine + pivot_x - y1 * sine;
+        y = working_quad_0b0[1].y - pivot_y;
+        x = working_quad_0b0[1].x - pivot_x;
+        working_quad_0b0[1].y = x * sine + pivot_y + y * cosine;
+        working_quad_0b0[1].x = x * cosine + pivot_x - y * sine;
 
-        float y2 = working_quad_0b0[2].y - pivot_y;
-        float x2 = working_quad_0b0[2].x - pivot_x;
-        working_quad_0b0[2].y = x2 * sine + pivot_y + y2 * cosine;
-        working_quad_0b0[2].x = x2 * cosine + pivot_x - y2 * sine;
+        y = working_quad_0b0[2].y - pivot_y;
+        x = working_quad_0b0[2].x - pivot_x;
+        working_quad_0b0[2].y = x * sine + pivot_y + y * cosine;
+        working_quad_0b0[2].x = x * cosine + pivot_x - y * sine;
 
-        float y3 = working_quad_0b0[3].y - pivot_y;
-        float x3 = working_quad_0b0[3].x - pivot_x;
-        working_quad_0b0[3].y = pivot_y + x3 * sine + y3 * cosine;
-        working_quad_0b0[3].x = pivot_x + cosine * x3 - y3 * sine;
+        y = working_quad_0b0[3].y - pivot_y;
+        x = working_quad_0b0[3].x - pivot_x;
+        working_quad_0b0[3].y = pivot_y + x * sine + y * cosine;
+        working_quad_0b0[3].x = pivot_x + cosine * x - y * sine;
     }
 
     if (y_angle) {
-        float cosine = lookup_orientation_cosine_quantized_abs(y_angle);
-        float sine = lookup_orientation_sine_quantized_abs(y_angle);
+        cosine = lookup_orientation_cosine_quantized_abs(y_angle);
+        sine = lookup_orientation_sine_quantized_abs(y_angle);
 
-        float x0 = working_quad_0b0[0].x - pivot_x;
-        float z0 = working_quad_0b0[0].z - pivot_z;
-        working_quad_0b0[0].x = x0 * cosine + (z0 * sine + pivot_x);
-        working_quad_0b0[0].z = z0 * cosine + pivot_z - x0 * sine;
+        x = working_quad_0b0[0].x - pivot_x;
+        z = working_quad_0b0[0].z - pivot_z;
+        working_quad_0b0[0].x = x * cosine + (z * sine + pivot_x);
+        working_quad_0b0[0].z = z * cosine + pivot_z - x * sine;
 
-        float x1 = working_quad_0b0[1].x - pivot_x;
-        float z1 = working_quad_0b0[1].z - pivot_z;
-        working_quad_0b0[1].x = z1 * sine + pivot_x + x1 * cosine;
-        working_quad_0b0[1].z = z1 * cosine + pivot_z - x1 * sine;
+        x = working_quad_0b0[1].x - pivot_x;
+        z = working_quad_0b0[1].z - pivot_z;
+        working_quad_0b0[1].x = z * sine + pivot_x + x * cosine;
+        working_quad_0b0[1].z = z * cosine + pivot_z - x * sine;
 
-        float x2 = working_quad_0b0[2].x - pivot_x;
-        float z2 = working_quad_0b0[2].z - pivot_z;
-        working_quad_0b0[2].x = z2 * sine + pivot_x + x2 * cosine;
-        working_quad_0b0[2].z = z2 * cosine + pivot_z - x2 * sine;
+        x = working_quad_0b0[2].x - pivot_x;
+        z = working_quad_0b0[2].z - pivot_z;
+        working_quad_0b0[2].x = z * sine + pivot_x + x * cosine;
+        working_quad_0b0[2].z = z * cosine + pivot_z - x * sine;
 
-        float x3 = working_quad_0b0[3].x - pivot_x;
-        float z3 = working_quad_0b0[3].z - pivot_z;
-        working_quad_0b0[3].x = pivot_x + z3 * sine + x3 * cosine;
-        working_quad_0b0[3].z = pivot_z + cosine * z3 - x3 * sine;
+        x = working_quad_0b0[3].x - pivot_x;
+        z = working_quad_0b0[3].z - pivot_z;
+        working_quad_0b0[3].x = pivot_x + z * sine + x * cosine;
+        working_quad_0b0[3].z = pivot_z + cosine * z - x * sine;
     }
 
     if (x_angle) {
-        float cosine = lookup_orientation_cosine_quantized_abs(x_angle);
-        float sine = lookup_orientation_sine_quantized_abs(x_angle);
+        cosine = lookup_orientation_cosine_quantized_abs(x_angle);
+        sine = lookup_orientation_sine_quantized_abs(x_angle);
 
-        float y0 = working_quad_0b0[0].y - pivot_y;
-        float z0 = working_quad_0b0[0].z - pivot_z;
-        working_quad_0b0[0].y = y0 * cosine + (z0 * sine + pivot_y);
-        working_quad_0b0[0].z = z0 * cosine + pivot_z - y0 * sine;
+        y = working_quad_0b0[0].y - pivot_y;
+        z = working_quad_0b0[0].z - pivot_z;
+        working_quad_0b0[0].y = y * cosine + (z * sine + pivot_y);
+        working_quad_0b0[0].z = z * cosine + pivot_z - y * sine;
 
-        float y1 = working_quad_0b0[1].y - pivot_y;
-        float z1 = working_quad_0b0[1].z - pivot_z;
-        working_quad_0b0[1].y = z1 * sine + pivot_y + y1 * cosine;
-        working_quad_0b0[1].z = z1 * cosine + pivot_z - y1 * sine;
+        y = working_quad_0b0[1].y - pivot_y;
+        z = working_quad_0b0[1].z - pivot_z;
+        working_quad_0b0[1].y = z * sine + pivot_y + y * cosine;
+        working_quad_0b0[1].z = z * cosine + pivot_z - y * sine;
 
-        float y2 = working_quad_0b0[2].y - pivot_y;
-        float z2 = working_quad_0b0[2].z - pivot_z;
-        working_quad_0b0[2].y = z2 * sine + pivot_y + y2 * cosine;
-        working_quad_0b0[2].z = z2 * cosine + pivot_z - y2 * sine;
+        y = working_quad_0b0[2].y - pivot_y;
+        z = working_quad_0b0[2].z - pivot_z;
+        working_quad_0b0[2].y = z * sine + pivot_y + y * cosine;
+        working_quad_0b0[2].z = z * cosine + pivot_z - y * sine;
 
-        float y3 = working_quad_0b0[3].y - pivot_y;
-        float z3 = working_quad_0b0[3].z - pivot_z;
-        working_quad_0b0[3].y = pivot_y + z3 * sine + y3 * cosine;
-        working_quad_0b0[3].z = pivot_z + cosine * z3 - y3 * sine;
+        y = working_quad_0b0[3].y - pivot_y;
+        z = working_quad_0b0[3].z - pivot_z;
+        working_quad_0b0[3].y = pivot_y + z * sine + y * cosine;
+        working_quad_0b0[3].z = pivot_z + cosine * z - y * sine;
     }
 }
+#pragma fenv_access(off)

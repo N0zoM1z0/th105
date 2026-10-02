@@ -1,5 +1,54 @@
 # Sprite pivot rotation source audit, 2026-10-02
 
+## Current canonical exact result
+
+`CSpriteEx_rotate_xyz @ 0x00407680` is now **1,095/1,095 canonical exact**
+under the existing pinned VC8 SP1 `/O2 /GS-` profile. Target and replayed
+candidate body hashes are both
+`313f3bb25a5e3c835faf60c91a2196b0a2d22d3507c01bcac149fe3debb69dde`.
+The final source has three independently supported properties: correct
+first-vertex sum association, `#pragma fenv_access(on)` around this function,
+and five real scalar temporaries `cosine/sine/x/y/z` reused across the planes.
+`fenv_access(off)` restores the default after the definition.
+
+The official VC8 `/fp` and floating-point pragma documentation distinguishes
+floating-environment access from immediate exception delivery. Enabling only
+`fenv_access` reproduces all three target `fld st; fldz; fucompp` regions;
+it reduces the previous checkpoint's 67 differing byte positions to 31.
+Axis-local coordinate reuse reduces that to 17, common sine/cosine lifetimes
+to 11, and common x/y/z lifetimes close the final Y-plane stack-slot mismatch.
+Each change concerns actual computation or its floating-point environment;
+there are no artificial locals or register constraints. An equivalent
+`/fp:strict /fp:except-` diagnostic also reproduced the comparison regions;
+the accepted source keeps the control local to this one function.
+
+The fresh formal command is:
+
+```bash
+python3 scripts/build.py --unit cross-v106a-effect-sprite-transforms --compare --json
+```
+
+`build/sprite-rotate-formal-exact.json` reports `result=ok` and **all eleven
+functions exact**, including the ten pre-existing transform functions.
+All six REL32 lookup fields replay through decorated `double(float)`
+namespace-qualified symbols in `config/match-units.toml`; no DIR32 fields
+are present in this callable. The rotation is now in `matches.csv` and
+`functions.csv` as `matching/100.00`. Its previous origin rule is archived
+under `accepted_evidence` in `function-origin-rules.toml`, outside the active
+census rules; the existing workflow test continues to replay its full body
+hash and all twelve incoming/outgoing call witnesses, including a rejected
+wrong X-axis sine destination. The census row now comes from the canonical
+matching baseline.
+
+A target-byte corpus search found this comparison topology only in this
+candidate among the decoded ledger main spans. That result is limited by
+those provisional spans and linear decoding; it is not whole-program
+instruction provenance. Do not turn on the pragma globally or assume that
+all other x87 mismatches share this cause. The sequence is now explained
+by a reproducible VC8 source/flag contract, with original TU spelling and
+whether the original control was a pragma or compiler option still unknown.
+The 67-byte nonexact result below is the earlier committed checkpoint.
+
 ## Identity, ownership and boundary
 
 **Observed:** the original Japanese TH10.5 v1.06a executable has SHA-256
@@ -65,7 +114,7 @@ Raw branch review separately covers skipped planes, unordered zero tests,
 the shared exits and RET cleanup. This is bounded semantic evidence, not a
 general machine-code equivalence proof or a replacement for exact replay.
 
-## Focused comparison and residual
+## Earlier nonexact checkpoint
 
 **Observed:** corrected source compiles to 1,095 bytes and 350 instructions;
 the target also has 350 instructions. Canonical relocation replay reports
@@ -96,9 +145,9 @@ python3 scripts/compare-function.py 0x00407680 \
   --rel32-target lookup_orientation_sine_quantized_abs=0x00406360 --json
 ```
 
-The last command currently exits 1 for the byte mismatch, with all six REL32
-fields resolved. The focused unit's ten accepted transform functions remain
-exact; it intentionally does not accept the rotation. Private reports are
+At the earlier checkpoint, the last command exited 1 for the byte mismatch,
+with all six REL32 fields resolved. It now exits 0. The unit has since added
+the exact rotation to its ten previously accepted transform functions. Private reports are
 `build/sprite-rotate-corrected-unit.json`,
 `build/sprite-rotate-corrected-compare.json`,
 `build/sprite-rotate-differences.json` and
@@ -125,9 +174,6 @@ where VC7 distinguishes comparison width. That is a source hypothesis to
 test on VC8, not transferable TH105 compiler evidence. This TH105 callable
 contains lookup calls, not an inline `fsincos` instruction.
 
-**Unknown:** the original TU/compiler ownership explaining comparison
-selection and temporary reuse remains unresolved. The source is now selected
-in `implemented.csv`, with a durable mapping in `reccmp-functions.csv` and
-`implemented` status in `functions.csv`. `matches.csv` and the accepted unit
-membership remain unchanged. Equal function length and the diagnostic byte
-agreement earn no canonical exact credit.
+**Unknown:** original class spelling, TU partition and original pragma versus
+command-line control remain unresolved. The instruction/relocation result is
+now canonical exact; those provenance questions do not change its byte result.

@@ -61,7 +61,7 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4023)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1315)
+        self.assertEqual(len(matching), 1316)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
@@ -69,7 +69,7 @@ class WorkflowToolingTests(unittest.TestCase):
             implemented = [row[0] for row in csv.reader(stream) if row]
         self.assertEqual(len(implemented), 1389)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1315
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1316
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
@@ -77,7 +77,7 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(len(manifest["units"]), 494)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1393,
+            1394,
         )
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:
@@ -559,11 +559,13 @@ class WorkflowToolingTests(unittest.TestCase):
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
         rule = next(
-            row for row in document["rules"]
+            row for row in document["accepted_evidence"]
             if row["id"] == "sprite-three-axis-pivot-rotation-authored-106a"
         )
         rows = self.origins.read_csv(self.origins.FUNCTIONS)
         selected = [row for row in rows if row["address"] in rule["addresses"]]
+        self.assertEqual(len(selected), 1)
+        self.assertEqual(selected[0]["status"], "matching")
         data = self.origins.attest_target(document)
         read_pe = self.origins.pe_reader(data)
         validate = self.origins.validate_rule_evidence
@@ -978,7 +980,7 @@ class WorkflowToolingTests(unittest.TestCase):
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
         self.assertEqual(len(accepted), 462)
-        self.assertEqual(sum(map(len, accepted.values())), 1315)
+        self.assertEqual(sum(map(len, accepted.values())), 1316)
         secondary = accepted["gpt-web-secondary-animation-runtime"]
         self.assertEqual(
             secondary,
@@ -1658,8 +1660,8 @@ class WorkflowToolingTests(unittest.TestCase):
             f"Origin/boundary review pending | {len(functions) - len(authored) - len(excluded):,}",
             markdown,
         )
-        self.assertIn("Canonical exact functions | 1,315", markdown)
-        self.assertIn("Canonical exact authored bytes | 220,094", markdown)
+        self.assertIn("Canonical exact functions | 1,316", markdown)
+        self.assertIn("Canonical exact authored bytes | 221,189", markdown)
         self.assertIn("Source-present authored mappings | 1,389", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown

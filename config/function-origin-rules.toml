@@ -2361,37 +2361,6 @@ required_direct_edges = [
 ]
 
 [[rules]]
-id = "sprite-three-axis-pivot-rotation-authored-106a"
-addresses = ["0x00407680"]
-expected_count = 1
-expected_bytes = 1095
-expected_names = ["sub_407680"]
-origin = "authored_game"
-subsystem = "render"
-disposition = "authored"
-confidence = "observed"
-evidence = "Hash-attested target PE reaches all 1095 bytes through two RET 0x18 paths without gaps or indirect exits. Three optional Z/Y/X x87 rotation phases call separately source-present target cosine/sine lookup bodies and update four xyz working vertices at receiver +0xB0..+0xDC around six scalar parameters. Five distinct canonical-exact timeline/background/system-effect renderers call the body at six replayed E8 sites. Nearby CSpriteEx reset/translate/scale bodies are independently canonical exact, corroborating shared sprite ownership; the retained rotate_xyz source remains unselected and is not exact evidence. Six outgoing lookup E8s, six exact inbound E8s and full body hash are replayed. Original TU and exact codegen remain unresolved. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
-required_body_hashes = [
-  { address = "0x00407680", size = 1095, sha256 = "313f3bb25a5e3c835faf60c91a2196b0a2d22d3507c01bcac149fe3debb69dde" },
-]
-required_direct_edges = [
-  { caller = "0x00450EA0", site = "0x00450F57", target = "0x00407680", caller_status = "matching" },
-  { caller = "0x00468710", site = "0x00468764", target = "0x00407680", caller_status = "matching" },
-  { caller = "0x00468780", site = "0x00468819", target = "0x00407680", caller_status = "matching" },
-  { caller = "0x00468780", site = "0x004689C0", target = "0x00407680", caller_status = "matching" },
-  { caller = "0x00469540", site = "0x00469594", target = "0x00407680", caller_status = "matching" },
-  { caller = "0x00473CF0", site = "0x00473D80", target = "0x00407680", caller_status = "matching" },
-]
-required_selected_body_calls = [
-  { owner = "0x00407680", site = "0x0040769F", target = "0x004063D0", target_status = "implemented" },
-  { owner = "0x00407680", site = "0x004076AF", target = "0x00406360", target_status = "implemented" },
-  { owner = "0x00407680", site = "0x00407806", target = "0x004063D0", target_status = "implemented" },
-  { owner = "0x00407680", site = "0x00407816", target = "0x00406360", target_status = "implemented" },
-  { owner = "0x00407680", site = "0x0040796D", target = "0x004063D0", target_status = "implemented" },
-  { owner = "0x00407680", site = "0x0040797D", target = "0x00406360", target_status = "implemented" },
-]
-
-[[rules]]
 id = "select-base-constructor-authored-106a"
 addresses = ["0x004231A0"]
 expected_count = 1
@@ -2552,4 +2521,36 @@ required_selected_body_calls = [
   { owner = "0x0046BA10", site = "0x0046BAC7", target = "0x0046B8B0" },
   { owner = "0x0046BA10", site = "0x0046BADF", target = "0x0046B8B0" },
   { owner = "0x0046BA10", site = "0x0046BAF2", target = "0x0046B5E0" },
+]
+
+# Accepted provenance witnesses do not assign origin dispositions.
+[[accepted_evidence]]
+id = "sprite-three-axis-pivot-rotation-authored-106a"
+addresses = ["0x00407680"]
+expected_count = 1
+expected_bytes = 1095
+expected_names = ["sub_407680"]
+origin = "authored_game"
+subsystem = "render"
+disposition = "authored"
+confidence = "observed"
+evidence = "Hash-attested target PE reaches all 1095 bytes through two RET 0x18 paths without gaps or indirect exits. Three optional Z/Y/X x87 rotation phases call separately source-present target cosine/sine lookup bodies and update four xyz working vertices at receiver +0xB0..+0xDC around six scalar parameters. Five distinct canonical-exact timeline/background/system-effect renderers call the body at six replayed E8 sites. Nearby CSpriteEx reset/translate/scale bodies are independently canonical exact, corroborating shared sprite ownership; the accepted rotation now belongs to the canonical matching baseline; this archived evidence is replayed by workflow tests. Six outgoing lookup E8s, six exact inbound E8s and full body hash are replayed. Original TU identity remains inferred. Natural fenv_access plus shared scalars reproduce all 1095 bytes; see docs/SPRITE_PIVOT_ROTATION_2026_10_02.md. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+required_body_hashes = [
+  { address = "0x00407680", size = 1095, sha256 = "313f3bb25a5e3c835faf60c91a2196b0a2d22d3507c01bcac149fe3debb69dde" },
+]
+required_direct_edges = [
+  { caller = "0x00450EA0", site = "0x00450F57", target = "0x00407680", caller_status = "matching" },
+  { caller = "0x00468710", site = "0x00468764", target = "0x00407680", caller_status = "matching" },
+  { caller = "0x00468780", site = "0x00468819", target = "0x00407680", caller_status = "matching" },
+  { caller = "0x00468780", site = "0x004689C0", target = "0x00407680", caller_status = "matching" },
+  { caller = "0x00469540", site = "0x00469594", target = "0x00407680", caller_status = "matching" },
+  { caller = "0x00473CF0", site = "0x00473D80", target = "0x00407680", caller_status = "matching" },
+]
+required_selected_body_calls = [
+  { owner = "0x00407680", site = "0x0040769F", target = "0x004063D0", target_status = "implemented" },
+  { owner = "0x00407680", site = "0x004076AF", target = "0x00406360", target_status = "implemented" },
+  { owner = "0x00407680", site = "0x00407806", target = "0x004063D0", target_status = "implemented" },
+  { owner = "0x00407680", site = "0x00407816", target = "0x00406360", target_status = "implemented" },
+  { owner = "0x00407680", site = "0x0040796D", target = "0x004063D0", target_status = "implemented" },
+  { owner = "0x00407680", site = "0x0040797D", target = "0x00406360", target_status = "implemented" },
 ]
