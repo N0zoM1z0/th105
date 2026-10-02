@@ -1619,17 +1619,18 @@ void AyaObjectActionStateView::update_action_state()
                 --lifetime_330;
                 return;
             }
-            owner_y = owner->y_f0;
+            owner_y = fighter_owner_348->y_f0;
             if (aya_stage_surface_height_at_x(this) < owner_y
                 && heading_340[0] == 0.0f) {
                 --lifetime_330;
                 return;
             }
-            sprite_004.object_x_0e8 = owner->x_ec;
+            CharacterObjectEffectEmitter *const position_owner = fighter_owner_348;
+            sprite_004.object_x_0e8 = position_owner->x_ec;
             sprite_004.object_y_0ec = static_cast<float>(
-                static_cast<double>(owner->y_f0) + 100.0);
-            payload[0] = static_cast<float>(selector_random_roll(100) - 50);
-            payload[1] = static_cast<float>(selector_random_roll(100) - 50);
+                static_cast<double>(position_owner->y_f0) + 100.0);
+            payload[0] = static_cast<float>(static_cast<unsigned>(selector_random_roll(100)) - 50.0f);
+            payload[1] = static_cast<float>(static_cast<unsigned>(selector_random_roll(100)) - 50.0f);
             payload[2] = 1.0f;
             if (!(time_counter_144 % 15)) {
                 effect_emitter()->spawn_unparented_related_object(
