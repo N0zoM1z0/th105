@@ -3300,7 +3300,8 @@ if ( !*(_WORD *)(raw +  322) )
 {
 if ( *(_WORD *)(raw +  320) == 4 )
 {
-v344 = *(float *)(raw +  236) - (double)(5 * *(char *)(raw +  260));
+// Target keeps the signed facing product as an integer FISUB operand.
+v344 = *(float *)(raw +  236) - (5 * *(char *)(raw +  260));
 *(float *)(*(_DWORD *)(raw +  368) + 236) = v344;
 *(_BYTE *)(*(_DWORD *)(raw +  368) + 260) = *(_BYTE *)(raw +  260);
 }
@@ -3312,12 +3313,12 @@ v93 = *(_DWORD *)(raw +  368);
 if ( *(__int16 *)(v93 + 372) > 0 )
 {
 (*(void (__thiscall **)(void *, int))(*(_DWORD *)v93 + 8))((void *)v93, 53);
-v345 = *(float *)(raw +  236) - (double)(25 * *(char *)(raw +  260));
+v345 = *(float *)(raw +  236) - (25 * *(char *)(raw +  260));
 *(float *)(*(_DWORD *)(raw +  368) + 236) = v345;
 }
 else
 {
-*(float *)(v93 + 236) = *(float *)(raw +  236) - (double)(25 * *(char *)(raw +  260));
+*(float *)(v93 + 236) = *(float *)(raw +  236) - (25 * *(char *)(raw +  260));
 *(float *)(*(_DWORD *)(raw +  368) + 396) = -10.0;
 *(float *)(*(_DWORD *)(raw +  368) + 400) = 7.5;
 (*(void (__thiscall **)(_DWORD, int))(**(_DWORD **)(raw +  368) + 8))(
@@ -4212,7 +4213,8 @@ v127 = *(_WORD *)(raw +  1840);
 if ( v127 == 7 || v127 == 15 )
 payload_444[0] = 315.0;
 v389 = 90.0 - payload_444[0];
-v442 = lookup_orientation_sine_quantized_abs(v389) * 200.0 + *(float *)(*(_DWORD *)(raw +  368) + 240) + 100.0;
+// Target adds peerY+100 before adding the sine contribution.
+v442 = lookup_orientation_sine_quantized_abs(v389) * 200.0 + (*(float *)(*(_DWORD *)(raw +  368) + 240) + 100.0);
 v390 = 90.0 - payload_444[0];
 v364 = lookup_orientation_cosine_quantized_abs(v390) * 200.0;
 v178 = *(unsigned __int8 *)(raw +  260);
@@ -4226,7 +4228,7 @@ spawn_owned_object_via_manager(853, v392, v164, v178, 1, (int)payload_444, 3);
 payload_444[2] = 3.0;
 v393 = 90.0 - payload_444[0];
 v179 = *(unsigned __int8 *)(raw +  260);
-v394 = lookup_orientation_sine_quantized_abs(v393) * 250.0 + *(float *)(*(_DWORD *)(raw +  368) + 240) + 100.0;
+v394 = lookup_orientation_sine_quantized_abs(v393) * 250.0 + (*(float *)(*(_DWORD *)(raw +  368) + 240) + 100.0);
 v165 = v394;
 v395 = 90.0 - payload_444[0];
 v396 = lookup_orientation_cosine_quantized_abs(v395) * 250.0 * (double)*(char *)(raw +  260) + *(float *)(*(_DWORD *)(raw +  368) + 236);
@@ -4627,7 +4629,9 @@ if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 5 )
 dispatch_indexed_event_member(0x1Du);
 if ( *(__int16 *)(raw +  320) >= 5 )
 {
-v58 = *(float *)(raw +  244) - 2.0;
+// Target rounds the decrement to a dword before the sign comparison.
+v305 = *(float *)(raw +  244) - 2.0;
+v58 = v305;
 *(float *)(raw +  244) = v58;
 if ( v58 < 0.0 )
 *(float *)(raw +  244) = 0.0;

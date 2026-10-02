@@ -1,5 +1,9 @@
 # Youmu action-602 conversion, loop and shared-call recovery, 2026-10-02
 
+Follow-up: [floating value order and integer operands](YOUMU_FPU_VALUE_ORDER_2026_10_02.md)
+adds action603/696/526 corrections. Metrics and hashes below describe the
+preceding action602 checkpoint.
+
 ## Retained result
 
 **Observed:** `Youmu_dispatch_action_state_vslot28 @ 0x00530200` remains
