@@ -26,7 +26,22 @@ instructions are not the active queue.
   Attest any new project before relying on it. Do not launch multiple
   Ghidra processes or use the factory MCP adapter for this work.
 
-## Active reconstruction checkpoint: Iku Fighter vslot +0x28
+## Active matching checkpoint: shared AnimationObject render transforms
+
+Fresh canonical comparison of `AnimationObject_prepare_render_transform @
+0x00435360` and `AnimationObject_render_to_battle_scene @ 0x00435740`
+reproduces exact-sized 439/456-byte candidates, each with only five differing
+byte positions. The entire residual is a target `FILD [esp+8]; PUSH EDI`
+versus candidate `PUSH EDI; FILD [esp+0C]` scheduling swap; all subsequent
+bytes align. Hash-attested target traversal covers both callable spans.
+Seven private natural-source/environment variants either leave the swap or
+regress earlier, and a forced-unresolved single-TU `/GL` diagnostic retains
+the candidate order. See
+[the x87/EDI scheduling evidence](ANIMATION_RENDER_EDI_X87_SCHEDULING_2026_10_02.md).
+No retained source, helper ABI, match unit or exact ledger changed. Recover
+original source/TU scheduling evidence rather than force registers or assembly.
+
+## Preceding reconstruction checkpoint: Iku Fighter vslot +0x28
 
 `Iku_dispatch_action_state_vslot28 @ 0x00620920` now has a hash-attested
 complete target boundary: `[620920,62EFBE)` contains59,038 reachable bytes,
