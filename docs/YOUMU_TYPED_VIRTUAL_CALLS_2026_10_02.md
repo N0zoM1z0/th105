@@ -1,5 +1,9 @@
 # Youmu typed virtual calls, 2026-10-02
 
+The action214 zero-lifetime and combined-effect controls below are superseded
+by [the independently supported follow-up](YOUMU_ZERO_AND_EFFECT_LIFETIMES_2026_10_02.md).
+Metrics here describe the typed-call checkpoint.
+
 ## Retained result
 
 `Youmu_dispatch_action_state_vslot28 @ 0x00530200` remains **nonexact** over

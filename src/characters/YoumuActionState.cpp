@@ -92,7 +92,6 @@ bool v38; // sf
 double v39; // st5
 double v40; // st5
 double v41; // st7
-double v42; // st7
 int v43; // eax
 __int16 v44; // ax
 char v45; // cl
@@ -233,7 +232,6 @@ float v188; // [esp+14h] [ebp-24Ch]
 float v189; // [esp+14h] [ebp-24Ch]
 float v190; // [esp+14h] [ebp-24Ch]
 float v191; // [esp+14h] [ebp-24Ch]
-float v192; // [esp+14h] [ebp-24Ch]
 float v193; // [esp+14h] [ebp-24Ch]
 float v194; // [esp+14h] [ebp-24Ch]
 float v195; // [esp+14h] [ebp-24Ch]
@@ -301,8 +299,6 @@ float v256; // [esp+30h] [ebp-230h]
 float v257; // [esp+30h] [ebp-230h]
 float v258; // [esp+30h] [ebp-230h]
 float v259; // [esp+30h] [ebp-230h]
-float v260; // [esp+30h] [ebp-230h]
-float v261; // [esp+30h] [ebp-230h]
 float v262; // [esp+30h] [ebp-230h]
 float v263; // [esp+30h] [ebp-230h]
 float v264; // [esp+30h] [ebp-230h]
@@ -1379,33 +1375,30 @@ adjust_counter_482(12, 1);
 else
 adjust_counter_482(6, 1);
 *(float *)(raw +  300) = -*(float *)(raw +  1856);
-v42 = 0.0;
 if ( *(float *)(raw +  244) < 0.0 )
 *(float *)(raw +  300) = 180.0 - *(float *)(raw +  1856);
 if ( *(float *)(raw +  244) < 0.0 && *(_WORD *)(raw +  318) == 1 )
 {
 select_sequence(3);
-v42 = 0.0;
 }
-if ( v42 <= *(float *)(raw +  244) && *(_WORD *)(raw +  318) == 3 )
+if ( *(float *)(raw +  244) >= 0.0 && *(_WORD *)(raw +  318) == 3 )
 {
 select_sequence(1);
-v42 = 0.0;
 }
-if ( v42 > *(float *)(raw +  244) && *(_WORD *)(raw +  318) == 2 )
+if ( *(float *)(raw +  244) < 0.0 && *(_WORD *)(raw +  318) == 2 )
 {
 select_sequence(4);
-v42 = 0.0;
 }
-if ( v42 <= *(float *)(raw +  244) && *(_WORD *)(raw +  318) == 4 )
+if ( *(float *)(raw +  244) >= 0.0 && *(_WORD *)(raw +  318) == 4 )
 select_sequence(2);
 if ( *(int *)(raw +  324) % 5 == 1 )
 {
 v217 = *(unsigned __int8 *)(raw +  260);
-v260 = lookup_orientation_sine_quantized_abs(*(float *)(raw +  1856)) * 100.0 + *(float *)(raw +  240) + 100.0;
-v192 = v260;
-v261 = lookup_orientation_cosine_quantized_abs(*(float *)(raw +  1856)) * 100.0 * (double)*(char *)(raw +  260) + *(float *)(raw +  236);
-emit_fighter_effect_433cc0(125, v261, v192, v217, 1);
+emit_fighter_effect_433cc0(125,
+lookup_orientation_cosine_quantized_abs(*(float *)(raw +  1856)) * 100.0 * (double)*(char *)(raw +  260)
++ *(float *)(raw +  236),
+lookup_orientation_sine_quantized_abs(*(float *)(raw +  1856)) * 100.0 + *(float *)(raw +  240) + 100.0,
+v217, 1);
 }
 if ( ((v43 = *(_DWORD *)(raw +  1736)) != 0 || *(__int16 *)(raw +  1846) <= 10)
 && *(__int16 *)(raw +  1154) > 0

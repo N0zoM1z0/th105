@@ -28,6 +28,24 @@ instructions are not the active queue.
 
 ## Active matching checkpoint: Youmu giant root
 
+Action214 now uses natural velocity-on-left literal-zero predicates. VC8
+keeps zero live through the five target memory comparisons and discards/reloads
+it around conditional virtual calls; three extra velocity FLDs disappear.
+Effect125 coordinates now occur in call arguments, restoring trailing-prefix,
+sine-Y and cosine-X order while preserving its original addition association.
+Four unused floating local hypotheses are removed. Fresh canonical comparison
+remains nonexact at`+0xCA`, target64/candidate0C; metadata`+0x92E4` versus
+target`+0x933C`. All27/98 prior diagnostic owners remain, with no gains/losses
+or exact credit, and all97 destinations/33 low entries remain distinct.
+All138 guard and49 payload packets remain covered; load/store leads decrease
+13->12. The prior effect-only negative is superseded under the recovered zero
+lifetime. Random-X606 and strict-frame-window probes remain private: the
+local Y carry is restored but low11/mid304 regress. Original source types,
+remaining argument schedules, physical tails and numerical/exception closure
+remain open. See [the zero and effect lifetime evidence](YOUMU_ZERO_AND_EFFECT_LIFETIMES_2026_10_02.md).
+
+The following paragraphs record preceding checkpoints.
+
 Three cached action214 sequence calls, nine peer action calls and two self
 frame calls now use the existing typed virtual methods. Raw target RTTI and
 all15 roster primary tables corroborate the unchanged animation prefix.
