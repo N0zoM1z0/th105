@@ -1684,21 +1684,21 @@ void AyaObjectActionStateView::update_action_state()
                 reinterpret_cast<AyaObjectActionStateView *>(owner)->select_sequence(1);
             if (((sprite_004.object_x_0e8 >= 1280.0f && sprite_004.object_facing_100 == 1) || (sprite_004.object_x_0e8 <= 0.0f && sprite_004.object_facing_100 == -1)) && !state_364) {
             switch (g_match_identifier) {
-            case 0: {
-                float i = 0.0f; do { payload[0] = static_cast<float>(i * 20.0f + 170.0f); payload[1] = 6.0f; payload[2] = 3.0f; effect_emitter()->spawn_unparented_related_object(900, sprite_004.object_x_0e8, static_cast<float>(sprite_004.object_y_0ec + 100.0), static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3); i += 1.0f; } while (i < 2.0f); break; }
-            case 1: {
-                float i = 0.0f; do { payload[0] = static_cast<float>(i * 20.0f + 150.0f); payload[1] = 6.0f; payload[2] = 3.0f; effect_emitter()->spawn_unparented_related_object(900, sprite_004.object_x_0e8, static_cast<float>(sprite_004.object_y_0ec + 100.0), static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3); i += 1.0f; } while (i < 4.0f); break; }
-            case 2: {
-                float i = 0.0f; do { payload[0] = static_cast<float>(i * 20.0f + 140.0f); payload[1] = 6.0f; payload[2] = 3.0f; effect_emitter()->spawn_unparented_related_object(900, sprite_004.object_x_0e8, static_cast<float>(sprite_004.object_y_0ec + 100.0), static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3); i += 1.0f; } while (i < 5.0f); break; }
             case 3: {
                 float i = 0.0f; do { payload[0] = static_cast<float>(i * 20.0f + 120.0f); payload[1] = 6.0f; payload[2] = 3.0f; effect_emitter()->spawn_unparented_related_object(900, sprite_004.object_x_0e8, static_cast<float>(sprite_004.object_y_0ec + 100.0), static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3); i += 1.0f; } while (i < 6.0f); break; }
+            case 2: {
+                float i = 0.0f; do { payload[0] = static_cast<float>(i * 20.0f + 140.0f); payload[1] = 6.0f; payload[2] = 3.0f; effect_emitter()->spawn_unparented_related_object(900, sprite_004.object_x_0e8, static_cast<float>(sprite_004.object_y_0ec + 100.0), static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3); i += 1.0f; } while (i < 5.0f); break; }
+            case 1: {
+                float i = 0.0f; do { payload[0] = static_cast<float>(i * 20.0f + 150.0f); payload[1] = 6.0f; payload[2] = 3.0f; effect_emitter()->spawn_unparented_related_object(900, sprite_004.object_x_0e8, static_cast<float>(sprite_004.object_y_0ec + 100.0), static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3); i += 1.0f; } while (i < 4.0f); break; }
+            case 0: {
+                float i = 0.0f; do { payload[0] = static_cast<float>(i * 20.0f + 170.0f); payload[1] = 6.0f; payload[2] = 3.0f; effect_emitter()->spawn_unparented_related_object(900, sprite_004.object_x_0e8, static_cast<float>(sprite_004.object_y_0ec + 100.0), static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3); i += 1.0f; } while (i < 2.0f); break; }
             default: break;
             }
                 if (*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(owner) + 0x13e) == 1)
                     reinterpret_cast<AyaObjectActionStateView *>(owner)->next_sequence_block();
                 state_364 = 1;
             }
-            if (sprite_004.object_x_0e8 < 2000.0f && sprite_004.object_x_0e8 > -720.0f) break;
+            if (!(sprite_004.object_x_0e8 >= 2000.0f || sprite_004.object_x_0e8 <= -720.0f)) break;
             short &owner_state_730 = *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(owner) + 0x730);
             if (!owner_state_730) { owner_state_730 = 1; if (static_cast<unsigned int>(g_match_identifier) <= 1u) owner_state_730 = 3; }
             if (owner_state_730 == 2) owner_state_730 = 3;
@@ -1820,7 +1820,7 @@ void AyaObjectActionStateView::update_action_state()
                 state_370 = static_cast<float>(state_370 - 16.0);
                 if (state_370 <= -180.0f) state_370 = static_cast<float>(state_370 + 360.0);
                 payload[0] = state_370; payload[1] = 15.0f; payload[2] = 1.0f;
-                int const spawn_side = (state_370 < 0.0f || state_370 > 180.0f) ? -1 : 1;
+                int const spawn_side = !(state_370 >= 0.0f && state_370 <= 180.0f) ? -1 : 1;
                 effect_emitter()->spawn_unparented_related_object(821, sprite_004.object_x_0e8, sprite_004.object_y_0ec, static_cast<unsigned char>(sprite_004.object_facing_100), spawn_side, reinterpret_cast<const unsigned *>(payload), 3);
             }
         }
@@ -1831,19 +1831,18 @@ void AyaObjectActionStateView::update_action_state()
                 else motion_core()->component_f0 = 0.0f;
             }
             if (static_cast<signed char>(phase_index_184) <= 0) next_sequence_block();
-            short const owner_state = *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x174);
             switch (g_match_identifier) {
-            case 0:
-                if (time_counter_144 > 180 || owner_state <= 0) { phase_index_184 = 0; next_sequence_block(); }
-                break;
-            case 1:
-                if (!(time_counter_144 <= 320 && owner_state > 0)) { phase_index_184 = 0; next_sequence_block(); }
+            case 3:
+                if (!(time_counter_144 <= 600 && *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x174) > 0)) { phase_index_184 = 0; next_sequence_block(); }
                 break;
             case 2:
-                if (time_counter_144 > 500 || owner_state <= 0) { phase_index_184 = 0; next_sequence_block(); }
+                if (time_counter_144 > 500 || *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x174) <= 0) { phase_index_184 = 0; next_sequence_block(); }
                 break;
-            case 3:
-                if (!(time_counter_144 <= 600 && owner_state > 0)) { phase_index_184 = 0; next_sequence_block(); }
+            case 1:
+                if (!(time_counter_144 <= 320 && *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x174) > 0)) { phase_index_184 = 0; next_sequence_block(); }
+                break;
+            case 0:
+                if (time_counter_144 > 180 || *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x174) <= 0) { phase_index_184 = 0; next_sequence_block(); }
                 break;
             default:
                 break;

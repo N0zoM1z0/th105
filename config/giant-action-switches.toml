@@ -281,3 +281,39 @@ destination_table = "0x0061EED4"
 destination_count = 33
 index_table = "0x0061EF58"
 expected_physical_groups = 33
+
+[[roots.auxiliary_switches]]
+name = "sequence856"
+dispatch = "0x0061D3BA"
+destination_table = "0x0061F020"
+destinations = ["0x0061D3C1", "0x0061D447", "0x0061D4D2", "0x0061D4D2", "0x0061D55D", "0x0061D579"]
+
+[[roots.auxiliary_switches]]
+name = "sequence900"
+dispatch = "0x0061D852"
+destination_table = "0x0061F038"
+destinations = ["0x0061D859", "0x0061DC72", "0x0061DC72", "0x0061DCF4", "0x0061DDF9", "0x0061DE75"]
+
+[[roots.auxiliary_switches]]
+name = "match900"
+dispatch = "0x0061D96A"
+destination_table = "0x0061F050"
+destinations = ["0x0061DB35", "0x0061DA9D", "0x0061DA05", "0x0061D971"]
+
+[[roots.auxiliary_switches]]
+name = "sequence901"
+dispatch = "0x0061DF4B"
+destination_table = "0x0061F060"
+destinations = ["0x0061DF52", "0x0061E174", "0x0061E18F", "0x0061E1CC"]
+
+[[roots.auxiliary_switches]]
+name = "match902"
+dispatch = "0x0061E5AB"
+destination_table = "0x0061F070"
+destinations = ["0x0061E609", "0x0061E5FD", "0x0061E5F1", "0x0061E5B2"]
+
+[[roots.auxiliary_switches]]
+name = "sequence903"
+dispatch = "0x0061E658"
+destination_table = "0x0061F080"
+destinations = ["0x0061E65F", "0x0061E69C", "0x0061E744", "0x0061E858", "0x0061E926", "0x0061E9A5", "0x0061EA00", "0x0061EA6A", "0x0061EB3C", "0x0061EB7C"]

@@ -26,7 +26,30 @@ instructions are not the active queue.
   Attest any new project before relying on it. Do not launch multiple
   Ghidra processes or use the factory MCP adapter for this work.
 
-## Active matching checkpoint: YoumuObject action-entry root
+## Active matching checkpoint: AyaObject action-state root
+
+`AyaObject_update_action_state_vslot28 @ 0x0061A290` now corrects900's
+unordered outside-range behavior and902's unordered spawn-side selection.
+902 reads the owner state only inside its time/owner predicates, matching
+target conditional dereference timing. Match900/902 bodies follow target's
+physical3/2/1/0 order;900 block spans148/152/152/147 agree individually while
+instructions remain nonexact.902 shrinks783->644 versus target652 but still
+merges target's two callback suffixes. Six exact auxiliary table records close
+raw traversal14451->19522 bytes, reaching all4630 instructions with seven
+validated indexed jumps and no unresolved indirect exits. BL-mask proof
+extends guard coverage to124/124; one residual ordinal902 lead is a role-order
+artifact, with the upper angle's unordered path filtered by its lower guard.
+Fresh canonical request19522 remains nonexact at+22 target0F/candidate19;
+candidate section tail19488 is34 bytes short. Metadata19020 versus target19524
+widens the body gap364->504, so closer902 size is not whole-root recovery.
+Diagnostics2->3/34 gain only physical default802, without losing entry/980;
+33 destinations/zero splits remain. No exact credit is added. See
+[the AyaObject predicate/read/switch evidence](AYA_OBJECT_UNORDERED_AND_SWITCH_CLOSURE_2026_10_02.md).
+Original physical tails, argument/virtual-call scheduling, stack homes and
+compiler/TU context remain unknown. Continue with independently pinned value/
+control-flow evidence in this root; avoid register forcing or copied bytes.
+
+## Preceding matching checkpoint: YoumuObject action-entry root
 
 Freshly rebuilt`YoumuObject_initialize_action_entry @ 0x00543670` remains
 nonexact over5159 bytes at`+0x80` target9D/candidate97; metadata5156 versus
