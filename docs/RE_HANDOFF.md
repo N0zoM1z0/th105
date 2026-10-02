@@ -28,8 +28,23 @@ instructions are not the active queue.
 
 ## Active matching checkpoint: AyaObject action-state root
 
-`AyaObject_update_action_state_vslot28 @ 0x0061A290` now snapshots 903 case8's
-alpha byte before the x87 reset multiply, as the target loads and compares
+The latest bounded 903 case2/3 controls leave retained source unchanged.
+Target case2 orders `FMULP, MOV AL, FSTP, CMP`; retained candidate orders
+`FMULP, FSTP, MOV AL, CMP`. Both a real prior-alpha snapshot and a real
+multiplied-float carrier compile to `MOV AL, FMULP, CMP, FSTP`, too early for
+the target, and yield the same nonexact comparison window. The four case9
+coordinate edges target a different copy of the same 15-byte decrement/return
+body, so they do not support a predicate change. See
+[the fade-tail controls](AYA_OBJECT_903_FADE_TAIL_CONTROLS_2026_10_02.md).
+Investigate original compiler/TU/LTCG context or independently evidenced
+value lifetime for the fade tail; do not repeat the two rejected spellings.
+No exact credit, shared-contract change, or source change in this checkpoint.
+
+The following paragraphs record preceding 903 checkpoints.
+
+At the preceding checkpoint, `AyaObject_update_action_state_vslot28 @
+0x0061A290` snapshots 903 case8's alpha byte before the x87 reset multiply,
+as the target loads and compares
 it before that multiply. The configured candidate's first59 bytes/11
 instruction forms and death edges correspond to target case8 after65-byte
 placement translation. Target case8 jumps to the fade tail in case2;
