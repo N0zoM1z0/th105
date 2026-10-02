@@ -26,7 +26,21 @@ instructions are not the active queue.
   Attest any new project before relying on it. Do not launch multiple
   Ghidra processes or use the factory MCP adapter for this work.
 
-## Active matching checkpoint: shared AnimationObject render transforms
+## Active matching checkpoint: KomachiObject pair-spawn helper
+
+The 205-byte authored/source-present `KomachiObject_emit_owner_gated_object_826_pair
+@ 0x005F9350` has a fresh hash-attested, gap-free 61-instruction target
+traversal and a fresh 203-byte nonexact `/GS` candidate. Target retains the
+gate-loaded owner in ECX across first-payload setup, uses EAX for the payload
+pointer/facing, and pushes argument1 after fetching the manager virtual slot;
+the candidate colors owner/payload registers differently and pushes1 earlier.
+Typed direct-manager and genuine payload/facing lifetime controls do not
+recover the target. See
+[the pair-spawn scheduling evidence](KOMACHI_PAIR_CALL_SCHEDULING_2026_10_02.md).
+No source, accepted-unit or exact change; move effort toward complete giant
+roots unless independent original TU/source evidence resolves this scheduler.
+
+## Preceding matching checkpoint: shared AnimationObject render transforms
 
 Fresh canonical comparison of `AnimationObject_prepare_render_transform @
 0x00435360` and `AnimationObject_render_to_battle_scene @ 0x00435740`
