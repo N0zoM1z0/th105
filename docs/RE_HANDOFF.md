@@ -29,33 +29,40 @@ instructions are not the active queue.
 ## Active matching checkpoint: AyaObject action-state root
 
 `AyaObject_update_action_state_vslot28 @ 0x0061A290` now restores852's
-separate sequence2/3 angle/time updates, direct rate assignment to owner+6AC
-and target time<240 increment fallthrough. The natural source produces
-194 replayed bytes/43 instructions identical to target in[61C9C4,61CA86),
-at the same addresses. This is an interval diagnostic, not exact acceptance.
-Promoting facing to an int local creates target-absent FIMUL and is rejected;
-its original type and negative operand load order remain open. See
-[the sequence-gate/direct-store evidence](AYA_OBJECT_SEQUENCE_GATES_AND_RATE_STORE_2026_10_02.md).
-Fresh configured19522 comparison remains nonexact at+22 target0F/candidate33.
-Metadata19304 versus target19524 shrinks gap248->220; section tail19772 and
-comparisonwindow19522 include218 bytes aftercandidate metadata. That window
-hash is not a candidate-body hash. Raw diagnostics2/34 retain entry/980;
-default802 callable instructions remain unchanged, but its span includes
-postRET MOVEDI,EDI alignment.33 destinations/zero splits remain; no exact
-credit is added.852 targetspan1201 versus candidate1248.
-Full raw target traversal still closes4630 instructions/all19522 bytes
-through seven validated switches; guards remain124/124. Four852 guard roles
-agree, twelve853 roles remain paired despite physical reordering, and the
-902 path lead remains. Earlier unsigned-wrap641-value proofs,853 select7
-immediate return, callback/alpha reads, quarterY and unordered predicates
-remain verified; see [the preceding checkpoint](AYA_OBJECT_UNSIGNED_SPAWNS_AND_TRANSITION_2026_10_02.md).
-No shared ABI/header/helper/compiler/relocation/partition change. Remaining
-spawn scheduling/coordinate homes, signed-facing conversion and FILD/FLD
-order, scratch offsets, movement receiver/register scheduling, other action
-operands/lifetimes and original TU/LTCG context are open. Full numerical/
-exception closure remains unknown. Continue with independent target
-value/control-flow evidence; avoid repeating the rejected facing promotion
-or substituting register/byte forcing for source recovery.
+pending spawn arguments/direct coordinate evaluation, including selector
+limit-cell reuse forY and640-before128 call order. A local byte-argument
+view removes three extra MOVZX operations. Target64CCB0 forwards DWORD
+slots, but RTTI-linked Aya manager vtable6C62A4 slot+4=618470 consumes facing/
+field33C asBYTE at618512/618516. The local view preserves four-byte argument
+slots and28-byte wrapper purge; a unit-local alias binds the existing body.
+Original wrapper C++ types are unproven; shared declarations/bodies remain
+unchanged. See [the argument/byte-contract evidence](AYA_OBJECT_SPAWN_ARGUMENTS_AND_BYTE_CONTRACT_2026_10_02.md).
+A450-case decoded emission-prefix model agrees in meaningful arguments and
+RNG order with mocked calls, optional callback field changes and nearest-even
+FSTP32. First-two446-byte/126-instruction pattern agrees after47-byte placement
+translation, not canonical bytes. The earlier194-byte/43-instruction pattern
+persists42 bytes earlier; its former same-address byte equality does not
+carry forward.852 candidate1206/312 instructions versus target1201/310;
+facing conversion accounts for five extra bytes, with other load/home
+mismatches still present. Int-facing FIMUL control remains rejected.
+Fresh configured19522 comparison is nonexact at+22 target0F/candidate56.
+Metadata19340 versus target19524 shrinks gap220->184; section tail19808 and
+comparisonwindow19522 include182 metadata bytes, so its hash is not a body
+hash. Rawdiagnostics3/34 entry/800/980;800375-byte/107-instruction owner gains
+are diagnostic only.855321->337 versus target332,861358->427 versus target358,
+9001737->1729 versus target1773; there is no uniform improvement. Default802
+postRET alignment remains.33 destinations/zero splits; no exact credit.
+Full raw target traversal closes4630 instructions/all19522 bytes through
+seven switches; guards124/124 retain853 twelve-role pairing and902 path lead.
+Prior two641-value unsignedY proofs,853 select7 return/owner reload, alpha,
+quarterY and unordered observations remain. No shared ABI/header/helper/
+compiler/object partition or accepted-unit relocation contract change.
+Remaining facing conversion/FILD placement, scratch homes/X rounding carrier,
+movement/decrement register ownership,855/861 physical sharing, other action
+values/lifetimes and original TU/LTCG context are open. Full numerical/
+exception closure remains unknown. ImplicitX cast and routing the other18
+calls through the byte view are neutral controls; do not repeat them as a
+search strategy. Continue from independent target dataflow/type evidence.
 
 ## Preceding matching checkpoint: YoumuObject action-entry root
 

@@ -1817,6 +1817,10 @@ class WorkflowToolingTests(unittest.TestCase):
         unit = units["gpt-web-aya-object-vslot28-full-root"]
         self.assertEqual(unit["source"], "src/characters/AyaObjectActionState.cpp")
         self.assertEqual(unit["functions"][0]["address"], "0x0061A290")
+        self.assertIn(
+            "AyaObjectSpawnCallView_spawn_unparented_related_object=0x0064CCB0",
+            unit["functions"][0]["rel32_targets"],
+        )
         self.assertNotIn("0x0061A290", self.exact_replay.accepted_functions(units).get(
             "gpt-web-aya-object-vslot28-full-root", set()
         ))
@@ -1828,7 +1832,6 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertIn("double object_y;", full)
         self.assertEqual(full.count("float payload[3];"), 1)
         self.assertNotIn("float payload[3] =", full)
-        self.assertIn("direction = 1;", full)
         self.assertIn("time_counter_144 >= 180", full)
         action815 = full[full.index("    case 815: {"):full.index("    case 816: {")]
         self.assertIn("if (owner_action < 520)", action815)

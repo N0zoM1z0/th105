@@ -17,6 +17,17 @@ float __cdecl lookup_orientation_sine(int angle);
 double __cdecl lookup_orientation_sine_quantized_abs(float phase);
 double __cdecl lookup_orientation_cosine_quantized_abs(float phase);
 
+// Call view for 0x0064CCB0: it forwards ordinary four-byte x86 slots;
+// Aya manager 0x00618470 consumes facing and field_33c as low bytes.
+// This local view does not establish the original C++ wrapper declaration.
+class AyaObjectSpawnCallView {
+public:
+    void *spawn_unparented_related_object(
+        int action_id, float x, float y, signed char facing,
+        unsigned char field_33c, const unsigned *copied_words,
+        int copied_word_count);
+};
+
 class FighterOwnedObjectSpawnView {
 public:
     int spawn_owned_object_via_manager(
@@ -1229,55 +1240,52 @@ void AyaObjectActionStateView::update_action_state()
                 payload[0] = static_cast<float>(20.0f - static_cast<unsigned>(selector_random_roll(40)));
                 payload[1] = static_cast<float>(static_cast<unsigned>(selector_random_roll(10)) + 50.0f);
                 payload[2] = 2.0f;
-                float x;
-                float y;
-                int direction;
                 if (sprite_004.object_facing_100 == 1) {
-                    direction = 1;
-                    y = static_cast<float>(static_cast<unsigned>(selector_random_roll(640)));
-                    x = -100.0f;
+                    reinterpret_cast<AyaObjectSpawnCallView *>(this)->spawn_unparented_related_object(
+                        852, -100.0f,
+                        static_cast<float>(static_cast<unsigned>(selector_random_roll(640))),
+                        1, 1, reinterpret_cast<const unsigned *>(payload), 3);
                 } else {
-                    direction = static_cast<unsigned char>(sprite_004.object_facing_100);
-                    y = static_cast<float>(static_cast<unsigned>(selector_random_roll(640)));
-                    x = 1380.0f;
+                    reinterpret_cast<AyaObjectSpawnCallView *>(this)->spawn_unparented_related_object(
+                        852, 1380.0f,
+                        static_cast<float>(static_cast<unsigned>(selector_random_roll(640))),
+                        static_cast<unsigned char>(sprite_004.object_facing_100),
+                        1, reinterpret_cast<const unsigned *>(payload), 3);
                 }
-                effect_emitter()->spawn_unparented_related_object(852, x, y, direction, 1, reinterpret_cast<const unsigned *>(payload), 3);
             }
             if (!(time_counter_144 % 40)) {
                 payload[0] = static_cast<float>(15.0f - static_cast<unsigned>(selector_random_roll(30)));
                 payload[1] = static_cast<float>(static_cast<unsigned>(selector_random_roll(10)) + 35.0f);
                 payload[2] = 3.0f;
-                float x;
-                float y;
-                int direction;
                 if (sprite_004.object_facing_100 == 1) {
-                    direction = 1;
-                    y = static_cast<float>(static_cast<unsigned>(selector_random_roll(640)));
-                    x = -100.0f;
+                    reinterpret_cast<AyaObjectSpawnCallView *>(this)->spawn_unparented_related_object(
+                        852, -100.0f,
+                        static_cast<float>(static_cast<unsigned>(selector_random_roll(640))),
+                        1, 1, reinterpret_cast<const unsigned *>(payload), 3);
                 } else {
-                    direction = static_cast<unsigned char>(sprite_004.object_facing_100);
-                    y = static_cast<float>(static_cast<unsigned>(selector_random_roll(640)));
-                    x = 1380.0f;
+                    reinterpret_cast<AyaObjectSpawnCallView *>(this)->spawn_unparented_related_object(
+                        852, 1380.0f,
+                        static_cast<float>(static_cast<unsigned>(selector_random_roll(640))),
+                        static_cast<unsigned char>(sprite_004.object_facing_100),
+                        1, reinterpret_cast<const unsigned *>(payload), 3);
                 }
-                effect_emitter()->spawn_unparented_related_object(852, x, y, direction, 1, reinterpret_cast<const unsigned *>(payload), 3);
             }
             if (!(time_counter_144 % 15)) {
                 payload[0] = 0.0f;
                 payload[1] = 0.0f;
                 payload[2] = 1.0f;
-                float x;
-                float y;
-                int direction;
                 if (sprite_004.object_facing_100 == 1) {
-                    direction = 1;
-                    y = static_cast<float>(static_cast<unsigned>(selector_random_roll(640)) - 180u);
-                    x = static_cast<float>(-400.0f - static_cast<unsigned>(selector_random_roll(128)));
+                    reinterpret_cast<AyaObjectSpawnCallView *>(this)->spawn_unparented_related_object(
+                        852, static_cast<float>(-400.0f - static_cast<unsigned>(selector_random_roll(128))),
+                        static_cast<float>(static_cast<unsigned>(selector_random_roll(640)) - 180u),
+                        1, 1, reinterpret_cast<const unsigned *>(payload), 3);
                 } else {
-                    direction = static_cast<unsigned char>(sprite_004.object_facing_100);
-                    y = static_cast<float>(static_cast<unsigned>(selector_random_roll(640)) - 180u);
-                    x = static_cast<float>(static_cast<unsigned>(selector_random_roll(128)) + 1680.0f);
+                    reinterpret_cast<AyaObjectSpawnCallView *>(this)->spawn_unparented_related_object(
+                        852, static_cast<float>(static_cast<unsigned>(selector_random_roll(128)) + 1680.0f),
+                        static_cast<float>(static_cast<unsigned>(selector_random_roll(640)) - 180u),
+                        static_cast<unsigned char>(sprite_004.object_facing_100),
+                        1, reinterpret_cast<const unsigned *>(payload), 3);
                 }
-                effect_emitter()->spawn_unparented_related_object(852, x, y, direction, 1, reinterpret_cast<const unsigned *>(payload), 3);
             }
             if (time_counter_144 < 240) {
                 state_374 = static_cast<float>(state_374 + 0.5);
