@@ -27,7 +27,7 @@ struct FighterActionScratchView { void reset(); };
 struct FighterPeerActionStateView { void zero_velocity_acceleration(); };
 
 // Target Youmu RTTI places the AnimationObject/AttackObject prefix at offset 0.
-// The accepted sequence view supplies the actual +8/+0C/+14 call contracts.
+// The accepted sequence view supplies the +8/+0C/+14/+1C call contracts.
 class YoumuActionStateView : public AnimationSequenceObjectView {
 public:
 
@@ -97,12 +97,9 @@ int v43; // eax
 __int16 v44; // ax
 char v45; // cl
 double v46; // st7
-int (__thiscall *v47)(void *, int); // eax
 __int16 v48; // ax
 char v49; // cl
 double v50; // st7
-int (__thiscall *v51)(void *, int); // eax
-int (__thiscall *v52)(void *, int); // edx
 __int16 v53; // ax
 __int16 v54; // ax
 __int16 v55; // ax
@@ -1444,9 +1441,8 @@ if ( v45 == 1 )
 if ( *(float *)(*(_DWORD *)(raw +  368) + 236) < v46 )
 {
 *(_BYTE *)(raw +  260) = -1;
-v47 = *(int (__thiscall **)(void *, int))(*(_DWORD *)raw +  12);
 *(float *)(raw +  244) = -*(float *)(raw +  244);
-v47(raw, 6);
+select_sequence(6);
 goto LABEL_392;
 }
 }
@@ -1469,9 +1465,8 @@ if ( v49 == 1 )
 if ( *(float *)(*(_DWORD *)(raw +  368) + 236) < v50 )
 {
 *(_BYTE *)(raw +  260) = -1;
-v51 = *(int (__thiscall **)(void *, int))(*(_DWORD *)raw +  12);
 *(float *)(raw +  244) = -*(float *)(raw +  244);
-v51(raw, 5);
+select_sequence(5);
 return;
 }
 goto LABEL_397;
@@ -1484,9 +1479,8 @@ select_sequence(6);
 return;
 }
 *(_BYTE *)(raw +  260) = -v49;
-v52 = *(int (__thiscall **)(void *, int))(*(_DWORD *)raw +  12);
 *(float *)(raw +  244) = -*(float *)(raw +  244);
-v52(raw, 5);
+select_sequence(5);
 }
 break;
 case 0xD7:
@@ -3142,7 +3136,7 @@ if ( !(unsigned __int8)is_y_at_or_below_stage_surface(reinterpret_cast<void *>(*
 if ( *(_DWORD *)(raw +  384) == 1 )
 {
 next_sequence_block();
-(*(void (__thiscall **)(_DWORD, int))(**(_DWORD **)(raw +  368) + 8))(*(_DWORD *)(raw +  368), 100);
+reinterpret_cast<AnimationSequenceObjectView *>(*(_DWORD *)(raw + 368))->set_action_and_finalize(100);
 reinterpret_cast<FighterPeerActionStateView *>(*(_DWORD *)(raw + 368))->zero_velocity_acceleration();
 *(_BYTE *)(*(_DWORD *)(raw +  368) + 260) = -*(_BYTE *)(raw +  260);
 v334 = (double)(95 * *(char *)(raw +  260)) + *(float *)(raw +  236);
@@ -3154,7 +3148,7 @@ if ( *(_WORD *)(raw +  318) == 1 && !*(_WORD *)(raw +  322) )
 {
 if ( *(_WORD *)(raw +  320) == 1 )
 {
-(*(void (__thiscall **)(_DWORD, int))(**(_DWORD **)(raw +  368) + 8))(*(_DWORD *)(raw +  368), 102);
+reinterpret_cast<AnimationSequenceObjectView *>(*(_DWORD *)(raw + 368))->set_action_and_finalize(102);
 v335 = (double)(55 * *(char *)(raw +  260)) + *(float *)(raw +  236);
 *(float *)(*(_DWORD *)(raw +  368) + 236) = v335;
 }
@@ -3176,9 +3170,7 @@ if ( !*(_WORD *)(raw +  322) )
 {
 if ( *(_WORD *)(raw +  320) == 4 )
 {
-(*(void (__thiscall **)(_DWORD, int))(**(_DWORD **)(raw +  368) + 8))(
-*(_DWORD *)(raw +  368),
-100);
+reinterpret_cast<AnimationSequenceObjectView *>(*(_DWORD *)(raw + 368))->set_action_and_finalize(100);
 v338 = (double)(25 * *(char *)(raw +  260)) + *(float *)(raw +  236);
 *(float *)(*(_DWORD *)(raw +  368) + 236) = v338;
 }
@@ -3189,7 +3181,7 @@ if ( *(_WORD *)(raw +  320) == 5 )
 v89 = *(_DWORD *)(raw +  368);
 if ( *(__int16 *)(v89 + 372) > 0 )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)v89 + 8))((void *)v89, 53);
+reinterpret_cast<AnimationSequenceObjectView *>(v89)->set_action_and_finalize(53);
 v339 = (double)(45 * *(char *)(raw +  260)) + *(float *)(raw +  236);
 *(float *)(*(_DWORD *)(raw +  368) + 236) = v339;
 }
@@ -3198,9 +3190,7 @@ else
 *(float *)(v89 + 236) = (double)(45 * *(char *)(raw +  260)) + *(float *)(raw +  236);
 *(float *)(*(_DWORD *)(raw +  368) + 396) = -10.0;
 *(float *)(*(_DWORD *)(raw +  368) + 400) = 7.5;
-(*(void (__thiscall **)(_DWORD, int))(**(_DWORD **)(raw +  368) + 8))(
-*(_DWORD *)(raw +  368),
-71);
+reinterpret_cast<AnimationSequenceObjectView *>(*(_DWORD *)(raw + 368))->set_action_and_finalize(71);
 *(_BYTE *)(*(_DWORD *)(raw +  368) + 260) = -*(_BYTE *)(raw +  260);
 }
 }
@@ -3256,7 +3246,7 @@ if ( !(unsigned __int8)is_y_at_or_below_stage_surface(reinterpret_cast<void *>(*
 if ( *(_DWORD *)(raw +  384) == 1 )
 {
 next_sequence_block();
-(*(void (__thiscall **)(_DWORD, int))(**(_DWORD **)(raw +  368) + 8))(*(_DWORD *)(raw +  368), 100);
+reinterpret_cast<AnimationSequenceObjectView *>(*(_DWORD *)(raw + 368))->set_action_and_finalize(100);
 reinterpret_cast<FighterPeerActionStateView *>(*(_DWORD *)(raw + 368))->zero_velocity_acceleration();
 *(_BYTE *)(*(_DWORD *)(raw +  368) + 260) = -*(_BYTE *)(raw +  260);
 v340 = (double)(95 * *(char *)(raw +  260)) + *(float *)(raw +  236);
@@ -3268,7 +3258,7 @@ if ( *(_WORD *)(raw +  318) == 1 && !*(_WORD *)(raw +  322) )
 {
 if ( *(_WORD *)(raw +  320) == 1 )
 {
-(*(void (__thiscall **)(_DWORD, int))(**(_DWORD **)(raw +  368) + 8))(*(_DWORD *)(raw +  368), 102);
+reinterpret_cast<AnimationSequenceObjectView *>(*(_DWORD *)(raw + 368))->set_action_and_finalize(102);
 v341 = (double)(55 * *(char *)(raw +  260)) + *(float *)(raw +  236);
 *(float *)(*(_DWORD *)(raw +  368) + 236) = v341;
 }
@@ -3302,7 +3292,7 @@ if ( *(_WORD *)(raw +  320) == 5 )
 v93 = *(_DWORD *)(raw +  368);
 if ( *(__int16 *)(v93 + 372) > 0 )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)v93 + 8))((void *)v93, 53);
+reinterpret_cast<AnimationSequenceObjectView *>(v93)->set_action_and_finalize(53);
 v345 = *(float *)(raw +  236) - (25 * *(char *)(raw +  260));
 *(float *)(*(_DWORD *)(raw +  368) + 236) = v345;
 }
@@ -3311,9 +3301,7 @@ else
 *(float *)(v93 + 236) = *(float *)(raw +  236) - (25 * *(char *)(raw +  260));
 *(float *)(*(_DWORD *)(raw +  368) + 396) = -10.0;
 *(float *)(*(_DWORD *)(raw +  368) + 400) = 7.5;
-(*(void (__thiscall **)(_DWORD, int))(**(_DWORD **)(raw +  368) + 8))(
-*(_DWORD *)(raw +  368),
-71);
+reinterpret_cast<AnimationSequenceObjectView *>(*(_DWORD *)(raw + 368))->set_action_and_finalize(71);
 *(_BYTE *)(*(_DWORD *)(raw +  368) + 260) = *(_BYTE *)(raw +  260);
 }
 }
@@ -3870,7 +3858,7 @@ reinterpret_cast<FighterActionScratchView *>(raw + 4)->reset();
 else
 {
 *(_WORD *)(raw +  1840) = 1;
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  28))(raw, 9);
+set_sequence_frame(9);
 *(float *)(raw +  244) = 25.0;
 }
 return;
@@ -4082,7 +4070,7 @@ reinterpret_cast<FighterActionScratchView *>(raw + 4)->reset();
 v115 = *(_WORD *)(raw +  320);
 if ( v115 <= 8 && *(_DWORD *)(raw +  384) )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  28))(raw, 9);
+set_sequence_frame(9);
 *(float *)(raw +  244) = 25.0;
 return;
 }

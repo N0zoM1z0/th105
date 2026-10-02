@@ -28,6 +28,22 @@ instructions are not the active queue.
 
 ## Active matching checkpoint: Youmu giant root
 
+Three cached action214 sequence calls, nine peer action calls and two self
+frame calls now use the existing typed virtual methods. Raw target RTTI and
+all15 roster primary tables corroborate the unchanged animation prefix.
+Fresh whole-root comparison remains nonexact at `+0xCA`, target64/candidate2C;
+metadata is `+0x9304` versus target`+0x933C` (56 bytes short). Diagnostics
+reach27/98, gaining low215 with no losses from the preceding26/98, while all97
+physical destinations/33 low entries remain distinct. All138 guard and49
+payload packets remain covered; load/store leads decrease14->13. This adds
+zero exact credit. Zero-carrier variants are byte-neutral; nested-first-facing
+and combined effect-argument probes lose low11 and are not retained.
+Action214 still has three extra velocity loads; original zero lifetime, actual
+argument schedules, physical tails and numerical closure remain unknown. See
+[the typed virtual call evidence](YOUMU_TYPED_VIRTUAL_CALLS_2026_10_02.md).
+
+The following metrics describe preceding checkpoints.
+
 Action603 now computes both offset object853 spawn coordinates inside the
 actual call arguments. Fresh VC8 prepares the trailing arguments before the
 remaining sine-Y/cosine-X helpers, matching the observed target order, and
