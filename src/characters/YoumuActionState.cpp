@@ -493,8 +493,7 @@ double v440; // [esp+40h] [ebp-220h]
 double v441; // [esp+40h] [ebp-220h]
 double v442; // [esp+40h] [ebp-220h]
 double v443; // [esp+40h] [ebp-220h]
-int v444[2]; // [esp+48h] [ebp-218h] BYREF
-float v445; // [esp+50h] [ebp-210h]
+float payload_444[3]; // target contiguous three-float object-853 payload
 float payload_446[3]; // target contiguous +54/+58/+5C BYREF
 float payload_449[3]; // target contiguous +60/+64/+68 BYREF
 float payload_452[3]; // target contiguous +6C/+70/+74 BYREF
@@ -4176,9 +4175,9 @@ if ( *(int *)(raw +  324) % 5 )
 goto LABEL_1499;
 if ( *(__int16 *)(raw +  1840) >= 16 )
 goto LABEL_1500;
-*(float *)v444 = v118;
-*(float *)&v444[1] = v118;
-v445 = 2.0;
+payload_444[0] = v118;
+payload_444[1] = v118;
+payload_444[2] = 2.0;
 v119 = *(_DWORD *)(raw +  368);
 v388 = *(float *)(v119 + 240) + 100.0;
 spawn_owned_object_via_manager(853,
@@ -4186,53 +4185,53 @@ spawn_owned_object_via_manager(853,
 v388,
 *(unsigned __int8 *)(raw +  260),
 1,
-(int)v444,
+(int)payload_444,
 3);
-v445 = 1.0;
+payload_444[2] = 1.0;
 v120 = *(_WORD *)(raw +  1840);
 if ( !v120 || v120 == 8 )
-*(float *)v444 = 0.0;
+payload_444[0] = 0.0;
 v121 = *(_WORD *)(raw +  1840);
 if ( v121 == 1 || v121 == 9 )
-*(float *)v444 = 180.0;
+payload_444[0] = 180.0;
 v122 = *(_WORD *)(raw +  1840);
 if ( v122 == 2 || v122 == 10 )
-*(float *)v444 = 90.0;
+payload_444[0] = 90.0;
 v123 = *(_WORD *)(raw +  1840);
 if ( v123 == 3 || v123 == 11 )
-*(float *)v444 = 270.0;
+payload_444[0] = 270.0;
 v124 = *(_WORD *)(raw +  1840);
 if ( v124 == 4 || v124 == 12 )
-*(float *)v444 = 45.0;
+payload_444[0] = 45.0;
 v125 = *(_WORD *)(raw +  1840);
 if ( v125 == 5 || v125 == 13 )
-*(float *)v444 = 225.0;
+payload_444[0] = 225.0;
 v126 = *(_WORD *)(raw +  1840);
 if ( v126 == 6 || v126 == 14 )
-*(float *)v444 = 135.0;
+payload_444[0] = 135.0;
 v127 = *(_WORD *)(raw +  1840);
 if ( v127 == 7 || v127 == 15 )
-*(float *)v444 = 315.0;
-v389 = 90.0 - *(float *)v444;
+payload_444[0] = 315.0;
+v389 = 90.0 - payload_444[0];
 v442 = lookup_orientation_sine_quantized_abs(v389) * 200.0 + *(float *)(*(_DWORD *)(raw +  368) + 240) + 100.0;
-v390 = 90.0 - *(float *)v444;
+v390 = 90.0 - payload_444[0];
 v364 = lookup_orientation_cosine_quantized_abs(v390) * 200.0;
 v178 = *(unsigned __int8 *)(raw +  260);
-v163 = -*(float *)v444;
+v163 = -payload_444[0];
 v391 = v442 - lookup_orientation_sine_quantized_abs(v163) * 150.0;
 v164 = v391;
-v150 = -*(float *)v444;
+v150 = -payload_444[0];
 v392 = (v364 - lookup_orientation_cosine_quantized_abs(v150) * 150.0) * (double)*(char *)(raw +  260)
 + *(float *)(*(_DWORD *)(raw +  368) + 236);
-spawn_owned_object_via_manager(853, v392, v164, v178, 1, (int)v444, 3);
-v445 = 3.0;
-v393 = 90.0 - *(float *)v444;
+spawn_owned_object_via_manager(853, v392, v164, v178, 1, (int)payload_444, 3);
+payload_444[2] = 3.0;
+v393 = 90.0 - payload_444[0];
 v179 = *(unsigned __int8 *)(raw +  260);
 v394 = lookup_orientation_sine_quantized_abs(v393) * 250.0 + *(float *)(*(_DWORD *)(raw +  368) + 240) + 100.0;
 v165 = v394;
-v395 = 90.0 - *(float *)v444;
+v395 = 90.0 - payload_444[0];
 v396 = lookup_orientation_cosine_quantized_abs(v395) * 250.0 * (double)*(char *)(raw +  260) + *(float *)(*(_DWORD *)(raw +  368) + 236);
-spawn_owned_object_via_manager(853, v396, v165, v179, 1, (int)v444, 3);
+spawn_owned_object_via_manager(853, v396, v165, v179, 1, (int)payload_444, 3);
 v118 = 0.0;
 ++*(_WORD *)(raw +  1840);
 LABEL_1499:

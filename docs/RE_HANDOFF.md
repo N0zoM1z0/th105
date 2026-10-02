@@ -28,11 +28,23 @@ instructions are not the active queue.
 
 ## Active matching checkpoint: Youmu giant root
 
-The latest bounded numerical audit corrects actions 601/602/604 to send
+Action 603 now uses one contiguous three-float object-853 payload. The old
+two-element array plus independent scalar lost all third-element stores;
+VC8 now retains target values 2/1/3 and the target payload base. Fresh
+whole-root comparison remains nonexact at `+0xCA`, target64/candidateF5;
+metadata is `+0x92D0` and strict owner diagnostics remain 24/98.
+A raw stack/def-use packet resolves all 49 physical spawn payloads and closes
+the action-603 address discrepancy. Six owners still have different payload
+address sequences. Simple float-type changes are byte-neutral; branch-local
+601 calls and an int forwarding-parameter view are not retained. The actual
+manager consumes that control parameter's low byte. See
+[the payload extent and stack evidence](YOUMU_PAYLOAD_EXTENT_2026_10_02.md).
+
+The preceding bounded numerical audit corrects actions 601/602/604 to send
 unordered angles outside the inclusive 0..180 interval, and preserves
 `roll + (index*45 + 22.5)` in actions 601/604. Fresh natural VC8 code reproduces
 the target comparison masks/branches and addition order. Full comparison
-still fails at `+0xCA`; 24/98 diagnostic owners and metadata `+0x92B4` remain.
+still fails at `+0xCA`; 24/98 diagnostic owners and metadata `+0x92D0` now apply.
 The TH08 reference contains real FSINCOS/FRNDINT assembly islands, but neither
 instruction occurs in this Youmu callable. This does not establish a rule for
 its callees or other roots. See [the angle audit and TH08 reference](YOUMU_ANGLE_RANGE_2026_10_02.md).
@@ -46,14 +58,14 @@ merges of target-distinct owners. Fresh strict owner auditing runs and reports
 **24/98** diagnostic identical owners. This is not exact-byte credit.
 
 Fresh focused comparison remains nonexact at `+0xCA`, target `64`, candidate
-`D9`. Candidate metadata starts at `+0x92B4`, versus target `+0x933C`.
+`F5`. Candidate metadata starts at `+0x92D0`, versus target `+0x933C`.
 Raw traversal still reaches **37,692 bytes / 9,912 instructions**, with no
 unresolved indirect jumps, including the auxiliary table at `0x539990`.
 See [the shared-tail evidence](YOUMU_SHARED_EFFECT_TAILS_2026_10_02.md).
 
 Action 214 now also preserves the target's unordered facing guard: only
 ordered-greater opponent X reverses facing/velocity and selects sequence 5;
-less/equal/unordered select 6. The whole COFF text changes one branch opcode.
+less/equal/unordered select 6. That earlier correction changed one branch opcode in the whole COFF text.
 Direct Ghidra independently passes imported identity, entry point and full
 mapped-text checks for this root. Corrected helper metadata is read back;
 stack tracking warnings and flattened floating expressions remain limitations.

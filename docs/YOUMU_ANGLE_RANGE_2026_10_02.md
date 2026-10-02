@@ -1,6 +1,10 @@
 # Youmu angle ranges and TH08 x87 reference, 2026-10-02
 
-## Result and scope
+Follow-up: [the object-853 payload extent](YOUMU_PAYLOAD_EXTENT_2026_10_02.md)
+restores three missing field writes; metadata is now `+0x92D0`. Measurements
+below describe the preceding angle checkpoint.
+
+## Checkpoint result and scope
 
 **Observed:** `Youmu_dispatch_action_state_vslot28 @ 0x00530200` remains
 nonexact over the complete 37,692-byte callable. This checkpoint corrects
