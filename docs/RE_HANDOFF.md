@@ -28,33 +28,34 @@ instructions are not the active queue.
 
 ## Active matching checkpoint: AyaObject action-state root
 
-`AyaObject_update_action_state_vslot28 @ 0x0061A290` now corrects812/821's
-Y movement to add onlyone quarter of vertical velocity; the old source first
-added a full velocity as well.812 re-evaluates projection arguments at each
-call, reloading heading afterXstore.820 reloads own sequence after5575C0 and
-owner348 after64CCB0, and performs its variant+2 in the floating domain after
-RNG conversion. Two24-byte Y intervals and the35-byte owner-check suffix agree
-with target after replay, without regional or function acceptance.
-Fresh configured19522 request remains nonexact at+22 target0F/candidate1C;
-available section tail19492 is30 bytes short, metadata19024 versus target19524,
-33 destinations/zero splits. Raw diagnostics2/34 preserve entry/980; default802
-callable instructions are unchanged, but its last candidate span includes a
-postRET alignmentNOP. Earlier claims of losing that default diagnostic are
-corrected as alignment artifacts, not behavior regressions. Other controls
-have postRET LEA/MOV alignment. No exact credit is added. See
-[the quarter-motion and callback-read evidence](AYA_OBJECT_MOTION_AND_CALLBACK_READS_2026_10_02.md).
-Previous900/902 NaN predicates,902 conditional owner reads, match-body order,
-six auxiliary switch records and817/822 earlyalpha reads remain. Target raw
-traversal reaches all4630 instructions/all19522 bytes through seven validated
-switches; guards remain124/124 with the reviewed902 role/path lead. The private
-raw exporter now explicitly stops candidate decoding at metadata, removing
-zeroed adjacent-table annotations; reviewed code intervals remain valid.
-No shared ABI/header/helper/compiler/relocation/partition change. Original
-stack homes, successful/failure suffixes, argument/virtual-call scheduling,
-remaining float operands/lifetimes and TU/LTCG context are open. Continue
-from independently pinned value/control-flow evidence; full numerical and
-exception closure remains unknown. Avoid repeated negative source spellings
-or register/byte forcing.
+`AyaObject_update_action_state_vslot28 @ 0x0061A290` now recovers852's
+unsigned random-value conversions and floating offsets, including actual
+unsigned Y subtraction before conversion: old signed source differed for
+post-call values0..179. Both decoded direction paths agree with target for
+all641 values0..640 under explicit nearest-even FSTP32 modeling. Raw27-byte
+selector helper computes MT/(UINT_MAX/limit), not modulo;640 can be returned.
+The shared signed declaration/body is unchanged; caller casts preserve bits.
+852 negates state374 before multiplication.853 now returns immediately after
+select7, reloads owner afterspawn, gates sequence5..8 on current fields,
+adds variant2 in the floating domain and captures sequence1's earlyalpha.
+Fresh configured19522 request remains nonexact at+22 target0F/candidate19;
+metadata19276 versus target19524 shrinks gap500->248. Section tail19744 and
+comparison window19522 include246 bytes after candidate metadata start, so
+that window hash is not a body hash.33 destinations/zero splits; raw diagnostics
+3/34 entry/980/default802. Default count2->3 only removes prior postRET alignment
+from its diagnostic span; there is no exact credit. See
+[the unsigned-spawn/transition evidence](AYA_OBJECT_UNSIGNED_SPAWNS_AND_TRANSITION_2026_10_02.md).
+Guards remain124/124. Two new853 ordinal leads pair unrelated physical roles;
+all twelve actual853 role pairs have the same compare/mask/four-outcome tables.
+The previous902 role/path lead remains. Target raw traversal reaches all4630
+instructions/all19522 bytes through seven validated switches. Earlier quarterY,
+unordered900/902, conditional owner, alpha and match-order corrections remain.
+No shared ABI/header/helper/compiler/relocation/partition change. Remaining
+physical sharing (including852's two separate target angle bodies), argument/
+value lifetimes, stack homes, remaining float operands and original types/
+TU/LTCG context are open; full numerical/exception closure remains unknown.
+Continue from independent target evidence, avoiding register/byte forcing or
+repeating negative equivalent source spellings.
 
 ## Preceding matching checkpoint: YoumuObject action-entry root
 

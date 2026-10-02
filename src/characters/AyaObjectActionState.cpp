@@ -1226,37 +1226,37 @@ void AyaObjectActionStateView::update_action_state()
         short const sequence = sequence_index_13e;
         if (sequence == 0) {
             if (!(time_counter_144 % 12)) {
-                payload[0] = static_cast<float>(20 - selector_random_roll(40));
-                payload[1] = static_cast<float>(selector_random_roll(10) + 50);
+                payload[0] = static_cast<float>(20.0f - static_cast<unsigned>(selector_random_roll(40)));
+                payload[1] = static_cast<float>(static_cast<unsigned>(selector_random_roll(10)) + 50.0f);
                 payload[2] = 2.0f;
                 float x;
                 float y;
                 int direction;
                 if (sprite_004.object_facing_100 == 1) {
                     direction = 1;
-                    y = static_cast<float>(selector_random_roll(640));
+                    y = static_cast<float>(static_cast<unsigned>(selector_random_roll(640)));
                     x = -100.0f;
                 } else {
                     direction = static_cast<unsigned char>(sprite_004.object_facing_100);
-                    y = static_cast<float>(selector_random_roll(640));
+                    y = static_cast<float>(static_cast<unsigned>(selector_random_roll(640)));
                     x = 1380.0f;
                 }
                 effect_emitter()->spawn_unparented_related_object(852, x, y, direction, 1, reinterpret_cast<const unsigned *>(payload), 3);
             }
             if (!(time_counter_144 % 40)) {
-                payload[0] = static_cast<float>(15 - selector_random_roll(30));
-                payload[1] = static_cast<float>(selector_random_roll(10) + 35);
+                payload[0] = static_cast<float>(15.0f - static_cast<unsigned>(selector_random_roll(30)));
+                payload[1] = static_cast<float>(static_cast<unsigned>(selector_random_roll(10)) + 35.0f);
                 payload[2] = 3.0f;
                 float x;
                 float y;
                 int direction;
                 if (sprite_004.object_facing_100 == 1) {
                     direction = 1;
-                    y = static_cast<float>(selector_random_roll(640));
+                    y = static_cast<float>(static_cast<unsigned>(selector_random_roll(640)));
                     x = -100.0f;
                 } else {
                     direction = static_cast<unsigned char>(sprite_004.object_facing_100);
-                    y = static_cast<float>(selector_random_roll(640));
+                    y = static_cast<float>(static_cast<unsigned>(selector_random_roll(640)));
                     x = 1380.0f;
                 }
                 effect_emitter()->spawn_unparented_related_object(852, x, y, direction, 1, reinterpret_cast<const unsigned *>(payload), 3);
@@ -1270,12 +1270,12 @@ void AyaObjectActionStateView::update_action_state()
                 int direction;
                 if (sprite_004.object_facing_100 == 1) {
                     direction = 1;
-                    y = static_cast<float>(selector_random_roll(640) - 180);
-                    x = static_cast<float>(-400 - selector_random_roll(128));
+                    y = static_cast<float>(static_cast<unsigned>(selector_random_roll(640)) - 180u);
+                    x = static_cast<float>(-400.0f - static_cast<unsigned>(selector_random_roll(128)));
                 } else {
                     direction = static_cast<unsigned char>(sprite_004.object_facing_100);
-                    y = static_cast<float>(selector_random_roll(640) - 180);
-                    x = static_cast<float>(selector_random_roll(128) + 1680);
+                    y = static_cast<float>(static_cast<unsigned>(selector_random_roll(640)) - 180u);
+                    x = static_cast<float>(static_cast<unsigned>(selector_random_roll(128)) + 1680.0f);
                 }
                 effect_emitter()->spawn_unparented_related_object(852, x, y, direction, 1, reinterpret_cast<const unsigned *>(payload), 3);
             }
@@ -1287,7 +1287,7 @@ void AyaObjectActionStateView::update_action_state()
             if (*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(owner) + 0x174) <= 0) { --lifetime_330; return; }
             CharacterObjectEffectEmitter *const owner_target = owner->target_170;
             signed char const nested_facing = *reinterpret_cast<signed char *>(reinterpret_cast<unsigned char *>(owner_target) + 0x104);
-            float const rate = sprite_004.object_facing_100 == -1 ? static_cast<float>(-static_cast<double>(nested_facing) * state_374) : static_cast<float>(static_cast<double>(nested_facing) * state_374);
+            float const rate = sprite_004.object_facing_100 == -1 ? static_cast<float>(static_cast<double>(nested_facing) * -state_374) : static_cast<float>(static_cast<double>(nested_facing) * state_374);
             *reinterpret_cast<float *>(reinterpret_cast<unsigned char *>(owner) + 0x6ac) = rate;
         }
         if (sequence_index_13e == 1) {
@@ -1315,20 +1315,24 @@ void AyaObjectActionStateView::update_action_state()
             sprite_004.object_x_0e8 = owner->x_ec;
             sprite_004.object_y_0ec = owner->y_f0;
             if (!(time_counter_144 % 5)) {
-                payload[0] = 0.0f; payload[1] = 0.0f; payload[2] = static_cast<float>((mt19937_next_u32() & 1u) + 2u);
+                payload[0] = 0.0f; payload[1] = 0.0f; payload[2] = static_cast<float>((mt19937_next_u32() & 1u) + 2.0f);
                 effect_emitter()->spawn_unparented_related_object(853, sprite_004.object_x_0e8, sprite_004.object_y_0ec, static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3);
             }
-            short const owner_action = *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(owner) + 0x13c);
-            short const owner_sequence = *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(owner) + 0x13e);
-            if (owner_action != 603 || owner_sequence > 1) next_sequence_block();
+            CharacterObjectEffectEmitter *const current_owner = fighter_owner_348;
+            if (*reinterpret_cast<short *>(
+                    reinterpret_cast<unsigned char *>(current_owner) + 0x13c) != 603
+                || *reinterpret_cast<short *>(
+                    reinterpret_cast<unsigned char *>(current_owner) + 0x13e) > 1)
+                next_sequence_block();
         }
         short sequence = sequence_index_13e;
         unsigned char &alpha = reinterpret_cast<unsigned char *>(this)[0x113];
         if (sequence == 1) {
+            unsigned char const current_alpha = alpha;
             sprite_004.reset_zero_128 = static_cast<float>(sprite_004.reset_zero_128 + 10.0);
             float const scale = static_cast<float>(sprite_004.reset_one_118 + 0.3f);
             sprite_004.reset_one_118 = scale; sprite_004.reset_one_11c = scale;
-            if (alpha <= 15) { --lifetime_330; return; } alpha -= 15;
+            if (current_alpha <= 15) { --lifetime_330; return; } alpha = static_cast<unsigned char>(current_alpha - 15);
         }
         if (sequence == 2 || sequence == 3) {
             sprite_004.reset_zero_128 = static_cast<float>(sprite_004.reset_zero_128 + 30.0);
@@ -1350,7 +1354,7 @@ void AyaObjectActionStateView::update_action_state()
                 static_cast<float>(sprite_004.object_facing_100) * motion_core()->component_f0;
             sprite_004.object_y_0ec += motion_core()->component_f4;
         }
-        if (sequence == 5) {
+        if (sequence_index_13e == 5) {
             float const scale = static_cast<float>(sprite_004.reset_one_118 + 0.05000000074505806);
             sprite_004.reset_one_118 = scale; sprite_004.reset_one_11c = scale;
             heading_340[1] = static_cast<float>(heading_340[1] - 3.0); if (heading_340[1] < 1.0f) heading_340[1] = 1.0f;
@@ -1359,13 +1363,14 @@ void AyaObjectActionStateView::update_action_state()
                 static_cast<float>(sprite_004.object_facing_100) * motion_core()->component_f0;
             sprite_004.object_y_0ec += motion_core()->component_f4;
         }
-        if (sequence == 6) {
+        if (sequence_index_13e == 6) {
             if (phase_state_180 == 6 && ++state_six_counter_384 < 5) { ++phase_index_184; phase_state_180 = 0; }
             if (time_counter_144 > 60
                 || phase_state_180
                 || (object_y = sprite_004.object_y_0ec,
                     aya_stage_surface_height_at_x(this) >= object_y)) {
                 select_sequence(7);
+                return;
             } else {
                 if (sprite_004.object_x_0e8 > 1380.0f
                     || sprite_004.object_x_0e8 < -100.0f
@@ -1377,8 +1382,7 @@ void AyaObjectActionStateView::update_action_state()
                 sprite_004.object_y_0ec += motion_core()->component_f4;
             }
         }
-        sequence = sequence_index_13e;
-        if (sequence == 7) {
+        if (sequence_index_13e == 7) {
             float const scale = static_cast<float>(sprite_004.reset_one_118 + 0.05000000074505806);
             sprite_004.reset_one_118 = scale; sprite_004.reset_one_11c = scale;
             heading_340[1] = static_cast<float>(heading_340[1] - 3.0); if (heading_340[1] < 1.0f) heading_340[1] = 1.0f;
@@ -1387,7 +1391,7 @@ void AyaObjectActionStateView::update_action_state()
                 static_cast<float>(sprite_004.object_facing_100) * motion_core()->component_f0;
             sprite_004.object_y_0ec += motion_core()->component_f4;
         }
-        if (sequence == 8) {
+        if (sequence_index_13e == 8) {
             sprite_004.reset_one_118 = static_cast<float>(sprite_004.reset_one_118 + 0.2f);
             sprite_004.reset_one_11c = static_cast<float>(sprite_004.reset_one_11c + 0.1f);
         }
