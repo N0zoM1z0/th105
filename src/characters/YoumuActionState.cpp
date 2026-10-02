@@ -1,5 +1,6 @@
 #include <stddef.h>
 #include "CharacterObjectRuntime.hpp"
+#include "AnimationSequenceVirtuals.hpp"
 
 namespace th105 {
 
@@ -25,14 +26,10 @@ int __fastcall is_y_at_or_below_stage_surface(void *fighter);
 struct FighterActionScratchView { void reset(); };
 struct FighterPeerActionStateView { void zero_velocity_acceleration(); };
 
-class YoumuActionStateView {
+// Target Youmu RTTI places the AnimationObject/AttackObject prefix at offset 0.
+// The accepted sequence view supplies the actual +8/+0C/+14 call contracts.
+class YoumuActionStateView : public AnimationSequenceObjectView {
 public:
-    virtual void slot_00();
-    virtual void slot_04();
-    virtual void set_action(int action);
-    virtual void set_sequence(int sequence);
-    virtual void slot_10();
-    virtual void slot_14();
 
     unsigned char resolve_stage_surface_landing_transition();
     unsigned char advance_frame_and_dispatch();
@@ -104,12 +101,12 @@ int v43; // eax
 __int16 v44; // ax
 char v45; // cl
 double v46; // st7
-void (__thiscall *v47)(void *, int); // eax
+int (__thiscall *v47)(void *, int); // eax
 __int16 v48; // ax
 char v49; // cl
 double v50; // st7
-void (__thiscall *v51)(void *, int); // eax
-void (__thiscall *v52)(void *, int); // edx
+int (__thiscall *v51)(void *, int); // eax
+int (__thiscall *v52)(void *, int); // edx
 __int16 v53; // ax
 __int16 v54; // ax
 __int16 v55; // ax
@@ -649,7 +646,7 @@ zero_velocity_acceleration();
 }
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() && !*(_WORD *)(raw +  320) )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 2);
+set_action_and_finalize(2);
 return;
 case 2:
 resolve_stage_surface_landing_transition();
@@ -715,7 +712,7 @@ if ( !(unsigned __int8)advance_frame_and_dispatch() )
 return;
 if ( *(_WORD *)(raw +  320) )
 return;
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 return;
 case 4:
 resolve_stage_surface_landing_transition();
@@ -739,7 +736,7 @@ if ( *(__int16 *)(raw + 318) > 0 )
 *(float *)(raw + 248) = *(float *)(raw + 248) - *(float *)(raw + 256);
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw + 8))(raw, 10);
+set_action_and_finalize(10);
 *(float *)(raw + 240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
 return;
@@ -765,7 +762,7 @@ if ( *(__int16 *)(raw + 318) > 0 )
 *(float *)(raw + 248) = *(float *)(raw + 248) - *(float *)(raw + 256);
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw + 8))(raw, 10);
+set_action_and_finalize(10);
 *(float *)(raw + 240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
 return;
@@ -791,7 +788,7 @@ if ( *(__int16 *)(raw + 318) > 0 )
 *(float *)(raw + 248) = *(float *)(raw + 248) - *(float *)(raw + 256);
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw + 8))(raw, 10);
+set_action_and_finalize(10);
 *(float *)(raw + 240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
 return;
@@ -811,7 +808,7 @@ if ( !*(float *)(raw + 256) )
 *(float *)(raw + 248) = *(float *)(raw + 248) - *(float *)(raw + 256);
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw + 8))(raw, 10);
+set_action_and_finalize(10);
 *(float *)(raw + 240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
 return;
@@ -825,9 +822,9 @@ zero_velocity_acceleration();
 if ( (unsigned __int8)advance_frame_and_dispatch() )
 {
 if ( !*(_DWORD *)(raw +  1720) )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 else
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 2);
+set_action_and_finalize(2);
 }
 return;
 case 0xC5:
@@ -841,7 +838,7 @@ if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 3);
+select_sequence(3);
 return;
 }
 }
@@ -849,14 +846,14 @@ if ( !(unsigned __int8)advance_frame_and_dispatch() )
 goto LABEL_117;
 if ( *(_BYTE *)(raw +  1836) == 2 )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 700);
+set_action_and_finalize(700);
 *(_WORD *)(raw +  1192) = 3;
 *(_WORD *)(raw +  1196) = 3;
 return;
 }
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( *(int *)(raw +  1720) > 0 )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 1);
+set_action_and_finalize(1);
 LABEL_117:
 if ( *(_WORD *)(raw +  318) == 3 && *(_WORD *)(raw +  320) == 2 && !*(_WORD *)(raw +  322) )
 {
@@ -888,7 +885,7 @@ if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 3);
+select_sequence(3);
 return;
 }
 }
@@ -896,16 +893,16 @@ if ( !(unsigned __int8)advance_frame_and_dispatch() )
 goto LABEL_140;
 if ( *(_BYTE *)(raw +  1836) == 2 )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 700);
+set_action_and_finalize(700);
 *(_WORD *)(raw +  1192) = 3;
 *(_WORD *)(raw +  1196) = 3;
 return;
 }
 else
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( *(int *)(raw +  1720) > 0 )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 1);
+set_action_and_finalize(1);
 LABEL_140:
 if ( *(_WORD *)(raw +  318) == 3 && *(_WORD *)(raw +  320) == 2 && !*(_WORD *)(raw +  322) )
 {
@@ -932,15 +929,15 @@ if ( !(unsigned __int8)advance_frame_and_dispatch() )
 goto LABEL_156;
 if ( *(_BYTE *)(raw +  1836) == 2 )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 700);
+set_action_and_finalize(700);
 *(_WORD *)(raw +  1192) = 3;
 *(_WORD *)(raw +  1196) = 3;
 }
 else
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( *(int *)(raw +  1720) > 0 )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 1);
+set_action_and_finalize(1);
 LABEL_156:
 if ( !*(_WORD *)(raw +  318) && *(_WORD *)(raw +  320) == 6 && !*(_WORD *)(raw +  322) )
 {
@@ -970,21 +967,21 @@ emit_fighter_effect_433cc0(
 if ( *(int *)(raw +  1720) < 0 )
 {
 if ( *(int *)(raw +  1716) * *(char *)(raw +  260) > 0 )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 212);
+set_action_and_finalize(212);
 else
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 211);
+set_action_and_finalize(211);
 return;
 }
 ++*(_WORD *)(raw +  1840);
 if ( *(int *)(raw +  1716) * *(char *)(raw +  260) <= 0
 && *(__int16 *)(raw +  1840) > 5 )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 204);
+set_action_and_finalize(204);
 return;
 }
 if ( *(__int16 *)(raw +  1840) > 60 )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 204);
+set_action_and_finalize(204);
 return;
 }
 LABEL_174:
@@ -1021,7 +1018,7 @@ emit_fighter_effect_433cc0(124, v241, v188, v212, 1);
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
 {
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 *(float *)(raw +  244) = 0.0;
 return;
 }
@@ -1041,7 +1038,7 @@ if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 zero_velocity_acceleration();
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
+set_action_and_finalize(10);
 return;
 }
 v22 = *(_WORD *)(raw +  318);
@@ -1083,7 +1080,7 @@ if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 zero_velocity_acceleration();
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
+set_action_and_finalize(10);
 return;
 }
 if ( *(__int16 *)(raw +  318) < 3 && !(*(int *)(raw +  324) % 5) )
@@ -1129,7 +1126,7 @@ if ( v253 < 0.0 )
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
 {
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 *(_BYTE *)(raw +  1150) = 0;
 }
 return;
@@ -1138,7 +1135,7 @@ if ( !*(_WORD *)(raw +  318) )
 resolve_stage_surface_landing_transition();
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
+set_action_and_finalize(10);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
 return;
@@ -1153,7 +1150,7 @@ if ( v254 < -20.0 )
 *(float *)(raw +  248) = -20.0;
 }
 if ( *(_WORD *)(raw +  318) == 1 && *(float *)(raw +  248) < 4.0 )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 2);
+select_sequence(2);
 advance_frame_and_dispatch();
 if ( *(_DWORD *)(raw +  324)
 || *(_WORD *)(raw +  322)
@@ -1179,7 +1176,7 @@ if ( !*(_WORD *)(raw +  318) )
 resolve_stage_surface_landing_transition();
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
+set_action_and_finalize(10);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
 return;
@@ -1194,7 +1191,7 @@ if ( v255 < -20.0 )
 *(float *)(raw +  248) = -20.0;
 }
 if ( *(_WORD *)(raw +  318) == 1 && *(float *)(raw +  248) < 4.0 )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 2);
+select_sequence(2);
 advance_frame_and_dispatch();
 if ( *(_DWORD *)(raw +  324)
 || *(_WORD *)(raw +  322)
@@ -1219,7 +1216,7 @@ if ( !*(_WORD *)(raw +  318) )
 resolve_stage_surface_landing_transition();
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
+set_action_and_finalize(10);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
 return;
@@ -1234,7 +1231,7 @@ if ( v256 < -20.0 )
 *(float *)(raw +  248) = -20.0;
 }
 if ( *(_WORD *)(raw +  318) == 1 && *(float *)(raw +  248) < 4.0 )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 2);
+select_sequence(2);
 advance_frame_and_dispatch();
 if ( *(_DWORD *)(raw +  324)
 || *(_WORD *)(raw +  322)
@@ -1261,7 +1258,7 @@ if ( !*(_WORD *)(raw +  318) )
 resolve_stage_surface_landing_transition();
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__stdcall **)(int))(*(_DWORD *)raw +  8))(10);
+set_action_and_finalize(10);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
 return;
@@ -1276,7 +1273,7 @@ if ( v257 < -20.0 )
 *(float *)(raw +  248) = -20.0;
 }
 if ( *(_WORD *)(raw +  318) == 1 && *(float *)(raw +  248) < 4.0 )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 2);
+select_sequence(2);
 advance_frame_and_dispatch();
 if ( *(_DWORD *)(raw +  324)
 || *(_WORD *)(raw +  322)
@@ -1302,7 +1299,7 @@ if ( !*(_WORD *)(raw +  318) )
 resolve_stage_surface_landing_transition();
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
+set_action_and_finalize(10);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
 return;
@@ -1317,7 +1314,7 @@ if ( v258 < -20.0 )
 *(float *)(raw +  248) = -20.0;
 }
 if ( *(_WORD *)(raw +  318) == 1 && *(float *)(raw +  248) < 4.0 )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 2);
+select_sequence(2);
 advance_frame_and_dispatch();
 if ( *(_DWORD *)(raw +  324)
 || *(_WORD *)(raw +  322)
@@ -1437,21 +1434,21 @@ if ( *(float *)(raw +  244) < 0.0 )
 *(float *)(raw +  300) = 180.0 - *(float *)(raw +  1856);
 if ( *(float *)(raw +  244) < 0.0 && *(_WORD *)(raw +  318) == 1 )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 3);
+select_sequence(3);
 v42 = 0.0;
 }
 if ( v42 <= *(float *)(raw +  244) && *(_WORD *)(raw +  318) == 3 )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 1);
+select_sequence(1);
 v42 = 0.0;
 }
 if ( v42 > *(float *)(raw +  244) && *(_WORD *)(raw +  318) == 2 )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 4);
+select_sequence(4);
 v42 = 0.0;
 }
 if ( v42 <= *(float *)(raw +  244) && *(_WORD *)(raw +  318) == 4 )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 2);
+select_sequence(2);
 if ( *(int *)(raw +  324) % 5 == 1 )
 {
 v217 = *(unsigned __int8 *)(raw +  260);
@@ -1472,13 +1469,13 @@ if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 *(float *)(raw +  248) = 0.0;
 if ( *(__int16 *)(raw +  318) >= 5 )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
+set_action_and_finalize(10);
 zero_velocity_acceleration();
 }
 else
 {
 reinterpret_cast<FighterActionScratchView *>(raw + 4)->reset();
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 215);
+set_action_and_finalize(215);
 }
 }
 return;
@@ -1494,7 +1491,7 @@ if ( v45 == 1 )
 if ( *(float *)(*(_DWORD *)(raw +  368) + 236) < v46 )
 {
 *(_BYTE *)(raw +  260) = -1;
-v47 = *(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12);
+v47 = *(int (__thiscall **)(void *, int))(*(_DWORD *)raw +  12);
 *(float *)(raw +  244) = -*(float *)(raw +  244);
 v47(raw, 6);
 goto LABEL_392;
@@ -1504,10 +1501,10 @@ else if ( *(float *)(*(_DWORD *)(raw +  368) + 236) > v46 )
 {
 *(_BYTE *)(raw +  260) = -v45;
 *(float *)(raw +  244) = -*(float *)(raw +  244);
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 6);
+select_sequence(6);
 goto LABEL_392;
 }
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 5);
+select_sequence(5);
 LABEL_392:
 v48 = *(_WORD *)(raw +  318);
 if ( v48 == 3 || v48 == 4 )
@@ -1519,7 +1516,7 @@ if ( v49 == 1 )
 if ( *(float *)(*(_DWORD *)(raw +  368) + 236) < v50 )
 {
 *(_BYTE *)(raw +  260) = -1;
-v51 = *(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12);
+v51 = *(int (__thiscall **)(void *, int))(*(_DWORD *)raw +  12);
 *(float *)(raw +  244) = -*(float *)(raw +  244);
 v51(raw, 5);
 return;
@@ -1529,11 +1526,11 @@ goto LABEL_397;
 if ( *(float *)(*(_DWORD *)(raw +  368) + 236) <= v50 )
 {
 LABEL_397:
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 6);
+select_sequence(6);
 return;
 }
 *(_BYTE *)(raw +  260) = -v49;
-v52 = *(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12);
+v52 = *(int (__thiscall **)(void *, int))(*(_DWORD *)raw +  12);
 *(float *)(raw +  244) = -*(float *)(raw +  244);
 v52(raw, 5);
 }
@@ -1555,7 +1552,7 @@ if ( v263 > 0.0 )
 *(float *)(raw +  244) = 0.0;
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 return;
 case 0xDC:
 if ( !*(_WORD *)(raw +  318) )
@@ -1563,7 +1560,7 @@ resolve_stage_surface_landing_transition();
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 LABEL_99:
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
+set_action_and_finalize(10);
 goto LABEL_100;
 }
 if ( (unsigned __int8)is_y_at_or_below_stage_surface(this) || *(float *)(raw +  248) > 0.0 )
@@ -1576,7 +1573,7 @@ if ( v264 < -20.0 )
 *(float *)(raw +  248) = -20.0;
 }
 if ( *(_WORD *)(raw +  318) == 1 && *(float *)(raw +  248) < 4.0 )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 2);
+select_sequence(2);
 advance_frame_and_dispatch();
 if ( !*(_DWORD *)(raw +  324)
 && !*(_WORD *)(raw +  322)
@@ -1596,7 +1593,7 @@ if ( !*(_WORD *)(raw +  318) )
 resolve_stage_surface_landing_transition();
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
+set_action_and_finalize(10);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
 return;
@@ -1611,7 +1608,7 @@ if ( v265 < -20.0 )
 *(float *)(raw +  248) = -20.0;
 }
 if ( *(_WORD *)(raw +  318) == 1 && *(float *)(raw +  248) < 4.0 )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 2);
+select_sequence(2);
 advance_frame_and_dispatch();
 if ( *(_DWORD *)(raw +  324)
 || *(_WORD *)(raw +  322)
@@ -1651,7 +1648,7 @@ if ( (*(int *)(raw +  1716) * *(char *)(raw +  260) <= 0
 && *(__int16 *)(raw +  1840) > 15)
 || *(__int16 *)(raw +  1840) > 60 )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 204);
+set_action_and_finalize(204);
 return;
 }
 }
@@ -1700,11 +1697,11 @@ if ( *(__int16 *)(raw +  318) < 3
 *(float *)(raw +  248) = 0.0;
 *(float *)(raw +  256) = 0.0;
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 3);
+select_sequence(3);
 }
 else if ( (unsigned __int8)advance_frame_and_dispatch() )
 {
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 *(float *)(raw +  244) = 0.0;
 }
 else if ( !*(_DWORD *)(raw +  324)
@@ -1728,7 +1725,7 @@ if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 zero_velocity_acceleration();
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
+set_action_and_finalize(10);
 return;
 }
 else
@@ -1744,7 +1741,7 @@ emit_fighter_effect_433cc0(
 1);
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 9);
+set_action_and_finalize(9);
 if ( !*(_WORD *)(raw +  318) && !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 1 )
 {
 *(_WORD *)(raw +  1840) = 0;
@@ -1783,7 +1780,7 @@ emit_fighter_effect_433cc0(
 1);
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 9);
+set_action_and_finalize(9);
 if ( !*(_DWORD *)(raw +  324) )
 {
 if ( !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 1 )
@@ -1811,7 +1808,7 @@ else
 {
 zero_velocity_acceleration();
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
+set_action_and_finalize(10);
 return;
 }
 default:
@@ -1834,7 +1831,7 @@ if ( v285 < 0.0 )
 }
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 2 )
 {
 dispatch_indexed_event_member(0x1Cu);
@@ -1878,7 +1875,7 @@ if ( v287 < v56 )
 *(float *)(raw +  244) = v56;
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 4 )
 *(float *)(raw +  244) = 5.0;
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 3 )
@@ -1925,7 +1922,7 @@ if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 4 )
 {
 if ( *(_BYTE *)(raw +  1872) == 1 )
 {
-(*(void (__thiscall **)(void *))(*(_DWORD *)raw +  20))(raw);
+next_sequence_block();
 v59 = *(unsigned __int8 *)(raw +  260);
 v290 = *(float *)(raw +  240) + 106.0;
 v199 = v290;
@@ -2002,7 +1999,7 @@ if ( v294 < 0.0 )
 }
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 2);
+set_action_and_finalize(2);
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 1 )
 dispatch_indexed_event_member(0x1Cu);
 }
@@ -2025,7 +2022,7 @@ if ( v295 < 0.0 )
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
 {
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 return;
 }
 if ( !*(_DWORD *)(raw +  324)
@@ -2033,7 +2030,7 @@ if ( !*(_DWORD *)(raw +  324)
 && !*(_WORD *)(raw +  320)
 && *(_WORD *)(raw +  318) == 1 )
 {
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 return;
 }
 if ( !*(_WORD *)(raw +  318) )
@@ -2042,7 +2039,7 @@ if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 5 )
 {
 if ( *(_BYTE *)(raw +  1872) == 1 )
 {
-(*(void (__thiscall **)(void *))(*(_DWORD *)raw +  20))(raw);
+next_sequence_block();
 v63 = *(unsigned __int8 *)(raw +  260);
 v296 = *(float *)(raw +  240) + 118.0;
 v200 = v296;
@@ -2122,7 +2119,7 @@ if ( !*(_DWORD *)(raw +  324)
 *(_BYTE *)(raw +  1150) = 0;
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_DWORD *)(raw +  324)
 && !*(_WORD *)(raw +  322)
 && !*(_WORD *)(raw +  320)
@@ -2164,13 +2161,13 @@ case 0x132:
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
+set_action_and_finalize(10);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
 return;
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 9);
+set_action_and_finalize(9);
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 3 )
 dispatch_indexed_event_member(0x1Bu);
 return;
@@ -2187,13 +2184,13 @@ if ( *(_WORD *)(raw +  318)
 || (*(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256), !(unsigned __int8)has_crossed_stage_surface_while_descending()) )
 {
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_DWORD *)(raw +  324)
 && !*(_WORD *)(raw +  322)
 && !*(_WORD *)(raw +  320)
 && *(_WORD *)(raw +  318) == 1 )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 9);
+set_action_and_finalize(9);
 }
 if ( !*(_WORD *)(raw +  318) )
 {
@@ -2220,7 +2217,7 @@ if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 6 )
 }
 else
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 1);
+select_sequence(1);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 *(float *)(raw +  248) = 0.0;
 *(float *)(raw +  256) = 0.0;
@@ -2233,13 +2230,13 @@ if ( !*(_WORD *)(raw +  318) )
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
+set_action_and_finalize(10);
 goto LABEL_100;
 }
 }
 if ( *(_WORD *)(raw +  318) == 1 && (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 2);
+select_sequence(2);
 {
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
@@ -2247,7 +2244,7 @@ return;
 }
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_WORD *)(raw +  318) && !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 4 )
 {
 dispatch_indexed_event_member(0x1Du);
@@ -2259,13 +2256,13 @@ case 0x135:
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
+set_action_and_finalize(10);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
 return;
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 9);
+set_action_and_finalize(9);
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 3 )
 {
 dispatch_indexed_event_member(0x1Du);
@@ -2275,7 +2272,7 @@ dispatch_indexed_event_member(0x1Du);
 }
 if ( *(_WORD *)(raw +  318) == 1 && *(int *)(raw +  324) >= 15 )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 9);
+set_action_and_finalize(9);
 return;
 }
 return;
@@ -2316,7 +2313,7 @@ if ( (__int16)++*(_WORD *)(raw +  1840) > 5 )
 }
 if ( *(int *)(raw +  324) > 30 )
 {
-(*(void (__thiscall **)(void *))(*(_DWORD *)raw +  20))(raw);
+next_sequence_block();
 *(float *)(raw +  248) = 6.0;
 *(float *)(raw +  244) = *(float *)(raw +  244) * 0.5;
 }
@@ -2331,13 +2328,13 @@ if ( stage_surface_height_at_x(this) >= v441 )
 *(float *)(raw +  248) = 0.0;
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 LABEL_933_A:
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 9);
+set_action_and_finalize(9);
 return;
 }
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 9);
+set_action_and_finalize(9);
 return;
 }
 return;
@@ -2356,7 +2353,7 @@ if ( v304 < 0.0 )
 }
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 2);
+set_action_and_finalize(2);
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 2 )
 {
 dispatch_indexed_event_member(0x1Du);
@@ -2383,7 +2380,7 @@ if ( v306 < 0.0 )
 *(float *)(raw +  244) = 0.0;
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 2 )
 {
 dispatch_indexed_event_member(0x1Cu);
@@ -2402,7 +2399,7 @@ if ( v307 < 0.0 )
 *(float *)(raw +  244) = 0.0;
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 3 )
 {
 dispatch_indexed_event_member(0x1Cu);
@@ -2423,7 +2420,7 @@ if ( v308 < 0.0 )
 *(float *)(raw +  244) = 0.0;
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_WORD *)(raw +  322) )
 {
 if ( *(_WORD *)(raw +  320) == 5 )
@@ -2448,7 +2445,7 @@ if ( v309 < 0.0 )
 *(float *)(raw +  244) = 0.0;
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( *(_WORD *)(raw +  322) )
 return;
 if ( *(_WORD *)(raw +  320) == 3 )
@@ -2463,7 +2460,7 @@ resolve_stage_surface_landing_transition();
 if ( *(__int16 *)(raw +  318) < 2 && !*(_DWORD *)(raw +  1728) )
 *(_BYTE *)(raw +  1872) = 0;
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( *(_DWORD *)(raw +  324) )
 goto LABEL_778;
 if ( *(_WORD *)(raw +  322) )
@@ -2492,14 +2489,14 @@ resolve_stage_surface_landing_transition();
 if ( *(__int16 *)(raw +  318) < 2 && !*(_DWORD *)(raw +  1728) )
 *(_BYTE *)(raw +  1872) = 0;
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( *(_DWORD *)(raw +  324) )
 goto LABEL_790;
 if ( *(_WORD *)(raw +  322) )
 return;
 if ( !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 1 )
 {
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 return;
 }
 LABEL_790:
@@ -2524,14 +2521,14 @@ resolve_stage_surface_landing_transition();
 if ( *(__int16 *)(raw +  318) < 2 && !*(_DWORD *)(raw +  1728) )
 *(_BYTE *)(raw +  1872) = 0;
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 2);
+set_action_and_finalize(2);
 if ( *(_DWORD *)(raw +  324) )
 goto LABEL_802;
 if ( *(_WORD *)(raw +  322) )
 return;
 if ( !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 1 )
 {
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 return;
 }
 LABEL_802:
@@ -2559,7 +2556,7 @@ if ( !*(_WORD *)(raw +  318) )
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__thiscall **)(void *))(*(_DWORD *)raw +  20))(raw);
+next_sequence_block();
 *(_BYTE *)(raw +  1151) = 0;
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
@@ -2567,7 +2564,7 @@ return;
 }
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_DWORD *)(raw +  324)
 && !*(_WORD *)(raw +  322)
 && !*(_WORD *)(raw +  320)
@@ -2599,7 +2596,7 @@ if ( !*(_WORD *)(raw +  318) )
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__thiscall **)(void *))(*(_DWORD *)raw +  20))(raw);
+next_sequence_block();
 *(_BYTE *)(raw +  1151) = 0;
 {
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
@@ -2609,7 +2606,7 @@ return;
 }
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_DWORD *)(raw +  324)
 && !*(_WORD *)(raw +  322)
 && !*(_WORD *)(raw +  320)
@@ -2640,7 +2637,7 @@ v320 = *(float *)(raw +  244) - 0.75;
 if ( v320 < 0.0 )
 *(float *)(raw +  244) = 0.0;
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_WORD *)(raw +  322) )
 {
 if ( *(_WORD *)(raw +  320) == 4 )
@@ -2653,7 +2650,7 @@ case 0x199:
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 10);
+set_action_and_finalize(10);
 zero_velocity_acceleration();
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 return;
@@ -2661,14 +2658,14 @@ return;
 if ( !(unsigned __int8)advance_frame_and_dispatch() )
 return;
 LABEL_933_B:
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 9);
+set_action_and_finalize(9);
 return;
 case 0x19A:
 resolve_stage_surface_landing_transition();
 if ( *(_WORD *)(raw +  318) == 2 && *(int *)(raw +  324) >= 24 )
 goto LABEL_898;
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_DWORD *)(raw +  324)
 && !*(_WORD *)(raw +  322)
 && !*(_WORD *)(raw +  320)
@@ -2685,7 +2682,7 @@ resolve_stage_surface_landing_transition();
 if ( *(_WORD *)(raw +  318) == 1 && *(int *)(raw +  324) >= 15 )
 goto LABEL_898;
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_WORD *)(raw +  318) && !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 5 )
 {
 add_phase_scaled_counter_558(50);
@@ -2697,7 +2694,7 @@ return;
 case 0x19C:
 resolve_stage_surface_landing_transition();
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_WORD *)(raw +  318) && !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 5 )
 {
 add_phase_scaled_counter_558(50);
@@ -2715,7 +2712,7 @@ if ( *(__int16 *)(raw +  318) < v71 )
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, v71);
+select_sequence(v71);
 *(_BYTE *)(raw +  1151) = 0;
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
@@ -2725,7 +2722,7 @@ return;
 if ( *(__int16 *)(raw +  318) < 2 && !*(_DWORD *)(raw +  1732) )
 *(_BYTE *)(raw +  1872) = 0;
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_DWORD *)(raw +  324)
 && !*(_WORD *)(raw +  322)
 && !*(_WORD *)(raw +  320)
@@ -2741,7 +2738,7 @@ if ( v73 || *(_WORD *)(raw +  322) || *(_WORD *)(raw +  320) || *(_WORD *)(raw +
 {
 if ( *(_WORD *)(raw +  318) == 2 && v73 >= 24 )
 {
-(*(void (__thiscall **)(void *))(*(_DWORD *)raw +  20))(raw);
+next_sequence_block();
 *(float *)(raw +  256) = 0.60000002;
 }
 return;
@@ -2762,7 +2759,7 @@ if ( v74 < 3 )
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, v71);
+select_sequence(v71);
 *(_BYTE *)(raw +  1151) = 0;
 {
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
@@ -2774,7 +2771,7 @@ return;
 if ( *(__int16 *)(raw +  318) < 2 && !*(_DWORD *)(raw +  1732) )
 *(_BYTE *)(raw +  1872) = 0;
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_WORD *)(raw +  318) && !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 4 )
 {
 add_phase_scaled_counter_558(50);
@@ -2790,7 +2787,7 @@ if ( *(_DWORD *)(raw +  324)
 return;
 }
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 9);
+set_action_and_finalize(9);
 return;
 }
 case 0x1A0:
@@ -2802,7 +2799,7 @@ if ( *(__int16 *)(raw +  318) < v71 )
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, v71);
+select_sequence(v71);
 *(_BYTE *)(raw +  1151) = 0;
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
@@ -2812,7 +2809,7 @@ return;
 if ( *(__int16 *)(raw +  318) < 2 && !*(_DWORD *)(raw +  1732) )
 *(_BYTE *)(raw +  1872) = 0;
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_DWORD *)(raw +  324)
 && !*(_WORD *)(raw +  322)
 && !*(_WORD *)(raw +  320)
@@ -2826,12 +2823,12 @@ adjust_counter_482(200, 60);
 v73 = *(_DWORD *)(raw +  324);
 if ( !v73 && !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 4 )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 9);
+set_action_and_finalize(9);
 return;
 }
 if ( *(_WORD *)(raw +  318) == 2 && v73 >= 24 )
 {
-(*(void (__thiscall **)(void *))(*(_DWORD *)raw +  20))(raw);
+next_sequence_block();
 *(float *)(raw +  256) = 0.60000002;
 }
 return;
@@ -2845,7 +2842,7 @@ if ( v321 < 0.0 )
 *(float *)(raw +  244) = 0.0;
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 6 )
 LABEL_843:
 dispatch_indexed_event_member(0x1Du);
@@ -2854,7 +2851,7 @@ case 0x1F4:
 resolve_stage_surface_landing_transition();
 *(_BYTE *)(raw +  380) = 0;
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( *(_WORD *)(raw +  322) || *(_WORD *)(raw +  320) != 3 )
 return;
 *(float *)&v462 = 0.0;
@@ -2880,7 +2877,7 @@ case 0x1F5:
 resolve_stage_surface_landing_transition();
 *(_BYTE *)(raw +  380) = 0;
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( *(_WORD *)(raw +  322) || *(_WORD *)(raw +  320) != 3 )
 return;
 v461 = 0.0;
@@ -2906,7 +2903,7 @@ case 0x1F9:
 resolve_stage_surface_landing_transition();
 *(_BYTE *)(raw +  380) = 4;
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( *(_WORD *)(raw +  322) || *(_WORD *)(raw +  320) != 6 )
 return;
 payload_463[0] = 15.0;
@@ -2935,7 +2932,7 @@ case 0x1FA:
 resolve_stage_surface_landing_transition();
 *(_BYTE *)(raw +  380) = 4;
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( *(_WORD *)(raw +  322) || *(_WORD *)(raw +  320) != 6 )
 return;
 payload_465[0] = 25.0;
@@ -2987,13 +2984,13 @@ v81 = *(_WORD *)(raw +  318);
 if ( v81 == 1 && *(int *)(raw +  324) >= 16 || v81 == 2 && *(int *)(raw +  324) >= 16 )
 goto LABEL_898;
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_DWORD *)(raw +  324)
 && !*(_WORD *)(raw +  322)
 && !*(_WORD *)(raw +  320)
 && *(_WORD *)(raw +  318) == 4 )
 {
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 return;
 }
 return;
@@ -3019,12 +3016,12 @@ if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 zero_velocity_acceleration();
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 3);
+select_sequence(3);
 return;
 }
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_WORD *)(raw +  318) && !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 3 )
 {
 *(float *)v473 = 0.0;
@@ -3098,13 +3095,13 @@ if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 zero_velocity_acceleration();
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 3);
+select_sequence(3);
 }
 else
 {
 LABEL_1770:
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_WORD *)(raw +  318) && !*(_WORD *)(raw +  322) )
 {
 if ( *(_WORD *)(raw +  320) == 3 )
@@ -3164,27 +3161,27 @@ if ( !*(_DWORD *)(raw +  1728) )
 *(_BYTE *)(raw +  1872) = 0;
 if ( (unsigned __int8)advance_frame_and_dispatch() )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw + 8))(raw, 0);
+set_action_and_finalize(0);
 return;
 }
 if ( !*(_DWORD *)(raw +  324) && !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 1 )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw + 8))(raw, 0);
+set_action_and_finalize(0);
 return;
 }
 if ( !*(_DWORD *)(raw +  324) && !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 2 )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw + 8))(raw, 0);
+set_action_and_finalize(0);
 return;
 }
 if ( !*(_DWORD *)(raw +  324) && !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 3 )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw + 8))(raw, 0);
+set_action_and_finalize(0);
 return;
 }
 if ( !*(_DWORD *)(raw +  324) && !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 4 )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw + 8))(raw, 0);
+set_action_and_finalize(0);
 return;
 }
 v88 = *(_WORD *)(raw +  318);
@@ -3199,7 +3196,7 @@ if ( !(unsigned __int8)is_y_at_or_below_stage_surface(reinterpret_cast<void *>(*
 }
 if ( *(_DWORD *)(raw +  384) == 1 )
 {
-(*(void (__thiscall **)(void *))(*(_DWORD *)raw +  20))(raw);
+next_sequence_block();
 (*(void (__thiscall **)(_DWORD, int))(**(_DWORD **)(raw +  368) + 8))(*(_DWORD *)(raw +  368), 100);
 reinterpret_cast<FighterPeerActionStateView *>(*(_DWORD *)(raw + 368))->zero_velocity_acceleration();
 *(_BYTE *)(*(_DWORD *)(raw +  368) + 260) = -*(_BYTE *)(raw +  260);
@@ -3265,7 +3262,7 @@ else
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 7 && *(_BYTE *)(raw +  1872) )
 {
 face_opponent_and_flip_horizontal_velocity();
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 529);
+set_action_and_finalize(529);
 }
 }
 }
@@ -3282,18 +3279,18 @@ if ( !*(_DWORD *)(raw +  1732) )
 *(_BYTE *)(raw +  1872) = 0;
 if ( (unsigned __int8)advance_frame_and_dispatch() )
 {
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 return;
 }
 v91 = *(_DWORD *)(raw +  324);
 if ( !v91 && !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 1 )
 {
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 return;
 }
 if ( !v91 && !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 2 )
 {
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 return;
 }
 if ( !v91 && !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 3
@@ -3313,7 +3310,7 @@ if ( !(unsigned __int8)is_y_at_or_below_stage_surface(reinterpret_cast<void *>(*
 }
 if ( *(_DWORD *)(raw +  384) == 1 )
 {
-(*(void (__thiscall **)(void *))(*(_DWORD *)raw +  20))(raw);
+next_sequence_block();
 (*(void (__thiscall **)(_DWORD, int))(**(_DWORD **)(raw +  368) + 8))(*(_DWORD *)(raw +  368), 100);
 reinterpret_cast<FighterPeerActionStateView *>(*(_DWORD *)(raw + 368))->zero_velocity_acceleration();
 *(_BYTE *)(*(_DWORD *)(raw +  368) + 260) = -*(_BYTE *)(raw +  260);
@@ -3377,7 +3374,7 @@ else
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 7 && *(_BYTE *)(raw +  1872) )
 {
 face_opponent_and_flip_horizontal_velocity();
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 529);
+set_action_and_finalize(529);
 }
 }
 }
@@ -3411,7 +3408,7 @@ goto LABEL_1162;
 }
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( *(_DWORD *)(raw +  324) )
 goto LABEL_1174;
 if ( !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 1 )
@@ -3448,13 +3445,13 @@ if ( *(_DWORD *)(raw +  384) == 3 )
 {
 *(_BYTE *)(raw +  388) = 1;
 *(_DWORD *)(raw +  384) = 0;
-(*(void (__thiscall **)(void *))(*(_DWORD *)raw +  20))(raw);
+next_sequence_block();
 dispatch_character_wave_handle(0xBu);
 return;
 }
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( *(_DWORD *)(raw +  324) || *(_WORD *)(raw +  322) || *(_WORD *)(raw +  320) )
 {
 if ( *(_WORD *)(raw +  318) == 1 && !*(_WORD *)(raw +  322) )
@@ -3497,14 +3494,14 @@ resolve_stage_surface_landing_transition();
 if ( !*(_DWORD *)(raw +  1728) )
 *(_BYTE *)(raw +  1872) = 0;
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_DWORD *)(raw +  324)
 && (!*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 1
 || !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 2
 || !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 5) )
 {
 {
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 return;
 }
 }
@@ -3572,7 +3569,7 @@ if ( v99 < 4 )
 *(float *)(raw +  248) = *(float *)(raw +  248) - *(float *)(raw +  256);
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 4);
+select_sequence(4);
 }
 else
 {
@@ -3647,7 +3644,7 @@ spawn_owned_object_via_manager(812,
 }
 return;
 }
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 8);
+select_sequence(8);
 }
 LABEL_100:
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
@@ -3659,11 +3656,11 @@ resolve_stage_surface_landing_transition();
 if ( !*(_DWORD *)(raw +  1728) )
 *(_BYTE *)(raw +  1872) = 0;
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 v101 = *(_DWORD *)(raw +  324);
 if ( !v101 && !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 1 )
 {
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 return;
 }
 if ( !*(_WORD *)(raw +  318) )
@@ -3719,7 +3716,7 @@ if ( *(char *)(raw +  388) > 0 && (__int16)++*(_WORD *)(raw +  1840) >= 6 )
 }
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 v102 = *(_DWORD *)(raw +  324);
 if ( !v102 && !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 1 )
 goto LABEL_1755;
@@ -3768,12 +3765,12 @@ resolve_stage_surface_landing_transition();
 if ( *(_WORD *)(raw +  318) == 1 && *(int *)(raw +  324) >= 15 )
 {
 LABEL_1162:
-(*(void (__thiscall **)(void *))(*(_DWORD *)raw +  20))(raw);
+next_sequence_block();
 }
 else
 {
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_WORD *)(raw +  318) && !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 5 )
 {
 *(_BYTE *)(raw +  2021) = 1;
@@ -3794,7 +3791,7 @@ resolve_stage_surface_landing_transition();
 if ( *(_WORD *)(raw +  318) == 2 && *(int *)(raw +  324) >= 24 )
 goto LABEL_1162;
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_DWORD *)(raw +  324)
 && !*(_WORD *)(raw +  322)
 && !*(_WORD *)(raw +  320)
@@ -3813,7 +3810,7 @@ resolve_stage_surface_landing_transition();
 if ( *(_WORD *)(raw +  318) == 2 && *(int *)(raw +  324) >= 24 )
 goto LABEL_1162;
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_DWORD *)(raw +  324)
 && !*(_WORD *)(raw +  322)
 && !*(_WORD *)(raw +  320)
@@ -3853,7 +3850,7 @@ if ( *(_WORD *)(raw +  1840) || !*(_DWORD *)(raw +  384) )
 {
 LABEL_1769:
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_WORD *)(raw +  318) )
 {
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 5 )
@@ -3943,7 +3940,7 @@ if ( *(char *)(raw +  388) > 0 && (__int16)++*(_WORD *)(raw +  1840) >= 2 )
 }
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_WORD *)(raw +  318) && !*(_WORD *)(raw +  322) )
 {
 if ( *(_WORD *)(raw +  320) == 2 )
@@ -4014,11 +4011,11 @@ resolve_stage_surface_landing_transition();
 publish_texture_state(3, 2);
 if ( *(_WORD *)(raw +  318) == 1 && *(int *)(raw +  324) >= 40 )
 {
-(*(void (__thiscall **)(void *))(*(_DWORD *)raw +  20))(raw);
+next_sequence_block();
 return;
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_DWORD *)(raw +  324) )
 {
 if ( !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 1 )
@@ -4128,7 +4125,7 @@ v384,
 (int)v468,
 3);
 zero_velocity_acceleration();
-(*(void (__thiscall **)(void *))(*(_DWORD *)raw +  20))(raw);
+next_sequence_block();
 *(float *)(raw +  236) = *(float *)(*(_DWORD *)(raw +  368) + 236);
 reinterpret_cast<FighterActionScratchView *>(raw + 4)->reset();
 *(_DWORD *)(raw +  384) = 0;
@@ -4282,7 +4279,7 @@ LABEL_1499:
 if ( *(__int16 *)(raw +  1840) >= 16 )
 {
 LABEL_1500:
-(*(void (__thiscall **)(void *))(*(_DWORD *)raw +  20))(raw);
+next_sequence_block();
 v118 = 0.0;
 }
 LABEL_1501:
@@ -4321,7 +4318,7 @@ if ( (v128 == 3 || v128 == 4) && (unsigned __int8)has_crossed_stage_surface_whil
 {
 zero_velocity_acceleration();
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 5);
+select_sequence(5);
 }
 return;
 case 0x25C:
@@ -4336,7 +4333,7 @@ if ( *(char *)(raw +  388) > 0 && (__int16)++*(_WORD *)(raw +  1840) >= 2 )
 }
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_WORD *)(raw +  318) && !*(_WORD *)(raw +  322) )
 {
 if ( *(_WORD *)(raw +  320) == 2 )
@@ -4412,12 +4409,12 @@ publish_texture_state(3, 2);
 if ( *(_WORD *)(raw +  318) == 1 && *(int *)(raw +  324) >= 16 )
 {
 LABEL_898:
-(*(void (__thiscall **)(void *))(*(_DWORD *)raw +  20))(raw);
+next_sequence_block();
 }
 else
 {
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_DWORD *)(raw +  324) )
 {
 if ( !*(_WORD *)(raw +  322) && !*(_WORD *)(raw +  320) && *(_WORD *)(raw +  318) == 1 )
@@ -4523,7 +4520,7 @@ spawn_owned_object_via_manager(856,
 ++*(_WORD *)(raw +  1840);
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_WORD *)(raw +  318) )
 {
 if ( !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 5 )
@@ -4601,7 +4598,7 @@ case 0x25F:
 resolve_stage_surface_landing_transition();
 publish_texture_state(3, 2);
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_WORD *)(raw +  318) && !*(_WORD *)(raw +  322) )
 {
 if ( *(_WORD *)(raw +  320) == 3 )
@@ -4631,7 +4628,7 @@ return;
 case 0x2B7:
 resolve_stage_surface_landing_transition();
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( !*(_WORD *)(raw +  318) && !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 5 )
 {
 dispatch_indexed_event_member(0x37u);
@@ -4659,7 +4656,7 @@ if ( (unsigned __int8)advance_frame_and_dispatch()
 && *(_WORD *)(raw +  318) == 1 )
 {
 
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 return;
 }
 if ( *(_WORD *)(raw +  318) )
@@ -4679,7 +4676,7 @@ return;
 case 0x2C6:
 resolve_stage_surface_landing_transition();
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 700);
+set_action_and_finalize(700);
 if ( !*(_WORD *)(raw +  318) && !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 7 )
 {
 payload_449[0] = -120.0;
@@ -4792,7 +4789,7 @@ if ( v370 < v3 )
 *(float *)(raw +  244) = v3;
 if ( *(int *)(raw +  324) >= 270 )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 3);
+select_sequence(3);
 *(_BYTE *)(raw +  260) = -*(_BYTE *)(raw +  260);
 *(float *)(raw +  244) = 25.0;
 v3 = 0.0;
@@ -4826,13 +4823,13 @@ if ( v371 < v3 )
 *(float *)(raw +  244) = v3;
 if ( *(int *)(raw +  324) >= 270 )
 {
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 3);
+select_sequence(3);
 *(_BYTE *)(raw +  260) = -*(_BYTE *)(raw +  260);
 *(float *)(raw +  244) = 25.0;
 }
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 700);
+set_action_and_finalize(700);
 if ( *(_DWORD *)(raw +  324) )
 goto LABEL_1674;
 if ( !*(_WORD *)(raw +  322)
@@ -4864,7 +4861,7 @@ break;
 }
 *(_WORD *)(raw +  1842) = 10;
 *(_WORD *)(raw +  1844) = 20;
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 2);
+select_sequence(2);
 return;
 }
 if ( !*(_DWORD *)(raw +  324)
@@ -4939,7 +4936,7 @@ break;
 case 0x2DA:
 resolve_stage_surface_landing_transition();
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 700);
+set_action_and_finalize(700);
 if ( !*(_WORD *)(raw +  318) && !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 11 )
 {
 *(float *)v480 = 0.0;
@@ -4961,7 +4958,7 @@ return;
 case 0x2DB:
 resolve_stage_surface_landing_transition();
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 700);
+set_action_and_finalize(700);
 if ( !*(_WORD *)(raw +  318) && !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 6 )
 {
 v482[0] = 0.0;
@@ -4979,7 +4976,7 @@ publish_battle_layout_scalar(10.0);
 return;
 case 0x2E4:
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 if ( *(_WORD *)(raw +  318) )
 goto LABEL_1720;
 if ( *(_WORD *)(raw +  322) )
@@ -5032,7 +5029,7 @@ if ( *(_WORD *)(raw +  318) == 2 )
 return;
 case 0x302:
 if ( (unsigned __int8)advance_frame_and_dispatch() )
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 700);
+set_action_and_finalize(700);
 if ( !*(_WORD *)(raw +  318) && !*(_WORD *)(raw +  322) && *(_WORD *)(raw +  320) == 7 )
 {
 *(_BYTE *)(raw +  1621) = 1;
@@ -5053,7 +5050,7 @@ goto LABEL_1764;
 *(float *)(raw +  248) = *(float *)(raw +  248) - 0.3f;
 if ( !(unsigned __int8)has_crossed_stage_surface_while_descending() )
 goto LABEL_1764;
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 1);
+select_sequence(1);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 zero_velocity_acceleration();
 dispatch_indexed_event_member(0x1Eu);
@@ -5065,7 +5062,7 @@ if ( !*(_WORD *)(raw +  318) )
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 dispatch_indexed_event_member(0x1Eu);
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 1);
+select_sequence(1);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 *(float *)(raw +  248) = 0.0;
 return;
@@ -5086,7 +5083,7 @@ if ( *(float *)(raw +  236) > 480.0 )
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
 LABEL_1755:
-(*(void (__thiscall **)(void *, _DWORD))(*(_DWORD *)raw +  8))(raw, 0);
+set_action_and_finalize(0);
 return;
 case 0x31E:
 if ( !*(_WORD *)(raw +  318) )
@@ -5095,7 +5092,7 @@ if ( !*(_WORD *)(raw +  318) )
 if ( (unsigned __int8)has_crossed_stage_surface_while_descending() )
 {
 dispatch_indexed_event_member(0x1Eu);
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  12))(raw, 1);
+select_sequence(1);
 *(float *)(raw +  240) = stage_surface_height_at_x(this);
 *(float *)(raw +  248) = 0.0;
 return;
@@ -5117,7 +5114,7 @@ if ( *(float *)(raw +  236) < 800.0 )
 LABEL_1764:
 if ( (unsigned __int8)advance_frame_and_dispatch() )
 LABEL_1765:
-(*(void (__thiscall **)(void *, int))(*(_DWORD *)raw +  8))(raw, 700);
+set_action_and_finalize(700);
 return;
 default:
 LABEL_1766:

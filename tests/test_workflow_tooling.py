@@ -2617,7 +2617,7 @@ class WorkflowToolingTests(unittest.TestCase):
             3,
         )
         c6 = source[source.index("case 0xC6:") : source.index("case 0xC7:")]
-        call700 = c6.index(")(*(_DWORD *)raw +  8))(raw, 700);")
+        call700 = c6.index("set_action_and_finalize(700);")
         self.assertLess(c6.index("return;", call700), c6.index("else", call700))
         self.assertIn("if ( *(__int16 *)(raw +  320) <= 3 )", source)
         self.assertIn(
@@ -2628,11 +2628,18 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertIn("int facing = *(unsigned __int8 *)(raw +  260);", source)
         units = self.manifest.load_manifest()["units"]
         unit = units["gpt-web-youmu-vslot28-full-root"]
-        self.assertIn("24/98", unit["notes"])
-        self.assertIn("57 -> 60", unit["notes"])
-        self.assertIn("320 -> 298", unit["notes"])
-        self.assertIn("+0x9354", unit["notes"])
-        self.assertIn("target 0x64, candidate 0x79", unit["notes"])
+        # Diagnostic prose is not acceptance evidence. This nonexact probe
+        # must compare the whole target root, never just individual regions.
+        self.assertEqual(unit["kind"], "probe")
+        self.assertEqual(len(unit["functions"]), 1)
+        address = unit["functions"][0]["address"]
+        self.assertEqual(int(address, 0), 0x00530200)
+        rows = self.validator.rows(ROOT / "config" / "functions.csv")
+        root = next(row for row in rows if int(row["address"], 0) == 0x00530200)
+        self.assertEqual(int(root["size"]), 37692)
+        self.assertEqual(root["status"], "implemented")
+        exact = self.validator.rows(ROOT / "config" / "matches.csv")
+        self.assertNotIn(0x00530200, {int(row["address"], 0) for row in exact})
 
 
 if __name__ == "__main__":

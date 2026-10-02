@@ -8,6 +8,10 @@ address = "0x00530200"
 callable_end = "0x0053953C"
 metadata_end = "0x005399A0"
 expected_unique_destinations = 97
+# Correct ECX virtual calls fold target-distinct 209/212/221 and 210/222.
+# These alternatives permit span diagnostics, never exact acceptance. The
+# instruction/edge auditor still rejects merges of target physical owners.
+candidate_unique_destination_counts = [95, 97]
 expected_direct_call_sites = 598
 expected_direct_call_targets = 29
 expected_ret_opcodes = 114
@@ -20,6 +24,7 @@ destination_table = "0x0053953C"
 destination_count = 33
 index_table = "0x005395C0"
 expected_physical_groups = 33
+candidate_destination_counts = [31, 33]
 
 [[roots.regions]]
 name = "mid"

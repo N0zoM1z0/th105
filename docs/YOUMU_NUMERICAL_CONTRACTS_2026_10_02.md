@@ -1,5 +1,8 @@
 # Youmu actions 606 and 710 numerical contracts, 2026-10-02
 
+This is the checkpoint before [the virtual ABI correction](YOUMU_VIRTUAL_ABI_2026_10_02.md).
+Its source observations remain valid; its candidate metrics are historical.
+
 ## Current result
 
 `Youmu_dispatch_action_state_vslot28 @ 0x00530200` remains **nonexact** over

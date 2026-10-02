@@ -29,30 +29,36 @@ instructions are not the active queue.
 ## Active matching checkpoint: Youmu giant root
 
 The current bounded root is `Youmu_dispatch_action_state_vslot28 @ 0x00530200`,
-37,692 callable bytes. Fresh focused build reproduces **24/98** diagnostic
-owners and canonical failure at `+0xCA`. Action 720 now uses the target's signed
-word comparison at `0x538AD1`, and its ordinary inner switch lists branches
-in physical order 3/2/1/0. The 70-byte branch region is byte-identical at a
-different root offset; the whole function remains nonexact with zero new
-exact credit. See [the focused evidence](YOUMU_ACTION720_2026_10_02.md).
+37,692 callable bytes. Three retained `__stdcall` virtual calls in actions
+209/210/211 have now been corrected to the target's ECX receiver ABI. The
+local view uses the existing animation/sequence prefix and named self calls
+through slots +8/+0C/+14. Raw Youmu RTTI, vtable pointers and accepted callee
+contracts support that prefix. The geometry predicate does not preserve ECX;
+target explicitly reloads the receiver before its true/false branch.
 
-The subsequent numerical audit recovers action 606's signed `% 2` source
-shape and three unsigned-to-float random consumers, plus action 710's
-`roll + (index * 45 + 22.5)` association and ordered inclusive angle checks.
-Natural VC8 C++ reproduces those operation contracts without assembly.
-Action 710 now has equal 882-byte mapped spans, but still differs in
-instructions/edges. The full root remains 24/98 and nonexact. See
-[the numerical evidence](YOUMU_NUMERICAL_CONTRACTS_2026_10_02.md).
+Fresh focused comparison remains nonexact at `+0xCA`, target `64`, candidate
+`39`. Candidate metadata now begins at `+0x9114`, versus target `+0x933C`.
+Candidate has **95 physical destinations**, target 97: VC8 merges
+`[209,212,221]` and `[210,222]`. Reviewed candidate counts permit span mapping,
+while the strict instruction/edge auditor still rejects these merges. The old
+24/98 score is a historical checkpoint, not a current result. The previous
+rejection of correct thiscalls because they collapsed topology is superseded;
+do not reintroduce an incorrect ABI to recover that score. See
+[the virtual ABI evidence](YOUMU_VIRTUAL_ABI_2026_10_02.md).
 
-The newly recorded auxiliary table at `0x539990` closes raw reachability from
-37,622 to **37,692 bytes / 9,912 instructions**, with no unresolved indirect
-jumps. Source/target metadata still differ (`+0x9354` versus `+0x933C`). Shared
-tails, temporary stack lifetimes and remaining numerical contracts need
-target-first review. Action 606 still differs in range lowering, register and
-scratch allocation, y lifetime and spawn argument preparation across its third
-random call; moving that x expression directly into the call loses action 304
-and is not retained. No shared header, compiler profile or relocation target
-changed; only this unit was rebuilt. Exact totals remain unchanged.
+Fresh raw traversal still reaches **37,692 bytes / 9,912 instructions**, with
+no unresolved indirect jumps, including the auxiliary table at `0x539990`.
+The preceding action-720 signed comparison/switch-arm recovery and action
+606/710 numerical corrections remain in source; their earlier size/owner
+metrics are historical. See [action 720](YOUMU_ACTION720_2026_10_02.md) and
+[the numerical audit](YOUMU_NUMERICAL_CONTRACTS_2026_10_02.md).
+
+Next recover the genuine source/context distinction between 209 and 212/221,
+and between 210 and 222. Shared tails, temporary stack lifetimes and numerical
+closure remain open. Ignored return-type changes, a short action call view,
+local versus inherited typed-prefix calls and constant-temporary removal do
+not explain those folds. No shared header, compiler profile or relocation
+target changed; only this unit was rebuilt. Exact totals remain unchanged.
 
 ## Previous diagnostic checkpoint: common Fighter giant root
 
