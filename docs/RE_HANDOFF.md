@@ -28,43 +28,41 @@ instructions are not the active queue.
 
 ## Active matching checkpoint: AyaObject action-state root
 
-`AyaObject_update_action_state_vslot28 @ 0x0061A290` now restores861's
-owner reloads after both435D60 stage-height calls, and unsigned conversion
-before floating subtraction50 in its two selector100 payloads. Raw target
-owner loads61D5F8/61D653/61D68A establish the read boundaries; actual helper
-mutation of owner is not proven. All101 real selector results store the same
-payload bits as the old integer-subtraction expression under nearest-even
-FSTP32.131-byte/32-instruction coordinate/payload interval agrees under48-byte
-placement translation and fixed two RNG calls; not canonical bytes. See
-[the owner/payload evidence](AYA_OBJECT_OWNER_RELOADS_AND_FLOAT_PAYLOADS_2026_10_02.md).
-All65536 short values agree in target signed50..149 versus candidate folded
-range; nested-condition control is byte-neutral/not retained.
-Fresh configured19522 comparison remains nonexact at+22 target0F/candidate7E.
-Metadata19380 versus target19524 narrows gap184->144; sectiontail19848/window
-includes142 metadata bytes, so the comparison-window hash is not a body hash.
+`AyaObject_update_action_state_vslot28 @ 0x0061A290` now restores826's
+fresh owner reads around both435D60 calls and current sequence WORD13E read
+after optional spawn/counters. Target loads61C0CB/61C163/61C19A and current
+sequence61C2A7 support the boundaries; actual helper writes to owner/sequence
+remain unproven.140 decoded mocked postspawn paths agree, with26 old-candidate
+differences.826/903 unsigned selector payloads recover all18 native sites'
+conditional FADD DWORD2^32 forms;903 negative70 uses a float literal to avoid
+the double-control QWORD correction. Actual bounded payload values still agree
+with old expressions. See [the selector/current-sequence evidence](AYA_OBJECT_REMAINING_SELECTOR_CONVERSIONS_2026_10_02.md).
+826131-byte/32-instruction interval now agrees25 bytes later with fixed RNG
+calls;852's446-byte pattern is27 bytes later and194-byte rate/sequence pattern
+32 bytes later. These are placement-translated diagnostics, not canonical bytes.
+Fresh configured19522 comparison remains nonexact at+22 target0F/candidateE0.
+Metadata19476 versus target19524 narrows gap144->48; sectiontail19944/window
+includes46 metadata bytes, so its hash is not a candidate-body hash.
 Rawdiagnostics3/34 entry/800/980,33 destinations/zero splits; no exact credit.
-Candidate861467/109 versus target358/89 carries phase-counter and partial
-sequence-one tails physically owned by826 in target. Its previous427-byte
-span did not establish69 extra bytes of arithmetic/spills.826627/146 versus
-660/155;8521206/312 versus1201/310;855337/82 versus332/78;9001729/412 versus
-1773/412. Size proximity is not acceptance evidence.
-Prior852 direct pending arguments and unit-local byte call view still pass
-450-case mocked emission-prefix checks and RTTI-bound manager width checks;
-[the preceding argument evidence](AYA_OBJECT_SPAWN_ARGUMENTS_AND_BYTE_CONTRACT_2026_10_02.md)
-records original wrapper-type uncertainty.446-byte/126-instruction placement-
-translated pattern remains47 bytes earlier; previous194 pattern remains42
-bytes earlier, without former same-address equality. Two641-value unsignedY
-paths and853 select7/current-owner/twelve-role checks pass against final object.
+Physical826660/153 versus target660/155 remains nonexact;861467/109 versus
+358/89,9031655/363 versus1697/364. Tail sharing and instruction order remain
+unrecovered despite size proximity.
+852 converted-facing control restores one MOVSX but hoists FILD before the
+branch. Strict control still hoists conversion and adds QWORD stores; canonical
+comparison stops on unmapped __real@3d4ccccd, so only unrelocated order evidence
+is claimed. Alpha/scale source-order control does not restore scheduling.
+Explicit real shared-tail labels move the tail into861 and lose800's diagnostic.
+None is retained; do not repeat without new independent evidence.
 Full raw traversal closes4630 instructions/all19522 bytes through seven
-switches; guards124/124 retain853 roles and902 path lead. No shared ABI/header/
-helper/compiler/object partition or accepted-unit relocation change.
-Remaining861/826 and855 physical sharing,852 facing conversion/FILD-FLD order/
-scratch homes, other values/lifetimes and original TU/LTCG context are open;
-full numerical/control-word/exception closure remains unknown. Do not repeat
-nested range spelling, implicitX cast or other18-call byte-view routing;
-these controls are byte-neutral. Continue from independent target dataflow,
-ABI/type or compiler-context evidence. VC8 naturally emits this interval's
-FILD/FSUB pattern; no assembly fallback is established by TH08 examples.
+switches; guards124/124 retain853 roles/902 path reconciliation. Prior450 mocked
+emission cases, RTTI byte-contract checks, two641-value unsignedY paths,
+853 select7/current-owner/twelve-role and861 owner/conversion/range proofs pass.
+No shared ABI/header/helper/compiler/object partition or accepted-unit relocation
+change. Full numerical/control-word/exception closure remains unknown.
+Remaining852 FILD/facing/scratch homes,826/861 physical sharing/alpha/scale,
+903 auxiliary sharing/field read boundaries, other values/lifetimes and original
+TU/LTCG context are open. Continue from independent target dataflow/ABI/type or
+compiler-context evidence; no assembly requirement is established.
 
 ## Preceding matching checkpoint: YoumuObject action-entry root
 

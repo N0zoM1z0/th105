@@ -1091,13 +1091,14 @@ void AyaObjectActionStateView::update_action_state()
             double owner_y = owner->y_f0;
             if (aya_stage_surface_height_at_x(this) >= owner_y
                 && heading_340[0] == 1.0f) { --lifetime_330; return; }
-            owner_y = owner->y_f0;
+            owner_y = fighter_owner_348->y_f0;
             if (aya_stage_surface_height_at_x(this) < owner_y
                 && heading_340[0] == 0.0f) { --lifetime_330; return; }
-            sprite_004.object_x_0e8 = owner->x_ec;
-            sprite_004.object_y_0ec = static_cast<float>(static_cast<double>(owner->y_f0) + 100.0);
-            payload[0] = static_cast<float>(selector_random_roll(100) - 50);
-            payload[1] = static_cast<float>(selector_random_roll(100) - 50);
+            CharacterObjectEffectEmitter *const position_owner = fighter_owner_348;
+            sprite_004.object_x_0e8 = position_owner->x_ec;
+            sprite_004.object_y_0ec = static_cast<float>(static_cast<double>(position_owner->y_f0) + 100.0);
+            payload[0] = static_cast<float>(static_cast<unsigned>(selector_random_roll(100)) - 50.0f);
+            payload[1] = static_cast<float>(static_cast<unsigned>(selector_random_roll(100)) - 50.0f);
             payload[2] = 1.0f;
             if (!(time_counter_144 % 20)) {
                 effect_emitter()->spawn_unparented_related_object(
@@ -1114,7 +1115,7 @@ void AyaObjectActionStateView::update_action_state()
                 if (++state_364 >= 6) { phase_state_180 = 0; state_364 = 0; }
             }
         }
-        if (sequence == 1) {
+        if (sequence_index_13e == 1) {
             CharacterObjectEffectEmitter *const owner = fighter_owner_348;
             sprite_004.object_x_0e8 = owner->x_ec;
             reinterpret_cast<unsigned char *>(this)[0x113] -= 10;
@@ -1985,7 +1986,7 @@ void AyaObjectActionStateView::update_action_state()
                 static_cast<float>(sprite_004.object_facing_100) * motion_core()->component_f0;
             sprite_004.object_y_0ec += motion_core()->component_f4;
             if (!(time_counter_144 % 3)) {
-                payload[0] = static_cast<float>(-70.0 - selector_random_roll(40)); payload[1] = static_cast<float>(selector_random_roll(60) * 0.1f + 4.0); payload[2] = 7.0f;
+                payload[0] = static_cast<float>(-70.0f - static_cast<unsigned>(selector_random_roll(40))); payload[1] = static_cast<float>(static_cast<unsigned>(selector_random_roll(60)) * 0.1f + 4.0); payload[2] = 7.0f;
                 effect_emitter()->spawn_unparented_related_object(903, sprite_004.object_x_0e8, sprite_004.object_y_0ec, static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3);
             }
             if (sprite_004.object_x_0e8 > 1380.0f || sprite_004.object_x_0e8 < -100.0f || sprite_004.object_y_0ec > 1000.0f || sprite_004.object_y_0ec < -160.0f || time_counter_144 >= 60) { --lifetime_330; return; }
