@@ -162,7 +162,6 @@ double v108; // st6
 double v109; // st7
 int v110; // eax
 float v111; // action601 X argument is rounded to a target dword
-double v112; // st7
 __int16 v113; // ax
 __int16 v114; // ax
 __int16 v115; // ax
@@ -3965,12 +3964,12 @@ while ( v359 < 8.0 );
 }
 return;
 case 0x25A:
+// Target action602 shares the sequence-advance return with action415.
 resolve_stage_surface_landing_transition();
 publish_texture_state(3, 2);
 if ( *(_WORD *)(raw +  318) == 1 && *(int *)(raw +  324) >= 40 )
 {
-next_sequence_block();
-return;
+goto LABEL_898;
 }
 if ( (unsigned __int8)advance_frame_and_dispatch() )
 set_action_and_finalize(0);
@@ -4005,7 +4004,8 @@ v381,
 1,
 (int)payload_446,
 3);
-payload_446[0] = (float)selector_random_roll(0x168u);
+// Target converts each roll as unsigned before the float payload store.
+payload_446[0] = (float)(unsigned int)selector_random_roll(0x168u);
 payload_446[2] = 1.0;
 v382 = *(float *)(raw +  240) + 100.0;
 spawn_owned_object_via_manager(852,
@@ -4015,7 +4015,7 @@ v382,
 1,
 (int)payload_446,
 3);
-payload_446[0] = (float)selector_random_roll(0x168u);
+payload_446[0] = (float)(unsigned int)selector_random_roll(0x168u);
 v383 = *(float *)(raw +  240) + 100.0;
 spawn_owned_object_via_manager(852,
 *(float *)(raw +  236),
@@ -4024,11 +4024,11 @@ v383,
 1,
 (int)payload_446,
 3);
+// Target keeps one rounded float counter through this six-step loop.
 v360 = 0.0;
-v112 = (float)0.0;
 do
 {
-payload_446[0] = v112 * 60.0 + 30.0;
+payload_446[0] = v360 * 60.0 + 30.0;
 payload_446[1] = 15.0;
 payload_446[2] = 2.0;
 // The target sends unordered angles to the outside path as well.
@@ -4049,7 +4049,6 @@ spawn_owned_object_via_manager(821,
 (int)payload_446,
 3);
 v360 = v360 + 1.0;
-v112 = v360;
 }
 while ( v360 < 6.0 );
 }

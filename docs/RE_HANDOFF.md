@@ -28,7 +28,17 @@ instructions are not the active queue.
 
 ## Active matching checkpoint: Youmu giant root
 
-Actions 601 and 710 now use float X-argument carriers supported by target
+Action 602 now preserves the two observed unsigned-to-float conversions,
+uses one rounded float loop index, and joins the existing sequence-advance
+return path. Its target loop-test template is recovered. The candidate's
+physical slot14 sites decrease from 14 to 13, versus target 12; the action740
+shared return and actual tail placement remain unresolved. Full comparison
+still fails at `+0xCA`, target64/candidateD8, with metadata `+0x92B0` and
+26/98 diagnostic owners. No exact credit is added. Static site counts do not
+prove missing runtime calls. See
+[the action-602 and call-path evidence](YOUMU_ACTION602_CALLS_2026_10_02.md).
+
+Actions 601 and 710 retain float X-argument carriers supported by target
 branch-local dword stores/reloads. Fresh whole-root comparison remains
 nonexact at `+0xCA`, target64/candidateD8; metadata is `+0x92B0` and strict
 owner diagnostics improve from 24/98 to **26/98**, gaining low11/high798

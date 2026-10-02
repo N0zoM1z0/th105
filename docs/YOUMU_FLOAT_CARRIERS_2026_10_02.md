@@ -1,5 +1,10 @@
 # Youmu float argument carriers and x87 guard coverage, 2026-10-02
 
+Follow-up: [action 602's conversions, index and shared call](YOUMU_ACTION602_CALLS_2026_10_02.md)
+retains the same 26/98 owner count and first-mismatch/metadata offsets, while
+removing one duplicated sequence-advance site. Hashes and measurements below
+describe the preceding float-carrier checkpoint.
+
 ## Retained result
 
 **Observed:** `Youmu_dispatch_action_state_vslot28 @ 0x00530200` remains
