@@ -190,7 +190,6 @@ int v129; // eax
 double v130; // st7
 __int16 v131; // ax
 __int16 v132; // ax
-bool v133; // zf
 int v134; // eax
 int v135; // eax
 int v136; // eax
@@ -4497,21 +4496,18 @@ publish_texture_state(3, 2);
 v132 = *(_WORD *)(raw +  320);
 if ( v132 >= 7 && v132 <= 10 )
 {
-v133 = (*(__int16 *)(raw +  1840) & 0x80000001) == 0;
-if ( *(__int16 *)(raw +  1840) < 0 )
-v133 = (((*(_BYTE *)(raw +  1840) & 1) - 1) | 0xFFFFFFFE) == -1;
-if ( v133 )
+if ( *(__int16 *)(raw +  1840) % 2 == 0 )
 {
-payload_455[0] = 10.0 - (double)selector_random_roll(0x2Du);
+payload_455[0] = 10.0 - (float)(unsigned int)selector_random_roll(0x2Du);
 payload_455[1] = 0.0;
 payload_455[2] = 2.0;
 v443 = *(float *)(raw +  240) + 20.0;
-v407 = v443 - (double)selector_random_roll(0x28u);
+v407 = v443 - (float)(unsigned int)selector_random_roll(0x28u);
 *(float *)(raw +  1852) = v407;
 v207 = (unsigned __int8)(2 * (*(float *)(raw +  240) >= (double)v407) - 1);
 v181 = *(unsigned __int8 *)(raw +  260);
 v167 = v407;
-v408 = (double)selector_random_roll(0x64u) + *(float *)(raw +  236) - 50.0;
+v408 = (float)(unsigned int)selector_random_roll(0x64u) + *(float *)(raw +  236) - 50.0;
 spawn_owned_object_via_manager(856, v408, v167, v181, v207, (int)payload_455, 3);
 payload_455[0] = 0.0;
 payload_455[1] = (double)*(__int16 *)(raw +  1840) * 0.0 + 45.0;
@@ -4709,24 +4705,24 @@ dispatch_character_wave_handle(0xCu);
 v368 = 0.0;
 do
 {
-payload_449[0] = (float)(unsigned int)selector_random_roll(0x12u) + v368 * 45.0 + 22.5;
+payload_449[0] = (float)(unsigned int)selector_random_roll(0x12u) + (v368 * 45.0 + 22.5);
 payload_449[1] = 20.0;
 payload_449[2] = 5.0;
-if ( payload_449[0] < 0.0 || payload_449[0] > 180.0 )
-{
-v209 = -1;
-v183 = *(unsigned __int8 *)(raw +  260);
-v171 = *(float *)(raw +  240);
-v424 = (double)(140 * (char)v183) + *(float *)(raw +  236);
-v138 = v424;
-}
-else
+if ( payload_449[0] >= 0.0 && payload_449[0] <= 180.0 )
 {
 v209 = 1;
 v183 = *(unsigned __int8 *)(raw +  260);
 v171 = *(float *)(raw +  240);
 v423 = (double)(140 * (char)v183) + *(float *)(raw +  236);
 v138 = v423;
+}
+else
+{
+v209 = -1;
+v183 = *(unsigned __int8 *)(raw +  260);
+v171 = *(float *)(raw +  240);
+v424 = (double)(140 * (char)v183) + *(float *)(raw +  236);
+v138 = v424;
 }
 v152 = v138;
 spawn_owned_object_via_manager(900, v152, v171, v183, v209, (int)payload_449, 3);
@@ -4741,15 +4737,15 @@ dispatch_character_wave_handle(0xFu);
 v369 = 0.0;
 do
 {
-*(float *)v460 = (float)(unsigned int)selector_random_roll(0x12u) + v369 * 45.0 + 22.5;
+*(float *)v460 = (float)(unsigned int)selector_random_roll(0x12u) + (v369 * 45.0 + 22.5);
 *(float *)&v460[1] = 20.0;
 *(float *)&v460[2] = 5.0;
-if ( *(float *)v460 < 0.0 || *(float *)v460 > 180.0 )
+if ( *(float *)v460 >= 0.0 && *(float *)v460 <= 180.0 )
 spawn_owned_object_via_manager(900,
 *(float *)(raw +  236),
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
--1,
+1,
 (int)v460,
 3);
 else
@@ -4757,7 +4753,7 @@ spawn_owned_object_via_manager(900,
 *(float *)(raw +  236),
 *(float *)(raw +  240),
 *(unsigned __int8 *)(raw +  260),
-1,
+-1,
 (int)v460,
 3);
 v369 = v369 + 1.0;

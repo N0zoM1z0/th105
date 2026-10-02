@@ -36,11 +36,22 @@ in physical order 3/2/1/0. The 70-byte branch region is byte-identical at a
 different root offset; the whole function remains nonexact with zero new
 exact credit. See [the focused evidence](YOUMU_ACTION720_2026_10_02.md).
 
+The subsequent numerical audit recovers action 606's signed `% 2` source
+shape and three unsigned-to-float random consumers, plus action 710's
+`roll + (index * 45 + 22.5)` association and ordered inclusive angle checks.
+Natural VC8 C++ reproduces those operation contracts without assembly.
+Action 710 now has equal 882-byte mapped spans, but still differs in
+instructions/edges. The full root remains 24/98 and nonexact. See
+[the numerical evidence](YOUMU_NUMERICAL_CONTRACTS_2026_10_02.md).
+
 The newly recorded auxiliary table at `0x539990` closes raw reachability from
 37,622 to **37,692 bytes / 9,912 instructions**, with no unresolved indirect
 jumps. Source/target metadata still differ (`+0x9354` versus `+0x933C`). Shared
 tails, temporary stack lifetimes and remaining numerical contracts need
-target-first review. No shared header, compiler profile or relocation target
+target-first review. Action 606 still differs in range lowering, register and
+scratch allocation, y lifetime and spawn argument preparation across its third
+random call; moving that x expression directly into the call loses action 304
+and is not retained. No shared header, compiler profile or relocation target
 changed; only this unit was rebuilt. Exact totals remain unchanged.
 
 ## Previous diagnostic checkpoint: common Fighter giant root
