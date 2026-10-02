@@ -21,11 +21,32 @@ instructions are not the active queue.
 - The local target file passes hash verification. The attached IDA session
   currently exposes a different executable (SHA-256 beginning `10350095`),
   so do not use that session's output. Raw target PE disassembly is available.
-  A Ghidra project would need independent target identity, entry point, and
-  mapped-byte attestation before using its analysis. Do not launch multiple
+  Direct Ghidra imports for the rotation and common Fighter root have passed
+  independent target identity, entry point, and full mapped `.text` checks.
+  Attest any new project before relying on it. Do not launch multiple
   Ghidra processes or use the factory MCP adapter for this work.
 
-## Active matching checkpoint: exact fighter body collision
+## Active matching checkpoint: common Fighter giant root
+
+The current bounded root is `Fighter_update_common_action_state @ 0x004740C0`.
+Fresh focused build and complete owner audit reproduce **53/66** diagnostic
+owners, metadata `+0x2838`, and canonical failure at `+0x14`; the 10,219-byte
+function remains nonexact. Direct Ghidra identity/mapped-byte checks passed.
+Helper ABI metadata was read back before using the second decompilation;
+its guessed return type and flattened floating expressions remain hypotheses.
+See [the diagnostic refresh and TH08 x87 reference](COMMON_FIGHTER_X87_AND_GHIDRA_2026_10_02.md).
+
+New shared-rounding-lifetime, short-selector and local floating-environment
+probes add no exact credit. The late shared float is byte-neutral; the wider
+lifetime probe loses owners 50/799, and narrowing the cached action loses 42
+previously identical owners. Local `fenv_access` produces an incompatible
+aligned EBP frame and is blocked by an unmapped literal in formal comparison.
+No probe was retained. The remaining dispatcher encoding, action-50/162 tail
+ownership and action-73/75/88 sequence ownership are not evidence that inline
+assembly or LTCG is required. Continue with target-supported source structure
+and helper/TU visibility; preserve actual per-operation float rounding.
+
+## Previous exact checkpoint: fighter body collision
 
 User-directed byte reconstruction is active; the separate origin-only cleanup
 queue remains parked. `CollisionContext_resolve_fighter_body_collision @
@@ -51,9 +72,9 @@ The previous `CSpriteEx_rotate_xyz @ 0x00407680` checkpoint remains canonical
 [the rotation evidence](SPRITE_PIVOT_ROTATION_2026_10_02.md); its function-local
 floating environment control is not a general x87 cure.
 
-Next resume the common Fighter giant switch root `0x004740C0` from its
-owner-audit checkpoint. Re-attest target, current source and canonical failure
-before accepting old semantic-closure/TU assumptions. The two numerical
+The common Fighter giant switch root `0x004740C0` has now been re-attested as
+described above. Do not accept old semantic-closure/TU assumptions without
+ordered target arithmetic and control-flow evidence. The two numerical
 corrections here demonstrate why residual stack differences should not be
 classified as LTCG until full ordered arithmetic has been audited.
 
