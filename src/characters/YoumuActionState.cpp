@@ -1488,7 +1488,8 @@ return;
 }
 goto LABEL_397;
 }
-if ( *(float *)(*(_DWORD *)(raw +  368) + 236) <= v50 )
+// Target 0x531F11 tests C0|C3: unordered positions keep facing and select sequence 6.
+if ( !(*(float *)(*(_DWORD *)(raw +  368) + 236) > v50) )
 {
 LABEL_397:
 select_sequence(6);

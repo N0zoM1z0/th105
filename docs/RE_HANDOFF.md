@@ -21,8 +21,8 @@ instructions are not the active queue.
 - The local target file passes hash verification. The attached IDA session
   currently exposes a different executable (SHA-256 beginning `10350095`),
   so do not use that session's output. Raw target PE disassembly is available.
-  Direct Ghidra imports for the rotation and common Fighter root have passed
-  independent target identity, entry point, and full mapped `.text` checks.
+  Direct Ghidra imports for the rotation, common Fighter and Youmu roots have
+  passed independent target identity, entry point and full mapped `.text` checks.
   Attest any new project before relying on it. Do not launch multiple
   Ghidra processes or use the factory MCP adapter for this work.
 
@@ -42,12 +42,23 @@ Raw traversal still reaches **37,692 bytes / 9,912 instructions**, with no
 unresolved indirect jumps, including the auxiliary table at `0x539990`.
 See [the shared-tail evidence](YOUMU_SHARED_EFFECT_TAILS_2026_10_02.md).
 
+Action 214 now also preserves the target's unordered facing guard: only
+ordered-greater opponent X reverses facing/velocity and selects sequence 5;
+less/equal/unordered select 6. The whole COFF text changes one branch opcode.
+Direct Ghidra independently passes imported identity, entry point and full
+mapped-text checks for this root. Corrected helper metadata is read back;
+stack tracking warnings and flattened floating expressions remain limitations.
+See [the ordered guard and Ghidra audit](YOUMU_GHIDRA_NUMERICAL_2026_10_02.md).
+
 Local floating-environment and numerical carry-join probes are not retained:
 they introduce different literal widths, extra destinations or float spills.
 Field-store joins avoid those new carry-value spills but place shared stores
-and tails in later physical owners than the target. Next resolve actual tail
-placement, effect argument schedules and real floating-value lifetimes, then
-continue ordered numerical closure across the root. Distinct shared paths are
+and tails in later physical owners than the target. Continue ordered
+comparison/rounding audits from raw instructions alongside
+actual tail placement, effect argument schedules and real floating-value
+lifetimes. Sharing actions0/2 step variables, ordinary nested clamp spelling
+and swapping 209/210 predecessor order are closed negative probes. Distinct
+shared paths are
 observed; original labels, TU visibility and compiler context remain unknown.
 Do not infer an assembly or LTCG requirement from these discrepancies.
 

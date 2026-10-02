@@ -1,5 +1,10 @@
 # Youmu shared effect tails, 2026-10-02
 
+The shared-tail source below remains. A subsequent one-branch ordered-facing
+correction changes the source and canonical window hashes; current Ghidra
+attestation and comparison are recorded in
+[the numerical follow-up](YOUMU_GHIDRA_NUMERICAL_2026_10_02.md).
+
 ## Current result
 
 `Youmu_dispatch_action_state_vslot28 @ 0x00530200` remains **nonexact** over
