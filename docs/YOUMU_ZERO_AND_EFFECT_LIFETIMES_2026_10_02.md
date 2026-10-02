@@ -1,5 +1,10 @@
 # Youmu zero and effect lifetimes, 2026-10-02
 
+Follow-up: [the facing and return-path audit](YOUMU_FACING_AND_RETURN_PATHS_2026_10_02.md)
+retains these zero/effect recoveries and all27 diagnostic owners while
+recovering action214's11 target sequence-call sites. Measurements below
+describe the preceding checkpoint.
+
 ## Retained result
 
 `Youmu_dispatch_action_state_vslot28 @ 0x00530200` remains **nonexact** over

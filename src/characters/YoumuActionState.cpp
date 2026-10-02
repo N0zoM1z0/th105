@@ -94,7 +94,6 @@ double v40; // st5
 double v41; // st7
 int v43; // eax
 __int16 v44; // ax
-char v45; // cl
 double v46; // st7
 __int16 v48; // ax
 char v49; // cl
@@ -1427,26 +1426,29 @@ reinterpret_cast<FighterActionScratchView *>(raw + 4)->reset();
 v44 = *(_WORD *)(raw +  318);
 if ( v44 != 1 && v44 != 2 )
 goto LABEL_392;
-v45 = *(_BYTE *)(raw +  260);
 v46 = *(float *)(raw +  236);
-if ( v45 == 1 )
+if ( *(char *)(raw + 260) == 1 )
 {
 if ( *(float *)(*(_DWORD *)(raw +  368) + 236) < v46 )
 {
 *(_BYTE *)(raw +  260) = -1;
 *(float *)(raw +  244) = -*(float *)(raw +  244);
 select_sequence(6);
-goto LABEL_392;
 }
+else
+select_sequence(5);
 }
-else if ( *(float *)(*(_DWORD *)(raw +  368) + 236) > v46 )
+else
 {
-*(_BYTE *)(raw +  260) = -v45;
+if ( *(float *)(*(_DWORD *)(raw +  368) + 236) > v46 )
+{
+*(_BYTE *)(raw +  260) = -*(char *)(raw + 260);
 *(float *)(raw +  244) = -*(float *)(raw +  244);
 select_sequence(6);
-goto LABEL_392;
 }
+else
 select_sequence(5);
+}
 LABEL_392:
 v48 = *(_WORD *)(raw +  318);
 if ( v48 == 3 || v48 == 4 )
@@ -1460,21 +1462,21 @@ if ( *(float *)(*(_DWORD *)(raw +  368) + 236) < v50 )
 *(_BYTE *)(raw +  260) = -1;
 *(float *)(raw +  244) = -*(float *)(raw +  244);
 select_sequence(5);
-return;
 }
-goto LABEL_397;
-}
-// Target 0x531F11 tests C0|C3: unordered positions keep facing and select sequence 6.
-if ( !(*(float *)(*(_DWORD *)(raw +  368) + 236) > v50) )
-{
-LABEL_397:
+else
 select_sequence(6);
 return;
 }
+if ( *(float *)(*(_DWORD *)(raw +  368) + 236) > v50 )
+{
 *(_BYTE *)(raw +  260) = -v49;
 *(float *)(raw +  244) = -*(float *)(raw +  244);
 select_sequence(5);
 }
+else
+select_sequence(6);
+}
+
 break;
 case 0xD7:
 resolve_stage_surface_landing_transition();

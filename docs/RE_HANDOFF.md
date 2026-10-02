@@ -28,6 +28,26 @@ instructions are not the active queue.
 
 ## Active matching checkpoint: Youmu giant root
 
+Action214 now uses mirrored nested facing decisions. Natural VC8 recovers
+all11 physical sequence-call sites in this owner, versus9 previously and11
+in the target; unordered positions retain facing and select the original
+default5/6. One unused byte snapshot is removed byte-neutrally. Fresh whole-
+root comparison remains nonexact at`+0xCA`, target64/candidate3C; metadata
+`+0x9314` versus target`+0x933C` (40 bytes short). All27/98 diagnostic owners
+remain, without gains/losses or exact credit;97 destinations/33 low entries
+remain distinct. The340-byte/120-instruction facing region has two register
+rows different after internal-edge/root-return normalization, not regional
+byte acceptance. All138 guard and49 payload packets remain covered/resolved.
+Shared landing controls recover source joins but place physical tails in
+wrong owners: even an8-byte-short combination remains nonexact and private.
+An isolated selector int-to-short control is byte-neutral and establishes no
+unique prototype. Existing zero/effect/numerical/typed-call recoveries remain.
+Original register lifetimes, types, physical tails, compiler/TU context and
+numerical/exception closure remain open. See
+[the facing and return-path evidence](YOUMU_FACING_AND_RETURN_PATHS_2026_10_02.md).
+
+The following paragraphs record preceding checkpoints.
+
 Action214 now uses natural velocity-on-left literal-zero predicates. VC8
 keeps zero live through the five target memory comparisons and discards/reloads
 it around conditional virtual calls; three extra velocity FLDs disappear.
