@@ -1279,23 +1279,34 @@ void AyaObjectActionStateView::update_action_state()
                 }
                 effect_emitter()->spawn_unparented_related_object(852, x, y, direction, 1, reinterpret_cast<const unsigned *>(payload), 3);
             }
-            if (time_counter_144 >= 240) { state_374 = static_cast<float>(state_374 - 0.5); if (state_374 < 0.0f) state_374 = 0.0f; }
-            else { state_374 = static_cast<float>(state_374 + 0.5); if (state_374 > 7.0f) state_374 = 7.0f; }
+            if (time_counter_144 < 240) {
+                state_374 = static_cast<float>(state_374 + 0.5);
+                if (state_374 > 7.0f) state_374 = 7.0f;
+            } else {
+                state_374 = static_cast<float>(state_374 - 0.5);
+                if (state_374 < 0.0f) state_374 = 0.0f;
+            }
             if (time_counter_144 == 240) { --lifetime_330; return; }
             if (*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(target_170) + 0x174) <= 0) { --lifetime_330; return; }
             CharacterObjectEffectEmitter *const owner = fighter_owner_348;
             if (*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(owner) + 0x174) <= 0) { --lifetime_330; return; }
             CharacterObjectEffectEmitter *const owner_target = owner->target_170;
             signed char const nested_facing = *reinterpret_cast<signed char *>(reinterpret_cast<unsigned char *>(owner_target) + 0x104);
-            float const rate = sprite_004.object_facing_100 == -1 ? static_cast<float>(static_cast<double>(nested_facing) * -state_374) : static_cast<float>(static_cast<double>(nested_facing) * state_374);
-            *reinterpret_cast<float *>(reinterpret_cast<unsigned char *>(owner) + 0x6ac) = rate;
+            *reinterpret_cast<float *>(reinterpret_cast<unsigned char *>(owner) + 0x6ac) =
+                sprite_004.object_facing_100 == -1
+                    ? static_cast<double>(nested_facing) * -state_374
+                    : static_cast<double>(nested_facing) * state_374;
         }
         if (sequence_index_13e == 1) {
             motion_core()->set_oriented_components_f0_f4(-10.0f, 100.0f);
             sprite_004.reset_zero_128 = -10.0f;
             if ((sprite_004.object_facing_100 == 1 && sprite_004.object_x_0e8 > 1880.0f) || (sprite_004.object_facing_100 == -1 && sprite_004.object_x_0e8 < -600.0f)) { --lifetime_330; return; }
         }
-        if (sequence_index_13e == 2 || sequence_index_13e == 3) {
+        if (sequence_index_13e == 2) {
+            sprite_004.reset_zero_128 = static_cast<float>(sprite_004.reset_zero_128 + state_370);
+            if (time_counter_144 == 120) { --lifetime_330; return; }
+        }
+        if (sequence_index_13e == 3) {
             sprite_004.reset_zero_128 = static_cast<float>(sprite_004.reset_zero_128 + state_370);
             if (time_counter_144 == 120) { --lifetime_330; return; }
         }
