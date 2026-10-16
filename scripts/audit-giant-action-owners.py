@@ -114,6 +114,8 @@ def audit(root_name: str, object_path: Path, unit_name: str) -> dict[str, Any]:
         "target_sha256": target_sha, "object_sha256": hashlib.sha256(object_path.read_bytes()).hexdigest(),
         "root": root_name, "address": address, "unit": unit_name,
         "target_callable_size": len(target_code), "candidate_metadata_start": len(candidate_code),
+        "candidate_canonical_section_tail_size": len(relocated),
+        "candidate_canonical_section_tail_sha256": hashlib.sha256(relocated).hexdigest(),
         "owner_count_including_entry": len(owners),
         "instruction_edge_identical_owners": sum(owner["instruction_edge_identical"] for owner in owners),
         "target_boundary": boundary, "owners": owners,

@@ -85,7 +85,22 @@ def canonical_deque(code, start, functions, canonical):
             "replayed_calls": calls}
 
 
-def inspect_linked_root(image, map_path, canonical):
+def normalize_map_aliases(functions, aliases):
+    """Collapse only linker aliases backed by the same address and object."""
+    result = {}
+    for address, names in functions.items():
+        normalized = set()
+        for name, owner in names:
+            actual = aliases.get(name, name)
+            if actual != name and (actual, owner) not in names:
+                raise ValueError("map alias has no same-address/object definition")
+            normalized.add((actual, owner))
+        result[address] = sorted(normalized)
+    return result
+
+
+def inspect_linked_root(image, map_path, canonical, *, symbol=SYMBOL,
+                        root_name="aya-cpu-action-policy", switch_count=6, aliases=None):
     """Inspect every reachable instruction, with bounds-checked switch indices.
 
     Map names alone never authorize remapping a privately specialized callee.
@@ -96,10 +111,11 @@ def inspect_linked_root(image, map_path, canonical):
     if base != 0x10000000 or pe.FILE_HEADER.Machine != 0x14C:
         raise ValueError("unexpected probe PE architecture/base")
     functions = linked_pe.parse_map(map_path.read_text())
-    exported, = (entry for entry in pe.DIRECTORY_ENTRY_EXPORT.symbols if entry.name == SYMBOL.encode())
+    functions = normalize_map_aliases(functions, aliases or {})
+    exported, = (entry for entry in pe.DIRECTORY_ENTRY_EXPORT.symbols if entry.name == symbol.encode())
     start = base + exported.address
     end = min(address for address in functions if address > start)
-    if not any(name == SYMBOL for name, _ in functions.get(start, [])):
+    if not any(name == symbol for name, _ in functions.get(start, [])):
         raise ValueError("root export/map disagrees")
 
     class Envelope:
@@ -120,7 +136,7 @@ def inspect_linked_root(image, map_path, canonical):
     sys.modules[spec.name] = mapper
     spec.loader.exec_module(mapper)
     root = next(item for item in tomllib.loads((ROOT / "config/giant-action-switches.toml").read_text())["roots"]
-                if item["name"] == "aya-cpu-action-policy")
+                if item["name"] == root_name)
     candidate = mapper.build_candidate_map(obj, root)
     metadata = candidate["metadata_start"]
     code = obj.text[:metadata]
@@ -185,8 +201,8 @@ def inspect_linked_root(image, map_path, canonical):
         facts.append({"dispatch": f"0x{instruction.address:08X}", "table": f"0x{table:08X}",
                       "destination_count": len(destinations), "index_count": count,
                       "indices_sha256": hashlib.sha256(indices).hexdigest()})
-    if len(switches) != 6:
-        raise ValueError("expected all six Aya CPU switches")
+    if len(switches) != switch_count:
+        raise ValueError("unexpected linked root switch count")
     boundary = reachable_boundary_audit(code, start, switches)
     if boundary["unresolved_indirect_exits"] or boundary["internal_call_targets"]:
         raise ValueError("unclosed linked CPU transfers")

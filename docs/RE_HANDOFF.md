@@ -32,7 +32,27 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Active priority: Aya CPU decision root
+## Active priority: shared Fighter action root
+
+`Fighter_update_common_action_state @ 4740C0` is the current large shared root.
+Its local20-byte checked container now uses real VC8 `std::deque` with the
+94-byte target4399C0 member exact before/after a genuine link. The complete
+ordinary10801-byte canonical section tail is unchanged; whole10219 comparison
+remains nonexact+14/53 of66 diagnostic owners. Fresh animation smoke is0/72;
+the older6048 animation and14208 motion matrices are not rerun.
+
+The new public link probe closes24 real source providers plus pinned CRT/SDK
+libraries, with27/28 selected dependency addresses exact; the retained
+resource-handle lookup417800 is explicitly nonexact. Same-target source-view
+aliases and12 attested non-executable data bindings are diagnostic, not proof
+of original C++ declarations or runtime equivalence. Both linked switches and
+all2842 instructions/10233 callable bytes close, with three alignment bytes.
+The linked entry adds an aligned EBP frame and still uses ADD-negative in
+place of target SUB. No float/flag change is retained. The next task is joint
+clamp/sequence ownership and dispatch lowering with target rounding intact.
+See [the source/linked ABI checkpoint](COMMON_FIGHTER_LINKED_ABI_2026_10_17.md).
+
+## Aya CPU decision checkpoint
 
 `Aya_update_cpu_action_policy @ 6126E0` now has complete target-reviewed source:
 16032 callable bytes /4097 instructions, six validated switches and no
@@ -77,7 +97,7 @@ current source and guarded all-float diagnostic, the latter context closes
 16056 bytes /4079 instructions through all six switches, but retains119
 selector sites versus target114 and five nested table destinations versus
 six. No float/flag/partition control is promoted to the acceptance profile.
-The next task is complete control/float lifetime and shared store/x87 tail
+Remaining Aya work is complete control/float lifetime and shared store/x87 tail
 matching with that verified dependency ABI. Prior evidence:
 [linked ABI](AYA_CPU_LINKED_ABI_2026_10_17.md),
 [source/dependencies](AYA_CPU_NATIVE_DEPENDENCIES_2026_10_17.md), and

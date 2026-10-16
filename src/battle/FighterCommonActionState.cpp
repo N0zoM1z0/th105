@@ -1,4 +1,5 @@
 #include <stddef.h>
+#include <deque>
 #include "battle/Collision.hpp"
 #include "battle/SpellRuntime.hpp"
 #include "battle/PairEmbeddedMode.hpp"
@@ -11,6 +12,10 @@ extern int g_secondary_event_effect_id;
 extern short g_info_mode_value_6fa88c;
 
 struct FighterActionScratchView { void reset(); };
+
+// Target4399C0 is the checked VC8 deque member (94 canonical bytes).
+typedef std::deque<FighterSequenceSlot> CommonNativeSequenceDeque;
+typedef char CommonNativeSequenceDeque_size[(sizeof(CommonNativeSequenceDeque)==0x14)?1:-1];
 
 // Canonical 1.06a RTTI names this shared Fighter layer CharacterEx.
 class CharacterEx {
@@ -83,7 +88,7 @@ public:
     short counter_558;
     signed char state_55a;
     signed char state_55b;
-    FighterSequenceController sequence_controller_55c;
+    CommonNativeSequenceDeque sequence_controller_55c;
     unsigned char reserved_570[0x13c];
     float peer_component_6ac;
     unsigned char reserved_6b0[4];
@@ -749,7 +754,7 @@ LABEL_126:
         {
           if ( state_55a > 0
             && state_72c == 2
-            && sequence_controller_55c.entry_at_checked(0)->record_id_00 >= 248 )
+            && sequence_controller_55c[0].record_id_00 >= 248 )
           {
             copy_action_word_176_to_174();
           }
