@@ -96,6 +96,17 @@ The new receiver facts address indirect call identity, not those code-generation
 residuals. Previous negative source matrices remain documented in the landing,
 exit-phase and October2 records; do not repeat them without a new discriminator.
 
+The October17 controls retain this checkpoint. `/fp:fast` removes required
+single-precision rounding and changes double operands to float; formal replay
+also blocks on unmapped `__real@3f800000`, with no fabricated binding added.
+Scoped late clamp temporaries reproduce the arithmetic but duplicate each
+159..162 suffix to146 bytes and lose action799 (52/66), so they are rejected.
+A direct native switch cannot satisfy the required low-table topology; it has
+no completed owner score. Shared-zero and explicit sequence-return controls
+remain53/66. No common-action source is changed. The next active major root is
+[the default CPU decision method](CPU_ORDERED_BOUNDARIES_2026_10_17.md), where
+target-versus-object execution identified a concrete predicate error.
+
 ## Direct Ghidra working state
 
 One Ghidra12.1 process at a time re-attests the executable identity, actual

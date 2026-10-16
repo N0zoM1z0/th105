@@ -153,6 +153,31 @@ destination_count = 21
 index_table = "0x005F5FB8"
 expected_physical_groups = 21
 
+# Nested sequence switches are part of the CPU root, not separate callables.
+[[roots.auxiliary_switches]]
+name = "action302-sequence"
+dispatch = "0x005F2590"
+destination_table = "0x005F5ED0"
+destinations = ["0x005F2597", "0x005F25E5", "0x005F2620", "0x005F2633", "0x005F2681", "0x005F3373"]
+
+[[roots.auxiliary_switches]]
+name = "action304-sequence"
+dispatch = "0x005F28B4"
+destination_table = "0x005F5EF8"
+destinations = ["0x005F37B5", "0x005F36C9", "0x005F3377"]
+
+[[roots.auxiliary_switches]]
+name = "action322-sequence"
+dispatch = "0x005F3057"
+destination_table = "0x005F5F14"
+destinations = ["0x005F2597", "0x005F25E5", "0x005F2620", "0x005F305E", "0x005F2681", "0x005F3373"]
+
+[[roots.auxiliary_switches]]
+name = "actions410-412-sequence"
+dispatch = "0x005F3641"
+destination_table = "0x005F5F3C"
+destinations = ["0x005F3648", "0x005F25E7", "0x005F2622", "0x005F25D6", "0x005F3687", "0x005F3375"]
+
 [[roots]]
 name = "youmu-object-action-entry"
 address = "0x00543670"

@@ -34,8 +34,8 @@ double v16; // st6
 double v17; // st7
 bool v18; // zf
 double v19; // st6
-bool v20; // c0
-bool v21; // c3
+// Ordered x87 comparisons reject NaN at both stage boundaries.
+bool above_boundary_threshold;
 int v22; // eax
 __int16 v23; // cx
 int v24; // eax
@@ -361,8 +361,8 @@ goto LABEL_100;
 case 0xCA:
 goto LABEL_104;
 case 0xCD:
-if ( (*(float *)CPU_FIELD(236) <= 860.0 || *(_BYTE *)CPU_FIELD(260) != 1)
-&& (*(float *)CPU_FIELD(236) >= 400.0 || *(_BYTE *)CPU_FIELD(260) != 0xFF)
+if ( (!( *(float *)CPU_FIELD(236) > 860.0 ) || *(_BYTE *)CPU_FIELD(260) != 1)
+&& (!( *(float *)CPU_FIELD(236) < 400.0 ) || *(_BYTE *)CPU_FIELD(260) != 0xFF)
 || *(_DWORD *)CPU_FIELD(384) != 1 )
 {
 goto LABEL_111;
@@ -843,8 +843,8 @@ goto LABEL_101;
 case 0xCA:
 goto LABEL_104;
 case 0xCD:
-if ( (*(float *)CPU_FIELD(236) <= 860.0 || *(_BYTE *)CPU_FIELD(260) != 1)
-&& (*(float *)CPU_FIELD(236) >= 400.0 || *(_BYTE *)CPU_FIELD(260) != 0xFF)
+if ( (!( *(float *)CPU_FIELD(236) > 860.0 ) || *(_BYTE *)CPU_FIELD(260) != 1)
+&& (!( *(float *)CPU_FIELD(236) < 400.0 ) || *(_BYTE *)CPU_FIELD(260) != 0xFF)
 || *(_DWORD *)CPU_FIELD(384) != 1 )
 {
 goto LABEL_111;
@@ -854,8 +854,7 @@ goto LABEL_350;
 case 0xD4:
 LABEL_111:
 v19 = *(float *)CPU_FIELD(236);
-v20 = v19 < v15;
-v21 = v19 == v15;
+above_boundary_threshold = v19 > v15;
 goto LABEL_408;
 default:
 goto LABEL_350;
@@ -1093,12 +1092,11 @@ LABEL_99:
 goto LABEL_350;
 case 0xD4:
 v68 = *(float *)CPU_FIELD(236);
-v20 = v68 < 860.0;
-v21 = v68 == 860.0;
+above_boundary_threshold = v68 > 860.0;
 LABEL_408:
-if ( !v20 && !v21 && *(_BYTE *)CPU_FIELD(260) == 1 )
+if ( above_boundary_threshold && *(_BYTE *)CPU_FIELD(260) == 1 )
 goto LABEL_413;
-if ( *(float *)CPU_FIELD(236) >= 400.0 )
+if ( !( *(float *)CPU_FIELD(236) < 400.0 ) )
 goto LABEL_350;
 v45 = *(_BYTE *)CPU_FIELD(260) == 0xFF;
 break;

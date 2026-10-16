@@ -32,23 +32,33 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Active priority: shared Fighter action root
+## Active priority: default CPU action decision root
 
-The active bounded target is `Fighter_update_common_action_state @ 4740C0`,
-10219 callable bytes shared by all15 roster action roots. The October16–17
-pass verifies all2799 instructions and qualifies all8 register tail jumps as
-slot14 calls to45C220 for sixteen RTTI-backed receiver types, using forward
-register provenance across the complete CFG. The raw indirect-exit inventory
-stays unchanged and unreviewed domains are not inferred. Root source aligns
-three called virtual declarations with existing accepted interfaces, byte-neutral.
-Direct Ghidra stores51 physical fields, typed virtual slots, fifteen helper
-interfaces and the8 conditional tail-call inferences; fresh readback verifies
-unchanged target bytes. Its previous PIC/unreachable/root-local tail warnings
-are removed; a helper warning at4351F8 remains outside scope. Whole-root
-comparison still fails+14 with53/66 diagnostic owners;
-RTM is byte-neutral and float clamp narrowing regresses. Continue the shared
-clamp/sequence-selection source-ownership problem, without old spelling matrices
-or partial exact credit. See [the complete root and domain evidence](COMMON_FIGHTER_ROOT_2026_10_16.md).
+The active bounded target is `Fighter_update_default_cpu_action_policy @ 5F1F80`,
+15910 callable bytes shared by eleven roster CPU policies. A fresh executable
+comparison exposed an actual unordered-input error in the retained boundary
+predicates: ordinary C++ `<`/`==` Booleans did not model x87 C0/C3 for NaN.
+The source now uses ordered upper/lower predicates. Across16600 bounded
+instruction-execution controls, the preceding object has132 differences and
+the corrected configured object has0. Real target ftol2 executes; RNG0 and one
+checked-sequence record are explicit controls. Full numerical/gameplay
+closure remains unproven. All prior14/41 identical diagnostic owners survive;
+whole-root canonical comparison still fails+12E, metadata+3E18 and section
+tail16521. No exact credit. Four nested sequence tables now close all4069
+instructions/all15910 target bytes with no unresolved indirect exit. Direct
+Ghidra saves/readbacks the ECX/no-stack ABI,27 physical fields and six ordered
+boundary comments, preserving every target byte. Continue this major root's
+branch/store ownership and range/FP source recovery. See
+[the source correction, complete CFG and execution controls](CPU_ORDERED_BOUNDARIES_2026_10_17.md).
+
+The shared Fighter action root `4740C0` remains a stable10219-byte checkpoint.
+All2799 instructions and eight receiver-domain virtual tails are reviewed;
+its source still has53/66 diagnostic owners and remains canonically nonexact.
+The latest controls reject `/fp:fast` because it removes target rounding and
+changes operand precision; scoped late clamps still duplicate the physical
+suffix. No new source is retained from those controls. Shared clamp/sequence
+ownership and native switch lowering remain open, without partial exact credit.
+See [the complete root and domain evidence](COMMON_FIGHTER_ROOT_2026_10_16.md).
 
 The receive chain is fully implemented/linked; the connection checkpoint
 retains target-backed handoff/DNS lifetimes and isolates a genuine84-byte
@@ -58,8 +68,8 @@ See [the connection record](NETWORK_UDP_CONNECTION_2026_10_16.md).
 
 ## Receive-chain link closure: connection and handshake worker
 
-The priority remains the complete UDP receive/connection subsystem rather than
-isolated dependency matches. `NetworkWinsock_start_connection @ 415340`
+The complete UDP receive/connection subsystem is source-present.
+`NetworkWinsock_start_connection @ 415340`
 (160 instructions/542 bytes) and its actual native worker
 `NetworkWinsock_connection_thread_entry @ 415D60` (286/1009) now have complete
 source in the receive TU. Persistent request ownership/FFFF reuse, numeric/DNS
