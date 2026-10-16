@@ -13,8 +13,8 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,502 authored / 1,414 excluded / 1,107 in review**; **1,410 mapped**,
-  **1,391 source-present**, **1,317 exact / 223,051 exact bytes**, and
+  **1,502 authored / 1,414 excluded / 1,107 in review**; **1,411 mapped**,
+  **1,392 source-present**, **1,317 exact / 223,051 exact bytes**, and
   **495 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
@@ -64,7 +64,7 @@ the complete root. TH08's VC7 inline `FSINCOS` is only a technique reference;
 it does not establish an assembly requirement here, and this repository
 forbids assembly for forced comparisons.
 
-## New complete source checkpoint: UI tile renderer
+## New complete source checkpoints: tile and Sprite renderers
 
 `UiTileA4_render @ 0x004099F0` now has complete natural C++ source in
 `src/ui/UiTileRender.cpp`. Fresh raw CFG closure reaches all 246 instructions /
@@ -78,6 +78,16 @@ load/push scheduling. No dummy stack slot or exact credit was added. See
 [the source, controls and reproducible comparison](UI_TILE_RENDER_2026_10_16.md).
 Existing shared headers and accepted match units were unchanged. Investigate
 original inline/TU ownership before repeating the documented negative controls.
+
+`CSpriteEx_finalize_render @ 0x00407AD0` also has complete ordinary source in
+`src/battle/SpriteRenderFinalizer.cpp`, using the existing CSpriteEx layout.
+All 67 instructions / 219 target bytes are reviewed. The 219-byte strict-FP
+candidate is nonexact at +0x12 because it hoists the texture handle load/push.
+All 43 x87 operations and the final 56-byte submission tail agree; this is
+diagnostic evidence only. Normal submission-wrapper and handle-view probes
+are byte-neutral, while plain strict FP and disabling global optimization
+worsen codegen. See [the focused evidence](SPRITE_RENDER_FINALIZER_2026_10_16.md).
+The original scheduling/TU phase remains unknown; no exact claim was added.
 
 TH075's local R182 evidence corroborates the 3600-entry angle-table policy,
 but its integer-abs conversion order differs from TH105's float-phase path.
@@ -110,7 +120,7 @@ At the October 2 checkpoint the ignored `build/` directory was cleared, includin
 objects, reports, caches, a CI virtual environment, and downloaded reference
 copies. Compiled object/link products and Python bytecode scattered in
 `.analysis/` were also removed; private probe source and Ghidra databases
-remain. The October 16 tile probes regenerate small objects/reports under
+remain. The October 16 render probes regenerate small objects/reports under
 `build/`; private source and Ghidra state stay under `.analysis/`. Dated notes may name former `build/` report paths as reproduction
 references; those files are absent until their commands are rerun. The pinned
 official VC8 manual can be fetched and regenerated through

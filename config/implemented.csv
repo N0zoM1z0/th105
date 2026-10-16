@@ -1389,3 +1389,4 @@ CProfileDeckEdit_scalar_deleting_destructor
 CSpriteEx_rotate_xyz
 CollisionContext_resolve_fighter_body_collision
 UiTileA4_render
+CSpriteEx_finalize_render
