@@ -86,9 +86,9 @@ initialization caller naturally produce the target ECX/EAX private interface.
 The whole helper is68/68 in a diagnostic canonical comparison, and the
 initializer becomes439/441 nonexact. There is no external custom-register
 prototype, forced compiler attribute or synthetic caller. Original member
-versus file-local source form remains unknown; this checkpoint selects only
-the initializer for new source progress, leaving the bind helper uncredited
-context pending its own bounded acceptance.
+versus file-local source form remains unknown. A subsequent independent
+bounded acceptance records the complete68-byte bind below; the initializer
+continues to be source-present/nonexact.
 
 A separate file-local assign wrapper around the same native operation emits
 only a nine-byte wrapper and leaves the initializer unchanged. It does not
@@ -107,6 +107,7 @@ PE or provide implementation/exact credit for those callback declarations.
 | Address | Source / target bytes | Result |
 | --- | ---: | --- |
 | 412E10 initialization | 439 /441 | Nonexact at+0, aligned frame/private assign and API pointer allocation |
+| 413080 socket bind | 68 /68 | Exact, naturally private ECX/EAX entry |
 | 41DDC0 acquisition | 148 /148 | Exact; adjacent103 metadata bytes separately verified |
 | 41DEC0 release | 47 /47 | Exact |
 | 41DEF0 error reporter | 84 /84 | Exact |
@@ -134,13 +135,44 @@ python3 scripts/compare-unit-object.py cross-v106a-network-winsock-runtime build
 ```
 
 The complete comparison intentionally returns1 for initialization. Fresh
-accepted-only comparison selects41DDC0/41DEC0/41DEF0 and preserves all three.
+accepted-only comparison selects413080/41DDC0/41DEC0/41DEF0 and preserves all four.
 Reports are `build/network-udp-initialize-{boundary,callers,formal}.json`,
 `build/network-udp-initialize-accepted.json` and
 `build/network-udp-initialize-ltcg-probe.diagnosis.json`.
 The target-backed origin rule pins the full main hash, both exact caller
-edges, six exact helper edges and native callback/IAT fields. No new match or
+edges, seven exact helper edges and native callback/IAT fields. The separate
+bind adds68 authored exact bytes; initialization remains nonexact. No new
 exclusion rows are added. Only the affected runtime source unit is replayed.
+
+## Accepted socket-bind boundary
+
+`NetworkWinsock_bind_udp_socket @ 00413080` is independently canonical
+**68/68**, SHA-256
+`db31570b87c5c3560214f32a8027e3b96488c1c75703b712326b0b03a4959a3f`.
+All26 instructions are reachable, with two plain RET exits and no indirect
+jump, escaped edge, remote chunk or extra executable tail. Its complete
+source COFF section is68 bytes. The sole instruction-checked incoming E8 is
+412EFC, and a raw absolute-entry scan finds no function-pointer references.
+
+The complete real caller and normal typed file-local definition produce the
+private ECX owner/EAX port interface under ordinary `/O2 /GS`. The source
+does not declare an external custom-register ABI or use a register wrapper.
+Its native htons/bind IATs, CP932 error text and call to the complete real
+error reporter all replay; endpoint bytes+34..3B are retained. This proves a
+reproducible source/byte result, without recovering original member versus
+file-local spelling or making the439-byte caller exact.
+
+```bash
+python3 scripts/build.py --unit cross-v106a-network-winsock-runtime --json
+python3 scripts/compare-unit-object.py cross-v106a-network-winsock-runtime build/match-units/CrossV106a_NetworkWinsockRuntime.obj --address 0x00413080 --json
+```
+
+The result is `build/network-udp-bind-formal.json`. A fresh build and focused
+accepted-only replay preserve this68-byte body and the existing148/47/84
+helpers. Ghidra saves and independently reads back the supported name,68-byte
+body, ECX/EAX pointer/scalar storage, zero stack pop and AL:1 bool return.
+Logs are `build/network-udp-bind-ghidra-{save,readback}.log`; raw closure is
+`build/network-udp-bind-boundary.json`.
 
 ## Direct analysis and gate
 

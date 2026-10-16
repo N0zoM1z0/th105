@@ -1423,3 +1423,4 @@ NetworkWinsock_acquire_runtime
 NetworkWinsock_release_runtime
 NetworkWinsock_show_error
 NetworkWinsock_initialize_udp
+NetworkWinsock_bind_udp_socket

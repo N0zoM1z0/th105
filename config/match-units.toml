@@ -19097,3 +19097,8 @@ rel32_targets = [
   "?wait_for_exit@NetworkInitializeThread8@th105@@QAEXXZ=0x00414640",
   "__security_check_cookie=0x00689D25",
 ]
+
+[[units.cross-v106a-network-winsock-runtime.functions]]
+address = "0x00413080"
+symbol_base = "?bind_udp_socket@th105@@YG_NPAVNetworkUdpInitializeView@1@H@Z"
+rel32_targets = ["?show_winsock_error@th105@@YGXPBD@Z=0x0041DEF0"]

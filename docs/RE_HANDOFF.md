@@ -13,8 +13,8 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,534 authored / 1,415 excluded / 1,074 in review**; **1,446 mapped**,
-  **1,425 source-present**, **1,332 exact / 225,031 exact bytes**, and
+  **1,535 authored / 1,415 excluded / 1,073 in review**; **1,447 mapped**,
+  **1,426 source-present**, **1,333 exact / 225,099 exact bytes**, and
   **511 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
@@ -44,7 +44,8 @@ source bool is a hypothesis, and the older UI int-forwarding declaration is
 not changed without reviewing its consumers. The ordinary POD-source result
 is439/441 nonexact on aligned GS frame, private vector interface and API
 pointer allocation. A full file-local bind helper naturally reproduces its
-68-byte ECX/EAX body; it remains uncredited context at this checkpoint. A resolved LTCG attempt stops on missing real callback
+68-byte ECX/EAX body, now separately accepted as
+`NetworkWinsock_bind_udp_socket @ 413080` at **68/68 canonical exact**. A resolved LTCG attempt stops on missing real callback
 and wait link inputs; no replacement bodies or executable ABS bindings are
 introduced. This neither proves LTCG necessary nor proves it would match.
 Adding the actual caller preserves all three accepted runtime helpers at

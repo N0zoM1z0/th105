@@ -23,6 +23,7 @@ required_direct_edges = [
 required_selected_body_calls = [
   { owner = "0x00412E10", site = "0x00412E8F", target = "0x0041DDC0", target_status = "matching" },
   { owner = "0x00412E10", site = "0x00412EB0", target = "0x0041DEF0", target_status = "matching" },
+  { owner = "0x00412E10", site = "0x00412EFC", target = "0x00413080", target_status = "matching" },
   { owner = "0x00412E10", site = "0x00412F05", target = "0x0041DEC0", target_status = "matching" },
   { owner = "0x00412E10", site = "0x00412F47", target = "0x00414640", target_status = "matching" },
   { owner = "0x00412E10", site = "0x00412F73", target = "0x00414640", target_status = "matching" },
