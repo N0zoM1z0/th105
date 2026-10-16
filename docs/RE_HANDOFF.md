@@ -1,6 +1,6 @@
 # TH10.5 reconstruction handoff
 
-This is the short operational handoff as of 2026-10-16. The live ledgers and
+This is the short operational handoff as of 2026-10-17. The live ledgers and
 fresh canonical comparisons override dated prose. Older checkpoints are in
 [the October archive](RE_HANDOFF_HISTORY_2026_10_02.md),
 [the September archive](RE_HANDOFF_HISTORY_2026_09_26.md), and the focused
@@ -34,17 +34,27 @@ hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
 ## Active priority: shared Fighter action root
 
-The user requests the major roots rather than isolated helper work. The next
-bounded target is `Fighter_update_common_action_state @ 4740C0`,10219 callable
-bytes shared by all15 roster action roots. Rebuild its full configured unit
-and physical-owner audit; read the retained landing evidence before changing
-source. Do not repeat old spelling matrices or mistake owner counts for exact
-credit. The receive chain is fully implemented/linked; the latest connection
-pass retains target-backed handoff/DNS lifetimes and isolates a genuine84-byte
+The active bounded target is `Fighter_update_common_action_state @ 4740C0`,
+10219 callable bytes shared by all15 roster action roots. The October16–17
+pass verifies all2799 instructions and qualifies all8 register tail jumps as
+slot14 calls to45C220 for sixteen RTTI-backed receiver types, using forward
+register provenance across the complete CFG. The raw indirect-exit inventory
+stays unchanged and unreviewed domains are not inferred. Root source aligns
+three called virtual declarations with existing accepted interfaces, byte-neutral.
+Direct Ghidra stores51 physical fields, typed virtual slots, fifteen helper
+interfaces and the8 conditional tail-call inferences; fresh readback verifies
+unchanged target bytes. Its previous PIC/unreachable/root-local tail warnings
+are removed; a helper warning at4351F8 remains outside scope. Whole-root
+comparison still fails+14 with53/66 diagnostic owners;
+RTM is byte-neutral and float clamp narrowing regresses. Continue the shared
+clamp/sequence-selection source-ownership problem, without old spelling matrices
+or partial exact credit. See [the complete root and domain evidence](COMMON_FIGHTER_ROOT_2026_10_16.md).
+
+The receive chain is fully implemented/linked; the connection checkpoint
+retains target-backed handoff/DNS lifetimes and isolates a genuine84-byte
 linked residual beginning+14C. Direct clear and RTM controls were negative.
-Ordinary connection524, all other receive extents and callback14 exactness are
-unchanged. See the final section of
-[the connection record](NETWORK_UDP_CONNECTION_2026_10_16.md).
+Its ordinary524-byte connection and accepted14-byte callback are unchanged.
+See [the connection record](NETWORK_UDP_CONNECTION_2026_10_16.md).
 
 ## Receive-chain link closure: connection and handshake worker
 

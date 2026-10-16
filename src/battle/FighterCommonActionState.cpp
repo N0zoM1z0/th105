@@ -17,12 +17,13 @@ class CharacterEx {
 public:
     virtual void slot_00();
     virtual void slot_04();
-    // All roster +8 slots forward to 0x00435200, which reads the low word
-    // of its four-byte argument slot. This root ignores virtual return values.
-    virtual void set_action(short action);
-    virtual void set_sequence(int sequence);
+    // All 15 roster vtables use the accepted animation interface: +8 at
+    // 45BFE0, +C at45C390 and +14 at45C220. The action occupies the low
+    // word of a DWORD slot; sequence is a DWORD. This root discards results.
+    virtual int set_action(short action);
+    virtual int set_sequence(int sequence);
     virtual void slot_10();
-    virtual void slot_14();
+    virtual unsigned char next_sequence_block();
 
     unsigned char resolve_stage_surface_landing_transition();
     unsigned char advance_frame_and_dispatch();
@@ -389,7 +390,7 @@ ACTION_54_60_690:
         // This return owns the publisher/event tail. The later landing
         // consumers join the switch exit instead of owning another copy.
         if (sequence_13e == 1 && velocity_y_f8 < 2.0) {
-          slot_14();
+          next_sequence_block();
           return;
         }
         v80 = velocity_y_f8 - acceleration_y_100;
@@ -419,7 +420,7 @@ ACTION_54_60_690:
 
       case 72:
         if (sequence_13e == 1 && velocity_y_f8 < 2.0) {
-          slot_14();
+          next_sequence_block();
           return;
         }
         velocity_y_f8 -= acceleration_y_100;
@@ -474,7 +475,7 @@ LABEL_126:
 
       case 74:
         if (sequence_13e == 1 && velocity_y_f8 < 2.0) {
-          slot_14();
+          next_sequence_block();
           return;
         }
         if (classify_fighter_x_boundary() && velocity_x_f4 <= -25.0) {
@@ -798,7 +799,7 @@ LABEL_126:
         break;
       case 145:
         if (sequence_13e == 1 && velocity_y_f8 < 2.0) {
-          slot_14();
+          next_sequence_block();
           return;
         }
         velocity_y_f8 = velocity_y_f8 - acceleration_y_100;
@@ -815,7 +816,7 @@ LABEL_126:
         return;
       case 149:
         if (sequence_13e == 1 && velocity_y_f8 < 2.0) {
-          slot_14();
+          next_sequence_block();
           return;
         }
         velocity_y_f8 = velocity_y_f8 - acceleration_y_100;
@@ -1141,7 +1142,7 @@ LABEL_357:
           if ( !(frame_counter_144 % 10) )
             emit_fighter_effect_433cc0(152, x_ec, y_f0, static_cast<unsigned char>(facing_104), -1);
           if (frame_counter_144 >= 67) {
-            slot_14();
+            next_sequence_block();
             return;
           }
         }
@@ -1153,7 +1154,7 @@ LABEL_357:
       case 693:
         resolve_stage_surface_landing_transition();
         if (sequence_13e == 1 && frame_counter_144 >= 40) {
-          slot_14();
+          next_sequence_block();
           return;
         }
         if ( (unsigned __int8)advance_frame_and_dispatch() )
@@ -1183,7 +1184,7 @@ LABEL_357:
         if ( frame_counter_144 >= 20 )
         {
 LABEL_444:
-          slot_14();
+          next_sequence_block();
         }
         else
         {
@@ -1234,7 +1235,7 @@ LABEL_522:
         if (!sequence_13e) {
           resolve_stage_surface_landing_transition();
         if (sequence_13e == 1 && velocity_y_f8 < 4.0)
-          slot_14();
+          next_sequence_block();
         advance_frame_and_dispatch();
         if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1) {
           velocity_x_f4 = policy_x_780;
@@ -1251,7 +1252,7 @@ LABEL_522:
           return;
         }
         if (sequence_13e == 1 && velocity_y_f8 < 4.0)
-          slot_14();
+          next_sequence_block();
         advance_frame_and_dispatch();
         if (!frame_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_13e == 1) {
           velocity_x_f4 = policy_x_780;
@@ -1307,7 +1308,7 @@ LABEL_522:
           }
           if ( word_730 == 1 )
           {facing_104 = 1;
-            slot_14();
+            next_sequence_block();
           }
         }
         if ( sequence_13e == 2

@@ -216,3 +216,20 @@ regression tests for opcode/width retention, owner identity, switch address
 proof, alias accounting, invalid partitions, raw traversal, and unresolved
 indirect exits. Their small instruction fixtures are test inputs only and are
 never linked into reconstruction sources or used to manufacture exact bytes.
+
+## October16–17 receiver-domain qualification
+
+The shared10219-byte Fighter root now has a supplementary
+[typed indirect-tail fact packet](COMMON_FIGHTER_ROOT_2026_10_16.md).
+`python3 scripts/audit-common-fighter-indirect-tails.py --json` traverses all2799
+instructions with validated switch edges, ordinary x86 CALL clobbers and
+conservative provenance joins. Its eight register exits all load receiver
+vtable+14 and retain entry receiver in ECX. CharacterEx plus all fifteen
+RTTI-backed roster primary tables share45C220 without a base adjustment.
+The targets are qualified only for those sixteen reviewed receiver types.
+
+The original audit above still reports the eight raw indirect exits; no
+unknown edge is silently erased. The supplemental facts and Ghidra call-flow
+inferences do not change canonical comparison or owner counting. Source
+interface alignment is byte-neutral; the retained root still has53/66
+diagnostic owners and remains entirely nonexact.
