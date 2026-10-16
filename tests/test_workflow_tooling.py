@@ -67,7 +67,7 @@ class WorkflowToolingTests(unittest.TestCase):
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1392)
+        self.assertEqual(len(implemented), 1394)
         self.assertEqual(
             len(self.validator.rows(ROOT / "config" / "matches.csv")), 1317
         )
@@ -1662,7 +1662,7 @@ class WorkflowToolingTests(unittest.TestCase):
         )
         self.assertIn("Canonical exact functions | 1,317", markdown)
         self.assertIn("Canonical exact authored bytes | 223,051", markdown)
-        self.assertIn("Source-present authored mappings | 1,392", markdown)
+        self.assertIn("Source-present authored mappings | 1,394", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )

@@ -1410,3 +1410,5 @@ CSpriteEx_rotate_xyz,0x00407680,function
 CollisionContext_resolve_fighter_body_collision,0x0046CCA0,function
 UiTileA4_render,0x004099F0,function
 CSpriteEx_finalize_render,0x00407AD0,function
+CSprite_render,0x00406BE0,function
+CSprite_render_fvf4142,0x00406E50,function

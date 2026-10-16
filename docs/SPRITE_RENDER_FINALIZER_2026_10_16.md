@@ -70,6 +70,12 @@ Bounded negative controls:
 - Disabling global optimization locally produces 377 bytes and a non-target
   EBP frame. This is negative profile evidence, not an argument for a global
   flag change or an LTCG diagnosis.
+- The pinned VC8 RTM compiler (14.0.50727.42) generates the same complete
+  canonical comparison bytes as SP1 for this source. Factoring submission
+  into an ordinary physical base-class member and allowing normal inlining
+  is also byte-neutral. Neither compiler revision nor this base ownership
+  hypothesis explains the current residual. No production source was changed
+  by these two controls.
 
 The root is now mapped and source-present. Original source spelling, the
 handle load's original inline/compiler phase and any original TU boundary

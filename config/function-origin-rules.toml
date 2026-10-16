@@ -1584,6 +1584,38 @@ confidence = "observed"
 evidence = "These entries are target-private checked-container phases, not independent source callables. 0x0040F730 consumes CsvReader in live ESI and is called only by load; 0x0040F7D0/0x0040F840 are ESI/usercall helpers reachable only from the load helper chain; 0x0040F8E0 is an EH-only five-byte thunk to inner deque _Tidy 0x0040FF90. Do not count extracted LTCG/container phases as authored functions."
 
 [[rules]]
+id = "sprite-primary-render-vslots-authored-106a"
+addresses = ["0x00406BE0", "0x00406E50"]
+expected_count = 2
+expected_bytes = 1220
+expected_names = ["sub_406BE0", "sub_406E50"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact CSprite ctor 0x0040ADA0 publishes vtable 0x006C0668, whose +0x1C/+0x20 slots own these two complete 610-byte RET8 renderers. Canonical-exact Menu::render_cursor directly calls the first. Both close 210 reachable instructions/all610 bytes and implement game sprite scaled-pivot/half-pixel geometry, orientation-table rotation, texture-handle cache policy and D3D submission. After normalizing local branch addresses their sole instruction difference is submitted FVF 0x144 versus 0x4142. The ctor operand, both vtable pointers, complete hashes, exact caller and implemented game-helper edges are replayed. Source and compiler comparison remain separate; neither root is exact. See docs/SPRITE_PRIMARY_RENDER_2026_10_16.md."
+required_dword_values = [
+  { address = "0x0040ADAB", value = "0x006C0668" },
+  { address = "0x006C0684", value = "0x00406BE0" },
+  { address = "0x006C0688", value = "0x00406E50" },
+]
+required_body_hashes = [
+  { address = "0x00406BE0", size = 610, sha256 = "fa3b6f746fe5529b57abb6f24113ce3f6c33c54f781f975db13b7b89ccc829bf" },
+  { address = "0x00406E50", size = 610, sha256 = "6c528e876bc6405bec90252d098e7964d2d3817159e098838b794500ffa8a5be" },
+]
+required_direct_edges = [
+  { caller = "0x0043F9D0", site = "0x0043F9FF", target = "0x00406BE0", caller_status = "matching" },
+]
+required_selected_body_calls = [
+  { owner = "0x00406BE0", site = "0x00406C90", target = "0x004063D0", target_status = "implemented" },
+  { owner = "0x00406BE0", site = "0x00406CA2", target = "0x00406360", target_status = "implemented" },
+  { owner = "0x00406BE0", site = "0x00406DED", target = "0x00417800", target_status = "implemented" },
+  { owner = "0x00406E50", site = "0x00406F00", target = "0x004063D0", target_status = "implemented" },
+  { owner = "0x00406E50", site = "0x00406F12", target = "0x00406360", target_status = "implemented" },
+  { owner = "0x00406E50", site = "0x0040705D", target = "0x00417800", target_status = "implemented" },
+]
+
+[[rules]]
 id = "shared-ui-design-binding-and-tile-render-authored-106a"
 addresses = ["0x004099F0", "0x00420B90"]
 expected_count = 2

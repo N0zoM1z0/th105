@@ -13,8 +13,8 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,502 authored / 1,414 excluded / 1,107 in review**; **1,411 mapped**,
-  **1,392 source-present**, **1,317 exact / 223,051 exact bytes**, and
+  **1,504 authored / 1,414 excluded / 1,105 in review**; **1,413 mapped**,
+  **1,394 source-present**, **1,317 exact / 223,051 exact bytes**, and
   **495 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
@@ -64,7 +64,22 @@ the complete root. TH08's VC7 inline `FSINCOS` is only a technique reference;
 it does not establish an assembly requirement here, and this repository
 forbids assembly for forced comparisons.
 
-## New complete source checkpoints: tile and Sprite renderers
+## Renderer source checkpoints
+
+`CSprite_render @ 0x00406BE0` and `CSprite_render_fvf4142 @ 0x00406E50`
+now have complete source in `src/ui/SpriteRender.cpp`. Both are 610-byte
+CSprite primary-vtable entries, independently owned by the exact-backed
+constructor and Menu cursor caller. The new origin rule adds two authored
+roots / 1,220 bytes from the review queue. Each raw CFG closes all 210
+instructions, and the target pair differs only in its FVF push. Fresh strict
+VC8 candidates are 610 bytes with the first 541 canonical bytes equal; only
+two COM method-loading/argument-scheduling windows remain nonexact. Their
+16-byte frame and all floating geometry match, so do not conflate this lead
+with the tile's unresolved frame reservation. The target-only checker is
+`scripts/audit-sprite-render-family.py`; see
+[the source, ownership and comparison evidence](SPRITE_PRIMARY_RENDER_2026_10_16.md).
+No exact credit or accepted match-unit row was added. Original TU/inline
+visibility and COM scheduling remain unknown.
 
 `UiTileA4_render @ 0x004099F0` now has complete natural C++ source in
 `src/ui/UiTileRender.cpp`. Fresh raw CFG closure reaches all 246 instructions /
@@ -88,6 +103,8 @@ diagnostic evidence only. Normal submission-wrapper and handle-view probes
 are byte-neutral, while plain strict FP and disabling global optimization
 worsen codegen. See [the focused evidence](SPRITE_RENDER_FINALIZER_2026_10_16.md).
 The original scheduling/TU phase remains unknown; no exact claim was added.
+New RTM and ordinary base-submission-member controls reproduce the same
+comparison bytes as the SP1 source; they do not explain the handle hoist.
 
 TH075's local R182 evidence corroborates the 3600-entry angle-table policy,
 but its integer-abs conversion order differs from TH105's float-phase path.
