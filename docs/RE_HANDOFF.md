@@ -13,9 +13,9 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,506 authored / 1,414 excluded / 1,103 in review**; **1,415 mapped**,
-  **1,396 source-present**, **1,319 exact / 223,505 exact bytes**, and
-  **496 match units**. These are ledger/status totals, not a fresh aggregate
+  **1,507 authored / 1,414 excluded / 1,102 in review**; **1,416 mapped**,
+  **1,397 source-present**, **1,320 exact / 223,559 exact bytes**, and
+  **497 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
   present, and only `matches.csv` plus a reproducible canonical 100% unit
@@ -32,7 +32,21 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Latest accepted exact unit: Sprite texture setup
+## Latest accepted exact unit: Application startup options
+
+`ApplicationStartupOptions_ctor @ 0x00407BB0` is canonical **54/54** from
+`src/platform/ApplicationStartupOptions.cpp`, unit
+`cross-v106a-application-startup-options`. Raw WinMain and bootstrap edges
+establish the 40-byte option value, window/instance and callback pointers,
+and graphics/input/audio/IME/cursor gates. Ordinary C++ defaults reproduce the
+whole return-terminated extent; no relocation or shared accepted contract
+changed. Unknown scalar/flag purposes retain offset names. Direct Ghidra
+metadata was saved and read back after independent target attestation. See
+[the layout, ownership and comparison evidence](APPLICATION_STARTUP_OPTIONS_2026_10_16.md).
+WinMain `665810` and application bootstrap `407DA0` remain unimplemented;
+their caller/control-flow evidence is a next lead, not accepted reconstruction.
+
+## Accepted exact unit: Sprite texture setup
 
 `CSpriteEx_set_texture_options @ 0x00407160` and
 `SpriteTexture_initialize_rectangle @ 0x00407230` are canonical **193/193**

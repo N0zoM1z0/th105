@@ -1394,3 +1394,4 @@ CSprite_render
 CSprite_render_fvf4142
 CSpriteEx_set_texture_options
 SpriteTexture_initialize_rectangle
+ApplicationStartupOptions_ctor
