@@ -55,6 +55,11 @@ was never verified and was removed from `build/` during handoff cleanup. It is
 not evidence for the extracted compiler payload or a replacement for the
 pinned `Ixpvc.exe` retrieval above.
 
+On 2026-10-16 the redundant `.tools/msvc80-rtm-media` extraction was deleted
+to recover 247.84 MiB. The working `.tools/msvc80-rtm` compiler/header tree
+remains intact; the three compiler hashes below were checked before and after
+the deletion. Recreate the media extraction only if reinstalling that tree.
+
 | Extracted file | SHA-256 |
 | --- | --- |
 | `bin/cl.exe` | `3cbf4306526c06a07d09fd4785ac290c7ac7b52355944e7b377e08f5d8e7ece7` |

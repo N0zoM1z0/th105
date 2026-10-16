@@ -108,3 +108,22 @@ residuals, not proof that one common flag or interface change fixes the engine.
 Both roots advance to mapped/source-present, with authored origin recovered.
 No accepted match unit or matches.csv row is added. Original TU boundaries,
 COM call scheduling and unique original source spelling remain unknown.
+
+## Adjacent rectangle slot: bounded negative control
+
+Raw target inspection also closes `4070C0..407159` at 153 reachable bytes /
+57 instructions, with `RET 16` and seven following INT3 bytes. The CSprite
+vtable slot `6C0680` and another pointer at `6D6A50` point to it; a raw E8/E9
+scan found no direct call/jump to its entry. It receives four float rectangle
+edges, subtracts the same half-pixel constant for each vertex coordinate,
+binds stage zero through `404DF0`, then submits FVF `144` and a two-primitive
+triangle strip. Depth, color and UV fields are untouched. Body SHA-256 is
+`1ae97c5fd56570a9684bcfde50d194a07e6b00e931a745ea4f918938452afb5f`.
+
+The private ordinary C++ hypothesis under
+`.analysis/sprite-rectangle-render-20261016/` compiles to 153 bytes. Both plain
+strict FP and strict FP with local exception scheduling off produce identical
+comparison bytes, first differing at `+10`: the candidate hoists the handle
+load while the target reads it after geometry. This is a new bounded instance
+of the scheduling residual; do not repeat those two profiles without new
+evidence. No durable name, source-present row or exact claim was added.

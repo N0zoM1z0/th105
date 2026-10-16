@@ -149,6 +149,14 @@ The separate origin/boundary review queue is documented in
 
 ## Local state, artifacts and gate
 
+The user's October 16 instruction is to prioritize reconstruction and avoid
+routine full replays. Default to the current function/unit and accepted units
+affected by shared changes. Reserve a cold all-unit replay for an intentional
+aggregate verification checkpoint. The October 16 all-unit run was stopped
+at the user's request after **113/464 units passed**; it is neither a completed
+aggregate replay nor a comparison failure. The latest texture pair and its
+affected callers had already passed focused comparisons and the local CI gate.
+
 At the October 2 checkpoint the ignored `build/` directory was cleared, including old
 objects, reports, caches, a CI virtual environment, and downloaded reference
 copies. Compiled object/link products and Python bytecode scattered in
@@ -159,6 +167,9 @@ references; those files are absent until their commands are rerun. The pinned
 official VC8 manual can be fetched and regenerated through
 [the reference guide](VC8_REFERENCE.md). Private `.analysis/` Ghidra state and
 `.tools/` compiler installations were preserved; neither is committed.
+On October 16 the redundant `.tools/msvc80-rtm-media` extraction was removed
+(247.84 MiB); the actual RTM compiler/header installation and its pinned
+compiler hashes were preserved and checked before and after cleanup.
 Do not treat an old ignored report as a current comparison. Use a fresh
 focused build/comparison for any source change, and run affected accepted
 units after shared contract changes. A reported aggregate exact percentage
