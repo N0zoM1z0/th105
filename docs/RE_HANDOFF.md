@@ -1,6 +1,6 @@
 # TH10.5 reconstruction handoff
 
-This is the short operational handoff as of 2026-10-02. The live ledgers and
+This is the short operational handoff as of 2026-10-16. The live ledgers and
 fresh canonical comparisons override dated prose. Older checkpoints are in
 [the October archive](RE_HANDOFF_HISTORY_2026_10_02.md),
 [the September archive](RE_HANDOFF_HISTORY_2026_09_26.md), and the focused
@@ -13,8 +13,8 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,502 authored / 1,414 excluded / 1,107 in review**; **1,409 mapped**,
-  **1,390 source-present**, **1,317 exact / 223,051 exact bytes**, and
+  **1,502 authored / 1,414 excluded / 1,107 in review**; **1,410 mapped**,
+  **1,391 source-present**, **1,317 exact / 223,051 exact bytes**, and
   **495 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
@@ -64,6 +64,25 @@ the complete root. TH08's VC7 inline `FSINCOS` is only a technique reference;
 it does not establish an assembly requirement here, and this repository
 forbids assembly for forced comparisons.
 
+## New complete source checkpoint: UI tile renderer
+
+`UiTileA4_render @ 0x004099F0` now has complete natural C++ source in
+`src/ui/UiTileRender.cpp`. Fresh raw CFG closure reaches all 246 instructions /
+756 bytes, and independently attested direct Ghidra sessions saved and read
+back the `(float x, float y, int column, int row)` thiscall contract. The source
+recovers float geometry/UV lifetimes, rotation and cached texture submission.
+Strict FP with local exception scheduling off produces 756 bytes, nonexact at
++2: target frame 12 bytes versus candidate eight. The first 624 bytes differ
+only in frame allocation and ESP homes; the tail also differs in COM method
+load/push scheduling. No dummy stack slot or exact credit was added. See
+[the source, controls and reproducible comparison](UI_TILE_RENDER_2026_10_16.md).
+Existing shared headers and accepted match units were unchanged. Investigate
+original inline/TU ownership before repeating the documented negative controls.
+
+TH075's local R182 evidence corroborates the 3600-entry angle-table policy,
+but its integer-abs conversion order differs from TH105's float-phase path.
+Do not transfer source or compiler assumptions between them.
+
 ## Other bounded nonexact leads
 
 | Target | Current evidence and blocker |
@@ -87,11 +106,12 @@ The separate origin/boundary review queue is documented in
 
 ## Local state, artifacts and gate
 
-The ignored `build/` directory was cleared for this handoff, including old
+At the October 2 checkpoint the ignored `build/` directory was cleared, including old
 objects, reports, caches, a CI virtual environment, and downloaded reference
 copies. Compiled object/link products and Python bytecode scattered in
 `.analysis/` were also removed; private probe source and Ghidra databases
-remain. Dated notes may name former `build/` report paths as reproduction
+remain. The October 16 tile probes regenerate small objects/reports under
+`build/`; private source and Ghidra state stay under `.analysis/`. Dated notes may name former `build/` report paths as reproduction
 references; those files are absent until their commands are rerun. The pinned
 official VC8 manual can be fetched and regenerated through
 [the reference guide](VC8_REFERENCE.md). Private `.analysis/` Ghidra state and
