@@ -74,6 +74,49 @@ The named linked extent and complete CFG independently agree on281 bytes.
 The source producer remains **189/148 nonexact**, including a different frame
 and inlined insertion ownership. Original producer TU/inline context remains open.
 
+### Bounded visibility controls
+
+Fresh resolved links of the same source, hash
+`5cc6d01abe5462ae539a2f0feaa2754d21dc137f4ebe46e6e14a647d5394ab67`,
+tested three independent compiler properties after the accepted checkpoint.
+These are diagnostic main callable extents, not canonical acceptance results
+or claims about ownership of remote EH chunks:
+
+| Compiler control | Scene commit | Retirement callback | Native `_Incsize` |
+| --- | ---: | ---: | ---: |
+| Accepted `/O2 /GL /GS-` baseline | 189 | 281 | 133 |
+| Baseline plus `/Os` | 167 | 255 | 136 |
+| Baseline plus `/Ob1` | 189 | 281 | 133 |
+| Baseline with `/GS` | 189 | 281 | 153 |
+| Original target | 148 | 281 | 154 |
+
+Every diagnostic used the same actual VC8 import libraries, original data/IAT
+bindings and resolved link without `/FORCE`. Input hashes, commands, maps,
+logs and disassembly were recorded below
+`build/application-scene-visibility-20261016/`; private drivers are below
+`.analysis/application-scene-visibility-20261016/`. The `/Os` output is densely
+packed and does not outline the observed insertion helper. `/Ob1` leaves the
+two authored extents unchanged. `/GS` restores a cookie-bearing `_Incsize`,
+but its frame, saved ESI and string-construction call contract still differ.
+A near-sized helper is not a match. None of these controls resolves the
+producer's private insertion boundary; no source/profile change was retained.
+
+Raw E8 discovery followed by instruction/CFG verification identifies shared
+`40C6D0` calls from `4036E0` (three), `403B90`, `403CE0` (two), `4089C0`,
+`411790`, `414CB0` and `419350`. The latter two are independently source-present
+device-reset and audio-event list producers, using different pointer element
+types. This supports shared pointer-list growth code, without proving whether
+COMDAT folding, template ownership or another compiler phase produced it.
+An additional raw E8 candidate at `40B9DC` was **not** reached by the bounded
+`40B000` audit and remains an unverified edge; do not count it as a caller.
+See `build/application-scene-visibility-incsize-callers.json`.
+
+The insertion helper `4089C0` still has only the independently verified scene
+handoff call at `4080DF`. The target's reference-in-EAX/list-on-stack boundary
+is not a license to declare an external standard-ABI substitute. Retain the
+native list source and recover original visibility/call context before further
+source shaping. Both helpers remain in origin review, with no new credit.
+
 The new [linked comparison contract](LINKED_PE_MATCHING.md) pins the compiler,
 linker, header trees and real VC8 import libraries, rejects unresolved links,
 and never executes the comparison image. Early `/FORCE` inspection artifacts

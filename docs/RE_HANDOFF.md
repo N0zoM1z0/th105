@@ -146,6 +146,12 @@ event+90 and scene hooks are recovered, with full source and independent
 authored ownership. Private53-byte insertion `4089C0` and constant-count
 Incsize `40C6D0` still have no new source/exact/exclusion credit. Recover original
 template visibility before tuning that producer. Keep the paired TU together.
+Fresh resolved `/Os`, `/Ob1` and `/GS` controls do not recover the producer's
+outlined insertion. `/GS` changes `_Incsize` to153/154 with a different frame;
+`/Ob1` leaves producer189 and callback281 unchanged. Verified shared growth
+callers include independent device/audio pointer lists. These are bounded
+negative/ownership observations only; see the visibility-controls table in
+the scene-lifecycle evidence note before repeating those experiments.
 
 ## Accepted exact unit: Sprite texture setup
 
