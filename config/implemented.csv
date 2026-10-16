@@ -1404,3 +1404,4 @@ Application_initialize_graphics
 Application_initialize_audio
 Application_control_thread_entry
 Application_graphics_thread_entry
+Application_graphics_worker

@@ -5,6 +5,50 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 # but no old-version address is accepted as evidence here.
 
 [[rules]]
+id = "application-graphics-worker-authored-106a"
+addresses = ["0x004084F0"]
+expected_count = 1
+expected_bytes = 401
+expected_names = ["sub_4084F0"]
+origin = "authored_game"
+subsystem = "platform"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact native application thread408820 calls this complete singleton graphics worker at40882C; the worker calls exact frame presentation401060. Raw383-byte normal CFG plus table-referenced18-byte int-catch/continuation close401 bytes, independently corroborated by the natural VC8 COFF401-byte owner. FuncInfo, both null unwind states, one typed int catch and handler/continuation are pinned, alongside singleton/event/sync/backend operands. Source401/401 remains nonexact in20 EH-state/register bytes. See docs/APPLICATION_GRAPHICS_WORKER_2026_10_16.md."
+required_body_hashes = [{ address = "0x004084F0", size = 401, sha256 = "50285919fdb10a3ff2191ae5c4df8ae23e316a62029898070157495d4c9f9ab2" }]
+required_direct_edges = [{ caller = "0x00408820", site = "0x0040882C", target = "0x004084F0", caller_status = "matching" }]
+required_selected_body_calls = [{ owner = "0x004084F0", site = "0x0040858F", target = "0x00401060", target_status = "matching" }]
+required_dword_values = [
+  { address = "0x004084F6", value = "0x006BD7A0" },
+  { address = "0x00408528", value = "0x00702820" },
+  { address = "0x0040853C", value = "0x0070284D" },
+  { address = "0x00408542", value = "0x00702880" },
+  { address = "0x004085EF", value = "0x007036A4" },
+  { address = "0x004085FE", value = "0x007036C4" },
+  { address = "0x00408632", value = "0x006FA246" },
+  { address = "0x006BD7B2", value = "0x006E3D84" },
+  { address = "0x006E3D84", value = "0x19930522" },
+  { address = "0x006E3D88", value = "0x00000002" },
+  { address = "0x006E3D8C", value = "0x006E3D50" },
+  { address = "0x006E3D90", value = "0x00000001" },
+  { address = "0x006E3D94", value = "0x006E3D70" },
+  { address = "0x006E3D50", value = "0xFFFFFFFF" },
+  { address = "0x006E3D54", value = "0x00000000" },
+  { address = "0x006E3D58", value = "0xFFFFFFFF" },
+  { address = "0x006E3D5C", value = "0x00000000" },
+  { address = "0x006E3D60", value = "0x00000000" },
+  { address = "0x006E3D64", value = "0x006FA40C" },
+  { address = "0x006E3D68", value = "0x00000000" },
+  { address = "0x006E3D6C", value = "0x00408649" },
+  { address = "0x006E3D70", value = "0x00000000" },
+  { address = "0x006E3D74", value = "0x00000000" },
+  { address = "0x006E3D78", value = "0x00000001" },
+  { address = "0x006E3D7C", value = "0x00000001" },
+  { address = "0x006E3D80", value = "0x006E3D60" },
+  { address = "0x006FA414", value = "0x0000482E" },
+]
+
+[[rules]]
 id = "application-bootstrap-island-authored-106a"
 addresses = ["0x00407DA0", "0x004147E0", "0x00418670"]
 expected_count = 3

@@ -13,9 +13,9 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,516 authored / 1,414 excluded / 1,093 in review**; **1,425 mapped**,
-  **1,406 source-present**, **1,325 exact / 224,174 exact bytes**, and
-  **502 match units**. These are ledger/status totals, not a fresh aggregate
+  **1,517 authored / 1,414 excluded / 1,092 in review**; **1,426 mapped**,
+  **1,407 source-present**, **1,325 exact / 224,174 exact bytes**, and
+  **503 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
   present, and only `matches.csv` plus a reproducible canonical 100% unit
@@ -110,8 +110,14 @@ canonical **28/28 each** from `src/platform/ApplicationThreadEntries.cpp`.
 Their ordinary Win32 callback signatures reproduce both full callables and
 all import/worker relocations. No shared source or mapping changed. See
 [the ownership, ABI and exact evidence](APPLICATION_THREAD_ENTRIES_2026_10_16.md).
-Their singleton worker bodies `4081E0`/`4084F0` remain unimplemented; either is
-a bounded next lead, without credit from the matching callbacks.
+The graphics singleton worker `4084F0` now has complete source, **401/401
+nonexact**, in `src/platform/ApplicationGraphicsWorker.cpp`. Raw normal CFG383
+plus table-referenced catch(int)/continuation18 close the entire callable;
+the option branch reads startup flag at application+2D. Twenty differing bytes
+remain in EH state-write ordering and two register choices. No exact credit
+is added. See [the exception, layout and focused comparison evidence](APPLICATION_GRAPHICS_WORKER_2026_10_16.md).
+The 771-byte control worker `4081E0` remains a bounded next lead; its matching
+callback does not grant worker source-present or exact credit.
 
 ## Accepted exact unit: Sprite texture setup
 

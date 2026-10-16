@@ -1424,3 +1424,4 @@ Application_initialize_graphics,0x004147E0,function
 Application_initialize_audio,0x00418670,function
 Application_control_thread_entry,0x00408800,function
 Application_graphics_thread_entry,0x00408820,function
+Application_graphics_worker,0x004084F0,function

@@ -18760,3 +18760,17 @@ rel32_targets = ["_application_control_worker=0x004081E0"]
 address = "0x00408820"
 symbol_base = "_bootstrap_graphics_thread@4"
 rel32_targets = ["_application_graphics_worker=0x004084F0"]
+
+[units.cross-v106a-application-graphics-worker]
+kind = "probe"
+source = "src/platform/ApplicationGraphicsWorker.cpp"
+object = "build/match-units/CrossV106a_ApplicationGraphicsWorker.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete application graphics worker called by exact native callback408820. Raw EH FuncInfo closes383 normal-flow bytes plus18 bytes for catch(int)/continuation inside the401-byte callable. Real render-result and wait-state lifetimes reproduce target loop/register topology; candidate401/401 remains nonexact in20 bytes from EH-state write ordering and two register choices. No padding, fabricated register contract or exact claim."
+
+[[units.cross-v106a-application-graphics-worker.functions]]
+address = "0x004084F0"
+symbol_base = "_application_graphics_worker"
+rel32_targets = ["?present_d3d_frame@th105@@YA_NXZ=0x00401060"]
+dir32_targets = ["?g_render_mode_manager@th105@@3URenderModeManager@1@A+0x2A=g_render_mode_manager_reset_flag"]
