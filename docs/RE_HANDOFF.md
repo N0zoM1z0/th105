@@ -44,15 +44,28 @@ result hooks:0/14208 differences through genuine RET, comparing the actor,
 calls, conversion inputs, stack and control word. It visits403/2799 target
 instructions under flat-stage/unexpired-frame inputs, not complete gameplay.
 A once-rounded action159 control changes velocity by one ULP and is detected;
-wall-event inputs fail the explicit context guard. See
-[the native motion evidence and current boundary](COMMON_FIGHTER_NATIVE_MOTION_2026_10_17.md).
+wall-event inputs fail the explicit context guard. That is the earlier
+[native motion checkpoint](COMMON_FIGHTER_NATIVE_MOTION_2026_10_17.md), not
+a newly rerun matrix.
+
+The current batch executes the original animation virtuals, frame/tree lookup
+and untextured sprite updates for actions73/75/88:0/6048 sampled differences
+through genuine RET, including actor/call/argument/conversion/stack/callee-save/
+CW checks. It visits159/2799 target instructions in an explicit resource
+fixture; coverage is not added to the old motion count. A NaN zero-test control
+produces3/72 differences; missing wall-action context is rejected. Whole-root
+comparison retains the same canonical window and53/66 owners. Complete-handler
+inline extraction is neutral under nested dispatch and fails the required
+owner topology under flat dispatch. See
+[the native animation evidence and remaining blocker](COMMON_FIGHTER_NATIVE_ANIMATION_2026_10_17.md).
 
 All2799 raw instructions and eight receiver-domain virtual tails remain
 reviewed. Direct Ghidra saves/reads back the ECX/no-stack ABI,52 named data
 fields plus the vptr, and helper/receiver evidence while preserving target
 bytes. The next task is simultaneous clamp/sequence physical ownership and
 SUB lowering with the required rounding retained. Failed source-order,
-normalized-index, reference-clamp and earlier FP controls are not retained.
+normalized-index, reference-clamp, complete-handler inline and earlier FP
+controls are not retained.
 No exact or partial byte credit. The prior receiver/control details remain in
 [the complete common-root record](COMMON_FIGHTER_ROOT_2026_10_16.md).
 
