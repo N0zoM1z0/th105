@@ -60,7 +60,9 @@ public:
     short frame_index_140;
     short frame_timer_142;
     int frame_counter_144;
-    unsigned char reserved_148[0x336];
+    unsigned char reserved_148[4];
+    short frame_limit_14c;
+    unsigned char reserved_14e[0x330];
     unsigned char byte_47e;
     unsigned char reserved_47f[3];
     short counter_482;
@@ -113,7 +115,8 @@ public:
 };
 
 #define OFFCHECK(field, off) typedef char FighterCommonActionState_##field[(offsetof(CharacterEx, field)==off)?1:-1]
-OFFCHECK(action_13c,0x13c); OFFCHECK(frame_counter_144,0x144); OFFCHECK(byte_47e,0x47e);
+OFFCHECK(action_13c,0x13c); OFFCHECK(frame_counter_144,0x144); OFFCHECK(frame_limit_14c,0x14c);
+OFFCHECK(byte_47e,0x47e);
 OFFCHECK(sequence_controller_55c,0x55c); OFFCHECK(peer_component_6ac,0x6ac); OFFCHECK(state_72c,0x72c);
 OFFCHECK(word_730,0x730); OFFCHECK(flag_776,0x776); OFFCHECK(word_7a2,0x7a2);
 typedef char FighterCommonActionState_size[(sizeof(CharacterEx)==0x7a4)?1:-1];

@@ -32,48 +32,39 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Active priority: default CPU action decision root
+## Active priority: shared Fighter action root
 
-The active bounded target is `Fighter_update_default_cpu_action_policy @ 5F1F80`,
-15910 callable bytes shared by eleven roster CPU policies. Source now preserves
-the signed16 policy load observed at5F3DE1 and restores action300's two separate
-control-store arms: closed10..90, then otherwise>=90. The latter candidate has
-29 instructions/138 bytes versus target30/141, with range folding still open.
-All prior14 identical diagnostic owners survive; policy100 also loses its
-former alignment instruction, giving15/41. Whole-root comparison remains
-nonexact+12E, targetF0/candidate29, metadata+3E38 and section tail16553. No exact
-or partial byte credit. See [source ownership and current comparison](CPU_SOURCE_OWNERSHIP_2026_10_17.md).
+The active major target is again `Fighter_update_common_action_state @ 4740C0`,
+10219 bytes used by all15 roster action roots. It retains53/66 diagnostic
+owners and remains canonically nonexact+14, metadata+2838 and section tail10801.
+The source's7A4 method view now names signed frame limit+14C from the already
+exact62-byte frame-advance helper; layout and compiled bytes are unchanged.
+A new native motion oracle executes all six original dependencies without
+result hooks:0/14208 differences through genuine RET, comparing the actor,
+calls, conversion inputs, stack and control word. It visits403/2799 target
+instructions under flat-stage/unexpired-frame inputs, not complete gameplay.
+A once-rounded action159 control changes velocity by one ULP and is detected;
+wall-event inputs fail the explicit context guard. See
+[the native motion evidence and current boundary](COMMON_FIGHTER_NATIVE_MOTION_2026_10_17.md).
 
-Fresh configured execution has0/1408 counter/mode/signed-selector boundary
-differences,0/5000 whole-root finite differences,0/16000 policy0 differences and
-0/368 finite/NaN height differences. All original dependencies execute without
-result hooks; comparison includes the full7A4 actor prefix, MT state, calls,
-conversion inputs, stack and control word. Policy0 visits all1486 reachable
-target instructions/4879 bytes and confirms actual RNG rolls0..99. This is
-instruction coverage, not full branch/numerical/gameplay/exception closure.
-The earlier16600 scoped outer-phase controls and ordered-NaN source repairs
-are recorded in [the ordered-boundary evidence](CPU_ORDERED_BOUNDARIES_2026_10_17.md);
-this pass does not rerun unrelated accepted units or claim a cold aggregate.
+All2799 raw instructions and eight receiver-domain virtual tails remain
+reviewed. Direct Ghidra saves/reads back the ECX/no-stack ABI,52 named data
+fields plus the vptr, and helper/receiver evidence while preserving target
+bytes. The next task is simultaneous clamp/sequence physical ownership and
+SUB lowering with the required rounding retained. Failed source-order,
+normalized-index, reference-clamp and earlier FP controls are not retained.
+No exact or partial byte credit. The prior receiver/control details remain in
+[the complete common-root record](COMMON_FIGHTER_ROOT_2026_10_16.md).
 
-Raw default/Aya policy0 comparison preserves all1486 instruction forms,
-321 internal destinations and37 native selector calls. Shared source is an
-inference; an original inline helper is unproved. A real forced-inline
-selection helper produces exactly the same code as its monolithic control,
-so that partition does not resolve the residual and is discarded. Four nested
-sequence tables still close all4069 instructions/all15910 target bytes with
-no unresolved indirect exit. Direct Ghidra saves/reads back the ECX/no-stack
-ABI,27 physical fields, signed policy word and target comments without changing
-bytes. Continue this major root's range lowering, register lifetime and physical
-shared-tail recovery; avoid further size-only or helper-spelling matrices.
-
-The shared Fighter action root `4740C0` remains a stable10219-byte checkpoint.
-All2799 instructions and eight receiver-domain virtual tails are reviewed;
-its source still has53/66 diagnostic owners and remains canonically nonexact.
-The latest controls reject `/fp:fast` because it removes target rounding and
-changes operand precision; scoped late clamps still duplicate the physical
-suffix. No new source is retained from those controls. Shared clamp/sequence
-ownership and native switch lowering remain open, without partial exact credit.
-See [the complete root and domain evidence](COMMON_FIGHTER_ROOT_2026_10_16.md).
+The default CPU root `5F1F80` is a stable15910-byte source checkpoint. Its signed
+policy selector and action300 store arms remain intact; whole comparison is
+nonexact+12E, metadata+3E38, section tail16553 and15/41 diagnostic owners.
+Earlier native controls have0/1408 boundary,0/5000 finite,0/16000 policy0 and
+0/368 height differences. These are historical checkpoint results, not rerun
+in this common-root batch. New counter320 controls preserve signed compares
+but move the shared store/branch ownership; they are discarded. See
+[the CPU source checkpoint](CPU_SOURCE_OWNERSHIP_2026_10_17.md). No unrelated
+accepted-unit or aggregate cold replay is claimed.
 
 The receive chain is fully implemented/linked; the connection checkpoint
 retains target-backed handoff/DNS lifetimes and isolates a genuine84-byte

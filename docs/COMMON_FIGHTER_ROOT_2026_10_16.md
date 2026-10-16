@@ -1,5 +1,9 @@
 # Shared Fighter root: typed virtual tails, October16–17
 
+The [October17 native-motion follow-up](COMMON_FIGHTER_NATIVE_MOTION_2026_10_17.md)
+contains the current execution controls and the related frame-limit field.
+The code-generation observations below retain their checkpoint scope.
+
 The active major target is `Fighter_update_common_action_state @ 4740C0`,
 the10219-byte CharacterEx method used by all15 roster action roots. It remains
 nonexact. This pass adds receiver-domain evidence for its eight register tail
