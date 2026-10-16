@@ -1397,3 +1397,4 @@ SpriteTexture_initialize_rectangle
 ApplicationStartupOptions_ctor
 Application_shutdown
 WinMain
+Application_run_message_loop

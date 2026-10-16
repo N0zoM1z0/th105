@@ -13,9 +13,9 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,509 authored / 1,414 excluded / 1,100 in review**; **1,418 mapped**,
-  **1,399 source-present**, **1,321 exact / 223,804 exact bytes**, and
-  **499 match units**. These are ledger/status totals, not a fresh aggregate
+  **1,510 authored / 1,414 excluded / 1,099 in review**; **1,419 mapped**,
+  **1,400 source-present**, **1,322 exact / 223,981 exact bytes**, and
+  **500 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
   present, and only `matches.csv` plus a reproducible canonical 100% unit
@@ -32,6 +32,20 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
+## Latest accepted exact unit: Application message loop
+
+`Application_run_message_loop @ 0x00408120` is canonical **177/177** from
+`src/platform/ApplicationMessageLoop.cpp`, unit
+`cross-v106a-application-message-loop`. Full CFG closure reaches65 instructions;
+a real28-byte MSG frame, running+4C, native message dispatch and the D3D idle
+check/reset/four-millisecond event wait reproduce the complete callable on the
+first source probe. All eleven relocation fields replay. Four new imports and
+a dedicated HRESULT+1A4 mapping preserve existing backend permissions and shared
+contracts. Ghidra metadata was saved/read back after independent target
+attestation. See [the behavior and exact evidence](APPLICATION_MESSAGE_LOOP_2026_10_16.md).
+Next application lead is bootstrap `407DA0`; WinMain remains source-present
+with its separate four-byte frame residual.
+
 ## Latest source checkpoint: WinMain
 
 `WinMain @ 0x00665810` now has complete source in `src/platform/WinMain.cpp`,
@@ -45,9 +59,9 @@ unknown; no extra buffer bytes, fake local or alignment are added. RTM697 does
 not resolve the frame difference. Direct Ghidra metadata was saved and read
 back. This is source-present only, without exact credit. See
 [the full behavior and bounded residual](WINMAIN_2026_10_16.md).
-Next application leads are message loop `408120` and bootstrap `407DA0`.
+The message loop is now exact; bootstrap `407DA0` remains unimplemented.
 
-## Latest accepted exact unit: Application shutdown
+## Accepted exact unit: Application shutdown
 
 `Application_shutdown @ 0x00407F80` is canonical **245/245** from
 `src/platform/ApplicationShutdown.cpp`, unit

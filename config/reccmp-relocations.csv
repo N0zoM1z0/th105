@@ -1275,3 +1275,8 @@ __imp__SetCurrentDirectoryA@4,0x006C003C,0e532e00,0,TH1051.06a WinMain665810 use
 __imp__GetModuleFileNameA@12,0x006C0030,26532e00,0,TH1051.06a WinMain665810 uses PE-attested KERNEL32.dll!GetModuleFileNameA at IAT006C0030; canonical raw IAT bytes attested2026-10-16,literal
 __imp__GetLastError@0,0x006C0034,3c532e00,0,TH1051.06a WinMain665810 uses PE-attested KERNEL32.dll!GetLastError at IAT006C0034; canonical raw IAT bytes attested2026-10-16,literal
 __imp__CreateMutexA@12,0x006C0038,4c532e00,0,TH1051.06a WinMain665810 uses PE-attested KERNEL32.dll!CreateMutexA at IAT006C0038; canonical raw IAT bytes attested2026-10-16,literal
+__imp__PeekMessageA@20,0x006C0238,c45b2e00,0,TH1051.06a application message loop408120 uses PE-attested USER32.dll!PeekMessageA; canonical raw IAT bytes attested2026-10-16,literal
+__imp__GetMessageA@16,0x006C0204,f45b2e00,0,TH1051.06a application message loop408120 uses PE-attested USER32.dll!GetMessageA; canonical raw IAT bytes attested2026-10-16,literal
+__imp__TranslateMessage@4,0x006C0200,025c2e00,0,TH1051.06a application message loop408120 uses PE-attested USER32.dll!TranslateMessage; canonical raw IAT bytes attested2026-10-16,literal
+__imp__DispatchMessageA@4,0x006C01F8,285c2e00,0,TH1051.06a application message loop408120 uses PE-attested USER32.dll!DispatchMessageA; canonical raw IAT bytes attested2026-10-16,literal
+application_cooperative_result_base,0x007036A0,00000000,0x1A4,"TH1051.06a message loop4081A1/4081A6 writes/tests HRESULT at703844, D3DBackend+1A4; device+20 and backend7036A0 independently exact-backed. Existing aggregate mapping is not widened; PE loader-zero field attested2026-10-16",address

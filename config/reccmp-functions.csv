@@ -1417,3 +1417,4 @@ SpriteTexture_initialize_rectangle,0x00407230,function
 ApplicationStartupOptions_ctor,0x00407BB0,function
 Application_shutdown,0x00407F80,function
 WinMain,0x00665810,function
+Application_run_message_loop,0x00408120,function
