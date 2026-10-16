@@ -110,9 +110,9 @@ are not authored-byte credits. All previously identical diagnostic owners
 remain identical: **14/41** before and after.
 
 The whole 15,910-byte comparison remains nonexact at **+12E / 5F20AE**,
-target byte `F0`, candidate `07`. After the reset-flow follow-up below, the
+target byte `F0`, candidate `07`. After the height-guard follow-up below, the
 comparison-window SHA-256 is
-`86cdedf19aa004c5467f591791ded2ca88b9471284654cd2223b48f533dbcfc5`.
+`4018df0d170704fa9e78800e3aaf9e096206f697ce7be1713b24141dd48c9326`.
 Branch/store ownership, range lowering, floating lifetimes and original TU
 context remain open. The older 16,453-byte / `+3DD4` function-ledger prose
 predated the September predicate correction and did not describe the fresh
@@ -225,7 +225,8 @@ python3 scripts/audit-cpu-policy-paths.py build/match-units/GptWeb_DefaultCpuAct
 ```
 
 An explicit case file is a nonempty JSON array with the matrix's input fields;
-`self_x_bits` can supply a float's raw bit pattern instead of `self_x`.
+a `<field>_bits` hexadecimal string can supply the raw pattern for any float
+input: `self_x`, `other_x`, `self_y`, `other_y`, `vx` or `vy`.
 
 Additional private controls are not retained: making the real MT/selector
 definitions visible regresses to 11/41 owners; rewriting all five remaining
@@ -236,3 +237,63 @@ headers, TU partition or relocation contracts change. Direct Ghidra was
 re-attested/read back for this work; its target bytes and saved ABI/view remain
 unchanged. Reports for the retained checkpoint use
 `build/cpu-root-20261017-reset-`.
+
+## Follow-up: ordered heights and RNG consumption
+
+The common airborne decision phase had three more unordered-input errors.
+The exact target compares peer height against self height, then rejects the
+unordered case before calling RNG:
+
+| Target predicate | Observed flags and rejection | Source rejection guard |
+| --- | --- | --- |
+| `5F41C4 FCOMPP` | `5F41C8 TEST AH,5`; `5F41CB JP` | `!(peer_y < self_y)` |
+| `5F4503 FCOMPP` | `5F4507 TEST AH,5`; `5F450A JP` | `!(peer_y < self_y)` |
+| `5F458F FCOMPP` | `5F4593 TEST AH,0x41`; `5F4596 JNE` | `!(peer_y > self_y)` |
+
+For unordered comparison, AH contains `0x45`: parity rejects both `TEST AH,5`
+guards, and nonzero rejects the `TEST AH,0x41` guard. The retained `>=` and `<=`
+source expressions were false for NaN, allowing an extra RNG call instead.
+The source now uses the negated ordered predicates. This recovers observed
+branch semantics without asserting original source spelling or full exception
+behavior. No ABI, type/layout, compiler, partition or relocation contract changes.
+
+A concrete full-return counterexample uses action201, sequence200, self X100,
+peer X250, self Y quiet NaN, peer Y0, zero velocity, positive facing, mode1,
+resource1000, policy0, counter100, timer10, refresh1 and seed0. Target RNG1000
+results are592 and715; the preceding object additionally consumes844. The
+immediate actor bytes happen to agree, but helper order and final MT state
+differ. The corrected object consumes exactly the target stream.
+
+The reproducible **368-case** height matrix includes224 controls over seven
+finite/NaN height pairs, distances150/200, sequences200/212 and eight real MT
+seeds. The remaining144 bypass common attacks with peer action100 and select
+policy0 with timer0. Float bit strings preserve NaN inputs without nonstandard JSON.
+
+| Native complete-return execution | Differences |
+| --- | ---: |
+| Fresh preceding configured object | **112 / 368** |
+| Corrected configured object | **0 / 368** |
+
+Reproduce the current positive control with:
+
+```bash
+python3 scripts/audit-cpu-policy-paths.py build/match-units/GptWeb_DefaultCpuActionPolicy.obj --height-cases
+```
+
+Both reports pin input SHA-256
+`6fef66471aadc3cf4361022df18acd143002731e0aa1bf25b34f375194a16ebf`.
+Each target selector/MT entry executes1061 times; the preceding candidate
+has1173 calls to each and the corrected candidate1061. Each side also executes736 native conversions and
+two checked-sequence calls. This matrix executes no atan2 path; the separate
+5000 finite controls exercise all five helpers. After the final source change,
+those5000 finite controls and the16600 outer-phase controls still have zero
+differences. Complete nonfinite, exceptional and gameplay coverage remains open.
+
+The focused configured build and canonical comparator still report nonexact
+at+12E, metadata+3E18 and16521-byte section tail. All14/41 identical diagnostic
+owners survive. Only the common airborne body, physically grouped under
+`actions:414` by the owner diagnostic, changes; no partial exact credit is
+recorded. Raw target facts above are mirrored in three direct Ghidra comments,
+saved and checked in a fresh read-only process after re-attesting the target,
+entry, mapped text and body hash. Target bytes and the27-field ABI view remain
+unchanged. Reports for this checkpoint use `build/cpu-height-`.

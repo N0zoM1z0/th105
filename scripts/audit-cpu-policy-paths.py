@@ -12,6 +12,7 @@ import argparse
 from collections import Counter
 import hashlib
 import importlib.util
+import itertools
 import json
 from pathlib import Path
 import random
@@ -30,6 +31,30 @@ spec.loader.exec_module(boundary)
 HELPERS = {0x406540: "atan2_degrees", 0x4066B0: "mt19937_next_u32",
            0x4067D0: "selector_random_roll", 0x4399C0: "checked_sequence", 0x68A1A0: "ftol2_sse"}
 RETURN = 0x710000
+
+
+def float_input(case, key):
+    if key + "_bits" in case:
+        return struct.pack("<I", int(case[key + "_bits"], 16))
+    return struct.pack("<f", case[key])
+
+
+def height_cases():
+    base = dict(action=201, sequence=200, self_x=100.0, vx=0.0, vy=0.0,
+                other_action=0, resource=1000, mode=1, facing=1, counter=100,
+                policy=0, timer=10, refresh=1, seed=0)
+    seeds = (0, 1, 2, 3, 7, 42, 5489, 0xFFFFFFFF)
+    zero, hundred, nan = "00000000", "42c80000", "7fc00000"
+    heights = (zero, hundred, nan)
+    pairs = ((nan, zero), (nan, hundred), (hundred, nan), (nan, nan),
+             (zero, hundred), (hundred, zero), (hundred, "43480000"))
+    for (sy, oy), x, sequence, seed in itertools.product(pairs, (250.0, 300.0), (200, 212), seeds):
+        yield dict(base, self_y_bits=sy, other_y_bits=oy,
+                   other_x=x, sequence=sequence, seed=seed)
+    for sy, oy, x, seed in itertools.product(heights, heights, (250.0, 300.0), seeds):
+        # Peer action 100 bypasses common attacks; timer zero selects policy0.
+        yield dict(base, self_y_bits=sy, other_y_bits=oy, other_x=x,
+                   other_action=100, timer=0, seed=seed)
 
 
 def cases(count):
@@ -92,9 +117,9 @@ class NativeCpuProbe(boundary.CpuProbe):
             for offset, key, fmt in ((0xF0, "self_y", "<f"), (0xF4, "vx", "<f"), (0xF8, "vy", "<f"),
                                      (0x482, "resource", "<h"), (0x766, "policy", "<h"),
                                      (0x768, "timer", "<h"), (0x76C, "refresh", "<h")):
-                uc.mem_write(self.OWNER + offset, struct.pack(fmt, c[key]))
+                uc.mem_write(self.OWNER + offset, float_input(c, key) if fmt == "<f" else struct.pack(fmt, c[key]))
             for offset, key, fmt in ((0xEC, "other_x", "<f"), (0xF0, "other_y", "<f"), (0x13C, "other_action", "<h")):
-                uc.mem_write(self.OTHER + offset, struct.pack(fmt, c[key]))
+                uc.mem_write(self.OTHER + offset, float_input(c, key) if fmt == "<f" else struct.pack(fmt, c[key]))
             # Native ring: eight pointer slots, head0, one live 0x98-byte record.
             uc.mem_write(self.OWNER + 0x55C, struct.pack("<5I", 0, self.RECORD + 0x1000, 8, 0, 1))
             uc.mem_write(self.RECORD + 0x1000, struct.pack("<I", self.RECORD))
@@ -153,8 +178,7 @@ class NativeCpuProbe(boundary.CpuProbe):
     def evaluate(self, case):
         self.seed_state = self.seed(case["seed"])
         self.case, self.phase = case, "root"
-        bits = (int(case["self_x_bits"], 16) if "self_x_bits" in case
-                else struct.unpack("<I", struct.pack("<f", case["self_x"]))[0])
+        bits = struct.unpack("<I", float_input(case, "self_x"))[0]
         result = self.run((case["action"], case["sequence"], bits, case["facing"],
                            case["mode"], case["counter"], 0x27F))
         uc, r = self.engine, self.reg
@@ -226,7 +250,8 @@ def main():
     parser.add_argument("object", type=Path)
     inputs = parser.add_mutually_exclusive_group()
     inputs.add_argument("--cases", type=int)
-    inputs.add_argument("--case-file", type=Path, help="nonempty JSON case array; self_x_bits overrides self_x")
+    inputs.add_argument("--case-file", type=Path, help="nonempty JSON case array; <float field>_bits overrides its value")
+    inputs.add_argument("--height-cases", action="store_true", help="368 finite/NaN height and RNG controls")
     args = parser.parse_args()
     if args.cases is not None and args.cases <= 0:
         parser.error("--cases must be positive")
@@ -236,6 +261,8 @@ def main():
             selected = json.loads(args.case_file.read_text())
             if not isinstance(selected, list) or not selected or not all(isinstance(c, dict) for c in selected):
                 raise ValueError("case file must contain a nonempty array of input objects")
+        elif args.height_cases:
+            selected = list(height_cases())
         count = len(selected) if selected is not None else (args.cases or 5000)
         result = audit(args.object, count, selected)
     except Exception as error:
