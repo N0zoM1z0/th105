@@ -17600,16 +17600,16 @@ source = "src/characters/AyaCpuActionPolicy.cpp"
 object = "build/match-units/GptWeb_AyaCpuActionPolicy.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current Japanese 1.06a Aya primary-vtable +0x58 CPU root; reviewed16032-byte callable. Full4069-instruction default-target bridge plus two61-byte character-specific command branches; six target switches validated. Source-present probe only, no exact credit. See docs/AYA_CPU_ROOT_2026_10_17.md."
+notes = "Current1.06a Aya primary-vtable58 CPU root,16032-byte reviewed callable. Source uses11 genuine peer pointer carriers and the real checked VC8 deque; its94-byte provider replays under the existing library unit without authored credit. Ordinary root remains byte-neutral/nonexact+12E,14/41 owners and16052 metadata. Genuine closed LTCG probes and the float-alias frame discriminator are documented in docs/AYA_CPU_NATIVE_DEPENDENCIES_2026_10_17.md; no profile change or exact credit."
 
 [[units.gpt-web-aya-cpu-action-policy.functions]]
 address = "0x006126E0"
 symbol_base = "?update_cpu_action_policy@AyaCpuActionPolicyView@th105@@QAEXXZ"
 rel32_targets = [
+  "??A?$deque@UFighterSequenceSlot@th105@@V?$allocator@UFighterSequenceSlot@th105@@@std@@@std@@QAEAAUFighterSequenceSlot@th105@@I@Z=0x004399C0",
   "?atan2_degrees@th105@@YAMMM@Z=0x00406540",
   "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
   "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
-  "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
   "__ftol2_sse=0x0068A1A0",
 ]
 dir32_targets = [
@@ -17643,6 +17643,7 @@ dir32_targets = [
   "__real@442f0000=__real@442f0000",
   "__real@44820000=__real@44820000",
 ]
+
 
 [units.gpt-web-youmu-object-action-entry]
 kind = "probe"

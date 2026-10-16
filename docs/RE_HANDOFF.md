@@ -47,10 +47,17 @@ Fresh whole comparison remains nonexact+12E /61280E,14/41 diagnostic owners,
 metadata16052 and section tail16677; no exact credit. Native real-helper
 controls pass0/5000 finite and0/470 command/resource/truncation/NaN cases,
 including all28 added target instructions. Omitting the additions fails2/2
-positive seed controls. The next bounded task is the inherited shared control/
-register/tail layout needed for canonical equality. See
-[the Aya root evidence and reproducible commands](AYA_CPU_ROOT_2026_10_17.md).
-No shared C++ source/header/ABI/flags/relocation or accepted-unit change.
+positive seed controls. The retained source now uses11 genuine opponent pointer carriers and the real
+checked VC8 deque; its94-byte template provider replays under the existing
+library unit, with no authored credit. Ordinary root compilation is byte-neutral.
+Genuine /GL links now close actual engine dependencies and static CRT startup.
+A guarded all-float alias control removes the former aligned EBP frame but
+still differs at entry; narrower type controls keep alignment. Thus source/type/
+TU context remains open, without a claim that LTCG is required or impossible.
+The next task is canonical control/register/shared-tail matching using this
+real dependency context. See [the current dependency evidence](AYA_CPU_NATIVE_DEPENDENCIES_2026_10_17.md)
+and [the initial source checkpoint](AYA_CPU_ROOT_2026_10_17.md).
+No shared C++ header/global ABI/profile or accepted-unit change.
 
 ## Shared Fighter action checkpoint
 

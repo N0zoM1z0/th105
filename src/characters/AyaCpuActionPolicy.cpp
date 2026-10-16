@@ -6,6 +6,8 @@
 #include "../battle/Collision.hpp"
 
 #include <stdlib.h>
+#include <deque>
+#include "../battle/SpellRuntime.hpp"
 
 namespace th105 {
 
@@ -16,15 +18,20 @@ typedef unsigned int _DWORD;
 unsigned int __cdecl mt19937_next_u32();
 int __cdecl selector_random_roll(int limit);
 
+typedef std::deque<FighterSequenceSlot> AyaNativeSequenceDeque;
+
+// The target checked deque has a 20-byte prefix and 0x98-byte value records.
+typedef char AyaNativeSequenceDeque_size[(sizeof(AyaNativeSequenceDeque) == 20) ? 1 : -1];
+
 #define CPU_FIELD(offset) (reinterpret_cast<unsigned char *>(this) + (offset))
 void AyaCpuActionPolicyView::update_cpu_action_policy()
 {
-int v2; // edi
+CpuActionPolicyView *v2; // edi
 int v3; // eax
 int v4; // eax
 int v6; // eax
-int v7; // edx
-int v8; // ecx
+CpuActionPolicyView *v7; // edx
+CpuActionPolicyView *v8; // ecx
 int v9; // eax
 __int16 v10; // ax
 int v11; // eax
@@ -48,18 +55,18 @@ __int16 v28; // ax
 int v29; // eax
 __int16 v30; // cx
 int v31; // ecx
-int v32; // eax
+CpuActionPolicyView *v32; // eax
 int v33; // edx
 int v34; // eax
 __int16 v35; // ax
-int v36; // eax
+CpuActionPolicyView *v36; // eax
 int v37; // ecx
 double v38; // st7
-int v39; // eax
+CpuActionPolicyView *v39; // eax
 int v40; // ecx
 int v41; // eax
 __int16 v42; // ax
-int v43; // eax
+CpuActionPolicyView *v43; // eax
 int v44; // ecx
 bool v45; // zf
 int v46; // eax
@@ -77,7 +84,7 @@ __int16 v57; // cx
 int v58; // eax
 __int16 v59; // cx
 int v62; // eax
-int v63; // ecx
+CpuActionPolicyView *v63; // ecx
 __int16 v64; // ax
 bool v65; // zf
 int v66; // eax
@@ -91,11 +98,11 @@ int v73; // edx
 int v74; // ecx
 int v75; // eax
 int v76; // eax
-int v77; // eax
+CpuActionPolicyView *v77; // eax
 int v78; // ecx
 int v79; // eax
 int v80; // eax
-int v81; // eax
+CpuActionPolicyView *v81; // eax
 int v82; // ecx
 int v83; // ecx
 __int16 v84; // ax
@@ -107,7 +114,7 @@ int v94; // eax
 double v95; // st7
 double v96; // st6
 double v97; // st7
-int v98; // edi
+CpuActionPolicyView *v98; // edi
 double v99; // st7
 double v100; // st7
 bool v101; // cc
@@ -121,12 +128,12 @@ __int16 v109; // ax
 char v110; // al
 float v117; // [esp+18h] [ebp-Ch]
 float v118; // [esp+1Ch] [ebp-8h]
-v2 = *(_DWORD *)CPU_FIELD(368);
+v2 = other_fighter_170;
 *(_DWORD *)CPU_FIELD(1828) = 0;
 *(_DWORD *)CPU_FIELD(1832) = 0;
-v3 = (int)(*(float *)(v2 + 236) - *(float *)CPU_FIELD(236));
+v3 = (int)(v2->x_ec - *(float *)CPU_FIELD(236));
 v117 = (float)abs(v3);
-v4 = (int)(*(float *)(v2 + 240) - *(float *)CPU_FIELD(240));
+v4 = (int)(v2->y_f0 - *(float *)CPU_FIELD(240));
 *(__int16 *)CPU_FIELD(1896) -= 1;
 v118 = (float)abs(v4);
 *(_DWORD *)CPU_FIELD(1724) = 0;
@@ -154,9 +161,9 @@ if ( *(__int16 *)CPU_FIELD(316) <= 199 )
 *(_WORD *)CPU_FIELD(1892) = 0;
 }
 v6 = selector_random_roll(0x3E8u);
-v7 = *(_DWORD *)CPU_FIELD(368);
+v7 = other_fighter_170;
 *(_WORD *)CPU_FIELD(1902) = v6;
-if ( *(__int16 *)(v7 + 372) <= 0 )
+if ( *reinterpret_cast<const short *>(v7->unknown_174) <= 0 )
 return;
 switch ( *(__int16 *)CPU_FIELD(316) )
 {
@@ -167,9 +174,9 @@ if ( !*(_WORD *)CPU_FIELD(1892) )
 if ( v117 >= 700.0 )
 *(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u) + 1;
 }
-v8 = *(_DWORD *)CPU_FIELD(368);
-if ( (*(float *)CPU_FIELD(236) > *(float *)(v8 + 236) && *(_BYTE *)CPU_FIELD(260) == 0xFF
-|| *(float *)CPU_FIELD(236) < *(float *)(v8 + 236) && *(_BYTE *)CPU_FIELD(260) == 1)
+v8 = other_fighter_170;
+if ( (*(float *)CPU_FIELD(236) > v8->x_ec && *(_BYTE *)CPU_FIELD(260) == 0xFF
+|| *(float *)CPU_FIELD(236) < v8->x_ec && *(_BYTE *)CPU_FIELD(260) == 1)
 && *(__int16 *)CPU_FIELD(1892) >= 50 )
 {
 if ( v117 < 220.0 && static_cast<unsigned>(selector_random_roll(0x3E8u)) < 0x55u && v118 < 50.0 )
@@ -243,7 +250,7 @@ LABEL_54:
 if ( v12 >= 85 )
 {
 LABEL_55:
-if ( v12 <= 95 && *(__int16 *)CPU_FIELD(1154) >= 400 && 0.0 == *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) )
+if ( v12 <= 95 && *(__int16 *)CPU_FIELD(1154) >= 400 && 0.0 == other_fighter_170->y_f0 )
 {
 *(_DWORD *)CPU_FIELD(1728) = 2;
 goto LABEL_327;
@@ -306,7 +313,7 @@ goto LABEL_80;
 }
 if ( v14 <= 65 )
 {
-if ( *(__int16 *)CPU_FIELD(1154) >= 200 && 0.0 == *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) )
+if ( *(__int16 *)CPU_FIELD(1154) >= 200 && 0.0 == other_fighter_170->y_f0 )
 {
 *(_DWORD *)CPU_FIELD(1728) = 2;
 goto LABEL_327;
@@ -333,7 +340,7 @@ if ( v14 >= 95 && v14 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
 {
 v15 = 860.0;
 v16 = 960.0;
-switch ( *(__int16 *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) )
+switch ( ((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) )
 {
 case 0xC8:
 v17 = v16;
@@ -464,7 +471,7 @@ goto LABEL_147;
 }
 if ( v26 <= 65 )
 {
-if ( *(__int16 *)CPU_FIELD(1154) >= 200 && 0.0 == *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) )
+if ( *(__int16 *)CPU_FIELD(1154) >= 200 && 0.0 == other_fighter_170->y_f0 )
 {
 *(_DWORD *)CPU_FIELD(1728) = 2;
 goto LABEL_327;
@@ -489,7 +496,7 @@ if ( v26 > 85 || *(__int16 *)CPU_FIELD(1154) < 400 || *(_DWORD *)CPU_FIELD(384) 
 LABEL_156:
 if ( v26 >= 95 && v26 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
 {
-switch ( *(__int16 *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) )
+switch ( ((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) )
 {
 case 0xC8:
 case 0xC9:
@@ -538,7 +545,7 @@ if ( v30 < 0 )
 goto LABEL_178;
 if ( v30 > 15 )
 goto LABEL_179;
-if ( *(float *)CPU_FIELD(240) < (double)*(float *)(*(_DWORD *)CPU_FIELD(368) + 240) )
+if ( *(float *)CPU_FIELD(240) < (double)other_fighter_170->y_f0 )
 {
 v31 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1724) = 1;
@@ -554,13 +561,13 @@ if ( v30 > 25 )
 goto LABEL_183;
 if ( *(__int16 *)CPU_FIELD(1154) >= 300 )
 {
-v32 = *(_DWORD *)CPU_FIELD(368);
+v32 = other_fighter_170;
 v33 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1728) = 2;
 *(_DWORD *)CPU_FIELD(1716) = 0;
-float angle_x_32 = (float)((*(float *)(v32 + 236) - *(float *)CPU_FIELD(236)) * (double)v33);
+float angle_x_32 = (float)((v32->x_ec - *(float *)CPU_FIELD(236)) * (double)v33);
 *(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)atan2_degrees(
-    *(float *)(v32 + 240) - *(float *)CPU_FIELD(240), angle_x_32) >= 30;
+    v32->y_f0 - *(float *)CPU_FIELD(240), angle_x_32) >= 30;
 break;
 }
 LABEL_182:
@@ -589,7 +596,7 @@ LABEL_192:
 if ( v30 <= 40
 && *(__int16 *)CPU_FIELD(1154) >= 400
 && v118 > 100.0
-&& *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) < (double)*(float *)CPU_FIELD(240) )
+&& other_fighter_170->y_f0 < (double)*(float *)CPU_FIELD(240) )
 {
 *(_DWORD *)CPU_FIELD(1832) = 64;
 }
@@ -617,13 +624,13 @@ if ( v35 > 30 )
 goto LABEL_207;
 if ( *(__int16 *)CPU_FIELD(1154) >= 300 )
 {
-v36 = *(_DWORD *)CPU_FIELD(368);
+v36 = other_fighter_170;
 v37 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1728) = 2;
 *(_DWORD *)CPU_FIELD(1716) = 0;
-float angle_x_36 = (float)((*(float *)(v36 + 236) - *(float *)CPU_FIELD(236)) * (double)v37);
+float angle_x_36 = (float)((v36->x_ec - *(float *)CPU_FIELD(236)) * (double)v37);
 *(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)atan2_degrees(
-    *(float *)(v36 + 240) - *(float *)CPU_FIELD(240), angle_x_36) >= 30;
+    v36->y_f0 - *(float *)CPU_FIELD(240), angle_x_36) >= 30;
 break;
 }
 LABEL_206:
@@ -634,13 +641,13 @@ if ( v35 <= 40 )
 {
 if ( *(__int16 *)CPU_FIELD(1154) >= 300 )
 {
-v39 = *(_DWORD *)CPU_FIELD(368);
+v39 = other_fighter_170;
 v40 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1732) = 2;
 *(_DWORD *)CPU_FIELD(1716) = 0;
-float angle_x_39 = (float)((*(float *)(v39 + 236) - *(float *)CPU_FIELD(236)) * (double)v40);
+float angle_x_39 = (float)((v39->x_ec - *(float *)CPU_FIELD(236)) * (double)v40);
 *(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)atan2_degrees(
-    *(float *)(v39 + 240) - *(float *)CPU_FIELD(240), angle_x_39) >= 30;
+    v39->y_f0 - *(float *)CPU_FIELD(240), angle_x_39) >= 30;
 break;
 }
 LABEL_211:
@@ -668,7 +675,7 @@ LABEL_220:
 if ( v35 >= 95
 && v35 <= 100
 && *(char *)CPU_FIELD(1370) > 0
-&& (unsigned int)(*(__int16 *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) - 211) < 2 )
+&& (unsigned int)(((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) - 211) < 2 )
 {
 goto LABEL_413;
 }
@@ -701,19 +708,19 @@ goto LABEL_326;
 }
 if ( v42 >= 95 && v42 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
 {
-v45 = *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211;
+v45 = static_cast<unsigned short>((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) == 211;
 goto LABEL_412;
 }
 }
 else
 {
-v43 = *(_DWORD *)CPU_FIELD(368);
+v43 = other_fighter_170;
 v44 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1728) = 2;
 *(_DWORD *)CPU_FIELD(1716) = 0;
-float angle_x_43 = (float)((*(float *)(v43 + 236) - *(float *)CPU_FIELD(236)) * (double)v44);
+float angle_x_43 = (float)((v43->x_ec - *(float *)CPU_FIELD(236)) * (double)v44);
 *(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)atan2_degrees(
-    *(float *)(v43 + 240) - *(float *)CPU_FIELD(240), angle_x_43) >= 20;
+    v43->y_f0 - *(float *)CPU_FIELD(240), angle_x_43) >= 20;
 }
 break;
 case 0x140:
@@ -777,7 +784,7 @@ LABEL_264:
 if ( v48 >= 90 )
 {
 LABEL_265:
-if ( v48 <= 95 && *(__int16 *)CPU_FIELD(1154) >= 400 && 0.0 == *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) )
+if ( v48 <= 95 && *(__int16 *)CPU_FIELD(1154) >= 400 && 0.0 == other_fighter_170->y_f0 )
 {
 *(_DWORD *)CPU_FIELD(1724) = 2;
 goto LABEL_327;
@@ -823,7 +830,7 @@ if ( v51 >= 95 && v51 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
 {
 v15 = 860.0;
 v16 = 960.0;
-switch ( *(__int16 *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) )
+switch ( ((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) )
 {
 case 0xC8:
 LABEL_93:
@@ -895,7 +902,7 @@ if ( v53 > 20 || *(__int16 *)CPU_FIELD(1154) < 400 )
 LABEL_308:
 if ( v53 >= 95 && v53 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
 {
-v54 = *(__int16 *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) - 202;
+v54 = ((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) - 202;
 if ( !v54 )
 goto LABEL_435;
 v55 = v54 - 3;
@@ -1003,7 +1010,7 @@ break;
 if ( v59 >= 10 && v59 <= 20
 && *(__int16 *)CPU_FIELD(1154) >= 400
 && v118 < 100.0
-&& *(float *)CPU_FIELD(240) > *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) )
+&& *(float *)CPU_FIELD(240) > other_fighter_170->y_f0 )
 {
 *(_DWORD *)CPU_FIELD(1732) = 2;
 *(_DWORD *)CPU_FIELD(1716) = 0;
@@ -1020,14 +1027,14 @@ break;
 if ( v59 >= 30 && v59 <= 40
 && *(__int16 *)CPU_FIELD(1154) >= 400
 && v118 > 100.0
-&& *(float *)CPU_FIELD(240) > *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) )
+&& *(float *)CPU_FIELD(240) > other_fighter_170->y_f0 )
 {
 *(_DWORD *)CPU_FIELD(1832) = 2;
 break;
 }
 if ( v59 >= 95 && v59 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
 {
-v65 = *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211;
+v65 = static_cast<unsigned short>((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) == 211;
 goto LABEL_434;
 }
 break;
@@ -1062,7 +1069,7 @@ LABEL_399:
 if ( v67 >= 95 && v67 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
 {
 v17 = 960.0;
-switch ( *(__int16 *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) )
+switch ( ((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) )
 {
 case 0xC8:
 if ( *(float *)CPU_FIELD(236) <= 960.0 || *(_BYTE *)CPU_FIELD(260) != 1 )
@@ -1151,7 +1158,7 @@ else
 LABEL_428:
 if ( v70 >= 95 && v70 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
 {
-v71 = *(__int16 *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) - 211;
+v71 = ((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) - 211;
 if ( !v71 )
 goto LABEL_435;
 if ( v71 == 1 )
@@ -1173,13 +1180,13 @@ if ( *(_WORD *)CPU_FIELD(1894) )
 goto LABEL_523;
 if ( !*(_WORD *)CPU_FIELD(1900) )
 *(_WORD *)CPU_FIELD(1900) = selector_random_roll(0x64u);
-v63 = *(_DWORD *)CPU_FIELD(368);
-if ( (!( *(float *)CPU_FIELD(236) > (double)*(float *)(v63 + 236) ) || *(_BYTE *)CPU_FIELD(260) != 0xFF)
-&& (!( *(float *)CPU_FIELD(236) < (double)*(float *)(v63 + 236) ) || *(_BYTE *)CPU_FIELD(260) != 1) )
+v63 = other_fighter_170;
+if ( (!( *(float *)CPU_FIELD(236) > (double)v63->x_ec ) || *(_BYTE *)CPU_FIELD(260) != 0xFF)
+&& (!( *(float *)CPU_FIELD(236) < (double)v63->x_ec ) || *(_BYTE *)CPU_FIELD(260) != 1) )
 {
 goto LABEL_523;
 }
-v64 = *(_WORD *)(v63 + 316);
+v64 = static_cast<unsigned short>(v63->action_13c);
 if ( v64 > 95 && v64 < 140 )
 goto LABEL_523;
 if ( 0.0 == *(float *)CPU_FIELD(240) )
@@ -1187,11 +1194,11 @@ if ( 0.0 == *(float *)CPU_FIELD(240) )
 }
 else
 {
-if ( *(float *)(v63 + 240) != 0.0f )
+if ( v63->y_f0 != 0.0f )
 {
 if ( *(char *)CPU_FIELD(1370) > 0 )
 {
-if ( v117 < 150.0 && selector_random_roll(0x3E8u) < 2u && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211 )
+if ( v117 < 150.0 && selector_random_roll(0x3E8u) < 2u && static_cast<unsigned short>((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) == 211 )
 {
 *(_DWORD *)CPU_FIELD(1744) = 2;
 goto LABEL_523;
@@ -1199,7 +1206,7 @@ goto LABEL_523;
 if ( v117 > 150.0
 && v118 < 200.0
 && selector_random_roll(0x3E8u) < 5u
-&& *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 212 )
+&& static_cast<unsigned short>((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) == 212 )
 {
 *(_DWORD *)CPU_FIELD(1744) = 2;
 goto LABEL_523;
@@ -1207,31 +1214,31 @@ goto LABEL_523;
 }
 if ( (double)(120 * ((*(float *)CPU_FIELD(244) > 0.0) + 1)) >= v117 )
 {
-v79 = *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) > (double)*(float *)CPU_FIELD(240)
+v79 = other_fighter_170->y_f0 > (double)*(float *)CPU_FIELD(240)
 && *(float *)CPU_FIELD(248) > 0.0;
 if ( (double)(150 * v79 + 100) > v118 && selector_random_roll(0x3E8u) < 0x32u )
 goto LABEL_607;
 }
 if ( v117 > 180.0
-|| !(*(float *)(*(_DWORD *)CPU_FIELD(368) + 240) < (double)*(float *)CPU_FIELD(240))
+|| !(other_fighter_170->y_f0 < (double)*(float *)CPU_FIELD(240))
 || v118 <= 60.0
 || selector_random_roll(0x3E8u) >= 0x4Bu )
 {
 if ( v117 > 280.0
 || v117 < 90.0
 || v118 >= 100.0
-|| !(*(float *)(*(_DWORD *)CPU_FIELD(368) + 240) > (double)*(float *)CPU_FIELD(240))
+|| !(other_fighter_170->y_f0 > (double)*(float *)CPU_FIELD(240))
 || selector_random_roll(0x3E8u) >= 0x4Bu )
 {
 if ( (double)(180 * (v118 < 200.0) + 120) < v117 && selector_random_roll(0x3E8u) < 0x32u )
 {
-v81 = *(_DWORD *)CPU_FIELD(368);
+v81 = other_fighter_170;
 v82 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1728) = 2;
 *(_DWORD *)CPU_FIELD(1716) = 0;
-float angle_x_81 = (float)((*(float *)(v81 + 236) - *(float *)CPU_FIELD(236)) * (double)v82);
+float angle_x_81 = (float)((v81->x_ec - *(float *)CPU_FIELD(236)) * (double)v82);
 *(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)atan2_degrees(
-    *(float *)(v81 + 240) - *(float *)CPU_FIELD(240), angle_x_81) >= 30;
+    v81->y_f0 - *(float *)CPU_FIELD(240), angle_x_81) >= 30;
 }
 if ( v117 > 250.0 && v118 < 200.0 && selector_random_roll(0x3E8u) < 0x14u )
 {
@@ -1248,7 +1255,7 @@ v83 = *(char *)CPU_FIELD(260);
 }
 if ( v117 < 300.0
 && v118 > 200.0
-&& *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) < (double)*(float *)CPU_FIELD(240)
+&& other_fighter_170->y_f0 < (double)*(float *)CPU_FIELD(240)
 && selector_random_roll(0x3E8u) < 0x19u )
 {
 *(_DWORD *)CPU_FIELD(1732) = 2;
@@ -1270,7 +1277,7 @@ else
 {
 if ( *(char *)CPU_FIELD(1370) > 0 )
 {
-if ( v117 < 150.0 && selector_random_roll(0x3E8u) < 2u && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211 )
+if ( v117 < 150.0 && selector_random_roll(0x3E8u) < 2u && static_cast<unsigned short>((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) == 211 )
 {
 *(_DWORD *)CPU_FIELD(1744) = 2;
 goto LABEL_523;
@@ -1278,7 +1285,7 @@ goto LABEL_523;
 if ( v117 > 150.0
 && v118 < 200.0
 && selector_random_roll(0x3E8u) < 5u
-&& *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 212 )
+&& static_cast<unsigned short>((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) == 212 )
 {
 *(_DWORD *)CPU_FIELD(1744) = 2;
 goto LABEL_523;
@@ -1290,7 +1297,7 @@ if ( v117 < 450.0 && v117 > 90.0 && selector_random_roll(0x3E8u) <= 5u && *(__in
 goto LABEL_523;
 }
 if ( v117 < 450.0
-&& *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) < (double)*(float *)CPU_FIELD(240)
+&& other_fighter_170->y_f0 < (double)*(float *)CPU_FIELD(240)
 && selector_random_roll(0x3E8u) <= 7u
 && *(__int16 *)CPU_FIELD(1154) >= 800 )
 {
@@ -1299,26 +1306,26 @@ goto LABEL_523;
 }
 if ( (double)(120 * ((*(float *)CPU_FIELD(244) > 0.0) + 1)) >= v117 )
 {
-v76 = *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) > (double)*(float *)CPU_FIELD(240)
+v76 = other_fighter_170->y_f0 > (double)*(float *)CPU_FIELD(240)
 && *(float *)CPU_FIELD(248) > 0.0;
 if ( (double)(150 * v76 + 100) > v118 && selector_random_roll(0x3E8u) < 0x32u )
 goto LABEL_607;
 }
 if ( v117 > 180.0
-|| !(*(float *)(*(_DWORD *)CPU_FIELD(368) + 240) < (double)*(float *)CPU_FIELD(240))
+|| !(other_fighter_170->y_f0 < (double)*(float *)CPU_FIELD(240))
 || selector_random_roll(0x3E8u) >= 0x4Bu )
 {
 if ( *(__int16 *)CPU_FIELD(1902) <= *(__int16 *)CPU_FIELD(1154) )
 {
 if ( (double)(180 * (v118 < 200.0) + 120) < v117 && selector_random_roll(0x3E8u) < 0x32u )
 {
-v77 = *(_DWORD *)CPU_FIELD(368);
+v77 = other_fighter_170;
 v78 = *(char *)CPU_FIELD(260);
 *(_DWORD *)CPU_FIELD(1728) = 2;
 *(_DWORD *)CPU_FIELD(1716) = 0;
-float angle_x_77 = (float)((*(float *)(v77 + 236) - *(float *)CPU_FIELD(236)) * (double)v78);
+float angle_x_77 = (float)((v77->x_ec - *(float *)CPU_FIELD(236)) * (double)v78);
 *(_DWORD *)CPU_FIELD(1720) = -(__int16)(int)atan2_degrees(
-    *(float *)(v77 + 240) - *(float *)CPU_FIELD(240), angle_x_77) >= 30;
+    v77->y_f0 - *(float *)CPU_FIELD(240), angle_x_77) >= 30;
 }
 if ( v117 > 250.0 && v118 < 200.0 && selector_random_roll(0x3E8u) < 0x14u )
 {
@@ -1328,7 +1335,7 @@ if ( v117 > 250.0 && v118 < 200.0 && selector_random_roll(0x3E8u) < 0x14u )
 }
 if ( v117 < 300.0
 && v118 > 200.0
-&& *(float *)(*(_DWORD *)CPU_FIELD(368) + 240) < (double)*(float *)CPU_FIELD(240)
+&& other_fighter_170->y_f0 < (double)*(float *)CPU_FIELD(240)
 && selector_random_roll(0x3E8u) < 0x19u )
 {
 *(_DWORD *)CPU_FIELD(1732) = 2;
@@ -1343,7 +1350,7 @@ LABEL_612:
 *(_DWORD *)CPU_FIELD(1724) = 2;
 goto LABEL_613;
 }
-if ( 0.0 != *(float *)(v63 + 240) )
+if ( 0.0 != v63->y_f0 )
 {
 if ( v117 < 520.0 && v117 > 240.0 && v118 < 250.0 && selector_random_roll(0x3E8u) <= 2u && *(__int16 *)CPU_FIELD(1154) >= 600 )
 {
@@ -1358,18 +1365,18 @@ if (v117 > 320.0f && selector_random_roll(0x3E8u) <= 2u
 goto LABEL_523;
 }
 if ( *(char *)CPU_FIELD(1370) > 0
-&& (v117 < 300.0 && selector_random_roll(0x3E8u) < 5u && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 200
-|| v117 < 150.0 && selector_random_roll(0x3E8u) < 5u && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 201
-|| v117 > 200.0 && selector_random_roll(0x3E8u) < 3u && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 202
+&& (v117 < 300.0 && selector_random_roll(0x3E8u) < 5u && static_cast<unsigned short>((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) == 200
+|| v117 < 150.0 && selector_random_roll(0x3E8u) < 5u && static_cast<unsigned short>((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) == 201
+|| v117 > 200.0 && selector_random_roll(0x3E8u) < 3u && static_cast<unsigned short>((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) == 202
 || v117 > 150.0
 && v118 < 150.0
 && selector_random_roll(0x3E8u) < 5u
-&& *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 205
-|| v117 < 150.0 && selector_random_roll(0x3E8u) < 2u && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211
+&& static_cast<unsigned short>((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) == 205
+|| v117 < 150.0 && selector_random_roll(0x3E8u) < 2u && static_cast<unsigned short>((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) == 211
 || v117 > 150.0
 && v118 < 200.0
 && selector_random_roll(0x3E8u) < 5u
-&& *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 212) )
+&& static_cast<unsigned short>((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) == 212) )
 {
 *(_DWORD *)CPU_FIELD(1744) = 2;
 goto LABEL_523;
@@ -1416,17 +1423,17 @@ if ( selector_random_roll(0x3E8u) >= 0x4Bu || v117 >= 350.0 || v117 <= 120.0 )
 {
 if ( *(char *)CPU_FIELD(1370) > 0 )
 {
-if ( v117 < 300.0 && selector_random_roll(0x3E8u) < 5u && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 200 )
+if ( v117 < 300.0 && selector_random_roll(0x3E8u) < 5u && static_cast<unsigned short>((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) == 200 )
 {
 *(_DWORD *)CPU_FIELD(1744) = 2;
 goto LABEL_523;
 }
-if ( v117 < 150.0 && selector_random_roll(0x3E8u) < 5u && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 201 )
+if ( v117 < 150.0 && selector_random_roll(0x3E8u) < 5u && static_cast<unsigned short>((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) == 201 )
 {
 *(_DWORD *)CPU_FIELD(1744) = 2;
 goto LABEL_523;
 }
-if ( v117 > 200.0 && selector_random_roll(0x3E8u) < 3u && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 202 )
+if ( v117 > 200.0 && selector_random_roll(0x3E8u) < 3u && static_cast<unsigned short>((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) == 202 )
 {
 *(_DWORD *)CPU_FIELD(1744) = 2;
 goto LABEL_523;
@@ -1434,12 +1441,12 @@ goto LABEL_523;
 if ( v117 > 150.0
 && v118 < 150.0
 && selector_random_roll(0x3E8u) < 5u
-&& *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 205 )
+&& static_cast<unsigned short>((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) == 205 )
 {
 *(_DWORD *)CPU_FIELD(1744) = 2;
 goto LABEL_523;
 }
-if ( v117 < 150.0 && selector_random_roll(0x3E8u) < 2u && *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 211 )
+if ( v117 < 150.0 && selector_random_roll(0x3E8u) < 2u && static_cast<unsigned short>((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) == 211 )
 {
 *(_DWORD *)CPU_FIELD(1744) = 2;
 goto LABEL_523;
@@ -1447,7 +1454,7 @@ goto LABEL_523;
 if ( v117 > 150.0
 && v118 < 200.0
 && selector_random_roll(0x3E8u) < 5u
-&& *(_WORD *)reinterpret_cast<FighterSequenceController *>(CPU_FIELD(1372))->entry_at_checked(0) == 212 )
+&& static_cast<unsigned short>((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) == 212 )
 {
 *(_DWORD *)CPU_FIELD(1744) = 2;
 goto LABEL_523;
@@ -1550,8 +1557,8 @@ if ( *(float *)CPU_FIELD(240) == 0.0f )
 }
 else
 {
-v98 = *(_DWORD *)CPU_FIELD(368);
-if ( 0.0 == *(float *)(v98 + 240) )
+v98 = other_fighter_170;
+if ( 0.0 == v98->y_f0 )
 {
 v99 = v117;
 if ( v117 <= 90.0 )
@@ -1670,7 +1677,7 @@ if ( v100 <= 240.0 )
 v89 = *(_BYTE *)CPU_FIELD(260);
 if ( v89 == 1 && *(float *)CPU_FIELD(236) < 240.0 || v89 == -1 && *(float *)CPU_FIELD(236) > 1040.0f )
 {
-if ( v84 >= 0 && v84 <= 14 && *(float *)(v98 + 240) < (double)*(float *)CPU_FIELD(240) )
+if ( v84 >= 0 && v84 <= 14 && v98->y_f0 < (double)*(float *)CPU_FIELD(240) )
 goto LABEL_953;
 if ( v84 >= 15 && v84 <= 29 && v118 > 150.0 )
 goto LABEL_960;
@@ -1742,7 +1749,7 @@ else if ( v84 < 0 || v84 > 5 )
 {
 if ( v118 <= 320.0 )
 goto LABEL_1025;
-if ( *(float *)(v98 + 240) > (double)*(float *)CPU_FIELD(240) )
+if ( v98->y_f0 > (double)*(float *)CPU_FIELD(240) )
 {
 if ( v84 < 5 )
 goto LABEL_SIGNED_RANGE_06;
@@ -1759,7 +1766,7 @@ goto LABEL_953;
 if ( v84 >= 15 && v84 <= 24 )
 goto LABEL_972;
 }
-if ( *(float *)(v98 + 240) >= (double)*(float *)CPU_FIELD(240) )
+if ( v98->y_f0 >= (double)*(float *)CPU_FIELD(240) )
 goto LABEL_1025;
 if ( v84 < 25 || v84 > 27 )
 {
@@ -1789,7 +1796,7 @@ LABEL_975:
 *(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu);
 return;
 }
-if ( !*(float *)(*(_DWORD *)CPU_FIELD(368) + 240) )
+if ( !other_fighter_170->y_f0 )
 {
 }
 else

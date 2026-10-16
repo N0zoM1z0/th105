@@ -1,5 +1,9 @@
 # Aya CPU decision root, October 17
 
+The [native dependency and genuine link follow-up](AYA_CPU_NATIVE_DEPENDENCIES_2026_10_17.md)
+records current pointer/container source and the source-type-dependent LTCG
+frame result. The original source checkpoint below retains its own scope.
+
 `Aya_update_cpu_action_policy @ 0x006126E0` now has complete, target-reviewed
 source in `src/characters/AyaCpuActionPolicy.cpp`. The callable is 16,032
 bytes / 4,097 instructions. The source builds under the existing pinned VC8
