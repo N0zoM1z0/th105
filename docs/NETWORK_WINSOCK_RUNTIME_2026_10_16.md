@@ -1,0 +1,118 @@
+# Process-wide Winsock reference lifetime
+
+## Accepted acquisition boundary
+
+The original Japanese TH10.5 v1.06a executable has SHA-256
+`56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
+`NetworkWinsock_acquire_runtime @ 0041DDC0` owns40 instructions /148 callable
+bytes, with two RET paths and no stack arguments. AL carries its bool result.
+Its complete body SHA-256 is
+`ad12bfe6a7cc05118e42d37788f630a63b4bee93e5f7df6b14af800ad11a5cde`.
+UDP initializer412E10 calls it at412E8F before creating its socket. Source is
+ordinary C++ in `src/network/NetworkWinsockRuntime.cpp`; original names and TU
+boundaries remain unknown.
+
+The function manually locks process-wide native critical section6FA264.
+For an existing nonzero reference count at702280, it increments the count,
+unlocks and returns true. A zero count performs **two** WSAStartup calls with
+literal version2 and the same native WSADATA at7020F0. The first return is
+ignored. Only the second return decides success or failure. The source keeps
+this observed behavior; its reason and any original intention are unknown.
+
+On success it increments the shared reference count. On failure it dispatches
+these cases to the complete error reporter41DEF0, then unlocks and returns
+false. Other nonzero errors unlock and return false without a message.
+
+| Error code | Target message | Case destination |
+| ---: | --- | --- |
+| 10014 | WSAEFAULT | 41DE25 |
+| 10036 | WSAEINPROGRESS | 41DE17 |
+| 10067 | WSAEPROCLIM | 41DE1E |
+| 10091 | WSASYSNOTREADY | 41DE09 |
+| 10092 | WSAVERNOTSUPPORTED | 41DE10 |
+
+The guard subtracts10014 and rejects indexes above78. The79-byte index table
+at41DE6C selects six DWORD destinations at41DE54, including default41DE2F.
+Traversing those independently read destinations closes every callable byte;
+the sole indirect jump is the proved switch at41DE02. The following103 bytes
+are dispatch metadata, with SHA-256
+`3306a4a72d26c550bcade5bf3d1ffeb6ce5ce1b95fe313d3da23c380474b8dc6`.
+They are not added to the callable boundary or authored exact-byte numerator.
+
+## Complete source and canonical comparison
+
+`cross-v106a-network-winsock-runtime` uses the ordinary pinned VC8 `/O2 /GS`
+profile. The public acquisition function and its complete file-local
+`static void __stdcall` error reporter naturally produce the target ESI
+private message parameter. No external custom-register declaration, dummy
+caller, assembly or source byte array is used. Source calls the SDK's real
+Win32/Winsock declarations and asserts native WSADATA size400.
+
+The error reporter's256-byte buffer is supported by its complete0x104-byte
+GS frame, cookie at+100 and full84-byte instruction stream. It obtains
+WSAGetLastError, formats `Winsock-Error:%05d %s`, and calls
+`MessageBoxA(0, text, formatted_buffer, 0)`. The formatted buffer is the dialog
+caption; preserve that actual argument order. The full helper source supplies
+real caller/code-generation context, but its84 bytes receive no source/exact
+credit at this acquisition checkpoint.
+
+The canonical comparator reports **148/148 exact**. The source COMDAT has251
+bytes because VC8 appends its103-byte switch metadata after RET. A separate
+complete251-byte relocation replay also matches the original, SHA-256
+`128128279145ec4ac819ef098d87ad5c480de8da5eec419c5510accf96ae7f8d`.
+This verifies all source jump-table entries and indexes rather than accepting
+an equal prefix of a longer callable. Only the148-byte main body is recorded
+in `matches.csv`.
+
+All new IAT and string relocations pin actual target bytes, including complete
+NUL strings. WS2_32 ordinal115/111 identify WSAStartup and WSAGetLastError.
+The WSADATA base is in the loader-zero virtual portion of .data; its address
+binding attests four zero bytes, not raw file padding or a claim about all400
+initial bytes. Existing refcount/lock bindings are unchanged. New ledger rows
+are additive; no shared header, flag, object partition or existing relocation
+binding changes, so the affected accepted unit is this new source unit.
+
+```bash
+python3 scripts/build.py --unit cross-v106a-network-winsock-runtime --compare --json
+```
+
+Formal output is `build/network-winsock-acquire-formal.json`; full extent
+replay is `build/network-winsock-acquire-with-metadata.json`. The latter is
+reproducible with the same comparator and durable relocation ledgers:
+
+```python
+import sys
+from pathlib import Path
+sys.path.insert(0, "scripts")
+import linked_pe
+c = linked_pe.comparator()
+c.verify_target()
+targets = c.known_targets()
+targets["?show_winsock_error@th105@@YGXPBD@Z"] = 0x0041DEF0
+code = c.coff_symbol_bytes(
+    Path("build/match-units/CrossV106a_NetworkWinsockRuntime.obj"),
+    "_network_winsock_acquire", 0x0041DDC0, 251,
+    targets, c.known_data_targets(), {})
+assert code == c.target_bytes(0x0041DDC0, 251)
+```
+
+`build/network-winsock-runtime-facts.json` records the full switched CFG,
+metadata and candidate-local incoming instruction checks, generated by the
+private `.analysis/network-winsock-runtime-20261016/audit.py`. The acquisition
+and complete private helper establish target-specific authored policy beyond
+the native APIs they invoke; no library exclusion is added.
+
+## Direct analysis and gate
+
+IDA preflight reports a different executable, so no IDA analysis is used.
+Direct Ghidra independently attests executable/program SHA, base, entry marker,
+x86 Windows identity and all mapped .text bytes before setting the supported
+name,148-byte body, bool return and no-argument cdecl contract. A separate
+read-only invocation checks the saved metadata. Decompiler output remains a
+hypothesis; raw target instructions and canonical compilation establish the
+accepted result. Logs are `build/network-winsock-acquire-ghidra-{save,readback}.log`.
+Only one Ghidra process runs, with768MiB heap/two CPUs. Private saved analysis
+is kept below `.analysis/`; the temporary visible project path is disposable.
+
+The local `python3 scripts/ci.py` gate passes155 tests; `git diff --check`
+passes. No all-unit replay or new aggregate verification claim is made.

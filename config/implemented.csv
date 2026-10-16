@@ -1419,3 +1419,4 @@ CHandleManager_release_token
 NetworkWinsock_send_server
 NetworkWinsock_send_thread_entry
 NetworkWinsock_send_loop
+NetworkWinsock_acquire_runtime
