@@ -1398,3 +1398,7 @@ ApplicationStartupOptions_ctor
 Application_shutdown
 WinMain
 Application_run_message_loop
+Application_initialize
+Application_initialize_window_paths
+Application_initialize_graphics
+Application_initialize_audio

@@ -1418,3 +1418,7 @@ ApplicationStartupOptions_ctor,0x00407BB0,function
 Application_shutdown,0x00407F80,function
 WinMain,0x00665810,function
 Application_run_message_loop,0x00408120,function
+Application_initialize,0x00407DA0,function
+Application_initialize_window_paths,0x0040D020,function
+Application_initialize_graphics,0x004147E0,function
+Application_initialize_audio,0x00418670,function

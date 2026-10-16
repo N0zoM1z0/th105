@@ -13,9 +13,9 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,510 authored / 1,414 excluded / 1,099 in review**; **1,419 mapped**,
-  **1,400 source-present**, **1,322 exact / 223,981 exact bytes**, and
-  **500 match units**. These are ledger/status totals, not a fresh aggregate
+  **1,514 authored / 1,414 excluded / 1,095 in review**; **1,423 mapped**,
+  **1,404 source-present**, **1,323 exact / 224,118 exact bytes**, and
+  **501 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
   present, and only `matches.csv` plus a reproducible canonical 100% unit
@@ -86,8 +86,25 @@ whole return-terminated extent; no relocation or shared accepted contract
 changed. Unknown scalar/flag purposes retain offset names. Direct Ghidra
 metadata was saved and read back after independent target attestation. See
 [the layout, ownership and comparison evidence](APPLICATION_STARTUP_OPTIONS_2026_10_16.md).
-WinMain `665810` is now source-present/nonexact; application bootstrap `407DA0`
-remains unimplemented. Their observed control flow does not grant exact credit.
+WinMain `665810` and application bootstrap `407DA0` are source-present/nonexact.
+Their observed control flow does not grant exact credit.
+
+## Application bootstrap island
+
+`Application_initialize_window_paths @ 0x0040D020` is canonical **137/137**
+from the complete caller/private-helper TU `src/platform/ApplicationBootstrap.cpp`.
+Ordinary static stdcall source naturally generates the observed ECX instance,
+stack HWND and RET4, with a real char260 buffer and GS cookie. Bootstrap
+`407DA0`, graphics `4147E0` and audio `418670` also have complete source and
+independent authored ownership evidence, but remain **447/472**, **539/547**
+and **561/583** respectively. Original frame/argument optimization remains open;
+the diagnostic LTCG audio frame changes without reproducing the target ABI.
+All four raw CFGs close their full callables. Direct Ghidra metadata is saved
+and read back under independent target attestation. See
+[the ABI, exact result and residuals](APPLICATION_BOOTSTRAP_2026_10_16.md).
+Keep this closed TU together; no shared headers or earlier relocation
+allowlists changed. Next bounded leads include the two 28-byte COM thread
+entries `408800`/`408820` and their application-owned worker bodies.
 
 ## Accepted exact unit: Sprite texture setup
 
@@ -242,4 +259,5 @@ git diff --check
 
 CI is target-independent and may recreate disposable Python caches under
 `build/`; remove them again if preparing a clean handoff. Inspect `git status`
-before pushing: local commits were ahead of `origin/main` at this handoff.
+before pushing. The user explicitly requests commit **and push** at stable
+checkpoints; verify remote main equals the intended local commit after pushing.

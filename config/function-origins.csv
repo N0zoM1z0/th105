@@ -180,7 +180,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00407C50,authored_game,assets,authored,observed,canonical-exact-authored
 0x00407C70,authored_game,assets,authored,observed,canonical-exact-authored
 0x00407CA0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00407DA0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00407DA0,authored_game,platform,authored,observed,application-bootstrap-island-authored-106a
 0x00407F80,authored_game,platform,authored,observed,canonical-exact-authored
 0x00408080,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00408120,authored_game,platform,authored,observed,canonical-exact-authored
@@ -305,7 +305,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0040CF20,authored_game,assets,authored,observed,canonical-exact-authored
 0x0040CF30,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040CF40,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0040D020,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0040D020,authored_game,platform,authored,observed,canonical-exact-authored
 0x0040D0B0,authored_game,platform,authored,observed,canonical-exact-authored
 0x0040D160,authored_game,platform,authored,observed,canonical-exact-authored
 0x0040D1D0,authored_game,platform,authored,observed,canonical-exact-authored
@@ -480,7 +480,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004146B0,authored_game,platform,authored,observed,canonical-exact-authored
 0x004146E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00414770,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x004147E0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004147E0,authored_game,platform,authored,observed,application-bootstrap-island-authored-106a
 0x00414A10,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00414B30,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00414C50,authored_game,engine,authored,observed,canonical-exact-authored
@@ -553,7 +553,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004184B0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004185E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00418610,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00418670,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00418670,authored_game,platform,authored,observed,application-bootstrap-island-authored-106a
 0x004188C0,authored_game,audio,authored,observed,canonical-exact-authored
 0x00418920,authored_game,audio,authored,observed,canonical-exact-authored
 0x00418990,authored_game,audio,authored,observed,canonical-exact-authored

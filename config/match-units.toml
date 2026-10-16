@@ -18645,3 +18645,100 @@ address = "0x00408120"
 symbol_base = "?run@ApplicationMessageLoopView@th105@@QAEXXZ"
 rel32_targets = ["?reset_application_d3d_device@th105@@YAXXZ=0x00414A10"]
 dir32_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A+0x1A4=application_cooperative_result_base"]
+
+[units.cross-v106a-application-bootstrap]
+kind = "probe"
+source = "src/platform/ApplicationBootstrap.cpp"
+object = "build/match-units/CrossV106a_ApplicationBootstrap.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Closed application bootstrap/private-helper TU. Ordinary static stdcall definitions allow VC8 private convention optimization without fabricated external ABI. Window/path helper40D020 is complete canonical137/137. Root407DA0, graphics4147E0 and audio418670 remain source-present/nonexact on frame/register/argument scheduling; no padding or forced registers. Existing shared headers and relocation allowlists remain unchanged."
+
+[[units.cross-v106a-application-bootstrap.functions]]
+address = "0x00407DA0"
+symbol_base = "?initialize@ApplicationBootstrapView@th105@@QAE_NPBUApplicationStartupOptions@2@@Z"
+rel32_targets = [
+  "?initialize_window_paths@th105@@YGXPAX0@Z=0x0040D020",
+  "?initialize_graphics@th105@@YG_NPAXHH_N@Z=0x004147E0",
+  "?initialize_audio@th105@@YG_NPAXI@Z=0x00418670",
+  "?mt19937_seed_u32@th105@@YAXI@Z=0x00406670",
+  "?wait_for_exit@BootstrapThread8@th105@@QAEXXZ=0x00414640",
+  "?initialize_default_render_state@th105@@YAXXZ=0x00401430",
+  "?initialize_direct_input@th105@@YGEPAX0@Z=0x0040D360",
+  "?initialize_keyboard_device@th105@@YAEXZ=0x0040D560",
+  "?initialize_mouse_device@th105@@YAEXZ=0x0040D620",
+  "?initialize_input_controllers@th105@@YAXXZ=0x0040D810",
+  "?initialize_ime_window_state@th105@@YAXXZ=0x0040E780",
+  "_Direct3DCreate9@4=0x006898A8",
+  "_strrchr=0x0068B760",
+  "_strcpy_s=0x0068AD95",
+  "_memset=0x0068A440",
+  "__security_check_cookie=0x00689D25",
+]
+
+[[units.cross-v106a-application-bootstrap.functions]]
+address = "0x0040D020"
+symbol_base = "?initialize_window_paths@th105@@YGXPAX0@Z"
+rel32_targets = [
+  "?initialize_window_paths@th105@@YGXPAX0@Z=0x0040D020",
+  "?initialize_graphics@th105@@YG_NPAXHH_N@Z=0x004147E0",
+  "?initialize_audio@th105@@YG_NPAXI@Z=0x00418670",
+  "?mt19937_seed_u32@th105@@YAXI@Z=0x00406670",
+  "?wait_for_exit@BootstrapThread8@th105@@QAEXXZ=0x00414640",
+  "?initialize_default_render_state@th105@@YAXXZ=0x00401430",
+  "?initialize_direct_input@th105@@YGEPAX0@Z=0x0040D360",
+  "?initialize_keyboard_device@th105@@YAEXZ=0x0040D560",
+  "?initialize_mouse_device@th105@@YAEXZ=0x0040D620",
+  "?initialize_input_controllers@th105@@YAXXZ=0x0040D810",
+  "?initialize_ime_window_state@th105@@YAXXZ=0x0040E780",
+  "_Direct3DCreate9@4=0x006898A8",
+  "_strrchr=0x0068B760",
+  "_strcpy_s=0x0068AD95",
+  "_memset=0x0068A440",
+  "__security_check_cookie=0x00689D25",
+]
+
+[[units.cross-v106a-application-bootstrap.functions]]
+address = "0x004147E0"
+symbol_base = "?initialize_graphics@th105@@YG_NPAXHH_N@Z"
+rel32_targets = [
+  "?initialize_window_paths@th105@@YGXPAX0@Z=0x0040D020",
+  "?initialize_graphics@th105@@YG_NPAXHH_N@Z=0x004147E0",
+  "?initialize_audio@th105@@YG_NPAXI@Z=0x00418670",
+  "?mt19937_seed_u32@th105@@YAXI@Z=0x00406670",
+  "?wait_for_exit@BootstrapThread8@th105@@QAEXXZ=0x00414640",
+  "?initialize_default_render_state@th105@@YAXXZ=0x00401430",
+  "?initialize_direct_input@th105@@YGEPAX0@Z=0x0040D360",
+  "?initialize_keyboard_device@th105@@YAEXZ=0x0040D560",
+  "?initialize_mouse_device@th105@@YAEXZ=0x0040D620",
+  "?initialize_input_controllers@th105@@YAXXZ=0x0040D810",
+  "?initialize_ime_window_state@th105@@YAXXZ=0x0040E780",
+  "_Direct3DCreate9@4=0x006898A8",
+  "_strrchr=0x0068B760",
+  "_strcpy_s=0x0068AD95",
+  "_memset=0x0068A440",
+  "__security_check_cookie=0x00689D25",
+]
+dir32_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A=application_bootstrap_d3d_base"]
+
+[[units.cross-v106a-application-bootstrap.functions]]
+address = "0x00418670"
+symbol_base = "?initialize_audio@th105@@YG_NPAXI@Z"
+rel32_targets = [
+  "?initialize_window_paths@th105@@YGXPAX0@Z=0x0040D020",
+  "?initialize_graphics@th105@@YG_NPAXHH_N@Z=0x004147E0",
+  "?initialize_audio@th105@@YG_NPAXI@Z=0x00418670",
+  "?mt19937_seed_u32@th105@@YAXI@Z=0x00406670",
+  "?wait_for_exit@BootstrapThread8@th105@@QAEXXZ=0x00414640",
+  "?initialize_default_render_state@th105@@YAXXZ=0x00401430",
+  "?initialize_direct_input@th105@@YGEPAX0@Z=0x0040D360",
+  "?initialize_keyboard_device@th105@@YAEXZ=0x0040D560",
+  "?initialize_mouse_device@th105@@YAEXZ=0x0040D620",
+  "?initialize_input_controllers@th105@@YAXXZ=0x0040D810",
+  "?initialize_ime_window_state@th105@@YAXXZ=0x0040E780",
+  "_Direct3DCreate9@4=0x006898A8",
+  "_strrchr=0x0068B760",
+  "_strcpy_s=0x0068AD95",
+  "_memset=0x0068A440",
+  "__security_check_cookie=0x00689D25",
+]

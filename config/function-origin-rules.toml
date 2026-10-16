@@ -5,6 +5,47 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 # but no old-version address is accepted as evidence here.
 
 [[rules]]
+id = "application-bootstrap-island-authored-106a"
+addresses = ["0x00407DA0", "0x004147E0", "0x00418670"]
+expected_count = 3
+expected_bytes = 1602
+expected_names = ["sub_407DA0", "sub_4147E0", "sub_418670"]
+origin = "authored_game"
+subsystem = "platform"
+disposition = "authored"
+confidence = "observed"
+evidence = "Source-present WinMain665A6A owns application singleton702820 bootstrap407DA0. Complete raw CFGs establish option gates and game-owned graphics/audio/thread lifetime policy; bootstrap calls exact path helper40D020 and the private graphics4147E0/audio418670 entries. Whole-body hashes, actual incoming/outgoing E8 edges, mode/thread operands and D3D/DirectSound global/GUID operands are replayed. Three complete ordinary C++ definitions remain nonexact; private ABI and original frame/TU codegen are not fabricated. Exact137-byte path helper is owned by the separate canonical baseline. See docs/APPLICATION_BOOTSTRAP_2026_10_16.md."
+required_body_hashes = [
+  { address = "0x00407DA0", size = 472, sha256 = "0bd28b47c79d27772dbb6171f55da61f1d00b14543177d6735b7813ac7e65119" },
+  { address = "0x004147E0", size = 547, sha256 = "655ebd37d76ed149f0f37f6c82ca0b1428763e2ee3aa71e6db8533455564f5ae" },
+  { address = "0x00418670", size = 583, sha256 = "32326c72192f86557516f3f1e32b2ca738cf97e8ff35c0f27d0121e1ece7504e" },
+]
+required_direct_edges = [
+  { caller = "0x00665810", site = "0x00665A6A", target = "0x00407DA0", caller_status = "implemented" },
+  { caller = "0x00407DA0", site = "0x00407E43", target = "0x004147E0", caller_status = "implemented" },
+  { caller = "0x00407DA0", site = "0x00407EBE", target = "0x00418670", caller_status = "implemented" },
+]
+required_selected_body_calls = [
+  { owner = "0x00407DA0", site = "0x00407E12", target = "0x0040D020", target_status = "matching" },
+  { owner = "0x00407DA0", site = "0x00407E43", target = "0x004147E0", target_status = "implemented" },
+  { owner = "0x00407DA0", site = "0x00407EBE", target = "0x00418670", target_status = "implemented" },
+  { owner = "0x00407DA0", site = "0x00407DED", target = "0x00406670", target_status = "matching" },
+  { owner = "0x00407DA0", site = "0x00407E51", target = "0x00414640", target_status = "matching" },
+]
+required_dword_values = [
+  { address = "0x00407DCE", value = "0x007028D8" },
+  { address = "0x00407E5F", value = "0x00408820" },
+  { address = "0x00407F37", value = "0x00408870" },
+  { address = "0x00407F61", value = "0x00408800" },
+  { address = "0x004147FC", value = "0x00703840" },
+  { address = "0x00414808", value = "0x007036BC" },
+  { address = "0x00414830", value = "0x00703830" },
+  { address = "0x00418686", value = "0x0070385C" },
+  { address = "0x0041868B", value = "0x006CD044" },
+  { address = "0x00418694", value = "0x006CD054" },
+]
+
+[[rules]]
 id = "winmain-application-entry-authored-106a"
 addresses = ["0x00665810"]
 expected_count = 1
