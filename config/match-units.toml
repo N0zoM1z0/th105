@@ -18608,3 +18608,26 @@ rel32_targets = [
   "?shutdown_d3d_backend@th105@@YAXXZ=0x00414C50",
 ]
 dir32_targets = ["_g_application_ime_prefix=_g_profile_menu_controller"]
+
+[units.cross-v106a-winmain]
+kind = "probe"
+source = "src/platform/WinMain.cpp"
+object = "build/match-units/CrossV106a_WinMain.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete authored WinMain startup: mutex, executable directory, window class/title, CSceneManager/CFade allocations, package mount policy, application initialize/run/shutdown. Natural VC8 candidate695/695 with201 instructions differs in only eight stack-frame/ESP-home bytes: target624-byte versus source620-byte frame. Preserve nonexact; buffer capacity beyond260 and original frame ownership are unresolved. No dummy local, alignment or oversized buffer added."
+
+[[units.cross-v106a-winmain.functions]]
+address = "0x00665810"
+symbol_base = "_WinMain@16"
+rel32_targets = [
+  "_strrchr=0x0068B760",
+  "??0ApplicationStartupOptions@th105@@QAE@XZ=0x00407BB0",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??3@YAXPAX@Z=0x006898EA",
+  "?mount_startup_archive@th105@@YA_NPBD@Z=0x0040CF30",
+  "?initialize@ApplicationEntryView@th105@@QAE_NPBUApplicationStartupOptions@2@@Z=0x00407DA0",
+  "?run@ApplicationEntryView@th105@@QAEXXZ=0x00408120",
+  "?shutdown@ApplicationEntryView@th105@@QAEXXZ=0x00407F80",
+  "__security_check_cookie=0x00689D25",
+]

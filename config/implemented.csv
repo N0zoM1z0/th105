@@ -1396,3 +1396,4 @@ CSpriteEx_set_texture_options
 SpriteTexture_initialize_rectangle
 ApplicationStartupOptions_ctor
 Application_shutdown
+WinMain

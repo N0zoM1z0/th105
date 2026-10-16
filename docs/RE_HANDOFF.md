@@ -13,9 +13,9 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,508 authored / 1,414 excluded / 1,101 in review**; **1,417 mapped**,
-  **1,398 source-present**, **1,321 exact / 223,804 exact bytes**, and
-  **498 match units**. These are ledger/status totals, not a fresh aggregate
+  **1,509 authored / 1,414 excluded / 1,100 in review**; **1,418 mapped**,
+  **1,399 source-present**, **1,321 exact / 223,804 exact bytes**, and
+  **499 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
   present, and only `matches.csv` plus a reproducible canonical 100% unit
@@ -32,6 +32,21 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
+## Latest source checkpoint: WinMain
+
+`WinMain @ 0x00665810` now has complete source in `src/platform/WinMain.cpp`,
+unit `cross-v106a-winmain`. Raw CFG closure covers201 instructions/all695 bytes
+through RET16. CRT ownership, version/archive strings, RTTI-backed scene/fade
+allocations and exact option/shutdown callees establish authored identity.
+The complete VC8 candidate is695/695 and differs in only eight stack-frame/home
+bytes: target reservation270 versus source26C. Every branch, call and non-stack
+byte agrees. Buffer capacity beyond260 and original frame ownership remain
+unknown; no extra buffer bytes, fake local or alignment are added. RTM697 does
+not resolve the frame difference. Direct Ghidra metadata was saved and read
+back. This is source-present only, without exact credit. See
+[the full behavior and bounded residual](WINMAIN_2026_10_16.md).
+Next application leads are message loop `408120` and bootstrap `407DA0`.
+
 ## Latest accepted exact unit: Application shutdown
 
 `Application_shutdown @ 0x00407F80` is canonical **245/245** from
@@ -43,8 +58,8 @@ locking, virtual scene deletion, CSceneManager/CFade callback shutdown/free,
 and IME/subsystem teardown. Existing shared contracts and mappings did not
 change. Direct Ghidra metadata was saved and read back after target attestation.
 See [the ownership, layout and full comparison](APPLICATION_SHUTDOWN_2026_10_16.md).
-The same startup chain's WinMain `665810` (695 bytes) and bootstrap `407DA0`
-(472 bytes) remain unimplemented and are useful next bounded leads.
+The same chain's WinMain is now source-present/nonexact; bootstrap `407DA0`
+(472 bytes) remains unimplemented.
 
 ## Accepted exact unit: Application startup options
 
@@ -57,8 +72,8 @@ whole return-terminated extent; no relocation or shared accepted contract
 changed. Unknown scalar/flag purposes retain offset names. Direct Ghidra
 metadata was saved and read back after independent target attestation. See
 [the layout, ownership and comparison evidence](APPLICATION_STARTUP_OPTIONS_2026_10_16.md).
-WinMain `665810` and application bootstrap `407DA0` remain unimplemented;
-their caller/control-flow evidence is a next lead, not accepted reconstruction.
+WinMain `665810` is now source-present/nonexact; application bootstrap `407DA0`
+remains unimplemented. Their observed control flow does not grant exact credit.
 
 ## Accepted exact unit: Sprite texture setup
 

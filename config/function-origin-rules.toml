@@ -5,6 +5,36 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 # but no old-version address is accepted as evidence here.
 
 [[rules]]
+id = "winmain-application-entry-authored-106a"
+addresses = ["0x00665810"]
+expected_count = 1
+expected_bytes = 695
+expected_names = ["_WinMain@16"]
+origin = "authored_game"
+subsystem = "platform"
+disposition = "authored"
+confidence = "observed"
+evidence = "Pinned VC8 CRT startup68B7F2 calls this complete201-instruction/695-byte RET16 WinMain at68B964. Version/class/archive literals, four-byte CSceneManager and twelve-byte CFade RTTI-vtable publications, application singleton702820, exact startup-option constructor and exact application shutdown establish game-authored policy. Full body hash, CRT incoming edge, two exact outgoing edges and vptr/class/singleton operands are replayed. Complete695/695 source remains nonexact only in eight frame-home bytes; no buffer inflation or exact claim. See docs/WINMAIN_2026_10_16.md."
+required_body_hashes = [
+  { address = "0x00665810", size = 695, sha256 = "e61c4b50333680b8056bcdba1dad417dad4833e5c7ecd9effda99f3068433304" },
+]
+required_direct_edges = [
+  { caller = "0x0068B7F2", site = "0x0068B964", target = "0x00665810" },
+]
+required_selected_body_calls = [
+  { owner = "0x00665810", site = "0x006659B6", target = "0x00407BB0", target_status = "matching" },
+  { owner = "0x00665810", site = "0x00665A9A", target = "0x00407F80", target_status = "matching" },
+]
+required_dword_values = [
+  { address = "0x0066582E", value = "0x006C7538" },
+  { address = "0x006658DA", value = "0x006C7520" },
+  { address = "0x006658E2", value = "0x006657E0" },
+  { address = "0x006659D3", value = "0x006C74AC" },
+  { address = "0x006659F1", value = "0x006C74C4" },
+  { address = "0x00665A66", value = "0x00702820" },
+]
+
+[[rules]]
 id = "orientation-quantized-gameplay-helpers-authored-106a"
 addresses = ["0x00406360", "0x004063D0"]
 expected_count = 2
