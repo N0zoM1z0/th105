@@ -19067,9 +19067,13 @@ source = "src/network/NetworkWinsockRuntime.cpp"
 object = "build/match-units/CrossV106a_NetworkWinsockRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete process-wide Winsock acquire with its real file-local error reporter. Manual native critical section; zero-count path calls WSAStartup twice with version2 and the same native WSADATA; only the second result selects five error texts; success increments count. Main148 bytes and adjacent103-byte dispatch metadata are independently recovered and canonically replayed; metadata earns no authored bytes. The helper's ESI entry arises naturally from complete ordinary C++ source, without a private ABI facade."
+notes = "Complete process-wide Winsock acquire/release with the real file-local error reporter. Manual native critical section; zero-count path calls WSAStartup twice with version2 and the same native WSADATA; only the second result selects five error texts; success increments count. Release decrements positive count and cleans up only on transition to zero under the same native lock. Main148 bytes and adjacent103-byte dispatch metadata are independently recovered and canonically replayed; metadata earns no authored bytes. The helper's ESI entry arises naturally from complete ordinary C++ source, without a private ABI facade."
 
 [[units.cross-v106a-network-winsock-runtime.functions]]
 address = "0x0041DDC0"
 symbol_base = "_network_winsock_acquire"
 rel32_targets = ["?show_winsock_error@th105@@YGXPBD@Z=0x0041DEF0"]
+
+[[units.cross-v106a-network-winsock-runtime.functions]]
+address = "0x0041DEC0"
+symbol_base = "_network_winsock_release"

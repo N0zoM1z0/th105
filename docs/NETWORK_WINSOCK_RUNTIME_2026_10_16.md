@@ -102,6 +102,29 @@ private `.analysis/network-winsock-runtime-20261016/audit.py`. The acquisition
 and complete private helper establish target-specific authored policy beyond
 the native APIs they invoke; no library exclusion is added.
 
+## Accepted release boundary
+
+The subsequent bounded review accepts
+`NetworkWinsock_release_runtime @ 0041DEC0`, **47/47 canonical exact**.
+All10 instructions are reachable, with one RET and no parameters. Its body
+SHA-256 is `7529c7cc3854344a147fa0faa4748561ab5caafd3008cf05294ef09b54ecf688`.
+The failed-bind path in UDP initializer412E10 calls it at412F05.
+
+Under the same native process-wide lock, the source checks the unsigned
+reference count, decrements only when positive and invokes WSACleanup only
+if the new count is zero. All paths unlock. The function neither accesses an
+owner/socket nor clears the WSADATA storage. This is ordinary cdecl C++, with
+no private calling-convention declaration or new relocation binding. Its
+addition to the existing TU requires a fresh comparison of both accepted
+functions; they remain148/148 and47/47 in
+`build/network-winsock-release-formal.json`. The84-byte error reporter remains
+uncredited context at this checkpoint.
+
+Direct Ghidra separately saves and reads back the complete47-byte extent,
+supported name, void return and no-argument cdecl interface. Logs are
+`build/network-winsock-release-ghidra-{save,readback}.log`. The independent
+raw boundary report is `build/network-winsock-release-boundary.json`.
+
 ## Direct analysis and gate
 
 IDA preflight reports a different executable, so no IDA analysis is used.

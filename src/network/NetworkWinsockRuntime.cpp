@@ -36,6 +36,17 @@ extern "C" bool network_winsock_acquire()
     return true;
 }
 
+extern "C" void network_winsock_release()
+{
+    EnterCriticalSection(&g_winsock_ref_lock);
+    if (g_winsock_refcount > 0) {
+        --g_winsock_refcount;
+        if (g_winsock_refcount == 0)
+            WSACleanup();
+    }
+    LeaveCriticalSection(&g_winsock_ref_lock);
+}
+
 typedef char NetworkWinsockDataSize[sizeof(WSADATA) == 0x190 ? 1 : -1];
 
 } // namespace th105

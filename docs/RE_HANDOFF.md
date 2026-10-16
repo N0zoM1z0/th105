@@ -13,8 +13,8 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,531 authored / 1,415 excluded / 1,077 in review**; **1,443 mapped**,
-  **1,422 source-present**, **1,330 exact / 224,900 exact bytes**, and
+  **1,532 authored / 1,415 excluded / 1,076 in review**; **1,444 mapped**,
+  **1,423 source-present**, **1,331 exact / 224,947 exact bytes**, and
   **511 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
@@ -32,7 +32,7 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Winsock reference initialization
+## Winsock reference lifetime
 
 `NetworkWinsock_acquire_runtime @ 41DDC0` is canonical **148/148** from ordinary
 C++ and its complete file-local error reporter. Full switch-resolved CFG owns
@@ -43,6 +43,10 @@ second failure through five observed texts. Success increments the shared
 count; all paths release the native lock. The private helper naturally uses
 ESI without an ABI facade. Its body remains uncredited context at this
 checkpoint. Direct Ghidra metadata is saved and independently read back.
+`NetworkWinsock_release_runtime @ 41DEC0` is also canonical **47/47**. Its
+10-instruction body decrements only a positive unsigned count and calls
+WSACleanup only on transition to zero under the same lock. Adding this real
+member of the source TU preserves the acquisition at148/148.
 See [the complete control flow and comparison](NETWORK_WINSOCK_RUNTIME_2026_10_16.md).
 
 ## UDP client sender and real private-helper context
