@@ -19,8 +19,10 @@ returns through plain RET. No custom register convention is needed here.
 
 Natural C++ in `src/network/NetworkWinsockReceiveThread.cpp` compiles to
 **14/14 canonical exact**, with the complete COFF extent and one named REL32
-replay. The loop has a declaration only: it is identified and mapped, without
-source-present or exact credit. Its game-owned packet policy and native
+replay. The loop now has complete source in the same TU, together with the
+actual private lookup/rejection/endpoint-list helper bodies. Its source main
+is1456 bytes plus56 bytes of switch metadata, nonexact against1424+56.
+The loop receives source-present credit and no exact credit. Its game-owned packet policy and native
 thread lifecycle establish authored origin independently of that distinction.
 The socket+28/running+74/worker+64 fields agree with the separately reviewed
 Winsock constructor and exact shutdown views; the original class spelling is
@@ -84,18 +86,95 @@ from the enclosing EBP and tail-jumps to lock-guard destructor `401870`.
 These are compiler auxiliary chunks, not additional independent authored
 functions or an excuse to include the adjacent jump table in the main body.
 
-Original source/TU visibility, complete private protocol helper definitions,
-the concrete peer container/record types, and the ownership of the remaining
-large stack frame are still open. A temporary reply packet is observed, but
-the frame alone does not establish its source buffer capacity. Recover a
-closed source unit before implementing the loop; preserve its actual length,
-lock-release, callback and exception behavior.
+The selected source uses the separately reviewed native
+`multimap<unsigned int, Peer20 *>` and vector layouts. Original source/TU
+visibility, template boundaries and the large reply-storage frame remain
+open. The actual receive caller and full file-local normal C++ helper bodies
+naturally generate EAX owner for the checked peer lookup and ESI owner for
+rejection. There is no external custom-register declaration or synthetic
+caller. Endpoint-list source remains389/315 and uses ESI rather than the
+target EDI; lookup170/167 and rejection122/122 also remain nonexact. These
+supporting definitions receive no new independent source/exact/exclusion
+credit in this bounded loop checkpoint.
+
+## Complete source and preserved edge cases
+
+The source retains every opcode gate in the table above. The received buffer
+is1024 bytes and zeroed once, and sender length is initialized to16 once.
+Unsigned receive-length filtering rejects errors and1024 while retaining
+zero-length datagrams. The source does not invent an empty-packet guard:
+the retained opcode byte and size-1 behavior remain as observed.
+
+Opcode1 compares IP/port fields in two packed16-byte endpoints. Equal endpoints
+produce one-byte opcode3 to the sender. Otherwise the handler constructs
+opcode2, copies the complete sender16, and replaces its embedded port with
+`htons(port)`; a low16-bit value below1024 first adds `ntohs(sender.port)`.
+It forwards21 bytes to the second embedded endpoint. Only the first17 reply
+bytes are written: the trailing four bytes remain untouched in the target.
+The selected21-byte local preserves that fact without zeroing them or guessing
+the original larger local capacity. Opcode2 replies with one-byte opcode3 to
+its embedded endpoint. Opcode3 publishes the entire sender16, then changes
+state2 to3 under the native endpoint lock.
+
+Opcode4 manually locks the peer table. A found peer receives its report at+1C
+and counter+14=0. On a miss, the peer lock is released before a scoped endpoint
+lock compares the primary IP/port, updates owner+DC and clears+D4. Opcode11
+uses a scoped peer lock; the found-peer path removes its signed slot bits and
+exits that scope. The miss path destroys that guard before constructing a
+separate endpoint guard, then calls ordinary connection415340 with
+`(null, 0, null, FFFF)` only for the matching primary sender.
+
+Opcodes13/14 preserve manual endpoint/peer locking and release that lock
+before a scoped callback guard. Opcode13 clears the primary probe counter and
+calls callback slot+8; opcode14 clears the found peer counter, saves its slot
+and calls slot+C. Their payload lengths are the actual receive result minus
+one. Manual locks are not upgraded to RAII: native lookup failure/exception
+behavior differs from the four observed scoped guards. The ordinary source's
+FuncInfo independently has exactly four states, each unwinding to-1, matching
+the target's four independent cleanup scopes.
+
+Opcode7's complete same-TU helper calls slot+4 with its packed DWORD and sets
+state9 before guard destruction. Opcode8's complete helper clamps its signed
+count only above4. A matching published IP/port returns without further writes;
+otherwise it backs up/publishes endpoints, writes marker+148=FFFFFFFF, clears
+the native endpoint vector and appends the clamped count, then writes state2.
+Negative and zero counts still publish the first endpoint and clear the vector.
+No new lower-bound guard is added.
+
+The source declares opcode5 request415560 only after checking its complete
+physical entry: ECX sender, EDX request, one stack owner pointer, saved
+remaining registers and RET4 fit a normal fastcall prototype. Acceptance415AB0
+uses the independently reconstructed compatible fastcall definition. The
+connection415340 declaration preserves its ordinary ECX receiver, four stack
+slots, RET16 and observed AL0/1 result. These are typed native contracts,
+without register forwarding wrappers; original source spelling remains unknown.
+
+## Full comparison and genuine link boundary
+
+The fresh minimum-storage source reserves470 bytes versus target890. Its
+complete main code is1456 bytes; the following56 bytes are its14-entry table,
+so the comparator's1512-byte section tail is not described as authored code.
+All selected relocations resolve, including internal switch destinations,
+the full GS/EH handler and every native/protocol call. The main remains
+nonexact, first at+0x16 in frame allocation; the affected native callback
+remains14/14 through the actual full loop definition with GS enabled.
+
+A pinned `/GL` compile and real `/LTCG /NODEFAULTLIB` control includes the
+actual ordinary-COFF acceptance and peer-removal implementations, native VC8
+runtime/WS2_32 libraries and attested data/IAT bindings. Its private source
+uses the genuine peer-removal view's declaration and implementation. The link
+stops at LNK2001/LNK1120 for exactly two genuine missing bodies: request415560
+and connection415340. No stub, fake return, executable ABS symbol or forced
+unresolved link is introduced. This does not prove that LTCG is required or
+that the remaining source inputs would make the full loop exact.
 
 ## Reproduction and analysis state
 
 ```bash
 python3 scripts/audit-candidate-boundaries.py 0x0041D7B0 0x0041D7C0 --json
-python3 scripts/build.py --unit cross-v106a-network-winsock-receive-thread --compare --json
+python3 scripts/build.py --unit cross-v106a-network-winsock-receive-thread --json
+python3 scripts/compare-unit-object.py cross-v106a-network-winsock-receive-thread build/match-units/CrossV106a_NetworkWinsockReceiveThread.obj --json
+python3 scripts/compare-unit-object.py cross-v106a-network-winsock-receive-thread build/match-units/CrossV106a_NetworkWinsockReceiveThread.obj --address 0x0041D7B0 --json
 ```
 
 The ordinary boundary audit deliberately reports the unresolved switch rather
@@ -103,12 +182,20 @@ than claiming full closure. The full table-resolved packet is
 `build/network-winsock-receive-facts.json`, produced by the private raw-PE
 driver `.analysis/network-receive-20261016/audit.py`; it verifies target and
 guard bytes, owns every main instruction, and records table/EH hashes.
-Focused comparison is `build/network-winsock-receive-thread-formal.json`.
+The complete comparison intentionally returns1 for the main; the accepted-only
+entry comparison returns0. Reports are
+`build/network-receive-source-{build,formal,accepted}.json` and
+`build/network-receive-source-ltcg-probe.diagnosis.json`. Fresh source/object
+hashes and the current unit-input digest are independently checked against
+the build record. No other accepted unit shares a changed source/header/flag.
 
 Direct Ghidra inspection independently attests executable/program SHA, base,
 entry marker, x86 Windows identity and every mapped .text byte before analysis.
 Decompiler output remains a private hypothesis. Supported names, complete
 main extents, return/parameter widths and ECX versus native stdcall storage
-are saved and checked in a fresh read-only session. Scripts stay below
-`.analysis/network-receive-20261016/ghidra-scripts/`; logs stay below `build/`.
+are saved and checked in a fresh read-only session. The source checkpoint
+adds the supported15C-byte owner prefix and native address/peer/map/vector
+types; complete original owner size remains separately reviewed as314.
+Scripts stay below `.analysis/network-receive-source-20261016/ghidra-scripts/`;
+logs are `build/network-receive-source-ghidra-{save,readback}.log`.
 Only one Ghidra process runs at a time, with768MiB and two active processors.

@@ -14,7 +14,7 @@ are historical.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
   **1,538 authored / 1,415 excluded / 1,070 in review**; **1,450 mapped**,
-  **1,429 source-present**, **1,333 exact / 225,099 exact bytes**, and
+  **1,430 source-present**, **1,333 exact / 225,099 exact bytes**, and
   **513 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
@@ -31,6 +31,24 @@ are historical.
 Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
+
+## UDP receive-loop source
+
+`NetworkWinsock_receive_loop @ 41D7C0` now has **complete source**, together
+with its real callback and file-local lookup/rejection/endpoint-list helpers.
+The364-instruction/1424-byte target closes through its14-entry switch; the56
+metadata bytes and four EH cleanups remain separate. Source main1456 plus56
+metadata bytes is nonexact, first at+0x16 on frame470 versus890. Native peer
+map/vector views, all opcode gates and manual versus scoped locks are
+preserved. The actual caller naturally generates EAX lookup and ESI rejection;
+no register facade or synthetic caller is used. Minimum21-byte forwarding
+reply storage preserves its four untouched tail bytes. The accepted callback
+stays14/14 with the full source and GS enabled. A genuine mixed-source LTCG
+attempt resolves actual acceptance/peer-removal bodies and stops on missing
+request415560/connection415340 implementations. Original reply capacity,
+endpoint-helper/STL boundaries and TU remain open. No new exact credit.
+Direct Ghidra owner types and complete caller ABI are saved/read back. See
+[the opcode map, source and link boundary](NETWORK_WINSOCK_RECEIVE_2026_10_16.md).
 
 ## UDP connection acceptance
 
@@ -253,14 +271,6 @@ not replace the private entry with an external ABI facade. See
 `cross-v106a-network-winsock-receive-thread`. Native CreateThread registration
 at412F7F passes the Winsock owner and stores worker+64/+68; ordinary C++ forwards
 the pointer in ECX, calls the loop, returns zero and pops the parameter.
-`NetworkWinsock_receive_loop @ 41D7C0` is **identified/declaration-only**:
-364 instructions/all1424 main bytes close after resolving its14-entry table
-at41DD50. The56 table bytes and four11-byte EH cleanup chunks are separately
-recorded. Packet length gates, sender/peer lookup, callback slots and three
-lock scopes are observed. Original private register helper context, concrete
-peer types and frame ownership remain open; recover a closed source unit
-before implementing the loop. See
-[the opcode map, ABI and exact entry evidence](NETWORK_WINSOCK_RECEIVE_2026_10_16.md).
 
 ## Accepted exact unit: Application message loop
 

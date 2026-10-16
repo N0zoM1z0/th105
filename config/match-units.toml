@@ -18857,13 +18857,35 @@ kind = "probe"
 source = "src/network/NetworkWinsockReceiveThread.cpp"
 object = "build/match-units/CrossV106a_NetworkWinsockReceiveThread.obj"
 profile = "vc8-sp1-probe-o2"
-enable_gs = false
-notes = "Native Win32 receive-thread entry supplied to CreateThread at412F7F with the Winsock owner and its+64 thread handle. Plain C++ forwards the pointer in ECX to the independently bounded UDP receive loop, returns zero and pops the single thread parameter. The1424-byte protocol loop is identified/declaration-only; its private protocol helpers require closed source recovery."
+enable_gs = true
+notes = "Full UDP receive loop and actual callback with native map/vector, real same-TU private lookup/rejection/endpoint-list definitions, packed protocol views, manual versus RAII lock scopes and native recvfrom/sendto/port conversion. Main source1456 code plus56 switch bytes versus target1424+56 remains nonexact on frame/STL/private boundaries. Original reply capacity is unknown; selected21-byte reply retains the four untouched forwarding bytes. Callback remains14/14 exact. Request415560 has audited normal-fastcall-compatible inputs; connection415340 retains its ordinary ECX/RET16/AL declaration; these real bodies still block a resolved whole-unit link. No synthetic caller, register wrapper, buffer inflation or helper credit."
 
 [[units.cross-v106a-network-winsock-receive-thread.functions]]
 address = "0x0041D7B0"
 symbol_base = "_network_winsock_receive_thread@4"
 rel32_targets = ["?receive_loop@NetworkWinsockReceiveView@th105@@QAEXXZ=0x0041D7C0"]
+
+[[units.cross-v106a-network-winsock-receive-thread.functions]]
+address = "0x0041D7C0"
+symbol_base = "?receive_loop@NetworkWinsockReceiveView@th105@@QAEXXZ"
+rel32_targets = [
+  "_memset=0x0068A440",
+  "_recvfrom@24=0x006898BA",
+  "_sendto@24=0x006898CC",
+  "_ntohs@4=0x006898D2",
+  "_htons@4=0x006898D8",
+  "?find_receive_peer@th105@@YG?AViterator@?$_Tree@V?$_Tmap_traits@IPAUNetworkReceivePeer20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkReceivePeer20@th105@@@std@@@4@$00@std@@@std@@PAVNetworkWinsockReceiveView@1@ABUNetworkReceiveAddress16@1@@Z=0x00412A60",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "??Citerator@?$_Tree@V?$_Tmap_traits@IPAUNetworkReceivePeer20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkReceivePeer20@th105@@@std@@@4@$00@std@@@std@@QBEPAU?$pair@$$CBIPAUNetworkReceivePeer20@th105@@@2@XZ=0x00413890",
+  "?network_udp_receive_request@th105@@YIXPBUNetworkReceiveAddress16@1@PBUNetworkReceiveRequest18@1@PAVNetworkWinsockReceiveView@1@@Z=0x00415560",
+  "?network_udp_accept@th105@@YIXPBUNetworkAcceptAddress16@1@PAUNetworkUdpAcceptView@1@PBUNetworkAcceptPacketHeader0C@1@@Z=0x00415AB0",
+  "?receive_rejection@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveReject4@1@@Z=0x00415B90",
+  "?receive_endpoint_list@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveEndpointList44@1@@Z=0x00415C10",
+  "?remove_peer@NetworkWinsockReceiveView@th105@@QAEXI@Z=0x00413170",
+  "?start_connection@NetworkWinsockReceiveView@th105@@QAEDPBDGPBXG@Z=0x00415340",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = ["__ehhandler$?receive_loop@NetworkWinsockReceiveView@th105@@QAEXXZ=__ehhandler$?receive_loop@NetworkWinsockReceiveView@th105@@QAEXXZ"]
 
 [units.cross-v106a-network-winsock-peer-removal]
 kind = "probe"
