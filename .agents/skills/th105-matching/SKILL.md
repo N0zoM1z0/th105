@@ -67,3 +67,17 @@ Immediate exception delivery is a separate contract: plain strict mode did not
 match. Keep this control local, preserve source sum association, and replay the
 whole affected object. See `docs/SPRITE_PIVOT_ROTATION_2026_10_02.md`; do not
 assume that other x87 residuals have the same cause.
+
+## Target-proven private helper visibility
+
+`cross-v106a-sprite-texture-setup` reproduces the complete caller
+`0x00407160` **193/193** and helper `0x00407230` **261/261**. The same-TU
+file-local `static void __stdcall` helper has a normal typed source definition;
+VC8 privately passes its pointer in EAX and pops six floats. Both caller and
+callee are canonically compared. Do not substitute an external standard-ABI
+declaration or a fabricated fastcall facade for that generated boundary.
+
+A private register entry alone does not prove that LTCG is required. Recover
+true visibility, cleanup and all source callers first, then compile a closed
+unit. This recipe does not establish another helper's convention or original
+source spelling. See `docs/SPRITE_TEXTURE_SETUP_2026_10_16.md`.

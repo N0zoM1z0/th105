@@ -1412,3 +1412,5 @@ UiTileA4_render,0x004099F0,function
 CSpriteEx_finalize_render,0x00407AD0,function
 CSprite_render,0x00406BE0,function
 CSprite_render_fvf4142,0x00406E50,function
+CSpriteEx_set_texture_options,0x00407160,function
+SpriteTexture_initialize_rectangle,0x00407230,function

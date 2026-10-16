@@ -159,8 +159,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00406BE0,authored_game,ui,authored,observed,sprite-primary-render-vslots-authored-106a
 0x00406E50,authored_game,ui,authored,observed,sprite-primary-render-vslots-authored-106a
 0x004070C0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00407160,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00407230,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00407160,authored_game,render,authored,observed,canonical-exact-authored
+0x00407230,authored_game,render,authored,observed,canonical-exact-authored
 0x00407340,authored_game,render,authored,observed,canonical-exact-authored
 0x004073A0,authored_game,battle,authored,observed,canonical-exact-authored
 0x004073C0,authored_game,battle,authored,observed,canonical-exact-authored

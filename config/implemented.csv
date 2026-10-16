@@ -1392,3 +1392,5 @@ UiTileA4_render
 CSpriteEx_finalize_render
 CSprite_render
 CSprite_render_fvf4142
+CSpriteEx_set_texture_options
+SpriteTexture_initialize_rectangle

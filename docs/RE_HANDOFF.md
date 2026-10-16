@@ -13,9 +13,9 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,504 authored / 1,414 excluded / 1,105 in review**; **1,413 mapped**,
-  **1,394 source-present**, **1,317 exact / 223,051 exact bytes**, and
-  **495 match units**. These are ledger/status totals, not a fresh aggregate
+  **1,506 authored / 1,414 excluded / 1,103 in review**; **1,415 mapped**,
+  **1,396 source-present**, **1,319 exact / 223,505 exact bytes**, and
+  **496 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
   present, and only `matches.csv` plus a reproducible canonical 100% unit
@@ -31,6 +31,22 @@ are historical.
 Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
+
+## Latest accepted exact unit: Sprite texture setup
+
+`CSpriteEx_set_texture_options @ 0x00407160` and
+`SpriteTexture_initialize_rectangle @ 0x00407230` are canonical **193/193**
+and **261/261** from `src/battle/SpriteTextureSetup.cpp`, unit
+`cross-v106a-sprite-texture-setup`. The whole caller/helper TU supplies real
+unsigned dimension locals, float UV/source-quad lifetimes and the observed
+zero/color assignment order. A normal file-local static stdcall definition
+lets VC8 naturally generate the helper's private EAX pointer and RET24; no
+external fake ABI declaration, assembly or register directive was introduced.
+This demonstrates that a private register entry alone does not prove an
+LTCG-only blocker. Keep this closed TU together and replay both functions
+after visibility or convention changes. Existing texture wrapper and CLogo
+caller units were also replayed. See
+[the exact evidence and reproduction](SPRITE_TEXTURE_SETUP_2026_10_16.md).
 
 ## Active reconstruction lead: Iku Fighter vslot +0x28
 

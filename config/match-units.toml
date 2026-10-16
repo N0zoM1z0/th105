@@ -16976,6 +16976,26 @@ rel32_targets = [
   "?set_texture_options@CSpriteTextureOptionsView@th105@@QAEXIHHHHHH@Z=0x00407160",
 ]
 
+[units.cross-v106a-sprite-texture-setup]
+kind = "probe"
+source = "src/battle/SpriteTextureSetup.cpp"
+object = "build/match-units/CrossV106a_SpriteTextureSetup.obj"
+profile = "vc8-sp1-probe-o2-fp-strict"
+enable_gs = false
+notes = "Complete 193-byte public texture setup plus 261-byte file-local rectangle helper. The helper is fully defined with its caller in this TU; ordinary static stdcall source lets VC8 privately pass self in EAX and pop the six float stack arguments. No external fake private-ABI declaration, register directive, assembly or forced inlining. Both functions require canonical whole-extent equality. See docs/SPRITE_TEXTURE_SETUP_2026_10_16.md."
+
+[[units.cross-v106a-sprite-texture-setup.functions]]
+address = "0x00407160"
+symbol_base = "?set_texture_options@SpriteTextureSetupView@th105@@QAEXIHHHHHH@Z"
+rel32_targets = [
+  "?get_texture_size@TitleResourceManager@th105@@QAEXIPAI0@Z=0x00404E60",
+  "?initialize_texture_rectangle@th105@@YGXPAVSpriteTextureSetupView@1@MMMMMM@Z=0x00407230",
+]
+
+[[units.cross-v106a-sprite-texture-setup.functions]]
+address = "0x00407230"
+symbol_base = "?initialize_texture_rectangle@th105@@YGXPAVSpriteTextureSetupView@1@MMMMMM@Z"
+
 [units.gpt-web-youmu-history-virtual]
 kind = "probe"
 source = "src/characters/YoumuHistoryVirtual.cpp"
