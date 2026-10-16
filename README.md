@@ -14,6 +14,10 @@
 This project reconstructs the original Japanese TH10.5 version 1.06a
 executable with reproducible byte comparison as the acceptance criterion.
 
+> [!NOTE]
+> Reconstruction is still in progress. TH105 is a particularly challenging target,
+> and a faithful, byte-exact reconstruction is expected to take considerable time.
+
 ## Exact target
 
 Supply your own `resources/th105.exe`:
