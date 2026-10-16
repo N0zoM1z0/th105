@@ -1436,3 +1436,4 @@ NetworkWinsock_remove_peer,0x00413170,function
 NetworkUdpPacketHandleManager_ctor,0x00413780,function
 NetworkUdpPacketHandleManager_dtor,0x00413820,function
 NetworkUdpPacketHandleManager_acquire,0x00417660,function
+NetworkWinsock_send_client,0x00416990,function

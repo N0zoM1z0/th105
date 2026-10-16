@@ -42,6 +42,7 @@ public:
     NetworkUdpPacketHandleManager64();
     virtual ~NetworkUdpPacketHandleManager64();
     NetworkUdpPacketBuffer41C *acquire(ResourceHandleToken &token);
+    void release(unsigned int packed_token);
 
     std::deque<NetworkUdpPacketBuffer41C> packets_04;
     std::vector<NetworkUdpPacketBuffer41C *> slots_18;

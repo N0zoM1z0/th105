@@ -13,9 +13,9 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,527 authored / 1,415 excluded / 1,081 in review**; **1,437 mapped**,
-  **1,416 source-present**, **1,328 exact / 224,585 exact bytes**, and
-  **509 match units**. These are ledger/status totals, not a fresh aggregate
+  **1,527 authored / 1,415 excluded / 1,081 in review**; **1,438 mapped**,
+  **1,417 source-present**, **1,328 exact / 224,585 exact bytes**, and
+  **510 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
   present, and only `matches.csv` plus a reproducible canonical 100% unit
@@ -32,10 +32,34 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
+## UDP client sender and real private-helper context
+
+`NetworkWinsock_send_client @ 416990` has complete source in
+`src/network/NetworkWinsockSendClient.cpp`, alongside the actual acquire and
+release member definitions. Full raw CFG closes145 instructions/all464 bytes.
+Type0E packet/options/timestamp, locked endpoint copy, payload/size, native
+token deque and optional old-token replacement precede SetEvent and its return.
+Ordinary source is **465/464 nonexact**, with all relocations resolved.
+The real caller makes LTCG naturally recover stack self for acquisition and
+EAX self for release. Source stays normal C++ members; no private ABI facade
+or dummy caller is added. Sender inlining still differs: native token push_back
+is out of line in the target, but561 bytes with retained-source/list context.
+See [the complete sender and context controls](NETWORK_WINSOCK_SEND_CLIENT_2026_10_16.md).
+
+The same retained-source mixed link gives a **167-byte private release
+diagnostic with every canonical byte equal** at `405200`, using the existing
+ordinary unsigned-list instantiation. It is **not accepted**: the helper has
+no independently configured comparison unit, and the linked backend currently
+requires an export while this is a genuine private EAX entry. Its origin row
+remains in review and receives no source/exact credit. Next, independently
+bound/classify that address and establish a strict source-owned private-function
+contract using its real exported caller; do not export or redeclare the helper
+to force a standard ABI. Preserve the current private drivers and reports.
+
 ## UDP owner and packet-pool lifetime
 
 `NetworkUdpPacketHandleManager_acquire @ 417660` now has complete native
-C++ source in `src/network/NetworkUdpPacketAcquire.cpp`. Full raw CFG closes
+C++ source in `src/network/NetworkWinsockSendClient.cpp`. Full raw CFG closes
 125 instructions/all410 bytes. Two authored send paths `416990`/`416B60`
 pass the pool+17C and output token on the stack. The source preserves zeroed
 fresh packets, stable pointers, LIFO free-slot reuse, checked vectors and
@@ -43,7 +67,9 @@ fresh packets, stable pointers, LIFO free-slot reuse, checked vectors and
 The focused ordinary candidate is **427/410 nonexact**, with every relocation
 resolved. Ordinary GS-minus387 and resolved LTCG540/486 controls also differ;
 the latter recover alignment but change inline/helper context and keep ECX
-self. Keep the real member definition and recover caller/TU context rather
+self. Its new real caller now naturally recovers stack self under LTCG, but
+the helper still differs on inline/EH context. Keep the real member definition
+and recover the remaining TU context rather
 than adding private ABI facades. One new nonvirtual declaration leaves layout
 and vtable order unchanged; a fresh pool-destructor rebuild remains98/98.
 Ghidra physical stack parameters, token/payload types and full main extent

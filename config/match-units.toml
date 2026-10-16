@@ -18962,7 +18962,7 @@ rel32_targets = [
 
 [units.cross-v106a-network-udp-packet-acquire]
 kind = "probe"
-source = "src/network/NetworkUdpPacketAcquire.cpp"
+source = "src/network/NetworkWinsockSendClient.cpp"
 object = "build/match-units/CrossV106a_NetworkUdpPacketAcquire.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
@@ -18981,4 +18981,24 @@ rel32_targets = [
   "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0",
   "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0",
   "?at@?$vector@PAUNetworkUdpPacketBuffer41C@th105@@V?$allocator@PAUNetworkUdpPacketBuffer41C@th105@@@std@@@std@@QAEAAPAUNetworkUdpPacketBuffer41C@th105@@I@Z=0x00417A90",
+]
+
+[units.cross-v106a-network-winsock-send-client]
+kind = "probe"
+source = "src/network/NetworkWinsockSendClient.cpp"
+object = "build/match-units/CrossV106a_NetworkWinsockSendClient.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete CNetworkUDP client sender with real token deque and the complete acquire/release member definitions in one TU. Ordinary source465/464 remains nonexact. Real caller context naturally recovers the target private stack/EAX helper interfaces under LTCG, but token push_back inlining still differs; no ABI facade or exact credit."
+
+[[units.cross-v106a-network-winsock-send-client.functions]]
+address = "0x00416990"
+symbol_base = "?send_client@NetworkWinsockSendClientView@th105@@QAEHPBXIIPAI@Z"
+rel32_targets = [
+  "?acquire@NetworkUdpPacketHandleManager64@th105@@QAEPAUNetworkUdpPacketBuffer41C@2@AAUResourceHandleToken@2@@Z=0x00417660",
+  "_memcpy=0x0068AA30",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?release@NetworkUdpPacketHandleManager64@th105@@QAEXI@Z=0x00405200",
+  "?erase@?$deque@IV?$allocator@I@std@@@std@@QAE?AV?$_Deque_iterator@IV?$allocator@I@std@@$00@2@V32@@Z=0x004172C0",
+  "?push_back@?$deque@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x00417240",
 ]

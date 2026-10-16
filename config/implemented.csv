@@ -1414,3 +1414,4 @@ NetworkWinsock_remove_peer
 NetworkUdpPacketHandleManager_ctor
 NetworkUdpPacketHandleManager_dtor
 NetworkUdpPacketHandleManager_acquire
+NetworkWinsock_send_client

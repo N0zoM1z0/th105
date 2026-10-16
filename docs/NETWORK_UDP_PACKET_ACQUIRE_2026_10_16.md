@@ -1,5 +1,13 @@
 # UDP packet slot acquisition
 
+The later [client-sender checkpoint](NETWORK_WINSOCK_SEND_CLIENT_2026_10_16.md)
+moves this definition into `src/network/NetworkWinsockSendClient.cpp` with its
+real caller and release member. Its ordinary configured unit remains427/410;
+that closed context now naturally recovers the observed private stack receiver
+under LTCG, without matching the helper's full body. The isolated controls
+below remain historical measurements, not a current claim that caller context
+is still missing altogether.
+
 ## Observed identity, boundary and ABI
 
 Only original Japanese TH10.5 v1.06a was inspected, SHA-256
