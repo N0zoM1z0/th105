@@ -13,8 +13,8 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,535 authored / 1,415 excluded / 1,073 in review**; **1,447 mapped**,
-  **1,426 source-present**, **1,333 exact / 225,099 exact bytes**, and
+  **1,536 authored / 1,415 excluded / 1,072 in review**; **1,448 mapped**,
+  **1,427 source-present**, **1,333 exact / 225,099 exact bytes**, and
   **511 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
@@ -31,6 +31,24 @@ are historical.
 Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
+
+## UDP shutdown preparation
+
+`NetworkWinsock_prepare_udp_shutdown @ 4130D0` now has complete source beside
+its real shutdown caller in `src/network/NetworkWinsockShutdown.cpp`. The
+46-instruction/149-byte target sends opcode0B under the native endpoint lock,
+removes each dynamically counted peer and resets state144 to1. A genuine
+file-local normal C++ helper naturally recovers the private ESI entry; the
+existing caller remains175/175 exact. Preparation115/149 remains nonexact
+because the target aligned0x42C GS packet-storage frame is unresolved. The
+selected source uses only the established transmitted byte. Reusing the real
+41C pool-buffer type produces150 bytes, and a fully resolved mixed COFF/LTCG
+control with actual peer-removal/thread sources retains that150-byte shape;
+it also encounters unsupported native GS-cookie data replay. No larger
+buffer, padding or synthetic callee is retained, and this is no new exact
+credit. Direct Ghidra owner/peer types, ESI preparation versus ECX caller
+storage and complete extents are saved and independently read back. See
+[the behavior, source controls and remaining storage question](NETWORK_UDP_PREPARE_SHUTDOWN_2026_10_16.md).
 
 ## UDP initialization and native worker ownership
 

@@ -5,6 +5,26 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 # but no old-version address is accepted as evidence here.
 
 [[rules]]
+id = "network-udp-prepare-shutdown-authored-106a"
+addresses = ["0x004130D0"]
+expected_count = 1
+expected_bytes = 149
+expected_names = ["sub_4130D0"]
+origin = "authored_game"
+subsystem = "network"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact shutdown412FD0 calls this complete46-instruction/149-byte private ESI helper at412FDE before clearing running74. Manual native endpoint lockE4 protects the game opcode0B send to endpointC0; dynamic native32-byte peer-vector count controls calls to authored removal413170; final state144 resets to1. Actual full file-local C++ helper and real caller retain175/175 shutdown; preparation115/149 remains source-present/nonexact on original aligned GS packet-storage ownership. Real41C packet-type and resolved mixed-source LTCG controls both emit150 bytes and do not establish the target frame. No dummy buffer, ABI facade, fake return or new helper exclusion. docs/NETWORK_UDP_PREPARE_SHUTDOWN_2026_10_16.md."
+required_body_hashes = [{ address = "0x004130D0", size = 149, sha256 = "8e38fc406dd1c2c6fd75ff587e6dccb836851c55ae0bcf84b122395cea22e5a3" }]
+required_direct_edges = [{ caller = "0x00412FD0", site = "0x00412FDE", target = "0x004130D0", caller_status = "matching" }]
+required_selected_body_calls = [{ owner = "0x004130D0", site = "0x0041313E", target = "0x00413170", target_status = "implemented" }]
+required_dword_values = [
+  { address = "0x004130F9", value = "0x006C0108" },
+  { address = "0x00413115", value = "0x006C0274" },
+  { address = "0x0041311C", value = "0x006C0104" },
+]
+
+[[rules]]
 id = "network-udp-initialize-authored-106a"
 addresses = ["0x00412E10"]
 expected_count = 1

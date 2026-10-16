@@ -1446,3 +1446,4 @@ NetworkWinsock_release_runtime,0x0041DEC0,function
 NetworkWinsock_show_error,0x0041DEF0,function
 NetworkWinsock_initialize_udp,0x00412E10,function
 NetworkWinsock_bind_udp_socket,0x00413080,function
+NetworkWinsock_prepare_udp_shutdown,0x004130D0,function

@@ -435,7 +435,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00412E10,authored_game,network,authored,observed,network-udp-initialize-authored-106a
 0x00412FD0,authored_game,network,authored,observed,canonical-exact-authored
 0x00413080,authored_game,network,authored,observed,canonical-exact-authored
-0x004130D0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004130D0,authored_game,network,authored,observed,network-udp-prepare-shutdown-authored-106a
 0x00413170,authored_game,network,authored,observed,network-winsock-peer-removal-authored-106a
 0x00413360,authored_game,network,authored,observed,canonical-exact-authored
 0x00413390,authored_game,network,authored,observed,canonical-exact-authored

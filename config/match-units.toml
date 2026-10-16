@@ -16421,14 +16421,14 @@ kind = "probe"
 source = "src/network/NetworkWinsockShutdown.cpp"
 object = "build/match-units/GptWeb_NetworkWinsockShutdown.obj"
 profile = "vc8-sp1-probe-o2"
-enable_gs = false
-notes = "Current CNetworkWinsock shutdown over the exact-backed 0x314 state member. Running +0x74, heap buffer +0x78, socket +0x28, four 8-byte BattleThreadHandle values and event +0x1E0 are torn down through ordinary KERNEL32/WS2_32 imports and the canonical 73-byte wait_for_exit helper."
+enable_gs = true
+notes = "Complete shutdown/preparation source over the reviewed CNetworkUDP prefix. Actual file-local helper naturally consumes ESI: lock endpoint, send one-byte0B notification, remove every dynamically counted peer, reset state144. Main shutdown retains175/175 through this real private entry. Preparation115/149 remains nonexact because original large packet storage/aligned GS frame is unknown; no buffer inflation or ABI facade. GS is enabled as observed in the target helper; the selected minimal opcode does not trigger a cookie. A real41C pool-packet control and resolved mixed-source LTCG control both remain150/149."
 
 [[units.gpt-web-network-winsock-shutdown.functions]]
 address = "0x00412FD0"
 symbol_base = "?shutdown_412fd0@NetworkWinsockShutdownView@th105@@QAEXXZ"
 rel32_targets = [
-  "?prepare_shutdown_4130d0@NetworkWinsockShutdownView@th105@@QAEXXZ=0x004130D0",
+  "?prepare_udp_shutdown@th105@@YGXPAUNetworkWinsockShutdownView@1@@Z=0x004130D0",
   "?wait_for_exit@BattleThreadHandleShutdownView@th105@@QAEXXZ=0x00414640",
   "_free=0x0068AA26",
 ]
@@ -16442,6 +16442,12 @@ dir32_targets = [
   "_g_winsock_ref_lock=_g_winsock_ref_lock",
   "_g_winsock_refcount=_g_winsock_refcount",
 ]
+
+[[units.gpt-web-network-winsock-shutdown.functions]]
+address = "0x004130D0"
+symbol_base = "?prepare_udp_shutdown@th105@@YGXPAUNetworkWinsockShutdownView@1@@Z"
+rel32_targets = ["?remove_peer@NetworkWinsockShutdownView@th105@@QAEXI@Z=0x00413170"]
+
 [units.gpt-web-ctile-copy-lifetime]
 kind = "probe"
 source = "src/battle/CTileCopyLifetime.cpp"
