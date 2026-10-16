@@ -200,19 +200,17 @@ else if ( v9 != 3 && !*(_WORD *)CPU_FIELD(1892) )
 *(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
 }
 v10 = *(_WORD *)CPU_FIELD(1892);
-if ( v10 >= 10 )
+if ( v10 >= 10 && v10 <= 90 )
 {
 *(_DWORD *)CPU_FIELD(1724) = 2;
-if ( v10 > 90 )
-{
-*(_DWORD *)CPU_FIELD(1716) = *(char *)CPU_FIELD(260);
-*(_DWORD *)CPU_FIELD(1720) = 1;
-}
-else
-{
 *(_DWORD *)CPU_FIELD(1716) = 0;
 *(_DWORD *)CPU_FIELD(1720) = 0;
 }
+else if ( v10 >= 90 )
+{
+*(_DWORD *)CPU_FIELD(1724) = 2;
+*(_DWORD *)CPU_FIELD(1716) = *(char *)CPU_FIELD(260);
+*(_DWORD *)CPU_FIELD(1720) = 1;
 }
 break;
 case 0x12D:
@@ -1524,7 +1522,7 @@ LABEL_440:
 *(_WORD *)CPU_FIELD(1894) = 100;
 *(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x14u) + 10;
 LABEL_523:
-switch ( *(_WORD *)CPU_FIELD(1894) )
+switch ( *(__int16 *)CPU_FIELD(1894) )
 {
 case 0:
 if ( *(__int16 *)CPU_FIELD(1896) > 0 )

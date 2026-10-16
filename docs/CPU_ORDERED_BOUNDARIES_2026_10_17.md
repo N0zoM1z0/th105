@@ -1,5 +1,9 @@
 # Default CPU decision root: ordered boundaries, October 17
 
+The [source-ownership follow-up](CPU_SOURCE_OWNERSHIP_2026_10_17.md) carries the
+latest source and canonical comparison. Sizes/hashes below identify their
+individual ordered-boundary checkpoints.
+
 The active target is `Fighter_update_default_cpu_action_policy @ 0x005F1F80`,
 15,910 callable bytes. This pass fixes observable differences in its outer
 action phase and closes all six switches in the target traversal. The complete

@@ -35,38 +35,36 @@ hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 ## Active priority: default CPU action decision root
 
 The active bounded target is `Fighter_update_default_cpu_action_policy @ 5F1F80`,
-15910 callable bytes shared by eleven roster CPU policies. A fresh executable
-comparison exposed an actual unordered-input error in the retained boundary
-predicates: ordinary C++ `<`/`==` Booleans did not model x87 C0/C3 for NaN.
-The source now uses ordered upper/lower predicates. Across16600 bounded
-instruction-execution controls, the preceding object has132 differences and
-the corrected configured object has0. Real target ftol2 executes; RNG0 and one
-checked-sequence record are explicit controls. Full numerical/gameplay
-closure remains unproven. Action302 now restores the target zero-mode reset
-fallthrough; only that owner's diagnostic edit groups improve31 to29, with
-other owner reports unchanged. A new native entry-through-RET probe executes
-all five original dependencies without result hooks:0/5000 differences across
-the full7A4 actor prefix, MT state, calls/results, conversion inputs and stack.
-It visits3553/4069 target instructions under finite active-peer/sequence-state1
-controls. Three more common airborne height guards now reject unordered input
-before RNG; a separate complete-return matrix improves112/368 differences to0,
-including helper order and final MT state. All5000 finite and16600 outer-phase
-controls still pass. Other states and complete numerical/exception coverage
-remain open. All prior14/41 identical diagnostic owners survive; whole-root
-canonical comparison still fails+12E, metadata+3E18 and section tail16521.
-No exact credit. Four nested sequence tables now close all4069 instructions /
-all15910 target bytes with no unresolved indirect exit. Direct Ghidra saves and
-reads back the ECX/no-stack ABI,27 physical fields, six ordered-boundary comments
-and three ordered-height comments, preserving every target byte. Continue this
-major root's branch/store ownership and range/FP source recovery using the
-native oracle. Policy0 now has0/16000 finite native differences, all1486
-reachable target instructions /4879 bytes visited, and actual RNG rolls0..99
-confirmed; this includes shared return tails, not another function or partial
-exact credit. The coverage gate and input seeds are reproducible. Instruction
-coverage leaves branch/numerical closure open; source/flag controls still fail.
-See [the policy0 coverage and remaining source-shape work](CPU_POLICY_SELECTION_2026_10_17.md).
-Avoid more size-only reset spelling matrices. See
-[the source correction, complete CFG and execution controls](CPU_ORDERED_BOUNDARIES_2026_10_17.md).
+15910 callable bytes shared by eleven roster CPU policies. Source now preserves
+the signed16 policy load observed at5F3DE1 and restores action300's two separate
+control-store arms: closed10..90, then otherwise>=90. The latter candidate has
+29 instructions/138 bytes versus target30/141, with range folding still open.
+All prior14 identical diagnostic owners survive; policy100 also loses its
+former alignment instruction, giving15/41. Whole-root comparison remains
+nonexact+12E, targetF0/candidate29, metadata+3E38 and section tail16553. No exact
+or partial byte credit. See [source ownership and current comparison](CPU_SOURCE_OWNERSHIP_2026_10_17.md).
+
+Fresh configured execution has0/1408 counter/mode/signed-selector boundary
+differences,0/5000 whole-root finite differences,0/16000 policy0 differences and
+0/368 finite/NaN height differences. All original dependencies execute without
+result hooks; comparison includes the full7A4 actor prefix, MT state, calls,
+conversion inputs, stack and control word. Policy0 visits all1486 reachable
+target instructions/4879 bytes and confirms actual RNG rolls0..99. This is
+instruction coverage, not full branch/numerical/gameplay/exception closure.
+The earlier16600 scoped outer-phase controls and ordered-NaN source repairs
+are recorded in [the ordered-boundary evidence](CPU_ORDERED_BOUNDARIES_2026_10_17.md);
+this pass does not rerun unrelated accepted units or claim a cold aggregate.
+
+Raw default/Aya policy0 comparison preserves all1486 instruction forms,
+321 internal destinations and37 native selector calls. Shared source is an
+inference; an original inline helper is unproved. A real forced-inline
+selection helper produces exactly the same code as its monolithic control,
+so that partition does not resolve the residual and is discarded. Four nested
+sequence tables still close all4069 instructions/all15910 target bytes with
+no unresolved indirect exit. Direct Ghidra saves/reads back the ECX/no-stack
+ABI,27 physical fields, signed policy word and target comments without changing
+bytes. Continue this major root's range lowering, register lifetime and physical
+shared-tail recovery; avoid further size-only or helper-spelling matrices.
 
 The shared Fighter action root `4740C0` remains a stable10219-byte checkpoint.
 All2799 instructions and eight receiver-domain virtual tails are reviewed;

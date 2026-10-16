@@ -3,7 +3,9 @@
 This checkpoint concerns only the original Japanese1.06a CPU decision root
 `Fighter_update_default_cpu_action_policy @ 005F1F80`,15910 callable bytes.
 It extends the [ordered-boundary evidence](CPU_ORDERED_BOUNDARIES_2026_10_17.md).
-The reconstruction source and its build/ABI/relocation contracts are unchanged.
+The initial coverage checkpoint left source and build/ABI/relocation contracts
+unchanged. The [source-ownership follow-up](CPU_SOURCE_OWNERSHIP_2026_10_17.md)
+now supplies the current source and canonical comparison.
 No exact or partial byte credit is recorded.
 
 ## Observed target region
@@ -80,10 +82,11 @@ The existing368 height controls and checked-in NaN fixture still pass after
 the probe changes.
 
 The fresh configured whole-root comparison remains nonexact at **+12E /
-005F20AE**, targetF0 / candidate07. Metadata stays at+3E18 and the COFF section
-tail is16521 bytes; all14/41 previously identical diagnostic owners survive.
-The compared15910-byte candidate window still hashes to
-`4018df0d170704fa9e78800e3aaf9e096206f697ce7be1713b24141dd48c9326`.
+005F20AE**, targetF0 / candidate29. After the source-ownership follow-up, metadata is at
++3E38 and the COFF section tail is16553 bytes; all14 previously identical
+diagnostic owners survive, with15/41 now identical.
+The current compared15910-byte candidate window hashes to
+`af511b4feecaa98f3b601749f9e3456a299a2fa22b720105c284833a7ee49566`.
 The new finite execution coverage narrows the next investigation to compiler
 source shape, range lowering and physical shared-tail ownership; it is not an
 acceptance substitute.
