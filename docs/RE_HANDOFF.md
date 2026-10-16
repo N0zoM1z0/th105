@@ -13,8 +13,8 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,532 authored / 1,415 excluded / 1,076 in review**; **1,444 mapped**,
-  **1,423 source-present**, **1,331 exact / 224,947 exact bytes**, and
+  **1,533 authored / 1,415 excluded / 1,075 in review**; **1,445 mapped**,
+  **1,424 source-present**, **1,332 exact / 225,031 exact bytes**, and
   **511 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
@@ -41,8 +41,10 @@ no authored credit. The zero-reference path calls WSAStartup twice with
 version2/the same native WSADATA, ignores the first result and dispatches the
 second failure through five observed texts. Success increments the shared
 count; all paths release the native lock. The private helper naturally uses
-ESI without an ABI facade. Its body remains uncredited context at this
-checkpoint. Direct Ghidra metadata is saved and independently read back.
+ESI without an ABI facade. `NetworkWinsock_show_error @ 41DEF0` is also canonical **84/84**, with
+its complete256-byte GS buffer and native formatting/dialog calls. All three
+reviewed callers discard incidental EAX. No external private-register facade
+is used. Direct Ghidra metadata is saved and independently read back.
 `NetworkWinsock_release_runtime @ 41DEC0` is also canonical **47/47**. Its
 10-instruction body decrements only a positive unsigned count and calls
 WSACleanup only on transition to zero under the same lock. Adding this real

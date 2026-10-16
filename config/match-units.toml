@@ -19077,3 +19077,8 @@ rel32_targets = ["?show_winsock_error@th105@@YGXPBD@Z=0x0041DEF0"]
 [[units.cross-v106a-network-winsock-runtime.functions]]
 address = "0x0041DEC0"
 symbol_base = "_network_winsock_release"
+
+[[units.cross-v106a-network-winsock-runtime.functions]]
+address = "0x0041DEF0"
+symbol_base = "?show_winsock_error@th105@@YGXPBD@Z"
+rel32_targets = ["__security_check_cookie=0x00689D25"]

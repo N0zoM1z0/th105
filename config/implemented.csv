@@ -1421,3 +1421,4 @@ NetworkWinsock_send_thread_entry
 NetworkWinsock_send_loop
 NetworkWinsock_acquire_runtime
 NetworkWinsock_release_runtime
+NetworkWinsock_show_error

@@ -53,8 +53,8 @@ GS frame, cookie at+100 and full84-byte instruction stream. It obtains
 WSAGetLastError, formats `Winsock-Error:%05d %s`, and calls
 `MessageBoxA(0, text, formatted_buffer, 0)`. The formatted buffer is the dialog
 caption; preserve that actual argument order. The full helper source supplies
-real caller/code-generation context, but its84 bytes receive no source/exact
-credit at this acquisition checkpoint.
+real caller/code-generation context. Its complete84 bytes are now separately
+accepted below.
 
 The canonical comparator reports **148/148 exact**. The source COMDAT has251
 bytes because VC8 appends its103-byte switch metadata after RET. A separate
@@ -104,8 +104,7 @@ the native APIs they invoke; no library exclusion is added.
 
 ## Accepted release boundary
 
-The subsequent bounded review accepts
-`NetworkWinsock_release_runtime @ 0041DEC0`, **47/47 canonical exact**.
+`NetworkWinsock_release_runtime @ 0041DEC0` is **47/47 canonical exact**.
 All10 instructions are reachable, with one RET and no parameters. Its body
 SHA-256 is `7529c7cc3854344a147fa0faa4748561ab5caafd3008cf05294ef09b54ecf688`.
 The failed-bind path in UDP initializer412E10 calls it at412F05.
@@ -117,13 +116,50 @@ owner/socket nor clears the WSADATA storage. This is ordinary cdecl C++, with
 no private calling-convention declaration or new relocation binding. Its
 addition to the existing TU requires a fresh comparison of both accepted
 functions; they remain148/148 and47/47 in
-`build/network-winsock-release-formal.json`. The84-byte error reporter remains
-uncredited context at this checkpoint.
+`build/network-winsock-release-formal.json`.
 
 Direct Ghidra separately saves and reads back the complete47-byte extent,
 supported name, void return and no-argument cdecl interface. Logs are
 `build/network-winsock-release-ghidra-{save,readback}.log`. The independent
 raw boundary report is `build/network-winsock-release-boundary.json`.
+
+## Accepted private error reporter
+
+`NetworkWinsock_show_error @ 0041DEF0` is **84/84 canonical exact**. Full
+raw CFG closure owns23 instructions and a single RET, with no EH or remote
+chunk. Body SHA-256 is
+`02339197fa2cf2e85d33063b3bf25150bd6ac34150a23e9d81c2ac7f55d80fd2`.
+The text pointer arrives in ESI; there is no stack parameter or ESI save.
+The early PUSH ESI is the fourth wsprintf argument, hoisted before the
+WSAGetLastError call, and is removed with the other three arguments. Treating
+it as a callee-save push would misread the frame and private interface.
+
+Three instruction-checked incoming E8 sites are known: initialization412EB0,
+socket binding4130B5 and the independently exact acquisition at41DE2A. Every
+reviewed caller discards incidental EAX; source uses void without fabricating
+a status result. Its file-local ordinary C++ definition and real acquisition
+caller produce this interface naturally under the normal COFF profile.
+No forced register prototype, noinline attribute, padding or ABI adapter is
+introduced. Original source spelling/visibility and any broader original TU
+partition remain unknown.
+
+The helper's complete COFF section is84 bytes, without an ignored executable
+tail. Its native IATs, full NUL format literal, GS cookie and cookie-check
+REL32 all resolve to independently pinned target identities. Fresh focused
+compilation compares all accepted functions in the same unit:
+
+| Address | Complete callable bytes | Result |
+| --- | ---: | --- |
+| 41DDC0 | 148 | Exact |
+| 41DEC0 | 47 | Exact |
+| 41DEF0 | 84 | Exact |
+
+This adds279 authored exact bytes through separate bounded reviews; switch
+metadata and native/runtime API bodies receive no new authored credit.
+Final report is `build/network-winsock-runtime-formal.json`. Ghidra separately
+saves and reads back its84-byte body, void return and custom ESI pointer
+storage; logs are `build/network-winsock-error-ghidra-{save,readback}.log`.
+The raw boundary report is `build/network-winsock-error-boundary.json`.
 
 ## Direct analysis and gate
 
