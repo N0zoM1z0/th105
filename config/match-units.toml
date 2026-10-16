@@ -18586,3 +18586,25 @@ notes = "Application-owned 40-byte startup-options constructor. WinMain calls it
 [[units.cross-v106a-application-startup-options.functions]]
 address = "0x00407BB0"
 symbol_base = "??0ApplicationStartupOptions@th105@@QAE@XZ"
+
+[units.cross-v106a-application-shutdown]
+kind = "probe"
+source = "src/platform/ApplicationShutdown.cpp"
+object = "build/match-units/CrossV106a_ApplicationShutdown.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete application shutdown called by WinMain665A9A. Clears running, joins four eight-byte thread owners, signals two events, deletes both scene pointers under the observed explicit critical section, shuts down/deletes RTTI-owned CSceneManager/CFade callbacks, then tears down IME/audio/input/render/COM. Target ends in verified IAT CoUninitialize tail jump. Ordinary typed C++ reproduces all245 bytes. Existing shared contracts and mappings remain unchanged."
+
+[[units.cross-v106a-application-shutdown.functions]]
+address = "0x00407F80"
+symbol_base = "?shutdown@ApplicationShutdownView@th105@@QAEXXZ"
+rel32_targets = [
+  "?wait_for_exit@ApplicationThread8@th105@@QAEXXZ=0x00414640",
+  "??3@YAXPAX@Z=0x006898EA",
+  "_ImmReleaseContext@8=0x0066B82A",
+  "?shutdown_direct_sound@th105@@YAXXZ=0x004188C0",
+  "?shutdown_direct_input@th105@@YAXXZ=0x0040D3F0",
+  "_remove_application_reset_listener@4=0x00414D50",
+  "?shutdown_d3d_backend@th105@@YAXXZ=0x00414C50",
+]
+dir32_targets = ["_g_application_ime_prefix=_g_profile_menu_controller"]

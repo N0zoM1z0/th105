@@ -1415,3 +1415,4 @@ CSprite_render_fvf4142,0x00406E50,function
 CSpriteEx_set_texture_options,0x00407160,function
 SpriteTexture_initialize_rectangle,0x00407230,function
 ApplicationStartupOptions_ctor,0x00407BB0,function
+Application_shutdown,0x00407F80,function

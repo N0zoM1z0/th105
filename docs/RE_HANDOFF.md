@@ -13,9 +13,9 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,507 authored / 1,414 excluded / 1,102 in review**; **1,416 mapped**,
-  **1,397 source-present**, **1,320 exact / 223,559 exact bytes**, and
-  **497 match units**. These are ledger/status totals, not a fresh aggregate
+  **1,508 authored / 1,414 excluded / 1,101 in review**; **1,417 mapped**,
+  **1,398 source-present**, **1,321 exact / 223,804 exact bytes**, and
+  **498 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
   present, and only `matches.csv` plus a reproducible canonical 100% unit
@@ -32,7 +32,21 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Latest accepted exact unit: Application startup options
+## Latest accepted exact unit: Application shutdown
+
+`Application_shutdown @ 0x00407F80` is canonical **245/245** from
+`src/platform/ApplicationShutdown.cpp`, unit
+`cross-v106a-application-shutdown`. All 82 instructions are reached; its sole
+indirect exit resolves to the PE-attested OLE32 CoUninitialize IAT tail jump.
+The source preserves four thread joins, two SetEvent signals, explicit scene
+locking, virtual scene deletion, CSceneManager/CFade callback shutdown/free,
+and IME/subsystem teardown. Existing shared contracts and mappings did not
+change. Direct Ghidra metadata was saved and read back after target attestation.
+See [the ownership, layout and full comparison](APPLICATION_SHUTDOWN_2026_10_16.md).
+The same startup chain's WinMain `665810` (695 bytes) and bootstrap `407DA0`
+(472 bytes) remain unimplemented and are useful next bounded leads.
+
+## Accepted exact unit: Application startup options
 
 `ApplicationStartupOptions_ctor @ 0x00407BB0` is canonical **54/54** from
 `src/platform/ApplicationStartupOptions.cpp`, unit

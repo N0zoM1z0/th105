@@ -181,7 +181,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00407C70,authored_game,assets,authored,observed,canonical-exact-authored
 0x00407CA0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00407DA0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00407F80,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00407F80,authored_game,platform,authored,observed,canonical-exact-authored
 0x00408080,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00408120,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004081E0,unknown,,review,unknown,ida-1.06a-initial-inventory
