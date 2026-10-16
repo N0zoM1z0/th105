@@ -42,13 +42,20 @@ The source now uses ordered upper/lower predicates. Across16600 bounded
 instruction-execution controls, the preceding object has132 differences and
 the corrected configured object has0. Real target ftol2 executes; RNG0 and one
 checked-sequence record are explicit controls. Full numerical/gameplay
-closure remains unproven. All prior14/41 identical diagnostic owners survive;
-whole-root canonical comparison still fails+12E, metadata+3E18 and section
-tail16521. No exact credit. Four nested sequence tables now close all4069
+closure remains unproven. Action302 now restores the target zero-mode reset
+fallthrough; only that owner's diagnostic edit groups improve31 to29, with
+other owner reports unchanged. A new native entry-through-RET probe executes
+all five original dependencies without result hooks:0/5000 differences across
+the full7A4 actor prefix, MT state, calls/results, conversion inputs and stack.
+It visits3553/4069 target instructions under finite active-peer/sequence-state1
+controls, so other states and complete numerical/exception coverage remain
+open. All prior14/41 identical diagnostic owners survive; whole-root canonical
+comparison still fails+12E, metadata+3E18 and section tail16521. No exact credit. Four nested sequence tables now close all4069
 instructions/all15910 target bytes with no unresolved indirect exit. Direct
 Ghidra saves/readbacks the ECX/no-stack ABI,27 physical fields and six ordered
 boundary comments, preserving every target byte. Continue this major root's
-branch/store ownership and range/FP source recovery. See
+branch/store ownership and range/FP source recovery using the native oracle.
+Avoid more size-only reset spelling matrices. See
 [the source correction, complete CFG and execution controls](CPU_ORDERED_BOUNDARIES_2026_10_17.md).
 
 The shared Fighter action root `4740C0` remains a stable10219-byte checkpoint.

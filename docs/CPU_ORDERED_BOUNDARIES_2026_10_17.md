@@ -110,8 +110,9 @@ are not authored-byte credits. All previously identical diagnostic owners
 remain identical: **14/41** before and after.
 
 The whole 15,910-byte comparison remains nonexact at **+12E / 5F20AE**,
-target byte `F0`, candidate `07`. The corrected comparison-window SHA-256 is
-`beafd48300ee162e4583de8a8f00eaf2486e56dd9d4e673e1e18ac3338a12ba7`.
+target byte `F0`, candidate `07`. After the reset-flow follow-up below, the
+comparison-window SHA-256 is
+`86cdedf19aa004c5467f591791ded2ca88b9471284654cd2223b48f533dbcfc5`.
 Branch/store ownership, range lowering, floating lifetimes and original TU
 context remain open. The older 16,453-byte / `+3DD4` function-ledger prose
 predated the September predicate correction and did not describe the fresh
@@ -150,3 +151,88 @@ after Java exited; the temporary project was removed. Private
 recipes and hypotheses are under `.analysis/cpu-root-20261017/`; reports use
 `build/cpu-root-20261017-`. The shared Fighter root `4740C0` remains at its
 53/66 diagnostic checkpoint; this pass changes no common-action source.
+
+## Follow-up: reset flow and complete native execution
+
+The action-302 reset prefix now expresses zero mode as the first arm, then
+conditionally regenerates an empty policy counter in modes other than 3.
+This recovers the branch shape observed at target `5F240A`: `JNE`, a zero-word
+store and a jump to the counter reload. The preceding source emitted the
+opposite fallthrough layout.
+Calls, values and field widths are unchanged. Only the action-302 diagnostic
+difference report changes, from 31 edit groups to 29; all other owner reports
+are unchanged. Whole-root exactness remains unproved, with the same 14/41
+diagnostic owners, section length, metadata offset and first mismatch.
+
+The new command executes each sampled path through its actual native RET:
+
+```bash
+python3 scripts/audit-cpu-policy-paths.py build/match-units/GptWeb_DefaultCpuActionPolicy.obj
+```
+
+Unlike the bounded outer-phase control, this command executes all five original
+dependencies without replacing helper results. It runs the actual MT seed
+function and discards one real draw before preserving a seeded input state.
+Each case restores that state; eight seeds include 0, 1, 42, 5489 and FFFFFFFF.
+The original selector uses ratio division, not modulo, so native execution also
+preserves its real result distribution, registers and flags.
+
+The checked-sequence input is a native eight-slot pointer ring with head zero
+and one live 98-byte record. Actual `4399C0` bounds checks, pointer access and
+RET4 execute. Original atan2 and float-to-integer code execute as well. The
+emulator permits writes only to the actor, stack, MT array and MT index. A mapped
+return marker allows RET to execute; the command requires the expected PC,
+four-byte caller stack displacement and restored x87 TOP.
+
+The **5,000 controls** vary all outer action groups and all named policy
+destinations, opponent action, coordinates, velocities, facing, mode, resource,
+signed counter/timer boundaries and seed. They compare the entire 7A4-byte
+actor prefix, final MT state, call order/arguments and observed RNG/atan2
+results, x87 inputs to conversion, stack cleanup and control word. The actor
+prefix is an execution fixture, not a new complete class-size claim.
+
+Fresh configured-object execution has **0/5,000 differences**. Both target and
+candidate execute the following native helper entries; setup draws are excluded:
+
+| Helper | Calls in each execution set |
+| --- | ---: |
+| atan2_degrees | 136 |
+| mt19937_next_u32 | 10,167 |
+| selector_random_roll | 9,840 |
+| checked sequence | 270 |
+| ftol2_sse | 10,136 |
+
+The sampled paths visit **3,553 distinct target instruction addresses out of
+4,069**, and 3,508 candidate instruction addresses. This is sampled execution,
+not complete branch coverage or canonical byte credit. Coordinates are finite,
+the peer is active, sequence-state55A is 1, and exceptions remain masked with
+PC53. Inactive/other sequence states, all RNG streams, NaNs through the complete
+function and exception behavior remain outside this matrix. The existing
+16,600 outer-phase controls, including NaNs, still have zero differences after
+the reset change. The final native input-set SHA-256 is
+`2bd4b7c7883a74520652cf5d44007c08268a12768da2decf069c6fd91c9a37cf`;
+the report also pins Python, Unicorn, its loaded library and the configured
+object hashes.
+
+A separate complete-return negative control rebuilds the preceding CPU source
+from `9a38963`. The checked-in NaN fixture leaves target control6D0 at0, while
+that historical object writes2; the current object matches. This confirms the
+native oracle detects a known defect. Reproduce the current positive control
+without rerunning the matrix:
+
+```bash
+python3 scripts/audit-cpu-policy-paths.py build/match-units/GptWeb_DefaultCpuActionPolicy.obj --case-file tests/fixtures/cpu-native-nan.json
+```
+
+An explicit case file is a nonempty JSON array with the matrix's input fields;
+`self_x_bits` can supply a float's raw bit pattern instead of `self_x`.
+
+Additional private controls are not retained: making the real MT/selector
+definitions visible regresses to 11/41 owners; rewriting all five remaining
+nonzero-first reset prefixes displaces other physical suffixes; reorganizing
+the grounded/airborne source blocks, typed physical-field substitutions and
+float zero literals provide no identical-owner gain. No compiler flags,
+headers, TU partition or relocation contracts change. Direct Ghidra was
+re-attested/read back for this work; its target bytes and saved ABI/view remain
+unchanged. Reports for the retained checkpoint use
+`build/cpu-root-20261017-reset-`.

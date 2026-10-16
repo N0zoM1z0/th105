@@ -1,0 +1,21 @@
+[
+  {
+    "action": 322,
+    "sequence": 212,
+    "self_x_bits": "7fc00000",
+    "other_x": 500.0,
+    "self_y": 0.0,
+    "other_y": 0.0,
+    "vx": 0.0,
+    "vy": 0.0,
+    "other_action": 0,
+    "resource": 1000,
+    "mode": 1,
+    "facing": 1,
+    "counter": 100,
+    "policy": 1,
+    "timer": 10,
+    "refresh": 1,
+    "seed": 0
+  }
+]

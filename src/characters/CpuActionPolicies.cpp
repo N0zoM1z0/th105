@@ -259,14 +259,13 @@ else
 break;
 case 0x12E:
 v13 = *(_DWORD *)CPU_FIELD(384);
-if ( v13 )
-{
-if ( v13 != 3 && !*(_WORD *)CPU_FIELD(1892) )
-*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
-}
-else
+if ( !v13 )
 {
 *(_WORD *)CPU_FIELD(1892) = 0;
+}
+else if ( v13 != 3 && !*(_WORD *)CPU_FIELD(1892) )
+{
+*(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
 }
 v14 = *(_WORD *)CPU_FIELD(1892);
 if ( v14 < 0 )
