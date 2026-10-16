@@ -18749,7 +18749,7 @@ source = "src/platform/ApplicationThreadEntries.cpp"
 object = "build/match-units/CrossV106a_ApplicationThreadEntries.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Application bootstrap passes these two real WINAPI callbacks to CreateThread. Each complete28-byte entry checks CoInitialize, invokes its no-argument singleton worker only on success, calls CoUninitialize on that path and returns zero/RET4. Ordinary source matches both complete functions without synthetic storage or a private ABI facade. Existing imports and callback-pointer mappings are unchanged."
+notes = "Three native application callbacks: control/graphics28 bytes each and scene creation48 bytes. All check CoInitialize, run game-owned work only on success, call CoUninitialize and return zero/RET4. Scene creation dispatches manager+74 slot10 with requested state+B0 and publishes pending scene+80. All complete extents are canonical exact; existing imports and callback-pointer mappings remain unchanged."
 
 [[units.cross-v106a-application-thread-entries.functions]]
 address = "0x00408800"
@@ -18760,6 +18760,10 @@ rel32_targets = ["_application_control_worker=0x004081E0"]
 address = "0x00408820"
 symbol_base = "_bootstrap_graphics_thread@4"
 rel32_targets = ["_application_graphics_worker=0x004084F0"]
+
+[[units.cross-v106a-application-thread-entries.functions]]
+address = "0x00408840"
+symbol_base = "_bootstrap_scene_creation_thread@4"
 
 [units.cross-v106a-application-graphics-worker]
 kind = "probe"

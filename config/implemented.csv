@@ -1406,3 +1406,4 @@ Application_control_thread_entry
 Application_graphics_thread_entry
 Application_graphics_worker
 Application_control_worker
+Application_scene_creation_thread_entry

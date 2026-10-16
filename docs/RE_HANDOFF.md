@@ -13,8 +13,8 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,518 authored / 1,414 excluded / 1,091 in review**; **1,427 mapped**,
-  **1,408 source-present**, **1,325 exact / 224,174 exact bytes**, and
+  **1,519 authored / 1,414 excluded / 1,090 in review**; **1,428 mapped**,
+  **1,409 source-present**, **1,326 exact / 224,222 exact bytes**, and
   **504 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
@@ -32,7 +32,7 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Latest accepted exact unit: Application message loop
+## Accepted exact unit: Application message loop
 
 `Application_run_message_loop @ 0x00408120` is canonical **177/177** from
 `src/platform/ApplicationMessageLoop.cpp`, unit
@@ -46,7 +46,7 @@ attestation. See [the behavior and exact evidence](APPLICATION_MESSAGE_LOOP_2026
 Bootstrap and both singleton workers now have complete nonexact source;
 WinMain retains its separate four-byte frame residual.
 
-## Latest source checkpoint: WinMain
+## Source checkpoint: WinMain
 
 `WinMain @ 0x00665810` now has complete source in `src/platform/WinMain.cpp`,
 unit `cross-v106a-winmain`. Raw CFG closure covers201 instructions/all695 bytes
@@ -106,6 +106,10 @@ allowlists changed.
 
 The native control/graphics COM thread entries `408800`/`408820` are now
 canonical **28/28 each** from `src/platform/ApplicationThreadEntries.cpp`.
+The same unit now includes scene-creation callback `408840`, canonical
+**48/48**, which dispatches manager slot+10 using requested state+B0 and
+publishes pending scene+80. Both earlier entries were replayed from the changed
+object and remain exact.
 Their ordinary Win32 callback signatures reproduce both full callables and
 all import/worker relocations. No shared source or mapping changed. See
 [the ownership, ABI and exact evidence](APPLICATION_THREAD_ENTRIES_2026_10_16.md).
@@ -122,8 +126,11 @@ three controlfp_s calls query state, select upward rounding200/mask300 and
 reset default9001F; they do not select24-bit precision. Frame, stack cleanup,
 tail sharing and EH-state scheduling remain unresolved. See
 [the behavior, FP/EH facts and comparison](APPLICATION_CONTROL_WORKER_2026_10_16.md).
-No exact credit is added. Scene-creation callback `408840` and pending-scene
-commit `408080` are bounded next leads; the latter consumes no register receiver.
+No exact credit is added for the worker. Pending-scene commit `408080` and
+scene-disposal callback `408870` are bounded next leads; the commit helper
+consumes no register receiver. At its `4080DF` helper call, EAX holds the old
+scene pointer's address and the stack holds container address `7028A4`.
+Recover `4089C0` body/ABI/ownership before selecting a closed source context.
 
 ## Accepted exact unit: Sprite texture setup
 

@@ -190,7 +190,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00408780,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00408800,authored_game,platform,authored,observed,canonical-exact-authored
 0x00408820,authored_game,platform,authored,observed,canonical-exact-authored
-0x00408840,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00408840,authored_game,platform,authored,observed,canonical-exact-authored
 0x00408870,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00408990,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x004089C0,unknown,,review,unknown,ida-1.06a-initial-inventory
