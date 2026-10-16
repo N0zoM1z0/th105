@@ -105,22 +105,36 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
                 or not table["target_type_name"].endswith("@@")):
             raise ValueError("linked vtable must identify its own scalar deleting destructor and RTTI")
         names.add(symbol)
-    exports = set()
+    exports, symbols = set(), set()
     functions = unit.get("functions")
-    if not isinstance(functions, list) or not functions:
+    if not isinstance(functions, list) or not functions or any(not isinstance(f, dict) for f in functions):
         raise ValueError("linked unit needs function contracts")
     for function in functions:
         if not isinstance(function, dict):
             raise ValueError("invalid linked function contract")
-        export = function.get("export_name", function.get("symbol_base", ""))
-        if not isinstance(export, str) or not SYMBOL.fullmatch(export) or export in exports:
-            raise ValueError("invalid/duplicate linked export: " + str(export))
         symbol = function.get("symbol_base")
-        if not isinstance(symbol, str) or not SYMBOL.fullmatch(symbol):
+        if not isinstance(symbol, str) or not SYMBOL.fullmatch(symbol) or symbol in symbols:
             raise ValueError("linked function needs its exact map symbol")
+        symbols.add(symbol)
         if function.get("contiguous_span") or function.get("dir32_targets"):
             raise ValueError("linked profile does not support remote spans or DIR32 overrides")
-        exports.add(export)
+        if "private_from" in function:
+            witness = function["private_from"]
+            if ("export_name" in function or not isinstance(witness, dict)
+                    or set(witness) != {"caller", "site"}
+                    or any(not isinstance(value, str) or not re.fullmatch(r"0x[0-9A-Fa-f]{8}", value)
+                           for value in witness.values())):
+                raise ValueError("private linked function needs only an explicit caller/site witness")
+            callers = [f for f in functions if f.get("address") == witness["caller"]]
+            if len(callers) != 1 or callers[0] is function or "private_from" in callers[0]:
+                raise ValueError("private linked function needs a distinct configured exported caller")
+        else:
+            export = function.get("export_name", symbol)
+            if not isinstance(export, str) or not SYMBOL.fullmatch(export) or export in exports:
+                raise ValueError("invalid/duplicate linked export: " + str(export))
+            exports.add(export)
+    if not exports:
+        raise ValueError("linked unit needs an exported source root")
 
 
 def pinned_tools() -> tuple[Path, dict[str, str]]:
@@ -341,7 +355,8 @@ def build_linked(name: str, unit: dict) -> dict:
     link_command = ["wine", str(tools / "bin/link.exe"), "/nologo", "/DLL", "/NOENTRY", "/LTCG",
                     "/NODEFAULTLIB", "/OPT:NOICF", f"/BASE:0x{IMAGE_BASE:X}",
                     "/MAP:" + win(map_path), "/OUT:" + win(output)]
-    link_command.extend("/EXPORT:" + f.get("export_name", f["symbol_base"]) for f in unit["functions"])
+    link_command.extend("/EXPORT:" + f.get("export_name", f["symbol_base"])
+                        for f in unit["functions"] if "private_from" not in f)
     link_command.extend(win(p) for p in [*coff_objects, obj, data_obj, tools / "lib/msvcrt.lib", tools / "lib/msvcprt.lib"])
     # Each invocation is serial. /FORCE and unresolved references are forbidden.
     phases = [(f"coff{index}.compile", command) for index, command in enumerate(coff_commands)]
@@ -499,6 +514,67 @@ def resolve_linked_call(destination: int, pe, functions: dict, imports: dict, ta
     return sorted(mapped)[0]
 
 
+def source_function_start(function: dict, functions: dict, exports: dict, cil_owner: str) -> int:
+    symbol = function["symbol_base"]
+    found = [(address, owner) for address, aliases in functions.items()
+             for name, owner in aliases if name == symbol]
+    if len(found) != 1 or found[0][1].split()[-1:] != [cil_owner]:
+        raise ValueError("linked function is not uniquely owned by the configured source CIL object")
+    start = found[0][0]
+    if "private_from" in function:
+        if len(functions[start]) != 1 or start in exports.values():
+            raise ValueError("private linked function has an aliased or exported entry")
+    elif exports.get(function.get("export_name", symbol)) != start:
+        raise ValueError("linked export/map identity disagrees")
+    return start
+
+
+def linked_body(pe, functions: dict, start: int) -> bytes:
+    section = pe.get_section_by_rva(start - IMAGE_BASE)
+    if section is None or not section.Characteristics & 0x20000000 or section.Name.rstrip(b"\0") != b".text":
+        raise ValueError("linked function is outside executable .text")
+    section_end = IMAGE_BASE + section.VirtualAddress + section.Misc_VirtualSize
+    end = min([address for address in functions if start < address < section_end] + [section_end])
+    raw = pe.get_data(start - IMAGE_BASE, end - start)
+    if len(raw) != end - start:
+        raise ValueError("linked section is truncated")
+    return raw.rstrip(b"\xcc")  # Padding is outside the independently decoded RET boundary.
+
+
+def private_caller_witness(function: dict, unit: dict, pe, functions: dict, exports: dict,
+                           cil_owner: str, ledger: dict, read_target) -> dict:
+    contract = function["private_from"]
+    callers = [f for f in unit["functions"] if f["address"] == contract["caller"]]
+    if len(callers) != 1 or "private_from" in callers[0]:
+        raise ValueError("private linked witness has no configured exported caller")
+    caller = callers[0]
+    caller_row = ledger[contract["caller"]]
+    if caller_row["status"] not in {"implemented", "matching"} or caller_row["source_file"] != unit["source"]:
+        raise ValueError("private linked witness caller must have reviewed source in this TU")
+    start = source_function_start(function, functions, exports, cil_owner)
+    parent = source_function_start(caller, functions, exports, cil_owner)
+    source = linked_body(pe, functions, parent)
+    source_instructions = decode_closed_body(source, parent)
+    validate_body_relocations(pe, parent, len(source), [])
+    source_calls = [i.address for i in source_instructions
+                    if i.size == 5 and i.bytes[0] == 0xe8 and i.operands[0].imm == start]
+    target_parent, target_start = int(caller["address"], 0), int(function["address"], 0)
+    target = read_target(target_parent, int(caller_row["size"], 0))
+    target_calls = [i.address for i in decode_closed_body(target, target_parent)
+                    if i.size == 5 and i.bytes[0] == 0xe8 and i.operands[0].imm == target_start]
+    if len(source_calls) != 1 or target_calls != [int(contract["site"], 0)]:
+        raise ValueError("private linked function needs one exact direct call in both closed caller bodies")
+    mappings = [mapping for mapping in caller.get("rel32_targets", [])
+                if mapping.split("=", 1)[0] == function["symbol_base"]]
+    if len(mappings) != 1 or int(mappings[0].split("=", 1)[1], 0) != target_start:
+        raise ValueError("private linked caller must map its actual source callee to the target entry")
+    return {"caller": caller["address"], "target_site": contract["site"],
+            "source_caller_symbol": caller["symbol_base"], "source_caller_va": f"0x{parent:08X}",
+            "source_site": f"0x{source_calls[0]:08X}",
+            "source_caller_sha256": hashlib.sha256(source).hexdigest(),
+            "target_caller_sha256": hashlib.sha256(target).hexdigest()}
+
+
 def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | None = None) -> list[dict]:
     from workflow_manifest import repository_path, unit_input_digest
     c = comparator()
@@ -530,10 +606,10 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
     if not hasattr(pe, "DIRECTORY_ENTRY_EXPORT"):
         raise ValueError("linked image has no export directory")
     for entry in pe.DIRECTORY_ENTRY_EXPORT.symbols:
-        if entry.name:
-            if entry.forwarder or entry.name.decode("ascii") in exports:
-                raise ValueError("forwarded/duplicate linked exports are unsupported")
-            exports[entry.name.decode("ascii")] = IMAGE_BASE + entry.address
+        export = entry.name.decode("ascii") if entry.name else f"#{entry.ordinal}"
+        if entry.forwarder or export in exports:
+            raise ValueError("forwarded/duplicate linked exports are unsupported")
+        exports[export] = IMAGE_BASE + entry.address
     imports = {entry.address: (dll.dll.decode("ascii").lower(), entry.name.decode("ascii") if entry.name else None)
                for dll in getattr(pe, "DIRECTORY_ENTRY_IMPORT", []) for entry in dll.imports}
     with (ROOT / "config/functions.csv").open(newline="") as stream:
@@ -544,22 +620,12 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
     for function in unit["functions"]:
         if addresses and function["address"] not in addresses:
             continue
-        export = function.get("export_name", function["symbol_base"])
-        if export not in exports:
-            raise ValueError("linked export missing: " + export)
-        start = exports[export]
-        owner = [owner for symbol, owner in functions.get(start, []) if symbol == function["symbol_base"]]
-        if len(owner) != 1 or image.with_suffix(".ltcg.obj").name not in owner[0]:
-            raise ValueError("linked export is not owned by the configured source CIL object")
-        section = pe.get_section_by_rva(start - IMAGE_BASE)
-        if section is None or not section.Characteristics & 0x20000000 or section.Name.rstrip(b"\0") != b".text":
-            raise ValueError("linked export is outside executable .text")
-        section_end = IMAGE_BASE + section.VirtualAddress + section.Misc_VirtualSize
-        end = min([address for address in functions if start < address < section_end] + [section_end])
-        raw = pe.get_data(start - IMAGE_BASE, end - start)
-        if len(raw) != end - start:
-            raise ValueError("linked section is truncated")
-        raw = raw.rstrip(b"\xcc")  # Only linker INT3 padding outside a closed RET is removed.
+        cil_owner = image.with_suffix(".ltcg.obj").name
+        start = source_function_start(function, functions, exports, cil_owner)
+        raw = linked_body(pe, functions, start)
+        witness = (private_caller_witness(function, unit, pe, functions, exports,
+                                        cil_owner, ledger, c.target_bytes)
+                   if "private_from" in function else None)
         targets = dict(mapping.split("=", 1) for mapping in function.get("rel32_targets", []))
         targets = {symbol: int(address, 0) for symbol, address in targets.items()}
         if any(f"0x{destination:08X}" not in ledger for destination in targets.values()):
@@ -582,5 +648,6 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
             "linked_function_va": f"0x{start:08X}", "first_mismatch": mismatch, "failure": None,
             "target_executable_sha256": target_hash, "target_sha256": hashlib.sha256(target).hexdigest(),
             "object_compared_sha256": hashlib.sha256(code).hexdigest(), "replayed_rel32": calls,
-            "validated_data_references": data_refs, "validated_vtables": vtables})
+            "validated_data_references": data_refs, "validated_vtables": vtables,
+            "private_caller_witness": witness})
     return reports

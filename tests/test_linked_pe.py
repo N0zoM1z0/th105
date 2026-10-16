@@ -19,8 +19,8 @@ class VTablePe:
         self.OPTIONAL_HEADER = SimpleNamespace(ImageBase=base)
         self.data = bytearray(0x4000)
         self.sections = [SimpleNamespace(VirtualAddress=rva, Misc_VirtualSize=0x1000,
-            Characteristics=flags) for rva, flags in [(0x1000, 0x60000020),
-                (0x2000, 0x40000040), (0x3000, 0xc0000040)]]
+            Characteristics=flags, Name=name) for rva, flags, name in [(0x1000, 0x60000020, b".text"),
+                (0x2000, 0x40000040, b".rdata"), (0x3000, 0xc0000040, b".data")]]
 
     def get_section_by_rva(self, rva):
         return next((s for s in self.sections if s.VirtualAddress <= rva < s.VirtualAddress + s.Misc_VirtualSize), None)
@@ -42,6 +42,97 @@ class LinkedPeTests(unittest.TestCase):
     def binding(self, data="00000000"):
         return {"key": "app", "symbol": "_app", "address": 0x702820,
                 "addends": [0, 0x90], "data_hex": data}
+
+    def private_fixture(self):
+        root, child = self.start, self.start + 0x20
+        pe = VTablePe()
+        pe.data[0x1000:0x1030] = b"\xcc" * 0x30
+        pe.data[0x1000:0x1006] = b"\xe8" + struct.pack("<i", child - root - 5) + b"\xc3"
+        pe.data[0x1020:0x1023] = b"\xc2\x04\x00"
+        parent = {"address": "0x00401000", "symbol_base": "_root@4",
+                  "rel32_targets": ["_child@4=0x00402000"]}
+        function = {"address": "0x00402000", "symbol_base": "_child@4",
+                    "private_from": {"caller": "0x00401000", "site": "0x00401000"}}
+        unit = {"source": "src/owner.cpp", "functions": [parent, function]}
+        functions = {root: [("_root@4", "i root.ltcg.obj")],
+                     child: [("_child@4", "root.ltcg.obj")], root + 0x30: [("_next", "root.ltcg.obj")]}
+        target = b"\xe8" + struct.pack("<i", 0x402000 - 0x401000 - 5) + b"\xc3"
+        return {"function": function, "unit": unit, "pe": pe, "functions": functions,
+                "exports": {"_root@4": root}, "cil_owner": "root.ltcg.obj",
+                "ledger": {"0x00401000": {"size": "6", "status": "implemented",
+                                          "source_file": "src/owner.cpp"}},
+                "read_target": lambda address, size: target if (address, size) == (0x401000, 6) else b""}
+
+    def test_private_contract_requires_a_distinct_exported_source_root(self):
+        fixture = self.private_fixture()
+        unit = {**fixture["unit"], "profile": linked.PROFILE, "object": "build/test.dll",
+                "link_data_targets": ["_app=app"]}
+        linked.validate_contract(unit, {"app"})
+        changes = [lambda u: u["functions"][1].update(export_name="_child@4"),
+                   lambda u: u["functions"][1].update(private_from=True),
+                   lambda u: u["functions"][1]["private_from"].update(extra="waive"),
+                   lambda u: u["functions"][1]["private_from"].update(site="not_an_address"),
+                   lambda u: u["functions"][1]["private_from"].update(caller="0x00402000"),
+                   lambda u: u["functions"][1]["private_from"].update(caller="0x00403000"),
+                   lambda u: u["functions"][0].update(private_from={"caller": "0x00402000", "site": "0x00402000"}),
+                   lambda u: u["functions"][1].update(symbol_base="_root@4"),
+                   lambda u: u["functions"].append(None)]
+        for change in changes:
+            bad = copy.deepcopy(unit); change(bad)
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                linked.validate_contract(bad, {"app"})
+
+    def test_private_map_entry_requires_unique_cil_ownership_and_no_export_alias(self):
+        f = self.private_fixture()
+        def locate():
+            return linked.source_function_start(f["function"], f["functions"], f["exports"], f["cil_owner"])
+        self.assertEqual(locate(), self.start + 0x20)
+        for export in ["_alias", "#1"]:
+            f["exports"][export] = self.start + 0x20
+            with self.assertRaises(ValueError): locate()
+            f["exports"].pop(export)
+        for aliases in [[("_child@4", "other.obj")], [("_child@4", "fake_root.ltcg.obj")],
+                        [("_child@4", "root.ltcg.obj"), ("_alias", "root.ltcg.obj")], []]:
+            f["functions"][self.start + 0x20] = aliases
+            with self.subTest(aliases=aliases), self.assertRaises(ValueError): locate()
+        f["functions"][self.start + 0x20] = [("_child@4", "root.ltcg.obj")]
+        f["functions"][self.start + 0x10] = [("_child@4", "root.ltcg.obj")]
+        with self.assertRaises(ValueError): locate()
+
+    def test_private_witness_requires_unique_reachable_e8_edges_in_both_complete_bodies(self):
+        f = self.private_fixture()
+        witness = linked.private_caller_witness(**f)
+        self.assertEqual(witness["source_site"], f"0x{self.start:08X}")
+        self.assertEqual(witness["target_site"], "0x00401000")
+        f["function"]["private_from"]["site"] = "0x00401001"
+        with self.assertRaises(ValueError): linked.private_caller_witness(**f)
+        for raw in [b"\x90\xc3", b"\xc3\xe8" + struct.pack("<i", 0x1a) + b"\xc3",
+                    b"\xe8" + struct.pack("<i", 0x1b) + b"\xe8" + struct.pack("<i", 0x16) + b"\xc3",
+                    b"\xeb\x1e\xc3"]:
+            bad = self.private_fixture(); bad["pe"].data[0x1000:0x1020] = raw + b"\xcc" * (0x20 - len(raw))
+            with self.subTest(source=raw.hex()), self.assertRaises(ValueError):
+                linked.private_caller_witness(**bad)
+        for raw in [b"\x90\xc3", b"\xe8" + struct.pack("<i", 0x2000 - 5) + b"\xc3",
+                    b"\xe8" + struct.pack("<i", 0x1000 - 5) + b"\xe8" + struct.pack("<i", 0x1000 - 10) + b"\xc3"]:
+            bad = self.private_fixture(); bad["ledger"]["0x00401000"]["size"] = str(len(raw))
+            bad["read_target"] = lambda address, size, raw=raw: raw
+            with self.subTest(target=raw.hex()), self.assertRaises(ValueError):
+                linked.private_caller_witness(**bad)
+
+    def test_private_witness_does_not_accept_unreviewed_parents_bad_bindings_or_internal_relocations(self):
+        changes = [lambda f: f["ledger"]["0x00401000"].update(status="unclassified"),
+                   lambda f: f["ledger"]["0x00401000"].update(source_file="src/other.cpp"),
+                   lambda f: f["unit"]["functions"][0].update(rel32_targets=[]),
+                   lambda f: f["unit"]["functions"][0].update(rel32_targets=["_child@4=0x00403000"]),
+                   lambda f: f["functions"].update({self.start: [("_root@4", "other.obj")]}),
+                   lambda f: f["exports"].update({"_root@4": self.start + 1}),
+                   lambda f: setattr(f["pe"].sections[0], "Characteristics", 0x40000040),
+                   lambda f: setattr(f["pe"], "DIRECTORY_ENTRY_BASERELOC", [SimpleNamespace(entries=[
+                       SimpleNamespace(type=3, rva=0x1001)])])]
+        for change in changes:
+            bad = self.private_fixture(); change(bad)
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                linked.private_caller_witness(**bad)
 
     def test_rel32_replay_preserves_opcode_and_argument_cleanup(self):
         destination = self.start + 0x800

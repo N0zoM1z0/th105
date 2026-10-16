@@ -1437,3 +1437,4 @@ NetworkUdpPacketHandleManager_ctor,0x00413780,function
 NetworkUdpPacketHandleManager_dtor,0x00413820,function
 NetworkUdpPacketHandleManager_acquire,0x00417660,function
 NetworkWinsock_send_client,0x00416990,function
+CHandleManager_release_token,0x00405200,function

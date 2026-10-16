@@ -1,5 +1,12 @@
 # UDP client sender and real caller context
 
+The later [formal shared-release checkpoint](HANDLE_MANAGER_RELEASE_2026_10_16.md)
+accepts `405200` as167/167 through a strict source-owned private-entry contract.
+Its sender unit is now mixed COFF/LTCG: sender561/464 remains nonexact, while
+selecting the release verifies its actual exported caller even when that caller
+is not selected for matching. The ordinary465/464 and formerly unaccepted
+private controls below remain historical measurements.
+
 ## Observed target and complete boundary
 
 Only original Japanese TH10.5 v1.06a was inspected, SHA-256

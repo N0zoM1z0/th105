@@ -1415,3 +1415,4 @@ NetworkUdpPacketHandleManager_ctor
 NetworkUdpPacketHandleManager_dtor
 NetworkUdpPacketHandleManager_acquire
 NetworkWinsock_send_client
+CHandleManager_release_token

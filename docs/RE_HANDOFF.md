@@ -13,8 +13,8 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,527 authored / 1,415 excluded / 1,081 in review**; **1,438 mapped**,
-  **1,417 source-present**, **1,328 exact / 224,585 exact bytes**, and
+  **1,528 authored / 1,415 excluded / 1,080 in review**; **1,439 mapped**,
+  **1,418 source-present**, **1,329 exact / 224,752 exact bytes**, and
   **510 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
@@ -46,15 +46,24 @@ or dummy caller is added. Sender inlining still differs: native token push_back
 is out of line in the target, but561 bytes with retained-source/list context.
 See [the complete sender and context controls](NETWORK_WINSOCK_SEND_CLIENT_2026_10_16.md).
 
-The same retained-source mixed link gives a **167-byte private release
-diagnostic with every canonical byte equal** at `405200`, using the existing
-ordinary unsigned-list instantiation. It is **not accepted**: the helper has
-no independently configured comparison unit, and the linked backend currently
-requires an export while this is a genuine private EAX entry. Its origin row
-remains in review and receives no source/exact credit. Next, independently
-bound/classify that address and establish a strict source-owned private-function
-contract using its real exported caller; do not export or redeclare the helper
-to force a standard ABI. Preserve the current private drivers and reports.
+`CHandleManager_release_token @ 405200` is now canonical **167/167** in
+`cross-v106a-network-winsock-send-client`. Full raw CFG independently closes
+63 instructions; nine callers include two exact Title resource methods as well
+as the UDP sender. Shared game policy checks low16 slot/high16 generation,
+zeros matching generation and appends the free index under a manual lock;
+it does not destroy payload. The source remains an ordinary C++ member.
+The mixed link uses the existing ordinary unsigned-list instantiation and
+naturally generates the private EAX receiver/RET4. A narrow `private_from`
+contract verifies a unique source-owned, nonexported/nonaliased map entry,
+fully closed source/target caller bodies and their unique direct E8 edge
+(`416B01` in the original). Full callee CFG, calls, IATs and all167 bytes are
+compared. The sender remains561/464 nonexact; selecting the accepted helper
+still validates its real caller. See [the exact shared helper and contract](HANDLE_MANAGER_RELEASE_2026_10_16.md).
+
+The original TU and token-queue inlining remain unresolved. Continue with the
+server sender/remaining real UDP callers rather than adding fake callers or
+ABI facades. Replay only affected accepted units during iteration; this batch
+adds167 authored exact bytes without a fresh aggregate cold replay.
 
 ## UDP owner and packet-pool lifetime
 

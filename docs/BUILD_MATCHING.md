@@ -117,6 +117,14 @@ operand replay, with exact HIGHLOW relocation coverage. This is neither a
 blanket internal-address allowance nor an original-TU claim. Its constructor's
 EH surface remains unsupported. See [the bounded evidence](NETWORK_UDP_PACKET_POOL_2026_10_16.md).
 
+Shared handle-token release `405200` is167/167 from a normal member definition
+whose real sender caller lets LTCG generate the observed private EAX entry.
+The `private_from` contract checks its unique nonexported source map identity,
+complete source/target caller CFGs and sole E8 edge, then applies the same full
+callee comparison. Selecting this helper still verifies its nonexact caller;
+an export or artificial ABI declaration would destroy the evidence. See
+[the source and exact private-entry contract](HANDLE_MANAGER_RELEASE_2026_10_16.md).
+
 ### Main candidate spans can omit remote source-function chunks
 
 `functions.csv size/span_end` remains a provisional **main callable chunk** for

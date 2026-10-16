@@ -64,7 +64,7 @@ typedef char SendClientPoolOffset[offsetof(NetworkWinsockSendClientView, packet_
 typedef char SendClientEventOffset[offsetof(NetworkWinsockSendClientView, event_1e0)==0x1e0?1:-1];
 typedef char SendClientQueueLockOffset[offsetof(NetworkWinsockSendClientView, queue_lock_1e4)==0x1e4?1:-1];
 
-// Complete private-callee context for send_client; not an accepted unit yet.
+// Token recycling is shared by the manager's payload specializations.
 void NetworkUdpPacketHandleManager64::release(unsigned int packed_token)
 {
     const ResourceHandleToken &token =

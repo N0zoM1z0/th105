@@ -18,6 +18,12 @@ before the CIL input preserves the shared list helper ABI while LTCG retains
 the packet deque's private ESI helper. The source constructor remains nonexact;
 its linked EH surface is unsupported. See [the complete evidence](NETWORK_UDP_PACKET_POOL_2026_10_16.md).
 
+The third accepted example is shared handle-token release `405200`,167/167,
+in `cross-v106a-network-winsock-send-client`. Its genuine private EAX entry is
+generated from an ordinary member definition and its actual sender caller.
+Only the sender is exported; a typed caller contract independently attests
+the private entry. See [the full shared-release evidence](HANDLE_MANAGER_RELEASE_2026_10_16.md).
+
 ## Build and reference identity
 
 `config/tools.lock.toml` pins cl/c1xx/c2/link, both complete header trees and
@@ -50,7 +56,24 @@ it is never executed or presented as a standalone reconstructed application.
 ## Independent boundary and byte checks
 
 `scripts/linked_pe.py` verifies x86 PE32/DLL/NOENTRY identity and source-owned
-export/map agreement. The next linker function bounds the available span;
+export/map agreement. A function may instead declare
+`private_from = { caller = "0x00416990", site = "0x00416B01" }` when its real
+caller is another configured exported function in the same source TU. The
+private symbol must have exactly one CIL-owned map entry, without any function
+alias or export, including ordinal-only export aliases. Private chains,
+self-witnesses and simultaneous export declarations are rejected.
+
+Its caller must have reviewed implemented/matching source in that TU. Source
+and target caller bodies must both close through complete CFGs. Each must have
+exactly one ordinary E8 call to the respective private entry, and the target
+instruction must be the declared site. The caller's named callee mapping must
+agree. Internal base relocations in this first private-caller contract are
+unsupported. Caller source/target hashes and actual E8 sites join the result.
+The caller is an ownership witness, not an exact claim; selecting only the
+private function still repeats every caller check. No synthetic caller,
+resolver code or forced register declaration is added.
+
+The next linker function bounds each available span;
 only trailing linker INT3 padding outside a closed RET is removed. Full
 instruction decoding and CFG traversal must own every remaining byte, with no
 escaped branches, indirect jumps, traps, unaccounted tails or remote chunks.
@@ -85,14 +108,17 @@ image hashes, additional COFF inputs, typed vtable contracts, all
 tool/header/library pins and parser versions. Modified or
 stale artifacts are rejected before decoding. Both supported Capstone versions
 (CI4.0.2 and development5.0.6) pass the rejection tests and independently rebuild
-the same281-byte scene and98-byte pool examples. A build and comparison must use the same recorded
-parser version. pefile is pinned to2024.8.26.
+the same281-byte scene,98-byte pool and167-byte private release examples. A
+build and comparison must use the same recorded parser version. pefile is
+pinned to2024.8.26.
 
 ```bash
 python3 scripts/build.py --unit cross-v106a-application-scene-lifecycle --json
 python3 scripts/compare-linked-unit.py cross-v106a-application-scene-lifecycle --address 0x00408870 --json
 python3 scripts/build.py --unit cross-v106a-network-udp-packet-pool --json
 python3 scripts/compare-linked-unit.py cross-v106a-network-udp-packet-pool --address 0x00413820 --json
+python3 scripts/build.py --unit cross-v106a-network-winsock-send-client --json
+python3 scripts/compare-linked-unit.py cross-v106a-network-winsock-send-client --address 0x00405200 --json
 ```
 
 The normal `build.py --compare`, existing-artifact comparison and accepted-unit
@@ -107,5 +133,7 @@ escaped/indirect CFGs, unreachable/truncated tails, unowned internal literals,
 runtime DLL/ordinal/name mismatches, ambiguous map aliases, symbol-only binding
 objects and modified build artifacts. The mandatory local CI gate includes
 these tests, including typed vptr/RTTI identity, exact HIGHLOW coverage,
-rejected vtable binding bypasses and extra COFF artifact tampering. Actual
-compiler/linker comparisons remain target-dependent.
+rejected vtable binding bypasses and extra COFF artifact tampering. Private
+caller tests also reject missing/ambiguous/unreachable E8 edges, wrong source
+ownership, unreviewed parents, exported aliases and internal relocations.
+Actual compiler/linker comparisons remain target-dependent.
