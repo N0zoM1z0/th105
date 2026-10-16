@@ -5,6 +5,69 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 # but no old-version address is accepted as evidence here.
 
 [[rules]]
+id = "application-control-worker-authored-106a"
+addresses = ["0x004081E0"]
+expected_count = 1
+expected_bytes = 771
+expected_names = ["sub_4081E0"]
+origin = "authored_game"
+subsystem = "platform"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact native callback408800 calls this no-argument singleton702820 worker at40880C. Game-owned FPS/input/scene/thread/presentation policy, exact poll/wait-thread/present callees and existing audio-listener source establish authored ownership independently of the nonexact compiler result. Normal CFG755 plus table-owned int-catch16 close771 bytes; full body, EH tables, callback/data literals and rounding-control constants are replayed. Natural787/771 source remains nonexact; no fake ABI or inferred nothrow declaration. See docs/APPLICATION_CONTROL_WORKER_2026_10_16.md."
+required_body_hashes = [{ address = "0x004081E0", size = 771, sha256 = "2605408e36e40aead462ff799627921a8943b3c1f68bfd59dbcc35e695e35010" }]
+required_direct_edges = [{ caller = "0x00408800", site = "0x0040880C", target = "0x004081E0", caller_status = "matching" }]
+required_selected_body_calls = [
+  { owner = "0x004081E0", site = "0x004082D4", target = "0x0040D6D0", target_status = "matching" },
+  { owner = "0x004081E0", site = "0x0040839D", target = "0x00414640", target_status = "matching" },
+  { owner = "0x004081E0", site = "0x00408452", target = "0x00401060", target_status = "matching" },
+  { owner = "0x004081E0", site = "0x0040821C", target = "0x00419350", target_status = "implemented" },
+  { owner = "0x004081E0", site = "0x00408466", target = "0x004194D0", target_status = "implemented" },
+  { owner = "0x004081E0", site = "0x004084C2", target = "0x00419400", target_status = "implemented" },
+]
+required_dword_values = [
+  { address = "0x004081E6", value = "0x006BE3E0" },
+  { address = "0x00408212", value = "0x00702820" },
+  { address = "0x0040823B", value = "0x00000300" },
+  { address = "0x00408246", value = "0x00000200" },
+  { address = "0x004084AE", value = "0x0009001F" },
+  { address = "0x004082A5", value = "0x006D69D6" },
+  { address = "0x004082B0", value = "0x006D69D8" },
+  { address = "0x004082DA", value = "0x00702A30" },
+  { address = "0x004082E5", value = "0x00702A48" },
+  { address = "0x004082EA", value = "0x00000100" },
+  { address = "0x00408319", value = "0x00702A34" },
+  { address = "0x00408327", value = "0x00702B6C" },
+  { address = "0x004083A9", value = "0x00408840" },
+  { address = "0x004083D9", value = "0x006FA246" },
+  { address = "0x004083EB", value = "0x007036A4" },
+  { address = "0x006BE3FF", value = "0x006E4C24" },
+  { address = "0x006E4BF0", value = "0xFFFFFFFF" },
+  { address = "0x006E4BF4", value = "0x00000000" },
+  { address = "0x006E4BF8", value = "0xFFFFFFFF" },
+  { address = "0x006E4BFC", value = "0x00000000" },
+  { address = "0x006E4C00", value = "0x00000000" },
+  { address = "0x006E4C04", value = "0x006FA40C" },
+  { address = "0x006E4C08", value = "0x00000000" },
+  { address = "0x006E4C0C", value = "0x00408495" },
+  { address = "0x006E4C10", value = "0x00000000" },
+  { address = "0x006E4C14", value = "0x00000000" },
+  { address = "0x006E4C18", value = "0x00000001" },
+  { address = "0x006E4C1C", value = "0x00000001" },
+  { address = "0x006E4C20", value = "0x006E4C00" },
+  { address = "0x006E4C24", value = "0x19930522" },
+  { address = "0x006E4C28", value = "0x00000002" },
+  { address = "0x006E4C2C", value = "0x006E4BF0" },
+  { address = "0x006E4C30", value = "0x00000001" },
+  { address = "0x006E4C34", value = "0x006E4C10" },
+  { address = "0x006E4C38", value = "0x00000000" },
+  { address = "0x006E4C3C", value = "0x00000000" },
+  { address = "0x006E4C40", value = "0x00000000" },
+  { address = "0x006E4C44", value = "0x00000001" },
+  { address = "0x006FA414", value = "0x0000482E" },
+]
+
+[[rules]]
 id = "application-graphics-worker-authored-106a"
 addresses = ["0x004084F0"]
 expected_count = 1

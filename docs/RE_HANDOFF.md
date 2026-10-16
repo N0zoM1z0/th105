@@ -13,9 +13,9 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,517 authored / 1,414 excluded / 1,092 in review**; **1,426 mapped**,
-  **1,407 source-present**, **1,325 exact / 224,174 exact bytes**, and
-  **503 match units**. These are ledger/status totals, not a fresh aggregate
+  **1,518 authored / 1,414 excluded / 1,091 in review**; **1,427 mapped**,
+  **1,408 source-present**, **1,325 exact / 224,174 exact bytes**, and
+  **504 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
   present, and only `matches.csv` plus a reproducible canonical 100% unit
@@ -43,8 +43,8 @@ first source probe. All eleven relocation fields replay. Four new imports and
 a dedicated HRESULT+1A4 mapping preserve existing backend permissions and shared
 contracts. Ghidra metadata was saved/read back after independent target
 attestation. See [the behavior and exact evidence](APPLICATION_MESSAGE_LOOP_2026_10_16.md).
-Next application lead is bootstrap `407DA0`; WinMain remains source-present
-with its separate four-byte frame residual.
+Bootstrap and both singleton workers now have complete nonexact source;
+WinMain retains its separate four-byte frame residual.
 
 ## Latest source checkpoint: WinMain
 
@@ -59,7 +59,7 @@ unknown; no extra buffer bytes, fake local or alignment are added. RTM697 does
 not resolve the frame difference. Direct Ghidra metadata was saved and read
 back. This is source-present only, without exact credit. See
 [the full behavior and bounded residual](WINMAIN_2026_10_16.md).
-The message loop is now exact; bootstrap `407DA0` remains unimplemented.
+The message loop is exact; bootstrap `407DA0` is source-present/nonexact.
 
 ## Accepted exact unit: Application shutdown
 
@@ -72,8 +72,7 @@ locking, virtual scene deletion, CSceneManager/CFade callback shutdown/free,
 and IME/subsystem teardown. Existing shared contracts and mappings did not
 change. Direct Ghidra metadata was saved and read back after target attestation.
 See [the ownership, layout and full comparison](APPLICATION_SHUTDOWN_2026_10_16.md).
-The same chain's WinMain is now source-present/nonexact; bootstrap `407DA0`
-(472 bytes) remains unimplemented.
+The same chain's WinMain and bootstrap `407DA0` are source-present/nonexact.
 
 ## Accepted exact unit: Application startup options
 
@@ -116,8 +115,15 @@ plus table-referenced catch(int)/continuation18 close the entire callable;
 the option branch reads startup flag at application+2D. Twenty differing bytes
 remain in EH state-write ordering and two register choices. No exact credit
 is added. See [the exception, layout and focused comparison evidence](APPLICATION_GRAPHICS_WORKER_2026_10_16.md).
-The 771-byte control worker `4081E0` remains a bounded next lead; its matching
-callback does not grant worker source-present or exact credit.
+The control worker `4081E0` now has complete source in
+`src/platform/ApplicationControlWorker.cpp`, **787/771 nonexact**. Normal
+CFG755 plus table-owned int-catch16 close the full771-byte callable. Its
+three controlfp_s calls query state, select upward rounding200/mask300 and
+reset default9001F; they do not select24-bit precision. Frame, stack cleanup,
+tail sharing and EH-state scheduling remain unresolved. See
+[the behavior, FP/EH facts and comparison](APPLICATION_CONTROL_WORKER_2026_10_16.md).
+No exact credit is added. Scene-creation callback `408840` and pending-scene
+commit `408080` are bounded next leads; the latter consumes no register receiver.
 
 ## Accepted exact unit: Sprite texture setup
 

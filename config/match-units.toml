@@ -18774,3 +18774,31 @@ address = "0x004084F0"
 symbol_base = "_application_graphics_worker"
 rel32_targets = ["?present_d3d_frame@th105@@YA_NXZ=0x00401060"]
 dir32_targets = ["?g_render_mode_manager@th105@@3URenderModeManager@1@A+0x2A=g_render_mode_manager_reset_flag"]
+
+[units.cross-v106a-application-control-worker]
+kind = "probe"
+source = "src/platform/ApplicationControlWorker.cpp"
+object = "build/match-units/CrossV106a_ApplicationControlWorker.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete singleton control loop from exact callback408800. Normal CFG755 plus table-referenced16-byte catch(int) close771 bytes. Preserves scheduler-event pacing, explicit upward rounding/default reset, input polling, FPS publication, scene/fade updates and asynchronous presentation. Natural candidate787/771 remains nonexact on biased frame, stack cleanup, branch-tail and EH-state scheduling. No buffer inflation, ABI facade or forced nothrow contract."
+
+[[units.cross-v106a-application-control-worker.functions]]
+address = "0x004081E0"
+symbol_base = "_application_control_worker"
+rel32_targets = [
+  "?create_audio_scheduler_listener_event@th105@@YAPAXXZ=0x00419350",
+  "?wait_audio_scheduler_listener_event@th105@@YGHPAX@Z=0x004194D0",
+  "?remove_audio_scheduler_listener_event@th105@@YGHPAX@Z=0x00419400",
+  "__controlfp_s=0x0068BCB9",
+  "?poll_direct_input_gamepads@th105@@YAXXZ=0x0040D6D0",
+  "?wait_for_exit@ControlThread8@th105@@QAEXXZ=0x00414640",
+  "_application_commit_pending_scene=0x00408080",
+  "?present_d3d_frame@th105@@YA_NXZ=0x00401060",
+  "_memset=0x0068A440",
+  "__security_check_cookie=0x00689D25",
+]
+dir32_targets = [
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A+0x2A=g_render_mode_manager_reset_flag",
+  "?g_direct_input_backend@th105@@3UDirectInputBackend@1@A=application_control_input_base",
+]
