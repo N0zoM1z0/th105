@@ -631,8 +631,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0041D5A0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041D5E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041D720,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0041D7B0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0041D7C0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0041D7B0,authored_game,network,authored,observed,canonical-exact-authored
+0x0041D7C0,authored_game,network,authored,observed,network-winsock-receive-loop-authored-106a
 0x0041DD90,compiler_generated,runtime,exclude,inferred,rtti-inline-scalar-deleting-destructors-106a
 0x0041DDB0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041DDC0,unknown,,review,unknown,ida-1.06a-initial-inventory

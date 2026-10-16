@@ -5,6 +5,38 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 # but no old-version address is accepted as evidence here.
 
 [[rules]]
+id = "network-winsock-receive-loop-authored-106a"
+addresses = ["0x0041D7C0"]
+expected_count = 1
+expected_bytes = 1424
+expected_names = ["sub_41D7C0"]
+origin = "authored_game"
+subsystem = "network"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact native receive-thread callback41D7B0 calls this ECX-owner/no-argument UDP loop at41D7B4; initializer412E10 supplies that entry to CreateThread at412F7F and owns worker+64. Full1424-byte body hash plus independently attested14-entry opcode table close364 instructions. Game-owned peer discovery, packet-specific length/port policy, callback slots and lock/EH scopes establish authored origin. The loop is identified/declaration-only; only its14-byte entry is source-present/exact. Original private protocol helper context remains open. docs/NETWORK_WINSOCK_RECEIVE_2026_10_16.md."
+required_body_hashes = [{ address = "0x0041D7C0", size = 1424, sha256 = "11a2105c52c0611564483f615280639f7c050bd22086e473474c83ba64410912" }]
+required_direct_edges = [{ caller = "0x0041D7B0", site = "0x0041D7B4", target = "0x0041D7C0", caller_status = "matching" }]
+required_dword_values = [
+  { address = "0x00412F80", value = "0x0041D7B0" },
+  { address = "0x0041D870", value = "0x0041DD50" },
+  { address = "0x0041DD50", value = "0x0041D93B" },
+  { address = "0x0041DD54", value = "0x0041DA0E" },
+  { address = "0x0041DD58", value = "0x0041DA40" },
+  { address = "0x0041DD5C", value = "0x0041D874" },
+  { address = "0x0041DD60", value = "0x0041DA82" },
+  { address = "0x0041DD64", value = "0x0041DAA8" },
+  { address = "0x0041DD68", value = "0x0041DACD" },
+  { address = "0x0041DD6C", value = "0x0041DAF4" },
+  { address = "0x0041DD70", value = "0x0041DD22" },
+  { address = "0x0041DD74", value = "0x0041DD22" },
+  { address = "0x0041DD78", value = "0x0041DB0C" },
+  { address = "0x0041DD7C", value = "0x0041DD22" },
+  { address = "0x0041DD80", value = "0x0041DBE0" },
+  { address = "0x0041DD84", value = "0x0041DC6C" },
+]
+
+[[rules]]
 id = "application-scene-handoff-authored-106a"
 addresses = ["0x00408080"]
 expected_count = 1

@@ -18845,3 +18845,16 @@ address = "0x00408870"
 symbol_base = "_bootstrap_scene_thread@4"
 export_name = "_bootstrap_scene_thread@4"
 rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "??3@YAXPAX@Z=0x006898EA"]
+
+[units.cross-v106a-network-winsock-receive-thread]
+kind = "probe"
+source = "src/network/NetworkWinsockReceiveThread.cpp"
+object = "build/match-units/CrossV106a_NetworkWinsockReceiveThread.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Native Win32 receive-thread entry supplied to CreateThread at412F7F with the Winsock owner and its+64 thread handle. Plain C++ forwards the pointer in ECX to the independently bounded UDP receive loop, returns zero and pops the single thread parameter. The1424-byte protocol loop is identified/declaration-only; its private protocol helpers require closed source recovery."
+
+[[units.cross-v106a-network-winsock-receive-thread.functions]]
+address = "0x0041D7B0"
+symbol_base = "_network_winsock_receive_thread@4"
+rel32_targets = ["?receive_loop@NetworkWinsockReceiveView@th105@@QAEXXZ=0x0041D7C0"]

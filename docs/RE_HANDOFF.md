@@ -13,9 +13,9 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,521 authored / 1,414 excluded / 1,088 in review**; **1,430 mapped**,
-  **1,411 source-present**, **1,327 exact / 224,503 exact bytes**, and
-  **505 match units**. These are ledger/status totals, not a fresh aggregate
+  **1,523 authored / 1,414 excluded / 1,086 in review**; **1,432 mapped**,
+  **1,412 source-present**, **1,328 exact / 224,517 exact bytes**, and
+  **506 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
   present, and only `matches.csv` plus a reproducible canonical 100% unit
@@ -31,6 +31,21 @@ are historical.
 Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
+
+## Winsock receive-thread boundary
+
+`NetworkWinsock_receive_thread_entry @ 41D7B0` is canonical **14/14** in
+`cross-v106a-network-winsock-receive-thread`. Native CreateThread registration
+at412F7F passes the Winsock owner and stores worker+64/+68; ordinary C++ forwards
+the pointer in ECX, calls the loop, returns zero and pops the parameter.
+`NetworkWinsock_receive_loop @ 41D7C0` is **identified/declaration-only**:
+364 instructions/all1424 main bytes close after resolving its14-entry table
+at41DD50. The56 table bytes and four11-byte EH cleanup chunks are separately
+recorded. Packet length gates, sender/peer lookup, callback slots and three
+lock scopes are observed. Original private register helper context, concrete
+peer types and frame ownership remain open; recover a closed source unit
+before implementing the loop. See
+[the opcode map, ABI and exact entry evidence](NETWORK_WINSOCK_RECEIVE_2026_10_16.md).
 
 ## Accepted exact unit: Application message loop
 
