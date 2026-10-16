@@ -13,9 +13,9 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,525 authored / 1,414 excluded / 1,084 in review**; **1,434 mapped**,
-  **1,414 source-present**, **1,328 exact / 224,517 exact bytes**, and
-  **507 match units**. These are ledger/status totals, not a fresh aggregate
+  **1,526 authored / 1,415 excluded / 1,082 in review**; **1,436 mapped**,
+  **1,415 source-present**, **1,328 exact / 224,585 exact bytes**, and
+  **508 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
   present, and only `matches.csv` plus a reproducible canonical 100% unit
@@ -31,6 +31,37 @@ are historical.
 Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
+
+## UDP owner and packet-pool lifetime
+
+`NetworkUdpPacketHandleManager_dtor @ 413820` is canonical **98/98** in
+`cross-v106a-network-udp-packet-pool`. RTTI identifies
+`CHandleManager<NET_PACKET_UDP_BUFFER>`; packet allocation and native members
+establish the real0x64-byte layout. Ordinary C++ member destruction matches
+after a resolved mixed COFF/LTCG link: an ordinary VC8 `std::list<unsigned int>`
+instantiation preserves its normal helper ABI, while the packet deque retains
+the target's private ESI helper. Typed primary-vtable replay checks source and
+target RTTI/entry identity plus exact HIGHLOW fields. Compiler-library source
+and generated wrappers receive no authored credit. The original TU remains
+unknown. See [the source, ownership and strict evidence](NETWORK_UDP_PACKET_POOL_2026_10_16.md).
+
+The same source's constructor `413780` remains nonexact: the target has a
+private stack receiver/RET4, while source keeps an ordinary C++ constructor.
+Its linked EH surface is still unsupported. The owner is original `CNetworkUDP`,
+source view `NetworkWinsockState314CtorView`: corrected native peer multimap+FC,
+real packet manager+17C and separate owner event+1E0 give **354/357 ctor** and
+**398/333 dtor**, both nonexact. The second tree+15C still lacks a concrete type.
+Continue from native container/lifecycle context; do not invent private ABI
+facades. Ghidra types, full extents and parameter storage were saved and read
+back after independent target attestation.
+
+Fresh native source also proves that owner scalar deleting wrapper `412C80`
+is compiler-generated. Its canonical30/30 remains a configured witness, but
+its former authored match/source credit is removed. Packet-pool wrapper
+`4138B0` also reproduces30/30 and retains its prior compiler exclusion.
+This batch adds98 authored exact bytes and removes30 compiler bytes: net68.
+Revalidate only affected units during iteration; aggregate exact totals still
+require a separate cold `--all` replay.
 
 ## Winsock receive-thread boundary
 

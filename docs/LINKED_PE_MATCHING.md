@@ -11,6 +11,13 @@ The first accepted example is scene retirement `408870`,281/281, in
 bytes; LTCG naturally emits the target's eight-byte-aligned dual-EBP frame.
 The same source's scene-handoff producer remains189/148 nonexact.
 
+The second accepted example is packet-handle manager destruction `413820`,
+98/98, in `cross-v106a-network-udp-packet-pool`. Its ordinary COFF form is97
+bytes. A genuine ordinary COFF `std::list<unsigned int>` instantiation linked
+before the CIL input preserves the shared list helper ABI while LTCG retains
+the packet deque's private ESI helper. The source constructor remains nonexact;
+its linked EH surface is unsupported. See [the complete evidence](NETWORK_UDP_PACKET_POOL_2026_10_16.md).
+
 ## Build and reference identity
 
 `config/tools.lock.toml` pins cl/c1xx/c2/link, both complete header trees and
@@ -21,6 +28,12 @@ callee implementation, assembly, source byte array or forced return is used.
 The compiler still uses the stated MT source profile. The import libraries
 serve as link resolvers for external runtime calls, whose original static-game
 destinations are separately attested and replayed by name.
+
+Optional `linked_coff_sources` accepts only distinct existing C++ files below
+`src/library/`. They compile serially with the same flags except `/GL`, and
+link before the source CIL object. The input digest, source/object hashes and
+commands are recorded in provenance. They supply real compiler-library
+instantiations, without authored credit or a claim about original TU partition.
 
 Unit `link_data_targets` explicitly binds only existing game data and named
 Win32 IAT cells. A generated COFF file contains an absolute external symbol
@@ -49,20 +62,37 @@ MSVCR80/MSVCP80 import thunk and an explicit target-callee mapping. Only its
 REL32 displacement is replayed, without masking bytes. Internal CFG encodings
 remain untouched. Every absolute memory reference and game-address immediate
 must use an attested data binding/addend; reads/writes cannot exceed its attested
-width. Internal image addresses, base relocations, floating-literal pointers
-and other unsupported surfaces fail closed until a specific typed contract
-exists. The current path does not support EH chunks or indirect jump tables.
+width. One narrow internal-address contract supports native primary vtables:
+`link_vtables` fixes source symbol, target allowlist key, source scalar deleting
+destructor/target entry and original RTTI type name. The source table and entry
+must be uniquely owned by the CIL object, with read-only table/COL data,
+matching class RTTI, an executable entry and no extra executable function slot.
+The original PE independently attests its exact four-byte allowlist prefix,
+zero addend, primary VC8 COL, RTTI spelling and executable candidate entry.
+
+Only `MOV dword ptr [base+disp], imm32` of that source-owned vtable is replayed,
+replacing the entire immediate with the attested target address. The source
+instruction must have exactly one matching HIGHLOW relocation; all other,
+overlapping or duplicate base relocations fail. Pushes, register loads,
+indexed stores and hardcoded game-vtable addresses fail. Flat absolute data
+bindings cannot impersonate a native vtable. This contract currently supports
+plain source classes with a single scalar deleting destructor slot, not
+general vtables or source class templates. Other internal image addresses,
+floating-literal pointers, EH chunks and indirect jump tables remain unsupported.
 
 The sidecar records source/input digest, CIL object, binding object, map and
-image hashes, all tool/header/library pins and parser versions. Modified or
+image hashes, additional COFF inputs, typed vtable contracts, all
+tool/header/library pins and parser versions. Modified or
 stale artifacts are rejected before decoding. Both supported Capstone versions
 (CI4.0.2 and development5.0.6) pass the rejection tests and independently rebuild
-the same281-byte example. A build and comparison must use the same recorded
+the same281-byte scene and98-byte pool examples. A build and comparison must use the same recorded
 parser version. pefile is pinned to2024.8.26.
 
 ```bash
 python3 scripts/build.py --unit cross-v106a-application-scene-lifecycle --json
 python3 scripts/compare-linked-unit.py cross-v106a-application-scene-lifecycle --address 0x00408870 --json
+python3 scripts/build.py --unit cross-v106a-network-udp-packet-pool --json
+python3 scripts/compare-linked-unit.py cross-v106a-network-udp-packet-pool --address 0x00413820 --json
 ```
 
 The normal `build.py --compare`, existing-artifact comparison and accepted-unit
@@ -76,4 +106,6 @@ the canonical CLI rather than a COFF-only object viewer.
 escaped/indirect CFGs, unreachable/truncated tails, unowned internal literals,
 runtime DLL/ordinal/name mismatches, ambiguous map aliases, symbol-only binding
 objects and modified build artifacts. The mandatory local CI gate includes
-these tests; actual compiler/linker comparisons remain target-dependent.
+these tests, including typed vptr/RTTI identity, exact HIGHLOW coverage,
+rejected vtable binding bypasses and extra COFF artifact tampering. Actual
+compiler/linker comparisons remain target-dependent.

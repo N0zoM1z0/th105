@@ -1433,3 +1433,5 @@ NetworkWinsock_receive_thread_entry,0x0041D7B0,function
 NetworkWinsock_receive_loop,0x0041D7C0,function
 NetworkWinsock_find_peer,0x00412A60,function
 NetworkWinsock_remove_peer,0x00413170,function
+NetworkUdpPacketHandleManager_ctor,0x00413780,function
+NetworkUdpPacketHandleManager_dtor,0x00413820,function

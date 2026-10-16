@@ -13,6 +13,22 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 import linked_pe as linked
 
 
+class VTablePe:
+    """Small PE memory model with separate code, read-only and writable data."""
+    def __init__(self, base=linked.IMAGE_BASE):
+        self.OPTIONAL_HEADER = SimpleNamespace(ImageBase=base)
+        self.data = bytearray(0x4000)
+        self.sections = [SimpleNamespace(VirtualAddress=rva, Misc_VirtualSize=0x1000,
+            Characteristics=flags) for rva, flags in [(0x1000, 0x60000020),
+                (0x2000, 0x40000040), (0x3000, 0xc0000040)]]
+
+    def get_section_by_rva(self, rva):
+        return next((s for s in self.sections if s.VirtualAddress <= rva < s.VirtualAddress + s.Misc_VirtualSize), None)
+
+    def get_data(self, rva, size):
+        return bytes(self.data[rva:rva + size])
+
+
 class LinkedPeTests(unittest.TestCase):
     start = linked.IMAGE_BASE + 0x1000
     target = 0x401000
@@ -57,6 +73,88 @@ class LinkedPeTests(unittest.TestCase):
     def test_internal_literal_addresses_are_never_waived(self):
         with self.assertRaisesRegex(ValueError, "internal linked address"):
             self.canonical(b"\x68" + struct.pack("<I", self.start + 0x100) + b"\xc3")
+
+    def test_native_vptr_replay_requires_a_member_store_and_preserves_every_other_byte(self):
+        source, target = linked.IMAGE_BASE + 0x2010, 0x6d6c64
+        table = {"source_address": source, "target_address": target,
+                 "symbol": "??_7Pool@@6B@", "target_key": "pool"}
+        code = b"\xc7\x46\x48" + struct.pack("<I", source) + b"\xc3"
+        canonical, calls, refs = linked.canonicalize(code, self.start, self.target, [], None,
+            self.image, self.game, [table])
+        self.assertEqual(canonical, code[:3] + struct.pack("<I", target) + code[7:])
+        self.assertEqual(calls, [])
+        self.assertEqual(refs[0]["field_offset"], 3)
+        self.assertEqual(refs[0]["kind"], "vptr")
+        for bad in [b"\x68" + struct.pack("<I", source) + b"\xc3",
+                    b"\xb8" + struct.pack("<I", source) + b"\xc3",
+                    b"\xc7\x06" + struct.pack("<I", target) + b"\xc3"]:
+            with self.subTest(code=bad.hex()), self.assertRaises(ValueError):
+                linked.canonicalize(bad, self.start, self.target, [], None, self.image, self.game, [table])
+
+    def test_vptr_fields_need_exact_highlow_coverage_without_extra_relocations(self):
+        refs = [{"kind": "vptr", "field_offset": 3}]
+        pe = SimpleNamespace(OPTIONAL_HEADER=SimpleNamespace(ImageBase=linked.IMAGE_BASE))
+        def relocations(entries):
+            pe.DIRECTORY_ENTRY_BASERELOC = [SimpleNamespace(entries=[
+                SimpleNamespace(rva=self.start - linked.IMAGE_BASE + off, type=kind)
+                for off, kind in entries])]
+        relocations([(3, 3)])
+        linked.validate_body_relocations(pe, self.start, 8, refs)
+        for entries in [[], [(3, 1)], [(4, 3)], [(3, 3), (3, 3)], [(3, 3), (7, 3)]]:
+            relocations(entries)
+            with self.subTest(entries=entries), self.assertRaises(ValueError):
+                linked.validate_body_relocations(pe, self.start, 8, refs)
+        relocations([])
+        linked.validate_body_relocations(pe, self.start, 8, [])
+
+    def test_native_vtable_owner_rtti_slot_and_readonly_storage_are_independent(self):
+        pe = VTablePe()
+        vt, col, descriptor, entry = [linked.IMAGE_BASE + v for v in (0x2010, 0x2040, 0x3020, 0x1010)]
+        symbol, destructor = "??_7Pool@game@@6B@", "??_GPool@game@@UAEPAXI@Z"
+        struct.pack_into("<II", pe.data, 0x200c, col, entry)
+        struct.pack_into("<5I", pe.data, 0x2040, 0, 0, 0, descriptor, col + 20)
+        name = b".?AVPool@game@@\0"
+        pe.data[0x3028:0x3028 + len(name)] = name
+        symbols = {symbol: [(vt, "Pool.ltcg.obj")]}
+        functions = {entry: [(destructor, "i Pool.ltcg.obj")]}
+        tables = [{"symbol": symbol, "entry_symbol": destructor,
+                   "target_address": 0x6d6c64, "target_key": "pool"}]
+        self.assertEqual(linked.source_vtables(pe, symbols, functions, tables, "Pool.ltcg.obj")[0]["source_address"], vt)
+        bad_models = []
+        bad = copy.deepcopy(pe); bad.sections[1].Characteristics |= 0x80000000; bad_models.append(bad)
+        bad = copy.deepcopy(pe); struct.pack_into("<I", bad.data, 0x2044, 4); bad_models.append(bad)
+        bad = copy.deepcopy(pe); bad.data[0x302c] = ord("X"); bad_models.append(bad)
+        bad = copy.deepcopy(pe); struct.pack_into("<I", bad.data, 0x2014, entry); bad_models.append(bad)
+        bad = copy.deepcopy(pe); struct.pack_into("<I", bad.data, 0x2010, entry + 4); bad_models.append(bad)
+        for bad in bad_models:
+            with self.assertRaises(ValueError):
+                linked.source_vtables(bad, symbols, functions, tables, "Pool.ltcg.obj")
+        for bad_symbols, bad_functions in [({symbol: [(vt, "Other.obj")]}, functions),
+                ({symbol: [(vt, "Pool.ltcg.obj"), (vt, "Pool.ltcg.obj")]}, functions),
+                (symbols, {entry: [(destructor, "Other.obj")]})]:
+            with self.assertRaises(ValueError):
+                linked.source_vtables(pe, bad_symbols, bad_functions, tables, "Pool.ltcg.obj")
+
+    def test_target_vtable_cannot_be_rebound_by_prefix_or_wrong_target_type(self):
+        pe = VTablePe(0x400000)
+        pe.sections[0].VirtualAddress = 0x13000
+        base = 0x400000
+        struct.pack_into("<II", pe.data, 0x200c, base + 0x2040, 0x4138b0)
+        struct.pack_into("<5I", pe.data, 0x2040, 0, 0, 0, base + 0x3020, base + 0x2054)
+        name = b".?AVOriginalPool@@\0"; pe.data[0x3028:0x3028 + len(name)] = name
+        table = {"symbol": "??_7Pool@game@@6B@", "target": "pool",
+                 "entry": "??_GPool@game@@UAEPAXI@Z=0x004138B0", "target_type_name": ".?AVOriginalPool@@"}
+        known = {"pool": (base + 0x2010, struct.pack("<I", 0x4138b0), frozenset({0}), "address")}
+        fake = SimpleNamespace(verify_target=lambda: "target", TARGET=Path("unused"), known_data_targets=lambda: known)
+        with patch.object(linked, "comparator", return_value=fake), patch.object(linked.pefile, "PE", return_value=pe):
+            self.assertEqual(linked.target_vtables({"link_vtables": [table]})[0]["entry_target"], 0x4138b0)
+            for field, value in [("entry", "??_GPool@game@@UAEPAXI@Z=0x00412C80"),
+                                 ("target_type_name", ".?AVOtherPool@@")]:
+                with self.subTest(field=field), self.assertRaises(ValueError):
+                    linked.target_vtables({"link_vtables": [{**table, field: value}]})
+            known["pool"] = (base + 0x2010, struct.pack("<II", 0x4138b0, 0), frozenset({0}), "address")
+            with self.assertRaises(ValueError):
+                linked.target_vtables({"link_vtables": [table]})
 
     def test_complete_cfg_rejects_partial_or_unowned_tails(self):
         for code in [b"\xeb\x7f\xc3", b"\xeb\xff\xc3", b"\xe2\x7f\xc3", b"\xff\xe0\xc3",
@@ -116,29 +214,57 @@ class LinkedPeTests(unittest.TestCase):
             with self.subTest(field=field, value=value), self.assertRaises(ValueError):
                 linked.validate_contract(bad, {"app"})
 
+    def test_linked_vtable_and_library_contracts_cannot_waive_their_type_or_scope(self):
+        table = {"symbol": "??_7Pool@game@@6B@", "target": "pool",
+                 "entry": "??_GPool@game@@UAEPAXI@Z=0x004138B0", "target_type_name": ".?AVOriginalPool@@"}
+        unit = {"profile": linked.PROFILE, "object": "build/test.dll", "source": "src/main.cpp",
+                "link_data_targets": ["_app=app"], "link_vtables": [table],
+                "functions": [{"symbol_base": "_worker@4"}]}
+        linked.validate_contract(unit, {"app", "pool"})
+        with self.assertRaisesRegex(ValueError, "typed RTTI"):
+            linked.validate_contract({**unit, "link_data_targets": ["_fake=??_7Pool@game@@6B@"]},
+                                     {"app", "pool", "??_7Pool@game@@6B@"})
+        for field, value in [("symbol", "_arbitrary_data"), ("target", None),
+                             ("entry", "??_GOther@game@@UAEPAXI@Z=0x004138B0"),
+                             ("entry", None), ("target_type_name", None)]:
+            bad = copy.deepcopy(unit); bad["link_vtables"][0][field] = value
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                linked.validate_contract(bad, {"app", "pool"})
+        for sources in [None, ["src/network/Owner.cpp"], ["src/library/../Owner.cpp"],
+                        ["src/library/UnsignedIntList.cpp"] * 2, ["src/library/missing.cpp"]]:
+            with self.subTest(sources=sources), self.assertRaises(ValueError):
+                linked.validate_contract({**unit, "linked_coff_sources": sources}, {"app", "pool"})
+
     def test_modified_build_artifacts_are_rejected_before_decoding(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
             image, source = root / "probe.dll", root / "source.cpp"
-            paths = [image, source, image.with_suffix(".map"), image.with_suffix(".ltcg.obj"), image.with_suffix(".bindings.obj")]
-            unit = {"source": str(source), "object": str(image)}
+            library, native_obj = root / "list.cpp", image.with_suffix(".coff0.obj")
+            paths = [image, source, image.with_suffix(".map"), image.with_suffix(".ltcg.obj"), image.with_suffix(".bindings.obj"), library, native_obj]
+            unit = {"source": str(source), "object": str(image), "linked_coff_sources": [str(library)]}
             for changed in paths:
                 for path in paths:
                     path.write_bytes(b"original")
                 metadata = {"schema": "th105-linked-pe-v1", "unit": "test", "profile": linked.PROFILE,
                     "target_sha256": "target", "input_digest": "digest", "tools": {}, "bindings": [],
+                    "vtable_contracts": [], "coff_inputs": [{"source": str(library),
+                        "source_sha256": linked.sha(library), "object": native_obj.name,
+                        "object_sha256": linked.sha(native_obj)}],
                     "parsers": linked.parser_versions(), "source_sha256": linked.sha(source),
                     "image_sha256": linked.sha(image), "map_sha256": linked.sha(image.with_suffix(".map")),
                     "ltcg_object_sha256": linked.sha(image.with_suffix(".ltcg.obj")),
                     "bindings_object_sha256": linked.sha(image.with_suffix(".bindings.obj"))}
                 image.with_suffix(".link.json").write_text(json.dumps(metadata))
-                changed.write_bytes(b"changed")
                 fake = SimpleNamespace(verify_target=lambda: "target")
                 with self.subTest(changed=changed.name), patch.object(linked, "comparator", return_value=fake), \
                      patch.object(linked, "pinned_tools", return_value=(root, {})), \
                      patch.object(linked, "target_bindings", return_value=[]), \
                      patch("workflow_manifest.unit_input_digest", return_value=("digest", [])), \
-                     patch("workflow_manifest.repository_path", side_effect=lambda path, **kwargs: Path(path)):
+                     patch("workflow_manifest.repository_path", side_effect=lambda path, **kwargs: Path(path)), \
+                     patch.object(linked.pefile, "PE", side_effect=AssertionError("provenance accepted")):
+                    with self.assertRaisesRegex(AssertionError, "provenance accepted"):
+                        linked.compare_linked("test", unit, set(), image)
+                    changed.write_bytes(b"changed")
                     with self.assertRaisesRegex(ValueError, "stale or modified"):
                         linked.compare_linked("test", unit, set(), image)
 

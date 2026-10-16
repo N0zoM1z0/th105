@@ -109,6 +109,14 @@ ownership, attested data bindings, named external-call replay and fresh pinned
 build provenance. Unsupported EH/data/jump-table surfaces fail closed. Existing
 COFF comparisons are unchanged; see [the exact contract](LINKED_PE_MATCHING.md).
 
+Packet-pool normal destruction `413820` extends that path to98/98 with real
+native container members. A separate compiler-library COFF instantiation linked
+before the CIL object preserves the shared unsigned-list helper ABI. Source
+and target primary RTTI/vtable identities authorize only full dword vptr-store
+operand replay, with exact HIGHLOW relocation coverage. This is neither a
+blanket internal-address allowance nor an original-TU claim. Its constructor's
+EH surface remains unsupported. See [the bounded evidence](NETWORK_UDP_PACKET_POOL_2026_10_16.md).
+
 ### Main candidate spans can omit remote source-function chunks
 
 `functions.csv size/span_end` remains a provisional **main callable chunk** for

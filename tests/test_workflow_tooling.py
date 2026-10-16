@@ -67,17 +67,17 @@ class WorkflowToolingTests(unittest.TestCase):
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1414)
+        self.assertEqual(len(implemented), 1415)
         self.assertEqual(
             len(self.validator.rows(ROOT / "config" / "matches.csv")), 1328
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 507)
+        self.assertEqual(len(manifest["units"]), 508)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1415,
+            1420,
         )
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:
@@ -1183,7 +1183,7 @@ class WorkflowToolingTests(unittest.TestCase):
         implemented = self.validator.read_implemented(mappings)
         for address, size in (
             ("0x0040ADE0", 11), ("0x0040ADF0", 11), ("0x0040AE00", 11),
-            ("0x0040AE10", 60), ("0x00412C80", 30), ("0x0044B320", 30),
+            ("0x0040AE10", 60), ("0x0044B320", 30),
         ):
             self.assertEqual(functions[address]["status"], "matching")
             self.assertEqual(int(matches[address]["size"]), size)
@@ -1192,6 +1192,16 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(functions["0x0040ADB0"]["status"], "implemented")
         self.assertNotIn("0x0040ADB0", matches)
         self.assertIn("CNumber_dtor", implemented)
+        # The native ??_G witness is reproducible but compiler-owned.
+        wrapper = functions["0x00412C80"]
+        self.assertEqual(wrapper["status"], "identified")
+        self.assertEqual(wrapper["source_file"], "")
+        self.assertNotIn("0x00412C80", matches)
+        self.assertNotIn(mappings[0x00412C80]["name"], implemented)
+        origin = next(row for row in self.validator.rows(
+            ROOT / "config" / "function-origins.csv") if row["address"] == "0x00412C80")
+        self.assertEqual((origin["origin"], origin["disposition"]),
+                         ("compiler_generated", "exclude"))
 
     def test_timer_import_contract_is_pinned(self) -> None:
         relocations = {
@@ -1661,8 +1671,8 @@ class WorkflowToolingTests(unittest.TestCase):
             markdown,
         )
         self.assertIn("Canonical exact functions | 1,328", markdown)
-        self.assertIn("Canonical exact authored bytes | 224,517", markdown)
-        self.assertIn("Source-present authored mappings | 1,414", markdown)
+        self.assertIn("Canonical exact authored bytes | 224,585", markdown)
+        self.assertIn("Source-present authored mappings | 1,415", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )

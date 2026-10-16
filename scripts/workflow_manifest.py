@@ -262,6 +262,7 @@ def unit_input_digest(name: str, unit: dict[str, Any]) -> tuple[str, list[str]]:
     # Hash them too, so an upstream-header change cannot reuse stale evidence.
     paths.update(source.parent.glob("*.h"))
     if unit["kind"] == "linked_candidate":
+        paths.update(repository_path(path) for path in unit.get("linked_coff_sources", []))
         paths.update(ROOT / path for path in (
             "scripts/linked_pe.py", "scripts/build-linked-unit.py",
             "scripts/compare-linked-unit.py", "config/tools.lock.toml",

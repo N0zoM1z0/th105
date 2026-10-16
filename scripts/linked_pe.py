@@ -27,6 +27,7 @@ IMAGE_BASE = 0x10000000
 RUNTIME_DLLS = {"msvcr80.dll", "msvcp80.dll"}
 SYMBOL = re.compile(r"^[A-Za-z_?@.$][A-Za-z0-9_?@.$]*$")
 MAP_FUNCTION = re.compile(r"^\s+[0-9A-Fa-f]{4}:[0-9A-Fa-f]{8}\s+(\S+)\s+([0-9A-Fa-f]{8})\s+f(?:\s|$)(.*)$")
+MAP_SYMBOL = re.compile(r"^\s+[0-9A-Fa-f]{4}:[0-9A-Fa-f]{8}\s+(\S+)\s+([0-9A-Fa-f]{8})\s+(.*)$")
 PIN_FILES = ("bin/cl.exe", "bin/c1xx.dll", "bin/c2.dll", "bin/link.exe", "lib/msvcrt.lib", "lib/msvcprt.lib")
 PIN_DIRS = ("include", "PlatformSDK/Include")
 
@@ -71,7 +72,39 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
         name, separator, key = str(mapping).partition("=")
         if not separator or not SYMBOL.fullmatch(name) or key not in data_keys or name in names:
             raise ValueError("invalid/duplicate linked data binding: " + str(mapping))
+        if name.startswith("??_7") or key.startswith("??_7"):
+            raise ValueError("native vtables require the typed RTTI/entry contract")
         names.add(name)
+    coff_sources = unit.get("linked_coff_sources", [])
+    if (not isinstance(coff_sources, list)
+            or any(not isinstance(p, str) or not p.startswith("src/library/")
+                   or not p.endswith(".cpp") or ".." in Path(p).parts for p in coff_sources)
+            or len(set(coff_sources)) != len(coff_sources)
+            or unit.get("source") in coff_sources):
+        raise ValueError("linked COFF inputs must be distinct compiler-library C++ sources")
+    if coff_sources:
+        from workflow_manifest import repository_path
+        if any(not repository_path(path).is_file() for path in coff_sources):
+            raise ValueError("linked compiler-library source is missing")
+    vtables = unit.get("link_vtables", [])
+    if not isinstance(vtables, list):
+        raise ValueError("linked vtable contracts must be a list")
+    for table in vtables:
+        if not isinstance(table, dict) or set(table) != {"symbol", "target", "entry", "target_type_name"}:
+            raise ValueError("linked vtable requires exact symbol/target/entry/RTTI fields")
+        symbol, key, entry = table["symbol"], table["target"], table["entry"]
+        if (not isinstance(symbol, str) or not re.fullmatch(r"\?\?_7[A-Za-z_]\w*(?:@[A-Za-z_]\w*)*@@6B@", symbol)
+                or symbol in names or not isinstance(key, str) or key not in data_keys or not isinstance(entry, str)):
+            raise ValueError("invalid/duplicate linked single-destructor vtable")
+        owner = symbol[4:-5]
+        entry_name, separator, address = entry.partition("=")
+        if (not separator or entry_name != "??_G" + owner + "@@UAEPAXI@Z"
+                or not re.fullmatch(r"0x[0-9A-Fa-f]{8}", address)
+                or not isinstance(table["target_type_name"], str)
+                or not table["target_type_name"].startswith(".?AV")
+                or not table["target_type_name"].endswith("@@")):
+            raise ValueError("linked vtable must identify its own scalar deleting destructor and RTTI")
+        names.add(symbol)
     exports = set()
     functions = unit.get("functions")
     if not isinstance(functions, list) or not functions:
@@ -144,11 +177,138 @@ def absolute_data_object(bindings: list[dict]) -> bytes:
     return struct.pack("<HHIIIHH", 0x14C, 0, 0, 20, len(bindings), 0, 0) + records + strings
 
 
+def coff_inputs(unit: dict, image: Path) -> list[dict]:
+    from workflow_manifest import repository_path
+    result = []
+    for index, source in enumerate(unit.get("linked_coff_sources", [])):
+        obj = image.with_suffix(f".coff{index}.obj")
+        result.append({"source": source, "source_sha256": sha(repository_path(source)),
+                       "object": obj.name, "object_sha256": sha(obj)})
+    return result
+
+
+def pe_data(pe, address: int, size: int) -> bytes:
+    rva = address - pe.OPTIONAL_HEADER.ImageBase
+    section = pe.get_section_by_rva(rva)
+    if (size < 0 or section is None or section.Characteristics & 0x20000000
+            or not section.VirtualAddress <= rva <= rva + size <= section.VirtualAddress + section.Misc_VirtualSize):
+        raise ValueError("RTTI/vtable data escapes a nonexecutable PE section")
+    data = pe.get_data(rva, size)
+    if len(data) != size:
+        raise ValueError("RTTI/vtable data is truncated")
+    return data
+
+
+def readonly_data(pe, address: int, size: int) -> bytes:
+    data = pe_data(pe, address, size)
+    if pe.get_section_by_rva(address - pe.OPTIONAL_HEADER.ImageBase).Characteristics & 0x80000000:
+        raise ValueError("native vtable/COL must be read-only data")
+    return data
+
+
+def primary_type_name(pe, vtable: int) -> str:
+    col, = struct.unpack("<I", readonly_data(pe, vtable - 4, 4))
+    signature, offset, cd_offset, descriptor, hierarchy = struct.unpack("<5I", readonly_data(pe, col, 20))
+    if signature or offset or cd_offset or not hierarchy:
+        raise ValueError("native vtable needs a primary VC8 RTTI COL")
+    section = pe.get_section_by_rva(descriptor + 8 - pe.OPTIONAL_HEADER.ImageBase)
+    if section is None:
+        raise ValueError("native RTTI type descriptor is unmapped")
+    available = pe.OPTIONAL_HEADER.ImageBase + section.VirtualAddress + section.Misc_VirtualSize - descriptor - 8
+    raw = pe_data(pe, descriptor + 8, min(256, available))
+    if b"\0" not in raw:
+        raise ValueError("native RTTI type name is unterminated")
+    return raw.split(b"\0", 1)[0].decode("ascii")
+
+
+def target_vtables(unit: dict) -> list[dict]:
+    contracts = unit.get("link_vtables", [])
+    if not contracts:
+        return []
+    c = comparator()
+    c.verify_target()
+    known = c.known_data_targets()
+    pe = pefile.PE(str(c.TARGET))
+    with (ROOT / "config/functions.csv").open(newline="") as stream:
+        candidates = {int(row["address"], 0) for row in csv.DictReader(stream)}
+    result = []
+    for table in contracts:
+        address, raw, addends, validation = known[table["target"]]
+        entry_symbol, entry = table["entry"].split("=")
+        entry = int(entry, 0)
+        entry_section = pe.get_section_by_rva(entry - pe.OPTIONAL_HEADER.ImageBase)
+        if (len(raw) != 4 or addends != frozenset({0}) or validation != "address"
+                or readonly_data(pe, address, 4) != raw or entry not in candidates
+                or entry_section is None or not entry_section.Characteristics & 0x20000000
+                or struct.unpack("<I", raw)[0] != entry
+                or primary_type_name(pe, address) != table["target_type_name"]):
+            raise ValueError("target single-destructor vtable/entry/RTTI is not attested")
+        result.append({"symbol": table["symbol"], "target_key": table["target"],
+                       "target_address": address, "target_type_name": table["target_type_name"],
+                       "entry_symbol": entry_symbol, "entry_target": entry})
+    return result
+
+
+def parse_map_symbols(text: str) -> dict[str, list[tuple[int, str]]]:
+    result = {}
+    for line in text.splitlines():
+        match = MAP_SYMBOL.match(line)
+        if match:
+            result.setdefault(match[1], []).append((int(match[2], 16), match[3].strip()))
+    return result
+
+
+def source_vtables(pe, symbols: dict, functions: dict, contracts: list[dict], cil_owner: str) -> list[dict]:
+    result = []
+    for table in contracts:
+        found = symbols.get(table["symbol"], [])
+        if len(found) != 1 or found[0][1].split()[-1:] != [cil_owner]:
+            raise ValueError("native vtable is not uniquely owned by the source CIL object")
+        address = found[0][0]
+        if address % 4:
+            raise ValueError("native vtable is not dword-aligned")
+        entry, = struct.unpack("<I", readonly_data(pe, address, 4))
+        expected_type = ".?AV" + table["symbol"][4:-5] + "@@"
+        owners = [owner for symbol, owner in functions.get(entry, []) if symbol == table["entry_symbol"]]
+        if (len(owners) != 1 or owners[0].split()[-1:] != [cil_owner]
+                or primary_type_name(pe, address) != expected_type):
+            raise ValueError("native vtable entry/RTTI disagrees with its source class")
+        entry_section = pe.get_section_by_rva(entry - pe.OPTIONAL_HEADER.ImageBase)
+        if entry_section is None or not entry_section.Characteristics & 0x20000000:
+            raise ValueError("native deleting destructor is outside executable code")
+        section = pe.get_section_by_rva(address - pe.OPTIONAL_HEADER.ImageBase)
+        if address + 8 <= pe.OPTIONAL_HEADER.ImageBase + section.VirtualAddress + section.Misc_VirtualSize:
+            following, = struct.unpack("<I", pe_data(pe, address + 4, 4))
+            next_section = pe.get_section_by_rva(following - pe.OPTIONAL_HEADER.ImageBase)
+            if next_section is not None and next_section.Characteristics & 0x20000000:
+                raise ValueError("native vtable has an unsupported extra function slot")
+        result.append({**table, "source_address": address})
+    if len({table["source_address"] for table in result}) != len(result):
+        raise ValueError("native vtable mappings alias one source address")
+    return result
+
+
+def validate_body_relocations(pe, start: int, size: int, data_refs: list[dict]) -> None:
+    expected = {start + ref["field_offset"] for ref in data_refs if ref.get("kind") == "vptr"}
+    found = set()
+    for block in getattr(pe, "DIRECTORY_ENTRY_BASERELOC", []):
+        for relocation in block.entries:
+            address = pe.OPTIONAL_HEADER.ImageBase + relocation.rva
+            if not relocation.type or max(start, address) >= min(start + size, address + 4):
+                continue
+            if relocation.type != 3 or address not in expected or address in found:
+                raise ValueError("unsupported/duplicate linked base relocation")
+            found.add(address)
+    if found != expected:
+        raise ValueError("native vptr stores need exact HIGHLOW relocation coverage")
+
+
 def build_linked(name: str, unit: dict) -> dict:
     from workflow_manifest import repository_path, unit_input_digest
     tools, hashes = pinned_tools()
     parsers = parser_versions()
     bindings = target_bindings(unit)
+    vtables = target_vtables(unit)
     source = repository_path(unit["source"])
     output = repository_path(unit["object"], output=True)
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -170,14 +330,22 @@ def build_linked(name: str, unit: dict) -> dict:
                        "/GS" if unit["enable_gs"] else "/GS-", "/GR", "/EHsc", "/MT"]
     for directory in [ROOT / "src", tools / "include", tools / "PlatformSDK/Include"] + [repository_path(p) for p in unit.get("include_dirs", [])]:
         compile_command.append("/I" + win(directory))
+    compile_flags = list(compile_command)
     compile_command.extend(["/Fo" + win(obj), win(source)])
+    coff_objects, coff_commands = [], []
+    for index, path in enumerate(unit.get("linked_coff_sources", [])):
+        native_obj = output.with_suffix(f".coff{index}.obj")
+        coff_objects.append(native_obj)
+        coff_commands.append([p for p in compile_flags if p != "/GL"]
+                             + ["/Fo" + win(native_obj), win(repository_path(path))])
     link_command = ["wine", str(tools / "bin/link.exe"), "/nologo", "/DLL", "/NOENTRY", "/LTCG",
                     "/NODEFAULTLIB", "/OPT:NOICF", f"/BASE:0x{IMAGE_BASE:X}",
                     "/MAP:" + win(map_path), "/OUT:" + win(output)]
     link_command.extend("/EXPORT:" + f.get("export_name", f["symbol_base"]) for f in unit["functions"])
-    link_command.extend(win(p) for p in [obj, data_obj, tools / "lib/msvcrt.lib", tools / "lib/msvcprt.lib"])
+    link_command.extend(win(p) for p in [*coff_objects, obj, data_obj, tools / "lib/msvcrt.lib", tools / "lib/msvcprt.lib"])
     # Each invocation is serial. /FORCE and unresolved references are forbidden.
-    for phase, command in [("compile", compile_command), ("link", link_command)]:
+    phases = [(f"coff{index}.compile", command) for index, command in enumerate(coff_commands)]
+    for phase, command in phases + [("compile", compile_command), ("link", link_command)]:
         log = output.with_suffix("." + phase + ".log")
         with log.open("w") as stream:
             completed = subprocess.run(command, cwd=ROOT, env=environment, stdout=stream, stderr=subprocess.STDOUT)
@@ -188,6 +356,8 @@ def build_linked(name: str, unit: dict) -> dict:
                 "target_sha256": comparator().verify_target(), "input_digest": input_digest, "inputs": inputs,
                 "image_sha256": sha(output), "map_sha256": sha(map_path), "source_sha256": sha(source),
                 "ltcg_object_sha256": sha(obj), "bindings_object_sha256": sha(data_obj),
+                "coff_inputs": coff_inputs(unit, output), "coff_compile_commands": coff_commands,
+                "vtable_contracts": vtables,
                 "tools": hashes, "parsers": parsers, "bindings": bindings, "compile_command": compile_command,
                 "link_command": link_command}
     output.with_suffix(".link.json").write_text(json.dumps(metadata, indent=2) + "\n")
@@ -247,8 +417,10 @@ def decode_closed_body(code: bytes, start: int) -> list:
 
 
 def canonicalize(code: bytes, start: int, target: int, bindings: list[dict], resolve_call,
-                 image_range: tuple[int, int], game_range: tuple[int, int]) -> tuple[bytes, list, list]:
+                 image_range: tuple[int, int], game_range: tuple[int, int],
+                 vtables: list[dict] = ()) -> tuple[bytes, list, list]:
     instructions = decode_closed_body(code, start)
+    native_vtables = {table["source_address"]: table for table in vtables}
     permitted = {}
     widths = {}
     for binding in bindings:
@@ -284,6 +456,22 @@ def canonicalize(code: bytes, start: int, target: int, bindings: list[dict], res
                     raise ValueError("linked absolute read/write exceeds its attested bytes")
             elif operand.type == capstone.x86.X86_OP_IMM and not control_immediate:
                 value = operand.imm & 0xffffffff
+                if value in native_vtables:
+                    destination = instruction.operands[0]
+                    if (instruction.id != capstone.x86.X86_INS_MOV or len(instruction.operands) != 2
+                            or destination.type != capstone.x86.X86_OP_MEM or destination.size != 4
+                            or not destination.mem.base or destination.mem.index
+                            or destination.mem.segment in {capstone.x86.X86_REG_FS, capstone.x86.X86_REG_GS}
+                            or instruction.imm_size != 4
+                            or not 0 < instruction.imm_offset <= instruction.size - 4):
+                        raise ValueError("native vtable address is not a supported dword member vptr store")
+                    table = native_vtables[value]
+                    field = offset + instruction.imm_offset
+                    struct.pack_into("<I", canonical, field, table["target_address"])
+                    references.append({"kind": "vptr", "offset": offset, "field_offset": field,
+                        "source_address": value, "address": table["target_address"],
+                        "symbol": table["symbol"], "target_key": table["target_key"]})
+                    continue
                 if image_range[0] <= value < image_range[1]:
                     raise ValueError("unresolved internal linked address/literal")
                 if game_range[0] <= value < game_range[1] and value not in permitted:
@@ -319,12 +507,14 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
     metadata = json.loads(image.with_suffix(".link.json").read_text())
     _, tools = pinned_tools()
     bindings = target_bindings(unit)
+    vtable_contracts = target_vtables(unit)
     expected = {"schema": "th105-linked-pe-v1", "unit": name, "profile": PROFILE,
                 "target_sha256": target_hash, "input_digest": unit_input_digest(name, unit)[0],
                 "source_sha256": sha(repository_path(unit["source"])), "image_sha256": sha(image),
                 "map_sha256": sha(image.with_suffix(".map")), "tools": tools, "parsers": parser_versions(), "bindings": bindings,
                 "ltcg_object_sha256": sha(image.with_suffix(".ltcg.obj")),
-                "bindings_object_sha256": sha(image.with_suffix(".bindings.obj"))}
+                "bindings_object_sha256": sha(image.with_suffix(".bindings.obj")),
+                "coff_inputs": coff_inputs(unit, image), "vtable_contracts": vtable_contracts}
     if any(metadata.get(key) != value for key, value in expected.items()):
         raise ValueError("stale or modified linked build provenance; rebuild the configured unit")
     pe = pefile.PE(str(image))
@@ -332,7 +522,10 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
             or pe.OPTIONAL_HEADER.ImageBase != IMAGE_BASE
             or not pe.FILE_HEADER.Characteristics & 0x2000 or pe.OPTIONAL_HEADER.AddressOfEntryPoint != 0):
         raise ValueError("linked artifact is not the pinned x86 PE32 image")
-    functions = parse_map(image.with_suffix(".map").read_text(errors="strict"))
+    map_text = image.with_suffix(".map").read_text(errors="strict")
+    functions = parse_map(map_text)
+    vtables = source_vtables(pe, parse_map_symbols(map_text), functions,
+                             vtable_contracts, image.with_suffix(".ltcg.obj").name)
     exports = {}
     if not hasattr(pe, "DIRECTORY_ENTRY_EXPORT"):
         raise ValueError("linked image has no export directory")
@@ -367,10 +560,6 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
         if len(raw) != end - start:
             raise ValueError("linked section is truncated")
         raw = raw.rstrip(b"\xcc")  # Only linker INT3 padding outside a closed RET is removed.
-        for block in getattr(pe, "DIRECTORY_ENTRY_BASERELOC", []):
-            for relocation in block.entries:
-                if relocation.type and max(start, IMAGE_BASE + relocation.rva) < min(start + len(raw), IMAGE_BASE + relocation.rva + 4):
-                    raise ValueError("linked internal base relocations need an explicit supported contract")
         targets = dict(mapping.split("=", 1) for mapping in function.get("rel32_targets", []))
         targets = {symbol: int(address, 0) for symbol, address in targets.items()}
         if any(f"0x{destination:08X}" not in ledger for destination in targets.values()):
@@ -381,7 +570,8 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
 
         address = int(function["address"], 0)
         code, calls, data_refs = canonicalize(raw, start, address, bindings, resolve,
-            (IMAGE_BASE, IMAGE_BASE + pe.OPTIONAL_HEADER.SizeOfImage), game_range)
+            (IMAGE_BASE, IMAGE_BASE + pe.OPTIONAL_HEADER.SizeOfImage), game_range, vtables)
+        validate_body_relocations(pe, start, len(raw), data_refs)
         size = int(ledger[function["address"]]["size"], 0)
         target = c.target_bytes(address, size)
         mismatch = c.first_mismatch(target, code, address)
@@ -392,5 +582,5 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
             "linked_function_va": f"0x{start:08X}", "first_mismatch": mismatch, "failure": None,
             "target_executable_sha256": target_hash, "target_sha256": hashlib.sha256(target).hexdigest(),
             "object_compared_sha256": hashlib.sha256(code).hexdigest(), "replayed_rel32": calls,
-            "validated_data_references": data_refs})
+            "validated_data_references": data_refs, "validated_vtables": vtables})
     return reports
