@@ -154,3 +154,33 @@ the executable, mapped .text, entry, x86 Windows language and both complete
 bodies; owner/handoff types and physical argument/return storage are saved.
 Decompiler locals and imported prototypes remain hypotheses; raw bytes decide
 the packet offsets, handle capture, acknowledgement and loop lifetimes.
+
+## Linked whole-body discriminator
+
+The next bounded pass restores observed handoff publication order (copied0C,
+owner, data pointer, WORD size) and retains the first resolved DNS address in
+a real local before null-check and dereference. Ordinary connection remains
+524/542 nonexact; full receive/request/worker extents and the accepted14-byte
+callback are unchanged. Both source changes are retained as target-backed
+lifetimes, without forcing registers.
+
+Private full-body relocation diagnostics verify real named source callees and
+the SDK import thunk/DLL/ordinal identities; native handler, cookie and thread
+pointer replay remains explicitly hypothetical, not canonical acceptance.
+With all code references resolved, baseline542 has158 differing bytes and first
+real mismatch+E8; handoff order moves it to+105; the retained DNS pointer moves
+it to+14C with84 differing bytes. Remaining differences include the DNS value
+register, endpoint-copy schedule, private vector argument placement and loop
+alignment. They are real code differences, not just metadata addresses.
+
+A direct native vector.clear control reproduces those same84 differences, so
+the existing complete wrapper is not the cause. RTM14.0.50727.42 cl/c2/link
+with the same pinned SP1 headers/import libraries and SP1 msobj80 resolver also
+retains exactly those84 differences; this mixed control is not a recovered
+original profile. No additional padding, ABI adapter or profile sweep is used.
+Recipes and exact tool/source/image/map hashes remain under
+`.analysis/network-udp-linked-20261016/` and
+`build/network-udp-linked-*.{diagnosis,replay-diagnostic}.json`. The fresh
+configured object reports are `build/network-udp-linked-{formal-build,formal,accepted}.json`.
+The next priority is the shared10219-byte Fighter root4740C0, called by every
+roster action root; the network residual is recorded for a later new discriminator.

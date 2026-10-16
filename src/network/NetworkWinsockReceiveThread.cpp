@@ -207,20 +207,23 @@ char NetworkWinsockReceiveView::start_connection(const char *endpoint,
         }
     }
     NetworkConnectionHandoff10 handoff;
-    handoff.owner_00 = this;
-    handoff.size_04 = request_size_07c;
-    handoff.data_08 = request_data_078;
     handoff.copied_0c = 0;
+    handoff.owner_00 = this;
+    handoff.data_08 = request_data_078;
+    handoff.size_04 = request_size_07c;
     if (endpoint) {
         connection_endpoint_0a0.family_00 = 2;
         connection_endpoint_0a0.port_02 = htons(port);
         connection_endpoint_0a0.address_04 = inet_addr(endpoint);
         if (connection_endpoint_0a0.address_04 == 0xffffffffU) {
             NetworkReceiveHostEntry *host = gethostbyname(endpoint);
-            if (!host || !host->addresses_0c[0])
+            if (!host)
+                return 0;
+            const char *address = host->addresses_0c[0];
+            if (!address)
                 return 0;
             connection_endpoint_0a0.address_04 =
-                *reinterpret_cast<const unsigned int *>(host->addresses_0c[0]);
+                *reinterpret_cast<const unsigned int *>(address);
         }
     }
     published_endpoint_03c = connection_endpoint_0a0;

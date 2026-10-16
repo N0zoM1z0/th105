@@ -32,6 +32,20 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
+## Active priority: shared Fighter action root
+
+The user requests the major roots rather than isolated helper work. The next
+bounded target is `Fighter_update_common_action_state @ 4740C0`,10219 callable
+bytes shared by all15 roster action roots. Rebuild its full configured unit
+and physical-owner audit; read the retained landing evidence before changing
+source. Do not repeat old spelling matrices or mistake owner counts for exact
+credit. The receive chain is fully implemented/linked; the latest connection
+pass retains target-backed handoff/DNS lifetimes and isolates a genuine84-byte
+linked residual beginning+14C. Direct clear and RTM controls were negative.
+Ordinary connection524, all other receive extents and callback14 exactness are
+unchanged. See the final section of
+[the connection record](NETWORK_UDP_CONNECTION_2026_10_16.md).
+
 ## Receive-chain link closure: connection and handshake worker
 
 The priority remains the complete UDP receive/connection subsystem rather than
