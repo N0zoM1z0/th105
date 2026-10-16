@@ -1,5 +1,10 @@
 # Default CPU policy0: native instruction coverage
 
+Follow-up: the [Aya policy-tail study](AYA_CPU_POLICY_TAILS_2026_10_17.md)
+adds a genuine seed for roll100. The live `--selection-cases` command now runs
+16160 cases for rolls0..100. The16000-case measurements below describe the
+earlier corpus.
+
 This checkpoint concerns only the original Japanese1.06a CPU decision root
 `Fighter_update_default_cpu_action_policy @ 005F1F80`,15910 callable bytes.
 It extends the [ordered-boundary evidence](CPU_ORDERED_BOUNDARIES_2026_10_17.md).

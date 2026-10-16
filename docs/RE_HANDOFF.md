@@ -59,6 +59,16 @@ rejected despite higher local counts or some recovered arms; they disrupt
 other observed instructions and ownership. Original source spelling/inlining
 phase remains unknown. See [the current counter source checkpoint](AYA_CPU_COUNTER_READS_2026_10_17.md).
 
+New policy0 native checks pass0/16160 with every target roll0..100, all1486
+reachable target instructions and all38/43 sampled target/candidate selector
+sites. Genuine seed1472677 produces third rawFFFFFFB6 and the rare roll100,
+exercising the formerly unseen candidate61556F. Caller tracing records49
+many-to-many pairs: the extra static calls are a joint split/merge ownership
+problem, not five independent missing source statements. Timer setters and
+lifted joins are full16713-byte-tail neutral; height accessor/predicate controls
+are rejected. The selected source remains17/41/nonexact, with no new exact
+credit. See [the native tail/endpoint evidence](AYA_CPU_POLICY_TAILS_2026_10_17.md).
+
 Eleven opponent pointer carriers and the real checked VC8 deque remain.
 Full genuine link inspection distinguishes the79-byte private EDI/index-zero
 deque specialization from target4399C0's94-byte ECX/RET4 interface. An actual

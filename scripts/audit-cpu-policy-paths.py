@@ -21,6 +21,7 @@ import sys
 import tomllib
 
 import pefile
+from capstone.x86_const import X86_OP_IMM
 from giant_owner_audit import decode, reachable_boundary_audit
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -38,6 +39,35 @@ ROOTS = {
     "aya": ("aya-cpu-action-policy", "gpt-web-aya-cpu-action-policy", 0x6126E0, 16032,
             "7efa001552238230ac86c77f48f36a217cc486e847f85cb924527c64e2dc6e09", 0x614F8A),
 }
+
+
+def selector_call_sites(code, address):
+    sites = set()
+    for instruction in decode(code, address):
+        if (instruction.mnemonic == "call" and instruction.operands[0].type == X86_OP_IMM
+                and instruction.operands[0].imm & 0xFFFFFFFF == 0x4067D0):
+            if instruction.size != 5 or instruction.bytes[0] != 0xE8:
+                raise ValueError("selector call is not an ordinary E8 REL32")
+            sites.add(instruction.address)
+    return sites
+
+
+def selector_call_site(return_address, allowed):
+    site = return_address - 5
+    if site not in allowed:
+        raise ValueError("selector return does not name a decoded root call boundary")
+    return site
+
+
+def pair_selector_sites(target, candidate):
+    if len(target) != len(candidate):
+        raise ValueError("selector callsite traces have different lengths")
+    pairs = []
+    for (first, argument), (second, actual_argument) in zip(target, candidate):
+        if argument != actual_argument:
+            raise ValueError("selector callsite traces have different arguments")
+        pairs.append((first, second, argument))
+    return pairs
 
 
 def float_input(case, key):
@@ -119,9 +149,9 @@ def selection_cases():
     # These seeds are inputs, never substituted RNG results. The target must
     # independently confirm each predicted policy roll during native execution.
     seeds = json.loads((ROOT / "tests/fixtures/cpu-policy-selection-seeds.json").read_text())
-    if (not isinstance(seeds, list) or len(seeds) != 100 or len(set(seeds)) != 100
+    if (not isinstance(seeds, list) or len(seeds) != 101 or len(set(seeds)) != 101
             or any(type(seed) is not int or not 0 <= seed <= 0xFFFFFFFF for seed in seeds)):
-        raise ValueError("selection fixture requires 100 distinct uint32 seeds")
+        raise ValueError("selection fixture requires 101 distinct uint32 seeds")
     base = dict(action=201, sequence=200, vx=0.0, vy=0.0, other_action=100,
                 resource=1000, mode=1, counter=100, policy=0, timer=0, refresh=1,
                 control_6b4=1, control_6b8=-1)
@@ -189,7 +219,7 @@ def cases(count):
 
 
 class NativeCpuProbe(boundary.CpuProbe):
-    def __init__(self, *args, address=boundary.ADDRESS):
+    def __init__(self, *args, address=boundary.ADDRESS, collect_selector_sites=False):
         super().__init__(*args, address=address)
         # Mapping permits the genuine RET to complete before emulation ends.
         self.engine.mem_map(RETURN, 0x1000)
@@ -198,6 +228,9 @@ class NativeCpuProbe(boundary.CpuProbe):
         self.helper_counts = Counter()
         self.root_end = self.address + args[2]
         self.visited_root = set()
+        self.collect_selector_sites = collect_selector_sites
+        self.allowed_selector_sites = selector_call_sites(args[1][:args[2]], address) if collect_selector_sites else set()
+        self.selector_sites = []
 
     def write(self, uc, access, address, size, value, unused):
         if (0x6FDEF0 <= address and address + size <= 0x6FE8B0) or (0x6FA1FC <= address and address + size <= 0x6FA200):
@@ -248,7 +281,11 @@ class NativeCpuProbe(boundary.CpuProbe):
             self.helper_counts[address] += 1
         esp = uc.reg_read(r.UC_X86_REG_ESP)
         if address == 0x4067D0:
-            self.calls.append(("rng", struct.unpack("<I", uc.mem_read(esp + 4, 4))[0]))
+            argument = struct.unpack("<I", uc.mem_read(esp + 4, 4))[0]
+            self.calls.append(("rng", argument))
+            if self.collect_selector_sites:
+                returned = struct.unpack("<I", uc.mem_read(esp, 4))[0]
+                self.selector_sites.append((selector_call_site(returned, self.allowed_selector_sites), argument))
         elif address == 0x4067EA:
             self.calls.append(("rng_return", uc.reg_read(r.UC_X86_REG_EAX)))
         elif address == 0x4066B0:
@@ -286,6 +323,7 @@ class NativeCpuProbe(boundary.CpuProbe):
 
     def evaluate(self, case):
         self.seed_state = self.seed(case["seed"])
+        self.selector_sites = []
         self.case, self.phase = case, "root"
         bits = struct.unpack("<I", float_input(case, "self_x"))[0]
         result = self.run((case["action"], case["sequence"], bits, case["facing"],
@@ -325,10 +363,12 @@ def audit(object_path, count, selected_cases=None, check_selection=False, *, roo
     candidate = canonical.coff_symbol_bytes(object_path, function["symbol_base"], address,
                                              len(obj.text), rel32, canonical.known_data_targets(), dir32)
     image = pefile.PE(str(ROOT / "resources/th105.exe")).get_memory_mapped_image()
-    engines = (NativeCpuProbe(image, target, size, address=address),
-               NativeCpuProbe(image, candidate, candidate_map["metadata_start"], address=address))
+    engines = (NativeCpuProbe(image, target, size, address=address, collect_selector_sites=check_selection),
+               NativeCpuProbe(image, candidate, candidate_map["metadata_start"], address=address,
+                              collect_selector_sites=check_selection))
     mismatches, examples, digest, processed = 0, [], hashlib.sha256(), 0
     selection_rolls = [set(), set()]
+    selector_pairs = Counter()
     vectors = cases(count) if selected_cases is None else selected_cases
     for number, case in enumerate(vectors, 1):
         digest.update(json.dumps(case, sort_keys=True).encode())
@@ -358,6 +398,8 @@ def audit(object_path, count, selected_cases=None, check_selection=False, *, roo
             mismatches += 1
             if len(examples) < 20:
                 examples.append({"case": case, "target": expected, "candidate": actual})
+        elif check_selection:
+            selector_pairs.update(pair_selector_sites(engines[0].selector_sites, engines[1].selector_sites))
         if number % 1000 == 0:
             print(f"Complete CPU paths: {number}, differences {mismatches}", file=sys.stderr)
     library = Path(unicorn_api._uc._name)
@@ -370,6 +412,8 @@ def audit(object_path, count, selected_cases=None, check_selection=False, *, roo
             "root": root_key, "address": f"0x{address:08X}",
             "build_provenance_verified": False, "target_sha256": target_hash, "body_sha256": body_hash,
             "object_sha256": object_hash,
+            "candidate_metadata_start": candidate_map["metadata_start"],
+            "candidate_canonical_section_tail_sha256": hashlib.sha256(candidate).hexdigest(),
             "unicorn_version": unicorn.__version__, "unicorn_library_sha256": hashlib.sha256(library.read_bytes()).hexdigest(),
             "python_version": sys.version.split()[0], "input_sha256": digest.hexdigest(),
             "input_source": "built-in finite matrix" if selected_cases is None else "explicit cases",
@@ -383,7 +427,16 @@ def audit(object_path, count, selected_cases=None, check_selection=False, *, roo
             canonical, root, target, engines[0].visited_root, address=address, expected_entry=policy_entry)
         result["observed_selection_rolls_target_candidate"] = [sorted(values) for values in selection_rolls]
         result["selection_coverage_complete"] = (not result["policy0_coverage"]["missing_target_instruction_addresses"]
-                                                  and all(values == set(range(100)) for values in selection_rolls))
+                                                  and all(values == set(range(101)) for values in selection_rolls))
+        result["selector_callsite_correspondence"] = {
+            "static_root_sites_target_candidate": [len(engine.allowed_selector_sites) for engine in engines],
+            "observed_sites_target_candidate": [len({pair[side] for pair in selector_pairs}) for side in (0, 1)],
+            "observations": sum(selector_pairs.values()),
+            "non_equivalent_cases_skipped": mismatches,
+            "pairs": [{"target": f"0x{first:08X}", "candidate": f"0x{second:08X}",
+                       "argument": argument, "observations": count}
+                      for (first, second, argument), count in sorted(selector_pairs.items())],
+            "scope": "decoded E8 caller sites paired by ordinal/argument only on full-output-equivalent sampled paths; no static bijection or canonical matching claim"}
     if root_name == "aya":
         result["aya_command_branch_coverage"] = []
         for start in (0x6142C0, 0x61447C):
@@ -405,7 +458,7 @@ def main():
     inputs.add_argument("--height-cases", action="store_true", help="368 finite/NaN height and RNG controls")
     inputs.add_argument("--counter-cases", action="store_true", help="4164 signed counter/mode/resource/geometry controls")
     inputs.add_argument("--aya-command-cases", action="store_true", help="470 Aya command/RNG/resource/truncation controls")
-    inputs.add_argument("--selection-cases", action="store_true", help="16000 policy0 controls; require all target instructions and rolls0..99")
+    inputs.add_argument("--selection-cases", action="store_true", help="16160 policy0 controls; require all target instructions and rolls0..100")
     args = parser.parse_args()
     if args.cases is not None and args.cases <= 0:
         parser.error("--cases must be positive")
