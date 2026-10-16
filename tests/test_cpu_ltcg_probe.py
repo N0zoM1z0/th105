@@ -2,6 +2,7 @@
 import importlib.util
 from pathlib import Path
 import sys
+from types import SimpleNamespace
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -34,6 +35,33 @@ class CpuLtcgSourceControlTests(unittest.TestCase):
         prepared = probe.prepare_source(changed, "preserve")
         self.assertIn("double v99;", prepared)
         self.assertIn("v99 = v117 + 0.1;", prepared)
+
+
+class CpuLtcgDependencyTests(unittest.TestCase):
+    def test_a_missing_sixth_switch_destination_cannot_close_the_cfg(self):
+        indices = bytes([0, 1, 2, 3, 4, 5, 0])
+        destinations = list(range(6))
+        probe.checked_switch_indices(indices, destinations)
+        with self.assertRaisesRegex(ValueError, "index escapes"):
+            probe.checked_switch_indices(indices, destinations[:-1])
+
+    def test_same_template_name_cannot_authorize_a_private_receiver_or_ret(self):
+        # Synthetic parser fixture, with no proprietary bytes. Both alternatives
+        # retain a named thiscall-like entry; only full instruction replay proves ABI.
+        body = b"\x8b\x01" + b"\x90" * 89 + b"\xc2\x04\x00"
+        canonical = SimpleNamespace(target_bytes=lambda address, count: body)
+        address = 0x10001000
+        names = {address: [(probe.DEQUE_SYMBOL, "provider.obj")]}
+        self.assertTrue(probe.canonical_deque(body, address, names, canonical)["target_standard_abi_exact"])
+        for changed in (b"\x8b\x07" + body[2:], body[:-3] + b"\xc2\x00\x00"):
+            with self.subTest(body=changed.hex()):
+                self.assertFalse(probe.canonical_deque(changed, address, names, canonical)["target_standard_abi_exact"])
+
+    def test_unattested_deque_runtime_identity_is_rejected(self):
+        body = b"\xe8\xfb\x0f\x00\x00" + b"\x90" * 86 + b"\xc2\x04\x00"
+        canonical = SimpleNamespace(target_bytes=lambda address, count: body)
+        with self.assertRaisesRegex(ValueError, "runtime call identity"):
+            probe.canonical_deque(body, 0x10001000, {0x10002000: [("_unknown", "crt.obj")]}, canonical)
 
 
 if __name__ == "__main__":

@@ -54,8 +54,18 @@ Genuine /GL links now close actual engine dependencies and static CRT startup.
 A guarded all-float alias control removes the former aligned EBP frame but
 still differs at entry; narrower type controls keep alignment. Thus source/type/
 TU context remains open, without a claim that LTCG is required or impossible.
+Full linked inspection now exposes a79-byte EDI/index-zero deque specialization;
+its map name cannot authorize substitution with the target94-byte ECX/RET4
+callee. A real SDK COFF instantiation replays94 bytes both before and after
+linking, restoring that interface without stubs. The all-float/COFF root closes
+16021 reachable bytes /4069 instructions through six bounded switches, but
+has119 selector sites versus target114 and a five-entry sequence table versus
+target six. Its first16 entry bytes agree; deferred EBP save and control/tail
+ownership still differ. Retained types remain a separate15850-byte linked
+control. No experiment changes the selected root source or acceptance profile.
 The next task is canonical control/register/shared-tail matching using this
-real dependency context. See [the current dependency evidence](AYA_CPU_NATIVE_DEPENDENCIES_2026_10_17.md)
+verified dependency ABI. See [the complete linked evidence](AYA_CPU_LINKED_ABI_2026_10_17.md),
+[the source/dependency checkpoint](AYA_CPU_NATIVE_DEPENDENCIES_2026_10_17.md)
 and [the initial source checkpoint](AYA_CPU_ROOT_2026_10_17.md).
 No shared C++ header/global ABI/profile or accepted-unit change.
 

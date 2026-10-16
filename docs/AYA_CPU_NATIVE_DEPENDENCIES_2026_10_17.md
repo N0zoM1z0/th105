@@ -1,5 +1,10 @@
 # Aya CPU source types and genuine link context, October 17
 
+Follow-up: [complete linked ABI and switch inspection](AYA_CPU_LINKED_ABI_2026_10_17.md)
+finds a private79-byte deque specialization despite its ordinary map name.
+A real SDK COFF instantiation restores the target94-byte interface; the
+complete CPU root still differs. The entry-only observations below are historical.
+
 The active root remains `Aya_update_cpu_action_policy @ 0x006126E0`, 16,032
 bytes / 4,097 instructions. This follow-up replaces integer address carriers
 and the opaque sequence-access declaration with actual pointer/container
