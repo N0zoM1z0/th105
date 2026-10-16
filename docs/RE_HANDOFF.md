@@ -13,9 +13,9 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,519 authored / 1,414 excluded / 1,090 in review**; **1,428 mapped**,
-  **1,409 source-present**, **1,326 exact / 224,222 exact bytes**, and
-  **504 match units**. These are ledger/status totals, not a fresh aggregate
+  **1,521 authored / 1,414 excluded / 1,088 in review**; **1,430 mapped**,
+  **1,411 source-present**, **1,327 exact / 224,503 exact bytes**, and
+  **505 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
   present, and only `matches.csv` plus a reproducible canonical 100% unit
@@ -126,11 +126,26 @@ three controlfp_s calls query state, select upward rounding200/mask300 and
 reset default9001F; they do not select24-bit precision. Frame, stack cleanup,
 tail sharing and EH-state scheduling remain unresolved. See
 [the behavior, FP/EH facts and comparison](APPLICATION_CONTROL_WORKER_2026_10_16.md).
-No exact credit is added for the worker. Pending-scene commit `408080` and
-scene-disposal callback `408870` are bounded next leads; the commit helper
-consumes no register receiver. At its `4080DF` helper call, EAX holds the old
-scene pointer's address and the stack holds container address `7028A4`.
-Recover `4089C0` body/ABI/ownership before selecting a closed source context.
+No exact credit is added for the worker.
+
+## Accepted LTCG unit: Scene retirement
+
+`Application_scene_disposal_thread_entry @ 408870` is canonical **281/281**
+from real checked-list source in `src/platform/ApplicationSceneLifecycle.cpp`.
+The native COFF candidate is278; genuine VC8 /GL+LTCG naturally generates the
+target's aligned dual-EBP frame and full body. The new resolved linked-PE unit
+pins tool/header/import-library inputs, proves export/map/CFG ownership and
+replays every named call/data reference without masks or synthetic callees.
+It is a comparison artifact, never an executed replacement image. See
+[the source and exact evidence](APPLICATION_SCENE_LIFECYCLE_2026_10_16.md) and
+[the linked comparison contract](LINKED_PE_MATCHING.md).
+
+Its source producer `Application_commit_pending_scene @ 408080` remains
+**189/148 nonexact** on frame/insertion ownership. Native12-byte list+84,
+event+90 and scene hooks are recovered, with full source and independent
+authored ownership. Private53-byte insertion `4089C0` and constant-count
+Incsize `40C6D0` still have no new source/exact/exclusion credit. Recover original
+template visibility before tuning that producer. Keep the paired TU together.
 
 ## Accepted exact unit: Sprite texture setup
 

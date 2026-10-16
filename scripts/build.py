@@ -58,6 +58,8 @@ def build_unit(
             "--output",
             str(output),
         ]
+    elif unit["kind"] == "linked_candidate":
+        command = [sys.executable, str(ROOT / "scripts/build-linked-unit.py"), name]
     else:
         environment["TH105_ENABLE_GS"] = "1" if unit["enable_gs"] else "0"
         fp_mode = (
@@ -137,6 +139,20 @@ def build_unit(
 
 def compare_unit(unit: dict[str, object], json_mode: bool) -> tuple[int, list[object]]:
     output = repository_path(str(unit["object"]), output=True)
+    if unit["kind"] == "linked_candidate":
+        from workflow_manifest import unit_for_address
+        found = unit_for_address(str(unit["functions"][0]["address"]), load_manifest())
+        if found is None:
+            raise ValueError("linked unit is absent from the manifest")
+        command = [sys.executable, str(ROOT / "scripts/compare-linked-unit.py"),
+                   found[0], "--image", str(output.relative_to(ROOT)), "--json"]
+        for function in unit["functions"]:
+            command.extend(["--address", function["address"]])
+        completed = subprocess.run(command, cwd=ROOT, capture_output=True, text=True)
+        payload = json.loads(completed.stdout)
+        if not json_mode:
+            print(completed.stdout, end="")
+        return completed.returncode, payload["comparisons"]
     reports: list[object] = []
     return_code = 0
     for function in unit["functions"]:  # type: ignore[index]

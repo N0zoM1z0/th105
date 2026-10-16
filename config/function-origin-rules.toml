@@ -5,6 +5,33 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 # but no old-version address is accepted as evidence here.
 
 [[rules]]
+id = "application-scene-handoff-authored-106a"
+addresses = ["0x00408080"]
+expected_count = 1
+expected_bytes = 148
+expected_names = ["sub_408080"]
+origin = "authored_game"
+subsystem = "platform"
+disposition = "authored"
+confidence = "observed"
+evidence = "Source-present control worker4081E0 calls the complete40-instruction singleton scene handoff at4083C8. Native scene lock, old/new scene hooks, previous/pending swap, retired list/event and requested/active state propagation establish game-owned policy. Full148-byte hash and exact singleton/lock/list/event/state operands are replayed. Native checked-list source remains linked189/148 nonexact on private insertion/TU ownership. The separate281-byte retirement callback is canonical exact and uses its own baseline. Helper4089C0/Incsize40C6D0 remain in origin review; no exclusion or ABI facade is invented. See docs/APPLICATION_SCENE_LIFECYCLE_2026_10_16.md."
+required_body_hashes = [{ address = "0x00408080", size = 148, sha256 = "f8f0ee2b0f90eff8040c8263a995b83af56da12463581a95dea52bdd3a0dce5c" }]
+required_direct_edges = [{ caller = "0x004081E0", site = "0x004083C8", target = "0x00408080", caller_status = "implemented" }]
+required_dword_values = [
+  { address = "0x00408083", value = "0x007028A0" },
+  { address = "0x00408090", value = "0x007028B8" },
+  { address = "0x0040809C", value = "0x0070289C" },
+  { address = "0x004080AF", value = "0x0070289C" },
+  { address = "0x004080B5", value = "0x007028A0" },
+  { address = "0x004080CA", value = "0x007028D0" },
+  { address = "0x004080D7", value = "0x007028A4" },
+  { address = "0x004080E0", value = "0x000008DC" },
+  { address = "0x004080E5", value = "0x007028B0" },
+  { address = "0x004080FD", value = "0x007028D4" },
+  { address = "0x0040810D", value = "0x007028D4" },
+]
+
+[[rules]]
 id = "application-control-worker-authored-106a"
 addresses = ["0x004081E0"]
 expected_count = 1

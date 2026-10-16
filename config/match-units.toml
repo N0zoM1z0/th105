@@ -18806,3 +18806,42 @@ dir32_targets = [
   "?g_render_mode_manager@th105@@3URenderModeManager@1@A+0x2A=g_render_mode_manager_reset_flag",
   "?g_direct_input_backend@th105@@3UDirectInputBackend@1@A=application_control_input_base",
 ]
+
+[units.cross-v106a-application-scene-lifecycle]
+kind = "linked_candidate"
+source = "src/platform/ApplicationSceneLifecycle.cpp"
+object = "build/match-units/CrossV106a_ApplicationSceneLifecycle.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = false
+notes = "Complete scene producer/consumer with native checked list<IScene*>. Pinned compile/GL and resolved LTCG link naturally reproduce the full281-byte retirement callback, including its8-byte-aligned dual-EBP frame. Scene commit remains nonexact189/148. Absolute symbols bind only attested game data/IAT; real VC8 import libraries resolve runtime references. Export/map ownership, closed CFG, full named-call replay and data-reference validation replace no instructions or bytes."
+link_data_targets = [
+  "?g_application_scene_commit@th105@@3UApplicationSceneCommitView@1@A=?g_application_scene_commit@th105@@3UApplicationSceneCommitView@1@A",
+  "__imp__CoInitialize@4=__imp__CoInitialize@4",
+  "__imp__CoUninitialize@0=__imp__CoUninitialize@0",
+  "__imp__CreateEventA@16=__imp__CreateEventA@16",
+  "__imp__WaitForSingleObject@8=__imp__WaitForSingleObject@8",
+  "__imp__CloseHandle@4=__imp__CloseHandle@4",
+  "__imp__SetEvent@4=__imp__SetEvent@4",
+  "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4",
+  "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4",
+  "__imp__TerminateProcess@8=__imp__TerminateProcess@8",
+  "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0",
+  "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4",
+  "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4",
+  "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0",
+]
+
+[[units.cross-v106a-application-scene-lifecycle.functions]]
+address = "0x00408080"
+symbol_base = "_application_commit_pending_scene"
+export_name = "application_commit_pending_scene"
+rel32_targets = [
+  "?_Buynode@?$list@PAVIScene@th105@@V?$allocator@PAVIScene@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@PAVIScene@th105@@V?$allocator@PAVIScene@th105@@@std@@@2@PAU342@0ABQAVIScene@th105@@@Z=0x004129E0",
+  "?_Incsize@?$list@PAVIScene@th105@@V?$allocator@PAVIScene@th105@@@std@@@std@@IAEXI@Z=0x0040C6D0",
+]
+
+[[units.cross-v106a-application-scene-lifecycle.functions]]
+address = "0x00408870"
+symbol_base = "_bootstrap_scene_thread@4"
+export_name = "_bootstrap_scene_thread@4"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "??3@YAXPAX@Z=0x006898EA"]

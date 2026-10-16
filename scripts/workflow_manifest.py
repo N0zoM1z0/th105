@@ -31,6 +31,7 @@ ALLOWED_PROFILES = {
     "vc8-sp1-probe-o2-fp-strict",
     "xiph-win32sdk-1.0.1",
     "vc8-sp1-libcmt",
+    "vc8-sp1-ltcg-o2",
 }
 ADDRESS = re.compile(r"0x[0-9A-F]{8}$")
 REL32_TARGET = re.compile(r"[^=\s]+=0x[0-9A-Fa-f]{8}$")
@@ -91,6 +92,11 @@ def load_manifest() -> dict[str, Any]:
             raise ValueError(f"match unit {name!r} has invalid compiler profile")
         if not isinstance(unit.get("enable_gs"), bool):
             raise ValueError(f"match unit {name!r} enable_gs must be boolean")
+        if unit["kind"] == "linked_candidate":
+            from linked_pe import validate_contract
+            validate_contract(unit, dir32_allowlist)
+        elif unit["profile"] == "vc8-sp1-ltcg-o2":
+            raise ValueError("the LTCG profile requires a linked_candidate unit")
         if unit["kind"] == "upstream_prebuilt":
             if unit["profile"] != "xiph-win32sdk-1.0.1":
                 raise ValueError(
@@ -255,6 +261,12 @@ def unit_input_digest(name: str, unit: dict[str, Any]) -> tuple[str, list[str]]:
     # Vendored library translation units include headers beside the source.
     # Hash them too, so an upstream-header change cannot reuse stale evidence.
     paths.update(source.parent.glob("*.h"))
+    if unit["kind"] == "linked_candidate":
+        paths.update(ROOT / path for path in (
+            "scripts/linked_pe.py", "scripts/build-linked-unit.py",
+            "scripts/compare-linked-unit.py", "config/tools.lock.toml",
+            "scripts/requirements-ci.txt",
+        ))
     for raw_include_dir in unit.get("include_dirs", []):
         include_dir = repository_path(str(raw_include_dir))
         paths.update(include_dir.rglob("*.h"))

@@ -12,3 +12,14 @@ repository = "https://github.com/bananapizzuh/msvc80-sp1.git"
 commit = "cd5f81de4228351ed9ed5b2dc8059d57da8f554a"
 compiler_version = "14.00.50727.762"
 linker_version = "8.00.50727.762"
+
+# Exact files/header trees used by the reproducible linked-PE profile.
+[msvc8_sp1_ltcg]
+"bin/cl.exe" = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+"bin/c1xx.dll" = "391b9d99bfd3566922623b156e38b7e3f780f2a18fdaa440982ad09961297b0d"
+"bin/c2.dll" = "497d1ffe57f75db8b458167bdea475f3962829e139b355a2672a4ef51c716413"
+"bin/link.exe" = "16beda175e8e83f45187c0cd18eed06d0ec26a401d0bbc3544074c57eeebaff5"
+"lib/msvcrt.lib" = "9d64b0c4721d2ae327b8d6c041b5a0d2ea72237fe86b5aebd9a93e9f2eeb0049"
+"lib/msvcprt.lib" = "50c0f6f5ecaf7c9bab449fc1bc274942e08da3a3ee64a338f59cc1de172c055f"
+"include" = "350f332ddd3371adc36e7d1c7194ade3b553a78dae3535234276e52b5068e53e"
+"PlatformSDK/Include" = "d2ca54a85bfdc20ffe4b31b42df28a2e30ab8b5ab4a32e0ca319a469da5d2016"

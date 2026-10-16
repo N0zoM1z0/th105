@@ -182,7 +182,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00407CA0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00407DA0,authored_game,platform,authored,observed,application-bootstrap-island-authored-106a
 0x00407F80,authored_game,platform,authored,observed,canonical-exact-authored
-0x00408080,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00408080,authored_game,platform,authored,observed,application-scene-handoff-authored-106a
 0x00408120,authored_game,platform,authored,observed,canonical-exact-authored
 0x004081E0,authored_game,platform,authored,observed,application-control-worker-authored-106a
 0x004084F0,authored_game,platform,authored,observed,application-graphics-worker-authored-106a
@@ -191,7 +191,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00408800,authored_game,platform,authored,observed,canonical-exact-authored
 0x00408820,authored_game,platform,authored,observed,canonical-exact-authored
 0x00408840,authored_game,platform,authored,observed,canonical-exact-authored
-0x00408870,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00408870,authored_game,platform,authored,observed,canonical-exact-authored
 0x00408990,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x004089C0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00408A00,unknown,,review,unknown,ida-1.06a-initial-inventory

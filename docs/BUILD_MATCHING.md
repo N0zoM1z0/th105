@@ -17,7 +17,8 @@ An exact function requires all of the following:
 - a durable authored mapping in `config/reccmp-functions.csv`;
 - source selected in `config/implemented.csv`;
 - a reproducible unit in `config/match-units.toml`;
-- strict COFF symbol/extent validation and relocation replay;
+- strict COFF symbol/extent validation and relocation replay, or the
+  independently bounded [linked-PE contract](LINKED_PE_MATCHING.md);
 - zero byte differences against canonical `resources/th105.exe`;
 - a `matches.csv` row with command/report evidence and a simultaneous
   `matching`/`100.00` ledger update.
@@ -99,6 +100,14 @@ IDA extents do not define compiler boundaries. Tail chunks, jump tables,
 EH funclets, thunks, and adjacent constants must be proven from control flow
 and COFF records. If LTCG makes a truthful standalone object impossible,
 record the blocker; do not weaken the comparator or invent a source boundary.
+
+A measured LTCG path is now available for contiguous, fully closed functions:
+`linked_candidate` / `vc8-sp1-ltcg-o2`. Real C++ scene retirement `408870`
+is281/281 only after link-time generation; its ordinary COFF candidate is278.
+The separate PE path requires source-owned exports/map symbols, complete CFG
+ownership, attested data bindings, named external-call replay and fresh pinned
+build provenance. Unsupported EH/data/jump-table surfaces fail closed. Existing
+COFF comparisons are unchanged; see [the exact contract](LINKED_PE_MATCHING.md).
 
 ### Main candidate spans can omit remote source-function chunks
 
