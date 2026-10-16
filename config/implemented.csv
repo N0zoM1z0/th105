@@ -1431,3 +1431,4 @@ NetworkWinsock_receive_loop
 NetworkWinsock_receive_request
 NetworkWinsock_start_connection
 NetworkWinsock_connection_thread_entry
+Aya_update_cpu_action_policy

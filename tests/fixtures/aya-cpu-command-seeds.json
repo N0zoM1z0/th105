@@ -1,0 +1,42 @@
+[
+  {
+    "action": 402,
+    "sequence": 201,
+    "self_x": 600.0,
+    "other_x": 0.0,
+    "self_y": 0.0,
+    "other_y": 0.0,
+    "vx": 3.0,
+    "vy": 3.0,
+    "other_action": 0,
+    "resource": 400,
+    "mode": 3,
+    "facing": -1,
+    "counter": 32767,
+    "policy": 0,
+    "timer": 1,
+    "refresh": 1,
+    "seed": 4294967295,
+    "expected_aya_command": 1024
+  },
+  {
+    "action": 149,
+    "sequence": 200,
+    "self_x": 100.0,
+    "other_x": 700.0,
+    "self_y": 0.0,
+    "other_y": 30.0,
+    "vx": 3.0,
+    "vy": -3.0,
+    "other_action": 140,
+    "resource": 1000,
+    "mode": 3,
+    "facing": 1,
+    "counter": -32768,
+    "policy": 19,
+    "timer": 1,
+    "refresh": 0,
+    "seed": 1,
+    "expected_aya_command": 512
+  }
+]

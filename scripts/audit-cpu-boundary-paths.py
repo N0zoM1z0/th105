@@ -65,18 +65,19 @@ def input_cases():
 class CpuProbe:
     OWNER, OTHER, RECORD, STACK = 0x2000000, 0x2010000, 0x2020000, 0x1000000
 
-    def __init__(self, mapped, code, callable_size):
+    def __init__(self, mapped, code, callable_size, *, address=ADDRESS):
         import unicorn
         from unicorn import x86_const as registers
         self.reg = registers
+        self.address = address
         self.engine = unicorn.Uc(unicorn.UC_ARCH_X86, unicorn.UC_MODE_32)
         uc = self.engine
         uc.mem_map(0x400000, 0x310000)
         uc.mem_write(0x400000, mapped)
-        uc.mem_write(ADDRESS, code)
+        uc.mem_write(self.address, code)
         for address in (self.OWNER, self.OTHER, self.RECORD, self.STACK):
             uc.mem_map(address, 0x10000)
-        self.join = policy_join(code[:callable_size], ADDRESS)
+        self.join = policy_join(code[:callable_size], self.address)
         self.initial = uc.context_save()
         uc.hook_add(unicorn.UC_HOOK_CODE, self.instruction)
         uc.hook_add(unicorn.UC_HOOK_MEM_WRITE, self.write)
@@ -145,7 +146,7 @@ class CpuProbe:
         uc.reg_write(r.UC_X86_REG_ECX, self.OWNER)
         uc.reg_write(r.UC_X86_REG_FPCW, control_word)
         self.stopped, self.calls, self.failure = False, [], None
-        uc.emu_start(ADDRESS, 0x710000, count=10000)
+        uc.emu_start(self.address, 0x710000, count=10000)
         if self.failure:
             raise ValueError(self.failure)
         if not self.stopped:

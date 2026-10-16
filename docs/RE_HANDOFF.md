@@ -13,9 +13,9 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,541 authored / 1,415 excluded / 1,067 in review**; **1,453 mapped**,
-  **1,433 source-present**, **1,333 exact / 225,099 exact bytes**, and
-  **513 match units**. These are ledger/status totals, not a fresh aggregate
+  **1,541 authored / 1,415 excluded / 1,067 in review**; **1,454 mapped**,
+  **1,434 source-present**, **1,333 exact / 225,099 exact bytes**, and
+  **514 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
   present, and only `matches.csv` plus a reproducible canonical 100% unit
@@ -32,10 +32,30 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Active priority: shared Fighter action root
+## Active priority: Aya CPU decision root
 
-The active major target is again `Fighter_update_common_action_state @ 4740C0`,
-10219 bytes used by all15 roster action roots. It retains53/66 diagnostic
+`Aya_update_cpu_action_policy @ 6126E0` now has complete target-reviewed source:
+16032 callable bytes /4097 instructions, six validated switches and no
+unresolved transfers. A strict bridge checks all4069 instructions/15910 bytes
+of the default CPU target plus all632 metadata bytes. Aya adds only two61-byte
+command branches, recovering ordered distance>320, native RNG thresholds20/2,
+signed resource>=400 and command728 bits400/200hex. Direct Ghidra saves and
+independently reads back void/ECX/no-stack-argument ABI, all4097 instructions,
+switch refs and branch comments, with target bytes unchanged.
+
+Fresh whole comparison remains nonexact+12E /61280E,14/41 diagnostic owners,
+metadata16052 and section tail16677; no exact credit. Native real-helper
+controls pass0/5000 finite and0/470 command/resource/truncation/NaN cases,
+including all28 added target instructions. Omitting the additions fails2/2
+positive seed controls. The next bounded task is the inherited shared control/
+register/tail layout needed for canonical equality. See
+[the Aya root evidence and reproducible commands](AYA_CPU_ROOT_2026_10_17.md).
+No shared C++ source/header/ABI/flags/relocation or accepted-unit change.
+
+## Shared Fighter action checkpoint
+
+The shared root `Fighter_update_common_action_state @ 4740C0` remains a stable
+10219-byte checkpoint used by all15 roster action roots. It retains53/66 diagnostic
 owners and remains canonically nonexact+14, metadata+2838 and section tail10801.
 The source's7A4 method view now names signed frame limit+14C from the already
 exact62-byte frame-advance helper; layout and compiled bytes are unchanged.
@@ -48,7 +68,7 @@ wall-event inputs fail the explicit context guard. That is the earlier
 [native motion checkpoint](COMMON_FIGHTER_NATIVE_MOTION_2026_10_17.md), not
 a newly rerun matrix.
 
-The current batch executes the original animation virtuals, frame/tree lookup
+The previous common-root batch executes the original animation virtuals, frame/tree lookup
 and untextured sprite updates for actions73/75/88:0/6048 sampled differences
 through genuine RET, including actor/call/argument/conversion/stack/callee-save/
 CW checks. It visits159/2799 target instructions in an explicit resource

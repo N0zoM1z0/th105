@@ -32,6 +32,12 @@ spec.loader.exec_module(boundary)
 HELPERS = {0x406540: "atan2_degrees", 0x4066B0: "mt19937_next_u32",
            0x4067D0: "selector_random_roll", 0x4399C0: "checked_sequence", 0x68A1A0: "ftol2_sse"}
 RETURN = 0x710000
+ROOTS = {
+    "default": ("default-cpu-action-policy", "gpt-web-default-cpu-action-policy",
+                boundary.ADDRESS, boundary.SIZE, boundary.BODY_SHA256, 0x5F47B0),
+    "aya": ("aya-cpu-action-policy", "gpt-web-aya-cpu-action-policy", 0x6126E0, 16032,
+            "7efa001552238230ac86c77f48f36a217cc486e847f85cb924527c64e2dc6e09", 0x614F8A),
+}
 
 
 def float_input(case, key):
@@ -58,6 +64,24 @@ def height_cases():
                    other_action=100, timer=0, seed=seed)
 
 
+def aya_command_cases():
+    bases = json.loads((ROOT / "tests/fixtures/aya-cpu-command-seeds.json").read_text())
+    if len(bases) != 2 or {case["expected_aya_command"] for case in bases} != {0x200, 0x400}:
+        raise ValueError("Aya command fixture omits a native positive control")
+    yield from bases
+    below, above = (struct.unpack("<f", struct.pack("<I", bits))[0] for bits in (0x43A07FFF, 0x43A08001))
+    for base in bases:
+        vector = {key: value for key, value in base.items() if key != "expected_aya_command"}
+        direction = 1 if base["other_x"] > base["self_x"] else -1
+        for distance, resource, seed in itertools.product(
+                (319.0, 320.0, 320.5, below, 321.0, above, 600.0),
+                (-1, 399, 400, 401, 1000), (0, 1, 2, 7, 42, 0xFFFFFFFF)):
+            yield dict(vector, other_x=base["self_x"] + direction * distance, resource=resource, seed=seed)
+        for bits, seed in itertools.product(
+                ("7fc00000", "7f800001", "7f800000", "ff800000"), (0, 1, 2, 7, 42, 0xFFFFFFFF)):
+            yield dict(vector, other_x_bits=bits, seed=seed)
+
+
 def selection_cases():
     # These seeds are inputs, never substituted RNG results. The target must
     # independently confirm each predicted policy roll during native execution.
@@ -79,7 +103,7 @@ def selection_cases():
                    self_y=sy, other_y=oy, facing=facing)
 
 
-def selection_coverage(canonical, root, target, visited):
+def selection_coverage(canonical, root, target, visited, *, address=boundary.ADDRESS, expected_entry=0x5F47B0):
     policy, = (region for region in root["regions"] if region["name"] == "policy")
     index = -int(policy["case_min"])
     if not 0 <= index <= int(policy["case_max"]) - int(policy["case_min"]):
@@ -88,9 +112,9 @@ def selection_coverage(canonical, root, target, visited):
     if slot >= int(policy["destination_count"]):
         raise ValueError("policy0 table slot exceeds the destination count")
     entry = int.from_bytes(canonical.target_bytes(int(policy["destination_table"], 0) + 4 * slot, 4), "little")
-    if entry != 0x5F47B0:
+    if entry != expected_entry:
         raise ValueError("policy0 table entry differs from the reviewed target")
-    code = target[entry - boundary.ADDRESS:]
+    code = target[entry - address:]
     cfg = reachable_boundary_audit(code, entry, {})
     if (cfg["unresolved_indirect_exits"] or cfg["internal_call_targets"]
             or any(t["address"] != 0x4067D0 or any(s["kind"] != "call" for s in t["sites"])
@@ -132,14 +156,14 @@ def cases(count):
 
 
 class NativeCpuProbe(boundary.CpuProbe):
-    def __init__(self, *args):
-        super().__init__(*args)
+    def __init__(self, *args, address=boundary.ADDRESS):
+        super().__init__(*args, address=address)
         # Mapping permits the genuine RET to complete before emulation ends.
         self.engine.mem_map(RETURN, 0x1000)
         self.phase = "idle"
         self.seed_cache = {}
         self.helper_counts = Counter()
-        self.root_end = boundary.ADDRESS + args[2]
+        self.root_end = self.address + args[2]
         self.visited_root = set()
 
     def write(self, uc, access, address, size, value, unused):
@@ -156,7 +180,7 @@ class NativeCpuProbe(boundary.CpuProbe):
 
     def step(self, uc, address):
         r = self.reg
-        if address == boundary.ADDRESS:
+        if address == self.address:
             if self.phase != "root":
                 raise ValueError("unexpected CPU entry during RNG setup")
             c = self.case
@@ -185,7 +209,7 @@ class NativeCpuProbe(boundary.CpuProbe):
                 self.stopped = True
         if self.phase != "root":
             return
-        if boundary.ADDRESS <= address < self.root_end:
+        if self.address <= address < self.root_end:
             self.visited_root.add(address)
         if address in HELPERS:
             self.helper_counts[address] += 1
@@ -242,20 +266,22 @@ class NativeCpuProbe(boundary.CpuProbe):
         return result
 
 
-def audit(object_path, count, selected_cases=None, check_selection=False):
+def audit(object_path, count, selected_cases=None, check_selection=False, *, root_name="default"):
     import unicorn
     from unicorn import unicorn as unicorn_api
     canonical = boundary.load_script("cpu_policy_canonical", "compare-function.py")
     target_hash = canonical.verify_target()
-    target = canonical.target_bytes(boundary.ADDRESS, boundary.SIZE)
-    if hashlib.sha256(target).hexdigest() != boundary.BODY_SHA256:
+    root_key, unit_key, address, size, body_hash, policy_entry = ROOTS[root_name]
+    target = canonical.target_bytes(address, size)
+    if hashlib.sha256(target).hexdigest() != body_hash:
         raise ValueError("CPU callable boundary/hash changed")
     mapper = boundary.load_script("cpu_policy_mapper", "compare-giant-action-switches.py")
     roots = tomllib.loads((ROOT / "config/giant-action-switches.toml").read_text())
-    root = mapper.load_target_mapper().select_root(roots, "default-cpu-action-policy")
-    unit = tomllib.loads((ROOT / "config/match-units.toml").read_text())["units"]["gpt-web-default-cpu-action-policy"]
+    root = mapper.load_target_mapper().select_root(roots, root_key)
+    unit = tomllib.loads((ROOT / "config/match-units.toml").read_text())["units"][unit_key]
     function, = unit["functions"]
     obj = mapper.CoffObject(object_path)
+    object_hash = hashlib.sha256(object_path.read_bytes()).hexdigest()
     symbols = [s for s in obj.symbols.values() if s.name == function["symbol_base"]]
     if len(symbols) != 1 or symbols[0].value != 0 or symbols[0].section_number != obj.text_section_number:
         raise ValueError("CPU root must start the selected COFF section")
@@ -263,17 +289,21 @@ def audit(object_path, count, selected_cases=None, check_selection=False):
     rel32 = canonical.known_targets()
     rel32.update({k: int(v, 0) for k, v in (s.split("=", 1) for s in function["rel32_targets"])})
     dir32 = dict(s.split("=", 1) for s in function["dir32_targets"])
-    candidate = canonical.coff_symbol_bytes(object_path, function["symbol_base"], boundary.ADDRESS,
+    candidate = canonical.coff_symbol_bytes(object_path, function["symbol_base"], address,
                                              len(obj.text), rel32, canonical.known_data_targets(), dir32)
     image = pefile.PE(str(ROOT / "resources/th105.exe")).get_memory_mapped_image()
-    engines = (NativeCpuProbe(image, target, boundary.SIZE),
-               NativeCpuProbe(image, candidate, candidate_map["metadata_start"]))
+    engines = (NativeCpuProbe(image, target, size, address=address),
+               NativeCpuProbe(image, candidate, candidate_map["metadata_start"], address=address))
     mismatches, examples, digest, processed = 0, [], hashlib.sha256(), 0
     selection_rolls = [set(), set()]
     vectors = cases(count) if selected_cases is None else selected_cases
     for number, case in enumerate(vectors, 1):
         digest.update(json.dumps(case, sort_keys=True).encode())
         expected, actual = (engine.evaluate(case) for engine in engines)
+        if "expected_aya_command" in case:
+            command = int.from_bytes(bytes.fromhex(expected["actor"])[0x728:0x72C], "little")
+            if root_name != "aya" or command != case["expected_aya_command"]:
+                raise ValueError("native target did not confirm the Aya command seed fixture")
         if "selection_roll" in case:
             for side, result in enumerate((expected, actual)):
                 calls = result["calls"]
@@ -294,9 +324,12 @@ def audit(object_path, count, selected_cases=None, check_selection=False):
     if processed != count:
         raise ValueError("CPU input generator did not complete the requested controls")
     coverage = [{HELPERS[a]: engine.helper_counts[a] for a in HELPERS} for engine in engines]
+    if object_hash != hashlib.sha256(object_path.read_bytes()).hexdigest():
+        raise ValueError("object changed during native CPU execution")
     result = {"schema": "th105-cpu-native-policy-paths-v1", "evidence": "sampled native execution; no exact credit",
-            "build_provenance_verified": False, "target_sha256": target_hash, "body_sha256": boundary.BODY_SHA256,
-            "object_sha256": hashlib.sha256(object_path.read_bytes()).hexdigest(),
+            "root": root_key, "address": f"0x{address:08X}",
+            "build_provenance_verified": False, "target_sha256": target_hash, "body_sha256": body_hash,
+            "object_sha256": object_hash,
             "unicorn_version": unicorn.__version__, "unicorn_library_sha256": hashlib.sha256(library.read_bytes()).hexdigest(),
             "python_version": sys.version.split()[0], "input_sha256": digest.hexdigest(),
             "input_source": "built-in finite matrix" if selected_cases is None else "explicit cases",
@@ -306,24 +339,37 @@ def audit(object_path, count, selected_cases=None, check_selection=False):
             "all_five_helpers_executed": all(all(c.values()) for c in coverage),
             "scope": "entry through native RET; entire7A4 actor prefix, RNG state, native call order/arguments/results, ftol2 x87 inputs, stack cleanup and control word; real seeded MT streams after one discarded draw; masked PC53; no helper-result hooks; complete numerical/gameplay/exception equivalence is unproved"}
     if check_selection:
-        result["policy0_coverage"] = selection_coverage(canonical, root, target, engines[0].visited_root)
+        result["policy0_coverage"] = selection_coverage(
+            canonical, root, target, engines[0].visited_root, address=address, expected_entry=policy_entry)
         result["observed_selection_rolls_target_candidate"] = [sorted(values) for values in selection_rolls]
         result["selection_coverage_complete"] = (not result["policy0_coverage"]["missing_target_instruction_addresses"]
                                                   and all(values == set(range(100)) for values in selection_rolls))
+    if root_name == "aya":
+        result["aya_command_branch_coverage"] = []
+        for start in (0x6142C0, 0x61447C):
+            instructions = decode(canonical.target_bytes(start, 61), start)
+            missing = [i.address for i in instructions if i.address not in engines[0].visited_root]
+            result["aya_command_branch_coverage"].append({
+                "entry": f"0x{start:08X}", "target_instructions": len(instructions),
+                "missing_target_instruction_addresses": [f"0x{a:08X}" for a in missing]})
     return result
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("object", type=Path)
+    parser.add_argument("--root", choices=tuple(ROOTS), default="default", help="target-pinned CPU root")
     inputs = parser.add_mutually_exclusive_group()
     inputs.add_argument("--cases", type=int)
     inputs.add_argument("--case-file", type=Path, help="nonempty JSON case array; <float field>_bits overrides its value")
     inputs.add_argument("--height-cases", action="store_true", help="368 finite/NaN height and RNG controls")
+    inputs.add_argument("--aya-command-cases", action="store_true", help="470 Aya command/RNG/resource/truncation controls")
     inputs.add_argument("--selection-cases", action="store_true", help="16000 policy0 controls; require all target instructions and rolls0..99")
     args = parser.parse_args()
     if args.cases is not None and args.cases <= 0:
         parser.error("--cases must be positive")
+    if args.aya_command_cases and args.root != "aya":
+        parser.error("--aya-command-cases requires --root aya")
     try:
         selected = None
         if args.case_file:
@@ -332,12 +378,19 @@ def main():
                 raise ValueError("case file must contain a nonempty array of input objects")
         elif args.height_cases:
             selected = list(height_cases())
+        elif args.aya_command_cases:
+            selected = list(aya_command_cases())
         elif args.selection_cases:
             selected = list(selection_cases())
         count = len(selected) if selected is not None else (args.cases or 5000)
-        result = audit(args.object, count, selected, check_selection=args.selection_cases)
+        result = audit(args.object, count, selected, check_selection=args.selection_cases, root_name=args.root)
         if args.selection_cases:
             result["input_source"] = "built-in policy0 selection matrix"
+        if args.aya_command_cases:
+            if count != 470 or any(block["missing_target_instruction_addresses"]
+                                   for block in result["aya_command_branch_coverage"]):
+                raise ValueError("Aya command controls did not complete native target instruction coverage")
+            result["input_source"] = "built-in Aya command matrix with target-confirmed positive seeds"
     except Exception as error:
         parser.exit(2, f"CPU native execution failed: {error}\n")
     print(json.dumps(result, indent=2))
