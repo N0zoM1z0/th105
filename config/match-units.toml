@@ -19126,3 +19126,16 @@ rel32_targets = [
   "_invalid_parameter_noinfo=0x0068A143",
   "@__security_check_cookie@4=0x00689D25",
 ]
+
+[units.cross-v106a-network-winsock-accept]
+kind = "probe"
+source = "src/network/NetworkWinsockAccept.cpp"
+object = "build/match-units/CrossV106a_NetworkWinsockAccept.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete223-byte opcode6 acceptance handler, full native fastcall-compatible body with nested RAII endpoint/callback locks. Packed12-byte header is viewed at received buffer+1. Ordinary223/223 nonexact on entry saves and EH-state scheduling; real223-byte resolved LTCG recovers EH-state windows but not save ordering. Native linked GS/EH replay remains unsupported. Original standard/private spelling and TU are unknown; no ABI wrapper, synthetic caller or exact credit."
+
+[[units.cross-v106a-network-winsock-accept.functions]]
+address = "0x00415AB0"
+symbol_base = "?network_udp_accept@th105@@YIXPBUNetworkAcceptAddress16@1@PAUNetworkUdpAcceptView@1@PBUNetworkAcceptPacketHeader0C@1@@Z"
+dir32_targets = ["__ehhandler$?network_udp_accept@th105@@YIXPBUNetworkAcceptAddress16@1@PAUNetworkUdpAcceptView@1@PBUNetworkAcceptPacketHeader0C@1@@Z=__ehhandler$?network_udp_accept@th105@@YIXPBUNetworkAcceptAddress16@1@PAUNetworkUdpAcceptView@1@PBUNetworkAcceptPacketHeader0C@1@@Z"]

@@ -13,9 +13,9 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,537 authored / 1,415 excluded / 1,071 in review**; **1,449 mapped**,
-  **1,428 source-present**, **1,333 exact / 225,099 exact bytes**, and
-  **512 match units**. These are ledger/status totals, not a fresh aggregate
+  **1,538 authored / 1,415 excluded / 1,070 in review**; **1,450 mapped**,
+  **1,429 source-present**, **1,333 exact / 225,099 exact bytes**, and
+  **513 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
   present, and only `matches.csv` plus a reproducible canonical 100% unit
@@ -31,6 +31,23 @@ are historical.
 Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
+
+## UDP connection acceptance
+
+`NetworkWinsock_accept_connection @ 415AB0` now has complete source in
+`src/network/NetworkWinsockAccept.cpp`. Its observed ECX sender, EDX owner,
+stack packet and RET4 physically fit a normal fastcall definition, with no
+register adapter or synthetic caller. The complete69-instruction/223-byte
+handler copies the sender and clears the probe counter under the endpoint
+lock, invokes callback slot0 under a nested callback lock, and changes
+state3 to0 before reverse guard destruction. The packed12-byte packet view
+preserves DWORD code+4, WORD length+8 and payload+C. Ordinary223/223 remains
+nonexact on incoming-register saves and EH-state scheduling. A genuine
+resolved223-byte LTCG control reproduces both target EH-state windows but
+retains reversed entry saves; native linked EH/GS replay is not supported.
+Original standard/private spelling and TU remain unknown. No exact credit
+is added. Direct Ghidra metadata/types are saved and independently read back.
+See [the ABI, EH facts and focused controls](NETWORK_UDP_ACCEPT_2026_10_16.md).
 
 ## UDP probe worker
 

@@ -5,6 +5,29 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 # but no old-version address is accepted as evidence here.
 
 [[rules]]
+id = "network-udp-accept-authored-106a"
+addresses = ["0x00415AB0"]
+expected_count = 1
+expected_bytes = 223
+expected_names = ["sub_415AB0"]
+origin = "authored_game"
+subsystem = "network"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete69-instruction/223-byte opcode6 handler called by the reviewed receive loop at41DAC3 after its payload-size gate. ECX sender, EDX UDP owner and one stack packet pointer/RET4 physically fit normal x86 fastcall; the full typed body needs no register facade. When state144=3, nested real endpoint/callback lock guards copy the16-byte sender, clear counterD4, invoke callback slot0 with packet code4/payloadC/word size8, then set state0 before reverse guard destruction. Ordinary source223/223 remains nonexact on two incoming-register saves and EH-state scheduling. Genuine resolved LTCG reproduces the two EH-state windows but retains reversed entry saves and unsupported native EH/GS replay; no exact credit or helper exclusion. docs/NETWORK_UDP_ACCEPT_2026_10_16.md."
+required_body_hashes = [{ address = "0x00415AB0", size = 223, sha256 = "3267aef9af3bb9ddf47a699372593cbe049989009ea3a8cf9e8308430e9182e7" }]
+required_direct_edges = [{ caller = "0x0041D7C0", site = "0x0041DAC3", target = "0x00415AB0" }]
+required_dword_values = [
+  { address = "0x00415AB3", value = "0x006BD6C0" },
+  { address = "0x00415AEA", value = "0x006C0108" },
+  { address = "0x00415B6F", value = "0x006C0104" },
+  { address = "0x006BD6D2", value = "0x006E3C90" },
+  { address = "0x006E3C90", value = "0x19930522" },
+  { address = "0x006E3C94", value = "0x00000002" },
+  { address = "0x006E3CB0", value = "0x00000001" },
+]
+
+[[rules]]
 id = "network-udp-probe-worker-authored-106a"
 addresses = ["0x00416F40"]
 expected_count = 1
