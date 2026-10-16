@@ -1429,3 +1429,5 @@ NetworkWinsock_probe_thread_entry
 NetworkWinsock_accept_connection
 NetworkWinsock_receive_loop
 NetworkWinsock_receive_request
+NetworkWinsock_start_connection
+NetworkWinsock_connection_thread_entry

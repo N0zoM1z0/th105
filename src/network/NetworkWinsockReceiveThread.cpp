@@ -2,6 +2,8 @@
 #include <map>
 #include <vector>
 #include <string.h>
+#include <stdlib.h>
+#include <stddef.h>
 
 namespace th105 {
 extern "C" int __stdcall recvfrom(unsigned int socket, char *buffer, int size,
@@ -10,6 +12,39 @@ extern "C" int __stdcall sendto(unsigned int socket, const char *buffer, int siz
     int flags, const void *destination, int destination_size);
 extern "C" unsigned short __stdcall ntohs(unsigned short port);
 extern "C" unsigned short __stdcall htons(unsigned short port);
+extern "C" unsigned long __stdcall htonl(unsigned long address);
+extern "C" unsigned int __stdcall socket(int family, int type, int protocol);
+extern "C" int __stdcall bind(unsigned int socket, const void *address, int size);
+extern "C" int __stdcall closesocket(unsigned int socket);
+extern "C" __declspec(dllimport) unsigned long __stdcall timeGetTime();
+extern "C" unsigned long __stdcall inet_addr(const char *address);
+struct NetworkReceiveHostEntry {
+    char *name_00;
+    char **aliases_04;
+    short address_type_08;
+    short address_size_0a;
+    char **addresses_0c;
+};
+extern "C" NetworkReceiveHostEntry *__stdcall gethostbyname(const char *name);
+extern "C" __declspec(dllimport) int __stdcall GetExitCodeThread(
+    void *thread, unsigned long *exit_code);
+extern "C" __declspec(dllimport) unsigned long __stdcall WaitForSingleObject(
+    void *handle, unsigned long milliseconds);
+
+struct NetworkReceiveWorker8 {
+    bool start(unsigned long (__stdcall *entry)(void *), void *parameter);
+    bool is_running()
+    {
+        if (handle_00 != 0) {
+            unsigned long exit_code;
+            GetExitCodeThread(handle_00, &exit_code);
+            return exit_code == 259;
+        }
+        return false;
+    }
+    void *handle_00;
+    unsigned long thread_id_04;
+};
 
 struct NetworkReceiveAddress16 {
     unsigned short family_00;
@@ -88,10 +123,14 @@ public:
     NetworkReceiveAddress16 previous_endpoint_04c;
     unsigned char unreviewed_05c[0x18];
     unsigned char running_074;
-    unsigned char unreviewed_075[0x0b];
+    unsigned char unreviewed_075[3];
+    void *request_data_078;
+    unsigned short request_size_07c;
+    unsigned char unreviewed_07e[2];
     NetworkReceiveCallbackView *callback_080;
     CriticalSectionWrapper callback_lock_084;
-    unsigned char unreviewed_0a0[0x20];
+    NetworkReceiveAddress16 connection_endpoint_0a0;
+    unsigned char unreviewed_0b0[0x10];
     NetworkReceiveAddress16 primary_endpoint_0c0;
     unsigned char unreviewed_0d0[4];
     unsigned int probe_count_0d4;
@@ -103,11 +142,198 @@ public:
     unsigned int active_count_118;
     unsigned int peer_limit_11c;
     CriticalSectionWrapper peer_lock_120;
-    unsigned char unreviewed_13c[8];
+    NetworkReceiveWorker8 connection_worker_13c;
     unsigned int state_144;
     unsigned int marker_148;
     std::vector<NetworkReceiveAddress16> endpoints_14c;
 };
+
+struct NetworkConnectionHandoff10 {
+    NetworkWinsockReceiveView *owner_00;
+    unsigned short size_04;
+    const void *data_08;
+    int copied_0c;
+};
+extern "C" unsigned long __stdcall network_winsock_connection_thread(void *parameter);
+
+#pragma pack(push, 1)
+struct NetworkConnectionProbe25 {
+    unsigned char opcode_00;
+    NetworkReceiveAddress16 first_01;
+    NetworkReceiveAddress16 second_11;
+    unsigned short port_21;
+    unsigned char unreviewed_23[2];
+};
+struct NetworkConnectionRequestHeader19 {
+    unsigned char opcode_00;
+    unsigned char key_01[16];
+    unsigned short word_11;
+    unsigned char peer_limit_13;
+    unsigned char unreviewed_14;
+    unsigned short size_15;
+    unsigned char unreviewed_17[2];
+};
+// The only fresh-data caller supplies ConnectPacket40; the receive caller
+// reuses it through FFFF. Original stack packet capacity remains unknown.
+struct NetworkConnectionRequest41 {
+    NetworkConnectionRequestHeader19 header_00;
+    unsigned char payload_19[40];
+};
+#pragma pack(pop)
+
+static void __stdcall clear_connection_endpoints(
+    std::vector<NetworkReceiveAddress16> &endpoints)
+{
+    endpoints.clear();
+}
+
+char NetworkWinsockReceiveView::start_connection(const char *endpoint,
+    unsigned short port, const void *packet, unsigned short size)
+{
+    if (connection_worker_13c.is_running())
+        return 0;
+    NetworkReceiveLock endpoint_lock(&endpoint_lock_0e0);
+    if (state_144 == 2 || state_144 == 3)
+        return 0;
+    if (size < 0xffff) {
+        if (request_data_078)
+            free(request_data_078);
+        request_size_07c = size;
+        if (size) {
+            request_data_078 = malloc(size);
+            memcpy(request_data_078, packet, request_size_07c);
+        } else {
+            request_data_078 = 0;
+        }
+    }
+    NetworkConnectionHandoff10 handoff;
+    handoff.owner_00 = this;
+    handoff.size_04 = request_size_07c;
+    handoff.data_08 = request_data_078;
+    handoff.copied_0c = 0;
+    if (endpoint) {
+        connection_endpoint_0a0.family_00 = 2;
+        connection_endpoint_0a0.port_02 = htons(port);
+        connection_endpoint_0a0.address_04 = inet_addr(endpoint);
+        if (connection_endpoint_0a0.address_04 == 0xffffffffU) {
+            NetworkReceiveHostEntry *host = gethostbyname(endpoint);
+            if (!host || !host->addresses_0c[0])
+                return 0;
+            connection_endpoint_0a0.address_04 =
+                *reinterpret_cast<const unsigned int *>(host->addresses_0c[0]);
+        }
+    }
+    published_endpoint_03c = connection_endpoint_0a0;
+    previous_endpoint_04c = connection_endpoint_0a0;
+    clear_connection_endpoints(endpoints_14c);
+    endpoints_14c.push_back(connection_endpoint_0a0);
+    state_144 = 2;
+    connection_worker_13c.start(network_winsock_connection_thread, &handoff);
+    while (handoff.copied_0c == 0)
+        WaitForSingleObject(connection_worker_13c.handle_00, 16);
+    return 1;
+}
+
+extern "C" unsigned long __stdcall network_winsock_connection_thread(void *parameter)
+{
+    NetworkConnectionHandoff10 *handoff =
+        static_cast<NetworkConnectionHandoff10 *>(parameter);
+    NetworkWinsockReceiveView *owner = handoff->owner_00;
+    void *pacing_handle = owner->connection_worker_13c.handle_00;
+    NetworkConnectionProbe25 probe;
+    probe.opcode_00 = 1;
+    NetworkConnectionRequest41 request;
+    request.header_00.opcode_00 = 5;
+    memcpy(request.header_00.key_01, owner->key_004, 16);
+    request.header_00.word_11 = owner->word_024;
+    request.header_00.peer_limit_13 = static_cast<unsigned char>(owner->peer_limit_11c);
+    request.header_00.size_15 = handoff->size_04;
+    if (handoff->size_04)
+        memcpy(request.payload_19, handoff->data_08, handoff->size_04);
+    unsigned int request_size = request.header_00.size_15 + 25;
+    int probe_count = 0;
+    int request_count = 0;
+    handoff->copied_0c = 1;
+
+    NetworkReceiveAddress16 local = {};
+    local.family_00 = 2;
+    local.address_04 = htonl(0);
+    local.port_02 = htons(static_cast<unsigned short>(timeGetTime()) % 1000 + 11000);
+    unsigned int auxiliary = socket(2, 2, 0);
+    bool auxiliary_bound = false;
+    if (auxiliary != 0xffffffffU) {
+        if (bind(auxiliary, &local, 16) >= 0)
+            auxiliary_bound = true;
+        else
+            closesocket(auxiliary);
+    }
+
+    owner->marker_148 = 0;
+    bool running = true;
+    if (owner->endpoints_14c.size() != 0) {
+        owner->published_endpoint_03c = owner->endpoints_14c[0];
+        do {
+            EnterCriticalSection(&owner->endpoint_lock_0e0.critical_section_04);
+            if (owner->state_144 == 2) {
+                probe.second_11 = owner->published_endpoint_03c;
+                probe.first_01 = owner->published_endpoint_03c;
+                probe.port_21 = 0;
+                sendto(owner->socket_028, reinterpret_cast<const char *>(&probe),
+                    37, 0, &owner->published_endpoint_03c, 16);
+                if (auxiliary_bound)
+                    sendto(auxiliary, reinterpret_cast<const char *>(&probe),
+                        37, 0, &owner->published_endpoint_03c, 16);
+                probe.first_01 = owner->previous_endpoint_04c;
+                probe.port_21 = 0;
+                sendto(owner->socket_028, reinterpret_cast<const char *>(&probe),
+                    37, 0, &owner->previous_endpoint_04c, 16);
+                probe.port_21 = owner->word_024 + probe_count;
+                sendto(owner->socket_028, reinterpret_cast<const char *>(&probe),
+                    37, 0, &owner->previous_endpoint_04c, 16);
+                if (auxiliary_bound) {
+                    probe.port_21 = ntohs(local.port_02) + probe_count;
+                    sendto(owner->socket_028, reinterpret_cast<const char *>(&probe),
+                        37, 0, &owner->previous_endpoint_04c, 16);
+                }
+                if (probe_count++ > 32) {
+                    ++owner->marker_148;
+                    if (owner->marker_148 >= owner->endpoints_14c.size())
+                        owner->state_144 = 6;
+                    else {
+                        probe_count = 0;
+                        owner->published_endpoint_03c =
+                            owner->endpoints_14c[owner->marker_148];
+                    }
+                }
+                request_count = 0;
+            } else if (owner->state_144 == 3) {
+                sendto(owner->socket_028, reinterpret_cast<const char *>(&request),
+                    request_size, 0, &owner->published_endpoint_03c, 16);
+                if (request_count++ > 100)
+                    owner->state_144 = 6;
+                probe_count = 0;
+            } else {
+                running = false;
+            }
+            if (!owner->running_074)
+                owner->state_144 = 6;
+            LeaveCriticalSection(&owner->endpoint_lock_0e0.critical_section_04);
+            WaitForSingleObject(pacing_handle, 128);
+        } while (running);
+    }
+    if (auxiliary_bound)
+        closesocket(auxiliary);
+    return 0;
+}
+
+typedef char ReceiveWorkerSize[sizeof(NetworkReceiveWorker8) == 8 ? 1 : -1];
+typedef char ConnectionHandoffSize[sizeof(NetworkConnectionHandoff10) == 16 ? 1 : -1];
+typedef char ConnectionProbeSize[sizeof(NetworkConnectionProbe25) == 37 ? 1 : -1];
+typedef char ConnectionRequestHeaderSize[sizeof(NetworkConnectionRequestHeader19) == 25 ? 1 : -1];
+typedef char ReceiveOwnerSize[sizeof(NetworkWinsockReceiveView) == 0x15c ? 1 : -1];
+typedef char ReceiveRequestOffset[offsetof(NetworkWinsockReceiveView, request_data_078) == 0x78 ? 1 : -1];
+typedef char ReceiveConnectionOffset[offsetof(NetworkWinsockReceiveView, connection_endpoint_0a0) == 0xa0 ? 1 : -1];
+typedef char ReceiveWorkerOffset[offsetof(NetworkWinsockReceiveView, connection_worker_13c) == 0x13c ? 1 : -1];
 
 struct NetworkAcceptAddress16;
 struct NetworkUdpAcceptView;

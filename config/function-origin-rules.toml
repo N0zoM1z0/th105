@@ -5,6 +5,51 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 # but no old-version address is accepted as evidence here.
 
 [[rules]]
+id = "network-udp-connection-worker-authored-106a"
+addresses = ["0x00415D60"]
+expected_count = 1
+expected_bytes = 1009
+expected_names = ["sub_415D60"]
+origin = "authored_game"
+subsystem = "network"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete286-instruction/1009-byte native callback registered by reviewed connection415340 at4154EB. Consumes persistent request via16-byte stack handoff before acknowledgement415E1D; opcode1 endpoint/port probes, opcode5 key/WORD/low-limit request, auxiliary socket fallback, signed postincrement retry and candidate rotation, manual endpoint lock and state2/3/6 ownership establish application protocol policy. Ordinary945/1009 source remains nonexact; genuine mixed COFF/LTCG receive/connection chain now links with zero missing inputs. No new exact/exclusion credit. docs/NETWORK_UDP_CONNECTION_2026_10_16.md."
+required_body_hashes = [{ address = "0x00415D60", size = 1009, sha256 = "96a7f05395f2e1d7f83cc661e6448e87ba2688726fbe50acc4a751f5d24383f5" }]
+required_dword_values = [
+  { address = "0x004154EC", value = "0x00415D60" },
+  { address = "0x00415E20", value = "0x00000001" },
+  { address = "0x00415E46", value = "0x006C0258" },
+  { address = "0x00416114", value = "0x006C009C" },
+  { address = "0x006898CE", value = "0x006C0274" },
+]
+
+[[rules]]
+id = "network-udp-connection-authored-106a"
+addresses = ["0x00415340"]
+expected_count = 1
+expected_bytes = 542
+expected_names = ["sub_415340"]
+origin = "authored_game"
+subsystem = "network"
+disposition = "authored"
+confidence = "observed"
+evidence = "Full160-instruction/542-byte connection policy called by receive41DBD6 and exact UI4426F2. Native worker/state gates, persistent request FFFF sentinel, numeric/DNS endpoint selection, candidate reset, state2 and stack handoff acknowledgement are application policy. Full ordinary source524/542 remains nonexact; genuine callback415D60 is now fully implemented and the mixed receive-chain link resolves, with no stub or executable ABS binding. docs/NETWORK_UDP_CONNECTION_2026_10_16.md."
+required_body_hashes = [{ address = "0x00415340", size = 542, sha256 = "5adc2f59eba3c9831a6813a1bf82cfe0e803ae2e9db354c558524d6f83089b3b" }]
+required_direct_edges = [
+  { caller = "0x0041D7C0", site = "0x0041DBD6", target = "0x00415340" },
+  { caller = "0x004425D0", site = "0x004426F2", target = "0x00415340" },
+]
+required_selected_body_calls = [{ owner = "0x00415340", site = "0x004154FC", target = "0x00414600", target_status = "matching" }]
+required_dword_values = [
+  { address = "0x00415349", value = "0x006BE158" },
+  { address = "0x004154EC", value = "0x00415D60" },
+  { address = "0x006BE16A", value = "0x006E488C" },
+  { address = "0x006E488C", value = "0x19930522" },
+  { address = "0x006E4890", value = "0x00000001" },
+]
+
+[[rules]]
 id = "network-udp-request-authored-106a"
 addresses = ["0x00415560"]
 expected_count = 1
@@ -14,7 +59,7 @@ origin = "authored_game"
 subsystem = "network"
 disposition = "authored"
 confidence = "observed"
-evidence = "Complete410-instruction/1355-byte request handler from receive opcode5 at41DA9E. Running/dual16-byte key/peer-limit gates, native map lookup, lowest positive report selection, four-position redirect window, six-argument route callback, real peer allocation/insertion/count and packed accept/reject replies establish authored policy. Both RTTI-backed secondary route providers return68-byte data, supporting minimum81-byte reply storage without recovering original capacity. Full source1265/1355 remains nonexact; key148 and private checked-access33 compare exactly as origin-review controls only. Their SDK/generic provenance is unresolved, so neither adds authored/exclusion credit. Only real connection415340 remains missing for receive-unit LTCG closure. docs/NETWORK_UDP_REQUEST_2026_10_16.md."
+evidence = "Complete410-instruction/1355-byte request handler from receive opcode5 at41DA9E. Running/dual16-byte key/peer-limit gates, native map lookup, lowest positive report selection, four-position redirect window, six-argument route callback, real peer allocation/insertion/count and packed accept/reject replies establish authored policy. Both RTTI-backed secondary route providers return68-byte data, supporting minimum81-byte reply storage without recovering original capacity. Full source1265/1355 remains nonexact; key148 and private checked-access33 compare exactly as origin-review controls only. Their SDK/generic provenance is unresolved, so neither adds authored/exclusion credit. Connection415340 and worker415D60 are subsequently implemented; the genuine receive-chain mixed COFF/LTCG link now resolves all actual inputs. docs/NETWORK_UDP_REQUEST_2026_10_16.md."
 required_body_hashes = [{ address = "0x00415560", size = 1355, sha256 = "88cfb779934e14a2dae7c87e48c014676e9fb8b000e0817774411a89dfa45ed1" }]
 required_direct_edges = [{ caller = "0x0041D7C0", site = "0x0041DA9E", target = "0x00415560" }]
 required_selected_body_calls = [{ owner = "0x00415560", site = "0x00415619", target = "0x00412A60", target_status = "implemented" }]

@@ -18858,7 +18858,7 @@ source = "src/network/NetworkWinsockReceiveThread.cpp"
 object = "build/match-units/CrossV106a_NetworkWinsockReceiveThread.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Full UDP receive/request/callback TU with actual native map/vector and private lookup/key/checked-access/rejection/endpoint-list definitions. Request1355 uses observed minimum81-byte reply, two RAII scopes and native twelve-byte tree insertion result; complete source remains nonexact. Actual caller/key148 and checked-access33 bodies recover private inputs without ABI adapters. The two exact dependency controls retain origin review and earn no authored/source/exclusion credit. Main loop1456+56 remains nonexact; callback14 stays exact. Only actual connection415340 still blocks a resolved whole-unit LTCG link. No inflated packet or synthetic callee."
+notes = "Full UDP receive/request/callback TU with actual native map/vector and private lookup/key/checked-access/rejection/endpoint-list definitions. Request1355 uses observed minimum81-byte reply, two RAII scopes and native twelve-byte tree insertion result; complete source remains nonexact. Actual caller/key148 and checked-access33 bodies recover private inputs without ABI adapters. The two exact dependency controls retain origin review and earn no authored/source/exclusion credit. Main loop1456+56 remains nonexact; callback14 stays exact. Connection415340 now has complete persistent-request/DNS/stack-handoff source; complete callback415D60 owns request handoff/probe/retry/auxiliary socket behavior. A genuine mixed COFF/LTCG control now links with actual peer-removal/acceptance/thread sources; no missing implementation remains. No inflated packet or synthetic callee."
 
 [[units.cross-v106a-network-winsock-receive-thread.functions]]
 address = "0x0041D7B0"
@@ -18911,6 +18911,40 @@ address = "0x00413740"
 symbol_base = "?request_peer@th105@@YGAAUNetworkReceivePeer20@1@AAV?$vector@UNetworkReceivePeer20@th105@@V?$allocator@UNetworkReceivePeer20@th105@@@std@@@std@@I@Z"
 rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
+]
+
+[[units.cross-v106a-network-winsock-receive-thread.functions]]
+address = "0x00415340"
+symbol_base = "?start_connection@NetworkWinsockReceiveView@th105@@QAEDPBDGPBXG@Z"
+rel32_targets = [
+  "_free=0x0068AA26",
+  "_malloc=0x00665B8A",
+  "_memcpy=0x0068AA30",
+  "_htons@4=0x006898D8",
+  "_inet_addr@4=0x006898AE",
+  "_gethostbyname@4=0x006898E4",
+  "?clear_connection_endpoints@th105@@YGXAAV?$vector@UNetworkReceiveAddress16@th105@@V?$allocator@UNetworkReceiveAddress16@th105@@@std@@@std@@@Z=0x004161E0",
+  "?push_back@?$vector@UNetworkReceiveAddress16@th105@@V?$allocator@UNetworkReceiveAddress16@th105@@@std@@@std@@QAEXABUNetworkReceiveAddress16@th105@@@Z=0x00416160",
+  "?start@NetworkReceiveWorker8@th105@@QAE_NP6GKPAX@Z0@Z=0x00414600",
+]
+dir32_targets = [
+  "__ehhandler$?start_connection@NetworkWinsockReceiveView@th105@@QAEDPBDGPBXG@Z=__ehhandler$?start_connection@NetworkWinsockReceiveView@th105@@QAEDPBDGPBXG@Z",
+]
+
+[[units.cross-v106a-network-winsock-receive-thread.functions]]
+address = "0x00415D60"
+symbol_base = "_network_winsock_connection_thread@4"
+rel32_targets = [
+  "_memcpy=0x0068AA30",
+  "_htonl@4=0x006898DE",
+  "_htons@4=0x006898D8",
+  "_socket@12=0x006898B4",
+  "_bind@12=0x006898C0",
+  "_closesocket@4=0x006898C6",
+  "_ntohs@4=0x006898D2",
+  "_sendto@24=0x006898CC",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "@__security_check_cookie@4=0x00689D25",
 ]
 
 [units.cross-v106a-network-winsock-peer-removal]

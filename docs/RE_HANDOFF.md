@@ -13,8 +13,8 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,539 authored / 1,415 excluded / 1,069 in review**; **1,451 mapped**,
-  **1,431 source-present**, **1,333 exact / 225,099 exact bytes**, and
+  **1,541 authored / 1,415 excluded / 1,067 in review**; **1,453 mapped**,
+  **1,433 source-present**, **1,333 exact / 225,099 exact bytes**, and
   **513 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
@@ -32,6 +32,29 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
+## Receive-chain link closure: connection and handshake worker
+
+The priority remains the complete UDP receive/connection subsystem rather than
+isolated dependency matches. `NetworkWinsock_start_connection @ 415340`
+(160 instructions/542 bytes) and its actual native worker
+`NetworkWinsock_connection_thread_entry @ 415D60` (286/1009) now have complete
+source in the receive TU. Persistent request ownership/FFFF reuse, numeric/DNS
+endpoint selection, stack handoff acknowledgement, auxiliary UDP socket,
+endpoint/port probes, candidate rotation and state2/3/6 retries are closed.
+A genuine mixed COFF/LTCG image now links the entire receive/request/connection
+chain with actual peer-removal, acceptance and platform-thread implementations:
+**zero missing link inputs**, with no source stubs or executable ABS bindings.
+Preserving the real connection entry's external UI call surface restores its
+linked542-byte body; ordinary connection524 and worker945 remain nonexact.
+A target-backed two-native-packet control is992/1009 with frame860 versus870,
+so the original storage is still unresolved, without added padding. The linked
+callback remains a canonical14-byte diagnostic, and its configured ordinary
+accepted replay is exact. No new exact credit. Ghidra types/ABI/body metadata
+are saved and independently read back. The next major blocker is canonical
+comparison of the fully linked receive roots: native EH/GS data ownership,
+switch metadata and source packet storage, rather than missing implementations.
+See [the connection, worker and real link evidence](NETWORK_UDP_CONNECTION_2026_10_16.md).
+
 ## UDP request and peer admission
 
 `NetworkWinsock_receive_request @ 415560` now has complete source in the real
@@ -48,7 +71,8 @@ key148 and checked access33 are canonical byte controls but remain in origin
 review, without authored/source/exclusion credit. SDK IsEqualGUID provenance
 cannot be distinguished from an equivalent wrapper. The actual native tree
 insertion stage returns12 bytes and its iterator first component is consumed.
-A real mixed-source LTCG link now stops on only connection415340; no source
+At that checkpoint the mixed-source link stopped on connection415340; the
+connection/worker section above now closes all genuine inputs. No source
 stub or executable ABS binding is used. Callback14 and all four affected
 Winsock runtime helpers retain exactness. Ghidra request/control ABI metadata
 is saved/read back. See [the policy, storage and provenance evidence](NETWORK_UDP_REQUEST_2026_10_16.md).
@@ -65,8 +89,8 @@ preserved. The actual caller naturally generates EAX lookup and ESI rejection;
 no register facade or synthetic caller is used. Minimum21-byte forwarding
 reply storage preserves its four untouched tail bytes. The accepted callback
 stays14/14 with the full source and GS enabled. A genuine mixed-source LTCG
-attempt resolves actual acceptance/peer-removal bodies and stops on missing
-connection415340 implementation. Original reply capacity,
+attempt resolves actual acceptance/peer-removal bodies and then stopped on missing
+connection415340; the connection/worker section above now closes all inputs. Original reply capacity,
 endpoint-helper/STL boundaries and TU remain open. No new exact credit.
 Direct Ghidra owner types and complete caller ABI are saved/read back. See
 [the opcode map, source and link boundary](NETWORK_WINSOCK_RECEIVE_2026_10_16.md).

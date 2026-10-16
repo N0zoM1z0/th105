@@ -197,3 +197,12 @@ One process uses768MiB heap/two CPUs. Private probes and saved analysis stay
 below `.analysis/`; temporary database copies and compiled probes are removed.
 The local CI gate passes155 tests and `git diff --check` passes. No all-unit
 replay or new aggregate exact claim is made.
+
+## Subsequent connection-chain closure
+
+The later [connection and handshake-worker checkpoint](NETWORK_UDP_CONNECTION_2026_10_16.md)
+implements415340 and415D60 in the actual receive TU. A genuine mixed COFF/LTCG
+image now links with all actual peer-removal, acceptance and platform-thread
+inputs and zero missing implementations. Earlier missing-input statements above
+are historical. Native EH/GS replay and original packet storage remain open;
+this link success adds no authored exact credit.
