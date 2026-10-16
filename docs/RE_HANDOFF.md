@@ -59,7 +59,12 @@ all15910 target bytes with no unresolved indirect exit. Direct Ghidra saves and
 reads back the ECX/no-stack ABI,27 physical fields, six ordered-boundary comments
 and three ordered-height comments, preserving every target byte. Continue this
 major root's branch/store ownership and range/FP source recovery using the
-native oracle.
+native oracle. Policy0 now has0/16000 finite native differences, all1486
+reachable target instructions /4879 bytes visited, and actual RNG rolls0..99
+confirmed; this includes shared return tails, not another function or partial
+exact credit. The coverage gate and input seeds are reproducible. Instruction
+coverage leaves branch/numerical closure open; source/flag controls still fail.
+See [the policy0 coverage and remaining source-shape work](CPU_POLICY_SELECTION_2026_10_17.md).
 Avoid more size-only reset spelling matrices. See
 [the source correction, complete CFG and execution controls](CPU_ORDERED_BOUNDARIES_2026_10_17.md).
 

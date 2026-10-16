@@ -21,6 +21,7 @@ import sys
 import tomllib
 
 import pefile
+from giant_owner_audit import decode, reachable_boundary_audit
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location("cpu_policy_boundary_base", ROOT / "scripts/audit-cpu-boundary-paths.py")
@@ -55,6 +56,54 @@ def height_cases():
         # Peer action 100 bypasses common attacks; timer zero selects policy0.
         yield dict(base, self_y_bits=sy, other_y_bits=oy, other_x=x,
                    other_action=100, timer=0, seed=seed)
+
+
+def selection_cases():
+    # These seeds are inputs, never substituted RNG results. The target must
+    # independently confirm each predicted policy roll during native execution.
+    seeds = json.loads((ROOT / "tests/fixtures/cpu-policy-selection-seeds.json").read_text())
+    if (not isinstance(seeds, list) or len(seeds) != 100 or len(set(seeds)) != 100
+            or any(type(seed) is not int or not 0 <= seed <= 0xFFFFFFFF for seed in seeds)):
+        raise ValueError("selection fixture requires 100 distinct uint32 seeds")
+    base = dict(action=201, sequence=200, vx=0.0, vy=0.0, other_action=100,
+                resource=1000, mode=1, counter=100, policy=0, timer=0, refresh=1,
+                control_6b4=1, control_6b8=-1)
+    heights = ((0.0, 0.0), (0.0, 100.0), (0.0, 300.0), (0.0, 500.0),
+               (100.0, 0.0), (300.0, 0.0), (100.0, 200.0), (300.0, 100.0),
+               (100.0, 500.0), (500.0, 100.0))
+    for (roll, seed), (x, facing), (sy, oy), distance in itertools.product(
+            enumerate(seeds), ((100.0, 1), (100.0, -1), (1100.0, 1), (1100.0, -1)),
+            heights, (90.0, 150.0, 300.0, 600.0)):
+        yield dict(base, seed=seed, selection_roll=roll, self_x=x,
+                   other_x=x + distance if x == 100.0 else x - distance,
+                   self_y=sy, other_y=oy, facing=facing)
+
+
+def selection_coverage(canonical, root, target, visited):
+    policy, = (region for region in root["regions"] if region["name"] == "policy")
+    index = -int(policy["case_min"])
+    if not 0 <= index <= int(policy["case_max"]) - int(policy["case_min"]):
+        raise ValueError("policy table does not contain case0")
+    slot = canonical.target_bytes(int(policy["index_table"], 0) + index, 1)[0]
+    if slot >= int(policy["destination_count"]):
+        raise ValueError("policy0 table slot exceeds the destination count")
+    entry = int.from_bytes(canonical.target_bytes(int(policy["destination_table"], 0) + 4 * slot, 4), "little")
+    if entry != 0x5F47B0:
+        raise ValueError("policy0 table entry differs from the reviewed target")
+    code = target[entry - boundary.ADDRESS:]
+    cfg = reachable_boundary_audit(code, entry, {})
+    if (cfg["unresolved_indirect_exits"] or cfg["internal_call_targets"]
+            or any(t["address"] != 0x4067D0 or any(s["kind"] != "call" for s in t["sites"])
+                   for t in cfg["direct_external_targets"])):
+        raise ValueError("policy0 has an unreviewed transfer or dependency")
+    reachable = {i.address for i in decode(code, entry)
+                 if not any(start <= i.address < end for start, end in cfg["unreached_ranges"])}
+    missing = sorted(reachable - visited)
+    return {"entry": f"0x{entry:08X}", "reachable_target_instructions": len(reachable),
+            "reachable_target_bytes": cfg["reachable_bytes"],
+            "visited_target_instructions": len(reachable & visited),
+            "missing_target_instruction_addresses": [f"0x{address:08X}" for address in missing],
+            "scope": "instruction coverage of policy0 including shared return tails; branch and numerical completeness unproved"}
 
 
 def cases(count):
@@ -114,6 +163,9 @@ class NativeCpuProbe(boundary.CpuProbe):
             uc.mem_write(0x6FDEF0, self.seed_state[0])
             uc.mem_write(0x6FA1FC, self.seed_state[1])
             uc.mem_write(self.STACK + 0xFF00, struct.pack("<I", RETURN))
+            for offset, key in ((0x6B4, "control_6b4"), (0x6B8, "control_6b8")):
+                if key in c:
+                    uc.mem_write(self.OWNER + offset, struct.pack("<i", c[key]))
             for offset, key, fmt in ((0xF0, "self_y", "<f"), (0xF4, "vx", "<f"), (0xF8, "vy", "<f"),
                                      (0x482, "resource", "<h"), (0x766, "policy", "<h"),
                                      (0x768, "timer", "<h"), (0x76C, "refresh", "<h")):
@@ -190,7 +242,7 @@ class NativeCpuProbe(boundary.CpuProbe):
         return result
 
 
-def audit(object_path, count, selected_cases=None):
+def audit(object_path, count, selected_cases=None, check_selection=False):
     import unicorn
     from unicorn import unicorn as unicorn_api
     canonical = boundary.load_script("cpu_policy_canonical", "compare-function.py")
@@ -217,10 +269,20 @@ def audit(object_path, count, selected_cases=None):
     engines = (NativeCpuProbe(image, target, boundary.SIZE),
                NativeCpuProbe(image, candidate, candidate_map["metadata_start"]))
     mismatches, examples, digest, processed = 0, [], hashlib.sha256(), 0
+    selection_rolls = [set(), set()]
     vectors = cases(count) if selected_cases is None else selected_cases
     for number, case in enumerate(vectors, 1):
         digest.update(json.dumps(case, sort_keys=True).encode())
         expected, actual = (engine.evaluate(case) for engine in engines)
+        if "selection_roll" in case:
+            for side, result in enumerate((expected, actual)):
+                calls = result["calls"]
+                roll = next((calls[n + 3][1] for n, call in enumerate(calls[:-3])
+                             if call == ("rng", 100) and calls[n + 3][0] == "rng_return"), None)
+                if side == 0 and roll != case["selection_roll"]:
+                    raise ValueError("native target did not confirm the selection seed fixture")
+                if roll is not None:
+                    selection_rolls[side].add(roll)
         processed += 1
         if expected != actual:
             mismatches += 1
@@ -232,7 +294,7 @@ def audit(object_path, count, selected_cases=None):
     if processed != count:
         raise ValueError("CPU input generator did not complete the requested controls")
     coverage = [{HELPERS[a]: engine.helper_counts[a] for a in HELPERS} for engine in engines]
-    return {"schema": "th105-cpu-native-policy-paths-v1", "evidence": "sampled native execution; no exact credit",
+    result = {"schema": "th105-cpu-native-policy-paths-v1", "evidence": "sampled native execution; no exact credit",
             "build_provenance_verified": False, "target_sha256": target_hash, "body_sha256": boundary.BODY_SHA256,
             "object_sha256": hashlib.sha256(object_path.read_bytes()).hexdigest(),
             "unicorn_version": unicorn.__version__, "unicorn_library_sha256": hashlib.sha256(library.read_bytes()).hexdigest(),
@@ -243,6 +305,12 @@ def audit(object_path, count, selected_cases=None):
             "visited_root_instruction_addresses_target_candidate": [len(e.visited_root) for e in engines],
             "all_five_helpers_executed": all(all(c.values()) for c in coverage),
             "scope": "entry through native RET; entire7A4 actor prefix, RNG state, native call order/arguments/results, ftol2 x87 inputs, stack cleanup and control word; real seeded MT streams after one discarded draw; masked PC53; no helper-result hooks; complete numerical/gameplay/exception equivalence is unproved"}
+    if check_selection:
+        result["policy0_coverage"] = selection_coverage(canonical, root, target, engines[0].visited_root)
+        result["observed_selection_rolls_target_candidate"] = [sorted(values) for values in selection_rolls]
+        result["selection_coverage_complete"] = (not result["policy0_coverage"]["missing_target_instruction_addresses"]
+                                                  and all(values == set(range(100)) for values in selection_rolls))
+    return result
 
 
 def main():
@@ -252,6 +320,7 @@ def main():
     inputs.add_argument("--cases", type=int)
     inputs.add_argument("--case-file", type=Path, help="nonempty JSON case array; <float field>_bits overrides its value")
     inputs.add_argument("--height-cases", action="store_true", help="368 finite/NaN height and RNG controls")
+    inputs.add_argument("--selection-cases", action="store_true", help="16000 policy0 controls; require all target instructions and rolls0..99")
     args = parser.parse_args()
     if args.cases is not None and args.cases <= 0:
         parser.error("--cases must be positive")
@@ -263,12 +332,16 @@ def main():
                 raise ValueError("case file must contain a nonempty array of input objects")
         elif args.height_cases:
             selected = list(height_cases())
+        elif args.selection_cases:
+            selected = list(selection_cases())
         count = len(selected) if selected is not None else (args.cases or 5000)
-        result = audit(args.object, count, selected)
+        result = audit(args.object, count, selected, check_selection=args.selection_cases)
+        if args.selection_cases:
+            result["input_source"] = "built-in policy0 selection matrix"
     except Exception as error:
         parser.exit(2, f"CPU native execution failed: {error}\n")
     print(json.dumps(result, indent=2))
-    return int(bool(result["mismatch_count"]))
+    return int(bool(result["mismatch_count"]) or (args.selection_cases and not result["selection_coverage_complete"]))
 
 
 if __name__ == "__main__":
