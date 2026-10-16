@@ -1431,3 +1431,5 @@ Application_commit_pending_scene,0x00408080,function
 Application_scene_disposal_thread_entry,0x00408870,function
 NetworkWinsock_receive_thread_entry,0x0041D7B0,function
 NetworkWinsock_receive_loop,0x0041D7C0,function
+NetworkWinsock_find_peer,0x00412A60,function
+NetworkWinsock_remove_peer,0x00413170,function

@@ -13,9 +13,9 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,523 authored / 1,414 excluded / 1,086 in review**; **1,432 mapped**,
-  **1,412 source-present**, **1,328 exact / 224,517 exact bytes**, and
-  **506 match units**. These are ledger/status totals, not a fresh aggregate
+  **1,525 authored / 1,414 excluded / 1,084 in review**; **1,434 mapped**,
+  **1,414 source-present**, **1,328 exact / 224,517 exact bytes**, and
+  **507 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
   present, and only `matches.csv` plus a reproducible canonical 100% unit
@@ -33,6 +33,20 @@ state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
 ## Winsock receive-thread boundary
+
+The related `NetworkWinsock_remove_peer @ 413170` and
+`NetworkWinsock_find_peer @ 412A60` now have complete native vector/multimap
+source in `src/network/NetworkWinsockPeerRemoval.cpp`. Full raw CFGs close
+489/167 bytes and141/59 instructions. Exact server caller44F538 independently
+establishes removal ownership/receiver; endpoint lookup is source-defined in
+the same TU. Focused candidates are **440/489** and **162/167 nonexact**.
+The target's large packet-storage/aligned GS frame and private compiler/iterator
+context remain unresolved. One-byte protocol content is preserved without
+guessing a larger buffer. A real LTCG control naturally generates lookup's EAX
+receiver, but changes iterator inlining and still differs. Keep the paired
+source together, retain real lock scopes and all five vector checks, and do
+not replace the private entry with an external ABI facade. See
+[the behavior, full comparisons and negative controls](NETWORK_WINSOCK_PEER_REMOVAL_2026_10_16.md).
 
 `NetworkWinsock_receive_thread_entry @ 41D7B0` is canonical **14/14** in
 `cross-v106a-network-winsock-receive-thread`. Native CreateThread registration

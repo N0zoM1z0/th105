@@ -18858,3 +18858,29 @@ notes = "Native Win32 receive-thread entry supplied to CreateThread at412F7F wit
 address = "0x0041D7B0"
 symbol_base = "_network_winsock_receive_thread@4"
 rel32_targets = ["?receive_loop@NetworkWinsockReceiveView@th105@@QAEXXZ=0x0041D7C0"]
+
+[units.cross-v106a-network-winsock-peer-removal]
+kind = "probe"
+source = "src/network/NetworkWinsockPeerRemoval.cpp"
+object = "build/match-units/CrossV106a_NetworkWinsockPeerRemoval.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Closed authored removal/lookup source with real checked vector and multimap, filtered IP/port lookup, two scoped locks and callback. Target489/167 main bytes; ordinary candidates440/162 remain nonexact on frame/private ABI and iterator ownership. Packet source models only the observed transmitted opcode byte; the target large packet-storage capacity is unresolved, without buffer inflation. Neither function is exact; native generated erase/equal-range/increment callees receive no new exclusion credit."
+
+[[units.cross-v106a-network-winsock-peer-removal.functions]]
+address = "0x00413170"
+symbol_base = "?remove_peer@NetworkWinsockPeerRemovalView@th105@@QAEXI@Z"
+rel32_targets = [
+  "?erase@?$_Tree@V?$_Tmap_traits@IPAUNetworkPeerRecord20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkPeerRecord20@th105@@@std@@@4@$00@std@@@std@@QAE?AViterator@12@V312@@Z=0x00413420",
+  "?find_peer@NetworkWinsockPeerRemovalView@th105@@QAE?AViterator@?$_Tree@V?$_Tmap_traits@IPAUNetworkPeerRecord20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkPeerRecord20@th105@@@std@@@4@$00@std@@@std@@ABUNetworkPeerAddress16@2@@Z=0x00412A60",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+
+[[units.cross-v106a-network-winsock-peer-removal.functions]]
+address = "0x00412A60"
+symbol_base = "?find_peer@NetworkWinsockPeerRemovalView@th105@@QAE?AViterator@?$_Tree@V?$_Tmap_traits@IPAUNetworkPeerRecord20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkPeerRecord20@th105@@@std@@@4@$00@std@@@std@@ABUNetworkPeerAddress16@2@@Z"
+rel32_targets = [
+  "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@IPAUNetworkPeerRecord20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkPeerRecord20@th105@@@std@@@4@$00@std@@@std@@QAEXXZ=0x004143E0",
+  "?equal_range@?$_Tree@V?$_Tmap_traits@IPAUNetworkPeerRecord20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkPeerRecord20@th105@@@std@@@4@$00@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@IPAUNetworkPeerRecord20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkPeerRecord20@th105@@@std@@@4@$00@std@@@std@@V123@@2@ABI@Z=0x004136E0",
+  "__invalid_parameter_noinfo=0x0068A143",
+]

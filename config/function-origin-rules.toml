@@ -5,6 +5,30 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 # but no old-version address is accepted as evidence here.
 
 [[rules]]
+id = "network-winsock-peer-removal-authored-106a"
+addresses = ["0x00412A60", "0x00413170"]
+expected_count = 2
+expected_bytes = 656
+expected_names = ["sub_412A60", "sub_413170"]
+origin = "authored_game"
+subsystem = "network"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact CNetworkServer_flush_send_state44F520 directly calls peer removal413170 at44F538 with Winsock member+3B4/slot0. Full native removal source calls endpoint lookup412A60 at413277. Full489/167 body hashes close141/59 instructions; game-owned opcode0B send, filtered IP/port policy, record state, lock/callback and active-count updates independently establish authored origin. Both are source-present/nonexact440/489 and162/167; original large packet-storage/frame and private compiler context remain open. No new library-helper exclusion. docs/NETWORK_WINSOCK_PEER_REMOVAL_2026_10_16.md."
+required_body_hashes = [
+  { address = "0x00412A60", size = 167, sha256 = "8b476268fd3f9bb1f3ca227ab33b1b2aee18f5219bd7984d29b1fd6df6e6eb49" },
+  { address = "0x00413170", size = 489, sha256 = "a9e56aea301bd66a443e563205bef0f2e463a67b88e4c8be7631653cbe1822b4" },
+]
+required_direct_edges = [
+  { caller = "0x0044F520", site = "0x0044F538", target = "0x00413170", caller_status = "matching" },
+  { caller = "0x00413170", site = "0x00413277", target = "0x00412A60", caller_status = "implemented" },
+]
+required_dword_values = [
+  { address = "0x00413245", value = "0x006C0274" },
+  { address = "0x00413179", value = "0x006BDE26" },
+]
+
+[[rules]]
 id = "network-winsock-receive-loop-authored-106a"
 addresses = ["0x0041D7C0"]
 expected_count = 1

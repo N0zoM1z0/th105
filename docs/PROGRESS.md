@@ -6,11 +6,11 @@ until each boundary is reconciled with target control flow.
 | Measure | Count |
 | --- | ---: |
 | Tracked 1.06a function candidates | 4,023 |
-| Origin/boundary review pending | 1,086 |
-| Confirmed authored functions | 1,523 |
-| Confirmed authored code bytes | 2,112,783 |
+| Origin/boundary review pending | 1,084 |
+| Confirmed authored functions | 1,525 |
+| Confirmed authored code bytes | 2,113,439 |
 | Classified exclusions | 1,414 |
-| Source-present authored mappings | 1,412 |
+| Source-present authored mappings | 1,414 |
 | Canonical exact functions | 1,328 |
 | Canonical exact authored bytes | 224,517 |
 
