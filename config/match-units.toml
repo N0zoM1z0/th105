@@ -18742,3 +18742,21 @@ rel32_targets = [
   "_memset=0x0068A440",
   "__security_check_cookie=0x00689D25",
 ]
+
+[units.cross-v106a-application-thread-entries]
+kind = "probe"
+source = "src/platform/ApplicationThreadEntries.cpp"
+object = "build/match-units/CrossV106a_ApplicationThreadEntries.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Application bootstrap passes these two real WINAPI callbacks to CreateThread. Each complete28-byte entry checks CoInitialize, invokes its no-argument singleton worker only on success, calls CoUninitialize on that path and returns zero/RET4. Ordinary source matches both complete functions without synthetic storage or a private ABI facade. Existing imports and callback-pointer mappings are unchanged."
+
+[[units.cross-v106a-application-thread-entries.functions]]
+address = "0x00408800"
+symbol_base = "_bootstrap_control_thread@4"
+rel32_targets = ["_application_control_worker=0x004081E0"]
+
+[[units.cross-v106a-application-thread-entries.functions]]
+address = "0x00408820"
+symbol_base = "_bootstrap_graphics_thread@4"
+rel32_targets = ["_application_graphics_worker=0x004084F0"]

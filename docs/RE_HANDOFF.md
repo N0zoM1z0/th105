@@ -13,9 +13,9 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,514 authored / 1,414 excluded / 1,095 in review**; **1,423 mapped**,
-  **1,404 source-present**, **1,323 exact / 224,118 exact bytes**, and
-  **501 match units**. These are ledger/status totals, not a fresh aggregate
+  **1,516 authored / 1,414 excluded / 1,093 in review**; **1,425 mapped**,
+  **1,406 source-present**, **1,325 exact / 224,174 exact bytes**, and
+  **502 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
   present, and only `matches.csv` plus a reproducible canonical 100% unit
@@ -103,8 +103,15 @@ All four raw CFGs close their full callables. Direct Ghidra metadata is saved
 and read back under independent target attestation. See
 [the ABI, exact result and residuals](APPLICATION_BOOTSTRAP_2026_10_16.md).
 Keep this closed TU together; no shared headers or earlier relocation
-allowlists changed. Next bounded leads include the two 28-byte COM thread
-entries `408800`/`408820` and their application-owned worker bodies.
+allowlists changed.
+
+The native control/graphics COM thread entries `408800`/`408820` are now
+canonical **28/28 each** from `src/platform/ApplicationThreadEntries.cpp`.
+Their ordinary Win32 callback signatures reproduce both full callables and
+all import/worker relocations. No shared source or mapping changed. See
+[the ownership, ABI and exact evidence](APPLICATION_THREAD_ENTRIES_2026_10_16.md).
+Their singleton worker bodies `4081E0`/`4084F0` remain unimplemented; either is
+a bounded next lead, without credit from the matching callbacks.
 
 ## Accepted exact unit: Sprite texture setup
 
