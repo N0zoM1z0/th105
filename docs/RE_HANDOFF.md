@@ -13,8 +13,8 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,533 authored / 1,415 excluded / 1,075 in review**; **1,445 mapped**,
-  **1,424 source-present**, **1,332 exact / 225,031 exact bytes**, and
+  **1,534 authored / 1,415 excluded / 1,074 in review**; **1,446 mapped**,
+  **1,425 source-present**, **1,332 exact / 225,031 exact bytes**, and
   **511 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
@@ -31,6 +31,26 @@ are historical.
 Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
+
+## UDP initialization and native worker ownership
+
+`NetworkWinsock_initialize_udp @ 412E10` now has complete ordinary C++ source
+in the same Winsock runtime/error TU. Full raw CFG closes149 instructions /
+441 bytes, reached by two independently exact MenuConnect callers. Native
+peer-vector assignment, duplicate16-byte key copy, Winsock/socket/bind failure
+paths, prior-buffer and token cleanup, three native thread starts and the
+first two priority15 calls are all implemented. Target only establishes AL0/1;
+source bool is a hypothesis, and the older UI int-forwarding declaration is
+not changed without reviewing its consumers. The ordinary POD-source result
+is439/441 nonexact on aligned GS frame, private vector interface and API
+pointer allocation. A full file-local bind helper naturally reproduces its
+68-byte ECX/EAX body; it remains uncredited context at this checkpoint. A resolved LTCG attempt stops on missing real callback
+and wait link inputs; no replacement bodies or executable ABS bindings are
+introduced. This neither proves LTCG necessary nor proves it would match.
+Adding the actual caller preserves all three accepted runtime helpers at
+148/47/84. Supported owner/key/peer types and physical caller/callee storage
+are saved and independently read back in direct Ghidra. See
+[the complete behavior, controls and remaining boundary](NETWORK_UDP_INITIALIZE_2026_10_16.md).
 
 ## Winsock reference lifetime
 

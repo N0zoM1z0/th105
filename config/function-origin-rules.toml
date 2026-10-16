@@ -5,6 +5,40 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 # but no old-version address is accepted as evidence here.
 
 [[rules]]
+id = "network-udp-initialize-authored-106a"
+addresses = ["0x00412E10"]
+expected_count = 1
+expected_bytes = 441
+expected_names = ["sub_412E10"]
+origin = "authored_game"
+subsystem = "network"
+disposition = "authored"
+confidence = "observed"
+evidence = "Two independently canonical-exact MenuConnect paths call this ECX owner/key16/port initializer at4425AF/442652. Complete149-instruction/441-byte CFG owns game state and peer16 initialization, duplicate key copy, balanced Winsock reference failure handling, UDP socket/bind, prior-buffer/token cleanup and three native thread lifecycles with first-two priority15. Native record/vector/deque/thread views and full real acquire/release/error definitions compile439/441 nonexact on aligned GS frame, private vector interface and API pointer allocation; a complete file-local bind helper naturally recovers its ECX/EAX entry. Shared148/47/84 helpers retain exactness; no fabricated caller, aligned padding, ABI facade or new helper exclusion. docs/NETWORK_UDP_INITIALIZE_2026_10_16.md."
+required_body_hashes = [{ address = "0x00412E10", size = 441, sha256 = "e1f2b573d83afe2ba21e29b92e87702aad50aad9427e80f24ea90b02d394a686" }]
+required_direct_edges = [
+  { caller = "0x00442530", site = "0x004425AF", target = "0x00412E10", caller_status = "matching" },
+  { caller = "0x004425D0", site = "0x00442652", target = "0x00412E10", caller_status = "matching" },
+]
+required_selected_body_calls = [
+  { owner = "0x00412E10", site = "0x00412E8F", target = "0x0041DDC0", target_status = "matching" },
+  { owner = "0x00412E10", site = "0x00412EB0", target = "0x0041DEF0", target_status = "matching" },
+  { owner = "0x00412E10", site = "0x00412F05", target = "0x0041DEC0", target_status = "matching" },
+  { owner = "0x00412E10", site = "0x00412F47", target = "0x00414640", target_status = "matching" },
+  { owner = "0x00412E10", site = "0x00412F73", target = "0x00414640", target_status = "matching" },
+  { owner = "0x00412E10", site = "0x00412F9A", target = "0x00414640", target_status = "matching" },
+]
+required_dword_values = [
+  { address = "0x00412E9F", value = "0x006C0268" },
+  { address = "0x00412F53", value = "0x00416D90" },
+  { address = "0x00412F80", value = "0x0041D7B0" },
+  { address = "0x00412FA7", value = "0x00416F40" },
+  { address = "0x00412F5B", value = "0x006C0138" },
+  { address = "0x00412F6A", value = "0x006C0130" },
+  { address = "0x00412F91", value = "0x006C0130" },
+]
+
+[[rules]]
 id = "network-udp-send-worker-authored-106a"
 addresses = ["0x00416D90", "0x00416DB0"]
 expected_count = 2

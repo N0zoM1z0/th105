@@ -19067,7 +19067,7 @@ source = "src/network/NetworkWinsockRuntime.cpp"
 object = "build/match-units/CrossV106a_NetworkWinsockRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete process-wide Winsock acquire/release with the real file-local error reporter. Manual native critical section; zero-count path calls WSAStartup twice with version2 and the same native WSADATA; only the second result selects five error texts; success increments count. Release decrements positive count and cleans up only on transition to zero under the same native lock. Main148 bytes and adjacent103-byte dispatch metadata are independently recovered and canonically replayed; metadata earns no authored bytes. The helper's ESI entry arises naturally from complete ordinary C++ source, without a private ABI facade."
+notes = "Complete process-wide Winsock acquire/release/error with its real UDP initialization caller and native bind body. Existing148/47/84 canonical helpers preserve their ordinary source and private ESI error interface. Main acquire148 bytes and adjacent103-byte dispatch metadata are independently recovered/replayed; metadata earns no authored bytes. Initializer441 target compares439 source bytes nonexact on aligned GS frame/private vector interface and API pointer allocation; the full file-local bind helper naturally recovers ECX/EAX; no ABI facade, forced alignment or dummy storage. Actual native callback declarations permit ordinary COFF pointer replay; a resolved LTCG control cannot link their incomplete real source bodies."
 
 [[units.cross-v106a-network-winsock-runtime.functions]]
 address = "0x0041DDC0"
@@ -19082,3 +19082,18 @@ symbol_base = "_network_winsock_release"
 address = "0x0041DEF0"
 symbol_base = "?show_winsock_error@th105@@YGXPBD@Z"
 rel32_targets = ["__security_check_cookie=0x00689D25"]
+
+[[units.cross-v106a-network-winsock-runtime.functions]]
+address = "0x00412E10"
+symbol_base = "?initialize@NetworkUdpInitializeView@th105@@QAE_NPBUNetworkInitializeKey16@2@H@Z"
+rel32_targets = [
+  "?_Assign_n@?$vector@UNetworkInitializePeer20@th105@@V?$allocator@UNetworkInitializePeer20@th105@@@std@@@std@@IAEXIABUNetworkInitializePeer20@th105@@@Z=0x004139D0",
+  "_network_winsock_acquire=0x0041DDC0",
+  "?show_winsock_error@th105@@YGXPBD@Z=0x0041DEF0",
+  "?bind_udp_socket@th105@@YG_NPAVNetworkUdpInitializeView@1@H@Z=0x00413080",
+  "_network_winsock_release=0x0041DEC0",
+  "_free=0x0068AA26",
+  "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90",
+  "?wait_for_exit@NetworkInitializeThread8@th105@@QAEXXZ=0x00414640",
+  "__security_check_cookie=0x00689D25",
+]

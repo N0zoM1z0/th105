@@ -1444,3 +1444,4 @@ NetworkWinsock_send_loop,0x00416DB0,function
 NetworkWinsock_acquire_runtime,0x0041DDC0,function
 NetworkWinsock_release_runtime,0x0041DEC0,function
 NetworkWinsock_show_error,0x0041DEF0,function
+NetworkWinsock_initialize_udp,0x00412E10,function
