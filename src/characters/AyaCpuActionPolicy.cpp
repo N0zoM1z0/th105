@@ -24,6 +24,12 @@ typedef std::deque<FighterSequenceSlot> AyaNativeSequenceDeque;
 typedef char AyaNativeSequenceDeque_size[(sizeof(AyaNativeSequenceDeque) == 20) ? 1 : -1];
 
 #define CPU_FIELD(offset) (reinterpret_cast<unsigned char *>(this) + (offset))
+// Read the signed action counter at each predicate; no cached range conversion.
+static inline short aya_policy_counter(const CpuActionPolicyView *actor)
+{
+return actor->policy_counter_764;
+}
+
 void AyaCpuActionPolicyView::update_cpu_action_policy()
 {
 CpuActionPolicyView *v2; // edi
@@ -33,7 +39,6 @@ int v6; // eax
 CpuActionPolicyView *v7; // edx
 CpuActionPolicyView *v8; // ecx
 int v9; // eax
-__int16 v10; // ax
 int v11; // eax
 __int16 v12; // ax
 int v13; // eax
@@ -51,7 +56,6 @@ int v24; // eax
 int v25; // eax
 __int16 v26; // cx
 int v27; // eax
-__int16 v28; // ax
 int v29; // eax
 __int16 v30; // cx
 int v31; // ecx
@@ -82,7 +86,6 @@ int v55; // eax
 int v56; // eax
 __int16 v57; // cx
 int v58; // eax
-__int16 v59; // cx
 int v62; // eax
 CpuActionPolicyView *v63; // ecx
 __int16 v64; // ax
@@ -208,14 +211,13 @@ else if ( v9 != 3 && !*(_WORD *)CPU_FIELD(1892) )
 {
 *(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
 }
-v10 = *(_WORD *)CPU_FIELD(1892);
-if ( v10 >= 10 && v10 <= 90 )
+if ( aya_policy_counter(this) >= 10 && aya_policy_counter(this) <= 90 )
 {
 *(_DWORD *)CPU_FIELD(1724) = 2;
 *(_DWORD *)CPU_FIELD(1716) = 0;
 *(_DWORD *)CPU_FIELD(1720) = 0;
 }
-else if ( v10 >= 90 )
+else if ( aya_policy_counter(this) >= 90 )
 {
 *(_DWORD *)CPU_FIELD(1724) = 2;
 *(_DWORD *)CPU_FIELD(1716) = *(char *)CPU_FIELD(260);
@@ -525,8 +527,7 @@ else if ( v27 != 3 && !*(_WORD *)CPU_FIELD(1892) )
 {
 *(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
 }
-v28 = *(_WORD *)CPU_FIELD(1892);
-if ( v28 >= 65 && v28 <= 75 && *(__int16 *)CPU_FIELD(1154) >= 400 )
+if ( aya_policy_counter(this) >= 65 && aya_policy_counter(this) <= 75 && *(__int16 *)CPU_FIELD(1154) >= 400 )
 *(_DWORD *)CPU_FIELD(1832) = 2;
 break;
 case 0x132:
@@ -733,7 +734,7 @@ else if ( v46 != 3 && !*(_WORD *)CPU_FIELD(1892) )
 {
 *(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
 }
-if ( *(_WORD *)CPU_FIELD(1892) <= 0x5Au )
+if ( aya_policy_counter(this) >= 0 && aya_policy_counter(this) <= 90 )
 {
 *(_DWORD *)CPU_FIELD(1724) = 2;
 *(_DWORD *)CPU_FIELD(1716) = 0;
@@ -996,8 +997,7 @@ else if ( v58 != 3 && !*(_WORD *)CPU_FIELD(1892) )
 {
 *(_WORD *)CPU_FIELD(1892) = selector_random_roll(0x64u);
 }
-v59 = *(_WORD *)CPU_FIELD(1892);
-if ( v59 >= 0 && v59 <= 10 && *(__int16 *)CPU_FIELD(1154) >= 400
+if ( aya_policy_counter(this) >= 0 && aya_policy_counter(this) <= 10 && *(__int16 *)CPU_FIELD(1154) >= 400
      && v117 < 500.0 && v118 < 100.0 )
 {
 v62 = *(char *)CPU_FIELD(260);
@@ -1007,7 +1007,7 @@ LABEL_349:
 *(_DWORD *)CPU_FIELD(1720) = 0;
 break;
 }
-if ( v59 >= 10 && v59 <= 20
+if ( aya_policy_counter(this) >= 10 && aya_policy_counter(this) <= 20
 && *(__int16 *)CPU_FIELD(1154) >= 400
 && v118 < 100.0
 && *(float *)CPU_FIELD(240) > other_fighter_170->y_f0 )
@@ -1017,14 +1017,14 @@ if ( v59 >= 10 && v59 <= 20
 *(_DWORD *)CPU_FIELD(1720) = 1;
 break;
 }
-if ( v59 >= 20 && v59 <= 30 && *(__int16 *)CPU_FIELD(1154) >= 400 )
+if ( aya_policy_counter(this) >= 20 && aya_policy_counter(this) <= 30 && *(__int16 *)CPU_FIELD(1154) >= 400 )
 {
 *(_DWORD *)CPU_FIELD(1732) = 2;
 *(_DWORD *)CPU_FIELD(1716) = 0;
 *(_DWORD *)CPU_FIELD(1720) = 0;
 break;
 }
-if ( v59 >= 30 && v59 <= 40
+if ( aya_policy_counter(this) >= 30 && aya_policy_counter(this) <= 40
 && *(__int16 *)CPU_FIELD(1154) >= 400
 && v118 > 100.0
 && *(float *)CPU_FIELD(240) > other_fighter_170->y_f0 )
@@ -1032,7 +1032,7 @@ if ( v59 >= 30 && v59 <= 40
 *(_DWORD *)CPU_FIELD(1832) = 2;
 break;
 }
-if ( v59 >= 95 && v59 <= 100 && *(char *)CPU_FIELD(1370) > 0 )
+if ( aya_policy_counter(this) >= 95 && aya_policy_counter(this) <= 100 && *(char *)CPU_FIELD(1370) > 0 )
 {
 v65 = static_cast<unsigned short>((*reinterpret_cast<AyaNativeSequenceDeque *>(CPU_FIELD(1372)))[0].record_id_00) == 211;
 goto LABEL_434;

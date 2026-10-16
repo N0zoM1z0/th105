@@ -64,6 +64,39 @@ def height_cases():
                    other_action=100, timer=0, seed=seed)
 
 
+def counter_cases():
+    base = dict(action=300, sequence=200, self_x=100.0, other_x=250.0,
+                self_y=0.0, other_y=0.0, vx=0.0, vy=0.0, other_action=100,
+                resource=1000, mode=3, facing=1, counter=90, policy=-1,
+                timer=10, refresh=1, seed=0, control_6b4=1, control_6b8=-1)
+    # These expected outputs are checked against native target execution first.
+    # Policy -1 and peer action100 keep later policy writes from masking them.
+    for action, counter, fields in (
+            (300, 90, {"6b4": 0, "6b8": 0, "6bc": 2}),
+            (305, 65, {"728": 2}), (320, 0, {"6b4": 0, "6b8": 0, "6bc": 2}),
+            (404, 1, {"6b4": 1, "6b8": 0, "6c4": 2})):
+        yield dict(base, action=action, counter=counter, expected_counter_fields=fields)
+    seeds = (0, 1, 2, 3, 7, 42, 5489, 0xFFFFFFFF)
+    boundaries = {
+        300: (-32768, -1, 0, 1, 9, 10, 11, 89, 90, 91, 32767),
+        305: (-32768, -1, 0, 1, 64, 65, 66, 74, 75, 76, 32767),
+        320: (-32768, -1, 0, 1, 89, 90, 91, 32767),
+        404: (-32768, -1, 0, 1, 9, 10, 11, 19, 20, 21, 29, 30, 31,
+              39, 40, 41, 94, 95, 96, 99, 100, 101, 32767),
+    }
+    for action, counters in boundaries.items():
+        for counter, mode, facing, seed in itertools.product(counters, range(4), (-1, 1), seeds):
+            yield dict(base, action=action, counter=counter, mode=mode, facing=facing, seed=seed)
+    for counter, resource, facing, seed in itertools.product(
+            (64, 65, 75, 76), (-1, 399, 400, 401), (-1, 1), seeds[:4]):
+        yield dict(base, action=305, counter=counter, resource=resource, facing=facing, seed=seed)
+    geometry = ((499.0, 0.0, 0.0), (500.0, 0.0, 0.0), (150.0, 50.0, 0.0), (150.0, 150.0, 0.0))
+    for counter, resource, (distance, sy, oy), facing, seed in itertools.product(
+            (0, 10, 11, 20, 21, 30, 31, 40, 95, 100), (-1, 399, 400, 401), geometry, (-1, 1), seeds[:2]):
+        yield dict(base, action=404, sequence=211, counter=counter, resource=resource,
+                   other_x=100.0 + distance, self_y=sy, other_y=oy, facing=facing, seed=seed)
+
+
 def aya_command_cases():
     bases = json.loads((ROOT / "tests/fixtures/aya-cpu-command-seeds.json").read_text())
     if len(bases) != 2 or {case["expected_aya_command"] for case in bases} != {0x200, 0x400}:
@@ -300,6 +333,13 @@ def audit(object_path, count, selected_cases=None, check_selection=False, *, roo
     for number, case in enumerate(vectors, 1):
         digest.update(json.dumps(case, sort_keys=True).encode())
         expected, actual = (engine.evaluate(case) for engine in engines)
+        if "expected_counter_fields" in case:
+            actor = bytes.fromhex(expected["actor"])
+            for key, value in case["expected_counter_fields"].items():
+                offset = int(key, 16)
+                if (offset not in (0x6B4, 0x6B8, 0x6BC, 0x6C4, 0x728)
+                        or int.from_bytes(actor[offset:offset + 4], "little", signed=True) != value):
+                    raise ValueError("native target did not confirm a counter positive control")
         if "expected_aya_command" in case:
             command = int.from_bytes(bytes.fromhex(expected["actor"])[0x728:0x72C], "little")
             if root_name != "aya" or command != case["expected_aya_command"]:
@@ -363,6 +403,7 @@ def main():
     inputs.add_argument("--cases", type=int)
     inputs.add_argument("--case-file", type=Path, help="nonempty JSON case array; <float field>_bits overrides its value")
     inputs.add_argument("--height-cases", action="store_true", help="368 finite/NaN height and RNG controls")
+    inputs.add_argument("--counter-cases", action="store_true", help="4164 signed counter/mode/resource/geometry controls")
     inputs.add_argument("--aya-command-cases", action="store_true", help="470 Aya command/RNG/resource/truncation controls")
     inputs.add_argument("--selection-cases", action="store_true", help="16000 policy0 controls; require all target instructions and rolls0..99")
     args = parser.parse_args()
@@ -378,6 +419,8 @@ def main():
                 raise ValueError("case file must contain a nonempty array of input objects")
         elif args.height_cases:
             selected = list(height_cases())
+        elif args.counter_cases:
+            selected = list(counter_cases())
         elif args.aya_command_cases:
             selected = list(aya_command_cases())
         elif args.selection_cases:
@@ -386,6 +429,8 @@ def main():
         result = audit(args.object, count, selected, check_selection=args.selection_cases, root_name=args.root)
         if args.selection_cases:
             result["input_source"] = "built-in policy0 selection matrix"
+        if args.counter_cases:
+            result["input_source"] = "built-in signed action-counter matrix with target-confirmed positive stores"
         if args.aya_command_cases:
             if count != 470 or any(block["missing_target_instruction_addresses"]
                                    for block in result["aya_command_branch_coverage"]):

@@ -1,5 +1,10 @@
 # Aya CPU linked dependency ABI and switch closure, October 17
 
+Follow-up: [signed counter read sites](AYA_CPU_COUNTER_READS_2026_10_17.md)
+now change the selected source and recover three additional identical owners.
+The byte-neutral source and linked shape measurements below describe this
+earlier ABI checkpoint.
+
 The active root remains `Aya_update_cpu_action_policy @ 0x006126E0`,
 16,032 callable bytes /4,097 instructions. Its retained source and ordinary
 match unit are unchanged and **nonexact**. This batch closes the distinction

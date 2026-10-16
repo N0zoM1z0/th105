@@ -43,31 +43,36 @@ signed resource>=400 and command728 bits400/200hex. Direct Ghidra saves and
 independently reads back void/ECX/no-stack-argument ABI, all4097 instructions,
 switch refs and branch comments, with target bytes unchanged.
 
-Fresh whole comparison remains nonexact+12E /61280E,14/41 diagnostic owners,
-metadata16052 and section tail16677; no exact credit. Native real-helper
-controls pass0/5000 finite and0/470 command/resource/truncation/NaN cases,
-including all28 added target instructions. Omitting the additions fails2/2
-positive seed controls. The retained source now uses11 genuine opponent pointer carriers and the real
-checked VC8 deque; its94-byte template provider replays under the existing
-library unit, with no authored credit. Ordinary root compilation is byte-neutral.
-Genuine /GL links now close actual engine dependencies and static CRT startup.
-A guarded all-float alias control removes the former aligned EBP frame but
-still differs at entry; narrower type controls keep alignment. Thus source/type/
-TU context remains open, without a claim that LTCG is required or impossible.
-Full linked inspection now exposes a79-byte EDI/index-zero deque specialization;
-its map name cannot authorize substitution with the target94-byte ECX/RET4
-callee. A real SDK COFF instantiation replays94 bytes both before and after
-linking, restoring that interface without stubs. The all-float/COFF root closes
-16021 reachable bytes /4069 instructions through six bounded switches, but
-has119 selector sites versus target114 and a five-entry sequence table versus
-target six. Its first16 entry bytes agree; deferred EBP save and control/tail
-ownership still differ. Retained types remain a separate15850-byte linked
-control. No experiment changes the selected root source or acceptance profile.
-The next task is canonical control/register/shared-tail matching using this
-verified dependency ABI. See [the complete linked evidence](AYA_CPU_LINKED_ABI_2026_10_17.md),
-[the source/dependency checkpoint](AYA_CPU_NATIVE_DEPENDENCIES_2026_10_17.md)
-and [the initial source checkpoint](AYA_CPU_ROOT_2026_10_17.md).
-No shared C++ header/global ABI/profile or accepted-unit change.
+The selected source now reads signed counter764 through a natural inline
+field accessor at four predicate paths. Action300's complete30-instruction/
+141-byte owner and action305's24/111 owner recover their independent signed
+WORD bounds; action320's0..90 and action404's0..10 guards also return. Shared
+cleanup edges make action200 identical as well. All prior14 identical owners
+survive, giving17/41 diagnostics. Whole16032 comparison remains nonexact+12E,
+metadata16088 and section tail16713; no partial or exact authored credit.
+
+Fresh native checks pass0/4164 counter/mode/resource/geometry,0/5000 finite
+and0/470 command plus0/368 height cases through genuine RET, including native target-confirmed
+positive stores. An unsigned accessor-return control fails32/32 negative
+counter cases. Broad counter and stored-policy-roll accessor changes are
+rejected despite higher local counts or some recovered arms; they disrupt
+other observed instructions and ownership. Original source spelling/inlining
+phase remains unknown. See [the current counter source checkpoint](AYA_CPU_COUNTER_READS_2026_10_17.md).
+
+Eleven opponent pointer carriers and the real checked VC8 deque remain.
+Full genuine link inspection distinguishes the79-byte private EDI/index-zero
+deque specialization from target4399C0's94-byte ECX/RET4 interface. An actual
+SDK COFF instantiation replays94 bytes before and after linking. With the
+current source and guarded all-float diagnostic, the latter context closes
+16056 bytes /4079 instructions through all six switches, but retains119
+selector sites versus target114 and five nested table destinations versus
+six. No float/flag/partition control is promoted to the acceptance profile.
+The next task is complete control/float lifetime and shared store/x87 tail
+matching with that verified dependency ABI. Prior evidence:
+[linked ABI](AYA_CPU_LINKED_ABI_2026_10_17.md),
+[source/dependencies](AYA_CPU_NATIVE_DEPENDENCIES_2026_10_17.md), and
+[initial Aya root](AYA_CPU_ROOT_2026_10_17.md).
+No shared C++ header/global ABI/relocation/profile or accepted-unit change.
 
 ## Shared Fighter action checkpoint
 

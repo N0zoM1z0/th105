@@ -17600,7 +17600,7 @@ source = "src/characters/AyaCpuActionPolicy.cpp"
 object = "build/match-units/GptWeb_AyaCpuActionPolicy.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current1.06a Aya primary-vtable58 CPU root,16032-byte reviewed callable. Source uses11 genuine peer pointer carriers and the real checked VC8 deque; its94-byte provider replays under the existing library unit without authored credit. Ordinary root remains byte-neutral/nonexact+12E,14/41 owners and16052 metadata. Genuine closed LTCG probes and the float-alias frame discriminator are documented in docs/AYA_CPU_NATIVE_DEPENDENCIES_2026_10_17.md; no profile change or exact credit."
+notes = "Current1.06a Aya primary-vtable58 CPU root,16032-byte reviewed callable. A real signed764 field accessor at four predicate paths restores independent WORD bounds;17/41 diagnostic owners preserve all prior14, with new action200/300/305 identity. Whole root remains nonexact+12E, metadata16088 and16713-byte section tail. Native complete-return controls pass0/4164 counter,0/5000 finite and0/470 command cases; an unsigned-return negative control fails32/32. Real checked VC8 deque and its94-byte library witness remain. See docs/AYA_CPU_COUNTER_READS_2026_10_17.md. No shared header, ABI, relocation or compiler-profile change; no authored exact credit."
 
 [[units.gpt-web-aya-cpu-action-policy.functions]]
 address = "0x006126E0"
