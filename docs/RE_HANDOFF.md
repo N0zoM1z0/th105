@@ -13,9 +13,9 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,536 authored / 1,415 excluded / 1,072 in review**; **1,448 mapped**,
-  **1,427 source-present**, **1,333 exact / 225,099 exact bytes**, and
-  **511 match units**. These are ledger/status totals, not a fresh aggregate
+  **1,537 authored / 1,415 excluded / 1,071 in review**; **1,449 mapped**,
+  **1,428 source-present**, **1,333 exact / 225,099 exact bytes**, and
+  **512 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
   present, and only `matches.csv` plus a reproducible canonical 100% unit
@@ -31,6 +31,23 @@ are historical.
 Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
+
+## UDP probe worker
+
+`NetworkWinsock_probe_thread_entry @ 416F40` now has complete ordinary
+stdcall source in `src/network/NetworkWinsockProbeThread.cpp`, retaining the
+initializer's existing callback symbol. Raw closure covers201 instructions /
+682 reachable bytes plus ten skipped internal alignment bytes through RET4.
+It sends the five-byte opcode4 report, preserves dynamic checked peer-vector
+accesses and manual locks, removes peers on the old counter>=10, transitions
+primary state0 to6 on the same threshold, and uses a private local auto-reset
+event for pacing. Selected minimum-storage source is664/692 nonexact. A real
+41C pool-packet control is670 bytes; genuine fully resolved mixed COFF/LTCG
+links with actual peer-removal source retain664/670. Original local storage,
+aligned GS frame and report-value meaning remain open, with no new exact
+credit. Direct Ghidra owner/peer types and full callback ABI/body are saved
+and independently read back. See
+[the behavior, callback registration and source controls](NETWORK_UDP_PROBE_WORKER_2026_10_16.md).
 
 ## UDP shutdown preparation
 

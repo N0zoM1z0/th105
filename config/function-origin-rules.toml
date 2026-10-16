@@ -5,6 +5,28 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 # but no old-version address is accepted as evidence here.
 
 [[rules]]
+id = "network-udp-probe-worker-authored-106a"
+addresses = ["0x00416F40"]
+expected_count = 1
+expected_bytes = 692
+expected_names = ["sub_416F40"]
+origin = "authored_game"
+subsystem = "network"
+disposition = "authored"
+confidence = "observed"
+evidence = "Initializer412E10 supplies this entry and UDP owner to native CreateThread at412FA6/412FAF, storing worker6C. Complete201-instruction/682-reachable-byte CFG plus ten skipped internal alignment bytes owns opcode4 probe construction, clamped and peer-accumulated report, five checked native vector accesses, manual peer/endpoint locks, postincrement threshold10 removal and primary state6 transition, and native local-event waits. Ordinary stdcall source returns zero with RET4 and compiles664/692 nonexact; real41C packet control670 and fully resolved genuine mixed COFF/LTCG controls664/670 do not recover the aligned GS frame. No buffer inflation, fabricated callee, ABI facade or new helper exclusion. docs/NETWORK_UDP_PROBE_WORKER_2026_10_16.md."
+required_body_hashes = [{ address = "0x00416F40", size = 692, sha256 = "32a4bac3ae247113a2a9e87691983eb8af62126ceaa2a007e38a24ea1e5cabc4" }]
+required_selected_body_calls = [{ owner = "0x00416F40", site = "0x0041711B", target = "0x00413170", target_status = "implemented" }]
+required_dword_values = [
+  { address = "0x00412FA7", value = "0x00416F40" },
+  { address = "0x00412F5B", value = "0x006C0138" },
+  { address = "0x00416F6A", value = "0x006C00A4" },
+  { address = "0x00417139", value = "0x006C009C" },
+  { address = "0x004171D7", value = "0x006C00A0" },
+  { address = "0x006898CE", value = "0x006C0274" },
+]
+
+[[rules]]
 id = "network-udp-prepare-shutdown-authored-106a"
 addresses = ["0x004130D0"]
 expected_count = 1

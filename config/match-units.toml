@@ -19108,3 +19108,21 @@ rel32_targets = [
 address = "0x00413080"
 symbol_base = "?bind_udp_socket@th105@@YG_NPAVNetworkUdpInitializeView@1@H@Z"
 rel32_targets = ["?show_winsock_error@th105@@YGXPBD@Z=0x0041DEF0"]
+
+[units.cross-v106a-network-winsock-probe-thread]
+kind = "probe"
+source = "src/network/NetworkWinsockProbeThread.cpp"
+object = "build/match-units/CrossV106a_NetworkWinsockProbeThread.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete692-byte native UDP service callback: local auto-reset event; five-byte opcode4 report; dynamic peer-vector sums/checks; manual peer/endpoint locks; postincrement removal/state6 thresholds; two local-event wait sites; zero RET4. Selected minimum storage source664/692 nonexact. Known41C packet control670 and real resolved peer-source mixed COFF/LTCG controls664/670 do not establish original aligned GS storage. Definition retains the initializer's existing native callback symbol. No shared headers, forced ABI, inflated packet or exact credit."
+
+[[units.cross-v106a-network-winsock-probe-thread.functions]]
+address = "0x00416F40"
+symbol_base = "_network_udp_service_thread_416f40@4"
+rel32_targets = [
+  "_sendto@24=0x006898CC",
+  "?remove_peer@NetworkUdpProbeWorkerView@th105@@QAEXI@Z=0x00413170",
+  "_invalid_parameter_noinfo=0x0068A143",
+  "@__security_check_cookie@4=0x00689D25",
+]

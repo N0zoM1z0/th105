@@ -119,11 +119,14 @@ CreateThread in EBX and directly reads SetThreadPriority twice; the ordinary
 candidate allocates EBP and EBX to those pointers. No partial prefix or
 same-sized diagnostic is accepted as exact.
 
-A real pinned `/GL` compile followed by resolved `/LTCG /NODEFAULTLIB` link
-stops with LNK2001/LNK1120 for the three actual thread-entry symbols and the
-new thread-view wait declaration. The wait and send bodies are recoverable
-from other reviewed source units, but the large receive/service loops still
-need complete genuine implementations. No `/FORCE`, stub, fabricated return,
+A real pinned `/GL` compile followed by `/LTCG /NODEFAULTLIB` link at this
+checkpoint stops with LNK2001/LNK1120 for the three actual thread-entry symbols
+and the new thread-view wait declaration. The wait and send bodies are
+recoverable from other reviewed source units. The service callback416F40 is
+subsequently source-defined in
+[the probe-worker checkpoint](NETWORK_UDP_PROBE_WORKER_2026_10_16.md), retaining
+this initializer's existing callback symbol; the large receive loop still
+needs a complete genuine implementation. No `/FORCE`, stub, fabricated return,
 import facade or executable ABS binding is used to bypass them. This is a
 concrete limit of the attempted source unit; it proves neither that LTCG is
 required nor that a completed linked unit would match the initializer.

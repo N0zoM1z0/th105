@@ -516,7 +516,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00416B60,authored_game,network,authored,observed,network-server-send-packet-authored-106a
 0x00416D90,authored_game,network,authored,observed,network-udp-send-worker-authored-106a
 0x00416DB0,authored_game,network,authored,observed,network-udp-send-worker-authored-106a
-0x00416F40,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00416F40,authored_game,network,authored,observed,network-udp-probe-worker-authored-106a
 0x00417200,compiler_generated,characters,exclude,observed,vc8-generated-character-object-ex-deque-comdats-106a
 0x00417240,compiler_generated,runtime,exclude,observed,vc8-generated-roster-object-spawns-std-comdats-106a
 0x004172C0,unknown,,review,unknown,ida-1.06a-initial-inventory
