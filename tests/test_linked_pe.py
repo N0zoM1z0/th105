@@ -272,6 +272,110 @@ class LinkedPeTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "escapes"):
             linked.resolve_linked_call(0x68a143, pe, {}, imports, targets)
 
+    def test_sdk_contract_accepts_only_explicit_pinned_imports(self):
+        unit = {"profile": linked.PROFILE, "object": "build/test.dll",
+                "link_data_targets": ["_app=app"], "functions": [{"symbol_base": "_worker@4"}],
+                "link_import_targets": ["_sendto@24=0x006898CC"]}
+        linked.validate_contract(unit, {"app"})
+        for imports in [None, "_sendto@24=0x006898CC", ["_sendto@24=6898CC"],
+                        ["_recvfrom@24=0x006898BA"], ["_sendto@24=0x006898CC"] * 2]:
+            with self.subTest(imports=imports), self.assertRaises(ValueError):
+                linked.validate_contract({**unit, "link_import_targets": imports}, {"app"})
+        with self.assertRaises(ValueError):
+            linked.validate_contract({**unit, "link_data_targets": ["_sendto@24=app"]}, {"app"})
+
+    def test_import_identity_keeps_ordinals_despite_pefile_name_annotations(self):
+        ordinal = SimpleNamespace(name=b"sendto", ordinal=20, import_by_ordinal=True)
+        named = SimpleNamespace(name=b"sendto", ordinal=None, import_by_ordinal=False)
+        self.assertEqual(linked.import_identity(ordinal), 20)
+        self.assertEqual(linked.import_identity(named), "sendto")
+
+    def test_sdk_call_needs_matching_import_map_owner_and_target_contract(self):
+        slot, destination = linked.IMAGE_BASE + 0x3000, self.start + 0x800
+        pe = SimpleNamespace(OPTIONAL_HEADER=SimpleNamespace(SizeOfImage=0x5000),
+                             get_data=lambda rva, size: b"\xff\x25" + struct.pack("<I", slot))
+        contract = {**linked.SDK_IMPORTS["_sendto@24"], "symbol": "_sendto@24", "target": 0x6898cc}
+        imports, targets = {slot: ("ws2_32.dll", 20)}, {"_sendto@24": 0x6898cc}
+        functions = {destination: [("_sendto@24", "WS2_32:WS2_32.dll")]}
+        def resolve(i=imports, t=targets, f=functions, contracts=None):
+            return linked.resolve_linked_call(destination, pe, f, i, t,
+                                              [contract] if contracts is None else contracts)
+        self.assertEqual(resolve(), ("_sendto@24", 0x6898cc))
+        for identity in [("ws2_32.dll", "sendto"), ("ws2_32.dll", 19), ("other.dll", 20)]:
+            with self.subTest(identity=identity), self.assertRaises(ValueError): resolve(i={slot: identity})
+        for bad in [{}, {"_sendto@24": 0x401000}]:
+            with self.subTest(targets=bad), self.assertRaises(ValueError): resolve(t=bad)
+        for aliases in [[], [("_sendto@24", "game.obj")], [("_recvfrom@24", "WS2_32:WS2_32.dll")],
+                        functions[destination] * 2]:
+            with self.subTest(aliases=aliases), self.assertRaises(ValueError): resolve(f={destination: aliases})
+        for contracts in [[], [contract, contract]]:
+            with self.assertRaises(ValueError): resolve(contracts=contracts)
+        with self.assertRaises(ValueError):
+            linked.resolve_linked_call(destination, pe, {}, {slot: ("msvcr80.dll", 20)}, targets)
+
+    def test_sdk_target_attests_archive_abi_thunk_iat_and_excluded_origin(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root, address, iat = Path(folder), 0x6898cc, 0x6c0274
+            (root / "scripts").mkdir(); (root / "config").mkdir()
+            (root / "scripts/extract-msvc-library-object.py").write_bytes(
+                (linked.ROOT / "scripts/extract-msvc-library-object.py").read_bytes())
+            library = root / "PlatformSDK/Lib/WS2_32.Lib"; library.parent.mkdir(parents=True)
+            strings = b"_sendto@24\0WS2_32.dll\0"
+            member = struct.pack("<HHHHIIHH", 0, 0xffff, 0, 0x14c, 0, len(strings), 20, 0) + strings
+            contract = {**linked.SDK_IMPORTS["_sendto@24"],
+                        "member_sha256": linked.hashlib.sha256(member).hexdigest()}
+            def write_member(body):
+                header = f"{'WS2_32.dll/':<16}{0:<12}{0:<6}{0:<6}{0:<8}{len(body):<10}`\n".encode()
+                library.write_bytes(b"!<arch>\n" + header + body + (b"\n" if len(body) % 2 else b""))
+            write_member(member)
+            functions = root / "config/functions.csv"
+            functions.write_text("address,size\n0x006898CC,6\n")
+            origins = root / "config/function-origins.csv"
+            origins.write_text("address,origin,disposition\n0x006898CC,import_thunk,exclude\n")
+            raw = struct.pack("<I", 0x80000014)
+            known = {"__imp__sendto@24": (iat, raw, frozenset({0}), "literal")}
+            memory = {(iat, 4): raw, (address, 6): b"\xff\x25" + struct.pack("<I", iat)}
+            entry = SimpleNamespace(address=iat, ordinal=20, name=b"sendto", import_by_ordinal=True)
+            code, data = SimpleNamespace(Characteristics=0x60000020), SimpleNamespace(Characteristics=0xc0000040)
+            pe = SimpleNamespace(OPTIONAL_HEADER=SimpleNamespace(ImageBase=0x400000),
+                DIRECTORY_ENTRY_IMPORT=[SimpleNamespace(dll=b"WS2_32.dll", imports=[entry])],
+                get_section_by_rva=lambda rva: code if rva == address - 0x400000 else data)
+            c = SimpleNamespace(TARGET=root / "game.exe", verify_target=lambda: "target",
+                                known_data_targets=lambda: known, target_bytes=lambda a, n: memory.get((a, n), b""))
+            with patch.object(linked, "ROOT", root), patch.object(linked, "comparator", return_value=c), \
+                 patch.object(linked.pefile, "PE", return_value=pe), \
+                 patch.dict(linked.SDK_IMPORTS, {"_sendto@24": contract}, clear=True):
+                unit = {"link_import_targets": ["_sendto@24=0x006898CC"]}
+                check = lambda: linked.target_imports(unit, root)
+                self.assertEqual(check()[0]["target_iat"], iat)
+                mutations = [(memory, (address, 6), b"\xff\x25" + struct.pack("<I", iat + 4)),
+                             (memory, (iat, 4), bytes(4)),
+                             (known, "__imp__sendto@24", (iat, raw, frozenset({0, 4}), "literal")),
+                             (known, "__imp__sendto@24", (iat, raw, frozenset({0}), "address"))]
+                for mapping, key, value in mutations:
+                    old = mapping[key]; mapping[key] = value
+                    with self.subTest(value=value), self.assertRaises(ValueError): check()
+                    mapping[key] = old
+                for obj, key, value in [(entry, "ordinal", 19), (entry, "import_by_ordinal", False),
+                                        (code, "Characteristics", 0x40000040), (data, "Characteristics", 0x60000020)]:
+                    old = getattr(obj, key); setattr(obj, key, value)
+                    with self.subTest(key=key), self.assertRaises(ValueError): check()
+                    setattr(obj, key, old)
+                for path, bad in [(functions, "address,size\n0x006898CC,5\n"),
+                                  (origins, "address,origin,disposition\n0x006898CC,authored_game,authored\n")]:
+                    old = path.read_text(); path.write_text(bad)
+                    with self.assertRaises(ValueError): check()
+                    path.write_text(old)
+                write_member(member[:-1] + b"x")
+                with self.assertRaisesRegex(ValueError, "member"): check()
+                # Even an explicitly pinned member must describe code/ordinal20
+                # with the exact stdcall symbol, not a data or named import.
+                for offset, replacement in [(6, struct.pack("<H", 0x8664)), (16, struct.pack("<H", 19)),
+                                             (18, struct.pack("<H", 1)), (20, b"X")]:
+                    bad = member[:offset] + replacement + member[offset + len(replacement):]
+                    write_member(bad); contract["member_sha256"] = linked.hashlib.sha256(bad).hexdigest()
+                    with self.assertRaisesRegex(ValueError, "wrong symbol/DLL/ordinal/code"): check()
+
     def test_ambiguous_linker_function_aliases_fail(self):
         pe = SimpleNamespace(OPTIONAL_HEADER=SimpleNamespace(SizeOfImage=0x5000), get_data=lambda rva, size: bytes(size))
         destination = self.start + 0x800
@@ -338,7 +442,7 @@ class LinkedPeTests(unittest.TestCase):
                     path.write_bytes(b"original")
                 metadata = {"schema": "th105-linked-pe-v1", "unit": "test", "profile": linked.PROFILE,
                     "target_sha256": "target", "input_digest": "digest", "tools": {}, "bindings": [],
-                    "vtable_contracts": [], "coff_inputs": [{"source": str(library),
+                    "vtable_contracts": [], "sdk_imports": [], "coff_inputs": [{"source": str(library),
                         "source_sha256": linked.sha(library), "object": native_obj.name,
                         "object_sha256": linked.sha(native_obj)}],
                     "parsers": linked.parser_versions(), "source_sha256": linked.sha(source),

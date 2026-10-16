@@ -5,6 +5,13 @@
 namespace th105 {
 extern "C" __declspec(dllimport) unsigned long __stdcall timeGetTime();
 extern "C" __declspec(dllimport) int __stdcall SetEvent(void *event);
+extern "C" __declspec(dllimport) void *__stdcall CreateEventA(
+    void *attributes, int manual_reset, int initial_state, const char *name);
+extern "C" __declspec(dllimport) unsigned long __stdcall WaitForSingleObject(
+    void *handle, unsigned long milliseconds);
+extern "C" __declspec(dllimport) int __stdcall CloseHandle(void *handle);
+extern "C" int __stdcall sendto(unsigned int socket, const char *buffer,
+    int size, int flags, const void *endpoint, int endpoint_size);
 
 struct NetworkSendPeerRecord20 {
     unsigned char endpoint_00[16];
@@ -14,12 +21,15 @@ struct NetworkSendPeerRecord20 {
 
 class NetworkWinsockSendClientView {
 public:
+    void send_loop();
     int send_client(const void *payload, unsigned int size,
-                    unsigned int options, unsigned int *result);
+                    unsigned int timeout_ms, unsigned int *result);
     void send_server(unsigned int index, const void *payload, unsigned int size,
-                     unsigned int options, unsigned int *result);
+                     unsigned int timeout_ms, unsigned int *result);
 
-    unsigned char unreviewed_000[0x74];
+    unsigned char unreviewed_000[0x28];
+    unsigned int socket_028;
+    unsigned char unreviewed_02c[0x48];
     unsigned char running_074;
     unsigned char unreviewed_075[0x4b];
     unsigned char endpoint_0c0[16];
@@ -38,13 +48,13 @@ public:
 
 int NetworkWinsockSendClientView::send_client(
     const void *payload, unsigned int size,
-    unsigned int options, unsigned int *result)
+    unsigned int timeout_ms, unsigned int *result)
 {
     unsigned int token = 0;
     NetworkUdpPacketBuffer41C *packet = packet_pool_17c.acquire(
         *reinterpret_cast<ResourceHandleToken *>(&token));
     packet->payload_1c[0] = 0x0e;
-    packet->options_14 = options;
+    packet->timeout_ms_14 = timeout_ms;
     packet->timestamp_10 = timeGetTime();
     EnterCriticalSection(&endpoint_lock_0e0.critical_section_04);
     memcpy(packet->endpoint_00, endpoint_0c0, sizeof(endpoint_0c0));
@@ -72,7 +82,7 @@ int NetworkWinsockSendClientView::send_client(
 
 void NetworkWinsockSendClientView::send_server(
     unsigned int index, const void *payload, unsigned int size,
-    unsigned int options, unsigned int *result)
+    unsigned int timeout_ms, unsigned int *result)
 {
     if (records_108[index].slot_10 == -1)
         return;
@@ -80,7 +90,7 @@ void NetworkWinsockSendClientView::send_server(
     NetworkUdpPacketBuffer41C *packet = packet_pool_17c.acquire(
         *reinterpret_cast<ResourceHandleToken *>(&token));
     packet->payload_1c[0] = 0x0d;
-    packet->options_14 = options;
+    packet->timeout_ms_14 = timeout_ms;
     packet->timestamp_10 = timeGetTime();
     EnterCriticalSection(&peer_lock_120.critical_section_04);
     memcpy(packet->endpoint_00, records_108[index].endpoint_00, sizeof(packet->endpoint_00));
@@ -106,6 +116,49 @@ void NetworkWinsockSendClientView::send_server(
     SetEvent(event_1e0);
 }
 
+void NetworkWinsockSendClientView::send_loop()
+{
+    event_1e0 = CreateEventA(0, 0, 0, 0);
+    while (running_074) {
+        WaitForSingleObject(event_1e0, 0xffffffffUL);
+        while (running_074) {
+            unsigned int token;
+            EnterCriticalSection(&queue_lock_1e4.critical_section_04);
+            if (!pending_tokens_168.empty()) {
+                token = pending_tokens_168.front();
+                pending_tokens_168.pop_front();
+            } else {
+                token = 0;
+            }
+            LeaveCriticalSection(&queue_lock_1e4.critical_section_04);
+            if (token == 0)
+                break;
+            NetworkUdpPacketHandleManager64 *pool = &packet_pool_17c;
+            NetworkUdpPacketBuffer41C *packet = pool->lookup(token);
+            if (packet != 0) {
+                if (packet->timeout_ms_14 != 0) {
+                    if (timeGetTime() - packet->timestamp_10 < packet->timeout_ms_14)
+                        sendto(socket_028, reinterpret_cast<const char *>(packet->payload_1c),
+                            packet->size_18, 0, packet->endpoint_00, 16);
+                } else {
+                    sendto(socket_028, reinterpret_cast<const char *>(packet->payload_1c),
+                        packet->size_18, 0, packet->endpoint_00, 16);
+                }
+                pool->release(token);
+            }
+        }
+    }
+    CloseHandle(event_1e0);
+    event_1e0 = 0;
+}
+
+extern "C" unsigned long __stdcall network_winsock_send_thread(void *parameter)
+{
+    static_cast<NetworkWinsockSendClientView *>(parameter)->send_loop();
+    return 0;
+}
+
+typedef char SendWorkerSocketOffset[offsetof(NetworkWinsockSendClientView, socket_028)==0x28?1:-1];
 typedef char SendClientEndpointOffset[offsetof(NetworkWinsockSendClientView, endpoint_0c0)==0xc0?1:-1];
 typedef char SendClientQueueOffset[offsetof(NetworkWinsockSendClientView, pending_tokens_168)==0x168?1:-1];
 typedef char SendClientPoolOffset[offsetof(NetworkWinsockSendClientView, packet_pool_17c)==0x17c?1:-1];
@@ -166,5 +219,17 @@ NetworkUdpPacketBuffer41C *NetworkUdpPacketHandleManager64::acquire(ResourceHand
         generations_28[slot] = token.generation_02;
     }
     return slots_18.at(slot);
+}
+
+// The generation-checked lookup body is shared across payload specializations.
+NetworkUdpPacketBuffer41C *NetworkUdpPacketHandleManager64::lookup(unsigned int packed_token)
+{
+    NetworkUdpPacketPoolLock scope(&critical_48);
+    const ResourceHandleToken &token =
+        *reinterpret_cast<const ResourceHandleToken *>(&packed_token);
+    if (generations_28.size() <= token.slot_00
+        || generations_28[token.slot_00] != token.generation_02)
+        return 0;
+    return slots_18.at(token.slot_00);
 }
 } // namespace th105

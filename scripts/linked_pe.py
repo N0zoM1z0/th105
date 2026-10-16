@@ -1,7 +1,7 @@
 """Pinned VC8 LTCG images with symbol-backed, fail-closed function comparison.
 
-Images bind only existing game data/IAT cells. CRT code references are resolved
-by the actual VC8 import libraries, never synthetic function implementations.
+Images bind only existing game data/IAT cells. External code references are resolved
+by the actual pinned VC8/SDK import libraries, never synthetic function implementations.
 The result is a comparison artifact, not a standalone application.
 """
 from __future__ import annotations
@@ -28,8 +28,14 @@ RUNTIME_DLLS = {"msvcr80.dll", "msvcp80.dll"}
 SYMBOL = re.compile(r"^[A-Za-z_?@.$][A-Za-z0-9_?@.$]*$")
 MAP_FUNCTION = re.compile(r"^\s+[0-9A-Fa-f]{4}:[0-9A-Fa-f]{8}\s+(\S+)\s+([0-9A-Fa-f]{8})\s+f(?:\s|$)(.*)$")
 MAP_SYMBOL = re.compile(r"^\s+[0-9A-Fa-f]{4}:[0-9A-Fa-f]{8}\s+(\S+)\s+([0-9A-Fa-f]{8})\s+(.*)$")
-PIN_FILES = ("bin/cl.exe", "bin/c1xx.dll", "bin/c2.dll", "bin/link.exe", "lib/msvcrt.lib", "lib/msvcprt.lib")
+PIN_FILES = ("bin/cl.exe", "bin/c1xx.dll", "bin/c2.dll", "bin/link.exe", "lib/msvcrt.lib", "lib/msvcprt.lib",
+             "PlatformSDK/Lib/WS2_32.Lib")
 PIN_DIRS = ("include", "PlatformSDK/Include")
+SDK_IMPORTS = {
+    "_sendto@24": {"library": "PlatformSDK/Lib/WS2_32.Lib", "dll": "ws2_32.dll", "ordinal": 20,
+                   "iat": "__imp__sendto@24",
+                   "member_sha256": "677c886dace564fc7dd6ca26b7eec488a4b65d67c46847ba0da1b9396d261168"},
+}
 
 
 def parser_versions() -> dict[str, str]:
@@ -75,6 +81,16 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
         if name.startswith("??_7") or key.startswith("??_7"):
             raise ValueError("native vtables require the typed RTTI/entry contract")
         names.add(name)
+    imports = unit.get("link_import_targets", [])
+    if not isinstance(imports, list):
+        raise ValueError("linked SDK imports must be an explicit list")
+    import_names = set()
+    for mapping in imports:
+        symbol, separator, address = str(mapping).partition("=")
+        if (not separator or symbol not in SDK_IMPORTS or symbol in names or symbol in import_names
+                or not re.fullmatch(r"0x[0-9A-Fa-f]{8}", address)):
+            raise ValueError("invalid/duplicate pinned SDK import mapping")
+        import_names.add(symbol)
     coff_sources = unit.get("linked_coff_sources", [])
     if (not isinstance(coff_sources, list)
             or any(not isinstance(p, str) or not p.startswith("src/library/")
@@ -174,6 +190,59 @@ def target_bindings(unit: dict) -> list[dict]:
         bindings.append({"symbol": symbol, "key": key, "address": base,
                          "data_hex": raw.hex(), "addends": sorted(addends), "validation": validation})
     return bindings
+
+
+def import_identity(entry):
+    # pefile supplies convenient names for known ordinal imports. Those names
+    # are annotations; preserve the actual PE import lookup identity here.
+    return entry.ordinal if entry.import_by_ordinal else entry.name.decode("ascii")
+
+
+def target_imports(unit: dict, tools: Path) -> list[dict]:
+    mappings = unit.get("link_import_targets", [])
+    if not mappings:
+        return []
+    c = comparator()
+    c.verify_target()
+    game = pefile.PE(str(c.TARGET))
+    imports = {entry.address: (dll.dll.decode("ascii").lower(), import_identity(entry))
+               for dll in game.DIRECTORY_ENTRY_IMPORT for entry in dll.imports}
+    with (ROOT / "config/functions.csv").open(newline="") as stream:
+        ledger = {int(row["address"], 0): row for row in csv.DictReader(stream)}
+    with (ROOT / "config/function-origins.csv").open(newline="") as stream:
+        origins = {int(row["address"], 0): row for row in csv.DictReader(stream)}
+    spec = importlib.util.spec_from_file_location("linked_archive", ROOT / "scripts/extract-msvc-library-object.py")
+    archive = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(archive)
+    known, result = c.known_data_targets(), []
+    for mapping in mappings:
+        symbol, address = mapping.split("=", 1)
+        contract, address = SDK_IMPORTS[symbol], int(address, 0)
+        members = [body for _, body in archive.archive_members((tools / contract["library"]).read_bytes())
+                   if hashlib.sha256(body).hexdigest() == contract["member_sha256"]]
+        if len(members) != 1:
+            raise ValueError("pinned SDK short import member is missing or ambiguous")
+        member = members[0]
+        expected_strings = symbol.encode("ascii") + b"\0" + contract["dll"].encode("ascii") + b"\0"
+        header = struct.unpack_from("<HHHHIIHH", member)
+        if (header[:4] != (0, 0xffff, 0, 0x14c) or header[5:] != (len(member) - 20, contract["ordinal"], 0)
+                or member[20:].lower() != expected_strings):
+            raise ValueError("pinned SDK member has the wrong symbol/DLL/ordinal/code type")
+        iat, raw, addends, validation = known[contract["iat"]]
+        section = game.get_section_by_rva(address - game.OPTIONAL_HEADER.ImageBase)
+        iat_section = game.get_section_by_rva(iat - game.OPTIONAL_HEADER.ImageBase)
+        origin = origins.get(address, {})
+        if (ledger.get(address, {}).get("size") != "6" or section is None
+                or not section.Characteristics & 0x20000000 or iat_section is None
+                or iat_section.Characteristics & 0x20000000
+                or (origin.get("origin"), origin.get("disposition")) != ("import_thunk", "exclude")
+                or addends != frozenset({0}) or validation != "literal" or len(raw) != 4
+                or c.target_bytes(iat, 4) != raw
+                or imports.get(iat) != (contract["dll"], contract["ordinal"])
+                or c.target_bytes(address, 6) != b"\xff\x25" + struct.pack("<I", iat)):
+            raise ValueError("SDK target is not its attested six-byte import thunk and IAT")
+        result.append({"symbol": symbol, "target": address, "target_iat": iat, **contract})
+    return result
 
 
 def absolute_data_object(bindings: list[dict]) -> bytes:
@@ -322,6 +391,7 @@ def build_linked(name: str, unit: dict) -> dict:
     tools, hashes = pinned_tools()
     parsers = parser_versions()
     bindings = target_bindings(unit)
+    sdk_imports = target_imports(unit, tools)
     vtables = target_vtables(unit)
     source = repository_path(unit["source"])
     output = repository_path(unit["object"], output=True)
@@ -357,7 +427,9 @@ def build_linked(name: str, unit: dict) -> dict:
                     "/MAP:" + win(map_path), "/OUT:" + win(output)]
     link_command.extend("/EXPORT:" + f.get("export_name", f["symbol_base"])
                         for f in unit["functions"] if "private_from" not in f)
-    link_command.extend(win(p) for p in [*coff_objects, obj, data_obj, tools / "lib/msvcrt.lib", tools / "lib/msvcprt.lib"])
+    libraries = sorted({contract["library"] for contract in sdk_imports})
+    link_command.extend(win(p) for p in [*coff_objects, obj, data_obj, *(tools / p for p in libraries),
+                                        tools / "lib/msvcrt.lib", tools / "lib/msvcprt.lib"])
     # Each invocation is serial. /FORCE and unresolved references are forbidden.
     phases = [(f"coff{index}.compile", command) for index, command in enumerate(coff_commands)]
     for phase, command in phases + [("compile", compile_command), ("link", link_command)]:
@@ -373,6 +445,7 @@ def build_linked(name: str, unit: dict) -> dict:
                 "ltcg_object_sha256": sha(obj), "bindings_object_sha256": sha(data_obj),
                 "coff_inputs": coff_inputs(unit, output), "coff_compile_commands": coff_commands,
                 "vtable_contracts": vtables,
+                "sdk_imports": sdk_imports,
                 "tools": hashes, "parsers": parsers, "bindings": bindings, "compile_command": compile_command,
                 "link_command": link_command}
     output.with_suffix(".link.json").write_text(json.dumps(metadata, indent=2) + "\n")
@@ -496,13 +569,24 @@ def canonicalize(code: bytes, start: int, target: int, bindings: list[dict], res
     return bytes(canonical), replayed, references
 
 
-def resolve_linked_call(destination: int, pe, functions: dict, imports: dict, targets: dict) -> tuple[str, int]:
+def resolve_linked_call(destination: int, pe, functions: dict, imports: dict, targets: dict,
+                        sdk_imports: list[dict] | None = None) -> tuple[str, int]:
     if not IMAGE_BASE <= destination < IMAGE_BASE + pe.OPTIONAL_HEADER.SizeOfImage:
         raise ValueError("linked call escapes its image without a named linker identity")
     thunk = pe.get_data(destination - IMAGE_BASE, 6) if IMAGE_BASE <= destination < IMAGE_BASE + pe.OPTIONAL_HEADER.SizeOfImage else b""
     if thunk[:2] == b"\xff\x25" and len(thunk) == 6:
         dll, imported = imports.get(struct.unpack_from("<I", thunk, 2)[0], (None, None))
-        if dll not in RUNTIME_DLLS or not imported:
+        if dll not in RUNTIME_DLLS:
+            contracts = [contract for contract in sdk_imports or []
+                         if (dll, imported) == (contract["dll"], contract["ordinal"])
+                         and targets.get(contract["symbol"]) == contract["target"]]
+            if len(contracts) != 1:
+                raise ValueError("external linked call has no attested pinned SDK import contract")
+            contract = contracts[0]
+            if functions.get(destination) != [(contract["symbol"], "WS2_32:WS2_32.dll")]:
+                raise ValueError("SDK thunk map symbol/library identity disagrees")
+            return contract["symbol"], contract["target"]
+        if not isinstance(imported, str) or not imported:
             raise ValueError("external linked call is not a named pinned VC8 runtime import")
         symbol = imported if imported.startswith("?") else "_" + imported
         if symbol not in targets:
@@ -581,8 +665,9 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
     target_hash = c.verify_target()
     image = image or repository_path(unit["object"], output=True)
     metadata = json.loads(image.with_suffix(".link.json").read_text())
-    _, tools = pinned_tools()
+    tool_root, tools = pinned_tools()
     bindings = target_bindings(unit)
+    sdk_imports = target_imports(unit, tool_root)
     vtable_contracts = target_vtables(unit)
     expected = {"schema": "th105-linked-pe-v1", "unit": name, "profile": PROFILE,
                 "target_sha256": target_hash, "input_digest": unit_input_digest(name, unit)[0],
@@ -590,7 +675,8 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
                 "map_sha256": sha(image.with_suffix(".map")), "tools": tools, "parsers": parser_versions(), "bindings": bindings,
                 "ltcg_object_sha256": sha(image.with_suffix(".ltcg.obj")),
                 "bindings_object_sha256": sha(image.with_suffix(".bindings.obj")),
-                "coff_inputs": coff_inputs(unit, image), "vtable_contracts": vtable_contracts}
+                "coff_inputs": coff_inputs(unit, image), "vtable_contracts": vtable_contracts,
+                "sdk_imports": sdk_imports}
     if any(metadata.get(key) != value for key, value in expected.items()):
         raise ValueError("stale or modified linked build provenance; rebuild the configured unit")
     pe = pefile.PE(str(image))
@@ -610,7 +696,7 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
         if entry.forwarder or export in exports:
             raise ValueError("forwarded/duplicate linked exports are unsupported")
         exports[export] = IMAGE_BASE + entry.address
-    imports = {entry.address: (dll.dll.decode("ascii").lower(), entry.name.decode("ascii") if entry.name else None)
+    imports = {entry.address: (dll.dll.decode("ascii").lower(), import_identity(entry))
                for dll in getattr(pe, "DIRECTORY_ENTRY_IMPORT", []) for entry in dll.imports}
     with (ROOT / "config/functions.csv").open(newline="") as stream:
         ledger = {row["address"]: row for row in csv.DictReader(stream)}
@@ -632,7 +718,7 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
             raise ValueError("linked callee mapping is outside the target candidate ledger")
 
         def resolve(destination: int) -> tuple[str, int]:
-            return resolve_linked_call(destination, pe, functions, imports, targets)
+            return resolve_linked_call(destination, pe, functions, imports, targets, sdk_imports)
 
         address = int(function["address"], 0)
         code, calls, data_refs = canonicalize(raw, start, address, bindings, resolve,

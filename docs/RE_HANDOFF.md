@@ -13,8 +13,8 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,528 authored / 1,415 excluded / 1,080 in review**; **1,440 mapped**,
-  **1,419 source-present**, **1,329 exact / 224,752 exact bytes**, and
+  **1,530 authored / 1,415 excluded / 1,078 in review**; **1,442 mapped**,
+  **1,421 source-present**, **1,329 exact / 224,752 exact bytes**, and
   **510 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
@@ -33,6 +33,20 @@ state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
 ## UDP client sender and real private-helper context
+
+`NetworkWinsock_send_loop @ 416DB0` and its real native callback `416D90`
+now have complete source in the same sender/helper TU. Full raw CFGs close
+395/18 bytes. The worker creates/waits/closes its event, drains the locked token
+deque, looks up packets, sends only unexpired packets and recycles every valid
+token. Packet+14 now has the observed `timeout_ms_14` meaning, with zero
+disabling expiry. The actual pinned SDK import library resolves the target's
+ordinary sendto E8/thunk; strict source/target ordinal, symbol, library, thunk
+and IAT checks join linked provenance. The complete worker is395/395 nonexact
+on callee-save shrink wrapping; the callback is16/18 nonexact on scratch-frame
+reservation. Their private ESI interface arises naturally from real source.
+No new exact credit is added. Fresh focused replay preserves scene281,
+pool98 and release167; all155 local CI tests pass. Original frame/optimizer
+context remains open. See [the complete behavior and comparison evidence](NETWORK_UDP_SEND_WORKER_2026_10_16.md).
 
 `NetworkWinsock_send_server @ 416B60` now shares the complete sender/helper
 source in `src/network/NetworkWinsockSendClient.cpp`. Full raw CFG closes

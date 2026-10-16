@@ -18990,18 +18990,22 @@ object = "build/match-units/CrossV106a_NetworkWinsockSendClient.dll"
 profile = "vc8-sp1-ltcg-o2"
 enable_gs = false
 linked_coff_sources = ["src/library/UnsignedIntList.cpp"]
+link_import_targets = ["_sendto@24=0x006898CC"]
 link_data_targets = [
   "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4",
   "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4",
   "__imp__timeGetTime@0=__imp__timeGetTime@0",
   "__imp__SetEvent@4=__imp__SetEvent@4",
+  "__imp__CreateEventA@16=__imp__CreateEventA@16",
+  "__imp__WaitForSingleObject@8=__imp__WaitForSingleObject@8",
+  "__imp__CloseHandle@4=__imp__CloseHandle@4",
   "__imp__TerminateProcess@8=__imp__TerminateProcess@8",
   "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0",
   "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4",
   "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4",
   "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0",
 ]
-notes = "Complete native client/server/acquire/release TU. The two real senders are exported; the source-owned private release is tied to the original client caller edge. Genuine ordinary unsigned-list instantiation preserves shared helper ABIs. Both senders remain nonexact; selected release requires strict private caller/map/CFG and canonical checks."
+notes = "Complete native client/server/send-worker/acquire/lookup/release TU. Actual native thread entry owns the private ESI worker through its original E8 edge; the two real senders preserve the private release caller context. Genuine ordinary unsigned-list instantiation preserves shared helper ABIs. Pinned SDK sendto short import links a real ordinal20 thunk, independently attested against the target thunk/IAT. Senders and worker/entry remain nonexact; selected release requires strict private caller/map/CFG and canonical checks."
 
 [[units.cross-v106a-network-winsock-send-client.functions]]
 address = "0x00416990"
@@ -19039,4 +19043,20 @@ rel32_targets = [
   "?release@NetworkUdpPacketHandleManager64@th105@@QAEXI@Z=0x00405200",
   "?erase@?$deque@IV?$allocator@I@std@@@std@@QAE?AV?$_Deque_iterator@IV?$allocator@I@std@@$00@2@V32@@Z=0x004172C0",
   "?push_back@?$deque@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x00417240",
+]
+
+[[units.cross-v106a-network-winsock-send-client.functions]]
+address = "0x00416D90"
+symbol_base = "_network_winsock_send_thread@4"
+rel32_targets = ["?send_loop@NetworkWinsockSendClientView@th105@@QAEXXZ=0x00416DB0"]
+
+[[units.cross-v106a-network-winsock-send-client.functions]]
+address = "0x00416DB0"
+symbol_base = "?send_loop@NetworkWinsockSendClientView@th105@@QAEXXZ"
+private_from = { caller = "0x00416D90", site = "0x00416D96" }
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?lookup@NetworkUdpPacketHandleManager64@th105@@QAEPAUNetworkUdpPacketBuffer41C@2@I@Z=0x00417800",
+  "?release@NetworkUdpPacketHandleManager64@th105@@QAEXI@Z=0x00405200",
+  "_sendto@24=0x006898CC",
 ]

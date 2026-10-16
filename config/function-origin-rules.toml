@@ -5,6 +5,33 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 # but no old-version address is accepted as evidence here.
 
 [[rules]]
+id = "network-udp-send-worker-authored-106a"
+addresses = ["0x00416D90", "0x00416DB0"]
+expected_count = 2
+expected_bytes = 413
+expected_names = ["sub_416D90", "sub_416DB0"]
+origin = "authored_game"
+subsystem = "network"
+disposition = "authored"
+confidence = "observed"
+evidence = "Initializer412E10 supplies416D90 and the UDP owner to the PE-attested CreateThread IAT at412F52/412F5F, recording worker+5C. Native18-byte callback calls the private ESI loop at416D96 and returns zero. Complete395-byte/116-instruction loop owns auto-reset event lifecycle, locked pending-token dequeue, generation-checked packet lookup, game packet timeout policy, native sendto and unconditional valid-packet recycling after the send/expiry decision. Full C++ source and real caller/helper context compile395/395 and16/18 nonexact on callee-save/frame arrangement. No ABI facade, padding or exact credit. docs/NETWORK_UDP_SEND_WORKER_2026_10_16.md."
+required_body_hashes = [
+  { address = "0x00416D90", size = 18, sha256 = "0172c396239ced0a7fe1962aba00b52ccf3eceaf7f7bdd06053975f27f78e52f" },
+  { address = "0x00416DB0", size = 395, sha256 = "87a75b97cd80876ba129af487f217cae7790b8f159ef7a2095a00b7faa1ac03c" },
+]
+required_direct_edges = [
+  { caller = "0x00416D90", site = "0x00416D96", target = "0x00416DB0", caller_status = "implemented" },
+]
+required_selected_body_calls = [
+  { owner = "0x00416DB0", site = "0x00416EBA", target = "0x00417800", target_status = "implemented" },
+  { owner = "0x00416DB0", site = "0x00416F05", target = "0x00405200", target_status = "matching" },
+]
+required_dword_values = [
+  { address = "0x00412F53", value = "0x00416D90" },
+  { address = "0x00412F5B", value = "0x006C0138" },
+]
+
+[[rules]]
 id = "network-udp-packet-acquire-authored-106a"
 addresses = ["0x00417660"]
 expected_count = 1
@@ -878,7 +905,7 @@ disposition = "exclude"
 confidence = "observed"
 evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/characters/RosterObjectSpawns.cpp regenerates two std::deque pointer-template COMDAT fingerprints whose complete current-inventory hit sets contain four candidates / 922 bytes. The 0x00417240 clone is also called by the network sender at 0x00416990, so the rebuild proves generated std::deque code shape and relocation identity, not a unique ReimuObject* instantiation or characters-only ownership. Target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed."
 required_direct_edges = [
-  { caller = "0x00416990", site = "0x00416B37", target = "0x00417240", caller_status = "identified" },
+  { caller = "0x00416990", site = "0x00416B37", target = "0x00417240", caller_status = "implemented" },
 ]
 
 [[rules]]

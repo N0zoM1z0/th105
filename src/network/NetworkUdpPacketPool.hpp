@@ -15,7 +15,7 @@ struct ResourceHandleToken;
 struct NetworkUdpPacketBuffer41C {
     unsigned char endpoint_00[16];
     unsigned int timestamp_10;
-    unsigned int options_14;
+    unsigned int timeout_ms_14; // Zero disables expiry; otherwise compare unsigned packet age.
     unsigned int size_18;
     unsigned char payload_1c[1024];
 };
@@ -42,6 +42,7 @@ public:
     NetworkUdpPacketHandleManager64();
     virtual ~NetworkUdpPacketHandleManager64();
     NetworkUdpPacketBuffer41C *acquire(ResourceHandleToken &token);
+    NetworkUdpPacketBuffer41C *lookup(unsigned int packed_token);
     void release(unsigned int packed_token);
 
     std::deque<NetworkUdpPacketBuffer41C> packets_04;

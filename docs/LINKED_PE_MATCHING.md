@@ -21,13 +21,13 @@ its linked EH surface is unsupported. See [the complete evidence](NETWORK_UDP_PA
 The third accepted example is shared handle-token release `405200`,167/167,
 in `cross-v106a-network-winsock-send-client`. Its genuine private EAX entry is
 generated from an ordinary member definition and its actual sender caller.
-Only the sender is exported; a typed caller contract independently attests
+The real senders and native thread callback are exported; a typed caller contract independently attests
 the private entry. See [the full shared-release evidence](HANDLE_MANAGER_RELEASE_2026_10_16.md).
 
 ## Build and reference identity
 
 `config/tools.lock.toml` pins cl/c1xx/c2/link, both complete header trees and
-the actual VC8 `msvcrt.lib`/`msvcprt.lib` import libraries. These libraries
+the actual VC8 `msvcrt.lib`/`msvcprt.lib` and Platform SDK `WS2_32.Lib` import libraries. The runtime libraries
 resolve runtime function identities with normal linker-produced import thunks;
 their bodies are outside the selected authored comparison. No synthetic
 callee implementation, assembly, source byte array or forced return is used.
@@ -47,6 +47,19 @@ table with **zero sections and no code/data payload**. Every declared field
 addend must have its exact ledger bytes in the hash-attested original PE;
 IAT names must independently match its import directory. Executable addresses
 are forbidden as absolute data bindings. No existing allowlist is widened.
+
+Optional `link_import_targets = ["_sendto@24=0x006898CC"]` links the actual
+pinned SDK archive. This narrow registry supports only the independently
+hashed i386 code/ordinal20 short import member, with exact `_sendto@24` symbol
+and WS2_32 DLL identity. The target must be an excluded, executable six-byte
+candidate containing `FF25` to the independently attested ordinal20 IAT slot;
+its literal bytes and zero addend are checked. Comparison requires the source
+PE's actual ordinal import, matching linker symbol/library ownership and the
+function's explicit callee mapping to agree with that contract. pefile's
+convenience name for an ordinal import never replaces the ordinal identity.
+Named or different-ordinal SDK calls, arbitrary libraries and executable
+absolute bindings remain rejected. The source calls the ordinary stdcall API;
+the real library/linker supplies its thunk. See [the send-worker evidence](NETWORK_UDP_SEND_WORKER_2026_10_16.md).
 
 The link must resolve every symbol without `/FORCE`, linker errors or linker
 warnings. Compiler/linker environment overrides are cleared. Output is a
@@ -80,8 +93,8 @@ escaped branches, indirect jumps, traps, unaccounted tails or remote chunks.
 The target ledger size is used only for the final comparison, never to crop
 the linked function. Equal prefixes of differently sized functions cannot pass.
 
-Every external E8 field resolves through a named linker function or a named
-MSVCR80/MSVCP80 import thunk and an explicit target-callee mapping. Only its
+Every external E8 field resolves through a named linker function, a named
+MSVCR80/MSVCP80 import thunk, or the typed SDK contract above, with an explicit target-callee mapping. Only its
 REL32 displacement is replayed, without masking bytes. Internal CFG encodings
 remain untouched. Every absolute memory reference and game-address immediate
 must use an attested data binding/addend; reads/writes cannot exceed its attested
@@ -104,7 +117,7 @@ general vtables or source class templates. Other internal image addresses,
 floating-literal pointers, EH chunks and indirect jump tables remain unsupported.
 
 The sidecar records source/input digest, CIL object, binding object, map and
-image hashes, additional COFF inputs, typed vtable contracts, all
+image hashes, additional COFF inputs, typed vtable and SDK import contracts, all
 tool/header/library pins and parser versions. Modified or
 stale artifacts are rejected before decoding. Both supported Capstone versions
 (CI4.0.2 and development5.0.6) pass the rejection tests and independently rebuild
@@ -136,4 +149,6 @@ these tests, including typed vptr/RTTI identity, exact HIGHLOW coverage,
 rejected vtable binding bypasses and extra COFF artifact tampering. Private
 caller tests also reject missing/ambiguous/unreachable E8 edges, wrong source
 ownership, unreviewed parents, exported aliases and internal relocations.
+SDK tests independently reject archive/member ABI changes, wrong thunk/IAT,
+ordinal/name confusion, unpinned symbols, map owners and nonexcluded targets.
 Actual compiler/linker comparisons remain target-dependent.
