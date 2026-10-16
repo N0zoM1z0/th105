@@ -104,7 +104,7 @@ public:
     unsigned char unreviewed_07c[0x8c];
     std::vector<NetworkInitializePeer20> peers_108;
     unsigned int active_peer_count_118;
-    unsigned int timing_value_11c;
+    unsigned int peer_limit_11c;
     unsigned char unreviewed_120[0x24];
     unsigned int state_144;
     unsigned char unreviewed_148[0x20];
@@ -116,7 +116,7 @@ static bool __stdcall bind_udp_socket(NetworkUdpInitializeView *owner, int port)
 bool NetworkUdpInitializeView::initialize(const NetworkInitializeKey16 *key, int port)
 {
     state_144 = 1;
-    timing_value_11c = 16;
+    peer_limit_11c = 16;
     NetworkInitializePeer20 peer;
     peer.slot_10 = -1;
     peers_108.assign(16, peer);

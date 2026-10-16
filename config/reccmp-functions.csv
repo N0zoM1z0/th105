@@ -1449,3 +1449,4 @@ NetworkWinsock_bind_udp_socket,0x00413080,function
 NetworkWinsock_prepare_udp_shutdown,0x004130D0,function
 NetworkWinsock_probe_thread_entry,0x00416F40,function
 NetworkWinsock_accept_connection,0x00415AB0,function
+NetworkWinsock_receive_request,0x00415560,function

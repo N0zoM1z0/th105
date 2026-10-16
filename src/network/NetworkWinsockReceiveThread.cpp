@@ -21,7 +21,7 @@ struct NetworkReceivePeer20 {
     NetworkReceiveAddress16 endpoint_00;
     int slot_10;
     unsigned int probe_count_14;
-    unsigned int unreviewed_18;
+    unsigned int response_code_18;
     unsigned int reported_value_1c;
 };
 typedef std::multimap<unsigned int, NetworkReceivePeer20 *> NetworkReceivePeerMap;
@@ -39,7 +39,8 @@ struct NetworkReceiveEndpointList44 {
     NetworkReceiveAddress16 endpoints_04[4];
 };
 struct NetworkReceiveRequest18 {
-    unsigned char unreviewed_00[20];
+    unsigned char key_00[16];
+    unsigned int unreviewed_10;
     unsigned short size_14;
     unsigned char unreviewed_16[2];
 };
@@ -56,6 +57,8 @@ public:
     virtual void on_rejected(unsigned int code);
     virtual void on_primary_data(const void *payload, int size);
     virtual void on_peer_data(unsigned int slot, const void *payload, int size);
+    virtual int route_payload(unsigned int slot, int *code, const unsigned char *payload,
+                              int size, void **reply, unsigned short *reply_size);
 };
 class NetworkReceiveLock {
 public:
@@ -74,7 +77,11 @@ public:
     char start_connection(const char *endpoint, unsigned short port,
                           const void *packet, unsigned short size);
 
-    unsigned char unreviewed_000[0x28];
+    unsigned char unreviewed_000[4];
+    unsigned char key_004[16];
+    unsigned char key_014[16];
+    unsigned short word_024;
+    unsigned char unreviewed_026[2];
     unsigned int socket_028;
     unsigned char unreviewed_02c[0x10];
     NetworkReceiveAddress16 published_endpoint_03c;
@@ -93,7 +100,8 @@ public:
     CriticalSectionWrapper endpoint_lock_0e0;
     NetworkReceivePeerMap peers_0fc;
     std::vector<NetworkReceivePeer20> peer_records_108;
-    unsigned char unreviewed_118[8];
+    unsigned int active_count_118;
+    unsigned int peer_limit_11c;
     CriticalSectionWrapper peer_lock_120;
     unsigned char unreviewed_13c[8];
     unsigned int state_144;
@@ -121,6 +129,146 @@ static NetworkReceivePeerMap::iterator __stdcall find_receive_peer(
             return it;
     return owner->peers_0fc.end();
 }
+
+static NetworkReceivePeer20 &__stdcall request_peer(
+    std::vector<NetworkReceivePeer20> &peers, unsigned int slot)
+{
+    return peers[slot];
+}
+
+#pragma pack(push, 1)
+struct NetworkRequestAcceptHeader0D {
+    unsigned char opcode_00;
+    unsigned char slot_01;
+    unsigned char unreviewed_02;
+    unsigned short word_03;
+    unsigned int code_05;
+    unsigned short size_09;
+    unsigned char unreviewed_0b[2];
+};
+struct NetworkRequestRedirect45 {
+    unsigned char opcode_00;
+    unsigned int count_01;
+    NetworkReceiveAddress16 endpoints_05[4];
+};
+struct NetworkRequestReject05 {
+    unsigned char opcode_00;
+    unsigned int code_01;
+};
+// Both canonical secondary route implementations return exactly0x44 bytes on
+// success. This is minimum observed reply storage, not a recovered capacity.
+union NetworkRequestReply51 {
+    struct {
+        NetworkRequestAcceptHeader0D header_00;
+        unsigned char payload_0d[0x44];
+    } accepted;
+    NetworkRequestRedirect45 redirect;
+    NetworkRequestReject05 rejected;
+};
+#pragma pack(pop)
+
+// The SDK defines equivalent IsEqualGUID source. Ownership of4152A0
+// remains in review despite its canonical byte equality; no authored credit.
+static int __stdcall request_key_matches(const void *expected, const void *incoming)
+{
+    return memcmp(expected, incoming, 16) == 0;
+}
+
+void __fastcall network_udp_receive_request(const NetworkReceiveAddress16 *sender,
+    const NetworkReceiveRequest18 *packet, NetworkWinsockReceiveView *owner)
+{
+    if (!owner->running_074 || owner->peer_limit_11c == 0)
+        return;
+    if (!request_key_matches(owner->key_004, packet->key_00)
+        && !request_key_matches(owner->key_014, packet->key_00))
+        return;
+
+    void *reply_data = 0;
+    unsigned short reply_size = 0;
+    int response_code;
+    NetworkReceiveLock peer_lock(&owner->peer_lock_120);
+    NetworkReceivePeerMap::iterator it = find_receive_peer(owner, *sender);
+    NetworkReceivePeer20 *peer = 0;
+    NetworkRequestReply51 reply;
+    if (it == owner->peers_0fc.end()) {
+        if (owner->active_count_118 >= owner->peer_limit_11c) {
+            unsigned int best = 0xffffffffU;
+            unsigned int selected;
+            for (unsigned int index = 0; index < owner->peer_records_108.size(); ++index) {
+                if (request_peer(owner->peer_records_108, index).slot_10 != -1
+                    && request_peer(owner->peer_records_108, index).reported_value_1c < best
+                    && request_peer(owner->peer_records_108, index).reported_value_1c != 0) {
+                    best = request_peer(owner->peer_records_108, index).reported_value_1c;
+                    selected = index;
+                }
+            }
+            if (best == 0xffffffffU)
+                return;
+            reply.redirect.opcode_00 = 8;
+            unsigned int count = 0;
+            for (unsigned int offset = 0;
+                 offset < owner->peer_records_108.size() && offset < 4; ++offset) {
+                unsigned int index = (selected + offset) % owner->peer_records_108.size();
+                if (request_peer(owner->peer_records_108, index).slot_10 != -1
+                    && request_peer(owner->peer_records_108, index).reported_value_1c != 0) {
+                    reply.redirect.endpoints_05[count] = request_peer(owner->peer_records_108, index).endpoint_00;
+                    ++count;
+                }
+            }
+            reply.redirect.count_01 = count;
+            sendto(owner->socket_028, reinterpret_cast<const char *>(&reply), 69, 0, sender, 16);
+            return;
+        }
+        for (unsigned int slot = 0; slot < owner->peer_records_108.size(); ++slot) {
+            if (request_peer(owner->peer_records_108, slot).slot_10 != -1)
+                continue;
+            NetworkReceiveLock callback_lock(&owner->callback_lock_084);
+            if (owner->callback_080) {
+                int result = owner->callback_080->route_payload(slot, &response_code,
+                    reinterpret_cast<const unsigned char *>(packet + 1), packet->size_14,
+                    &reply_data, &reply_size);
+                if (result == 0) {
+                    request_peer(owner->peer_records_108, slot).endpoint_00 = *sender;
+                    request_peer(owner->peer_records_108, slot).slot_10 = slot;
+                    request_peer(owner->peer_records_108, slot).probe_count_14 = 0;
+                    request_peer(owner->peer_records_108, slot).response_code_18 = response_code;
+                    // The target consumes .first from the native tree
+                    // insertion result (iterator plus success byte).
+                    it = static_cast<NetworkReceivePeerMap::_Mybase &>(owner->peers_0fc)
+                        .insert(NetworkReceivePeerMap::value_type(sender->address_04,
+                            &request_peer(owner->peer_records_108, slot))).first;
+                    peer = &request_peer(owner->peer_records_108, slot);
+                    ++owner->active_count_118;
+                    break;
+                }
+                if (result == 9) {
+                    reply.rejected.opcode_00 = 7;
+                    reply.rejected.code_01 = response_code;
+                    sendto(owner->socket_028, reinterpret_cast<const char *>(&reply), 5, 0, sender, 16);
+                    return;
+                }
+            }
+        }
+    } else {
+        peer = it->second;
+    }
+    if (peer != 0) {
+        reply.accepted.header_00.opcode_00 = 6;
+        reply.accepted.header_00.slot_01 = static_cast<unsigned char>(it->second->slot_10);
+        reply.accepted.header_00.word_03 = owner->word_024;
+        reply.accepted.header_00.code_05 = it->second->response_code_18;
+        reply.accepted.header_00.size_09 = reply_size;
+        if (reply_data != 0)
+            memcpy(reply.accepted.payload_0d, reply_data, reply_size);
+        sendto(owner->socket_028, reinterpret_cast<const char *>(&reply),
+               reply_size + 13, 0, peer, 16);
+    }
+}
+
+typedef char RequestHeaderSize[sizeof(NetworkReceiveRequest18) == 24 ? 1 : -1];
+typedef char RequestAcceptSize[sizeof(NetworkRequestAcceptHeader0D) == 13 ? 1 : -1];
+typedef char RequestRedirectSize[sizeof(NetworkRequestRedirect45) == 69 ? 1 : -1];
+typedef char RequestReplySize[sizeof(NetworkRequestReply51) == 81 ? 1 : -1];
 
 static void __stdcall receive_rejection(NetworkWinsockReceiveView *owner,
                                         const NetworkReceiveReject4 *packet)

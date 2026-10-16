@@ -141,7 +141,7 @@ the native endpoint vector and appends the clamped count, then writes state2.
 Negative and zero counts still publish the first endpoint and clear the vector.
 No new lower-bound guard is added.
 
-The source declares opcode5 request415560 only after checking its complete
+The source reconstructs opcode5 request415560 after checking its complete
 physical entry: ECX sender, EDX request, one stack owner pointer, saved
 remaining registers and RET4 fit a normal fastcall prototype. Acceptance415AB0
 uses the independently reconstructed compatible fastcall definition. The
@@ -164,7 +164,9 @@ actual ordinary-COFF acceptance and peer-removal implementations, native VC8
 runtime/WS2_32 libraries and attested data/IAT bindings. Its private source
 uses the genuine peer-removal view's declaration and implementation. The link
 stops at LNK2001/LNK1120 for exactly two genuine missing bodies: request415560
-and connection415340. No stub, fake return, executable ABS symbol or forced
+and connection415340 at this earlier checkpoint. Request415560 is subsequently
+implemented in [the request checkpoint](NETWORK_UDP_REQUEST_2026_10_16.md),
+leaving only connection415340. No stub, fake return, executable ABS symbol or forced
 unresolved link is introduced. This does not prove that LTCG is required or
 that the remaining source inputs would make the full loop exact.
 

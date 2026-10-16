@@ -13,8 +13,8 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,538 authored / 1,415 excluded / 1,070 in review**; **1,450 mapped**,
-  **1,430 source-present**, **1,333 exact / 225,099 exact bytes**, and
+  **1,539 authored / 1,415 excluded / 1,069 in review**; **1,451 mapped**,
+  **1,431 source-present**, **1,333 exact / 225,099 exact bytes**, and
   **513 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
@@ -32,6 +32,27 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
+## UDP request and peer admission
+
+`NetworkWinsock_receive_request @ 415560` now has complete source in the real
+receive TU. All410 instructions/1355 bytes close; running, dual16-byte key and
+peer-limit checks precede nested peer/callback guards. Existing peers receive
+another acceptance; full capacity chooses the lowest positive peer report and
+inspects at most four circular positions; free slots route through callback
+slot+10 and preserve accept/reject/retry behavior. Packed reply holes, unused
+redirect entries and peer report+1C remain untouched. Current observed reply
+storage81 covers header13 plus the two known providers'68 bytes. Source is
+1265/1355 nonexact; a genuine41C packet-type control is1281/1355, with frame460
+versus target468, and is not retained as an invented storage claim. Private
+key148 and checked access33 are canonical byte controls but remain in origin
+review, without authored/source/exclusion credit. SDK IsEqualGUID provenance
+cannot be distinguished from an equivalent wrapper. The actual native tree
+insertion stage returns12 bytes and its iterator first component is consumed.
+A real mixed-source LTCG link now stops on only connection415340; no source
+stub or executable ABS binding is used. Callback14 and all four affected
+Winsock runtime helpers retain exactness. Ghidra request/control ABI metadata
+is saved/read back. See [the policy, storage and provenance evidence](NETWORK_UDP_REQUEST_2026_10_16.md).
+
 ## UDP receive-loop source
 
 `NetworkWinsock_receive_loop @ 41D7C0` now has **complete source**, together
@@ -45,7 +66,7 @@ no register facade or synthetic caller is used. Minimum21-byte forwarding
 reply storage preserves its four untouched tail bytes. The accepted callback
 stays14/14 with the full source and GS enabled. A genuine mixed-source LTCG
 attempt resolves actual acceptance/peer-removal bodies and stops on missing
-request415560/connection415340 implementations. Original reply capacity,
+connection415340 implementation. Original reply capacity,
 endpoint-helper/STL boundaries and TU remain open. No new exact credit.
 Direct Ghidra owner types and complete caller ABI are saved/read back. See
 [the opcode map, source and link boundary](NETWORK_WINSOCK_RECEIVE_2026_10_16.md).

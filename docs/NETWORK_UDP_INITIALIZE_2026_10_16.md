@@ -30,7 +30,7 @@ bytes. Original class spelling and TU partition are not recovered here.
 
 The source preserves these target operations in order:
 
-1. Set state+144 to1 and the still provisional timing value+11C to16. Assign
+1. Set state+144 to1 and the peer limit+11C to16. Assign
    sixteen32-byte peer records, initializing only signed slot+10 to-1.
    Endpoint and remaining bytes are left untouched in the local value, as
    observed; no blanket zero initialization is invented. Clear active count+118.
@@ -55,8 +55,9 @@ The source preserves these target operations in order:
 
 The source key is a16-byte value and the peer is a32-byte POD; its only
 initialized local field is slot+10. Active-count meaning is independently
-corroborated by reviewed peer removal413170. Timing+11C remains provisionally
-named rather than being promoted from its initial constant alone.
+corroborated by reviewed peer removal413170. Request415560 subsequently compares active count+118 with+11C before
+allocating a peer, establishing the limit role independently of this initial
+constant. The source field is now named `peer_limit_11c`.
 
 ## Actual private interfaces and source controls
 
@@ -127,7 +128,8 @@ subsequently source-defined in
 [the probe-worker checkpoint](NETWORK_UDP_PROBE_WORKER_2026_10_16.md), retaining
 this initializer's existing callback symbol. The receive loop subsequently
 gains full nonexact source in [the receive checkpoint](NETWORK_WINSOCK_RECEIVE_2026_10_16.md);
-its real request415560/connection415340 link inputs remain missing. No `/FORCE`, stub, fabricated return,
+request415560 is now implemented in [the request checkpoint](NETWORK_UDP_REQUEST_2026_10_16.md),
+while its connection415340 link input remains missing. No `/FORCE`, stub, fabricated return,
 import facade or executable ABS binding is used to bypass them. This is a
 concrete limit of the attempted source unit; it proves neither that LTCG is
 required nor that a completed linked unit would match the initializer.
