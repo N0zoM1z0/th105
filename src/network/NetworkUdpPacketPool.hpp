@@ -8,6 +8,8 @@
 
 namespace th105 {
 
+struct ResourceHandleToken;
+
 // RTTI names the original payload NET_PACKET_UDP_BUFFER. Slot allocation
 // zeroes0x41C bytes; send paths write the opcode at+1C and payload at+1D.
 struct NetworkUdpPacketBuffer41C {
@@ -39,6 +41,7 @@ class NetworkUdpPacketHandleManager64 {
 public:
     NetworkUdpPacketHandleManager64();
     virtual ~NetworkUdpPacketHandleManager64();
+    NetworkUdpPacketBuffer41C *acquire(ResourceHandleToken &token);
 
     std::deque<NetworkUdpPacketBuffer41C> packets_04;
     std::vector<NetworkUdpPacketBuffer41C *> slots_18;

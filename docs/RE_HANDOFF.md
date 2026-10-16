@@ -13,9 +13,9 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,526 authored / 1,415 excluded / 1,082 in review**; **1,436 mapped**,
-  **1,415 source-present**, **1,328 exact / 224,585 exact bytes**, and
-  **508 match units**. These are ledger/status totals, not a fresh aggregate
+  **1,527 authored / 1,415 excluded / 1,081 in review**; **1,437 mapped**,
+  **1,416 source-present**, **1,328 exact / 224,585 exact bytes**, and
+  **509 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
   present, and only `matches.csv` plus a reproducible canonical 100% unit
@@ -33,6 +33,22 @@ state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
 ## UDP owner and packet-pool lifetime
+
+`NetworkUdpPacketHandleManager_acquire @ 417660` now has complete native
+C++ source in `src/network/NetworkUdpPacketAcquire.cpp`. Full raw CFG closes
+125 instructions/all410 bytes. Two authored send paths `416990`/`416B60`
+pass the pool+17C and output token on the stack. The source preserves zeroed
+fresh packets, stable pointers, LIFO free-slot reuse, checked vectors and
+16-bit slot/generation writes under a scoped lock. Reused payload is retained.
+The focused ordinary candidate is **427/410 nonexact**, with every relocation
+resolved. Ordinary GS-minus387 and resolved LTCG540/486 controls also differ;
+the latter recover alignment but change inline/helper context and keep ECX
+self. Keep the real member definition and recover caller/TU context rather
+than adding private ABI facades. One new nonvirtual declaration leaves layout
+and vtable order unchanged; a fresh pool-destructor rebuild remains98/98.
+Ghidra physical stack parameters, token/payload types and full main extent
+were saved and independently read back. See
+[the complete behavior, EH and controls](NETWORK_UDP_PACKET_ACQUIRE_2026_10_16.md).
 
 `NetworkUdpPacketHandleManager_dtor @ 413820` is canonical **98/98** in
 `cross-v106a-network-udp-packet-pool`. RTTI identifies

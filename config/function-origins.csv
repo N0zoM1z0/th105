@@ -522,7 +522,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004172C0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00417330,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00417500,compiler_generated,runtime,exclude,observed,vc8-generated-roster-object-spawns-std-comdats-106a
-0x00417660,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00417660,authored_game,network,authored,observed,network-udp-packet-acquire-authored-106a
 0x00417800,authored_game,assets,authored,observed,resource-handle-lookup-authored-106a
 0x004178D0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x00417950,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a

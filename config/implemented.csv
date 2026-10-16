@@ -1413,3 +1413,4 @@ NetworkWinsock_find_peer
 NetworkWinsock_remove_peer
 NetworkUdpPacketHandleManager_ctor
 NetworkUdpPacketHandleManager_dtor
+NetworkUdpPacketHandleManager_acquire

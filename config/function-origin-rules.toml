@@ -5,6 +5,27 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 # but no old-version address is accepted as evidence here.
 
 [[rules]]
+id = "network-udp-packet-acquire-authored-106a"
+addresses = ["0x00417660"]
+expected_count = 1
+expected_bytes = 410
+expected_names = ["sub_417660"]
+origin = "authored_game"
+subsystem = "network"
+disposition = "authored"
+confidence = "observed"
+evidence = "Two independently authored UDP send paths call this complete410-byte/125-instruction allocator with their CNetworkUDP packet manager+17C and output token. RTTI-backed native manager lifetime and0x41C packet payload establish the game specialization;16-bit generation/slot policy and lock ownership are implemented with real deque, vectors and free-index list. Source427/410 remains nonexact on aligned GS frame/private stack self and STL helper contexts; all canonical relocations resolve. No new library/helper exclusion. docs/NETWORK_UDP_PACKET_ACQUIRE_2026_10_16.md."
+required_body_hashes = [{ address = "0x00417660", size = 410, sha256 = "ffc37d12373208d75b91a5ce48359fc4247ae7a6775a05e824718ea56cbdd621" }]
+required_direct_edges = [
+  { caller = "0x00416990", site = "0x004169AD", target = "0x00417660", caller_status = "identified" },
+  { caller = "0x00416B60", site = "0x00416BB5", target = "0x00417660", caller_status = "identified" },
+]
+required_dword_values = [
+  { address = "0x004137AB", value = "0x006D6C64" },
+  { address = "0x004176DA", value = "0x0000041C" },
+]
+
+[[rules]]
 id = "network-udp-scalar-deleting-wrapper-106a"
 addresses = ["0x00412C80"]
 expected_count = 1

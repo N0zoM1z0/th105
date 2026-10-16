@@ -18959,3 +18959,26 @@ rel32_targets = [
   "?_Buynode@?$_Tree@V?$_Tmap_traits@IPAUNetworkPeerRecord20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkPeerRecord20@th105@@@std@@@4@$00@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@IPAUNetworkPeerRecord20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkPeerRecord20@th105@@@std@@@4@$00@std@@@2@XZ=0x00413E80",
   "?allocate_network_checked_list_node_18@th105@@YAPAUNetworkCheckedListNode18@1@XZ=0x00413E80",
 ]
+
+[units.cross-v106a-network-udp-packet-acquire]
+kind = "probe"
+source = "src/network/NetworkUdpPacketAcquire.cpp"
+object = "build/match-units/CrossV106a_NetworkUdpPacketAcquire.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete native CHandleManager<NET_PACKET_UDP_BUFFER> acquire source; real0x41C zeroed packet, checked deque/list/vectors,16-bit slot/generation and scoped lock. Target has private stack self/RET8 and private STL helper entries; ordinary C++ member remains nonexact without ABI facades."
+
+[[units.cross-v106a-network-udp-packet-acquire.functions]]
+address = "0x00417660"
+symbol_base = "?acquire@NetworkUdpPacketHandleManager64@th105@@QAEPAUNetworkUdpPacketBuffer41C@2@AAUResourceHandleToken@2@@Z"
+rel32_targets = [
+  "_memset=0x0068A440",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "@__security_check_cookie@4=0x00689D25",
+  "?push_back@?$deque@UNetworkUdpPacketBuffer41C@th105@@V?$allocator@UNetworkUdpPacketBuffer41C@th105@@@std@@@std@@QAEXABUNetworkUdpPacketBuffer41C@th105@@@Z=0x00417A30",
+  "?back@?$deque@UNetworkUdpPacketBuffer41C@th105@@V?$allocator@UNetworkUdpPacketBuffer41C@th105@@@std@@@std@@QAEAAUNetworkUdpPacketBuffer41C@th105@@XZ=0x004179D0",
+  "?push_back@?$vector@PAUNetworkUdpPacketBuffer41C@th105@@V?$allocator@PAUNetworkUdpPacketBuffer41C@th105@@@std@@@std@@QAEXABQAUNetworkUdpPacketBuffer41C@th105@@@Z=0x00404400",
+  "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0",
+  "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0",
+  "?at@?$vector@PAUNetworkUdpPacketBuffer41C@th105@@V?$allocator@PAUNetworkUdpPacketBuffer41C@th105@@@std@@@std@@QAEAAPAUNetworkUdpPacketBuffer41C@th105@@I@Z=0x00417A90",
+]
