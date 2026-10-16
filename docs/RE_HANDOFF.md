@@ -13,8 +13,8 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,528 authored / 1,415 excluded / 1,080 in review**; **1,439 mapped**,
-  **1,418 source-present**, **1,329 exact / 224,752 exact bytes**, and
+  **1,528 authored / 1,415 excluded / 1,080 in review**; **1,440 mapped**,
+  **1,419 source-present**, **1,329 exact / 224,752 exact bytes**, and
   **510 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
@@ -33,6 +33,19 @@ state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
 ## UDP client sender and real private-helper context
+
+`NetworkWinsock_send_server @ 416B60` now shares the complete sender/helper
+source in `src/network/NetworkWinsockSendClient.cpp`. Full raw CFG closes
+168 instructions/all548 bytes. It checks the32-byte peer record before any
+allocation, returns immediately for slot+10==-1, and rechecks the endpoint
+under peer lock+120. Active requests enqueue opcode0D with the same token
+replacement policy as the client. Source uses void: the inactive path has no
+established meaningful EAX result, so no synthetic return value is added.
+Ordinary548/548 remains nonexact at+42 on the private acquire call; the formal
+two-sender mixed unit gives644/548 nonexact on inlining/context. All relocations
+resolve, and the accepted shared release remains167/167 with both genuine
+senders exported. Source layout assertions now include peer vector+108 and
+lock+120. See [the behavior, ABI and full comparisons](NETWORK_WINSOCK_SEND_SERVER_2026_10_16.md).
 
 `NetworkWinsock_send_client @ 416990` has complete source in
 `src/network/NetworkWinsockSendClient.cpp`, alongside the actual acquire and
@@ -61,7 +74,7 @@ compared. The sender remains561/464 nonexact; selecting the accepted helper
 still validates its real caller. See [the exact shared helper and contract](HANDLE_MANAGER_RELEASE_2026_10_16.md).
 
 The original TU and token-queue inlining remain unresolved. Continue with the
-server sender/remaining real UDP callers rather than adding fake callers or
+remaining real UDP callers rather than adding fake callers or
 ABI facades. Replay only affected accepted units during iteration; this batch
 adds167 authored exact bytes without a fresh aggregate cold replay.
 

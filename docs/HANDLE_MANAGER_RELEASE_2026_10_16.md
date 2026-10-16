@@ -1,5 +1,10 @@
 # Shared handle-token release: full private-entry match
 
+The later [server-sender checkpoint](NETWORK_WINSOCK_SEND_SERVER_2026_10_16.md)
+adds the second real sender/export to this same source unit. Shared release
+still replays167/167 through its original client caller witness. Both senders
+remain nonexact; the one-export controls below describe the acceptance baseline.
+
 ## Observed target and ownership
 
 Only original Japanese TH10.5 v1.06a was inspected, SHA-256

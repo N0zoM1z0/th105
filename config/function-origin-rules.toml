@@ -18,7 +18,7 @@ evidence = "Two independently authored UDP send paths call this complete410-byte
 required_body_hashes = [{ address = "0x00417660", size = 410, sha256 = "ffc37d12373208d75b91a5ce48359fc4247ae7a6775a05e824718ea56cbdd621" }]
 required_direct_edges = [
   { caller = "0x00416990", site = "0x004169AD", target = "0x00417660", caller_status = "implemented" },
-  { caller = "0x00416B60", site = "0x00416BB5", target = "0x00417660", caller_status = "identified" },
+  { caller = "0x00416B60", site = "0x00416BB5", target = "0x00417660", caller_status = "implemented" },
 ]
 required_dword_values = [
   { address = "0x004137AB", value = "0x006D6C64" },
@@ -2659,7 +2659,7 @@ origin = "authored_game"
 subsystem = "network"
 disposition = "authored"
 confidence = "observed"
-evidence = "Hash-attested target PE reaches the complete 548-byte RET 0x14 body between INT3 pads. It checks a 0x20-byte peer/slot record, constructs a type-0x0D send item at the receiver queue +0x17C, records a WINMM timeGetTime timestamp, copies a caller payload under Win32 critical sections, optionally searches a result-handle deque, and calls KERNEL32 SetEvent. Six direct E8 sites in five separate canonical-exact CNetworkServer send/sync functions are replayed. The generated deque helper 0x00417240 and the unresolved queue/acquire/release helpers are distinct origin questions. Retained source signatures and original TU remain unresolved. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+evidence = "Hash-attested target PE reaches the complete548-byte RET20 body immediately after the separate client RET16; independent exact Server E8 callers establish this entry. It checks a0x20-byte peer/slot record, constructs a type0D send item from manager+17C, records timeGetTime, copies endpoint/payload under native locks, optionally replaces a result token, and calls SetEvent. Six direct E8 sites in five canonical-exact Server methods are replayed. Complete native source in src/network/NetworkWinsockSendClient.cpp is ordinary548/548 and mixed644/548 nonexact; source void avoids inventing an inactive-path return, while original return type/TU remain unknown. Shared release405200 is replayed167/167; no new helper exclusion. See docs/NETWORK_WINSOCK_SEND_SERVER_2026_10_16.md; older review is docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
 required_body_hashes = [
   { address = "0x00416B60", size = 548, sha256 = "f9c4811900e4c22873f2176f36dd601d1e2fc4782308c183d1c9c863a7e8d3f9" },
 ]

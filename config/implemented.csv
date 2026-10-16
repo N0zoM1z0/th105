@@ -1416,3 +1416,4 @@ NetworkUdpPacketHandleManager_dtor
 NetworkUdpPacketHandleManager_acquire
 NetworkWinsock_send_client
 CHandleManager_release_token
+NetworkWinsock_send_server

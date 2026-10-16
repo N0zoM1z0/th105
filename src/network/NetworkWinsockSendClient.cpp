@@ -6,10 +6,18 @@ namespace th105 {
 extern "C" __declspec(dllimport) unsigned long __stdcall timeGetTime();
 extern "C" __declspec(dllimport) int __stdcall SetEvent(void *event);
 
+struct NetworkSendPeerRecord20 {
+    unsigned char endpoint_00[16];
+    int slot_10;
+    unsigned char unreviewed_14[12];
+};
+
 class NetworkWinsockSendClientView {
 public:
     int send_client(const void *payload, unsigned int size,
                     unsigned int options, unsigned int *result);
+    void send_server(unsigned int index, const void *payload, unsigned int size,
+                     unsigned int options, unsigned int *result);
 
     unsigned char unreviewed_000[0x74];
     unsigned char running_074;
@@ -17,7 +25,11 @@ public:
     unsigned char endpoint_0c0[16];
     unsigned char unreviewed_0d0[0x10];
     NetworkUdpPacketCriticalSectionView endpoint_lock_0e0;
-    unsigned char unreviewed_0fc[0x6c];
+    unsigned char unreviewed_0fc[0x0c];
+    std::vector<NetworkSendPeerRecord20> records_108;
+    unsigned char unreviewed_118[8];
+    NetworkUdpPacketCriticalSectionView peer_lock_120;
+    unsigned char unreviewed_13c[0x2c];
     std::deque<unsigned int> pending_tokens_168;
     NetworkUdpPacketHandleManager64 packet_pool_17c;
     void *event_1e0;
@@ -58,11 +70,51 @@ int NetworkWinsockSendClientView::send_client(
     return SetEvent(event_1e0);
 }
 
+void NetworkWinsockSendClientView::send_server(
+    unsigned int index, const void *payload, unsigned int size,
+    unsigned int options, unsigned int *result)
+{
+    if (records_108[index].slot_10 == -1)
+        return;
+    unsigned int token = 0;
+    NetworkUdpPacketBuffer41C *packet = packet_pool_17c.acquire(
+        *reinterpret_cast<ResourceHandleToken *>(&token));
+    packet->payload_1c[0] = 0x0d;
+    packet->options_14 = options;
+    packet->timestamp_10 = timeGetTime();
+    EnterCriticalSection(&peer_lock_120.critical_section_04);
+    memcpy(packet->endpoint_00, records_108[index].endpoint_00, sizeof(packet->endpoint_00));
+    LeaveCriticalSection(&peer_lock_120.critical_section_04);
+    memcpy(packet->payload_1c + 1, payload, size);
+    packet->size_18 = size + 1;
+    EnterCriticalSection(&queue_lock_1e4.critical_section_04);
+    if (result != 0) {
+        for (std::deque<unsigned int>::iterator it = pending_tokens_168.begin();
+             it != pending_tokens_168.end(); ++it) {
+            if (*it == *result) {
+                packet_pool_17c.release(*it);
+                pending_tokens_168.erase(it);
+                break;
+            }
+            if (!running_074)
+                break;
+        }
+        *result = token;
+    }
+    pending_tokens_168.push_back(token);
+    LeaveCriticalSection(&queue_lock_1e4.critical_section_04);
+    SetEvent(event_1e0);
+}
+
 typedef char SendClientEndpointOffset[offsetof(NetworkWinsockSendClientView, endpoint_0c0)==0xc0?1:-1];
 typedef char SendClientQueueOffset[offsetof(NetworkWinsockSendClientView, pending_tokens_168)==0x168?1:-1];
 typedef char SendClientPoolOffset[offsetof(NetworkWinsockSendClientView, packet_pool_17c)==0x17c?1:-1];
 typedef char SendClientEventOffset[offsetof(NetworkWinsockSendClientView, event_1e0)==0x1e0?1:-1];
 typedef char SendClientQueueLockOffset[offsetof(NetworkWinsockSendClientView, queue_lock_1e4)==0x1e4?1:-1];
+
+typedef char SendPeerRecordSize[sizeof(NetworkSendPeerRecord20)==0x20?1:-1];
+typedef char SendServerRecordsOffset[offsetof(NetworkWinsockSendClientView, records_108)==0x108?1:-1];
+typedef char SendServerPeerLockOffset[offsetof(NetworkWinsockSendClientView, peer_lock_120)==0x120?1:-1];
 
 // Token recycling is shared by the manager's payload specializations.
 void NetworkUdpPacketHandleManager64::release(unsigned int packed_token)
