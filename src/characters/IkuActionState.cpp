@@ -1185,7 +1185,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
 
             if (try_dispatch_directional_action_208_210(1)) return true;
 
-            if (frame_index_140 > 3) middle_decelerate(0.5);
+            if (frame_index_140 >= 4) middle_decelerate(0.5);
 
             advance_or_action(0);
 

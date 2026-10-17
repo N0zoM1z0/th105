@@ -40,7 +40,16 @@ Target `[620920,62EFBE)` is 59038 bytes / 15132 instructions / 131 RETs,
 SHA256 abc831c6ccd95986bed811694f532ad8c8b92cb49702a7f6ce4de100b8a73dea.
 Strict whole-root remains **nonexact +0x64 / 620984**: target alone hoists
 EDI=1. No exact or partial credit. New current evidence:
+[frame4/event ownership](IKU_FRAME4_EVENT_OWNERSHIP_2026_10_17.md),
 [412/418 shared landing](IKU_LANDING_SHARED_CONTINUATION_2026_10_17.md).
+
+305 now uses frame>=4, following target MOV EBX,4 / CMP frame,BX / JL,
+then reuses4 for the later event-frame comparison. The preceding >3 source
+used two immediate constants and merged305/696's event tail. The selected
+one-predicate change keeps4 live in a register and restores separate event
+sites with incoming sets{305}/{696}. Target usesBX, candidateDI, so305 is
+still nonexact. The complete180-byte696 physical owner now passes the
+instruction/edge diagnostic; it is not an independent exact function.
 
 412/418 now branch to one real velocity-clear / height-ST0-to-Y / vslot0C
 sequence2 / return continuation. All three physical calls have exactly the
@@ -53,35 +62,38 @@ and all three calls in one read-only 768MiB/two-CPU clone; all nine primary
 files unchanged. Wrong-image IDA remains rejected.
 
 Current source CRLF SHA256:
-83311acff214f472e5ac77a191b83de68dfdcf89d22ed6151bf5909c0de14181.
-Canonical full section59518 bytes, SHA256:
-34adadd7903312c7193469e059924c9214c67f61b67307363a36b357d064418d.
-This is16 bytes larger than the preceding source, with15008 reachable
-instructions /58362 bytes in a58362-byte span, no internal unreached bytes,
-and1156 following alignment/metadata bytes (metadata starts58364). There are
-129 RETs,865 ordinary/175 register CALLs, no local CALLs/external tails and
-33/42/35 tables. Target865/177. Physical-owner diagnostics remain6/109
-(2/4/5/204/215/303), not matches. Frame400hex/84 real payload homes stay
+4e852076e88001c3989a9c65e28ab751dc2ec1d84fce64143e5fa23ca295a44a.
+Canonical full section59550 bytes, SHA256:
+5e8c9caa835d0211a6b243fa96911445f03ba51aab9a9c7d2470942537b8af5c.
+This is32 bytes larger than the preceding source, with15022 reachable
+instructions /58394 bytes in a58394-byte span, no internal unreached bytes,
+and1156 following alignment/metadata bytes (metadata starts58396). There are
+130 RETs,866 ordinary/175 register CALLs, no local CALLs/external tails and
+33/42/35 tables. Target865/177. Physical-owner diagnostics7/109
+(2/4/5/204/215/303/696), not matches. Frame400hex/84 real payload homes stay
 natural. Incoming-action/physical-ordinal pairing retains84 singleton and
 bijective constraints,57 identity;182 spawn calls/190 action-site records.
-Target/candidate pre-epilogue PCs14870/14750, states16959/16894. These are
+Target/candidate pre-epilogue PCs14870/14762, states16959/16894. These are
 conditional static correlations, not payload values or feasible paths.
 
-Fresh selected-source 412/418 whole-entry native passes0/722:468 RETs,
-243 action-backend/10 sequence-backend/one object-backend entries per side,
-208 target instructions. Wrong sequence3 instead of2 detects10/722 (4/6 by
-412/418). Native/configured objects normalize identically across59518 bytes.
-Actual prelude/helpers run without result hooks; execution stops at the first
-real backend. Sequence continuation and412's ring after its first spawn
-remain unproved. Do not habitually replay older broad native matrices.
+Fresh selected-source --event-exits native passes0/256 through actual RET:
+305/696 frames2/3/4/5, timers-1/0, sequences0/1, PC53/PC64 and four velocity
+values including quiet NaN. Both target event PCs must be visited;141 target
+root instructions are covered. Wrong305 gate>=5 detects24/256, all305.
+Native/configured objects normalize identically across59550 bytes. Ordinary
+indexed-event sites are now41/41. Remaining target/candidate discrepancies:
+advancement107/106 (310/409 merged only in candidate), height19/20, facing9/10.
+Expanded incoming-action ordinary-call counts still differ only at730's five
+facing sites versus four. Sharing/count agreement is not value/exact proof.
 
-Ordinary CALL totals rise863 ->865 as advancement/wave suffixes split.
-Per-callee target/candidate discrepancies remain advancement107/106,
-indexed events41/40, height19/20 and facing9/10. Expanded incoming-action
-ordinary-call counts differ only at730's five facing sites versus four.
-Sharing/count agreement does not prove values or exact bytes.
+The prior83311acf source scopes412/418 native0/722 and its wrong-sequence
+control10/722 (4/6), as recorded in the landing note. That source also has an
+unselected RTM compiler witness:59518 bytes/15008 instructions,7145 normalized
+bytes differ from SP1, still first mismatch+64. No compiler profile change.
+Both409 versions reloadECX before their branch; that edge gives no special
+callee-preservation evidence. No broad native matrix or accepted replay.
 
-The preceding source (CRLF SHA256
+An earlier source (CRLF SHA256
 69c43bf58dcfbeee08866a93b007fa266718a37c7850b79609056b3920fa864b)
 remains the scope of these dated checkpoints:
 
@@ -103,7 +115,7 @@ remains the scope of these dated checkpoints:
   two game-data reads; only22 scheduling bytes differ from ordinary59502,
   plus two explicit INT3s. Strict59038 nonexact+64. Linked SHA256
   0ce3d92b61d3b860050e57f1d736a149babe2f3735068f1bc6faeea004d2f26e.
-  This is an earlier-source/tool checkpoint, not a link of current83311ac.
+  This is an earlier-source/tool checkpoint, not a link of current4e852076.
 - [MT call state](IKU_MT_CALL_STATE_2026_10_17.md): exposing only the MT TU
   changes the first byte/prologue. All19 MT calls remain; target/ordinary
   depth0 at all, visible variants depth1 at16/depth0 at3. Seed+next noinline
@@ -125,7 +137,7 @@ caller scopes was byte-neutral. Do not repeat documented controls without
 new target/source evidence.
 
 Next: shared effect outgoing-stack lifetime/join,730's duplicated facing
-suffix and advancement/event physical ownership. Original C++/TU/inheritance,
+suffix and310/409 advancement physical ownership. Original C++/TU/inheritance,
 compiler phase, payload-value and post-backend/exception equivalence remain
 unknown. No accepted shared-unit change or cold aggregate replay. Retain the
 small genuine-provider object cache; remove superseded private source copies,
