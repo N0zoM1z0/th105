@@ -278,14 +278,14 @@ def sequence_exit_cases():
 
 
 def sequence_effect_cases():
-    """Reach each effect62 continuation and the adjacent frame/input gates."""
+    """Reach effect62 gates and raw-byte/signed-offset direction boundaries."""
     basic = dict(middle_cases(True)[0], sequence=0, timer=-1, time=7, gate=0)
     actions = (416, 417, 565, 566, 567, 568)
     cases = []
     for action in actions:
         frame = 3 if action in (416, 417) else 5
         for facing, cw, x_bits, y in itertools.product(
-                (-1, 1), (0x27F, 0x37F),
+                (-128, -1, 0, 1, 127), (0x27F, 0x37F),
                 ("00000000", "80000000", "00000001", "80000001", "bf800000", "44200000"),
                 (0.0, -0.0, 100.0, -100.0, 1e20)):
             cases.append(dict(basic, action=action, frame=frame, facing=facing,
@@ -429,6 +429,7 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
     inputs, outputs = hashlib.sha256(), hashlib.sha256()
     differences, examples, mismatch_by_action = 0, [], {}
     effect_entries, negative_zero_x_entries, sequence_exit_entries = {}, {}, {}
+    effect_directions = {}
     for number, case in enumerate(cases, 1):
         inputs.update(json.dumps(case, sort_keys=True).encode())
         try:
@@ -446,6 +447,9 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
                 raise ValueError("sequence effect fixture reached another effect")
             action = str(case["action"])
             effect_entries[action] = effect_entries.get(action, 0) + 1
+            directions = effect_directions.setdefault(action, {})
+            raw_direction = str(arguments[3])
+            directions[raw_direction] = directions.get(raw_direction, 0) + 1
             if arguments[1] == 0x80000000:
                 negative_zero_x_entries[action] = negative_zero_x_entries.get(action, 0) + 1
         if expected != actual:
@@ -468,6 +472,9 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
                    if frame_bounds and action in {case["action"] for case in cases}}
     if not {site for sites in bound_sites.values() for site in sites} <= probe.visited:
         raise ValueError("frame-bound cases did not reach the required target comparisons/operations")
+    if sequence_effects and any(set(effect_directions.get(str(action), {})) != {"0", "1", "127", "128", "255"}
+                                for action in {case["action"] for case in cases}):
+        raise ValueError("effect fixture did not reach all five raw direction boundaries for each action")
     return {"schema": "th105-iku-action-state-source-native-v1", "target_sha256": target_sha, "build": receipt,
             "actions": len(OPENING_ENTRIES) + len(ENTRIES) + len(MIDDLE_ENTRIES),
             "whole_root_entry": whole,
@@ -476,6 +483,7 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
             "tested_actions": sorted({case["action"] for case in cases}), "cases": len(cases), "mismatch_count": differences, "mismatch_by_action": mismatch_by_action, "examples": examples,
             "input_sha256": inputs.hexdigest(), "target_output_sha256": outputs.hexdigest(),
             "sequence_effect_entries_by_action": effect_entries,
+            "sequence_effect_direction_arguments_by_action": effect_directions,
             "sequence_effect_negative_zero_x_by_action": negative_zero_x_entries,
             "sequence_exit_entries_by_action": sequence_exit_entries,
             "event_exit_call_sites_visited": {str(action): hex(site) for action, site in event_sites.items()},
@@ -511,6 +519,9 @@ def control_source(name):
     elif name == "effect-height":
         needle = "emit_fighter_effect_433cc0(62, sequence_effect_x, sequence_effect_y, byte_at(0x104), 1);"
         replacement = "emit_fighter_effect_433cc0(62, sequence_effect_x, sequence_effect_y + 1.0f, byte_at(0x104), 1);"
+    elif name == "effect-direction":
+        needle = "emit_fighter_effect_433cc0(62, sequence_effect_x, sequence_effect_y, byte_at(0x104), 1);"
+        replacement = "emit_fighter_effect_433cc0(62, sequence_effect_x, sequence_effect_y, static_cast<signed char>(byte_at(0x104)), 1);"
     elif name == "positive-steer":
         needle = "if (facing() * int_at(0x6b4) > 0) { set_action_and_finalize(212); return true; }"
         replacement = "if (facing() * int_at(0x6b4) >= 0) { set_action_and_finalize(212); return true; }"
@@ -601,7 +612,7 @@ if __name__ == "__main__":
     cases.add_argument("--sequence-exits", action="store_true", help="whole-root562/563/730 shared sequence-return edges and adjacent gates")
     cases.add_argument("--event-exits", action="store_true", help="whole-root305/696 frame thresholds and both real event29 call sites")
     cases.add_argument("--frame-bounds", action="store_true", help="whole-root225/408 frame7 boundary paths with real RNG and helpers")
-    parser.add_argument("--control", choices=("aim-limit", "unsigned-gate", "single-counter", "positive-steer", "effect-height", "sequence-exit-gate", "event-frame-gate", "frame-bound-gates", "unsigned-brake", "current-height", "zero-offset", "prelude-countdown", "unordered-face"))
+    parser.add_argument("--control", choices=("aim-limit", "unsigned-gate", "single-counter", "positive-steer", "effect-height", "effect-direction", "sequence-exit-gate", "event-frame-gate", "frame-bound-gates", "unsigned-brake", "current-height", "zero-offset", "prelude-countdown", "unordered-face"))
     parser.add_argument("--coordinates", action="store_true", help="with --middle, focus on direct X transfer and signed zero")
     parser.add_argument("--whole", action="store_true", help="execute both real/candidate roots from their own entry")
     parser.add_argument("--actions", type=int, nargs="+", help="run only these action IDs from the selected fixture")
@@ -618,8 +629,8 @@ if __name__ == "__main__":
         parser.error("opening controls require --opening --whole or --all-actions")
     if args.control == "positive-steer" and not args.opening_branches:
         parser.error("positive-steer requires --opening-branches")
-    if args.control == "effect-height" and not args.sequence_effects:
-        parser.error("effect-height requires --sequence-effects")
+    if args.control in ("effect-height", "effect-direction") and not args.sequence_effects:
+        parser.error("effect controls require --sequence-effects")
     if args.control == "sequence-exit-gate" and not args.sequence_exits:
         parser.error("sequence-exit-gate requires --sequence-exits")
     if args.control == "event-frame-gate" and not args.event_exits:

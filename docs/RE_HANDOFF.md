@@ -40,7 +40,8 @@ source, void thiscall prelude/default and one ascending switch. Target
 abc831c6ccd95986bed811694f532ad8c8b92cb49702a7f6ce4de100b8a73dea.
 Strict whole-root remains **nonexact +0x64 /620984**: target alone hoists
 EDI=1. No exact/partial authored credit. Current evidence:
-[17-action common surface exit](IKU_COMMON_SURFACE_EXIT_2026_10_17.md).
+[17-action common surface exit](IKU_COMMON_SURFACE_EXIT_2026_10_17.md) and
+[effect direction/argument ownership](IKU_EFFECT_DIRECTION_2026_10_17.md).
 
 The common height-ST0-to-Y / velocity-clear / return tail now has exactly
 its target incoming set:6/7/8/9/220/307/308/309/404/406/414/415/416/417/795/797/798.
@@ -85,6 +86,22 @@ advancement107/106, height19/18, clear30/28, facing9/10 target/candidate.
 Expanded ordinary counts differ only at730's five facing sites versus four;
 count/incoming-set agreement is not value or exact proof. Earlier412/418 and
 six-action effect groups retain their exact incoming sets in the current CFG.
+
+Latest effect-direction investigation leaves selected sourcec9a1c3e4 unchanged.
+Target416/417 read byte104 once: zero-extend for the outgoing DWORD, then
+sign-extend the same low byte for the47-pixel offset. Keep both coordinate
+float round trips. The expanded five-byte-boundary fixture passes0/2664 from
+the real root; wrong outgoing sign extension detects624. Native and configured
+whole sections remain identical. Early int capture retains six-way sharing
+but grows32 bytes and still spills X. Direct branch argument expressions
+remove that spill but split the group into five calls; explicit Y local is
+byte-neutral. A genuine GL/LTCG control reuses43/44 objects, still emits58
+whole-root effect sites and remains nonexact+64. All controls are unselected;
+there is no general compiler/LTCG-barrier proof. Direct read-only Ghidra
+attests all six preparation spans; nine primary files remain unchanged.
+See the linked direction note for hashes, scope and reproduction. Retain the
+current native proof objects and small genuine-provider cache; discard the
+unselected root/link artifacts. No accepted-unit matrix was replayed.
 
 Prior source-scoped evidence, retained in selected source where applicable:
 
