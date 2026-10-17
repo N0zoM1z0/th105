@@ -103,10 +103,9 @@ private:
         spawn_owned_object_via_manager(860, float_at(0xec),
             static_cast<float>(float_at(0xf0) + 275.0), reverse_facing(), 1, payload, 3);
     }
-    __forceinline void emit_six_ring(float speed, bool ahead) {
+    __forceinline void emit_six_ring(float speed, bool ahead, float *payload) {
         for (int angle = 0; angle < 360; angle += 60) {
             unsigned roll = random_roll(30);
-            float payload[3];
             payload[0] = static_cast<float>(angle + 30.0 + static_cast<float>(roll));
             payload[1] = speed;
             payload[2] = 2.0f;
@@ -117,11 +116,14 @@ private:
             spawn_owned_object_via_manager(815, x, float_at(0xf0), byte_at(0x104), variant, payload, 3);
         }
     }
-    __forceinline void emit_920_ring(float speed, double offset) {
+    __forceinline void emit_six_ring(float speed, bool ahead) {
+        float payload[3];
+        emit_six_ring(speed, ahead, payload);
+    }
+    __forceinline void emit_920_ring(float speed, double offset, float *payload) {
         // Unlike the integer ring above, the target stores this loop carrier
         // as float and increments it with a floating addition.
         for (float ray = 0.0f; ray < 12.0f; ray += 1.0f) {
-            float payload[3];
             payload[0] = static_cast<float>(ray * 30.0 + offset);
             payload[1] = speed;
             payload[2] = 7.0f;
@@ -309,10 +311,9 @@ private:
             ahead == 0 ? float_at(0xec) : static_cast<float>(facing() * ahead) + float_at(0xec),
             static_cast<float>(float_at(0xf0) + height), byte_at(0x104), 1, payload, 3);
     }
-    __forceinline void middle_ring(int object, int ahead, float speed, bool on_surface) {
+    __forceinline void middle_ring(int object, int ahead, float speed, bool on_surface, float *payload) {
         for (int angle = 0; angle < 360; angle += 60) {
             unsigned roll = random_roll(30);
-            float payload[3];
             payload[0] = static_cast<float>(angle + 30.0 + static_cast<float>(roll));
             payload[1] = speed;
             payload[2] = 2.0f;
@@ -322,6 +323,10 @@ private:
                 ahead == 0 ? float_at(0xec) : static_cast<float>(facing() * ahead) + float_at(0xec), y,
                 byte_at(0x104), variant, payload, 3);
         }
+    }
+    __forceinline void middle_ring(int object, int ahead, float speed, bool on_surface) {
+        float payload[3];
+        middle_ring(object, ahead, speed, on_surface, payload);
     }
     __forceinline void middle_fan800(int ahead, double height, double first, int step, int limit) {
         float payload[3] = {0.0f, 8.0f, 0.0f};
@@ -353,7 +358,7 @@ private:
         if (airborne) {
             // These two arms subtract acceleration even in sequence2 and above.
             float_at(0xf8) -= float_at(0x100);
-            if (sequence_index_13e < 2 && has_crossed_stage_surface_while_descending()) {
+            if (sequence_index_13e < 2 && static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 select_sequence(2);
                 restore_surface_motion();
                 return;
@@ -509,7 +514,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         }
         if (sequence_index_13e > 0) {
             float_at(0xf8) -= float_at(0x100);
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 set_action_and_finalize(10); restore_surface_motion(); return true;
             }
         }
@@ -529,7 +534,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         }
         if (sequence_index_13e > 0) {
             float_at(0xf8) -= float_at(0x100);
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 set_action_and_finalize(10); restore_surface_motion(); return true;
             }
         }
@@ -549,7 +554,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         }
         if (sequence_index_13e > 0) {
             float_at(0xf8) -= float_at(0x100);
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 set_action_and_finalize(10); restore_surface_motion(); return true;
             }
         }
@@ -565,7 +570,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
     case 9: {
         if (float_at(0x100) == 0.0f) float_at(0x100) = 0.6f;
         float_at(0xf8) -= float_at(0x100);
-        if (has_crossed_stage_surface_while_descending()) { set_action_and_finalize(10); restore_surface_motion(); }
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) { set_action_and_finalize(10); restore_surface_motion(); }
         else advance_frame_and_dispatch();
         return true;
     }
@@ -671,7 +676,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         if (!is_y_at_or_below_stage_surface(this) && time_counter_144 % 5 == 0) opening_periodic_effect(true);
         if (sequence_index_13e < 3) {
             float_at(0xf8) = (float_at(0xf8) - float_at(0x100));
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 float_at(0xf8) = 0.0f; float_at(0xf0) = stage_surface_height_at_x(this); select_sequence(3); return true;
             }
         }
@@ -686,7 +691,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
 
     case 202: {
         float_at(0xf8) -= float_at(0x100);
-        if (has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
             zero_velocity_acceleration(); float_at(0xf0) = stage_surface_height_at_x(this); set_action_and_finalize(10); return true;
         }
         if (short_at(0x7b0) > 0) short_at(0x4a8) = 2;
@@ -707,7 +712,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
 
     case 203: {
         float_at(0xf8) -= float_at(0x100);
-        if (has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
             zero_velocity_acceleration(); float_at(0xf0) = stage_surface_height_at_x(this); set_action_and_finalize(10); return true;
         }
         if (short_at(0x7b0) > 0) short_at(0x4a8) = 2;
@@ -735,7 +740,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
 
     case 208: {
         if (sequence_index_13e == 0) resolve_stage_surface_landing_transition();
-        if (has_crossed_stage_surface_while_descending()) { set_action_and_finalize(10); restore_surface_motion(); return true; }
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) { set_action_and_finalize(10); restore_surface_motion(); return true; }
         if (is_y_at_or_below_stage_surface(this) || float_at(0xf8) > 0.0f) {
             if (short_at(0x7b0) > 0) short_at(0x4a8) = 2;
             short_at(0x4ae) = 2;
@@ -757,7 +762,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
 
     case 209: {
         if (sequence_index_13e == 0) resolve_stage_surface_landing_transition();
-        if (has_crossed_stage_surface_while_descending()) { set_action_and_finalize(10); restore_surface_motion(); return true; }
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) { set_action_and_finalize(10); restore_surface_motion(); return true; }
         if (is_y_at_or_below_stage_surface(this) || float_at(0xf8) > 0.0f) {
             if (short_at(0x7b0) > 0) short_at(0x4a8) = 2;
             short_at(0x4ae) = 2;
@@ -779,7 +784,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
 
     case 210: {
         if (sequence_index_13e == 0) resolve_stage_surface_landing_transition();
-        if (has_crossed_stage_surface_while_descending()) { set_action_and_finalize(10); restore_surface_motion(); return true; }
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) { set_action_and_finalize(10); restore_surface_motion(); return true; }
         if (is_y_at_or_below_stage_surface(this) || float_at(0xf8) > 0.0f) {
             if (short_at(0x7b0) > 0) short_at(0x4a8) = 2;
             short_at(0x4ae) = 2;
@@ -801,7 +806,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
 
     case 211: {
         if (sequence_index_13e == 0) resolve_stage_surface_landing_transition();
-        if (has_crossed_stage_surface_while_descending()) { set_action_and_finalize(10); restore_surface_motion(); return true; }
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) { set_action_and_finalize(10); restore_surface_motion(); return true; }
         if (is_y_at_or_below_stage_surface(this) || float_at(0xf8) > 0.0f) {
             if (short_at(0x7b0) > 0) short_at(0x4a8) = 2;
             short_at(0x4ae) = 2;
@@ -823,7 +828,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
 
     case 212: {
         if (sequence_index_13e == 0) resolve_stage_surface_landing_transition();
-        if (has_crossed_stage_surface_while_descending()) { set_action_and_finalize(10); restore_surface_motion(); return true; }
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) { set_action_and_finalize(10); restore_surface_motion(); return true; }
         if (is_y_at_or_below_stage_surface(this) || float_at(0xf8) > 0.0f) {
             if (short_at(0x7b0) > 0) short_at(0x4a8) = 2;
             short_at(0x4ae) = 2;
@@ -853,7 +858,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
 
     case 220: {
         if (sequence_index_13e == 0) resolve_stage_surface_landing_transition();
-        if (has_crossed_stage_surface_while_descending()) { set_action_and_finalize(10); restore_surface_motion(); return true; }
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) { set_action_and_finalize(10); restore_surface_motion(); return true; }
         if (is_y_at_or_below_stage_surface(this) || float_at(0xf8) > 0.0f) {
             if (short_at(0x7b0) > 0) short_at(0x4a8) = 2;
             short_at(0x4ae) = 2;
@@ -875,7 +880,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
 
     case 221: {
         if (sequence_index_13e == 0) resolve_stage_surface_landing_transition();
-        if (has_crossed_stage_surface_while_descending()) { set_action_and_finalize(10); restore_surface_motion(); return true; }
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) { set_action_and_finalize(10); restore_surface_motion(); return true; }
         if (is_y_at_or_below_stage_surface(this) || float_at(0xf8) > 0.0f) {
             if (short_at(0x7b0) > 0) short_at(0x4a8) = 2;
             short_at(0x4ae) = 2;
@@ -897,7 +902,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
 
     case 222: {
         if (sequence_index_13e == 0) resolve_stage_surface_landing_transition();
-        if (has_crossed_stage_surface_while_descending()) { set_action_and_finalize(10); restore_surface_motion(); return true; }
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) { set_action_and_finalize(10); restore_surface_motion(); return true; }
         if (is_y_at_or_below_stage_surface(this) || float_at(0xf8) > 0.0f) {
             if (short_at(0x7b0) > 0) short_at(0x4a8) = 2;
             short_at(0x4ae) = 2;
@@ -946,7 +951,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         if (!is_y_at_or_below_stage_surface(this) && time_counter_144 % 5 == 0) opening_periodic_effect(true);
         if (sequence_index_13e == 1 || sequence_index_13e == 2) {
             float_at(0xf8) = (static_cast<float>(float_at(0xf8) - 0.5));
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 float_at(0xf8) = 0.0f; float_at(0xf0) = stage_surface_height_at_x(this); select_sequence(3); return true;
             }
         }
@@ -961,7 +966,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
 
     case 225: {
         float_at(0xf8) -= float_at(0x100);
-        if (has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
             zero_velocity_acceleration(); float_at(0xf0) = stage_surface_height_at_x(this); set_action_and_finalize(10); return true;
         }
         if (short_at(0x7b0) > 0) short_at(0x4a8) = 2;
@@ -981,7 +986,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
 
     case 226: {
         float_at(0xf8) -= float_at(0x100);
-        if (has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
             zero_velocity_acceleration(); float_at(0xf0) = stage_surface_height_at_x(this); set_action_and_finalize(10); return true;
         }
         if (short_at(0x7b0) > 0) short_at(0x4a8) = 2;
@@ -1174,7 +1179,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
     case 306: {
         {
             float_at(0xf8) -= float_at(0x100);
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 set_action_and_finalize(10);
                 {
                     float_at(0xf0) = stage_surface_height_at_x(this);
@@ -1195,7 +1200,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         {
             middle_clear_input(0x6bc);
             float_at(0xf8) -= float_at(0x100);
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 set_action_and_finalize(10);
                 restore_surface_motion();
                 return true;
@@ -1220,7 +1225,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         {
             middle_clear_input(0x6bc);
             float_at(0xf8) -= float_at(0x100);
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 set_action_and_finalize(10);
                 restore_surface_motion();
                 return true;
@@ -1243,7 +1248,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
     case 309: {
         {
             float_at(0xf8) -= float_at(0x100);
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 set_action_and_finalize(10);
                 restore_surface_motion();
                 return true;
@@ -1379,7 +1384,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
     case 409: {
         {
             float_at(0xf8) -= float_at(0x100);
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 set_action_and_finalize(10);
                 {
                     zero_velocity_acceleration();
@@ -1479,7 +1484,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
             float_at(0xf8) -= float_at(0x100);
             float_at(0xf4) = static_cast<float>(float_at(0xf4) - static_cast<double>(0.1f));
             if (float_at(0xf4) < 1.0f) float_at(0xf4) = 1.0f;
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 zero_velocity_acceleration(); float_at(0xf0) = stage_surface_height_at_x(this); select_sequence(2); return true;
             }
         } else resolve_stage_surface_landing_transition();
@@ -1489,7 +1494,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
             if (middle_frame(9)) {
                 middle_cost(60, 50); int_at(0x180) = 1; dispatch_character_wave_handle(16);
                 float payload[3] = {-20.0f, 13.0f, 0.0f}; spawn_middle(802, 75, 168.0, payload);
-                middle_ring(802, 0, 15.0f, true);
+                middle_ring(802, 0, 15.0f, true, payload);
             }
         }
         return true;
@@ -1501,7 +1506,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
             middle_clear_input(0x6c4);
             if (sequence_index_13e < 2) {
                 float_at(0xf8) -= float_at(0x100);
-                if (has_crossed_stage_surface_while_descending()) {
+                if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                     select_sequence(2); restore_surface_motion(); return true;
                 }
             }
@@ -1551,7 +1556,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
             middle_clear_input(0x6c4);
             if (sequence_index_13e < 2) {
                 float_at(0xf8) -= float_at(0x100);
-                if (has_crossed_stage_surface_while_descending()) {
+                if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                     select_sequence(2); restore_surface_motion(); return true;
                 }
             }
@@ -1594,7 +1599,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
             middle_clear_input(0x6c4);
             if (sequence_index_13e < 2) {
                 float_at(0xf8) -= float_at(0x100);
-                if (has_crossed_stage_surface_while_descending()) {
+                if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                     select_sequence(2); restore_surface_motion(); return true;
                 }
             }
@@ -1646,7 +1651,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
             middle_clear_input(0x6c4);
             if (sequence_index_13e < 2) {
                 float_at(0xf8) -= float_at(0x100);
-                if (has_crossed_stage_surface_while_descending()) {
+                if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                     select_sequence(2); restore_surface_motion(); return true;
                 }
             }
@@ -1697,7 +1702,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         if (is_y_at_or_below_stage_surface(this)) float_at(0xf4) = static_cast<float>(float_at(0xf4) - 0.5);
         if (float_at(0xf4) < 0.0f) float_at(0xf4) = 0.0f;
         if (sequence_index_13e < 2) float_at(0xf8) -= float_at(0x100);
-        if (has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
             zero_velocity_acceleration(); float_at(0xf0) = stage_surface_height_at_x(this); select_sequence(2); return true;
         }
         advance_or_action(0);
@@ -1764,14 +1769,14 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
                     float payload[3] = {0.0f, 0.0f, 0.0f};
                     spawn_middle(815, 150, 120.0, payload);
                     add_phase_scaled_counter_558(50); adjust_counter_482(200, 120);
-                    middle_ring(815, 55, 20.0f, false); dispatch_character_wave_handle(19);
+                    middle_ring(815, 55, 20.0f, false, payload); dispatch_character_wave_handle(19);
                 }
             }
             if (sequence_index_13e == 1 && middle_frame(4)) {
                 float payload[3] = {0.0f, 0.0f, 1.0f};
                 spawn_middle(815, 150, 120.0, payload);
                 add_phase_scaled_counter_558(50); adjust_counter_482(200, 120);
-                middle_ring(815, 55, 20.0f, false); dispatch_character_wave_handle(19);
+                middle_ring(815, 55, 20.0f, false, payload); dispatch_character_wave_handle(19);
             }
             return true;
         }
@@ -1793,14 +1798,14 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
                     float payload[3] = {0.0f, 0.0f, 3.0f};
                     spawn_middle(815, 150, 195.0, payload);
                     add_phase_scaled_counter_558(50); adjust_counter_482(200, 120);
-                    middle_ring(815, 55, 20.0f, false); dispatch_character_wave_handle(19);
+                    middle_ring(815, 55, 20.0f, false, payload); dispatch_character_wave_handle(19);
                 }
             }
             if (sequence_index_13e == 1 && middle_frame(4)) {
                 float payload[3] = {0.0f, 0.0f, 4.0f};
                 spawn_middle(815, 150, 195.0, payload);
                 add_phase_scaled_counter_558(50); adjust_counter_482(200, 120);
-                middle_ring(815, 55, 20.0f, false); dispatch_character_wave_handle(19);
+                middle_ring(815, 55, 20.0f, false, payload); dispatch_character_wave_handle(19);
             }
             return true;
         }
@@ -1811,8 +1816,9 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         if (sequence_index_13e == 0) {
             if (middle_frame(3)) adjust_counter_482(200, 120);
             if (middle_frame(10)) {
-                middle_ring(815, 55, 25.0f, false); add_phase_scaled_counter_558(50);
-                float payload[3] = {0.0f, 0.0f, 1.0f};
+                float payload[3];
+                middle_ring(815, 55, 25.0f, false, payload); add_phase_scaled_counter_558(50);
+                payload[0] = 0.0f; payload[1] = 0.0f; payload[2] = 1.0f;
                 spawn_owned_object_via_manager(811, float_at(0xec), float_at(0xf0), byte_at(0x104), -1, payload, 3);
                 dispatch_character_wave_handle(11);
             }
@@ -1826,8 +1832,9 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         if (sequence_index_13e == 0) {
             if (middle_frame(3)) adjust_counter_482(200, 120);
             if (middle_frame(10)) {
-                middle_ring(815, 55, 25.0f, false); add_phase_scaled_counter_558(50);
-                float payload[3] = {0.0f, 0.0f, 1.0f};
+                float payload[3];
+                middle_ring(815, 55, 25.0f, false, payload); add_phase_scaled_counter_558(50);
+                payload[0] = 0.0f; payload[1] = 0.0f; payload[2] = 1.0f;
                 spawn_owned_object_via_manager(811, float_at(0xec), float_at(0xf0), byte_at(0x104), -1, payload, 3);
                 dispatch_character_wave_handle(11);
             }
@@ -2016,7 +2023,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
             byte_at(0x750) = 0;
         if (sequence_index_13e < 2) {
             float_at(0xf8) -= float_at(0x100);
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 zero_velocity_acceleration();
                 float_at(0xf0) = stage_surface_height_at_x(this);
                 select_sequence(2);
@@ -2051,7 +2058,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
             byte_at(0x750) = 0;
         if (sequence_index_13e < 2) {
             float_at(0xf8) -= float_at(0x100);
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 zero_velocity_acceleration();
                 float_at(0xf0) = stage_surface_height_at_x(this);
                 select_sequence(2);
@@ -2326,7 +2333,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         byte_at(0x17c) = 11;
         if (sequence_index_13e < 1) {
             float_at(0xf8) -= float_at(0x100);
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 zero_velocity_acceleration();
                 float_at(0xf0) = stage_surface_height_at_x(this);
                 select_sequence(1);
@@ -2353,7 +2360,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         byte_at(0x17c) = 11;
         if (sequence_index_13e < 1) {
             float_at(0xf8) -= float_at(0x100);
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 zero_velocity_acceleration();
                 float_at(0xf0) = stage_surface_height_at_x(this);
                 select_sequence(1);
@@ -2778,7 +2785,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
             time_counter_144 = 0;
             float payload[3] = {0.0f, static_cast<float>(short_at(0x76c)), 0.0f};
             spawn_owned_object_via_manager(910, float_at(0xec), float_at(0xf0), byte_at(0x104), 1, payload, 3);
-            emit_six_ring(25.0f, false);
+            emit_six_ring(25.0f, false, payload);
         }
         return true;
     }
@@ -2818,14 +2825,14 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
             payload[2] = 2.0f;
             spawn_owned_object_via_manager(920, float_at(0xec), static_cast<float>(float_at(0xf0) + 100.0), byte_at(0x104), -1, payload, 3);
             if (g_match_identifier == 1) {
-                emit_920_ring(6.0f, 0.0);
+                emit_920_ring(6.0f, 0.0, payload);
             } else if (g_match_identifier == 2) {
-                emit_920_ring(6.0f, 0.0);
-                emit_920_ring(4.0f, 10.0);
+                emit_920_ring(6.0f, 0.0, payload);
+                emit_920_ring(4.0f, 10.0, payload);
             } else if (g_match_identifier == 3) {
-                emit_920_ring(6.0f, 0.0);
-                emit_920_ring(4.0f, 10.0);
-                emit_920_ring(2.0f, 20.0);
+                emit_920_ring(6.0f, 0.0, payload);
+                emit_920_ring(4.0f, 10.0, payload);
+                emit_920_ring(2.0f, 20.0, payload);
             }
             dispatch_character_wave_handle(13);
         }
@@ -3135,7 +3142,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_glide_action()
             select_sequence(11); set_sequence_frame(short_at(0x730)); return true;
         }
     }
-    if (has_crossed_stage_surface_while_descending()) {
+    if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
         float_at(0xf0) = stage_surface_height_at_x(this); float_at(0xf8) = 0.0f; float_at(0x100) = 0.0f;
         if (sequence_index_13e > 8) { set_action_and_finalize(10); zero_velocity_acceleration(); }
         else { reinterpret_cast<IkuActionScratchView *>(reinterpret_cast<unsigned char *>(this) + 4)->reset_fighter_action_scratch(); set_action_and_finalize(215); }
@@ -3147,7 +3154,7 @@ void IkuActionStateView::dispatch_action_state_vslot28()
 {
     short_at(0x7a0) = 0;
     short_at(0x7a2) = 117;
-    if (short_at(0x174) < 1 || peer_short(0x174) < 0) short_at(0x7b0) = 0;
+    if (short_at(0x174) <= 0 || peer_short(0x174) < 0) short_at(0x7b0) = 0;
     if (short_at(0x7b0) > 0) --short_at(0x7b0);
     if (action_id_13c > 149 && action_id_13c < 159 && byte_at(0x751) == 0) {
         byte_at(0x751) = 1;

@@ -1,5 +1,9 @@
 # Iku whole-root dispatch and physical action ownership
 
+> Historical dispatch checkpoint. The current
+> [payload lifetime checkpoint](IKU_PAYLOAD_LIFETIMES_2026_10_17.md) recovers
+> the target stack frame and supersedes the source/codegen receipts below.
+
 The selected source for `Iku_dispatch_action_state_vslot28 @ 620920` now uses
 one ascending action switch with individual case bodies. It retains all 110
 actions and the original void entry/prelude/default from the
