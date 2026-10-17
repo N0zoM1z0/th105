@@ -9,6 +9,7 @@ from reimu_animation_fixture import RESOURCE, TREE, HEAD, VECTOR, SLOT, resource
 
 
 class ReimuAnimationFixtureTests(unittest.TestCase):
+    sequence_capacity = 4
     frame_capacity = 2
     initial_frame = 0
     linked_terminal = False
@@ -58,7 +59,7 @@ class ReimuAnimationFixtureTests(unittest.TestCase):
                 nodes(right)
         nodes(root)
         for first in blocks.values():
-            for index in range(4):
+            for index in range(self.sequence_capacity):
                 block = first+index*0x20
                 begin, end = self.read(image, block+4, "<II")
                 self.assertEqual(end-begin, frame_count*0x88)
@@ -71,11 +72,11 @@ class ReimuAnimationFixtureTests(unittest.TestCase):
         for transition in ("terminal", "block"):
             image, blocks, _, _ = self.graph(transition)
             for first in blocks.values():
-                for index in range(4):
+                for index in range(self.sequence_capacity):
                     block = first+index*0x20
                     previous, following = self.read(image, block+0x18, "<II")
                     self.assertEqual(previous, block-0x20 if index else 0)
-                    self.assertEqual(following, block+0x20 if (transition == "block" or self.linked_terminal) and index < 3 else 0)
+                    self.assertEqual(following, block+0x20 if (transition == "block" or self.linked_terminal) and index < self.sequence_capacity-1 else 0)
 
 
 class ReimuRecoveryAnimationFixtureTests(ReimuAnimationFixtureTests):
@@ -87,6 +88,15 @@ class ReimuMovementAttackAnimationFixtureTests(ReimuRecoveryAnimationFixtureTest
     keys = (0, 1, 2, 9, 10, 88, 89, 97, 145, *range(197, 205), 211, 212, 700)
     frame_capacity = 6
     initial_frame = 4
+
+
+class ReimuLateLowAnimationFixtureTests(ReimuMovementAttackAnimationFixtureTests):
+    keys = (0, 1, 2, 9, 10, 204, 208, 209, 210, 211, 212, 214, 215, 220, 221, 222, 223, 224, 225, 226, 300)
+    sequence_capacity = 7
+
+    def graph(self, transition="frame"):
+        from reimu_late_low_fixture import resource_graph as late_graph
+        return late_graph({"transition": transition, "frame": self.initial_frame, "duration": 3}, self.keys)
 
 
 if __name__ == "__main__":

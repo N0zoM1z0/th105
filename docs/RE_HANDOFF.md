@@ -92,8 +92,23 @@ fields; entry/low/recovery rebuild/replay passes0/10584,0/10700,0/4595. No accep
 unit or exact credit changes. Ghidra attests all11 starts/two shared tails;
 primary hashes unchanged and clone deleted. See
 [movement/attack evidence](REIMU_MOVEMENT_ATTACK_ACTIONS_2026_10_17.md).
-Next recover remaining low208..226, then mid/high, and the real returning
-object/effect contexts. Use the new oracle's `--cohort` for focused rechecks.
+The remaining low208..226 plus direct300 are now staged in
+`ReimuActionStateLateLow.cpp`:6652 physical bytes/1764 instructions. Direct300
+starts47CBBD;226 ends there, while mid selection starts47CC5F. The mapper's
+731-byte provisional226 span also contains162 direct300 bytes and47 selector
+bytes; do not treat it as226 ownership. Native0/3414 has3294 genuine RET cases
+and120 real435240 request-entry stops.214's flight steering uses target-run
+orientation initialization, real sine/cosine/fabs/control-word helpers and
+resource consumption; no callback result hooks. Negatives detect1/150 for
+224's wrongly cleared AY and24/432 for214's180-degree equality boundary.
+All four prior stages rebuild with identical text/non-debug data/relocation
+identities; current smokes pass0/9,0/88,0/64,0/99, without full old replay.
+No accepted unit or exact credit changes. Ghidra attests root/entries/shared
+tails; primary hashes unchanged and clone deleted. See
+[late-low evidence](REIMU_LATE_LOW_ACTIONS_2026_10_17.md).
+All44 concrete low-table bodies plus direct300 have staged source. Next
+integrate the selector/default and source phases, then mid/high and returning
+world contexts toward the complete root. Use `--cohort` for focused rechecks.
 Obsolete unpinned disassembly exports (~18MB) and rejected/superseded object
 files were removed; current bounded evidence and primary databases remain.
 Obsolete common-root GL controls/provider objects and rejected Reimu control

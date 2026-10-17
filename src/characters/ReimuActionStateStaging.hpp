@@ -36,6 +36,10 @@ public:
     bool try_run_checked_recovery_action();
     // Actions88/89/145 and197..204, without an original boundary claim.
     bool try_run_checked_movement_attack_action();
+    // Remaining low-table actions and direct action300.
+    bool try_run_checked_late_low_action();
+    void adjust_counter_482(short amount, int floor_value);
+    unsigned char try_dispatch_directional_action_208_210(int option);
     unsigned char is_at_stage_surface();
     void face_opponent_and_flip_horizontal_velocity();
     void emit_fighter_effect(int code, float x, float y, int direction, int trailing);
@@ -75,23 +79,35 @@ public:
     short word_186;
     unsigned char reserved_188[0x2f6];
     unsigned char byte_47e;
-    unsigned char reserved_47f[0x11];
+    unsigned char reserved_47f[3];
+    short word_482;
+    unsigned char reserved_484[0xc];
     unsigned char byte_490;
     unsigned char reserved_491[0x17];
     short word_4a8;
     unsigned char reserved_4aa[2];
     short word_4ac;
-    unsigned char reserved_4ae[0x1fe];
+    short word_4ae;
+    unsigned char reserved_4b0[8];
+    int field_4b8;
+    unsigned char reserved_4bc[0x1f0];
     float field_6ac;
     unsigned char reserved_6b0[4];
     int field_6b4;
     int field_6b8;
-    unsigned char reserved_6bc[0x70];
+    unsigned char reserved_6bc[0xc];
+    int field_6c8;
+    unsigned char reserved_6cc[0x60];
     unsigned char byte_72c;
     unsigned char reserved_72d[3];
     short word_730;
     short word_732;
-    unsigned char reserved_734[0x1d];
+    short word_734;
+    short word_736;
+    unsigned char reserved_738[4];
+    float field_73c;
+    float field_740;
+    unsigned char reserved_744[0xd];
     unsigned char byte_751;
     unsigned char reserved_752[0x4e];
     short word_7a0;
@@ -125,6 +141,12 @@ typedef char ReimuStage_recovery_offsets[(offsetof(ReimuActionStatePreludeView, 
 
 typedef char ReimuStage_movement_attack_offsets[(offsetof(ReimuPreludePeerView, x_ec) == 0xec && offsetof(ReimuActionStatePreludeView, field_108) == 0x108 && offsetof(ReimuActionStatePreludeView, field_10c) == 0x10c && offsetof(ReimuActionStatePreludeView, word_4a8) == 0x4a8 && offsetof(ReimuActionStatePreludeView, word_4ac) == 0x4ac && offsetof(ReimuActionStatePreludeView, field_6b4) == 0x6b4 && offsetof(ReimuActionStatePreludeView, byte_72c) == 0x72c) ? 1 : -1];
 
+typedef char ReimuStage_late_low_offsets[(offsetof(ReimuActionStatePreludeView, word_482) == 0x482 && offsetof(ReimuActionStatePreludeView, word_4ae) == 0x4ae && offsetof(ReimuActionStatePreludeView, field_4b8) == 0x4b8 && offsetof(ReimuActionStatePreludeView, field_6c8) == 0x6c8 && offsetof(ReimuActionStatePreludeView, word_734) == 0x734 && offsetof(ReimuActionStatePreludeView, word_736) == 0x736 && offsetof(ReimuActionStatePreludeView, field_73c) == 0x73c && offsetof(ReimuActionStatePreludeView, field_740) == 0x740) ? 1 : -1];
+
+// Both original bodies return an m32 table load in ST0. Float versus double
+// source spelling remains unresolved; retain the existing ABI-compatible view.
+double __cdecl lookup_orientation_sine_quantized_abs(float phase);
+double __cdecl lookup_orientation_cosine_quantized_abs(float phase);
 unsigned int __cdecl mt19937_next_u32();
 
 // The original reset receiver is the sprite subobject at fighter+4.
