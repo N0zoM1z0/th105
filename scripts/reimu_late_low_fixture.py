@@ -12,15 +12,17 @@ from unicorn import x86_const as r
 from reimu_animation_fixture import RESOURCE, TREE, HEAD, VECTOR, SLOT
 
 
-def resource_graph(case, keys):
+def resource_graph(case, keys, *, frame_capacity=6):
     keys = tuple(sorted(keys))
-    if not keys or len(keys) != len(set(keys)) or len(keys) > 64 or not 0 <= case["frame"] < 6:
+    if (not keys or len(keys) != len(set(keys)) or len(keys) > 64
+            or not 1 <= frame_capacity <= 14 or not 0 <= case["frame"] < frame_capacity):
         raise ValueError("late-low resource capacity exceeded")
     image = bytearray(0x40000 if len(keys) <= 24 else 0x100000)
     frame_base = (0x1000+len(keys)*0x100+0xfff) & ~0xfff
     nodes = {key: RESOURCE+0x500+index*0x20 for index, key in enumerate(keys)}
     blocks = {key: RESOURCE+0x1000+index*0x100 for index, key in enumerate(keys)}
-    frames = {key: RESOURCE+frame_base+index*0x1C00 for index, key in enumerate(keys)}
+    frame_stride = (frame_capacity*0x88+0x3ff) & ~0x3ff
+    frames = {key: RESOURCE+frame_base+index*7*frame_stride for index, key in enumerate(keys)}
 
     def put(address, fmt, *values):
         struct.pack_into(fmt, image, address-RESOURCE, *values)
@@ -43,7 +45,7 @@ def resource_graph(case, keys):
     frame_count = max(case["frame"]+1, 2 if case["transition"] == "frame" else 1)
     for key in keys:
         for index in range(7):
-            block, frame = blocks[key]+index*0x20, frames[key]+index*0x400
+            block, frame = blocks[key]+index*0x20, frames[key]+index*frame_stride
             put(block+4, "<II", frame, frame+frame_count*0x88)
             put(block+0x14, "<B", 0 if index == 0 else 1)
             put(block+0x18, "<II", block-0x20 if index else 0,

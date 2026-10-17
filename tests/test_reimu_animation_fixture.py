@@ -96,12 +96,26 @@ class ReimuLateLowAnimationFixtureTests(ReimuMovementAttackAnimationFixtureTests
 
     def graph(self, transition="frame"):
         from reimu_late_low_fixture import resource_graph as late_graph
-        return late_graph({"transition": transition, "frame": self.initial_frame, "duration": 3}, self.keys)
+        return late_graph({"transition": transition, "frame": self.initial_frame, "duration": 3}, self.keys,
+                          frame_capacity=self.frame_capacity)
 
 
 class ReimuIntegratedLowAnimationFixtureTests(ReimuLateLowAnimationFixtureTests):
     keys = tuple(range(64))
     initial_frame = 5
+
+
+class ReimuMiddleAnimationFixtureTests(ReimuIntegratedLowAnimationFixtureTests):
+    frame_capacity = 14
+    initial_frame = 13
+
+    def test_final_frame_stays_in_the_read_only_image(self):
+        image, blocks, _, _ = self.graph()
+        for first in blocks.values():
+            for index in range(self.sequence_capacity):
+                begin, end = self.read(image, first+index*0x20+4, "<II")
+                self.assertLessEqual(end, RESOURCE+len(image))
+                self.assertEqual(self.read(image, begin+13*0x88+8, "<h"), (3,))
 
 
 if __name__ == "__main__":

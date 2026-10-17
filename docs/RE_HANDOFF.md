@@ -1,6 +1,6 @@
 # TH10.5 reconstruction handoff
 
-This is the short operational handoff as of 2026-10-17. The live ledgers and
+This is the short operational handoff as of 2026-10-18. The live ledgers and
 fresh canonical comparisons override dated prose. Older checkpoints are in
 [the October archive](RE_HANDOFF_HISTORY_2026_10_02.md),
 [the September archive](RE_HANDOFF_HISTORY_2026_09_26.md), and the focused
@@ -119,8 +119,25 @@ All five old COFF text/data/relocation identities remain unchanged, plus
 preserves old layouts byte-for-byte; Ghidra re-attests selector/default/handoff,
 primary hashes unchanged and clone deleted. No source-present/exact credit.
 See [integrated low evidence](REIMU_LOW_DISPATCH_INTEGRATION_2026_10_17.md).
-Next add mid/high bodies to the monolithic source path and resolve returning
-world contexts toward the complete void root. Use `--cohort` for rechecks.
+The wider `ReimuActionStateDispatch.cpp` now directly adds301..310/320..322
+through `ReimuActionStateMidNormalCases.hpp`:3798 physical bytes/1011 target
+instructions plus shared exits. It keeps entry/low cases in the same method,
+routes311..319 to real common code and leaves>322 pending. Native0/5729
+includes5211 RETs,151 effect requests,313 object requests,42 common-entry
+stops,1 set669-entry stop and11 pending handoffs.29 original branch sites
+are required at both x87 precisions; object848 requests compare the pointed
+three-float payload. Three compiled negatives fail1/104,6/864,2/1274.
+Ground fixtures were corrected after negatives exposed premature native
+landing transitions. The wider method also passes59 old-path smoke plus28
+real common-return cases. All six prior COFF code/data/relocations are
+identical after rebuild, and old smokes pass0/9,0/88,0/64,0/99,0/150,0/59.
+The14-frame fixture preserves default graphs;19 structural tests pass.
+Direct Ghidra re-attests entries/root;9 primary hashes unchanged, clone
+removed. No root implementation/exact credit. See
+[middle-group evidence](REIMU_MID_NORMAL_ACTIONS_2026_10_18.md).
+Next continue at middle actions400 onward in the wider monolithic method,
+then high actions and returning world contexts toward the complete void root.
+Use `--cohort` for focused rechecks; no aggregate cold replay was run.
 Obsolete unpinned disassembly exports (~18MB) and rejected/superseded object
 files were removed; current bounded evidence and primary databases remain.
 Obsolete common-root GL controls/provider objects and rejected Reimu control

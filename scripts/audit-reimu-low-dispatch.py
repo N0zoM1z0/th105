@@ -97,10 +97,13 @@ class Probe(late.Probe):
     helpers = HELPERS
     resource_keys = KEYS
     resource_size = 0x100000
+    handled_action_max = 300
+    frame_capacity = 6
 
     def step(self, uc, address, size):
         super().step(uc, address, size)
-        if not self.candidate and address == MID:
+        if (not self.candidate and address == MID
+                and uc.reg_read(r.UC_X86_REG_EAX) > self.handled_action_max):
             self.pending_handoff = True
             uc.emu_stop()
         if address == 0x4740C0 and not self.execute_common:
@@ -130,12 +133,14 @@ class Probe(late.Probe):
         uc.mem_write(OWNER, bytes(0x10000))
         uc.mem_write(STACK+0xC000, bytes(0x4000))
         uc.mem_write(WORLD, bytes.fromhex("0000803f"))
-        graph, blocks, frames, frame_count = resource_graph(case, tuple(sorted(set(self.resource_keys) | {case["action"]})))
+        graph, blocks, frames, frame_count = resource_graph(case, tuple(sorted(set(self.resource_keys) | {case["action"]})),
+                                                          frame_capacity=self.frame_capacity)
         uc.mem_write(RESOURCE, graph)
         self.prepare_extra_case(case)
         action, sequence = case["action"], case["sequence"]
         index = sequence if 0 <= sequence < 7 else 0
-        block, frame = blocks[action]+index*0x20, frames[action]+index*0x400
+        stride = (self.frame_capacity*0x88+0x3ff) & ~0x3ff
+        block, frame = blocks[action]+index*0x20, frames[action]+index*stride
         timer = case["timer"] if case["timer"] is not None else 0 if case["transition"] == "unexpired" else case["duration"]-1
         fields = ((0, "I", VTABLE), (0xEC, "f", case["x"]), (0xF0, "f", case["y"]),
                   (0xF4, "I", case["vx"]), (0xF8, "I", case["vy"]), (0xFC, "f", 0.2),
@@ -202,7 +207,12 @@ def check_target_case(case, result, sites):
         raise ValueError("entry fixture bypassed the real object998 request")
 
 
-def audit(object_path, smoke=False, selected_cohorts=None):
+def audit(object_path, smoke=False, selected_cohorts=None, *, contract=None):
+    contract = contract or sys.modules[__name__]
+    SYMBOL, Probe, cases = contract.SYMBOL, contract.Probe, contract.cases
+    HELPERS, CALL_TARGETS = contract.HELPERS, contract.CALL_TARGETS
+    COHORT_COUNTS = contract.COHORT_COUNTS
+    check_target_case = contract.check_target_case
     support_paths = [Path(__file__), ROOT / "scripts/reimu_late_low_fixture.py",
                      ROOT / "scripts/audit-reimu-movement-attack-actions.py",
                      ROOT / "scripts/audit-reimu-late-low-actions.py",
@@ -210,6 +220,7 @@ def audit(object_path, smoke=False, selected_cohorts=None):
                      ROOT / "scripts/audit-reimu-low-actions.py",
                      ROOT / "scripts/reimu_animation_fixture.py",
                      ROOT / "scripts/audit-common-fighter-animation-paths.py"]
+    support_paths.append(Path(contract.__file__))
     support_hashes = {str(path.relative_to(ROOT)): linked_pe.sha(path) for path in support_paths}
     canonical = linked_pe.comparator()
     target_sha = canonical.verify_target()
@@ -225,6 +236,7 @@ def audit(object_path, smoke=False, selected_cohorts=None):
     bindings = {'405e000000000000': 7093872, '405b800000000000': 7093880, '3ee66666': 7093888, 'c1200000': 7093024, 'c1600000': 7093892, '4000000000000000': 7086528, '3fe0000000000000': 7131448, '4054000000000000': 7080016, '40f00000': 7093844, '3fe8000000000000': 7082656, '4059000000000000': 7131536, '4066800000000000': 7171760, '41200000': 7171820, '3fd3333340000000': 7088752, '442a0000': 7093848, '3ff0000000000000': 7131488, '4008000000000000': 7093112, '3f266666': 7093860, '41a00000': 7093864, '41700000': 7093920, '418c0000': 7093856, '41000000': 7088244, 'c1000000': 7131696, '41100000': 7093852, '40400000': 7171800, '40800000': 7131648, '4f800000': 7171832, '4049000000000000': 7093256, 'c1a00000': 7093368}
     bindings.update({'4057800000000000': 7093936, '404e000000000000': 7084168, '40900000': 7093928, 'c0900000': 7093924, '41700000': 7093920, '3f0ccccd': 7093916, 'c0800000': 7093912, '3f19999a': 7093908, '3f000000': 7131456, 'c0a00000': 7093080, 'c0400000': 7093084, 'c000000000000000': 7131632, '4004000000000000': 7091104, '40a00000': 7093104, '403e000000000000': 7081728, 'c02e000000000000': 7093088, 'c039000000000000': 7093096, '40000000': 7082992, '3eb33333': 7093904, 'c1480000': 7093900, '41480000': 7093320, '42aa0000': 7094276, '3e800000': 7091264, '3f647ae140000000': 7093072, '4044000000000000': 7082960})
     bindings["41780000"] = 0x6C3E88
+    bindings.update(getattr(contract, "LITERAL_BINDINGS", {}))
     for bits, address in bindings.items():
         literal = bytes.fromhex(bits)[::-1]
         if canonical.target_bytes(address, len(literal)) != literal:
@@ -263,11 +275,11 @@ def audit(object_path, smoke=False, selected_cohorts=None):
                                  "target_endpoint": expected["endpoint"], "candidate_endpoint": actual["endpoint"]})
         if count % 1000 == 0:
             print(f"Reimu low dispatch: {count}, differences {mismatches}", file=sys.stderr)
-    expected_count = sum(COHORT_COUNTS[name] for name in set(selected_cohorts)) if selected_cohorts else 59 if smoke else sum(COHORT_COUNTS.values())
+    expected_count = sum(COHORT_COUNTS[name] for name in set(selected_cohorts)) if selected_cohorts else getattr(contract, "SMOKE_COUNT", 59) if smoke else sum(COHORT_COUNTS.values())
     if (count != expected_count or linked_pe.sha(object_path) != object_sha
             or any(linked_pe.sha(ROOT / path) != digest for path, digest in support_hashes.items())):
         raise ValueError("input matrix incomplete or an input changed during execution")
-    return {"schema": "th105-reimu-low-dispatch-native-v1", "target_sha256": target_sha,
+    return {"schema": getattr(contract, "SCHEMA", "th105-reimu-low-dispatch-native-v1"), "target_sha256": target_sha,
             "body_sha256": BODY_SHA, "object_sha256": object_sha, "cases": count,
             "mismatch_count": mismatches, "cohorts": dict(cohorts), "stops": dict(stops),
             "selected_cohorts": selected_cohorts, "input_sha256": digest.hexdigest(), "examples": examples,
@@ -280,10 +292,10 @@ def audit(object_path, smoke=False, selected_cohorts=None):
             "unicorn_version": unicorn.__version__, "python_version": sys.version.split()[0],
             "unicorn_library_sha256": linked_pe.sha(Path(unicorn_api._uc._name)),
             "build_provenance_verified": False, "support_sha256": support_hashes,
-            "scope": "integrated entry and low source; common/669/world stops compare real call entry; "
+            "scope": getattr(contract, "SCOPE", "integrated entry and low source; common/669/world stops compare real call entry; "
                      "upper pending compares state at original mid selector; supplied flat/zero-handle context, "
                      "MT and helpers; RET or complete real world request; no returning request, "
-                     "whole-game, floating-exception, full-root source or canonical-exact claim"}
+                     "whole-game, floating-exception, full-root source or canonical-exact claim")}
 
 
 COHORT_COUNTS = {"bodies": 540, "default": 1036, "entry": 1440, "common_return": 28,
