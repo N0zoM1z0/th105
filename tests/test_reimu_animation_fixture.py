@@ -9,8 +9,11 @@ from reimu_animation_fixture import RESOURCE, TREE, HEAD, VECTOR, SLOT, resource
 
 
 class ReimuAnimationFixtureTests(unittest.TestCase):
+    linked_terminal = False
+    keys = tuple(range(11))
+
     def graph(self, transition="frame"):
-        return resource_graph({"transition": transition, "frame": 0, "duration": 3})
+        return resource_graph({"transition": transition, "frame": 0, "duration": 3}, self.keys, linked_terminal=self.linked_terminal)
 
     def read(self, image, address, fmt="<I"):
         return struct.unpack_from(fmt, image, address-RESOURCE)
@@ -18,7 +21,7 @@ class ReimuAnimationFixtureTests(unittest.TestCase):
     def test_tree_has_correct_owners_order_and_red_black_heights(self):
         image, blocks, _, _ = self.graph()
         root = self.read(image, HEAD+4)[0]
-        self.assertEqual(self.read(image, TREE+4, "<II"), (HEAD, 11))
+        self.assertEqual(self.read(image, TREE+4, "<II"), (HEAD, len(self.keys)))
         self.assertEqual(self.read(image, HEAD+0x14, "<BB"), (1, 1))
         keys = []
         def walk(node, parent, parent_red=False):
@@ -37,7 +40,7 @@ class ReimuAnimationFixtureTests(unittest.TestCase):
             return before+color
         self.assertEqual(self.read(image, root+0x14, "<B"), (1,))
         walk(root, HEAD)
-        self.assertEqual(keys, list(range(11)))
+        self.assertEqual(keys, list(self.keys))
 
     def test_two_frame_arrays_do_not_overlap_nodes_vectors_or_each_other(self):
         image, blocks, _, frame_count = self.graph()
@@ -69,7 +72,12 @@ class ReimuAnimationFixtureTests(unittest.TestCase):
                     block = first+index*0x20
                     previous, following = self.read(image, block+0x18, "<II")
                     self.assertEqual(previous, block-0x20 if index else 0)
-                    self.assertEqual(following, block+0x20 if transition == "block" and index < 3 else 0)
+                    self.assertEqual(following, block+0x20 if (transition == "block" or self.linked_terminal) and index < 3 else 0)
+
+
+class ReimuRecoveryAnimationFixtureTests(ReimuAnimationFixtureTests):
+    linked_terminal = True
+    keys = tuple(range(11)) + tuple(range(71, 79)) + (97,)
 
 
 if __name__ == "__main__":

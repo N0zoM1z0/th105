@@ -21,12 +21,20 @@ public:
     virtual void slot_00();
     virtual void slot_04();
     virtual int set_action(short action);
+    virtual int set_sequence(int sequence);
+    virtual void slot_10();
+    virtual unsigned char next_sequence_block();
 
     int spawn_owned_object_via_manager(
         int object_id, float x, float y, int direction, int arg5, int arg6, int arg7);
     bool run_checked_prelude();
     // True handles action0..10; false leaves other actions to later phases.
     bool try_run_checked_low_action();
+    // True handles actions71..78; this is another staging phase.
+    bool try_run_checked_recovery_action();
+    signed char classify_fighter_x_boundary();
+    void publish_battle_layout_scalar(float value);
+    void dispatch_indexed_event_member(unsigned int event);
     unsigned char resolve_stage_surface_landing_transition();
     unsigned char advance_frame_and_dispatch();
     int has_crossed_stage_surface_while_descending();
@@ -40,7 +48,9 @@ public:
     float acceleration_x_fc;
     float acceleration_y_100;
     signed char facing_104;
-    unsigned char reserved_105[0x37];
+    unsigned char reserved_105[0x27];
+    float angle_12c;
+    unsigned char reserved_130[0xc];
     short action_13c;
     short sequence_13e;
     short frame_index_140;
@@ -55,14 +65,22 @@ public:
     short word_186;
     unsigned char reserved_188[0x2f6];
     unsigned char byte_47e;
-    unsigned char reserved_47f[0x239];
+    unsigned char reserved_47f[0x11];
+    unsigned char byte_490;
+    unsigned char reserved_491[0x21b];
+    float field_6ac;
+    unsigned char reserved_6b0[8];
     int field_6b8;
-    unsigned char reserved_6bc[0x95];
+    unsigned char reserved_6bc[0x74];
+    short word_730;
+    short word_732;
+    unsigned char reserved_734[0x1d];
     unsigned char byte_751;
     unsigned char reserved_752[0x4e];
     short word_7a0;
     short word_7a2;
-    unsigned char reserved_7a4[0x24];
+    short word_7a4;
+    unsigned char reserved_7a6[0x22];
     short timer_7c8;
     short count_7ca;
     short latch_7cc;
@@ -85,6 +103,13 @@ typedef char ReimuStage_velocity_offsets[(offsetof(ReimuActionStatePreludeView, 
 typedef char ReimuStage_acceleration_offsets[(offsetof(ReimuActionStatePreludeView, acceleration_x_fc) == 0xfc && offsetof(ReimuActionStatePreludeView, acceleration_y_100) == 0x100) ? 1 : -1];
 typedef char ReimuStage_animation_offsets[(offsetof(ReimuActionStatePreludeView, sequence_13e) == 0x13e && offsetof(ReimuActionStatePreludeView, frame_index_140) == 0x140 && offsetof(ReimuActionStatePreludeView, frame_timer_142) == 0x142 && offsetof(ReimuActionStatePreludeView, frame_counter_144) == 0x144) ? 1 : -1];
 typedef char ReimuStage_low_gate_offsets[(offsetof(ReimuActionStatePreludeView, byte_47e) == 0x47e && offsetof(ReimuActionStatePreludeView, field_6b8) == 0x6b8) ? 1 : -1];
+
+typedef char ReimuStage_recovery_offsets[(offsetof(ReimuActionStatePreludeView, angle_12c) == 0x12c && offsetof(ReimuActionStatePreludeView, byte_490) == 0x490 && offsetof(ReimuActionStatePreludeView, field_6ac) == 0x6ac && offsetof(ReimuActionStatePreludeView, word_730) == 0x730 && offsetof(ReimuActionStatePreludeView, word_732) == 0x732 && offsetof(ReimuActionStatePreludeView, word_7a4) == 0x7a4) ? 1 : -1];
+
+// The original reset receiver is the sprite subobject at fighter+4.
+struct ReimuRecoverySpriteView {
+    void reset_fighter_action_scratch();
+};
 
 float __fastcall reimu_stage_surface_height_at_x(ReimuActionStatePreludeView *fighter);
 

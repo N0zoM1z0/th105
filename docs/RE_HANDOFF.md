@@ -49,7 +49,7 @@ Native0/10584 covers actor bytes, exit categories and first callback arguments;
 two wrong-source controls each fail1/9 smoke cases. The oracle stops before
 callbacks or action dispatch. This helper is not an original boundary or the
 target root. Root status/source selection remain unclassified/declaration-only;
-no implementation/exact credit or shared header/profile change was made.
+no implementation/exact credit or shared compiler-profile change was made.
 
 Direct Ghidra attests the full root and bounded method view, all11 dispatches,
 entry stores and fallback/RET. All9 primary database files unchanged; clone
@@ -62,8 +62,23 @@ across callbacks; use signed sequence>0 and full DWORD+6B8. Header extraction
 keeps all530 entry text bytes/relocation identities; fresh0/10584 entry replay
 passes. All3 launch sites occur20 times. Read-only graph and zero texture/
 event-handle context limit this proof; no whole-root exact claim. See
-[low-action evidence](REIMU_LOW_ACTIONS_2026_10_17.md). Next recover Reimu
-low71..78 and shared exits, then the remaining families toward a complete root.
+[low-action evidence](REIMU_LOW_ACTIONS_2026_10_17.md).
+
+Actions71..78 are now staged in `ReimuActionStateRecovery.cpp`:2619 physical
+bytes/677 instructions plus shared tails. Fresh native0/4595 has4106 genuine
+RET cases,414 stops at real effect wrapper435240 and75 at real owned-object
+wrapper465190; all request arguments are compared without fabricated results.
+Callback-returning requests, including the remaining landing layout/scratch
+suffix, remain unproved. Preserve71's conditional second gravity subtraction,
+73's signed WORD decrement wrap, two separate boundary calls, byte-facing
+negation and event/spawn ordering. Two compiled negatives fail11/64 and84/4595.
+The shared staging prefix adds offset-proved fields/vslots; affected entry and
+0..10 rebuilds pass0/10584 and0/10700. Accepted units are unaffected. Direct
+Ghidra independently attests the eight starts/shared exits; primary database
+hashes unchanged and clone removed. See
+[recovery-action evidence](REIMU_RECOVERY_ACTIONS_2026_10_17.md). Next recover
+remaining Reimu families toward a complete root, and supply real effect/object
+contexts before claiming their returning continuations.
 Obsolete common-root GL controls/provider objects and rejected Reimu control
 objects were removed at this phase switch. Current Reimu evidence/object
 remain; regenerate common link products before using its inspect mode.

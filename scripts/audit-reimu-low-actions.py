@@ -125,6 +125,15 @@ def cases(smoke=False):
 
 
 class Probe:
+    helpers = HELPERS
+    argument_helpers = ARGUMENT_HELPERS
+
+    def helper_receiver(self, address):
+        return (VECTOR if address == 0x40C100 else TREE if address == 0x45C320
+                else OWNER+4 if address in (0x407160, 0x4073A0, 0x4073C0)
+                else 0x702288 if address == 0x401D50
+                else None if address in (0x68A1A0, 0x407230, 0x43B1A0) else OWNER)
+
     def __init__(self, image, code, candidate):
         self.engine = unicorn.Uc(unicorn.UC_ARCH_X86, unicorn.UC_MODE_32)
         self.engine.mem_map(0x400000, 0x311000)
@@ -158,29 +167,26 @@ class Probe:
     def step(self, uc, address, size):
         if ADDRESS <= address < self.end:
             self.visited.add(address)
-        elif not any(start <= address < start+length for start, (length, _) in HELPERS.items()):
+        elif not any(start <= address < start+length for start, (length, _) in self.helpers.items()):
             raise ValueError(f"unreviewed execution at {address:#x}")
         if not self.candidate and address in (0x479570, 0x479632, 0x4796D0):
             self.launch_sites[address] += 1
         raw = bytes(uc.mem_read(address, size))
         if raw[0] == 0xE8:
             destination = address+5+int.from_bytes(raw[1:5], "little", signed=True)
-            if size != 5 or destination not in HELPERS:
+            if size != 5 or destination not in self.helpers:
                 raise ValueError(f"unreviewed direct call at {address:#x}")
         elif raw[0] == 0xFF and (raw[1] >> 3) & 7 in (2, 3):
             destination = animation.AnimationProbe.indirect_destination(self, raw, address)
-            if destination not in HELPERS:
+            if destination not in self.helpers:
                 raise ValueError(f"unreviewed virtual call {destination:#x}")
-        if address in HELPERS:
+        if address in self.helpers:
             self.helper_counts[address] += 1
-            receiver = (VECTOR if address == 0x40C100 else TREE if address == 0x45C320
-                        else OWNER+4 if address in (0x407160, 0x4073A0, 0x4073C0)
-                        else 0x702288 if address == 0x401D50
-                        else None if address in (0x68A1A0, 0x407230, 0x43B1A0) else OWNER)
+            receiver = self.helper_receiver(address)
             if receiver is not None and uc.reg_read(r.UC_X86_REG_ECX) != receiver:
                 raise ValueError(f"unreviewed receiver at {address:#x}")
             argument = None
-            if address in ARGUMENT_HELPERS:
+            if address in self.argument_helpers:
                 argument = struct.unpack("<I", uc.mem_read(uc.reg_read(r.UC_X86_REG_ESP)+4, 4))[0]
             if address in (0x407160, 0x401D50) and argument != 0:
                 raise ValueError("textured/audio-backend context is outside this fixture")
