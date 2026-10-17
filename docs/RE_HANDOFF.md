@@ -371,8 +371,21 @@ switches; frame598h versus570h remains first mismatch. No implementation/exact
 credit or aggregate replay. All9 primary hashes unchanged; superseded720
 objects/control copies and caches cleaned. See
 [730 mode-source evidence](REIMU_730_MODE_SHAPE_2026_10_18.md).
-Next prioritize740's two mode switches and undefined
-paths, full void/default ABI, returning world contexts and VC8/LTCG/TU evidence
+740 now has both explicit mode selectors and naturally unassigned locals for
+out-of-range inputs. VC8 reproduces three same-slot fallback reads and the
+fourth cutoff read; expanded uses the target'sESP+B4 (compactESP+18). A strict
+constant/table/spill qualifier derives candidate pre-read stops; actual740
+source no longer returns false there. Both objects pass0/5494 native cases,
+including8 unknown boundaries. A cutoff=0 control passes0/56 valid cases but
+fails qualification. With the existing zero-stack input, raw target/candidate
+sequence1 genuinely divide-fault and sequence6 genuinely returns with equal
+state; arbitrary stack contents remain unproved. Prior static contracts pass.
+The expanded probe has81452 pre-table bytes/text82824,1171 E8s,150 RETs and
+all11 target switches. Frame598h versus570h and full canonical contract remain
+unresolved; no implementation/exact credit or aggregate replay. Nine primary
+DB hashes unchanged; obsolete/control products and caches cleaned. See
+[740 selectors/indeterminate locals](REIMU_740_MODE_SHAPE_2026_10_18.md).
+Next prioritize the full void/default ABI, returning world contexts and VC8/LTCG/TU evidence
 before canonical root acceptance.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.
 Obsolete unpinned disassembly exports (~18MB) and rejected/superseded object

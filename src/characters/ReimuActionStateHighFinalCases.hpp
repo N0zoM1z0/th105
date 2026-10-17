@@ -237,12 +237,33 @@
     case 740: {
         unsigned int mode = static_cast<unsigned int>(g_match_identifier);
         if (sequence_13e == 1) {
-            // The out-of-range target arm reads uninitialized root-stack storage.
-            // Leave that path pending instead of supplying a guessed value.
-            if (mode > 3)
-                return false;
-            const int cadence = mode == 0 ? 10 : mode == 1 ? 8 : mode == 2 ? 6 : 5;
-            const int limit = mode == 0 ? 6 : mode == 1 ? 8 : mode == 2 ? 11 : 14;
+            // No default assignment: VC8 reproduces the target's indeterminate
+            // fallback spill. Native checks stop before either unknown read.
+            int cadence;
+            int limit;
+            int duration;
+            switch (mode) {
+            case 3:
+                cadence = 5;
+                limit = 14;
+                duration = 80;
+                break;
+            case 2:
+                cadence = 6;
+                limit = 11;
+                duration = 80;
+                break;
+            case 1:
+                cadence = 8;
+                limit = 8;
+                duration = 80;
+                break;
+            case 0:
+                cadence = 10;
+                limit = 6;
+                duration = 80;
+                break;
+            }
             if (frame_counter_144 % cadence == 0 && word_730 < limit) {
                 dispatch_character_wave_handle(8);
                 float parameters[3];
@@ -256,15 +277,19 @@
                 word_730 = static_cast<short>(word_730 + 1);
                 mode = static_cast<unsigned int>(g_match_identifier);
             }
-            if (frame_counter_144 > 80) {
+            if (frame_counter_144 > duration) {
                 next_sequence_block();
                 return true;
             }
         }
         if (sequence_13e == 6) {
-            if (mode > 3)
-                return false;
-            if (frame_counter_144 >= (mode <= 1 ? 60 : mode == 2 ? 50 : 30)) {
+            int cutoff;
+            switch (mode) {
+            case 3: cutoff = 30; break;
+            case 2: cutoff = 50; break;
+            case 1: case 0: cutoff = 60; break;
+            }
+            if (frame_counter_144 >= cutoff) {
                 next_sequence_block();
                 return true;
             }
