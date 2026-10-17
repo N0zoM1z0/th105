@@ -32,131 +32,109 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Active priority: Iku shared continuations and compiler context
+## Active priority: Iku joint exits and argument ownership
 
-`Iku_dispatch_action_state_vslot28 @ 620920` retains complete 110-action
-source, actual void thiscall prelude/default and one ascending switch.
-Target `[620920,62EFBE)` is 59038 bytes / 15132 instructions / 131 RETs,
-SHA256 abc831c6ccd95986bed811694f532ad8c8b92cb49702a7f6ce4de100b8a73dea.
-Strict whole-root remains **nonexact +0x64 / 620984**: target alone hoists
-EDI=1. No exact or partial credit. New current evidence:
-[frame7 boundaries/prelude controls](IKU_FRAME7_BOUNDARIES_2026_10_17.md),
-[frame4/event ownership](IKU_FRAME4_EVENT_OWNERSHIP_2026_10_17.md),
-[412/418 shared landing](IKU_LANDING_SHARED_CONTINUATION_2026_10_17.md).
+`Iku_dispatch_action_state_vslot28 @ 620920` retains complete110-action
+source, void thiscall prelude/default and one ascending switch. Target
+`[620920,62EFBE)` is59038 bytes /15132 instructions /131 RETs, SHA256
+abc831c6ccd95986bed811694f532ad8c8b92cb49702a7f6ce4de100b8a73dea.
+Strict whole-root remains **nonexact +0x64 /620984**: target alone hoists
+EDI=1. No exact/partial authored credit. Current evidence:
+[17-action common surface exit](IKU_COMMON_SURFACE_EXIT_2026_10_17.md).
 
-225 now uses frame<=7 before its modulo5 effect gate;408 uses frame>=7
-before its0.75 velocity subtraction. Raw target/Ghidra confirm CMP7/JG and
-CMP7/JL; neighboring320/321/322 gates already agree and remain unchanged.
-Fresh --frame-bounds native0/512 reaches96 real effect/16 object entries and
-400 RETs per side,164 target-root instructions. The wrong two frame7 gates
-detect48/512 (24 per action). Both roots run their own preludes/real helpers;
-no result injection or post-first-backend proof. Current native/configured
-sections normalize identically. No broad native or accepted-unit replay.
-
-305 now uses frame>=4, following target MOV EBX,4 / CMP frame,BX / JL,
-then reuses4 for the later event-frame comparison. The preceding >3 source
-used two immediate constants and merged305/696's event tail. The selected
-one-predicate change keeps4 live in a register and restores separate event
-sites with incoming sets{305}/{696}. Target usesBX, candidateDI, so305 is
-still nonexact. The complete180-byte696 physical owner now passes the
-instruction/edge diagnostic; it is not an independent exact function.
-
-412/418 now branch to one real velocity-clear / height-ST0-to-Y / vslot0C
-sequence2 / return continuation. All three physical calls have exactly the
-target's incoming set `{412,418}`; the earlier candidate put 418 with a
-different family. Target 418's JNZ at627256 enters CALL626080, after its own
-receiver setup; 412 falls through MOV ECX,ESI at62607E. No fake calls/returns,
-new callable helper or ABI/layout/profile change. Direct Ghidra independently
-re-attests file/import/entry/full mapped .text/root and reads back that edge
-and all three calls in one read-only 768MiB/two-CPU clone; all nine primary
-files unchanged. Wrong-image IDA remains rejected.
+The common height-ST0-to-Y / velocity-clear / return tail now has exactly
+its target incoming set:6/7/8/9/220/307/308/309/404/406/414/415/416/417/795/797/798.
+Target calls621044/621051 correspond to candidate62ECBE/62ECCB. Source retains
+all preceding callbacks and797/798's post-callback X=480/800 stores before
+height lookup. The private inlined fan routine reports pending restoration
+for404/406 so its callers can join; ground400/401/402 retain completed behavior.
+No original helper return ABI/callable boundary is claimed. Public ABI/layout,
+vtable, shared declarations/profiles/relocations remain unchanged; no local
+CALLs are emitted. A label-inside-case8 control still placed the shared tail
+near the end, grew32 bytes and remained nonexact+64; unselected.
 
 Current source CRLF SHA256:
-0e8c5e26d3bdf5849b00f7a684a217d75ef8aec30c608990e3377ce6f8ae3593.
-Canonical full section59550 bytes, SHA256:
-9843aea7c1d1cd156ac68422212313c86c38cb9d37f913db8c449a3c9d2fb207.
-Section size is unchanged, with15021 reachable
-instructions /58394 bytes in a58394-byte span, no internal unreached bytes,
-and1156 following alignment/metadata bytes (metadata starts58396). There are
-130 RETs,866 ordinary/175 register CALLs, no local CALLs/external tails and
-33/42/35 tables. Target865/177. Physical-owner diagnostics7/109
-(2/4/5/204/215/303/696), not matches. Frame400hex/84 real payload homes stay
-natural. Incoming-action/physical-ordinal pairing retains84 singleton and
-bijective constraints,57 identity;182 spawn calls/190 action-site records.
-Target/candidate pre-epilogue PCs14870/14761, states16959/16893. These are
-conditional static correlations, not payload values or feasible paths.
+c9a1c3e4715f18e19991fd7d5b19239fda5b482b1b1beaa4d6c13c41b867bda6.
+Normalized full section59478 bytes, SHA256:
+ec153b60cb6f2d40487e486a25c78d619efcd901ae01291d9c1c7b88f3a361f6.
+The section shrinks72 bytes. Candidate15000 reachable instructions /58318
+instruction bytes in58321-byte span, three internal alignment bytes,1157
+following alignment/metadata bytes (metadata starts58324),128 RETs,
+862 ordinary/178 register CALLs,33/42/35 tables, no external tails. Target
+865/177. Owner diagnostics remain7/109 (2/4/5/204/215/303/696), not matches.
+Frame400hex/84 natural payload homes stay; conditional incoming-action/
+physical-ordinal pairing retains84 singleton/bijective constraints,57 identity,
+182 spawn calls/190 action-site records. Target/candidate pre-epilogue
+PCs14870/14744, states16959/16900. These are not payload-value/path proofs.
 
-Prior4e852076 source --event-exits native passes0/256 through actual RET:
-305/696 frames2/3/4/5, timers-1/0, sequences0/1, PC53/PC64 and four velocity
-values including quiet NaN. Both target event PCs must be visited;141 target
-root instructions are covered. Wrong305 gate>=5 detects24/256, all305.
-Native/configured objects normalize identically across59550 bytes. Ordinary
-indexed-event sites are now41/41. Remaining target/candidate discrepancies:
-advancement107/106 (310/409 merged only in candidate), height19/20, facing9/10.
-Expanded incoming-action ordinary-call counts still differ only at730's five
-facing sites versus four. Sharing/count agreement is not value/exact proof.
+Fresh whole-entry native0/3252 covers the17 actions plus ground400/401/402:
+2566 RETs and686 first backend entries per side (13 effect/511 action/
+8 next-sequence/120 sequence/34 object),2040 target-root instructions.
+Native/configured whole sections normalize identically. Inverting404/406's
+caller status tests detects186/284,93 per action, on the matching subset.
+Real helpers run without result replacement. Landing paths stop at their
+first actual action/sequence callback; the subsequent common tail is static
+instruction/flow evidence, **not post-callback native proof**. The bad-status
+control instead detects erroneous restoration on normal completed paths.
 
-The prior83311acf source scopes412/418 native0/722 and its wrong-sequence
-control10/722 (4/6), as recorded in the landing note. That source also has an
-unselected RTM compiler witness:59518 bytes/15008 instructions,7145 normalized
-bytes differ from SP1, still first mismatch+64. No compiler profile change.
-Both409 versions reloadECX before their branch; that edge gives no special
-callee-preservation evidence. No broad native matrix or accepted replay.
+Direct Ghidra independently re-attests imported/file identity, entry, full
+mapped .text, language/compiler/root and the complete28-byte shared tail in
+one read-only768MiB/two-CPU clone. All nine primary files unchanged. Wrong-
+image IDA remains rejected. Physical layout and other sharing still differ:
+advancement107/106, height19/18, clear30/28, facing9/10 target/candidate.
+Expanded ordinary counts differ only at730's five facing sites versus four;
+count/incoming-set agreement is not value or exact proof. Earlier412/418 and
+six-action effect groups retain their exact incoming sets in the current CFG.
 
-On prior4e852076, embedded debug /Z7 is whole59550-byte neutral. /Zi failed
-with PDB-manager C1902 and has no comparison result; on-disk components report
-SP1 .762, active-manager failure remains undiagnosed. Do not infer original
-root flags from CodeView alone. No canonical compiler/profile change.
+Prior source-scoped evidence, retained in selected source where applicable:
 
-An earlier source (CRLF SHA256
-69c43bf58dcfbeee08866a93b007fa266718a37c7850b79609056b3920fa864b)
-remains the scope of these dated checkpoints:
+- Source0e8c5e26 [frame7 boundaries](IKU_FRAME7_BOUNDARIES_2026_10_17.md):
+  225<=7 /408>=7 match target CMP7/JG and CMP7/JL. Native0/512, wrong gates48.
+  Neighboring320/321/322 gates already agreed; no mechanical predicate rewrite.
+- Source4e852076 [frame4/event ownership](IKU_FRAME4_EVENT_OWNERSHIP_2026_10_17.md):
+  305>=4 keeps4 live across calls and restores separate305/696 events.
+  TargetBX/candidateDI;305 remains nonexact. Native0/256, wrong>=5 gate24.
+  The180-byte696 physical owner remains diagnostic-identical in current source.
+- Source83311acf [412/418 landing](IKU_LANDING_SHARED_CONTINUATION_2026_10_17.md):
+  both share clear/height/vslot0C sequence2/return with exactly{412,418}.
+  418's627256 JNZ enters CALL626080 after its ownECX setup. Native0/722,
+  wrong sequence3 control10. An unselected RTM control remains nonexact+64;
+  changing compiler alone did not resolve that checkpoint.
+- Source69c43bf5 [effect62](IKU_EFFECT_SHARED_CONTINUATION_2026_10_17.md) and
+  [sequence exits](IKU_SEQUENCE_EXIT_PHASE_2026_10_17.md):416/417/565..568 share
+  one effect/next-sequence tail; native0/1584, wrong height536. 562/563/730
+  native0/1728, wrong time gate16. Candidate still spills X at the effect join;
+  target carries X into the outgoing argument store. Preserve416/417's explicit
+  float round trip and565..568 raw-X signed zero. Wrappers/rounded double
+  carrier and the17-byte duplicated sequence-tail label control are unselected.
+- Source69c43bf5 [genuine link/visibility](IKU_PROVIDER_VISIBILITY_2026_10_17.md)
+  closes59504 bytes/898 HIGHLOWs/863 ordinary calls with real game/SDK/CRT.
+  It is not a link of currentc9a1c3e4. [MT state](IKU_MT_CALL_STATE_2026_10_17.md)
+  isolates MT TU visibility and16 live-x87 call sites; noinline leaves the59488
+  raw envelope identical. Actual helper native0/10016, different-seed2/2.
+  Keep ordinary MT opacity; original flags/pass/formal ABI remain unknown.
 
-- [Effect62 sharing](IKU_EFFECT_SHARED_CONTINUATION_2026_10_17.md):
-  416/417/565..568 share one effect/next-sequence tail;54 effect sites match
-  target54. Native0/1584, wrong height536/1584. Target carries X in ST0 into
-  the outgoing argument join; source still spills at its join. Preserve the
-  explicit float round trip for416/417;565..568 load raw X, including -0.
-  Forced-inline wrapper and the rounded double carrier were unselected.
-- [Sequence exit duplication](IKU_SEQUENCE_EXIT_PHASE_2026_10_17.md):
-  562/563/730 native0/1728, wrong time gate16/1728. Target626C47 has15 incoming
-  actions; candidate physical grouping differs. A private single label still
-  emitted two identical17-byte virtual/RET tails. Float clamp limits retained
-  the extra730 facing site and grew32 bytes; double bounds failed strict
-  literal replay. No standalone/LTCG barrier is proved.
-- [Genuine link/provider visibility](IKU_PROVIDER_VISIBILITY_2026_10_17.md):
-  /GL root plus41 ordinary providers, SDK/CRT,44 checked aliases/18 attested
-  data bindings. Full59504 envelope replays898 HIGHLOWs,863 ordinary CALLs and
-  two game-data reads; only22 scheduling bytes differ from ordinary59502,
-  plus two explicit INT3s. Strict59038 nonexact+64. Linked SHA256
-  0ce3d92b61d3b860050e57f1d736a149babe2f3735068f1bc6faeea004d2f26e.
-  This is an earlier-source/tool checkpoint, not a link of current0e8c5e26.
-- [MT call state](IKU_MT_CALL_STATE_2026_10_17.md): exposing only the MT TU
-  changes the first byte/prologue. All19 MT calls remain; target/ordinary
-  depth0 at all, visible variants depth1 at16/depth0 at3. Seed+next noinline
-  leaves the entire59488-byte raw envelope identical. Real helpers preserve
-  a low-bit float80 sentinel and agree on RNG/state in10016 paired draws;
-  different-seed control2/2. This supports preservation-information work,
-  not original flags/pass/formal ABI inference. Keep ordinary MT opacity.
+On prior4e852076, /Z7 is whole59550-byte neutral; /Zi failed with PDB-manager
+C1902 and has no comparison result. On-disk components report SP1 .762;
+active-manager failure remains undiagnosed. No canonical compiler change.
+Older native/link results remain scoped to their hashes; do not habitually
+replay them. Retain the small genuine-provider cache and current proof objects.
 
-Earlier contracts remain in [conditional exits/height](IKU_LANDING_ARGUMENT_OWNERSHIP_2026_10_17.md),
-[glide exits](IKU_GLIDE_EXIT_OWNERSHIP_2026_10_17.md),
+Other contracts: [conditional exits/height](IKU_LANDING_ARGUMENT_OWNERSHIP_2026_10_17.md),
+[glide](IKU_GLIDE_EXIT_OWNERSHIP_2026_10_17.md),
 [steering](IKU_STEERING_CLAMPS_2026_10_17.md),
-[virtual ABI](IKU_VIRTUAL_CALLS_2026_10_17.md) and
-[random/float](IKU_RANDOM_FLOAT_TYPES_2026_10_17.md). Their native runs retain
-their recorded older source hashes. Preserve unsigned602/live X addition,
-310 double increment,780 widened0.95f truncation, ordered NaN, raw-X signed
-zero, branch-local730 limits6/4/5, scratch receiverthis+4 and ftol ST0->EAX32.
-The header already uses native virtual declarations; moving818 arrays to
-caller scopes was byte-neutral. Do not repeat documented controls without
-new target/source evidence.
+[virtual ABI](IKU_VIRTUAL_CALLS_2026_10_17.md),
+[random/float](IKU_RANDOM_FLOAT_TYPES_2026_10_17.md).
+Preserve unsigned602/live X addition,310 double increment,780 widened0.95f
+truncation, ordered NaN, raw-X signed zero, branch-local730 limits6/4/5,
+scratch receiverthis+4 and ftol ST0->EAX32. Header already uses native virtual
+methods. Do not repeat source/flag controls without new independent evidence.
 
-Next: initial constant1 lifetime, shared effect outgoing-stack join,730's duplicated facing
-suffix and310/409 advancement physical ownership. Original C++/TU/inheritance,
-compiler phase, payload-value and post-backend/exception equivalence remain
-unknown. No accepted shared-unit change or cold aggregate replay. Retain the
-small genuine-provider object cache; remove superseded private source copies,
-images, duplicate objects and read-only clones after recording their facts.
+Next: effect argument/direction ownership at incoming paths, initial constant1
+lifetime,730's duplicated facing suffix and310/409 advancement sharing.
+Original C++/TU/inheritance/optimizer, full value/payload/exception equivalence
+and post-backend behavior remain unknown. No accepted shared-unit change or
+cold aggregate replay. Remove superseded private controls, objects and clones.
 
 ## Shared Fighter linked checkpoint
 
