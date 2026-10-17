@@ -151,6 +151,7 @@ class Probe(previous.Probe):
     resource_keys = KEYS
     resource_size = 0x100000
     handled_action_max = 619
+    parameter_counts_869 = (4,)
 
     def extra_actor_fields(self, case):
         hover = ((0x73C, "I", case["hover_bits"]),) if "hover_bits" in case else ()
@@ -168,9 +169,9 @@ class Probe(previous.Probe):
                 if (pointer, count) != (0, 0):
                     raise ValueError("859 unexpectedly carries a parameter array")
                 return
-            expected_count = 4 if request[1] == 869 else 3
+            allowed_counts = self.parameter_counts_869 if request[1] == 869 else (3,)
             sp = uc.reg_read(low.r.UC_X86_REG_ESP)
-            if count != expected_count or pointer & 3 or not sp <= pointer <= pointer+count*4 <= low.STACK+0x10000:
+            if count not in allowed_counts or pointer & 3 or not sp <= pointer <= pointer+count*4 <= low.STACK+0x10000:
                 raise ValueError("high-middle parameters escaped the active supplied stack")
             self.spawn_request = (*request[:6], struct.unpack("<"+"I"*count, uc.mem_read(pointer, count*4)), count)
 

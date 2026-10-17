@@ -275,7 +275,23 @@ clone removed. Future groups may reuse after byte/primary-hash rechecks.
 Active indexed windows, returning volleys/backend contexts, full void ABI
 and canonical matching remain unproved; no implementation/exact credit. See
 [608..619 evidence](REIMU_HIGH_MIDDLE_ACTIONS_2026_10_18.md).
-Next continue650 at48A24E and later high bodies, then real returning world
+650/651/658/669/695/696/710/711 now join the method through711:6655 target
+bytes/1697 instructions. Native0/6481 includes5162 RETs,1251 object requests,
+46 effects,12 common entries,1 set669 and9 pending. Thirty-three required
+original sites run at both precisions;748 earlier-path cases pass. The fixture
+adds actual native landing destination704; prior classes stay unchanged.
+Preserve650/651 signed pre-advance shot gates and different gravity ordering,
+658 unconditional gravity,669's >=240 cutoff/three-float869 payload and
+710/711 stored-motion restores, reversed mode-table order and aim offsets.
+669 and710 use different floating addition association for ray y. The new
+869 subclass permits3/4 with full count/content checks; old619 remains4-only.
+Controls detect1/748 for count4->3,40/680 for cutoff equality and50/600 for
+711's mode0 offset. Six old COFF identities/focused smokes remain unchanged.
+The reused direct Ghidra receipt is rechecked against all current bytes and
+9 unchanged primary hashes; no new process/clone. Returning volleys/backend,
+full void ABI and canonical matching remain unproved; no implementation/exact
+credit. See [650..711 evidence](REIMU_HIGH_LATE_ACTIONS_2026_10_18.md).
+Next continue720 at48BC4D and later high bodies, then real returning world
 contexts toward the complete void root and strict full-function comparison.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.
 Obsolete unpinned disassembly exports (~18MB) and rejected/superseded object
