@@ -61,6 +61,20 @@ paste decompiler text or promote partial action fragments. No source-present
 or exact root claim. See [the virtual ABI evidence](IKU_VIRTUAL_CALLS_2026_10_17.md)
 and [the type/native evidence](IKU_RANDOM_FLOAT_TYPES_2026_10_17.md).
 
+Actions565–568 now have four complete staged C++ bodies in
+`src/characters/IkuObject818Actions.cpp`. Their raw closure is2119 instructions/
+8495 unique bytes including105 shared-tail bytes, with all56 spawn literal
+recipes checked. The new pinned-VC8 native source diagnostic passes0/2516:
+1896 genuine RETs,588 first-spawn and32 effect/action/sequence entry stops.
+It compares the complete7B8 actor view, helper arguments/order, intermediate
++180 state, conversion inputs, stack/CW and callee-saved registers at RET.
+Unsigned-tick and reversed-publication controls each differ8/452 smoke cases.
+Backend execution after these entry stops and the second spawn are unverified.
+The staged bool helper is not the original void root;106 other nondefault
+action IDs and complete root compiler ownership remain. No source/exact ledger
+promotion or partial byte credit. Continue extending the large root
+families. See [the family source checkpoint](IKU_OBJECT818_SOURCE_2026_10_17.md).
+
 ## Shared Fighter linked checkpoint
 
 `Fighter_update_common_action_state @ 4740C0` is the current large shared root.
