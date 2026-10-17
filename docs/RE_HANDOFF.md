@@ -206,8 +206,22 @@ signed609 gating and waves after returning requests have raw instruction
 evidence only; sqrt's18-byte binding is not dynamically executed. No root
 implementation/exact credit. See
 [520-family evidence](REIMU_MID_520_ACTIONS_2026_10_18.md).
-Next continue540/541/545/546/550/551/direct560, then high actions and real
-returning world contexts toward the complete void root.550/551 share48749F;
+540/541/545/546 now join the same method through546:4120 target bytes/949
+instructions. Native0/5807 includes5256 RETs,511 object requests,18 effects,
+11 common-entry stops,1 set669 stop and10 pending handoffs. Visual scale/NaN/
+alpha-wrap,541 signed state counters, launch coordinates and first fan
+payloads are checked;366 real sine/cosine pairs and1051 wave calls execute.
+541 moves self x+facing100;540 uses peer x-facing180. Thirteen required
+sites run at both precisions. Wrong alpha/source-coordinate/angle controls
+fail8/40,50/200,1/40. A473-case integration cohort, six unchanged old COFF
+identities and focused smokes preserve earlier paths. Prior direct Ghidra
+readback covers these entries and is reused after rechecking root/body/table/
+instruction bytes and all9 primary file hashes; no new process/clone.
+Later fan iterations/returning manager contexts remain dynamically unproved;
+no root implementation/exact credit. See
+[540-family evidence](REIMU_MID_540_ACTIONS_2026_10_18.md).
+Next continue550/551/direct560, then high actions and real returning world
+contexts toward the complete void root.550/551 share48749F;
 their1132-byte body ends48790B before364 direct560 bytes and30 selector bytes.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.
 Obsolete unpinned disassembly exports (~18MB) and rejected/superseded object
