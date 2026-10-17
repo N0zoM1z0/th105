@@ -424,7 +424,19 @@ Candidate prefix81384/text82756,1168 calls and2454 replayed relocations remain
 nonexact, first478FA8. Case-order/single-switch controls keep598h and are not
 adopted. No credit/aggregate replay;9 primary DB hashes unchanged and stale
 products cleaned. See [request-buffer lifetimes](REIMU_REQUEST_BUFFER_LIFETIMES_2026_10_18.md).
-Next prioritize remaining scalar spill/alignment and call sharing, exact callable ownership,
+550/551 now prepares both coordinate expressions directly in request arguments,
+matching the observed pre-sine count/pointer/arg5/direction pushes. The extra
+trajectory slot disappears into the normal m32 slot40; frame578h->570h equals
+target. Strict first mismatch moves to478FB1/+11h, zero-register sharing.
+Focused native0/1576, current void0/1544, compact0/12 and0/8, prior static loops
+and all9 buffer partitions pass. Old578h source fails both preparation checks.
+Source adjacent-table bounds and x87 stack-store tracking are corrected with
+two regression fixtures; prior9 buffer conclusions remain valid. Prefix81364/
+text82736,1168 calls and2456 replayed relocations are still nonexact. The grid
+after eight object requests has static call-site evidence only; returning
+world calls remain unproved. No credit/aggregate replay,9 primary DB hashes
+unchanged; unused products cleaned. See [550 request/frame evidence](REIMU_550_REQUEST_FRAME_2026_10_18.md).
+Next prioritize remaining constant/register and call sharing, exact callable ownership,
 returning world contexts and VC8/LTCG/TU evidence
 before canonical root acceptance.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.

@@ -143,3 +143,9 @@ Obsolete private sources, listings, control objects and caches are cleaned;
 current objects and compact evidence remain. Next recover the remaining
 scalar spill/alignment and call sharing, while retaining the returning-world,
 indeterminate740 and compiler/TU/LTCG proof obligations.
+
+The follow-up [550 request/frame checkpoint](REIMU_550_REQUEST_FRAME_2026_10_18.md)
+corrects source auxiliary-table traversal at adjacent metadata owners and x87
+stack-store access flags. Both the earlier and current nine buffer partitions
+pass the corrected audit; the measured source/listing/native facts above stay
+historical. The follow-up recovers frame570h and supersedes the8-byte blocker.

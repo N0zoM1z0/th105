@@ -2,6 +2,7 @@ import importlib.util
 from pathlib import Path
 import struct
 import sys
+from types import SimpleNamespace
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -71,6 +72,24 @@ class ReimuRootStackTests(unittest.TestCase):
             '6a 03 85 c9 74 07 8d 44 24 14 50 eb 03 83 ec 04'))
         with self.assertRaisesRegex(ValueError, 'unwritten incoming stack'):
             result.payloads()
+
+    def test_x87_store_invalidates_a_previously_pushed_pointer(self):
+        result = shared_request(bytes.fromhex('6a 03 8d 44 24 14 50 d9 1c 24'))
+        with self.assertRaisesRegex(ValueError, 'overwritten by an unqualified stack store'):
+            result.payloads()
+
+    def test_adjacent_destination_tables_keep_their_independent_owners(self):
+        code = (bytes.fromhex('ff 24 85') + struct.pack('<I', stack.ADDRESS+16)
+                + bytes.fromhex('ff 24 85') + struct.pack('<I', stack.ADDRESS+24) + b'\x90\x90')
+        replay = code + struct.pack('<IIII', stack.ADDRESS, stack.ADDRESS+7,
+                                    stack.ADDRESS+7, stack.ADDRESS)
+        symbol = SimpleNamespace(section_number=1)
+        obj = SimpleNamespace(text_section_number=1,
+                              relocations={offset: (symbol, 6) for offset in (3, 10, 16, 20, 24, 28)},
+                              relocated_text_value=lambda offset: {3: 16, 10: 24}[offset])
+        tables = stack.source_switch_tables(obj, code, replay)
+        self.assertEqual(tables[stack.ADDRESS+16], [stack.ADDRESS, stack.ADDRESS+7])
+        self.assertEqual(tables[stack.ADDRESS+24], [stack.ADDRESS+7, stack.ADDRESS])
 
 
 if __name__ == '__main__':

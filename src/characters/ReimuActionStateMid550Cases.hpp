@@ -24,11 +24,11 @@
                     for (float i = 0.0f; i < 8.0f; i += 1.0f) {
                         const unsigned int random = static_cast<unsigned int>(selector_random_roll(45));
                         parameters[0] = static_cast<float>(static_cast<double>(static_cast<float>(random)) + i * 45.0);
-                        const float y = static_cast<float>(lookup_orientation_sine_quantized_abs(parameters[0])
-                            * (frame_timer_142 * 20) + y_f0 + 100.0);
-                        const float x = static_cast<float>(lookup_orientation_cosine_quantized_abs(parameters[0])
-                            * (frame_timer_142 * 20) * facing_104 + x_ec);
-                        spawn_owned_object_via_manager(822, x, y,
+                        spawn_owned_object_via_manager(822,
+                            static_cast<float>(lookup_orientation_cosine_quantized_abs(parameters[0])
+                                * (frame_timer_142 * 20) * facing_104 + x_ec),
+                            static_cast<float>(lookup_orientation_sine_quantized_abs(parameters[0])
+                                * (frame_timer_142 * 20) + y_f0 + 100.0),
                             static_cast<unsigned char>(facing_104), 1, parameters, 4);
                     }
                 }
@@ -43,11 +43,11 @@
                             parameters[0] = trajectory;
                             parameters[1] = static_cast<float>(layer * 18.0 + 8.0);
                             parameters[3] = static_cast<float>(layer + 30.0);
-                            const float y = static_cast<float>(lookup_orientation_sine_quantized_abs(geometry)
-                                * 250.0 + y_f0 + 100.0);
-                            const float x = static_cast<float>(lookup_orientation_cosine_quantized_abs(geometry)
-                                * 250.0 * facing_104 + x_ec);
-                            spawn_owned_object_via_manager(822, x, y,
+                            spawn_owned_object_via_manager(822,
+                                static_cast<float>(lookup_orientation_cosine_quantized_abs(geometry)
+                                    * 250.0 * facing_104 + x_ec),
+                                static_cast<float>(lookup_orientation_sine_quantized_abs(geometry)
+                                    * 250.0 + y_f0 + 100.0),
                                 static_cast<unsigned char>(facing_104), 1, parameters, 4);
                         }
                     }
