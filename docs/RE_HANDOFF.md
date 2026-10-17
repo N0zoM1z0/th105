@@ -85,10 +85,32 @@ zero-handle returns and passes0/7833:4156 RETs,3466 first-spawn,192 effect,
 1 action and18 next-block entry stops. It also compares full RNG-state digest
 and texture-manager stores. Signed-offset/early-store controls differ16/741
 and8/741 smoke cases; the object818 default probe retains0/452. Fresh selector
-comparison is canonical27/27. These are12 staged action IDs total, with98 and
-the complete root prelude/default/integration still remaining; no whole-root
-source selection or exact credit. Do not count shared-tail unions twice.
+comparison is canonical27/27. That checkpoint brought the staged total to12
+action IDs; it did not select or credit the whole root. Do not count shared-tail unions twice.
 See [the spell-family checkpoint](IKU_SPELL_SOURCE_2026_10_17.md).
+
+All14 high-switch arms after610 are now staged in `src/characters/IkuLateActions.cpp`:
+650/660/695/696/710/720/730/740/770/780/781/795/797/798. Their closed normal-return
+CFG has2150 instructions/8270 bytes. The physical8059-byte interval contains
+one2-byte FSTP at62EAC9 owned by other root paths; do not claim exclusive slices.
+Raw proof corrects730's decompiler double-negation ambiguity and unordered
+positive-VX branch, and preserves780's widened0.95f/truncation (20->18),
+signed counters, channel gates and shared tails. Native original4065B0 creates
+the real3600-float lookup table; its177-byte span remains an unledgered fixture
+dependency without origin/boundary/exact promotion. Real math/runtime and
+shared field setters execute with228 runtime instruction PCs byte-attested.
+
+The new source probe passes0/9564:7417 genuine RETs,29 spawn,3 effect,596 action,
+373 next-block,1144 sequence,1 finalize and1 NaN-X abs entry stop. It compares
+actor, calls, conversion inputs, RNG/texture and global service/pair state;
+PC53/64 controls are included. Heading-decrement and rounded-decay controls
+differ120/2144 and104/2144 smoke cases. NaN X needs imported CRT/OS error state
+beyond the abs entry; other backends and later ring members remain unexecuted.
+The new loader's only external data key is the existing non-executable
+`g_match_identifier`; no acceptance binding/header/profile is changed. Current
+total:26 staged IDs,84 plus complete prelude/default/integration remaining.
+Root source selection/exact credit remain absent. See
+[the late-family checkpoint](IKU_LATE_SOURCE_2026_10_17.md).
 
 ## Shared Fighter linked checkpoint
 

@@ -91,8 +91,10 @@ def control_source(name):
     return path
 
 
-def load_object(path, *, root_prefix="?try_dispatch_verified_object818_action@", methods=None):
+def load_object(path, *, root_prefix="?try_dispatch_verified_object818_action@", methods=None, data_keys=()):
     methods = METHODS if methods is None else methods
+    canonical = linked_pe.comparator()
+    known_data = canonical.known_data_targets()
     spec = importlib.util.spec_from_file_location("iku818_coff", ROOT / "scripts/compare-giant-action-switches.py")
     module = importlib.util.module_from_spec(spec)
     sys.modules[spec.name] = module
@@ -120,12 +122,20 @@ def load_object(path, *, root_prefix="?try_dispatch_verified_object818_action@",
                     raise ValueError("unreviewed source dependency: " + symbol.name)
                 destination = methods[method]
                 aliases[symbol.name] = destination
+            elif symbol.section_number == 0 and kind == 6 and symbol.name in data_keys:
+                destination, literal, _, _ = known_data[symbol.name]
+                if (struct.unpack_from("<I", data, field)[0] != 0
+                        or canonical.target_bytes(destination, len(literal)) != literal
+                        or pefile.PE(str(ROOT / "resources/th105.exe")).get_section_by_rva(
+                            destination - 0x400000).Characteristics & 0x20000000):
+                    raise ValueError("external data binding is not attested non-executable data")
+                aliases[symbol.name] = destination
             else:
                 raise ValueError("unreviewed source section/symbol: " + symbol.name)
             addend = struct.unpack_from("<i", data, field)[0]
             if kind == 0x14:
                 value = destination + addend - (base + field + 4)
-            elif kind == 6 and symbol.section_number in sections:
+            elif kind == 6:
                 value = destination + addend
             else:
                 raise ValueError("unreviewed source relocation type")
