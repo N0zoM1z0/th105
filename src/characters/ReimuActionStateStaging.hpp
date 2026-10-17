@@ -36,7 +36,7 @@ public:
     bool run_checked_prelude();
     // True completes the entry/low path; false hands action>300 to later source.
     bool run_checked_low_dispatch();
-    // Entry, low table and middle actions through513; later actions remain pending.
+    // Entry, low table and middle actions through531; later actions remain pending.
     bool run_checked_action_dispatch();
     void update_common_action_state();
     // True handles action0..10; false leaves other actions to later phases.
@@ -109,7 +109,9 @@ public:
     unsigned char reserved_4d4[0x84];
     short counter_558;
     signed char phase_55a;
-    unsigned char reserved_55b[0x151];
+    unsigned char reserved_55b[0xae];
+    signed char byte_609;
+    unsigned char reserved_60a[0xa2];
     float field_6ac;
     unsigned char reserved_6b0[4];
     int field_6b4;
@@ -151,6 +153,7 @@ typedef char ReimuPrelude_peer_offset[(offsetof(ReimuActionStatePreludeView, pee
 typedef char ReimuPrelude_word174_offset[(offsetof(ReimuActionStatePreludeView, word_174) == 0x174) ? 1 : -1];
 typedef char ReimuPrelude_state_offset[(offsetof(ReimuActionStatePreludeView, state_180) == 0x180) ? 1 : -1];
 typedef char ReimuPrelude_gate_offset[(offsetof(ReimuActionStatePreludeView, word_186) == 0x186) ? 1 : -1];
+typedef char ReimuLateMid_offset[(offsetof(ReimuActionStatePreludeView, byte_609) == 0x609) ? 1 : -1];
 typedef char ReimuCharge_offsets[(offsetof(ReimuActionStatePreludeView, byte_17c) == 0x17c) ? 1 : -1];
 typedef char ReimuShot_offsets[(offsetof(ReimuActionStatePreludeView, field_6c4) == 0x6c4 && offsetof(ReimuActionStatePreludeView, field_744) == 0x744) ? 1 : -1];
 typedef char ReimuProjectile_offsets[(offsetof(ReimuActionStatePreludeView, byte_47f) == 0x47f && offsetof(ReimuActionStatePreludeView, scale_4d0) == 0x4d0 && offsetof(ReimuActionStatePreludeView, counter_558) == 0x558 && offsetof(ReimuActionStatePreludeView, phase_55a) == 0x55a && offsetof(ReimuActionStatePreludeView, field_6c0) == 0x6c0 && offsetof(ReimuActionStatePreludeView, word_738) == 0x738 && offsetof(ReimuPreludePeerView, y_f0) == 0xf0) ? 1 : -1];
@@ -178,6 +181,7 @@ double __cdecl lookup_orientation_cosine_quantized_abs(float phase);
 unsigned int __cdecl mt19937_next_u32();
 int __stdcall selector_random_range(int lower, int upper);
 float __cdecl atan2_degrees(float y, float x);
+float __cdecl sqrt_float_value(float value);
 
 // The original reset receiver is the sprite subobject at fighter+4.
 struct ReimuRecoverySpriteView {

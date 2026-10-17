@@ -191,9 +191,25 @@ exits;9 primary files unchanged and clone deleted. Compact source loops versus
 expanded target call sites, returning volleys/world contexts and whole-root
 canonical matching remain unproved; no implementation/exact credit. See
 [510-family evidence](REIMU_MID_510_ACTIONS_2026_10_18.md).
-Next continue520..550 middle actions, then high actions and returning world
-contexts toward the complete void root. Use `--cohort` for focused rechecks;
-no aggregate cold replay was run.
+Eight further actions520/521/522/523/525/526/530/531 now join the same method:
+5361 target bytes/1277 instructions, with>531 pending. Native0/3362 includes
+1922 RETs,1399 object requests,18 effects,12 common-entry stops,1 set669 stop
+and10 pending handoffs; a409-case cohort preserves earlier paths. First815/
+816/817 payloads,17C flags, pre/post-advance gates and signed facing are
+checked. Aerial522/523 use x+facing43,y+107, not the previous family's50/108.
+523 sets9 through its own485DBE path;522 shares48748C. Twelve required sites
+run at both precisions. Three compiled coordinate/speed/cutoff controls each
+fail2/64; all six older COFF code/data/relocation identities and focused
+smokes remain unchanged. Ghidra re-attests root/current/adjacent entries;
+9 primary files unchanged, clone removed. Subsequent trajectories/pairs,
+signed609 gating and waves after returning requests have raw instruction
+evidence only; sqrt's18-byte binding is not dynamically executed. No root
+implementation/exact credit. See
+[520-family evidence](REIMU_MID_520_ACTIONS_2026_10_18.md).
+Next continue540/541/545/546/550/551/direct560, then high actions and real
+returning world contexts toward the complete void root.550/551 share48749F;
+their1132-byte body ends48790B before364 direct560 bytes and30 selector bytes.
+Use `--cohort` for focused rechecks; no aggregate cold replay was run.
 Obsolete unpinned disassembly exports (~18MB) and rejected/superseded object
 files were removed; current bounded evidence and primary databases remain.
 Obsolete common-root GL controls/provider objects and rejected Reimu control
