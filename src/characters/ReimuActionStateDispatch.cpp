@@ -2,14 +2,14 @@
 
 namespace th105 {
 
-// One source path for the checked entry and all actions<=322. This staged
+// One source path for the checked entry and all actions<=408. This staged
 // bool's false means that the unreconstructed later middle/high path must continue.
 // It is not the original void root and receives no implementation/exact credit.
 bool ReimuActionStatePreludeView::run_checked_action_dispatch()
 {
 #include "ReimuActionStatePreludeBody.hpp"
     const short selected_action = action_13c;
-    if (selected_action > 322)
+    if (selected_action > 408)
         return false;
     switch (selected_action) {
 #include "ReimuActionStateLowCases.hpp"
@@ -20,6 +20,7 @@ bool ReimuActionStatePreludeView::run_checked_action_dispatch()
 #include "ReimuActionStateMovementAttackCases.hpp"
 #include "ReimuActionStateLateLowCases.hpp"
 #include "ReimuActionStateMidNormalCases.hpp"
+#include "ReimuActionStateMidProjectileCases.hpp"
     default:
         update_common_action_state();
         return true;

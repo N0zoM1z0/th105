@@ -135,9 +135,25 @@ The14-frame fixture preserves default graphs;19 structural tests pass.
 Direct Ghidra re-attests entries/root;9 primary hashes unchanged, clone
 removed. No root implementation/exact credit. See
 [middle-group evidence](REIMU_MID_NORMAL_ACTIONS_2026_10_18.md).
-Next continue at middle actions400 onward in the wider monolithic method,
-then high actions and returning world contexts toward the complete void root.
-Use `--cohort` for focused rechecks; no aggregate cold replay was run.
+The same monolithic method now adds400/401/402/404/406/408 through
+`ReimuActionStateMidProjectileCases.hpp`:6469 target bytes/1570 instructions
+plus shared tails, with>408 pending. Native0/2932 includes2321 RETs,13 effect
+requests,575 object requests,11 common-entry stops,1 set669-entry stop and11
+pending handoffs.624 real atan2 calls execute unchanged native math code;
+592 range calls execute actual MT and572 scaled-counter calls retain phase/
+WORD behavior.16 required target branch sites run at both x87 precisions.
+The191-case integration cohort covers earlier middle/low/entry/common-return
+paths in the changed method. Wrong speed/payload/cadence controls fail2/32,
+8/60,8/60;408's corrected target launch speed is3.5f. All six older code/data/
+relocation identities and focused smokes are preserved. Nine-sequence graphs
+retain old default bytes;23 structural tests pass. Ghidra attests entries,
+helpers/root/shared tails;9 primary files unchanged, clone deleted. Object/
+effect requests still stop at actual wrapper entry, so second-shot/wave/
+post-manager continuations remain unproved; no root implementation/exact credit.
+See [projectile-group evidence](REIMU_MID_PROJECTILE_ACTIONS_2026_10_18.md).
+Next continue middle410..418, then500/high actions and returning world contexts
+toward the complete void root. Use `--cohort` for focused rechecks; no aggregate
+cold replay was run.
 Obsolete unpinned disassembly exports (~18MB) and rejected/superseded object
 files were removed; current bounded evidence and primary databases remain.
 Obsolete common-root GL controls/provider objects and rejected Reimu control

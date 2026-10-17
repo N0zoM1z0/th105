@@ -12,7 +12,8 @@ namespace th105 {
 struct ReimuPreludePeerView {
     unsigned char reserved_000[0xec];
     float x_ec;
-    unsigned char reserved_0f0[0x84];
+    float y_f0;
+    unsigned char reserved_0f4[0x80];
     short word_174;
     unsigned char reserved_176[0x316];
     short word_48c;
@@ -35,7 +36,7 @@ public:
     bool run_checked_prelude();
     // True completes the entry/low path; false hands action>300 to later source.
     bool run_checked_low_dispatch();
-    // Entry, low table and middle actions301..322; later actions remain pending.
+    // Entry, low table and middle actions through408; later actions remain pending.
     bool run_checked_action_dispatch();
     void update_common_action_state();
     // True handles action0..10; false leaves other actions to later phases.
@@ -47,6 +48,8 @@ public:
     // Remaining low-table actions and direct action300.
     bool try_run_checked_late_low_action();
     void adjust_counter_482(short amount, int floor_value);
+    int add_scaled_counter(int value);
+    void dispatch_character_wave_handle(unsigned int index);
     unsigned char try_dispatch_directional_action_208_210(int option);
     unsigned char is_at_stage_surface();
     void face_opponent_and_flip_horizontal_velocity();
@@ -87,7 +90,8 @@ public:
     short word_186;
     unsigned char reserved_188[0x2f6];
     unsigned char byte_47e;
-    unsigned char reserved_47f[3];
+    unsigned char byte_47f;
+    unsigned char reserved_480[2];
     short word_482;
     unsigned char reserved_484[0xc];
     unsigned char byte_490;
@@ -98,13 +102,19 @@ public:
     short word_4ae;
     unsigned char reserved_4b0[8];
     int field_4b8;
-    unsigned char reserved_4bc[0x1f0];
+    unsigned char reserved_4bc[0x14];
+    float scale_4d0;
+    unsigned char reserved_4d4[0x84];
+    short counter_558;
+    signed char phase_55a;
+    unsigned char reserved_55b[0x151];
     float field_6ac;
     unsigned char reserved_6b0[4];
     int field_6b4;
     int field_6b8;
     int field_6bc;
-    unsigned char reserved_6c0[8];
+    int field_6c0;
+    unsigned char reserved_6c4[4];
     int field_6c8;
     unsigned char reserved_6cc[0x60];
     unsigned char byte_72c;
@@ -113,7 +123,8 @@ public:
     short word_732;
     short word_734;
     short word_736;
-    unsigned char reserved_738[4];
+    short word_738;
+    unsigned char reserved_73a[2];
     float field_73c;
     float field_740;
     unsigned char reserved_744[0xc];
@@ -137,6 +148,7 @@ typedef char ReimuPrelude_peer_offset[(offsetof(ReimuActionStatePreludeView, pee
 typedef char ReimuPrelude_word174_offset[(offsetof(ReimuActionStatePreludeView, word_174) == 0x174) ? 1 : -1];
 typedef char ReimuPrelude_state_offset[(offsetof(ReimuActionStatePreludeView, state_180) == 0x180) ? 1 : -1];
 typedef char ReimuPrelude_gate_offset[(offsetof(ReimuActionStatePreludeView, word_186) == 0x186) ? 1 : -1];
+typedef char ReimuProjectile_offsets[(offsetof(ReimuActionStatePreludeView, byte_47f) == 0x47f && offsetof(ReimuActionStatePreludeView, scale_4d0) == 0x4d0 && offsetof(ReimuActionStatePreludeView, counter_558) == 0x558 && offsetof(ReimuActionStatePreludeView, phase_55a) == 0x55a && offsetof(ReimuActionStatePreludeView, field_6c0) == 0x6c0 && offsetof(ReimuActionStatePreludeView, word_738) == 0x738 && offsetof(ReimuPreludePeerView, y_f0) == 0xf0) ? 1 : -1];
 typedef char ReimuMid_input_offsets[(offsetof(ReimuActionStatePreludeView, field_6bc) == 0x6bc && offsetof(ReimuActionStatePreludeView, byte_750) == 0x750) ? 1 : -1];
 typedef char ReimuPrelude_effect_offset[(offsetof(ReimuActionStatePreludeView, byte_751) == 0x751) ? 1 : -1];
 typedef char ReimuPrelude_initial_words_offset[(offsetof(ReimuActionStatePreludeView, word_7a0) == 0x7a0 && offsetof(ReimuActionStatePreludeView, word_7a2) == 0x7a2) ? 1 : -1];
@@ -159,6 +171,8 @@ typedef char ReimuStage_late_low_offsets[(offsetof(ReimuActionStatePreludeView, 
 double __cdecl lookup_orientation_sine_quantized_abs(float phase);
 double __cdecl lookup_orientation_cosine_quantized_abs(float phase);
 unsigned int __cdecl mt19937_next_u32();
+int __stdcall selector_random_range(int lower, int upper);
+float __cdecl atan2_degrees(float y, float x);
 
 // The original reset receiver is the sprite subobject at fighter+4.
 struct ReimuRecoverySpriteView {

@@ -99,6 +99,7 @@ class Probe(late.Probe):
     resource_size = 0x100000
     handled_action_max = 300
     frame_capacity = 6
+    sequence_capacity = 7
 
     def step(self, uc, address, size):
         super().step(uc, address, size)
@@ -134,11 +135,12 @@ class Probe(late.Probe):
         uc.mem_write(STACK+0xC000, bytes(0x4000))
         uc.mem_write(WORLD, bytes.fromhex("0000803f"))
         graph, blocks, frames, frame_count = resource_graph(case, tuple(sorted(set(self.resource_keys) | {case["action"]})),
-                                                          frame_capacity=self.frame_capacity)
+                                                          frame_capacity=self.frame_capacity,
+                                                          sequence_capacity=self.sequence_capacity)
         uc.mem_write(RESOURCE, graph)
         self.prepare_extra_case(case)
         action, sequence = case["action"], case["sequence"]
-        index = sequence if 0 <= sequence < 7 else 0
+        index = sequence if 0 <= sequence < self.sequence_capacity else 0
         stride = (self.frame_capacity*0x88+0x3ff) & ~0x3ff
         block, frame = blocks[action]+index*0x20, frames[action]+index*stride
         timer = case["timer"] if case["timer"] is not None else 0 if case["transition"] == "unexpired" else case["duration"]-1
@@ -221,6 +223,7 @@ def audit(object_path, smoke=False, selected_cohorts=None, *, contract=None):
                      ROOT / "scripts/reimu_animation_fixture.py",
                      ROOT / "scripts/audit-common-fighter-animation-paths.py"]
     support_paths.append(Path(contract.__file__))
+    support_paths.extend(getattr(contract, "SUPPORT_PATHS", ()))
     support_hashes = {str(path.relative_to(ROOT)): linked_pe.sha(path) for path in support_paths}
     canonical = linked_pe.comparator()
     target_sha = canonical.verify_target()

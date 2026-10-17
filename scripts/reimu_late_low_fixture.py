@@ -12,17 +12,21 @@ from unicorn import x86_const as r
 from reimu_animation_fixture import RESOURCE, TREE, HEAD, VECTOR, SLOT
 
 
-def resource_graph(case, keys, *, frame_capacity=6):
+def resource_graph(case, keys, *, frame_capacity=6, sequence_capacity=7):
     keys = tuple(sorted(keys))
     if (not keys or len(keys) != len(set(keys)) or len(keys) > 64
-            or not 1 <= frame_capacity <= 14 or not 0 <= case["frame"] < frame_capacity):
+            or not 2 <= frame_capacity <= 14 or not 0 <= case["frame"] < frame_capacity
+            or not 1 <= sequence_capacity <= 9):
         raise ValueError("late-low resource capacity exceeded")
-    image = bytearray(0x40000 if len(keys) <= 24 else 0x100000)
-    frame_base = (0x1000+len(keys)*0x100+0xfff) & ~0xfff
+    block_stride = (sequence_capacity*0x20+0xff) & ~0xff
+    frame_base = (0x1000+len(keys)*block_stride+0xfff) & ~0xfff
     nodes = {key: RESOURCE+0x500+index*0x20 for index, key in enumerate(keys)}
-    blocks = {key: RESOURCE+0x1000+index*0x100 for index, key in enumerate(keys)}
+    blocks = {key: RESOURCE+0x1000+index*block_stride for index, key in enumerate(keys)}
     frame_stride = (frame_capacity*0x88+0x3ff) & ~0x3ff
-    frames = {key: RESOURCE+frame_base+index*7*frame_stride for index, key in enumerate(keys)}
+    frames = {key: RESOURCE+frame_base+index*sequence_capacity*frame_stride for index, key in enumerate(keys)}
+
+    required = frame_base+len(keys)*sequence_capacity*frame_stride
+    image = bytearray(max(0x40000 if len(keys) <= 24 else 0x100000, (required+0xfff) & ~0xfff))
 
     def put(address, fmt, *values):
         struct.pack_into(fmt, image, address-RESOURCE, *values)
@@ -44,12 +48,12 @@ def resource_graph(case, keys, *, frame_capacity=6):
     put(VECTOR+4, "<III", SLOT, SLOT+4, SLOT+4)
     frame_count = max(case["frame"]+1, 2 if case["transition"] == "frame" else 1)
     for key in keys:
-        for index in range(7):
+        for index in range(sequence_capacity):
             block, frame = blocks[key]+index*0x20, frames[key]+index*frame_stride
             put(block+4, "<II", frame, frame+frame_count*0x88)
             put(block+0x14, "<B", 0 if index == 0 else 1)
             put(block+0x18, "<II", block-0x20 if index else 0,
-                block+0x20 if index < 6 and not case.get("single_sequence", False) else 0)
+                block+0x20 if index < sequence_capacity-1 and not case.get("single_sequence", False) else 0)
             for item in range(frame_count):
                 put(frame+item*0x88+8, "<hhhhhhb", case["duration"], 0,
                     index+1, index+2, 16+item, 24, -1)
