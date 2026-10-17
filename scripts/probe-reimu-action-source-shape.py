@@ -66,7 +66,7 @@ def void_source(text, header):
     return text, header, converted
 
 
-def generate(output, *, void_root=False):
+def generate(output, *, void_root=False, compact=False):
     canonical = load("reimu_shape_canonical", "compare-function.py")
     target_sha = canonical.verify_target()
     mapper = load("reimu_shape_mapper", "compare-giant-action-switches.py")
@@ -119,6 +119,7 @@ def generate(output, *, void_root=False):
     if bodies.keys() != owners.keys():
         raise ValueError("source keys differ from canonical nondefault actions")
 
+    compact_text = text
     marker = "    switch (selected_action) {"
     if text.count(marker) != 1:
         raise ValueError("staged action-switch spelling changed")
@@ -148,7 +149,7 @@ def generate(output, *, void_root=False):
     pieces.append("}\n\n} // namespace th105\n")
     output.mkdir(parents=True, exist_ok=True)
     generated = output / SOURCE.name
-    text = "".join(pieces)
+    text = compact_text if compact else "".join(pieces)
     converted = 0
     if void_root:
         text, header, converted = void_source(text, (SOURCE.parent / HEADER).read_text())
@@ -159,11 +160,13 @@ def generate(output, *, void_root=False):
     return mapper, root, target, {
         "schema": "th105-reimu-action-source-shape-v1", "target_sha256": target_sha,
         "source_sha256": {str(path.relative_to(ROOT)): sha(path) for path in sorted(inputs)},
-        "generated_source_sha256": sha(generated), "groups": groups,
+        "generated_source_sha256": sha(generated), "groups": [] if compact else groups,
+        "source_form": "compact" if compact else "expanded-regions",
+        "nondefault_actions": sorted(bodies),
         "generated_header_sha256": sha(output / HEADER),
         "symbol": VOID_SYMBOL if void_root else SYMBOL,
         "void_complete_returns": converted,
-        "scope": ("ordinary C++ case/region expansion; "+("void ABI/default candidate" if void_root else "bool staging")+
+        "scope": (("compact C++ native witness; " if compact else "ordinary C++ case/region expansion; ")+ ("void ABI/default candidate" if void_root else "bool staging")+
                   "; indeterminate740 inputs remain; no implementation/exact credit")}
 
 
@@ -173,11 +176,12 @@ def main():
     parser.add_argument("--emit-only", action="store_true")
     parser.add_argument("--void-root", action="store_true",
                         help="emit void thiscall/default recovery in a private copied header")
+    parser.add_argument("--compact", action="store_true", help="retain source case sharing for a native witness; no target owner-map claim")
     args = parser.parse_args()
     output = args.output_dir.resolve()
     if not output.is_relative_to(ROOT / "build") or output == ROOT / "build":
         parser.error("generated probe files must occupy a subdirectory of build/")
-    mapper, root, target, report = generate(output, void_root=args.void_root)
+    mapper, root, target, report = generate(output, void_root=args.void_root, compact=args.compact)
     if not args.emit_only:
         obj = output / "ReimuActionStateDispatch.obj"
         with (output / "compile.log").open("w") as log:
@@ -185,13 +189,18 @@ def main():
                            cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, check=True)
         if any(sha(ROOT / path) != digest for path, digest in report["source_sha256"].items()):
             raise ValueError("source inputs changed during compilation")
-        candidate = mapper.build_candidate_map(mapper.CoffObject(obj, symbol_base=report["symbol"]), root)
-        comparison = mapper.compare_maps(target, candidate)
-        (output / "mapping.json").write_text(json.dumps(comparison, indent=2)+"\n")
-        report.update(object_sha256=sha(obj), text_bytes=candidate["text_size"],
-                      metadata_start=candidate["metadata_start"],
-                      candidate_unique_destinations=candidate["unique_destination_count"],
-                      split_target_groups=comparison["split_target_group_count"],
+        coff = mapper.CoffObject(obj, symbol_base=report["symbol"])
+        if args.compact:
+            report.update(metadata_start=None, candidate_unique_destinations=None, split_target_groups=None)
+            (output / "mapping.json").unlink(missing_ok=True)
+        else:
+            candidate = mapper.build_candidate_map(coff, root)
+            comparison = mapper.compare_maps(target, candidate)
+            (output / "mapping.json").write_text(json.dumps(comparison, indent=2)+"\n")
+            report.update(metadata_start=candidate["metadata_start"],
+                          candidate_unique_destinations=candidate["unique_destination_count"],
+                          split_target_groups=comparison["split_target_group_count"])
+        report.update(object_sha256=sha(obj), text_bytes=len(coff.text),
                       default_compiler_sha256=sha(ROOT / ".tools/msvc80-sp1/bin/cl.exe"),
                       compiler_environment={key: os.environ.get(key) for key in
                           ("CL", "_CL_", "INCLUDE", "TH105_MSVC8_ROOT", "TH105_WINEPREFIX",

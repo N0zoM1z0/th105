@@ -67,7 +67,7 @@ def load_bindings(path):
     return validate_bindings(tomllib.loads(path.read_text()))
 
 
-def audit(path, bindings_path=DEFAULT_BINDINGS):
+def audit(path, bindings_path=DEFAULT_BINDINGS, *, diagnostic_oversize=False):
     bindings = load_bindings(bindings_path)
     canonical = load('reimu_relocations_canonical', 'compare-function.py')
     target_sha = canonical.verify_target()
@@ -82,7 +82,7 @@ def audit(path, bindings_path=DEFAULT_BINDINGS):
     obj = mapper.CoffObject(path, symbol_base=SYMBOL)
     mapping = mapper.compare_maps(wanted_map, mapper.build_candidate_map(obj, root))
     prefix = mapping['candidate_metadata_start']
-    if not 0 < prefix < len(obj.text) or len(obj.text) > METADATA_END-ADDRESS:
+    if not 0 < prefix < len(obj.text) or (len(obj.text) > METADATA_END-ADDRESS and not diagnostic_oversize):
         raise ValueError('source code or metadata exceeds the reviewed diagnostic envelope')
     decoder = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
     decoder.detail = True
@@ -207,6 +207,9 @@ def audit(path, bindings_path=DEFAULT_BINDINGS):
             'coverage': dict(counts), 'unresolved_relocations': 0, 'rows': rows,
             'source_only_literal_sites': source_only, 'source_text_bytes': len(obj.text),
             'source_metadata_start': prefix, 'last_decoded_ret_end': last_ret,
+            'diagnostic_oversize': diagnostic_oversize,
+            'callable_excess': max(0, prefix-SIZE),
+            'metadata_envelope_excess': max(0, len(obj.text)-(METADATA_END-ADDRESS)),
             'after_last_ret_byte_count': prefix-last_ret,
             'after_last_ret_sha256': hashlib.sha256(replay[last_ret:prefix]).hexdigest(),
             'source_replayed_sha256': hashlib.sha256(replay).hexdigest(),
@@ -228,9 +231,10 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('object', type=Path)
     parser.add_argument('--bindings', type=Path, default=DEFAULT_BINDINGS)
+    parser.add_argument('--diagnostic-oversize', action='store_true', help='read-only COFF audit beyond the target envelope; never execution or acceptance')
     args = parser.parse_args()
     try:
-        result = audit(args.object, args.bindings.resolve())
+        result = audit(args.object, args.bindings.resolve(), diagnostic_oversize=args.diagnostic_oversize)
     except (KeyError, OSError, ValueError) as error:
         parser.exit(2, f'Reimu root relocation audit failed: {error}\n')
     print(json.dumps(result, indent=2))

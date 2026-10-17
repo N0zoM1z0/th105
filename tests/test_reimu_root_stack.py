@@ -1,6 +1,7 @@
 import importlib.util
 from pathlib import Path
 import struct
+import subprocess
 import sys
 from types import SimpleNamespace
 import unittest
@@ -90,6 +91,21 @@ class ReimuRootStackTests(unittest.TestCase):
         tables = stack.source_switch_tables(obj, code, replay)
         self.assertEqual(tables[stack.ADDRESS+16], [stack.ADDRESS, stack.ADDRESS+7])
         self.assertEqual(tables[stack.ADDRESS+24], [stack.ADDRESS+7, stack.ADDRESS])
+
+    def test_oversized_diagnostic_cannot_execute(self):
+        for option in ('--native', '--native-only'):
+            result = subprocess.run([sys.executable, str(ROOT/'scripts/audit-reimu-root-stack.py'),
+                                     'missing.obj', '--diagnostic-oversize', option],
+                                    capture_output=True, text=True)
+            self.assertEqual(result.returncode, 2)
+            self.assertIn('--diagnostic-oversize is read-only', result.stderr)
+
+    def test_native_only_cannot_claim_expanded_contracts(self):
+        result = subprocess.run([sys.executable, str(ROOT/'scripts/audit-reimu-root-stack.py'),
+                                 'missing.obj', '--native-only', '--require-contracts'],
+                                capture_output=True, text=True)
+        self.assertEqual(result.returncode, 2)
+        self.assertIn('cannot claim expanded-source contracts', result.stderr)
 
 
 if __name__ == '__main__':

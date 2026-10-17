@@ -436,7 +436,20 @@ text82736,1168 calls and2456 replayed relocations are still nonexact. The grid
 after eight object requests has static call-site evidence only; returning
 world calls remain unproved. No credit/aggregate replay,9 primary DB hashes
 unchanged; unused products cleaned. See [550 request/frame evidence](REIMU_550_REQUEST_FRAME_2026_10_18.md).
-Next prioritize remaining constant/register and call sharing, exact callable ownership,
+400/401/404/406 now captures BYTE750 mode before each path's shot-cost gate,
+with independent cost/state/array/request/wave/WORD732 work and a two-to-zero
+random loop. Target/source branch facts agree; the preceding source has four
+cost-order failures. Expanded1178 calls/frame570h/prefix81668/text83040 remains
+nonexact at478FB1 and exceeds callable/metadata bounds by118/116 bytes.
+Ordinary audits/execution still reject that size. Explicit oversize mode is
+read-only; compact void50584 supplies native evidence without owner claims.
+All50584 canonical-replayed bytes/relocations equal the private0/2312 witness,
+with unchanged native adapter. Fresh compact0/1544, bool0/12 and0/8, previous
+static loops and9 buffer partitions pass. No callbacks fabricated or exact
+credit;9 primary DB hashes unchanged and unused products cleaned. See
+[projectile mode branches](REIMU_PROJECTILE_MODE_BRANCHES_2026_10_18.md).
+Next prioritize remaining call sharing/source overhead and the expanded size
+failure, exact callable ownership,
 returning world contexts and VC8/LTCG/TU evidence
 before canonical root acceptance.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.

@@ -421,10 +421,10 @@ class StackGraph:
                 'virtual_call_definitions': self.virtual_definitions, 'payloads': self.payloads()}
 
 
-def audit(path, actions=ACTIONS):
+def audit(path, actions=ACTIONS, *, diagnostic_oversize=False):
     require(actions and all(action in SUPPORTED_ACTIONS for action in actions), 'unsupported action selection')
     relocations = load('reimu_stack_relocations', 'audit-reimu-root-relocations.py')
-    qualification = relocations.audit(path)
+    qualification = relocations.audit(path, diagnostic_oversize=diagnostic_oversize)
     canonical = relocations.load('reimu_stack_canonical', 'compare-function.py')
     mapper = relocations.load('reimu_stack_mapper', 'compare-giant-action-switches.py')
     obj = mapper.CoffObject(path, symbol_base=relocations.SYMBOL)
@@ -494,6 +494,9 @@ def audit(path, actions=ACTIONS):
             'buffer_partition_mismatches': sum(not c['same_partition'] for c in contracts),
             'request_preparation_mismatches': sum(not c['same_preparations'] for c in contracts),
             'selected_actions': list(actions),
+            'diagnostic_oversize': diagnostic_oversize,
+            'callable_excess': qualification['callable_excess'],
+            'metadata_envelope_excess': qualification['metadata_envelope_excess'],
             'source_auxiliary_bounds': source_bounds,
             'first_mismatch': qualification['first_mismatch'],
             'support_sha256': {**qualification['support_sha256'],
@@ -559,10 +562,22 @@ if __name__ == '__main__':
     parser.add_argument('--action', type=int, choices=SUPPORTED_ACTIONS, action='append')
     parser.add_argument('--require-contracts', '--require-partitions', dest='require_contracts', action='store_true')
     parser.add_argument('--native', action='store_true', help='also replay the selected affected-family inputs')
+    parser.add_argument('--diagnostic-oversize', action='store_true', help='read-only expanded-source audit; incompatible with execution')
+    parser.add_argument('--native-only', action='store_true', help='execute a compact void witness within the original callable window; no owner-contract claim')
     args = parser.parse_args()
     actions = tuple(dict.fromkeys(args.action)) if args.action else ACTIONS
+    if args.diagnostic_oversize and (args.native or args.native_only):
+        parser.error('--diagnostic-oversize is read-only')
+    if args.native_only and (args.native or args.require_contracts):
+        parser.error('--native-only cannot claim expanded-source contracts')
     try:
-        result = audit(args.object, actions)
+        if args.native_only:
+            coff = load('reimu_compact_void_coff', 'compare-giant-action-switches.py').CoffObject(args.object)
+            require(len(coff.text) <= SIZE, 'compact native witness exceeds the original callable window')
+            result = {'scope': 'native-only compact void witness; no expanded owner or canonical-exact claim',
+                      'native': native_audit(args.object, actions)}
+        else:
+            result = audit(args.object, actions, diagnostic_oversize=args.diagnostic_oversize)
         if args.native:
             result['native'] = native_audit(args.object, actions)
     except (KeyError, OSError, TypeError, ValueError) as error:
