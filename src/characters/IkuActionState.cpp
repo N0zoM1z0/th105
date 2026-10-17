@@ -17,11 +17,12 @@ class IkuActionStateView;
 float __fastcall stage_surface_height_at_x(IkuActionStateView *fighter);
 int __fastcall is_y_at_or_below_stage_surface(IkuActionStateView *fighter);
 struct IkuEventPairView { void *set_global_pair(float first, float second); };
+struct IkuActionScratchView { void reset_fighter_action_scratch(); };
 
-// Unified semantic staging for 77 middle/upper actions inside 620920. The
-// status methods are recovery scaffolding, not original function boundaries.
-// The remaining33 opening actions and root prelude/default need recovery;
-// no implemented/match ledger selects this incomplete root view.
+// Natural source recovery for all110 action IDs and the complete root
+// prelude/default inside620920. The internal status methods express source
+// sharing, not original callable boundaries. Compiler ownership and whole-root
+// byte equality must be verified separately from this source hypothesis.
 class IkuActionStateView : public AnimationSequenceObjectView {
 public:
     unsigned char resolve_stage_surface_landing_transition();
@@ -46,51 +47,55 @@ public:
     void adjust_counter_482(short amount, int floor_value);
     int add_phase_scaled_counter_558(int amount);
 
-    bool try_dispatch_verified_object818_action();
-    bool try_dispatch_verified_spell_action();
-    bool try_dispatch_verified_late_action();
-    bool try_dispatch_verified_upper_remainder();
-    bool try_dispatch_verified_upper_action();
-    bool try_dispatch_verified_middle_action();
-    bool try_dispatch_verified_action();
+    __forceinline bool try_dispatch_verified_object818_action();
+    __forceinline bool try_dispatch_verified_spell_action();
+    __forceinline bool try_dispatch_verified_late_action();
+    __forceinline bool try_dispatch_verified_upper_remainder();
+    __forceinline bool try_dispatch_verified_upper_action();
+    __forceinline bool try_dispatch_verified_middle_action();
+    __forceinline bool try_dispatch_verified_action();
+    __forceinline bool try_dispatch_verified_opening_action();
+    __forceinline bool try_dispatch_verified_glide_action();
+    void dispatch_action_state_vslot28();
+    void update_common_action_state();
     unsigned char try_dispatch_directional_action_208_210(int option);
 
 private:
-    unsigned char &byte_at(unsigned offset) {
+    __forceinline unsigned char &byte_at(unsigned offset) {
         return *(reinterpret_cast<unsigned char *>(this) + offset);
     }
-    short &short_at(unsigned offset) {
+    __forceinline short &short_at(unsigned offset) {
         return *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(this) + offset);
     }
-    float &float_at(unsigned offset) {
+    __forceinline float &float_at(unsigned offset) {
         return *reinterpret_cast<float *>(reinterpret_cast<unsigned char *>(this) + offset);
     }
-    int &int_at(unsigned offset) {
+    __forceinline int &int_at(unsigned offset) {
         return *reinterpret_cast<int *>(reinterpret_cast<unsigned char *>(this) + offset);
     }
-    int facing() { return static_cast<signed char>(byte_at(0x104)); }
-    unsigned char reverse_facing() { return static_cast<unsigned char>(-facing()); }
-    float peer_float(unsigned offset) {
+    __forceinline int facing() { return static_cast<signed char>(byte_at(0x104)); }
+    __forceinline unsigned char reverse_facing() { return static_cast<unsigned char>(-facing()); }
+    __forceinline float peer_float(unsigned offset) {
         return *reinterpret_cast<float *>(static_cast<unsigned char *>(related_170) + offset);
     }
-    unsigned random_roll(int limit) { return static_cast<unsigned>(selector_random_roll(limit)); }
-    bool sequence_entry(short sequence) {
+    __forceinline unsigned random_roll(int limit) { return static_cast<unsigned>(selector_random_roll(limit)); }
+    __forceinline bool sequence_entry(short sequence) {
         return time_counter_144 == 0 && frame_timer_142 == 0
             && frame_index_140 == 0 && sequence_index_13e == sequence;
     }
-    void advance_or_action(short action) {
+    __forceinline void advance_or_action(short action) {
         if (advance_frame_and_dispatch())
             set_action_and_finalize(action);
     }
-    void begin_effect() {
+    __forceinline void begin_effect() {
         short_at(0x48a) = 40;
         dispatch_indexed_event_member(23);
     }
-    void finish_effect(int outcome) {
+    __forceinline void finish_effect(int outcome) {
         dispatch_indexed_sequence_window_45c8b0(0, outcome, 60);
         advance_secondary_event_effect_cycle();
     }
-    void emit_860_triplet(bool reverse_first) {
+    __forceinline void emit_860_triplet(bool reverse_first) {
         dispatch_character_wave_handle(14);
         float payload[3];
         payload[0] = static_cast<float>(random_roll(360));
@@ -106,7 +111,7 @@ private:
         spawn_owned_object_via_manager(860, float_at(0xec),
             static_cast<float>(float_at(0xf0) + 275.0), reverse_facing(), 1, payload, 3);
     }
-    void emit_six_ring(float speed, bool ahead) {
+    __forceinline void emit_six_ring(float speed, bool ahead) {
         for (int angle = 0; angle < 360; angle += 60) {
             unsigned roll = random_roll(30);
             float payload[3];
@@ -120,7 +125,7 @@ private:
             spawn_owned_object_via_manager(815, x, float_at(0xf0), byte_at(0x104), variant, payload, 3);
         }
     }
-    void emit_920_ring(float speed, double offset) {
+    __forceinline void emit_920_ring(float speed, double offset) {
         // Unlike the integer ring above, the target stores this loop carrier
         // as float and increments it with a floating addition.
         for (float ray = 0.0f; ray < 12.0f; ray += 1.0f) {
@@ -132,15 +137,15 @@ private:
                 static_cast<float>(float_at(0xf0) + 100.0), byte_at(0x104), 1, payload, 3);
         }
     }
-    void clamp_x(float upper, float lower) {
+    __forceinline void clamp_x(float upper, float lower) {
         if (float_at(0xf4) > upper) float_at(0xf4) = upper;
         if (float_at(0xf4) < lower) float_at(0xf4) = lower;
     }
-    void clamp_y(float upper, float lower) {
+    __forceinline void clamp_y(float upper, float lower) {
         if (float_at(0xf8) > upper) float_at(0xf8) = upper;
         if (float_at(0xf8) < lower) float_at(0xf8) = lower;
     }
-    void steer(bool fixed_limit) {
+    __forceinline void steer(bool fixed_limit) {
         ++short_at(0x734);
         float x = static_cast<float>(facing()) * (peer_float(0xec) - float_at(0xec));
         float y = peer_float(0xf0) - float_at(0xf0);
@@ -163,11 +168,11 @@ private:
         }
         face_opponent_and_flip_horizontal_velocity();
     }
-    void restore_surface_motion() {
+    __forceinline void restore_surface_motion() {
         float_at(0xf0) = stage_surface_height_at_x(this);
         zero_velocity_acceleration();
     }
-    void emit_object818(float *payload) {
+    __forceinline void emit_object818(float *payload) {
         // The target rounds each coordinate to float before passing it. Keep
         // signed facing for the offset and its raw byte for the direction.
         spawn_owned_object_via_manager(
@@ -177,7 +182,7 @@ private:
             byte_at(0x104), 1, payload, 3);
     }
 
-    void emit_object818_phase(int count) {
+    __forceinline void emit_object818_phase(int count) {
         if (short_at(0x732) % 6 == 0 && short_at(0x734) < count) {
             float payload[3];
             payload[2] = 0.0f;
@@ -216,7 +221,7 @@ private:
         ++short_at(0x732);
     }
 
-    void start_object818_emission(bool second_variant) {
+    __forceinline void start_object818_emission(bool second_variant) {
         short_at(0x730) = 1;
         adjust_counter_482(200, 120);
         // 566/568 publish +180 before the scaled-counter helper; 565/567
@@ -228,19 +233,19 @@ private:
             int_at(0x180) = 1;
         dispatch_character_wave_handle(18);
     }
-    void advance_spell_frame() {
+    __forceinline void advance_spell_frame() {
         if (advance_frame_and_dispatch())
             set_action_and_finalize(0);
     }
-    void begin_spell_effect() {
+    __forceinline void begin_spell_effect() {
         short_at(0x48a) = 40;
         dispatch_indexed_event_member(23);
     }
-    void finish_spell_effect(int outcome) {
+    __forceinline void finish_spell_effect(int outcome) {
         dispatch_indexed_sequence_window_45c8b0(0, outcome, 60);
         advance_secondary_event_effect_cycle();
     }
-    void emit_object860_triplet(bool reverse_first) {
+    __forceinline void emit_object860_triplet(bool reverse_first) {
         dispatch_character_wave_handle(14);
         float payload[3];
         payload[0] = static_cast<float>(random_roll(360));
@@ -256,13 +261,13 @@ private:
         spawn_owned_object_via_manager(860, float_at(0xec),
             static_cast<float>(float_at(0xf0) + 275.0), reverse_facing(), 1, payload, 3);
     }
-    void emit_upper_object(int object, float *payload) {
+    __forceinline void emit_upper_object(int object, float *payload) {
         spawn_owned_object_via_manager(object,
             static_cast<float>(facing() * 99) + float_at(0xec),
             static_cast<float>(float_at(0xf0) + 145.0),
             byte_at(0x104), 1, payload, 3);
     }
-    void emit_813_aimed(int variant) {
+    __forceinline void emit_813_aimed(int variant) {
         float x = static_cast<float>(facing()) * (peer_float(0xec) - float_at(0xec));
         float y = peer_float(0xf0) - float_at(0xf0);
         float_at(0x744) = -atan2_degrees(y, x);
@@ -283,7 +288,7 @@ private:
         dispatch_character_wave_handle(14);
         adjust_counter_482(200, 120);
     }
-    void emit_823(bool second, bool wave_first) {
+    __forceinline void emit_823(bool second, bool wave_first) {
         float payload[3] = {second ? -2.0f : 2.0f, 0.0f, 2.0f};
         emit_upper_object(823, payload);
         int_at(0x180) = 1;
@@ -293,26 +298,26 @@ private:
         if (!wave_first) dispatch_character_wave_handle(22);
         adjust_counter_482(200, 120);
     }
-    bool middle_frame(short frame) {
+    __forceinline bool middle_frame(short frame) {
         return frame_timer_142 == 0 && frame_index_140 == frame;
     }
-    void middle_decelerate(double amount) {
+    __forceinline void middle_decelerate(double amount) {
         float_at(0xf4) = static_cast<float>(float_at(0xf4) - amount);
         if (float_at(0xf4) < 0.0f) float_at(0xf4) = 0.0f;
     }
-    void middle_clear_input(unsigned offset) {
+    __forceinline void middle_clear_input(unsigned offset) {
         if (int_at(offset) == 0) byte_at(0x750) = 0;
     }
-    void middle_cost(int floor, int scaled) {
+    __forceinline void middle_cost(int floor, int scaled) {
         adjust_counter_482(200, floor);
         add_phase_scaled_counter_558(scaled);
     }
-    void spawn_middle(int object, int ahead, double height, float *payload) {
+    __forceinline void spawn_middle(int object, int ahead, double height, float *payload) {
         spawn_owned_object_via_manager(object,
             ahead == 0 ? float_at(0xec) : static_cast<float>(facing() * ahead) + float_at(0xec),
             static_cast<float>(float_at(0xf0) + height), byte_at(0x104), 1, payload, 3);
     }
-    void middle_ring(int object, int ahead, float speed, bool on_surface) {
+    __forceinline void middle_ring(int object, int ahead, float speed, bool on_surface) {
         for (int angle = 0; angle < 360; angle += 60) {
             unsigned roll = random_roll(30);
             float payload[3];
@@ -326,14 +331,14 @@ private:
                 byte_at(0x104), variant, payload, 3);
         }
     }
-    void middle_fan800(int ahead, double height, double first, int step, int limit) {
+    __forceinline void middle_fan800(int ahead, double height, double first, int step, int limit) {
         float payload[3] = {0.0f, 8.0f, 0.0f};
         for (int ray = 0; ray < limit; ray += step) {
             payload[0] = static_cast<float>(first - ray);
             spawn_middle(800, ahead, height, payload);
         }
     }
-    void middle_scatter801(bool second_sequence) {
+    __forceinline void middle_scatter801(bool second_sequence) {
         float payload[3] = {second_sequence ? 15.0f : 10.0f, 35.0f, 3.0f};
         spawn_middle(801, 70, 140.0, payload);
         payload[0] = second_sequence ? 0.0f : -10.0f;
@@ -347,7 +352,7 @@ private:
             spawn_middle(801, 70, 140.0, payload);
         }
     }
-    void middle_ground_air_fan(short action) {
+    __forceinline void middle_ground_air_fan(short action) {
         bool airborne = action == 404 || action == 406;
         bool low = action == 402;
         if (!airborne || sequence_index_13e == 2)
@@ -399,9 +404,57 @@ private:
         }
     }
 
+    __forceinline short peer_short(unsigned offset) {
+        return *reinterpret_cast<short *>(static_cast<unsigned char *>(related_170) + offset);
+    }
+    __forceinline void opening_brake(double amount, bool clear_motion) {
+        if (float_at(0xf4) > 0.0f) {
+            float_at(0xf4) = static_cast<float>(float_at(0xf4) - amount);
+            if (float_at(0xf4) < 0.0f) {
+                if (clear_motion) zero_velocity_acceleration();
+                else float_at(0xf4) = 0.0f;
+                if (clear_motion) byte_at(0x47e) = 0;
+            }
+        }
+        // Keep this second independent test after the first possible store/call.
+        if (float_at(0xf4) < 0.0f) {
+            float_at(0xf4) = static_cast<float>(float_at(0xf4) + amount);
+            if (float_at(0xf4) > 0.0f) {
+                if (clear_motion) zero_velocity_acceleration();
+                else float_at(0xf4) = 0.0f;
+                if (clear_motion) byte_at(0x47e) = 0;
+            }
+        }
+    }
+    __forceinline void opening_periodic_effect(bool reverse) {
+        double x = static_cast<double>(float_at(0xec)) + 50.0;
+        int direction = reverse ? reverse_facing() : byte_at(0x104);
+        unsigned y_roll = mt19937_next_u32() % 200U;
+        float y = static_cast<float>(y_roll) + float_at(0xf0);
+        unsigned x_roll = mt19937_next_u32() % 100U;
+        emit_fighter_effect_433cc0(124,
+            static_cast<float>(x - static_cast<float>(x_roll)), y, direction, 1);
+    }
+    __forceinline void opening_effect_pair(bool reverse, bool ahead, double height) {
+        float x = ahead ? static_cast<float>(facing() * 80) + float_at(0xec) : float_at(0xec);
+        emit_fighter_effect_433cc0(125, x, static_cast<float>(float_at(0xf0) + height),
+            reverse ? reverse_facing() : byte_at(0x104), 1);
+        emit_fighter_effect_433cc0(126, float_at(0xec), static_cast<float>(float_at(0xf0) + height),
+            reverse ? reverse_facing() : byte_at(0x104), 1);
+        dispatch_indexed_event_member(31);
+    }
+    __forceinline void opening_face_on_exit() {
+        bool flip = byte_at(0x104) == 1
+            ? peer_float(0xec) < float_at(0xec) : float_at(0xec) < peer_float(0xec);
+        if (flip) {
+            byte_at(0x104) = byte_at(0x104) == 1 ? 255 : reverse_facing();
+            float_at(0xf4) = -float_at(0xf4);
+        }
+    }
+
 };
 
-bool IkuActionStateView::try_dispatch_verified_object818_action()
+__forceinline bool IkuActionStateView::try_dispatch_verified_object818_action()
 {
     bool airborne;
     bool second_variant;
@@ -472,7 +525,7 @@ bool IkuActionStateView::try_dispatch_verified_object818_action()
     return true;
 }
 
-bool IkuActionStateView::try_dispatch_verified_spell_action()
+__forceinline bool IkuActionStateView::try_dispatch_verified_spell_action()
 {
     switch (action_id_13c) {
     case 600:
@@ -734,7 +787,7 @@ bool IkuActionStateView::try_dispatch_verified_spell_action()
     return false;
 }
 
-bool IkuActionStateView::try_dispatch_verified_late_action()
+__forceinline bool IkuActionStateView::try_dispatch_verified_late_action()
 {
     switch (action_id_13c) {
     case 650:
@@ -1106,7 +1159,7 @@ bool IkuActionStateView::try_dispatch_verified_late_action()
     return false;
 }
 
-bool IkuActionStateView::try_dispatch_verified_upper_remainder()
+__forceinline bool IkuActionStateView::try_dispatch_verified_upper_remainder()
 {
     bool airborne, second;
     switch (action_id_13c) {
@@ -1205,7 +1258,7 @@ bool IkuActionStateView::try_dispatch_verified_upper_remainder()
     }
 }
 
-bool IkuActionStateView::try_dispatch_verified_upper_action()
+__forceinline bool IkuActionStateView::try_dispatch_verified_upper_action()
 {
     if (try_dispatch_verified_object818_action()) return true;
     if (try_dispatch_verified_spell_action()) return true;
@@ -1213,7 +1266,7 @@ bool IkuActionStateView::try_dispatch_verified_upper_action()
     return try_dispatch_verified_upper_remainder();
 }
 
-bool IkuActionStateView::try_dispatch_verified_middle_action()
+__forceinline bool IkuActionStateView::try_dispatch_verified_middle_action()
 {
     const short action = action_id_13c;
     switch (action) {
@@ -1595,10 +1648,263 @@ bool IkuActionStateView::try_dispatch_verified_middle_action()
     }
 }
 
-bool IkuActionStateView::try_dispatch_verified_action()
+__forceinline bool IkuActionStateView::try_dispatch_verified_action()
 {
     if (try_dispatch_verified_middle_action()) return true;
-    return try_dispatch_verified_upper_action();
+    if (try_dispatch_verified_upper_action()) return true;
+    return try_dispatch_verified_opening_action();
+}
+
+__forceinline bool IkuActionStateView::try_dispatch_verified_opening_action()
+{
+    const short action = action_id_13c;
+    switch (action) {
+    case 0: case 1: case 2: case 3:
+        resolve_stage_surface_landing_transition();
+        if (action == 0 && float_at(0xf4) == 0.0f) byte_at(0x47e) = 0;
+        if (!byte_at(0x47e)) zero_velocity_acceleration();
+        else opening_brake(0.5, true);
+        if (advance_frame_and_dispatch() && frame_index_140 == 0) {
+            if (action == 1) set_action_and_finalize(2);
+            if (action == 3) set_action_and_finalize(0);
+        }
+        return true;
+    case 4: case 5:
+        resolve_stage_surface_landing_transition();
+        float_at(0xf4) = action == 4 ? 2.5f : -3.0f;
+        advance_frame_and_dispatch();
+        return true;
+    case 6: case 7: case 8:
+        if (sequence_index_13e == 0) {
+            resolve_stage_surface_landing_transition();
+            if (sequence_index_13e == 0 && !byte_at(0x47e)) zero_velocity_acceleration();
+        }
+        if (sequence_index_13e > 0) {
+            float_at(0xf8) -= float_at(0x100);
+            if (has_crossed_stage_surface_while_descending()) {
+                set_action_and_finalize(10); restore_surface_motion(); return true;
+            }
+        }
+        advance_frame_and_dispatch();
+        if (sequence_entry(1)) {
+            float_at(0xf4) = action == 6 ? 0.0f : action == 7 ? 3.5f : -3.5f;
+            float_at(0xf8) = action == 6 ? 12.0f : 11.0f;
+            float_at(0x100) = 0.35f; byte_at(0x47e) = 0;
+        }
+        return true;
+    case 9:
+        if (float_at(0x100) == 0.0f) float_at(0x100) = 0.6f;
+        float_at(0xf8) -= float_at(0x100);
+        if (has_crossed_stage_surface_while_descending()) { set_action_and_finalize(10); restore_surface_motion(); }
+        else advance_frame_and_dispatch();
+        return true;
+    case 10:
+        resolve_stage_surface_landing_transition(); zero_velocity_acceleration();
+        if (advance_frame_and_dispatch()) set_action_and_finalize(int_at(0x6b8) != 0 ? 2 : 0);
+        return true;
+
+    case 197: case 198: case 199:
+        if (action == 199 || sequence_index_13e == 0 || sequence_index_13e == 2)
+            resolve_stage_surface_landing_transition();
+        if (action != 199 && sequence_index_13e == 1 && time_counter_144 > 39) {
+            zero_velocity_acceleration(); select_sequence(2); return true;
+        }
+        if (advance_frame_and_dispatch()) {
+            if (byte_at(0x72c) == 2) {
+                set_action_and_finalize(700); short_at(0x4a8) = 3; short_at(0x4ac) = 3;
+                return true;
+            }
+            set_action_and_finalize(0);
+            if (int_at(0x6b8) > 0) set_action_and_finalize(1);
+        }
+        if ((action == 199 ? sequence_index_13e == 0 && middle_frame(5) : sequence_index_13e == 2 && middle_frame(3))) {
+            if (peer_float(0xec) < float_at(0xec)) byte_at(0x104) = 255;
+            if (float_at(0xec) < peer_float(0xec)) byte_at(0x104) = 1;
+        }
+        if (action != 199 && sequence_entry(1)) float_at(0xf4) = action == 197 ? 14.5f : -14.5f;
+        return true;
+
+    case 200: case 223:
+        if (action == 200 && short_at(0x7b0) > 0) short_at(0x4a8) = 2;
+        resolve_stage_surface_landing_transition(); byte_at(0x47e) = 1;
+        if (action == 223 && short_at(0x7b0) > 0) short_at(0x4a8) = 2;
+        advance_frame_and_dispatch();
+        if (sequence_index_13e == 1) {
+            if (time_counter_144 % 5 == 0) opening_periodic_effect(false);
+            if (action == 200 && int_at(0x6b8) < 0) {
+                set_action_and_finalize(facing() * int_at(0x6b4) < 1 ? 211 : 212); return true;
+            }
+            ++short_at(0x730);
+            if ((facing() * int_at(0x6b4) < 1 && short_at(0x730) > (action == 200 ? 1 : 11)) || short_at(0x730) > 45) {
+                set_action_and_finalize(204); return true;
+            }
+        }
+        if (sequence_index_13e == 0 && middle_frame(2)) {
+            float_at(0xf4) = action == 200 ? 8.5f : 4.25f;
+            opening_effect_pair(false, true, 80.0);
+        }
+        return true;
+    case 201: case 224:
+        if (short_at(0x7b0) > 0 && sequence_index_13e < 3) short_at(0x4a8) = 2;
+        if (sequence_index_13e == 0 || sequence_index_13e == 3) resolve_stage_surface_landing_transition();
+        if (sequence_index_13e == 3) {
+            float_at(0xf4) = static_cast<float>(float_at(0xf4) + 1.0);
+            if (float_at(0xf4) > 0.0f) float_at(0xf4) = 0.0f;
+        }
+        if (!is_y_at_or_below_stage_surface(this) && time_counter_144 % 5 == 0) opening_periodic_effect(true);
+        if (action == 201 ? sequence_index_13e < 3 : sequence_index_13e == 1 || sequence_index_13e == 2) {
+            float_at(0xf8) = action == 201 ? float_at(0xf8) - float_at(0x100) : static_cast<float>(float_at(0xf8) - 0.5);
+            if (has_crossed_stage_surface_while_descending()) {
+                float_at(0xf8) = 0.0f; float_at(0xf0) = stage_surface_height_at_x(this); select_sequence(3); return true;
+            }
+        }
+        if (advance_frame_and_dispatch()) { set_action_and_finalize(0); float_at(0xf4) = 0.0f; return true; }
+        if (sequence_entry(1)) {
+            ++short_at(0x730); float_at(0xf4) = -8.5f; float_at(0xf8) = 4.0f;
+            if (action == 201) float_at(0x100) = 0.5f;
+            opening_effect_pair(true, false, 80.0);
+        }
+        return true;
+    case 202: case 203: case 225: case 226:
+        float_at(0xf8) -= float_at(0x100);
+        if (has_crossed_stage_surface_while_descending()) {
+            zero_velocity_acceleration(); float_at(0xf0) = stage_surface_height_at_x(this); set_action_and_finalize(10); return true;
+        }
+        if (short_at(0x7b0) > 0) short_at(0x4a8) = 2;
+        if ((action == 202 ? sequence_index_13e == 1 || sequence_index_13e == 2 :
+             action == 203 ? sequence_index_13e < 3 : action == 225 ? frame_index_140 < 8 : sequence_index_13e == 2)
+            && time_counter_144 % 5 == 0) opening_periodic_effect(action == 203 || action == 225);
+        if (action == 202 || action == 203) advance_frame_and_dispatch();
+        else if (advance_frame_and_dispatch()) { set_action_and_finalize(9); if (action == 226) return true; }
+        if (action == 202 ? sequence_index_13e == 0 && middle_frame(2) : action == 226 ? sequence_entry(1) :
+            action == 203 ? sequence_index_13e == 0 && middle_frame(2) : sequence_entry(1)) {
+            if (action == 202 || action == 226) short_at(0x730) = 0;
+            float_at(0xf4) = action == 202 || action == 226 ? 9.0f : action == 203 ? -9.0f : -7.5f;
+            float_at(0xf8) = action == 225 ? 3.5f : 3.0f;
+            float_at(0x100) = action == 225 ? 0.45f : 0.35f;
+            opening_effect_pair(action == 203 || action == 225, action == 202 || action == 226,
+                action == 202 || action == 226 ? 110.0 : 120.0);
+        }
+        if (action != 225 && sequence_entry(2)) face_opponent_and_flip_horizontal_velocity();
+        return true;
+    case 204:
+        resolve_stage_surface_landing_transition();
+        float_at(0xf4) = static_cast<float>(float_at(0xf4) - static_cast<double>(0.35f));
+        if (float_at(0xf4) < 0.0f) { float_at(0xf4) = 0.0f; byte_at(0x47e) = 0; }
+        if (advance_frame_and_dispatch()) { set_action_and_finalize(0); byte_at(0x47e) = 0; }
+        return true;
+    case 208: case 209: case 210: case 211: case 212: case 220: case 221: case 222:
+        if (sequence_index_13e == 0) resolve_stage_surface_landing_transition();
+        if (has_crossed_stage_surface_while_descending()) { set_action_and_finalize(10); restore_surface_motion(); return true; }
+        if (is_y_at_or_below_stage_surface(this) || float_at(0xf8) > 0.0f) {
+            if (short_at(0x7b0) > 0) short_at(0x4a8) = 2;
+            short_at(0x4ae) = 2;
+        }
+        if (sequence_index_13e > 0) {
+            float_at(0xf8) -= float_at(0x100);
+            if (float_at(0xf8) < -20.0f) float_at(0xf8) = -20.0f;
+        }
+        if (sequence_index_13e == 1 && float_at(0xf8) < 4.0f) select_sequence(2);
+        advance_frame_and_dispatch();
+        if (sequence_entry(1)) {
+            float_at(0xf4) = action == 208 || action == 220 ? 0.0f : action == 209 || action == 221 ? 7.0f :
+                action == 210 || action == 222 ? -7.0f : action == 211 ? 2.0f : 8.0f;
+            float_at(0xf8) = action == 208 || action == 220 ? 18.5f : action == 211 ? 17.5f : 15.0f;
+            float_at(0x100) = 0.5f; byte_at(0x47e) = 0;
+            emit_fighter_effect_433cc0(63, float_at(0xec), float_at(0xf0), byte_at(0x104), 1);
+        }
+        return true;
+    case 214:
+        return try_dispatch_verified_glide_action();
+    case 215:
+        resolve_stage_surface_landing_transition(); opening_brake(0.75, false); advance_or_action(0); return true;
+    default:
+        return false;
+    }
+}
+
+__forceinline bool IkuActionStateView::try_dispatch_verified_glide_action()
+{
+    if (advance_frame_and_dispatch()) { set_action_and_finalize(9); return true; }
+    if (sequence_entry(1)) {
+        dispatch_indexed_event_member(31);
+        if (float_at(0x740) >= 135.0f || float_at(0x740) <= -135.0f) { select_sequence(6); return true; }
+        if (float_at(0x740) > 45.0f || float_at(0x740) < -45.0f) { select_sequence(4); return true; }
+    }
+    if (sequence_entry(9)) select_sequence(5);
+    if (sequence_entry(10) || sequence_entry(11)) { set_action_and_finalize(9); return true; }
+    int horizontal = facing() * int_at(0x6b4);
+    if (int_at(0x6b8) > 0) short_at(0x732) = horizontal > 0 ? -45 : horizontal < 0 ? -135 : -90;
+    else if (int_at(0x6b8) < 0) short_at(0x732) = horizontal > 0 ? 45 : horizontal < 0 ? 135 : 90;
+    else if (horizontal > 0) short_at(0x732) = 0;
+    else if (horizontal < 0) short_at(0x732) = 180;
+    if (sequence_index_13e == 9 || sequence_index_13e == 10 || sequence_index_13e == 11)
+        float_at(0xf8) -= float_at(0x100);
+    else if (short_at(0x7b0) > 0) short_at(0x4a8) = 2;
+    if (sequence_index_13e > 0 && sequence_index_13e < 9) {
+        ++short_at(0x736);
+        short_at(0x734) = static_cast<short>(short_at(0x732) - static_cast<short>(static_cast<int>(float_at(0x740))));
+        if (short_at(0x734) > 180) short_at(0x734) -= 360;
+        if (short_at(0x734) < -180) short_at(0x734) += 360;
+        if (float_at(0x740) > 180.0f) float_at(0x740) = static_cast<float>(float_at(0x740) - 360.0);
+        if (float_at(0x740) < -180.0f) float_at(0x740) = static_cast<float>(float_at(0x740) + 360.0);
+        if (short_at(0x734) > 0) float_at(0x740) = static_cast<float>(float_at(0x740) + (int_at(0x4b8) == 0 ? 3.0 : 2.5));
+        if (short_at(0x734) < 0) float_at(0x740) = static_cast<float>(float_at(0x740) - (int_at(0x4b8) == 0 ? 3.0 : 2.5));
+        float_at(0xf4) = static_cast<float>(lookup_orientation_cosine_quantized_abs(float_at(0x740))) * float_at(0x73c);
+        float_at(0xf8) = static_cast<float>(lookup_orientation_sine_quantized_abs(float_at(0x740))) * float_at(0x73c);
+        if (float_at(0xf0) > 680.0f && float_at(0xf8) > 0.0f) float_at(0xf8) = 0.0f;
+        adjust_counter_482(int_at(0x4b8) == 0 ? 4 : 8, 1);
+        short sequence = sequence_index_13e;
+        if ((sequence == 1 || sequence == 2) && (float_at(0x740) > 60.0 || float_at(0x740) < -60.0)) { select_sequence(3); return true; }
+        if (sequence == 4 || sequence == 5) {
+            if (float_at(0x740) <= 45.0f && float_at(0x740) >= -45.0f) { select_sequence(1); return true; }
+            if (float_at(0x740) >= 135.0f || float_at(0x740) <= -135.0f) { select_sequence(6); return true; }
+        }
+        if ((sequence == 6 || sequence == 7) && float_at(0x740) < 120.0 && float_at(0x740) > -120.0) { select_sequence(8); return true; }
+        if ((int_at(0x6c8) == 0 && short_at(0x736) > 10) || short_at(0x482) < 1) {
+            if (sequence == 1 || sequence == 2) { opening_face_on_exit(); select_sequence(9); }
+            if (sequence_index_13e == 3) {
+                short_at(0x730) = frame_index_140; opening_face_on_exit();
+                select_sequence(9); set_sequence_frame(short_at(0x730));
+            }
+            if (sequence_index_13e == 4 || sequence_index_13e == 5) { opening_face_on_exit(); select_sequence(10); }
+            if (sequence_index_13e == 6 || sequence_index_13e == 7) { opening_face_on_exit(); select_sequence(11); }
+            if (sequence_index_13e != 8) return true;
+            short_at(0x730) = frame_index_140; opening_face_on_exit();
+            select_sequence(11); set_sequence_frame(short_at(0x730)); return true;
+        }
+    }
+    if (has_crossed_stage_surface_while_descending()) {
+        float_at(0xf0) = stage_surface_height_at_x(this); float_at(0xf8) = 0.0f; float_at(0x100) = 0.0f;
+        if (sequence_index_13e > 8) { set_action_and_finalize(10); zero_velocity_acceleration(); }
+        else { reinterpret_cast<IkuActionScratchView *>(reinterpret_cast<unsigned char *>(this) + 4)->reset_fighter_action_scratch(); set_action_and_finalize(215); }
+    }
+    return true;
+}
+
+void IkuActionStateView::dispatch_action_state_vslot28()
+{
+    short_at(0x7a0) = 0;
+    short_at(0x7a2) = 117;
+    if (short_at(0x174) < 1 || peer_short(0x174) < 0) short_at(0x7b0) = 0;
+    if (short_at(0x7b0) > 0) --short_at(0x7b0);
+    if (action_id_13c > 149 && action_id_13c < 159 && byte_at(0x751) == 0) {
+        byte_at(0x751) = 1;
+        // Independent tests deliberately re-read action and coordinates after
+        // each possible spawn, as the original prelude does.
+        if (action_id_13c > 149 && action_id_13c < 154)
+            spawn_owned_object_via_manager(998, static_cast<float>(facing() * 71) + float_at(0xec),
+                static_cast<float>(float_at(0xf0) + 137.0), byte_at(0x104), 1, 0, 0);
+        if (action_id_13c > 153 && action_id_13c < 158)
+            spawn_owned_object_via_manager(998, static_cast<float>(facing() * 58) + float_at(0xec),
+                static_cast<float>(float_at(0xf0) + 87.0), byte_at(0x104), 1, 0, 0);
+        if (action_id_13c == 158)
+            spawn_owned_object_via_manager(998, static_cast<float>(facing() * 43) + float_at(0xec),
+                static_cast<float>(float_at(0xf0) + 136.0), byte_at(0x104), 1, 0, 0);
+    }
+    if (short_at(0x186) != 0 || peer_short(0x48c) != 0) return;
+    if (try_dispatch_verified_action()) return;
+    update_common_action_state();
 }
 
 } // namespace th105

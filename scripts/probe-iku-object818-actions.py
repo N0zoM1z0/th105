@@ -183,6 +183,7 @@ class Probe:
     def __init__(self, canonical, candidate, *, entries=None, helpers=None, boundaries=None,
                  no_receiver=(), extra_writes=()):
         self.canonical, self.candidate = canonical, candidate
+        self.whole_root = False
         self.entries = ENTRIES if entries is None else entries
         self.helpers = HELPERS if helpers is None else helpers
         self.boundaries = BOUNDARIES if boundaries is None else boundaries
@@ -290,18 +291,21 @@ class Probe:
         uc.reg_write(r.UC_X86_REG_ESP, ENTRY_SP)
         uc.reg_write(r.UC_X86_REG_ECX, OWNER)
         uc.reg_write(r.UC_X86_REG_FPCW, case["cw"])
-        self.case, self.failure, self.prelude, self.outcome, self.calls = case, None, True, None, []
+        self.case, self.failure, self.prelude, self.outcome, self.calls = case, None, not self.whole_root, None, []
         preserved = (r.UC_X86_REG_EBX, r.UC_X86_REG_ESI, r.UC_X86_REG_EDI, r.UC_X86_REG_EBP)
         expected_preserved = [uc.reg_read(reg) for reg in preserved]
-        uc.emu_start(0x620920, RETURN, count=100000)
-        if self.failure or self.prelude or uc.reg_read(r.UC_X86_REG_EIP) != self.entries[case["action"]]:
-            raise ValueError("original root prelude did not reach the selected action: " + str(self.failure))
-        entry = self.entries[case["action"]]
-        if source:
-            entry = self.entry
-            uc.reg_write(r.UC_X86_REG_ESP, ENTRY_SP)
-            uc.reg_write(r.UC_X86_REG_ECX, OWNER)
-            expected_preserved = [uc.reg_read(reg) for reg in preserved]
+        if self.whole_root:
+            entry = self.entry if source else 0x620920
+        else:
+            uc.emu_start(0x620920, RETURN, count=100000)
+            if self.failure or self.prelude or uc.reg_read(r.UC_X86_REG_EIP) != self.entries[case["action"]]:
+                raise ValueError("original root prelude did not reach the selected action: " + str(self.failure))
+            entry = self.entries[case["action"]]
+            if source:
+                entry = self.entry
+                uc.reg_write(r.UC_X86_REG_ESP, ENTRY_SP)
+                uc.reg_write(r.UC_X86_REG_ECX, OWNER)
+                expected_preserved = [uc.reg_read(reg) for reg in preserved]
         uc.emu_start(entry, RETURN, count=100000)
         if self.failure or self.outcome is None:
             raise ValueError(f"{case} at {uc.reg_read(r.UC_X86_REG_EIP):#x}: {self.failure or 'no outcome'}")

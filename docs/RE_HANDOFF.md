@@ -14,8 +14,8 @@ are historical.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
   **1,541 authored / 1,415 excluded / 1,067 in review**; **1,454 mapped**,
-  **1,434 source-present**, **1,333 exact / 225,099 exact bytes**, and
-  **514 match units**. These are ledger/status totals, not a fresh aggregate
+  **1,435 source-present**, **1,333 exact / 225,099 exact bytes**, and
+  **515 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
   present, and only `matches.csv` plus a reproducible canonical 100% unit
@@ -32,80 +32,69 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Active priority: Iku Fighter action root
+## Active priority: Iku whole-root code generation
 
-The complete59038-byte `Iku_dispatch_action_state_vslot28 @ 620920` is the
-current large source-recovery task. A new whole-root fact packet preserves
-all15132 instructions/three switches and classifies46 unsigned-to-x87
-corrections. Forty-five are infeasible from their producer ranges, including
-all17 old decompiler removed-block warnings. Action602's selector400 minus200
-instead wraps unsigned, making62C5D4 feasible; source must preserve that
-offset and its live x87 value through the subsequent X addition.
+`Iku_dispatch_action_state_vslot28 @ 620920` now has complete selected source
+in `src/characters/IkuActionState.cpp`: all110 nondefault IDs, original
+prelude/early exits and common default. The genuine entry is void thiscall,
+with no stack arguments. `implemented.csv` selects the root and the new
+`gpt-web-iku-action-state` unit compares its entire59038-byte target. Source
+presence is now established; canonical comparison is **nonexact at+8**, with
+no partial or exact byte credit.
 
-Original-code execution reaches object852's real spawn entry with0/2016
-argument/model differences. Signed-offset and premature-float controls differ
-672 and80 cases; exact native selector400 outcomes0/199/200/201/400 are covered.
-This stops before the spawn implementation, not through root RET. Direct
-Ghidra saves and independently reads back58 access-backed components in a
-partial7B8 receiver view,30 ordinary callee ABI models and46 correction
-comments, with all target bytes unchanged. All177 register CALLs now have receiver-domain target sets and local ABI
-overrides;621040 retains both vslots8/C. The four accepted virtual interfaces
-pass fresh12/12 canonical callee checks. The compiler conversion entry68A1A0
-has custom ST0:10 input/EAX:4 output, no stack arguments/purge; its SSE path
-does not return64 bits. A fresh direct Ghidra process reads back these types,
-all177 call target sets and prior58 fields/30 callee ABIs, with unchanged
-target bytes. The248621-byte decompiler hypothesis still has the spacebase/
-jumptable warning and is not source. Next, recover complete natural C++ action
-bodies with the verified virtual, unsigned and rounding contracts; do not
-paste decompiler text or promote partial action fragments. No source-present
-or exact root claim. See [the virtual ABI evidence](IKU_VIRTUAL_CALLS_2026_10_17.md)
-and [the type/native evidence](IKU_RANDOM_FLOAT_TYPES_2026_10_17.md).
+The raw audit closes all15132 instructions/59038 bytes,131 RETs and three
+compressed switches. All110 action entries plus default close58447 unique bytes;
+prelude/routing adds591. The new33 opening IDs include full glide214,
+landing/braking/dash/effect/input branches, and shared209/221 entry. Source
+preserves callback order, signed field widths, periodic-effect double X
+across two MT calls, and glide scratch receiver this+4. Raw JP/JNE conditions
+correct Ghidra's misleading NaN-facing pseudocode: unordered peer X must
+retain facing.
 
-The current authoritative source is `src/characters/IkuActionState.cpp`, with
-one `IkuActionStateView` and a compiled status dispatcher for77 of110
-nondefault IDs. It retains all35 upper out-of-class bodies with only the
-receiver rename and adds all42 middle IDs300--547. The33 opening IDs and
-original prelude/default still need recovery before full-root source selection
-and compiler comparison. No partial source or byte credit is claimed.
+Whole-entry native comparison passes **0/26783** sampled cases:19949 genuine
+RETs and6834 first backend/runtime entries. It visits10231 of15132 root
+instructions. The candidate executes its own prelude; real target frame,
+landing, RNG/event/audio, counter and math helpers run without injected return
+values. New opening/prelude cases are expanded while prior families retain
+only their smoke matrices and a small entry grid. The older expanded matrices
+and unrelated accepted units are not routinely replayed. Prelude-countdown
+and unordered-facing controls differ60/60 and28/48; both are checked subsets
+of the passing baseline. Post-backend continuation and exceptions remain
+unverified. See [the complete source/native/canonical checkpoint](IKU_FULL_ROOT_SOURCE_2026_10_17.md)
+for commands, hashes, outcomes and fixture limits.
 
-The middle normal-return CFG closes5799 instructions/22738 bytes:22640
-physical bytes plus53 remote instructions/98 shared bytes. All77 entries close
-12041 instructions/47561 unique root bytes; these overlapping unions are
-control-flow diagnostics, not separately owned functions or additive progress.
-Source preserves303's signed brake byte,310's two WORD increments, predictive
-landing/QWORD height sums,520/521's pre-advance emission, differing publication
-order and widened float constants. The new source compiles with pinned VC8;
-no accepted headers, profiles, object partitions or canonical relocations change.
+Private/status sharing helpers are forced inline into the actual void entry;
+there are no remaining local CALL relocations in its COFF root. This does not
+claim original helper boundaries or source spelling. Canonical replay uses32
+genuine external CALL symbols and132 data keys. The35 added floating keys are
+root-observed address/width/value pairs absent from previous mappings; no
+existing binding, accepted header/source/profile or object partition changes.
+Old cache receipts may be conservatively invalidated by global ledger hashes;
+no cold aggregate verification is claimed. Native-tested and formal-unit root
+sections replay to identical bytes.
 
-The new `--middle` source probe runs only the42 added actions through the
-actual compiled combined dispatcher. It executes genuine directional, frame,
-landing, RNG/event/audio and counter helpers, compares actor/call/global state,
-and stops at RET or the first real backend entry. See the
-[middle source/native checkpoint](IKU_MIDDLE_SOURCE_2026_10_17.md) for fresh
-commands, receipts and limits. Initial expanded middle run passes0/19644
-(17972 RETs, remaining first backend entries), with4016 observed root
-instructions. A final signed-zero check then finds and fixes generic zero-X
-arithmetic:540/541/545/546 must pass raw X directly, preserving -0. The final
-source passes0/5506 middle smoke and0/1508 focused coordinate cases; the
-expanded matrix is not replayed after that local fix. Single-counter/signed-
-brake/predictive-height controls differ44/129,54/246,4/133; reintroducing zero-X
-addition differs16/1070. Upper smoke remains
-0/4591 with its unchanged target-output digest. Post-backend behavior remains
-unverified.
+The actual COFF CFG closes9623 instructions/36703 callable bytes and106 RETs,
+with920 following metadata bytes and six switches. The target frame400hex
+versus candidate2E8hex differs at620928/+8. Grouped source folds physically
+distinct cases; next recover target-backed case-specific structure, floating
+lifetimes and dispatch lowering in this same large root. Do not add padding,
+inert locals or invented callee boundaries. A nonexact object does not prove
+an LTCG barrier. Original TU/source ownership and complete class layout remain
+unknown.
 
-Previous35-body measurements remain in the
-[upper checkpoint](IKU_UPPER_SOURCE_2026_10_17.md), with earlier
+The critical unsigned602 selector400-minus200 wrap/live x87 X addition,
+310 double increment,780 widened0.95f truncation and raw-X signed zero remain
+intact. Earlier evidence is in the [middle](IKU_MIDDLE_SOURCE_2026_10_17.md),
+[upper](IKU_UPPER_SOURCE_2026_10_17.md),
 [object818](IKU_OBJECT818_SOURCE_2026_10_17.md),
 [spell](IKU_SPELL_SOURCE_2026_10_17.md) and
-[late](IKU_LATE_SOURCE_2026_10_17.md) evidence. Those expanded matrices and the514
-accepted units are not routinely replayed. The current upper smoke can check
-the changed source TU/dispatcher while preserving its original fixture.
-
-Next recover the33 opening IDs0--226 in this same59038-byte root, then replace
-the partial status scaffolding with the actual complete void root and recover
-its original TU/LTCG code generation. Root source selection and exact credit
-remain absent. Keep unknown full receiver layout, exceptions and backend
-continuations explicit.
+[late](IKU_LATE_SOURCE_2026_10_17.md) notes. Direct Ghidra independently reads
+back target/import/entry/text/root and saved58 fields/30 callee ABIs/177
+register-call target sets, preserving all nine primary-project hashes. The
+clone is removed. The decompiler's spacebase warning remains a hypothesis
+limitation. Follow [the virtual ABI](IKU_VIRTUAL_CALLS_2026_10_17.md) and
+[random/float evidence](IKU_RANDOM_FLOAT_TYPES_2026_10_17.md); do not substitute
+an invented 64-bit conversion ABI for68A1A0's real ST0-to-EAX contract.
 
 ## Shared Fighter linked checkpoint
 
@@ -661,8 +650,9 @@ callable `[620920,62EFBE)`: **59,038 reachable bytes**, **15,132 instructions**,
 131 returns, three compressed action switches, and no unreached bytes or
 external direct jumps. The target body has 4,676 x87 instructions and no
 `FSINCOS` or `FRNDINT`. The attested Ghidra decompilation drops some reachable
-blocks and remains a private hypothesis. The root is **identified and
-declaration-only**, with no source-present or exact claim. See
+blocks and remains a private hypothesis. The root now has complete selected
+source with a nonexact whole-root unit; see
+[the current checkpoint](IKU_FULL_ROOT_SOURCE_2026_10_17.md). Boundary evidence:
 [the boundary and action map](IKU_VSLOT28_BOUNDARY_ACTION_MAP_2026_10_02.md).
 
 Target-to-target comparison of Iku actions 0–10 against Youmu established
@@ -679,10 +669,9 @@ JSON from the exact PE without a cached action-map report:
 python3 scripts/audit-iku-object-818-family.py
 ```
 
-Next, recover the remaining action families, payload semantics, helper ABI,
-x87 lifetimes and shared-tail conditions from target instructions. Select
-natural VC8 C++ only after those facts support it, then configure and compare
-the complete root. TH08's VC7 inline `FSINCOS` is only a technique reference;
+All action families now have selected natural C++; the active task is whole-root
+code generation with those verified payload, ABI, x87 and shared-tail facts.
+TH08's VC7 inline `FSINCOS` is only a technique reference;
 it does not establish an assembly requirement here, and this repository
 forbids assembly for forced comparisons.
 

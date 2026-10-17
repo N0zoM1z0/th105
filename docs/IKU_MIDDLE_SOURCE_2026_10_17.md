@@ -1,5 +1,9 @@
 # Iku's42 middle actions and unified77-action source
 
+> Historical77-action checkpoint. The [complete110-action root](IKU_FULL_ROOT_SOURCE_2026_10_17.md)
+> now has source selection and a nonexact whole-root unit. Hashes and remaining
+> work below describe this preceding checkpoint.
+
 `src/characters/IkuActionState.cpp` replaces the upper-only filename and adds
 complete staged bodies for all42 middle IDs300--547 inside
 `Iku_dispatch_action_state_vslot28 @ 620920`. The receiver is now

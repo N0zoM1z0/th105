@@ -45,6 +45,8 @@ METHODS = {
     "atan2_degrees": 0x406540,
     "absolute_scalar_float": 0x406330,
     "__ftol2_sse": 0x68A1A0,
+    "reset_fighter_action_scratch": 0x435110,
+    "update_common_action_state": 0x4740C0,
     "try_dispatch_directional_action_208_210": 0x478EE0,
     "is_y_at_or_below_stage_surface": 0x435DC0,
 }
