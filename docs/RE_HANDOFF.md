@@ -178,7 +178,20 @@ full replay or exact credit. Ghidra attests eight entries/root/shared exits;
 9 primary files unchanged and clone removed. Subsequent volley requests and
 returning world contexts remain unproved. See
 [first500-family evidence](REIMU_MID_500_ACTIONS_2026_10_18.md).
-Next continue510..550 middle actions, then high actions and returning world
+The existing500-family source now also admits510/511/512/513:7201 target
+bytes/1700 instructions plus shared exits. These use17C=8, wave20 and812's
+level-specific3/4/5-angle groups, with>513 pending. Native0/2493 includes1844
+RETs,399 object requests,232 effects,7 common-entry stops,1 set669 stop and10
+pending handoffs;636 scaled-counter and627 wave calls execute actual helpers.
+12 required target sites run at both precisions. Wrong wave/flag/angle
+controls fail4/36,36/36,2/36. A373-case integration cohort and fresh0/72 old500
+replay cover earlier paths; all six old code/data/relocation identities and
+focused smokes remain unchanged. Direct Ghidra re-attests entries/root/shared
+exits;9 primary files unchanged and clone deleted. Compact source loops versus
+expanded target call sites, returning volleys/world contexts and whole-root
+canonical matching remain unproved; no implementation/exact credit. See
+[510-family evidence](REIMU_MID_510_ACTIONS_2026_10_18.md).
+Next continue520..550 middle actions, then high actions and returning world
 contexts toward the complete void root. Use `--cohort` for focused rechecks;
 no aggregate cold replay was run.
 Obsolete unpinned disassembly exports (~18MB) and rejected/superseded object
