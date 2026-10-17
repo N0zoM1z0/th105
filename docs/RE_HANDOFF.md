@@ -151,7 +151,20 @@ helpers/root/shared tails;9 primary files unchanged, clone deleted. Object/
 effect requests still stop at actual wrapper entry, so second-shot/wave/
 post-manager continuations remain unproved; no root implementation/exact credit.
 See [projectile-group evidence](REIMU_MID_PROJECTILE_ACTIONS_2026_10_18.md).
-Next continue middle410..418, then500/high actions and returning world contexts
+The same method now adds410/412/414/416/418 via
+`ReimuActionStateMidShotCases.hpp`:3649 target bytes/902 instructions plus
+shared exits, with>418 pending. Native0/2217 includes1806 RETs,366 object
+requests,23 effects,11 common-entry stops,1 set669-entry stop and10 pending
+handoffs.288 atan2,363 scaled-counter and354 wave calls execute unchanged
+native helpers;801's four-float and808's three-float/-1 requests are compared.
+19 target branch sites run at both precisions. A251-case integration cohort
+covers earlier paths; six older code/data/relocation identities and focused
+smokes remain unchanged. Order/sign/counter-boundary negatives fail2/38,
+1/50,3/50. Prior Ghidra410..418 readback is reused after rechecking root/body
+bytes and all9 unchanged primary files; no new process/clone. Complete root,
+returning world contexts and exact comparison remain pending; no implementation/
+exact credit. See [shot-group evidence](REIMU_MID_SHOT_ACTIONS_2026_10_18.md).
+Next continue500 middle actions, then high actions and returning world contexts
 toward the complete void root. Use `--cohort` for focused rechecks; no aggregate
 cold replay was run.
 Obsolete unpinned disassembly exports (~18MB) and rejected/superseded object
