@@ -465,6 +465,8 @@ private:
 
 __forceinline bool IkuActionStateView::try_dispatch_verified_action()
 {
+    // These six exits share effect62 and the following sequence transition.
+    float sequence_effect_x, sequence_effect_y;
     switch (action_id_13c) {
     case 0: {
         resolve_stage_surface_landing_transition();
@@ -1627,11 +1629,9 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
             if (sequence_index_13e == 0) {
                 if (frame_timer_142 == 0) {
                     if (frame_index_140 == (3) && byte_at(0x750)) {
-                        float x = (float_at(0xec) - static_cast<float>(facing() * 47));
-                        emit_fighter_effect_433cc0(62, x,
-                            static_cast<float>(float_at(0xf0) + (132.0)), byte_at(0x104), 1);
-                        next_sequence_block();
-                        return true;
+                        sequence_effect_y = static_cast<float>(float_at(0xf0) + 132.0);
+                        sequence_effect_x = float_at(0xec) - static_cast<float>(facing() * 47);
+                        goto emit_sequence_effect;
                     }
                     if (middle_frame(4)) {
                         middle_cost(60, 50);
@@ -1679,11 +1679,9 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
             if (sequence_index_13e == 0) {
                 if (frame_timer_142 == 0) {
                     if (frame_index_140 == (3) && byte_at(0x750)) {
-                        float x = (float_at(0xec) - static_cast<float>(facing() * 47));
-                        emit_fighter_effect_433cc0(62, x,
-                            static_cast<float>(float_at(0xf0) + (132.0)), byte_at(0x104), 1);
-                        next_sequence_block();
-                        return true;
+                        sequence_effect_y = static_cast<float>(float_at(0xf0) + 132.0);
+                        sequence_effect_x = float_at(0xec) - static_cast<float>(facing() * 47);
+                        goto emit_sequence_effect;
                     }
                     if (middle_frame(4)) {
                         middle_cost(60, 50);
@@ -2131,11 +2129,9 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         if (sequence_index_13e == 0) {
             if (frame_timer_142 == 0) {
                 if (frame_index_140 == 5 && byte_at(0x750)) {
-                    emit_fighter_effect_433cc0(
-                        62, float_at(0xec), static_cast<float>(float_at(0xf0) + 150.0),
-                        byte_at(0x104), 1);
-                    next_sequence_block();
-                    return true;
+                    sequence_effect_y = static_cast<float>(float_at(0xf0) + 150.0);
+                    sequence_effect_x = float_at(0xec);
+                    goto emit_sequence_effect;
                 }
                 if (frame_index_140 == 6)
                     start_object818_emission(false);
@@ -2179,11 +2175,9 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         if (sequence_index_13e == 0) {
             if (frame_timer_142 == 0) {
                 if (frame_index_140 == 5 && byte_at(0x750)) {
-                    emit_fighter_effect_433cc0(
-                        62, float_at(0xec), static_cast<float>(float_at(0xf0) + 150.0),
-                        byte_at(0x104), 1);
-                    next_sequence_block();
-                    return true;
+                    sequence_effect_y = static_cast<float>(float_at(0xf0) + 150.0);
+                    sequence_effect_x = float_at(0xec);
+                    goto emit_sequence_effect;
                 }
                 if (frame_index_140 == 6)
                     start_object818_emission(true);
@@ -2235,11 +2229,9 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         if (sequence_index_13e == 0) {
             if (frame_timer_142 == 0) {
                 if (frame_index_140 == 5 && byte_at(0x750)) {
-                    emit_fighter_effect_433cc0(
-                        62, float_at(0xec), static_cast<float>(float_at(0xf0) + 150.0),
-                        byte_at(0x104), 1);
-                    next_sequence_block();
-                    return true;
+                    sequence_effect_y = static_cast<float>(float_at(0xf0) + 150.0);
+                    sequence_effect_x = float_at(0xec);
+                    goto emit_sequence_effect;
                 }
                 if (frame_index_140 == 6)
                     start_object818_emission(false);
@@ -2295,11 +2287,9 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         if (sequence_index_13e == 0) {
             if (frame_timer_142 == 0) {
                 if (frame_index_140 == 5 && byte_at(0x750)) {
-                    emit_fighter_effect_433cc0(
-                        62, float_at(0xec), static_cast<float>(float_at(0xf0) + 150.0),
-                        byte_at(0x104), 1);
-                    next_sequence_block();
-                    return true;
+                    sequence_effect_y = static_cast<float>(float_at(0xf0) + 150.0);
+                    sequence_effect_x = float_at(0xec);
+                    goto emit_sequence_effect;
                 }
                 if (frame_index_140 == 6)
                     start_object818_emission(true);
@@ -3106,6 +3096,10 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
     default:
     return false;
     }
+emit_sequence_effect:
+    emit_fighter_effect_433cc0(62, sequence_effect_x, sequence_effect_y, byte_at(0x104), 1);
+    next_sequence_block();
+    return true;
 }
 
 __forceinline bool IkuActionStateView::try_dispatch_verified_glide_action()

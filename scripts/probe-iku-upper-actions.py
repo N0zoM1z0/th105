@@ -235,6 +235,29 @@ def root_cases(smoke=False):
     return list({json.dumps(case, sort_keys=True): case for case in cases}.values())
 
 
+def sequence_effect_cases():
+    """Reach each effect62 continuation and the adjacent frame/input gates."""
+    basic = dict(middle_cases(True)[0], sequence=0, timer=-1, time=7, gate=0)
+    actions = (416, 417, 565, 566, 567, 568)
+    cases = []
+    for action in actions:
+        frame = 3 if action in (416, 417) else 5
+        for facing, cw, x_bits, y in itertools.product(
+                (-1, 1), (0x27F, 0x37F),
+                ("00000000", "80000000", "00000001", "80000001", "bf800000", "44200000"),
+                (0.0, -0.0, 100.0, -100.0, 1e20)):
+            cases.append(dict(basic, action=action, frame=frame, facing=facing,
+                              cw=cw, x_bits=x_bits, y=y, flag=1,
+                              field_6c0=1, field_6c4=1))
+        for sequence, index, timer, flag, resource in itertools.product(
+                (-1, 0, 1, 2), (frame - 1, frame, frame + 1),
+                (-1, 0), (0, 1, 255), (0, 1)):
+            cases.append(dict(basic, action=action, sequence=sequence, frame=index,
+                              timer=timer, flag=flag, field_6c0=resource,
+                              field_6c4=resource, y=100.0))
+    return list({json.dumps(case, sort_keys=True): case for case in cases}.values())
+
+
 def opening_branch_cases():
     """Exercise action200 input exits; action10 stays below the frame limit."""
     basic = dict(opening_cases(True)[0], sequence=1, frame=0, timer=-1,
@@ -326,7 +349,7 @@ class UpperProbe(late.LateProbe):
         super().instruction(uc, address, size, unused)
 
 
-def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False, control=None, coordinates=False, opening=False, whole=False, all_actions=False, actions=None, steering_clamps=False, opening_branches=False):
+def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False, control=None, coordinates=False, opening=False, whole=False, all_actions=False, actions=None, steering_clamps=False, opening_branches=False, sequence_effects=False):
     canonical = linked_pe.comparator()
     target_sha = canonical.verify_target()
     if hashlib.sha256(canonical.target_bytes(0x620920, 59038)).hexdigest() != "abc831c6ccd95986bed811694f532ad8c8b92cb49702a7f6ce4de100b8a73dea":
@@ -336,7 +359,7 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
     table, initialization = lookup_fixture(canonical)
     ledger = {int(row["address"], 0): int(row["size"])
               for row in csv.DictReader((ROOT / "config/functions.csv").open())}
-    cases = opening_branch_cases() if opening_branches else steering_clamp_cases() if steering_clamps else root_cases(smoke) if all_actions else opening_cases(smoke, whole) if opening else coordinate_cases(smoke) if coordinates else middle_cases(smoke) if middle else gate_cases(smoke) if new_only else input_cases(smoke)
+    cases = sequence_effect_cases() if sequence_effects else opening_branch_cases() if opening_branches else steering_clamp_cases() if steering_clamps else root_cases(smoke) if all_actions else opening_cases(smoke, whole) if opening else coordinate_cases(smoke) if coordinates else middle_cases(smoke) if middle else gate_cases(smoke) if new_only else input_cases(smoke)
     if actions:
         selected = set(actions)
         missing = selected - {case["action"] for case in cases}
@@ -363,6 +386,7 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
     probe.whole_root = whole
     inputs, outputs = hashlib.sha256(), hashlib.sha256()
     differences, examples, mismatch_by_action = 0, [], {}
+    effect_entries, negative_zero_x_entries = {}, {}
     for number, case in enumerate(cases, 1):
         inputs.update(json.dumps(case, sort_keys=True).encode())
         try:
@@ -371,6 +395,14 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
             raise ValueError(f"{case}; pc={probe.engine.reg_read(r.UC_X86_REG_EIP):#x}; "
                              f"calls={probe.calls[-4:]}; {error}") from error
         outputs.update(json.dumps(expected, sort_keys=True).encode())
+        if sequence_effects and expected["outcome"] == "0x435240":
+            arguments = expected["calls"][-1]["arguments"]
+            if arguments[0] != 62:
+                raise ValueError("sequence effect fixture reached another effect")
+            action = str(case["action"])
+            effect_entries[action] = effect_entries.get(action, 0) + 1
+            if arguments[1] == 0x80000000:
+                negative_zero_x_entries[action] = negative_zero_x_entries.get(action, 0) + 1
         if expected != actual:
             differences += 1
             key = str(case["action"])
@@ -386,9 +418,11 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
             "actions": len(OPENING_ENTRIES) + len(ENTRIES) + len(MIDDLE_ENTRIES),
             "whole_root_entry": whole,
             "requested_actions": sorted(set(actions)) if actions else None,
-            "case_set": "opening-branches" if opening_branches else "steering-clamps" if steering_clamps else "whole-root-actions" if all_actions else "opening-actions" if opening else "middle-coordinates" if coordinates else "middle-actions" if middle else "new-action-gates" if new_only else "upper-actions",
+            "case_set": "sequence-effects" if sequence_effects else "opening-branches" if opening_branches else "steering-clamps" if steering_clamps else "whole-root-actions" if all_actions else "opening-actions" if opening else "middle-coordinates" if coordinates else "middle-actions" if middle else "new-action-gates" if new_only else "upper-actions",
             "tested_actions": sorted({case["action"] for case in cases}), "cases": len(cases), "mismatch_count": differences, "mismatch_by_action": mismatch_by_action, "examples": examples,
             "input_sha256": inputs.hexdigest(), "target_output_sha256": outputs.hexdigest(),
+            "sequence_effect_entries_by_action": effect_entries,
+            "sequence_effect_negative_zero_x_by_action": negative_zero_x_entries,
             "lookup_initialization": initialization, "math_runtime_trace": probe.math_trace,
             "outcomes": [{"side": side, "stop": stop, "cases": count} for (side, stop), count in sorted(probe.outcomes.items())],
             "target_root_instructions_visited": len(probe.visited), "source_view_aliases": probe.aliases,
@@ -414,6 +448,9 @@ def control_source(name):
         needle = ("// The second increment in sequence1 is distinct and intentional.\n"
                   "            if (int_at(0x180) != 0 && ++short_at(0x730) > 5) { int_at(0x180) = 0; short_at(0x730) = 0; }")
         replacement = "// Deliberately omitted second increment for native calibration."
+    elif name == "effect-height":
+        needle = "emit_fighter_effect_433cc0(62, sequence_effect_x, sequence_effect_y, byte_at(0x104), 1);"
+        replacement = "emit_fighter_effect_433cc0(62, sequence_effect_x, sequence_effect_y + 1.0f, byte_at(0x104), 1);"
     elif name == "positive-steer":
         needle = "if (facing() * int_at(0x6b4) > 0) { set_action_and_finalize(212); return true; }"
         replacement = "if (facing() * int_at(0x6b4) >= 0) { set_action_and_finalize(212); return true; }"
@@ -484,12 +521,13 @@ if __name__ == "__main__":
     cases.add_argument("--middle", action="store_true", help="focus on the42 new middle actions")
     cases.add_argument("--steering-clamps", action="store_true", help="action730 two-axis binary32 clamp boundaries with genuine lookup math")
     cases.add_argument("--opening-branches", action="store_true", help="whole-root action200 input exits and action10 below-frame-limit paths")
-    parser.add_argument("--control", choices=("aim-limit", "unsigned-gate", "single-counter", "positive-steer", "unsigned-brake", "current-height", "zero-offset", "prelude-countdown", "unordered-face"))
+    cases.add_argument("--sequence-effects", action="store_true", help="whole-root six-action effect62 shared continuation and adjacent gates")
+    parser.add_argument("--control", choices=("aim-limit", "unsigned-gate", "single-counter", "positive-steer", "effect-height", "unsigned-brake", "current-height", "zero-offset", "prelude-countdown", "unordered-face"))
     parser.add_argument("--coordinates", action="store_true", help="with --middle, focus on direct X transfer and signed zero")
     parser.add_argument("--whole", action="store_true", help="execute both real/candidate roots from their own entry")
     parser.add_argument("--actions", type=int, nargs="+", help="run only these action IDs from the selected fixture")
     args = parser.parse_args()
-    if args.all_actions or args.steering_clamps or args.opening_branches:
+    if args.all_actions or args.steering_clamps or args.opening_branches or args.sequence_effects:
         args.whole = True
     if args.coordinates and not args.middle:
         parser.error("coordinate cases require --middle")
@@ -501,10 +539,12 @@ if __name__ == "__main__":
         parser.error("opening controls require --opening --whole or --all-actions")
     if args.control == "positive-steer" and not args.opening_branches:
         parser.error("positive-steer requires --opening-branches")
+    if args.control == "effect-height" and not args.sequence_effects:
+        parser.error("effect-height requires --sequence-effects")
     source = control_source(args.control) if args.control else args.source.resolve()
     output = args.output.resolve() if args.output else (ROOT / "build" / ("IkuUpper-" + args.control + ".obj")
                                                        if args.control else None)
-    report = audit(source, output, args.smoke, args.new_only, args.middle, args.control, args.coordinates, args.opening, args.whole, args.all_actions, args.actions, args.steering_clamps, args.opening_branches)
+    report = audit(source, output, args.smoke, args.new_only, args.middle, args.control, args.coordinates, args.opening, args.whole, args.all_actions, args.actions, args.steering_clamps, args.opening_branches, args.sequence_effects)
     report["diagnostic_control"] = args.control
     print(json.dumps(report, indent=2))
     raise SystemExit(bool(report["mismatch_count"]))

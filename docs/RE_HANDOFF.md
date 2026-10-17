@@ -32,84 +32,91 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Active priority: Iku conditional exits and argument ownership
+## Active priority: Iku shared continuations and argument lifetimes
 
-Iku_dispatch_action_state_vslot28 @620920 retains complete selected source:
-110 actions, actual void thiscall prelude/default and one ascending switch.
+Iku_dispatch_action_state_vslot28 @620920 retains complete110-action selected
+source, actual void thiscall prelude/default and one ascending switch.
 Target59038 bytes/15132 instructions/131 RETs, SHA256
 abc831c6ccd95986bed811694f532ad8c8b92cb49702a7f6ce4de100b8a73dea.
-Frame400hex and84 real payload homes remain natural. Strict whole-root
-comparison stays **nonexact+0x64 /620984**, where target alone hoists EDI=1.
-No partial/exact credit. Current evidence:
-[conditional exits/height argument](IKU_LANDING_ARGUMENT_OWNERSHIP_2026_10_17.md).
+Frame400hex/84 real payload homes remain natural. Strict whole-root remains
+**nonexact+0x64 /620984**, where target alone hoists EDI=1. No exact credit.
+Current evidence:
+[effect62 shared continuation](IKU_EFFECT_SHARED_CONTINUATION_2026_10_17.md).
 
-Actions10/200 now express the target's separate conditional action/RET
-leaves. Action412 uses the observed frame>=2 comparison; its ring height
-lookup now feeds the outgoing Y argument directly from genuine ST0, removing
-the temporary store/reload. This does not recover412/418 landing-tail sharing.
-No public ABI/vtable/layout/profile change. Current section59790, reachable
-15102 instructions/58631 bytes in58634 span, three internal alignment bytes,
-1156 following metadata/alignment bytes;133 RETs and867 ordinary/178 register
-CALLs, zero local CALLs. Target865/177. All33/42/35 tables remain; physical-
-owner diagnostics stay7/109 at2/4/5/204/215/303/321, not exact credit.
+Actions416/417/565/566/567/568 now assign real coordinate values and branch
+to one effect62/next-sequence/return continuation, following the target's
+626C34 shared tail. This recovers one physical effect call with the exact
+six-action incoming set; whole effect sites58 ->54, matching target54.
+No fake calls/returns, new callable helpers or ABI/layout/profile changes.
+The candidate still stores/reloads X at its join; target carries X in ST0
+into outgoing argument store. A forced-inline wrapper was byte-neutral;
+a private double carrier added16 bytes and failed to remove the narrowing
+spill. Both are unselected. Continue actual scalar/argument lifetimes.
+
+Current section59502 (288 bytes smaller),15002 reachable instructions/
+58344 bytes in58347 callable span,3 internal alignment bytes/1155 following
+metadata;129 RETs,863 ordinary/175 register CALLs, zero local CALLs. Target
+865/177. All33/42/35 tables remain. Physical-owner diagnostics6/109 at
+2/4/5/204/215/303, formerly7 including321; not partial/exact credit.
 Source CRLF SHA256:
-7d8615e70885911f496bb287fb82884f53a5c29d7e80e072ecf939840d5abf2c.
+69c43bf58dcfbeee08866a93b007fa266718a37c7850b79609056b3920fa864b.
 Normalized full section SHA256:
-0bfac4bd1cd00be448bbc61139f3456e7dc6e4743f8672e35db9575e65fff6f5.
+dac7642939ffc375a5fc6095057722c35a47ebc7112faf978e9bdfcfd3b3f751.
 
-Fresh whole-entry opening-branch native passes0/720:412 genuine action
-backend entries/308 RETs,100 target instructions. Wrong positive-steering
-control detects56/720 at zero horizontal input. Action10 end-of-animation
-leaves remain static-only evidence; real callbacks need animation/render
-resources, and no callback/result was faked. Focused nine-action ring/landing native passes0/3852;
-412 stops before its later ring, whose packing remains static evidence. Native and configured full
-sections normalize identically. No routine broad matrix replay.
+Fresh whole-entry six-action effect native passes0/1584:632 genuine effect
+entries,528 action entries,24 object entries and400 RETs;588 target-root
+instructions. All six reach effect62, and565..568 preserve raw negative-zero
+X. Wrong outgoing-height control detects536/1584 across all six actions;
+96 large-Y effect cases round away the added1. Native and configured full
+sections normalize identically. Real helpers run with no result hooks.
+Post-effect/sequence/backend continuations remain unproved. No routine broad
+matrix replay; older results remain scoped to their recorded source hashes.
 
-Previous [glide exit ownership](IKU_GLIDE_EXIT_OWNERSHIP_2026_10_17.md)
-recovers action214's facing-arm selection/four final frame exits:19 sequence
-and five frame sites, and live lookup ST0 products before final rounding.
-Its0/1034 native and28/48 wrong-facing calibration belong to that earlier
-source; they were not rerun as current-source coverage. Preserve ordered
-NaN behavior and one runtime call per path.
+Earlier selected contracts remain in
+[conditional exits/height argument](IKU_LANDING_ARGUMENT_OWNERSHIP_2026_10_17.md):
+separate10/200 action/RET leaves;412 frame>=2 and direct real height ST0 into
+ring Y. Its0/720 opening/0/3852 ring/landing native belong to that earlier
+source. Action10 terminal leaves and412's post-first-spawn ring remain static
+only. [Glide exits](IKU_GLIDE_EXIT_OWNERSHIP_2026_10_17.md) records214's19
+sequence/five frame sites, ordered facing leaves and live lookup products.
+Its0/1034 native also belongs to earlier source. Do not add inert214 exit
+checks to reproduce the repeated target62271B..622757 gate.
 
-The earlier genuine /GL root link with41 providers, pinned SDK/CRT,44 checked
-same-target aliases and18 attested non-code data bindings remains a dated
-checkpoint, not a current-source link. Of52 dependencies47 were exact;
-406360/4063D0/417800/42CF70/4740C0 and provisional unclassified406330 were
-nonexact. SDK4399C0/42D1B0 were94/100 exact before/after link. Its full901
-HIGHLOW/867 ordinary CALL replay differed from ordinary lowering in22
-scheduling bytes in730 plus two explicit INT3s; whole root stayed nonexact.
-Do not routinely rerun it. Preserve the small source/recipe-attested --reuse
-cache, which rebuilds changed inputs:
-[full replay](IKU_LINKED_REPLAY_2026_10_17.md),
+The dated genuine /GL link closes41 providers, pinned SDK/CRT,44 checked
+same-target aliases/18 attested non-code data bindings;47/52 dependencies
+exact.406360/4063D0/417800/42CF70/4740C0 and provisional unclassified406330
+remain nonexact. SDK4399C0/42D1B0 were94/100 exact before/after link. Its full
+901 HIGHLOW/867 ordinary CALL replay differed from ordinary in22 action730
+scheduling bytes plus two explicit INT3s; whole stayed nonexact. This is not
+a current-source link. Preserve the small --reuse cache, do not routinely
+replay it: [full replay](IKU_LINKED_REPLAY_2026_10_17.md),
 [providers](IKU_REAL_LINK_2026_10_17.md).
 
-The [action/payload partition audit](IKU_ACTION_PAYLOAD_PARTITIONS_2026_10_17.md)
-still closes182 spawn sites/190 action-site records per image with independent
-CFG origin agreement and global SP joins. Current target/candidate unique-PC
-coverage14870/14836, states16959/16888. Equal action-group/physical-ordinal
-pairing gives84 singleton/bijective home constraints,59 identity. This is
-conditional static correlation, not payload values/feasible paths/original
-variables/exact bytes. All41 surface and10 below-surface consumers testAL
-with genuine full-EAX0/1 int predicates.
+The [action/payload audit](IKU_ACTION_PAYLOAD_PARTITIONS_2026_10_17.md) still
+closes182 spawn sites/190 action-site records per image with independent
+CFG-origin agreement/global SP joins. Current target/candidate unique-PC
+coverage14870/14744, states16959/16894. Equal action-group/physical-ordinal
+pairing gives84 singleton/bijective constraints,57 identity (previously59).
+This is conditional static correlation, not payload values/feasible paths/
+original variables/exact bytes. All41 surface/10 below-surface consumers
+still testAL with genuine full-EAX0/1 int predicates.
 
-Next: target effect626C3B shares416/417/565..568 versus four extra candidate
-sites;412/418 landing-tail ownership and action730's five face sites versus
-four remain open. The target214 exit gate62271B..622757 repeats while current
-lowering does not; do not add inert checks. Follow actual argument/control
-lifetimes. Preserve unsigned602/live x87 X addition,310 double increment,
-780 widened0.95f truncation, raw-X signed zero, branch-local730 limits6/4/5,
-scratch reset receiverthis+4 and custom ftol ST0 ->EAX32 ABI. Prior contracts:
+Next: shared effect argument ST0 lifetime/join placement,412/418 landing-tail
+ownership and730's five facing sites versus four. All other ordinary callee/
+action expanded site counts now agree; sharing is not a path/value proof.
+Preserve unsigned602/live x87 X addition,310 double increment,780 widened
+0.95f truncation, raw-X signed zero, branch-local730 limits6/4/5, ordered NaN,
+scratch receiverthis+4 and real ftol ST0 ->EAX32 ABI. Prior contracts:
 [steering](IKU_STEERING_CLAMPS_2026_10_17.md),
 [virtual ABI](IKU_VIRTUAL_CALLS_2026_10_17.md),
 [random/float](IKU_RANDOM_FLOAT_TYPES_2026_10_17.md).
 
-Wrong-image IDA remains rejected; no database was used/changed in this raw
-byte unit. Re-attest direct Ghidra before reuse. Original source/inheritance/
-TU/compiler phase, post-backend/exception timing and payload-value equivalence
-remain unknown. No standalone/LTCG barrier, shared accepted-unit change or
-cold aggregate result is claimed. Remove unused private controls and build
-caches regularly; keep only reproducible current evidence/cache.
+Wrong-image IDA stays rejected; no database used/changed in this raw-byte
+unit. Re-attest direct Ghidra before reuse. Original source/inheritance/TU/
+compiler phase, post-backend/exception timing and payload-value equivalence
+remain unknown. No standalone/LTCG barrier, accepted shared-unit change or
+cold aggregate result. Remove superseded private controls and build products;
+retain current reproducible evidence and the small genuine-link cache.
 
 ## Shared Fighter linked checkpoint
 
