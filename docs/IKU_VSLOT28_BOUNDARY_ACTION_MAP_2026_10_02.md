@@ -1,5 +1,12 @@
 # Iku vslot +0x28 boundary and action map, 2026-10-02
 
+The [October17 type/native follow-up](IKU_RANDOM_FLOAT_TYPES_2026_10_17.md)
+qualifies all17 removed-block warnings as infeasible unsigned remainder
+corrections, records the58-component working view and30 callee ABI models,
+and verifies action602's feasible unsigned-wrap path to object852 spawn.
+The root remains identified without complete source or exact credit. The
+observations below retain their original checkpoint scope.
+
 ## Exact target observations
 
 `Iku_dispatch_action_state_vslot28 @ 0x00620920` is an RTTI-owned Iku Fighter primary-vtable target. The only analyzed executable is the original Japanese TH10.5 v1.06a, SHA-256 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`. Its candidate callable `[620920,62EFBE)` has **59,038 bytes** and SHA-256 `abc831c6ccd95986bed811694f532ad8c8b92cb49702a7f6ce4de100b8a73dea`.

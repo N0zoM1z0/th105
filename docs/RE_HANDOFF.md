@@ -32,7 +32,31 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Active priority: shared Fighter action root
+## Active priority: Iku Fighter action root
+
+The complete59038-byte `Iku_dispatch_action_state_vslot28 @ 620920` is the
+current large source-recovery task. A new whole-root fact packet preserves
+all15132 instructions/three switches and classifies46 unsigned-to-x87
+corrections. Forty-five are infeasible from their producer ranges, including
+all17 old decompiler removed-block warnings. Action602's selector400 minus200
+instead wraps unsigned, making62C5D4 feasible; source must preserve that
+offset and its live x87 value through the subsequent X addition.
+
+Original-code execution reaches object852's real spawn entry with0/2016
+argument/model differences. Signed-offset and premature-float controls differ
+672 and80 cases; exact native selector400 outcomes0/199/200/201/400 are covered.
+This stops before the spawn implementation, not through root RET. Direct
+Ghidra saves and independently reads back58 access-backed components in a
+partial7B8 receiver view,30 ordinary callee ABI models and46 correction
+comments, with all target bytes unchanged. The new typed decompiler hypothesis
+still has a spacebase/jumptable warning and is not source. Next, qualify the
+remaining virtual-call types, especially the shared register CALL at621040,
+then recover complete natural C++ action bodies with the verified unsigned/rounding
+contracts; do not paste decompiler text or promote partial action fragments.
+No source-present or exact root claim. See
+[the current Iku type/native evidence](IKU_RANDOM_FLOAT_TYPES_2026_10_17.md).
+
+## Shared Fighter linked checkpoint
 
 `Fighter_update_common_action_state @ 4740C0` is the current large shared root.
 Its local20-byte checked container now uses real VC8 `std::deque` with the
@@ -48,7 +72,7 @@ aliases and12 attested non-executable data bindings are diagnostic, not proof
 of original C++ declarations or runtime equivalence. Both linked switches and
 all2842 instructions/10233 callable bytes close, with three alignment bytes.
 The linked entry adds an aligned EBP frame and still uses ADD-negative in
-place of target SUB. No float/flag change is retained. The next task is joint
+place of target SUB. No float/flag change is retained. Remaining work is joint
 clamp/sequence ownership and dispatch lowering with target rounding intact.
 See [the source/linked ABI checkpoint](COMMON_FIGHTER_LINKED_ABI_2026_10_17.md).
 
@@ -579,7 +603,7 @@ after visibility or convention changes. Existing texture wrapper and CLogo
 caller units were also replayed. See
 [the exact evidence and reproduction](SPRITE_TEXTURE_SETUP_2026_10_16.md).
 
-## Active reconstruction lead: Iku Fighter vslot +0x28
+## Iku boundary and action-family reference
 
 `Iku_dispatch_action_state_vslot28 @ 0x00620920` has a hash-attested complete
 callable `[620920,62EFBE)`: **59,038 reachable bytes**, **15,132 instructions**,
