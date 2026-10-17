@@ -14,12 +14,13 @@ from reimu_animation_fixture import RESOURCE, TREE, HEAD, VECTOR, SLOT
 
 def resource_graph(case, keys):
     keys = tuple(sorted(keys))
-    if not keys or len(keys) != len(set(keys)) or len(keys) > 24 or not 0 <= case["frame"] < 6:
+    if not keys or len(keys) != len(set(keys)) or len(keys) > 64 or not 0 <= case["frame"] < 6:
         raise ValueError("late-low resource capacity exceeded")
-    image = bytearray(0x40000)
+    image = bytearray(0x40000 if len(keys) <= 24 else 0x100000)
+    frame_base = (0x1000+len(keys)*0x100+0xfff) & ~0xfff
     nodes = {key: RESOURCE+0x500+index*0x20 for index, key in enumerate(keys)}
     blocks = {key: RESOURCE+0x1000+index*0x100 for index, key in enumerate(keys)}
-    frames = {key: RESOURCE+0x3000+index*0x1C00 for index, key in enumerate(keys)}
+    frames = {key: RESOURCE+frame_base+index*0x1C00 for index, key in enumerate(keys)}
 
     def put(address, fmt, *values):
         struct.pack_into(fmt, image, address-RESOURCE, *values)

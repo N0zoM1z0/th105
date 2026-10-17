@@ -106,9 +106,21 @@ identities; current smokes pass0/9,0/88,0/64,0/99, without full old replay.
 No accepted unit or exact credit changes. Ghidra attests root/entries/shared
 tails; primary hashes unchanged and clone deleted. See
 [late-low evidence](REIMU_LATE_LOW_ACTIONS_2026_10_17.md).
-All44 concrete low-table bodies plus direct300 have staged source. Next
-integrate the selector/default and source phases, then mid/high and returning
-world contexts toward the complete root. Use `--cohort` for focused rechecks.
+All44 concrete low-table bodies plus direct300 now share five source fragments
+with one monolithic `ReimuActionStateLowDispatch.cpp` entry/low method. It
+runs entry processing before re-reading action, routes signed actions<=300,
+calls real4740C0 for negative/gap/default cases and returns pending for>300
+at the original47CC5F boundary. Its bool is a staging interface, not the
+original void-root ABI. Native0/3122 includes1765 RETs (28 through real common
+body),1036 common-entry stops,144 set669-entry stops,50 object998 requests,
+48 effect requests and79 pending upper handoffs. Negatives fail1/59 and28/28.
+All five old COFF text/data/relocation identities remain unchanged, plus
+0/9,0/88,0/64,0/99,0/150 focused old-stage replays. The expanded64-key fixture
+preserves old layouts byte-for-byte; Ghidra re-attests selector/default/handoff,
+primary hashes unchanged and clone deleted. No source-present/exact credit.
+See [integrated low evidence](REIMU_LOW_DISPATCH_INTEGRATION_2026_10_17.md).
+Next add mid/high bodies to the monolithic source path and resolve returning
+world contexts toward the complete void root. Use `--cohort` for rechecks.
 Obsolete unpinned disassembly exports (~18MB) and rejected/superseded object
 files were removed; current bounded evidence and primary databases remain.
 Obsolete common-root GL controls/provider objects and rejected Reimu control

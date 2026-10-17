@@ -30,6 +30,9 @@ public:
     int spawn_owned_object_via_manager(
         int object_id, float x, float y, int direction, int arg5, int arg6, int arg7);
     bool run_checked_prelude();
+    // True completes the entry/low path; false hands action>300 to later source.
+    bool run_checked_low_dispatch();
+    void update_common_action_state();
     // True handles action0..10; false leaves other actions to later phases.
     bool try_run_checked_low_action();
     // True handles actions71..78; this is another staging phase.

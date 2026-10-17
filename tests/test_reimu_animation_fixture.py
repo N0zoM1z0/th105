@@ -99,5 +99,10 @@ class ReimuLateLowAnimationFixtureTests(ReimuMovementAttackAnimationFixtureTests
         return late_graph({"transition": transition, "frame": self.initial_frame, "duration": 3}, self.keys)
 
 
+class ReimuIntegratedLowAnimationFixtureTests(ReimuLateLowAnimationFixtureTests):
+    keys = tuple(range(64))
+    initial_frame = 5
+
+
 if __name__ == "__main__":
     unittest.main()
