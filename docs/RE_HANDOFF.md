@@ -256,7 +256,26 @@ One direct Ghidra read-only clone re-attests root/entries/shared tails under
 objects/window/cycle paths remain dynamically unproved; no root implementation
 or exact credit. See
 [first-high evidence](REIMU_HIGH_ENTRY_ACTIONS_2026_10_18.md).
-Next continue608 at488F62 and later high bodies, then real returning world
+608/609/610/612/614/616/619 now join the same method through619:4844 target
+bytes/1211 instructions. Native0/6376 includes6001 RETs,319 object requests,
+34 effects,12 common entries,1 set669 and9 pending. Twenty-nine required
+original sites run at both precisions;657 earlier-path cases pass in an
+18-destination-plus-input animation domain. The previous object also passes
+that657-case domain. The private map returns to1 MiB; old fixtures/classes
+stay unchanged. Sequence-window/secondary-cycle helpers each execute12 times;
+all three window arguments are compared as12 bytes. Controls fail1/91,8/30,
+336/840 for window outcome, signed flag and timer direction errors.
+614's47FFA2 tail uses live EDI=3 here; assuming another caller's5 caused two
+detected differences and was corrected. Preserve608 WORD decrement wrap,
+612 signed BYTE184/alpha clamp,614 direct frame writes after sequence reset,
+616 height300/280 and continuing120-frame transition, and619 widened51.4f.
+Six old COFF identities/focused smokes remain unchanged. One Ghidra clone
+attests all23 remaining high entries/instructions;9 primary hashes unchanged,
+clone removed. Future groups may reuse after byte/primary-hash rechecks.
+Active indexed windows, returning volleys/backend contexts, full void ABI
+and canonical matching remain unproved; no implementation/exact credit. See
+[608..619 evidence](REIMU_HIGH_MIDDLE_ACTIONS_2026_10_18.md).
+Next continue650 at48A24E and later high bodies, then real returning world
 contexts toward the complete void root and strict full-function comparison.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.
 Obsolete unpinned disassembly exports (~18MB) and rejected/superseded object

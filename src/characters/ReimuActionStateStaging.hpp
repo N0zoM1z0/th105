@@ -36,7 +36,7 @@ public:
     bool run_checked_prelude();
     // True completes the entry/low path; false hands action>300 to later source.
     bool run_checked_low_dispatch();
-    // Entry, low table and middle/high actions through606; later actions remain pending.
+    // Entry, low table and middle/high actions through619; later actions remain pending.
     bool run_checked_action_dispatch();
     void update_common_action_state();
     void publish_texture_state(signed char texture_index, short duration);
