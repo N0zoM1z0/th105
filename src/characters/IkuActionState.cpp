@@ -324,9 +324,9 @@ private:
             payload[1] = speed;
             payload[2] = 2.0f;
             int variant = payload[0] >= 0.0f && payload[0] <= 180.0f ? 1 : -1;
-            float y = on_surface ? stage_surface_height_at_x(this) : float_at(0xf0);
             spawn_owned_object_via_manager(object,
-                ahead == 0 ? float_at(0xec) : static_cast<float>(facing() * ahead) + float_at(0xec), y,
+                ahead == 0 ? float_at(0xec) : static_cast<float>(facing() * ahead) + float_at(0xec),
+                on_surface ? stage_surface_height_at_x(this) : float_at(0xf0),
                 byte_at(0x104), variant, payload, 3);
         }
     }
@@ -590,7 +590,10 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
 
     case 10: {
         resolve_stage_surface_landing_transition(); zero_velocity_acceleration();
-        if (advance_frame_and_dispatch()) set_action_and_finalize(int_at(0x6b8) != 0 ? 2 : 0);
+        if (advance_frame_and_dispatch()) {
+            if (int_at(0x6b8) == 0) { set_action_and_finalize(0); return true; }
+            set_action_and_finalize(2); return true;
+        }
         return true;
     }
 
@@ -665,7 +668,8 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         if (sequence_index_13e == 1) {
             if (time_counter_144 % 5 == 0) opening_periodic_effect(false);
             if (int_at(0x6b8) < 0) {
-                set_action_and_finalize(facing() * int_at(0x6b4) < 1 ? 211 : 212); return true;
+                if (facing() * int_at(0x6b4) > 0) { set_action_and_finalize(212); return true; }
+                set_action_and_finalize(211); return true;
             }
             ++short_at(0x730);
             if ((facing() * int_at(0x6b4) < 1 && short_at(0x730) > (1)) || short_at(0x730) > 45) {
@@ -1493,7 +1497,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
     }
 
     case 412: {
-        if ((sequence_index_13e == 0 && frame_index_140 > 1) || sequence_index_13e == 1) {
+        if ((sequence_index_13e == 0 && frame_index_140 >= 2) || sequence_index_13e == 1) {
             float_at(0xf8) -= float_at(0x100);
             float_at(0xf4) = static_cast<float>(float_at(0xf4) - static_cast<double>(0.1f));
             if (float_at(0xf4) < 1.0f) float_at(0xf4) = 1.0f;
