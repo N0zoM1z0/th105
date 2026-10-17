@@ -42,7 +42,7 @@ bytes are nine proved loop-alignment gaps, retained in strict comparison.
 There are1188 decoded E8s to32 targets and153 RETs. See
 [the full entry/boundary record](REIMU_ACTION_ENTRY_2026_10_17.md).
 
-`ReimuActionStatePrelude.cpp` stages the typed entry phase only. It preserves
+`ReimuActionStatePrelude.cpp` stages the typed entry phase. It preserves
 independent effect-action reads, signed facing versus unsigned direction,
 WORD count wrap, and continued count/decrement processing after timer clear.
 Native0/10584 covers actor bytes, exit categories and first callback arguments;
@@ -53,8 +53,17 @@ no implementation/exact credit or shared header/profile change was made.
 
 Direct Ghidra attests the full root and bounded method view, all11 dispatches,
 entry stores and fallback/RET. All9 primary database files unchanged; clone
-removed. Next recover Reimu low actions0..10 from the closed target CFG,
-then proceed through the remaining families toward a complete whole root.
+removed. Low0..10 are now staged in `ReimuActionStateLow.cpp`, using the
+shared `ReimuActionStateStaging.hpp` prefix. Fresh native0/10700 executes
+real landing, frame/block transitions, action setters and Reimu/CharacterEx
+finalizers through genuine RET. Three source negatives detect1/88,1/88,3/88.
+Case0's zero-velocity flag clear does not apply to2; capture selected action
+across callbacks; use signed sequence>0 and full DWORD+6B8. Header extraction
+keeps all530 entry text bytes/relocation identities; fresh0/10584 entry replay
+passes. All3 launch sites occur20 times. Read-only graph and zero texture/
+event-handle context limit this proof; no whole-root exact claim. See
+[low-action evidence](REIMU_LOW_ACTIONS_2026_10_17.md). Next recover Reimu
+low71..78 and shared exits, then the remaining families toward a complete root.
 Obsolete common-root GL controls/provider objects and rejected Reimu control
 objects were removed at this phase switch. Current Reimu evidence/object
 remain; regenerate common link products before using its inspect mode.

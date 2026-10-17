@@ -99,7 +99,7 @@ python3 scripts/audit-reimu-action-prelude.py build/reimu-action-root/ReimuActio
 
 Fresh VC8 SP1 `/O2 /GS- /GR /EHsc /MT`, default FP, produces object SHA256
 `f3fae67b92f992240e76498a66948b07112bf46c937618bc024fa787b3a95b0b`.
-Selected CRLF source SHA256 is
+At the entry-only checkpoint, CRLF source SHA256 was
 `6443e0bc15d41b5d49432ac4665bc78096ef8813c1ba9c457a0534017b17d088`.
 No shared header/profile/relocation ledger or accepted unit changed.
 
@@ -150,6 +150,7 @@ byte patching.
 
 Facts are retained in the manifest, ledger note, typed staged source and
 auditors. Private recipes/reports are in `.analysis/reimu-action-root-20261017/`
-and `build/reimu-action-root/`. Next recover low actions0..10, then the other
-families. Complete81KB source and a strict whole-root comparison are still
-required before any root implementation/exact claim.
+and `build/reimu-action-root/`. The [low0..10 follow-up](REIMU_LOW_ACTIONS_2026_10_17.md)
+now carries the shared staging header and current source/native proof.
+Complete81KB source and a strict whole-root comparison are still required
+before any root implementation/exact claim.
