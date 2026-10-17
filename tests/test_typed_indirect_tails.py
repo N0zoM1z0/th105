@@ -77,6 +77,35 @@ class TypedIndirectTailTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 self.facts(code)
 
+    def test_indirect_call_records_pre_call_state_and_then_clobbers_volatile_registers(self):
+        code = bytes.fromhex("8bf1 8b06 8b5008 8bce ffd2 8bce ffd2 c3")
+        calls = receiver_tail_facts(code, 0x1000, {}, include_calls=True,
+                                   allow_slot_unions=True)["register_indirect_calls"]
+        self.assertEqual(calls[0]["possible_vtable_slots"], [8])
+        self.assertTrue(calls[0]["ecx_is_entry_receiver"])
+        self.assertEqual(calls[1]["possible_vtable_slots"], [])
+
+    def test_finite_method_join_keeps_both_targets_without_choosing_one(self):
+        code = bytes.fromhex("8bf1 8b06 85db 7405 8b5008 eb03 8b500c 8bce ffd2 c3")
+        for unions, expected in ((False, []), (True, [8, 12])):
+            call = receiver_tail_facts(code, 0x1000, {}, include_calls=True,
+                                       allow_slot_unions=unions)["register_indirect_calls"][0]
+            self.assertEqual(call["possible_vtable_slots"], expected)
+            self.assertIsNone(call["slot_offset"])
+
+    def test_unknown_join_path_cannot_become_a_finite_method_set(self):
+        code = bytes.fromhex("8bf1 8b06 85db 7405 8b5008 eb02 31d2 8bce ffd2 c3")
+        call = receiver_tail_facts(code, 0x1000, {}, include_calls=True,
+                                   allow_slot_unions=True)["register_indirect_calls"][0]
+        self.assertEqual(call["possible_vtable_slots"], [])
+
+    def test_nonvolatile_method_pointer_does_not_preserve_the_volatile_this_argument(self):
+        code = bytes.fromhex("8bf1 8b06 8b5808 ffd3 ffd3 c3")
+        calls = receiver_tail_facts(code, 0x1000, {}, include_calls=True,
+                                   allow_slot_unions=True)["register_indirect_calls"]
+        self.assertEqual(calls[1]["possible_vtable_slots"], [8])
+        self.assertFalse(calls[1]["ecx_is_entry_receiver"])
+
 
 if __name__ == "__main__":
     unittest.main()

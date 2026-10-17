@@ -22,7 +22,8 @@ ALIASES = {
 
 
 def receiver_tail_facts(code: bytes, address: int,
-                        switches: dict[int, list[int]]) -> dict:
+                        switches: dict[int, list[int]], *, include_calls=False,
+                        allow_slot_unions=False) -> dict:
     decoder = Cs(CS_ARCH_X86, CS_MODE_32)
     decoder.detail = True
     decoded = list(decoder.disasm(code, address))
@@ -96,6 +97,23 @@ def receiver_tail_facts(code: bytes, address: int,
                 raise ValueError("edge enters the middle of an instruction")
         return [d for d in destinations if address <= d < end]
 
+    def join(left, right):
+        if left == right:
+            return left
+        if not allow_slot_unions:
+            return None
+
+        def slots(value):
+            if isinstance(value, frozenset):
+                return value
+            if isinstance(value, str) and value.startswith("vslot:"):
+                return frozenset((value,))
+            return None
+
+        first, second = slots(left), slots(right)
+        # Unknown or non-method provenance never becomes a finite target set.
+        return first | second if first is not None and second is not None else None
+
     initial = tuple("receiver" if name == "ecx" else None for name in REGISTERS)
     states = {address: initial}
     pending = deque([address])
@@ -108,24 +126,34 @@ def receiver_tail_facts(code: bytes, address: int,
         out = transfer(instructions[location], states[location])
         for destination in successors(instructions[location]):
             old = states.get(destination)
-            merged = out if old is None else tuple(a if a == b else None for a, b in zip(old, out))
+            merged = out if old is None else tuple(join(a, b) for a, b in zip(old, out))
             if old != merged:
                 states[destination] = merged
                 pending.append(destination)
 
-    tails = []
+    tails, calls = [], []
     for location, state in sorted(states.items()):
         instruction = instructions[location]
-        if instruction.mnemonic != "jmp" or instruction.operands[0].type != X86_OP_REG:
+        if (instruction.mnemonic not in ({"jmp", "call"} if include_calls else {"jmp"})
+                or instruction.operands[0].type != X86_OP_REG):
             continue
         values = dict(zip(REGISTERS, state))
         target_register = register(instruction, instruction.operands[0].reg)
         target = values.get(target_register)
-        slot = int(target.split(":")[1]) if target and target.startswith("vslot:") else None
-        tails.append({"address": location, "instruction": instruction.mnemonic + " " + instruction.op_str,
-                      "target_register": target_register, "slot_offset": slot,
-                      "ecx_is_entry_receiver": values["ecx"] == "receiver",
-                      "register_state": values})
-    return {"decoded_instructions": len(decoded), "reachable_instructions": len(states),
+        choices = target if isinstance(target, frozenset) else (target,)
+        slots = sorted(int(value.split(":")[1]) for value in choices
+                       if isinstance(value, str) and value.startswith("vslot:"))
+        fact = {"address": location, "instruction": instruction.mnemonic + " " + instruction.op_str,
+                "target_register": target_register, "slot_offset": slots[0] if len(slots) == 1 else None,
+                "ecx_is_entry_receiver": values["ecx"] == "receiver",
+                "register_state": {name: sorted(value) if isinstance(value, frozenset) else value
+                                   for name, value in values.items()}}
+        if include_calls or allow_slot_unions:
+            fact["possible_vtable_slots"] = slots
+        (calls if instruction.mnemonic == "call" else tails).append(fact)
+    result = {"decoded_instructions": len(decoded), "reachable_instructions": len(states),
             "call_assumption": "ordinary x86 ABI preserves EBX/ESI/EDI/EBP; CALL kills EAX/ECX/EDX",
             "register_tail_exits": tails}
+    if include_calls:
+        result["register_indirect_calls"] = calls
+    return result

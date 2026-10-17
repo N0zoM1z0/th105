@@ -48,13 +48,18 @@ argument/model differences. Signed-offset and premature-float controls differ
 This stops before the spawn implementation, not through root RET. Direct
 Ghidra saves and independently reads back58 access-backed components in a
 partial7B8 receiver view,30 ordinary callee ABI models and46 correction
-comments, with all target bytes unchanged. The new typed decompiler hypothesis
-still has a spacebase/jumptable warning and is not source. Next, qualify the
-remaining virtual-call types, especially the shared register CALL at621040,
-then recover complete natural C++ action bodies with the verified unsigned/rounding
-contracts; do not paste decompiler text or promote partial action fragments.
-No source-present or exact root claim. See
-[the current Iku type/native evidence](IKU_RANDOM_FLOAT_TYPES_2026_10_17.md).
+comments, with all target bytes unchanged. All177 register CALLs now have receiver-domain target sets and local ABI
+overrides;621040 retains both vslots8/C. The four accepted virtual interfaces
+pass fresh12/12 canonical callee checks. The compiler conversion entry68A1A0
+has custom ST0:10 input/EAX:4 output, no stack arguments/purge; its SSE path
+does not return64 bits. A fresh direct Ghidra process reads back these types,
+all177 call target sets and prior58 fields/30 callee ABIs, with unchanged
+target bytes. The248621-byte decompiler hypothesis still has the spacebase/
+jumptable warning and is not source. Next, recover complete natural C++ action
+bodies with the verified virtual, unsigned and rounding contracts; do not
+paste decompiler text or promote partial action fragments. No source-present
+or exact root claim. See [the virtual ABI evidence](IKU_VIRTUAL_CALLS_2026_10_17.md)
+and [the type/native evidence](IKU_RANDOM_FLOAT_TYPES_2026_10_17.md).
 
 ## Shared Fighter linked checkpoint
 
