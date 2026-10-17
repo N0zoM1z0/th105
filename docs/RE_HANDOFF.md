@@ -448,6 +448,20 @@ with unchanged native adapter. Fresh compact0/1544, bool0/12 and0/8, previous
 static loops and9 buffer partitions pass. No callbacks fabricated or exact
 credit;9 primary DB hashes unchanged and unused products cleaned. See
 [projectile mode branches](REIMU_PROJECTILE_MODE_BRANCHES_2026_10_18.md).
+619 now retains two sign-selected height/request expressions;695 spells the
+three140 effects followed by141/142 as consecutive calls. All128 primary
+action entries have a direct-callee site census: differing cardinalities
+fall from five actions to three (400/404/406 wave sharing). 619 stack signs
+and the67-instruction695 sequence are checked; its two differing PUSH
+registers independently hold-1. Expanded prefix81716/text83088/frame570h,
+1176 E8s and2465 qualified relocations remains nonexact at478FB1 and exceeds
+callable/metadata by166/164 bytes. Read-only oversize only. Compact void50744
+has fresh0/1010 integration, including13 inputs each for619/695; nine buffer
+partitions pass. Later returned-world requests/effects remain unproved.
+A private float-return control covers m32 zero but does not shrink code;
+return type remains unresolved and no shared declaration changed. No credit
+or aggregate replay;9 primary DB hashes unchanged, unused products cleaned.
+See [call ownership and source structure](REIMU_CALL_OWNERS_2026_10_18.md).
 Next prioritize remaining call sharing/source overhead and the expanded size
 failure, exact callable ownership,
 returning world contexts and VC8/LTCG/TU evidence

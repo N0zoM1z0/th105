@@ -359,10 +359,15 @@
                 for (float i = 0.0f; i < 7.0f; i += 1.0f) {
                     const float parameters[4] = {
                         static_cast<float>(static_cast<double>(51.4f) * i), 0.0f, 0.0f, i};
-                    const int arg5 = lookup_orientation_sine_quantized_abs(parameters[0]) > 0.0f ? -1 : 1;
-                    spawn_owned_object_via_manager(869, x_ec,
-                        static_cast<float>(reimu_stage_surface_height_at_x(this) + 150.0),
-                        static_cast<unsigned char>(facing_104), arg5, parameters, 4);
+                    if (lookup_orientation_sine_quantized_abs(parameters[0]) > 0.0f) {
+                        spawn_owned_object_via_manager(869, x_ec,
+                            static_cast<float>(reimu_stage_surface_height_at_x(this) + 150.0),
+                            static_cast<unsigned char>(facing_104), -1, parameters, 4);
+                    } else {
+                        spawn_owned_object_via_manager(869, x_ec,
+                            static_cast<float>(reimu_stage_surface_height_at_x(this) + 150.0),
+                            static_cast<unsigned char>(facing_104), 1, parameters, 4);
+                    }
                 }
                 timer_7c8 = 900;
                 count_7ca = 0;

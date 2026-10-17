@@ -199,9 +199,12 @@
             set_action(0);
         if (sequence_13e == 0 && frame_timer_142 == 0 && frame_index_140 == 6) {
             dispatch_indexed_event_member(55);
-            for (int i = 0; i < 3; ++i)
-                emit_fighter_effect(140, x_ec, static_cast<float>(y_f0 + 100.0),
-                    static_cast<unsigned char>(facing_104), 1);
+            emit_fighter_effect(140, x_ec, static_cast<float>(y_f0 + 100.0),
+                static_cast<unsigned char>(facing_104), 1);
+            emit_fighter_effect(140, x_ec, static_cast<float>(y_f0 + 100.0),
+                static_cast<unsigned char>(facing_104), 1);
+            emit_fighter_effect(140, x_ec, static_cast<float>(y_f0 + 100.0),
+                static_cast<unsigned char>(facing_104), 1);
             emit_fighter_effect(141, x_ec, static_cast<float>(y_f0 + 100.0),
                 static_cast<unsigned char>(facing_104), -1);
             emit_fighter_effect(142, x_ec, y_f0, static_cast<unsigned char>(facing_104), -1);
