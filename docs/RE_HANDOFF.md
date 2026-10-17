@@ -238,8 +238,26 @@ no new process/clone. Later ring iterations,25 grid requests and returning
 manager paths remain dynamically unproved; TOP=0 gates are unchanged.
 No root implementation/exact credit. See
 [550/direct560 evidence](REIMU_MID_550_ACTIONS_2026_10_18.md).
-Next recover high561..798, then real returning world contexts toward the
-complete void root and strict full-function comparison.
+First high561/565/566/600/601/602/604/605/606 now join the same method through606:
+5325 target bytes/1380 instructions. Native0/6165 includes5578 RETs,514 object
+requests,52 effects,11 common entries,1 set669 and9 pending handoffs. Thirty
+required original sites run at both precisions;549 earlier-path integration
+cases, six old COFF identities and focused smokes pass. Real texture publication
+executes4212 times through8332 checked deque accesses, with both mapped manager
+slots compared. Both player indices and self/peer duration branches run; no
+helper result is fabricated. The private graph map grows to2 MiB for the larger
+key domain; older fixtures/classes stay unchanged. Ground hold/cadence/node
+contexts use y=0 because y=100 triggers the native landing helper's action9.
+Preserve565/566 full-width held fields, double prediction, three friction rates,
+signed60B gate, one-/three-float payloads and600..602 pre-advance cadence. Their
+launch y offset is120, not112. Input/texture/angle controls fail64/144,96/96,2/108.
+One direct Ghidra read-only clone re-attests root/entries/shared tails under
+768 MiB/two CPUs;9 primary files unchanged, clone removed. Later world-returning
+objects/window/cycle paths remain dynamically unproved; no root implementation
+or exact credit. See
+[first-high evidence](REIMU_HIGH_ENTRY_ACTIONS_2026_10_18.md).
+Next continue608 at488F62 and later high bodies, then real returning world
+contexts toward the complete void root and strict full-function comparison.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.
 Obsolete unpinned disassembly exports (~18MB) and rejected/superseded object
 files were removed; current bounded evidence and primary databases remain.
