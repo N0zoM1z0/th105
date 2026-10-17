@@ -70,10 +70,25 @@ It compares the complete7B8 actor view, helper arguments/order, intermediate
 +180 state, conversion inputs, stack/CW and callee-saved registers at RET.
 Unsigned-tick and reversed-publication controls each differ8/452 smoke cases.
 Backend execution after these entry stops and the second spawn are unverified.
-The staged bool helper is not the original void root;106 other nondefault
-action IDs and complete root compiler ownership remain. No source/exact ledger
+The staged bool helper is not the original void root; complete root compiler
+ownership remains unresolved. No source/exact ledger
 promotion or partial byte credit. Continue extending the large root
 families. See [the family source checkpoint](IKU_OBJECT818_SOURCE_2026_10_17.md).
+
+The next eight complete staged bodies,600/601/602/603/606/607/609/610, are in
+`src/characters/IkuSpellActions.cpp`. Their raw closure is1233 instructions/
+4739 bytes (4712 physical plus27 shared), with27 typed literal values and
+integer ring-loop witnesses checked. Natural source preserves607's pre-advance
+gates,603/609's advance-skipping timeouts, signed modulo and602's unsigned,
+late-rounded offset. The new source probe executes original event23/audio
+zero-handle returns and passes0/7833:4156 RETs,3466 first-spawn,192 effect,
+1 action and18 next-block entry stops. It also compares full RNG-state digest
+and texture-manager stores. Signed-offset/early-store controls differ16/741
+and8/741 smoke cases; the object818 default probe retains0/452. Fresh selector
+comparison is canonical27/27. These are12 staged action IDs total, with98 and
+the complete root prelude/default/integration still remaining; no whole-root
+source selection or exact credit. Do not count shared-tail unions twice.
+See [the spell-family checkpoint](IKU_SPELL_SOURCE_2026_10_17.md).
 
 ## Shared Fighter linked checkpoint
 

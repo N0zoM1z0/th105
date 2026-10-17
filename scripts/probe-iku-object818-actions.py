@@ -91,7 +91,8 @@ def control_source(name):
     return path
 
 
-def load_object(path):
+def load_object(path, *, root_prefix="?try_dispatch_verified_object818_action@", methods=None):
+    methods = METHODS if methods is None else methods
     spec = importlib.util.spec_from_file_location("iku818_coff", ROOT / "scripts/compare-giant-action-switches.py")
     module = importlib.util.module_from_spec(spec)
     sys.modules[spec.name] = module
@@ -115,9 +116,9 @@ def load_object(path):
                 destination = sections[symbol.section_number][0] + symbol.value
             elif symbol.section_number == 0 and kind == 0x14:
                 method = symbol.name.split("@", 1)[0].lstrip("?")
-                if method not in METHODS:
+                if method not in methods:
                     raise ValueError("unreviewed source dependency: " + symbol.name)
-                destination = METHODS[method]
+                destination = methods[method]
                 aliases[symbol.name] = destination
             else:
                 raise ValueError("unreviewed source section/symbol: " + symbol.name)
@@ -129,7 +130,7 @@ def load_object(path):
             else:
                 raise ValueError("unreviewed source relocation type")
             struct.pack_into("<I", data, field, value & 0xFFFFFFFF)
-    roots = [s for s in obj.symbols.values() if s.name.startswith("?try_dispatch_verified_object818_action@")]
+    roots = [s for s in obj.symbols.values() if s.name.startswith(root_prefix)]
     if len(roots) != 1:
         raise ValueError("staged source entry is not unique")
     entry = sections[roots[0].section_number][0] + roots[0].value
@@ -176,8 +177,14 @@ def input_cases(smoke):
 
 
 class Probe:
-    def __init__(self, canonical, candidate):
+    def __init__(self, canonical, candidate, *, entries=None, helpers=None, boundaries=None,
+                 no_receiver=(), extra_writes=()):
         self.canonical, self.candidate = canonical, candidate
+        self.entries = ENTRIES if entries is None else entries
+        self.helpers = HELPERS if helpers is None else helpers
+        self.boundaries = BOUNDARIES if boundaries is None else boundaries
+        self.no_receiver = {0x68A1A0, 0x401D50, *no_receiver}
+        self.extra_writes = extra_writes
         self.engine = unicorn.Uc(unicorn.UC_ARCH_X86, unicorn.UC_MODE_32)
         uc = self.engine
         uc.mem_map(0x400000, 0x311000)
@@ -190,7 +197,7 @@ class Probe:
             uc.mem_write(base, bytes(data))
         ledger = {int(row["address"], 0): int(row["size"])
                   for row in csv.DictReader((ROOT / "config/functions.csv").open())}
-        self.target_boundaries = {i.address for start in (0x620920, *HELPERS)
+        self.target_boundaries = {i.address for start in (0x620920, *self.helpers)
                                   for i in decode(canonical.target_bytes(start, ledger[start]), start)}
         self.initial = uc.context_save()
         self.visited, self.outcomes = set(), Counter()
@@ -199,37 +206,41 @@ class Probe:
 
     def write(self, uc, access, address, size, value, unused):
         if not (OWNER <= address and address + size <= OWNER + 0x7B8
-                or STACK <= address and address + size <= STACK + 0x10000):
+                or STACK <= address and address + size <= STACK + 0x10000
+                or any(first <= address and address + size <= last for first, last in self.extra_writes)):
             self.failure = f"write outside actor/stack at {address:#x}"
             uc.emu_stop()
 
     def instruction(self, uc, address, size, unused):
         try:
-            if self.prelude and address == ENTRIES[self.case["action"]]:
+            if self.prelude and address == self.entries[self.case["action"]]:
                 self.prelude = False
                 uc.emu_stop()
                 return
             esp = uc.reg_read(r.UC_X86_REG_ESP)
-            if address in BOUNDARIES or address in HELPERS:
-                count = (BOUNDARIES | HELPERS)[address]
+            if address in self.boundaries or address in self.helpers:
+                count = (self.boundaries | self.helpers)[address]
                 args = list(struct.unpack("<" + "I" * count, uc.mem_read(esp + 4, count * 4)))
                 call = {"entry": address, "arguments": args, "field_180": self.u32(OWNER + 0x180)}
                 receiver = uc.reg_read(r.UC_X86_REG_ECX)
-                if address not in (0x68A1A0, 0x401D50) and receiver != OWNER:
+                if address not in self.no_receiver and receiver != OWNER:
                     raise ValueError("helper receiver differs")
                 if address == 0x401D50 and (receiver != 0x702288 or args != [0]):
                     raise ValueError("audio path requires the real zero wave handle")
                 if address == 0x465190:
                     pointer = args[5]
-                    if not STACK <= pointer <= STACK + 0x10000 - 12:
+                    if args[6] == 0 and pointer == 0:
+                        call["payload"] = None
+                    elif args[6] != 3 or not STACK <= pointer <= STACK + 0x10000 - 12:
                         raise ValueError("spawn payload outside source stack")
-                    call["payload"] = bytes(uc.mem_read(pointer, 12)).hex()
-                    args[5] = "stack_payload"
+                    else:
+                        call["payload"] = bytes(uc.mem_read(pointer, 12)).hex()
+                        args[5] = "stack_payload"
                 if address == 0x68A1A0:
                     top = (uc.reg_read(r.UC_X86_REG_FPSW) >> 11) & 7
                     call["input_st0"] = uc.reg_read(r.UC_X86_REG_FP0 + top)
                 self.calls.append(call)
-                if address in BOUNDARIES:
+                if address in self.boundaries:
                     self.outcome = hex(address)
                     uc.emu_stop()
                     return
@@ -249,12 +260,8 @@ class Probe:
     def u32(self, address):
         return struct.unpack("<I", self.engine.mem_read(address, 4))[0]
 
-    def evaluate(self, case, source):
-        uc = self.engine
-        uc.context_restore(self.initial)
-        uc.mem_write(OWNER, bytes(0x10000))
-        uc.mem_write(STACK, bytes(0x10000))
-        fields = ((0, "I", 0x6C652C), (0xEC, "f", case["x"]), (0xF0, "f", case["y"]),
+    def actor_fields(self, case):
+        return ((0, "I", 0x6C652C), (0xEC, "f", case["x"]), (0xF0, "f", case["y"]),
                   (0xF8, "f", case["vy"]), (0x100, "f", case["acceleration"]), (0x104, "b", case["facing"]),
                   (0x13C, "h", case["action"]), (0x13E, "h", case["sequence"]), (0x140, "h", case["frame"]),
                   (0x142, "h", case["timer"]), (0x144, "i", case["time"]), (0x14C, "h", 32767),
@@ -264,8 +271,18 @@ class Probe:
                   (0x6C0, "i", case["field_6c0"]), (0x6C4, "i", case["field_6c4"]),
                   (0x730, "h", case["gate"]), (0x732, "h", case["tick"]), (0x734, "h", case["index"]),
                   (0x750, "B", case["flag"]))
-        for offset, kind, value in fields:
+
+    def prepare_case(self, case):
+        pass
+
+    def evaluate(self, case, source):
+        uc = self.engine
+        uc.context_restore(self.initial)
+        uc.mem_write(OWNER, bytes(0x10000))
+        uc.mem_write(STACK, bytes(0x10000))
+        for offset, kind, value in self.actor_fields(case):
             uc.mem_write(OWNER + offset, struct.pack("<" + kind, value))
+        self.prepare_case(case)
         uc.mem_write(ENTRY_SP, struct.pack("<I", RETURN))
         uc.reg_write(r.UC_X86_REG_ESP, ENTRY_SP)
         uc.reg_write(r.UC_X86_REG_ECX, OWNER)
@@ -274,9 +291,9 @@ class Probe:
         preserved = (r.UC_X86_REG_EBX, r.UC_X86_REG_ESI, r.UC_X86_REG_EDI, r.UC_X86_REG_EBP)
         expected_preserved = [uc.reg_read(reg) for reg in preserved]
         uc.emu_start(0x620920, RETURN, count=100000)
-        if self.failure or self.prelude or uc.reg_read(r.UC_X86_REG_EIP) != ENTRIES[case["action"]]:
+        if self.failure or self.prelude or uc.reg_read(r.UC_X86_REG_EIP) != self.entries[case["action"]]:
             raise ValueError("original root prelude did not reach the selected action: " + str(self.failure))
-        entry = ENTRIES[case["action"]]
+        entry = self.entries[case["action"]]
         if source:
             entry = self.entry
             uc.reg_write(r.UC_X86_REG_ESP, ENTRY_SP)
