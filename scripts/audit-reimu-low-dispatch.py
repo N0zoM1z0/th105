@@ -23,6 +23,7 @@ from unicorn import x86_const as r
 
 import linked_pe
 from reimu_staging_extent import staging_execution_extent
+from reimu_return_contract import pending_from_return, validate_return_symbol
 from reimu_late_low_fixture import resource_graph, native_orientation_table
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -96,6 +97,7 @@ def cases(smoke=False):
 
 
 class Probe(late.Probe):
+    candidate_return_kind = "bool"
     helpers = HELPERS
     resource_keys = KEYS
     resource_size = 0x100000
@@ -184,10 +186,8 @@ class Probe(late.Probe):
                     or any(uc.reg_read(reg) != value for reg, value in saved.items())):
                 raise ValueError(f"recovery action did not restore RET ABI: {case}")
             if self.candidate:
-                result = uc.reg_read(r.UC_X86_REG_EAX) & 0xFF
-                if result not in (0, 1):
-                    raise ValueError("staged dispatcher returned a non-bool result")
-                self.pending_handoff = result == 0
+                self.pending_handoff = pending_from_return(
+                    uc.reg_read(r.UC_X86_REG_EAX), self.candidate_return_kind)
         if (uc.reg_read(r.UC_X86_REG_FPSW) >> 11) & 7:
             raise ValueError("recovery action leaves live x87 values")
         return {"actor": bytes(uc.mem_read(OWNER, 0x1000)), "calls": self.calls,
@@ -214,6 +214,8 @@ def check_target_case(case, result, sites):
 def audit(object_path, smoke=False, selected_cohorts=None, *, contract=None):
     contract = contract or sys.modules[__name__]
     SYMBOL, Probe, cases = contract.SYMBOL, contract.Probe, contract.cases
+    return_kind = getattr(Probe, "candidate_return_kind", "bool")
+    validate_return_symbol(SYMBOL, return_kind)
     HELPERS, CALL_TARGETS = contract.HELPERS, contract.CALL_TARGETS
     COHORT_COUNTS = contract.COHORT_COUNTS
     check_target_case = contract.check_target_case
@@ -224,7 +226,8 @@ def audit(object_path, smoke=False, selected_cohorts=None, *, contract=None):
                      ROOT / "scripts/audit-reimu-low-actions.py",
                      ROOT / "scripts/reimu_animation_fixture.py",
                      ROOT / "scripts/audit-common-fighter-animation-paths.py"]
-    support_paths.extend((ROOT / "scripts/reimu_staging_extent.py", Path(contract.__file__)))
+    support_paths.extend((ROOT / "scripts/reimu_staging_extent.py",
+                          ROOT / "scripts/reimu_return_contract.py", Path(contract.__file__)))
     allow_metadata = getattr(contract, "ALLOW_SWITCH_METADATA", False)
     if allow_metadata:
         support_paths.extend(ROOT / name for name in (
@@ -318,6 +321,7 @@ def audit(object_path, smoke=False, selected_cohorts=None, *, contract=None):
             "unicorn_library_sha256": linked_pe.sha(Path(unicorn_api._uc._name)),
             "build_provenance_verified": False, "support_sha256": support_hashes,
             "candidate_execution_extent": execution_extent,
+            "candidate_return_kind": return_kind,
             "candidate_text_bytes": len(candidate), "candidate_metadata_start": metadata_start,
             "scope": getattr(contract, "SCOPE", "integrated entry and low source; common/669/world stops compare real call entry; "
                      "upper pending compares state at original mid selector; supplied flat/zero-handle context, "

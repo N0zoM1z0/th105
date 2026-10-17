@@ -385,7 +385,21 @@ all11 target switches. Frame598h versus570h and full canonical contract remain
 unresolved; no implementation/exact credit or aggregate replay. Nine primary
 DB hashes unchanged; obsolete/control products and caches cleaned. See
 [740 selectors/indeterminate locals](REIMU_740_MODE_SHAPE_2026_10_18.md).
-Next prioritize the full void/default ABI, returning world contexts and VC8/LTCG/TU evidence
+An opt-in `--void-root` source probe now emits a real void/noargs thiscall
+member with the full common default for action>798. Only its private header
+changes; normal bool output is byte-identical. Native return contracts match
+their COFF type and preserve real RET/ESP/saved-register/x87 checks. Void EAX
+is unobserved as a result; old bool remains strict. The new object passes
+0/1544 cases, with inputs for all128 nondefault actions,85 boundary-default samples,
+16 genuine upper-common returns and8 indeterminate boundaries. Reintroducing
+the upper early return is detected10/510. Old bool0/12 and0/8 and the earlier
+static contracts pass. The void probe has81128 prefix/text82500,1167 E8s,
+148 RETs and all11 switches; first difference remains frame598h versus570h.
+No root source-present/exact credit or aggregate replay. Nine primary hashes
+unchanged; superseded/control products and caches cleaned. See
+[void/default candidate](REIMU_VOID_ROOT_2026_10_18.md).
+Next prioritize full relocation ownership, remaining source/compiler sharing,
+returning world contexts and VC8/LTCG/TU evidence
 before canonical root acceptance.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.
 Obsolete unpinned disassembly exports (~18MB) and rejected/superseded object

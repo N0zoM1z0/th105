@@ -358,14 +358,14 @@ def inspect(view, code, start, action):
     return rows
 
 
-def audit(path):
+def audit(path, *, symbol=SYMBOL):
     canonical = load("reimu_aimed_loop_canonical", "compare-function.py")
     target_sha = canonical.verify_target()
     mapper = load("reimu_aimed_loop_mapper", "compare-giant-action-switches.py")
     tm = mapper.load_target_mapper()
     root = tm.select_root(tomllib.loads((ROOT / "config/giant-action-switches.toml").read_text()), "reimu-vslot28")
     target = tm.map_root(tm.PeImage(ROOT / "resources/th105.exe"), tm.load_function_rows(ROOT / "config/functions.csv"), root)
-    obj = mapper.CoffObject(path, symbol_base=SYMBOL)
+    obj = mapper.CoffObject(path, symbol_base=symbol)
     comparison = mapper.compare_maps(target, mapper.build_candidate_map(obj, root))
     rows = []
     for row in comparison["rows"]:
@@ -381,7 +381,7 @@ def audit(path):
     failures = [{"action": row["action"], "side": side, "mode": mode["mode"]} for row in rows
                 for side in ("target", "source") for mode in row[side] if not mode["satisfied"]]
     return {"schema": "th105-reimu-aimed-loop-static-v1", "target_sha256": target_sha,
-            "object_sha256": hashlib.sha256(path.read_bytes()).hexdigest(), "failure_count": len(failures),
+            "object_sha256": hashlib.sha256(path.read_bytes()).hexdigest(), "symbol": symbol, "failure_count": len(failures),
             "failures": failures, "rows": rows, "capstone_version": capstone.__version__,
             "support_sha256": {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in
                                (Path(__file__), ROOT / "scripts/compare-function.py", ROOT / "scripts/compare-giant-action-switches.py", ROOT / "config/giant-action-switches.toml", ROOT / "scripts/map-giant-action-switches.py", ROOT / "config/functions.csv")},
@@ -391,9 +391,10 @@ def audit(path):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("object", type=Path)
+    parser.add_argument("--symbol", default=SYMBOL)
     args = parser.parse_args()
     try:
-        result = audit(args.object)
+        result = audit(args.object, symbol=args.symbol)
     except (KeyError, IndexError, OSError, ValueError) as error:
         parser.exit(2, f"Reimu aimed-loop audit failed: {error}\n")
     print(json.dumps(result, indent=2))

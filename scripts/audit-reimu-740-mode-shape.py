@@ -50,11 +50,10 @@ def check_target_case(case, result, sites):
     family.check_target_case(case, result, sites)
 
 
-def audit(path, smoke=False, cohorts=None):
-    facts = packet(path)
+def boundary_probe(facts, *, base=Probe):
     boundaries = frozenset(ADDRESS+offset for offset in facts["source"]["pending_reads"])
 
-    class BoundaryProbe(Probe):
+    class BoundaryProbe(base):
         def step(self, uc, address, size):
             super().step(uc, address, size)
             if self.candidate and address in boundaries:
@@ -68,8 +67,14 @@ def audit(path, smoke=False, cohorts=None):
                 self.pending_handoff = True
                 uc.emu_stop()
 
+    return BoundaryProbe
+
+
+def audit(path, smoke=False, cohorts=None):
+    facts = packet(path)
+
     contract = SimpleNamespace(**vars(sys.modules[__name__]))
-    contract.Probe = BoundaryProbe
+    contract.Probe = boundary_probe(facts)
     result = low.audit(path, smoke, cohorts, contract=contract)
     result["mode_structure"] = facts
     return result

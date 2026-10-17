@@ -18,9 +18,11 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "src/characters/ReimuActionStateDispatch.cpp"
 HEADER = "ReimuActionStateStaging.hpp"
 SYMBOL = "?run_checked_action_dispatch@ReimuActionStatePreludeView@th105@@QAE_NXZ"
+VOID_SYMBOL = "?run_action_dispatch_root@ReimuActionStatePreludeView@th105@@QAEXXZ"
 TOKEN = re.compile(r'//[^\n]*|/\*[\s\S]*?\*/|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'|'
                    r'\bcase\s+(\d+)\s*:|\bdefault\s*:|[{}]')
 INCLUDE = re.compile(r'^#include "([^"]+)"\s*$', re.M)
+RETURN_TOKEN = re.compile(TOKEN.pattern+r'|\breturn\s+(true|false)\s*;')
 
 
 def sha(path):
@@ -35,7 +37,36 @@ def load(name, filename):
     return module
 
 
-def generate(output):
+def void_source(text, header):
+    signature = "bool ReimuActionStatePreludeView::run_checked_action_dispatch()"
+    guard = "    if (selected_action > 798)\n        return false;\n"
+    declaration = "    bool run_checked_action_dispatch();"
+    if text.count(signature) != 1 or text.count(guard) != 1 or header.count(declaration) != 1:
+        raise ValueError("reviewed staging signature/upper guard/declaration changed")
+    text = text.replace(signature, "void ReimuActionStatePreludeView::run_action_dispatch_root()")
+    text = text.replace(guard, "")
+    converted = 0
+
+    def complete(match):
+        nonlocal converted
+        if match.group(2) is None:
+            return match.group(0)
+        if match.group(2) != "true":
+            raise ValueError("void candidate still contains an unexplained pending return")
+        converted += 1
+        return "return;"
+
+    text = RETURN_TOKEN.sub(complete, text)
+    if not converted:
+        raise ValueError("void candidate has no reviewed completion returns")
+    header = header.replace(declaration, declaration+"\n    void run_action_dispatch_root();")
+    start = text.index("// One source path for the checked entry")
+    end = text.index("void ReimuActionStatePreludeView::run_action_dispatch_root()", start)
+    text = text[:start]+"// Generated void-root candidate; indeterminate740 inputs remain bounded in analysis.\n"+text[end:]
+    return text, header, converted
+
+
+def generate(output, *, void_root=False):
     canonical = load("reimu_shape_canonical", "compare-function.py")
     target_sha = canonical.verify_target()
     mapper = load("reimu_shape_mapper", "compare-giant-action-switches.py")
@@ -117,24 +148,36 @@ def generate(output):
     pieces.append("}\n\n} // namespace th105\n")
     output.mkdir(parents=True, exist_ok=True)
     generated = output / SOURCE.name
-    generated.write_bytes("".join(pieces).replace("\n", "\r\n").encode())
-    shutil.copyfile(SOURCE.parent / HEADER, output / HEADER)
+    text = "".join(pieces)
+    converted = 0
+    if void_root:
+        text, header, converted = void_source(text, (SOURCE.parent / HEADER).read_text())
+        (output / HEADER).write_bytes(header.replace("\n", "\r\n").encode())
+    else:
+        shutil.copyfile(SOURCE.parent / HEADER, output / HEADER)
+    generated.write_bytes(text.replace("\n", "\r\n").encode())
     return mapper, root, target, {
         "schema": "th105-reimu-action-source-shape-v1", "target_sha256": target_sha,
         "source_sha256": {str(path.relative_to(ROOT)): sha(path) for path in sorted(inputs)},
         "generated_source_sha256": sha(generated), "groups": groups,
-        "scope": "ordinary C++ case/region expansion only; bool staging and unresolved740 remain; no implementation/exact credit"}
+        "generated_header_sha256": sha(output / HEADER),
+        "symbol": VOID_SYMBOL if void_root else SYMBOL,
+        "void_complete_returns": converted,
+        "scope": ("ordinary C++ case/region expansion; "+("void ABI/default candidate" if void_root else "bool staging")+
+                  "; indeterminate740 inputs remain; no implementation/exact credit")}
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path, default=ROOT / "build/reimu-action-source-shape")
     parser.add_argument("--emit-only", action="store_true")
+    parser.add_argument("--void-root", action="store_true",
+                        help="emit void thiscall/default recovery in a private copied header")
     args = parser.parse_args()
     output = args.output_dir.resolve()
     if not output.is_relative_to(ROOT / "build") or output == ROOT / "build":
         parser.error("generated probe files must occupy a subdirectory of build/")
-    mapper, root, target, report = generate(output)
+    mapper, root, target, report = generate(output, void_root=args.void_root)
     if not args.emit_only:
         obj = output / "ReimuActionStateDispatch.obj"
         with (output / "compile.log").open("w") as log:
@@ -142,7 +185,7 @@ def main():
                            cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, check=True)
         if any(sha(ROOT / path) != digest for path, digest in report["source_sha256"].items()):
             raise ValueError("source inputs changed during compilation")
-        candidate = mapper.build_candidate_map(mapper.CoffObject(obj, symbol_base=SYMBOL), root)
+        candidate = mapper.build_candidate_map(mapper.CoffObject(obj, symbol_base=report["symbol"]), root)
         comparison = mapper.compare_maps(target, candidate)
         (output / "mapping.json").write_text(json.dumps(comparison, indent=2)+"\n")
         report.update(object_sha256=sha(obj), text_bytes=candidate["text_size"],

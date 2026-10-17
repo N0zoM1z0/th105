@@ -220,7 +220,7 @@ def packets(code, start, size, is_request, is_wave, literal):
     return result
 
 
-def audit(path):
+def audit(path, *, symbol=SYMBOL):
     canonical = load("reimu_510_packet_canonical", "compare-function.py")
     target_sha = canonical.verify_target()
     mapper = load("reimu_510_packet_mapper", "compare-giant-action-switches.py")
@@ -228,7 +228,7 @@ def audit(path):
     root = target_mapper.select_root(tomllib.loads((ROOT / "config/giant-action-switches.toml").read_text()), "reimu-vslot28")
     target = target_mapper.map_root(target_mapper.PeImage(ROOT / "resources/th105.exe"),
                                     target_mapper.load_function_rows(ROOT / "config/functions.csv"), root)
-    obj = mapper.CoffObject(path, symbol_base=SYMBOL)
+    obj = mapper.CoffObject(path, symbol_base=symbol)
     candidate = mapper.build_candidate_map(obj, root)
     comparison = mapper.compare_maps(target, candidate)
     base = int(root["address"], 0)
@@ -288,7 +288,7 @@ def audit(path):
     if len(rows) != 4:
         raise ValueError("four510-family owner rows are required")
     return {"schema": "th105-reimu-510-static-request-packets-v1", "target_sha256": target_sha,
-            "object_sha256": hashlib.sha256(path.read_bytes()).hexdigest(), "failure_count": len(failures),
+            "object_sha256": hashlib.sha256(path.read_bytes()).hexdigest(), "symbol": symbol, "failure_count": len(failures),
             "capstone_version": capstone.__version__,
             "support_sha256": {str(item.relative_to(ROOT)): hashlib.sha256(item.read_bytes()).hexdigest()
                                for item in (Path(__file__), ROOT / "scripts/compare-function.py",
@@ -301,9 +301,10 @@ def audit(path):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("object", type=Path)
+    parser.add_argument("--symbol", default=SYMBOL)
     args = parser.parse_args()
     try:
-        result = audit(args.object)
+        result = audit(args.object, symbol=args.symbol)
     except (KeyError, OSError, ValueError) as error:
         parser.exit(2, f"Reimu510 static packet audit failed: {error}\n")
     print(json.dumps(result, indent=2))

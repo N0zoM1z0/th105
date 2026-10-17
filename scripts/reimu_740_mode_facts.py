@@ -143,11 +143,11 @@ def inspect(code, start, table_value):
             "second_mode_entries": cutoff_entries, "cutoffs": cutoffs}
 
 
-def packet(path):
+def packet(path, *, symbol=SYMBOL):
     canonical = load("reimu740_canonical", "compare-function.py")
     target_sha = canonical.verify_target()
     mapper = load("reimu740_coff", "compare-giant-action-switches.py")
-    obj = mapper.CoffObject(path, symbol_base=SYMBOL)
+    obj = mapper.CoffObject(path, symbol_base=symbol)
 
     def target_table(jump):
         table = jump.operands[0].mem.disp
