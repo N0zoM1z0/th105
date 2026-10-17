@@ -134,7 +134,7 @@ def merge_value(a, b):
     return u if len(u) <= 8 else None
 
 
-def audit(code, switches, cleanup_contract=None):
+def audit(code, switches, cleanup_contract=None, *, action_entries=None):
     cleanup_contract = purge if cleanup_contract is None else cleanup_contract
     rows = {r.address: r for r in decode(code, START)}
     if code[:8] != bytes.fromhex("558bec83e4f881ec"):
@@ -163,18 +163,28 @@ def audit(code, switches, cleanup_contract=None):
 
     # SP is relative to the aligned prologue stack pointer. No control-flow or
     # register allocation normalization is applied to the actual comparisons.
-    states = {START: (0, {}, {})}
-    queue = deque([START])
-    queued = {START}
+    labels = defaultdict(set)
+    for action, address in (action_entries or {}).items():
+        if action is None or not isinstance(action, int) or address not in rows:
+            raise ValueError("unqualified action entry for payload partition")
+        labels[address].add(action)
+    # Labels are assigned on the first action entry reached from the real
+    # prologue. They never reset when that action enters another arm's tail.
+    states = {(START, action): (0, {}, {}) for action in labels.get(START, {None})}
+    queue = deque(states)
+    queued = set(states)
+    stack_at = {START: 0}
     visits = 0
     spawn = defaultdict(set)
     unknown = set()
     used = defaultdict(set)
     root_ends = set()
+    action_spawn = {}
     while queue:
-        pc = queue.popleft()
-        queued.remove(pc)
-        sp, regs, mem = states[pc]
+        key = queue.popleft()
+        queued.remove(key)
+        pc, action = key
+        sp, regs, mem = states[key]
         regs = regs.copy()
         mem = mem.copy()
         row = rows[pc]
@@ -318,15 +328,23 @@ def audit(code, switches, cleanup_contract=None):
                 cleanup = cleanup_contract[destination]
                 if destination == 0x465190:
                     pointer = mem.get(sp + 20)
+                    partition = action_spawn.setdefault(
+                        (action, pc), {"homes": set(), "can_be_null": False, "unknown": False}
+                    )
                     if pointer is None:
                         unknown.add(pc)
+                        partition["unknown"] = True
                     else:
                         for k, n in pointer:
                             if k == "S":
                                 spawn[pc].add(n - home)
                                 used[n - home].add(pc)
+                                partition["homes"].add(n - home)
+                            elif k == "C" and n == 0:
+                                partition["can_be_null"] = True
                             elif not (k == "C" and n == 0):
                                 unknown.add(pc)
+                                partition["unknown"] = True
             else:
                 cleanup = virtual[pc]
             sp += cleanup
@@ -351,31 +369,33 @@ def audit(code, switches, cleanup_contract=None):
         for edge in edges:
             if edge not in rows:
                 raise ValueError(f"edge {edge:x} escapes callable")
-            if edge not in states:
-                new = state
-            else:
-                oldsp, oldregs, oldmem = states[edge]
-                if oldsp != sp:
-                    raise ValueError(
-                        f"stack disagreement at {edge:x}: {oldsp}, {sp} from{pc:x}"
-                    )
-                newregs = {
-                    k: merge_value(oldregs.get(k), regs.get(k))
-                    for k in oldregs.keys() | regs.keys()
-                }
-                newregs = {k: v for k, v in newregs.items() if v is not None}
-                newmem = {
-                    k: merge_value(oldmem.get(k), mem.get(k))
-                    for k in oldmem.keys() | mem.keys()
-                }
-                newmem = {k: v for k, v in newmem.items() if v is not None}
-                new = sp, newregs, newmem
-            if new != states.get(edge):
-                states[edge] = new
-                if edge not in queued:
-                    queue.append(edge)
-                    queued.add(edge)
-    covered = set(states)
+            if edge in stack_at and stack_at[edge] != sp:
+                raise ValueError(f"stack disagreement at {edge:x}: {stack_at[edge]}, {sp} from{pc:x}")
+            stack_at[edge] = sp
+            actions = labels.get(edge, {action}) if action is None else {action}
+            for next_action in actions:
+                key = edge, next_action
+                if key not in states:
+                    new = state
+                else:
+                    oldsp, oldregs, oldmem = states[key]
+                    newregs = {
+                        k: merge_value(oldregs.get(k), regs.get(k))
+                        for k in oldregs.keys() | regs.keys()
+                    }
+                    newregs = {k: v for k, v in newregs.items() if v is not None}
+                    newmem = {
+                        k: merge_value(oldmem.get(k), mem.get(k))
+                        for k in oldmem.keys() | mem.keys()
+                    }
+                    newmem = {k: v for k, v in newmem.items() if v is not None}
+                    new = sp, newregs, newmem
+                if new != states.get(key):
+                    states[key] = new
+                    if key not in queued:
+                        queue.append(key)
+                        queued.add(key)
+    covered = {pc for pc, action in states}
     for pc in root_ends:
         pop = rows[pc + rows[pc].size]
         ret = rows[pop.address + pop.size]
@@ -427,7 +447,9 @@ def audit(code, switches, cleanup_contract=None):
         "below_consumer_count": len(below),
         "all_below_consumers_test_AL": bool(below)
         and all(r["mnemonic"] == "test" and r["operands"] == "al, al" for r in below),
-        "reachable_before_epilogue_restore": len(states),
+        "reachable_before_epilogue_restore": len({pc for pc, action in states}),
+        "dataflow_states": len(states),
+        "partitioned_by_incoming_action": action_entries is not None,
         "updates": visits,
         "unknown_spawn_payload_sites": sorted(unknown),
         "payload_sites": {hex(k): sorted(v) for k, v in sorted(spawn.items())},
@@ -436,6 +458,13 @@ def audit(code, switches, cleanup_contract=None):
             str(k): [hex(p) for p in sorted(v)] for k, v in sorted(used.items())
         },
         "register_calls": len(virtual),
+        "action_payload_sites": [
+            {"action": action, "site": pc, "homes": sorted(info["homes"]),
+             "can_be_null": info["can_be_null"], "unknown": info["unknown"]}
+            for (action, pc), info in sorted(
+                action_spawn.items(), key=lambda item: (-2 if item[0][0] is None else item[0][0], item[0][1])
+            )
+        ] if action_entries is not None else [],
     }
 
 

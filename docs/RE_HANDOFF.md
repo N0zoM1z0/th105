@@ -40,7 +40,8 @@ ascending switch. Target is59038 bytes/15132 instructions/131 RETs. Frame
 400hex and84 payload identities are recovered naturally; first100 bytes agree,
 then canonical comparison remains **nonexact+0x64 /620984**, where target alone
 hoists EDI=1 before the action-range branch. No partial/exact credit.
-Current evidence: [full linked replay](IKU_LINKED_REPLAY_2026_10_17.md),
+Current evidence: [action/payload partitions](IKU_ACTION_PAYLOAD_PARTITIONS_2026_10_17.md),
+[full linked replay](IKU_LINKED_REPLAY_2026_10_17.md),
 [real source link](IKU_REAL_LINK_2026_10_17.md) and
 [steering clamps](IKU_STEERING_CLAMPS_2026_10_17.md).
 
@@ -108,17 +109,30 @@ inline change affects no accepted header/layout/profile/partition/binding.
 
 Payload provenance still closes84 homes/frame400hex and all41 surface/10
 below-surface consumers testAL. The two genuine int predicate facades remain;
-both callees return full EAX0/1. Incoming-action/ordinal correlation covers
-all182 spawn sites and84 target homes. The public --payload-homes mode uses
-set intersections instead of sorting multi-home arguments:73 single-choice
-correlations/11 remaining ambiguous,no proven bijection. All first10 homes
-32..140 now correlate identically,versus five before. Three new tests retain
-unknown/ambiguous/inconsistent evidence. This does not prove values or path
-feasibility; do not force storage order. Next retain the action-to-pointer
-relation through shared CALLs rather than combining two independent unions. Target626C3B still shares effect416/417/565/566/567/568 while
+both callees return full EAX0/1. New --partition-payloads keeps incoming action
+and pointer origins in one dataflow state from the real prologue through shared
+tails; labels never reset on another arm's entry. All182 physical spawn sites
+agree with independent CFG action origins and yield190 action/site records in
+each image. Stack depth agrees globally across partitions; aggregate homes,
+site sets and14870/14776-PC coverage stay unchanged. Under the existing equal
+action-group/physical-ordinal pairing, all84 correlations are now singleton and
+bijective,59 identical; the old union mode remains73 singleton/49 identical/
+11 ambiguous. This is conditional static correlation, not values, feasible
+paths, original variables or exact bytes. Nine new tests preserve within-action
+ambiguity, null/unknown evidence, cross-entry labels and global stack safety.
+Use the25 nonidentity correlations to study genuine lifetimes; do not force
+storage order. Target626C3B still shares effect416/417/565/566/567/568 while
 candidate retains four extra effect sites; target621E48's eight-action share
 already agrees. [The call-sharing checkpoint](IKU_CALL_SHARING_2026_10_17.md)
 is historical; its public static origin audit remains applicable.
+
+Raw626C34..626C49 is a21-byte shared FSTP X/push62/setECX/effect/vslot0x14 tail,
+entered with live ST0. Candidate565..568 setECX earlier. Moving416/417's X local
+into the argument is full59594-byte neutral. Independent middle_frame5/6 guards
+recover a timer carrier/recheck but expand to60046 and retain four extra effects;
+both controls remain unselected, still nonexact+64hex. Unused variant objects
+and full private source copies were removed. Selected game source is unchanged;
+continue joint argument/suffix and scalar lifetimes with the stronger provenance.
 
 Private /Os control shrinks to52234 bytes/one RET/six switches and rejects the
 size-profile hypothesis. Current direct-void source lift is still byte-neutral,

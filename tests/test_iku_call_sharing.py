@@ -62,6 +62,54 @@ class IkuCallSharingTests(unittest.TestCase):
         )
         self.assertFalse(result["bijection_under_ordinal_pairing"])
 
+    def partition_packet(self, site, homes):
+        packet = self.packet([(site, [416, 417], homes)])
+        packet["payload_provenance"].update(
+            partitioned_by_incoming_action=True,
+            action_payload_sites=[
+                {"action": action, "site": site, "homes": [home], "unknown": False, "can_be_null": False}
+                for action, home in zip((416, 417), homes)
+            ],
+        )
+        return packet
+
+    def test_action_pointer_relation_resolves_a_reversed_shared_pair(self):
+        target = self.partition_packet(0x1000, [32, 44])
+        candidate = self.partition_packet(0x2000, [92, 80])
+        result = SHARING.correlate_homes(target, candidate, action_partitioned=True)
+        self.assertEqual(result["possible_target_to_candidate_homes"], {"32": [92], "44": [80]})
+        self.assertTrue(result["bijection_under_ordinal_pairing"])
+        self.assertEqual(result["issues"], [])
+
+    def test_missing_unknown_and_null_partitions_keep_uncertainty(self):
+        for condition in ("missing", "unknown", "null"):
+            target = self.partition_packet(0x1000, [32, 44])
+            candidate = self.partition_packet(0x2000, [92, 80])
+            records = candidate["payload_provenance"]["action_payload_sites"]
+            if condition == "missing":
+                records.pop()
+            elif condition == "unknown":
+                records[1]["unknown"] = True
+            else:
+                records[1]["can_be_null"] = True
+            result = SHARING.correlate_homes(target, candidate, action_partitioned=True)
+            with self.subTest(condition=condition):
+                self.assertEqual(result["possible_target_to_candidate_homes"], {"32": [92]})
+                self.assertFalse(result["bijection_under_ordinal_pairing"])
+                self.assertEqual(result["issues"][0]["action"], 417)
+
+    def test_partition_mode_rejects_unpartitioned_or_duplicate_evidence(self):
+        target = self.partition_packet(0x1000, [32, 44])
+        candidate = self.partition_packet(0x2000, [92, 80])
+        candidate["payload_provenance"]["partitioned_by_incoming_action"] = False
+        with self.assertRaisesRegex(ValueError, "partitioned prologue"):
+            SHARING.correlate_homes(target, candidate, action_partitioned=True)
+        candidate["payload_provenance"]["partitioned_by_incoming_action"] = True
+        records = candidate["payload_provenance"]["action_payload_sites"]
+        records.append(records[0])
+        with self.assertRaisesRegex(ValueError, "duplicate action/payload"):
+            SHARING.correlate_homes(target, candidate, action_partitioned=True)
+
     def test_unknown_missing_and_inconsistent_home_evidence_cannot_form_a_bijection(
         self,
     ):

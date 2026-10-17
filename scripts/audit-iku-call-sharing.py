@@ -114,7 +114,7 @@ def candidate_entries(path, rows):
     return entries
 
 
-def facts(path=None, payload_homes=False):
+def facts(path=None, payload_homes=False, action_payloads=False):
     code, switches = homes.get_code(path)
     rows = {row.address: row for row in decode(code, homes.START)}
     entries = (
@@ -153,7 +153,7 @@ def facts(path=None, payload_homes=False):
         "calls": calls,
     }
     if payload_homes:
-        provenance = homes.audit(code, switches)
+        provenance = homes.audit(code, switches, action_entries=entries if action_payloads else None)
         report["payload_provenance"] = {
             key: provenance[key]
             for key in (
@@ -161,24 +161,47 @@ def facts(path=None, payload_homes=False):
                 "distinct_payload_homes",
                 "payload_sites",
                 "unknown_spawn_payload_sites",
+                "action_payload_sites",
+                "partitioned_by_incoming_action",
+                "dataflow_states",
+                "reachable_before_epilogue_restore",
             )
         }
+        if action_payloads:
+            partition_origins = defaultdict(set)
+            for item in provenance["action_payload_sites"]:
+                partition_origins[item["site"]].add(item["action"])
+            expected = {item["site"]: set(item["actions"]) or {None}
+                        for item in calls if item["target"] == "0x465190"}
+            if dict(partition_origins) != expected:
+                raise ValueError("payload partitions disagree with independent CFG action origins")
     return report
 
 
-def correlate_homes(target, candidate):
+def correlate_homes(target, candidate, *, action_partitioned=False):
     """Intersect home sets under action-origin/physical-call-ordinal pairing.
 
     This pairing is a conditional structural correlation, not argument identity.
     A multi-origin call supplies a set constraint, never a sorted zip of homes.
     """
-    groups = []
+    groups, partitions = [], []
     for packet in (target, candidate):
         by_origin = defaultdict(list)
         for call in sorted(packet["calls"], key=lambda row: row["site"]):
             if call["target"] == "0x465190":
                 by_origin[tuple(call["actions"])].append(call["site"])
         groups.append(by_origin)
+        if action_partitioned:
+            provenance = packet["payload_provenance"]
+            if not provenance.get("partitioned_by_incoming_action"):
+                raise ValueError("action correlation requires partitioned prologue dataflow")
+            index = {}
+            for item in provenance["action_payload_sites"]:
+                key = item["action"], item["site"]
+                if key in index:
+                    raise ValueError("duplicate action/payload site evidence")
+                index[key] = item
+            partitions.append(index)
     constraints, issues = {}, []
     for actions in sorted(groups[0].keys() | groups[1].keys()):
         sites = [group.get(actions, []) for group in groups]
@@ -192,37 +215,36 @@ def correlate_homes(target, candidate):
             )
             continue
         for pair in zip(*sites):
-            origins = [packet["payload_provenance"] for packet in (target, candidate)]
-            if any(
-                site in info["unknown_spawn_payload_sites"]
-                for site, info in zip(pair, origins)
-            ):
-                issues.append(
-                    {
-                        "actions": actions,
-                        "sites": pair,
-                        "reason": "unknown payload origin",
-                    }
-                )
-                continue
-            cells = [
-                set(info["payload_sites"].get(hex(site), []))
-                for site, info in zip(pair, origins)
-            ]
-            if len(cells[0]) != len(cells[1]):
-                issues.append(
-                    {
-                        "actions": actions,
-                        "sites": pair,
-                        "reason": "different home-set cardinality",
-                    }
-                )
-                continue
-            for home in cells[0]:
-                if home in constraints:
-                    constraints[home].intersection_update(cells[1])
+            for action in (actions or (None,)) if action_partitioned else (None,):
+                context = {"actions": actions, "sites": pair}
+                if action_partitioned:
+                    context["action"] = action
+                    evidence = [index.get((action, site)) for index, site in zip(partitions, pair)]
+                    if any(item is None for item in evidence):
+                        issues.append(context | {"reason": "missing action/payload evidence"})
+                        continue
+                    unknown = any(item["unknown"] for item in evidence)
+                    cells = [set(item["homes"]) for item in evidence]
+                    if evidence[0]["can_be_null"] != evidence[1]["can_be_null"]:
+                        issues.append(context | {"reason": "different null-payload possibilities"})
+                        continue
                 else:
-                    constraints[home] = set(cells[1])
+                    origins = [packet["payload_provenance"] for packet in (target, candidate)]
+                    unknown = any(site in info["unknown_spawn_payload_sites"]
+                                  for site, info in zip(pair, origins))
+                    cells = [set(info["payload_sites"].get(hex(site), []))
+                             for site, info in zip(pair, origins)]
+                if unknown:
+                    issues.append(context | {"reason": "unknown payload origin"})
+                    continue
+                if len(cells[0]) != len(cells[1]):
+                    issues.append(context | {"reason": "different home-set cardinality"})
+                    continue
+                for home in cells[0]:
+                    if home in constraints:
+                        constraints[home].intersection_update(cells[1])
+                    else:
+                        constraints[home] = set(cells[1])
     unique = all(len(values) == 1 for values in constraints.values())
     image = {value for values in constraints.values() for value in values}
     candidate_homes = {
@@ -248,8 +270,12 @@ def correlate_homes(target, candidate):
         ),
         "bijection_under_ordinal_pairing": bijection,
         "issues": issues,
-        "scope": "Equal incoming-action groups paired by physical call ordinal; home-set constraints intersected. "
-        "Not a proof of payload values, feasible paths, original variable names or exact byte equality.",
+        "incoming_action_partitioned": action_partitioned,
+        "scope": (
+            "Equal incoming-action groups paired by physical call ordinal; home-set constraints intersected. "
+            + ("Action/pointer relation retained from the real prologue through shared tails. " if action_partitioned else "")
+            + "Not a proof of payload values, feasible paths, original variable names or exact byte equality."
+        ),
     }
 
 
@@ -283,14 +309,23 @@ if __name__ == "__main__":
         action="store_true",
         help="include stack provenance and conditional ordinal home correlation",
     )
+    parser.add_argument(
+        "--partition-payloads", action="store_true",
+        help="retain incoming action and stack origin together through shared calls (implies --payload-homes)",
+    )
     args = parser.parse_args()
+    args.payload_homes = args.payload_homes or args.partition_payloads
     target_sha = homes.c.verify_target()
-    target = facts(payload_homes=args.payload_homes)
+    target = facts(payload_homes=args.payload_homes, action_payloads=args.partition_payloads)
     report = {
-        "schema": "th105-iku-call-sharing-v1",
+        "schema": "th105-iku-call-sharing-v2" if args.partition_payloads else "th105-iku-call-sharing-v1",
         "target_sha256": target_sha,
         "root_sha256": homes.ROOT_SHA,
         "script_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        "support_sha256": {
+            name: hashlib.sha256((ROOT / "scripts" / name).read_bytes()).hexdigest()
+            for name in ("audit-iku-payload-homes.py", "typed_indirect_tails.py", "giant_owner_audit.py")
+        },
         "target": target,
         "scope": "Possible incoming action IDs through raw instruction edges; -1 is the default entry, "
         "and [] means no action/default entry reaches the call (for example a prelude call). "
@@ -299,10 +334,12 @@ if __name__ == "__main__":
     }
     if args.object:
         report["candidate"] = facts(
-            args.object.resolve(), payload_homes=args.payload_homes
+            args.object.resolve(), payload_homes=args.payload_homes, action_payloads=args.partition_payloads
         )
         report["object_sha256"] = hashlib.sha256(args.object.read_bytes()).hexdigest()
         report["differences"] = differences(target, report["candidate"])
         if args.payload_homes:
-            report["home_correlation"] = correlate_homes(target, report["candidate"])
+            report["home_correlation"] = correlate_homes(
+                target, report["candidate"], action_partitioned=args.partition_payloads
+            )
     print(json.dumps(report, indent=2))

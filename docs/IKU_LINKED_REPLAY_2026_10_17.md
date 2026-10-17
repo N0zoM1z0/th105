@@ -1,5 +1,9 @@
 # Iku full linked-root relocation replay
 
+The subsequent [action/payload partition checkpoint](IKU_ACTION_PAYLOAD_PARTITIONS_2026_10_17.md)
+resolves the11 static correlation ambiguities below under the existing ordinal
+pairing. This linked compiler comparison and the selected source remain valid.
+
 The [real source link](IKU_REAL_LINK_2026_10_17.md) now has complete diagnostic
 relocation replay. Its strict59038-byte comparison against Iku620920 remains
 **nonexact+0x64 /620984**. Across all59594 shared bytes, the linked and ordinary
