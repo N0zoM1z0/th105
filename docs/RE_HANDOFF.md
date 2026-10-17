@@ -220,9 +220,26 @@ instruction bytes and all9 primary file hashes; no new process/clone.
 Later fan iterations/returning manager contexts remain dynamically unproved;
 no root implementation/exact credit. See
 [540-family evidence](REIMU_MID_540_ACTIONS_2026_10_18.md).
-Next continue550/551/direct560, then high actions and real returning world
-contexts toward the complete void root.550/551 share48749F;
-their1132-byte body ends48790B before364 direct560 bytes and30 selector bytes.
+550/551 and direct560 now join the same method through560:1496 target
+bytes/378 instructions.550/551 share48749F; their1132-byte body ends48790B
+before364 direct560 bytes and30 selector bytes. All50 non-default middle
+keys/49 physical bodies now have source labels, checked against the canonical
+table; this is branch coverage, not complete semantic or exact acceptance.
+Native0/2665 includes1875 RETs,751 object requests,18 effects,11 common-entry
+stops,1 set669 stop and9 pending handoffs.624 real random-roll/MT calls and
+618 sine/cosine pairs execute. Preserve signed timer%3, negative ring radii,
+four-float822 payloads and three-float825 payloads, separate live array fields,
+alpha245 boundary and pre/post-advance nodes. The accepted random helper's
+int interface is retained, with an unsigned conversion at this call site.
+Three controls fail2/36,16/144,1/36. A513-case integration cohort, six unchanged
+old COFF identities and focused smokes pass. Prior direct Ghidra readback is
+reused after target/root/body/table/instruction and9 primary-file checks;
+no new process/clone. Later ring iterations,25 grid requests and returning
+manager paths remain dynamically unproved; TOP=0 gates are unchanged.
+No root implementation/exact credit. See
+[550/direct560 evidence](REIMU_MID_550_ACTIONS_2026_10_18.md).
+Next recover high561..798, then real returning world contexts toward the
+complete void root and strict full-function comparison.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.
 Obsolete unpinned disassembly exports (~18MB) and rejected/superseded object
 files were removed; current bounded evidence and primary databases remain.

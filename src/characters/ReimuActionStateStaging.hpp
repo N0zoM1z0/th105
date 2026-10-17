@@ -36,7 +36,7 @@ public:
     bool run_checked_prelude();
     // True completes the entry/low path; false hands action>300 to later source.
     bool run_checked_low_dispatch();
-    // Entry, low table and middle actions through546; later actions remain pending.
+    // Entry, low table and middle actions through560; later actions remain pending.
     bool run_checked_action_dispatch();
     void update_common_action_state();
     // True handles action0..10; false leaves other actions to later phases.
@@ -192,6 +192,7 @@ unsigned int __cdecl mt19937_next_u32();
 int __stdcall selector_random_range(int lower, int upper);
 float __cdecl atan2_degrees(float y, float x);
 float __cdecl sqrt_float_value(float value);
+int __cdecl selector_random_roll(int limit);
 
 // The original reset receiver is the sprite subobject at fighter+4.
 struct ReimuRecoverySpriteView {
