@@ -31,6 +31,7 @@ c = comparator()
 START = 0x620920
 ROOT_SHA = "abc831c6ccd95986bed811694f532ad8c8b92cb49702a7f6ce4de100b8a73dea"
 SURFACE_SHA = "8e948c42039b2fda3ef75fb7d40e120c8e128c44a2fd002412913911cf4d4dd6"
+BELOW_SHA = "c2ee1b68bc5f44631a3cb5ec0538eae7a7280d08036bc4cf15ebaae9fd74fc12"
 # Stack purge bytes from the established genuine dependency interfaces. Cdecl
 # calls have zero implicit purge; the caller's ADD/POP remains in the graph.
 # Receiver inference independently qualifies each virtual call/slot below.
@@ -396,17 +397,19 @@ def audit(code, switches, cleanup_contract=None):
     contiguous = homes == list(range(32, frame + 16, 12)) and frame == 16 + 12 * len(
         homes
     )
-    consumers = []
+    consumer_groups = {0x5F9310: [], 0x435DC0: []}
     for pc, row in rows.items():
         if (
             row.mnemonic == "call"
             and row.operands[0].type == X86_OP_IMM
-            and row.operands[0].imm == 0x5F9310
+            and row.operands[0].imm in consumer_groups
         ):
             after = rows[pc + row.size]
-            consumers.append(
+            consumer_groups[row.operands[0].imm].append(
                 {"site": pc, "mnemonic": after.mnemonic, "operands": after.op_str}
             )
+    consumers = consumer_groups[0x5F9310]
+    below = consumer_groups[0x435DC0]
     return {
         "code_sha256": hashlib.sha256(code).hexdigest(),
         "frame": frame,
@@ -420,6 +423,10 @@ def audit(code, switches, cleanup_contract=None):
         and all(
             r["mnemonic"] == "test" and r["operands"] == "al, al" for r in consumers
         ),
+        "below_consumers": below,
+        "below_consumer_count": len(below),
+        "all_below_consumers_test_AL": bool(below)
+        and all(r["mnemonic"] == "test" and r["operands"] == "al, al" for r in below),
         "reachable_before_epilogue_restore": len(states),
         "updates": visits,
         "unknown_spawn_payload_sites": sorted(unknown),
@@ -443,6 +450,8 @@ if __name__ == "__main__":
     target_sha = c.verify_target()
     if hashlib.sha256(c.target_bytes(0x5F9310, 64)).hexdigest() != SURFACE_SHA:
         raise ValueError("surface predicate differs")
+    if hashlib.sha256(c.target_bytes(0x435DC0, 42)).hexdigest() != BELOW_SHA:
+        raise ValueError("below-surface predicate differs")
     code, switches = get_code()
     target = audit(code, switches)
     if (
@@ -456,12 +465,18 @@ if __name__ == "__main__":
         or not target["all_surface_consumers_test_AL"]
     ):
         raise ValueError("target surface consumers differ")
+    if (
+        target["below_consumer_count"] != 10
+        or not target["all_below_consumers_test_AL"]
+    ):
+        raise ValueError("target below-surface consumers differ")
     report = {
         "schema": "th105-iku-payload-homes-v1",
         "target_sha256": target_sha,
         "script_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "target": target,
         "surface_callee_sha256": SURFACE_SHA,
+        "below_callee_sha256": BELOW_SHA,
         "scope": "Caller-stack provenance under the explicit direct cleanup contract, qualified entry-receiver vslots and ordinary callee saves. "
         "Addresses are relative to the stack after four saved GPRs. All normal epilogues and stack joins close. "
         "Not original variable names, arbitrary callee behavior, backend execution, partial or exact byte credit.",

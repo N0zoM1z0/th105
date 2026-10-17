@@ -1,5 +1,9 @@
 # Iku payload identities, stack frame and narrow result consumers
 
+Historical checkpoint7170e75. Current selected source and focused results:
+[call sharing and below-surface consumers](IKU_CALL_SHARING_2026_10_17.md).
+
+
 The complete `Iku_dispatch_action_state_vslot28 @ 620920` now naturally
 reproduces the target's **0x400 stack frame** and **84 caller-stack payload
 homes**, removing 14 extra arrays from the selected source. The first
