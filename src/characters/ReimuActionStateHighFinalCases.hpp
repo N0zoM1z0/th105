@@ -152,25 +152,63 @@
                 const unsigned int mode = static_cast<unsigned int>(g_match_identifier);
                 if (mode > 3)
                     return true;
-                const int cadence = mode == 0 ? 8 : mode == 1 ? 6 : mode == 2 ? 5 : 4;
-                if (frame_counter_144 % cadence == 0) {
-                    float parameters[3];
-                    if (mode == 3) {
+                float parameters[3];
+                switch (mode) {
+                case 0:
+                    if (frame_counter_144 % 8 == 0) {
+                        parameters[0] = field_73c;
+                        parameters[1] = 4.0f;
+                        parameters[2] = 2.0f;
+                        spawn_owned_object_via_manager(902,
+                            static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
+                                * 100.0 * facing_104 + x_ec),
+                            static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
+                                * 100.0 + y_f0 + 100.0),
+                            static_cast<unsigned char>(facing_104), 1, parameters, 3);
+                    }
+                    break;
+                case 1:
+                    if (frame_counter_144 % 6 == 0) {
+                        parameters[0] = field_73c;
+                        parameters[1] = 4.0f;
+                        parameters[2] = 2.0f;
+                        spawn_owned_object_via_manager(902,
+                            static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
+                                * 100.0 * facing_104 + x_ec),
+                            static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
+                                * 100.0 + y_f0 + 100.0),
+                            static_cast<unsigned char>(facing_104), 1, parameters, 3);
+                    }
+                    break;
+                case 2:
+                    if (frame_counter_144 % 5 == 0) {
+                        parameters[0] = field_73c;
+                        parameters[1] = static_cast<float>(4.0
+                            - static_cast<unsigned int>(selector_random_roll(5)) * static_cast<double>(0.1f));
+                        parameters[2] = 2.0f;
+                        spawn_owned_object_via_manager(902,
+                            static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
+                                * 100.0 * facing_104 + x_ec),
+                            static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
+                                * 100.0 + y_f0 + 100.0),
+                            static_cast<unsigned char>(facing_104), 1, parameters, 3);
+                    }
+                    break;
+                case 3:
+                    if (frame_counter_144 % 4 == 0) {
                         const double angle = static_cast<double>(field_73c) + 7.0;
                         parameters[0] = static_cast<float>(angle - static_cast<unsigned int>(selector_random_roll(14)));
-                    } else {
-                        parameters[0] = field_73c;
+                        parameters[1] = static_cast<float>(4.0
+                            - static_cast<unsigned int>(selector_random_roll(10)) * static_cast<double>(0.1f));
+                        parameters[2] = 2.0f;
+                        spawn_owned_object_via_manager(902,
+                            static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
+                                * 100.0 * facing_104 + x_ec),
+                            static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
+                                * 100.0 + y_f0 + 100.0),
+                            static_cast<unsigned char>(facing_104), 1, parameters, 3);
                     }
-                    parameters[1] = mode >= 2
-                        ? static_cast<float>(4.0 - static_cast<unsigned int>(selector_random_roll(mode == 2 ? 5 : 10))
-                            * static_cast<double>(0.1f)) : 4.0f;
-                    parameters[2] = 2.0f;
-                    const float y = static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
-                        * 100.0 + y_f0 + 100.0);
-                    const float x = static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
-                        * 100.0 * facing_104 + x_ec);
-                    spawn_owned_object_via_manager(902, x, y,
-                        static_cast<unsigned char>(facing_104), 1, parameters, 3);
+                    break;
                 }
                 field_73c = static_cast<float>(field_73c + 2.0);
             }

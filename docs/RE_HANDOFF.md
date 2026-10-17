@@ -361,7 +361,17 @@ The expanded probe now has80764 pre-table bytes,82088 text bytes,1164 E8s,
 implementation/exact credit or aggregate replay. All9 primary DB files remain
 unchanged; obsolete objects/control copies and caches are cleaned. See
 [720 mode-source evidence](REIMU_720_MODE_SHAPE_2026_10_18.md).
-Next prioritize730 mode/request lowering, then740's undefined
+730 now has four independent cadence/request bodies and a common fresh73C
+increment. Both current objects pass0/3676 native cases, including128 extreme
+signed counters with genuine native wrap; cadence5->6 is detected16/128.
+Previous710/711/720 static loops and510 packet constraints still pass. The
+candidate730 span is1322 versus target1320, with the two observed IDIVs and
+one shared902 tail. Expanded prefix81288/text82628 has1171 E8s,149 RETs and9
+switches; frame598h versus570h remains first mismatch. No implementation/exact
+credit or aggregate replay. All9 primary hashes unchanged; superseded720
+objects/control copies and caches cleaned. See
+[730 mode-source evidence](REIMU_730_MODE_SHAPE_2026_10_18.md).
+Next prioritize740's two mode switches and undefined
 paths, full void/default ABI, returning world contexts and VC8/LTCG/TU evidence
 before canonical root acceptance.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.
