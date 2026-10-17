@@ -32,7 +32,7 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Active priority: Iku real advance callbacks and joint exits
+## Active priority: Iku prelude ownership and joint exits
 
 `Iku_dispatch_action_state_vslot28 @ 620920` retains complete110-action
 source, void thiscall prelude/default and one ascending switch. Target
@@ -43,27 +43,39 @@ EDI=1. No exact/partial authored credit. Current evidence:
 [17-action common surface exit](IKU_COMMON_SURFACE_EXIT_2026_10_17.md) and
 [effect direction/argument ownership](IKU_EFFECT_DIRECTION_2026_10_17.md), now
 [all six atan2 argument lifetimes](IKU_STEERING_ARGUMENT_LIFETIMES_2026_10_17.md),
-plus [real animation completion](IKU_ADVANCE_CALLBACKS_2026_10_17.md).
+plus [real animation completion](IKU_ADVANCE_CALLBACKS_2026_10_17.md) and
+[object998 prelude ownership](IKU_PRELUDE_DIRECTION_2026_10_17.md).
 
-The latest bounded investigation leaves C++ source/whole section unchanged.
-310/409 still share candidate4351C0 call6245ED versus separate target624612/
-625893. AL return width is already correct; explicit409 failed-advance return
-is whole-section byte-neutral and unselected. The new--advance-callbacks
-fixture executes original frame/block callbacks and real frame application,
-closing the ordinary high-frame-limit fixture's successful-advance gap.
-Native0/1992 includes310/409 successes120/48 and912 normal RETs each, with
-712 real next-frame and264 next-block entries per side. Wrong409 action10
-calibration detects48/960, exactly the successful subset. Original vtable/
-code untouched;13 byte-pinned dependencies, Sprite ECX/EAX receiver checks,
-zero texture handle and valid checked slot span; no substituted results.
-436760/40C100 remain unclassified, not source/ownership/exact promotions.
-Frame format2/nonzero texture/error/unmasked/final-backend behavior remains
-unproved. Native/configured complete sections agree; Ghidra independently
-attests13 spans, slots and decisive calls; nine primary files unchanged.
-No call-sharing or compiler-barrier conclusion follows from this new runtime
-coverage. Original first+64 mismatch and full95% authored-byte goal persist.
+The latest selected change captures a fresh raw direction DWORD inside each
+of the three independent object998 branches, using signed-char conversion
+only for the X offset. Target MOVZX/MOVSX dataflow now appears explicitly;
+first spawn CALL aligns at620A0C, but target EDI=1 still precedes the outer
+guard while candidate EBX=1 loads later. A named variant1 used by the flag
+and all three calls is whole-section neutral and unselected. The section shrinks16 bytes
+to59462; compiler regrouping also affects later vslot8 tails. No claim that
+all suffix bytes stay unchanged. Fresh whole-entry native0/7086 covers5760
+raw float/direction cases,336 guards and990 compact110-action routed entries.
+Object998 is reached5832 times,648 per active action; wrong signed outgoing
+direction detects2304/5760. Geometry cases stop at the real465190 entry;
+post-spawn mutation/continuation and unmasked exceptions remain unproved.
+Native/configured whole sections agree. All six73-byte atan2 preparations
+still equal target at candidate628D45/628F54/629168/6293E1/62D825/62D9AC.
+Read-only Ghidra re-attests the guard and three81-byte preparations, initial
+constant and raw/signed uses; nine primary files unchanged, clone removed.
 
-The latest560/561/562/563 extension gives all six atan2 sites identical
+The preceding d6a5f127 checkpoint added real310/409 animation callbacks.
+Their shared advancement site now lies at6245CD versus target624612/625893;
+AL return width is already correct. The explicit409 failed-advance return
+control was whole-section neutral at that checkpoint and unselected.
+Its native0/1992 observed120/48 successes and912 normal RETs per action;
+wrong409 action10 detected48/960. Original frame/block callbacks, real frame
+application,13 byte pins and Sprite ECX/EAX guards executed without return
+substitution or executable/vtable patch.436760/40C100 remain unclassified.
+That runtime report is scoped to d6a5f127 and is not a fresh current-source
+replay. Frame format2/nonzero texture/error/unmasked/final-backend behavior
+remains unproved. No original-source or compiler-barrier conclusion follows.
+
+The preceding d6a5f127 checkpoint's560/561/562/563 extension gives all six atan2 sites identical
 complete73-byte target preparations. Four new spans start target628F2E/
 62913B/62933E/6295A8 versus candidate628D55/628F64/629178/6293F1.
 `emit_813_aimed` retains its rounded X local and reads peer Y as a field
@@ -95,7 +107,7 @@ versus four target remain unresolved.
 
 The common height-ST0-to-Y / velocity-clear / return tail now has exactly
 its target incoming set:6/7/8/9/220/307/308/309/404/406/414/415/416/417/795/797/798.
-Target calls621044/621051 correspond to candidate62ECBE/62ECCB. Source retains
+Target calls621044/621051 correspond to current candidate62ECAE/62ECBB. Source retains
 all preceding callbacks and797/798's post-callback X=480/800 stores before
 height lookup. The private inlined fan routine reports pending restoration
 for404/406 so its callers can join; ground400/401/402 retain completed behavior.
@@ -105,18 +117,19 @@ CALLs are emitted. A label-inside-case8 control still placed the shared tail
 near the end, grew32 bytes and remained nonexact+64; unselected.
 
 Current source CRLF SHA256:
-d6a5f1276ad22ba8739d7d3cefb2a09e57da92b92e3efb2ca8b6f505744a2c12.
-Normalized full section59478 bytes, SHA256:
-018be2dcd2b8361057022937b0d35c8ce4fbe2aa6933a0b625a523da11023bd3.
-The latest section extent is unchanged. Candidate15000 reachable instructions /58318
-instruction bytes in58321-byte span, three internal alignment bytes,1157
-following alignment/metadata bytes (metadata starts58324),128 RETs,
-862 ordinary/178 register CALLs,33/42/35 tables, no external tails. Target
-865/177. Owner diagnostics remain7/109 (2/4/5/204/215/303/696), not matches.
-Frame400hex/84 natural payload homes stay; conditional incoming-action/
-physical-ordinal pairing retains84 singleton/bijective constraints,57 identity,
-182 spawn calls/190 action-site records. Target/candidate pre-epilogue
-PCs14870/14744, states16959/16900. These are not payload-value/path proofs.
+a406a5e5c5853ba2c5b9d4b27cdea43458da731589fc4d87aa191b0e3a8c8bca.
+Normalized full section59462 bytes, SHA256:
+a96a9185a2c717315108dc8b8e8cc7064ebbd99144b0b8942c63989e60ab75a4.
+Candidate14990 reachable instructions /58302 instruction bytes in58305-byte
+span, three internal alignment bytes,1157 following alignment/metadata bytes
+(metadata starts58308),128 RETs,862 ordinary/177 register CALLs,33/42/35
+tables, no local CALLs or external tails. Target865/177. Owner diagnostics
+8/109 (2/4/5/10/204/215/303/696), not matches. Register-call count agreement
+does not establish matching incoming sets or semantics. Frame400hex/84 natural
+payload homes retain84 singleton/bijective conditional incoming-action/
+physical-ordinal constraints,57 identity,182 spawn calls/190 action-site
+records. Target/candidate pre-epilogue PCs14870/14734, states16959/16896.
+These are not payload-value/path proofs.
 
 Priorc9 source whole-entry native0/3252 covers the17 actions plus ground400/401/402:
 2566 RETs and686 first backend entries per side (13 effect/511 action/
@@ -128,8 +141,8 @@ first actual action/sequence callback; the subsequent common tail is static
 instruction/flow evidence, **not post-callback native proof**. The bad-status
 control instead detects erroneous restoration on normal completed paths.
 
-Direct Ghidra independently re-attests imported/file identity, entry, full
-mapped .text, language/compiler/root and the complete28-byte shared tail in
+At the preceding common-landing checkpoint, direct Ghidra re-attested identity,
+entry, mapped .text, language/compiler/root and the complete28-byte tail in
 one read-only768MiB/two-CPU clone. All nine primary files unchanged. Wrong-
 image IDA remains rejected. Physical layout and other sharing still differ:
 advancement107/106, height19/18, clear30/28, facing9/10 target/candidate.

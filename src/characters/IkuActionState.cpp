@@ -3195,15 +3195,22 @@ void IkuActionStateView::dispatch_action_state_vslot28()
         byte_at(0x751) = 1;
         // Independent tests deliberately re-read action and coordinates after
         // each possible spawn, as the original prelude does.
-        if (action_id_13c > 149 && action_id_13c < 154)
-            spawn_owned_object_via_manager(998, static_cast<float>(facing() * 71) + float_at(0xec),
-                static_cast<float>(float_at(0xf0) + 137.0), byte_at(0x104), 1, 0, 0);
-        if (action_id_13c > 153 && action_id_13c < 158)
-            spawn_owned_object_via_manager(998, static_cast<float>(facing() * 58) + float_at(0xec),
-                static_cast<float>(float_at(0xf0) + 87.0), byte_at(0x104), 1, 0, 0);
-        if (action_id_13c == 158)
-            spawn_owned_object_via_manager(998, static_cast<float>(facing() * 43) + float_at(0xec),
-                static_cast<float>(float_at(0xf0) + 136.0), byte_at(0x104), 1, 0, 0);
+        // Keep each raw direction DWORD distinct from its signed X-offset use.
+        if (action_id_13c > 149 && action_id_13c < 154) {
+            const int direction = byte_at(0x104);
+            spawn_owned_object_via_manager(998, static_cast<float>(static_cast<signed char>(direction) * 71) + float_at(0xec),
+                static_cast<float>(float_at(0xf0) + 137.0), direction, 1, 0, 0);
+        }
+        if (action_id_13c > 153 && action_id_13c < 158) {
+            const int direction = byte_at(0x104);
+            spawn_owned_object_via_manager(998, static_cast<float>(static_cast<signed char>(direction) * 58) + float_at(0xec),
+                static_cast<float>(float_at(0xf0) + 87.0), direction, 1, 0, 0);
+        }
+        if (action_id_13c == 158) {
+            const int direction = byte_at(0x104);
+            spawn_owned_object_via_manager(998, static_cast<float>(static_cast<signed char>(direction) * 43) + float_at(0xec),
+                static_cast<float>(float_at(0xf0) + 136.0), direction, 1, 0, 0);
+        }
     }
     if (short_at(0x186) != 0 || peer_short(0x48c) != 0) return;
     if (try_dispatch_verified_action()) return;
