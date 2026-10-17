@@ -36,11 +36,13 @@ public:
     bool run_checked_prelude();
     // True completes the entry/low path; false hands action>300 to later source.
     bool run_checked_low_dispatch();
-    // Entry, low table and middle/high actions through711; later actions remain pending.
+    // Entry, low table and middle/high actions through798; later actions remain pending.
     bool run_checked_action_dispatch();
     void update_common_action_state();
     void publish_texture_state(signed char texture_index, short duration);
     void set_word_48a(short value);
+    void finalize_sequence_entry(int outcome);
+    void copy_action_word_176_to_174();
     void dispatch_indexed_sequence_window_45c8b0(signed char relative_index, int outcome, int source_token);
     void advance_secondary_event_effect_cycle();
     // True handles action0..10; false leaves other actions to later phases.
@@ -125,7 +127,9 @@ public:
     signed char byte_609;
     signed char byte_60a;
     signed char byte_60b;
-    unsigned char reserved_60c[0xa0];
+    unsigned char reserved_60c[0x49];
+    unsigned char byte_655;
+    unsigned char reserved_656[0x56];
     float field_6ac;
     unsigned char reserved_6b0[4];
     int field_6b4;
@@ -149,7 +153,13 @@ public:
     unsigned char reserved_748[8];
     unsigned char byte_750;
     unsigned char byte_751;
-    unsigned char reserved_752[0x2e];
+    unsigned char reserved_752[0x12];
+    short word_764;
+    short word_766;
+    short word_768;
+    short word_76a;
+    short word_76c;
+    unsigned char reserved_76e[0x12];
     float field_780;
     float field_784;
     float field_788;
@@ -171,6 +181,7 @@ typedef char ReimuPrelude_peer_offset[(offsetof(ReimuActionStatePreludeView, pee
 typedef char ReimuPrelude_word174_offset[(offsetof(ReimuActionStatePreludeView, word_174) == 0x174) ? 1 : -1];
 typedef char ReimuPrelude_state_offset[(offsetof(ReimuActionStatePreludeView, state_180) == 0x180) ? 1 : -1];
 typedef char ReimuPrelude_gate_offset[(offsetof(ReimuActionStatePreludeView, word_186) == 0x186) ? 1 : -1];
+typedef char ReimuFinal_offsets[(offsetof(ReimuActionStatePreludeView, byte_655) == 0x655 && offsetof(ReimuActionStatePreludeView, word_764) == 0x764 && offsetof(ReimuActionStatePreludeView, word_766) == 0x766 && offsetof(ReimuActionStatePreludeView, word_768) == 0x768 && offsetof(ReimuActionStatePreludeView, word_76a) == 0x76a && offsetof(ReimuActionStatePreludeView, word_76c) == 0x76c) ? 1 : -1];
 typedef char ReimuStoredMotion_offsets[(offsetof(ReimuActionStatePreludeView, field_780) == 0x780 && offsetof(ReimuActionStatePreludeView, field_784) == 0x784 && offsetof(ReimuActionStatePreludeView, field_788) == 0x788) ? 1 : -1];
 typedef char ReimuHigh_offset[(offsetof(ReimuActionStatePreludeView, byte_60b) == 0x60b) ? 1 : -1];
 typedef char ReimuVisual_offsets[(offsetof(ReimuActionStatePreludeView, byte_110) == 0x110 && offsetof(ReimuActionStatePreludeView, byte_113) == 0x113 && offsetof(ReimuActionStatePreludeView, scale_11c) == 0x11c && offsetof(ReimuActionStatePreludeView, scale_120) == 0x120 && offsetof(ReimuActionStatePreludeView, byte_184) == 0x184 && offsetof(ReimuActionStatePreludeView, byte_60a) == 0x60a) ? 1 : -1];

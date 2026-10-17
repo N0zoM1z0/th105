@@ -291,8 +291,28 @@ The reused direct Ghidra receipt is rechecked against all current bytes and
 9 unchanged primary hashes; no new process/clone. Returning volleys/backend,
 full void ABI and canonical matching remain unproved; no implementation/exact
 credit. See [650..711 evidence](REIMU_HIGH_LATE_ACTIONS_2026_10_18.md).
-Next continue720 at48BC4D and later high bodies, then real returning world
-contexts toward the complete void root and strict full-function comparison.
+720/730/740/760/770/795/797/798 now join the method through798:4562 target
+bytes/1149 instructions. A target-table/source-label audit reconciles all128
+nondefault keys (low44,mid50,high32,direct300/560); this is label coverage only.
+Native0/11820 has10364 RETs,1400 object requests,30 effects,12 common entries,
+1 set669 and13 pending. The last count includes eight740 undefined-stack
+boundary cases: mode>3 in sequences1/6 reads original [ESP+B4] without an
+entry-path initialization. Source leaves those paths pending; no guessed
+value/target return is supplied. Thirty-four required-site cases,2267 real
+MT draws and64 inactive finalization/WORD-copy calls pass. Prior baseline
+agrees851/852 integration cases;798 intentionally changes from pending to
+its newly recovered body. Preserve720's equality cutoffs/alpha behavior and
+four-float901 payload,730's post-advance cadence/random conversions,740's
+mode-dependent signed gates,760's cascading health phases and770's frame7
+helper/store order.795/797/798 share different completion/landing tails.
+Controls detect18/216 for720's variant,84/720 for760's else-if mistake and8/56
+for740's cutoff equality. Six old non-debug COFF identities/smokes stay
+unchanged. Ghidra evidence is reused after current byte/table and9 primary
+hash checks; no new process/clone. No implementation/exact credit. See
+[720..798 evidence](REIMU_HIGH_FINAL_ACTIONS_2026_10_18.md).
+Next reconcile740's undefined paths, complete the original void ABI/default
+surface, and establish truthful full-function compilation/comparison.
+Returning world/backend contexts and VC8/LTCG/TU provenance remain unknown.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.
 Obsolete unpinned disassembly exports (~18MB) and rejected/superseded object
 files were removed; current bounded evidence and primary databases remain.
