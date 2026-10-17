@@ -199,17 +199,29 @@ def reusable_compile(path, obj, inputs):
     ) == linked_pe.sha(obj)
 
 
-def visibility_selection(specification, available):
+def visibility_selection(specification, available, mt_noinline_control=False):
     if specification is None:
-        return None
-    if specification == "none":
-        return set()
-    if specification == "all":
-        return set(available)
-    selected = set(specification.split(","))
-    if not selected or not selected <= set(available):
-        raise ValueError("provider visibility names must be selected game-provider units")
+        selected = None
+    elif specification == "none":
+        selected = set()
+    elif specification == "all":
+        selected = set(available)
+    else:
+        selected = set(specification.split(","))
+        if not selected or not selected <= set(available):
+            raise ValueError("provider visibility names must be selected game-provider units")
+    if mt_noinline_control and selected != {"cross-v106a-mt19937-next"}:
+        raise ValueError("MT noinline control requires only cross-v106a-mt19937-next visibility")
     return selected
+
+
+def mt_noinline_source(text):
+    for declaration in ("unsigned __cdecl mt19937_next_u32()",
+                        "void __cdecl mt19937_seed_u32(unsigned seed)"):
+        if text.count(declaration) != 1:
+            raise ValueError("MT noinline control requires the reviewed seed/next definitions")
+        text = text.replace(declaration, "__declspec(noinline) " + declaration)
+    return text
 
 
 def visibility_entry(image, map_path, canonical, aliases):
@@ -256,7 +268,7 @@ def visibility_entry(image, map_path, canonical, aliases):
     }
 
 
-def probe(reuse=False, ordinary_object=None, provider_visibility=None):
+def probe(reuse=False, ordinary_object=None, provider_visibility=None, mt_noinline_control=False):
     canonical = linked_pe.comparator()
     target_sha = canonical.verify_target()
     tools, pins = linked_pe.pinned_tools()
@@ -275,7 +287,7 @@ def probe(reuse=False, ordinary_object=None, provider_visibility=None):
             raise ValueError("ambiguous dependency source selection")
         selected[address] = (name, function)
 
-    visible_units = visibility_selection(provider_visibility, {name for name, _ in selected.values()})
+    visible_units = visibility_selection(provider_visibility, {name for name, _ in selected.values()}, mt_noinline_control)
     if visible_units is not None and ordinary_object is not None:
         raise ValueError("provider visibility is entry-only; omit --ordinary-object")
 
@@ -498,13 +510,17 @@ def probe(reuse=False, ordinary_object=None, provider_visibility=None):
         provider_out = out / "provider-visibility"
         provider_out.mkdir(exist_ok=True)
         context = hashlib.sha256(",".join(sorted(visible_units)).encode()).hexdigest()[:16]
-        link_out = provider_out / context
+        link_out = provider_out / (context + ("-noinline" if mt_noinline_control else ""))
         link_out.mkdir(exist_ok=True)
         for name in sorted(visible_units):
             unit = units[name]
             original = ROOT / unit["source"]
             provider_source = out / (name + ".cpp") if name in METHOD_SELECTIONS or name in FREE_SELECTIONS else original
             obj = provider_out / (name + ".obj")
+            if mt_noinline_control:
+                provider_source = provider_out / "Mt19937NoInline.cpp"
+                provider_source.write_bytes(mt_noinline_source(original.read_text()).replace("\n", "\r\n").encode())
+                obj = provider_out / "Mt19937NoInline.obj"
             compile_source(provider_source, obj, unit, ("/Gy", "/GL"), original.parent, unit_name=name)
             objects[name] = obj
 
@@ -587,6 +603,7 @@ def probe(reuse=False, ordinary_object=None, provider_visibility=None):
             "target_sha256": target_sha, "probe_sha256": linked_pe.sha(Path(__file__)),
             "root_source_sha256": linked_pe.sha(ROOT / root_unit["source"]),
             "visible_provider_units": sorted(visible_units), "tools": pins,
+            "mt_noinline_control": mt_noinline_control,
             "retained_functions": sorted(set(actuals.values())),
             "compilation_steps": compilation_steps, "link_commands": link_commands,
             "link_provider_objects": {name: {"path": str(path.relative_to(ROOT)), "sha256": linked_pe.sha(path)}
@@ -829,9 +846,13 @@ if __name__ == "__main__":
         "--provider-visibility",
         help="entry-only LTCG visibility witness: none, all, or comma-separated game-provider unit names; retains real provider bodies",
     )
+    parser.add_argument(
+        "--mt-noinline-control", action="store_true",
+        help="diagnostic generated-source control: mark MT seed/next noinline; requires only the MT provider visible",
+    )
     args = parser.parse_args()
     try:
-        print(json.dumps(probe(args.reuse, args.ordinary_object, args.provider_visibility), indent=2))
+        print(json.dumps(probe(args.reuse, args.ordinary_object, args.provider_visibility, args.mt_noinline_control), indent=2))
     except (KeyError, OSError, ValueError, RuntimeError) as error:
         print(f"Iku link probe failed: {error}", file=sys.stderr)
         raise SystemExit(2)

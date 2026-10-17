@@ -60,6 +60,24 @@ class IkuLinkProbeTests(unittest.TestCase):
         self.assertFalse(result["map_alias_inventory"]["missing"]["same_unique_address"])
         self.assertIn("does not certify", result["scope"])
 
+    def test_mt_noinline_is_isolated_from_other_visibility_contexts(self):
+        available = {"cross-v106a-mt19937-next", "game-a"}
+        self.assertEqual(PROBE.visibility_selection("cross-v106a-mt19937-next", available, True),
+                         {"cross-v106a-mt19937-next"})
+        for specification in (None, "none", "all", "game-a"):
+            with self.assertRaisesRegex(ValueError, "requires only"):
+                PROBE.visibility_selection(specification, available, True)
+
+    def test_noinline_control_changes_only_two_reviewed_declarations(self):
+        source = (ROOT / "src/engine/Mt19937.cpp").read_text()
+        controlled = PROBE.mt_noinline_source(source)
+        self.assertEqual(controlled.count("__declspec(noinline)"), 2)
+        self.assertEqual(controlled.replace("__declspec(noinline) ", ""), source)
+        for changed in (source.replace("mt19937_next_u32", "unknown_next"),
+                        source + "\nunsigned __cdecl mt19937_next_u32();\n"):
+            with self.assertRaisesRegex(ValueError, "reviewed seed/next"):
+                PROBE.mt_noinline_source(changed)
+
     def test_visibility_rejects_call_crossing_end_of_prefix(self):
         # Only the first byte of this synthetic CALL lies in the101-byte window.
         pe, canonical, map_path, _ = self.visibility_fixture(

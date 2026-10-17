@@ -41,6 +41,7 @@ abc831c6ccd95986bed811694f532ad8c8b92cb49702a7f6ce4de100b8a73dea.
 Frame400hex/84 real payload homes remain natural. Strict whole-root remains
 **nonexact+0x64 /620984**, where target alone hoists EDI=1. No exact credit.
 Current evidence:
+[MT call state/noinline control](IKU_MT_CALL_STATE_2026_10_17.md),
 [compiler visibility/current link](IKU_PROVIDER_VISIBILITY_2026_10_17.md),
 [effect62 continuation](IKU_EFFECT_SHARED_CONTINUATION_2026_10_17.md).
 
@@ -124,6 +125,21 @@ entry/MAP inventory. Five tests guard the new mode. A single read-only Ghidra
 clone re-attests target/entry/.text/root/58 fields/177 calls/ftol ABI; all nine
 primary files unchanged. Moving818 arrays to caller scopes is whole-section
 neutral and unselected. Keep these negative results phase-scoped.
+
+Focused MT follow-up retains all19 direct MT calls. Target/ordinary providers
+have x87 depth0 at each; MT-visible candidates carry one live value across16
+calls and have depth0 at three. A concrete QWORD spill disappears before the
+real call. Generated seed+next noinline control leaves the whole59488-byte raw
+root envelope identical (SHA256 e45690d2b46e5cdaae1d30740183c07e883e07ede75c15931ca2b1b63f6f8859).
+Independent relocated-table inspection closes32/42/35 entries in both MT
+variants; the earlier strict table-recognizer failure did not prove absence.
+Actual target/linked MT instructions preserve a live float80 low-bit sentinel
+and agree on RNG/state in10016 paired draws; different-seed control detects2/2.
+This supports a preservation-information lead, not original flags/pass/ABI or
+whole-Iku equivalence. Public --mt-noinline-control and the focused native
+probe retain these controls; five new tests protect isolation/provenance.
+No game source/header/canonical-profile change or broad accepted replay.
+Keep ordinary MT opacity; noinline alone does not restore the target shape.
 
 The [action/payload audit](IKU_ACTION_PAYLOAD_PARTITIONS_2026_10_17.md) still
 closes182 spawn sites/190 action-site records per image with independent
