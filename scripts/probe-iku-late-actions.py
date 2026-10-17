@@ -27,7 +27,7 @@ spec = importlib.util.spec_from_file_location("iku_late_spell_fixture", ROOT / "
 spell = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(spell)
 base = spell.base
-SOURCE = ROOT / "src/characters/IkuActionStateUpper.cpp"
+SOURCE = ROOT / "src/characters/IkuActionState.cpp"
 ENTRIES = {650: 0x62D02A, 660: 0x62D1DE, 695: 0x62D5C7, 696: 0x62D72D,
            710: 0x62D7E1, 720: 0x62D8B0, 730: 0x62DA63, 740: 0x62E341,
            770: 0x62E4F1, 780: 0x62E588, 781: 0x62E909, 795: 0x62EADA,

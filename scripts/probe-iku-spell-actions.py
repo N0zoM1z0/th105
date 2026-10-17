@@ -22,7 +22,7 @@ from unicorn import x86_const as r
 import linked_pe
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "src/characters/IkuActionStateUpper.cpp"
+SOURCE = ROOT / "src/characters/IkuActionState.cpp"
 ENTRIES = {600: 0x62BDC2, 601: 0x62BF12, 602: 0x62C232, 603: 0x62C619,
            606: 0x62C7A6, 607: 0x62C91B, 609: 0x62CA58, 610: 0x62CC24}
 

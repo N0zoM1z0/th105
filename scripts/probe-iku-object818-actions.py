@@ -28,7 +28,7 @@ from iku_upper_actions import DATA_KEYS, METHODS
 import linked_pe
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "src/characters/IkuActionStateUpper.cpp"
+SOURCE = ROOT / "src/characters/IkuActionState.cpp"
 HEADER = ROOT / "src/characters/AnimationSequenceVirtuals.hpp"
 OWNER, PEER, WAVES, STACK, RETURN = 0x2000000, 0x2002000, 0x2004000, 0x1000000, 0xF000000
 ENTRY_SP = STACK + 0xFF00

@@ -13,15 +13,16 @@ double __cdecl lookup_orientation_cosine_quantized_abs(float phase);
 float __cdecl absolute_scalar_float(float value);
 extern int g_match_identifier;
 
-class IkuActionStateUpperView;
-float __fastcall stage_surface_height_at_x(IkuActionStateUpperView *fighter);
+class IkuActionStateView;
+float __fastcall stage_surface_height_at_x(IkuActionStateView *fighter);
+int __fastcall is_y_at_or_below_stage_surface(IkuActionStateView *fighter);
 struct IkuEventPairView { void *set_global_pair(float first, float second); };
 
-// Unified semantic staging for 35 upper actions inside 620920. The status
-// methods are recovery scaffolding, not original function boundaries. The
-// remaining 75 actions and root prelude/default still need reconstruction;
+// Unified semantic staging for 77 middle/upper actions inside 620920. The
+// status methods are recovery scaffolding, not original function boundaries.
+// The remaining33 opening actions and root prelude/default need recovery;
 // no implemented/match ledger selects this incomplete root view.
-class IkuActionStateUpperView : public AnimationSequenceObjectView {
+class IkuActionStateView : public AnimationSequenceObjectView {
 public:
     unsigned char resolve_stage_surface_landing_transition();
     int has_crossed_stage_surface_while_descending();
@@ -50,6 +51,9 @@ public:
     bool try_dispatch_verified_late_action();
     bool try_dispatch_verified_upper_remainder();
     bool try_dispatch_verified_upper_action();
+    bool try_dispatch_verified_middle_action();
+    bool try_dispatch_verified_action();
+    unsigned char try_dispatch_directional_action_208_210(int option);
 
 private:
     unsigned char &byte_at(unsigned offset) {
@@ -289,9 +293,115 @@ private:
         if (!wave_first) dispatch_character_wave_handle(22);
         adjust_counter_482(200, 120);
     }
+    bool middle_frame(short frame) {
+        return frame_timer_142 == 0 && frame_index_140 == frame;
+    }
+    void middle_decelerate(double amount) {
+        float_at(0xf4) = static_cast<float>(float_at(0xf4) - amount);
+        if (float_at(0xf4) < 0.0f) float_at(0xf4) = 0.0f;
+    }
+    void middle_clear_input(unsigned offset) {
+        if (int_at(offset) == 0) byte_at(0x750) = 0;
+    }
+    void middle_cost(int floor, int scaled) {
+        adjust_counter_482(200, floor);
+        add_phase_scaled_counter_558(scaled);
+    }
+    void spawn_middle(int object, int ahead, double height, float *payload) {
+        spawn_owned_object_via_manager(object,
+            ahead == 0 ? float_at(0xec) : static_cast<float>(facing() * ahead) + float_at(0xec),
+            static_cast<float>(float_at(0xf0) + height), byte_at(0x104), 1, payload, 3);
+    }
+    void middle_ring(int object, int ahead, float speed, bool on_surface) {
+        for (int angle = 0; angle < 360; angle += 60) {
+            unsigned roll = random_roll(30);
+            float payload[3];
+            payload[0] = static_cast<float>(angle + 30.0 + static_cast<float>(roll));
+            payload[1] = speed;
+            payload[2] = 2.0f;
+            int variant = payload[0] >= 0.0f && payload[0] <= 180.0f ? 1 : -1;
+            float y = on_surface ? stage_surface_height_at_x(this) : float_at(0xf0);
+            spawn_owned_object_via_manager(object,
+                ahead == 0 ? float_at(0xec) : static_cast<float>(facing() * ahead) + float_at(0xec), y,
+                byte_at(0x104), variant, payload, 3);
+        }
+    }
+    void middle_fan800(int ahead, double height, double first, int step, int limit) {
+        float payload[3] = {0.0f, 8.0f, 0.0f};
+        for (int ray = 0; ray < limit; ray += step) {
+            payload[0] = static_cast<float>(first - ray);
+            spawn_middle(800, ahead, height, payload);
+        }
+    }
+    void middle_scatter801(bool second_sequence) {
+        float payload[3] = {second_sequence ? 15.0f : 10.0f, 35.0f, 3.0f};
+        spawn_middle(801, 70, 140.0, payload);
+        payload[0] = second_sequence ? 0.0f : -10.0f;
+        spawn_middle(801, 70, 140.0, payload);
+        payload[0] = second_sequence ? -15.0f : 20.0f;
+        spawn_middle(801, 70, 140.0, payload);
+        payload[0] = second_sequence ? 35.0f : -20.0f;
+        spawn_middle(801, 70, 140.0, payload);
+        if (second_sequence) {
+            payload[0] = -35.0f;
+            spawn_middle(801, 70, 140.0, payload);
+        }
+    }
+    void middle_ground_air_fan(short action) {
+        bool airborne = action == 404 || action == 406;
+        bool low = action == 402;
+        if (!airborne || sequence_index_13e == 2)
+            resolve_stage_surface_landing_transition();
+        middle_clear_input(0x6c0);
+        if (airborne) {
+            // These two arms subtract acceleration even in sequence2 and above.
+            float_at(0xf8) -= float_at(0x100);
+            if (sequence_index_13e < 2 && has_crossed_stage_surface_while_descending()) {
+                select_sequence(2);
+                restore_surface_motion();
+                return;
+            }
+        }
+        advance_or_action(low ? 2 : 0);
+        if (sequence_entry(1) || (airborne && sequence_entry(2))) {
+            set_action_and_finalize(airborne ? 9 : low ? 2 : 0);
+            return;
+        }
+        int ahead = airborne ? 52 : low ? 55 : 60;
+        double height = airborne ? 150.0 : low ? 85.0 : 132.0;
+        bool wave_first = action == 400 || action == 406;
+        if (sequence_index_13e == 0 && frame_timer_142 == 0) {
+            if (frame_index_140 == 4 && byte_at(0x750)) {
+                emit_fighter_effect_433cc0(62,
+                    float_at(0xec) - static_cast<float>(facing() * 30),
+                    static_cast<float>(float_at(0xf0) + (airborne ? 135.0 : low ? 70.0 : 112.0)),
+                    byte_at(0x104), 1);
+                next_sequence_block();
+            }
+            if (middle_frame(7)) {
+                if (wave_first) dispatch_character_wave_handle(0);
+                middle_cost(45, 30);
+                int_at(0x180) = 1;
+                if (!wave_first) dispatch_character_wave_handle(0);
+                middle_fan800(ahead, height, low ? 12.0 : 40.0, low ? 12 : 20, low ? 36 : 100);
+            }
+            if (airborne && middle_frame(14)) float_at(0x100) = 0.5f;
+        }
+        if (sequence_index_13e == 1) {
+            if (middle_frame(4)) {
+                if (wave_first && airborne) dispatch_character_wave_handle(0);
+                middle_cost(45, 50);
+                int_at(0x180) = 1;
+                if (!(wave_first && airborne)) dispatch_character_wave_handle(0);
+                middle_fan800(ahead, height, low ? 10.0 : 60.0, low ? 10 : 15, low ? 50 : 135);
+            }
+            if (airborne && middle_frame(11)) float_at(0x100) = 0.5f;
+        }
+    }
+
 };
 
-bool IkuActionStateUpperView::try_dispatch_verified_object818_action()
+bool IkuActionStateView::try_dispatch_verified_object818_action()
 {
     bool airborne;
     bool second_variant;
@@ -362,7 +472,7 @@ bool IkuActionStateUpperView::try_dispatch_verified_object818_action()
     return true;
 }
 
-bool IkuActionStateUpperView::try_dispatch_verified_spell_action()
+bool IkuActionStateView::try_dispatch_verified_spell_action()
 {
     switch (action_id_13c) {
     case 600:
@@ -624,7 +734,7 @@ bool IkuActionStateUpperView::try_dispatch_verified_spell_action()
     return false;
 }
 
-bool IkuActionStateUpperView::try_dispatch_verified_late_action()
+bool IkuActionStateView::try_dispatch_verified_late_action()
 {
     switch (action_id_13c) {
     case 650:
@@ -996,7 +1106,7 @@ bool IkuActionStateUpperView::try_dispatch_verified_late_action()
     return false;
 }
 
-bool IkuActionStateUpperView::try_dispatch_verified_upper_remainder()
+bool IkuActionStateView::try_dispatch_verified_upper_remainder()
 {
     bool airborne, second;
     switch (action_id_13c) {
@@ -1095,12 +1205,400 @@ bool IkuActionStateUpperView::try_dispatch_verified_upper_remainder()
     }
 }
 
-bool IkuActionStateUpperView::try_dispatch_verified_upper_action()
+bool IkuActionStateView::try_dispatch_verified_upper_action()
 {
     if (try_dispatch_verified_object818_action()) return true;
     if (try_dispatch_verified_spell_action()) return true;
     if (try_dispatch_verified_late_action()) return true;
     return try_dispatch_verified_upper_remainder();
+}
+
+bool IkuActionStateView::try_dispatch_verified_middle_action()
+{
+    const short action = action_id_13c;
+    switch (action) {
+    case 300: case 301: case 302: case 303: case 304: case 305:
+    case 320: case 321: case 322: {
+        resolve_stage_surface_landing_transition();
+        int option = action == 302 || action == 304 || action == 305 || action == 322 ? 1 : 0;
+        if (try_dispatch_directional_action_208_210(option)) return true;
+        if (action == 300 || action == 301 || action == 303) {
+            bool braking = action == 303 ? static_cast<signed char>(byte_at(0x47e)) > 0 : byte_at(0x47e) != 0;
+            if (braking) {
+                float_at(0xf4) = static_cast<float>(float_at(0xf4) -
+                    (action == 303 ? static_cast<double>(0.6f) : 0.5));
+                if (float_at(0xf4) < 0.0f) {
+                    float_at(0xf4) = 0.0f;
+                    byte_at(0x47e) = 0;
+                }
+            }
+            if (action == 301 && frame_index_140 > 4) middle_decelerate(1.5);
+        }
+        if (action == 302) {
+            middle_clear_input(0x6bc);
+            if (sequence_index_13e == 0 || sequence_index_13e == 1) {
+                if (float_at(0xf4) > 0.0f)
+                    float_at(0xf4) = static_cast<float>(float_at(0xf4) - (sequence_index_13e == 0 ? 0.5 : 1.0));
+                if (float_at(0xf4) < 0.0f) float_at(0xf4) = 0.0f;
+            }
+        }
+        if (action == 304) { middle_clear_input(0x6bc); middle_decelerate(0.5); }
+        if ((action == 305 || action == 321) && frame_index_140 > 3) middle_decelerate(0.5);
+        if (action == 320 && frame_index_140 > 1) middle_decelerate(2.0);
+        if (action == 322 && frame_index_140 > 5) middle_decelerate(3.0);
+        advance_or_action(action == 303 || action == 304 ? 2 : 0);
+        if (action == 300 && middle_frame(4)) {
+            float payload[3] = {0.0f, 0.0f, 6.0f};
+            spawn_middle(899, 96, 129.0, payload);
+            dispatch_indexed_event_member(27);
+            byte_at(0x47e) = 0;
+        }
+        if (action == 301) {
+            if (middle_frame(3)) float_at(0xf4) = 10.0f;
+            if (middle_frame(4)) { middle_ring(815, 155, 25.0f, false); dispatch_indexed_event_member(28); byte_at(0x47e) = 0; }
+        }
+        if (action == 302) {
+            if (sequence_entry(1)) { set_action_and_finalize(0); return true; }
+            if (sequence_index_13e == 0) {
+                if (middle_frame(5)) {
+                    if (byte_at(0x750)) {
+                        next_sequence_block();
+                        emit_fighter_effect_433cc0(62, float_at(0xec), static_cast<float>(float_at(0xf0) + 150.0), byte_at(0x104), 1);
+                        return true;
+                    }
+                    float_at(0xf4) = 11.0f;
+                }
+                if (middle_frame(6)) { dispatch_indexed_event_member(29); middle_ring(815, 125, 25.0f, false); }
+            }
+            if (sequence_index_13e == 1) {
+                if (middle_frame(1)) float_at(0xf4) = 20.0f;
+                if (middle_frame(2)) { dispatch_indexed_event_member(29); middle_ring(815, 125, 25.0f, false); }
+            }
+        }
+        if (action == 303 && middle_frame(5)) dispatch_indexed_event_member(28);
+        if (action == 304) {
+            if (sequence_entry(1)) { set_action_and_finalize(2); return true; }
+            if (sequence_index_13e == 0) {
+                if (middle_frame(3) && byte_at(0x750) == 1) {
+                    next_sequence_block();
+                    emit_fighter_effect_433cc0(62, static_cast<float>(facing() * 11) + float_at(0xec),
+                        static_cast<float>(float_at(0xf0) + 88.0), byte_at(0x104), 1);
+                    return true;
+                }
+                if (middle_frame(4)) { float_at(0xf4) = 15.0f; dispatch_indexed_event_member(29); }
+                if (middle_frame(5)) float_at(0xf4) = 7.5f;
+            }
+            if (sequence_index_13e == 1) {
+                if (middle_frame(2)) { float_at(0xf4) = 25.0f; dispatch_indexed_event_member(29); }
+                if (middle_frame(3)) { float_at(0xf4) = 10.0f; middle_ring(815, 155, 25.0f, false); }
+            }
+        }
+        if (action == 305 && middle_frame(4)) dispatch_indexed_event_member(29);
+        if ((action == 320 || action == 321) && middle_frame(5)) { dispatch_indexed_event_member(28); byte_at(0x47e) = 0; }
+        if (action == 321 && middle_frame(10)) { dispatch_indexed_event_member(29); int_at(0x180) = 0; byte_at(0x184) = 1; }
+        if (action == 322) {
+            if (middle_frame(5)) { dispatch_indexed_event_member(29); float_at(0xf4) = 15.0f; byte_at(0x47e) = 0; }
+            if (middle_frame(6)) { float payload[3] = {0.0f, 0.0f, 5.0f}; spawn_middle(899, 166, 137.0, payload); }
+            if (middle_frame(7)) float_at(0xf4) = 0.0f;
+        }
+        return true;
+    }
+    case 306: case 307: case 308: case 309: case 409: {
+        if (action == 307 || action == 308) middle_clear_input(0x6bc);
+        float_at(0xf8) -= float_at(0x100);
+        if (has_crossed_stage_surface_while_descending()) {
+            set_action_and_finalize(10);
+            if (action == 306) {
+                float_at(0xf0) = stage_surface_height_at_x(this);
+                float_at(0x100) = 0.0f;
+                float_at(0xf8) = 0.0f;
+            } else if (action == 409) {
+                zero_velocity_acceleration();
+                float_at(0xf0) = stage_surface_height_at_x(this);
+            } else restore_surface_motion();
+            return true;
+        }
+        if (action == 309 && sequence_index_13e == 1) {
+            float_at(0xf4) = static_cast<float>(float_at(0x73c) * static_cast<double>(0.3f));
+            float_at(0xf8) = float_at(0x73c);
+            float_at(0x73c) = static_cast<float>(float_at(0x73c) - 1.0);
+            if (float_at(0x73c) <= 4.0f) float_at(0x73c) = 4.0f;
+            if (static_cast<signed char>(byte_at(0x184)) > 0 && int_at(0x180) != 0) {
+                if (++short_at(0x730) > 3) { int_at(0x180) = 0; short_at(0x730) = 0; }
+            }
+            if (time_counter_144 > 14) { next_sequence_block(); float_at(0x100) = 0.6f; return true; }
+        }
+        advance_or_action(9);
+        if (action == 306 && sequence_index_13e == 0 && middle_frame(4)) dispatch_indexed_event_member(28);
+        if (action == 307 || action == 308) {
+            if (sequence_entry(1)) { set_action_and_finalize(9); return true; }
+            if (sequence_index_13e == 0) {
+                if (action == 307 && middle_frame(2)) { float_at(0xf4) = 3.0f; float_at(0xf8) = 5.0f; float_at(0x100) = 0.3f; }
+                if (middle_frame(4)) dispatch_indexed_event_member(29);
+                if (middle_frame(7)) float_at(0x100) = 0.6f;
+            }
+        }
+        if (action == 309 && sequence_entry(1)) {
+            float_at(0x73c) = 15.0f; float_at(0x100) = 0.0f; dispatch_indexed_event_member(29);
+        }
+        return true;
+    }
+    case 310:
+        if (int_at(0x180) != 0 && ++short_at(0x730) > 5) { int_at(0x180) = 0; short_at(0x730) = 0; }
+        if (sequence_index_13e == 1) {
+            if (time_counter_144 == 0) float_at(0xf4) = 15.0f;
+            if (time_counter_144 % 8 == 0) dispatch_indexed_event_member(27);
+            // The second increment in sequence1 is distinct and intentional.
+            if (int_at(0x180) != 0 && ++short_at(0x730) > 5) { int_at(0x180) = 0; short_at(0x730) = 0; }
+            if (time_counter_144 > 30) { next_sequence_block(); float_at(0xf8) = 6.0f; float_at(0xf4) = static_cast<float>(float_at(0xf4) * 0.5); }
+        }
+        if (sequence_index_13e == 2) {
+            float_at(0xf8) -= float_at(0x100);
+            double projected_y = static_cast<double>(float_at(0xf8)) + float_at(0xf0);
+            float surface = stage_surface_height_at_x(this);
+            if (projected_y <= surface && float_at(0xf8) < 0.0f) {
+                float_at(0xf8) = 0.0f; float_at(0xf0) = stage_surface_height_at_x(this); set_action_and_finalize(9); return true;
+            }
+        }
+        advance_or_action(9);
+        return true;
+
+    case 400: case 401: case 402: case 404: case 406:
+        middle_ground_air_fan(action);
+        return true;
+    case 408:
+        resolve_stage_surface_landing_transition();
+        if (frame_index_140 > 6) float_at(0xf4) = static_cast<float>(float_at(0xf4) - 0.75);
+        if (float_at(0xf4) < 0.0f) float_at(0xf4) = 0.0f;
+        advance_or_action(0);
+        if (middle_frame(6)) {
+            float payload[3] = {0.0f, 0.0f, 4.0f}; spawn_middle(899, 166, 137.0, payload);
+            dispatch_indexed_event_member(29); byte_at(0x47e) = 0;
+        }
+        return true;
+
+    case 410: case 411: case 414: case 415: case 416: case 417: {
+        bool airborne = action >= 414;
+        if (!airborne || sequence_index_13e == 2) resolve_stage_surface_landing_transition();
+        middle_clear_input(0x6c4);
+        if (airborne && sequence_index_13e < 2) {
+            float_at(0xf8) -= float_at(0x100);
+            if (has_crossed_stage_surface_while_descending()) {
+                select_sequence(2); restore_surface_motion(); return true;
+            }
+        }
+        advance_or_action(0);
+        if (sequence_entry(1) || (airborne && sequence_entry(2))) {
+            set_action_and_finalize(airborne ? 9 : 0); return true;
+        }
+        if (sequence_index_13e == 0) {
+            if (frame_timer_142 == 0) {
+                if (frame_index_140 == (action >= 416 ? 3 : 5) && byte_at(0x750)) {
+                    float x = action >= 416 ? float_at(0xec) - static_cast<float>(facing() * 47) : float_at(0xec);
+                    emit_fighter_effect_433cc0(62, x,
+                        static_cast<float>(float_at(0xf0) + (action >= 416 ? 132.0 : airborne ? 155.0 : 160.0)), byte_at(0x104), 1);
+                    next_sequence_block();
+                    if (action >= 416) return true;
+                }
+                if (middle_frame(action >= 416 ? 4 : 6)) {
+                    bool publish_first = action == 410 || action == 411 || action == 415;
+                    if (publish_first) int_at(0x180) = 1;
+                    middle_cost(60, 50);
+                    if (!publish_first) int_at(0x180) = 1;
+                    dispatch_character_wave_handle(1);
+                    if (action == 411 || action == 415) middle_scatter801(false);
+                    else {
+                        float payload[3] = {action == 416 ? 30.0f : action == 417 ? 50.0f : 0.0f, 15.0f, action >= 416 ? 5.0f : 0.0f};
+                        spawn_middle(801, action == 416 ? 62 : action == 417 ? 46 : 130,
+                            action == 416 ? 114.0 : action == 417 ? 106.0 : airborne ? 145.0 : 140.0, payload);
+                    }
+                }
+            }
+            if (airborne && middle_frame(action >= 416 ? 7 : 9)) float_at(0x100) = 0.5f;
+        }
+        if (sequence_index_13e == 1) {
+            if (middle_frame(2)) {
+                middle_cost(60, 50); int_at(0x180) = 1; dispatch_character_wave_handle(1);
+                if (action == 411 || action == 415) middle_scatter801(true);
+                else {
+                    float payload[3] = {action == 416 ? 30.0f : action == 417 ? 50.0f : 0.0f, action >= 416 ? 15.0f : 22.5f, action >= 416 ? 5.0f : 0.0f};
+                    spawn_middle(801, action == 416 ? 62 : action == 417 ? 46 : 130,
+                        action == 416 ? 114.0 : action == 417 ? 106.0 : airborne ? 145.0 : 140.0, payload);
+                    if (action >= 416) { payload[0] = action == 416 ? 50.0f : 70.0f; spawn_middle(801, action == 416 ? 62 : 46, action == 416 ? 114.0 : 106.0, payload); }
+                }
+            }
+            if (airborne && middle_frame(action >= 416 ? 6 : 5)) float_at(0x100) = 0.5f;
+        }
+        return true;
+    }
+    case 412:
+        if ((sequence_index_13e == 0 && frame_index_140 > 1) || sequence_index_13e == 1) {
+            float_at(0xf8) -= float_at(0x100);
+            float_at(0xf4) = static_cast<float>(float_at(0xf4) - static_cast<double>(0.1f));
+            if (float_at(0xf4) < 1.0f) float_at(0xf4) = 1.0f;
+            if (has_crossed_stage_surface_while_descending()) {
+                zero_velocity_acceleration(); float_at(0xf0) = stage_surface_height_at_x(this); select_sequence(2); return true;
+            }
+        } else resolve_stage_surface_landing_transition();
+        advance_or_action(0);
+        if (sequence_index_13e == 0) {
+            if (middle_frame(2)) { float_at(0xf4) = 6.0f; float_at(0xf8) = 6.0f; float_at(0x100) = 0.2f; }
+            if (middle_frame(9)) {
+                middle_cost(60, 50); int_at(0x180) = 1; dispatch_character_wave_handle(16);
+                float payload[3] = {-20.0f, 13.0f, 0.0f}; spawn_middle(802, 75, 168.0, payload);
+                middle_ring(802, 0, 15.0f, true);
+            }
+        }
+        return true;
+    case 418:
+        if (sequence_index_13e == 2) resolve_stage_surface_landing_transition();
+        if (is_y_at_or_below_stage_surface(this)) float_at(0xf4) = static_cast<float>(float_at(0xf4) - 0.5);
+        if (float_at(0xf4) < 0.0f) float_at(0xf4) = 0.0f;
+        if (sequence_index_13e < 2) float_at(0xf8) -= float_at(0x100);
+        if (has_crossed_stage_surface_while_descending()) {
+            zero_velocity_acceleration(); float_at(0xf0) = stage_surface_height_at_x(this); select_sequence(2); return true;
+        }
+        advance_or_action(0);
+        if (sequence_index_13e == 0) {
+            if (middle_frame(2)) { float_at(0xf4) = 7.5f; float_at(0xf8) = 5.0f; float_at(0x100) = 0.3f; }
+            if (middle_frame(9)) dispatch_indexed_event_member(29);
+        }
+        return true;
+
+    case 500: case 501:
+        resolve_stage_surface_landing_transition(); byte_at(0x17c) = 0;
+        if (sequence_index_13e == 0 && frame_index_140 > 6) {
+            float_at(0xf4) = static_cast<float>(float_at(0xf4) - 0.75);
+            float lower = frame_index_140 < 12 ? 1.0f : 0.0f;
+            if (float_at(0xf4) < lower) float_at(0xf4) = lower;
+            if (int_at(0x180) != 0) {
+                ++short_at(0x730);
+                if (static_cast<signed char>(byte_at(0x184)) > 0 && short_at(0x730) > 4) { short_at(0x730) = 0; int_at(0x180) = 0; }
+            }
+        }
+        advance_or_action(0);
+        if (sequence_index_13e == 0) {
+            if (middle_frame(8)) spawn_owned_object_via_manager(810,
+                static_cast<float>(facing() * 130) + float_at(0xec), static_cast<float>(float_at(0xf0) + 125.0), byte_at(0x104), 1, 0, 0);
+            if (middle_frame(7)) { add_phase_scaled_counter_558(50); adjust_counter_482(200, 120); float_at(0xf4) = action == 500 ? 10.0f : 15.0f; dispatch_character_wave_handle(10); }
+        }
+        return true;
+    case 505: case 506: {
+        resolve_stage_surface_landing_transition(); byte_at(0x17c) = 4;
+        middle_clear_input(action == 505 ? 0x6c0 : 0x6c4);
+        advance_or_action(0);
+        if (sequence_entry(1)) set_action_and_finalize(0);
+        if (sequence_index_13e == 0 && frame_timer_142 == 0) {
+            if (frame_index_140 == 7 && byte_at(0x750) == 1) {
+                next_sequence_block();
+                emit_fighter_effect_433cc0(62, float_at(0xec) - static_cast<float>(facing() * 41),
+                    static_cast<float>(float_at(0xf0) + 192.0), byte_at(0x104), 1); return true;
+            }
+            if (frame_index_140 == 10) {
+                float payload[3] = {0.0f, 0.0f, action == 505 ? 0.0f : 3.0f};
+                spawn_middle(815, 150, action == 505 ? 120.0 : 195.0, payload);
+                add_phase_scaled_counter_558(50); adjust_counter_482(200, 120);
+                middle_ring(815, 55, 20.0f, false); dispatch_character_wave_handle(19);
+            }
+        }
+        if (sequence_index_13e == 1 && middle_frame(4)) {
+            float payload[3] = {0.0f, 0.0f, action == 505 ? 1.0f : 4.0f};
+            spawn_middle(815, 150, action == 505 ? 120.0 : 195.0, payload);
+            add_phase_scaled_counter_558(50); adjust_counter_482(200, 120);
+            middle_ring(815, 55, 20.0f, false); dispatch_character_wave_handle(19);
+        }
+        return true;
+    }
+    case 520: case 521:
+        resolve_stage_surface_landing_transition(); byte_at(0x17c) = 1;
+        if (sequence_index_13e == 0) {
+            if (middle_frame(3)) adjust_counter_482(200, 120);
+            if (middle_frame(10)) {
+                middle_ring(815, 55, 25.0f, false); add_phase_scaled_counter_558(50);
+                float payload[3] = {0.0f, 0.0f, 1.0f};
+                spawn_owned_object_via_manager(811, float_at(0xec), float_at(0xf0), byte_at(0x104), -1, payload, 3);
+                dispatch_character_wave_handle(11);
+            }
+        }
+        advance_or_action(0);
+        return true;
+    case 525: case 526:
+        resolve_stage_surface_landing_transition(); byte_at(0x17c) = 5; advance_or_action(0);
+        if (sequence_index_13e == 0 && middle_frame(9)) {
+            float payload[3] = {0.0f, 10.0f, action == 525 ? 0.0f : 6.0f}; spawn_middle(816, 90, 105.0, payload);
+            add_phase_scaled_counter_558(50); adjust_counter_482(200, 120); dispatch_character_wave_handle(16); int_at(0x180) = 1;
+        }
+        return true;
+    case 540: case 541:
+        resolve_stage_surface_landing_transition(); byte_at(0x17c) = 2;
+        middle_clear_input(action == 540 ? 0x6c0 : 0x6c4); advance_or_action(0);
+        if (sequence_entry(1)) { set_action_and_finalize(0); return true; }
+        if (sequence_index_13e == 0) {
+            if (frame_index_140 > 5 && frame_index_140 < 14 && static_cast<signed char>(byte_at(0x606)) > 3) short_at(0x4a8) = 2;
+            if (middle_frame(8)) {
+                add_phase_scaled_counter_558(50); adjust_counter_482(200, 120);
+                float payload[3] = {0.0f, 0.0f, 1.0f};
+                spawn_owned_object_via_manager(812, float_at(0xec), static_cast<float>((float_at(0xf0) + 320.0) + 1000.0),
+                    byte_at(0x104), 1, payload, 3);
+            }
+            if (middle_frame(12)) {
+                int_at(0x180) = 1; float payload[3] = {0.0f, 0.0f, 2.0f}; spawn_middle(812, 0, 320.0, payload);
+                payload[2] = 3.0f;
+                spawn_owned_object_via_manager(812, float_at(0xec), static_cast<float>(float_at(0xf0) + 320.0), reverse_facing(), 1, payload, 3);
+                dispatch_character_wave_handle(13); float_at(0x73c) = static_cast<float>(random_roll(360));
+                for (int angle = 0; angle < 360; angle += 45) {
+                    payload[0] = static_cast<float>(angle + 22.5 + float_at(0x73c)); payload[1] = 30.0f; payload[2] = 4.0f;
+                    int variant = payload[0] >= 0.0f && payload[0] <= 180.0f ? 1 : -1;
+                    spawn_owned_object_via_manager(812, float_at(0xec), float_at(0xf0), byte_at(0x104), variant, payload, 3);
+                }
+            }
+        }
+        if (sequence_index_13e == 1 && frame_index_140 == 0 && !byte_at(0x750)) {
+            select_sequence(0); frame_index_140 = 7;
+        }
+        return true;
+    case 545: case 546:
+        resolve_stage_surface_landing_transition(); byte_at(0x17c) = 6; advance_or_action(0);
+        if (sequence_entry(1)) { set_action_and_finalize(0); return true; }
+        if (sequence_index_13e == 0 && middle_frame(12)) {
+            add_phase_scaled_counter_558(50); adjust_counter_482(200, 120); int_at(0x180) = 1;
+            float payload[3] = {0.0f, action == 545 ? 0.0f : 1.0f, 0.0f}; spawn_middle(817, 0, 320.0, payload);
+            payload[2] = 5.0f; spawn_middle(817, 0, 320.0, payload); dispatch_character_wave_handle(17);
+        }
+        return true;
+    case 547:
+        if (sequence_index_13e == 2) resolve_stage_surface_landing_transition();
+        byte_at(0x17c) = 2;
+        if (sequence_index_13e < 2) {
+            float_at(0xf8) -= float_at(0x100);
+            double projected_y = static_cast<double>(float_at(0xf8)) + float_at(0xf0);
+            float surface = stage_surface_height_at_x(this);
+            if (projected_y <= surface && float_at(0xf8) < 0.0f) {
+                zero_velocity_acceleration(); select_sequence(2); float_at(0xf0) = stage_surface_height_at_x(this); return true;
+            }
+        }
+        if (sequence_index_13e < 2) middle_clear_input(0x6c0);
+        advance_or_action(9);
+        if (sequence_entry(1)) { set_action_and_finalize(9); return true; }
+        if (sequence_index_13e == 0 && frame_timer_142 == 0) {
+            if (frame_index_140 == 8 && byte_at(0x750) == 1) { next_sequence_block(); return true; }
+            if (frame_index_140 == 6) {
+                int_at(0x180) = 1; dispatch_character_wave_handle(7); float_at(0xf4) = -4.0f; float_at(0xf8) = 8.0f; float_at(0x100) = 0.5f;
+                spawn_owned_object_via_manager(816, static_cast<float>(facing() * 30) + float_at(0xec),
+                    static_cast<float>(float_at(0xf0) + 62.0), byte_at(0x104), 1, 0, 0);
+                adjust_counter_482(200, 120); add_phase_scaled_counter_558(50);
+            }
+        }
+        return true;
+    default:
+        return false;
+    }
+}
+
+bool IkuActionStateView::try_dispatch_verified_action()
+{
+    if (try_dispatch_verified_middle_action()) return true;
+    return try_dispatch_verified_upper_action();
 }
 
 } // namespace th105

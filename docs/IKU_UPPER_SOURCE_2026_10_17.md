@@ -1,5 +1,9 @@
 # Iku's unified upper-action source
 
+> Current source: `src/characters/IkuActionState.cpp` with receiver
+> `IkuActionStateView`. This checkpoint measured the preceding35-action file;
+> its bodies are retained in the [middle/upper checkpoint](IKU_MIDDLE_SOURCE_2026_10_17.md).
+
 `src/characters/IkuActionStateUpper.cpp` now contains35 complete staged action
 bodies inside `Iku_dispatch_action_state_vslot28 @ 620920`: the entire34-ID
 high compressed switch plus its direct action560. It replaces the three

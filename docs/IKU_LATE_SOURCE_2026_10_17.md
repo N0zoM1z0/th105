@@ -1,6 +1,6 @@
 # Iku's fourteen remaining high-switch arms after610
 
-> Current source: `src/characters/IkuActionStateUpper.cpp`. The original family
+> Current source: `src/characters/IkuActionState.cpp`. The original family
 > file was consolidated after the measurements recorded below. Those receipts
 > describe the earlier source; fresh combined-dispatch and preserved-family
 > results are in [the unified upper-action checkpoint](IKU_UPPER_SOURCE_2026_10_17.md).
