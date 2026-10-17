@@ -350,7 +350,18 @@ Old final/510 smokes and all48 510 packets still pass. No accepted-unit or
 aggregate replay; all9 primary DB hashes unchanged. Baseline/control objects,
 superseded generated source and caches are cleaned. See
 [aimed-mode evidence](REIMU_AIMED_MODE_SHAPE_2026_10_18.md).
-Next prioritize720/730 mode/request lowering, then740's undefined
+720 now has four independent mode loops, each with one360 draw, an unsigned
+float32 base conversion and per-iteration reset of all four901 parameters.
+Both current objects pass0/2098 native cases; all4 target/source static loop
+contracts pass. Wrong-spacing/count controls pass first-request0/216 but each
+fail the changed static mode. Previous710/711 and510 static constraints pass.
+The expanded probe now has80764 pre-table bytes,82088 text bytes,1164 E8s,
+149 RETs and8 switches. The720 span is1448 versus target1451; frame598h versus
+570h is still the first diagnostic mismatch. Primary groups remain126; no
+implementation/exact credit or aggregate replay. All9 primary DB files remain
+unchanged; obsolete objects/control copies and caches are cleaned. See
+[720 mode-source evidence](REIMU_720_MODE_SHAPE_2026_10_18.md).
+Next prioritize730 mode/request lowering, then740's undefined
 paths, full void/default ABI, returning world contexts and VC8/LTCG/TU evidence
 before canonical root acceptance.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.

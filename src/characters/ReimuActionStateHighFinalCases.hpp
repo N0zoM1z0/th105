@@ -47,16 +47,56 @@
             if (frame_counter_144 == 0 && frame_timer_142 == 0 && frame_index_140 == 0 && sequence_13e == 3) {
                 dispatch_character_wave_handle(13);
                 const unsigned int mode = static_cast<unsigned int>(g_match_identifier);
-                if (mode <= 3) {
+                float parameters[4];
+                switch (mode) {
+                case 3: {
                     const float base = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
-                    const double spacing = mode == 0 ? 120.0 : mode == 1 ? 90.0 : mode == 2 ? 60.0 : 45.0;
-                    const float count = mode == 0 ? 3.0f : mode == 1 ? 4.0f : mode == 2 ? 6.0f : 8.0f;
-                    const float variant = mode == 0 ? 1.0f : mode == 3 ? 3.0f : 2.0f;
-                    for (float i = 0.0f; i < count; i += 1.0f) {
-                        const float parameters[4] = {static_cast<float>(i * spacing + base), 10.0f, 0.0f, variant};
+                    for (float i = 0.0f; i < 8.0f; i += 1.0f) {
+                        parameters[0] = static_cast<float>(i * 45.0 + base);
+                        parameters[1] = 10.0f;
+                        parameters[2] = 0.0f;
+                        parameters[3] = 3.0f;
                         spawn_owned_object_via_manager(901, x_ec, static_cast<float>(y_f0 + 100.0),
                             static_cast<unsigned char>(facing_104), 1, parameters, 4);
                     }
+                    break;
+                }
+                case 2: {
+                    const float base = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
+                    for (float i = 0.0f; i < 6.0f; i += 1.0f) {
+                        parameters[0] = static_cast<float>(i * 60.0 + base);
+                        parameters[1] = 10.0f;
+                        parameters[2] = 0.0f;
+                        parameters[3] = 2.0f;
+                        spawn_owned_object_via_manager(901, x_ec, static_cast<float>(y_f0 + 100.0),
+                            static_cast<unsigned char>(facing_104), 1, parameters, 4);
+                    }
+                    break;
+                }
+                case 1: {
+                    const float base = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
+                    for (float i = 0.0f; i < 4.0f; i += 1.0f) {
+                        parameters[0] = static_cast<float>(i * 90.0 + base);
+                        parameters[1] = 10.0f;
+                        parameters[2] = 0.0f;
+                        parameters[3] = 2.0f;
+                        spawn_owned_object_via_manager(901, x_ec, static_cast<float>(y_f0 + 100.0),
+                            static_cast<unsigned char>(facing_104), 1, parameters, 4);
+                    }
+                    break;
+                }
+                case 0: {
+                    const float base = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
+                    for (float i = 0.0f; i < 3.0f; i += 1.0f) {
+                        parameters[0] = static_cast<float>(i * 120.0 + base);
+                        parameters[1] = 10.0f;
+                        parameters[2] = 0.0f;
+                        parameters[3] = 1.0f;
+                        spawn_owned_object_via_manager(901, x_ec, static_cast<float>(y_f0 + 100.0),
+                            static_cast<unsigned char>(facing_104), 1, parameters, 4);
+                    }
+                    break;
+                }
                 }
             }
         }

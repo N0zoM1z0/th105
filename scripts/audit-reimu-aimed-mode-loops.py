@@ -88,8 +88,9 @@ def rounded(value, width):
 
 
 class Flow:
-    def __init__(self, view):
+    def __init__(self, view, parameter_count=3):
         self.view, self.sp = view, 0
+        self.parameter_count = parameter_count
         self.regs = {x.X86_REG_ESI: ("p", "self", 0)}
         self.mem, self.fp, self.reads = {}, [], Counter()
         self.calls, self.requests, self.comparison = [], [], None
@@ -163,9 +164,9 @@ class Flow:
             pointer = args[5]
             if not isinstance(pointer, tuple) or pointer[:2] != ("p", "stack"):
                 raise ValueError("request pointer is not locally established")
-            payload = [self.mem.get(pointer[2]+4*i, (4, None))[1] for i in range(3)]
+            payload = [self.mem.get(pointer[2]+4*i, (4, None))[1] for i in range(self.parameter_count)]
             self.requests.append({"object": args[0], "count": args[6], "arg5": args[4], "buffer": pointer[2], "payload": payload})
-            for index in range(3):
+            for index in range(self.parameter_count):
                 self.put(pointer[2]+4*index, 4, None)
             self.sp += 28  # Observed RET1C ABI; no concrete return value.
         elif name in ("atan2", "sine", "cosine"):
