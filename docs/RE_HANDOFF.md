@@ -79,6 +79,23 @@ hashes unchanged and clone removed. See
 [recovery-action evidence](REIMU_RECOVERY_ACTIONS_2026_10_17.md). Next recover
 remaining Reimu families toward a complete root, and supply real effect/object
 contexts before claiming their returning continuations.
+
+Actions88/89/145 and197..204 are staged in `ReimuActionStateMovementAttack.cpp`:
+4248 physical bytes/1111 instructions, plus shared exits. Fresh native0/4445
+includes3881 RET cases and564 actual wrapper-entry request comparisons. Real
+MT seeding/draws and2496 state bytes/index are checked; input/facing/completion/
+frame-transition/random cohorts require their actual target branches. Corrected
+fixtures keep200 on the surface and use single-sequence data for completion;
+initial disconnected/non-advancing contexts are discarded. Two compiled
+negatives each fail1/99. Shared prefix adds offset-proved peer/float/WORD/input
+fields; entry/low/recovery rebuild/replay passes0/10584,0/10700,0/4595. No accepted
+unit or exact credit changes. Ghidra attests all11 starts/two shared tails;
+primary hashes unchanged and clone deleted. See
+[movement/attack evidence](REIMU_MOVEMENT_ATTACK_ACTIONS_2026_10_17.md).
+Next recover remaining low208..226, then mid/high, and the real returning
+object/effect contexts. Use the new oracle's `--cohort` for focused rechecks.
+Obsolete unpinned disassembly exports (~18MB) and rejected/superseded object
+files were removed; current bounded evidence and primary databases remain.
 Obsolete common-root GL controls/provider objects and rejected Reimu control
 objects were removed at this phase switch. Current Reimu evidence/object
 remain; regenerate common link products before using its inspect mode.

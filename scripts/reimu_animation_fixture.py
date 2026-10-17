@@ -8,15 +8,18 @@ RESOURCE = 0x3000000
 TREE, HEAD, VECTOR, SLOT = RESOURCE, RESOURCE+0x100, RESOURCE+0x300, RESOURCE+0x400
 
 
-def resource_graph(case, keys=tuple(range(11)), *, linked_terminal=False):
+def resource_graph(case, keys=tuple(range(11)), *, linked_terminal=False, frame_capacity=2):
+    if frame_capacity not in (2, 6) or not 0 <= case["frame"] < frame_capacity:
+        raise ValueError("fixture frame index/capacity is out of range")
+    frame_stride = 0x400 if frame_capacity > 2 else 0x200
     keys = tuple(sorted(keys))
     if not keys or len(keys) != len(set(keys)) or len(keys) > 24:
         raise ValueError("fixture needs 1..24 distinct action keys")
     deepest = len(keys).bit_length()-1
-    image = bytearray(0x10000)
+    image = bytearray(0x20000 if frame_capacity > 2 else 0x10000)
     nodes = {key: RESOURCE + 0x500 + index * 0x20 for index, key in enumerate(keys)}
     blocks = {key: RESOURCE + 0x1000 + index * 0x80 for index, key in enumerate(keys)}
-    frames = {key: RESOURCE + 0x2000 + index * 0x800 for index, key in enumerate(keys)}
+    frames = {key: RESOURCE + 0x2000 + index * 4 * frame_stride for index, key in enumerate(keys)}
     def put(address, fmt, *values):
         struct.pack_into(fmt, image, address - RESOURCE, *values)
     def tree(keys, parent, depth=0):
@@ -37,7 +40,7 @@ def resource_graph(case, keys=tuple(range(11)), *, linked_terminal=False):
     frame_count = max(case["frame"]+1, 2 if case["transition"] == "frame" else 1)
     for key in keys:
         for index in range(4):
-            block, frame = blocks[key]+index*0x20, frames[key]+index*0x200
+            block, frame = blocks[key]+index*0x20, frames[key]+index*frame_stride
             put(block+4, "<II", frame, frame+frame_count*0x88)
             put(block+0x14, "<B", 0 if index == 0 else 1)
             put(block+0x18, "<II", block-0x20 if index else 0,

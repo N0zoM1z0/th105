@@ -9,11 +9,14 @@ from reimu_animation_fixture import RESOURCE, TREE, HEAD, VECTOR, SLOT, resource
 
 
 class ReimuAnimationFixtureTests(unittest.TestCase):
+    frame_capacity = 2
+    initial_frame = 0
     linked_terminal = False
     keys = tuple(range(11))
 
     def graph(self, transition="frame"):
-        return resource_graph({"transition": transition, "frame": 0, "duration": 3}, self.keys, linked_terminal=self.linked_terminal)
+        return resource_graph({"transition": transition, "frame": self.initial_frame, "duration": 3}, self.keys,
+                              linked_terminal=self.linked_terminal, frame_capacity=self.frame_capacity)
 
     def read(self, image, address, fmt="<I"):
         return struct.unpack_from(fmt, image, address-RESOURCE)
@@ -44,7 +47,7 @@ class ReimuAnimationFixtureTests(unittest.TestCase):
 
     def test_two_frame_arrays_do_not_overlap_nodes_vectors_or_each_other(self):
         image, blocks, _, frame_count = self.graph()
-        self.assertEqual(frame_count, 2)
+        self.assertEqual(frame_count, max(self.initial_frame+1, 2))
         root = self.read(image, HEAD+4)[0]
         spans = [(TREE, TREE+12), (HEAD, HEAD+24), (VECTOR, VECTOR+16), (SLOT, SLOT+4)]
         def nodes(node):
@@ -78,6 +81,12 @@ class ReimuAnimationFixtureTests(unittest.TestCase):
 class ReimuRecoveryAnimationFixtureTests(ReimuAnimationFixtureTests):
     linked_terminal = True
     keys = tuple(range(11)) + tuple(range(71, 79)) + (97,)
+
+
+class ReimuMovementAttackAnimationFixtureTests(ReimuRecoveryAnimationFixtureTests):
+    keys = (0, 1, 2, 9, 10, 88, 89, 97, 145, *range(197, 205), 211, 212, 700)
+    frame_capacity = 6
+    initial_frame = 4
 
 
 if __name__ == "__main__":

@@ -102,6 +102,20 @@ def cases(smoke=False):
 
 class Probe(low.Probe):
     helpers = HELPERS
+    resource_keys = KEYS
+    frame_capacity = 2
+
+    def fixture_has_linked_terminal(self, case):
+        return True
+
+    def prepare_extra_case(self, case):
+        pass
+
+    def extra_actor_fields(self, case):
+        return ()
+
+    def extra_result(self):
+        return {}
     argument_helpers = low.ARGUMENT_HELPERS | {0x4359D0, 0x427280}
 
     def helper_receiver(self, address):
@@ -130,11 +144,12 @@ class Probe(low.Probe):
         uc.mem_write(OWNER, bytes(0x10000))
         uc.mem_write(STACK+0xC000, bytes(0x4000))
         uc.mem_write(WORLD, bytes.fromhex("0000803f"))
-        graph, blocks, frames, frame_count = resource_graph(case, KEYS, linked_terminal=True)
+        graph, blocks, frames, frame_count = resource_graph(case, self.resource_keys, linked_terminal=self.fixture_has_linked_terminal(case), frame_capacity=self.frame_capacity)
         uc.mem_write(RESOURCE, graph)
+        self.prepare_extra_case(case)
         action, sequence = case["action"], case["sequence"]
         index = sequence if 0 <= sequence < 4 else 0
-        block, frame = blocks[action]+index*0x20, frames[action]+index*0x200
+        block, frame = blocks[action]+index*0x20, frames[action]+index*(0x400 if self.frame_capacity > 2 else 0x200)
         timer = case["timer"] if case["timer"] is not None else 0 if case["transition"] == "unexpired" else case["duration"]-1
         fields = ((0, "I", VTABLE), (0xEC, "f", case["x"]), (0xF0, "f", case["y"]),
                   (0xF4, "I", case["vx"]), (0xF8, "I", case["vy"]), (0xFC, "f", 0.2),
@@ -149,7 +164,7 @@ class Probe(low.Probe):
                   (0x6AC, "I", 0x42C60000), (0x6B8, "i", case["field"]),
                   (0x730, "h", case["counter730"]), (0x732, "h", -77),
                   (0x7A2, "h", 85), (0x7A4, "h", case["spawn"]))
-        for offset, fmt, value in fields:
+        for offset, fmt, value in (*fields, *self.extra_actor_fields(case)):
             uc.mem_write(OWNER+offset, struct.pack("<"+fmt, value))
         saved = {r.UC_X86_REG_EBX: 0x11111111, r.UC_X86_REG_ESI: 0x22222222,
                  r.UC_X86_REG_EDI: 0x33333333, r.UC_X86_REG_EBP: 0x44444444}
@@ -178,7 +193,7 @@ class Probe(low.Probe):
             raise ValueError("recovery action leaves live x87 values")
         return {"actor": bytes(uc.mem_read(OWNER, 0x1000)), "calls": self.calls,
                 "control_word": uc.reg_read(r.UC_X86_REG_FPCW),
-                "world": bytes(uc.mem_read(WORLD, 4)), "spawn_request": self.spawn_request}
+                "world": bytes(uc.mem_read(WORLD, 4)), "spawn_request": self.spawn_request, **self.extra_result()}
 
 
 def audit(object_path, smoke=False):

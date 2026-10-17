@@ -126,6 +126,7 @@ def cases(smoke=False):
 
 class Probe:
     helpers = HELPERS
+    resource_size = 0x10000
     argument_helpers = ARGUMENT_HELPERS
 
     def helper_receiver(self, address):
@@ -141,7 +142,7 @@ class Probe:
         self.engine.mem_write(ADDRESS, code)
         for address in (OWNER, STACK):
             self.engine.mem_map(address, 0x10000)
-        self.engine.mem_map(RESOURCE, 0x10000, unicorn.UC_PROT_READ)
+        self.engine.mem_map(RESOURCE, self.resource_size, unicorn.UC_PROT_READ)
         self.initial = self.engine.context_save()
         self.reg = r
         self.decoder = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)

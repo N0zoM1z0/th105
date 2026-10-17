@@ -10,7 +10,9 @@ namespace th105 {
 // the still-unreconstructed action switch must run. No root implementation or
 // exact credit is claimed. Numeric field labels preserve unresolved meanings.
 struct ReimuPreludePeerView {
-    unsigned char reserved_000[0x174];
+    unsigned char reserved_000[0xec];
+    float x_ec;
+    unsigned char reserved_0f0[0x84];
     short word_174;
     unsigned char reserved_176[0x316];
     short word_48c;
@@ -32,6 +34,11 @@ public:
     bool try_run_checked_low_action();
     // True handles actions71..78; this is another staging phase.
     bool try_run_checked_recovery_action();
+    // Actions88/89/145 and197..204, without an original boundary claim.
+    bool try_run_checked_movement_attack_action();
+    unsigned char is_at_stage_surface();
+    void face_opponent_and_flip_horizontal_velocity();
+    void emit_fighter_effect(int code, float x, float y, int direction, int trailing);
     signed char classify_fighter_x_boundary();
     void publish_battle_layout_scalar(float value);
     void dispatch_indexed_event_member(unsigned int event);
@@ -48,7 +55,10 @@ public:
     float acceleration_x_fc;
     float acceleration_y_100;
     signed char facing_104;
-    unsigned char reserved_105[0x27];
+    unsigned char reserved_105[3];
+    float field_108;
+    float field_10c;
+    unsigned char reserved_110[0x1c];
     float angle_12c;
     unsigned char reserved_130[0xc];
     short action_13c;
@@ -67,11 +77,18 @@ public:
     unsigned char byte_47e;
     unsigned char reserved_47f[0x11];
     unsigned char byte_490;
-    unsigned char reserved_491[0x21b];
+    unsigned char reserved_491[0x17];
+    short word_4a8;
+    unsigned char reserved_4aa[2];
+    short word_4ac;
+    unsigned char reserved_4ae[0x1fe];
     float field_6ac;
-    unsigned char reserved_6b0[8];
+    unsigned char reserved_6b0[4];
+    int field_6b4;
     int field_6b8;
-    unsigned char reserved_6bc[0x74];
+    unsigned char reserved_6bc[0x70];
+    unsigned char byte_72c;
+    unsigned char reserved_72d[3];
     short word_730;
     short word_732;
     unsigned char reserved_734[0x1d];
@@ -105,6 +122,10 @@ typedef char ReimuStage_animation_offsets[(offsetof(ReimuActionStatePreludeView,
 typedef char ReimuStage_low_gate_offsets[(offsetof(ReimuActionStatePreludeView, byte_47e) == 0x47e && offsetof(ReimuActionStatePreludeView, field_6b8) == 0x6b8) ? 1 : -1];
 
 typedef char ReimuStage_recovery_offsets[(offsetof(ReimuActionStatePreludeView, angle_12c) == 0x12c && offsetof(ReimuActionStatePreludeView, byte_490) == 0x490 && offsetof(ReimuActionStatePreludeView, field_6ac) == 0x6ac && offsetof(ReimuActionStatePreludeView, word_730) == 0x730 && offsetof(ReimuActionStatePreludeView, word_732) == 0x732 && offsetof(ReimuActionStatePreludeView, word_7a4) == 0x7a4) ? 1 : -1];
+
+typedef char ReimuStage_movement_attack_offsets[(offsetof(ReimuPreludePeerView, x_ec) == 0xec && offsetof(ReimuActionStatePreludeView, field_108) == 0x108 && offsetof(ReimuActionStatePreludeView, field_10c) == 0x10c && offsetof(ReimuActionStatePreludeView, word_4a8) == 0x4a8 && offsetof(ReimuActionStatePreludeView, word_4ac) == 0x4ac && offsetof(ReimuActionStatePreludeView, field_6b4) == 0x6b4 && offsetof(ReimuActionStatePreludeView, byte_72c) == 0x72c) ? 1 : -1];
+
+unsigned int __cdecl mt19937_next_u32();
 
 // The original reset receiver is the sprite subobject at fighter+4.
 struct ReimuRecoverySpriteView {
