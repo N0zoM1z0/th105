@@ -8,7 +8,7 @@ namespace th105 {
 bool ReimuActionStatePreludeView::run_checked_action_dispatch()
 {
 #include "ReimuActionStatePreludeBody.hpp"
-    const short selected_action = action_13c;
+    const int selected_action = action_13c;
     if (selected_action > 798)
         return false;
     switch (selected_action) {

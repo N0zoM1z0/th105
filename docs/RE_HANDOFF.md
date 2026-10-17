@@ -462,8 +462,22 @@ A private float-return control covers m32 zero but does not shrink code;
 return type remains unresolved and no shared declaration changed. No credit
 or aggregate replay;9 primary DB hashes unchanged, unused products cleaned.
 See [call ownership and source structure](REIMU_CALL_OWNERS_2026_10_18.md).
-Next prioritize remaining call sharing/source overhead and the expanded size
-failure, exact callable ownership,
+The local action selector is now promoted to int, recovering the target
+MOVSX/32-bit compare sequence. Expanded prefix81668/text83040 drops48 bytes,
+frame570h/2465 qualified relocations/first478FB1 remain; callable/metadata
+excess118/116 still prohibits execution. All65536 field values pass a
+read-only selector-to-arm audit (21 selector instructions each), preserving
+physical alias sets; a decoded-model bound control misroutes300/301.
+Compact void50800 has fresh0/1520 integration/default inputs; nine buffer
+partitions pass. Target300 starts47CBBD and320 starts47D96A, then shares the
+47CC2B continuation. Source merges both complete bodies at47CBFE; this
+explains three physical E8 deficits despite equal per-action counts.
+Private live-reference and shared-default-goto controls are unselected;
+the latter adds32 bytes. Final witnesses were rebuilt serially. No exact
+credit/aggregate replay;9 primary DB hashes unchanged, unused products cleaned.
+See [selector and direct-arm sharing](REIMU_SELECTOR_PROMOTION_2026_10_18.md).
+Next prioritize the300/320 prefix/tail split, remaining call sharing/source
+overhead and the expanded size failure, exact callable ownership,
 returning world contexts and VC8/LTCG/TU evidence
 before canonical root acceptance.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.
