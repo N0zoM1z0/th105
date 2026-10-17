@@ -377,17 +377,38 @@ def sequence_effect_cases():
 
 
 def opening_branch_cases():
-    """Exercise action200 input exits; action10 stays below the frame limit."""
+    """Exercise signed input/resource gates and affected joins;10 stays below its frame limit."""
     basic = dict(opening_cases(True)[0], sequence=1, frame=0, timer=-1,
                  time=7, y=0.0)
-    cases = [dict(basic, action=200, vertical=vertical, horizontal=horizontal,
+    # Include zero from either factor, signed-byte boundaries, signed DWORD
+    # endpoints and WORD counter wrap without overflowing the signed product.
+    inputs = list(itertools.product((-128, -1, 0, 1, 127), (-2, -1, 0, 1, 2)))
+    inputs.extend(((1, -2147483648), (1, 2147483647), (-1, 2147483647),
+                   (-128, 16777215), (127, 16777215)))
+    cases = [dict(basic, action=action, vertical=vertical, horizontal=horizontal,
                   gate=gate, facing=facing, cw=cw)
-             for vertical, horizontal, gate, facing, cw in itertools.product(
-                 (-2, -1, 0, 1, 2), (-2, -1, 0, 1, 2),
-                 (-32768, -1, 0, 1, 44, 45, 32767), (-1, 1), (0x27F, 0x37F))]
+             for action, vertical, gate, (facing, horizontal), cw in itertools.product(
+                 (200, 223), (-2, -1, 0, 1, 2),
+                 (-32768, -1, 0, 1, 2, 10, 11, 12, 44, 45, 46, 32767), inputs, (0x27F, 0x37F))]
     cases.extend(dict(basic, action=10, vertical=vertical, timer=timer, cw=cw)
                  for vertical, timer, cw in itertools.product(
                      (-2, -1, 0, 1, 2), (-1, 0), (0x27F, 0x37F)))
+    # Keep each heading away from the earlier sequence-transition gates.
+    headings = {1: 0.0, 3: 0.0, 4: 60.0, 6: 180.0, 8: 0.0}
+    cases.extend(dict(basic, action=214, sequence=sequence, y=100.0, frame=3,
+                      count736=count, counter=counter, facing=facing, cw=cw,
+                      direction_state=mode, field_6c8=enabled,
+                      radius_bits=struct.pack(">f", headings[sequence]).hex())
+                 for sequence, count, counter, facing, cw, mode, enabled in itertools.product(
+                     headings, (9, 10, 11, 32767), (-32768, -1, 0, 1, 3, 4, 5, 7, 8, 9, 32767),
+                     (-1, 1), (0x27F, 0x37F), (0, 1), (0, 1)))
+    # The214 rewrite also regroups these sequence-call tails in the compiler.
+    # Check their routed/landing paths without replaying the family matrices.
+    cases.extend(dict(basic, action=action, sequence=sequence, frame=frame,
+                      y=y, vy=vy, cw=cw)
+                 for action, sequence, frame, y, vy, cw in itertools.product(
+                     (201, 567, 568, 572, 573, 650), (0, 1, 2), (0, 7, 12),
+                     (0.0, 100.0), (-1.0, 3.0), (0x27F, 0x37F)))
     return cases
 
 
@@ -543,6 +564,10 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
         cases = [case for case in cases if case["action"] == 409]
     elif control == "prelude-direction":
         cases = [case for case in cases if case.get("prelude_coordinate_fixture")]
+    elif control == "direction-zero":
+        cases = [case for case in cases if case["action"] in (200, 223)]
+    elif control == "resource-zero":
+        cases = [case for case in cases if case["action"] == 214]
     if not cases:
         raise ValueError("selected case collection is empty")
     seed_engine = spell.seed_module.Probe(canonical, pefile.PE(str(ROOT / "resources/th105.exe")).get_memory_mapped_image(),
@@ -637,6 +662,17 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
                    if frame_bounds and action in {case["action"] for case in cases}}
     if not {site for sites in bound_sites.values() for site in sites} <= probe.visited:
         raise ValueError("frame-bound cases did not reach the required target comparisons/operations")
+    direction_sites = {action: site for action, site in ((200, 0x6214E1), (223, 0x622F03))
+                       if opening_branches and action in {case["action"] for case in cases}}
+    if not set(direction_sites.values()) <= probe.visited:
+        raise ValueError("opening cases did not reach the requested signed input zero gates")
+    resource_sites = (0x62272E, 0x622749) if opening_branches and any(case["action"] == 214 for case in cases) else ()
+    if not set(resource_sites) <= probe.visited:
+        raise ValueError("opening cases did not reach both physical214 resource comparisons")
+    join_actions = {201, 567, 568, 572, 573, 650}
+    join_site = 0x621734 if opening_branches and join_actions <= {case["action"] for case in cases} else None
+    if join_site is not None and join_site not in probe.visited:
+        raise ValueError("opening cases missed the target shared sequence CALL")
     if sequence_effects and any(set(effect_directions.get(str(action), {})) != {"0", "1", "127", "128", "255"}
                                 for action in {case["action"] for case in cases}):
         raise ValueError("effect fixture did not reach all five raw direction boundaries for each action")
@@ -669,6 +705,9 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
             "sequence_exit_entries_by_action": sequence_exit_entries,
             "event_exit_call_sites_visited": {str(action): hex(site) for action, site in event_sites.items()},
             "frame_bound_sites_visited": {str(action): list(map(hex, sites)) for action, sites in bound_sites.items()},
+            "direction_zero_gate_sites_visited": {str(action): hex(site) for action, site in direction_sites.items()},
+            "resource_zero_gate_sites_visited": list(map(hex, resource_sites)),
+            "sequence_join_target_visited": hex(join_site) if join_site is not None else None,
             "lookup_initialization": initialization, "math_runtime_trace": probe.math_trace,
             "outcomes": [{"side": side, "stop": stop, "cases": count} for (side, stop), count in sorted(probe.outcomes.items())],
             "target_root_instructions_visited": len(probe.visited), "source_view_aliases": probe.aliases,
@@ -753,6 +792,16 @@ def control_source(name):
     elif name == "positive-steer":
         needle = "if (facing() * int_at(0x6b4) > 0) { set_action_and_finalize(212); return true; }"
         replacement = "if (facing() * int_at(0x6b4) >= 0) { set_action_and_finalize(212); return true; }"
+    elif name == "direction-zero":
+        needle = "facing() * int_at(0x6b4) <= 0"
+        if source.count(needle) != 2:
+            raise ValueError("direction control requires exactly200/223's two zero gates")
+        path = ROOT / "build/iku-upper-direction-zero.cpp"
+        path.write_bytes(source.replace(needle, "facing() * int_at(0x6b4) < 0").replace("\n", "\r\n").encode())
+        return path
+    elif name == "resource-zero":
+        needle = "short_at(0x482) <= 0"
+        replacement = "short_at(0x482) < 0"
     elif name == "unsigned-brake":
         needle = "static_cast<signed char>(byte_at(0x47e)) > 0"
         replacement = "byte_at(0x47e) != 0"
@@ -835,14 +884,14 @@ if __name__ == "__main__":
     cases.add_argument("--opening", action="store_true", help="focus on the33 opening actions")
     cases.add_argument("--middle", action="store_true", help="focus on the42 new middle actions")
     cases.add_argument("--steering-clamps", action="store_true", help="action730 two-axis binary32 clamp boundaries with genuine lookup math")
-    cases.add_argument("--opening-branches", action="store_true", help="whole-root action200 input exits and action10 below-frame-limit paths")
+    cases.add_argument("--opening-branches", action="store_true", help="whole-root200/223 input and214 resource gates, affected sequence joins and10 below-frame-limit paths")
     cases.add_argument("--sequence-effects", action="store_true", help="whole-root six-action effect62 shared continuation and adjacent gates")
     cases.add_argument("--sequence-exits", action="store_true", help="whole-root562/563/730 shared sequence-return edges and adjacent gates")
     cases.add_argument("--event-exits", action="store_true", help="whole-root305/696 frame thresholds and both real event29 call sites")
     cases.add_argument("--frame-bounds", action="store_true", help="whole-root225/408 frame7 boundary paths with real RNG and helpers")
     cases.add_argument("--advance-callbacks", action="store_true", help="whole-root310/409 through genuine frame/block callbacks and both advancement results")
     cases.add_argument("--prelude-spawns", action="store_true", help="object998 prelude direction/float boundaries, guards and compact routed-entry regression")
-    parser.add_argument("--control", choices=("aim-limit", "aim-facing", "advance-action", "prelude-direction", "unsigned-gate", "single-counter", "positive-steer", "effect-height", "effect-direction", "steering-facing", "sequence-exit-gate", "event-frame-gate", "frame-bound-gates", "unsigned-brake", "current-height", "zero-offset", "prelude-countdown", "unordered-face"))
+    parser.add_argument("--control", choices=("aim-limit", "aim-facing", "advance-action", "prelude-direction", "direction-zero", "resource-zero", "unsigned-gate", "single-counter", "positive-steer", "effect-height", "effect-direction", "steering-facing", "sequence-exit-gate", "event-frame-gate", "frame-bound-gates", "unsigned-brake", "current-height", "zero-offset", "prelude-countdown", "unordered-face"))
     parser.add_argument("--coordinates", action="store_true", help="with --middle, focus on direct X transfer and signed zero")
     parser.add_argument("--whole", action="store_true", help="execute both real/candidate roots from their own entry")
     parser.add_argument("--actions", type=int, nargs="+", help="run only these action IDs from the selected fixture")
@@ -869,6 +918,10 @@ if __name__ == "__main__":
         parser.error("advance-action requires --advance-callbacks")
     if args.control == "prelude-direction" and not args.prelude_spawns:
         parser.error("prelude-direction requires --prelude-spawns")
+    if args.control == "direction-zero" and not args.opening_branches:
+        parser.error("direction-zero requires --opening-branches")
+    if args.control == "resource-zero" and not args.opening_branches:
+        parser.error("resource-zero requires --opening-branches")
     if args.control == "sequence-exit-gate" and not args.sequence_exits:
         parser.error("sequence-exit-gate requires --sequence-exits")
     if args.control == "event-frame-gate" and not args.event_exits:

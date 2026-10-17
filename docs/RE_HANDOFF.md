@@ -32,7 +32,7 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Active priority: Iku prelude ownership and joint exits
+## Active priority: Iku signed zero gates and joint exits
 
 `Iku_dispatch_action_state_vslot28 @ 620920` retains complete110-action
 source, void thiscall prelude/default and one ascending switch. Target
@@ -44,16 +44,41 @@ EDI=1. No exact/partial authored credit. Current evidence:
 [effect direction/argument ownership](IKU_EFFECT_DIRECTION_2026_10_17.md), now
 [all six atan2 argument lifetimes](IKU_STEERING_ARGUMENT_LIFETIMES_2026_10_17.md),
 plus [real animation completion](IKU_ADVANCE_CALLBACKS_2026_10_17.md) and
-[object998 prelude ownership](IKU_PRELUDE_DIRECTION_2026_10_17.md).
+[object998 prelude ownership](IKU_PRELUDE_DIRECTION_2026_10_17.md), followed by
+[signed zero gates](IKU_SIGNED_ZERO_GATES_2026_10_17.md).
 
-The latest selected change captures a fresh raw direction DWORD inside each
+The latest selected changes replace200/223's signed input-product<1 and
+214's signed resource482<1 with<=0, recovering target TEST/JG and WORD-zero
+comparison operands.572/573 still compare against1 and retain<1. The first
+two edits change only six bytes in the prior59462-byte section; the214 edit
+then reduces the section to59458 and regroups sequence tails.214 leaves the
+wrong shared201/214/567/568 CALL; its19 sequence sites are now local, as in
+the target classification. Candidate{201,567,568,572,573,650} still differs
+from target{201,224,562,563,567,568,650}. Target retains two resource tests
+versus one candidate; no original-source or exact claim follows.
+
+Final-source native0/10720 covers all three edits through real input/resource
+helpers, including signed WORD wrap, nonoverflowing DWORD endpoints, zero
+from either input factor and both real4/8 resource costs. A further0/432 on
+the six regrouped actions reaches actual target shared CALL621734. Wrong
+resource<0 detects1560/3520. The intermediate two-gate source's wrong product
+<0 calibration detects594/7200 (200324/223270); that negative receipt is
+explicitly historical, not a final-source replay. Final native/configured
+whole sections agree. Fresh CFG/home/owner diagnostics follow below.
+All six73-byte atan2 preparations retain target equality, at current candidate
+628D55/628F64/629178/6293F1/62D822/62D9A9. Two sequential readonly768MiB/twoCPU
+Ghidra clones attest the zero tests, unchanged572/573 tests and cost calls;
+all nine primary files unchanged, both disposable clones removed. Initial
+constant1 still loads late; first+64/620984 and the full95% goal persist.
+
+The preceding a406a5e5 change captures a fresh raw direction DWORD inside each
 of the three independent object998 branches, using signed-char conversion
 only for the X offset. Target MOVZX/MOVSX dataflow now appears explicitly;
 first spawn CALL aligns at620A0C, but target EDI=1 still precedes the outer
 guard while candidate EBX=1 loads later. A named variant1 used by the flag
 and all three calls is whole-section neutral and unselected. The section shrinks16 bytes
 to59462; compiler regrouping also affects later vslot8 tails. No claim that
-all suffix bytes stay unchanged. Fresh whole-entry native0/7086 covers5760
+all suffix bytes stay unchanged. At that checkpoint, whole-entry native0/7086 covers5760
 raw float/direction cases,336 guards and990 compact110-action routed entries.
 Object998 is reached5832 times,648 per active action; wrong signed outgoing
 direction detects2304/5760. Geometry cases stop at the real465190 entry;
@@ -64,7 +89,7 @@ Read-only Ghidra re-attests the guard and three81-byte preparations, initial
 constant and raw/signed uses; nine primary files unchanged, clone removed.
 
 The preceding d6a5f127 checkpoint added real310/409 animation callbacks.
-Their shared advancement site now lies at6245CD versus target624612/625893;
+Their shared advancement site now lies at6245DD versus target624612/625893;
 AL return width is already correct. The explicit409 failed-advance return
 control was whole-section neutral at that checkpoint and unselected.
 Its native0/1992 observed120/48 successes and912 normal RETs per action;
@@ -107,7 +132,7 @@ versus four target remain unresolved.
 
 The common height-ST0-to-Y / velocity-clear / return tail now has exactly
 its target incoming set:6/7/8/9/220/307/308/309/404/406/414/415/416/417/795/797/798.
-Target calls621044/621051 correspond to current candidate62ECAE/62ECBB. Source retains
+Target calls621044/621051 correspond to current candidate62ECAB/62ECB8. Source retains
 all preceding callbacks and797/798's post-callback X=480/800 stores before
 height lookup. The private inlined fan routine reports pending restoration
 for404/406 so its callers can join; ground400/401/402 retain completed behavior.
@@ -117,18 +142,18 @@ CALLs are emitted. A label-inside-case8 control still placed the shared tail
 near the end, grew32 bytes and remained nonexact+64; unselected.
 
 Current source CRLF SHA256:
-a406a5e5c5853ba2c5b9d4b27cdea43458da731589fc4d87aa191b0e3a8c8bca.
-Normalized full section59462 bytes, SHA256:
-a96a9185a2c717315108dc8b8e8cc7064ebbd99144b0b8942c63989e60ab75a4.
-Candidate14990 reachable instructions /58302 instruction bytes in58305-byte
-span, three internal alignment bytes,1157 following alignment/metadata bytes
-(metadata starts58308),128 RETs,862 ordinary/177 register CALLs,33/42/35
+1bf7fcd437528a871e5297100389420fc000e791b6c0bdd54bd281303178a503.
+Normalized full section59458 bytes, SHA256:
+347e4d6cf2820eef3559e53f6dd2bab14cffe2065343113d4863875ffd00917b.
+Candidate14990 reachable instructions /58296 instruction bytes in58302-byte
+span, six internal alignment bytes,1156 following alignment/metadata bytes
+(metadata starts58304),128 RETs,862 ordinary/177 register CALLs,33/42/35
 tables, no local CALLs or external tails. Target865/177. Owner diagnostics
 8/109 (2/4/5/10/204/215/303/696), not matches. Register-call count agreement
 does not establish matching incoming sets or semantics. Frame400hex/84 natural
 payload homes retain84 singleton/bijective conditional incoming-action/
 physical-ordinal constraints,57 identity,182 spawn calls/190 action-site
-records. Target/candidate pre-epilogue PCs14870/14734, states16959/16896.
+records. Target/candidate pre-epilogue PCs14870/14734, states16959/16898.
 These are not payload-value/path proofs.
 
 Priorc9 source whole-entry native0/3252 covers the17 actions plus ground400/401/402:

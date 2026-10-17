@@ -679,7 +679,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
                 set_action_and_finalize(211); return true;
             }
             ++short_at(0x730);
-            if ((facing() * int_at(0x6b4) < 1 && short_at(0x730) > (1)) || short_at(0x730) > 45) {
+            if ((facing() * int_at(0x6b4) <= 0 && short_at(0x730) > (1)) || short_at(0x730) > 45) {
                 set_action_and_finalize(204); return true;
             }
         }
@@ -954,7 +954,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
             if (time_counter_144 % 5 == 0) opening_periodic_effect(false);
 
             ++short_at(0x730);
-            if ((facing() * int_at(0x6b4) < 1 && short_at(0x730) > (11)) || short_at(0x730) > 45) {
+            if ((facing() * int_at(0x6b4) <= 0 && short_at(0x730) > (11)) || short_at(0x730) > 45) {
                 set_action_and_finalize(204); return true;
             }
         }
@@ -3150,7 +3150,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_glide_action()
             if (float_at(0x740) >= 135.0f || float_at(0x740) <= -135.0f) { select_sequence(6); return true; }
         }
         if ((sequence == 6 || sequence == 7) && float_at(0x740) < 120.0 && float_at(0x740) > -120.0) { select_sequence(8); return true; }
-        if ((int_at(0x6c8) == 0 && short_at(0x736) > 10) || short_at(0x482) < 1) {
+        if ((int_at(0x6c8) == 0 && short_at(0x736) > 10) || short_at(0x482) <= 0) {
             if (sequence == 1 || sequence == 2) { opening_face_and_select_exit(9); }
             if (sequence_index_13e == 3) {
                 short_at(0x730) = frame_index_140;
