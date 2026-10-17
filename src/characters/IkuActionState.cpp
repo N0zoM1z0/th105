@@ -272,8 +272,9 @@ private:
     }
     __forceinline void emit_813_aimed(int variant) {
         float x = static_cast<float>(facing()) * (peer_float(0xec) - float_at(0xec));
-        float y = peer_float(0xf0) - float_at(0xf0);
-        float_at(0x744) = -atan2_degrees(y, x);
+        const float &peer_y = *reinterpret_cast<const float *>(
+            static_cast<const unsigned char *>(related_170) + 0xf0);
+        float_at(0x744) = -atan2_degrees(static_cast<float>(peer_y - float_at(0xf0)), x);
         if (variant == 1) {
             if (float_at(0x744) < -60.0) float_at(0x744) = -60.0f;
             if (float_at(0x744) > -45.0f) float_at(0x744) = -45.0f;

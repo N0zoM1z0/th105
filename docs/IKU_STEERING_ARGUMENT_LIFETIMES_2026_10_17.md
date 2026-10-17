@@ -1,4 +1,8 @@
-# Iku steering argument lifetimes
+# Iku atan2 argument lifetimes
+
+The first checkpoint below covers730 at sourcec8140ff0. The subsequent
+560..563 extension is recorded at the end; native results remain scoped to
+their source hashes.
 
 Action730 in `Iku_dispatch_action_state_vslot28 @ 620920` now constructs its
 two atan2 arguments in the target order and reuses the target scratch home.
@@ -133,3 +137,86 @@ headless rejects leading-dot project path components. All nine primary files
 are hash-unchanged; the clone and alias were removed. Superseded private
 objects/sources are disposable. No shared header/profile/layout/relocation,
 exact ledger or accepted unit changed; no aggregate cold replay was needed.
+
+## Aimed object813 extension
+
+The four remaining atan2 sites, reached by actions560/561/562/563, have the
+same target argument lifetime. Their preparation sequences read signed
+facing, round X, put it into outgoing ESP+4, then evaluate and round Y into
+outgoing ESP, reusing initialESP+10. The selected `emit_813_aimed` now retains
+its explicit float X local and reads peer Y through a const field reference
+in the call, as independently observed at each of these four sites.
+
+| Action | Target73-byte preparation | Selected73-byte preparation |
+| --- | --- | --- |
+| 560 | [628F2E,628F77) | [628D55,628D9E) |
+| 561 | [62913B,629184) | [628F64,628FAD) |
+| 562 | [62933E,629387) | [629178,6291C1) |
+| 563 | [6295A8,6295F1) | [6293F1,62943A) |
+
+All four complete intervals hash to
+`d5af31aecb4de70f5b4e003ef86c28f67fffd5a4c43c3a14ac4819c49f0dd0c7`.
+They contain no masked or relocated fields. Together with the two730 spans,
+all six current atan2 preparations agree with the target. These remain
+internal intervals; whole-root exact equality is still unproved.
+
+The latest complete59478-byte canonical section differs from sourcec8140ff0
+in only80 bytes, all inside the four new preparations. Every other byte,
+including730, payload construction, switch tables and metadata, is identical.
+Current15000 instructions/58318 reachable bytes/58321 callable span,
+128 RETs,862 ordinary/178 register calls, no local calls/external tails and
+7/109 owner diagnostics remain. A fresh payload audit retains84 singleton/
+bijective constraints,57 identity,182 spawn calls/190 action-site records
+and16900 candidate states. No exact/partial credit or shared ABI change.
+
+- Current CRLF source SHA-256:
+  `d6a5f1276ad22ba8739d7d3cefb2a09e57da92b92e3efb2ca8b6f505744a2c12`.
+- Current canonical section SHA-256:
+  `018be2dcd2b8361057022937b0d35c8ce4fbe2aa6933a0b625a523da11023bd3`.
+- Strict whole59038 result: mismatch+64hex/620984, unchanged.
+
+Focused whole-entry native verification passes **0/5840** across these four
+actions:1958 RETs,3104 object entries,250 action entries,48 sequence entries
+and480 actual atan2 entries per side, visiting513 target-root instructions.
+Configured and native whole sections normalize identically. The5360 regular
+gate/aim cases execute the genuine prelude, surface, frame, angle and counter
+helpers to RET or the first real backend. The480 argument-only cases stop
+at406540,120 per action, checking both full float argument bit patterns.
+Their geometry includes signed zeros, cancellation, subnormals, maximal
+finite peers, Inf and quiet/signaling NaN payloads, with five signed-byte
+facings and x87 PC53/64. The wider byte domain is diagnostic.
+
+The argument fixture keeps stage coordinates finite, with initial Y=0 for
+ground560/561 and Y=100 for airborne562/563. Above-surface ground inputs
+correctly enter the real action9 callback before the shot gate; they cannot
+serve as atan2-entry cases. No helper return or callback is replaced to skip
+that behavior. Every selected argument case is required to reach406540.
+`--control aim-facing` deliberately uses an unsigned byte in the X multiplier
+and detects160/480 differences,40 per action, including signed-zero arguments.
+
+| Profile | Input SHA-256 | Target-output SHA-256 |
+| --- | --- | --- |
+| Positive5840 | a8463bbdbdbf3f5a69963311172b3a25dad6cfcdbcff59892acb71a23d7822ec | dac1da96716b8d29af87e2c865f8b275e6ea7e5f1576236ebf5d0a650e421dc6 |
+| Wrong-facing480 | e2c0631b746b2ca7bfa620c15b341671090010fd0aa768682ba776817bd2077a | 2159a383515aade5f27ff5302bb5f96cc8746f5fa4e9bfa5671efc9f49f920a3 |
+
+Direct read-only Ghidra independently re-attests target/import/entry/.text/
+root and all four73-byte spans. The768MiB/two-CPU clone and temporary path
+alias were deleted; nine primary files remain hash-unchanged. Wrong-image
+IDA was rejected. Other native matrices were not replayed. Full-root behavior,
+unmasked exceptions, post-backend continuation and original compiler/source
+provenance remain unknown; the initial constant1 and call-sharing gaps persist.
+
+```sh
+python3 scripts/build.py --unit gpt-web-iku-action-state --compare --json
+python3 scripts/probe-iku-upper-actions.py --new-only --whole --actions 560 561 562 563 --output build/iku-aim-arguments/IkuAimedArgumentsNative.obj
+python3 scripts/probe-iku-upper-actions.py --new-only --whole --control aim-facing
+python3 scripts/audit-iku-full-root.py --object build/match-units/GptWeb_IkuActionState.obj --native-object build/iku-aim-arguments/IkuAimedArgumentsNative.obj
+python3 scripts/audit-iku-call-sharing.py --object build/match-units/GptWeb_IkuActionState.obj --partition-payloads
+python3 scripts/ci.py
+git diff --check
+```
+
+The strict comparison and deliberate control exit1. Current reports are under
+`build/iku-aim-arguments/`; private Ghidra recipes are under
+`.analysis/iku-aim-arguments-20261017/`. Superseded native objects and caches
+are disposable. No accepted unit, exact ledger or aggregate replay changed.

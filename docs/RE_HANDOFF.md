@@ -32,7 +32,7 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Active priority: Iku steering arguments and joint exits
+## Active priority: Iku atan2 arguments and joint exits
 
 `Iku_dispatch_action_state_vslot28 @ 620920` retains complete110-action
 source, void thiscall prelude/default and one ascending switch. Target
@@ -42,9 +42,23 @@ Strict whole-root remains **nonexact +0x64 /620984**: target alone hoists
 EDI=1. No exact/partial authored credit. Current evidence:
 [17-action common surface exit](IKU_COMMON_SURFACE_EXIT_2026_10_17.md) and
 [effect direction/argument ownership](IKU_EFFECT_DIRECTION_2026_10_17.md), now
-[730 steering argument lifetimes](IKU_STEERING_ARGUMENT_LIFETIMES_2026_10_17.md).
+[all six atan2 argument lifetimes](IKU_STEERING_ARGUMENT_LIFETIMES_2026_10_17.md).
 
-730 now retains its rounded X local and reads peer Y through a field reference
+The latest560/561/562/563 extension gives all six atan2 sites identical
+complete73-byte target preparations. Four new spans start target628F2E/
+62913B/62933E/6295A8 versus candidate628D55/628F64/629178/6293F1.
+`emit_813_aimed` retains its rounded X local and reads peer Y as a field
+reference in the call. Only80 bytes change from priorc8140ff0; every other
+complete-section byte stays identical. Fresh whole-entry native0/5840 covers
+the four affected actions, including480 real atan2-entry stops,120 each.
+Wrong unsigned-facing calibration detects160/480. Argument fixtures use
+ground Y0 versus airborne Y100 so real surface callbacks are respected.
+Native/configured sections agree; Ghidra re-attests all four spans and leaves
+nine primary files unchanged. Source/type/ABI provenance and whole exactness
+remain unproved; this adds no exact or partial credit.
+
+The precedingc8140ff0 checkpoint made730 retain its rounded X local and read
+peer Y through a field reference
 in the atan2 call. Target62DAC2/62DC40 and candidate62D835/62D9BC have identical
 complete73-byte argument preparations, including the reused initialESP+10 home
 and outgoing-X-before-Y order. These are internal diagnostics, not functions
@@ -72,9 +86,9 @@ CALLs are emitted. A label-inside-case8 control still placed the shared tail
 near the end, grew32 bytes and remained nonexact+64; unselected.
 
 Current source CRLF SHA256:
-c8140ff0c2ca77ebd7440f8f756f0224eee29d984fb290dc66b43324539635af.
+d6a5f1276ad22ba8739d7d3cefb2a09e57da92b92e3efb2ca8b6f505744a2c12.
 Normalized full section59478 bytes, SHA256:
-7684266d089d10a0937dda3b9aa2ec770f5dbac76b1f636d530a5bb99377a6e8.
+018be2dcd2b8361057022937b0d35c8ce4fbe2aa6933a0b625a523da11023bd3.
 The latest section extent is unchanged. Candidate15000 reachable instructions /58318
 instruction bytes in58321-byte span, three internal alignment bytes,1157
 following alignment/metadata bytes (metadata starts58324),128 RETs,
@@ -143,7 +157,7 @@ Prior source-scoped evidence, retained in selected source where applicable:
   carrier and the17-byte duplicated sequence-tail label control are unselected.
 - Source69c43bf5 [genuine link/visibility](IKU_PROVIDER_VISIBILITY_2026_10_17.md)
   closes59504 bytes/898 HIGHLOWs/863 ordinary calls with real game/SDK/CRT.
-  It is not a link of currentc9a1c3e4. [MT state](IKU_MT_CALL_STATE_2026_10_17.md)
+  It is not a link of the latest source. [MT state](IKU_MT_CALL_STATE_2026_10_17.md)
   isolates MT TU visibility and16 live-x87 call sites; noinline leaves the59488
   raw envelope identical. Actual helper native0/10016, different-seed2/2.
   Keep ordinary MT opacity; original flags/pass/formal ABI remain unknown.
