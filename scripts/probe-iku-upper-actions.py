@@ -235,6 +235,20 @@ def root_cases(smoke=False):
     return list({json.dumps(case, sort_keys=True): case for case in cases}.values())
 
 
+def frame_bound_cases():
+    opening = next(case for case in opening_cases(True) if case["action"] == 225)
+    middle = next(case for case in middle_cases(True) if case["action"] == 408)
+    frames = (0, 1, 6, 7, 8, 9, 14, 15)
+    cases = [opening | dict(frame=frame, time=time, facing=facing, cw=cw, seed=seed)
+             for frame, time, facing, cw, seed in itertools.product(
+                 frames, (-5, 0, 1, 5), (-1, 1), (0x27F, 0x37F), (1, 119))]
+    cases.extend(middle | dict(frame=frame, timer=timer, sequence=sequence, cw=cw, vx_bits=vx)
+                 for frame, timer, sequence, cw, vx in itertools.product(
+                     frames, (-1, 0), (0, 1), (0x27F, 0x37F),
+                     ("3e800000", "3f400000", "3f800000", "7fc00000")))
+    return cases
+
+
 def event_exit_cases():
     samples = middle_cases(True) + input_cases(True)
     basic = {action: next(case for case in samples if case["action"] == action)
@@ -377,7 +391,7 @@ class UpperProbe(late.LateProbe):
         super().instruction(uc, address, size, unused)
 
 
-def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False, control=None, coordinates=False, opening=False, whole=False, all_actions=False, actions=None, steering_clamps=False, opening_branches=False, sequence_effects=False, sequence_exits=False, event_exits=False):
+def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False, control=None, coordinates=False, opening=False, whole=False, all_actions=False, actions=None, steering_clamps=False, opening_branches=False, sequence_effects=False, sequence_exits=False, event_exits=False, frame_bounds=False):
     canonical = linked_pe.comparator()
     target_sha = canonical.verify_target()
     if hashlib.sha256(canonical.target_bytes(0x620920, 59038)).hexdigest() != "abc831c6ccd95986bed811694f532ad8c8b92cb49702a7f6ce4de100b8a73dea":
@@ -387,7 +401,7 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
     table, initialization = lookup_fixture(canonical)
     ledger = {int(row["address"], 0): int(row["size"])
               for row in csv.DictReader((ROOT / "config/functions.csv").open())}
-    cases = event_exit_cases() if event_exits else sequence_exit_cases() if sequence_exits else sequence_effect_cases() if sequence_effects else opening_branch_cases() if opening_branches else steering_clamp_cases() if steering_clamps else root_cases(smoke) if all_actions else opening_cases(smoke, whole) if opening else coordinate_cases(smoke) if coordinates else middle_cases(smoke) if middle else gate_cases(smoke) if new_only else input_cases(smoke)
+    cases = frame_bound_cases() if frame_bounds else event_exit_cases() if event_exits else sequence_exit_cases() if sequence_exits else sequence_effect_cases() if sequence_effects else opening_branch_cases() if opening_branches else steering_clamp_cases() if steering_clamps else root_cases(smoke) if all_actions else opening_cases(smoke, whole) if opening else coordinate_cases(smoke) if coordinates else middle_cases(smoke) if middle else gate_cases(smoke) if new_only else input_cases(smoke)
     if actions:
         selected = set(actions)
         missing = selected - {case["action"] for case in cases}
@@ -449,17 +463,23 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
                    if event_exits and action in {case["action"] for case in cases}}
     if not set(event_sites.values()) <= probe.visited:
         raise ValueError("event-exit cases did not reach each requested target event call")
+    bound_sites = {action: sites for action, sites in ((225, (0x62325C, 0x623276, 0x623306)),
+                                                      (408, (0x625759, 0x625763)))
+                   if frame_bounds and action in {case["action"] for case in cases}}
+    if not {site for sites in bound_sites.values() for site in sites} <= probe.visited:
+        raise ValueError("frame-bound cases did not reach the required target comparisons/operations")
     return {"schema": "th105-iku-action-state-source-native-v1", "target_sha256": target_sha, "build": receipt,
             "actions": len(OPENING_ENTRIES) + len(ENTRIES) + len(MIDDLE_ENTRIES),
             "whole_root_entry": whole,
             "requested_actions": sorted(set(actions)) if actions else None,
-            "case_set": "event-exits" if event_exits else "sequence-exits" if sequence_exits else "sequence-effects" if sequence_effects else "opening-branches" if opening_branches else "steering-clamps" if steering_clamps else "whole-root-actions" if all_actions else "opening-actions" if opening else "middle-coordinates" if coordinates else "middle-actions" if middle else "new-action-gates" if new_only else "upper-actions",
+            "case_set": "frame-bounds" if frame_bounds else "event-exits" if event_exits else "sequence-exits" if sequence_exits else "sequence-effects" if sequence_effects else "opening-branches" if opening_branches else "steering-clamps" if steering_clamps else "whole-root-actions" if all_actions else "opening-actions" if opening else "middle-coordinates" if coordinates else "middle-actions" if middle else "new-action-gates" if new_only else "upper-actions",
             "tested_actions": sorted({case["action"] for case in cases}), "cases": len(cases), "mismatch_count": differences, "mismatch_by_action": mismatch_by_action, "examples": examples,
             "input_sha256": inputs.hexdigest(), "target_output_sha256": outputs.hexdigest(),
             "sequence_effect_entries_by_action": effect_entries,
             "sequence_effect_negative_zero_x_by_action": negative_zero_x_entries,
             "sequence_exit_entries_by_action": sequence_exit_entries,
             "event_exit_call_sites_visited": {str(action): hex(site) for action, site in event_sites.items()},
+            "frame_bound_sites_visited": {str(action): list(map(hex, sites)) for action, sites in bound_sites.items()},
             "lookup_initialization": initialization, "math_runtime_trace": probe.math_trace,
             "outcomes": [{"side": side, "stop": stop, "cases": count} for (side, stop), count in sorted(probe.outcomes.items())],
             "target_root_instructions_visited": len(probe.visited), "source_view_aliases": probe.aliases,
@@ -521,6 +541,19 @@ def control_source(name):
         path = ROOT / "build/iku-upper-unordered-face.cpp"
         path.write_bytes(source.replace("\n", "\r\n").encode())
         return path
+    elif name == "frame-bound-gates":
+        for action, next_action, needle, replacement in (
+                (225, 226, "frame_index_140 <= 7", "frame_index_140 <= 6"),
+                (408, 409, "frame_index_140 >= 7", "frame_index_140 >= 8")):
+            first = source.index(f"    case {action}: {{")
+            last = source.index(f"    case {next_action}: {{", first)
+            body = source[first:last]
+            if body.count(needle) != 1:
+                raise ValueError("frame-bound control requires each reviewed predicate")
+            source = source[:first] + body.replace(needle, replacement) + source[last:]
+        path = ROOT / "build/iku-upper-frame-bound-gates.cpp"
+        path.write_bytes(source.replace("\n", "\r\n").encode())
+        return path
     elif name == "event-frame-gate":
         needle = "if (frame_index_140 >= 4) middle_decelerate(0.5);"
         replacement = "if (frame_index_140 >= 5) middle_decelerate(0.5);"
@@ -567,12 +600,13 @@ if __name__ == "__main__":
     cases.add_argument("--sequence-effects", action="store_true", help="whole-root six-action effect62 shared continuation and adjacent gates")
     cases.add_argument("--sequence-exits", action="store_true", help="whole-root562/563/730 shared sequence-return edges and adjacent gates")
     cases.add_argument("--event-exits", action="store_true", help="whole-root305/696 frame thresholds and both real event29 call sites")
-    parser.add_argument("--control", choices=("aim-limit", "unsigned-gate", "single-counter", "positive-steer", "effect-height", "sequence-exit-gate", "event-frame-gate", "unsigned-brake", "current-height", "zero-offset", "prelude-countdown", "unordered-face"))
+    cases.add_argument("--frame-bounds", action="store_true", help="whole-root225/408 frame7 boundary paths with real RNG and helpers")
+    parser.add_argument("--control", choices=("aim-limit", "unsigned-gate", "single-counter", "positive-steer", "effect-height", "sequence-exit-gate", "event-frame-gate", "frame-bound-gates", "unsigned-brake", "current-height", "zero-offset", "prelude-countdown", "unordered-face"))
     parser.add_argument("--coordinates", action="store_true", help="with --middle, focus on direct X transfer and signed zero")
     parser.add_argument("--whole", action="store_true", help="execute both real/candidate roots from their own entry")
     parser.add_argument("--actions", type=int, nargs="+", help="run only these action IDs from the selected fixture")
     args = parser.parse_args()
-    if args.all_actions or args.steering_clamps or args.opening_branches or args.sequence_effects or args.sequence_exits or args.event_exits:
+    if args.all_actions or args.steering_clamps or args.opening_branches or args.sequence_effects or args.sequence_exits or args.event_exits or args.frame_bounds:
         args.whole = True
     if args.coordinates and not args.middle:
         parser.error("coordinate cases require --middle")
@@ -590,10 +624,12 @@ if __name__ == "__main__":
         parser.error("sequence-exit-gate requires --sequence-exits")
     if args.control == "event-frame-gate" and not args.event_exits:
         parser.error("event-frame-gate requires --event-exits")
+    if args.control == "frame-bound-gates" and not args.frame_bounds:
+        parser.error("frame-bound-gates requires --frame-bounds")
     source = control_source(args.control) if args.control else args.source.resolve()
     output = args.output.resolve() if args.output else (ROOT / "build" / ("IkuUpper-" + args.control + ".obj")
                                                        if args.control else None)
-    report = audit(source, output, args.smoke, args.new_only, args.middle, args.control, args.coordinates, args.opening, args.whole, args.all_actions, args.actions, args.steering_clamps, args.opening_branches, args.sequence_effects, args.sequence_exits, args.event_exits)
+    report = audit(source, output, args.smoke, args.new_only, args.middle, args.control, args.coordinates, args.opening, args.whole, args.all_actions, args.actions, args.steering_clamps, args.opening_branches, args.sequence_effects, args.sequence_exits, args.event_exits, args.frame_bounds)
     report["diagnostic_control"] = args.control
     print(json.dumps(report, indent=2))
     raise SystemExit(bool(report["mismatch_count"]))

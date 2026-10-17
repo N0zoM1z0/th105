@@ -989,7 +989,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
             zero_velocity_acceleration(); float_at(0xf0) = stage_surface_height_at_x(this); set_action_and_finalize(10); return true;
         }
         if (short_at(0x7b0) > 0) short_at(0x4a8) = 2;
-        if ((((frame_index_140 < 8)))
+        if ((((frame_index_140 <= 7)))
             && time_counter_144 % 5 == 0) opening_periodic_effect(true);
         if (advance_frame_and_dispatch()) { set_action_and_finalize(9);  }
         if (sequence_entry(1)) {
@@ -1390,7 +1390,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
 
     case 408: {
         resolve_stage_surface_landing_transition();
-        if (frame_index_140 > 6) float_at(0xf4) = static_cast<float>(float_at(0xf4) - 0.75);
+        if (frame_index_140 >= 7) float_at(0xf4) = static_cast<float>(float_at(0xf4) - 0.75);
         if (float_at(0xf4) < 0.0f) float_at(0xf4) = 0.0f;
         advance_or_action(0);
         if (middle_frame(6)) {

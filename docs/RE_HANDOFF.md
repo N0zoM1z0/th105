@@ -40,8 +40,18 @@ Target `[620920,62EFBE)` is 59038 bytes / 15132 instructions / 131 RETs,
 SHA256 abc831c6ccd95986bed811694f532ad8c8b92cb49702a7f6ce4de100b8a73dea.
 Strict whole-root remains **nonexact +0x64 / 620984**: target alone hoists
 EDI=1. No exact or partial credit. New current evidence:
+[frame7 boundaries/prelude controls](IKU_FRAME7_BOUNDARIES_2026_10_17.md),
 [frame4/event ownership](IKU_FRAME4_EVENT_OWNERSHIP_2026_10_17.md),
 [412/418 shared landing](IKU_LANDING_SHARED_CONTINUATION_2026_10_17.md).
+
+225 now uses frame<=7 before its modulo5 effect gate;408 uses frame>=7
+before its0.75 velocity subtraction. Raw target/Ghidra confirm CMP7/JG and
+CMP7/JL; neighboring320/321/322 gates already agree and remain unchanged.
+Fresh --frame-bounds native0/512 reaches96 real effect/16 object entries and
+400 RETs per side,164 target-root instructions. The wrong two frame7 gates
+detect48/512 (24 per action). Both roots run their own preludes/real helpers;
+no result injection or post-first-backend proof. Current native/configured
+sections normalize identically. No broad native or accepted-unit replay.
 
 305 now uses frame>=4, following target MOV EBX,4 / CMP frame,BX / JL,
 then reuses4 for the later event-frame comparison. The preceding >3 source
@@ -62,10 +72,10 @@ and all three calls in one read-only 768MiB/two-CPU clone; all nine primary
 files unchanged. Wrong-image IDA remains rejected.
 
 Current source CRLF SHA256:
-4e852076e88001c3989a9c65e28ab751dc2ec1d84fce64143e5fa23ca295a44a.
+0e8c5e26d3bdf5849b00f7a684a217d75ef8aec30c608990e3377ce6f8ae3593.
 Canonical full section59550 bytes, SHA256:
-5e8c9caa835d0211a6b243fa96911445f03ba51aab9a9c7d2470942537b8af5c.
-This is32 bytes larger than the preceding source, with15022 reachable
+9843aea7c1d1cd156ac68422212313c86c38cb9d37f913db8c449a3c9d2fb207.
+Section size is unchanged, with15021 reachable
 instructions /58394 bytes in a58394-byte span, no internal unreached bytes,
 and1156 following alignment/metadata bytes (metadata starts58396). There are
 130 RETs,866 ordinary/175 register CALLs, no local CALLs/external tails and
@@ -73,10 +83,10 @@ and1156 following alignment/metadata bytes (metadata starts58396). There are
 (2/4/5/204/215/303/696), not matches. Frame400hex/84 real payload homes stay
 natural. Incoming-action/physical-ordinal pairing retains84 singleton and
 bijective constraints,57 identity;182 spawn calls/190 action-site records.
-Target/candidate pre-epilogue PCs14870/14762, states16959/16894. These are
+Target/candidate pre-epilogue PCs14870/14761, states16959/16893. These are
 conditional static correlations, not payload values or feasible paths.
 
-Fresh selected-source --event-exits native passes0/256 through actual RET:
+Prior4e852076 source --event-exits native passes0/256 through actual RET:
 305/696 frames2/3/4/5, timers-1/0, sequences0/1, PC53/PC64 and four velocity
 values including quiet NaN. Both target event PCs must be visited;141 target
 root instructions are covered. Wrong305 gate>=5 detects24/256, all305.
@@ -92,6 +102,11 @@ unselected RTM compiler witness:59518 bytes/15008 instructions,7145 normalized
 bytes differ from SP1, still first mismatch+64. No compiler profile change.
 Both409 versions reloadECX before their branch; that edge gives no special
 callee-preservation evidence. No broad native matrix or accepted replay.
+
+On prior4e852076, embedded debug /Z7 is whole59550-byte neutral. /Zi failed
+with PDB-manager C1902 and has no comparison result; on-disk components report
+SP1 .762, active-manager failure remains undiagnosed. Do not infer original
+root flags from CodeView alone. No canonical compiler/profile change.
 
 An earlier source (CRLF SHA256
 69c43bf58dcfbeee08866a93b007fa266718a37c7850b79609056b3920fa864b)
@@ -115,7 +130,7 @@ remains the scope of these dated checkpoints:
   two game-data reads; only22 scheduling bytes differ from ordinary59502,
   plus two explicit INT3s. Strict59038 nonexact+64. Linked SHA256
   0ce3d92b61d3b860050e57f1d736a149babe2f3735068f1bc6faeea004d2f26e.
-  This is an earlier-source/tool checkpoint, not a link of current4e852076.
+  This is an earlier-source/tool checkpoint, not a link of current0e8c5e26.
 - [MT call state](IKU_MT_CALL_STATE_2026_10_17.md): exposing only the MT TU
   changes the first byte/prologue. All19 MT calls remain; target/ordinary
   depth0 at all, visible variants depth1 at16/depth0 at3. Seed+next noinline
@@ -136,7 +151,7 @@ The header already uses native virtual declarations; moving818 arrays to
 caller scopes was byte-neutral. Do not repeat documented controls without
 new target/source evidence.
 
-Next: shared effect outgoing-stack lifetime/join,730's duplicated facing
+Next: initial constant1 lifetime, shared effect outgoing-stack join,730's duplicated facing
 suffix and310/409 advancement physical ownership. Original C++/TU/inheritance,
 compiler phase, payload-value and post-backend/exception equivalence remain
 unknown. No accepted shared-unit change or cold aggregate replay. Retain the
