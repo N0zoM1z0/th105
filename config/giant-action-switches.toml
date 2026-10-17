@@ -434,3 +434,91 @@ name = "actions410-412-sequence"
 dispatch = "0x00613DA1"
 destination_table = "0x00616714"
 destinations = ["0x00613DA8", "0x00612D47", "0x00612D82", "0x00612D36", "0x00613DE7", "0x00613AD5"]
+
+# Reimu Fighter +0x28: primary action tables and eight nested switches.
+# expected_direct_call_* retain the mapper raw-E8 sanity census, including
+# three immediate-byte false positives; decoded E8 calls are 1188 to32 targets.
+[[roots]]
+name = "reimu-vslot28"
+address = "0x478fa0"
+callable_end = "0x48ce2e"
+metadata_end = "0x48d38c"
+expected_unique_destinations = 126
+expected_direct_call_sites = 1191
+expected_direct_call_targets = 35
+expected_ret_opcodes = 153
+
+[[roots.regions]]
+name = "low"
+case_min = 0
+case_max = 226
+destination_table = "0x48ce30"
+destination_count = 45
+index_table = "0x48cee4"
+expected_physical_groups = 45
+
+[[roots.regions]]
+name = "mid"
+case_min = 301
+case_max = 551
+destination_table = "0x48cfc8"
+destination_count = 50
+index_table = "0x48d090"
+expected_physical_groups = 50
+
+[[roots.regions]]
+name = "high"
+case_min = 561
+case_max = 798
+destination_table = "0x48d19c"
+destination_count = 33
+index_table = "0x48d220"
+expected_physical_groups = 33
+
+[[roots.auxiliary_switches]]
+name = "action550-551-sequence"
+dispatch = "0x4874e6"
+destination_table = "0x48d18c"
+destinations = ["0x4874ed", "0x487525", "0x48789d", "0x48789d"]
+
+[[roots.auxiliary_switches]]
+name = "action616-sequence"
+dispatch = "0x489c5e"
+destination_table = "0x48d310"
+destinations = ["0x489c65", "0x489c65", "0x489d72", "0x489dc5", "0x489dc5", "0x489eb3", "0x489eb3"]
+
+[[roots.auxiliary_switches]]
+name = "action710-match-identifier"
+dispatch = "0x48b19f"
+destination_table = "0x48d32c"
+destinations = ["0x48b50d", "0x48b3ec", "0x48b2cb", "0x48b1a6"]
+
+[[roots.auxiliary_switches]]
+name = "action711-match-identifier"
+dispatch = "0x48b794"
+destination_table = "0x48d33c"
+destinations = ["0x48bb21", "0x48b9f1", "0x48b8c2", "0x48b79b"]
+
+[[roots.auxiliary_switches]]
+name = "action720-match-identifier"
+dispatch = "0x48be9d"
+destination_table = "0x48d34c"
+destinations = ["0x48c126", "0x48c050", "0x48bf7a", "0x48bea4"]
+
+[[roots.auxiliary_switches]]
+name = "action730-match-identifier"
+dispatch = "0x48c3dd"
+destination_table = "0x48d35c"
+destinations = ["0x48c3e4", "0x48c491", "0x48c53b", "0x48c606"]
+
+[[roots.auxiliary_switches]]
+name = "action740-first-match-identifier"
+dispatch = "0x48c738"
+destination_table = "0x48d36c"
+destinations = ["0x48c765", "0x48c759", "0x48c74c", "0x48c73f"]
+
+[[roots.auxiliary_switches]]
+name = "action740-second-match-identifier"
+dispatch = "0x48c8a8"
+destination_table = "0x48d37c"
+destinations = ["0x48c8bd", "0x48c8bd", "0x48c8b6", "0x48c8af"]

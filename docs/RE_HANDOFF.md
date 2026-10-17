@@ -32,7 +32,34 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Active priority: shared Fighter action root
+## Active priority: Reimu action root
+
+Current boss is `Reimu_dispatch_action_state_vslot28 @478FA0`, the largest
+unimplemented authored candidate. Its81550-byte callable ends48CE2E, SHA256
+dbf6f375a809fea91cbbccf0f8cff2196f40cba11458c98e475a290b623053e6.
+The11-switch CFG reaches20243 instructions/81488 bytes; the remaining62
+bytes are nine proved loop-alignment gaps, retained in strict comparison.
+There are1188 decoded E8s to32 targets and153 RETs. See
+[the full entry/boundary record](REIMU_ACTION_ENTRY_2026_10_17.md).
+
+`ReimuActionStatePrelude.cpp` stages the typed entry phase only. It preserves
+independent effect-action reads, signed facing versus unsigned direction,
+WORD count wrap, and continued count/decrement processing after timer clear.
+Native0/10584 covers actor bytes, exit categories and first callback arguments;
+two wrong-source controls each fail1/9 smoke cases. The oracle stops before
+callbacks or action dispatch. This helper is not an original boundary or the
+target root. Root status/source selection remain unclassified/declaration-only;
+no implementation/exact credit or shared header/profile change was made.
+
+Direct Ghidra attests the full root and bounded method view, all11 dispatches,
+entry stores and fallback/RET. All9 primary database files unchanged; clone
+removed. Next recover Reimu low actions0..10 from the closed target CFG,
+then proceed through the remaining families toward a complete whole root.
+Obsolete common-root GL controls/provider objects and rejected Reimu control
+objects were removed at this phase switch. Current Reimu evidence/object
+remain; regenerate common link products before using its inspect mode.
+
+## Shared Fighter root: preceding investigation
 
 The current bounded boss is `Fighter_update_common_action_state @ 4740C0`,
 the 10219-byte root used by all15 roster roots. Selected source stays at
@@ -56,7 +83,9 @@ bytes remain significant. Default guards and accepted-unit rules stay intact.
 `probe-common-fighter-ltcg.py --help` is now read-only; inspect mode reuses
 hash/digest-checked providers. Nested strict first+14 persists. Direct Ghidra
 attestation passed; all9 primary files unchanged, disposable clone removed.
-Next recover the action50/162 x87 continuation without losing exact owners.
+An additional commuted-comparison control loses799 and falls to52/66;
+it is rejected. Recovering the action50/162 x87 continuation still requires
+new source/compiler evidence; do not repeat the existing negative matrices.
 
 ## Iku steering face tails: preceding selected checkpoint
 
