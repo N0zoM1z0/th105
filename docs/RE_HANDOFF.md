@@ -32,7 +32,7 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Active priority: Iku joint exits and argument ownership
+## Active priority: Iku steering arguments and joint exits
 
 `Iku_dispatch_action_state_vslot28 @ 620920` retains complete110-action
 source, void thiscall prelude/default and one ascending switch. Target
@@ -41,7 +41,24 @@ abc831c6ccd95986bed811694f532ad8c8b92cb49702a7f6ce4de100b8a73dea.
 Strict whole-root remains **nonexact +0x64 /620984**: target alone hoists
 EDI=1. No exact/partial authored credit. Current evidence:
 [17-action common surface exit](IKU_COMMON_SURFACE_EXIT_2026_10_17.md) and
-[effect direction/argument ownership](IKU_EFFECT_DIRECTION_2026_10_17.md).
+[effect direction/argument ownership](IKU_EFFECT_DIRECTION_2026_10_17.md), now
+[730 steering argument lifetimes](IKU_STEERING_ARGUMENT_LIFETIMES_2026_10_17.md).
+
+730 now retains its rounded X local and reads peer Y through a field reference
+in the atan2 call. Target62DAC2/62DC40 and candidate62D835/62D9BC have identical
+complete73-byte argument preparations, including the reused initialESP+10 home
+and outgoing-X-before-Y order. These are internal diagnostics, not functions
+or exact credit. Only40 bytes in the entire59478-byte canonical section change
+from priorc9a1c3e4; every byte outside those two preparations stays identical.
+Fresh whole-entry native0/4960 includes3840 real aim/clamp continuations and
+1120 actual atan2-entry stops for signed zeros, cancellation, subnormals,
+maximal finite, Inf/NaN geometry and five signed-byte facings under PC53/64.
+Wrong unsigned-facing calibration detects368/1120. Native/configured sections
+are identical. Earlier direct-expression/value-accessor controls add temporary
+homes; direct field expressions instead choose FIMUL. None is selected.
+Ghidra re-attests both preparations and the185-byte clamp interval; all nine
+primary files unchanged and disposable clone removed. Five730 facing sites
+versus four target remain unresolved.
 
 The common height-ST0-to-Y / velocity-clear / return tail now has exactly
 its target incoming set:6/7/8/9/220/307/308/309/404/406/414/415/416/417/795/797/798.
@@ -55,10 +72,10 @@ CALLs are emitted. A label-inside-case8 control still placed the shared tail
 near the end, grew32 bytes and remained nonexact+64; unselected.
 
 Current source CRLF SHA256:
-c9a1c3e4715f18e19991fd7d5b19239fda5b482b1b1beaa4d6c13c41b867bda6.
+c8140ff0c2ca77ebd7440f8f756f0224eee29d984fb290dc66b43324539635af.
 Normalized full section59478 bytes, SHA256:
-ec153b60cb6f2d40487e486a25c78d619efcd901ae01291d9c1c7b88f3a361f6.
-The section shrinks72 bytes. Candidate15000 reachable instructions /58318
+7684266d089d10a0937dda3b9aa2ec770f5dbac76b1f636d530a5bb99377a6e8.
+The latest section extent is unchanged. Candidate15000 reachable instructions /58318
 instruction bytes in58321-byte span, three internal alignment bytes,1157
 following alignment/metadata bytes (metadata starts58324),128 RETs,
 862 ordinary/178 register CALLs,33/42/35 tables, no external tails. Target
@@ -68,7 +85,7 @@ physical-ordinal pairing retains84 singleton/bijective constraints,57 identity,
 182 spawn calls/190 action-site records. Target/candidate pre-epilogue
 PCs14870/14744, states16959/16900. These are not payload-value/path proofs.
 
-Fresh whole-entry native0/3252 covers the17 actions plus ground400/401/402:
+Priorc9 source whole-entry native0/3252 covers the17 actions plus ground400/401/402:
 2566 RETs and686 first backend entries per side (13 effect/511 action/
 8 next-sequence/120 sequence/34 object),2040 target-root instructions.
 Native/configured whole sections normalize identically. Inverting404/406's
@@ -87,7 +104,7 @@ Expanded ordinary counts differ only at730's five facing sites versus four;
 count/incoming-set agreement is not value or exact proof. Earlier412/418 and
 six-action effect groups retain their exact incoming sets in the current CFG.
 
-Latest effect-direction investigation leaves selected sourcec9a1c3e4 unchanged.
+The preceding effect-direction investigation at sourcec9a1c3e4 retained it unchanged.
 Target416/417 read byte104 once: zero-extend for the outgoing DWORD, then
 sign-extend the same low byte for the47-pixel offset. Keep both coordinate
 float round trips. The expanded five-byte-boundary fixture passes0/2664 from
@@ -147,8 +164,9 @@ truncation, ordered NaN, raw-X signed zero, branch-local730 limits6/4/5,
 scratch receiverthis+4 and ftol ST0->EAX32. Header already uses native virtual
 methods. Do not repeat source/flag controls without new independent evidence.
 
-Next: effect argument/direction ownership at incoming paths, initial constant1
-lifetime,730's duplicated facing suffix and310/409 advancement sharing.
+Next:730's duplicated facing suffix, initial constant1 lifetime, the effect
+outgoing-argument join and310/409 advancement sharing. Do not repeat isolated
+Y/accessor controls; their independent lifetime effects are now resolved.
 Original C++/TU/inheritance/optimizer, full value/payload/exception equivalence
 and post-backend behavior remain unknown. No accepted shared-unit change or
 cold aggregate replay. Remove superseded private controls, objects and clones.

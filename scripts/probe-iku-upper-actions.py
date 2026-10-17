@@ -315,8 +315,34 @@ def opening_branch_cases():
     return cases
 
 
+def steering_argument_cases():
+    """Observe rounded atan2 arguments before executing the real math entry."""
+    basic = dict(late.input_cases(True)[0], action=730, frame=0, timer=-1,
+                 time=7, index=0, steering_argument_fixture=True)
+    zeros = ("00000000", "80000000")
+    geometry = list(itertools.product(zeros, repeat=4))
+    geometry.extend((
+        ("3f800000", "3f800001", "3f800000", "3f7fffff"),
+        ("bf800000", "bf800001", "bf800000", "bf7fffff"),
+        ("00000001", "00800000", "80000001", "80800000"),
+        ("00800000", "00000001", "80800000", "80000001"),
+        ("7f7fffff", "ff7fffff", "7f7fffff", "ff7fffff"),
+        ("ff7fffff", "7f7fffff", "ff7fffff", "7f7fffff"),
+        ("7f800000", "7f800000", "ff800000", "7f800000"),
+        ("ff800000", "7f800000", "7f800000", "ff800000"),
+        ("00000000", "7fc12345", "00000000", "ffc12345"),
+        ("7fc12345", "00000000", "ffc12345", "00000000"),
+        ("00000000", "7f812345", "00000000", "ff812345"),
+        ("7f812345", "00000000", "ff812345", "00000000"),
+    ))
+    return [dict(basic, sequence=sequence, facing=facing, cw=cw,
+                 x_bits=x, y_bits=y, peer_x_bits=peer_x, peer_y_bits=peer_y)
+            for sequence, facing, cw, (x, peer_x, y, peer_y) in itertools.product(
+                (7, 8, 9, 10), (-128, -1, 0, 1, 127), (0x27F, 0x37F), geometry)]
+
+
 def steering_clamp_cases():
-    """Exercise both axes at binary32 clamp boundaries using real aim math."""
+    """Exercise real aim/clamps and stop exceptional geometry at atan2 entry."""
     basic = dict(late.input_cases(True)[0], action=730, frame=0, timer=-1,
                  time=7, index=0, x=640.0, y=100.0, x_bits="44200000",
                  steering_fixture=True)
@@ -337,7 +363,7 @@ def steering_clamp_cases():
                               vy_bits=f"{bits:08x}" if axis == "y" else "00000000",
                               peer_x=760.0 if axis == "x" else 640.0,
                               peer_y=100.0 if axis == "x" else 220.0))
-    return cases
+    return cases + steering_argument_cases()
 
 
 class UpperProbe(late.LateProbe):
@@ -354,6 +380,8 @@ class UpperProbe(late.LateProbe):
 
     def actor_fields(self, case):
         fields = super().actor_fields(case)
+        if case.get("steering_argument_fixture"):
+            fields = (*fields, (0xF0, "I", int(case["y_bits"], 16)))
         if case.get("steering_fixture"):
             fields = (*fields, (0xF8, "I", int(case["vy_bits"], 16)))
         if not case.get("middle_fixture"):
@@ -377,6 +405,10 @@ class UpperProbe(late.LateProbe):
         self.boundaries |= {0x45C180: 1, 0x4740C0: 0}
         if case.get("stop_lookup"):
             self.boundaries |= {0x4063D0: 1, 0x406360: 1}
+        if case.get("steering_argument_fixture"):
+            self.boundaries |= {0x406540: 2}
+            self.engine.mem_write(base.PEER + 0xEC, struct.pack("<2I",
+                int(case["peer_x_bits"], 16), int(case["peer_y_bits"], 16)))
         if case.get("opening_fixture"):
             self.engine.mem_write(base.PEER + 0x174, struct.pack("<h", case["peer_life"]))
             self.engine.mem_write(base.PEER + 0x48C, struct.pack("<h", case["peer_block48c"]))
@@ -418,6 +450,8 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
     elif control == "unordered-face":
         cases = [case for case in cases if case["action"] == 214
                  and case["sequence"] in (3, 8) and case.get("peer_x_bits") == "7fc00000"]
+    elif control == "steering-facing":
+        cases = [case for case in cases if case.get("steering_argument_fixture")]
     if not cases:
         raise ValueError("selected case collection is empty")
     seed_engine = spell.seed_module.Probe(canonical, pefile.PE(str(ROOT / "resources/th105.exe")).get_memory_mapped_image(),
@@ -430,6 +464,7 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
     differences, examples, mismatch_by_action = 0, [], {}
     effect_entries, negative_zero_x_entries, sequence_exit_entries = {}, {}, {}
     effect_directions = {}
+    steering_argument_entries = {}
     for number, case in enumerate(cases, 1):
         inputs.update(json.dumps(case, sort_keys=True).encode())
         try:
@@ -438,6 +473,11 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
             raise ValueError(f"{case}; pc={probe.engine.reg_read(r.UC_X86_REG_EIP):#x}; "
                              f"calls={probe.calls[-4:]}; {error}") from error
         outputs.update(json.dumps(expected, sort_keys=True).encode())
+        if case.get("steering_argument_fixture"):
+            if expected["outcome"] != "0x406540" or len(expected["calls"][-1]["arguments"]) != 2:
+                raise ValueError("steering argument case did not reach the genuine atan2 entry")
+            sequence = str(case["sequence"])
+            steering_argument_entries[sequence] = steering_argument_entries.get(sequence, 0) + 1
         if sequence_exits and expected["outcome"] == "0x45c220":
             action = str(case["action"])
             sequence_exit_entries[action] = sequence_exit_entries.get(action, 0) + 1
@@ -485,6 +525,7 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
             "sequence_effect_entries_by_action": effect_entries,
             "sequence_effect_direction_arguments_by_action": effect_directions,
             "sequence_effect_negative_zero_x_by_action": negative_zero_x_entries,
+            "steering_argument_entries_by_sequence": steering_argument_entries,
             "sequence_exit_entries_by_action": sequence_exit_entries,
             "event_exit_call_sites_visited": {str(action): hex(site) for action, site in event_sites.items()},
             "frame_bound_sites_visited": {str(action): list(map(hex, sites)) for action, sites in bound_sites.items()},
@@ -497,6 +538,7 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
             "unicorn_version": unicorn.__version__,
             "scope": "110 recovered action bodies in one compiled dispatcher; real prelude/math/RNG/helpers; "
                      "RET or genuine first object/effect/animation/finalize/common backend entry; "
+                     "steering argument cases stop at real atan2 entry; "
                      "NaN X stops at abs entry and NaN/Inf heading at cosine entry; "
                      "no injected helper returns; post-backend paths, exceptional/backend continuation and full-root exact equality unproved"}
 
@@ -522,6 +564,18 @@ def control_source(name):
     elif name == "effect-direction":
         needle = "emit_fighter_effect_433cc0(62, sequence_effect_x, sequence_effect_y, byte_at(0x104), 1);"
         replacement = "emit_fighter_effect_433cc0(62, sequence_effect_x, sequence_effect_y, static_cast<signed char>(byte_at(0x104)), 1);"
+    elif name == "steering-facing":
+        first = source.index("    __forceinline void steer(bool fixed_limit) {")
+        last = source.index("    __forceinline void restore_surface_motion()", first)
+        body = source[first:last]
+        needle = "float x = static_cast<float>(facing()) *"
+        if body.count(needle) != 1:
+            raise ValueError("steering control requires one signed-facing X expression")
+        body = body.replace(needle, "float x = static_cast<float>(byte_at(0x104)) *")
+        source = source[:first] + body + source[last:]
+        path = ROOT / "build/iku-upper-steering-facing.cpp"
+        path.write_bytes(source.replace("\n", "\r\n").encode())
+        return path
     elif name == "positive-steer":
         needle = "if (facing() * int_at(0x6b4) > 0) { set_action_and_finalize(212); return true; }"
         replacement = "if (facing() * int_at(0x6b4) >= 0) { set_action_and_finalize(212); return true; }"
@@ -612,7 +666,7 @@ if __name__ == "__main__":
     cases.add_argument("--sequence-exits", action="store_true", help="whole-root562/563/730 shared sequence-return edges and adjacent gates")
     cases.add_argument("--event-exits", action="store_true", help="whole-root305/696 frame thresholds and both real event29 call sites")
     cases.add_argument("--frame-bounds", action="store_true", help="whole-root225/408 frame7 boundary paths with real RNG and helpers")
-    parser.add_argument("--control", choices=("aim-limit", "unsigned-gate", "single-counter", "positive-steer", "effect-height", "effect-direction", "sequence-exit-gate", "event-frame-gate", "frame-bound-gates", "unsigned-brake", "current-height", "zero-offset", "prelude-countdown", "unordered-face"))
+    parser.add_argument("--control", choices=("aim-limit", "unsigned-gate", "single-counter", "positive-steer", "effect-height", "effect-direction", "steering-facing", "sequence-exit-gate", "event-frame-gate", "frame-bound-gates", "unsigned-brake", "current-height", "zero-offset", "prelude-countdown", "unordered-face"))
     parser.add_argument("--coordinates", action="store_true", help="with --middle, focus on direct X transfer and signed zero")
     parser.add_argument("--whole", action="store_true", help="execute both real/candidate roots from their own entry")
     parser.add_argument("--actions", type=int, nargs="+", help="run only these action IDs from the selected fixture")
@@ -631,6 +685,8 @@ if __name__ == "__main__":
         parser.error("positive-steer requires --opening-branches")
     if args.control in ("effect-height", "effect-direction") and not args.sequence_effects:
         parser.error("effect controls require --sequence-effects")
+    if args.control == "steering-facing" and not args.steering_clamps:
+        parser.error("steering-facing requires --steering-clamps")
     if args.control == "sequence-exit-gate" and not args.sequence_exits:
         parser.error("sequence-exit-gate requires --sequence-exits")
     if args.control == "event-frame-gate" and not args.event_exits:

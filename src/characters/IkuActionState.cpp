@@ -142,8 +142,11 @@ private:
     __forceinline void steer(bool fixed_limit) {
         ++short_at(0x734);
         float x = static_cast<float>(facing()) * (peer_float(0xec) - float_at(0xec));
-        float y = peer_float(0xf0) - float_at(0xf0);
-        float_at(0x744) = -atan2_degrees(y, x);
+        // Keep X's rounded argument ahead of Y evaluation. The peer Y field
+        // is a reference, without an accessor-return temporary.
+        const float &peer_y = *reinterpret_cast<const float *>(
+            static_cast<const unsigned char *>(related_170) + 0xf0);
+        float_at(0x744) = -atan2_degrees(static_cast<float>(peer_y - float_at(0xf0)), x);
         // Raw code uses FCHS twice, with no subtraction/decrement by one.
         float_at(0xf4) = static_cast<float>(
             lookup_orientation_cosine_quantized_abs(-float_at(0x744)) * 0.5 + float_at(0xf4));
