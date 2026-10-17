@@ -14,6 +14,7 @@ import json
 from pathlib import Path
 import struct
 import sys
+import tomllib
 
 import pefile
 import unicorn
@@ -21,6 +22,7 @@ from unicorn import unicorn as unicorn_api
 from unicorn import x86_const as r
 
 import linked_pe
+from reimu_staging_extent import staging_execution_extent
 from reimu_late_low_fixture import resource_graph, native_orientation_table
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -222,7 +224,12 @@ def audit(object_path, smoke=False, selected_cohorts=None, *, contract=None):
                      ROOT / "scripts/audit-reimu-low-actions.py",
                      ROOT / "scripts/reimu_animation_fixture.py",
                      ROOT / "scripts/audit-common-fighter-animation-paths.py"]
-    support_paths.append(Path(contract.__file__))
+    support_paths.extend((ROOT / "scripts/reimu_staging_extent.py", Path(contract.__file__)))
+    allow_metadata = getattr(contract, "ALLOW_SWITCH_METADATA", False)
+    if allow_metadata:
+        support_paths.extend(ROOT / name for name in (
+            "config/giant-action-switches.toml", "config/functions.csv",
+            "scripts/compare-giant-action-switches.py", "scripts/map-giant-action-switches.py"))
     support_paths.extend(getattr(contract, "SUPPORT_PATHS", ()))
     support_hashes = {str(path.relative_to(ROOT)): linked_pe.sha(path) for path in support_paths}
     canonical = linked_pe.comparator()
@@ -247,8 +254,22 @@ def audit(object_path, smoke=False, selected_cohorts=None, *, contract=None):
         known.setdefault("__real@"+bits, (address, literal, frozenset({0}), "literal"))
     object_sha = linked_pe.sha(object_path)
     candidate = canonical.coff_symbol_bytes(object_path, SYMBOL, ADDRESS, len(obj.text), rel32, known, {})
-    if len(candidate) > SIZE or any(ADDRESS < start+length and start < ADDRESS+len(candidate)
-                                  for start, (length, _) in HELPERS.items()):
+    metadata_start = None
+    if len(candidate) > SIZE and allow_metadata:
+        manifest = tomllib.loads((ROOT / "config/giant-action-switches.toml").read_text())
+        target_mapper = mapper.load_target_mapper()
+        root = target_mapper.select_root(manifest, "reimu-vslot28")
+        if (int(root["address"], 0) != ADDRESS or int(root["callable_end"], 0) != ADDRESS+SIZE
+                or int(root["metadata_end"], 0) != 0x48D38C):
+            raise ValueError("reviewed Reimu callable/metadata extent changed")
+        target_mapper.map_root(target_mapper.PeImage(ROOT / "resources/th105.exe"),
+                               target_mapper.load_function_rows(ROOT / "config/functions.csv"), root)
+        metadata_start = mapper.build_candidate_map(obj, root)["metadata_start"]
+    execution_extent = staging_execution_extent(
+        len(candidate), SIZE, allow_switch_metadata=allow_metadata,
+        metadata_start=metadata_start, metadata_limit=0x48D38C-ADDRESS)
+    if any(ADDRESS < start+length and start < ADDRESS+len(candidate)
+           for start, (length, _) in HELPERS.items()):
         raise ValueError("candidate staging body overlaps a real helper")
     image = pefile.PE(str(ROOT / "resources/th105.exe")).get_memory_mapped_image()
     if (image[0x2FA898:0x2FBC98] != bytes(0x1400)
@@ -257,6 +278,7 @@ def audit(object_path, smoke=False, selected_cohorts=None, *, contract=None):
         raise ValueError("fixture needs original flat surface/inactive event context")
     tables = {cw: native_orientation_table(image, cw) for cw in (0x27F, 0x37F)}
     probes = [Probe(image, target, False, tables), Probe(image, candidate, True, tables)]
+    probes[1].end = ADDRESS+execution_extent
     count = mismatches = 0
     digest, cohorts, stops, examples = hashlib.sha256(), Counter(), Counter(), []
     for case in cases(smoke):
@@ -295,6 +317,8 @@ def audit(object_path, smoke=False, selected_cohorts=None, *, contract=None):
             "unicorn_version": unicorn.__version__, "python_version": sys.version.split()[0],
             "unicorn_library_sha256": linked_pe.sha(Path(unicorn_api._uc._name)),
             "build_provenance_verified": False, "support_sha256": support_hashes,
+            "candidate_execution_extent": execution_extent,
+            "candidate_text_bytes": len(candidate), "candidate_metadata_start": metadata_start,
             "scope": getattr(contract, "SCOPE", "integrated entry and low source; common/669/world stops compare real call entry; "
                      "upper pending compares state at original mid selector; supplied flat/zero-handle context, "
                      "MT and helpers; RET or complete real world request; no returning request, "

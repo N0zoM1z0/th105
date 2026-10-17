@@ -248,26 +248,144 @@
             if (frame_index_140 == 1) {
                 dispatch_character_wave_handle(4);
                 const unsigned int mode = static_cast<unsigned int>(g_match_identifier);
-                if (mode <= 3) {
-                    const double spacing = selected_action == 710
-                        ? (mode == 0 ? 120.0 : mode == 1 ? 90.0 : mode == 2 ? 60.0 : 45.0)
-                        : (mode <= 1 ? 60.0 : mode == 2 ? 45.0 : 36.0);
-                    const float count = selected_action == 710
-                        ? (mode == 0 ? 3.0f : mode == 1 ? 4.0f : mode == 2 ? 6.0f : 8.0f)
-                        : (mode == 0 ? 3.0f : mode == 1 ? 4.0f : mode == 2 ? 5.0f : 6.0f);
-                    for (float i = 0.0f; i < count; i += 1.0f) {
-                        const float horizontal = static_cast<float>(
-                            (static_cast<double>(peer_170->x_ec) - x_ec) * facing_104);
-                        const float vertical = static_cast<float>(static_cast<double>(peer_170->y_f0) - y_f0);
-                        const double aim = -static_cast<double>(atan2_degrees(vertical, horizontal));
-                        const double offset = selected_action == 711 ? (mode == 0 ? 60.0 : 90.0) : 0.0;
-                        const float parameters[3] = {static_cast<float>((aim - offset) + i * spacing), 4.0f, 0.0f};
-                        const float y = static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
-                            * 100.0 + y_f0 + 100.0);
-                        const float x = static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
-                            * 100.0 * facing_104 + x_ec);
-                        spawn_owned_object_via_manager(900, x, y,
-                            static_cast<unsigned char>(facing_104), 1, parameters, 3);
+                float parameters[3];
+                if (selected_action == 710) {
+                    switch (mode) {
+                    case 3:
+                        for (float i = 0.0f; i < 8.0f; i += 1.0f) {
+                            parameters[0] = static_cast<float>(
+                                i * 45.0 + (-static_cast<double>(atan2_degrees(
+                                    static_cast<float>(static_cast<double>(peer_170->y_f0) - y_f0),
+                                    static_cast<float>((static_cast<double>(peer_170->x_ec) - x_ec) * facing_104)))));
+                            parameters[1] = 4.0f;
+                            parameters[2] = 0.0f;
+                            spawn_owned_object_via_manager(900,
+                                static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
+                                    * 100.0 * facing_104 + x_ec),
+                                static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
+                                    * 100.0 + y_f0 + 100.0),
+                                static_cast<unsigned char>(facing_104), 1, parameters, 3);
+                        }
+                        break;
+                    case 2:
+                        for (float i = 0.0f; i < 6.0f; i += 1.0f) {
+                            parameters[0] = static_cast<float>(
+                                i * 60.0 + (-static_cast<double>(atan2_degrees(
+                                    static_cast<float>(static_cast<double>(peer_170->y_f0) - y_f0),
+                                    static_cast<float>((static_cast<double>(peer_170->x_ec) - x_ec) * facing_104)))));
+                            parameters[1] = 4.0f;
+                            parameters[2] = 0.0f;
+                            spawn_owned_object_via_manager(900,
+                                static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
+                                    * 100.0 * facing_104 + x_ec),
+                                static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
+                                    * 100.0 + y_f0 + 100.0),
+                                static_cast<unsigned char>(facing_104), 1, parameters, 3);
+                        }
+                        break;
+                    case 1:
+                        for (float i = 0.0f; i < 4.0f; i += 1.0f) {
+                            parameters[0] = static_cast<float>(
+                                i * 90.0 + (-static_cast<double>(atan2_degrees(
+                                    static_cast<float>(static_cast<double>(peer_170->y_f0) - y_f0),
+                                    static_cast<float>((static_cast<double>(peer_170->x_ec) - x_ec) * facing_104)))));
+                            parameters[1] = 4.0f;
+                            parameters[2] = 0.0f;
+                            spawn_owned_object_via_manager(900,
+                                static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
+                                    * 100.0 * facing_104 + x_ec),
+                                static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
+                                    * 100.0 + y_f0 + 100.0),
+                                static_cast<unsigned char>(facing_104), 1, parameters, 3);
+                        }
+                        break;
+                    case 0:
+                        for (float i = 0.0f; i < 3.0f; i += 1.0f) {
+                            parameters[0] = static_cast<float>(
+                                i * 120.0 + (-static_cast<double>(atan2_degrees(
+                                    static_cast<float>(static_cast<double>(peer_170->y_f0) - y_f0),
+                                    static_cast<float>((static_cast<double>(peer_170->x_ec) - x_ec) * facing_104)))));
+                            parameters[1] = 4.0f;
+                            parameters[2] = 0.0f;
+                            spawn_owned_object_via_manager(900,
+                                static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
+                                    * 100.0 * facing_104 + x_ec),
+                                static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
+                                    * 100.0 + y_f0 + 100.0),
+                                static_cast<unsigned char>(facing_104), 1, parameters, 3);
+                        }
+                        break;
+                    default:
+                        break;
+                    }
+                } else {
+                    switch (mode) {
+                    case 3:
+                        for (float i = 0.0f; i < 6.0f; i += 1.0f) {
+                            parameters[0] = static_cast<float>(
+                                i * 36.0 + (-static_cast<double>(atan2_degrees(
+                                    static_cast<float>(static_cast<double>(peer_170->y_f0) - y_f0),
+                                    static_cast<float>((static_cast<double>(peer_170->x_ec) - x_ec) * facing_104))) - 90.0));
+                            parameters[1] = 4.0f;
+                            parameters[2] = 0.0f;
+                            spawn_owned_object_via_manager(900,
+                                static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
+                                    * 100.0 * facing_104 + x_ec),
+                                static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
+                                    * 100.0 + y_f0 + 100.0),
+                                static_cast<unsigned char>(facing_104), 1, parameters, 3);
+                        }
+                        break;
+                    case 2:
+                        for (float i = 0.0f; i < 5.0f; i += 1.0f) {
+                            parameters[0] = static_cast<float>(
+                                i * 45.0 + (-static_cast<double>(atan2_degrees(
+                                    static_cast<float>(static_cast<double>(peer_170->y_f0) - y_f0),
+                                    static_cast<float>((static_cast<double>(peer_170->x_ec) - x_ec) * facing_104))) - 90.0));
+                            parameters[1] = 4.0f;
+                            parameters[2] = 0.0f;
+                            spawn_owned_object_via_manager(900,
+                                static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
+                                    * 100.0 * facing_104 + x_ec),
+                                static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
+                                    * 100.0 + y_f0 + 100.0),
+                                static_cast<unsigned char>(facing_104), 1, parameters, 3);
+                        }
+                        break;
+                    case 1:
+                        for (float i = 0.0f; i < 4.0f; i += 1.0f) {
+                            parameters[0] = static_cast<float>(
+                                i * 60.0 + (-static_cast<double>(atan2_degrees(
+                                    static_cast<float>(static_cast<double>(peer_170->y_f0) - y_f0),
+                                    static_cast<float>((static_cast<double>(peer_170->x_ec) - x_ec) * facing_104))) - 90.0));
+                            parameters[1] = 4.0f;
+                            parameters[2] = 0.0f;
+                            spawn_owned_object_via_manager(900,
+                                static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
+                                    * 100.0 * facing_104 + x_ec),
+                                static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
+                                    * 100.0 + y_f0 + 100.0),
+                                static_cast<unsigned char>(facing_104), 1, parameters, 3);
+                        }
+                        break;
+                    case 0:
+                        for (float i = 0.0f; i < 3.0f; i += 1.0f) {
+                            parameters[0] = static_cast<float>(
+                                i * 60.0 + (-static_cast<double>(atan2_degrees(
+                                    static_cast<float>(static_cast<double>(peer_170->y_f0) - y_f0),
+                                    static_cast<float>((static_cast<double>(peer_170->x_ec) - x_ec) * facing_104))) - 60.0));
+                            parameters[1] = 4.0f;
+                            parameters[2] = 0.0f;
+                            spawn_owned_object_via_manager(900,
+                                static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
+                                    * 100.0 * facing_104 + x_ec),
+                                static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
+                                    * 100.0 + y_f0 + 100.0),
+                                static_cast<unsigned char>(facing_104), 1, parameters, 3);
+                        }
+                        break;
+                    default:
+                        break;
                     }
                 }
             }

@@ -336,7 +336,21 @@ diagnostic difference remains570h versus5A8h stack allocation. No accepted
 source/header/profile/relocation change or aggregate replay. Nine primary
 Ghidra hashes unchanged; obsolete probes/controls cleaned. See
 [510 request-source evidence](REIMU_510_REQUEST_SHAPE_2026_10_18.md).
-Next prioritize710/711/720/730 mode/request lowering, then740's undefined
+710/711 now have eight independent mode loops, with per-iteration payload
+resets and fresh actor reads. Compact and three-region objects both pass0/2372
+focused native cases. A separate unvalued-angle static contract accepts all8
+target/source loops; compiled wrong-spacing/count controls pass first-request
+0/600 but each fail the corresponding static mode. Source argument order
+removes avoidable spills. The probe keeps126 primary destinations; its prefix
+is80344 bytes, text81652,1158 decoded E8s and146 RETs. The two spans total3146
+versus target3097. Stack remains5A8h versus570h; no exact credit. An opt-in
+fixture bounds executable code within81550 and mapped switch data within the
+reviewed original metadata end48D38C; old contracts remain fail-closed.
+Old final/510 smokes and all48 510 packets still pass. No accepted-unit or
+aggregate replay; all9 primary DB hashes unchanged. Baseline/control objects,
+superseded generated source and caches are cleaned. See
+[aimed-mode evidence](REIMU_AIMED_MODE_SHAPE_2026_10_18.md).
+Next prioritize720/730 mode/request lowering, then740's undefined
 paths, full void/default ABI, returning world contexts and VC8/LTCG/TU evidence
 before canonical root acceptance.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.
