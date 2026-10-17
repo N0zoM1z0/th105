@@ -72,6 +72,19 @@ sections normalize identically. Real helpers run with no result hooks.
 Post-effect/sequence/backend continuations remain unproved. No routine broad
 matrix replay; older results remain scoped to their recorded source hashes.
 
+New [sequence-exit/duplication evidence](IKU_SEQUENCE_EXIT_PHASE_2026_10_17.md)
+retains that exact same source. Whole-entry562/563/730 passes0/1728:56 real
+sequence entries (12/12/32),384 action entries,64 object entries/1224 RETs,
+300 target instructions. Wrong730 time>60 control detects16/1728 at time60.
+Target626C47 has15 incoming actions; candidate still places562/563/730 with
+560/561 separately from the other12. A private single-label control emits
+two byte-identical17-byte virtual-call/RET suffixes anyway and fails to recover
+the group; unselected. Rechecked float clamp bounds retain five730 face calls
+and add32 section bytes; double bounds fail strict unbound8-byte literal
+replay. Do not repeat these controls without new evidence. This is a compiler
+output witness, not proof of a specific pass or LTCG barrier. The header already
+uses native virtual declarations. No source/header/layout/profile change.
+
 Earlier selected contracts remain in
 [conditional exits/height argument](IKU_LANDING_ARGUMENT_OWNERSHIP_2026_10_17.md):
 separate10/200 action/RET leaves;412 frame>=2 and direct real height ST0 into
