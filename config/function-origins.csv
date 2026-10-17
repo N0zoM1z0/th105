@@ -951,7 +951,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0042CEA0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0042CEF0,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
 0x0042CF20,compiler_generated,battle,exclude,observed,vc8-generated-spell-tree-probe-comdats-106a
-0x0042CF70,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0042CF70,authored_game,config,authored,observed,score-sequence-result-authored-106a
 0x0042D010,authored_game,config,authored,observed,score-observed-statistics-authored-106a
 0x0042D0D0,compiler_generated,runtime,exclude,observed,vc8-generated-uint-set-tree-family-106a
 0x0042D140,compiler_generated,ui,exclude,observed,vc8-generated-profile-data-writer-std-comdats-106a

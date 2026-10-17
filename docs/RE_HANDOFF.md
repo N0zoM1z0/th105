@@ -13,9 +13,9 @@ are historical.
   `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
   Never substitute 1.06 or a localized executable.
 - Last checked ledger census: **4,023 provisional candidates**, with
-  **1,541 authored / 1,415 excluded / 1,067 in review**; **1,454 mapped**,
-  **1,435 source-present**, **1,333 exact / 225,099 exact bytes**, and
-  **515 match units**. These are ledger/status totals, not a fresh aggregate
+  **1,542 authored / 1,415 excluded / 1,066 in review**; **1,455 mapped**,
+  **1,436 source-present**, **1,333 exact / 225,099 exact bytes**, and
+  **516 match units**. These are ledger/status totals, not a fresh aggregate
   cold replay. Recompute before quoting them.
 - `config/claims.csv` remains header-only. `implemented.csv` means source
   present, and only `matches.csv` plus a reproducible canonical 100% unit
@@ -32,7 +32,7 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Active priority: Iku whole-root clamp/call ownership
+## Active priority: Iku whole-root link/call ownership
 
 Iku_dispatch_action_state_vslot28 @620920 retains complete selected source:
 110 actions, actual void thiscall entry, original prelude/default and one
@@ -40,7 +40,35 @@ ascending switch. Target is59038 bytes/15132 instructions/131 RETs. Frame
 400hex and84 payload identities are recovered naturally; first100 bytes agree,
 then canonical comparison remains **nonexact+0x64 /620984**, where target alone
 hoists EDI=1 before the action-range branch. No partial/exact credit.
-Current evidence: [steering clamps](IKU_STEERING_CLAMPS_2026_10_17.md).
+Current evidence: [real source link](IKU_REAL_LINK_2026_10_17.md) and
+[steering clamps](IKU_STEERING_CLAMPS_2026_10_17.md).
+
+The complete root now links with41 real game source providers, genuine pinned
+SDK deque instantiations and CRT. Of52 independently compared game dependency
+addresses,47 are exact;406360/4063D0/417800/42CF70/4740C0 remain nonexact.
+Forty-four checked same-target aliases and18 attested non-code data bindings
+close the diagnostic link, without code stubs or unresolved-link overrides.
+The406330 float/fabs adapter remains provisional, nonexact and unclassified.
+SDK4399C0/42D1B0 reproduce94/100 target bytes before and after linking.
+Linked root10001000 closes15032 instructions/58433 instruction bytes, all
+three33/42/35 switches and867 ordinary calls/32 provider names. Frame400 and
+first100 entry bytes agree; byte100 still differs620984. No full linked-root
+canonical replay or linked-image execution is claimed. The public probe's
+--reuse run verifies inputs/commands/tool/object hashes, reuses all44 objects
+and relinks. Preserve this small cache; remove superseded output controls.
+
+The required45D110 ->43AF20 ->ScoreData42CF70 chain now has target-reviewed
+source with a real checked vector iterator: three DWORD args/RET12, mode and
+session gates, first matching24-byte record count increment. Ordinary142/159
+remains nonexact; target's self-container check and early branch widths differ.
+Native0/1323 covers1317 RETs/six genuine invalid-parameter entries with real
+getters. The previous duplicate method is removed from ScoreObservations.cpp;
+its existing42D010 body remains byte-identical182/nonexact191. No accepted
+shared header/layout/profile/canonical binding changed. One authored/source
+entry is added; exact totals remain ledger-only and unchanged. The direct
+Ghidra clone used for this missing routine was removed; primary files are
+unchanged. Next establish full linked relocation replay or bounded execution
+of actual providers, then continue shared call/payload ownership.
 
 Action730 seq7/8 target62DB64 reads mode3/0/other and clamps X's upper bound
 inside the respective branch at6/4/5, then joins62DBB2 for X's lower and both
@@ -102,8 +130,8 @@ is rejected;re-attest before database use. No database metadata was changed.
 602/live x87 X addition,310 double increment,780 widened0.95f truncation and
 raw-X signed zero. Full inheritance/original C++/TU spelling,LTCG's role,
 post-backend and exceptional behavior remain unknown. No exact count or cold
-aggregate change. Stay on joint argument/suffix ownership,scalar/constant
-lifetimes and payload-home provenance in this large root.
+aggregate change. Stay on the real linked context, joint argument/suffix
+ownership, scalar/constant lifetimes and payload-home provenance in this root.
 
 ## Shared Fighter linked checkpoint
 

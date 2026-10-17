@@ -3098,3 +3098,15 @@ required_selected_body_calls = [
   { owner = "0x0046CCA0", site = "0x0046D2CC", target = "0x00435950" },
   { owner = "0x0046CCA0", site = "0x0046D303", target = "0x00435950" },
 ]
+
+[[rules]]
+id = "score-sequence-result-authored-106a"
+addresses = ["0x0042CF70"]
+expected_count = 1
+expected_bytes = 159
+expected_names = ["sub_42CF70"]
+origin = "authored_game"
+subsystem = "config"
+disposition = "authored"
+confidence = "observed"
+evidence = "Hash-attested Fighter_finalize_sequence_entry45D110 calls this ScoreData method after the real singleton getter. Complete159-byte raw CFG gates on application game/session modes and increments the first record matching two application keys in the observed-record vector at198hex. The SDK checked iterator is inlined into authored record policy. New selected source is complete but142/159 nonexact; native1323 cases run real getters with1317 RETs and6 genuine invalid-parameter entries. Required source provider for Iku's real link, not a library-only wrapper or exact claim. docs/IKU_REAL_LINK_2026_10_17.md."

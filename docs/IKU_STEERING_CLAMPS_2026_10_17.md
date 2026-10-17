@@ -1,6 +1,7 @@
 # Iku steering clamps and payload-home correlation
 
-Current checkpoint after [call sharing/result consumers](IKU_CALL_SHARING_2026_10_17.md).
+Source-shape checkpoint after [call sharing/result consumers](IKU_CALL_SHARING_2026_10_17.md).
+The subsequent [real source link](IKU_REAL_LINK_2026_10_17.md) retains this source.
 Target remains original Japanese TH10.5 v1.06a, SHA-256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 Root620920 is59038 bytes, SHA-256

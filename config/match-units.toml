@@ -19452,3 +19452,20 @@ dir32_targets = [
   "__real@c3340000=__real@c3340000",
   "__real@c3480000=__real@c3480000",
 ]
+
+[units.gpt-web-score-sequence-result]
+kind = "probe"
+source = "src/config/ScoreSequenceResult.cpp"
+object = "build/match-units/GptWeb_ScoreSequenceResult.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Required real source dependency of Iku's sequence-finalize path. Target42CF70 walks the checked VC8 vector at198hex plus16*selector; increment only the first matching24-byte record's count0C. Complete source, not an exact claim; target retains a self-container compatibility check omitted by the ordinary compiler."
+
+[[units.gpt-web-score-sequence-result.functions]]
+address = "0x0042CF70"
+symbol_base = "?record_sequence_result_42c060@ScoreData@th105@@QAEXHHH@Z"
+rel32_targets = [
+  "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40",
+  "?get_session_setup_option@th105@@YAIXZ=0x0043B070",
+  "__invalid_parameter_noinfo=0x0068A143",
+]

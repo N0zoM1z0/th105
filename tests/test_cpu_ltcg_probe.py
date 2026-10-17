@@ -38,6 +38,16 @@ class CpuLtcgSourceControlTests(unittest.TestCase):
 
 
 class CpuLtcgDependencyTests(unittest.TestCase):
+    def test_loop_alignment_requires_the_exact_jump_gap_and_aligned_destination(self):
+        start = 0x1000100B
+        code = bytes.fromhex("eb038d4900c3")
+        rows = probe.decode(code, start)
+        self.assertTrue(probe.qualified_jump_alignment(code, start, rows, start + 2, start + 5))
+        for changed, base in ((bytes.fromhex("eb028d4900c3"), start),
+                              (bytes.fromhex("eb038d4000c3"), start), (code, start + 1)):
+            with self.subTest(code=changed.hex(), base=base):
+                self.assertFalse(probe.qualified_jump_alignment(changed, base, probe.decode(changed, base), base + 2, base + 5))
+
     def test_a_missing_sixth_switch_destination_cannot_close_the_cfg(self):
         indices = bytes([0, 1, 2, 3, 4, 5, 0])
         destinations = list(range(6))

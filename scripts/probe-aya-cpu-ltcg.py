@@ -99,8 +99,18 @@ def normalize_map_aliases(functions, aliases):
     return result
 
 
+def qualified_jump_alignment(code, start, instructions, first, last):
+    """Recognize the observed short-JMP/three-byte-LEA/16-byte-header pattern."""
+    previous = next((row for row in instructions if row.address + row.size == first), None)
+    return (last % 16 == 0 and code[first - start:last - start] == b"\x8d\x49\x00"
+            and previous is not None and bytes(previous.bytes) == b"\xeb\x03"
+            and previous.operands[0].type == capstone.x86.X86_OP_IMM
+            and previous.operands[0].imm == last)
+
+
 def inspect_linked_root(image, map_path, canonical, *, symbol=SYMBOL,
-                        root_name="aya-cpu-action-policy", switch_count=6, aliases=None):
+                        root_name="aya-cpu-action-policy", switch_count=6, aliases=None,
+                        allow_loop_alignment=False):
     """Inspect every reachable instruction, with bounds-checked switch indices.
 
     Map names alone never authorize remapping a privately specialized callee.
@@ -207,6 +217,8 @@ def inspect_linked_root(image, map_path, canonical, *, symbol=SYMBOL,
     if boundary["unresolved_indirect_exits"] or boundary["internal_call_targets"]:
         raise ValueError("unclosed linked CPU transfers")
     for first, last in boundary["unreached_ranges"]:
+        if allow_loop_alignment and qualified_jump_alignment(code, start, instructions, first, last):
+            continue
         # Observed VC8 four-byte table alignment: MOV EDI,EDI or LEA ECX,[ECX].
         # Permit only this trailing gap after RET, never interior dead code.
         gap = code[first - start:last - start]
@@ -225,6 +237,7 @@ def inspect_linked_root(image, map_path, canonical, *, symbol=SYMBOL,
     return {"root_callable_and_padding_bytes": len(code), "reachable_bytes": boundary["reachable_bytes"],
             "reachable_instructions": boundary["reachable_instructions"], "switches": facts,
             "unreached_padding_bytes": len(code) - boundary["reachable_bytes"], "direct_calls": call_counts,
+            "unreached_alignment_ranges": boundary["unreached_ranges"],
             "deque": canonical_deque(helper_code, helper, functions, canonical),
             "scope": "full linked CFG and separate library witness; root is not canonically compared or executed"}
 

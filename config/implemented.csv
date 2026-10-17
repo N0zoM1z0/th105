@@ -1433,3 +1433,4 @@ NetworkWinsock_start_connection
 NetworkWinsock_connection_thread_entry
 Aya_update_cpu_action_policy
 Iku_dispatch_action_state_vslot28
+ScoreData_record_sequence_result
