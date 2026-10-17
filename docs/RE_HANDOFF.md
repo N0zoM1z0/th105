@@ -32,7 +32,7 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Active priority: Iku atan2 arguments and joint exits
+## Active priority: Iku real advance callbacks and joint exits
 
 `Iku_dispatch_action_state_vslot28 @ 620920` retains complete110-action
 source, void thiscall prelude/default and one ascending switch. Target
@@ -42,7 +42,26 @@ Strict whole-root remains **nonexact +0x64 /620984**: target alone hoists
 EDI=1. No exact/partial authored credit. Current evidence:
 [17-action common surface exit](IKU_COMMON_SURFACE_EXIT_2026_10_17.md) and
 [effect direction/argument ownership](IKU_EFFECT_DIRECTION_2026_10_17.md), now
-[all six atan2 argument lifetimes](IKU_STEERING_ARGUMENT_LIFETIMES_2026_10_17.md).
+[all six atan2 argument lifetimes](IKU_STEERING_ARGUMENT_LIFETIMES_2026_10_17.md),
+plus [real animation completion](IKU_ADVANCE_CALLBACKS_2026_10_17.md).
+
+The latest bounded investigation leaves C++ source/whole section unchanged.
+310/409 still share candidate4351C0 call6245ED versus separate target624612/
+625893. AL return width is already correct; explicit409 failed-advance return
+is whole-section byte-neutral and unselected. The new--advance-callbacks
+fixture executes original frame/block callbacks and real frame application,
+closing the ordinary high-frame-limit fixture's successful-advance gap.
+Native0/1992 includes310/409 successes120/48 and912 normal RETs each, with
+712 real next-frame and264 next-block entries per side. Wrong409 action10
+calibration detects48/960, exactly the successful subset. Original vtable/
+code untouched;13 byte-pinned dependencies, Sprite ECX/EAX receiver checks,
+zero texture handle and valid checked slot span; no substituted results.
+436760/40C100 remain unclassified, not source/ownership/exact promotions.
+Frame format2/nonzero texture/error/unmasked/final-backend behavior remains
+unproved. Native/configured complete sections agree; Ghidra independently
+attests13 spans, slots and decisive calls; nine primary files unchanged.
+No call-sharing or compiler-barrier conclusion follows from this new runtime
+coverage. Original first+64 mismatch and full95% authored-byte goal persist.
 
 The latest560/561/562/563 extension gives all six atan2 sites identical
 complete73-byte target preparations. Four new spans start target628F2E/

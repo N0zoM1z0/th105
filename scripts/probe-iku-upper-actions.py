@@ -3,8 +3,8 @@
 
 This is a semantic source diagnostic, not a standalone-object exact claim.
 Whole mode executes each root's own prelude. Legacy staged mode runs the
-original prelude on both sides. Backend calls stop at their genuine entry;
-native dependencies run without injected return values.
+original prelude on both sides. Selected backends stop at their genuine entry;
+the animation fixture executes real frame callbacks without injected returns.
 """
 import argparse
 import csv
@@ -21,6 +21,7 @@ import unicorn
 import unicorn.x86_const as r
 
 import linked_pe
+import iku_animation_callbacks
 from iku_native_math import lookup_fixture
 from iku_middle_actions import MIDDLE_ENTRIES
 from iku_opening_actions import OPENING_ENTRIES
@@ -69,6 +70,27 @@ def input_cases(smoke=False):
                 NEW_ENTRIES, (-32768, -1, 0, 1, 2, 32767), (0, 2, 5, 7, 8, 9), (-1, 0, 1), (0x27F, 0x37F)):
             add(action, sequence=sequence, frame=frame, time=time, cw=cw)
     return list({json.dumps(case, sort_keys=True): case for case in cases}.values())
+
+
+def advance_callback_cases():
+    basic = dict(late.input_cases(True)[0], sequence=0, timer=0, time=7,
+                 frame=0, index=0, y=100.0, vy=3.0, acceleration=0.5,
+                 state_180=0, frame_count=1, frame_limit=1, block_mode=0,
+                 block_link=0, frame_format=1, advance_callback_fixture=True)
+    cases = []
+    for action, duration, timing, count, mode, link, fmt, cw in itertools.product(
+            (310, 409), (1, 3), ("before", "at", "wrap"), (1, 2, 3),
+            (0, 1), range(4), (0, 1), (0x27F, 0x37F)):
+        timer = duration - 2 if timing == "before" else duration - 1 if timing == "at" else 32767
+        for frame in sorted({0, count - 1}):
+            cases.append(dict(basic, action=action, frame_count=count,
+                              frame_limit=duration, timer=timer, frame=frame,
+                              block_mode=mode, block_link=link, frame_format=fmt, cw=cw))
+    for sequence, gate, state, time, cw in itertools.product(
+            (1, 2), (4, 5, 32767), (0, 1), (0, 8, 30), (0x27F, 0x37F)):
+        cases.append(dict(basic, action=310, sequence=sequence, gate=gate,
+                          state_180=state, time=time, cw=cw))
+    return cases
 
 
 def aimed_argument_cases():
@@ -431,6 +453,8 @@ class UpperProbe(late.LateProbe):
     def prepare_case(self, case):
         super().prepare_case(case)
         self.boundaries |= {0x45C180: 1, 0x4740C0: 0}
+        if case.get("advance_callback_fixture"):
+            iku_animation_callbacks.prepare(self, case, base.OWNER)
         if case.get("stop_lookup"):
             self.boundaries |= {0x4063D0: 1, 0x406360: 1}
         if case.get("steering_argument_fixture") or case.get("aim_argument_fixture"):
@@ -444,6 +468,12 @@ class UpperProbe(late.LateProbe):
                 self.engine.mem_write(base.PEER + 0xEC, struct.pack("<I", int(case["peer_x_bits"], 16)))
 
     def instruction(self, uc, address, size, unused):
+        try:
+            iku_animation_callbacks.observe(self, uc, address)
+        except ValueError as error:
+            self.failure = str(error)
+            uc.emu_stop()
+            return
         if address == 0x435110 and uc.reg_read(r.UC_X86_REG_ECX) != base.OWNER + 4:
             self.failure = "scratch reset receiver differs from the observed +4 subobject"
             uc.emu_stop()
@@ -451,7 +481,7 @@ class UpperProbe(late.LateProbe):
         super().instruction(uc, address, size, unused)
 
 
-def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False, control=None, coordinates=False, opening=False, whole=False, all_actions=False, actions=None, steering_clamps=False, opening_branches=False, sequence_effects=False, sequence_exits=False, event_exits=False, frame_bounds=False):
+def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False, control=None, coordinates=False, opening=False, whole=False, all_actions=False, actions=None, steering_clamps=False, opening_branches=False, sequence_effects=False, sequence_exits=False, event_exits=False, frame_bounds=False, advance_callbacks=False):
     canonical = linked_pe.comparator()
     target_sha = canonical.verify_target()
     if hashlib.sha256(canonical.target_bytes(0x620920, 59038)).hexdigest() != "abc831c6ccd95986bed811694f532ad8c8b92cb49702a7f6ce4de100b8a73dea":
@@ -461,7 +491,7 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
     table, initialization = lookup_fixture(canonical)
     ledger = {int(row["address"], 0): int(row["size"])
               for row in csv.DictReader((ROOT / "config/functions.csv").open())}
-    cases = frame_bound_cases() if frame_bounds else event_exit_cases() if event_exits else sequence_exit_cases() if sequence_exits else sequence_effect_cases() if sequence_effects else opening_branch_cases() if opening_branches else steering_clamp_cases() if steering_clamps else root_cases(smoke) if all_actions else opening_cases(smoke, whole) if opening else coordinate_cases(smoke) if coordinates else middle_cases(smoke) if middle else gate_cases(smoke) if new_only else input_cases(smoke)
+    cases = advance_callback_cases() if advance_callbacks else frame_bound_cases() if frame_bounds else event_exit_cases() if event_exits else sequence_exit_cases() if sequence_exits else sequence_effect_cases() if sequence_effects else opening_branch_cases() if opening_branches else steering_clamp_cases() if steering_clamps else root_cases(smoke) if all_actions else opening_cases(smoke, whole) if opening else coordinate_cases(smoke) if coordinates else middle_cases(smoke) if middle else gate_cases(smoke) if new_only else input_cases(smoke)
     if actions:
         selected = set(actions)
         missing = selected - {case["action"] for case in cases}
@@ -482,6 +512,8 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
         cases = [case for case in cases if case.get("steering_argument_fixture")]
     elif control == "aim-facing":
         cases = [case for case in cases if case.get("aim_argument_fixture")]
+    elif control == "advance-action":
+        cases = [case for case in cases if case["action"] == 409]
     if not cases:
         raise ValueError("selected case collection is empty")
     seed_engine = spell.seed_module.Probe(canonical, pefile.PE(str(ROOT / "resources/th105.exe")).get_memory_mapped_image(),
@@ -496,6 +528,7 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
     effect_directions = {}
     steering_argument_entries = {}
     aim_argument_entries = {}
+    advance_successes, advance_returns, frame_entries, block_entries = {}, {}, 0, 0
     for number, case in enumerate(cases, 1):
         inputs.update(json.dumps(case, sort_keys=True).encode())
         try:
@@ -504,6 +537,19 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
             raise ValueError(f"{case}; pc={probe.engine.reg_read(r.UC_X86_REG_EIP):#x}; "
                              f"calls={probe.calls[-4:]}; {error}") from error
         outputs.update(json.dumps(expected, sort_keys=True).encode())
+        if advance_callbacks:
+            entries = [call["entry"] for call in expected["calls"]]
+            if entries.count(0x4351C0) != 1:
+                raise ValueError(f"callback case did not reach one real advancement: {case}")
+            frame_entries += entries.count(0x45C1A0)
+            block_entries += entries.count(0x45C220)
+            action = str(case["action"])
+            if expected["outcome"] == "0x45bfe0" and expected["calls"][-1]["arguments"] == [9]:
+                advance_successes[action] = advance_successes.get(action, 0) + 1
+            elif expected["outcome"] == "ret":
+                advance_returns[action] = advance_returns.get(action, 0) + 1
+            else:
+                raise ValueError(f"unexpected callback-case final boundary: {expected['outcome']}; {case}")
         if case.get("steering_argument_fixture"):
             if expected["outcome"] != "0x406540" or len(expected["calls"][-1]["arguments"]) != 2:
                 raise ValueError("steering argument case did not reach the genuine atan2 entry")
@@ -551,11 +597,14 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
     if sequence_effects and any(set(effect_directions.get(str(action), {})) != {"0", "1", "127", "128", "255"}
                                 for action in {case["action"] for case in cases}):
         raise ValueError("effect fixture did not reach all five raw direction boundaries for each action")
+    if advance_callbacks and any(not advance_successes.get(str(action)) or not advance_returns.get(str(action))
+                                 for action in {case["action"] for case in cases}):
+        raise ValueError("callback fixture did not cover both advancement results for each action")
     return {"schema": "th105-iku-action-state-source-native-v1", "target_sha256": target_sha, "build": receipt,
             "actions": len(OPENING_ENTRIES) + len(ENTRIES) + len(MIDDLE_ENTRIES),
             "whole_root_entry": whole,
             "requested_actions": sorted(set(actions)) if actions else None,
-            "case_set": "frame-bounds" if frame_bounds else "event-exits" if event_exits else "sequence-exits" if sequence_exits else "sequence-effects" if sequence_effects else "opening-branches" if opening_branches else "steering-clamps" if steering_clamps else "whole-root-actions" if all_actions else "opening-actions" if opening else "middle-coordinates" if coordinates else "middle-actions" if middle else "new-action-gates" if new_only else "upper-actions",
+            "case_set": "advance-callbacks" if advance_callbacks else "frame-bounds" if frame_bounds else "event-exits" if event_exits else "sequence-exits" if sequence_exits else "sequence-effects" if sequence_effects else "opening-branches" if opening_branches else "steering-clamps" if steering_clamps else "whole-root-actions" if all_actions else "opening-actions" if opening else "middle-coordinates" if coordinates else "middle-actions" if middle else "new-action-gates" if new_only else "upper-actions",
             "tested_actions": sorted({case["action"] for case in cases}), "cases": len(cases), "mismatch_count": differences, "mismatch_by_action": mismatch_by_action, "examples": examples,
             "input_sha256": inputs.hexdigest(), "target_output_sha256": outputs.hexdigest(),
             "sequence_effect_entries_by_action": effect_entries,
@@ -563,6 +612,12 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
             "sequence_effect_negative_zero_x_by_action": negative_zero_x_entries,
             "steering_argument_entries_by_sequence": steering_argument_entries,
             "aim_argument_entries_by_action": aim_argument_entries,
+            "advance_successes_by_action": advance_successes,
+            "advance_returns_by_action": advance_returns,
+            "animation_frame_entries": frame_entries, "animation_block_entries": block_entries,
+            "animation_callback_contracts": getattr(probe, "animation_callback_contracts", {}),
+            "animation_instructions_by_helper": {address: len(sites) for address, sites in
+                                                 getattr(probe, "animation_instructions", {}).items()},
             "sequence_exit_entries_by_action": sequence_exit_entries,
             "event_exit_call_sites_visited": {str(action): hex(site) for action, site in event_sites.items()},
             "frame_bound_sites_visited": {str(action): list(map(hex, sites)) for action, sites in bound_sites.items()},
@@ -571,10 +626,10 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
             "target_root_instructions_visited": len(probe.visited), "source_view_aliases": probe.aliases,
             "probe_sha256": linked_pe.sha(Path(__file__)), "base_probe_sha256": linked_pe.sha(Path(base.__file__)),
             "fixture_sha256": {name: linked_pe.sha(ROOT / "scripts" / name) for name in
-                               ("probe-iku-spell-actions.py", "probe-iku-late-actions.py", "iku_native_math.py", "iku_upper_actions.py", "iku_middle_actions.py", "iku_opening_actions.py")},
+                               ("probe-iku-spell-actions.py", "probe-iku-late-actions.py", "iku_native_math.py", "iku_upper_actions.py", "iku_middle_actions.py", "iku_opening_actions.py", "iku_animation_callbacks.py")},
             "unicorn_version": unicorn.__version__,
             "scope": "110 recovered action bodies in one compiled dispatcher; real prelude/math/RNG/helpers; "
-                     "RET or genuine first object/effect/animation/finalize/common backend entry; "
+                     "RET or selected final backend entry; advance-callback cases execute real animation callbacks; "
                      "steering/aim argument cases stop at real atan2 entry; "
                      "NaN X stops at abs entry and NaN/Inf heading at cosine entry; "
                      "no injected helper returns; post-backend paths, exceptional/backend continuation and full-root exact equality unproved"}
@@ -622,6 +677,17 @@ def control_source(name):
             raise ValueError("aim control requires one signed-facing X expression")
         source = source[:first] + body.replace(needle, "float x = static_cast<float>(byte_at(0x104)) *") + source[last:]
         path = ROOT / "build/iku-upper-aim-facing.cpp"
+        path.write_bytes(source.replace("\n", "\r\n").encode())
+        return path
+    elif name == "advance-action":
+        first = source.index("    case 409: {")
+        last = source.index("    case 410: {", first)
+        body = source[first:last]
+        needle = "advance_or_action(9);"
+        if body.count(needle) != 1:
+            raise ValueError("advance control requires one409 fallback transition")
+        source = source[:first] + body.replace(needle, "advance_or_action(10);") + source[last:]
+        path = ROOT / "build/iku-upper-advance-action.cpp"
         path.write_bytes(source.replace("\n", "\r\n").encode())
         return path
     elif name == "positive-steer":
@@ -714,12 +780,13 @@ if __name__ == "__main__":
     cases.add_argument("--sequence-exits", action="store_true", help="whole-root562/563/730 shared sequence-return edges and adjacent gates")
     cases.add_argument("--event-exits", action="store_true", help="whole-root305/696 frame thresholds and both real event29 call sites")
     cases.add_argument("--frame-bounds", action="store_true", help="whole-root225/408 frame7 boundary paths with real RNG and helpers")
-    parser.add_argument("--control", choices=("aim-limit", "aim-facing", "unsigned-gate", "single-counter", "positive-steer", "effect-height", "effect-direction", "steering-facing", "sequence-exit-gate", "event-frame-gate", "frame-bound-gates", "unsigned-brake", "current-height", "zero-offset", "prelude-countdown", "unordered-face"))
+    cases.add_argument("--advance-callbacks", action="store_true", help="whole-root310/409 through genuine frame/block callbacks and both advancement results")
+    parser.add_argument("--control", choices=("aim-limit", "aim-facing", "advance-action", "unsigned-gate", "single-counter", "positive-steer", "effect-height", "effect-direction", "steering-facing", "sequence-exit-gate", "event-frame-gate", "frame-bound-gates", "unsigned-brake", "current-height", "zero-offset", "prelude-countdown", "unordered-face"))
     parser.add_argument("--coordinates", action="store_true", help="with --middle, focus on direct X transfer and signed zero")
     parser.add_argument("--whole", action="store_true", help="execute both real/candidate roots from their own entry")
     parser.add_argument("--actions", type=int, nargs="+", help="run only these action IDs from the selected fixture")
     args = parser.parse_args()
-    if args.all_actions or args.steering_clamps or args.opening_branches or args.sequence_effects or args.sequence_exits or args.event_exits or args.frame_bounds:
+    if args.all_actions or args.steering_clamps or args.opening_branches or args.sequence_effects or args.sequence_exits or args.event_exits or args.frame_bounds or args.advance_callbacks:
         args.whole = True
     if args.coordinates and not args.middle:
         parser.error("coordinate cases require --middle")
@@ -737,6 +804,8 @@ if __name__ == "__main__":
         parser.error("steering-facing requires --steering-clamps")
     if args.control == "aim-facing" and not args.new_only:
         parser.error("aim-facing requires --new-only")
+    if args.control == "advance-action" and not args.advance_callbacks:
+        parser.error("advance-action requires --advance-callbacks")
     if args.control == "sequence-exit-gate" and not args.sequence_exits:
         parser.error("sequence-exit-gate requires --sequence-exits")
     if args.control == "event-frame-gate" and not args.event_exits:
@@ -746,7 +815,7 @@ if __name__ == "__main__":
     source = control_source(args.control) if args.control else args.source.resolve()
     output = args.output.resolve() if args.output else (ROOT / "build" / ("IkuUpper-" + args.control + ".obj")
                                                        if args.control else None)
-    report = audit(source, output, args.smoke, args.new_only, args.middle, args.control, args.coordinates, args.opening, args.whole, args.all_actions, args.actions, args.steering_clamps, args.opening_branches, args.sequence_effects, args.sequence_exits, args.event_exits, args.frame_bounds)
+    report = audit(source, output, args.smoke, args.new_only, args.middle, args.control, args.coordinates, args.opening, args.whole, args.all_actions, args.actions, args.steering_clamps, args.opening_branches, args.sequence_effects, args.sequence_exits, args.event_exits, args.frame_bounds, args.advance_callbacks)
     report["diagnostic_control"] = args.control
     print(json.dumps(report, indent=2))
     raise SystemExit(bool(report["mismatch_count"]))
