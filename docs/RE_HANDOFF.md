@@ -310,9 +310,22 @@ for740's cutoff equality. Six old non-debug COFF identities/smokes stay
 unchanged. Ghidra evidence is reused after current byte/table and9 primary
 hash checks; no new process/clone. No implementation/exact credit. See
 [720..798 evidence](REIMU_HIGH_FINAL_ACTIONS_2026_10_18.md).
-Next reconcile740's undefined paths, complete the original void ABI/default
-surface, and establish truthful full-function compilation/comparison.
-Returning world/backend contexts and VC8/LTCG/TU provenance remain unknown.
+A reproducible source-shape probe now expands independent cases into three
+source regions while preserving shared550/551. The untouched official mapper
+finds45/50/33 table groups,126 unique destinations and0 target-group splits.
+Compact staging has only21/24/23 groups/66 destinations. Generated C++ remains
+under build/; selected source and old adapters are unchanged. The new object
+has75836 text bytes,74560 bytes before the first table,1095 decoded calls and
+146 RETs. Native0/894 passes (852 earlier paths,34 required sites,8 unresolved
+740 boundaries). Owner comparison finds0/127 instruction/edge-identical blocks;
+no implementation/exact credit. First diagnostic mismatch478FA8 is stack
+allocation570h vs5A8h. Standard full comparison still lacks the complete root
+relocation contract. See [source-shape diagnosis](REIMU_ACTION_SOURCE_SHAPE_2026_10_18.md).
+Next prioritize510..513 and710..730: their eight physical spans explain6347
+bytes of the6990-byte pre-table deficit. Recover expanded request/mode lowering
+and live reloads before unrelated small actions. Reconcile740's undefined
+paths, full void/default ABI, returning world contexts and VC8/LTCG/TU evidence
+before canonical root acceptance.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.
 Obsolete unpinned disassembly exports (~18MB) and rejected/superseded object
 files were removed; current bounded evidence and primary databases remain.
