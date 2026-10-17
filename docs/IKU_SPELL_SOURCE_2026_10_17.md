@@ -1,5 +1,10 @@
 # Iku actions600–610: eight staged C++ action bodies
 
+> Current source: `src/characters/IkuActionStateUpper.cpp`. The original family
+> file was consolidated after the measurements recorded below. Those receipts
+> describe the earlier source; fresh combined-dispatch and preserved-family
+> results are in [the unified upper-action checkpoint](IKU_UPPER_SOURCE_2026_10_17.md).
+
 `src/characters/IkuSpellActions.cpp` recovers complete source hypotheses for
 actions600/601/602/603/606/607/609/610 inside `Iku_dispatch_action_state_vslot28
 @ 620920`. Together with the [object818 family](IKU_OBJECT818_SOURCE_2026_10_17.md),

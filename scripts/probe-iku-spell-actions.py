@@ -22,7 +22,7 @@ from unicorn import x86_const as r
 import linked_pe
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "src/characters/IkuSpellActions.cpp"
+SOURCE = ROOT / "src/characters/IkuActionStateUpper.cpp"
 ENTRIES = {600: 0x62BDC2, 601: 0x62BF12, 602: 0x62C232, 603: 0x62C619,
            606: 0x62C7A6, 607: 0x62C91B, 609: 0x62CA58, 610: 0x62CC24}
 
@@ -38,10 +38,7 @@ def load_script(name, filename):
 base = load_script("iku_spell_native_base", "probe-iku-object818-actions.py")
 seed_module = load_script("iku_spell_native_seed", "audit-iku-action602-spawn.py")
 MANAGER, DEQUE = base.OWNER + 0x6000, base.OWNER + 0x8000
-METHODS = dict(base.METHODS, publish_texture_state=0x45F560,
-               dispatch_indexed_event_member=0x4359F0,
-               dispatch_indexed_sequence_window_45c8b0=0x45DEB0,
-               advance_secondary_event_effect_cycle=0x473F90, selector_random_roll=0x4067D0)
+METHODS = base.METHODS
 STOPS = dict(base.BOUNDARIES) | {0x45C220: 0, 0x45DEB0: 3, 0x473F90: 0}
 HELPERS = dict(base.HELPERS) | {0x45F560: 2, 0x42D1B0: 1, 0x4067D0: 1, 0x4066B0: 0,
                                0x4359F0: 1, 0x43B1A0: 1}
@@ -142,7 +139,7 @@ def audit(source=SOURCE, output=None, smoke=False):
     generator = seed_module.Probe(canonical, pefile.PE(str(ROOT / "resources/th105.exe")).get_memory_mapped_image(),
                                   {address: ledger[address] for address in seed_module.HELPERS})
     seeds = {seed: generator.seed(seed) for seed in sorted({case["seed"] for case in cases})}
-    probe = SpellProbe(canonical, base.load_object(output, root_prefix="?try_dispatch_verified_spell_action@", methods=METHODS), seeds)
+    probe = SpellProbe(canonical, base.load_object(output, root_prefix="?try_dispatch_verified_spell_action@", methods=METHODS, data_keys=base.DATA_KEYS), seeds)
     inputs, outputs = hashlib.sha256(), hashlib.sha256()
     differences, examples = 0, []
     for case in cases:

@@ -1,5 +1,10 @@
 # Iku's fourteen remaining high-switch arms after610
 
+> Current source: `src/characters/IkuActionStateUpper.cpp`. The original family
+> file was consolidated after the measurements recorded below. Those receipts
+> describe the earlier source; fresh combined-dispatch and preserved-family
+> results are in [the unified upper-action checkpoint](IKU_UPPER_SOURCE_2026_10_17.md).
+
 `src/characters/IkuLateActions.cpp` adds complete staged source hypotheses for
 650/660/695/696/710/720/730/740/770/780/781/795/797/798 inside the59038-byte
 `Iku_dispatch_action_state_vslot28 @ 620920`. Together with the prior

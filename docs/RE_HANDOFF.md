@@ -62,8 +62,8 @@ or exact root claim. See [the virtual ABI evidence](IKU_VIRTUAL_CALLS_2026_10_17
 and [the type/native evidence](IKU_RANDOM_FLOAT_TYPES_2026_10_17.md).
 
 Actions565–568 now have four complete staged C++ bodies in
-`src/characters/IkuObject818Actions.cpp`. Their raw closure is2119 instructions/
-8495 unique bytes including105 shared-tail bytes, with all56 spawn literal
+`src/characters/IkuActionStateUpper.cpp` (original object818 checkpoint). Their
+raw closure is2119 instructions/8495 unique bytes including105 shared-tail bytes, with all56 spawn literal
 recipes checked. The new pinned-VC8 native source diagnostic passes0/2516:
 1896 genuine RETs,588 first-spawn and32 effect/action/sequence entry stops.
 It compares the complete7B8 actor view, helper arguments/order, intermediate
@@ -76,8 +76,8 @@ promotion or partial byte credit. Continue extending the large root
 families. See [the family source checkpoint](IKU_OBJECT818_SOURCE_2026_10_17.md).
 
 The next eight complete staged bodies,600/601/602/603/606/607/609/610, are in
-`src/characters/IkuSpellActions.cpp`. Their raw closure is1233 instructions/
-4739 bytes (4712 physical plus27 shared), with27 typed literal values and
+`src/characters/IkuActionStateUpper.cpp` (original spell checkpoint). Their
+raw closure is1233 instructions/4739 bytes (4712 physical plus27 shared), with27 typed literal values and
 integer ring-loop witnesses checked. Natural source preserves607's pre-advance
 gates,603/609's advance-skipping timeouts, signed modulo and602's unsigned,
 late-rounded offset. The new source probe executes original event23/audio
@@ -89,7 +89,8 @@ comparison is canonical27/27. That checkpoint brought the staged total to12
 action IDs; it did not select or credit the whole root. Do not count shared-tail unions twice.
 See [the spell-family checkpoint](IKU_SPELL_SOURCE_2026_10_17.md).
 
-All14 high-switch arms after610 are now staged in `src/characters/IkuLateActions.cpp`:
+The14 high-switch arms after610 are staged in `src/characters/IkuActionStateUpper.cpp`
+(original late checkpoint):
 650/660/695/696/710/720/730/740/770/780/781/795/797/798. Their closed normal-return
 CFG has2150 instructions/8270 bytes. The physical8059-byte interval contains
 one2-byte FSTP at62EAC9 owned by other root paths; do not claim exclusive slices.
@@ -107,10 +108,41 @@ PC53/64 controls are included. Heading-decrement and rounded-decay controls
 differ120/2144 and104/2144 smoke cases. NaN X needs imported CRT/OS error state
 beyond the abs entry; other backends and later ring members remain unexecuted.
 The new loader's only external data key is the existing non-executable
-`g_match_identifier`; no acceptance binding/header/profile is changed. Current
-total:26 staged IDs,84 plus complete prelude/default/integration remaining.
+`g_match_identifier`; no acceptance binding/header/profile is changed. That
+checkpoint reached26 staged IDs, with84 plus prelude/default/integration remaining.
 Root source selection/exact credit remain absent. See
 [the late-family checkpoint](IKU_LATE_SOURCE_2026_10_17.md).
+
+The current authoritative source is one coherent partial view and dispatcher in
+`src/characters/IkuActionStateUpper.cpp`, replacing the three family files.
+Nine more complete staged bodies560/561/562/563/570/571/572/573/599 close the
+remaining high-action family. Total:35 of110 nondefault IDs;75 plus original
+prelude/default and full-root compiler integration remain. The new nine CFGs
+close969 instructions/3770 bytes, including137 remote/shared bytes. All35
+close6324 instructions/24997 unique root bytes; these unions are diagnostic,
+not additive authored or exact credit. Original out-of-class bodies for the
+previous26 IDs are preserved with only the receiver-class rename.
+
+The combined native dispatcher passes0/29955 expanded cases (21719 genuine
+RETs, remaining first backend entries) and0/4591 smoke cases. The original
+family probes pass0/452,0/741,0/2144 with unchanged target-output digests.
+Execution visits4071 root instructions, not all6324 static CFG instructions;
+post-backend behavior is still unverified. A negative control exposed the
+broad aim fixture's pre-advance timer0: actual4351C0 increments it to1.
+The new `--new-only` gate mode supplies the required timer/time -1 and passes
+0/8374 focused cases, without replaying the prior26 families. Aim-limit and
+unsigned-gate controls differ14/650 and64/650; source is unchanged.
+
+The source compiles as one pinned VC8 object. The native fixture now uses a
+separate candidate address range to accommodate all emitted methods without
+colliding with its stack/actor mappings. Dependency aliases are shared by the
+four probes; only the existing non-executable match-identifier data key is
+allowed. No accepted source/header/profile/object partition or canonical
+relocation ledger changes. See
+[the unified source and native checkpoint](IKU_UPPER_SOURCE_2026_10_17.md)
+for the fresh results, commands and limits. Next recover the42 middle IDs
+300--547, then the33 opening IDs in this same59038-byte root. Do not promote
+a partial root.
 
 ## Shared Fighter linked checkpoint
 

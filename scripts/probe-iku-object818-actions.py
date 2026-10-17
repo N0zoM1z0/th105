@@ -24,10 +24,11 @@ import unicorn
 from unicorn import x86_const as r
 
 from giant_owner_audit import decode
+from iku_upper_actions import DATA_KEYS, METHODS
 import linked_pe
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "src/characters/IkuObject818Actions.cpp"
+SOURCE = ROOT / "src/characters/IkuActionStateUpper.cpp"
 HEADER = ROOT / "src/characters/AnimationSequenceVirtuals.hpp"
 OWNER, PEER, WAVES, STACK, RETURN = 0x2000000, 0x2002000, 0x2004000, 0x1000000, 0xF000000
 ENTRY_SP = STACK + 0xFF00
@@ -36,17 +37,8 @@ BOUNDARIES = {0x465190: 7, 0x435240: 5, 0x45BFE0: 1, 0x45C390: 1}
 HELPERS = {0x473DD0: 0, 0x435D60: 0, 0x435DC0: 0, 0x5F9310: 0,
            0x45AF40: 0, 0x4351C0: 0, 0x46BF30: 2, 0x478DF0: 1,
            0x45C030: 1, 0x401D50: 1, 0x68A1A0: 0}
-# Same-target source-view aliases for native execution, not original C++ names
-# or global comparator bindings. Their physical interfaces are already exact.
-METHODS = {"spawn_owned_object_via_manager": 0x465190,
-           "emit_fighter_effect_433cc0": 0x435240,
-           "dispatch_character_wave_handle": 0x45C030,
-           "add_phase_scaled_counter_558": 0x478DF0,
-           "adjust_counter_482": 0x46BF30, "zero_velocity_acceleration": 0x45AF40,
-           "has_crossed_stage_surface_while_descending": 0x5F9310,
-           "advance_frame_and_dispatch": 0x4351C0,
-           "resolve_stage_surface_landing_transition": 0x473DD0,
-           "stage_surface_height_at_x": 0x435D60}
+# Local execution aliases are shared with the unified source probe.
+# They do not imply canonical equality of every dependency.
 
 
 def build_source(source, output):
@@ -105,7 +97,8 @@ def load_object(path, *, root_prefix="?try_dispatch_verified_object818_action@",
         if section.name in (".text", ".rdata"):
             if section.raw_size > 0x10000:
                 raise ValueError("unexpected large source section")
-            sections[number] = (0x800000 + number * 0x10000, section,
+            # Keep the unified TU sections clear of the fixed stack/actor fixtures.
+            sections[number] = (0x10000000 + number * 0x10000, section,
                                 bytearray(obj._read_raw(section.raw_offset, section.raw_size)))
     aliases = {}
     for base, section, data in sections.values():
@@ -331,7 +324,7 @@ def audit(source=SOURCE, output=None, smoke=False):
         raise ValueError("Iku root bytes differ")
     output = output or ROOT / "build/IkuObject818Actions.obj"
     receipt = build_source(source, output)
-    probe = Probe(canonical, load_object(output))
+    probe = Probe(canonical, load_object(output, data_keys=DATA_KEYS))
     cases = input_cases(smoke)
     count = 0
     differences, examples = 0, []

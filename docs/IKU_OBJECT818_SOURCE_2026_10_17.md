@@ -1,5 +1,10 @@
 # Iku actions565–568: staged C++ and original-code checks
 
+> Current source: `src/characters/IkuActionStateUpper.cpp`. The original family
+> file was consolidated after the measurements recorded below. Those receipts
+> describe the earlier source; fresh combined-dispatch and preserved-family
+> results are in [the unified upper-action checkpoint](IKU_UPPER_SOURCE_2026_10_17.md).
+
 `src/characters/IkuObject818Actions.cpp` now recovers the four complete action
 bodies as a semantic staging helper. These belong to the59038-byte root
 `Iku_dispatch_action_state_vslot28 @ 620920`; they are not independently

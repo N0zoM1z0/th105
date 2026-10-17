@@ -27,20 +27,14 @@ spec = importlib.util.spec_from_file_location("iku_late_spell_fixture", ROOT / "
 spell = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(spell)
 base = spell.base
-SOURCE = ROOT / "src/characters/IkuLateActions.cpp"
+SOURCE = ROOT / "src/characters/IkuActionStateUpper.cpp"
 ENTRIES = {650: 0x62D02A, 660: 0x62D1DE, 695: 0x62D5C7, 696: 0x62D72D,
            710: 0x62D7E1, 720: 0x62D8B0, 730: 0x62DA63, 740: 0x62E341,
            770: 0x62E4F1, 780: 0x62E588, 781: 0x62E909, 795: 0x62EADA,
            797: 0x62EB17, 798: 0x62ED65}
 PAIR = base.OWNER + 0xA000
-DATA_KEYS = ("?g_match_identifier@th105@@3HA",)
-METHODS = dict(spell.METHODS, face_opponent_and_flip_horizontal_velocity=0x478E60,
-               finalize_sequence_entry=0x45D110, copy_action_word_176_to_174=0x45B250,
-               set_shared_first_target=0x476AB0, set_shared_second_target=0x476AD0,
-               set_shared_third_target=0x476AF0, set_global_pair=0x434E10,
-               lookup_orientation_cosine_quantized_abs=0x4063D0,
-               lookup_orientation_sine_quantized_abs=0x406360, atan2_degrees=0x406540,
-               absolute_scalar_float=0x406330, __ftol2_sse=0x68A1A0)
+DATA_KEYS = base.DATA_KEYS
+METHODS = base.METHODS
 HELPERS = dict(spell.HELPERS) | {0x478E60: 0, 0x45B250: 0, 0x476AB0: 2, 0x476AD0: 2,
                                 0x476AF0: 2, 0x427290: 2, 0x4272B0: 2, 0x4272D0: 2,
                                 0x434E10: 2, 0x406330: 1, 0x406360: 1, 0x4063D0: 1,
