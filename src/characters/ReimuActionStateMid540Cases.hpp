@@ -151,11 +151,12 @@
                     && frame_index_140 == 0 && sequence_13e == 3) {
                 dispatch_character_wave_handle(14);
                 add_scaled_counter(50);
+                float parameters[3];
                 for (int i = 0; i <= 5; ++i) {
                     if (byte_60a >= 4 && i <= 4) {
-                        float parameters[3] = {
-                            static_cast<float>(selected_action == 546 ? 35.5 - i * 9.0 : i * 9.0 + 34.5),
-                            22.0f, 0.0f};
+                        parameters[0] = static_cast<float>(selected_action == 546 ? 35.5 - i * 9.0 : i * 9.0 + 34.5);
+                        parameters[1] = 22.0f;
+                        parameters[2] = 0.0f;
                         const float y = static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
                             * 50.0 + y_f0 + 100.0);
                         const float x = static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
@@ -163,9 +164,9 @@
                         spawn_owned_object_via_manager(821, x, y,
                             static_cast<unsigned char>(facing_104), 1, parameters, 3);
                     }
-                    float parameters[3] = {
-                        static_cast<float>(selected_action == 546 ? 40.0 - i * 9.0 : i * 9.0 + 30.0),
-                        25.0f, 0.0f};
+                    parameters[0] = static_cast<float>(selected_action == 546 ? 40.0 - i * 9.0 : i * 9.0 + 30.0);
+                    parameters[1] = 25.0f;
+                    parameters[2] = 0.0f;
                     const float y = static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
                         * 50.0 + y_f0 + 100.0);
                     const float x = static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
@@ -173,7 +174,9 @@
                     spawn_owned_object_via_manager(821, x, y,
                         static_cast<unsigned char>(facing_104), 1, parameters, 3);
                 }
-                const float parameters[3] = {0.0f, 0.0f, 4.0f};
+                parameters[0] = 0.0f;
+                parameters[1] = 0.0f;
+                parameters[2] = 4.0f;
                 spawn_owned_object_via_manager(821, x_ec, static_cast<float>(y_f0 + 100.0),
                     static_cast<unsigned char>(facing_104), 1, parameters, 3);
                 state_180 = 1;

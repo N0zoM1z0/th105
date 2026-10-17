@@ -412,7 +412,19 @@ Full root remains nonexact at478FA8/frame598h versus570h. The last source RET
 is not its code end; callable/compiler ownership remains unproved. No exact
 credit or aggregate replay;9 primary DB hashes unchanged and stale products
 cleaned. See [root binding/operand evidence](REIMU_ROOT_RELOCATIONS_2026_10_18.md).
-Next prioritize source/compiler ordering and sharing, exact callable ownership,
+Nine action buffer lifetimes now follow observed stack pointer identities:
+separate ordinary/random400/401/404/406 buffers, shared525/526 groups,
+shared545/546 fan/final requests and shared669 loops. Arrays larger than8
+bytes decrease112->109; frame598h->578h versus target570h. Whole-root CFG/ESP
+propagation and all reaching argument writes preserve cross-case shared tails;
+all9 action-entry buffer partitions pass; the earlier object fails all9.
+Affected native0/6722, current void0/1544, compact0/12 and0/8, and prior static
+contracts pass; returning world calls remain unproved.
+Candidate prefix81384/text82756,1168 calls and2454 replayed relocations remain
+nonexact, first478FA8. Case-order/single-switch controls keep598h and are not
+adopted. No credit/aggregate replay;9 primary DB hashes unchanged and stale
+products cleaned. See [request-buffer lifetimes](REIMU_REQUEST_BUFFER_LIFETIMES_2026_10_18.md).
+Next prioritize remaining scalar spill/alignment and call sharing, exact callable ownership,
 returning world contexts and VC8/LTCG/TU evidence
 before canonical root acceptance.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.

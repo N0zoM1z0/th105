@@ -27,20 +27,24 @@
                     adjust_counter_482(200, 45);
                 if (selected_action == 401)
                     add_scaled_counter(10);
-                float parameters[3] = {
-                    static_cast<float>((word_732 - 2) * 5 + word_734), 15.0f, 0.0f};
-                if (selected_action == 400)
-                    add_scaled_counter(10);
                 const int x_offset = selected_action == 400 ? 114
                     : selected_action == 401 ? 90 : selected_action == 404 ? 83 : 67;
                 const double y_offset = selected_action == 400 ? 96.0
                     : selected_action == 401 ? 158.0 : selected_action == 404 ? 117.0 : 75.0;
                 if (byte_750 == 0) {
+                    float parameters[3] = {
+                        static_cast<float>((word_732 - 2) * 5 + word_734), 15.0f, 0.0f};
+                    if (selected_action == 400)
+                        add_scaled_counter(10);
                     spawn_owned_object_via_manager(800,
                         static_cast<float>(static_cast<float>(facing_104 * x_offset) + x_ec),
                         static_cast<float>(y_f0 + y_offset),
                         static_cast<unsigned char>(facing_104), 1, parameters, 3);
                 } else {
+                    float parameters[3] = {
+                        static_cast<float>((word_732 - 2) * 5 + word_734), 15.0f, 0.0f};
+                    if (selected_action == 400)
+                        add_scaled_counter(10);
                     for (int count = 0; count < 2; ++count) {
                         parameters[0] = static_cast<float>(selector_random_range(0, 30) + word_734 - 15);
                         parameters[1] = static_cast<float>(15 - selector_random_range(0, 5));

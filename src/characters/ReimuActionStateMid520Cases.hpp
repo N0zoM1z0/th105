@@ -82,8 +82,11 @@
             adjust_counter_482(200, 120);
             add_scaled_counter(50);
             state_180 = 1;
+            float parameters[3];
             if (selected_action == 525) {
-                float parameters[3] = {0.0f, 0.0f, 0.0f};
+                parameters[0] = 0.0f;
+                parameters[1] = 0.0f;
+                parameters[2] = 0.0f;
                 spawn_owned_object_via_manager(816,
                     static_cast<float>(peer_170->x_ec - static_cast<float>(facing_104 * 50)),
                     static_cast<float>(peer_170->y_f0 + 125.0),
@@ -94,7 +97,9 @@
                     static_cast<unsigned char>(-facing_104), 1, parameters, 3);
             }
             if (selected_action == 526 || byte_609 >= 4) {
-                float parameters[3] = {90.0f, 30.0f, 4.0f};
+                parameters[0] = 90.0f;
+                parameters[1] = 30.0f;
+                parameters[2] = 4.0f;
                 spawn_owned_object_via_manager(816, peer_170->x_ec,
                     static_cast<float>(peer_170->y_f0 + 50.0),
                     static_cast<unsigned char>(facing_104), 1, parameters, 3);
@@ -104,7 +109,9 @@
                     static_cast<unsigned char>(facing_104), 1, parameters, 3);
             }
             if (selected_action == 526 && byte_609 >= 4) {
-                float parameters[3] = {0.0f, 0.0f, 0.0f};
+                parameters[0] = 0.0f;
+                parameters[1] = 0.0f;
+                parameters[2] = 0.0f;
                 spawn_owned_object_via_manager(816,
                     static_cast<float>(peer_170->x_ec - static_cast<float>(facing_104 * 50)),
                     static_cast<float>(peer_170->y_f0 + 125.0),

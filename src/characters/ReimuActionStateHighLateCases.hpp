@@ -127,8 +127,11 @@
             }
             if (frame_counter_144 <= 180) {
                 if (frame_counter_144 % 2 == 0) {
+                    float parameters[3];
                     for (float i = 0.0f; i < 3.0f; i += 1.0f) {
-                        const float parameters[3] = {static_cast<float>(i * 120.0 + field_73c), 30.0f, 3.0f};
+                        parameters[0] = static_cast<float>(i * 120.0 + field_73c);
+                        parameters[1] = 30.0f;
+                        parameters[2] = 3.0f;
                         const float y = static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
                             * 80.0 + (static_cast<double>(y_f0) + 100.0));
                         const float x = static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
@@ -137,7 +140,9 @@
                             static_cast<unsigned char>(facing_104), 1, parameters, 3);
                     }
                     for (float i = 0.0f; i < 4.0f; i += 1.0f) {
-                        const float parameters[3] = {static_cast<float>(i * 90.0 - field_73c), 30.0f, 3.0f};
+                        parameters[0] = static_cast<float>(i * 90.0 - field_73c);
+                        parameters[1] = 30.0f;
+                        parameters[2] = 3.0f;
                         const float y = static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
                             * 80.0 + (static_cast<double>(y_f0) + 100.0));
                         const float x = static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
