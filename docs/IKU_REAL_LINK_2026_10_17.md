@@ -1,5 +1,9 @@
 # Iku whole-root real source link
 
+Historical v1 checkpoint. The subsequent
+[full linked replay](IKU_LINKED_REPLAY_2026_10_17.md) supersedes the entry-only
+comparison and remaining-replay instructions below; source/providers remain.
+
 The complete selected Iku action root now links against real game source and
 the pinned VC8 SDK/CRT. All three linked switches close. This establishes a
 reproducible larger compiler context; it does not resolve the root's first

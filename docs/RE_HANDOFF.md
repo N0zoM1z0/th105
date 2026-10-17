@@ -40,7 +40,8 @@ ascending switch. Target is59038 bytes/15132 instructions/131 RETs. Frame
 400hex and84 payload identities are recovered naturally; first100 bytes agree,
 then canonical comparison remains **nonexact+0x64 /620984**, where target alone
 hoists EDI=1 before the action-range branch. No partial/exact credit.
-Current evidence: [real source link](IKU_REAL_LINK_2026_10_17.md) and
+Current evidence: [full linked replay](IKU_LINKED_REPLAY_2026_10_17.md),
+[real source link](IKU_REAL_LINK_2026_10_17.md) and
 [steering clamps](IKU_STEERING_CLAMPS_2026_10_17.md).
 
 The complete root now links with41 real game source providers, genuine pinned
@@ -52,8 +53,16 @@ The406330 float/fabs adapter remains provisional, nonexact and unclassified.
 SDK4399C0/42D1B0 reproduce94/100 target bytes before and after linking.
 Linked root10001000 closes15032 instructions/58433 instruction bytes, all
 three33/42/35 switches and867 ordinary calls/32 provider names. Frame400 and
-first100 entry bytes agree; byte100 still differs620984. No full linked-root
-canonical replay or linked-image execution is claimed. The public probe's
+first100 entry bytes agree; byte100 still differs620984. Full59600-byte
+diagnostic replay now accounts for all901 HIGHLOW fields:785 floating reads
+of131 exact map/literal identities,6 local table references and110 destination
+fields. All867 CALLs and two attested ABS game-data reads close. Strict whole
+59038-byte linked comparison remains nonexact+64hex. Every shared59594 byte
+is compared against a fresh provenance-bound ordinary object:only22 differ in
+one29-byte action730 mode-read/Y-store scheduling interval. The raw target's
+29-byte order agrees with ordinary, not this link's scheduling. Metadata ends
+59594; six additional linked INT3 bytes remain explicit. No linked-image
+execution or whole linked/ordinary byte-neutrality claim. The public probe's
 --reuse run verifies inputs/commands/tool/object hashes, reuses all44 objects
 and relinks. Preserve this small cache; remove superseded output controls.
 
@@ -67,8 +76,9 @@ its existing42D010 body remains byte-identical182/nonexact191. No accepted
 shared header/layout/profile/canonical binding changed. One authored/source
 entry is added; exact totals remain ledger-only and unchanged. The direct
 Ghidra clone used for this missing routine was removed; primary files are
-unchanged. Next establish full linked relocation replay or bounded execution
-of actual providers, then continue shared call/payload ownership.
+unchanged. This specific genuine /GL context retains all extra shared-tail
+calls and table layout; it does not establish an original-TU/LTCG barrier.
+Next continue shared call/payload ownership with the full replay in place.
 
 Action730 seq7/8 target62DB64 reads mode3/0/other and clamps X's upper bound
 inside the respective branch at6/4/5, then joins62DBB2 for X's lower and both

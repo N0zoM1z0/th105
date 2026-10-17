@@ -22,6 +22,7 @@ import capstone
 import pefile
 
 import linked_pe
+from linked_switch_replay import replay_root
 from workflow_manifest import unit_input_digest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -198,7 +199,7 @@ def reusable_compile(path, obj, inputs):
     ) == linked_pe.sha(obj)
 
 
-def probe(reuse=False):
+def probe(reuse=False, ordinary_object=None):
     canonical = linked_pe.comparator()
     target_sha = canonical.verify_target()
     tools, pins = linked_pe.pinned_tools()
@@ -558,6 +559,80 @@ def probe(reuse=False):
     normalized_functions = inspector.normalize_map_aliases(
         linked_pe.parse_map(map_path.read_text()), aliases
     )
+    linked_start = pe.OPTIONAL_HEADER.ImageBase + exported.address
+    linked_end = min(address for address in normalized_functions if address > linked_start)
+    call_targets = {name: address for address, name in actuals.items()}
+    call_targets["__ftol2_sse"] = 0x68A1A0
+    replay, replay_report = replay_root(
+        pe, map_path.read_text(), linked_start, linked_end, inspection, 0x620920,
+        canonical, call_targets, list(bindings.values()),
+        dict(mapping.split("=", 1) for mapping in root_function["dir32_targets"]),
+        game_pe=target_pe, functions=normalized_functions,
+    )
+    target_body = canonical.target_bytes(0x620920, 59038)
+    mismatch = canonical.first_mismatch(target_body, replay[:len(target_body)], 0x620920)
+    replay_report["target_comparison"] = {
+        "result": "mismatch" if mismatch else "exact", "size": len(target_body),
+        "first_mismatch": mismatch,
+        "target_body_sha256": hashlib.sha256(target_body).hexdigest(),
+        "canonical_compared_sha256": hashlib.sha256(replay[:len(target_body)]).hexdigest(),
+        "scope": "strict fixed59038-byte target comparison; diagnostic, no accepted match",
+    }
+    if ordinary_object is not None:
+        provenance_path = Path(str(ordinary_object) + ".provenance.json")
+        provenance = json.loads(provenance_path.read_text())
+        expected = {
+            "unit": UNIT, "target_sha256": target_sha,
+            "source_sha256": linked_pe.sha(ROOT / root_unit["source"]),
+            "object_sha256": linked_pe.sha(ordinary_object),
+            "compiler_sha256": pins["bin/cl.exe"],
+            "input_digest": unit_input_digest(UNIT, root_unit)[0],
+        }
+        if any(provenance.get(key) != value for key, value in expected.items()):
+            raise ValueError("stale/unbound ordinary comparison object; rebuild the Iku unit")
+        command = [sys.executable, str(ROOT / "scripts/compare-unit-object.py"),
+                   UNIT, str(ordinary_object), "--json"]
+        result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True)
+        comparison = json.loads(result.stdout)
+        if result.returncode not in (0, 1) or len(comparison["comparisons"]) != 1:
+            raise ValueError("ordinary Iku object could not be compared")
+        comparison = comparison["comparisons"][0]
+        if comparison["result"] not in {"exact", "mismatch"}:
+            raise ValueError("ordinary Iku comparison failed before byte comparison")
+        ordinary_size = comparison["object_section_tail_size"]
+        ordinary = canonical.coff_symbol_bytes(
+            ordinary_object, SYMBOL, 0x620920, ordinary_size,
+            {name: int(address, 0) for name, address in
+             (mapping.split("=", 1) for mapping in root_function["rel32_targets"])},
+            canonical.known_data_targets(),
+            dict(mapping.split("=", 1) for mapping in root_function["dir32_targets"]),
+        )
+        if len(ordinary) != ordinary_size:
+            raise ValueError("ordinary Iku section tail extent disagrees")
+        shared_size = min(len(ordinary), len(replay))
+        differences = [n for n in range(shared_size) if ordinary[n] != replay[n]]
+        ranges = []
+        for offset in differences:
+            if ranges and ranges[-1][1] == offset:
+                ranges[-1][1] += 1
+            else:
+                ranges.append([offset, offset + 1])
+        replay_report["ordinary_comparison"] = {
+            "object_sha256": linked_pe.sha(ordinary_object),
+            "provenance_sha256": linked_pe.sha(provenance_path),
+            "ordinary_bytes": len(ordinary), "linked_bytes": len(replay),
+            "shared_bytes": shared_size, "different_bytes": len(differences),
+            "different_ranges": ranges,
+            "ordinary_unshared_bytes": len(ordinary) - shared_size,
+            "linked_unshared_bytes": len(replay) - shared_size,
+            "linked_only_tail_hex": replay[shared_size:].hex(),
+            "ordinary_extent_matches_metadata_end": ordinary_size == replay_report["metadata_end_offset"],
+            "ordinary_canonical_sha256": hashlib.sha256(ordinary).hexdigest(),
+            "linked_shared_canonical_sha256": hashlib.sha256(replay[:shared_size]).hexdigest(),
+            "first_mismatch": canonical.first_mismatch(ordinary, replay[:len(ordinary)], 0x620920),
+            "scope": "all shared bytes compared; unmatched tails remain explicit",
+        }
+    inspection["scope"] = "complete linked CFG; canonical comparison recorded separately; image not executed"
     (native_uint,) = [
         address
         for address, names in normalized_functions.items()
@@ -590,7 +665,7 @@ def probe(reuse=False):
         "replayed_calls": uint_calls,
     }
     receipt = {
-        "schema": "th105-iku-real-link-v1",
+        "schema": "th105-iku-real-link-v2",
         "diagnostic_only": True,
         "target_sha256": target_sha,
         "tool_pins": pins,
@@ -601,6 +676,7 @@ def probe(reuse=False):
                 "probe-aya-cpu-ltcg.py",
                 "probe-common-fighter-ltcg.py",
                 "linked_pe.py",
+                "linked_switch_replay.py",
             )
         },
         "parser_versions": linked_pe.parser_versions(),
@@ -631,10 +707,11 @@ def probe(reuse=False):
         "same_target_symbol_aliases": aliases,
         "data_bindings": bindings,
         "inspection": inspection,
+        "full_root_replay": replay_report,
         "scope": "real source/CRT link; no stubs, code ABS symbols or unresolved-link overrides; "
         "same-target bounded-view aliases do not establish original C++ declarations; "
         "five registered dependency addresses and the provisional float adapter remain nonexact; "
-        "linked image is not executed or accepted as exact",
+        "full root canonically compared; linked image is not executed or accepted as exact",
     }
     (out / "receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
     return receipt
@@ -647,9 +724,13 @@ if __name__ == "__main__":
         action="store_true",
         help="reuse objects only after source, command, full unit-input and tool/object hash checks",
     )
+    parser.add_argument(
+        "--ordinary-object", type=Path,
+        help="also compare every shared byte against a current provenance-bound ordinary Iku object",
+    )
     args = parser.parse_args()
     try:
-        print(json.dumps(probe(args.reuse), indent=2))
+        print(json.dumps(probe(args.reuse, args.ordinary_object), indent=2))
     except (KeyError, OSError, ValueError, RuntimeError) as error:
         print(f"Iku link probe failed: {error}", file=sys.stderr)
         raise SystemExit(2)
