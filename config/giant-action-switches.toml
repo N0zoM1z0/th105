@@ -3,6 +3,45 @@
 # validates every index/destination against resources/th105.exe before use.
 
 [[roots]]
+name = "iku-vslot28"
+address = "0x00620920"
+callable_end = "0x0062EFBE"
+metadata_end = "0x0062F442"
+# Three table unions, including their shared default. Direct300/560 are not
+# separate table owners; the full-root audit checks those two edges as well.
+expected_unique_destinations = 108
+expected_direct_call_sites = 865
+expected_direct_call_targets = 32
+expected_ret_opcodes = 131
+
+[[roots.regions]]
+name = "low"
+case_min = 0
+case_max = 226
+destination_table = "0x0062EFC0"
+destination_count = 33
+index_table = "0x0062F044"
+expected_physical_groups = 33
+
+[[roots.regions]]
+name = "mid"
+case_min = 301
+case_max = 547
+destination_table = "0x0062F128"
+destination_count = 42
+index_table = "0x0062F1D0"
+expected_physical_groups = 42
+
+[[roots.regions]]
+name = "high"
+case_min = 561
+case_max = 798
+destination_table = "0x0062F2C8"
+destination_count = 35
+index_table = "0x0062F354"
+expected_physical_groups = 35
+
+[[roots]]
 name = "youmu-vslot28"
 address = "0x00530200"
 callable_end = "0x0053953C"

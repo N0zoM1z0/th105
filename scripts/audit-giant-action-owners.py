@@ -47,7 +47,7 @@ def audit(root_name: str, object_path: Path, unit_name: str) -> dict[str, Any]:
     if len(functions) != 1:
         raise ValueError("unit must supply exactly one matching root relocation contract")
     function = functions[0]
-    obj = mapper.CoffObject(object_path)
+    obj = mapper.CoffObject(object_path, symbol_base=function["symbol_base"])
     symbols = [s for s in obj.symbols.values() if s.name == function["symbol_base"]]
     if len(symbols) != 1 or symbols[0].value != 0 or symbols[0].section_number != obj.text_section_number:
         raise ValueError("audit requires the configured root at the selected COFF .text origin")

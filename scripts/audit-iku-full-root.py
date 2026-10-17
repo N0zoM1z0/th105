@@ -4,6 +4,7 @@
 The generated packets are evidence, not byte acceptance or new helper bounds.
 """
 import argparse
+from collections import Counter
 import hashlib
 import importlib.util
 import json
@@ -24,6 +25,15 @@ from workflow_manifest import load_manifest
 ROOT = Path(__file__).resolve().parents[1]
 START, SIZE = 0x620920, 59038
 ROOT_SHA = "abc831c6ccd95986bed811694f532ad8c8b92cb49702a7f6ce4de100b8a73dea"
+
+
+def call_census(rows):
+    calls = Counter()
+    for row in rows:
+        if row.group(capstone.CS_GRP_CALL):
+            operand = row.operands[0]
+            calls[hex(operand.imm) if operand.type == X86_OP_IMM else "register"] += 1
+    return dict(sorted(calls.items()))
 
 
 def load_script(name, path):
@@ -87,6 +97,7 @@ def target_audit(canonical):
             ("jp", "0x622873"), ("jne", "0x622871"), ("jp", "0x622a21"), ("jne", "0x622a8e")]:
         raise ValueError("ordered glide exit-facing facts differ")
     return {"instructions": len(rows), "bytes": SIZE,
+            "calls": call_census(rows.values()),
             "returns": sum(row.group(capstone.CS_GRP_RET) for row in rows.values()),
             "actions": len(entries), "opening_entries": OPENING_ENTRIES,
             "prelude_and_route_bytes": route_bytes, "action_and_default_union_bytes": action_bytes,
@@ -110,7 +121,11 @@ def candidate_audit(canonical, path):
     unit = load_manifest()["units"]["gpt-web-iku-action-state"]["functions"][0]
     calls = {name: int(address, 0) for name, _, address in (mapping.partition("=") for mapping in unit["rel32_targets"])}
     data = {name: target for name, _, target in (mapping.partition("=") for mapping in unit["dir32_targets"])}
-    code = canonical.coff_symbol_bytes(path, root.name, START, SIZE, calls, canonical.known_data_targets(), data)
+    # CFG diagnostics must replay the actual candidate table tail even when
+    # that section is larger than the target callable. Acceptance still uses
+    # the canonical comparator's independently fixed target extent.
+    code = canonical.coff_symbol_bytes(path, root.name, START, section.raw_size - root.value,
+                                       calls, canonical.known_data_targets(), data)
     md = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
     md.detail = True
     todo, rows, owners, indirect, tails = [START], {}, {}, {}, []
@@ -120,7 +135,8 @@ def candidate_audit(canonical, path):
             continue
         offset = address - START
         if not 0 <= offset < len(code):
-            raise ValueError("candidate direct edge leaves its root section")
+            raise ValueError(f"candidate direct edge {address:#x} leaves root section "
+                             f"[{START:#x},{START + len(code):#x})")
         row = next(md.disasm(code[offset:offset + 15], address, count=1), None)
         if row is None or any(byte in owners for byte in range(address, address + row.size)):
             raise ValueError("candidate decode fails or overlaps an instruction")
@@ -156,6 +172,7 @@ def candidate_audit(canonical, path):
             "canonical_section_tail_sha256": hashlib.sha256(code).hexdigest(),
             "section_tail_bytes": len(code), "callable_span_bytes": end - START,
             "instructions": len(rows), "unique_instruction_bytes": len(owners),
+            "calls": call_census(rows.values()),
             "unreached_bytes_inside_callable_span": sum(a not in owners for a in range(START, end)),
             "post_callable_metadata_bytes": START + len(code) - end,
             "returns": sum(row.group(capstone.CS_GRP_RET) for row in rows.values()),

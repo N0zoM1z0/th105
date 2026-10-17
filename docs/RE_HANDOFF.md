@@ -34,67 +34,67 @@ hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
 ## Active priority: Iku whole-root code generation
 
-`Iku_dispatch_action_state_vslot28 @ 620920` now has complete selected source
-in `src/characters/IkuActionState.cpp`: all110 nondefault IDs, original
-prelude/early exits and common default. The genuine entry is void thiscall,
-with no stack arguments. `implemented.csv` selects the root and the new
-`gpt-web-iku-action-state` unit compares its entire59038-byte target. Source
-presence is now established; canonical comparison is **nonexact at+8**, with
-no partial or exact byte credit.
+`Iku_dispatch_action_state_vslot28 @ 620920` retains complete selected source
+in `src/characters/IkuActionState.cpp`: all110 actions, actual void thiscall
+entry, original prelude/early exits and common default. The source now has one
+ascending switch with individual action bodies, replacing nested family
+switches and runtime variant grouping. Entry snapshots are specialized while
+post-callback field reads remain live; constant predicates/unused locals are
+removed. No original status/helper boundary or original source spelling is
+claimed. Canonical whole59038 comparison remains **nonexact at+8**.
 
-The raw audit closes all15132 instructions/59038 bytes,131 RETs and three
-compressed switches. All110 action entries plus default close58447 unique bytes;
-prelude/routing adds591. The new33 opening IDs include full glide214,
-landing/braking/dash/effect/input branches, and shared209/221 entry. Source
-preserves callback order, signed field widths, periodic-effect double X
-across two MT calls, and glide scratch receiver this+4. Raw JP/JNE conditions
-correct Ghidra's misleading NaN-facing pseudocode: unordered peer X must
-retain facing.
+The target still closes15132 instructions/59038 bytes,131 RETs,865 direct
+CALLs to32 targets and177 register CALLs. `iku-vslot28` now pins its three
+33/42/35-entry tables in the giant-switch manifest. The selected actual root
+naturally reproduces all three tables and108 physical table destinations,
+with no split/merged target group. Five of109 instruction/edge owner
+diagnostics match: actions2/4/5/204/303. These are diagnostics including the
+entry partition, not separately owned functions or exact byte credit. Direct
+300/560 edges remain checked by the full-root audit.
 
-Whole-entry native comparison passes **0/26783** sampled cases:19949 genuine
-RETs and6834 first backend/runtime entries. It visits10231 of15132 root
-instructions. The candidate executes its own prelude; real target frame,
-landing, RNG/event/audio, counter and math helpers run without injected return
-values. New opening/prelude cases are expanded while prior families retain
-only their smoke matrices and a small entry grid. The older expanded matrices
-and unrelated accepted units are not routinely replayed. Prelude-countdown
-and unordered-facing controls differ60/60 and28/48; both are checked subsets
-of the passing baseline. Post-backend continuation and exceptions remain
-unverified. See [the complete source/native/canonical checkpoint](IKU_FULL_ROOT_SOURCE_2026_10_17.md)
-for commands, hashes, outcomes and fixture limits.
+Current COFF CFG closes15037 instructions/58427 callable bytes and129 RETs,
+versus the old grouped36703-byte body. Its59582-byte section contains one
+following alignment byte plus1154 bytes of tables/indices/internal alignment.
+There are no local CALL relocations or unreached callable bytes. Candidate
+frame4A8hex versus target400hex still differs at620928/+8. Ordinary CALLs are
+867 versus865, and register sites167 versus177; joint call/tail ownership and
+floating/payload temporary lifetimes are the next work. Do not tune only the
+first frame operand, add padding/inert locals or infer an LTCG barrier.
 
-Private/status sharing helpers are forced inline into the actual void entry;
-there are no remaining local CALL relocations in its COFF root. This does not
-claim original helper boundaries or source spelling. Canonical replay uses32
-genuine external CALL symbols and132 data keys. The35 added floating keys are
-root-observed address/width/value pairs absent from previous mappings; no
-existing binding, accepted header/source/profile or object partition changes.
-Old cache receipts may be conservatively invalidated by global ledger hashes;
-no cold aggregate verification is claimed. Native-tested and formal-unit root
-sections replay to identical bytes.
+Whole-entry smoke passes **0/16285**, with12769 RETs and3516 first backend/
+runtime entries, visiting10195 root instructions. It is a checked subset of
+the prior26783 inputs; that expanded matrix is not rerun after this TU change.
+Current countdown/facing controls retain60/60 and28/48 differences. Both roots
+execute their own prelude and genuine helpers without result hooks. The
+final source cleanup changes neither the freshly built configured root nor
+its full-section replay versus the native-tested draft. A final275-case run
+for0/2 also passes with its own final-source hash and identical section replay.
+Use `--actions` to select changed IDs without replaying all fixtures. Post-backend
+continuation and exceptions remain unverified. Commands, hashes, scope and
+remaining mismatches: [flat dispatch/ownership checkpoint](IKU_FLAT_DISPATCH_2026_10_17.md).
+The [first complete source](IKU_FULL_ROOT_SOURCE_2026_10_17.md) is historical.
 
-The actual COFF CFG closes9623 instructions/36703 callable bytes and106 RETs,
-with920 following metadata bytes and six switches. The target frame400hex
-versus candidate2E8hex differs at620928/+8. Grouped source folds physically
-distinct cases; next recover target-backed case-specific structure, floating
-lifetimes and dispatch lowering in this same large root. Do not add padding,
-inert locals or invented callee boundaries. A nonexact object does not prove
-an LTCG barrier. Original TU/source ownership and complete class layout remain
-unknown.
+The status COMDAT is larger than the actual void root, so diagnostic section
+selection must use the unit's exact decorated root symbol. The COFF reader
+now accepts explicit selection and loads that section's own relocations;
+missing/ambiguous/external/data/nonzero-offset roots fail closed. The owner
+audit supplies its configured symbol; the span CLI supports `--symbol`.
+Default inference for old callers is unchanged. The Iku CFG audit replays the
+whole actual section so tables beyond the target extent are not left raw;
+canonical comparison/acceptance remains unchanged.
 
-The critical unsigned602 selector400-minus200 wrap/live x87 X addition,
-310 double increment,780 widened0.95f truncation and raw-X signed zero remain
-intact. Earlier evidence is in the [middle](IKU_MIDDLE_SOURCE_2026_10_17.md),
-[upper](IKU_UPPER_SOURCE_2026_10_17.md),
-[object818](IKU_OBJECT818_SOURCE_2026_10_17.md),
-[spell](IKU_SPELL_SOURCE_2026_10_17.md) and
-[late](IKU_LATE_SOURCE_2026_10_17.md) notes. Direct Ghidra independently reads
-back target/import/entry/text/root and saved58 fields/30 callee ABIs/177
-register-call target sets, preserving all nine primary-project hashes. The
-clone is removed. The decompiler's spacebase warning remains a hypothesis
-limitation. Follow [the virtual ABI](IKU_VIRTUAL_CALLS_2026_10_17.md) and
-[random/float evidence](IKU_RANDOM_FLOAT_TYPES_2026_10_17.md); do not substitute
-an invented 64-bit conversion ABI for68A1A0's real ST0-to-EAX contract.
+No accepted source/header/profile/partition or canonical binding changes;
+no cold aggregate replay or exact credit. The critical unsigned602 offset/
+live x87 X addition,310 double increment,780 widened0.95f truncation, direct-X
+signed zero, periodic-effect double carrier and ordered NaN-facing remain.
+Keep [virtual ABI](IKU_VIRTUAL_CALLS_2026_10_17.md),
+[random/float evidence](IKU_RANDOM_FLOAT_TYPES_2026_10_17.md) and the earlier
+[middle](IKU_MIDDLE_SOURCE_2026_10_17.md)/
+[upper](IKU_UPPER_SOURCE_2026_10_17.md) family records as context. The wrong
+IDA image is rejected; this compiler batch uses hash-attested PE facts and
+changes no database. Re-attest any Ghidra import before database use. Full
+receiver layout, original source/TU ownership and later backend behavior
+remain unknown.
 
 ## Shared Fighter linked checkpoint
 

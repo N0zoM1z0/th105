@@ -56,7 +56,7 @@ class CoffSymbol:
 
 
 class CoffObject:
-    def __init__(self, path: Path) -> None:
+    def __init__(self, path: Path, *, symbol_base: str | None = None) -> None:
         self.path = path
         self.data = path.read_bytes()
         if len(self.data) < 20:
@@ -125,6 +125,20 @@ class CoffObject:
             symbols[index] = CoffSymbol(name, value, section_number)
             index += 1 + aux_count
         self.symbols = symbols
+
+        if symbol_base is not None:
+            matches = [symbol for symbol in symbols.values()
+                       if symbol.name == symbol_base and symbol.section_number > 0]
+            if len(matches) != 1:
+                raise ValueError(f"{path}: expected one defined root symbol {symbol_base!r}")
+            symbol = matches[0]
+            if not 1 <= symbol.section_number <= len(sections):
+                raise ValueError(f"{path}: root symbol has an invalid section")
+            section = sections[symbol.section_number - 1]
+            if section.name != ".text" or symbol.value != 0:
+                raise ValueError(f"{path}: selected root must begin its .text section")
+            self.text_section_number, self.text_section = symbol.section_number, section
+            self.text = self._read_raw(section.raw_offset, section.raw_size)
 
         relocations: dict[int, tuple[CoffSymbol, int]] = {}
         section = self.text_section
@@ -415,6 +429,7 @@ def main() -> int:
     parser.add_argument("--manifest", type=Path, default=Path("config/giant-action-switches.toml"))
     parser.add_argument("--pe", type=Path, default=Path("resources/th105.exe"))
     parser.add_argument("--functions", type=Path, default=Path("config/functions.csv"))
+    parser.add_argument("--symbol", help="select this exact defined root instead of the largest .text")
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args()
 
@@ -426,7 +441,7 @@ def main() -> int:
         target_mapper.load_function_rows(args.functions),
         root,
     )
-    candidate = build_candidate_map(CoffObject(args.object), root)
+    candidate = build_candidate_map(CoffObject(args.object, symbol_base=args.symbol), root)
     result = compare_maps(target, candidate)
     if args.json:
         json.dump(result, sys.stdout, indent=2)

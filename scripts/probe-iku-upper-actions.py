@@ -284,7 +284,7 @@ class UpperProbe(late.LateProbe):
         super().instruction(uc, address, size, unused)
 
 
-def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False, control=None, coordinates=False, opening=False, whole=False, all_actions=False):
+def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False, control=None, coordinates=False, opening=False, whole=False, all_actions=False, actions=None):
     canonical = linked_pe.comparator()
     target_sha = canonical.verify_target()
     if hashlib.sha256(canonical.target_bytes(0x620920, 59038)).hexdigest() != "abc831c6ccd95986bed811694f532ad8c8b92cb49702a7f6ce4de100b8a73dea":
@@ -295,6 +295,12 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
     ledger = {int(row["address"], 0): int(row["size"])
               for row in csv.DictReader((ROOT / "config/functions.csv").open())}
     cases = root_cases(smoke) if all_actions else opening_cases(smoke, whole) if opening else coordinate_cases(smoke) if coordinates else middle_cases(smoke) if middle else gate_cases(smoke) if new_only else input_cases(smoke)
+    if actions:
+        selected = set(actions)
+        missing = selected - {case["action"] for case in cases}
+        if missing:
+            raise ValueError(f"requested actions absent from selected fixture: {sorted(missing)}")
+        cases = [case for case in cases if case["action"] in selected]
     control_actions = {"single-counter": (310,), "unsigned-brake": (303,), "current-height": (547,),
                        "zero-offset": (540, 541, 545, 546)}
     if middle and control in control_actions:
@@ -337,6 +343,7 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
     return {"schema": "th105-iku-action-state-source-native-v1", "target_sha256": target_sha, "build": receipt,
             "actions": len(OPENING_ENTRIES) + len(ENTRIES) + len(MIDDLE_ENTRIES),
             "whole_root_entry": whole,
+            "requested_actions": sorted(set(actions)) if actions else None,
             "case_set": "whole-root-actions" if all_actions else "opening-actions" if opening else "middle-coordinates" if coordinates else "middle-actions" if middle else "new-action-gates" if new_only else "upper-actions",
             "tested_actions": sorted({case["action"] for case in cases}), "cases": len(cases), "mismatch_count": differences, "mismatch_by_action": mismatch_by_action, "examples": examples,
             "input_sha256": inputs.hexdigest(), "target_output_sha256": outputs.hexdigest(),
@@ -375,7 +382,7 @@ def control_source(name):
         needle = "? peer_float(0xec) < float_at(0xec) : float_at(0xec) < peer_float(0xec);"
         replacement = "? !(float_at(0xec) <= peer_float(0xec)) : !(peer_float(0xec) <= float_at(0xec));"
     elif name == "current-height":
-        start = source.index("    case 547:\n")
+        start = source.index("    case 547:")
         prefix, source = source[:start], source[start:]
         needle = "double projected_y = static_cast<double>(float_at(0xf8)) + float_at(0xf0);"
         replacement = "double projected_y = float_at(0xf0);"
@@ -415,6 +422,7 @@ if __name__ == "__main__":
     parser.add_argument("--control", choices=("aim-limit", "unsigned-gate", "single-counter", "unsigned-brake", "current-height", "zero-offset", "prelude-countdown", "unordered-face"))
     parser.add_argument("--coordinates", action="store_true", help="with --middle, focus on direct X transfer and signed zero")
     parser.add_argument("--whole", action="store_true", help="execute both real/candidate roots from their own entry")
+    parser.add_argument("--actions", type=int, nargs="+", help="run only these action IDs from the selected fixture")
     args = parser.parse_args()
     if args.all_actions:
         args.whole = True
@@ -429,7 +437,7 @@ if __name__ == "__main__":
     source = control_source(args.control) if args.control else args.source.resolve()
     output = args.output.resolve() if args.output else (ROOT / "build" / ("IkuUpper-" + args.control + ".obj")
                                                        if args.control else None)
-    report = audit(source, output, args.smoke, args.new_only, args.middle, args.control, args.coordinates, args.opening, args.whole, args.all_actions)
+    report = audit(source, output, args.smoke, args.new_only, args.middle, args.control, args.coordinates, args.opening, args.whole, args.all_actions, args.actions)
     report["diagnostic_control"] = args.control
     print(json.dumps(report, indent=2))
     raise SystemExit(bool(report["mismatch_count"]))

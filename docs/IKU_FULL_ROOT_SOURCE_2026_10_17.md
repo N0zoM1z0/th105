@@ -1,5 +1,9 @@
 # Iku's complete action-state root source
 
+> Historical first complete-source checkpoint. The current
+> [flat dispatch and ownership checkpoint](IKU_FLAT_DISPATCH_2026_10_17.md)
+> supersedes the source hash, compiler topology and native results below.
+
 `Iku_dispatch_action_state_vslot28 @ 620920` now has complete source in
 `src/characters/IkuActionState.cpp`: all 110 nondefault action IDs, the original
 prelude, early exits and common default. The actual entry is a void thiscall
