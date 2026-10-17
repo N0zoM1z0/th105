@@ -16,6 +16,73 @@ SPEC.loader.exec_module(SHARING)
 
 
 class IkuCallSharingTests(unittest.TestCase):
+    def packet(self, calls, unknown=()):
+        return {
+            "calls": [
+                {"site": site, "target": "0x465190", "actions": actions}
+                for site, actions, _ in calls
+            ],
+            "payload_provenance": {
+                "payload_sites": {hex(site): cells for site, _, cells in calls},
+                "unknown_spawn_payload_sites": list(unknown),
+                "distinct_payload_homes": len(
+                    {cell for _, _, cells in calls for cell in cells}
+                ),
+            },
+        }
+
+    def test_shared_home_sets_use_independent_constraints_not_sorted_pairing(self):
+        target = self.packet(
+            [
+                (0x1000, [416], [32]),
+                (0x1010, [416, 417], [32, 44]),
+                (0x1020, [417], [44]),
+            ]
+        )
+        candidate = self.packet(
+            [
+                (0x2000, [416], [92]),
+                (0x2010, [416, 417], [80, 92]),
+                (0x2020, [417], [80]),
+            ]
+        )
+        result = SHARING.correlate_homes(target, candidate)
+        self.assertEqual(
+            result["possible_target_to_candidate_homes"], {"32": [92], "44": [80]}
+        )
+        self.assertTrue(result["bijection_under_ordinal_pairing"])
+
+    def test_shared_home_sets_without_independent_evidence_remain_ambiguous(self):
+        target = self.packet([(0x1000, [416, 417], [32, 44])])
+        candidate = self.packet([(0x2000, [416, 417], [80, 92])])
+        result = SHARING.correlate_homes(target, candidate)
+        self.assertEqual(
+            result["possible_target_to_candidate_homes"],
+            {"32": [80, 92], "44": [80, 92]},
+        )
+        self.assertFalse(result["bijection_under_ordinal_pairing"])
+
+    def test_unknown_missing_and_inconsistent_home_evidence_cannot_form_a_bijection(
+        self,
+    ):
+        target = self.packet([(0x1000, [416], [32])])
+        candidate = self.packet([(0x2000, [416], [80])], unknown=(0x2000,))
+        self.assertFalse(
+            SHARING.correlate_homes(target, candidate)[
+                "bijection_under_ordinal_pairing"
+            ]
+        )
+        self.assertFalse(
+            SHARING.correlate_homes(target, self.packet([]))[
+                "bijection_under_ordinal_pairing"
+            ]
+        )
+        target = self.packet([(0x1000, [416], [32]), (0x1010, [417], [32])])
+        candidate = self.packet([(0x2000, [416], [80]), (0x2010, [417], [92])])
+        result = SHARING.correlate_homes(target, candidate)
+        self.assertEqual(result["possible_target_to_candidate_homes"], {"32": []})
+        self.assertFalse(result["bijection_under_ordinal_pairing"])
+
     def rows(self, chunks):
         # Synthetic CFG input only; no fixture bytes are executed or accepted.
         return {

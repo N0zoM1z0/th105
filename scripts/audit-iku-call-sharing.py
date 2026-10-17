@@ -114,7 +114,7 @@ def candidate_entries(path, rows):
     return entries
 
 
-def facts(path=None):
+def facts(path=None, payload_homes=False):
     code, switches = homes.get_code(path)
     rows = {row.address: row for row in decode(code, homes.START)}
     entries = (
@@ -147,10 +147,109 @@ def facts(path=None):
             else "vslots:" + ",".join(hex(slot) for slot in virtual[pc])
         )
         calls.append({"site": pc, "target": target, "actions": sorted(origins[pc])})
-    return {
+    report = {
         "code_sha256": hashlib.sha256(code).hexdigest(),
         "entries": entries,
         "calls": calls,
+    }
+    if payload_homes:
+        provenance = homes.audit(code, switches)
+        report["payload_provenance"] = {
+            key: provenance[key]
+            for key in (
+                "frame",
+                "distinct_payload_homes",
+                "payload_sites",
+                "unknown_spawn_payload_sites",
+            )
+        }
+    return report
+
+
+def correlate_homes(target, candidate):
+    """Intersect home sets under action-origin/physical-call-ordinal pairing.
+
+    This pairing is a conditional structural correlation, not argument identity.
+    A multi-origin call supplies a set constraint, never a sorted zip of homes.
+    """
+    groups = []
+    for packet in (target, candidate):
+        by_origin = defaultdict(list)
+        for call in sorted(packet["calls"], key=lambda row: row["site"]):
+            if call["target"] == "0x465190":
+                by_origin[tuple(call["actions"])].append(call["site"])
+        groups.append(by_origin)
+    constraints, issues = {}, []
+    for actions in sorted(groups[0].keys() | groups[1].keys()):
+        sites = [group.get(actions, []) for group in groups]
+        if len(sites[0]) != len(sites[1]):
+            issues.append(
+                {
+                    "actions": actions,
+                    "sites": sites,
+                    "reason": "different group lengths",
+                }
+            )
+            continue
+        for pair in zip(*sites):
+            origins = [packet["payload_provenance"] for packet in (target, candidate)]
+            if any(
+                site in info["unknown_spawn_payload_sites"]
+                for site, info in zip(pair, origins)
+            ):
+                issues.append(
+                    {
+                        "actions": actions,
+                        "sites": pair,
+                        "reason": "unknown payload origin",
+                    }
+                )
+                continue
+            cells = [
+                set(info["payload_sites"].get(hex(site), []))
+                for site, info in zip(pair, origins)
+            ]
+            if len(cells[0]) != len(cells[1]):
+                issues.append(
+                    {
+                        "actions": actions,
+                        "sites": pair,
+                        "reason": "different home-set cardinality",
+                    }
+                )
+                continue
+            for home in cells[0]:
+                if home in constraints:
+                    constraints[home].intersection_update(cells[1])
+                else:
+                    constraints[home] = set(cells[1])
+    unique = all(len(values) == 1 for values in constraints.values())
+    image = {value for values in constraints.values() for value in values}
+    candidate_homes = {
+        value
+        for values in candidate["payload_provenance"]["payload_sites"].values()
+        for value in values
+    }
+    bijection = (
+        not issues
+        and bool(constraints)
+        and unique
+        and len(constraints) == target["payload_provenance"]["distinct_payload_homes"]
+        and len(image) == len(constraints)
+        and image == candidate_homes
+        and len(image) == candidate["payload_provenance"]["distinct_payload_homes"]
+    )
+    return {
+        "possible_target_to_candidate_homes": {
+            str(home): sorted(values) for home, values in sorted(constraints.items())
+        },
+        "identity_correlations": sorted(
+            home for home, values in constraints.items() if values == {home}
+        ),
+        "bijection_under_ordinal_pairing": bijection,
+        "issues": issues,
+        "scope": "Equal incoming-action groups paired by physical call ordinal; home-set constraints intersected. "
+        "Not a proof of payload values, feasible paths, original variable names or exact byte equality.",
     }
 
 
@@ -179,9 +278,14 @@ def differences(target, candidate):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--object", type=Path)
+    parser.add_argument(
+        "--payload-homes",
+        action="store_true",
+        help="include stack provenance and conditional ordinal home correlation",
+    )
     args = parser.parse_args()
     target_sha = homes.c.verify_target()
-    target = facts()
+    target = facts(payload_homes=args.payload_homes)
     report = {
         "schema": "th105-iku-call-sharing-v1",
         "target_sha256": target_sha,
@@ -194,7 +298,11 @@ if __name__ == "__main__":
         "No original variable names, source-sharing proof, missing-behavior claim or exact byte credit.",
     }
     if args.object:
-        report["candidate"] = facts(args.object.resolve())
+        report["candidate"] = facts(
+            args.object.resolve(), payload_homes=args.payload_homes
+        )
         report["object_sha256"] = hashlib.sha256(args.object.read_bytes()).hexdigest()
         report["differences"] = differences(target, report["candidate"])
+        if args.payload_homes:
+            report["home_correlation"] = correlate_homes(target, report["candidate"])
     print(json.dumps(report, indent=2))

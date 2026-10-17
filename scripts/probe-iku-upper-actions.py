@@ -235,6 +235,31 @@ def root_cases(smoke=False):
     return list({json.dumps(case, sort_keys=True): case for case in cases}.values())
 
 
+def steering_clamp_cases():
+    """Exercise both axes at binary32 clamp boundaries using real aim math."""
+    basic = dict(late.input_cases(True)[0], action=730, frame=0, timer=-1,
+                 time=7, index=0, x=640.0, y=100.0, x_bits="44200000",
+                 steering_fixture=True)
+    cases = []
+    for sequence, mode, facing, cw in itertools.product(
+            (7, 8, 9, 10), (-1, 0, 1, 2, 3, 4), (-1, 1), (0x27F, 0x37F)):
+        limit = 5.0 if sequence in (9, 10) else 6.0 if mode == 3 else 4.0 if mode == 0 else 5.0
+        # Aim contributes +/-0.5 along the selected axis. Include both sides
+        # of each resulting limit and their adjacent representable inputs.
+        velocities = {0, 0x80000000, 1, 0x80000001,
+                      0x7F800000, 0xFF800000, 0x7FC12345, 0xFFC12345}
+        for value in (limit - 0.5, limit + 0.5, -limit - 0.5, -limit + 0.5):
+            bits = struct.unpack("<I", struct.pack("<f", value))[0]
+            velocities.update((bits - 1, bits, bits + 1))
+        for axis, bits in itertools.product(("x", "y"), sorted(velocities)):
+            cases.append(dict(basic, sequence=sequence, match=mode, facing=facing, cw=cw,
+                              vx_bits=f"{bits:08x}" if axis == "x" else "00000000",
+                              vy_bits=f"{bits:08x}" if axis == "y" else "00000000",
+                              peer_x=760.0 if axis == "x" else 640.0,
+                              peer_y=100.0 if axis == "x" else 220.0))
+    return cases
+
+
 class UpperProbe(late.LateProbe):
     def __init__(self, canonical, candidate, seeds, table):
         super().__init__(canonical, candidate, seeds, table)
@@ -249,6 +274,8 @@ class UpperProbe(late.LateProbe):
 
     def actor_fields(self, case):
         fields = super().actor_fields(case)
+        if case.get("steering_fixture"):
+            fields = (*fields, (0xF8, "I", int(case["vy_bits"], 16)))
         if not case.get("middle_fixture"):
             return fields
         return (*fields, (0x47E, "B", case["brake"]), (0x4A8, "h", 99),
@@ -284,7 +311,7 @@ class UpperProbe(late.LateProbe):
         super().instruction(uc, address, size, unused)
 
 
-def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False, control=None, coordinates=False, opening=False, whole=False, all_actions=False, actions=None):
+def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False, control=None, coordinates=False, opening=False, whole=False, all_actions=False, actions=None, steering_clamps=False):
     canonical = linked_pe.comparator()
     target_sha = canonical.verify_target()
     if hashlib.sha256(canonical.target_bytes(0x620920, 59038)).hexdigest() != "abc831c6ccd95986bed811694f532ad8c8b92cb49702a7f6ce4de100b8a73dea":
@@ -294,7 +321,7 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
     table, initialization = lookup_fixture(canonical)
     ledger = {int(row["address"], 0): int(row["size"])
               for row in csv.DictReader((ROOT / "config/functions.csv").open())}
-    cases = root_cases(smoke) if all_actions else opening_cases(smoke, whole) if opening else coordinate_cases(smoke) if coordinates else middle_cases(smoke) if middle else gate_cases(smoke) if new_only else input_cases(smoke)
+    cases = steering_clamp_cases() if steering_clamps else root_cases(smoke) if all_actions else opening_cases(smoke, whole) if opening else coordinate_cases(smoke) if coordinates else middle_cases(smoke) if middle else gate_cases(smoke) if new_only else input_cases(smoke)
     if actions:
         selected = set(actions)
         missing = selected - {case["action"] for case in cases}
@@ -344,7 +371,7 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
             "actions": len(OPENING_ENTRIES) + len(ENTRIES) + len(MIDDLE_ENTRIES),
             "whole_root_entry": whole,
             "requested_actions": sorted(set(actions)) if actions else None,
-            "case_set": "whole-root-actions" if all_actions else "opening-actions" if opening else "middle-coordinates" if coordinates else "middle-actions" if middle else "new-action-gates" if new_only else "upper-actions",
+            "case_set": "steering-clamps" if steering_clamps else "whole-root-actions" if all_actions else "opening-actions" if opening else "middle-coordinates" if coordinates else "middle-actions" if middle else "new-action-gates" if new_only else "upper-actions",
             "tested_actions": sorted({case["action"] for case in cases}), "cases": len(cases), "mismatch_count": differences, "mismatch_by_action": mismatch_by_action, "examples": examples,
             "input_sha256": inputs.hexdigest(), "target_output_sha256": outputs.hexdigest(),
             "lookup_initialization": initialization, "math_runtime_trace": probe.math_trace,
@@ -419,12 +446,13 @@ if __name__ == "__main__":
     cases.add_argument("--all-actions", action="store_true", help="full entry: expand new opening cases and retain prior-family smoke only")
     cases.add_argument("--opening", action="store_true", help="focus on the33 opening actions")
     cases.add_argument("--middle", action="store_true", help="focus on the42 new middle actions")
+    cases.add_argument("--steering-clamps", action="store_true", help="action730 two-axis binary32 clamp boundaries with genuine lookup math")
     parser.add_argument("--control", choices=("aim-limit", "unsigned-gate", "single-counter", "unsigned-brake", "current-height", "zero-offset", "prelude-countdown", "unordered-face"))
     parser.add_argument("--coordinates", action="store_true", help="with --middle, focus on direct X transfer and signed zero")
     parser.add_argument("--whole", action="store_true", help="execute both real/candidate roots from their own entry")
     parser.add_argument("--actions", type=int, nargs="+", help="run only these action IDs from the selected fixture")
     args = parser.parse_args()
-    if args.all_actions:
+    if args.all_actions or args.steering_clamps:
         args.whole = True
     if args.coordinates and not args.middle:
         parser.error("coordinate cases require --middle")
@@ -437,7 +465,7 @@ if __name__ == "__main__":
     source = control_source(args.control) if args.control else args.source.resolve()
     output = args.output.resolve() if args.output else (ROOT / "build" / ("IkuUpper-" + args.control + ".obj")
                                                        if args.control else None)
-    report = audit(source, output, args.smoke, args.new_only, args.middle, args.control, args.coordinates, args.opening, args.whole, args.all_actions, args.actions)
+    report = audit(source, output, args.smoke, args.new_only, args.middle, args.control, args.coordinates, args.opening, args.whole, args.all_actions, args.actions, args.steering_clamps)
     report["diagnostic_control"] = args.control
     print(json.dumps(report, indent=2))
     raise SystemExit(bool(report["mismatch_count"]))

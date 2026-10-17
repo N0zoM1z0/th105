@@ -1,5 +1,9 @@
 # Iku call sharing and below-surface result consumers
 
+Historical checkpoint899042f. Current selected source and focused results:
+[steering clamps and payload-home correlation](IKU_STEERING_CLAMPS_2026_10_17.md).
+
+
 Current checkpoint after [payload lifetime recovery](IKU_PAYLOAD_LIFETIMES_2026_10_17.md).
 The target is the original Japanese TH10.5 v1.06a executable, SHA-256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.

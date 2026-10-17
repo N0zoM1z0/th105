@@ -153,12 +153,18 @@ private:
         if (fixed_limit) {
             clamp_y(5.0f, -5.0f);
         } else {
-            float upper, lower;
-            if (g_match_identifier == 3) { upper = 6.0f; lower = -6.0f; }
-            else if (g_match_identifier == 0) { upper = 4.0f; lower = -4.0f; }
-            else { upper = 5.0f; lower = -5.0f; }
-            clamp_x(upper, lower);
-            clamp_y(upper, lower);
+            // Each target mode tests the X upper bound before joining the
+            // remaining clamp operations; do not select a pair of limits first.
+            if (g_match_identifier == 3) {
+                clamp_x(6.0f, -6.0f);
+                clamp_y(6.0f, -6.0f);
+            } else if (g_match_identifier == 0) {
+                clamp_x(4.0f, -4.0f);
+                clamp_y(4.0f, -4.0f);
+            } else {
+                clamp_x(5.0f, -5.0f);
+                clamp_y(5.0f, -5.0f);
+            }
         }
         face_opponent_and_flip_horizontal_velocity();
     }
