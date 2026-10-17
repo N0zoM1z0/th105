@@ -321,9 +321,22 @@ has75836 text bytes,74560 bytes before the first table,1095 decoded calls and
 no implementation/exact credit. First diagnostic mismatch478FA8 is stack
 allocation570h vs5A8h. Standard full comparison still lacks the complete root
 relocation contract. See [source-shape diagnosis](REIMU_ACTION_SOURCE_SHAPE_2026_10_18.md).
-Next prioritize510..513 and710..730: their eight physical spans explain6347
-bytes of the6990-byte pre-table deficit. Recover expanded request/mode lowering
-and live reloads before unrelated small actions. Reconcile740's undefined
+510..513's wide angle loops are now twelve explicit requests per action,
+with all three parameter floats reset and x/y/facing re-read per call. Separate
+live level tests remain. Both the main compact build and three-region probe
+pass0/3061 focused native cases. A separate unknown-live-in basic-block audit
+checks all48 target/source payloads and12 inter-group level reloads without
+executing/returning callbacks. Three compiled later-request errors pass0/36
+first-request smoke but are rejected by static constraints. The two evidence
+classes remain distinct. Source probe text is now79980, first table at78704,
+with1131 decoded calls and unchanged126 primary destinations. Four action spans
+grow3280->7320 versus target7201; no equality credit. Target still has1188
+calls and81550 callable bytes; the remaining pre-table deficit is2846. First
+diagnostic difference remains570h versus5A8h stack allocation. No accepted
+source/header/profile/relocation change or aggregate replay. Nine primary
+Ghidra hashes unchanged; obsolete probes/controls cleaned. See
+[510 request-source evidence](REIMU_510_REQUEST_SHAPE_2026_10_18.md).
+Next prioritize710/711/720/730 mode/request lowering, then740's undefined
 paths, full void/default ABI, returning world contexts and VC8/LTCG/TU evidence
 before canonical root acceptance.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.

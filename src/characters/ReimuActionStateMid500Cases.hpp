@@ -37,31 +37,88 @@
             const double y_offset = aerial ? 108.0 : 96.0;
             if (wide) {
                 if (word_736 == 0) {
-                    for (int angle = 30; angle >= -30; angle -= 30) {
-                        float parameters[3] = {static_cast<float>(angle), 15.0f, 0.0f};
-                        spawn_owned_object_via_manager(812,
-                            static_cast<float>(static_cast<float>(facing_104 * x_offset) + x_ec),
-                            static_cast<float>(y_f0 + y_offset),
-                            static_cast<unsigned char>(facing_104), 1, parameters, 3);
-                    }
+                    float parameters[3] = {30.0f, 15.0f, 0.0f};
+                    spawn_owned_object_via_manager(812,
+                        static_cast<float>(static_cast<float>(facing_104 * x_offset) + x_ec),
+                        static_cast<float>(y_f0 + y_offset),
+                        static_cast<unsigned char>(facing_104), 1, parameters, 3);
+                    parameters[0] = 0.0f;
+                    parameters[1] = 15.0f;
+                    parameters[2] = 0.0f;
+                    spawn_owned_object_via_manager(812,
+                        static_cast<float>(static_cast<float>(facing_104 * x_offset) + x_ec),
+                        static_cast<float>(y_f0 + y_offset),
+                        static_cast<unsigned char>(facing_104), 1, parameters, 3);
+                    parameters[0] = -30.0f;
+                    parameters[1] = 15.0f;
+                    parameters[2] = 0.0f;
+                    spawn_owned_object_via_manager(812,
+                        static_cast<float>(static_cast<float>(facing_104 * x_offset) + x_ec),
+                        static_cast<float>(y_f0 + y_offset),
+                        static_cast<unsigned char>(facing_104), 1, parameters, 3);
                 }
                 if (word_736 == 1) {
-                    for (int angle = 45; angle >= -45; angle -= 30) {
-                        float parameters[3] = {static_cast<float>(angle), 15.0f, 0.0f};
-                        spawn_owned_object_via_manager(812,
-                            static_cast<float>(static_cast<float>(facing_104 * x_offset) + x_ec),
-                            static_cast<float>(y_f0 + y_offset),
-                            static_cast<unsigned char>(facing_104), 1, parameters, 3);
-                    }
+                    float parameters[3] = {45.0f, 15.0f, 0.0f};
+                    spawn_owned_object_via_manager(812,
+                        static_cast<float>(static_cast<float>(facing_104 * x_offset) + x_ec),
+                        static_cast<float>(y_f0 + y_offset),
+                        static_cast<unsigned char>(facing_104), 1, parameters, 3);
+                    parameters[0] = 15.0f;
+                    parameters[1] = 15.0f;
+                    parameters[2] = 0.0f;
+                    spawn_owned_object_via_manager(812,
+                        static_cast<float>(static_cast<float>(facing_104 * x_offset) + x_ec),
+                        static_cast<float>(y_f0 + y_offset),
+                        static_cast<unsigned char>(facing_104), 1, parameters, 3);
+                    parameters[0] = -15.0f;
+                    parameters[1] = 15.0f;
+                    parameters[2] = 0.0f;
+                    spawn_owned_object_via_manager(812,
+                        static_cast<float>(static_cast<float>(facing_104 * x_offset) + x_ec),
+                        static_cast<float>(y_f0 + y_offset),
+                        static_cast<unsigned char>(facing_104), 1, parameters, 3);
+                    parameters[0] = -45.0f;
+                    parameters[1] = 15.0f;
+                    parameters[2] = 0.0f;
+                    spawn_owned_object_via_manager(812,
+                        static_cast<float>(static_cast<float>(facing_104 * x_offset) + x_ec),
+                        static_cast<float>(y_f0 + y_offset),
+                        static_cast<unsigned char>(facing_104), 1, parameters, 3);
                 }
                 if (word_736 == 2) {
-                    for (int angle = 60; angle >= -60; angle -= 30) {
-                        float parameters[3] = {static_cast<float>(angle), 15.0f, 0.0f};
-                        spawn_owned_object_via_manager(812,
-                            static_cast<float>(static_cast<float>(facing_104 * x_offset) + x_ec),
-                            static_cast<float>(y_f0 + y_offset),
-                            static_cast<unsigned char>(facing_104), 1, parameters, 3);
-                    }
+                    float parameters[3] = {60.0f, 15.0f, 0.0f};
+                    spawn_owned_object_via_manager(812,
+                        static_cast<float>(static_cast<float>(facing_104 * x_offset) + x_ec),
+                        static_cast<float>(y_f0 + y_offset),
+                        static_cast<unsigned char>(facing_104), 1, parameters, 3);
+                    parameters[0] = 30.0f;
+                    parameters[1] = 15.0f;
+                    parameters[2] = 0.0f;
+                    spawn_owned_object_via_manager(812,
+                        static_cast<float>(static_cast<float>(facing_104 * x_offset) + x_ec),
+                        static_cast<float>(y_f0 + y_offset),
+                        static_cast<unsigned char>(facing_104), 1, parameters, 3);
+                    parameters[0] = 0.0f;
+                    parameters[1] = 15.0f;
+                    parameters[2] = 0.0f;
+                    spawn_owned_object_via_manager(812,
+                        static_cast<float>(static_cast<float>(facing_104 * x_offset) + x_ec),
+                        static_cast<float>(y_f0 + y_offset),
+                        static_cast<unsigned char>(facing_104), 1, parameters, 3);
+                    parameters[0] = -30.0f;
+                    parameters[1] = 15.0f;
+                    parameters[2] = 0.0f;
+                    spawn_owned_object_via_manager(812,
+                        static_cast<float>(static_cast<float>(facing_104 * x_offset) + x_ec),
+                        static_cast<float>(y_f0 + y_offset),
+                        static_cast<unsigned char>(facing_104), 1, parameters, 3);
+                    parameters[0] = -60.0f;
+                    parameters[1] = 15.0f;
+                    parameters[2] = 0.0f;
+                    spawn_owned_object_via_manager(812,
+                        static_cast<float>(static_cast<float>(facing_104 * x_offset) + x_ec),
+                        static_cast<float>(y_f0 + y_offset),
+                        static_cast<unsigned char>(facing_104), 1, parameters, 3);
                 }
             } else if (!alternate) {
                 if (word_736 == 0) {
