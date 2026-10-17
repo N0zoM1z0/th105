@@ -1,5 +1,9 @@
 # Iku full linked-root relocation replay
 
+Historical d0eede0 compiler comparison. Current source and linked extents are
+in [the glide exit checkpoint](IKU_GLIDE_EXIT_OWNERSHIP_2026_10_17.md); the
+full replay procedure remains applicable.
+
 The subsequent [action/payload partition checkpoint](IKU_ACTION_PAYLOAD_PARTITIONS_2026_10_17.md)
 resolves the11 static correlation ambiguities below under the existing ordinal
 pairing. This linked compiler comparison and the selected source remain valid.

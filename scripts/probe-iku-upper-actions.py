@@ -406,8 +406,26 @@ def control_source(name):
         needle = "if (short_at(0x7b0) > 0) --short_at(0x7b0);"
         replacement = "if (short_at(0x7b0) > 0) ++short_at(0x7b0);"
     elif name == "unordered-face":
-        needle = "? peer_float(0xec) < float_at(0xec) : float_at(0xec) < peer_float(0xec);"
-        replacement = "? !(float_at(0xec) <= peer_float(0xec)) : !(peer_float(0xec) <= float_at(0xec));"
+        predicates = (
+            ("if (peer_float(0xec) < float_at(0xec))",
+             "if (!(float_at(0xec) <= peer_float(0xec)))"),
+            ("if (float_at(0xec) < peer_float(0xec))",
+             "if (!(peer_float(0xec) <= float_at(0xec)))"),
+        )
+        helper = source.index("    __forceinline void opening_face_and_select_exit(")
+        glide = source.index("__forceinline bool IkuActionStateView::try_dispatch_verified_glide_action()")
+        regions = ((helper, source.index("\n};", helper)),
+                   (glide, source.index("\nvoid IkuActionStateView::dispatch_action_state_vslot28()", glide)))
+        for first, last in reversed(regions):
+            body = source[first:last]
+            for needle, replacement in predicates:
+                if body.count(needle) != 1:
+                    raise ValueError("unordered-face control requires both facing arms in helper and final exit")
+                body = body.replace(needle, replacement)
+            source = source[:first] + body + source[last:]
+        path = ROOT / "build/iku-upper-unordered-face.cpp"
+        path.write_bytes(source.replace("\n", "\r\n").encode())
+        return path
     elif name == "current-height":
         start = source.index("    case 547:")
         prefix, source = source[:start], source[start:]

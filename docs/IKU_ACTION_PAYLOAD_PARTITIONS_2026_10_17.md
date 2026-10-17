@@ -1,5 +1,9 @@
 # Iku incoming-action and payload relation
 
+Historical f11d36b checkpoint. The subsequent
+[glide exit recovery](IKU_GLIDE_EXIT_OWNERSHIP_2026_10_17.md) changes source and
+instruction counts while retaining the84-home/59-identity correlation below.
+
 The selected Iku620920 source remains unchanged. Preserving incoming action
 and pointer provenance together removes the11 ambiguities in the earlier
 home-set correlation: under the same action-group/physical-call-ordinal

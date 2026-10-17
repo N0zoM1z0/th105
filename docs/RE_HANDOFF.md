@@ -32,130 +32,90 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Active priority: Iku whole-root link/call ownership
+## Active priority: Iku glide exits and whole-root sharing
 
 Iku_dispatch_action_state_vslot28 @620920 retains complete selected source:
 110 actions, actual void thiscall entry, original prelude/default and one
-ascending switch. Target is59038 bytes/15132 instructions/131 RETs. Frame
-400hex and84 payload identities are recovered naturally; first100 bytes agree,
-then canonical comparison remains **nonexact+0x64 /620984**, where target alone
-hoists EDI=1 before the action-range branch. No partial/exact credit.
-Current evidence: [action/payload partitions](IKU_ACTION_PAYLOAD_PARTITIONS_2026_10_17.md),
-[full linked replay](IKU_LINKED_REPLAY_2026_10_17.md),
-[real source link](IKU_REAL_LINK_2026_10_17.md) and
-[steering clamps](IKU_STEERING_CLAMPS_2026_10_17.md).
+ascending switch. Target is59038 bytes/15132 instructions/131 RETs, SHA-256
+abc831c6ccd95986bed811694f532ad8c8b92cb49702a7f6ce4de100b8a73dea.
+Frame400hex and84 payload homes remain natural. First100 bytes agree; strict
+whole-root comparison stays **nonexact+0x64 /620984**, where target alone
+hoists EDI=1. No partial/exact credit. Current evidence:
+[glide exit ownership](IKU_GLIDE_EXIT_OWNERSHIP_2026_10_17.md).
 
-The complete root now links with41 real game source providers, genuine pinned
-SDK deque instantiations and CRT. Of52 independently compared game dependency
+Action214 now selects its exit sequence inside each ordered facing arm;
+sequence8 keeps four terminal select/frame/return leaves. It recovers19
+vslot0C and five vslot1C sites, versus prior12/two, matching target counts.
+Each path still selects/restores once. The private helper and explicit leaves
+follow raw target control flow; no public ABI/vtable/flag change. Removing only
+the flip boolean was insufficient and remains unselected. Two unnecessary
+lookup-result float casts now enclose the final products instead: genuine ST0
+feeds FMUL speed73C directly, final binary32 rounding stays. This removes four
+instructions/16 bytes and preserves the established lookup carrier ABI.
+
+Current candidate is15091 reachable instructions/58615 instruction bytes in
+58618 span,three internal compiler alignment bytes and1156 following metadata/
+alignment bytes,59774 section bytes total. It has131 RETs and867 ordinary/
+176 register CALLs versus865/177 target; zero local CALLs. All33/42/35 tables
+remain. Physical-owner diagnostics stay7/109 at2/4/5/204/215/303/321, not
+functions or partial credit. Source CRLF SHA256:
+d4a67cae637af672090f736282e783855d8e43bcf5b64f78b7bfd90412ebd431.
+Normalized full section SHA256:
+8d1b309ebf7a582a63552820a41315d1662939d1629d21278f8cf6ea6096ef00.
+
+Fresh final-source whole-entry action214 native passes0/1034:451 RETs,534
+sequence entries,19 action entries and30 genuine cosine entries for nonfinite
+headings;475 target-root instructions. Real prelude/math/conversion/helpers
+run without injected returns. Native and configured unit normalize identically
+across all59774 bytes. A wrong unordered-facing control is detected in28/48
+qNaN-peer cases, all28 sequence-entry outcomes;20 RETs remain equal. Frame-call
+qualification is static ABI evidence; post-selector/backend and exceptional
+continuations are not established. Other old matrices are not routinely rerun.
+
+The genuine /GL root link with41 game providers, pinned SDK/CRT,44 checked
+same-target aliases and18 attested non-code data bindings remains closed.
+It reuses41 objects and rebuilds three root-unit inputs. Of52 game dependency
 addresses,47 are exact;406360/4063D0/417800/42CF70/4740C0 remain nonexact.
-Forty-four checked same-target aliases and18 attested non-code data bindings
-close the diagnostic link, without code stubs or unresolved-link overrides.
-The406330 float/fabs adapter remains provisional, nonexact and unclassified.
-SDK4399C0/42D1B0 reproduce94/100 target bytes before and after linking.
-Linked root10001000 closes15032 instructions/58433 instruction bytes, all
-three33/42/35 switches and867 ordinary calls/32 provider names. Frame400 and
-first100 entry bytes agree; byte100 still differs620984. Full59600-byte
-diagnostic replay now accounts for all901 HIGHLOW fields:785 floating reads
-of131 exact map/literal identities,6 local table references and110 destination
-fields. All867 CALLs and two attested ABS game-data reads close. Strict whole
-59038-byte linked comparison remains nonexact+64hex. Every shared59594 byte
-is compared against a fresh provenance-bound ordinary object:only22 differ in
-one29-byte action730 mode-read/Y-store scheduling interval. The raw target's
-29-byte order agrees with ordinary, not this link's scheduling. Metadata ends
-59594; six additional linked INT3 bytes remain explicit. No linked-image
-execution or whole linked/ordinary byte-neutrality claim. The public probe's
---reuse run verifies inputs/commands/tool/object hashes, reuses all44 objects
-and relinks. Preserve this small cache; remove superseded output controls.
+The406330 fabs adapter stays provisional/nonexact/unclassified. SDK4399C0/
+42D1B0 remain94/100 exact before/after linking. All901 HIGHLOW fields and867
+ordinary CALLs replay over59776 linked bytes. Against ordinary59774 bytes,
+only22 scheduling bytes differ in action730 at offsets53466..53480 and
+53481..53489; two extra INT3 bytes remain explicit. Linked whole59038 remains
+nonexact+64hex; image execution is not claimed. Preserve the small --reuse
+cache, remove superseded variants. Earlier link notes are historical:
+[full replay](IKU_LINKED_REPLAY_2026_10_17.md),
+[providers](IKU_REAL_LINK_2026_10_17.md).
 
-The required45D110 ->43AF20 ->ScoreData42CF70 chain now has target-reviewed
-source with a real checked vector iterator: three DWORD args/RET12, mode and
-session gates, first matching24-byte record count increment. Ordinary142/159
-remains nonexact; target's self-container check and early branch widths differ.
-Native0/1323 covers1317 RETs/six genuine invalid-parameter entries with real
-getters. The previous duplicate method is removed from ScoreObservations.cpp;
-its existing42D010 body remains byte-identical182/nonexact191. No accepted
-shared header/layout/profile/canonical binding changed. One authored/source
-entry is added; exact totals remain ledger-only and unchanged. The direct
-Ghidra clone used for this missing routine was removed; primary files are
-unchanged. This specific genuine /GL context retains all extra shared-tail
-calls and table layout; it does not establish an original-TU/LTCG barrier.
-Next continue shared call/payload ownership with the full replay in place.
+The [action/payload partition audit](IKU_ACTION_PAYLOAD_PARTITIONS_2026_10_17.md)
+still closes all182 spawn sites/190 action-site records per image. Global SP
+joins and independent CFG origins agree; current unique-PC coverage14870/
+14829, dataflow states16959/16881. Under equal action-group/physical-CALL-
+ordinal pairing, all84 home constraints are singleton/bijective,59 identical.
+The nine partition tests preserve null/unknown and within-action ambiguity.
+This is conditional static correlation, not payload values, feasible paths,
+original variables or exact bytes. Use the25 nonidentity correlations to
+recover genuine lifetimes; do not force storage order. All41 surface and10
+below-surface consumers still testAL with genuine full-EAX0/1 int predicates.
 
-Action730 seq7/8 target62DB64 reads mode3/0/other and clamps X's upper bound
-inside the respective branch at6/4/5, then joins62DBB2 for X's lower and both
-Y bounds. Source now keeps each mode's clamp operations inside the branch,
-replacing prior selection of two float limit locals before all clamping.
-The target's185-byte/50-instruction region ends with shared face CALL62DC18.
-Candidate still duplicates that final CALL on the Y outcomes:730 has five
-face sites versus target four. Continue recovering suffix/constant lifetimes.
+Remaining whole-root issues include effect626C3B's shared416/417/565..568 tail
+versus four extra candidate sites (58 effects versus54), action730's five face
+sites versus four, and action-setting shared ownership. The target214 exit
+gate62271B..622757 repeats while current lowering does not; do not add inert
+checks to force it. Continue joint argument/suffix and scalar/constant
+lifetimes with the now recovered glide branching. Preserve unsigned602/live
+x87 X addition,310 double increment,780 widened0.95f truncation, raw-X signed
+zero, branch-local730 mode limits6/4/5, ordered NaN rejection, scratch reset
+receiverthis+4 and custom ftol ST0 ->EAX32 ABI. Prior contracts:
+[steering](IKU_STEERING_CLAMPS_2026_10_17.md),
+[virtual ABI](IKU_VIRTUAL_CALLS_2026_10_17.md),
+[random/float](IKU_RANDOM_FLOAT_TYPES_2026_10_17.md).
 
-Current candidate is15032 reachable instructions/58433 instruction bytes in
-58439 span,6 compiler alignment bytes inside and1155 metadata/alignment bytes
-after,59594 section bytes total;128 RETs,867 ordinary/166 register CALLs versus
-865/177 target,zero local CALL relocations. Physical-owner diagnostics now
-7/109 at2/4/5/204/215/303/321;215/321 add162/199-byte internal partitions,
-not functions or partial credit. Normalized whole-section SHA256:
-33f09d2ac49075ed6495a5b10a884fe18cf1f5b9e8556dcdec157eb58038549d.
-
-Fresh final-source **--steering-clamps** whole-entry native passes0/3840:
-3312 RETs/528 genuine sequence-backend entries,252 target instructions.
-It tests seq7/8/9/10, six modes,both facings and x87 PC53/64; both axes cover
-binary32 neighbors of the clamp edges,signed zeros,subnormals,Inf and quiet
-NaNs with payload bits. Real aim/lookup math runs without result hooks. A wrong
-mode0 limit5 instead of4 is detected in96/320 mode0/seq7,8 cases,all RETs.
-Unit/native full normalized sections replay identically. The older812/16285/
-26783 inputs and unrelated accepted units are not rerun. Source-only private
-inline change affects no accepted header/layout/profile/partition/binding.
-
-Payload provenance still closes84 homes/frame400hex and all41 surface/10
-below-surface consumers testAL. The two genuine int predicate facades remain;
-both callees return full EAX0/1. New --partition-payloads keeps incoming action
-and pointer origins in one dataflow state from the real prologue through shared
-tails; labels never reset on another arm's entry. All182 physical spawn sites
-agree with independent CFG action origins and yield190 action/site records in
-each image. Stack depth agrees globally across partitions; aggregate homes,
-site sets and14870/14776-PC coverage stay unchanged. Under the existing equal
-action-group/physical-ordinal pairing, all84 correlations are now singleton and
-bijective,59 identical; the old union mode remains73 singleton/49 identical/
-11 ambiguous. This is conditional static correlation, not values, feasible
-paths, original variables or exact bytes. Nine new tests preserve within-action
-ambiguity, null/unknown evidence, cross-entry labels and global stack safety.
-Use the25 nonidentity correlations to study genuine lifetimes; do not force
-storage order. Target626C3B still shares effect416/417/565/566/567/568 while
-candidate retains four extra effect sites; target621E48's eight-action share
-already agrees. [The call-sharing checkpoint](IKU_CALL_SHARING_2026_10_17.md)
-is historical; its public static origin audit remains applicable.
-
-Raw626C34..626C49 is a21-byte shared FSTP X/push62/setECX/effect/vslot0x14 tail,
-entered with live ST0. Candidate565..568 setECX earlier. Moving416/417's X local
-into the argument is full59594-byte neutral. Independent middle_frame5/6 guards
-recover a timer carrier/recheck but expand to60046 and retain four extra effects;
-both controls remain unselected, still nonexact+64hex. Unused variant objects
-and full private source copies were removed. Selected game source is unchanged;
-continue joint argument/suffix and scalar lifetimes with the stronger provenance.
-
-Private /Os control shrinks to52234 bytes/one RET/six switches and rejects the
-size-profile hypothesis. Current direct-void source lift is still byte-neutral,
-as is moving face from steering helper to its caller. A hybrid upper-X-branch/
-shared-limit source does not resolve final-call duplication and is unselected.
-Keep selected SP1 flags and genuine DWORD-forwarding dependency interfaces.
-No claimed standalone/LTCG barrier.
-
-Direct Ghidra re-attested target/entry/mapped text,58 layout components,177
-virtual calls and ftol ABI,then freshly decompiled in a read-only768MiB/two-CPU
-clone. Branch-local X tests are corroborated; the old apparent predecrement
-around cosine is still a hypothesis artifact,two raw FCHS operations govern.
-Clone deleted;all nine primary database files hash-unchanged. Wrong-image IDA
-is rejected;re-attest before database use. No database metadata was changed.
-
-[Virtual ABI](IKU_VIRTUAL_CALLS_2026_10_17.md),
-[random/float](IKU_RANDOM_FLOAT_TYPES_2026_10_17.md) and
-[payload](IKU_PAYLOAD_LIFETIMES_2026_10_17.md) contracts remain. Preserve unsigned
-602/live x87 X addition,310 double increment,780 widened0.95f truncation and
-raw-X signed zero. Full inheritance/original C++/TU spelling,LTCG's role,
-post-backend and exceptional behavior remain unknown. No exact count or cold
-aggregate change. Stay on the real linked context, joint argument/suffix
-ownership, scalar/constant lifetimes and payload-home provenance in this root.
+Wrong-image IDA remains rejected. Direct Ghidra primary working files remain
+available and must be re-attested before use; no database was used/changed in
+this bounded raw-byte unit. Original source/TU/full inheritance/compiler phase,
+payload-value equivalence and post-backend/exception timing remain unknown.
+No standalone/LTCG barrier, accepted shared header/layout/profile/partition/
+relocation change or cold aggregate result is claimed.
 
 ## Shared Fighter linked checkpoint
 

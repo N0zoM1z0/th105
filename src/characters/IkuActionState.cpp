@@ -446,12 +446,19 @@ private:
             reverse ? reverse_facing() : byte_at(0x104), 1);
         dispatch_indexed_event_member(31);
     }
-    __forceinline void opening_face_on_exit() {
-        bool flip = byte_at(0x104) == 1
-            ? peer_float(0xec) < float_at(0xec) : float_at(0xec) < peer_float(0xec);
-        if (flip) {
-            byte_at(0x104) = byte_at(0x104) == 1 ? 255 : reverse_facing();
-            float_at(0xf4) = -float_at(0xf4);
+    __forceinline void opening_face_and_select_exit(int sequence) {
+        if (byte_at(0x104) == 1) {
+            if (peer_float(0xec) < float_at(0xec)) {
+                byte_at(0x104) = 255;
+                float_at(0xf4) = -float_at(0xf4);
+            }
+            select_sequence(sequence);
+        } else {
+            if (float_at(0xec) < peer_float(0xec)) {
+                byte_at(0x104) = reverse_facing();
+                float_at(0xf4) = -float_at(0xf4);
+            }
+            select_sequence(sequence);
         }
     }
 };
@@ -3124,8 +3131,8 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_glide_action()
         if (float_at(0x740) < -180.0f) float_at(0x740) = static_cast<float>(float_at(0x740) + 360.0);
         if (short_at(0x734) > 0) float_at(0x740) = static_cast<float>(float_at(0x740) + (int_at(0x4b8) == 0 ? 3.0 : 2.5));
         if (short_at(0x734) < 0) float_at(0x740) = static_cast<float>(float_at(0x740) - (int_at(0x4b8) == 0 ? 3.0 : 2.5));
-        float_at(0xf4) = static_cast<float>(lookup_orientation_cosine_quantized_abs(float_at(0x740))) * float_at(0x73c);
-        float_at(0xf8) = static_cast<float>(lookup_orientation_sine_quantized_abs(float_at(0x740))) * float_at(0x73c);
+        float_at(0xf4) = static_cast<float>(lookup_orientation_cosine_quantized_abs(float_at(0x740)) * float_at(0x73c));
+        float_at(0xf8) = static_cast<float>(lookup_orientation_sine_quantized_abs(float_at(0x740)) * float_at(0x73c));
         if (float_at(0xf0) > 680.0f && float_at(0xf8) > 0.0f) float_at(0xf8) = 0.0f;
         adjust_counter_482(int_at(0x4b8) == 0 ? 4 : 8, 1);
         short sequence = sequence_index_13e;
@@ -3136,16 +3143,30 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_glide_action()
         }
         if ((sequence == 6 || sequence == 7) && float_at(0x740) < 120.0 && float_at(0x740) > -120.0) { select_sequence(8); return true; }
         if ((int_at(0x6c8) == 0 && short_at(0x736) > 10) || short_at(0x482) < 1) {
-            if (sequence == 1 || sequence == 2) { opening_face_on_exit(); select_sequence(9); }
+            if (sequence == 1 || sequence == 2) { opening_face_and_select_exit(9); }
             if (sequence_index_13e == 3) {
-                short_at(0x730) = frame_index_140; opening_face_on_exit();
-                select_sequence(9); set_sequence_frame(short_at(0x730));
+                short_at(0x730) = frame_index_140;
+                opening_face_and_select_exit(9); set_sequence_frame(short_at(0x730));
             }
-            if (sequence_index_13e == 4 || sequence_index_13e == 5) { opening_face_on_exit(); select_sequence(10); }
-            if (sequence_index_13e == 6 || sequence_index_13e == 7) { opening_face_on_exit(); select_sequence(11); }
+            if (sequence_index_13e == 4 || sequence_index_13e == 5) { opening_face_and_select_exit(10); }
+            if (sequence_index_13e == 6 || sequence_index_13e == 7) { opening_face_and_select_exit(11); }
             if (sequence_index_13e != 8) return true;
-            short_at(0x730) = frame_index_140; opening_face_on_exit();
-            select_sequence(11); set_sequence_frame(short_at(0x730)); return true;
+            short_at(0x730) = frame_index_140;
+            if (byte_at(0x104) == 1) {
+                if (peer_float(0xec) < float_at(0xec)) {
+                    byte_at(0x104) = 255;
+                    float_at(0xf4) = -float_at(0xf4);
+                    select_sequence(11); set_sequence_frame(short_at(0x730)); return true;
+                }
+                select_sequence(11); set_sequence_frame(short_at(0x730)); return true;
+            } else {
+                if (float_at(0xec) < peer_float(0xec)) {
+                    byte_at(0x104) = reverse_facing();
+                    float_at(0xf4) = -float_at(0xf4);
+                    select_sequence(11); set_sequence_frame(short_at(0x730)); return true;
+                }
+                select_sequence(11); set_sequence_frame(short_at(0x730)); return true;
+            }
         }
     }
     if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
