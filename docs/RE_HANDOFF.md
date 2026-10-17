@@ -32,7 +32,33 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Active priority: Iku steering face tails and joint sharing
+## Active priority: shared Fighter action root
+
+The current bounded boss is `Fighter_update_common_action_state @ 4740C0`,
+the 10219-byte root used by all15 roster roots. Selected source stays at
+CRLF SHA256 f53478cf4aa721094a153c2c94991430e7f89007321daf599345a4bcdff23265:
+strict ordinary first+14/4740D4 and53/66 diagnostic owners. No exact credit
+or source selection changed. See [linked tail and sharing evidence](COMMON_FIGHTER_LINKED_TAILS_2026_10_17.md).
+
+Real one-root GL controls reuse24 genuine source providers, SDK deque and
+pinned CRT. An unselected nested-switch/float/six-helper control has the
+target51/15 destinations and8virtual/13direct tails,10247 reachable bytes
+versus10219,200 E8s versus198, but only46/66 identical owners. Both extra
+E8s reside in low:162: the candidate duplicates boundary/advance calls
+instead of joining target action50. An ordinary explicit shared-goto control
+still moves that continuation to162 and drops to51/66; do not adopt it.
+
+The linked inspector now supports opt-in reviewed tail qualification and
+complete diagnostic replay. It keeps raw exits, proves ECX receiver offsets,
+the16-vtable target domain, full local epilogues and actual raw-equal bodies
+for all3 direct callees. Only qualified E9 displacements normalize; all other
+bytes remain significant. Default guards and accepted-unit rules stay intact.
+`probe-common-fighter-ltcg.py --help` is now read-only; inspect mode reuses
+hash/digest-checked providers. Nested strict first+14 persists. Direct Ghidra
+attestation passed; all9 primary files unchanged, disposable clone removed.
+Next recover the action50/162 x87 continuation without losing exact owners.
+
+## Iku steering face tails: preceding selected checkpoint
 
 `Iku_dispatch_action_state_vslot28 @ 620920` retains complete110-action
 source, void thiscall prelude/default and one ascending switch. Target
@@ -903,7 +929,7 @@ Do not transfer source or compiler assumptions between them.
 | `AyaObject_update_action_state_vslot28 @ 0x0061A290` | Source-present 19,522-byte root; still nonexact at `+22`, with unresolved action-903 fade-tail/x87 scheduling and other cases. [Latest controls](AYA_OBJECT_903_FADE_TAIL_CONTROLS_2026_10_02.md). |
 | `AyaObject_initialize_action_entry @ 0x0061F0B0` | Source-present 4,531-byte root; 11 target vslot+0x0C calls order `MOV ECX,ESI` before `PUSH EAX`, unlike the candidate. [Call scheduling](AYA_ENTRY_VSLOT0C_SCHEDULING_2026_10_02.md). |
 | `YoumuObject_initialize_action_entry @ 0x00543670` | Source-present 5,159-byte root; nonexact at `+0x80`, with 6/30 diagnostic owners. [Load timing](YOUMU_OBJECT_ENTRY_LOAD_TIMING_2026_10_02.md). |
-| `Fighter_update_common_action_state @ 0x004740C0` | Source-present 10,219-byte root; nonexact at `+0x14`, 53/66 diagnostic owners. [x87 and Ghidra audit](COMMON_FIGHTER_X87_AND_GHIDRA_2026_10_02.md). |
+| `Fighter_update_common_action_state @ 0x004740C0` | Current priority; selected ordinary source remains nonexact at `+0x14`, 53/66 diagnostic owners. [Latest linked-tail and sharing evidence](COMMON_FIGHTER_LINKED_TAILS_2026_10_17.md). |
 | `AnimationObject_prepare_render_transform @ 0x00435360` and `render_to_battle_scene @ 0x00435740` | Each candidate has the target size but differs in `FILD`/`PUSH EDI` scheduling; no exact claim. [Focused evidence](ANIMATION_RENDER_EDI_X87_SCHEDULING_2026_10_02.md). |
 | `KomachiObject_emit_owner_gated_object_826_pair @ 0x005F9350` | Source-present 205-byte target, 203-byte candidate; call argument/register scheduling remains open. [Focused evidence](KOMACHI_PAIR_CALL_SCHEDULING_2026_10_02.md). |
 
@@ -939,6 +965,11 @@ official VC8 manual can be fetched and regenerated through
 On October 16 the redundant `.tools/msvc80-rtm-media` extraction was removed
 (247.84 MiB); the actual RTM compiler/header installation and its pinned
 compiler hashes were preserved and checked before and after cleanup.
+On October 17 the shared-root checkpoint removed another60.77MiB of obsolete
+generated build products and reports. Only its current ordinary root, two
+linked controls, evidence and24-provider cache were retained before CI;
+the temporary Ghidra clone was also removed. Rebuild older report paths when
+needed instead of treating them as retained current evidence.
 Do not treat an old ignored report as a current comparison. Use a fresh
 focused build/comparison for any source change, and run affected accepted
 units after shared contract changes. A reported aggregate exact percentage

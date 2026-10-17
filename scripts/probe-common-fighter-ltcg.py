@@ -6,6 +6,9 @@ The checked deque provider stays ordinary COFF, preserving its verified ABI.
 """
 from __future__ import annotations
 
+import argparse
+from functools import partial
+import hashlib
 import importlib.util
 import json
 import os
@@ -21,6 +24,7 @@ import pefile
 
 import linked_pe
 from workflow_manifest import unit_input_digest
+from linked_switch_replay import replay_root
 
 ROOT = Path(__file__).resolve().parents[1]
 UNIT = "gpt-web-fighter-common-action-state"
@@ -131,6 +135,78 @@ def unresolved_names(log):
         else:
             raise ValueError("unrecognized linker symbol identity")
     return sorted(names)
+
+
+def inspect_image(image, map_path, receipt_path):
+    """Inspect/replay an existing diagnostic link without rebuilding providers."""
+    canonical = linked_pe.comparator()
+    target_sha = canonical.verify_target()
+    receipt = json.loads(receipt_path.read_text())
+    if receipt["target_sha256"] != target_sha:
+        raise ValueError("cached link receipt belongs to another target")
+    tools, pins = linked_pe.pinned_tools()
+    if receipt["tool_pins"] != pins:
+        raise ValueError("cached link receipt tool pins changed")
+    if any(linked_pe.sha(tools / name) != digest for name, digest in receipt["libraries"].items()):
+        raise ValueError("cached link CRT libraries changed")
+    units = tomllib.loads((ROOT / "config/match-units.toml").read_text())["units"]
+    for name, dependency in receipt["dependencies"].items():
+        if linked_pe.sha(receipt_path.parent / (name + ".obj")) != dependency["object_sha256"]:
+            raise ValueError("cached provider object changed")
+        if linked_pe.sha(ROOT / dependency["source"]) != dependency["source_sha256"]:
+            raise ValueError("cached provider source changed")
+        if unit_input_digest(name, units[name])[0] != dependency["unit_input_digest"]:
+            raise ValueError("cached provider inputs changed")
+    for filename, key in (("provider.obj", "provider_object_sha256"),
+                          ("data-bindings.obj", "data_object_sha256")):
+        if linked_pe.sha(receipt_path.parent / filename) != receipt[key]:
+            raise ValueError("cached SDK/data object changed")
+    root_unit = units[UNIT]
+    if linked_pe.sha(ROOT / root_unit["source"]) != receipt["root_source_sha256"]:
+        raise ValueError("cached root source context changed")
+    inspector = load_inspector()
+    functions = inspector.normalize_map_aliases(linked_pe.parse_map(map_path.read_text()),
+                                                 receipt["same_target_symbol_aliases"])
+    call_targets = {}
+    for address, report in receipt["comparisons"].items():
+        comparison, = report["comparisons"]
+        matches = [name for names in functions.values() for name, _ in names
+                   if canonical.is_function_symbol(name, comparison["symbol_base"])]
+        if len(matches) != 1:
+            raise ValueError("cached dependency lacks one actual linked identity")
+        call_targets[matches[0]] = int(address, 0)
+    call_targets[inspector.DEQUE_SYMBOL] = 0x4399C0  # Full linked witness checked by inspector.
+    call_targets["__ftol2_sse"] = 0x68A1A0  # Pinned genuine CRT; existing root REL32 contract.
+    tail_audit = importlib.util.spec_from_file_location(
+        "common_link_tail_audit", ROOT / "scripts/audit-common-fighter-indirect-tails.py")
+    audit = importlib.util.module_from_spec(tail_audit)
+    tail_audit.loader.exec_module(audit)
+    inspection = inspector.inspect_linked_root(
+        image, map_path, canonical, symbol=SYMBOL, root_name="fighter-common-action", switch_count=2,
+        aliases=receipt["same_target_symbol_aliases"],
+        tail_qualifier=partial(audit.qualify_linked_tails, canonical, call_targets))
+    pe = pefile.PE(str(image))
+    exported, = (entry for entry in pe.DIRECTORY_ENTRY_EXPORT.symbols if entry.name == SYMBOL.encode())
+    start = pe.OPTIONAL_HEADER.ImageBase + exported.address
+    end = min(address for address in functions if address > start)
+    function, = root_unit["functions"]
+    normalized, replay = replay_root(
+        pe, map_path.read_text(), start, end, inspection, 0x4740C0, canonical,
+        call_targets, list(receipt["data_bindings"].values()),
+        dict(item.split("=", 1) for item in function["dir32_targets"]),
+        game_pe=pefile.PE(str(ROOT / "resources/th105.exe")), functions=functions,
+        qualified_direct_tails=(inspection["qualified_tails"] or {}).get("direct_sites", {}))
+    target = canonical.target_bytes(0x4740C0, 10219)
+    mismatch = canonical.first_mismatch(target, normalized[:len(target)], 0x4740C0)
+    replay["target_comparison"] = {
+        "result": "mismatch" if mismatch else "exact", "size": len(target),
+        "first_mismatch": mismatch, "target_body_sha256": hashlib.sha256(target).hexdigest(),
+        "canonical_compared_sha256": hashlib.sha256(normalized[:len(target)]).hexdigest(),
+        "scope": "strict fixed-10219-byte diagnostic comparison; no accepted-unit credit"}
+    return {"target_sha256": target_sha, "image_sha256": linked_pe.sha(image),
+            "map_sha256": linked_pe.sha(map_path), "provider_receipt_sha256": linked_pe.sha(receipt_path),
+            "inspection": inspection, "replay": replay,
+            "scope": "existing diagnostic image only; this does not attest a new build or original source shape"}
 
 
 def attest_data(canonical, pe, symbol, key):
@@ -347,8 +423,18 @@ def probe():
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--inspect-image", type=Path, help="inspect an existing linked diagnostic PE")
+    parser.add_argument("--inspect-map", type=Path)
+    parser.add_argument("--provider-receipt", type=Path,
+                        default=ROOT / "build/common-fighter-ltcg/receipt.json")
+    args = parser.parse_args()
+    if bool(args.inspect_image) != bool(args.inspect_map):
+        parser.error("--inspect-image and --inspect-map must be provided together")
     try:
-        print(json.dumps(probe(), indent=2))
+        result = (inspect_image(args.inspect_image, args.inspect_map, args.provider_receipt)
+                  if args.inspect_image else probe())
+        print(json.dumps(result, indent=2))
     except (KeyError, OSError, ValueError, RuntimeError) as error:
         print(f"common Fighter link probe failed: {error}", file=sys.stderr)
         raise SystemExit(2)

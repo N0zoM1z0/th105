@@ -110,11 +110,13 @@ def qualified_jump_alignment(code, start, instructions, first, last):
 
 def inspect_linked_root(image, map_path, canonical, *, symbol=SYMBOL,
                         root_name="aya-cpu-action-policy", switch_count=6, aliases=None,
-                        allow_loop_alignment=False):
+                        allow_loop_alignment=False, tail_qualifier=None):
     """Inspect every reachable instruction, with bounds-checked switch indices.
 
     Map names alone never authorize remapping a privately specialized callee.
     This report does not canonicalize the root or award partial credit.
+    A supplied tail qualifier must independently attest every raw exit; the
+    default continues to reject all external jumps and register exits.
     """
     pe = pefile.PE(str(image))
     base = pe.OPTIONAL_HEADER.ImageBase
@@ -214,7 +216,14 @@ def inspect_linked_root(image, map_path, canonical, *, symbol=SYMBOL,
     if len(switches) != switch_count:
         raise ValueError("unexpected linked root switch count")
     boundary = reachable_boundary_audit(code, start, switches)
-    if boundary["unresolved_indirect_exits"] or boundary["internal_call_targets"]:
+    indirect = {fact["address"] for fact in boundary["unresolved_indirect_exits"]}
+    direct = {site["address"] for edge in boundary["direct_external_targets"]
+              for site in edge["sites"] if site["kind"] != "call"}
+    qualified_tails = (tail_qualifier(pe, functions, code, start, switches, boundary)
+                       if tail_qualifier is not None and (indirect or direct) else None)
+    if (boundary["internal_call_targets"]
+            or indirect != set((qualified_tails or {}).get("virtual_sites", []))
+            or direct != set((qualified_tails or {}).get("direct_sites", {}))):
         raise ValueError("unclosed linked CPU transfers")
     for first, last in boundary["unreached_ranges"]:
         if allow_loop_alignment and qualified_jump_alignment(code, start, instructions, first, last):
@@ -229,15 +238,20 @@ def inspect_linked_root(image, map_path, canonical, *, symbol=SYMBOL,
     call_counts = {}
     for edge in boundary["direct_external_targets"]:
         names = functions.get(edge["address"], [])
-        if len(names) != 1 or any(site["kind"] != "call" for site in edge["sites"]):
+        if len(names) != 1:
             raise ValueError("unidentified linked CPU external transfer")
-        call_counts[names[0][0]] = len(edge["sites"])
+        count = sum(site["kind"] == "call" for site in edge["sites"])
+        if count:
+            call_counts[names[0][0]] = count
     helper, = (address for address, names in functions.items() if any(name == DEQUE_SYMBOL for name, _ in names))
     helper_code = linked_pe.linked_body(pe, functions, helper)
     return {"root_callable_and_padding_bytes": len(code), "reachable_bytes": boundary["reachable_bytes"],
             "reachable_instructions": boundary["reachable_instructions"], "switches": facts,
             "unreached_padding_bytes": len(code) - boundary["reachable_bytes"], "direct_calls": call_counts,
             "unreached_alignment_ranges": boundary["unreached_ranges"],
+            "raw_external_tail_inventory": {"indirect": boundary["unresolved_indirect_exits"],
+                                            "direct": sorted(direct)},
+            "qualified_tails": qualified_tails,
             "deque": canonical_deque(helper_code, helper, functions, canonical),
             "scope": "full linked CFG and separate library witness; root is not canonically compared or executed"}
 

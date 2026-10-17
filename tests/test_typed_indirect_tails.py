@@ -106,6 +106,43 @@ class TypedIndirectTailTests(unittest.TestCase):
         self.assertEqual(calls[1]["possible_vtable_slots"], [8])
         self.assertFalse(calls[1]["ecx_is_entry_receiver"])
 
+    def test_direct_tail_keeps_only_proved_receiver_adjustment(self):
+        for code, expected in (("8bf1 8bce", 0), ("8bf1 8d4e04", 4),
+                               ("8bf1 8d4efc", -4), ("31c9", None),
+                               ("8bf1 e800000001", None)):
+            flow = receiver_tail_facts(bytes.fromhex(code + " e900000001"), 0x1000, {},
+                                       include_direct_tails=True)
+            self.assertEqual(flow["direct_tail_exits"][0]["ecx_entry_receiver_offset"], expected)
+
+    def test_adjusted_or_conflicting_receiver_does_not_acquire_primary_vtable_identity(self):
+        # One path uses the entry receiver, the other a +4 subobject.
+        code = bytes.fromhex("8bf1 85c0 7403 8d4e04 e900000001")
+        fact = receiver_tail_facts(code, 0x1000, {}, include_direct_tails=True)
+        self.assertIsNone(fact["direct_tail_exits"][0]["ecx_entry_receiver_offset"])
+        code = bytes.fromhex("8d4904 8b01 8b4014 ffe0")
+        tail = receiver_tail_facts(code, 0x1000, {}, include_direct_tails=True)["register_tail_exits"][0]
+        self.assertIsNone(tail["slot_offset"])
+        self.assertFalse(tail["ecx_is_entry_receiver"])
+
+    def test_direct_tail_mode_is_opt_in_and_ignores_internal_jumps(self):
+        self.assertNotIn("direct_tail_exits", receiver_tail_facts(bytes.fromhex("e900000001"), 0x1000, {}))
+        self.assertEqual(receiver_tail_facts(bytes.fromhex("eb00 c3"), 0x1000, {},
+                                           include_direct_tails=True)["direct_tail_exits"], [])
+
+    def test_common_tail_epilogue_preserves_restores_around_final_store(self):
+        for code in ("5f 5e 5b 83c404", "5f 8d4e04 5e 5b 83c404",
+                     "5f d99ef4000000 8bce 5e 5b 83c404"):
+            rows = audit.decode(bytes.fromhex(code + " ffe0"), 0x1000)
+            self.assertEqual(audit.qualify_frame_epilogue(rows, rows[-1].address), 0x1000)
+
+    def test_common_tail_cannot_hide_stack_writes_calls_or_missing_restores(self):
+        for code in ("5f 5e 5b 83c408", "5f 5e 83c404", "5e 5b 83c404",
+                     "5f 890424 5e 5b 83c404", "5f e800000001 5e 5b 83c404",
+                     "5f 31c9 5e 5b 83c404"):
+            rows = audit.decode(bytes.fromhex(code + " ffe0"), 0x1000)
+            with self.subTest(code=code), self.assertRaises(ValueError):
+                audit.qualify_frame_epilogue(rows, rows[-1].address)
+
 
 if __name__ == "__main__":
     unittest.main()

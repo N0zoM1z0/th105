@@ -23,7 +23,7 @@ ALIASES = {
 
 def receiver_tail_facts(code: bytes, address: int,
                         switches: dict[int, list[int]], *, include_calls=False,
-                        allow_slot_unions=False) -> dict:
+                        allow_slot_unions=False, include_direct_tails=False) -> dict:
     decoder = Cs(CS_ARCH_X86, CS_MODE_32)
     decoder.detail = True
     decoded = list(decoder.disasm(code, address))
@@ -55,6 +55,8 @@ def receiver_tail_facts(code: bytes, address: int,
                 if instruction.mnemonic == "lea":
                     if base == "receiver" and source.mem.disp == 0:
                         value = "receiver"
+                    elif include_direct_tails and base == "receiver":
+                        value = f"receiver_offset:{source.mem.disp}"
                 elif source.size == 4:
                     if base == "receiver" and source.mem.disp == 0:
                         value = "vtable(receiver)"
@@ -131,13 +133,22 @@ def receiver_tail_facts(code: bytes, address: int,
                 states[destination] = merged
                 pending.append(destination)
 
-    tails, calls = [], []
+    tails, calls, direct_tails = [], [], []
     for location, state in sorted(states.items()):
         instruction = instructions[location]
+        values = dict(zip(REGISTERS, state))
+        if (include_direct_tails and instruction.mnemonic == "jmp"
+                and instruction.operands[0].type == X86_OP_IMM
+                and not address <= instruction.operands[0].imm < end):
+            receiver = values["ecx"]
+            delta = (0 if receiver == "receiver" else
+                     int(receiver.split(":")[1]) if isinstance(receiver, str)
+                     and receiver.startswith("receiver_offset:") else None)
+            direct_tails.append({"address": location, "target": instruction.operands[0].imm,
+                                 "ecx_entry_receiver_offset": delta})
         if (instruction.mnemonic not in ({"jmp", "call"} if include_calls else {"jmp"})
                 or instruction.operands[0].type != X86_OP_REG):
             continue
-        values = dict(zip(REGISTERS, state))
         target_register = register(instruction, instruction.operands[0].reg)
         target = values.get(target_register)
         choices = target if isinstance(target, frozenset) else (target,)
@@ -156,4 +167,6 @@ def receiver_tail_facts(code: bytes, address: int,
             "register_tail_exits": tails}
     if include_calls:
         result["register_indirect_calls"] = calls
+    if include_direct_tails:
+        result["direct_tail_exits"] = direct_tails
     return result

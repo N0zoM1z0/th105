@@ -65,10 +65,10 @@ class LinkedSwitchReplayTests(unittest.TestCase):
         self.bindings = [{"address": 0x6FA894, "key": "game", "data_hex": "00000000", "addends": [0]}]
         self.calls = {"_helper": 0x401000}
 
-    def run_replay(self):
+    def run_replay(self, **options):
         return replay.replay_root(
             self.pe, self.map_text, self.start, self.end, self.inspection,
-            self.target, self.canonical, self.calls, self.bindings, {}, game_pe=self.game,
+            self.target, self.canonical, self.calls, self.bindings, {}, game_pe=self.game, **options,
         )
 
     def test_all_proved_fields_replay_and_every_other_byte_survives(self):
@@ -148,6 +148,27 @@ class LinkedSwitchReplayTests(unittest.TestCase):
         self.bindings = []
         with self.assertRaisesRegex(ValueError, "memory address"):
             self.run_replay()
+
+    def test_external_tail_needs_site_and_exact_unique_map_identity(self):
+        self.image[0x1000] = 0xE9
+        with self.assertRaisesRegex(ValueError, "unqualified"):
+            self.run_replay()
+        result, report = self.run_replay(qualified_direct_tails={self.start: 0x401000})
+        self.assertEqual(result[0], 0xE9)
+        self.assertEqual(struct.unpack_from("<i", result, 1)[0], 0x401000 - self.target - 5)
+        self.assertEqual(report["replayed"]["qualified_direct_tails"], 1)
+        for qualifications in ({self.start: 0x401001}, {self.start + 1: 0x401000}):
+            with self.assertRaisesRegex(ValueError, "unqualified"):
+                self.run_replay(qualified_direct_tails=qualifications)
+        with self.assertRaisesRegex(ValueError, "unused"):
+            self.run_replay(qualified_direct_tails={self.start: 0x401000, self.start + 5: 0x401000})
+        self.map_text += " 0001:00002000 _alias 10002000 f helper.obj\n"
+        with self.assertRaisesRegex(ValueError, "unqualified"):
+            self.run_replay(qualified_direct_tails={self.start: 0x401000})
+
+    def test_call_cannot_consume_a_tail_qualification(self):
+        with self.assertRaisesRegex(ValueError, "unused"):
+            self.run_replay(qualified_direct_tails={self.start: 0x401000})
 
 
 if __name__ == "__main__":

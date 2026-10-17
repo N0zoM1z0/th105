@@ -1,4 +1,4 @@
-"""Diagnostic relocation replay for the independently closed Iku linked CFG.
+"""Diagnostic relocation replay for independently closed giant linked CFGs.
 
 This does not relax linked_pe's accepted-unit comparator. Every byte remains
 significant, including switch metadata and alignment; only proved address
@@ -35,8 +35,14 @@ def highlow_fields(pe, start, end):
 
 
 def replay_root(pe, map_text, start, end, inspection, target, canonical,
-                call_targets, bindings, literal_overrides, *, game_pe, functions=None):
-    """Return the entire normalized envelope and a non-acceptance receipt."""
+                call_targets, bindings, literal_overrides, *, game_pe, functions=None,
+                qualified_direct_tails=None):
+    """Return the entire normalized envelope and a non-acceptance receipt.
+
+    Optional direct-tail sites map linked instruction addresses to canonical
+    callee addresses. The caller must prove their receiver/stack ABI first;
+    replay still checks the exact unique map identity and preserves E9 bytes.
+    """
     base = pe.OPTIONAL_HEADER.ImageBase
     raw = pe.get_data(start - base, end - start)
     metadata = inspection["root_callable_and_padding_bytes"]
@@ -50,6 +56,8 @@ def replay_root(pe, map_text, start, end, inspection, target, canonical,
     normalized = bytearray(raw)
     consumed, local_fields, areas = set(), {}, []
     counts, literal_identities = Counter(), {}
+    tail_sites = dict(qualified_direct_tails or {})
+    consumed_tails = set()
 
     for fact in inspection["switches"]:
         table = int(fact["table"], 0)
@@ -137,7 +145,19 @@ def replay_root(pe, map_text, start, end, inspection, target, canonical,
             counts["direct_calls"] += 1
         elif linked_pe.is_branch(row) and row.operands[0].type == x.X86_OP_IMM:
             if row.operands[0].imm not in by_address:
-                raise ValueError("unclosed linked internal branch")
+                names = functions.get(row.operands[0].imm, [])
+                if (row.address not in tail_sites or row.mnemonic != "jmp"
+                        or row.size != 5 or row.bytes[0] != 0xE9 or row.imm_offset != 1
+                        or len(names) != 1 or names[0][0] not in call_targets
+                        or tail_sites[row.address] != call_targets[names[0][0]]):
+                    raise ValueError("unclosed/unqualified linked external branch")
+                destination = tail_sites[row.address]
+                displacement = destination - (target + offset + 5)
+                if not -(2**31) <= displacement < 2**31:
+                    raise ValueError("linked root tail displacement overflows")
+                struct.pack_into("<i", normalized, offset + 1, displacement)
+                consumed_tails.add(row.address)
+                counts["qualified_direct_tails"] += 1
 
         field = offset + row.disp_offset
         if row.disp_size and field in fields:
@@ -200,6 +220,8 @@ def replay_root(pe, map_text, start, end, inspection, target, canonical,
                     raise ValueError("unsupported pointer-shaped linked immediate")
     if consumed != fields or not set(local_fields) <= consumed:
         raise ValueError("unconsumed or missing linked root base relocation")
+    if consumed_tails != set(tail_sites):
+        raise ValueError("unused linked direct-tail qualification")
     return bytes(normalized), {
         "envelope_bytes": len(raw), "metadata_offset": metadata,
         "metadata_end_offset": previous, "trailing_link_alignment_hex": trailing.hex(),
