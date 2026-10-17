@@ -398,7 +398,21 @@ static contracts pass. The void probe has81128 prefix/text82500,1167 E8s,
 No root source-present/exact credit or aggregate replay. Nine primary hashes
 unchanged; superseded/control products and caches cleaned. See
 [void/default candidate](REIMU_VOID_ROOT_2026_10_18.md).
-Next prioritize full relocation ownership, remaining source/compiler sharing,
+The void probe now has an explicit probe-only relocation ledger/auditor. All
+2449 records classify and replay strictly:1167 calls,1098 numeric operands,
+14 local metadata addresses,163 code pointers and7 global reads. Calls and
+numeric placements are checked against independent target observations and
+existing anchors. Missing-call and same-value/wrong-address controls fail.
+Nine unsigned conversions in550/551/602/720/730/740 now use the observed
+dword2^32 correction: only9 raw text opcode bytes changeDC->D8, with no new
+rounding stores or other code/layout change. Source-only literal sites9->0.
+Fresh void0/1544, compact bool0/12 and0/8, and earlier static contracts pass.
+Isolated fast/RTM probes did not fix the operand-width issue; neither is adopted.
+Full root remains nonexact at478FA8/frame598h versus570h. The last source RET
+is not its code end; callable/compiler ownership remains unproved. No exact
+credit or aggregate replay;9 primary DB hashes unchanged and stale products
+cleaned. See [root binding/operand evidence](REIMU_ROOT_RELOCATIONS_2026_10_18.md).
+Next prioritize source/compiler ordering and sharing, exact callable ownership,
 returning world contexts and VC8/LTCG/TU evidence
 before canonical root acceptance.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.

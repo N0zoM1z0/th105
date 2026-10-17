@@ -139,7 +139,7 @@
             else if (selected_action == 601)
                 angle = static_cast<float>(word_730 * -36.0);
             else
-                angle = static_cast<float>(static_cast<double>(mt19937_next_u32() % 70U) - 35.0);
+                angle = static_cast<float>(static_cast<double>(static_cast<float>(mt19937_next_u32() % 70U)) - 35.0);
             float parameters[3] = {angle, 0.0f, static_cast<float>(word_730 % 3)};
             spawn_owned_object_via_manager(selected_action == 600 ? 850 : selected_action == 601 ? 853 : 854,
                 static_cast<float>(static_cast<float>(facing_104 * 18) + x_ec),

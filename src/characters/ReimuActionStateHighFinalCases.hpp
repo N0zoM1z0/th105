@@ -41,8 +41,8 @@
             set_action(700);
         if (frame_counter_144 == 0 && frame_timer_142 == 0 && frame_index_140 == 0) {
             if (sequence_13e == 2) {
-                x_ec = static_cast<float>(static_cast<unsigned int>(selector_random_roll(800)) + 240.0);
-                y_f0 = static_cast<float>(static_cast<unsigned int>(selector_random_roll(250)) + 100.0);
+                x_ec = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(800))) + 240.0);
+                y_f0 = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(250))) + 100.0);
             }
             if (frame_counter_144 == 0 && frame_timer_142 == 0 && frame_index_140 == 0 && sequence_13e == 3) {
                 dispatch_character_wave_handle(13);
@@ -184,7 +184,7 @@
                     if (frame_counter_144 % 5 == 0) {
                         parameters[0] = field_73c;
                         parameters[1] = static_cast<float>(4.0
-                            - static_cast<unsigned int>(selector_random_roll(5)) * static_cast<double>(0.1f));
+                            - static_cast<float>(static_cast<unsigned int>(selector_random_roll(5))) * static_cast<double>(0.1f));
                         parameters[2] = 2.0f;
                         spawn_owned_object_via_manager(902,
                             static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
@@ -197,9 +197,9 @@
                 case 3:
                     if (frame_counter_144 % 4 == 0) {
                         const double angle = static_cast<double>(field_73c) + 7.0;
-                        parameters[0] = static_cast<float>(angle - static_cast<unsigned int>(selector_random_roll(14)));
+                        parameters[0] = static_cast<float>(angle - static_cast<float>(static_cast<unsigned int>(selector_random_roll(14))));
                         parameters[1] = static_cast<float>(4.0
-                            - static_cast<unsigned int>(selector_random_roll(10)) * static_cast<double>(0.1f));
+                            - static_cast<float>(static_cast<unsigned int>(selector_random_roll(10))) * static_cast<double>(0.1f));
                         parameters[2] = 2.0f;
                         spawn_owned_object_via_manager(902,
                             static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
@@ -267,8 +267,8 @@
             if (frame_counter_144 % cadence == 0 && word_730 < limit) {
                 dispatch_character_wave_handle(8);
                 float parameters[3];
-                parameters[0] = static_cast<float>(10.0 - static_cast<unsigned int>(selector_random_roll(200)));
-                parameters[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(30)) + 15.0);
+                parameters[0] = static_cast<float>(10.0 - static_cast<float>(static_cast<unsigned int>(selector_random_roll(200))));
+                parameters[1] = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(30))) + 15.0);
                 parameters[2] = static_cast<float>(word_730 % 3);
                 spawn_owned_object_via_manager(903,
                     static_cast<float>(static_cast<float>(facing_104 * 18) + x_ec),

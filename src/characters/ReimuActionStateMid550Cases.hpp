@@ -23,7 +23,7 @@
                     parameters[3] = 0.0f;
                     for (float i = 0.0f; i < 8.0f; i += 1.0f) {
                         const unsigned int random = static_cast<unsigned int>(selector_random_roll(45));
-                        parameters[0] = static_cast<float>(static_cast<double>(random) + i * 45.0);
+                        parameters[0] = static_cast<float>(static_cast<double>(static_cast<float>(random)) + i * 45.0);
                         const float y = static_cast<float>(lookup_orientation_sine_quantized_abs(parameters[0])
                             * (frame_timer_142 * 20) + y_f0 + 100.0);
                         const float x = static_cast<float>(lookup_orientation_cosine_quantized_abs(parameters[0])
