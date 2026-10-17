@@ -36,7 +36,7 @@ public:
     bool run_checked_prelude();
     // True completes the entry/low path; false hands action>300 to later source.
     bool run_checked_low_dispatch();
-    // Entry, low table and middle actions through418; later actions remain pending.
+    // Entry, low table and middle actions through508; later actions remain pending.
     bool run_checked_action_dispatch();
     void update_common_action_state();
     // True handles action0..10; false leaves other actions to later phases.
@@ -84,7 +84,9 @@ public:
     unsigned char reserved_148[0x28];
     ReimuPreludePeerView *peer_170;
     short word_174;
-    unsigned char reserved_176[0xa];
+    unsigned char reserved_176[6];
+    unsigned char byte_17c;
+    unsigned char reserved_17d[3];
     int state_180;
     unsigned char reserved_184[2];
     short word_186;
@@ -149,6 +151,7 @@ typedef char ReimuPrelude_peer_offset[(offsetof(ReimuActionStatePreludeView, pee
 typedef char ReimuPrelude_word174_offset[(offsetof(ReimuActionStatePreludeView, word_174) == 0x174) ? 1 : -1];
 typedef char ReimuPrelude_state_offset[(offsetof(ReimuActionStatePreludeView, state_180) == 0x180) ? 1 : -1];
 typedef char ReimuPrelude_gate_offset[(offsetof(ReimuActionStatePreludeView, word_186) == 0x186) ? 1 : -1];
+typedef char ReimuCharge_offsets[(offsetof(ReimuActionStatePreludeView, byte_17c) == 0x17c) ? 1 : -1];
 typedef char ReimuShot_offsets[(offsetof(ReimuActionStatePreludeView, field_6c4) == 0x6c4 && offsetof(ReimuActionStatePreludeView, field_744) == 0x744) ? 1 : -1];
 typedef char ReimuProjectile_offsets[(offsetof(ReimuActionStatePreludeView, byte_47f) == 0x47f && offsetof(ReimuActionStatePreludeView, scale_4d0) == 0x4d0 && offsetof(ReimuActionStatePreludeView, counter_558) == 0x558 && offsetof(ReimuActionStatePreludeView, phase_55a) == 0x55a && offsetof(ReimuActionStatePreludeView, field_6c0) == 0x6c0 && offsetof(ReimuActionStatePreludeView, word_738) == 0x738 && offsetof(ReimuPreludePeerView, y_f0) == 0xf0) ? 1 : -1];
 typedef char ReimuMid_input_offsets[(offsetof(ReimuActionStatePreludeView, field_6bc) == 0x6bc && offsetof(ReimuActionStatePreludeView, byte_750) == 0x750) ? 1 : -1];

@@ -164,9 +164,23 @@ smokes remain unchanged. Order/sign/counter-boundary negatives fail2/38,
 bytes and all9 unchanged primary files; no new process/clone. Complete root,
 returning world contexts and exact comparison remain pending; no implementation/
 exact credit. See [shot-group evidence](REIMU_MID_SHOT_ACTIONS_2026_10_18.md).
-Next continue500 middle actions, then high actions and returning world contexts
-toward the complete void root. Use `--cohort` for focused rechecks; no aggregate
-cold replay was run.
+The monolithic method now adds500/501/502/503/505/506/507/508 via
+`ReimuActionStateMid500Cases.hpp`:12427 target bytes/2910 instructions plus
+shared exits, with>508 pending. Native0/4522 includes3306 RETs,755 object
+requests,440 effects,10 common-entry stops,1 set669-entry stop and10 pending
+handoffs.1232 scaled-counter and1223 wave calls execute unchanged helpers;
+810/811 first-volley three-float requests, separate live level checks,17C
+stores, input-field selection and signed charge/tail boundaries are covered.
+17 target branch sites run at both precisions. Wrong input/speed/cutoff
+controls fail640/1728,2/72,208/1728. A301-case earlier-path integration cohort,
+six old code/data/relocation identities and focused smokes pass; no historical
+full replay or exact credit. Ghidra attests eight entries/root/shared exits;
+9 primary files unchanged and clone removed. Subsequent volley requests and
+returning world contexts remain unproved. See
+[first500-family evidence](REIMU_MID_500_ACTIONS_2026_10_18.md).
+Next continue510..550 middle actions, then high actions and returning world
+contexts toward the complete void root. Use `--cohort` for focused rechecks;
+no aggregate cold replay was run.
 Obsolete unpinned disassembly exports (~18MB) and rejected/superseded object
 files were removed; current bounded evidence and primary databases remain.
 Obsolete common-root GL controls/provider objects and rejected Reimu control
