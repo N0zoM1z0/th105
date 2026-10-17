@@ -32,7 +32,7 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Active priority: Iku signed zero gates and joint exits
+## Active priority: Iku steering face tails and joint sharing
 
 `Iku_dispatch_action_state_vslot28 @ 620920` retains complete110-action
 source, void thiscall prelude/default and one ascending switch. Target
@@ -45,9 +45,37 @@ EDI=1. No exact/partial authored credit. Current evidence:
 [all six atan2 argument lifetimes](IKU_STEERING_ARGUMENT_LIFETIMES_2026_10_17.md),
 plus [real animation completion](IKU_ADVANCE_CALLBACKS_2026_10_17.md) and
 [object998 prelude ownership](IKU_PRELUDE_DIRECTION_2026_10_17.md), followed by
-[signed zero gates](IKU_SIGNED_ZERO_GATES_2026_10_17.md).
+[signed zero gates](IKU_SIGNED_ZERO_GATES_2026_10_17.md) and
+[steering face-entry contexts](IKU_FACING_TAIL_CONTEXTS_2026_10_17.md).
 
-The latest selected changes replace200/223's signed input-product<1 and
+The latest bounded investigation keeps selected C++ and every canonical byte
+unchanged. The extra730 face site is a split of the nonfixed Y lower-clamp
+continuation: target store/discard paths join CALL62DC18, candidate calls
+62D953/62D97F separately. Fresh whole-entry native0/4960 now checks raw
+pre-face velocity/direction/sequence, control word,TOP and sticky exceptions,
+as well as existing final state/call history. Target1920 common entries map
+to candidate96 store/1824 discard entries; fixed clamps1920 each. All3840
+entry contexts agree atTOP0.1120 geometry cases stop at real atan2 before
+face entry. The two other730 face sites are outside this runtime scope.
+Wrong duplicate-face control detects1920/1920; both retained examples have
+identical final actor memory, so call-history checking matters.
+
+Double Y-bound parameters are whole-section neutral; direct use of five
+private typed coordinate fields across608 expressions is also whole-section
+neutral with offset/prefix-size assertions. Neither changes the public
+header. Commuted lower comparison adds a wrong-width double literal and is
+rejected; sharing only finalY lower grows16 bytes and retains five face sites.
+A fresh genuine GL/LTCG link reuses41/44 steps; only22 ordinary shared bytes
+change around mode-load/Y-store scheduling, leaving all five face CALLs
+unchanged. Strict first+64 persists. Five registered nonexact dependencies
+and provisional abs adapter remain explicit; linked image is not executed.
+These controls establish no general compiler/LTCG barrier. Direct readonly
+768MiB/twoCPU Ghidra attests the185-byte clamp/tail and four target sites;
+nine primary files unchanged, disposable clone removed. Do not repeat these
+source shapes without new independent evidence. Joint source/compiler sharing,
+initial constant1, effect outgoing join and310/409 sharing remain open.
+
+The preceding selected changes replace200/223's signed input-product<1 and
 214's signed resource482<1 with<=0, recovering target TEST/JG and WORD-zero
 comparison operands.572/573 still compare against1 and retain<1. The first
 two edits change only six bytes in the prior59462-byte section; the214 edit

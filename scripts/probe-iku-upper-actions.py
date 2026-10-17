@@ -475,6 +475,12 @@ class UpperProbe(late.LateProbe):
             if canonical.target_bytes(0x6FCA98 + event * 4, 4) != bytes(4):
                 raise ValueError("middle event fixture is not the target zero handle")
 
+    def evaluate(self, case, source):
+        self.trace_steering_face = bool(case.get("steering_fixture"))
+        self.face_source = source
+        self.face_entries = []
+        return super().evaluate(case, source)
+
     def actor_fields(self, case):
         fields = super().actor_fields(case)
         if (case.get("steering_argument_fixture") or case.get("aim_argument_fixture")
@@ -517,8 +523,24 @@ class UpperProbe(late.LateProbe):
 
     def instruction(self, uc, address, size, unused):
         try:
+            if self.trace_steering_face and address == 0x478E60:
+                caller = self.u32(uc.reg_read(r.UC_X86_REG_ESP)) - 5
+                encoded = bytes(uc.mem_read(caller, 5))
+                if encoded[0] != 0xE8 or caller + 5 + struct.unpack("<i", encoded[1:])[0] != address:
+                    self.failure = "steering face entry is not reached by a real direct CALL"
+                    uc.emu_stop()
+                    return
+                root = self.entry if self.face_source else 0x620920
+                status = uc.reg_read(r.UC_X86_REG_FPSW)
+                self.face_entries.append({
+                    "site": hex(0x620920 + caller - root),
+                    "state": {"velocity": bytes(uc.mem_read(base.OWNER + 0xF4, 8)).hex(),
+                              "direction": bytes(uc.mem_read(base.OWNER + 0x104, 1)).hex(),
+                              "sequence": bytes(uc.mem_read(base.OWNER + 0x13E, 2)).hex(),
+                              "cw": uc.reg_read(r.UC_X86_REG_FPCW),
+                              "top": (status >> 11) & 7, "exceptions": status & 0x3F}})
             iku_animation_callbacks.observe(self, uc, address)
-        except ValueError as error:
+        except (ValueError, unicorn.UcError, struct.error) as error:
             self.failure = str(error)
             uc.emu_stop()
             return
@@ -568,6 +590,8 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
         cases = [case for case in cases if case["action"] in (200, 223)]
     elif control == "resource-zero":
         cases = [case for case in cases if case["action"] == 214]
+    elif control == "steering-face-count":
+        cases = [case for case in cases if case.get("steering_fixture") and case["sequence"] in (7, 8)]
     if not cases:
         raise ValueError("selected case collection is empty")
     seed_engine = spell.seed_module.Probe(canonical, pefile.PE(str(ROOT / "resources/th105.exe")).get_memory_mapped_image(),
@@ -584,14 +608,27 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
     aim_argument_entries = {}
     advance_successes, advance_returns, frame_entries, block_entries = {}, {}, 0, 0
     prelude_entries, prelude_directions = {}, {}
+    face_sites = {"target": {}, "source": {}}
+    face_context_mismatches = 0
     for number, case in enumerate(cases, 1):
         inputs.update(json.dumps(case, sort_keys=True).encode())
         try:
-            expected, actual = probe.evaluate(case, False), probe.evaluate(case, True)
+            expected = probe.evaluate(case, False)
+            target_faces = probe.face_entries
+            actual = probe.evaluate(case, True)
+            source_faces = probe.face_entries
         except Exception as error:
             raise ValueError(f"{case}; pc={probe.engine.reg_read(r.UC_X86_REG_EIP):#x}; "
                              f"calls={probe.calls[-4:]}; {error}") from error
         outputs.update(json.dumps(expected, sort_keys=True).encode())
+        if case.get("steering_fixture"):
+            if len(target_faces) != 1 or target_faces[0]["state"]["top"] != 0:
+                raise ValueError("steering fixture missed one target face entry at x87 TOP0")
+            for side, entries in (("target", target_faces), ("source", source_faces)):
+                for entry in entries:
+                    face_sites[side][entry["site"]] = face_sites[side].get(entry["site"], 0) + 1
+        face_mismatch = [entry["state"] for entry in target_faces] != [entry["state"] for entry in source_faces]
+        face_context_mismatches += face_mismatch
         if prelude_spawns:
             spawned = (expected["outcome"] == "0x465190" and expected["calls"][-1]["arguments"][0] == 998)
             if case.get("prelude_coordinate_fixture") and not spawned:
@@ -642,12 +679,15 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
             directions[raw_direction] = directions.get(raw_direction, 0) + 1
             if arguments[1] == 0x80000000:
                 negative_zero_x_entries[action] = negative_zero_x_entries.get(action, 0) + 1
-        if expected != actual:
+        if expected != actual or face_mismatch:
             differences += 1
             key = str(case["action"])
             mismatch_by_action[key] = mismatch_by_action.get(key, 0) + 1
             if len(examples) < 2:
-                examples.append({"case": case, "target": expected, "source": actual})
+                example = {"case": case, "target": expected, "source": actual}
+                if face_mismatch:
+                    example["face_entries"] = {"target": target_faces, "source": source_faces}
+                examples.append(example)
         if number % 2000 == 0:
             print(f"{number}/{len(cases)} cases; {differences} differences", file=sys.stderr, flush=True)
     if (linked_pe.sha(source) != receipt["source_sha256"] or linked_pe.sha(output) != receipt["object_sha256"]
@@ -708,6 +748,8 @@ def audit(source=SOURCE, output=None, smoke=False, new_only=False, middle=False,
             "direction_zero_gate_sites_visited": {str(action): hex(site) for action, site in direction_sites.items()},
             "resource_zero_gate_sites_visited": list(map(hex, resource_sites)),
             "sequence_join_target_visited": hex(join_site) if join_site is not None else None,
+            "steering_face_entry_sites": face_sites,
+            "steering_face_context_mismatches": face_context_mismatches,
             "lookup_initialization": initialization, "math_runtime_trace": probe.math_trace,
             "outcomes": [{"side": side, "stop": stop, "cases": count} for (side, stop), count in sorted(probe.outcomes.items())],
             "target_root_instructions_visited": len(probe.visited), "source_view_aliases": probe.aliases,
@@ -802,6 +844,17 @@ def control_source(name):
     elif name == "resource-zero":
         needle = "short_at(0x482) <= 0"
         replacement = "short_at(0x482) < 0"
+    elif name == "steering-face-count":
+        first = source.index("    __forceinline void steer(bool fixed_limit)")
+        last = source.index("    __forceinline void restore_surface_motion()", first)
+        body = source[first:last]
+        needle = "        face_opponent_and_flip_horizontal_velocity();"
+        if body.count(needle) != 1:
+            raise ValueError("steering control requires one shared source face operation")
+        body = body.replace(needle, needle + "\n        if (!fixed_limit) face_opponent_and_flip_horizontal_velocity();")
+        path = ROOT / "build/iku-upper-steering-face-count.cpp"
+        path.write_bytes((source[:first] + body + source[last:]).replace("\n", "\r\n").encode())
+        return path
     elif name == "unsigned-brake":
         needle = "static_cast<signed char>(byte_at(0x47e)) > 0"
         replacement = "byte_at(0x47e) != 0"
@@ -891,7 +944,7 @@ if __name__ == "__main__":
     cases.add_argument("--frame-bounds", action="store_true", help="whole-root225/408 frame7 boundary paths with real RNG and helpers")
     cases.add_argument("--advance-callbacks", action="store_true", help="whole-root310/409 through genuine frame/block callbacks and both advancement results")
     cases.add_argument("--prelude-spawns", action="store_true", help="object998 prelude direction/float boundaries, guards and compact routed-entry regression")
-    parser.add_argument("--control", choices=("aim-limit", "aim-facing", "advance-action", "prelude-direction", "direction-zero", "resource-zero", "unsigned-gate", "single-counter", "positive-steer", "effect-height", "effect-direction", "steering-facing", "sequence-exit-gate", "event-frame-gate", "frame-bound-gates", "unsigned-brake", "current-height", "zero-offset", "prelude-countdown", "unordered-face"))
+    parser.add_argument("--control", choices=("aim-limit", "aim-facing", "advance-action", "prelude-direction", "direction-zero", "resource-zero", "steering-face-count", "unsigned-gate", "single-counter", "positive-steer", "effect-height", "effect-direction", "steering-facing", "sequence-exit-gate", "event-frame-gate", "frame-bound-gates", "unsigned-brake", "current-height", "zero-offset", "prelude-countdown", "unordered-face"))
     parser.add_argument("--coordinates", action="store_true", help="with --middle, focus on direct X transfer and signed zero")
     parser.add_argument("--whole", action="store_true", help="execute both real/candidate roots from their own entry")
     parser.add_argument("--actions", type=int, nargs="+", help="run only these action IDs from the selected fixture")
@@ -922,6 +975,8 @@ if __name__ == "__main__":
         parser.error("direction-zero requires --opening-branches")
     if args.control == "resource-zero" and not args.opening_branches:
         parser.error("resource-zero requires --opening-branches")
+    if args.control == "steering-face-count" and not args.steering_clamps:
+        parser.error("steering-face-count requires --steering-clamps")
     if args.control == "sequence-exit-gate" and not args.sequence_exits:
         parser.error("sequence-exit-gate requires --sequence-exits")
     if args.control == "event-frame-gate" and not args.event_exits:
