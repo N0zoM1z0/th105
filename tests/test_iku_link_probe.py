@@ -5,7 +5,9 @@ import json
 from pathlib import Path
 import sys
 import tempfile
+from types import SimpleNamespace
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -17,6 +19,70 @@ SPEC.loader.exec_module(PROBE)
 
 
 class IkuLinkProbeTests(unittest.TestCase):
+    def test_visibility_preserves_default_and_selects_only_game_units(self):
+        available = {"game-a", "game-b"}
+        self.assertIsNone(PROBE.visibility_selection(None, available))
+        self.assertEqual(PROBE.visibility_selection("none", available), set())
+        self.assertEqual(PROBE.visibility_selection("all", available), available)
+        self.assertEqual(PROBE.visibility_selection("game-b,game-a", available), available)
+        for invalid in ("", "sdk-deque", "game-a,missing", "none,game-a"):
+            with self.assertRaises(ValueError):
+                PROBE.visibility_selection(invalid, available)
+
+    def visibility_fixture(self, code=None, relocations=(), exports=None, functions=None):
+        code = code if code is not None else b"\x90" * 128
+        pe = SimpleNamespace(
+            DIRECTORY_ENTRY_EXPORT=SimpleNamespace(symbols=exports if exports is not None else [
+                SimpleNamespace(name=PROBE.SYMBOL.encode(), address=0x1000)]),
+            DIRECTORY_ENTRY_BASERELOC=[SimpleNamespace(entries=relocations)],
+            OPTIONAL_HEADER=SimpleNamespace(ImageBase=0x10000000),
+            get_data=lambda address, size: code[:size],
+        )
+        canonical = SimpleNamespace(
+            target_bytes=lambda address, size: b"\x90" * size,
+            first_mismatch=lambda target, candidate, address: None,
+        )
+        map_path = SimpleNamespace(read_text=lambda: "synthetic MAP fixture")
+        return pe, canonical, map_path, functions or {}
+
+    def test_visibility_inventory_does_not_certify_missing_or_split_aliases(self):
+        pe, canonical, map_path, functions = self.visibility_fixture(functions={
+            0x10001000: [("same", "CIL library: CIL module"), ("actual", "provider.obj"),
+                         ("split", "CIL library: CIL module")],
+            0x10002000: [("other", "provider.obj")],
+        })
+        with patch.object(PROBE.pefile, "PE", return_value=pe), patch.object(
+                PROBE.linked_pe, "parse_map", return_value=functions):
+            result = PROBE.visibility_entry(Path("fixture.dll"), map_path, canonical,
+                                            {"same": "actual", "split": "other", "missing": "actual"})
+        self.assertTrue(result["map_alias_inventory"]["same"]["same_unique_address"])
+        self.assertFalse(result["map_alias_inventory"]["split"]["same_unique_address"])
+        self.assertFalse(result["map_alias_inventory"]["missing"]["same_unique_address"])
+        self.assertIn("does not certify", result["scope"])
+
+    def test_visibility_rejects_call_crossing_end_of_prefix(self):
+        # Only the first byte of this synthetic CALL lies in the101-byte window.
+        pe, canonical, map_path, _ = self.visibility_fixture(
+            code=b"\x90" * 100 + b"\xe8\0\0\0\0" + b"\x90" * 23)
+        with patch.object(PROBE.pefile, "PE", return_value=pe):
+            with self.assertRaisesRegex(ValueError, "call relocation"):
+                PROBE.visibility_entry(Path("fixture.dll"), map_path, canonical, {})
+
+    def test_visibility_rejects_highlow_inside_prefix(self):
+        pe, canonical, map_path, _ = self.visibility_fixture(
+            relocations=[SimpleNamespace(type=3, rva=0x1064)])
+        with patch.object(PROBE.pefile, "PE", return_value=pe):
+            with self.assertRaisesRegex(ValueError, "pointer relocation"):
+                PROBE.visibility_entry(Path("fixture.dll"), map_path, canonical, {})
+
+    def test_visibility_rejects_absent_or_duplicate_root_exports(self):
+        entry = SimpleNamespace(name=PROBE.SYMBOL.encode(), address=0x1000)
+        for exports in ([], [entry, entry]):
+            pe, canonical, map_path, _ = self.visibility_fixture(exports=exports)
+            with patch.object(PROBE.pefile, "PE", return_value=pe):
+                with self.assertRaisesRegex(ValueError, "one real Iku export"):
+                    PROBE.visibility_entry(Path("fixture.dll"), map_path, canonical, {})
+
     def test_only_reviewed_free_getter_bodies_are_selected(self):
         for unit, filename in (
             ("cross-v106a-game-mode-getters", "src/battle/GameMode.cpp"),

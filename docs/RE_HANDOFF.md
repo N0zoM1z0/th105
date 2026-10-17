@@ -32,7 +32,7 @@ Run the preflight in [AGENTS.md](../AGENTS.md) before changing reconstruction
 state. The source tree predates the corrected target; retained source is a
 hypothesis until 1.06a instruction, ABI and comparison evidence support it.
 
-## Active priority: Iku shared continuations and argument lifetimes
+## Active priority: Iku compiler visibility and argument lifetimes
 
 Iku_dispatch_action_state_vslot28 @620920 retains complete110-action selected
 source, actual void thiscall prelude/default and one ascending switch.
@@ -41,7 +41,8 @@ abc831c6ccd95986bed811694f532ad8c8b92cb49702a7f6ce4de100b8a73dea.
 Frame400hex/84 real payload homes remain natural. Strict whole-root remains
 **nonexact+0x64 /620984**, where target alone hoists EDI=1. No exact credit.
 Current evidence:
-[effect62 shared continuation](IKU_EFFECT_SHARED_CONTINUATION_2026_10_17.md).
+[compiler visibility/current link](IKU_PROVIDER_VISIBILITY_2026_10_17.md),
+[effect62 continuation](IKU_EFFECT_SHARED_CONTINUATION_2026_10_17.md).
 
 Actions416/417/565/566/567/568 now assign real coordinate values and branch
 to one effect62/next-sequence/return continuation, following the target's
@@ -95,15 +96,34 @@ sequence/five frame sites, ordered facing leaves and live lookup products.
 Its0/1034 native also belongs to earlier source. Do not add inert214 exit
 checks to reproduce the repeated target62271B..622757 gate.
 
-The dated genuine /GL link closes41 providers, pinned SDK/CRT,44 checked
-same-target aliases/18 attested non-code data bindings;47/52 dependencies
-exact.406360/4063D0/417800/42CF70/4740C0 and provisional unclassified406330
-remain nonexact. SDK4399C0/42D1B0 were94/100 exact before/after link. Its full
-901 HIGHLOW/867 ordinary CALL replay differed from ordinary in22 action730
-scheduling bytes plus two explicit INT3s; whole stayed nonexact. This is not
-a current-source link. Preserve the small --reuse cache, do not routinely
-replay it: [full replay](IKU_LINKED_REPLAY_2026_10_17.md),
-[providers](IKU_REAL_LINK_2026_10_17.md).
+The fresh same-source genuine /GL-root/ordinary-provider link reuses44/44
+objects and closes41 real game providers, pinned SDK/CRT,44 checked aliases
+and18 attested non-code bindings.47/52 ordinary dependency addresses remain
+exact;406360/4063D0/417800/42CF70/4740C0 remain nonexact, as does provisional
+unclassified406330. SDK4399C0/42D1B0 remain94/100 exact before/after link.
+The complete59504 envelope replays898 HIGHLOW fields (782 literal reads,
+six switch addresses/110 destinations),863 ordinary CALLs and two absolute
+game-data reads. Metadata58348..59502 and two final INT3s remain explicit.
+Against ordinary59502 bytes, only22 scheduling bytes differ in730 at
+53205..53219/53220..53228. Strict59038 still nonexact+0x64; no image executed.
+Full linked SHA256:
+0ce3d92b61d3b860050e57f1d736a149babe2f3735068f1bc6faeea004d2f26e.
+This supersedes the earlier dated link's source/size claims. Retain the small
+--reuse cache; older [full replay](IKU_LINKED_REPLAY_2026_10_17.md)/
+[providers](IKU_REAL_LINK_2026_10_17.md) remain historical evidence.
+
+New --provider-visibility none/all/unit-list mode is explicitly entry-only,
+retains real game definitions and keeps SDK/CRT separate. Under identical
+retention, the ordinary baseline preserves100 entry bytes; exposing only
+cross-v106a-mt19937-next as /GL changes the prologue and first byte. Eight
+subset links isolate that one TU, reusing all408 compiled-object inputs.
+This does not isolate one function/inliner pass or prove original MT flags.
+Do not broadly turn on provider /GL to cure local Iku mismatches. The default
+full replay/alias guards remain strict; visibility receipts provide only raw
+entry/MAP inventory. Five tests guard the new mode. A single read-only Ghidra
+clone re-attests target/entry/.text/root/58 fields/177 calls/ftol ABI; all nine
+primary files unchanged. Moving818 arrays to caller scopes is whole-section
+neutral and unselected. Keep these negative results phase-scoped.
 
 The [action/payload audit](IKU_ACTION_PAYLOAD_PARTITIONS_2026_10_17.md) still
 closes182 spawn sites/190 action-site records per image with independent
@@ -124,8 +144,8 @@ scratch receiverthis+4 and real ftol ST0 ->EAX32 ABI. Prior contracts:
 [virtual ABI](IKU_VIRTUAL_CALLS_2026_10_17.md),
 [random/float](IKU_RANDOM_FLOAT_TYPES_2026_10_17.md).
 
-Wrong-image IDA stays rejected; no database used/changed in this raw-byte
-unit. Re-attest direct Ghidra before reuse. Original source/inheritance/TU/
+Wrong-image IDA stays rejected. Ghidra was used only in a re-attested read-only
+clone; re-attest before reuse. Original source/inheritance/TU/
 compiler phase, post-backend/exception timing and payload-value equivalence
 remain unknown. No standalone/LTCG barrier, accepted shared-unit change or
 cold aggregate result. Remove superseded private controls and build products;

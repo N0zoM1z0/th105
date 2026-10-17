@@ -199,7 +199,64 @@ def reusable_compile(path, obj, inputs):
     ) == linked_pe.sha(obj)
 
 
-def probe(reuse=False, ordinary_object=None):
+def visibility_selection(specification, available):
+    if specification is None:
+        return None
+    if specification == "none":
+        return set()
+    if specification == "all":
+        return set(available)
+    selected = set(specification.split(","))
+    if not selected or not selected <= set(available):
+        raise ValueError("provider visibility names must be selected game-provider units")
+    return selected
+
+
+def visibility_entry(image, map_path, canonical, aliases):
+    pe = pefile.PE(str(image))
+    exports = [entry for entry in pe.DIRECTORY_ENTRY_EXPORT.symbols
+               if entry.name == SYMBOL.encode()]
+    if len(exports) != 1:
+        raise ValueError("visibility witness requires one real Iku export")
+    start = exports[0].address
+    size = 101
+    if any(entry.type == 3 and start <= entry.rva < start + size
+           for block in pe.DIRECTORY_ENTRY_BASERELOC for entry in block.entries):
+        raise ValueError("visibility entry requires pointer relocation")
+    decoder = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
+    decoder.detail = True
+    rows = list(decoder.disasm(pe.get_data(start, size + 15), pe.OPTIONAL_HEADER.ImageBase + start))
+    if not rows or rows[-1].address + rows[-1].size < pe.OPTIONAL_HEADER.ImageBase + start + size:
+        raise ValueError("visibility entry decode is incomplete")
+    if any(row.address < pe.OPTIONAL_HEADER.ImageBase + start + size
+           and row.group(capstone.CS_GRP_CALL) for row in rows):
+        raise ValueError("visibility entry requires call relocation")
+    code = pe.get_data(start, size)
+    by_name = {}
+    for address, names in linked_pe.parse_map(map_path.read_text()).items():
+        for name, owner in names:
+            by_name.setdefault(name, []).append((address, owner))
+    inventory = {}
+    for name, actual in sorted(aliases.items()):
+        alias_rows, actual_rows = by_name.get(name, []), by_name.get(actual, [])
+        alias_addresses = {address for address, _ in alias_rows}
+        actual_addresses = {address for address, _ in actual_rows}
+        inventory[name] = {
+            "actual": actual, "alias_definitions": alias_rows,
+            "actual_definitions": actual_rows,
+            "same_unique_address": len(alias_addresses) == len(actual_addresses) == 1
+                                   and alias_addresses == actual_addresses,
+        }
+    return {
+        "bytes": size, "entry_rva": start, "raw_prefix": code.hex(),
+        "canonical_target_prefix_sha256": hashlib.sha256(canonical.target_bytes(0x620920, size)).hexdigest(),
+        "first_mismatch": canonical.first_mismatch(canonical.target_bytes(0x620920, size), code, 0x620920),
+        "map_alias_inventory": inventory,
+        "scope": "Relocation-free entry witness only; MAP inventory does not certify alias ABI or full-root replay.",
+    }
+
+
+def probe(reuse=False, ordinary_object=None, provider_visibility=None):
     canonical = linked_pe.comparator()
     target_sha = canonical.verify_target()
     tools, pins = linked_pe.pinned_tools()
@@ -217,6 +274,10 @@ def probe(reuse=False, ordinary_object=None):
         if len(index[address]) != 1:
             raise ValueError("ambiguous dependency source selection")
         selected[address] = (name, function)
+
+    visible_units = visibility_selection(provider_visibility, {name for name, _ in selected.values()})
+    if visible_units is not None and ordinary_object is not None:
+        raise ValueError("provider visibility is entry-only; omit --ordinary-object")
 
     out = ROOT / "build/iku-action-ltcg"
     out.mkdir(parents=True, exist_ok=True)
@@ -432,6 +493,21 @@ def probe(reuse=False, ordinary_object=None):
     )
     if texture_witness != canonical.target_bytes(0x42D1B0, 100):
         raise ValueError("SDK texture deque differs")
+    link_out = out
+    if visible_units is not None:
+        provider_out = out / "provider-visibility"
+        provider_out.mkdir(exist_ok=True)
+        context = hashlib.sha256(",".join(sorted(visible_units)).encode()).hexdigest()[:16]
+        link_out = provider_out / context
+        link_out.mkdir(exist_ok=True)
+        for name in sorted(visible_units):
+            unit = units[name]
+            original = ROOT / unit["source"]
+            provider_source = out / (name + ".cpp") if name in METHOD_SELECTIONS or name in FREE_SELECTIONS else original
+            obj = provider_out / (name + ".obj")
+            compile_source(provider_source, obj, unit, ("/Gy", "/GL"), original.parent, unit_name=name)
+            objects[name] = obj
+
     libraries = [
         tools / path
         for path in (
@@ -443,8 +519,8 @@ def probe(reuse=False, ordinary_object=None):
             "PlatformSDK/Lib/AdvAPI32.Lib",
         )
     ]
-    image, map_path = out / "IkuRoot.dll", out / "IkuRoot.map"
-    data_obj, bindings = out / "data-bindings.obj", {}
+    image, map_path = link_out / "IkuRoot.dll", link_out / "IkuRoot.map"
+    data_obj, bindings = link_out / "data-bindings.obj", {}
     target_pe = pefile.PE(str(ROOT / "resources/th105.exe"))
     # One initial link discovers data references; one retry binds only those
     # attested data symbols. Any missing function remains a hard failure.
@@ -466,6 +542,8 @@ def probe(reuse=False, ordinary_object=None):
             "/MAP:" + win(map_path),
             "/OUT:" + win(image),
         ]
+        if visible_units is not None:
+            command.extend("/INCLUDE:" + symbol for symbol in sorted(set(actuals.values())))
         command.extend(
             "/alternatename:" + name + "=" + actual
             for name, actual in sorted(aliases.items())
@@ -485,7 +563,7 @@ def probe(reuse=False, ordinary_object=None):
             command, env=environment, capture_output=True, text=True
         )
         log = result.stdout + result.stderr
-        (out / f"link-{attempt}.log").write_text(log)
+        (link_out / f"link-{attempt}.log").write_text(log)
         if result.returncode == 0 and not re.search(r"warning LNK|error LNK", log):
             break
         missing = unresolved_names(log)
@@ -502,6 +580,25 @@ def probe(reuse=False, ordinary_object=None):
             )
     else:
         raise ValueError("genuine link did not close")
+
+    if visible_units is not None:
+        receipt = {
+            "schema": "th105-iku-provider-visibility-entry-v1",
+            "target_sha256": target_sha, "probe_sha256": linked_pe.sha(Path(__file__)),
+            "root_source_sha256": linked_pe.sha(ROOT / root_unit["source"]),
+            "visible_provider_units": sorted(visible_units), "tools": pins,
+            "retained_functions": sorted(set(actuals.values())),
+            "compilation_steps": compilation_steps, "link_commands": link_commands,
+            "link_provider_objects": {name: {"path": str(path.relative_to(ROOT)), "sha256": linked_pe.sha(path)}
+                                      for name, path in objects.items()},
+            "ordinary_dependency_comparisons": comparisons,
+            "data_bindings": list(bindings.values()),
+            "image_sha256": linked_pe.sha(image), "map_sha256": linked_pe.sha(map_path),
+            "entry_witness": visibility_entry(image, map_path, canonical, aliases),
+            "scope": "Experimental game-provider visibility; SDK/CRT and ordinary prelink comparisons stay separate. No full canonical replay or exact credit.",
+        }
+        (link_out / "receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
+        return receipt
 
     inspection = inspector.inspect_linked_root(
         image,
@@ -728,9 +825,13 @@ if __name__ == "__main__":
         "--ordinary-object", type=Path,
         help="also compare every shared byte against a current provenance-bound ordinary Iku object",
     )
+    parser.add_argument(
+        "--provider-visibility",
+        help="entry-only LTCG visibility witness: none, all, or comma-separated game-provider unit names; retains real provider bodies",
+    )
     args = parser.parse_args()
     try:
-        print(json.dumps(probe(args.reuse, args.ordinary_object), indent=2))
+        print(json.dumps(probe(args.reuse, args.ordinary_object, args.provider_visibility), indent=2))
     except (KeyError, OSError, ValueError, RuntimeError) as error:
         print(f"Iku link probe failed: {error}", file=sys.stderr)
         raise SystemExit(2)
