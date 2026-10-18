@@ -1454,3 +1454,4 @@ NetworkWinsock_start_connection,0x00415340,function
 NetworkWinsock_connection_thread_entry,0x00415D60,function
 Aya_update_cpu_action_policy,0x006126E0,function
 ScoreData_record_sequence_result,0x0042CF70,function
+Reimu_update_cpu_action_policy,0x0048D390,function
