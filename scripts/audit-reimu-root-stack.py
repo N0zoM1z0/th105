@@ -23,7 +23,7 @@ ADDRESS, SIZE, SPAWN = 0x478FA0, 81550, 0x465190
 VOLATILE = {x.X86_REG_EAX, x.X86_REG_ECX, x.X86_REG_EDX}
 MATH_CALLS = {0x406360, 0x4063D0, 0x435D60}
 ACTIONS = (400, 401, 404, 406, 525, 526, 545, 546, 669)
-SUPPORTED_ACTIONS = (*ACTIONS, 550, 551)
+SUPPORTED_ACTIONS = (*ACTIONS, 550, 551, 520, 521, 522, 523)
 
 
 def require(condition, message):
@@ -526,7 +526,7 @@ def native_audit(path, actions=ACTIONS):
     families, inputs, support = {}, [], []
     for filename, supported in (
             ('audit-reimu-mid-projectile-actions.py', {400, 401, 404, 406}),
-            ('audit-reimu-mid-520-actions.py', {525, 526}),
+            ('audit-reimu-mid-520-actions.py', {520, 521, 522, 523, 525, 526}),
             ('audit-reimu-mid-540-actions.py', {545, 546}),
             ('audit-reimu-high-late-actions.py', {669}),
             ('audit-reimu-mid-550-actions.py', {550, 551})):
@@ -539,7 +539,8 @@ def native_audit(path, actions=ACTIONS):
                       if case['action'] in actions and case['cohort'] != 'integration')
     counts = Counter(case['action'] for case in inputs)
     expected = {400: 576, 401: 576, 404: 580, 406: 580, 525: 296, 526: 296,
-                545: 1366, 546: 1366, 669: 1086, 550: 788, 551: 788}
+                545: 1366, 546: 1366, 669: 1086, 550: 788, 551: 788,
+                520: 470, 521: 470, 522: 474, 523: 474}
     require(counts == {action: expected[action] for action in actions}, 'affected native input matrix changed')
 
     class VoidProbe(oracle.previous.Probe):

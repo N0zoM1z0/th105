@@ -78,12 +78,12 @@ def profiles(smoke):
                            facing=1, cw=cw, seed=5489, object_id=869, parameter_words=3, objects=0)
 
 
-def resource_image(duration, offset, transition):
+def resource_image(duration, offset, transition, *, keys=RESOURCE_KEYS):
     module = shared.load('circular_resources_'+str(duration), 'reimu_late_low_fixture.py')
     for name in ('RESOURCE', 'TREE', 'HEAD', 'VECTOR', 'SLOT'):
         setattr(module, name, getattr(module, name)+offset)
     graph, blocks, frames, count = module.resource_graph(
-        {'frame': 0, 'transition': 'unexpired', 'duration': duration}, RESOURCE_KEYS,
+        {'frame': 0, 'transition': 'unexpired', 'duration': duration}, keys,
         frame_capacity=14, sequence_capacity=9)
     require(len(graph) == 0x40000, 'circular resource envelope changed')
     graph = bytearray(graph)
@@ -97,20 +97,20 @@ def resource_image(duration, offset, transition):
     return graph, module, blocks, frames, count
 
 
-def fixture(output, smoke):
+def fixture(output, smoke, *, cases=None, keys=RESOURCE_KEYS):
     data, layouts = bytearray(), {}
     for duration, transition, offset in ((32, False, 0), (3, False, 0x40000), (4, True, 0x80000)):
-        graph, *layout = resource_image(duration, offset, transition)
+        graph, *layout = resource_image(duration, offset, transition, keys=keys)
         data.extend(graph);layouts[duration, transition] = layout
     (output/'actor-data.bin').write_bytes(data)
-    cases = list(profiles(smoke))
+    cases = list(profiles(smoke) if cases is None else cases)
     with (output/'cases.bin').open('wb') as stream:
         stream.write(b'TH105OB2'+struct.pack('<I', len(cases)))
         for case in cases:
             module, blocks, frames, count = layouts[case['duration'], case.get('transition', False)]
             actor = bytearray(0x3000)
             frame = frames[case['action']]+case['sequence']*0x800
-            fields = ((0, 'I', 0x6C412C), (0xEC, 'f', 640.0), (0xF0, 'f', case['y']),
+            fields = ((0, 'I', 0x6C412C), (0xEC, 'f', case.get('x', 640.0)), (0xF0, 'f', case['y']),
                       (0x104, 'b', case['facing']), (0x113, 'B', 255),
                       (0x11C, 'f', 1.0), (0x120, 'f', 1.0), (0x130, 'I', module.VECTOR),
                       (0x13C, 'h', case['action']), (0x13E, 'h', case['sequence']), (0x140, 'h', 0),

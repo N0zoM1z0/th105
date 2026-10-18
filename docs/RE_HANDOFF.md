@@ -757,9 +757,20 @@ call-sharing multisets, including eight target differences; small wrappers
 both remain nine-byte MOV/JMP. No private DLL execution or guard relaxation.
 The ordinary candidate710094fe.../canonicala6dc1ccf..., ledgers and C++ source
 remain unchanged; the explicit actor+4 receiver-cast control is also byte-identical.
-Next recover caller sharing/lifetimes under the current570h opaque-provider
-configuration. Do not repeat the unchanged-input controls or infer original
-visibility from the getter's byte match alone.
+The trajectory checkpoint closes all five815 requests for520..523 through real
+callbacks, root RET and destruction:0/320,1600 objects per process. A compiled
+wrong fifth-angle sign fails320/320 with actor/MT/pool/FP/texture and first four
+complete objects unchanged. All four actual stack-buffer identities agree;
+new focused adapter passes0/1888. See [trajectory returns](REIMU_TRAJECTORY_RETURNS_2026_10_18.md).
+A fresh full-width direction capture restores complete owned243/wave77 sharing
+multisets, reducing eight differing callees to six;520/521 regain the final
+request tail and522/523 remain separate. Frame570h persists but prefix81688/
+payload83060 exceeds138/136, so the control is not executed/selected. Reusing
+one mutable capture per arm gives the identical full payload. The refreshed
+genuine current candidate remains710094fe.../canonicala6dc1ccf..., first+541.
+Next recover lifetimes/scheduling that preserve this positive sharing evidence
+and restore fit under the opaque-provider configuration. Do not repeat the
+unchanged controls or infer original visibility from the getter match alone.
 Remaining returning families/runtime/resource/exception contexts stay open.
 A fresh static recheck confirms300/320 still fully merge at source47CBD7;
 target retains distinct47CBBD/47D96A prefixes and shared47CC2B tail.
