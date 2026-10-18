@@ -93,6 +93,56 @@ before repeating unchanged tail/cloning/visibility controls. Absence of a
 reload does not determine whether the original source used a local variable.
 Original remaining lifetimes, physical sharing and TU/LTCG context are unknown.
 
+## Follow-up argument evaluation controls
+
+A fresh build of source09dd36f0 retains canonical payload4b9bf0a4,
+prefix/payload5156/5488,29 owners,20 conversions and22 RETs. The public
+owner audit still reports23/30 instruction/edge diagnostics. The following
+controls change only this root's private source; none is selected.
+
+| Control | Result |
+| --- | --- |
+| Assign the850 angle inside the selector argument's comma expression | Complete canonical payload identical to baseline |
+| Change all23 selector argument casts from `int` to `short` | Complete canonical payload identical to baseline |
+| Cache the851 heading pointer, then write state344 inside the actual selector argument before reading parameters[2] |851/854 merge;28 owners,19 conversions,21 RETs |
+| Cache the851 pointer and a typed `__thiscall` slotC dispatch before writing state344, then read the argument and call | Same complete payload as the preceding merge |
+| Move the851 real double-value declaration after state344 in this word-parameter context | Same complete payload as the preceding merge |
+| Add a local `float *__restrict` heading alias while retaining value-before-state order |29 owners remain, but851 still loads the value too early and other owners' shared tails/registers change |
+
+The three merged controls all produce prefix/payload5116/5444 and SHA256
+`76c4a245d987b57a04022a1f837854ab3ffb4d1e85be0b93aae57a2a9b2564d2`.
+The explicit-dispatch public audit fails closed with
+`candidate merges distinct target physical owners`; its acceptance contract
+is unchanged. Neither a source comma expression nor an explicit pre-store
+dispatch capture explains the target-distinct851 destination in this build.
+The alias control produces prefix/payload5156/5488 and SHA256
+`20e400af1cd2e22b91442c0b1e8de77bacea9f8a1c7de6bf5930c35c721134f3`.
+Every control remains nonexact at+80/5436F0.
+
+**Observed ownership evidence, limited scope:** the already accepted
+YoumuObjectManager factory53B1C0 allocates a separate count*4 buffer when
+count>0, publishes its pointer at53B240 to object+340, optionally copies
+input words, then invokes object slot+8 at53B2A4. The raw237-byte factory
+also reads its facing/field33c stack arguments as bytes at53B262/53B266.
+This establishes the positive-count factory path. It does not establish
+every writer, lifetime or caller of heading340, nor a compiler-visible
+no-alias promise. No `restrict` declaration or shared helper ABI change is
+adopted from that observation.
+
+Receipts, complete trial sources, canonical packets and the factory raw
+decode are below `build/youmu-entry-evaluation/`. Private candidates use
+`scripts/compile-unit.sh`; baseline comparison and owner commands below
+remain the public producer/checker. Direct384MiB/CPU0 read-only Ghidra
+independently re-attests file/imported identity, entry, mapped text and root
+bytes before bounded decoding/decompilation. All nine primary database
+file hashes agree afterward and the temporary project alias is removed.
+The decompiler output under
+`.analysis/youmu-entry-evaluation-20261019/` remains a hypothesis. Required
+IDA preflight again rejects the wrong open executable; no IDA semantics
+or factory adapter is used. This follow-up changes evidence and handoff
+only; source, ledgers, accepted-unit contracts and exact byte credit remain
+unchanged.
+
 ## Reproduction and analysis limits
 
 ```bash

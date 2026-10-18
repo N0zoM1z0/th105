@@ -124,6 +124,13 @@ RETs22/23 still expose the different820/850 tail.823 registers and851 value
 load timing remain unresolved. The ordinary851 pointer control still merges
 distinct851/854 destinations and is rejected. See
 [Youmu sequence-word evidence](YOUMU_ENTRY_SEQUENCE_WORD_2026_10_19.md).
+The850 angle/comma and all-call direct-short-cast controls are byte-neutral;
+state-before-value and explicit dispatch capture still merge851/854 into28
+owners. A local restrict alias preserves29 but leaves851's early load and
+changes other tails; it is not adopted. Raw factory53B1C0 proves separate
+parameter allocation only on its positive-count path, not a global alias
+contract. Sources and exact credit remain unchanged; receipts are below
+`build/youmu-entry-evaluation/` and nine read-only Ghidra DB pins agree.
 
 ## Current AyaObject entry initializer
 
