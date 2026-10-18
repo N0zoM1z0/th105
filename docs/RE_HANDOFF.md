@@ -61,6 +61,15 @@ source payload; all remaining 82792 bytes are unchanged. These are root
 reconstruction diagnostics, not exact functions or partial-byte credit.
 See [shared sequence landings](REIMU_SHARED_SEQUENCE_LANDINGS_2026_10_19.md).
 
+Newest analysis proves that one shared C++ advancement expression can yield
+four compiler copies, including the unwanted separate9 site. Listed/plain
+82808-byte payloads agree completely. Conditional full-CFG x87 dataflow and
+5752 actual-helper cases find empty advancement entries; all5292 observed
+entries per side have no occupied x87 tags and TOP0. RTM retains the same
+complete sharing as SP1 on this source. None of these controls is selected;
+current source/pins below are unchanged. See
+[low9 call cloning](REIMU_LOW9_CALL_CLONING_2026_10_19.md).
+
 The five explicit float conversions from the preceding checkpoint retain all
 seven target FIMUL operations in actions 89, 545/546 and 550/551; their complete
 preparation blocks remain unchanged. The 202/203/225/226 common action10 landing
@@ -100,9 +109,11 @@ This does not establish the cause of the remaining sharing differences.
 
 ## Next reconstruction work
 
-1. Resolve action9's coupled landing/advance membership from target control
-   flow and x87 live values. Factoring its landing previously fixed one group
-   while splitting the correct 0/2/9/71/72/74/145 advance group.
+1. Resolve action9's coupled landing/advance membership with new compiler/TU
+   or source evidence. Explicit shared exits still split the correct
+   0/2/9/71/72/74/145 advance group. The newest listed/plain, conditional x87
+   and actual-entry proof excludes a missing cleanup on the exercised paths;
+   repeating goto, branch inversion or constant-parameter controls is not useful.
 2. Preserve the now-recovered 197/658 and 198/608 memberships. Their incoming
    ECX scheduling still differs. Resolve distinct 300/320 prefixes and the
    effect/landing/action-gate partitions.
@@ -115,9 +126,11 @@ The six differing direct partitions remain 4351C0, 435240, 435D60, 45AF40,
 Total call counts alone can conceal incorrect memberships.
 Read [coupled exit constraints](REIMU_LANDING_EXIT_CONSTRAINTS_2026_10_18.md)
 and [shared action10 landing](REIMU_SHARED_ACTION10_LANDING_2026_10_18.md)
-before repeating goto, switch, helper-visibility or reset controls. Current
-same-source /Os, /fp:fast and RTM probes do not recover the seven FIMULs;
-none is selected. Do not repeat unchanged negative probes without new evidence.
+before repeating goto, switch, helper-visibility or reset controls. Earlier
+/Os, /fp:fast and RTM probes emitted no FIMULs on the pre-conversion source.
+The newest converted-source RTM control retains all seven FIMULs, but leaves
+the same bad advance sharing as SP1. None is selected. Do not repeat unchanged
+negative probes without new evidence.
 Original source/TU visibility, remaining FP scheduling and whole-root equality
 remain unknown. Other roots and prior accepted units are indexed in
 [the archived handoff](RE_HANDOFF_HISTORY_2026_10_18.md).
@@ -125,7 +138,9 @@ remain unknown. Other roots and prior accepted units are indexed in
 ## Artifacts, reproduction and final gate
 
 `build/reimu-ltcg/` retains the current 164-file genuine provider/cache set.
-`build/reimu-sequence-landings/` retains the newest baseline/control recipes,
+`build/reimu-low9-x87/` retains the newest cloning, listed/plain, RTM, full-CFG
+and native-entry recipes/reports. Controls are unselected and disposable.
+`build/reimu-sequence-landings/` retains the previous baseline/control recipes,
 complete partition census, affected native adapter and qualification receipts.
 `build/reimu-x87-state/` retains earlier focused receipts, native/static evidence,
 private adapters and resource/cleanup records. Older generated report paths
