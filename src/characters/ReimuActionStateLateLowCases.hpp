@@ -105,27 +105,47 @@
                     static_cast<float>((lookup_orientation_sine_quantized_abs(field_740) * 100.0 + y_f0) + 100.0),
                     direction, 1);
             }
-            // The target repeats this unchanged gate twice without intervening
-            // writes/calls. One ordinary condition preserves its behavior.
+            // Keep one ordinary resource condition; physical gate duplication
+            // also depends on the facing branches and compiler visibility.
             if ((field_6c8 == 0 && word_736 > 10) || word_482 <= 0) {
                 reinterpret_cast<ReimuRecoverySpriteView *>(
                     reinterpret_cast<unsigned char *>(this) + 4)->reset_fighter_action_scratch();
                 if (sequence_13e == 1 || sequence_13e == 2) {
-                    if (facing_104 == 1 ? x_ec > peer_170->x_ec : x_ec < peer_170->x_ec) {
-                        facing_104 = static_cast<signed char>(-facing_104);
-                        velocity_x_f4 = -velocity_x_f4;
-                        set_sequence(6);
+                    if (facing_104 == 1) {
+                        if (x_ec > peer_170->x_ec) {
+                            facing_104 = static_cast<signed char>(-facing_104);
+                            velocity_x_f4 = -velocity_x_f4;
+                            set_sequence(6);
+                        } else {
+                            set_sequence(5);
+                        }
                     } else {
-                        set_sequence(5);
+                        if (x_ec < peer_170->x_ec) {
+                            facing_104 = static_cast<signed char>(-facing_104);
+                            velocity_x_f4 = -velocity_x_f4;
+                            set_sequence(6);
+                        } else {
+                            set_sequence(5);
+                        }
                     }
                 }
                 if (sequence_13e == 3 || sequence_13e == 4) {
-                    if (facing_104 == 1 ? x_ec > peer_170->x_ec : x_ec < peer_170->x_ec) {
-                        facing_104 = static_cast<signed char>(-facing_104);
-                        velocity_x_f4 = -velocity_x_f4;
-                        set_sequence(5);
+                    if (facing_104 == 1) {
+                        if (x_ec > peer_170->x_ec) {
+                            facing_104 = static_cast<signed char>(-facing_104);
+                            velocity_x_f4 = -velocity_x_f4;
+                            set_sequence(5);
+                        } else {
+                            set_sequence(6);
+                        }
                     } else {
-                        set_sequence(6);
+                        if (x_ec < peer_170->x_ec) {
+                            facing_104 = static_cast<signed char>(-facing_104);
+                            velocity_x_f4 = -velocity_x_f4;
+                            set_sequence(5);
+                        } else {
+                            set_sequence(6);
+                        }
                     }
                 }
                 return true;

@@ -41,9 +41,10 @@ SCOPE = ('void noargs thiscall candidate; actual helpers/RET and common-root def
          'arbitrary-stack, full-relocation or canonical-exact claim')
 RANDOM_COHORTS = ('random_lifetimes', 'random124_lifetimes', 'movement_random_lifetimes')
 LIFETIME_COHORTS = (*RANDOM_COHORTS, 'flight_effect_lifetimes')
+FLIGHT_COHORTS = ('steering', 'flight_exit')
 COHORTS = ('integration', 'defaults', 'common_return', 'unresolved740',
            'aim_argument_lifetimes', 'projectile_receivers', 'falling_returns',
-           'landing_action_returns', 'surface_inputs', *LIFETIME_COHORTS)
+           'landing_action_returns', 'surface_inputs', *LIFETIME_COHORTS, *FLIGHT_COHORTS)
 SMOKE_COUNT = 26
 ALLOW_SWITCH_METADATA = True
 SURFACE_ADDRESS, SURFACE_ELEMENTS = 0x6FA898, 0x500
@@ -127,7 +128,7 @@ def cases(smoke=False):
                 yield case
         for family in lifetime_families():
             for case in family.cases():
-                if case['cohort'] in LIFETIME_COHORTS:
+                if case['cohort'] in (*LIFETIME_COHORTS, *FLIGHT_COHORTS):
                     yield {**base, **case}
         for action, facing, cw, seed, shot, latch in itertools.product(
                 (400, 401, 404, 406), (-128, -1, 0, 1, 127), (0x27F, 0x37F),
@@ -216,6 +217,11 @@ def check_target_case(case, result, sites):
                 or observations[1][1] != 2 or len(observations[1][2]) != 24
                 or observations[1][2][-16:] != tail):
             raise ValueError('target random effect lacks its pending direction/trailing arguments')
+    elif case['cohort'] in FLIGHT_COHORTS:
+        late_low_family().check_target_case(case, result, sites)
+        if case['cohort'] == 'flight_exit' and (
+                0x47BBDB not in sites or result['endpoint'] != 'ret'):
+            raise ValueError('target flight exit bypassed its real resource cost/return')
     elif case['cohort'] == 'flight_effect_lifetimes':
         late_low_family().check_target_case(case, result, sites)
         observations = [call for call in result['calls'] if call[0] == 'pending_flight_effect_arguments']
@@ -359,7 +365,8 @@ def audit(path, smoke=False, cohorts=None):
                               'landing_action_returns': 256,
                               'surface_inputs': 285,
                               **{name: count for family in lifetime_families()
-                                 for name, count in family.COHORT_COUNTS.items() if name in LIFETIME_COHORTS}}
+                                 for name, count in family.COHORT_COUNTS.items()
+                                 if name in (*LIFETIME_COHORTS, *FLIGHT_COHORTS)}}
     result = low.audit(path, smoke, cohorts, contract=contract)
     target_sites = instances[0].visited
     required = {'falling_returns': (0x479713, 0x47973C),
@@ -370,6 +377,11 @@ def audit(path, smoke=False, cohorts=None):
     result['target_return_sites'] = {
         cohort: [hex(site) for site in sites if site in target_sites]
         for cohort, sites in required.items() if cohort in result['cohorts']}
+    if 'flight_exit' in result['cohorts']:
+        sites = (0x47BD95, 0x47BDDD, 0x47BE39, 0x47BE8D)
+        if not all(site in target_sites for site in sites):
+            raise ValueError('flight exits did not cover both facing branches in both sequence groups')
+        result['target_flight_exit_sites'] = [hex(site) for site in sites]
     if 'surface_inputs' in result['cohorts']:
         if any({action for action, _ in p.surface_root_sites} != set(SURFACE_ACTIONS) for p in instances):
             raise ValueError('surface cohort did not query actual root height for all38 actions')

@@ -38,6 +38,10 @@ symbol = "?run_action_dispatch_root@ReimuActionStatePreludeView@th105@@QAEXXZ"
 "?set_word_48a@ReimuActionStatePreludeView@th105@@QAEXF@Z" = "0x004776C0"
 "?spawn_owned_object_via_manager@ReimuActionStatePreludeView@th105@@QAEHHMMHHHH@Z" = "0x00465190"
 "?spawn_owned_object_via_manager@ReimuActionStatePreludeView@th105@@QAEHHMMHHPBMH@Z" = "0x00465190"
+# Byte-direction views: complete4938D0 byte reads and both clean66-byte
+# wrapper witnesses; see docs/REIMU_SPAWN_DIRECTION_WIDTH_2026_10_18.md.
+"?spawn_owned_object_via_manager@ReimuActionStatePreludeView@th105@@QAEHHMMEHHH@Z" = "0x00465190"
+"?spawn_owned_object_via_manager@ReimuActionStatePreludeView@th105@@QAEHHMMEHPBMH@Z" = "0x00465190"
 "?sqrt_float_value@th105@@YAMM@Z" = "0x00478DD0"
 "?try_dispatch_directional_action_208_210@ReimuActionStatePreludeView@th105@@QAEEH@Z" = "0x00478EE0"
 "?update_common_action_state@ReimuActionStatePreludeView@th105@@QAEXXZ" = "0x004740C0"

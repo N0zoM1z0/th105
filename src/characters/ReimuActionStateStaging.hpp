@@ -34,10 +34,12 @@ public:
     virtual void slot_10();
     virtual unsigned char next_sequence_block();
 
+    // The manager consumes direction as one byte; the forwarding wrapper
+    // matches both int and byte views, so this is not an original-type claim.
     int spawn_owned_object_via_manager(
-        int object_id, float x, float y, int direction, int arg5, int arg6, int arg7);
+        int object_id, float x, float y, unsigned char direction, int arg5, int arg6, int arg7);
     int spawn_owned_object_via_manager(
-        int object_id, float x, float y, int direction, int arg5,
+        int object_id, float x, float y, unsigned char direction, int arg5,
         const float *parameters, int parameter_count);
     bool run_checked_prelude();
     // True completes the entry/low path; false hands action>300 to later source.

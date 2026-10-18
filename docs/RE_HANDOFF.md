@@ -799,15 +799,38 @@ an ordinary inline landing helper is rejected as an unmapped out-of-line call.
 None is executed/selected; no source/exact credit changes. Ten focused census
 tests pass, genuine linked/ordinary equality and all9 primary DB pins renew.
 See [indirect sharing](REIMU_INDIRECT_CALL_SHARING_2026_10_18.md).
-Next recover522/523's shared exits and compatible214 branch lifetimes while
-preserving the corrected speed slot and positive full-width evidence. Do not
-repeat unchanged controls or infer original visibility from the getter match
-alone.
+The byte-direction checkpoint observes that real4938D0 reads only BYTE
+direction/variant, while465190 forwards DWORD slots. Clean normal byte/int
+and byte/byte wrapper views both reproduce all66 bytes, so the original
+formal widths remain ambiguous. The root staging view now uses unsigned-byte
+direction; the accepted int wrapper stays unchanged and its ledger note
+records the ambiguity. Byte direction alone gives prefix81460/payload82832,
+identical with/without20 manual captures.520/521 instruction/edge diagnostics
+agree. This phase admits214's explicit facing branches: current genuine
+ordinary09e44259.../canonical43972507..., prefix81516/payload82888/frame570h.
+All2476 fields/1281 HIGHLOWs,12-byte INT3 gap,11 switches and15 contracts pass;
+linked/ordinary entire payloads agree. Strict+541 persists, source epilogue
+489D4B versus target489D6A. Native0/1888 and0/2015 (1010 integration,432
+steering,288 flight exits,285 nonflat surfaces) pass, requiring all four real
+214 facing/X branches. Complete current815 returns pass0/320/1600 objects;
+other owned families0/800/3920 objects, circular0/5/99 and effect0/40 smokes
+pass. All9 primary database hashes remain unchanged.
+Fresh sharing has eight differing direct-callee partitions and no per-action
+direct-count differences. Indirect target220/source222 leaves aggregate deltas
+for73/75/88/200/410/416;214/414 cardinalities agree, complete memberships remain
+unproved. No root source/exact credit or guard relaxation. See
+[spawn direction width](REIMU_SPAWN_DIRECTION_WIDTH_2026_10_18.md).
+Next recover522/523's complete shared exits and the six indirect action deltas
+within this type/source phase. Do not repeat unchanged int-view controls or
+infer original visibility from the getter match alone.
 Remaining returning families/runtime/resource/exception contexts stay open.
-A fresh static recheck confirms300/320 still fully merge at source47CBD7;
+A fresh static recheck confirms300/320 still fully merge at source47CC5F;
 target retains distinct47CBBD/47D96A prefixes and shared47CC2B tail.
-215/310/797 and522/523 still have different target/source incoming sets.
-These are static ownership questions, not missing per-input behavior.
+Advancement now has the correct complete sets:215/797 at target47BFB2 versus
+source47C025, and310 separately at47D94A versus47D9F9. Their action-zero tail
+is not fully recovered: target slot8/RET has215/412/797, while source also
+admits616.522/523 landing/advance incoming sets still differ. These are static
+ownership questions, not missing per-input behavior.
 214's two target resource gates versus one candidate gate now have the
 explicit-facing branch control above; original source/visibility remains
 unproved. Do not invent volatile reads or inert duplicate conditions.
