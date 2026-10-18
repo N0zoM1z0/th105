@@ -230,8 +230,38 @@
         }
         return true;
     case 202:
+        velocity_y_f8 = static_cast<float>(velocity_y_f8 - acceleration_y_100);
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
+#include "ReimuActionStateLandingAction10.hpp"
+        }
+        if (sequence_13e == 1 && frame_counter_144 % 5 == 0) {
+            const double x_base = static_cast<double>(x_ec) + 50.0;
+            const unsigned char direction = static_cast<unsigned char>(
+                facing_104);
+            emit_fighter_effect(124,
+                static_cast<float>(x_base - static_cast<float>(mt19937_next_u32() % 100)),
+                static_cast<float>(static_cast<float>(mt19937_next_u32() % 200) + y_f0),
+                direction, 1);
+        }
+        advance_frame_and_dispatch();
+        if (sequence_13e == 0 && frame_index_140 == 3 && frame_timer_142 == 0) {
+            word_730 = 0;
+            velocity_x_f4 = 10.0f;
+            velocity_y_f8 = 4.0f;
+            acceleration_y_100 = 0.45f;
+            const float effect_y = static_cast<float>(y_f0 + 110.0);
+            const float effect_x = static_cast<float>(facing_104 * 80 + x_ec);
+            emit_fighter_effect(125, effect_x, effect_y, static_cast<unsigned char>(facing_104), 1);
+            emit_fighter_effect(126, x_ec, static_cast<float>(y_f0 + 110.0),
+                static_cast<unsigned char>(facing_104), 1);
+            dispatch_indexed_event_member(31);
+        }
+        if (frame_counter_144 == 0 && frame_timer_142 == 0
+                && frame_index_140 == 0 && sequence_13e == 2)
+            face_opponent_and_flip_horizontal_velocity();
+        return true;
     case 203:
-        if (selected_action == 203 && frame_counter_144 == 0 && frame_timer_142 == 0
+        if (frame_counter_144 == 0 && frame_timer_142 == 0
                 && frame_index_140 == 0 && sequence_13e == 0) {
             velocity_x_f4 = -10.0f;
             velocity_y_f8 = 4.0f;
@@ -244,33 +274,18 @@
         }
         velocity_y_f8 = static_cast<float>(velocity_y_f8 - acceleration_y_100);
         if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
-            zero_velocity_acceleration();
-            y_f0 = reimu_stage_surface_height_at_x(this);
-            set_action(10);
-            return true;
+            goto reimu_landed_action_10;
         }
         if (sequence_13e == 1 && frame_counter_144 % 5 == 0) {
             const double x_base = static_cast<double>(x_ec) + 50.0;
             const unsigned char direction = static_cast<unsigned char>(
-                selected_action == 202 ? facing_104 : -facing_104);
+                -facing_104);
             emit_fighter_effect(124,
                 static_cast<float>(x_base - static_cast<float>(mt19937_next_u32() % 100)),
                 static_cast<float>(static_cast<float>(mt19937_next_u32() % 200) + y_f0),
                 direction, 1);
         }
         advance_frame_and_dispatch();
-        if (selected_action == 202 && sequence_13e == 0 && frame_index_140 == 3 && frame_timer_142 == 0) {
-            word_730 = 0;
-            velocity_x_f4 = 10.0f;
-            velocity_y_f8 = 4.0f;
-            acceleration_y_100 = 0.45f;
-            const float effect_y = static_cast<float>(y_f0 + 110.0);
-            const float effect_x = static_cast<float>(facing_104 * 80 + x_ec);
-            emit_fighter_effect(125, effect_x, effect_y, static_cast<unsigned char>(facing_104), 1);
-            emit_fighter_effect(126, x_ec, static_cast<float>(y_f0 + 110.0),
-                static_cast<unsigned char>(facing_104), 1);
-            dispatch_indexed_event_member(31);
-        }
         if (frame_counter_144 == 0 && frame_timer_142 == 0
                 && frame_index_140 == 0 && sequence_13e == 2)
             face_opponent_and_flip_horizontal_velocity();

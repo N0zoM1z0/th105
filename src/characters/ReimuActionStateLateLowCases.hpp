@@ -258,10 +258,7 @@
         if (selected_action == 226 || sequence_13e >= 1)
             velocity_y_f8 = static_cast<float>(velocity_y_f8 - acceleration_y_100);
         if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
-            zero_velocity_acceleration();
-            y_f0 = reimu_stage_surface_height_at_x(this);
-            set_action(10);
-            return true;
+            goto reimu_landed_action_10;
         }
         if (sequence_13e == 2 && frame_counter_144 % 5 == 0) {
             const double x_base = static_cast<double>(x_ec) + 50.0;

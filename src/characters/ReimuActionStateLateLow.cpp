@@ -12,6 +12,7 @@ bool ReimuActionStatePreludeView::try_run_checked_late_low_action()
     default:
         return false;
     }
+#include "ReimuActionStateLandingAction10.hpp"
 }
 
 } // namespace th105

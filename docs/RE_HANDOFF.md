@@ -865,7 +865,7 @@ All9 primary database hashes remain unchanged. Heavy jobs stay serial with
 CPU0/nice10; genuine producer peak313MiB, native below190MiB. Cleanup removes
 520 obsolete generated/object/cache files/15.52MiB; current genuine providers,
 the useful int+20 witness and real-visibility source/small caller are retained.
-The current branch-exit checkpoint spells73/75/88 sequence3/2 and200
+The branch-exit checkpoint spells73/75/88 sequence3/2 and200
 action212/211 as separate setter/return branches. Both complete indirect
 sets10/73/75/88 and73/75/88 now match.410/416 effect62 exits now break out of
 the outer action switch;410/414 have distinct source bodies, with region
@@ -875,7 +875,7 @@ preserving all six landing groups. Six direct partitions remain, down from8;
 per-action direct counts still agree. Advancement121/120 differs specifically
 because source300/320 merge their two target sites. Indirect220/221 leaves
 only410(4/3) and416(5/4) aggregate action deficits.
-Current genuine ordinary4f2dada4.../canonicalc927ac89... has prefix81532,
+That phase's genuine ordinary4f2dada4.../canonicalc927ac89... has prefix81532,
 payload82904/frame570h;2475 fields/1281 HIGHLOWs,8-byte INT3 gap,11 switches/
 15 contracts and complete linked/ordinary equality qualify. The full private
 control payload agrees too. First+541 remains: target489D6A/source489D4C.
@@ -928,17 +928,40 @@ counterexamples. No source, ABI, profile, admission gate or exact credit changes
 Serial CPU0/nice10 native audits peak300MiB. Cleanup removes63 files/14.64MiB;
 all164 genuine-cache and9 primary DB pins stay unchanged, with no new Ghidra
 process. See [executed effect-return controls](REIMU_EFFECT_RETURN_COUNTEREXAMPLES_2026_10_18.md).
-Next recover the remaining effect/height/zero/landing/action-gate partitions
+Current source now factors the real202/203/225/226 action10 landing block.
+202/203 are separate cases with their original initialization timing; explicit
+incoming edges reuse one shared source fragment, including the stand-alone
+late-low adapter. Complete clearing/height/slot8 memberships for all four now
+agree; height56/56 and clearing51/51 physical totals align. Every previously
+equal complete group stays equal, including owned243/243, wave77/77 and the
+six earlier landing groups. No class-layout/signature/profile/binding change.
+Fresh genuine ordinary66fbf8dd.../canonical0622c8d3... has prefix81436,
+payload82808/frame570h;2471 fields/1281 HIGHLOWs,8-byte gap,11 switches/15
+contracts and full linked/ordinary/private-control correspondence qualify.
+Six direct partitions remain, with no per-action direct-count deltas;
+indirect220/219 leaves410(4/3) and416(5/4). First+541 still differs, now
+target489D6A/source489CF0. No root source-present or exact credit is added.
+Fresh native0/1829 covers integration/default/common/740/nonflat-surface
+cohorts; all four landing entries actually query the shared target/source site
+twice each. Affected movement/late-low/integrated-low smokes pass0/99,0/150,
+0/59, and genuine effect62 returning smoke0/12. Bounded read-only Ghidra
+independently confirms203/225/226 branches47B13E/47C80E/47C9CE into47AE4A;
+all9 primary DB pins remain unchanged. Serial CPU0/nice10 peaks313MiB for
+the producer and300MiB for validation/Ghidra; no full-root decompile or
+aggregate replay. Cleanup removes22 obsolete products/2.71MiB; all164 current
+genuine-cache files remain. See [shared action10 landing](REIMU_SHARED_ACTION10_LANDING_2026_10_18.md).
+Next recover the remaining low9 and197/198/608/658 height/clearing memberships,
+the separate300/320 prefixes and effect/landing/action-gate partitions
 and410/416 virtual-next memberships from independently observed control flow
 and live values. Preserve the recovered owned/wave and landing groups.
 Do not repeat unchanged exit, int-view or true-body visibility controls without
 a material source-phase change. Do not infer original visibility from the
 getter match alone.
 Remaining returning families/runtime/resource/exception contexts stay open.
-A fresh static recheck confirms300/320 still fully merge at source47CC10;
+A fresh static recheck confirms300/320 still fully merge at source47CBCA;
 target retains distinct47CBBD/47D96A prefixes and shared47CC2B tail.
 Advancement now has the correct complete sets:215/797 at target47BFB2 versus
-source47BFC8, and310 separately at47D94A versus47D9AA. Their action-zero group
+source47BF82, and310 separately at47D94A versus47D964. Their action-zero group
 is not fully recovered: target slot8 has215/412/797, while source also
 admits616.522/523 request/wave partitions now agree;300/320 advancement remains. These
 are static ownership questions, not missing per-input behavior.
