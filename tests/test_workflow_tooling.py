@@ -67,17 +67,17 @@ class WorkflowToolingTests(unittest.TestCase):
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1437)
+        self.assertEqual(len(implemented), 1438)
         self.assertEqual(
             len(self.validator.rows(ROOT / "config" / "matches.csv")), 1333
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 517)
+        self.assertEqual(len(manifest["units"]), 518)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1444,
+            1445,
         )
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:
@@ -1672,7 +1672,7 @@ class WorkflowToolingTests(unittest.TestCase):
         )
         self.assertIn("Canonical exact functions | 1,333", markdown)
         self.assertIn("Canonical exact authored bytes | 225,099", markdown)
-        self.assertIn("Source-present authored mappings | 1,437", markdown)
+        self.assertIn("Source-present authored mappings | 1,438", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
@@ -2548,8 +2548,8 @@ class WorkflowToolingTests(unittest.TestCase):
         with (ROOT / "config" / "match-units.toml").open("rb") as stream:
             manifest = tomllib.load(stream)
         counts = self.literals.audit_real_literals(relocations, manifest)
-        self.assertEqual(counts["ledger_literals"], 348)
-        self.assertEqual(counts["explicit_mappings"], 628)
+        self.assertEqual(counts["ledger_literals"], 349)
+        self.assertEqual(counts["explicit_mappings"], 655)
         self.assertEqual(counts["target_checks"], 0)
 
     @unittest.skipUnless(
@@ -2559,7 +2559,7 @@ class WorkflowToolingTests(unittest.TestCase):
         counts = self.validator.validate_real_literal_relocations(
             self.manifest.load_manifest(), require_bytes=True
         )
-        self.assertEqual(counts["target_checks"], 976)
+        self.assertEqual(counts["target_checks"], 1004)
 
     def test_rel32_accepts_only_supported_instruction_forms(self) -> None:
         self.assertEqual(

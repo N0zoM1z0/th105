@@ -33,8 +33,8 @@ project. Target/mapped bytes remain unchanged; nine new primary file hashes
 are recorded in `build/reimu-cpu-root/primary-db-after.json`.
 
 Last checked ledger census: 4023 candidates; 1542 authored, 1415 excluded,
-1066 in review; 1456 mapped, 1437 source-present; 1333 exact / 225099 bytes;
-517 match units. These are ledger totals, not a cold aggregate replay.
+1066 in review; 1457 mapped, 1438 source-present; 1333 exact / 225099 bytes;
+518 match units. These are ledger totals, not a cold aggregate replay.
 `claims.csv` remains header-only. Source presence, mapping and diagnostic
 interval equality confer no exact credit. The Reimu CPU root remains
 source-present in a probe unit with no exact result.
@@ -111,9 +111,32 @@ focused note. Target FSTP at 47973A and source 4792D2 consume a live FLDZ
 zero; setup/advance entries 47973C/47973E and 4792D4/4792D6 are empty.
 This does not establish the cause of the remaining sharing differences.
 
+## Current ReimuObject entry initializer
+
+New active root `ReimuObject_initialize_action_entry @4A1CE0` has complete
+source in `src/characters/ReimuObjectActionEntry.cpp`, probe unit
+`gpt-web-reimu-object-action-entry`, and no exact credit. RTTI/vtable6C40A4
+slot3C proves ownership; raw CFG closes all1325 instructions/4892 bytes,
+42 primary destinations, seven auxiliary switches,39 RETs and a596370 tail.
+All65 direct CALLs to ten helpers retain their target multiplicities.
+
+Observed sequence snapshots, shared801/810 pointer lifetime,822 product
+rounding and861 unsigned MT conversion recover36/43 instruction/edge
+diagnostics, without losing previously equal owners. Source SHA7f12f5c1,
+canonical5440-byte payload14a90e9d. Metadata starts4892 on both sides, but
+the candidate body ends4889 then has three compiler alignment bytes. Strict
+comparison first differs+80/4A1D60; equal metadata placement is not acceptance.
+822/903/904 tail copies/scheduling,906/908/999 registers/stores and the last
+alignment remain unresolved. A local fenv control regresses to9/43 and is
+unselected. No new root-native proof or aggregate replay is claimed. See
+[ReimuObject entry evidence](REIMU_OBJECT_ENTRY_2026_10_19.md); receipts are
+below `build/reimu-object-entry/`. Nine read-only Ghidra DB pins agree.
+All23 accepted members across seven focused helper units replay exact;
+the effect unit's existing nonaccepted5F9350 probe remains nonexact.
+
 ## Current YoumuObject entry initializer
 
-Active root543670 remains nonexact over5159 bytes, but independently proved
+Root543670 remains nonexact over5159 bytes, but independently proved
 YoumuObject vtable6C50BC/slot+0C45C390 supports the local short sequence
 declaration. It restores16 additional owner instruction/edge diagnostics,
 6/30->22/30. Action902 now computes decay before phase; its complete
