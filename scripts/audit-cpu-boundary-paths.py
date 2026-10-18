@@ -77,10 +77,13 @@ class CpuProbe:
         uc.mem_write(self.address, code)
         for address in (self.OWNER, self.OTHER, self.RECORD, self.STACK):
             uc.mem_map(address, 0x10000)
-        self.join = policy_join(code[:callable_size], self.address)
+        self.join = self.locate_join(code[:callable_size], self.address)
         self.initial = uc.context_save()
         uc.hook_add(unicorn.UC_HOOK_CODE, self.instruction)
         uc.hook_add(unicorn.UC_HOOK_MEM_WRITE, self.write)
+
+    def locate_join(self, code, address):
+        return policy_join(code, address)
 
     def write(self, uc, access, address, size, value, unused):
         allowed = any(base <= address and address + size <= base + 0x10000

@@ -39,5 +39,35 @@ class SelectorCallerTests(unittest.TestCase):
                 probe.pair_selector_sites(target, changed)
 
 
+class ReimuJoinTests(unittest.TestCase):
+    # Synthetic diagnostic instructions only; never reconstruction source.
+    COUNTER = bytes.fromhex("66399e66070000")
+    BRANCH_RETURN = bytes.fromhex("7500c3")
+
+    def locate(self, code):
+        instance = probe.NativeCpuProbe.__new__(probe.NativeCpuProbe)
+        return instance.locate_join(code, 0x48D390)
+
+    def test_target_and_candidate_flag_preserving_shapes(self):
+        for middle in (b"", bytes.fromhex("bf06000000")):
+            with self.subTest(middle=middle):
+                self.assertEqual(self.locate(self.COUNTER + middle + self.BRANCH_RETURN), 0x48D390)
+
+    def test_unreviewed_or_flag_changing_instructions_are_rejected(self):
+        for middle in (bytes.fromhex("bf07000000"), bytes.fromhex("83c001")):
+            with self.subTest(middle=middle), self.assertRaises(ValueError):
+                self.locate(self.COUNTER + middle + self.BRANCH_RETURN)
+
+    def test_ambiguous_or_wrong_counter_is_rejected(self):
+        code = self.COUNTER + self.BRANCH_RETURN
+        for changed in (code * 2, code.replace(bytes.fromhex("6607"), bytes.fromhex("6407"))):
+            with self.subTest(changed=changed), self.assertRaises(ValueError):
+                self.locate(changed)
+
+    def test_incomplete_callable_is_rejected(self):
+        with self.assertRaises(ValueError):
+            self.locate(self.COUNTER + self.BRANCH_RETURN + b"\x0f")
+
+
 if __name__ == "__main__":
     unittest.main()

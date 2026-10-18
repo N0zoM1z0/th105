@@ -23,6 +23,7 @@ import tomllib
 import pefile
 from capstone.x86_const import X86_OP_IMM
 from giant_owner_audit import decode, reachable_boundary_audit
+from reimu_cpu_cases import reimu_edge_cases
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location("cpu_policy_boundary_base", ROOT / "scripts/audit-cpu-boundary-paths.py")
@@ -38,6 +39,8 @@ ROOTS = {
                 boundary.ADDRESS, boundary.SIZE, boundary.BODY_SHA256, 0x5F47B0),
     "aya": ("aya-cpu-action-policy", "gpt-web-aya-cpu-action-policy", 0x6126E0, 16032,
             "7efa001552238230ac86c77f48f36a217cc486e847f85cb924527c64e2dc6e09", 0x614F8A),
+    "reimu": ("reimu-cpu-action-policy", "gpt-web-reimu-cpu-action-policy", 0x48D390, 15999,
+              "3bd363994e140603ae0ec249ffd3a36b1ae0448e72a389e417c4cc7a6d113e2d", 0x48FC0C),
 }
 
 
@@ -219,6 +222,26 @@ def cases(count):
 
 
 class NativeCpuProbe(boundary.CpuProbe):
+    def locate_join(self, code, address):
+        if address != ROOTS["reimu"][2]:
+            return super().locate_join(code, address)
+        # Reimu saves EBP conditionally and has no default-root MOV EBP,7
+        # after this test. Require its unique decoded zero-counter/JNE pair.
+        # Complete-return execution does not stop at this boundary.
+        instructions = decode(code, address)
+        sites = []
+        for index, instruction in enumerate(instructions[:-2]):
+            if (instruction.mnemonic, instruction.op_str) != ("cmp", "word ptr [esi + 0x766], bx"):
+                continue
+            following = instructions[index + 1]
+            if (following.mnemonic, following.op_str) == ("mov", "edi, 6"):
+                following = instructions[index + 2]  # reviewed flag-preserving constant load
+            if following.mnemonic == "jne" and following.operands[0].type == X86_OP_IMM:
+                sites.append(instruction.address)
+        if len(sites) != 1:
+            raise ValueError("expected one Reimu common-policy counter/JNE join")
+        return sites[0]
+
     def __init__(self, *args, address=boundary.ADDRESS, collect_selector_sites=False):
         super().__init__(*args, address=address)
         # Mapping permits the genuine RET to complete before emulation ends.
@@ -265,6 +288,13 @@ class NativeCpuProbe(boundary.CpuProbe):
             # Native ring: eight pointer slots, head0, one live 0x98-byte record.
             uc.mem_write(self.OWNER + 0x55C, struct.pack("<5I", 0, self.RECORD + 0x1000, 8, 0, 1))
             uc.mem_write(self.RECORD + 0x1000, struct.pack("<I", self.RECORD))
+            for key, offset, fmt, base in (
+                    ("skill609", 0x609, "<b", self.OWNER),
+                    ("skill60b", 0x60B, "<b", self.OWNER),
+                    ("sequence_count", 0x55A, "<b", self.OWNER),
+                    ("other_life", 0x174, "<h", self.OTHER)):
+                if key in c:
+                    uc.mem_write(base + offset, struct.pack(fmt, c[key]))
         if address == RETURN:
             self.stopped = True
             uc.emu_stop()
@@ -458,12 +488,15 @@ def main():
     inputs.add_argument("--height-cases", action="store_true", help="368 finite/NaN height and RNG controls")
     inputs.add_argument("--counter-cases", action="store_true", help="4164 signed counter/mode/resource/geometry controls")
     inputs.add_argument("--aya-command-cases", action="store_true", help="470 Aya command/RNG/resource/truncation controls")
+    inputs.add_argument("--reimu-edge-cases", action="store_true", help="45714 Reimu action/resource/sequence/geometry controls")
     inputs.add_argument("--selection-cases", action="store_true", help="16160 policy0 controls; require all target instructions and rolls0..100")
     args = parser.parse_args()
     if args.cases is not None and args.cases <= 0:
         parser.error("--cases must be positive")
     if args.aya_command_cases and args.root != "aya":
         parser.error("--aya-command-cases requires --root aya")
+    if args.reimu_edge_cases and args.root != "reimu":
+        parser.error("--reimu-edge-cases requires --root reimu")
     try:
         selected = None
         if args.case_file:
@@ -476,6 +509,8 @@ def main():
             selected = list(counter_cases())
         elif args.aya_command_cases:
             selected = list(aya_command_cases())
+        elif args.reimu_edge_cases:
+            selected = list(reimu_edge_cases())
         elif args.selection_cases:
             selected = list(selection_cases())
         count = len(selected) if selected is not None else (args.cases or 5000)
@@ -489,6 +524,8 @@ def main():
                                    for block in result["aya_command_branch_coverage"]):
                 raise ValueError("Aya command controls did not complete native target instruction coverage")
             result["input_source"] = "built-in Aya command matrix with target-confirmed positive seeds"
+        if args.reimu_edge_cases:
+            result["input_source"] = "built-in Reimu action/resource/sequence/geometry controls"
     except Exception as error:
         parser.exit(2, f"CPU native execution failed: {error}\n")
     print(json.dumps(result, indent=2))

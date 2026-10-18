@@ -33,10 +33,11 @@ project. Target/mapped bytes remain unchanged; nine new primary file hashes
 are recorded in `build/reimu-cpu-root/primary-db-after.json`.
 
 Last checked ledger census: 4023 candidates; 1542 authored, 1415 excluded,
-1066 in review; 1456 mapped, 1436 source-present; 1333 exact / 225099 bytes;
-516 match units. These are ledger totals, not a cold aggregate replay.
+1066 in review; 1456 mapped, 1437 source-present; 1333 exact / 225099 bytes;
+517 match units. These are ledger totals, not a cold aggregate replay.
 `claims.csv` remains header-only. Source presence, mapping and diagnostic
-interval equality confer no exact credit. No progress ledger changes here.
+interval equality confer no exact credit. This checkpoint adds one source
+selection/probe unit and no exact result.
 
 The user prioritizes the large Reimu root, requests commit **and push**, and
 asks to avoid routine full historical/all-unit replays. Run focused affected
@@ -118,8 +119,9 @@ A second large Reimu root is now identified: `Reimu_update_cpu_action_policy`
 All4126 instructions are reachable;157 calls target five helpers, four switch
 tables close and52 RETs have balanced stacks. The callable ends before its NOP
 and metadata. `giant-action-switches.toml` now pins19 action and21 policy
-primary destinations plus two checked-front-record tables. It is identified/
-declaration-only, with no source-present or exact credit. See
+primary destinations plus two checked-front-record tables. Its full C++
+candidate is now source-present in `src/characters/ReimuCpuActionPolicy.cpp`,
+with probe unit `gpt-web-reimu-cpu-action-policy` and no exact credit. See
 [CPU root evidence](REIMU_CPU_ROOT_2026_10_19.md).
 
 Real target-to-target policy0 execution passes0/16000 finite cases, visiting
@@ -129,13 +131,31 @@ An ABI-adapted default-source reference is canonical-byte-identical to the
 fresh default object at the same replay address, but differs from Reimu on
 1065/5000 complete-return cases. Its command728 and conditional-RNG differences
 preclude selecting a blind source copy. The default comparator retains its
-known+12E/5F20AE nonexact result. Full Reimu CPU source remains to be recovered.
+known+12E/5F20AE nonexact result.
+
+The new manual Reimu action/common-attack tree preserves actual helper
+execution and uses only the reviewed shared default policy source. It fixes
+the90-distance lower bound and the equality case at180, where a missing
+random draw previously changed the RNG state. The natural reset order and
+signed thresholds now reproduce the first302 entry bytes; strict comparison
+still differs at+12E/48D4BE in the life-guard Jcc displacement. Candidate
+prefix/payload are15244/15785 versus target15999 callable bytes. Its19 action
+and21 policy primary destinations have no split target groups; nested-table
+and code-sharing differences remain. See
+[complete source evidence](REIMU_CPU_SOURCE_2026_10_19.md) for finished-source
+pins, finite native matrices and their limits. Read-only typed Ghidra analysis
+left all nine primary DB pins unchanged; no IDA semantics were used.
+The finished object passes0/67242 complete-return cases (5000 general,
+45714 Reimu edge/common-attack,16160 policy0 selection and368 height cases),
+plus36 focused regressions. Policy0 visits all1488 target instructions and
+confirms actual rolls0..100. These finite diagnostics confer no exact credit.
 
 ## Next reconstruction work
 
-The active new scope is the Reimu CPU root: recover its primary-action and
-common-attack tree from the canonical PE, retain the bounded policy0 bridge,
-and compose a complete source before adding an implementation/match unit.
+The active scope is the Reimu CPU root: use the complete candidate and
+original-helper execution to recover counter/sequence source shape, return
+sharing and compiler layout. Preserve the corrected180 equality and RNG
+order. Do not count sampled execution or the302-byte prefix as exact progress.
 The81KB action root remains an open priority with the constraints below.
 
 1. Resolve action9's coupled landing/advance membership with new compiler/TU
@@ -170,6 +190,9 @@ remain unknown. Other roots and prior accepted units are indexed in
 mapper output,16000-case bridge,5000-case rejected reference and metadata
 readback receipts. The private Ghidra hypothesis is under
 `.analysis/reimu-cpu-root-20261019/`; its copied working project is removed.
+`build/reimu-cpu-source/` retains the full-source strict/native reports,
+regression controls and unchanged primary DB pins. Its newer typed hypothesis
+is under `.analysis/reimu-cpu-source-20261019/`; no copied project is retained.
 `build/reimu-ltcg/` retains the current 164-file genuine provider/cache set.
 `build/reimu-low9-x87/` retains the newest cloning, listed/plain, RTM, full-CFG
 and native-entry recipes/reports. Controls are unselected and disposable.
