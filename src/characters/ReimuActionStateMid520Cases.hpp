@@ -29,28 +29,28 @@
                 static_cast<float>(y_f0 + y_offset),
                 static_cast<unsigned char>(facing_104), 1, parameters, 3);
             parameters[0] = atan2_degrees(135.0f, fast ? 330.0f : 135.0f);
-            const float near_speed = static_cast<float>(sqrt_float_value(fast ? 128500.0f : 37825.0f) / 15.0);
-            parameters[1] = near_speed;
+            float shot_speed = static_cast<float>(sqrt_float_value(fast ? 128500.0f : 37825.0f) / 15.0);
+            parameters[1] = shot_speed;
             parameters[2] = 2.0f;
             spawn_owned_object_via_manager(815,
                 static_cast<float>(static_cast<float>(facing_104 * x_offset) + x_ec),
                 static_cast<float>(y_f0 + y_offset),
                 static_cast<unsigned char>(facing_104), 1, parameters, 3);
             parameters[0] = atan2_degrees(-135.0f, fast ? 330.0f : 135.0f);
-            parameters[1] = near_speed;
+            parameters[1] = shot_speed;
             spawn_owned_object_via_manager(815,
                 static_cast<float>(static_cast<float>(facing_104 * x_offset) + x_ec),
                 static_cast<float>(y_f0 + y_offset),
                 static_cast<unsigned char>(facing_104), 1, parameters, 3);
             parameters[0] = atan2_degrees(-115.0f, fast ? 420.0f : 225.0f);
-            const float far_speed = static_cast<float>(sqrt_float_value(fast ? 190800.0f : 65025.0f) / 15.0);
-            parameters[1] = far_speed;
+            shot_speed = static_cast<float>(sqrt_float_value(fast ? 190800.0f : 65025.0f) / 15.0);
+            parameters[1] = shot_speed;
             spawn_owned_object_via_manager(815,
                 static_cast<float>(static_cast<float>(facing_104 * x_offset) + x_ec),
                 static_cast<float>(y_f0 + y_offset),
                 static_cast<unsigned char>(facing_104), 1, parameters, 3);
             parameters[0] = atan2_degrees(115.0f, fast ? 420.0f : 225.0f);
-            parameters[1] = far_speed;
+            parameters[1] = shot_speed;
             spawn_owned_object_via_manager(815,
                 static_cast<float>(static_cast<float>(facing_104 * x_offset) + x_ec),
                 static_cast<float>(y_f0 + y_offset),

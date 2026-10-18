@@ -766,11 +766,24 @@ A fresh full-width direction capture restores complete owned243/wave77 sharing
 multisets, reducing eight differing callees to six;520/521 regain the final
 request tail and522/523 remain separate. Frame570h persists but prefix81688/
 payload83060 exceeds138/136, so the control is not executed/selected. Reusing
-one mutable capture per arm gives the identical full payload. The refreshed
-genuine current candidate remains710094fe.../canonicala6dc1ccf..., first+541.
-Next recover lifetimes/scheduling that preserve this positive sharing evidence
-and restore fit under the opaque-provider configuration. Do not repeat the
-unchanged controls or infer original visibility from the getter match alone.
+one mutable capture per arm gives the identical full payload. The candidate
+at that checkpoint was710094fe.../canonicala6dc1ccf..., first+541.
+The speed-lifetime checkpoint now reuses one real float across the near/far815
+pairs in520..523. Only24 FLD/FSTP displacement bytes change20h->24h; all other
+82892 canonical bytes stay identical. The genuine current object0a950c1f.../
+canonical9cdc589f... retains prefix81544/payload82916/frame570h and strict+541.
+All15 buffer/preparation contracts qualify; current focused native0/1888 and
+byte-identical-source complete returns0/320/1600 objects pass. Complete sharing
+still differs for eight callees, with no per-action count differences.
+Combining the retained full-width control with this lifetime gives identical
+520/521 instruction/owner-edge diagnostics;522 retains extra landing/advance
+exits. This is not partial exact credit. It still exceeds138/136.127 terminal
+case breaks shrink it64 bytes but exceed74/72; a real shared fallback exceeds
+90/88. A new-input RTM42 control exceeds182/180. None is executed/selected.
+See [shared trajectory speed](REIMU_TRAJECTORY_SPEED_LIFETIME_2026_10_18.md).
+Next recover522/523's shared exits while preserving the corrected speed slot
+and positive full-width evidence. Do not repeat unchanged controls or infer
+original visibility from the getter match alone.
 Remaining returning families/runtime/resource/exception contexts stay open.
 A fresh static recheck confirms300/320 still fully merge at source47CBD7;
 target retains distinct47CBBD/47D96A prefixes and shared47CC2B tail.
