@@ -136,16 +136,27 @@ known+12E/5F20AE nonexact result.
 The manual Reimu tree preserves actual helper execution and the corrected90
 lower bound/180 equality. Its initial snapshot-source checkpoint is recorded
 in [complete source evidence](REIMU_CPU_SOURCE_2026_10_19.md).
-The newest source removes the action-counter scalar snapshot and reads the
+The action-counter checkpoint removes its scalar snapshot and reads the
 signed764 field directly. This recovers separate signed bounds: decoded
 entry-to-common word JA/JBE branches change52->0 (target0), while JL/JG
 change38/2->92/55 (target97/56). These physical-interval counts are diagnostics,
 not correctness scores. Candidate prefix/payload are now15860/16401; strict
 comparison first differs at+97/48D427 where a flag-preserving constant1 LEA is
 hoisted ahead of JLE. The earlier+12E/302-byte-prefix result is historical.
-See [counter-read evidence](REIMU_CPU_COUNTER_READS_2026_10_19.md) for current
-pins, controls and finite replays. Direct read-only Ghidra analysis leaves
+See [counter-read evidence](REIMU_CPU_COUNTER_READS_2026_10_19.md) for those
+controls. Direct read-only Ghidra analysis leaves
 all nine primary DB pins unchanged; no IDA semantics were used.
+
+Current source additionally caches policy0's full int selector result and
+uses explicit signed-word consumption. It reproduces target MOV ECX,EAX;
+ordinal/encoding comparison of the whole candidate finds only this functional
+instruction changed (plus genuine post-RET alignment). All47 metadata code
+pointers preserve destinations. Current source SHA256 is
+`556098b785ef77ed7b8a49b55fa4c72cd4cf6e60f29dfc7dd88fca12baa3754a`,
+canonical16401-byte payload
+`70905d5a0663e6c41cbdc5dfd94a9ee56b8ed3a197011432c5270e87b2990ae4`.
+Prefix/first mismatch remain15860/+97. See
+[policy0/x87 evidence](REIMU_CPU_POLICY0_X87_2026_10_19.md).
 
 The root still has117 selector sites versus target121 and50 RETs versus52.
 Policy0 CFG closure localizes all four missing selector copies: target37
@@ -153,16 +164,23 @@ sites/1488 instructions, candidate33/1359. Do not replace its cached selection
 roll mechanically: target76A has only stores and ECX carries the result.
 Counter reset/RNG preparation already matched; changing neutral store order
 also causes undesired partial neutral/facing sharing and remains unselected.
-Fresh selected-object replays pass0/67242 (5000 general,45714 edge,16160
-selection,368 height). Policy0 visits all1488 target instructions and confirms
-real rolls0..100; finite callsite pairing observes38/34 sites including entry.
-No exact credit or aggregate cold replay is claimed.
+The CPU probe now sets FPSW0/FPTAGFFFF explicitly and checks both TOP and tags
+at the stop. Old reports did not attest empty tags and remain historical.
+Fresh empty-entry replays pass0/21528 for Reimu, and0/21528 each for default/Aya
+after this shared fixture correction. Reimu selection confirms real rolls0..100
+and all1488 target instructions. All46420 observed selector entries/returns
+per side are empty/TOP0; policy/timer writes show residual scheduling
+differences outside those calls. A source-visible actual selector under/Ob1
+remains27/27 and leaves the caller completely unchanged. No new exact credit
+or aggregate cold replay is claimed.
 
 ## Next reconstruction work
 
 The active scope is the Reimu CPU root: use the complete candidate and
-original-helper execution to recover policy0 FP lifetimes/call sharing and
-the remaining return/register layout. Preserve direct signed764 reads and
+original-helper execution to recover terminal CALL/RET sharing and genuine
+constant/TU/register lifetimes. Keep the full result/low-word policy model;
+do not repeat a missing live value at selector entry explanation without new
+evidence. Preserve direct signed764 reads and
 the corrected180 equality/RNG order. Do not count finite execution or
 diagnostic branch counts as exact progress.
 The81KB action root remains an open priority with the constraints below.
@@ -205,6 +223,10 @@ is under `.analysis/reimu-cpu-source-20261019/`; no copied project is retained.
 `build/reimu-cpu-shape/` retains current field-read builds/native reports,
 counter/selector CFG profiles and rejected controls. Its read-only typed
 hypothesis is under `.analysis/reimu-cpu-shape-20261019/`; alias removed.
+`build/reimu-cpu-policy0/` retains current full-width cache, normalized CFG,
+selector/publication x87 observations, fresh three-root empty-tag replays and
+the rejected helper-visibility control. Its384MiB read-only Ghidra recipe is
+under `.analysis/reimu-cpu-policy0-20261019/`; no alias/project copy retained.
 `build/reimu-ltcg/` retains the current 164-file genuine provider/cache set.
 `build/reimu-low9-x87/` retains the newest cloning, listed/plain, RTM, full-CFG
 and native-entry recipes/reports. Controls are unselected and disposable.

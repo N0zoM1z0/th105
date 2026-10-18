@@ -253,7 +253,7 @@ class NativeCpuProbe(boundary.CpuProbe):
             raise ValueError("expected one Reimu common-policy counter/JNE join")
         return sites[0]
 
-    def __init__(self, *args, address=boundary.ADDRESS, collect_selector_sites=False):
+    def __init__(self, *args, address=boundary.ADDRESS, collect_selector_sites=False, collect_x87=False):
         super().__init__(*args, address=address)
         # Mapping permits the genuine RET to complete before emulation ends.
         self.engine.mem_map(RETURN, 0x1000)
@@ -265,11 +265,30 @@ class NativeCpuProbe(boundary.CpuProbe):
         self.collect_selector_sites = collect_selector_sites
         self.allowed_selector_sites = selector_call_sites(args[1][:args[2]], address) if collect_selector_sites else set()
         self.selector_sites = []
+        self.collect_x87 = collect_x87
+        self.x87_selector_states = Counter()
+        self.x87_selector_preserved = Counter()
+        self.x87_word_stores = Counter()
+        self.x87_pending = None
 
     def write(self, uc, access, address, size, value, unused):
         if (0x6FDEF0 <= address and address + size <= 0x6FE8B0) or (0x6FA1FC <= address and address + size <= 0x6FA200):
             return
         super().write(uc, access, address, size, value, unused)
+        if self.collect_x87 and self.phase == "root" and address in (self.OWNER + 0x766, self.OWNER + 0x768):
+            if size != 2:
+                raise ValueError("unexpected CPU policy/timer write width")
+            self.x87_word_stores[(uc.reg_read(self.reg.UC_X86_REG_EIP), address - self.OWNER,
+                                  self.x87_snapshot(uc))] += 1
+
+    def x87_snapshot(self, uc):
+        r = self.reg
+        top = (uc.reg_read(r.UC_X86_REG_FPSW) >> 11) & 7
+        tags = uc.reg_read(r.UC_X86_REG_FPTAG)
+        live = tuple((index, (tags >> (2 * ((top + index) & 7))) & 3,
+                      tuple(uc.reg_read(r.UC_X86_REG_FP0 + ((top + index) & 7))))
+                     for index in range(8) if ((tags >> (2 * ((top + index) & 7))) & 3) != 3)
+        return top, uc.reg_read(r.UC_X86_REG_FPCW), live
 
     def fp80(self, uc):
         top = (uc.reg_read(self.reg.UC_X86_REG_FPSW) >> 11) & 7
@@ -306,6 +325,10 @@ class NativeCpuProbe(boundary.CpuProbe):
                     ("other_life", 0x174, "<h", self.OTHER)):
                 if key in c:
                     uc.mem_write(base + offset, struct.pack(fmt, c[key]))
+            if self.collect_x87:
+                top, control, live = self.x87_snapshot(uc)
+                if top or live or control != 0x27F:
+                    raise ValueError(f"selector x87 audit requires empty masked-PC53 root entry: {top=}, {control=:#x}, {live=}")
         if address == RETURN:
             self.stopped = True
             uc.emu_stop()
@@ -316,6 +339,10 @@ class NativeCpuProbe(boundary.CpuProbe):
                 self.stopped = True
         if self.phase != "root":
             return
+        if self.collect_x87 and self.x87_pending is not None and address == self.x87_pending[0]:
+            _, before = self.x87_pending
+            self.x87_selector_preserved[before == self.x87_snapshot(uc)] += 1
+            self.x87_pending = None
         if self.address <= address < self.root_end:
             self.visited_root.add(address)
         if address in HELPERS:
@@ -327,6 +354,14 @@ class NativeCpuProbe(boundary.CpuProbe):
             if self.collect_selector_sites:
                 returned = struct.unpack("<I", uc.mem_read(esp, 4))[0]
                 self.selector_sites.append((selector_call_site(returned, self.allowed_selector_sites), argument))
+            if self.collect_x87:
+                if self.x87_pending is not None:
+                    raise ValueError("nested/unreturned selector during x87 observation")
+                returned = struct.unpack("<I", uc.mem_read(esp, 4))[0]
+                site = selector_call_site(returned, self.allowed_selector_sites)
+                snapshot = self.x87_snapshot(uc)
+                self.x87_selector_states[(site, argument, snapshot)] += 1
+                self.x87_pending = returned, snapshot
         elif address == 0x4067EA:
             self.calls.append(("rng_return", uc.reg_read(r.UC_X86_REG_EAX)))
         elif address == 0x4066B0:
@@ -363,6 +398,8 @@ class NativeCpuProbe(boundary.CpuProbe):
         return self.seed_cache[seed]
 
     def evaluate(self, case):
+        if self.x87_pending is not None:
+            raise ValueError("previous selector did not reach its genuine return site")
         self.seed_state = self.seed(case["seed"])
         self.selector_sites = []
         self.case, self.phase = case, "root"
@@ -375,10 +412,12 @@ class NativeCpuProbe(boundary.CpuProbe):
         result["actor"] = bytes(uc.mem_read(self.OWNER, 0x7A4)).hex()
         result["rng_state"] = hashlib.sha256(bytes(uc.mem_read(0x6FDEF0, 2496)) + bytes(uc.mem_read(0x6FA1FC, 4))).hexdigest()
         result["x87_control_word"] = uc.reg_read(r.UC_X86_REG_FPCW)
+        if self.x87_pending is not None:
+            raise ValueError("selector observation ended before the genuine return site")
         return result
 
 
-def audit(object_path, count, selected_cases=None, check_selection=False, *, root_name="default"):
+def audit(object_path, count, selected_cases=None, check_selection=False, *, root_name="default", collect_x87=False):
     import unicorn
     from unicorn import unicorn as unicorn_api
     canonical = boundary.load_script("cpu_policy_canonical", "compare-function.py")
@@ -404,9 +443,10 @@ def audit(object_path, count, selected_cases=None, check_selection=False, *, roo
     candidate = canonical.coff_symbol_bytes(object_path, function["symbol_base"], address,
                                              len(obj.text), rel32, canonical.known_data_targets(), dir32)
     image = pefile.PE(str(ROOT / "resources/th105.exe")).get_memory_mapped_image()
-    engines = (NativeCpuProbe(image, target, size, address=address, collect_selector_sites=check_selection),
+    engines = (NativeCpuProbe(image, target, size, address=address, collect_selector_sites=check_selection,
+                              collect_x87=collect_x87),
                NativeCpuProbe(image, candidate, candidate_map["metadata_start"], address=address,
-                              collect_selector_sites=check_selection))
+                              collect_selector_sites=check_selection, collect_x87=collect_x87))
     mismatches, examples, digest, processed = 0, [], hashlib.sha256(), 0
     selection_rolls = [set(), set()]
     selector_pairs = Counter()
@@ -467,6 +507,18 @@ def audit(object_path, count, selected_cases=None, check_selection=False, *, roo
         result["word_comparisons_before_common_target_candidate"] = [
             word_comparison_profile(code[:engine.join - address], address)
             for code, engine in zip((target, candidate), engines)]
+    if collect_x87:
+        result["selector_x87_target_candidate"] = [{
+            "entries": [{"site": f"0x{site:08X}", "argument": argument, "top": top,
+                         "control": control, "occupied": len(live), "live": live, "observations": amount}
+                        for (site, argument, (top, control, live)), amount in sorted(engine.x87_selector_states.items())],
+            "preserved_across_genuine_return": engine.x87_selector_preserved[True],
+            "changed_across_genuine_return": engine.x87_selector_preserved[False],
+            "word_publications": [{"site": f"0x{site:08X}", "offset": f"0x{offset:X}", "top": top,
+                                   "control": control, "occupied": len(live), "live": live, "observations": amount}
+                                  for (site, offset, (top, control, live)), amount in sorted(engine.x87_word_stores.items())]}
+            for engine in engines]
+        result["selector_x87_scope"] = "finite selection cases from attested empty masked-PC53 entry; real selector entry/genuine return and actual policy/timer writes; no helper replacement or universal liveness claim"
     if check_selection:
         result["policy0_coverage"] = selection_coverage(
             canonical, root, target, engines[0].visited_root, address=address, expected_entry=policy_entry)
@@ -505,6 +557,7 @@ def main():
     inputs.add_argument("--aya-command-cases", action="store_true", help="470 Aya command/RNG/resource/truncation controls")
     inputs.add_argument("--reimu-edge-cases", action="store_true", help="45714 Reimu action/resource/sequence/geometry controls")
     inputs.add_argument("--selection-cases", action="store_true", help="16160 policy0 controls; require all target instructions and rolls0..100")
+    parser.add_argument("--selection-x87", action="store_true", help="record real selector/word-publication x87 states; requires Reimu selection cases")
     args = parser.parse_args()
     if args.cases is not None and args.cases <= 0:
         parser.error("--cases must be positive")
@@ -512,6 +565,8 @@ def main():
         parser.error("--aya-command-cases requires --root aya")
     if args.reimu_edge_cases and args.root != "reimu":
         parser.error("--reimu-edge-cases requires --root reimu")
+    if args.selection_x87 and (args.root != "reimu" or not args.selection_cases):
+        parser.error("--selection-x87 requires --root reimu --selection-cases")
     try:
         selected = None
         if args.case_file:
@@ -529,7 +584,8 @@ def main():
         elif args.selection_cases:
             selected = list(selection_cases())
         count = len(selected) if selected is not None else (args.cases or 5000)
-        result = audit(args.object, count, selected, check_selection=args.selection_cases, root_name=args.root)
+        result = audit(args.object, count, selected, check_selection=args.selection_cases,
+                       root_name=args.root, collect_x87=args.selection_x87)
         if args.selection_cases:
             result["input_source"] = "built-in policy0 selection matrix"
         if args.counter_cases:

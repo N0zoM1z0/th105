@@ -43,5 +43,36 @@ class CpuBoundaryJoinTests(unittest.TestCase):
             probe.policy_join(self.JOIN + b"\x0f", 0x1000)
 
 
+@unittest.skipUnless(importlib.util.find_spec("unicorn"), "Unicorn is unavailable")
+class CpuX87InputTests(unittest.TestCase):
+    def make_probe(self, leave_live=False):
+        class EntryProbe(probe.CpuProbe):
+            def step(self, uc, address):
+                if address == self.address:
+                    self.entry_state = tuple(uc.reg_read(register) for register in (
+                        self.reg.UC_X86_REG_FPSW, self.reg.UC_X86_REG_FPTAG, self.reg.UC_X86_REG_FPCW))
+                    if leave_live:
+                        uc.reg_write(self.reg.UC_X86_REG_FPTAG, 0xFFFC)
+                super().step(uc, address)
+
+        # Diagnostic-only bytes: stop before the synthetic join executes.
+        code = CpuBoundaryJoinTests.JOIN + b"\xc3"
+        instance = EntryProbe(bytes(0x1000), code, len(code))
+        instance.engine.reg_write(instance.reg.UC_X86_REG_FPSW, 3 << 11)
+        instance.engine.reg_write(instance.reg.UC_X86_REG_FPTAG, 0x5555)
+        instance.initial = instance.engine.context_save()
+        return instance
+
+    def test_case_entry_resets_both_top_and_occupied_tags(self):
+        instance = self.make_probe()
+        instance.run((201, 200, 0, 1, 3, 0, 0x27F))
+        self.assertEqual(instance.entry_state, (0, 0xFFFF, 0x27F))
+
+    def test_zero_top_with_an_occupied_slot_is_rejected(self):
+        instance = self.make_probe(leave_live=True)
+        with self.assertRaisesRegex(ValueError, "live x87"):
+            instance.run((201, 200, 0, 1, 3, 0, 0x27F))
+
+
 if __name__ == "__main__":
     unittest.main()

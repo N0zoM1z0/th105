@@ -1,5 +1,10 @@
 # Reimu CPU counter reads, 2026-10-19
 
+The later [policy0/x87 checkpoint](REIMU_CPU_POLICY0_X87_2026_10_19.md)
+supersedes this source/build pin and adds explicit empty-tag CPU inputs.
+Results here retain their historical emulator-input scope; signed764 reads
+remain selected.
+
 The complete `Reimu_update_cpu_action_policy @48D390` candidate now reads its
 signed764 field directly in action bounds instead of freezing it in one local
 scalar after initialization. This recovers separate signed lower/upper tests

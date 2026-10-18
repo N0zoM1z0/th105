@@ -14,7 +14,7 @@ int __cdecl selector_random_roll(int limit);
 void ReimuCpuActionPolicyView::update_cpu_action_policy()
 {
 bool v18;
-__int16 v84;
+int policy_roll_result;
 char v89;
 int v90;
 char v91;
@@ -448,13 +448,15 @@ policy_dispatch:
 #undef RESOURCE
 #undef SKILL
 #undef FRONT_SEQUENCE
+// The call result stays full-width; each decision consumes its signed word.
+#define POLICY_ROLL_WORD (static_cast<short>(policy_roll_result))
 switch ( *(__int16 *)CPU_FIELD(1894) )
 {
 case 0:
 if ( *(__int16 *)CPU_FIELD(1896) > 0 )
 return;
-v84 = selector_random_roll(0x64u);
-*(_WORD *)CPU_FIELD(1898) = v84;
+policy_roll_result = selector_random_roll(0x64u);
+*(_WORD *)CPU_FIELD(1898) = policy_roll_result;
 if ( *(float *)CPU_FIELD(240) == 0.0f )
 {
 }
@@ -469,16 +471,16 @@ if ( horizontal_distance <= 90.0 )
 v89 = *(_BYTE *)CPU_FIELD(260);
 if ( (v89 != 1 || *(float *)CPU_FIELD(236) >= 240.0) && (v89 != -1 || *(float *)CPU_FIELD(236) <= 1040.0f) )
 goto LABEL_888;
-if ( v84 >= 0 && v84 <= 29 && vertical_distance > 200.0 )
+if ( POLICY_ROLL_WORD >= 0 && POLICY_ROLL_WORD <= 29 && vertical_distance > 200.0 )
 {
 *(_WORD *)CPU_FIELD(1894) = (v89 == -1) + 9;
 *(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu) + 15;
 return;
 }
-if ( v84 < 30 || v84 > 44 )
+if ( POLICY_ROLL_WORD < 30 || POLICY_ROLL_WORD > 44 )
 {
 LABEL_888:
-if ( v84 < 45 || v84 > 59 || vertical_distance <= 150.0 )
+if ( POLICY_ROLL_WORD < 45 || POLICY_ROLL_WORD > 59 || vertical_distance <= 150.0 )
 goto LABEL_1025;
 goto LABEL_889;
 }
@@ -489,16 +491,16 @@ if ( v99 <= 240.0 )
 v89 = *(_BYTE *)CPU_FIELD(260);
 if ( (v89 != 1 || *(float *)CPU_FIELD(236) >= 240.0) && (v89 != -1 || *(float *)CPU_FIELD(236) <= 1040.0f) )
 goto LABEL_900;
-if ( v84 >= 0 && v84 <= 29 && vertical_distance > 100.0 )
+if ( POLICY_ROLL_WORD >= 0 && POLICY_ROLL_WORD <= 29 && vertical_distance > 100.0 )
 goto LABEL_960;
-if ( v84 < 30 || v84 > 44 )
+if ( POLICY_ROLL_WORD < 30 || POLICY_ROLL_WORD > 44 )
 {
 LABEL_900:
-if ( v84 >= 45 && v84 <= 54 )
+if ( POLICY_ROLL_WORD >= 45 && POLICY_ROLL_WORD <= 54 )
 goto LABEL_901;
-if ( v84 < 55 )
+if ( POLICY_ROLL_WORD < 55 )
 goto LABEL_SIGNED_RANGE_27;
-if ( v84 <= 64 )
+if ( POLICY_ROLL_WORD <= 64 )
 goto LABEL_889;
 LABEL_SIGNED_RANGE_27:
 LABEL_992:
@@ -512,9 +514,9 @@ return;
 }
 if ( v99 >= 520.0 )
 {
-if ( v84 < 0 || v84 > 34 )
+if ( POLICY_ROLL_WORD < 0 || POLICY_ROLL_WORD > 34 )
 {
-if ( v84 < 35 || v84 > 39 )
+if ( POLICY_ROLL_WORD < 35 || POLICY_ROLL_WORD > 39 )
 goto LABEL_875;
 *(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 1) + 9;
 *(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu) + 10;
@@ -528,9 +530,9 @@ return;
 }
 if ( v99 < 240.0 )
 return;
-if ( v84 < 0 )
+if ( POLICY_ROLL_WORD < 0 )
 goto LABEL_SIGNED_RANGE_01;
-if ( v84 > 9 )
+if ( POLICY_ROLL_WORD > 9 )
 goto LABEL_SIGNED_RANGE_01;
 {
 *(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 0xFF) + 9;
@@ -538,9 +540,9 @@ goto LABEL_SIGNED_RANGE_01;
 return;
 }
 LABEL_SIGNED_RANGE_01:
-if ( v84 < 10 )
+if ( POLICY_ROLL_WORD < 10 )
 goto LABEL_SIGNED_RANGE_02;
-if ( v84 > 19 )
+if ( POLICY_ROLL_WORD > 19 )
 goto LABEL_SIGNED_RANGE_02;
 {
 *(_WORD *)CPU_FIELD(1894) = 11;
@@ -548,9 +550,9 @@ goto LABEL_SIGNED_RANGE_02;
 return;
 }
 LABEL_SIGNED_RANGE_02:
-if ( v84 < 20 )
+if ( POLICY_ROLL_WORD < 20 )
 goto LABEL_SIGNED_RANGE_03;
-if ( v84 > 24 )
+if ( POLICY_ROLL_WORD > 24 )
 goto LABEL_SIGNED_RANGE_03;
 {
 *(_WORD *)CPU_FIELD(1894) = 12;
@@ -558,11 +560,11 @@ goto LABEL_SIGNED_RANGE_03;
 return;
 }
 LABEL_SIGNED_RANGE_03:
-if ( v84 < 45 || v84 > 54 )
+if ( POLICY_ROLL_WORD < 45 || POLICY_ROLL_WORD > 54 )
 {
-if ( v84 < 55 )
+if ( POLICY_ROLL_WORD < 55 )
 goto LABEL_875;
-if ( v84 > 64 )
+if ( POLICY_ROLL_WORD > 64 )
 goto LABEL_875;
 *(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 1) + 9;
 *(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x14u) + 15;
@@ -580,20 +582,20 @@ if ( v100 <= 240.0 )
 v89 = *(_BYTE *)CPU_FIELD(260);
 if ( v89 == 1 && *(float *)CPU_FIELD(236) < 240.0 || v89 == -1 && *(float *)CPU_FIELD(236) > 1040.0f )
 {
-if ( v84 >= 0 && v84 <= 14 && *(float *)(v98 + 240) < (double)*(float *)CPU_FIELD(240) )
+if ( POLICY_ROLL_WORD >= 0 && POLICY_ROLL_WORD <= 14 && *(float *)(v98 + 240) < (double)*(float *)CPU_FIELD(240) )
 goto LABEL_953;
-if ( v84 >= 15 && v84 <= 29 && vertical_distance > 150.0 )
+if ( POLICY_ROLL_WORD >= 15 && POLICY_ROLL_WORD <= 29 && vertical_distance > 150.0 )
 goto LABEL_960;
 }
-if ( v84 >= 30 && v84 <= 34 )
+if ( POLICY_ROLL_WORD >= 30 && POLICY_ROLL_WORD <= 34 )
 goto LABEL_960;
-if ( v84 >= 35 && v84 <= 44 )
+if ( POLICY_ROLL_WORD >= 35 && POLICY_ROLL_WORD <= 44 )
 goto LABEL_889;
-if ( v84 < 45 || v84 > 47 )
+if ( POLICY_ROLL_WORD < 45 || POLICY_ROLL_WORD > 47 )
 {
-if ( v84 < 48 || v84 > 50 )
+if ( POLICY_ROLL_WORD < 48 || POLICY_ROLL_WORD > 50 )
 {
-if ( v84 < 51 || v84 > 54 )
+if ( POLICY_ROLL_WORD < 51 || POLICY_ROLL_WORD > 54 )
 goto LABEL_1025;
 goto LABEL_969;
 }
@@ -605,9 +607,9 @@ if ( v100 < 520.0 )
 {
 if ( v100 < 240.0 )
 return;
-if ( v84 < 0 )
+if ( POLICY_ROLL_WORD < 0 )
 goto LABEL_SIGNED_RANGE_04;
-if ( v84 > 4 )
+if ( POLICY_ROLL_WORD > 4 )
 goto LABEL_SIGNED_RANGE_04;
 {
 *(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 0xFF) + 9;
@@ -615,9 +617,9 @@ goto LABEL_SIGNED_RANGE_04;
 return;
 }
 LABEL_SIGNED_RANGE_04:
-if ( v84 < 5 )
+if ( POLICY_ROLL_WORD < 5 )
 goto LABEL_SIGNED_RANGE_05;
-if ( v84 > 9 )
+if ( POLICY_ROLL_WORD > 9 )
 goto LABEL_SIGNED_RANGE_05;
 {
 *(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 1) + 9;
@@ -625,11 +627,11 @@ goto LABEL_SIGNED_RANGE_05;
 return;
 }
 LABEL_SIGNED_RANGE_05:
-if ( v84 < 45 || v84 > 47 )
+if ( POLICY_ROLL_WORD < 45 || POLICY_ROLL_WORD > 47 )
 {
-if ( v84 < 48 || v84 > 50 )
+if ( POLICY_ROLL_WORD < 48 || POLICY_ROLL_WORD > 50 )
 {
-if ( v84 < 51 || v84 > 54 )
+if ( POLICY_ROLL_WORD < 51 || POLICY_ROLL_WORD > 54 )
 goto LABEL_992;
 goto LABEL_969;
 }
@@ -643,20 +645,20 @@ LABEL_986:
 *(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x14u) + 5;
 return;
 }
-if ( v84 >= 0 && v84 < 4 )
+if ( POLICY_ROLL_WORD >= 0 && POLICY_ROLL_WORD < 4 )
 goto LABEL_972;
-if ( v84 < 4 || v84 > 5 )
+if ( POLICY_ROLL_WORD < 4 || POLICY_ROLL_WORD > 5 )
 goto LABEL_983;
 }
-else if ( v84 < 0 || v84 > 5 )
+else if ( POLICY_ROLL_WORD < 0 || POLICY_ROLL_WORD > 5 )
 {
 if ( vertical_distance <= 320.0 )
 goto LABEL_1025;
 if ( *(float *)(v98 + 240) > (double)*(float *)CPU_FIELD(240) )
 {
-if ( v84 < 5 )
+if ( POLICY_ROLL_WORD < 5 )
 goto LABEL_SIGNED_RANGE_06;
-if ( v84 > 9 )
+if ( POLICY_ROLL_WORD > 9 )
 goto LABEL_SIGNED_RANGE_06;
 {
 *(_WORD *)CPU_FIELD(1894) = 12;
@@ -664,20 +666,20 @@ goto LABEL_SIGNED_RANGE_06;
 return;
 }
 LABEL_SIGNED_RANGE_06:
-if ( v84 >= 10 && v84 <= 14 )
+if ( POLICY_ROLL_WORD >= 10 && POLICY_ROLL_WORD <= 14 )
 goto LABEL_953;
-if ( v84 >= 15 && v84 <= 24 )
+if ( POLICY_ROLL_WORD >= 15 && POLICY_ROLL_WORD <= 24 )
 goto LABEL_972;
 }
 if ( *(float *)(v98 + 240) >= (double)*(float *)CPU_FIELD(240) )
 goto LABEL_1025;
-if ( v84 < 25 || v84 > 27 )
+if ( POLICY_ROLL_WORD < 25 || POLICY_ROLL_WORD > 27 )
 {
-if ( v84 < 28 || v84 > 31 )
+if ( POLICY_ROLL_WORD < 28 || POLICY_ROLL_WORD > 31 )
 {
-if ( v84 < 32 || v84 > 35 )
+if ( POLICY_ROLL_WORD < 32 || POLICY_ROLL_WORD > 35 )
 {
-if ( v84 < 36 || v84 > 39 )
+if ( POLICY_ROLL_WORD < 36 || POLICY_ROLL_WORD > 39 )
 goto LABEL_1025;
 {
 *(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 1) + 9;
@@ -709,24 +711,24 @@ if ( horizontal_distance <= 90.0 )
 v95 = vertical_distance;
 if ( vertical_distance > 100.0 )
 {
-if ( v84 >= 0 && v84 <= 6 )
+if ( POLICY_ROLL_WORD >= 0 && POLICY_ROLL_WORD <= 6 )
 goto LABEL_671;
-if ( v84 >= 7 && v84 <= 10 && v95 >= 200.0 )
+if ( POLICY_ROLL_WORD >= 7 && POLICY_ROLL_WORD <= 10 && v95 >= 200.0 )
 goto LABEL_800;
-if ( v84 >= 11 && v84 <= 18 )
+if ( POLICY_ROLL_WORD >= 11 && POLICY_ROLL_WORD <= 18 )
 goto LABEL_804;
-if ( v84 >= 19 && v84 <= 24 && v95 >= 200.0 )
+if ( POLICY_ROLL_WORD >= 19 && POLICY_ROLL_WORD <= 24 && v95 >= 200.0 )
 goto LABEL_808;
 }
 v89 = *(_BYTE *)CPU_FIELD(260);
 if ( (v89 != 1 || *(float *)CPU_FIELD(236) >= 240.0) && (v89 != -1 || *(float *)CPU_FIELD(236) <= 1040.0f)
-|| v84 < 25
-|| v84 > 49
+|| POLICY_ROLL_WORD < 25
+|| POLICY_ROLL_WORD > 49
 || v95 < 250.0 )
 {
-if ( v84 < 50 )
+if ( POLICY_ROLL_WORD < 50 )
 goto LABEL_SIGNED_RANGE_07;
-if ( v84 > 69 )
+if ( POLICY_ROLL_WORD > 69 )
 goto LABEL_SIGNED_RANGE_07;
 {
 *(_WORD *)CPU_FIELD(1894) = (v89 == 1) + 1;
@@ -734,7 +736,7 @@ goto LABEL_SIGNED_RANGE_07;
 return;
 }
 LABEL_SIGNED_RANGE_07:
-if ( v84 >= 70 && v84 <= 74 )
+if ( POLICY_ROLL_WORD >= 70 && POLICY_ROLL_WORD <= 74 )
 goto LABEL_889;
 goto LABEL_875;
 }
@@ -746,9 +748,9 @@ return;
 }
 if ( horizontal_distance <= 240.0 )
 {
-if ( v84 >= 0 && v84 <= 6 )
+if ( POLICY_ROLL_WORD >= 0 && POLICY_ROLL_WORD <= 6 )
 goto LABEL_671;
-if ( v84 < 7 || v84 > 10 )
+if ( POLICY_ROLL_WORD < 7 || POLICY_ROLL_WORD > 10 )
 {
 v96 = vertical_distance;
 }
@@ -758,9 +760,9 @@ v96 = vertical_distance;
 if ( vertical_distance >= 200.0 )
 goto LABEL_800;
 }
-if ( v84 >= 11 && v84 <= 18 )
+if ( POLICY_ROLL_WORD >= 11 && POLICY_ROLL_WORD <= 18 )
 goto LABEL_804;
-if ( v84 >= 19 && v84 <= 24 && v96 >= 200.0 )
+if ( POLICY_ROLL_WORD >= 19 && POLICY_ROLL_WORD <= 24 && v96 >= 200.0 )
 goto LABEL_808;
 v89 = *(_BYTE *)CPU_FIELD(260);
 if ( v89 == 1 )
@@ -769,14 +771,14 @@ v97 = v96;
 if ( *(float *)CPU_FIELD(236) < 240.0 )
 {
 LABEL_815:
-if ( v84 >= 35 && v84 <= 50 && v97 >= 400.0 )
+if ( POLICY_ROLL_WORD >= 35 && POLICY_ROLL_WORD <= 50 && v97 >= 400.0 )
 goto LABEL_788;
 LABEL_819:
-if ( v84 < 50 || v84 > 69 )
+if ( POLICY_ROLL_WORD < 50 || POLICY_ROLL_WORD > 69 )
 {
-if ( v84 < 70 )
+if ( POLICY_ROLL_WORD < 70 )
 goto LABEL_875;
-if ( v84 > 74 )
+if ( POLICY_ROLL_WORD > 74 )
 goto LABEL_875;
 goto LABEL_889;
 }
@@ -793,24 +795,24 @@ goto LABEL_815;
 }
 if ( horizontal_distance >= 520.0 )
 {
-if ( v84 >= 0 && v84 <= 9 )
+if ( POLICY_ROLL_WORD >= 0 && POLICY_ROLL_WORD <= 9 )
 goto LABEL_826;
-if ( v84 >= 10 && v84 <= 19 )
+if ( POLICY_ROLL_WORD >= 10 && POLICY_ROLL_WORD <= 19 )
 goto LABEL_829;
-if ( v84 >= 20 && v84 <= 24 )
+if ( POLICY_ROLL_WORD >= 20 && POLICY_ROLL_WORD <= 24 )
 goto LABEL_832;
-if ( v84 >= 25 && v84 <= 29 )
+if ( POLICY_ROLL_WORD >= 25 && POLICY_ROLL_WORD <= 29 )
 goto LABEL_835;
-if ( v84 >= 30 && v84 <= 39 )
+if ( POLICY_ROLL_WORD >= 30 && POLICY_ROLL_WORD <= 39 )
 {
 *(_WORD *)CPU_FIELD(1894) = 3;
 return;
 }
-if ( v84 < 40 || v84 > 49 )
+if ( POLICY_ROLL_WORD < 40 || POLICY_ROLL_WORD > 49 )
 {
-if ( v84 < 50 )
+if ( POLICY_ROLL_WORD < 50 )
 goto LABEL_SIGNED_RANGE_09;
-if ( v84 > 54 )
+if ( POLICY_ROLL_WORD > 54 )
 goto LABEL_SIGNED_RANGE_09;
 {
 *(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 0xFF) + 1;
@@ -818,9 +820,9 @@ goto LABEL_SIGNED_RANGE_09;
 return;
 }
 LABEL_SIGNED_RANGE_09:
-if ( v84 < 55 )
+if ( POLICY_ROLL_WORD < 55 )
 goto LABEL_SIGNED_RANGE_10;
-if ( v84 > 95 )
+if ( POLICY_ROLL_WORD > 95 )
 goto LABEL_SIGNED_RANGE_10;
 {
 *(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 0xFF) + 9;
@@ -834,36 +836,36 @@ goto LABEL_863;
 }
 if ( horizontal_distance < 240.0 )
 return;
-if ( v84 >= 0 && v84 <= 6 )
+if ( POLICY_ROLL_WORD >= 0 && POLICY_ROLL_WORD <= 6 )
 goto LABEL_671;
-if ( v84 >= 7 && v84 <= 12 )
+if ( POLICY_ROLL_WORD >= 7 && POLICY_ROLL_WORD <= 12 )
 goto LABEL_800;
-if ( v84 >= 13 && v84 <= 20 )
+if ( POLICY_ROLL_WORD >= 13 && POLICY_ROLL_WORD <= 20 )
 goto LABEL_804;
-if ( v84 >= 21 && v84 <= 30 )
+if ( POLICY_ROLL_WORD >= 21 && POLICY_ROLL_WORD <= 30 )
 goto LABEL_808;
 v89 = *(_BYTE *)CPU_FIELD(260);
 if ( v89 == 1 && *(float *)CPU_FIELD(236) < 240.0 || v89 == -1 && *(float *)CPU_FIELD(236) > 1040.0f )
 {
-if ( v84 < 40 )
+if ( POLICY_ROLL_WORD < 40 )
 goto LABEL_SIGNED_RANGE_11;
-if ( v84 > 49 )
+if ( POLICY_ROLL_WORD > 49 )
 goto LABEL_SIGNED_RANGE_11;
 {
 *(_WORD *)CPU_FIELD(1894) = 3;
 return;
 }
 LABEL_SIGNED_RANGE_11:
-if ( v84 >= 50 && v84 <= 59 )
+if ( POLICY_ROLL_WORD >= 50 && POLICY_ROLL_WORD <= 59 )
 {
 LABEL_863:
 *(_WORD *)CPU_FIELD(1894) = 6;
 return;
 }
 }
-if ( v84 < 60 )
+if ( POLICY_ROLL_WORD < 60 )
 goto LABEL_SIGNED_RANGE_13;
-if ( v84 > 64 )
+if ( POLICY_ROLL_WORD > 64 )
 goto LABEL_SIGNED_RANGE_13;
 {
 *(_WORD *)CPU_FIELD(1894) = (v89 == -1) + 1;
@@ -871,11 +873,11 @@ goto LABEL_SIGNED_RANGE_13;
 return;
 }
 LABEL_SIGNED_RANGE_13:
-if ( v84 < 65 || v84 > 79 )
+if ( POLICY_ROLL_WORD < 65 || POLICY_ROLL_WORD > 79 )
 {
-if ( v84 < 80 )
+if ( POLICY_ROLL_WORD < 80 )
 goto LABEL_SIGNED_RANGE_14;
-if ( v84 > 89 )
+if ( POLICY_ROLL_WORD > 89 )
 goto LABEL_SIGNED_RANGE_14;
 {
 *(_WORD *)CPU_FIELD(1894) = (v89 == 1) + 1;
@@ -883,7 +885,7 @@ goto LABEL_SIGNED_RANGE_14;
 return;
 }
 LABEL_SIGNED_RANGE_14:
-if ( v84 >= 90 && v84 <= 99 )
+if ( POLICY_ROLL_WORD >= 90 && POLICY_ROLL_WORD <= 99 )
 *(_WORD *)CPU_FIELD(1894) = (v89 == 1) + 9;
 goto LABEL_875;
 }
@@ -894,30 +896,30 @@ return;
 }
 if ( horizontal_distance <= 90.0 )
 {
-if ( v84 >= 0 && v84 <= 9 )
+if ( POLICY_ROLL_WORD >= 0 && POLICY_ROLL_WORD <= 9 )
 goto LABEL_826;
-if ( v84 >= 10 && v84 <= 14 )
+if ( POLICY_ROLL_WORD >= 10 && POLICY_ROLL_WORD <= 14 )
 goto LABEL_829;
-if ( v84 >= 15 && v84 <= 29 )
+if ( POLICY_ROLL_WORD >= 15 && POLICY_ROLL_WORD <= 29 )
 goto LABEL_832;
-if ( v84 >= 30 && v84 <= 39 )
+if ( POLICY_ROLL_WORD >= 30 && POLICY_ROLL_WORD <= 39 )
 goto LABEL_835;
 v89 = *(_BYTE *)CPU_FIELD(260);
 if ( v89 == 1 && *(float *)CPU_FIELD(236) < 240.0 || v89 == -1 && *(float *)CPU_FIELD(236) > 1040.0f )
 {
-if ( v84 >= 40 && v84 <= 44 )
+if ( POLICY_ROLL_WORD >= 40 && POLICY_ROLL_WORD <= 44 )
 {
 LABEL_654:
 *(_WORD *)CPU_FIELD(1894) = 3;
 return;
 }
-if ( v84 >= 45 && v84 <= 49 )
+if ( POLICY_ROLL_WORD >= 45 && POLICY_ROLL_WORD <= 49 )
 goto LABEL_658;
 }
-if ( v84 < 50 || v84 > 74 )
+if ( POLICY_ROLL_WORD < 50 || POLICY_ROLL_WORD > 74 )
 {
-if ( v84 >= 75
-&& v84 <= 89
+if ( POLICY_ROLL_WORD >= 75
+&& POLICY_ROLL_WORD <= 89
 && (v89 == 1 && *(float *)CPU_FIELD(236) >= 240.0 || v89 == -1 && *(float *)CPU_FIELD(236) <= 1040.0f) )
 {
 goto LABEL_889;
@@ -942,36 +944,36 @@ return;
 }
 if ( horizontal_distance <= 240.0 )
 {
-if ( v84 >= 0 && v84 <= 2 )
+if ( POLICY_ROLL_WORD >= 0 && POLICY_ROLL_WORD <= 2 )
 {
 LABEL_671:
 *(_WORD *)CPU_FIELD(1894) = 4;
 return;
 }
-if ( v84 < 3 || v84 > 5 )
+if ( POLICY_ROLL_WORD < 3 || POLICY_ROLL_WORD > 5 )
 {
-if ( v84 < 6 || v84 > 8 )
+if ( POLICY_ROLL_WORD < 6 || POLICY_ROLL_WORD > 8 )
 {
-if ( v84 < 9 || v84 > 11 )
+if ( POLICY_ROLL_WORD < 9 || POLICY_ROLL_WORD > 11 )
 {
-if ( v84 < 12 )
+if ( POLICY_ROLL_WORD < 12 )
 goto LABEL_SIGNED_RANGE_17;
-if ( v84 > 14 )
+if ( POLICY_ROLL_WORD > 14 )
 goto LABEL_SIGNED_RANGE_17;
 {
 *(_WORD *)CPU_FIELD(1894) = 3;
 return;
 }
 LABEL_SIGNED_RANGE_17:
-if ( v84 >= 15 && v84 <= 17 )
+if ( POLICY_ROLL_WORD >= 15 && POLICY_ROLL_WORD <= 17 )
 goto LABEL_682;
 v89 = *(_BYTE *)CPU_FIELD(260);
 if ( (v89 != 1 || *(float *)CPU_FIELD(236) >= 240.0) && (v89 != -1 || *(float *)CPU_FIELD(236) <= 1040.0f) )
 {
 LABEL_691:
-if ( v84 < 30 )
+if ( POLICY_ROLL_WORD < 30 )
 goto LABEL_SIGNED_RANGE_18;
-if ( v84 > 39 )
+if ( POLICY_ROLL_WORD > 39 )
 goto LABEL_SIGNED_RANGE_18;
 {
 v90 = v89 == -1;
@@ -981,11 +983,11 @@ LABEL_726:
 return;
 }
 LABEL_SIGNED_RANGE_18:
-if ( v84 < 40 || v84 > 54 )
+if ( POLICY_ROLL_WORD < 40 || POLICY_ROLL_WORD > 54 )
 {
-if ( v84 < 55 || v84 > 69 )
+if ( POLICY_ROLL_WORD < 55 || POLICY_ROLL_WORD > 69 )
 {
-if ( v84 < 70 || v84 > 89 )
+if ( POLICY_ROLL_WORD < 70 || POLICY_ROLL_WORD > 89 )
 goto LABEL_875;
 LABEL_889:
 *(_WORD *)CPU_FIELD(1894) = (v89 == 1) + 9;
@@ -1001,9 +1003,9 @@ LABEL_788:
 *(_WORD *)CPU_FIELD(1896) = selector_random_roll(0x1Eu) + 15;
 return;
 }
-if ( v84 < 20 || v84 > 24 )
+if ( POLICY_ROLL_WORD < 20 || POLICY_ROLL_WORD > 24 )
 {
-if ( v84 < 25 || v84 > 29 )
+if ( POLICY_ROLL_WORD < 25 || POLICY_ROLL_WORD > 29 )
 goto LABEL_691;
 LABEL_757:
 *(_WORD *)CPU_FIELD(1894) = 6;
@@ -1027,26 +1029,26 @@ return;
 }
 if ( horizontal_distance >= 520.0 )
 {
-if ( v84 >= 0 && v84 <= 4 )
+if ( POLICY_ROLL_WORD >= 0 && POLICY_ROLL_WORD <= 4 )
 goto LABEL_671;
-if ( v84 >= 5 && v84 <= 9 )
+if ( POLICY_ROLL_WORD >= 5 && POLICY_ROLL_WORD <= 9 )
 goto LABEL_800;
-if ( v84 >= 10 && v84 <= 14 )
+if ( POLICY_ROLL_WORD >= 10 && POLICY_ROLL_WORD <= 14 )
 goto LABEL_804;
-if ( v84 >= 15 && v84 <= 17 )
+if ( POLICY_ROLL_WORD >= 15 && POLICY_ROLL_WORD <= 17 )
 goto LABEL_808;
-if ( v84 < 18 )
+if ( POLICY_ROLL_WORD < 18 )
 goto LABEL_SIGNED_RANGE_19;
-if ( v84 > 24 )
+if ( POLICY_ROLL_WORD > 24 )
 goto LABEL_SIGNED_RANGE_19;
 {
 *(_WORD *)CPU_FIELD(1894) = 3;
 return;
 }
 LABEL_SIGNED_RANGE_19:
-if ( v84 < 25 )
+if ( POLICY_ROLL_WORD < 25 )
 goto LABEL_SIGNED_RANGE_20;
-if ( v84 > 29 )
+if ( POLICY_ROLL_WORD > 29 )
 goto LABEL_SIGNED_RANGE_20;
 {
 LABEL_658:
@@ -1054,9 +1056,9 @@ LABEL_658:
 return;
 }
 LABEL_SIGNED_RANGE_20:
-if ( v84 < 30 )
+if ( POLICY_ROLL_WORD < 30 )
 goto LABEL_SIGNED_RANGE_21;
-if ( v84 > 44 )
+if ( POLICY_ROLL_WORD > 44 )
 goto LABEL_SIGNED_RANGE_21;
 {
 *(_WORD *)CPU_FIELD(1894) = (*(_BYTE *)CPU_FIELD(260) == 0xFF) + 1;
@@ -1064,9 +1066,9 @@ goto LABEL_SIGNED_RANGE_21;
 return;
 }
 LABEL_SIGNED_RANGE_21:
-if ( v84 < 45 )
+if ( POLICY_ROLL_WORD < 45 )
 goto LABEL_SIGNED_RANGE_22;
-if ( v84 > 79 )
+if ( POLICY_ROLL_WORD > 79 )
 goto LABEL_SIGNED_RANGE_22;
 {
 *(_WORD *)CPU_FIELD(1894) = 9;
@@ -1074,7 +1076,7 @@ goto LABEL_SIGNED_RANGE_22;
 return;
 }
 LABEL_SIGNED_RANGE_22:
-if ( v84 >= 80 && v84 <= 82 )
+if ( POLICY_ROLL_WORD >= 80 && POLICY_ROLL_WORD <= 82 )
 {
 v89 = *(_BYTE *)CPU_FIELD(260);
 if ( v89 == 1 && *(float *)CPU_FIELD(236) >= 240.0 )
@@ -1082,7 +1084,7 @@ goto LABEL_725;
 if ( v89 == -1 && *(float *)CPU_FIELD(236) <= 1040.0f )
 goto LABEL_725;
 }
-if ( v84 < 83 || v84 > 89 )
+if ( POLICY_ROLL_WORD < 83 || POLICY_ROLL_WORD > 89 )
 goto LABEL_875;
 v91 = *(_BYTE *)CPU_FIELD(260);
 if ( v91 == 1 && *(float *)CPU_FIELD(236) >= 240.0 )
@@ -1101,26 +1103,26 @@ goto LABEL_982;
 }
 if ( horizontal_distance >= 240.0 )
 {
-if ( v84 >= 0 && v84 <= 2 )
+if ( POLICY_ROLL_WORD >= 0 && POLICY_ROLL_WORD <= 2 )
 goto LABEL_671;
-if ( v84 >= 3 && v84 <= 5 )
+if ( POLICY_ROLL_WORD >= 3 && POLICY_ROLL_WORD <= 5 )
 goto LABEL_800;
-if ( v84 >= 6 && v84 <= 8 )
+if ( POLICY_ROLL_WORD >= 6 && POLICY_ROLL_WORD <= 8 )
 goto LABEL_804;
-if ( v84 >= 9 && v84 <= 11 )
+if ( POLICY_ROLL_WORD >= 9 && POLICY_ROLL_WORD <= 11 )
 goto LABEL_808;
-if ( v84 < 12 )
+if ( POLICY_ROLL_WORD < 12 )
 goto LABEL_SIGNED_RANGE_24;
-if ( v84 > 15 )
+if ( POLICY_ROLL_WORD > 15 )
 goto LABEL_SIGNED_RANGE_24;
 {
 *(_WORD *)CPU_FIELD(1894) = 3;
 return;
 }
 LABEL_SIGNED_RANGE_24:
-if ( v84 < 16 )
+if ( POLICY_ROLL_WORD < 16 )
 goto LABEL_SIGNED_RANGE_25;
-if ( v84 > 18 )
+if ( POLICY_ROLL_WORD > 18 )
 goto LABEL_SIGNED_RANGE_25;
 {
 LABEL_682:
@@ -1131,28 +1133,28 @@ LABEL_SIGNED_RANGE_25:
 v89 = *(_BYTE *)CPU_FIELD(260);
 if ( v89 == 1 && *(float *)CPU_FIELD(236) < 240.0 || v89 == -1 && *(float *)CPU_FIELD(236) > 1040.0f )
 {
-if ( v84 >= 20 && v84 <= 29 )
+if ( POLICY_ROLL_WORD >= 20 && POLICY_ROLL_WORD <= 29 )
 goto LABEL_860;
-if ( v84 >= 30 && v84 <= 39 )
+if ( POLICY_ROLL_WORD >= 30 && POLICY_ROLL_WORD <= 39 )
 {
 *(_WORD *)CPU_FIELD(1894) = 6;
 return;
 }
 }
-if ( v84 < 40 )
+if ( POLICY_ROLL_WORD < 40 )
 goto LABEL_SIGNED_RANGE_26;
-if ( v84 > 54 )
+if ( POLICY_ROLL_WORD > 54 )
 goto LABEL_SIGNED_RANGE_26;
 {
 v94 = v89 == -1;
 goto LABEL_766;
 }
 LABEL_SIGNED_RANGE_26:
-if ( v84 < 55 || v84 > 79 )
+if ( POLICY_ROLL_WORD < 55 || POLICY_ROLL_WORD > 79 )
 {
-if ( v84 < 80 || v84 > 84 )
+if ( POLICY_ROLL_WORD < 80 || POLICY_ROLL_WORD > 84 )
 {
-if ( v84 < 85 || v84 > 99 )
+if ( POLICY_ROLL_WORD < 85 || POLICY_ROLL_WORD > 99 )
 goto LABEL_875;
 goto LABEL_889;
 }
@@ -1318,6 +1320,7 @@ default:
 return;
 }
 }
+#undef POLICY_ROLL_WORD
 #undef CPU_FIELD
 
 } // namespace th105

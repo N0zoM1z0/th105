@@ -147,6 +147,10 @@ class CpuProbe:
         put(0x766, "<h", 1)
         uc.reg_write(r.UC_X86_REG_ESP, self.STACK + 0xFF00)
         uc.reg_write(r.UC_X86_REG_ECX, self.OWNER)
+        # Unicorn's fresh context exposes eight zero-tagged occupied slots.
+        # Supply an explicit empty x87 input, not just a zero TOP field.
+        uc.reg_write(r.UC_X86_REG_FPSW, 0)
+        uc.reg_write(r.UC_X86_REG_FPTAG, 0xFFFF)
         uc.reg_write(r.UC_X86_REG_FPCW, control_word)
         self.stopped, self.calls, self.failure = False, [], None
         uc.emu_start(self.address, 0x710000, count=10000)
@@ -154,7 +158,8 @@ class CpuProbe:
             raise ValueError(self.failure)
         if not self.stopped:
             raise ValueError("CPU path failed to reach the reviewed policy join")
-        if (uc.reg_read(r.UC_X86_REG_FPSW) >> 11) & 7:
+        if ((uc.reg_read(r.UC_X86_REG_FPSW) >> 11) & 7
+                or uc.reg_read(r.UC_X86_REG_FPTAG) != 0xFFFF):
             raise ValueError("CPU path leaves live x87 values at the policy join")
         return {"control": bytes(uc.mem_read(self.OWNER + 0x6B4, 32)).hex(),
                 "command_flags": bytes(uc.mem_read(self.OWNER + 0x724, 8)).hex(),
