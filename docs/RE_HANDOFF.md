@@ -607,7 +607,7 @@ linked/ordinary payloads agree fully, SHA
 observations remain valid by complete outside-preparation byte identity.
 Root remains unclassified/declaration-only; no aggregate replay. See
 [aim argument lifetimes](REIMU_AIM_ARGUMENT_LIFETIMES_2026_10_18.md).
-The latest bounded context probe exposes the real strict-FP atan2 source to
+The preceding bounded context probe exposes the real strict-FP atan2 source to
 the genuine LTCG root link. Its ordinary anchor freshly matches63/63; adding
 only /GL produces a65-byte math body with PUSH/POP ECX and shifted stack
 displacements. All36 root math calls remain, frame570h and first+17 persist.
@@ -621,12 +621,32 @@ read before redefinition/return, under reviewed math/ftol2 contracts. This
 does not recover original visibility or justify register constraints. No
 root exact/source credit or aggregate replay. See
 [the real-math visibility probe](REIMU_ATAN2_VISIBILITY_2026_10_18.md).
-Next recheck300/320's current sharing and resolve215/310/797 and522/523's
-different incoming sets. These are static ownership questions, not missing
-per-input behavior.214's two target resource gates versus one candidate gate
-also need source/visibility evidence; do not invent volatile reads or inert
-duplicate conditions. Exact callable ownership, original visibility/profile
-and returning-world contexts remain open before root acceptance.
+The latest checkpoint executes effect123 requests through the real manager
+and returning root continuation, using a narrow native VC8 host under Wine.
+It maps the attested target without changing any .text byte, resolves105 real
+kernel32 imports and blocks65 others. Observed OS-data initialization plus
+actual target CRT heap/thread routines support real allocation/locking; each
+case constructs an actual4378F0 manager, borrows read-only untextured resource
+headers, creates/finalizes one effect through435240/437C00, returns through
+the root, then restores the headers and runs the actual437DF0 destructor.
+Expanded native0/600 covers208/211/220/221/222, five facings, two speeds,
+three X positions, two seeds and PC53/64. All6980 snapshot bytes per case
+agree, including full actor/effect, MT state, count and observed FP control.
+An independent target repeat agrees too; a compiled wrong post-effect
+comparison fails480/600. Oversized single-arm controls are never executed.
+Callable/metadata bounds, all11 stack/request contracts and immutable-code
+checks remain mandatory. Main source/object/payload/first+17 stay unchanged;
+no root exact/source credit or aggregate replay. See
+[real effect returns](REIMU_EFFECT_RETURNS_2026_10_18.md).
+Next extend the real backend to remaining effect and owned-object requests.
+A fresh static recheck confirms300/320 still fully merge at source47CC02;
+target retains distinct47CBBD/47D96A prefixes and shared47CC2B tail.
+215/310/797 and522/523 still have different target/source incoming sets.
+These are static ownership questions, not missing per-input behavior.
+214's two target resource gates versus one candidate gate also need
+source/visibility evidence; do not invent volatile reads or inert duplicate
+conditions. Exact callable ownership and original visibility/profile remain
+open before root acceptance.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.
 Obsolete unpinned disassembly exports (~18MB) and rejected/superseded object
 files were removed; current bounded evidence and primary databases remain.
