@@ -534,7 +534,7 @@ f9166f6a3ea904d0bcdb5a761bc0d22e2ccada0383f10c60282a27ac5e42ef73;
 advance47B5DD, corresponding to target47B51B. Superseded trial products were
 cleaned; primary databases retained and hashes unchanged. See
 [random-effect argument lifetimes](REIMU_RANDOM_EFFECT_LIFETIMES_2026_10_18.md).
-Current effect124 checkpoint extends those lifetimes to223/224/225/226,
+The preceding effect124 checkpoint extends those lifetimes to223/224/225/226,
 preserving the byte-negated unsigned outgoing direction for224/225. All720
 effect123/124 lifetime inputs pass in the expanded ordinary root, plus1528
 integration/default/guarded740 inputs. The old expanded source fails320/320
@@ -550,6 +550,25 @@ Source has119 advance sites versus target121. First478FB1 persists; no exact
 or source-present credit. Builds/native suites ran serially on one CPU at nice10;
 no aggregate replay or Ghidra process. See
 [effect124 lifetimes and sharing](REIMU_RANDOM124_LIFETIMES_2026_10_18.md).
+Current214 checkpoint expresses rounded effect125 coordinates inside the
+call, preserving unsigned direction/arg5 across sine and rounded Y across
+cosine. Expanded root0/240 checks these pending arguments without modifying
+helper results; the preceding object fails240/240. Staged0/240 plus720 real
+RET steering/flight-exit inputs pass. Expanded integration/default/guarded740
+passes0/1528. Code prefix81416/text82788/frame570h shrinks128 bytes; all11
+switches/nine partitions/request preparations pass. Genuine linked/ordinary
+payloads agree fully, SHA
+63c73a0ec4f4f0acda5d8344faa2b2f2e30dacd6a8995bb1e59aeacff092ab02;
+2467 fields/1281 HIGHLOWs and12-byte INT3 gap qualify. First strict target
+difference moves to+18/478FB2: PUSH EDI now agrees, but the following zero
+store uses XOR EDI/register storage instead of target's immediate WORD store.
+No exact or source-present credit. Source advance sites remain119 versus121;
+209/221 share47B5CD,522/523 stay separate485898/485C78,310 still joins215/797
+at47BFCF.214's second resource gate has only local incoming CFG edges and no
+entry from any of the11 switch tables. Same-target Yuyuko/Komachi repeat
+the WORD736 comparison too; Udonge has one observed comparison. This supports
+further source/context investigation, not an invented inline/volatile helper.
+See [214 effect lifetimes and gate evidence](REIMU_FLIGHT_EFFECT_LIFETIMES_2026_10_18.md).
 Next prioritize target/source physical sharing:300/320 and source310 joining
 215/797 explain the remaining two-site advance deficit. These are static
 ownership observations, not missing per-input behavior.214's two target

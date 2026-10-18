@@ -100,11 +100,10 @@
                 set_sequence(2);
             if (frame_counter_144 % 5 == 1) {
                 const unsigned char direction = static_cast<unsigned char>(facing_104);
-                const float effect_y = static_cast<float>(
-                    (lookup_orientation_sine_quantized_abs(field_740) * 100.0 + y_f0) + 100.0);
-                const float effect_x = static_cast<float>(
-                    lookup_orientation_cosine_quantized_abs(field_740) * 100.0 * facing_104 + x_ec);
-                emit_fighter_effect(125, effect_x, effect_y, direction, 1);
+                emit_fighter_effect(125,
+                    static_cast<float>(lookup_orientation_cosine_quantized_abs(field_740) * 100.0 * facing_104 + x_ec),
+                    static_cast<float>((lookup_orientation_sine_quantized_abs(field_740) * 100.0 + y_f0) + 100.0),
+                    direction, 1);
             }
             // The target repeats this unchanged gate twice without intervening
             // writes/calls. One ordinary condition preserves its behavior.

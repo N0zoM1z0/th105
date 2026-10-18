@@ -34,13 +34,14 @@ SCOPE = ('void noargs thiscall candidate; actual helpers/RET and common-root def
          '740 stops before indeterminate reads and world calls stop at real entry; no returning-world, '
          'arbitrary-stack, full-relocation or canonical-exact claim')
 RANDOM_COHORTS = ('random_lifetimes', 'random124_lifetimes')
-COHORTS = ('integration', 'defaults', 'common_return', 'unresolved740', *RANDOM_COHORTS)
+LIFETIME_COHORTS = (*RANDOM_COHORTS, 'flight_effect_lifetimes')
+COHORTS = ('integration', 'defaults', 'common_return', 'unresolved740', *LIFETIME_COHORTS)
 SMOKE_COUNT = 26
 ALLOW_SWITCH_METADATA = True
 
 
 @lru_cache(maxsize=1)
-def random_effect_family():
+def late_low_family():
     return load('reimu_void_random_effect_family', 'audit-reimu-late-low-actions.py')
 
 
@@ -69,8 +70,8 @@ def cases(smoke=False):
         for case in previous.cases():
             if case['cohort'] == 'integration':
                 yield case
-        for case in random_effect_family().cases():
-            if case['cohort'] in RANDOM_COHORTS:
+        for case in late_low_family().cases():
+            if case['cohort'] in LIFETIME_COHORTS:
                 yield {**base, **case}
     choices = (-32768, 799, 32767) if smoke else default_actions()
     gates = ((0, 0),) if smoke else ((0, 0), (1, 0), (0, 1))
@@ -94,7 +95,7 @@ def check_target_case(case, result, sites):
         elif result['spawn_request'] != (0x4740C0,) or 0x48CE1F not in sites:
             raise ValueError('default action did not reach the original common call')
     elif case['cohort'] in RANDOM_COHORTS:
-        random_effect_family().check_target_case(case, result, sites)
+        late_low_family().check_target_case(case, result, sites)
         observations = [call for call in result['calls'] if call[0] == 'pending_effect_arguments']
         direction = -case['facing'] if case['action'] in (224, 225) else case['facing']
         tail = struct.pack('<II', direction & 0xFF, 1).hex()
@@ -102,6 +103,14 @@ def check_target_case(case, result, sites):
                 or observations[1][1] != 2 or len(observations[1][2]) != 24
                 or observations[1][2][-16:] != tail):
             raise ValueError('target random effect lacks its pending direction/trailing arguments')
+    elif case['cohort'] == 'flight_effect_lifetimes':
+        late_low_family().check_target_case(case, result, sites)
+        observations = [call for call in result['calls'] if call[0] == 'pending_flight_effect_arguments']
+        tail = struct.pack('<II', case['facing'] & 0xFF, 1).hex()
+        if (len(observations) != 2 or observations[0][1:] != ('sine', tail)
+                or observations[1][1] != 'cosine' or len(observations[1][2]) != 24
+                or observations[1][2][-16:] != tail):
+            raise ValueError('target flight effect lacks its pending direction/trailing arguments')
     else:
         previous.check_target_case(case, result, sites)
     if case['cohort'] == 'common_return' and 0x48CE1F not in sites:
@@ -124,6 +133,8 @@ def audit(path, smoke=False, cohorts=None):
         def evaluate(self, case):
             self.track_random_tails = case['cohort'] in RANDOM_COHORTS
             self.random_draw_count = 0
+            self.track_flight_tails = case['cohort'] == 'flight_effect_lifetimes'
+            self.flight_lookup_counts = Counter()
             result = super().evaluate(case)
             if result['endpoint'] == 'ret':
                 self.return_bytes[self.engine.reg_read(low.r.UC_X86_REG_EAX) & 0xFF] += 1
@@ -142,12 +153,24 @@ def audit(path, smoke=False, cohorts=None):
                     count = self.random_draw_count + 1
                     self.calls.append(('pending_effect_arguments', self.random_draw_count,
                                        bytes(uc.mem_read(sp + 4, count * 4)).hex()))
+            if address in (0x406360, 0x4063D0) and getattr(self, 'track_flight_tails', False):
+                sp = uc.reg_read(low.r.UC_X86_REG_ESP)
+                caller, = struct.unpack('<I', uc.mem_read(sp, 4))
+                if low.ADDRESS <= caller < low.ADDRESS + low.SIZE:
+                    self.flight_lookup_counts[address] += 1
+                    if self.flight_lookup_counts[address] > 2:
+                        raise ValueError('flight effect executes more than two lookups of one kind')
+                    if self.flight_lookup_counts[address] == 2:
+                        kind, count = ('sine', 2) if address == 0x406360 else ('cosine', 3)
+                        # Read only, above this real cdecl lookup's phase argument.
+                        self.calls.append(('pending_flight_effect_arguments', kind,
+                                           bytes(uc.mem_read(sp + 8, count * 4)).hex()))
 
     contract = SimpleNamespace(**vars(sys.modules[__name__]))
     contract.Probe = previous.boundary_probe(facts, base=VoidProbe)
     contract.COHORT_COUNTS = {'integration': 1010, 'defaults': len(default_actions())*6,
                               'common_return': 16, 'unresolved740': 8,
-                              **{name: random_effect_family().COHORT_COUNTS[name] for name in RANDOM_COHORTS}}
+                              **{name: late_low_family().COHORT_COUNTS[name] for name in LIFETIME_COHORTS}}
     result = low.audit(path, smoke, cohorts, contract=contract)
     result['mode_structure'] = facts
     result['observed_return_low_bytes'] = {('source' if p.candidate else 'target'): dict(p.return_bytes)

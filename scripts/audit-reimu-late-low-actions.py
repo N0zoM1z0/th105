@@ -114,6 +114,15 @@ def cases(smoke=False):
                "facing": facing, "seed": seed, "counter": 4 if action == 223 else 5,
                "sequence": 2 if action in (225, 226) else 1,
                "x": position, "y": 0.0 if action == 223 else 100.0, "control_word": cw}
+    for phase, facing, mode, cw, height in itertools.product(
+            (-180.0, -90.0, -0.0, 89.75, 179.75, 359.75), (-128, -1, 0, 1, 127),
+            (0, 1), (0x27F, 0x37F), (100.0, 681.0)):
+        # Keep the sequence consistent with post-steering VX so no sequence
+        # callback resets the frame counter before the advertised effect.
+        yield {**base, "cohort": "flight_effect_lifetimes", "action": 214,
+               "phase": phase, "facing": facing, "mode4b8": mode,
+               "sequence": 3 if phase in (-180.0, 179.75) else 1,
+               "counter": 0, "control_word": cw, "y": height}
     for facing, horizontal, vertical, state, gate in itertools.product(
             (-1, 1), (-1, 0, 1), (-1, 0), (0, 1), (0, 1)):
         yield {**base, "cohort": "directional", "action": 300, "mode4b8": 10,
@@ -218,6 +227,12 @@ def check_target_case(case, result, sites):
         raise ValueError("flight fixture bypassed steering or resource consumption")
     if case["cohort"] == "directional" and 0x47CBC8 not in sites:
         raise ValueError("directional fixture bypassed action300's actual gate")
+    if case["cohort"] == "flight_effect_lifetimes":
+        if (not {0x47BBDB, 0x47BCC6, 0x47BCF2, 0x47BD23} <= sites
+                or result["spawn_request"][:2] != (0x435240, 125)
+                or any(sum(call[0] == address for call in result["calls"]) != 2
+                       for address in (0x406360, 0x4063D0))):
+            raise ValueError("flight fixture bypassed its real steering/cost/effect lookups")
     if case["cohort"] in ("random", "random_lifetimes", "random124_lifetimes"):
         calls = sum(call[0] == 0x4066B0 for call in result["calls"])
         code = 123 if case["action"] in (208, 211, 220, 221, 222) else 124
@@ -307,6 +322,7 @@ def audit(object_path, smoke=False, selected_cohorts=None):
 COHORT_COUNTS = {"motion": 2160, "steering": 432, "flight_exit": 288,
                  "nodes": 450, "random": 36, "random_lifetimes": 400,
                  "random124_lifetimes": 320,
+                 "flight_effect_lifetimes": 240,
                  "directional": 48}
 
 
