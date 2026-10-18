@@ -950,7 +950,30 @@ all9 primary DB pins remain unchanged. Serial CPU0/nice10 peaks313MiB for
 the producer and300MiB for validation/Ghidra; no full-root decompile or
 aggregate replay. Cleanup removes22 obsolete products/2.71MiB; all164 current
 genuine-cache files remain. See [shared action10 landing](REIMU_SHARED_ACTION10_LANDING_2026_10_18.md).
-Next recover the remaining low9 and197/198/608/658 height/clearing memberships,
+The following bounded9/197/198 membership investigation retains that source.
+Factoring6/7/8/9/306's entire landing block restores its complete action sets,
+but splits9 from the previously correct0/2/9/71/72/74/145 advance group.
+One explicit advance edge and defining the landing block in6 are byte-neutral;
+even a source block with all seven advance edges still emits two physical
+sites. A single128-key expanded switch also loses522/523 owned/wave sharing,
+and still does not restore9's advance membership. None is selected.
+A full27-byte true reset definition retains all51 calls/frame570h and all32
+direct source partitions, but wrongly merges214 with545/546's indirect tail.
+An unreferenced same27-byte body leaves all82808 baseline bytes unchanged.
+The private defined-provider diagnostic qualifies the complete helper; public
+opaque-provider gates remain unchanged. No new native or exact credit.
+Bounded read-only Ghidra confirms15 edges: four into479713, nine into47973C,
+and197/198 into height calls48A701/488FD5. ECX is set before those latter
+branches, so skipping a suffix setup proves no callee-preservation property.
+Raw PE also exposes47973A's FSTP entry before the shared advance. All9 primary
+DB hashes and164 genuine-cache files remain unchanged. Serial CPU0/nice10
+peaks312MiB; cleanup removes23 obsolete products/redundant reports,5.02MiB.
+See [coupled exits and reset visibility](REIMU_LANDING_EXIT_CONSTRAINTS_2026_10_18.md).
+Next recover x87 stack states/live values at47973A/47973C and the selected
+source counterparts, with reviewed callee effects, before more exit shaping.
+Whether this explains the sharing remains unknown. Do not repeat the above
+goto/switch/reset-visibility controls without a material source-phase change.
+Remaining targets include low9 and197/198/608/658 height/clearing memberships,
 the separate300/320 prefixes and effect/landing/action-gate partitions
 and410/416 virtual-next memberships from independently observed control flow
 and live values. Preserve the recovered owned/wave and landing groups.
