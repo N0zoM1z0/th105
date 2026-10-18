@@ -913,6 +913,21 @@ All four existing stage-geometry comparisons pass. Bounded read-only Ghidra
 peaks319MiB/10.36s; all9 primary DB hashes remain unchanged. Cleanup removes
 29 files/3.57MiB and preserves all164 current genuine-cache files. See
 [height visibility and300/320 evidence](REIMU_HEIGHT_VISIBILITY_AND_300_320_2026_10_18.md).
+The following effect-return checkpoint supplies actual native counterexamples.
+Consumed X/Y coordinate locals and a fully canonical52-byte effect-wrapper
+definition each leave the entire82904-byte baseline unchanged; all55 provider
+fields and2475 root relocations agree. A compact witness fails the unchanged
+primary-table guard before execution. The preceding middle-exit witness instead
+passes all15 contracts and native0/60. Its three admitted wrong controls detect
+40/60 omitted410/416 next-block calls,20/60 replacement advancement and12/60
+post-creation facing flips. Facing0/-128 remain unchanged under that flip.
+All effect/MT/count/FP suffixes remain equal; only the expected actor state
+differs. These separately qualified behavioral witnesses are not selected
+matching source, and do not reclassify the earlier oversized controls as native
+counterexamples. No source, ABI, profile, admission gate or exact credit changes.
+Serial CPU0/nice10 native audits peak300MiB. Cleanup removes63 files/14.64MiB;
+all164 genuine-cache and9 primary DB pins stay unchanged, with no new Ghidra
+process. See [executed effect-return controls](REIMU_EFFECT_RETURN_COUNTEREXAMPLES_2026_10_18.md).
 Next recover the remaining effect/height/zero/landing/action-gate partitions
 and410/416 virtual-next memberships from independently observed control flow
 and live values. Preserve the recovered owned/wave and landing groups.
