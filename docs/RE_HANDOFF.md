@@ -208,7 +208,7 @@ Nine read-only Ghidra DB pins remain
 unchanged. No exact credit is added. See
 [signed selection field](REIMU_CPU_ROLL_FIELD_2026_10_19.md).
 
-Latest selected source also fixes two ordered wall predicates: negating
+The preceding source also fixed two ordered wall predicates: negating
 `x<240`/`x>1040` explicitly preserves unordered X behavior, while substituting
 >=/<= did not. Actual-helper counterexamples select policy11/bound30 instead
 of target policy0/bound60, or policy9/bound30 instead of policy0/bound10.
@@ -229,6 +229,29 @@ apart from eight local table addresses moving by4. Generated input arrays
 totaling about12MB are removed; the public generator and trace recipes remain.
 See [unordered wall evidence](REIMU_CPU_NAN_WALLS_2026_10_19.md).
 
+Latest source completes the remaining two negative wall guards, separately
+target-traced at48FE5A/48FE76 and490842/49085E (all TEST AH,5). Four guards
+now preserve C0/C2 behavior. Only eight further TEST/Jcc instructions change;
+all4008 functional positions/edges and47 metadata pointer destinations agree
+after address replay, and the entire pre-policy0 code prefix is byte-identical.
+Two longer TESTs consume prior compiler post-RET alignment. Source SHA256 is
+`1d121503b98277c808727f58af725f13642dfe5ab78ee91bb03aa32b283876d5`,
+canonical16461-byte payload
+`07cb7a406e5c136ccd25e97287419f58e7b8b7eaccd502af81e0cb811fbac091`.
+Prefix15920, strict+12E/48D4BE and selectors/RETs118/48 remain nonexact.
+Fresh0/41728 selected cases preserve all49 finite selector and63 coupled
+terminal records, including x87/publication observations. No exact credit.
+
+On pre-checkpoint source7102660c, pinned RTM/SP1 and native-container COFF
+controls are fully byte-identical. A genuine closed /GL link with exact SDK
+deque94/94, three exact engine units and actual static CRT retains the wrong
+aligned EBP frame. Narrowing only five exact-float copy aliases removes that
+frame; full four-switch CFG and334-field replay prove its genuine/ordinary
+16429-byte equality at ec562ac4, still nonexact to target. Controls are not
+selected and linked images are not executed. This does not exclude other
+original source/TU/LTCG contexts. See
+[compiler phase and remaining wall evidence](REIMU_CPU_PHASE_2026_10_19.md).
+
 ## Next reconstruction work
 
 The active scope is the Reimu CPU root: use the complete candidate, coupled
@@ -238,8 +261,10 @@ ECX forwarding. Absence of a machine reload does not prove an original local
 cache. Do not repeat a missing live value at selector entry explanation without
 new evidence. Preserve the corrected180 equality/RNG order. Do not count finite execution or
 diagnostic branch counts as exact progress.
-Preserve the two ordered wall negations and exceptional-X positive controls;
+Preserve all four ordered wall negations and exceptional-X positive controls;
 do not replace floating-point complements with opposite ordered relations.
+Do not repeat the unchanged RTM/native-container/five-float-alias controls;
+the latter restores an entry frame but not complete target sharing.
 The81KB action root remains an open priority with the constraints below.
 
 1. Resolve action9's coupled landing/advance membership with new compiler/TU
@@ -297,6 +322,11 @@ real exceptional-X counterexamples and target traces, related replays and
 unselected peer/distance controls. Its read-only Ghidra recipe is under
 `.analysis/reimu-cpu-geometry-20261019/`; all nine DB pins are unchanged and
 the project alias is removed.
+`build/reimu-cpu-phase/` retains latest selected replay/normalization, four
+target wall traces, pinned RTM/native-container controls and qualified genuine
+float-alias link recipes. Its read-only Ghidra recipe is under
+`.analysis/reimu-cpu-phase-20261019/`; nine DB hashes remain unchanged and
+the project alias is removed. The private linked images are not selected.
 `build/reimu-ltcg/` retains the current 164-file genuine provider/cache set.
 `build/reimu-low9-x87/` retains the newest cloning, listed/plain, RTM, full-CFG
 and native-entry recipes/reports. Controls are unselected and disposable.

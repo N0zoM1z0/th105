@@ -1,5 +1,5 @@
 // Original JP 1.06a Reimu CPU slot +0x58, 0x0048D390..0x0049120F.
-// Source-present candidate, not an exact match. See docs/REIMU_CPU_NAN_WALLS_2026_10_19.md.
+// Source-present candidate, not an exact match. See docs/REIMU_CPU_PHASE_2026_10_19.md.
 #include "CpuActionPolicies.hpp"
 #include "engine/AngleAtan2.hpp"
 #include "../battle/Collision.hpp"
@@ -488,7 +488,8 @@ goto LABEL_953;
 if ( v99 <= 240.0 )
 {
 v89 = *(_BYTE *)CPU_FIELD(260);
-if ( (v89 != 1 || *(float *)CPU_FIELD(236) >= 240.0) && (v89 != -1 || *(float *)CPU_FIELD(236) <= 1040.0f) )
+// Target TEST AH,5 preserves unordered behavior on both wall legs.
+if ( !((v89 == 1 && *(float *)CPU_FIELD(236) < 240.0) || (v89 == -1 && *(float *)CPU_FIELD(236) > 1040.0f)) )
 goto LABEL_900;
 if ( policy_counter_76a >= 0 && policy_counter_76a <= 29 && vertical_distance > 100.0 )
 goto LABEL_960;
@@ -916,7 +917,8 @@ return;
 if ( policy_counter_76a >= 15 && policy_counter_76a <= 17 )
 goto LABEL_682;
 v89 = *(_BYTE *)CPU_FIELD(260);
-if ( (v89 != 1 || *(float *)CPU_FIELD(236) >= 240.0) && (v89 != -1 || *(float *)CPU_FIELD(236) <= 1040.0f) )
+// Target TEST AH,5 preserves unordered behavior on both wall legs.
+if ( !((v89 == 1 && *(float *)CPU_FIELD(236) < 240.0) || (v89 == -1 && *(float *)CPU_FIELD(236) > 1040.0f)) )
 {
 LABEL_691:
 if ( policy_counter_76a >= 30 && policy_counter_76a <= 39 )
