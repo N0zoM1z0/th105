@@ -781,17 +781,37 @@ exits. This is not partial exact credit. It still exceeds138/136.127 terminal
 case breaks shrink it64 bytes but exceed74/72; a real shared fallback exceeds
 90/88. A new-input RTM42 control exceeds182/180. None is executed/selected.
 See [shared trajectory speed](REIMU_TRAJECTORY_SPEED_LIFETIME_2026_10_18.md).
-Next recover522/523's shared exits while preserving the corrected speed slot
-and positive full-width evidence. Do not repeat unchanged controls or infer
-original visibility from the getter match alone.
+The indirect-sharing checkpoint extends the full-set audit to qualified
+register CALLs, retaining one uncertain slot domain per physical site and
+separately comparing aggregate site memberships. Target/current have220/211
+physical indirect calls. Aggregate per-action deltas remain for73/75/88/200/
+214/414/416; per-domain differences for21 actions include changes in slot
+uncertainty and must not be read as extra calls. The retained wide control
+has216 sites but the same seven aggregate deltas. All old direct-call/RET
+results stay identical; current ordinary0a950c1f.../canonical9cdc589f... and
+strict+541 remain unchanged.214 explicit facing branches restore its14
+reachable indirect sites (pure C-domain11/11) without adding a second resource
+condition, but prefix81608/payload82980 exceeds58/56. Complete memberships
+still differ.414/416's separate target frame guards and post-advance sequence
+snapshot controls do not recover their shared setter; both stay oversized.
+A real named sequence constant leaves the full-width payload unchanged, and
+an ordinary inline landing helper is rejected as an unmapped out-of-line call.
+None is executed/selected; no source/exact credit changes. Ten focused census
+tests pass, genuine linked/ordinary equality and all9 primary DB pins renew.
+See [indirect sharing](REIMU_INDIRECT_CALL_SHARING_2026_10_18.md).
+Next recover522/523's shared exits and compatible214 branch lifetimes while
+preserving the corrected speed slot and positive full-width evidence. Do not
+repeat unchanged controls or infer original visibility from the getter match
+alone.
 Remaining returning families/runtime/resource/exception contexts stay open.
 A fresh static recheck confirms300/320 still fully merge at source47CBD7;
 target retains distinct47CBBD/47D96A prefixes and shared47CC2B tail.
 215/310/797 and522/523 still have different target/source incoming sets.
 These are static ownership questions, not missing per-input behavior.
-214's two target resource gates versus one candidate gate also need
-source/visibility evidence; do not invent volatile reads or inert duplicate
-conditions. Exact callable ownership and original visibility/profile remain
+214's two target resource gates versus one candidate gate now have the
+explicit-facing branch control above; original source/visibility remains
+unproved. Do not invent volatile reads or inert duplicate conditions.
+Exact callable ownership and original visibility/profile remain
 open before root acceptance.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.
 Obsolete unpinned disassembly exports (~18MB) and rejected/superseded object

@@ -100,13 +100,31 @@ def direct_entry(graph, action, address):
     return choices[0]
 
 
+def virtual_slot_candidates(graph):
+    """Keep one uncertain slot domain per qualified physical indirect call."""
+    indirect = {row.address: row for row in graph.rows
+                if row.address in graph.reachable and row.mnemonic == 'call'
+                and row.operands[0].type != x.X86_OP_IMM}
+    require(all(row.operands[0].type == x.X86_OP_REG for row in indirect.values()),
+            'indirect call is not a qualified register call')
+    require(indirect.keys() == graph.virtual_definitions.keys(),
+            'indirect calls and qualified slot definitions disagree')
+    identities = {}
+    for site, definitions in graph.virtual_definitions.items():
+        slots = tuple(sorted(set(definitions.values())))
+        require(slots and set(slots) <= {8, 12, 20}, 'unreviewed indirect slot domain')
+        identities[site] = slots
+    return identities
+
+
 def collect_sites(graph, entries):
     calls = {row.address: row.operands[0].imm for row in graph.rows
              if row.address in graph.reachable and row.mnemonic == 'call'
              and row.operands[0].type == x.X86_OP_IMM}
     returns = {row.address for row in graph.rows
                if row.address in graph.reachable and row.mnemonic == 'ret'}
-    owners = {site: set() for site in calls.keys() | returns}
+    virtual = virtual_slot_candidates(graph)
+    owners = {site: set() for site in calls.keys() | returns | virtual.keys()}
     for action, start in entries.items():
         require(start in graph.reachable, 'action entry is not a reachable instruction')
         for site in graph.reachable_from(start) & owners.keys():
@@ -114,7 +132,18 @@ def collect_sites(graph, entries):
     by_callee = defaultdict(dict)
     for site, callee in calls.items():
         by_callee[callee][site] = owners[site]
-    return by_callee, {site: owners[site] for site in returns}
+    by_slots = defaultdict(dict)
+    for site, slots in virtual.items():
+        by_slots[slots][site] = owners[site]
+    return by_callee, {site: owners[site] for site in returns}, by_slots
+
+
+def merge_slot_sites(groups):
+    sites = {}
+    for group in groups.values():
+        require(not sites.keys() & group.keys(), 'physical indirect call has multiple slot identities')
+        sites.update(group)
+    return sites
 
 
 def audit(path, *, diagnostic_oversize=False):
@@ -171,6 +200,12 @@ def audit(path, *, diagnostic_oversize=False):
         sides = [inventory[0].get(callee, {}) for inventory in inventories]
         rows.append({'callee': hex(callee), 'physical_counts': [len(side) for side in sides],
                      **compare_sites(*sides)})
+    slot_rows = []
+    for slots in sorted(inventories[0][2].keys() | inventories[1][2].keys()):
+        sides = [inventory[2].get(slots, {}) for inventory in inventories]
+        slot_rows.append({'slot_candidates': [hex(slot) for slot in slots],
+                          'physical_counts': [len(side) for side in sides],
+                          **compare_sites(*sides)})
     return {
         'schema': 'th105-reimu-call-sharing-v1', 'target_sha256': qualification['target_sha256'],
         'object_sha256': qualification['object_sha256'], 'nondefault_actions': 128,
@@ -181,6 +216,14 @@ def audit(path, *, diagnostic_oversize=False):
         'actions_with_call_count_differences': sorted({delta['action'] for row in rows
                                                      for delta in row['per_action_count_deltas']}),
         'calls': rows, 'returns': compare_sites(*(inventory[1] for inventory in inventories)),
+        'slot_identity_count': len(slot_rows),
+        'slot_call_physical_counts': [sum(len(sites) for sites in inventory[2].values())
+                                     for inventory in inventories],
+        'slot_identities_with_partition_differences': sum(not row['partition_equal'] for row in slot_rows),
+        'actions_with_slot_count_differences': sorted({delta['action'] for row in slot_rows
+                                                     for delta in row['per_action_count_deltas']}),
+        'slot_calls': slot_rows,
+        'indirect_calls': compare_sites(*(merge_slot_sites(inventory[2]) for inventory in inventories)),
         'diagnostic_oversize': diagnostic_oversize,
         'callable_excess': qualification['callable_excess'],
         'metadata_envelope_excess': qualification['metadata_envelope_excess'],
@@ -191,6 +234,7 @@ def audit(path, *, diagnostic_oversize=False):
                            str(Path(__file__).relative_to(ROOT)):
                                hashlib.sha256(Path(__file__).read_bytes()).hexdigest()},
         'scope': 'read-only complete action-set/multiplicity census over qualified CFGs; '
+                 'indirect slot candidates are load displacements, not identified methods/receivers; '
                  'empty sets are sites outside nondefault-action reachability; no path feasibility, '
                  'dynamic counts, argument/behavior equivalence, byte equality or matching credit',
     }
