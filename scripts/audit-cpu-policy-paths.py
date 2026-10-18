@@ -9,7 +9,7 @@ initialized; no helper call is replaced with a hook result.
 from __future__ import annotations
 
 import argparse
-from collections import Counter
+from collections import Counter, defaultdict
 import hashlib
 import importlib.util
 import itertools
@@ -253,7 +253,8 @@ class NativeCpuProbe(boundary.CpuProbe):
             raise ValueError("expected one Reimu common-policy counter/JNE join")
         return sites[0]
 
-    def __init__(self, *args, address=boundary.ADDRESS, collect_selector_sites=False, collect_x87=False):
+    def __init__(self, *args, address=boundary.ADDRESS, collect_selector_sites=False, collect_x87=False,
+                 collect_terminals=False):
         super().__init__(*args, address=address)
         # Mapping permits the genuine RET to complete before emulation ends.
         self.engine.mem_map(RETURN, 0x1000)
@@ -270,11 +271,27 @@ class NativeCpuProbe(boundary.CpuProbe):
         self.x87_selector_preserved = Counter()
         self.x87_word_stores = Counter()
         self.x87_pending = None
+        self.collect_terminals = collect_terminals
+        if collect_terminals and not collect_selector_sites:
+            raise ValueError("terminal observation requires decoded selector sites")
+        self.allowed_root_returns = {i.address for i in decode(args[1][:args[2]], address)
+                                     if i.mnemonic == "ret" and not i.op_str} if collect_terminals else set()
+        self.root_return_site = None
+        self.selection_started = False
+        self.terminal_word_writes = []
 
     def write(self, uc, access, address, size, value, unused):
         if (0x6FDEF0 <= address and address + size <= 0x6FE8B0) or (0x6FA1FC <= address and address + size <= 0x6FA200):
             return
         super().write(uc, access, address, size, value, unused)
+        if (self.collect_terminals and self.phase == "root" and self.selection_started
+                and address in (self.OWNER + 0x766, self.OWNER + 0x768)):
+            if size != 2:
+                raise ValueError("unexpected terminal policy/timer write width")
+            site = uc.reg_read(self.reg.UC_X86_REG_EIP)
+            if not self.address <= site < self.root_end:
+                raise ValueError("terminal word publication is outside the root")
+            self.terminal_word_writes.append((site, address - self.OWNER, value & 0xFFFF))
         if self.collect_x87 and self.phase == "root" and address in (self.OWNER + 0x766, self.OWNER + 0x768):
             if size != 2:
                 raise ValueError("unexpected CPU policy/timer write width")
@@ -337,6 +354,10 @@ class NativeCpuProbe(boundary.CpuProbe):
             esp = uc.reg_read(r.UC_X86_REG_ESP)
             if struct.unpack("<I", uc.mem_read(esp, 4))[0] == RETURN:
                 self.stopped = True
+                if self.collect_terminals and self.phase == "root":
+                    if address not in self.allowed_root_returns or self.root_return_site is not None:
+                        raise ValueError("unreviewed or repeated root RET during terminal observation")
+                    self.root_return_site = address
         if self.phase != "root":
             return
         if self.collect_x87 and self.x87_pending is not None and address == self.x87_pending[0]:
@@ -354,6 +375,13 @@ class NativeCpuProbe(boundary.CpuProbe):
             if self.collect_selector_sites:
                 returned = struct.unpack("<I", uc.mem_read(esp, 4))[0]
                 self.selector_sites.append((selector_call_site(returned, self.allowed_selector_sites), argument))
+                if self.collect_terminals:
+                    count = len(self.selector_sites)
+                    if ((count == 1 and argument != 1000) or (count == 2 and argument != 100)
+                            or count > 3):
+                        raise ValueError("terminal input left the reviewed policy0 selection path")
+                    if count == 2:
+                        self.selection_started = True
             if self.collect_x87:
                 if self.x87_pending is not None:
                     raise ValueError("nested/unreturned selector during x87 observation")
@@ -402,6 +430,9 @@ class NativeCpuProbe(boundary.CpuProbe):
             raise ValueError("previous selector did not reach its genuine return site")
         self.seed_state = self.seed(case["seed"])
         self.selector_sites = []
+        self.root_return_site = None
+        self.selection_started = False
+        self.terminal_word_writes = []
         self.case, self.phase = case, "root"
         bits = struct.unpack("<I", float_input(case, "self_x"))[0]
         result = self.run((case["action"], case["sequence"], bits, case["facing"],
@@ -414,10 +445,15 @@ class NativeCpuProbe(boundary.CpuProbe):
         result["x87_control_word"] = uc.reg_read(r.UC_X86_REG_FPCW)
         if self.x87_pending is not None:
             raise ValueError("selector observation ended before the genuine return site")
+        if self.collect_terminals and (self.root_return_site is None or not self.selection_started):
+            raise ValueError("terminal observation did not complete policy0 through a decoded root RET")
         return result
 
 
-def audit(object_path, count, selected_cases=None, check_selection=False, *, root_name="default", collect_x87=False):
+def audit(object_path, count, selected_cases=None, check_selection=False, *, root_name="default", collect_x87=False,
+          collect_terminals=False):
+    if collect_terminals and (root_name != "reimu" or not check_selection):
+        raise ValueError("terminal observation requires Reimu policy0 selection cases")
     import unicorn
     from unicorn import unicorn as unicorn_api
     canonical = boundary.load_script("cpu_policy_canonical", "compare-function.py")
@@ -444,12 +480,15 @@ def audit(object_path, count, selected_cases=None, check_selection=False, *, roo
                                              len(obj.text), rel32, canonical.known_data_targets(), dir32)
     image = pefile.PE(str(ROOT / "resources/th105.exe")).get_memory_mapped_image()
     engines = (NativeCpuProbe(image, target, size, address=address, collect_selector_sites=check_selection,
-                              collect_x87=collect_x87),
+                              collect_x87=collect_x87, collect_terminals=collect_terminals),
                NativeCpuProbe(image, candidate, candidate_map["metadata_start"], address=address,
-                              collect_selector_sites=check_selection, collect_x87=collect_x87))
+                              collect_selector_sites=check_selection, collect_x87=collect_x87,
+                              collect_terminals=collect_terminals))
     mismatches, examples, digest, processed = 0, [], hashlib.sha256(), 0
     selection_rolls = [set(), set()]
     selector_pairs = Counter()
+    terminal_pairs, terminal_examples = Counter(), {}
+    terminal_policies = defaultdict(set)
     vectors = cases(count) if selected_cases is None else selected_cases
     for number, case in enumerate(vectors, 1):
         digest.update(json.dumps(case, sort_keys=True).encode())
@@ -481,6 +520,16 @@ def audit(object_path, count, selected_cases=None, check_selection=False, *, roo
                 examples.append({"case": case, "target": expected, "candidate": actual})
         elif check_selection:
             selector_pairs.update(pair_selector_sites(engines[0].selector_sites, engines[1].selector_sites))
+            if collect_terminals:
+                key = tuple((engine.root_return_site, tuple(engine.selector_sites[2:]),
+                             tuple((site, offset) for site, offset, _ in engine.terminal_word_writes))
+                            for engine in engines)
+                terminal_pairs[key] += 1
+                terminal_policies[key].add(int.from_bytes(bytes.fromhex(expected["actor"])[0x766:0x768],
+                                                         "little", signed=True))
+                if key not in terminal_examples:
+                    terminal_examples[key] = {"case": case, "word_values_target_candidate": [
+                        [value for _, _, value in engine.terminal_word_writes] for engine in engines]}
         if number % 1000 == 0:
             print(f"Complete CPU paths: {number}, differences {mismatches}", file=sys.stderr)
     library = Path(unicorn_api._uc._name)
@@ -534,6 +583,23 @@ def audit(object_path, count, selected_cases=None, check_selection=False, *, roo
                        "argument": argument, "observations": count}
                       for (first, second, argument), count in sorted(selector_pairs.items())],
             "scope": "decoded E8 caller sites paired by ordinal/argument only on full-output-equivalent sampled paths; no static bijection or canonical matching claim"}
+    if collect_terminals:
+        def terminal_record(shape):
+            returned, calls, writes = shape
+            return {"return": f"0x{returned:08X}",
+                    "duration_calls": [{"site": f"0x{site:08X}", "argument": argument}
+                                       for site, argument in calls],
+                    "word_publications": [{"site": f"0x{site:08X}", "offset": f"0x{offset:X}"}
+                                          for site, offset in writes]}
+
+        result["policy0_terminal_correspondence"] = {
+            "observations": sum(terminal_pairs.values()), "non_equivalent_cases_skipped": mismatches,
+            "observed_returns_target_candidate": [len({key[side][0] for key in terminal_pairs})
+                                                  for side in (0, 1)],
+            "pairs": [{"target": terminal_record(key[0]), "candidate": terminal_record(key[1]),
+                       "observations": amount, "observed_final_policies": sorted(terminal_policies[key]),
+                       "example": terminal_examples[key]} for key, amount in sorted(terminal_pairs.items())],
+            "scope": "coupled actual CALL, policy/timer publication and genuine RET sites on equivalent finite policy0 paths; writes begin at the real policy selection draw; representative values are unsigned words; no static partition or exactness claim"}
     if root_name == "aya":
         result["aya_command_branch_coverage"] = []
         for start in (0x6142C0, 0x61447C):
@@ -558,6 +624,7 @@ def main():
     inputs.add_argument("--reimu-edge-cases", action="store_true", help="45714 Reimu action/resource/sequence/geometry controls")
     inputs.add_argument("--selection-cases", action="store_true", help="16160 policy0 controls; require all target instructions and rolls0..100")
     parser.add_argument("--selection-x87", action="store_true", help="record real selector/word-publication x87 states; requires Reimu selection cases")
+    parser.add_argument("--selection-terminals", action="store_true", help="pair real duration CALL, policy/timer writes and RET sites; requires Reimu selection cases")
     args = parser.parse_args()
     if args.cases is not None and args.cases <= 0:
         parser.error("--cases must be positive")
@@ -567,6 +634,8 @@ def main():
         parser.error("--reimu-edge-cases requires --root reimu")
     if args.selection_x87 and (args.root != "reimu" or not args.selection_cases):
         parser.error("--selection-x87 requires --root reimu --selection-cases")
+    if args.selection_terminals and (args.root != "reimu" or not args.selection_cases):
+        parser.error("--selection-terminals requires --root reimu --selection-cases")
     try:
         selected = None
         if args.case_file:
@@ -585,7 +654,8 @@ def main():
             selected = list(selection_cases())
         count = len(selected) if selected is not None else (args.cases or 5000)
         result = audit(args.object, count, selected, check_selection=args.selection_cases,
-                       root_name=args.root, collect_x87=args.selection_x87)
+                       root_name=args.root, collect_x87=args.selection_x87,
+                       collect_terminals=args.selection_terminals)
         if args.selection_cases:
             result["input_source"] = "built-in policy0 selection matrix"
         if args.counter_cases:

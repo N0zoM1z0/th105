@@ -174,10 +174,23 @@ differences outside those calls. A source-visible actual selector under/Ob1
 remains27/27 and leaves the caller completely unchanged. No new exact credit
 or aggregate cold replay is claimed.
 
+Newest terminal observations on the unchanged70905d5a payload pass0/16160
+selection cases with both terminal and x87 collection. They visit all1488
+target policy0 instructions and pair66 CALL/publication/RET records, with
+50 target/49 source observed RETs. Caller correspondences have five
+non-bijective components: both wrong merges and extra copies contribute to
+the net four-selector deficit. Source4904B7/4904C3/4904CF alone serves six
+target CALL/timer/RET paths, including bounds15/20/30 and policies9/10/11/12.
+The opt-in `--selection-terminals` mode preserves genuine execution and rejects
+unreviewed root RETs. An inline two-write operation is byte-identical;
+expanded terminals and three cumulative range-gate controls remain unselected,
+even where the entry's first302 bytes agree. Selected source and exact ledgers
+are unchanged. See [terminal sharing](REIMU_CPU_TERMINAL_SHARING_2026_10_19.md).
+
 ## Next reconstruction work
 
-The active scope is the Reimu CPU root: use the complete candidate and
-original-helper execution to recover terminal CALL/RET sharing and genuine
+The active scope is the Reimu CPU root: use the complete candidate, coupled
+terminal witnesses and original-helper execution to recover CALL/publication/RET sharing and genuine
 constant/TU/register lifetimes. Keep the full result/low-word policy model;
 do not repeat a missing live value at selector entry explanation without new
 evidence. Preserve direct signed764 reads and
@@ -227,6 +240,10 @@ hypothesis is under `.analysis/reimu-cpu-shape-20261019/`; alias removed.
 selector/publication x87 observations, fresh three-root empty-tag replays and
 the rejected helper-visibility control. Its384MiB read-only Ghidra recipe is
 under `.analysis/reimu-cpu-policy0-20261019/`; no alias/project copy retained.
+`build/reimu-cpu-setters/` retains the current coupled terminal/x87 witnesses,
+closed policy0 CFG profiles and five rejected ordinary-C++ controls. Its
+read-only Ghidra recipe is under `.analysis/reimu-cpu-setters-20261019/`;
+nine DB pins remain unchanged and the project alias is removed.
 `build/reimu-ltcg/` retains the current 164-file genuine provider/cache set.
 `build/reimu-low9-x87/` retains the newest cloning, listed/plain, RTM, full-CFG
 and native-entry recipes/reports. Controls are unselected and disposable.
