@@ -19,7 +19,11 @@
                     static_cast<unsigned char>(facing_104), 1, 0, 0);
             }
             if (velocity_y_f8) {
-                set_sequence(!velocity_x_f4 ? 3 : 2);
+                if (!velocity_x_f4) {
+                    set_sequence(3);
+                    return true;
+                }
+                set_sequence(2);
                 return true;
             }
         }
@@ -161,7 +165,11 @@
             const int directed_input = static_cast<int>(static_cast<unsigned int>(facing_104)
                 * static_cast<unsigned int>(field_6b4));
             if (field_6b8 < 0) {
-                set_action(directed_input > 0 ? 212 : 211);
+                if (directed_input > 0) {
+                    set_action(212);
+                    return true;
+                }
+                set_action(211);
                 return true;
             }
             word_730 = static_cast<short>(word_730 + 1);

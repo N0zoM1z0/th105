@@ -1,6 +1,98 @@
 // Middle shot/movement source, included directly in the staged root method.
-    case 410: case 414: {
-        const bool aerial = selected_action == 414;
+    case 410: {
+        const bool aerial = false;
+        if (!aerial || sequence_13e == 3)
+            resolve_stage_surface_landing_transition();
+        if (aerial && ((sequence_13e == 0 && frame_index_140 >= 8)
+                || (sequence_13e == 2 && frame_index_140 >= 4))) {
+            acceleration_y_100 = 0.6f;
+            velocity_y_f8 = static_cast<float>(velocity_y_f8 - static_cast<double>(0.6f));
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
+                zero_velocity_acceleration();
+                y_f0 = reimu_stage_surface_height_at_x(this);
+                set_sequence(3);
+                return true;
+            }
+        }
+        if (field_6c4 == 0)
+            byte_750 = 0;
+        if (advance_frame_and_dispatch())
+            set_action(0);
+        if (frame_counter_144 == 0 && frame_timer_142 == 0 && frame_index_140 == 0
+                && sequence_13e == 1) {
+            set_action(aerial ? 9 : 0);
+            return true;
+        }
+        if (aerial && frame_counter_144 == 0 && frame_timer_142 == 0
+                && frame_index_140 == 0 && sequence_13e == 3) {
+            set_action(9);
+            return true;
+        }
+        if (sequence_13e == 0 && frame_timer_142 == 0) {
+            if (frame_index_140 == (aerial ? 4 : 6) && byte_750 != 0) {
+                emit_fighter_effect(62,
+                    static_cast<float>(static_cast<float>(facing_104 * (aerial ? 62 : 67)) + x_ec),
+                    static_cast<float>(y_f0 + (aerial ? 108.0 : 57.0)),
+                    static_cast<unsigned char>(facing_104), 1);
+                next_sequence_block();
+                break;
+            }
+            if (frame_timer_142 == 0 && frame_index_140 == (aerial ? 5 : 8)) {
+                if (aerial)
+                    add_scaled_counter(50);
+                const float delta_x = static_cast<float>(
+                    (static_cast<double>(peer_170->x_ec) - x_ec) * facing_104);
+                const short angle = static_cast<short>(static_cast<int>(atan2_degrees(
+                    static_cast<float>(static_cast<double>(peer_170->y_f0) - y_f0), delta_x)));
+                word_734 = static_cast<short>(-angle);
+                if (word_734 < -10)
+                    word_734 = -10;
+                if (word_734 > 10)
+                    word_734 = 10;
+                dispatch_character_wave_handle(2);
+                adjust_counter_482(200, 60);
+                state_180 = 1;
+                const float parameters[4] = {static_cast<float>(word_734), 10.0f, 1.0f, 0.0f};
+                if (!aerial)
+                    add_scaled_counter(50);
+                spawn_owned_object_via_manager(801,
+                    static_cast<float>(static_cast<float>(facing_104 * (aerial ? 62 : 48)) + x_ec),
+                    static_cast<float>(y_f0 + (aerial ? 108.0 : 100.0)),
+                    static_cast<unsigned char>(facing_104), 1, parameters, 4);
+            }
+        }
+        if (sequence_13e == 1 && frame_counter_144 >= 25) {
+            next_sequence_block();
+            return true;
+        }
+        if (sequence_13e == 2 && frame_timer_142 == 0
+                && frame_index_140 == (aerial ? 1 : 2)) {
+            if (aerial)
+                add_scaled_counter(50);
+            const float delta_x = static_cast<float>(
+                (static_cast<double>(peer_170->x_ec) - x_ec) * facing_104);
+            const short angle = static_cast<short>(static_cast<int>(atan2_degrees(
+                static_cast<float>(static_cast<double>(peer_170->y_f0) - y_f0), delta_x)));
+            word_734 = static_cast<short>(-angle);
+            if (word_734 < -10)
+                word_734 = -10;
+            if (word_734 > 10)
+                word_734 = 10;
+            dispatch_character_wave_handle(2);
+            adjust_counter_482(200, 60);
+            state_180 = 1;
+            const float parameters[4] = {static_cast<float>(word_734), 10.0f, 1.0f, 1.0f};
+            if (!aerial)
+                add_scaled_counter(50);
+            spawn_owned_object_via_manager(801,
+                static_cast<float>(static_cast<float>(facing_104 * (aerial ? 62 : 48)) + x_ec),
+                static_cast<float>(y_f0 + (aerial ? 108.0 : 100.0)),
+                static_cast<unsigned char>(facing_104), 1, parameters, 4);
+        }
+        return true;
+    }
+    case 414: {
+        const bool aerial = true;
         if (!aerial || sequence_13e == 3)
             resolve_stage_surface_landing_transition();
         if (aerial && ((sequence_13e == 0 && frame_index_140 >= 8)
@@ -152,7 +244,7 @@
                     static_cast<float>(y_f0 + 197.0),
                     static_cast<unsigned char>(facing_104), 1);
                 next_sequence_block();
-                return true;
+                break;
             }
             if (frame_timer_142 == 0 && frame_index_140 == 4) {
                 velocity_x_f4 = -5.0f;

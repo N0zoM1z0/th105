@@ -150,6 +150,7 @@ def audit(base, object_path, output, smoke, *, contract=None):
     command = [('/Fo'+windows(output/'host.obj') if arg.startswith('/Fo') else arg)
                for arg in normal['inputs']['command']]
     command[-1] = windows(host)
+    command[-1:-1] = ['/D'+definition for definition in getattr(contract, 'COMPILE_DEFINES', ())]
     environment = {**os.environ, 'WINEPREFIX': os.environ.get('TH105_WINEPREFIX', str(ROOT/'.tools/wine-msvc8')),
                    'WINEARCH': 'win32', 'WINEDEBUG': '-all', 'WINEPRELOADRESERVE': '00400000-00706000'}
     link = ['wine', str(tools/'bin/link.exe'), '/NOLOGO', '/SUBSYSTEM:CONSOLE', '/BASE:0x10000000',

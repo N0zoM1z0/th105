@@ -865,17 +865,49 @@ All9 primary database hashes remain unchanged. Heavy jobs stay serial with
 CPU0/nice10; genuine producer peak313MiB, native below190MiB. Cleanup removes
 520 obsolete generated/object/cache files/15.52MiB; current genuine providers,
 the useful int+20 witness and real-visibility source/small caller are retained.
-Next recover522/523 advancement/wave/request and the six indirect action deltas
-while preserving the recovered landing groups. Do not repeat unchanged
+The current branch-exit checkpoint spells73/75/88 sequence3/2 and200
+action212/211 as separate setter/return branches. Both complete indirect
+sets10/73/75/88 and73/75/88 now match.410/416 effect62 exits now break out of
+the outer action switch;410/414 have distinct source bodies, with region
+completion retained by the generator. This recovers the complete owned243/243
+and wave77/77 partitions, including separate522/523 final suffixes, while
+preserving all six landing groups. Six direct partitions remain, down from8;
+per-action direct counts still agree. Advancement121/120 differs specifically
+because source300/320 merge their two target sites. Indirect220/221 leaves
+only410(4/3) and416(5/4) aggregate action deficits.
+Current genuine ordinary4f2dada4.../canonicalc927ac89... has prefix81532,
+payload82904/frame570h;2475 fields/1281 HIGHLOWs,8-byte INT3 gap,11 switches/
+15 contracts and complete linked/ordinary equality qualify. The full private
+control payload agrees too. First+541 remains: target489D6A/source489D4C.
+New branching-setter native0/650 and shot/integration/surface0/2675 pass.
+New real effect62 returns0/60 cover410/414/416 creation, actual virtual-next,
+RET/destruction and raw snapshots. Default effect123 host0/40 and complete815
+smoke0/4/20 objects pass; no full historical matrix was repeated. Three bad
+source controls exceed the envelope and never execute, so are not native
+sensitivity counterexamples. No root source-present/exact or accepted unit
+changes. See [branch exits and trajectory sharing](REIMU_BRANCH_EXITS_AND_TRAJECTORY_SHARING_2026_10_18.md).
+Direct read-only Ghidra attests image/entry/language/compiler/all .text/root
+and the bounded instructions; its in-memory root view is discarded and all9
+primary DB pins remain unchanged. Full-root decompilation times out at45s:
+384MiB Java heap did not cap native child RSS, which peaked1.32GiB. It has
+exited; use bounded instruction/ABI views instead of repeating that attempt.
+Normal producer/effect62 native peaks are320816/307240KiB, serial CPU0/nice10.
+Cleanup removes53 obsolete products/native data/snapshots,10.53MiB. The old
+int-direction object is superseded by current complete owned/wave recovery;
+its receipts remain. Current genuine providers and tiny real-visibility source
+witness remain; the read-only Ghidra project alias is removed.
+Next recover300/320 advancement and the remaining effect/height/zero/landing/
+action-gate partitions plus410/416 virtual-next memberships. Preserve the
+recovered owned/wave and landing groups. Do not repeat unchanged
 int-view or real-body visibility controls without a material source-phase
 change. Do not infer original visibility from the getter match alone.
 Remaining returning families/runtime/resource/exception contexts stay open.
-A fresh static recheck confirms300/320 still fully merge at source47CC5F;
+A fresh static recheck confirms300/320 still fully merge at source47CC10;
 target retains distinct47CBBD/47D96A prefixes and shared47CC2B tail.
 Advancement now has the correct complete sets:215/797 at target47BFB2 versus
-source47C025, and310 separately at47D94A versus47D9F9. Their action-zero tail
-is not fully recovered: target slot8/RET has215/412/797, while source also
-admits616.522/523 advancement/wave/request incoming sets still differ. These
+source47BFC8, and310 separately at47D94A versus47D9AA. Their action-zero group
+is not fully recovered: target slot8 has215/412/797, while source also
+admits616.522/523 request/wave partitions now agree;300/320 advancement remains. These
 are static ownership questions, not missing per-input behavior.
 214's two target resource gates versus one candidate gate now have the
 explicit-facing branch control above; original source/visibility remains

@@ -72,7 +72,11 @@
                     static_cast<unsigned char>(facing_104), 1, 0, 0);
             }
             if (velocity_y_f8) {
-                set_sequence(!velocity_x_f4 ? 3 : 2);
+                if (!velocity_x_f4) {
+                    set_sequence(3);
+                    return true;
+                }
+                set_sequence(2);
                 return true;
             }
         }

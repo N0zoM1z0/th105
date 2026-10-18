@@ -145,7 +145,8 @@ def generate(output, *, void_root=False, compact=False):
             pieces.append("    "+" ".join(f"case {other}:" for other in shared)+body)
             groups.append({"region": region, "keys": shared, "target_entry": hex(owners[key])})
             pending = [other for other in pending if other not in shared]
-        pieces.append("    default:\n        update_common_action_state();\n        return true;\n    }\n")
+        pieces.append("    default:\n        update_common_action_state();\n        return true;\n    }\n"
+                      "    return true;\n")
         if region != "high":
             pieces.append("    }\n")
     pieces.append("}\n\n} // namespace th105\n")

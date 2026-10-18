@@ -9,7 +9,7 @@ TREE, HEAD, VECTOR, SLOT = RESOURCE, RESOURCE+0x100, RESOURCE+0x300, RESOURCE+0x
 
 
 def resource_graph(case, keys=tuple(range(11)), *, linked_terminal=False, frame_capacity=2):
-    if frame_capacity not in (2, 6) or not 0 <= case["frame"] < frame_capacity:
+    if frame_capacity not in (2, 6, 7) or not 0 <= case["frame"] < frame_capacity:
         raise ValueError("fixture frame index/capacity is out of range")
     frame_stride = 0x400 if frame_capacity > 2 else 0x200
     keys = tuple(sorted(keys))

@@ -47,6 +47,7 @@ FLIGHT_COHORTS = ('steering', 'flight_exit')
 COHORTS = ('integration', 'defaults', 'common_return', 'unresolved740',
            'aim_argument_lifetimes', 'projectile_receivers', 'falling_returns',
            'landing_action_returns', 'surface_inputs', 'shot_boundaries', 'hover_snapshots',
+           'branching_setters',
            *LIFETIME_COHORTS, *FLIGHT_COHORTS)
 SMOKE_COUNT = 26
 ALLOW_SWITCH_METADATA = True
@@ -136,6 +137,22 @@ def hover_snapshot_cases(base):
                'control_word': cw, 'cohort': 'hover_snapshots', 'hover_family_cohort': 'hover'}
 
 
+def branching_setter_cases(base):
+    velocities = (0, 0x80000000, 1, 0x80000001, 0x3F800000, 0xBF800000,
+                  0x7F800000, 0xFF800000, 0x7FC12345, 0x7F812345)
+    for action, vx, vy, cw in itertools.product(
+            (73, 75, 88), velocities, (1, 0x3F800000, 0x7F800000, 0x7FC12345, 0x7F812345),
+            (0x27F, 0x37F)):
+        yield {**base, 'cohort': 'branching_setters', 'action': action, 'sequence': 1,
+               'vx': vx, 'vy': vy, 'ay': 0, 'y': 100.0, 'x': 640.0, 'spawn': 1,
+               'counter': -1, 'timer': -1, 'frame': 0, 'transition': 'unexpired',
+               'control_word': cw}
+    for case in late_low_family().movement.cases():
+        if case['cohort'] == 'input' and case['field'] < 0:
+            for cw in (0x27F, 0x37F):
+                yield {**base, **case, 'cohort': 'branching_setters', 'control_word': cw}
+
+
 @lru_cache(maxsize=1)
 def default_actions():
     mapper = load('reimu_void_target_map', 'map-giant-action-switches.py')
@@ -176,6 +193,7 @@ def cases(smoke=False):
                     yield {**base, **case}
         yield from shot_boundary_cases(base)
         yield from hover_snapshot_cases(base)
+        yield from branching_setter_cases(base)
         for action, facing, cw, seed, shot, latch in itertools.product(
                 (400, 401, 404, 406), (-128, -1, 0, 1, 127), (0x27F, 0x37F),
                 (0, 5489, 0xFFFFFFFF), (0, 4), (0, 1)):
@@ -217,7 +235,19 @@ def cases(smoke=False):
 
 
 def check_target_case(case, result, sites):
-    if case['cohort'] == 'hover_snapshots':
+    if case['cohort'] == 'branching_setters':
+        if case['action'] == 200:
+            late_low_family().movement.check_target_case({**case, 'cohort': 'input'}, result, sites)
+            product = (case['facing'] * case['input']) & 0xFFFFFFFF
+            positive = 0 < product < 0x80000000
+            site, offset, wanted = (0x47AAA3 if positive else 0x47AAB2), 0x13C, 212 if positive else 211
+        else:
+            zero = case['vx'] & 0x7FFFFFFF == 0
+            site, offset, wanted = (0x479E4F if zero else 0x479786), 0x13E, 3 if zero else 2
+        if (site not in sites or result['endpoint'] != 'ret'
+                or result['actor'][offset:offset+2] != struct.pack('<h', wanted)):
+            raise ValueError('branching setter input bypassed its actual target call/return')
+    elif case['cohort'] == 'hover_snapshots':
         hover_family().check_target_case({**case, 'cohort': case['hover_family_cohort']}, result, sites)
         if 0x489E06 not in sites or result['endpoint'] != 'ret':
             raise ValueError('hover snapshot input bypassed the real height comparison/return')
@@ -446,6 +476,7 @@ def audit(path, smoke=False, cohorts=None):
                               'surface_inputs': 285,
                               'shot_boundaries': 1380,
                               'hover_snapshots': 354,
+                              'branching_setters': 650,
                               **{name: count for family in lifetime_families()
                                  for name, count in family.COHORT_COUNTS.items()
                                  if name in (*LIFETIME_COHORTS, *FLIGHT_COHORTS)}}

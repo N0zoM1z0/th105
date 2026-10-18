@@ -2,6 +2,10 @@
 
 using namespace th105_native;
 
+#ifndef TH105_EFFECT_ACTION
+#define TH105_EFFECT_ACTION 123
+#endif
+
 int main(int argc, char **argv) {
     SetErrorMode(SEM_FAILCRITICALERRORS|SEM_NOGPFAULTERRORBOX);
     require(argc==8,"arguments: target effect-data actor-data candidate cases mode output");
@@ -54,7 +58,7 @@ int main(int argc, char **argv) {
         require(node!=head && *(unsigned*)node==head && *(unsigned*)(head+4)==node &&
             *(unsigned*)(node+4)==head,"single linked effect node");
         unsigned char *effect=*(unsigned char**)(node+8);
-        require(*(unsigned*)effect==0x6C14BC && *(unsigned short*)(effect+0x13C)==123 &&
+        require(*(unsigned*)effect==0x6C14BC && *(unsigned short*)(effect+0x13C)==TH105_EFFECT_ACTION &&
             *(unsigned*)(effect+0x15C)==0x10000 && *(void**)(effect+0x164)==actor &&
             *(unsigned*)(effect+0x158)==1,"real effect identity/handle/context");
         unsigned char **slots=*(unsigned char***)(manager+0x10);

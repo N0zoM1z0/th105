@@ -34,6 +34,7 @@ bool ReimuActionStatePreludeView::run_checked_action_dispatch()
         update_common_action_state();
         return true;
     }
+    return true;
 }
 
 } // namespace th105

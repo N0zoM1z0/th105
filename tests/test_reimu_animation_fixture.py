@@ -90,6 +90,22 @@ class ReimuMovementAttackAnimationFixtureTests(ReimuRecoveryAnimationFixtureTest
     initial_frame = 4
 
 
+class ReimuShotEffectAnimationFixtureTests(ReimuAnimationFixtureTests):
+    keys = (0, 9, 410, 414, 416)
+    frame_capacity = 7
+    initial_frame = 6
+    linked_terminal = True
+
+    def test_native_mapping_contains_all_seven_frames(self):
+        image, blocks, _, _ = self.graph()
+        self.assertFalse(any(image[0x10000:]))
+        for first in blocks.values():
+            for index in range(self.sequence_capacity):
+                begin, end = self.read(image, first+index*0x20+4, '<II')
+                self.assertLessEqual(end, RESOURCE+0x10000)
+                self.assertEqual(self.read(image, begin+6*0x88+8, '<h'), (3,))
+
+
 class ReimuLateLowAnimationFixtureTests(ReimuMovementAttackAnimationFixtureTests):
     keys = (0, 1, 2, 9, 10, 204, 208, 209, 210, 211, 212, 214, 215, 220, 221, 222, 223, 224, 225, 226, 300)
     sequence_capacity = 7
