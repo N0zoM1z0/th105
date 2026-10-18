@@ -26,6 +26,16 @@ ROOT = Path(__file__).resolve().parents[1]
 HOST = ROOT/'scripts/native/reimu_effect_returns.cpp'
 ACTOR, CANDIDATE = 0x2000000, 0x4000000
 RECORD_SIZE = 0x1000+0x178+4+2496+8
+SCHEMA = 'th105-reimu-effect-returns-v1'
+RESOURCE_FILES = ('effect-data.bin', 'actor-data.bin')
+SUPPORT_PATHS = (ROOT/'scripts/reimu_animation_fixture.py',)
+SCOPE = ('single-thread Wine kernel32 backend; real canonical CRT, locks, manager, effect123 '
+         'creation/finalizer/destruction and root RET; full raw snapshots without masks; '
+         'supplied untextured resources, no game startup, other imports blocked; '
+         'no owned-object, arbitrary-world, exception-path, exact or aggregate-progress claim')
+
+def expected_status(profiles):
+    return {}
 
 
 def require(condition, message):
@@ -103,7 +113,9 @@ def compare(output, profiles):
             'snapshot_sha256': {name: hashlib.sha256(body).hexdigest() for name, body in bodies.items()}}
 
 
-def audit(base, object_path, output, smoke):
+def audit(base, object_path, output, smoke, *, contract=None):
+    contract = contract or sys.modules[__name__]
+    host = contract.HOST
     base, object_path, output = base.resolve(), object_path.resolve(), output.resolve()
     build = ROOT/'build'
     require(output.is_relative_to(build) and output != build
@@ -132,19 +144,20 @@ def audit(base, object_path, output, smoke):
                                          {key: int(value, 0) for key, value in bindings['rel32'].items()}, data, {})
     output.mkdir(parents=True, exist_ok=True)
     (output/'candidate.bin').write_bytes(candidate)
-    profiles = fixture(output, smoke)
+    profiles = contract.fixture(output, smoke)
     tools, pins = linked_pe.pinned_tools()
     normal = json.loads((base/'gpt-web-angle-atan2-natural.compile-receipt.json').read_text())
     command = [('/Fo'+windows(output/'host.obj') if arg.startswith('/Fo') else arg)
                for arg in normal['inputs']['command']]
-    command[-1] = windows(HOST)
+    command[-1] = windows(host)
     environment = {**os.environ, 'WINEPREFIX': os.environ.get('TH105_WINEPREFIX', str(ROOT/'.tools/wine-msvc8')),
                    'WINEARCH': 'win32', 'WINEDEBUG': '-all', 'WINEPRELOADRESERVE': '00400000-00706000'}
     link = ['wine', str(tools/'bin/link.exe'), '/NOLOGO', '/SUBSYSTEM:CONSOLE', '/BASE:0x10000000',
             '/FIXED', '/OUT:'+windows(output/'host.exe'), '/LIBPATH:'+windows(tools/'lib'),
             '/LIBPATH:'+windows(tools/'PlatformSDK/Lib'), windows(output/'host.obj'), 'kernel32.lib']
-    inputs = (Path(__file__), HOST, object_path, base/'receipt.json', ROOT/'resources/th105.exe',
-              ROOT/'scripts/reimu_animation_fixture.py', tools/'lib/libcmt.lib',
+    inputs = (Path(__file__), Path(contract.__file__), host, host.with_name('reimu_native_host.hpp'),
+              object_path, base/'receipt.json', ROOT/'resources/th105.exe',
+              *contract.SUPPORT_PATHS, tools/'lib/libcmt.lib',
               tools/'PlatformSDK/Lib/Kernel32.Lib')
     input_hashes = {str(path): linked_pe.sha(path) for path in inputs}
     for name, arguments in (('compile', command), ('link', link)):
@@ -154,10 +167,12 @@ def audit(base, object_path, output, smoke):
     imports = pefile.PE(str(ROOT/'resources/th105.exe')).DIRECTORY_ENTRY_IMPORT
     kernel_count = sum(len(row.imports) for row in imports if row.dll.lower() == b'kernel32.dll')
     blocked_count = sum(len(row.imports) for row in imports if row.dll.lower() != b'kernel32.dll')
+    native_inputs = ('host.exe', 'candidate.bin', 'cases.bin', *contract.RESOURCE_FILES)
+    native_hashes = {name: linked_pe.sha(output/name) for name in native_inputs}
     executions = {}
     for name in ('target', 'target-repeat', 'source'):
         arguments = ['wine', str(output/'host.exe'), windows(ROOT/'resources/th105.exe'),
-                     windows(output/'effect-data.bin'), windows(output/'actor-data.bin'),
+                     *[windows(output/name) for name in contract.RESOURCE_FILES],
                      windows(output/'candidate.bin'), windows(output/'cases.bin'),
                      'source' if name == 'source' else 'target', windows(output/(name+'.bin'))]
         with (output/(name+'.log')).open('w') as log:
@@ -166,24 +181,23 @@ def audit(base, object_path, output, smoke):
         status = json.loads((output/(name+'.log')).read_text())
         require(status == {'cases': len(profiles), 'kernel32_imports': kernel_count,
                            'blocked_imports': blocked_count, 'target_text_unchanged': True,
-                           'candidate_unchanged': True}, 'native host status differs')
+                           'candidate_unchanged': True, **contract.expected_status(profiles)}, 'native host status differs')
         executions[name] = {'command': arguments, 'status': status}
     require(all(linked_pe.sha(Path(path)) == digest for path, digest in input_hashes.items()),
             'inputs changed during native comparison')
-    result = {'schema': 'th105-reimu-effect-returns-v1', 'target_sha256': target_sha,
+    require(all(linked_pe.sha(output/name) == digest for name, digest in native_hashes.items()),
+            'native executable/data inputs changed during execution')
+    result = {'schema': contract.SCHEMA, 'target_sha256': target_sha,
               'base_canonical_payload_sha256': base_proof['canonical_replayed_sha256'],
               'selected_object_sha256': contracts['object_sha256'], 'tool_pins': pins,
               'input_hashes': input_hashes, 'compile_command': command, 'link_command': link,
-              'executions': executions, 'comparison': compare(output, profiles),
+              'executions': executions, 'comparison': contract.compare(output, profiles),
               'generated_sha256': {name: linked_pe.sha(output/name) for name in
-                  ('candidate.bin', 'actor-data.bin', 'effect-data.bin', 'cases.bin', 'host.obj', 'host.exe')},
+                  ('candidate.bin', *contract.RESOURCE_FILES, 'cases.bin', 'host.obj', 'host.exe')},
               'host_children_peak_rss_kib': resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss,
               'wine_version': subprocess.run(['wine', '--version'], capture_output=True, text=True,
                                               check=True).stdout.strip(),
-              'scope': 'single-thread Wine kernel32 backend; real canonical CRT, locks, manager, effect123 '
-                       'creation/finalizer/destruction and root RET; full raw snapshots without masks; '
-                       'supplied untextured resources, no game startup, other imports blocked; '
-                       'no owned-object, arbitrary-world, exception-path, exact or aggregate-progress claim'}
+              'scope': contract.SCOPE}
     (output/'receipt.json').write_text(json.dumps(result, indent=2)+'\n')
     return result
 

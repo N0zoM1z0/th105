@@ -621,7 +621,7 @@ read before redefinition/return, under reviewed math/ftol2 contracts. This
 does not recover original visibility or justify register constraints. No
 root exact/source credit or aggregate replay. See
 [the real-math visibility probe](REIMU_ATAN2_VISIBILITY_2026_10_18.md).
-The latest checkpoint executes effect123 requests through the real manager
+The preceding checkpoint executes effect123 requests through the real manager
 and returning root continuation, using a narrow native VC8 host under Wine.
 It maps the attested target without changing any .text byte, resolves105 real
 kernel32 imports and blocks65 others. Observed OS-data initialization plus
@@ -638,7 +638,25 @@ Callable/metadata bounds, all11 stack/request contracts and immutable-code
 checks remain mandatory. Main source/object/payload/first+17 stay unchanged;
 no root exact/source credit or aggregate replay. See
 [real effect returns](REIMU_EFFECT_RETURNS_2026_10_18.md).
-Next extend the real backend to remaining effect and owned-object requests.
+The latest checkpoint adds actual owned-manager493750 construction with all256
+preallocated/released objects, reused-slot generation/handle checks, parameter
+allocation/copy, actual ReimuObject callbacks and4939C0 owning destruction.
+Expanded native0/800 covers all12 500..513 fan actions at three levels plus
+both410/414 aiming-shot nodes, five facings, two seeds and PC53/64. Each
+process returns through2960 direct requests and960 actual811 companions,
+3920 tracked objects. Callback4A1F3C calls parented wrapper4FCA60 with811 and
+(angle,0,1), yielding sequence0 parents/sequence1 children and real child deques.
+The raw snapshot includes complete actor/active-object bytes, copied arrays,
+logical child links, MT state, pool counters and FP control. All8947204 bytes
+agree against an independent target repeat and candidate, without masking.
+A compiled third811-angle control fails80/800; all actor snapshots and the
+first two direct projectiles/companions remain equal. Shared native loader
+extraction retains the strict bounds/code checks and adds instruction-cache
+flushes; focused effect regression0/600 and its negative480/600 pass. Root
+source/object/payload/first+17 and exact ledgers remain unchanged. See
+[complete owned returns](REIMU_OWNED_RETURNS_2026_10_18.md).
+Next extend the real backend to remaining effect/projectile families, retaining
+the unknown runtime/heap/resource/exception contexts before root acceptance.
 A fresh static recheck confirms300/320 still fully merge at source47CC02;
 target retains distinct47CBBD/47D96A prefixes and shared47CC2B tail.
 215/310/797 and522/523 still have different target/source incoming sets.
