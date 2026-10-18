@@ -26,9 +26,9 @@
                         parameters[0] = static_cast<float>(static_cast<double>(static_cast<float>(random)) + i * 45.0);
                         spawn_owned_object_via_manager(822,
                             static_cast<float>(lookup_orientation_cosine_quantized_abs(parameters[0])
-                                * (frame_timer_142 * 20) * facing_104 + x_ec),
+                                * static_cast<float>(frame_timer_142 * 20) * facing_104 + x_ec),
                             static_cast<float>(lookup_orientation_sine_quantized_abs(parameters[0])
-                                * (frame_timer_142 * 20) + y_f0 + 100.0),
+                                * static_cast<float>(frame_timer_142 * 20) + y_f0 + 100.0),
                             static_cast<unsigned char>(facing_104), 1, parameters, 4);
                     }
                 }

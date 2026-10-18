@@ -60,7 +60,7 @@
         if (frame_counter_144 == 0 && frame_timer_142 == 0
                 && frame_index_140 == 0 && sequence_13e == 1) {
             velocity_x_f4 = static_cast<float>(word_730 * static_cast<double>(0.0025f));
-            velocity_y_f8 = static_cast<float>(-static_cast<int>(word_732) * static_cast<double>(0.0025f));
+            velocity_y_f8 = static_cast<float>(static_cast<float>(-static_cast<int>(word_732)) * static_cast<double>(0.0025f));
             acceleration_y_100 = 0.25f;
             word_7a0 = 0;
             word_7a2 = 85;

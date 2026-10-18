@@ -159,7 +159,7 @@
                         parameters[2] = 0.0f;
                         spawn_owned_object_via_manager(821,
                             static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
-                                * (facing_104 * 50) + x_ec),
+                                * static_cast<float>(facing_104 * 50) + x_ec),
                             static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
                                 * 50.0 + y_f0 + 100.0),
                             static_cast<unsigned char>(facing_104), 1, parameters, 3);
@@ -169,7 +169,7 @@
                     parameters[2] = 0.0f;
                     spawn_owned_object_via_manager(821,
                         static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
-                            * (facing_104 * 50) + x_ec),
+                            * static_cast<float>(facing_104 * 50) + x_ec),
                         static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
                             * 50.0 + y_f0 + 100.0),
                         static_cast<unsigned char>(facing_104), 1, parameters, 3);
