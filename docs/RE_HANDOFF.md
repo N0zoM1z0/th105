@@ -708,7 +708,7 @@ Fresh sharing recheck finds source410/414/416 effects merged3->1 and522/523
 request/wave/advance sharing, plus the old300/320 and215/310/797 differences.
 All9 primary database hashes are unchanged; no root exact/source credit. See
 [random receiver recovery](REIMU_RANDOM_RECEIVER_2026_10_18.md).
-The latest return-flow checkpoint restores strict callable/metadata fit.
+The return-flow checkpoint restores strict callable/metadata fit.
 Action9's landing return is explicit; action10 has the observed two setter
 branches after its DWORD6B8 gate. Prefix81544/payload82916/frame570h; source
 reachable20334. Genuine ordinary object SHA710094fe... and all82916 linked/
@@ -720,15 +720,30 @@ Fresh focused928 cases pass:192 falling returns,256 landing-action returns,
 required; an initially still-linked terminal fixture failed coverage and was
 corrected with the existing single_sequence option. Complete returning-host
 smokes renew40 effect,14 owned/50 objects and5 circular/99 objects with zero
-differences. Shared6/7/8/9 landing incoming sets now agree: target surface/
-motion calls479720/47972D versus source479544/479551, removing four duplicate
-source helper sites. Their placement and the0/9 advancement-tail placement
+differences. The6/7/8/9 landing helpers share target surface/motion sites
+479720/47972D versus source479544/479551, removing four duplicate source
+helper sites; this does not recover their complete incoming sets. Their
+placement and the0/9 advancement-tail placement
 still differ. This is not complete physical-owner proof; all128
 nondefault per-action callee cardinalities still agree. No exact/source credit
 changes, full historical/aggregate replay, or DLL execution. All9 primary DB
 hashes remain unchanged. See [return flow](REIMU_RETURN_FLOW_2026_10_18.md).
-Next recover target-backed physical sharing while preserving strict fit;
-remaining returning families/runtime/resource/exception contexts stay open.
+The latest full-set audit covers all128 nondefault entries,32 callees and RET
+sites, keeping complete action sets and repeated/empty memberships. All128
+per-callee cardinalities agree but eight callees have different partitions.
+In particular source height479544 combines19 actions where target has four
+groups at479720/47B28B/47B839/47D639. Earlier6/7/8/9 agreement was only a
+subset observation. The0/9 advancement tail's complete seven-action set does
+agree, as do the first-difference epilogues'118-action sets; placement differs.
+Completion-branch and consistent height-member controls give identical entire
+payloads. One final default moves the common call to48CE28 but exceeds10/8;
+fresh current-source RTM42 exceeds54/52. Both preserve all32 source call-sharing
+multisets and stay read-only. Ordinary710094fe.../canonicala6dc1ccf..., ledgers,
+flags, layouts, bindings and primary DBs remain unchanged. Reproduce with
+scripts/audit-reimu-call-sharing.py; see [complete call sharing](REIMU_COMPLETE_CALL_SHARING_2026_10_18.md).
+Next recover source/visibility and call-time state for these complete differing
+sets while preserving strict fit; do not repeat the four unchanged-input controls.
+Remaining returning families/runtime/resource/exception contexts stay open.
 A fresh static recheck confirms300/320 still fully merge at source47CBD7;
 target retains distinct47CBBD/47D96A prefixes and shared47CC2B tail.
 215/310/797 and522/523 still have different target/source incoming sets.

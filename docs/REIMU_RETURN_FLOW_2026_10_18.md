@@ -34,9 +34,12 @@ preserve the C++ behavior, field widths, ABI, compiler flags and helper bodies.
 There are no added operations or forced registers.
 
 The action9-only control produces an81544-byte prefix/82916-byte payload.
-It restores the target's shared landing tail for6/7/8/9: all four target
+It makes6/7/8/9 share their landing tail as observed: all four target
 entries reach surface-height call479720 and motion-clear call47972D; all four
-source entries reach479544 and479551 respectively. Two duplicate source
+source entries reach479544 and479551 respectively. This does not recover the
+complete incoming sets: target479720 also serves306, while source479544
+serves19 actions. See the [complete census](REIMU_COMPLETE_CALL_SHARING_2026_10_18.md).
+Two duplicate source
 surface reads and two duplicate motion clears disappear. The common tail's
 physical placement still differs: target places it near9, source near6.
 The additional action10 control keeps those sizes and reproduces the target's
