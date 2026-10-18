@@ -96,20 +96,22 @@ def expected_status(profiles):
     return {'objects': sum(profile['objects'] for profile in profiles)}
 
 
-def snapshots(body, profiles):
+def snapshots(body, profiles, *, texture_context=False):
     require(len(body) >= 4 and struct.unpack_from('<I', body)[0] == len(profiles), 'owned output count')
     cursor, rows = 4, []
     for profile in profiles:
         start = cursor
-        require(cursor+6612 <= len(body), 'truncated owned record')
+        fixed_size = 6612+(0xE0 if texture_context else 0)
+        require(cursor+fixed_size <= len(body), 'truncated owned record')
         objects, cw, generation, free = struct.unpack_from('<IIII', body, cursor)
         actor = body[cursor+16:cursor+16+0x1000]
-        cursor += 6612
+        texture = body[cursor+6612:cursor+fixed_size]
+        cursor += fixed_size
         children = []
         for _ in range(objects):
             require(cursor+12+0x388 <= len(body), 'truncated object record')
             address, allocation, words = struct.unpack_from('<III', body, cursor)
-            require(words in (3, 4) and allocation >= words*4 and cursor+12+0x388+words*4 <= len(body),
+            require(words <= 1024 and allocation == words*4 and cursor+12+0x388+words*4 <= len(body),
                     'object parameter extent')
             object_bytes = body[cursor+12:cursor+12+0x388]
             parameters = body[cursor+12+0x388:cursor+12+0x388+words*4]
@@ -117,13 +119,13 @@ def snapshots(body, profiles):
             require(cursor+4 <= len(body), 'truncated child deque count')
             child_count, = struct.unpack_from('<I', body, cursor)
             cursor += 4
-            require(child_count <= 1 and cursor+child_count*4 <= len(body), 'child deque extent')
+            require(child_count <= 256 and cursor+child_count*4 <= len(body), 'child deque extent')
             child_links = struct.unpack_from('<'+'I'*child_count, body, cursor)
             cursor += child_count*4
             children.append({'address': address, 'allocation': allocation, 'bytes': object_bytes,
                              'parameters': parameters, 'words': words, 'children': child_links})
         rows.append({'raw': body[start:cursor], 'actor': actor, 'objects': children,
-                     'cw': cw, 'generation': generation, 'free': free})
+                     'cw': cw, 'generation': generation, 'free': free, 'texture': texture})
     require(cursor == len(body), 'trailing owned output bytes')
     return rows
 
@@ -143,6 +145,17 @@ def compare(output, profiles):
         require(len(target['objects']) == profile['objects'] and target['generation'] == 256+profile['objects']
                 and target['free'] == 256-profile['objects'], 'target complete volley/pool counters')
         require(target['cw'] == (0x8001F | (0x10000 if profile['cw'] == 0x27F else 0)), 'target FP control')
+        for j, child in enumerate(target['objects']):
+            companion = profile['object_id'] == 811 and j % 2 == 1
+            expected_parent = target['objects'][j-1]['address'] if companion else 0
+            expected_children = ((target['objects'][j+1]['address'],)
+                                 if profile['object_id'] == 811 and not companion else ())
+            require(struct.unpack_from('<I', child['bytes'], 0x34C)[0] == expected_parent
+                    and child['children'] == expected_children
+                    and struct.unpack_from('<H', child['bytes'], 0x13C)[0] == profile['object_id']
+                    and struct.unpack_from('<I', child['bytes'], 0x334)[0] == ((257+j)<<16 | (255-j))
+                    and struct.unpack_from('<I', child['bytes'], 0x330)[0] == 1,
+                    'target complete owned-object identity/topology')
         if profile['node'] is None:
             parameters = fan_parameters(profile['action'], profile['level'])
             if profile['object_id'] == 811:

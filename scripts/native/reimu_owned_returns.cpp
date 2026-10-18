@@ -22,15 +22,21 @@ int main(int argc, char **argv) {
     FILE *inputs=open_file(argv[4],"rb"),*output=open_file(argv[6],"wb");
     char magic[8];unsigned count,total_objects=0;
     read_exact(inputs,magic,8);read_exact(inputs,&count,4);
-    require(!memcmp(magic,"TH105OB1",8) && count>0 && count<=2048,"input schema/count");
+    bool texture_context=!memcmp(magic,"TH105OB2",8);
+    require((texture_context || !memcmp(magic,"TH105OB1",8)) && count>0 && count<=2048,"input schema/count");
+    unsigned char *texture=texture_context?allocate(0x2200000,0x1000):0;
+    if (texture_context) *(void**)0x6FBCA0=texture;
     write_exact(output,&count,4);
     for (unsigned n=0;n<count;++n) {
         unsigned seed,cw,expected_count,expected_action,parameter_words;
         read_exact(inputs,&seed,4);read_exact(inputs,&cw,4);read_exact(inputs,&expected_count,4);
         read_exact(inputs,&expected_action,4);read_exact(inputs,&parameter_words,4);
-        require((cw==0x27f || cw==0x37f) && expected_count>0 && expected_count<=10 &&
+        require((cw==0x27f || cw==0x37f) && expected_count<=256 &&
             (parameter_words==3 || parameter_words==4),"case scope");
         memset(actor,0,0x10000);read_exact(inputs,actor,0x3000);
+        if (texture_context) {
+            memset(texture,0,0x1000);*(unsigned*)(texture+0xD8)=0x11223344;*(unsigned*)(texture+0xDC)=0x55667788;
+        }
         unsigned expected_control=(cw==0x27f?_PC_53:_PC_64)|_RC_NEAR|_MCW_EM;
         unsigned control_mask=_MCW_PC|_MCW_RC|_MCW_EM;
         _control87(expected_control,control_mask);
@@ -50,54 +56,46 @@ int main(int argc, char **argv) {
         ((void (__thiscall*)(void*))(!strcmp(argv[5],"target")?0x478FA0:0x4000000))(actor);
         unsigned objects=*(unsigned*)(manager+0x60),generation=*(unsigned*)(manager+0x38);
         unsigned free_slots=*(unsigned*)(manager+0x34),actual_control=_control87(0,0)&control_mask;
-        if (objects!=expected_count) {
-            unsigned h=*(unsigned*)(manager+0x5C),p=*(unsigned*)h;
-            for (unsigned j=0;j<objects && j<32 && p!=h;++j,p=*(unsigned*)p) {
-                unsigned char *o=*(unsigned char**)(p+8);void *params=*(void**)(o+0x340);
-                fprintf(stderr,"node%u object%p id%u seq%u parent%p related%p params%p bytes%u\n",j,o,
-                    *(unsigned short*)(o+0x13C),*(unsigned short*)(o+0x13E),*(void**)(o+0x34C),
-                    *(void**)(o+0x16C),params,params?(unsigned)HeapSize(*(HANDLE*)0x6FDC94,0,params):0);
-            }
-        }
-        if (objects!=expected_count || generation!=256+objects || free_slots!=256-objects)
-            fprintf(stderr,"case%u action%u: objects%u expected%u generation%u free%u\n",n,
-                *(unsigned short*)(actor+0x13C),objects,expected_count,generation,free_slots);
-        require(objects==expected_count && generation==256+objects && free_slots==256-objects,
-            "complete returning volley/pool counters");
+        require(objects<=256 && generation==256+objects && free_slots==256-objects,
+            "returning request pool accounting");
         require(actual_control==expected_control,"root FP control word");
         write_exact(output,&objects,4);write_exact(output,&actual_control,4);
         write_exact(output,&generation,4);write_exact(output,&free_slots,4);
         write_exact(output,actor,0x1000);
         write_exact(output,(void*)0x6FA1FC,4);write_exact(output,(void*)0x6FDEF0,2496);
+        if (texture_context) write_exact(output,texture,0xE0);
         unsigned head=*(unsigned*)(manager+0x5C),node=*(unsigned*)head,previous=head;
+        bool observed_slots[256]={false};
         for (unsigned j=0;j<objects;++j) {
             require(node!=head && *(unsigned*)(node+4)==previous,"owned list predecessor");
             unsigned char *object=*(unsigned char**)(node+8);
             unsigned token=*(unsigned*)(object+0x334),slot=token&0xffff,object_generation=token>>16;
-            require(*(unsigned*)object==0x6C40A4 && *(unsigned short*)(object+0x13C)==expected_action &&
-                slot==255-j && object_generation==257+j && slots[slot]==object &&
-                generations[slot]==object_generation && *(unsigned*)(object+0x330)==1,
-                "actual active object slot/generation/identity");
+            require(*(unsigned*)object==0x6C40A4 && slot<256 && !observed_slots[slot] &&
+                slots[slot]==object && generations[slot]==object_generation,
+                "actual tracked object slot/generation/identity");
+            observed_slots[slot]=true;
             require(*(void**)(object+0x348)==actor && *(void**)(object+0x168)==actor &&
                 *(void**)(object+0x16C)==actor && *(unsigned*)(object+0x170)==0x2002000,
                 "object owner/related/peer links");
             void *parameters=*(void**)(object+0x340);
-            require(parameters!=0,"copied parameter allocation");
-            SIZE_T allocation=HeapSize(*(HANDLE*)0x6FDC94,0,parameters);
-            require(allocation!=(SIZE_T)-1 && allocation>=parameter_words*4,"parameter heap extent");
+            SIZE_T allocation=parameters?HeapSize(*(HANDLE*)0x6FDC94,0,parameters):0;
+            require(allocation!=(SIZE_T)-1 && allocation<=4096 && (allocation&3)==0,"parameter heap extent");
+            unsigned actual_words=(unsigned)allocation/4;
             write_exact(output,&object,4);write_exact(output,&allocation,4);
-            write_exact(output,&parameter_words,4);write_exact(output,object,0x388);
-            write_exact(output,parameters,parameter_words*4);
+            write_exact(output,&actual_words,4);write_exact(output,object,0x388);
+            if (allocation) write_exact(output,parameters,(unsigned)allocation);
             const std::deque<void *> &children=*reinterpret_cast<const std::deque<void *> *>(object+0x350);
             unsigned child_count=(unsigned)children.size();
-            bool companion=expected_action==811 && (j&1)!=0;
-            require(child_count==((expected_action==811 && !companion)?1u:0u),"object child deque count");
-            void *parent=companion?*(void**)(previous+8):0;
-            require(*(void**)(object+0x34C)==parent,"object parent link");
+            require(child_count<=objects,"object child deque count");
+            void *parent=*(void**)(object+0x34C);
+            bool parent_found=parent==0;
+            for (unsigned k=0;k<256 && !parent_found;++k) parent_found=slots[k]==parent;
+            require(parent_found,"object parent ownership");
             write_exact(output,&child_count,4);
-            if (child_count) {
-                unsigned next=*(unsigned*)node;require(next!=head,"companion list node");
-                void *child=children[0];require(child==*(void**)(next+8),"parent child deque/list correspondence");
+            for (unsigned k=0;k<child_count;++k) {
+                unsigned char *child=(unsigned char*)children[k];bool child_found=false;
+                for (unsigned l=0;l<256 && !child_found;++l) child_found=slots[l]==child;
+                require(child_found && *(void**)(child+0x34C)==object,"reciprocal object child link");
                 write_exact(output,&child,4);
             }
             previous=node;node=*(unsigned*)node;
@@ -111,7 +109,9 @@ int main(int argc, char **argv) {
     require(fgetc(inputs)==EOF,"trailing input records");
     require(fclose(inputs)==0 && fclose(output)==0,"file close");
     printf("{\"cases\":%u,\"kernel32_imports\":%u,\"blocked_imports\":%u,"
-        "\"target_text_unchanged\":true,\"candidate_unchanged\":true,\"objects\":%u}\n",
+        "\"target_text_unchanged\":true,\"candidate_unchanged\":true,\"objects\":%u",
         count,kernel_imports,blocked_imports,total_objects);
+    if (texture_context) printf(",\"texture_context\":true");
+    printf("}\n");
     return 0;
 }

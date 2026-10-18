@@ -638,7 +638,7 @@ Callable/metadata bounds, all11 stack/request contracts and immutable-code
 checks remain mandatory. Main source/object/payload/first+17 stay unchanged;
 no root exact/source credit or aggregate replay. See
 [real effect returns](REIMU_EFFECT_RETURNS_2026_10_18.md).
-The latest checkpoint adds actual owned-manager493750 construction with all256
+The preceding checkpoint adds actual owned-manager493750 construction with all256
 preallocated/released objects, reused-slot generation/handle checks, parameter
 allocation/copy, actual ReimuObject callbacks and4939C0 owning destruction.
 Expanded native0/800 covers all12 500..513 fan actions at three levels plus
@@ -655,6 +655,23 @@ extraction retains the strict bounds/code checks and adds instruction-cache
 flushes; focused effect regression0/600 and its negative480/600 pass. Root
 source/object/payload/first+17 and exact ledgers remain unchanged. See
 [complete owned returns](REIMU_OWNED_RETURNS_2026_10_18.md).
+The latest checkpoint extends complete real returns to545/546's821 fans,
+550/551's822 rings/25-object grid and669's869 radial volleys. Native0/1244
+creates11280 actual objects per process; all19036468 stream bytes agree with
+the candidate and an independent target repeat, without masking. Signed
+timers, low/high signed skills, both x87 precisions, full later arrays,
+mode1 frame wrap, mode0 block advance/airborne continuation and180/181/240
+counter boundaries are checked. A valid read-only eight-entry texture deque
+and narrow writable publication prefix let actual45F560 execute both its
+duration-zero and busy/index0 paths; this does not claim full manager startup
+or rendering. Generic owned observation now records actual parameter extents
+and child lists; target-only family checks retain the811 topology/slot proof.
+A compiled regular-fan spacing9->10 control fails160/240 after one or three
+correct complete object records; actor/MT/pool/texture prefixes remain equal.
+The changed observer passes14 legacy smoke inputs/50 objects; effect tooling
+is unchanged. Main object/payload/strict+17 and exact ledgers stay unchanged.
+Serial CPU0/nice10 jobs peak at301MiB child RSS; all9 primary database hashes
+are unchanged. See [complete circular returns](REIMU_CIRCULAR_RETURNS_2026_10_18.md).
 Next extend the real backend to remaining effect/projectile families, retaining
 the unknown runtime/heap/resource/exception contexts before root acceptance.
 A fresh static recheck confirms300/320 still fully merge at source47CC02;
