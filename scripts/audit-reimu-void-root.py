@@ -33,6 +33,7 @@ LITERAL_BINDINGS = previous.LITERAL_BINDINGS
 SUPPORT_PATHS = (Path(previous.__file__), ROOT / 'scripts/probe-reimu-action-source-shape.py',
                  ROOT / 'scripts/audit-reimu-low-actions.py',
                  ROOT / 'scripts/audit-reimu-late-low-actions.py',
+                 ROOT / 'scripts/audit-reimu-mid-shot-actions.py',
                  ROOT / 'scripts/audit-reimu-movement-attack-actions.py', *previous.SUPPORT_PATHS)
 SCHEMA = 'th105-reimu-void-root-native-v1'
 SCOPE = ('void noargs thiscall candidate; actual helpers/RET and common-root defaults over the signed action domain; '
@@ -44,7 +45,8 @@ LIFETIME_COHORTS = (*RANDOM_COHORTS, 'flight_effect_lifetimes')
 FLIGHT_COHORTS = ('steering', 'flight_exit')
 COHORTS = ('integration', 'defaults', 'common_return', 'unresolved740',
            'aim_argument_lifetimes', 'projectile_receivers', 'falling_returns',
-           'landing_action_returns', 'surface_inputs', *LIFETIME_COHORTS, *FLIGHT_COHORTS)
+           'landing_action_returns', 'surface_inputs', 'shot_boundaries',
+           *LIFETIME_COHORTS, *FLIGHT_COHORTS)
 SMOKE_COUNT = 26
 ALLOW_SWITCH_METADATA = True
 SURFACE_ADDRESS, SURFACE_ELEMENTS = 0x6FA898, 0x500
@@ -93,6 +95,28 @@ def lifetime_families():
 
 
 @lru_cache(maxsize=1)
+def shot_family():
+    return load('reimu_void_shot_family', 'audit-reimu-mid-shot-actions.py')
+
+
+def shot_boundary_cases(base):
+    family = shot_family()
+    for case in family.cases():
+        if case['action'] in (410, 414, 416) and case['cohort'] != 'integration':
+            yield {**base, **case, 'cohort': 'shot_boundaries',
+                   'shot_family_cohort': case['cohort']}
+    template = {**base, **next(family.cases(True))}
+    # On the flat surface the landing helper preserves sequence3; an airborne
+    # input selects action9 before reaching the frame-start guard under test.
+    for (action, site), cw in itertools.product(((414, 0x47EDB4), (416, 0x487495)),
+                                               (0x27F, 0x37F)):
+        yield {**template, 'cohort': 'shot_boundaries', 'shot_family_cohort': 'branches',
+               'action': action, 'sequence': 3, 'frame': 0, 'counter': -1, 'timer': -1,
+               'y': 0.0, 'control_word': cw, 'required_site': site,
+               'require_sequence3_return': True}
+
+
+@lru_cache(maxsize=1)
 def default_actions():
     mapper = load('reimu_void_target_map', 'map-giant-action-switches.py')
     manifest = tomllib.loads((ROOT / 'config/giant-action-switches.toml').read_text())
@@ -130,6 +154,7 @@ def cases(smoke=False):
             for case in family.cases():
                 if case['cohort'] in (*LIFETIME_COHORTS, *FLIGHT_COHORTS):
                     yield {**base, **case}
+        yield from shot_boundary_cases(base)
         for action, facing, cw, seed, shot, latch in itertools.product(
                 (400, 401, 404, 406), (-128, -1, 0, 1, 127), (0x27F, 0x37F),
                 (0, 5489, 0xFFFFFFFF), (0, 4), (0, 1)):
@@ -171,7 +196,12 @@ def cases(smoke=False):
 
 
 def check_target_case(case, result, sites):
-    if case['cohort'] == 'surface_inputs':
+    if case['cohort'] == 'shot_boundaries':
+        shot_family().check_target_case({**case, 'cohort': case['shot_family_cohort']}, result, sites)
+        if case.get('require_sequence3_return') and (
+                result['endpoint'] != 'ret' or result['actor'][0x13C:0x13E] != struct.pack('<h', 9)):
+            raise ValueError('sequence3 shot input bypassed its real action9 return')
+    elif case['cohort'] == 'surface_inputs':
         roots = [call for call in result['calls'] if call[:2] == ('height_input_x', True)]
         if case.get('height_boost') and (not roots or result['endpoint'] != 'ret'):
             raise ValueError('target surface input bypassed its real root height query/return')
@@ -364,6 +394,7 @@ def audit(path, smoke=False, cohorts=None):
                               'falling_returns': 192,
                               'landing_action_returns': 256,
                               'surface_inputs': 285,
+                              'shot_boundaries': 1380,
                               **{name: count for family in lifetime_families()
                                  for name, count in family.COHORT_COUNTS.items()
                                  if name in (*LIFETIME_COHORTS, *FLIGHT_COHORTS)}}

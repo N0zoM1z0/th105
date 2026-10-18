@@ -19,8 +19,13 @@
         if (advance_frame_and_dispatch())
             set_action(0);
         if (frame_counter_144 == 0 && frame_timer_142 == 0 && frame_index_140 == 0
-                && (sequence_13e == 1 || (aerial && sequence_13e == 3))) {
+                && sequence_13e == 1) {
             set_action(aerial ? 9 : 0);
+            return true;
+        }
+        if (aerial && frame_counter_144 == 0 && frame_timer_142 == 0
+                && frame_index_140 == 0 && sequence_13e == 3) {
+            set_action(9);
             return true;
         }
         if (sequence_13e == 0 && frame_timer_142 == 0) {
@@ -131,7 +136,12 @@
         if (advance_frame_and_dispatch())
             set_action(0);
         if (frame_counter_144 == 0 && frame_timer_142 == 0 && frame_index_140 == 0
-                && (sequence_13e == 1 || sequence_13e == 3)) {
+                && sequence_13e == 1) {
+            set_action(9);
+            return true;
+        }
+        if (frame_counter_144 == 0 && frame_timer_142 == 0 && frame_index_140 == 0
+                && sequence_13e == 3) {
             set_action(9);
             return true;
         }

@@ -820,17 +820,36 @@ direct-count differences. Indirect target220/source222 leaves aggregate deltas
 for73/75/88/200/410/416;214/414 cardinalities agree, complete memberships remain
 unproved. No root source/exact credit or guard relaxation. See
 [spawn direction width](REIMU_SPAWN_DIRECTION_WIDTH_2026_10_18.md).
-Next recover522/523's complete shared exits and the six indirect action deltas
-within this type/source phase. Do not repeat unchanged int-view controls or
-infer original visibility from the getter match alone.
+The shared-landing checkpoint restores separate sequence1/3 frame-start
+triggers in414/416, after actual advancement/callbacks. In this byte-direction
+phase VC8 naturally retains EDI3 and recovers complete clear-motion/height/
+slotC groups416/522/523/614, plus height/slotC201/224/414/560/561 and
+clear-motion414/560/561. Current ordinary7fe0c1a8.../canonical7816b79c...,
+prefix81516/payload82888/frame570h. All2472 fields/1281 HIGHLOWs,12-byte INT3
+gap,11 switches/15 contracts and full linked/ordinary equality qualify.
+Source reachable20304->20284, four duplicate direct calls removed; first+541
+persists into source489D41 versus target489D6A. Current native0/2675 includes
+1380 focused410/414/416 cases,1010 integration and285 nonflat surfaces;
+four new sequence3 cases require real action9 call/RET at both precisions.
+An airborne fixture was caught bypassing that guard and corrected to the
+proved flat-surface input. Aerial0/948 and complete815 returns0/320/1600
+objects pass; returning-host smokes renew owned0/14/50 objects, circular0/5/99
+and effect0/40. All9 primary DB pins stay unchanged. Indirect totals220/220
+still leave the same six per-action deltas and eight direct partition
+differences; no exact/source credit. A byte-variant view control first differs
+at+388 and remains read-only/unselected. See
+[shared landing memberships](REIMU_SHARED_LANDINGS_2026_10_18.md).
+Next recover522/523 advancement/wave/request and the six indirect action deltas
+while preserving the recovered landing groups. Do not repeat unchanged
+int-view controls or infer original visibility from the getter match alone.
 Remaining returning families/runtime/resource/exception contexts stay open.
 A fresh static recheck confirms300/320 still fully merge at source47CC5F;
 target retains distinct47CBBD/47D96A prefixes and shared47CC2B tail.
 Advancement now has the correct complete sets:215/797 at target47BFB2 versus
 source47C025, and310 separately at47D94A versus47D9F9. Their action-zero tail
 is not fully recovered: target slot8/RET has215/412/797, while source also
-admits616.522/523 landing/advance incoming sets still differ. These are static
-ownership questions, not missing per-input behavior.
+admits616.522/523 advancement/wave/request incoming sets still differ. These
+are static ownership questions, not missing per-input behavior.
 214's two target resource gates versus one candidate gate now have the
 explicit-facing branch control above; original source/visibility remains
 unproved. Do not invent volatile reads or inert duplicate conditions.
