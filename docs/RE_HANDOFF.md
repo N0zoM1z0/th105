@@ -728,7 +728,7 @@ still differ. This is not complete physical-owner proof; all128
 nondefault per-action callee cardinalities still agree. No exact/source credit
 changes, full historical/aggregate replay, or DLL execution. All9 primary DB
 hashes remain unchanged. See [return flow](REIMU_RETURN_FLOW_2026_10_18.md).
-The latest full-set audit covers all128 nondefault entries,32 callees and RET
+The full-set audit covers all128 nondefault entries,32 callees and RET
 sites, keeping complete action sets and repeated/empty memberships. All128
 per-callee cardinalities agree but eight callees have different partitions.
 In particular source height479544 combines19 actions where target has four
@@ -741,8 +741,25 @@ fresh current-source RTM42 exceeds54/52. Both preserve all32 source call-sharing
 multisets and stay read-only. Ordinary710094fe.../canonicala6dc1ccf..., ledgers,
 flags, layouts, bindings and primary DBs remain unchanged. Reproduce with
 scripts/audit-reimu-call-sharing.py; see [complete call sharing](REIMU_COMPLETE_CALL_SHARING_2026_10_18.md).
-Next recover source/visibility and call-time state for these complete differing
-sets while preserving strict fit; do not repeat the four unchanged-input controls.
+The latest height-input checkpoint validates nonflat surface data for all38
+height-sharing actions.285 cases execute381 real height queries per side,
+including90 root queries; actual ECX/actor-X words, ordered calls and full
+snapshots agree. Restoring flat data then passes192 falling cases:0/477.
+A compiled compact control retaining the query but omitting795/797/798 Y
+assignment passes the old flat oracle0/76, but fails9/285 nonflat cases. The
+X-order control was already caught6/285 by the old FTOL operand trace; do not
+claim a missing-X-order check. See [surface inputs](REIMU_SURFACE_INPUTS_2026_10_18.md).
+Genuine complete StageGeometry IR leaves its getter canonical89/89, but true
+direct root calls change frame570h->568h, prefix81544->81480, payload82916->82852
+and first prologue difference+8. Facade calls keep all82916 baseline bytes.
+Independent actual-address PE metadata/CFG analysis preserves all32 source
+call-sharing multisets, including eight target differences; small wrappers
+both remain nine-byte MOV/JMP. No private DLL execution or guard relaxation.
+The ordinary candidate710094fe.../canonicala6dc1ccf..., ledgers and C++ source
+remain unchanged; the explicit actor+4 receiver-cast control is also byte-identical.
+Next recover caller sharing/lifetimes under the current570h opaque-provider
+configuration. Do not repeat the unchanged-input controls or infer original
+visibility from the getter's byte match alone.
 Remaining returning families/runtime/resource/exception contexts stay open.
 A fresh static recheck confirms300/320 still fully merge at source47CBD7;
 target retains distinct47CBBD/47D96A prefixes and shared47CC2B tail.

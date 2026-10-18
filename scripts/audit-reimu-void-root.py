@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 from collections import Counter
 from functools import lru_cache
+import hashlib
 import importlib.util
 import itertools
 import json
@@ -13,6 +14,7 @@ import struct
 import sys
 import tomllib
 from types import SimpleNamespace
+import pefile
 import unicorn
 
 import unicorn
@@ -34,15 +36,49 @@ SUPPORT_PATHS = (Path(previous.__file__), ROOT / 'scripts/probe-reimu-action-sou
                  ROOT / 'scripts/audit-reimu-movement-attack-actions.py', *previous.SUPPORT_PATHS)
 SCHEMA = 'th105-reimu-void-root-native-v1'
 SCOPE = ('void noargs thiscall candidate; actual helpers/RET and common-root defaults over the signed action domain; '
+         'optional writable surface data and actual query-X observations; '
          '740 stops before indeterminate reads and world calls stop at real entry; no returning-world, '
          'arbitrary-stack, full-relocation or canonical-exact claim')
 RANDOM_COHORTS = ('random_lifetimes', 'random124_lifetimes', 'movement_random_lifetimes')
 LIFETIME_COHORTS = (*RANDOM_COHORTS, 'flight_effect_lifetimes')
 COHORTS = ('integration', 'defaults', 'common_return', 'unresolved740',
            'aim_argument_lifetimes', 'projectile_receivers', 'falling_returns',
-           'landing_action_returns', *LIFETIME_COHORTS)
+           'landing_action_returns', 'surface_inputs', *LIFETIME_COHORTS)
 SMOKE_COUNT = 26
 ALLOW_SWITCH_METADATA = True
+SURFACE_ADDRESS, SURFACE_ELEMENTS = 0x6FA898, 0x500
+SURFACE_ACTIONS = (6, 7, 8, 9, 197, 198, 201, 202, 203, 208, 209, 210, 211,
+                   212, 220, 221, 222, 224, 225, 226, 306, 307, 308, 309, 404,
+                   406, 414, 416, 522, 523, 560, 561, 608, 614, 658, 795, 797, 798)
+SURFACE_LANDING_ACTIONS = (6, 7, 8, 9, 208, 209, 210, 211, 212, 220, 221,
+                          222, 306, 307, 308, 309, 795, 797, 798)
+
+
+def surface_terrain():
+    return struct.pack('<1280f', *(5.0 + ((index % 17) - 8) * 0.125
+                                  for index in range(SURFACE_ELEMENTS)))
+
+
+def surface_cases():
+    templates = itertools.chain(previous.cases(True),
+                                (case for case in previous.cases() if case['cohort'] == 'integration'))
+    for case in templates:
+        if case['action'] in SURFACE_ACTIONS:
+            yield {**case, 'cohort': 'surface_inputs', 'terrain_pattern': 'ripple17'}
+    base = next(previous.cases(True))
+    for action in SURFACE_LANDING_ACTIONS:
+        for cw in (0x27F, 0x37F):
+            yield {**base, 'cohort': 'surface_inputs', 'terrain_pattern': 'ripple17',
+                   'height_boost': True, 'action': action, 'sequence': 0 if action >= 795 else 1,
+                   'y': 0.0, 'vy': 0xBF800000, 'ay': 0, 'control_word': cw}
+    for action in sorted(set(SURFACE_ACTIONS) - set(SURFACE_LANDING_ACTIONS)):
+        for cw in (0x27F, 0x37F):
+            yield {**base, 'cohort': 'surface_inputs', 'terrain_pattern': 'ripple17',
+                   'height_boost': True, 'action': action,
+                   'sequence': 0 if action in (414, 416) else 1,
+                   'frame': 8 if action == 414 else 4 if action == 416 else 1,
+                   'timer': 1, 'counter': 1, 'y': 0.0, 'vy': 0xBF800000, 'ay': 0,
+                   'control_word': cw}
 
 
 @lru_cache(maxsize=1)
@@ -77,6 +113,7 @@ def cases(smoke=False):
     for case in previous.cases(True):
         yield {**case, 'cohort': 'integration'}
     if not smoke:
+        yield from surface_cases()
         air = load('reimu_void_air_inputs', 'audit-reimu-low-actions.py')
         for case in air.cases():
             if (case['cohort'] == 'air' and case['action'] == 9
@@ -133,10 +170,20 @@ def cases(smoke=False):
 
 
 def check_target_case(case, result, sites):
-    if case['cohort'] == 'falling_returns':
+    if case['cohort'] == 'surface_inputs':
+        roots = [call for call in result['calls'] if call[:2] == ('height_input_x', True)]
+        if case.get('height_boost') and (not roots or result['endpoint'] != 'ret'):
+            raise ValueError('target surface input bypassed its real root height query/return')
+        if case.get('height_boost') and case['action'] in (795, 797, 798):
+            expected = {795: 5.375, 797: 4.5, 798: 4.125}[case['action']]
+            if case['x'] != 640.0 or result['actor'][0xF0:0xF4] != struct.pack('<f', expected):
+                raise ValueError('target high landing did not consume its nonflat surface value')
+    elif case['cohort'] == 'falling_returns':
         if (result['endpoint'] != 'ret' or 0x47970A not in sites
                 or ((0x479713 in sites) == (0x47973C in sites))):
             raise ValueError('target falling input bypassed its real landing/advance return')
+        if 0x479713 in sites and result['actor'][0xF0:0xF4] != bytes(4):
+            raise ValueError('target falling input did not restore the flat terrain fixture')
     elif case['cohort'] == 'landing_action_returns':
         if (result['endpoint'] != 'ret' or 0x47975B not in sites
                 or (0x47977A in sites and case['field'] != 0)
@@ -196,6 +243,15 @@ def check_target_case(case, result, sites):
 
 def audit(path, smoke=False, cohorts=None):
     facts = packet(path, symbol=SYMBOL)
+    canonical = low.linked_pe.comparator()
+    if canonical.known_data_targets()['?g_stage_surface_heights@th105@@3PAMA'][0] != SURFACE_ADDRESS:
+        raise ValueError('attested surface global binding changed')
+    pe = pefile.PE(str(ROOT / 'resources/th105.exe'))
+    rva = SURFACE_ADDRESS - pe.OPTIONAL_HEADER.ImageBase
+    section = pe.get_section_by_rva(rva)
+    if (section is None or not section.Characteristics & 0x80000000
+            or rva + 4 * SURFACE_ELEMENTS > section.VirtualAddress + section.Misc_VirtualSize):
+        raise ValueError('surface fixture is not inside the attested writable data section')
     instances = []
 
     class VoidProbe(previous.Probe):
@@ -205,9 +261,16 @@ def audit(path, smoke=False, cohorts=None):
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
             self.return_bytes = Counter()
+            self.original_surface = bytes(self.engine.mem_read(SURFACE_ADDRESS, 4 * SURFACE_ELEMENTS))
+            if self.original_surface != bytes(4 * SURFACE_ELEMENTS):
+                raise ValueError('initial supplied surface data is not the reviewed flat fixture')
+            self.surface_root_sites = Counter()
+            self.surface_query_words = Counter()
             instances.append(self)
 
         def evaluate(self, case):
+            self.track_surface_inputs = case['cohort'] == 'surface_inputs'
+            self.surface_action = case['action']
             self.track_random_tails = case['cohort'] in RANDOM_COHORTS
             self.random_draw_count = 0
             self.track_flight_tails = case['cohort'] == 'flight_effect_lifetimes'
@@ -222,7 +285,18 @@ def audit(path, smoke=False, cohorts=None):
                     self.engine.hook_del(observer)
             if result['endpoint'] == 'ret':
                 self.return_bytes[self.engine.reg_read(low.r.UC_X86_REG_EAX) & 0xFF] += 1
+            if bytes(self.engine.mem_read(SURFACE_ADDRESS, 4 * SURFACE_ELEMENTS)) != self.expected_surface:
+                raise ValueError('surface data changed during the root update')
             return result
+
+        def prepare_extra_case(self, case):
+            super().prepare_extra_case(case)
+            pattern = case.get('terrain_pattern')
+            if ((self.track_surface_inputs and pattern != 'ripple17')
+                    or (not self.track_surface_inputs and pattern is not None)):
+                raise ValueError('unreviewed surface fixture pattern')
+            self.expected_surface = surface_terrain() if self.track_surface_inputs else self.original_surface
+            self.engine.mem_write(SURFACE_ADDRESS, self.expected_surface)
 
         def observe_aim_read(self, uc, access, address, size, value, unused):
             pc = uc.reg_read(low.r.UC_X86_REG_EIP)
@@ -233,6 +307,19 @@ def audit(path, smoke=False, cohorts=None):
 
         def step(self, uc, address, size):
             super().step(uc, address, size)
+            if address == 0x435D60 and getattr(self, 'track_surface_inputs', False):
+                receiver = uc.reg_read(low.r.UC_X86_REG_ECX)
+                if receiver != low.OWNER:
+                    raise ValueError('unreviewed actual surface-query receiver')
+                caller, = struct.unpack('<I', uc.mem_read(uc.reg_read(low.r.UC_X86_REG_ESP), 4))
+                root = low.ADDRESS <= caller < low.ADDRESS + low.SIZE
+                bits = bytes(uc.mem_read(receiver + 0xEC, 4)).hex()
+                self.calls.append(('height_input_x', root, bits))
+                self.surface_query_words[(root, bits)] += 1
+                if root:
+                    if uc.mem_read(caller - 5, 1) != b'\xe8':
+                        raise ValueError('surface query lacks its reviewed direct root call')
+                    self.surface_root_sites[(self.surface_action, caller - 5)] += 1
             if address == 0x406540 and getattr(self, 'track_aim_arguments', False):
                 sp = uc.reg_read(low.r.UC_X86_REG_ESP)
                 caller, = struct.unpack('<I', uc.mem_read(sp, 4))
@@ -270,6 +357,7 @@ def audit(path, smoke=False, cohorts=None):
                               'projectile_receivers': 480,
                               'falling_returns': 192,
                               'landing_action_returns': 256,
+                              'surface_inputs': 285,
                               **{name: count for family in lifetime_families()
                                  for name, count in family.COHORT_COUNTS.items() if name in LIFETIME_COHORTS}}
     result = low.audit(path, smoke, cohorts, contract=contract)
@@ -282,6 +370,19 @@ def audit(path, smoke=False, cohorts=None):
     result['target_return_sites'] = {
         cohort: [hex(site) for site in sites if site in target_sites]
         for cohort, sites in required.items() if cohort in result['cohorts']}
+    if 'surface_inputs' in result['cohorts']:
+        if any({action for action, _ in p.surface_root_sites} != set(SURFACE_ACTIONS) for p in instances):
+            raise ValueError('surface cohort did not query actual root height for all38 actions')
+        result['surface_fixture'] = {
+            'address': hex(SURFACE_ADDRESS), 'bytes': 4 * SURFACE_ELEMENTS,
+            'pattern_sha256': hashlib.sha256(surface_terrain()).hexdigest(),
+            'flat_sha256': hashlib.sha256(instances[0].original_surface).hexdigest(),
+            'root_sites': {('source' if p.candidate else 'target'): [
+                {'action': action, 'site': hex(site), 'count': count}
+                for (action, site), count in sorted(p.surface_root_sites.items())] for p in instances},
+            'query_x_words': {('source' if p.candidate else 'target'): [
+                {'root': root, 'bits': bits, 'count': count}
+                for (root, bits), count in sorted(p.surface_query_words.items())] for p in instances}}
     result['mode_structure'] = facts
     result['observed_return_low_bytes'] = {('source' if p.candidate else 'target'): dict(p.return_bytes)
                                           for p in instances}
