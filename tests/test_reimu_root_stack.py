@@ -29,7 +29,59 @@ def shared_request(body):
     return graph(body, {stack.SPAWN: 28})
 
 
+def circular_requests(*, early=True, count=3, object_id=869, reverse_math=False):
+    # Analyzer-only call/stack fixtures. No floating result is executed or faked.
+    body = bytearray()
+
+    def call(destination):
+        after = stack.ADDRESS + len(PROLOGUE) + len(body) + 5
+        body.extend(b'\xe8' + struct.pack('<i', destination - after))
+
+    tail = bytes((0x6a, count)) + bytes.fromhex('8d 44 24 14 50 6a 01 6a 01')
+    for _ in range(2):
+        if early:
+            body.extend(tail)
+        for destination in ((0x4063D0, 0x406360) if reverse_math else (0x406360, 0x4063D0)):
+            body.extend(bytes.fromhex('6a 00'))
+            call(destination)
+            body.extend(bytes.fromhex('83 c4 04'))
+        if not early:
+            body.extend(tail)
+        body.extend(bytes.fromhex('6a 00 6a 00 68') + struct.pack('<I', object_id))
+        call(stack.SPAWN)
+    return graph(bytes(body), {stack.SPAWN: 28, 0x406360: 0, 0x4063D0: 0})
+
+
 class ReimuRootStackTests(unittest.TestCase):
+    def test_circular_tail_arguments_must_dominate_sine(self):
+        for early in (True, False):
+            result = circular_requests(early=early)
+            observations = result.request_preparations(
+                stack.ADDRESS, result.payloads(), object_id=869, parameter_count=3)
+            self.assertEqual(len(observations), 2)
+            for row in observations:
+                self.assertEqual(row['pushes_dominate_sine'],
+                                 dict.fromkeys(('count', 'parameters', 'arg5', 'direction'), early))
+
+    def test_circular_request_checks_actual_count_and_object(self):
+        for options in ({'count': 4}, {'object_id': 868}):
+            result = circular_requests(**options)
+            with self.assertRaisesRegex(ValueError, 'circular-request (count|object id)'):
+                result.request_preparations(stack.ADDRESS, result.payloads(),
+                                            object_id=869, parameter_count=3)
+
+    def test_circular_request_rejects_reversed_lookup_order(self):
+        result = circular_requests(reverse_math=True)
+        with self.assertRaisesRegex(ValueError, 'lookup-call ordering'):
+            result.request_preparations(stack.ADDRESS, result.payloads(),
+                                        object_id=869, parameter_count=3)
+
+    def test_circular_request_contract_cannot_admit_another_family(self):
+        result = circular_requests()
+        with self.assertRaisesRegex(ValueError, 'unreviewed circular-request contract'):
+            result.request_preparations(stack.ADDRESS, result.payloads(),
+                                        object_id=869, parameter_count=4)
+
     def test_branch_merge_rejects_disagreeing_esp(self):
         # One arm pushes EAX before both arms reach NOP.
         with self.assertRaisesRegex(ValueError, 'inconsistent ESP'):

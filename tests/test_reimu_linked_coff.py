@@ -66,6 +66,29 @@ class LinkedCorrespondenceTests(unittest.TestCase):
         self.assertEqual(struct.unpack_from('<I', linked, 32)[0], audit.ADDRESS + 6)
         self.assertEqual(struct.unpack_from('<I', linked, 8)[0], 0x6D0000)
 
+    def test_only_a_complete_next_owner_int3_gap_is_separate(self):
+        body = b'\x90' * 36
+        self.assertEqual(audit.split_linker_alignment(body + b'\xcc' * 12, 36,
+                                                      self.start, {8, 32}),
+                         (body, b'\xcc' * 12))
+        self.assertEqual(audit.split_linker_alignment(body, 36, self.start, {8}),
+                         (body, b''))
+
+    def test_alignment_rejects_code_wrong_extent_and_relocations(self):
+        body = b'\x90' * 36
+        for tail, relocations in ((b'\xcc' * 11, {8}), (b'\xcc' * 28, {8}),
+                                  (b'\xcc' * 11 + b'\x90', {8}),
+                                  (b'\xcc' * 12, {33}), (b'\xcc' * 12, {36})):
+            with self.subTest(tail=tail, relocations=relocations):
+                with self.assertRaises(ValueError):
+                    audit.split_linker_alignment(body + tail, 36, self.start, relocations)
+        with self.assertRaisesRegex(ValueError, 'truncates'):
+            audit.split_linker_alignment(body[:-1], 36, self.start, set())
+
+    def test_field_replay_still_rejects_an_unqualified_longer_payload(self):
+        with self.assertRaisesRegex(ValueError, 'envelopes differ'):
+            self.replay(payload=self.payload + b'\xcc' * 16)
+
     def test_wrong_call_provider_is_rejected(self):
         struct.pack_into('<I', self.payload, 1, self.destination + 16 - (self.start + 5))
         with self.assertRaisesRegex(ValueError, 'named provider'):

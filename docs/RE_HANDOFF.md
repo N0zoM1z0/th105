@@ -503,11 +503,26 @@ The conservative private cache hashes every source header, so this fragment
 edit recompiled45 objects; the three receipt command groups are not a compile
 count. Removed73 superseded products/7161518 bytes; current witnesses and
 primary databases retained. See [entry argument lifetimes](REIMU_PRELUDE_LIFETIMES_2026_10_18.md).
-Next prioritize positive field/type/lifetime, source partition and genuine
-helper visibility evidence for the300/320 split and remaining size/ownership
-differences, exact callable ownership,
-returning world contexts and VC8/LTCG/TU evidence
-before canonical root acceptance.
+Current circular-request checkpoint emits distinct expanded arms in observed
+target-owner order and recovers669's four request-tail arguments live across
+both lookups. The old locals fail both circular-site preparation checks;
+new source passes, preserving all nine buffer partitions/11 switches. Code
+prefix81400/text82772/frame570h now fit the reviewed windows;20260 decoded,
+20253 reachable instructions. Expanded native0/1528 integration/default/740
+guarded inputs and0/1086 for669; no compact substitute or full historical
+matrix. Genuine linked/ordinary82772-byte replay agrees fully, SHA
+ab0a6c4ad164579c98f44af8031e84e5247dbf186cf20e6ae2554fdd1af53bca;
+2464 fields/1281 HIGHLOWs. The separate12-byte next-owner INT3 alignment gap
+is strictly qualified; payload comparison remains exact. First478FB1 persists,
+now an immediate WORD7A0 store before delayed PUSH EDI. No exact/source credit.
+Checked unchanged rebuild reuses45 objects without compilation. Superseded
+compact/trial products cleaned;9 primary DB files unchanged. See
+[circular lifetimes and owner order](REIMU_CIRCULAR_REQUEST_LIFETIMES_2026_10_18.md).
+Next prioritize target/source physical sharing:300/320, source310 joining
+215/797, source522/523's shared advance and209/221's unshared advance explain
+the net two-site advance deficit. These are static ownership observations,
+not missing per-input behavior. Exact callable ownership, original visibility/
+profile and returning-world contexts remain open before root acceptance.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.
 Obsolete unpinned disassembly exports (~18MB) and rejected/superseded object
 files were removed; current bounded evidence and primary databases remain.

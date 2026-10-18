@@ -56,6 +56,24 @@ def read_immutable(pe, address, width):
     return data
 
 
+def split_linker_alignment(payload, ordinary_size, start, highlow):
+    """Separate only a complete INT3 gap to the next16-byte MAP owner.
+
+    The ordinary section length and every payload byte remain significant.
+    No field, pointer or relocation may use this independently checked gap.
+    """
+    require(0 < ordinary_size <= len(payload), 'linked envelope truncates the ordinary section')
+    require(all(0 <= offset and offset + 4 <= ordinary_size for offset in highlow),
+            'PE relocation crosses the payload/alignment boundary')
+    padding = payload[ordinary_size:]
+    if padding:
+        wanted = (-(start + ordinary_size)) & 15
+        require(start & 15 == 0 and 0 < len(padding) == wanted < 16,
+                'linked tail is not the exact next-owner alignment gap')
+        require(padding == b'\xcc' * wanted, 'linked alignment gap contains non-INT3 bytes')
+    return payload[:ordinary_size], padding
+
+
 def replay_fields(reference, payload, rows, highlow, start, metadata,
                   symbols, aliases, read_literal, target_bytes):
     """Require identical instruction/data layout, then independently resolve fields."""
@@ -201,6 +219,7 @@ def audit(receipt_path):
     require(any(name == SYMBOL for name, _ in functions.get(start, [])), 'root export/MAP disagree')
     end = min(address for address in functions if address > start)
     payload = pe.get_data(exports[0].address, end - start)
+    require(len(payload) == end - start, 'truncated linked MAP envelope')
     highlow = set()
     for block in pe.DIRECTORY_ENTRY_BASERELOC:
         for entry in block.entries:
@@ -215,6 +234,7 @@ def audit(receipt_path):
             if name in expected_owners:
                 require(owner.lower() == expected_owners[name].lower(),
                         'MAP provider ownership differs from the genuine input')
+    payload, alignment = split_linker_alignment(payload, len(obj.text), start, highlow)
     linked, ordinary, counts, callees = replay_fields(
         obj.text, payload, qualification['rows'], highlow, start,
         qualification['source_metadata_start'], symbols, receipt['same_target_symbol_aliases'],
@@ -228,7 +248,10 @@ def audit(receipt_path):
     return {'schema': 'th105-reimu-linked-coff-replay-v1', 'target_sha256': target_sha,
             'producer_receipt_sha256': linked_pe.sha(receipt_path), 'image_sha256': receipt['image_sha256'],
             'ordinary_object_sha256': qualification['object_sha256'], 'linked_start': hex(start),
-            'envelope_end': hex(end), 'payload_bytes': len(payload),
+            'envelope_end': hex(end), 'payload_end': hex(start + len(payload)),
+            'payload_bytes': len(payload), 'envelope_bytes': end - start,
+            'linker_alignment_bytes': len(alignment),
+            'linker_alignment_sha256': hashlib.sha256(alignment).hexdigest(),
             'code_prefix': qualification['source_metadata_start'], 'pe_highlow_fields': len(highlow),
             'replayed_fields': counts, 'direct_callee_symbols': callees,
             'canonical_replayed_sha256': digest, 'ordinary_replayed_sha256': digest,

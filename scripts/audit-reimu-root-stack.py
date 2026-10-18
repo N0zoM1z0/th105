@@ -353,8 +353,10 @@ class StackGraph:
                              'values': sorted(values), 'definitions': sorted(definitions)})
         return requests
 
-    def request_preparations(self, entry, requests):
-        """Observe the two550/551 call sites, including pre-sine argument pushes."""
+    def request_preparations(self, entry, requests, *, object_id=822, parameter_count=4):
+        """Observe reviewed circular requests, including pre-sine argument pushes."""
+        require((object_id, parameter_count) in {(822, 4), (869, 3)},
+                'unreviewed circular-request contract')
         context = self.reachable_from(entry)
 
         def previous_call(site):
@@ -387,7 +389,7 @@ class StackGraph:
                 pending.extend(self.successors[address])
             return True
 
-        require(len(requests) == 2, '550/551 request-site count changed')
+        require(len(requests) == 2, 'circular-request site count changed')
         result = []
         for request in requests:
             site = request['call']
@@ -395,18 +397,18 @@ class StackGraph:
             sine = previous_call(cosine.address)
             require(cosine.operands[0].type == x.X86_OP_IMM and cosine.operands[0].imm == 0x4063D0
                     and sine.operands[0].type == x.X86_OP_IMM and sine.operands[0].imm == 0x406360,
-                    '550/551 lookup-call ordering changed')
+                    'circular-request lookup-call ordering changed')
             before_sine = {}
             for name, offset in (('count', 24), ('parameters', 20), ('arg5', 16), ('direction', 12)):
                 pushes = self.argument_pushes(site, self.depths[site]+offset, context)
                 if name in ('count', 'arg5'):
                     require(all(row.operands[0].type == x.X86_OP_IMM
-                                and row.operands[0].imm == (4 if name == 'count' else 1) for row in pushes),
-                            '550/551 request count or arg5 changed')
+                                and row.operands[0].imm == (parameter_count if name == 'count' else 1) for row in pushes),
+                            'circular-request count or arg5 changed')
                 before_sine[name] = precedes_sine(pushes, sine)
             ids = self.argument_pushes(site, self.depths[site], context)
-            require(all(row.operands[0].type == x.X86_OP_IMM and row.operands[0].imm == 822 for row in ids),
-                    '550/551 object id changed')
+            require(all(row.operands[0].type == x.X86_OP_IMM and row.operands[0].imm == object_id for row in ids),
+                    'circular-request object id changed')
             result.append({'call': site, 'sine': sine.address, 'cosine': cosine.address,
                            'pushes_dominate_sine': before_sine})
         return result
@@ -481,9 +483,12 @@ def audit(path, actions=ACTIONS, *, diagnostic_oversize=False):
                     identities.append(value)
                 partition.append(identities.index(value))
             groups[name] = {'requests': requests, 'partition': partition}
-            if action in (550, 551):
-                groups[name]['preparations'] = graphs[name].request_preparations(ADDRESS+start, requests)
-        same_preparations = (action not in (550, 551) or
+            if action in (550, 551, 669):
+                require(action != 669 or len(requests) == 4, '669 request-site count changed')
+                options = {'object_id': 869, 'parameter_count': 3} if action == 669 else {}
+                circular = requests[:2] if action == 669 else requests
+                groups[name]['preparations'] = graphs[name].request_preparations(ADDRESS+start, circular, **options)
+        same_preparations = (action not in (550, 551, 669) or
                              [r['pushes_dominate_sine'] for r in groups['target']['preparations']] ==
                              [r['pushes_dominate_sine'] for r in groups['source']['preparations']])
         contracts.append({'action': action, **groups, 'same_preparations': same_preparations,

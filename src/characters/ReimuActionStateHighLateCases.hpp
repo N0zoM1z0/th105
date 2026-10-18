@@ -132,22 +132,22 @@
                         parameters[0] = static_cast<float>(i * 120.0 + field_73c);
                         parameters[1] = 30.0f;
                         parameters[2] = 3.0f;
-                        const float y = static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
-                            * 80.0 + (static_cast<double>(y_f0) + 100.0));
-                        const float x = static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
-                            * 80.0 * facing_104 + x_ec);
-                        spawn_owned_object_via_manager(869, x, y,
+                        spawn_owned_object_via_manager(869,
+                            static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
+                                * 80.0 * facing_104 + x_ec),
+                            static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
+                                * 80.0 + (static_cast<double>(y_f0) + 100.0)),
                             static_cast<unsigned char>(facing_104), 1, parameters, 3);
                     }
                     for (float i = 0.0f; i < 4.0f; i += 1.0f) {
                         parameters[0] = static_cast<float>(i * 90.0 - field_73c);
                         parameters[1] = 30.0f;
                         parameters[2] = 3.0f;
-                        const float y = static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
-                            * 80.0 + (static_cast<double>(y_f0) + 100.0));
-                        const float x = static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
-                            * 80.0 * facing_104 + x_ec);
-                        spawn_owned_object_via_manager(869, x, y,
+                        spawn_owned_object_via_manager(869,
+                            static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
+                                * 80.0 * facing_104 + x_ec),
+                            static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
+                                * 80.0 + (static_cast<double>(y_f0) + 100.0)),
                             static_cast<unsigned char>(facing_104), 1, parameters, 3);
                     }
                     field_73c = static_cast<float>(field_73c + 4.0);

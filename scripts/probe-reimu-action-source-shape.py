@@ -131,7 +131,9 @@ def generate(output, *, void_root=False, compact=False):
         if region != "high":
             pieces.append(f"    if (selected_action <= {300 if region == 'low' else 560}) {{\n")
         pieces.append("    switch (selected_action) {\n")
-        pending = [key for key in bodies if predicate(key)]
+        # Shared retained-source groups are not original physical arm order.
+        # Emit the reviewed distinct target owners in their observed order.
+        pending = sorted((key for key in bodies if predicate(key)), key=owners.__getitem__)
         while pending:
             key = pending[0]
             shared = [other for other in pending if owners[other] == owners[key]]
@@ -162,6 +164,7 @@ def generate(output, *, void_root=False, compact=False):
         "source_sha256": {str(path.relative_to(ROOT)): sha(path) for path in sorted(inputs)},
         "generated_source_sha256": sha(generated), "groups": [] if compact else groups,
         "source_form": "compact" if compact else "expanded-regions",
+        "case_order": "retained-source" if compact else "canonical-owner-address",
         "nondefault_actions": sorted(bodies),
         "generated_header_sha256": sha(output / HEADER),
         "symbol": VOID_SYMBOL if void_root else SYMBOL,
