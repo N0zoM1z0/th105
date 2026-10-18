@@ -111,9 +111,23 @@ focused note. Target FSTP at 47973A and source 4792D2 consume a live FLDZ
 zero; setup/advance entries 47973C/47973E and 4792D4/4792D6 are empty.
 This does not establish the cause of the remaining sharing differences.
 
+## Current YoumuObject entry initializer
+
+Active root543670 remains nonexact over5159 bytes, but independently proved
+YoumuObject vtable6C50BC/slot+0C45C390 supports the local short sequence
+declaration. It restores16 additional owner instruction/edge diagnostics,
+6/30->22/30. Action902 now computes decay before phase; its complete
+671-byte/157-instruction owner diagnostic agrees, for23/30 overall.
+No partial or exact credit is added. Source SHA09dd36f0, canonical5488-byte
+payload4b9bf0a4, prefix5156 and strict+80 remain. Conversion sites20/21 and
+RETs22/23 still expose the different820/850 tail.823 registers and851 value
+load timing remain unresolved. The ordinary851 pointer control still merges
+distinct851/854 destinations and is rejected. See
+[Youmu sequence-word evidence](YOUMU_ENTRY_SEQUENCE_WORD_2026_10_19.md).
+
 ## Current AyaObject entry initializer
 
-Active root61F0B0 is now two bytes from its4531-byte target body. The local
+Aya root61F0B0 remains two bytes from its4531-byte target body. The local
 vslot+0C sequence parameter is short: it recovers all19 virtual preparations,
 including eight CALL EAX sites omitted by the earlier11-site cohort. Raw
 callee45C390 consumes the low word of a four-byte stack slot. A natural short
@@ -295,12 +309,13 @@ read-only Ghidra attestation; nine DB hashes agree and its alias is removed.
 
 ## Next reconstruction work
 
-The next bounded scope is YoumuObject's5159-byte initializer at543670.
-First establish its own actual slot+0C target/ABI, then test the local
-sequence declaration against the coupled Aya word-ABI witness. Preserve its
-29 distinct action destinations and two validated switches; read
-YOUMU_OBJECT_ENTRY_LOAD_TIMING_2026_10_02.md before changing851 or820/850
-lifetimes. Do not transfer a prototype solely from an equal slot number.
+The active bounded scope is YoumuObject's5159-byte initializer at543670.
+Preserve the verified short interface, target902 order and29 distinct action
+destinations/two switches. Recover real820/850 pointer/vptr lifetime and
+conversion/return membership;851 must load its value after the state write
+without merging into854. Read YOUMU_ENTRY_SEQUENCE_WORD_2026_10_19.md and
+its earlier evidence before repeating controls. Do not transfer a prototype
+to another root solely from an equal slot number.
 
 Aya61F0B0 remains open at two bytes. Preserve its19 recovered preparations
 and complete metadata. Read AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md before
@@ -394,6 +409,11 @@ the project alias is removed. Generated bulk input arrays are removed.
 CRT links. Its bounded read-only Ghidra recipe is under
 `.analysis/aya-entry-context-20261019/`; all nine DB pins agree and the alias
 is removed. Linked images are diagnostic and unexecuted.
+`build/youmu-entry-word/` retains fresh target/vtable/selected source packets,
+the23/30 owner diagnostic, real short-callee witness and rejected851 merge.
+Its bounded read-only Ghidra recipe is under
+`.analysis/youmu-entry-word-20261019/`; nine DB hashes agree and its alias is
+removed. No new native or linked-image execution is claimed.
 `build/reimu-ltcg/` retains the current 164-file genuine provider/cache set.
 `build/reimu-low9-x87/` retains the newest cloning, listed/plain, RTM, full-CFG
 and native-entry recipes/reports. Controls are unselected and disposable.

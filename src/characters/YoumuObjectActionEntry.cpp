@@ -28,7 +28,9 @@ public:
     virtual void scalar_delete_slot_00();
     virtual int set_action_sequence_and_finalize(short action, int sequence);
     virtual int set_action_and_finalize(short action);
-    virtual int select_sequence(int sequence);
+    // Current primary slot +0x0C owns45C390: low16-bit value, four-byte slot.
+    // See docs/YOUMU_ENTRY_SEQUENCE_WORD_2026_10_19.md.
+    virtual int select_sequence(short sequence);
     virtual int reset_sequence();
     virtual unsigned char next_sequence_block();
     virtual int previous_sequence_block();
@@ -545,8 +547,8 @@ action848_select:
                 heading_340[0], heading_340[1]);
             unsigned int const decay_roll =
                 static_cast<unsigned int>(selector_random_roll(6));
-            phase_index_184 = 1;
             state_370 = 3.0f - static_cast<float>(decay_roll);
+            phase_index_184 = 1;
         }
         if (sequence_index_13e == 2) {
             sprite_004.reset_zero_128 = heading_340[0];
