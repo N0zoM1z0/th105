@@ -37,8 +37,8 @@
                     add_scaled_counter(50);
                 const float delta_x = static_cast<float>(
                     (static_cast<double>(peer_170->x_ec) - x_ec) * facing_104);
-                const float delta_y = static_cast<float>(static_cast<double>(peer_170->y_f0) - y_f0);
-                const short angle = static_cast<short>(static_cast<int>(atan2_degrees(delta_y, delta_x)));
+                const short angle = static_cast<short>(static_cast<int>(atan2_degrees(
+                    static_cast<float>(static_cast<double>(peer_170->y_f0) - y_f0), delta_x)));
                 word_734 = static_cast<short>(-angle);
                 if (word_734 < -10)
                     word_734 = -10;
@@ -66,8 +66,8 @@
                 add_scaled_counter(50);
             const float delta_x = static_cast<float>(
                 (static_cast<double>(peer_170->x_ec) - x_ec) * facing_104);
-            const float delta_y = static_cast<float>(static_cast<double>(peer_170->y_f0) - y_f0);
-            const short angle = static_cast<short>(static_cast<int>(atan2_degrees(delta_y, delta_x)));
+            const short angle = static_cast<short>(static_cast<int>(atan2_degrees(
+                static_cast<float>(static_cast<double>(peer_170->y_f0) - y_f0), delta_x)));
             word_734 = static_cast<short>(-angle);
             if (word_734 < -10)
                 word_734 = -10;

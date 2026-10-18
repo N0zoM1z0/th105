@@ -13,6 +13,7 @@ import struct
 import sys
 import tomllib
 from types import SimpleNamespace
+import unicorn
 
 import unicorn
 
@@ -36,7 +37,8 @@ SCOPE = ('void noargs thiscall candidate; actual helpers/RET and common-root def
          'arbitrary-stack, full-relocation or canonical-exact claim')
 RANDOM_COHORTS = ('random_lifetimes', 'random124_lifetimes', 'movement_random_lifetimes')
 LIFETIME_COHORTS = (*RANDOM_COHORTS, 'flight_effect_lifetimes')
-COHORTS = ('integration', 'defaults', 'common_return', 'unresolved740', *LIFETIME_COHORTS)
+COHORTS = ('integration', 'defaults', 'common_return', 'unresolved740',
+           'aim_argument_lifetimes', *LIFETIME_COHORTS)
 SMOKE_COUNT = 26
 ALLOW_SWITCH_METADATA = True
 
@@ -80,6 +82,23 @@ def cases(smoke=False):
             for case in family.cases():
                 if case['cohort'] in LIFETIME_COHORTS:
                     yield {**base, **case}
+        aim_profiles = ((400, 2, 0, 0x47DF03), (400, 6, 0, 0x47E039),
+                        (401, 2, 0, 0x47E44A), (401, 6, 0, 0x47E577),
+                        (404, 2, 0, 0x47EBCC), (404, 6, 0, 0x47ED11),
+                        (406, 2, 0, 0x47F1CE), (406, 6, 0, 0x47F307),
+                        (410, 0, 8, 0x47F60B), (410, 2, 2, 0x47F788),
+                        (414, 0, 5, 0x47FBA3), (414, 2, 1, 0x47FD29))
+        geometry = ((640.0, 0x44480000, 150.0), (640.0, 0x44200000, -100.0),
+                    (33554432.0, 0x4C000001, 250.0), (640.0, 0x43A00000, 1.0),
+                    (0.0, 0x3F000001, 251.0))
+        for profile, facing, cw, (position, peer, peer_y) in itertools.product(
+                aim_profiles, (-128, -1, 0, 1, 127), (0x27F, 0x37F), geometry):
+            action, sequence, frame, site = profile
+            yield {**base, 'cohort': 'aim_argument_lifetimes', 'action': action,
+                   'sequence': sequence, 'frame': frame, 'aim_site': site,
+                   'counter': -1, 'timer': -1, 'counter730': 0,
+                   'x': position, 'y': 0.0 if action in (400, 401, 410) else 100.0,
+                   'peer': peer, 'peer_y': peer_y, 'facing': facing, 'control_word': cw}
     choices = (-32768, 799, 32767) if smoke else default_actions()
     gates = ((0, 0),) if smoke else ((0, 0), (1, 0), (0, 1))
     for action, (entry, peer), cw in itertools.product(choices, gates, (0x27F, 0x37F)):
@@ -119,6 +138,17 @@ def check_target_case(case, result, sites):
                 or observations[1][1] != 'cosine' or len(observations[1][2]) != 24
                 or observations[1][2][-16:] != tail):
             raise ValueError('target flight effect lacks its pending direction/trailing arguments')
+    elif case['cohort'] == 'aim_argument_lifetimes':
+        pending = [call[1] for call in result['calls'] if call[0] == 'pending_aim_x']
+        arguments = [call[1] for call in result['calls'] if call[0] == 'aim_arguments']
+        if (case['aim_site'] not in sites or len(pending) != 1 or len(arguments) != 1
+                or len(arguments[0]) != 16 or pending[0] != arguments[0][8:]):
+            raise ValueError('target aim lacks its actual X argument before the peer Y read')
+        if case['action'] in (410, 414):
+            if result['spawn_request'][:2] != (0x465190, 801):
+                raise ValueError('shot aim fixture bypassed its actual object801 request')
+        elif result['endpoint'] != 'ret':
+            raise ValueError('projectile aim fixture bypassed its real return')
     else:
         previous.check_target_case(case, result, sites)
     if case['cohort'] == 'common_return' and 0x48CE1F not in sites:
@@ -143,13 +173,32 @@ def audit(path, smoke=False, cohorts=None):
             self.random_draw_count = 0
             self.track_flight_tails = case['cohort'] == 'flight_effect_lifetimes'
             self.flight_lookup_counts = Counter()
-            result = super().evaluate(case)
+            self.track_aim_arguments = case['cohort'] == 'aim_argument_lifetimes'
+            observer = (self.engine.hook_add(unicorn.UC_HOOK_MEM_READ, self.observe_aim_read)
+                        if self.track_aim_arguments else None)
+            try:
+                result = super().evaluate(case)
+            finally:
+                if observer is not None:
+                    self.engine.hook_del(observer)
             if result['endpoint'] == 'ret':
                 self.return_bytes[self.engine.reg_read(low.r.UC_X86_REG_EAX) & 0xFF] += 1
             return result
 
+        def observe_aim_read(self, uc, access, address, size, value, unused):
+            pc = uc.reg_read(low.r.UC_X86_REG_EIP)
+            if (address == low.OWNER + 0x20F0 and size == 4
+                    and low.ADDRESS <= pc < low.ADDRESS + low.SIZE):
+                sp = uc.reg_read(low.r.UC_X86_REG_ESP)
+                self.calls.append(('pending_aim_x', bytes(uc.mem_read(sp + 4, 4)).hex()))
+
         def step(self, uc, address, size):
             super().step(uc, address, size)
+            if address == 0x406540 and getattr(self, 'track_aim_arguments', False):
+                sp = uc.reg_read(low.r.UC_X86_REG_ESP)
+                caller, = struct.unpack('<I', uc.mem_read(sp, 4))
+                if low.ADDRESS <= caller < low.ADDRESS + low.SIZE:
+                    self.calls.append(('aim_arguments', bytes(uc.mem_read(sp + 4, 8)).hex()))
             if address == 0x4066B0 and getattr(self, 'track_random_tails', False):
                 sp = uc.reg_read(low.r.UC_X86_REG_ESP)
                 caller, = struct.unpack('<I', uc.mem_read(sp, 4))
@@ -178,6 +227,7 @@ def audit(path, smoke=False, cohorts=None):
     contract.Probe = previous.boundary_probe(facts, base=VoidProbe)
     contract.COHORT_COUNTS = {'integration': 1010, 'defaults': len(default_actions())*6,
                               'common_return': 16, 'unresolved740': 8,
+                              'aim_argument_lifetimes': 600,
                               **{name: count for family in lifetime_families()
                                  for name, count in family.COHORT_COUNTS.items() if name in LIFETIME_COHORTS}}
     result = low.audit(path, smoke, cohorts, contract=contract)

@@ -569,7 +569,7 @@ entry from any of the11 switch tables. Same-target Yuyuko/Komachi repeat
 the WORD736 comparison too; Udonge has one observed comparison. This supports
 further source/context investigation, not an invented inline/volatile helper.
 See [214 effect lifetimes and gate evidence](REIMU_FLIGHT_EFFECT_LIFETIMES_2026_10_18.md).
-Current joint checkpoint recovers200/201/202/203's effect124 lifetimes and
+The preceding joint checkpoint recovers200/201/202/203's effect124 lifetimes and
 545/546's four circular object821 preparations. All rounded geometry remains
 inside the corresponding calls, with existing snapshots/arrays retained.
 The preceding root fails160/160 new MT-entry observations; the movement-only
@@ -589,6 +589,24 @@ Source has119 advance sites versus target121, but its sharing changed:
 47D983. Target instead shares215/797 and separates310 and522/523. Six callee
 cardinalities still differ; counts alone do not establish correct ownership.
 See [movement and fan lifetimes](REIMU_MOVEMENT_AND_FAN_LIFETIMES_2026_10_18.md).
+Current aim checkpoint retains rounded deltaX and computes rounded deltaY
+inside atan2's call for400/401/404/406 and410/414(two sites each). Read-only
+peer-Y-load observations require X already pending and equal to the actual
+subsequent atan2 argument. Preceding source fails600/600; final expanded root
+passes0/600(400 RET/200 object801 entries), plus0/1528 integration/default/
+guarded740 inputs. Complete A/B replay changes only240 bytes inside those12
+73-byte preparations; all other payload bytes, CALLs, branches and
+metadata stay identical. Nine complete preparations equal raw target bytes
+without normalization; the other three differ only in two register encodings.
+This is local diagnostic evidence, with no exact or partial-byte credit.
+Prefix81544/text82916/frame570h/first+17 remain. All11 switches/nine default
+buffer partitions and five circular preparation contracts pass. Genuine
+linked/ordinary payloads agree fully, SHA
+826889ee7ec055e44def5cc1602de2fae75f58403e2332194ec3b20cd55dc0d3;
+2466 fields/1281 HIGHLOWs and12-byte INT3 gap qualify. Prior call-sharing
+observations remain valid by complete outside-preparation byte identity.
+Root remains unclassified/declaration-only; no aggregate replay. See
+[aim argument lifetimes](REIMU_AIM_ARGUMENT_LIFETIMES_2026_10_18.md).
 Next recheck300/320's current sharing and resolve215/310/797 and522/523's
 different incoming sets. These are static ownership questions, not missing
 per-input behavior.214's two target resource gates versus one candidate gate
