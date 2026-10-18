@@ -125,6 +125,28 @@ the19 conversion-helper calls, so it is not selected. Narrowing the real
 float-copy-only shared_angle alias to float adds eight bytes and is rejected.
 Do not repeat these unchanged controls as if the source context were new.
 
+The subsequent action856 pass starts from selected8f036434 and retains the
+same6f70b6f3 payload/two differences. A double Y-offset literal, direct
+angle-argument expression, EHa exception model, generic copied-word storage
+with real float reads, and a layout-checked multiple-inheritance model are
+each fully byte-neutral. The latter preserves a330-byte primary prefix,
+an8-byte secondary base at+330, and the observed338/340/348 fields; it is
+a source-layout control, not proof of the original complete class definition.
+A genuine repeated conversion/virtual operation fails the normal comparator
+when emitted out of line; no invented binding is supplied. Its inlined
+control is also fully payload-identical.
+
+A real sequence-word snapshot changes prefix/payload to4524/4851 and no
+longer has the target comparison structure. Explicitly widening the returned
+angle before negation adds the non-target materialization,4540/4867.
+Combining an unsigned formal with explicit signed conversion still produces
+the previously rejected5052/5379 payload without the19 conversion calls.
+None of these controls is selected. No register-normalized acceptance,
+source change, native claim or exact credit follows. Receipts are under
+`build/aya-entry-action856/`; the new bounded read-only Ghidra pass under
+`.analysis/aya-entry-action856-20261019/` leaves all nine DB hashes unchanged
+and removes its alias.
+
 A genuine /GL diagnostic uses seven actual source-provider objects, real
 static CRT/SDK libraries and real DLL startup. The baseline and preserved-type
 short source both acquire an aligned EBP frame, unlike target. The short

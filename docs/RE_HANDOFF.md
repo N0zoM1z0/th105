@@ -129,6 +129,13 @@ The preserved-type genuine /GL link retains a wrong aligned frame; the real
 float-copy variant restores its entry but moves metadata to4540. No linked
 image is executed or accepted. See
 [sequence-word ABI evidence](AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md).
+The follow-up action856 controls leave that source/payload unchanged:
+double Y offset, direct argument, EHa, raw word storage, verified-offset
+multiple inheritance and the inlined repeated operation are byte-neutral.
+Sequence snapshots/extra angle rounding regress the target shape. New
+receipts are below `build/aya-entry-action856/`; nine read-only Ghidra DB
+pins remain unchanged and its alias is removed. Two-byte register context
+remains unknown; no exact credit.
 
 ## Current Reimu CPU root
 
@@ -288,14 +295,18 @@ read-only Ghidra attestation; nine DB hashes agree and its alias is removed.
 
 ## Next reconstruction work
 
-The active bounded scope is AyaObject's4531-byte initializer at61F0B0.
-Recover action856's real heading lifetime/register context while preserving
-the now-correct19 short-parameter virtual preparations and complete metadata.
-Read AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md before new controls. Do not
-repeat its unchanged RTM/debug/argument/inheritance/heading/float-copy probes.
-The old11-site scheduling explanation is superseded by the callee's observed
-low-word consumption and the coupled caller/provider compiler evidence.
-Other roots require their own actual slot-target/ABI proof before narrowing.
+The next bounded scope is YoumuObject's5159-byte initializer at543670.
+First establish its own actual slot+0C target/ABI, then test the local
+sequence declaration against the coupled Aya word-ABI witness. Preserve its
+29 distinct action destinations and two validated switches; read
+YOUMU_OBJECT_ENTRY_LOAD_TIMING_2026_10_02.md before changing851 or820/850
+lifetimes. Do not transfer a prototype solely from an equal slot number.
+
+Aya61F0B0 remains open at two bytes. Preserve its19 recovered preparations
+and complete metadata. Read AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md before
+new controls; do not repeat its unchanged source/profile/helper probes.
+Its old11-site scheduling diagnosis is superseded by the observed low-word
+consumption and coupled caller/provider compiler evidence.
 
 The Reimu CPU root remains open: use the complete candidate, coupled
 terminal witnesses and original-helper execution to recover CALL/publication/RET sharing and genuine
