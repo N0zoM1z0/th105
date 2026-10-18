@@ -29,6 +29,7 @@ SYMBOL = '?run_action_dispatch_root@ReimuActionStatePreludeView@th105@@QAEXXZ'
 HELPERS, CALL_TARGETS = previous.HELPERS, previous.CALL_TARGETS
 LITERAL_BINDINGS = previous.LITERAL_BINDINGS
 SUPPORT_PATHS = (Path(previous.__file__), ROOT / 'scripts/probe-reimu-action-source-shape.py',
+                 ROOT / 'scripts/audit-reimu-low-actions.py',
                  ROOT / 'scripts/audit-reimu-late-low-actions.py',
                  ROOT / 'scripts/audit-reimu-movement-attack-actions.py', *previous.SUPPORT_PATHS)
 SCHEMA = 'th105-reimu-void-root-native-v1'
@@ -38,7 +39,8 @@ SCOPE = ('void noargs thiscall candidate; actual helpers/RET and common-root def
 RANDOM_COHORTS = ('random_lifetimes', 'random124_lifetimes', 'movement_random_lifetimes')
 LIFETIME_COHORTS = (*RANDOM_COHORTS, 'flight_effect_lifetimes')
 COHORTS = ('integration', 'defaults', 'common_return', 'unresolved740',
-           'aim_argument_lifetimes', 'projectile_receivers', *LIFETIME_COHORTS)
+           'aim_argument_lifetimes', 'projectile_receivers', 'falling_returns',
+           'landing_action_returns', *LIFETIME_COHORTS)
 SMOKE_COUNT = 26
 ALLOW_SWITCH_METADATA = True
 
@@ -75,6 +77,14 @@ def cases(smoke=False):
     for case in previous.cases(True):
         yield {**case, 'cohort': 'integration'}
     if not smoke:
+        air = load('reimu_void_air_inputs', 'audit-reimu-low-actions.py')
+        for case in air.cases():
+            if (case['cohort'] == 'air' and case['action'] == 9
+                    and case['sequence'] == 0 and case['flag'] == 1):
+                yield {**base, **case, 'cohort': 'falling_returns'}
+            elif case['cohort'] == 'animation' and case['action'] == 10:
+                yield {**base, **case, 'cohort': 'landing_action_returns',
+                       'single_sequence': case['transition'] == 'terminal'}
         for case in previous.cases():
             if case['cohort'] == 'integration':
                 yield case
@@ -123,7 +133,16 @@ def cases(smoke=False):
 
 
 def check_target_case(case, result, sites):
-    if case['cohort'] == 'projectile_receivers':
+    if case['cohort'] == 'falling_returns':
+        if (result['endpoint'] != 'ret' or 0x47970A not in sites
+                or ((0x479713 in sites) == (0x47973C in sites))):
+            raise ValueError('target falling input bypassed its real landing/advance return')
+    elif case['cohort'] == 'landing_action_returns':
+        if (result['endpoint'] != 'ret' or 0x47975B not in sites
+                or (0x47977A in sites and case['field'] != 0)
+                or (0x479786 in sites and case['field'] == 0)):
+            raise ValueError('target landing input bypassed its full-width action-selection return')
+    elif case['cohort'] == 'projectile_receivers':
         ranges = [call for call in result['calls'] if call[0] == 0x4351A0]
         arguments = [call[2] for call in result['calls']
                      if call[:2] == ('native_args', 0x4351A0)]
@@ -249,9 +268,20 @@ def audit(path, smoke=False, cohorts=None):
                               'common_return': 16, 'unresolved740': 8,
                               'aim_argument_lifetimes': 600,
                               'projectile_receivers': 480,
+                              'falling_returns': 192,
+                              'landing_action_returns': 256,
                               **{name: count for family in lifetime_families()
                                  for name, count in family.COHORT_COUNTS.items() if name in LIFETIME_COHORTS}}
     result = low.audit(path, smoke, cohorts, contract=contract)
+    target_sites = instances[0].visited
+    required = {'falling_returns': (0x479713, 0x47973C),
+                'landing_action_returns': (0x47977A, 0x479786)}
+    for cohort, sites in required.items():
+        if cohort in result['cohorts'] and not all(site in target_sites for site in sites):
+            raise ValueError(cohort+' did not cover both original return paths')
+    result['target_return_sites'] = {
+        cohort: [hex(site) for site in sites if site in target_sites]
+        for cohort, sites in required.items() if cohort in result['cohorts']}
     result['mode_structure'] = facts
     result['observed_return_low_bytes'] = {('source' if p.candidate else 'target'): dict(p.return_bytes)
                                           for p in instances}

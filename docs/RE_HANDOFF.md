@@ -688,7 +688,7 @@ unchanged and no private image executes. A520..523 explicit-facing-snapshot
 source probe also gives the identical entire canonical payload and is not
 selected. Source/object/exact ledgers and all9 primary database hashes remain
 unchanged. See [method visibility](REIMU_METHOD_VISIBILITY_2026_10_18.md).
-The latest checkpoint fixes the range-call receiver in400/401/404/406. All8
+The range-receiver checkpoint fixes the receiver in400/401/404/406. All8
 target/source sites trace ECX to actor+4. The26-byte RET8 provider ignores ECX,
 so its exact global stdcall producer did not establish original membership;
 the ledger now records the thiscall/stdcall ambiguity. A receiver-only C++ view
@@ -708,10 +708,28 @@ Fresh sharing recheck finds source410/414/416 effects merged3->1 and522/523
 request/wave/advance sharing, plus the old300/320 and215/310/797 differences.
 All9 primary database hashes are unchanged; no root exact/source credit. See
 [random receiver recovery](REIMU_RANDOM_RECEIVER_2026_10_18.md).
-Next recover target-backed lifetimes/physical sharing and restore strict full
-callable/metadata fit. Keep the expanded candidate read-only while oversize;
+The latest return-flow checkpoint restores strict callable/metadata fit.
+Action9's landing return is explicit; action10 has the observed two setter
+branches after its DWORD6B8 gate. Prefix81544/payload82916/frame570h; source
+reachable20334. Genuine ordinary object SHA710094fe... and all82916 linked/
+ordinary/private-witness canonical bytes agree, SHAa6dc1ccf... . All2464 fields,
+1281 HIGHLOWs,12-byte linker gap,11 switches/buffer contracts and preparations
+qualify. First+541 persists: JNE4791BB targets489D6A versus source489D49.
+Fresh focused928 cases pass:192 falling returns,256 landing-action returns,
+480 actual RNG receivers. Both original return branches per new cohort are
+required; an initially still-linked terminal fixture failed coverage and was
+corrected with the existing single_sequence option. Complete returning-host
+smokes renew40 effect,14 owned/50 objects and5 circular/99 objects with zero
+differences. Shared6/7/8/9 landing incoming sets now agree: target surface/
+motion calls479720/47972D versus source479544/479551, removing four duplicate
+source helper sites. Their placement and the0/9 advancement-tail placement
+still differ. This is not complete physical-owner proof; all128
+nondefault per-action callee cardinalities still agree. No exact/source credit
+changes, full historical/aggregate replay, or DLL execution. All9 primary DB
+hashes remain unchanged. See [return flow](REIMU_RETURN_FLOW_2026_10_18.md).
+Next recover target-backed physical sharing while preserving strict fit;
 remaining returning families/runtime/resource/exception contexts stay open.
-A fresh static recheck confirms300/320 still fully merge at source47CC02;
+A fresh static recheck confirms300/320 still fully merge at source47CBD7;
 target retains distinct47CBBD/47D96A prefixes and shared47CC2B tail.
 215/310/797 and522/523 still have different target/source incoming sets.
 These are static ownership questions, not missing per-input behavior.

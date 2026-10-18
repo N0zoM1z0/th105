@@ -69,13 +69,17 @@
             set_action(10);
             y_f0 = reimu_stage_surface_height_at_x(this);
             zero_velocity_acceleration();
-        } else {
-            advance_frame_and_dispatch();
+            return true;
         }
+        advance_frame_and_dispatch();
         return true;
     case 10:
         resolve_stage_surface_landing_transition();
         zero_velocity_acceleration();
-        if (advance_frame_and_dispatch())
-            set_action(field_6b8 == 0 ? 0 : 2);
+        if (advance_frame_and_dispatch()) {
+            if (field_6b8 == 0)
+                set_action(0);
+            else
+                set_action(2);
+        }
         return true;
