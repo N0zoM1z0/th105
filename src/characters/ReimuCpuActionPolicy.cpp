@@ -55,17 +55,16 @@ char v110;
     if (action_13c <= 199) { policy_counter_76c = 0; policy_counter_764 = 0; }
     policy_random_76e = (short)selector_random_roll(1000);
     if (*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(other_fighter_170) + 0x174) <= 0) return;
-    // The first switch chooses character-specific follow-ups. The signed
-    // counter is initialized independently at each observed action entry.
+    // The first switch chooses character-specific follow-ups. Each action
+    // initializes the signed field independently; bounds read that word
+    // directly rather than copying it into one scalar for the whole case.
 #define PREPARE_COUNTER() \
     if (policy_state_180 == 0) policy_counter_764 = 0; \
     else if (policy_state_180 != 3 && policy_counter_764 == 0) \
-        policy_counter_764 = (short)selector_random_roll(100); \
-    counter = policy_counter_764
+        policy_counter_764 = (short)selector_random_roll(100)
 #define RESOURCE (*reinterpret_cast<short *>(CPU_FIELD(0x482)))
 #define SKILL(offset) (*reinterpret_cast<signed char *>(CPU_FIELD(offset)))
 #define FRONT_SEQUENCE() (*reinterpret_cast<short *>(reinterpret_cast<FighterSequenceController *>(sequence_controller_55c)->entry_at_checked(0)))
-    short counter;
     switch (action_13c) {
     case 200:
         if (policy_counter_764 == 0) {
@@ -88,39 +87,39 @@ char v110;
         break;
     case 300:
         PREPARE_COUNTER();
-        if (counter >= 10 && counter <= 90) {
+        if (policy_counter_764 >= 10 && policy_counter_764 <= 90) {
             control_6bc = 2; control_6b4 = 0; control_6b8 = 0;
-        } else if (counter >= 90) {
+        } else if (policy_counter_764 >= 90) {
             control_6bc = 2; control_6b4 = facing_104; control_6b8 = 0;
         }
         break;
     case 301:
         PREPARE_COUNTER();
-        if (counter >= 30 && counter <= 65) {
+        if (policy_counter_764 >= 30 && policy_counter_764 <= 65) {
             control_6bc = 2; control_6b4 = facing_104; control_6b8 = 0;
-        } else if (counter >= 65 && counter <= 80 && RESOURCE >= 400) {
+        } else if (policy_counter_764 >= 65 && policy_counter_764 <= 80 && RESOURCE >= 400) {
             control_6c0 = 2; control_6b4 = 0; control_6b8 = 0;
-        } else if (counter >= 80 && counter <= 95 && RESOURCE >= 400 && other_fighter_170->y_f0 == 0.0f) {
+        } else if (policy_counter_764 >= 80 && policy_counter_764 <= 95 && RESOURCE >= 400 && other_fighter_170->y_f0 == 0.0f) {
             control_6c0 = 2; control_6b4 = 0; control_6b8 = 1;
         }
         break;
     case 302:
         PREPARE_COUNTER();
-        if (counter >= 0 && counter <= 30 && RESOURCE >= 300) {
+        if (policy_counter_764 >= 0 && policy_counter_764 <= 30 && RESOURCE >= 300) {
             control_6c0 = 2; control_6b4 = 0; control_6b8 = 0;
-        } else if (counter >= 30 && counter <= 50 && RESOURCE >= 400) {
+        } else if (policy_counter_764 >= 30 && policy_counter_764 <= 50 && RESOURCE >= 400) {
             control_6c4 = 2; control_6b4 = 0; control_6b8 = 0;
-        } else if (SKILL(0x60b) == 0 && policy_state_180 == 1 && counter >= 60 && counter <= 95 && RESOURCE >= 200 &&
+        } else if (SKILL(0x60b) == 0 && policy_state_180 == 1 && policy_counter_764 >= 60 && policy_counter_764 <= 95 && RESOURCE >= 200 &&
                    ((facing_104 == 1 && x_ec > 880.0) || (facing_104 == -1 && x_ec < 300.0f))) {
             command_flags_728 = 0x200;
-        } else if (counter >= 60 && counter <= 65 && RESOURCE >= 200 && other_fighter_170->y_f0 == 0.0f) {
+        } else if (policy_counter_764 >= 60 && policy_counter_764 <= 65 && RESOURCE >= 200 && other_fighter_170->y_f0 == 0.0f) {
             control_6c0 = 2; control_6b4 = 0; control_6b8 = 1;
-        } else if (counter >= 65 && counter <= 75 && RESOURCE >= 400) command_flags_728 = 2;
-        else if (counter >= 75 && counter <= 76 && RESOURCE >= 400) command_flags_728 = 0x2000;
-        else if (counter >= 77 && counter <= 78 && RESOURCE >= 400) command_flags_728 = 0x4000;
-        else if (counter >= 79 && counter <= 81 && RESOURCE >= 400 && policy_state_180 != 1) command_flags_728 = 0x20;
-        else if (SKILL(0x609) > 0 && counter >= 82 && counter <= 84 && RESOURCE >= 400 && policy_state_180 != 1) command_flags_728 = 0x40;
-        else if (counter >= 95 && counter <= 100 && sequence_state_55a > 0) {
+        } else if (policy_counter_764 >= 65 && policy_counter_764 <= 75 && RESOURCE >= 400) command_flags_728 = 2;
+        else if (policy_counter_764 >= 75 && policy_counter_764 <= 76 && RESOURCE >= 400) command_flags_728 = 0x2000;
+        else if (policy_counter_764 >= 77 && policy_counter_764 <= 78 && RESOURCE >= 400) command_flags_728 = 0x4000;
+        else if (policy_counter_764 >= 79 && policy_counter_764 <= 81 && RESOURCE >= 400 && policy_state_180 != 1) command_flags_728 = 0x20;
+        else if (SKILL(0x609) > 0 && policy_counter_764 >= 82 && policy_counter_764 <= 84 && RESOURCE >= 400 && policy_state_180 != 1) command_flags_728 = 0x40;
+        else if (policy_counter_764 >= 95 && policy_counter_764 <= 100 && sequence_state_55a > 0) {
             switch (FRONT_SEQUENCE()) {
             case 200: case 201: case 202: case 204: case 205: case 206: case 209: case 210: case 212:
                 control_6d0 = 2; break;
@@ -133,13 +132,13 @@ char v110;
         break;
     case 303:
         PREPARE_COUNTER();
-        if (counter >= 30 && counter <= 65) {
+        if (policy_counter_764 >= 30 && policy_counter_764 <= 65) {
             control_6bc = 2; control_6b4 = facing_104; control_6b8 = 0;
-        } else if (counter >= 65 && counter <= 80 && RESOURCE >= 400) {
+        } else if (policy_counter_764 >= 65 && policy_counter_764 <= 80 && RESOURCE >= 400) {
             control_6c0 = 2; control_6b4 = 0; control_6b8 = 0;
-        } else if (counter >= 80 && counter <= 95 && RESOURCE >= 400 && other_fighter_170->y_f0 == 0.0f) {
+        } else if (policy_counter_764 >= 80 && policy_counter_764 <= 95 && RESOURCE >= 400 && other_fighter_170->y_f0 == 0.0f) {
             control_6c0 = 2; control_6b4 = 0; control_6b8 = 1;
-        } else if (counter >= 95 && counter <= 100 && sequence_state_55a > 0) {
+        } else if (policy_counter_764 >= 95 && policy_counter_764 <= 100 && sequence_state_55a > 0) {
             switch (FRONT_SEQUENCE()) {
             case 200: case 201: control_6d0 = 2; break;
             case 209:
@@ -157,122 +156,122 @@ char v110;
         break;
     case 304:
         PREPARE_COUNTER();
-        if (counter >= 65 && counter <= 75 && RESOURCE >= 400) command_flags_728 = 2;
-        else if (counter >= 75 && counter <= 80 && RESOURCE >= 400) command_flags_728 = 0x2000;
-        else if (counter >= 80 && counter <= 85 && RESOURCE >= 400) command_flags_728 = 0x4000;
-        else if (counter >= 95 && counter <= 100 && sequence_state_55a > 0) {
+        if (policy_counter_764 >= 65 && policy_counter_764 <= 75 && RESOURCE >= 400) command_flags_728 = 2;
+        else if (policy_counter_764 >= 75 && policy_counter_764 <= 80 && RESOURCE >= 400) command_flags_728 = 0x2000;
+        else if (policy_counter_764 >= 80 && policy_counter_764 <= 85 && RESOURCE >= 400) command_flags_728 = 0x4000;
+        else if (policy_counter_764 >= 95 && policy_counter_764 <= 100 && sequence_state_55a > 0) {
             const short sequence = FRONT_SEQUENCE();
             if (sequence == 200 || sequence == 201 || sequence == 208) control_6d0 = 2;
         }
         break;
     case 305:
         PREPARE_COUNTER();
-        if (counter >= 65 && counter <= 75 && RESOURCE >= 400) command_flags_728 = 2;
-        else if (counter >= 75 && counter <= 80 && RESOURCE >= 400) command_flags_728 = 0x2000;
-        else if (counter >= 80 && counter <= 85 && RESOURCE >= 400) command_flags_728 = 0x4000;
-        else if (counter >= 85 && counter <= 100 && sequence_state_55a > 0 && FRONT_SEQUENCE() == 214 && policy_state_180 == 1)
+        if (policy_counter_764 >= 65 && policy_counter_764 <= 75 && RESOURCE >= 400) command_flags_728 = 2;
+        else if (policy_counter_764 >= 75 && policy_counter_764 <= 80 && RESOURCE >= 400) command_flags_728 = 0x2000;
+        else if (policy_counter_764 >= 80 && policy_counter_764 <= 85 && RESOURCE >= 400) command_flags_728 = 0x4000;
+        else if (policy_counter_764 >= 85 && policy_counter_764 <= 100 && sequence_state_55a > 0 && FRONT_SEQUENCE() == 214 && policy_state_180 == 1)
             control_6d0 = 2;
         break;
     case 306:
         PREPARE_COUNTER();
-        if (counter >= 0 && counter <= 15 && y_f0 < other_fighter_170->y_f0) {
+        if (policy_counter_764 >= 0 && policy_counter_764 <= 15 && y_f0 < other_fighter_170->y_f0) {
             control_6bc = 1; control_6b4 = facing_104; control_6b8 = 0;
-        } else if (counter >= 15 && counter <= 25 && RESOURCE >= 300) {
+        } else if (policy_counter_764 >= 15 && policy_counter_764 <= 25 && RESOURCE >= 300) {
             control_6c0 = 2; control_6b4 = 0;
             control_6b8 = -(int)(short)(int)atan2_degrees(other_fighter_170->y_f0 - y_f0,
                 (float)facing_104 * (other_fighter_170->x_ec - x_ec)) > 29;
-        } else if (counter >= 25 && counter <= 30 && RESOURCE >= 400) command_flags_728 = 2;
-        else if (counter >= 30 && counter <= 40 && RESOURCE >= 400) command_flags_728 = 0x2000;
-        else if (counter >= 40 && counter <= 45 && RESOURCE >= 400) command_flags_728 = 0x4000;
-        else if (counter >= 95 && counter <= 100 && sequence_state_55a > 0 && FRONT_SEQUENCE() == 208) control_6d0 = 2;
+        } else if (policy_counter_764 >= 25 && policy_counter_764 <= 30 && RESOURCE >= 400) command_flags_728 = 2;
+        else if (policy_counter_764 >= 30 && policy_counter_764 <= 40 && RESOURCE >= 400) command_flags_728 = 0x2000;
+        else if (policy_counter_764 >= 40 && policy_counter_764 <= 45 && RESOURCE >= 400) command_flags_728 = 0x4000;
+        else if (policy_counter_764 >= 95 && policy_counter_764 <= 100 && sequence_state_55a > 0 && FRONT_SEQUENCE() == 208) control_6d0 = 2;
         break;
     case 307:
         PREPARE_COUNTER();
-        if (counter >= 0 && counter <= 30 && RESOURCE >= 300) {
+        if (policy_counter_764 >= 0 && policy_counter_764 <= 30 && RESOURCE >= 300) {
             control_6c0 = 2; control_6b4 = 0;
             control_6b8 = -(int)(short)(int)atan2_degrees(other_fighter_170->y_f0 - y_f0,
                 (float)facing_104 * (other_fighter_170->x_ec - x_ec)) > 29;
-        } else if (counter >= 35 && counter <= 40 && RESOURCE >= 400) command_flags_728 = 2;
-        else if (counter >= 40 && counter <= 42 && RESOURCE >= 400) command_flags_728 = 0x2000;
-        else if (counter >= 42 && counter <= 44 && RESOURCE >= 400) command_flags_728 = 0x4000;
-        else if (counter >= 95 && counter <= 100 && sequence_state_55a > 0 && FRONT_SEQUENCE() == 208) control_6d0 = 2;
+        } else if (policy_counter_764 >= 35 && policy_counter_764 <= 40 && RESOURCE >= 400) command_flags_728 = 2;
+        else if (policy_counter_764 >= 40 && policy_counter_764 <= 42 && RESOURCE >= 400) command_flags_728 = 0x2000;
+        else if (policy_counter_764 >= 42 && policy_counter_764 <= 44 && RESOURCE >= 400) command_flags_728 = 0x4000;
+        else if (policy_counter_764 >= 95 && policy_counter_764 <= 100 && sequence_state_55a > 0 && FRONT_SEQUENCE() == 208) control_6d0 = 2;
         break;
     case 308:
         PREPARE_COUNTER();
-        if (counter >= 0 && counter <= 25 && RESOURCE >= 300) {
+        if (policy_counter_764 >= 0 && policy_counter_764 <= 25 && RESOURCE >= 300) {
             control_6c0 = 2; control_6b4 = 0;
             control_6b8 = -(int)(short)(int)atan2_degrees(other_fighter_170->y_f0 - y_f0,
                 (float)facing_104 * (other_fighter_170->x_ec - x_ec)) > 19;
-        } else if (counter >= 25 && counter <= 35 && RESOURCE >= 300) {
+        } else if (policy_counter_764 >= 25 && policy_counter_764 <= 35 && RESOURCE >= 300) {
             control_6c4 = 2; control_6b4 = 0; control_6b8 = 1;
-        } else if (counter >= 40 && counter <= 45 && RESOURCE >= 400) command_flags_728 = 0x2000;
-        else if (counter >= 45 && counter <= 50 && RESOURCE >= 400) command_flags_728 = 0x4000;
+        } else if (policy_counter_764 >= 40 && policy_counter_764 <= 45 && RESOURCE >= 400) command_flags_728 = 0x2000;
+        else if (policy_counter_764 >= 45 && policy_counter_764 <= 50 && RESOURCE >= 400) command_flags_728 = 0x4000;
         break;
     case 320:
         PREPARE_COUNTER();
-        if (counter >= 0 && counter <= 90) { control_6bc = 2; control_6b4 = 0; control_6b8 = 0; }
+        if (policy_counter_764 >= 0 && policy_counter_764 <= 90) { control_6bc = 2; control_6b4 = 0; control_6b8 = 0; }
         break;
     case 321:
         PREPARE_COUNTER();
-        if (counter >= 0 && counter <= 50) { control_6bc = 2; control_6b4 = 0; control_6b8 = 0; }
-        else if (counter >= 50 && counter <= 75) { control_6bc = 2; control_6b4 = facing_104; control_6b8 = 0; }
-        else if (counter >= 75 && counter <= 80 && RESOURCE >= 400) { control_6bc = 2; control_6b4 = 0; control_6b8 = 0; }
-        else if (counter >= 80 && counter <= 85 && RESOURCE >= 400 && other_fighter_170->y_f0 == 0.0f) {
+        if (policy_counter_764 >= 0 && policy_counter_764 <= 50) { control_6bc = 2; control_6b4 = 0; control_6b8 = 0; }
+        else if (policy_counter_764 >= 50 && policy_counter_764 <= 75) { control_6bc = 2; control_6b4 = facing_104; control_6b8 = 0; }
+        else if (policy_counter_764 >= 75 && policy_counter_764 <= 80 && RESOURCE >= 400) { control_6bc = 2; control_6b4 = 0; control_6b8 = 0; }
+        else if (policy_counter_764 >= 80 && policy_counter_764 <= 85 && RESOURCE >= 400 && other_fighter_170->y_f0 == 0.0f) {
             control_6bc = 2; control_6b4 = 0; control_6b8 = 1;
         }
         break;
     case 400: case 401:
         PREPARE_COUNTER();
-        if (counter >= 0 && counter <= 10 && RESOURCE >= 400) { control_6c4 = 2; control_6b4 = 0; control_6b8 = 1; }
-        else if (counter >= 10 && counter <= 20 && RESOURCE >= 400) command_flags_728 = 2;
-        else if (counter >= 20 && counter <= 25 && RESOURCE >= 400) command_flags_728 = 0x2000;
-        else if (counter >= 25 && counter <= 30 && RESOURCE >= 400) command_flags_728 = 0x4000;
-        else if (counter >= 95 && counter <= 100 && sequence_state_55a > 0) {
+        if (policy_counter_764 >= 0 && policy_counter_764 <= 10 && RESOURCE >= 400) { control_6c4 = 2; control_6b4 = 0; control_6b8 = 1; }
+        else if (policy_counter_764 >= 10 && policy_counter_764 <= 20 && RESOURCE >= 400) command_flags_728 = 2;
+        else if (policy_counter_764 >= 20 && policy_counter_764 <= 25 && RESOURCE >= 400) command_flags_728 = 0x2000;
+        else if (policy_counter_764 >= 25 && policy_counter_764 <= 30 && RESOURCE >= 400) command_flags_728 = 0x4000;
+        else if (policy_counter_764 >= 95 && policy_counter_764 <= 100 && sequence_state_55a > 0) {
             const short sequence = FRONT_SEQUENCE();
             if (sequence == 200 || sequence == 201 || (sequence == 209 && policy_state_180 == 1 && horizontal_distance < 300.0f)) control_6d0 = 2;
         }
         break;
     case 402:
         PREPARE_COUNTER();
-        if (counter >= 0 && counter <= 10 && RESOURCE >= 400) { control_6c4 = 2; control_6b4 = 0; control_6b8 = 1; }
-        else if (counter >= 10 && counter <= 20 && RESOURCE >= 400) command_flags_728 = 2;
-        else if (counter >= 20 && counter <= 25 && RESOURCE >= 400) command_flags_728 = 0x2000;
-        else if (counter >= 25 && counter <= 30 && RESOURCE >= 400) command_flags_728 = 0x4000;
+        if (policy_counter_764 >= 0 && policy_counter_764 <= 10 && RESOURCE >= 400) { control_6c4 = 2; control_6b4 = 0; control_6b8 = 1; }
+        else if (policy_counter_764 >= 10 && policy_counter_764 <= 20 && RESOURCE >= 400) command_flags_728 = 2;
+        else if (policy_counter_764 >= 20 && policy_counter_764 <= 25 && RESOURCE >= 400) command_flags_728 = 0x2000;
+        else if (policy_counter_764 >= 25 && policy_counter_764 <= 30 && RESOURCE >= 400) command_flags_728 = 0x4000;
         break;
     case 404: case 405: case 406:
         PREPARE_COUNTER();
-        if (counter >= 0 && counter <= 5 && RESOURCE >= 400) { control_6c4 = 2; control_6b4 = 0; control_6b8 = 1; }
-        else if (counter >= 5 && counter <= 20 && RESOURCE >= 400 && vertical_distance < 150.0f) command_flags_728 = 2;
-        else if (counter >= 20 && counter <= 25 && RESOURCE >= 400) command_flags_728 = 0x2000;
-        else if (counter >= 25 && counter <= 30 && RESOURCE >= 400) command_flags_728 = 0x4000;
-        else if (counter >= 30 && counter <= 32 && RESOURCE >= 400 && vertical_distance < 100.0) command_flags_728 = 0x20;
-        else if (counter >= 32 && counter <= 34 && RESOURCE >= 400 && vertical_distance < 100.0) command_flags_728 = 0x40;
-        else if (counter >= 95 && counter <= 100 && sequence_state_55a > 0) {
+        if (policy_counter_764 >= 0 && policy_counter_764 <= 5 && RESOURCE >= 400) { control_6c4 = 2; control_6b4 = 0; control_6b8 = 1; }
+        else if (policy_counter_764 >= 5 && policy_counter_764 <= 20 && RESOURCE >= 400 && vertical_distance < 150.0f) command_flags_728 = 2;
+        else if (policy_counter_764 >= 20 && policy_counter_764 <= 25 && RESOURCE >= 400) command_flags_728 = 0x2000;
+        else if (policy_counter_764 >= 25 && policy_counter_764 <= 30 && RESOURCE >= 400) command_flags_728 = 0x4000;
+        else if (policy_counter_764 >= 30 && policy_counter_764 <= 32 && RESOURCE >= 400 && vertical_distance < 100.0) command_flags_728 = 0x20;
+        else if (policy_counter_764 >= 32 && policy_counter_764 <= 34 && RESOURCE >= 400 && vertical_distance < 100.0) command_flags_728 = 0x40;
+        else if (policy_counter_764 >= 95 && policy_counter_764 <= 100 && sequence_state_55a > 0) {
             const short sequence = FRONT_SEQUENCE(); if (sequence == 200 || sequence == 201) control_6d0 = 2;
         }
         break;
     case 410: case 411:
         PREPARE_COUNTER();
-        if (counter >= 0 && counter <= 10 && RESOURCE >= 400 && vertical_distance < 150.0f) command_flags_728 = 2;
-        else if (counter >= 10 && counter <= 15 && RESOURCE >= 400) command_flags_728 = 0x2000;
-        else if (counter >= 15 && counter <= 20 && RESOURCE >= 400) command_flags_728 = 0x4000;
-        else if (counter >= 95 && counter <= 100 && sequence_state_55a > 0) {
+        if (policy_counter_764 >= 0 && policy_counter_764 <= 10 && RESOURCE >= 400 && vertical_distance < 150.0f) command_flags_728 = 2;
+        else if (policy_counter_764 >= 10 && policy_counter_764 <= 15 && RESOURCE >= 400) command_flags_728 = 0x2000;
+        else if (policy_counter_764 >= 15 && policy_counter_764 <= 20 && RESOURCE >= 400) command_flags_728 = 0x4000;
+        else if (policy_counter_764 >= 95 && policy_counter_764 <= 100 && sequence_state_55a > 0) {
             const short sequence = FRONT_SEQUENCE(); if (sequence == 200 || sequence == 208) control_6d0 = 2;
         }
         break;
     case 414:
         PREPARE_COUNTER();
-        if (counter >= 0 && counter <= 15 && RESOURCE >= 600 && vertical_distance < 150.0f) command_flags_728 = 2;
-        else if (counter >= 20 && counter <= 25 && RESOURCE >= 600) command_flags_728 = 0x2000;
-        else if (counter >= 25 && counter <= 30 && RESOURCE >= 600) command_flags_728 = 0x4000;
-        else if (counter >= 95 && counter <= 100 && sequence_state_55a > 0) {
+        if (policy_counter_764 >= 0 && policy_counter_764 <= 15 && RESOURCE >= 600 && vertical_distance < 150.0f) command_flags_728 = 2;
+        else if (policy_counter_764 >= 20 && policy_counter_764 <= 25 && RESOURCE >= 600) command_flags_728 = 0x2000;
+        else if (policy_counter_764 >= 25 && policy_counter_764 <= 30 && RESOURCE >= 600) command_flags_728 = 0x4000;
+        else if (policy_counter_764 >= 95 && policy_counter_764 <= 100 && sequence_state_55a > 0) {
             const short sequence = FRONT_SEQUENCE(); if (sequence == 200 || sequence == 208) control_6d0 = 2;
         }
         break;
     case 416:
         PREPARE_COUNTER();
-        if (counter >= 20 && counter <= 25 && RESOURCE >= 600) command_flags_728 = 0x2000;
-        else if (counter >= 25 && counter <= 30 && RESOURCE >= 600) command_flags_728 = 0x4000;
+        if (policy_counter_764 >= 20 && policy_counter_764 <= 25 && RESOURCE >= 600) command_flags_728 = 0x2000;
+        else if (policy_counter_764 >= 25 && policy_counter_764 <= 30 && RESOURCE >= 600) command_flags_728 = 0x4000;
         break;
     }
 #undef PREPARE_COUNTER

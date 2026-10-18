@@ -55,6 +55,17 @@ def selector_call_sites(code, address):
     return sites
 
 
+def word_comparison_profile(code, address):
+    """Count decoded conditional branches immediately after 16-bit CMPs."""
+    instructions = decode(code, address)
+    branches = Counter(second.mnemonic for first, second in zip(instructions, instructions[1:])
+                       if first.mnemonic == "cmp" and first.operands[0].size == 2
+                       and second.mnemonic.startswith("j") and second.mnemonic != "jmp")
+    return {"start": f"0x{address:08X}", "end": f"0x{address + len(code):08X}",
+            "branches": dict(sorted(branches.items())),
+            "scope": "physical entry-to-common-guard interval; includes action, counter, resource and sequence words; later action arms and nonadjacent CMP/Jcc pairs are excluded; not a semantic or exactness score"}
+
+
 def selector_call_site(return_address, allowed):
     site = return_address - 5
     if site not in allowed:
@@ -452,6 +463,10 @@ def audit(object_path, count, selected_cases=None, check_selection=False, *, roo
             "visited_root_instruction_addresses_target_candidate": [len(e.visited_root) for e in engines],
             "all_five_helpers_executed": all(all(c.values()) for c in coverage),
             "scope": "entry through native RET; entire7A4 actor prefix, RNG state, native call order/arguments/results, ftol2 x87 inputs, stack cleanup and control word; real seeded MT streams after one discarded draw; masked PC53; no helper-result hooks; complete numerical/gameplay/exception equivalence is unproved"}
+    if root_name == "reimu":
+        result["word_comparisons_before_common_target_candidate"] = [
+            word_comparison_profile(code[:engine.join - address], address)
+            for code, engine in zip((target, candidate), engines)]
     if check_selection:
         result["policy0_coverage"] = selection_coverage(
             canonical, root, target, engines[0].visited_root, address=address, expected_entry=policy_entry)

@@ -1,5 +1,10 @@
 # Reimu CPU source candidate, 2026-10-19
 
+This is the initial full-source checkpoint. The later
+[counter-read checkpoint](REIMU_CPU_COUNTER_READS_2026_10_19.md) supersedes its
+selected source/build pins and first mismatch; the finite results below
+belong to this historical object.
+
 This checkpoint recovers a complete C++ candidate for
 `Reimu_update_cpu_action_policy @0x0048D390`. It is source-present and
 **nonexact**. The strict comparator first differs at `+0x12E / 0x0048D4BE`,

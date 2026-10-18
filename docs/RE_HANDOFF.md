@@ -133,29 +133,38 @@ fresh default object at the same replay address, but differs from Reimu on
 preclude selecting a blind source copy. The default comparator retains its
 known+12E/5F20AE nonexact result.
 
-The new manual Reimu action/common-attack tree preserves actual helper
-execution and uses only the reviewed shared default policy source. It fixes
-the90-distance lower bound and the equality case at180, where a missing
-random draw previously changed the RNG state. The natural reset order and
-signed thresholds now reproduce the first302 entry bytes; strict comparison
-still differs at+12E/48D4BE in the life-guard Jcc displacement. Candidate
-prefix/payload are15244/15785 versus target15999 callable bytes. Its19 action
-and21 policy primary destinations have no split target groups; nested-table
-and code-sharing differences remain. See
-[complete source evidence](REIMU_CPU_SOURCE_2026_10_19.md) for finished-source
-pins, finite native matrices and their limits. Read-only typed Ghidra analysis
-left all nine primary DB pins unchanged; no IDA semantics were used.
-The finished object passes0/67242 complete-return cases (5000 general,
-45714 Reimu edge/common-attack,16160 policy0 selection and368 height cases),
-plus36 focused regressions. Policy0 visits all1488 target instructions and
-confirms actual rolls0..100. These finite diagnostics confer no exact credit.
+The manual Reimu tree preserves actual helper execution and the corrected90
+lower bound/180 equality. Its initial snapshot-source checkpoint is recorded
+in [complete source evidence](REIMU_CPU_SOURCE_2026_10_19.md).
+The newest source removes the action-counter scalar snapshot and reads the
+signed764 field directly. This recovers separate signed bounds: decoded
+entry-to-common word JA/JBE branches change52->0 (target0), while JL/JG
+change38/2->92/55 (target97/56). These physical-interval counts are diagnostics,
+not correctness scores. Candidate prefix/payload are now15860/16401; strict
+comparison first differs at+97/48D427 where a flag-preserving constant1 LEA is
+hoisted ahead of JLE. The earlier+12E/302-byte-prefix result is historical.
+See [counter-read evidence](REIMU_CPU_COUNTER_READS_2026_10_19.md) for current
+pins, controls and finite replays. Direct read-only Ghidra analysis leaves
+all nine primary DB pins unchanged; no IDA semantics were used.
+
+The root still has117 selector sites versus target121 and50 RETs versus52.
+Policy0 CFG closure localizes all four missing selector copies: target37
+sites/1488 instructions, candidate33/1359. Do not replace its cached selection
+roll mechanically: target76A has only stores and ECX carries the result.
+Counter reset/RNG preparation already matched; changing neutral store order
+also causes undesired partial neutral/facing sharing and remains unselected.
+Fresh selected-object replays pass0/67242 (5000 general,45714 edge,16160
+selection,368 height). Policy0 visits all1488 target instructions and confirms
+real rolls0..100; finite callsite pairing observes38/34 sites including entry.
+No exact credit or aggregate cold replay is claimed.
 
 ## Next reconstruction work
 
 The active scope is the Reimu CPU root: use the complete candidate and
-original-helper execution to recover counter/sequence source shape, return
-sharing and compiler layout. Preserve the corrected180 equality and RNG
-order. Do not count sampled execution or the302-byte prefix as exact progress.
+original-helper execution to recover policy0 FP lifetimes/call sharing and
+the remaining return/register layout. Preserve direct signed764 reads and
+the corrected180 equality/RNG order. Do not count finite execution or
+diagnostic branch counts as exact progress.
 The81KB action root remains an open priority with the constraints below.
 
 1. Resolve action9's coupled landing/advance membership with new compiler/TU
@@ -193,6 +202,9 @@ readback receipts. The private Ghidra hypothesis is under
 `build/reimu-cpu-source/` retains the full-source strict/native reports,
 regression controls and unchanged primary DB pins. Its newer typed hypothesis
 is under `.analysis/reimu-cpu-source-20261019/`; no copied project is retained.
+`build/reimu-cpu-shape/` retains current field-read builds/native reports,
+counter/selector CFG profiles and rejected controls. Its read-only typed
+hypothesis is under `.analysis/reimu-cpu-shape-20261019/`; alias removed.
 `build/reimu-ltcg/` retains the current 164-file genuine provider/cache set.
 `build/reimu-low9-x87/` retains the newest cloning, listed/plain, RTM, full-CFG
 and native-entry recipes/reports. Controls are unselected and disposable.
