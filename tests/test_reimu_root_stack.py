@@ -54,27 +54,32 @@ def circular_requests(*, early=True, count=3, object_id=869, reverse_math=False)
 
 class ReimuRootStackTests(unittest.TestCase):
     def test_circular_tail_arguments_must_dominate_sine(self):
-        for early in (True, False):
-            result = circular_requests(early=early)
-            observations = result.request_preparations(
-                stack.ADDRESS, result.payloads(), object_id=869, parameter_count=3)
-            self.assertEqual(len(observations), 2)
-            for row in observations:
-                self.assertEqual(row['pushes_dominate_sine'],
-                                 dict.fromkeys(('count', 'parameters', 'arg5', 'direction'), early))
+        for object_id, count in ((821, 3), (822, 4), (869, 3)):
+            for early in (True, False):
+                with self.subTest(object_id=object_id, count=count, early=early):
+                    result = circular_requests(early=early, object_id=object_id, count=count)
+                    observations = result.request_preparations(
+                        stack.ADDRESS, result.payloads(), object_id=object_id, parameter_count=count)
+                    self.assertEqual(len(observations), 2)
+                    for row in observations:
+                        self.assertEqual(row['pushes_dominate_sine'],
+                                         dict.fromkeys(('count', 'parameters', 'arg5', 'direction'), early))
 
     def test_circular_request_checks_actual_count_and_object(self):
-        for options in ({'count': 4}, {'object_id': 868}):
-            result = circular_requests(**options)
-            with self.assertRaisesRegex(ValueError, 'circular-request (count|object id)'):
-                result.request_preparations(stack.ADDRESS, result.payloads(),
-                                            object_id=869, parameter_count=3)
+        for object_id, count in ((821, 3), (822, 4), (869, 3)):
+            for options in ({'count': count+1}, {'object_id': object_id-1}):
+                with self.subTest(object_id=object_id, count=count, wrong=options):
+                    result = circular_requests(**{'object_id': object_id, 'count': count, **options})
+                    with self.assertRaisesRegex(ValueError, 'circular-request (count|object id)'):
+                        result.request_preparations(stack.ADDRESS, result.payloads(),
+                                                    object_id=object_id, parameter_count=count)
 
     def test_circular_request_rejects_reversed_lookup_order(self):
-        result = circular_requests(reverse_math=True)
-        with self.assertRaisesRegex(ValueError, 'lookup-call ordering'):
-            result.request_preparations(stack.ADDRESS, result.payloads(),
-                                        object_id=869, parameter_count=3)
+        for object_id, count in ((821, 3), (822, 4), (869, 3)):
+            result = circular_requests(reverse_math=True, object_id=object_id, count=count)
+            with self.subTest(object_id=object_id, count=count), self.assertRaisesRegex(ValueError, 'lookup-call ordering'):
+                result.request_preparations(stack.ADDRESS, result.payloads(),
+                                            object_id=object_id, parameter_count=count)
 
     def test_circular_request_contract_cannot_admit_another_family(self):
         result = circular_requests()

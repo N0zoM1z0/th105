@@ -355,7 +355,7 @@ class StackGraph:
 
     def request_preparations(self, entry, requests, *, object_id=822, parameter_count=4):
         """Observe reviewed circular requests, including pre-sine argument pushes."""
-        require((object_id, parameter_count) in {(822, 4), (869, 3)},
+        require((object_id, parameter_count) in {(821, 3), (822, 4), (869, 3)},
                 'unreviewed circular-request contract')
         context = self.reachable_from(entry)
 
@@ -483,12 +483,17 @@ def audit(path, actions=ACTIONS, *, diagnostic_oversize=False):
                     identities.append(value)
                 partition.append(identities.index(value))
             groups[name] = {'requests': requests, 'partition': partition}
-            if action in (550, 551, 669):
-                require(action != 669 or len(requests) == 4, '669 request-site count changed')
-                options = {'object_id': 869, 'parameter_count': 3} if action == 669 else {}
-                circular = requests[:2] if action == 669 else requests
+            if action in (545, 546, 550, 551, 669):
+                if action in (545, 546):
+                    require(len(requests) == 4, '545/546 request-site count changed')
+                    options = {'object_id': 821, 'parameter_count': 3}
+                    circular = requests[1:3]
+                else:
+                    require(action != 669 or len(requests) == 4, '669 request-site count changed')
+                    options = {'object_id': 869, 'parameter_count': 3} if action == 669 else {}
+                    circular = requests[:2] if action == 669 else requests
                 groups[name]['preparations'] = graphs[name].request_preparations(ADDRESS+start, circular, **options)
-        same_preparations = (action not in (550, 551, 669) or
+        same_preparations = (action not in (545, 546, 550, 551, 669) or
                              [r['pushes_dominate_sine'] for r in groups['target']['preparations']] ==
                              [r['pushes_dominate_sine'] for r in groups['source']['preparations']])
         contracts.append({'action': action, **groups, 'same_preparations': same_preparations,

@@ -157,21 +157,21 @@
                         parameters[0] = static_cast<float>(selected_action == 546 ? 35.5 - i * 9.0 : i * 9.0 + 34.5);
                         parameters[1] = 22.0f;
                         parameters[2] = 0.0f;
-                        const float y = static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
-                            * 50.0 + y_f0 + 100.0);
-                        const float x = static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
-                            * (facing_104 * 50) + x_ec);
-                        spawn_owned_object_via_manager(821, x, y,
+                        spawn_owned_object_via_manager(821,
+                            static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
+                                * (facing_104 * 50) + x_ec),
+                            static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
+                                * 50.0 + y_f0 + 100.0),
                             static_cast<unsigned char>(facing_104), 1, parameters, 3);
                     }
                     parameters[0] = static_cast<float>(selected_action == 546 ? 40.0 - i * 9.0 : i * 9.0 + 30.0);
                     parameters[1] = 25.0f;
                     parameters[2] = 0.0f;
-                    const float y = static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
-                        * 50.0 + y_f0 + 100.0);
-                    const float x = static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
-                        * (facing_104 * 50) + x_ec);
-                    spawn_owned_object_via_manager(821, x, y,
+                    spawn_owned_object_via_manager(821,
+                        static_cast<float>(lookup_orientation_cosine_quantized_abs(-parameters[0])
+                            * (facing_104 * 50) + x_ec),
+                        static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])
+                            * 50.0 + y_f0 + 100.0),
                         static_cast<unsigned char>(facing_104), 1, parameters, 3);
                 }
                 parameters[0] = 0.0f;

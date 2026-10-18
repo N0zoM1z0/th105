@@ -103,6 +103,13 @@ def cases(smoke=False):
             range(200, 204), (0, 5489, 0xFFFFFFFF), (-128, -1, 0, 1, 127), (-5, 0, 4, 5)):
         yield {**base, "cohort": "random", "action": action, "seed": seed,
                "sequence": 1, "facing": facing, "counter": count, "y": 0.0 if action == 200 else 100.0}
+    for action, facing, seed, cw, position in itertools.product(
+            range(200, 204), (-128, -1, 0, 1, 127), (0, 5489),
+            (0x27F, 0x37F), (640.0, 33554432.0)):
+        yield {**base, "cohort": "movement_random_lifetimes", "action": action,
+               "sequence": 1, "facing": facing, "seed": seed, "control_word": cw,
+               "counter": 4 if action == 200 else 5, "x": position,
+               "y": 0.0 if action == 200 else 100.0}
 
     pairs = ((0, 0x4B800000), (0x80000000, 0xCB800000),
              (0x43FFFFFF, 0x501502F9), (0x44200001, 0x7FC12345),
@@ -192,7 +199,7 @@ def check_target_case(case, result, sites):
         expected = [700] if case["mode"] == 2 else [0, 1] if case["field"] > 0 else [0]
         if actions != expected:
             raise ValueError(f"completion fixture bypassed its actual action setters: {case}; got {actions}")
-    if case["cohort"] in ("random", "coordinates"):
+    if case["cohort"] in ("random", "coordinates", "movement_random_lifetimes"):
         counter = case["counter"] + (case["action"] == 200)
         should_emit = counter % 5 == 0
         if case["action"] == 201 and "coordinate_bits" in case:
@@ -206,7 +213,8 @@ def check_target_case(case, result, sites):
 
 
 COHORT_COUNTS = {"motion": 1980, "animation": 1100, "frame_transition": 88,
-                 "facing": 144, "completion": 144, "input": 525, "random": 240, "coordinates": 224}
+                 "facing": 144, "completion": 144, "input": 525, "random": 240, "coordinates": 224,
+                 "movement_random_lifetimes": 160}
 
 
 def audit(object_path, smoke=False, selected_cohorts=None):

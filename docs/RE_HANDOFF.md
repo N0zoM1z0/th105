@@ -550,7 +550,7 @@ Source has119 advance sites versus target121. First478FB1 persists; no exact
 or source-present credit. Builds/native suites ran serially on one CPU at nice10;
 no aggregate replay or Ghidra process. See
 [effect124 lifetimes and sharing](REIMU_RANDOM124_LIFETIMES_2026_10_18.md).
-Current214 checkpoint expresses rounded effect125 coordinates inside the
+The preceding214 checkpoint expresses rounded effect125 coordinates inside the
 call, preserving unsigned direction/arg5 across sine and rounded Y across
 cosine. Expanded root0/240 checks these pending arguments without modifying
 helper results; the preceding object fails240/240. Staged0/240 plus720 real
@@ -569,10 +569,29 @@ entry from any of the11 switch tables. Same-target Yuyuko/Komachi repeat
 the WORD736 comparison too; Udonge has one observed comparison. This supports
 further source/context investigation, not an invented inline/volatile helper.
 See [214 effect lifetimes and gate evidence](REIMU_FLIGHT_EFFECT_LIFETIMES_2026_10_18.md).
-Next prioritize target/source physical sharing:300/320 and source310 joining
-215/797 explain the remaining two-site advance deficit. These are static
-ownership observations, not missing per-input behavior.214's two target
-resource gates versus one candidate gate
+Current joint checkpoint recovers200/201/202/203's effect124 lifetimes and
+545/546's four circular object821 preparations. All rounded geometry remains
+inside the corresponding calls, with existing snapshots/arrays retained.
+The preceding root fails160/160 new MT-entry observations; the movement-only
+intermediate fails both821 preparation contracts. That intermediate exceeds
+the callable/metadata windows190/188 bytes and is never executed. The joint
+candidate fits again at prefix81544/text82916/frame570h. Expanded native0/4420
+covers2732 for545/546,160 new movement lifetimes and1528 integration/default/
+guarded740 inputs; staged0/909 covers movement/input/special coordinates.
+All11 switches/nine default buffer partitions and five545/546/550/551/669
+preparation contracts pass. Genuine linked/ordinary payloads agree fully, SHA
+e14328a2455420de790de6089e123046fe083ce8f8b1a5f2f5265817df75d7e9;
+2466 fields/1281 HIGHLOWs and12-byte INT3 gap qualify. Current strict first
+is+17/478FB1(XOR EBX before PUSH EDI); the unselected intermediate's+134
+does not describe the final candidate. No exact or source-present credit.
+Source has119 advance sites versus target121, but its sharing changed:
+209/221 share47B59E;522/523 share4859C6;215 uses47BFC8 while310/797 share
+47D983. Target instead shares215/797 and separates310 and522/523. Six callee
+cardinalities still differ; counts alone do not establish correct ownership.
+See [movement and fan lifetimes](REIMU_MOVEMENT_AND_FAN_LIFETIMES_2026_10_18.md).
+Next recheck300/320's current sharing and resolve215/310/797 and522/523's
+different incoming sets. These are static ownership questions, not missing
+per-input behavior.214's two target resource gates versus one candidate gate
 also need source/visibility evidence; do not invent volatile reads or inert
 duplicate conditions. Exact callable ownership, original visibility/profile
 and returning-world contexts remain open before root acceptance.

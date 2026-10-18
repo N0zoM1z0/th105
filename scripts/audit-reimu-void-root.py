@@ -28,12 +28,13 @@ SYMBOL = '?run_action_dispatch_root@ReimuActionStatePreludeView@th105@@QAEXXZ'
 HELPERS, CALL_TARGETS = previous.HELPERS, previous.CALL_TARGETS
 LITERAL_BINDINGS = previous.LITERAL_BINDINGS
 SUPPORT_PATHS = (Path(previous.__file__), ROOT / 'scripts/probe-reimu-action-source-shape.py',
-                 ROOT / 'scripts/audit-reimu-late-low-actions.py', *previous.SUPPORT_PATHS)
+                 ROOT / 'scripts/audit-reimu-late-low-actions.py',
+                 ROOT / 'scripts/audit-reimu-movement-attack-actions.py', *previous.SUPPORT_PATHS)
 SCHEMA = 'th105-reimu-void-root-native-v1'
 SCOPE = ('void noargs thiscall candidate; actual helpers/RET and common-root defaults over the signed action domain; '
          '740 stops before indeterminate reads and world calls stop at real entry; no returning-world, '
          'arbitrary-stack, full-relocation or canonical-exact claim')
-RANDOM_COHORTS = ('random_lifetimes', 'random124_lifetimes')
+RANDOM_COHORTS = ('random_lifetimes', 'random124_lifetimes', 'movement_random_lifetimes')
 LIFETIME_COHORTS = (*RANDOM_COHORTS, 'flight_effect_lifetimes')
 COHORTS = ('integration', 'defaults', 'common_return', 'unresolved740', *LIFETIME_COHORTS)
 SMOKE_COUNT = 26
@@ -43,6 +44,11 @@ ALLOW_SWITCH_METADATA = True
 @lru_cache(maxsize=1)
 def late_low_family():
     return load('reimu_void_random_effect_family', 'audit-reimu-late-low-actions.py')
+
+
+def lifetime_families():
+    family = late_low_family()
+    return family, family.movement
 
 
 @lru_cache(maxsize=1)
@@ -70,9 +76,10 @@ def cases(smoke=False):
         for case in previous.cases():
             if case['cohort'] == 'integration':
                 yield case
-        for case in late_low_family().cases():
-            if case['cohort'] in LIFETIME_COHORTS:
-                yield {**base, **case}
+        for family in lifetime_families():
+            for case in family.cases():
+                if case['cohort'] in LIFETIME_COHORTS:
+                    yield {**base, **case}
     choices = (-32768, 799, 32767) if smoke else default_actions()
     gates = ((0, 0),) if smoke else ((0, 0), (1, 0), (0, 1))
     for action, (entry, peer), cw in itertools.product(choices, gates, (0x27F, 0x37F)):
@@ -95,9 +102,10 @@ def check_target_case(case, result, sites):
         elif result['spawn_request'] != (0x4740C0,) or 0x48CE1F not in sites:
             raise ValueError('default action did not reach the original common call')
     elif case['cohort'] in RANDOM_COHORTS:
-        late_low_family().check_target_case(case, result, sites)
+        family = late_low_family().movement if case['cohort'] == 'movement_random_lifetimes' else late_low_family()
+        family.check_target_case(case, result, sites)
         observations = [call for call in result['calls'] if call[0] == 'pending_effect_arguments']
-        direction = -case['facing'] if case['action'] in (224, 225) else case['facing']
+        direction = -case['facing'] if case['action'] in (201, 203, 224, 225) else case['facing']
         tail = struct.pack('<II', direction & 0xFF, 1).hex()
         if (len(observations) != 2 or observations[0][1:] != (1, tail)
                 or observations[1][1] != 2 or len(observations[1][2]) != 24
@@ -170,7 +178,8 @@ def audit(path, smoke=False, cohorts=None):
     contract.Probe = previous.boundary_probe(facts, base=VoidProbe)
     contract.COHORT_COUNTS = {'integration': 1010, 'defaults': len(default_actions())*6,
                               'common_return': 16, 'unresolved740': 8,
-                              **{name: late_low_family().COHORT_COUNTS[name] for name in LIFETIME_COHORTS}}
+                              **{name: count for family in lifetime_families()
+                                 for name, count in family.COHORT_COUNTS.items() if name in LIFETIME_COHORTS}}
     result = low.audit(path, smoke, cohorts, contract=contract)
     result['mode_structure'] = facts
     result['observed_return_low_bytes'] = {('source' if p.candidate else 'target'): dict(p.return_bytes)
