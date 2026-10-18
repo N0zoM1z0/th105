@@ -17774,7 +17774,7 @@ source = "src/characters/AyaObjectActionEntry.cpp"
 object = "build/match-units/GptWeb_AyaObjectActionEntry.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Source-present nonexact AyaObject entry root@61F0B0. Fresh configured target traversal closes4531 bytes/1195 instructions through one32-destination switch. First mismatch+0xDF in action803; all11 target vslot+0x0C calls order MOV ECX,ESI before PUSH EAX, while current VC8 candidate reverses them. Action803 otherwise60 bytes/18 instructions each. Direct-heading source control byte-neutral; /O2 /Os private control changes prologue at byte0 and loses switch. Audit13/33 identical owners, metadata4532, sectiontail4859. Current shared float-return atan2_degrees dependency is independently accepted; old double-return checkpoint was superseded. No exact credit or source/ABI/flag/relocation change. See docs/AYA_ENTRY_VSLOT0C_SCHEDULING_2026_10_02.md and docs/AYA_ENTRY_EVIDENCE_2026_09_12.md."
+notes = "Source-present4531-byte AyaObject initializer@61F0B0, nonexact at+BF7 with only two byte differences. Local vslot0C parameter short recovers all19 sequence virtual-call preparations; natural short provider is202/202 at45C390 under the existing animation-sequence unit comparator, with no duplicate credit. Remaining bytes61FCA7/61FCAF select EAX instead of ECX for action856 heading. Complete metadata agrees; prefix4532/sectiontail4859 and31/33 owner diagnostics do not confer exactness. Existing ABI views/accepted units elsewhere are unchanged. docs/AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md."
 
 [[units.gpt-web-aya-object-action-entry.functions]]
 address = "0x0061F0B0"

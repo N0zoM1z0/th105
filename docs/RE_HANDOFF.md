@@ -111,6 +111,25 @@ focused note. Target FSTP at 47973A and source 4792D2 consume a live FLDZ
 zero; setup/advance entries 47973C/47973E and 4792D4/4792D6 are empty.
 This does not establish the cause of the remaining sharing differences.
 
+## Current AyaObject entry initializer
+
+Active root61F0B0 is now two bytes from its4531-byte target body. The local
+vslot+0C sequence parameter is short: it recovers all19 virtual preparations,
+including eight CALL EAX sites omitted by the earlier11-site cohort. Raw
+callee45C390 consumes the low word of a four-byte stack slot. A natural short
+provider in `scripts/probes/animation-sequence-word-abi.cpp` is202/202 using
+the existing animation-sequence unit comparator, with no duplicate credit.
+The shared int facade and all accepted units elsewhere are unchanged.
+
+Source SHA8f036434/canonical4859-byte payload6f70b6f3 differs only at
+61FCA7/+BF7 and61FCAF/+BFF: action856 uses EAX for the same heading-pointer
+load/FLD where target uses ECX. Every other byte and all metadata agree.
+Owner diagnostics31/33 and an almost-identical payload are not exact credit.
+The preserved-type genuine /GL link retains a wrong aligned frame; the real
+float-copy variant restores its entry but moves metadata to4540. No linked
+image is executed or accepted. See
+[sequence-word ABI evidence](AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md).
+
 ## Current Reimu CPU root
 
 A second large Reimu root is now identified: `Reimu_update_cpu_action_policy`
@@ -269,12 +288,14 @@ read-only Ghidra attestation; nine DB hashes agree and its alias is removed.
 
 ## Next reconstruction work
 
-The next bounded scope is AyaObject's4531-byte action-entry initializer at
-61F0B0. Revisit its repeated vslot+0C scheduling class through genuine source/
-TU/link context, preserving its proved32-destination switch and ABI. Read
-AYA_ENTRY_VSLOT0C_SCHEDULING_2026_10_02.md before new controls; unchanged
-direct-heading and/Os probes already fail. Do not infer original spelling
-from a single two-instruction ordering difference.
+The active bounded scope is AyaObject's4531-byte initializer at61F0B0.
+Recover action856's real heading lifetime/register context while preserving
+the now-correct19 short-parameter virtual preparations and complete metadata.
+Read AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md before new controls. Do not
+repeat its unchanged RTM/debug/argument/inheritance/heading/float-copy probes.
+The old11-site scheduling explanation is superseded by the callee's observed
+low-word consumption and the coupled caller/provider compiler evidence.
+Other roots require their own actual slot-target/ABI proof before narrowing.
 
 The Reimu CPU root remains open: use the complete candidate, coupled
 terminal witnesses and original-helper execution to recover CALL/publication/RET sharing and genuine
@@ -357,6 +378,11 @@ input/height/environment controls, closed policy0 profiles and exceptional-Y
 native witnesses. Its read-only Ghidra recipe is under
 `.analysis/reimu-cpu-controls-20261019/`; nine DB pins remain unchanged and
 the project alias is removed. Generated bulk input arrays are removed.
+`build/aya-entry-context/` retains fresh caller/probe comparisons, the complete
+4859-byte/two-difference packet, RTTI, unselected controls and genuine source/
+CRT links. Its bounded read-only Ghidra recipe is under
+`.analysis/aya-entry-context-20261019/`; all nine DB pins agree and the alias
+is removed. Linked images are diagnostic and unexecuted.
 `build/reimu-ltcg/` retains the current 164-file genuine provider/cache set.
 `build/reimu-low9-x87/` retains the newest cloning, listed/plain, RTM, full-CFG
 and native-entry recipes/reports. Controls are unselected and disposable.

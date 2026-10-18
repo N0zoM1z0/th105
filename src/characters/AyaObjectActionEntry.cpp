@@ -16,7 +16,9 @@ public:
     virtual void scalar_delete_slot_00();
     virtual int set_action_sequence_and_finalize(short action, int sequence);
     virtual int set_action_and_finalize(short action);
-    virtual int select_sequence(int sequence);
+    // Slot +0x0C consumes the low word in a four-byte stack slot.
+    // See docs/AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md for the 202-byte witness.
+    virtual int select_sequence(short sequence);
     virtual int reset_sequence();
     virtual unsigned char next_sequence_block();
     virtual int previous_sequence_block();
