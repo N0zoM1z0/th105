@@ -20,9 +20,10 @@
                 && sequence_13e == 1 && frame_counter_144 % 5 == 0) {
             const double x_base = static_cast<double>(x_ec) + 50.0;
             const unsigned char direction = static_cast<unsigned char>(facing_104);
-            const float effect_y = static_cast<float>(static_cast<float>(mt19937_next_u32() % 200) + y_f0);
-            const float effect_x = static_cast<float>(x_base - static_cast<float>(mt19937_next_u32() % 100));
-            emit_fighter_effect(123, effect_x, effect_y, direction, 1);
+            emit_fighter_effect(123,
+                static_cast<float>(x_base - static_cast<float>(mt19937_next_u32() % 100)),
+                static_cast<float>(static_cast<float>(mt19937_next_u32() % 200) + y_f0),
+                direction, 1);
         }
         if (selected_action != 211 && selected_action != 212
                 && sequence_13e == 1 && velocity_y_f8 < 4.0f)

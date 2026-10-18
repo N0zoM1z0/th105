@@ -9,6 +9,7 @@ import importlib.util
 import itertools
 import json
 from pathlib import Path
+import struct
 import sys
 import tomllib
 from types import SimpleNamespace
@@ -26,14 +27,20 @@ low = previous.low
 SYMBOL = '?run_action_dispatch_root@ReimuActionStatePreludeView@th105@@QAEXXZ'
 HELPERS, CALL_TARGETS = previous.HELPERS, previous.CALL_TARGETS
 LITERAL_BINDINGS = previous.LITERAL_BINDINGS
-SUPPORT_PATHS = (Path(previous.__file__), ROOT / 'scripts/probe-reimu-action-source-shape.py', *previous.SUPPORT_PATHS)
+SUPPORT_PATHS = (Path(previous.__file__), ROOT / 'scripts/probe-reimu-action-source-shape.py',
+                 ROOT / 'scripts/audit-reimu-late-low-actions.py', *previous.SUPPORT_PATHS)
 SCHEMA = 'th105-reimu-void-root-native-v1'
 SCOPE = ('void noargs thiscall candidate; actual helpers/RET and common-root defaults over the signed action domain; '
          '740 stops before indeterminate reads and world calls stop at real entry; no returning-world, '
          'arbitrary-stack, full-relocation or canonical-exact claim')
-COHORTS = ('integration', 'defaults', 'common_return', 'unresolved740')
+COHORTS = ('integration', 'defaults', 'common_return', 'unresolved740', 'random_lifetimes')
 SMOKE_COUNT = 26
 ALLOW_SWITCH_METADATA = True
+
+
+@lru_cache(maxsize=1)
+def random_effect_family():
+    return load('reimu_void_random_effect_family', 'audit-reimu-late-low-actions.py')
 
 
 @lru_cache(maxsize=1)
@@ -61,6 +68,9 @@ def cases(smoke=False):
         for case in previous.cases():
             if case['cohort'] == 'integration':
                 yield case
+        for case in random_effect_family().cases():
+            if case['cohort'] == 'random_lifetimes':
+                yield {**base, **case}
     choices = (-32768, 799, 32767) if smoke else default_actions()
     gates = ((0, 0),) if smoke else ((0, 0), (1, 0), (0, 1))
     for action, (entry, peer), cw in itertools.product(choices, gates, (0x27F, 0x37F)):
@@ -82,6 +92,14 @@ def check_target_case(case, result, sites):
                 raise ValueError('default entry gate did not return before dispatch')
         elif result['spawn_request'] != (0x4740C0,) or 0x48CE1F not in sites:
             raise ValueError('default action did not reach the original common call')
+    elif case['cohort'] == 'random_lifetimes':
+        random_effect_family().check_target_case(case, result, sites)
+        observations = [call for call in result['calls'] if call[0] == 'pending_effect_arguments']
+        tail = struct.pack('<II', case['facing'] & 0xFF, 1).hex()
+        if (len(observations) != 2 or observations[0][1:] != (1, tail)
+                or observations[1][1] != 2 or len(observations[1][2]) != 24
+                or observations[1][2][-16:] != tail):
+            raise ValueError('target random effect lacks its pending direction/trailing arguments')
     else:
         previous.check_target_case(case, result, sites)
     if case['cohort'] == 'common_return' and 0x48CE1F not in sites:
@@ -102,15 +120,32 @@ def audit(path, smoke=False, cohorts=None):
             instances.append(self)
 
         def evaluate(self, case):
+            self.track_random_tails = case['cohort'] == 'random_lifetimes'
+            self.random_draw_count = 0
             result = super().evaluate(case)
             if result['endpoint'] == 'ret':
                 self.return_bytes[self.engine.reg_read(low.r.UC_X86_REG_EAX) & 0xFF] += 1
             return result
 
+        def step(self, uc, address, size):
+            super().step(uc, address, size)
+            if address == 0x4066B0 and getattr(self, 'track_random_tails', False):
+                sp = uc.reg_read(low.r.UC_X86_REG_ESP)
+                caller, = struct.unpack('<I', uc.mem_read(sp, 4))
+                if low.ADDRESS <= caller < low.ADDRESS + low.SIZE:
+                    self.random_draw_count += 1
+                    if self.random_draw_count not in (1, 2):
+                        raise ValueError('random effect executes more than two root MT calls')
+                    # Read only: both original MT calls continue to their RET.
+                    count = self.random_draw_count + 1
+                    self.calls.append(('pending_effect_arguments', self.random_draw_count,
+                                       bytes(uc.mem_read(sp + 4, count * 4)).hex()))
+
     contract = SimpleNamespace(**vars(sys.modules[__name__]))
     contract.Probe = previous.boundary_probe(facts, base=VoidProbe)
     contract.COHORT_COUNTS = {'integration': 1010, 'defaults': len(default_actions())*6,
-                              'common_return': 16, 'unresolved740': 8}
+                              'common_return': 16, 'unresolved740': 8,
+                              'random_lifetimes': random_effect_family().COHORT_COUNTS['random_lifetimes']}
     result = low.audit(path, smoke, cohorts, contract=contract)
     result['mode_structure'] = facts
     result['observed_return_low_bytes'] = {('source' if p.candidate else 'target'): dict(p.return_bytes)

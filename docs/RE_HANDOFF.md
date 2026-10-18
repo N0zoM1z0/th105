@@ -503,7 +503,7 @@ The conservative private cache hashes every source header, so this fragment
 edit recompiled45 objects; the three receipt command groups are not a compile
 count. Removed73 superseded products/7161518 bytes; current witnesses and
 primary databases retained. See [entry argument lifetimes](REIMU_PRELUDE_LIFETIMES_2026_10_18.md).
-Current circular-request checkpoint emits distinct expanded arms in observed
+The preceding circular-request checkpoint emits distinct expanded arms in observed
 target-owner order and recovers669's four request-tail arguments live across
 both lookups. The old locals fail both circular-site preparation checks;
 new source passes, preserving all nine buffer partitions/11 switches. Code
@@ -518,11 +518,29 @@ now an immediate WORD7A0 store before delayed PUSH EDI. No exact/source credit.
 Checked unchanged rebuild reuses45 objects without compilation. Superseded
 compact/trial products cleaned;9 primary DB files unchanged. See
 [circular lifetimes and owner order](REIMU_CIRCULAR_REQUEST_LIFETIMES_2026_10_18.md).
+Current random-effect checkpoint keeps the m64 X-base snapshot and expresses
+the two rounded random coordinates inside effect123's call. Direction/arg5
+are now pending before the first real MT draw, and rounded Y before the
+second. Actions208/211/220/221/222 pass0/400 expanded native inputs, including
+five raw facings, both x87 precisions and X=2**25. Read-only MT-entry stack
+observations reject the old named-coordinate source400/400; a separately
+compiled float-X-base control fails50/400. Expanded integration/default/740
+passes0/1528. Code prefix81304/text82676/frame570h fits both windows; all11
+switches, nine buffer partitions and request preparations pass. Genuine
+linked/ordinary82676-byte replay agrees fully, SHA
+f9166f6a3ea904d0bcdb5a761bc0d22e2ccada0383f10c60282a27ac5e42ef73;
+2463 fields/1281 HIGHLOWs and the separate12-byte INT3 gap qualify. First
+478FB1 persists; no exact/source credit or aggregate replay.209/221 now share
+advance47B5DD, corresponding to target47B51B. Superseded trial products were
+cleaned; primary databases retained and hashes unchanged. See
+[random-effect argument lifetimes](REIMU_RANDOM_EFFECT_LIFETIMES_2026_10_18.md).
 Next prioritize target/source physical sharing:300/320, source310 joining
-215/797, source522/523's shared advance and209/221's unshared advance explain
-the net two-site advance deficit. These are static ownership observations,
-not missing per-input behavior. Exact callable ownership, original visibility/
-profile and returning-world contexts remain open before root acceptance.
+215/797, and source522/523's shared advance explain the remaining three-site
+advance deficit. These are static ownership observations, not missing
+per-input behavior.214's two target resource gates versus one candidate gate
+also need source/visibility evidence; do not invent volatile reads or inert
+duplicate conditions. Exact callable ownership, original visibility/profile
+and returning-world contexts remain open before root acceptance.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.
 Obsolete unpinned disassembly exports (~18MB) and rejected/superseded object
 files were removed; current bounded evidence and primary databases remain.

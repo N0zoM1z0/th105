@@ -100,6 +100,13 @@ def cases(smoke=False):
                "seed": seed, "counter": 4 if action == 223 else 5,
                "sequence": 2 if action in (225, 226) else 1,
                "y": 0.0 if action == 223 else 100.0}
+    for action, facing, seed, cw, position in itertools.product(
+            (208, 211, 220, 221, 222), (-128, -1, 0, 1, 127), (0, 5489),
+            (0x27F, 0x37F), (-0.0, 640.0, 1048576.0, 33554432.0)):
+        # At2**25 the m64 x+50 snapshot carries bits that an m32 local loses.
+        yield {**base, "cohort": "random_lifetimes", "action": action,
+               "facing": facing, "seed": seed, "counter": 5, "sequence": 1,
+               "x": position, "y": 100.0, "control_word": cw}
     for facing, horizontal, vertical, state, gate in itertools.product(
             (-1, 1), (-1, 0, 1), (-1, 0), (0, 1), (0, 1)):
         yield {**base, "cohort": "directional", "action": 300, "mode4b8": 10,
@@ -204,7 +211,7 @@ def check_target_case(case, result, sites):
         raise ValueError("flight fixture bypassed steering or resource consumption")
     if case["cohort"] == "directional" and 0x47CBC8 not in sites:
         raise ValueError("directional fixture bypassed action300's actual gate")
-    if case["cohort"] == "random":
+    if case["cohort"] in ("random", "random_lifetimes"):
         calls = sum(call[0] == 0x4066B0 for call in result["calls"])
         code = 123 if case["action"] in (208, 211, 220, 221, 222) else 124
         if calls != 2 or result["spawn_request"][:2] != (0x435240, code):
@@ -291,7 +298,8 @@ def audit(object_path, smoke=False, selected_cohorts=None):
 
 
 COHORT_COUNTS = {"motion": 2160, "steering": 432, "flight_exit": 288,
-                 "nodes": 450, "random": 36, "directional": 48}
+                 "nodes": 450, "random": 36, "random_lifetimes": 400,
+                 "directional": 48}
 
 
 if __name__ == "__main__":
