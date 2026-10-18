@@ -476,8 +476,24 @@ Private live-reference and shared-default-goto controls are unselected;
 the latter adds32 bytes. Final witnesses were rebuilt serially. No exact
 credit/aggregate replay;9 primary DB hashes unchanged, unused products cleaned.
 See [selector and direct-arm sharing](REIMU_SELECTOR_PROMOTION_2026_10_18.md).
-Next prioritize the300/320 prefix/tail split, remaining call sharing/source
-overhead and the expanded size failure, exact callable ownership,
+Reimu now has a genuine /GL root +42 normal-COFF provider TU link:48 game
+addresses compared, five existing nonexact providers explicit,45 same-target
+aliases and17 attested data ABS bindings. The private4776C0 word setter is
+15/15 and both existing excluded SDK deque witnesses94/100 agree before and
+after linking; no authored credit. Independent typed replay checks2465 fields
+and the exact1282 HIGHLOW inventory. All83040 canonical payload bytes equal
+the ordinary witness, SHA7d56c77794ef794f7e3d5fa8d939b2784012eb4298a037e7f65becb8e00255d5.
+All11 ordinary switches/CFG and nine buffer partitions transfer by complete
+correspondence; no shared inspector relaxation or DLL execution. Prefix81668/
+text83040/frame570h and first478FB1 persist;300/320 remain fully merged.
+Two explicit-tail source controls add48 bytes; a fresh single-switch void
+control adds32. None is selected. The present opaque-provider LTCG backend
+context does not repair the source. Checked object caches avoid unchanged
+recompilation. No exact/source selection or aggregate replay;9 primary hashes
+unchanged, unused products cleaned. See [genuine link and full correspondence](REIMU_REAL_LINK_2026_10_18.md).
+Next prioritize positive field/type/lifetime, source partition and genuine
+helper visibility evidence for the300/320 split and remaining size/ownership
+differences, exact callable ownership,
 returning world contexts and VC8/LTCG/TU evidence
 before canonical root acceptance.
 Use `--cohort` for focused rechecks; no aggregate cold replay was run.
