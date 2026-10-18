@@ -896,11 +896,29 @@ Cleanup removes53 obsolete products/native data/snapshots,10.53MiB. The old
 int-direction object is superseded by current complete owned/wave recovery;
 its receipts remain. Current genuine providers and tiny real-visibility source
 witness remain; the read-only Ghidra project alias is removed.
-Next recover300/320 advancement and the remaining effect/height/zero/landing/
-action-gate partitions plus410/416 virtual-next memberships. Preserve the
-recovered owned/wave and landing groups. Do not repeat unchanged
-int-view or real-body visibility controls without a material source-phase
-change. Do not infer original visibility from the getter match alone.
+The next bounded visibility/exit checkpoint retains this source unchanged.
+Target300/320 have separate95-byte/26-instruction prefixes with equal shapes
+before their different-register slot8 calls and shared47CC2B tail. A sole320
+terminal break and74 middle-region flat exits still merge both entries;
+the latter also loses owned/wave partitions, so neither is selected. Captured
+BYTE-facing for effect62 is whole-payload byte-neutral. A fully qualified real
+89-byte height getter changes root code even without inlining: same-TU and
+separate `/GL` inputs both produce prefix81436/payload82808/frame568h and move
+616's Y read after the query, losing the target m64 snapshot. An unreferenced
+same-body control leaves all82904 baseline bytes unchanged. All32 direct and
+aggregate indirect source partitions remain unchanged; visibility gains no
+sharing. Public opaque-provider gates remain intact; the larger closed-unit
+diagnostic proves full ordinary/linked correspondence, not root acceptance.
+All four existing stage-geometry comparisons pass. Bounded read-only Ghidra
+peaks319MiB/10.36s; all9 primary DB hashes remain unchanged. Cleanup removes
+29 files/3.57MiB and preserves all164 current genuine-cache files. See
+[height visibility and300/320 evidence](REIMU_HEIGHT_VISIBILITY_AND_300_320_2026_10_18.md).
+Next recover the remaining effect/height/zero/landing/action-gate partitions
+and410/416 virtual-next memberships from independently observed control flow
+and live values. Preserve the recovered owned/wave and landing groups.
+Do not repeat unchanged exit, int-view or true-body visibility controls without
+a material source-phase change. Do not infer original visibility from the
+getter match alone.
 Remaining returning families/runtime/resource/exception contexts stay open.
 A fresh static recheck confirms300/320 still fully merge at source47CC10;
 target retains distinct47CBBD/47D96A prefixes and shared47CC2B tail.
