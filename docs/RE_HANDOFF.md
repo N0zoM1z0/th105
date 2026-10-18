@@ -655,7 +655,7 @@ extraction retains the strict bounds/code checks and adds instruction-cache
 flushes; focused effect regression0/600 and its negative480/600 pass. Root
 source/object/payload/first+17 and exact ledgers remain unchanged. See
 [complete owned returns](REIMU_OWNED_RETURNS_2026_10_18.md).
-The latest checkpoint extends complete real returns to545/546's821 fans,
+The preceding checkpoint extends complete real returns to545/546's821 fans,
 550/551's822 rings/25-object grid and669's869 radial volleys. Native0/1244
 creates11280 actual objects per process; all19036468 stream bytes agree with
 the candidate and an independent target repeat, without masking. Signed
@@ -672,8 +672,25 @@ The changed observer passes14 legacy smoke inputs/50 objects; effect tooling
 is unchanged. Main object/payload/strict+17 and exact ledgers stay unchanged.
 Serial CPU0/nice10 jobs peak at301MiB child RSS; all9 primary database hashes
 are unchanged. See [complete circular returns](REIMU_CIRCULAR_RETURNS_2026_10_18.md).
-Next extend the real backend to remaining effect/projectile families, retaining
-the unknown runtime/heap/resource/exception contexts before root acceptance.
+The latest checkpoint tests real method IR with a positive visibility control.
+Fresh ordinary landing/surface/layout/event anchors match442/64/21/14 bytes;
+only their complete source TU gains /GL. A short facade-alias caller retains
+the14-byte event wrapper, while a direct real-method caller inlines it and
+calls the global dispatcher (15 versus12 caller bytes). The giant root's
+direct-method control nevertheless retains all55 event calls. Its ordinary
+anchor and all three linked root payloads replay identically over82916 bytes,
+including2466 fields/1281 HIGHLOWs and12-byte INT3 gap, SHA826889ee...;
+prefix81544/frame570h/first+17 and sharing differences persist. Linking method
+IR alone is insufficient evidence of caller visibility through aliases; use a
+true direct-symbol positive witness. A giant-caller optimization budget remains
+an inference, without a measured threshold. Normal provider-IR ABI guards are
+unchanged and no private image executes. A520..523 explicit-facing-snapshot
+source probe also gives the identical entire canonical payload and is not
+selected. Source/object/exact ledgers and all9 primary database hashes remain
+unchanged. See [method visibility](REIMU_METHOD_VISIBILITY_2026_10_18.md).
+Next recover target-backed lifetimes and physical sharing context using direct
+positive witnesses for future method-IR tests. Remaining effect/projectile
+families and runtime/heap/resource/exception contexts stay open before acceptance.
 A fresh static recheck confirms300/320 still fully merge at source47CC02;
 target retains distinct47CBBD/47D96A prefixes and shared47CC2B tail.
 215/310/797 and522/523 still have different target/source incoming sets.
