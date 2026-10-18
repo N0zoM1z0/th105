@@ -491,6 +491,18 @@ control adds32. None is selected. The present opaque-provider LTCG backend
 context does not repair the source. Checked object caches avoid unchanged
 recompilation. No exact/source selection or aggregate replay;9 primary hashes
 unchanged, unused products cleaned. See [genuine link and full correspondence](REIMU_REAL_LINK_2026_10_18.md).
+Latest entry lifetime checkpoint selects one raw unsigned direction snapshot
+per998 request and inline rounded coordinate arguments, recovering all three
+target MOVZX/raw-push/signed-register patterns. Entry text522 has0/10584 native
+differences; compact void50816 has0/6722 across nine request families. The
+current expanded ordinary/linked payloads remain83040 bytes and agree fully,
+SHAef6cc2879b328bc86a22b274b1bce9b36acb5f3221818227069e7e073738b01b;
+prefix81668/frame570h/first478FB1 and oversize118/116 persist. All11 switches
+and nine buffer partitions qualify. No exact/source credit or aggregate replay.
+The conservative private cache hashes every source header, so this fragment
+edit recompiled45 objects; the three receipt command groups are not a compile
+count. Removed73 superseded products/7161518 bytes; current witnesses and
+primary databases retained. See [entry argument lifetimes](REIMU_PRELUDE_LIFETIMES_2026_10_18.md).
 Next prioritize positive field/type/lifetime, source partition and genuine
 helper visibility evidence for the300/320 split and remaining size/ownership
 differences, exact callable ownership,

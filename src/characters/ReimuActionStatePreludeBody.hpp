@@ -6,22 +6,22 @@
         // Each call can change owner state. Preserve the three later action
         // reads and the unsigned direction argument independently of signed X.
         if (action_13c > 149 && action_13c < 154) {
-            const float y = static_cast<float>(y_f0 + 94.0);
-            const float x = static_cast<float>(x_ec + static_cast<int>(facing_104) * 57);
-            spawn_owned_object_via_manager(998, x, y,
-                static_cast<unsigned char>(facing_104), 1, 0, 0);
+            const int direction = static_cast<unsigned char>(facing_104);
+            spawn_owned_object_via_manager(998,
+                static_cast<float>(static_cast<signed char>(direction) * 57) + x_ec,
+                static_cast<float>(y_f0 + 94.0), direction, 1, 0, 0);
         }
         if (action_13c > 153 && action_13c < 158) {
-            const float y = static_cast<float>(y_f0 + 60.0);
-            const float x = static_cast<float>(x_ec + static_cast<int>(facing_104) * 57);
-            spawn_owned_object_via_manager(998, x, y,
-                static_cast<unsigned char>(facing_104), 1, 0, 0);
+            const int direction = static_cast<unsigned char>(facing_104);
+            spawn_owned_object_via_manager(998,
+                static_cast<float>(static_cast<signed char>(direction) * 57) + x_ec,
+                static_cast<float>(y_f0 + 60.0), direction, 1, 0, 0);
         }
         if (action_13c == 158) {
-            const float y = static_cast<float>(y_f0 + 100.0);
-            const float x = static_cast<float>(x_ec + static_cast<int>(facing_104) * 57);
-            spawn_owned_object_via_manager(998, x, y,
-                static_cast<unsigned char>(facing_104), 1, 0, 0);
+            const int direction = static_cast<unsigned char>(facing_104);
+            spawn_owned_object_via_manager(998,
+                static_cast<float>(static_cast<signed char>(direction) * 57) + x_ec,
+                static_cast<float>(y_f0 + 100.0), direction, 1, 0, 0);
         }
     }
     if (timer_7c8 > 0) {
