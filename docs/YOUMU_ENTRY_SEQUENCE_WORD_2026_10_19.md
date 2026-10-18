@@ -143,6 +143,40 @@ or factory adapter is used. This follow-up changes evidence and handoff
 only; source, ledgers, accepted-unit contracts and exact byte credit remain
 unchanged.
 
+## Whole-function exit and floating-environment controls
+
+A further fresh target preflight and focused build retain the same baseline.
+Replacing all27 outer-switch `return;` statements with `break;` produces the
+same complete5488-byte canonical payload4b9bf0a4. None of these returns is
+inside the nested match-identifier switch. Moving the real action823 payload
+array declaration to the beginning of its arm and assigning its three values
+at their original use point is also completely byte-neutral. The residual
+tail/register behavior is not explained by either tested source scope.
+
+Capturing heading340 once before the outer switch and using it for851's
+post-state value load instead produces prefix/payload5000/5332, SHA256
+`1c948f562eebebcd0a6a994636020c33a635828c2530f877868bf4aad5ee5bca`.
+It first differs at+0A and has19 conversion sites/21 RETs; it is not selected.
+Changing the local selector parameter to `unsigned short` under the same
+profile produces5880/6212, SHA256
+`b7a1c05591fe4ca14f469b0100ece15e12e6c008dbeaaff1a3a5ee73da33bbf0`.
+It expands the frame from10h to14h and replaces all target conversion-helper
+calls with inline control-word save/change, FISTP and restore sequences.
+This is caller/profile evidence favoring the selected signed-word interface;
+the low-word callee alone does not establish original source signedness.
+
+Local `fenv_access(on)` produces5216/5548, SHA256
+`5fcd69a05d9865b6afb8123f31f5aa7892f78fb0c3c8a2074b03ea6fee7ca08f`.
+It preserves20 conversions/22 RETs and first differs at+80; it does not
+recover the target21/23 copies. The successful sprite-rotation environment
+recipe therefore does not transfer to this root as tested. All five controls
+are unselected; no shared flags, headers or exact ledgers change. Sources,
+build logs and complete canonical packets are below
+`build/youmu-entry-exit-context/`. These experiments inspect the hash-attested
+PE directly and make no new database/decompiler claims. Further identical
+scope/exit tests lack new evidence; original ownership and compiler/TU phase
+remain open.
+
 ## Reproduction and analysis limits
 
 ```bash

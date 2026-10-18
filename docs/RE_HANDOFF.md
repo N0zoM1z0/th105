@@ -131,6 +131,11 @@ changes other tails; it is not adopted. Raw factory53B1C0 proves separate
 parameter allocation only on its positive-count path, not a global alias
 contract. Sources and exact credit remain unchanged; receipts are below
 `build/youmu-entry-evaluation/` and nine read-only Ghidra DB pins agree.
+Whole-switch returns->breaks and the823 used payload's scope are also
+byte-neutral. An outer-switch851 pointer capture, unsigned sequence word
+and local fenv_access all regress the current target shape. See the same
+evidence page and `build/youmu-entry-exit-context/`; none is selected. Seek
+new ownership/type/TU evidence before repeating unchanged source controls.
 
 ## Current AyaObject entry initializer
 
