@@ -56,7 +56,7 @@ The current ordinary object SHA-256 is
 Prefix81516/payload82888/frame570h stay unchanged in size. Source reachable
 instructions fall20304->20284 and four duplicated direct calls disappear.
 All2472 fields replay:1184 calls,1104 numeric,14 metadata,163 code pointers
-and7 globals. All1281 HIGHLOWs, the separate12-byte INT3 gap,11 switches and
+and7 globals. All1281 HIGHLOWs, the separate8-byte INT3 gap,11 switches and
 15 request buffer/preparation contracts qualify. The complete genuine linked
 and ordinary payloads agree, SHA-256
 `7816b79cb99e41884c292154c629ebb3bbad2abd612d5e2163ea66fbd05dc1b7`.

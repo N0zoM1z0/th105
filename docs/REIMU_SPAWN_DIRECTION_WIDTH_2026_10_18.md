@@ -87,7 +87,7 @@ All82888 linked/ordinary canonical payload bytes agree, SHA-256
 Frame570h,20304 source reachable instructions,11 switches and all15 request
 buffer/preparation contracts qualify. All2476 relocation fields replay:
 1188 calls,1104 numeric,14 metadata,163 code pointers and7 globals;1281 PE
-HIGHLOWs and the separate12-byte INT3 gap also qualify. The DLL is not executed.
+HIGHLOWs and the separate8-byte INT3 gap also qualify. The DLL is not executed.
 
 The strict first target difference remains+541=4791BD: JNE4791BB targets
 489D6A versus candidate489D4B. Full primary520/521 spans881/794 preserve

@@ -284,11 +284,12 @@
             if (field_73c > 20.0f)
                 field_73c = 20.0f;
             break;
-        case 4: case 5:
+        case 4: case 5: {
             velocity_x_f4 = static_cast<float>(velocity_x_f4 + static_cast<double>(0.2f));
             if (velocity_x_f4 > 8.0f)
                 velocity_x_f4 = 8.0f;
-            if (reimu_stage_surface_height_at_x(this) + 300.0 < y_f0) {
+            const double current_y = y_f0;
+            if (reimu_stage_surface_height_at_x(this) + 300.0 < current_y) {
                 velocity_y_f8 = static_cast<float>(velocity_y_f8 - static_cast<double>(0.2f));
                 const double next_y = static_cast<double>(velocity_y_f8) + y_f0;
                 if (reimu_stage_surface_height_at_x(this) + 300.0 >= next_y) {
@@ -303,6 +304,7 @@
                 acceleration_y_100 = 0.5f;
             }
             break;
+        }
         case 6: case 7:
             velocity_y_f8 -= acceleration_y_100;
             if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {

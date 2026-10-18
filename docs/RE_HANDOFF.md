@@ -808,7 +808,7 @@ records the ambiguity. Byte direction alone gives prefix81460/payload82832,
 identical with/without20 manual captures.520/521 instruction/edge diagnostics
 agree. This phase admits214's explicit facing branches: current genuine
 ordinary09e44259.../canonical43972507..., prefix81516/payload82888/frame570h.
-All2476 fields/1281 HIGHLOWs,12-byte INT3 gap,11 switches and15 contracts pass;
+All2476 fields/1281 HIGHLOWs,8-byte INT3 gap,11 switches and15 contracts pass;
 linked/ordinary entire payloads agree. Strict+541 persists, source epilogue
 489D4B versus target489D6A. Native0/1888 and0/2015 (1010 integration,432
 steering,288 flight exits,285 nonflat surfaces) pass, requiring all four real
@@ -824,8 +824,8 @@ The shared-landing checkpoint restores separate sequence1/3 frame-start
 triggers in414/416, after actual advancement/callbacks. In this byte-direction
 phase VC8 naturally retains EDI3 and recovers complete clear-motion/height/
 slotC groups416/522/523/614, plus height/slotC201/224/414/560/561 and
-clear-motion414/560/561. Current ordinary7fe0c1a8.../canonical7816b79c...,
-prefix81516/payload82888/frame570h. All2472 fields/1281 HIGHLOWs,12-byte INT3
+clear-motion414/560/561. That checkpoint's ordinary7fe0c1a8.../canonical7816b79c...,
+prefix81516/payload82888/frame570h. All2472 fields/1281 HIGHLOWs,8-byte INT3
 gap,11 switches/15 contracts and full linked/ordinary equality qualify.
 Source reachable20304->20284, four duplicate direct calls removed; first+541
 persists into source489D41 versus target489D6A. Current native0/2675 includes
@@ -839,9 +839,36 @@ still leave the same six per-action deltas and eight direct partition
 differences; no exact/source credit. A byte-variant view control first differs
 at+388 and remains read-only/unselected. See
 [shared landing memberships](REIMU_SHARED_LANDINGS_2026_10_18.md).
+The current hover-snapshot checkpoint corrects616 sequences4/5: target489DFA
+loads actor Y,489E02 spills m64 before actual height query489E06, then489E11
+compares that saved value. Source now captures the real double Y before the
+query. Current genuine ordinary3dd029c9.../canonical9b56f280... retains
+prefix81516/payload82888/frame570h, all2472 fields/1281 HIGHLOWs,8-byte INT3
+gap,11 switches/15 contracts and full linked/ordinary payload equality.
+Source reachable20285; first+541, eight direct partitions and six indirect
+action deltas remain. The preceding two notes'12-byte gap prose was corrected
+to8 for this82888-byte phase; the reader had always checked8.
+Focused native0/1649 covers354 hover,1010 integration and285 nonflat surfaces.
+A read-only observer compares first root Y-read/height-query order, including
+raw Y bits; all354 require target489E06/RET. The preceding compiled canonical
+7816b79c... candidate fails354/354 under the same observer, with reversed load
+order even where actor bytes agree. No full historical matrix was repeated.
+Preceding-phase real spawn-body visibility controls reproduce both full66-byte
+overloads and positively inline a separate small caller. The giant still
+retains242 calls and the exact same entire7816b79c... payload under both
+ordinary and genuine /GL builds; all fields/linked anchors qualify. Visibility
+alone is insufficient in that phase. Int+20 and523 exit-order controls recover
+owned/wave partitions but exceed the callable/envelope; terminal-break and
+private bool-advance controls do not resolve them. None is selected.
+See [hover snapshot and real visibility evidence](REIMU_HOVER_SNAPSHOT_AND_SPAWN_VISIBILITY_2026_10_18.md).
+All9 primary database hashes remain unchanged. Heavy jobs stay serial with
+CPU0/nice10; genuine producer peak313MiB, native below190MiB. Cleanup removes
+520 obsolete generated/object/cache files/15.52MiB; current genuine providers,
+the useful int+20 witness and real-visibility source/small caller are retained.
 Next recover522/523 advancement/wave/request and the six indirect action deltas
 while preserving the recovered landing groups. Do not repeat unchanged
-int-view controls or infer original visibility from the getter match alone.
+int-view or real-body visibility controls without a material source-phase
+change. Do not infer original visibility from the getter match alone.
 Remaining returning families/runtime/resource/exception contexts stay open.
 A fresh static recheck confirms300/320 still fully merge at source47CC5F;
 target retains distinct47CBBD/47D96A prefixes and shared47CC2B tail.

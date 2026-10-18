@@ -34,10 +34,11 @@ SUPPORT_PATHS = (Path(previous.__file__), ROOT / 'scripts/probe-reimu-action-sou
                  ROOT / 'scripts/audit-reimu-low-actions.py',
                  ROOT / 'scripts/audit-reimu-late-low-actions.py',
                  ROOT / 'scripts/audit-reimu-mid-shot-actions.py',
+                 ROOT / 'scripts/audit-reimu-high-middle-actions.py',
                  ROOT / 'scripts/audit-reimu-movement-attack-actions.py', *previous.SUPPORT_PATHS)
 SCHEMA = 'th105-reimu-void-root-native-v1'
 SCOPE = ('void noargs thiscall candidate; actual helpers/RET and common-root defaults over the signed action domain; '
-         'optional writable surface data and actual query-X observations; '
+         'optional writable surface data, actual query-X and first root Y/height-query ordering observations; '
          '740 stops before indeterminate reads and world calls stop at real entry; no returning-world, '
          'arbitrary-stack, full-relocation or canonical-exact claim')
 RANDOM_COHORTS = ('random_lifetimes', 'random124_lifetimes', 'movement_random_lifetimes')
@@ -45,7 +46,7 @@ LIFETIME_COHORTS = (*RANDOM_COHORTS, 'flight_effect_lifetimes')
 FLIGHT_COHORTS = ('steering', 'flight_exit')
 COHORTS = ('integration', 'defaults', 'common_return', 'unresolved740',
            'aim_argument_lifetimes', 'projectile_receivers', 'falling_returns',
-           'landing_action_returns', 'surface_inputs', 'shot_boundaries',
+           'landing_action_returns', 'surface_inputs', 'shot_boundaries', 'hover_snapshots',
            *LIFETIME_COHORTS, *FLIGHT_COHORTS)
 SMOKE_COUNT = 26
 ALLOW_SWITCH_METADATA = True
@@ -117,6 +118,25 @@ def shot_boundary_cases(base):
 
 
 @lru_cache(maxsize=1)
+def hover_family():
+    return load('reimu_void_hover_family', 'audit-reimu-high-middle-actions.py')
+
+
+def hover_snapshot_cases(base):
+    family = hover_family()
+    for case in family.cases():
+        if (case['action'] == 616 and case['sequence'] in (4, 5)
+                and case['cohort'] in ('hover', 'branches')):
+            yield {**base, **case, 'cohort': 'hover_snapshots',
+                   'hover_family_cohort': case['cohort']}
+    template = {**base, **next(family.cases(True))}
+    for sequence, y, cw in itertools.product((4, 5), (float('nan'), float('inf'), -float('inf')),
+                                            (0x27F, 0x37F)):
+        yield {**template, 'action': 616, 'sequence': sequence, 'y': y, 'counter': 0,
+               'control_word': cw, 'cohort': 'hover_snapshots', 'hover_family_cohort': 'hover'}
+
+
+@lru_cache(maxsize=1)
 def default_actions():
     mapper = load('reimu_void_target_map', 'map-giant-action-switches.py')
     manifest = tomllib.loads((ROOT / 'config/giant-action-switches.toml').read_text())
@@ -155,6 +175,7 @@ def cases(smoke=False):
                 if case['cohort'] in (*LIFETIME_COHORTS, *FLIGHT_COHORTS):
                     yield {**base, **case}
         yield from shot_boundary_cases(base)
+        yield from hover_snapshot_cases(base)
         for action, facing, cw, seed, shot, latch in itertools.product(
                 (400, 401, 404, 406), (-128, -1, 0, 1, 127), (0x27F, 0x37F),
                 (0, 5489, 0xFFFFFFFF), (0, 4), (0, 1)):
@@ -196,7 +217,15 @@ def cases(smoke=False):
 
 
 def check_target_case(case, result, sites):
-    if case['cohort'] == 'shot_boundaries':
+    if case['cohort'] == 'hover_snapshots':
+        hover_family().check_target_case({**case, 'cohort': case['hover_family_cohort']}, result, sites)
+        if 0x489E06 not in sites or result['endpoint'] != 'ret':
+            raise ValueError('hover snapshot input bypassed the real height comparison/return')
+        observations = [call[0] for call in result['calls']
+                        if call[0] in ('hover_y_read', 'hover_height_query')]
+        if observations != ['hover_y_read', 'hover_height_query']:
+            raise ValueError('target hover did not read its Y snapshot before querying height')
+    elif case['cohort'] == 'shot_boundaries':
         shot_family().check_target_case({**case, 'cohort': case['shot_family_cohort']}, result, sites)
         if case.get('require_sequence3_return') and (
                 result['endpoint'] != 'ret' or result['actor'][0x13C:0x13E] != struct.pack('<h', 9)):
@@ -307,6 +336,8 @@ def audit(path, smoke=False, cohorts=None):
         def evaluate(self, case):
             self.track_surface_inputs = case['cohort'] == 'surface_inputs'
             self.surface_action = case['action']
+            self.track_hover_reads = case['cohort'] == 'hover_snapshots'
+            self.hover_y_observed = self.hover_height_observed = False
             self.track_random_tails = case['cohort'] in RANDOM_COHORTS
             self.random_draw_count = 0
             self.track_flight_tails = case['cohort'] == 'flight_effect_lifetimes'
@@ -314,11 +345,16 @@ def audit(path, smoke=False, cohorts=None):
             self.track_aim_arguments = case['cohort'] == 'aim_argument_lifetimes'
             observer = (self.engine.hook_add(unicorn.UC_HOOK_MEM_READ, self.observe_aim_read)
                         if self.track_aim_arguments else None)
+            hover_observer = (self.engine.hook_add(unicorn.UC_HOOK_MEM_READ, self.observe_hover_read,
+                                                 begin=low.OWNER + 0xF0, end=low.OWNER + 0xF3)
+                              if self.track_hover_reads else None)
             try:
                 result = super().evaluate(case)
             finally:
                 if observer is not None:
                     self.engine.hook_del(observer)
+                if hover_observer is not None:
+                    self.engine.hook_del(hover_observer)
             if result['endpoint'] == 'ret':
                 self.return_bytes[self.engine.reg_read(low.r.UC_X86_REG_EAX) & 0xFF] += 1
             if bytes(self.engine.mem_read(SURFACE_ADDRESS, 4 * SURFACE_ELEMENTS)) != self.expected_surface:
@@ -341,8 +377,22 @@ def audit(path, smoke=False, cohorts=None):
                 sp = uc.reg_read(low.r.UC_X86_REG_ESP)
                 self.calls.append(('pending_aim_x', bytes(uc.mem_read(sp + 4, 4)).hex()))
 
+        def observe_hover_read(self, uc, access, address, size, value, unused):
+            pc = uc.reg_read(low.r.UC_X86_REG_EIP)
+            if (not self.hover_y_observed and address == low.OWNER + 0xF0 and size == 4
+                    and low.ADDRESS <= pc < low.ADDRESS + low.SIZE):
+                # Observe the real first root load; never change actor memory or execution.
+                self.calls.append(('hover_y_read', bytes(uc.mem_read(address, size)).hex()))
+                self.hover_y_observed = True
+
         def step(self, uc, address, size):
             super().step(uc, address, size)
+            if (address == 0x435D60 and getattr(self, 'track_hover_reads', False)
+                    and not self.hover_height_observed):
+                caller, = struct.unpack('<I', uc.mem_read(uc.reg_read(low.r.UC_X86_REG_ESP), 4))
+                if low.ADDRESS <= caller < low.ADDRESS + low.SIZE:
+                    self.calls.append(('hover_height_query',))
+                    self.hover_height_observed = True
             if address == 0x435D60 and getattr(self, 'track_surface_inputs', False):
                 receiver = uc.reg_read(low.r.UC_X86_REG_ECX)
                 if receiver != low.OWNER:
@@ -395,6 +445,7 @@ def audit(path, smoke=False, cohorts=None):
                               'landing_action_returns': 256,
                               'surface_inputs': 285,
                               'shot_boundaries': 1380,
+                              'hover_snapshots': 354,
                               **{name: count for family in lifetime_families()
                                  for name, count in family.COHORT_COUNTS.items()
                                  if name in (*LIFETIME_COHORTS, *FLIGHT_COHORTS)}}
