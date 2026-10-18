@@ -518,7 +518,7 @@ now an immediate WORD7A0 store before delayed PUSH EDI. No exact/source credit.
 Checked unchanged rebuild reuses45 objects without compilation. Superseded
 compact/trial products cleaned;9 primary DB files unchanged. See
 [circular lifetimes and owner order](REIMU_CIRCULAR_REQUEST_LIFETIMES_2026_10_18.md).
-Current random-effect checkpoint keeps the m64 X-base snapshot and expresses
+The preceding random-effect checkpoint keeps the m64 X-base snapshot and expresses
 the two rounded random coordinates inside effect123's call. Direction/arg5
 are now pending before the first real MT draw, and rounded Y before the
 second. Actions208/211/220/221/222 pass0/400 expanded native inputs, including
@@ -534,10 +534,26 @@ f9166f6a3ea904d0bcdb5a761bc0d22e2ccada0383f10c60282a27ac5e42ef73;
 advance47B5DD, corresponding to target47B51B. Superseded trial products were
 cleaned; primary databases retained and hashes unchanged. See
 [random-effect argument lifetimes](REIMU_RANDOM_EFFECT_LIFETIMES_2026_10_18.md).
-Next prioritize target/source physical sharing:300/320, source310 joining
-215/797, and source522/523's shared advance explain the remaining three-site
-advance deficit. These are static ownership observations, not missing
-per-input behavior.214's two target resource gates versus one candidate gate
+Current effect124 checkpoint extends those lifetimes to223/224/225/226,
+preserving the byte-negated unsigned outgoing direction for224/225. All720
+effect123/124 lifetime inputs pass in the expanded ordinary root, plus1528
+integration/default/guarded740 inputs. The old expanded source fails320/320
+new lifetime observations; the wrong-direction staged control fails96/320.
+Code prefix81544/text82916/frame570h now leaves6/8 bytes in the reviewed
+windows. This grows240 bytes because whole-root sharing changes; no suffix
+identity claim. All11 switches/nine buffer partitions/request preparations
+pass. Genuine linked/ordinary payloads agree fully, SHA
+2672556d0298e501e595aa4136b07195b9f55fea3d0b9a40a0d5d1ca9a6d66ed;
+2468 fields/1281 HIGHLOWs and12-byte INT3 gap qualify. Source522/523 now have
+separate advance4858D8/485CB8, as target48599F/485D75;209/221 still share.
+Source has119 advance sites versus target121. First478FB1 persists; no exact
+or source-present credit. Builds/native suites ran serially on one CPU at nice10;
+no aggregate replay or Ghidra process. See
+[effect124 lifetimes and sharing](REIMU_RANDOM124_LIFETIMES_2026_10_18.md).
+Next prioritize target/source physical sharing:300/320 and source310 joining
+215/797 explain the remaining two-site advance deficit. These are static
+ownership observations, not missing per-input behavior.214's two target
+resource gates versus one candidate gate
 also need source/visibility evidence; do not invent volatile reads or inert
 duplicate conditions. Exact callable ownership, original visibility/profile
 and returning-world contexts remain open before root acceptance.

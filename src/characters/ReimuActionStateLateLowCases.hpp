@@ -169,9 +169,10 @@
             if (frame_counter_144 % 5 == 0) {
                 const double x_base = static_cast<double>(x_ec) + 50.0;
                 const unsigned char direction = static_cast<unsigned char>(facing_104);
-                const float effect_y = static_cast<float>(static_cast<float>(mt19937_next_u32() % 200) + y_f0);
-                const float effect_x = static_cast<float>(x_base - static_cast<float>(mt19937_next_u32() % 100));
-                emit_fighter_effect(124, effect_x, effect_y, direction, 1);
+                emit_fighter_effect(124,
+                    static_cast<float>(x_base - static_cast<float>(mt19937_next_u32() % 100)),
+                    static_cast<float>(static_cast<float>(mt19937_next_u32() % 200) + y_f0),
+                    direction, 1);
             }
             word_730 = static_cast<short>(word_730 + 1);
             const int directed_input = static_cast<int>(static_cast<unsigned int>(facing_104)
@@ -205,9 +206,10 @@
         if (!is_at_stage_surface() && frame_counter_144 % 5 == 0) {
             const double x_base = static_cast<double>(x_ec) + 50.0;
             const unsigned char direction = static_cast<unsigned char>(-facing_104);
-            const float effect_y = static_cast<float>(static_cast<float>(mt19937_next_u32() % 200) + y_f0);
-            const float effect_x = static_cast<float>(x_base - static_cast<float>(mt19937_next_u32() % 100));
-            emit_fighter_effect(124, effect_x, effect_y, direction, 1);
+            emit_fighter_effect(124,
+                static_cast<float>(x_base - static_cast<float>(mt19937_next_u32() % 100)),
+                static_cast<float>(static_cast<float>(mt19937_next_u32() % 200) + y_f0),
+                direction, 1);
         }
         if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending()) && sequence_13e < 3) {
             velocity_y_f8 = 0.0f;
@@ -246,9 +248,10 @@
             const double x_base = static_cast<double>(x_ec) + 50.0;
             const unsigned char direction = static_cast<unsigned char>(
                 selected_action == 226 ? facing_104 : -facing_104);
-            const float effect_y = static_cast<float>(static_cast<float>(mt19937_next_u32() % 200) + y_f0);
-            const float effect_x = static_cast<float>(x_base - static_cast<float>(mt19937_next_u32() % 100));
-            emit_fighter_effect(124, effect_x, effect_y, direction, 1);
+            emit_fighter_effect(124,
+                static_cast<float>(x_base - static_cast<float>(mt19937_next_u32() % 100)),
+                static_cast<float>(static_cast<float>(mt19937_next_u32() % 200) + y_f0),
+                direction, 1);
         }
         if (advance_frame_and_dispatch())
             set_action(9);

@@ -33,7 +33,8 @@ SCHEMA = 'th105-reimu-void-root-native-v1'
 SCOPE = ('void noargs thiscall candidate; actual helpers/RET and common-root defaults over the signed action domain; '
          '740 stops before indeterminate reads and world calls stop at real entry; no returning-world, '
          'arbitrary-stack, full-relocation or canonical-exact claim')
-COHORTS = ('integration', 'defaults', 'common_return', 'unresolved740', 'random_lifetimes')
+RANDOM_COHORTS = ('random_lifetimes', 'random124_lifetimes')
+COHORTS = ('integration', 'defaults', 'common_return', 'unresolved740', *RANDOM_COHORTS)
 SMOKE_COUNT = 26
 ALLOW_SWITCH_METADATA = True
 
@@ -69,7 +70,7 @@ def cases(smoke=False):
             if case['cohort'] == 'integration':
                 yield case
         for case in random_effect_family().cases():
-            if case['cohort'] == 'random_lifetimes':
+            if case['cohort'] in RANDOM_COHORTS:
                 yield {**base, **case}
     choices = (-32768, 799, 32767) if smoke else default_actions()
     gates = ((0, 0),) if smoke else ((0, 0), (1, 0), (0, 1))
@@ -92,10 +93,11 @@ def check_target_case(case, result, sites):
                 raise ValueError('default entry gate did not return before dispatch')
         elif result['spawn_request'] != (0x4740C0,) or 0x48CE1F not in sites:
             raise ValueError('default action did not reach the original common call')
-    elif case['cohort'] == 'random_lifetimes':
+    elif case['cohort'] in RANDOM_COHORTS:
         random_effect_family().check_target_case(case, result, sites)
         observations = [call for call in result['calls'] if call[0] == 'pending_effect_arguments']
-        tail = struct.pack('<II', case['facing'] & 0xFF, 1).hex()
+        direction = -case['facing'] if case['action'] in (224, 225) else case['facing']
+        tail = struct.pack('<II', direction & 0xFF, 1).hex()
         if (len(observations) != 2 or observations[0][1:] != (1, tail)
                 or observations[1][1] != 2 or len(observations[1][2]) != 24
                 or observations[1][2][-16:] != tail):
@@ -120,7 +122,7 @@ def audit(path, smoke=False, cohorts=None):
             instances.append(self)
 
         def evaluate(self, case):
-            self.track_random_tails = case['cohort'] == 'random_lifetimes'
+            self.track_random_tails = case['cohort'] in RANDOM_COHORTS
             self.random_draw_count = 0
             result = super().evaluate(case)
             if result['endpoint'] == 'ret':
@@ -145,7 +147,7 @@ def audit(path, smoke=False, cohorts=None):
     contract.Probe = previous.boundary_probe(facts, base=VoidProbe)
     contract.COHORT_COUNTS = {'integration': 1010, 'defaults': len(default_actions())*6,
                               'common_return': 16, 'unresolved740': 8,
-                              'random_lifetimes': random_effect_family().COHORT_COUNTS['random_lifetimes']}
+                              **{name: random_effect_family().COHORT_COUNTS[name] for name in RANDOM_COHORTS}}
     result = low.audit(path, smoke, cohorts, contract=contract)
     result['mode_structure'] = facts
     result['observed_return_low_bytes'] = {('source' if p.candidate else 'target'): dict(p.return_bytes)
