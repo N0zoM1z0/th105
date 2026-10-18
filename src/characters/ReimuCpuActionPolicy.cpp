@@ -1,5 +1,5 @@
 // Original JP 1.06a Reimu CPU slot +0x58, 0x0048D390..0x0049120F.
-// Source-present candidate, not an exact match. See docs/REIMU_CPU_ROLL_FIELD_2026_10_19.md.
+// Source-present candidate, not an exact match. See docs/REIMU_CPU_NAN_WALLS_2026_10_19.md.
 #include "CpuActionPolicies.hpp"
 #include "engine/AngleAtan2.hpp"
 #include "../battle/Collision.hpp"
@@ -467,7 +467,8 @@ v99 = horizontal_distance;
 if ( horizontal_distance <= 90.0 )
 {
 v89 = *(_BYTE *)CPU_FIELD(260);
-if ( (v89 != 1 || *(float *)CPU_FIELD(236) >= 240.0) && (v89 != -1 || *(float *)CPU_FIELD(236) <= 1040.0f) )
+// Negate ordered wall tests so an unordered X skips the wall arm.
+if ( !((v89 == 1 && *(float *)CPU_FIELD(236) < 240.0) || (v89 == -1 && *(float *)CPU_FIELD(236) > 1040.0f)) )
 goto LABEL_888;
 if ( policy_counter_76a >= 0 && policy_counter_76a <= 29 && vertical_distance > 200.0 )
 {
@@ -695,7 +696,8 @@ if ( policy_counter_76a >= 19 && policy_counter_76a <= 24 && v95 >= 200.0 )
 goto LABEL_808;
 }
 v89 = *(_BYTE *)CPU_FIELD(260);
-if ( (v89 != 1 || *(float *)CPU_FIELD(236) >= 240.0) && (v89 != -1 || *(float *)CPU_FIELD(236) <= 1040.0f)
+// Negate ordered wall tests so an unordered X skips the wall arm.
+if ( !((v89 == 1 && *(float *)CPU_FIELD(236) < 240.0) || (v89 == -1 && *(float *)CPU_FIELD(236) > 1040.0f))
 || policy_counter_76a < 25
 || policy_counter_76a > 49
 || v95 < 250.0 )

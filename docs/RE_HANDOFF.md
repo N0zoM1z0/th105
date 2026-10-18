@@ -188,11 +188,11 @@ expanded terminals and three cumulative range-gate controls remain unselected,
 even where the entry's first302 bytes agree. Selected source and exact ledgers
 were unchanged. See [terminal sharing](REIMU_CPU_TERMINAL_SHARING_2026_10_19.md).
 
-Current selected source reads signed76A directly. Ordinary VC8 eliminates all
+The preceding field checkpoint reads signed76A directly. Ordinary VC8 eliminates all
 reloads and retains MOV ECX,EAX while removing all44 non-target unsigned range
 branches from reachable policy0. Twenty-one manual range gates are natural
 field predicates; typed766/768 accesses and macro cleanup are independently
-payload-identical. Source SHA256 is
+payload-identical. That source SHA256 is
 `77234302d395e30a71dbded324b0696e142c0f53ff56cb0c2a34d590a03d7864`,
 canonical16457-byte payload
 `d3b9a02340e6c4611a46007991b816c5675310b7e1d2cd28221f9a08f2d6ed54`.
@@ -208,6 +208,27 @@ Nine read-only Ghidra DB pins remain
 unchanged. No exact credit is added. See
 [signed selection field](REIMU_CPU_ROLL_FIELD_2026_10_19.md).
 
+Latest selected source also fixes two ordered wall predicates: negating
+`x<240`/`x>1040` explicitly preserves unordered X behavior, while substituting
+>=/<= did not. Actual-helper counterexamples select policy11/bound30 instead
+of target policy0/bound60, or policy9/bound30 instead of policy0/bound10.
+The new `--x-position-cases` matrix passes0/20200 with two independently
+target-confirmed policy/timer/RNG controls. Prior finite-X/height suites did
+not prove this case. Only eight TEST/Jcc instructions change among all4008
+functional instruction ordinals; all other encodings/edges and47 metadata
+pointer destinations remain identical after address replay. Source SHA256 is
+`7102660c044b225578aeb52fb5379ef20925ed813f34e7ab6815e760384f01eb`,
+canonical16461-byte payload
+`4a4cb565b9c023fb82e6f4fbb01e63df711d3b3f59ce15fef1c1f9c52b581792`.
+Prefix15920; strict+12E/48D4BE and selectors/RETs118/48 remain nonexact.
+Fresh selection/general/height runs pass0/21528, for0/41728 including the new
+exceptional-X matrix. All49 finite selector and63 coupled terminal records,
+including publication/x87 observations, agree with the preceding source after
+instruction-ordinal address replay. The primary instruction stream is unchanged
+apart from eight local table addresses moving by4. Generated input arrays
+totaling about12MB are removed; the public generator and trace recipes remain.
+See [unordered wall evidence](REIMU_CPU_NAN_WALLS_2026_10_19.md).
+
 ## Next reconstruction work
 
 The active scope is the Reimu CPU root: use the complete candidate, coupled
@@ -217,6 +238,8 @@ ECX forwarding. Absence of a machine reload does not prove an original local
 cache. Do not repeat a missing live value at selector entry explanation without
 new evidence. Preserve the corrected180 equality/RNG order. Do not count finite execution or
 diagnostic branch counts as exact progress.
+Preserve the two ordered wall negations and exceptional-X positive controls;
+do not replace floating-point complements with opposite ordered relations.
 The81KB action root remains an open priority with the constraints below.
 
 1. Resolve action9's coupled landing/advance membership with new compiler/TU
@@ -269,6 +292,11 @@ nine DB pins remain unchanged and the project alias is removed.
 closed CFG profiles, fresh focused Reimu execution and rejected controls. Its
 read-only recipe is under `.analysis/reimu-cpu-roll-field-20261019/`; all nine
 DB pins remain unchanged and no alias/project copy is retained.
+`build/reimu-cpu-geometry/` retains current ordered-wall source/normalization,
+real exceptional-X counterexamples and target traces, related replays and
+unselected peer/distance controls. Its read-only Ghidra recipe is under
+`.analysis/reimu-cpu-geometry-20261019/`; all nine DB pins are unchanged and
+the project alias is removed.
 `build/reimu-ltcg/` retains the current 164-file genuine provider/cache set.
 `build/reimu-low9-x87/` retains the newest cloning, listed/plain, RTM, full-CFG
 and native-entry recipes/reports. Controls are unselected and disposable.
