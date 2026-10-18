@@ -106,6 +106,10 @@
     case 197:
     case 198:
     case 199:
+#ifdef TH105_REIMU_SHARED_SEQUENCE_LANDINGS
+        if (selected_action != 199)
+            landing_sequence = 2;
+#endif
         if (selected_action == 199 || (sequence_13e == 0 && frame_index_140 <= 2)
                 || sequence_13e == 2)
             resolve_stage_surface_landing_transition();
@@ -113,10 +117,16 @@
             if (sequence_13e < 2)
                 velocity_y_f8 = static_cast<float>(velocity_y_f8 - acceleration_y_100);
             if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
+#ifdef TH105_REIMU_SHARED_SEQUENCE_LANDINGS
+                if (selected_action == 197)
+                    goto reimu_land_sequence_658;
+                goto reimu_land_sequence_608;
+#else
                 y_f0 = reimu_stage_surface_height_at_x(this);
                 zero_velocity_acceleration();
                 set_sequence(2);
                 return true;
+#endif
             }
         }
         if (advance_frame_and_dispatch()) {

@@ -1,5 +1,7 @@
 #include "ReimuActionStateStaging.hpp"
 
+#define TH105_REIMU_SHARED_SEQUENCE_LANDINGS
+
 namespace th105 {
 
 // One source path for the checked entry and all actions<=798. This staged
@@ -8,6 +10,7 @@ namespace th105 {
 bool ReimuActionStatePreludeView::run_checked_action_dispatch()
 {
 #include "ReimuActionStatePreludeBody.hpp"
+    int landing_sequence;
     const int selected_action = action_13c;
     if (selected_action > 798)
         return false;
@@ -38,3 +41,5 @@ bool ReimuActionStatePreludeView::run_checked_action_dispatch()
 }
 
 } // namespace th105
+
+#undef TH105_REIMU_SHARED_SEQUENCE_LANDINGS

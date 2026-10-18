@@ -1,5 +1,6 @@
 // Middle high-table families; no separate callable boundary.
     case 608:
+        landing_sequence = 3;
         if ((sequence_13e == 0 && frame_index_140 <= 3) || sequence_13e == 3)
             resolve_stage_surface_landing_transition();
         publish_texture_state(6, 2);
@@ -10,9 +11,10 @@
         if (sequence_13e < 3) {
             velocity_y_f8 -= acceleration_y_100;
             if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
+            reimu_land_sequence_608:
                 y_f0 = reimu_stage_surface_height_at_x(this);
                 zero_velocity_acceleration();
-                set_sequence(3);
+                set_sequence(landing_sequence);
                 return true;
             }
         }
