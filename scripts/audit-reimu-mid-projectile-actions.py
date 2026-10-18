@@ -136,7 +136,9 @@ class Probe(mid.Probe):
     argument_helpers = mid.Probe.argument_helpers | {0x478DF0, 0x45C030, 0x4351A0, 0x4067D0}
 
     def helper_receiver(self, address):
-        if address in (0x406540, 0x4351A0, 0x4067D0, *MATH):
+        if address == 0x4351A0:
+            return low.OWNER+4
+        if address in (0x406540, 0x4067D0, *MATH):
             return None
         return super().helper_receiver(address)
 

@@ -38,7 +38,7 @@ SCOPE = ('void noargs thiscall candidate; actual helpers/RET and common-root def
 RANDOM_COHORTS = ('random_lifetimes', 'random124_lifetimes', 'movement_random_lifetimes')
 LIFETIME_COHORTS = (*RANDOM_COHORTS, 'flight_effect_lifetimes')
 COHORTS = ('integration', 'defaults', 'common_return', 'unresolved740',
-           'aim_argument_lifetimes', *LIFETIME_COHORTS)
+           'aim_argument_lifetimes', 'projectile_receivers', *LIFETIME_COHORTS)
 SMOKE_COUNT = 26
 ALLOW_SWITCH_METADATA = True
 
@@ -82,6 +82,15 @@ def cases(smoke=False):
             for case in family.cases():
                 if case['cohort'] in LIFETIME_COHORTS:
                     yield {**base, **case}
+        for action, facing, cw, seed, shot, latch in itertools.product(
+                (400, 401, 404, 406), (-128, -1, 0, 1, 127), (0x27F, 0x37F),
+                (0, 5489, 0xFFFFFFFF), (0, 4), (0, 1)):
+            yield {**base, 'cohort': 'projectile_receivers', 'action': action,
+                   'sequence': 0, 'counter': 0, 'timer': 0,
+                   'y': 0.0 if action in (400, 401) else 100.0, 'vy': 0, 'ay': 0,
+                   'counter730': 3, 'counter732': shot, 'counter734': 10,
+                   'latch750': latch, 'held6c0': 1, 'facing': facing,
+                   'control_word': cw, 'seed': seed}
         aim_profiles = ((400, 2, 0, 0x47DF03), (400, 6, 0, 0x47E039),
                         (401, 2, 0, 0x47E44A), (401, 6, 0, 0x47E577),
                         (404, 2, 0, 0x47EBCC), (404, 6, 0, 0x47ED11),
@@ -114,7 +123,18 @@ def cases(smoke=False):
 
 
 def check_target_case(case, result, sites):
-    if case['cohort'] == 'defaults':
+    if case['cohort'] == 'projectile_receivers':
+        ranges = [call for call in result['calls'] if call[0] == 0x4351A0]
+        arguments = [call[2] for call in result['calls']
+                     if call[:2] == ('native_args', 0x4351A0)]
+        expected = 2 if case['latch750'] else 0
+        if ((result['spawn_request'] or ())[:2] != (0x465190, 800)
+                or len(ranges) != expected
+                or any(call[1:] != (low.OWNER+4, 0) for call in ranges)
+                or arguments != ([struct.pack('<II', 0, 30).hex(),
+                                  struct.pack('<II', 0, 5).hex()] if expected else [])):
+            raise ValueError('target projectile bypassed its actual range receiver/argument path')
+    elif case['cohort'] == 'defaults':
         if case['entry_gate'] or case['peer_gate']:
             if result['endpoint'] != 'ret' or any(call[0] == 0x4740C0 for call in result['calls']):
                 raise ValueError('default entry gate did not return before dispatch')
@@ -228,6 +248,7 @@ def audit(path, smoke=False, cohorts=None):
     contract.COHORT_COUNTS = {'integration': 1010, 'defaults': len(default_actions())*6,
                               'common_return': 16, 'unresolved740': 8,
                               'aim_argument_lifetimes': 600,
+                              'projectile_receivers': 480,
                               **{name: count for family in lifetime_families()
                                  for name, count in family.COHORT_COUNTS.items() if name in LIFETIME_COHORTS}}
     result = low.audit(path, smoke, cohorts, contract=contract)

@@ -17,7 +17,14 @@ class RootProbeBindingsTests(unittest.TestCase):
         self.assertEqual(len(self.bindings['root_literals']), 160)
         self.assertNotIn('41f0000000000000', self.bindings['root_literals'])
         self.assertEqual(self.bindings['pool_literals']['41f0000000000000'], '0x006D6ED0')
-        self.assertEqual(len(self.bindings['rel32']), 33)
+        self.assertEqual(len(self.bindings['rel32']), 34)
+
+    def test_range_receiver_view_uses_the_existing_entry(self):
+        calls = self.bindings['rel32']
+        self.assertEqual(calls['?selector_random_range@th105@@YGHHH@Z'], '0x004351A0')
+        self.assertEqual(calls['?selector_random_range@ReimuRandomReceiverView@th105@@QAEHHH@Z'],
+                         '0x004351A0')
+        self.assertEqual(len({int(address, 0) for address in calls.values()}), 32)
 
     def test_acceptance_scope_cannot_be_enabled(self):
         changed = copy.deepcopy(self.bindings)

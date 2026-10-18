@@ -19,6 +19,12 @@ struct ReimuPreludePeerView {
     short word_48c;
 };
 
+// The range wrapper ignores ECX, but Reimu callers supply the subobject at +4.
+class ReimuRandomReceiverView {
+public:
+    int selector_random_range(int lower, int upper);
+};
+
 class ReimuActionStatePreludeView {
 public:
     virtual void slot_00();
@@ -67,6 +73,10 @@ public:
     unsigned char advance_frame_and_dispatch();
     int has_crossed_stage_surface_while_descending();
     void zero_velocity_acceleration();
+    ReimuRandomReceiverView *random_receiver_004() {
+        return reinterpret_cast<ReimuRandomReceiverView *>(
+            reinterpret_cast<unsigned char *>(this) + 4);
+    }
 
     unsigned char reserved_004[0xe8];
     float x_ec;
@@ -211,7 +221,6 @@ typedef char ReimuStage_late_low_offsets[(offsetof(ReimuActionStatePreludeView, 
 double __cdecl lookup_orientation_sine_quantized_abs(float phase);
 double __cdecl lookup_orientation_cosine_quantized_abs(float phase);
 unsigned int __cdecl mt19937_next_u32();
-int __stdcall selector_random_range(int lower, int upper);
 float __cdecl atan2_degrees(float y, float x);
 float __cdecl sqrt_float_value(float value);
 int __cdecl selector_random_roll(int limit);

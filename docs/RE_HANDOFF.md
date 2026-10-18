@@ -672,7 +672,7 @@ The changed observer passes14 legacy smoke inputs/50 objects; effect tooling
 is unchanged. Main object/payload/strict+17 and exact ledgers stay unchanged.
 Serial CPU0/nice10 jobs peak at301MiB child RSS; all9 primary database hashes
 are unchanged. See [complete circular returns](REIMU_CIRCULAR_RETURNS_2026_10_18.md).
-The latest checkpoint tests real method IR with a positive visibility control.
+The preceding checkpoint tests real method IR with a positive visibility control.
 Fresh ordinary landing/surface/layout/event anchors match442/64/21/14 bytes;
 only their complete source TU gains /GL. A short facade-alias caller retains
 the14-byte event wrapper, while a direct real-method caller inlines it and
@@ -688,9 +688,29 @@ unchanged and no private image executes. A520..523 explicit-facing-snapshot
 source probe also gives the identical entire canonical payload and is not
 selected. Source/object/exact ledgers and all9 primary database hashes remain
 unchanged. See [method visibility](REIMU_METHOD_VISIBILITY_2026_10_18.md).
-Next recover target-backed lifetimes and physical sharing context using direct
-positive witnesses for future method-IR tests. Remaining effect/projectile
-families and runtime/heap/resource/exception contexts stay open before acceptance.
+The latest checkpoint fixes the range-call receiver in400/401/404/406. All8
+target/source sites trace ECX to actor+4. The26-byte RET8 provider ignores ECX,
+so its exact global stdcall producer did not establish original membership;
+the ledger now records the thiscall/stdcall ambiguity. A receiver-only C++ view
+preserves the observed input without changing fields/vslots/flags or helpers.
+First canonical difference moves+17->+541, now only the JNE displacement at
+4791BB into identical target/source epilogues489D6A/489D79. Three wave sites
+are restored; all128 nondefault actions now have equal reachable per-callee
+counts, without an ownership/dynamic-count claim. Frame570h,11 switches, all
+buffer/preparation contracts pass. Genuine ordinary/linked payload82964 agrees
+fully, SHA589209c9...;2468 fields/1281 HIGHLOWs and12-byte INT3 gap qualify.
+Current prefix81592 exceeds callable42 and metadata40: no expanded object/DLL
+execution or guard relaxation. Reproduce behavior with the separately bounded
+50784-byte compact void witness:0/480 receiver cases plus0/2128 integration/
+default/aim/guarded740 cases; a compiled actor+8 accessor is rejected at4351A0.
+Prior full returning-manager results are historical until expanded fit returns.
+Fresh sharing recheck finds source410/414/416 effects merged3->1 and522/523
+request/wave/advance sharing, plus the old300/320 and215/310/797 differences.
+All9 primary database hashes are unchanged; no root exact/source credit. See
+[random receiver recovery](REIMU_RANDOM_RECEIVER_2026_10_18.md).
+Next recover target-backed lifetimes/physical sharing and restore strict full
+callable/metadata fit. Keep the expanded candidate read-only while oversize;
+remaining returning families/runtime/resource/exception contexts stay open.
 A fresh static recheck confirms300/320 still fully merge at source47CC02;
 target retains distinct47CBBD/47D96A prefixes and shared47CC2B tail.
 215/310/797 and522/523 still have different target/source incoming sets.
