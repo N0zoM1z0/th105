@@ -196,6 +196,23 @@ def x_position_cases():
             yield vector
 
 
+def y_position_cases():
+    # Cover both height-classification operands with real exceptional inputs.
+    for case in selection_cases():
+        if (case["self_x"], case["other_x"]) != (100.0, 190.0):
+            continue
+        for key, bits in itertools.product(("self_y_bits", "other_y_bits"),
+                                           ("7fc00000", "7f800001", "7f800000", "ff800000", "80000000")):
+            vector = dict(case, **{key: bits})
+            if (bits in ("7fc00000", "7f800001") and case["facing"] == 1
+                    and (case["selection_roll"], case["self_y"], case["other_y"]) == (30, 100.0, 0.0)):
+                vector["expected_y_policy"] = (
+                    {"policy": 11, "timer": 35, "rng_limits": [1000, 100, 30]}
+                    if key == "self_y_bits" else
+                    {"policy": 0, "timer": 40, "rng_limits": [1000, 100, 60]})
+            yield vector
+
+
 def selection_coverage(canonical, root, target, visited, *, address=boundary.ADDRESS, expected_entry=0x5F47B0):
     policy, = (region for region in root["regions"] if region["name"] == "policy")
     index = -int(policy["case_min"])
@@ -509,14 +526,16 @@ def audit(object_path, count, selected_cases=None, check_selection=False, *, roo
     for number, case in enumerate(vectors, 1):
         digest.update(json.dumps(case, sort_keys=True).encode())
         expected, actual = (engine.evaluate(case) for engine in engines)
-        if "expected_x_policy" in case:
-            control = case["expected_x_policy"]
+        for key, axis in (("expected_x_policy", "X"), ("expected_y_policy", "Y")):
+            if key not in case:
+                continue
+            control = case[key]
             actor = bytes.fromhex(expected["actor"])
             words = [int.from_bytes(actor[offset:offset + 2], "little", signed=True)
                      for offset in (0x766, 0x768)]
             limits = [call[1] for call in expected["calls"] if call[0] == "rng"]
             if root_name != "reimu" or words != [control["policy"], control["timer"]] or limits != control["rng_limits"]:
-                raise ValueError("native target did not confirm an exceptional-X policy control")
+                raise ValueError(f"native target did not confirm an exceptional-{axis} policy control")
         if "expected_counter_fields" in case:
             actor = bytes.fromhex(expected["actor"])
             for key, value in case["expected_counter_fields"].items():
@@ -644,6 +663,7 @@ def main():
     inputs.add_argument("--case-file", type=Path, help="nonempty JSON case array; <float field>_bits overrides its value")
     inputs.add_argument("--height-cases", action="store_true", help="368 finite/NaN height and RNG controls")
     inputs.add_argument("--x-position-cases", action="store_true", help="20200 Reimu exceptional-X/height/roll controls with native positive witnesses")
+    inputs.add_argument("--y-position-cases", action="store_true", help="20200 Reimu exceptional-height/roll controls with native positive witnesses")
     inputs.add_argument("--counter-cases", action="store_true", help="4164 signed counter/mode/resource/geometry controls")
     inputs.add_argument("--aya-command-cases", action="store_true", help="470 Aya command/RNG/resource/truncation controls")
     inputs.add_argument("--reimu-edge-cases", action="store_true", help="45714 Reimu action/resource/sequence/geometry controls")
@@ -659,6 +679,8 @@ def main():
         parser.error("--reimu-edge-cases requires --root reimu")
     if args.x_position_cases and args.root != "reimu":
         parser.error("--x-position-cases requires --root reimu")
+    if args.y_position_cases and args.root != "reimu":
+        parser.error("--y-position-cases requires --root reimu")
     if args.selection_x87 and (args.root != "reimu" or not args.selection_cases):
         parser.error("--selection-x87 requires --root reimu --selection-cases")
     if args.selection_terminals and (args.root != "reimu" or not args.selection_cases):
@@ -673,6 +695,8 @@ def main():
             selected = list(height_cases())
         elif args.x_position_cases:
             selected = list(x_position_cases())
+        elif args.y_position_cases:
+            selected = list(y_position_cases())
         elif args.counter_cases:
             selected = list(counter_cases())
         elif args.aya_command_cases:
@@ -693,6 +717,10 @@ def main():
             if count != 20200 or sum("expected_x_policy" in case for case in selected) != 2:
                 raise ValueError("exceptional-X matrix omitted a native positive control")
             result["input_source"] = "built-in exceptional-X/height/policy-roll matrix with native target positive controls"
+        if args.y_position_cases:
+            if count != 20200 or sum("expected_y_policy" in case for case in selected) != 4:
+                raise ValueError("exceptional-height matrix omitted a native positive control")
+            result["input_source"] = "built-in exceptional-height/policy-roll matrix with native target positive controls"
         if args.aya_command_cases:
             if count != 470 or any(block["missing_target_instruction_addresses"]
                                    for block in result["aya_command_branch_coverage"]):

@@ -252,6 +252,16 @@ selected and linked images are not executed. This does not exclude other
 original source/TU/LTCG contexts. See
 [compiler phase and remaining wall evidence](REIMU_CPU_PHASE_2026_10_19.md).
 
+The next checkpoint keeps that source/payload unchanged and adds a native
+exceptional-height matrix with four target-confirmed qNaN/sNaN policy/timer
+witnesses. Fresh0/20200 vectors preserve complete actor/RNG/helper results.
+An ordinary inline input helper leaves the entire payload unchanged. Four
+independent height cases and narrower independent peer cases overrun491450;
+fenv_access(on) changes the12-byte frame to16 and also overruns. None is
+executed or selected. Target EBP=2/EDI=400 lifetimes and its two peer-height
+comparisons are recorded separately from source hypotheses in
+[height and lifetime controls](REIMU_CPU_HEIGHT_CONTROLS_2026_10_19.md).
+
 ## Next reconstruction work
 
 The active scope is the Reimu CPU root: use the complete candidate, coupled
@@ -265,6 +275,8 @@ Preserve all four ordered wall negations and exceptional-X positive controls;
 do not replace floating-point complements with opposite ordered relations.
 Do not repeat the unchanged RTM/native-container/five-float-alias controls;
 the latter restores an entry frame but not complete target sharing.
+Do not repeat the unchanged input-helper/independent-height/fenv controls;
+their negative results do not establish a unique original source spelling.
 The81KB action root remains an open priority with the constraints below.
 
 1. Resolve action9's coupled landing/advance membership with new compiler/TU
@@ -327,6 +339,11 @@ target wall traces, pinned RTM/native-container controls and qualified genuine
 float-alias link recipes. Its read-only Ghidra recipe is under
 `.analysis/reimu-cpu-phase-20261019/`; nine DB hashes remain unchanged and
 the project alias is removed. The private linked images are not selected.
+`build/reimu-cpu-controls/` retains the unchanged baseline, four rejected
+input/height/environment controls, closed policy0 profiles and exceptional-Y
+native witnesses. Its read-only Ghidra recipe is under
+`.analysis/reimu-cpu-controls-20261019/`; nine DB pins remain unchanged and
+the project alias is removed. Generated bulk input arrays are removed.
 `build/reimu-ltcg/` retains the current 164-file genuine provider/cache set.
 `build/reimu-low9-x87/` retains the newest cloning, listed/plain, RTM, full-CFG
 and native-entry recipes/reports. Controls are unselected and disposable.
