@@ -3,7 +3,7 @@
 The15999-byte CPU root at48D390 remains nonexact. No source, ABI, compiler
 profile, relocation contract or exact ledger changes in this checkpoint.
 The new exceptional-height matrix passes0/20200 with genuine target helpers.
-Four source controls fail to recover the remaining sharing/register choices.
+Source controls fail to recover the remaining sharing/register choices.
 
 ## Target observations and limits
 
@@ -74,6 +74,18 @@ Canonical hash is
 `52172170b8a0c7d41efe5f4537cdcdd7676fba49690b23e1519cfaf3bba88276`.
 It is not executed or selected. This rejects this pragma-only explanation;
 other original source/TU/lifetime contexts remain unknown.
+
+**Typed-output follow-up:** replace43 raw `_DWORD` accesses to the existing
+6B4/6B8/6BC/6C0/6C4/6C8/724 members with those typed members, preserving
+their actual32-bit write widths and values. The entire canonical16461-byte
+payload remains07cb7a40, including all primary and policy code. The existing
+typed member declarations are not changed. This particular mixed-access
+spelling does not explain EBP allocation or terminal sharing and remains an
+unselected cleanup. Fresh focused baseline/source-control receipts are under
+`build/reimu-cpu-fields/`. A new read-only Ghidra attestation under
+`.analysis/reimu-cpu-fields-20261019/` again leaves all nine DB files unchanged
+and removes its alias. No extra native replay is needed for byte-identical
+code; earlier execution retains its recorded scope.
 
 Private generated inputs, objects, disassembly, table packets and closed
 policy0 profiles remain under `build/reimu-cpu-controls/`. Do not repeat

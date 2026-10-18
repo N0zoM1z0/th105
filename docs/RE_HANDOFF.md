@@ -261,10 +261,22 @@ fenv_access(on) changes the12-byte frame to16 and also overruns. None is
 executed or selected. Target EBP=2/EDI=400 lifetimes and its two peer-height
 comparisons are recorded separately from source hypotheses in
 [height and lifetime controls](REIMU_CPU_HEIGHT_CONTROLS_2026_10_19.md).
+Replacing43 raw output-word accesses with existing32-bit typed members also
+leaves the complete payload unchanged. Mixed output access spelling is not
+the demonstrated cause of the remaining allocation/sharing differences.
+`build/reimu-cpu-fields/` retains that fresh baseline/control and independent
+read-only Ghidra attestation; nine DB hashes agree and its alias is removed.
 
 ## Next reconstruction work
 
-The active scope is the Reimu CPU root: use the complete candidate, coupled
+The next bounded scope is AyaObject's4531-byte action-entry initializer at
+61F0B0. Revisit its repeated vslot+0C scheduling class through genuine source/
+TU/link context, preserving its proved32-destination switch and ABI. Read
+AYA_ENTRY_VSLOT0C_SCHEDULING_2026_10_02.md before new controls; unchanged
+direct-heading and/Os probes already fail. Do not infer original spelling
+from a single two-instruction ordering difference.
+
+The Reimu CPU root remains open: use the complete candidate, coupled
 terminal witnesses and original-helper execution to recover CALL/publication/RET sharing and genuine
 constant/TU/register lifetimes. Keep direct signed764/76A reads and the observed
 ECX forwarding. Absence of a machine reload does not prove an original local
@@ -277,6 +289,7 @@ Do not repeat the unchanged RTM/native-container/five-float-alias controls;
 the latter restores an entry frame but not complete target sharing.
 Do not repeat the unchanged input-helper/independent-height/fenv controls;
 their negative results do not establish a unique original source spelling.
+The43-write typed-output control is likewise completely byte-neutral.
 The81KB action root remains an open priority with the constraints below.
 
 1. Resolve action9's coupled landing/advance membership with new compiler/TU
