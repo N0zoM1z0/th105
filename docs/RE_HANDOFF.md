@@ -589,7 +589,7 @@ Source has119 advance sites versus target121, but its sharing changed:
 47D983. Target instead shares215/797 and separates310 and522/523. Six callee
 cardinalities still differ; counts alone do not establish correct ownership.
 See [movement and fan lifetimes](REIMU_MOVEMENT_AND_FAN_LIFETIMES_2026_10_18.md).
-Current aim checkpoint retains rounded deltaX and computes rounded deltaY
+The preceding aim checkpoint retains rounded deltaX and computes rounded deltaY
 inside atan2's call for400/401/404/406 and410/414(two sites each). Read-only
 peer-Y-load observations require X already pending and equal to the actual
 subsequent atan2 argument. Preceding source fails600/600; final expanded root
@@ -607,6 +607,20 @@ linked/ordinary payloads agree fully, SHA
 observations remain valid by complete outside-preparation byte identity.
 Root remains unclassified/declaration-only; no aggregate replay. See
 [aim argument lifetimes](REIMU_AIM_ARGUMENT_LIFETIMES_2026_10_18.md).
+The latest bounded context probe exposes the real strict-FP atan2 source to
+the genuine LTCG root link. Its ordinary anchor freshly matches63/63; adding
+only /GL produces a65-byte math body with PUSH/POP ECX and shifted stack
+displacements. All36 root math calls remain, frame570h and first+17 persist.
+The lowest of11 tables is at offset81556; this private layout is not a
+qualified callable boundary and the image is never executed. All51 original
+object/library inputs and four base receipt/object/image/MAP hashes remain
+unchanged. The selected root and ordinary exact math producer stay unchanged;
+no provider-IR guard is relaxed. A raw-target ECX read-before-definition
+search after the three differing signed-facing loads finds no incoming ECX
+read before redefinition/return, under reviewed math/ftol2 contracts. This
+does not recover original visibility or justify register constraints. No
+root exact/source credit or aggregate replay. See
+[the real-math visibility probe](REIMU_ATAN2_VISIBILITY_2026_10_18.md).
 Next recheck300/320's current sharing and resolve215/310/797 and522/523's
 different incoming sets. These are static ownership questions, not missing
 per-input behavior.214's two target resource gates versus one candidate gate
