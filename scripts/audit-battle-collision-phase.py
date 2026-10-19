@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Compare bounded native collision-phase execution, separately from exactness.
 
-Full-entry fixtures avoid same-side hit effects. Tail-entry fixtures explicitly
-supply the attested 2Ch-frame state to test wide guards and signed low-word sums.
+Full-entry fixtures include separated same-side calls and real frame-flag hits.
+Tail-entry fixtures explicitly supply the attested 2Ch-frame state to test wide
+guards and signed low-word sums.
 All game, geometry, checked-list and getter instructions run from the target PE.
 Only malloc/free environment boundaries are callbacks; code is never patched.
 """
@@ -56,11 +57,16 @@ class Probe:
         u.mem_map(DATA, 0x10000, unicorn.UC_PROT_READ)
         u.hook_add(unicorn.UC_HOOK_CODE, self.guarded_step)
         u.hook_add(unicorn.UC_HOOK_MEM_WRITE, self.guarded_write)
+        u.hook_add(unicorn.UC_HOOK_MEM_READ, self.guarded_null_read, begin=0, end=0xFFF)
         self.initial = u.context_save()
         self.visited = set()
         self.calls = collections.Counter()
         self.executed = set()
         self.getter_calls = 0
+        self.same_side_entries = 0
+        self.opposing_entries = 0
+        self.frame_flag_hits = collections.Counter()
+        self.flag_pending = []
 
     def guarded_step(self, *args):
         try:
@@ -75,6 +81,12 @@ class Probe:
         except Exception as exc:
             self.failure = str(exc)
             self.u.emu_stop()
+
+    def guarded_null_read(self, u, access, address, size, value, unused):
+        if address == 0 and size == 4:
+            return
+        self.failure = f"unreviewed null-page read {address:x} size{size}"
+        u.emu_stop()
 
     def put(self, a, fmt, *v):
         self.u.mem_write(a, struct.pack("<" + fmt, *v))
@@ -95,6 +107,20 @@ class Probe:
         if self.start <= a < self.start + self.size:
             self.visited.add(a - self.start)
         self.executed.add(a)
+        if self.flag_pending and a == self.flag_pending[-1][0]:
+            _, same_side = self.flag_pending.pop()
+            if u.reg_read(r.UC_X86_REG_EAX) & 0xFF:
+                self.frame_flag_hits["same" if same_side else "opposing"] += 1
+        if a in (0x46DA10, 0x46C8A0):
+            sp = u.reg_read(r.UC_X86_REG_ESP)
+            candidate, fighter = self.word(sp + 4), self.word(sp + 8)
+            same_side = self.word(candidate + 0x168) == fighter
+            if a == 0x46C8A0:
+                self.flag_pending.append((self.word(sp), same_side))
+            elif same_side:
+                self.same_side_entries += 1
+            else:
+                self.opposing_entries += 1
         if a == 0x4B9DA0:
             self.getter_calls += 1
         if self.start <= a < self.start + self.size and bytes(u.mem_read(a, 1)) in (
@@ -166,6 +192,7 @@ class Probe:
         self.saw_return = False
         self.old_nodes = set()
         self.call_order = []
+        self.flag_pending = []
         self.put(CTX + 0xC, "II", *ACTORS[:2])
         for off in [0x2C, 0x38, 0x44, 0x50, 0x5C, 0x68]:
             # Separate sentinels/nodes preserve each list's ownership.
@@ -197,7 +224,9 @@ class Probe:
                 frame + 0x4C,
                 "II",
                 case.get("flags", 0),
-                case.get("friendly", 0) * 0x100000,
+                ((case.get("friendly", 0) or
+                  (case.get("same_side_objects", False) and not isfighter)) * 0x100000)
+                | case.get("candidate_flags", 0),
             )
             for off, count, start in [(0x58, nb, box), (0x68, na, box + 0x40)]:
                 self.put(
@@ -223,6 +252,7 @@ class Probe:
             self.put(a + 0x12C, "f", 45.75)
             self.put(a + 0x13C, "h", 1)
             self.put(a + 0x158, "II", frame, DATA + 0x100)
+            self.put(a + 0x168, "I", ACTORS[side])
             self.put(a + 0x16C, "IIhh", ACTORS[side], ACTORS[1 - side], 100, 200)
             self.put(
                 a + 0x180,
@@ -247,7 +277,7 @@ class Probe:
                 self.put(a + 0x194, "I", ext)
             if isfighter:
                 self.put(a + 0x334, "b", side)
-                self.put(a + 0x4E9, "BB", 9 + side, 0)
+                self.put(a + 0x4E9, "BB", case.get("source_state", 9 + side), 0)
                 self.put(a + 0x658, "I", MANAGERS[side])
                 self.put(a + 0x558, "h", 500)
         self.put(
@@ -301,6 +331,8 @@ class Probe:
         assert self.word(0) == 0xFFFFFFFF
         if not tail and self.old_nodes:
             raise ValueError("old nodes not released")
+        if self.flag_pending:
+            raise ValueError("frame-flag response did not return")
         if (u.reg_read(r.UC_X86_REG_FPSW) >> 11) & 7 or u.reg_read(
             r.UC_X86_REG_FPCW
         ) != 0x27F:
@@ -315,6 +347,7 @@ class Probe:
 
 def audit(obj, smoke=False):
     target_hash = c.verify_target()
+    audit_hash = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
     object_hash = hashlib.sha256(obj.read_bytes()).hexdigest()
     raw = c.target_bytes(ROOT, SIZE)
     if (
@@ -326,6 +359,11 @@ def audit(obj, smoke=False):
         0x6C40FC + 0x24, 4
     ) != struct.pack("<I", 0x4B9DA0):
         raise ValueError("getter/vtable changed")
+    if (
+        c.target_bytes(0x462BC4, 12) != bytes.fromhex("89b66c01000089b668010000")
+        or c.target_bytes(0x4938E7, 6) != bytes.fromhex("898668010000")
+    ):
+        raise ValueError("fighter self/object owner binding changed")
     function = tomllib.loads((R / "config/match-units.toml").read_text())["units"][
         "gpt-web-battle-collision-phase"
     ]["functions"][0]
@@ -380,6 +418,22 @@ def audit(obj, smoke=False):
                 friendly=0,
             )
         )
+    original_cases = len(cases)
+    for (a, b), extension, source_state, objects in itertools.product(
+        ((0, 0), (1, 0), (0, 1), (1, 1)), range(3), range(3), (1, 2)
+    ):
+        cases.append(dict(a=a, b=b, extension=extension, source_state=source_state,
+                          objects=objects, status=1, result=0, old=2,
+                          same_side_objects=True))
+    first_hit_case = len(cases)
+    for (flags, candidate_flags), objects in itertools.product(
+        ((0x8000, 0x2000), (0x10000, 0x4000),
+         (0x20000, 0x8000), (0x40000, 0x10000)), range(3)
+    ):
+        cases.append(dict(a=1, b=1, objects=objects, status=1, result=0,
+                          old=2, friendly=1, flags=flags,
+                          candidate_flags=candidate_flags, source_state=0,
+                          expect_pair_hit=True))
     tails = [
         dict(
             current=cur,
@@ -411,15 +465,25 @@ def audit(obj, smoke=False):
         )
     ]
     if smoke:
-        cases = cases[::8]
+        cases = (cases[:original_cases:8]
+                 + cases[original_cases:first_hit_case:8] + cases[first_hit_case:])
         tails = tails[::17]
     mismatches = {"full": 0, "tail": 0}
+    frame_flag_outcome_mismatches = 0
     examples = []
     digest = hashlib.sha256()
     for lane, inputs in [("full", cases), ("tail", tails)]:
         for n, case in enumerate(inputs):
             digest.update(json.dumps([lane, case], sort_keys=True).encode())
             out = [x.evaluate(case, lane == "tail") for x in p]
+            if case.get("expect_pair_hit"):
+                outcomes = [tuple(struct.unpack_from(
+                    "<I", result["object"], actor - CTX + 0x180)[0]
+                    for actor in ACTORS[:2]) for result in out]
+                if outcomes[0] != (3, 3):
+                    raise ValueError("target frame-flag hit outcome missing")
+                if outcomes[0] != outcomes[1]:
+                    frame_flag_outcome_mismatches += 1
             if out[0] != out[1]:
                 mismatches[lane] += 1
                 if len(examples) < 4:
@@ -447,13 +511,17 @@ def audit(obj, smoke=False):
                 )
     if object_hash != hashlib.sha256(obj.read_bytes()).hexdigest():
         raise ValueError("object changed")
-    if p[0].calls != p[1].calls or p[0].getter_calls != p[1].getter_calls:
+    if audit_hash != hashlib.sha256(Path(__file__).read_bytes()).hexdigest():
+        raise ValueError("audit source changed")
+    if not any(mismatches.values()) and (
+        p[0].calls != p[1].calls or p[0].getter_calls != p[1].getter_calls
+    ):
         raise ValueError("helper counts differ")
     inventory = {
         int(row["address"], 0): int(row["size"])
         for row in csv.DictReader((R / "config/functions.csv").open())
     }
-    helpers = set(p[0].calls) | {0x4B9DA0}
+    helpers = set(p[0].calls) | set(p[1].calls) | {0x4B9DA0}
     import capstone
 
     rows = list(
@@ -466,12 +534,11 @@ def audit(obj, smoke=False):
         if i.mnemonic == "call" and i.op_str == "0x68a143"
     }
     padding = {0x8D, 0x3F8, 0x3FF, 0x4B9}
-    same_side_hit = {0x514, 0x516, 0x51D, 0x51F, 0x522, 0x526, 0x527, 0x528}
-    coverage_complete = unvisited == invalid_calls | padding | same_side_hit
+    coverage_complete = unvisited == invalid_calls | padding
     if not smoke and not coverage_complete:
         raise ValueError("bounded target execution coverage changed")
     return dict(
-        schema="th105-battle-collision-phase-native-v1",
+        schema="th105-battle-collision-phase-native-v2",
         target_sha256=target_hash,
         body_sha256=hashlib.sha256(raw).hexdigest(),
         object_sha256=object_hash,
@@ -480,9 +547,10 @@ def audit(obj, smoke=False):
         full_cases=len(cases),
         tail_entry_cases=len(tails),
         mismatches=mismatches,
+        frame_flag_outcome_mismatches=frame_flag_outcome_mismatches,
         examples=examples,
         input_sha256=digest.hexdigest(),
-        audit_source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        audit_source_sha256=audit_hash,
         python_version=sys.version.split()[0],
         unicorn_version=unicorn.__version__,
         unicorn_library_sha256=hashlib.sha256(
@@ -499,7 +567,13 @@ def audit(obj, smoke=False):
             "free_EAX": "0xF3F3F3F3",
         },
         helper_counts={hex(k): v for k, v in sorted(p[0].calls.items())},
+        source_helper_counts={hex(k): v for k, v in sorted(p[1].calls.items())},
         getter_calls_per_side=p[0].getter_calls,
+        same_side_entries=[x.same_side_entries for x in p],
+        opposing_entries=[x.opposing_entries for x in p],
+        frame_flag_hits=[dict(x.frame_flag_hits) for x in p],
+        source_bindings={"fighter_self_store": "0x00462BCA", "object_owner_store": "0x004938E7"},
+        null_page_reads="rejected outside the x86 SEH cell",
         helper_sha256={
             hex(a): hashlib.sha256(c.target_bytes(a, inventory[a])).hexdigest()
             for a in sorted(helpers)
@@ -510,7 +584,7 @@ def audit(obj, smoke=False):
             hex(i.address - ROOT) for i in rows if i.address - ROOT not in p[0].visited
         ],
         allocator_boundary="Only51-byte native Buynode's12-byte allocation and root clear's validated original-node frees; volatile registers clobbered, checked-list instructions execute unchanged",
-        scope="114 bounded full-entry no-self-hit fixtures and396 separate2Ch-frame tail entries; actual game/getter/geometry/container code; data-only SSE2/cosine fixtures; no invalid containers, throw path, same-side hit effect/callback environment, full game startup or canonical-equality claim",
+        scope="198 bounded full entries including real frame-flag same-side hits and separated owned-object same-side calls, plus396 separate2Ch-frame tail entries; target-pinned source bindings; actual game/getter/geometry/container code; data-only SSE2/cosine fixtures; no invalid containers, throw path, general-hit info/effect/callback environment, full game startup or canonical-equality claim",
         build_provenance_verified=False,
     )
 

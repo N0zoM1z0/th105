@@ -312,16 +312,23 @@ recovers the full1369-byte canonical prefix and target2Ch frame.
 
 The root remains1449/1452, first+559/46E549. Its final low-word conversion and
 register schedule are unresolved; no new exact row, padding or LTCG conclusion.
-Native validation separates114 complete no-self-hit entries from396 explicit
-2Ch-frame tail entries. Actual game/geometry/container/getter instructions run;
-only validated node-allocation/free environment boundaries are callbacks.
-The same-side hit effect/callback environment remains outside the fixture,
-while its root callsite is inside the equal prefix. Native coverage, negative
+Native validation now separates198 complete entries from396 explicit2Ch-frame
+tail entries. The old seed left source168 null; target constructor/spawner
+stores now pin fighter-self/object-owner bindings, and non-SEH zero-page reads
+are rejected. All424 normal target instructions execute, leaving only21 error
+calls/four alignment instructions. Real frame-flag matching completes24
+same-side hits across12 fixtures; arbitrary general-hit InfoManager/effect
+callbacks remain outside the fixture. A wrong same-side mask fails19/36 smoke
+full cases, including12 actual outcome differences; inverted cap still fails
+10/24 tail cases. Both child matrices replay after the environment change.
+Fourteen further natural lifetime/storage/minimum controls remain1449/nonexact;
+no compiler/LTCG impossibility is established. Native coverage, negative
 controls and exact limitations are recorded in
 [the complete phase evidence](BATTLE_COLLISION_PHASE_2026_10_20.md).
 
-Final reports are under `build/collision-phase-20261020/`; private trials and
-direct Ghidra scripts stay under `.analysis/collision-phase-20261020/`.
+The original source reports are under `build/collision-phase-20261020/`;
+refreshed native/negative/child receipts and fourteen source controls are under
+`build/collision-tail-20261020/` and `.analysis/collision-tail-20261020/`.
 The read-only128MiB/CPU0 Ghidra pass re-attests target/mapped bytes/five callers,
 reads back physical signatures and leaves all nine primary database hashes
 unchanged. This is source-present progress; the preceding2156-byte geometry

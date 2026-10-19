@@ -93,6 +93,10 @@ no predicate/hit/extent/game return is supplied by a callback. Pair code and
 resource pages remain read-only; writes are guarded to the arena, stack and
 one SEH cell. The pair itself must perform no allocation. The parent seed's
 limited node-allocation/free environment is disclosed in the parent audit.
+The subsequent parent v2 review initializes the target-pinned source168 bindings
+and rejects non-SEH zero-page reads. The same2638 pair cases replay with zero
+mismatches under that environment; the refreshed receipt is
+`build/collision-tail-20261020/pair-final.json`. Pair codegen remains557/542.
 
 The final2638 cases contain:
 

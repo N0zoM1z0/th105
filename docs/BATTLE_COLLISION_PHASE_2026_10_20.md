@@ -105,62 +105,112 @@ see [the family1 recovery](FAMILY1_OBJECT_CLASHES_2026_10_20.md).
 
 ## Native execution and its limits
 
-`scripts/audit-battle-collision-phase.py` executes the original entry and the
-COFF candidate at separate addresses. All geometry, classification, collision
-providers, list helpers and the real getter execute original PE instructions.
-The environment supplies only the native12-byte Buynode allocator and original
-node frees as deterministic heap callbacks. Callers/size/ownership are checked;
-EAX/ECX/EDX are deliberately clobbered where permitted. No gameplay or geometry result is
-supplied by callbacks. Code/resource pages stay read-only; writes are
-restricted to the fixture context/actors/nodes, stack and the x86 SEH cell.
-Callback errors explicitly stop execution; no ctypes callback exception can
-silently pass the audit.
+The v2 `scripts/audit-battle-collision-phase.py` supersedes the earlier114-full/
+396-tail execution receipt. Inspection found that the old seed left
+`candidate->source_168` zero. The real provider reads its source's byte4EA;
+the emulator's mapped SEH page accidentally supplied a zero byte at4EA. The
+old finite comparison is therefore not valid-owner/game-startup evidence.
+This fixture correction does not change source or canonical comparisons.
 
-The final source passes all114 full-entry and396 tail-entry cases with zero
-mismatches. The audit enforces416/449 visited target instructions: the33
-absent instructions are exactly21 invalid-parameter calls, four skipped
-alignment instructions and eight instructions preparing the unsupported
-same-side hit call. Source visits415 instructions because its remaining
-narrow conversion uses one fewer instruction. The canonical getter executes
-456 times per side; native Buynode/Incsize execute482 times each, and all792
-original-node frees agree.
+The new binding is pinned independently to target stores: Character constructor
+462AB0 stores self at16C/168 at462BC4/462BCA; the exact Reimu object spawner
+loads its owner from manager64 at4938DE and stores it at object168 at4938E7.
+Fighters now bind168 to self, and objects bind168 to their side's fighter.
+The zero page permits only the four-byte x86 SEH cell; all other native reads
+and writes there are rejected. A missing-owner data control now stops at the
+actual46DA1C read of4EA rather than silently accepting a zero source state.
+This is a bounded runtime view, not a claim that the original constructors or
+full startup execute in the fixture.
 
-There are114 full-entry cases: empty/mixed geometry, all eight frame flag
-combinations, absent/plain/oriented extensions, zero/one/two owned objects,
-negative/zero/positive status, result gates and old-list cleanup. Frame50
-same-side-hit flag stays zero; actors on opposing sides are separated. The
-actual foe collision helpers execute, including46DD40/46CA80/46BCA0,
-46DB30/46C9E0/46C930,46DA10/45E390/46BB10 and geometry routines. These cases
-compare every byte in the128KiB fixture arena, ordered allocations/frees,
-ordered direct-call targets, real return/ESP/nonvolatile registers, restored
-SEH state, x87 TOP/control word and MXCSR. A data-only cosine table and SSE2
-flag are inputs, not original startup-table evidence.
+The auditor executes original and COFF entries at separate addresses. Actual
+geometry, classification, collision providers, list helpers and real manager
+getter run. Only the12-byte native Buynode allocation and validated old-node
+frees are environment callbacks, with permitted EAX/ECX/EDX clobbers. Code and
+resource pages are read-only; writes are restricted to context/actors/nodes,
+stack and the SEH cell. No gameplay/geometry/predicate result is supplied by
+Python. Callback failures stop execution explicitly.
 
-The full-entry no-hit cases naturally reset deferred values to zero. A separate
-396-case tail-entry lane supplies explicit preconditions for the common
-46E53B entry:2Ch local frame plus four saved registers, pending pointer at
-ESP+30h, and a real return address. It does not claim396 additional full-root
-invocations. Current/maximum signed-word boundaries, dword deltas with zero or
-nonzero low words, and positive/negative558 deltas exercise the actual target
-arithmetic and real45D510 setter. Nonzero high dword bits must still enter the
-word update even when the narrowed delta is zero. Low-word arithmetic is not
-silently substituted for the dword guard.
+The final source passes **198 full entries and396 explicit tail entries**, with
+zero mismatches in each lane. Target coverage is424/449 decoded instructions;
+all normal reachable instructions execute. The remaining25 are exactly21
+invalid-parameter calls and four skipped alignment instructions. Source visits
+423 instructions because its remaining narrow conversion uses one fewer
+instruction. Coverage is asserted against those exact excluded sets on a full
+run, not inferred from a percentage.
 
-An inverted-cap source control (`value >= maximum` to `value <= maximum`)
-passes all15 smoke full entries but fails10/24 smoke tail entries. Full-entry
-fixtures alone would therefore miss this real counter regression. The control
-is compiled at the original source path to preserve anonymous namespace
-identities, then the selected source is restored and its hash read back before
-auditing. The negative recipe and reports remain private/build artifacts.
+The198 full entries contain:
 
-A same-side hit fixture reached the larger effect/callback environment and
-stopped on an unreviewed write. It is excluded from the supported execution
-domain, not replaced with a fabricated hit result. Its callsite remains in the
-canonical prefix. Invalid containers, throwing allocation/length errors,
-same-side hit effects, legacy x87 ceil and full game startup remain untested.
-The auditor reports unvisited instruction offsets and existing-object build
-provenance as unverified; the fresh formal producer supplies independent build
-provenance. Sampled execution does not award exact bytes.
+- 114 earlier topology/frame/classification cases, now with the corrected owner
+  bindings: empty/mixed geometry, eight frame flag patterns, plain/oriented
+  extensions, zero/one/two objects, result/status gates and old-list cleanup;
+- 72 separated owned-object same-side cases over four shape-count pairs, three
+  extension forms, source states0/1/2 and one/two objects, enabling the frame50
+  same-side flag only on the owned objects;
+- 12 actual same-side hit cases covering all four frame-flag pair outcomes,
+  with zero/one/two owned objects. Fighters retain self bindings and source
+  state zero. Real geometry/extent routines find the self overlap, and the
+  actual143-byte46C8A0 provider writes result3 and returns true. No general-hit
+  renderer/manager callback is substituted.
+
+The target and candidate each execute228 same-side provider entries and390
+opposing entries. The original frame-flag routine returns true24 times on each
+side. Each of the12 hit fixtures independently requires both target fighter
+results to be3; the entire candidate arena must then agree. These observations
+come from actual stack arguments, native AL returns and resulting state.
+
+Every full entry compares all128KiB of arena state, ordered allocation/free and
+direct-call traces, actual RET/ESP/nonvolatile registers, restored SEH/x87
+state and MXCSR. A data-only cosine table/SSE2 flag is an input rather than
+startup evidence. The audit implementation/object hashes must remain stable
+during the run; reconstruction-source producer verification remains separate
+from existing-object execution. The refreshed audit SHA256 is
+`029b16a1d4958b8e9b9d6c335d63ef16dcf82d7beebe76fd8c1f3c2f054ab595`.
+
+Full entries reset deferred values to zero, including the supported frame-flag
+hit exits. The396-case tail lane remains necessary: it explicitly supplies the
+attested46E53B entry state,2Ch local frame/four saved registers, pending pointer
+at ESP+30h and actual return address. It is not396 additional whole-root calls.
+Signed current/maximum boundaries, dword deltas with zero/nonzero low words and
+positive/negative558 deltas execute target arithmetic and real45D510. A full
+nonzero dword with zero low word still enters the update. No low-word guard
+replaces the observed dword guard.
+
+Two fresh source negative controls retain the original source path and restore
+its SHA before execution. Inverting the cap passes all36 smoke full entries
+but fails10/24 tail entries. Changing only the same-side flag mask from100000h
+to200000h fails19/36 smoke full entries, including all12 hit outcome checks,
+while its24 tail entries still agree. The negative report preserves differing
+call counts and returns1 for mismatches; equal-result runs still require
+identical aggregate helper counts. Smoke and full matrices reuse inputs and
+are not additive coverage.
+
+Both child auditors import this environment. After the binding/read-guard
+change, the exact traversal's226-record audit and the source-present pair's
+2638-record audit replay with zero mismatches and retain their disclosed
+instruction/return coverage. Their existing canonical exact/nonexact statuses
+are unchanged.
+
+General-hit/effect/callback graphs remain outside the fixture. The previously
+failing unrestricted self-hit reaches46A8A0 through the real general-hit path;
+its absent InfoManager pointer6FBCA8 produces the guarded write at180 in
+46A8A2. Correct source binding does not manufacture that separate manager
+object or bypass the failure. The new supported hits return earlier through
+the target's real frame-flag rule. Invalid containers, throwing allocation,
+legacy x87 ceil, complete startup and arbitrary game states are also unproven.
+
+### Further narrow-lifetime controls
+
+Fourteen additional whole-root source hypotheses remain unselected. A narrow
+member defined after its caller, both-field/reference-maximum policies, a
+shared amount or fighter local, signed interpretation over unsigned-word
+storage and a narrow accessor all preserve the complete ea3990e6 payload.
+Reference-current, by-value minimum with sum first and unsigned-delta argument
+policies reproduce the earlier7f675ed2 payload. A separate final-loop index
+produces c5fb9198, while cap-first by-value minimum produces345df742. Every
+candidate is1449 bytes and first differs at+559; none explains the extra
+MOVZX/register-sign-extension instruction. This is negative source/context
+evidence, not a demonstrated LTCG barrier. No source, compiler flag, shared
+layout or accepted relocation is changed.
 
 ## Reproduction
 
@@ -176,13 +226,15 @@ git diff --check
 
 The build command currently returns1/nonexact, not an infrastructure failure.
 The native audit returns0 for the supported full/tail fixtures; `--smoke`
-selects15 full and24 tail cases. Reports and raw byte evidence are under
-`build/collision-phase-20261020/`; source trials, guarded negative recipes and
-direct Ghidra scripts are under `.analysis/collision-phase-20261020/`.
+selects36 full and24 tail cases. Original source reports remain under
+`build/collision-phase-20261020/`. Refreshed v2 native/negative/child reports
+and Ghidra receipt are under `build/collision-tail-20261020/`; source controls
+and regeneration recipes are under `.analysis/collision-tail-20261020/`.
 
 The direct128MiB/CPU0 read-only Ghidra pass independently verifies executable
-identity, entry, full mapped text, root bytes and all five inbound E8s. It reads
-back the disposable ECX/void signatures and discards changes. Nine primary DB
+identity, entry, full mapped text, root bytes and all five inbound E8s. The
+refreshed pass also attests fighter self-binding/object owner-binding stores,
+reads back the disposable ECX/void signatures and discards changes. Nine primary DB
 hashes remain unchanged. Decompiler text remains a hypothesis; IDA preflight
 rejects the wrong open image and no IDA semantics or factory adapter is used.
 This checkpoint adds source/ABI/execution evidence only. Exact totals are

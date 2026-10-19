@@ -83,6 +83,11 @@ The standalone dispatcher entries then execute original game, pair and
 geometry instructions, with no supplied dispatcher/pair result or code patch.
 The child phase itself must perform no allocation. Code/resources are read-only
 while native writes stay within the fixture arena/stack/SEH cell.
+The subsequent collision-phase v2 review corrects source168 ownership in the
+parent seed and rejects non-SEH zero-page reads. This226-record child matrix
+replays with zero mismatches after that change; refreshed receipts are under
+`build/collision-tail-20261020/family1-final.json`. The canonical source and
+686-byte exact result are unchanged.
 
 The full matrix has226 records: zero/one/two nodes per side, three same-side
 flag patterns, four suppression/active patterns, separated or overlapping
