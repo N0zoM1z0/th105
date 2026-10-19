@@ -10,6 +10,9 @@ struct PackageFileIndexNode {
     unsigned int offset_0c;
     PackageFileIndexNode *next_10;
 
+    PackageFileIndexNode(const char *path, unsigned int archive_index,
+                         unsigned int size, unsigned int offset);
+    PackageFileIndexNode(const PackageFileIndexNode &other);
     ~PackageFileIndexNode();
 };
 

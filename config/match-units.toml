@@ -18367,8 +18367,8 @@ kind = "probe"
 source = "src/assets/PackageFileIndexRuntime.cpp"
 object = "build/match-units/GptWeb_PackageFileIndexRuntime.obj"
 profile = "vc8-sp1-probe-o2"
-enable_gs = false
-notes = "Current package-file index node normal destructor @ 0x0041B850. Package index insertion/update root 0x0041BCF0 builds 0x14-byte nodes with heap path plus archive-index/size/offset/next; lookup41BFA0 corrects the old scalar names without changing layout. Natural C++ ownership is mixed: path_00 uses CRT free while next_10 is recursively destroyed and operator-deleted. This exact allocator split is canonical 43/43."
+enable_gs = true
+notes = "Package index mutation/node ownership island: reviewed628-byte stdcall registration root, filename-owning node construction/copy and accepted43-byte destructor. Explicit pair construction preserves three temporary owners through insert; VC8 make_pair-by-value has the wrong lifetime. Target path allocation is array new but release is CRT free; child nodes use scalar new/delete. GS is enabled for the root's observed EH cookie; destructor remains43/43. Root559-byte ordinary source remains nonexact; private helper ABI/visibility and EH handler offsets are unresolved. docs/PACKAGE_INDEX_UPDATE_2026_10_19.md."
 
 [[units.gpt-web-package-file-index-runtime.functions]]
 address = "0x0041B850"
@@ -18377,6 +18377,23 @@ rel32_targets = [
   "_free=0x0068AA26",
   "??1PackageFileIndexNode@th105@@QAE@XZ=0x0041B850",
   "??3@YAXPAX@Z=0x006898EA",
+]
+
+[[units.gpt-web-package-file-index-runtime.functions]]
+address = "0x0041BCF0"
+symbol_base = "?register_package_file_entry@th105@@YGXPBDIII@Z"
+rel32_targets = [
+  "?case_insensitive_crc32@th105@@YAIPBEH@Z=0x00406930",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "__stricmp=0x0068B038",
+  "_free=0x0068AA26",
+  "??1PackageFileIndexNode@th105@@QAE@XZ=0x0041B850",
+  "??3@YAXPAX@Z=0x006898EA",
+  "??2@YAPAXI@Z=0x00689DCB",
+]
+dir32_targets = [
+  "__ehhandler$?register_package_file_entry@th105@@YGXPBDIII@Z=__ehhandler$?register_package_file_entry@th105@@YGXPBDIII@Z",
+  "___security_cookie=___security_cookie",
 ]
 
 [units.gpt-web-effect-object-hierarchy-lifetime]

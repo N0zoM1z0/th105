@@ -32,8 +32,8 @@ verified private Ghidra copy, reopens it for readback, then replaces the primary
 project. Target/mapped bytes remain unchanged; nine new primary file hashes
 are recorded in `build/reimu-cpu-root/primary-db-after.json`.
 
-Last checked ledger census: 4023 candidates; 1544 authored, 1415 excluded,
-1064 in review; 1459 mapped, 1440 source-present; 1333 exact / 225099 bytes;
+Last checked ledger census: 4023 candidates; 1545 authored, 1415 excluded,
+1063 in review; 1460 mapped, 1441 source-present; 1333 exact / 225099 bytes;
 519 match units. These are ledger totals, not a cold aggregate replay.
 `claims.csv` remains header-only. Source presence, mapping and diagnostic
 interval equality confer no exact credit. The Reimu CPU root remains
@@ -321,9 +321,45 @@ BMP becomes2152 callable +45 metadata with the same438h frame, still different
 from target2230/430h. Missing source declarations alone do not explain the
 remaining mismatch. All12 accepted members across the four focused reader,
 BMP, node and score-lookup units replay exact. Nine Ghidra database hashes are
-unchanged. Receipts: `build/package-entry-20261019/`. Next recover the real
-second search caller41BCF0 and its helper visibility/partition before further
-reader/BMP code-generation tuning. No routine cold aggregate replay was run.
+unchanged. Receipts: `build/package-entry-20261019/`. The real second search
+caller41BCF0 now has reviewed source below; helper visibility/partition still
+prevents exact acceptance. No routine cold aggregate replay was run.
+
+## Current package-index mutation
+
+The [registration review](PACKAGE_INDEX_UPDATE_2026_10_19.md) closes all200
+instructions/628 bytes of `register_package_file_entry @41BCF0`, called from
+the archive loader41BA70 at41BC9D. Missing keys insert three temporary owners;
+matching filenames update three scalars; hash collisions append an owned node.
+Four EH states independently pin those three lifetimes and allocation rollback.
+VC8 make_pair-by-value destroys a node too early, so selected source uses an
+explicit pair expression. Node construction/copy bodies now accompany the
+root and accepted destructor in `PackageFileIndexRuntime.cpp`.
+
+Construction proves the path uses array new665B8A and strcpy_s, while exact
+destruction uses CRT free. The old allocation inference in RE_WORKFLOW was
+wrong and is corrected. Copying duplicates the path and copies the next
+pointer; registration only copies fresh null-tail nodes. Physical layout is
+unchanged. The67-case instruction model agrees, including six allocation
+exception-boundary controls with matching root EH states and one null-allocation
+case; coverage is181/200 root instructions. Insert/ASCII CRT/allocation behavior
+is modeled, without OS unwinding or full tree-insertion execution.
+
+Ordinary selected source559 remains nonexact. Internal-linkage types are
+byte-neutral in the initial ordinary control. Real-source GL O2 controls are
+703/707 bytes; an inline-copy/Ob1 control is630 bytes but still has four RETs
+and different private helpers. None is selected. Standard find/constructor/
+insert/pair-cleanup ABI mappings are deliberately absent; handler cookie-frame
+offsets also differ by4. Node destructor43/43 is freshly replayed with this
+unit's GS enabled; the related opener's243-case model passes on its fresh
+object after the shared header change. Nine primary Ghidra hashes agree.
+Receipts: `build/package-index-update-20261019/`. No exact credit is added.
+
+Next correct two old nonexact allocator interfaces at418D10 (Ogg SFL) and
+415340 (Winsock connection), whose probes still name array-new665B8A as malloc.
+Then recover archive-loader41BA70/input/global visibility before revisiting
+reader/BMP code generation. Keep the private helper boundaries unresolved until
+a complete honest caller/callee context reproduces them.
 
 ## Current Reimu CPU root
 

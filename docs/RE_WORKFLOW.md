@@ -146,7 +146,14 @@ A source function may branch through compiler-emitted destination/index tables p
 
 ### Preserve allocator provenance inside one object lifetime
 
-Do not infer one allocator family for an entire function from decompiler-style `free` calls. Recover ownership from the allocation site of each field. A parent object can legally contain a CRT-allocated payload and a C++-allocated child: `PackageFileIndexNode::~PackageFileIndexNode @ 0x0041B850` is the current exact example, with `path_00` released by CRT `free` and `next_10` recursively destroyed by `delete`. A same-size candidate that calls the wrong allocator is nonexact and semantically suspect even if every other instruction matches.
+Recover allocation and release independently; a `free` call does not prove a
+`malloc` allocation. `PackageFileIndexNode` is the current counterexample:
+constructor41B7F0 and the copies in41BCF0/41D320 allocate filename storage with
+array `new` at665B8A, while the exact destructor41B850 releases it through CRT
+`free`. Child nodes use scalar `new` and recursive `delete`. Preserve these
+observed calls rather than normalizing the filename to `malloc`, `strdup` or
+`delete[]`. Earlier wording inferred a CRT allocation from the destructor and
+was incorrect. See [the constructor/lifetime evidence](PACKAGE_INDEX_UPDATE_2026_10_19.md).
 
 ### Same-size compiler-phase witnesses are still nonexact
 

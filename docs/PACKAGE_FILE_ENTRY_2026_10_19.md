@@ -87,7 +87,9 @@ a fixed global, key travels in EBX and no stack argument is popped. The target
 retains a generic ESI container argument and stack key. This is a concrete
 visibility/partition difference, not proof of a unique original TU or source
 spelling. The second real caller, index insertion/update at `41BCF0`, remains
-unreconstructed. An installed RTM link attempt failed to load `msobj80.dll`;
+unreconstructed at this checkpoint; see the later
+[registration/lifetime review](PACKAGE_INDEX_UPDATE_2026_10_19.md).
+An installed RTM link attempt failed to load `msobj80.dll`;
 it provides no RTM code-generation comparison.
 
 The first private link used a simple equivalent CRC loop. On checking the
@@ -150,4 +152,6 @@ Receipts: `build/package-entry-20261019/target-cfg.json`, `incoming-edges.json`,
 `reader-bmp/{commands.json,root-cfgs.json,cf40-audit.json}`. Private controls and
 execution driver live under `.analysis/package-entry-20261019/`. Next recover
 the genuine shared index-helper caller/ownership context, then revisit
-reader construction and BMP workspace/EH lifetimes. No exact numerator changes.
+reader construction and BMP workspace/EH lifetimes. The registration follow-up
+above now supplies that second caller's source, with private ABI differences
+still unresolved. No exact numerator changes.

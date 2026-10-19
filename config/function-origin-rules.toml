@@ -3139,3 +3139,18 @@ evidence = "Closed126-instruction/356-byte stdcall root implements game archive 
 required_body_hashes = [{ address = "0x0041BFA0", size = 356, sha256 = "0fe57031fa66c1e1141f945c79607ccd0d7cade48ba30ea4058b7c8c12a440c3" }]
 required_direct_edges = [{ caller = "0x0040CF40", site = "0x0040CF87", target = "0x0041BFA0", caller_status = "implemented" }]
 required_selected_body_calls = [{ owner = "0x0041BFA0", site = "0x0041BFC1", target = "0x00406930" }]
+
+[[rules]]
+id = "package-file-index-register-authored-106a"
+addresses = ["0x0041BCF0"]
+expected_count = 1
+expected_bytes = 628
+expected_names = ["sub_41BCF0"]
+origin = "authored_game"
+subsystem = "assets"
+disposition = "authored"
+confidence = "observed"
+evidence = "Closed200-instruction/628-byte stdcall game archive-index policy called by41BA70 archive loading. It hashes the entry path, inserts a new typed record through three owned temporary lifetimes, updates size/offset/archive-index on a case-insensitive path match, or appends an owned hash-collision node. Four EH states independently pin the three temporaries plus allocation rollback. Native67 cases agree including seven allocation call-boundary/NULL controls and live EH states; no OS unwind proof. Source is present but559-byte ordinary and all real-source GL controls remain nonexact. docs/PACKAGE_INDEX_UPDATE_2026_10_19.md."
+required_body_hashes = [{ address = "0x0041BCF0", size = 628, sha256 = "77497a2c590e14e4446a36cccd205db724449d36263b01e26a3f05a2fa6a2257" }]
+required_direct_edges = [{ caller = "0x0041BA70", site = "0x0041BC9D", target = "0x0041BCF0", caller_status = "unclassified" }]
+required_selected_body_calls = [{ owner = "0x0041BCF0", site = "0x0041BD2D", target = "0x00406930" }]
