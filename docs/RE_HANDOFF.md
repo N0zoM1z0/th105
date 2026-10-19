@@ -171,6 +171,14 @@ equal groups **and physical/per-action counts**, rejecting this real regression
 despite retaining all1236 old groups. See
 [300/320 identity controls](REIMU_300320_IDENTITY_CONTROLS_2026_10_20.md).
 
+A fresh outer-control follow-up tests300 outside the low switch,300 after a
+strictly lower range, and a real short middle selector. Two qualify and retain
+all1236/4897 old checks but add none;300/320 still share one source entry.
+The other emits JGE instead of the target JG/JE dispatcher and fails closed.
+No candidate is selected or executed. Current7650c8d3/fbc0293d pins stay in
+force; scopes, changed payloads and cleanup are in the same identity-controls
+page and `build/reimu-300-source-context-20261020/`.
+
 Next source questions include300/320's distinct copies,616's later effect
 preparation and720's current base18/index20 versus target24/20. Earlier named-float,
 copy/lifetime and source-boundary controls are scoped negative evidence in

@@ -124,6 +124,49 @@ Four focused regression tests cover this actual misleading-improvement shape,
 a valid split, an extra site outside nondefault-action reach and changed
 target identity/site evidence. The complete module passes14 tests.
 
+## Direct300 source-context follow-up
+
+A fresh current-source build repeats7650c8d3/fbc0293d before testing three
+outer-control alternatives. This is still one81550-byte root, not a new
+function at the action entry. Raw target4791DB compares the promoted action
+against300, then uses JG4791E0 to the middle dispatcher and JE4791E6 to the
+direct300 body. Its two independently decoded300/320 prefixes still have the
+same95-byte/26-instruction roles and ESP+24 float home.
+
+1. Moving300 outside the low `switch`, inside the existing `<=300` guard,
+   preserves all1236 equal groups and4897 equal physical/per-action count
+   checks, but adds none. The root remains82808/prefix81436/frame570h with
+   20245 reachable source instructions. Canonical payload becomes
+   `32c2026ed1cc1113c9d649d1959ba6750ae66618f3bd1b66939200ae9c74e051`.
+   The common/default body moves before300, changing placement and relative
+   operands.300 and320 still alias source47CBD0. Both first26-instruction
+   prefix diagnostics remain equal; neither gains an independent physical
+   copy. The changed hash is not a matching improvement.
+2. Moving300 after a separate `<300` low region compiles, but the inspector
+   rejects it with `direct action equality edge is absent or ambiguous`.
+   COFF disassembly confirms an initial JGE, instead of the target JG/JE
+   decision. No inspector rule is weakened, and no canonical, count,
+   execution or exactness result is assigned to this unqualified object.
+3. Reading a real short action selector for the middle switch, while retaining
+   its existing outer guard, produces canonical
+   `9ffb1d93230e1dc4be67988c58311f920316904f4515b8008b757aff54c49005`.
+   It retains all1236/4897 old checks, adds none, and still aliases300/320.
+   Code/payload/frame and reachable instruction count remain unchanged.
+
+Both qualified changed controls still first differ at+541/4791BD. Neither is
+selected or executed. These results exclude these tested dispatcher spellings
+as fixes, without proving an original source partition, declaration identity
+or LTCG requirement. No game source/header, profile, binding, ledger or
+accepted unit input changes. Hash-attested raw PE observations require no
+database write; the failed IDA preflight is not used for semantics.
+
+Recipes/receipts are under `.analysis/reimu-300-source-context-20261020/` and
+`build/reimu-300-source-context-20261020/`. The summary distinguishes the fresh
+baseline, two qualified negatives and one compiled rejection. Six redundant
+generated copies (1338567 bytes) are removed after their hashes are recorded;
+baseline and the direct-in-low input remain for replay. The prior twenty
+controls above retain their original input and validation scope.
+
 ## Database safety, reproduction and retained products
 
 Direct read-only Ghidra re-attests raw/imported identity, base/entry,
