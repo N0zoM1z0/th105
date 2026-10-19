@@ -250,6 +250,20 @@ replayed: ordinary SSE68A1A0, exception entry68A1BC and64-bit entry68A1D6 are
 distinct. No fake aliases, public bindings, source/profile selection or new
 authored credit. See [conversion/context evidence](REIMU_OBJECT_CONVERSION_CONTEXT_2026_10_20.md).
 
+A subsequent seven-provider/nineteen-caller protocol batch retains the same
+fourteen root differences. Natural short, int and unsigned-int low-word
+providers can each reproduce45C390's202 bytes; this is not unique prototype
+evidence or duplicate credit. Unsigned caller formals still change the frame,
+extent and conversion calls, even with explicit signed conversions/masks.
+Fourteen other current-input controls are payload-neutral, including real
+post-call sequence snapshots, animation-base virtual upcasts and the global
+ReimuObject name. No changed source is selected. Scoped results, rejected
+extents and cleanup receipts are in the linked conversion/context page and
+`build/reimu-entry-word-protocol-20261020/`. Further unchanged local spellings
+are not a demonstrated route through this residual; original source/TU
+ownership remains open. Continue the large root's300/320 shared-call ownership
+investigation without weakening the physical call-count gate.
+
 See [ReimuObject entry evidence](REIMU_OBJECT_ENTRY_2026_10_19.md).
 
 Current906/999 execution, negative and read-only Ghidra receipts are below

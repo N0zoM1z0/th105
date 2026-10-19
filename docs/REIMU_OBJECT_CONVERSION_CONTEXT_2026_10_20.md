@@ -113,6 +113,74 @@ evidence, not newly promoted project function names. This is a read-only
 provenance comparison, not a configured or accepted exact match unit; no
 `matches.csv` or matching-status result is recorded for the member.
 
+## Caller/provider protocol follow-up
+
+A fresh serial CPU0/nice10 batch compares seven provider alternatives and
+nineteen root controls. The public root source and its strict comparison are
+unchanged:4892 callable bytes, fourteen differences, first4A2E20, and all548
+metadata bytes equal. These attempts test hypotheses; none is selected.
+
+**Observed, compiled provider:** natural void-return implementations with a
+signed-short parameter, or a signed/unsigned32-bit parameter whose loop tests
+the signed low word, each reproduce the complete202 bytes at45C390, SHA256
+`dd6808825102feaf752f50030bba523485d6c03828599435509c2e09359abcd4`.
+The32-bit variants decrement the real parameter and explicitly narrow its
+publication and loop condition. They add no fake result or unused local.
+Consequently this complete provider byte comparison does not uniquely prove
+the original parameter width or signedness. These are existing-object
+diagnostics, explicitly reporting `build_provenance_verified: false`, without
+new configured units or duplicate exact credit.
+
+Four other provider controls fail:
+
+| Parameter/body | Complete COFF extent | First difference |
+| --- | ---: | --- |
+|Unsigned short, directly decremented|204|45C401|
+|Int, signed-word counter formed before tree lookup|218|45C392|
+|Unsigned short, signed-word counter formed after lookup|216|45C3E2|
+|Int, signed-word counter formed after lookup|216|45C3E2|
+
+The direct unsigned-short version emits `ADD EAX,FFFFh` where the target has
+`SUB EAX,1`; its word-level behavior is insufficient for byte equality.
+The counter alternatives use their values in the actual traversal, but do not
+recover the target's scheduling or extent.
+
+**Observed, compiled caller:** an unsigned-short formal with nested signed
+conversion, direct signed-word conversion, or an explicit low-word mask all
+produce the same rejected6244/6792 code/payload as the earlier unsigned-short
+control. Each retains only one68A1A0 call instead of26. An unsigned32-bit formal
+instead gives6228/6776 and an aligned EBP prologue. Thus accepting a provider
+alternative alone would not justify changing this caller's view. Reading both
+999 velocity inputs before either store gives4900/5448 and also changes the
+target's load/store order. No positional body/metadata difference count or
+execution claim is made for these different code extents.
+
+The other fourteen root controls reproduce the full65298d36 payload:
+`NDEBUG`; fresh RTM compilation; the RTTI-supported global `ReimuObject`
+class name;999 early-return or switch spelling;906's inverted zero guard;
+four real post-call sequence snapshots (906,999, both, both widened to int);
+named int conversion values in906/999;999's existing typed motion-component
+view; and actual animation-base upcasts at both residual sites or all34
+selector calls. The upcasts use the checked physical/template hierarchy and
+preserve the same virtual signature, without per-call ABI substitutions.
+The global-name control binds only the renamed, receiver-only596370 method
+to its already-qualified provider. Reproducing a previously tested property
+on current input is a repeat, not independent new provenance.
+
+Raw PE readback distinguishes primary vtable base6C40A4, selector cell6C40B0
+containing45C390, and initializer cell6C40E0 containing4A1CE0. The latter two
+are cells, not table bases. The two raw primary-table-address literals occur
+inside the already accepted493340 pool body; no new constructor or source
+partition is inferred from them.
+
+Recipes are under `.analysis/reimu-entry-word-protocol-20261020/`; full
+receipts and `summary.json` are under the corresponding `build/` directory.
+The summary records all26 source/object hashes and comparison scopes before
+56 redundant artifacts (1675515 bytes) are removed. The public source, shared
+headers, accepted helpers, profiles and ledgers stay unchanged. Remaining
+906/999 allocation and original declaration/TU ownership are still unknown;
+these negative controls do not establish an LTCG or standalone impossibility.
+
 ## Execution, database safety and reproduction
 
 Fresh baseline execution passes0/672 with the existing input SHA256
