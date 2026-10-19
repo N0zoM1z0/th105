@@ -11,8 +11,8 @@ until each boundary is reconciled with target control flow.
 | Confirmed authored code bytes | 2,121,776 |
 | Classified exclusions | 1,417 |
 | Source-present authored mappings | 1,444 |
-| Canonical exact functions | 1,336 |
-| Canonical exact authored bytes | 226,138 |
+| Canonical exact functions | 1,337 |
+| Canonical exact authored bytes | 226,461 |
 
 The former 1.06 reconstruction state is intentionally excluded. Exact totals
 count only 1.06a functions whose configured VC8 unit passes the canonical

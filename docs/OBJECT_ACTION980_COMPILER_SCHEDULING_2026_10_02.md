@@ -1,5 +1,10 @@
 # Shared Object action 980 compiler scheduling, 2026-10-02
 
+Superseded on2026-10-19: the local selector argument's short declaration
+recovers the complete323/323 ordinary COFF callable. See
+[the exact recovery](OBJECT_ACTION980_WORD_ABI_2026_10_19.md). Measurements
+below describe the earlier int-declaration source, not a current blocker.
+
 ## Bounded result
 
 `CharacterObject_continue_action_980 @ 0x00596370` remains **nonexact** against the original Japanese 1.06a executable (SHA-256 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`). The 323-byte target callable SHA-256 is `1ae566c8e8a9230cc7ce1ff75a2b472ef0b4886b1f63786506b2735dadecd7bc`. A fresh configured VC8 `/O2` build first differs at `+0x21` (`596391`), in the virtual sequence call's instruction schedule:

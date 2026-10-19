@@ -315,6 +315,15 @@ DB, native execution proof, exact credit or cold aggregate claim is produced.
 
 ## Current strict result and open questions
 
+The subsequent [shared action980 recovery](OBJECT_ACTION980_WORD_ABI_2026_10_19.md)
+closes the external596370 continuation at323/323 by refining its own local
+selector argument to short. The root source/result below is unchanged.
+Fresh direct Ghidra work also exposes51 decompiler p-code addresses from that
+external continuation in the previously ephemeral root view. Creating both
+bounded function entries alone does not remove this expansion; an explicit
+CALL_RETURN analysis override on the target-proven JMP at4A2F8B does. No target
+bytes are patched. See the linked report for saved/readback evidence and scope.
+
 Selected source SHA256:
 `3803a002807ee0a329e9721c4e814bc11159711e6dc515afbf2e88a5df7fd6dd`.
 The complete canonical5440-byte section payload SHA256 is

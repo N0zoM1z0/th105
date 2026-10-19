@@ -17763,7 +17763,7 @@ source = "src/characters/ObjectAction980.cpp"
 object = "build/match-units/GptWeb_ObjectAction980.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Target-backed shared action980 continuation called once from each of fifteen roster Object +0x3C action-entry roots. Configured VC8 rebuild remains nonexact323/323, first mismatch+0x21: target sets ECX=this before PUSH EAX and virtual+0x0C call; candidate pushes first. Prior normalized81/82 diagnosis remains scoped. Branch-local heading lifetime and direct scale expression preserve target-backed semantics without volatile/register forcing. VC8 explicitly ignores private /G7 with identical comparison window; single-TU /GL diagnostic DLL remains323 bytes and keeps candidate order but has unresolved externals. No source/ABI/profile/relocation change or exact credit. See docs/OBJECT_ACTION980_COMPILER_SCHEDULING_2026_10_02.md."
+notes = "Canonical exact323/323 @596370 after changing only the local virtual+0C sequence parameter declaration from int to short in its four-byte stack slot. Complete82-instruction/one-RET boundary and all relocation fields close under unchanged VC8 SP1 O2 profile and providers. Target/source canonical SHA1ae566c8. Supersedes the earlier nonexact scheduling/LTCG hypothesis; no global selector return/argument declaration is changed. Formal command: python3 scripts/build.py --unit gpt-web-object-action-980 --compare --json. docs/OBJECT_ACTION980_WORD_ABI_2026_10_19.md."
 
 [[units.gpt-web-object-action-980.functions]]
 address = "0x00596370"

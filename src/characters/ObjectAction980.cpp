@@ -19,7 +19,9 @@ public:
     virtual void scalar_delete_slot_00();
     virtual int set_action_sequence_and_finalize(short action, int sequence);
     virtual int set_action_and_finalize(short action);
-    virtual int select_sequence(int sequence);
+    // Slot +0x0C consumes a signed word in one four-byte argument slot.
+    // This view reproduces the complete 323-byte shared continuation.
+    virtual int select_sequence(short sequence);
     virtual int reset_sequence();
     virtual unsigned char next_sequence_block();
     virtual int previous_sequence_block();

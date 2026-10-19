@@ -27,16 +27,19 @@ The target passes verification. The attached IDA session still reports a
 SHA256 beginning `10350095`, so do not use its semantic data. Hash-attested
 raw PE analysis is available. Independently re-attest any direct Ghidra
 project before using it; do not use the factory adapter or patch target bytes.
-The current primary now includes the archive loader/template ABI views and
-three typed Win32 import functions, saved in a private copy and reopened for
-readback before promotion. The boolean loader return is explicitly AL:1.
-Current nine-file pins are in
-`build/archive-loader-shape-20261019/primary-db-after.json`; the older
-`build/reimu-cpu-root/primary-db-after.json` describes the predecessor.
-Target/mapped text and all bounded instruction scopes remain unchanged.
+The current primary includes the archive loader/template ABI views, three
+typed Win32 import functions, the Reimu Object4892-byte entry and the separate
+323-byte action980 continuation. The boolean loader return is explicitly AL:1.
+The two Object functions use ECX:4/void/RET0; a CALL_RETURN analysis override on
+the target-proven4A2F8B tail prevents the decompiler from expanding596370 into
+the root. Changes are saved privately and reopened for readback before
+promotion. Current nine-file pins are in
+`build/object980-short-context-20261019/primary-db-after.json`;
+`build/archive-loader-shape-20261019/primary-db-after.json` is the predecessor.
+Target/mapped text and callable bytes remain unchanged.
 
 Last checked ledger census: 4024 candidates; 1548 authored, 1417 excluded,
-1059 in review; 1463 mapped, 1444 source-present; 1336 exact / 226138 bytes;
+1059 in review; 1463 mapped, 1444 source-present; 1337 exact / 226461 bytes;
 522 match units. These are ledger totals, not a cold aggregate replay.
 `claims.csv` remains header-only. Source presence, mapping and diagnostic
 interval equality confer no exact credit. The Reimu CPU root remains
@@ -157,10 +160,32 @@ GS and correctly ordered `/O2 /Ob1` byte-neutral. An int selector argument
 regresses to113 body differences; unsigned short changes frame and conversion
 shape. Extra905/907 angle joins and902/905..907 state-one joins regress; do
 not generalize906's successful goto form. Complete receipts are below
-`build/reimu-object-entry-registers/`. Reimu remains at14 body differences;
-next bounded matching work returns to Aya's existing two-byte residual.
+`build/reimu-object-entry-registers/`. Fresh source-ownership/lifetime controls
+and current-source RTM still preserve the full65298d36 payload; source/commands
+are under `.analysis/reimu-object-entry-source-20261019/` and
+`build/reimu-object-entry-source-20261019/`. Reimu remains at14 body differences;
+the root's remaining compiler context remains open.
 
 See [ReimuObject entry evidence](REIMU_OBJECT_ENTRY_2026_10_19.md).
+
+## Shared Object action980 exact checkpoint
+
+`CharacterObject_continue_action_980 @596370` is now canonical323/323 under
+the existing `gpt-web-object-action-980` unit. Changing only its local vslot0C
+selector argument declaration from int to short restores the target call
+preparation, superseding the October2 scheduling/LTCG stop condition. All82
+instructions/323 bytes are reachable, with one RET, seven REL32s and seven
+DIR32s. No shared header, compiler profile, layout or relocation binding changes.
+The complete root4A1CE0 remains nonexact and receives no partial credit.
+
+Direct Ghidra finds both function entries absent from the prior saved primary.
+The raw-reconciled function views and registered tail are now saved and read
+back. The root decompiler previously included51 external p-code instruction
+addresses; function entries alone leave those51, while the verified CALL_RETURN
+metadata makes the count zero. Reopened root/helper views both have zero
+out-of-body p-code addresses. Decompiler text remains a hypothesis.
+
+See [exact recovery and analysis safety](OBJECT_ACTION980_WORD_ABI_2026_10_19.md).
 Current receipts are below `build/reimu-object-entry-abi/`; preceding
 receipts remain below `build/reimu-object-entry-lifetimes/` and
 `build/reimu-object-entry/`. Previously checked raw/Ghidra RTTI establishes
