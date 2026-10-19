@@ -107,6 +107,10 @@ parameter calls. Pair resolution and its predicate execute186 times per side;
 actual AABB tests and extent resets execute93 times each. Seven of the pair
 resolver's eight physical return sites execute. That sampled helper coverage
 is not a source or exact claim for46CA80.
+The subsequent [standalone pair review](FAMILY1_PAIR_RESPONSE_2026_10_20.md)
+covers the missing46CB74 path and selects source after2638 native cases;
+the pair remains557/542 nonexact. It does not change this traversal's exact
+acceptance or add new aggregate exact bytes.
 
 A guarded source negative control reverses the payload inequality in the first
 phase and fails9/15 smoke records. It is compiled at the original source path and restored before auditing,

@@ -544,6 +544,14 @@ rel32_targets = [
   "?reset_collision_extents@CollisionContext@th105@@QAEXXZ=0x0046B6C0",
 ]
 
+[[units.cross-v106a-object-responses.functions]]
+address = "0x0046CA80"
+symbol_base = "?resolve_group_b_object_clash@CollisionContext@th105@@QAEXPAUCollisionObject@2@0@Z"
+rel32_targets = [
+  "?test_group_b_against_group_b@CollisionContext@th105@@QAEHPAUCollisionObject@2@0@Z=0x0046BCA0",
+  "?reset_collision_extents@CollisionContext@th105@@QAEXXZ=0x0046B6C0",
+]
+
 [units.cross-v106a-outcome-random]
 kind = "probe"
 source = "src/battle/OutcomeRandom.cpp"

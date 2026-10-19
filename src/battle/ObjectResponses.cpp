@@ -85,6 +85,7 @@ void CollisionContext::resolve_group_b_object_clash(
             reset_collision_extents();
             return;
         }
+        // Observed 1.06a cross-source slot; this branch is intentionally asymmetric.
         if (left_value_12 < right->frame_1a8->value_10) {
             left->result_180 = 4;
             left->result_slot_184 = right->source_1a0 - 1;

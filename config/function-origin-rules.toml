@@ -2970,7 +2970,7 @@ origin = "authored_game"
 subsystem = "battle"
 disposition = "authored"
 confidence = "observed"
-evidence = "Remaining542-byte pair resolver has complete raw RET8 closure, frame-priority comparisons and status writes at180/184; all eight exact reset-helper calls remain pinned. The separately accepted686-byte native checked-list traversal46DD40 now calls it at two canonical-exact E8 sites. Its canonical baseline is independent of this nonexact origin rule; the selected rule now owns only46CA80. Pair predicate46BCA0 has its own origin review. Original pair source/TU and exact codegen remain unknown. docs/FAMILY1_OBJECT_CLASHES_2026_10_20.md; docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+evidence = "Remaining542-byte pair resolver has complete raw RET8 closure, frame-priority comparisons and status writes at180/184; all eight exact reset-helper calls remain pinned. The separately accepted686-byte native checked-list traversal46DD40 now calls it at two canonical-exact E8 sites. Its canonical baseline is independent of this nonexact origin rule; the selected rule now owns only46CA80. Pair predicate46BCA0 has its own origin review. Pair source is now selected after2638 real-helper native cases covering every target instruction/RET, including the asymmetric46CB74 branch. Current557-byte source remains nonexact to542; original TU and exact codegen remain unknown. docs/FAMILY1_PAIR_RESPONSE_2026_10_20.md; docs/FAMILY1_OBJECT_CLASHES_2026_10_20.md; docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
 required_body_hashes = [
   { address = "0x0046CA80", size = 542, sha256 = "ea54fb25e5ab2ac5e4b7c2dc17792e6073ef654b22b20a06fce6a9887c1257d6" },
 ]
@@ -3005,7 +3005,7 @@ required_body_hashes = [
   { address = "0x0046BCA0", size = 398, sha256 = "16e4c866f3f10ab7056cc41a4e7d29389a94e62799d33384c1d00b406e146e4b" },
 ]
 required_direct_edges = [
-  { caller = "0x0046CA80", site = "0x0046CA8F", target = "0x0046BCA0", caller_status = "identified" },
+  { caller = "0x0046CA80", site = "0x0046CA8F", target = "0x0046BCA0", caller_status = "implemented" },
   { caller = "0x0046BCA0", site = "0x0046BD27", target = "0x0046BA10", caller_status = "identified" },
 ]
 required_selected_body_calls = [

@@ -39,9 +39,11 @@ promotion. Current nine-file pins are in
 Target/mapped text and callable bytes remain unchanged.
 
 Read the current ledger census with `report-reconstruction-status.py --summary`.
-The latest family1 checkpoint adds one independently replayed686-byte exact
-authored function. The complete collision-phase parent remains nonexact;
-no cold aggregate verification is asserted.
+The family1 traversal checkpoint adds one independently replayed686-byte exact
+authored function. Its542-byte pair provider is now source-present after full
+native instruction/return coverage, but remains557/542 nonexact. The complete
+collision-phase parent also remains nonexact; no cold aggregate verification
+is asserted.
 `claims.csv` remains header-only. Source presence, mapping and diagnostic
 interval equality confer no exact credit. The Reimu CPU root remains
 source-present in a probe unit with no exact result.
@@ -230,6 +232,33 @@ out-of-body p-code addresses. Decompiler text remains a hypothesis.
 
 See [exact recovery and analysis safety](OBJECT_ACTION980_WORD_ABI_2026_10_19.md).
 
+## Family1 pair source checkpoint
+
+`CollisionContext_resolve_group_b_object_clash @46CA80` is now mapped and
+source-present in `ObjectResponses.cpp`, with a function in the existing mixed
+`cross-v106a-object-responses` probe. Raw CFG closes all137 instructions/542
+bytes and eight RET8 sites. The source preserves signed priority words,
+byte-slot wrap, the asymmetric right-source slot at46CB64 and the predicate
+miss's no-reset bypass. The old prose/source remain hypotheses until checked;
+the prior dispatcher matrix had not exercised46CB74.
+
+Fresh native execution passes0/2638 signed-extrema/overlap/source-byte/alias
+cases with every target/source instruction and physical return visited. Actual
+predicate/extent/reset instructions run; making the exceptional slot symmetric
+fails12/219 smoke cases. The single-box fixture does not cover all predicate
+geometry or arbitrary game states. Read-only direct Ghidra re-attests root,
+mapped text and both exact inbound calls; all nine primary DB hashes stay fixed.
+
+Canonical comparison remains557/542, first+18; the late register/store schedule
+and physical tail sharing differ. RTM/SP1, ordering/inline/shared-exit controls
+and a genuine same-context dispatcher/pair TU do not close it. The latter keeps
+the dispatcher686/686 exact. Original source/TU/compiler context remains open;
+there is no demonstrated LTCG impossibility. The affected accepted147-byte
+46C9E0 still replays exact;46C930 retains its earlier+52 residual. No new exact
+credit or cold aggregate replay. See
+[pair source, counterexample and limits](FAMILY1_PAIR_RESPONSE_2026_10_20.md).
+Final reports are below `build/family1-pair-20261020/`.
+
 ## Family1 object traversal exact checkpoint
 
 `BattleCollisionPhase_dispatch_family1_clashes @46DD40` now matches the full
@@ -251,6 +280,7 @@ Only46DD40 gains exact credit. The old compound origin rule now selects just
 witnesses; authored/excluded census is unchanged. The private real-member
 closure keeps686/686 while parent46DFF0 remains1449/1452, first+559. New narrow,
 visibility and cap controls still do not close that parent or prove LTCG.
+The subsequent pair review above selects46CA80 source without exact credit.
 
 A226-record native matrix and inequality negative control exercise real pair/
 geometry routines with bounded lists, filter flags, priorities, duplicate
