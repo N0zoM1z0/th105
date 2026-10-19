@@ -148,6 +148,14 @@ prior-source RTM/SP1 and typed-velocity controls are also byte-neutral;
 reading908's angle before its phase into a float adds32 callable bytes.
 On the joined source, pointer captures, physical inheritance and9064-first
 ordering all preserve65298d36 and remain unselected.
+The next joined-source audit also finds direct RNG expansion, named short
+arguments, discarded void result, implicit bool guard, typed color alpha,
+GS and correctly ordered `/O2 /Ob1` byte-neutral. An int selector argument
+regresses to113 body differences; unsigned short changes frame and conversion
+shape. Extra905/907 angle joins and902/905..907 state-one joins regress; do
+not generalize906's successful goto form. Complete receipts are below
+`build/reimu-object-entry-registers/`. Reimu remains at14 body differences;
+next bounded matching work returns to Aya's existing two-byte residual.
 
 See [ReimuObject entry evidence](REIMU_OBJECT_ENTRY_2026_10_19.md).
 Current receipts are below `build/reimu-object-entry-abi/`; preceding

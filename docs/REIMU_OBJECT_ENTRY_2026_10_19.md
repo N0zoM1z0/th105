@@ -268,6 +268,51 @@ comparison receipts and the checked hierarchy script remain under
 `.analysis/reimu-object-entry-lifetimes-20261019/`. No shared header, helper
 implementation, compiler profile or relocation binding changes.
 
+## Joined-source register and argument controls
+
+The following fresh controls use the selected3803a002 source and pinned
+VC8 SP1 compiler. Its public unit is rebuilt first; full-callable comparison
+still starts at+1140/4A2E20. No control below is selected, and no shared
+source/header/profile/binding changes.
+
+- Expanding the used unsigned-RNG float conversion directly at its call sites
+  preserves the entire65298d36 payload. Merely replacing force-inline with
+  ordinary inline leaves a real local `unsigned_random_as_float` CALL;
+  canonicalization rejects that unknown REL32 instead of inventing a target.
+- Discarded selector result void, named short argument values in906/999,
+  implicit float-to-bool guard spelling in906, a local typed BGRA color member
+  for the observed byte113 stores, `/GS`, and `/O2 /Ob1` each preserve the
+  complete65298d36 payload. The latter flag follows `/O2` in the tested command.
+- Declaring the selector's argument int preserves prefix/payload4892/5440 and
+  all metadata, but expands callable differences14->113, first+1B3/4A1E93.
+  Unsigned short changes prefix/payload to6244/6792 and frame10h->14h; only one
+  of the original26 ftol2_sse direct calls remains. These are caller codegen
+  evidence supporting the retained signed-short view under the tested profile,
+  not a unique original-prototype proof from a low-word consumer alone.
+- Capturing906's float selector value before its guard gives4908/5456
+  prefix/payload. Moving999 before906 in source gives4896/5444. Neither
+  preserves the target layout.
+
+Raw auxiliary entries independently show that905 and907 also enter the
+4A2F15/4A2F31 angle tails. Making905's two angle joins explicit leaves all
+metadata equal but increases body differences to16; doing so for907 alone
+increases them to40 and changes three905 table entries. Both together give27
+body differences with all metadata equal. Thus the successful906 source
+recipe is not a general instruction to replace every duplicated angle store.
+
+The shared state-one destination4A2EFF is observed in905..908's tables and
+902's JLE at4A2B09. Explicit state-one joins from905..907, with or without902,
+give4896/5444 prefix/payload; combining all these state/angle joins gives the
+same27-byte-difference payload as the two extra angle joins alone. These
+controls do not close the remaining906/999 allocation. Keep the selected
+41/43 source and the original full-equality gate.
+
+Sources, commands/tool pins, objects, canonical exports and failure logs remain
+under `build/reimu-object-entry-registers/`. All VC8 builds run serially on
+CPU0/nice10. Target PE identity and tracking pass; IDA preflight again reports
+the wrong10350095 database and no IDA semantics are used. No new analysis
+DB, native execution proof, exact credit or cold aggregate claim is produced.
+
 ## Current strict result and open questions
 
 Selected source SHA256:
