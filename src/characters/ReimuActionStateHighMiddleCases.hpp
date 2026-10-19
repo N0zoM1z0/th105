@@ -318,8 +318,7 @@
             break;
         }
         if (advance_frame_and_dispatch()) {
-            set_action(0);
-            return true;
+            goto reimu_complete_action0_619;
         }
         if (frame_counter_144 == 0 && frame_timer_142 == 0 && frame_index_140 == 0 && sequence_13e == 1) {
             velocity_x_f4 = 0.0f;
@@ -347,6 +346,7 @@
             return true;
         }
         if (advance_frame_and_dispatch()) {
+reimu_complete_action0_619:
             set_action(0);
             return true;
         }

@@ -65,89 +65,90 @@ and 11 switches. See [boundary evidence](REIMU_ACTION_ENTRY_2026_10_17.md).
 Do not promote staging methods to original compiler boundaries or add an
 implemented/matches row without complete supporting evidence.
 
-The current checkpoint extends the used int facing carrier to
-604/605/606/608/650/651/658, after each real event23 call. All ten effect115
-preparation windows now reproduce the target registers, widths, stack slots
-and canonical literals. The full combination preserves all1224 previous equal
-physical membership/multiplicity checks and adds six, for1230. All35 physical
-slot14 CALL partitions now agree;605/608 join the second common tail and
-651/658 the first, with the corresponding RET and all-indirect groups restored.
-Layouts, helper ABIs, flags and bindings remain fixed. See
-[high direction carrier evidence](REIMU_HIGH_DIRECTION_CARRIERS_2026_10_20.md).
+The current checkpoint sends616's completed animation branch into619's
+existing set_action0/return expression. All1230 prior equal physical checks
+survive and six improve, for1236. All153 physical RET memberships/multiplicities
+now agree. Slot14's35 sites, slotC's51 and mixed8/C retain their earlier equality.
+Only300/320 still differ in physical direct/virtual CALL ownership. See
+[616 shared completion evidence](REIMU_616_SHARED_COMPLETION_2026_10_20.md).
 
-Earlier shared discarded advance for0/2/9/71/72/74/145 and the corrected
-6/7/8/9/306 plus208/209/210/211/221/222/309 landing memberships remain selected.
-The complete56-site height and51-site motion-reset partitions still agree.
-See [shared low advance evidence](REIMU_SHARED_LOW_ADVANCE_2026_10_20.md).
+The complete82808-byte payload differs from the precedingbb2b2a43 source
+only in three bytes inside the one JNE displacement at489E8E: source destination
+47BF86 becomes479485, the EAX setter block corresponding to target479486.
+All other instructions and metadata remain byte-identical to the predecessor.
+No ABI/layout, helper, profile, binding or object-partition change is made.
+Both the generated void root and original full bool staging source compile.
+The bool source is still not an original target boundary.
 
 Current pins:
 
 | Artifact | Value |
 | --- | --- |
-| Genuine producer's ordinary object SHA256 | `76c2e6c942525e66867ecfc4c004d190daf5c986dbc22dc588c7ffaffa7bd2f2` |
-| Focused selected object SHA256 | `e44226dc253f3a6a55bf969cf6b9c844a178a9233e3706bd76aa14c81a9b5b81` |
-| Generated source SHA256 | `954cd26cf7503954c44e070965e9d858ea9c6152794008d7b67482de1d8ecfad` |
-| Ordinary/genuine canonical payload SHA256 | `bb2b2a43c0f81150a968df23f3bca3392bd5a7ac744df6f5f80c598939c89b39` |
-| Producer receipt SHA256 | `317246b93c2a0bebee725184707248950160387c0c29bbcd575acd9ee387fe52` |
+| Genuine producer's ordinary object SHA256 | `df730f4f18cd10c67a935960fce1d8f97c07b46e38883283ca1ae67341c45df9` |
+| Focused selected object SHA256 | `ccd995bedbb0f79ddbdab12286994af3a8735e9ba358857dd8f545a9e5d017eb` |
+| Generated source SHA256 | `7650c8d3b96683b69ef596d6eac0793ed8350ae24a7840c608a629e9929d43cf` |
+| Ordinary/genuine canonical payload SHA256 | `fbc0293d5e7ab9b39aca3d83c4d044ce7603d2e28d7961d2ff7736ef3f360177` |
+| Producer receipt SHA256 | `10818536b0334cb8144dbbdbc97ac8923620be38d8595564b94f65bd9ad510c6` |
 | Payload / prefix / frame | 82808 /81436 /570h |
 | First strict mismatch | +541 /4791BD, JNE operand at4791BB, targetA9/source39 |
 
 The rebuilt real source/CRT closure reproduces every ordinary payload byte,
-including all2473 replayed fields.1281 HIGHLOWs,32 direct callee identities,
-all11 switches and15 request-buffer contracts qualify. Eight trailing linker
-alignment bytes stay separate. Whole-root source has20245 reachable instructions
-versus target20243; counts do not locate or bound the remaining differences.
-The three direct partition differences remain4351C0/473DD0/478EE0, all involving
-300/320's missing physical copies. Indirect totals remain220/219. Remaining
-slot8 associations concern300/320 and616's shared action0 exit; the corresponding
-RET groups and720's base18 versus target24 also remain open. Genuine linking
-is nonexact to target. The root receives no source-present or exact credit.
+including all2473 fields.1281 HIGHLOWs,32 direct callee identities,11 switches
+and15 request-buffer contracts qualify. Eight trailing linker alignment bytes
+stay separate. Target/source reachable instruction counts remain20243/20245;
+counts do not locate or bound remaining differences. Direct partition differences
+are4351C0/473DD0/478EE0; slot8 is132/131 and total indirect220/219, entirely due
+to300/320. All RET partitions agree, without a dynamic/path-feasibility or
+exact-byte claim. Genuine linking stays nonexact. The root remains declaration-only.
 
-Fresh selected execution passes0/400 facing/height inputs,0/480 next-sequence
-thresholds,0/2675 full-void integration/shot/nonflat,0/5752 prior shared-advance
-inputs,0/210 for602 and0/989 for300/320/321. The400 matrix requires280 real
-effect115 entries and120 native action9 returns from the six ground actions
-atY150. It covers five facing bytes, two X/Y values and two x87 precisions;
-wrong605 unsigned X interpretation fails8/400. The public command
-`scripts/audit-reimu-effect-direction-carriers.py` reproduces both outcomes
-and enforces actual landing-call/skip guards. The480 matrix requires200 actual
-47D7C5 and120 actual4852FD callback/RET chains. All5292 advance entries per side
-in the5752 matrix have empty x87 tags/TOP0. The602 matrix requires120 actual
-MT/object854 entries and90 RETs; the three-action matrix requires321's real
-PUSH28/JMP47DA68->47CC49 predecessor. Independent bool staging through606
-passes0/2136, with later fragments and sequence-landing labels explicitly out
-of scope. Overlapping matrices are not additive unique coverage. Returning
-world/resource callbacks, arbitrary initial x87 stacks/exceptions and
-indeterminate740 remain outside these proofs.
+The public `scripts/audit-reimu-616-completion.py` passes0/1896:330 real
+advance/shared setter/RET chains,1423 other native RETs and143 first owned866
+entries. Its320 added sequence0 terminal states span five facings, two X/Y
+values and x87 precisions, both players and texture-duration settings; all must
+reach the actual489EFC->479486->47948F->479498 path. Existing hover/node/texture
+and branch inputs stay in the matrix with their observed outcomes. Wrong616
+set_action1 source qualifies under both object auditors but fails330/1896.
+The input hash and positive/negative public reports are in the evidence page.
+Fresh full-root integration/shot/nonflat replay passes0/2675; the public
+`audit-reimu-effect-direction-carriers.py` passes0/400. Prior threshold,
+shared-advance,602 and300/320/321 execution receipts retain their predecessor
+scope; no fresh rerun of all historical matrices or aggregate cold replay is
+claimed. Whole-payload invariance outside616's branch preserves their code/data.
 
-Nine current carrier controls qualify as complete objects.651-only,
-604/606 and604/605/606 controls lose ten earlier landing-pair checks and are
-unselected; the six-action combination preserves ownership but still misses
-650's preparation. The selected seven-action combination restores all ten
-preparations and the complete slot14 partition. A smaller failing subset does
-not rule out consistent treatment of the full family. Direct read-only Ghidra
-re-attests all ten target windows and both tails; all nine primary DB files
-remain unchanged. The new evidence page retains input/canonical pins and
-scoped negative results.
+Ten current616 controls separate carrier type/scope from source completion
+ownership. Int/uint, short/ushort, root-scoped/reused carriers and int+shared
+completion lose13 old checks or remain byte-neutral. Their narrowed instruction
+counts do not establish local equality:616's target effect preparation is22
+instructions, the selected source23, and the int control22 with different bytes.
+Joining619 or669 produces identical fullfbc0293d payloads and restores six checks;
+the source label's original owner remains unknown. Direct read-only Ghidra
+re-attests the completion edge, both setter/RET blocks and effect window;
+all nine primary database files stay unchanged. No LTCG impossibility is proved.
 
-The602 counter/timer/index-first predicate, earlier414/416/546 action9 exits,
-distinct effect62 tails and197/658 plus198/608 sequence landings stay selected.
-See [602 guard evidence](REIMU_602_GUARD_AND_DIRECTION_2026_10_19.md),
+Earlier wide facing carriers600/601/602/604/605/606/608/650/651/658 remain selected;
+all ten effect115 preparation windows and all35 slot14 memberships retain their
+equality. See [high direction carrier evidence](REIMU_HIGH_DIRECTION_CARRIERS_2026_10_20.md).
+The common low advance0/2/9/71/72/74/145 and corrected landing groups remain selected,
+as do the complete56-site height and51-site motion-reset partitions. See
+[shared low advance evidence](REIMU_SHARED_LOW_ADVANCE_2026_10_20.md).
+The602 frame-first predicate,414/416/546 action9 exits, distinct effect62 tails,
+and197/658 plus198/608 sequence landings also stay selected; their prior receipts
+are in [602 evidence](REIMU_602_GUARD_AND_DIRECTION_2026_10_19.md),
 [shot/fan sharing](REIMU_SHOT_FAN_SHARED_EXIT_2026_10_19.md),
 [414 evidence](REIMU_414_SHARED_EXIT_2026_10_19.md) and
 [shared sequence landings](REIMU_SHARED_SEQUENCE_LANDINGS_2026_10_19.md).
 
-The previous named-float300/320 controls still merge advance/slot8 and use the
-wrong temporary home. Twenty-five copy/lifetime controls are historical evidence
-in [three-action tail constraints](REIMU_300321_SLOT_CONTEXT_2026_10_19.md).
-The subsequent eleven source-boundary/FP controls started from78043bc1;
-seven were completely byte-neutral, while the others lost ownership or used
-incorrect slots/oversized envelopes. Their negative outcomes are scoped to
-those source contexts. No original-TU or LTCG impossibility is established.
-The five float conversions still retain target FIMUL in89/545/546/550/551;
+Next source questions include300/320's distinct copies,616's later effect
+preparation and720's current base18/index20 versus target24/20. Earlier named-float,
+copy/lifetime and source-boundary controls are scoped negative evidence in
+[three-action constraints](REIMU_300321_SLOT_CONTEXT_2026_10_19.md) and the shared
+low-advance page. The five float conversions retain FIMUL in89/545/546/550/551;
 202/203/225/226 retain their action10 landing. See
 [low9 cloning](REIMU_LOW9_CALL_CLONING_2026_10_19.md) and
 [x87/type evidence](REIMU_X87_OPERAND_TYPES_2026_10_18.md).
+Returning world/resource callbacks, arbitrary initial x87 stacks/exceptions,
+indeterminate740 and full-root semantics remain outside the proof. No source-present
+or exact credit is added.
 
 ## Current ReimuObject entry initializer
 
