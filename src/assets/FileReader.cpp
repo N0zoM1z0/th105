@@ -1,4 +1,5 @@
 #include "FileReader.hpp"
+#include "PackageArchiveStore.hpp"
 
 extern "C" __declspec(dllimport) int __stdcall CloseHandle(void *handle);
 extern "C" __declspec(dllimport) int __stdcall ReadFile(
@@ -26,7 +27,6 @@ extern "C" __declspec(dllimport) void *__stdcall CreateFileA(
 
 namespace th105 {
 
-unsigned int g_package_archive_count;
 
 CFileReader::~CFileReader()
 {
@@ -108,7 +108,7 @@ bool FileReaderOwner::open(const char *path)
     if (reader != 0)
         delete reader;
 
-    if (g_package_archive_count != 0) {
+    if (g_package_archive_store.count_38 != 0) {
         CPackageFileReader *package_reader = new CPackageFileReader;
         package_reader->file = 0;
         package_reader->file = open_package_file_entry(

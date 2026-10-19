@@ -1,4 +1,5 @@
 #include "FileReader.hpp"
+#include "PackageArchiveStore.hpp"
 #include "PackageFileIndexNode.hpp"
 #include <map>
 #include <string>
@@ -7,11 +8,7 @@
 
 namespace th105 {
 
-typedef std::map<unsigned int, PackageFileIndexNode> PackageEntryMap;
-typedef std::vector<std::string> PackageArchiveNames;
 
-extern PackageEntryMap g_package_entry_map;
-extern PackageArchiveNames g_package_archive_names;
 
 unsigned int __cdecl case_insensitive_crc32(const unsigned char *, int);
 
@@ -27,8 +24,8 @@ FileHandle __stdcall open_package_file_entry(
     unsigned int hash = case_insensitive_crc32(
         reinterpret_cast<const unsigned char *>(path),
         static_cast<int>(std::strlen(path)));
-    PackageEntryMap::iterator entry = g_package_entry_map.find(hash);
-    if (entry == g_package_entry_map.end())
+    PackageEntryMap::iterator entry = g_package_archive_store.entries_2c.find(hash);
+    if (entry == g_package_archive_store.entries_2c.end())
         return 0;
 
     PackageFileIndexNode *node = &entry->second;
@@ -44,7 +41,7 @@ FileHandle __stdcall open_package_file_entry(
     *entry_size = node->size_08;
     *entry_offset = node->offset_0c;
     FileHandle file = CreateFileA(
-        g_package_archive_names[archive_index].c_str(),
+        g_package_archive_store.names_1c[archive_index].c_str(),
         0x80000000u, 1, 0, 3, 0x80, 0);
     if (file == reinterpret_cast<FileHandle>(-1))
         return 0;

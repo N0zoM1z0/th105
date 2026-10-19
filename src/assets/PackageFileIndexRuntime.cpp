@@ -3,6 +3,7 @@
 #include <new>
 #include <map>
 #include "PackageFileIndexNode.hpp"
+#include "PackageArchiveStore.hpp"
 
 namespace th105 {
 
@@ -38,8 +39,6 @@ PackageFileIndexNode::~PackageFileIndexNode()
         delete next_10;
 }
 
-typedef std::map<unsigned int, PackageFileIndexNode> PackageEntryMap;
-extern PackageEntryMap g_package_entry_map;
 unsigned int __cdecl case_insensitive_crc32(const unsigned char *, int);
 
 // @41BCF0: the three temporary owners survive through insert().
@@ -50,9 +49,9 @@ void __stdcall register_package_file_entry(
     unsigned int hash = case_insensitive_crc32(
         reinterpret_cast<const unsigned char *>(path),
         static_cast<int>(strlen(path)));
-    PackageEntryMap::iterator entry = g_package_entry_map.find(hash);
-    if (entry == g_package_entry_map.end()) {
-        g_package_entry_map.insert(std::pair<unsigned int, PackageFileIndexNode>(
+    PackageEntryMap::iterator entry = g_package_archive_store.entries_2c.find(hash);
+    if (entry == g_package_archive_store.entries_2c.end()) {
+        g_package_archive_store.entries_2c.insert(std::pair<unsigned int, PackageFileIndexNode>(
             hash, PackageFileIndexNode(path, archive_index, size, offset)));
         return;
     }

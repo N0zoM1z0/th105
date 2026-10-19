@@ -32,9 +32,9 @@ verified private Ghidra copy, reopens it for readback, then replaces the primary
 project. Target/mapped bytes remain unchanged; nine new primary file hashes
 are recorded in `build/reimu-cpu-root/primary-db-after.json`.
 
-Last checked ledger census: 4023 candidates; 1546 authored, 1415 excluded,
-1062 in review; 1461 mapped, 1442 source-present; 1334 exact / 225747 bytes;
-520 match units. These are ledger totals, not a cold aggregate replay.
+Last checked ledger census: 4023 candidates; 1548 authored, 1415 excluded,
+1060 in review; 1463 mapped, 1444 source-present; 1334 exact / 225747 bytes;
+521 match units. These are ledger totals, not a cold aggregate replay.
 `claims.csv` remains header-only. Source presence, mapping and diagnostic
 interval equality confer no exact credit. The Reimu CPU root remains
 source-present in a probe unit with no exact result.
@@ -452,6 +452,44 @@ root with differing linked addresses; it is not stock-RTM provenance evidence.
 No fake ABI mapping or exact credit is added. Nine primary Ghidra DB pins agree;
 read-only aliases are removed. Receipts: `build/package-loader-20261019/`.
 Continue vector-helper visibility, EH/frame and real TU context, then reader/BMP.
+
+## Current physical archive store
+
+The [store review](PACKAGE_ARCHIVE_STORE_2026_10_19.md) recovers the global
+7028DC..702917: CCriticalSection at0, native names vector1C, native entry map2C,
+count38. Separate source globals are replaced by one PackageArchiveStore with
+real construction/destruction; original class name/inheritance and game-method
+member ownership remain unknown. Loader, registration, opener and reader now
+use its fields. The constructor41B8C0/163 and destructor41B980/228 are mapped,
+source-present and authored, without exact credit. Actual startup6BE7B0 and
+atexit6BEE60 callbacks establish the global lifecycle; destructor explicitly
+clears names/map/count before automatic member destruction.
+
+All17 existing affected units/36 outcomes are unchanged, including22 accepted
+exact functions. Current-source loader100 cases pass again. Seven actual
+whole-graph scenarios execute initialization, containers, CRC/MT,170 entry
+registrations over11 archive API calls, and final destruction; target/source
+allocation sequences agree and no owned allocation survives. Win32/allocator/
+ASCII stricmp are modeled; full CRT startup, OS unwind, failures, concurrency
+and malformed/short-read inputs remain outside this proof.
+
+Adding the actual count consumer leaves loader627/frame148h. Native MT restores
+seed61 but leaves that loader shape; native registration next gives595/frame138h.
+Physical-owner ordinary internal source gives139/264 lifecycle functions and
+is not selected. The fresh CIL graph using all selected real providers instead
+has163/228 lifecycle bodies and complete private zero-difference replay of
+both bodies, five cleanups, two handlers, FuncInfo and unwind tables. These are
+private compiler diagnostics, not accepted exact/partial bytes: public linked
+comparison cannot yet own/rebase source-defined globals or attest these
+initializer/atexit private entries and linked EH regions. Both ordinary probes
+fail closed on unbound handlers; matches.csv is unchanged.
+
+Direct read-only Ghidra verifies the target, bounded60-byte view and function
+metadata; all nine primary DB pins agree and aliases are removed. Receipts:
+`build/package-loader-context-20261019/`. Next review a strict generic linked
+contract for real global ownership, startup witnesses and complete EH/code/data
+replay. Do not force exports, register ABIs or executable-data aliases. The
+629-byte loader and reader/BMP/registration/opener residuals remain nonexact.
 
 ## Current Reimu CPU root
 

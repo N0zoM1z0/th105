@@ -96,8 +96,6 @@ public:
     CFileReader *reader;
 };
 
-extern unsigned int g_package_archive_count;
-
 FileHandle __stdcall open_package_file_entry(
     const char *path,
     FileSize *entry_size,

@@ -91,7 +91,7 @@ symbol_base = "CPackageFileReader_size"
 address = "0x0040CF40"
 symbol_base = "?open@FileReaderOwner@th105@@QAE_NPBD@Z"
 rel32_targets = ["??2@YAPAXI@Z=0x00689DCB", "?open_package_file_entry@th105@@YGPAXPBDPAK1@Z=0x0041BFA0"]
-dir32_targets = ["?g_package_archive_count@th105@@3IA=?g_package_archive_count@th105@@3IA", "??_7CPackageFileReader@th105@@6B@=??_7CPackageFileReader@th105@@6B@", "??_7CFileReader@th105@@6B@=??_7CFileReader@th105@@6B@", "__imp__CreateFileA@28=__imp__CreateFileA@28"]
+dir32_targets = ["?g_package_archive_store@th105@@3UPackageArchiveStore@1@A=?g_package_archive_store@th105@@3UPackageArchiveStore@1@A", "??_7CPackageFileReader@th105@@6B@=??_7CPackageFileReader@th105@@6B@", "??_7CFileReader@th105@@6B@=??_7CFileReader@th105@@6B@", "__imp__CreateFileA@28=__imp__CreateFileA@28"]
 
 [units.cross-v106a-battle-setup]
 kind = "probe"
@@ -19612,8 +19612,7 @@ address = "0x0041BFA0"
 symbol_base = "?open_package_file_entry@th105@@YGPAXPBDPAK1@Z"
 rel32_targets = ["?case_insensitive_crc32@th105@@YAIPBEH@Z=0x00406930", "__invalid_parameter_noinfo=0x0068A143", "__stricmp=0x0068B038"]
 dir32_targets = [
-  "?g_package_entry_map@th105@@3V?$map@IUPackageFileIndexNode@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIUPackageFileIndexNode@th105@@@std@@@4@@std@@A=?g_package_entry_map@th105@@3V?$map@IUPackageFileIndexNode@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIUPackageFileIndexNode@th105@@@std@@@4@@std@@A",
-  "?g_package_archive_names@th105@@3V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@A=?g_package_archive_names@th105@@3V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@A",
+  "?g_package_archive_store@th105@@3UPackageArchiveStore@1@A=?g_package_archive_store@th105@@3UPackageArchiveStore@1@A",
   "__imp__CreateFileA@28=__imp__CreateFileA@28",
   "__imp__SetFilePointer@16=__imp__SetFilePointer@16",
 ]
@@ -19641,9 +19640,26 @@ rel32_targets = [
 ]
 dir32_targets = [
   "__ehhandler$?load_package_archive_impl@th105@@YA_NPBD@Z=__ehhandler$?load_package_archive_impl@th105@@YA_NPBD@Z",
-  "?g_package_archive_names@th105@@3V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@A=?g_package_archive_names@th105@@3V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@A",
-  "?g_package_archive_count@th105@@3IA=?g_package_archive_count@th105@@3IA",
+  "?g_package_archive_store@th105@@3UPackageArchiveStore@1@A=?g_package_archive_store@th105@@3UPackageArchiveStore@1@A",
   "__imp__CreateFileA@28=__imp__CreateFileA@28",
   "__imp__ReadFile@20=__imp__ReadFile@20",
   "__imp__CloseHandle@4=__imp__CloseHandle@4",
 ]
+
+[units.gpt-web-package-archive-store]
+kind = "probe"
+source = "src/assets/PackageArchiveStore.cpp"
+object = "build/match-units/GptWeb_PackageArchiveStore.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Physical60-byte archive global at7028DC: CCriticalSection member, vector<string>, map<unsigned,Node>, count. Natural constructor/dtor cover target163/228 bytes through actual startup/atexit callers. The closed physical-owner CIL diagnostic reproduces both instruction shapes, but ordinary methods retain this and unresolved STL/EH boundaries. This probe intentionally leaves unsupported EH and private helper bindings absent. Seven full native-container integration scenarios execute initialization, loader/index, rebalancing, clear and final destruction with no remaining allocations. Original class name and load/register/open member ownership remain unknown. No exact credit. docs/PACKAGE_ARCHIVE_STORE_2026_10_19.md."
+
+[[units.gpt-web-package-archive-store.functions]]
+address = "0x0041B8C0"
+symbol_base = "??0PackageArchiveStore@th105@@QAE@XZ"
+rel32_targets = ["??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0"]
+
+[[units.gpt-web-package-archive-store.functions]]
+address = "0x0041B980"
+symbol_base = "??1PackageArchiveStore@th105@@QAE@XZ"
+rel32_targets = ["??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10", "??3@YAXPAX@Z=0x006898EA"]

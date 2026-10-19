@@ -1,4 +1,5 @@
 #include "assets/FileReader.hpp"
+#include "PackageArchiveStore.hpp"
 #include <new>
 #include <cstring>
 #include <string>
@@ -9,7 +10,6 @@ extern "C" __declspec(dllimport) int __stdcall ReadFile(
     unsigned long *bytes_read, void *overlapped);
 
 namespace th105 {
-extern std::vector<std::string> g_package_archive_names;
 void __cdecl mt19937_seed_u32(unsigned int seed);
 unsigned int __cdecl mt19937_next_u32();
 void __stdcall register_package_file_entry(
@@ -24,9 +24,9 @@ static bool load_package_archive_impl(const char *path)
     if (file == reinterpret_cast<FileHandle>(-1))
         return false;
 
-    unsigned int archive_index = g_package_archive_names.size();
-    g_package_archive_names.push_back(std::string(path));
-    g_package_archive_count = g_package_archive_names.size();
+    unsigned int archive_index = g_package_archive_store.names_1c.size();
+    g_package_archive_store.names_1c.push_back(std::string(path));
+    g_package_archive_store.count_38 = g_package_archive_store.names_1c.size();
 
     // The target ignores read statuses/counts and trusts the index metadata.
     unsigned short entry_count;

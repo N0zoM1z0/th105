@@ -39,9 +39,10 @@ The physical vector at 7028F8 has its first and last pointers at +4/+8, with
 28-byte string elements. Its direct size reads justify relocation addends
 4/8. The store at 41BBB0, reset at 41B9F4 and consumer at 40CF54 establish
 702914 as an unsigned 32-bit archive count. The old `void* g_package_file_index`
-alias was an unsupported type hypothesis. `FileReader.hpp/.cpp`, the symbol
-allowlist and its unit now use `unsigned int g_package_archive_count`.
-No object layout or physical address changes.
+alias was an unsupported type hypothesis. The first review used an unsigned count alias. The
+[physical-store follow-up](PACKAGE_ARCHIVE_STORE_2026_10_19.md) now represents
+it as `g_package_archive_store.count_38`, alongside the actual critical section,
+names and map owners. The physical address is unchanged.
 
 The input begins with a little-endian unsigned 16-bit entry count and unsigned
 32-bit index length. The root allocates a byte array of that length, reads it,
@@ -125,7 +126,7 @@ rechecked in its opener and new loader consumers. No matches.csv change or
 aggregate cold replay is claimed.
 
 Selected loader source SHA256 is
-`c3c1d6334cca21bff0c117880f942802def86cb757d78246361d27f363eadf86`.
+`e36f0cf84dc606510f157d01a69bd3e4f4fbd279275f64fddfe8606213eaab07`.
 Reproduce the fail-closed focused probe with:
 
 ```bash
@@ -139,3 +140,9 @@ Private scripts and decompiler hypothesis are below
 `.analysis/package-loader-20261019/`. Continue the truthful vector-helper,
 EH/frame and translation-unit context review before returning to reader/BMP
 code generation. Their previous residuals are not resolved by this checkpoint.
+
+The subsequent physical-store batch rebuilds17 existing affected units and
+preserves all36 outcomes/22 accepted functions. Its current-source100-case
+loader model is under `build/package-loader-context-20261019/`. Full lifecycle
+execution and private constructor/destructor/EH receipts are in the
+[store review](PACKAGE_ARCHIVE_STORE_2026_10_19.md); none adds exact credit.

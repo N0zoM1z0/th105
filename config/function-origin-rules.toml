@@ -3169,3 +3169,15 @@ evidence = "Closed204-reachable-instruction/629-byte archive game policy, called
 required_body_hashes = [{ address = "0x0041BA70", size = 629, sha256 = "9e97c3ceea6298777705f8f031fa7d4a6d4daf81a954b3ec19a60ea66b2bb63a" }]
 required_selected_body_calls = [{ owner = "0x0041BA70", site = "0x0041BBFD", target = "0x00406670" }, { owner = "0x0041BA70", site = "0x0041BC9D", target = "0x0041BCF0", target_status = "implemented" }]
 required_direct_edges = [{ caller = "0x0040CF30", site = "0x0040CF34", target = "0x0041BA70", kind = "jump", caller_status = "unclassified" }]
+
+[[rules]]
+id = "package-archive-store-authored-106a"
+addresses = ["0x0041B8C0", "0x0041B980"]
+expected_count = 2
+expected_bytes = 391
+origin = "authored_game"
+subsystem = "assets"
+disposition = "authored"
+confidence = "observed"
+evidence = "Game archive global ownership: constructor initializes the critical member, native names vector, native entry map and count; destructor explicitly clears both containers/count before member destruction. Startup/atexit calls and exact CCriticalSection RTTI identify the physical60-byte object. These are game composite-object policies rather than generic std container helpers. Seven actual target/source integration scenarios cover complete lifecycle and leave no live allocations. Ordinary this-bearing methods and linked EH/global relocation surfaces remain nonexact/unsupported; no exact claim or original class-name inference. docs/PACKAGE_ARCHIVE_STORE_2026_10_19.md."
+required_body_hashes = [{ address = "0x0041B8C0", size = 163, sha256 = "a28bb00b955795f62ce713629f764857a98a4ac84cf790abd27f41aadc1a145e" }, { address = "0x0041B980", size = 228, sha256 = "90b792e322ddf8f0e0fa8886c7b1d8448a6fbcb51ab8fea088d8712183c631f5" }]

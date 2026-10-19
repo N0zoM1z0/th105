@@ -591,9 +591,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0041B850,authored_game,assets,authored,observed,canonical-exact-authored
 0x0041B880,authored_game,assets,authored,observed,canonical-exact-authored
 0x0041B890,authored_game,assets,authored,observed,canonical-exact-authored
-0x0041B8C0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0041B8C0,authored_game,assets,authored,observed,package-archive-store-authored-106a
 0x0041B970,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0041B980,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0041B980,authored_game,assets,authored,observed,package-archive-store-authored-106a
 0x0041BA70,authored_game,assets,authored,observed,package-archive-loader-authored-106a
 0x0041BCF0,authored_game,assets,authored,observed,package-file-index-register-authored-106a
 0x0041BFA0,authored_game,assets,authored,observed,package-file-entry-open-authored-106a
