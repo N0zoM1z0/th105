@@ -177,3 +177,43 @@ exact byte credit, or aggregate percentage claim is added. The next source
 ownership problems are300/320's distinct physical copies and the remaining
 slot14 groups. Historical combined-exit failures must not be generalized
 to every separate source property.
+
+## Follow-up:300/320 source boundaries
+
+After selecting78043bc1, eleven more private controls test whether natural
+source function boundaries explain the remaining copies. Each starts from
+the selected4931d5b5 source and uses the same ordinary compiler/header and
+unchanged public bindings. None is selected.
+
+| Source property | Complete result |
+| --- | --- |
+| Full300 inline; full320 inline; separate full300/320 inlines; one shared full-action inline; shared three-action completion/event inline | All five reproduce the complete78043bc1 payload, including unchanged physical partitions |
+| Full320 inline with precise mode off; completion inline with fenv access on | Both also reproduce the complete78043bc1 payload |
+| Named320 friction float | 82888 bytes, prefix81516,20266 instructions; canonical75c00362;1224 prior checks survive and four landing/gate checks improve, but advance/slot8 still merge |
+| Explicit three-action event parameter | 82856 bytes, prefix81484,20262 instructions;88b09743; loses the two previously equal300/320/321 event CALL/RET memberships |
+| Named320 float plus explicit event parameter | 82904 bytes, prefix81532,20277 instructions;c3626766; loses those two checks and gains the four landing/gate checks |
+| Full320 inline with fenv access on | Compiles, but both complete auditors reject the enlarged code/metadata envelope; no qualified correspondence claim |
+
+The ten qualified controls keep570h frames. Source-defined inline bodies
+contain the real action or completion operations, rather than external stubs.
+The two fenv controls set that property on the private helper definition and
+restore it before defining the root; the fast control similarly pushes/pops
+the helper's precise-mode setting. The enlarged case is not accepted by
+relaxing the diagnostic boundary.
+
+The named-float candidate separately passes0/989 existing native300/320/321
+cases. Its independent320 entry still has the wrong instruction shape and
+ESP+14 scratch instead of target+24;300's26-instruction prefix agrees.
+The byte-identical inline320 control has matching first26 instruction shapes
+for both actions, but both entry labels still refer to the same physical
+copy. Neither observation recovers two target copies.
+
+Reports and input hashes are in
+`build/reimu-300320-inline-20261020/{summary,prefixes}.json` and the per-control
+receipts; the source recipe is
+`.analysis/reimu-300320-inline-20261020/probe.py`. The raw prefix verifier is
+`prefixes.py` beside it. The named-float execution uses the same private
+`native-three.py` driver and input hash documented above. These controls
+scope the negative result to the tested source/FP contexts. They do not
+establish the original TU, unique source identities for a target address,
+or an LTCG impossibility. The selected source and all exact ledgers stay fixed.

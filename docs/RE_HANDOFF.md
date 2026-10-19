@@ -132,6 +132,15 @@ The old combined low9-exit failure is scoped to that combined property, not
 advance alone; see [low9 call cloning](REIMU_LOW9_CALL_CLONING_2026_10_19.md) and
 [x87/type evidence](REIMU_X87_OPERAND_TYPES_2026_10_18.md).
 
+Eleven further300/320 source-boundary controls use the new78043bc1 baseline.
+Five complete-action/completion inline forms and two helper FP-context forms
+are fully byte-neutral. Named320 float still separates only landing/gate,
+uses the wrong+14 scratch and leaves advance/slot8 merged; it passes0/989
+native cases but stays unselected. Explicit event forms lose the correct
+three-action membership; fenv-on full-action inline exceeds the unchanged
+diagnostic envelope and is rejected. The selected source remains fixed.
+See the follow-up section of the shared-low-advance evidence above.
+
 ## Current ReimuObject entry initializer
 
 Active root `ReimuObject_initialize_action_entry @4A1CE0` has complete
