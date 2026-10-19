@@ -115,7 +115,7 @@ shared-advance,602 and300/320/321 execution receipts retain their predecessor
 scope; no fresh rerun of all historical matrices or aggregate cold replay is
 claimed. Whole-payload invariance outside616's branch preserves their code/data.
 
-Ten current616 controls separate carrier type/scope from source completion
+Ten preceding616 controls separate carrier type/scope from source completion
 ownership. Int/uint, short/ushort, root-scoped/reused carriers and int+shared
 completion lose13 old checks or remain byte-neutral. Their narrowed instruction
 counts do not establish local equality:616's target effect preparation is22
@@ -124,6 +124,16 @@ Joining619 or669 produces identical fullfbc0293d payloads and restores six check
 the source label's original owner remains unknown. Direct read-only Ghidra
 re-attests the completion edge, both setter/RET blocks and effect window;
 all nine primary database files stay unchanged. No LTCG impossibility is proved.
+
+Eighteen further616 controls test used scalar lifetimes/inlining, explicit
+650/651 landing/threshold joins and the installed RTM revision. The joins can
+prevent the wide carrier's four physical-count regressions, but twelve equal
+memberships still regress and the22-instruction preparation still multiplies
+in EDX rather than target EAX. RTM also fails that window: its unchanged-source
+prefix is only8 bytes short, but owner-relative instruction/edge identity falls
+from SP1's53/127 spans to6/127 (48 lost, one gained). No source/profile is
+selected;7650c8d3/fbc0293d and the current genuine receipt remain unchanged.
+See [616 lifetime/compiler evidence](REIMU_616_LIFETIME_AND_COMPILER_2026_10_20.md).
 
 Earlier wide facing carriers600/601/602/604/605/606/608/650/651/658 remain selected;
 all ten effect115 preparation windows and all35 slot14 memberships retain their
