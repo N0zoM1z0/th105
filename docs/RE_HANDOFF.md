@@ -193,7 +193,7 @@ or exact credit is added.
 
 ## Current ReimuObject entry initializer
 
-Active root `ReimuObject_initialize_action_entry @4A1CE0` has complete
+Initializer `ReimuObject_initialize_action_entry @4A1CE0` has complete
 source in `src/characters/ReimuObjectActionEntry.cpp`, probe unit
 `gpt-web-reimu-object-action-entry`, and no exact credit. RTTI/vtable6C40A4
 slot3C proves ownership; raw CFG closes all1325 instructions/4892 bytes,
@@ -287,6 +287,29 @@ All23 accepted members across seven focused helper units replay exact at
 the preceding source-recovery checkpoint; their inputs are unchanged here.
 The effect unit's existing nonaccepted5F9350 probe remains nonexact. No cold
 aggregate replay is claimed.
+
+## Current ReimuObject update source phase
+
+Active source recovery is the authored496540 update root, not another
+initializer spelling control. Its existing ownership remains46128 bytes across
+three code ranges, without a root implementation/match row. A new target-only
+auditor closes all10670 instructions and22 switches:404 actual direct CALLs to
+25 targets,68 RETs. The old405/26 raw-E8 diagnostics include an E8 inside
+FLD1 at49C35A;4C611D is not an actual callee. Main-span ranking omits61 actual
+remote calls, so use the complete packet for source dependencies.
+
+Handwritten `ReimuObjectActionStateStaging.cpp/.hpp` handles859/860/861/980/998
+and actual defaults with an explicit coverage boolean;36 concrete actions
+remain unsupported. This is not the original void boundary. The new public
+native audit passes0/1625:1612 real RETs and13 actual spawn-entry stops, with
+real animation/math helpers and original-initializer lookup data. Two compiled
+wrong-source controls fail24/54 cases. Six target-auditor tests pass. No exact
+or root source-present credit is added, and no accepted input/binding changes.
+Source/native scopes and direct read-only Ghidra receipts are in
+[Object update evidence](REIMU_OBJECT_UPDATE_2026_10_20.md). All nine primary DB
+hashes stay unchanged; the alias is removed. Next recover800/801/804/807/808
+and continue the remaining31 arms; preserve the separate Fighter478FA0 and
+entry4A1CE0 checkpoints above.
 
 ## Shared Object action980 exact checkpoint
 
