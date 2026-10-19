@@ -62,60 +62,54 @@ and 11 switches. See [boundary evidence](REIMU_ACTION_ENTRY_2026_10_17.md).
 Do not promote staging methods to original compiler boundaries or add an
 implemented/matches row without complete supporting evidence.
 
-The newest source change recovers the target's shared 197/658 and 198/608
-surface-landing tails with their real int sequence parameter. Complete height,
-motion-clear, sequence-callback and RET memberships agree for both pairs; the
-entire candidate vslot+C partition now agrees. No previously correct complete
-partition regresses. Only two eight-byte windows differ from the prior canonical
-source payload; all remaining 82792 bytes are unchanged. These are root
-reconstruction diagnostics, not exact functions or partial-byte credit.
-See [shared sequence landings](REIMU_SHARED_SEQUENCE_LANDINGS_2026_10_19.md).
+The current source checkpoint joins414's sequence1/3 action9 exits and restores
+three distinct410/414/416 effect62/virtual-next/RET tails. Raw target bytes and
+independently attested read-only Ghidra confirm JE47FA79/47FA9C->47EDAB, the
+shared slot8 CALL47EDB4 pushing9, and the separate47FA53 CALL pushing0.
+Complete effect435240 ownership now agrees57/57; differing direct partitions
+fall6->5 and indirect physical counts become220/220. All1198 previously equal
+complete membership/multiplicity checks are preserved. Slot8/14 memberships
+still differ despite equal counts. See
+[414 shared exit evidence](REIMU_414_SHARED_EXIT_2026_10_19.md).
 
-Newest analysis proves that one shared C++ advancement expression can yield
-four compiler copies, including the unwanted separate9 site. Listed/plain
-82808-byte payloads agree completely. Conditional full-CFG x87 dataflow and
-5752 actual-helper cases find empty advancement entries; all5292 observed
-entries per side have no occupied x87 tags and TOP0. RTM retains the same
-complete sharing as SP1 on this source. None of these controls is selected;
-current source/pins below are unchanged. See
-[low9 call cloning](REIMU_LOW9_CALL_CLONING_2026_10_19.md).
-
-The five explicit float conversions from the preceding checkpoint retain all
-seven target FIMUL operations in actions 89, 545/546 and 550/551; their complete
-preparation blocks remain unchanged. The 202/203/225/226 common action10 landing
-also remains selected. The earlier x87 assumptions and limits remain in
-[the x87/type checkpoint](REIMU_X87_OPERAND_TYPES_2026_10_18.md).
 Current pins:
 
 | Artifact | Value |
 | --- | --- |
-| Ordinary object SHA256 | `f1096e59b4c8f07b8f3fd38e8d6f16dfdbc052e7bac3a1d68854b91ca01587be` |
-| Generated source SHA256 | `8020a8c37cd98566d534663bcd4c47258e34b3c6a28e656c7f270096da048e30` |
-| Ordinary/genuine canonical payload SHA256 | `9a97f6f55a43cf79142eabf22cf738406f8ad68c7a55732b200219e80a2dcbd4` |
-| Payload / prefix / frame | 82808 / 81436 / 570h |
+| Ordinary object SHA256 | `8e9f7dfacd38f15d88764b691af2d3369620e7d1a806dea1b6b9555f1384a1bf` |
+| Generated source SHA256 | `46f97f0ae19c0ab145e5779067939fabc96af07742e92f77e69edc9820b71cc8` |
+| Ordinary/genuine canonical payload SHA256 | `3f11d7d68edcc8447dac7d07ca74891dd4d9bc3b68d19bdd21197e08ed369192` |
+| Producer receipt SHA256 | `b0edd86dcbb076b1293b328654a7ae5cb4f1536e6892b0c3f14ddc2f24bdea3d` |
+| Payload / prefix / frame | 82840 / 81468 / 570h |
 | First strict mismatch | +541 / 4791BD, conditional-branch operand at 4791BB |
 
-Genuine and ordinary payloads agree completely, including all 2471 replayed
-fields; 1281 HIGHLOWs and eight separate linker alignment bytes qualify.
-All 11 switches and 15 request-buffer contracts pass. The complete ownership
-census covers all 32 direct callees, indirect calls and RETs, including
-multiplicity. Previously equal groups are preserved; the two incoming landing
-pairs are corrected. Genuine linking remains nonexact to target.
+Genuine and ordinary payloads agree completely, including all2473 replayed
+fields;1281 HIGHLOWs and eight separate linker alignment bytes qualify.
+All11 switches and15 request-buffer contracts pass. Whole-root source has20268
+reachable instructions versus target20243. Remaining direct partitions are
+4351C0/435D60/45AF40/473DD0/478EE0. Three missing physical direct copies and
+low9/300/320 sharing remain open. Genuine linking remains nonexact to target.
 
-Fresh selected-source execution passes **0/2548** affected cases: 197/198=384
-each, 608=1370, 658=410. Stops are 2440 RETs, eight effects and 100 owned-object
-requests; all four actions execute real landing helpers. Integration/default/
-common/unresolved740/nonflat-surface checks pass 0/1829. Rebuilt independent
-movement and low staging methods pass 0/99 and 0/59. Returning world callbacks
-and arbitrary world/resource graphs remain outside this proof. No new exact
-credit or all-unit replay is claimed.
+Fresh selected ordinary-root execution passes **0/2675**:1380 shot boundaries,
+1010 integration inputs sampling all128 nondefault actions, and285 nonflat
+surface cases. Real effect construction/virtual-next/root RET/destruction also
+passes **0/60**, with two independent target snapshots agreeing with source.
+A wrong action9->0 source mutation passes object qualification and produces
+**8/1380** real native mismatches. Independent bool staging through418 passes
+**0/578** motion/required-branch cases. These are bounded proofs; returning-world
+callbacks, indeterminate740 reads and arbitrary world/resource graphs remain
+outside them. No new exact credit or all-unit replay is claimed.
 
-The preceding checkpoint's conditional whole-CFG x87 dataflow covers target
-20243 and source 20251 instructions, with maximum depths 3/4 and empty stacks at all 153 RETs.
-The model's callee-effect and ordinary-path assumptions are explicit in the
-focused note. Target FSTP at 47973A and source 4792D2 consume a live FLDZ
-zero; setup/advance entries 47973C/47973E and 4792D4/4792D6 are empty.
-This does not establish the cause of the remaining sharing differences.
+Earlier selected197/658 and198/608 surface landings, their real int sequence
+parameter and complete slot+C partition remain preserved. See
+[shared sequence landings](REIMU_SHARED_SEQUENCE_LANDINGS_2026_10_19.md).
+The five explicit float conversions still retain target FIMUL operations in
+89/545/546/550/551;202/203/225/226 still share action10 landing. Older listed/plain
+82808-byte and RTM/SP1 controls, conditional full-CFG x87 dataflow and5752
+actual-helper advancement cases belong to the predecessor source. They do not
+prove the cause of the remaining sharing differences. See
+[low9 call cloning](REIMU_LOW9_CALL_CLONING_2026_10_19.md) and
+[x87/type evidence](REIMU_X87_OPERAND_TYPES_2026_10_18.md).
 
 ## Current ReimuObject entry initializer
 
@@ -860,6 +854,12 @@ Its bounded read-only Ghidra recipe is under
 `.analysis/youmu-entry-word-20261019/`; nine DB hashes agree and its alias is
 removed. No new native or linked-image execution is claimed.
 `build/reimu-ltcg/` retains the current 164-file genuine provider/cache set.
+`build/reimu-root-branches-20261019/` retains the selected414 sharing/relocation,
+linked correspondence references, native/negative/effect and bool-stage receipts.
+Its private recipes are under `.analysis/reimu-root-branches-20261019/`; the
+read-only Ghidra audit preserves all nine primary hashes. Unselected object
+copies and regenerable native binary/snapshot bulk are cleaned after checking;
+keep the current genuine cache and selected ordinary object.
 `build/reimu-low9-x87/` retains the newest cloning, listed/plain, RTM, full-CFG
 and native-entry recipes/reports. Controls are unselected and disposable.
 `build/reimu-sequence-landings/` retains the previous baseline/control recipes,

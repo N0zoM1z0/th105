@@ -112,11 +112,11 @@
             set_action(0);
         if (frame_counter_144 == 0 && frame_timer_142 == 0 && frame_index_140 == 0
                 && sequence_13e == 1) {
-            set_action(aerial ? 9 : 0);
-            return true;
+            goto reimu_action414_action9_exit;
         }
         if (aerial && frame_counter_144 == 0 && frame_timer_142 == 0
                 && frame_index_140 == 0 && sequence_13e == 3) {
+reimu_action414_action9_exit:
             set_action(9);
             return true;
         }
@@ -127,7 +127,7 @@
                     static_cast<float>(y_f0 + (aerial ? 108.0 : 57.0)),
                     static_cast<unsigned char>(facing_104), 1);
                 next_sequence_block();
-                return true;
+                break;
             }
             if (frame_timer_142 == 0 && frame_index_140 == (aerial ? 5 : 8)) {
                 if (aerial)
