@@ -114,8 +114,18 @@ partitions5->3, preserving all1209 prior equal checks. They still merge advance
 and slot8 and use an incorrect temporary slot; they remain unselected. Named
 input/result/root-scope forms for320 produce the same complete26d370eb payload.
 The prior selected source and that control each pass0/606 actual-helper cases;
-a wrong subtraction->addition source control gives88/606 differences. This
-constrains source lifetimes without proving a compiler/LTCG impossibility.
+a wrong subtraction->addition source control gives88/606 differences. A fresh
+c9107448 build now passes0/989 focused300/320/321 inputs, requiring321's actual
+PUSH28/JMP47DA68->47CC49 event predecessor. Both CALL/RET memberships contain
+all three actions. Wrong321 event28->27 still preserves1214 membership checks
+but gives10/989 actual argument/trace mismatches. Twenty-five source controls
+remain unselected: explicit
+event joins lose that group, named locals/inline forms still miss the distinct
+advance/slot8 copies, and720 lifetime forms do not reproduce target base24/
+index20. Current720 base is18/index20. Full CFG/ESP analysis distinguishes
+physical scalar reuse from inferred source ownership. See
+[slot and three-action tail constraints](REIMU_300321_SLOT_CONTEXT_2026_10_19.md).
+This does not prove a compiler/LTCG impossibility.
 Returning-world callbacks, indeterminate740 reads and arbitrary world/resource
 graphs remain outside these proofs. No exact credit or all-unit replay is claimed.
 
@@ -888,7 +898,12 @@ Its `.analysis/reimu-next-sequence-20261019/` recipes cover all source controls,
 raw guard/preparation comparisons and three direct read-only Ghidra checks;
 all nine primary hashes remain unchanged. Keep the baseline and genuine cache;
 regenerable unselected source/object copies are disposable.
-`build/reimu-300320-lifetimes-20261019/` retains current selected sharing,
+`build/reimu-300320-slots-20261019/` retains the c9107448 compiler/source/header
+baseline, fresh ordinary checks, full ESP/slot and mode-loop facts, three-action
+native receipts, rejected-control summary and read-only DB pins. Private
+regeneration recipes are below the corresponding `.analysis/` directory; keep
+the frozen baseline and current genuine cache.
+`build/reimu-300320-lifetimes-20261019/` retains preceding selected sharing,
 relocation, preservation, native/negative, effect and bool-stage receipts.
 Its `.analysis/reimu-300320-lifetimes-20261019/` recipes include two read-only
 Ghidra checks; all nine primary DB hashes remain unchanged. Keep its pinned
