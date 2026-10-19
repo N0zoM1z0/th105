@@ -1,5 +1,9 @@
 # ReimuObject810/811/812 source and conditional loop evidence
 
+This page records the e10e0c7 checkpoint. The
+[815/816/817 follow-up](REIMU_OBJECT_815_817_2026_10_20.md) records current source
+pins and expanded execution/argument evidence.
+
 This extends the [b5855c6 projectile checkpoint](REIMU_OBJECT_PROJECTILES_2026_10_20.md)
 inside authored `ReimuObject @496540`. The target remains original Japanese
 1.06a, SHA256

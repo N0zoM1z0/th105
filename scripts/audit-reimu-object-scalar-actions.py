@@ -37,6 +37,7 @@ RETURN = entry.RETURN
 FIGHTER = OWNER + 0x1000
 PARENT = OWNER + 0x2000
 PARENT_PARAMETERS = RESOURCE + 0xE000
+RELATED = OWNER + 0x3000
 SYMBOL = "?try_update_scalar_actions@ReimuObjectActionStateStagingView@th105@@QAE_NXZ"
 HELPERS = dict(entry.animation.HELPERS)
 HELPERS.update(
@@ -54,6 +55,8 @@ HELPERS.update(
         0x406540: (63, "atan2"),
         0x4066B0: (279, "mt_next"),
         0x4067D0: (27, "scaled_random_roll"),
+        0x64CD00: (73, "phase_counter"),
+        0x496370: (35, "secondary_alpha"),
         # Same finite CRT atan2 paths reviewed for the fighter projectile audit.
         # Execute the original instructions; no host-math replacement return.
         0x68BB70: (10, "crt_atan2_entry"),
@@ -66,6 +69,11 @@ HELPERS.update(
         0x690D59: (17, "crt_math_special_status"),
     }
 )
+HELPER_ADDRESSES = frozenset(
+    address
+    for base, (size, _) in HELPERS.items()
+    for address in range(base, base + size)
+)
 # The actual spawn body is a boundary, never a fabricated return.
 SPAWN = 0x64CCB0
 BOUNDARIES = {
@@ -73,6 +81,8 @@ BOUNDARIES = {
     0x465190: ("owned_spawn", 7, True, True),
     0x435240: ("effect", 5, False, False),
     0x496420: ("secondary_setup", 5, False, True),
+    0x4FCA60: ("parented_spawn", 7, True, True),
+    0x45C030: ("wave", 1, False, True),
 }
 MT_INDEX, MT_STATE, MT_BYTES = 0x6FA1FC, 0x6FDEF0, 624 * 4
 
@@ -169,6 +179,11 @@ def export(path):
             "?mt19937_next_u32@th105@@YAIXZ": 0x4066B0,
             "?selector_random_roll@th105@@YAHH@Z": 0x4067D0,
             "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z": 0x4063D0,
+            "?advance_phase_counter_conditional@CharacterObjectRuntime@th105@@QAEEH@Z": 0x64CD00,
+            "?set_secondary_animation_alpha@CharacterObjectEffectEmitter@th105@@QAEXE@Z": 0x496370,
+            "?spawn_parented_related_object@CharacterObjectEffectEmitter@th105@@QAEPAXHMMHHPBIH@Z": 0x4FCA60,
+            "?dispatch_character_wave_handle@ReimuObjectOwnerSpawnView@th105@@QAEXI@Z": 0x45C030,
+            "_ftol2_sse": 0x68A1A0,
             "?spawn_owned_object_via_manager@ReimuObjectOwnerSpawnView@th105@@QAEHHMMHHHH@Z": 0x465190,
         }
     )
@@ -191,6 +206,24 @@ class Probe:
             )
         self.start = A if candidate is None else S
         self.size = 0 if candidate is None else len(candidate)
+        # Code maps are immutable. Cache the same byte/range checks formerly
+        # repeated through Python/Unicorn for every executed instruction.
+        self.return_opcodes = {
+            address
+            for address in HELPER_ADDRESSES
+            if image[address - 0x400000] in (0xC2, 0xC3)
+        }
+        if candidate is None:
+            self.return_opcodes.update(
+                address
+                for lo, hi in facts.RANGES
+                for address in range(lo, hi)
+                if image[address - 0x400000] in (0xC2, 0xC3)
+            )
+        else:
+            self.return_opcodes.update(
+                S + n for n, byte in enumerate(candidate) if byte in (0xC2, 0xC3)
+            )
         if candidate is not None:
             self.uc.mem_map(S, 0x4000, unicorn.UC_PROT_READ | unicorn.UC_PROT_EXEC)
             self.uc.mem_write(S, candidate)
@@ -251,14 +284,14 @@ class Probe:
             }
             uc.emu_stop()
             return
-        elif not any(lo <= a < lo + size for lo, (size, _) in HELPERS.items()):
+        elif a not in HELPER_ADDRESSES:
             self.failure = f"unreviewed instruction {a:#x}"
             uc.emu_stop()
             return
         if a in HELPERS:
             self.trace.append(a)
             self.counts[a] += 1
-        if bytes(uc.mem_read(a, 1)) in [b"\xc2", b"\xc3"]:
+        if a in self.return_opcodes:
             sp = uc.reg_read(r.UC_X86_REG_ESP)
             if struct.unpack("<I", uc.mem_read(sp, 4))[0] == RETURN:
                 self.saw_ret = True
@@ -287,7 +320,7 @@ class Probe:
             (0xEC, "f", case.get("x", 640.0)),
             (0xF0, "f", case.get("y", 100.0)),
             (0xF4, "f", case.get("vx", 3.25)),
-            (0xF8, "f", -1.5),
+            (0xF8, "f", case.get("vy", -1.5)),
             (0x104, "b", case.get("facing", -1)),
             (0x113, "B", case.get("alpha", 200)),
             (0x11C, "f", case.get("scale", 1.25)),
@@ -320,7 +353,7 @@ class Probe:
         ]
         for off, fmt, value in values:
             uc.mem_write(OWNER + off, struct.pack("<" + fmt, value))
-        if case["action"] in (800, 801, 804, 807, 808, 810, 811, 812):
+        if case["action"] in (800, 801, 804, 807, 808, 810, 811, 812, 815, 816, 817):
             for off, fmt, value in (
                 (0x170, "I", FIGHTER),
                 (0x338, "I", 0),
@@ -332,7 +365,7 @@ class Probe:
             uc.mem_write(
                 entry.PARAMETERS + 12, struct.pack("<f", case.get("mode", 0.0))
             )
-        if case["action"] in (810, 811, 812):
+        if case["action"] in (810, 811, 812, 815, 816, 817):
             uc.mem_write(OWNER + 0x111, struct.pack("<B", case.get("channel", 200)))
             uc.mem_write(
                 OWNER + 0x34C, struct.pack("<I", 0 if case.get("no_parent") else PARENT)
@@ -349,6 +382,23 @@ class Probe:
             ):
                 uc.mem_write(PARENT + off, struct.pack("<" + fmt, value))
             uc.mem_write(PARENT_PARAMETERS, struct.pack("<ffff", -71.25, 8.5, 2.0, 0.0))
+        if case["action"] in (815, 816, 817):
+            for off, fmt, value in (
+                (0x112, "B", case.get("channel2", 200)),
+                (0x170, "I", RELATED),
+                (0x386, "h", case.get("phase_counter", 0)),
+            ):
+                uc.mem_write(OWNER + off, struct.pack("<" + fmt, value))
+            uc.mem_write(PARENT + 0x364, struct.pack("<h", case.get("parent_state", 0)))
+            uc.mem_write(RELATED, bytes([0xA5]) * 0x388)
+            uc.mem_write(
+                RELATED + 0xEC,
+                struct.pack(
+                    "<ff", case.get("target_x", 515.5), case.get("target_y", 23.0)
+                ),
+            )
+            uc.mem_write(FIGHTER + 0x13E, struct.pack("<h", case.get("owner_seq", 0)))
+            uc.mem_write(FIGHTER + 0x60D, struct.pack("<b", case.get("skill", 0)))
         for off, fmt, value in [
             (0x13C, "h", case.get("owner_action", 150)),
             (0xEC, "f", 515.5),
@@ -402,11 +452,14 @@ class Probe:
             "owner": bytes(uc.mem_read(FIGHTER, 0x800)).hex(),
             "parameters": bytes(uc.mem_read(entry.PARAMETERS, 16)).hex(),
             "parent": None
-            if case["action"] not in (810, 811, 812)
+            if case["action"] not in (810, 811, 812, 815, 816, 817)
             else (
                 bytes(uc.mem_read(PARENT, 0x388)).hex(),
                 bytes(uc.mem_read(PARENT_PARAMETERS, 16)).hex(),
             ),
+            "related": None
+            if case["action"] not in (815, 816, 817)
+            else bytes(uc.mem_read(RELATED, 0x388)).hex(),
             "endpoint": self.endpoint,
             "trace": self.trace,
             "cw": uc.reg_read(r.UC_X86_REG_FPCW),
@@ -781,6 +834,248 @@ def sequence_cases():
         )
 
 
+def late_projectile_cases():
+    for action, seq in itertools.product((815, 816, 817), range(10)):
+        yield dict(action=action, seq=seq, counter=0, cohort="late-fresh")
+    for action, seq, xpos, ypos, cw in itertools.product(
+        (815, 816, 817),
+        (1, 4, 8),
+        (-101.0, -100.0, 1380.0, 1381.0, float("nan")),
+        (-121.0, -120.0, 1000.0, 1001.0, float("nan")),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            x=xpos,
+            y=ypos,
+            counter=1,
+            parent_state=1,
+            cw=cw,
+            cohort="late-bounds",
+        )
+    for action, seq, phase, index, counter in itertools.product(
+        (815, 816, 817),
+        range(-1, 10),
+        (0, 1, 4, 5, 6, 8),
+        (0, 1, 128, 255),
+        (-1, 1, 5, 15, 30, 121),
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            phase=phase,
+            index=index,
+            counter=counter,
+            cohort="late-state",
+        )
+    for seq, state, speed, alpha, index, phase, cw in itertools.product(
+        (0, 4),
+        (-1, 0, 1, 2),
+        (-5.0, -2.5, -1.0, -0.5, 0.0, 0.5, 1.0, 2.5, float("nan")),
+        (235, 236, 255),
+        (0, 1),
+        (0, 4, 6, 8),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=816,
+            seq=seq,
+            state=state,
+            vx=speed,
+            vy=speed,
+            alpha=alpha,
+            index=index,
+            phase=phase,
+            cw=cw,
+            owner_action=525,
+            owner_seq=2,
+            counter=1,
+            cohort="late-physics",
+        )
+    for seq, index, phase, owner, owner_seq, cw in itertools.product(
+        (0, 4),
+        (0, 1, 255),
+        (0, 1, 4, 6, 8),
+        (524, 525, 526, 527),
+        (-1, 0, 2, 3),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=816,
+            seq=seq,
+            state=1,
+            index=index,
+            phase=phase,
+            owner_action=owner,
+            owner_seq=owner_seq,
+            cw=cw,
+            counter=1,
+            cohort="late-owner",
+        )
+    for pair, alpha, channel, cw in itertools.product(
+        (
+            (815, 1),
+            (815, 3),
+            (815, 4),
+            (816, 2),
+            (816, 3),
+            (816, 6),
+            (816, 7),
+            (817, 1),
+            (817, 4),
+            (817, 6),
+            (817, 7),
+            (817, 8),
+        ),
+        (0, 9, 10, 14, 15, 19, 20, 39, 40, 235, 236, 255),
+        (0, 9, 19, 20, 255),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=pair[0],
+            seq=pair[1],
+            counter=121 if pair == (815, 3) else 56,
+            alpha=alpha,
+            channel=channel,
+            channel2=channel,
+            parent_state=1,
+            cw=cw,
+            cohort="late-alpha",
+        )
+    for seq, counter, dx, dy, vx, cw in itertools.product(
+        (0, 9),
+        (29, 30, 31, 32, 34, 35, 60),
+        (-120.0, 0.0, 120.0, 120.00001525878906, float("nan")),
+        (-10.0, 10.0, 10.000000953674316, float("nan")),
+        (0.0, 0.25),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=817,
+            seq=seq,
+            counter=counter,
+            target_x=dx,
+            target_y=dy,
+            x=0.0,
+            y=0.0,
+            vx=vx,
+            cw=cw,
+            cohort="late-near",
+        )
+    for seq, skill, counter, owner, owner_seq in itertools.product(
+        (0, 9),
+        (-128, -4, -3, -2, 0, 1, 127),
+        (-1, 0, 59, 60, 179, 180, 239, 240, 7799, 7800),
+        (529, 530, 531, 532),
+        (0, 1),
+    ):
+        yield dict(
+            action=817,
+            seq=seq,
+            skill=skill,
+            counter=counter,
+            owner_action=owner,
+            owner_seq=owner_seq,
+            vx=1.0,
+            target_x=2000.0,
+            cohort="late-skill",
+        )
+    for seq, amplitude, channel, alpha, cw, seed in itertools.product(
+        (3, 8),
+        (
+            -129.0,
+            -128.0,
+            -1.0,
+            -0.25,
+            0.0,
+            4.999999523162842,
+            5.0,
+            5.5,
+            127.9,
+            128.0,
+            255.0,
+            256.0,
+            float("nan"),
+        ),
+        (0, 4, 127, 128, 255),
+        (0, 127, 255),
+        (0x27F, 0x37F),
+        (0, 5489, 0xFFFFFFFF),
+    ):
+        yield dict(
+            action=817,
+            seq=seq,
+            amplitude=amplitude,
+            channel=channel,
+            channel2=channel,
+            alpha=alpha,
+            cw=cw,
+            seed=seed,
+            counter=1,
+            cohort="late-casts",
+        )
+    for parent_seq, no_parent, seed, cw in itertools.product(
+        (-1, 0, 9, 10), (False, True), (0, 5489, 0xFFFFFFFF), (0x27F, 0x37F)
+    ):
+        yield dict(
+            action=817,
+            seq=2,
+            parent_seq=parent_seq,
+            no_parent=no_parent,
+            seed=seed,
+            cw=cw,
+            counter=1,
+            cohort="late-links",
+        )
+    for parent_state, phase, state, index, alpha, seed, cw in itertools.product(
+        (0, 1),
+        (0, 6),
+        (5, 32767),
+        (0, 1, 255),
+        (0, 9, 10),
+        (0, 5489, 0xFFFFFFFF),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=817,
+            seq=4,
+            parent_state=parent_state,
+            phase=phase,
+            state=state,
+            index=index,
+            alpha=alpha,
+            seed=seed,
+            cw=cw,
+            counter=1,
+            cohort="late-links",
+        )
+    for action, seq, terminal in itertools.product(
+        (815, 816, 817), range(10), (False, True)
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            terminal=terminal,
+            counter=-1,
+            timer=2,
+            cohort="late-animation",
+        )
+    for seq, cw in itertools.product((0, 9), (0x27F, 0x37F)):
+        yield dict(
+            action=817,
+            seq=seq,
+            counter=31,
+            x=-0.000001,
+            y=-0.0000001,
+            target_x=120.0,
+            target_y=10.0,
+            vx=0.0,
+            cw=cw,
+            cohort="late-near-rounding",
+        )
+
+
 def main():
     global O
     parser = argparse.ArgumentParser(description=__doc__)
@@ -798,6 +1093,16 @@ def main():
         action="store_true",
         help="include810/811/812 and the preceding projectile matrix",
     )
+    parser.add_argument(
+        "--late-projectiles",
+        action="store_true",
+        help="include815/816/817 and all preceding matrices",
+    )
+    parser.add_argument(
+        "--cohort",
+        action="append",
+        help="run only named cohorts from the selected matrices",
+    )
     args = parser.parse_args()
     O = args.output_dir
     O.mkdir(parents=True, exist_ok=True)
@@ -810,14 +1115,27 @@ def main():
     table, receipt = math.lookup_fixture(c)
     image[0x2FE8B0 : 0x2FE8B0 + len(table)] = table
     (O / "lookup-initialization.json").write_text(json.dumps(receipt, indent=2) + "\n")
-    seeds = seed_fixtures(bytes(image)) if args.projectiles or args.sequences else None
+    seeds = (
+        seed_fixtures(bytes(image))
+        if args.projectiles or args.sequences or args.late_projectiles
+        else None
+    )
     target = Probe(bytes(image), seeds=seeds)
     source = Probe(bytes(image), candidate, seeds=seeds)
     all_cases = list(cases())
-    if args.projectiles or args.sequences:
+    if args.projectiles or args.sequences or args.late_projectiles:
         all_cases.extend(projectile_cases())
-    if args.sequences:
+    if args.sequences or args.late_projectiles:
         all_cases.extend(sequence_cases())
+    if args.late_projectiles:
+        all_cases.extend(late_projectile_cases())
+    if args.cohort:
+        available = {case.get("cohort", "scalar") for case in all_cases}
+        if set(args.cohort) - available:
+            parser.error("cohort is absent from the selected matrices")
+        all_cases = [
+            case for case in all_cases if case.get("cohort", "scalar") in args.cohort
+        ]
     h = hashlib.sha256(json.dumps(all_cases, sort_keys=True).encode()).hexdigest()
     differences = []
     endpoints = Counter()
@@ -867,7 +1185,7 @@ def main():
             str(seed): hashlib.sha256(packet).hexdigest()
             for seed, packet in seeds.items()
         },
-        "scope": "admitted scalar/default and optional projectile source paths; actual target helpers, no replacement returns; world spawn entry stops; no full-root or exact claim",
+        "scope": "admitted scalar/default/projectile source paths; actual target helpers, no replacement returns; world/effect/secondary-setup/wave entry stops; no full-root or exact claim",
     }
     (O / "scalar-native.json").write_text(json.dumps(report, indent=2) + "\n")
     print(

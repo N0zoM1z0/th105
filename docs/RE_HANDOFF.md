@@ -299,34 +299,35 @@ FLD1 at49C35A;4C611D is not an actual callee. Main-span ranking omits61 actual
 remote calls, so use the complete packet for source dependencies.
 
 Handwritten `ReimuObjectActionStateStaging.cpp/.hpp` now handles
-800/801/804/807/808/810/811/812/859/860/861/980/998 and actual defaults. The
-coverage boolean is not the original void boundary;28 concrete actions remain
-unsupported. Fresh native audit passes0/12032:11508 real RETs,345 unparented/75
-owned spawn entries,26 effect entries and78 secondary-setup entries. Actual
-parent-object reads,96 scaled RNG calls,364 MT draws, steering/CRT and animation
-execute. New channel111/pointer34C views preserve size388 and earlier offsets;
-accepted headers/helpers/bindings do not change. The null secondary fixture
-does not cover renderer destruction or returning setup.
+800/801/804/807/808/810/811/812/815/816/817/859/860/861/980/998 and real defaults.
+The coverage bool is not the original void boundary;25 concrete actions remain
+unsupported. Fresh native audit passes0/28244:26107 real RETs,1063 unparented/
+695 owned/232 parented spawn entries,26 effect,79 secondary-setup and42 wave
+entries. Original MT/orientation initialization,6072 MT draws,5804 scaled RNG
+calls,2688 phase-counter and1292 secondary-alpha entries execute. Byte112 is
+exposed without changing size388 or accepted headers/helpers/bindings.
 
-810's independent sequence checks must preserve same-frame fallthrough after
-next-block;812 uses a switch. Both clamp speed at ordered<=0.811 draws Y before
-X with the real integer-division scaler, not modulo. Compiled wrong-source
-controls fail176/30/48 cases. The812 caller audit checks count4 and sector*45
-plus fresh parameter0, with eight iterations conditional on normal ABI returns
-preserving the unescaped counter. Returning world calls and an immutable
-initial heading are not proved. A limit7 source passes the native first-request
-matrix but is rejected for its changed loop guard. Five new loop tests and four
-register-path tests join the twelve prior CFG/808 tests. The808 checker now
-proves VC8's hoisted EBP=1 through the primary dispatch and all26 case-to-window
-nodes; the buffer proof passes on the expanded candidate, retaining
-unknown callee-accessible first/second words after the first request.
+815 preserves Y subtraction.816 preserves same-frame state1 processing and the
+phase-counter call after the owner/index gate.817 preserves uint32 wrap before
+turn-to-float conversion, signed low-byte thresholds, float proximity stores
+and both physical close/periodic paths. Four compiled wrong-source controls
+fail4/60,240/960,390/2340 and324/2340. Real waves/generation/setup stop at entry;
+returning graphs and the two counter14 burst loops' world effects remain open.
 
-See [sequence evidence](REIMU_OBJECT_SEQUENCES_2026_10_20.md),
-[projectile checkpoint](REIMU_OBJECT_PROJECTILES_2026_10_20.md) and
-[initial checkpoint](REIMU_OBJECT_UPDATE_2026_10_20.md). Fresh read-only direct
-Ghidra leaves all nine primary DB pins unchanged and removes its alias.
-No exact or root source-present credit is added. Next recover815/816/817 and
-continue the other25 arms; preserve Fighter478FA0 and entry4A1CE0 checkpoints.
+A separate incoming-argument observer passes0/1170: it records the actual low
+alpha byte/receiver at496370, then executes the original null-renderer helper
+and root to real RETs. Ordinary null-renderer snapshots cannot establish a
+discarded alpha argument. Nonnull renderer behavior remains unproved.
+The wrong state370+0.5 conversion passes ordinary0/2340 but fails incoming-byte
+observation540/1170; only the actual argument differs. Both
+808/812 caller audits pass on the new12844-byte replay; current808 needs no
+separately admitted EBP constant. Prior conditional-loop/payload limits remain.
+
+See [815/816/817 evidence](REIMU_OBJECT_815_817_2026_10_20.md) and its linked
+predecessor checkpoints for source pins and exact scopes. Fresh read-only
+direct Ghidra preserves all nine primary DB pins and removes its alias.
+No exact or root source-present credit is added. Next recover821/822/825 and
+continue the other22 actions; preserve Fighter478FA0 and entry4A1CE0 state.
 
 ## Shared Object action980 exact checkpoint
 

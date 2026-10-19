@@ -29,7 +29,7 @@ public:
     signed char facing_104;
     unsigned char unknown_105[0x0c];
     unsigned char channel_111;
-    unsigned char unknown_112;
+    unsigned char channel_112;
     unsigned char alpha_113;
     unsigned char unknown_114[8];
     float scale_x_11c;
@@ -79,6 +79,8 @@ typedef char ReimuObjectUpdate_alpha_offset[
     offsetof(ReimuObjectActionStateStagingView, alpha_113) == 0x113 ? 1 : -1];
 typedef char ReimuObjectUpdate_channel111_offset[
     offsetof(ReimuObjectActionStateStagingView, channel_111) == 0x111 ? 1 : -1];
+typedef char ReimuObjectUpdate_channel112_offset[
+    offsetof(ReimuObjectActionStateStagingView, channel_112) == 0x112 ? 1 : -1];
 typedef char ReimuObjectUpdate_sequence_offset[
     offsetof(ReimuObjectActionStateStagingView, sequence_13e) == 0x13e ? 1 : -1];
 typedef char ReimuObjectUpdate_phase_offset[
