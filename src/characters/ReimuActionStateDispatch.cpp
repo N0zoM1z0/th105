@@ -1,6 +1,7 @@
 #include "ReimuActionStateStaging.hpp"
 
 #define TH105_REIMU_SHARED_SEQUENCE_LANDINGS
+#define TH105_REIMU_SHARED_LOW_ADVANCE
 
 namespace th105 {
 
@@ -42,4 +43,5 @@ bool ReimuActionStatePreludeView::run_checked_action_dispatch()
 
 } // namespace th105
 
+#undef TH105_REIMU_SHARED_LOW_ADVANCE
 #undef TH105_REIMU_SHARED_SEQUENCE_LANDINGS

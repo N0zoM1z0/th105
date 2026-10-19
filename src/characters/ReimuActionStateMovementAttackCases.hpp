@@ -101,8 +101,12 @@
             if (byte_490)
                 field_6ac = static_cast<float>(word_730 * -2.0);
         }
+#ifdef TH105_REIMU_SHARED_LOW_ADVANCE
+        goto reimu_advance_frame_and_return;
+#else
         advance_frame_and_dispatch();
         return true;
+#endif
     case 197:
     case 198:
     case 199:

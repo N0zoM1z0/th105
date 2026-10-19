@@ -65,82 +65,71 @@ and 11 switches. See [boundary evidence](REIMU_ACTION_ENTRY_2026_10_17.md).
 Do not promote staging methods to original compiler boundaries or add an
 implemented/matches row without complete supporting evidence.
 
-The current checkpoint restores602's frame-counter/timer/index-first firing
-guard and600/601/602's wide facing carrier for effect115. Each selected argument
-preparation now agrees with all16 target instructions/64 canonical bytes. The
-carrier is used as signed-byte X input and unsigned direction; layout and helper
-ABIs are unchanged. All1214 prior equal complete membership/multiplicity checks
-survive.601/602/604 now join the target's slot14 majority group;605/608/651/658
-remain different. A broader650/651 carrier control loses ten earlier landing
-checks and is unselected. See [602 guard and direction evidence](REIMU_602_GUARD_AND_DIRECTION_2026_10_19.md).
-
-Earlier416/546 action9 sharing,414's shared exit and the three distinct effect62
-tails remain selected. Indirect totals220/219 still expose300/320's missing
-physical copy; the earlier220/220 concealed an extra546 CALL. See
-[shot/fan sharing](REIMU_SHOT_FAN_SHARED_EXIT_2026_10_19.md) and
-[414 evidence](REIMU_414_SHARED_EXIT_2026_10_19.md). Local byte windows and correct
-counts do not establish whole-root exactness.
+The current checkpoint shares only the discarded-result advance exit for
+0/2/9/71/72/74/145. Separating advance from the earlier explicit landing
+experiment corrects low9 landing ownership without losing prior checks.
+All1214 previous equal complete membership/multiplicity checks survive and
+ten improve, for1224. Both6/7/8/9/306 and208/209/210/211/221/222/309 now have
+the correct height, motion-reset, slot8, RET and all-indirect memberships.
+The complete56-site height and51-site motion-reset partitions agree.
+Compiler `/FAcs` output attributes the two0/2 calls and the seven-action
+shared call to one source expression. See
+[shared low advance evidence](REIMU_SHARED_LOW_ADVANCE_2026_10_20.md).
 
 Current pins:
 
 | Artifact | Value |
 | --- | --- |
-| Ordinary object SHA256 | `fa172c304ff7bf7cf5291487bcbee9f71b009656ed8918b5ec0abf667a0eeff7` |
-| Generated source SHA256 | `c9107448d21588ecd59f4b528b14ec7a82fb7d77a4f8c13d6b7c9f6f5c562481` |
-| Ordinary/genuine canonical payload SHA256 | `6527316db79ea2e1e3dd600c057f6376b472fcf43f7f6d9f2f861dac716481a8` |
-| Producer receipt SHA256 | `de9c95cd46d9bcbcbecee1034bc46214a5ae79e26e60875799fe7d2ab45e22c6` |
+| Genuine producer's ordinary object SHA256 | `acee0998510ee6eb85bf04baa006e9b912b5a78af6fcff55807580ebb33ad61d` |
+| Focused selected object SHA256 | `36816d3a5119c5809a4a910bd0cc071a9f4b9c5719bbf699dae116a92601199b` |
+| Generated source SHA256 | `4931d5b528a29b8f5702ca35bcb488cdc6835094e979bb5ced3b9a31cb11c296` |
+| Ordinary/genuine canonical payload SHA256 | `78043bc1d973f4abe4f965c18321e5b07d8c83a7bca491e35a4d9421bac0c180` |
+| Producer receipt SHA256 | `9ea53d6b64b70561946d82a7c06c5477bb0a55737b6f0db39569a763d667518f` |
 | Payload / prefix / frame | 82824 / 81452 / 570h |
-| First strict mismatch | +541 / 4791BD, conditional-branch operand at 4791BB |
+| First strict mismatch | +541 /4791BD, conditional-branch operand at4791BB |
 
-Genuine and ordinary payloads agree completely, including all2473 replayed
-fields;1281 HIGHLOWs and eight separate linker alignment bytes qualify.
-All11 switches and15 request-buffer contracts pass. Whole-root source has20254
-reachable instructions versus target20243. Remaining direct partitions are
-4351C0/435D60/45AF40/473DD0/478EE0. Three missing physical direct copies and
-low9/300/320 sharing remain open. Genuine linking remains nonexact to target.
+The rebuilt real source/CRT closure reproduces the complete ordinary payload,
+including all2473 replayed fields;1281 HIGHLOWs and eight separate linker
+alignment bytes qualify. All11 switches and15 request-buffer contracts pass.
+Whole-root source has20252 reachable instructions versus target20243.
+Differing direct partitions decrease5->3:4351C0/473DD0/478EE0, all involving
+300/320's merged physical copies. Indirect totals remain220/219. Slot14
+605/608/651/658, other indirect/RET memberships and720's base18 versus target24
+remain open. Genuine linking remains nonexact to target.
 
-Fresh selected ordinary execution passes0/2675 integration/shot/nonflat cases
-and0/210 cases covering602 firing/misses. The latter require120 actual MT/object854 entries
-and90 RETs, with signed counts/five facings/three native-seeded states/two FP
-precisions. Wrong count<14-><=14 source gives30/210 real mismatches; wrong602
-unsigned X interpretation gives8/100 effect115 mismatches. The complete selected
-payload also equals the private candidate passing0/480 actual next-sequence
-threshold cases and0/100 effect115 entry cases. Independent bool staging through
-606 passes0/2136 cadence/texture/required-branch cases. Code-identical/repeated
-inputs are not additional unique coverage. Both real next-sequence tails are
-sampled through320 callbacks and native root RETs; world requests stop at their
-actual entries. Returning-world/resource graphs and indeterminate740 remain
-outside the proof. No exact credit or all-unit replay is claimed.
+Fresh selected execution passes0/5752 for the seven changed actions,
+0/2675 full-void integration/shot/nonflat cases,0/210 for602 and0/989 for
+300/320/321. The5752 matrix reaches5536 native RETs,206 effect entries and10
+owned-object entries; all5292 advance entries per side have empty x87 tags/TOP0.
+A wrong extra counter increment at the shared exit fails5192/5752. The602
+matrix requires120 actual MT/object854 entries and90 RETs. The three-action
+matrix requires321's actual PUSH28/JMP47DA68->47CC49 event predecessor.
+A separately bounded bool stage through606 passes0/2136; later fragments and
+sequence-landing labels are explicitly outside that staging source.
+Overlapping inputs are not additive unique coverage. Returning-world callbacks,
+resource graphs, arbitrary initial x87 stacks/exceptions and indeterminate740
+remain outside these proofs. Root status and exact credit remain unchanged.
 
-New300/320 named-float controls separate landing/gate and reduce differing direct
-partitions5->3, preserving all1209 prior equal checks. They still merge advance
-and slot8 and use an incorrect temporary slot; they remain unselected. Named
-input/result/root-scope forms for320 produce the same complete26d370eb payload.
-The prior selected source and that control each pass0/606 actual-helper cases;
-a wrong subtraction->addition source control gives88/606 differences. A fresh
-c9107448 build now passes0/989 focused300/320/321 inputs, requiring321's actual
-PUSH28/JMP47DA68->47CC49 event predecessor. Both CALL/RET memberships contain
-all three actions. Wrong321 event28->27 still preserves1214 membership checks
-but gives10/989 actual argument/trace mismatches. Twenty-five source controls
-remain unselected: explicit
-event joins lose that group, named locals/inline forms still miss the distinct
-advance/slot8 copies, and720 lifetime forms do not reproduce target base24/
-index20. Current720 base is18/index20. Full CFG/ESP analysis distinguishes
-physical scalar reuse from inferred source ownership. See
-[slot and three-action tail constraints](REIMU_300321_SLOT_CONTEXT_2026_10_19.md).
-This does not prove a compiler/LTCG impossibility.
-Returning-world callbacks, indeterminate740 reads and arbitrary world/resource
-graphs remain outside these proofs. No exact credit or all-unit replay is claimed.
-
-Earlier selected197/658 and198/608 surface landings, their real int sequence
-parameter and complete slot+C partition remain preserved. See
+The preceding602 counter/timer/index-first guard and600/601/602 wide facing
+carrier remain selected. Each effect115 preparation still equals all16 target
+instructions/64 canonical bytes;650/651 do not. Wrong count and facing controls
+and the unselected wider carrier are documented in
+[602 guard and direction evidence](REIMU_602_GUARD_AND_DIRECTION_2026_10_19.md).
+Earlier414/416/546 action9 exits, distinct effect62 tails and197/658 plus198/608
+sequence landings remain selected. See
+[shot/fan sharing](REIMU_SHOT_FAN_SHARED_EXIT_2026_10_19.md),
+[414 evidence](REIMU_414_SHARED_EXIT_2026_10_19.md) and
 [shared sequence landings](REIMU_SHARED_SEQUENCE_LANDINGS_2026_10_19.md).
-The five explicit float conversions still retain target FIMUL operations in
-89/545/546/550/551;202/203/225/226 still share action10 landing. Older listed/plain
-82808-byte and RTM/SP1 controls, conditional full-CFG x87 dataflow and5752
-actual-helper advancement cases belong to the predecessor source. They do not
-prove the cause of the remaining sharing differences. See
-[low9 call cloning](REIMU_LOW9_CALL_CLONING_2026_10_19.md) and
+
+The previous named-float300/320 controls still merge advance/slot8 and use an
+incorrect temporary slot. Twenty-five source-copy/lifetime controls and the
+wrong321 event negative are historical evidence in
+[slot and three-action tail constraints](REIMU_300321_SLOT_CONTEXT_2026_10_19.md).
+This checkpoint does not resolve those original source/TU questions or prove
+an LTCG impossibility. The five explicit float conversions still retain target
+FIMUL operations in89/545/546/550/551;202/203/225/226 retain their action10 landing.
+The old combined low9-exit failure is scoped to that combined property, not
+advance alone; see [low9 call cloning](REIMU_LOW9_CALL_CLONING_2026_10_19.md) and
 [x87/type evidence](REIMU_X87_OPERAND_TYPES_2026_10_18.md).
 
 ## Current ReimuObject entry initializer

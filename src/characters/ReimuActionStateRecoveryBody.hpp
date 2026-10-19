@@ -124,5 +124,9 @@
         spawn_owned_object_via_manager(951, x_ec, y_f0,
             static_cast<unsigned char>(facing_104), 1, 0, 0);
     }
+#ifdef TH105_REIMU_SHARED_LOW_ADVANCE
+    if (selected_action == 71 || selected_action == 72 || selected_action == 74)
+        goto reimu_advance_frame_and_return;
+#endif
     advance_frame_and_dispatch();
     return true;

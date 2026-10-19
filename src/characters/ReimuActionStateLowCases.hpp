@@ -24,6 +24,10 @@
                 }
             }
         }
+#ifdef TH105_REIMU_SHARED_LOW_ADVANCE
+        if (selected_action == 0 || selected_action == 2)
+            goto reimu_advance_frame_and_return;
+#endif
         const unsigned char completed = advance_frame_and_dispatch();
         if ((selected_action == 1 || selected_action == 3)
                 && completed && frame_index_140 == 0)
@@ -71,6 +75,9 @@
             zero_velocity_acceleration();
             return true;
         }
+#ifdef TH105_REIMU_SHARED_LOW_ADVANCE
+reimu_advance_frame_and_return:
+#endif
         advance_frame_and_dispatch();
         return true;
     case 10:
