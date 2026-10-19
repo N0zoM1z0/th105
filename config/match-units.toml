@@ -19764,3 +19764,26 @@ rel32_targets = [
   "?build_oriented_box_and_descriptor@CollisionGeometryObject@?A0xb3abb375@th105@@QAEXPAHFFF00@Z=0x0045BA70",
   "?transform_box_from_local_frame@CollisionGeometryObject@?A0xb3abb375@th105@@QAEXPAH0@Z=0x0045B760",
 ]
+
+[units.gpt-web-battle-collision-phase]
+kind = "probe"
+source = "src/battle/CollisionPhase.cpp"
+object = "build/match-units/GptWeb_BattleCollisionPhase.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete native checked-list collision phase46DFF0, target1452 bytes; source1449 remains nonexact first+559 in the final narrow counter conversion. No manual iterator assertions, volatile scheduling, free-function container facade or compiler exclusion added. Source/ABI and native execution evidence: docs/BATTLE_COLLISION_PHASE_2026_10_20.md."
+
+[[units.gpt-web-battle-collision-phase.functions]]
+address = "0x0046DFF0"
+symbol_base = "run_attack_projectile_collision_phase"
+rel32_targets = [
+  "??3@YAXPAX@Z=0x006898EA",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?_Buynode@?$list@PAXV?$allocator@PAX@std@@@std@@IAEPAU_Node@?$_List_nod@PAXV?$allocator@PAX@std@@@2@PAU342@0ABQAX@Z=0x00421F30",
+  "?_Incsize@?$list@PAXV?$allocator@PAX@std@@@std@@IAEXI@Z=0x00440370",
+  "?prepare_collision_geometry_from_frame@th105@@YIXPAX@Z=0x0045C500",
+  "?dispatch_family1_object_clashes@CollisionPhase@?A0x74abeffb@th105@@QAEXXZ=0x0046DD40",
+  "?dispatch_family2_against_family1@CollisionPhase@?A0x74abeffb@th105@@QAEXXZ=0x0046DB30",
+  "?resolve_attack_candidate_against_fighter@CollisionPhase@?A0x74abeffb@th105@@QAEXPAXPAUPhaseFighter@23@@Z=0x0046DA10",
+  "?apply_deferred_counter_558@PhaseFighter@?A0x74abeffb@th105@@QAEXF@Z=0x0045D510",
+]

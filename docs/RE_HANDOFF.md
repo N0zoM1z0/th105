@@ -39,8 +39,9 @@ promotion. Current nine-file pins are in
 Target/mapped text and callable bytes remain unchanged.
 
 Read the current ledger census with `report-reconstruction-status.py --summary`.
-The collision-frame checkpoint adds one independently replayed authored
-function /2156 exact bytes; it does not assert cold aggregate verification.
+The latest collision-phase checkpoint adds complete selected source and
+native-container evidence. Exact bytes remain unchanged from the preceding
+2156-byte collision-frame match; no cold aggregate verification is asserted.
 `claims.csv` remains header-only. Source presence, mapping and diagnostic
 interval equality confer no exact credit. The Reimu CPU root remains
 source-present in a probe unit with no exact result.
@@ -228,6 +229,41 @@ metadata makes the count zero. Reopened root/helper views both have zero
 out-of-body p-code addresses. Decompiler text remains a hypothesis.
 
 See [exact recovery and analysis safety](OBJECT_ACTION980_WORD_ABI_2026_10_19.md).
+
+## Battle collision phase source checkpoint
+
+`BattleCollisionPhase_run @46DFF0` now has complete selected source in
+`CollisionPhase.cpp` and the separate `gpt-web-battle-collision-phase` probe.
+Raw CFG closes1452 bytes:1434 reachable bytes plus18 bytes of branch-skipped
+alignment,449 decoded instructions,46 direct calls, two actual manager slot24h
+calls and one RET0. Five exact parent pipelines and the already-authored origin
+rule retain their witnesses; three newly exact geometry-call witnesses are
+added. The dependent family1 origin rule now follows this caller's implemented
+status. No authored/exclusion count change.
+
+The old unselected file used volatile scheduling, manual sentinel assertions
+and a free-function node facade. Native std::list<void*>, typed owned-object
+iterators and native vector sizes reproduce all21 checked calls, seven Buynode
+and seven Incsize sites. Actual getter4B9DA0 and canonical manager vtable6C40FC
+support the virtual interface. Scoped fighter lifetime in the final guard
+recovers the full1369-byte canonical prefix and target2Ch frame.
+
+The root remains1449/1452, first+559/46E549. Its final low-word conversion and
+register schedule are unresolved; no new exact row, padding or LTCG conclusion.
+Native validation separates114 complete no-self-hit entries from396 explicit
+2Ch-frame tail entries. Actual game/geometry/container/getter instructions run;
+only validated node-allocation/free environment boundaries are callbacks.
+The same-side hit effect/callback environment remains outside the fixture,
+while its root callsite is inside the equal prefix. Native coverage, negative
+controls and exact limitations are recorded in
+[the complete phase evidence](BATTLE_COLLISION_PHASE_2026_10_20.md).
+
+Final reports are under `build/collision-phase-20261020/`; private trials and
+direct Ghidra scripts stay under `.analysis/collision-phase-20261020/`.
+The read-only128MiB/CPU0 Ghidra pass re-attests target/mapped bytes/five callers,
+reads back physical signatures and leaves all nine primary database hashes
+unchanged. This is source-present progress; the preceding2156-byte geometry
+match below remains exact. No shared headers or aggregate exact claim.
 
 ## Collision-frame preparation exact checkpoint
 

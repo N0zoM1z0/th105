@@ -2934,7 +2934,7 @@ origin = "authored_game"
 subsystem = "battle"
 disposition = "authored"
 confidence = "observed"
-evidence = "Target PE CFG reaches 1434/1452 bytes through a single RET; its three skipped 3/8/7-byte ranges are exact alignment LEA/NOP instructions bypassed by short jumps. The body resets two sides of collision lists, iterates fighter/object pairs, calls exact family2-vs-family1 and candidate-vs-fighter collision helpers, then publishes capped per-fighter deferred counters. Five distinct canonical-exact BattleManager/Story pipelines call it; three exact helper destinations are replayed from four E8 sites. The adjacent family1 helper and other nonexact callees retain independent origin questions. Full body, all padding jumps, five inbound E8s and four selected outgoing E8s are pinned. Source class/TU and exact codegen remain unresolved. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+evidence = "Full target1452-byte battle collision phase:1434 reachable bytes plus3/8/7 branch-skipped padding and one RET0. Five exact BattleManager/Story pipelines call it. Native checked std::list source now covers reset, object/fighter classification, both collision dispatches, candidate-vs-fighter traversal and deferred counters. Full1449-byte source remains nonexact first+559; guard-scoped fighter lifetime restores the1369-byte prefix, with final narrow counter schedule unresolved. All three newly exact geometry calls and the prior four exact outgoing helper calls are pinned. Finite whole-root/no-self-hit and separate tail-entry native checks supplement raw semantics; allocator callbacks are environment fixtures. No new authored/exclusion or exact-byte credit. docs/BATTLE_COLLISION_PHASE_2026_10_20.md."
 required_body_hashes = [
   { address = "0x0046DFF0", size = 1452, sha256 = "ca24d275c213508fd8a634e8712736c20297637739051f98147bebbd8f8bca53" },
 ]
@@ -2951,6 +2951,9 @@ required_direct_edges = [
   { caller = "0x00472EA0", site = "0x00472ED1", target = "0x0046DFF0", caller_status = "matching" },
 ]
 required_selected_body_calls = [
+  { owner = "0x0046DFF0", site = "0x0046E0C2", target = "0x0045C500" },
+  { owner = "0x0046DFF0", site = "0x0046E218", target = "0x0045C500" },
+  { owner = "0x0046DFF0", site = "0x0046E310", target = "0x0045C500" },
   { owner = "0x0046DFF0", site = "0x0046E492", target = "0x0046DB30" },
   { owner = "0x0046DFF0", site = "0x0046E4E4", target = "0x0046DA10" },
   { owner = "0x0046DFF0", site = "0x0046E518", target = "0x0046DA10" },
@@ -2973,7 +2976,7 @@ required_body_hashes = [
   { address = "0x0046DD40", size = 686, sha256 = "aa250ed95904cbc1b0d78f04b2f4a09ef1bcd53f844cc298140474e89f2ea8ec" },
 ]
 required_direct_edges = [
-  { caller = "0x0046DFF0", site = "0x0046E48B", target = "0x0046DD40", caller_status = "identified" },
+  { caller = "0x0046DFF0", site = "0x0046E48B", target = "0x0046DD40", caller_status = "implemented" },
   { caller = "0x0046DD40", site = "0x0046DE75", target = "0x0046CA80", caller_status = "identified" },
   { caller = "0x0046DD40", site = "0x0046DFB7", target = "0x0046CA80", caller_status = "identified" },
 ]

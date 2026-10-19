@@ -1,248 +1,151 @@
-#include "Collision.hpp"
+// Target-backed runtime prefixes; these do not recover complete original classes.
+#include <list>
+#include <vector>
+#include <stddef.h>
 
 namespace th105 {
-
-void __cdecl free_transient_list_node(void *node);
-void __cdecl _invalid_parameter_noinfo(void);
-
+void __fastcall prepare_collision_geometry_from_frame(void *object);
 namespace {
-
-struct OwnedObjectManagerCollisionView {
-    virtual void slot_00();
-    virtual void slot_04();
-    virtual void slot_08();
-    virtual void slot_0c();
-    virtual void slot_10();
-    virtual void slot_14();
-    virtual void slot_18();
-    virtual void slot_1c();
-    virtual void slot_20();
-    virtual CollisionList *collision_objects_24();
-};
-
-struct FighterCollisionPhaseView {
-    unsigned char unknown_000[0x1af];
-    unsigned char collision_active_1af;
-    unsigned char unknown_1b0[0x339];
-    unsigned char state_4e9;
-    unsigned char state_4ea;
-    unsigned char unknown_4eb[0x16d];
-    OwnedObjectManagerCollisionView *owned_manager_658;
-};
-
-struct ObjectClassificationFrameView {
+struct Box16 { int x0, y0, x1, y1; };
+struct PhaseFrame {
     unsigned char unknown_00[0x4c];
     unsigned flags_4c;
-    unsigned char unknown_50[0x0c];
-    unsigned char *family1_begin_5c;
-    unsigned char *family1_end_60;
-    unsigned unknown_64;
-    unsigned char *family2_begin_6c;
-    unsigned char *family2_end_70;
+    unsigned flags_50;
+    void *primary_54;
+    std::vector<Box16> family1_58;
+    std::vector<Box16> family2_68;
 };
-
-struct CollisionObjectClassificationView {
+struct PhaseCandidateFrame {
+    unsigned char unknown_00[0x50];
+    unsigned flags_50;
+};
+struct PhaseFighter;
+struct PhaseObject {
     unsigned char unknown_000[0x158];
-    ObjectClassificationFrameView *frame_158;
-    unsigned char unknown_15c[0x38];
+    PhaseFrame *frame_158;
+    unsigned char unknown_15c[0x10];
+    PhaseFighter *owner_16c;
+    unsigned char unknown_170[0x10];
+    int result_180;
+    signed char result_184;
+    unsigned char unknown_185[0x0f];
     void *extension_194;
+    unsigned char unknown_198[0x0c];
+    PhaseCandidateFrame *prepared_frame_1a4;
 };
-
-struct DeferredFighterView {
-    unsigned char unknown_000[0x174];
-    short value_174;
-    short maximum_176;
+struct PhaseManager {
+    virtual void slot_00(); virtual void slot_04();
+    virtual void slot_08(); virtual void slot_0c();
+    virtual void slot_10(); virtual void slot_14();
+    virtual void slot_18(); virtual void slot_1c();
+    virtual void slot_20();
+    virtual std::list<PhaseObject *> *collision_objects_24();
 };
-
-struct CollisionListIncsizeView {
-    void std_list_incsize_pointer(unsigned amount);
+struct PhaseFighter {
+    unsigned char unknown_000[0x170];
+    PhaseFighter *other_170;
+    short value_174, maximum_176;
+    unsigned char unknown_178[8];
+    int result_180;
+    signed char result_184;
+    unsigned char unknown_185[0x2a];
+    unsigned char active_1af;
+    unsigned char unknown_1b0[0x184];
+    signed char player_334;
+    unsigned char unknown_335[0x1b4];
+    unsigned char state_4e9, state_4ea;
+    unsigned char unknown_4eb[0x16d];
+    PhaseManager *manager_658;
+    void apply_deferred_counter_558(short amount);
 };
+struct CollisionPhase {
+    unsigned char unknown_00[0x0c];
+    PhaseFighter *fighters[2];
+    unsigned char unknown_14[0x18];
+    std::list<void *> family_0[2], family_1[2], family_2[2];
+    int deferred_74[2], deferred_7c[2];
+    void run_attack_projectile_collision_phase();
+    void dispatch_family1_object_clashes();
+    void dispatch_family2_against_family1();
+    void resolve_attack_candidate_against_fighter(void *candidate, PhaseFighter *fighter);
+};
+typedef char CheckCollisionPhaseSize[sizeof(CollisionPhase) == 0x84 ? 1 : -1];
+typedef char CheckCollisionFamily0Offset[offsetof(CollisionPhase, family_0) == 0x2c ? 1 : -1];
+typedef char CheckCollisionFamily1Offset[offsetof(CollisionPhase, family_1) == 0x44 ? 1 : -1];
+typedef char CheckCollisionFamily2Offset[offsetof(CollisionPhase, family_2) == 0x5c ? 1 : -1];
+typedef char CheckDeferredOffset[offsetof(CollisionPhase, deferred_74) == 0x74 ? 1 : -1];
+typedef char CheckManagerOffset[offsetof(PhaseFighter, manager_658) == 0x658 ? 1 : -1];
+typedef char CheckFighterPlayerOffset[offsetof(PhaseFighter, player_334) == 0x334 ? 1 : -1];
+typedef char CheckFighterStateOffset[offsetof(PhaseFighter, state_4e9) == 0x4e9 ? 1 : -1];
+typedef char CheckActorOwnerOffset[offsetof(PhaseObject, owner_16c) == 0x16c ? 1 : -1];
+typedef char CheckActorExtensionOffset[offsetof(PhaseObject, extension_194) == 0x194 ? 1 : -1];
+typedef char CheckPreparedFrameOffset[offsetof(PhaseObject, prepared_frame_1a4) == 0x1a4 ? 1 : -1];
 
-__forceinline void reset_transient_list(CollisionList *list)
-{
-    CollisionListNode *sentinel = list->sentinel;
-    CollisionListNode *node = sentinel->next;
-    sentinel->next = sentinel;
-    sentinel->previous = sentinel;
-    // Keep the target's reset-store and stack-slot schedule localized here.
-    reinterpret_cast<volatile unsigned *>(list)[2] = 0;
-    while (node != sentinel) {
-        CollisionListNode *next = node->next;
-        free_transient_list_node(node);
-        node = next;
-    }
-}
-
-__forceinline void append_payload(CollisionList *list, void *payload)
-{
-    CollisionListNode *sentinel = list->sentinel;
-    CollisionListNode *node = create_collision_list_node(
-        sentinel, sentinel->previous, &payload);
-    reinterpret_cast<CollisionListIncsizeView *>(list)
-        ->std_list_incsize_pointer(1);
-    sentinel->previous = node;
-    node->previous->next = node;
-}
-
-__forceinline int entry_count(unsigned char *begin, unsigned char *end)
-{
-    return begin == 0 ? 0 : (end - begin) >> 4;
-}
-
-__forceinline void require_not_sentinel(
-    CollisionListNode *node,
-    CollisionListNode *sentinel)
-{
-    if (node == sentinel) {
-        _invalid_parameter_noinfo();
-    }
-}
-
-__forceinline void classify_owned_object(
-    CollisionContext *context,
-    CollisionListNode *node,
-    CollisionListNode *sentinel)
-{
-    require_not_sentinel(node, sentinel);
-    CollisionObject *object = static_cast<CollisionObject *>(node->payload);
-    CollisionObjectClassificationView *view =
-        reinterpret_cast<CollisionObjectClassificationView *>(object);
-    require_not_sentinel(node, sentinel);
-    ObjectClassificationFrameView *frame = view->frame_158;
-    require_not_sentinel(node, sentinel);
-    const int slot = reinterpret_cast<Fighter *>(
-        object->owner_16c)->player_index_334;
-    require_not_sentinel(node, sentinel);
-    int family2_count = entry_count(
-        frame->family2_begin_6c, frame->family2_end_70);
-    require_not_sentinel(node, sentinel);
-    int family1_count = entry_count(
-        frame->family1_begin_5c, frame->family1_end_60);
-
-    if (view->extension_194 != 0) {
-        ++family2_count;
-        require_not_sentinel(node, sentinel);
-        if ((frame->flags_4c & 0x01000000) != 0) {
-            ++family1_count;
-        }
-    }
-
-    if (family2_count != 0 && object->result_180 == 0 &&
-        static_cast<signed char>(object->result_slot_184) > 0) {
-        require_not_sentinel(node, sentinel);
-        prepare_collision_geometry_from_frame(object);
-        require_not_sentinel(node, sentinel);
-        append_payload(&context->family_0[slot], object);
-        if (family1_count != 0) {
-            require_not_sentinel(node, sentinel);
-            append_payload(&context->family_1[slot], object);
-        }
-        require_not_sentinel(node, sentinel);
-        append_payload(&context->family_2[slot], object);
-    } else if (family1_count != 0) {
-        require_not_sentinel(node, sentinel);
-        prepare_collision_geometry_from_frame(object);
-        require_not_sentinel(node, sentinel);
-        append_payload(&context->family_1[slot], object);
-        require_not_sentinel(node, sentinel);
-        append_payload(&context->family_2[slot], object);
-    }
-}
-
-__forceinline void append_eligible_fighter(
-    CollisionContext *context,
-    Fighter *fighter,
-    int slot)
-{
-    FighterCollisionPhaseView *view =
-        reinterpret_cast<FighterCollisionPhaseView *>(fighter);
-    if (view->collision_active_1af != 0 && fighter->result_180 == 0 &&
-        static_cast<signed char>(fighter->unknown_184[0]) > 0) {
-        append_payload(&context->family_0[slot], fighter);
-        append_payload(&context->family_2[slot], fighter);
-    }
-}
-
-} // namespace
-
-void CollisionContext::run_attack_projectile_collision_phase()
+void CollisionPhase::run_attack_projectile_collision_phase()
 {
     int slot;
-    for (slot = 0; slot != 2; ++slot) {
-        reset_transient_list(&family_0[slot]);
-        reset_transient_list(&family_1[slot]);
-        reset_transient_list(&family_2[slot]);
-        deferred_74[slot] = 0;
-        deferred_7c[slot] = 0;
+    for (slot=0;slot<2;++slot) {
+        family_0[slot].clear();
+        family_1[slot].clear();
+        family_2[slot].clear();
+        deferred_74[slot]=0;
+        deferred_7c[slot]=0;
     }
-
-    for (slot = 0; slot != 2; ++slot) {
-        Fighter *fighter = fighters[slot];
-        FighterCollisionPhaseView *fighter_view =
-            reinterpret_cast<FighterCollisionPhaseView *>(fighter);
-        prepare_collision_geometry_from_frame(fighter);
-        fighter_view->state_4ea = fighter_view->state_4e9;
-
-        CollisionList *begin_list =
-            fighter_view->owned_manager_658->collision_objects_24();
-        CollisionListNode *node = begin_list->sentinel->next;
-        CollisionList *end_list =
-            fighter_view->owned_manager_658->collision_objects_24();
-        if (begin_list != end_list) {
-            _invalid_parameter_noinfo();
+    for (slot=0;slot<2;++slot) {
+        prepare_collision_geometry_from_frame(fighters[slot]);
+        fighters[slot]->state_4ea=fighters[slot]->state_4e9;
+        std::list<PhaseObject *>::iterator it= fighters[slot]->manager_658->collision_objects_24()->begin();
+        std::list<PhaseObject *>::iterator end=fighters[slot]->manager_658->collision_objects_24()->end();
+        for (;it!=end;++it) {
+            int player=(*it)->owner_16c->player_334;
+            int family2_count=(*it)->frame_158->family2_68.size();
+            int family1_count=(*it)->frame_158->family1_58.size();
+            if ((*it)->extension_194!=0) {
+                ++family2_count;
+                if (((*it)->frame_158->flags_4c & 0x1000000)!=0)
+                    ++family1_count;
+            }
+            if (family2_count!=0 && (*it)->result_180==0 && (*it)->result_184>0) {
+                prepare_collision_geometry_from_frame(*it);
+                family_0[player].push_back(*it);
+                if (family1_count!=0)family_1[player].push_back(*it);
+                family_2[player].push_back(*it);
+            } else if (family1_count!=0) {
+                prepare_collision_geometry_from_frame(*it);
+                family_1[player].push_back(*it);
+                family_2[player].push_back(*it);
+            }
         }
-        for (; node != end_list->sentinel; node = node->next) {
-            require_not_sentinel(node, begin_list->sentinel);
-            classify_owned_object(this, node, begin_list->sentinel);
-            require_not_sentinel(node, begin_list->sentinel);
+    }
+    for (slot=0;slot<2;++slot) {
+        if (fighters[slot]->active_1af!=0 && fighters[slot]->result_180==0 && fighters[slot]->result_184>0) {
+            family_0[slot].push_back(fighters[slot]);
+            family_2[slot].push_back(fighters[slot]);
         }
     }
-
-    for (slot = 0; slot != 2; ++slot) {
-        append_eligible_fighter(this, fighters[slot], slot);
-    }
-
     dispatch_family1_object_clashes();
     dispatch_family2_against_family1();
-
-    for (slot = 0; slot != 2; ++slot) {
-        Fighter *fighter = fighters[slot];
-        Fighter *other = fighter->other_fighter_170;
-        CollisionList *attacks = &family_0[slot];
-        for (CollisionListNode *node = attacks->sentinel->next;
-             node != attacks->sentinel;
-             node = node->next) {
-            require_not_sentinel(node, attacks->sentinel);
-            AttackCandidate *candidate =
-                static_cast<AttackCandidate *>(node->payload);
-            require_not_sentinel(node, attacks->sentinel);
-            resolve_attack_candidate_against_fighter(candidate, other);
-            require_not_sentinel(node, attacks->sentinel);
-            if ((candidate->frame_1a4->flags_50 & 0x00100000) != 0) {
-                require_not_sentinel(node, attacks->sentinel);
-                resolve_attack_candidate_against_fighter(candidate, fighter);
-            }
-            require_not_sentinel(node, attacks->sentinel);
+    for (slot=0;slot<2;++slot) {
+        PhaseFighter *other=fighters[slot]->other_170;
+        std::list<void *>::iterator it=family_0[slot].begin();
+        std::list<void *>::iterator end=family_0[slot].end();
+        for (;it!=end;++it) {
+            resolve_attack_candidate_against_fighter(*it,other);
+            if ((static_cast<PhaseObject *>(*it)->prepared_frame_1a4->flags_50 & 0x100000)!=0)
+                resolve_attack_candidate_against_fighter(*it,fighters[slot]);
         }
     }
-
-    for (slot = 0; slot != 2; ++slot) {
-        Fighter *fighter = fighters[slot];
-        DeferredFighterView *fighter_view =
-            reinterpret_cast<DeferredFighterView *>(fighter);
-        if (deferred_74[slot] != 0 && fighter_view->value_174 > 0) {
-            int value = static_cast<short>(deferred_74[slot]) +
-                static_cast<int>(fighter_view->value_174);
-            if (fighter_view->maximum_176 <= value) {
-                value = fighter_view->maximum_176;
-            }
-            fighter_view->value_174 = static_cast<short>(value);
+    for (slot=0;slot<2;++slot) {
+        if (deferred_74[slot]!=0 && fighters[slot]->value_174>0) {
+            PhaseFighter *fighter = fighters[slot];
+            int value=static_cast<short>(deferred_74[slot])+static_cast<int>(fighter->value_174);
+            if (value>=fighter->maximum_176)value=fighter->maximum_176;
+            fighter->value_174=static_cast<short>(value);
         }
-        if (deferred_7c[slot] != 0) {
-            fighter->apply_deferred_counter_558(
-                static_cast<short>(deferred_7c[slot]));
-        }
+        if (deferred_7c[slot]!=0)
+            fighters[slot]->apply_deferred_counter_558(static_cast<short>(deferred_7c[slot]));
     }
+
 }
-
+} // namespace
 } // namespace th105

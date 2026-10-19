@@ -1444,3 +1444,4 @@ PackageArchiveStore_ctor
 PackageArchiveStore_dtor
 AnimationAuxiliarySprite_replace
 CollisionGeometry_prepare_from_frame
+BattleCollisionPhase_run

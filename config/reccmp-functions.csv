@@ -1464,3 +1464,4 @@ PackageArchiveStore_ctor,0x0041B8C0,function
 PackageArchiveStore_dtor,0x0041B980,function
 AnimationAuxiliarySprite_replace,0x0045CD70,function
 CollisionGeometry_prepare_from_frame,0x0045C500,function
+BattleCollisionPhase_run,0x0046DFF0,function
