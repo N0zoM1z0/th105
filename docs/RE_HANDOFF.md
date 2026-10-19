@@ -146,7 +146,12 @@ schedule. Diagnostics are41/43, with no earlier equal owner lost; the
 callable still ends4A2FFC without included alignment. Source SHA3803a002,
 canonical5440-byte payload65298d36; strict first difference+1140/4A2E20.
 Only14 callable bytes in906/999 remain different, in pointer/call registers
-and preparation. No partial credit or whole-root native proof is claimed.
+and preparation. A fresh build still reproduces these pins. The new bounded
+execution audit passes0/672 through624 actual selector/frame/sprite-commit chains
+and native RETs; wrong999 sequence and906 phase sources fail48/672 and28/672.
+Five conversion-carrier controls preserve the entire65298d36 payload and are
+unselected. This covers906/999 only, not whole-root semantics or exactness. See
+[real selector execution evidence](REIMU_OBJECT_ENTRY_CALLS_2026_10_19.md).
 
 A genuine `/GL`+`/LTCG` diagnostic DLL now closes through real ordinary
 providers, a full private404E60 texture-size provider and CRT startup. Its
@@ -181,7 +186,11 @@ the root's remaining compiler context remains open.
 
 See [ReimuObject entry evidence](REIMU_OBJECT_ENTRY_2026_10_19.md).
 
-Current Reimu receipts are below `build/reimu-object-entry-abi/`; preceding
+Current906/999 execution, negative and read-only Ghidra receipts are below
+`build/reimu-entry-carriers-20261019/`, with private regeneration recipes under
+the corresponding `.analysis/` directory. All nine primary database hashes stay
+unchanged. Current Reimu compilation/link receipts are below
+`build/reimu-object-entry-abi/`; preceding
 receipts remain below `build/reimu-object-entry-lifetimes/` and
 `build/reimu-object-entry/`. Previously checked raw/Ghidra RTTI establishes
 eight entries including the complete object, with base offsets0/4/130h/330h.
