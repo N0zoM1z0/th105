@@ -32,8 +32,8 @@ verified private Ghidra copy, reopens it for readback, then replaces the primary
 project. Target/mapped bytes remain unchanged; nine new primary file hashes
 are recorded in `build/reimu-cpu-root/primary-db-after.json`.
 
-Last checked ledger census: 4023 candidates; 1542 authored, 1415 excluded,
-1066 in review; 1457 mapped, 1438 source-present; 1333 exact / 225099 bytes;
+Last checked ledger census: 4023 candidates; 1543 authored, 1415 excluded,
+1065 in review; 1458 mapped, 1439 source-present; 1333 exact / 225099 bytes;
 518 match units. These are ledger totals, not a cold aggregate replay.
 `claims.csv` remains header-only. Source presence, mapping and diagnostic
 interval equality confer no exact credit. The Reimu CPU root remains
@@ -277,6 +277,23 @@ has438h frame; its package helper remains unresolved. Current source SHA is
 Continue indexed table-address/base lifetime recovery and truthful provider
 context. Reviewing retained40CF40 source (213 bytes) is a concrete dependency
 step; actual package-entry CALL is41BFA0. Do not assume a compiler-phase cause.
+
+The [reader-opening dependency review](FILEREADER_OWNER_OPEN_2026_10_19.md)
+now maps/selects retained40CF40 source and independently classifies its213 bytes
+as authored engine code. Its84-instruction CFG/two RET4 exits close; RTTI pins
+plain/package readers and15 decoded callers. The66-case instruction model
+agrees on reader bytes, owner/global state and call traces, covering83 target
+instructions under nonnull-or-throw allocation. Exception cases compare call
+prefixes, not OS unwinding. No new exact credit.
+
+Formal `cross-v106a-file-reader` replay keeps its three accepted members exact
+and records CF40 as212/213 at+0. The installed RTM control is byte-identical
+to SP1 on this source. No source/header/flag changes are selected;
+constructor/force-inline/nonthrowing/EH-mode controls remain private and fail
+the full target. The related BMP unit retains all five accepted members.
+Receipts: `build/filereader-open-20261019/`. Next bounded dependency is the
+missing package-entry implementation@41BFA0 (candidate356 bytes), to replace
+opaque provider context before returning to CF40/BMP code generation.
 
 ## Current Reimu CPU root
 

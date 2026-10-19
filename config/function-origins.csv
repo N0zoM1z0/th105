@@ -304,7 +304,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0040CF10,authored_game,platform,authored,observed,canonical-exact-authored
 0x0040CF20,authored_game,assets,authored,observed,canonical-exact-authored
 0x0040CF30,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0040CF40,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0040CF40,authored_game,assets,authored,observed,file-reader-owner-open-authored-106a
 0x0040D020,authored_game,platform,authored,observed,canonical-exact-authored
 0x0040D0B0,authored_game,platform,authored,observed,canonical-exact-authored
 0x0040D160,authored_game,platform,authored,observed,canonical-exact-authored

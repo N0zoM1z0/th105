@@ -1436,3 +1436,4 @@ Iku_dispatch_action_state_vslot28
 ScoreData_record_sequence_result
 Reimu_update_cpu_action_policy
 ReimuObject_initialize_action_entry
+FileReaderOwner_open

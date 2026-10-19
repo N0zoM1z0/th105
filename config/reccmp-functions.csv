@@ -1456,3 +1456,4 @@ Aya_update_cpu_action_policy,0x006126E0,function
 ScoreData_record_sequence_result,0x0042CF70,function
 Reimu_update_cpu_action_policy,0x0048D390,function
 ReimuObject_initialize_action_entry,0x004A1CE0,function
+FileReaderOwner_open,0x0040CF40,function

@@ -73,7 +73,7 @@ source = "src/assets/FileReader.cpp"
 object = "build/match-units/CrossV106a_FileReader.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fresh canonical VC8 zero-diff replay; no relocation overrides required."
+notes = "Three original accessor/owner-destructor anchors remain canonical exact. Reviewed FileReaderOwner_open@40CF40 has a closed213-byte target and retained212-byte source, nonexact at+0; its allocator, package-entry, mode-word, two vtable and IAT bindings are explicit. The66-case normal/exception-call-boundary model agrees and covers83/84 target instructions under nonnull-or-throw allocation. Constructor/inlining/EH provenance remains unknown. See docs/FILEREADER_OWNER_OPEN_2026_10_19.md."
 
 [[units.cross-v106a-file-reader.functions]]
 address = "0x00407C40"
@@ -86,6 +86,12 @@ symbol_base = "FileReaderOwner_dtor"
 [[units.cross-v106a-file-reader.functions]]
 address = "0x0041B880"
 symbol_base = "CPackageFileReader_size"
+
+[[units.cross-v106a-file-reader.functions]]
+address = "0x0040CF40"
+symbol_base = "?open@FileReaderOwner@th105@@QAE_NPBD@Z"
+rel32_targets = ["??2@YAPAXI@Z=0x00689DCB", "?open_package_file_entry@th105@@YGPAXPBDPAK1@Z=0x0041BFA0"]
+dir32_targets = ["?g_package_file_index@th105@@3PAXA=?g_package_file_index@th105@@3PAXA", "??_7CPackageFileReader@th105@@6B@=??_7CPackageFileReader@th105@@6B@", "??_7CFileReader@th105@@6B@=??_7CFileReader@th105@@6B@", "__imp__CreateFileA@28=__imp__CreateFileA@28"]
 
 [units.cross-v106a-battle-setup]
 kind = "probe"

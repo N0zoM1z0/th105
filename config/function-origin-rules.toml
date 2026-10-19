@@ -1841,7 +1841,7 @@ origin = "authored_game"
 subsystem = "assets"
 disposition = "authored"
 confidence = "observed"
-evidence = "Current CBitmapData RTTI/COL 0x006DCFB0 and primary vtable 0x006D6E10 own authored loader slots1/2/3 at 0x00419FF0/0x0041A910/0x0041ACA0. Slot1 is the 2230-byte BMP loader with PNG fallback and target-proved palette/pixel topology; slot2 passes canonical-exact game callback 0x0041A8E0 into embedded libpng; slot3 is the native FileReaderOwner bitmap loader. Typed source closes all three behaviors; formal clean VC8 remains nonexact only on documented stack-coloring/FileReaderOwner late-inline and scheduling phases."
+evidence = "Current CBitmapData RTTI/COL 0x006DCFB0 and primary vtable 0x006D6E10 own authored loader slots1/2/3 at 0x00419FF0/0x0041A910/0x0041ACA0. Slot1 is the 2230-byte BMP loader with PNG fallback and target-proved palette/pixel topology; slot2 passes canonical-exact game callback 0x0041A8E0 into embedded libpng; slot3 is the native FileReaderOwner bitmap loader. Source covers all three loader protocols, but whole-function comparisons remain nonexact. The old claim that only stack coloring remained was unproved; the BMP section-size report also included adjacent switch metadata. EH, allocator-interface and reader-provider evidence is separated in docs/CBITMAP_BMP_EH_2026_10_19.md and docs/FILEREADER_OWNER_OPEN_2026_10_19.md."
 
 [[rules]]
 id = "plain-file-buffer-authored-106a"
@@ -3030,6 +3030,20 @@ required_selected_body_calls = [
 ]
 
 # Accepted provenance witnesses do not assign origin dispositions.
+[[rules]]
+id = "file-reader-owner-open-authored-106a"
+addresses = ["0x0040CF40"]
+expected_count = 1
+expected_bytes = 213
+expected_names = ["sub_40CF40"]
+origin = "authored_game"
+subsystem = "assets"
+disposition = "authored"
+confidence = "observed"
+evidence = "Closed84-instruction/213-byte helper selects the game package reader or plain reader, owns/deletes the prior and failed reader, and initializes custom archive size/offset/position/XOR state. Canonical RTTI names CFileReader and CPackageFileReader; the latter derives from the former at offset0. Fifteen raw decoded direct callers include eleven source-present game asset/audio loaders and all three RTTI-owned CBitmapData loader slots. This is authored engine ownership, independently of the nonexact212-byte retained implementation. docs/FILEREADER_OWNER_OPEN_2026_10_19.md."
+required_body_hashes = [{ address = "0x0040CF40", size = 213, sha256 = "af6ace376e9c519262ef6ca5c5d464f7474e63eb78cac11d5495cbd84f8e1eab" }]
+required_direct_edges = [{ caller = "0x00419FF0", site = "0x0041A038", target = "0x0040CF40", caller_status = "implemented" }, { caller = "0x00418A10", site = "0x00418A41", target = "0x0040CF40", caller_status = "implemented" }]
+
 [[accepted_evidence]]
 id = "sprite-three-axis-pivot-rotation-authored-106a"
 addresses = ["0x00407680"]
