@@ -1,5 +1,12 @@
 # Youmu copied-input pointer and action601 arguments, 2026-10-02
 
+The [October19 caller-width follow-up](YOUMU_CALLER_WIDTH_CONTROLS_2026_10_19.md)
+finds int/short selector views byte-neutral and uniform spawn-control interface
+changes regressive on the selected source. Independent target stack witnesses
+show bothFFFFFFFF and000000FF passed for the same consumedFF byte. Those facts
+do not uniquely recover the original control formal; the source below stays
+selected without a new exact claim.
+
 ## Retained result
 
 `Youmu_dispatch_action_state_vslot28 @ 0x00530200` remains **nonexact** over

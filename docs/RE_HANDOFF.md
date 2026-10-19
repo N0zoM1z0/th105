@@ -168,6 +168,16 @@ the root's remaining compiler context remains open.
 
 See [ReimuObject entry evidence](REIMU_OBJECT_ENTRY_2026_10_19.md).
 
+Current Reimu receipts are below `build/reimu-object-entry-abi/`; preceding
+receipts remain below `build/reimu-object-entry-lifetimes/` and
+`build/reimu-object-entry/`. Previously checked raw/Ghidra RTTI establishes
+eight entries including the complete object, with base offsets0/4/130h/330h.
+Nine read-only Ghidra DB pins agree at that checkpoint and its alias is removed.
+All23 accepted members across seven focused helper units replay exact at
+the preceding source-recovery checkpoint; their inputs are unchanged here.
+The effect unit's existing nonaccepted5F9350 probe remains nonexact. No cold
+aggregate replay is claimed.
+
 ## Shared Object action980 exact checkpoint
 
 `CharacterObject_continue_action_980 @596370` is now canonical323/323 under
@@ -186,15 +196,6 @@ metadata makes the count zero. Reopened root/helper views both have zero
 out-of-body p-code addresses. Decompiler text remains a hypothesis.
 
 See [exact recovery and analysis safety](OBJECT_ACTION980_WORD_ABI_2026_10_19.md).
-Current receipts are below `build/reimu-object-entry-abi/`; preceding
-receipts remain below `build/reimu-object-entry-lifetimes/` and
-`build/reimu-object-entry/`. Previously checked raw/Ghidra RTTI establishes
-eight entries including the complete object, with base offsets0/4/130h/330h.
-Nine read-only Ghidra DB pins agree and the temporary alias is removed.
-All23 accepted members across seven focused helper units replay exact at
-the preceding source-recovery checkpoint; their inputs are unchanged here.
-The effect unit's existing nonaccepted5F9350 probe remains nonexact. No cold
-aggregate replay is claimed.
 
 ## Current YoumuObject entry initializer
 
@@ -221,6 +222,42 @@ byte-neutral. An outer-switch851 pointer capture, unsigned sequence word
 and local fenv_access all regress the current target shape. See the same
 evidence page and `build/youmu-entry-exit-context/`; none is selected. Seek
 new ownership/type/TU evidence before repeating unchanged source controls.
+
+Fresh current-word-context duplication/inline-tail controls recover the21/23
+conversion/RET counts but misplace the shared tail and remain23/30. Reversed
+tail ownership, discarded void return expressions and chained scales preserve
+the baseline payload.851 integer/reference carriers regress or merge distinct
+owners. Its retained early double capture remains a hypothesis, not validated
+ordering/alias evidence. See [the bounded controls](YOUMU_CALLER_WIDTH_CONTROLS_2026_10_19.md).
+
+## Youmu Fighter caller-width follow-up
+
+The37692-byte root530200 remains source-present/nonexact, with31/98 owner
+diagnostics, prefix37648 and canonical38772-byte payloade81b3c5f. All9912
+target instructions/all37692 bytes are reachable. An independent four-slot
+int view reproduces the baseline; a short view for all38 source selector
+expressions is completely byte-neutral. No shared interface changes.
+
+Uniform signed-char/plain-char or full-word spawn-control arguments regress
+to4/98 or3/98, with the initial constant register assignment changing at+12.
+Narrow control locals and a branch-local710 call-expression rewrite do not
+recover the lost owners. These controls are unselected; a smaller root-size
+deficit alone is not grounds to change the source.
+
+Fresh bounded stack calculation proves target601 passesFFFFFFFF at536E7E,
+while606's AL arithmetic leaves000000FF at538086. Both become the sameFF
+byte in object+33C. The66-byte forwarding helper transfers words/RET1C;
+the237-byte manager factory consumes the byte in its seventh/nine-stack-slot
+interface/RET24. Direct read-only Ghidra checks the physical storage and both
+callable hashes without inventing byte signedness. All nine primary DB pins
+remain unchanged; current saved pins remain the action980 checkpoint's file.
+
+See [caller-width evidence and limits](YOUMU_CALLER_WIDTH_CONTROLS_2026_10_19.md).
+Private source/commands are under `.analysis/youmu-state-word-20261019/` and
+`build/youmu-state-word-20261019/`. Exact credit and selected source remain
+unchanged. Next bounded work returns to Reimu478FA0's remaining physical
+sharing and argument lifetimes; these controls do not justify a global ABI
+change or a categorical LTCG stop condition.
 
 ## Current AyaObject entry initializer
 

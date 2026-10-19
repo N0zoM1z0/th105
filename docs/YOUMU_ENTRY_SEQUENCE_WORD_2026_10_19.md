@@ -5,6 +5,11 @@ local virtual interface and computes action902's decay before its phase
 assignment. Instruction/edge-identical owner diagnostics improve6/30->23/30.
 The complete root remains nonexact at+80; no exact function/byte is added.
 
+The subsequent [caller-width and tail controls](YOUMU_CALLER_WIDTH_CONTROLS_2026_10_19.md)
+retest duplication, inline/source tail ownership,851 carriers and scale chains
+in this word context. None closes the root; selected source and23/30 diagnostic
+result remain unchanged. The851 early-load hypothesis is not semantic acceptance.
+
 ## Independent target and ABI evidence
 
 Original Japanese1.06a executable SHA256 remains
