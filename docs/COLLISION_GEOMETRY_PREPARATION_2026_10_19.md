@@ -1,4 +1,8 @@
-# Collision-frame preparation45C500: source, ABI and normal execution
+# Collision-frame preparation45C500: exact recovery and ABI
+
+The 2026-10-20 continuation closes the complete function at2156/2156 under
+the ordinary pinned VC8 SP1 profile. The earlier source checkpoint and its
+failed controls remain useful phase evidence, not current blockers.
 
 ## Exact target and boundary
 
@@ -17,10 +21,11 @@ overwrites EAX without consuming a result. The selected one-pointer fastcall
 wrapper matches this physical ECX/no-stack-arguments/RET0 contract. Original
 C++ member versus wrapper spelling is not uniquely recovered.
 
-The bounded origin rule `battle-collision-frame-preparation-authored-106a`
-pins the full body hash, all three inbound E8 sites and all eleven calls to
-the three exact geometry providers. The frame/actor collision policy supports
-authored ownership independently of the still-failing canonical comparison.
+The previous bounded origin rule pinned the full body hash, all three inbound
+E8 sites and all eleven calls to the three exact geometry providers. The
+frame/actor collision policy established authored ownership before exactness.
+The accepted function now uses the canonical-exact authored origin baseline;
+the superseded nonexact rule is removed, not retained as a second claim.
 
 **Observed behavior:** the entry copies state174, phase180/184, action13C,
 facing104, sequence15C and frame158 into the collision snapshot. On a changed
@@ -54,9 +59,9 @@ this is not an invented custom calling convention. The two translation
 providers read the actor's position/facing and have mandatory receiver input.
 
 The three established matches stay in `cross-v106a-collision-preparation`.
-The complete larger caller gets its own nonaccepted probe
-`gpt-web-collision-geometry-preparation`, so existing exact-only replay commands
-continue to succeed. No exact row is added for45C500.
+The complete larger caller has its own accepted probe
+`gpt-web-collision-geometry-preparation`. Both focused units succeed; only
+45C500 is newly added to `matches.csv`, for2156 additional exact authored bytes.
 
 ## Source selection and compiler controls
 
@@ -67,13 +72,10 @@ prologue's access schedule and MOVZX carriers. Actual member dispatch restores
 the three missing ECX preparations. Runtime field names now identify vector
 header offsets, and compile-time assertions verify their layout.
 
-The selected ordinary VC8 SP1 `/O2 /GS- /GR /EHsc /MT` root emits2164 bytes,
-canonical SHA256
-`4b5d4d88e324ec9a1f028b324a0dde4abcff48114e0b6585a61d72bcc24c93a9`.
-Its stack frame is34h; target is3Ch. Strict full-function comparison fails
-first+2/45C502. Source presence and compatible execution do not make it exact.
-The source SHA is recorded by the fresh formal producer report, independently
-of the existing-object native audit's provenance flag.
+The earlier selected ordinary VC8 SP1 `/O2 /GS- /GR /EHsc /MT` root emitted2164
+bytes, canonical4b5d4d88, with a34h frame versus target3Ch and first mismatch+2.
+Those source-present and compatible-execution results did not establish exact
+bytes. The following earlier controls were measured in that source context:
 
 | Control | Whole-root observation |
 | --- | --- |
@@ -86,10 +88,44 @@ of the existing-object native audit's provenance flag.
 | Shape-cursor/index form |2162 bytes; still wrong frame |
 | GS and RTM variants of the new source context | Root payload unchanged in each corresponding context |
 
-These are source/visibility/profile observations. They do not prove a general
-LTCG requirement. Remaining work concerns the real iterator/index lifetimes,
-induction sharing and stack allocation across the complete function. No dummy
-locals, fake returns, padding, forced registers or copied byte arrays are used.
+These are phase-scoped source/visibility/profile observations. In particular,
+the failed2207-byte indexed control did not prove that direct indexing was
+wrong, nor did any control establish an LTCG requirement.
+
+### Complete ordinary-VC8 recovery
+
+Target positive-facing paths take one destination pointer and copy the complete
+16-byte descriptor; negative-facing paths reload the destination between the
+reflected field stores. Genuine aggregate assignment explains the former;
+four source assignments needlessly introduced reloads and different lifetimes.
+Direct groupA indexing then restores the target's independent scalar and
+16-byte induction values, output cursors and3Ch frame.
+
+The extension path gives a separate lifetime observation: at45CBF7..45CBFF,
+BL receives the narrow frame count plus one. That value stays live across the
+geometry calls and is stored to the groupB count at45CCF7. It is not reloaded
+from the potentially aliased object count. A signed-char local used by both
+publications, with direct array indexing inside each branch, naturally
+recovers the target EBP descriptor slot and EDI box address.
+
+| New control | Complete root result |
+| --- | --- |
+| Aggregate positive copies with old explicit cursors |2120 bytes, first+2 |
+| Aggregate copies plus direct groupA indexing |2163 bytes,3Ch frame |
+| Narrow extension count retained across calls and branch-local indexing |2155 bytes; only cache-B register allocation and two commuted SIB forms differ structurally |
+| Explicit cache-B `if/else` instead of ternary |2156 bytes, exactly two differing SIB bytes; first+2F8 |
+| Direct checked-descriptor expressions instead of the temporary |2156/2156 canonical exact |
+| Independent natural member-entry spelling with descriptor temporary |2156/2156 in private diagnostics; original C++ spelling is not unique |
+
+The selected source retains the established one-pointer fastcall entry and
+uses direct descriptor expressions. All645 instructions/2156 bytes, internal edges,
+both RET0 exits,39 E8 fields and the separate Xran E9 field compare exactly.
+The canonical body SHA256 is the target
+`79b6295ec257dabdb090b1e3ae8943ccbfd2468fc9d438785215c75ddfec4dff`.
+No comparator relaxation, manual SIB edit, register constraint, padding, dummy
+local, fake return, copied code or target patch is involved. The fresh formal
+producer records source/compiler/object/input hashes; the native audit below
+retains its separate existing-object provenance limitation.
 
 ## Independent native execution and negative control
 
@@ -109,8 +145,10 @@ source descriptors; four initial facings; absent/plain/oriented extensions;
 and two x87 precision settings. Each record executes cold and warm cache paths
 on both sides, with changed positions/state/facing on the warm pass.
 
-The selected root passes0/1344 records,2688 actual invocations per side. It
-compares all330h object bytes, actual geometry argument/data traces, native
+Both the earlier nonexact root and the selected exact root pass all1344
+records with zero mismatches,2688 actual invocations per side. The final exact
+run visits621 instructions on each side. The audit compares all330h object
+bytes, actual geometry argument/data traces, native
 RET/ESP and nonvolatile registers, x87 TOP/control word and MXCSR. Stack-local
 scratch pointers are compared by role/content, not by an assumed matching
 stack-frame address. Target/source helper counts agree:6848 ordinary box
@@ -125,7 +163,8 @@ than describing645-instruction static closure as complete runtime coverage.
 Invalid containers, throw execution, legacy x87 ceil, arbitrary NaNs/overflow,
 unbounded metadata and original table initialization remain outside this proof.
 
-A source-level1000000->2000000 extension-copy control fails16/96 smoke inputs
+A source-level1000000->2000000 extension-copy control, rerun from the selected
+exact source, fails16/96 smoke inputs
 on both cold/warm snapshots. It changes groupB count, box bytes and descriptor
 pointers even though geometry call traces remain equal. This demonstrates
 why counts/trace membership alone are insufficient. The single-session
@@ -165,10 +204,13 @@ python3 scripts/validate-tracking.py --require-target
 python3 scripts/check-match-literals.py --require-target
 ```
 
-The established provider unit returns0/exact for all three members. The new
-caller unit returns1/nonexact. The native audit returns0; `--smoke` uses96
+The established provider unit returns0/exact for all three members. The
+caller unit now returns0/exact2156/2156. The native audit returns0; `--smoke` uses96
 records/192 invocations per side. Existing-object execution reports build
 provenance as unverified; the preceding formal producer is the separate
-provenance evidence. Reports are below `build/animation-state-20261019/`;
-private controls/recipes are below `.analysis/animation-state-20261019/`.
-No exact byte total increase or cold aggregate replay is claimed.
+provenance evidence. Final reports are
+`build/animation-state-20261019/formal-exact-root.json`,
+`provider-exact-replay.json` and `native-exact.json` in the same directory.
+Private controls/recipes are below `.analysis/animation-state-20261019/`.
+This checkpoint adds one2156-byte exact function. No cold aggregate replay or
+fresh aggregate exact-byte verification is claimed.

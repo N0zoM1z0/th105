@@ -19751,7 +19751,7 @@ source = "src/battle/CollisionPreparation.cpp"
 object = "build/match-units/GptWeb_CollisionGeometryPreparation.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Full645-instruction2156-byte collision-frame preparation45C500. Source-present only: the natural member receiver and state snapshot are target-backed; source remains nonexact in iterator/index lifetimes and frame. The vector Xran edge40C350 is semantically bound by its checked-at predecessor, error string and out_of_range throw; its origin and exact compiler/EH context remain in review. See docs/COLLISION_GEOMETRY_PREPARATION_2026_10_19.md."
+notes = "Canonical exact2156/2156 collision-frame preparation45C500: direct array indexing, aggregate positive-facing descriptor copies, narrow extension-count lifetime and explicit cache initialization naturally recover the3Ch frame and all instruction encodings. The vector Xran edge40C350 is semantically bound by its checked-at predecessor, error string and out_of_range throw; its independent origin and compiler/EH context remain in review. No helper exclusion or upstream exactness is inferred. See docs/COLLISION_GEOMETRY_PREPARATION_2026_10_19.md."
 
 [[units.gpt-web-collision-geometry-preparation.functions]]
 address = "0x0045C500"

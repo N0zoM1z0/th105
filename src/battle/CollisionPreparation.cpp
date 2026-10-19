@@ -89,8 +89,6 @@ struct CollisionGeometryObject {
         int *out_box, int *out_descriptor);
 };
 
-
-
 typedef char FrameGeometry_size[sizeof(FrameGeometry) == 0x88 ? 1 : -1];
 typedef char FrameGeometry_group_b_offset[
     offsetof(FrameGeometry, group_b_58) == 0x58 ? 1 : -1];
@@ -295,40 +293,37 @@ void __fastcall prepare_collision_geometry_from_frame(void *raw_object)
             }
         }
         for (int i = 0; i < self->prepared_group_b_count_1b0; ++i) {
-            self->prepared_group_b_shape_ptrs_318[i] =
-                (self->frame_158->flags_4c & 0x800000) != 0
-                    ? &self->prepared_group_b_shapes_2a4[i] : 0;
+            if ((self->frame_158->flags_4c & 0x800000) != 0) {
+                self->prepared_group_b_shape_ptrs_318[i] =
+                    &self->prepared_group_b_shapes_2a4[i];
+            } else {
+                self->prepared_group_b_shape_ptrs_318[i] = 0;
+            }
         }
     }
 
     LocalAabb local_box;
     ShapeWords local_shape;
-    int index = 0;
-    LocalAabb *out = &self->prepared_group_a_204[0];
-    ShapeWords **out_shape = &self->prepared_group_a_shape_ptrs_304[0];
-    for (;;) {
-        if (index >= static_cast<int>(self->frame_158->group_a_68.size())) {
-            break;
-        }
-        ShapeWords *source_shape =
-            self->frame_158->group_a_descriptors_78[index];
-        if (source_shape != 0) {
+    int index;
+    for (index = 0;
+         index < static_cast<int>(self->frame_158->group_a_68.size());
+         ++index) {
+        if (self->frame_158->group_a_descriptors_78[index] != 0) {
             self->transform_box_from_local_frame_flipped_y(
                 reinterpret_cast<int *>(
                     &self->frame_158->group_a_68.at(index)),
-                reinterpret_cast<int *>(out));
+                reinterpret_cast<int *>(&self->prepared_group_a_204[index]));
             if (self->facing_104 > 0) {
-                source_shape =
-                    self->frame_158->group_a_descriptors_78[index];
-                **out_shape = *source_shape;
+                *self->prepared_group_a_shape_ptrs_304[index] =
+                    *self->frame_158->group_a_descriptors_78[index];
             } else {
-                (*out_shape)->x0 =
+                self->prepared_group_a_shape_ptrs_304[index]->x0 =
                     self->frame_158->group_a_descriptors_78[index]->x1;
-                (*out_shape)->y0 =
+                self->prepared_group_a_shape_ptrs_304[index]->y0 =
                     -self->frame_158->group_a_descriptors_78[index]->y1;
-                (*out_shape)->x1 =
+                self->prepared_group_a_shape_ptrs_304[index]->x1 =
                     self->frame_158->group_a_descriptors_78[index]->x0;
-                (*out_shape)->y1 =
+                self->prepared_group_a_shape_ptrs_304[index]->y1 =
                     -self->frame_158->group_a_descriptors_78[index]->y0;
             }
         } else if ((self->frame_158->flags_4c & 0x400000) != 0) {
@@ -342,27 +337,21 @@ void __fastcall prepare_collision_geometry_from_frame(void *raw_object)
                 reinterpret_cast<int *>(&local_shape));
             self->transform_box_from_local_frame_flipped_y(
                 reinterpret_cast<int *>(&local_box),
-                reinterpret_cast<int *>(out));
+                reinterpret_cast<int *>(&self->prepared_group_a_204[index]));
             if (self->facing_104 > 0) {
-                (*out_shape)->x0 = local_shape.x0;
-                (*out_shape)->y0 = local_shape.y0;
-                (*out_shape)->x1 = local_shape.x1;
-                (*out_shape)->y1 = local_shape.y1;
+                *self->prepared_group_a_shape_ptrs_304[index] = local_shape;
             } else {
-                (*out_shape)->x0 = local_shape.x1;
-                (*out_shape)->y0 = -local_shape.y1;
-                (*out_shape)->x1 = local_shape.x0;
-                (*out_shape)->y1 = -local_shape.y0;
+                self->prepared_group_a_shape_ptrs_304[index]->x0 = local_shape.x1;
+                self->prepared_group_a_shape_ptrs_304[index]->y0 = -local_shape.y1;
+                self->prepared_group_a_shape_ptrs_304[index]->x1 = local_shape.x0;
+                self->prepared_group_a_shape_ptrs_304[index]->y1 = -local_shape.y0;
             }
         } else {
             self->transform_box_from_local_frame(
                 reinterpret_cast<int *>(
                     &self->frame_158->group_a_68.at(index)),
-                reinterpret_cast<int *>(out));
+                reinterpret_cast<int *>(&self->prepared_group_a_204[index]));
         }
-        ++index;
-        ++out;
-        ++out_shape;
     }
 
     if ((self->frame_158->flags_4c & 0x800000) != 0) {
@@ -381,14 +370,7 @@ void __fastcall prepare_collision_geometry_from_frame(void *raw_object)
                 reinterpret_cast<int *>(&local_box),
                 reinterpret_cast<int *>(&self->prepared_group_b_1b4[index]));
             if (self->facing_104 > 0) {
-                self->prepared_group_b_shape_ptrs_318[index]->x0 =
-                    local_shape.x0;
-                self->prepared_group_b_shape_ptrs_318[index]->y0 =
-                    local_shape.y0;
-                self->prepared_group_b_shape_ptrs_318[index]->x1 =
-                    local_shape.x1;
-                self->prepared_group_b_shape_ptrs_318[index]->y1 =
-                    local_shape.y1;
+                *self->prepared_group_b_shape_ptrs_318[index] = local_shape;
             } else {
                 self->prepared_group_b_shape_ptrs_318[index]->x0 =
                     local_shape.x1;
@@ -412,15 +394,12 @@ void __fastcall prepare_collision_geometry_from_frame(void *raw_object)
     }
 
     if (self->extension_194 != 0) {
-        int a_count = static_cast<signed char>(
+        signed char a_count = static_cast<signed char>(
             self->frame_158->group_a_68.size());
-        LocalAabb *extension_box = &self->prepared_group_a_204[a_count];
-        ShapeWords **extension_shape =
-            &self->prepared_group_a_shape_ptrs_304[a_count];
-        self->prepared_group_a_count_1af =
-            static_cast<signed char>(a_count + 1);
+        self->prepared_group_a_count_1af = static_cast<signed char>(a_count + 1);
         if (self->extension_194->angle_10 != 0) {
-            *extension_shape = &self->prepared_group_a_shapes_254[a_count];
+            self->prepared_group_a_shape_ptrs_304[a_count] =
+                &self->prepared_group_a_shapes_254[a_count];
             self->build_oriented_box_and_descriptor(
                 reinterpret_cast<int *>(self->extension_194),
                 self->extension_194->angle_10,
@@ -430,31 +409,27 @@ void __fastcall prepare_collision_geometry_from_frame(void *raw_object)
                 reinterpret_cast<int *>(&local_shape));
             self->transform_box_from_local_frame_flipped_y(
                 reinterpret_cast<int *>(&local_box),
-                reinterpret_cast<int *>(extension_box));
+                reinterpret_cast<int *>(&self->prepared_group_a_204[a_count]));
             if (self->facing_104 > 0) {
-                (*extension_shape)->x0 = local_shape.x0;
-                (*extension_shape)->y0 = local_shape.y0;
-                (*extension_shape)->x1 = local_shape.x1;
-                (*extension_shape)->y1 = local_shape.y1;
+                *self->prepared_group_a_shape_ptrs_304[a_count] = local_shape;
             } else {
-                (*extension_shape)->x0 = local_shape.x1;
-                (*extension_shape)->y0 = -local_shape.y1;
-                (*extension_shape)->x1 = local_shape.x0;
-                (*extension_shape)->y1 = -local_shape.y0;
+                self->prepared_group_a_shape_ptrs_304[a_count]->x0 = local_shape.x1;
+                self->prepared_group_a_shape_ptrs_304[a_count]->y0 = -local_shape.y1;
+                self->prepared_group_a_shape_ptrs_304[a_count]->x1 = local_shape.x0;
+                self->prepared_group_a_shape_ptrs_304[a_count]->y1 = -local_shape.y0;
             }
         } else {
-            *extension_shape = 0;
+            self->prepared_group_a_shape_ptrs_304[a_count] = 0;
             self->transform_box_from_local_frame(
                 reinterpret_cast<int *>(self->extension_194),
-                reinterpret_cast<int *>(extension_box));
+                reinterpret_cast<int *>(&self->prepared_group_a_204[a_count]));
         }
         if ((self->frame_158->flags_4c & 0x1000000) != 0) {
-            int b_count = static_cast<int>(
-                self->frame_158->group_b_58.size());
-            self->prepared_group_b_count_1b0 =
-                self->prepared_group_a_count_1af;
-            self->prepared_group_b_1b4[b_count] = *extension_box;
-            self->prepared_group_b_shape_ptrs_318[b_count] = *extension_shape;
+            int b_count = static_cast<int>(self->frame_158->group_b_58.size());
+            self->prepared_group_b_count_1b0 = static_cast<signed char>(a_count + 1);
+            self->prepared_group_b_1b4[b_count] = self->prepared_group_a_204[a_count];
+            self->prepared_group_b_shape_ptrs_318[b_count] =
+                self->prepared_group_a_shape_ptrs_304[a_count];
         }
     }
 

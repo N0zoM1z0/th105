@@ -1,6 +1,6 @@
 # TH10.5 reconstruction handoff
 
-Current as of 2026-10-19. This page contains operational state; detailed
+Current as of 2026-10-20. This page contains operational state; detailed
 checkpoints are in [the October 18 archive](RE_HANDOFF_HISTORY_2026_10_18.md),
 [the October 2 archive](RE_HANDOFF_HISTORY_2026_10_02.md) and
 [the September archive](RE_HANDOFF_HISTORY_2026_09_26.md). Live ledgers and
@@ -39,8 +39,8 @@ promotion. Current nine-file pins are in
 Target/mapped text and callable bytes remain unchanged.
 
 Read the current ledger census with `report-reconstruction-status.py --summary`.
-The auxiliary-sprite checkpoint adds one independently replayed authored
-function /344 exact bytes; it does not assert cold aggregate verification.
+The collision-frame checkpoint adds one independently replayed authored
+function /2156 exact bytes; it does not assert cold aggregate verification.
 `claims.csv` remains header-only. Source presence, mapping and diagnostic
 interval equality confer no exact credit. The Reimu CPU root remains
 source-present in a probe unit with no exact result.
@@ -229,44 +229,45 @@ out-of-body p-code addresses. Decompiler text remains a hypothesis.
 
 See [exact recovery and analysis safety](OBJECT_ACTION980_WORD_ABI_2026_10_19.md).
 
-## Collision-frame preparation source checkpoint
+## Collision-frame preparation exact checkpoint
 
-Active bounded function `CollisionGeometry_prepare_from_frame @45C500` now
-has complete selected source in `CollisionPreparation.cpp` and the separate
-`gpt-web-collision-geometry-preparation` probe. Hash-attested raw CFG closes
-all645 instructions/2156 bytes, two RET0s and the vector out_of_range jump to
-40C350. Three direct callers in46DFF0 pass ECX self and discard the result.
-The function snapshots actor/frame state and prepares both collision-box
-families, optional oriented descriptors, extension and primary boxes.
+The 2026-10-20 continuation closes the complete
+`CollisionGeometry_prepare_from_frame @45C500` at **2156/2156 canonical exact**
+under `gpt-web-collision-geometry-preparation`. Hash-attested raw CFG accounts
+for all645 instructions, two RET0s and the separate vector error jump40C350.
+The ordinary `/O2 /GS- /GR /EHsc /MT` source recovers the full3Ch target frame;
+all bytes hash to79b6295ec257dabdb090b1e3ae8943ccbfd2468fc9d438785215c75ddfec4dff.
 
-The old ledger's one-argument fastcall declarations for45B760/45B8B0/45BA70
-were wrong. The first two consume ECX self plus two pointer slots/RET8;
-the third receives the three observed ECX setups and six stack slots/RET18h,
-with low-word angles/pivots. A natural member definition preserves all1386
-callee bytes. State-tuple ordering also recovers the target prologue schedule.
-All three existing providers replay exact335/335,445/445 and1386/1386.
+The former2164-byte/frame34h blocker was source lifetime, not a demonstrated
+LTCG limitation. Positive-facing descriptor paths require real aggregate
+copies; direct groupA indexing gives the target independent scalar/scaled
+inductions. A signed-char extension count remains live across helper calls
+and both count publications, rather than rereading the object count. Explicit
+cache-B if/else initialization brings the root to2156 bytes with two commuted
+SIB differences; direct descriptor expressions remove those last differences.
+A natural member entry also closes in private diagnostics, so exact code does
+not uniquely recover original C++ spelling. No forced registers or byte edits.
 
-The main source is2164 bytes/canonical4b5d4d88, frame34h versus target3Ch,
-nonexact first+2/45C502. Direct indexed loops recover3Ch/prologue but grow to
-2207 bytes and are unselected. Const, definition visibility, GS and RTM controls
-do not close the complete body; no padding, dummy locals or fake ABI is added.
-The checked-vector error helper40C350 has the standard message/out_of_range
-throw, but target123 bytes versus native106/118 leaves its compiler/EH context
-unproven. It remains in origin review; no compiler exclusion is claimed.
+All three affected geometry providers replay exact335/335,445/445 and1386/1386.
+The previous one-argument fastcall ledger errors remain corrected to ECX member
+receivers plus two/six stack slots. The complete root's full native cold/warm
+matrix passes all1344 inputs/2688 calls per side, with621 normal-path
+instructions visited on each side and actual geometry/angle/conversion/SSE2-ceil code;
+resource/CPU data are fixture inputs, and invalid-container/throw paths remain
+outside execution coverage. The vector error helper40C350 remains in origin
+review: canonical caller-edge binding gives it no compiler exclusion or exact
+credit. The new2156-byte root uses the canonical-exact authored baseline;
+its superseded nonexact origin rule is removed.
 
-Native comparison passes0/1344 bounded inputs,2688 cold/warm executions on each
-side, using actual geometry, angle, conversion and SSE2-ceil instructions.
-All621 normal-path target instructions execute; the remaining24 are validation
-failure/throw paths. Resource/CPU data are fixture inputs; no helper result or
-instruction is replaced. A wrong extension-copy flag still has identical
-geometry call traces but fails16/96 input cases in object bytes. Bad containers,
-throw execution, legacy x87 ceil and original table startup remain outside the
-execution proof. Main source presence adds no exact credit. See
-[geometry recovery, ABI and execution evidence](COLLISION_GEOMETRY_PREPARATION_2026_10_19.md).
-Private recipes/receipts are under `.analysis/animation-state-20261019/` and
-`build/animation-state-20261019/`; a direct read-only128MiB/CPU0 Ghidra pass
-re-attests target bytes/callers and reads back all four physical signatures.
-All nine primary database hashes remain unchanged. IDA semantics are unused.
+See [geometry exact recovery, ABI and execution evidence](COLLISION_GEOMETRY_PREPARATION_2026_10_19.md).
+Reproduction: focused `scripts/build.py --unit ... --compare --json` for the
+caller unit above and `cross-v106a-collision-preparation`. Final reports are
+`build/animation-state-20261019/formal-exact-root.json`,
+`provider-exact-replay.json` and `native-exact.json`; trial sources/recipes stay
+under `.analysis/animation-state-20261019/`. The prior direct read-only Ghidra
+attestation remains recorded; this continuation uses fresh hash-attested PE
+and COFF evidence, with no IDA semantics or factory adapter. No cold aggregate
+replay or fresh aggregate exact-byte claim.
 
 ## Auxiliary-sprite provider exact checkpoint
 
