@@ -76,6 +76,59 @@ class CompleteCallSharingTests(unittest.TestCase):
         self.assertEqual(result['partitions'], [
             {'actions': [], 'target_sites': ['0x100', '0x200'], 'source_sites': ['0x300']}])
 
+    def census(self, target, source):
+        return {
+            'schema': 'th105-reimu-call-sharing-v1', 'target_sha256': 'attested-target',
+            'object_sha256': 'test-object', 'nondefault_actions': 2,
+            'entries': [{'action': 300}, {'action': 320}],
+            'calls': [{'callee': '0x4351c0', **sharing.compare_sites(target, source)}],
+            'slot_calls': [], 'returns': sharing.compare_sites({}, {}),
+            'indirect_calls': sharing.compare_sites({}, {}),
+        }
+
+    def test_group_improvement_cannot_hide_a_new_action_count_regression(self):
+        # Actual runtime-interface control shape: one merged site becomes
+        # one300 site and two mutually exclusive320 sites, rather than one each.
+        target = {0x100: {300}, 0x200: {320}}
+        previous = self.census(target, {0x300: {300, 320}})
+        candidate = self.census(target, {0x400: {300}, 0x500: {320}, 0x600: {320}})
+        result = sharing.constraint_preservation(previous, candidate)
+        self.assertEqual(result['lost_group_checks'], [])
+        self.assertEqual(len(result['new_equal_group_checks']), 1)
+        self.assertEqual(result['lost_count_checks'], [{
+            'domain': 'callee:0x4351c0', 'kind': 'action_sites', 'action': 320,
+            'target': 1, 'previous': 1, 'candidate': 2}])
+        self.assertFalse(result['preserves_existing_checks'])
+
+    def test_restoring_two_independent_sites_preserves_previous_action_counts(self):
+        target = {0x100: {300}, 0x200: {320}}
+        previous = self.census(target, {0x300: {300, 320}})
+        candidate = self.census(target, {0x400: {300}, 0x500: {320}})
+        result = sharing.constraint_preservation(previous, candidate)
+        self.assertTrue(result['preserves_existing_checks'])
+        self.assertEqual(len(result['new_equal_group_checks']), 2)
+        self.assertEqual(result['new_equal_count_checks'], [{
+            'domain': 'callee:0x4351c0', 'kind': 'physical_sites', 'action': None,
+            'target': 2, 'previous': 1, 'candidate': 2}])
+
+    def test_extra_unreached_site_regresses_total_even_when_every_action_count_agrees(self):
+        target = {0x100: {300, 320}}
+        previous = self.census(target, {0x200: {300, 320}})
+        candidate = self.census(target, {0x200: {300, 320}, 0x300: set()})
+        result = sharing.constraint_preservation(previous, candidate)
+        self.assertEqual(result['lost_group_checks'], [])
+        self.assertEqual(result['lost_count_checks'][0]['kind'], 'physical_sites')
+        self.assertFalse(result['preserves_existing_checks'])
+
+    def test_preservation_rejects_changed_target_identity_or_site_inventory(self):
+        previous = self.census({0x100: {300}}, {0x200: {300}})
+        changed = self.census({0x100: {300}}, {0x200: {300}})
+        changed['target_sha256'] = 'another-target'
+        with self.assertRaisesRegex(ValueError, 'target evidence changed'):
+            sharing.constraint_preservation(previous, changed)
+        with self.assertRaisesRegex(ValueError, 'target evidence changed'):
+            sharing.constraint_preservation(previous, self.census({0x101: {300}}, {0x200: {300}}))
+
 
 if __name__ == '__main__':
     unittest.main()

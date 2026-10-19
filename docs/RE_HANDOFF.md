@@ -138,6 +138,19 @@ are in [602 evidence](REIMU_602_GUARD_AND_DIRECTION_2026_10_19.md),
 [414 evidence](REIMU_414_SHARED_EXIT_2026_10_19.md) and
 [shared sequence landings](REIMU_SHARED_SEQUENCE_LANDINGS_2026_10_19.md).
 
+Twenty additional300/320 controls test value flow, existing canonical runtime
+provider identity and an RTTI-supported offset0 virtual prefix. Eleven are
+byte-neutral; the others split only part of the target structure or introduce
+different prefix instructions/float homes. One-arm runtime declarations gain
+five equal groups and pass0/989 native cases, but clone320's one advance CALL
+into two mutually exclusive physical sites. A private genuine closure retains
+that nonexact8bae74f3 payload across all2478 fields. No candidate is selected;
+the current7650c8d3 source/fbc0293d payload and all pins above stay unchanged.
+The call-sharing auditor's new `--baseline-object` guard freshly compares old
+equal groups **and physical/per-action counts**, rejecting this real regression
+despite retaining all1236 old groups. See
+[300/320 identity controls](REIMU_300320_IDENTITY_CONTROLS_2026_10_20.md).
+
 Next source questions include300/320's distinct copies,616's later effect
 preparation and720's current base18/index20 versus target24/20. Earlier named-float,
 copy/lifetime and source-boundary controls are scoped negative evidence in

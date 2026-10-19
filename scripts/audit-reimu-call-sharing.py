@@ -56,6 +56,82 @@ def compare_sites(target, source):
     }
 
 
+def constraint_preservation(previous, candidate):
+    """Compare already-qualified censuses; preservation does not imply exactness."""
+    def constraints(report):
+        require(report['schema'] == 'th105-reimu-call-sharing-v1', 'unsupported sharing census')
+        actions = tuple(sorted(row['action'] for row in report['entries']))
+        require(len(set(actions)) == len(actions) == report['nondefault_actions'],
+                'sharing action inventory is inconsistent')
+        domains = [('callee:' + row['callee'], row) for row in report['calls']]
+        domains += [('slot:' + ','.join(row['slot_candidates']), row)
+                    for row in report['slot_calls']]
+        domains += [('RET', report['returns']), ('indirect', report['indirect_calls'])]
+        groups, counts, target_signature = {}, {}, {}
+        for domain, row in domains:
+            require((domain, None) not in counts, 'duplicate sharing domain')
+            totals = [0, 0]
+            action_counts = [Counter(), Counter()]
+            for partition in row['partitions']:
+                members = tuple(sorted(partition['actions']))
+                require(len(set(members)) == len(members) and set(members) <= set(actions),
+                        'partition has an unknown or duplicate action')
+                key = (domain, members)
+                require(key not in groups, 'duplicate sharing partition')
+                sites = [partition[side + '_sites'] for side in ('target', 'source')]
+                groups[key] = tuple(len(side) for side in sites)
+                if sites[0]:
+                    target_signature[key] = tuple(sorted(int(site, 0) for site in sites[0]))
+                for side in range(2):
+                    totals[side] += len(sites[side])
+                    action_counts[side].update({action: len(sites[side]) for action in members})
+            counts[(domain, None)] = tuple(totals)
+            counts.update({(domain, action): tuple(side[action] for side in action_counts)
+                           for action in actions})
+        return actions, groups, counts, target_signature
+
+    old_actions, old_groups, old_counts, old_target = constraints(previous)
+    actions, groups, counts, target = constraints(candidate)
+    require(previous['target_sha256'] == candidate['target_sha256']
+            and old_actions == actions and old_target == target,
+            'qualified target evidence changed between censuses')
+    lost_groups, improved_groups = [], []
+    for key in sorted(old_groups.keys() | groups.keys()):
+        before, after = old_groups.get(key, (0, 0)), groups.get(key, (0, 0))
+        require(before[0] == after[0], 'target partition count changed')
+        record = {'domain': key[0], 'actions': list(key[1]), 'target': before[0],
+                  'previous': before[1], 'candidate': after[1]}
+        if before[0] > 0 and before[0] == before[1] and after[1] != before[0]:
+            lost_groups.append(record)
+        if after[0] > 0 and after[0] == after[1] and before[1] != after[0]:
+            improved_groups.append(record)
+    lost_counts, improved_counts = [], []
+    keys = sorted(old_counts.keys() | counts.keys(), key=lambda key: (key[0], -1 if key[1] is None else key[1]))
+    for key in keys:
+        before, after = old_counts.get(key, (0, 0)), counts.get(key, (0, 0))
+        require(before[0] == after[0], 'target physical/action count changed')
+        record = {'domain': key[0], 'kind': 'physical_sites' if key[1] is None else 'action_sites',
+                  'action': key[1], 'target': before[0], 'previous': before[1], 'candidate': after[1]}
+        if before[0] == before[1] and after[1] != before[0]:
+            lost_counts.append(record)
+        if after[0] == after[1] and before[1] != after[0]:
+            improved_counts.append(record)
+    return {
+        'baseline_object_sha256': previous['object_sha256'],
+        'candidate_object_sha256': candidate['object_sha256'],
+        'prior_equal_group_checks': sum(target > 0 and target == source
+                                       for target, source in old_groups.values()),
+        'lost_group_checks': lost_groups, 'new_equal_group_checks': improved_groups,
+        'prior_equal_count_checks': sum(old_counts.get(key, (0, 0))[0]
+                                        == old_counts.get(key, (0, 0))[1] for key in keys),
+        'lost_count_checks': lost_counts, 'new_equal_count_checks': improved_counts,
+        'preserves_existing_checks': not lost_groups and not lost_counts,
+        'scope': 'static physical membership/multiplicity and per-action site counts; '
+                 'zero-target count checks cover the finite union of observed domains; '
+                 'preservation does not prove path feasibility, dynamic counts, behavior or exact bytes',
+    }
+
+
 def direct_entry(graph, action, address):
     """Require the reviewed WORD13C selector origin and an unmodified JE edge."""
     choices = []
@@ -244,13 +320,18 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('object', type=Path)
     parser.add_argument('--diagnostic-oversize', action='store_true', help='read-only; no execution')
+    parser.add_argument('--baseline-object', type=Path,
+                        help='freshly audit a baseline and fail on any previously equal group/count regression')
     args = parser.parse_args()
     try:
         result = audit(args.object, diagnostic_oversize=args.diagnostic_oversize)
+        if args.baseline_object:
+            previous = audit(args.baseline_object, diagnostic_oversize=args.diagnostic_oversize)
+            result['constraint_preservation'] = constraint_preservation(previous, result)
     except (KeyError, OSError, TypeError, ValueError) as error:
         parser.exit(2, f'Reimu call-sharing audit failed: {error}\n')
     print(json.dumps(result, indent=2))
-    return 0
+    return int(bool(args.baseline_object and not result['constraint_preservation']['preserves_existing_checks']))
 
 
 if __name__ == '__main__':
