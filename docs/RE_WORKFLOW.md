@@ -163,3 +163,18 @@ A target-sized candidate is useful diagnostic evidence, never acceptance. `FileB
 - A runtime ABI facade need not be reused for constructor recovery when target construction proves a more concrete physical member type. `ProfileEditor168_ctor` requires real polymorphic CTile members to obtain the target base-clear/vptr order, while runtime methods can continue using the lighter UiTile facade. Keep such constructor-only physical views isolated in their own TU and guard size/offsets with compile-time assertions.
 
 - Treat negative A/B results as **phase-scoped evidence**. A truthful source change can be wrong in isolation yet become exact after another independently proved lifetime changes the allocator/scheduler phase. The reference case is `save_battle_setup_slot`: real vector-size visibility alone was 301/305, ternary max alone was 306/305, but the two target-backed changes together are 305/305 exact. Re-test only when there is new independent target evidence; do not perform combinatorial source searching.
+
+
+### Source-owned globals in linked comparisons
+
+The optional static-runtime linked contract uses real pinned VC8 DLL startup,
+never synthetic constructor callers or forced private exports. An actually
+included source file must provide an independent native COFF zero-storage
+layout witness. Full initial storage, CRT initialization-table retention,
+initializer/atexit helper bodies and private natural lifecycle identities are
+attested before rebasing fields. Cleanup-only VC8 EH requires all parent,
+handler, funclet, FuncInfo and unwind-map bytes, with typed operand roles and
+exact HIGHLOW coverage. Unsupported metadata or edges block acceptance even
+when parent instructions agree. Compiler witnesses confer no authored credit.
+Quoted implementation includes are transitive provenance inputs. See
+[archive lifecycle acceptance](PACKAGE_ARCHIVE_STORE_2026_10_19.md).

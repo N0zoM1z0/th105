@@ -3171,13 +3171,18 @@ required_selected_body_calls = [{ owner = "0x0041BA70", site = "0x0041BBFD", tar
 required_direct_edges = [{ caller = "0x0040CF30", site = "0x0040CF34", target = "0x0041BA70", kind = "jump", caller_status = "unclassified" }]
 
 [[rules]]
-id = "package-archive-store-authored-106a"
-addresses = ["0x0041B8C0", "0x0041B980"]
-expected_count = 2
-expected_bytes = 391
-origin = "authored_game"
-subsystem = "assets"
-disposition = "authored"
+id = "archive-string-vector-dtor-vc8-106a"
+addresses = ["0x0041C200"]
+expected_count = 1
+expected_bytes = 57
+expected_names = ["sub_41C200"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
 confidence = "observed"
-evidence = "Game archive global ownership: constructor initializes the critical member, native names vector, native entry map and count; destructor explicitly clears both containers/count before member destruction. Startup/atexit calls and exact CCriticalSection RTTI identify the physical60-byte object. These are game composite-object policies rather than generic std container helpers. Seven actual target/source integration scenarios cover complete lifecycle and leave no live allocations. Ordinary this-bearing methods and linked EH/global relocation surfaces remain nonexact/unsupported; no exact claim or original class-name inference. docs/PACKAGE_ARCHIVE_STORE_2026_10_19.md."
-required_body_hashes = [{ address = "0x0041B8C0", size = 163, sha256 = "a28bb00b955795f62ce713629f764857a98a4ac84cf790abd27f41aadc1a145e" }, { address = "0x0041B980", size = 228, sha256 = "90b792e322ddf8f0e0fa8886c7b1d8448a6fbcb51ab8fea088d8712183c631f5" }]
+evidence = "Previously omitted57-byte complete RET body, directly reached by archive global EH cleanups6BDBA8/6BE088. Actual pinned VC8 SP1 vector<string> destructor in the real archive CIL context reproduces all57 bytes including allocator/range destruction, operator delete and nulling first/last/end; only two named REL32 fields replayed. Native linker type identity and full lifecycle execution corroborate template ownership. Seven following CC alignment bytes excluded. No authored exact credit. docs/PACKAGE_ARCHIVE_STORE_2026_10_19.md; build/archive-linked-contract/vector-dtor-boundary.json."
+required_body_hashes = [{ address = "0x0041C200", size = 57, sha256 = "13256e6800e8d778c2a207a543d7a0d8ba420e11f487b2c82951b820a3808608" }]
+required_dword_values = [
+  { address = "0x006BDBAF", value = "0xFFD5E64D" },
+  { address = "0x006BE08F", value = "0xFFD5E16D" },
+]

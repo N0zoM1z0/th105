@@ -31,6 +31,7 @@ MAP_SYMBOL = re.compile(r"^\s+[0-9A-Fa-f]{4}:[0-9A-Fa-f]{8}\s+(\S+)\s+([0-9A-Fa-
 PIN_FILES = ("bin/cl.exe", "bin/c1xx.dll", "bin/c2.dll", "bin/link.exe", "lib/msvcrt.lib", "lib/msvcprt.lib",
              "PlatformSDK/Lib/WS2_32.Lib")
 PIN_DIRS = ("include", "PlatformSDK/Include")
+STATIC_LIBS = ("lib/libcmt.lib", "lib/libcpmt.lib", "lib/oldnames.lib", "PlatformSDK/Lib/Kernel32.Lib")
 SDK_IMPORTS = {
     "_sendto@24": {"library": "PlatformSDK/Lib/WS2_32.Lib", "dll": "ws2_32.dll", "ordinal": 20,
                    "iat": "__imp__sendto@24",
@@ -68,6 +69,8 @@ def comparator():
 
 
 def validate_contract(unit: dict, data_keys: set[str]) -> None:
+    from linked_lifecycle import validate_contract as validate_lifecycle
+    validate_lifecycle(unit, data_keys)
     if unit.get("profile") != PROFILE or not str(unit.get("object", "")).endswith(".dll"):
         raise ValueError("linked_candidate requires its LTCG profile and a .dll output")
     mappings = unit.get("link_data_targets")
@@ -134,6 +137,8 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
         symbols.add(symbol)
         if function.get("contiguous_span") or function.get("dir32_targets"):
             raise ValueError("linked profile does not support remote spans or DIR32 overrides")
+        if "private_global" in function:
+            continue  # Validated as a paired, startup-reachable lifecycle above.
         if "private_from" in function:
             witness = function["private_from"]
             if ("export_name" in function or not isinstance(witness, dict)
@@ -142,24 +147,31 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
                            for value in witness.values())):
                 raise ValueError("private linked function needs only an explicit caller/site witness")
             callers = [f for f in functions if f.get("address") == witness["caller"]]
-            if len(callers) != 1 or callers[0] is function or "private_from" in callers[0]:
+            if (len(callers) != 1 or callers[0] is function
+                    or "private_from" in callers[0] or "private_global" in callers[0]):
                 raise ValueError("private linked function needs a distinct configured exported caller")
         else:
             export = function.get("export_name", symbol)
             if not isinstance(export, str) or not SYMBOL.fullmatch(export) or export in exports:
                 raise ValueError("invalid/duplicate linked export: " + str(export))
             exports.add(export)
-    if not exports:
+    if not exports and not unit.get("link_objects"):
         raise ValueError("linked unit needs an exported source root")
 
 
-def pinned_tools() -> tuple[Path, dict[str, str]]:
+def pinned_tools(static: bool = False) -> tuple[Path, dict[str, str]]:
     base = Path(os.environ.get("TH105_MSVC8_ROOT", ROOT / ".tools/msvc80-sp1")).resolve()
     pins = tomllib.loads((ROOT / "config/tools.lock.toml").read_text())["msvc8_sp1_ltcg"]
     actual = {name: sha(base / name) for name in PIN_FILES}
     actual.update({name: tree_sha(base / name) for name in PIN_DIRS})
     if actual != pins:
         raise ValueError("LTCG compiler/linker/import-library hashes differ from pinned tools")
+    if static:
+        pins = tomllib.loads((ROOT / "config/tools.lock.toml").read_text())["msvc8_sp1_ltcg_static"]
+        extra = {name: sha(base / name) for name in STATIC_LIBS}
+        if extra != pins:
+            raise ValueError("static CRT/SDK libraries differ from pinned tools")
+        actual.update(extra)
     return base, actual
 
 
@@ -351,10 +363,10 @@ def source_vtables(pe, symbols: dict, functions: dict, contracts: list[dict], ci
         if address % 4:
             raise ValueError("native vtable is not dword-aligned")
         entry, = struct.unpack("<I", readonly_data(pe, address, 4))
-        expected_type = ".?AV" + table["symbol"][4:-5] + "@@"
+        expected_types = {prefix + table["symbol"][4:-5] + "@@" for prefix in (".?AV", ".?AU")}
         owners = [owner for symbol, owner in functions.get(entry, []) if symbol == table["entry_symbol"]]
         if (len(owners) != 1 or owners[0].split()[-1:] != [cil_owner]
-                or primary_type_name(pe, address) != expected_type):
+                or primary_type_name(pe, address) not in expected_types):
             raise ValueError("native vtable entry/RTTI disagrees with its source class")
         entry_section = pe.get_section_by_rva(entry - pe.OPTIONAL_HEADER.ImageBase)
         if entry_section is None or not entry_section.Characteristics & 0x20000000:
@@ -372,7 +384,7 @@ def source_vtables(pe, symbols: dict, functions: dict, contracts: list[dict], ci
 
 
 def validate_body_relocations(pe, start: int, size: int, data_refs: list[dict]) -> None:
-    expected = {start + ref["field_offset"] for ref in data_refs if ref.get("kind") == "vptr"}
+    expected = {start + ref["field_offset"] for ref in data_refs if "field_offset" in ref}
     found = set()
     for block in getattr(pe, "DIRECTORY_ENTRY_BASERELOC", []):
         for relocation in block.entries:
@@ -383,12 +395,14 @@ def validate_body_relocations(pe, start: int, size: int, data_refs: list[dict]) 
                 raise ValueError("unsupported/duplicate linked base relocation")
             found.add(address)
     if found != expected:
-        raise ValueError("native vptr stores need exact HIGHLOW relocation coverage")
+        raise ValueError("typed internal fields need exact HIGHLOW relocation coverage")
 
 
 def build_linked(name: str, unit: dict) -> dict:
+    from linked_lifecycle import layout_inputs
     from workflow_manifest import repository_path, unit_input_digest
-    tools, hashes = pinned_tools()
+    static = unit.get("link_runtime", "import") == "static"
+    tools, hashes = pinned_tools(static)
     parsers = parser_versions()
     bindings = target_bindings(unit)
     sdk_imports = target_imports(unit, tools)
@@ -422,16 +436,22 @@ def build_linked(name: str, unit: dict) -> dict:
         coff_objects.append(native_obj)
         coff_commands.append([p for p in compile_flags if p != "/GL"]
                              + ["/Fo" + win(native_obj), win(repository_path(path))])
-    link_command = ["wine", str(tools / "bin/link.exe"), "/nologo", "/DLL", "/NOENTRY", "/LTCG",
+    layout_commands = [[p for p in compile_flags if p != "/GL"]
+                       + ["/Fo" + win(output.with_suffix(f".layout{i}.obj")), win(repository_path(o["layout_source"]))]
+                       for i, o in enumerate(unit.get("link_objects", []))]
+    link_command = ["wine", str(tools / "bin/link.exe"), "/nologo", "/DLL", "/LTCG",
                     "/NODEFAULTLIB", "/OPT:NOICF", f"/BASE:0x{IMAGE_BASE:X}",
                     "/MAP:" + win(map_path), "/OUT:" + win(output)]
+    link_command.append("/OPT:REF" if static else "/NOENTRY")
     link_command.extend("/EXPORT:" + f.get("export_name", f["symbol_base"])
-                        for f in unit["functions"] if "private_from" not in f)
+                        for f in unit["functions"] if "private_from" not in f and "private_global" not in f)
     libraries = sorted({contract["library"] for contract in sdk_imports})
+    libraries.extend(STATIC_LIBS if static else ("lib/msvcrt.lib", "lib/msvcprt.lib"))
     link_command.extend(win(p) for p in [*coff_objects, obj, data_obj, *(tools / p for p in libraries),
-                                        tools / "lib/msvcrt.lib", tools / "lib/msvcprt.lib"])
+                                        ])
     # Each invocation is serial. /FORCE and unresolved references are forbidden.
     phases = [(f"coff{index}.compile", command) for index, command in enumerate(coff_commands)]
+    phases += [(f"layout{index}.compile", command) for index, command in enumerate(layout_commands)]
     for phase, command in phases + [("compile", compile_command), ("link", link_command)]:
         log = output.with_suffix("." + phase + ".log")
         with log.open("w") as stream:
@@ -444,6 +464,7 @@ def build_linked(name: str, unit: dict) -> dict:
                 "image_sha256": sha(output), "map_sha256": sha(map_path), "source_sha256": sha(source),
                 "ltcg_object_sha256": sha(obj), "bindings_object_sha256": sha(data_obj),
                 "coff_inputs": coff_inputs(unit, output), "coff_compile_commands": coff_commands,
+                "layout_inputs": layout_inputs(unit, output), "layout_compile_commands": layout_commands,
                 "vtable_contracts": vtables,
                 "sdk_imports": sdk_imports,
                 "tools": hashes, "parsers": parsers, "bindings": bindings, "compile_command": compile_command,
@@ -470,11 +491,15 @@ def is_branch(instruction) -> bool:
     }
 
 
-def decode_closed_body(code: bytes, start: int) -> list:
+def decode_closed_body(code: bytes, start: int, *, tail: bool = False) -> list:
     decoder = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
     decoder.detail = True
     instructions = list(decoder.disasm(code, start))
-    if not instructions or sum(i.size for i in instructions) != len(code) or instructions[-1].mnemonic != "ret":
+    terminal = instructions[-1] if instructions else None
+    tail_end = (tail and terminal is not None and terminal.size == 5 and terminal.bytes[0] == 0xe9
+                and terminal.operands[0].type == capstone.x86.X86_OP_IMM
+                and not start <= terminal.operands[0].imm < start + len(code))
+    if not instructions or sum(i.size for i in instructions) != len(code) or (terminal.mnemonic != "ret" and not tail_end):
         raise ValueError("linked body does not close through a complete RET boundary")
     by_address = {i.address: i for i in instructions}
     pending, reached = [start], set()
@@ -493,6 +518,8 @@ def decode_closed_body(code: bytes, start: int) -> list:
         if is_branch(instruction):
             if len(instruction.operands) != 1 or instruction.operands[0].type != capstone.x86.X86_OP_IMM:
                 raise ValueError("linked indirect jumps are unsupported")
+            if tail_end and instruction.address == terminal.address:
+                continue  # Its named destination must subsequently pass REL32 resolution.
             pending.append(instruction.operands[0].imm)
             if instruction.id == capstone.x86.X86_INS_JMP:
                 continue
@@ -506,9 +533,12 @@ def decode_closed_body(code: bytes, start: int) -> list:
 
 def canonicalize(code: bytes, start: int, target: int, bindings: list[dict], resolve_call,
                  image_range: tuple[int, int], game_range: tuple[int, int],
-                 vtables: list[dict] = ()) -> tuple[bytes, list, list]:
-    instructions = decode_closed_body(code, start)
+                 vtables: list[dict] = (), *, internal_refs: list[dict] = (), tail: bool = False) -> tuple[bytes, list, list]:
+    instructions = decode_closed_body(code, start, tail=tail)
     native_vtables = {table["source_address"]: table for table in vtables}
+    typed = {ref["source_address"]: ref for ref in internal_refs}
+    if len(typed) != len(internal_refs) or set(typed) & set(native_vtables):
+        raise ValueError("typed internal address roles overlap")
     permitted = {}
     widths = {}
     for binding in bindings:
@@ -520,8 +550,10 @@ def canonicalize(code: bytes, start: int, target: int, bindings: list[dict], res
     for instruction in instructions:
         offset = instruction.address - start
         control_immediate = False
-        if instruction.group(capstone.CS_GRP_CALL) and instruction.operands[0].type == capstone.x86.X86_OP_IMM:
-            if instruction.size != 5 or instruction.bytes[0] != 0xE8:
+        external_tail = (tail and instruction is instructions[-1] and instruction.bytes[0] == 0xe9)
+        if ((instruction.group(capstone.CS_GRP_CALL) or external_tail)
+                and instruction.operands[0].type == capstone.x86.X86_OP_IMM):
+            if instruction.size != 5 or instruction.bytes[0] not in (0xE8, 0xE9):
                 raise ValueError("linked external call must be ordinary E8 REL32")
             name, destination = resolve_call(instruction.operands[0].imm)
             displacement = destination - (target + offset + 5)
@@ -538,9 +570,9 @@ def canonicalize(code: bytes, start: int, target: int, bindings: list[dict], res
                 if operand.mem.segment in {capstone.x86.X86_REG_FS, capstone.x86.X86_REG_GS}:
                     continue
                 value = operand.mem.disp & 0xffffffff
-                if value not in permitted:
+                if value not in permitted and value not in typed:
                     raise ValueError(f"unattested linked absolute memory reference {value:#x}")
-                if operand.size > widths[value]:
+                if value in permitted and operand.size > widths[value]:
                     raise ValueError("linked absolute read/write exceeds its attested bytes")
             elif operand.type == capstone.x86.X86_OP_IMM and not control_immediate:
                 value = operand.imm & 0xffffffff
@@ -548,7 +580,9 @@ def canonicalize(code: bytes, start: int, target: int, bindings: list[dict], res
                     destination = instruction.operands[0]
                     if (instruction.id != capstone.x86.X86_INS_MOV or len(instruction.operands) != 2
                             or destination.type != capstone.x86.X86_OP_MEM or destination.size != 4
-                            or not destination.mem.base or destination.mem.index
+                            or (not destination.mem.base and (destination.mem.disp & 0xffffffff) not in typed)
+                            or (not destination.mem.base and typed[destination.mem.disp & 0xffffffff]["kind"] != "object")
+                            or destination.mem.index
                             or destination.mem.segment in {capstone.x86.X86_REG_FS, capstone.x86.X86_REG_GS}
                             or instruction.imm_size != 4
                             or not 0 < instruction.imm_offset <= instruction.size - 4):
@@ -560,10 +594,29 @@ def canonicalize(code: bytes, start: int, target: int, bindings: list[dict], res
                         "source_address": value, "address": table["target_address"],
                         "symbol": table["symbol"], "target_key": table["target_key"]})
                     continue
-                if image_range[0] <= value < image_range[1]:
+                if image_range[0] <= value < image_range[1] and value not in typed:
                     raise ValueError("unresolved internal linked address/literal")
                 if game_range[0] <= value < game_range[1] and value not in permitted:
                     raise ValueError(f"unattested linked game address {value:#x}")
+            if value in typed:
+                ref = typed[value]
+                memory = operand.type == capstone.x86.X86_OP_MEM
+                if memory:
+                    allowed = ref["kind"] in {"object", "runtime"} and operand.size <= ref["size"]
+                    field, width = instruction.disp_offset, instruction.disp_size
+                else:
+                    allowed = ((ref["kind"] == "object" and instruction.mnemonic in {"mov", "push"})
+                               or (ref["kind"] == "eh_handler" and instruction.mnemonic == "push")
+                               or (ref["kind"] == "eh_info" and instruction.mnemonic == "mov"
+                                   and instruction.operands[0].type == capstone.x86.X86_OP_REG
+                                   and instruction.operands[0].reg == capstone.x86.X86_REG_EAX))
+                    field, width = instruction.imm_offset, instruction.imm_size
+                if not allowed or width != 4 or not 0 < field <= instruction.size - 4:
+                    raise ValueError("internal address is used outside its typed operand role")
+                field += offset
+                struct.pack_into("<I", canonical, field, ref["address"])
+                references.append({**ref, "offset": offset, "field_offset": field})
+                continue
             if value in permitted:
                 references.append({"offset": offset, "address": value, "bindings": permitted[value]})
     return bytes(canonical), replayed, references
@@ -605,7 +658,7 @@ def source_function_start(function: dict, functions: dict, exports: dict, cil_ow
     if len(found) != 1 or found[0][1].split()[-1:] != [cil_owner]:
         raise ValueError("linked function is not uniquely owned by the configured source CIL object")
     start = found[0][0]
-    if "private_from" in function:
+    if "private_from" in function or "private_global" in function:
         if len(functions[start]) != 1 or start in exports.values():
             raise ValueError("private linked function has an aliased or exported entry")
     elif exports.get(function.get("export_name", symbol)) != start:
@@ -660,12 +713,14 @@ def private_caller_witness(function: dict, unit: dict, pe, functions: dict, expo
 
 
 def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | None = None) -> list[dict]:
+    from linked_lifecycle import layout_inputs, validate_static_entry, object_witnesses, cleanup_eh
     from workflow_manifest import repository_path, unit_input_digest
     c = comparator()
     target_hash = c.verify_target()
     image = image or repository_path(unit["object"], output=True)
     metadata = json.loads(image.with_suffix(".link.json").read_text())
-    tool_root, tools = pinned_tools()
+    static = unit.get("link_runtime", "import") == "static"
+    tool_root, tools = pinned_tools(static)
     bindings = target_bindings(unit)
     sdk_imports = target_imports(unit, tool_root)
     vtable_contracts = target_vtables(unit)
@@ -676,22 +731,26 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
                 "ltcg_object_sha256": sha(image.with_suffix(".ltcg.obj")),
                 "bindings_object_sha256": sha(image.with_suffix(".bindings.obj")),
                 "coff_inputs": coff_inputs(unit, image), "vtable_contracts": vtable_contracts,
+                "layout_inputs": layout_inputs(unit, image),
                 "sdk_imports": sdk_imports}
     if any(metadata.get(key) != value for key, value in expected.items()):
         raise ValueError("stale or modified linked build provenance; rebuild the configured unit")
     pe = pefile.PE(str(image))
     if (pe.FILE_HEADER.Machine != 0x14c or pe.OPTIONAL_HEADER.Magic != 0x10b
             or pe.OPTIONAL_HEADER.ImageBase != IMAGE_BASE
-            or not pe.FILE_HEADER.Characteristics & 0x2000 or pe.OPTIONAL_HEADER.AddressOfEntryPoint != 0):
+            or not pe.FILE_HEADER.Characteristics & 0x2000
+            or (pe.OPTIONAL_HEADER.AddressOfEntryPoint == 0 if static else pe.OPTIONAL_HEADER.AddressOfEntryPoint != 0)):
         raise ValueError("linked artifact is not the pinned x86 PE32 image")
     map_text = image.with_suffix(".map").read_text(errors="strict")
     functions = parse_map(map_text)
+    if static:
+        validate_static_entry(pe, functions)
     vtables = source_vtables(pe, parse_map_symbols(map_text), functions,
                              vtable_contracts, image.with_suffix(".ltcg.obj").name)
     exports = {}
-    if not hasattr(pe, "DIRECTORY_ENTRY_EXPORT"):
+    if not hasattr(pe, "DIRECTORY_ENTRY_EXPORT") and not unit.get("link_objects"):
         raise ValueError("linked image has no export directory")
-    for entry in pe.DIRECTORY_ENTRY_EXPORT.symbols:
+    for entry in getattr(getattr(pe, "DIRECTORY_ENTRY_EXPORT", None), "symbols", []):
         export = entry.name.decode("ascii") if entry.name else f"#{entry.ordinal}"
         if entry.forwarder or export in exports:
             raise ValueError("forwarded/duplicate linked exports are unsupported")
@@ -702,6 +761,8 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
         ledger = {row["address"]: row for row in csv.DictReader(stream)}
     game = pefile.PE(str(c.TARGET), fast_load=True)
     game_range = (game.OPTIONAL_HEADER.ImageBase, game.OPTIONAL_HEADER.ImageBase + game.OPTIONAL_HEADER.SizeOfImage)
+    internal_refs, globals_witnesses = object_witnesses(unit, pe, game, functions, parse_map_symbols(map_text), exports,
+        image.with_suffix(".ltcg.obj").name, c.known_data_targets(), c.target_bytes) if static else ([], {})
     reports = []
     for function in unit["functions"]:
         if addresses and function["address"] not in addresses:
@@ -721,11 +782,15 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
             return resolve_linked_call(destination, pe, functions, imports, targets, sdk_imports)
 
         address = int(function["address"], 0)
-        code, calls, data_refs = canonicalize(raw, start, address, bindings, resolve,
-            (IMAGE_BASE, IMAGE_BASE + pe.OPTIONAL_HEADER.SizeOfImage), game_range, vtables)
-        validate_body_relocations(pe, start, len(raw), data_refs)
         size = int(ledger[function["address"]]["size"], 0)
         target = c.target_bytes(address, size)
+        refs, eh_reports = internal_refs, []
+        if "eh_cleanup" in function:
+            refs, eh_reports = cleanup_eh(function, pe, game, functions, exports, cil_owner,
+                start, raw, target, internal_refs, bindings, vtables, resolve, game_range, c.target_bytes)
+        code, calls, data_refs = canonicalize(raw, start, address, bindings, resolve,
+            (IMAGE_BASE, IMAGE_BASE + pe.OPTIONAL_HEADER.SizeOfImage), game_range, vtables, internal_refs=refs)
+        validate_body_relocations(pe, start, len(raw), data_refs)
         mismatch = c.first_mismatch(target, code, address)
         reports.append({"schema_version": 1, "result": "mismatch" if mismatch else "exact",
             "address": function["address"], "object": str(image), "symbol_base": function["symbol_base"],
@@ -735,5 +800,7 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
             "target_executable_sha256": target_hash, "target_sha256": hashlib.sha256(target).hexdigest(),
             "object_compared_sha256": hashlib.sha256(code).hexdigest(), "replayed_rel32": calls,
             "validated_data_references": data_refs, "validated_vtables": vtables,
+            "global_lifecycle_witness": globals_witnesses.get(function.get("private_global", {}).get("object")),
+            "validated_cleanup_eh": eh_reports,
             "private_caller_witness": witness})
     return reports

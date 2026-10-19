@@ -442,7 +442,7 @@ class LinkedPeTests(unittest.TestCase):
                     path.write_bytes(b"original")
                 metadata = {"schema": "th105-linked-pe-v1", "unit": "test", "profile": linked.PROFILE,
                     "target_sha256": "target", "input_digest": "digest", "tools": {}, "bindings": [],
-                    "vtable_contracts": [], "sdk_imports": [], "coff_inputs": [{"source": str(library),
+                    "vtable_contracts": [], "sdk_imports": [], "layout_inputs": [], "coff_inputs": [{"source": str(library),
                         "source_sha256": linked.sha(library), "object": native_obj.name,
                         "object_sha256": linked.sha(native_obj)}],
                     "parsers": linked.parser_versions(), "source_sha256": linked.sha(source),

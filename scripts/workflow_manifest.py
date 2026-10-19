@@ -238,6 +238,26 @@ def compiler_sha256() -> str:
     return file_sha256(compiler)
 
 
+def source_dependencies(unit: dict[str, Any]) -> set[Path]:
+    """Follow local quoted includes, including C++ implementation aggregates."""
+    roots = [ROOT / "src"] + [repository_path(p) for p in unit.get("include_dirs", [])]
+    pending = [repository_path(unit["source"])]
+    pending.extend(repository_path(p) for p in unit.get("linked_coff_sources", []))
+    found = set()
+    while pending:
+        path = pending.pop()
+        if path in found:
+            continue
+        found.add(path)
+        for include in re.findall(r'^\s*#\s*include\s*"([^"\n]+)"', path.read_text(errors="strict"), re.M):
+            candidates = [(directory / include).resolve() for directory in [path.parent, *roots]]
+            dependency = next((p for p in candidates if p.is_file()), None)
+            if dependency is not None:
+                dependency.relative_to(ROOT)
+                pending.append(dependency)
+    return found
+
+
 def unit_input_digest(name: str, unit: dict[str, Any]) -> tuple[str, list[str]]:
     """Return a conservative digest for all tracked inputs that can shape a probe."""
 
@@ -258,13 +278,14 @@ def unit_input_digest(name: str, unit: dict[str, Any]) -> tuple[str, list[str]]:
     }
     paths.update((ROOT / "src").rglob("*.h"))
     paths.update((ROOT / "src").rglob("*.hpp"))
+    paths.update(source_dependencies(unit))
     # Vendored library translation units include headers beside the source.
     # Hash them too, so an upstream-header change cannot reuse stale evidence.
     paths.update(source.parent.glob("*.h"))
     if unit["kind"] == "linked_candidate":
         paths.update(repository_path(path) for path in unit.get("linked_coff_sources", []))
         paths.update(ROOT / path for path in (
-            "scripts/linked_pe.py", "scripts/build-linked-unit.py",
+            "scripts/linked_pe.py", "scripts/linked_lifecycle.py", "scripts/build-linked-unit.py",
             "scripts/compare-linked-unit.py", "config/tools.lock.toml",
             "scripts/requirements-ci.txt",
         ))

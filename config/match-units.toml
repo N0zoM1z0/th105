@@ -19647,19 +19647,64 @@ dir32_targets = [
 ]
 
 [units.gpt-web-package-archive-store]
-kind = "probe"
-source = "src/assets/PackageArchiveStore.cpp"
-object = "build/match-units/GptWeb_PackageArchiveStore.obj"
-profile = "vc8-sp1-probe-o2"
+kind = "linked_candidate"
+source = "src/assets/PackageArchiveStoreLinked.cpp"
+object = "build/match-units/GptWeb_PackageArchiveStore.dll"
+profile = "vc8-sp1-ltcg-o2"
 enable_gs = true
-notes = "Physical60-byte archive global at7028DC: CCriticalSection member, vector<string>, map<unsigned,Node>, count. Natural constructor/dtor cover target163/228 bytes through actual startup/atexit callers. The closed physical-owner CIL diagnostic reproduces both instruction shapes, but ordinary methods retain this and unresolved STL/EH boundaries. This probe intentionally leaves unsupported EH and private helper bindings absent. Seven full native-container integration scenarios execute initialization, loader/index, rebalancing, clear and final destruction with no remaining allocations. Original class name and load/register/open member ownership remain unknown. No exact credit. docs/PACKAGE_ARCHIVE_STORE_2026_10_19.md."
+link_runtime = "static"
+link_runtime_data = ["___security_cookie"]
+notes = "Actual archive-store/node/critical CIL context and real pinned static DLL CRT. Natural private global ctor/dtor require native zero-storage layout, real C++ table and atexit reachability, complete cleanup-only EH and all HIGHLOW fields. Original class name/TU ownership remain unknown. docs/PACKAGE_ARCHIVE_STORE_2026_10_19.md."
+link_data_targets = [
+  "__imp__InitializeCriticalSection@4=__imp__InitializeCriticalSection@4",
+  "__imp__DeleteCriticalSection@4=__imp__DeleteCriticalSection@4",
+  "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4",
+  "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4",
+]
+
+[[units.gpt-web-package-archive-store.link_objects]]
+symbol = "?g_package_archive_store@th105@@3UPackageArchiveStore@1@A"
+target = "?g_package_archive_store@th105@@3UPackageArchiveStore@1@A"
+size = 60
+layout_source = "src/assets/PackageArchiveStore.cpp"
+initializer = "0x006BE7B0"
+initializer_table = "0x006C0374"
+atexit = "0x0068AF1E"
+destructor_callback = "0x006BEE60"
+
+[[units.gpt-web-package-archive-store.link_vtables]]
+symbol = "??_7CriticalSectionWrapper@th105@@6B@"
+target = "??_7CriticalSectionWrapper@th105@@6B@"
+entry = "??_GCriticalSectionWrapper@th105@@UAEPAXI@Z=0x0040ABE0"
+target_type_name = ".?AVCCriticalSection@@"
 
 [[units.gpt-web-package-archive-store.functions]]
 address = "0x0041B8C0"
 symbol_base = "??0PackageArchiveStore@th105@@QAE@XZ"
-rel32_targets = ["??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0"]
+private_global = { object = "?g_package_archive_store@th105@@3UPackageArchiveStore@1@A", role = "constructor" }
+eh_cleanup = { handler = "0x006BDBB3", info = "0x006E4230" }
+rel32_targets = [
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "@__security_check_cookie@4=0x00689D25",
+  "___CxxFrameHandler3=0x006899E7",
+  "?_Buynode@?$_Tree@V?$_Tmap_traits@IUPackageFileIndexNode@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIUPackageFileIndexNode@th105@@@std@@@4@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@IUPackageFileIndexNode@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIUPackageFileIndexNode@th105@@@std@@@4@$0A@@std@@@2@XZ=0x0041D160",
+  "??1?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@QAE@XZ=0x0041C200",
+]
 
 [[units.gpt-web-package-archive-store.functions]]
 address = "0x0041B980"
 symbol_base = "??1PackageArchiveStore@th105@@QAE@XZ"
-rel32_targets = ["??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10", "??3@YAXPAX@Z=0x006898EA"]
+private_global = { object = "?g_package_archive_store@th105@@3UPackageArchiveStore@1@A", role = "destructor" }
+eh_cleanup = { handler = "0x006BE09E", info = "0x006E477C" }
+rel32_targets = [
+  "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10",
+  "@__security_check_cookie@4=0x00689D25",
+  "___CxxFrameHandler3=0x006899E7",
+  "?clear@?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@QAEXXZ=0x0041C320",
+  "?_Erase@?$_Tree@V?$_Tmap_traits@IUPackageFileIndexNode@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIUPackageFileIndexNode@th105@@@std@@@4@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@IUPackageFileIndexNode@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIUPackageFileIndexNode@th105@@@std@@@4@$0A@@std@@@2@@Z=0x0041C630",
+  "?_Tidy@?$_Tree@V?$_Tmap_traits@IUPackageFileIndexNode@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIUPackageFileIndexNode@th105@@@std@@@4@$0A@@std@@@std@@IAEXXZ=0x0041C8D0",
+  "??$_Destroy_range@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@YAXPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@0AAV?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@0@U_Nonscalar_ptr_iterator_tag@0@@Z=0x0041D5A0",
+  "??1?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@QAE@XZ=0x0041C200",
+  "??1?$map@IUPackageFileIndexNode@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIUPackageFileIndexNode@th105@@@std@@@4@@std@@QAE@XZ=0x0041B970",
+  "??3@YAXPAX@Z=0x006898EA",
+]

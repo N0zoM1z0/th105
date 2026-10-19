@@ -24,3 +24,10 @@ linker_version = "8.00.50727.762"
 "PlatformSDK/Lib/WS2_32.Lib" = "fc1fbe94773a2bafd735b7123d31e5f9377d8381d704494a7757c8a2eccfec90"
 "include" = "350f332ddd3371adc36e7d1c7194ade3b553a78dae3535234276e52b5068e53e"
 "PlatformSDK/Include" = "d2ca54a85bfdc20ffe4b31b42df28a2e30ab8b5ab4a32e0ca319a469da5d2016"
+
+# Real static CRT/SDK support for source-owned global lifecycle comparisons.
+[msvc8_sp1_ltcg_static]
+"lib/libcmt.lib" = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+"lib/libcpmt.lib" = "e1b17cb213bfcf77e3c0988f8cb33ec8be143872d1c52de62c5da07ea1eb8031"
+"lib/oldnames.lib" = "321bcc7062455d96193333fe291e77e10d5c96616c40dec1784161c6a2bdbe82"
+"PlatformSDK/Lib/Kernel32.Lib" = "42a96eb7aac53303254d4a5e061e94429d436dab353ff37774314c31dee4e6f2"

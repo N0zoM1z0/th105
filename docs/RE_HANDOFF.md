@@ -32,8 +32,8 @@ verified private Ghidra copy, reopens it for readback, then replaces the primary
 project. Target/mapped bytes remain unchanged; nine new primary file hashes
 are recorded in `build/reimu-cpu-root/primary-db-after.json`.
 
-Last checked ledger census: 4023 candidates; 1548 authored, 1415 excluded,
-1060 in review; 1463 mapped, 1444 source-present; 1334 exact / 225747 bytes;
+Last checked ledger census: 4024 candidates; 1548 authored, 1416 excluded,
+1060 in review; 1463 mapped, 1444 source-present; 1336 exact / 226138 bytes;
 521 match units. These are ledger totals, not a cold aggregate replay.
 `claims.csv` remains header-only. Source presence, mapping and diagnostic
 interval equality confer no exact credit. The Reimu CPU root remains
@@ -431,7 +431,7 @@ Source uses a normal static typed helper and its real wrapper; VC8 naturally
 emits the private ECX entry. Original path-buffer declaration remains unknown.
 
 The store41BBB0 proves702914 is an unsigned32-bit archive count. Shared reader
-source/header and relocation identity now use g_package_archive_count rather
+source/header and relocation identity first used an unsigned count alias rather
 than an unsupported pointer alias. All15 affected units were rebuilt serially;
 all33 comparison outcomes are unchanged, including21 accepted exact functions.
 Vector first/last addends4/8 are pinned and its two consuming units rechecked.
@@ -461,7 +461,7 @@ count38. Separate source globals are replaced by one PackageArchiveStore with
 real construction/destruction; original class name/inheritance and game-method
 member ownership remain unknown. Loader, registration, opener and reader now
 use its fields. The constructor41B8C0/163 and destructor41B980/228 are mapped,
-source-present and authored, without exact credit. Actual startup6BE7B0 and
+source-present and authored, now formally exact163/163 and228/228. Actual startup6BE7B0 and
 atexit6BEE60 callbacks establish the global lifecycle; destructor explicitly
 clears names/map/count before automatic member destruction.
 
@@ -478,18 +478,33 @@ seed61 but leaves that loader shape; native registration next gives595/frame138h
 Physical-owner ordinary internal source gives139/264 lifecycle functions and
 is not selected. The fresh CIL graph using all selected real providers instead
 has163/228 lifecycle bodies and complete private zero-difference replay of
-both bodies, five cleanups, two handlers, FuncInfo and unwind tables. These are
-private compiler diagnostics, not accepted exact/partial bytes: public linked
-comparison cannot yet own/rebase source-defined globals or attest these
-initializer/atexit private entries and linked EH regions. Both ordinary probes
-fail closed on unbound handlers; matches.csv is unchanged.
+both bodies, five cleanups, two handlers, FuncInfo and unwind tables.
 
-Direct read-only Ghidra verifies the target, bounded60-byte view and function
-metadata; all nine primary DB pins agree and aliases are removed. Receipts:
-`build/package-loader-context-20261019/`. Next review a strict generic linked
-contract for real global ownership, startup witnesses and complete EH/code/data
-replay. Do not force exports, register ABIs or executable-data aliases. The
-629-byte loader and reader/BMP/registration/opener residuals remain nonexact.
+The formal linked unit now uses real pinned static DLL CRT libraries and a
+small actual Store/Node/Critical CIL aggregate. The strict lifecycle contract
+attests native60-byte zero BSS ownership, real CRT initializer-table retention,
+complete17/5-byte initializer/atexit helpers, unexported private entries, native
+cookie/vtable identity and all associated cleanup EH code/data. Every supported
+pointer field has exact HIGHLOW coverage; all other bytes remain compared.
+Public cold build/comparison reports163/163 and228/228 exact: **391 authored
+bytes added**, with no compiler startup/EH credit. Quoted .cpp dependencies and
+native layout artifacts are now part of provenance.
+
+The omitted vector<string> destructor41C200 is bounded57 bytes through RET at
+41C238, followed by7 CC alignment bytes. Independent native VC8 symbol/body,
+its real unwind callers and complete57-byte replay establish compiler template
+ownership; it is a new candidate/exclusion, never authored exact credit.
+All three existing accepted linked units (408870/281,413820/98,405200/167) and
+Node41B850/43 remain exact after cold affected replays. All40 linked contract
+tests pass under both supported Capstone versions. Receipts:
+`build/archive-linked-contract/*-formal.json`; detailed contract and limits in
+[the store review](PACKAGE_ARCHIVE_STORE_2026_10_19.md).
+
+Direct read-only Ghidra verification from the prior source checkpoint remains
+unchanged; this comparator work uses the hash-attested PE and no database
+semantic data. Original class name/inheritance, TU partition and game-method
+ownership remain unknown. Next continue loader629 private helper/EH/frame
+context and reader/BMP/registration/opener residuals; these remain nonexact.
 
 ## Current Reimu CPU root
 

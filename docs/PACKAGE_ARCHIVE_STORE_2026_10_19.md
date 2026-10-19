@@ -13,7 +13,7 @@ not an original class-name or inheritance claim.
 Only original Japanese TH105 1.06a SHA256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`
 is used. Two complete game composite-object functions are mapped and
-source-present, **without accepted exact credit**:
+source-present and now **accepted exact: 391 authored bytes**:
 
 | Entry | Complete bytes / instructions | Target SHA256 |
 | --- | --- | --- |
@@ -29,7 +29,7 @@ ordinary object retains its this-bearing ABI and is not claimed to match.
 The initializer pointer at 6C0374 names 6BE7B0. Its complete 17-byte body calls
 41B8C0, pushes destructor callback 6BEE60, calls atexit at 68AF1E and returns.
 The five-byte callback tail-jumps to 41B980. These two compiler startup helpers
-remain outside the authored mapping/exact claims in this checkpoint.
+remain outside authored mapping/exact credit; the formal comparator verifies both complete helpers as compiler witnesses.
 
 The next independent global initializer writes a 260-byte path object from
 702918. The recovered archive storage occupies 7028DC..702917:
@@ -74,8 +74,8 @@ is unchanged; its original declaration remains unknown.
 
 All **17 existing affected units / 36 comparison outcomes** are rebuilt from
 fresh objects. Every outcome and every available complete canonical payload
-hash is unchanged, including all **22 accepted exact functions**. The two new
-ordinary lifecycle probes fail closed on their unknown EH-handler relocations
+hash is unchanged, including all **22 accepted exact functions**. Before the linked contract was added, the two
+ordinary lifecycle probes failed closed on their unknown EH-handler relocations
 (`relocation.dir32.unknown_symbol`); private STL boundaries also remain
 unsupported. No unknown handler is bound merely to obtain a result.
 
@@ -106,12 +106,71 @@ every source HIGHLOW field and named external branch, without masking fields
 or cropping function extents. Source/target states are 2 for construction and
 3 for destruction, with matching cleanup frame offsets and flags.
 
-This is **compiler evidence, not accepted matching evidence**. The public
-linked contract does not support source-owned writable global rebasing,
-automatic-initializer/atexit private-entry witnesses or these linked EH
-regions. The diagnostic DLL also uses a complete static runtime context,
-rather than the public NOENTRY comparison image. No matches.csv row, partial
-credit, canonical-total increase or reusable matching recipe is recorded.
+The original selected-graph receipt remains private compiler evidence. A new,
+smaller **formal** CIL unit now includes the real PackageArchiveStore,
+PackageFileIndexNode and CriticalSectionWrapper implementations. Node lifetimes
+are factored into `PackageFileIndexNode.cpp`; the existing registration TU
+includes that file, retaining the same definitions and visibility. Its accepted
+43-byte Node destructor remains exact.
+
+## Formal linked acceptance
+
+The `gpt-web-package-archive-store` unit uses the pinned VC8 SP1 LTCG profile
+with actual libcmt/libcpmt/oldnames/Kernel32 libraries. It has the real
+`__DllMainCRTStartup@12` from libcmt:dllcrt0.obj, without a custom entry provider,
+forced constructor/destructor exports or executable absolute symbols. The old
+import-runtime/NOENTRY profile keeps its existing contract.
+
+`scripts/linked_lifecycle.py` verifies:
+
+- A separately compiled native COFF from the actually included Store source:
+  one strong global at offset0 in a sole60-byte, align4, uninitialized .bss
+  section, no payload, aliases or relocations. The witness is not linked.
+- The complete source/target60-byte initially zero writable storage, the
+  individually attested field addends and unique source CIL ownership.
+- The private natural constructor/destructor identities; the exact17-byte
+  generated initializer and5-byte callback; the real `_atexit` library member
+  and positively classified target runtime; one initializer pointer between
+  real CRT `___xc_a/___xc_z` sentinels and the readonly target slot6C0374.
+- The actual static-CRT security-cookie object/value, native critical vtable
+  and source RTTI identity. Typed references restrict global fields, cookie
+  reads, handler PUSH and FuncInfo MOV EAX to their supported operand forms.
+- Both complete parent CFGs, both handlers, all five cleanup funclets, both
+  36-byte FuncInfo records and the16/24-byte unwind tables. Cleanup state/frame
+  offsets, flags and all other bytes are compared, with exact HIGHLOW coverage.
+  Unsupported catch metadata, states, pointers, edges or unmapped calls fail.
+
+Local quoted include dependencies are followed transitively, including .cpp
+aggregates, and hashed into build provenance. Native layout artifacts, static
+libraries, image/map/CIL and the comparator are also pinned. No current function
+is accepted from an old/private report or a parent-only byte comparison.
+
+The fresh public report
+`build/archive-linked-contract/gpt-web-package-archive-store-formal.json`
+reports **163/163 and228/228 exact**. The13 parent/EH code+data regions cover606
+bytes with zero differences; only the391 authored body bytes enter matches.csv.
+The initializer, callback, table slot and compiler cleanup regions add no
+independent authored credit. All three existing linked accepted units are
+cold-rebuilt/replayed: scene408870/281, packet-pool413820/98 and shared release
+405200/167; all remain exact. The affected Node41B850/43 is also cold-rebuilt
+and exact. No aggregate all-unit replay or percentage claim is made.
+
+The old candidate inventory omitted `41C200`. Its complete57-byte RET body
+ends41C238, followed by seven INT3 alignment bytes. Native ESI vector access,
+string-range destruction41D5A0, operator delete6898EA, the two actual unwind
+callers and an independently compiled pinned VC8 vector<string> destructor
+establish template ownership. Full57-byte canonical replay agrees, SHA256
+`13256e6800e8d778c2a207a543d7a0d8ba420e11f487b2c82951b820a3808608`.
+It is recorded separately as a compiler exclusion, with no authored mapping,
+source-present or match row. Receipt:
+`build/archive-linked-contract/vector-dtor-boundary.json`.
+
+Target-independent rejection tests cover storage/layout tampering, native
+providers/aliases, complete startup chain, typed operands, tail boundaries,
+unwind code/metadata changes even with unchanged parent bytes, missing/extra/
+duplicate/straddling HIGHLOW fields and transitive implementation dependencies.
+All40 linked tests pass with both supported Capstone4.0.2 and5.0.6 using
+pefile2024.8.26.
 
 ## Execution and analysis evidence
 
@@ -147,16 +206,14 @@ selected-store-store-regions.json, selected-store-integration.json,
 execution.json and database before/after pins. Private scripts and hypotheses
 are under `.analysis/package-loader-context-20261019/`.
 
-Reproduce the current fail-closed source probes with:
+Reproduce the accepted lifecycle and the still-nonexact loader with:
 
 ```bash
 python3 scripts/build.py --unit gpt-web-package-archive-store --compare --json
 python3 scripts/build.py --unit gpt-web-package-archive-loader --compare --json
 ```
 
-Next review the generic linked contract for source-owned global storage,
-real startup/private-entry ownership and coupled EH/code/data replay. Preserve
-its source ownership, full-boundary, HIGHLOW and rejection checks. Do not
-export the private methods or bind executable addresses as data to bypass the
-missing contract. The loader, registration, opener and reader/BMP residuals
-remain open.
+Continue the loader's private vector-helper/EH/frame context and the
+registration, opener and reader/BMP residuals. Original archive class name,
+inheritance, TU partition and game-method ownership remain unknown. The formal
+byte/EH proof does not expand the execution model's OS/runtime coverage.
