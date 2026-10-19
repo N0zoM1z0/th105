@@ -39,9 +39,9 @@ promotion. Current nine-file pins are in
 Target/mapped text and callable bytes remain unchanged.
 
 Read the current ledger census with `report-reconstruction-status.py --summary`.
-The latest collision-phase checkpoint adds complete selected source and
-native-container evidence. Exact bytes remain unchanged from the preceding
-2156-byte collision-frame match; no cold aggregate verification is asserted.
+The latest family1 checkpoint adds one independently replayed686-byte exact
+authored function. The complete collision-phase parent remains nonexact;
+no cold aggregate verification is asserted.
 `claims.csv` remains header-only. Source presence, mapping and diagnostic
 interval equality confer no exact credit. The Reimu CPU root remains
 source-present in a probe unit with no exact result.
@@ -230,6 +230,37 @@ out-of-body p-code addresses. Decompiler text remains a hypothesis.
 
 See [exact recovery and analysis safety](OBJECT_ACTION980_WORD_ABI_2026_10_19.md).
 
+## Family1 object traversal exact checkpoint
+
+`BattleCollisionPhase_dispatch_family1_clashes @46DD40` now matches the full
+**686/686** under `gpt-web-family1-object-clashes`. The192-instruction target
+has one RET0,25 invalid-parameter sites and two genuine member calls to46CA80.
+Native checked std::list<void*> replaces the old664-byte manual-iterator
+hypothesis. Direct first-phase array indexing and begin-before-end lifetimes
+naturally preserve the full list owner, saved node bindings and all checks.
+Explicit pointer traversal is same-sized but remains nonexact.
+
+The same-side pass filters frame50/100000h, frame4C/40h/80000h and byte1A0,
+then skips equal payloads; the cross-side pass traverses both families with
+its distinct gate/equality policy. Views pin list44/12-byte stride and actor
+1A0/1A4, without asserting complete original classes. The dispatcher takes
+ECX context/RET0; its pair call takes the same receiver and two slots/RET8.
+
+Only46DD40 gains exact credit. The old compound origin rule now selects just
+46CA80 and uses both newly matching inbound callers plus its prior eight reset
+witnesses; authored/excluded census is unchanged. The private real-member
+closure keeps686/686 while parent46DFF0 remains1449/1452, first+559. New narrow,
+visibility and cap controls still do not close that parent or prove LTCG.
+
+A226-record native matrix and inequality negative control exercise real pair/
+geometry routines with bounded lists, filter flags, priorities, duplicate
+payloads and overlap states. The environment is seeded by the original parent;
+child game/helper results are not supplied. The read-only128MiB/CPU0 direct
+Ghidra pass re-attests the root/inbound edge and reads back signatures; all
+nine primary DB hashes remain unchanged. See
+[exact source, execution and limitations](FAMILY1_OBJECT_CLASHES_2026_10_20.md).
+Final reports are under `build/family1-clash-20261020/`; no cold aggregate claim.
+
 ## Battle collision phase source checkpoint
 
 `BattleCollisionPhase_run @46DFF0` now has complete selected source in
@@ -237,9 +268,10 @@ See [exact recovery and analysis safety](OBJECT_ACTION980_WORD_ABI_2026_10_19.md
 Raw CFG closes1452 bytes:1434 reachable bytes plus18 bytes of branch-skipped
 alignment,449 decoded instructions,46 direct calls, two actual manager slot24h
 calls and one RET0. Five exact parent pipelines and the already-authored origin
-rule retain their witnesses; three newly exact geometry-call witnesses are
-added. The dependent family1 origin rule now follows this caller's implemented
-status. No authored/exclusion count change.
+rule retain their witnesses; three exact geometry-call witnesses are
+pinned. The adjacent family1 traversal is now independently exact; its
+remaining pair resolver has a separate nonexact origin rule. No authored/
+exclusion count change.
 
 The old unselected file used volatile scheduling, manual sentinel assertions
 and a free-function node facade. Native std::list<void*>, typed owned-object

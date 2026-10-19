@@ -18,8 +18,10 @@ RET0 and context field accesses this supports ordinary member calling.
 The durable mapping is `BattleCollisionPhase_run`; `CollisionPhase` is a
 runtime prefix view, not a recovered original declaring class or complete TU.
 The pre-existing authored rule retains its body/padding/caller witnesses and
-now also pins all three newly exact45C500 calls. Its dependent family1 origin
-rule follows the caller's implemented status; no origin classification changes.
+also pins all three exact45C500 calls. Adjacent traversal46DD40 is now
+independently686/686 exact; its remaining542-byte pair resolver retains a
+separate rule using matching traversal callers. No authored/exclusion census
+change is inferred from the parent source.
 
 ## Observed policy and physical interfaces
 
@@ -89,6 +91,17 @@ and all container/classification/dispatch logic. It remains diagnostic prefix
 equality, not whole-function acceptance. Original source spelling, the final
 narrow lifetime/compiler phase and original TU are unknown. These observations
 do not establish an LTCG requirement. No matches row or exact-byte credit.
+
+### Subsequent real-member closure
+
+The complete native family1 member46DD40 is subsequently686/686 exact. A
+private genuine same-TU definition before this caller preserves that entire
+callee and the caller's1449-byte ea3990e6 payload. Narrow/word-storage views,
+pre-guard locals and external visibility also retain the caller difference.
+Repeated cap evaluation reaches1452 bytes with a28h frame; a by-value
+three-short policy reaches1452 bytes but still differs31 bytes. None is
+selected. These source-context witnesses do not establish an LTCG barrier;
+see [the family1 recovery](FAMILY1_OBJECT_CLASHES_2026_10_20.md).
 
 ## Native execution and its limits
 

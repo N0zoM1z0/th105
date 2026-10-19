@@ -1445,3 +1445,4 @@ PackageArchiveStore_dtor
 AnimationAuxiliarySprite_replace
 CollisionGeometry_prepare_from_frame
 BattleCollisionPhase_run
+BattleCollisionPhase_dispatch_family1_clashes

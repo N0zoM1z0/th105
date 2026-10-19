@@ -2962,23 +2962,21 @@ required_selected_body_calls = [
 
 [[rules]]
 id = "family1-object-clash-and-pair-resolution-authored-106a"
-addresses = ["0x0046CA80", "0x0046DD40"]
-expected_count = 2
-expected_bytes = 1228
-expected_names = ["sub_46CA80", "sub_46DD40"]
+addresses = ["0x0046CA80"]
+expected_count = 1
+expected_bytes = 542
+expected_names = ["sub_46CA80"]
 origin = "authored_game"
 subsystem = "battle"
 disposition = "authored"
 confidence = "observed"
-evidence = "Both 542/686-byte target PE main spans are entirely reachable and RET-terminated with no gaps or indirect/outgoing branches. The 686-byte body traverses two checked collision-object list passes and gates on object frame flags/status before calling the 542-byte pair resolver twice. The pair resolver reads each object's +0x1A8 frame property words, publishes outcomes at +0x180/+0x184, and calls exact reset_collision_extents on all eight terminal paths. The separately reviewed 0x0046DFF0 intermediate battle phase calls the list traversal. All three inbound E8 sites, eight exact reset-helper E8s and both body hashes are replayed. Pair predicate 0x0046BCA0 has its own later origin review; original source/TU remain unresolved. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+evidence = "Remaining542-byte pair resolver has complete raw RET8 closure, frame-priority comparisons and status writes at180/184; all eight exact reset-helper calls remain pinned. The separately accepted686-byte native checked-list traversal46DD40 now calls it at two canonical-exact E8 sites. Its canonical baseline is independent of this nonexact origin rule; the selected rule now owns only46CA80. Pair predicate46BCA0 has its own origin review. Original pair source/TU and exact codegen remain unknown. docs/FAMILY1_OBJECT_CLASHES_2026_10_20.md; docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
 required_body_hashes = [
   { address = "0x0046CA80", size = 542, sha256 = "ea54fb25e5ab2ac5e4b7c2dc17792e6073ef654b22b20a06fce6a9887c1257d6" },
-  { address = "0x0046DD40", size = 686, sha256 = "aa250ed95904cbc1b0d78f04b2f4a09ef1bcd53f844cc298140474e89f2ea8ec" },
 ]
 required_direct_edges = [
-  { caller = "0x0046DFF0", site = "0x0046E48B", target = "0x0046DD40", caller_status = "implemented" },
-  { caller = "0x0046DD40", site = "0x0046DE75", target = "0x0046CA80", caller_status = "identified" },
-  { caller = "0x0046DD40", site = "0x0046DFB7", target = "0x0046CA80", caller_status = "identified" },
+  { caller = "0x0046DD40", site = "0x0046DE75", target = "0x0046CA80", caller_status = "matching" },
+  { caller = "0x0046DD40", site = "0x0046DFB7", target = "0x0046CA80", caller_status = "matching" },
 ]
 required_selected_body_calls = [
   { owner = "0x0046CA80", site = "0x0046CAFD", target = "0x0046B6C0" },
