@@ -18249,7 +18249,7 @@ source = "src/assets/CBitmapDataRuntime.cpp"
 object = "build/match-units/GptWeb_CBitmapDataRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current RTTI/COL 0x006DCFB0 names CBitmapData and vtable 0x006D6E10 owns the complete recovered runtime lane. /GS leaves ctor 23/23, scalar dtor 47/47, normal dtor 21/21, descriptor copy 196/196 and png read callback 33/33 exact. BMP callable is [0x00419FF0,0x0041A8A6), 2230 bytes; old 2197-byte COFF total included only 2149 code bytes, three alignment bytes and 45 switch-table bytes. Revised staged RGB1555 quantization/scalar palette loops emit 2133 code bytes plus three alignment and 45 metadata bytes (2181 total), still nonexact at +0x10 with 438h versus target430h frame. Mask widths/grouping, cleanup inlining and register lifetimes remain under investigation; the old claim that only stack coloring remained was unproved. PNG/file loaders remain nonexact 680/703 and 440/448. See docs/CBITMAP_BMP_2026_10_19.md; no private ABI or byte shaping is accepted."
+notes = "Current RTTI/COL 0x006DCFB0 names CBitmapData and vtable 0x006D6E10 owns the complete recovered runtime lane. /GS leaves ctor 23/23, scalar dtor 47/47, normal dtor 21/21, descriptor copy 196/196 and png read callback 33/33 exact. BMP callable is [0x00419FF0,0x0041A8A6), 2230 bytes; old 2197-byte COFF total included only 2149 code bytes, three alignment bytes and 45 switch-table bytes. Revised staged RGB1555 quantization/scalar palette loops emit 2133 code bytes plus three alignment and 45 metadata bytes (2181 total), still nonexact at +0x10 with 438h versus target430h frame. Mask widths/grouping, cleanup inlining and register lifetimes remain under investigation; the old claim that only stack coloring remained was unproved. PNG/file loaders remain nonexact 680/703 and 440/448. The real <new> declarations now emit array operator-new symbols mapped to the observed forwarding entry; all five accepted siblings and the BMP canonical payload are unchanged. EH tables have one cleanup state and replay equally; EH code differs in three stack-offset bytes. Palette entryESP-0x40C is invariant, scalar workspace target48/source56 bytes. See docs/CBITMAP_BMP_EH_2026_10_19.md and docs/CBITMAP_BMP_2026_10_19.md; no private ABI or byte shaping is accepted."
 
 [[units.gpt-web-cbitmap-data-runtime.functions]]
 address = "0x00419F80"
@@ -18274,7 +18274,7 @@ symbol_base = "?load_bitmap@CBitmapData@th105@@UAE_NPBD@Z"
 rel32_targets = [
   "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
   "??1FileReaderOwner@th105@@QAE@XZ=0x0040CF20",
-  "??2@YAPAXI@Z=0x00665B8A",
+  "??_U@YAPAXI@Z=0x00665B8A",
   "_free=0x0068AA26",
   "@__security_check_cookie@4=0x00689D25",
 ]
@@ -18286,7 +18286,7 @@ dir32_targets = [
 [[units.gpt-web-cbitmap-data-runtime.functions]]
 address = "0x0041ABD0"
 symbol_base = "?copy_from@CBitmapData@th105@@UAEXPBUCBitmapSourceView@2@@Z"
-rel32_targets = ["??2@YAPAXI@Z=0x00665B8A", "_memcpy=0x0068AA30"]
+rel32_targets = ["??_U@YAPAXI@Z=0x00665B8A", "_memcpy=0x0068AA30"]
 
 
 [[units.gpt-web-cbitmap-data-runtime.functions]]
@@ -18308,7 +18308,7 @@ rel32_targets = [
   "_png_set_sig_bytes=0x0066B840",
   "_png_read_info=0x0066D130",
   "_png_set_bgr=0x0066FE60",
-  "??2@YAPAXI@Z=0x00665B8A",
+  "??_U@YAPAXI@Z=0x00665B8A",
   "_png_read_row=0x0066E400",
   "_png_read_end=0x0066E940",
 ]
@@ -18326,7 +18326,7 @@ rel32_targets = [
   "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
   "??1FileReaderOwner@th105@@QAE@XZ=0x0040CF20",
   "_free=0x0068AA26",
-  "??2@YAPAXI@Z=0x00665B8A",
+  "??_U@YAPAXI@Z=0x00665B8A",
 ]
 dir32_targets = [
   "__ehhandler$?load_from_file@CBitmapData@th105@@UAE_NPBD@Z=__ehhandler$?load_from_file@CBitmapData@th105@@UAE_NPBD@Z",

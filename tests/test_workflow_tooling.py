@@ -1284,7 +1284,8 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(slot1["status"], "implemented")
         self.assertEqual(slot1["size"], "2230")
         self.assertEqual(slot1["source_file"], "src/assets/CBitmapDataRuntime.cpp")
-        self.assertIn("2197/2230", slot1["evidence"])
+        self.assertEqual(slot1["span_end"].upper(), "0X0041A8A5")
+        self.assertEqual(slot1["match_percent"], "0.00")
         self.assertEqual(origins["0X00419FF0"]["origin"], "authored_game")
         self.assertEqual(origins["0X00419FF0"]["disposition"], "authored")
 

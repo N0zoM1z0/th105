@@ -69,7 +69,7 @@ bytes. The callable-size deficit is now97 bytes; the smaller section is
 recovered, while cleanup expansion, spill placement, alignment and scheduling
 still differ. First strict mismatch remains `+10h / 41A000`, frame438h versus
 430h. Source SHA256 is
-`6f7df05fbaa93ce007b04d9ed3befeeb938ce9624c9bb436b7db779f36debd48`;
+`109e8b2c2dea528c4bf6969b929f7979d486e961bcda061a11653ae721af2ed7`;
 canonical complete section-tail SHA256 is
 `630c5b9151d678505cf448c106ad38a0d30c267da3c08a119166b449977ec2a1`.
 
@@ -142,9 +142,10 @@ harness is `execute-bmp.py`, SHA256
 `e3998c65305beb8620387c7c4c4ade1c44d5d44901ceb6a982627f35f7fcd684`;
 its selected-input name is `revised`.
 
-Remaining work: recover why the target retains different palette/reader
-lifetimes and fewer spill slots, audit the EH cleanup relationship, and find
-supported original TU/provider context before claiming that LTCG is the
-cause. Do not repeat byte-neutral scope/type/order controls without new
+The [EH/allocator follow-up](CBITMAP_BMP_EH_2026_10_19.md) closes the
+one-owner EH chain and corrects the array-new interface without changing
+canonical bytes. Remaining work: recover the target palette/reader lifetimes
+and fewer spill slots, and find supported original TU/provider context before
+claiming that LTCG is the cause. Do not repeat byte-neutral scope/type/order controls without new
 constraints. Keep the complete2230-byte callable boundary and separate45-byte
 metadata contract. No cold-all replay or aggregate percentage is claimed.

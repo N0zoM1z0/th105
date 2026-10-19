@@ -258,8 +258,25 @@ format-mutation stress cases extend coverage to661. These callbacks are model
 assumptions, not observed real allocator behavior. All five accepted siblings remain exact.
 Private ordinary controls and a real-FileReader diagnostic LTCG link remain
 nonexact; the latter lacks the package-file helper provider and cannot support
-acceptance. Receipts: `build/cbitmap-bmp-20261019/`. Continue reader/palette
-lifetime and EH/TU evidence recovery; do not assume a compiler-phase cause.
+acceptance. Receipts: `build/cbitmap-bmp-20261019/`.
+
+The [EH/allocator follow-up](CBITMAP_BMP_EH_2026_10_19.md) now checks the
+one-state reader-owner cleanup chain. Relocated8-byte unwind/36-byte FuncInfo
+records agree;44 bytes of cleanup/handler code differ only at three stack
+offset bytes. Entry-ESP analysis fixes the palette at-40Ch in target/source;
+scalar workspace is48 versus56 bytes. The palette32 stage writes five scalar
+slots in target versus seven in selected source. Color-member/iterator controls
+reduce frame to42Ch but change induction and remain private/nonexact.
+
+Selected TU now includes the real `<new>` array-allocation declarations, with
+four unit-member mappings changed from scalar to array-new symbols. All five
+accepted siblings and the canonical BMP payload remain unchanged. The paired
+LTCG source-interface control differs only in seven allocator fields and still
+has438h frame; its package helper remains unresolved. Current source SHA is
+109e8b2c; receipts: `build/cbitmap-bmp-eh-20261019/`. No new exact credit.
+Continue indexed table-address/base lifetime recovery and truthful provider
+context. Reviewing retained40CF40 source (213 bytes) is a concrete dependency
+step; actual package-entry CALL is41BFA0. Do not assume a compiler-phase cause.
 
 ## Current Reimu CPU root
 

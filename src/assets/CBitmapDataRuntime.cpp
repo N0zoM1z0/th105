@@ -1,6 +1,7 @@
 #include "FileReader.hpp"
 #include "Png125Runtime.hpp"
 
+#include <new>
 #include <stdlib.h>
 #include <string.h>
 
