@@ -121,25 +121,44 @@ slot3C proves ownership; raw CFG closes all1325 instructions/4892 bytes,
 All65 direct CALLs to ten helpers retain their target multiplicities.
 
 Five x-then-y chained scale assignments restore the822/903/904 return-copy
-structure, reaching40/43 instruction/edge diagnostics without losing earlier
-equal owners. The candidate callable now ends at4A2FFC with no included
-post-RET alignment. Ordering908's cases by physical tails additionally fixes
-its auxiliary table without changing callable bytes. Source SHA4e165b8e,
-canonical5440-byte payloada72cf4f1; strict first difference+1140/4A2E20.
+structure. Explicit906 sequence2/5 and3 edges into908's corresponding angle
+tails then restore all548 adjacent metadata bytes and908's pointer/phase
+schedule. Diagnostics are41/43, with no earlier equal owner lost; the
+callable still ends4A2FFC without included alignment. Source SHA3803a002,
+canonical5440-byte payload65298d36; strict first difference+1140/4A2E20.
+Only14 callable bytes in906/999 remain different, in pointer/call registers
+and preparation. No partial credit or whole-root native proof is claimed.
 
-Only906/908/999 remain different in the body.906 also has three mismatching
-auxiliary entries; six other auxiliary tables and the primary metadata agree.
-The candidate's reuse of908's pointer-load suffix is coupled to its different
-phase-store order. Do not treat owner count or equal extents as full metadata
-proof. No exact credit, new native proof or aggregate replay is claimed. See
-[ReimuObject entry evidence](REIMU_OBJECT_ENTRY_2026_10_19.md). Current receipts
-are below `build/reimu-object-entry-lifetimes/`; earlier source recovery
-receipts remain below `build/reimu-object-entry/`. Raw/Ghidra RTTI establishes
-eight entries including the complete object, with base offsets0/4/130h/330h;
-its typed C++ layout control was byte-neutral.
+A genuine `/GL`+`/LTCG` diagnostic DLL now closes through real ordinary
+providers, a full private404E60 texture-size provider and CRT startup. Its
+quantized lookup declarations/definitions consistently return double;
+the refined oriented provider becomes nonexact and is not promoted.
+Independent replay verifies all247 relocation fields,181 PE HIGHLOWs,
+named direct providers, literal bits and local table/code-pointer roles.
+The linked payload equals the ordinary65298d36 payload: the same14 body
+bytes remain, with zero metadata differences and the target10h local frame.
+This context is a negative control, not original-TU or exactness evidence.
+No shared helper/header/profile/binding is changed.
+
+Raw45C390->vslot1C45C180->45C110->436760->4073C0 forwarding does not construct
+an integer status. A private natural void/short selector compares202/202,
+but does not uniquely prove the original return type or add accepted credit.
+Changing the large root's discarded selector result is byte-neutral. The
+prior-source RTM/SP1 and typed-velocity controls are also byte-neutral;
+reading908's angle before its phase into a float adds32 callable bytes.
+On the joined source, pointer captures, physical inheritance and9064-first
+ordering all preserve65298d36 and remain unselected.
+
+See [ReimuObject entry evidence](REIMU_OBJECT_ENTRY_2026_10_19.md).
+Current receipts are below `build/reimu-object-entry-abi/`; preceding
+receipts remain below `build/reimu-object-entry-lifetimes/` and
+`build/reimu-object-entry/`. Previously checked raw/Ghidra RTTI establishes
+eight entries including the complete object, with base offsets0/4/130h/330h.
 Nine read-only Ghidra DB pins agree and the temporary alias is removed.
-All23 accepted members across seven focused helper units replay exact;
-the effect unit's existing nonaccepted5F9350 probe remains nonexact.
+All23 accepted members across seven focused helper units replay exact at
+the preceding source-recovery checkpoint; their inputs are unchanged here.
+The effect unit's existing nonaccepted5F9350 probe remains nonexact. No cold
+aggregate replay is claimed.
 
 ## Current YoumuObject entry initializer
 

@@ -19528,7 +19528,7 @@ source = "src/characters/ReimuObjectActionEntry.cpp"
 object = "build/match-units/GptWeb_ReimuObjectActionEntry.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete4892-byte ReimuObject slot3C source candidate, no exact credit. Five chained x-then-y scale assignments restore822/903/904 tail copying and scheduling, for40/43 diagnostics with no earlier equal owner lost. Source SHA4e165b8e; canonical5440-byte payloada72cf4f1. Source and target callable end4A2FFC;1325 instructions,39 RETs,65 direct calls and42 primary destinations agree. Physical908 case order also corrects its auxiliary table without changing callable bytes. Strict first mismatch+1140/4A2E20; body906/908/999 and three906 auxiliary entries remain open. Other auxiliary and primary metadata agree. Shared helpers/headers/profiles/bindings are unchanged. docs/REIMU_OBJECT_ENTRY_2026_10_19.md."
+notes = "Complete4892-byte ReimuObject slot3C source candidate, no exact credit. Five chained x-then-y scale assignments restore822/903/904 copying. Explicit906 sequence2/5 and3 edges into908's corresponding angle tails restore all548 metadata bytes and908 scheduling, reaching41/43 diagnostics without losing an earlier equal owner. Source SHA3803a002; canonical5440-byte payload65298d36. Both callable bodies end4A2FFC with1325 instructions,39 RETs,65 direct calls and42 primary destinations. Strict first mismatch+1140/4A2E20; only14 body bytes in906/999 register/call preparation remain. Shared helpers/headers/profiles/bindings are unchanged. docs/REIMU_OBJECT_ENTRY_2026_10_19.md."
 
 [[units.gpt-web-reimu-object-action-entry.functions]]
 address = "0x004A1CE0"

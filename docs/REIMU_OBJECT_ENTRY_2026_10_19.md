@@ -126,6 +126,96 @@ of908's auxiliary DWORDs. Only906's three auxiliary entries remain different.
 Compiler metadata remains outside authored callable credit, but its edges
 are retained as a separate reconstruction obligation.
 
+## Explicit shared sequence edges
+
+**Observed:** target906 sequence2/5 enters908's angle tail at4A2F15;
+sequence3 enters its other angle tail at4A2F31. The preceding source leaves
+these as duplicate statements, and VC8 chooses different suffixes. Explicit
+`goto shared_sequence_angle_2` and `goto shared_sequence_angle_3` edges from
+906 into the corresponding908 case bodies express these already observed
+joins. No calculation, return value or field write is added.
+
+This restores every one of the548 adjacent metadata bytes, including all
+three previously differing906 entries. It also restores908's pointer-load,
+phase-byte and epilogue schedule without a separate source change to4/7.
+The callable remains4892 bytes/1325 instructions/39 RETs/65 direct CALLs;
+its body differences fall30->14. Owner diagnostics rise40->41/43, with all
+previously equal owners retained. The exact ledger receives no partial credit.
+
+The selected source is3803a002; its complete canonical payload is65298d36.
+On this joined source, capturing906/999's selector input pointers in the
+already used shared parameter local, capturing906's angle pointer, using the
+independently checked physical class hierarchy, and moving906's local4 case
+first all reproduce the same complete65298d36 payload. They are unselected.
+
+## Selector result and genuine link-context controls
+
+**Observed, raw target:**45C390 reads the low-word sequence argument, updates
+its sequence state, and forwards to vslot1C without constructing an integer
+status. Slot1C is45C180, which writes the frame word and calls45C110;
+45C460 is the separate reset-sequence function.45C110's successful frame
+application tails to436760; the inspected final transform paths tail to the
+already exact void24-byte4073C0 sprite commit. Residual EAX contents alone do
+not uniquely establish an original integer return type for this chain.
+
+A private natural `void select_sequence(short)` implementation, ending in
+`void set_sequence_frame(short)`, compares202/202 at45C390, canonical SHA256
+`dd6808825102feaf752f50030bba523485d6c03828599435509c2e09359abcd4`.
+This is a manually compiled alternate ABI witness; the existing-object
+comparator explicitly reports build provenance unverified. It is not a new
+accepted unit, a unique return-type proof, or new exact credit. On the prior
+30-byte-difference large root, changing its discarded selector result from
+int to void leaves the completea72cf4f1 payload unchanged. Shared selector
+headers and implementations remain unchanged.
+
+Other controls on that preceding root are also bounded negatives: VC8 RTM
+and SP1 give the same completea72cf4f1 payload; explicitly naming the two
+velocity floats in a local sprite layout is byte-neutral. Reading908's angle
+into a float before its phase store adds32 callable bytes, for4924/5472
+prefix/payload, and loses the target tail sharing. It is not selected.
+
+**Observed, genuine diagnostic link:** the selected3803a002 root compiles
+with `/GL` and links with `/LTCG` into a DLL through real ordinary provider
+objects and the default CRT DLL startup. There is no invented entry caller,
+code stub, ABS code binding or execution of this diagnostic image. The ten
+provider units plus a private full texture-size provider close the actual
+code dependencies. The latter implements raw404E60 behavior: null-handle
+256x256 fallback, D3D lock,417800 lookup, virtual surface acquisition and
+description, width/height copy, Release and unlock. It remains unselected.
+Only existing hash-attested nonexecutable globals use ABS data bindings.
+
+The actual quantized lookup providers return double. For this diagnostic
+partition only, the oriented-motion provider's two float lookup declarations
+are refined to double to make source declarations agree with their definitions;
+no float/double symbol alias is allowed. Its57-byte comparison then differs
+at+26/435186. The lookup pair,596370 and417800 providers are also nonexact.
+This context does not establish their exactness or original source partition.
+The other same-target aliases change local view names without changing the
+signature. No shared production declaration or accepted helper is edited.
+
+The linked export is10001000 and MAP assigns it to the source CIL root.obj.
+Its ordinary COFF extent, reconciled callable boundary and complete metadata
+establish the5440-byte envelope; a next-MAP-symbol distance is not used as a
+function boundary. All nonrelocation instruction/data bytes agree with the
+ordinary object. Independent replay checks all247 owned fields:66 REL32
+edges (65 CALLs and the already qualified596370 tail),85 immutable numeric
+literals,9 metadata addresses and87 internal code pointers. The PE's181
+HIGHLOW entries agree exactly with the DIR32 inventory. Every direct edge
+reaches its named real provider; literal bytes/widths and local pointer roles
+are checked before canonicalization.
+
+The resulting canonical payload is again65298d36:14 differing callable
+bytes, zero differing metadata bytes, and the same10h local frame. This
+particular closed LTCG context therefore does not explain the remaining
+register allocation. It neither proves an original TU nor excludes another
+faithful context. The producer/auditor and receipts are under
+`build/reimu-object-entry-abi/`; final link receipt SHA256 is
+`4f3cb994c934308525fb80ae065700280a51bf6eac0c76e8e937bab4ae87c6a9`.
+Reproduction of this diagnostic observation is
+`python3 -B build/reimu-object-entry-abi/link-context.py` followed by
+`python3 -B build/reimu-object-entry-abi/audit-link.py`. It is not an accepted
+linked-unit command or whole-root execution proof.
+
 ## Independently observed inheritance and bounded controls
 
 Raw COL6D9C8C and its descriptors establish eight RTTI entries, including
@@ -181,30 +271,27 @@ implementation, compiler profile or relocation binding changes.
 ## Current strict result and open questions
 
 Selected source SHA256:
-`4e165b8e1f963eff9fedb2d61dd5c650b5bf41d67e65b1f041f2d43a5d25fcbf`.
+`3803a002807ee0a329e9721c4e814bc11159711e6dc515afbf2e88a5df7fd6dd`.
 The complete canonical5440-byte section payload SHA256 is
-`a72cf4f19db686c170b1b2216f0d660a6cb1e28a37831fbb738743ccd8f8ce25`.
+`65298d3670c2c739162abc2d7172dc3db194835b05eedd407688a0b5e3be1347`.
 Both callable bodies end at4A2FFC; both metadata starts are+4892. All65 direct
 call sites,39 RETs and1325 instructions retain their target multiplicities.
 
 Strict full-callable comparison remains nonexact at+1140/4A2E20, target57 /
-sourceCE, in the selector-call preparation. There are30 differing callable
-bytes, with no partial byte credit. All earlier36 equal owner diagnostics
-remain equal;40/43 now agree. The remaining owners are:
+sourceCE, in the selector-call preparation. There are14 differing callable
+bytes, with no partial byte credit. All earlier40 equal owner diagnostics
+remain equal;41/43 now agree. The remaining owners are:
 
 | Owner | Unclosed physical difference |
 | --- | --- |
-|906|Virtual-call and heading-pointer registers; auxiliary entries2/3/5 use different shared angle-tail suffixes|
-|908|Phase-byte store, heading-pointer load and epilogue scheduling in4/7's angle path|
+|906|Virtual-call preparation and heading-pointer register in its4 angle path|
 |999|Heading-pointer and selector-call registers/preparation|
 
-The548 metadata bytes differ in three byte positions, all in906's auxiliary
-DWORDs. Its2/5 destinations are target4A2F15/source4A2F31; its3 destination
-is target4A2F31/source4A2F4D. The primary destination/index tables and the
-other six auxiliary tables are byte-identical after canonical replay.
-Candidate4A2F4D is the pointer-load suffix after908's phase store. These
-aliases and that store/load scheduling must be reconciled together; equal
-sizes or an owner count do not establish complete metadata equality.
+All548 metadata bytes now agree:42 primary destinations, the200-byte index
+and all seven auxiliary tables.906's2/5 destinations are4A2F15 and its3
+destination is4A2F31 in both images.908's phase-store/pointer-load schedule
+is now identical. Only the906/999 register/call preparation above remains
+open; complete equality is still required before exact credit.
 
 On the earlier36/43 source, a private whole-function `fenv_access(on)` control
 regresses to9/43 with prefix/payload4948/5496 and is unselected. Original

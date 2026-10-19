@@ -578,11 +578,9 @@ zero_scales_angle_and_positive_sequence:
             state_370 = 1.0f;
             break;
         case 2: case 5:
-            sprite_004.reset_zero_128 = heading_340[0];
-            break;
+            goto shared_sequence_angle_2;
         case 3:
-            sprite_004.reset_zero_128 = heading_340[0];
-            break;
+            goto shared_sequence_angle_3;
         case 4:
             effect_emitter()->ping_pong_phase_113 = 0;
             sprite_004.reset_zero_128 = heading_340[0];
@@ -619,11 +617,13 @@ zero_scales_angle_and_positive_sequence:
         case 5:
             phase_index_184 = 1;
         case 2: case 8:
+shared_sequence_angle_2:
             sprite_004.reset_zero_128 = heading_340[0];
             break;
         case 6:
             phase_index_184 = 1;
         case 3: case 9:
+shared_sequence_angle_3:
             sprite_004.reset_zero_128 = heading_340[0];
             break;
         case 4: case 7:
