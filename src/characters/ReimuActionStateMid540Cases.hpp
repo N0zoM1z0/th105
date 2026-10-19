@@ -182,8 +182,11 @@
                 state_180 = 1;
             }
             if (frame_counter_144 == 0 && frame_timer_142 == 0
-                    && frame_index_140 == 0 && sequence_13e == 5)
+                    && frame_index_140 == 0 && sequence_13e == 5) {
+                if (selected_action == 546)
+                    goto reimu_shot_action9_exit;
                 set_action(9);
+            }
         }
         return true;
     }

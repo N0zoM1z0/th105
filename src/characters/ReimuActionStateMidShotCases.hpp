@@ -229,11 +229,11 @@ reimu_action414_action9_exit:
             set_action(0);
         if (frame_counter_144 == 0 && frame_timer_142 == 0 && frame_index_140 == 0
                 && sequence_13e == 1) {
-            set_action(9);
-            return true;
+            goto reimu_shot_action9_exit;
         }
         if (frame_counter_144 == 0 && frame_timer_142 == 0 && frame_index_140 == 0
                 && sequence_13e == 3) {
+reimu_shot_action9_exit:
             set_action(9);
             return true;
         }
