@@ -1,5 +1,10 @@
 # YoumuObject851 load order and native selector execution
 
+The subsequent [auxiliary-sprite checkpoint](ANIMATION_AUXILIARY_SPRITE_2026_10_19.md)
+shares the recovered auxiliary layout/provider and changes root source SHA to
+7b0dac5f. Its complete canonical payload594a91c1, owner diagnostics and592-case
+execution remain unchanged. Source pins below identify this earlier checkpoint.
+
 ## Scope and target observations
 
 Only original Japanese TH10.5 v1.06a is used: executable SHA256

@@ -1787,7 +1787,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0045C390,authored_game,characters,authored,observed,canonical-exact-authored
 0x0045C460,authored_game,characters,authored,observed,canonical-exact-authored
 0x0045C500,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0045CD70,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0045CD70,authored_game,battle,authored,observed,canonical-exact-authored
 0x0045CED0,authored_game,battle,authored,observed,existing-object-battle-source-stops-authored-106a
 0x0045CF50,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0045CF60,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a

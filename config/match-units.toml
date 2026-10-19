@@ -17720,6 +17720,8 @@ rel32_targets = [
   "?atan2_degrees@th105@@YAMMM@Z=0x00406540",
   "?set_oriented_components_f0_f4@CharacterObjectRuntime@th105@@QAEXMM@Z=0x00435160",
   "?spawn_unparented_related_object@CharacterObjectEffectEmitter@th105@@QAEPAXHMMHHPBIH@Z=0x0064CCB0",
+  "?replace_auxiliary_sprite@AnimationAuxiliarySpriteOwnerView@th105@@QAEXF@Z=0x0045CD70",
+  # Retain the09dd36f0 ABI alias for the reproducible old851 negative source.
   "?rebuild_aux_renderer_45cd70@YoumuObjectActionEntryView@th105@@QAEXF@Z=0x0045CD70",
   "?continue_action_980_596370@YoumuObjectActionEntryView@th105@@QAEXXZ=0x00596370",
   "__ftol2_sse=0x0068A1A0",
@@ -19722,3 +19724,23 @@ notes = "Compiler-library source only: explicit instantiation of the actual pinn
 address = "0x004102D0"
 symbol_base = "?destroy@?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@QAEXPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z"
 rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+
+[units.cross-v106a-animation-auxiliary-sprite]
+kind = "probe"
+source = "src/battle/AnimationAuxiliarySprite.cpp"
+object = "build/match-units/CrossV106a_AnimationAuxiliarySprite.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Auxiliary-sprite resource replacement45CD70. Target108h allocation, real CSpriteEx member construction/destruction, checked native map find and frame vector access, source-rectangle snapshots across texture at(), and frame offsets/scales. Full-expression iterator lifetime recovers the target0Ch stack frame. See docs/ANIMATION_AUXILIARY_SPRITE_2026_10_19.md."
+
+[[units.cross-v106a-animation-auxiliary-sprite.functions]]
+address = "0x0045CD70"
+symbol_base = "?replace_auxiliary_sprite@AnimationAuxiliarySpriteOwnerView@th105@@QAEXF@Z"
+rel32_targets = [
+  "??3@YAXPAX@Z=0x006898EA",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?set_texture_options@SpriteTextureSetupView@th105@@QAEXIHHHHHH@Z=0x00407160",
+  "?at@?$vector@IV?$allocator@I@std@@@std@@QAEAAII@Z=0x0040C100",
+  "?find@?$_Tree@V?$_Tmap_traits@HPAUAuxiliarySpriteSequenceBlockView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUAuxiliarySpriteSequenceBlockView@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
+]

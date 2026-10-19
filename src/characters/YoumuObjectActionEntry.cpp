@@ -1,4 +1,4 @@
-#include "battle/EffectSprite.hpp"
+#include "battle/AnimationAuxiliarySprite.hpp"
 #include "engine/AngleAtan2.hpp"
 #include "characters/AnimationSequenceVirtuals.hpp"
 #include "characters/CharacterObjectEffects.hpp"
@@ -12,16 +12,7 @@ int __cdecl selector_random_roll(int limit);
 unsigned int __cdecl mt19937_next_u32();
 extern int g_match_identifier;
 
-struct YoumuObjectAuxRendererView {
-    unsigned char unknown_000[0xe8];
-    float x_e8;
-    float y_ec;
-    unsigned char unknown_f0[0x08];
-    float field_f8;
-    float field_fc;
-    unsigned char unknown_100[0x04];
-    signed char facing_104;
-};
+typedef AuxiliarySpriteRuntimeView YoumuObjectAuxRendererView;
 
 class YoumuObjectActionEntryView {
 public:
@@ -44,9 +35,7 @@ public:
     virtual void render_color_mode();
     virtual void initialize_action_entry();
 
-    // ABI-only names for two current member helpers whose machine contracts
-    // are closed but whose gameplay names are not yet independently proved.
-    void rebuild_aux_renderer_45cd70(short resource_id);
+    // Shared action980 continuation, independently matched at596370.
     void continue_action_980_596370();
 
     CEffectSprite sprite_004;
@@ -412,7 +401,8 @@ action848_select:
             sprite_004.reset_one_118 = scaled_x + 0.5f;
             float const scaled_y = unsigned_random_as_float(5) * 0.1f;
             sprite_004.reset_one_11c = scaled_y + 0.1f;
-            rebuild_aux_renderer_45cd70(991);
+            reinterpret_cast<AnimationAuxiliarySpriteOwnerView *>(this)->
+                replace_auxiliary_sprite(991);
             aux_renderer_154->field_f8 = 10.0f;
             aux_renderer_154->field_fc = 10.0f;
             aux_renderer_154->x_e8 = sprite_004.object_x_0e8;
@@ -560,7 +550,8 @@ action848_select:
             sprite_004.reset_one_118 = scaled_x + 0.5f;
             float const scaled_y = unsigned_random_as_float(5) * 0.1f;
             sprite_004.reset_one_11c = scaled_y + 0.1f;
-            rebuild_aux_renderer_45cd70(991);
+            reinterpret_cast<AnimationAuxiliarySpriteOwnerView *>(this)->
+                replace_auxiliary_sprite(991);
             aux_renderer_154->field_f8 = 10.0f;
             aux_renderer_154->field_fc = 10.0f;
             aux_renderer_154->x_e8 = sprite_004.object_x_0e8;

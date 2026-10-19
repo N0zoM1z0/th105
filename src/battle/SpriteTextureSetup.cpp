@@ -1,15 +1,7 @@
-#include "EffectSprite.hpp"
+#include "SpriteTextureSetup.hpp"
 #include "ui/Title.hpp"
 
 namespace th105 {
-// Local physical view of the target CSpriteEx prefix. No object of this
-// view is constructed and no shared vtable or class declaration is changed.
-class SpriteTextureSetupView : public CSpriteEx {
-public:
-    void set_texture_options(unsigned handle, int x, int y,
-        int width, int height, int pivot_x, int pivot_y);
-};
-
 // This helper and every call to it belong to this TU. VC8 privately passes
 // self in EAX and pops only the six float arguments; do not expose that
 // generated ABI as an external stdcall/fastcall/member declaration.

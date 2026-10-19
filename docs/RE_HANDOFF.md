@@ -38,9 +38,9 @@ promotion. Current nine-file pins are in
 `build/archive-loader-shape-20261019/primary-db-after.json` is the predecessor.
 Target/mapped text and callable bytes remain unchanged.
 
-Last checked ledger census: 4024 candidates; 1548 authored, 1417 excluded,
-1059 in review; 1463 mapped, 1444 source-present; 1337 exact / 226461 bytes;
-522 match units. These are ledger totals, not a cold aggregate replay.
+Read the current ledger census with `report-reconstruction-status.py --summary`.
+The auxiliary-sprite checkpoint adds one independently replayed authored
+function /344 exact bytes; it does not assert cold aggregate verification.
 `claims.csv` remains header-only. Source presence, mapping and diagnostic
 interval equality confer no exact credit. The Reimu CPU root remains
 source-present in a probe unit with no exact result.
@@ -229,6 +229,30 @@ out-of-body p-code addresses. Decompiler text remains a hypothesis.
 
 See [exact recovery and analysis safety](OBJECT_ACTION980_WORD_ABI_2026_10_19.md).
 
+## Auxiliary-sprite provider exact checkpoint
+
+`AnimationAuxiliarySprite_replace @45CD70` now matches344/344 under
+`cross-v106a-animation-auxiliary-sprite`. All102 instructions/344 bytes are
+reachable, with eight direct calls, one RET4 and INT3 boundaries. The target
+allocates108h and naturally constructs/destroys an actual CSpriteEx member at
+zero. The selected composed runtime view gives frame offsets atF0/F4, scales
+atF8/FC, angle100 and the independently used x/y/facing fields atE8/EC/104.
+
+Native checked `map.find(resource_id)->second->frames[0]` must remain one full
+expression. Splitting a sequence pointer ends the real iterator lifetime too
+early: the body remains344 bytes but has8h versus target0Ch locals and twelve
+unequal bytes. Used rectangle snapshots across texture-vector at() recover
+the target argument carriers; no artificial frame storage is added. Real
+std::map/std::vector preserve complete equality. Native map find also matches
+the already excluded105-byte45C320; no compiler credit is added.
+
+The existing texture-provider ABI view is now shared by declaration only;
+its193/193 and261/261 accepted bodies replay exact. Youmu856/902 now call the
+accepted provider through its typed owner view. Its entire5488-byte canonical
+payload remains594a91c1, with no owner/execution regression. Read
+[provider boundary, lifetime and exact evidence](ANIMATION_AUXILIARY_SPRITE_2026_10_19.md).
+No aggregate cold replay or authored percentage is claimed.
+
 ## Current YoumuObject entry initializer
 
 Root543670 remains source-present/nonexact over5159 bytes. The selected
@@ -236,9 +260,10 @@ Root543670 remains source-present/nonexact over5159 bytes. The selected
 following the target's actual ordering. It calls the already matched45C390
 through the existing int ABI facade. Fresh int and natural-short callee
 builds both reproduce202/202; neither uniquely recovers the original C++
-declaration. No shared header, layout, compiler flag or relocation changes.
+declaration. The new auxiliary layout/provider integration is byte-neutral;
+shared texture-provider declarations are replayed as described above.
 
-Source SHAbd1777d6, canonical5488-byte payload594a91c1, prefix5156 and strict
+Source SHA7b0dac5f, canonical5488-byte payload594a91c1, prefix5156 and strict
 first mismatch+80/5436F0. All23 prior equal owner diagnostics survive,29
 primary destinations remain distinct, and the frame remains10h. Conversion
 sites20/21 and RETs22/23 still expose820/850's different sharing.823 register

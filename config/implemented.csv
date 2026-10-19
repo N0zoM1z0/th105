@@ -1442,3 +1442,4 @@ register_package_file_entry
 load_package_archive_impl
 PackageArchiveStore_ctor
 PackageArchiveStore_dtor
+AnimationAuxiliarySprite_replace

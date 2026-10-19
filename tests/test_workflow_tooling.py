@@ -61,23 +61,23 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4024)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1337)
+        self.assertEqual(len(matching), 1338)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1444)
+        self.assertEqual(len(implemented), 1445)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1337
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1338
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 522)
+        self.assertEqual(len(manifest["units"]), 523)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1452,
+            1453,
         )
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:
@@ -979,8 +979,8 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 475)
-        self.assertEqual(sum(map(len, accepted.values())), 1337)
+        self.assertEqual(len(accepted), 476)
+        self.assertEqual(sum(map(len, accepted.values())), 1338)
         secondary = accepted["gpt-web-secondary-animation-runtime"]
         self.assertEqual(
             secondary,
@@ -1665,9 +1665,9 @@ class WorkflowToolingTests(unittest.TestCase):
             f"Origin/boundary review pending | {len(functions) - len(authored) - len(excluded):,}",
             markdown,
         )
-        self.assertIn("Canonical exact functions | 1,337", markdown)
-        self.assertIn("Canonical exact authored bytes | 226,461", markdown)
-        self.assertIn("Source-present authored mappings | 1,444", markdown)
+        self.assertIn("Canonical exact functions | 1,338", markdown)
+        self.assertIn("Canonical exact authored bytes | 226,805", markdown)
+        self.assertIn("Source-present authored mappings | 1,445", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
