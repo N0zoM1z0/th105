@@ -217,3 +217,13 @@ Continue the loader's private vector-helper/EH/frame context and the
 registration, opener and reader/BMP residuals. Original archive class name,
 inheritance, TU partition and game-method ownership remain unknown. The formal
 byte/EH proof does not expand the execution model's OS/runtime coverage.
+
+
+The later [loader context review](PACKAGE_ARCHIVE_LOADER_CONTEXT_2026_10_19.md)
+adds actual native allocator header-method support to this linked unit. A fresh
+public cold rebuild preserves163/163 and228/228 with complete EH replay;
+`build/archive-loader-shape-20261019/store-with-library-formal.json` is the newest
+receipt. Compiler42/42 adds no authored credit. That checkpoint also persists
+four loader/helper ABI views and real Win32 import prototypes in a verified
+private Ghidra copy before primary replacement; its nine-file pins supersede
+the earlier unchanged-primary snapshots described above.

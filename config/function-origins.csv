@@ -601,7 +601,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0041C180,authored_game,assets,authored,observed,canonical-exact-authored
 0x0041C200,compiler_generated,runtime,exclude,observed,archive-string-vector-dtor-vc8-106a
 0x0041C240,compiler_generated,battle,exclude,observed,vc8-generated-effect-animation-sequence-std-comdats-106a
-0x0041C270,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0041C270,compiler_generated,runtime,exclude,observed,package-loader-string-template-context-vc8-106a
 0x0041C320,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041C360,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041C450,unknown,,review,unknown,ida-1.06a-initial-inventory

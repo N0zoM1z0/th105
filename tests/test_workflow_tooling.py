@@ -74,10 +74,10 @@ class WorkflowToolingTests(unittest.TestCase):
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 521)
+        self.assertEqual(len(manifest["units"]), 522)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1451,
+            1452,
         )
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:

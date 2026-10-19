@@ -3186,3 +3186,29 @@ required_dword_values = [
   { address = "0x006BDBAF", value = "0xFFD5E64D" },
   { address = "0x006BE08F", value = "0xFFD5E16D" },
 ]
+
+[[rules]]
+id = "package-loader-string-template-context-vc8-106a"
+addresses = ["0x0041C270"]
+expected_count = 1
+expected_bytes = 162
+expected_names = ["sub_41C270"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual current Store compiled as native COFF beside the real selected CIL package/reader/MT graph preserves allocator<string>::destroy42/RET4 and vector<string>::push_back162/private ESI. Their full canonical bodies reproduce all204 bytes after one/three named REL32 fields, with exact zero internal HIGHLOW coverage. The all-CIL34/161-byte counterparts expose the allocator-parameter pruning mechanism. Native Store COFF really contains the conventional destroy COMDAT; no artificial ABI provider or copied template body is used. Target loader caller and EH-only fill caller independently establish physical inputs. Source/header identities and full behavior corroborate compiler ownership; allocator4102D0 remains excluded by its pre-existing vc8-generated-cfile-list-std-comdats-106a anchor. Only vector162 is a new exclusion; no authored exact credit or unique original-release/TU claim. docs/PACKAGE_ARCHIVE_LOADER_CONTEXT_2026_10_19.md; build/archive-loader-shape-20261019/native-owner/{allocator-destroy,push-back}-replay.json."
+required_body_hashes = [
+  { address = "0x0041C270", size = 162, sha256 = "924c9a86c11ae4ebb63357e9f7289dbc0c6140f6cf9d46a02648bafe8aeb1d0b" },
+]
+required_direct_edges = [
+  { caller = "0x0041BA70", site = "0x0041BB47", target = "0x0041C270", caller_status = "implemented" },
+]
+required_dword_values = [
+  { address = "0x006E4174", value = "0x0041D563" },
+  { address = "0x006E4198", value = "0x00000001" },
+  { address = "0x006E419C", value = "0x006E4178" },
+  { address = "0x0041D56D", value = "0x56105D8B" },
+  { address = "0x0041D570", value = "0xE8CB8B56" },
+  { address = "0x0041D574", value = "0xFFFF2D58" },
+]

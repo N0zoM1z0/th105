@@ -27,14 +27,17 @@ The target passes verification. The attached IDA session still reports a
 SHA256 beginning `10350095`, so do not use its semantic data. Hash-attested
 raw PE analysis is available. Independently re-attest any direct Ghidra
 project before using it; do not use the factory adapter or patch target bytes.
-The newest CPU-root checkpoint intentionally adds accepted metadata in a
-verified private Ghidra copy, reopens it for readback, then replaces the primary
-project. Target/mapped bytes remain unchanged; nine new primary file hashes
-are recorded in `build/reimu-cpu-root/primary-db-after.json`.
+The current primary now includes the archive loader/template ABI views and
+three typed Win32 import functions, saved in a private copy and reopened for
+readback before promotion. The boolean loader return is explicitly AL:1.
+Current nine-file pins are in
+`build/archive-loader-shape-20261019/primary-db-after.json`; the older
+`build/reimu-cpu-root/primary-db-after.json` describes the predecessor.
+Target/mapped text and all bounded instruction scopes remain unchanged.
 
-Last checked ledger census: 4024 candidates; 1548 authored, 1416 excluded,
-1060 in review; 1463 mapped, 1444 source-present; 1336 exact / 226138 bytes;
-521 match units. These are ledger totals, not a cold aggregate replay.
+Last checked ledger census: 4024 candidates; 1548 authored, 1417 excluded,
+1059 in review; 1463 mapped, 1444 source-present; 1336 exact / 226138 bytes;
+522 match units. These are ledger totals, not a cold aggregate replay.
 `claims.csv` remains header-only. Source presence, mapping and diagnostic
 interval equality confer no exact credit. The Reimu CPU root remains
 source-present in a probe unit with no exact result.
@@ -442,16 +445,40 @@ reachable target instructions covered; the omitted pair is the impossible
 nil-vector arm after successful append. Four exception-call-boundary controls
 compare live root EH states and call prefixes. Win32/STL/registration are
 modeled; malformed/short-read inputs and OS unwinding remain outside the proof.
-Ordinary source598/frame138h remains selected; its public vector push_back has
-ECX this versus target private ESI, so the formal probe fails closed on that
-unmapped call. A genuine source/CRT GL closure links without unresolved symbols
-but gives627/frame148h versus target629/frame150h and different private callees.
-The vector helper has only this one raw direct incoming lead. An RTM
-executable-path control with SP1 object-reader/CRT fallback retains a627-byte/200-instruction
-root with differing linked addresses; it is not stock-RTM provenance evidence.
-No fake ABI mapping or exact credit is added. Nine primary Ghidra DB pins agree;
-read-only aliases are removed. Receipts: `build/package-loader-20261019/`.
-Continue vector-helper visibility, EH/frame and real TU context, then reader/BMP.
+Ordinary source598/frame138h remains selected and fails closed on the ECX
+vector call. Fresh current-source controls recover the target's full162-byte
+ESI push_back when real native allocator<string>::destroy retains its stack
+argument/RET4. That42-byte allocator was already compiler-excluded by the
+CFileList/deque<string> native anchor; an unclassified function status was not
+unknown origin. Only vector162 is newly excluded; fill170 remains in review.
+Its target EH landing41D563 is required to see the allocator parameter use:
+ordinary reach51 instructions expands to all66 through the observed FuncInfo.
+
+Sixteen successful source-partition/normal-ABI controls retain a627/628-byte
+aligned loader/frame148h, or differ further with native registration/MT. The
+native owner produces the full helper; a minimal explicit instantiation of the
+same real VC8 header method preserves it while keeping the owner in CIL.
+`src/library/StdStringAllocator.cpp` has a dedicated formal42/42 compiler-only
+unit and supplies native support to the existing linked lifetime unit; its
+163/228 accepted bodies and complete EH replay remain exact. No authored exact
+increment, padding, buffer resizing or false ordinary-probe binding is added.
+
+Two minimal-library actual graphs each pass9 full scenarios/31 archive API
+calls/194 registration entries, including8/12-archive fast-vector paths, native
+containers, CRC/MT and complete destruction with no live allocations. The
+native-owner pair also passes. Win32/allocator/ASCII stricmp are modeled; OS
+unwind, full CRT startup, failures, concurrency and malformed input remain
+outside this proof. Detailed controls and current pins:
+[loader context review](PACKAGE_ARCHIVE_LOADER_CONTEXT_2026_10_19.md),
+`build/archive-loader-shape-20261019/`.
+
+The four function bodies, physical parameter storage/purges, explicit AL return
+and real Win32 import prototypes now persist in the verified primary Ghidra
+project. Earlier archive readbacks had only existed in temporary read-only
+views. Decompilation remains a hypothesis with incomplete deeper callee/EH
+models. Continue the whole629-byte caller's count-join/register/frame and source
+partition constraints. Original path-buffer capacity and game-method ownership
+remain unknown; the selected256-byte buffer is unchanged.
 
 ## Current physical archive store
 
@@ -465,8 +492,8 @@ source-present and authored, now formally exact163/163 and228/228. Actual startu
 atexit6BEE60 callbacks establish the global lifecycle; destructor explicitly
 clears names/map/count before automatic member destruction.
 
-All17 existing affected units/36 outcomes are unchanged, including22 accepted
-exact functions. Current-source loader100 cases pass again. Seven actual
+At the physical-owner source checkpoint, all17 affected units/36 outcomes
+were unchanged, including22 accepted exact functions. Current-source loader100 cases pass again. Seven actual
 whole-graph scenarios execute initialization, containers, CRC/MT,170 entry
 registrations over11 archive API calls, and final destruction; target/source
 allocation sequences agree and no owned allocation survives. Win32/allocator/
@@ -481,7 +508,8 @@ has163/228 lifecycle bodies and complete private zero-difference replay of
 both bodies, five cleanups, two handlers, FuncInfo and unwind tables.
 
 The formal linked unit now uses real pinned static DLL CRT libraries and a
-small actual Store/Node/Critical CIL aggregate. The strict lifecycle contract
+small actual Store/Node/Critical CIL aggregate, now with the real native
+allocator header-method support. The strict lifecycle contract
 attests native60-byte zero BSS ownership, real CRT initializer-table retention,
 complete17/5-byte initializer/atexit helpers, unexported private entries, native
 cookie/vtable identity and all associated cleanup EH code/data. Every supported
@@ -500,9 +528,9 @@ tests pass under both supported Capstone versions. Receipts:
 `build/archive-linked-contract/*-formal.json`; detailed contract and limits in
 [the store review](PACKAGE_ARCHIVE_STORE_2026_10_19.md).
 
-Direct read-only Ghidra verification from the prior source checkpoint remains
-unchanged; this comparator work uses the hash-attested PE and no database
-semantic data. Original class name/inheritance, TU partition and game-method
+The lifetime exact-acceptance work used hash-attested PE comparison and the
+prior read-only Ghidra evidence. The newer loader ABI checkpoint above persists
+related metadata in the primary; use its current pins. Original class name/inheritance, TU partition and game-method
 ownership remain unknown. Next continue loader629 private helper/EH/frame
 context and reader/BMP/registration/opener residuals; these remain nonexact.
 

@@ -19653,6 +19653,7 @@ object = "build/match-units/GptWeb_PackageArchiveStore.dll"
 profile = "vc8-sp1-ltcg-o2"
 enable_gs = true
 link_runtime = "static"
+linked_coff_sources = ["src/library/StdStringAllocator.cpp"]
 link_runtime_data = ["___security_cookie"]
 notes = "Actual archive-store/node/critical CIL context and real pinned static DLL CRT. Natural private global ctor/dtor require native zero-storage layout, real C++ table and atexit reachability, complete cleanup-only EH and all HIGHLOW fields. Original class name/TU ownership remain unknown. docs/PACKAGE_ARCHIVE_STORE_2026_10_19.md."
 link_data_targets = [
@@ -19708,3 +19709,16 @@ rel32_targets = [
   "??1?$map@IUPackageFileIndexNode@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIUPackageFileIndexNode@th105@@@std@@@4@@std@@QAE@XZ=0x0041B970",
   "??3@YAXPAX@Z=0x006898EA",
 ]
+
+[units.gpt-web-vc8-string-allocator-destroy]
+kind = "probe"
+source = "src/library/StdStringAllocator.cpp"
+object = "build/match-units/GptWeb_Vc8StringAllocator.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Compiler-library source only: explicit instantiation of the actual pinned VC8 header method. Independent CFileList origin anchor already identifies target42-byte allocator<string>::destroy; no authored source/match credit. Ordinary thiscall callable ABI preserves the dependent CIL fill allocator parameter and162-byte vector push_back in truthful context controls. docs/PACKAGE_ARCHIVE_LOADER_CONTEXT_2026_10_19.md."
+
+[[units.gpt-web-vc8-string-allocator-destroy.functions]]
+address = "0x004102D0"
+symbol_base = "?destroy@?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@QAEXPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]

@@ -145,4 +145,8 @@ The subsequent physical-store batch rebuilds17 existing affected units and
 preserves all36 outcomes/22 accepted functions. Its current-source100-case
 loader model is under `build/package-loader-context-20261019/`. Full lifecycle
 execution and private constructor/destructor/EH receipts are in the
-[store review](PACKAGE_ARCHIVE_STORE_2026_10_19.md); none adds exact credit.
+[store review](PACKAGE_ARCHIVE_STORE_2026_10_19.md). The later formal linked
+contract accepts391 lifecycle bytes; the loader remains nonexact. Its fresh
+[template/ABI controls and persisted analysis](PACKAGE_ARCHIVE_LOADER_CONTEXT_2026_10_19.md)
+supersede the historical independent-global controls for current-source context
+claims, without changing this selected source.
