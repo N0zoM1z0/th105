@@ -32,9 +32,9 @@ verified private Ghidra copy, reopens it for readback, then replaces the primary
 project. Target/mapped bytes remain unchanged; nine new primary file hashes
 are recorded in `build/reimu-cpu-root/primary-db-after.json`.
 
-Last checked ledger census: 4023 candidates; 1543 authored, 1415 excluded,
-1065 in review; 1458 mapped, 1439 source-present; 1333 exact / 225099 bytes;
-518 match units. These are ledger totals, not a cold aggregate replay.
+Last checked ledger census: 4023 candidates; 1544 authored, 1415 excluded,
+1064 in review; 1459 mapped, 1440 source-present; 1333 exact / 225099 bytes;
+519 match units. These are ledger totals, not a cold aggregate replay.
 `claims.csv` remains header-only. Source presence, mapping and diagnostic
 interval equality confer no exact credit. The Reimu CPU root remains
 source-present in a probe unit with no exact result.
@@ -275,7 +275,7 @@ LTCG source-interface control differs only in seven allocator fields and still
 has438h frame; its package helper remains unresolved. Current source SHA is
 109e8b2c; receipts: `build/cbitmap-bmp-eh-20261019/`. No new exact credit.
 Continue indexed table-address/base lifetime recovery and truthful provider
-context. Reviewing retained40CF40 source (213 bytes) is a concrete dependency
+context. Reviewing40CF40 target (213 bytes) is a concrete dependency
 step; actual package-entry CALL is41BFA0. Do not assume a compiler-phase cause.
 
 The [reader-opening dependency review](FILEREADER_OWNER_OPEN_2026_10_19.md)
@@ -291,9 +291,39 @@ and records CF40 as212/213 at+0. The installed RTM control is byte-identical
 to SP1 on this source. No source/header/flag changes are selected;
 constructor/force-inline/nonthrowing/EH-mode controls remain private and fail
 the full target. The related BMP unit retains all five accepted members.
-Receipts: `build/filereader-open-20261019/`. Next bounded dependency is the
-missing package-entry implementation@41BFA0 (candidate356 bytes), to replace
-opaque provider context before returning to CF40/BMP code generation.
+Receipts: `build/filereader-open-20261019/`. The package-entry dependency now
+has reviewed source, as recorded below; CF40/BMP remain nonexact.
+
+## Current package-entry opener
+
+The [package-entry review](PACKAGE_FILE_ENTRY_2026_10_19.md) closes the356-byte,
+126-instruction `open_package_file_entry @41BFA0`, maps/selects its source and
+classifies its game archive policy as authored. Raw target data proves that
+the20-byte record's +04 is archive index and +0C is file offset; old field
+names were incorrect. A shared node header corrects these roles without
+changing layout or the accepted43-byte destructor. Singleton CRC hits skip
+filename comparison; collision chains use stricmp. Outputs precede opening,
+open failure retains them, and seek failure is ignored.
+
+The243-case target/source instruction model agrees, covering122/126 root
+instructions and all45 search-helper instructions. Locale/Win32 I/O are
+modeled and invalid-vector cases stop at the CRT entry. Ordinary source is
+283 bytes with public find105 and separate vector[]68. The target search
+helper41C450 instead takes ESI/EAX/stack4. Its false standard-ABI mapping is
+deliberately absent, so the new probe fails closed on that unresolved call.
+No exact credit is added; the helper remains separately in origin review.
+
+Real-source GL controls recover stack alignment and vector inlining but
+produce333-byte opener/private find116. A complete reader/BMP link now closes
+without unresolved symbols or force flags, using the already-exact CRC source
+and real zlib/CRT providers. CF40 stays at its ordinary212-byte canonical hash;
+BMP becomes2152 callable +45 metadata with the same438h frame, still different
+from target2230/430h. Missing source declarations alone do not explain the
+remaining mismatch. All12 accepted members across the four focused reader,
+BMP, node and score-lookup units replay exact. Nine Ghidra database hashes are
+unchanged. Receipts: `build/package-entry-20261019/`. Next recover the real
+second search caller41BCF0 and its helper visibility/partition before further
+reader/BMP code-generation tuning. No routine cold aggregate replay was run.
 
 ## Current Reimu CPU root
 

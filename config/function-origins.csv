@@ -596,7 +596,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0041B980,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041BA70,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041BCF0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0041BFA0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0041BFA0,authored_game,assets,authored,observed,package-file-entry-open-authored-106a
 0x0041C110,authored_game,assets,authored,observed,canonical-exact-authored
 0x0041C180,authored_game,assets,authored,observed,canonical-exact-authored
 0x0041C240,compiler_generated,battle,exclude,observed,vc8-generated-effect-animation-sequence-std-comdats-106a

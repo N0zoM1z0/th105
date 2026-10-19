@@ -1437,3 +1437,4 @@ ScoreData_record_sequence_result
 Reimu_update_cpu_action_policy
 ReimuObject_initialize_action_entry
 FileReaderOwner_open
+open_package_file_entry

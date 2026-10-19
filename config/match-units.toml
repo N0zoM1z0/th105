@@ -18368,7 +18368,7 @@ source = "src/assets/PackageFileIndexRuntime.cpp"
 object = "build/match-units/GptWeb_PackageFileIndexRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current package-file index node normal destructor @ 0x0041B850. Package index insertion/update root 0x0041BCF0 builds 0x14-byte nodes with heap path plus offset/size/key/next. Natural C++ ownership is mixed: path_00 uses CRT free while next_10 is recursively destroyed and operator-deleted. This exact allocator split is canonical 43/43."
+notes = "Current package-file index node normal destructor @ 0x0041B850. Package index insertion/update root 0x0041BCF0 builds 0x14-byte nodes with heap path plus archive-index/size/offset/next; lookup41BFA0 corrects the old scalar names without changing layout. Natural C++ ownership is mixed: path_00 uses CRT free while next_10 is recursively destroyed and operator-deleted. This exact allocator split is canonical 43/43."
 
 [[units.gpt-web-package-file-index-runtime.functions]]
 address = "0x0041B850"
@@ -19580,4 +19580,23 @@ dir32_targets = [
   "__real@40200000=__real@40200000",
   "__real@42960000=__real@42960000",
   "__real@3fc00000=__real@3fc00000",
+]
+
+[units.gpt-web-package-file-entry]
+kind = "probe"
+source = "src/assets/PackageFileEntry.cpp"
+object = "build/match-units/GptWeb_PackageFileEntry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Behavior-reviewed356-byte stdcall archive opener. Ordinary source283 bytes has public ECX/sret-stack map find and an out-of-line vector operator[]; target41C450 uses private ESI/EAX/key-stack4 and target vector indexing is inlined. Intentionally leave those two call targets unresolved rather than replay a false ABI or invent a callable. Real-source GL controls align the stack and inline vector but remain333 bytes with a different private find boundary. No exact credit. docs/PACKAGE_FILE_ENTRY_2026_10_19.md."
+
+[[units.gpt-web-package-file-entry.functions]]
+address = "0x0041BFA0"
+symbol_base = "?open_package_file_entry@th105@@YGPAXPBDPAK1@Z"
+rel32_targets = ["?case_insensitive_crc32@th105@@YAIPBEH@Z=0x00406930", "__invalid_parameter_noinfo=0x0068A143", "__stricmp=0x0068B038"]
+dir32_targets = [
+  "?g_package_entry_map@th105@@3V?$map@IUPackageFileIndexNode@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIUPackageFileIndexNode@th105@@@std@@@4@@std@@A=?g_package_entry_map@th105@@3V?$map@IUPackageFileIndexNode@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIUPackageFileIndexNode@th105@@@std@@@4@@std@@A",
+  "?g_package_archive_names@th105@@3V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@A=?g_package_archive_names@th105@@3V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@A",
+  "__imp__CreateFileA@28=__imp__CreateFileA@28",
+  "__imp__SetFilePointer@16=__imp__SetFilePointer@16",
 ]

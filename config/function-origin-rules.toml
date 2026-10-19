@@ -3124,3 +3124,18 @@ subsystem = "config"
 disposition = "authored"
 confidence = "observed"
 evidence = "Hash-attested Fighter_finalize_sequence_entry45D110 calls this ScoreData method after the real singleton getter. Complete159-byte raw CFG gates on application game/session modes and increments the first record matching two application keys in the observed-record vector at198hex. The SDK checked iterator is inlined into authored record policy. New selected source is complete but142/159 nonexact; native1323 cases run real getters with1317 RETs and6 genuine invalid-parameter entries. Required source provider for Iku's real link, not a library-only wrapper or exact claim. docs/IKU_REAL_LINK_2026_10_17.md."
+
+[[rules]]
+id = "package-file-entry-open-authored-106a"
+addresses = ["0x0041BFA0"]
+expected_count = 1
+expected_bytes = 356
+expected_names = ["sub_41BFA0"]
+origin = "authored_game"
+subsystem = "assets"
+disposition = "authored"
+confidence = "observed"
+evidence = "Closed126-instruction/356-byte stdcall root implements game archive policy around the native checked map and filename vector: CRC lookup, optional collision chain, output size/offset publication, GENERIC_READ CreateFileA, and ignored-result absolute seek. The reviewed FileReaderOwner_open40CF40 calls it for the RTTI-owned package-reader constructor path. Container helper41C450 remains separately in review; its private ESI/EAX/key-stack ABI is not fabricated as a source facade. Fresh source is present but nonexact. docs/PACKAGE_FILE_ENTRY_2026_10_19.md."
+required_body_hashes = [{ address = "0x0041BFA0", size = 356, sha256 = "0fe57031fa66c1e1141f945c79607ccd0d7cade48ba30ea4058b7c8c12a440c3" }]
+required_direct_edges = [{ caller = "0x0040CF40", site = "0x0040CF87", target = "0x0041BFA0", caller_status = "implemented" }]
+required_selected_body_calls = [{ owner = "0x0041BFA0", site = "0x0041BFC1", target = "0x00406930" }]
