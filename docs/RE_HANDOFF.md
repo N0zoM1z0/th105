@@ -33,7 +33,7 @@ project. Target/mapped bytes remain unchanged; nine new primary file hashes
 are recorded in `build/reimu-cpu-root/primary-db-after.json`.
 
 Last checked ledger census: 4023 candidates; 1545 authored, 1415 excluded,
-1063 in review; 1460 mapped, 1441 source-present; 1333 exact / 225099 bytes;
+1063 in review; 1460 mapped, 1441 source-present; 1334 exact / 225747 bytes;
 519 match units. These are ledger totals, not a cold aggregate replay.
 `claims.csv` remains header-only. Source presence, mapping and diagnostic
 interval equality confer no exact credit. The Reimu CPU root remains
@@ -388,12 +388,37 @@ replace its retained `open_reader` declaration-only alias with the independently
 reviewed FileReaderOwner operation on the observed receiver prefix; do not
 invent a source provider or a private register convention.
 
-The same ledger census finds seven remaining nonexact scalar-new aliases to
-665B8A, in the plain/encoded file-buffer, palette, wave and battle-info-gauge
-units. Their source expressions/declarations still need review; the address
-list is `build/allocator-interface-20261019/remaining-array-bindings.json`.
-Treat these as the next bounded interface audit, then resume archive-loader
-context recovery. No unreviewed alias is changed by the current batch.
+The seven remaining aliases have now been reviewed in the checkpoint below:
+six are array expressions needing their proper declarations, while the gauge
+function actually calls the scalar entry689DCB.
+
+## Current exact fighter gauge binding
+
+`BattleInfoRecordF8_bind_fighter @46FA90` is now canonical648/648 in
+`gpt-web-battle-info-gauge-runtime`; the same object keeps both existing value
+virtuals20/20 and27/27. This adds one exact authored function /648 bytes.
+The [ownership/layout evidence](BATTLE_INFO_GAUGE_BINDING_2026_10_19.md) closes
+all186 instructions through RET4 at46FD15, with complete body/payload SHA256
+`e44f2c92e653701f1356ce5eb1cdb9a524d60e42e4cd381965b50bda800f985d`.
+
+Old source used the wrong release family/order, read four bytes where target
+consumes a signed word, and retained earlier field pointers across stages.
+Correct scalar new/delete targets, release-before-allocation, real pointer/span
+lifetimes, double/float endpoint stages and the observed UI binding receiver
+at object+18 with its gauge slot+A0 recover the whole target. A flat view first
+gave647 bytes; the supported receiver view gives648 without padding or a custom
+ABI. Original UI subobject class identity remains unknown. All23 relocation
+fields, including ten allocator/deallocator calls, five vptr stores and eight
+literal references, replay completely. The local Fighter view changes no shared
+layout. Nine Ghidra primary file hashes stay unchanged.
+
+The other six loader probes now include real array-new declarations. Their
+complete ordinary payloads are unchanged and remain nonexact: plain224/234,
+encoded275/267, palette1007/1047 and247/243, wave250/247 and439/459. No runtime
+or exclusion credit is added. Receipts: `build/array-declarations-20261019/`.
+Only affected focused units are replayed; no cold aggregate claim is made.
+Next resume archive-loader41BA70/input/global visibility before revisiting
+reader/BMP code generation.
 
 ## Current Reimu CPU root
 

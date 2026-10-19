@@ -18345,7 +18345,7 @@ source = "src/assets/FileBufferRuntime.cpp"
 object = "build/match-units/GptWeb_FileBufferRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current plain 8-byte file-buffer loader @ 0x00419860. Wrappers 0x00408DB0/0x00408E40 preserve receiver ECX and call this path when encoded-resource mode is disabled; encoded mode rewrites .cv0/.cv1 and calls private sibling 0x00419950. Natural source is 224/234 first mismatch +0x0E. A bounded same-TU visible FileReaderOwner destructor witness is 234/234 but still mismatches at +0x0E, so it receives no exact credit."
+notes = "Current plain 8-byte file-buffer loader @ 0x00419860. Wrappers 0x00408DB0/0x00408E40 preserve receiver ECX and call this path when encoded-resource mode is disabled; encoded mode rewrites .cv0/.cv1 and calls private sibling 0x00419950. Natural source is 224/234 first mismatch +0x0E. A bounded same-TU visible FileReaderOwner destructor witness is 234/234 but still mismatches at +0x0E, so it receives no exact credit. Real <new> declarations now select array-new symbol665B8A for the retained array expressions; complete comparison payloads remain unchanged. docs/BATTLE_INFO_GAUGE_BINDING_2026_10_19.md."
 
 [[units.gpt-web-file-buffer-runtime.functions]]
 address = "0x00419860"
@@ -18353,7 +18353,7 @@ symbol_base = "?load_plain@FileBufferView@th105@@QAE_NPBD@Z"
 rel32_targets = [
   "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
   "??1FileReaderOwner@th105@@QAE@XZ=0x0040CF20",
-  "??2@YAPAXI@Z=0x00665B8A",
+  "??_U@YAPAXI@Z=0x00665B8A",
   "_free=0x0068AA26",
   "@__security_check_cookie@4=0x00689D25",
 ]
@@ -18436,14 +18436,14 @@ source = "src/assets/PaletteDataRuntime.cpp"
 object = "build/match-units/GptWeb_PaletteDataRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Game-side 8-byte palette owner used by resource path 0x00408F70. BMP loader 0x00419A60 parses 8-bit BMP palettes and converts to requested 16/24/32-bit entries; making the real FileReaderOwner destructor visible in this TU naturally recovers the shipped inline cleanup. It remains 1007/1047 because target uniquely realigns ESP to 8 bytes, which standalone and bounded /GL+/LTCG probes do not reproduce. Adjacent raw palette loader 0x00419E80 is 247/243 and target receives its object privately in EDI; no private calling convention is fabricated."
+notes = "Game-side 8-byte palette owner used by resource path 0x00408F70. BMP loader 0x00419A60 parses 8-bit BMP palettes and converts to requested 16/24/32-bit entries; making the real FileReaderOwner destructor visible in this TU naturally recovers the shipped inline cleanup. It remains 1007/1047 because target uniquely realigns ESP to 8 bytes, which standalone and bounded /GL+/LTCG probes do not reproduce. Adjacent raw palette loader 0x00419E80 is 247/243 and target receives its object privately in EDI; no private calling convention is fabricated. Real <new> declarations now select array-new symbol665B8A for the retained array expressions; complete comparison payloads remain unchanged. docs/BATTLE_INFO_GAUGE_BINDING_2026_10_19.md."
 
 [[units.gpt-web-palette-data-runtime.functions]]
 address = "0x00419A60"
 symbol_base = "?load_bmp_palette@PaletteDataView@th105@@QAE_NPBDE@Z"
 rel32_targets = [
   "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
-  "??2@YAPAXI@Z=0x00665B8A",
+  "??_U@YAPAXI@Z=0x00665B8A",
   "_free=0x0068AA26",
   "@__security_check_cookie@4=0x00689D25",
 ]
@@ -18457,7 +18457,7 @@ address = "0x00419E80"
 symbol_base = "?load_raw_palette@PaletteDataView@th105@@QAE_NPBD@Z"
 rel32_targets = [
   "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
-  "??2@YAPAXI@Z=0x00665B8A",
+  "??_U@YAPAXI@Z=0x00665B8A",
   "_free=0x0068AA26",
   "@__security_check_cookie@4=0x00689D25",
 ]
@@ -18472,14 +18472,14 @@ source = "src/audio/WaveDataRuntime.cpp"
 object = "build/match-units/GptWeb_WaveDataRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current game-side WaveData loaders owned by DirectSound resource dispatch. .cv3 uses ordinary stdcall WaveData/path ABI; RIFF/WAVE target is LTCG scalar-replaced across ECX/stack fields, so tracked source preserves the natural 0x1C WaveData API and accepts a formal nonexact ABI residual rather than inventing registers."
+notes = "Current game-side WaveData loaders owned by DirectSound resource dispatch. .cv3 uses ordinary stdcall WaveData/path ABI; RIFF/WAVE target is LTCG scalar-replaced across ECX/stack fields, so tracked source preserves the natural 0x1C WaveData API and accepts a formal nonexact ABI residual rather than inventing registers. Real <new> declarations now select array-new symbol665B8A for the retained array expressions; complete comparison payloads remain unchanged. docs/BATTLE_INFO_GAUGE_BINDING_2026_10_19.md."
 
 [[units.gpt-web-wave-data-runtime.functions]]
 address = "0x00419590"
 symbol_base = "?load_cv3_wave_data@th105@@YG_NPAUWaveData@1@PBD@Z"
 rel32_targets = [
   "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
-  "??2@YAPAXI@Z=0x00665B8A",
+  "??_U@YAPAXI@Z=0x00665B8A",
   "_free=0x0068AA26",
   "@__security_check_cookie@4=0x00689D25",
 ]
@@ -18493,7 +18493,7 @@ address = "0x00419690"
 symbol_base = "?load_wave_data@th105@@YG_NPAUWaveData@1@PBD@Z"
 rel32_targets = [
   "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
-  "??2@YAPAXI@Z=0x00665B8A",
+  "??_U@YAPAXI@Z=0x00665B8A",
   "_free=0x0068AA26",
   "@__security_check_cookie@4=0x00689D25",
 ]
@@ -18508,14 +18508,14 @@ source = "src/assets/FileBufferEncodedRuntime.cpp"
 object = "build/match-units/GptWeb_FileBufferEncodedRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current .cv0/.cv1 decoded 8-byte file-buffer loader @ 0x00419950. Exact wrappers rewrite the extension and enter a target-private ESI receiver; source preserves the normal member API and exact XOR key schedule, with private ABI retained as a formal nonexact blocker."
+notes = "Current .cv0/.cv1 decoded 8-byte file-buffer loader @ 0x00419950. Exact wrappers rewrite the extension and enter a target-private ESI receiver; source preserves the normal member API and exact XOR key schedule, with private ABI retained as a formal nonexact blocker. Real <new> declarations now select array-new symbol665B8A for the retained array expressions; complete comparison payloads remain unchanged. docs/BATTLE_INFO_GAUGE_BINDING_2026_10_19.md."
 
 [[units.gpt-web-file-buffer-encoded-runtime.functions]]
 address = "0x00419950"
 symbol_base = "?load_encoded@FileBufferEncodedView@th105@@QAE_NPBD@Z"
 rel32_targets = [
   "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
-  "??2@YAPAXI@Z=0x00665B8A",
+  "??_U@YAPAXI@Z=0x00665B8A",
   "_free=0x0068AA26",
   "@__security_check_cookie@4=0x00689D25",
 ]
@@ -18668,7 +18668,7 @@ source = "src/battle/BattleInfoGaugeRuntime.cpp"
 object = "build/match-units/GptWeb_BattleInfoGaugeRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current BattleInfoRecordF8 fighter binding owns game TGageValue<int*> / TGageValue<short*> specializations. Ordinary template value() bodies are canonical exact 20/20 and 27/27. bind_fighter uses exact-backed record fields and start/end gauge construction and formally replays 655/648, first mismatch +0x02: target keeps a 0x0C conversion frame while standalone VC8 keeps 0x08. No dummy stack state."
+notes = "Game TGageValue int*/short* virtuals20/27 and complete BattleInfoRecordF8 bind648 are canonical exact. Binding reads signed16-bit fighter inputs, releases each old gauge with scalar delete before scalar new, captures the real per-stage pointer/span lifetimes and uses the observed UI binding receiver+18/gauge+A0 layout. Double loop endpoints retain the target float rounding. The class identity behind that bounded UI view remains unknown. docs/BATTLE_INFO_GAUGE_BINDING_2026_10_19.md."
 
 [[units.gpt-web-battle-info-gauge-runtime.functions]]
 address = "0x0046FA50"
@@ -18682,8 +18682,8 @@ symbol_base = "?value@?$TGageValue@PAF@th105@@UAEMXZ"
 address = "0x0046FA90"
 symbol_base = "?bind_fighter_46fa90@BattleInfoRecordF8@th105@@QAEXPAUFighter@2@@Z"
 rel32_targets = [
-  "??2@YAPAXI@Z=0x00665B8A",
-  "_free=0x0068AA26",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??3@YAXPAX@Z=0x006898EA",
 ]
 dir32_targets = [
   "??_7?$TGageValue@PAH@th105@@6B@=??_7?$TGageValue@PAH@th105@@6B@",

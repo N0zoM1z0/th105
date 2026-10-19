@@ -1,5 +1,6 @@
 #include "FileReader.hpp"
 
+#include <new>
 #include <stdlib.h>
 
 namespace th105 {

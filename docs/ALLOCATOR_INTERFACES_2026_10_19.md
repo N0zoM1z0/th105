@@ -122,7 +122,10 @@ scalar-new symbols to665B8A:419860,419A60,419E80,419590,419690,419950 and46FA90.
 Their corresponding source expressions and declarations need separate review;
 they are leads rather than automatically invalidated functions. The complete
 unit/source/address list is `remaining-array-bindings.json` in the receipt
-directory. None is changed in this batch.
+directory. None is changed in this batch. The later
+[gauge/array-declaration checkpoint](BATTLE_INFO_GAUGE_BINDING_2026_10_19.md)
+reviews all seven: six are array declarations, while46FA90 actually calls
+scalar new689DCB and now matches648/648 after ownership/layout corrections.
 
 No exact authored numerator changes and no cold aggregate replay is claimed.
 Keep original compiler/TU ownership, SFL floating-point/frame behavior and

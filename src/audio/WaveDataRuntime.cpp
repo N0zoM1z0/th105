@@ -1,6 +1,7 @@
 #define TH105_FILE_READER_OWNER_DTOR_VISIBLE
 #include "assets/FileReader.hpp"
 
+#include <new>
 #include <stddef.h>
 #include <stdlib.h>
 

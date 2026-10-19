@@ -1,6 +1,7 @@
 #define TH105_FILE_READER_OWNER_DTOR_VISIBLE
 #include "FileReader.hpp"
 
+#include <new>
 #include <stdlib.h>
 
 namespace th105 {
