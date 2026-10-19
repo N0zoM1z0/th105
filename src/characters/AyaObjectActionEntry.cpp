@@ -145,7 +145,6 @@ void AyaObjectActionEntryView::initialize_action_entry()
     state_36c = 0;
 
     float *shared_heading;
-    double shared_angle;
     float shared_scalar;
 
     switch (action_id_13c) {
@@ -154,7 +153,7 @@ void AyaObjectActionEntryView::initialize_action_entry()
         phase_index_184 = 1;
         sprite_004.reset_one_118 = 2.0f;
         sprite_004.reset_one_11c = 2.0f;
-        shared_angle = shared_heading[0];
+        sprite_004.reset_zero_128 = shared_heading[0];
         state_364 = 3;
         goto action800_810_select;
 
@@ -190,9 +189,8 @@ void AyaObjectActionEntryView::initialize_action_entry()
         sprite_004.reset_one_118 = 1.5f;
         phase_index_184 = 1;
         sprite_004.reset_one_11c = 1.5f;
-        shared_angle = shared_heading[0];
+        sprite_004.reset_zero_128 = shared_heading[0];
     action800_810_select:
-        sprite_004.reset_zero_128 = static_cast<float>(shared_angle);
         select_sequence(static_cast<int>(shared_heading[2]));
         return;
 

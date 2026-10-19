@@ -77,7 +77,7 @@ another vtable implementation merely because it uses the same slot number.
 ## Complete selected root result
 
 Selected source SHA256 is
-`8f0364340bc1f3d3e693199a49321ee969e79d9f1c068351f8e704a8e9b736f7`.
+`5ca0fb4209861320d3e69564de51cc53f0ced9ff062e30990c537f1b5b0bb104`.
 The canonical4859-byte COFF payload SHA256 is
 `6f70b6f354fdff459a628bdfbf0a7a3c12fe854a65f95f6cf33731b5d606b066`.
 Code-prefix/table start remains4532; actual RET remains at4530. Comparison
@@ -110,6 +110,68 @@ machine changes are the19 commuting call preparations, the complete dataflow
 comparison is more direct than a sampled replacement-helper execution.
 No new native gameplay or exception-equivalence claim is made.
 
+## Direct angle writeback and a closed native context
+
+The selected source now writes800/810's angle fields directly before their
+common selector tail. It removes the double `shared_angle` temporary, whose
+only role was to copy an already loaded float. This source spelling remains
+an inference. Its observed ordinary4859-byte payload is fully identical to
+the preceding8f036434 source: the same two callable bytes differ, and no
+metadata or helper/branch byte changes. No new exact credit is claimed.
+
+This also changes the genuine `/GL`+`/LTCG` experiment. The selected5ca0fb42
+source now has the target10h local frame,4532 metadata start, and full4859
+byte envelope in a real diagnostic DLL. It closes through seven ordinary
+source-provider units and CRT startup, with no invented caller, code stub,
+ABS code binding or execution. The quantized lookup definitions are genuinely
+compiled with the same private float return declarations as their consumers;
+there is no float/double symbol alias. Fresh paired compilation verifies that
+the float/double variants' complete94/88-byte raw sections and symbol/addend
+relocation inventories agree. This source-to-source correspondence does not
+accept either helper against target; their known nonexact status remains.
+The sole same-target function alias joins the two receiver-only names for
+596370. Shared sources, compiler profiles and accepted helpers are unchanged.
+
+Independent linked replay checks all188 owned relocation fields:60 REL32
+edges (59 CALLs and the qualified596370 tail),94 numeric literals, two table
+addresses and32 internal code pointers. All128 PE HIGHLOWs match the DIR32
+inventory. Every direct edge reaches its named real provider; literal bits,
+widths and read-only storage and local pointer roles agree before replay.
+All other instruction/data bytes agree with the ordinary object. The envelope
+comes from the qualified ordinary COFF extent and reconciled CFG, rather than
+an assumed next-MAP-symbol function boundary. Callable credit remains4531
+bytes; the one NOP and327 metadata bytes remain outside it.
+
+The resulting payload is again6f70b6f3 with only the two ModRM differences.
+This closes the previous frame/envelope obstacle for this diagnostic context;
+it does not explain the remaining register choice or prove an original TU.
+The source CIL owns the exported entry10001000. Producer and replay receipts
+are under `build/aya-entry-registers/link/`; link receipt SHA256 is
+`aa06891c8b520ccd0bf129233aacc61c4810095cf5cf1592bbc9ae8bcca82e20`.
+The private diagnostic reproduction is
+`python3 -B build/aya-entry-registers/link-context.py` followed by
+`python3 -B build/aya-entry-registers/audit-link.py`; this is not an accepted
+linked-unit command.
+
+Fresh unselected source controls on8f036434 are also recorded there. Explicit
+856 active-branch joins, expanding its target pointer reads, and the two852
+chained scale assignments each retain the full6f70b6f3 payload. A real two-float
+direction value instead changes the frame10h->18h and85 callable bytes.
+Combining852 chains with the already rejected float copy gives4540/4867
+prefix/payload. A signed64-bit sequence conversion introduces `_ftol2`;
+canonicalization rejects that unbound REL32 in both856-only and all-call
+forms, including explicit final narrowing. Target68A1A0 instead has an SSE2
+CVTTSD2SI EAX path and a fallback branch. No `_ftol2` binding is invented.
+
+A fresh direct read-only Ghidra pass independently checks file/imported
+identity, entry, the complete mapped text and this4531-byte root before
+semantics. Temporary thiscall/void/body metadata is read back, and bounded
+800/810/856 pcode and decompiler output remain hypotheses. All nine primary
+DB hashes remain unchanged and the project alias is removed. The384MiB,
+CPU0/nice10 script/output are under `.analysis/aya-entry-registers-20261019/`
+and `build/aya-entry-registers/`. No IDA semantics, factory adapter or target
+patch is used.
+
 ## Rejected controls and analysis limits
 
 The saved pre-change baseline is sourcec9d1abb5, canonical payloadb4f36926.
@@ -125,7 +187,7 @@ the19 conversion-helper calls, so it is not selected. Narrowing the real
 float-copy-only shared_angle alias to float adds eight bytes and is rejected.
 Do not repeat these unchanged controls as if the source context were new.
 
-The subsequent action856 pass starts from selected8f036434 and retains the
+The earlier action856 pass started from source8f036434 and retained the
 same6f70b6f3 payload/two differences. A double Y-offset literal, direct
 angle-argument expression, EHa exception model, generic copied-word storage
 with real float reads, and a layout-checked multiple-inheritance model are
@@ -147,9 +209,9 @@ source change, native claim or exact credit follows. Receipts are under
 `.analysis/aya-entry-action856-20261019/` leaves all nine DB hashes unchanged
 and removes its alias.
 
-A genuine /GL diagnostic uses seven actual source-provider objects, real
-static CRT/SDK libraries and real DLL startup. The baseline and preserved-type
-short source both acquire an aligned EBP frame, unlike target. The short
+The earlier /GL diagnostic used seven actual source-provider objects, real
+static CRT/SDK libraries and real DLL startup. The old baseline and preserved-type
+short sources both acquired an aligned EBP frame, unlike target. The short
 source fixes the call preparations even there. A float-copy variant restores
 the entry frame but retains the wrong4540-byte metadata boundary. Linked
 images are neither executed nor accepted; preliminary table/CFG inspection

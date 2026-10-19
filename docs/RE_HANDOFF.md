@@ -204,18 +204,28 @@ provider in `scripts/probes/animation-sequence-word-abi.cpp` is202/202 using
 the existing animation-sequence unit comparator, with no duplicate credit.
 The shared int facade and all accepted units elsewhere are unchanged.
 
-Source SHA8f036434/canonical4859-byte payload6f70b6f3 differs only at
+Source SHA5ca0fb42/canonical4859-byte payload6f70b6f3 differs only at
 61FCA7/+BF7 and61FCAF/+BFF: action856 uses EAX for the same heading-pointer
 load/FLD where target uses ECX. Every other byte and all metadata agree.
 Owner diagnostics31/33 and an almost-identical payload are not exact credit.
-The preserved-type genuine /GL link retains a wrong aligned frame; the real
-float-copy variant restores its entry but moves metadata to4540. No linked
-image is executed or accepted. See
-[sequence-word ABI evidence](AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md).
-The follow-up action856 controls leave that source/payload unchanged:
-double Y offset, direct argument, EHa, raw word storage, verified-offset
-multiple inheritance and the inlined repeated operation are byte-neutral.
-Sequence snapshots/extra angle rounding regress the target shape. New
+Direct800/810 angle-field writes remove the double float-copy carrier without
+changing any ordinary payload byte. The new genuine `/GL /LTCG` diagnostic now
+has the target10h local frame and4532 metadata start. Independent replay of
+all188 relocation fields and128 HIGHLOWs proves its complete4859-byte payload
+equals the ordinary candidate: the same two ModRM bytes remain. There are
+no placeholder functions, fabricated callers, ABS code bindings or float/double
+symbol aliases. The image is unexecuted and does not prove the original TU.
+See [sequence-word ABI evidence](AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md).
+A fresh384MiB/CPU0 read-only Ghidra pass attests imported/file identity,
+entry, mapped text and the root before decompilation; nine DB pins agree and
+its alias is removed. Current receipts are under `build/aya-entry-registers/`.
+Fresh856 branch joins,
+expanded target reads and852 scale chains are byte-neutral; a real two-float
+direction value changes the frame, and int64 conversion introduces an unbound
+`_ftol2` rather than testing the target call. Earlier action856 controls also
+remain unselected: double Y offset, direct argument, EHa, raw word storage,
+verified-offset inheritance and the inlined repeated operation. Sequence
+snapshots/extra angle rounding regress the shape. Earlier
 receipts are below `build/aya-entry-action856/`; nine read-only Ghidra DB
 pins remain unchanged and its alias is removed. Two-byte register context
 remains unknown; no exact credit.

@@ -17774,7 +17774,7 @@ source = "src/characters/AyaObjectActionEntry.cpp"
 object = "build/match-units/GptWeb_AyaObjectActionEntry.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Source-present4531-byte AyaObject initializer@61F0B0, nonexact at+BF7 with only two byte differences. Local vslot0C parameter short recovers all19 sequence virtual-call preparations; natural short provider is202/202 at45C390 under the existing animation-sequence unit comparator, with no duplicate credit. Remaining bytes61FCA7/61FCAF select EAX instead of ECX for action856 heading. Complete metadata agrees; prefix4532/sectiontail4859 and31/33 owner diagnostics do not confer exactness. Existing ABI views/accepted units elsewhere are unchanged. docs/AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md."
+notes = "Source-present4531-byte AyaObject initializer@61F0B0, nonexact at+BF7 with two ModRM differences. Local short vslot0C recovers all19 selector preparations. Direct800/810 angle-field writeback removes the float-copy double carrier while preserving the complete6f70b6f3 payload; source SHA5ca0fb42. This source also closes a genuine GL/LTCG diagnostic with the target10h frame,4532 metadata start and4859 envelope, unlike the earlier aligned-frame controls. Independent188-field/128-HIGHLOW replay proves linked/ordinary payload equality, not target exactness. Remaining61FCA7/61FCAF use EAX instead of ECX in856. Complete metadata agrees;31/33 diagnostics confer no credit. Shared types/helpers/profiles are unchanged. docs/AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md."
 
 [[units.gpt-web-aya-object-action-entry.functions]]
 address = "0x0061F0B0"
