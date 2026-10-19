@@ -172,6 +172,15 @@ CPU0/nice10 script/output are under `.analysis/aya-entry-registers-20261019/`
 and `build/aya-entry-registers/`. No IDA semantics, factory adapter or target
 patch is used.
 
+A final getter control on the selected5ca0fb42 source replaces only856's
+selector input with a real forced-inline member returning, respectively,
+float value, const float reference, or const float pointer. Each compiles
+and preserves the complete6f70b6f3 payload, all19 conversion calls and the
+same two differences. None is selected and no original getter API is inferred.
+Fresh baseline, sources, commands and full packets are under
+`build/aya-entry-getter/`. Further unchanged source-API tuning is deferred
+pending new ownership/TU evidence.
+
 ## Rejected controls and analysis limits
 
 The saved pre-change baseline is sourcec9d1abb5, canonical payloadb4f36926.

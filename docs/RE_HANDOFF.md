@@ -230,6 +230,15 @@ receipts are below `build/aya-entry-action856/`; nine read-only Ghidra DB
 pins remain unchanged and its alias is removed. Two-byte register context
 remains unknown; no exact credit.
 
+The final5ca0fb42 getter audit is also byte-neutral for float value, const
+reference and pointer member returns at856. Preserve the selected source;
+receipts are under `build/aya-entry-getter/`. Next bounded work is the authored
+CBitmapData BMP loader@419FF0, whose2230-byte candidate currently compares
+as2197 bytes. Reconcile its raw callable/metadata end before accepting a
+compiler boundary, then investigate the430h/438h frame and reader lifetime.
+This switches to another substantial source recovery rather than repeating
+Aya's already excluded API controls.
+
 ## Current Reimu CPU root
 
 A second large Reimu root is now identified: `Reimu_update_cpu_action_policy`
