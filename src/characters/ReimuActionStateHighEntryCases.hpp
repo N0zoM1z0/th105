@@ -129,9 +129,10 @@
             return true;
         }
         const int count_limit = selected_action == 600 ? 5 : selected_action == 601 ? 10 : 14;
-        if (sequence_13e == 1 && word_730 < count_limit
-                && (selected_action == 602 ? frame_counter_144 == 0 && frame_timer_142 == 0
-                    && frame_index_140 == 0 : frame_counter_144 % 5 == 0)) {
+        if (selected_action == 602
+                ? frame_counter_144 == 0 && frame_timer_142 == 0
+                    && frame_index_140 == 0 && sequence_13e == 1 && word_730 < count_limit
+                : sequence_13e == 1 && word_730 < count_limit && frame_counter_144 % 5 == 0) {
             dispatch_character_wave_handle(8);
             float angle;
             if (selected_action == 600)
@@ -163,8 +164,10 @@
         if (sequence_13e == 0 && frame_index_140 == 2 && frame_timer_142 == 0) {
             set_word_48a(40);
             dispatch_indexed_event_member(23);
-            emit_fighter_effect(115, static_cast<float>(x_ec - facing_104 * 2),
-                static_cast<float>(y_f0 + 120.0), static_cast<unsigned char>(facing_104), 1);
+            const int direction_bits = static_cast<unsigned char>(facing_104);
+            emit_fighter_effect(115,
+                static_cast<float>(x_ec - static_cast<signed char>(direction_bits) * 2),
+                static_cast<float>(y_f0 + 120.0), direction_bits, 1);
             dispatch_indexed_sequence_window_45c8b0(0, selected_action == 601 ? 5 : 2, 60);
             advance_secondary_event_effect_cycle();
         }

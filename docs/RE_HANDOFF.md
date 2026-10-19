@@ -62,45 +62,52 @@ and 11 switches. See [boundary evidence](REIMU_ACTION_ENTRY_2026_10_17.md).
 Do not promote staging methods to original compiler boundaries or add an
 implemented/matches row without complete supporting evidence.
 
-The current source checkpoint joins416's sequence1/3 and546's sequence5 action9
-returns. Their complete physical CALL/RET group is now416/502/503/507/508/512/
-513/522/546, matching target487495/48749E.545 retains the separate47EDB4 group.
-All1209 previously equal complete membership/multiplicity checks are preserved;
-five previously unequal checks improve. Indirect totals are now220/219: the
-preceding220/220 concealed both the missing separate300/320 CALL and an extra
-546 CALL. Counts alone are not ownership proof. The earlier414 shared exit and
-three distinct410/414/416 effect tails remain selected, with full43524057/57
-ownership preserved. See [shot/fan shared exit and lifetime controls](REIMU_SHOT_FAN_SHARED_EXIT_2026_10_19.md)
-and the preceding [414 evidence](REIMU_414_SHARED_EXIT_2026_10_19.md).
+The current checkpoint restores602's frame-counter/timer/index-first firing
+guard and600/601/602's wide facing carrier for effect115. Each selected argument
+preparation now agrees with all16 target instructions/64 canonical bytes. The
+carrier is used as signed-byte X input and unsigned direction; layout and helper
+ABIs are unchanged. All1214 prior equal complete membership/multiplicity checks
+survive.601/602/604 now join the target's slot14 majority group;605/608/651/658
+remain different. A broader650/651 carrier control loses ten earlier landing
+checks and is unselected. See [602 guard and direction evidence](REIMU_602_GUARD_AND_DIRECTION_2026_10_19.md).
+
+Earlier416/546 action9 sharing,414's shared exit and the three distinct effect62
+tails remain selected. Indirect totals220/219 still expose300/320's missing
+physical copy; the earlier220/220 concealed an extra546 CALL. See
+[shot/fan sharing](REIMU_SHOT_FAN_SHARED_EXIT_2026_10_19.md) and
+[414 evidence](REIMU_414_SHARED_EXIT_2026_10_19.md). Local byte windows and correct
+counts do not establish whole-root exactness.
 
 Current pins:
 
 | Artifact | Value |
 | --- | --- |
-| Ordinary object SHA256 | `184aed3c175ef7176d365f5f8af8d101c01b1b65a848dfa9dda05f1c220b962f` |
-| Generated source SHA256 | `8751b9289dae10c5046c2970f73f15a556190aec99eb2fe9cf234d5193f4ac4f` |
-| Ordinary/genuine canonical payload SHA256 | `01a4ea74a7c14599883ade651d1f2fa2173ebe9be31bfccc1c96d56fcf09246a` |
-| Producer receipt SHA256 | `77acf756c4b5c871b3086e2e89a4d3f508faf14559f59f1726c1f874ddfcf402` |
-| Payload / prefix / frame | 82840 / 81468 / 570h |
+| Ordinary object SHA256 | `fa172c304ff7bf7cf5291487bcbee9f71b009656ed8918b5ec0abf667a0eeff7` |
+| Generated source SHA256 | `c9107448d21588ecd59f4b528b14ec7a82fb7d77a4f8c13d6b7c9f6f5c562481` |
+| Ordinary/genuine canonical payload SHA256 | `6527316db79ea2e1e3dd600c057f6376b472fcf43f7f6d9f2f861dac716481a8` |
+| Producer receipt SHA256 | `de9c95cd46d9bcbcbecee1034bc46214a5ae79e26e60875799fe7d2ab45e22c6` |
+| Payload / prefix / frame | 82824 / 81452 / 570h |
 | First strict mismatch | +541 / 4791BD, conditional-branch operand at 4791BB |
 
 Genuine and ordinary payloads agree completely, including all2473 replayed
 fields;1281 HIGHLOWs and eight separate linker alignment bytes qualify.
-All11 switches and15 request-buffer contracts pass. Whole-root source has20257
+All11 switches and15 request-buffer contracts pass. Whole-root source has20254
 reachable instructions versus target20243. Remaining direct partitions are
 4351C0/435D60/45AF40/473DD0/478EE0. Three missing physical direct copies and
 low9/300/320 sharing remain open. Genuine linking remains nonexact to target.
 
-Fresh selected ordinary-root execution passes **0/2675**:1380 shot boundaries,
-1010 integration inputs sampling all128 nondefault actions, and285 nonflat
-surface cases. A new **0/512** exit matrix requires110 actual action9 callbacks
-and RETs across the shared group and independent545, plus guard/sequence neighbors.
-A wrong shared-label source setter9->0 gives **40/512** real mismatches.
-Independent bool staging through546 passes **0/458** motion/required-branch cases.
-Real effect construction/virtual-next/root RET/destruction passes **0/60**, with
-two independent target snapshots agreeing with source. Grounded guard fixtures
-are required: some airborne states first change to9 inside landing, so final
-state9 alone does not prove execution of the root's shared CALL.
+Fresh selected ordinary execution passes0/2675 integration/shot/nonflat cases
+and0/210 cases covering602 firing/misses. The latter require120 actual MT/object854 entries
+and90 RETs, with signed counts/five facings/three native-seeded states/two FP
+precisions. Wrong count<14-><=14 source gives30/210 real mismatches; wrong602
+unsigned X interpretation gives8/100 effect115 mismatches. The complete selected
+payload also equals the private candidate passing0/480 actual next-sequence
+threshold cases and0/100 effect115 entry cases. Independent bool staging through
+606 passes0/2136 cadence/texture/required-branch cases. Code-identical/repeated
+inputs are not additional unique coverage. Both real next-sequence tails are
+sampled through320 callbacks and native root RETs; world requests stop at their
+actual entries. Returning-world/resource graphs and indeterminate740 remain
+outside the proof. No exact credit or all-unit replay is claimed.
 
 New300/320 named-float controls separate landing/gate and reduce differing direct
 partitions5->3, preserving all1209 prior equal checks. They still merge advance
@@ -866,6 +873,12 @@ Its bounded read-only Ghidra recipe is under
 `.analysis/youmu-entry-word-20261019/`; nine DB hashes agree and its alias is
 removed. No new native or linked-image execution is claimed.
 `build/reimu-ltcg/` retains the current 164-file genuine provider/cache set.
+`build/reimu-next-sequence-20261019/` retains current602/600-family qualification,
+selected native/bool-stage/negative receipts and the pinned8751b928 baseline.
+Its `.analysis/reimu-next-sequence-20261019/` recipes cover all source controls,
+raw guard/preparation comparisons and three direct read-only Ghidra checks;
+all nine primary hashes remain unchanged. Keep the baseline and genuine cache;
+regenerable unselected source/object copies are disposable.
 `build/reimu-300320-lifetimes-20261019/` retains current selected sharing,
 relocation, preservation, native/negative, effect and bool-stage receipts.
 Its `.analysis/reimu-300320-lifetimes-20261019/` recipes include two read-only
