@@ -45,10 +45,82 @@ HELPERS.update(
         0x53CBC0: (450, "pingpong"),
         0x68BAAE: (182, "fabs"),
         0x696387: (39, "control_word"),
+        0x5575C0: (200, "owner_effect_gate"),
+        0x4963A0: (66, "state_six_counter"),
+        0x4963F0: (43, "release_secondary"),
+        0x4E0BF0: (314, "turn_toward_related"),
+        0x406540: (63, "atan2"),
+        0x4066B0: (279, "mt_next"),
+        # Same finite CRT atan2 paths reviewed for the fighter projectile audit.
+        # Execute the original instructions; no host-math replacement return.
+        0x68BB70: (10, "crt_atan2_entry"),
+        0x6965AB: (0x196, "crt_atan2_stack_entry_and_postprocessing"),
+        0x6965F3: (0x14E, "crt_math_postprocessing"),
+        0x696774: (60, "crt_math_load_argument"),
+        0x690C07: (0x163, "crt_math_binary_dispatch_and_special_values"),
+        0x69649C: (0x8C, "crt_atan2_table_kernels"),
+        0x6964EC: (9, "crt_half_pi_kernel"),
+        0x690D59: (17, "crt_math_special_status"),
     }
 )
 # The actual spawn body is a boundary, never a fabricated return.
 SPAWN = 0x64CCB0
+BOUNDARIES = {
+    SPAWN: ("spawn", 7, True, True),
+    0x465190: ("owned_spawn", 7, True, True),
+    0x435240: ("effect", 5, False, False),
+    0x496420: ("secondary_setup", 5, False, True),
+}
+MT_INDEX, MT_STATE, MT_BYTES = 0x6FA1FC, 0x6FDEF0, 624 * 4
+
+
+def seed_fixtures(image):
+    """Generate actual MT inputs through the pinned target seed routine."""
+    uc = unicorn.Uc(unicorn.UC_ARCH_X86, unicorn.UC_MODE_32)
+    uc.mem_map(0x400000, 0x311000)
+    uc.mem_write(0x400000, image)
+    uc.mem_map(STACK, 0x10000)
+    packets = {}
+    failures = []
+
+    def instruction(engine, address, size, unused):
+        if not 0x406670 <= address < address + size <= 0x4066AD:
+            failures.append("unreviewed MT seed instruction")
+            engine.emu_stop()
+        elif (
+            bytes(engine.mem_read(address, size))
+            != image[address - 0x400000 : address - 0x400000 + size]
+        ):
+            failures.append("MT seed bytes differ")
+            engine.emu_stop()
+
+    def write(engine, access, address, size, value, unused):
+        if not (
+            STACK <= address <= address + size <= STACK + 0x10000
+            or size == 4
+            and address % 4 == 0
+            and (address == MT_INDEX or MT_STATE <= address < MT_STATE + MT_BYTES)
+        ):
+            failures.append("unreviewed MT seed write")
+            engine.emu_stop()
+
+    uc.hook_add(unicorn.UC_HOOK_CODE, instruction)
+    uc.hook_add(unicorn.UC_HOOK_MEM_WRITE, write)
+    for seed in (0, 5489, 0xFFFFFFFF):
+        sp = STACK + 0xFF00
+        uc.mem_write(sp, struct.pack("<II", RETURN, seed))
+        uc.reg_write(r.UC_X86_REG_ESP, sp)
+        uc.emu_start(0x406670, RETURN, count=10000)
+        if (
+            failures
+            or uc.reg_read(r.UC_X86_REG_EIP) != RETURN
+            or uc.reg_read(r.UC_X86_REG_ESP) != sp + 4
+        ):
+            raise ValueError("actual MT seeding failed: " + str(failures))
+        if struct.unpack("<I", uc.mem_read(MT_INDEX, 4))[0] != 624:
+            raise ValueError("actual MT seed index differs")
+        packets[seed] = bytes(uc.mem_read(MT_STATE, MT_BYTES))
+    return packets
 
 
 def export(path):
@@ -85,6 +157,14 @@ def export(path):
             "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z": 0x406360,
             "?set_oriented_components_f0_f4@CharacterObjectRuntime@th105@@QAEXMM@Z": 0x435160,
             "?update_ping_pong_motion_and_periodic_spawn@CharacterObjectEffectEmitter@th105@@QAEXXZ": 0x53CBC0,
+            "?emit_repeated_effects_for_owner_state@CharacterObjectEffectEmitter@th105@@QAEEHHH@Z": 0x5575C0,
+            "?replace_secondary_animation@CharacterObjectEffectEmitter@th105@@QAEXHMHHH@Z": 0x496420,
+            "?release_secondary_animation_renderer@CharacterObjectEffectEmitter@th105@@QAEXXZ": 0x4963F0,
+            "?turn_heading_toward_related@CharacterObjectEffectEmitter@th105@@QAEXMMM@Z": 0x4E0BF0,
+            "?spawn_unparented_related_object@CharacterObjectEffectEmitter@th105@@QAEPAXHMMHHPBIH@Z": 0x64CCB0,
+            "?advance_state_six_counter_conditional@CharacterObjectRuntime@th105@@QAEEH@Z": 0x4963A0,
+            "?mt19937_next_u32@th105@@YAIXZ": 0x4066B0,
+            "?spawn_owned_object_via_manager@ReimuObjectOwnerSpawnView@th105@@QAEHHMMHHHH@Z": 0x465190,
         }
     )
     b = c.coff_symbol_bytes(path, SYMBOL, S, len(obj.text), targets, data, {})
@@ -92,10 +172,18 @@ def export(path):
 
 
 class Probe:
-    def __init__(self, image, candidate=None):
+    def __init__(self, image, candidate=None, seeds=None):
         self.uc = unicorn.Uc(unicorn.UC_ARCH_X86, unicorn.UC_MODE_32)
         self.uc.mem_map(0x400000, 0x311000, unicorn.UC_PROT_READ | unicorn.UC_PROT_EXEC)
         self.uc.mem_write(0x400000, image)
+        self.seeds = seeds
+        if seeds is not None:
+            self.uc.mem_protect(
+                0x6FA000, 0x1000, unicorn.UC_PROT_READ | unicorn.UC_PROT_WRITE
+            )
+            self.uc.mem_protect(
+                0x6FD000, 0x2000, unicorn.UC_PROT_READ | unicorn.UC_PROT_WRITE
+            )
         self.start = A if candidate is None else S
         self.size = 0 if candidate is None else len(candidate)
         if candidate is not None:
@@ -110,6 +198,15 @@ class Probe:
         self.uc.hook_add(unicorn.UC_HOOK_MEM_WRITE, self.write)
 
     def write(self, uc, access, a, n, value, user):
+        pc = uc.reg_read(r.UC_X86_REG_EIP)
+        if (
+            self.seeds is not None
+            and 0x4066B0 <= pc < 0x4067C7
+            and n == 4
+            and a % 4 == 0
+            and (a == MT_INDEX or MT_STATE <= a < MT_STATE + MT_BYTES)
+        ):
+            return
         if not (
             OWNER <= a <= a + n <= OWNER + 0x388
             or FIGHTER <= a <= a + n <= FIGHTER + 0x800
@@ -127,14 +224,25 @@ class Probe:
         )
         if in_root:
             self.visited.add(a)
-        elif a == SPAWN:
+        elif a in BOUNDARIES:
+            kind, count, copied, receiver = BOUNDARIES[a]
             sp = uc.reg_read(r.UC_X86_REG_ESP)
-            args = list(struct.unpack("<7I", uc.mem_read(sp + 4, 28)))
+            args = list(
+                struct.unpack("<" + "I" * count, uc.mem_read(sp + 4, count * 4))
+            )
+            if copied:
+                if args[6] != 3:
+                    self.failure = "unreviewed copied-word count"
+                    uc.emu_stop()
+                    return
+                args = args[:5] + [
+                    bytes(uc.mem_read(args[5], args[6] * 4)).hex(),
+                    args[6],
+                ]
             self.endpoint = {
-                "kind": "spawn",
-                "receiver": uc.reg_read(r.UC_X86_REG_ECX),
-                "arguments": args[:5]
-                + [bytes(uc.mem_read(args[5], args[6] * 4)).hex(), args[6]],
+                "kind": kind,
+                "receiver": uc.reg_read(r.UC_X86_REG_ECX) if receiver else None,
+                "arguments": args,
             }
             uc.emu_stop()
             return
@@ -153,6 +261,9 @@ class Probe:
     def evaluate(self, case):
         uc = self.uc
         uc.context_restore(self.initial)
+        if self.seeds is not None:
+            uc.mem_write(MT_INDEX, struct.pack("<I", 624))
+            uc.mem_write(MT_STATE, self.seeds[case.get("seed", 5489)])
         uc.mem_write(OWNER, bytes([0xA5]) * 0x388)
         uc.mem_write(FIGHTER, bytes([0xA5]) * 0x800)
         uc.mem_write(STACK + 0xA000, bytes(0x6000))
@@ -169,19 +280,19 @@ class Probe:
         values = [
             (0, "I", 0x6C40A4),
             (0xEC, "f", case.get("x", 640.0)),
-            (0xF0, "f", 100.0),
+            (0xF0, "f", case.get("y", 100.0)),
             (0xF4, "f", case.get("vx", 3.25)),
             (0xF8, "f", -1.5),
             (0x104, "b", case.get("facing", -1)),
             (0x113, "B", case.get("alpha", 200)),
-            (0x11C, "f", 1.25),
+            (0x11C, "f", case.get("scale", 1.25)),
             (0x120, "f", 0.75),
             (0x12C, "f", 37.25),
             (0x130, "I", entry.VECTOR),
             (0x134, "B", 0),
             (0x13C, "h", case["action"]),
             (0x13E, "h", seq),
-            (0x140, "h", 0),
+            (0x140, "h", case.get("frame", 0)),
             (0x142, "h", case.get("timer", 0)),
             (0x144, "i", case.get("counter", 0)),
             (0x148, "h", 1),
@@ -204,6 +315,18 @@ class Probe:
         ]
         for off, fmt, value in values:
             uc.mem_write(OWNER + off, struct.pack("<" + fmt, value))
+        if case["action"] in (800, 801, 804, 807, 808):
+            for off, fmt, value in (
+                (0x170, "I", FIGHTER),
+                (0x338, "I", 0),
+                (0x368, "h", case.get("hold", 0)),
+                (0x36C, "h", case.get("turn", 0)),
+                (0x384, "h", case.get("six_counter", 0)),
+            ):
+                uc.mem_write(OWNER + off, struct.pack("<" + fmt, value))
+            uc.mem_write(
+                entry.PARAMETERS + 12, struct.pack("<f", case.get("mode", 0.0))
+            )
         for off, fmt, value in [
             (0x13C, "h", case.get("owner_action", 150)),
             (0xEC, "f", 515.5),
@@ -261,6 +384,12 @@ class Probe:
             "cw": uc.reg_read(r.UC_X86_REG_FPCW),
             "top": (uc.reg_read(r.UC_X86_REG_FPSW) >> 11) & 7,
             "tags": uc.reg_read(r.UC_X86_REG_FPTAG),
+            "rng": None
+            if self.seeds is None
+            else (
+                bytes(uc.mem_read(MT_INDEX, 4)).hex(),
+                bytes(uc.mem_read(MT_STATE, MT_BYTES)).hex(),
+            ),
         }
 
 
@@ -344,12 +473,134 @@ def cases():
         }
 
 
+def projectile_cases():
+    for action, seq, phase, index, counter in itertools.product(
+        (800, 801, 804, 807, 808),
+        (-1, 0, 1, 2, 3, 4),
+        (0, 1, 2, 4, 5, 6, 9),
+        (0, 1, 255),
+        (0, 1, 5, 10, 11, 61),
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            phase=phase,
+            index=index,
+            counter=counter,
+            cohort="projectile-state",
+        )
+    for action, xpos, ypos, cw in itertools.product(
+        (800, 801, 804),
+        (-101.0, -100.0, 1380.0, 1381.0, float("nan")),
+        (-241.0, -240.0, -121.0, -120.0, 1000.0, 1001.0, float("nan")),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=action,
+            seq=3,
+            counter=1,
+            x=xpos,
+            y=ypos,
+            cw=cw,
+            cohort="projectile-bounds",
+        )
+    for pair, alpha, index in itertools.product(
+        (
+            (800, 1),
+            (800, 2),
+            (801, 2),
+            (801, 3),
+            (804, 2),
+            (807, 0),
+            (807, 1),
+            (808, 0),
+            (808, 1),
+        ),
+        (0, 4, 5, 9, 10, 14, 15, 16, 24, 25, 26, 255),
+        (0, 255),
+    ):
+        yield dict(
+            action=pair[0],
+            seq=pair[1],
+            counter=11,
+            alpha=alpha,
+            vx=1.5,
+            index=index,
+            cohort="projectile-alpha",
+        )
+    for mode, hold, turn, counter, phase, index in itertools.product(
+        (0.0, 1.0), (0, 5), (0, 1), (1, 5, 60, 61), (0, 1, 6), (0, 255)
+    ):
+        yield dict(
+            action=801,
+            seq=1,
+            mode=mode,
+            hold=hold,
+            turn=turn,
+            counter=counter,
+            phase=phase,
+            index=index,
+            cohort="projectile-steering",
+        )
+    for seq, state, index, six_counter, phase, seed in itertools.product(
+        (0, 1), (0, 3), (0, 128, 255), (9, 10), (2, 4, 6), (0, 5489)
+    ):
+        yield dict(
+            action=804,
+            seq=seq,
+            state=state,
+            index=index,
+            six_counter=six_counter,
+            phase=phase,
+            counter=1,
+            seed=seed,
+            cohort="projectile-collapse",
+        )
+    for action, seq, owner in itertools.product(
+        (800, 801, 804, 807, 808), (0, 1), (49, 50, 70, 71, 149, 150)
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            counter=1,
+            owner_action=owner,
+            cohort="projectile-owner-gate",
+        )
+    for ypos, facing in itertools.product(
+        (959.0, 960.0, 961.0, float("nan")), (-128, -1, 0, 1, 127)
+    ):
+        yield dict(
+            action=808,
+            seq=0,
+            counter=5,
+            y=ypos,
+            facing=facing,
+            cohort="projectile-two-request",
+        )
+    for action, seq, scale, timer in itertools.product(
+        (800, 801, 804, 807, 808), (0, 1, 2), (0.5, 1.0, float("nan")), (2,)
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            counter=-1,
+            scale=scale,
+            timer=timer,
+            cohort="projectile-frame",
+        )
+
+
 def main():
     global O
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("object", type=Path)
     parser.add_argument(
         "--output-dir", type=Path, default=R / "build/reimu-object-scalar-native"
+    )
+    parser.add_argument(
+        "--projectiles",
+        action="store_true",
+        help="include800/801/804/807/808 and actual MT fixtures",
     )
     args = parser.parse_args()
     O = args.output_dir
@@ -363,9 +614,12 @@ def main():
     table, receipt = math.lookup_fixture(c)
     image[0x2FE8B0 : 0x2FE8B0 + len(table)] = table
     (O / "lookup-initialization.json").write_text(json.dumps(receipt, indent=2) + "\n")
-    target = Probe(bytes(image))
-    source = Probe(bytes(image), candidate)
+    seeds = seed_fixtures(bytes(image)) if args.projectiles else None
+    target = Probe(bytes(image), seeds=seeds)
+    source = Probe(bytes(image), candidate, seeds=seeds)
     all_cases = list(cases())
+    if args.projectiles:
+        all_cases.extend(projectile_cases())
     h = hashlib.sha256(json.dumps(all_cases, sort_keys=True).encode()).hexdigest()
     differences = []
     endpoints = Counter()
@@ -408,7 +662,14 @@ def main():
                 R / "src/characters/ReimuObjectActionStateStaging.hpp",
             ]
         },
-        "scope": "five supported actions/defaults; actual target helpers, no replacement returns; world spawn entry stops; no full-root or exact claim",
+        "cohorts": dict(Counter(case.get("cohort", "scalar") for case in all_cases)),
+        "seed_fixture_sha256": {}
+        if seeds is None
+        else {
+            str(seed): hashlib.sha256(packet).hexdigest()
+            for seed, packet in seeds.items()
+        },
+        "scope": "admitted scalar/default and optional projectile source paths; actual target helpers, no replacement returns; world spawn entry stops; no full-root or exact claim",
     }
     (O / "scalar-native.json").write_text(json.dumps(report, indent=2) + "\n")
     print(

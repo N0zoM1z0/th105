@@ -298,18 +298,28 @@ auditor closes all10670 instructions and22 switches:404 actual direct CALLs to
 FLD1 at49C35A;4C611D is not an actual callee. Main-span ranking omits61 actual
 remote calls, so use the complete packet for source dependencies.
 
-Handwritten `ReimuObjectActionStateStaging.cpp/.hpp` handles859/860/861/980/998
-and actual defaults with an explicit coverage boolean;36 concrete actions
-remain unsupported. This is not the original void boundary. The new public
-native audit passes0/1625:1612 real RETs and13 actual spawn-entry stops, with
-real animation/math helpers and original-initializer lookup data. Two compiled
-wrong-source controls fail24/54 cases. Six target-auditor tests pass. No exact
-or root source-present credit is added, and no accepted input/binding changes.
-Source/native scopes and direct read-only Ghidra receipts are in
-[Object update evidence](REIMU_OBJECT_UPDATE_2026_10_20.md). All nine primary DB
-hashes stay unchanged; the alias is removed. Next recover800/801/804/807/808
-and continue the remaining31 arms; preserve the separate Fighter478FA0 and
-entry4A1CE0 checkpoints above.
+Handwritten `ReimuObjectActionStateStaging.cpp/.hpp` now also handles
+800/801/804/807/808 alongside859/860/861/980/998 and actual defaults. The explicit
+coverage boolean is not the original void boundary;31 concrete actions remain
+unsupported. Fresh native audit passes0/6292:6074 real RETs,63 unparented/75
+owned spawn entries,26 effect entries and54 secondary-setup entries. Actual
+steering/CRT,268 MT draws, animation and original table initialization execute;
+the null secondary fixture does not cover renderer destruction.
+Compiled wrong801/804/807 sources fail1/34/4 cases. A wrong808 second-word
+assignment passes the first-call native matrix but is rejected by the caller
+audit, retaining that explicit execution-coverage limit.
+
+The808 caller audit proves one buffer reused by49727B/4972C8 and a third-word
+float1 store between them, correcting a Ghidra array-name assumption. It
+invalidates callee-accessible payload across the first call: the second first
+two words remain unknown without returning-world evidence. Native execution
+stops at the first request. Six new fail-closed/caller tests join the six CFG
+tests. See [projectile evidence](REIMU_OBJECT_PROJECTILES_2026_10_20.md) and the
+[initial checkpoint](REIMU_OBJECT_UPDATE_2026_10_20.md). Fresh read-only direct
+Ghidra leaves all nine primary DB hashes unchanged and removes its alias.
+No exact or root source-present credit is added; accepted inputs/bindings stay
+fixed. Next recover810/811/812 and continue the other28 arms; preserve the
+separate Fighter478FA0 and entry4A1CE0 checkpoints above.
 
 ## Shared Object action980 exact checkpoint
 

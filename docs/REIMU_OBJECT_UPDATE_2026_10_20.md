@@ -43,7 +43,8 @@ complete current target/remote call. They do not turn the facts into a match.
 
 ## Handwritten source phase
 
-`ReimuObjectActionStateStaging.cpp/.hpp` introduces an independent runtime
+At the initial88ac760 checkpoint, `ReimuObjectActionStateStaging.cpp/.hpp`
+introduced an independent runtime
 view and a **coverage boolean** method. It is not the original void update
 entry and is not compared against an invented subfunction boundary. It handles
 five complete selected arms and the actual default path; the other36 concrete
@@ -135,6 +136,7 @@ python3 -m unittest discover -s tests -p test_reimu_object_update_target.py
 Private Ghidra recipes are below `.analysis/reimu-object-update-20261020/`;
 target maps, build logs, positive/negative inputs, receipts and the decompiler
 hypothesis stay below the corresponding `build/` directory. Builds are serial.
-Next recover800/801/804/807/808 against their shared exits and actual helper
-contracts, then continue the other31 concrete arms. Existing Fighter478FA0 and
+The [projectile follow-up](REIMU_OBJECT_PROJECTILES_2026_10_20.md) adds
+800/801/804/807/808 against their shared exits and actual helper contracts.
+Another31 concrete arms remain. Existing Fighter478FA0 and
 Object-entry4A1CE0 source/acceptance checkpoints remain unchanged.
