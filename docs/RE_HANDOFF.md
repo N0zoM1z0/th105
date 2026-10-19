@@ -231,36 +231,49 @@ See [exact recovery and analysis safety](OBJECT_ACTION980_WORD_ABI_2026_10_19.md
 
 ## Current YoumuObject entry initializer
 
-Root543670 remains nonexact over5159 bytes, but independently proved
-YoumuObject vtable6C50BC/slot+0C45C390 supports the local short sequence
-declaration. It restores16 additional owner instruction/edge diagnostics,
-6/30->22/30. Action902 now computes decay before phase; its complete
-671-byte/157-instruction owner diagnostic agrees, for23/30 overall.
-No partial or exact credit is added. Source SHA09dd36f0, canonical5488-byte
-payload4b9bf0a4, prefix5156 and strict+80 remain. Conversion sites20/21 and
-RETs22/23 still expose the different820/850 tail.823 registers and851 value
-load timing remain unresolved. The ordinary851 pointer control still merges
-distinct851/854 destinations and is rejected. See
-[Youmu sequence-word evidence](YOUMU_ENTRY_SEQUENCE_WORD_2026_10_19.md).
-The850 angle/comma and all-call direct-short-cast controls are byte-neutral;
-state-before-value and explicit dispatch capture still merge851/854 into28
-owners. A local restrict alias preserves29 but leaves851's early load and
-changes other tails; it is not adopted. Raw factory53B1C0 proves separate
-parameter allocation only on its positive-count path, not a global alias
-contract. Sources and exact credit remain unchanged; receipts are below
-`build/youmu-entry-evaluation/` and nine read-only Ghidra DB pins agree.
-Whole-switch returns->breaks and the823 used payload's scope are also
-byte-neutral. An outer-switch851 pointer capture, unsigned sequence word
-and local fenv_access all regress the current target shape. See the same
-evidence page and `build/youmu-entry-exit-context/`; none is selected. Seek
-new ownership/type/TU evidence before repeating unchanged source controls.
+Root543670 remains source-present/nonexact over5159 bytes. The selected
+851 source now captures heading340, writes state344, then loads heading[2],
+following the target's actual ordering. It calls the already matched45C390
+through the existing int ABI facade. Fresh int and natural-short callee
+builds both reproduce202/202; neither uniquely recovers the original C++
+declaration. No shared header, layout, compiler flag or relocation changes.
 
-Fresh current-word-context duplication/inline-tail controls recover the21/23
-conversion/RET counts but misplace the shared tail and remain23/30. Reversed
-tail ownership, discarded void return expressions and chained scales preserve
-the baseline payload.851 integer/reference carriers regress or merge distinct
-owners. Its retained early double capture remains a hypothesis, not validated
-ordering/alias evidence. See [the bounded controls](YOUMU_CALLER_WIDTH_CONTROLS_2026_10_19.md).
+Source SHAbd1777d6, canonical5488-byte payload594a91c1, prefix5156 and strict
+first mismatch+80/5436F0. All23 prior equal owner diagnostics survive,29
+primary destinations remain distinct, and the frame remains10h. Conversion
+sites20/21 and RETs22/23 still expose820/850's different sharing.823 register
+preparation,821's pointer handoff and851's remaining pointer/call registers
+are open. Exact credit is unchanged.
+
+The new native auditor passes0/592 inputs through592 actual45C390 selector,
+frame, texture and commit chains on each side, with native RETs.588 inputs
+use a separate read-only parameter buffer. Four additional851 ABI stress
+inputs deliberately overlap heading[2]/state344: the target selects256, while
+the old source09dd36f0 selects257 and fails4/592. The corrected source passes
+all four. This distinguishes load order; it does not prove factory-owned
+game objects can contain that overlap. All object bytes, selector arguments,
+helper traces, x87 TOP/control word and nonvolatile registers are checked.
+
+An unselected int-facade850-only control reaches the target21 conversions/23
+RETs,5160-byte prefix, all332 metadata bytes, and only30 callable-byte
+differences. It still retains the wrong851 value order. Combining the two
+improvements merges850's physical copy; explicit dispatch captures preserve
+counts but lose five older equal owners. Shared821/848 pointer and854 joins,
+physical RTTI hierarchy, active payload constness, scalar argument lifetimes,
+and inline helpers do not close the complete target. These are phase-scoped
+controls, not a proved LTCG impossibility. Do not select the30-byte witness
+while reinstating the old851 hypothesis.
+
+Read [current source, execution and control evidence](YOUMU_ENTRY_CALLS_2026_10_19.md).
+Earlier [sequence-word evidence](YOUMU_ENTRY_SEQUENCE_WORD_2026_10_19.md) and
+[caller-width controls](YOUMU_CALLER_WIDTH_CONTROLS_2026_10_19.md) describe the
+predecessor source. Private recipes/receipts are below
+`.analysis/youmu-entry-carriers-20261019/` and
+`build/youmu-entry-carriers-20261019/` (under8MiB combined). Two successful
+read-only,128MiB/CPU0 Ghidra passes independently attest the target and Youmu
+RTTI descriptors; all nine primary database hashes remain unchanged. The
+first missing820-disassembly attempt failed closed and is retained separately.
+IDA preflight still rejects the wrong open image; no IDA semantics are used.
 
 ## Youmu Fighter caller-width follow-up
 

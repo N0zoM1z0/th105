@@ -336,9 +336,12 @@ action850_angle_and_select:
         return;
 
     case 851: {
-        double const sequence_value = heading_340[2];
+        float *const parameters = heading_340;
         state_344 = 1;
-        select_sequence(static_cast<int>(sequence_value));
+        // Same target slot45C390 through its independently matched int ABI view.
+        // Preserve the target value load after state344; see docs/YOUMU_ENTRY_CALLS_2026_10_19.md.
+        reinterpret_cast<AnimationSequenceObjectView *>(this)->select_sequence(
+            static_cast<int>(parameters[2]));
         return;
     }
 
