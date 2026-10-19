@@ -320,9 +320,8 @@ zero_scales_angle_and_positive_sequence:
         if (sequence_index_13e == 5 || sequence_index_13e == 6) {
             float const scaled_y = unsigned_random_as_float(40) * 0.1f;
             velocity_y_f8() = scaled_y + 2.0f;
-            float const scale = unsigned_random_as_float(50) * 0.01f + 0.5f;
-            sprite_004.reset_one_118 = scale;
-            sprite_004.reset_one_11c = scale;
+            sprite_004.reset_one_11c = sprite_004.reset_one_118 =
+                unsigned_random_as_float(50) * 0.01f + 0.5f;
         }
         return;
     case 825:
@@ -517,16 +516,14 @@ zero_scales_angle_and_positive_sequence:
             select_sequence(static_cast<int>(heading_340[2]));
         switch (sequence_index_13e) {
         case 0: case 1: case 2: {
-            float const scale = unsigned_random_as_float(10) * 0.1f + 1.0f;
-            sprite_004.reset_one_118 = scale;
-            sprite_004.reset_one_11c = scale;
+            sprite_004.reset_one_11c = sprite_004.reset_one_118 =
+                unsigned_random_as_float(10) * 0.1f + 1.0f;
             phase_index_184 = 1;
             break;
         }
         case 3: case 4: case 5: {
-            float const scale = unsigned_random_as_float(15) * 0.1f + 0.5f;
-            sprite_004.reset_one_118 = scale;
-            sprite_004.reset_one_11c = scale;
+            sprite_004.reset_one_11c = sprite_004.reset_one_118 =
+                unsigned_random_as_float(15) * 0.1f + 0.5f;
             sprite_004.reset_zero_128 = unsigned_random_as_float(360);
             break;
         }
@@ -537,16 +534,14 @@ zero_scales_angle_and_positive_sequence:
             select_sequence(static_cast<int>(heading_340[2]));
         switch (sequence_index_13e) {
         case 0: case 1: case 2: {
-            float const scale = unsigned_random_as_float(10) * 0.1f + 1.0f;
-            sprite_004.reset_one_118 = scale;
-            sprite_004.reset_one_11c = scale;
+            sprite_004.reset_one_11c = sprite_004.reset_one_118 =
+                unsigned_random_as_float(10) * 0.1f + 1.0f;
             phase_index_184 = 1;
             break;
         }
         case 3: case 4: case 5: {
-            float const scale = unsigned_random_as_float(15) * 0.1f + 0.5f;
-            sprite_004.reset_one_118 = scale;
-            sprite_004.reset_one_11c = scale;
+            sprite_004.reset_one_11c = sprite_004.reset_one_118 =
+                unsigned_random_as_float(15) * 0.1f + 0.5f;
             sprite_004.reset_zero_128 = unsigned_random_as_float(360);
             break;
         }
@@ -621,10 +616,6 @@ zero_scales_angle_and_positive_sequence:
         case 0:
             state_370 = 1.0f;
             break;
-        case 4: case 7:
-            phase_index_184 = 1;
-            sprite_004.reset_zero_128 = heading_340[0];
-            break;
         case 5:
             phase_index_184 = 1;
         case 2: case 8:
@@ -633,6 +624,10 @@ zero_scales_angle_and_positive_sequence:
         case 6:
             phase_index_184 = 1;
         case 3: case 9:
+            sprite_004.reset_zero_128 = heading_340[0];
+            break;
+        case 4: case 7:
+            phase_index_184 = 1;
             sprite_004.reset_zero_128 = heading_340[0];
             break;
         }

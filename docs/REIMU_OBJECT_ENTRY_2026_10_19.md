@@ -99,34 +99,116 @@ with bytes00007F43. Existing relocation keys are unchanged; no older unit
 explicitly references this previously absent key. Shared headers, compiler
 profiles and accepted helper sources are unchanged.
 
+## Chained scale writeback and sequence-table order
+
+**Observed:** the earlier36/43 source7f12f5c1/payload14a90e9d shares822's
+last scale/return tail with901 while owning an extra903 copy. Five natural
+x-then-y chained assignments replace the corresponding local float carriers:
+one in822's5/6 path and four in903/904. They preserve the target field write
+order, `y = x = expression`, and reproduce the target822/903/904 copying and
+scheduling. This source form is an inference; the resulting target instruction
+and edge agreement is observed. No original source spelling is claimed.
+
+Changing903/904 alone gives prefix/payload4864/5412, canonical SHA256
+`ad776ae9d6159bf0ab584c3b5406ae24e09cfc19472bb75119420d8d080c6ab6`.
+Those two owners then differ only in their auxiliary table addresses;822
+still lacks its28-byte copy. Adding822's corresponding chained writeback
+restores prefix/payload4892/5440 and all1325 instructions/39 RETs, reaching
+40/43 diagnostics with no previously equal owner lost. The four additional
+owner diagnostics are822,903,904 and the final default/802 owner. Its callable
+now ends at4A2FFC without candidate post-RET alignment inside the comparison.
+
+The combined five-chain payload is12c13a63. Exporting the complete section
+also exposes11 differing metadata bytes that the owner count does not include.
+Listing908's4/7 group after its5/2/8 and6/3/9 groups follows the raw physical
+tail order. This leaves every callable byte unchanged while correcting all
+of908's auxiliary DWORDs. Only906's three auxiliary entries remain different.
+Compiler metadata remains outside authored callable credit, but its edges
+are retained as a separate reconstruction obligation.
+
+## Independently observed inheritance and bounded controls
+
+Raw COL6D9C8C and its descriptors establish eight RTTI entries, including
+the complete object; every PMD uses pdisp=-1/vdisp=0. Direct read-only Ghidra independently corroborates the names
+and offsets, checks each descriptor/name record against file-backed PE bytes,
+and re-attests executable identity, entry, mapped text and this root:
+
+| Type | Base descriptor | Offset from complete object |
+| --- | --- | --- |
+|ReimuObject|6D9CD4|0|
+|CharacterObjectEx<Reimu, ReimuObject>|6D9C28|0|
+|CharacterObject|6D9BAC|0|
+|CObjectBase|6D9BC8|330h|
+|AttackObject|6D94F8|0|
+|AnimationObject|6D76DC|0|
+|AnimationObjectBase|6D76F8|4|
+|Environment|6D7748|130h|
+
+A private C++ view reproduces this inheritance layout, including the real
+AnimationObjectBase/CObjectBase members and assertions at4/130h/330h and
+sizes158h/330h/348h/388h. On the36/43 source its complete canonical payload
+is identical to14a90e9d. It is not selected; the minimal flat runtime view
+remains adequate for the tested code generation. This does not recover the
+original complete class declarations or every unused virtual slot.
+
+All following controls remain unselected and phase-scoped:
+
+- On the36/43 source, a real shared903/904 scale local and replacing all40
+  outer-switch returns with breaks each retain the full14a90e9d payload.
+- Local `float_control(except, on)` compiles but introduces
+  `_ftol2_sse_excpt`, outside this unit's proved relocation contract. Both
+  public comparison paths fail closed with an unknown REL32 target. No
+  binding to68A1A0 or another entry is invented; this control has no accepted
+  canonical result. It differs from the earlier fenv-access experiment.
+- On the40/43 five-chain source, a908 pointer capture inside4/7, the906 byte
+  access through the high byte of sprite color storage, direct short selector
+  arguments in906/999, a real999 double value capture, and an ordinary
+  inlined phase/angle setter each retain the full12c13a63 payload.
+- Sharing one post-selector heading pointer across908's inner switch gives
+  prefix/payload4904/5452 and32/43 diagnostics. It is not selected.
+- Moving906's local4 case first changes auxiliary aliases but leaves the
+  callable unchanged and three entries wrong. Direct returns from906's
+  inner cases preserve the selected fulla72cf4f1 payload. Neither is selected.
+
+The384MiB/CPU0 Ghidra hierarchy session leaves all nine primary DB file hashes
+unchanged; its project alias is removed. It writes no durable metadata and
+produces no new decompiler/native proof. Raw packets, complete trial sources,
+comparison receipts and the checked hierarchy script remain under
+`build/reimu-object-entry-lifetimes/` and
+`.analysis/reimu-object-entry-lifetimes-20261019/`. No shared header, helper
+implementation, compiler profile or relocation binding changes.
+
 ## Current strict result and open questions
 
 Selected source SHA256:
-`7f12f5c1cd9755235546ce4bfda9f30eb7ca3fa698f04673f7e1b807e7b63386`.
+`4e165b8e1f963eff9fedb2d61dd5c650b5bf41d67e65b1f041f2d43a5d25fcbf`.
 The complete canonical5440-byte section payload SHA256 is
-`14a90e9d621c28bd65132ef1a66362fb114ad66cf179a8d5ae4c9c6e543a04e0`.
-Both source and target primary metadata start at+4892, but the candidate's
-last RET ends at4A2FF9: its three-byte compiler LEA alignment8D4900 occupies
-the rest of that prefix. Target callable bytes extend through4A2FFB.
-The candidate prefix therefore is not a4892-byte callable-body hash.
+`a72cf4f19db686c170b1b2216f0d660a6cb1e28a37831fbb738743ccd8f8ce25`.
+Both callable bodies end at4A2FFC; both metadata starts are+4892. All65 direct
+call sites,39 RETs and1325 instructions retain their target multiplicities.
 
-Strict full-callable comparison remains nonexact at+80/4A1D60, target90 /
-source8D, in the default-exit branch displacement. No partial byte credit
-is assigned. The remaining diagnostics are:
+Strict full-callable comparison remains nonexact at+1140/4A2E20, target57 /
+sourceCE, in the selector-call preparation. There are30 differing callable
+bytes, with no partial byte credit. All earlier36 equal owner diagnostics
+remain equal;40/43 now agree. The remaining owners are:
 
 | Owner | Unclosed physical difference |
 | --- | --- |
-|822|Source shares a floating scale/return tail; target owns its copy|
-|903|Source owns a longer scale/return copy where target shares the904 tail|
-|904|Phase-byte store, x87 temporary and epilogue scheduling|
-|906|Virtual-call and heading-pointer register allocation|
-|908|Phase-byte store and epilogue scheduling in the shared angle paths|
-|999|Heading-pointer and selector-call register allocation|
-|default/802|Candidate's post-RET alignment is included in the diagnostic span|
+|906|Virtual-call and heading-pointer registers; auxiliary entries2/3/5 use different shared angle-tail suffixes|
+|908|Phase-byte store, heading-pointer load and epilogue scheduling in4/7's angle path|
+|999|Heading-pointer and selector-call registers/preparation|
 
-A private whole-function `fenv_access(on)` control regresses36/43 to9/43,
-with no newly equal owner and prefix/payload4948/5496. It is not selected.
-Original sharing, exception delivery, value lifetimes and TU/LTCG context
+The548 metadata bytes differ in three byte positions, all in906's auxiliary
+DWORDs. Its2/5 destinations are target4A2F15/source4A2F31; its3 destination
+is target4A2F31/source4A2F4D. The primary destination/index tables and the
+other six auxiliary tables are byte-identical after canonical replay.
+Candidate4A2F4D is the pointer-load suffix after908's phase store. These
+aliases and that store/load scheduling must be reconciled together; equal
+sizes or an owner count do not establish complete metadata equality.
+
+On the earlier36/43 source, a private whole-function `fenv_access(on)` control
+regresses to9/43 with prefix/payload4948/5496 and is unselected. Original
+remaining sharing, exception delivery, value lifetimes and TU/LTCG context
 remain unknown. Preserve full callable acceptance and existing alias gates.
 
 ## Reproduction and analysis safety

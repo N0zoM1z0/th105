@@ -113,24 +113,31 @@ This does not establish the cause of the remaining sharing differences.
 
 ## Current ReimuObject entry initializer
 
-New active root `ReimuObject_initialize_action_entry @4A1CE0` has complete
+Active root `ReimuObject_initialize_action_entry @4A1CE0` has complete
 source in `src/characters/ReimuObjectActionEntry.cpp`, probe unit
 `gpt-web-reimu-object-action-entry`, and no exact credit. RTTI/vtable6C40A4
 slot3C proves ownership; raw CFG closes all1325 instructions/4892 bytes,
 42 primary destinations, seven auxiliary switches,39 RETs and a596370 tail.
 All65 direct CALLs to ten helpers retain their target multiplicities.
 
-Observed sequence snapshots, shared801/810 pointer lifetime,822 product
-rounding and861 unsigned MT conversion recover36/43 instruction/edge
-diagnostics, without losing previously equal owners. Source SHA7f12f5c1,
-canonical5440-byte payload14a90e9d. Metadata starts4892 on both sides, but
-the candidate body ends4889 then has three compiler alignment bytes. Strict
-comparison first differs+80/4A1D60; equal metadata placement is not acceptance.
-822/903/904 tail copies/scheduling,906/908/999 registers/stores and the last
-alignment remain unresolved. A local fenv control regresses to9/43 and is
-unselected. No new root-native proof or aggregate replay is claimed. See
-[ReimuObject entry evidence](REIMU_OBJECT_ENTRY_2026_10_19.md); receipts are
-below `build/reimu-object-entry/`. Nine read-only Ghidra DB pins agree.
+Five x-then-y chained scale assignments restore the822/903/904 return-copy
+structure, reaching40/43 instruction/edge diagnostics without losing earlier
+equal owners. The candidate callable now ends at4A2FFC with no included
+post-RET alignment. Ordering908's cases by physical tails additionally fixes
+its auxiliary table without changing callable bytes. Source SHA4e165b8e,
+canonical5440-byte payloada72cf4f1; strict first difference+1140/4A2E20.
+
+Only906/908/999 remain different in the body.906 also has three mismatching
+auxiliary entries; six other auxiliary tables and the primary metadata agree.
+The candidate's reuse of908's pointer-load suffix is coupled to its different
+phase-store order. Do not treat owner count or equal extents as full metadata
+proof. No exact credit, new native proof or aggregate replay is claimed. See
+[ReimuObject entry evidence](REIMU_OBJECT_ENTRY_2026_10_19.md). Current receipts
+are below `build/reimu-object-entry-lifetimes/`; earlier source recovery
+receipts remain below `build/reimu-object-entry/`. Raw/Ghidra RTTI establishes
+eight entries including the complete object, with base offsets0/4/130h/330h;
+its typed C++ layout control was byte-neutral.
+Nine read-only Ghidra DB pins agree and the temporary alias is removed.
 All23 accepted members across seven focused helper units replay exact;
 the effect unit's existing nonaccepted5F9350 probe remains nonexact.
 
