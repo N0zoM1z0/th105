@@ -157,44 +157,20 @@ bool CBitmapData::load_bitmap(const char *path)
 
         if (format_04 == 16) {
             palette16 = new unsigned short[256];
-            for (int index = 0; index < 256; index += 4) {
-                palette16[index + 0] = static_cast<unsigned short>(
-                    0x8000 | ((palette[index + 0].red & 0xF8) << 7) |
-                    ((palette[index + 0].green & 0xF8) << 2) |
-                    (palette[index + 0].blue >> 3));
-                palette16[index + 1] = static_cast<unsigned short>(
-                    0x8000 | ((palette[index + 1].red & 0xF8) << 7) |
-                    ((palette[index + 1].green & 0xF8) << 2) |
-                    (palette[index + 1].blue >> 3));
-                palette16[index + 2] = static_cast<unsigned short>(
-                    0x8000 | ((palette[index + 2].red & 0xF8) << 7) |
-                    ((palette[index + 2].green & 0xF8) << 2) |
-                    (palette[index + 2].blue >> 3));
-                palette16[index + 3] = static_cast<unsigned short>(
-                    0x8000 | ((palette[index + 3].red & 0xF8) << 7) |
-                    ((palette[index + 3].green & 0xF8) << 2) |
-                    (palette[index + 3].blue >> 3));
+            for (int index = 0; index < 256; ++index) {
+                palette16[index] = static_cast<unsigned short>(
+                    0x8000 | ((((palette[index].red & ~7) << 5) |
+                    palette[index].green) & ~7) << 2 |
+                    (palette[index].blue >> 3));
             }
             palette16[0] &= 0x7FFF;
         } else if (format_04 == 24) {
             palette32 = new unsigned int[256];
-            for (int index = 0; index < 256; index += 4) {
-                palette32[index + 0] =
-                    0xFF000000u | (palette[index + 0].red << 16) |
-                    (palette[index + 0].green << 8) |
-                    palette[index + 0].blue;
-                palette32[index + 1] =
-                    0xFF000000u | (palette[index + 1].red << 16) |
-                    (palette[index + 1].green << 8) |
-                    palette[index + 1].blue;
-                palette32[index + 2] =
-                    0xFF000000u | (palette[index + 2].red << 16) |
-                    (palette[index + 2].green << 8) |
-                    palette[index + 2].blue;
-                palette32[index + 3] =
-                    0xFF000000u | (palette[index + 3].red << 16) |
-                    (palette[index + 3].green << 8) |
-                    palette[index + 3].blue;
+            for (int index = 0; index < 256; ++index) {
+                palette32[index] =
+                    0xFF000000u | (palette[index].red << 16) |
+                    (palette[index].green << 8) |
+                    palette[index].blue;
             }
             reinterpret_cast<unsigned char *>(palette32)[3] = 0;
         }
@@ -231,9 +207,9 @@ bool CBitmapData::load_bitmap(const char *path)
                     destination[x + field_10 * (field_0c - y - 1)] =
                         static_cast<unsigned short>(pixel[-1] >> 3);
                     destination[x + field_10 * (field_0c - y - 1)] |=
-                        static_cast<unsigned short>((pixel[0] & 0xF8) << 2);
+                        static_cast<unsigned short>((pixel[0] & ~7) << 2);
                     destination[x + field_10 * (field_0c - y - 1)] |=
-                        static_cast<unsigned short>((pixel[1] & 0xF8) << 7);
+                        static_cast<unsigned short>((pixel[1] & ~7) << 7);
                     if ((pixel[-1] | pixel[0] | pixel[1]) == 0)
                         destination[x + field_10 * (field_0c - y - 1)] &= 0x7FFF;
                     else

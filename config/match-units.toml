@@ -18249,7 +18249,7 @@ source = "src/assets/CBitmapDataRuntime.cpp"
 object = "build/match-units/GptWeb_CBitmapDataRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current RTTI/COL 0x006DCFB0 names CBitmapData and vtable 0x006D6E10 owns the complete recovered runtime lane. /GS leaves ctor 23/23, scalar dtor 47/47, normal dtor 21/21, descriptor copy 196/196 and png read callback 33/33 exact. Authored slot1 BMP source is now 2197/2230 after target-backed palette/direct-pixel recovery; PNG/file loaders remain 680/703 and 440/448. Remaining residuals are stack-coloring and FileReaderOwner late-inline/LTCG scheduling; no private ABI or byte shaping is accepted."
+notes = "Current RTTI/COL 0x006DCFB0 names CBitmapData and vtable 0x006D6E10 owns the complete recovered runtime lane. /GS leaves ctor 23/23, scalar dtor 47/47, normal dtor 21/21, descriptor copy 196/196 and png read callback 33/33 exact. BMP callable is [0x00419FF0,0x0041A8A6), 2230 bytes; old 2197-byte COFF total included only 2149 code bytes, three alignment bytes and 45 switch-table bytes. Revised staged RGB1555 quantization/scalar palette loops emit 2133 code bytes plus three alignment and 45 metadata bytes (2181 total), still nonexact at +0x10 with 438h versus target430h frame. Mask widths/grouping, cleanup inlining and register lifetimes remain under investigation; the old claim that only stack coloring remained was unproved. PNG/file loaders remain nonexact 680/703 and 440/448. See docs/CBITMAP_BMP_2026_10_19.md; no private ABI or byte shaping is accepted."
 
 [[units.gpt-web-cbitmap-data-runtime.functions]]
 address = "0x00419F80"

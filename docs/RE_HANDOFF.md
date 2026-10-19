@@ -232,12 +232,34 @@ remains unknown; no exact credit.
 
 The final5ca0fb42 getter audit is also byte-neutral for float value, const
 reference and pointer member returns at856. Preserve the selected source;
-receipts are under `build/aya-entry-getter/`. Next bounded work is the authored
-CBitmapData BMP loader@419FF0, whose2230-byte candidate currently compares
-as2197 bytes. Reconcile its raw callable/metadata end before accepting a
-compiler boundary, then investigate the430h/438h frame and reader lifetime.
-This switches to another substantial source recovery rather than repeating
-Aya's already excluded API controls.
+receipts are under `build/aya-entry-getter/`. Aya remains nonexact; preserve
+this checkpoint while the bounded BMP investigation below is active.
+
+## Current CBitmapData BMP loader
+
+Authored/source-present root@419FF0 has2230 callable bytes ending exclusively
+at41A8A6; RET4 starts41A8A3. Its adjacent45-byte switch metadata is separate.
+Fresh raw CFG reaches666/672 decoded instructions; six alignment instructions
+remain in strict comparison. Three read-only Ghidra runs leave all nine
+primary DB hashes unchanged; aliases are removed. See
+[BMP boundary and source-form audit](CBITMAP_BMP_2026_10_19.md).
+
+The old2197-byte section contained only2149 callable bytes, not2197. The
+old claim that only stack coloring remained was unproved. Selected source
+recovers combined word-mask RGB1555 dataflow and lets VC8 unroll scalar
+palette loops. It emits2133 callable +3 alignment +45 metadata =2181 bytes,
+still frame438h versus target430h and strict mismatch+10h. The larger97-byte
+callable deficit is not an exact-size improvement. No new exact credit.
+
+Both old and selected source pass149 modeled target/candidate execution
+cases, with equal bitmap state, allocations, pixel data and cleanup actions.
+The147 stable-format cases cover633 target instructions; two allocator
+format-mutation stress cases extend coverage to661. These callbacks are model
+assumptions, not observed real allocator behavior. All five accepted siblings remain exact.
+Private ordinary controls and a real-FileReader diagnostic LTCG link remain
+nonexact; the latter lacks the package-file helper provider and cannot support
+acceptance. Receipts: `build/cbitmap-bmp-20261019/`. Continue reader/palette
+lifetime and EH/TU evidence recovery; do not assume a compiler-phase cause.
 
 ## Current Reimu CPU root
 

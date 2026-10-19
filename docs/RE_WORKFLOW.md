@@ -142,7 +142,7 @@ A library fingerprint identifies the origin of the callee bytes, not the values 
 
 ### Main body versus adjacent switch metadata
 
-A source function may branch through compiler-emitted destination/index tables placed immediately after its RET. Do not extend the callable or authored-byte boundary solely to absorb those tables. Prove the main RET boundary independently, record adjacent metadata as structural/switch evidence, and compare callable bytes against that main boundary. `CBitmapData::load_bitmap 0x00419FF0` is the reference case: RET at `0x0041A8A6`, alignment at `0x0041A8A6..A7`, destination table from `0x0041A8A8`, index table from `0x0041A8BC`.
+A source function may branch through compiler-emitted destination/index tables placed immediately after its RET. Do not extend the callable or authored-byte boundary solely to absorb those tables. Prove the main RET boundary independently, record adjacent metadata as structural/switch evidence, and compare callable bytes against that main boundary. `CBitmapData::load_bitmap 0x00419FF0` is the reference case: RET4 at `0x0041A8A3` ending exclusively at `0x0041A8A6`, alignment at `0x0041A8A6..A7`, destination table from `0x0041A8A8`, index table from `0x0041A8BC`.
 
 ### Preserve allocator provenance inside one object lifetime
 
