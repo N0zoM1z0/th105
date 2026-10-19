@@ -5,6 +5,37 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 # but no old-version address is accepted as evidence here.
 
 [[rules]]
+id = "battle-collision-frame-preparation-authored-106a"
+addresses = ["0x0045C500"]
+expected_count = 1
+expected_bytes = 2156
+expected_names = ["sub_45C500"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete645-instruction/2156-byte target CFG, two RET0s and a separate checked-vector throw edge. Three verified calls from the reviewed46DFF0 battle phase pass the actor in ECX. The body snapshots actor/frame state, refreshes collision counts/descriptors, transforms both geometry families and applies frame flags to extension/primary boxes; eleven calls to three canonical-exact geometry providers pin authored game policy. Full2164-byte source is selected after0/1344 native cold/warm input mismatches, with621 normal-path target instructions executed. Frame34h versus target3Ch remains nonexact; no exact credit. The separate vector error helper40C350 remains in origin review. docs/COLLISION_GEOMETRY_PREPARATION_2026_10_19.md."
+required_body_hashes = [{ address = "0x0045C500", size = 2156, sha256 = "79b6295ec257dabdb090b1e3ae8943ccbfd2468fc9d438785215c75ddfec4dff" }]
+required_direct_edges = [
+  { caller = "0x0046DFF0", site = "0x0046E0C2", target = "0x0045C500" },
+  { caller = "0x0046DFF0", site = "0x0046E218", target = "0x0045C500" },
+  { caller = "0x0046DFF0", site = "0x0046E310", target = "0x0045C500" },
+]
+required_selected_body_calls = [
+  { owner = "0x0045C500", site = "0x0045C74F", target = "0x0045B8B0" },
+  { owner = "0x0045C500", site = "0x0045C903", target = "0x0045BA70" },
+  { owner = "0x0045C500", site = "0x0045C914", target = "0x0045B8B0" },
+  { owner = "0x0045C500", site = "0x0045C9BF", target = "0x0045B760" },
+  { owner = "0x0045C500", site = "0x0045CAB2", target = "0x0045BA70" },
+  { owner = "0x0045C500", site = "0x0045CAC3", target = "0x0045B8B0" },
+  { owner = "0x0045C500", site = "0x0045CBB3", target = "0x0045B760" },
+  { owner = "0x0045C500", site = "0x0045CC4A", target = "0x0045BA70" },
+  { owner = "0x0045C500", site = "0x0045CC5D", target = "0x0045B8B0" },
+  { owner = "0x0045C500", site = "0x0045CCD0", target = "0x0045B760" },
+  { owner = "0x0045C500", site = "0x0045CD4D", target = "0x0045B760" },
+]
+
+[[rules]]
 id = "network-udp-connection-worker-authored-106a"
 addresses = ["0x00415D60"]
 expected_count = 1

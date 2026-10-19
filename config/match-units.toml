@@ -19744,3 +19744,23 @@ rel32_targets = [
   "?at@?$vector@IV?$allocator@I@std@@@std@@QAEAAII@Z=0x0040C100",
   "?find@?$_Tree@V?$_Tmap_traits@HPAUAuxiliarySpriteSequenceBlockView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUAuxiliarySpriteSequenceBlockView@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
 ]
+
+[units.gpt-web-collision-geometry-preparation]
+kind = "probe"
+source = "src/battle/CollisionPreparation.cpp"
+object = "build/match-units/GptWeb_CollisionGeometryPreparation.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Full645-instruction2156-byte collision-frame preparation45C500. Source-present only: the natural member receiver and state snapshot are target-backed; source remains nonexact in iterator/index lifetimes and frame. The vector Xran edge40C350 is semantically bound by its checked-at predecessor, error string and out_of_range throw; its origin and exact compiler/EH context remain in review. See docs/COLLISION_GEOMETRY_PREPARATION_2026_10_19.md."
+
+[[units.gpt-web-collision-geometry-preparation.functions]]
+address = "0x0045C500"
+symbol_base = "prepare_collision_geometry_from_frame"
+rel32_targets = [
+  "__ftol2_sse=0x0068A1A0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?_Xran@?$vector@ULocalAabb@?A0xb3abb375@th105@@V?$allocator@ULocalAabb@?A0xb3abb375@th105@@@std@@@std@@KAXXZ=0x0040C350",
+  "?transform_box_from_local_frame_flipped_y@CollisionGeometryObject@?A0xb3abb375@th105@@QAEXPAH0@Z=0x0045B8B0",
+  "?build_oriented_box_and_descriptor@CollisionGeometryObject@?A0xb3abb375@th105@@QAEXPAHFFF00@Z=0x0045BA70",
+  "?transform_box_from_local_frame@CollisionGeometryObject@?A0xb3abb375@th105@@QAEXPAH0@Z=0x0045B760",
+]

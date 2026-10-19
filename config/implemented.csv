@@ -1443,3 +1443,4 @@ load_package_archive_impl
 PackageArchiveStore_ctor
 PackageArchiveStore_dtor
 AnimationAuxiliarySprite_replace
+CollisionGeometry_prepare_from_frame

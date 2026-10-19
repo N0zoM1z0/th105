@@ -1,5 +1,6 @@
 #include <math.h>
 #include <vector>
+#include <stddef.h>
 
 namespace th105 {
 
@@ -34,9 +35,9 @@ struct FrameGeometry {
     unsigned flags_4c;
     unsigned char unknown_50[4];
     LocalAabb *primary_54;
-    std::vector<LocalAabb> group_b_5c;
-    std::vector<LocalAabb> group_a_6c;
-    std::vector<ShapeWords *> group_a_descriptors_7c;
+    std::vector<LocalAabb> group_b_58;
+    std::vector<LocalAabb> group_a_68;
+    std::vector<ShapeWords *> group_a_descriptors_78;
 };
 
 struct CollisionGeometryObject {
@@ -83,15 +84,30 @@ struct CollisionGeometryObject {
 
     void transform_box_from_local_frame(int *record, int *out_box);
     void transform_box_from_local_frame_flipped_y(int *record, int *out_box);
+    void build_oriented_box_and_descriptor(
+        int *record, short angle, short pivot_x, short pivot_y,
+        int *out_box, int *out_descriptor);
 };
 
-void __stdcall build_oriented_box_and_descriptor(
-    int *record,
-    short angle,
-    short pivot_x,
-    short pivot_y,
-    int *out_box,
-    int *out_descriptor);
+
+
+typedef char FrameGeometry_size[sizeof(FrameGeometry) == 0x88 ? 1 : -1];
+typedef char FrameGeometry_group_b_offset[
+    offsetof(FrameGeometry, group_b_58) == 0x58 ? 1 : -1];
+typedef char FrameGeometry_group_a_offset[
+    offsetof(FrameGeometry, group_a_68) == 0x68 ? 1 : -1];
+typedef char FrameGeometry_descriptors_offset[
+    offsetof(FrameGeometry, group_a_descriptors_78) == 0x78 ? 1 : -1];
+typedef char CollisionGeometryObject_size[
+    sizeof(CollisionGeometryObject) == 0x330 ? 1 : -1];
+typedef char CollisionGeometryObject_frame_offset[
+    offsetof(CollisionGeometryObject, frame_158) == 0x158 ? 1 : -1];
+typedef char CollisionGeometryObject_cached_frame_offset[
+    offsetof(CollisionGeometryObject, cached_frame_1a4) == 0x1a4 ? 1 : -1];
+typedef char CollisionGeometryObject_group_a_shapes_offset[
+    offsetof(CollisionGeometryObject, prepared_group_a_shapes_254) == 0x254 ? 1 : -1];
+typedef char CollisionGeometryObject_shape_pointers_offset[
+    offsetof(CollisionGeometryObject, prepared_group_a_shape_ptrs_304) == 0x304 ? 1 : -1];
 
 } // namespace
 
@@ -144,7 +160,7 @@ void CollisionGeometryObject::transform_box_from_local_frame_flipped_y(
         record[1] - static_cast<int>(static_cast<float>(ceil(y_f0)));
 }
 
-void __stdcall build_oriented_box_and_descriptor(
+void CollisionGeometryObject::build_oriented_box_and_descriptor(
     int *record,
     short angle,
     short pivot_x,
@@ -252,23 +268,25 @@ void __fastcall prepare_collision_geometry_from_frame(void *raw_object)
 {
     CollisionGeometryObject *self =
         static_cast<CollisionGeometryObject *>(raw_object);
+    // Copy the state tuple before the action/frame snapshot, matching the
+    // target access schedule without inventing extra storage.
     self->prepared_198 = static_cast<short>(self->copied_174);
-    self->prepared_1ac = static_cast<short>(self->copied_13c);
     self->prepared_19c = self->copied_180;
     self->prepared_1a0 = self->copied_184;
     self->prepared_1a2 = 0;
+    self->prepared_1ac = static_cast<short>(self->copied_13c);
     self->prepared_1ae = self->facing_104;
     self->prepared_1a8 = self->copied_15c;
 
     if (self->cached_frame_1a4 != self->frame_158) {
         self->cached_frame_1a4 = self->frame_158;
         self->prepared_group_a_count_1af =
-            static_cast<signed char>(self->frame_158->group_a_6c.size());
+            static_cast<signed char>(self->frame_158->group_a_68.size());
         self->prepared_group_b_count_1b0 =
-            static_cast<signed char>(self->frame_158->group_b_5c.size());
+            static_cast<signed char>(self->frame_158->group_b_58.size());
 
         for (int i = 0; i < self->prepared_group_a_count_1af; ++i) {
-            if (self->frame_158->group_a_descriptors_7c[i] == 0 &&
+            if (self->frame_158->group_a_descriptors_78[i] == 0 &&
                 (self->frame_158->flags_4c & 0x400000) == 0) {
                 self->prepared_group_a_shape_ptrs_304[i] = 0;
             } else {
@@ -289,34 +307,34 @@ void __fastcall prepare_collision_geometry_from_frame(void *raw_object)
     LocalAabb *out = &self->prepared_group_a_204[0];
     ShapeWords **out_shape = &self->prepared_group_a_shape_ptrs_304[0];
     for (;;) {
-        if (index >= static_cast<int>(self->frame_158->group_a_6c.size())) {
+        if (index >= static_cast<int>(self->frame_158->group_a_68.size())) {
             break;
         }
         ShapeWords *source_shape =
-            self->frame_158->group_a_descriptors_7c[index];
+            self->frame_158->group_a_descriptors_78[index];
         if (source_shape != 0) {
             self->transform_box_from_local_frame_flipped_y(
                 reinterpret_cast<int *>(
-                    &self->frame_158->group_a_6c.at(index)),
+                    &self->frame_158->group_a_68.at(index)),
                 reinterpret_cast<int *>(out));
             if (self->facing_104 > 0) {
                 source_shape =
-                    self->frame_158->group_a_descriptors_7c[index];
+                    self->frame_158->group_a_descriptors_78[index];
                 **out_shape = *source_shape;
             } else {
                 (*out_shape)->x0 =
-                    self->frame_158->group_a_descriptors_7c[index]->x1;
+                    self->frame_158->group_a_descriptors_78[index]->x1;
                 (*out_shape)->y0 =
-                    -self->frame_158->group_a_descriptors_7c[index]->y1;
+                    -self->frame_158->group_a_descriptors_78[index]->y1;
                 (*out_shape)->x1 =
-                    self->frame_158->group_a_descriptors_7c[index]->x0;
+                    self->frame_158->group_a_descriptors_78[index]->x0;
                 (*out_shape)->y1 =
-                    -self->frame_158->group_a_descriptors_7c[index]->y0;
+                    -self->frame_158->group_a_descriptors_78[index]->y0;
             }
         } else if ((self->frame_158->flags_4c & 0x400000) != 0) {
-            build_oriented_box_and_descriptor(
+            self->build_oriented_box_and_descriptor(
                 reinterpret_cast<int *>(
-                    &self->frame_158->group_a_6c.at(index)),
+                    &self->frame_158->group_a_68.at(index)),
                 static_cast<short>(self->angle_12c),
                 static_cast<short>(self->pivot_x_108),
                 -static_cast<short>(self->pivot_y_10c),
@@ -339,7 +357,7 @@ void __fastcall prepare_collision_geometry_from_frame(void *raw_object)
         } else {
             self->transform_box_from_local_frame(
                 reinterpret_cast<int *>(
-                    &self->frame_158->group_a_6c.at(index)),
+                    &self->frame_158->group_a_68.at(index)),
                 reinterpret_cast<int *>(out));
         }
         ++index;
@@ -349,11 +367,11 @@ void __fastcall prepare_collision_geometry_from_frame(void *raw_object)
 
     if ((self->frame_158->flags_4c & 0x800000) != 0) {
         for (index = 0;
-             index < static_cast<int>(self->frame_158->group_b_5c.size());
+             index < static_cast<int>(self->frame_158->group_b_58.size());
              ++index) {
-            build_oriented_box_and_descriptor(
+            self->build_oriented_box_and_descriptor(
                 reinterpret_cast<int *>(
-                    &self->frame_158->group_b_5c.at(index)),
+                    &self->frame_158->group_b_58.at(index)),
                 static_cast<short>(self->angle_12c),
                 static_cast<short>(self->pivot_x_108),
                 -static_cast<short>(self->pivot_y_10c),
@@ -384,18 +402,18 @@ void __fastcall prepare_collision_geometry_from_frame(void *raw_object)
         }
     } else {
         for (index = 0;
-             index < static_cast<int>(self->frame_158->group_b_5c.size());
+             index < static_cast<int>(self->frame_158->group_b_58.size());
              ++index) {
             self->transform_box_from_local_frame(
                 reinterpret_cast<int *>(
-                    &self->frame_158->group_b_5c.at(index)),
+                    &self->frame_158->group_b_58.at(index)),
                 reinterpret_cast<int *>(&self->prepared_group_b_1b4[index]));
         }
     }
 
     if (self->extension_194 != 0) {
         int a_count = static_cast<signed char>(
-            self->frame_158->group_a_6c.size());
+            self->frame_158->group_a_68.size());
         LocalAabb *extension_box = &self->prepared_group_a_204[a_count];
         ShapeWords **extension_shape =
             &self->prepared_group_a_shape_ptrs_304[a_count];
@@ -403,7 +421,7 @@ void __fastcall prepare_collision_geometry_from_frame(void *raw_object)
             static_cast<signed char>(a_count + 1);
         if (self->extension_194->angle_10 != 0) {
             *extension_shape = &self->prepared_group_a_shapes_254[a_count];
-            build_oriented_box_and_descriptor(
+            self->build_oriented_box_and_descriptor(
                 reinterpret_cast<int *>(self->extension_194),
                 self->extension_194->angle_10,
                 self->extension_194->pivot_x_12,
@@ -432,7 +450,7 @@ void __fastcall prepare_collision_geometry_from_frame(void *raw_object)
         }
         if ((self->frame_158->flags_4c & 0x1000000) != 0) {
             int b_count = static_cast<int>(
-                self->frame_158->group_b_5c.size());
+                self->frame_158->group_b_58.size());
             self->prepared_group_b_count_1b0 =
                 self->prepared_group_a_count_1af;
             self->prepared_group_b_1b4[b_count] = *extension_box;

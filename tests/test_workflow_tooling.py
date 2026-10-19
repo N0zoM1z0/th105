@@ -67,17 +67,17 @@ class WorkflowToolingTests(unittest.TestCase):
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1445)
+        self.assertEqual(len(implemented), 1446)
         self.assertEqual(
             len(self.validator.rows(ROOT / "config" / "matches.csv")), 1338
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 523)
+        self.assertEqual(len(manifest["units"]), 524)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1453,
+            1454,
         )
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:
@@ -1667,7 +1667,7 @@ class WorkflowToolingTests(unittest.TestCase):
         )
         self.assertIn("Canonical exact functions | 1,338", markdown)
         self.assertIn("Canonical exact authored bytes | 226,805", markdown)
-        self.assertIn("Source-present authored mappings | 1,445", markdown)
+        self.assertIn("Source-present authored mappings | 1,446", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )

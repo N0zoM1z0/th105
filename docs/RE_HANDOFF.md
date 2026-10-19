@@ -229,6 +229,45 @@ out-of-body p-code addresses. Decompiler text remains a hypothesis.
 
 See [exact recovery and analysis safety](OBJECT_ACTION980_WORD_ABI_2026_10_19.md).
 
+## Collision-frame preparation source checkpoint
+
+Active bounded function `CollisionGeometry_prepare_from_frame @45C500` now
+has complete selected source in `CollisionPreparation.cpp` and the separate
+`gpt-web-collision-geometry-preparation` probe. Hash-attested raw CFG closes
+all645 instructions/2156 bytes, two RET0s and the vector out_of_range jump to
+40C350. Three direct callers in46DFF0 pass ECX self and discard the result.
+The function snapshots actor/frame state and prepares both collision-box
+families, optional oriented descriptors, extension and primary boxes.
+
+The old ledger's one-argument fastcall declarations for45B760/45B8B0/45BA70
+were wrong. The first two consume ECX self plus two pointer slots/RET8;
+the third receives the three observed ECX setups and six stack slots/RET18h,
+with low-word angles/pivots. A natural member definition preserves all1386
+callee bytes. State-tuple ordering also recovers the target prologue schedule.
+All three existing providers replay exact335/335,445/445 and1386/1386.
+
+The main source is2164 bytes/canonical4b5d4d88, frame34h versus target3Ch,
+nonexact first+2/45C502. Direct indexed loops recover3Ch/prologue but grow to
+2207 bytes and are unselected. Const, definition visibility, GS and RTM controls
+do not close the complete body; no padding, dummy locals or fake ABI is added.
+The checked-vector error helper40C350 has the standard message/out_of_range
+throw, but target123 bytes versus native106/118 leaves its compiler/EH context
+unproven. It remains in origin review; no compiler exclusion is claimed.
+
+Native comparison passes0/1344 bounded inputs,2688 cold/warm executions on each
+side, using actual geometry, angle, conversion and SSE2-ceil instructions.
+All621 normal-path target instructions execute; the remaining24 are validation
+failure/throw paths. Resource/CPU data are fixture inputs; no helper result or
+instruction is replaced. A wrong extension-copy flag still has identical
+geometry call traces but fails16/96 input cases in object bytes. Bad containers,
+throw execution, legacy x87 ceil and original table startup remain outside the
+execution proof. Main source presence adds no exact credit. See
+[geometry recovery, ABI and execution evidence](COLLISION_GEOMETRY_PREPARATION_2026_10_19.md).
+Private recipes/receipts are under `.analysis/animation-state-20261019/` and
+`build/animation-state-20261019/`; a direct read-only128MiB/CPU0 Ghidra pass
+re-attests target bytes/callers and reads back all four physical signatures.
+All nine primary database hashes remain unchanged. IDA semantics are unused.
+
 ## Auxiliary-sprite provider exact checkpoint
 
 `AnimationAuxiliarySprite_replace @45CD70` now matches344/344 under
