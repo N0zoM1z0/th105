@@ -33,11 +33,17 @@ def stack_address(op, sp):
     raise ValueError("unreviewed stack address")
 
 
-def caller_buffer(rows, cleanup):
+def caller_buffer(rows, cleanup, initial_registers=None):
     """Track only observed stack/pointer/zero/one instructions; reject others."""
     if cleanup != 28:
         raise ValueError("spawn cleanup is not seven words")
-    sp, registers, memory, floating, requests = 0, {}, {}, [], []
+    sp, registers, memory, floating, requests = (
+        0,
+        dict(initial_registers or {}),
+        {},
+        [],
+        [],
+    )
 
     def value(op):
         if op.type == x.X86_OP_IMM:
@@ -136,6 +142,123 @@ def signature(packet):
     return (packet["same_pointer"], [r["payload"] for r in packet["requests"]])
 
 
+def preserved_to_window(rows, entry, stop, register):
+    """Check every decoded normal-return path from this case to the window."""
+    by_address = {row.address: row for row in rows}
+    pending, edges = [entry], {}
+    while pending:
+        address = pending.pop()
+        if address in edges:
+            continue
+        if address not in by_address:
+            raise ValueError("source edge leaves decoded code")
+        row = by_address[address]
+        destinations = []
+        if address != stop and not row.group(capstone.CS_GRP_RET):
+            if row.group(capstone.CS_GRP_JUMP):
+                if row.operands[0].type != x.X86_OP_IMM:
+                    raise ValueError("unreviewed source indirect jump")
+                destinations.append(row.operands[0].imm)
+            if row.mnemonic != "jmp":
+                destinations.append(address + row.size)
+        edges[address] = destinations
+        pending.extend(destinations)
+    if stop not in edges:
+        raise ValueError("808 window is unreachable from its source table entry")
+    reverse = {}
+    for address, destinations in edges.items():
+        for destination in destinations:
+            reverse.setdefault(destination, []).append(address)
+    pending, reaches = [stop], set()
+    while pending:
+        address = pending.pop()
+        if address in reaches:
+            continue
+        reaches.add(address)
+        pending.extend(reverse.get(address, []))
+    aliases = {register, x.X86_REG_BP} if register == x.X86_REG_EBP else {register}
+    for address in reaches - {stop}:
+        if aliases.intersection(by_address[address].regs_access()[1]):
+            raise ValueError(
+                "hoisted constant register is overwritten before the window"
+            )
+    return len(reaches)
+
+
+def source_registers(rows, candidate, stop):
+    """Recognize the reviewed VC8 primary dispatch's optional EBP constant."""
+    dispatch_index = next(
+        n
+        for n, row in enumerate(rows)
+        if row.mnemonic == "jmp" and row.operands[0].type == x.X86_OP_MEM
+    )
+    prefix = rows[dispatch_index - 7 : dispatch_index + 1]
+    definition = rows[dispatch_index - 1]
+    if not (
+        definition.mnemonic == "mov"
+        and definition.operands[0].reg == x.X86_REG_EBP
+        and definition.operands[1].type == x.X86_OP_IMM
+    ):
+        return {}, None  # Earlier compiler phase passes immediate variant1.
+    if [row.mnemonic for row in prefix] != [
+        "movsx",
+        "add",
+        "cmp",
+        "push",
+        "ja",
+        "movzx",
+        "mov",
+        "jmp",
+    ]:
+        raise ValueError("unreviewed hoisted-register dispatch")
+    load, add, bound, _, guard, index, _, dispatch = prefix
+    if not (
+        load.operands[0].reg
+        == add.operands[0].reg
+        == bound.operands[0].reg
+        == x.X86_REG_EAX
+        and load.operands[1].type == x.X86_OP_MEM
+        and load.operands[1].size == 2
+        and load.operands[1].mem.base == x.X86_REG_ESI
+        and not load.operands[1].mem.index
+        and load.operands[1].mem.disp == 0x13C
+        and add.operands[1].type == x.X86_OP_IMM
+        and add.operands[1].imm & 0xFFFFFFFF == 0xFFFFFCE0
+        and bound.operands[1].type == x.X86_OP_IMM
+        and bound.operands[1].imm == 199
+        and guard.operands[0].type == x.X86_OP_IMM
+        and index.operands[0].reg == x.X86_REG_EAX
+        and index.operands[1].type == x.X86_OP_MEM
+        and index.operands[1].size == 1
+        and index.operands[1].mem.base == x.X86_REG_EAX
+        and not index.operands[1].mem.index
+        and dispatch.operands[0].mem.index == x.X86_REG_EAX
+        and not dispatch.operands[0].mem.base
+        and dispatch.operands[0].mem.scale == 4
+    ):
+        raise ValueError("source808 dispatch data flow differs")
+
+    def read(address, size):
+        offset = address - native.S
+        if not 0 <= offset <= offset + size <= len(candidate):
+            raise ValueError("source table outside replay")
+        return candidate[offset : offset + size]
+
+    slot = read(index.operands[1].mem.disp + 8, 1)[0]
+    entry = int.from_bytes(read(dispatch.operands[0].mem.disp + slot * 4, 4), "little")
+    count = preserved_to_window(rows, entry, stop, x.X86_REG_EBP)
+    value = definition.operands[1].imm
+    return {x.X86_REG_EBP: value}, {
+        "register": "ebp",
+        "value": value,
+        "definition": hex(definition.address),
+        "case808_entry": hex(entry),
+        "window_entry": hex(stop),
+        "checked_instructions": count,
+        "scope": "all decoded case-to-window paths; external calls preserve EBP on normal ABI returns",
+    }
+
+
 def audit(path):
     native.facts.audit()
     target_rows = native.facts.decode(native.c.target_bytes(0x497225, 0xA8), 0x497225)
@@ -168,13 +291,17 @@ def audit(path):
         raise ValueError("missing source buffer zero initialization")
     selected = rows[starts[-1] : last + 1]
     target = caller_buffer(target_rows, cleanup)
-    source = caller_buffer(selected, cleanup)
+    registers, register_evidence = source_registers(
+        rows, candidate, selected[0].address
+    )
+    source = caller_buffer(selected, cleanup, registers)
     expected = (True, [[0, 0, 0], [AFTER_CALL, AFTER_CALL, 0x3F800000]])
     if signature(target) != expected or signature(source) != expected:
         raise ValueError("caller buffer reuse or third-word assignment differs")
     return {
         "target": target,
         "source": source,
+        "source_register_evidence": register_evidence,
         "callee_ret": hex(ret.address),
         "cleanup": cleanup,
         "candidate_sha256": hashlib.sha256(candidate).hexdigest(),

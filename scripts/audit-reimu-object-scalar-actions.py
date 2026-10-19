@@ -35,6 +35,8 @@ STACK = entry.STACK
 RESOURCE = entry.RESOURCE
 RETURN = entry.RETURN
 FIGHTER = OWNER + 0x1000
+PARENT = OWNER + 0x2000
+PARENT_PARAMETERS = RESOURCE + 0xE000
 SYMBOL = "?try_update_scalar_actions@ReimuObjectActionStateStagingView@th105@@QAE_NXZ"
 HELPERS = dict(entry.animation.HELPERS)
 HELPERS.update(
@@ -51,6 +53,7 @@ HELPERS.update(
         0x4E0BF0: (314, "turn_toward_related"),
         0x406540: (63, "atan2"),
         0x4066B0: (279, "mt_next"),
+        0x4067D0: (27, "scaled_random_roll"),
         # Same finite CRT atan2 paths reviewed for the fighter projectile audit.
         # Execute the original instructions; no host-math replacement return.
         0x68BB70: (10, "crt_atan2_entry"),
@@ -164,6 +167,8 @@ def export(path):
             "?spawn_unparented_related_object@CharacterObjectEffectEmitter@th105@@QAEPAXHMMHHPBIH@Z": 0x64CCB0,
             "?advance_state_six_counter_conditional@CharacterObjectRuntime@th105@@QAEEH@Z": 0x4963A0,
             "?mt19937_next_u32@th105@@YAIXZ": 0x4066B0,
+            "?selector_random_roll@th105@@YAHH@Z": 0x4067D0,
+            "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z": 0x4063D0,
             "?spawn_owned_object_via_manager@ReimuObjectOwnerSpawnView@th105@@QAEHHMMHHHH@Z": 0x465190,
         }
     )
@@ -286,7 +291,7 @@ class Probe:
             (0x104, "b", case.get("facing", -1)),
             (0x113, "B", case.get("alpha", 200)),
             (0x11C, "f", case.get("scale", 1.25)),
-            (0x120, "f", 0.75),
+            (0x120, "f", case.get("scale_y", 0.75)),
             (0x12C, "f", 37.25),
             (0x130, "I", entry.VECTOR),
             (0x134, "B", 0),
@@ -310,12 +315,12 @@ class Probe:
             (0x340, "I", entry.PARAMETERS),
             (0x348, "I", FIGHTER),
             (0x364, "h", case.get("state", 0)),
-            (0x370, "f", 3.5),
+            (0x370, "f", case.get("amplitude", 3.5)),
             (0x374, "f", 0.25),
         ]
         for off, fmt, value in values:
             uc.mem_write(OWNER + off, struct.pack("<" + fmt, value))
-        if case["action"] in (800, 801, 804, 807, 808):
+        if case["action"] in (800, 801, 804, 807, 808, 810, 811, 812):
             for off, fmt, value in (
                 (0x170, "I", FIGHTER),
                 (0x338, "I", 0),
@@ -327,6 +332,23 @@ class Probe:
             uc.mem_write(
                 entry.PARAMETERS + 12, struct.pack("<f", case.get("mode", 0.0))
             )
+        if case["action"] in (810, 811, 812):
+            uc.mem_write(OWNER + 0x111, struct.pack("<B", case.get("channel", 200)))
+            uc.mem_write(
+                OWNER + 0x34C, struct.pack("<I", 0 if case.get("no_parent") else PARENT)
+            )
+            uc.mem_write(
+                entry.PARAMETERS + 4, struct.pack("<f", case.get("speed", -12.5))
+            )
+            uc.mem_write(PARENT, bytes([0xA5]) * 0x388)
+            for off, fmt, value in (
+                (0xEC, "f", case.get("parent_x", 515.5)),
+                (0xF0, "f", case.get("parent_y", 23.0)),
+                (0x13E, "h", case.get("parent_seq", 0)),
+                (0x340, "I", PARENT_PARAMETERS),
+            ):
+                uc.mem_write(PARENT + off, struct.pack("<" + fmt, value))
+            uc.mem_write(PARENT_PARAMETERS, struct.pack("<ffff", -71.25, 8.5, 2.0, 0.0))
         for off, fmt, value in [
             (0x13C, "h", case.get("owner_action", 150)),
             (0xEC, "f", 515.5),
@@ -379,6 +401,12 @@ class Probe:
             "object": bytes(uc.mem_read(OWNER, 0x388)).hex(),
             "owner": bytes(uc.mem_read(FIGHTER, 0x800)).hex(),
             "parameters": bytes(uc.mem_read(entry.PARAMETERS, 16)).hex(),
+            "parent": None
+            if case["action"] not in (810, 811, 812)
+            else (
+                bytes(uc.mem_read(PARENT, 0x388)).hex(),
+                bytes(uc.mem_read(PARENT_PARAMETERS, 16)).hex(),
+            ),
             "endpoint": self.endpoint,
             "trace": self.trace,
             "cw": uc.reg_read(r.UC_X86_REG_FPCW),
@@ -590,6 +618,169 @@ def projectile_cases():
         )
 
 
+def sequence_cases():
+    for action, seq, phase, index, counter in itertools.product(
+        (810, 811, 812),
+        range(-1, 8),
+        (0, 1, 2, 4, 5, 6, 9),
+        (0, 1, 128, 255),
+        (-1, 0, 1, 5, 61),
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            phase=phase,
+            index=index,
+            counter=counter,
+            cohort="sequence-state",
+        )
+    for action, speed, state, counter, cw in itertools.product(
+        (810, 812),
+        (-1.0, 0.0, 1.5, 1.5000001192092896, 3.0, float("nan")),
+        (-1, 0, 3, 15, 32767),
+        (-3, 1, 5),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=action,
+            seq=1,
+            speed=speed,
+            state=state,
+            counter=counter,
+            cw=cw,
+            cohort="sequence-zero-speed",
+        )
+    for action, scale, speed, cw in itertools.product(
+        (810, 812),
+        (0.5, 1.0, float("nan")),
+        (-1.0, 3.0),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=action,
+            seq=0,
+            scale=scale,
+            speed=speed,
+            counter=1,
+            cw=cw,
+            cohort="sequence-growth",
+        )
+    for seq, channel, alpha, cw in itertools.product(
+        (3, 4, 5),
+        (0, 39, 40, 41, 255),
+        (0, 9, 10, 11, 39, 40, 41, 255),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=811,
+            seq=seq,
+            channel=channel,
+            alpha=alpha,
+            counter=1,
+            cw=cw,
+            cohort="sequence-channel-alpha",
+        )
+    for no_parent, parent_seq, parent_x, parent_y, cw in itertools.product(
+        (False, True),
+        (-1, 0, 1, 2, 3),
+        (-101.0, 515.5, float("nan")),
+        (-121.0, 23.0, float("nan")),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=811,
+            seq=1,
+            no_parent=no_parent,
+            parent_seq=parent_seq,
+            parent_x=parent_x,
+            parent_y=parent_y,
+            cw=cw,
+            counter=1,
+            cohort="sequence-parent",
+        )
+    for speed, scale_y, cw in itertools.product(
+        (1.5, 3.5, 5.0, float("nan")),
+        (0.0, 0.02, 0.0235294122248888, 0.5, float("nan")),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=811,
+            seq=2,
+            speed=speed,
+            scale_y=scale_y,
+            counter=1,
+            cw=cw,
+            cohort="sequence-shrink",
+        )
+    for mode, amplitude, phase, six_counter, cw in itertools.product(
+        (-91.25, 0.0, 37.25, 360.25),
+        (-0.25, 0.0, 0.25, 3.5),
+        (0, 1, 6),
+        (2, 3),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=812,
+            seq=2,
+            mode=mode,
+            amplitude=amplitude,
+            phase=phase,
+            six_counter=six_counter,
+            counter=1,
+            cw=cw,
+            cohort="sequence-orbit",
+        )
+    for action, seq, xpos, ypos, cw in itertools.product(
+        (810, 811, 812),
+        (3, 6),
+        (-101.0, -100.0, 1380.0, 1381.0, float("nan")),
+        (-241.0, -240.0, -121.0, -120.0, 1000.0, 1001.0, float("nan")),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            x=xpos,
+            y=ypos,
+            counter=1,
+            cw=cw,
+            cohort="sequence-bounds",
+        )
+    for counter, seed, index, phase in itertools.product(
+        (-4, -1, 0, 1, 4, 8),
+        (0, 5489, 0xFFFFFFFF),
+        (0, 1),
+        (0, 6),
+    ):
+        yield dict(
+            action=811,
+            seq=0,
+            counter=counter,
+            timer=2,
+            seed=seed,
+            index=index,
+            phase=phase,
+            cohort="sequence-random",
+        )
+    for action, seq, phase, index, six_counter in itertools.product(
+        (810, 811, 812),
+        (0, 1, 2),
+        (0, 1, 6),
+        (0, 255),
+        (2, 3, 14, 15, 19, 20, 29, 30),
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            phase=phase,
+            index=index,
+            six_counter=six_counter,
+            hold=5,
+            counter=1,
+            cohort="sequence-timer",
+        )
+
+
 def main():
     global O
     parser = argparse.ArgumentParser(description=__doc__)
@@ -601,6 +792,11 @@ def main():
         "--projectiles",
         action="store_true",
         help="include800/801/804/807/808 and actual MT fixtures",
+    )
+    parser.add_argument(
+        "--sequences",
+        action="store_true",
+        help="include810/811/812 and the preceding projectile matrix",
     )
     args = parser.parse_args()
     O = args.output_dir
@@ -614,12 +810,14 @@ def main():
     table, receipt = math.lookup_fixture(c)
     image[0x2FE8B0 : 0x2FE8B0 + len(table)] = table
     (O / "lookup-initialization.json").write_text(json.dumps(receipt, indent=2) + "\n")
-    seeds = seed_fixtures(bytes(image)) if args.projectiles else None
+    seeds = seed_fixtures(bytes(image)) if args.projectiles or args.sequences else None
     target = Probe(bytes(image), seeds=seeds)
     source = Probe(bytes(image), candidate, seeds=seeds)
     all_cases = list(cases())
-    if args.projectiles:
+    if args.projectiles or args.sequences:
         all_cases.extend(projectile_cases())
+    if args.sequences:
+        all_cases.extend(sequence_cases())
     h = hashlib.sha256(json.dumps(all_cases, sort_keys=True).encode()).hexdigest()
     differences = []
     endpoints = Counter()

@@ -1,5 +1,9 @@
 # ReimuObject800/801/804/807/808 source and caller evidence
 
+This page records the b5855c6 checkpoint. The
+[810/811/812 follow-up](REIMU_OBJECT_SEQUENCES_2026_10_20.md) records current
+source pins and the expanded native/caller evidence.
+
 This extends the [initial update checkpoint](REIMU_OBJECT_UPDATE_2026_10_20.md)
 at88ac760. The bounded target remains authored `ReimuObject @496540`:46128
 owned instruction bytes, not the provisional39853-byte main span. The complete

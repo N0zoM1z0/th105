@@ -27,7 +27,9 @@ public:
     float acceleration_x_fc;
     float acceleration_y_100;
     signed char facing_104;
-    unsigned char unknown_105[0x0e];
+    unsigned char unknown_105[0x0c];
+    unsigned char channel_111;
+    unsigned char unknown_112;
     unsigned char alpha_113;
     unsigned char unknown_114[8];
     float scale_x_11c;
@@ -54,7 +56,8 @@ public:
     short state_344;
     unsigned char unknown_346[2];
     unsigned char *fighter_owner_348;
-    unsigned char unknown_34c[0x18];
+    ReimuObjectActionStateStagingView *parent_object_34c;
+    unsigned char unknown_350[0x14];
     short state_364;
     short state_366;
     short state_368;
@@ -74,6 +77,8 @@ typedef char ReimuObjectUpdate_x_offset[
     offsetof(ReimuObjectActionStateStagingView, x_ec) == 0xec ? 1 : -1];
 typedef char ReimuObjectUpdate_alpha_offset[
     offsetof(ReimuObjectActionStateStagingView, alpha_113) == 0x113 ? 1 : -1];
+typedef char ReimuObjectUpdate_channel111_offset[
+    offsetof(ReimuObjectActionStateStagingView, channel_111) == 0x111 ? 1 : -1];
 typedef char ReimuObjectUpdate_sequence_offset[
     offsetof(ReimuObjectActionStateStagingView, sequence_13e) == 0x13e ? 1 : -1];
 typedef char ReimuObjectUpdate_phase_offset[
@@ -86,6 +91,8 @@ typedef char ReimuObjectUpdate_owner_offset[
     offsetof(ReimuObjectActionStateStagingView, fighter_owner_348) == 0x348 ? 1 : -1];
 typedef char ReimuObjectUpdate_state364_offset[
     offsetof(ReimuObjectActionStateStagingView, state_364) == 0x364 ? 1 : -1];
+typedef char ReimuObjectUpdate_parent_offset[
+    offsetof(ReimuObjectActionStateStagingView, parent_object_34c) == 0x34c ? 1 : -1];
 typedef char ReimuObjectUpdate_state36c_offset[
     offsetof(ReimuObjectActionStateStagingView, state_36c) == 0x36c ? 1 : -1];
 typedef char ReimuObjectUpdate_counter384_offset[

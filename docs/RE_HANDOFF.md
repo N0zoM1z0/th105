@@ -298,28 +298,35 @@ auditor closes all10670 instructions and22 switches:404 actual direct CALLs to
 FLD1 at49C35A;4C611D is not an actual callee. Main-span ranking omits61 actual
 remote calls, so use the complete packet for source dependencies.
 
-Handwritten `ReimuObjectActionStateStaging.cpp/.hpp` now also handles
-800/801/804/807/808 alongside859/860/861/980/998 and actual defaults. The explicit
-coverage boolean is not the original void boundary;31 concrete actions remain
-unsupported. Fresh native audit passes0/6292:6074 real RETs,63 unparented/75
-owned spawn entries,26 effect entries and54 secondary-setup entries. Actual
-steering/CRT,268 MT draws, animation and original table initialization execute;
-the null secondary fixture does not cover renderer destruction.
-Compiled wrong801/804/807 sources fail1/34/4 cases. A wrong808 second-word
-assignment passes the first-call native matrix but is rejected by the caller
-audit, retaining that explicit execution-coverage limit.
+Handwritten `ReimuObjectActionStateStaging.cpp/.hpp` now handles
+800/801/804/807/808/810/811/812/859/860/861/980/998 and actual defaults. The
+coverage boolean is not the original void boundary;28 concrete actions remain
+unsupported. Fresh native audit passes0/12032:11508 real RETs,345 unparented/75
+owned spawn entries,26 effect entries and78 secondary-setup entries. Actual
+parent-object reads,96 scaled RNG calls,364 MT draws, steering/CRT and animation
+execute. New channel111/pointer34C views preserve size388 and earlier offsets;
+accepted headers/helpers/bindings do not change. The null secondary fixture
+does not cover renderer destruction or returning setup.
 
-The808 caller audit proves one buffer reused by49727B/4972C8 and a third-word
-float1 store between them, correcting a Ghidra array-name assumption. It
-invalidates callee-accessible payload across the first call: the second first
-two words remain unknown without returning-world evidence. Native execution
-stops at the first request. Six new fail-closed/caller tests join the six CFG
-tests. See [projectile evidence](REIMU_OBJECT_PROJECTILES_2026_10_20.md) and the
+810's independent sequence checks must preserve same-frame fallthrough after
+next-block;812 uses a switch. Both clamp speed at ordered<=0.811 draws Y before
+X with the real integer-division scaler, not modulo. Compiled wrong-source
+controls fail176/30/48 cases. The812 caller audit checks count4 and sector*45
+plus fresh parameter0, with eight iterations conditional on normal ABI returns
+preserving the unescaped counter. Returning world calls and an immutable
+initial heading are not proved. A limit7 source passes the native first-request
+matrix but is rejected for its changed loop guard. Five new loop tests and four
+register-path tests join the twelve prior CFG/808 tests. The808 checker now
+proves VC8's hoisted EBP=1 through the primary dispatch and all26 case-to-window
+nodes; the buffer proof passes on the expanded candidate, retaining
+unknown callee-accessible first/second words after the first request.
+
+See [sequence evidence](REIMU_OBJECT_SEQUENCES_2026_10_20.md),
+[projectile checkpoint](REIMU_OBJECT_PROJECTILES_2026_10_20.md) and
 [initial checkpoint](REIMU_OBJECT_UPDATE_2026_10_20.md). Fresh read-only direct
-Ghidra leaves all nine primary DB hashes unchanged and removes its alias.
-No exact or root source-present credit is added; accepted inputs/bindings stay
-fixed. Next recover810/811/812 and continue the other28 arms; preserve the
-separate Fighter478FA0 and entry4A1CE0 checkpoints above.
+Ghidra leaves all nine primary DB pins unchanged and removes its alias.
+No exact or root source-present credit is added. Next recover815/816/817 and
+continue the other25 arms; preserve Fighter478FA0 and entry4A1CE0 checkpoints.
 
 ## Shared Object action980 exact checkpoint
 

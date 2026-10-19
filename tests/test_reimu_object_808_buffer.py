@@ -37,6 +37,35 @@ class Object808BufferTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "pointer register"):
             buffer.caller_buffer(rows, 28)
 
+    def test_unreachable_constant_clobber_is_not_a_case_path(self):
+        # NOP; JMP past MOV EBP,2; window NOP.
+        rows = buffer.native.facts.decode(
+            bytes.fromhex("90 eb05 bd02000000 90"), 0x1000
+        )
+        self.assertEqual(
+            buffer.preserved_to_window(rows, 0x1000, 0x1008, buffer.x.X86_REG_EBP), 3
+        )
+
+    def test_partial_register_clobber_invalidates_the_constant(self):
+        rows = buffer.native.facts.decode(bytes.fromhex("66bd0200 90"), 0x1000)
+        with self.assertRaisesRegex(ValueError, "overwritten"):
+            buffer.preserved_to_window(rows, 0x1000, 0x1004, buffer.x.X86_REG_EBP)
+
+    def test_one_conditional_clobber_path_invalidates_the_constant(self):
+        rows = buffer.native.facts.decode(
+            bytes.fromhex("85c0 7405 bd02000000 90"), 0x1000
+        )
+        with self.assertRaisesRegex(ValueError, "overwritten"):
+            buffer.preserved_to_window(rows, 0x1000, 0x1009, buffer.x.X86_REG_EBP)
+
+    def test_return_only_epilogue_does_not_reach_the_window(self):
+        rows = buffer.native.facts.decode(
+            bytes.fromhex("85c0 7406 bd02000000 c3 90"), 0x1000
+        )
+        self.assertEqual(
+            buffer.preserved_to_window(rows, 0x1000, 0x100A, buffer.x.X86_REG_EBP), 3
+        )
+
     @unittest.skipUnless(
         (ROOT / "resources/th105.exe").is_file(), "requires canonical target"
     )
