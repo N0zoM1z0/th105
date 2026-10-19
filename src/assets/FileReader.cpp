@@ -26,7 +26,7 @@ extern "C" __declspec(dllimport) void *__stdcall CreateFileA(
 
 namespace th105 {
 
-void *g_package_file_index;
+unsigned int g_package_archive_count;
 
 CFileReader::~CFileReader()
 {
@@ -108,7 +108,7 @@ bool FileReaderOwner::open(const char *path)
     if (reader != 0)
         delete reader;
 
-    if (g_package_file_index != 0) {
+    if (g_package_archive_count != 0) {
         CPackageFileReader *package_reader = new CPackageFileReader;
         package_reader->file = 0;
         package_reader->file = open_package_file_entry(

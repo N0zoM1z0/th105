@@ -91,7 +91,7 @@ symbol_base = "CPackageFileReader_size"
 address = "0x0040CF40"
 symbol_base = "?open@FileReaderOwner@th105@@QAE_NPBD@Z"
 rel32_targets = ["??2@YAPAXI@Z=0x00689DCB", "?open_package_file_entry@th105@@YGPAXPBDPAK1@Z=0x0041BFA0"]
-dir32_targets = ["?g_package_file_index@th105@@3PAXA=?g_package_file_index@th105@@3PAXA", "??_7CPackageFileReader@th105@@6B@=??_7CPackageFileReader@th105@@6B@", "??_7CFileReader@th105@@6B@=??_7CFileReader@th105@@6B@", "__imp__CreateFileA@28=__imp__CreateFileA@28"]
+dir32_targets = ["?g_package_archive_count@th105@@3IA=?g_package_archive_count@th105@@3IA", "??_7CPackageFileReader@th105@@6B@=??_7CPackageFileReader@th105@@6B@", "??_7CFileReader@th105@@6B@=??_7CFileReader@th105@@6B@", "__imp__CreateFileA@28=__imp__CreateFileA@28"]
 
 [units.cross-v106a-battle-setup]
 kind = "probe"
@@ -19616,4 +19616,34 @@ dir32_targets = [
   "?g_package_archive_names@th105@@3V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@A=?g_package_archive_names@th105@@3V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@A",
   "__imp__CreateFileA@28=__imp__CreateFileA@28",
   "__imp__SetFilePointer@16=__imp__SetFilePointer@16",
+]
+
+[units.gpt-web-package-archive-loader]
+kind = "probe"
+source = "src/assets/PackageArchiveLoader.cpp"
+object = "build/match-units/GptWeb_PackageArchiveLoader.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete629-byte archive-loader policy and real nine-byte API caller reviewed. Ordinary typed static helper naturally has the target ECX path/RET0 boundary but is598 bytes with a138h frame; real-source closed GL graph is627 bytes/frame148h versus target150h. Public vector push_back165 has ECX this; target41C270162 uses private ESI. That false helper binding is intentionally absent. MT decoding, unsigned index parsing, archive-count publication and ownership ordering pass100 target/source instruction-model cases with202/204 reachable target instructions; Win32/STL/registration are modeled and exception controls stop before OS unwind. No exact credit. docs/PACKAGE_ARCHIVE_LOADER_2026_10_19.md."
+
+[[units.gpt-web-package-archive-loader.functions]]
+address = "0x0041BA70"
+symbol_base = "?load_package_archive_impl@th105@@YA_NPBD@Z"
+rel32_targets = [
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
+  "??3@YAXPAX@Z=0x006898EA",
+  "??_U@YAPAXI@Z=0x00665B8A",
+  "??_V@YAXPAX@Z=0x0068AA26",
+  "?mt19937_seed_u32@th105@@YAXI@Z=0x00406670",
+  "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
+  "_memcpy=0x0068AA30",
+  "?register_package_file_entry@th105@@YGXPBDIII@Z=0x0041BCF0",
+]
+dir32_targets = [
+  "__ehhandler$?load_package_archive_impl@th105@@YA_NPBD@Z=__ehhandler$?load_package_archive_impl@th105@@YA_NPBD@Z",
+  "?g_package_archive_names@th105@@3V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@A=?g_package_archive_names@th105@@3V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@A",
+  "?g_package_archive_count@th105@@3IA=?g_package_archive_count@th105@@3IA",
+  "__imp__CreateFileA@28=__imp__CreateFileA@28",
+  "__imp__ReadFile@20=__imp__ReadFile@20",
+  "__imp__CloseHandle@4=__imp__CloseHandle@4",
 ]

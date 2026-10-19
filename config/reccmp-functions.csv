@@ -1459,3 +1459,4 @@ ReimuObject_initialize_action_entry,0x004A1CE0,function
 FileReaderOwner_open,0x0040CF40,function
 open_package_file_entry,0x0041BFA0,function
 register_package_file_entry,0x0041BCF0,function
+load_package_archive_impl,0x0041BA70,function

@@ -1439,3 +1439,4 @@ ReimuObject_initialize_action_entry
 FileReaderOwner_open
 open_package_file_entry
 register_package_file_entry
+load_package_archive_impl

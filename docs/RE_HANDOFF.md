@@ -32,9 +32,9 @@ verified private Ghidra copy, reopens it for readback, then replaces the primary
 project. Target/mapped bytes remain unchanged; nine new primary file hashes
 are recorded in `build/reimu-cpu-root/primary-db-after.json`.
 
-Last checked ledger census: 4023 candidates; 1545 authored, 1415 excluded,
-1063 in review; 1460 mapped, 1441 source-present; 1334 exact / 225747 bytes;
-519 match units. These are ledger totals, not a cold aggregate replay.
+Last checked ledger census: 4023 candidates; 1546 authored, 1415 excluded,
+1062 in review; 1461 mapped, 1442 source-present; 1334 exact / 225747 bytes;
+520 match units. These are ledger totals, not a cold aggregate replay.
 `claims.csv` remains header-only. Source presence, mapping and diagnostic
 interval equality confer no exact credit. The Reimu CPU root remains
 source-present in a probe unit with no exact result.
@@ -417,8 +417,41 @@ complete ordinary payloads are unchanged and remain nonexact: plain224/234,
 encoded275/267, palette1007/1047 and247/243, wave250/247 and439/459. No runtime
 or exclusion credit is added. Receipts: `build/array-declarations-20261019/`.
 Only affected focused units are replayed; no cold aggregate claim is made.
-Next resume archive-loader41BA70/input/global visibility before revisiting
-reader/BMP code generation.
+The archive-loader input/global review is now below; private helper, EH and
+translation-unit boundaries remain before reader/BMP code generation.
+
+## Current package archive loader
+
+`load_package_archive_impl @41BA70` is mapped/source-present, authored, and
+still nonexact. The [loader review](PACKAGE_ARCHIVE_LOADER_2026_10_19.md) closes
+629 bytes/204 reachable instructions, including the40CF30 stack-to-ECX wrapper,
+archive-name/count publication, unchecked2/4-byte header reads, array ownership,
+two-pass MT19937/rolling-byte decoding and packed offset/size/name registration.
+Source uses a normal static typed helper and its real wrapper; VC8 naturally
+emits the private ECX entry. Original path-buffer declaration remains unknown.
+
+The store41BBB0 proves702914 is an unsigned32-bit archive count. Shared reader
+source/header and relocation identity now use g_package_archive_count rather
+than an unsupported pointer alias. All15 affected units were rebuilt serially;
+all33 comparison outcomes are unchanged, including21 accepted exact functions.
+Vector first/last addends4/8 are pinned and its two consuming units rechecked.
+The MT seed/next functions are independently replayed in the focused batch.
+
+The100-case actual target/selected-source instruction model agrees, with202/204
+reachable target instructions covered; the omitted pair is the impossible
+nil-vector arm after successful append. Four exception-call-boundary controls
+compare live root EH states and call prefixes. Win32/STL/registration are
+modeled; malformed/short-read inputs and OS unwinding remain outside the proof.
+Ordinary source598/frame138h remains selected; its public vector push_back has
+ECX this versus target private ESI, so the formal probe fails closed on that
+unmapped call. A genuine source/CRT GL closure links without unresolved symbols
+but gives627/frame148h versus target629/frame150h and different private callees.
+The vector helper has only this one raw direct incoming lead. An RTM
+executable-path control with SP1 object-reader/CRT fallback retains a627-byte/200-instruction
+root with differing linked addresses; it is not stock-RTM provenance evidence.
+No fake ABI mapping or exact credit is added. Nine primary Ghidra DB pins agree;
+read-only aliases are removed. Receipts: `build/package-loader-20261019/`.
+Continue vector-helper visibility, EH/frame and real TU context, then reader/BMP.
 
 ## Current Reimu CPU root
 

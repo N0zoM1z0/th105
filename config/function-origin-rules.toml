@@ -3153,5 +3153,19 @@ disposition = "authored"
 confidence = "observed"
 evidence = "Closed200-instruction/628-byte stdcall game archive-index policy called by41BA70 archive loading. It hashes the entry path, inserts a new typed record through three owned temporary lifetimes, updates size/offset/archive-index on a case-insensitive path match, or appends an owned hash-collision node. Four EH states independently pin the three temporaries plus allocation rollback. Native67 cases agree including seven allocation call-boundary/NULL controls and live EH states; no OS unwind proof. Source is present but559-byte ordinary and all real-source GL controls remain nonexact. docs/PACKAGE_INDEX_UPDATE_2026_10_19.md."
 required_body_hashes = [{ address = "0x0041BCF0", size = 628, sha256 = "77497a2c590e14e4446a36cccd205db724449d36263b01e26a3f05a2fa6a2257" }]
-required_direct_edges = [{ caller = "0x0041BA70", site = "0x0041BC9D", target = "0x0041BCF0", caller_status = "unclassified" }]
+required_direct_edges = [{ caller = "0x0041BA70", site = "0x0041BC9D", target = "0x0041BCF0", caller_status = "implemented" }]
 required_selected_body_calls = [{ owner = "0x0041BCF0", site = "0x0041BD2D", target = "0x00406930" }]
+
+[[rules]]
+id = "package-archive-loader-authored-106a"
+addresses = ["0x0041BA70"]
+expected_count = 1
+expected_bytes = 629
+origin = "authored_game"
+subsystem = "assets"
+disposition = "authored"
+confidence = "observed"
+evidence = "Closed204-reachable-instruction/629-byte archive game policy, called by the nine-byte40CF30 stack-to-ECX wrapper. Publishes archive name/count, reads two-byte count/four-byte index length without checking status, closes handle before MT19937 plus rolling-byte decode, parses packed offset/size/name records and registers entries. Array new/delete lifetime is preserved.100 target/source instruction-model cases agree including four exception call boundaries, without OS unwind or malformed/short-read proof. Ordinary598 and genuine GL627 remain nonexact; no original-TU or path-buffer spelling claim. docs/PACKAGE_ARCHIVE_LOADER_2026_10_19.md."
+required_body_hashes = [{ address = "0x0041BA70", size = 629, sha256 = "9e97c3ceea6298777705f8f031fa7d4a6d4daf81a954b3ec19a60ea66b2bb63a" }]
+required_selected_body_calls = [{ owner = "0x0041BA70", site = "0x0041BBFD", target = "0x00406670" }, { owner = "0x0041BA70", site = "0x0041BC9D", target = "0x0041BCF0", target_status = "implemented" }]
+required_direct_edges = [{ caller = "0x0040CF30", site = "0x0040CF34", target = "0x0041BA70", kind = "jump", caller_status = "unclassified" }]
