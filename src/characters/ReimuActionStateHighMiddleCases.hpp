@@ -28,8 +28,9 @@
                 advance_secondary_event_effect_cycle();
                 set_word_48a(40);
                 dispatch_indexed_event_member(23);
-                emit_fighter_effect(115, static_cast<float>(static_cast<float>(facing_104 * 24) + x_ec),
-                    static_cast<float>(y_f0 + 144.0), static_cast<unsigned char>(facing_104), 1);
+                const int direction_bits = static_cast<unsigned char>(facing_104);
+                emit_fighter_effect(115, static_cast<float>(static_cast<float>(static_cast<signed char>(direction_bits) * 24) + x_ec),
+                    static_cast<float>(y_f0 + 144.0), direction_bits, 1);
             }
             if (frame_timer_142 == 0 && frame_index_140 == 5) {
                 velocity_x_f4 = -2.0f;

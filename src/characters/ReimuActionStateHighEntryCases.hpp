@@ -185,8 +185,9 @@
         if (sequence_13e == 0 && frame_index_140 == 6 && frame_timer_142 == 0) {
             set_word_48a(40);
             dispatch_indexed_event_member(23);
-            emit_fighter_effect(115, static_cast<float>(static_cast<float>(facing_104 * 7) + x_ec),
-                static_cast<float>(y_f0 + 226.0), static_cast<unsigned char>(facing_104), 1);
+            const int direction_bits = static_cast<unsigned char>(facing_104);
+            emit_fighter_effect(115, static_cast<float>(static_cast<float>(static_cast<signed char>(direction_bits) * 7) + x_ec),
+                static_cast<float>(y_f0 + 226.0), direction_bits, 1);
             dispatch_indexed_sequence_window_45c8b0(0, selected_action == 604 ? 2 : selected_action == 605 ? 3 : 4, 60);
             advance_secondary_event_effect_cycle();
         }
