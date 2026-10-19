@@ -115,6 +115,55 @@ RTM's wide controls still use EDX for the integer X offset. A nearer size is
 therefore insufficient evidence to switch compiler versions. This batch does
 not prove the original compiler revision or rule out another source/TU context.
 
+## Field storage and case specialization follow-up
+
+Seven subsequent controls distinguish the physical byte declaration from its
+signed consumers and from constant action specialization. A fresh baseline
+again reproduces7650c8d3/fbc0293d. Reachable target instructions contain385
+direct ESI+104 accesses, all one byte:315 MOVZX,51 MOVSX, seven plain MOV reads
+and twelve MOV writes. Direct read-only Ghidra independently decodes all385
+addresses after target/mapped-byte attestation. Missing listing instructions
+are disassembled only in the unsaved read-only working state; all nine primary
+database hashes remain unchanged. These extension operations establish use
+roles, not the original C++ field declaration.
+
+The expanded source has1214 rvalue uses and18 writes of `facing_104`, including
+constant action branches. One private view changes its declaration to unsigned
+char while preserving signed interpretation at every rvalue use and retaining
+the writes' byte representation. Known unsigned consumers use the original
+unsigned bits. A signed-declaration control adds the same explicit signed
+casts, separating declaration effects from redundant source casts. Local
+unsigned-char alias-reference controls preserve the public signed declaration.
+
+| Follow-up controls | Count | Payload SHA prefix | Payload / code prefix | Instructions | Lost groups / counts |
+| --- | --- | --- | --- | --- | --- |
+|Explicit signed reads; local byte alias; specialized650/651 source|3|`fbc0293d`|82808 /81436|20245|0 /0|
+|Wide copy of local byte alias; specialized650/651 plus wide616|2|`aba67d99`|82840 /81468|20261|19 /4|
+|Unsigned field with signed consumers preserved|1|`72271db6`|82968 /81596|20244|41 /4|
+|Unsigned field plus wide616|1|`52859286`|83000 /81628|20260|57 /5|
+
+The unsigned-field variants exceed the callable by46/78 bytes and metadata
+envelope by44/76. Default qualification rejects the first; both are then
+inspected through the existing explicit **read-only oversize diagnostic**.
+They are never executed. The whole-root regressions and differing preparation
+prevent selection; they do not prove the original field was signed.
+Neither local alias form recovers616's target preparation.
+
+Specializing650/651 removes sixteen known constant comparisons, selects the
+existing correctly typed ternary branches and removes only inactive blocks
+without labels/else. Remaining scopes and runtime evaluation stay intact.
+Both ordinary and wide616 controls reproduce their complete preceding payloads.
+This source cleanup therefore does not resolve the observed register/ownership
+differences in the tested context. No generator change is selected.
+
+Recipes and all eight build receipts are under
+`.analysis/reimu-facing-storage-20261020/` and
+`build/reimu-facing-storage-20261020/`. `probe.py` covers the five type/view
+controls, `prune.py` the two specialization controls, `facts.py` the reachable
+field packet, and `ghidra.py` the independent readback. `summary.json` retains
+artifact hashes/results before redundant generated files are removed. The
+public source/header, binding and current genuine closure remain unchanged.
+
 ## Reproduction, safety and remaining questions
 
 Direct Ghidra runs read-only with128MiB heap and one CPU. Before decoding it

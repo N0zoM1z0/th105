@@ -135,6 +135,16 @@ from SP1's53/127 spans to6/127 (48 lost, one gained). No source/profile is
 selected;7650c8d3/fbc0293d and the current genuine receipt remain unchanged.
 See [616 lifetime/compiler evidence](REIMU_616_LIFETIME_AND_COMPILER_2026_10_20.md).
 
+Seven follow-up field-view/specialization controls also remain unselected.
+Explicit signed reads, a local unsigned-byte alias and removal of650/651's
+sixteen constant comparisons are payload-neutral; wide copies reproduce the
+known regressingaba67d99 payload. Changing the physical field to unsigned while
+preserving signed consumers exceeds the code envelope by46/78 bytes and loses
+41/57 old groups; these two diagnostics are read-only and never executed.
+Raw CFG and read-only Ghidra agree on385 reachable byte accesses at ESI+104:
+315 zero extensions,51 sign extensions, seven plain reads and twelve writes.
+Original declared signedness remains unknown; no source/header/binding changes.
+
 Earlier wide facing carriers600/601/602/604/605/606/608/650/651/658 remain selected;
 all ten effect115 preparation windows and all35 slot14 memberships retain their
 equality. See [high direction carrier evidence](REIMU_HIGH_DIRECTION_CARRIERS_2026_10_20.md).
