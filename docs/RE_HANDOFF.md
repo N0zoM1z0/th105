@@ -237,6 +237,19 @@ are under `.analysis/reimu-object-entry-source-20261019/` and
 `build/reimu-object-entry-source-20261019/`. Reimu remains at14 body differences;
 the root's remaining compiler context remains open.
 
+The2026-10-20 conversion/context batch freshly repeats the14-byte residual,
+all548 metadata bytes and41/43 diagnostics, plus0/672 native cases. Fifteen
+controls (debugZ7, long32, float/double-argument helpers, signed/unsigned word views,
+Gr, four physical/template/field-ownership views and an explicit800 index base)
+are payload-neutral.
+Int64 controls use a distinct CRT entry and regress to20/123 body differences;
+strict FP and forced frame pointers change the code extent. Fast FP has a
+different extent and unbound literal; Zi fails C1902 and remains untested.
+The complete existing excluded171-byte ftol2 archive member is independently
+replayed: ordinary SSE68A1A0, exception entry68A1BC and64-bit entry68A1D6 are
+distinct. No fake aliases, public bindings, source/profile selection or new
+authored credit. See [conversion/context evidence](REIMU_OBJECT_CONVERSION_CONTEXT_2026_10_20.md).
+
 See [ReimuObject entry evidence](REIMU_OBJECT_ENTRY_2026_10_19.md).
 
 Current906/999 execution, negative and read-only Ghidra receipts are below

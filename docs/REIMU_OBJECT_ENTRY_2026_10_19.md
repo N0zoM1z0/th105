@@ -250,6 +250,10 @@ All following controls remain unselected and phase-scoped:
   public comparison paths fail closed with an unknown REL32 target. No
   binding to68A1A0 or another entry is invented; this control has no accepted
   canonical result. It differs from the earlier fenv-access experiment.
+  The later [conversion-context provenance witness](REIMU_OBJECT_CONVERSION_CONTEXT_2026_10_20.md)
+  identifies the distinct real exception entry68A1BC; a current-source strict-FP
+  control uses that entry and remains nonexact. The historical control above
+  is not retroactively qualified.
 - On the40/43 five-chain source, a908 pointer capture inside4/7, the906 byte
   access through the high byte of sprite color storage, direct short selector
   arguments in906/999, a real999 double value capture, and an ordinary
