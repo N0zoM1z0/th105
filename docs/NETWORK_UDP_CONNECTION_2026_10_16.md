@@ -33,8 +33,8 @@ exit code259 rejects another start. The API result is discarded and its local
 output is not initialized by the target. Under the endpoint wrapper+E0/native
 E4 scoped lock, state2 or3 rejects the operation.
 
-For size below FFFF, free any old CRT allocation+78, publish WORD size+7C,
-allocate/copy a nonempty replacement or clear the pointer for zero size. FFFF
+For size below FFFF, free the old buffer+78 through CRT free, publish WORD size+7C,
+allocate a nonempty replacement through array new665B8A and copy it, or clear the pointer for zero size. FFFF
 preserves both old fields. No allocation-failure recovery is invented. A16-byte
 stack handoff stores owner+0, WORD size+4, data pointer+8 and DWORD copied+C;
 the unused two bytes following size remain untouched.
@@ -184,3 +184,8 @@ Recipes and exact tool/source/image/map hashes remain under
 configured object reports are `build/network-udp-linked-{formal-build,formal,accepted}.json`.
 The next priority is the shared10219-byte Fighter root4740C0, called by every
 roster action root; the network residual is recorded for a later new discriminator.
+
+The [October19 allocation-interface follow-up](ALLOCATOR_INTERFACES_2026_10_19.md)
+corrects the retained source's malloc alias to real array new. Fresh ordinary
+and mixed-link comparisons remain nonexact with the existing complete
+payload/diagnostic counts; no new authored exact credit is claimed.

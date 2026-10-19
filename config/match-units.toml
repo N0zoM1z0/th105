@@ -18136,7 +18136,7 @@ source = "src/audio/DirectSound.cpp"
 object = "build/match-units/GptWeb_OggDataSourceOpen.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Game-authored OggDataSource open path @ 0x00418A10. Raw caller 0x00402A1E passes this in ESI and only path on the stack, proving an LTCG/private entry ABI. Ordinary member C++ closes cleanup/open/Xiph callback/wave-format/SFL semantics but remains 292/291 from the first byte; no private-register ABI is fabricated."
+notes = "Game-authored OggDataSource open path @ 0x00418A10. Raw caller 0x00402A1E passes this in ESI and only path on the stack, proving the private entry ABI but not a unique compiler/TU phase. Ordinary member C++ closes cleanup/open/Xiph callback/wave-format/SFL semantics but remains 292/291 from the first byte; no private-register ABI is fabricated."
 
 [[units.gpt-web-ogg-data-source-open.functions]]
 address = "0x00418A10"
@@ -18179,7 +18179,7 @@ source = "src/audio/OggMetadata.cpp"
 object = "build/match-units/GptWeb_OggMetadata.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Game-side SFL loop metadata loader @ 0x00418D10, called from OggDataSource open success. Real FileReaderOwner RAII, 260-byte path buffer, cue/adtl parsing and unsigned sample-rate conversions select the target /GS+EH family. Natural /GS source is 463/484 with first mismatch +0x10 (target frame 0x118 versus candidate 0x110); /GS- is 452 bytes and rejected."
+notes = "Game-side SFL loop metadata loader @ 0x00418D10, called from OggDataSource open success. Real FileReaderOwner RAII, 260-byte path buffer, cue/adtl parsing and unsigned sample-rate conversions select the target /GS+EH family. Natural /GS source is 463/484 with first mismatch +0x10 (target frame 0x118 versus candidate 0x110); /GS- is 452 bytes and rejected. Array-new interface is now real C++ new[] with665B8A binding and the observed CRT free; ordinary463-byte payload remains unchanged. Private actual-caller/static-helper/dtor/FP controls remain nonexact and unselected. docs/ALLOCATOR_INTERFACES_2026_10_19.md."
 
 [[units.gpt-web-ogg-metadata.functions]]
 address = "0x00418D10"
@@ -18187,7 +18187,7 @@ symbol_base = "?load_sfl_loop_metadata@th105@@YAXPBDPAUOggDataSource@1@@Z"
 rel32_targets = [
   "strcpy_s=0x0068AD95",
   "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
-  "malloc=0x00665B8A",
+  "??_U@YAPAXI@Z=0x00665B8A",
   "free=0x0068AA26",
   "FileReaderOwner_dtor=0x0040CF20",
   "__security_check_cookie=0x00689D25",
@@ -18984,7 +18984,7 @@ source = "src/network/NetworkWinsockReceiveThread.cpp"
 object = "build/match-units/CrossV106a_NetworkWinsockReceiveThread.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Full UDP receive/request/callback TU with actual native map/vector and private lookup/key/checked-access/rejection/endpoint-list definitions. Request1355 uses observed minimum81-byte reply, two RAII scopes and native twelve-byte tree insertion result; complete source remains nonexact. Actual caller/key148 and checked-access33 bodies recover private inputs without ABI adapters. The two exact dependency controls retain origin review and earn no authored/source/exclusion credit. Main loop1456+56 remains nonexact; callback14 stays exact. Connection415340 now has complete persistent-request/DNS/stack-handoff source; complete callback415D60 owns request handoff/probe/retry/auxiliary socket behavior. A genuine mixed COFF/LTCG control now links with actual peer-removal/acceptance/thread sources; no missing implementation remains. No inflated packet or synthetic callee."
+notes = "Full UDP receive/request/callback TU with actual native map/vector and private lookup/key/checked-access/rejection/endpoint-list definitions. Request1355 uses observed minimum81-byte reply, two RAII scopes and native twelve-byte tree insertion result; complete source remains nonexact. Actual caller/key148 and checked-access33 bodies recover private inputs without ABI adapters. The two exact dependency controls retain origin review and earn no authored/source/exclusion credit. Main loop1456+56 remains nonexact; callback14 stays exact. Connection415340 now has complete persistent-request/DNS/stack-handoff source; complete callback415D60 owns request handoff/probe/retry/auxiliary socket behavior. A genuine mixed COFF/LTCG control now links with actual peer-removal/acceptance/thread sources; no missing implementation remains. No inflated packet or synthetic callee. Connection request allocation now uses genuine array new665B8A, preserving CRT free and failure side effects. All seven ordinary comparison payloads are unchanged; fresh mixed link remains542 bytes with84 diagnostic differences. docs/ALLOCATOR_INTERFACES_2026_10_19.md."
 
 [[units.cross-v106a-network-winsock-receive-thread.functions]]
 address = "0x0041D7B0"
@@ -19044,7 +19044,7 @@ address = "0x00415340"
 symbol_base = "?start_connection@NetworkWinsockReceiveView@th105@@QAEDPBDGPBXG@Z"
 rel32_targets = [
   "_free=0x0068AA26",
-  "_malloc=0x00665B8A",
+  "??_U@YAPAXI@Z=0x00665B8A",
   "_memcpy=0x0068AA30",
   "_htons@4=0x006898D8",
   "_inet_addr@4=0x006898AE",

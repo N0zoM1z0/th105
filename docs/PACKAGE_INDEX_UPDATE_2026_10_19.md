@@ -148,6 +148,7 @@ and execution drivers are under `.analysis/package-index-update-20261019/`.
 
 Remaining work includes original visibility/partition, private helper ABIs,
 EH metadata and the archive loader41BA70 before returning to reader/BMP code
-generation. Two additional old nonexact probes still name array-new665B8A as
-malloc: Ogg SFL418D10 and Winsock connection415340. Correct their source call
-interfaces in a separate bounded follow-up; they are not new exact evidence.
+generation. Two additional old nonexact probes named array-new665B8A as
+malloc: Ogg SFL418D10 and Winsock connection415340. Their interfaces are now
+corrected in the [bounded follow-up](ALLOCATOR_INTERFACES_2026_10_19.md), without
+new exact credit.

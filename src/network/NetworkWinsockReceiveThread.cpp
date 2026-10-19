@@ -2,6 +2,7 @@
 #include <map>
 #include <vector>
 #include <string.h>
+#include <new>
 #include <stdlib.h>
 #include <stddef.h>
 
@@ -200,7 +201,7 @@ char NetworkWinsockReceiveView::start_connection(const char *endpoint,
             free(request_data_078);
         request_size_07c = size;
         if (size) {
-            request_data_078 = malloc(size);
+            request_data_078 = new unsigned char[size];
             memcpy(request_data_078, packet, request_size_07c);
         } else {
             request_data_078 = 0;

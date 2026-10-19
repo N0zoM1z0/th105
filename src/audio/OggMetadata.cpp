@@ -1,6 +1,7 @@
 #include "OggDataSource.hpp"
 #include "../assets/FileReader.hpp"
 
+#include <new>
 #include <cstdlib>
 #include <cstring>
 
@@ -23,7 +24,7 @@ void load_sfl_loop_metadata(
         return;
 
     unsigned long size = file.reader->size();
-    unsigned char *data = static_cast<unsigned char *>(std::malloc(size));
+    unsigned char *data = new unsigned char[size];
     file.reader->read(data, size);
 
     unsigned long cue_position = 0;

@@ -355,11 +355,45 @@ unit's GS enabled; the related opener's243-case model passes on its fresh
 object after the shared header change. Nine primary Ghidra hashes agree.
 Receipts: `build/package-index-update-20261019/`. No exact credit is added.
 
-Next correct two old nonexact allocator interfaces at418D10 (Ogg SFL) and
-415340 (Winsock connection), whose probes still name array-new665B8A as malloc.
-Then recover archive-loader41BA70/input/global visibility before revisiting
-reader/BMP code generation. Keep the private helper boundaries unresolved until
-a complete honest caller/callee context reproduces them.
+The two old nonexact allocation interfaces at418D10 and415340 are now
+corrected below. Recover archive-loader41BA70/input/global visibility before
+revisiting reader/BMP code generation. Keep the private helper boundaries
+unresolved until a complete honest caller/callee context reproduces them.
+
+## Current allocation-interface correction
+
+[Audio/network allocation evidence](ALLOCATOR_INTERFACES_2026_10_19.md) confirms
+both418DD1 and4153FD call665B8A, the array-allocation forwarding entry. Source
+now uses `new unsigned char[size]` with the real `<new>` declarations and
+`??_U` bindings; observed CRT free calls remain. This repairs the old malloc
+interface without adding failure handling. Both ordinary roots stay463/484
+and524/542. All eight configured comparison payloads across the two affected
+units are byte-identical to the fresh pre-edit controls; accepted callback
+41D7B0 remains14/14 exact. The148/33 dependency controls remain in origin review.
+
+A fresh real-source mixed network link has no unresolved implementations.
+Its542-byte connection still has84 diagnostic differences, first+14C; native
+EH/GS/worker-pointer hypotheses remain unaccepted. SFL's same-TU visibility
+controls naturally reproduce its ECX path/stack-source/RET4 entry with an
+ordinary static stdcall definition, without a custom ABI facade. Visible
+reader destruction yields470 bytes; strict/fenv controls492, owner-body
+visibility475/497. All retain frame110h versus target118h. None is selected,
+and the original FP mode is unknown. These partial COFF contexts retain the
+caller's unresolved `open_reader` alias; they are not complete Ogg links.
+
+Nine Ghidra primary DB hashes remain unchanged. Receipts are under
+`build/allocator-interface-20261019/` and `build/allocator-interface-network.*`.
+No exact credit or cold aggregate replay is added. Before a genuine Ogg link,
+replace its retained `open_reader` declaration-only alias with the independently
+reviewed FileReaderOwner operation on the observed receiver prefix; do not
+invent a source provider or a private register convention.
+
+The same ledger census finds seven remaining nonexact scalar-new aliases to
+665B8A, in the plain/encoded file-buffer, palette, wave and battle-info-gauge
+units. Their source expressions/declarations still need review; the address
+list is `build/allocator-interface-20261019/remaining-array-bindings.json`.
+Treat these as the next bounded interface audit, then resume archive-loader
+context recovery. No unreviewed alias is changed by the current batch.
 
 ## Current Reimu CPU root
 
