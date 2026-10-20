@@ -290,92 +290,103 @@ aggregate replay is claimed.
 
 ## Current ReimuObject update source phase
 
-Authored root496540 is now source-present under the observed void/ECX/RET0 ABI.
-All41 concrete actions/defaults remain hand-reconstructed in
-`ReimuObjectActionStateStaging.cpp/.hpp`; the historical path/view name is
-retained. The update is genuinely virtual at slot28 after an unused opaque
-slot24. Independent placement-construction COFF emits11 entries and confirms
-the update's +28 DIR32. Accepted4937D0 CALLs that slot and ignores EAX. Source
-presence does not imply exactness. No root match or remote_exact flag is added.
+Authored root496540 remains source-present under the observed void/ECX/RET0
+ABI. All41 concrete actions/defaults are hand-reconstructed in
+`ReimuObjectActionStateStaging.cpp/.hpp`; the historical path/view name remains.
+The virtual update is at28 after opaque24. The genuine source-construction
+vtable has11 entries and accepted4937D0 ignores the update EAX. No exact row
+or remote_exact flag is added. The unchanged owned-extent unit compares all
+46138 physical bytes through4A197A:46128 owned bytes and10 alignment bytes.
+The39853-byte main-span candidate and ownership ledger remain provisional and
+unchanged; no remote chunk or alignment is skipped.
 
-The new `gpt-web-reimu-object-action-state` probe uses `owned_extent=true`.
-Its strict46138-byte physical comparison includes all46128 owned bytes and10
-alignment bytes through4A197A. The provisional39853-byte main span and byte
-ownership ledger are unchanged; no chunk, hole or alignment is skipped.
-The flag requires verified ownership/target bytes, rejects a missing record or
-conflicting boundary mode, and remains unsupported by linked-PE contracts.
-Nine focused tests exercise remote REL32/byte coverage, alignment mismatches,
-manifest guards and boundary-input provenance; existing defaults are unchanged.
+The selected source now splits804 sequence0/1 into two independent if bodies,
+then rechecks sequence2 for same-invocation gravity/bounce/heading/fade. Raw
+comparisons at496C4B/496DB0/496F26 establish that order; an else-if sequence2
+control is wrong. The physical804 interval496C1E..497086 has272 instructions/
+1128 bytes and is not a standalone function. Its local bounded advance tail
+now reproduces the distinct animation site shape at49702C. The source outside
+804, shared headers, layouts, flags and typed relocation bindings are unchanged.
 
-The selected source now separates905/906/907/908's four selector families and
-908's sequence4/5/6/7 bodies. Raw selectors load6FA894 once and dispatch through
-four-entry tables. A new public auditor executes16 actual first-World prefixes
-and checks private/shared physical call sites plus conditional normal-return
-call-graph bijections. The merged baseline is rejected; a compiled906 control
-with an early wave preserves first-spawn prefixes/counts but fails the graph.
-This is static post-call evidence, not execution with fabricated World returns.
+Three natural private controls isolate the effects. Splitting only the bodies
+is44920 bytes/400 direct CALLs/60 RETs; expanding only804's local tail is44776/
+394/61; the selected combination is45100/401/61. The previous selector source
+was44604/393/60. All retain the natural438h frame and first31 target bytes;
+strict comparison remains nonexact at49655F/+31 (default-branch displacement).
+Selected canonical45100/3416b950 has metadata at44216/884 bytes and final RET
+end44214 before two alignment bytes. Owner diagnostics remain0/43. Target
+closure remains10670 instructions/22 switches,404 actual direct CALLs to25
+callees and68 RETs. E8 inside49C35A's FLD1 is still not a4C611D call.
 
-Separating the real type8/type9 packet scopes in908 sequence6/7 naturally adds
-12 frame bytes,42Ch to438h. Separate4/5 adds a distinct orientation site while
-retaining a shared state-six tail. Target6/7 also share the final World site;
-do not infer two calls from two packets. Source/control combinations show
-that removing named double locals alone does not explain frame alignment.
+804 restores two MT, two orientation, one setup, one state-six and one release
+site. All23 non-animation/non-World callee counts now agree across the root.
+Remaining animation22 target/11 source and World99/107 explain the net three
+CALL-site difference; it is not three missing behaviors. Physical RET counts
+remain68/61, and equal callee counts do not prove instruction/ABI equivalence.
 
-Canonical source44604/29f2de2f now agrees with the first31 target bytes and
-first differs at49655F/+31 in the default-branch displacement. The full46138
-comparison remains nonexact. Source final RET ends43718, alignment ends43720
-and884 metadata bytes follow. Decoded direct CALL counts are404/393 to25/25
-targets, RETs68/60; physical owner diagnostics remain0/43. The net11-CALL gap
-is not eleven missing behaviors: World has99 target/107 source sites, while
-animation has22/10. The raw mapper's405 E8/26 targets still include E8 inside
-49C35A's FLD1. Complete target closure retains10670 instructions/22 switches.
-None of these counts grants exact credit.
+The new public804 auditor compares3144 actual prefixes (input192d412a):3132
+real RETs and12 secondary-setup entry stops. It observes each sequence's seven
+private direct sites and their disjointness, plus one shared animation site.
+Signed byte127/128/255, short-state wrapping, state-six9/10, two actual MT seeds,
+both tested x87 control words, initialization gates and sequence2 bounce/fade
+are covered. The merged baseline has equal prefixes then fails setup-site
+sharing. A same-sized45100/401-CALL/61-RET else-if control fails actual input1920
+(sequence1,phase2,index0,state-32768,state-six9,seed0,counter1,CW027F). No target
+instruction, original vtable or helper return is patched. Native replay is
+45100/3352e262; object-only reports retain build_provenance_verified=false.
+The fresh public build repeats0/3144 and the selector0/16 proof. Both808/812
+caller proofs, orientation0/400, alpha0/1170 and terrain288 pass. Focused original
+4937D0 manager-entry0/3969 uses projectile state/collapse/frame inputs/hash
+a68f382d, with3819 real wrapper RETs,54 setup,75 owned-spawn and21 first World
+entry stops;771 target/752 source instructions visited. Its input vtable clone,
+zero freeze/hold words and null secondary retain the controlled wrapper scope.
+The frozen public source passes0/133192 unchanged inputs/hashf46a849f,119356
+actual RETs and the same world/setup/effect/wave/CRT entry stops;9215 target/
+8825 source instructions visited. This does not close returning opaque graphs.
 
-The four-family intermediate passes0/4032 focused inputs and0/133192 unchanged
-full inputs/hashf46a849f. The private movement control passes0/984 gate/counter/
-floating-boundary inputs. Final selected native replay is44604/fccfd70a.
-The frozen selected public source also passes0/133192, unchangedhashf46a849f,
-with119356 real RETs and the same actual world/setup/effect/wave/CRT entry
-stops;9215 target/8709 source instructions are visited.
-Its controlled original4937D0 manager-entry run passes0/4200, samehashfff4c44d:
-4156 wrapper RETs/44 first World entries,1226 target/1211 source instructions
-visited. It uses an input vtable clone, zero freeze/hold words and null
-secondary; no target code, original vtable or helper return is patched.
-Returning opaque graphs, arbitrary aliases/resources, nonnull rendering and
-unmasked exceptions remain unknown.
+The prior905/906/907/908 selector families and908 sequence4/5/6/7 packet scopes
+remain selected. Their public16-input audit checks actual first-World prefixes,
+private/shared call partitions and static call graphs conditional on normal
+ABI returns. It does not execute returning opaque calls. The earlier906
+wrong-wave-order control remains rejected after its first-prefix/count checks.
+The selector checkpoint's0/133192/hashf46a849f and0/4200 manager-entry reports
+remain historical pins; use the new804 evidence page for the selected build.
 
-The prior twenty function-scoped literal keys retain the root's exact
-width/value operands without rebinding existing keys. All25 typed external
-callees and121 external DIR32s resolve; literal audit checks1124 target references.
-Both808/812 caller proofs, orientation0/400, alpha0/1170 and terrain288 pass.
-Terrain retains240 finite equal prefixes and48 hardware-unqualified nonfinite
-contexts, the measured Unicorn SSE NaN gap and runtime6FA894 adjacent-word load.
-Eighteen related accepted geometry/animation/runtime/atan2 members replay
-exact. The prior void checkpoint's13 accepted manager-runtime members remain
-unchanged; its mixed58BE10 probe was not repeated in this source-only batch.
-No shared header/layout/profile or relocation binding changes here.
+All25 typed external callees and121 external DIR32 bindings remain unchanged,
+including the prior twenty scoped literal keys. The literal audit remains349
+ledger literals/775 explicit mappings/1124 target references. Terrain retains
+240 finite equal prefixes and48 hardware-unqualified nonfinite contexts, the
+measured Unicorn SSE NaN gap and runtime6FA894 adjacent-word load. Existing
+related accepted units have no shared-input change in this source-only batch;
+no aggregate/cold claim is made.
 
-The earlier expression/in-place-retire controls remain unselected. New separate
-905/906/907/908-only and combined alignment/movement controls retain their
-nonexact results in the selector evidence page. Next recover remaining physical
-animation/case/return sharing and constant-register lifetimes against the full
-extent;438h frame equality does not establish every target stack slot or TU.
-No inert locals, target-byte arrays, ABI facade or impossible-LTCG claim is used.
-Next bounded lead: physical entry intervals localize the remaining MT/
-orientation/state-six/setup/release site gaps to804 at496C1E..497086. Raw
-sequence0/1 branches at496C4B/496DB0 are still grouped in source; no804 edit is
-included here. Keep physical interval attribution distinct from semantic tail
-ownership, and assess excess World sites/animation sharing separately.
+See [804 sequence evidence](REIMU_OBJECT_804_SEQUENCES_2026_10_20.md) for source
+pins, commands, controls and limits. The [selector-family checkpoint](REIMU_OBJECT_SELECTOR_FAMILIES_2026_10_20.md)
+and [void-root checkpoint](REIMU_OBJECT_VOID_ROOT_2026_10_20.md) remain linked.
+Fresh direct read-only/no-analysis Ghidra independently attests import/file,
+entry,mapped text,root,vtable with CPU0/nice10/128MiB heap; all nine primary DB
+hashes are unchanged and its alias is removed. Its independent body structure
+corroborates raw edges; shortened float arithmetic/ordered bounds predicates
+remain hypotheses, not source facts. No IDA semantics are used.
 
-See [selector-family evidence](REIMU_OBJECT_SELECTOR_FAMILIES_2026_10_20.md)
-for source pins, experiments, commands and remaining limits; the prior
-[void-root checkpoint](REIMU_OBJECT_VOID_ROOT_2026_10_20.md) remains linked.
-Fresh direct read-only Ghidra attests file/import,entry,mapped text,root,vtable
-and preserves all nine primary DB hashes; the alias is removed. Decompiler
-types/boundaries remain hypotheses. Historical
-[final-action](REIMU_OBJECT_FINAL_ACTIONS_2026_10_20.md) and earlier boolean
-checkpoints remain linked. No cold aggregate or percentage is asserted.
-Preserve Fighter478FA0 and initializer4A1CE0 checkpoints.
+Next recover remaining animation/World and physical RET sharing, constant
+register/stack lifetimes and honest TU/LTCG context against the complete extent.
+Unselected fifteen-World-retirement expansion gives44872/391 CALLs/51 RETs,
+World97 against99, overmerging. Target's eight incoming jumps to499DF6 and
+901's EBX=-1 at49CEC9 through49D0C0's post-call add330 offer a bounded next lead.
+Actual unconditional terminal World continuations number3 target/12 selected/
+2 expanded, including distinct plain, immediate-decrement and EBX-decrement
+target tails. These are static conditional-normal-return facts, not executed
+World returns. Private -1/255 direction-value controls change code but do not
+fix the counts; the unsigned-byte header is unchanged and its signedness is
+unproven. Resolve per-site sharing/constant lifetimes rather than minimizing
+call/RET totals. In particular,901's49CF27/49CF30 direction stores are immediate
+FF/1, not BL uses; investigate its local animation/retirement tails separately
+from byte signedness. See the804 page for these phase-scoped control results.
+No inert locals, byte arrays, ABI facade or impossible-LTCG claim is used.
+Returning world/setup/event/wave/CRT graphs, arbitrary aliases/resources,
+nonnull rendering and unmasked exceptions remain open. Preserve Fighter478FA0
+and initializer4A1CE0 checkpoints. No root exact or authored-byte credit is added.
 
 ## Shared Object action980 exact checkpoint
 

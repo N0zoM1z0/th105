@@ -1,5 +1,9 @@
 # ReimuObject selector families and natural frame recovery
 
+The selected source has since advanced in the
+[804 sequence checkpoint](REIMU_OBJECT_804_SEQUENCES_2026_10_20.md).
+The pins and results below describe the preceding selector-family checkpoint.
+
 This advances the [void-root checkpoint](REIMU_OBJECT_VOID_ROOT_2026_10_20.md)
 for authored update496540. The target remains original Japanese TH10.5 v1.06a,
 SHA256 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.

@@ -171,7 +171,7 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
                 reinterpret_cast<CharacterObjectEffectEmitter *>(this)->
                     emit_repeated_effects_for_owner_state(0, 0, 5)))
             goto retire;
-        if (sequence_13e == 0 || sequence_13e == 1) {
+        if (sequence_13e == 0) {
             if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0) {
                 reinterpret_cast<CharacterObjectEffectEmitter *>(this)->
                     replace_secondary_animation(993, 4.0f, 30, 1, 2);
@@ -181,8 +181,36 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
             reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
                 set_oriented_components_f0_f4(parameters_340[0], 35.0f);
             reinterpret_cast<CharacterObjectRuntime *>(this)->advance_state_six_counter_conditional(10);
-            if (phase_state_180 == 1 || phase_state_180 == 9 ||
-                    (sequence_13e == 1 && phase_state_180 == 2)) {
+            if (phase_state_180 == 1 || phase_state_180 == 9) {
+                reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
+                    set_oriented_components_f0_f4(parameters_340[0], 2.0f);
+                ++state_364;
+                if (state_364 > 3) {
+                    state_364 = 0;
+                    phase_state_180 = 0;
+                }
+            }
+            if (phase_state_180 == 2 || phase_state_180 == 4) {
+                select_sequence(2);
+                phase_index_184 = 0;
+                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->release_secondary_animation_renderer();
+                velocity_x_f4 = static_cast<float>(8.0 -
+                    static_cast<float>(mt19937_next_u32() % 20u) * static_cast<double>(0.1f));
+                velocity_y_f8 = static_cast<float>(
+                    static_cast<float>(mt19937_next_u32() % 25u) * static_cast<double>(0.1f) + 5.0);
+            }
+        }
+        if (sequence_13e == 1) {
+            if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0) {
+                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->
+                    replace_secondary_animation(993, 4.0f, 30, 1, 2);
+                state_364 = 0;
+            }
+            heading_12c = parameters_340[0];
+            reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
+                set_oriented_components_f0_f4(parameters_340[0], 35.0f);
+            reinterpret_cast<CharacterObjectRuntime *>(this)->advance_state_six_counter_conditional(10);
+            if (phase_state_180 == 2 || phase_state_180 == 1 || phase_state_180 == 9) {
                 reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
                     set_oriented_components_f0_f4(parameters_340[0], 2.0f);
                 ++state_364;
@@ -192,7 +220,7 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
                 }
             }
             if ((phase_state_180 == 2 || phase_state_180 == 4) &&
-                    (sequence_13e == 0 || static_cast<signed char>(phase_index_184) < 1)) {
+                    static_cast<signed char>(phase_index_184) <= 0) {
                 select_sequence(2);
                 phase_index_184 = 0;
                 reinterpret_cast<CharacterObjectEffectEmitter *>(this)->release_secondary_animation_renderer();
@@ -215,7 +243,13 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
             x_ec += static_cast<float>(facing_104) * velocity_x_f4;
             y_f0 += velocity_y_f8;
         }
-        goto bounded_projectile_advance;
+        if (x_ec > 1380.0 || x_ec < -100.0 || y_f0 > 1000.0 || y_f0 < -120.0)
+            goto retire;
+        if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
+            --state_330;
+        if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && sequence_13e == 2)
+            --state_330;
+        return;
 
     case 807:
         if ((sequence_13e == 0 && reinterpret_cast<CharacterObjectEffectEmitter *>(this)->

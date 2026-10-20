@@ -19818,7 +19818,7 @@ source = "src/characters/ReimuObjectActionStateStaging.cpp"
 object = "build/match-units/GptWeb_ReimuObjectActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete void/thiscall ReimuObject slot28 source hypothesis for all41 actions and defaults. Owned-extent comparison covers496540..4A197A including46128 owned bytes and10 alignment bytes, while functions.csv retains its provisional39853-byte main span. Separate selector families905..908 and908 sequence packet scopes naturally recover the438h frame; full extent remains nonexact. No exact credit; docs/REIMU_OBJECT_SELECTOR_FAMILIES_2026_10_20.md."
+notes = "Complete void/thiscall ReimuObject slot28 source hypothesis for all41 actions and defaults. Owned-extent comparison covers496540..4A197A including46128 owned bytes and10 alignment bytes, while functions.csv retains its provisional39853-byte main span. Separate selector families905..908 and908 packet scopes retain the438h frame. Independent804 sequence0/1 bodies preserve same-frame sequence2 handling and a local bounded advance tail. Full extent remains nonexact. No exact credit; docs/REIMU_OBJECT_804_SEQUENCES_2026_10_20.md."
 
 [[units.gpt-web-reimu-object-action-state.functions]]
 address = "0x00496540"
