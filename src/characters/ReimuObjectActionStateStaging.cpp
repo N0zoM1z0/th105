@@ -2578,24 +2578,59 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
                 }
             }
             if (state_364 == 1 && *reinterpret_cast<short *>(fighter_owner_348 + 0x738) == 0) {
-                int period;
                 switch (g_match_identifier) {
-                case 0: period = 270; break;
-                case 1: period = 240; break;
-                case 2: period = 210; break;
-                case 3: period = 150; break;
-                default: period = 0; break;
-                }
-                if (period != 0 && counter_144 % period == 0) {
-                    float copied[3] = {heading_12c, 2.0f, 4.0f};
-                    reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
-                        905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
-                        reinterpret_cast<const unsigned *>(copied), 3);
-                    copied[2] = 5.0f;
-                    reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
-                        905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
-                        reinterpret_cast<const unsigned *>(copied), 3);
-                    reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                case 0:
+                    if (counter_144 % 270 == 0) {
+                        float copied[3] = {heading_12c, 2.0f, 4.0f};
+                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                            905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                            reinterpret_cast<const unsigned *>(copied), 3);
+                        copied[2] = 5.0f;
+                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                            905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                            reinterpret_cast<const unsigned *>(copied), 3);
+                        reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                    }
+                    break;
+                case 1:
+                    if (counter_144 % 240 == 0) {
+                        float copied[3] = {heading_12c, 2.0f, 4.0f};
+                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                            905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                            reinterpret_cast<const unsigned *>(copied), 3);
+                        copied[2] = 5.0f;
+                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                            905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                            reinterpret_cast<const unsigned *>(copied), 3);
+                        reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                    }
+                    break;
+                case 2:
+                    if (counter_144 % 210 == 0) {
+                        float copied[3] = {heading_12c, 2.0f, 4.0f};
+                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                            905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                            reinterpret_cast<const unsigned *>(copied), 3);
+                        copied[2] = 5.0f;
+                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                            905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                            reinterpret_cast<const unsigned *>(copied), 3);
+                        reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                    }
+                    break;
+                case 3:
+                    if (counter_144 % 150 == 0) {
+                        float copied[3] = {heading_12c, 2.0f, 4.0f};
+                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                            905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                            reinterpret_cast<const unsigned *>(copied), 3);
+                        copied[2] = 5.0f;
+                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                            905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                            reinterpret_cast<const unsigned *>(copied), 3);
+                        reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                    }
+                    break;
                 }
             }
             if (state_364 == 2) {
@@ -2693,33 +2728,83 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
                 }
             }
             if (state_364 == 1 && *reinterpret_cast<short *>(fighter_owner_348 + 0x738) == 1) {
-                const int selector = g_match_identifier;
-                int period;
-                switch (selector) {
-                case 0: period = 225; break;
-                case 1: period = 195; break;
-                case 2: period = 165; break;
-                case 3: period = 135; break;
-                default: period = 0; break;
-                }
-                if (period != 0 && counter_144 % period == 0) {
-                    const float sector_count = selector == 3 ? 8.0f : selector == 0 ? 2.0f : 4.0f;
-                    const double sector_step = selector == 3 ? 45.0 : selector == 0 ? 180.0 : 90.0;
-                    float copied[3];
-                    for (float sector = 0.0f; sector < sector_count; sector += 1.0f) {
-                        copied[0] = static_cast<float>(sector * sector_step + heading_12c);
-                        copied[1] = 10.0f;
-                        copied[2] = 4.0f;
+                switch (g_match_identifier) {
+                case 0:
+                    if (counter_144 % 225 == 0) {
+                        float copied[3];
+                        for (float sector = 0.0f; sector < 2.0f; sector += 1.0f) {
+                            copied[0] = static_cast<float>(sector * 180.0 + heading_12c);
+                            copied[1] = 10.0f;
+                            copied[2] = 4.0f;
+                            reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                                906, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                                reinterpret_cast<const unsigned *>(copied), 3);
+                        }
+                        copied[0] = heading_12c;
+                        copied[2] = 5.0f;
                         reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                             906, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
                             reinterpret_cast<const unsigned *>(copied), 3);
+                        reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
                     }
-                    copied[0] = heading_12c;
-                    copied[2] = 5.0f;
-                    reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
-                        906, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
-                        reinterpret_cast<const unsigned *>(copied), 3);
-                    reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                    break;
+                case 1:
+                    if (counter_144 % 195 == 0) {
+                        float copied[3];
+                        for (float sector = 0.0f; sector < 4.0f; sector += 1.0f) {
+                            copied[0] = static_cast<float>(sector * 90.0 + heading_12c);
+                            copied[1] = 10.0f;
+                            copied[2] = 4.0f;
+                            reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                                906, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                                reinterpret_cast<const unsigned *>(copied), 3);
+                        }
+                        copied[0] = heading_12c;
+                        copied[2] = 5.0f;
+                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                            906, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                            reinterpret_cast<const unsigned *>(copied), 3);
+                        reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                    }
+                    break;
+                case 2:
+                    if (counter_144 % 165 == 0) {
+                        float copied[3];
+                        for (float sector = 0.0f; sector < 4.0f; sector += 1.0f) {
+                            copied[0] = static_cast<float>(sector * 90.0 + heading_12c);
+                            copied[1] = 10.0f;
+                            copied[2] = 4.0f;
+                            reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                                906, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                                reinterpret_cast<const unsigned *>(copied), 3);
+                        }
+                        copied[0] = heading_12c;
+                        copied[2] = 5.0f;
+                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                            906, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                            reinterpret_cast<const unsigned *>(copied), 3);
+                        reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                    }
+                    break;
+                case 3:
+                    if (counter_144 % 135 == 0) {
+                        float copied[3];
+                        for (float sector = 0.0f; sector < 8.0f; sector += 1.0f) {
+                            copied[0] = static_cast<float>(sector * 45.0 + heading_12c);
+                            copied[1] = 10.0f;
+                            copied[2] = 4.0f;
+                            reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                                906, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                                reinterpret_cast<const unsigned *>(copied), 3);
+                        }
+                        copied[0] = heading_12c;
+                        copied[2] = 5.0f;
+                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                            906, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                            reinterpret_cast<const unsigned *>(copied), 3);
+                        reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                    }
+                    break;
                 }
             }
             if (state_364 == 2) {
@@ -2830,46 +2915,87 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
                 }
             }
             if (state_364 == 1 && *reinterpret_cast<short *>(fighter_owner_348 + 0x738) == 2) {
-                const int selector = g_match_identifier;
-                int period;
-                switch (selector) {
-                case 0: period = 225; break;
-                case 1: period = 210; break;
-                case 2: period = 200; break;
-                case 3: period = 170; break;
-                default: period = 0; break;
-                }
-                if (period != 0 && counter_144 % period == 0) {
-                    const unsigned char *const followed = followed_actor_170;
-                    const float aim_x = static_cast<float>(
-                        (*reinterpret_cast<const float *>(followed + 0xec) - static_cast<double>(x_ec)) * facing_104);
-                    const float aim_y = static_cast<float>(
-                        *reinterpret_cast<const float *>(followed + 0xf0) + 100.0 - y_f0);
-                    float base_angle;
-                    if (selector == 1) {
-                        atan2_degrees(aim_y, aim_x);
-                        base_angle = heading_12c;
-                    } else
-                        base_angle = -atan2_degrees(aim_y, aim_x);
-                    const float sector_count = selector == 0 ? 1.0f : selector == 1 ? 2.0f : 4.0f;
-                    const double sector_step = selector == 1 ? 180.0 : 90.0;
-                    float copied[3];
-                    for (float sector = 0.0f; sector < sector_count; sector += 1.0f) {
-                        if (selector == 0)
+                switch (g_match_identifier) {
+                case 0:
+                    if (counter_144 % 225 == 0) {
+                        const unsigned char *const followed = followed_actor_170;
+                        const float aim_x = static_cast<float>(
+                            (*reinterpret_cast<const float *>(followed + 0xec) - static_cast<double>(x_ec)) * facing_104);
+                        const float aim_y = static_cast<float>(
+                            *reinterpret_cast<const float *>(followed + 0xf0) + 100.0 - y_f0);
+                        const float base_angle = -atan2_degrees(aim_y, aim_x);
+                        float copied[3];
+                        for (float sector = 0.0f; sector < 1.0f; sector += 1.0f) {
                             copied[0] = base_angle;
-                        else if (selector == 1)
-                            copied[0] = static_cast<float>(sector * sector_step + heading_12c);
-                        else if (selector == 2)
-                            copied[0] = static_cast<float>(sector * sector_step + base_angle - 90.0);
-                        else
-                            copied[0] = static_cast<float>(sector * sector_step + base_angle);
-                        copied[1] = 6.0f;
-                        copied[2] = 4.0f;
-                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
-                            907, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
-                            reinterpret_cast<const unsigned *>(copied), 3);
+                            copied[1] = 6.0f;
+                            copied[2] = 4.0f;
+                            reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                                907, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                                reinterpret_cast<const unsigned *>(copied), 3);
+                        }
+                        reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
                     }
-                    reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                    break;
+                case 1:
+                    if (counter_144 % 210 == 0) {
+                        const unsigned char *const followed = followed_actor_170;
+                        const float aim_x = static_cast<float>(
+                            (*reinterpret_cast<const float *>(followed + 0xec) - static_cast<double>(x_ec)) * facing_104);
+                        const float aim_y = static_cast<float>(
+                            *reinterpret_cast<const float *>(followed + 0xf0) + 100.0 - y_f0);
+                        atan2_degrees(aim_y, aim_x);
+                        float copied[3];
+                        for (float sector = 0.0f; sector < 2.0f; sector += 1.0f) {
+                            copied[0] = static_cast<float>(sector * 180.0 + heading_12c);
+                            copied[1] = 6.0f;
+                            copied[2] = 4.0f;
+                            reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                                907, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                                reinterpret_cast<const unsigned *>(copied), 3);
+                        }
+                        reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                    }
+                    break;
+                case 2:
+                    if (counter_144 % 200 == 0) {
+                        const unsigned char *const followed = followed_actor_170;
+                        const float aim_x = static_cast<float>(
+                            (*reinterpret_cast<const float *>(followed + 0xec) - static_cast<double>(x_ec)) * facing_104);
+                        const float aim_y = static_cast<float>(
+                            *reinterpret_cast<const float *>(followed + 0xf0) + 100.0 - y_f0);
+                        const float base_angle = -atan2_degrees(aim_y, aim_x);
+                        float copied[3];
+                        for (float sector = 0.0f; sector < 4.0f; sector += 1.0f) {
+                            copied[0] = static_cast<float>(sector * 90.0 + base_angle - 90.0);
+                            copied[1] = 6.0f;
+                            copied[2] = 4.0f;
+                            reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                                907, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                                reinterpret_cast<const unsigned *>(copied), 3);
+                        }
+                        reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                    }
+                    break;
+                case 3:
+                    if (counter_144 % 170 == 0) {
+                        const unsigned char *const followed = followed_actor_170;
+                        const float aim_x = static_cast<float>(
+                            (*reinterpret_cast<const float *>(followed + 0xec) - static_cast<double>(x_ec)) * facing_104);
+                        const float aim_y = static_cast<float>(
+                            *reinterpret_cast<const float *>(followed + 0xf0) + 100.0 - y_f0);
+                        const float base_angle = -atan2_degrees(aim_y, aim_x);
+                        float copied[3];
+                        for (float sector = 0.0f; sector < 4.0f; sector += 1.0f) {
+                            copied[0] = static_cast<float>(sector * 90.0 + base_angle);
+                            copied[1] = 6.0f;
+                            copied[2] = 4.0f;
+                            reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                                907, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                                reinterpret_cast<const unsigned *>(copied), 3);
+                        }
+                        reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                    }
+                    break;
                 }
             }
             if (state_364 == 2) {
@@ -3017,11 +3143,9 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
                     }
                     state_368 = static_cast<short>(state_368 - 1);
                 }
-                const int selector = g_match_identifier;
-                if (selector >= 0 && selector <= 3) {
-                    if (counter_144 % 240 == 60 || counter_144 % 240 == 80 ||
-                            (selector >= 1 && counter_144 % 240 == 100) ||
-                            (selector == 3 && counter_144 % 240 == 120)) {
+                switch (g_match_identifier) {
+                case 0:
+                    if (counter_144 % 240 == 60 || counter_144 % 240 == 80) {
                         float copied[3];
                         copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
                         copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(7)) + 3.0);
@@ -3031,9 +3155,7 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
                             reinterpret_cast<const unsigned *>(copied), 3);
                         reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
                     }
-                    if (counter_144 % 240 == 70 || counter_144 % 240 == 90 ||
-                            (selector >= 2 && counter_144 % 240 == 110) ||
-                            (selector == 3 && counter_144 % 240 == 130)) {
+                    if (counter_144 % 240 == 70 || counter_144 % 240 == 90) {
                         float copied[3];
                         copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
                         copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(3)) + 2.0);
@@ -3043,15 +3165,87 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
                             reinterpret_cast<const unsigned *>(copied), 3);
                         reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
                     }
-                    if ((selector >= 2 && counter_144 % 150 == 0) ||
-                            (selector == 1 && counter_144 % 240 == 0)) {
-                        state_366 = 60;
-                        if (selector == 3)
-                            state_368 = 60;
-                        state_374 = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
-                        if (selector == 3)
-                            state_378 = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
+                    break;
+                case 1:
+                    if (counter_144 % 240 == 60 || counter_144 % 240 == 80 || counter_144 % 240 == 100) {
+                        float copied[3];
+                        copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
+                        copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(7)) + 3.0);
+                        copied[2] = 4.0f;
+                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                            908, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                            reinterpret_cast<const unsigned *>(copied), 3);
+                        reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
                     }
+                    if (counter_144 % 240 == 70 || counter_144 % 240 == 90) {
+                        float copied[3];
+                        copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
+                        copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(3)) + 2.0);
+                        copied[2] = 5.0f;
+                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                            908, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                            reinterpret_cast<const unsigned *>(copied), 3);
+                        reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                    }
+                    if (counter_144 % 240 == 0) {
+                        state_366 = 60;
+                        state_374 = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
+                    }
+                    break;
+                case 2:
+                    if (counter_144 % 240 == 60 || counter_144 % 240 == 80 || counter_144 % 240 == 100) {
+                        float copied[3];
+                        copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
+                        copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(7)) + 3.0);
+                        copied[2] = 4.0f;
+                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                            908, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                            reinterpret_cast<const unsigned *>(copied), 3);
+                        reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                    }
+                    if (counter_144 % 240 == 70 || counter_144 % 240 == 90 || counter_144 % 240 == 110) {
+                        float copied[3];
+                        copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
+                        copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(3)) + 2.0);
+                        copied[2] = 5.0f;
+                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                            908, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                            reinterpret_cast<const unsigned *>(copied), 3);
+                        reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                    }
+                    if (counter_144 % 150 == 0) {
+                        state_366 = 60;
+                        state_374 = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
+                    }
+                    break;
+                case 3:
+                    if (counter_144 % 240 == 60 || counter_144 % 240 == 80 || counter_144 % 240 == 100 || counter_144 % 240 == 120) {
+                        float copied[3];
+                        copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
+                        copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(7)) + 3.0);
+                        copied[2] = 4.0f;
+                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                            908, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                            reinterpret_cast<const unsigned *>(copied), 3);
+                        reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                    }
+                    if (counter_144 % 240 == 70 || counter_144 % 240 == 90 || counter_144 % 240 == 110 || counter_144 % 240 == 130) {
+                        float copied[3];
+                        copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
+                        copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(3)) + 2.0);
+                        copied[2] = 5.0f;
+                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                            908, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                            reinterpret_cast<const unsigned *>(copied), 3);
+                        reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                    }
+                    if (counter_144 % 150 == 0) {
+                        state_366 = 60;
+                        state_368 = 60;
+                        state_374 = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
+                        state_378 = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
+                    }
+                    break;
                 }
             }
             if (state_364 == 2) {
@@ -3081,16 +3275,12 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
                 goto retire;
             alpha_113 = static_cast<unsigned char>(alpha_113 - 10);
             break;
-        case 4: case 5:
-            if (*reinterpret_cast<short *>(fighter_owner_348 + 0x174) <= 0 ||
-                    value_174 <= (sequence_13e == 4 ? -800 : -1200))
+        case 4:
+            if (*reinterpret_cast<short *>(fighter_owner_348 + 0x174) <= 0 || value_174 <= -800)
                 state_364 = 1;
             reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
                 set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
-            if (sequence_13e == 4)
-                heading_12c = static_cast<float>(heading_12c + 2.0);
-            else
-                heading_12c = static_cast<float>(heading_12c - 2.0);
+            heading_12c = static_cast<float>(heading_12c + 2.0);
             reinterpret_cast<CharacterObjectRuntime *>(this)->advance_state_six_counter_conditional(10);
             if (static_cast<signed char>(phase_index_184) <= 0)
                 state_364 = 1;
@@ -3103,26 +3293,60 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
                 alpha_113 = static_cast<unsigned char>(alpha_113 - 10);
             }
             goto bounds_908;
-        case 6: case 7:
+        case 5:
+            if (*reinterpret_cast<short *>(fighter_owner_348 + 0x174) <= 0 || value_174 <= -1200)
+                state_364 = 1;
+            reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
+                set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
+            heading_12c = static_cast<float>(heading_12c - 2.0);
+            reinterpret_cast<CharacterObjectRuntime *>(this)->advance_state_six_counter_conditional(10);
+            if (static_cast<signed char>(phase_index_184) <= 0)
+                state_364 = 1;
+            if (state_364 == 1) {
+                phase_index_184 = 0;
+                scale_x_11c = static_cast<float>(scale_x_11c + static_cast<double>(0.05f));
+                scale_y_120 = scale_x_11c;
+                if (alpha_113 < 10)
+                    goto retire;
+                alpha_113 = static_cast<unsigned char>(alpha_113 - 10);
+            }
+            goto bounds_908;
+        case 6:
             if (*reinterpret_cast<short *>(fighter_owner_348 + 0x174) <= 0)
                 state_364 = 1;
             parameters_340[1] = static_cast<float>(parameters_340[1] + 0.25);
             reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
                 set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
-            if (sequence_13e == 6)
-                heading_12c = static_cast<float>(heading_12c + 2.0);
-            else
-                heading_12c = static_cast<float>(heading_12c - 2.0);
+            heading_12c = static_cast<float>(heading_12c + 2.0);
             reinterpret_cast<CharacterObjectRuntime *>(this)->advance_state_six_counter_conditional(3);
             if (static_cast<signed char>(phase_index_184) <= 0)
                 state_364 = 1;
             if (state_364 == 1) {
-                float copied[3] = {heading_12c, 0.5f, sequence_13e == 6 ? 8.0f : 9.0f};
+                float copied[3] = {heading_12c, 0.5f, 8.0f};
                 reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                     908, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
                     reinterpret_cast<const unsigned *>(copied), 3);
                 goto retire;
             }
+            goto bounds_908;
+        case 7:
+            if (*reinterpret_cast<short *>(fighter_owner_348 + 0x174) <= 0)
+                state_364 = 1;
+            parameters_340[1] = static_cast<float>(parameters_340[1] + 0.25);
+            reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
+                set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
+            heading_12c = static_cast<float>(heading_12c - 2.0);
+            reinterpret_cast<CharacterObjectRuntime *>(this)->advance_state_six_counter_conditional(3);
+            if (static_cast<signed char>(phase_index_184) <= 0)
+                state_364 = 1;
+            if (state_364 == 1) {
+                float copied[3] = {heading_12c, 0.5f, 9.0f};
+                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                    908, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                    reinterpret_cast<const unsigned *>(copied), 3);
+                goto retire;
+            }
+            goto bounds_908;
         bounds_908:
             if (x_ec >= 1500.0f || x_ec < -220.0 || y_f0 > 1100.0f || y_f0 < -500.0)
                 goto retire;
