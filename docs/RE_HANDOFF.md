@@ -67,7 +67,7 @@ No shared header, selected compiler flag, relocation or ownership change.
 | --- | --- |
 |CPP|`555da0705db3e800f92c756449b88560d60d0a8d91a40f13d7c6c5feb354bfe2`|
 |Header|`6f469e6886959fd41ee6976b3c784c3df0c2e753ad4729a536764a3c8cd28b4b`|
-|Formal COFF|`da35fa3833d68129cf26608f6d3064ba1fbc7971d0260aa2716da0c66c4ec504`|
+|Latest formal COFF rebuild|`9d0cf6aba4ed041369bfb47d092ad4033b959a36758baa020b419acac188609e`|
 |Canonical46012-byte payload|`88bd9c9bc88d9fc7643a2a162de2aa1cee026fb7d744bb8feb559bb86d54474e`|
 
 The root remains **nonexact at49655F/+31** with natural438h frame,65 source
@@ -103,6 +103,18 @@ and [the evidence index](REIMU_OBJECT_EVIDENCE.md). New receipts are under
 `build/reimu-object-exact-20261020/`; private experiments use the corresponding
 `.analysis/` directory. Earlier source hashes and negative controls are
 historical evidence, not proof that a current source shape cannot match.
+
+The subsequent [helper-context controls](REIMU_OBJECT_HELPER_CONTEXT_2026_10_20.md)
+leave these source pins unchanged. A3600-input live-x87 helper-entry sample
+passes selected source; making64CD00's real body visible produces73 action816
+entry-state differences despite equal final outputs. The other two runtime
+definitions individually leave root bytes unchanged; all three helpers remain
+individually exact in the combined experimental object. Hosted speed/size
+LTCG controls fail at+0 and do not recover the original link graph. These
+negative results do not establish standalone or LTCG impossibility.
+The fresh formal rebuild changes the raw COFF pin but preserves both canonical
+payload hashes; the earlier133192-input receipt retains its originalda35fa38
+object pin. The3600-input helper-entry check is repeated on the rebuilt object.
 
 ## Other preserved checkpoints
 
