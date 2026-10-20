@@ -19814,7 +19814,7 @@ source = "src/characters/ReimuObjectActionStateStaging.cpp"
 object = "build/match-units/GptWeb_ReimuObjectActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "ReimuObject496540 source hypothesis; full46138-byte owned comparison remains nonexact+31. Action905 now keeps four real packets alive through one shared second-spawn/wave consumer, recovering its four private first calls and two shared calls. Root source426 physical calls versus target433:817 advance and906 final-spawn/wave sharing remain unresolved; call-membership distance15->9 is diagnostic only. Source prefix45280/payload46148 retains the438h frame and71 RETs. Seven local retirement exits, ordered stores and902 typed owner publications remain; same-TU4963A0 stays66/66. No header/profile/binding/ownership change. docs/REIMU_OBJECT_905_PACKET_JOIN_2026_10_21.md."
+notes = "ReimuObject496540 source hypothesis; full46138-byte owned comparison remains nonexact+31. Observed descending3/2/1/0 match-mode block order restores12 first-packet stack offsets for906..908; all16 actual905..908 first prefixes agree.905 retains its live-packet shared second-spawn/wave consumer. Root source426 calls versus target433 still lacks906 private final pairs and separate817 advance; call-membership distance9 is diagnostic only. Source prefix45284/payload46152 keeps438h frame,71 RETs and exact66-byte4963A0. Focused affected-cohort replay; predecessor133192 result is historical. No header/profile/binding/ownership change. docs/REIMU_OBJECT_SELECTOR_ORDER_2026_10_21.md."
 
 [[units.gpt-web-reimu-object-action-state.functions]]
 address = "0x00496540"
