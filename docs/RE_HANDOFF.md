@@ -1,22 +1,22 @@
 # TH10.5 reconstruction handoff
 
-Current as of 2026-10-21. Phase: active TH105 exact reconstruction. Texture
-binder404DF0 now has complete source with preserved lookup/device read order,
-but remains102/107 nonexact at entry; native0/160 passes and the old lookup-hoist
-control fails80/160. Genuine closed LTCG context also yields102. The latest
-accepted result is CDesignGage render40AEA0 and render_offset40AF30: two complete
-functions60/68 bytes exact under ordinary O2. A private typed view records the
-observed float design-position fields04/08 without changing the retained shared
-IColor declaration. CGage renderer41B3F0's live-height context now matches321
-of323 instructions: the complete1010-byte source remains nonexact at41B580/+190
-in one multiplication load-order pair. Its unchanged source retains the scoped
-native0/4490 receipt from the live-height checkpoint;
-the two earlier640-difference negative controls remain historical calibration.
+Current as of 2026-10-21. Phase: active TH105 exact reconstruction. The latest
+accepted function is CDesignSprite's uniform-scale entry40AEE0, complete19/19.
+The same source unit freshly reconfirms CDesignGage render40AEA0 and
+render_offset40AF30 at60/68. The setter preserves third-argument float stores
+at whole offsetsA0 thenA4; unused parameter semantics remain unknown.
+Texture binder404DF0 has complete source with preserved lookup/device read
+order, but remains102/107 nonexact at entry; native0/160 passes and the old
+lookup-hoist control fails80/160. Genuine closed LTCG context also yields102.
+CGage renderer41B3F0 still matches321 of323 instructions: its complete1010-byte
+source is nonexact at41B580/+190 in one multiplication load-order pair.
+Additional product-lifetime and inheritance controls leave that source
+unchanged; its scoped native0/4490 receipt remains source-pinned history.
 The five lifetime/color bodies153 bytes and CNumber40ADB0's40/40 remain exact.
 ReimuObject update496540's requested full canonical exact result is not yet
-achieved. Its latest selected recovery covers seventeen ordered
-store groups and902's typed owner-member publications. Live ledgers and fresh
-canonical comparisons override dated prose.
+achieved. Its latest selected recovery covers seventeen ordered store groups
+and902's typed owner-member publications. Live ledgers and fresh canonical
+comparisons override dated prose.
 
 ## Target, workflow and acceptance
 
@@ -145,9 +145,10 @@ and [the October20 handoff snapshot](RE_HANDOFF_HISTORY_2026_10_20.md).
 
 | Address / scope | State and remaining question | Evidence |
 | --- | --- | --- |
+| 40AEE0 CDesignSprite uniform scale | Newly accepted complete19/19; affected CDesignGage60/68 also replay exact. RTTI slot18 and factoryAC/member18 support typed writesA0/A4. First two parameter semantics and original method spelling remain open. | [Sprite scale](DESIGN_SPRITE_SCALE_2026_10_21.md) |
 | 404DF0 texture-stage binding | Source-present102/107 nonexact at entry. Ordinary typed call preserves pre-lookup vptr capture and post-lookup device reload. Target common EBX/EBP saves/four-byte slot remain unresolved; source saves conditionally. Native0/160 stops atRET/lookup/device CALL/real null fault; wrong hoist80/160. Genuine closed CIL context also102; no compiler-impossibility claim. | [Texture binding](TEXTURE_STAGE_BINDING_2026_10_21.md) |
 | 40AEA0/40AF30 CDesignGage render entries | Newly accepted complete60/68. Ordinary pragma-free O2 preserves enabled14, float sums04/08+0C/10, incoming offsets last and actual member+18 virtual call1C. Original base data ownership remains open; no shared-header change. | [Design gauge rendering](GAGE_DESIGN_RENDER_2026_10_21.md) |
-| 41B3F0 CGage renderer | Complete source-present1010/323; live height reference restores41B549/41B54F. Strict comparison remains nonexact at41B580/+190: only two instructions/four bytes differ; other321 including full COM tail match. Fresh native0/4490 stops atRET or real texture-bind entry. Original final operand/source/TU context remains open; no exact credit. | [Live-height context](GAGE_RENDER_CONTEXT_2026_10_21.md) |
+| 41B3F0 CGage renderer | Complete source-present1010/323; live height reference restores41B549/41B54F. Strict comparison remains nonexact at41B580/+190: only two instructions/four bytes differ; other321 including full COM tail match. Fresh native0/4490 stops atRET or real texture-bind entry. New product/inheritance controls do not improve the residual. Original final operand/source/TU context remains open; no exact credit. | [Live-height context](GAGE_RENDER_CONTEXT_2026_10_21.md) |
 | 40AD60/40BAC0 and40AF00/10/20 gauge family | Newly accepted56/64/11/11/11. RTTI and factory prove CGage member+18/value+A0; ordinary lifetime and color calls match all five bodies. Constructor/full runtime virtual recovery remains open. | [Gauge lifetimes](GAGE_LIFETIME_2026_10_20.md) |
 | 40ADB0 CNumber normal destructor | Newly accepted40/40. An explicit embedded-tile destructor naturally restores member-before-base vptr order. All five affected lifetime functions compare exact; no shared-header/profile/layout change. | [Member lifetime](CNUMBER_MEMBER_DESTRUCTOR_2026_10_20.md) |
 | 478FA0 Reimu Fighter root | Declaration-only; complete genuine82808-byte payload remains nonexact at4791BD/+541. Selected source7650c8d3, payloadfbc0293d; all153 RET memberships agree.300/320 physical CALL ownership,616 effect preparation and720 request indexing remain open. | [616 completion](REIMU_616_SHARED_COMPLETION_2026_10_20.md), [300/320 controls](REIMU_300320_IDENTITY_CONTROLS_2026_10_20.md) |

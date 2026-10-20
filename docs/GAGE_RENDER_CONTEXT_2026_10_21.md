@@ -138,3 +138,36 @@ python3 scripts/validate-tracking.py --require-target
 taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
+
+## Additional product and inheritance controls
+
+The subsequent `build/gage-product-20261021/baseline-build.json` formally
+rebuilds the unchanged selected source and confirms the same complete1010-byte
+canonicalfa2cc075... body, still nonexact at+190. The selected source and
+object are frozen in that scope. Its fresh IDA preflight again fails target
+identity, so these controls use only the canonical PE and pinned compiler.
+
+The remaining fraction/height pair is examined through actual product
+lifetimes, without introducing inert storage or changing a public input:
+
+| Private source control | Complete source extent / instructions | Result |
+| --- | --- | --- |
+|Float product local before the final scale/subtraction|1018 /325|Introduces an intermediate float home; unselected.|
+|Double product local with explicit promotion|1018 /325|Introduces an intermediate double home; unselected.|
+|Double accumulator across the two real products|1034 /329|Adds rounding/homes beyond the target stream; unselected.|
+|Full observed zero-offset sprite inheritance, retaining live height reference|1010 /323|Same wholefa2cc075... body and two-instruction residual.|
+|Same inheritance with direct height accesses|1010 /323|Same earlier1c7e7946... body and four-instruction residual.|
+|Ordinary static double-return product helper|1032 /320|Different complete code; unselected.|
+
+The inherited/direct pair also checks the live-height interaction rather
+than treating the old direct-field inheritance result as a timeless claim.
+These results establish no unique original source spelling or compiler/TU
+limitation. The public implementation, selected profile, bindings and accepted
+providers remain unchanged, so the earlier source-pinned native receipt is
+retained without another unrelated fixture replay. No new exact credit.
+
+Private regeneration recipes are in `.analysis/gage-product-20261021/`.
+All24 trial source/object/log/diagnostic files are losslessly compressed in
+`unselected-trials.tar.gz`, with a per-file SHA256 manifest and verified readback
+before removing loose copies. Restore that archive before inspecting or
+rerunning a control. The formal baseline receipt and frozen inputs stay loose.

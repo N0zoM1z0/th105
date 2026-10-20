@@ -20037,7 +20037,7 @@ source = "src/ui/GageDesignRender.cpp"
 object = "build/match-units/GptWeb_GageDesignRender.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete CDesignGage vslots14/10 at40AEA0/40AF30:60/68 canonical exact with ordinary O2. Both retain enabled-byte gating, float position sums/round trips and actual member+18 vslot1C dispatch. Private typed layout corrects the unsigned+4 retained-header hypothesis without a shared-header change. docs/GAGE_DESIGN_RENDER_2026_10_21.md."
+notes = "Complete CDesignGage vslots14/10 at40AEA0/40AF30 and CDesignSprite vslot18 at40AEE0:60/68/19 canonical exact with ordinary O2. Renderers retain enabled-byte gating, float sums/round trips and actual member+18 virtual dispatch. The sprite parameter entry writes its third float to scale X/Y at whole offsetsA0/A4 in order. Private views preserve target layouts without a shared-header or relocation change. docs/GAGE_DESIGN_RENDER_2026_10_21.md; docs/DESIGN_SPRITE_SCALE_2026_10_21.md."
 
 [[units.gpt-web-gage-design-render.functions]]
 address = "0x0040AEA0"
@@ -20046,6 +20046,10 @@ symbol_base = "?render@CDesignGageRenderView@th105@@UAEXXZ"
 [[units.gpt-web-gage-design-render.functions]]
 address = "0x0040AF30"
 symbol_base = "?render_offset@CDesignGageRenderView@th105@@UAEXMM@Z"
+
+[[units.gpt-web-gage-design-render.functions]]
+address = "0x0040AEE0"
+symbol_base = "?set_render_parameters@CDesignSpriteRenderView@th105@@UAEXIIM@Z"
 
 [units.gpt-web-texture-slot-binding]
 kind = "probe"

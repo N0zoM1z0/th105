@@ -1,5 +1,10 @@
 # CDesignGage render entries: two complete exact functions
 
+This page retains the original source/receipt epoch at58ccf96. The later
+[CDesignSprite scale checkpoint](DESIGN_SPRITE_SCALE_2026_10_21.md) adds19/19
+to the same source unit and freshly reconfirms these two60/68-byte bodies.
+The original source/object hashes below describe the frozen earlier inputs.
+
 `CDesignGage_render @40AEA0` and `CDesignGage_render_offset @40AF30` now
 compare canonically exact in `gpt-web-gage-design-render`:60/60 and68/68,
 128 bytes total. The containing CGage renderer41B3F0 remains nonexact;
