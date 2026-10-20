@@ -14532,7 +14532,7 @@ source = "src/ui/CNumberRuntime.cpp"
 object = "build/match-units/GptWeb_CNumberRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current CNumber runtime. Render 0x00414F10 is canonical exact 312/312. Initialize 0x00414E40 is source-present 102/104 and formally nonexact: target keeps a four-byte push-ecx frame that IDA exposes no local for, while truthful glyph-width/glyph-height/mode locals compile byte-identically to the 102-byte baseline. Exact CMenuConnect construction independently proves its authored ownership; no dummy scratch is used."
+notes = "Current CNumber runtime: render414F10 remains canonical312/312; initialize414E40 remains102/104 nonexact+0. Raw39-instruction/104-byte stack dataflow observes PUSH/POP ECX at entry-SP-4 without an explicit ESP-relative memory operand addressing that word; actual tile callee RET28 and root RET40 are checked. Five fresh rectangle/byte-mode/IColor/real-caller-TU/RTM controls reproduce the same entire102-byte canonicalfcd06b65 initializer and exact render312. Separate CMenuConnect caller remains728/728; the real closed-caller control emits792 nonexact. Original source/TU/compiler phase causing the entry word remains unknown, not merely proven scheduling. No dummy scratch, selected header/profile/binding/partition or match change. docs/CNUMBER_INITIALIZER_FRAME_2026_10_21.md."
 
 [[units.gpt-web-cnumber-runtime.functions]]
 address = "0x00414E40"

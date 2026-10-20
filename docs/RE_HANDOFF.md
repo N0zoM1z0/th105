@@ -1,12 +1,11 @@
 # TH10.5 reconstruction handoff
 
-Current as of 2026-10-21. Phase: active ReimuObject496540 exact reconstruction.
-811 sequence0 now prepares facing and real coordinate arguments before RNG32/32.
-640 initialized-lookup/original-RNG prefixes pass; predecessor fails640 order
-cases despite equal outputs. Its161-byte request window agrees after known
-CALL replay, diagnostic only.817 coordinate640/turn320 freshly pass. Root
-remains nonexact49655F/+31, call-distance11/RET-distance27. Earlier822/World/
-packet checks retain their source epochs. Latest accepted function remains
+Current as of 2026-10-21. Phase: active exact reconstruction; latest bounded
+follow-up rechecks CNumber414E40's104-byte frame and five complete compiler/
+type/context controls. All retain102-byte nonexact+0; no program source changes.
+The preceding Reimu496540811 correction is committed:640 prefixes and its
+161-byte interior window agree, affected817640/320 pass. Root remains nonexact
+49655F/+31, call-distance11/RET-distance27. Latest accepted function remains
 CDesignNumber40BB00 at61/61. Live evidence overrides historical prose.
 
 ## Target, workflow and acceptance
@@ -138,6 +137,27 @@ execution, numerical regression, authored exact credit or aggregate replay is
 claimed. These scoped negatives do not prove a compiler or LTCG barrier.
 See [Object helper follow-up](OBJECT_HELPER_CONTROLS_2026_10_21.md) for raw
 addresses, canonical hashes, limits and retained input/report paths. Reimu's821 guards/selector order remain; those preceding receipts retain their own epochs.
+
+## CNumber414E40 frame follow-up; no new source selection
+
+Raw104-byte/39-instruction body ends RET40 and calls actual4098E0 RET28.
+Its entry-SP-4 word is PUSH/POP ECX with no explicit ESP-relative memory
+operand addressing it; POP still restores ECX. Sole raw E8 caller4442E3 is
+inside the independently rechecked exact728-byte CMenuConnect constructor.
+This is direct-call evidence, not proof against unknown indirect consumers.
+
+Five private controls—by-value rectangle, byte mode, actual IColor base,
+real runtime+caller TU and VC8 RTM—produce the identical complete102-byte
+canonicalfcd06b65 initializer and exact312-byte render. The closed caller
+becomes792/728 nonexact+0x4C after additional genuine inlining; its relocations
+are resolved with the already-supported tile-method binding. Original
+isolated caller stays728/728 exact. Selected source/header/flags/bindings/
+partitions/matches remain unchanged; no broad replay or numerical native
+coverage is claimed. Original source/TU/compiler cause stays open. The older
+standalone-scheduling-only assertion is superseded; no fake local or universal
+LTCG/standalone barrier is introduced. See
+[CNumber initializer frame](CNUMBER_INITIALIZER_FRAME_2026_10_21.md) and
+`build/cnumber-initialize-20261021/` for complete controls and input pins.
 
 ## CDesignNumber lifetime follow-up
 
