@@ -141,6 +141,26 @@ manifest. Baseline/selected/guard-control inputs stay loose; primary DBs,
 canonical target and tools remain. Full canonical equality, original source/TU,
 arbitrary aliases/resources/vtables and unmasked exceptions stay open.
 
+## Bounded dependency follow-up; no new source selection
+
+The next bounded batch keeps all selected program sources/headers/flags and
+match rows unchanged. Komachi5F9350's full61-instruction205-byte target is
+reclosed; it remains203-byte nonexact at+21. Raw owner7A8 signed clamp/decrement,
+set10 and accepted reset accesses support its countdown view. Ten private
+receiver/type/context/compiler controls keep all seven accepted effects siblings
+exact; eight reproduce the whole203-byte baseline, two still fetch the first
+manager too early. RTM/SP1 produce the same complete121-byte sine fixture,
+nonexact+51h; the46-byte abs witness remains unclassified/diagnostic.
+
+Two Reimu908 wide/reversed-addition controls are whole-body neutral against
+selectedf903cc32. A consumed postcounter still has the wrong load form and
+splits the common word update, so it is unselected. No new opaque-return
+execution, numerical regression, authored exact credit or aggregate replay is
+claimed. These scoped negatives do not prove a compiler or LTCG barrier.
+See [Object helper follow-up](OBJECT_HELPER_CONTROLS_2026_10_21.md) for raw
+addresses, canonical hashes, limits and retained input/report paths. Reimu's
+current821/selector source phase and all preceding scoped receipts remain.
+
 ## Other preserved checkpoints
 
 These entries describe selected or accepted state; they are not an active
