@@ -276,6 +276,7 @@ def export(path):
         {
             "?advance_frame_and_dispatch@CharacterObjectRuntime@th105@@QAEEXZ": 0x4351C0,
             "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z": 0x406360,
+            "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z": 0x406360,
             "?set_oriented_components_f0_f4@CharacterObjectRuntime@th105@@QAEXMM@Z": 0x435160,
             "?update_ping_pong_motion_and_periodic_spawn@CharacterObjectEffectEmitter@th105@@QAEXXZ": 0x53CBC0,
             "?emit_repeated_effects_for_owner_state@CharacterObjectEffectEmitter@th105@@QAEEHHH@Z": 0x5575C0,
@@ -287,6 +288,7 @@ def export(path):
             "?mt19937_next_u32@th105@@YAIXZ": 0x4066B0,
             "?selector_random_roll@th105@@YAHH@Z": 0x4067D0,
             "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z": 0x4063D0,
+            "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z": 0x4063D0,
             "?advance_phase_counter_conditional@CharacterObjectRuntime@th105@@QAEEH@Z": 0x64CD00,
             "?set_secondary_animation_alpha@CharacterObjectEffectEmitter@th105@@QAEXE@Z": 0x496370,
             "?spawn_parented_related_object@CharacterObjectEffectEmitter@th105@@QAEPAXHMMHHPBIH@Z": 0x4FCA60,

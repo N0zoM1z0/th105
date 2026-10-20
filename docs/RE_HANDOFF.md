@@ -292,84 +292,98 @@ aggregate replay is claimed.
 
 Authored496540 remains source-present for all41 actions/defaults at vslot28
 following opaque24. ECX/RET0 and accepted4937D0 ignoring EAX are observed;
-source void remains an inference. The header comment now states this limit.
-The39853-byte main-span candidate and ownership ranges remain provisional.
-All46138 physical bytes through4A197A are compared, including46128 owned
-instruction bytes and10 alignment bytes. No root exact/remote_exact row or
+source void remains an inference. The39853-byte main-span candidate remains
+provisional. All46138 physical bytes through4A197A are compared, including
+46128 owned bytes and10 alignment bytes. No root exact/remote_exact row or
 new authored-byte credit is added.
 
-The real4963A0 phase-counter definition now shares this ordinary O2 TU.
-Its body and ABI are unchanged and still canonical66/66, SHAad12b782.
-The root has27 REL32 references to the actual same-object definition, in a
-separate natural COMDAT. Its existing acceptance migrates from the runtime
-unit to gpt-web-reimu-object-action-state; no duplicate credit.4351C0/64CD00
-remain62/73 exact in the runtime unit and435160 remains57 exact in the
-oriented unit. These are the only affected accepted units.
+The real4963A0 phase-counter definition remains visible in this ordinary O2
+TU, with27 root REL32 references to its actual separate COMDAT definition.
+Its unchanged body remains canonical66/66, SHAad12b782, under the mixed
+root/helper unit. Original TU provenance remains unproved. The previous
+1cce7b1 counter context restored801/852 selector separation. Current all25
+direct-callee partitions,29 indirect memberships and22 animation sites agree.
+Actual original45C390/vslot0C selector2 witnesses retain distinct calls at
+target496AC1/49B02A and source8004B0/8048F1, matching actor fields and actual
+returns.3360 animation inputs/hash35c726a1 retain zero prefix/event differences.
+Membership counts and two witnesses do not establish other indirect identities.
 
-This minimal context resolves the801/852 selector-site merge. All25 direct-
-callee physical partitions,22 animation sites and29 indirect memberships
-agree across42 destinations. Actual original-vtable witnesses execute45C390
-at target496AC1/source8004B0 and target49B02A/source8048F1, ECX actor/argument2,
-then return through original code with equal prefix/field outputs. The extended
-strong audit now passes3360 inputs plus those two witnesses. All22 animation
-sites execute on both sides; input hash35c726a1 and endpoint counts are
-unchanged. Frozen e581789 remains a rejected negative control under this audit.
-Counts and these witnesses do not establish other indirect callee identities.
+This phase recovers869/901's two complete32-byte post-lookup consumers:
+target[49C586,49C5A6)/[49CF17,49CF37), selected native
+[805A1E,805A3E)/[80641C,80643C). No byte/relocation masking is used. Caller-side
+float lookup declarations plus ordinary explicit if/else byte stores produce
+both exact windows. Original406360 really executes the32-bit table read at
+4063B9 and returns through x87.128 finite original entry/argument/table-index/
+word/return/status/direction witnesses pass with zero prefix/event differences,
+input hashdf91efb7,64 real RETs and64 World frontiers. AX status classes0/100/
+4000 are observed. Original C++ lookup return types remain unproved; the
+unmatched AngleLookup.cpp double definitions remain a source-protocol question.
 
-/Gy alone,4351C0 alone and64CD00 alone leave the old14809ce3 root unchanged.
-4963A0 alone works with/without /Gy and before/after the root definition;
-all produce1fa159af. Two counter definitions produce9f64a205 with the same
-call memberships. The selected one-helper grouping is a source hypothesis,
-not original TU provenance or proof of the backend's mechanism. Target-backed
-RET-label controls fail other constraints; no inert shaping, fabricated helper,
-fake returns, assembly, flags, layout or typed relocation changes are used.
+Four compiled full-root negatives distinguish the constraints. Baseline and
+only-explicit-store double variants produce106 actual comparison-event
+differences despite equal final outputs. Float-only has equal events but
+29-byte consumers; explicit casts on double add float spills and37-byte
+consumers. All four are rejected by the new audit. Actual4963F0 release
+visibility before/after leaves the old1fa159af root byte-identical and its
+43-byte body exact; it is not promoted. A consistently-float complete Runtime
+inclusion preserves all57/62/66/73 accepted helpers but gives a different root;
+a double inclusion plus a consumer cast makes435160 nonexact at+39. These
+controls do not prove original source grouping or justify global type changes.
 
-A complete runtime-source inclusion exposes incompatible float/double lookup
-return declarations. Consistently-double makes435160 nonexact at+38; the float
-control is not root-relocation qualified. Original source/type protocol is
-open. The selected counter needs neither declaration and preserves all four
-accepted helper bodies; no global type change hides that conflict.
+Scoped manifest/exporter aliases now include float YAMM and legacy double
+YANM for406360/4063D0:27 typed REL32 keys for25 physical targets.121 DIR32/20
+scoped literal mappings are unchanged. Profile, Runtime header/layout,
+ownership manifest and helper bodies are unchanged. Accepted4963A0 remains
+66 exact in the focused formal build; the float-oriented435160 replays57/57.
+Runtime4351C0/64CD00 inputs and acceptance are unchanged.
 
-Selected CPP1cf35040/header6f469e68, frozen COFF23d64659, canonical45672/1fa159af
-and native45672/77a96ae4 are pinned. Code prefix44804 plus868 metadata bytes,
-10371 reachable source instructions, natural438h frame and first31 target bytes.
-Complete comparison remains nonexact at49655F/+31 and owner diagnostics0/43.
-Target/source calls are404/404 direct and29/29 indirect; RETs remain68/61.
-The existing801/811 join is retained. Other retirement/RET partitions, register
-placement, source/type/TU/caller context and source predicate recovery remain open.
+Selected CPPfd0916fe/header6f469e68, frozen COFFef533d00, canonical45676/29bd8253
+and native45676/b4a79843 are pinned. Code prefix44808 plus868 metadata,
+10379 decoded/10374 reachable source instructions, natural438h frame and
+first31 target bytes. Strict comparison stays nonexact49655F/+31; owner
+instruction/edge diagnostics0/43. Calls remain404 direct/29 indirect; RETs
+remain target68/source61. Existing801/811 join and remaining RET partitions,
+register placement, original source/type/TU/caller context remain open.
 
-Fourteen real request arrays and three true selected fields retain World99/99,
-separate903 selector2/3 loops and the18-byte shared seven-action tail. Target
-World/RET remains499DF8/499E0E, source now80AA42/80AA58.900's one direct-float
+Fourteen real request arrays and three selected fields retain World99/99,
+separate903 selector2/3 loops and the18-byte shared seven-action tail.
+Target World/RET remains499DF8/499E0E; source now80AA44/80AA5A.900's one
 packet FSTP, scoped901 fades/buffers,804 same-invocation flow and812's private
-selector/animation plus810-shared selector are retained. First-World observations
-still agree12/14 distinct buffer slots over19 witnesses:822 health targetF+190/
-sourceF+1A0 and900 completed sequence0 targetF+164/sourceF+104 remain different.
-First-frontier slots are not returning-World/lifetime proof.
+selector/animation plus810-shared selector remain. First-World slots still
+agree12/14 distinct buffers over19 actual witnesses:822 health targetF+190/
+sourceF+1A0 and900 completed sequence0 targetF+164/sourceF+104 differ.
+First-frontier slots do not prove returning-World lifetimes.
 
 Frozen selected full-input execution passes0/133192, unchanged hashf46a849f,
-with119356 actual RETs and unchanged first opaque/CRT endpoints. It visits
-9215 target/8951 source instructions; CPP/header/runtime/COFF/native/support
-pins agree before/after. All15 owner/selected/negative/runtime commands finish
-with expected exits.8120/2438/joint15,World540+180/four-joint,900v2,9010/8/joint23,
-8040/3144,selector0/16,808/812 caller,orientation400,alpha1170 andterrain288 pass.
-Terrain remains240 finite equal plus48 hardware-unqualified nonfinite contexts.
-349 ledger literals/775 explicit mappings/1124 target references still pass.
+with119356 actual RETs and unchanged opaque/CRT endpoint counts. It visits
+9215 target/8953 source instructions; CPP/header/support/COFF/native pins
+agree before/after. All18 serial negative/owner/runtime checks have expected
+exits, including four rejected compiled controls.
+812/World/900/901/804/selector and808/812 caller checks, orientation400,
+alpha1170 andterrain288 finish with expected exits. Terrain retains240 finite
+equal plus48 hardware-unqualified nonfinite contexts.349 ledger literals/775
+explicit mappings/1124 target references pass. No unrelated/aggregate cold
+replay or new percentage is claimed.
 
-Raw target bytes and formal source/COFF reports are the evidence in this phase.
-IDA's different executable contributes no semantics. Primary Ghidra state is
-preserved; no new database boundary or metadata write is claimed. Public profile,
-Runtime header/layout, ownership manifest and relocation keys are unchanged.
-No unrelated or aggregate cold replay/percentage is claimed.
+TH075 is read-only external corroboration for float3600-entry lookup policy,
+10x scale and900 shift. Its truncation/integer-abs order differs from TH105's
+actual float fabs then+0.5 conversion, so that policy is not transferred.
+Raw target and formal source/COFF receipts are the evidence here. IDA's wrong
+executable contributes no semantics. All nine primary Ghidra DB pins stay
+unchanged; no new Ghidra process, boundary or metadata write is used.
 
-Receipts are in build/reimu-object-selector-20261020, private recipes in the
-matching .analysis scope. See [current counter-context evidence](REIMU_OBJECT_COUNTER_CONTEXT_2026_10_20.md).
-The812/animation/World/900/901/804/selector pages keep historical source pins.
-Next recover remaining RET sharing, two buffer slots and instruction/register/
-source/type/TU context. Returning opaque graphs, arbitrary aliases/resources/
-vtables, nonnull rendering, unmasked exceptions and48 terrain nonfinite hardware
-contexts remain open. Preserve Fighter478FA0 and initializer4A1CE0. No full-root
-exactness or LTCG impossibility is claimed.
+Receipts are in build/reimu-object-cleanup-context-20261020; private recipes
+in the matching .analysis scope. See [current direction-return evidence](REIMU_OBJECT_DIRECTION_RETURNS_2026_10_20.md).
+The [counter-context checkpoint](REIMU_OBJECT_COUNTER_CONTEXT_2026_10_20.md)
+and earlier812/animation/World/900/901/804/selector pages retain historical pins.
+Next recover remaining RET sharing and incoming x87 depths: target final
+cleanup has FSTP ST(1)/ST(0) before4A1979, with a separate default4A196A;
+source shares plain80AF05 across all42 entries. Also recover822/900 buffer
+slots and original caller/source/type/TU context, preserving the consumers. Returning
+opaque graphs, arbitrary aliases/resources/vtables, nonnull rendering,
+unmasked exceptions and48 terrain nonfinite hardware contexts remain open.
+Preserve Fighter478FA0 and initializer4A1CE0. No full-root exactness or LTCG
+impossibility is claimed.
 
 ## Shared Object action980 exact checkpoint
 

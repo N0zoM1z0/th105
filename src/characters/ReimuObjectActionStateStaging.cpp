@@ -7,8 +7,10 @@
 
 namespace th105 {
 
-double __cdecl lookup_orientation_sine_quantized_abs(float angle);
-double __cdecl lookup_orientation_cosine_quantized_abs(float angle);
+// This caller-side float view follows869/901 consumers; the original lookup
+// C++ return types remain unproved.
+float __cdecl lookup_orientation_sine_quantized_abs(float angle);
+float __cdecl lookup_orientation_cosine_quantized_abs(float angle);
 int __cdecl selector_random_roll(int limit);
 unsigned int __cdecl mt19937_next_u32();
 float __fastcall stage_surface_height_at_x(Fighter *fighter);
@@ -1997,7 +1999,10 @@ retire_801_811:
                     *reinterpret_cast<float *>(fighter_owner_348 + 0xec));
                 y_f0 = static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0]) * parameters_340[1] * state_370 +
                     (*reinterpret_cast<float *>(fighter_owner_348 + 0xf0) + 100.0));
-                direction_33c = lookup_orientation_sine_quantized_abs(parameters_340[0]) < 0.0 ? 255 : 1;
+                if (lookup_orientation_sine_quantized_abs(parameters_340[0]) < 0.0)
+                    direction_33c = 255;
+                else
+                    direction_33c = 1;
                 parameters_340[1] += state_378;
                 state_378 = static_cast<float>(state_378 - static_cast<double>(0.4f));
                 if (state_378 < 0.0f)
@@ -2220,7 +2225,10 @@ retire_801_811:
             parameters_340[0] = static_cast<float>(parameters_340[0] + 3.0);
             parameters_340[1] += state_370;
             state_370 = static_cast<float>(state_370 * static_cast<double>(0.9f));
-            direction_33c = lookup_orientation_sine_quantized_abs(-parameters_340[0]) > 0.0 ? 255 : 1;
+            if (lookup_orientation_sine_quantized_abs(-parameters_340[0]) > 0.0)
+                direction_33c = 255;
+            else
+                direction_33c = 1;
             if (*reinterpret_cast<short *>(fighter_owner_348 + 0x174) <= 0 || value_174 <= -1500) {
                 float copied[3] = {0.0f, 0.0f, 4.0f};
                 reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(

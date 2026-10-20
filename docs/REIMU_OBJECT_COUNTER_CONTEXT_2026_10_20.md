@@ -1,5 +1,9 @@
 # ReimuObject selector ownership with a real counter context
 
+Historical checkpoint at1cce7b1. The current caller model, typed aliases and
+consumer evidence are in [the direction-return checkpoint](REIMU_OBJECT_DIRECTION_RETURNS_2026_10_20.md).
+Pins and the initially unqualified float control below remain historical.
+
 ## Selected source and evidence classes
 
 **Observed:** the actual4963A0 counter body, visible in the same ordinary VC8

@@ -19814,7 +19814,7 @@ source = "src/characters/ReimuObjectActionStateStaging.cpp"
 object = "build/match-units/GptWeb_ReimuObjectActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "ReimuObject496540 source hypothesis for all41 actions/defaults, compared over all46138 physical bytes through4A197A. The real4963A0 phase-counter definition is visible in this TU and independently remains canonical66/66; original TU ownership is unproved. Isolated controls retain all25 direct-callee partitions and restore all29 indirect memberships without changing the helper body, profile, ABI, layout or typed relocation keys. Fourteen real request buffers and the shared seven-action World tail remain. Root496540 is nonexact and receives no authored-byte credit. Source void remains an inference; docs/REIMU_OBJECT_COUNTER_CONTEXT_2026_10_20.md."
+notes = "ReimuObject496540 source hypothesis for all41 actions/defaults, compared over all46138 physical bytes through4A197A. The real4963A0 phase-counter definition remains visible and canonical66/66; original TU ownership is unproved. Caller-side float lookup declarations plus explicit direction stores reproduce two complete32-byte869/901 consumers, with128 actual original lookup/table-read/return/status witnesses. Original lookup C++ return types remain unproved. Scoped float aliases join legacy double aliases:27 typed REL32 keys for25 physical targets;121 DIR32 and20 literal mappings unchanged. All25 direct partitions,22 animation sites,29 indirect memberships,14 real buffers and the seven-action World tail remain. Root stays nonexact+31 with no authored-byte credit; source void remains an inference. docs/REIMU_OBJECT_DIRECTION_RETURNS_2026_10_20.md."
 
 [[units.gpt-web-reimu-object-action-state.functions]]
 address = "0x00496540"
@@ -19830,7 +19830,9 @@ rel32_targets = [
   "?emit_repeated_effects_for_owner_state@CharacterObjectEffectEmitter@th105@@QAEEHHH@Z=0x005575C0",
   "?has_crossed_stage_surface_while_descending@ReimuObjectActionStateStagingView@th105@@QAEHXZ=0x005F9310",
   "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
+  "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
   "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+  "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
   "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
   "?position_relative_to_owner_offsets@CharacterObjectEffectEmitter@th105@@QAEPAUFighter@2@HH@Z=0x005B0400",
   "?publish_battle_layout_scalar@ReimuObjectActionStateStagingView@th105@@QAEXM@Z=0x004359D0",
