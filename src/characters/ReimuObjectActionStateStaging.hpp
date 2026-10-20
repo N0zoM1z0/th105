@@ -19,7 +19,8 @@ public:
     virtual unsigned char next_sequence_frame();
 
     // True means the selected action was fully handled by this source phase.
-    // False leaves the other known nondefault actions to subsequent recovery.
+    // All41 concrete actions now have source hypotheses; full semantics and
+    // promotion to the original void ABI still require separate validation.
     bool try_update_scalar_actions();
     void publish_battle_layout_scalar(float value);
     int has_crossed_stage_surface_while_descending();
@@ -52,7 +53,8 @@ public:
     short sequence_frame_count_148;
     unsigned char unknown_14a[2];
     short frame_limit_14c;
-    unsigned char unknown_14e[0x26];
+    unsigned char unknown_14e[0x22];
+    unsigned char *followed_actor_170;
     short value_174;
     unsigned char unknown_176[0x0a];
     int phase_state_180;
@@ -89,6 +91,9 @@ typedef char ReimuObjectUpdate_alpha_offset[
     offsetof(ReimuObjectActionStateStagingView, alpha_113) == 0x113 ? 1 : -1];
 typedef char ReimuObjectUpdate_channel110_offset[
     offsetof(ReimuObjectActionStateStagingView, channel_110) == 0x110 ? 1 : -1];
+
+typedef char ReimuObjectUpdate_followed170_offset[
+    offsetof(ReimuObjectActionStateStagingView, followed_actor_170) == 0x170 ? 1 : -1];
 
 typedef char ReimuObjectUpdate_value174_offset[
     offsetof(ReimuObjectActionStateStagingView, value_174) == 0x174 ? 1 : -1];

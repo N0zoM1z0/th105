@@ -1,5 +1,9 @@
 # ReimuObject update: complete target CFG and first source phase
 
+The initial source-phase counts below are historical. Current handwritten
+coverage reaches all41 arms; see [the final-action checkpoint](REIMU_OBJECT_FINAL_ACTIONS_2026_10_20.md).
+The root still has no original-ABI implementation or canonical exact claim.
+
 ## Identity, ownership and instruction facts
 
 Only original Japanese TH10.5 v1.06a is used, executable SHA256

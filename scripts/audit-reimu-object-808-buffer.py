@@ -207,16 +207,21 @@ def source_registers(rows, candidate, stop):
     elif (
         definition.mnemonic == "xor"
         and definition.operands[0].type == x.X86_OP_REG
-        and definition.operands[0].reg == x.X86_REG_EBP
+        and definition.operands[0].reg in (x.X86_REG_EBP, x.X86_REG_EBX)
         and definition.operands[1].type == x.X86_OP_REG
-        and definition.operands[1].reg == x.X86_REG_EBP
+        and definition.operands[1].reg == definition.operands[0].reg
         and rows[dispatch_index - 2].mnemonic == "mov"
-        and rows[dispatch_index - 2].operands[0].reg == x.X86_REG_EBX
+        and rows[dispatch_index - 2].operands[0].reg
+        == (
+            x.X86_REG_EBX
+            if definition.operands[0].reg == x.X86_REG_EBP
+            else x.X86_REG_EBP
+        )
         and rows[dispatch_index - 2].operands[1].type == x.X86_OP_IMM
     ):
         prefix = rows[dispatch_index - 8 : dispatch_index + 1]
         definition = rows[dispatch_index - 2]
-        constant_register = x.X86_REG_EBX
+        constant_register = definition.operands[0].reg
         expected = ["movsx", "add", "cmp", "push", "ja", "movzx", "mov", "xor", "jmp"]
     else:
         return {}, None  # Earlier compiler phase passes immediate variant1.

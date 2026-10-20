@@ -38,6 +38,7 @@ FIGHTER = OWNER + 0x1000
 PARENT = OWNER + 0x2000
 PARENT_PARAMETERS = RESOURCE + 0xE000
 RELATED = OWNER + 0x3000
+FOLLOWED = OWNER + 0x4000
 SYMBOL = "?try_update_scalar_actions@ReimuObjectActionStateStagingView@th105@@QAE_NXZ"
 HELPERS = dict(entry.animation.HELPERS)
 HELPERS.update(
@@ -434,17 +435,33 @@ class Probe:
             uc.emu_stop()
             return
         if a == 0x435D60:
+            if self.current_action == 999:
+                self.landing_flags.append(bytes(uc.mem_read(FIGHTER + 0x78C, 2)).hex())
             receiver = uc.reg_read(r.UC_X86_REG_ECX)
             self.surface_arguments.append(
                 [receiver, bytes(uc.mem_read(receiver + 0xEC, 4)).hex()]
             )
-        if a == 0x435160 and self.current_action in (903, 904, 905):
+        if a == 0x435160 and self.current_action in (
+            903,
+            904,
+            905,
+            906,
+            907,
+            908,
+            951,
+            999,
+        ):
             sp = uc.reg_read(r.UC_X86_REG_ESP)
             self.orientation_arguments.append(
                 {
                     "receiver": uc.reg_read(r.UC_X86_REG_ECX),
                     "words": list(struct.unpack("<II", uc.mem_read(sp + 4, 8))),
                 }
+            )
+        if a == 0x406540 and self.current_action == 907:
+            sp = uc.reg_read(r.UC_X86_REG_ESP)
+            self.atan2_arguments.append(
+                list(struct.unpack("<II", uc.mem_read(sp + 4, 8)))
             )
         if a in HELPERS:
             self.trace.append(a)
@@ -459,8 +476,10 @@ class Probe:
         uc.context_restore(self.initial)
         self.current_action = case["action"]
         self.orientation_arguments = []
+        self.atan2_arguments = []
         self.surface_arguments = []
-        if case["action"] in (858, 866, 901):
+        self.landing_flags = []
+        if case["action"] in (858, 866, 901, 951, 999):
             if self.surfaces is None:
                 raise ValueError("terrain input fixture is required")
             uc.mem_write(SURFACE, self.surfaces[case.get("surface", "flat")])
@@ -492,15 +511,24 @@ class Probe:
             903,
             904,
             905,
+            906,
+            907,
+            908,
+            951,
+            999,
         ) or (case["action"] == 822 and seq == 0):
             # Coherent three-frame ranges for the admitted projectile families.
             # The earlier single frame cannot represent their later frames.
             first = RESOURCE + 0x6000
             template = bytes(uc.mem_read(entry.FRAME, 0x88))
-            uc.mem_write(first, template * 3)
-            uc.mem_write(seq_block + 4, struct.pack("<II", first, first + 3 * 0x88))
+            frame_count = (
+                max(3, case.get("frame", 0) + 1) if case["action"] == 951 else 3
+            )
+            uc.mem_write(first, template * frame_count)
+            uc.mem_write(
+                seq_block + 4, struct.pack("<II", first, first + frame_count * 0x88)
+            )
             frame = first + case.get("frame", 0) * 0x88
-            frame_count = 3
         if case["action"] == 980:
             uc.mem_write(
                 entry.PARAMETERS + 4, struct.pack("<f", case.get("duration", 100.0))
@@ -575,6 +603,11 @@ class Probe:
             903,
             904,
             905,
+            906,
+            907,
+            908,
+            951,
+            999,
         ):
             for off, fmt, value in (
                 (0x170, "I", FIGHTER),
@@ -614,6 +647,11 @@ class Probe:
             903,
             904,
             905,
+            906,
+            907,
+            908,
+            951,
+            999,
         ):
             uc.mem_write(OWNER + 0x111, struct.pack("<B", case.get("channel", 200)))
             uc.mem_write(
@@ -655,6 +693,11 @@ class Probe:
             903,
             904,
             905,
+            906,
+            907,
+            908,
+            951,
+            999,
         ):
             for off, fmt, value in (
                 (0x112, "B", case.get("channel2", 200)),
@@ -693,6 +736,11 @@ class Probe:
             903,
             904,
             905,
+            906,
+            907,
+            908,
+            951,
+            999,
         ):
             for off, fmt, value in (
                 (0x104, "b", case.get("owner_facing", -1)),
@@ -725,6 +773,11 @@ class Probe:
             903,
             904,
             905,
+            906,
+            907,
+            908,
+            951,
+            999,
         ):
             for off, value in (
                 (0x366, case.get("speed_word", 16)),
@@ -735,9 +788,24 @@ class Probe:
             uc.mem_write(0x6FBD00, struct.pack("<f", case.get("layout_scalar", -7.75)))
         if case["action"] == 855:
             uc.mem_write(OWNER + 0x36A, struct.pack("<h", case.get("spin_word", 0)))
-        if case["action"] in (858, 866, 869, 900, 901, 902, 903, 904, 905):
+        if case["action"] in (
+            858,
+            866,
+            869,
+            900,
+            901,
+            902,
+            903,
+            904,
+            905,
+            906,
+            907,
+            908,
+            951,
+            999,
+        ):
             uc.mem_write(FIGHTER + 0x142, struct.pack("<h", case.get("owner_timer", 1)))
-        if case["action"] in (900, 901, 902, 903, 904, 905):
+        if case["action"] in (900, 901, 902, 903, 904, 905, 906, 907, 908, 951, 999):
             uc.mem_write(0x6FA894, struct.pack("<i", case.get("match_identifier", 0)))
             uc.mem_write(OWNER + 0x110, struct.pack("<B", case.get("channel0", 123)))
             uc.mem_write(OWNER + 0x174, struct.pack("<h", case.get("value174", 0)))
@@ -762,12 +830,39 @@ class Probe:
                 (0x7C4, "bottom1", -100.0),
             ):
                 uc.mem_write(FIGHTER + off, struct.pack("<f", case.get(key, value)))
-        if case["action"] in (903, 904, 905):
+        if case["action"] in (903, 904, 905, 906, 907, 908, 951, 999):
             uc.mem_write(
                 FIGHTER + 0x736, struct.pack("<h", case.get("owner_word736", 1))
             )
             uc.mem_write(
                 FIGHTER + 0x738, struct.pack("<h", case.get("owner_word738", 1))
+            )
+        if case["action"] in (906, 907, 908, 951, 999):
+            uc.mem_write(
+                OWNER + 0x100, struct.pack("<f", case.get("acceleration_y", 0.25))
+            )
+            uc.mem_write(
+                FIGHTER + 0x113, struct.pack("<B", case.get("owner_alpha", 57))
+            )
+            for off, key, value in (
+                (0x78C, "owner_word78c", -3),
+                (0x78E, "owner_word78e", 0),
+                (0x7A4, "owner_word7a4", -4),
+            ):
+                uc.mem_write(FIGHTER + off, struct.pack("<h", case.get(key, value)))
+        if case["action"] == 907:
+            uc.mem_write(OWNER + 0x170, struct.pack("<I", FOLLOWED))
+            uc.mem_write(FOLLOWED, bytes([0xA5]) * 0x388)
+            uc.mem_write(
+                FOLLOWED + 0xEC, struct.pack("<f", case.get("followed_x", 819.25))
+            )
+            uc.mem_write(
+                FOLLOWED + 0xF0, struct.pack("<f", case.get("followed_y", -37.125))
+            )
+        if case["action"] == 908:
+            uc.mem_write(OWNER + 0x374, struct.pack("<f", case.get("angle374", 37.25)))
+            uc.mem_write(
+                OWNER + 0x378, struct.pack("<f", case.get("angle378", -71.125))
             )
         if case["action"] == 869:
             for off, fmt, value in (
@@ -791,8 +886,20 @@ class Probe:
             )
         for off, fmt, value in [
             (0x13C, "h", case.get("owner_action", 150)),
-            (0xEC, "f", 515.5),
-            (0xF0, "f", 23.0),
+            (
+                0xEC,
+                "f",
+                case.get("owner_x", 515.5)
+                if case["action"] in (906, 907, 908, 951, 999)
+                else 515.5,
+            ),
+            (
+                0xF0,
+                "f",
+                case.get("owner_y", 23.0)
+                if case["action"] in (906, 907, 908, 951, 999)
+                else 23.0,
+            ),
         ]:
             uc.mem_write(FIGHTER + off, struct.pack("<" + fmt, value))
         sentinels = {
@@ -899,10 +1006,15 @@ class Probe:
             if case["action"] in (850, 853, 854)
             else None,
             "match_identifier": bytes(uc.mem_read(0x6FA894, 4)).hex()
-            if case["action"] in (900, 901, 902, 903, 904, 905)
+            if case["action"] in (900, 901, 902, 903, 904, 905, 906, 907, 908, 951, 999)
             else None,
             "surface_arguments": self.surface_arguments,
+            "landing_flags": self.landing_flags,
             "orientation_arguments": self.orientation_arguments,
+            "atan2_arguments": self.atan2_arguments,
+            "followed": bytes(uc.mem_read(FOLLOWED, 0x388)).hex()
+            if case["action"] == 907
+            else None,
             "endpoint": self.endpoint,
             "trace": self.trace,
             "cw": uc.reg_read(r.UC_X86_REG_FPCW),
@@ -2918,6 +3030,472 @@ def actions_903_905_cases():
         )
 
 
+def final_action_cases():
+    for action, seq, phase, state, facing, cw in itertools.product(
+        (906, 907, 908, 951, 999),
+        range(-1, 11),
+        (0, 1, 5, 6),
+        (-1, 0, 1, 2),
+        (-1, 1),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            phase=phase,
+            state=state,
+            facing=facing,
+            cw=cw,
+            counter=1,
+            timer=1,
+            owner_value174=8000,
+            speed_word=0,
+            fade_word=0,
+            owner_word738={906: 1, 907: 2, 908: 3}.get(action, 0),
+            cohort="final-state",
+        )
+
+    # Each cohort changes a target-observed decision or calling context.
+    # Opaque calls stop at actual entry; no returned world state is invented.
+    def example(action, cohort, **values):
+        result = dict(
+            action=action,
+            seq=0,
+            state=1,
+            phase=0,
+            counter=1,
+            timer=1,
+            owner_value174=8000,
+            speed_word=0,
+            fade_word=0,
+            owner_word738={906: 1, 907: 2, 908: 3}.get(action, 0),
+            cohort=cohort,
+        )
+        result.update(values)
+        return result
+
+    for action, seq, state, health, cw in itertools.product(
+        (906, 907, 908),
+        (0, 4, 5, 6, 7),
+        (-1, 0, 1, 2),
+        (-32768, -1, 0, 1, 2499, 2500, 2501, 4999, 5000, 5001, 32767),
+        (0x27F, 0x37F),
+    ):
+        yield example(
+            action, "final-health", seq=seq, state=state, owner_value174=health, cw=cw
+        )
+
+    for action, periods in ((906, (225, 195, 165, 135)), (907, (225, 210, 200, 170))):
+        for selector, cw in itertools.product(range(-1, 5), (0x27F, 0x37F)):
+            period = periods[selector] if 0 <= selector <= 3 else 225
+            for counter in (
+                -2 * period,
+                -period,
+                -1,
+                0,
+                1,
+                period - 1,
+                period,
+                period + 1,
+                2 * period,
+                2147483647,
+                -2147483648,
+            ):
+                yield example(
+                    action,
+                    "final-period",
+                    match_identifier=selector,
+                    counter=counter,
+                    cw=cw,
+                )
+    for action, state, owner_gate, counter, cw in itertools.product(
+        (906, 907, 908),
+        (0, 1),
+        (0, 1),
+        (-2147483648, -135, -1, 0, 1, 45, 90, 135, 240, 2147483647),
+        (0x27F, 0x37F),
+    ):
+        yield example(
+            action,
+            "final-pulse",
+            state=state,
+            owner_word736=owner_gate,
+            counter=counter,
+            cw=cw,
+            match_identifier=3,
+        )
+
+    for action, seq, alpha, channel, cw in itertools.product(
+        (906, 907, 908),
+        (0, 2, 3, 4, 5, 8, 9),
+        (0, 4, 5, 9, 10, 11, 244, 245, 246, 249, 250, 254, 255),
+        (0, 4, 5, 9, 10, 255),
+        (0x27F, 0x37F),
+    ):
+        yield example(
+            action,
+            "final-fade",
+            seq=seq,
+            state=2 if seq == 0 else 0,
+            alpha=alpha,
+            channel=channel,
+            channel2=0,
+            channel0=3,
+            cw=cw,
+        )
+
+    for scale, speed, phase, word, cw in itertools.product(
+        (0.0, 0.95, 1.0, 1.25),
+        (0.0, 4.0, 4.210526466369629, 12.5),
+        (0, 1, 6),
+        (-32768, -1, 0, 9, 10, 11, 32767),
+        (0x27F, 0x37F),
+    ):
+        yield example(
+            906,
+            "final-906-phase",
+            seq=4,
+            state=1,
+            scale=scale,
+            scale_y=-7.75,
+            speed=speed,
+            phase=phase,
+            speed_word=word,
+            six_counter=0,
+            phase_counter=0,
+            cw=cw,
+        )
+
+    for selector, facing, target_xy, cw in itertools.product(
+        range(4),
+        (-128, -1, 0, 1, 127),
+        (
+            (819.25, -37.125),
+            (640.0, 0.0),
+            (640.0, 100.0),
+            (639.9999389648438, -0.0000001),
+            (16777216.0, -16777216.0),
+            (float("nan"), 0.0),
+            (0.0, float("nan")),
+            (float("inf"), 0.0),
+            (0.0, float("-inf")),
+        ),
+        (0x27F, 0x37F),
+    ):
+        yield example(
+            907,
+            "final-907-aim",
+            counter=0,
+            match_identifier=selector,
+            facing=facing,
+            followed_x=target_xy[0],
+            followed_y=target_xy[1],
+            owner_x=-333.5,
+            owner_y=777.25,
+            cw=cw,
+        )
+    for seq, facing, xy, velocity, cw in itertools.product(
+        (4, 5),
+        (-1, 0, 1),
+        (
+            (-0.001, 100.0),
+            (0.0, 100.0),
+            (1280.0, 100.0),
+            (1280.001, 100.0),
+            (640.0, -0.001),
+            (640.0, 0.0),
+            (640.0, 900.0),
+            (640.0, 900.001),
+            (-1.0, -1.0),
+            (1281.0, 901.0),
+        ),
+        ((-3.25, -1.5), (0.0, 0.0), (3.25, 1.5)),
+        (0x27F, 0x37F),
+    ):
+        yield example(
+            907,
+            "final-907-bounce",
+            seq=seq,
+            facing=facing,
+            x=xy[0],
+            y=xy[1],
+            vx=velocity[0],
+            vy=velocity[1],
+            phase=6,
+            six_counter=0,
+            cw=cw,
+        )
+
+    for selector, words, counter, cw in itertools.product(
+        range(-1, 5),
+        (
+            (-1, -1),
+            (0, 0),
+            (1, 0),
+            (2, 0),
+            (3, 1),
+            (4, 2),
+            (0, 1),
+            (1, 2),
+            (0, 3),
+            (32767, 32767),
+        ),
+        (1, 60, 150, 240),
+        (0x27F, 0x37F),
+    ):
+        yield example(
+            908,
+            "final-908-burst",
+            match_identifier=selector,
+            speed_word=words[0],
+            fade_word=words[1],
+            counter=counter,
+            cw=cw,
+        )
+    for selector, counter, seed, cw in itertools.product(
+        range(-1, 5),
+        (
+            -240,
+            -150,
+            -1,
+            0,
+            1,
+            59,
+            60,
+            61,
+            69,
+            70,
+            71,
+            79,
+            80,
+            81,
+            89,
+            90,
+            91,
+            99,
+            100,
+            101,
+            109,
+            110,
+            111,
+            119,
+            120,
+            121,
+            129,
+            130,
+            131,
+            149,
+            150,
+            151,
+            239,
+            240,
+            241,
+            300,
+            390,
+            480,
+        ),
+        (0, 5489, 0xFFFFFFFF),
+        (0x27F, 0x37F),
+    ):
+        yield example(
+            908,
+            "final-908-period",
+            match_identifier=selector,
+            counter=counter,
+            seed=seed,
+            cw=cw,
+        )
+    for seq, value, index, phase, cw in itertools.product(
+        (4, 5, 6, 7),
+        (-32768, -1201, -1200, -1199, -801, -800, -799, 0, 32767),
+        (0, 1, 127, 128, 255),
+        (0, 6),
+        (0x27F, 0x37F),
+    ):
+        yield example(
+            908,
+            "final-908-gate",
+            seq=seq,
+            state=0,
+            value174=value,
+            index=index,
+            phase=phase,
+            six_counter=3,
+            cw=cw,
+        )
+    for seq, six_counter, cw in itertools.product(
+        (4, 5, 6, 7), (-1, 0, 2, 3, 4, 9, 10, 11, 32767), (0x27F, 0x37F)
+    ):
+        yield example(
+            908,
+            "final-908-counter",
+            seq=seq,
+            state=0,
+            index=1,
+            phase=6,
+            six_counter=six_counter,
+            cw=cw,
+        )
+
+    for action, seq, limits in (
+        (906, 4, (-520.0, 1800.0, -800.0, 1400.0)),
+        (907, 5, (-400.0, 1680.0, -300.0, 1300.0)),
+        (908, 4, (-220.0, 1500.0, -500.0, 1100.0)),
+        (908, 5, (-220.0, 1500.0, -500.0, 1100.0)),
+        (908, 6, (-220.0, 1500.0, -500.0, 1100.0)),
+        (908, 7, (-220.0, 1500.0, -500.0, 1100.0)),
+    ):
+        for axis, bound in (
+            ("x", limits[0]),
+            ("x", limits[1]),
+            ("y", limits[2]),
+            ("y", limits[3]),
+        ):
+            bits = struct.unpack("<I", struct.pack("<f", bound))[0]
+            near = [
+                struct.unpack("<f", struct.pack("<I", bits + d))[0] for d in (-1, 0, 1)
+            ]
+            for value, cw in itertools.product(near + [float("nan")], (0x27F, 0x37F)):
+                yield example(
+                    action, "final-bounds", seq=seq, state=0, **{axis: value}, cw=cw
+                )
+
+    for seq, owner_action, owner_seq, owner_frame, cw in itertools.product(
+        (0, 1, 3),
+        (
+            -32768,
+            -1,
+            0,
+            69,
+            70,
+            88,
+            89,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            111,
+            112,
+            144,
+            145,
+            146,
+            179,
+            180,
+            181,
+            182,
+            196,
+            197,
+            198,
+            199,
+            200,
+            770,
+            771,
+            772,
+            795,
+            796,
+            797,
+            32767,
+        ),
+        (0, 2, 3),
+        (0, 1, 3),
+        (0x27F, 0x37F),
+    ):
+        yield example(
+            951,
+            "final-951-owner",
+            seq=seq,
+            owner_action=owner_action,
+            owner_seq=owner_seq,
+            owner_frame=owner_frame,
+            cw=cw,
+        )
+    for seq, frame, surface, positions, alpha, cw in itertools.product(
+        (0, 1, 2, 3, 4),
+        (0, 2, 4),
+        ("flat", "raised", "step"),
+        ((-1.0, 640.0), (639.0, 640.0), (640.0, 639.0), (1280.0, 0.0)),
+        (0, 255),
+        (0x27F, 0x37F),
+    ):
+        yield example(
+            951,
+            "final-951-terrain",
+            seq=seq,
+            frame=frame,
+            surface=surface,
+            x=positions[0],
+            owner_x=positions[1],
+            owner_y=777.25,
+            owner_alpha=alpha,
+            cw=cw,
+        )
+
+    for seq, x, facing, cw in itertools.product(
+        range(-1, 11),
+        (
+            -200.00001525878906,
+            -200.0,
+            -199.99998474121094,
+            640.0,
+            1479.9998779296875,
+            1480.0,
+            1480.0001220703125,
+        ),
+        (-1, 1),
+        (0x27F, 0x37F),
+    ):
+        yield example(
+            999,
+            "final-999-motion",
+            seq=seq,
+            x=x,
+            facing=facing,
+            cw=cw,
+            owner_x=-333.5,
+            acceleration_y=0.75,
+        )
+    for surface, x, y, vy, cw in itertools.product(
+        ("flat", "raised", "step"),
+        (-1.0, 639.0, 640.0, 1280.0),
+        (-10.0, -0.00000001, 0.0, 0.00000001, 12.5, 32.0, 100.0),
+        (-1.5, 0.0, 0.3499999940395355, 0.3500000238418579, 1.5),
+        (0x27F, 0x37F),
+    ):
+        yield example(
+            999,
+            "final-999-land",
+            seq=4,
+            x=x,
+            y=y,
+            vy=vy,
+            surface=surface,
+            owner_x=1280.0 - x,
+            owner_word78c=-3,
+            cw=cw,
+        )
+    for seq, flag, facing, terminal, cw in itertools.product(
+        (0, 1, 3, 4, 6, 7, 8),
+        (-1, 0, 1, 2),
+        (-128, -1, 0, 1, 127),
+        (False, True),
+        (0x27F, 0x37F),
+    ):
+        yield example(
+            999,
+            "final-999-animation",
+            seq=seq,
+            owner_word78e=flag,
+            counter=-1,
+            timer=0,
+            frame=0,
+            facing=facing,
+            terminal=terminal,
+            cw=cw,
+        )
+
+
 def main():
     global O
     parser = argparse.ArgumentParser(description=__doc__)
@@ -2975,7 +3553,14 @@ def main():
         action="store_true",
         help="include903/904/905 and all preceding matrices",
     )
+    parser.add_argument(
+        "--final-actions",
+        action="store_true",
+        help="include906/907/908/951/999 and all preceding matrices",
+    )
     args = parser.parse_args()
+    if args.final_actions:
+        args.actions_903_905 = True
     if args.actions_903_905:
         args.actions_900_902 = True
     if args.actions_900_902:
@@ -3043,6 +3628,8 @@ def main():
         all_cases.extend(upper_projectile_cases())
     if args.actions_903_905:
         all_cases.extend(actions_903_905_cases())
+    if args.final_actions:
+        all_cases.extend(final_action_cases())
     if args.cohort:
         available = {case.get("cohort", "scalar") for case in all_cases}
         if set(args.cohort) - available:
