@@ -81,6 +81,8 @@ return_zero:
     return 0;
 }
 
+// Ordinary local exits preserve observed state330 write-before-x87-pop paths.
+// docs/REIMU_OBJECT_LOCAL_EXITS_2026_10_21.md.
 void ReimuObjectActionStateStagingView::dispatch_action_state()
 {
     float packet_822_health[4];
@@ -671,7 +673,8 @@ retire_801_811:
                                 static_cast<unsigned char>(facing_104), 1,
                                 reinterpret_cast<const unsigned *>(copied), 4);
                     }
-                    goto retire;
+                    --state_330;
+                    return;
                 }
             }
             reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
@@ -1207,8 +1210,10 @@ retire_801_811:
                     *reinterpret_cast<short *>(fighter_owner_348 + 0x13c) != 531) ||
                     (*reinterpret_cast<short *>(fighter_owner_348 + 0x13e) == 3 &&
                      *reinterpret_cast<short *>(fighter_owner_348 + 0x140) >= 4) ||
-                    *reinterpret_cast<short *>(fighter_owner_348 + 0x13e) >= 4)
-                goto retire;
+                    *reinterpret_cast<short *>(fighter_owner_348 + 0x13e) >= 4) {
+                --state_330;
+                return;
+            }
         }
         if (sequence_13e == 4) {
             x_ec = *reinterpret_cast<float *>(fighter_owner_348 + 0xec);
@@ -1334,8 +1339,10 @@ retire_801_811:
                 if (state_370 > static_cast<double>(-0.1f))
                     state_370 = -0.1f;
             }
-            if (channel_112 < 15)
-                goto retire;
+            if (channel_112 < 15) {
+                --state_330;
+                return;
+            }
             channel_112 = static_cast<unsigned char>(channel_112 - 15);
             channel_111 = static_cast<unsigned char>(channel_111 - 15);
             alpha_113 = static_cast<unsigned char>(alpha_113 - 15);
@@ -1784,8 +1791,10 @@ retire_801_811:
         }
         x_ec += static_cast<float>(facing_104) * velocity_x_f4;
         y_f0 += velocity_y_f8;
-        if (x_ec > 1480.0 || x_ec < -200.0 || y_f0 > 1280.0 || y_f0 < -320.0)
-            goto retire;
+        if (x_ec > 1480.0 || x_ec < -200.0 || y_f0 > 1280.0 || y_f0 < -320.0) {
+            --state_330;
+            return;
+        }
         goto advance_and_retire_on_completion;
 
     case 856:
@@ -2131,8 +2140,10 @@ retire_801_811:
             reinterpret_cast<CharacterObjectRuntime *>(this)->advance_state_six_counter_conditional(0);
             x_ec += static_cast<float>(facing_104) * velocity_x_f4;
             y_f0 += velocity_y_f8;
-            if (x_ec > 1380.0 || x_ec < -100.0 || y_f0 > 1000.0 || y_f0 < -200.0)
-                goto retire;
+            if (x_ec > 1380.0 || x_ec < -100.0 || y_f0 > 1000.0 || y_f0 < -200.0) {
+                --state_330;
+                return;
+            }
             break;
         case 4:
             scale_x_11c = static_cast<float>(scale_x_11c + 0.5);
@@ -2757,8 +2768,10 @@ fade_902:
         }
         x_ec += static_cast<float>(facing_104) * velocity_x_f4;
         y_f0 += velocity_y_f8;
-        if (x_ec > 1680.0 || x_ec < -400.0 || y_f0 > 1480.0 || y_f0 < -520.0)
-            goto retire;
+        if (x_ec > 1680.0 || x_ec < -400.0 || y_f0 > 1480.0 || y_f0 < -520.0) {
+            --state_330;
+            return;
+        }
         goto advance_and_retire_on_completion;
 
     case 904:
@@ -2807,8 +2820,10 @@ fade_902:
         }
         x_ec += static_cast<float>(facing_104) * velocity_x_f4;
         y_f0 += velocity_y_f8;
-        if (x_ec > 1680.0 || x_ec < -400.0 || y_f0 > 1480.0 || y_f0 < -520.0)
-            goto retire;
+        if (x_ec > 1680.0 || x_ec < -400.0 || y_f0 > 1480.0 || y_f0 < -520.0) {
+            --state_330;
+            return;
+        }
         goto advance_and_retire_on_completion;
 
     case 905:

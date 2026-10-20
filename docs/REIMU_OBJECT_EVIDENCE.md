@@ -1,8 +1,9 @@
 # ReimuObject evidence index
 
 Start with [the current handoff](RE_HANDOFF.md). The selected496540 source
-epoch is the [typed-store checkpoint](REIMU_OBJECT_TYPED_STORES_2026_10_20.md):
-CPP555da070, canonical88bd9c9b. The root is source-present and remains
+epoch is the [local-exit checkpoint](REIMU_OBJECT_LOCAL_EXITS_2026_10_21.md):
+CPPa2c44054, whole46328-byte canonical78428962; the compared46138-byte prefix
+isfb49c2c1. The root is source-present and remains
 nonexact at49655F/+31. The same-TU4963A0 helper remains66/66 exact. No root
 partial-byte, remote-exact or percentage credit is implied.
 
@@ -31,9 +32,10 @@ or compiler context. Later evidence may supersede an earlier stop condition.
 
 | Record | Scope and status |
 | --- | --- |
-| [Retirement x87 state](REIMU_OBJECT_RETIREMENT_FPU_2026_10_20.md) | Selected source unchanged.22 write-time lifetime differences survive the passing final-output/helper-entry checks; local-return controls fix those but change call sharing. |
-| [Helper context](REIMU_OBJECT_HELPER_CONTEXT_2026_10_20.md) | Selected source unchanged. Live-x87 helper-entry diagnostic rejects the tested64CD00 visibility control; hosted LTCG controls remain nonexact. |
-| [Typed stores](REIMU_OBJECT_TYPED_STORES_2026_10_20.md) | Current selected source: seventeen ordered groups,902 separate calculations/shared fade and eight typed owner-float publications. Full replay status is in the handoff. |
+| [Local exits](REIMU_OBJECT_LOCAL_EXITS_2026_10_21.md) | Current selection: seven ordinary local returns recover observed retirement lifetimes and remove early constant hoisting. Whole-root equality and call/RET sharing remain open; no root exact credit. |
+| [Retirement x87 state](REIMU_OBJECT_RETIREMENT_FPU_2026_10_20.md) | Historical555da070 selection:22 sampled write-time lifetime differences survived final-output/helper-entry checks. Its split-return controls remain unselected. |
+| [Helper context](REIMU_OBJECT_HELPER_CONTEXT_2026_10_20.md) | Historical555da070 epoch: the live-x87 helper diagnostic rejects that64CD00 visibility control; hosted LTCG controls remain nonexact. |
+| [Typed stores](REIMU_OBJECT_TYPED_STORES_2026_10_20.md) | Historical source pins; seventeen ordered groups,902 separate calculations/shared fade and eight typed owner-float publications remain selected. |
 | [Fade order](REIMU_OBJECT_FADE_ORDER_2026_10_20.md) | Historicalc57f3de source pins;850/853/854 store order and local returns remain selected. |
 | [999 tail](REIMU_OBJECT_999_TAIL_2026_10_20.md) | Historicalcc8eafd pins;999-only cleanup and separate15.0f/0.2f lifetimes remain selected. |
 | [Direction returns](REIMU_OBJECT_DIRECTION_RETURNS_2026_10_20.md) | Historical3d3486d pins; real lookup return/status/direction witnesses. Native address transcription corrected to805E1E/80681C; current positions differ. |

@@ -1,5 +1,9 @@
 # ReimuObject ordered stores and902 owner-member recovery
 
+This page preserves source555da070/canonical88bd9c9b and its original
+receipts. The [local-exit checkpoint](REIMU_OBJECT_LOCAL_EXITS_2026_10_21.md)
+retains these recovered stores while superseding the selected source pins.
+
 Work continues on complete canonical equality for `0x00496540`. This is a
 source-recovery checkpoint, **not an exact result**. The original Japanese
 TH10.5 v1.06a executable remains SHA256

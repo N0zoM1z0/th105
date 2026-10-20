@@ -1,5 +1,10 @@
 # ReimuObject retirement writes and x87 cleanup
 
+This page records the predecessor source555da070 and its frozen controls.
+The [local-exit checkpoint](REIMU_OBJECT_LOCAL_EXITS_2026_10_21.md) selects
+ordinary unsplit local returns and supersedes the old selection below. Its
+source/receipt pins and remaining call-sharing residual are separate.
+
 The selected496540 source remains CPP555da070 and canonical88bd9c9b.
 Complete-root exactness is still unachieved, first mismatch49655F/+31.
 This work uses the hash-attested original Japanese1.06a PE; the attached
@@ -78,7 +83,7 @@ full133192 selected checkpoint or proof of arbitrary aliases/resources.
 
 ```bash
 python3 scripts/audit-reimu-object-retirement-fpu.py \
-  build/match-units/GptWeb_ReimuObjectActionState.obj \
+  build/reimu-object-return-sharing-20261020/baseline-current.obj \
   --output build/reimu-object-return-sharing-20261020/selected-retirement.json
 ```
 

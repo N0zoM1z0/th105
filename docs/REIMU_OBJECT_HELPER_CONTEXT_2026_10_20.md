@@ -1,5 +1,10 @@
 # ReimuObject helper visibility and live x87 controls
 
+This is the source555da070 epoch. The later
+[local-exit selection](REIMU_OBJECT_LOCAL_EXITS_2026_10_21.md) supersedes its
+selected pins. The negative visibility/context results below remain scoped
+to their actual sources and do not prohibit new evidence-backed controls.
+
 This checkpoint leaves the selected source unchanged from
 [typed stores](REIMU_OBJECT_TYPED_STORES_2026_10_20.md). Complete496540
 canonical equality is still unachieved. Target SHA256 remains

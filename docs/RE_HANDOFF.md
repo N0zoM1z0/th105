@@ -1,22 +1,15 @@
 # TH10.5 reconstruction handoff
 
-Current as of 2026-10-21. Phase: active TH105 exact reconstruction. The latest
-accepted function is CDesignSprite's uniform-scale entry40AEE0, complete19/19.
-The same source unit freshly reconfirms CDesignGage render40AEA0 and
-render_offset40AF30 at60/68. The setter preserves third-argument float stores
-at whole offsetsA0 thenA4; unused parameter semantics remain unknown.
-Texture binder404DF0 has complete source with preserved lookup/device read
-order, but remains102/107 nonexact at entry; native0/160 passes and the old
-lookup-hoist control fails80/160. Genuine closed LTCG context also yields102.
-CGage renderer41B3F0 still matches321 of323 instructions: its complete1010-byte
-source is nonexact at41B580/+190 in one multiplication load-order pair.
-Additional product-lifetime and inheritance controls leave that source
-unchanged; its scoped native0/4490 receipt remains source-pinned history.
-The five lifetime/color bodies153 bytes and CNumber40ADB0's40/40 remain exact.
-ReimuObject update496540's requested full canonical exact result is not yet
-achieved. Its latest selected recovery covers seventeen ordered store groups
-and902's typed owner-member publications. Live ledgers and fresh canonical
-comparisons override dated prose.
+Current as of 2026-10-21. Phase: active ReimuObject496540 exact reconstruction.
+Seven ordinary local retirement exits now preserve the observed state330
+write-before-x87-pop lifetime and remove premature EBP1/EBX0 hoisting. The
+new133192-input combined replay has zero output, ordered-write and retirement
+state differences. The root still fails canonical equality at49655F/+31:
+physical return/call sharing and source/TU context remain unresolved.
+No new exact function is claimed. The latest accepted entry remains
+CDesignSprite40AEE0 at19/19, with its affected CDesignGage renderers60/68.
+CGage41B3F0 remains nonexact in one multiplication load-order pair; binder404DF0
+remains102/107 nonexact. Live ledgers and fresh comparisons override dated prose.
 
 ## Target, workflow and acceptance
 
@@ -59,83 +52,73 @@ assumptions when reconstruction resumes.
 `ReimuObject_dispatch_action_state_vslot28 @496540` remains source-present in
 `src/characters/ReimuObjectActionStateStaging.cpp`, unit
 `gpt-web-reimu-object-action-state`. Vtable6C40A4/cell6C40CC slot28, ECX/RET0
-and caller4937D0 ignoring EAX are observed. The source void return remains an
-inference. The39853-byte main candidate is provisional; compare all46138
-physical bytes through4A197A, including46128 owned bytes and10 alignment bytes.
+and caller4937D0 ignoring EAX are observed. The void source return remains an
+inference. The39853-byte main candidate is provisional; full comparison still
+covers46138 physical bytes through4A197A, including46128 owned and10 alignment
+bytes. Raw closure reconfirms10670 instructions,22 switches and68 target RETs.
 
-Fresh target analysis found fifteen additional X/Y pairs,855's368/366 pair,
-and822's parameter0/heading pair reversed by retained chained assignments.
-The selected source writes these in target order. The822 pair follows opaque
-operations; its static recovery must not be confused with dynamic coverage.
-
-902 sequence0/1 now have separate calculations and their observed shared fade
-join. A local owner view names eight actual float fields at7A8..7C4 with offset
-assertions. Member assignment naturally restores the target's eight float
-spill/load/store sequences and owner-pointer reloads; raw float-pointer stores
-did not. The view is a source/layout hypothesis, not an original class claim.
-No shared header, selected compiler flag, relocation or ownership change.
+Ordinary decrement/return replaces the generic retirement jump at seven
+source sites:812's completed sector loop;821's compound owner gate;822's
+channel112 gate; and855/869/903/904's existing compound bounds tests. No
+predicate is split and no numeric value/local is introduced. Target4980E4
+and49B8E7 decrement330 before popping a live x87 value; the new source now
+matches sampled and full-matrix retirement states. All previous ordered-store
+recoveries,902's eight asserted owner float publications and999's cleanup
+remain in place. No shared header, selected profile, binding or ownership change.
 
 | Selected artifact | SHA256 |
 | --- | --- |
-|CPP|`555da0705db3e800f92c756449b88560d60d0a8d91a40f13d7c6c5feb354bfe2`|
-|Header|`6f469e6886959fd41ee6976b3c784c3df0c2e753ad4729a536764a3c8cd28b4b`|
-|Latest formal COFF rebuild|`9d0cf6aba4ed041369bfb47d092ad4033b959a36758baa020b419acac188609e`|
-|Canonical46012-byte payload|`88bd9c9bc88d9fc7643a2a162de2aa1cee026fb7d744bb8feb559bb86d54474e`|
+|CPP|`a2c44054550380596f67b5aced05f301cab26cd711ac5c22b68f06e64f162ef1`|
+|Unchanged header|`6f469e6886959fd41ee6976b3c784c3df0c2e753ad4729a536764a3c8cd28b4b`|
+|Formal COFF|`4ddca4f4ff71c900385602bad74f1159bdebcc1c01b2db8ffd7cee9c1e0f8118`|
+|Whole46328-byte canonical source section|`7842896240c69e2d920e76b4c39262f8d43257faba0574d5bfcf849e92b28e8c`|
+|Fixed46138-byte compared prefix|`fb49c2c120a902b1b59b50a82f31cfe931e6fdc98720385ebf726b147861a1d1`|
 
-The root remains **nonexact at49655F/+31** with natural438h frame,65 source
-RETs versus68 target RETs, diagnostic RET-membership distance25 and owner
-identity0/43. The candidate payload includes868 metadata bytes: its code
-prefix45144 must be compared with target table offset46140, not treated as
-only126 callable bytes short. No root exact/remote-exact row or credit is added.
-The separate real4963A0 definition remains **66/66 canonical exact**, hash
-ad12b782; complete direct/indirect call membership partitions still agree.
+The root remains **nonexact at49655F/+31**, a jump displacement. It retains
+its natural438h frame. Its source prefix before868 bytes of metadata is45460,
+versus target table offset46140; do not treat the full-section size46328 as
+callable size. Source71 RETs versus target68, RET-membership distance29 and
+entry/default instruction-edge identity2/43 are diagnostics only. Source CFG
+reaches10491 instructions. The separate real4963A0 stays **66/66 exact**,
+canonicalad12b782. No matching/remote-exact row or partial credit is added.
 
-The initial25411-input ordered-pair control found zero output differences on
-both sides, but3756 ordered-write differences in the predecessor and none in
-the corrected source. All sixteen first-store sites executed. The new public
-`audit-reimu-object-typed-stores.py` also checks owner and parameter writes,
-902 float-publication patterns and822's post-opaque static pair. The full133192
-replay passes with zero output/event differences, input hashf46a849f. All
-sixteen prefix store groups execute; each902 publication executes144 times.
-The822 post-opaque pair has zero executions and only static evidence.
-All19 serial selected/negative/focused commands finish with expected exits,
-including preserved fade,999,direction,animation,World,selector and caller
-checks. Frozen source/header/object/support pins agree before and after.
+Call sharing is still different: source432 physical calls versus target433.
+The source shares an advance call for817/860/861 where the target has two.
+Three World/wave pairs have905-only source membership and906-only target
+membership under complete conservative static reachability. This is physical
+partition evidence, not predicate feasibility or demonstrated wrong output.
+Canonical return/call layout and original source/TU context remain open.
 
-Remaining work is whole-root equality: return sharing, register lifetimes,
-physical tail ownership and source/TU context remain unresolved. Experiments
-moving labels or expanding local exits do not establish impossibility.
-World/setup/wave/event/CRT continuations, arbitrary aliases/resources/vtables,
-nonnull rendering and unmasked exceptions remain outside the finite-prefix
-contract. Keep999's cleanup,869/901 caller-side return evidence and previous
-packet/selector checks within their recorded scopes.
+The combined `audit-reimu-object-retirement-fpu.py --stride 1` passes all133192
+inputs, hashf46a849f, with zero output, object/owner/parameter ordered-write
+and retirement-live-x87 differences. All16 prefix first-store sites execute;
+each902 owner publication executes144 times and retains float spill/reload.
+822's post-opaque parameter/heading pair retains static order but has zero
+executions. This single affected-root pass includes the typed-store coverage;
+no second full typed-store replay or historical19-command sweep is claimed.
 
-See [typed-store evidence and commands](REIMU_OBJECT_TYPED_STORES_2026_10_20.md)
-and [the evidence index](REIMU_OBJECT_EVIDENCE.md). New receipts are under
-`build/reimu-object-exact-20261020/`; private experiments use the corresponding
-`.analysis/` directory. Earlier source hashes and negative controls are
-historical evidence, not proof that a current source shape cannot match.
+The initial control's helper-entry sample passes0/3600. Its complete46328-byte
+native root equals the formal object's at800000, hash24ce549b; the byte-bridge
+receipt preserves that evidence without presenting it as a fresh formal-COFF
+or full-matrix helper-x87 run. Its24/25 visited callees leave4359F0 unvisited.
+The final auditor also retains the predecessor's22/3600 retirement differences
+as a negative control. World/setup/wave/event/CRT continuations, arbitrary
+aliases/resources/vtables, nonnull rendering and unmasked exceptions remain
+outside this finite-prefix contract. Physical TOP/flags are not compared by
+the retirement diagnostic; native returns retain their existing balance/ABI checks.
 
-The subsequent [helper-context controls](REIMU_OBJECT_HELPER_CONTEXT_2026_10_20.md)
-leave these source pins unchanged. A3600-input live-x87 helper-entry sample
-passes selected source; making64CD00's real body visible produces73 action816
-entry-state differences despite equal final outputs. The other two runtime
-definitions individually leave root bytes unchanged; all three helpers remain
-individually exact in the combined experimental object. Hosted speed/size
-LTCG controls fail at+0 and do not recover the original link graph. These
-negative results do not establish standalone or LTCG impossibility.
-The fresh formal rebuild changes the raw COFF pin but preserves both canonical
-payload hashes; the earlier133192-input receipt retains its originalda35fa38
-object pin. The3600-input helper-entry check is repeated on the rebuilt object.
+See [local-exit evidence and commands](REIMU_OBJECT_LOCAL_EXITS_2026_10_21.md)
+and [the evidence index](REIMU_OBJECT_EVIDENCE.md). Current receipts and frozen
+baseline/control/selected inputs are in `build/reimu-object-cleanup-20261021/`,
+with corresponding private recipes under `.analysis/`. Five bulk reports are
+verified and gzip-compressed, saving1142239 bytes; sources, COFFs, current
+summaries and native receipts stay loose.
 
-[Retirement write-state analysis](REIMU_OBJECT_RETIREMENT_FPU_2026_10_20.md)
-finds22 sampled x87 lifetime differences at state330 writes even though final
-memory and helper entries agree. Ordinary local returns remove those22 in a
-private control but alter distant call-sharing partitions; no source change
-is selected. Joint cleanup placement/call sharing remains open. A separate
-12000-input cross-fixture diagnostic has zero output/write differences and
-zero errors. The new retirement diagnostic intentionally exits1 for the
-current selected source; it confers no root exact credit.
+The predecessor CPP555da070/canonical88bd9c9b, its typed-store133192 receipt,
+helper-visibility controls and split-retirement controls are historical with
+their own pins. They do not establish a universal compiler or LTCG barrier.
+The local-exit recovery improves observed lifetime/entry structure while
+leaving the complete root's canonical exact objective unfinished.
 
 ## Other preserved checkpoints
 
