@@ -2136,7 +2136,7 @@ origin = "authored_game"
 subsystem = "render"
 disposition = "authored"
 confidence = "observed"
-evidence = "Raw target CFG reaches the complete 219-byte RET-terminated body between INT3 pads. It reads sprite fields, calls texture-stage binder 0x00404DF0 (whose own origin remains under review), and dispatches D3D9 draw operations; exact AnimationObject and SpriteRenderEffect callers use it on game sprite subobjects. The independent target behavior and caller ownership support a game-authored render finalizer without claiming exact source bytes. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+evidence = "Raw target CFG reaches the complete 219-byte RET-terminated body between INT3 pads. It reads sprite fields, calls texture-stage binder 0x00404DF0 (whose game-authored origin is independently attested), and dispatches D3D9 draw operations; exact AnimationObject and SpriteRenderEffect callers use it on game sprite subobjects. The independent target behavior and caller ownership support a game-authored render finalizer without claiming exact source bytes. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
 required_body_hashes = [
   { address = "0x00407AD0", size = 219, sha256 = "5b4ed5412715bbb05c9c311f9c72fcc9548ab93fb1c5aad0dcb039a43002b698" },
 ]
@@ -2724,7 +2724,7 @@ origin = "authored_game"
 subsystem = "assets"
 disposition = "authored"
 confidence = "observed"
-evidence = "Complete 107-byte two-RET target body binds or clears a texture handle through D3D device vslot 0x104, caches the handle in receiver slot array +0x64, and calls the separately reviewed game resource lookup 0x00417800 for nonzero handles. Canonical-exact RenderModeManager_submit_textured_primitive calls this binder; rendering helpers 0x00401180/0x004012A0 call it with zero handle. Full body and exact/identified E8 edges are replayed. Source class/TU and standalone exact result remain unresolved. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+evidence = "Complete 107-byte two-RET target body binds or clears a texture handle through D3D device vslot 0x104, caches the handle in receiver slot array +0x64, and calls the separately reviewed game resource lookup 0x00417800 for nonzero handles. Canonical-exact RenderModeManager_submit_textured_primitive calls this binder; rendering helpers 0x00401180/0x004012A0 call it with zero handle. Full body and exact/identified E8 edges are replayed. Complete typed C++ source is now selected, with native0/160 and a detected80-case lookup-hoist control. Source class/TU remain hypotheses and the102-byte body remains nonexact at entry because callee-save placement differs. docs/TEXTURE_STAGE_BINDING_2026_10_21.md."
 required_body_hashes = [
   { address = "0x00404DF0", size = 107, sha256 = "c507bdb541478a700181ff1d1bfd3637cbc78261eed2de6390ec68fa1fb239fc" },
 ]
@@ -2758,7 +2758,7 @@ required_direct_edges = [
   { caller = "0x004012A0", site = "0x00401347", target = "0x00401180", caller_status = "identified" },
 ]
 required_selected_body_calls = [
-  { owner = "0x00401180", site = "0x004011DF", target = "0x00404DF0", target_status = "identified" },
+  { owner = "0x00401180", site = "0x004011DF", target = "0x00404DF0", target_status = "implemented" },
 ]
 
 [[rules]]
@@ -2790,7 +2790,7 @@ required_selected_body_calls = [
   { owner = "0x004012A0", site = "0x004012FB", target = "0x00401180", target_status = "identified" },
   { owner = "0x004012A0", site = "0x00401321", target = "0x00401180", target_status = "identified" },
   { owner = "0x004012A0", site = "0x00401347", target = "0x00401180", target_status = "identified" },
-  { owner = "0x004012A0", site = "0x004013F5", target = "0x00404DF0", target_status = "identified" },
+  { owner = "0x004012A0", site = "0x004013F5", target = "0x00404DF0", target_status = "implemented" },
 ]
 
 [[rules]]
@@ -3213,5 +3213,5 @@ required_body_hashes = [
 required_selected_body_calls = [
   { owner = "0x0041B3F0", site = "0x0041B661", target = "0x004063D0", target_status = "implemented" },
   { owner = "0x0041B3F0", site = "0x0041B673", target = "0x00406360", target_status = "implemented" },
-  { owner = "0x0041B3F0", site = "0x0041B79C", target = "0x00404DF0", target_status = "identified" },
+  { owner = "0x0041B3F0", site = "0x0041B79C", target = "0x00404DF0", target_status = "implemented" },
 ]

@@ -20046,3 +20046,17 @@ symbol_base = "?render@CDesignGageRenderView@th105@@UAEXXZ"
 [[units.gpt-web-gage-design-render.functions]]
 address = "0x0040AF30"
 symbol_base = "?render_offset@CDesignGageRenderView@th105@@UAEXMM@Z"
+
+[units.gpt-web-texture-slot-binding]
+kind = "probe"
+source = "src/assets/TextureStageBinding.cpp"
+object = "build/match-units/GptWeb_TextureSlotBinding.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete107-byte texture binder404DF0 source using ordinary typed D3D9 dispatch and the actual lookup API. Nested lookup argument preserves device-vtable capture before lookup and device-pointer reload afterward. Source102 remains nonexact at entry: EBX/EBP saves are conditional instead of the target common prologue. Genuine source-owned LTCG context also yields102; no impossibility or exact claim. docs/TEXTURE_STAGE_BINDING_2026_10_21.md."
+
+[[units.gpt-web-texture-slot-binding.functions]]
+address = "0x00404DF0"
+symbol_base = "?bind_texture@TitleResourceManager@th105@@QAEXIH@Z"
+rel32_targets = ["?lookup_token@CHandleManager4@th105@@QAEPAPAXI@Z=0x00417800"]
+dir32_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A=?g_d3d_backend@th105@@3UD3DBackend@1@A"]

@@ -67,7 +67,7 @@ class WorkflowToolingTests(unittest.TestCase):
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1458)
+        self.assertEqual(len(implemented), 1459)
         root = next(row for row in functions if row["address"] == "0x00496540")
         self.assertEqual(root["status"], "implemented")
         self.assertEqual(root["match_percent"], "0.00")
@@ -76,16 +76,20 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(gage["status"], "implemented")
         self.assertEqual(gage["match_percent"], "0.00")
         self.assertIn(gage["proposed_name"], implemented)
+        binder = next(row for row in functions if row["address"] == "0x00404DF0")
+        self.assertEqual(binder["status"], "implemented")
+        self.assertEqual(binder["match_percent"], "0.00")
+        self.assertIn(binder["proposed_name"], implemented)
         self.assertEqual(
             len(self.validator.rows(ROOT / "config" / "matches.csv")), 1348
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 530)
+        self.assertEqual(len(manifest["units"]), 531)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1466,
+            1467,
         )
         root = manifest["units"]["gpt-web-reimu-object-action-state"]
         self.assertEqual(root["kind"], "probe")
@@ -997,6 +1001,8 @@ class WorkflowToolingTests(unittest.TestCase):
         })
         self.assertNotIn("gpt-web-gage-render", accepted)
         self.assertNotIn("0x0041B3F0", set().union(*accepted.values()))
+        self.assertNotIn("gpt-web-texture-slot-binding", accepted)
+        self.assertNotIn("0x00404DF0", set().union(*accepted.values()))
         self.assertEqual(accepted["gpt-web-gage-lifetime"], {
             "0x0040AD60", "0x0040BAC0", "0x0040AF00", "0x0040AF10", "0x0040AF20",
         })
@@ -1699,7 +1705,7 @@ class WorkflowToolingTests(unittest.TestCase):
         )
         self.assertIn("Canonical exact functions | 1,348", markdown)
         self.assertIn("Canonical exact authored bytes | 229,968", markdown)
-        self.assertIn("Source-present authored mappings | 1,458", markdown)
+        self.assertIn("Source-present authored mappings | 1,459", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )

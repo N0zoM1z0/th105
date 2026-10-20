@@ -1456,3 +1456,4 @@ CDesignGage_scalar_deleting_destructor
 CGage_render
 CDesignGage_render
 CDesignGage_render_offset
+TitleResourceManager_bind_texture

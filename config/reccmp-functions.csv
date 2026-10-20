@@ -1475,3 +1475,4 @@ CDesignGage_scalar_deleting_destructor,0x0040BAC0,function
 CGage_render,0x0041B3F0,function
 CDesignGage_render,0x0040AEA0,function
 CDesignGage_render_offset,0x0040AF30,function
+TitleResourceManager_bind_texture,0x00404DF0,function
