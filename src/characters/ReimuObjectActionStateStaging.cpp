@@ -960,10 +960,11 @@ retire_801_811:
                     copied[2] = 3.0f;
                     const double origin_y = y_f0 + 50.0;
                     const double origin_x = x_ec + 100.0;
-                    const float request_y = static_cast<float>(origin_y - static_cast<float>(static_cast<unsigned int>(selector_random_roll(100))));
-                    const float request_x = static_cast<float>(origin_x - static_cast<float>(static_cast<unsigned int>(selector_random_roll(200))));
                     reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->spawn_owned_object_via_manager(
-                        817, request_x, request_y, static_cast<unsigned char>(facing_104), 1, reinterpret_cast<int>(copied), 3);
+                        817,
+                        static_cast<float>(origin_x - static_cast<float>(static_cast<unsigned int>(selector_random_roll(200)))),
+                        static_cast<float>(origin_y - static_cast<float>(static_cast<unsigned int>(selector_random_roll(100)))),
+                        static_cast<unsigned char>(facing_104), 1, reinterpret_cast<int>(copied), 3);
                 }
             }
 
@@ -1118,10 +1119,11 @@ retire_801_811:
                     copied[2] = 3.0f;
                     const double origin_y = y_f0 + 50.0;
                     const double origin_x = x_ec + 100.0;
-                    const float request_y = static_cast<float>(origin_y - static_cast<float>(static_cast<unsigned int>(selector_random_roll(100))));
-                    const float request_x = static_cast<float>(origin_x - static_cast<float>(static_cast<unsigned int>(selector_random_roll(200))));
                     reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->spawn_owned_object_via_manager(
-                        817, request_x, request_y, static_cast<unsigned char>(facing_104), 1, reinterpret_cast<int>(copied), 3);
+                        817,
+                        static_cast<float>(origin_x - static_cast<float>(static_cast<unsigned int>(selector_random_roll(200)))),
+                        static_cast<float>(origin_y - static_cast<float>(static_cast<unsigned int>(selector_random_roll(100)))),
+                        static_cast<unsigned char>(facing_104), 1, reinterpret_cast<int>(copied), 3);
                 }
             }
 
