@@ -85,6 +85,8 @@ candidates; only their official canonical-exact authored baseline rows change.
 No complete origin-anchor replay was needed.
 
 CDesignNumber's outer renderers 40AF80/40AFC0 and private dispatch/floating
-helpers 414EB0/415050 remain unselected and nonexact. Their EAX/ESI receiver
-contracts require complete, truthful source visibility before acceptance.
-ReimuObject 496540 remains nonexact at 49655F/+31.
+helpers 414EB0/415050 were unselected at this interface checkpoint. The
+subsequent [render recovery](DESIGN_NUMBER_RENDER_2026_10_21.md) accepts the
+outer renderers and dispatch with complete private helper visibility; the
+floating renderer remains nonexact. ReimuObject 496540 remains nonexact at
+49655F/+31.

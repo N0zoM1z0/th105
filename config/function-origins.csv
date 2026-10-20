@@ -258,8 +258,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0040AF10,authored_game,ui,authored,observed,canonical-exact-authored
 0x0040AF20,authored_game,ui,authored,observed,canonical-exact-authored
 0x0040AF30,authored_game,ui,authored,observed,canonical-exact-authored
-0x0040AF80,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0040AFC0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0040AF80,authored_game,ui,authored,observed,canonical-exact-authored
+0x0040AFC0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0040B000,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040BA90,compiler_generated,runtime,exclude,inferred,rtti-inline-scalar-deleting-destructors-106a
 0x0040BAC0,authored_game,ui,authored,observed,canonical-exact-authored
@@ -488,9 +488,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00414D50,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00414DE0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00414E40,authored_game,ui,authored,observed,ui-source-present-exact-caller-helpers-authored-106a
-0x00414EB0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00414EB0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00414F10,authored_game,ui,authored,observed,canonical-exact-authored
-0x00415050,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00415050,authored_game,ui,authored,observed,design-number-floating-render-authored-106a
 0x004152A0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00415340,authored_game,network,authored,observed,network-udp-connection-authored-106a
 0x00415560,authored_game,network,authored,observed,network-udp-request-authored-106a

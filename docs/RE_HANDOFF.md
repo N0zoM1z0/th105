@@ -1,14 +1,14 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest bounded
-follow-up corrects CNumber's value interface using target RTTI and virtual
-consumers. TNumberValue<int*> getters4424B0/4424C0 are each complete6/6 exact;
-their real constructor caller444190 and affected integer renderer414F10 retain
-728/312 exact. Initializer414E40 retains102/104 nonexact. The outer renderers
-40AF80/40AFC0 and private414EB0/415050 remain unselected. Reimu496540 keeps the
-committed811 correction and remains nonexact49655F/+31, call-distance11/
-RET-distance27.40BFE0 remains74/81;4A1CE0 retains14 differences. Live evidence
-overrides historical prose.
+follow-up accepts CDesignNumber render40AF80/40AFC0 at55/63 and private bound
+dispatch414EB0 at95 complete exact bytes. Full floating415050 source is547/581,
+nonexact415053/+3; its64-byte target frame remains unexplained. The preceding
+TNumberValue<int*> getters4424B0/4424C0 retain6/6 exact, constructor444190 and
+integer renderer414F10 retain728/312 exact, and initializer414E40 retains102/104
+nonexact. Reimu496540 keeps the committed811 correction and remains nonexact
+49655F/+31, call-distance11/RET-distance27.40BFE0 remains74/81;4A1CE0 retains14
+differences. Live evidence overrides historical prose.
 
 ## Target, workflow and acceptance
 
@@ -46,12 +46,23 @@ replay or new aggregate percentage is claimed. The user requests focused
 affected checks, regular commit and push, and careful re-examination of old
 assumptions when reconstruction resumes.
 
-The latest [value-interface checkpoint](NUMBER_VALUE_INTERFACE_2026_10_21.md)
+The preceding [value-interface checkpoint](NUMBER_VALUE_INTERFACE_2026_10_21.md)
 adds two functions/12 bytes, with genuine template emission in the existing
 menu-constructor unit. Both semantic consumers of the changed header were
 replayed;196 origin-rule selections are unchanged and disjoint from the new
 candidates. The first two adapter slots are getters; the old destructor-slot
 placeholder was wrong. Nominal float/double return spelling remains open.
+
+The latest [render checkpoint](DESIGN_NUMBER_RENDER_2026_10_21.md) adds three
+functions/213 bytes through one genuine closed helper unit. Retaining the
+floating callee's real EBP frame prevents fractional-count register promotion,
+recovers ESI/RET24 and produces the entire exact95-byte dispatcher. The normal
+frame still lacks target64-byte alignment; no dummy is added. All196 previous
+origin selectors are unchanged; one new target-pinned rule classifies the
+complete581-byte floating body as authored/source-present nonexact. The sole
+new literal alias has no predecessor users. Only this affected unit needed
+replay; its expected exit1 is the explicit floating mismatch. Future edits to
+CNumberRuntime.hpp must also replay this new consumer.
 
 ## Current811 coordinate-argument phase
 

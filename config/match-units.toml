@@ -20081,3 +20081,45 @@ address = "0x00404DF0"
 symbol_base = "?bind_texture@TitleResourceManager@th105@@QAEXIH@Z"
 rel32_targets = ["?lookup_token@CHandleManager4@th105@@QAEPAPAXI@Z=0x00417800"]
 dir32_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A=?g_d3d_backend@th105@@3UD3DBackend@1@A"]
+
+[units.gpt-web-design-number-render]
+kind = "probe"
+source = "src/ui/DesignNumberRender.cpp"
+object = "build/match-units/GptWeb_DesignNumberRender.obj"
+profile = "vc8-sp1-probe-o2-fp-strict"
+enable_gs = false
+notes = "RTTI-owned CDesignNumber renderers40AF80/40AFC0 and bound CNumber dispatch414EB0 reproduce55/63/95 complete canonical bytes. Both file-local helper bodies are genuinely defined; VC8 chooses EAX/RET8 and ESI/RET24 without an external private-ABI facade. Floating415050 is complete source-present but remains547/581 nonexact at+3: its real EBP frame does not explain the target64-byte alignment. The local FPO-off control recovers the observed stack digit arguments and dispatch ABI; it is not a claim about unique original source flags. See docs/DESIGN_NUMBER_RENDER_2026_10_21.md."
+
+[[units.gpt-web-design-number-render.functions]]
+address = "0x0040AF80"
+symbol_base = "?render@CDesignNumberRenderView@th105@@UAEXXZ"
+rel32_targets = [
+  "?render_bound@th105@@YGXPAVNumberRenderView@1@MM@Z=0x00414EB0",
+]
+
+[[units.gpt-web-design-number-render.functions]]
+address = "0x0040AFC0"
+symbol_base = "?render_offset@CDesignNumberRenderView@th105@@UAEXMM@Z"
+rel32_targets = [
+  "?render_bound@th105@@YGXPAVNumberRenderView@1@MM@Z=0x00414EB0",
+]
+
+[[units.gpt-web-design-number-render.functions]]
+address = "0x00414EB0"
+symbol_base = "?render_bound@th105@@YGXPAVNumberRenderView@1@MM@Z"
+rel32_targets = [
+  "?render_floating@th105@@YGXPAVNumberRenderView@1@MMMHHD@Z=0x00415050",
+  "?render@NumberRenderView@th105@@QAEXHMMHD@Z=0x00414F10",
+]
+
+[[units.gpt-web-design-number-render.functions]]
+address = "0x00415050"
+symbol_base = "?render_floating@th105@@YGXPAVNumberRenderView@1@MMMHHD@Z"
+rel32_targets = [
+  "__ftol2_sse=0x0068A1A0",
+  "_fmod=0x0068C060",
+  "?render@CNumberTileA4@th105@@QAEXMMHH@Z=0x004099F0",
+]
+dir32_targets = [
+  "__real@3ea8f5c3=_design_number_decimal_width_ratio",
+]
