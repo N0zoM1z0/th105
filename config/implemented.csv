@@ -1458,3 +1458,4 @@ CDesignGage_render
 CDesignGage_render_offset
 TitleResourceManager_bind_texture
 CDesignSprite_set_uniform_scale
+CDesignNumber_scalar_deleting_destructor

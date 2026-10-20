@@ -14485,7 +14485,7 @@ source = "src/ui/CNumberLifetime.cpp"
 object = "build/match-units/GptWeb_CNumberLifetime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Raw CNumber RTTI COL 0x006DCBEC proves a zero-offset IColor base and vtable 0x006C1B60 owns deleting destructor plus three color-forwarding slots. Explicitly defining the real embedded tile destructor restores the target member-before-base vptr cleanup naturally. All five functions are canonical exact: independently padded40-byte normal destructor, three11-byte forwarding virtuals and60-byte scalar deleting destructor. Selected source73b71ded; docs/CNUMBER_MEMBER_DESTRUCTOR_2026_10_20.md."
+notes = "Raw CNumber RTTI COL 0x006DCBEC proves a zero-offset IColor base and vtable 0x006C1B60 owns deleting destructor plus three color-forwarding slots. Explicitly defining the real embedded tile destructor restores the target member-before-base vptr cleanup naturally. All six functions are canonical exact: the existing40-byte normal destructor, three11-byte forwarding virtuals and60-byte scalar deleting destructor, plus the RTTI-owned CDesignNumber61-byte scalar deleting destructor with its actual CNumber member at+18. docs/CNUMBER_MEMBER_DESTRUCTOR_2026_10_20.md; docs/DESIGN_NUMBER_LIFETIME_2026_10_21.md."
 
 [[units.gpt-web-cnumber-lifetime.functions]]
 address = "0x0040ADB0"
@@ -14511,6 +14511,15 @@ symbol_base = "?multiply_color@CNumberLifetime@th105@@UAEXI@Z"
 [[units.gpt-web-cnumber-lifetime.functions]]
 address = "0x0040AE10"
 symbol_base = "??_GCNumberLifetime@th105@@UAEPAXI@Z"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = [
+  "??_7CNumberLifetime@th105@@6B@=??_7CNumber@th105@@6B@",
+  "??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@",
+]
+
+[[units.gpt-web-cnumber-lifetime.functions]]
+address = "0x0040BB00"
+symbol_base = "??_GCDesignNumberLifetime@th105@@UAEPAXI@Z"
 rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
 dir32_targets = [
   "??_7CNumberLifetime@th105@@6B@=??_7CNumber@th105@@6B@",

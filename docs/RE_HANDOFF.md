@@ -7,9 +7,10 @@ guard/RET sharing rejects the predecessor despite equal outputs and passes
 the selected body. Root remains nonexact49655F/+31, with RET-distance29->27
 and call-distance9. The existing descending modes/12 matched packet slots
 remain.905 placement,906/817 sharing and908's post-wave load form stay open.
-No new exact function is claimed. Latest accepted entry remains CDesignSprite
-40AEE0 at19/19, with affected CDesignGage renderers60/68. CGage41B3F0 retains
-its load-order residual; binder404DF0 remains102/107. Live evidence overrides
+The current root checkpoint adds no exact function. Latest accepted entry is
+CDesignNumber40BB00 at61/61, with all five affected CNumber lifetimes/color
+functions40/11/11/11/60 freshly exact. CDesignSprite40AEE0 retains19/19.
+CGage41B3F0 retains its load-order residual; binder404DF0 remains102/107. Live evidence overrides
 historical prose.
 
 ## Target, workflow and acceptance
@@ -160,6 +161,23 @@ claimed. These scoped negatives do not prove a compiler or LTCG barrier.
 See [Object helper follow-up](OBJECT_HELPER_CONTROLS_2026_10_21.md) for raw
 addresses, canonical hashes, limits and retained input/report paths. Reimu's
 current821/selector source phase and all preceding scoped receipts remain.
+
+## CDesignNumber lifetime follow-up
+
+RTTI vtable6D6AC0/COL6DCAB0 and factory40B7ED establish the completeE4 owner,
+actual CNumber member+18 and CTile+40. The ordinary implicit outer destructor
+in `src/ui/CNumberLifetime.cpp` now reproduces40BB00 **61/61**: member-owned
+value release at+3C, tile/member/outer base cleanup and optional receiver free.
+Canonical57f8ee28, source04da04d2, formal COFFc16db61d. The six-function sole
+affected unit `gpt-web-cnumber-lifetime` is fully exact; no shared header,
+profile, existing binding or accepted partition changes. One new physical
+61-byte lifetime is accepted; no aggregate cold replay is claimed.
+
+Raw rendering leads40AF80/40AFC0 call private414EB0 with their number pointer
+in EAX; its floating continuation415050 receives that pointer in ESI. Those
+bodies remain unselected. See [CDesignNumber lifetime](DESIGN_NUMBER_LIFETIME_2026_10_21.md)
+for complete boundaries, target ownership, focused receipts and remaining
+source/ABI unknowns. Reimu's current821/selector source phase is unchanged.
 
 ## Other preserved checkpoints
 
