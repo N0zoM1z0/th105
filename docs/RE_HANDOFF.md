@@ -299,35 +299,44 @@ FLD1 at49C35A;4C611D is not an actual callee. Main-span ranking omits61 actual
 remote calls, so use the complete packet for source dependencies.
 
 Handwritten `ReimuObjectActionStateStaging.cpp/.hpp` now handles
-800/801/804/807/808/810/811/812/815/816/817/859/860/861/980/998 and real defaults.
-The coverage bool is not the original void boundary;25 concrete actions remain
-unsupported. Fresh native audit passes0/28244:26107 real RETs,1063 unparented/
-695 owned/232 parented spawn entries,26 effect,79 secondary-setup and42 wave
-entries. Original MT/orientation initialization,6072 MT draws,5804 scaled RNG
-calls,2688 phase-counter and1292 secondary-alpha entries execute. Byte112 is
-exposed without changing size388 or accepted headers/helpers/bindings.
+800/801/804/807/808/810/811/812/815/816/817/821/822/825/848/859/860/861/980/998
+and real defaults. Its coverage bool is not the original void boundary;
+21 concrete actions remain unsupported. Fresh native audit passes0/43744,
+including all28244 preceding inputs:40388 real RETs,2134 unparented/695 owned/
+232 parented spawn entries,26 effect,131 secondary-setup,114 wave and24 CRT
+errno entries. Actual animation, relative-position, MT/RNG and other reviewed
+helpers execute. The staging header adds observed vslot20 after unknown18/1C,
+without changing size388 or accepted shared headers/helpers/bindings.
 
-815 preserves Y subtraction.816 preserves same-frame state1 processing and the
-phase-counter call after the owner/index gate.817 preserves uint32 wrap before
-turn-to-float conversion, signed low-byte thresholds, float proximity stores
-and both physical close/periodic paths. Four compiled wrong-source controls
-fail4/60,240/960,390/2340 and324/2340. Real waves/generation/setup stop at entry;
-returning graphs and the two counter14 burst loops' world effects remain open.
+821 retains the signed-index and Y-impact transitions as separate physical
+paths.822 preserves four-word payloads, parent heading-field reads, two RNG
+thresholds (<50 and>50), and the X-velocity test before Y-velocity assignment.
+825/848 retain the signed-word owner186 gate after their specific updates,
+without a global phase5 retirement. The coherent822 sequence0 resource fixture
+now contains three actual frames. Seeds79/137 expose equality in each RNG test.
+Five compiled wrong-source controls fail1196/4032 (gate width),160/640
+(cross-field),100/100 (fourth word),10/100 and10/100 (the separate thresholds).
 
-A separate incoming-argument observer passes0/1170: it records the actual low
-alpha byte/receiver at496370, then executes the original null-renderer helper
-and root to real RETs. Ordinary null-renderer snapshots cannot establish a
-discarded alpha argument. Nonnull renderer behavior remains unproved.
-The wrong state370+0.5 conversion passes ordinary0/2340 but fails incoming-byte
-observation540/1170; only the actual argument differs. Both
-808/812 caller audits pass on the new12844-byte replay; current808 needs no
-separately admitted EBP constant. Prior conditional-loop/payload limits remain.
+NaN steering reaches original CRT69C9E5 and stops at the actual695F11 errno
+entry, comparing the incoming error class. No returning CRT/TLS behavior is
+invented. Real waves/generation/setup also stop at entry. Their returning
+world/sound graphs, paired requests and burst loops remain source hypotheses
+beyond those stops. Earlier815/816/817 details and controls remain in their
+checkpoint page.
 
-See [815/816/817 evidence](REIMU_OBJECT_815_817_2026_10_20.md) and its linked
-predecessor checkpoints for source pins and exact scopes. Fresh read-only
-direct Ghidra preserves all nine primary DB pins and removes its alias.
-No exact or root source-present credit is added. Next recover821/822/825 and
-continue the other22 actions; preserve Fighter478FA0 and entry4A1CE0 state.
+The actual incoming-alpha-byte observer again passes0/1170 on the expanded
+16632-byte replay, then runs the real null-renderer helper to RET. Nonnull
+rendering remains unproved. Both808/812 caller proofs pass on this replay;
+current808 needs no separately admitted EBP constant. Their conditional
+return/payload limits remain. Earlier wrong state370+0.5 conversion passed
+ordinary0/2340 but failed the incoming-byte observation540/1170.
+
+See [821/822/825/848 evidence](REIMU_OBJECT_821_848_2026_10_20.md) and linked
+predecessors for current source pins, target observations and exact scopes.
+Fresh direct read-only Ghidra preserves all nine primary DB pins and removes
+its alias. No exact or root source-present credit is added. Next recover the
+850/851/852 family and continue the other18 unsupported arms; preserve
+Fighter478FA0 and entry4A1CE0 state.
 
 ## Shared Object action980 exact checkpoint
 

@@ -14,6 +14,9 @@ public:
     virtual int select_sequence(short sequence);
     virtual int reset_sequence();
     virtual unsigned char next_sequence_block();
+    virtual void slot_18();
+    virtual void slot_1c();
+    virtual unsigned char next_sequence_frame();
 
     // True means the selected action was fully handled by this source phase.
     // False leaves the other known nondefault actions to subsequent recovery.
