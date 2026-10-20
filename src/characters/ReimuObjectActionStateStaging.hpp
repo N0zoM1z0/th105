@@ -21,6 +21,7 @@ public:
     // True means the selected action was fully handled by this source phase.
     // False leaves the other known nondefault actions to subsequent recovery.
     bool try_update_scalar_actions();
+    void publish_battle_layout_scalar(float value);
 
     unsigned char unknown_004[0xe8];
     float x_ec;

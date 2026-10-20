@@ -59,6 +59,8 @@ HELPERS.update(
         0x496370: (35, "secondary_alpha"),
         0x5B0400: (82, "relative_owner_position"),
         0x45C1A0: (67, "next_sequence_frame"),
+        0x4359D0: (21, "publish_battle_layout_scalar"),
+        0x427280: (10, "set_battle_layout_scalar"),
         # CRT atan2 paths, including the observed quiet-NaN exception record.
         # Execute the original instructions; no host-math replacement return.
         0x68BB70: (10, "crt_atan2_entry"),
@@ -70,6 +72,7 @@ HELPERS.update(
         0x6964EC: (9, "crt_half_pi_kernel"),
         0x690D59: (17, "crt_math_special_status"),
         0x69C9E5: (252, "crt_87_exception_record"),
+        0x696266: (91, "crt_special_value_classifier"),
     }
 )
 HELPER_ADDRESSES = frozenset(
@@ -89,6 +92,9 @@ BOUNDARIES = {
     # Stop at the real errno side-effect entry. No thread-local CRT state or
     # returning NaN math result is fabricated for the steering fixture.
     0x695F11: ("crt_errno", 1, False, False),
+    # fabs has changed to its working control word here. Record the real
+    # operation, NaN and saved caller control word before TLS errno access.
+    0x696004: ("crt_qnan", 4, False, False),
 }
 MT_INDEX, MT_STATE, MT_BYTES = 0x6FA1FC, 0x6FDEF0, 624 * 4
 
@@ -192,6 +198,7 @@ def export(path):
             "_ftol2_sse": 0x68A1A0,
             "?position_relative_to_owner_offsets@CharacterObjectEffectEmitter@th105@@QAEPAUFighter@2@HH@Z": 0x5B0400,
             "CharacterObjectEffectEmitter_position_relative_to_owner_offsets": 0x5B0400,
+            "?publish_battle_layout_scalar@ReimuObjectActionStateStagingView@th105@@QAEXM@Z": 0x4359D0,
             "?spawn_owned_object_via_manager@ReimuObjectOwnerSpawnView@th105@@QAEHHMMHHHH@Z": 0x465190,
         }
     )
@@ -208,6 +215,9 @@ class Probe:
         if seeds is not None:
             self.uc.mem_protect(
                 0x6FA000, 0x1000, unicorn.UC_PROT_READ | unicorn.UC_PROT_WRITE
+            )
+            self.uc.mem_protect(
+                0x6FB000, 0x1000, unicorn.UC_PROT_READ | unicorn.UC_PROT_WRITE
             )
             self.uc.mem_protect(
                 0x6FD000, 0x2000, unicorn.UC_PROT_READ | unicorn.UC_PROT_WRITE
@@ -257,6 +267,13 @@ class Probe:
             and (a == MT_INDEX or MT_STATE <= a < MT_STATE + MT_BYTES)
         ):
             return
+        if (
+            pc == 0x427284
+            and a == 0x6FBD00
+            and n == 4
+            and struct.unpack("<h", uc.mem_read(OWNER + 0x13C, 2))[0] == 850
+        ):
+            return
         if not (
             OWNER <= a <= a + n <= OWNER + 0x388
             or FIGHTER <= a <= a + n <= FIGHTER + 0x800
@@ -287,7 +304,13 @@ class Probe:
                     and a in (SPAWN, 0x4FCA60)
                     and struct.unpack("<h", uc.mem_read(OWNER + 0x13C, 2))[0] == 822
                 )
-                if args[6] != 3 and not packet_four:
+                packet_one = (
+                    args[6] == 1
+                    and args[0] == 851
+                    and a == 0x465190
+                    and struct.unpack("<h", uc.mem_read(OWNER + 0x13C, 2))[0] == 851
+                )
+                if args[6] != 3 and not packet_four and not packet_one:
                     self.failure = "unreviewed copied-word count"
                     uc.emu_stop()
                     return
@@ -330,9 +353,9 @@ class Probe:
         if case.get("terminal"):
             uc.mem_write(seq_block + 0x14, bytes(12))
         frame_count = 1
-        if case["action"] == 822 and seq == 0:
-            # Coherent frames0/1/2 for the delayed/active822 sequence. The
-            # common fixture's single frame cannot represent its frame1 path.
+        if case["action"] == 850 or (case["action"] == 822 and seq == 0):
+            # Coherent frames0/1/2 for850 and the delayed/active822 sequence.
+            # The earlier single frame cannot represent their later frames.
             first = RESOURCE + 0x6000
             template = bytes(uc.mem_read(entry.FRAME, 0x88))
             uc.mem_write(first, template * 3)
@@ -397,6 +420,9 @@ class Probe:
             822,
             825,
             848,
+            850,
+            851,
+            852,
         ):
             for off, fmt, value in (
                 (0x170, "I", FIGHTER),
@@ -409,7 +435,21 @@ class Probe:
             uc.mem_write(
                 entry.PARAMETERS + 12, struct.pack("<f", case.get("mode", 0.0))
             )
-        if case["action"] in (810, 811, 812, 815, 816, 817, 821, 822, 825, 848):
+        if case["action"] in (
+            810,
+            811,
+            812,
+            815,
+            816,
+            817,
+            821,
+            822,
+            825,
+            848,
+            850,
+            851,
+            852,
+        ):
             uc.mem_write(OWNER + 0x111, struct.pack("<B", case.get("channel", 200)))
             uc.mem_write(
                 OWNER + 0x34C, struct.pack("<I", 0 if case.get("no_parent") else PARENT)
@@ -426,7 +466,7 @@ class Probe:
             ):
                 uc.mem_write(PARENT + off, struct.pack("<" + fmt, value))
             uc.mem_write(PARENT_PARAMETERS, struct.pack("<ffff", -71.25, 8.5, 2.0, 0.0))
-        if case["action"] in (815, 816, 817, 821, 822, 825, 848):
+        if case["action"] in (815, 816, 817, 821, 822, 825, 848, 850, 851, 852):
             for off, fmt, value in (
                 (0x112, "B", case.get("channel2", 200)),
                 (0x170, "I", RELATED),
@@ -443,7 +483,7 @@ class Probe:
             )
             uc.mem_write(FIGHTER + 0x13E, struct.pack("<h", case.get("owner_seq", 0)))
             uc.mem_write(FIGHTER + 0x60D, struct.pack("<b", case.get("skill", 0)))
-        if case["action"] in (821, 822, 825, 848):
+        if case["action"] in (821, 822, 825, 848, 850, 851, 852):
             for off, fmt, value in (
                 (0x104, "b", case.get("owner_facing", -1)),
                 (0x140, "h", case.get("owner_frame", 1)),
@@ -458,6 +498,14 @@ class Probe:
                 uc.mem_write(
                     entry.PARAMETERS + 12, struct.pack("<f", case.get("mode", 1000.0))
                 )
+        if case["action"] in (850, 851, 852):
+            for off, value in (
+                (0x366, case.get("speed_word", 16)),
+                (0x368, case.get("fade_word", 0)),
+            ):
+                uc.mem_write(OWNER + off, struct.pack("<h", value))
+        if case["action"] == 850:
+            uc.mem_write(0x6FBD00, struct.pack("<f", case.get("layout_scalar", -7.75)))
         for off, fmt, value in [
             (0x13C, "h", case.get("owner_action", 150)),
             (0xEC, "f", 515.5),
@@ -504,21 +552,35 @@ class Probe:
             ):
                 raise ValueError((case, "x87 stack unbalanced"))
             self.endpoint = {"kind": "ret"}
-        if uc.reg_read(r.UC_X86_REG_FPCW) != case.get("cw", 0x27F):
+        expected_cw = case.get("cw", 0x27F)
+        if self.endpoint["kind"] == "crt_qnan":
+            if (
+                self.endpoint["arguments"][0] != 21
+                or self.endpoint["arguments"][3] != expected_cw
+            ):
+                raise ValueError(
+                    (case, "fabs NaN operation/saved control word differs")
+                )
+            expected_cw = 0x133F
+        if uc.reg_read(r.UC_X86_REG_FPCW) != expected_cw:
             raise ValueError((case, "floating control word changed"))
         return {
             "object": bytes(uc.mem_read(OWNER, 0x388)).hex(),
             "owner": bytes(uc.mem_read(FIGHTER, 0x800)).hex(),
             "parameters": bytes(uc.mem_read(entry.PARAMETERS, 16)).hex(),
             "parent": None
-            if case["action"] not in (810, 811, 812, 815, 816, 817, 821, 822, 825, 848)
+            if case["action"]
+            not in (810, 811, 812, 815, 816, 817, 821, 822, 825, 848, 850, 851, 852)
             else (
                 bytes(uc.mem_read(PARENT, 0x388)).hex(),
                 bytes(uc.mem_read(PARENT_PARAMETERS, 16)).hex(),
             ),
             "related": None
-            if case["action"] not in (815, 816, 817, 821, 822, 825, 848)
+            if case["action"] not in (815, 816, 817, 821, 822, 825, 848, 850, 851, 852)
             else bytes(uc.mem_read(RELATED, 0x388)).hex(),
+            "layout_scalar": bytes(uc.mem_read(0x6FBD00, 4)).hex()
+            if case["action"] == 850
+            else None,
             "endpoint": self.endpoint,
             "trace": self.trace,
             "cw": uc.reg_read(r.UC_X86_REG_FPCW),
@@ -1373,6 +1435,146 @@ def owner_projectile_cases():
         )
 
 
+def follow_projectile_cases():
+    for action, seq, phase, index, state, counter, cw in itertools.product(
+        (850, 851, 852),
+        range(5),
+        (0, 1, 5, 6),
+        (0, 1, 255),
+        (-1, 0, 2, 5),
+        (0, 1, 60, 61),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            phase=phase,
+            index=index,
+            state=state,
+            counter=counter,
+            timer=1,
+            owner_action=604 if action == 851 else 609,
+            owner_seq=1,
+            scale=0.5,
+            cohort="follow-state",
+            cw=cw,
+        )
+    for frame, phase, speed, scale, amplitude, cw in itertools.product(
+        (0, 1, 2),
+        (0, 1, 6),
+        (-32768, -1, 0, 32700, 32767),
+        (-0.1, 0.0, 0.2, 0.8, 0.9, 1.0, float("nan")),
+        (-1.0, 2.45, 2.5, float("nan")),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=850,
+            seq=1,
+            frame=frame,
+            phase=phase,
+            speed_word=speed,
+            scale=scale,
+            amplitude=amplitude,
+            alpha=5,
+            counter=1,
+            timer=1,
+            cohort="follow-850-frames",
+            cw=cw,
+        )
+    for seq, owner, counter, fade, state, cw in itertools.product(
+        (0, 1, 2),
+        (603, 604, 605),
+        (59, 60, 61),
+        (-32768, 86, 87, 90, 32767),
+        (1, 2, 32767),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=851,
+            seq=seq,
+            owner_action=owner,
+            counter=counter,
+            fade_word=fade,
+            state=state,
+            phase=5,
+            timer=1,
+            cohort="follow-851-gates",
+            cw=cw,
+        )
+    for seq, owner, owner_seq, index, phase, facing, cw in itertools.product(
+        (0, 1, 2, 3),
+        (608, 609, 610),
+        (-1, 1, 2),
+        (0, 1, 255),
+        (0, 6),
+        (-128, -1, 1, 127),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=852,
+            seq=seq,
+            owner_action=owner,
+            owner_seq=owner_seq,
+            index=index,
+            phase=phase,
+            facing=facing,
+            counter=1,
+            timer=1,
+            cohort="follow-852-owner",
+            cw=cw,
+        )
+    for action, seq, alpha, scale, cw in itertools.product(
+        (851, 852),
+        (2, 3),
+        (0, 9, 10, 11, 14, 15, 19, 20, 255),
+        (-0.1, 0.0, 1.0, float("nan")),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            alpha=alpha,
+            scale=scale,
+            counter=1,
+            timer=1,
+            cohort="follow-fade",
+            cw=cw,
+        )
+    for xpos, ypos, cw in itertools.product(
+        (-201.0, -200.0, 1480.0, 1481.0, float("nan")),
+        (-641.0, -640.0, 1580.0, 1581.0, float("nan")),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=850,
+            seq=1,
+            frame=2,
+            counter=1,
+            timer=1,
+            x=xpos,
+            y=ypos,
+            scale=1.0,
+            cohort="follow-bounds",
+            cw=cw,
+        )
+    for action, seq, terminal in itertools.product(
+        (850, 851, 852), range(5), (False, True)
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            terminal=terminal,
+            owner_action=604 if action == 851 else 609,
+            owner_seq=1,
+            phase=6,
+            index=1,
+            counter=-1,
+            timer=2,
+            scale=0.5,
+            cohort="follow-animation",
+        )
+
+
 def main():
     global O
     parser = argparse.ArgumentParser(description=__doc__)
@@ -1405,7 +1607,14 @@ def main():
         action="store_true",
         help="include821/822/825/848 and preceding matrices",
     )
+    parser.add_argument(
+        "--follow-projectiles",
+        action="store_true",
+        help="include850/851/852 and all preceding matrices",
+    )
     args = parser.parse_args()
+    if args.follow_projectiles:
+        args.owner_projectiles = True
     O = args.output_dir
     O.mkdir(parents=True, exist_ok=True)
     path = args.object
@@ -1446,6 +1655,8 @@ def main():
         all_cases.extend(late_projectile_cases())
     if args.owner_projectiles:
         all_cases.extend(owner_projectile_cases())
+    if args.follow_projectiles:
+        all_cases.extend(follow_projectile_cases())
     if args.cohort:
         available = {case.get("cohort", "scalar") for case in all_cases}
         if set(args.cohort) - available:
@@ -1502,7 +1713,7 @@ def main():
             str(seed): hashlib.sha256(packet).hexdigest()
             for seed, packet in seeds.items()
         },
-        "scope": "admitted scalar/default/projectile source paths; actual target helpers, no replacement returns; world/effect/secondary-setup/wave/CRT-errno entry stops; no full-root or exact claim",
+        "scope": "admitted scalar/default/projectile source paths; actual target helpers, no replacement returns; world/effect/secondary-setup/wave/CRT-errno/CRT-qNaN entry stops; no full-root or exact claim",
     }
     (O / "scalar-native.json").write_text(json.dumps(report, indent=2) + "\n")
     print(
