@@ -271,7 +271,7 @@ class Probe:
             pc == 0x427284
             and a == 0x6FBD00
             and n == 4
-            and struct.unpack("<h", uc.mem_read(OWNER + 0x13C, 2))[0] == 850
+            and struct.unpack("<h", uc.mem_read(OWNER + 0x13C, 2))[0] in (850, 853, 854)
         ):
             return
         if not (
@@ -306,9 +306,9 @@ class Probe:
                 )
                 packet_one = (
                     args[6] == 1
-                    and args[0] == 851
+                    and args[0] in (851, 856)
                     and a == 0x465190
-                    and struct.unpack("<h", uc.mem_read(OWNER + 0x13C, 2))[0] == 851
+                    and struct.unpack("<h", uc.mem_read(OWNER + 0x13C, 2))[0] == args[0]
                 )
                 if args[6] != 3 and not packet_four and not packet_one:
                     self.failure = "unreviewed copied-word count"
@@ -353,8 +353,10 @@ class Probe:
         if case.get("terminal"):
             uc.mem_write(seq_block + 0x14, bytes(12))
         frame_count = 1
-        if case["action"] == 850 or (case["action"] == 822 and seq == 0):
-            # Coherent frames0/1/2 for850 and the delayed/active822 sequence.
+        if case["action"] in (850, 853, 854, 855, 856) or (
+            case["action"] == 822 and seq == 0
+        ):
+            # Coherent frames0/1/2 for the850/853-856 family and active822.
             # The earlier single frame cannot represent their later frames.
             first = RESOURCE + 0x6000
             template = bytes(uc.mem_read(entry.FRAME, 0x88))
@@ -423,6 +425,10 @@ class Probe:
             850,
             851,
             852,
+            853,
+            854,
+            855,
+            856,
         ):
             for off, fmt, value in (
                 (0x170, "I", FIGHTER),
@@ -449,6 +455,10 @@ class Probe:
             850,
             851,
             852,
+            853,
+            854,
+            855,
+            856,
         ):
             uc.mem_write(OWNER + 0x111, struct.pack("<B", case.get("channel", 200)))
             uc.mem_write(
@@ -466,7 +476,22 @@ class Probe:
             ):
                 uc.mem_write(PARENT + off, struct.pack("<" + fmt, value))
             uc.mem_write(PARENT_PARAMETERS, struct.pack("<ffff", -71.25, 8.5, 2.0, 0.0))
-        if case["action"] in (815, 816, 817, 821, 822, 825, 848, 850, 851, 852):
+        if case["action"] in (
+            815,
+            816,
+            817,
+            821,
+            822,
+            825,
+            848,
+            850,
+            851,
+            852,
+            853,
+            854,
+            855,
+            856,
+        ):
             for off, fmt, value in (
                 (0x112, "B", case.get("channel2", 200)),
                 (0x170, "I", RELATED),
@@ -483,7 +508,7 @@ class Probe:
             )
             uc.mem_write(FIGHTER + 0x13E, struct.pack("<h", case.get("owner_seq", 0)))
             uc.mem_write(FIGHTER + 0x60D, struct.pack("<b", case.get("skill", 0)))
-        if case["action"] in (821, 822, 825, 848, 850, 851, 852):
+        if case["action"] in (821, 822, 825, 848, 850, 851, 852, 853, 854, 855, 856):
             for off, fmt, value in (
                 (0x104, "b", case.get("owner_facing", -1)),
                 (0x140, "h", case.get("owner_frame", 1)),
@@ -498,14 +523,16 @@ class Probe:
                 uc.mem_write(
                     entry.PARAMETERS + 12, struct.pack("<f", case.get("mode", 1000.0))
                 )
-        if case["action"] in (850, 851, 852):
+        if case["action"] in (850, 851, 852, 853, 854, 855, 856):
             for off, value in (
                 (0x366, case.get("speed_word", 16)),
                 (0x368, case.get("fade_word", 0)),
             ):
                 uc.mem_write(OWNER + off, struct.pack("<h", value))
-        if case["action"] == 850:
+        if case["action"] in (850, 853, 854):
             uc.mem_write(0x6FBD00, struct.pack("<f", case.get("layout_scalar", -7.75)))
+        if case["action"] == 855:
+            uc.mem_write(OWNER + 0x36A, struct.pack("<h", case.get("spin_word", 0)))
         for off, fmt, value in [
             (0x13C, "h", case.get("owner_action", 150)),
             (0xEC, "f", 515.5),
@@ -570,16 +597,50 @@ class Probe:
             "parameters": bytes(uc.mem_read(entry.PARAMETERS, 16)).hex(),
             "parent": None
             if case["action"]
-            not in (810, 811, 812, 815, 816, 817, 821, 822, 825, 848, 850, 851, 852)
+            not in (
+                810,
+                811,
+                812,
+                815,
+                816,
+                817,
+                821,
+                822,
+                825,
+                848,
+                850,
+                851,
+                852,
+                853,
+                854,
+                855,
+                856,
+            )
             else (
                 bytes(uc.mem_read(PARENT, 0x388)).hex(),
                 bytes(uc.mem_read(PARENT_PARAMETERS, 16)).hex(),
             ),
             "related": None
-            if case["action"] not in (815, 816, 817, 821, 822, 825, 848, 850, 851, 852)
+            if case["action"]
+            not in (
+                815,
+                816,
+                817,
+                821,
+                822,
+                825,
+                848,
+                850,
+                851,
+                852,
+                853,
+                854,
+                855,
+                856,
+            )
             else bytes(uc.mem_read(RELATED, 0x388)).hex(),
             "layout_scalar": bytes(uc.mem_read(0x6FBD00, 4)).hex()
-            if case["action"] == 850
+            if case["action"] in (850, 853, 854)
             else None,
             "endpoint": self.endpoint,
             "trace": self.trace,
@@ -1575,6 +1636,158 @@ def follow_projectile_cases():
         )
 
 
+def sibling_projectile_cases():
+    for action, seq, frame, phase, index, counter, timer, cw in itertools.product(
+        (853, 854, 855, 856),
+        range(4),
+        range(3),
+        (0, 1, 5, 6),
+        (0, 1, 255),
+        (0, 11, 121),
+        (0, 1),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            frame=frame,
+            phase=phase,
+            index=index,
+            counter=counter,
+            timer=timer,
+            cw=cw,
+            owner_action=606,
+            scale=0.5,
+            cohort="sibling-state",
+        )
+    for action, frame, phase, speed, scale, cw in itertools.product(
+        (853, 854),
+        range(3),
+        (0, 6),
+        (-32768, -1, 0, 49, 50, 51, 32760, 32767),
+        (-0.1, 0.0, 0.2, 0.9, 1.0, 1.4, 1.5, 1.6, float("nan")),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=action,
+            seq=1,
+            frame=frame,
+            phase=phase,
+            speed_word=speed,
+            scale=scale,
+            alpha=5,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="sibling-frames",
+        )
+    for state, spin, life, alpha, counter, phase, cw in itertools.product(
+        (0, 1, 2, 3),
+        (-32768, -5, 0, 85, 86, 90, 32767),
+        (299, 300, 32767),
+        (7, 8, 255),
+        (10, 11),
+        (0, 1, 6),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=855,
+            seq=0,
+            state=state,
+            spin_word=spin,
+            speed_word=life,
+            fade_word=10,
+            alpha=alpha,
+            channel=0,
+            channel2=7,
+            counter=counter,
+            phase=phase,
+            timer=1,
+            cw=cw,
+            cohort="sibling-855-transitions",
+        )
+    for seq, owner, counter, fade, state, cw in itertools.product(
+        (0, 1, 2),
+        (605, 606, 607),
+        (-1, 0, 119, 120, 121),
+        (-32768, 86, 87, 90, 32767),
+        (1, 2, 32767),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=856,
+            seq=seq,
+            owner_action=owner,
+            counter=counter,
+            fade_word=fade,
+            state=state,
+            phase=5,
+            timer=1,
+            cw=cw,
+            cohort="sibling-856-gates",
+        )
+    for action, xpos, ypos, cw in itertools.product(
+        (853, 854, 855),
+        (-401.0, -400.0, -201.0, -200.0, 1480.0, 1481.0, 1680.0, 1681.0, float("nan")),
+        (-521.0, -520.0, -321.0, -320.0, 1280.0, 1281.0, 1480.0, 1481.0, float("nan")),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=action,
+            seq=1,
+            frame=2,
+            phase=0,
+            state=2,
+            spin_word=85,
+            x=xpos,
+            y=ypos,
+            vx=0.0,
+            vy=0.0,
+            scale=1.0,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="sibling-bounds",
+        )
+    for action, seq, terminal in itertools.product(
+        (853, 854, 855, 856), range(4), (False, True)
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            frame=2,
+            phase=6,
+            state=2,
+            spin_word=85,
+            scale=0.5,
+            owner_action=606,
+            counter=-1,
+            timer=2,
+            terminal=terminal,
+            cohort="sibling-animation",
+        )
+    for frame, phase, speed, facing, cw in itertools.product(
+        (0, 1),
+        (0, 6),
+        (-32768, -51, -50, -1, 0, 49, 50, 32767),
+        (-128, -1, 0, 1, 127),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=854,
+            seq=1,
+            frame=frame,
+            phase=phase,
+            speed_word=speed,
+            facing=facing,
+            scale=0.5,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="sibling-orientation",
+        )
+
+
 def main():
     global O
     parser = argparse.ArgumentParser(description=__doc__)
@@ -1612,7 +1825,14 @@ def main():
         action="store_true",
         help="include850/851/852 and all preceding matrices",
     )
+    parser.add_argument(
+        "--sibling-projectiles",
+        action="store_true",
+        help="include853/854/855/856 and all preceding matrices",
+    )
     args = parser.parse_args()
+    if args.sibling_projectiles:
+        args.follow_projectiles = True
     if args.follow_projectiles:
         args.owner_projectiles = True
     O = args.output_dir
@@ -1657,6 +1877,8 @@ def main():
         all_cases.extend(owner_projectile_cases())
     if args.follow_projectiles:
         all_cases.extend(follow_projectile_cases())
+    if args.sibling_projectiles:
+        all_cases.extend(sibling_projectile_cases())
     if args.cohort:
         available = {case.get("cohort", "scalar") for case in all_cases}
         if set(args.cohort) - available:

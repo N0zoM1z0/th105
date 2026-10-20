@@ -300,43 +300,44 @@ remote calls, so use the complete packet for source dependencies.
 
 Handwritten `ReimuObjectActionStateStaging.cpp/.hpp` now handles
 800/801/804/807/808/810/811/812/815/816/817/821/822/825/848/850/851/852/
-859/860/861/980/998 and actual defaults. Its coverage bool is not the original
-void boundary;18 concrete actions remain unsupported. Final fresh native
-comparison passes0/54930, including all43744 preceding inputs:49892 real RETs,
-3430 unparented/881 owned/232 parented entries,26 effect,211 secondary-setup,
-114 wave,24 CRT errno and120 CRT quiet-NaN handler entries. It visits4206 target
-root instruction addresses. No root source-present or canonical exact credit.
+853/854/855/856/859/860/861/980/998 and actual defaults. Its bool is a coverage
+result rather than the original void boundary;14 concrete arms remain open.
+Final native comparison passes0/68782, including all54930 preceding inputs:
+62914 real RETs,3646 unparented/1151 owned/232 parented entries,26 effect,
+555 secondary-setup,114 wave,24 CRT errno and120 CRT quiet-NaN handler entries.
+The report visits4758 target root instruction addresses. No root source-present
+or canonical exact credit is added.
 
-850 preserves the phase6 reset before the nonzero-phase burst gate, low-word
-secondary key subtraction, signed word366 updates, repeated orientation calls,
-alpha wrap and its own bounds. The actual4359D0/427280 layout wrapper/setter
-execute1040 times with precise write admission and global scalar snapshots.
-851 retains counter60's single-float owned request, signed word368 threshold
-and alpha<=10 retirement.852 retains the owner's word738 write before slot0C
-selection and early return; later phase/fade/animation paths remain separate.
-Four compiled wrong-source controls fail840/2520,36/810,8/288 and736/1728.
+853 retains the state6 helper's limit0/index increment and the strict negative
+word366 transition, distinct from854's phase6/index1 assignment.854 preserves
+its immediate reset return and both orientation calls.855 retains signed word36A
+wrap before clamping, two sine calls and same-frame state0->1->2 transitions.
+856 follows owner606 and writes counter121 before a single-float owned request.
+Three independently compiled wrong controls fail36/1728,378/3024 and270/1350.
+Later853 burst requests, returning setup/world graphs and856's post-generation
+counter reread remain hypotheses beyond their real entry stops.
 
-The NaN frame inputs expose fabs special classification696266 followed by
-quiet-NaN handler696004. The real entry stop compares operation21, the two
-NaN words and saved caller CW, and requires working FPCW133F. No TLS/math return
-is fabricated. Real RETs and other stops still require original FPCW. A prior
-full run was intentionally stopped when the scope gap appeared; only the final
-complete0/54930 report supplies current pins. All original NaN inputs remain.
-World/wave/setup entry stops retain their returning-graph limitations, including
-850's four subsequent requests and851's counter reread after generation.
+A new incoming-orientation observer passes0/400, including320 ordinary inputs
+and80 additional cancellation cases. It records both actual receiver/float-word
+pairs at435160, then executes real helpers and root RETs. Wrong854 missing+10
+still passes ordinary0/320 but fails this observer400/400. Changing only the
+first coefficient from double(0.01f) to binary64 0.01 passes ordinary0/320 but
+fails80/400; only the first magnitude differs in both controls. Its extra literal
+uses a checked private6C65D0 binding, without public ledger or target changes.
+The selected source retains the actual6C1660 float-valued double operand.
 
-The separate incoming-alpha-byte observer passes0/1170 on the18596-byte replay,
-then executes the original null-renderer helper to RET. Both808/812 caller
-proofs also pass on this replay with conditional-return/payload limits retained.
-Nonnull rendering and returning world/CRT behavior remain unknown. Earlier
-821/822/825/848 and815/816/817 details/controls remain in the linked pages.
+The prior incoming-alpha-byte observer again passes0/1170 on the21152-byte
+replay, followed by the original null-renderer helper and real RET. Both808/812
+caller proofs pass with their conditional-return/payload limits. Nonnull
+rendering, arbitrary alias/resource states, unmasked floating exceptions and
+returning world/CRT behavior remain unknown. Earlier details remain linked.
 
-See [850/851/852 evidence](REIMU_OBJECT_850_852_2026_10_20.md) for current pins
-and exact observation scopes. New direct read-only Ghidra preserves all nine
-primary DB pins and removes its alias. Staging size388 and accepted shared
-headers/helpers/compiler flags/bindings are unchanged. Next recover the
-853/854/855/856 family and continue the other14 unsupported arms; preserve
-Fighter478FA0 and entry4A1CE0 state.
+See [853/854/855/856 evidence](REIMU_OBJECT_853_856_2026_10_20.md) for current
+pins and observation scopes. Fresh direct read-only Ghidra preserves all nine
+primary DB pins and removes its alias. Staging size388, its header and accepted
+shared headers/helpers/compiler flags/partitions/public bindings are unchanged.
+Next recover the remaining800-series858/866/869 and the other11 unsupported
+arms; preserve Fighter478FA0 and entry4A1CE0 state.
 
 ## Shared Object action980 exact checkpoint
 
