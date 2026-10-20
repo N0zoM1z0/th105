@@ -1,5 +1,9 @@
 # ReimuObject810/811/812 source and conditional loop evidence
 
+> Historical experiment record. Its pins, selected source and next steps apply
+> to that checkpoint. Use [the current handoff](RE_HANDOFF.md) and
+> [evidence index](REIMU_OBJECT_EVIDENCE.md) for current state and ABI limits.
+
 This page records the e10e0c7 checkpoint. The
 [815/816/817 follow-up](REIMU_OBJECT_815_817_2026_10_20.md) records current source
 pins and expanded execution/argument evidence.
@@ -26,7 +30,7 @@ limit. The new handwritten source covers the three top-level owners:
 These4060 local bytes include shared destinations; the spans are not original
 functions or accepted partial exact units. Source now handles13 concrete arms
 and real defaults, with28 concrete arms still unsupported. The coverage bool
-remains separate from the original void update ABI.
+remains separate from the inferred void update view.
 
 810 has sequential independent sequence checks. A sequence0 next-block call
 can enter sequence1 logic immediately. Speed subtracts1.5 and clamps/counts at

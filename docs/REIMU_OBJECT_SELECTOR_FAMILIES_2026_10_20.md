@@ -1,5 +1,9 @@
 # ReimuObject selector families and natural frame recovery
 
+> Historical experiment record. Its pins, selected source and next steps apply
+> to that checkpoint. Use [the current handoff](RE_HANDOFF.md) and
+> [evidence index](REIMU_OBJECT_EVIDENCE.md) for current state and ABI limits.
+
 The selected source has since advanced in the
 [804 sequence checkpoint](REIMU_OBJECT_804_SEQUENCES_2026_10_20.md).
 The pins and results below describe the preceding selector-family checkpoint.

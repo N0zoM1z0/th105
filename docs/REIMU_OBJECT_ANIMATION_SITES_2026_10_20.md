@@ -1,5 +1,9 @@
 # ReimuObject animation ownership and remaining selector merge
 
+> Historical experiment record. Its pins, selected source and next steps apply
+> to that checkpoint. Use [the current handoff](RE_HANDOFF.md) and
+> [evidence index](REIMU_OBJECT_EVIDENCE.md) for current state and ABI limits.
+
 This page records checkpoint e581789. Its source pins and rejected selector
 partition are superseded by [the counter-context checkpoint](REIMU_OBJECT_COUNTER_CONTEXT_2026_10_20.md).
 The commands below describe that earlier source state; the current unit also

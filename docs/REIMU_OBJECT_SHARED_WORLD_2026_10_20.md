@@ -1,5 +1,9 @@
 # ReimuObject shared World tail and903 selector loops
 
+> Historical experiment record. Its pins, selected source and next steps apply
+> to that checkpoint. Use [the current handoff](RE_HANDOFF.md) and
+> [evidence index](REIMU_OBJECT_EVIDENCE.md) for current state and ABI limits.
+
 This records checkpoint093d59b. Its source/payload pins and open812 residual
 are superseded by [the812 checkpoint](REIMU_OBJECT_812_FLOW_2026_10_20.md);
 the World/903 observations remain retained evidence.
@@ -15,8 +19,9 @@ Only original Japanese TH10.5 v1.06a is used, SHA256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 The full46138-byte comparison through4A197A remains nonexact at49655F/+31.
 Owned46128 bytes, ten alignment bytes, the39853-byte provisional main span,
-void/ECX/RET0 ABI and primary vslot28 remain unchanged. No root exact row,
-remote_exact flag or partial authored-byte credit is added.
+ECX/RET0 ABI and primary vslot28 remain unchanged. The source void return
+remains an inference. No root exact row, remote_exact flag or partial
+authored-byte credit is added.
 
 ## Raw observations and source lifetime correction
 

@@ -1,12 +1,17 @@
 # ReimuObject901 scoped flow and shared request tails
 
+> Historical experiment record. Its pins, selected source and next steps apply
+> to that checkpoint. Use [the current handoff](RE_HANDOFF.md) and
+> [evidence index](REIMU_OBJECT_EVIDENCE.md) for current state and ABI limits.
+
 This advances the [804 checkpoint](REIMU_OBJECT_804_SEQUENCES_2026_10_20.md)
 for authored root496540. The target remains original Japanese TH10.5 v1.06a,
 SHA256 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 The strict unit still compares46138 physical bytes through4A197A exclusively,
 including46128 owned instruction bytes and10 alignment bytes. The39853-byte
-main-span candidate, ownership manifest, void/ECX/RET0 ABI and vslot28 are
-unchanged. No exact row, remote_exact flag or authored-byte credit is added.
+main-span candidate, ownership manifest, ECX/RET0 ABI and vslot28 are unchanged.
+The source void return remains an inference. No exact row, remote_exact flag
+or authored-byte credit is added.
 
 Current source/artifact pins are superseded by the [900 checkpoint](REIMU_OBJECT_900_FLOW_2026_10_20.md); the901 observations and controls below remain historical evidence.
 

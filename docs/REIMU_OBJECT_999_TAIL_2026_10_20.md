@@ -1,5 +1,13 @@
 # ReimuObject999 independent guards and x87 cleanup
 
+> Historical experiment record. Its pins, selected source and next steps apply
+> to that checkpoint. Use [the current handoff](RE_HANDOFF.md) and
+> [evidence index](REIMU_OBJECT_EVIDENCE.md) for current state and ABI limits.
+
+Historical checkpoint atcc8eafd. Current source pins and the850/853/854
+recovery are in [the fade-order checkpoint](REIMU_OBJECT_FADE_ORDER_2026_10_20.md).
+The999 guards and windows below remain preserved.
+
 ## Selected recovery
 
 Root496540 remains nonexact. The selected change replaces999's combined

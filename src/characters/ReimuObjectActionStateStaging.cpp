@@ -1402,8 +1402,11 @@ retire_801_811:
             publish_battle_layout_scalar(2.0f);
             frame_timer_142 = 0;
             frame_140 = 2;
-            angle_x_124 = angle_y_128 = heading_12c = 0.0f;
-            scale_x_11c = scale_y_120 = 4.0f;
+            angle_x_124 = 0.0f;
+            angle_y_128 = 0.0f;
+            heading_12c = 0.0f;
+            scale_x_11c = 4.0f;
+            scale_y_120 = 4.0f;
             float copied[3] = {0.0f, 0.0f, static_cast<float>(sequence_13e)};
             reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                 860, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
@@ -1426,7 +1429,8 @@ retire_801_811:
             scale_x_11c = static_cast<float>(scale_x_11c + static_cast<double>(0.1f));
             scale_y_120 = static_cast<float>(scale_y_120 + static_cast<double>(0.1f));
             if (scale_x_11c > 1.0f) {
-                scale_x_11c = scale_y_120 = 1.0f;
+                scale_x_11c = 1.0f;
+                scale_y_120 = 1.0f;
                 reinterpret_cast<CharacterObjectEffectEmitter *>(this)->replace_secondary_animation(
                     static_cast<unsigned short>(993 - sequence_13e), 40.0f, 15, 1, 2);
             }
@@ -1440,13 +1444,16 @@ retire_801_811:
                 set_oriented_components_f0_f4(parameters_340[0], static_cast<float>(state_366 * static_cast<double>(0.01f)));
         }
         if (frame_140 == 2) {
-            velocity_x_f4 = velocity_y_f8 = 0.0f;
+            velocity_x_f4 = 0.0f;
+            velocity_y_f8 = 0.0f;
             state_366 = 0;
             scale_x_11c = static_cast<float>(scale_x_11c - static_cast<double>(0.2f));
             scale_y_120 = static_cast<float>(scale_y_120 - static_cast<double>(0.2f));
             alpha_113 = static_cast<unsigned char>(alpha_113 - 10);
-            if (scale_x_11c < 0.0f)
-                goto retire;
+            if (scale_x_11c < 0.0f) {
+                --state_330;
+                return;
+            }
         }
         reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
             set_oriented_components_f0_f4(parameters_340[0], static_cast<float>(state_366 * static_cast<double>(0.01f)));
@@ -1561,8 +1568,11 @@ retire_801_811:
             publish_battle_layout_scalar(2.0f);
             frame_timer_142 = 0;
             frame_140 = 2;
-            angle_x_124 = angle_y_128 = heading_12c = 0.0f;
-            scale_x_11c = scale_y_120 = 4.0f;
+            angle_x_124 = 0.0f;
+            angle_y_128 = 0.0f;
+            heading_12c = 0.0f;
+            scale_x_11c = 4.0f;
+            scale_y_120 = 4.0f;
             float copied[3] = {0.0f, 0.0f, static_cast<float>(sequence_13e)};
             reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                 860, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
@@ -1582,13 +1592,16 @@ retire_801_811:
                 state_366 = 0;
                 frame_140 = 1;
                 frame_timer_142 = 0;
-                scale_x_11c = scale_y_120 = 1.5f;
+                scale_x_11c = 1.5f;
+                scale_y_120 = 1.5f;
                 return;
             }
             scale_x_11c = static_cast<float>(scale_x_11c + static_cast<double>(0.1f));
             scale_y_120 = static_cast<float>(scale_y_120 + static_cast<double>(0.1f));
-            if (scale_x_11c > 1.5f)
-                scale_x_11c = scale_y_120 = 1.5f;
+            if (scale_x_11c > 1.5f) {
+                scale_x_11c = 1.5f;
+                scale_y_120 = 1.5f;
+            }
             reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
                 set_oriented_components_f0_f4(parameters_340[0], static_cast<float>(state_366 * static_cast<double>(0.01f)));
         }
@@ -1599,13 +1612,16 @@ retire_801_811:
                 set_oriented_components_f0_f4(parameters_340[0], static_cast<float>(state_366 * static_cast<double>(0.01f)));
         }
         if (frame_140 == 2) {
-            velocity_x_f4 = velocity_y_f8 = 0.0f;
+            velocity_x_f4 = 0.0f;
+            velocity_y_f8 = 0.0f;
             state_366 = 0;
             scale_x_11c = static_cast<float>(scale_x_11c - static_cast<double>(0.2f));
             scale_y_120 = static_cast<float>(scale_y_120 - static_cast<double>(0.2f));
             alpha_113 = static_cast<unsigned char>(alpha_113 - 10);
-            if (scale_x_11c < 0.0f)
-                goto retire;
+            if (scale_x_11c < 0.0f) {
+                --state_330;
+                return;
+            }
         }
         reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
             set_oriented_components_f0_f4(parameters_340[0], static_cast<float>(state_366 * static_cast<double>(0.01f)));
@@ -1627,15 +1643,19 @@ retire_801_811:
             publish_battle_layout_scalar(2.0f);
             frame_timer_142 = 0;
             frame_140 = 2;
-            angle_x_124 = angle_y_128 = heading_12c = 0.0f;
-            scale_x_11c = scale_y_120 = 4.0f;
+            angle_x_124 = 0.0f;
+            angle_y_128 = 0.0f;
+            heading_12c = 0.0f;
+            scale_x_11c = 4.0f;
+            scale_y_120 = 4.0f;
             return;
         }
         if (frame_140 == 0) {
             scale_x_11c = static_cast<float>(scale_x_11c + static_cast<double>(0.1f));
             scale_y_120 = static_cast<float>(scale_y_120 + static_cast<double>(0.1f));
             if (scale_x_11c > 1.0f) {
-                scale_x_11c = scale_y_120 = 1.0f;
+                scale_x_11c = 1.0f;
+                scale_y_120 = 1.0f;
                 frame_timer_142 = 0;
                 frame_140 = 1;
                 reinterpret_cast<CharacterObjectEffectEmitter *>(this)->replace_secondary_animation(
@@ -1649,13 +1669,16 @@ retire_801_811:
                 set_oriented_components_f0_f4(parameters_340[0], static_cast<float>(state_366 * static_cast<double>(0.01f) + 10.0));
         }
         if (frame_140 == 2) {
-            velocity_x_f4 = velocity_y_f8 = 0.0f;
+            velocity_x_f4 = 0.0f;
+            velocity_y_f8 = 0.0f;
             state_366 = 0;
             scale_x_11c = static_cast<float>(scale_x_11c - static_cast<double>(0.2f));
             scale_y_120 = static_cast<float>(scale_y_120 - static_cast<double>(0.2f));
             alpha_113 = static_cast<unsigned char>(alpha_113 - 10);
-            if (scale_x_11c < 0.0f)
-                goto retire;
+            if (scale_x_11c < 0.0f) {
+                --state_330;
+                return;
+            }
         }
         reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
             set_oriented_components_f0_f4(parameters_340[0], static_cast<float>(state_366 * static_cast<double>(0.01f)));

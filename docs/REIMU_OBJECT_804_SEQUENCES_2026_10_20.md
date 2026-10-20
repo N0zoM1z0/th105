@@ -1,5 +1,9 @@
 # ReimuObject804 independent sequence bodies
 
+> Historical experiment record. Its pins, selected source and next steps apply
+> to that checkpoint. Use [the current handoff](RE_HANDOFF.md) and
+> [evidence index](REIMU_OBJECT_EVIDENCE.md) for current state and ABI limits.
+
 The selected source and flow audit have since advanced in the
 [901 checkpoint](REIMU_OBJECT_901_FLOW_2026_10_20.md).
 The pins and results below describe the preceding804 checkpoint.
@@ -9,7 +13,8 @@ for authored root496540. The target remains original Japanese TH10.5 v1.06a,
 SHA256 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 The root owns46128 instruction bytes inside the46138-byte physical envelope
 ending exclusively at4A197A. The provisional39853-byte main span, ownership
-manifest, void/ECX/RET0 ABI and vslot28 are unchanged. No exact credit is added.
+manifest, ECX/RET0 ABI and vslot28 are unchanged. The source void return
+remains an inference. No exact credit is added.
 
 ## Observed804 control flow
 

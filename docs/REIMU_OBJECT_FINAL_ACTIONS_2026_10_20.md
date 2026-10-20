@@ -1,8 +1,13 @@
 # ReimuObject906/907/908/951/999 source evidence
 
+> Historical experiment record. Its pins, selected source and next steps apply
+> to that checkpoint. Use [the current handoff](RE_HANDOFF.md) and
+> [evidence index](REIMU_OBJECT_EVIDENCE.md) for current state and ABI limits.
+
 This is the historical selected boolean checkpoint. The following
-[void-root checkpoint](REIMU_OBJECT_VOID_ROOT_2026_10_20.md) selects the original
-void ABI and a complete physical-extent comparison; its source remains nonexact.
+[void-root checkpoint](REIMU_OBJECT_VOID_ROOT_2026_10_20.md) selects the inferred
+void return view and a complete physical-extent comparison; its source
+remains nonexact.
 
 
 This continues [903/904/905](REIMU_OBJECT_903_905_2026_10_20.md) inside authored
@@ -33,8 +38,8 @@ bytes at4A00ED..4A00F0. SHA256 of each full local extent, including that gap:
 |999|`2e5e3a67d51a8f8a927fef44c9d9302f1b5c1e156fe26814476d8dc1814d5761`|
 
 The handwritten staging source now has hypotheses for all41 concrete actions
-and defaults. It retains its coverage boolean, rather than the original void
-ABI. No root implementation row, match unit, exact row or authored-byte credit
+and defaults. It retains its coverage boolean, rather than the inferred void
+return view. No root implementation row, match unit, exact row or authored-byte credit
 is added. The newly exposed170 pointer occupies existing bytes:174 and all
 later offsets and the388-byte view size remain asserted. Only this staging TU
 includes the header; accepted shared headers are unchanged.
@@ -278,6 +283,6 @@ analysis DB or generated report is committed. No cold aggregate is claimed.
 All41 arms having source hypotheses does not prove whole-root semantics.
 Returning world/setup/wave/event/CRT graphs, opaque buffer mutation, arbitrary
 aliases/resources, nonnull rendering and unmasked exceptions remain open.
-Promotion to an honest original void callable and whole-root canonical byte
+Promotion to the selected void callable and whole-root canonical byte
 comparison remain the next phase; no standalone/LTCG impossibility is inferred.
 Preserve Fighter478FA0 and initializer4A1CE0 checkpoints.

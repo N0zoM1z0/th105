@@ -1,11 +1,16 @@
 # ReimuObject900 retiring requests and selector flow
 
+> Historical experiment record. Its pins, selected source and next steps apply
+> to that checkpoint. Use [the current handoff](RE_HANDOFF.md) and
+> [evidence index](REIMU_OBJECT_EVIDENCE.md) for current state and ABI limits.
+
 This advances the [901 checkpoint](REIMU_OBJECT_901_FLOW_2026_10_20.md)
 for authored root `ReimuObject_dispatch_action_state_vslot28 @496540`.
 Only original Japanese TH10.5 v1.06a is used, SHA256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
-The void/ECX/RET0 ABI, vslot28, provisional39853-byte main-span ledger and
-owned-extent unit are unchanged. The comparison covers all46138 physical
+The ECX/RET0 ABI, vslot28, provisional39853-byte main-span ledger and
+owned-extent unit are unchanged. The source void return remains an inference.
+The comparison covers all46138 physical
 bytes through4A197A, including46128 owned instruction bytes and10 alignment
 bytes. No root exact row, remote_exact flag or authored-byte credit is added.
 

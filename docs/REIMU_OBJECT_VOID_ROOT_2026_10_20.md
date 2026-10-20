@@ -1,5 +1,9 @@
 # ReimuObject void update and complete-extent comparison
 
+> Historical experiment record. Its pins, selected source and next steps apply
+> to that checkpoint. Use [the current handoff](RE_HANDOFF.md) and
+> [evidence index](REIMU_OBJECT_EVIDENCE.md) for current state and ABI limits.
+
 The selected source and frame investigation have since advanced in the
 [selector-family checkpoint](REIMU_OBJECT_SELECTOR_FAMILIES_2026_10_20.md).
 The hashes and results below describe this earlier void-conversion checkpoint.

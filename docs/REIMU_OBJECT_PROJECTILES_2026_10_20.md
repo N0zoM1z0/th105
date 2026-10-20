@@ -1,5 +1,9 @@
 # ReimuObject800/801/804/807/808 source and caller evidence
 
+> Historical experiment record. Its pins, selected source and next steps apply
+> to that checkpoint. Use [the current handoff](RE_HANDOFF.md) and
+> [evidence index](REIMU_OBJECT_EVIDENCE.md) for current state and ABI limits.
+
 This page records the b5855c6 checkpoint. The
 [810/811/812 follow-up](REIMU_OBJECT_SEQUENCES_2026_10_20.md) records current
 source pins and the expanded native/caller evidence.
@@ -14,7 +18,7 @@ target CFG and its22 switches are unchanged. Exact target SHA256 remains
 
 The handwritten staging method now handles ten concrete actions plus the real
 default. Another31 concrete actions remain explicitly unsupported. Its bool
-still reports coverage; it is not the original void callable boundary.
+still reports coverage; it is not the selected void callable boundary.
 
 | Action | Target-derived source behavior |
 | --- | --- |

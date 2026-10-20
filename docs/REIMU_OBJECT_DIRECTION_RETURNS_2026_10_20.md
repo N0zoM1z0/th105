@@ -1,5 +1,9 @@
 # ReimuObject original lookup returns and direction consumers
 
+> Historical experiment record. Its pins, selected source and next steps apply
+> to that checkpoint. Use [the current handoff](RE_HANDOFF.md) and
+> [evidence index](REIMU_OBJECT_EVIDENCE.md) for current state and ABI limits.
+
 Historical checkpoint at3d3486d. Current source pins and the999-only x87
 cleanup ownership are in [the999-tail checkpoint](REIMU_OBJECT_999_TAIL_2026_10_20.md).
 The two direction consumers below remain preserved.
@@ -41,8 +45,12 @@ SHA256 is `399e56d3f1373e76381cafb17e4984845fdb1f680dc0737f864229b52f84e31d`.
 
 |Action|Target lookup CALL|Target consumer|Selected native consumer|
 |---|---|---|---|
-|869|49C581|[49C586,49C5A6)|[805A1E,805A3E)|
-|901|49CF12|[49CF17,49CF37)|[80641C,80643C)|
+|869|49C581|[49C586,49C5A6)|[805E1E,805E3E)|
+|901|49CF12|[49CF17,49CF37)|[80681C,80683C)|
+
+The historical native addresses above are corrected from frozenef533d00
+`direction-selected.json`; earlier prose transcribed the hexadecimal values
+incorrectly. Kernel bytes, hashes, source and execution results are unchanged.
 
 The consumers execute FLDZ, caller stack cleanup, FCOM ST(1), FNSTSW AX,
 FSTP ST(1), TEST AH and local conditional branches followed by separate

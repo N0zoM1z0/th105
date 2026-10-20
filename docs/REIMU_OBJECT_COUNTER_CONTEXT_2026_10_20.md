@@ -1,5 +1,9 @@
 # ReimuObject selector ownership with a real counter context
 
+> Historical experiment record. Its pins, selected source and next steps apply
+> to that checkpoint. Use [the current handoff](RE_HANDOFF.md) and
+> [evidence index](REIMU_OBJECT_EVIDENCE.md) for current state and ABI limits.
+
 Historical checkpoint at1cce7b1. The current caller model, typed aliases and
 consumer evidence are in [the direction-return checkpoint](REIMU_OBJECT_DIRECTION_RETURNS_2026_10_20.md).
 Pins and the initially unqualified float control below remain historical.

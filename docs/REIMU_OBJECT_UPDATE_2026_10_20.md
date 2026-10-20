@@ -1,7 +1,11 @@
 # ReimuObject update: complete target CFG and first source phase
 
+> Historical experiment record. Its pins, selected source and next steps apply
+> to that checkpoint. Use [the current handoff](RE_HANDOFF.md) and
+> [evidence index](REIMU_OBJECT_EVIDENCE.md) for current state and ABI limits.
+
 The initial source-phase counts below are historical. Current source covers
-all41 arms under the void ABI; see [the void-root checkpoint](REIMU_OBJECT_VOID_ROOT_2026_10_20.md).
+all41 arms with an inferred void return; see [the void-root checkpoint](REIMU_OBJECT_VOID_ROOT_2026_10_20.md).
 The complete-extent canonical comparison remains nonexact.
 
 ## Identity, ownership and instruction facts
@@ -49,7 +53,7 @@ complete current target/remote call. They do not turn the facts into a match.
 
 At the initial88ac760 checkpoint, `ReimuObjectActionStateStaging.cpp/.hpp`
 introduced an independent runtime
-view and a **coverage boolean** method. It is not the original void update
+view and a **coverage boolean** method. It is not the inferred void update view
 entry and is not compared against an invented subfunction boundary. It handles
 five complete selected arms and the actual default path; the other36 concrete
 actions return false without being claimed as implemented.

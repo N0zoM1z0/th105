@@ -1,5 +1,9 @@
 # ReimuObject812 sequence and animation call ownership
 
+> Historical experiment record. Its pins, selected source and next steps apply
+> to that checkpoint. Use [the current handoff](RE_HANDOFF.md) and
+> [evidence index](REIMU_OBJECT_EVIDENCE.md) for current state and ABI limits.
+
 The source pins and aggregate counts below describe checkpoint003b6f7.
 [Animation ownership](REIMU_OBJECT_ANIMATION_SITES_2026_10_20.md) supersedes them.
 The812 target observations and scoped flow proof are retained and replayed;

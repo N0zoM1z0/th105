@@ -1,5 +1,9 @@
 # ReimuObject900 selected-value producer and store evidence
 
+> Historical experiment record. Its pins, selected source and next steps apply
+> to that checkpoint. Use [the current handoff](RE_HANDOFF.md) and
+> [evidence index](REIMU_OBJECT_EVIDENCE.md) for current state and ABI limits.
+
 This continues the [retiring-request checkpoint](REIMU_OBJECT_900_FLOW_2026_10_20.md)
 inside authored root496540. Original Japanese TH10.5 v1.06a remains pinned to
 SHA256 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
