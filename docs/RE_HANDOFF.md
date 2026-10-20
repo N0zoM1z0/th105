@@ -290,74 +290,67 @@ aggregate replay is claimed.
 
 ## Current ReimuObject update source phase
 
-Active recovery remains authored update root496540 with46128 owned bytes.
-Fresh CFG closure retains10670 instructions,22 indexed jumps,404 actual direct
-CALLs to25 targets and68 RETs. The provisional39853-byte main span and local
-action windows are not compiler boundaries. ByteE8 inside49C35A's FLD1 remains
-a raw-mapper false CALL. See [target evidence](REIMU_OBJECT_UPDATE_2026_10_20.md).
+Authored root496540 is now source-present under the observed void/ECX/RET0 ABI.
+All41 concrete actions/defaults remain hand-reconstructed in
+`ReimuObjectActionStateStaging.cpp/.hpp`; the historical path/view name is
+retained. The update is genuinely virtual at slot28 after an unused opaque
+slot24. Independent placement-construction COFF emits11 entries and confirms
+the update's +28 DIR32. Accepted4937D0 CALLs that slot and ignores EAX. Source
+presence does not imply exactness. No root match or remote_exact flag is added.
 
-Handwritten staging now has source hypotheses for all41 concrete arms and
-defaults, completing906/907/908/951/999. The boolean still reports coverage;
-promotion to the original void ABI and canonical whole-root comparison are
-next. No root implementation/match-unit/exact row or authored-byte credit is
-added. The new170 followed-pointer view preserves174/later offsets and size388;
-only this staging TU includes it. Accepted shared headers remain unchanged.
+The new `gpt-web-reimu-object-action-state` probe uses `owned_extent=true`.
+Its strict46138-byte physical comparison includes all46128 owned bytes and10
+alignment bytes through4A197A. The provisional39853-byte main span and byte
+ownership ledger are unchanged; no chunk, hole or alignment is skipped.
+The flag requires verified ownership/target bytes, rejects a missing record or
+conflicting boundary mode, and remains unsupported by linked-PE contracts.
+Nine focused tests exercise remote REL32/byte coverage, alignment mismatches,
+manifest guards and boundary-input provenance; existing defaults are unchanged.
 
-906 differs from905: sequence4 grows X scale only and out-of-bounds selects
-state2 after the fade block, without immediate retirement. Periods are
-225/195/165/135.907 uses the independent170 followed object and retains selector1's
-apparently unused real atan2 call; periods are225/210/200/170. Horizontal bounce
-returns before the vertical check/motion/animation.908 processes ongoing even366
-and odd368 bursts before selector dispatch, including invalid selectors, and
-preserves the different240-offset families,150/240 resets, actual RNG order,
-signed index, state6 limits10/3 and type8/9 transitions.
+Canonical source41480/29adf457 first differs at+0: target SUBESP438h, source
+frame-pointer/ANDESP8/SUBESP388h. Source final RET ends40610, alignment ends40612
+and868 metadata bytes follow. Decoded direct CALL counts are404/347 to25/25
+targets, RETs68/61; physical owner diagnostics remain0/43. The raw mapper's
+405 E8/26 targets still include E8 inside49C35A's FLD1. Complete target closure
+retains10670 instructions/22 switches. None of these counts grants exact credit.
 
-951 queries terrain with owner348 while999 uses the actor.951 preserves the
-owner action/sequence/frame gates, word7A4 ownership and sequence1/frame4 skip.
-999's raw sequence table includes0..3 in owner-X/gravity handling; its landing
-projection is binary64 and owner78C is set before the second real height call.
-The target reuses one buffer across each906/907/908 request pair: compensate
-ESP changes rather than accepting Ghidra's split local variables. Ghidra's
-float projection expression is also rejected by target bytes and native inputs.
+The void source passes0/133192 unchanged public inputs/hashf46a849f with119356
+real RETs and the same actual world/setup/effect/wave/CRT entry stops.9215 target
+and8225 source instructions are visited; replay41480/45780960 reproduces the
+preceding private void preparation. A separate controlled original4937D0
+manager-entry run passes0/4200:4156 wrapper RETs/44 first world entries. It uses
+an input vtable clone, zero freeze/hold words and null secondary; no target
+code, original vtable or helper return is patched. Returning opaque graphs,
+arbitrary manager/resource aliases, nonnull rendering and unmasked exceptions
+remain unknown.
 
-Final emulated native0/133192 preserves all115736 preceding generated inputs
-byte-for-byte and adds17456:119356 real RETs,10422 unparented/1151 owned/472
-parented entries,915 secondary-setup,26 effect,114 wave,112 errno and624 CRT
-quiet-NaN entries.9215 target root instructions are visited; this is bounded
-prefix agreement rather than a full-root semantic or exact claim.
+Twenty function-scoped literal keys add the root's previously missing exact
+width/value operands without rebinding existing keys. All25 typed external
+callees and121 external DIR32s resolve; literal audit checks1124 target references.
+Both808/812 caller proofs, orientation0/400, alpha0/1170 and terrain288 pass.
+Terrain retains240 finite equal prefixes and48 hardware-unqualified nonfinite
+contexts, the measured Unicorn SSE NaN gap and runtime6FA894 adjacent-word load.
+Thirty-one previously accepted functions replay exact:18 related geometry/
+animation/runtime/atan2 members and13 manager-runtime members. That mixed
+manager probe still returns1 for its known nonexact58BE10 erase permutation at
++165; two unaccepted compiler thunks are separate from authored acceptance.
 
-Wrong-source controls distinguish the unused907 call, target/owner pointer,
-951 receiver, repeated999 query and flag order, binary64 projection,906 bounds
-and X-only growth,908 signed index, parity and timing. In particular, removing
-907's unused call fails90/360;40 wrong-target inputs differ only in atan2 incoming
-words. Reusing a999 height fails420/840 despite equal final object bytes;
-float projection fails12/840 and incorrectly lands just above raised terrain.
-Returning world/setup/wave/event/CRT graphs, buffer mutation, arbitrary resource
-aliases, nonnull rendering and unmasked exceptions remain unknown.
+Private natural expression/in-place-retire controls remain unselected. The
+expression shortens the void section to41472 but leaves its aligned frame;
+expanding142 retire gotos shortens it to41348 and still gives0/43 owner checks.
+No inert locals, target-byte arrays, ABI facade or impossible-LTCG claim is used.
+Next recover physical case/emission/return sharing and the frame cause against
+the complete extent. The57 CALL-site/seven RET count gaps describe physical
+partitioning, not missing-runtime behavior counts.
 
-Current41336-byte replayb6ef0db2 retains808/812 conditional caller proofs,
-orientation0/400 and alpha0/1170.808 now proves EBP variant1, defined at800030,
-across24 case-to-window instructions; both reviewed EBP/EBX permutations remain
-supported, and a compiled variant2 is rejected. Terrain288 retains240 finite
-and48 hardware-unqualified nonfinite contexts. The measured Unicorn SSE NaN
-conversion gap and runtime6FA894 adjacent-word height behavior remain explicit.
-Eighteen accepted functions across stage geometry4, animation virtuals10,
-object runtime3 and atan2-natural1 replay exact. All13 new source controls fail
-as intended; accepted sources/headers/flags/partitions/bindings are unchanged.
-
-See [the final-action evidence](REIMU_OBJECT_FINAL_ACTIONS_2026_10_20.md) for
-pins, raw hashes, inputs, controls and commands. Previous903/904/905 evidence
-remains linked as the historical36-arm checkpoint. Fresh direct read-only,
-no-analysis Ghidra attests file/import/entry/mapped text/root/vtable; all nine
-primary DB pins remain unchanged and the alias is removed. No cold aggregate
-replay or percentage is asserted. Preserve Fighter478FA0 and initializer4A1CE0
-checkpoints while moving to the honest void-root/compiler-comparison phase.
-A private void-body/declaration conversion compiles and passes0/5465 scalar/
-final-state inputs (5420 RETs,45 first world entries), replay41480/45780960.
-Only its obsolete EAX-coverage assertion is removed; actual RET/callee-save/
-x87 checks remain. This is a starting point, not public source selection,
-a full-matrix or canonical result. Private source pins and build are separate
-from the object report's public support hashes.
+See [void-root evidence](REIMU_OBJECT_VOID_ROOT_2026_10_20.md) for source pins,
+commands and remaining limits. Fresh direct read-only Ghidra attests file/import,
+entry,mapped text,root,vtable/caller and preserves all nine primary DB hashes;
+the alias is removed. Its caller hypothesis expands the4309F0 tail and guesses
+fastcall types, so raw76-byte caller evidence remains authoritative. Historical
+[final-action](REIMU_OBJECT_FINAL_ACTIONS_2026_10_20.md) and earlier boolean
+checkpoints remain linked. No cold aggregate or percentage is asserted.
+Preserve Fighter478FA0 and initializer4A1CE0 checkpoints.
 
 ## Shared Object action980 exact checkpoint
 

@@ -562,12 +562,21 @@ def main() -> int:
     parser = argparse.ArgumentParser(
         description="Compare one VC8 COFF function with target executable bytes."
     )
-    parser.add_argument(
+    boundary = parser.add_mutually_exclusive_group()
+    boundary.add_argument(
         "--contiguous-span",
         action="store_true",
         help=(
             "compare entry through span_end, including bytes omitted from "
             "a provisional analysis function body"
+        ),
+    )
+    boundary.add_argument(
+        "--owned-extent",
+        action="store_true",
+        help=(
+            "compare through the SHA-verified function-byte-ownership extent, "
+            "including every remote chunk and every intervening byte"
         ),
     )
     parser.add_argument(
@@ -621,7 +630,10 @@ def main() -> int:
         "address": address,
         "object": str(obj),
         "comparison": {
-            "boundary": "contiguous_span" if args.contiguous_span else "ledger_size",
+            "boundary": (
+                "owned_extent" if args.owned_extent
+                else "contiguous_span" if args.contiguous_span else "ledger_size"
+            ),
             "size": None,
         },
         "target_size": None,
@@ -634,8 +646,9 @@ def main() -> int:
     try:
         report["target_executable_sha256"] = verify_target()
         with FUNCTIONS.open(newline="", encoding="utf-8") as stream:
+            rows = list(csv.DictReader(stream))
             row = next(
-                (item for item in csv.DictReader(stream) if item["address"] == address),
+                (item for item in rows if item["address"] == address),
                 None,
             )
         if row is None:
@@ -659,6 +672,24 @@ def main() -> int:
         size = int(row["size"])
         if args.contiguous_span:
             size = int(row["span_end"], 16) - int(address, 16) + 1
+        if args.owned_extent:
+            from function_byte_ownership import MANIFEST, load
+            ownership = load(
+                {int(item["address"], 16): item for item in rows},
+                require_bytes=True,
+            ).get(int(address, 16))
+            if ownership is None:
+                raise ValueError("owned extent requires reviewed function-byte ownership")
+            size = ownership["extent_end"] - int(address, 16) + 1
+            comparison = report["comparison"]
+            assert isinstance(comparison, dict)
+            comparison.update({
+                "owned_bytes": ownership["owned_bytes"],
+                "remote_bytes": ownership["remote_bytes"],
+                "non_owned_bytes_compared": size - ownership["owned_bytes"],
+                "extent_end": f"0x{ownership['extent_end']:08X}",
+                "ownership_manifest_sha256": hashlib.sha256(MANIFEST.read_bytes()).hexdigest(),
+            })
         expected = target_bytes(int(address, 16), size)
         symbol_base = (
             args.symbol_base

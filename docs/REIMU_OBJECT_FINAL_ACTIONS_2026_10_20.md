@@ -1,5 +1,10 @@
 # ReimuObject906/907/908/951/999 source evidence
 
+This is the historical selected boolean checkpoint. The following
+[void-root checkpoint](REIMU_OBJECT_VOID_ROOT_2026_10_20.md) selects the original
+void ABI and a complete physical-extent comparison; its source remains nonexact.
+
+
 This continues [903/904/905](REIMU_OBJECT_903_905_2026_10_20.md) inside authored
 update root496540. The only target is original Japanese1.06a, SHA256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.

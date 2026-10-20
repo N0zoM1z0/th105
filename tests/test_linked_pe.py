@@ -402,7 +402,7 @@ class LinkedPeTests(unittest.TestCase):
                 "functions": [{"symbol_base": "_worker@4", "export_name": "_worker@4"}]}
         linked.validate_contract(unit, {"app"})
         for field, value in [("export_name", "worker=OTHER.worker"), ("export_name", None),
-                             ("symbol_base", None), ("contiguous_span", True),
+                             ("symbol_base", None), ("contiguous_span", True), ("owned_extent", True),
                              ("dir32_targets", ["literal=untyped"] )]:
             bad = copy.deepcopy(unit)
             bad["functions"][0][field] = value

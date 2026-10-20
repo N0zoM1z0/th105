@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Execute scalar ReimuObject update source paths against the original root.
 
-The staging boolean reports phase coverage, not the original void ABI. Actual
-animation and math helpers run unchanged; object generation stops at real entry.
+The source uses the observed thiscall/void update ABI. Actual animation and
+math helpers run unchanged; object generation stops at real entry.
 This does not establish whole-root semantics, original source or exact bytes.
 """
 
@@ -39,7 +39,7 @@ PARENT = OWNER + 0x2000
 PARENT_PARAMETERS = RESOURCE + 0xE000
 RELATED = OWNER + 0x3000
 FOLLOWED = OWNER + 0x4000
-SYMBOL = "?try_update_scalar_actions@ReimuObjectActionStateStagingView@th105@@QAE_NXZ"
+SYMBOL = "?dispatch_action_state@ReimuObjectActionStateStagingView@th105@@UAEXXZ"
 HELPERS = dict(entry.animation.HELPERS)
 HELPERS.update(
     {
@@ -934,8 +934,6 @@ class Probe:
                 raise ValueError(
                     (case, "RET ABI failed", hex(uc.reg_read(r.UC_X86_REG_EIP)))
                 )
-            if self.start != A and uc.reg_read(r.UC_X86_REG_EAX) & 255 != 1:
-                raise ValueError((case, "source phase did not handle action"))
             if (
                 uc.reg_read(r.UC_X86_REG_FPTAG) != 0xFFFF
                 or uc.reg_read(r.UC_X86_REG_FPSW) & 0x3800
@@ -3665,6 +3663,12 @@ def main():
         "object_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
         "candidate_sha256": hashlib.sha256(candidate).hexdigest(),
         "build_provenance_verified": False,
+        "source_abi": {
+            "calling_convention": "thiscall",
+            "return": "void",
+            "stack_argument_bytes": 0,
+            "symbol": SYMBOL,
+        },
         "lookup_initialization": receipt,
         "surface_initialization": surface_receipt,
         "support_sha256": {

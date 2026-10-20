@@ -135,7 +135,8 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
         if not isinstance(symbol, str) or not SYMBOL.fullmatch(symbol) or symbol in symbols:
             raise ValueError("linked function needs its exact map symbol")
         symbols.add(symbol)
-        if function.get("contiguous_span") or function.get("dir32_targets"):
+        if (function.get("contiguous_span") or function.get("owned_extent")
+                or function.get("dir32_targets")):
             raise ValueError("linked profile does not support remote spans or DIR32 overrides")
         if "private_global" in function:
             continue  # Validated as a paired, startup-reachable lifecycle above.

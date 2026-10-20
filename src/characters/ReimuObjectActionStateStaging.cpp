@@ -1,5 +1,5 @@
-// Bounded source phase inside ReimuObject496540, original Japanese1.06a.
-// No original function boundary, full-root implementation or exact claim.
+// Source hypothesis for the complete ReimuObject496540 void update root.
+// Original Japanese1.06a only; canonical equality remains unaccepted.
 #include "ReimuObjectActionStateStaging.hpp"
 #include "CharacterObjectEffects.hpp"
 #include "CharacterObjectRuntime.hpp"
@@ -26,7 +26,7 @@ public:
         int copied_words, int copied_word_count);
 };
 
-bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
+void ReimuObjectActionStateStagingView::dispatch_action_state()
 {
     switch (action_13c) {
     case 800:
@@ -75,7 +75,7 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
                 spawn_owned_object_via_manager(800, x_ec, y_f0,
                     static_cast<unsigned char>(facing_104), 1,
                     reinterpret_cast<int>(copied), 3);
-            return true;
+            return;
         }
         goto bounded_projectile_advance;
 
@@ -123,13 +123,13 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
                 ++state_368;
                 if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_state_six_counter_conditional(10)) {
                     select_sequence(2);
-                    return true;
+                    return;
                 }
                 if (phase_state_180 == 0)
                     state_368 = 0;
                 if (phase_index_184 == 0) {
                     select_sequence(2);
-                    return true;
+                    return;
                 }
                 if (state_368 > 5) {
                     state_368 = 0;
@@ -308,7 +308,7 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
                 ++state_364;
                 if (state_364 > 15) {
                     next_sequence_block();
-                    return true;
+                    return;
                 }
             }
             reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
@@ -430,7 +430,7 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
                     spawn_unparented_related_object(811, x_ec, y_f0,
                         static_cast<unsigned char>(facing_104), 1,
                         reinterpret_cast<const unsigned *>(copied), 3);
-                return true;
+                return;
             }
             x_ec += static_cast<float>(facing_104) * velocity_x_f4;
             y_f0 += velocity_y_f8;
@@ -608,7 +608,7 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
         }
         if (sequence_13e == 2 && counter_144 == 15) {
             select_sequence(1);
-            return true;
+            return;
         }
         if (sequence_13e == 0 || sequence_13e == 2) {
             reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
@@ -799,7 +799,7 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
                             817, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
                             reinterpret_cast<const unsigned *>(copied), 3);
                     }
-                    return true;
+                    return;
                 }
                 const int remainder = counter_144 % 30;
                 if (remainder == 0 || remainder == 2 || remainder == 4) {
@@ -954,7 +954,7 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
                             817, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
                             reinterpret_cast<const unsigned *>(copied), 3);
                     }
-                    return true;
+                    return;
                 }
                 const int remainder = counter_144 % 30;
                 if (remainder == 0 || remainder == 2 || remainder == 4) {
@@ -1010,7 +1010,7 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
                 velocity_x_f4 = static_cast<float>(-velocity_x_f4 * 0.5);
                 const float launch = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(60))) * static_cast<double>(0.1f));
                 velocity_y_f8 = static_cast<float>(launch + 7.0);
-                return true;
+                return;
             }
             if (y_f0 <= 0.0f) {
                 float copied[3] = {-heading_12c, 0.0f, 2.0f};
@@ -1022,7 +1022,7 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
                 velocity_x_f4 = static_cast<float>(velocity_x_f4 * 0.25);
                 const float launch = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(60))) * static_cast<double>(0.1f));
                 velocity_y_f8 = static_cast<float>(launch + 7.0);
-                return true;
+                return;
             }
         }
         if (sequence_13e <= 1) {
@@ -1096,7 +1096,7 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
                     reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_parented_related_object(
                         822, x_ec, y_f0, static_cast<unsigned char>(facing_104), -1,
                         reinterpret_cast<const unsigned *>(copied), 4);
-                    return true;
+                    return;
                 }
                 reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
                     set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
@@ -1205,9 +1205,9 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
         if (sequence_13e == 1 && owner_action != 614 && owner_action != 565 && owner_action != 566)
             goto retire;
         if (owner_action != 560 && owner_action != 561 && owner_action != 565 && owner_action != 566 && owner_action != 614)
-            return true;
+            return;
         if (*reinterpret_cast<short *>(fighter_owner_348 + 0x186) != 0)
-            return true;
+            return;
         if (sequence_13e == 1) {
             heading_12c = parameters_340[0];
             reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
@@ -1242,7 +1242,7 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
                          *reinterpret_cast<short *>(fighter_owner_348 + 0x140) == 0) ||
                         *reinterpret_cast<short *>(fighter_owner_348 + 0x13e) == 2) {
                     state_364 = 1;
-                    return true;
+                    return;
                 }
             } else {
                 if (alpha_113 < 20)
@@ -1265,12 +1265,12 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
             break;
         }
         if (*reinterpret_cast<short *>(fighter_owner_348 + 0x186) != 0)
-            return true;
+            return;
         if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
             goto retire;
         if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && (sequence_13e == 2 || sequence_13e == 6))
             goto retire;
-        return true;
+        return;
 
     case 850:
         if (phase_state_180 == 5)
@@ -1295,7 +1295,7 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
                     861, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
                     reinterpret_cast<const unsigned *>(copied), 3);
             }
-            return true;
+            return;
         }
         if (frame_140 == 0) {
             reinterpret_cast<CharacterObjectEffectEmitter *>(this)->turn_heading_toward_related(
@@ -1387,7 +1387,7 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
                 *reinterpret_cast<short *>(fighter_owner_348 + 0x738) = 1;
                 scale_x_11c = scale_y_120 = 3.0f;
                 select_sequence(2);
-                return true;
+                return;
             }
             if (counter_144 % 10 == 0) {
                 float copied[3] = {0.0f, 0.0f, 3.0f};
@@ -1449,7 +1449,7 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
                     861, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
                     reinterpret_cast<const unsigned *>(copied), 3);
             }
-            return true;
+            return;
         }
         if (frame_140 == 0) {
             reinterpret_cast<CharacterObjectEffectEmitter *>(this)->turn_heading_toward_related(0.0f, 2.0f, 100.0f);
@@ -1459,7 +1459,7 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
                 frame_140 = 1;
                 frame_timer_142 = 0;
                 scale_x_11c = scale_y_120 = 1.5f;
-                return true;
+                return;
             }
             scale_x_11c = static_cast<float>(scale_x_11c + static_cast<double>(0.1f));
             scale_y_120 = static_cast<float>(scale_y_120 + static_cast<double>(0.1f));
@@ -1505,7 +1505,7 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
             frame_140 = 2;
             angle_x_124 = angle_y_128 = heading_12c = 0.0f;
             scale_x_11c = scale_y_120 = 4.0f;
-            return true;
+            return;
         }
         if (frame_140 == 0) {
             scale_x_11c = static_cast<float>(scale_x_11c + static_cast<double>(0.1f));
@@ -1654,7 +1654,7 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
                     set_sequence_frame(1);
                     phase_index_184 = 0;
                     counter_144 = 0;
-                    return true;
+                    return;
                 }
                 reinterpret_cast<CharacterObjectEffectEmitter *>(this)->replace_secondary_animation(992, 60.0f, 20, 1, 2);
             }
@@ -1700,7 +1700,7 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
             --state_330;
         if (sequence_13e == 0 && frame_timer_142 == 0 && frame_140 == 1)
             reinterpret_cast<CharacterObjectEffectEmitter *>(this)->release_secondary_animation_renderer();
-        return true;
+        return;
 
     case 859:
         if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 &&
@@ -2922,14 +2922,14 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
                     phase_index_184 = 1;
                     phase_state_180 = 0;
                     next_sequence_block();
-                    return true;
+                    return;
                 }
                 if ((velocity_y_f8 < 0.0 && y_f0 < 0.0) || (velocity_y_f8 > 0.0 && y_f0 > 900.0)) {
                     velocity_y_f8 = -velocity_y_f8;
                     phase_index_184 = 1;
                     phase_state_180 = 0;
                     next_sequence_block();
-                    return true;
+                    return;
                 }
             }
             if (state_364 == 2) {
@@ -3160,28 +3160,28 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
                 owner_action == 180 || owner_action == 145 || (owner_action >= 100 && owner_action <= 111))) {
             --state_330;
             *reinterpret_cast<short *>(fighter_owner_348 + 0x7a4) = 0;
-            return true;
+            return;
         }
         if (sequence_13e == 0 && (owner_action == 96 || owner_action == 97) && owner_sequence == 3) {
             next_sequence_block();
             heading_12c = 0.0f;
-            return true;
+            return;
         }
         if (sequence_13e == 1 && (owner_action == 199 || owner_action == 198 || owner_action == 197 ||
                 owner_action == 796 || owner_action == 771) && owner_sequence == 0 && owner_frame == 3) {
             next_sequence_block();
-            return true;
+            return;
         }
         if (sequence_13e == 3 && (owner_action == 199 || owner_action == 198 || owner_action == 197 ||
                 owner_action == 796) && owner_sequence == 2) {
             --state_330;
             *reinterpret_cast<short *>(fighter_owner_348 + 0x7a4) = 0;
-            return true;
+            return;
         }
         if (sequence_13e == 0 || sequence_13e == 3)
             heading_12c = static_cast<float>(heading_12c - 35.0);
         if (sequence_13e == 1 && frame_140 == 4)
-            return true;
+            return;
         goto advance_and_retire_on_completion;
     }
     case 999:
@@ -3203,7 +3203,7 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
                 velocity_y_f8 = 0.0f;
                 acceleration_y_100 = 0.0f;
                 select_sequence(5);
-                return true;
+                return;
             }
             break;
         }
@@ -3211,7 +3211,7 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
             if (*reinterpret_cast<short *>(fighter_owner_348 + 0x78e) == 1) {
                 next_sequence_block();
                 facing_104 = 1;
-                return true;
+                return;
             }
             break;
         case 7: case 8:
@@ -3229,11 +3229,11 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
             velocity_y_f8 = 15.0f;
             acceleration_y_100 = 0.2f;
         }
-        return true;
+        return;
 
     default:
         reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch();
-        return true;
+        return;
     }
 
 advance_with_sequence_three_retirement:
@@ -3241,25 +3241,25 @@ advance_with_sequence_three_retirement:
         --state_330;
     if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && sequence_13e == 3)
         --state_330;
-    return true;
+    return;
 
 advance_with_sequence_one_retirement:
     if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
         --state_330;
     if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && sequence_13e == 1)
         --state_330;
-    return true;
+    return;
 
 advance_with_sequence_four_retirement:
     if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
         --state_330;
     if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && sequence_13e == 4)
         --state_330;
-    return true;
+    return;
 
 select_sequence_three:
     select_sequence(3);
-    return true;
+    return;
 
 bounded_projectile_advance:
     if (x_ec > 1380.0 || x_ec < -100.0 || y_f0 > 1000.0 || y_f0 < -120.0)
@@ -3269,7 +3269,7 @@ advance_with_sequence_two_retirement:
         --state_330;
     if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && sequence_13e == 2)
         --state_330;
-    return true;
+    return;
 
 advance_with_sequence_retirement:
     if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
@@ -3278,17 +3278,17 @@ advance_with_sequence_retirement:
         --state_330;
     if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && sequence_13e == 2)
         --state_330;
-    return true;
+    return;
 
 advance_and_retire_on_completion:
     if (!reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
-        return true;
+        return;
     goto retire;
 clear_alpha_and_retire:
     alpha_113 = 0;
 retire:
     --state_330;
-    return true;
+    return;
 }
 
 } // namespace th105

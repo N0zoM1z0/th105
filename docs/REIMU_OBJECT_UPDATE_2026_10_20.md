@@ -1,8 +1,8 @@
 # ReimuObject update: complete target CFG and first source phase
 
-The initial source-phase counts below are historical. Current handwritten
-coverage reaches all41 arms; see [the final-action checkpoint](REIMU_OBJECT_FINAL_ACTIONS_2026_10_20.md).
-The root still has no original-ABI implementation or canonical exact claim.
+The initial source-phase counts below are historical. Current source covers
+all41 arms under the void ABI; see [the void-root checkpoint](REIMU_OBJECT_VOID_ROOT_2026_10_20.md).
+The complete-extent canonical comparison remains nonexact.
 
 ## Identity, ownership and instruction facts
 

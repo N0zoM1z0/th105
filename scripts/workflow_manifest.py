@@ -172,6 +172,17 @@ def load_manifest() -> dict[str, Any]:
                 raise ValueError(
                     f"match unit {name!r} function {address} contiguous_span must be boolean"
                 )
+            if "owned_extent" in function and not isinstance(function["owned_extent"], bool):
+                raise ValueError(
+                    f"match unit {name!r} function {address} owned_extent must be boolean"
+                )
+            if function.get("owned_extent"):
+                from function_byte_ownership import load
+                ownership = load({int(key, 16): value for key, value in ledger.items()})
+                if function.get("contiguous_span") or int(address, 16) not in ownership:
+                    raise ValueError(
+                        f"match unit {name!r} function {address} needs one reviewed owned extent"
+                    )
             for mapping in function.get("rel32_targets", []):
                 if not isinstance(mapping, str) or not REL32_TARGET.fullmatch(mapping):
                     raise ValueError(
@@ -279,6 +290,11 @@ def unit_input_digest(name: str, unit: dict[str, Any]) -> tuple[str, list[str]]:
     paths.update((ROOT / "src").rglob("*.h"))
     paths.update((ROOT / "src").rglob("*.hpp"))
     paths.update(source_dependencies(unit))
+    if any(function.get("owned_extent") for function in unit.get("functions", [])):
+        paths.update(ROOT / path for path in (
+            "config/functions.csv", "config/function-byte-ownership.toml",
+            "scripts/function_byte_ownership.py",
+        ))
     # Vendored library translation units include headers beside the source.
     # Hash them too, so an upstream-header change cannot reuse stale evidence.
     paths.update(source.parent.glob("*.h"))

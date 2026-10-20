@@ -4,8 +4,8 @@
 
 namespace th105 {
 
-// Observed runtime view for496540. This staging method is not an original
-// callable or a complete implementation of the46128-byte update root.
+// Observed runtime view for496540, including the original void entry at slot28.
+// All41 action bodies are source hypotheses; canonical equality is unaccepted.
 class ReimuObjectActionStateStagingView {
 public:
     virtual void slot_00();
@@ -18,10 +18,9 @@ public:
     virtual int set_sequence_frame(short frame);
     virtual unsigned char next_sequence_frame();
 
-    // True means the selected action was fully handled by this source phase.
-    // All41 concrete actions now have source hypotheses; full semantics and
-    // promotion to the original void ABI still require separate validation.
-    bool try_update_scalar_actions();
+    // Slot24 is an opaque layout marker; this source never calls it.
+    virtual void slot_24();
+    virtual void dispatch_action_state();
     void publish_battle_layout_scalar(float value);
     int has_crossed_stage_surface_while_descending();
 

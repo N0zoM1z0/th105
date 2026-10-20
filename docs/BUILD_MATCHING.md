@@ -147,6 +147,19 @@ rejects a `matching` function while owned remote chunks remain unverified.  Do
 not solve multi-chunk ownership by inflating `span_end` across alignment or by
 splitting arbitrary tail blocks into fake source functions.
 
+For reviewed multi-chunk COFF roots, `owned_extent = true` forwards
+`--owned-extent`. The comparator verifies the ownership ledger's main/remote
+boundaries and canonical chunk/exclusion hashes, then compares the entire
+physical envelope, including intervening bytes. It does not mask gaps or alter
+`functions.csv`. An absent ownership record or conflicting boundary mode is an
+error; linked-PE profiles continue to reject this surface. Owned-mode build
+provenance includes the inventory, ownership ledger and validator. The report
+separates owned bytes from additional physical bytes compared; those extra bytes
+do not become authored credit. See [ReimuObject's void-root evidence](REIMU_OBJECT_VOID_ROOT_2026_10_20.md).
+Its complete46138-byte comparison is currently nonexact. A new mode or source
+presence does not authorize `matches.csv` or `remote_exact`; acceptance still
+requires the full zero-difference contract and reviewed source semantics.
+
 ## Cross-version hypothesis migration
 
 Retained 1.06 source and raw-byte identity can accelerate selection, but neither

@@ -163,6 +163,8 @@ def compare_unit(unit: dict[str, object], json_mode: bool) -> tuple[int, list[ob
         ]
         if function.get("contiguous_span"):
             command.append("--contiguous-span")
+        if function.get("owned_extent"):
+            command.append("--owned-extent")
         if function.get("symbol_base"):
             command.extend(["--symbol-base", str(function["symbol_base"])])
         for mapping in function.get("rel32_targets", []):
