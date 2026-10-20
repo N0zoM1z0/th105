@@ -1,12 +1,13 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest bounded
-follow-up rechecks CNumber414E40's104-byte frame and five complete compiler/
-type/context controls. All retain102-byte nonexact+0; no program source changes.
-The preceding Reimu496540811 correction is committed:640 prefixes and its
-161-byte interior window agree, affected817640/320 pass. Root remains nonexact
-49655F/+31, call-distance11/RET-distance27. Latest accepted function remains
-CDesignNumber40BB00 at61/61. Live evidence overrides historical prose.
+follow-up corrects40BFE0's source iterator facts: size8/alignment4, already a
+real local. New compile-time guards preserve its74-byte nonexact body against
+target81; frame cause remains open. No new exact is recorded.4A1CE0 freshly
+repeats14 differences, with duplicate controls classified as revalidation.
+Reimu496540 keeps the committed811 correction and remains nonexact49655F/+31,
+call-distance11/RET-distance27. Latest accepted remains CDesignNumber40BB00
+at61/61. Live evidence overrides historical prose.
 
 ## Target, workflow and acceptance
 
@@ -137,6 +138,27 @@ execution, numerical regression, authored exact credit or aggregate replay is
 claimed. These scoped negatives do not prove a compiler or LTCG barrier.
 See [Object helper follow-up](OBJECT_HELPER_CONTROLS_2026_10_21.md) for raw
 addresses, canonical hashes, limits and retained input/report paths. Reimu's821 guards/selector order remain; those preceding receipts retain their own epochs.
+
+## Profile render-list color iterator facts
+
+40BFE0 remains74/81 nonexact+0. Its original source iterator is8 bytes/aligned4,
+proved by compiler COFF constants; the old no-eight-byte-local statement was
+incorrect. New size/alignment assertions allocate no storage and preserve the
+whole74-byte canonical5bb8ba61 body. Selected CPP54bcd029, formal COFF56a6d083;
+ordinary SP1 O2/GS-off stays selected. Target still has EBP/ESP8; cause is open.
+
+Postincrement,SSE2,GS,RTM andZ7 controls reproduce all74 bytes. const_iterator
+produces87 nonexact. for_each/member-callback produces unrelocated39 bytes and
+an unqualified generated thunk, with no canonical result or invented binding.
+Existing exact caller edges43F951/4401DB are re-read, not freshly replayed.
+No native coverage, new exact, shared flag/header/binding or aggregate claim.
+See [color iterator ABI](PROFILE_COLOR_ITERATOR_ABI_2026_10_21.md) and
+`build/profile-list-color-20261021/` for complete controls/layout receipts.
+
+The earlier4A1CE0 check retains source3803a002/canonical65298d36,4892 callable
+bytes,14 differences and equal548 metadata bytes. Void-result and parameter
+snapshots duplicate earlier current-source controls; they are revalidation,
+not new independent evidence. No initializer source selection changes.
 
 ## CNumber414E40 frame follow-up; no new source selection
 

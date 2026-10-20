@@ -18623,7 +18623,7 @@ source = "src/ui/ProfileRenderListColorRuntime.cpp"
 object = "build/match-units/GptWeb_ProfileRenderListColorRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current exact profile overlay/frame callers own the global render-list color method. Raw target fixes a checked std::list<polymorphic item*> at +0x14 and dispatches item vslot +0x04 for every node."
+notes = "Source-present40BFE0 remains74/81 nonexact+0. Raw81-byte/36-instruction target and existing exact caller edges43F951/4401DB support checked list+14/head+18 and vslot4(color). Compiler COFF layout witnesses prove source iterator8 bytes/alignment4 and container12; no-eight-byte-local prose was incorrect. Size/alignment guards preserve the whole74-byte canonical5bb8ba61 body. Postincrement,SSE2,GS,RTM,Z7 are byte-neutral; const_iterator87 is nonexact and for_each39 has an unqualified local thunk, not canonical evidence. Target EBP/ESP8 cause stays open. No header/profile/binding/accepted partition or exact change. docs/PROFILE_COLOR_ITERATOR_ABI_2026_10_21.md."
 
 [[units.gpt-web-profile-render-list-color-runtime.functions]]
 address = "0x0040BFE0"

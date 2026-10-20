@@ -26,4 +26,12 @@ void ProfileRenderListColorRuntimeView::set_color(unsigned int color)
 typedef char ProfileRenderListObjectsOffset[
     offsetof(ProfileRenderListColorRuntimeView, objects_014) == 0x14 ? 1 : -1];
 
+// The checked iterator already occupies eight bytes, aligned to four.
+// These source ABI facts alone do not explain the target's ESP alignment.
+typedef std::list<ProfileRenderColorItem *>::iterator ProfileRenderColorIterator;
+typedef char ProfileRenderColorIteratorSize[
+    sizeof(ProfileRenderColorIterator) == 8 ? 1 : -1];
+typedef char ProfileRenderColorIteratorAlignment[
+    __alignof(ProfileRenderColorIterator) == 4 ? 1 : -1];
+
 } // namespace th105
