@@ -15,7 +15,6 @@ import json
 from pathlib import Path
 import struct
 
-import capstone
 from capstone import x86_const as x
 import pefile
 from unicorn import x86_const as u
@@ -35,7 +34,7 @@ owners = load("flow901_owners", "audit-giant-action-owners.py")
 native = graphs.native
 
 
-def sequence_switch(rows, start, end, read):
+def sequence_switch(rows, start, end, read, maximum=6):
     local = [row for row in rows if start <= row.address < end]
     jumps = [
         (index, row)
@@ -46,39 +45,43 @@ def sequence_switch(rows, start, end, read):
         and row.operands[0].mem.index
         and row.operands[0].mem.scale == 4
     ]
-    if len(jumps) != 1:
-        raise ValueError("missing unique901 sequence switch")
-    index, jump = jumps[0]
-    if index < 2:
-        raise ValueError("missing901 sequence guard")
-    compare, guard = local[index - 2 : index]
-    register = jump.operands[0].mem.index
-    if not (
-        compare.mnemonic == "cmp"
-        and compare.operands[0].type == x.X86_OP_REG
-        and compare.operands[0].reg == register
-        and compare.operands[1].type == x.X86_OP_IMM
-        and compare.operands[1].imm == 6
-        and guard.mnemonic == "ja"
-        and guard.operands[0].type == x.X86_OP_IMM
-        and any(
-            row.mnemonic == "movsx"
-            and row.operands[0].type == x.X86_OP_REG
-            and row.operands[0].reg == register
-            and row.operands[1].type == x.X86_OP_MEM
-            and row.operands[1].size == 2
-            and row.operands[1].mem.base == x.X86_REG_ESI
-            and not row.operands[1].mem.index
-            and row.operands[1].mem.disp == 0x13E
-            for row in local[: index - 2]
-        )
-    ):
-        raise ValueError("unreviewed901 signed-sequence/CMP6/JA protocol")
+    reviewed = []
+    for index, jump in jumps:
+        if index < 2:
+            continue
+        compare, guard = local[index - 2 : index]
+        register = jump.operands[0].mem.index
+        if (
+            compare.mnemonic == "cmp"
+            and compare.operands[0].type == x.X86_OP_REG
+            and compare.operands[0].reg == register
+            and compare.operands[1].type == x.X86_OP_IMM
+            and compare.operands[1].imm == maximum
+            and guard.mnemonic == "ja"
+            and guard.operands[0].type == x.X86_OP_IMM
+            and any(
+                row.mnemonic == "movsx"
+                and row.operands[0].type == x.X86_OP_REG
+                and row.operands[0].reg == register
+                and row.operands[1].type == x.X86_OP_MEM
+                and row.operands[1].size == 2
+                and row.operands[1].mem.base == x.X86_REG_ESI
+                and not row.operands[1].mem.index
+                and row.operands[1].mem.disp == 0x13E
+                for row in local[: index - 2]
+            )
+        ):
+            reviewed.append(jump)
+    if len(reviewed) != 1:
+        raise ValueError(f"missing unique signed-sequence/CMP{maximum}/JA protocol")
+    jump = reviewed[0]
     table = jump.operands[0].mem.disp
     return dict(
         instruction=jump.address,
         table=table,
-        destinations=list(struct.unpack("<7I", read(table, 28))),
+        destinations=list(
+            struct.unpack(f"<{maximum + 1}I", read(table, 4 * (maximum + 1)))
+        ),
     )
 
 

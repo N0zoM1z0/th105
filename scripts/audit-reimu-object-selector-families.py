@@ -48,9 +48,9 @@ def decode(data, address):
 
 
 def selector_switches(rows, read):
-    """Accept only the observed MOV-global/CMP3/JA/JMP four-entry protocol."""
+    """Recognize MOV-global/CMP3/JA/JMP, including flag-preserving x87 stores."""
     result = {}
-    for load, compare, guard, jump in zip(rows, rows[1:], rows[2:], rows[3:]):
+    for index, load in enumerate(rows[:-3]):
         if not (
             load.mnemonic == "mov"
             and len(load.operands) == 2
@@ -64,6 +64,19 @@ def selector_switches(rows, read):
         ):
             continue
         register = load.operands[0].reg
+        compare = rows[index + 1]
+        cursor = index + 2
+        while cursor < len(rows) and rows[cursor].mnemonic in (
+            "fld",
+            "fldz",
+            "fld1",
+            "fst",
+            "fstp",
+        ):
+            cursor += 1
+        if cursor + 1 >= len(rows):
+            continue
+        guard, jump = rows[cursor : cursor + 2]
         if not (
             compare.mnemonic == "cmp"
             and compare.operands[0].type == x.X86_OP_REG
@@ -91,7 +104,16 @@ def selector_switches(rows, read):
     return result
 
 
-def closure(rows, start):
+def jump_destinations(row, switches):
+    if row.operands[0].type == x.X86_OP_IMM:
+        return [row.operands[0].imm]
+    if row.address in switches:
+        return switches[row.address]["destinations"]
+    raise ValueError("unreviewed indirect jump after selector dispatch")
+
+
+def closure(rows, start, switches=None):
+    switches = switches or {}
     pending, visited = [start], set()
     while pending:
         address = pending.pop()
@@ -104,9 +126,7 @@ def closure(rows, start):
         if row.group(capstone.CS_GRP_RET):
             continue
         if row.group(capstone.CS_GRP_JUMP):
-            if row.operands[0].type != x.X86_OP_IMM:
-                raise ValueError("unreviewed indirect jump after selector dispatch")
-            pending.append(row.operands[0].imm)
+            pending.extend(jump_destinations(row, switches))
             if row.mnemonic == "jmp":
                 continue
         # A call edge models only the conditional normal-return continuation.
@@ -114,9 +134,9 @@ def closure(rows, start):
     return visited
 
 
-def partition(rows, switch):
+def partition(rows, switch, switches=None):
     by = {row.address: row for row in rows}
-    families = [closure(by, address) for address in switch["destinations"]]
+    families = [closure(by, address, switches) for address in switch["destinations"]]
     shared = set.intersection(*families)
 
     def calls(addresses):
@@ -148,7 +168,7 @@ def signature(part):
     ]
 
 
-def call_graph(rows, part, mode, first_world):
+def call_graph(rows, part, mode, first_world, switches=None):
     """Project conditional normal-return flow onto actual call sites and RET."""
     by = {row.address: row for row in rows}
     shared = {row["site"] for row in part["shared_calls"]}
@@ -170,7 +190,7 @@ def call_graph(rows, part, mode, first_world):
                 result.add("return")
                 continue
             if row.group(capstone.CS_GRP_JUMP):
-                pending.append(row.operands[0].imm)
+                pending.extend(jump_destinations(row, switches or {}))
                 if row.mnemonic == "jmp":
                     continue
             pending.append(address + row.size)

@@ -8,6 +8,8 @@ including46128 owned instruction bytes and10 alignment bytes. The39853-byte
 main-span candidate, ownership manifest, void/ECX/RET0 ABI and vslot28 are
 unchanged. No exact row, remote_exact flag or authored-byte credit is added.
 
+Current source/artifact pins are superseded by the [900 checkpoint](REIMU_OBJECT_900_FLOW_2026_10_20.md); the901 observations and controls below remain historical evidence.
+
 ## Raw901 observations
 
 The physical action interval49CEC2..49D7D6 is2324 bytes, SHA256

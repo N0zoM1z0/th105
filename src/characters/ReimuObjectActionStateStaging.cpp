@@ -2021,44 +2021,52 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
         }
         goto advance_and_retire_on_completion;
 
-    case 900:
+    case 900: {
+        float dead_sequence_zero[3];
+        float completed_sequence_zero[4];
+        float dead_sequence_one[3];
+        const unsigned *retirement_packet;
+        int retirement_words;
         switch (sequence_13e) {
         case 0:
             if (*reinterpret_cast<short *>(fighter_owner_348 + 0x174) <= 0) {
-                float copied[3] = {0.0f, 0.0f, 2.0f};
-                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
-                    900, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
-                    reinterpret_cast<const unsigned *>(copied), 3);
-                goto retire;
+                dead_sequence_zero[0] = 0.0f;
+                dead_sequence_zero[1] = 0.0f;
+                dead_sequence_zero[2] = 2.0f;
+                retirement_packet = reinterpret_cast<const unsigned *>(dead_sequence_zero);
+                retirement_words = 3;
+                goto emit_900_retirement;
             }
             reinterpret_cast<CharacterObjectRuntime *>(this)->advance_state_six_counter_conditional(0);
             reinterpret_cast<CharacterObjectRuntime *>(this)->advance_phase_counter_conditional(0);
             reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
                 set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
             if (counter_144 >= 40) {
-                float copied[4];
-                copied[0] = parameters_340[0];
-                copied[1] = 0.0f;
-                copied[2] = 3.0f;
-                switch (g_match_identifier) {
-                case 3: copied[3] = 50.0f; break;
-                case 2: copied[3] = 25.0f; break;
-                case 1: copied[3] = 15.0f; break;
-                case 0: copied[3] = 8.0f; break;
-                }
-                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
-                    900, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
-                    reinterpret_cast<const unsigned *>(copied), 4);
-                goto retire;
+                completed_sequence_zero[0] = parameters_340[0];
+                completed_sequence_zero[1] = 0.0f;
+                completed_sequence_zero[2] = 3.0f;
+                const int match_identifier = g_match_identifier;
+                if (match_identifier == 3)
+                    completed_sequence_zero[3] = 50.0f;
+                else if (match_identifier == 2)
+                    completed_sequence_zero[3] = 25.0f;
+                else if (match_identifier == 1)
+                    completed_sequence_zero[3] = 15.0f;
+                else if (match_identifier == 0)
+                    completed_sequence_zero[3] = 8.0f;
+                retirement_packet = reinterpret_cast<const unsigned *>(completed_sequence_zero);
+                retirement_words = 4;
+                goto emit_900_retirement;
             }
             break;
         case 1:
             if (phase_state_180 != 0 || *reinterpret_cast<short *>(fighter_owner_348 + 0x174) <= 0) {
-                float copied[3] = {0.0f, 0.0f, 2.0f};
-                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
-                    900, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
-                    reinterpret_cast<const unsigned *>(copied), 3);
-                goto retire;
+                dead_sequence_one[0] = 0.0f;
+                dead_sequence_one[1] = 0.0f;
+                dead_sequence_one[2] = 2.0f;
+                retirement_packet = reinterpret_cast<const unsigned *>(dead_sequence_one);
+                retirement_words = 3;
+                goto emit_900_retirement;
             }
             parameters_340[1] = static_cast<float>(parameters_340[1] + static_cast<double>(0.4f));
             reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
@@ -2113,6 +2121,13 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
         x_ec += static_cast<float>(facing_104) * velocity_x_f4;
         y_f0 += velocity_y_f8;
         goto advance_and_retire_on_completion;
+
+emit_900_retirement:
+        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+            900, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+            retirement_packet, retirement_words);
+        goto retire;
+    }
 
     case 901:
         switch (sequence_13e) {

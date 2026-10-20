@@ -5,6 +5,7 @@ from __future__ import annotations
 import copy
 import importlib.util
 from pathlib import Path
+import struct
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -27,6 +28,32 @@ def ring_graph():
 
 
 class SelectorCallGraphTests(unittest.TestCase):
+    def test_packet_stores_preserve_the_guarded_selector(self):
+        rows = sites.decode(
+            bytes.fromhex("a194a86f0083f803d9eed95c24007707ff248500200000c3"), 0x1000
+        )
+        switches = sites.selector_switches(
+            rows, lambda address, size: struct.pack("<4I", 1, 2, 3, 4)
+        )
+        self.assertEqual(switches[0x1010]["destinations"], [1, 2, 3, 4])
+
+    def test_integer_clobber_between_compare_and_guard_is_not_reviewed(self):
+        rows = sites.decode(
+            bytes.fromhex("a194a86f0083f80340d9eed95c24007707ff248500200000c3"), 0x1000
+        )
+        self.assertEqual(sites.selector_switches(rows, lambda address, size: b""), {})
+
+    def test_nested_dispatch_requires_review_and_preserves_all_call_edges(self):
+        rows = sites.decode(bytes.fromhex("ff248500200000e800000000c3"), 0x1000)
+        outer = dict(destinations=[0x1000, 0x100C])
+        with self.assertRaisesRegex(ValueError, "unreviewed indirect jump"):
+            sites.partition(rows, outer)
+        nested = {0x1000: dict(destinations=[0x1007, 0x100C])}
+        part = sites.partition(rows, outer, nested)
+        graph = sites.call_graph(rows, part, 0, None, nested)
+        self.assertEqual(graph["entry"]["successors"], [str(0x1007), "return"])
+        self.assertEqual(graph[str(0x1007)]["successors"], ["return"])
+
     def test_renamed_duplicate_callees_and_loop_preserve_topology(self):
         target = ring_graph()
         target["loop"]["color"] = target["final"]["color"] = "private:spawn"
