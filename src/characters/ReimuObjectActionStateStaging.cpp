@@ -181,7 +181,15 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
         }
         x_ec += static_cast<float>(facing_104) * velocity_x_f4;
         y_f0 += velocity_y_f8;
-        goto advance_with_sequence_two_retirement;
+        if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
+            --state_330;
+        if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && sequence_13e == 2)
+            goto retire_801_811;
+        return;
+
+retire_801_811:
+        --state_330;
+        return;
 
     case 804:
         if (phase_state_180 == 5 || (sequence_13e < 2 &&
@@ -429,7 +437,11 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
         }
         x_ec += static_cast<float>(facing_104) * velocity_x_f4;
         y_f0 += velocity_y_f8;
-        goto advance_with_sequence_two_retirement;
+        if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
+            --state_330;
+        if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && sequence_13e == 2)
+            --state_330;
+        return;
 
     case 811:
         if (phase_state_180 == 5)
@@ -493,7 +505,7 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
             x_ec = parent_object_34c->x_ec;
             y_f0 = parent_object_34c->y_f0;
             if (parent_object_34c->sequence_13e == 2)
-                goto retire;
+                goto retire_801_811;
         }
         if (sequence_13e == 2) {
             parameters_340[1] = static_cast<float>(parameters_340[1] - 1.5);
@@ -533,7 +545,13 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
                 goto retire;
             alpha_113 = static_cast<unsigned char>(alpha_113 - 10);
         }
-        goto bounded_projectile_advance;
+        if (x_ec > 1380.0 || x_ec < -100.0 || y_f0 > 1000.0 || y_f0 < -120.0)
+            goto retire;
+        if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
+            --state_330;
+        if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && sequence_13e == 2)
+            --state_330;
+        return;
 
     case 812:
         if (x_ec > 1380.0 || x_ec < -100.0 || y_f0 > 1000.0 || y_f0 < -240.0 ||
@@ -703,7 +721,13 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
                 spawn_owned_object_via_manager(815, x_ec, y_f0,
                     static_cast<unsigned char>(facing_104), 1, reinterpret_cast<int>(copied), 3);
         }
-        goto bounded_projectile_advance;
+        if (x_ec > 1380.0 || x_ec < -100.0 || y_f0 > 1000.0 || y_f0 < -120.0)
+            goto retire;
+        if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
+            --state_330;
+        if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && sequence_13e == 2)
+            --state_330;
+        return;
 
     case 816:
         if (phase_state_180 == 5)
@@ -1037,7 +1061,13 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
             x_ec += static_cast<float>(facing_104) * velocity_x_f4;
             break;
         }
-        goto advance_with_sequence_retirement;
+        if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
+            --state_330;
+        if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && sequence_13e == 1)
+            --state_330;
+        if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && sequence_13e == 2)
+            --state_330;
+        return;
 
     }
 
@@ -1255,7 +1285,11 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
         }
         x_ec += static_cast<float>(facing_104) * velocity_x_f4;
         y_f0 += velocity_y_f8;
-        goto advance_with_sequence_two_retirement;
+        if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
+            --state_330;
+        if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && sequence_13e == 2)
+            --state_330;
+        return;
 
     case 825: {
         const short owner_action = *reinterpret_cast<short *>(fighter_owner_348 + 0x13c);
@@ -1448,7 +1482,8 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
             if (*reinterpret_cast<short *>(fighter_owner_348 + 0x13c) != 609 ||
                     *reinterpret_cast<short *>(fighter_owner_348 + 0x13e) > 1 || phase_index_184 == 0) {
                 *reinterpret_cast<short *>(fighter_owner_348 + 0x738) = 1;
-                scale_x_11c = scale_y_120 = 3.0f;
+                scale_x_11c = 3.0f;
+                scale_y_120 = 3.0f;
                 select_sequence(2);
                 return;
             }
@@ -1485,7 +1520,11 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
                 goto retire;
             alpha_113 = static_cast<unsigned char>(alpha_113 - 20);
         }
-        goto advance_with_sequence_three_retirement;
+        if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
+            --state_330;
+        if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && sequence_13e == 3)
+            goto retire;
+        return;
 
     case 853:
         if (phase_state_180 == 5)
@@ -3000,7 +3039,11 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
         }
         x_ec += static_cast<float>(facing_104) * velocity_x_f4;
         y_f0 += velocity_y_f8;
-        goto advance_with_sequence_three_retirement;
+        if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
+            --state_330;
+        if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && sequence_13e == 3)
+            goto retire;
+        return;
 
     case 907:
         switch (sequence_13e) {
@@ -3485,7 +3528,11 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
         }
         x_ec += static_cast<float>(facing_104) * velocity_x_f4;
         y_f0 += velocity_y_f8;
-        goto advance_with_sequence_three_retirement;
+        if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
+            --state_330;
+        if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && sequence_13e == 3)
+            --state_330;
+        return;
 
     case 951: {
         alpha_113 = fighter_owner_348[0x113];

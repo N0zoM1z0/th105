@@ -1,5 +1,10 @@
 # ReimuObject812 sequence and animation call ownership
 
+The source pins and aggregate counts below describe checkpoint003b6f7.
+[Animation ownership](REIMU_OBJECT_ANIMATION_SITES_2026_10_20.md) supersedes them.
+The812 target observations and scoped flow proof are retained and replayed;
+the current source has a separate known801/852 indirect-site merge.
+
 ## Scope and observed target
 
 This supersedes the812 indirect-site and animation-sharing residual at
