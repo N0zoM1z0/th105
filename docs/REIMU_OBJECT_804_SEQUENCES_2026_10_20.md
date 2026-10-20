@@ -1,5 +1,9 @@
 # ReimuObject804 independent sequence bodies
 
+The selected source and flow audit have since advanced in the
+[901 checkpoint](REIMU_OBJECT_901_FLOW_2026_10_20.md).
+The pins and results below describe the preceding804 checkpoint.
+
 This advances the [selector-family checkpoint](REIMU_OBJECT_SELECTOR_FAMILIES_2026_10_20.md)
 for authored root496540. The target remains original Japanese TH10.5 v1.06a,
 SHA256 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.

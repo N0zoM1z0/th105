@@ -191,6 +191,45 @@ def call_graph(rows, part, mode, first_world):
     return graph
 
 
+def combine_call_graphs(graphs):
+    """Preserve physical sharing across an ordered family of call projections.
+
+    A call shared by only some entries must stay one node. Independent graph
+    bijections can otherwise accept both clones and a wrong sharing subset.
+    """
+    result = {"return": dict(color="return", successors=[])}
+    membership = {}
+    for mode, graph in enumerate(graphs):
+        if graph.get("return") != dict(color="return", successors=[]):
+            raise ValueError("unreviewed projected return node")
+        if "entry" not in graph:
+            raise ValueError("missing projected entry node")
+        if any(
+            next_node not in graph
+            for row in graph.values()
+            for next_node in row["successors"]
+        ):
+            raise ValueError("projected edge leaves its call graph")
+        result[f"entry:{mode}"] = dict(
+            color=f"entry:{mode}", successors=sorted(set(graph["entry"]["successors"]))
+        )
+        for key, row in graph.items():
+            if key in ("entry", "return"):
+                continue
+            if key.startswith("entry:"):
+                raise ValueError("call node conflicts with a family entry")
+            normalized = dict(
+                color=row["color"], successors=sorted(set(row["successors"]))
+            )
+            if key in result and result[key] != normalized:
+                raise ValueError("inconsistent projection of a shared physical call")
+            result[key] = normalized
+            membership.setdefault(key, []).append(mode)
+    for key, modes in membership.items():
+        result[key]["color"] += ":modes=" + ",".join(map(str, modes))
+    return result
+
+
 def same_call_graph(target, source):
     """Small labeled-graph bijection; duplicate callees need not share PCs."""
     if len(target) != len(source):

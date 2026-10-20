@@ -70,6 +70,39 @@ class SelectorCallGraphTests(unittest.TestCase):
         source["advance"]["color"] = "private:advance"
         self.assertFalse(sites.same_call_graph(target, source))
 
+    def family(self, names):
+        return [
+            {
+                "entry": dict(color="entry", successors=[name]),
+                name: dict(color="private:spawn", successors=["return"]),
+                "return": dict(color="return", successors=[]),
+            }
+            for name in names
+        ]
+
+    def test_partial_sharing_survives_global_renaming(self):
+        target = sites.combine_call_graphs(self.family(["100", "100", "200"]))
+        source = sites.combine_call_graphs(self.family(["900", "900", "800"]))
+        self.assertTrue(sites.same_call_graph(target, source))
+
+    def test_individually_equal_entries_cannot_hide_cloned_shared_calls(self):
+        target = self.family(["100", "100", "200"])
+        source = self.family(["900", "901", "902"])
+        self.assertTrue(
+            all(sites.same_call_graph(a, b) for a, b in zip(target, source))
+        )
+        self.assertFalse(
+            sites.same_call_graph(
+                sites.combine_call_graphs(target), sites.combine_call_graphs(source)
+            )
+        )
+
+    def test_equal_site_totals_cannot_hide_a_wrong_sharing_subset(self):
+        target = sites.combine_call_graphs(self.family(["100", "100", "200"]))
+        source = sites.combine_call_graphs(self.family(["900", "800", "800"]))
+        self.assertEqual(len(target), len(source))
+        self.assertFalse(sites.same_call_graph(target, source))
+
 
 if __name__ == "__main__":
     unittest.main()
