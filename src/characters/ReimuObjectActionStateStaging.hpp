@@ -32,7 +32,8 @@ public:
     float acceleration_x_fc;
     float acceleration_y_100;
     signed char facing_104;
-    unsigned char unknown_105[0x0c];
+    unsigned char unknown_105[0x0b];
+    unsigned char channel_110;
     unsigned char channel_111;
     unsigned char channel_112;
     unsigned char alpha_113;
@@ -51,7 +52,9 @@ public:
     short sequence_frame_count_148;
     unsigned char unknown_14a[2];
     short frame_limit_14c;
-    unsigned char unknown_14e[0x32];
+    unsigned char unknown_14e[0x26];
+    short value_174;
+    unsigned char unknown_176[0x0a];
     int phase_state_180;
     unsigned char phase_index_184;
     unsigned char unknown_185[0x1ab];
@@ -84,6 +87,12 @@ typedef char ReimuObjectUpdate_x_offset[
     offsetof(ReimuObjectActionStateStagingView, x_ec) == 0xec ? 1 : -1];
 typedef char ReimuObjectUpdate_alpha_offset[
     offsetof(ReimuObjectActionStateStagingView, alpha_113) == 0x113 ? 1 : -1];
+typedef char ReimuObjectUpdate_channel110_offset[
+    offsetof(ReimuObjectActionStateStagingView, channel_110) == 0x110 ? 1 : -1];
+
+typedef char ReimuObjectUpdate_value174_offset[
+    offsetof(ReimuObjectActionStateStagingView, value_174) == 0x174 ? 1 : -1];
+
 typedef char ReimuObjectUpdate_channel111_offset[
     offsetof(ReimuObjectActionStateStagingView, channel_111) == 0x111 ? 1 : -1];
 typedef char ReimuObjectUpdate_channel112_offset[

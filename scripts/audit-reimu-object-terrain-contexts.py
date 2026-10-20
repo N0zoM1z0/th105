@@ -55,11 +55,13 @@ def conversion_model_probe(image):
 
 
 class Probe(native.Probe):
-    def __init__(self, image, candidate, seeds, surfaces, dispatch):
+    def __init__(self, image, candidate, seeds, surfaces, dispatch, match_identifier=0):
         super().__init__(image, candidate, seeds, surfaces)
         self.dispatch = dispatch
         # Runtime input data only: original code and vtable bytes stay intact.
         self.uc.mem_write(DISPATCH, struct.pack("<I", dispatch))
+        self.uc.mem_write(native.SURFACE - 4, struct.pack("<i", match_identifier))
+        self.match_identifier = match_identifier
         self.uc.reg_write(native.r.UC_X86_REG_MXCSR, 0x1F80)
         self.initial = self.uc.context_save()
         self.uc.hook_add(native.unicorn.UC_HOOK_MEM_READ, self.surface_read)
@@ -93,10 +95,16 @@ class Probe(native.Probe):
             raise ValueError("expected one actual surface load and first spawn entry")
         if struct.unpack("<I", self.uc.mem_read(DISPATCH, 4))[0] != self.dispatch:
             raise ValueError("CRT dispatch input changed")
+        if (
+            struct.unpack("<i", self.uc.mem_read(native.SURFACE - 4, 4))[0]
+            != self.match_identifier
+        ):
+            raise ValueError("match identifier input changed")
         return {
             **result,
             "surface_reads": self.surface_reads,
             "crt_dispatch": self.dispatch,
+            "match_identifier": self.match_identifier,
             "conversion_eax": self.conversion_eax,
             "mxcsr": self.uc.reg_read(native.r.UC_X86_REG_MXCSR),
         }
@@ -106,6 +114,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("object", type=Path)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--match-identifiers", type=int, nargs="+", default=[0])
     args = parser.parse_args()
     facts = native.facts.audit()
     candidate = native.export(args.object)
@@ -115,9 +124,9 @@ def main():
     surfaces, receipt = native.surface_fixtures(image)
     seeds = native.seed_fixtures(image)
     differences, observations, inputs = [], [], []
-    for dispatch in (0, 1):
-        target = Probe(image, None, seeds, surfaces, dispatch)
-        source = Probe(image, candidate, seeds, surfaces, dispatch)
+    for dispatch, match_identifier in itertools.product((0, 1), args.match_identifiers):
+        target = Probe(image, None, seeds, surfaces, dispatch, match_identifier)
+        source = Probe(image, candidate, seeds, surfaces, dispatch, match_identifier)
         for xpos, surface, cw in itertools.product(
             (-1.0, 0.0, 639.49, 639.5, 1279.5, float("nan")),
             surfaces,
@@ -137,6 +146,7 @@ def main():
                 timer=1,
                 cw=cw,
                 crt_dispatch=dispatch,
+                match_identifier=match_identifier,
                 mxcsr=0x1F80,
             )
             inputs.append(case)
@@ -165,6 +175,7 @@ def main():
         "object_sha256": hashlib.sha256(args.object.read_bytes()).hexdigest(),
         "surface_initialization": receipt,
         "dispatch_input": hex(DISPATCH),
+        "supplied_match_identifiers": args.match_identifiers,
         "mxcsr_input": hex(0x1F80),
         "mapped_dispatch_word": image[
             DISPATCH - 0x400000 : DISPATCH - 0x400000 + 4

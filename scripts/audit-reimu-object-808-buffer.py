@@ -176,7 +176,10 @@ def preserved_to_window(rows, entry, stop, register):
             continue
         reaches.add(address)
         pending.extend(reverse.get(address, []))
-    aliases = {register, x.X86_REG_BP} if register == x.X86_REG_EBP else {register}
+    aliases = {
+        x.X86_REG_EBP: {x.X86_REG_EBP, x.X86_REG_BP},
+        x.X86_REG_EBX: {x.X86_REG_EBX, x.X86_REG_BX, x.X86_REG_BL, x.X86_REG_BH},
+    }.get(register, {register})
     for address in reaches - {stop}:
         if aliases.intersection(by_address[address].regs_access()[1]):
             raise ValueError(
@@ -186,32 +189,41 @@ def preserved_to_window(rows, entry, stop, register):
 
 
 def source_registers(rows, candidate, stop):
-    """Recognize the reviewed VC8 primary dispatch's optional EBP constant."""
+    """Recognize reviewed EBP or EBX constants in the VC8 primary dispatch."""
     dispatch_index = next(
         n
         for n, row in enumerate(rows)
         if row.mnemonic == "jmp" and row.operands[0].type == x.X86_OP_MEM
     )
-    prefix = rows[dispatch_index - 7 : dispatch_index + 1]
     definition = rows[dispatch_index - 1]
-    if not (
+    if (
         definition.mnemonic == "mov"
         and definition.operands[0].reg == x.X86_REG_EBP
         and definition.operands[1].type == x.X86_OP_IMM
     ):
+        prefix = rows[dispatch_index - 7 : dispatch_index + 1]
+        constant_register = x.X86_REG_EBP
+        expected = ["movsx", "add", "cmp", "push", "ja", "movzx", "mov", "jmp"]
+    elif (
+        definition.mnemonic == "xor"
+        and definition.operands[0].type == x.X86_OP_REG
+        and definition.operands[0].reg == x.X86_REG_EBP
+        and definition.operands[1].type == x.X86_OP_REG
+        and definition.operands[1].reg == x.X86_REG_EBP
+        and rows[dispatch_index - 2].mnemonic == "mov"
+        and rows[dispatch_index - 2].operands[0].reg == x.X86_REG_EBX
+        and rows[dispatch_index - 2].operands[1].type == x.X86_OP_IMM
+    ):
+        prefix = rows[dispatch_index - 8 : dispatch_index + 1]
+        definition = rows[dispatch_index - 2]
+        constant_register = x.X86_REG_EBX
+        expected = ["movsx", "add", "cmp", "push", "ja", "movzx", "mov", "xor", "jmp"]
+    else:
         return {}, None  # Earlier compiler phase passes immediate variant1.
-    if [row.mnemonic for row in prefix] != [
-        "movsx",
-        "add",
-        "cmp",
-        "push",
-        "ja",
-        "movzx",
-        "mov",
-        "jmp",
-    ]:
+    if [row.mnemonic for row in prefix] != expected:
         raise ValueError("unreviewed hoisted-register dispatch")
-    load, add, bound, _, guard, index, _, dispatch = prefix
+    load, add, bound, _, guard, index = prefix[:6]
+    dispatch = prefix[-1]
     if not (
         load.operands[0].reg
         == add.operands[0].reg
@@ -246,16 +258,17 @@ def source_registers(rows, candidate, stop):
 
     slot = read(index.operands[1].mem.disp + 8, 1)[0]
     entry = int.from_bytes(read(dispatch.operands[0].mem.disp + slot * 4, 4), "little")
-    count = preserved_to_window(rows, entry, stop, x.X86_REG_EBP)
+    count = preserved_to_window(rows, entry, stop, constant_register)
     value = definition.operands[1].imm
-    return {x.X86_REG_EBP: value}, {
-        "register": "ebp",
+    name = definition.reg_name(constant_register)
+    return {constant_register: value}, {
+        "register": name,
         "value": value,
         "definition": hex(definition.address),
         "case808_entry": hex(entry),
         "window_entry": hex(stop),
         "checked_instructions": count,
-        "scope": "all decoded case-to-window paths; external calls preserve EBP on normal ABI returns",
+        "scope": f"all decoded case-to-window paths; external calls preserve {name.upper()} on normal ABI returns",
     }
 
 

@@ -297,6 +297,7 @@ def export(path):
             "?has_crossed_stage_surface_while_descending@ReimuObjectActionStateStagingView@th105@@QAEHXZ": 0x5F9310,
             "ReimuObjectActionStateStagingView_has_crossed_stage_surface_while_descending": 0x5F9310,
             "stage_surface_height_at_x": 0x435D60,
+            "atan2_degrees": 0x406540,
             "?spawn_owned_object_via_manager@ReimuObjectOwnerSpawnView@th105@@QAEHHMMHHHH@Z": 0x465190,
         }
     )
@@ -399,9 +400,11 @@ class Probe:
             if copied:
                 packet_four = (
                     args[6] == 4
-                    and args[0] == 822
-                    and a in (SPAWN, 0x4FCA60)
-                    and struct.unpack("<h", uc.mem_read(OWNER + 0x13C, 2))[0] == 822
+                    and (
+                        (args[0] == 822 and a in (SPAWN, 0x4FCA60))
+                        or (args[0] in (900, 901) and a == SPAWN)
+                    )
+                    and struct.unpack("<h", uc.mem_read(OWNER + 0x13C, 2))[0] == args[0]
                 )
                 packet_one = (
                     args[6] == 1
@@ -445,7 +448,7 @@ class Probe:
         uc = self.uc
         uc.context_restore(self.initial)
         self.surface_arguments = []
-        if case["action"] in (858, 866):
+        if case["action"] in (858, 866, 901):
             if self.surfaces is None:
                 raise ValueError("terrain input fixture is required")
             uc.mem_write(SURFACE, self.surfaces[case.get("surface", "flat")])
@@ -462,9 +465,19 @@ class Probe:
         if case.get("terminal"):
             uc.mem_write(seq_block + 0x14, bytes(12))
         frame_count = 1
-        if case["action"] in (850, 853, 854, 855, 856, 858, 866, 869) or (
-            case["action"] == 822 and seq == 0
-        ):
+        if case["action"] in (
+            850,
+            853,
+            854,
+            855,
+            856,
+            858,
+            866,
+            869,
+            900,
+            901,
+            902,
+        ) or (case["action"] == 822 and seq == 0):
             # Coherent three-frame ranges for the admitted projectile families.
             # The earlier single frame cannot represent their later frames.
             first = RESOURCE + 0x6000
@@ -541,6 +554,9 @@ class Probe:
             858,
             866,
             869,
+            900,
+            901,
+            902,
         ):
             for off, fmt, value in (
                 (0x170, "I", FIGHTER),
@@ -574,6 +590,9 @@ class Probe:
             858,
             866,
             869,
+            900,
+            901,
+            902,
         ):
             uc.mem_write(OWNER + 0x111, struct.pack("<B", case.get("channel", 200)))
             uc.mem_write(
@@ -609,6 +628,9 @@ class Probe:
             858,
             866,
             869,
+            900,
+            901,
+            902,
         ):
             for off, fmt, value in (
                 (0x112, "B", case.get("channel2", 200)),
@@ -641,6 +663,9 @@ class Probe:
             858,
             866,
             869,
+            900,
+            901,
+            902,
         ):
             for off, fmt, value in (
                 (0x104, "b", case.get("owner_facing", -1)),
@@ -656,7 +681,21 @@ class Probe:
                 uc.mem_write(
                     entry.PARAMETERS + 12, struct.pack("<f", case.get("mode", 1000.0))
                 )
-        if case["action"] in (850, 851, 852, 853, 854, 855, 856, 858, 866, 869):
+        if case["action"] in (
+            850,
+            851,
+            852,
+            853,
+            854,
+            855,
+            856,
+            858,
+            866,
+            869,
+            900,
+            901,
+            902,
+        ):
             for off, value in (
                 (0x366, case.get("speed_word", 16)),
                 (0x368, case.get("fade_word", 0)),
@@ -666,8 +705,33 @@ class Probe:
             uc.mem_write(0x6FBD00, struct.pack("<f", case.get("layout_scalar", -7.75)))
         if case["action"] == 855:
             uc.mem_write(OWNER + 0x36A, struct.pack("<h", case.get("spin_word", 0)))
-        if case["action"] in (858, 866, 869):
+        if case["action"] in (858, 866, 869, 900, 901, 902):
             uc.mem_write(FIGHTER + 0x142, struct.pack("<h", case.get("owner_timer", 1)))
+        if case["action"] in (900, 901, 902):
+            uc.mem_write(0x6FA894, struct.pack("<i", case.get("match_identifier", 0)))
+            uc.mem_write(OWNER + 0x110, struct.pack("<B", case.get("channel0", 123)))
+            uc.mem_write(OWNER + 0x174, struct.pack("<h", case.get("value174", 0)))
+            uc.mem_write(
+                FIGHTER + 0x174, struct.pack("<h", case.get("owner_value174", 100))
+            )
+            uc.mem_write(
+                FIGHTER + 0x730, struct.pack("<h", case.get("owner_word730", 0))
+            )
+            uc.mem_write(
+                entry.PARAMETERS,
+                struct.pack("<f", case.get("heading_parameter", 37.25)),
+            )
+            for off, key, value in (
+                (0x7A8, "left0", 400.0),
+                (0x7AC, "left1", 300.0),
+                (0x7B0, "right0", 600.0),
+                (0x7B4, "right1", 700.0),
+                (0x7B8, "top0", 200.0),
+                (0x7BC, "top1", 300.0),
+                (0x7C0, "bottom0", 0.0),
+                (0x7C4, "bottom1", -100.0),
+            ):
+                uc.mem_write(FIGHTER + off, struct.pack("<f", case.get(key, value)))
         if case["action"] == 869:
             for off, fmt, value in (
                 (0x374, "f", case.get("heading_amplitude", 0.25)),
@@ -796,6 +860,9 @@ class Probe:
             else bytes(uc.mem_read(RELATED, 0x388)).hex(),
             "layout_scalar": bytes(uc.mem_read(0x6FBD00, 4)).hex()
             if case["action"] in (850, 853, 854)
+            else None,
+            "match_identifier": bytes(uc.mem_read(0x6FA894, 4)).hex()
+            if case["action"] in (900, 901, 902)
             else None,
             "surface_arguments": self.surface_arguments,
             "endpoint": self.endpoint,
@@ -2235,6 +2302,318 @@ def orbit_projectile_cases():
         )
 
 
+def upper_projectile_cases():
+    for action, seq, phase, state, owner_value, cw in itertools.product(
+        (900, 901, 902),
+        (-1, 0, 1, 2, 3, 4, 5, 6, 7),
+        (0, 1, 5, 6),
+        (0, 1, 2),
+        (-1, 0, 1, 32767),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            phase=phase,
+            state=state,
+            owner_value174=owner_value,
+            counter=1,
+            timer=1,
+            speed_word=0,
+            amplitude=0.25,
+            mode=1000.0,
+            cw=cw,
+            cohort="upper-state",
+        )
+    for seq, counter, phase, index, match, cw in itertools.product(
+        (0, 1, 2, 3),
+        (-6, -1, 0, 4, 5, 6, 39, 40, 41),
+        (0, 6),
+        (0, 255),
+        (0, 1, 2, 3),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=900,
+            seq=seq,
+            counter=counter,
+            phase=phase,
+            index=index,
+            match_identifier=match,
+            mode=1000.0,
+            amplitude=0.0 if seq == 3 else 3.5,
+            cw=cw,
+            cohort="upper-900-gates",
+        )
+    for counter, amplitude, mode, facing, cw in itertools.product(
+        (-7, -6, -1, 1, 5, 6),
+        (-1.0, -0.0, 0.25, float("nan")),
+        (-1.0, 0.0, 0.25, 1000.0, float("nan")),
+        (-128, -1, 0, 1, 127),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=900,
+            seq=3,
+            counter=counter,
+            amplitude=amplitude,
+            mode=mode,
+            facing=facing,
+            cw=cw,
+            cohort="upper-900-emission",
+        )
+    for seq, value, owner, owner_word, phase, cw in itertools.product(
+        (0, 1),
+        (-32768, -1500, -1499, -1001, -1000, -999, -501, -500, -1, 0, 1000, 32767),
+        (-1, 1),
+        (0, 1, 2),
+        (0, 1, 6),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=901,
+            seq=seq,
+            value174=value,
+            owner_value174=owner,
+            owner_word730=owner_word,
+            phase=phase,
+            speed_word=0,
+            mode=2.0,
+            y=200.0,
+            vy=0.0,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="upper-901-values",
+        )
+    for value, phase, latch, index, cw in itertools.product(
+        (-32768, -1001, -1000, -999, -521, -520, -501, -500, -499, -1, 0, 999, 32767),
+        (0, 1, 6),
+        (0, 1, -1),
+        (0, 255),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=901,
+            seq=1,
+            value174=value,
+            phase=phase,
+            speed_word=latch,
+            index=index,
+            y=200.0,
+            vy=0.0,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="upper-901-color",
+        )
+    for state, threshold, ypos, vy, value, surface, cw in itertools.product(
+        (0, 1, 32767),
+        (-1.0, 0.0, 1.0, 2.0, float("nan")),
+        (79.5, 80.0, 80.5, float("nan")),
+        (-1.0, 0.5, 1.0),
+        (-749, 0),
+        ("flat", "raised", "step"),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=901,
+            seq=1,
+            state=state,
+            mode=threshold,
+            y=ypos,
+            vy=vy,
+            value174=value,
+            x=639.5,
+            surface=surface,
+            speed_word=1,
+            phase=0,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="upper-901-impact",
+        )
+    for seq, counter, alpha, speed, cw in itertools.product(
+        (2, 3, 4, 5, 6, 7),
+        (-1, 0, 4, 5),
+        (0, 9, 10, 255),
+        (0.0, 0.75, float("nan")),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=901,
+            seq=seq,
+            counter=counter,
+            alpha=alpha,
+            speed=speed,
+            timer=1,
+            cw=cw,
+            cohort="upper-901-fade",
+        )
+    for seq, state, owner_value, amplitude, counter, facing, cw in itertools.product(
+        (0, 1),
+        (0, 1, 2),
+        (-1, 1),
+        (-0.0, 0.25, 1.0, float("nan")),
+        (-1, 0, 17, 123456789),
+        (-128, -1, 1, 127),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=902,
+            seq=seq,
+            state=state,
+            owner_value174=owner_value,
+            amplitude=amplitude,
+            counter=counter,
+            facing=facing,
+            timer=1,
+            cw=cw,
+            cohort="upper-902-rectangles",
+        )
+    for state, match, axis, edge, sign, facing, cw in itertools.product(
+        (0, 1, 2),
+        (0, 1, 2, 3, -1, 4),
+        ("x", "y"),
+        (-0.5, 0.0, 0.5, float("nan")),
+        (-1, 0, 1),
+        (-128, -1, 1, 127),
+        (0x27F, 0x37F),
+    ):
+        # Keep the other coordinate and velocity inside both rectangles.
+        case = dict(
+            action=902,
+            seq=2,
+            state=state,
+            match_identifier=match,
+            x=500.0,
+            y=100.0,
+            vx=0.0,
+            vy=0.0,
+            facing=facing,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="upper-902-portals",
+        )
+        if axis == "x":
+            case["x"] = (600.0 if sign >= 0 else 400.0) + edge
+            case["vx"] = float(sign * facing) if abs(facing) == 1 else float(sign)
+        else:
+            case["y"] = (200.0 if sign >= 0 else 0.0) + edge
+            case["vy"] = float(sign)
+        yield case
+    for state, axis, sign, cw in itertools.product(
+        (1,), ("x", "y"), (-1, 1), (0x27F, 0x37F)
+    ):
+        for match in (0, 1, 2, 3, -1, 4):
+            yield dict(
+                action=902,
+                seq=2,
+                state=state,
+                match_identifier=match,
+                x=701.0
+                if axis == "x" and sign > 0
+                else 299.0
+                if axis == "x"
+                else 500.0,
+                y=301.0
+                if axis == "y" and sign > 0
+                else -101.0
+                if axis == "y"
+                else 100.0,
+                vx=float(sign) if axis == "x" else 0.0,
+                vy=float(sign) if axis == "y" else 0.0,
+                facing=1,
+                counter=1,
+                timer=1,
+                cw=cw,
+                cohort="upper-902-secondary",
+            )
+    for action, seq, xpos, ypos, cw in itertools.product(
+        (900, 901, 902),
+        (1, 2),
+        (-101.0, -100.0, 39.5, 40.0, 1240.0, 1240.5, 1380.0, 1381.0, float("nan")),
+        (-201.0, -200.0, 80.0, 900.0, 901.0, float("nan")),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            x=xpos,
+            y=ypos,
+            vx=0.0,
+            vy=0.0,
+            phase=0,
+            state=2,
+            counter=1,
+            timer=1,
+            mode=1000.0,
+            cw=cw,
+            cohort="upper-bounds",
+        )
+    for action, seq, terminal in itertools.product(
+        (900, 901, 902), range(8), (False, True)
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            terminal=terminal,
+            frame=2,
+            owner_value174=1,
+            state=2,
+            counter=1,
+            timer=2,
+            y=200.0,
+            mode=1000.0,
+            cohort="upper-animation",
+        )
+
+    for xpos, vx, facing, cw in itertools.product(
+        (39.5, 40.0, 1240.0, 1240.5, float("nan")),
+        (-1.0, 0.0, 1.0, float("nan")),
+        (-128, -1, 0, 1, 127),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=901,
+            seq=1,
+            x=xpos,
+            y=200.0,
+            vx=vx,
+            vy=0.5,
+            facing=facing,
+            value174=0,
+            speed_word=1,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="upper-901-steering",
+        )
+    for angle, speed, amplitude, facing, trigger, cw in itertools.product(
+        (-0.0, 37.25, 180.0, float("nan")),
+        (0.0, 0.0001, 17.25),
+        (0.0, 0.25),
+        (-128, -1, 1, 127),
+        (0, 1),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=901,
+            seq=0,
+            heading_parameter=angle,
+            speed=speed,
+            amplitude=amplitude,
+            facing=facing,
+            owner_word730=trigger,
+            value174=0,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="upper-901-orbit",
+        )
+
+
 def main():
     global O
     parser = argparse.ArgumentParser(description=__doc__)
@@ -2282,7 +2661,14 @@ def main():
         action="store_true",
         help="include858/866/869 with terrain inputs and all preceding matrices",
     )
+    parser.add_argument(
+        "--actions-900-902",
+        action="store_true",
+        help="include900/901/902 and all preceding matrices",
+    )
     args = parser.parse_args()
+    if args.actions_900_902:
+        args.orbit_projectiles = True
     if args.orbit_projectiles:
         args.sibling_projectiles = True
     if args.sibling_projectiles:
@@ -2342,6 +2728,8 @@ def main():
         all_cases.extend(sibling_projectile_cases())
     if args.orbit_projectiles:
         all_cases.extend(orbit_projectile_cases())
+    if args.actions_900_902:
+        all_cases.extend(upper_projectile_cases())
     if args.cohort:
         available = {case.get("cohort", "scalar") for case in all_cases}
         if set(args.cohort) - available:

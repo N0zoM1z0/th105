@@ -290,63 +290,60 @@ aggregate replay is claimed.
 
 ## Current ReimuObject update source phase
 
-Active source recovery is the authored496540 update root, not another
-initializer spelling control. Its existing ownership remains46128 bytes across
-three code ranges, without a root implementation/match row. A new target-only
-auditor closes all10670 instructions and22 switches:404 actual direct CALLs to
-25 targets,68 RETs. The old405/26 raw-E8 diagnostics include an E8 inside
-FLD1 at49C35A;4C611D is not an actual callee. Main-span ranking omits61 actual
-remote calls, so use the complete packet for source dependencies.
+Active source recovery remains authored update root496540 with46128 owned
+bytes across three code ranges and no implementation/match row. Fresh raw CFG
+closes10670 instructions/22 switches/404 direct CALLs to25 targets/68 RETs.
+RawE8 at49C35B remains inside FLD1, not a call to4C611D. Use the complete root
+packet for dependencies, not the provisional39853-byte main span.
 
-Handwritten `ReimuObjectActionStateStaging.cpp/.hpp` now handles
-800/801/804/807/808/810/811/812/815/816/817/821/822/825/848/850/851/852/
-853/854/855/856/858/859/860/861/866/869/980/998 and actual defaults. Its bool is
-a coverage result rather than the original void boundary;11 concrete arms
-remain open:900..908/951/999. Final native comparison passes0/88054, including
-all68782 preceding inputs:80344 real RETs,4600 unparented/1151 owned/472 parented
-entries,915 secondary-setup,26 effect,114 wave,24 CRT errno and408 CRT quiet-NaN
-handler entries. The report visits5499 target root instruction addresses.
-No root source-present
+Handwritten `ReimuObjectActionStateStaging.cpp/.hpp` now covers33 concrete arms
+and defaults:800/801/804/807/808/810/811/812/815/816/817/821/822/825/848/850/851/
+852/853/854/855/856/858/859/860/861/866/869/900/901/902/980/998. The bool is a
+coverage result rather than the original void ABI. Eight remain:903..908/951/
+999. Final emulated native0/103386 includes all88054 prior inputs:
+93068 real RETs,7112 unparented/1151 owned/472 parented entries,
+915 secondary-setup,26 effect,114 wave,24 CRT errno and504 quiet-NaN handler
+entries;6595 target root instruction addresses are visited. No root source-present
 or canonical exact credit is added.
 
-858 preserves the signed-byte phase4 gate, ground collision/frame selection,
-ordered outside bounds and post-animation release without a counter0 guard.
-Its vslot1C is int thiscall(short) at45C180, not the former placeholder.866
-preserves the initial-state switch without immediate fade, old-speed orientation
-and actor terrain lookup before following owner616.869 preserves owner669 orbit
-stores/association, signed owner7CA, parent-counter pulse and counter<15 fade.
-Its byte33C write is now typed with an offset assertion; staging size388 stays
-fixed. Returning866 loops/869 generation graphs and earlier world/setup paths
-remain hypotheses beyond the actual first-entry stops.
+900 preserves selector-dependent four-word thresholds, both phase helpers,
+signed counter%6 and its distinct110/111 fade. For selector values outside0..3,
+the four-word request's last word is not established by caller assignments;
+this phase does not invent a default or prove the runtime enum range.901
+preserves signed word174 wrap, color truncation before deduction500, ordered
+bounce > versus unordered destruction, and all bounce writes before the real
+terrain/spawn entry.902 publishes two interleaved owner rectangles and keeps
+velocity reflection before first generation, reposition/state writes after it.
+The second rectangle requires selector2/3. Staging byte110/word174 gain offset
+assertions; size388 and accepted shared headers remain fixed. Returning world
+loops/requests and their payload mutation remain unknown.
 
-Terrain inputs are built by actual434EE0/CRT execution: flat0, raised12.5 and
-step-8/32 across1280 cells. The auditor observes each incoming435D60 receiver/X
-before executing it. Eight compiled wrong controls fail300/1320,240/480,
-312/2160,288/480,90/210,48/720,48/96 and240/1920. The release error changes only
-trace. The wrong height receiver has48 argument-only differences that final
-snapshots would miss, plus18 trace and24 endpoint differences.
+Eight compiled wrong controls fail16/1152,204/2592,52/468,72/2160,72/2160,
+128/1536,48/3456 and16/48. The first changes only the endpoint; the rectangle
+error changes only owner bytes. Current replay30544 bytes/SHA20b36c4c retains
+incoming orientation0/400, alpha0/1170 and both808/812 conditional caller proofs.
+VC8 now hoists808 variant1 into EBX at800027. The updated audit validates that
+exact dispatch prefix and25 case-to-window instructions, including partial
+EBX aliases. Old EBP/immediate forms still pass; compiled wrong variant2 fails.
+No returning-world execution is substituted by this stack proof.
 
-Do not generalize435D60's finite clamping to NaN. Under mapped dispatch7039C8=0,
-the emulated x87 conversion yields index-1, reading6FA894 before the array;
-its mapped zero does not establish its runtime value. A supplemental72-context
-matrix compares both supplied dispatch values/CW27F/37F/masked MXCSR1F80:
-60 finite prefixes agree and12 nonfinite contexts are hardware-unqualified.
-Unicorn1.0.2's original isolated CVTTSD2SI gives7FFFFFFF/MXCSR1F80 for qNaN;
-the public host intrinsic probe measures80000000/1F81. The report records
-`matches_hardware_nan_contract=false`. Exit0 means equal emulated prefixes,
-not hardware acceptance; no target/helper result is patched. The88054 main
-matrix retains mapped dispatch0 and its emulated diagnostic scope.
+Raw47095F/47096A again establishes the runtime6FA894 setup store, also consumed
+by900/902. The terrain probe now supplies match identifiers0..3:288 equal
+emulated prefixes,240 finite and48 hardware-unqualified nonfinite contexts.
+With mapped CRT dispatch0, NaN index-1 reads the supplied identifier bits at
+6FA894 as float, rather than necessarily zero. The isolated original SSE
+conversion model still differs from the repeated host probe:
+7FFFFFFF/MXCSR1F80 versus80000000/1F81. Report qualification stays false; exit0
+means equal emulated prefixes, not exceptional hardware acceptance. No target
+code, conversion result or helper return is patched.
 
-Incoming orientation0/400, alpha0/1170 and both808/812 caller proofs pass on
-the24544-byte replay0b779207, retaining their conditional-return/payload limits.
-Nonnull rendering, arbitrary alias/resource states, unmasked exceptions and
-returning world/CRT behavior remain unknown. See
-[858/866/869 evidence](REIMU_OBJECT_858_869_2026_10_20.md) for current pins,
-counterexamples and model limits; earlier details remain linked. Fresh direct
-read-only Ghidra preserves all nine primary DB pins and removes its alias.
-All18 members of three affected accepted helper units replay exact; accepted
-shared headers/helpers/flags/partitions/public bindings are unchanged. Next
-recover900..908/951/999; preserve Fighter478FA0 and entry4A1CE0 state.
+See [900/901/902 evidence](REIMU_OBJECT_900_902_2026_10_20.md) for current pins,
+inputs, controls and limits; earlier scopes remain linked. Fresh direct
+read-only/no-analysis Ghidra independently attests target/import/entry/mapped
+text/root/vtable and preserves all nine primary DB pins, with alias removed.
+All eight accepted members across runtime/atan2/stage-geometry units replay
+exact. Accepted helpers/shared headers/flags/partitions/public bindings remain
+unchanged. Next recover903..908/951/999; preserve Fighter478FA0 and entry4A1CE0.
 
 ## Shared Object action980 exact checkpoint
 
