@@ -13,8 +13,8 @@ public:
     virtual void set_texture_options(unsigned int, int, int, unsigned int,
                                     unsigned int, int, int);
     virtual void set_texture(unsigned int, int, int, unsigned int, unsigned int);
-    // Unused marker for the observed +18 slot; its source signature is unknown.
-    virtual void slot_18();
+    // Observed +18 rectangle entry4070C0 consumes four float edges (RET16).
+    virtual void render_rectangle(float left, float top, float right, float bottom);
     virtual void render(float x, float y);
     virtual void render_plain(float x, float y);
     unsigned char unmodeled_080[0x14];
@@ -30,7 +30,10 @@ public:
     }
     virtual void render(float x, float y);
     virtual void render_plain(float x, float y);
-    unsigned char unmodeled_094[0x0c];
+    // Renderer41B3F0 reads these as two float UV spans and a 32-bit mode.
+    float u_span_94;
+    float v_span_98;
+    int fill_mode_9c;
     void *value_a0;
 };
 
@@ -45,8 +48,9 @@ public:
     virtual void multiply_color(unsigned int color);
     virtual void render_offset(float x, float y);
     virtual void render();
-    // Unused marker for the observed +18 slot; its source signature is unknown.
-    virtual void slot_18();
+    // Observed +18 empty entry40AE60 consumes three words (RET12).
+    // Their original semantic types remain unproved.
+    virtual void slot_18(unsigned int, unsigned int, unsigned int);
     float value_08;
     float x_0c;
     float y_10;
@@ -84,6 +88,9 @@ void CDesignGageLifetime::multiply_color(unsigned int color)
 }
 
 typedef char GageSpriteSize[sizeof(GageSpriteLifetime) == 0x94 ? 1 : -1];
+typedef char GageUSpanOffset[offsetof(CGageLifetime, u_span_94) == 0x94 ? 1 : -1];
+typedef char GageVSpanOffset[offsetof(CGageLifetime, v_span_98) == 0x98 ? 1 : -1];
+typedef char GageFillModeOffset[offsetof(CGageLifetime, fill_mode_9c) == 0x9c ? 1 : -1];
 typedef char GagePointerOffset[
     offsetof(CGageLifetime, value_a0) == 0xa0 ? 1 : -1];
 typedef char GageSize[sizeof(CGageLifetime) == 0xa4 ? 1 : -1];

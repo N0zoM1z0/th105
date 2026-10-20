@@ -3191,3 +3191,27 @@ required_dword_values = [
   { address = "0x0041D570", value = "0xE8CB8B56" },
   { address = "0x0041D574", value = "0xFFFF2D58" },
 ]
+
+[[rules]]
+id = "gage-render-vslot-authored-106a"
+addresses = ["0x0041B3F0"]
+expected_count = 1
+expected_bytes = 1010
+expected_names = ["sub_41B3F0"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact CGage scalar deleting destructor40AD60 publishes RTTI-owned vtable6D6A38, whose +1C slot owns this complete1010-byte/323-instruction RET8 renderer. All instructions are reachable with closed local control flow;14 following INT3 bytes are excluded. Three game-specific fill modes crop vertex geometry/UV from the owned value provider before orientation-table rotation, texture binding and D3D submission. The vptr store, slot, full body hash and selected helper calls are replayed. Source-present and origin ownership are separate from comparison: the selected strict source remains nonexact at41B54A/+15A. docs/GAGE_RENDER_2026_10_20.md."
+required_dword_values = [
+  { address = "0x0040AD6D", value = "0x006D6A38" },
+  { address = "0x006D6A54", value = "0x0041B3F0" },
+]
+required_body_hashes = [
+  { address = "0x0041B3F0", size = 1010, sha256 = "67b9378f09e92621dad4bba0410f9aa4905bf24a8a73dd3e4440489bf860eedb" },
+]
+required_selected_body_calls = [
+  { owner = "0x0041B3F0", site = "0x0041B661", target = "0x004063D0", target_status = "implemented" },
+  { owner = "0x0041B3F0", site = "0x0041B673", target = "0x00406360", target_status = "implemented" },
+  { owner = "0x0041B3F0", site = "0x0041B79C", target = "0x00404DF0", target_status = "identified" },
+]

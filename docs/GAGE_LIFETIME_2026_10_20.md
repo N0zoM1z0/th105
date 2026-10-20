@@ -103,9 +103,18 @@ the observed fields/tables/factory slice; its private recipe is
 views also reproduce all five bodies; only the latter is selected, to keep
 the observed physical slots without expanding a shared header.
 
-Selected CRLF source SHA256:
+Selected CRLF source SHA256 at commit74ccfae:
 338fd39a66984f89cd8d27fb72005a71fdc84202a589f8d2fdf0f1101a077492.
 The first formal COFF SHA256 is
 dd37ac6339c46d1b7adaf6a9e27515abdb47303ea3b62e810fa00f7df3e650a0;
 frozen copies are `selected.cpp`/`selected.obj` in that scope. Canonical body
 hashes above are independent of raw COFF timestamps.
+
+October21 follow-up: complete renderer41B3F0 recovery names the original
+twelve bytes at94 as two float UV spans and a32-bit fill selector, and refines
+two previously opaque slot declarations using observed RET16/RET12 contracts.
+All five accepted lifetime/color bodies freshly replay exact. Current source
+pins and the focused receipt are in
+[the rendering record](GAGE_RENDER_2026_10_20.md#affected-accepted-unit-and-reproduction).
+The old source/COFF pins above describe the original acceptance epoch; they
+do not purport to hash the later source. Renderer41B3F0 remains nonexact.

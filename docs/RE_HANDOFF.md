@@ -1,8 +1,12 @@
 # TH10.5 reconstruction handoff
 
-Current as of 2026-10-20. Phase: active TH105 exact reconstruction; the latest
-accepted bounded result is the CGage/CDesignGage lifetime/color family: five
-complete functions/153 bytes exact. CNumber's40ADB0 destructor remains40/40.
+Current as of 2026-10-21. Phase: active TH105 exact reconstruction; CGage
+renderer41B3F0 now has complete1010-byte/323-instruction source, nonexact at
+41B54A/+15A in two multiplication operand-order pairs. Native prefixes agree
+for4490 cases; two wrong-source controls each detect640 differences. The latest
+accepted result remains the CGage/CDesignGage lifetime/color family: five
+complete functions/153 bytes, freshly replayed exact after local field/slot
+type refinement. CNumber's40ADB0 destructor remains40/40.
 ReimuObject update496540's requested full canonical exact result is not yet
 achieved. Its latest selected recovery covers seventeen ordered
 store groups and902's typed owner-member publications. Live ledgers and fresh
@@ -135,6 +139,7 @@ and [the October20 handoff snapshot](RE_HANDOFF_HISTORY_2026_10_20.md).
 
 | Address / scope | State and remaining question | Evidence |
 | --- | --- | --- |
+| 41B3F0 CGage renderer | Complete source-present1010/323; strict comparison nonexact at41B54A/+15A. Only four instructions in two vertical-mode multiplication pairs differ; other319 including full COM tail match. Native0/4490 stops atRET or real texture-bind entry; wrong NaN/UV controls640 each. Original compiler/source context remains open; no exact credit. | [Gauge rendering](GAGE_RENDER_2026_10_20.md) |
 | 40AD60/40BAC0 and40AF00/10/20 gauge family | Newly accepted56/64/11/11/11. RTTI and factory prove CGage member+18/value+A0; ordinary lifetime and color calls match all five bodies. Constructor/full runtime virtual recovery remains open. | [Gauge lifetimes](GAGE_LIFETIME_2026_10_20.md) |
 | 40ADB0 CNumber normal destructor | Newly accepted40/40. An explicit embedded-tile destructor naturally restores member-before-base vptr order. All five affected lifetime functions compare exact; no shared-header/profile/layout change. | [Member lifetime](CNUMBER_MEMBER_DESTRUCTOR_2026_10_20.md) |
 | 478FA0 Reimu Fighter root | Declaration-only; complete genuine82808-byte payload remains nonexact at4791BD/+541. Selected source7650c8d3, payloadfbc0293d; all153 RET memberships agree.300/320 physical CALL ownership,616 effect preparation and720 request indexing remain open. | [616 completion](REIMU_616_SHARED_COMPLETION_2026_10_20.md), [300/320 controls](REIMU_300320_IDENTITY_CONTROLS_2026_10_20.md) |

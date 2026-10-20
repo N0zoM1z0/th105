@@ -1472,3 +1472,4 @@ CDesignGage_set_color,0x0040AF00,function
 CDesignGage_set_vertex_colors,0x0040AF10,function
 CDesignGage_multiply_color,0x0040AF20,function
 CDesignGage_scalar_deleting_destructor,0x0040BAC0,function
+CGage_render,0x0041B3F0,function

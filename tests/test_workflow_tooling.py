@@ -67,21 +67,25 @@ class WorkflowToolingTests(unittest.TestCase):
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1455)
+        self.assertEqual(len(implemented), 1456)
         root = next(row for row in functions if row["address"] == "0x00496540")
         self.assertEqual(root["status"], "implemented")
         self.assertEqual(root["match_percent"], "0.00")
         self.assertIn(root["proposed_name"], implemented)
+        gage = next(row for row in functions if row["address"] == "0x0041B3F0")
+        self.assertEqual(gage["status"], "implemented")
+        self.assertEqual(gage["match_percent"], "0.00")
+        self.assertIn(gage["proposed_name"], implemented)
         self.assertEqual(
             len(self.validator.rows(ROOT / "config" / "matches.csv")), 1346
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 528)
+        self.assertEqual(len(manifest["units"]), 529)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1463,
+            1464,
         )
         root = manifest["units"]["gpt-web-reimu-object-action-state"]
         self.assertEqual(root["kind"], "probe")
@@ -988,6 +992,8 @@ class WorkflowToolingTests(unittest.TestCase):
         accepted = self.exact_replay.accepted_functions(units)
         self.assertEqual(len(accepted), 480)
         self.assertEqual(sum(map(len, accepted.values())), 1346)
+        self.assertNotIn("gpt-web-gage-render", accepted)
+        self.assertNotIn("0x0041B3F0", set().union(*accepted.values()))
         self.assertEqual(accepted["gpt-web-gage-lifetime"], {
             "0x0040AD60", "0x0040BAC0", "0x0040AF00", "0x0040AF10", "0x0040AF20",
         })
@@ -1690,7 +1696,7 @@ class WorkflowToolingTests(unittest.TestCase):
         )
         self.assertIn("Canonical exact functions | 1,346", markdown)
         self.assertIn("Canonical exact authored bytes | 229,840", markdown)
-        self.assertIn("Source-present authored mappings | 1,455", markdown)
+        self.assertIn("Source-present authored mappings | 1,456", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )

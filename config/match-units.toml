@@ -20009,3 +20009,24 @@ symbol_base = "?set_vertex_colors@CDesignGageLifetime@th105@@UAEXPBI@Z"
 [[units.gpt-web-gage-lifetime.functions]]
 address = "0x0040AF20"
 symbol_base = "?multiply_color@CDesignGageLifetime@th105@@UAEXI@Z"
+
+
+[units.gpt-web-gage-render]
+kind = "probe"
+source = "src/ui/GageRender.cpp"
+object = "build/match-units/GptWeb_GageRender.obj"
+profile = "vc8-sp1-probe-o2-fp-strict"
+enable_gs = false
+notes = "Complete CGage vslot1C41B3F0 source; all1010 bytes/323 reachable instructions are compared. Source is1010/323 but nonexact at41B54A/+15A: two vertical-mode multiplication operand-order pairs remain. All other instructions, geometry/UV writes, branch layout, rotation and COM tail match; no partial exact credit. docs/GAGE_RENDER_2026_10_20.md."
+
+[[units.gpt-web-gage-render.functions]]
+address = "0x0041B3F0"
+symbol_base = "?render@CGageRenderView@th105@@QAEXMM@Z"
+rel32_targets = [
+  "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
+  "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+  "?bind_texture@TitleResourceManager@th105@@QAEXIH@Z=0x00404DF0",
+]
+dir32_targets = [
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=g_render_mode_manager_device_base",
+]
