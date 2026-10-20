@@ -290,92 +290,71 @@ aggregate replay is claimed.
 
 ## Current ReimuObject update source phase
 
-Authored root496540 remains source-present for all41 actions/defaults under
-void/ECX/RET0 and vslot28 after opaque24. The genuine source-construction table
-has11 entries and accepted4937D0 ignores update EAX. No root exact row or
-remote_exact flag is added. The unchanged owned-extent unit compares all46138
-physical bytes through4A197A:46128 owned instruction bytes and10 alignment
-bytes. The39853-byte main-span candidate and ownership ranges are unchanged;
-no chunk or alignment is skipped.
+Authored496540 remains source-present for all41 actions/defaults under
+void/ECX/RET0 and vslot28 after opaque24. Accepted4937D0 ignores update EAX.
+The39853-byte main-span candidate and ownership ranges remain provisional;
+all46138 physical bytes through4A197A are compared, including46128 owned
+instruction bytes and10 alignment bytes. No root exact row or authored-byte
+credit is added.
 
-Current source keeps fourteen real request arrays alive through one shared
-World/retirement tail for822/869/900/901/902/903/908. Pure selected action,
-pointer and word count fields carry actual request data; actor coordinates
-and unsigned API facing remain fresh reads after earlier opaque calls.
-World499DF8/RET499E0E and source80A6B4/80A6CA each have exactly that seven-action
-membership. All99 physical World site memberships agree across42 outer action
-entries;24/25 direct-callee partitions agree. Animation22/12 remains open.
+Current source gives812 sequence2 its local vslot0C select_sequence(3)/return;
+sequence1 retains the target's810/812 shared call.812 normal animation and
+sequence2 retirement tests are now local. Target812 interval497DC8..498328
+is1376 bytes/334 instructions, not a standalone compiler boundary. Independent
+sequence-only, animation-only and combined builds isolate the two residuals.
+All controls pass actual prefixes, while only the combined source passes both
+physical memberships and the joint call graph. No ABI, FP profile, field,
+packet lifetime, binding, padding or fabricated behavior change is used.
 
-903 now separates selector2/3 four-sector loops, preserving its common real
-sector/final packet and distinct owner-death packet. Its target interval
-49E38C..49E901 has328 instructions/1397 bytes, not a compiler boundary.
-The new world-sharing audit passes540 actual903 first-entry prefixes (hash
-151faeff), four conditional normal-return call-loop projections and joint4/4
-calls. Baseline, split-only and join-only controls all pass those prefixes but
-fail the full World/loop conjunction: World104,105,98 respectively versus99.
-Local decrement/return and goto-retire variants emit identical selected code.
-Loop bounds/predicates, returning World behavior and arbitrary aliases remain
-outside the projection; no replacement opaque returns are used.
+New public812 flow audit passes2438 actual inputs (2428 action812,10 action810),
+hashb2bcfe07:2312 real root RETs and126 first World entries. It observes all
+three812 indirect sites' original vtables, actual callees, ECX and arguments:
+497F06/14/45C220 private812,4976E3/0C/45C390 shared810/812,49826B/0C/45C390
+private812; both slot0C calls push3. Source sites801742,80196F,801ABF preserve
+those exact memberships. Five sequence projections and the joint15/15 physical
+call graph agree conditional on normal ABI returns. Other indirect identities,
+predicates, loop bounds and arbitrary vtables/aliases/resources are not proved.
+The existing unescaped float812 eight-iteration caller proof remains separate.
 
-The larger supported lifetime context also closes900's preceding local
-producer/store residual. Its unchanged scalar selector now has one source
-FSTP806139, directly fed by the four target float literals, without a scalar
-spill or FP profile change. Public900 v2 passes ten compared prefixes, two
-target-only invalid-selector observations (hash1cdacb68), four/joint13-call
-graphs, shared packet store and direct producer checks. Invalid selectors skip
-the fourth-word store; their source uninitialized domain is not claimed equal.
-The source packet slot is stillF+110 versus targetF+170. Prior eight local
-controls remain phase-scoped negatives, not an LTCG impossibility proof.
+Selected CPP6ac4b36a emits canonical44872/fdf7c248 and native44872/bb0aacc1;
+metadata44004/868, decoded10198/reachable10195, natural438h/first31 bytes.
+Complete comparison remains nonexact at49655F/+31 and owner diagnostics0/43.
+Target/source direct CALLs404/395 to25 callees, indirect CALLs29/29 and RETs68/56.
+Equal indirect totals are not a full callee-identity or exactness claim.
+24/25 direct-callee partitions agree; animation22/13 remains open in other
+actions. RET partitions and stack/register/source/TU/LTCG context remain open.
 
-Current cleaned CPP8f60f8fb emits canonical44764/3c410024 and native44764/a7f74e1e,
-with natural438h/first31 bytes. Complete46138-byte comparison remains nonexact
-at49655F/+31. Source metadata43896/868, decoded10177, statically reachable10173;
-owner diagnostics0/43. Correct total call census is404 direct+29 indirect in
-target,394 direct+28 indirect in source. Earlier404/399 direct counts must not
-be described as total CALL counts. One private812 indirect site remains open;
-source907's physical two-site count is restored under this context, without a
-callee-identity claim. RETs remain68/54 with other membership differences.
-Raw target10670 instructions/22 switches and E8-inside-FLD1 counterexample
-49C35A remain unchanged. No root exact or authored-byte credit is added.
+Prior fourteen real request arrays and three true selected fields still keep
+World499DF8 shared by822/869/900/901/902/903/908, with99/99 physical memberships.
+Source shared World/RET moves to80A721/80A737; the18-byte post-World tail remains
+byte-identical as a diagnostic, without partial exact credit. Separate903
+selector2/3 loops,900's one direct-float-produced packet FSTP,901 scoped fades
+and buffers,804 same-invocation sequence handling and905..908 packet scopes
+remain. Fresh selected regressions passWorld540+180 prefixes/four-joint loops,
+900v2,9010/8/joint23,8040/3144,selector0/16,808/812 caller proofs,orientation400,
+alpha1170 andterrain288. Terrain remains240 finite equal and48 hardware-
+unqualified nonfinite contexts with the measured SSE conversion gap.
 
-Fresh public world/900/9010/8/8040/3144/selector0/16 and808/812 caller,
-orientation0/400, alpha0/1170, terrain288 checks pass. Frozen full-input execution passes0/133192, unchanged hashf46a849f,
-with119356 real RETs and the same opaque/CRT endpoints;9215 target/8806 source
-instructions are visited. Original4937D0 manager0/8556 upper-state/900-gates/
-903-owner/final-state inputs (hash14463238) passes7800 wrapper RETs and756
-first World entries,1802 target/1675 source instructions visited. Its input
-vtable clone, zero freeze/hold and null secondary retain the controlled scope.
-An additional180 retirement-preparation prefixes (hash8882bd57) cover all seven
-actions' first actual requests, with five facings/two x87 precisions.822/901
-burst finals remain conditional static evidence, not fabricated World returns.
-The18-byte post-World decrement/epilogue also agrees; no partial exact credit.
-Five new portable tests reject partial-index writes and opaque control transfers
-around source switch guards, and an unsigned lower bound that cannot protect
-an upper index. Source switch tables stay inside reviewed metadata; unknown
-indirect dispatches reject. No shared header/layout/profile, object partition
-or typed relocation key changes invalidate other accepted units.
+Frozen selected full-input execution passes0/133192, unchanged hashf46a849f,
+with119356 actual RETs and unchanged first opaque/CRT endpoints. It visits
+9215 target/8819 source instructions. Final CPP6ac4b36a, tested COFF4ddc83be
+and nativebb0aacc1 pins agree; no source changes occur during execution.
+All25 typed REL32/121 DIR32/20 scoped literal bindings remain unchanged and
+349 ledger literals/775 explicit mappings/1124 target references pass.
 
-Prior804 independent/same-frame sequence handling,901 scoped fades/request
-lifetimes and905..908 selector/packet scopes remain selected.901's seven/joint
-call projections remain23/23 and its real four-word count3/count4 packet stays
-initialized. Terrain retains240 finite equal prefixes and48 hardware-unqualified
-nonfinite contexts, runtime6FA894 adjacent-word load and measured SSE conversion
-gap. No routine cold aggregate or percentage is claimed.
+Direct Ghidra read-only/no-analysis re-attests file/import,entry,mapped text,
+root hash and vtable, exports812's bounded listing, and preserves all nine
+primary hashes. CPU0/nice10/128MiB heap, one process and alias cleanup remain.
+IDA reports a different executable and contributes no semantic information.
+No shared header/layout/profile/object partition/typed relocation key changes
+invalidate other accepted units. No routine cold aggregate percentage is claimed.
+See [current812 evidence](REIMU_OBJECT_812_FLOW_2026_10_20.md); prior shared World,
+900 producer/World,901,804 and selector pages retain their historical source pins.
 
-Two sequential direct read-only/no-analysis Ghidra runs re-attest target/import,
-entry,mapped text,root,vtable and export bounded shared-tail/903 listings under
-CPU0/nice10/128MiB heap. Both preserve all nine primary DB hashes and remove
-aliases; no decompiler text or IDA semantics is used. See
-[current shared World evidence](REIMU_OBJECT_SHARED_WORLD_2026_10_20.md) for
-source/artifact pins, controls, commands and qualifications. Prior900 producer,
-World,901,804 and selector pages remain historical, with source pins superseded.
-
-Next recover animation call ownership,812 indirect-site and RET partitions from
-complete bounded raw paths. Stack/register placement and source/TU/LTCG context
-remain open. No assembly, copied-byte source, padding, fake returns or LTCG
-impossibility claim is used. Returning opaque graphs, arbitrary aliases/resources,
+Next recover the remaining animation memberships and RET partitions from full
+bounded raw paths. Returning opaque graphs, arbitrary aliases/resources/vtables,
 nonnull rendering and unmasked exceptions remain open. Preserve Fighter478FA0
-and initializer4A1CE0. No root authored-byte credit is added.
+and initializer4A1CE0. No LTCG impossibility or root authored-byte credit is claimed.
 
 ## Shared Object action980 exact checkpoint
 

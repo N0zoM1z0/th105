@@ -619,8 +619,10 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
             if (state_370 < 0.0f)
                 state_370 = 0.0f;
             reinterpret_cast<CharacterObjectRuntime *>(this)->advance_state_six_counter_conditional(3);
-            if (phase_state_180 != 0)
-                goto select_sequence_three;
+            if (phase_state_180 != 0) {
+                select_sequence(3);
+                return;
+            }
             x_ec += static_cast<float>(facing_104) * velocity_x_f4;
             y_f0 += velocity_y_f8;
             break;
@@ -635,7 +637,11 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
             }
             break;
         }
-        goto advance_with_sequence_two_retirement;
+        if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
+            --state_330;
+        if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && sequence_13e == 2)
+            --state_330;
+        return;
 
     case 815:
         if (phase_state_180 == 5)

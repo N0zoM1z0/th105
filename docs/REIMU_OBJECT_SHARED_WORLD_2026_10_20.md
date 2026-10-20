@@ -1,5 +1,9 @@
 # ReimuObject shared World tail and903 selector loops
 
+This records checkpoint093d59b. Its source/payload pins and open812 residual
+are superseded by [the812 checkpoint](REIMU_OBJECT_812_FLOW_2026_10_20.md);
+the World/903 observations remain retained evidence.
+
 Authored root496540 had six copies of one cross-action World tail, while903
 merged two target-distinct selector loops. The selected source now keeps the
 real request objects alive through one shared World call and preserves both
