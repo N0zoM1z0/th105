@@ -1,5 +1,9 @@
 # ReimuObject original lookup returns and direction consumers
 
+Historical checkpoint at3d3486d. Current source pins and the999-only x87
+cleanup ownership are in [the999-tail checkpoint](REIMU_OBJECT_999_TAIL_2026_10_20.md).
+The two direction consumers below remain preserved.
+
 ## Result and limits
 
 Root496540 remains nonexact over its complete46138-byte physical extent.

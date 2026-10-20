@@ -297,6 +297,22 @@ provisional. All46138 physical bytes through4A197A are compared, including
 46128 owned bytes and10 alignment bytes. No root exact/remote_exact row or
 new authored-byte credit is added.
 
+Current999 recovery separates the original sequence1/8 guard chains. Two
+ordinary independent if statements restore both15.0f/0.2f lifetimes, both
+store groups and explicit x87 cleanup. Four12/22/31/15-byte windows agree
+without masks; they are diagnostic only. The cleanup at4A196B/4A196D belongs
+only to999; other concrete actions enter4A196F after it. Shared RET membership
+alone did not establish cleanup ownership. The default now has a private RET,
+and the common RET has41 memberships, matching these target partitions.
+
+The new public999-tail audit passes792 original animation entry/return,
+comparison-operand, x87-value/depth, store and real-RET witnesses, hash65dac03d.
+Both store groups execute four times per side, with12 writes each.788 paths
+use cleanup and four sequence8 successes pop through stores. The old OR
+object still has equal final outputs but all792 event sequences differ and
+is rejected. Target zero-immediate versus source observed-zero EBX/BX
+comparisons remain different; no full-tail/root exactness is inferred.
+
 The real4963A0 phase-counter definition remains visible in this ordinary O2
 TU, with27 root REL32 references to its actual separate COMDAT definition.
 Its unchanged body remains canonical66/66, SHAad12b782, under the mixed
@@ -334,16 +350,19 @@ Scoped manifest/exporter aliases now include float YAMM and legacy double
 YANM for406360/4063D0:27 typed REL32 keys for25 physical targets.121 DIR32/20
 scoped literal mappings are unchanged. Profile, Runtime header/layout,
 ownership manifest and helper bodies are unchanged. Accepted4963A0 remains
-66 exact in the focused formal build; the float-oriented435160 replays57/57.
-Runtime4351C0/64CD00 inputs and acceptance are unchanged.
+66 exact in the focused formal build. The standalone43516057/57 replay is
+from the preceding checkpoint;435160/4351C0/64CD00 unit inputs and acceptance
+are unchanged here. The current private Runtime-visibility control separately
+preserves all57/62/66/73 helper bytes.
 
-Selected CPPfd0916fe/header6f469e68, frozen COFFef533d00, canonical45676/29bd8253
-and native45676/b4a79843 are pinned. Code prefix44808 plus868 metadata,
-10379 decoded/10374 reachable source instructions, natural438h frame and
+Selected CPPa784a274/header6f469e68, frozen COFF7c15116e, canonical45744/b3ba8c1a
+and native45744/08a27d2a are pinned. Code prefix44876 plus868 metadata,
+10397 decoded/10393 reachable source instructions, natural438h frame and
 first31 target bytes. Strict comparison stays nonexact49655F/+31; owner
-instruction/edge diagnostics0/43. Calls remain404 direct/29 indirect; RETs
-remain target68/source61. Existing801/811 join and remaining RET partitions,
-register placement, original source/type/TU/caller context remain open.
+instruction/edge diagnostics1/43 (final31-byte physical region, default plus999 cleanup). Calls remain404 direct/29 indirect; RETs
+are now target68/source62. RET membership distance falls31 to28, a diagnostic
+count only. Existing801/811 join, other RET partitions, register placement,
+original source/type/TU/caller context remain open.
 
 Fourteen real request arrays and three selected fields retain World99/99,
 separate903 selector2/3 loops and the18-byte shared seven-action tail.
@@ -356,9 +375,10 @@ First-frontier slots do not prove returning-World lifetimes.
 
 Frozen selected full-input execution passes0/133192, unchanged hashf46a849f,
 with119356 actual RETs and unchanged opaque/CRT endpoint counts. It visits
-9215 target/8953 source instructions; CPP/header/support/COFF/native pins
-agree before/after. All18 serial negative/owner/runtime checks have expected
-exits, including four rejected compiled controls.
+9215 target/8967 source instructions; source/header/COFF/native/emulator pins
+agree before/after. All17 initial serial selected/negative/owner/runtime checks
+have expected exits. After tightening the standalone999 load-window check,
+its792 selected and previous-object negative inputs replay with current pins.
 812/World/900/901/804/selector and808/812 caller checks, orientation400,
 alpha1170 andterrain288 finish with expected exits. Terrain retains240 finite
 equal plus48 hardware-unqualified nonfinite contexts.349 ledger literals/775
@@ -372,14 +392,14 @@ Raw target and formal source/COFF receipts are the evidence here. IDA's wrong
 executable contributes no semantics. All nine primary Ghidra DB pins stay
 unchanged; no new Ghidra process, boundary or metadata write is used.
 
-Receipts are in build/reimu-object-cleanup-context-20261020; private recipes
-in the matching .analysis scope. See [current direction-return evidence](REIMU_OBJECT_DIRECTION_RETURNS_2026_10_20.md).
+Receipts are in build/reimu-object-x87-cleanup-20261020; private recipes
+in the matching .analysis scope. See [current999-tail evidence](REIMU_OBJECT_999_TAIL_2026_10_20.md).
+The [direction-return checkpoint](REIMU_OBJECT_DIRECTION_RETURNS_2026_10_20.md) keeps historical pins.
 The [counter-context checkpoint](REIMU_OBJECT_COUNTER_CONTEXT_2026_10_20.md)
 and earlier812/animation/World/900/901/804/selector pages retain historical pins.
-Next recover remaining RET sharing and incoming x87 depths: target final
-cleanup has FSTP ST(1)/ST(0) before4A1979, with a separate default4A196A;
-source shares plain80AF05 across all42 entries. Also recover822/900 buffer
-slots and original caller/source/type/TU context, preserving the consumers. Returning
+Next recover remaining RET sharing and zero-register/source/TU lifetimes,
+preserving the999 cleanup/guard chains and prior consumers. Also recover
+822/900 buffer slots and original caller/type context. Returning
 opaque graphs, arbitrary aliases/resources/vtables, nonnull rendering,
 unmasked exceptions and48 terrain nonfinite hardware contexts remain open.
 Preserve Fighter478FA0 and initializer4A1CE0. No full-root exactness or LTCG

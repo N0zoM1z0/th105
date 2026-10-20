@@ -3642,7 +3642,13 @@ retire_801_811:
         if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
             --state_330;
         if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 &&
-                (sequence_13e == 1 || sequence_13e == 8)) {
+                sequence_13e == 1) {
+            velocity_x_f4 = 15.0f;
+            velocity_y_f8 = 15.0f;
+            acceleration_y_100 = 0.2f;
+        }
+        if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 &&
+                sequence_13e == 8) {
             velocity_x_f4 = 15.0f;
             velocity_y_f8 = 15.0f;
             acceleration_y_100 = 0.2f;
