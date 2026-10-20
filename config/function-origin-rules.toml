@@ -3202,7 +3202,7 @@ origin = "authored_game"
 subsystem = "ui"
 disposition = "authored"
 confidence = "observed"
-evidence = "Canonical-exact CGage scalar deleting destructor40AD60 publishes RTTI-owned vtable6D6A38, whose +1C slot owns this complete1010-byte/323-instruction RET8 renderer. All instructions are reachable with closed local control flow;14 following INT3 bytes are excluded. Three game-specific fill modes crop vertex geometry/UV from the owned value provider before orientation-table rotation, texture binding and D3D submission. The vptr store, slot, full body hash and selected helper calls are replayed. Source-present and origin ownership are separate from comparison: the selected strict source remains nonexact at41B54A/+15A. docs/GAGE_RENDER_2026_10_20.md."
+evidence = "Canonical-exact CGage scalar deleting destructor40AD60 publishes RTTI-owned vtable6D6A38, whose +1C slot owns this complete1010-byte/323-instruction RET8 renderer. All instructions are reachable with closed local control flow;14 following INT3 bytes are excluded. Three game-specific fill modes crop vertex geometry/UV from the owned value provider before orientation-table rotation, texture binding and D3D submission. The vptr store, slot, full body hash and selected helper calls are replayed. Source-present and origin ownership are separate from comparison: the live-height strict source remains nonexact at41B580/+190, with one multiplication load-order pair unresolved. docs/GAGE_RENDER_CONTEXT_2026_10_21.md."
 required_dword_values = [
   { address = "0x0040AD6D", value = "0x006D6A38" },
   { address = "0x006D6A54", value = "0x0041B3F0" },

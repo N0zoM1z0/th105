@@ -20017,7 +20017,7 @@ source = "src/ui/GageRender.cpp"
 object = "build/match-units/GptWeb_GageRender.obj"
 profile = "vc8-sp1-probe-o2-fp-strict"
 enable_gs = false
-notes = "Complete CGage vslot1C41B3F0 source; all1010 bytes/323 reachable instructions are compared. Source is1010/323 but nonexact at41B54A/+15A: two vertical-mode multiplication operand-order pairs remain. All other instructions, geometry/UV writes, branch layout, rotation and COM tail match; no partial exact credit. docs/GAGE_RENDER_2026_10_20.md."
+notes = "Complete CGage vslot1C41B3F0 source; all1010 bytes/323 reachable instructions are compared. A live height reference restores41B549/41B54F. Source remains nonexact at41B580/+190: one multiplication load-order pair differs, while all other321 instructions match. Geometry/UV writes, branch layout, rotation and COM tail retain equality; no partial exact credit. docs/GAGE_RENDER_CONTEXT_2026_10_21.md."
 
 [[units.gpt-web-gage-render.functions]]
 address = "0x0041B3F0"

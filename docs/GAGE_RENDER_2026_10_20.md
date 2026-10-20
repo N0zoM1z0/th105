@@ -1,5 +1,11 @@
 # CGage renderer: complete source, two remaining instruction pairs
 
+This page records the source/receipt epoch at commitab89484. The later
+[live-height context checkpoint](GAGE_RENDER_CONTEXT_2026_10_21.md) supersedes
+its selected source and first-mismatch location, leaving one pair unresolved.
+The target observations and frozen earlier receipts below remain historical
+evidence with their own pins.
+
 Work started October20 and recorded October21,2026. `CGage_render @41B3F0`
 is now source-present, **not exact**. The complete target and selected source
 both contain1010 bytes/323 instructions. Four instructions in two vertical-fill

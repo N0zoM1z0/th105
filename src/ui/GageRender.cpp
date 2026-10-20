@@ -56,15 +56,17 @@ void CGageRenderView::render(float x, float y)
         break;
     }
     case 1: {
+        // Live field binding; docs/GAGE_RENDER_CONTEXT_2026_10_21.md.
+        const float &height = height_7c;
         float left = x - pivot_x_80 * scale_x_88 - 0.5f;
         vertices_08[2].x = left;
-        float bottom = y - pivot_y_84 * scale_y_8c - 0.5f + scale_y_8c * height_7c;
+        float bottom = y - pivot_y_84 * scale_y_8c - 0.5f + scale_y_8c * height;
         vertices_08[2].y = bottom;
         float right = width_78 * scale_x_88 + left;
         vertices_08[3].x = right;
         vertices_08[3].y = bottom;
         vertices_08[0].x = left;
-        float top = bottom - fraction * height_7c * scale_y_8c;
+        float top = bottom - fraction * height * scale_y_8c;
         vertices_08[0].y = top;
         vertices_08[1].y = top;
         vertices_08[1].x = right;
