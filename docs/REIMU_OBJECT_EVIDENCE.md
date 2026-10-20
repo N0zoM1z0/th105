@@ -1,14 +1,16 @@
 # ReimuObject evidence index
 
 Start with [the current handoff](RE_HANDOFF.md). The selected496540 source
-epoch is the [selector-order checkpoint](REIMU_OBJECT_SELECTOR_ORDER_2026_10_21.md):
-CPP295be3bc, whole46152-byte canonical7c16e018; the compared46138-byte prefix
-is `c49c7572`. Descending mode order restores12 packet stack offsets for906..908;
-focused26342 inputs pass. The root is source-present and remains nonexact at
-49655F/+31. The same-TU4963A0 helper remains66/66 exact. No root partial-byte,
+epoch is the [821 owner-exit checkpoint](REIMU_OBJECT_821_OWNER_EXITS_2026_10_21.md):
+CPPc79f3975, whole46160-byte canonicalf903cc32; the compared46138-byte prefix
+is b8c885e6. Separate guards recover first-two shared812/821/822 retirement;
+6720 native guard/RET inputs pass and reject the predecessor's tail merging.
+The source-present root remains nonexact49655F/+31, with RET-distance27 and
+call-distance9. Same-TU4963A0 remains66/66 exact. No root partial-byte,
 remote-exact or percentage credit is implied. The preceding
-[905 packet-join checkpoint](REIMU_OBJECT_905_PACKET_JOIN_2026_10_21.md) and its
-full133192 pass are a distinct historical source epoch.
+[selector-order checkpoint](REIMU_OBJECT_SELECTOR_ORDER_2026_10_21.md) retains
+its descending modes/12 packet slots; its26342 pass and the earlier133192 pass
+belong to historical source epochs.
 
 ## How to read the records
 

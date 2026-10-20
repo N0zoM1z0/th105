@@ -545,7 +545,7 @@ class Probe:
             (0x113, "B", case.get("alpha", 200)),
             (0x11C, "f", case.get("scale", 1.25)),
             (0x120, "f", case.get("scale_y", 0.75)),
-            (0x12C, "f", 37.25),
+            (0x12C, "f", case.get("heading", 37.25)),
             (0x130, "I", entry.VECTOR),
             (0x134, "B", 0),
             (0x13C, "h", case["action"]),

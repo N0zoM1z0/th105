@@ -1,14 +1,16 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active ReimuObject496540 exact reconstruction.
-The905..908 match-mode switches now follow the target's physical3/2/1/0 order;
-all12 first-spawn packet stack offsets for906..908 are restored. Focused26342
-inputs and3600 whole-root/helper samples pass. The root remains nonexact at
-49655F/+31;905 packet placement,906/817 call sharing and return layout remain
-open. No new exact function is claimed. The latest accepted entry remains
-CDesignSprite40AEE0 at19/19, with its affected CDesignGage renderers60/68.
-CGage41B3F0 remains nonexact in one multiplication load-order pair; binder404DF0
-remains102/107 nonexact. Live ledgers and fresh comparisons override dated prose.
+Three independent821 owner guards now restore the first-two shared812/821/822
+retirement tail; the final owner-sequence exit stays private. Native6720-input
+guard/RET sharing rejects the predecessor despite equal outputs and passes
+the selected body. Root remains nonexact49655F/+31, with RET-distance29->27
+and call-distance9. The existing descending modes/12 matched packet slots
+remain.905 placement,906/817 sharing and908's post-wave load form stay open.
+No new exact function is claimed. Latest accepted entry remains CDesignSprite
+40AEE0 at19/19, with affected CDesignGage renderers60/68. CGage41B3F0 retains
+its load-order residual; binder404DF0 remains102/107. Live evidence overrides
+historical prose.
 
 ## Target, workflow and acceptance
 
@@ -56,72 +58,88 @@ The provisional39853-byte main candidate and full46138-byte owned comparison
 through4A197A are unchanged:46128 owned bytes plus10 alignment bytes. Raw target
 closure still has10670 instructions,22 switches and68 RETs.
 
-All four target match-mode tables index0/1/2/3 but physically order their
-blocks3/2/1/0. Reordering those four complete source case bodies restores all12
-native first-World packet offsets for906/907/908. Their four distinct packet
-identities and payloads are retained;905's packet placement still differs.
-Period tests, operations, outgoing arguments and breaks are unchanged.905's
-four real live packets still feed its shared second-spawn/wave consumer.
-Earlier local retirement exits, ordered stores and902 typed owner publications
-remain. No shared header, profile, binding or ownership change.
+821's three existing owner action/frame/sequence conditions are now separate
+ordinary guards. Target499C8D and499CA7 retire at4980E4/RET4980F7, shared with
+812/822; the final signed-word comparison retires locally at499CB2/RET499CC5.
+The compiler naturally recovers that first-two sharing. All three20-byte
+write-through-RET tails agree; decrement precedes the x87 pop. Reads, tests,
+short-circuit order and real return/decrement behavior remain. No assembly,
+extra operation, type/ABI/header/profile/binding or ownership change.
 
 | Selected artifact | SHA256 |
 | --- | --- |
-|CPP|`295be3bcbcb2b21cec2c0f09a3f56ae3dcd6fe268f1008b3ca80672598a99797`|
+|CPP|`c79f39751d0a830a4bcb031c6018246ded12cdc1336a65512f73925c64660b5d`|
 |Unchanged header|`6f469e6886959fd41ee6976b3c784c3df0c2e753ad4729a536764a3c8cd28b4b`|
-|Formal COFF|`922a322ed8fd9c608c7a1144e63a13eb15a5bc394b3ad14199373028924d9f5c`|
-|Whole46152-byte canonical source section|`7c16e018acfd53917697ba5d43c874868334adfa819526fc24fa09f71e22a714`|
-|Fixed46138-byte compared prefix|`c49c7572b17f0baadaff6542d4a1a52b9b681f5cfeb55aaf02d0060d2f82a0d1`|
+|Formal COFF|`d336497b21863f18cce457aa292c8e4f5778b71d86253ff813a4edaf7a22cb30`|
+|Whole46160-byte canonical source section|`f903cc3239079239e0c0fff3b6a55f7713966e47053276d0c2cb38d4814346ce`|
+|Fixed46138-byte compared prefix|`b8c885e697245515081bd657fcbee04fd8b9d589f4e085700ff6acdf0defdc0e`|
 
-The root remains **nonexact49655F/+31**, a jump displacement; frame438h remains.
-Source prefix45284 plus868 metadata bytes emits10446 decoded/10445 reachable
-instructions,71 RETs and426 physical calls versus target433. Fourteen extra
-payload bytes are not near-exact evidence. Call-membership distance9,
-RET-distance29 and owner identity1/43 are diagnostics only. Same-TU4963A0
-freshly stays **66/66 exact**, canonicalad12b782. No new exact/partial credit.
+The root remains **nonexact49655F/+31**, a jump displacement, with frame438h.
+Source prefix45292 plus868 metadata bytes has10449 decoded/10448 reachable
+instructions,426 calls and71 RETs versus target433 calls/68 RETs. RET-membership
+distance29->27 reflects only812/822 becoming812/821/822. Call-distance9 and
+owner identity2/43 are diagnostics, not exact/partial-byte credit. Twenty-two
+extra source payload bytes are not near-exact evidence. Same-TU4963A0 stays
+**66/66 exact**, canonicalad12b782. No new match or remote exact flag.
 
-906 still shares three final-World/wave pairs kept private by the target;
-817 advance still shares with860/861.905 retains its corrected call graph.
-Source-to-source full instruction/edge diagnostics leave31/43 physical owners
-identical. Six earlier owners only retarget the moved shared World tail;
-951 changes temporary registers and the default owner gains a compiler NOP.
-The shared seven-action18-byte post-World tail remains byte-equal. The complete
-World-site check still rejects99 target versus96 source sites; its540 actual903
-and180 retiring-request prefixes and conditional903 call graphs still agree.
+905's live packets/shared second-spawn/wave and descending905..908 cases
+remain; all12 first-packet slots for906..908 stay matched, while905 differs.
+906 still shares three final-World/wave pairs and817 shares advance with860/861.
+Earlier local retirements, ordered stores and902 typed publications remain.
 
-Focused26342 inputs in24 affected high/final cohorts pass with zero output,
-ordered-write and retirement-live-x87 differences, input6031e9a6. CPU0/nice10:
-115.67s wall time, peak RSS198232KiB.3600 whole-root stride37 inputs and the
-same3600 helper-entry inputs pass, inpute90a5943;4359F0 remains unvisited.
-These samples do not execute all typed stores.902's static spill/reload and
-822's heading pair remain; the post-opaque822 pair has zero executions.
-Scoped905/907/908 passes12 actual first prefixes/conditional call graphs;
-the default still rejects906.16 native packet observations confirm the12
-restored slots. Original opaque World/driver/CRT returns are never fabricated.
-Logical x87 diagnostics exclude physical TOP/flags.
+Full source-to-source instruction/edge diagnostics leave28/43 physical owners
+identical. Other observed changes include loop alignment,901's jump over
+padding,902/907 branch widths and default NOP removal. A second graph
+check aligns identical instructions within each owner and checks all edges and
+tables. Excluding recorded NOP forms,38/43 owners agree;821/901/902/907/908
+differ. These are not relaxed canonical acceptance rules.
 
-The predecessor's full133192/hashf46a849f receipt belongs to CPP1c9a12c4 and
-is not reissued or bridged to this changed root. Full native byte equality
-bridges the order-control to the tested formal COFF and that COFF to the final
-rebuild after CSV line-ending normalization. It preserves only the new scoped
-receipts. No all-unit replay or aggregate percentage is claimed.
+908's post-wave field374+word366 addition changes from the target/predecessor's
+FLD-before-FILD/FADDP form to FILD/FADD-memory. The arithmetic still uses the
+same fields, but that load/x87 form remains unresolved and its opaque
+continuation is unexecuted. A real used heading snapshot is byte-neutral
+and unselected. Do not claim that finite prefix replay certifies this window.
 
-Four genuine906 argument/type/counter-scope/spawn-visibility controls reproduce
-the predecessor's complete46148-byte b12eab22 body unchanged. Visible64CCB0
-independently stays78/78. A905 case-scoped packet/shared-consumer control is
-also byte-neutral against the new selection. They are unselected; no universal
-source/compiler or LTCG barrier follows.906's earlier PUSH3 scheduling alone
-does not establish argument-expression source spelling.
+New `audit-reimu-object-821-owner-exits.py` passes6720 actual821 sequence3/4
+inputs/hash71ff360c with zero output/write/retirement differences, correct
+physical guard/RET sharing and equal20-byte tails. Signed limits, NaN/Inf and
+two control words are included. Heading bits are checked at entry; the common
+fixture accepts this optional input and retains default37.25. The predecessor
+has zero numerical differences but is rejected for merging all three tails.
+CPU0/nice10 run:16.78s wall, peak RSS139136KiB.
 
-See [selector-order evidence](REIMU_OBJECT_SELECTOR_ORDER_2026_10_21.md),
-[preceding905 packet join](REIMU_OBJECT_905_PACKET_JOIN_2026_10_21.md) and
-[the evidence index](REIMU_OBJECT_EVIDENCE.md). Receipts and frozen inputs are
-in `build/reimu-object-906-tail-20261021/`, with private recipes under the same
-`.analysis/` scope.56 completed unselected files are compressed5248235->666168
-bytes after SHA256 readback. Baseline/selected/order-control inputs stay loose;
-primary databases/tools/target are retained. Original source/TU, arbitrary
-aliases/resources/vtables, nonnull rendering, opaque continuations and
-unmasked exceptions remain open.
+All256 existing owner-follow inputs/hashd8fe09ab pass;3600 whole-root and3600
+helper-entry samples/hashe90a5943 pass.4359F0 remains unvisited. These samples
+do not cover all typed stores;902 spill/reload and822 heading-pair static
+checks remain, with zero post-opaque822 executions. Scoped905/907/908 passes12
+first prefixes and conditional call graphs; default still rejects906. The
+World report remains rejected99/96, while540 actual903/180 retiring prefixes,
+903 conditional graphs and the shared18-byte post-call tail agree. Sixteen
+actual packet prefixes preserve the12 matched906..908 offsets. No opaque
+World/driver/CRT returns are fabricated; logical x87 excludes TOP/flags.
+
+The older26342/133192 receipts belong to preceding source epochs and are not
+reissued or bridged to this changed body. Complete46160-byte native equality
+bridges the guard control to the tested formal COFF and final metadata-only
+rebuild, preserving only the new scoped receipts. No all-unit replay or
+aggregate exact percentage is claimed.
+
+Private descending905 case-local double-spawn/wave control still has six
+extra sites. A private float-packet API with actual unparented/parented bodies
+is whole-root neutral against baseline7c16e018 and compares78/77 bytes exact;
+the original pointee type is not unique from those bytes. No shared declaration
+or ledger binding changes. Earlier source-shape controls remain phase-scoped;
+none establishes a universal source/profile or LTCG barrier.
+
+See [821 owner exits](REIMU_OBJECT_821_OWNER_EXITS_2026_10_21.md),
+[preceding selector order](REIMU_OBJECT_SELECTOR_ORDER_2026_10_21.md) and
+[the evidence index](REIMU_OBJECT_EVIDENCE.md). Receipts/frozen inputs are in
+`build/reimu-object-905-lifetimes-20261021/`, with recipes under `.analysis/`.
+26 completed unselected files are compressed2029617->262971 bytes after SHA256
+readback; an initial ignored-heading receipt is explicitly invalidated in the
+manifest. Baseline/selected/guard-control inputs stay loose; primary DBs,
+canonical target and tools remain. Full canonical equality, original source/TU,
+arbitrary aliases/resources/vtables and unmasked exceptions stay open.
 
 ## Other preserved checkpoints
 

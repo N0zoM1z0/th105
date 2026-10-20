@@ -1209,11 +1209,19 @@ retire_801_811:
             heading_12c = static_cast<float>(heading_12c - 35.0);
             x_ec = *reinterpret_cast<float *>(fighter_owner_348 + 0xec);
             y_f0 = static_cast<float>(*reinterpret_cast<float *>(fighter_owner_348 + 0xf0) + 100.0);
-            if ((*reinterpret_cast<short *>(fighter_owner_348 + 0x13c) != 530 &&
-                    *reinterpret_cast<short *>(fighter_owner_348 + 0x13c) != 531) ||
-                    (*reinterpret_cast<short *>(fighter_owner_348 + 0x13e) == 3 &&
-                     *reinterpret_cast<short *>(fighter_owner_348 + 0x140) >= 4) ||
-                    *reinterpret_cast<short *>(fighter_owner_348 + 0x13e) >= 4) {
+            // Target821 keeps these owner exits separate. The first two
+            // retire through the shared812/821/822 tail; the last is private.
+            if (*reinterpret_cast<short *>(fighter_owner_348 + 0x13c) != 530 &&
+                    *reinterpret_cast<short *>(fighter_owner_348 + 0x13c) != 531) {
+                --state_330;
+                return;
+            }
+            if (*reinterpret_cast<short *>(fighter_owner_348 + 0x13e) == 3 &&
+                    *reinterpret_cast<short *>(fighter_owner_348 + 0x140) >= 4) {
+                --state_330;
+                return;
+            }
+            if (*reinterpret_cast<short *>(fighter_owner_348 + 0x13e) >= 4) {
                 --state_330;
                 return;
             }
