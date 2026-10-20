@@ -1454,3 +1454,5 @@ CDesignGage_set_vertex_colors
 CDesignGage_multiply_color
 CDesignGage_scalar_deleting_destructor
 CGage_render
+CDesignGage_render
+CDesignGage_render_offset

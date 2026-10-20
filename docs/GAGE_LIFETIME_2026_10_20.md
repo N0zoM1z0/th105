@@ -118,3 +118,9 @@ pins and the focused receipt are in
 [the rendering record](GAGE_RENDER_2026_10_20.md#affected-accepted-unit-and-reproduction).
 The old source/COFF pins above describe the original acceptance epoch; they
 do not purport to hash the later source. Renderer41B3F0 remains nonexact.
+
+A separate October21 [design render recovery](GAGE_DESIGN_RENDER_2026_10_21.md)
+accepts40AEA0/40AF30 at60/68 bytes. Its float position reads at04/08 show why
+the retained shared unsigned `IColor::value_04` must not be used as a design
+coordinate declaration. That new private view leaves this lifetime source
+unchanged; original base data ownership remains open.
