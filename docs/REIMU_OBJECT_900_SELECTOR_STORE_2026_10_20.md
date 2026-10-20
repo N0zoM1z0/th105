@@ -11,6 +11,8 @@ It includes46128 owned instruction bytes and10 alignment bytes through4A197A;
 the39853-byte main-span candidate remains provisional. No action interval is
 promoted to a compiler boundary. No root exact or authored-byte credit is added.
 
+Current selected source/artifact pins are superseded by the [shared World checkpoint](REIMU_OBJECT_SHARED_WORLD_2026_10_20.md). Its independently supported cross-action lifetimes also close900 shared-store/direct-producer conditions. Local negative controls below remain phase-scoped evidence.
+
 ## Observed target requirement
 
 Raw900 `[49C9F5,49CEC2)` remains1229 bytes/289 instructions, SHA256
