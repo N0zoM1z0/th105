@@ -4,7 +4,8 @@
 
 namespace th105 {
 
-// Observed runtime view for496540, including the original void entry at slot28.
+// Observed runtime view for496540; this source uses a void entry at slot28.
+// ECX/RET0 are observed; the original C++ return type remains unproved.
 // All41 action bodies are source hypotheses; canonical equality is unaccepted.
 class ReimuObjectActionStateStagingView {
 public:

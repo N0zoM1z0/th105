@@ -26,6 +26,26 @@ public:
         int copied_words, int copied_word_count);
 };
 
+// Source grouping hypothesis: keep the real4963A0 body visible to496540.
+// The helper remains independently canonical; original TU ownership is unknown.
+unsigned char CharacterObjectRuntime::advance_state_six_counter_conditional(
+    int limit)
+{
+    if (phase_state_180 != 6) {
+        goto return_zero;
+    }
+    ++state_six_counter_384;
+    if (limit <= 0 || state_six_counter_384 < limit) {
+        ++phase_index_184;
+        phase_state_180 = 0;
+        goto return_zero;
+    }
+    return 1;
+
+return_zero:
+    return 0;
+}
+
 void ReimuObjectActionStateStagingView::dispatch_action_state()
 {
     float packet_822_health[4];

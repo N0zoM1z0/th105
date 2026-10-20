@@ -1,5 +1,10 @@
 # ReimuObject animation ownership and remaining selector merge
 
+This page records checkpoint e581789. Its source pins and rejected selector
+partition are superseded by [the counter-context checkpoint](REIMU_OBJECT_COUNTER_CONTEXT_2026_10_20.md).
+The commands below describe that earlier source state; the current unit also
+contains the independently canonical4963A0 helper and its stronger audit passes.
+
 ## Current source hypothesis
 
 The authored root496540 now has the target's physical memberships for all25

@@ -986,7 +986,7 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 478)
+        self.assertEqual(len(accepted), 479)
         self.assertEqual(sum(map(len, accepted.values())), 1340)
         secondary = accepted["gpt-web-secondary-animation-runtime"]
         self.assertEqual(
@@ -998,6 +998,17 @@ class WorkflowToolingTests(unittest.TestCase):
             units["gpt-web-secondary-animation-runtime"], secondary
         )
         self.assertEqual(len(view["functions"]), 6)
+        reimu = accepted["gpt-web-reimu-object-action-state"]
+        self.assertEqual(reimu, {"0x004963A0"})
+        self.assertEqual(
+            accepted["cross-v106a-character-object-runtime"],
+            {"0x004351C0", "0x0064CD00"},
+        )
+        view = self.exact_replay.comparison_view(
+            units["gpt-web-reimu-object-action-state"], reimu
+        )
+        self.assertEqual([row["address"] for row in view["functions"]], ["0x004963A0"])
+        self.assertNotIn("0x00496540", set().union(*accepted.values()))
 
     def test_secondary_replacement_uses_native_temporary_find(self) -> None:
         units = self.manifest.load_manifest()["units"]

@@ -28,6 +28,7 @@ world = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(world)
 native = world.native
 ANIMATION = 0x4351C0
+SELECTOR = 0x45C390
 
 
 def cases(entries):
@@ -100,6 +101,124 @@ class SiteProbe(native.Probe):
             )
             self.pending_animation = None
         super().instruction(engine, address, size, unused)
+
+
+class SelectorProbe(native.Probe):
+    def evaluate(self, case):
+        self.selector_events = []
+        self.pending_selector = None
+        result = super().evaluate(case)
+        if self.pending_selector is not None:
+            raise ValueError("witness selector did not return to its actual caller")
+        return result
+
+    def instruction(self, engine, address, size, unused):
+        if address == SELECTOR:
+            stack = engine.reg_read(u.UC_X86_REG_ESP)
+            continuation = struct.unpack("<I", engine.mem_read(stack, 4))[0]
+            if continuation in self.selector_returns:
+                if self.pending_selector is not None:
+                    raise ValueError("nested witness selector")
+                receiver = engine.reg_read(u.UC_X86_REG_ECX)
+                vtable = struct.unpack("<I", engine.mem_read(receiver, 4))[0]
+                actual_slot = struct.unpack("<I", engine.mem_read(vtable + 12, 4))[0]
+                argument = struct.unpack("<I", engine.mem_read(stack + 4, 4))[0]
+                if receiver != native.OWNER or actual_slot != SELECTOR or argument != 2:
+                    raise ValueError("actual selector witness ABI differs")
+                self.pending_selector = dict(
+                    continuation=continuation,
+                    site=self.selector_returns[continuation],
+                    callee=address,
+                    vtable=vtable,
+                    receiver=receiver,
+                    argument=argument,
+                    before=fields(engine),
+                )
+        if (
+            self.pending_selector is not None
+            and address == self.pending_selector["continuation"]
+        ):
+            event = self.pending_selector
+            self.selector_events.append({**event, "after": fields(engine)})
+            self.pending_selector = None
+        super().instruction(engine, address, size, unused)
+
+
+def selector_witnesses(image, code, seeds, surfaces, views):
+    calls = [{int(pc): row for pc, row in view["calls"].items()} for view in views]
+    probes = [
+        SelectorProbe(image, seeds=seeds, surfaces=surfaces),
+        SelectorProbe(image, code, seeds=seeds, surfaces=surfaces),
+    ]
+    decoder = world.graphs.capstone.Cs(
+        world.graphs.capstone.CS_ARCH_X86, world.graphs.capstone.CS_MODE_32
+    )
+    decoder.detail = True
+    for probe, view in zip(probes, calls):
+        probe.selector_returns = {}
+        for pc, row in view.items():
+            if row["target"] is not None or not {"801", "852"}.intersection(
+                row["entries"]
+            ):
+                continue
+            pc = int(pc)
+            encoded = (
+                native.c.target_bytes(pc, 16)
+                if probe.start == native.A
+                else code[pc - native.S : pc - native.S + 16]
+            )
+            decoded = list(decoder.disasm(encoded, pc, count=1))
+            if (
+                len(decoded) != 1
+                or decoded[0].mnemonic != "call"
+                or decoded[0].operands[0].type == world.x.X86_OP_IMM
+            ):
+                raise ValueError("witness indirect CALL census differs")
+            probe.selector_returns[pc + decoded[0].size] = pc
+    inputs = [
+        dict(action=801, seq=1, phase=1, index=0, counter=1, mode=0.0),
+        dict(action=852, seq=0, owner_action=608, counter=1),
+    ]
+    observations = []
+    for case in inputs:
+        outputs = [probe.evaluate(case) for probe in probes]
+        events = [probe.selector_events for probe in probes]
+        if any(len(rows) != 1 for rows in events):
+            raise ValueError("selector witness did not execute one actual root call")
+        normalized = [
+            {k: v for k, v in rows[0].items() if k not in ("site", "continuation")}
+            for rows in events
+        ]
+        memberships = [
+            view[rows[0]["site"]]["entries"] for view, rows in zip(calls, events)
+        ]
+        observations.append(
+            dict(
+                input=case,
+                events=events,
+                prefix_equal=outputs[0] == outputs[1],
+                events_equal=normalized[0] == normalized[1],
+                actual_root_returns=[
+                    output["endpoint"]["kind"] == "ret" for output in outputs
+                ],
+                exact_action_memberships=all(
+                    m == [str(case["action"])] for m in memberships
+                ),
+                memberships=memberships,
+            )
+        )
+    distinct = [
+        len({row["events"][side][0]["site"] for row in observations}) == 2
+        for side in (0, 1)
+    ]
+    equal = all(distinct) and all(
+        row["prefix_equal"]
+        and row["events_equal"]
+        and all(row["actual_root_returns"])
+        and row["exact_action_memberships"]
+        for row in observations
+    )
+    return dict(equal=equal, distinct_sites=distinct, observations=observations)
 
 
 def audit(path):
@@ -180,6 +299,7 @@ def audit(path):
             event_differences.append(dict(index=index, input=case))
         endpoints[outputs[0]["endpoint"]["kind"]] += 1
     covered = [set(sites) == set(counts) for sites, counts in zip(animation, observed)]
+    selectors = selector_witnesses(bytes(image), code, seeds, surfaces, views)
     accepted = (
         sharing["result"] == "equal_scoped_world_sharing"
         and all(direct_equal.values())
@@ -187,6 +307,7 @@ def audit(path):
         and all(covered)
         and not differences
         and not event_differences
+        and selectors["equal"]
     )
     return dict(
         schema="th105-reimu-object-animation-sites-v1",
@@ -218,6 +339,7 @@ def audit(path):
         ],
         direct_callee_partition_equal=direct_equal,
         indirect_membership_equal=indirect[0] == indirect[1],
+        selector_two=selectors,
         indirect_partitions=[
             [dict(entries=list(k), count=v) for k, v in sorted(counts.items())]
             for counts in indirect
