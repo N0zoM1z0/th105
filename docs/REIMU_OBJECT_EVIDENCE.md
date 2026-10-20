@@ -1,16 +1,18 @@
 # ReimuObject evidence index
 
 Start with [the current handoff](RE_HANDOFF.md). The selected496540 source
-epoch is the [821 owner-exit checkpoint](REIMU_OBJECT_821_OWNER_EXITS_2026_10_21.md):
-CPPc79f3975, whole46160-byte canonicalf903cc32; the compared46138-byte prefix
-is b8c885e6. Separate guards recover first-two shared812/821/822 retirement;
-6720 native guard/RET inputs pass and reject the predecessor's tail merging.
-The source-present root remains nonexact49655F/+31, with RET-distance27 and
-call-distance9. Same-TU4963A0 remains66/66 exact. No root partial-byte,
-remote-exact or percentage credit is implied. The preceding
-[selector-order checkpoint](REIMU_OBJECT_SELECTOR_ORDER_2026_10_21.md) retains
-its descending modes/12 packet slots; its26342 pass and the earlier133192 pass
-belong to historical source epochs.
+is the [817 turn-lifetime checkpoint](REIMU_OBJECT_817_TURN_LIFETIME_2026_10_21.md):
+CPP5210f5ab, whole46160-byte canonicalf22ad394, compared46138-byte prefix33223535.
+It captures the parameter destination before RNG;320 real native read/call/store
+paths pass and reject the preceding source despite equal outputs. Fresh3600
+retirement samples and12 scoped selector prefixes/conditional graphs pass.
+The root remains nonexact49655F/+31, with RET-distance27/call-distance9.
+Same-TU4963A0 remains66/66. No partial-byte, remote-exact or aggregate credit.
+The preceding [821 guards](REIMU_OBJECT_821_OWNER_EXITS_2026_10_21.md) retain
+an identical complete action code closure; their6720 receipt is not a new run.
+The [selector-order checkpoint](REIMU_OBJECT_SELECTOR_ORDER_2026_10_21.md)
+retains its descending modes/12 packet slots; its26342 and earlier133192
+receipts belong to historical source epochs.
 
 ## How to read the records
 
@@ -37,7 +39,9 @@ or compiler context. Later evidence may supersede an earlier stop condition.
 
 | Record | Scope and status |
 | --- | --- |
-| [905 packet join](REIMU_OBJECT_905_PACKET_JOIN_2026_10_21.md) | Current selection: four live packets feed the shared second-spawn/wave consumer;905 normal-return graphs pass. Whole-root sharing distance15->9; default selector check still rejects906. Full133192 combined replay passes; root remains nonexact. |
+| [817 turn destination](REIMU_OBJECT_817_TURN_LIFETIME_2026_10_21.md) | Current5210f5ab selection; real pointer/RNG ordering recovered, root nonexact. |
+| [821 owner exits](REIMU_OBJECT_821_OWNER_EXITS_2026_10_21.md) | Precedingc79f3975 source/6720 execution epoch; complete821 closure remains byte-identical. |
+| [905 packet join](REIMU_OBJECT_905_PACKET_JOIN_2026_10_21.md) | Retained packet policy: four live packets feed the shared second-spawn/wave consumer;905 normal-return graphs pass. Whole-root sharing distance15->9; default selector check still rejects906. Its133192 replay is source-epoch evidence; root remains nonexact. |
 | [Local exits](REIMU_OBJECT_LOCAL_EXITS_2026_10_21.md) | Historicala2c44054 pins; seven ordinary local returns retain recovered retirement lifetimes and remove early constant hoisting. |
 | [Retirement x87 state](REIMU_OBJECT_RETIREMENT_FPU_2026_10_20.md) | Historical555da070 selection:22 sampled write-time lifetime differences survived final-output/helper-entry checks. Its split-return controls remain unselected. |
 | [Helper context](REIMU_OBJECT_HELPER_CONTEXT_2026_10_20.md) | Historical555da070 epoch: the live-x87 helper diagnostic rejects that64CD00 visibility control; hosted LTCG controls remain nonexact. |

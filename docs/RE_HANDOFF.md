@@ -1,17 +1,14 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active ReimuObject496540 exact reconstruction.
-Three independent821 owner guards now restore the first-two shared812/821/822
-retirement tail; the final owner-sequence exit stays private. Native6720-input
-guard/RET sharing rejects the predecessor despite equal outputs and passes
-the selected body. Root remains nonexact49655F/+31, with RET-distance29->27
-and call-distance9. The existing descending modes/12 matched packet slots
-remain.905 placement,906/817 sharing and908's post-wave load form stay open.
-The current root checkpoint adds no exact function. Latest accepted entry is
-CDesignNumber40BB00 at61/61, with all five affected CNumber lifetimes/color
-functions40/11/11/11/60 freshly exact. CDesignSprite40AEE0 retains19/19.
-CGage41B3F0 retains its load-order residual; binder404DF0 remains102/107. Live evidence overrides
-historical prose.
+817 sequence3 now captures its turn destination before RNG and reloads the
+parameter pointer after the second RNG. A320-input native read/call/store
+observer rejects the predecessor despite equal outputs/writes and passes
+the selected body. Root remains nonexact49655F/+31, with RET-distance27 and
+call-distance9.821's separate owner guards, descending modes and12 packet
+slots remain.905 placement,906/817 sharing and908 post-wave load form stay open.
+Latest accepted function remains CDesignNumber40BB00 at61/61. Live evidence
+overrides historical prose.
 
 ## Target, workflow and acceptance
 
@@ -49,7 +46,41 @@ replay or new aggregate percentage is claimed. The user requests focused
 affected checks, regular commit and push, and careful re-examination of old
 assumptions when reconstruction resumes.
 
-## Current ReimuObject update source phase
+## Current817 turn lifetime
+
+The selected ordinary compound-assignment RNG expression recovers49910D's
+parameter340 capture before RNG499118, the write through that old pointer and
+499153's reload after RNG499139. No helper shim/hint or forced register is used.
+
+| Selected artifact | SHA256 |
+| --- | --- |
+|CPP|`5210f5ab1662283e0b6f2ca5654cdb1fae5c07d2cfb4debb0609eeb064a35131`|
+|Unchanged header|`6f469e6886959fd41ee6976b3c784c3df0c2e753ad4729a536764a3c8cd28b4b`|
+|Tested formal COFF|`ab2088e8120fc786691e036e637668fc4191ec658b615ae86071b295b85af754`|
+|Whole46160-byte canonical source|`f22ad394497f0f8731652c9cd1e2bf052763ed9d06b0a60877d3d64aeddd16ff`|
+|Fixed46138-byte compared prefix|`33223535f5a455a67d6374e0e9ccbfcac1076606fb6343e071a82ac3641ba14f`|
+
+New320 actual817 sequence3 paths execute both real RNG calls and RET, with
+zero output/ordered-write/read-lifetime differences; old c79f3975 fails320
+read lifetimes despite equal outputs. Fresh3600 stride37 retirement inputs
+and12 scoped905/907/908 selector prefixes/conditional graphs pass. The root
+retains438h frame,45292+868 bytes,10449 decoded instructions,426 calls/71 RETs
+and nonexact+31;4963A0 remains66/66. No new exact or aggregate replay is claimed.
+
+40/43 source-to-source instruction graphs remain identical;851/908 changes
+are constant-register allocation. Complete root-owned static byte closures differ
+only for817/851/908; entry49 bytes and metadata are identical.821/866 retain
+the exact code closures behind their prior6720/256 receipts, with no new run.
+RTM and predicate controls are unselected and do not prove a universal barrier.
+See [817 pointer lifetime](REIMU_OBJECT_817_TURN_LIFETIME_2026_10_21.md) and
+`build/reimu-object-817-tail-20261021/` for all current pins, scope and receipts.
+29 unselected files are compressed2309585->303850 bytes after SHA256 readback.
+
+## Preceding821 checkpoint: frozen c79f3975 source
+
+The following source/object pins and execution receipts describe the frozen
+predecessor, not fresh runs of the new817 source. Its821/866 code closures are
+bridged above. Other historical full/input scopes are not reissued.
 
 `ReimuObject_dispatch_action_state_vslot28 @496540` remains source-present in
 `src/characters/ReimuObjectActionStateStaging.cpp`, unit
@@ -177,7 +208,7 @@ Raw rendering leads40AF80/40AFC0 call private414EB0 with their number pointer
 in EAX; its floating continuation415050 receives that pointer in ESI. Those
 bodies remain unselected. See [CDesignNumber lifetime](DESIGN_NUMBER_LIFETIME_2026_10_21.md)
 for complete boundaries, target ownership, focused receipts and remaining
-source/ABI unknowns. Reimu's current821/selector source phase is unchanged.
+source/ABI unknowns. Reimu's821 guards and selector order remain unchanged.
 
 ## Other preserved checkpoints
 
@@ -229,7 +260,7 @@ For the current mixed root/helper unit:
 ```bash
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-reimu-object-action-state --compare --json
 # Expected nonzero result:496540 mismatch+31,4963A0 exact66/66.
-taskset -c 0 nice -n 10 python3 scripts/audit-reimu-object-typed-stores.py build/match-units/GptWeb_ReimuObjectActionState.obj --output build/reimu-object-exact-20261020/typed-stores-replay.json
+taskset -c 0 nice -n 10 python3 scripts/audit-reimu-object-817-turn-lifetime.py build/match-units/GptWeb_ReimuObjectActionState.obj --output build/reimu-object-817-turn-replay.json
 ```
 
 Before **every commit, push or pull request**, run in the finished worktree:

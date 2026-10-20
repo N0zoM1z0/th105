@@ -1003,8 +1003,8 @@ retire_801_811:
         case 3: {
             if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && sequence_13e == 3)
                 reinterpret_cast<CharacterObjectEffectEmitter *>(this)->replace_secondary_animation(992, 4.0f, 60, 1, 2);
-            const unsigned int turn = static_cast<unsigned int>(selector_random_roll(360)) - 180u;
-            parameters_340[0] += static_cast<float>(turn);
+            parameters_340[0] += static_cast<float>(
+                static_cast<unsigned int>(selector_random_roll(360)) - 180u);
             parameters_340[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(60)) + 40u);
             reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
                 set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
