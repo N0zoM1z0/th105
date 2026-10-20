@@ -15,13 +15,14 @@ public:
     virtual int reset_sequence();
     virtual unsigned char next_sequence_block();
     virtual void slot_18();
-    virtual void slot_1c();
+    virtual int set_sequence_frame(short frame);
     virtual unsigned char next_sequence_frame();
 
     // True means the selected action was fully handled by this source phase.
     // False leaves the other known nondefault actions to subsequent recovery.
     bool try_update_scalar_actions();
     void publish_battle_layout_scalar(float value);
+    int has_crossed_stage_surface_while_descending();
 
     unsigned char unknown_004[0xe8];
     float x_ec;
@@ -55,7 +56,9 @@ public:
     unsigned char phase_index_184;
     unsigned char unknown_185[0x1ab];
     int state_330;
-    unsigned char unknown_334[0x0c];
+    unsigned char unknown_334[8];
+    unsigned char direction_33c;
+    unsigned char unknown_33d[3];
     float *parameters_340;
     short state_344;
     unsigned char unknown_346[2];
@@ -91,6 +94,8 @@ typedef char ReimuObjectUpdate_phase_offset[
     offsetof(ReimuObjectActionStateStagingView, phase_state_180) == 0x180 ? 1 : -1];
 typedef char ReimuObjectUpdate_state330_offset[
     offsetof(ReimuObjectActionStateStagingView, state_330) == 0x330 ? 1 : -1];
+typedef char ReimuObjectUpdate_direction33c_offset[
+    offsetof(ReimuObjectActionStateStagingView, direction_33c) == 0x33c ? 1 : -1];
 typedef char ReimuObjectUpdate_parameters_offset[
     offsetof(ReimuObjectActionStateStagingView, parameters_340) == 0x340 ? 1 : -1];
 typedef char ReimuObjectUpdate_owner_offset[

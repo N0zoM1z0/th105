@@ -61,6 +61,8 @@ HELPERS.update(
         0x45C1A0: (67, "next_sequence_frame"),
         0x4359D0: (21, "publish_battle_layout_scalar"),
         0x427280: (10, "set_battle_layout_scalar"),
+        0x435D60: (89, "stage_surface_height"),
+        0x5F9310: (64, "crossed_stage_surface_while_descending"),
         # CRT atan2 paths, including the observed quiet-NaN exception record.
         # Execute the original instructions; no host-math replacement return.
         0x68BB70: (10, "crt_atan2_entry"),
@@ -97,6 +99,99 @@ BOUNDARIES = {
     0x696004: ("crt_qnan", 4, False, False),
 }
 MT_INDEX, MT_STATE, MT_BYTES = 0x6FA1FC, 0x6FDEF0, 624 * 4
+SURFACE, SURFACE_BYTES = 0x6FA898, 0x500 * 4
+
+
+def surface_fixtures(image):
+    """Build terrain inputs with the original69-byte range-fill routine."""
+    fill, fill_size = 0x434EE0, 69
+    allowed = ((fill, fill + fill_size), (0x68A1A0, 0x68A24B))
+    uc = unicorn.Uc(unicorn.UC_ARCH_X86, unicorn.UC_MODE_32)
+    uc.mem_map(0x400000, 0x311000, unicorn.UC_PROT_READ | unicorn.UC_PROT_EXEC)
+    uc.mem_write(0x400000, image)
+    uc.mem_protect(0x6FA000, 0x2000, unicorn.UC_PROT_READ | unicorn.UC_PROT_WRITE)
+    uc.mem_map(STACK, 0x10000)
+    initial = uc.context_save()
+    failures, written = [], set()
+
+    def instruction(engine, address, size, unused):
+        if not any(lo <= address < address + size <= hi for lo, hi in allowed):
+            failures.append(f"unreviewed surface initializer instruction {address:#x}")
+            engine.emu_stop()
+        elif (
+            bytes(engine.mem_read(address, size))
+            != image[address - 0x400000 : address - 0x400000 + size]
+        ):
+            failures.append("surface initializer code differs")
+            engine.emu_stop()
+
+    def write(engine, access, address, size, value, unused):
+        pc = engine.reg_read(r.UC_X86_REG_EIP)
+        if (
+            fill <= pc < fill + fill_size
+            and size == 4
+            and address % 4 == 0
+            and SURFACE <= address <= SURFACE + SURFACE_BYTES - 4
+        ):
+            written.add(address)
+        elif not STACK <= address <= address + size <= STACK + 0x10000:
+            failures.append(f"unreviewed surface initializer write {address:#x}")
+            engine.emu_stop()
+
+    uc.hook_add(unicorn.UC_HOOK_CODE, instruction)
+    uc.hook_add(unicorn.UC_HOOK_MEM_WRITE, write)
+    operations = {
+        "flat": [(0.0, 1279.0, 0.0)],
+        "raised": [(0.0, 1279.0, 12.5)],
+        "step": [(0.0, 639.0, -8.0), (640.0, 1279.0, 32.0)],
+    }
+    packets = {}
+    for name, calls in operations.items():
+        written.clear()
+        for begin, end, height in calls:
+            uc.context_restore(initial)
+            sentinels = {
+                r.UC_X86_REG_EBX: 0x11111111,
+                r.UC_X86_REG_ESI: 0x22222222,
+                r.UC_X86_REG_EDI: 0x33333333,
+                r.UC_X86_REG_EBP: 0x44444444,
+            }
+            for reg, value in sentinels.items():
+                uc.reg_write(reg, value)
+            sp = STACK + 0xFF00
+            uc.mem_write(sp, struct.pack("<Ifff", RETURN, begin, end, height))
+            uc.reg_write(r.UC_X86_REG_ESP, sp)
+            uc.reg_write(r.UC_X86_REG_FPCW, 0x27F)
+            uc.reg_write(r.UC_X86_REG_FPSW, 0)
+            uc.reg_write(r.UC_X86_REG_FPTAG, 0xFFFF)
+            uc.emu_start(fill, RETURN, count=100000)
+            if (
+                failures
+                or uc.reg_read(r.UC_X86_REG_EIP) != RETURN
+                or uc.reg_read(r.UC_X86_REG_ESP) != sp + 16
+                or any(uc.reg_read(reg) != value for reg, value in sentinels.items())
+                or uc.reg_read(r.UC_X86_REG_FPCW) != 0x27F
+                or uc.reg_read(r.UC_X86_REG_FPTAG) != 0xFFFF
+                or uc.reg_read(r.UC_X86_REG_FPSW) & 0x3800
+            ):
+                raise ValueError("actual surface fill ABI failed: " + str(failures))
+        if len(written) != 0x500:
+            raise ValueError("actual fill did not cover every terrain element")
+        packets[name] = bytes(uc.mem_read(SURFACE, SURFACE_BYTES))
+    return packets, {
+        "entry": hex(fill),
+        "size": fill_size,
+        "code_sha256": hashlib.sha256(
+            image[fill - 0x400000 : fill - 0x400000 + fill_size]
+        ).hexdigest(),
+        "array": hex(SURFACE),
+        "array_bytes": SURFACE_BYTES,
+        "calls": operations,
+        "sha256": {
+            name: hashlib.sha256(data).hexdigest() for name, data in packets.items()
+        },
+        "scope": "actual target fill and ftol2 instructions, RET0C/callee-saved/FPCW/x87 checks; immutable terrain inputs, no replaced height result",
+    }
 
 
 def seed_fixtures(image, seed_values=(0, 5489, 0xFFFFFFFF)):
@@ -199,6 +294,9 @@ def export(path):
             "?position_relative_to_owner_offsets@CharacterObjectEffectEmitter@th105@@QAEPAUFighter@2@HH@Z": 0x5B0400,
             "CharacterObjectEffectEmitter_position_relative_to_owner_offsets": 0x5B0400,
             "?publish_battle_layout_scalar@ReimuObjectActionStateStagingView@th105@@QAEXM@Z": 0x4359D0,
+            "?has_crossed_stage_surface_while_descending@ReimuObjectActionStateStagingView@th105@@QAEHXZ": 0x5F9310,
+            "ReimuObjectActionStateStagingView_has_crossed_stage_surface_while_descending": 0x5F9310,
+            "stage_surface_height_at_x": 0x435D60,
             "?spawn_owned_object_via_manager@ReimuObjectOwnerSpawnView@th105@@QAEHHMMHHHH@Z": 0x465190,
         }
     )
@@ -207,11 +305,12 @@ def export(path):
 
 
 class Probe:
-    def __init__(self, image, candidate=None, seeds=None):
+    def __init__(self, image, candidate=None, seeds=None, surfaces=None):
         self.uc = unicorn.Uc(unicorn.UC_ARCH_X86, unicorn.UC_MODE_32)
         self.uc.mem_map(0x400000, 0x311000, unicorn.UC_PROT_READ | unicorn.UC_PROT_EXEC)
         self.uc.mem_write(0x400000, image)
         self.seeds = seeds
+        self.surfaces = surfaces
         if seeds is not None:
             self.uc.mem_protect(
                 0x6FA000, 0x1000, unicorn.UC_PROT_READ | unicorn.UC_PROT_WRITE
@@ -329,6 +428,11 @@ class Probe:
             self.failure = f"unreviewed instruction {a:#x}"
             uc.emu_stop()
             return
+        if a == 0x435D60:
+            receiver = uc.reg_read(r.UC_X86_REG_ECX)
+            self.surface_arguments.append(
+                [receiver, bytes(uc.mem_read(receiver + 0xEC, 4)).hex()]
+            )
         if a in HELPERS:
             self.trace.append(a)
             self.counts[a] += 1
@@ -340,6 +444,11 @@ class Probe:
     def evaluate(self, case):
         uc = self.uc
         uc.context_restore(self.initial)
+        self.surface_arguments = []
+        if case["action"] in (858, 866):
+            if self.surfaces is None:
+                raise ValueError("terrain input fixture is required")
+            uc.mem_write(SURFACE, self.surfaces[case.get("surface", "flat")])
         if self.seeds is not None:
             uc.mem_write(MT_INDEX, struct.pack("<I", 624))
             uc.mem_write(MT_STATE, self.seeds[case.get("seed", 5489)])
@@ -353,10 +462,10 @@ class Probe:
         if case.get("terminal"):
             uc.mem_write(seq_block + 0x14, bytes(12))
         frame_count = 1
-        if case["action"] in (850, 853, 854, 855, 856) or (
+        if case["action"] in (850, 853, 854, 855, 856, 858, 866, 869) or (
             case["action"] == 822 and seq == 0
         ):
-            # Coherent frames0/1/2 for the850/853-856 family and active822.
+            # Coherent three-frame ranges for the admitted projectile families.
             # The earlier single frame cannot represent their later frames.
             first = RESOURCE + 0x6000
             template = bytes(uc.mem_read(entry.FRAME, 0x88))
@@ -429,6 +538,9 @@ class Probe:
             854,
             855,
             856,
+            858,
+            866,
+            869,
         ):
             for off, fmt, value in (
                 (0x170, "I", FIGHTER),
@@ -459,6 +571,9 @@ class Probe:
             854,
             855,
             856,
+            858,
+            866,
+            869,
         ):
             uc.mem_write(OWNER + 0x111, struct.pack("<B", case.get("channel", 200)))
             uc.mem_write(
@@ -491,6 +606,9 @@ class Probe:
             854,
             855,
             856,
+            858,
+            866,
+            869,
         ):
             for off, fmt, value in (
                 (0x112, "B", case.get("channel2", 200)),
@@ -508,7 +626,22 @@ class Probe:
             )
             uc.mem_write(FIGHTER + 0x13E, struct.pack("<h", case.get("owner_seq", 0)))
             uc.mem_write(FIGHTER + 0x60D, struct.pack("<b", case.get("skill", 0)))
-        if case["action"] in (821, 822, 825, 848, 850, 851, 852, 853, 854, 855, 856):
+        if case["action"] in (
+            821,
+            822,
+            825,
+            848,
+            850,
+            851,
+            852,
+            853,
+            854,
+            855,
+            856,
+            858,
+            866,
+            869,
+        ):
             for off, fmt, value in (
                 (0x104, "b", case.get("owner_facing", -1)),
                 (0x140, "h", case.get("owner_frame", 1)),
@@ -523,7 +656,7 @@ class Probe:
                 uc.mem_write(
                     entry.PARAMETERS + 12, struct.pack("<f", case.get("mode", 1000.0))
                 )
-        if case["action"] in (850, 851, 852, 853, 854, 855, 856):
+        if case["action"] in (850, 851, 852, 853, 854, 855, 856, 858, 866, 869):
             for off, value in (
                 (0x366, case.get("speed_word", 16)),
                 (0x368, case.get("fade_word", 0)),
@@ -533,6 +666,28 @@ class Probe:
             uc.mem_write(0x6FBD00, struct.pack("<f", case.get("layout_scalar", -7.75)))
         if case["action"] == 855:
             uc.mem_write(OWNER + 0x36A, struct.pack("<h", case.get("spin_word", 0)))
+        if case["action"] in (858, 866, 869):
+            uc.mem_write(FIGHTER + 0x142, struct.pack("<h", case.get("owner_timer", 1)))
+        if case["action"] == 869:
+            for off, fmt, value in (
+                (0x374, "f", case.get("heading_amplitude", 0.25)),
+                (0x378, "f", case.get("radial_acceleration", 1.25)),
+                (0x37C, "f", case.get("angular_velocity", 0.75)),
+            ):
+                uc.mem_write(OWNER + off, struct.pack("<" + fmt, value))
+            uc.mem_write(
+                PARENT + 0x144, struct.pack("<i", case.get("parent_counter", 17))
+            )
+            uc.mem_write(
+                FIGHTER + 0x7C8, struct.pack("<h", case.get("owner_word_7c8", 1))
+            )
+            uc.mem_write(
+                FIGHTER + 0x7CA, struct.pack("<h", case.get("owner_word_7ca", 0))
+            )
+            uc.mem_write(
+                entry.PARAMETERS,
+                struct.pack("<f", case.get("heading_parameter", 37.25)),
+            )
         for off, fmt, value in [
             (0x13C, "h", case.get("owner_action", 150)),
             (0xEC, "f", 515.5),
@@ -642,6 +797,7 @@ class Probe:
             "layout_scalar": bytes(uc.mem_read(0x6FBD00, 4)).hex()
             if case["action"] in (850, 853, 854)
             else None,
+            "surface_arguments": self.surface_arguments,
             "endpoint": self.endpoint,
             "trace": self.trace,
             "cw": uc.reg_read(r.UC_X86_REG_FPCW),
@@ -1788,6 +1944,297 @@ def sibling_projectile_cases():
         )
 
 
+def orbit_projectile_cases():
+    def owner(action):
+        return 616 if action == 866 else 669 if action == 869 else 600
+
+    for action, seq, phase, index, counter, timer, cw in itertools.product(
+        (858, 866, 869),
+        (-1, 0, 1, 2, 3, 4, 5, 6),
+        (0, 1, 4, 5, 6),
+        (0, 1, 127, 128, 255),
+        (0, 1, 15, 30),
+        (0, 1),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            phase=phase,
+            index=index,
+            counter=counter,
+            timer=timer,
+            cw=cw,
+            owner_action=owner(action),
+            owner_seq=1,
+            fade_word=1,
+            cohort="orbit-state",
+        )
+    for frame, state, vy, ypos, surface, cw in itertools.product(
+        (0, 1),
+        (0, 1, 2, 32767),
+        (-20.0, -1.0, 0.0, 1.0),
+        (-9.0, 0.0, 12.5, 31.5, 32.0, 33.0),
+        ("flat", "raised", "step"),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=858,
+            seq=0,
+            frame=frame,
+            state=state,
+            vy=vy,
+            y=ypos,
+            x=639.5,
+            surface=surface,
+            phase=0,
+            index=1,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="orbit-impact",
+        )
+    for xpos, facing, phase, index, surface, cw in itertools.product(
+        (
+            -10.0,
+            0.0,
+            19.5,
+            20.0,
+            639.49,
+            639.5,
+            640.0,
+            1260.0,
+            1279.49,
+            1280.0,
+            float("nan"),
+        ),
+        (-128, -1, 0, 1, 127),
+        (0, 4),
+        (0, 128),
+        ("flat", "raised", "step"),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=858,
+            seq=0,
+            x=xpos,
+            y=200.0,
+            vy=-1.0,
+            facing=facing,
+            phase=phase,
+            index=index,
+            surface=surface,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="orbit-terrain",
+        )
+    for frame, counter, index, alpha, scale, cw in itertools.product(
+        (0, 1),
+        (29, 30, 31),
+        (1, 128),
+        (0, 9, 10, 255),
+        (-0.1, 0.0, 0.1, 1.0, float("nan")),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=858,
+            seq=0,
+            frame=frame,
+            counter=counter,
+            index=index,
+            alpha=alpha,
+            scale=scale,
+            y=200.0,
+            phase=0,
+            timer=2,
+            cw=cw,
+            cohort="orbit-release",
+        )
+    for seq, state, action, owner_seq, frame, timer, cw in itertools.product(
+        (-1, 0, 1, 2, 3),
+        (0, 1, 2),
+        (615, 616, 617),
+        (-1, 2, 3, 4, 5, 6),
+        (0, 1),
+        (0, 1),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=866,
+            seq=seq,
+            state=state,
+            owner_action=action,
+            owner_seq=owner_seq,
+            owner_frame=frame,
+            owner_timer=timer,
+            speed_word=14,
+            fade_word=1,
+            phase=5,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="orbit-owner",
+        )
+    for phase_word, alpha, speed, facing, cw in itertools.product(
+        (-32768, 14, 15, 32767),
+        (4, 5, 255),
+        (0.0, 0.5, 1.5, 2.0, float("nan")),
+        (-128, -1, 1, 127),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=866,
+            seq=2,
+            speed_word=phase_word,
+            alpha=alpha,
+            speed=speed,
+            facing=facing,
+            phase=1,
+            x=2000.0,
+            y=-1000.0,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="orbit-deceleration",
+        )
+    for xpos, word, surface, cw in itertools.product(
+        (-1.0, 639.49, 639.5, 1279.5, float("nan")),
+        (-30, -1, 0, 1, 29, 30, 32767),
+        ("flat", "raised", "step"),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=866,
+            seq=0,
+            owner_action=616,
+            owner_seq=5,
+            state=0,
+            fade_word=word,
+            x=xpos,
+            y=17.0,
+            surface=surface,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="orbit-emission",
+        )
+    for action, owner_seq, remaining, threshold, mode, state, cw in itertools.product(
+        (668, 669, 670),
+        (1, 2),
+        (-1, 0, 1, 32767),
+        (-32768, -1, 0, 1, 32767),
+        (-1.0, 0.0, 1.0, float("nan")),
+        (0, 1),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=869,
+            seq=0,
+            owner_action=action,
+            owner_seq=owner_seq,
+            owner_word_7c8=remaining,
+            owner_word_7ca=threshold,
+            mode=mode,
+            state=state,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="orbit-latch",
+        )
+    for action, angular, amplitude, acceleration, angle, cw in itertools.product(
+        (668, 669),
+        (-16.0, 0.75, float("nan")),
+        (0.0, 0.95, 1.0, float("nan")),
+        (-1.0, 0.4, 1.25, float("nan")),
+        (-30.0, 0.0, 37.25, float("nan")),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=869,
+            seq=0,
+            owner_action=action,
+            owner_seq=1,
+            angular_velocity=angular,
+            amplitude=amplitude,
+            radial_acceleration=acceleration,
+            heading_parameter=angle,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="orbit-motion",
+        )
+    for missing, parent_counter, counter, cw in itertools.product(
+        (False, True),
+        (-120, 0, 9, 10, 11, 20, 30, 60, 90, 119, 120, 255),
+        (1, 31),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=869,
+            seq=1,
+            no_parent=missing,
+            parent_counter=parent_counter,
+            counter=counter,
+            timer=1,
+            cw=cw,
+            cohort="orbit-pulse",
+        )
+    for seq, counter, alpha, amplitude, cw in itertools.product(
+        (2, 3, 4, 5, 6),
+        (14, 15, 16),
+        (4, 9, 10, 14, 15, 255),
+        (-3.0, 0.0, 1.0, float("nan")),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=869,
+            seq=seq,
+            counter=counter,
+            alpha=alpha,
+            amplitude=amplitude,
+            phase=6,
+            timer=1,
+            cw=cw,
+            cohort="orbit-fade",
+        )
+    for action, xpos, ypos, cw in itertools.product(
+        (858, 869),
+        (-201.0, -200.0, -101.0, -100.0, 1380.0, 1381.0, 1480.0, 1481.0, float("nan")),
+        (-321.0, -320.0, -201.0, -200.0, 1000.0, 1001.0, 1280.0, 1281.0, float("nan")),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=action,
+            seq=1 if action == 858 else 3,
+            x=xpos,
+            y=ypos,
+            vx=0.0,
+            vy=0.0,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="orbit-bounds",
+        )
+    for action, seq, terminal in itertools.product(
+        (858, 866, 869), range(7), (False, True)
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            frame=0 if action == 858 else 2,
+            counter=31 if action == 858 else 1,
+            timer=2,
+            index=1,
+            y=200.0,
+            owner_action=owner(action),
+            owner_seq=1,
+            fade_word=1,
+            terminal=terminal,
+            cohort="orbit-animation",
+        )
+
+
 def main():
     global O
     parser = argparse.ArgumentParser(description=__doc__)
@@ -1830,7 +2277,14 @@ def main():
         action="store_true",
         help="include853/854/855/856 and all preceding matrices",
     )
+    parser.add_argument(
+        "--orbit-projectiles",
+        action="store_true",
+        help="include858/866/869 with terrain inputs and all preceding matrices",
+    )
     args = parser.parse_args()
+    if args.orbit_projectiles:
+        args.sibling_projectiles = True
     if args.sibling_projectiles:
         args.follow_projectiles = True
     if args.follow_projectiles:
@@ -1859,8 +2313,15 @@ def main():
         or args.owner_projectiles
         else None
     )
-    target = Probe(bytes(image), seeds=seeds)
-    source = Probe(bytes(image), candidate, seeds=seeds)
+    surfaces, surface_receipt = (
+        surface_fixtures(bytes(image)) if args.orbit_projectiles else (None, None)
+    )
+    if surface_receipt is not None:
+        (O / "surface-initialization.json").write_text(
+            json.dumps(surface_receipt, indent=2) + "\n"
+        )
+    target = Probe(bytes(image), seeds=seeds, surfaces=surfaces)
+    source = Probe(bytes(image), candidate, seeds=seeds, surfaces=surfaces)
     all_cases = list(cases())
     if (
         args.projectiles
@@ -1879,6 +2340,8 @@ def main():
         all_cases.extend(follow_projectile_cases())
     if args.sibling_projectiles:
         all_cases.extend(sibling_projectile_cases())
+    if args.orbit_projectiles:
+        all_cases.extend(orbit_projectile_cases())
     if args.cohort:
         available = {case.get("cohort", "scalar") for case in all_cases}
         if set(args.cohort) - available:
@@ -1915,6 +2378,7 @@ def main():
         "candidate_sha256": hashlib.sha256(candidate).hexdigest(),
         "build_provenance_verified": False,
         "lookup_initialization": receipt,
+        "surface_initialization": surface_receipt,
         "support_sha256": {
             str(p.relative_to(R)): hashlib.sha256(p.read_bytes()).hexdigest()
             for p in [
