@@ -306,15 +306,28 @@ Raw physical900 `[49C9F5,49CEC2)` is1229 bytes/289 instructions; its edges
 49CA6A/49CB3A/49CC48 converge at499DF6/499DF8. Source presence and this
 four-sequence projection do not establish sharing with other actions.
 
-The new public900 audit passes ten actual target/source prefixes and two
-target-only A5 free-stack observations (input hash1cdacb68). The two invalid
-selector contexts intentionally do not claim source equality for the unwritten
-fourth word. Four conditional normal-return call projections and their joint
-physical-sharing graph agree13/13. The fresh baseline passes the same ten
-concrete prefixes but fails sequence0 and joint13/15 sharing. Explicit nested
-selector review handles the old source jump table; unknown indirect jumps
-still reject. Three new portable tests preserve flags and all reviewed arms,
-and reject integer clobbers. The total graph test count is ten.
+The public900 audit is now v2. Its unchanged ten compared prefixes and two
+target-only invalid-selector observations pass (hash1cdacb68), as do all four
+mode graphs and joint13/13 call sharing. It additionally records actual packet
+writes and their preceding root floating operations, treating CALL as a barrier.
+Current source correctly uses direct float literal loads but has four packet
+FSTPs against target49CB04's one, so the stronger audit deliberately rejects it.
+A float-join control passes prefixes, all graphs and a one-packet-store metric,
+yet inserts FSTP/FLD through F+18 before the packet store. Producer checks expose
+that second failure; a one-store counter alone is insufficient.
+
+Eight follow-up compiler/source controls remain unselected. Float+goto and a
+real validity flag emit identical44956/8b6f74f2 payloads with the extra copy;
+a double join promotes loads to qword and restores four stores. Earlier real
+pointer/count selection, guarded conditionals and short-circuit selection also
+fail complete producer/store shape. A whole-function precise-off control
+introduces unsupported literal __real@3f266666 and is unqualified; no bindings
+are added. All seven qualified variants pass ten prefixes and13/13 call graphs,
+but none closes both selected-word conditions. The float candidate's0/5640
+scope passes; its full-input validation is explicitly canceled after the spill
+is observed, with no completed full result claimed. Source73370b96 is restored
+byte-for-byte, and fresh canonical/native exports equal the preceding checkpoint.
+See [selector-producer evidence](REIMU_OBJECT_900_SELECTOR_STORE_2026_10_20.md).
 
 Four independently compiled controls separate scalar selector, retiring join
 and emission-coordinate hypotheses. Only selector+retirement is selected.
@@ -337,9 +350,9 @@ Private selected native0/5640 upper-state/900 gates/emission/bounds/animation
 inputs/hash8f5ff731 has4570 real RETs and1070 first World entries,852 target/
 793 source instructions visited. Additional counter/radius edge checks pass0/808
 (hashd8550fac); extreme sequence numbers remain outside the fixture resource
-map and are not claimed covered. Fresh public900 and9010/8,8040/3144,
+map and are not claimed covered. The preceding v1 public900 scope and9010/8,8040/3144,
 selector0/16,808/812 caller proofs, orientation0/400, alpha0/1170 and terrain288
-pass. Frozen public full-input execution passes0/133192, unchanged hashf46a849f,
+pass. The preceding frozen public full-input execution passes0/133192 (hashf46a849f),
 with119356 real RETs and the same opaque/CRT entry endpoints;9215 target/8823
 source instructions are visited. Original4937D0 manager-entry passes0/3744
 upper-state/900-gates (hashfd2ee7fd), with3128 wrapper RETs and616 first World
@@ -362,15 +375,16 @@ scoped literal keys remain. Terrain retains240 finite equal prefixes and48
 hardware-unqualified nonfinite contexts, the SSE conversion gap and runtime
 6FA894 adjacent-word load. No cold aggregate or percentage is asserted.
 Fresh direct read-only/no-analysis Ghidra re-attests target/import,entry,mapped
-text,root,vtable under CPU0/nice10/128MiB heap, preserving all nine primary
-DB hashes and removing its alias. Raw ESP, rather than decompiler local names,
+text,root,vtable. A root-decompile timeout rejects that receipt; after terminal
+cleanup, bounded-listing readback succeeds under CPU0/nice10/128MiB heap. Both
+runs preserve all nine primary DB hashes and remove their aliases. Raw ESP, rather than decompiler local names,
 establishes request buffers. No IDA semantics are used.
 
-See [900 flow evidence](REIMU_OBJECT_900_FLOW_2026_10_20.md) for raw addresses,
-artifact pins, controls, reproducible commands and execution limits. Next
-recover the scalar fourth-word finalization (one target FSTP versus four
-selected-source stores), cross-action World/animation/RET sharing and
-constant/register/stack lifetimes against complete raw control flow. Retain an honest TU/LTCG context;
+See [current producer evidence](REIMU_OBJECT_900_SELECTOR_STORE_2026_10_20.md)
+for raw addresses, controls, compiler-phase limits and reproduction. Next seek
+independent evidence for producer/stack/compiler context or recover cross-action
+World/animation/RET sharing. No float join or new profile is selected. Retain an
+honest TU/LTCG context;
 no assembly, copied-byte code, padding, fake returns or LTCG impossibility claim.
 Returning opaque graphs, arbitrary aliases/resources, nonnull rendering and
 unmasked exceptions remain open. Preserve Fighter478FA0 and initializer4A1CE0.

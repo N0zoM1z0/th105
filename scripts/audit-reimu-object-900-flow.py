@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit900 request prefixes, selector packets and physical call sharing.
+"""Audit900 request prefixes, selected-word stores and physical call sharing.
 
 Helpers execute original instructions and stop at real opaque entries. Static
 call/RET projections assume normal ABI returns and do not prove predicates or
@@ -71,10 +71,32 @@ def cases():
 
 class ObservedProbe(common.ObservedProbe):
     def evaluate(self, case):
-        self.packet = None
+        self.packet, self.stack_writes, self.fourth_word_writes = None, [], []
+        self.floating_events = []
         return super().evaluate(case)
 
+    def write(self, engine, access, address, size, value, unused):
+        if native.STACK <= address < native.STACK + 0x10000:
+            self.stack_writes.append(
+                dict(
+                    site=engine.reg_read(u.UC_X86_REG_EIP),
+                    address=address,
+                    size=size,
+                    value=value,
+                    producer=self.floating_events[-2]
+                    if len(self.floating_events) > 1
+                    and self.floating_events[-1] == engine.reg_read(u.UC_X86_REG_EIP)
+                    else None,
+                )
+            )
+        super().write(engine, access, address, size, value, unused)
+
     def instruction(self, engine, address, size, unused):
+        row = self.root_instructions.get(address)
+        if row is not None and (
+            row.mnemonic.startswith("f") or row.group(graphs.capstone.CS_GRP_CALL)
+        ):
+            self.floating_events.append(address)
         if address == native.SPAWN:
             stack = engine.reg_read(u.UC_X86_REG_ESP)
             args = struct.unpack("<8I", engine.mem_read(stack, 32))
@@ -83,6 +105,12 @@ class ObservedProbe(common.ObservedProbe):
             self.packet = dict(
                 count=args[7], words=bytes(engine.mem_read(args[6], args[7] * 4)).hex()
             )
+            if args[7] == 4:
+                self.fourth_word_writes = [
+                    row
+                    for row in self.stack_writes
+                    if row["address"] == args[6] + 12 and row["size"] == 4
+                ]
         super().instruction(engine, address, size, unused)
 
 
@@ -146,11 +174,13 @@ def audit(path):
     seeds = native.seed_fixtures(bytes(image))
     target = ObservedProbe(bytes(image), seeds=seeds)
     source = ObservedProbe(bytes(image), candidate, seeds=seeds)
+    target.root_instructions = {row.address: row for row in target_rows}
+    source.root_instructions = {row.address: row for row in source_rows}
     target.sequence_jump, source.sequence_jump = (
         target_switch["instruction"],
         source_switch["instruction"],
     )
-    inputs, differences, observations = cases(), [], []
+    inputs, differences, observations, store_observations = cases(), [], [], []
     for index, case in enumerate(inputs):
         expected = target.evaluate(case)
         if target.switch_hits != [target.sequence_jump]:
@@ -180,6 +210,17 @@ def audit(path):
                 raise ValueError(
                     "target900 selector packet differs from reviewed stores"
                 )
+            if case.get("target_only"):
+                if target.fourth_word_writes:
+                    raise ValueError("invalid target selector wrote the fourth word")
+            else:
+                store_observations.append(
+                    dict(
+                        selector=selector,
+                        target=target.fourth_word_writes,
+                        source=source.fourth_word_writes,
+                    )
+                )
         if case.get("emission_prefix"):
             math_trace = [
                 address
@@ -197,10 +238,62 @@ def audit(path):
                 source_trace=None if actual is None else actual["trace"],
             )
         )
+    store_sites = [
+        sorted({write["site"] for row in store_observations for write in row[side]})
+        for side in ("target", "source")
+    ]
+    if store_sites[0] != [0x49CB04] or any(
+        len(row["target"]) != 1 for row in store_observations
+    ):
+        raise ValueError("target fourth-word store differs from reviewed49CB04 join")
+    source_by = {row.address: row for row in source_rows}
+    store_equal = (
+        len(store_sites[1]) == 1
+        and all(len(row["source"]) == 1 for row in store_observations)
+        and all(
+            site in source_by
+            and source_by[site].mnemonic == "fstp"
+            and source_by[site].operands[0].size == 4
+            for site in store_sites[1]
+        )
+    )
+
+    def literal_producer(instructions, writes):
+        if len(writes) != 1:
+            return None
+        row = instructions.get(writes[0]["producer"])
+        if row is None or row.mnemonic != "fld":
+            return None
+        operand = row.operands[0]
+        if (
+            operand.type != graphs.x.X86_OP_MEM
+            or operand.size != 4
+            or operand.mem.base
+            or operand.mem.index
+        ):
+            return None
+        return operand.mem.disp
+
+    producer_addresses = [
+        [
+            literal_producer(probe.root_instructions, row[side])
+            for row in store_observations
+        ]
+        for side, probe in (("target", target), ("source", source))
+    ]
+    if producer_addresses[0] != [0x6C2874, 0x6C3EA0, 0x6C3B3C, 0x6C3D74]:
+        raise ValueError(
+            "target fourth-word producers differ from reviewed float literals"
+        )
+    producers_equal = producer_addresses[0] == producer_addresses[1]
     return dict(
-        schema="th105-reimu-900-flow-v1",
+        schema="th105-reimu-900-flow-v2",
         result="equal_scoped_900_flow"
-        if all(per_mode) and combined_equal and not differences
+        if all(per_mode)
+        and combined_equal
+        and store_equal
+        and producers_equal
+        and not differences
         else "rejected",
         target_sha256=facts["target_sha256"],
         object_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
@@ -214,6 +307,11 @@ def audit(path):
         inputs=inputs,
         runtime_differences=differences,
         packet_observations=observations,
+        fourth_word_store_observations=store_observations,
+        fourth_word_store_sites=store_sites,
+        shared_fourth_word_fstp_equal=store_equal,
+        direct_float_literal_producers_equal=producers_equal,
+        fourth_word_literal_producers=producer_addresses,
         per_mode_call_graph_equal=per_mode,
         combined_call_graph_equal=combined_equal,
         combined_call_counts=[len(graph) - 5 for graph in combined],
@@ -240,7 +338,7 @@ def audit(path):
                 "src/characters/ReimuObjectActionStateStaging.hpp",
             )
         },
-        scope="ten actual900 prefixes, two target-only unwritten-word observations and four/joint conditional normal-return call/RET projections; no predicate, returning-World or exact-byte claim",
+        scope="ten actual900 prefixes including four valid-selector stores and their preceding root floating operations, two target-only unwritten-word observations and four/joint conditional normal-return call/RET projections; observed shared FSTP/direct float producers do not prove predicates, other inputs, returning-World effects or exact bytes",
     )
 
 
@@ -269,6 +367,7 @@ def main():
                     "support_sha256",
                     "reviewed_selector_switches",
                     "packet_observations",
+                    "fourth_word_store_observations",
                 )
             },
             indent=2,

@@ -9,6 +9,8 @@ owned-extent unit are unchanged. The comparison covers all46138 physical
 bytes through4A197A, including46128 owned instruction bytes and10 alignment
 bytes. No root exact row, remote_exact flag or authored-byte credit is added.
 
+The selected source/payload pins below remain unchanged. The current [selector-producer investigation](REIMU_OBJECT_900_SELECTOR_STORE_2026_10_20.md) strengthens the v1 audit: the same source passes the old prefix/call checks but still fails the new shared packet-store condition. No float-join control is adopted.
+
 ## Observed target instructions
 
 The physical900 interval `[49C9F5,49CEC2)` is1229 bytes/289 instructions,
