@@ -531,12 +531,11 @@ retire_801_811:
                 phase_index_184 = 0;
             if (counter_144 % 4 == 0) {
                 float copied[3] = {heading_12c, 5.0f, 5.0f};
-                const float request_y = static_cast<float>(
-                    static_cast<float>(static_cast<unsigned int>(selector_random_roll(32))) + y_f0 - 16.0);
-                const float request_x = static_cast<float>(
-                    static_cast<float>(static_cast<unsigned int>(selector_random_roll(32))) + x_ec - 16.0);
+                // Prepare facing and outgoing fields before the coordinate RNG calls.
                 reinterpret_cast<CharacterObjectEffectEmitter *>(this)->
-                    spawn_unparented_related_object(811, request_x, request_y,
+                    spawn_unparented_related_object(811,
+                        static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(32))) + x_ec - 16.0),
+                        static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(32))) + y_f0 - 16.0),
                         static_cast<unsigned char>(facing_104), 1,
                         reinterpret_cast<const unsigned *>(copied), 3);
             }

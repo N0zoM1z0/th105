@@ -1,16 +1,15 @@
 # ReimuObject evidence index
 
 Start with [the current handoff](RE_HANDOFF.md). The selected496540 source
-is the [822 argument-lifetime checkpoint](REIMU_OBJECT_822_ARGUMENT_LIFETIMES_2026_10_21.md):
-CPP4166880c, whole45700-byte canonical7ffa1d0d.624 real-RNG/RET controls
-pass; predecessor fails576 publication/pending cases despite equal outputs.
-All16 first-packet slots,99 World memberships and separate817 advance are
-restored. Other call partitions merge (call-distance11/RET-distance27).
-817640/320,8216720,retirement3600,selector12 and world-sharing receipts pass;
-the complete formal/native bridge is retained. Root stays nonexact+31 and
-same-TU4963A0 stays66/66. No new exact, diagnostic-byte or aggregate credit.
-Earlier pages retain their frozen source/object pins;133192/26342 and other
-historical broad receipts are not fresh current runs.
+is the [811 coordinate-argument checkpoint](REIMU_OBJECT_811_COORDINATE_ARGUMENTS_2026_10_21.md):
+CPP3b9e4896, whole45700-byte canonicald0ff3d32.640 initialized-lookup/original-
+RNG prefixes pass; predecessor fails640 facing/pending cases despite equal
+outputs. Its161-byte request window agrees after known CALL replay, diagnostic
+only. Affected817640/320 pass.41/43 source instruction graphs and all switch
+tables remain unchanged;817 adds a proven jump over alignment. All call/RET
+memberships stay unchanged, distances11/27. Root remains nonexact+31 and
+same-TU4963A0 stays66/66.822/821/World/selector/packet receipts retain their
+preceding source epochs. No new exact or aggregate credit is claimed.
 
 ## How to read the records
 
@@ -37,7 +36,8 @@ or compiler context. Later evidence may supersede an earlier stop condition.
 
 | Record | Scope and status |
 | --- | --- |
-| [822 argument lifetimes](REIMU_OBJECT_822_ARGUMENT_LIFETIMES_2026_10_21.md) | Current4166880c source;624 controls,16 packet slots and99 World memberships agree; root nonexact. |
+| [811 coordinate arguments](REIMU_OBJECT_811_COORDINATE_ARGUMENTS_2026_10_21.md) | Current3b9e4896 source;640 prefixes and161-byte request window agree; root nonexact. |
+| [822 argument lifetimes](REIMU_OBJECT_822_ARGUMENT_LIFETIMES_2026_10_21.md) | Frozen4166880c source;624 controls,16 packet slots and99 World memberships agree; root nonexact. |
 | [817 coordinate arguments](REIMU_OBJECT_817_COORDINATE_ARGUMENTS_2026_10_21.md) | Frozen78d85ab4 source; facing/pending-argument lifetimes and packet slots agree in640 real prefixes, root nonexact. |
 | [817 turn destination](REIMU_OBJECT_817_TURN_LIFETIME_2026_10_21.md) | Preceding5210f5ab source pins; pointer/RNG ordering remains verified by the current320-input audit. |
 | [821 owner exits](REIMU_OBJECT_821_OWNER_EXITS_2026_10_21.md) | Precedingc79f3975 source/6720 execution epoch; independent guard/RET structure remains selected. |
