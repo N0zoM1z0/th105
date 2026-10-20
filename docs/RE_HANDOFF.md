@@ -1,13 +1,14 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest bounded
-follow-up corrects40BFE0's source iterator facts: size8/alignment4, already a
-real local. New compile-time guards preserve its74-byte nonexact body against
-target81; frame cause remains open. No new exact is recorded.4A1CE0 freshly
-repeats14 differences, with duplicate controls classified as revalidation.
-Reimu496540 keeps the committed811 correction and remains nonexact49655F/+31,
-call-distance11/RET-distance27. Latest accepted remains CDesignNumber40BB00
-at61/61. Live evidence overrides historical prose.
+follow-up corrects CNumber's value interface using target RTTI and virtual
+consumers. TNumberValue<int*> getters4424B0/4424C0 are each complete6/6 exact;
+their real constructor caller444190 and affected integer renderer414F10 retain
+728/312 exact. Initializer414E40 retains102/104 nonexact. The outer renderers
+40AF80/40AFC0 and private414EB0/415050 remain unselected. Reimu496540 keeps the
+committed811 correction and remains nonexact49655F/+31, call-distance11/
+RET-distance27.40BFE0 remains74/81;4A1CE0 retains14 differences. Live evidence
+overrides historical prose.
 
 ## Target, workflow and acceptance
 
@@ -44,6 +45,13 @@ successful compilation confer no partial exact credit. No cold aggregate
 replay or new aggregate percentage is claimed. The user requests focused
 affected checks, regular commit and push, and careful re-examination of old
 assumptions when reconstruction resumes.
+
+The latest [value-interface checkpoint](NUMBER_VALUE_INTERFACE_2026_10_21.md)
+adds two functions/12 bytes, with genuine template emission in the existing
+menu-constructor unit. Both semantic consumers of the changed header were
+replayed;196 origin-rule selections are unchanged and disjoint from the new
+candidates. The first two adapter slots are getters; the old destructor-slot
+placeholder was wrong. Nominal float/double return spelling remains open.
 
 ## Current811 coordinate-argument phase
 

@@ -14554,7 +14554,7 @@ source = "src/ui/MenuConnectConstructorRuntime.cpp"
 object = "build/match-units/GptWeb_MenuConnectConstructorRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current RTTI-owned 0x118C CMenuConnect constructor at 0x00444190. Real CNumber/TNumberValue<int*> ownership, two zeroing texture handles, checked deque<string>, a separate +0x3B8 dword, cursor +0x3BC, endpoint +0x42C and eight GuideOverlay records +0xC4C reproduce all ten EH states and the complete 728-byte body. The caller-proved member view of hide_profile_message_43f8d0 is required."
+notes = "Current RTTI-owned 0x118C CMenuConnect constructor at 0x00444190. Real CNumber/TNumberValue<int*> ownership, two zeroing texture handles, checked deque<string>, a separate +0x3B8 dword, cursor +0x3BC, endpoint +0x42C and eight GuideOverlay records +0xC4C reproduce all ten EH states and the complete 728-byte body. The caller-proved member view of hide_profile_message_43f8d0 is required. RTTI proves the zero-offset INumberValue base: the real bind_value<int*> construction emits the complete six-byte integer/x87 getters at 0x004424B0/0x004424C0; these slots are value reads."
 
 [[units.gpt-web-menu-connect-constructor-runtime.functions]]
 address = "0x00444190"
@@ -14579,6 +14579,14 @@ dir32_targets = [
   "_g_active_menu_input=_g_active_menu_input",
   "___security_cookie=___security_cookie",
 ]
+
+[[units.gpt-web-menu-connect-constructor-runtime.functions]]
+address = "0x004424B0"
+symbol_base = "?get_integer@?$TNumberValue@PAH@th105@@UAEHXZ"
+
+[[units.gpt-web-menu-connect-constructor-runtime.functions]]
+address = "0x004424C0"
+symbol_base = "?get_floating@?$TNumberValue@PAH@th105@@UAEMXZ"
 
 [units.gpt-web-menu-connect-history-runtime]
 kind = "probe"

@@ -60,6 +60,8 @@ typedef char CNumberTileVertex_size_must_be_0x1c[
 // The 0x28-byte controller prefix owns a CTile-compatible 0xA4 object at +0x28.
 // CNumber's constructor body clears the value adapter only after the tile has
 // completed construction; this ordering is required by the shipped ctor EH.
+struct INumberValue;
+
 class CNumber {
 public:
     CNumber() { number_value_24 = 0; }
@@ -86,16 +88,23 @@ private:
     int reserved_1c;
     unsigned char mode_20;
     unsigned char reserved_21[3];
-    void *number_value_24;
+    INumberValue *number_value_24;
     CNumberTileA4 tile_28;
 };
 
+// RTTI proves a zero-offset INumberValue base. Slots 0/4 read the binding;
+// CNumber releases the adapter directly, without a virtual destructor call.
+struct INumberValue {
+    virtual int get_integer() = 0;
+    virtual float get_floating() = 0;
+};
+
 template <typename T>
-class TNumberValue {
+class TNumberValue : public INumberValue {
 public:
     explicit TNumberValue(T value) : value_04(value) {}
-    virtual ~TNumberValue();
-    virtual void slot_04();
+    virtual int get_integer() { return static_cast<int>(*value_04); }
+    virtual float get_floating() { return static_cast<float>(*value_04); }
 
 private:
     T value_04;
