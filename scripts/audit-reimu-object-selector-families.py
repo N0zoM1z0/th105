@@ -3,7 +3,8 @@
 
 Actual target/source execution identifies each selector table and first world
 frontier. The subsequent static graph is explicitly conditional on normal ABI
-returns. Physical site partitions and payload prefixes do not prove exact bytes.
+returns. --action bounds the report; the default checks all four families.
+Physical site partitions and payload prefixes do not prove exact bytes.
 """
 
 from __future__ import annotations
@@ -304,7 +305,16 @@ class ObservedProbe(native.Probe):
         super().instruction(engine, address, size, unused)
 
 
-def audit(path):
+def audit(path, selected_actions=None):
+    selected_actions = (
+        tuple(ACTIONS) if selected_actions is None else tuple(selected_actions)
+    )
+    if (
+        not selected_actions
+        or len(set(selected_actions)) != len(selected_actions)
+        or any(action not in ACTIONS for action in selected_actions)
+    ):
+        raise ValueError("select distinct supported action families")
     facts = native.facts.audit()
     candidate = native.export(path)
     decoder = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
@@ -349,7 +359,8 @@ def audit(path):
     source = ObservedProbe(bytes(image), candidate, seeds=seeds)
     target.selector_map, source.selector_map = target_switches, source_switches
     actions, inputs = [], []
-    for action, (lo, hi) in ACTIONS.items():
+    for action in selected_actions:
+        lo, hi = ACTIONS[action]
         selected = [
             value for address, value in target_switches.items() if lo <= address < hi
         ]
@@ -423,6 +434,7 @@ def audit(path):
         object_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
         candidate_sha256=hashlib.sha256(candidate).hexdigest(),
         case_count=len(inputs),
+        selected_actions=list(selected_actions),
         input_sha256=hashlib.sha256(
             json.dumps(inputs, sort_keys=True).encode()
         ).hexdigest(),
@@ -450,11 +462,18 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("object", type=Path)
     parser.add_argument("--output", type=Path)
+    parser.add_argument(
+        "--action", type=int, choices=tuple(ACTIONS), action="append",
+        help="Audit these action families; the default checks all four.",
+    )
     args = parser.parse_args()
     try:
-        report = audit(args.object)
+        report = audit(args.object, args.action)
     except (ValueError, OSError) as error:
-        report = dict(result="rejected", reason=str(error))
+        report = dict(
+            result="rejected", reason=str(error),
+            selected_actions=list(ACTIONS) if args.action is None else args.action,
+        )
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(report, indent=2) + "\n")

@@ -2854,59 +2854,66 @@ fade_902:
                 }
             }
             if (state_364 == 1 && *reinterpret_cast<short *>(fighter_owner_348 + 0x738) == 0) {
+                // Four packets remain alive through the shared second spawn/wave.
+                // docs/REIMU_OBJECT_905_PACKET_JOIN_2026_10_21.md.
+                float mode0_packet[3], mode1_packet[3];
+                float mode2_packet[3], mode3_packet[3];
+                float *completed_packet = 0;
                 switch (g_match_identifier) {
                 case 0:
                     if (counter_144 % 270 == 0) {
-                        float copied[3] = {heading_12c, 2.0f, 4.0f};
+                        mode0_packet[0] = heading_12c;
+                        mode0_packet[1] = 2.0f;
+                        mode0_packet[2] = 4.0f;
                         reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                             905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
-                            reinterpret_cast<const unsigned *>(copied), 3);
-                        copied[2] = 5.0f;
-                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
-                            905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
-                            reinterpret_cast<const unsigned *>(copied), 3);
-                        reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                            reinterpret_cast<const unsigned *>(mode0_packet), 3);
+                        mode0_packet[2] = 5.0f;
+                        completed_packet = mode0_packet;
                     }
                     break;
                 case 1:
                     if (counter_144 % 240 == 0) {
-                        float copied[3] = {heading_12c, 2.0f, 4.0f};
+                        mode1_packet[0] = heading_12c;
+                        mode1_packet[1] = 2.0f;
+                        mode1_packet[2] = 4.0f;
                         reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                             905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
-                            reinterpret_cast<const unsigned *>(copied), 3);
-                        copied[2] = 5.0f;
-                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
-                            905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
-                            reinterpret_cast<const unsigned *>(copied), 3);
-                        reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                            reinterpret_cast<const unsigned *>(mode1_packet), 3);
+                        mode1_packet[2] = 5.0f;
+                        completed_packet = mode1_packet;
                     }
                     break;
                 case 2:
                     if (counter_144 % 210 == 0) {
-                        float copied[3] = {heading_12c, 2.0f, 4.0f};
+                        mode2_packet[0] = heading_12c;
+                        mode2_packet[1] = 2.0f;
+                        mode2_packet[2] = 4.0f;
                         reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                             905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
-                            reinterpret_cast<const unsigned *>(copied), 3);
-                        copied[2] = 5.0f;
-                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
-                            905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
-                            reinterpret_cast<const unsigned *>(copied), 3);
-                        reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                            reinterpret_cast<const unsigned *>(mode2_packet), 3);
+                        mode2_packet[2] = 5.0f;
+                        completed_packet = mode2_packet;
                     }
                     break;
                 case 3:
                     if (counter_144 % 150 == 0) {
-                        float copied[3] = {heading_12c, 2.0f, 4.0f};
+                        mode3_packet[0] = heading_12c;
+                        mode3_packet[1] = 2.0f;
+                        mode3_packet[2] = 4.0f;
                         reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                             905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
-                            reinterpret_cast<const unsigned *>(copied), 3);
-                        copied[2] = 5.0f;
-                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
-                            905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
-                            reinterpret_cast<const unsigned *>(copied), 3);
-                        reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                            reinterpret_cast<const unsigned *>(mode3_packet), 3);
+                        mode3_packet[2] = 5.0f;
+                        completed_packet = mode3_packet;
                     }
                     break;
+                }
+                if (completed_packet) {
+                    reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                        905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                        reinterpret_cast<const unsigned *>(completed_packet), 3);
+                    reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
                 }
             }
             if (state_364 == 2) {

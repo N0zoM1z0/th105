@@ -19814,7 +19814,7 @@ source = "src/characters/ReimuObjectActionStateStaging.cpp"
 object = "build/match-units/GptWeb_ReimuObjectActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "ReimuObject496540 source hypothesis; full46138-byte owned comparison remains nonexact+31. Seven ordinary local exits recover state330 write-before-x87-pop behavior and remove early EBP1/EBX0 hoisting; sampled retirement/helper states0/3600. Source code prefix45460/payload46328,71 RETs versus target68; entry/default instruction-edge identity2/43 is diagnostic only. Physical call sharing still differs; same-TU4963A0 remains66/66. Existing ordered stores and902 typed owner publications are retained. No shared header/profile/binding/ownership change; docs/REIMU_OBJECT_LOCAL_EXITS_2026_10_21.md."
+notes = "ReimuObject496540 source hypothesis; full46138-byte owned comparison remains nonexact+31. Action905 now keeps four real packets alive through one shared second-spawn/wave consumer, recovering its four private first calls and two shared calls. Root source426 physical calls versus target433:817 advance and906 final-spawn/wave sharing remain unresolved; call-membership distance15->9 is diagnostic only. Source prefix45280/payload46148 retains the438h frame and71 RETs. Seven local retirement exits, ordered stores and902 typed owner publications remain; same-TU4963A0 stays66/66. No header/profile/binding/ownership change. docs/REIMU_OBJECT_905_PACKET_JOIN_2026_10_21.md."
 
 [[units.gpt-web-reimu-object-action-state.functions]]
 address = "0x00496540"

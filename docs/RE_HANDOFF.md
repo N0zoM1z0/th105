@@ -1,11 +1,11 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active ReimuObject496540 exact reconstruction.
-Seven ordinary local retirement exits now preserve the observed state330
-write-before-x87-pop lifetime and remove premature EBP1/EBX0 hoisting. The
-new133192-input combined replay has zero output, ordered-write and retirement
-state differences. The root still fails canonical equality at49655F/+31:
-physical return/call sharing and source/TU context remain unresolved.
+Action905 now keeps four real packets alive through one shared second-spawn/
+wave consumer. Its four first-World prefixes and normal-return call graphs
+pass; complete-root call-membership distance improves15->9. Full133192 combined
+output/write/retirement replay passes. The root is still nonexact49655F/+31;
+906/817 physical sharing, return layout and original source/TU remain open.
 No new exact function is claimed. The latest accepted entry remains
 CDesignSprite40AEE0 at19/19, with its affected CDesignGage renderers60/68.
 CGage41B3F0 remains nonexact in one multiplication load-order pair; binder404DF0
@@ -52,73 +52,81 @@ assumptions when reconstruction resumes.
 `ReimuObject_dispatch_action_state_vslot28 @496540` remains source-present in
 `src/characters/ReimuObjectActionStateStaging.cpp`, unit
 `gpt-web-reimu-object-action-state`. Vtable6C40A4/cell6C40CC slot28, ECX/RET0
-and caller4937D0 ignoring EAX are observed. The void source return remains an
-inference. The39853-byte main candidate is provisional; full comparison still
-covers46138 physical bytes through4A197A, including46128 owned and10 alignment
-bytes. Raw closure reconfirms10670 instructions,22 switches and68 target RETs.
+and caller4937D0 ignoring EAX are observed. The void return remains inferred.
+The provisional39853-byte main candidate and full46138-byte owned comparison
+through4A197A are unchanged:46128 owned bytes plus10 alignment bytes. Raw target
+closure still has10670 instructions,22 switches and68 RETs.
 
-Ordinary decrement/return replaces the generic retirement jump at seven
-source sites:812's completed sector loop;821's compound owner gate;822's
-channel112 gate; and855/869/903/904's existing compound bounds tests. No
-predicate is split and no numeric value/local is introduced. Target4980E4
-and49B8E7 decrement330 before popping a live x87 value; the new source now
-matches sampled and full-matrix retirement states. All previous ordered-store
-recoveries,902's eight asserted owner float publications and999's cleanup
-remain in place. No shared header, selected profile, binding or ownership change.
+905's four existing period tests now initialize distinct live float packets,
+issue their real first calls, mutate word2 to5 and select the packet for one
+shared second-spawn/wave consumer. Packet lifetime extends through that actual
+consumer. No predicate, divisor, selector read or outgoing expression changes.
+The previous seven ordinary local retirement exits, seventeen ordered stores,
+902's typed owner publications and999 cleanup remain. No shared header, compiler
+profile, binding or ownership change.
 
 | Selected artifact | SHA256 |
 | --- | --- |
-|CPP|`a2c44054550380596f67b5aced05f301cab26cd711ac5c22b68f06e64f162ef1`|
+|CPP|`1c9a12c4253c3bf27b46f28958cb07179b798098034dbc0c2819b33d66003c67`|
 |Unchanged header|`6f469e6886959fd41ee6976b3c784c3df0c2e753ad4729a536764a3c8cd28b4b`|
-|Formal COFF|`4ddca4f4ff71c900385602bad74f1159bdebcc1c01b2db8ffd7cee9c1e0f8118`|
-|Whole46328-byte canonical source section|`7842896240c69e2d920e76b4c39262f8d43257faba0574d5bfcf849e92b28e8c`|
-|Fixed46138-byte compared prefix|`fb49c2c120a902b1b59b50a82f31cfe931e6fdc98720385ebf726b147861a1d1`|
+|Formal COFF|`880f695c90045ac9721b62f301009b41ced63a131aab4dee1ae60cbc762ebc82`|
+|Whole46148-byte canonical source section|`b12eab22b2af24927494c6ae1b2a1a544125604d4f9aa98125db339be6315695`|
+|Fixed46138-byte compared prefix|`0418e5f9d9bee2ced3f6935a9f254edf40e618d3953480c833dad14ec824ff55`|
 
-The root remains **nonexact at49655F/+31**, a jump displacement. It retains
-its natural438h frame. Its source prefix before868 bytes of metadata is45460,
-versus target table offset46140; do not treat the full-section size46328 as
-callable size. Source71 RETs versus target68, RET-membership distance29 and
-entry/default instruction-edge identity2/43 are diagnostics only. Source CFG
-reaches10491 instructions. The separate real4963A0 stays **66/66 exact**,
-canonicalad12b782. No matching/remote-exact row or partial credit is added.
+The root remains **nonexact49655F/+31**, a jump displacement. The438h frame
+remains. Its prefix before868 metadata bytes is45280, versus target table
+offset46140. A source payload only10 bytes longer is not near-exact evidence.
+Source71 RETs versus target68, RET-distance29 and entry/default instruction-edge
+identity2/43 are diagnostics only. Source CFG reaches10443 instructions.
+The same-TU4963A0 helper freshly stays **66/66 exact**, canonicalad12b782.
+No new match, remote-exact flag or partial credit is added.
 
-Call sharing is still different: source432 physical calls versus target433.
-The source shares an advance call for817/860/861 where the target has two.
-Three World/wave pairs have905-only source membership and906-only target
-membership under complete conservative static reachability. This is physical
-partition evidence, not predicate feasibility or demonstrated wrong output.
-Canonical return/call layout and original source/TU context remain open.
+Source426 physical calls versus target433 now reflect an exposed deficit:
+906 still shares three final-World/wave pairs that the target keeps private;
+817 advance is shared with860/861 where the target has two calls. Old905 had
+six excess sites, cancelling906's six missing ones in the total. Correcting
+905 reduces full call-membership multiset distance15->9 despite the larger
+count difference. These are conservative normal-return reachability sets,
+not predicate feasibility or execution through opaque calls.
 
-The combined `audit-reimu-object-retirement-fpu.py --stride 1` passes all133192
-inputs, hashf46a849f, with zero output, object/owner/parameter ordered-write
-and retirement-live-x87 differences. All16 prefix first-store sites execute;
-each902 owner publication executes144 times and retains float spill/reload.
-822's post-opaque parameter/heading pair retains static order but has zero
-executions. This single affected-root pass includes the typed-store coverage;
-no second full typed-store replay or historical19-command sweep is claimed.
+The scoped `audit-reimu-object-selector-families.py --action 905` passes four
+actual first-World prefixes and their subsequent normal-return call graphs.
+Reports explicitly list scope. The predecessor rejects905; the selected
+no-argument default still checks all four and rejects906; duplicate requests
+are rejected.84 additional original-code prefixes agree on invalid/negative
+selectors, extreme/non-period counters and all four906 first entries. They
+observe four distinct packet identities per action on both sides;906's residual
+is not simply one coalesced buffer. Stack offsets themselves remain unequal.
 
-The initial control's helper-entry sample passes0/3600. Its complete46328-byte
-native root equals the formal object's at800000, hash24ce549b; the byte-bridge
-receipt preserves that evidence without presenting it as a fresh formal-COFF
-or full-matrix helper-x87 run. Its24/25 visited callees leave4359F0 unvisited.
-The final auditor also retains the predecessor's22/3600 retirement differences
-as a negative control. World/setup/wave/event/CRT continuations, arbitrary
+The combined retirement/typed-store audit passes all133192 inputs/hashf46a849f
+with zero output, object/owner/parameter ordered-write and retirement-live-x87
+differences. All16 first-store sites execute; each902 publication executes144
+times and retains float spill/reload.822 post-opaque parameter/heading order
+remains static-only with zero executions. This is one affected-root pass,
+not a second full typed-store or unrelated exact-unit replay.
+
+The initial candidate's0/3600 retirement/helper-entry evidence is bridged to
+the formal root by complete46148-byte native equality at800000, hashdb08b49a.
+It is not a fresh formal-COFF or full-matrix helper-x87 claim;4359F0 remains
+unvisited in that sample. World/setup/wave/event/CRT continuations, arbitrary
 aliases/resources/vtables, nonnull rendering and unmasked exceptions remain
-outside this finite-prefix contract. Physical TOP/flags are not compared by
-the retirement diagnostic; native returns retain their existing balance/ABI checks.
+outside finite-prefix coverage. Retirement diagnostics omit physical TOP/flags;
+native returns retain their existing stack/x87 balance and ABI checks.
 
-See [local-exit evidence and commands](REIMU_OBJECT_LOCAL_EXITS_2026_10_21.md)
-and [the evidence index](REIMU_OBJECT_EVIDENCE.md). Current receipts and frozen
-baseline/control/selected inputs are in `build/reimu-object-cleanup-20261021/`,
-with corresponding private recipes under `.analysis/`. Five bulk reports are
-verified and gzip-compressed, saving1142239 bytes; sources, COFFs, current
-summaries and native receipts stay loose.
+Fresh RTTI confirms the real ReimuObject hierarchy, including CObjectBase+330,
+AnimationObjectBase+4 and Environment+130. A private inherited view,817's
+ordinary outer-switch exit and function-scoped906 packets all reproduce the
+predecessor's complete78428962... body unchanged. Those controls are unselected
+and phase-scoped; no universal source/compiler or LTCG barrier is inferred.
 
-The predecessor CPP555da070/canonical88bd9c9b, its typed-store133192 receipt,
-helper-visibility controls and split-retirement controls are historical with
-their own pins. They do not establish a universal compiler or LTCG barrier.
-The local-exit recovery improves observed lifetime/entry structure while
-leaving the complete root's canonical exact objective unfinished.
+See [905 packet-join evidence](REIMU_OBJECT_905_PACKET_JOIN_2026_10_21.md) and
+[the evidence index](REIMU_OBJECT_EVIDENCE.md). Receipts/frozen inputs are in
+`build/reimu-object-call-sharing-20261021/`, with corresponding private recipes
+under `.analysis/`.28 completed unselected-control files are losslessly
+compressed2627202->331766 bytes after SHA256 readback; baseline/current/join
+control sources and COFFs stay loose. Generators use the frozen predecessor.
+The local-exit a2c44054 epoch and its earlier full133192 receipt remain historical;
+its source lifetime recovery is retained in this new selection.
 
 ## Other preserved checkpoints
 

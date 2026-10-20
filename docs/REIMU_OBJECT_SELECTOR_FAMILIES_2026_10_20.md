@@ -1,5 +1,10 @@
 # ReimuObject selector families and natural frame recovery
 
+This page preserves its original source/receipt epoch. The current
+[905 packet-join checkpoint](REIMU_OBJECT_905_PACKET_JOIN_2026_10_21.md)
+reconfirms905's graph; the default current four-family check still rejects906.
+Earlier passing selector results are not claims about every later root shape.
+
 > Historical experiment record. Its pins, selected source and next steps apply
 > to that checkpoint. Use [the current handoff](RE_HANDOFF.md) and
 > [evidence index](REIMU_OBJECT_EVIDENCE.md) for current state and ABI limits.

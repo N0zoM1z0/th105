@@ -1,5 +1,10 @@
 # ReimuObject local retirement lifetimes
 
+This page records sourcea2c44054 atde4ef13. The later
+[905 packet-join checkpoint](REIMU_OBJECT_905_PACKET_JOIN_2026_10_21.md)
+retains the seven exits while superseding the selected source/object and
+call-sharing statistics. The original receipts below keep their own epoch.
+
 Seven ordinary local exits now replace jumps to the generic retirement label
 in `ReimuObject_dispatch_action_state_vslot28 @496540`. They recover observed
 state330-write-before-x87-pop lifetimes and remove the source's early EBP=1 /
