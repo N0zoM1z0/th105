@@ -1332,15 +1332,21 @@ retire_801_811:
             scale_y_120 = scale_x_11c;
             heading_12c += state_370;
             if (frame_timer_142 == 0) {
-                float copied[4] = {0.0f, 0.0f, 0.0f, 0.0f};
+                // Target publishes the last packet word after the first RNG call.
+                float copied[4];
+                copied[0] = 0.0f;
+                copied[1] = 0.0f;
                 copied[2] = static_cast<unsigned int>(selector_random_roll(100)) < 50u ? 5.0f : 6.0f;
+                copied[3] = 0.0f;
                 const double origin_y = y_f0 + 100.0;
                 const double origin_x = x_ec + 100.0;
-                const unsigned char direction = static_cast<unsigned int>(selector_random_roll(100)) > 50u ? 255 : 1;
-                const float request_y = static_cast<float>(origin_y - static_cast<float>(static_cast<unsigned int>(selector_random_roll(200))));
-                const float request_x = static_cast<float>(origin_x - static_cast<float>(static_cast<unsigned int>(selector_random_roll(200))));
+                // Actual arguments retain VC8's metadata/direction/Y/X preparation order.
                 reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
-                    822, request_x, request_y, direction, 1, reinterpret_cast<const unsigned *>(copied), 4);
+                    822,
+                    static_cast<float>(origin_x - static_cast<float>(static_cast<unsigned int>(selector_random_roll(200)))),
+                    static_cast<float>(origin_y - static_cast<float>(static_cast<unsigned int>(selector_random_roll(200)))),
+                    static_cast<unsigned char>(1 - 2 * (static_cast<unsigned int>(selector_random_roll(100)) > 50u)),
+                    1, reinterpret_cast<const unsigned *>(copied), 4);
             }
             if (state_370 > 0.0f) {
                 state_370 = static_cast<float>(state_370 - static_cast<double>(0.1f));

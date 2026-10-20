@@ -1,12 +1,12 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active ReimuObject496540 exact reconstruction.
-817 sequence0/9 now prepare facing and outgoing arguments before coordinate
-RNG;640 original-RNG prefixes reject the predecessor despite equal outputs.
-Sequence3's earlier destination capture stays verified by320 inputs. Root
-remains nonexact49655F/+31, RET-distance27/call-distance9.821 guards, descending
-modes and12 matching906..908 packet slots remain.905 placement,906/817 sharing
-and908 post-wave load form stay open. Latest accepted function remains
+822 sequence4 now publishes its packet and prepares real direction/coordinate
+arguments in target order.624 original-RNG/RET controls pass; predecessor
+fails576 ordering cases, two wrong inclusive thresholds fail64 outputs each.
+All16 first-packet slots,99/99 World memberships and separate817 advance sites
+are restored. Other call partitions change: call-distance11, RET-distance27.
+Root remains nonexact49655F/+31. Latest accepted function remains
 CDesignNumber40BB00 at61/61. Live evidence overrides historical prose.
 
 ## Target, workflow and acceptance
@@ -45,43 +45,45 @@ replay or new aggregate percentage is claimed. The user requests focused
 affected checks, regular commit and push, and careful re-examination of old
 assumptions when reconstruction resumes.
 
-## Current817 coordinate argument phase
+## Current822 packet and argument phase
 
-Both periodic817 requests keep the actual coordinate RNG expressions in their
-owner-method arguments. Facing and packet/count/variant words are prepared
-before RNG100; Y already occupies its real argument slot at RNG200. Cached
-double origins, RNG270/40/100/200, casts and owner348 reload after RNG200 remain.
+822 sequence4 publishes words0/1 before its first RNG100, then word2 choice
+and word3 zero afterward. Count/pointer/variant are prepared before direction
+RNG100; facing precedes Y RNG200, and Y precedes X RNG200. Real expressions
+remain in their actual method arguments, with double origins and strict
+packet<50/direction>50 policies. Original RNG, including49/50/51 boundaries,
+is executed; no random result or opaque return is fabricated.
 
 | Selected artifact | SHA256 |
 | --- | --- |
-|CPP|`78d85ab4deb4890e28016823dbbf3ccb5d733de435d474157a9d265b66136da8`|
+|CPP|`4166880c578b304a66e799b0a5ecb3d4476c6ee9e84910c05953f39758435496`|
 |Unchanged header|`6f469e6886959fd41ee6976b3c784c3df0c2e753ad4729a536764a3c8cd28b4b`|
-|Tested formal COFF|`05fdccc7ef8d4aeff6dd3bc38d6596d45422ee2ec91da0567aa6aad4c4ee6af6`|
-|Whole46144-byte canonical source section|`5e5bc7ab0678610ba165670cee0463786e150059d5dd6552b9f6b4934d362ea3`|
-|Fixed46138-byte compared prefix|`b2ee43cc5871a1cad876d3fc64fce7daeca4752a58ac4fc46be067fe9804abb5`|
+|Tested formal COFF|`1ea1edcf91f8465c9fac1e1e2428141b3de73ba81459e553be8044ae1a8981bf`|
+|Whole45700-byte canonical source section|`7ffa1d0deb87cc39ec7b821f18483293326b4269e82c8ea5f9a76a0dfcbaa3f8`|
 
-New640 sequence0/9 inputs execute original RNG and stop at real465190 entry.
-Facing order, pending stack scalars/payloads and root-relative packet slots
-agree; predecessor5210f5ab fails640 despite equal outputs/writes. The817
-sequence3 audit freshly passes320 RNG/RET paths. Retirement sample3600 and
-scoped12 selector prefixes/conditional graphs pass. Sixteen first-packet
-observations retain12 matching906..908 slots;905 remains different.
-Two119-byte coordinate windows agree after known direct-call relocation.
-These are diagnostic windows, not independently accepted functions.
+New624 cases comprise576 real request prefixes and48 inactive real RETs.
+All agree in outputs, ordered writes, packet order, pending actual stack slots,
+RNG results and logical x87 state. Predecessor78d85ab4 matches outputs/writes
+but fails576 publication/pending cases; wrong-inclusive controls fail64 outputs
+each. Source packet offset-584 from entry SP agrees with target.
 
-Ordinary SP1 O2/GS-off retains438h frame,45276 code+868 metadata bytes,
-10444 decoded instructions,426 calls/71 RETs and full nonexact+31. Target has
-46128 owned code bytes/10670 instructions/433 calls/68 RETs; close section size
-does not establish code-size equality. Same-TU4963A0 stays66/66 exact.
-41/43 source-to-source instruction graphs remain identical.902 only widens JNE
-with unchanged condition/destination; all call/RET memberships and switch tables
-remain unchanged. No new exact, shared change or aggregate replay is claimed.
+Necessary817 coordinate640/turn320,821 owner exits6720, retirement sample3600,
+scoped selector12 and world-sharing checks pass. All99 World memberships,
+540903 prefixes and180 retirement prefixes agree within the stated scope.
+All16 first-packet offsets in905..908 now agree, including the four previously
+unresolved905 slots. The complete formal45700-byte native export equals the
+private candidate; new624 additionally replay on frozen formaltested.obj.
 
-See [817 coordinate arguments](REIMU_OBJECT_817_COORDINATE_ARGUMENTS_2026_10_21.md)
-and `build/reimu-object-rng-captures-20261021/` for current evidence. The active
-scope stays loose. Six predecessor diagnostic JSONs are SHA-checked/compressed
-3456992->219205 bytes; source/COFF/native inputs and execution receipts remain.
-Restore historical `.gz` reports before old private recipes.
+Ordinary SP1 O2/GS-off retains438h frame,44832 code+868 metadata bytes,
+10394 decoded instructions,428 calls/63 RETs. Target has46128 owned code bytes/
+10670 instructions/433 calls/68 RETs. Target comparator requests46138 bytes;
+the source hash covers available45700 bytes. Full first difference stays+31;
+same-TU4963A0 stays66/66 exact. No new exact or aggregate replay is claimed.
+
+See [822 argument lifetimes](REIMU_OBJECT_822_ARGUMENT_LIFETIMES_2026_10_21.md)
+and `build/reimu-object-822-arguments-20261021/`. Frozen positive/negative
+inputs and receipts stay available; completed unselected control graphs are
+SHA-checked/gzip-compressed, with a local compression manifest.
 
 ## Root contract and preserved limits
 
@@ -91,27 +93,28 @@ and46138-byte owned comparison through4A197A are unchanged:46128 owned bytes
 plus10 alignment bytes. Raw closure has10670 instructions and22 switches.
 No new boundary, original source/TU or universal compiler/LTCG claim is made.
 
-821's independent owner guards retain the first-two shared812/821/822 retirement
-and private last-sequence tail.902 typed float spill/reloads and822 heading-pair
-publications remain.817 still shares advance with860/861, while target has two
-sites.906 still lacks three separate final-World/wave pairs.905's live packets,
-shared second spawn/wave and descending modes remain; its placement is open.
-908 still uses FILD/FADD-memory after the opaque wave, where target uses
-FLD-before-FILD/FADDP. That continuation is unexecuted. No opaque returns,
-unmasked exception coverage, arbitrary aliases/resources/vtables or full-root
-exactness follow from finite prefixes.
+821's independent owner guards retain first-two shared812/821/822 retirement
+and a private last-sequence tail.902 typed publications and817 turn/coordinate
+lifetimes remain.817 advance now separates from860/861;906 final World/wave
+sites and905 packet placement agree. Other4351C0/indirect-call memberships
+still differ (overall distance9 to11); RET-distance27 stays.822's225-byte
+request window still differs in13 register/constant bytes after CALL replay.
+908 retains FILD/FADD-memory after the opaque wave versus target
+FLD-before-FILD/FADDP. That continuation is unexecuted. No opaque-return,
+unmasked-exception, arbitrary-alias or whole-root proof follows from prefixes.
 
-Previous [817 turn capture](REIMU_OBJECT_817_TURN_LIFETIME_2026_10_21.md),
+Previous [817 coordinates](REIMU_OBJECT_817_COORDINATE_ARGUMENTS_2026_10_21.md),
+[817 turn](REIMU_OBJECT_817_TURN_LIFETIME_2026_10_21.md),
 [821 guards](REIMU_OBJECT_821_OWNER_EXITS_2026_10_21.md),
-[selector order](REIMU_OBJECT_SELECTOR_ORDER_2026_10_21.md) and
-[the evidence index](REIMU_OBJECT_EVIDENCE.md) retain frozen source/object pins.
-Their6720/256/133192/26342 and other input receipts are not reissued as new runs.
-The current640/320/3600/12/16 scoped receipts and complete formal native bridge
-are recorded separately. Last helper-entry sample left4359F0 unvisited.
+[selector order](REIMU_OBJECT_SELECTOR_ORDER_2026_10_21.md) and the
+[evidence index](REIMU_OBJECT_EVIDENCE.md) retain frozen source/object pins.
+Historical133192/26342 and other broad receipts are not reissued. Current
+scoped receipts and the complete formal native bridge are recorded separately.
+Last helper-entry sample left4359F0 unvisited.
 
-## Bounded dependency follow-up; no new source selection
+## Earlier bounded dependency controls; frozen source epochs
 
-The next bounded batch keeps all selected program sources/headers/flags and
+This earlier bounded batch kept its selected program sources/headers/flags and
 match rows unchanged. Komachi5F9350's full61-instruction205-byte target is
 reclosed; it remains203-byte nonexact at+21. Raw owner7A8 signed clamp/decrement,
 set10 and accepted reset accesses support its countdown view. Ten private
@@ -195,7 +198,7 @@ For the current mixed root/helper unit:
 ```bash
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-reimu-object-action-state --compare --json
 # Expected nonzero result:496540 mismatch+31,4963A0 exact66/66.
-taskset -c 0 nice -n 10 python3 scripts/audit-reimu-object-817-coordinate-arguments.py build/match-units/GptWeb_ReimuObjectActionState.obj --output build/reimu-object-817-coordinate-replay.json
+taskset -c 0 nice -n 10 python3 scripts/audit-reimu-object-822-argument-lifetimes.py build/match-units/GptWeb_ReimuObjectActionState.obj --output build/reimu-object-822-argument-replay.json
 ```
 
 Before **every commit, push or pull request**, run in the finished worktree:
