@@ -14485,7 +14485,7 @@ source = "src/ui/CNumberLifetime.cpp"
 object = "build/match-units/GptWeb_CNumberLifetime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Raw CNumber RTTI COL 0x006DCBEC proves a zero-offset IColor base and vtable 0x006C1B60 owns deleting destructor plus three color-forwarding slots. Natural C++ recovers all three 11-byte forwarding virtuals and the 60-byte scalar deleting destructor exactly. The independently padded 40-byte normal destructor is source-present/same-size but retains only the final member/base vptr-store ordering residual."
+notes = "Raw CNumber RTTI COL 0x006DCBEC proves a zero-offset IColor base and vtable 0x006C1B60 owns deleting destructor plus three color-forwarding slots. Explicitly defining the real embedded tile destructor restores the target member-before-base vptr cleanup naturally. All five functions are canonical exact: independently padded40-byte normal destructor, three11-byte forwarding virtuals and60-byte scalar deleting destructor. Selected source73b71ded; docs/CNUMBER_MEMBER_DESTRUCTOR_2026_10_20.md."
 
 [[units.gpt-web-cnumber-lifetime.functions]]
 address = "0x0040ADB0"

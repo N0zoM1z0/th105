@@ -61,7 +61,7 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4024)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1340)
+        self.assertEqual(len(matching), 1341)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
@@ -73,7 +73,7 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(root["match_percent"], "0.00")
         self.assertIn(root["proposed_name"], implemented)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1340
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1341
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
@@ -987,7 +987,10 @@ class WorkflowToolingTests(unittest.TestCase):
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
         self.assertEqual(len(accepted), 479)
-        self.assertEqual(sum(map(len, accepted.values())), 1340)
+        self.assertEqual(sum(map(len, accepted.values())), 1341)
+        self.assertEqual(accepted["gpt-web-cnumber-lifetime"], {
+            "0x0040ADB0", "0x0040ADE0", "0x0040ADF0", "0x0040AE00", "0x0040AE10",
+        })
         secondary = accepted["gpt-web-secondary-animation-runtime"]
         self.assertEqual(
             secondary,
@@ -1200,6 +1203,7 @@ class WorkflowToolingTests(unittest.TestCase):
         mappings = self.validator.validate_reccmp_ledgers()
         implemented = self.validator.read_implemented(mappings)
         for address, size in (
+            ("0x0040ADB0", 40),
             ("0x0040ADE0", 11), ("0x0040ADF0", 11), ("0x0040AE00", 11),
             ("0x0040AE10", 60), ("0x0044B320", 30),
         ):
@@ -1207,8 +1211,6 @@ class WorkflowToolingTests(unittest.TestCase):
             self.assertEqual(int(matches[address]["size"]), size)
             self.assertEqual(matches[address]["name"], mappings[int(address, 0)]["name"])
             self.assertIn(matches[address]["name"], implemented)
-        self.assertEqual(functions["0x0040ADB0"]["status"], "implemented")
-        self.assertNotIn("0x0040ADB0", matches)
         self.assertIn("CNumber_dtor", implemented)
         # The native ??_G witness is reproducible but compiler-owned.
         wrapper = functions["0x00412C80"]
@@ -1683,8 +1685,8 @@ class WorkflowToolingTests(unittest.TestCase):
             f"Origin/boundary review pending | {len(functions) - len(authored) - len(excluded):,}",
             markdown,
         )
-        self.assertIn("Canonical exact functions | 1,340", markdown)
-        self.assertIn("Canonical exact authored bytes | 229,647", markdown)
+        self.assertIn("Canonical exact functions | 1,341", markdown)
+        self.assertIn("Canonical exact authored bytes | 229,687", markdown)
         self.assertIn("Source-present authored mappings | 1,450", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown

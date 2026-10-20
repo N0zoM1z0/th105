@@ -16,6 +16,9 @@ public:
 
 class CNumberTileLifetime : public CNumberColorLifetime {
 public:
+    // Model the member's own lifetime explicitly. VC8 then preserves the
+    // target's member-before-base cleanup in the complete CNumber destructor.
+    virtual ~CNumberTileLifetime() {}
     virtual void set_color(unsigned int color);
     virtual void set_vertex_colors(const unsigned int *colors);
     virtual void multiply_color(unsigned int color);

@@ -1,8 +1,9 @@
 # TH10.5 reconstruction handoff
 
-Current as of 2026-10-20. Phase: active complete-root matching for
-ReimuObject update496540. The user's requested full canonical exact result
-is not yet achieved. The latest selected recovery covers seventeen ordered
+Current as of 2026-10-20. Phase: active TH105 exact reconstruction; the latest
+accepted bounded result is CNumber's normal destructor40ADB0,40/40 exact.
+ReimuObject update496540's requested full canonical exact result is not yet
+achieved. Its latest selected recovery covers seventeen ordered
 store groups and902's typed owner-member publications. Live ledgers and fresh
 canonical comparisons override dated prose.
 
@@ -133,6 +134,7 @@ and [the October20 handoff snapshot](RE_HANDOFF_HISTORY_2026_10_20.md).
 
 | Address / scope | State and remaining question | Evidence |
 | --- | --- | --- |
+| 40ADB0 CNumber normal destructor | Newly accepted40/40. An explicit embedded-tile destructor naturally restores member-before-base vptr order. All five affected lifetime functions compare exact; no shared-header/profile/layout change. | [Member lifetime](CNUMBER_MEMBER_DESTRUCTOR_2026_10_20.md) |
 | 478FA0 Reimu Fighter root | Declaration-only; complete genuine82808-byte payload remains nonexact at4791BD/+541. Selected source7650c8d3, payloadfbc0293d; all153 RET memberships agree.300/320 physical CALL ownership,616 effect preparation and720 request indexing remain open. | [616 completion](REIMU_616_SHARED_COMPLETION_2026_10_20.md), [300/320 controls](REIMU_300320_IDENTITY_CONTROLS_2026_10_20.md) |
 | 4A1CE0 ReimuObject initializer | Source-present, nonexact;14 callable bytes differ in906/999, first4A2E20/+1140. Source3803a002,5440-byte payload65298d36;548 metadata bytes agree. | [Entry](REIMU_OBJECT_ENTRY_2026_10_19.md), [conversion/context](REIMU_OBJECT_CONVERSION_CONTEXT_2026_10_20.md) |
 | 543670 YoumuObject initializer | Source-present, nonexact; preserve the short interface,902 order,29 distinct destinations/two switches.820/850 lifetimes and851's post-write read remain open. | [Word interface](YOUMU_ENTRY_SEQUENCE_WORD_2026_10_19.md) |
