@@ -291,59 +291,59 @@ aggregate replay is claimed.
 ## Current ReimuObject update source phase
 
 Active source recovery remains authored update root496540 with46128 owned
-bytes across three code ranges and no implementation/match row. Fresh raw CFG
+bytes across three ranges and no implementation/match row. Fresh raw CFG still
 closes10670 instructions/22 switches/404 direct CALLs to25 targets/68 RETs.
-RawE8 at49C35B remains inside FLD1, not a call to4C611D. Use the complete root
-packet for dependencies, not the provisional39853-byte main span.
+RawE8 at49C35B is inside FLD1, not a call to4C611D. Use the complete root packet
+for dependencies rather than the provisional39853-byte main span.
 
-Handwritten `ReimuObjectActionStateStaging.cpp/.hpp` now covers33 concrete arms
+Handwritten `ReimuObjectActionStateStaging.cpp/.hpp` now covers36 concrete arms
 and defaults:800/801/804/807/808/810/811/812/815/816/817/821/822/825/848/850/851/
-852/853/854/855/856/858/859/860/861/866/869/900/901/902/980/998. The bool is a
-coverage result rather than the original void ABI. Eight remain:903..908/951/
-999. Final emulated native0/103386 includes all88054 prior inputs:
-93068 real RETs,7112 unparented/1151 owned/472 parented entries,
-915 secondary-setup,26 effect,114 wave,24 CRT errno and504 quiet-NaN handler
-entries;6595 target root instruction addresses are visited. No root source-present
-or canonical exact credit is added.
+852/853/854/855/856/858/859/860/861/866/869/900/901/902/903/904/905/980/998.
+Its bool is a coverage result rather than the original void ABI. Five remain:
+906/907/908/951/999. Final emulated native0/115736 includes all103386 prior
+inputs:103318 real RETs,9092 unparented/1151 owned/472 parented entries,
+915 secondary-setup,26 effect,114 wave,24 errno and624 CRT quiet-NaN handler
+entries;7332 target root instructions are visited. No root source-present or
+canonical exact credit is added.
 
-900 preserves selector-dependent four-word thresholds, both phase helpers,
-signed counter%6 and its distinct110/111 fade. For selector values outside0..3,
-the four-word request's last word is not established by caller assignments;
-this phase does not invent a default or prove the runtime enum range.901
-preserves signed word174 wrap, color truncation before deduction500, ordered
-bounce > versus unordered destruction, and all bounce writes before the real
-terrain/spawn entry.902 publishes two interleaved owner rectangles and keeps
-velocity reflection before first generation, reposition/state writes after it.
-The second rectangle requires selector2/3. Staging byte110/word174 gain offset
-assertions; size388 and accepted shared headers remain fixed. Returning world
-loops/requests and their payload mutation remain unknown.
+903 preserves damping before orientation, counter40 reset before signed modulo,
+the unconditional axis2/width120 draws, selector-dependent sector requests and
+subsequent effect.904 preserves signed-byte index after state6, old-speed
+orientation before acceleration and the903/904 request distinction.905 has no
+global phase5 kill: owner174<=7500 sets state2 before generation; state0 clears
+counter/selects state1 and may generate that same frame. Selector0..3 periods
+are270/240/210/150. Phase word366 resets before increment, X==1800 retires and
+channel112 may wrap even while111 gates the fade. The unused-this event38
+wrapper4359F0 is14 canonical bytes/RET4; its call follows a request pair beyond
+the real first-world-entry stop. Returning requests, sectors, payload mutation
+and event/wave/world behavior remain unknown. Staging size388/header and all
+accepted shared headers remain unchanged.
 
-Eight compiled wrong controls fail16/1152,204/2592,52/468,72/2160,72/2160,
-128/1536,48/3456 and16/48. The first changes only the endpoint; the rectangle
-error changes only owner bytes. Current replay30544 bytes/SHA20b36c4c retains
-incoming orientation0/400, alpha0/1170 and both808/812 conditional caller proofs.
-VC8 now hoists808 variant1 into EBX at800027. The updated audit validates that
-exact dispatch prefix and25 case-to-window instructions, including partial
-EBX aliases. Old EBP/immediate forms still pass; compiled wrong variant2 fails.
-No returning-world execution is substituted by this stack proof.
+New incoming435160 receiver/float-word observation runs the actual helpers.
+A wrong903 old-speed call fails396/396;108 differ only in incoming arguments
+because later zero velocities hide the error in final snapshots. Skipping an
+unused RNG draw fails90/972:54 RNG/trace-only and36 also endpoint. The other
+eight compiled controls fail36/396,72/360,72/360,128/192,8/228,192/640,10/972
+and48/640. Seed0/5489/FFFFFFFF exercise both first-sector angles0/90. No target
+bytes, public bindings or helper returns are patched.
 
-Raw47095F/47096A again establishes the runtime6FA894 setup store, also consumed
-by900/902. The terrain probe now supplies match identifiers0..3:288 equal
-emulated prefixes,240 finite and48 hardware-unqualified nonfinite contexts.
-With mapped CRT dispatch0, NaN index-1 reads the supplied identifier bits at
-6FA894 as float, rather than necessarily zero. The isolated original SSE
-conversion model still differs from the repeated host probe:
-7FFFFFFF/MXCSR1F80 versus80000000/1F81. Report qualification stays false; exit0
-means equal emulated prefixes, not exceptional hardware acceptance. No target
-code, conversion result or helper return is patched.
+Current34928-byte replay226800a1 retains both808/812 conditional caller proofs,
+incoming orientation0/400 and alpha0/1170.808 still checks25 paths/instructions
+with EBX variant1, now defined at80002A. Terrain288 retains240 finite equal
+prefixes and48 hardware-unqualified nonfinite contexts. Runtime6FA894 selector
+bits remain the mapped-dispatch0 NaN index-1 load, not a fixed zero height. The
+isolated original SSE conversion still disagrees with the host probe, so report
+qualification remains false; equal emulated prefixes are not hardware acceptance.
+Nonnull rendering, arbitrary aliases/resources and unmasked exceptions remain
+unknown. Earlier source and conversion scopes stay linked.
 
-See [900/901/902 evidence](REIMU_OBJECT_900_902_2026_10_20.md) for current pins,
-inputs, controls and limits; earlier scopes remain linked. Fresh direct
-read-only/no-analysis Ghidra independently attests target/import/entry/mapped
-text/root/vtable and preserves all nine primary DB pins, with alias removed.
-All eight accepted members across runtime/atan2/stage-geometry units replay
-exact. Accepted helpers/shared headers/flags/partitions/public bindings remain
-unchanged. Next recover903..908/951/999; preserve Fighter478FA0 and entry4A1CE0.
+See [903/904/905 evidence](REIMU_OBJECT_903_905_2026_10_20.md) for current pins,
+inputs, controls and limits. Fresh direct read-only/no-analysis Ghidra attests
+file/import/entry/mapped text/root/vtable and preserves all nine primary DB pins;
+alias removed. Eight members in runtime/landing-transition/outcome-random units
+replay exact. Accepted helpers/shared headers/flags/partitions/public bindings
+remain unchanged. Next recover906/907/908/951/999; preserve Fighter478FA0 and
+initializer4A1CE0 checkpoints.
 
 ## Shared Object action980 exact checkpoint
 

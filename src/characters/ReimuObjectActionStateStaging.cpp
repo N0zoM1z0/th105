@@ -20,6 +20,7 @@ extern int g_match_identifier;
 class ReimuObjectOwnerSpawnView {
 public:
     void dispatch_character_wave_handle(unsigned int index);
+    void dispatch_indexed_event_member(unsigned int index);
     int spawn_owned_object_via_manager(
         int action, float x, float y, int facing, int variant,
         int copied_words, int copied_word_count);
@@ -2403,7 +2404,268 @@ bool ReimuObjectActionStateStagingView::try_update_scalar_actions()
         y_f0 += velocity_y_f8;
         goto advance_and_retire_on_completion;
 
-    case 903: case 904: case 905: case 906: case 907: case 908:
+    case 903:
+        if (phase_state_180 == 5)
+            goto retire;
+        switch (sequence_13e) {
+        case 0: case 1: case 2:
+            reinterpret_cast<CharacterObjectRuntime *>(this)->advance_state_six_counter_conditional(0);
+            heading_12c = static_cast<float>(heading_12c + 10.0);
+            if (*reinterpret_cast<short *>(fighter_owner_348 + 0x174) <= 0) {
+                float copied[3] = {0.0f, 0.0f, static_cast<float>(sequence_13e + 6.0)};
+                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                    903, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                    reinterpret_cast<const unsigned *>(copied), 3);
+                goto retire;
+            }
+            if (state_364 == 0) {
+                parameters_340[1] = static_cast<float>(parameters_340[1] * static_cast<double>(0.95f));
+                reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
+                    set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
+                if (counter_144 >= 40) {
+                    phase_index_184 = 1;
+                    phase_state_180 = 0;
+                    velocity_x_f4 = 0.0f;
+                    velocity_y_f8 = 0.0f;
+                    state_364 = 1;
+                    counter_144 = 0;
+                }
+                if (counter_144 % 10 == 0) {
+                    float copied[3];
+                    copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
+                    copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(30)) * static_cast<double>(0.1f) + 2.0);
+                    copied[2] = static_cast<float>(sequence_13e + 3.0);
+                    reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                        903, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                        reinterpret_cast<const unsigned *>(copied), 3);
+                }
+            }
+            if (state_364 == 1 && *reinterpret_cast<short *>(fighter_owner_348 + 0x13c) == 740 &&
+                    *reinterpret_cast<short *>(fighter_owner_348 + 0x13e) == 6) {
+                const int axis = selector_random_roll(2);
+                const float width = static_cast<float>(static_cast<unsigned int>(selector_random_roll(120)) * static_cast<double>(0.1f));
+                float copied[3];
+                if (g_match_identifier == 1) {
+                    for (float sector = 0.0f; sector < 2.0f; sector += 1.0f) {
+                        copied[0] = static_cast<float>(sector * 180.0);
+                        if (axis == 0)
+                            copied[0] = static_cast<float>(copied[0] + 90.0);
+                        copied[1] = width;
+                        copied[2] = static_cast<float>(sequence_13e);
+                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                            904, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                            reinterpret_cast<const unsigned *>(copied), 3);
+                    }
+                } else if (g_match_identifier == 2 || g_match_identifier == 3) {
+                    for (float sector = 0.0f; sector < 4.0f; sector += 1.0f) {
+                        copied[0] = static_cast<float>(sector * 90.0);
+                        copied[1] = width;
+                        copied[2] = static_cast<float>(sequence_13e);
+                        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                            904, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                            reinterpret_cast<const unsigned *>(copied), 3);
+                    }
+                }
+                copied[0] = 0.0f;
+                copied[1] = 0.5f;
+                copied[2] = static_cast<float>(sequence_13e + 6.0);
+                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                    903, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                    reinterpret_cast<const unsigned *>(copied), 3);
+                goto retire;
+            }
+            break;
+        case 3: case 4: case 5:
+            reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
+                set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
+            parameters_340[1] = static_cast<float>(parameters_340[1] * static_cast<double>(0.99f));
+            scale_x_11c = static_cast<float>(scale_x_11c * static_cast<double>(0.9f));
+            scale_y_120 = scale_x_11c;
+            if (alpha_113 < 10)
+                goto retire;
+            alpha_113 = static_cast<unsigned char>(alpha_113 - 10);
+            break;
+        case 6: case 7: case 8:
+            scale_x_11c += parameters_340[1];
+            scale_y_120 = scale_x_11c;
+            parameters_340[1] = static_cast<float>(parameters_340[1] * static_cast<double>(0.92f));
+            if (alpha_113 < 10)
+                goto retire;
+            alpha_113 = static_cast<unsigned char>(alpha_113 - 10);
+            break;
+        }
+        x_ec += static_cast<float>(facing_104) * velocity_x_f4;
+        y_f0 += velocity_y_f8;
+        if (x_ec > 1680.0 || x_ec < -400.0 || y_f0 > 1480.0 || y_f0 < -520.0)
+            goto retire;
+        goto advance_and_retire_on_completion;
+
+    case 904:
+        if (phase_state_180 == 5)
+            goto retire;
+        switch (sequence_13e) {
+        case 0: case 1: case 2:
+            reinterpret_cast<CharacterObjectRuntime *>(this)->advance_state_six_counter_conditional(0);
+            heading_12c = static_cast<float>(heading_12c + 10.0);
+            if (*reinterpret_cast<short *>(fighter_owner_348 + 0x174) <= 0 ||
+                    static_cast<signed char>(phase_index_184) <= 0) {
+                float copied[3];
+                for (int particle = 0; particle < 4; ++particle) {
+                    copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
+                    copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(100)) * static_cast<double>(0.1f) + 5.0);
+                    copied[2] = static_cast<float>(sequence_13e + 3.0);
+                    reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                        904, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                        reinterpret_cast<const unsigned *>(copied), 3);
+                }
+                goto retire;
+            }
+            reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
+                set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
+            parameters_340[1] = static_cast<float>(parameters_340[1] + static_cast<double>(0.15f));
+            if (counter_144 % 10 == 0) {
+                float copied[3];
+                copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
+                copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(30)) * static_cast<double>(0.1f) + 2.0);
+                copied[2] = static_cast<float>(sequence_13e + 3.0);
+                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                    903, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                    reinterpret_cast<const unsigned *>(copied), 3);
+            }
+            break;
+        case 3: case 4: case 5:
+            reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
+                set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
+            parameters_340[1] = static_cast<float>(parameters_340[1] * static_cast<double>(0.98f));
+            scale_x_11c = static_cast<float>(scale_x_11c * static_cast<double>(0.9f));
+            scale_y_120 = scale_x_11c;
+            if (alpha_113 < 10)
+                goto retire;
+            alpha_113 = static_cast<unsigned char>(alpha_113 - 10);
+            break;
+        }
+        x_ec += static_cast<float>(facing_104) * velocity_x_f4;
+        y_f0 += velocity_y_f8;
+        if (x_ec > 1680.0 || x_ec < -400.0 || y_f0 > 1480.0 || y_f0 < -520.0)
+            goto retire;
+        goto advance_and_retire_on_completion;
+
+    case 905:
+        switch (sequence_13e) {
+        case 0:
+            heading_12c += parameters_340[1];
+            if (*reinterpret_cast<short *>(fighter_owner_348 + 0x174) <= 7500 && state_364 != 2) {
+                state_364 = 2;
+                float copied[3] = {heading_12c, 0.0f, 2.0f};
+                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                    905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                    reinterpret_cast<const unsigned *>(copied), 3);
+                copied[2] = 3.0f;
+                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                    905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                    reinterpret_cast<const unsigned *>(copied), 3);
+                reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_indexed_event_member(38);
+            }
+            if (state_364 == 0) {
+                state_374 = static_cast<float>(lookup_orientation_sine_quantized_abs(
+                    static_cast<float>(counter_144 * 3.0)) * static_cast<double>(0.2f) + 1.0);
+                scale_x_11c = static_cast<float>((1.0 - state_370) * state_374);
+                scale_y_120 = scale_x_11c;
+                state_370 = static_cast<float>(state_370 * static_cast<double>(0.95f));
+                if (*reinterpret_cast<short *>(fighter_owner_348 + 0x736) == 0) {
+                    counter_144 = 0;
+                    state_364 = 1;
+                }
+            }
+            if (state_364 == 1 && *reinterpret_cast<short *>(fighter_owner_348 + 0x738) == 0) {
+                int period;
+                switch (g_match_identifier) {
+                case 0: period = 270; break;
+                case 1: period = 240; break;
+                case 2: period = 210; break;
+                case 3: period = 150; break;
+                default: period = 0; break;
+                }
+                if (period != 0 && counter_144 % period == 0) {
+                    float copied[3] = {heading_12c, 2.0f, 4.0f};
+                    reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                        905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                        reinterpret_cast<const unsigned *>(copied), 3);
+                    copied[2] = 5.0f;
+                    reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                        905, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                        reinterpret_cast<const unsigned *>(copied), 3);
+                    reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(19);
+                }
+            }
+            if (state_364 == 2) {
+                scale_x_11c = static_cast<float>(scale_x_11c + static_cast<double>(0.1f));
+                scale_y_120 = scale_x_11c;
+                if (alpha_113 < 10)
+                    goto retire;
+                alpha_113 = static_cast<unsigned char>(alpha_113 - 10);
+                channel_111 = static_cast<unsigned char>(channel_111 - 10);
+                channel_110 = static_cast<unsigned char>(channel_110 - 10);
+            }
+            break;
+        case 2:
+            if (channel_111 < 5) {
+                channel_111 = 0;
+                channel_112 = 0;
+            } else {
+                channel_111 = static_cast<unsigned char>(channel_111 - 5);
+                channel_112 = static_cast<unsigned char>(channel_112 - 5);
+            }
+            break;
+        case 3:
+            heading_12c = static_cast<float>(heading_12c + 8.0);
+            scale_x_11c = static_cast<float>(scale_x_11c + static_cast<double>(0.2f));
+            scale_y_120 = scale_x_11c;
+            if (alpha_113 < 10)
+                goto retire;
+            alpha_113 = static_cast<unsigned char>(alpha_113 - 10);
+            break;
+        case 4:
+            if (*reinterpret_cast<short *>(fighter_owner_348 + 0x174) <= 7500)
+                state_364 = 1;
+            parameters_340[1] = static_cast<float>(parameters_340[1] + static_cast<double>(0.1f));
+            reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
+                set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
+            heading_12c = static_cast<float>(heading_12c + 2.0);
+            reinterpret_cast<CharacterObjectRuntime *>(this)->advance_state_six_counter_conditional(0);
+            reinterpret_cast<CharacterObjectRuntime *>(this)->advance_phase_counter_conditional(0);
+            if (phase_state_180 != 0) {
+                if (state_366 >= 10) {
+                    state_366 = 0;
+                    phase_state_180 = 0;
+                    phase_index_184 = 1;
+                }
+                state_366 = static_cast<short>(state_366 + 1);
+            }
+            if (state_364 == 1) {
+                phase_index_184 = 0;
+                scale_x_11c = static_cast<float>(scale_x_11c + static_cast<double>(0.05f));
+                scale_y_120 = scale_x_11c;
+                if (alpha_113 < 10)
+                    goto retire;
+                alpha_113 = static_cast<unsigned char>(alpha_113 - 10);
+            }
+            if (x_ec >= 1800.0 || x_ec < -520.0f || y_f0 > 1400.0f || y_f0 < -800.0)
+                goto retire;
+            break;
+        case 5:
+            scale_x_11c = static_cast<float>(scale_x_11c + static_cast<double>(0.1f));
+            scale_y_120 = scale_x_11c;
+            if (alpha_113 < 10)
+                goto retire;
+            alpha_113 = static_cast<unsigned char>(alpha_113 - 10);
+            break;
+        }
+        x_ec += static_cast<float>(facing_104) * velocity_x_f4;
+        y_f0 += velocity_y_f8;
+        goto advance_with_sequence_three_retirement;
+
+    case 906: case 907: case 908:
     case 951: case 999:
         return false;
     default:

@@ -298,6 +298,8 @@ def export(path):
             "ReimuObjectActionStateStagingView_has_crossed_stage_surface_while_descending": 0x5F9310,
             "stage_surface_height_at_x": 0x435D60,
             "atan2_degrees": 0x406540,
+            "?dispatch_indexed_event_member@ReimuObjectOwnerSpawnView@th105@@QAEXI@Z": 0x4359F0,
+            "ReimuObjectOwnerSpawnView_dispatch_indexed_event_member": 0x4359F0,
             "?spawn_owned_object_via_manager@ReimuObjectOwnerSpawnView@th105@@QAEHHMMHHHH@Z": 0x465190,
         }
     )
@@ -436,6 +438,14 @@ class Probe:
             self.surface_arguments.append(
                 [receiver, bytes(uc.mem_read(receiver + 0xEC, 4)).hex()]
             )
+        if a == 0x435160 and self.current_action in (903, 904, 905):
+            sp = uc.reg_read(r.UC_X86_REG_ESP)
+            self.orientation_arguments.append(
+                {
+                    "receiver": uc.reg_read(r.UC_X86_REG_ECX),
+                    "words": list(struct.unpack("<II", uc.mem_read(sp + 4, 8))),
+                }
+            )
         if a in HELPERS:
             self.trace.append(a)
             self.counts[a] += 1
@@ -447,6 +457,8 @@ class Probe:
     def evaluate(self, case):
         uc = self.uc
         uc.context_restore(self.initial)
+        self.current_action = case["action"]
+        self.orientation_arguments = []
         self.surface_arguments = []
         if case["action"] in (858, 866, 901):
             if self.surfaces is None:
@@ -477,6 +489,9 @@ class Probe:
             900,
             901,
             902,
+            903,
+            904,
+            905,
         ) or (case["action"] == 822 and seq == 0):
             # Coherent three-frame ranges for the admitted projectile families.
             # The earlier single frame cannot represent their later frames.
@@ -557,6 +572,9 @@ class Probe:
             900,
             901,
             902,
+            903,
+            904,
+            905,
         ):
             for off, fmt, value in (
                 (0x170, "I", FIGHTER),
@@ -593,6 +611,9 @@ class Probe:
             900,
             901,
             902,
+            903,
+            904,
+            905,
         ):
             uc.mem_write(OWNER + 0x111, struct.pack("<B", case.get("channel", 200)))
             uc.mem_write(
@@ -631,6 +652,9 @@ class Probe:
             900,
             901,
             902,
+            903,
+            904,
+            905,
         ):
             for off, fmt, value in (
                 (0x112, "B", case.get("channel2", 200)),
@@ -666,6 +690,9 @@ class Probe:
             900,
             901,
             902,
+            903,
+            904,
+            905,
         ):
             for off, fmt, value in (
                 (0x104, "b", case.get("owner_facing", -1)),
@@ -695,6 +722,9 @@ class Probe:
             900,
             901,
             902,
+            903,
+            904,
+            905,
         ):
             for off, value in (
                 (0x366, case.get("speed_word", 16)),
@@ -705,9 +735,9 @@ class Probe:
             uc.mem_write(0x6FBD00, struct.pack("<f", case.get("layout_scalar", -7.75)))
         if case["action"] == 855:
             uc.mem_write(OWNER + 0x36A, struct.pack("<h", case.get("spin_word", 0)))
-        if case["action"] in (858, 866, 869, 900, 901, 902):
+        if case["action"] in (858, 866, 869, 900, 901, 902, 903, 904, 905):
             uc.mem_write(FIGHTER + 0x142, struct.pack("<h", case.get("owner_timer", 1)))
-        if case["action"] in (900, 901, 902):
+        if case["action"] in (900, 901, 902, 903, 904, 905):
             uc.mem_write(0x6FA894, struct.pack("<i", case.get("match_identifier", 0)))
             uc.mem_write(OWNER + 0x110, struct.pack("<B", case.get("channel0", 123)))
             uc.mem_write(OWNER + 0x174, struct.pack("<h", case.get("value174", 0)))
@@ -732,6 +762,13 @@ class Probe:
                 (0x7C4, "bottom1", -100.0),
             ):
                 uc.mem_write(FIGHTER + off, struct.pack("<f", case.get(key, value)))
+        if case["action"] in (903, 904, 905):
+            uc.mem_write(
+                FIGHTER + 0x736, struct.pack("<h", case.get("owner_word736", 1))
+            )
+            uc.mem_write(
+                FIGHTER + 0x738, struct.pack("<h", case.get("owner_word738", 1))
+            )
         if case["action"] == 869:
             for off, fmt, value in (
                 (0x374, "f", case.get("heading_amplitude", 0.25)),
@@ -862,9 +899,10 @@ class Probe:
             if case["action"] in (850, 853, 854)
             else None,
             "match_identifier": bytes(uc.mem_read(0x6FA894, 4)).hex()
-            if case["action"] in (900, 901, 902)
+            if case["action"] in (900, 901, 902, 903, 904, 905)
             else None,
             "surface_arguments": self.surface_arguments,
+            "orientation_arguments": self.orientation_arguments,
             "endpoint": self.endpoint,
             "trace": self.trace,
             "cw": uc.reg_read(r.UC_X86_REG_FPCW),
@@ -2614,6 +2652,272 @@ def upper_projectile_cases():
         )
 
 
+def actions_903_905_cases():
+    for action, seq, phase, index, state, cw in itertools.product(
+        (903, 904, 905),
+        range(-1, 10),
+        (0, 1, 4, 5, 6),
+        (0, 1, 127, 128, 255),
+        (0, 1, 2),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            phase=phase,
+            index=index,
+            state=state,
+            owner_value174=8000,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="high-state",
+        )
+    for seq, counter, phase, seed, cw in itertools.product(
+        range(3),
+        (-11, -10, -1, 0, 1, 9, 10, 39, 40, 41, 50),
+        (0, 6),
+        (0, 5489, 0xFFFFFFFF),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=903,
+            seq=seq,
+            counter=counter,
+            phase=phase,
+            state=0,
+            owner_value174=8000,
+            owner_action=740,
+            owner_seq=6,
+            match_identifier=1,
+            seed=seed,
+            timer=1,
+            cw=cw,
+            cohort="high-903-transition",
+        )
+    for seq, match, action, owner_seq, seed, cw in itertools.product(
+        range(3),
+        (-1, 0, 1, 2, 3, 4),
+        (739, 740, 741),
+        (5, 6, 7),
+        (0, 5489, 0xFFFFFFFF),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=903,
+            seq=seq,
+            state=1,
+            match_identifier=match,
+            owner_action=action,
+            owner_seq=owner_seq,
+            owner_value174=8000,
+            seed=seed,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="high-903-owner",
+        )
+    for seq, index, phase, value, seed, cw in itertools.product(
+        range(3),
+        (0, 1, 127, 128, 255),
+        (0, 6),
+        (-1, 1),
+        (0, 5489, 0xFFFFFFFF),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=904,
+            seq=seq,
+            index=index,
+            phase=phase,
+            owner_value174=value,
+            seed=seed,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="high-904-signed-index",
+        )
+    for action, speed, angle, facing, cw in itertools.product(
+        (903, 904, 905),
+        (-20.0, -0.0, 0.001, 0.75, float("nan")),
+        (-180.0, 0.0, 37.25, float("nan")),
+        (-128, -1, 1, 127),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=action,
+            seq=4 if action == 905 else 3,
+            speed=speed,
+            heading_parameter=angle,
+            facing=facing,
+            owner_value174=8000,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="high-orientation",
+        )
+    for state, value, gate736, gate738, match, cw in itertools.product(
+        (-1, 0, 1, 2),
+        (-32768, 7499, 7500, 7501, 32767),
+        (-1, 0, 1),
+        (-1, 0, 1),
+        (-1, 0, 1, 2, 3, 4),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=905,
+            seq=0,
+            state=state,
+            owner_value174=value,
+            owner_word736=gate736,
+            owner_word738=gate738,
+            match_identifier=match,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="high-905-gates",
+        )
+    for match, counter, cw in itertools.product(
+        (-1, 0, 1, 2, 3, 4),
+        (
+            -270,
+            -240,
+            -210,
+            -150,
+            -1,
+            0,
+            1,
+            149,
+            150,
+            151,
+            209,
+            210,
+            211,
+            239,
+            240,
+            241,
+            269,
+            270,
+            271,
+        ),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=905,
+            seq=0,
+            state=1,
+            owner_value174=8000,
+            owner_word738=0,
+            match_identifier=match,
+            counter=counter,
+            timer=1,
+            cw=cw,
+            cohort="high-905-periods",
+        )
+    for counter, match, amplitude, cw in itertools.product(
+        (-1, 1, 149, 240),
+        (-1, 0, 1, 2, 3, 4),
+        (-0.0, 0.25, 1.0, float("nan")),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=905,
+            seq=0,
+            state=0,
+            owner_value174=8000,
+            owner_word736=0,
+            owner_word738=0,
+            match_identifier=match,
+            amplitude=amplitude,
+            counter=counter,
+            timer=1,
+            cw=cw,
+            cohort="high-905-same-frame",
+        )
+    for phase, word, state, value, alpha, cw in itertools.product(
+        (0, 1, 5, 6),
+        (-32768, 0, 9, 10, 32767),
+        (0, 1),
+        (7500, 7501),
+        (0, 9, 10, 255),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=905,
+            seq=4,
+            phase=phase,
+            speed_word=word,
+            state=state,
+            owner_value174=value,
+            alpha=alpha,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="high-905-phase-counter",
+        )
+    for seq, channel, channel2, alpha, cw in itertools.product(
+        (0, 2, 3, 5),
+        (0, 4, 5, 6, 255),
+        (0, 4, 5, 255),
+        (0, 9, 10, 255),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=905,
+            seq=seq,
+            state=2,
+            owner_value174=8000,
+            channel=channel,
+            channel2=channel2,
+            alpha=alpha,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="high-905-channels",
+        )
+    for action, seq, xpos, ypos, cw in itertools.product(
+        (903, 904, 905),
+        (1, 4),
+        (-521.0, -520.0, -401.0, -400.0, 1680.0, 1681.0, 1800.0, 1801.0, float("nan")),
+        (-801.0, -800.0, -521.0, -520.0, 1400.0, 1401.0, 1480.0, 1481.0, float("nan")),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            x=xpos,
+            y=ypos,
+            state=2,
+            owner_value174=8000,
+            vx=0.0,
+            vy=0.0,
+            speed=0.0,
+            counter=1,
+            timer=1,
+            cw=cw,
+            cohort="high-bounds",
+        )
+    for action, seq, counter, terminal, cw in itertools.product(
+        (903, 904, 905),
+        range(10),
+        (-1, 0, 1),
+        (False, True),
+        (0x27F, 0x37F),
+    ):
+        yield dict(
+            action=action,
+            seq=seq,
+            counter=counter,
+            terminal=terminal,
+            frame=2,
+            timer=2,
+            state=2,
+            owner_value174=8000,
+            cw=cw,
+            cohort="high-animation",
+        )
+
+
 def main():
     global O
     parser = argparse.ArgumentParser(description=__doc__)
@@ -2666,7 +2970,14 @@ def main():
         action="store_true",
         help="include900/901/902 and all preceding matrices",
     )
+    parser.add_argument(
+        "--actions-903-905",
+        action="store_true",
+        help="include903/904/905 and all preceding matrices",
+    )
     args = parser.parse_args()
+    if args.actions_903_905:
+        args.actions_900_902 = True
     if args.actions_900_902:
         args.orbit_projectiles = True
     if args.orbit_projectiles:
@@ -2730,6 +3041,8 @@ def main():
         all_cases.extend(orbit_projectile_cases())
     if args.actions_900_902:
         all_cases.extend(upper_projectile_cases())
+    if args.actions_903_905:
+        all_cases.extend(actions_903_905_cases())
     if args.cohort:
         available = {case.get("cohort", "scalar") for case in all_cases}
         if set(args.cohort) - available:
