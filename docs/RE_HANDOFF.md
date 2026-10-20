@@ -116,6 +116,15 @@ The fresh formal rebuild changes the raw COFF pin but preserves both canonical
 payload hashes; the earlier133192-input receipt retains its originalda35fa38
 object pin. The3600-input helper-entry check is repeated on the rebuilt object.
 
+[Retirement write-state analysis](REIMU_OBJECT_RETIREMENT_FPU_2026_10_20.md)
+finds22 sampled x87 lifetime differences at state330 writes even though final
+memory and helper entries agree. Ordinary local returns remove those22 in a
+private control but alter distant call-sharing partitions; no source change
+is selected. Joint cleanup placement/call sharing remains open. A separate
+12000-input cross-fixture diagnostic has zero output/write differences and
+zero errors. The new retirement diagnostic intentionally exits1 for the
+current selected source; it confers no root exact credit.
+
 ## Other preserved checkpoints
 
 These entries describe selected or accepted state; they are not an active
@@ -171,6 +180,6 @@ git diff --check
 ```
 
 A local pass is mandatory; GitHub Actions does not substitute. Rerun after any
-subsequent tracked edit. Commit stable work with `gpt-6-astra: ...`, push,
+subsequent tracked edit. Commit stable work with `gpt-6.1-sol: ...`, push,
 verify remote HEAD, and check the worktree is clean. Do not commit executables,
 game data, databases, generated reports, toolchains or credentials.

@@ -31,6 +31,7 @@ or compiler context. Later evidence may supersede an earlier stop condition.
 
 | Record | Scope and status |
 | --- | --- |
+| [Retirement x87 state](REIMU_OBJECT_RETIREMENT_FPU_2026_10_20.md) | Selected source unchanged.22 write-time lifetime differences survive the passing final-output/helper-entry checks; local-return controls fix those but change call sharing. |
 | [Helper context](REIMU_OBJECT_HELPER_CONTEXT_2026_10_20.md) | Selected source unchanged. Live-x87 helper-entry diagnostic rejects the tested64CD00 visibility control; hosted LTCG controls remain nonexact. |
 | [Typed stores](REIMU_OBJECT_TYPED_STORES_2026_10_20.md) | Current selected source: seventeen ordered groups,902 separate calculations/shared fade and eight typed owner-float publications. Full replay status is in the handoff. |
 | [Fade order](REIMU_OBJECT_FADE_ORDER_2026_10_20.md) | Historicalc57f3de source pins;850/853/854 store order and local returns remain selected. |
