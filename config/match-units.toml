@@ -19814,7 +19814,7 @@ source = "src/characters/ReimuObjectActionStateStaging.cpp"
 object = "build/match-units/GptWeb_ReimuObjectActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "ReimuObject496540 source hypothesis for all41 actions/defaults; strict comparison covers46138 physical bytes through4A197A.850/853/854 ordered field assignments and local fade decrement/returns reproduce three72-byte kernels plus three12-byte zero pairs, with300 actual field/x87/RET/opaque-prefix witnesses. Source now65 RETs versus68; membership distance25 is diagnostic only. Root stays nonexact+31 with no authored credit. Same-TU4963A0 remains66/66. Prior999,869/901,801/852 and812/World proofs remain. No profile, layout, return type, binding or ownership change; docs/REIMU_OBJECT_FADE_ORDER_2026_10_20.md."
+notes = "ReimuObject496540 source hypothesis; strict comparison covers46138 physical bytes through4A197A. Seventeen ordered-store groups and902 separate calculations/shared fade follow fresh target instructions. A local owner-member view restores eight float spill/reload publications at7A8..7C4. Root remains nonexact+31; source65 RETs versus target68 and owner diagnostics confer no credit. Same-TU4963A0 remains66/66. No shared header, selected flag, binding or ownership change. Prefix events and822 post-opaque static order have separate scopes; docs/REIMU_OBJECT_TYPED_STORES_2026_10_20.md."
 
 [[units.gpt-web-reimu-object-action-state.functions]]
 address = "0x00496540"

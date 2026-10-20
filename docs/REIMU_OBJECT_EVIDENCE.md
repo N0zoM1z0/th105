@@ -1,8 +1,8 @@
 # ReimuObject evidence index
 
 Start with [the current handoff](RE_HANDOFF.md). The selected496540 source
-epoch is the [850/853/854 fade-order checkpoint](REIMU_OBJECT_FADE_ORDER_2026_10_20.md):
-CPP08cc1a0f, canonical343089b7. The root is source-present and remains
+epoch is the [typed-store checkpoint](REIMU_OBJECT_TYPED_STORES_2026_10_20.md):
+CPP555da070, canonical88bd9c9b. The root is source-present and remains
 nonexact at49655F/+31. The same-TU4963A0 helper remains66/66 exact. No root
 partial-byte, remote-exact or percentage credit is implied.
 
@@ -31,7 +31,8 @@ or compiler context. Later evidence may supersede an earlier stop condition.
 
 | Record | Scope and status |
 | --- | --- |
-| [Fade order](REIMU_OBJECT_FADE_ORDER_2026_10_20.md) | Current selected source;300 event/x87/RET witnesses, three compiled negatives and full133192-input replay. |
+| [Typed stores](REIMU_OBJECT_TYPED_STORES_2026_10_20.md) | Current selected source: seventeen ordered groups,902 separate calculations/shared fade and eight typed owner-float publications. Full replay status is in the handoff. |
+| [Fade order](REIMU_OBJECT_FADE_ORDER_2026_10_20.md) | Historicalc57f3de source pins;850/853/854 store order and local returns remain selected. |
 | [999 tail](REIMU_OBJECT_999_TAIL_2026_10_20.md) | Historicalcc8eafd pins;999-only cleanup and separate15.0f/0.2f lifetimes remain selected. |
 | [Direction returns](REIMU_OBJECT_DIRECTION_RETURNS_2026_10_20.md) | Historical3d3486d pins; real lookup return/status/direction witnesses. Native address transcription corrected to805E1E/80681C; current positions differ. |
 | [Counter context](REIMU_OBJECT_COUNTER_CONTEXT_2026_10_20.md) | Historical1cce7b1 pins; real4963A0 definition, selector ownership and actual animation calls. |

@@ -7,6 +7,39 @@
 
 namespace th105 {
 
+//902 publishes two interleaved float rectangles at owner+7A8..7C4.
+// A member view preserves VC8's float rounding and owner-pointer reloads;
+// raw float-pointer stores erase those target-observed operations.
+// The preceding bytes are unmodeled owner state, not an asserted base layout.
+struct ReimuOwnerBoundaryView {
+    unsigned char unknown_000[0x7a8];
+    float x_lower_0;
+    float x_lower_1;
+    float x_upper_0;
+    float x_upper_1;
+    float y_upper_0;
+    float y_upper_1;
+    float y_lower_0;
+    float y_lower_1;
+};
+
+typedef char ReimuOwnerBoundary_x_lower_0_offset[
+    offsetof(ReimuOwnerBoundaryView, x_lower_0) == 0x7a8 ? 1 : -1];
+typedef char ReimuOwnerBoundary_x_lower_1_offset[
+    offsetof(ReimuOwnerBoundaryView, x_lower_1) == 0x7ac ? 1 : -1];
+typedef char ReimuOwnerBoundary_x_upper_0_offset[
+    offsetof(ReimuOwnerBoundaryView, x_upper_0) == 0x7b0 ? 1 : -1];
+typedef char ReimuOwnerBoundary_x_upper_1_offset[
+    offsetof(ReimuOwnerBoundaryView, x_upper_1) == 0x7b4 ? 1 : -1];
+typedef char ReimuOwnerBoundary_y_upper_0_offset[
+    offsetof(ReimuOwnerBoundaryView, y_upper_0) == 0x7b8 ? 1 : -1];
+typedef char ReimuOwnerBoundary_y_upper_1_offset[
+    offsetof(ReimuOwnerBoundaryView, y_upper_1) == 0x7bc ? 1 : -1];
+typedef char ReimuOwnerBoundary_y_lower_0_offset[
+    offsetof(ReimuOwnerBoundaryView, y_lower_0) == 0x7c0 ? 1 : -1];
+typedef char ReimuOwnerBoundary_y_lower_1_offset[
+    offsetof(ReimuOwnerBoundaryView, y_lower_1) == 0x7c4 ? 1 : -1];
+
 // This caller-side float view follows869/901 consumers; the original lookup
 // C++ return types remain unproved.
 float __cdecl lookup_orientation_sine_quantized_abs(float angle);
@@ -79,8 +112,10 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
             phase_index_184 = 1;
             state_364 = 0;
         }
-        if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && sequence_13e == 1)
-            scale_x_11c = scale_y_120 = 2.0f;
+        if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && sequence_13e == 1) {
+            scale_x_11c = 2.0f;
+            scale_y_120 = scale_x_11c;
+        }
         if (sequence_13e == 0) {
             ++state_364;
             heading_12c = parameters_340[0];
@@ -133,7 +168,8 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
                 scale_x_11c = static_cast<float>(scale_x_11c + static_cast<double>(0.1f));
                 scale_y_120 = static_cast<float>(scale_y_120 + static_cast<double>(0.1f));
             } else {
-                scale_x_11c = scale_y_120 = 1.0f;
+                scale_x_11c = 1.0f;
+                scale_y_120 = scale_x_11c;
                 next_sequence_block();
             }
             break;
@@ -179,7 +215,8 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
                 next_sequence_block();
             break;
         case 2:
-            velocity_x_f4 = velocity_y_f8 = 0.0f;
+            velocity_x_f4 = 0.0f;
+            velocity_y_f8 = velocity_x_f4;
             if (alpha_113 < 10) {
                 alpha_113 = 0;
                 --state_330;
@@ -190,7 +227,8 @@ void ReimuObjectActionStateStagingView::dispatch_action_state()
             }
             break;
         case 3:
-            velocity_x_f4 = velocity_y_f8 = 0.0f;
+            velocity_x_f4 = 0.0f;
+            velocity_y_f8 = velocity_x_f4;
             if (alpha_113 < 15) {
                 alpha_113 = 0;
                 --state_330;
@@ -378,7 +416,8 @@ retire_801_811:
                 scale_x_11c = static_cast<float>(scale_x_11c + static_cast<double>(0.1f));
                 scale_y_120 = static_cast<float>(scale_y_120 + static_cast<double>(0.1f));
             } else {
-                scale_x_11c = scale_y_120 = 1.0f;
+                scale_x_11c = 1.0f;
+                scale_y_120 = scale_x_11c;
                 next_sequence_block();
             }
         }
@@ -436,7 +475,8 @@ retire_801_811:
                 next_sequence_block();
         }
         if (sequence_13e == 3) {
-            velocity_x_f4 = velocity_y_f8 = 0.0f;
+            velocity_x_f4 = 0.0f;
+            velocity_y_f8 = velocity_x_f4;
             if (alpha_113 < 10) {
                 alpha_113 = 0;
                 --state_330;
@@ -447,7 +487,8 @@ retire_801_811:
             }
         }
         if (sequence_13e == 4) {
-            velocity_x_f4 = velocity_y_f8 = 0.0f;
+            velocity_x_f4 = 0.0f;
+            velocity_y_f8 = velocity_x_f4;
             if (alpha_113 < 15) {
                 alpha_113 = 0;
                 --state_330;
@@ -592,7 +633,8 @@ retire_801_811:
                 scale_x_11c = static_cast<float>(scale_x_11c + static_cast<double>(0.1f));
                 scale_y_120 = static_cast<float>(scale_y_120 + static_cast<double>(0.1f));
             } else {
-                scale_x_11c = scale_y_120 = 1.0f;
+                scale_x_11c = 1.0f;
+                scale_y_120 = scale_x_11c;
                 next_sequence_block();
             }
             x_ec += static_cast<float>(facing_104) * velocity_x_f4;
@@ -942,7 +984,8 @@ retire_801_811:
         case 2: {
             const float jitter = static_cast<float>(
                 static_cast<float>(static_cast<unsigned int>(selector_random_roll(100))) * static_cast<double>(0.01f));
-            scale_x_11c = scale_y_120 = static_cast<float>(jitter + 1.0);
+            scale_x_11c = static_cast<float>(jitter + 1.0);
+            scale_y_120 = scale_x_11c;
             if (!parent_object_34c)
                 goto retire;
             x_ec = parent_object_34c->x_ec;
@@ -981,7 +1024,8 @@ retire_801_811:
             if (static_cast<signed char>(phase_index_184) > 0 && parent_object_34c->state_364 != 1) {
                 const float jitter = static_cast<float>(
                     static_cast<float>(static_cast<unsigned int>(selector_random_roll(10))) * static_cast<double>(0.01f));
-                scale_x_11c = scale_y_120 = static_cast<float>(jitter + 1.0);
+                scale_x_11c = static_cast<float>(jitter + 1.0);
+                scale_y_120 = scale_x_11c;
             } else {
                 phase_index_184 = 0;
                 scale_x_11c = static_cast<float>(scale_x_11c * static_cast<double>(0.9f));
@@ -995,7 +1039,8 @@ retire_801_811:
         case 6: case 7: {
             const float jitter = static_cast<float>(
                 static_cast<float>(static_cast<unsigned int>(selector_random_roll(10))) * static_cast<double>(0.01f));
-            scale_x_11c = scale_y_120 = static_cast<float>(jitter + 1.0);
+            scale_x_11c = static_cast<float>(jitter + 1.0);
+            scale_y_120 = scale_x_11c;
             if (counter_144 < 40) {
                 if (counter_144 % 10 == 0) {
                     reinterpret_cast<ReimuObjectOwnerSpawnView *>(fighter_owner_348)->dispatch_character_wave_handle(16);
@@ -1102,8 +1147,10 @@ retire_801_811:
             phase_index_184 = 1;
             state_364 = 0;
         }
-        if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && sequence_13e == 1)
-            scale_x_11c = scale_y_120 = 2.0f;
+        if (counter_144 == 0 && frame_timer_142 == 0 && frame_140 == 0 && sequence_13e == 1) {
+            scale_x_11c = 2.0f;
+            scale_y_120 = scale_x_11c;
+        }
         if (sequence_13e == 0) {
             heading_12c = parameters_340[0];
             reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
@@ -1203,7 +1250,8 @@ retire_801_811:
                     parameters_340[1] = 5.0f;
                     reinterpret_cast<CharacterObjectEffectEmitter *>(this)->turn_heading_toward_related(0.0f, 360.0f, 100.0f);
                     const float heading = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(30))) - 15.0 + parameters_340[0]);
-                    parameters_340[0] = heading_12c = heading;
+                    parameters_340[0] = heading;
+                    heading_12c = heading;
                     float copied[4] = {heading, 0.0f, 1.0f, 0.0f};
                     reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_parented_related_object(
                         822, x_ec, y_f0, static_cast<unsigned char>(facing_104), -1,
@@ -1245,8 +1293,9 @@ retire_801_811:
             x_ec = parent_object_34c->x_ec;
             y_f0 = parent_object_34c->y_f0;
             heading_12c = parent_object_34c->heading_12c;
-            scale_x_11c = scale_y_120 = static_cast<float>(lookup_orientation_sine_quantized_abs(
+            scale_x_11c = static_cast<float>(lookup_orientation_sine_quantized_abs(
                 static_cast<float>(counter_144 * 10.0)) * static_cast<double>(0.1f) + 1.0);
+            scale_y_120 = scale_x_11c;
             alpha_113 = alpha_113 <= 205 ? static_cast<unsigned char>(alpha_113 + 50) : 255;
             break;
         case 2: case 3:
@@ -1703,8 +1752,10 @@ retire_801_811:
             velocity_x_f4 = 1.5f;
             velocity_y_f8 = 0.0f;
             if (counter_144 > 10) {
-                scale_x_11c = scale_y_120 = 1.0f;
-                state_368 = state_366 = 0;
+                scale_x_11c = 1.0f;
+                scale_y_120 = scale_x_11c;
+                state_368 = 0;
+                state_366 = 0;
                 state_364 = 1;
             }
         }
@@ -1882,7 +1933,8 @@ retire_801_811:
     case 860: {
         const double pulse = lookup_orientation_sine_quantized_abs(
             static_cast<float>(counter_144 * 6));
-        scale_x_11c = scale_y_120 = static_cast<float>(pulse * 2.0 + 1.0);
+        scale_x_11c = static_cast<float>(pulse * 2.0 + 1.0);
+        scale_y_120 = scale_x_11c;
         if (alpha_113 < 25)
             goto retire;
         alpha_113 = static_cast<unsigned char>(alpha_113 - 25);
@@ -2435,31 +2487,20 @@ retire_801_811:
     case 902:
         switch (sequence_13e) {
         case 0:
-        case 1:
             if (*reinterpret_cast<short *>(fighter_owner_348 + 0x174) <= 0)
                 state_364 = 2;
             if (state_364 == 0) {
-                if (sequence_13e == 0)
-                    state_374 = static_cast<float>(lookup_orientation_sine_quantized_abs(
-                        static_cast<float>(counter_144 * 3.0)) * static_cast<double>(0.2f) + 5.0);
-                else
-                    state_374 = static_cast<float>(lookup_orientation_sine_quantized_abs(
-                        static_cast<float>(counter_144 * 2.0)) * 0.5 + 10.0);
+                state_374 = static_cast<float>(lookup_orientation_sine_quantized_abs(
+                    static_cast<float>(counter_144 * 3.0)) * static_cast<double>(0.2f) + 5.0);
                 scale_x_11c = static_cast<float>((1.0 - state_370) * state_374);
                 scale_y_120 = scale_x_11c;
                 state_370 = static_cast<float>(state_370 * static_cast<double>(0.95f));
-                if (sequence_13e == 0) {
-                    *reinterpret_cast<float *>(fighter_owner_348 + 0x7a8) = static_cast<float>(x_ec - scale_x_11c * 45.0);
-                    *reinterpret_cast<float *>(fighter_owner_348 + 0x7b0) = static_cast<float>(scale_x_11c * 45.0 + x_ec);
-                    *reinterpret_cast<float *>(fighter_owner_348 + 0x7b8) = static_cast<float>(scale_x_11c * 45.0 + y_f0);
-                    *reinterpret_cast<float *>(fighter_owner_348 + 0x7c0) = static_cast<float>(y_f0 - scale_x_11c * 45.0);
-                } else {
-                    *reinterpret_cast<float *>(fighter_owner_348 + 0x7ac) = static_cast<float>(x_ec - scale_x_11c * 45.0);
-                    *reinterpret_cast<float *>(fighter_owner_348 + 0x7b4) = static_cast<float>(scale_x_11c * 45.0 + x_ec);
-                    *reinterpret_cast<float *>(fighter_owner_348 + 0x7bc) = static_cast<float>(scale_x_11c * 45.0 + y_f0);
-                    *reinterpret_cast<float *>(fighter_owner_348 + 0x7c4) = static_cast<float>(y_f0 - scale_x_11c * 45.0);
-                }
+                reinterpret_cast<ReimuOwnerBoundaryView *>(fighter_owner_348)->x_lower_0 = static_cast<float>(x_ec - scale_x_11c * 45.0);
+                reinterpret_cast<ReimuOwnerBoundaryView *>(fighter_owner_348)->x_upper_0 = static_cast<float>(scale_x_11c * 45.0 + x_ec);
+                reinterpret_cast<ReimuOwnerBoundaryView *>(fighter_owner_348)->y_upper_0 = static_cast<float>(scale_x_11c * 45.0 + y_f0);
+                reinterpret_cast<ReimuOwnerBoundaryView *>(fighter_owner_348)->y_lower_0 = static_cast<float>(y_f0 - scale_x_11c * 45.0);
             }
+fade_902:
             if (state_364 == 2) {
                 scale_x_11c = static_cast<float>(scale_x_11c + static_cast<double>(0.1f));
                 scale_y_120 = scale_x_11c;
@@ -2470,6 +2511,21 @@ retire_801_811:
                 channel_110 = static_cast<unsigned char>(channel_110 - 10);
             }
             break;
+        case 1:
+            if (*reinterpret_cast<short *>(fighter_owner_348 + 0x174) <= 0)
+                state_364 = 2;
+            if (state_364 == 0) {
+                state_374 = static_cast<float>(lookup_orientation_sine_quantized_abs(
+                    static_cast<float>(counter_144 * 2.0)) * 0.5 + 10.0);
+                scale_x_11c = static_cast<float>((1.0 - state_370) * state_374);
+                scale_y_120 = scale_x_11c;
+                state_370 = static_cast<float>(state_370 * static_cast<double>(0.95f));
+                reinterpret_cast<ReimuOwnerBoundaryView *>(fighter_owner_348)->x_lower_1 = static_cast<float>(x_ec - scale_x_11c * 45.0);
+                reinterpret_cast<ReimuOwnerBoundaryView *>(fighter_owner_348)->x_upper_1 = static_cast<float>(scale_x_11c * 45.0 + x_ec);
+                reinterpret_cast<ReimuOwnerBoundaryView *>(fighter_owner_348)->y_upper_1 = static_cast<float>(scale_x_11c * 45.0 + y_f0);
+                reinterpret_cast<ReimuOwnerBoundaryView *>(fighter_owner_348)->y_lower_1 = static_cast<float>(y_f0 - scale_x_11c * 45.0);
+            }
+            goto fade_902;
         case 2:
             if (phase_state_180 != 0 || *reinterpret_cast<short *>(fighter_owner_348 + 0x174) <= 0) {
                 packet_902_retirement[0] = 0.0f;

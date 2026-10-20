@@ -1,9 +1,10 @@
 # TH10.5 reconstruction handoff
 
-Current as of 2026-10-20. Phase: checkpoint cleanup and handoff. No new
-reconstruction scope is in flight. The latest selected change is the
-ReimuObject850/853/854 store-order and local fade-return recovery below.
-Live ledgers and fresh canonical comparisons override dated prose.
+Current as of 2026-10-20. Phase: active complete-root matching for
+ReimuObject update496540. The user's requested full canonical exact result
+is not yet achieved. The latest selected recovery covers seventeen ordered
+store groups and902's typed owner-member publications. Live ledgers and fresh
+canonical comparisons override dated prose.
 
 ## Target, workflow and acceptance
 
@@ -43,64 +44,65 @@ assumptions when reconstruction resumes.
 
 ## Current ReimuObject update source phase
 
-`ReimuObject_dispatch_action_state_vslot28 @496540` is source-present in
+`ReimuObject_dispatch_action_state_vslot28 @496540` remains source-present in
 `src/characters/ReimuObjectActionStateStaging.cpp`, unit
-`gpt-web-reimu-object-action-state`. Its primary vtable is6C40A4, cell6C40CC
-at slot28, following opaque24. ECX/RET0 and caller4937D0 ignoring EAX are
-observed; the source void return remains an inference. The39853-byte candidate
-is provisional. Comparison covers46138 physical bytes through4A197A,
-including46128 owned bytes and10 alignment bytes.
+`gpt-web-reimu-object-action-state`. Vtable6C40A4/cell6C40CC slot28, ECX/RET0
+and caller4937D0 ignoring EAX are observed. The source void return remains an
+inference. The39853-byte main candidate is provisional; compare all46138
+physical bytes through4A197A, including46128 owned bytes and10 alignment bytes.
 
-The selected850/853/854 change orders real angle X/Y/heading, scale X/Y and
-velocity X/Y writes. Three negative-scale frame2 paths now decrement330 and
-return locally. The8531.5f clamp keeps both writes conditional. Three72-byte
-fade kernels and three12-byte zero-store pairs agree without masks:252
-**diagnostic** bytes. The300-input finite native audit checks actual store
-order, x87 state/status and RET/frontier outcomes; all pass. Three compiled
-controls retain equal final outputs but fail event or private-kernel checks.
+Fresh target analysis found fifteen additional X/Y pairs,855's368/366 pair,
+and822's parameter0/heading pair reversed by retained chained assignments.
+The selected source writes these in target order. The822 pair follows opaque
+operations; its static recovery must not be confused with dynamic coverage.
+
+902 sequence0/1 now have separate calculations and their observed shared fade
+join. A local owner view names eight actual float fields at7A8..7C4 with offset
+assertions. Member assignment naturally restores the target's eight float
+spill/load/store sequences and owner-pointer reloads; raw float-pointer stores
+did not. The view is a source/layout hypothesis, not an original class claim.
+No shared header, selected compiler flag, relocation or ownership change.
 
 | Selected artifact | SHA256 |
 | --- | --- |
-| CPP | `08cc1a0f7815e8724ea5102369a42f522b21f4e5d360a07a9604fcb424293915` |
-| Header | `6f469e6886959fd41ee6976b3c784c3df0c2e753ad4729a536764a3c8cd28b4b` |
-| Frozen tested COFF | `82fee43c09f3c381f178a241ecb3b08a9e878cd94cd85fa1227defe11edf2dab` |
-| Canonical45776-byte payload | `343089b74da3c9e70d871c25c15e84586cf380979c88e8339b72a46b8d45e015` |
-| Native45776-byte payload at800000 | `1686c3b77f29036ca9f7b0ebbcb02a93a6844f335ba1bdf0cfe93123c9a58933` |
+|CPP|`555da0705db3e800f92c756449b88560d60d0a8d91a40f13d7c6c5feb354bfe2`|
+|Header|`6f469e6886959fd41ee6976b3c784c3df0c2e753ad4729a536764a3c8cd28b4b`|
+|Formal COFF|`da35fa3833d68129cf26608f6d3064ba1fbc7971d0260aa2716da0c66c4ec504`|
+|Canonical46012-byte payload|`88bd9c9bc88d9fc7643a2a162de2aa1cee026fb7d744bb8feb559bb86d54474e`|
 
-The final formal COFF is94e2457e; only timestamp bytes4/5 differ from the
-frozen tested container. All other bytes agree. The root remains **nonexact
-at49655F/+31** with natural438h frame,65 source RETs versus68 target RETs,
-and owner diagnostics1/43. No root exact/remote_exact row or credit is added.
-The actual separate4963A0 definition retains27 root REL32 references and
-**66/66 canonical exact**, SHA256ad12b782. Other accepted Runtime-unit inputs
-and their preceding57/62/73 receipts are unchanged; no unrelated replay here.
+The root remains **nonexact at49655F/+31** with natural438h frame,65 source
+RETs versus68 target RETs, diagnostic RET-membership distance25 and owner
+identity0/43. The candidate payload includes868 metadata bytes: its code
+prefix45144 must be compared with target table offset46140, not treated as
+only126 callable bytes short. No root exact/remote-exact row or credit is added.
+The separate real4963A0 definition remains **66/66 canonical exact**, hash
+ad12b782; complete direct/indirect call membership partitions still agree.
 
-Full native execution passes0/133192, input SHA256
-`f46a849ff57f64bb16e77fd0e28f7f51eee7238501c04049add99e7f77fc3b8b`.
-All20 serial selected/negative/owner/runtime commands have expected exits.
-All25 direct-callee partitions,29 indirect memberships and22 animation sites
-remain. Preserved checks include999's792 original-code witnesses,869/901's128
-lookup-return witnesses,3360 animation inputs, actual801/852 selector calls,
-World540+180/four-joint cases, and the scoped812/900/901/804/caller audits.
-Orientation400, alpha1170 and terrain288 retain expected results; terrain
-includes48 hardware-unqualified nonfinite contexts.349 ledger literals,
-775 mappings and1124 target references pass. Source/header/COFF/native/support
-pins agree before and after execution.
+The initial25411-input ordered-pair control found zero output differences on
+both sides, but3756 ordered-write differences in the predecessor and none in
+the corrected source. All sixteen first-store sites executed. The new public
+`audit-reimu-object-typed-stores.py` also checks owner and parameter writes,
+902 float-publication patterns and822's post-opaque static pair. The full133192
+replay passes with zero output/event differences, input hashf46a849f. All
+sixteen prefix store groups execute; each902 publication executes144 times.
+The822 post-opaque pair has zero executions and only static evidence.
+All19 serial selected/negative/focused commands finish with expected exits,
+including preserved fade,999,direction,animation,World,selector and caller
+checks. Frozen source/header/object/support pins agree before and after.
 
-Remaining limits: World first-pointer slots agree12/14 across19 witnesses;
-822 health is targetF+190/sourceF+1A0 and900 completed sequence0 is targetF+164/
-sourceF+104. Returning opaque graphs, arbitrary aliases/resources/vtables,
-nonnull rendering and unmasked exceptions remain unproved. Global lookup
-return types, original source spelling/TU ownership and remaining RET/register
-lifetimes are open. Preserve the recovered999-only x87 cleanup and869/901
-consumers; do not infer a globally recovered API from caller-side float views.
+Remaining work is whole-root equality: return sharing, register lifetimes,
+physical tail ownership and source/TU context remain unresolved. Experiments
+moving labels or expanding local exits do not establish impossibility.
+World/setup/wave/event/CRT continuations, arbitrary aliases/resources/vtables,
+nonnull rendering and unmasked exceptions remain outside the finite-prefix
+contract. Keep999's cleanup,869/901 caller-side return evidence and previous
+packet/selector checks within their recorded scopes.
 
-See [current fade-order evidence and commands](REIMU_OBJECT_FADE_ORDER_2026_10_20.md)
-and [the evidence index](REIMU_OBJECT_EVIDENCE.md). Receipts are in
-`build/reimu-object-fade-order-20261020/`; private recipes use the matching
-`.analysis/` scope. The direction page corrects its historical native869/901
-addresses to805E1E/80681C from frozen reports; current addresses are805E3B/
-806839. The earlier address transcription did not change bytes or results.
+See [typed-store evidence and commands](REIMU_OBJECT_TYPED_STORES_2026_10_20.md)
+and [the evidence index](REIMU_OBJECT_EVIDENCE.md). New receipts are under
+`build/reimu-object-exact-20261020/`; private experiments use the corresponding
+`.analysis/` directory. Earlier source hashes and negative controls are
+historical evidence, not proof that a current source shape cannot match.
 
 ## Other preserved checkpoints
 
@@ -146,7 +148,7 @@ For the current mixed root/helper unit:
 ```bash
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-reimu-object-action-state --compare --json
 # Expected nonzero result:496540 mismatch+31,4963A0 exact66/66.
-taskset -c 0 nice -n 10 python3 scripts/audit-reimu-object-fade-order.py build/match-units/GptWeb_ReimuObjectActionState.obj --output build/reimu-object-fade-order-20261020/fade-replay.json
+taskset -c 0 nice -n 10 python3 scripts/audit-reimu-object-typed-stores.py build/match-units/GptWeb_ReimuObjectActionState.obj --output build/reimu-object-exact-20261020/typed-stores-replay.json
 ```
 
 Before **every commit, push or pull request**, run in the finished worktree:
@@ -157,6 +159,6 @@ git diff --check
 ```
 
 A local pass is mandatory; GitHub Actions does not substitute. Rerun after any
-subsequent tracked edit. Commit stable work with `gpt-6.1-sol: ...`, push,
+subsequent tracked edit. Commit stable work with `gpt-6-astra: ...`, push,
 verify remote HEAD, and check the worktree is clean. Do not commit executables,
 game data, databases, generated reports, toolchains or credentials.
