@@ -2,13 +2,26 @@
 
 Progress display (2026-10-21): the SVG now fills its exact bar from canonical
 exact bytes / confirmed authored bytes, even while classification is pending:
-232,242 / 2,131,956 = 10.89%. It explicitly labels the authored denominator
+232,681 / 2,131,956 = 10.91%. It explicitly labels the authored denominator
 provisional and keeps the separate origin/boundary review bar (74.58%, 1,023
 pending). Four SVG regressions cover pending/completed review, byte weighting,
 verified remote ownership and empty denominators. Fractions follow the current
 tracking ledgers; aggregate cold verification is separate from this display.
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+accepts complete native configure4115A0 at439/439,128 instructions,
+canonical956579b7. First natural C++ config assignment/RGB interpolation/list
+retirement is ordinary COFF404/+0; genuine GL/LTCG yields complete exact439
+without frame/register forcing. Flat path retains old base/active pointers;
+gradient path replaces base without a prior zero store and alone publishes
+active. Constructor138, destructor210 and compiler-only Tidy71 remain exact.
+All three authored roots now use canonical origin; obsolete manual family rule
+is removed while full configure hash/six exact caller edges remain regression
+evidence. Only the one affected owner unit cold-replays after final edits;
+shared inputs/other accepted unit definitions remain unchanged. No aggregate
+replay claim. See [native configure exact](TEXT_FONT_OWNER_CONFIG_EXACT_2026_10_21.md).
+Next: actual glyph/markup/blend closure for full font TU recovery; begin/end/text
+and larger Reimu496540 remain nonexact. The preceding checkpoint
 accepts complete native font owner destructor4114C0 at210/210,59 instructions,
 canonicalbca6292e through genuine GL/LTCG. Native array/list cleanup and automatic
 string/list member destruction recover aligned EBP, whole-function EDI save and

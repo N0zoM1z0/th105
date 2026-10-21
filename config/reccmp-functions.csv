@@ -1505,3 +1505,4 @@ TextFont_finish_text_render,0x00411AD0,function
 TextFont_start_text_render,0x004119A0,function
 TextFontOwner194_ctor,0x00411430,function
 TextFontOwner194_dtor,0x004114C0,function
+TextFontOwner194_configure,0x004115A0,function

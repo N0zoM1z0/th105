@@ -20331,7 +20331,7 @@ object = "build/match-units/GptWeb_TextFontOwner.dll"
 profile = "vc8-sp1-ltcg-o2"
 enable_gs = true
 link_data_targets = ["__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0"]
-notes = "Complete native font owner constructor411430138/138 and destructor4114C0210/210 through genuine GL/LTCG. Real config/list<unsigned*>/string construction and destruction preserve all target ownership/order. COFF142/+1 and203/+0 give way to native private list entries and aligned dtor frame under CIL; no fake ABI or layout. Compiler-only list::_Tidy408A00 is independently71/71 through its actual exported dtor caller witness, with no authored source/match credit. Sentinel26 remains excluded. No shared header/profile/data-ledger changes; only this unit affected. docs/TEXT_FONT_OWNER_DTOR_EXACT_2026_10_21.md; docs/TEXT_FONT_OWNER_CTOR_EXACT_2026_10_21.md."
+notes = "Complete native font owner constructor411430138/138, destructor4114C0210/210 and configure4115A0439/439 through genuine GL/LTCG. Real config/list<unsigned*>/string source preserves complete target ownership, signed RGB interpolation and list retirement; ordinary COFF configure404/+0 becomes natural aligned-frame exact439. Compiler-only Tidy408A00 remains71/71 through actual dtor private-caller witness, without authored credit. Sentinel26 stays excluded. Only this TU/unit changes, with all prior accepted roots replayed. docs/TEXT_FONT_OWNER_CONFIG_EXACT_2026_10_21.md; docs/TEXT_FONT_OWNER_DTOR_EXACT_2026_10_21.md; docs/TEXT_FONT_OWNER_CTOR_EXACT_2026_10_21.md."
 
 [[units.gpt-web-text-font-owner.functions]]
 address = "0x00411430"
@@ -20357,3 +20357,14 @@ address = "0x00408A00"
 symbol_base = "?_Tidy@?$list@PAIV?$allocator@PAI@std@@@std@@IAEXXZ"
 private_from = { caller = "0x004114C0", site = "0x00411587" }
 rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+
+[[units.gpt-web-text-font-owner.functions]]
+address = "0x004115A0"
+export = "font_owner_configure"
+symbol_base = "?configure@TextFontOwner194@th105@@QAEXPBUTextFontConfig128@2@@Z"
+rel32_targets = [
+  "??_V@YAXPAX@Z=0x0068AA26",
+  "??_U@YAPAXI@Z=0x00665B8A",
+  "??3@YAXPAX@Z=0x006898EA",
+  "__invalid_parameter_noinfo=0x0068A143",
+]

@@ -2802,29 +2802,6 @@ required_selected_body_calls = [
 ]
 
 [[rules]]
-id = "shared-visual-effect-owner-lifetime-configure-authored-106a"
-addresses = ["0x004115A0"]
-expected_count = 1
-expected_bytes = 439
-expected_names = ["sub_4115A0"]
-origin = "authored_game"
-subsystem = "engine"
-disposition = "authored"
-confidence = "observed"
-evidence = "Game font/visual-text configure4115A0 retains its complete439 bytes and six exact profile/network/scenario caller edges. It copies0x128 config bytes, packs color or builds an interpolated table and retires list payloads. Actual font begin4119A0 independently establishes style offsets as weight/italic/outline/origin. Native owner constructor411430138/138 and destructor4114C0210/210 are now canonical exact through genuine config/list<unsigned*>/string C++ GL/LTCG and are no longer selected by this manual rule. Original class/TU and unobserved fields remain unknown. Compiler sentinel4040B0 and Tidy408A00 have separate exclusions, without authored credit. docs/TEXT_FONT_OWNER_DTOR_EXACT_2026_10_21.md; docs/TEXT_FONT_OWNER_CTOR_EXACT_2026_10_21.md supersede source-absent lifetime wording in docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
-required_body_hashes = [
-  { address = "0x004115A0", size = 439, sha256 = "956579b761782920fcbd5bace551efbd03e12c27f8ab1adeefb4dd0a4147e535" },
-]
-required_direct_edges = [
-  { caller = "0x00431440", site = "0x0043156B", target = "0x004115A0", caller_status = "matching" },
-  { caller = "0x00434AC0", site = "0x00434BD1", target = "0x004115A0", caller_status = "matching" },
-  { caller = "0x0043FCA0", site = "0x0043FD89", target = "0x004115A0", caller_status = "matching" },
-  { caller = "0x0044DCB0", site = "0x0044DDCA", target = "0x004115A0", caller_status = "matching" },
-  { caller = "0x00454EC0", site = "0x00454EFC", target = "0x004115A0", caller_status = "matching" },
-  { caller = "0x00454FE0", site = "0x00455026", target = "0x004115A0", caller_status = "matching" },
-]
-
-[[rules]]
 id = "network-server-send-packet-authored-106a"
 addresses = ["0x00416B60"]
 expected_count = 1
