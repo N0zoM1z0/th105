@@ -20205,6 +20205,18 @@ address = "0x0041B280"
 symbol_base = "?initialize_design_gage@th105@@YGXPAVDesignLoaderGage@1@HIHH@Z"
 rel32_targets = ["?get_texture_size@TitleResourceManager@th105@@QAEXIPAI0@Z=0x00404E60"]
 
+[[units.gpt-web-design-base-load.functions]]
+address = "0x0040AE50"
+symbol_base = "?render_offset@DesignLoaderObjectBase@th105@@UAEXMM@Z"
+
+[[units.gpt-web-design-base-load.functions]]
+address = "0x0040AE60"
+symbol_base = "?set_render_parameters@DesignLoaderObjectBase@th105@@UAEXIIM@Z"
+
+[[units.gpt-web-design-base-load.functions]]
+address = "0x0040AE70"
+symbol_base = "?set_color@DesignLoaderObjectBase@th105@@UAEXI@Z"
+
 [units.gpt-web-design-base-cleanup]
 kind = "probe"
 source = "src/ui/DesignBaseCleanup.cpp"

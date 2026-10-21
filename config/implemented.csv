@@ -1475,3 +1475,6 @@ CDesignBase_find_object
 CDesignBase_load
 CGage_initialize_texture
 CDesignBase_virtual_cleanup
+CDesignObjectBase_render_offset
+CDesignObjectBase_set_render_parameters
+CDesignObjectBase_color_noop

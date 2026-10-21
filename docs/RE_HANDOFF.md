@@ -1,6 +1,16 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+accepts three complete CDesignObjectBase empty virtual bodies40AE50/60/70,
+3/3 bytes each, from unchanged genuine loader/factory source. One shared color
+body is credited once. Parent40B000 EH and gauge41B280/+5 remain open.
+An unselected genuine C++ texture provider recovers the complete167-byte token
+recycling diagnostic, but public release remains119/115 nonexact+8. Its missing
+caller selection is not waived; existing accepted sources/units stay intact.
+See [empty virtuals and provider](DESIGN_OBJECT_EMPTY_VIRTUALS_2026_10_21.md).
+Only the affected loader unit needs replay; no shared header or prior source
+changes. Next: public release visibility and loader/gauge/EH closure.
+The preceding checkpoint
 selects complete310-byte CDesignBase cleanup40BB40 source, ordinary315 nonexact+0.
 It deletes/pops from list back, releases checked handles forward and erases
 the vector, without map/current reset. Native scalar erase differs from the
