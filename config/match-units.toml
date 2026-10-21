@@ -19169,6 +19169,7 @@ rel32_targets = [
 [[units.cross-v106a-network-udp-packet-pool.functions]]
 address = "0x004138B0"
 symbol_base = "??_GNetworkUdpPacketHandleManager64@th105@@UAEPAXI@Z"
+vtable_entry = "??_7NetworkUdpPacketHandleManager64@th105@@6B@"
 rel32_targets = [
   "??1NetworkUdpPacketHandleManager64@th105@@UAE@XZ=0x00413820",
   "??3@YAXPAX@Z=0x006898EA",

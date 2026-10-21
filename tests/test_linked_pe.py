@@ -35,6 +35,82 @@ class LinkedPeTests(unittest.TestCase):
     game = (0x400000, 0x706000)
     image = (linked.IMAGE_BASE, linked.IMAGE_BASE + 0x5000)
 
+    def test_zero_exit_linker_warning_rejects_build_phase(self):
+        # Actual /Os CIL trial: link.exe returned zero despite an unhandled
+        # CRT initialization section in the NOENTRY comparison image.
+        warning = ("msvcrt.lib(cpu_disp.obj) : warning LNK4210: .CRT section "
+                   "exists; there may be unhandled static initializers or terminators\n")
+        with tempfile.TemporaryDirectory() as directory:
+            log = Path(directory) / "candidate.link.log"
+            log.write_text(warning)
+            with self.assertRaisesRegex(RuntimeError, "warning LNK4210") as caught:
+                linked.check_build_phase("link", 0, log)
+            self.assertIn(str(log), str(caught.exception))
+
+    def test_link_diagnostics_and_nonzero_status_fail_independently(self):
+        with tempfile.TemporaryDirectory() as directory:
+            log = Path(directory) / "candidate.link.log"
+            for status, output in [(1, ""),
+                    (0, "owner.obj : error LNK2001: unresolved external symbol _missing\n"),
+                    (0, "LINK : Warning LNK4098: conflicting default library\n"),
+                    (0, "context.cpp : fatal error C1083: cannot open include file\n")]:
+                with self.subTest(status=status, output=output):
+                    log.write_text(output)
+                    with self.assertRaises(RuntimeError):
+                        linked.check_build_phase("link", status, log)
+
+    def test_clean_build_phase_log_passes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            log = Path(directory) / "candidate.link.log"
+            log.write_text("Generating code\nFinished generating code\n")
+            linked.check_build_phase("link", 0, log)
+
+    def test_vtable_entry_contract_preserves_a_real_exported_root(self):
+        f = self.private_fixture()
+        child = f["unit"]["functions"][1]
+        symbol = "??_7Pool@game@@6B@"
+        child.pop("private_from")
+        child.update(symbol_base="??_GPool@game@@UAEPAXI@Z", vtable_entry=symbol)
+        unit = {**f["unit"], "profile": linked.PROFILE, "object": "build/test.dll",
+                "link_data_targets": [], "link_vtables": [{"symbol": symbol,
+                    "target": "pool", "entry": child["symbol_base"] + "=0x00402000",
+                    "target_type_name": ".?AVOriginalPool@@"}]}
+        linked.validate_contract(unit, {"pool"})
+        changes = [lambda u: u["functions"][1].update(vtable_entry="missing"),
+                   lambda u: u["functions"][1].update(export_name="_alias"),
+                   lambda u: u["functions"][1].update(private_from={"caller": "0x00401000", "site": "0x00401000"}),
+                   lambda u: u["link_vtables"][0].update(entry=child["symbol_base"] + "=0x00403000"),
+                   lambda u: u.update(functions=[u["functions"][1]]),
+                   lambda u: u["functions"][0].update(private_from={"caller": "0x00402000", "site": "0x00402000"})]
+        for change in changes:
+            bad = copy.deepcopy(unit); change(bad)
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                linked.validate_contract(bad, {"pool"})
+
+    def test_vtable_entry_requires_the_attested_pointer_and_only_its_compiler_alias(self):
+        symbol = "??_GPool@game@@UAEPAXI@Z"
+        vector_alias = symbol.replace("??_G", "??_E", 1)
+        function = {"address": "0x00402000", "symbol_base": symbol,
+                    "vtable_entry": "??_7Pool@game@@6B@"}
+        table = {"symbol": function["vtable_entry"], "entry_symbol": symbol,
+                 "entry_target": 0x402000, "source_entry": self.start}
+        functions = {self.start: [(symbol, "Pool.ltcg.obj"),
+                                  (vector_alias, "i CIL library: CIL module")]}
+        self.assertEqual(linked.source_function_start(function, functions, {},
+            "Pool.ltcg.obj", [table]), self.start)
+        bad_tables = [[], [table, table], [{**table, "source_entry": self.start + 4}],
+                      [{**table, "entry_target": 0x403000}], [{**table, "entry_symbol": "_unrelated"}]]
+        for tables in bad_tables:
+            with self.subTest(tables=tables), self.assertRaises(ValueError):
+                linked.source_function_start(function, functions, {}, "Pool.ltcg.obj", tables)
+        for aliases in [[(symbol, "Other.obj")], [(symbol, "Pool.ltcg.obj"), ("_unrelated", "Pool.ltcg.obj")],
+                        [(symbol, "Pool.ltcg.obj"), (vector_alias, "Other.obj")],
+                        [(symbol, "Pool.ltcg.obj"), (vector_alias, "Pool.ltcg.obj"), (vector_alias, "Pool.ltcg.obj")]]:
+            with self.subTest(aliases=aliases), self.assertRaises(ValueError):
+                linked.source_function_start(function, {self.start: aliases}, {}, "Pool.ltcg.obj", [table])
+        with self.assertRaises(ValueError):
+            linked.source_function_start(function, functions, {"_alias": self.start}, "Pool.ltcg.obj", [table])
+
     def canonical(self, code, bindings=None, resolve=None):
         return linked.canonicalize(code, self.start, self.target, bindings or [],
             resolve or (lambda address: (_ for _ in ()).throw(ValueError("unknown call"))), self.image, self.game)

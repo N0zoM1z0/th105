@@ -138,6 +138,13 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
         if (function.get("contiguous_span") or function.get("owned_extent")
                 or function.get("dir32_targets")):
             raise ValueError("linked profile does not support remote spans or DIR32 overrides")
+        if "vtable_entry" in function:
+            tables = [table for table in vtables
+                      if table["symbol"] == function["vtable_entry"]
+                      and table["entry"] == symbol + "=" + str(function.get("address"))]
+            if (len(tables) != 1 or any(key in function
+                    for key in ("export_name", "private_from", "private_global"))):
+                raise ValueError("linked vtable entry needs its exact destructor contract without an export")
         if "private_global" in function:
             continue  # Validated as a paired, startup-reachable lifecycle above.
         if "private_from" in function:
@@ -149,8 +156,11 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
                 raise ValueError("private linked function needs only an explicit caller/site witness")
             callers = [f for f in functions if f.get("address") == witness["caller"]]
             if (len(callers) != 1 or callers[0] is function
-                    or "private_from" in callers[0] or "private_global" in callers[0]):
+                    or "private_from" in callers[0] or "private_global" in callers[0]
+                    or "vtable_entry" in callers[0]):
                 raise ValueError("private linked function needs a distinct configured exported caller")
+        elif "vtable_entry" in function:
+            continue
         else:
             export = function.get("export_name", symbol)
             if not isinstance(export, str) or not SYMBOL.fullmatch(export) or export in exports:
@@ -378,7 +388,7 @@ def source_vtables(pe, symbols: dict, functions: dict, contracts: list[dict], ci
             next_section = pe.get_section_by_rva(following - pe.OPTIONAL_HEADER.ImageBase)
             if next_section is not None and next_section.Characteristics & 0x20000000:
                 raise ValueError("native vtable has an unsupported extra function slot")
-        result.append({**table, "source_address": address})
+        result.append({**table, "source_address": address, "source_entry": entry})
     if len({table["source_address"] for table in result}) != len(result):
         raise ValueError("native vtable mappings alias one source address")
     return result
@@ -397,6 +407,14 @@ def validate_body_relocations(pe, start: int, size: int, data_refs: list[dict]) 
             found.add(address)
     if found != expected:
         raise ValueError("typed internal fields need exact HIGHLOW relocation coverage")
+
+
+def check_build_phase(phase: str, returncode: int, log: Path) -> None:
+    output = log.read_text(errors="replace")
+    # LNK's numeric suffix is part of the diagnostic token: a word boundary
+    # immediately after "LNK" would miss ordinary warnings such as LNK4210.
+    if returncode or re.search(r"\b(?:fatal\s+error|(?:error|warning)\s+LNK[0-9]*)\b", output, re.I):
+        raise RuntimeError(f"LTCG {phase} failed; {log}:\n" + output[-4000:])
 
 
 def build_linked(name: str, unit: dict) -> dict:
@@ -445,7 +463,8 @@ def build_linked(name: str, unit: dict) -> dict:
                     "/MAP:" + win(map_path), "/OUT:" + win(output)]
     link_command.append("/OPT:REF" if static else "/NOENTRY")
     link_command.extend("/EXPORT:" + f.get("export_name", f["symbol_base"])
-                        for f in unit["functions"] if "private_from" not in f and "private_global" not in f)
+                        for f in unit["functions"] if "private_from" not in f
+                        and "private_global" not in f and "vtable_entry" not in f)
     libraries = sorted({contract["library"] for contract in sdk_imports})
     libraries.extend(STATIC_LIBS if static else ("lib/msvcrt.lib", "lib/msvcprt.lib"))
     link_command.extend(win(p) for p in [*coff_objects, obj, data_obj, *(tools / p for p in libraries),
@@ -457,8 +476,7 @@ def build_linked(name: str, unit: dict) -> dict:
         log = output.with_suffix("." + phase + ".log")
         with log.open("w") as stream:
             completed = subprocess.run(command, cwd=ROOT, env=environment, stdout=stream, stderr=subprocess.STDOUT)
-        if completed.returncode or re.search(r"\b(?:fatal error|error LNK|warning LNK)\b", log.read_text(errors="replace"), re.I):
-            raise RuntimeError(f"LTCG {phase} failed; {log}:\n" + log.read_text(errors="replace")[-4000:])
+        check_build_phase(phase, completed.returncode, log)
     input_digest, inputs = unit_input_digest(name, unit)
     metadata = {"schema": "th105-linked-pe-v1", "unit": name, "profile": PROFILE,
                 "target_sha256": comparator().verify_target(), "input_digest": input_digest, "inputs": inputs,
@@ -652,14 +670,35 @@ def resolve_linked_call(destination: int, pe, functions: dict, imports: dict, ta
     return sorted(mapped)[0]
 
 
-def source_function_start(function: dict, functions: dict, exports: dict, cil_owner: str) -> int:
+def source_function_start(function: dict, functions: dict, exports: dict, cil_owner: str,
+                          vtables: list[dict] = ()) -> int:
     symbol = function["symbol_base"]
     found = [(address, owner) for address, aliases in functions.items()
              for name, owner in aliases if name == symbol]
     if len(found) != 1 or found[0][1].split()[-1:] != [cil_owner]:
         raise ValueError("linked function is not uniquely owned by the configured source CIL object")
     start = found[0][0]
-    if "private_from" in function or "private_global" in function:
+    if "vtable_entry" in function:
+        witnesses = [table for table in vtables
+                     if table.get("symbol") == function["vtable_entry"]
+                     and table.get("entry_symbol") == symbol
+                     and table.get("entry_target") == int(function["address"], 0)]
+        if (len(witnesses) != 1 or witnesses[0].get("source_entry") != start
+                or start in exports.values() or any(key in function
+                    for key in ("export_name", "private_from", "private_global"))):
+            raise ValueError("linked destructor has no unique unexported native vtable entry")
+        # VC8 can give its scalar/vector deleting wrappers the same code.
+        # This admits only that compiler alias for this exact class, never
+        # unrelated entry aliases or a new calling convention.
+        allowed = {symbol, symbol.replace("??_G", "??_E", 1)}
+        names = [name for name, _ in functions[start]]
+        if len(names) != len(set(names)) or not set(names) <= allowed:
+            raise ValueError("linked vtable destructor has unrelated/duplicate aliases")
+        for _, owner in functions[start]:
+            if (owner.split()[-1:] != [cil_owner]
+                    and owner.split()[-4:] != ["CIL", "library:", "CIL", "module"]):
+                raise ValueError("linked vtable destructor alias is outside its CIL context")
+    elif "private_from" in function or "private_global" in function:
         if len(functions[start]) != 1 or start in exports.values():
             raise ValueError("private linked function has an aliased or exported entry")
     elif exports.get(function.get("export_name", symbol)) != start:
@@ -769,7 +808,7 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
         if addresses and function["address"] not in addresses:
             continue
         cil_owner = image.with_suffix(".ltcg.obj").name
-        start = source_function_start(function, functions, exports, cil_owner)
+        start = source_function_start(function, functions, exports, cil_owner, vtables)
         raw = linked_body(pe, functions, start)
         witness = (private_caller_witness(function, unit, pe, functions, exports,
                                         cil_owner, ledger, c.target_bytes)

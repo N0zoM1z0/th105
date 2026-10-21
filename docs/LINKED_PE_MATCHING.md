@@ -123,6 +123,17 @@ plain source classes with a single scalar deleting destructor slot, not
 general vtables or source class templates. Other internal image addresses,
 floating-literal pointers, EH chunks and indirect jump tables remain unsupported.
 
+A configured scalar destructor may set `vtable_entry` to its exact
+`link_vtables` symbol. Its native table then witnesses the entry without
+exporting that compiler wrapper. Source/target RTTI and the actual source entry
+pointer are revalidated, and only the same-class scalar/vector compiler alias
+is allowed. This selector cannot combine with export/private/global entry
+witnesses or act as an exported caller. The unit retains a real source export
+or CRT lifecycle root. Packet wrapper4138B0 remains30/30 through this path,
+while normal destruction413820 stays98/98. Numbered linker warnings and errors
+now fail even with exit status zero; no LNK4102/LNK4210 exception is granted.
+See [the guard correction and focused replay](LINKED_WARNING_GUARD_2026_10_21.md).
+
 The sidecar records source/input digest, CIL object, binding object, map and
 image hashes, additional COFF inputs, typed vtable and SDK import contracts, all
 tool/header/library pins and parser versions. Modified or

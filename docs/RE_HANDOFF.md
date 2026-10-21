@@ -1,6 +1,19 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+fixes a linked-build guard that missed numbered LNK diagnostics with zero
+exit status. The real Gage/Os LNK4210 now rejects before success provenance.
+One historical pool LNK4102 is eliminated by selecting its compiler destructor
+through the already-attested native vtable, preserving full comparison without
+exporting it. Normal dtor413820 remains98/98; excluded scalar4138B0 stays30/30.
+All13 accepted functions in the six affected linked units cold-replay exact.
+No new authored exact, game source/layout edit or unrelated replay is claimed.
+Reimu908's three accumulator controls keep complete canonicald0ff3d32 and
+helper4963A0 exact66/66; actual strict/float-return Gage CIL remains1012 bytes.
+See [guard, vtable proof and diagnostics](LINKED_WARNING_GUARD_2026_10_21.md).
+Next: remaining Reimu call/RET ownership and genuine nonexported Gage context;
+do not repeat the byte-neutral sum/return-type controls or bypass literal gates.
+The preceding checkpoint
 closes additional CGage field/getter and public texture-release lifetime
 controls without a source selection or new exact. CGage's six complete
 1010-byte controls leave the+190 residual; neither scale references nor the
