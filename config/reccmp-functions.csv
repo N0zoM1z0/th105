@@ -1514,3 +1514,4 @@ TextFont_set_markup_color,0x00411790,function
 TextFont_reset_markup_color,0x004118F0,function
 TextFont_set_surface,0x00411760,function
 TextFont_blend_surface,0x004127C0,function
+TitleResourceManager_get_texture_size,0x00404E60,function

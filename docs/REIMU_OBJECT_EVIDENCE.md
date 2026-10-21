@@ -26,6 +26,12 @@ bool-counter and genuine RNG visibility controls leave the whole root unchanged.
 Next qualify a real provider-backed compiler/link context using25 decoded direct
 callees; a raw E8 operand must not become a fictitious26th provider.
 
+That real-provider work reaches one missing body through secondary animation
+initialization: [texture query404E60](TEXTURE_SIZE_QUERY_2026_10_22.md), now
+accepted148/148 with genuine lookup visibility and a preserved ordinary lookup
+entry. This is a separate authored function, with no new exact credit for496540
+or417800. Next include that actual provider in the larger experimental link.
+
 The latest [907 bounce audit](REIMU_OBJECT_907_BOUNCE_2026_10_21.md) runs2048
 actual-return inputs on the unchanged selected source:256 X/224 Y callbacks
 and1568 no-bounce cases agree in outputs, ordered writes and logical x87.

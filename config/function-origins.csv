@@ -105,7 +105,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00404D00,authored_game,ui,authored,observed,text-texture-resource-wrapper-authored-106a
 0x00404D70,authored_game,ui,authored,observed,canonical-exact-authored
 0x00404DF0,authored_game,assets,authored,observed,render-texture-slot-binding-authored-106a
-0x00404E60,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00404E60,authored_game,assets,authored,observed,canonical-exact-authored
 0x00404F00,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00404FD0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00405040,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a

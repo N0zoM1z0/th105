@@ -1,6 +1,12 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-22. Reconstruction is **active at the user's request**.
+Texture surface query `404E60` is newly accepted exact148/148 under a genuine
+lookup-visible LTCG unit. Its independent417800 provider remains nonexact with
+the same canonical source payload after moving its declaration into a header.
+The query was the one remaining missing body in the bounded real-provider
+context for496540. [Texture query evidence](TEXTURE_SIZE_QUERY_2026_10_22.md)
+records the complete boundary, actual caller edges, source and compiler context.
 Glyph `0x00411B80` now uses the native SDK POINT layout; all 12 font comparison
 hashes remain unchanged and glyph is still nonexact +89. The subsequent bounded
 markup `0x00411FA0` work re-closes all 1744 bytes, rejects four length/lifetime
@@ -21,7 +27,9 @@ reproduces the entry-hoisting transition with a controlled source pair and
 freshly retains call/RET membership distances11/27. Byte-variant, signed-choice
 and local guard controls remain unselected; consistent bool-counter and actual
 RNG visibility controls are whole-root byte-neutral. Next investigate genuine
-provider-backed compiler/link context using the25 decoded direct callees.
+provider-backed compiler/link context using the25 decoded direct callees and
+the newly reconstructed real404E60 dependency. Root source and exactness are
+unchanged; wire the provider into the actual context before interpreting it.
 Preserve the font questions without routine replay of unmodified old inputs.
 
 The generic giant mapper now separates decoded direct CALL counts from its
@@ -67,16 +75,17 @@ are described in [artifact retention](ARTIFACTS.md).
 | Layer | Current value |
 | --- | ---: |
 | Provisional candidates | 4,024 |
-| Authored / excluded / origin review | 1,591 / 1,418 / 1,015 |
-| Durable mappings / source-present | 1,515 / 1,497 |
-| Accepted authored exact | 1,374 functions / 233,060 bytes |
-| Match units / configured functions | 538 / 1,507 |
+| Authored / excluded / origin review | 1,592 / 1,418 / 1,014 |
+| Durable mappings / source-present | 1,516 / 1,498 |
+| Accepted authored exact | 1,375 functions / 233,208 bytes |
+| Match units / configured functions | 539 / 1,508 |
 
-These are ledger counts, not a new all-unit verification claim. No aggregate
-cold replay was run for cleanup. The SVG visibly fills exact bytes against the
-provisional authored denominator (233,060 / 2,135,634 = 10.91%) and shows origin
-review separately (74.78% resolved). [Generated progress](PROGRESS.md) and the
-SVG remain unchanged. `implemented.csv` means source-present; `matches.csv`
+These are ledger counts, not a new all-unit verification claim. The new148-byte
+query has a focused complete comparison; no aggregate cold replay is claimed.
+The SVG fills exact bytes against the provisional authored denominator
+(233,208 / 2,135,782 = 10.92%) and shows origin review separately.
+[Generated progress](PROGRESS.md) and the SVG follow the ledgers.
+`implemented.csv` means source-present; `matches.csv`
 means accepted exact; `claims.csv` remains header-only.
 
 ## Current font source and comparison

@@ -31,6 +31,13 @@ retains the target eight-byte frame and loop alignment. Its explicit empty
 missing declarations and unbound absolute references still fail. See
 [the complete render evidence](DESIGN_BASE_RENDER_2026_10_21.md).
 
+Texture dimension query `404E60` is complete148/148 with the genuine handle
+lookup definition visible and its ordinary thiscall export preserved. The
+ordinary COFF query is147 bytes. Already attested Kernel32 IAT data cells
+resolve the real VC8 GS-report helper; no static-lifecycle guard changes or
+ABS code providers are used. The lookup's independent probe remains nonexact.
+See [the source and complete comparison](TEXTURE_SIZE_QUERY_2026_10_22.md).
+
 ## Build and reference identity
 
 `CDesignBase::virtual_cleanup @40BB40` extends the closed-CFG contract to one
