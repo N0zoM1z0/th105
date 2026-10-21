@@ -24,6 +24,13 @@ generated from an ordinary member definition and its actual sender caller.
 The real senders and native thread callback are exported; a typed caller contract independently attests
 the private entry. See [the full shared-release evidence](HANDLE_MANAGER_RELEASE_2026_10_16.md).
 
+`CDesignBase::render @ 40BC80` is also complete135/135. The same native
+member-iterator source is124 bytes under ordinary COFF; GL/LTCG naturally
+retains the target eight-byte frame and loop alignment. Its explicit empty
+`link_data_targets = []` is accepted because no absolute game data is used;
+missing declarations and unbound absolute references still fail. See
+[the complete render evidence](DESIGN_BASE_RENDER_2026_10_21.md).
+
 ## Build and reference identity
 
 `config/tools.lock.toml` pins cl/c1xx/c2/link, both complete header trees and

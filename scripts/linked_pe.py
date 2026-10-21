@@ -74,7 +74,7 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
     if unit.get("profile") != PROFILE or not str(unit.get("object", "")).endswith(".dll"):
         raise ValueError("linked_candidate requires its LTCG profile and a .dll output")
     mappings = unit.get("link_data_targets")
-    if not isinstance(mappings, list) or not mappings:
+    if not isinstance(mappings, list):
         raise ValueError("linked_candidate needs explicit link_data_targets")
     names = set()
     for mapping in mappings:

@@ -1465,3 +1465,4 @@ CDesignNumber_render
 CDesignNumber_render_offset
 CNumber_render_bound
 CNumber_render_floating
+CDesignBase_render

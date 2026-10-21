@@ -1,10 +1,15 @@
 # TH10.5 reconstruction handoff
 
-Current as of 2026-10-21. Phase: active exact reconstruction; latest bounded
-CDesignBase40B000 audit closes all2666 bytes/860 instructions and corrects the
+Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+accepts complete CDesignBase render40BC80 at135/135 through genuine GL/LTCG.
+The native member-iterator source is124 bytes under ordinary COFF. Explicit
+empty linked data bindings are now supported without permitting unbound game
+addresses; all five accepted functions in four predecessor linked units
+remain exact. The preceding CDesignBase40B000 audit closes all2666 bytes/860
+instructions and corrects the
 native vector owner to+4. All43 accepted functions in13 affected units remain
 exact, as does the666-byte caller43FCA0. Loader identity is now recorded but
-full provider source/return/TU contracts remain open; no new exact is recorded.
+full provider source/return/TU contracts remain open; that audit added no exact.
 The preceding Reimu4A1CE0 audit exhausts64 angle-sharing and16 state-sharing expressions,
 without improving its fourteen body differences. Selected source3803a002 and
 canonical5440-byte payload65298d36 remain unchanged; no new exact is recorded.
@@ -46,7 +51,17 @@ available. Independently attest any direct Ghidra project before semantic
 use, keep one process, and read back metadata changes. Do not use the factory
 adapter or patch target bytes.
 
-The latest [native-vector checkpoint](DESIGN_BASE_NATIVE_VECTOR_2026_10_21.md)
+The latest [render checkpoint](DESIGN_BASE_RENDER_2026_10_21.md) records the
+complete54-instruction member-iterator traversal and final begin reset at
+40BC80. The formal linked unit reproduces the real8-byte-aligned frame and
+all135 bytes, with five named invalid-parameter REL32 fields and no absolute
+data. No header/layout/binding or forced-alignment source edit is involved.
+All198 origin selectors remain unchanged/disjoint. Only four existing linked
+units needed replay after the validator change; all five accepted functions
+pass. This solves this function's phase difference, without a universal claim
+for other frame mismatches.
+
+The preceding [native-vector checkpoint](DESIGN_BASE_NATIVE_VECTOR_2026_10_21.md)
 independently attests a read-only Ghidra run against all four PE sections,
 removes its temporary bounded entry and reads back absence. All nine primary
 DB hashes are unchanged. Poor private-callee stack prototypes make that

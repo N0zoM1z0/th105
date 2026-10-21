@@ -1485,3 +1485,4 @@ CDesignNumber_render_offset,0x0040AFC0,function
 CNumber_render_bound,0x00414EB0,function
 CNumber_render_floating,0x00415050,function
 CDesignBase_load,0x0040B000,function
+CDesignBase_render,0x0040BC80,function

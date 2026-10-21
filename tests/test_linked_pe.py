@@ -149,6 +149,22 @@ class LinkedPeTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "unknown call"):
             self.canonical(code)
 
+    def test_explicit_empty_data_contract_still_rejects_unbound_game_addresses(self):
+        unit = {"profile": linked.PROFILE, "object": "build/test.dll",
+                "link_data_targets": [], "functions": [{"symbol_base": "_render"}]}
+        linked.validate_contract(unit, set())
+        missing = dict(unit)
+        missing.pop("link_data_targets")
+        with self.assertRaises(ValueError):
+            linked.validate_contract(missing, set())
+        # An ordinary virtual dispatch needs no absolute game-data binding.
+        code = b"\x8b\x01\xff\x50\x14\xc3"
+        canonical, calls, refs = self.canonical(code)
+        self.assertEqual(canonical, code)
+        self.assertEqual((calls, refs), ([], []))
+        with self.assertRaises(ValueError):
+            self.canonical(b"\xa1" + struct.pack("<I", 0x702820) + b"\xc3")
+
     def test_absolute_data_identity_and_width_are_required(self):
         code = b"\xa1" + struct.pack("<I", 0x702820) + b"\xc3"
         self.assertEqual(self.canonical(code, [self.binding()])[0], code)

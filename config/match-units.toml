@@ -20123,3 +20123,17 @@ rel32_targets = [
 dir32_targets = [
   "__real@3ea8f5c3=_design_number_decimal_width_ratio",
 ]
+[units.gpt-web-design-base-render]
+kind = "linked_candidate"
+source = "src/ui/DesignBaseRender.cpp"
+object = "build/match-units/GptWeb_DesignBaseRender.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = false
+link_data_targets = []
+notes = "Complete RTTI-owned CDesignBase render40BC80. Natural member-iterator traversal, object vslot14 dispatch and final begin reset reproduce135/135 after resolved GL/LTCG. Ordinary COFF is124/135 with the same loop behavior; the linked compiler naturally retains the target8-byte stack alignment. No absolute game-data references or synthetic binding are needed; five named invalid-parameter calls are replayed."
+
+[[units.gpt-web-design-base-render.functions]]
+address = "0x0040BC80"
+symbol_base = "?render@CDesignBase@th105@@UAEXXZ"
+export_name = "?render@CDesignBase@th105@@UAEXXZ"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
