@@ -2,13 +2,27 @@
 
 Progress display (2026-10-21): the SVG now fills its exact bar from canonical
 exact bytes / confirmed authored bytes, even while classification is pending:
-232,681 / 2,132,580 = 10.91%. It explicitly labels the authored denominator
-provisional and keeps the separate origin/boundary review bar (74.60%, 1,022
+232,681 / 2,132,997 = 10.91%. It explicitly labels the authored denominator
+provisional and keeps the separate origin/boundary review bar (74.63%, 1,021
 pending). Four SVG regressions cover pending/completed review, byte weighting,
 verified remote ownership and empty denominators. Fractions follow the current
 tracking ledgers; aggregate cold verification is separate from this display.
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+adds actual native accent411DF0 provider, complete417/129 target versus433/132
+source, full canonicald0a47cc5, nonexact+5. File-local typed C++ naturally
+receives ESI; ordinary member434 has ECX. Main glyph shrinks647->645/191,
+full canonical51eb276d, still nonexact+3. All948 accent and5376 changed-glyph
+observer cases pass; first-width/row-color controls fail170/120. Distinct
+16-byte accent MAT2 at6FA5A4, second-width unsigned centering and constant
+first table entry are preserved. Countdown416/remaining-count441 are nonexact
+and unselected; target early topY promotion and argument-slot reuse remain
+unrecovered. No accepted dependencies or existing relocation rows change;
+only the two affected nonaccepted font/texture units rebuild, previous
+begin/end/text and texture hashes unchanged. No exact or aggregate claim.
+See [native accent source](TEXT_FONT_ACCENT_2026_10_21.md).
+Next: actual blend/markup1744 closure and coherent whole-font source/TU tuning;
+Reimu496540 remains nonexact49655F/+31. The preceding checkpoint
 adds genuine glyph411B80 in the actual font entry TU, full624 target versus
 source647/192 canonical3e8ea4fa, nonexact+3. Raw policy retains pre-wrap extents,
 row-gradient/fallback pixel arithmetic, second-call metric updates and ordered

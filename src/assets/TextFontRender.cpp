@@ -89,8 +89,47 @@ struct GlyphMetrics {
 typedef char GlyphMetricsSize[sizeof(GlyphMetrics) == 20 ? 1 : -1];
 typedef char GlyphTransformSize[sizeof(GlyphTransform) == 16 ? 1 : -1];
 extern GlyphTransform g_text_glyph_transform;
+extern GlyphTransform g_text_accent_transform;
 extern "C" __declspec(dllimport) unsigned long __stdcall GetGlyphOutlineA(
     void *, unsigned, unsigned, GlyphMetrics *, unsigned, void *, const GlyphTransform *);
+
+static void __stdcall draw_text_accent_dot(TextTextureFontView *font, int center_x, int top_y)
+{
+    GlyphMetrics metrics = {0};
+    const unsigned long bytes = GetGlyphOutlineA(font->dc_000, '.', 5,
+        &metrics, 0, 0, &g_text_accent_transform);
+    if (bytes == 0xffffffffu)
+        return;
+    const int width = static_cast<int>(metrics.gmBlackBoxX);
+    const int height = static_cast<int>(metrics.gmBlackBoxY);
+    const unsigned stride = (bytes / metrics.gmBlackBoxY) & ~3u;
+    const int top = font->font_ascent_13c - metrics.gmptGlyphOriginY + top_y;
+    if (top + height >= static_cast<int>(font->surface_height_148) || top < 0 || bytes == 0)
+        return;
+    unsigned char *glyph = new unsigned char[bytes];
+    GetGlyphOutlineA(font->dc_000, '.', 5, &metrics, bytes, glyph,
+        &g_text_accent_transform);
+    unsigned *destination = static_cast<unsigned *>(font->surface_base_140) +
+        (top_y - metrics.gmptGlyphOriginY + font->font_ascent_13c) * font->surface_pitch_dwords_150 -
+        static_cast<int>(metrics.gmBlackBoxX >> 1) + center_x;
+    unsigned char *coverage = glyph;
+    if (font->active_color_154) {
+        for (int y = 0; y < height; ++y) {
+            for (int x = 0; x < width; ++x)
+                *destination++ = ((0x0ff00000u * *coverage++) & 0xff000000u) | *font->active_color_154;
+            coverage += stride - width;
+            destination += font->surface_pitch_dwords_150 - width;
+        }
+    } else {
+        for (int y = 0; y < height; ++y) {
+            for (int x = 0; x < width; ++x)
+                *destination++ = ((0x0ff00000u * *coverage++) & 0xff000000u) | font->fallback_color_168;
+            coverage += stride - width;
+            destination += font->surface_pitch_dwords_150 - width;
+        }
+    }
+    delete[] glyph;
+}
 
 void TextTextureFontView::draw_text_glyph(
     unsigned character, unsigned *width_out, unsigned *height_out)
@@ -142,7 +181,7 @@ void TextTextureFontView::draw_text_glyph(
         delete[] glyph;
     }
     if (accent_16c)
-        draw_text_accent_dot(cursor_x_134 + metrics.gmCellIncX / 2,
+        th105::draw_text_accent_dot(this, cursor_x_134 + metrics.gmCellIncX / 2,
             cursor_y_138 - font_height_114);
     cursor_x_134 += metrics.gmCellIncX + spacing_x_12c;
     if (width_out) {

@@ -3354,3 +3354,21 @@ required_body_hashes = [
 required_direct_edges = [
   { caller = "0x00412670", site = "0x00412756", target = "0x00411B80", caller_status = "implemented" },
 ]
+
+[[rules]]
+id = "text-font-accent-authored-106a"
+addresses = ["0x00411DF0"]
+expected_count = 1
+expected_bytes = 417
+expected_names = ["sub_411DF0"]
+origin = "authored_game"
+subsystem = "rendering"
+disposition = "authored"
+confidence = "observed"
+evidence = "Full417-byte/129-instruction dot rasterizer closes through RET8 at411F8E. Reviewed actual glyph411B80 calls at411DA6 on its ESI game-font owner with two coordinates. Game clipping/centering/table/fallback/surface ownership around imported GDI establishes authored policy. Native typed file-local source naturally preserves ESI;433/132 remains nonexact+5 on argument/register/frame lifetime. All948 bounded actual-instruction observer cases pass, with170/120 first-width/row-color negative failures; changed actual glyph645/191 passes5376 cases again. Distinct accent MAT2 is6FA5A4, separate from main glyph6FA594. No exact, GDI runtime or original nominal class/TU claim. docs/TEXT_FONT_ACCENT_2026_10_21.md."
+required_body_hashes = [
+  { address = "0x00411DF0", size = 417, sha256 = "1bfd2e56e3163f29c0574f58ee41be36149f5c4defc91d62e8a9039e586bda33" },
+]
+required_direct_edges = [
+  { caller = "0x00411B80", site = "0x00411DA6", target = "0x00411DF0", caller_status = "implemented" },
+]

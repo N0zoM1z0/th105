@@ -43,7 +43,6 @@ struct TextTextureFontView {
     // Ordinary source members. The original privately lowers begin through ESI,
     // glyph/blend through EAX, and markup through EDX plus ECX height_out.
     void draw_text_glyph(unsigned character, unsigned *width_out, unsigned *height_out);
-    void draw_text_accent_dot(int center_x, int top_y);
     int parse_text_markup(const char *cursor, unsigned *width_out, unsigned *height_out);
     unsigned char *blend_intermediate_text_surface(const unsigned *source, unsigned *destination);
 };
