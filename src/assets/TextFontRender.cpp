@@ -1,6 +1,5 @@
-// JP1.06a font entry and native begin/end/glyph/accent/markup providers.
-// Complete canonical comparisons remain nonexact;
-// remaining provider/TU context is needed for the frame and private entries.
+// JP1.06a native font rendering and actual file-local providers.
+// Hex and blend helpers are exact; other complete comparisons remain open.
 #include "TextFontRuntime.hpp"
 
 #include <new>
@@ -320,6 +319,7 @@ int TextTextureFontView::parse_text_markup(
     return length + 1;
 }
 
+static unsigned char *__stdcall blend_font_surface(TextFontOwner194 *, const unsigned *, unsigned *);
 void TextTextureFontView::render_text(const char *text, unsigned *width_out, unsigned *height_out)
 {
     int length = static_cast<int>(strlen(text));
@@ -359,7 +359,7 @@ void TextTextureFontView::render_text(const char *text, unsigned *width_out, uns
 
     finish_text_render(this);
     if (config_00c.outline_111 != 0) {
-        blend_intermediate_text_surface(intermediate, static_cast<unsigned *>(surface_cursor_144));
+        blend_font_surface(this, intermediate, static_cast<unsigned *>(surface_cursor_144));
         delete[] intermediate;
     }
 }
@@ -381,6 +381,43 @@ void TextTextureFontView::set_surface(void *surface, unsigned width, unsigned he
     surface_width_14c = width;
     surface_height_148 = height;
     surface_pitch_dwords_150 = pitch;
+}
+
+static unsigned char *__stdcall blend_font_surface(TextFontOwner194 *font,
+    const unsigned *source, unsigned *destination)
+{
+    const int height = static_cast<int>(font->surface_height_148);
+    const int width = static_cast<int>(font->surface_width_14c);
+    const int pitch = font->surface_pitch_dwords_150;
+    const int byte_pitch = pitch * 4;
+    const unsigned char *from = reinterpret_cast<const unsigned char *>(source) + byte_pitch;
+    unsigned char *to = reinterpret_cast<unsigned char *>(destination) + byte_pitch;
+    for (int y = 1; y < height - 1; ++y) {
+        int x = 1;
+        from += 4;
+        to += 4;
+        for (; x < width - 1; ++x) {
+            if (from[3]) {
+                unsigned scale = from[3] + 33;
+                if (scale >= 256)
+                    scale = 256;
+                to[3] = 255;
+                to[0] = static_cast<unsigned char>((from[0] * scale) >> 8);
+                to[1] = static_cast<unsigned char>((from[1] * scale) >> 8);
+                to[2] = static_cast<unsigned char>((from[2] * scale) >> 8);
+            } else {
+                to[3] = from[-1];
+                to[3] = to[3] > from[7] ? to[3] : from[7];
+                to[3] = to[3] > from[3 - byte_pitch] ? to[3] : from[3 - byte_pitch];
+                to[3] = to[3] > from[3 + byte_pitch] ? to[3] : from[3 + byte_pitch];
+            }
+            from += 4;
+            to += 4;
+        }
+        from += (pitch - x) * 4;
+        to += (pitch - x) * 4;
+    }
+    return to;
 }
 
 } // namespace th105

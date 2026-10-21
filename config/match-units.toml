@@ -20276,7 +20276,7 @@ source = "src/assets/TextFontRender.cpp"
 object = "build/match-units/GptWeb_TextFontRender.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete hex4128F0 remains45/45 canonical79ad8cdb under ordinary COFF. Real reset4118F0 file-local typed source naturally uses ESI/no stack args;161/46 versus162/47 remains nonexact+7 on EDI save scope, complete native cleanup loop equal. All240 actual-reset/list cases pass; clear-active control fails120. Actual parent now1648/445 canonical4137c411 nonexact+16/frame788 versus796, and8640 parent cases pass with real hex45 and ABI-specific ESI reset observer. Color332/105 and other six complete candidates remain unchanged. Only affected font accepted unit cold-rebuilds; no shared header/profile/partition/existing data/relocation ledger changes, no aggregate replay. Real setter/blend and linked/LTCG/EH ownership remain open. docs/TEXT_FONT_RESET_2026_10_21.md; docs/TEXT_FONT_COLOR_2026_10_21.md; docs/TEXT_FONT_HEX_EXACT_2026_10_21.md. Native surface setter411760 is49/10 versus45/9, nonexact+1 on normal versus private entry. All480 leaf cases and only480 affected ruby-close parent cases pass with real target45/source49 setter execution (192 calls per side). Previous nine complete candidates/hex45 unchanged. docs/TEXT_FONT_SURFACE_2026_10_21.md."
+notes = "Complete native blend4127C0 is289/289 canonical6c0d10cb under ordinary COFF. Genuine file-local typed stdcall plus actual caller naturally generates EAX font/RET8, full95 instructions and3 skipped alignment bytes, no ABI facade/padding/waiver. All4608 actual leaf cases pass independent full-plane/write-order/return/ABI specification with signed pitch and four overlaps; gain32/RGB-clear controls fail864/368. Caller322/115 canonical4e41eb3c changes only byte+299 ECX->EAX;80 affected outlined cases pass with actual blend, other providers abstract. Other nine previous complete bodies, including exact hex45, stay unchanged. Unused member declaration removed; both affected accepted font units cold-replay, owner138/210/439/config67 and compiler-only Tidy71 stay exact, texture110/264 hashes unchanged. No aggregate/caller/EH/GDI credit. docs/TEXT_FONT_BLEND_EXACT_2026_10_21.md."
 
 [[units.gpt-web-text-font-render.functions]]
 address = "0x00412670"
@@ -20289,7 +20289,7 @@ rel32_targets = [
   "?finish_text_render@th105@@YGXPAUTextFontOwner194@1@@Z=0x00411AD0",
   "?draw_text_glyph@TextFontOwner194@th105@@QAEXIPAI0@Z=0x00411B80",
   "?parse_text_markup@TextFontOwner194@th105@@QAEHPBDPAI1@Z=0x00411FA0",
-  "?blend_intermediate_text_surface@TextFontOwner194@th105@@QAEPAEPBIPAI@Z=0x004127C0",
+  "?blend_font_surface@th105@@YGPAEPAUTextFontOwner194@1@PBIPAI@Z=0x004127C0",
 ]
 
 [[units.gpt-web-text-font-render.functions]]
@@ -20401,6 +20401,10 @@ rel32_targets = [
 [[units.gpt-web-text-font-render.functions]]
 address = "0x00411760"
 symbol_base = "?set_surface@TextFontOwner194@th105@@QAEXPAXIIH@Z"
+
+[[units.gpt-web-text-font-render.functions]]
+address = "0x004127C0"
+symbol_base = "?blend_font_surface@th105@@YGPAEPAUTextFontOwner194@1@PBIPAI@Z"
 
 [units.gpt-web-text-font-owner]
 kind = "linked_candidate"

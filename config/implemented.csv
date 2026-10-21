@@ -1494,3 +1494,4 @@ TextFont_decode_markup_hex
 TextFont_set_markup_color
 TextFont_reset_markup_color
 TextFont_set_surface
+TextFont_blend_surface

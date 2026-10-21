@@ -2,14 +2,32 @@
 
 Progress display (2026-10-21): the SVG now fills its exact bar from canonical
 exact bytes / confirmed authored bytes, even while classification is pending:
-232,726 / 2,135,345 = 10.90%. It explicitly labels the authored denominator
-provisional and keeps the separate origin/boundary review bar (74.75%, 1,016
+233,015 / 2,135,634 = 10.91%. It explicitly labels the authored denominator
+provisional and keeps the separate origin/boundary review bar (74.78%, 1,015
 pending). Four SVG regressions cover pending/completed review, byte weighting,
 verified remote ownership and empty denominators. Fractions follow the current
 tracking ledgers; aggregate cold verification is separate from this display.
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
-adds real surface setter411760 in actual native font TU. Complete45/9 target
+accepts complete blend4127C0 at289/289 canonical6c0d10cb under ordinary COFF.
+Real file-local typed stdcall plus actual render caller naturally yields EAX
+font/RET8 and all95 decoded instructions, including3 internal skipped alignment
+bytes emitted by VC8; no ABI facade, padding or comparator waiver. Normal
+member297/+4 was an unproven nominal ownership hypothesis, not a LTCG proof.
+All4608 actual leaf cases pass independent sequential full-plane/write-order/
+return/ABI checks with signed pitch and four overlaps; gain32/RGB-clear controls
+fail864/368. Caller stays322/115 canonical4e41eb3c, still nonexact+0; its sole
+change is ModRM byte+299 ECX->EAX. Only80 affected outlined caller cases replay,
+all passing with actual blend and remaining provider observers. Other nine
+complete candidates/hex45 unchanged. Removing unused unproven member declaration
+affects exactly two accepted units: font render and owner both cold-replay;
+owner138/210/439/config67 and compiler-only Tidy71 stay exact, texture110/264
+hashes unchanged. No aggregate/caller/EH/GDI credit. See
+[native outline blend exact](TEXT_FONT_BLEND_EXACT_2026_10_21.md).
+Next: audit glyph/setter/markup member hypotheses through real caller visibility
+before assuming LTCG; remaining save/frame/GS/EH and larger roots stay open.
+Reimu496540 remains nonexact49655F/+31.
+The preceding checkpoint adds real surface setter411760 in actual native font TU. Complete45/9 target
 versus ordinary member49/10 canonical790f7c9d remains nonexact+1: normal
 ECX/four-stack/RET16 versus private target EAX+ECX/three-stack/RET12. Genuine
 five-store body preserves cursor144/base140/width14C/height148/pitch150 order,

@@ -63,7 +63,6 @@ struct TextFontOwner194 {
     void render_text(const char *text, unsigned *width_out, unsigned *height_out);
     void draw_text_glyph(unsigned character, unsigned *width_out, unsigned *height_out);
     int parse_text_markup(const char *cursor, unsigned *width_out, unsigned *height_out);
-    unsigned char *blend_intermediate_text_surface(const unsigned *source, unsigned *destination);
     void set_surface(void *surface, unsigned width, unsigned height, int pitch);
 };
 

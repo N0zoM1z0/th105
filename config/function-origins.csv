@@ -419,7 +419,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00411DF0,authored_game,render,authored,observed,text-font-accent-authored-106a
 0x00411FA0,authored_game,render,authored,observed,text-font-markup-authored-106a
 0x00412670,authored_game,render,authored,observed,text-font-render-authored-106a
-0x004127C0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004127C0,authored_game,render,authored,observed,canonical-exact-authored
 0x004128F0,authored_game,render,authored,observed,canonical-exact-authored
 0x00412920,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00412950,compiler_generated,assets,exclude,observed,vc8-generated-string28-equals-std-comdats-106a

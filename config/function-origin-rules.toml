@@ -3275,7 +3275,7 @@ origin = "authored_game"
 subsystem = "render"
 disposition = "authored"
 confidence = "observed"
-evidence = "Complete326-byte/120-instruction ECX/RET12 game font entry is called at409883 by the reviewed text-texture population backend. It allocates an optional outline surface, zeros optional dimension outputs, decodes exact SJIS lead ranges and signed single bytes, advances markup/glyph calls, and ends/blends/frees in the observed order. Its font fields and private begin/end/glyph/markup providers own game rendering policy rather than CRT strlen/allocation. Genuine C++326/117 instructions remains nonexact+0; bounded callee-observer agreement is separate from exact and GDI runtime coverage. docs/TEXT_FONT_RENDER_2026_10_21.md."
+evidence = "Complete326-byte/120-instruction ECX/RET12 game font entry is called at409883 by the reviewed text-texture population backend. It allocates an optional outline surface, zeros optional dimension outputs, decodes exact SJIS lead ranges and signed single bytes, advances markup/glyph calls, and ends/blends/frees in the observed order. Its font fields and private begin/end/glyph/markup providers own game rendering policy rather than CRT strlen/allocation. Genuine native caller322/115 remains nonexact+0; exact file-local blend289 changes only caller byte+299 to its natural EAX parameter move and80 affected outlined actual-blend cases pass; bounded callee-observer agreement is separate from exact and GDI runtime coverage. docs/TEXT_FONT_RENDER_2026_10_21.md."
 required_body_hashes = [
   { address = "0x00412670", size = 326, sha256 = "5609c1c997c0d979f17f0c9e529e3df3d6d36c52456280dfc6dd04da877c3e36" },
 ]
