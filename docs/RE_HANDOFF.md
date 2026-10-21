@@ -1,6 +1,9 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest bounded
+frame audit freshly preserves the preceding CDesignNumber matches and finds
+that local FPO-off can suppress VC8's natural64-byte stack alignment in the
+ordinary Ogg control. No new exact is recorded in that audit. The preceding
 follow-up accepts CDesignNumber render40AF80/40AFC0 at55/63 and private bound
 dispatch414EB0 at95 complete exact bytes. Full floating415050 source is547/581,
 nonexact415053/+3; its64-byte target frame remains unexplained. The preceding
@@ -63,6 +66,14 @@ complete581-byte floating body as authored/source-present nonexact. The sole
 new literal alias has no predecessor users. Only this affected unit needed
 replay; its expected exit1 is the explicit floating mismatch. Future edits to
 CNumberRuntime.hpp must also replay this new consumer.
+
+The [frame audit](NUMBER_FRAME_AUDIT_2026_10_21.md) independently compiles the
+unaligned-source Ogg wrapper to a natural64-byte frame in both default/strict
+FP. A private FPO-off copy removes that alignment. CNumber double-lifetime,
+literal-width, intrinsic and external-visibility controls remain nonexact;
+none is selected. Retaining EBP for the exact95-byte dispatcher is a useful
+source control, but cannot establish the floating body's original frame/TU
+provenance. Continue from actual type/lifetime and complete caller evidence.
 
 ## Current811 coordinate-argument phase
 
