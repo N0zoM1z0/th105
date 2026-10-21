@@ -1,6 +1,18 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+adds actual907 bounce/RET evidence on unchanged source3b9e4896.2048 inputs
+pass outputs, ordered writes and logical x87:256 X/224 Y callbacks and1568
+without a bounce. Wrong-axis C++ fails256; wrong `>=1280` fails128 and adds112
+callbacks. Source's one physical call correctly serves target's two sites.
+A real separate-TU counter remains66/66 and preserves these outputs, but does
+not fix call/RET sharing distances11/27. Full root stays nonexact49655F/+31,
+canonicald0ff3d32; the public source/header/unit and all accepted rows stay put.
+See [907 bounce proof and controls](REIMU_OBJECT_907_BOUNCE_2026_10_21.md).
+Next: genuine Reimu source/TU/lifetime recovery; do not add a runtime callback
+to repair physical counts. No unrelated replay is required. Unselected bulk
+controls are losslessly archived2417222 ->305663 bytes.
+The preceding checkpoint
 audits CSprite406BE0/406E50 call context. Fresh complete baselines remain610
 bytes/210 instructions, nonexact+21D with nine unequal instructions each.
 RTM is byte-neutral; typed C-interface/device locals and genuine visible or
