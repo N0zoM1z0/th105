@@ -15,8 +15,13 @@ The resumed ReimuObject `496540` comparison now freshly reproduces its selected
 45700-byte canonical source and +31 difference. [822 direction-width evidence](REIMU_OBJECT_822_DIRECTION_WIDTH_2026_10_22.md)
 adds exact private byte-formal wrapper witnesses (77/78) and fresh624 prefixes
 on both selected source and an unselected caller control. Width alone does not
-recover the target's constant-1/request window. Next inspect outer constant
-lifetimes and physical call/RET sharing from the unchanged selected source.
+recover the target's constant-1/request window. The subsequent
+[constant-lifetime and sharing follow-up](REIMU_OBJECT_822_CONSTANT_HOISTING_2026_10_22.md)
+reproduces the entry-hoisting transition with a controlled source pair and
+freshly retains call/RET membership distances11/27. Byte-variant, signed-choice
+and local guard controls remain unselected; consistent bool-counter and actual
+RNG visibility controls are whole-root byte-neutral. Next investigate genuine
+provider-backed compiler/link context using the25 decoded direct callees.
 Preserve the font questions without routine replay of unmodified old inputs.
 
 The generic giant mapper now separates decoded direct CALL counts from its
@@ -171,6 +176,15 @@ no whole-root proof or fabricated return follows. ECX/RET0/caller ignoring EAX
 are observations; `void` is an inferred source view, not a proven original
 return type. See [Reimu evidence index](REIMU_OBJECT_EVIDENCE.md) and
 [811 selected checkpoint](REIMU_OBJECT_811_COORDINATE_ARGUMENTS_2026_10_21.md).
+
+The latest controlled822 pair builds through identical input/output paths:
+coordinate locals emit46144 bytes without entry constants; actual argument
+expressions emit45716 with EBX1/EBP0. This is a fresh current-context transition,
+not reproduction of the old46160-byte object. Do not revert selected pending
+argument lifetimes just to remove the hoists. Actual target800/821,811 and825
+advance tails have independent retirement checks; early return after the first
+decrement would change behavior. See the new constant-lifetime record and
+`build/reimu-object-822-constant-lifetime-20261022/` for pins and controls.
 
 Other open roots remain recorded in the October 21 snapshot: Reimu Fighter
 478FA0, ReimuObject initializer 4A1CE0, YoumuObject initializer 543670, AyaObject

@@ -18,6 +18,14 @@ byte direction/callback formals, leaving original formal widths ambiguous.
 The corresponding private caller view passes624 cases but still misses the
 request window and is unselected; public source and exact totals stay unchanged.
 
+The subsequent [constant-lifetime follow-up](REIMU_OBJECT_822_CONSTANT_HOISTING_2026_10_22.md)
+ties entry EBX1/EBP0 hoisting to a controlled822 outgoing-argument rewrite under
+the current compiler context. Fresh call/RET membership distances stay11/27.
+Byte-variant and signed-choice caller controls remain unselected; consistent
+bool-counter and genuine RNG visibility controls leave the whole root unchanged.
+Next qualify a real provider-backed compiler/link context using25 decoded direct
+callees; a raw E8 operand must not become a fictitious26th provider.
+
 The latest [907 bounce audit](REIMU_OBJECT_907_BOUNCE_2026_10_21.md) runs2048
 actual-return inputs on the unchanged selected source:256 X/224 Y callbacks
 and1568 no-bounce cases agree in outputs, ordered writes and logical x87.
@@ -51,6 +59,7 @@ or compiler context. Later evidence may supersede an earlier stop condition.
 
 | Record | Scope and status |
 | --- | --- |
+| [822 constants and physical sharing](REIMU_OBJECT_822_CONSTANT_HOISTING_2026_10_22.md) | Selected source unchanged; controlled source pair isolates entry-hoisting transition; fresh sharing11/27 and independent target retirement checks retained; no new exact credit. |
 | [822 direction width](REIMU_OBJECT_822_DIRECTION_WIDTH_2026_10_22.md) | Current selected source unchanged; independent byte-formal provider witnesses77/78 exact,624 selected and624 private caller cases pass. Private request window222 versus225 remains nonexact; inspect outer constant lifetime next. |
 | [908 wave visibility](REIMU_OBJECT_908_WAVE_CONTEXT_2026_10_21.md) | Current source unchanged; observed owner layout is byte-neutral, genuine visible wave body inlines all 20 calls without fixing post-wave load order. Counter 66/66 and wave helper 35/35 remain exact; no new credit. |
 | [907 bounce callbacks](REIMU_OBJECT_907_BOUNCE_2026_10_21.md) | Current source unchanged;2048 real-callback/RET inputs and two genuine negative controls; root nonexact. |
