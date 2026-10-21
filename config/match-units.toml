@@ -8672,7 +8672,7 @@ address = "0x0043F810"
 symbol_base = "?show_profile_result@Menu@th105@@IAEXPBD@Z"
 rel32_targets = [
   "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
-  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIHH@Z=0x00404D00",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
   "?set_texture@ProfileSpriteView@th105@@QAEXIHHII@Z=0x00406A60",
 ]
 
@@ -8681,7 +8681,7 @@ address = "0x0043F640"
 symbol_base = "?show_profile_message@Menu@th105@@IAEXPBD_N@Z"
 rel32_targets = [
   "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
-  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIHH@Z=0x00404D00",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
   "?set_texture@ProfileSpriteView@th105@@QAEXIHHII@Z=0x00406A60",
 ]
 
@@ -11003,7 +11003,7 @@ rel32_targets = [
   "_strcpy_s=0x0068AD95",
   "?configure@ProfileSlotEffectOwner194@th105@@QAEXPBUProfileSlotEffectConfig@2@@Z=0x004115A0",
   "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
-  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIHH@Z=0x00404D00",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
   "??1ProfileSlotEffectOwner194@th105@@QAE@XZ=0x004114C0",
   "@__security_check_cookie@4=0x00689D25",
 ]
@@ -12517,7 +12517,7 @@ rel32_targets = [
   "?configure@ResultEffectOwner194@th105@@QAEXPBUResultEffectConfig128@2@@Z=0x004115A0",
   "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
   "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x00408A50",
-  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIHH@Z=0x00404D00",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
   "operator_delete=0x006898EA",
   "??1ResultEffectOwner194@th105@@QAE@XZ=0x004114C0",
   "@__security_check_cookie@4=0x00689D25",
@@ -14563,7 +14563,7 @@ rel32_targets = [
   "??0TitleDesignResource@th105@@QAE@XZ=0x004217F0",
   "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C",
   "?get_network_session@th105@@YAPAUCNetworkBase@1@XZ=0x0043B090",
-  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIHH@Z=0x00404D00",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
   "?set_texture@UiTileA4@th105@@QAEXIHHII@Z=0x004098B0",
   "?initialize@CNumber@th105@@QAEXIHHHHHMHHH@Z=0x00414E40",
   "??3@YAXPAX@Z=0x006898EA",
@@ -16427,7 +16427,7 @@ rel32_targets = [
   "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@PBD@Z=0x00408C40",
   "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x00408B40",
   "??3@YAXPAX@Z=0x006898EA",
-  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIHH@Z=0x00404D00",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
   "?set_texture@UiTileA4@th105@@QAEXIHHII@Z=0x004098B0",
   "?persist_story_progress_42d3f0@ScoreDataEndView@th105@@QAEXXZ=0x0042D3F0",
   "@__security_check_cookie@4=0x00689D25",
@@ -20254,3 +20254,30 @@ rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
   "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0",
 ]
+
+[units.gpt-web-text-texture-runtime]
+kind = "probe"
+source = "src/ui/TextTextureRuntime.cpp"
+object = "build/match-units/GptWeb_TextTextureRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Genuine C++ source for text wrapper404D00 and backend4097A0, with real native token acquire/recycle definitions in the same TU. Ordinary root110/111 and backend264/270 remain nonexact. Backend restores unsigned square-cap policy, two explicit locks, exact HRESULT gates, row clearing and font stores, actual output pointers and fresh texture reload before UnlockRect. No assembly or invented private register ABI; original font provider/TU/private lowering remain open. docs/TEXT_TEXTURE_RUNTIME_2026_10_21.md."
+
+[[units.gpt-web-text-texture-runtime.functions]]
+address = "0x00404D00"
+symbol_base = "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z"
+rel32_targets = [
+  "?acquire@TextTextureTokenManager@th105@@QAEPAPAXAAUResourceHandleToken@2@@Z=0x00405090",
+  "?release@TextTextureTokenManager@th105@@QAEXI@Z=0x00405200",
+  "?populate_text_texture@th105@@YGJPAPAUTextTexture9@1@PBDPAUTextTextureFontView@1@IIPAI3@Z=0x004097A0",
+]
+
+[[units.gpt-web-text-texture-runtime.functions]]
+address = "0x004097A0"
+symbol_base = "?populate_text_texture@th105@@YGJPAPAUTextTexture9@1@PBDPAUTextTextureFontView@1@IIPAI3@Z"
+rel32_targets = [
+  "_D3DXCreateTexture@32=0x0068989C",
+  "memset=0x0068A440",
+  "?render_text@TextTextureFontView@th105@@QAEXPBDPAI1@Z=0x00412670",
+]
+dir32_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A=?g_d3d_backend@th105@@3UD3DBackend@1@A"]

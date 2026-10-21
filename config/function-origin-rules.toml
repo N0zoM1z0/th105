@@ -2313,13 +2313,31 @@ origin = "authored_game"
 subsystem = "ui"
 disposition = "authored"
 confidence = "observed"
-evidence = "Raw target CFG reaches the complete 111-byte thiscall wrapper and both RET 0x1C paths between INT3 pads. It obtains a resource handle via 0x00405090, invokes texture creation 0x004097A0, cleans the handle via 0x00405200 on HRESULT failure, and returns the handle through a hidden four-byte result pointer. The nested creator calls the D3DXCreateTexture import; exact UI and network result functions independently call this wrapper. Its retained TitleResourceManager::create_text_texture label is a working hypothesis, not class-name proof or exact source credit. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+evidence = "Raw target CFG reaches the complete111-byte thiscall wrapper and both RET28 paths between INT3 pads. It obtains a resource handle via405090, invokes texture creation4097A0, recycles the generation via405200 on negative HRESULT and returns the handle through a hidden four-byte class result. Exact UI and network result functions independently call it. Genuine source now closes acquire/release and the population backend in one TU; ordinary110/111 remains nonexact+7. The working class/API labels do not prove original spelling. docs/TEXT_TEXTURE_RUNTIME_2026_10_21.md supersedes source-absent wording in docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md; no exact credit."
 required_body_hashes = [
   { address = "0x00404D00", size = 111, sha256 = "fc2a1d60bc6b46699dfaace27231d5e7135b47105b7493cd04ce864ea9f8ee0c" },
 ]
 required_direct_edges = [
   { caller = "0x0043F810", site = "0x0043F83F", target = "0x00404D00", caller_status = "matching" },
   { caller = "0x0044DCB0", site = "0x0044DE75", target = "0x00404D00", caller_status = "matching" },
+]
+
+[[rules]]
+id = "text-texture-population-backend-authored-106a"
+addresses = ["0x004097A0"]
+expected_count = 1
+expected_bytes = 270
+expected_names = ["sub_4097A0"]
+origin = "authored_game"
+subsystem = "rendering"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete270-byte/94-instruction RET20 backend is called by the reviewed111-byte game text-texture wrapper. It tests g_d3d_backend caps+64, makes unsigned dimensions square under bit20, uses the aggregate's native lock/device, calls original D3DXCreateTexture thunk68989C, clears locked rows and publishes game font fields144/140/150/14C/148 before the normal412670 text-render call. It reloads the texture cell for UnlockRect and returns the LockRect status. Game font/layout and policy ownership distinguish this wrapper from the imported D3DX routine. Genuine C++ source264 remains nonexact+0 with different frame/private argument lowering. docs/TEXT_TEXTURE_RUNTIME_2026_10_21.md; no exact or library-exclusion credit."
+required_body_hashes = [
+  { address = "0x004097A0", size = 270, sha256 = "e630b34ff2c155e3cd7fc231b76fa1ff34e28afe2f0ddf6fb232e29035ab7e93" },
+]
+required_direct_edges = [
+  { caller = "0x00404D00", site = "0x00404D3A", target = "0x004097A0", caller_status = "implemented" },
 ]
 
 [[rules]]

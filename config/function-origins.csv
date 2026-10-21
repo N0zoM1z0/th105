@@ -206,7 +206,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00409020,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00409080,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004094E0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x004097A0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004097A0,authored_game,rendering,authored,observed,text-texture-population-backend-authored-106a
 0x004098B0,authored_game,ui,authored,observed,canonical-exact-authored
 0x004098E0,authored_game,ui,authored,observed,ui-source-present-exact-caller-helpers-authored-106a
 0x004099F0,authored_game,ui,authored,observed,shared-ui-design-binding-and-tile-render-authored-106a

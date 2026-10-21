@@ -67,7 +67,7 @@ class WorkflowToolingTests(unittest.TestCase):
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1481)
+        self.assertEqual(len(implemented), 1483)
         root = next(row for row in functions if row["address"] == "0x00496540")
         self.assertEqual(root["status"], "implemented")
         self.assertEqual(root["match_percent"], "0.00")
@@ -86,10 +86,10 @@ class WorkflowToolingTests(unittest.TestCase):
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 536)
+        self.assertEqual(len(manifest["units"]), 537)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1489,
+            1491,
         )
         root = manifest["units"]["gpt-web-reimu-object-action-state"]
         self.assertEqual(root["kind"], "probe")
@@ -1002,6 +1002,7 @@ class WorkflowToolingTests(unittest.TestCase):
             "0x0040AEA0", "0x0040AF30", "0x0040AEE0",
         })
         self.assertNotIn("gpt-web-gage-render", accepted)
+        self.assertNotIn("gpt-web-text-texture-runtime", accepted)
         self.assertNotIn("0x0041B3F0", set().union(*accepted.values()))
         self.assertNotIn("gpt-web-texture-slot-binding", accepted)
         self.assertNotIn("0x00404DF0", set().union(*accepted.values()))
@@ -1714,7 +1715,7 @@ class WorkflowToolingTests(unittest.TestCase):
         )
         self.assertIn("Canonical exact functions | 1,368", markdown)
         self.assertIn("Canonical exact authored bytes | 231,894", markdown)
-        self.assertIn("Source-present authored mappings | 1,481", markdown)
+        self.assertIn("Source-present authored mappings | 1,483", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )

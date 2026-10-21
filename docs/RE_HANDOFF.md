@@ -1,6 +1,17 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+adds genuine text-texture C++ source for 404D00/4097A0, with native token
+acquire/recycle definitions in the same TU. Full comparisons remain110/111
+nonexact+7 and264/270 nonexact+0. Target font output pointers, ordered144/140
+publication and texture reload after drawing are recovered. Source backend
+promotes an extra width register and lacks the target aligned EBP frame;
+no private-ABI facade or exact credit is added. Caps+64 is bound through the
+existing D3D aggregate. The public wrapper now uses typed optional output
+pointers, with compiler-confirmed caller bindings. All207 accepted functions
+in87 affected units cold-replay exact after the header/mapping changes. See [text-texture source](TEXT_TEXTURE_RUNTIME_2026_10_21.md).
+Next: real font412670/begin/end/glyph/markup provider closure for an honest
+linked experiment, or further Reimu/loader source lifetimes. The preceding checkpoint
 accepts UI design binder 420B90 at complete 118/118, canonical 663afb38.
 The real native map/checked-iterator source naturally recovers all 44 target
 instructions under ordinary COFF; the retained facade stays 122/nonexact.
