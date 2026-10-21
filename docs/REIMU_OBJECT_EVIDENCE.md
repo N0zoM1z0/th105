@@ -33,8 +33,15 @@ entry. This is a separate authored function, with no new exact credit for496540
 or417800. The subsequent [resolved provider context](REIMU_OBJECT_REAL_PROVIDER_CONTEXT_2026_10_22.md)
 links20 real object inputs in native-root and root-CIL modes. Both retain the
 complete66-byte counter; root-CIL still differs at entry. No complete linked
-root comparison is claimed. Next vary genuine helper CIL visibility within
-that fixed context, preserving target-observed caller lifetimes.
+root comparison is claimed. The [one-helper CIL follow-up](REIMU_OBJECT_CIL_HELPERS_2026_10_22.md)
+now checks all22 source switches in four resolved contexts, preserving complete
+57/62/73 helpers and counter66. Root remains nonexact+0. Native provider visibility
+retains two target-observed phase-call FLDZ reloads which the CIL phase control
+removes. Four source-only float-fabs calls are separately identified; replacing
+them with double-fabs still misses the entry and removes native float round trips
+present in all four target sites. A consistent coordinate record fails genuine
+spawn wrappers69/70 versus77/78 before any root build. No control is selected;
+fresh public native replay retains root45700/d0ff3d32/+31 and accepted66/77/78.
 
 The latest [907 bounce audit](REIMU_OBJECT_907_BOUNCE_2026_10_21.md) runs2048
 actual-return inputs on the unchanged selected source:256 X/224 Y callbacks

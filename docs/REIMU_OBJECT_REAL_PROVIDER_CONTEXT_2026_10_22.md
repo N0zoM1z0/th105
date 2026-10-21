@@ -64,6 +64,13 @@ Next vary genuine CIL helper visibility within this fixed resolved context,
 checking complete helpers and target-observed caller lifetimes before selecting
 any source change. Do not supply missing behavior with resolver code.
 
+The subsequent [one-helper CIL follow-up](REIMU_OBJECT_CIL_HELPERS_2026_10_22.md)
+completes those three visibility controls in this resolved context. It closes
+all22 switches and retains complete57/62/73 helpers, but the root entry remains
+different; actual phase-call floating lifetimes discriminate the phase control.
+That record also identifies four private float-overload calls and rejects
+double-overload and coordinate-record substitutions against target observations.
+
 ## Receipts and regeneration
 
 All artifacts are below `build/reimu-object-provider-link-20261022/gy/`:

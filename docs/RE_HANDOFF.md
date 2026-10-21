@@ -12,6 +12,14 @@ links20 real object inputs with pinned CRT/SDK libraries, four data bindings and
 eight source-view aliases. Both native and root-CIL images resolve; both retain
 counter66/66. Root-CIL still starts with a target-incompatible aligned EBP frame
 at+0. No giant-root exact credit or general LTCG conclusion follows.
+The subsequent [real helper visibility controls](REIMU_OBJECT_CIL_HELPERS_2026_10_22.md)
+close all22 source switches in four linked contexts. Helpers remain57/62/73
+exact but root-CIL is still nonexact+0; phase visibility removes two target-
+observed FLDZ reloads. Four source-only float-fabs calls explain its misleading
+direct-call total. Explicit double-fabs removes those calls without fixing
+the entry and discards target-observed float round trips in native code.
+A consistent by-value coordinate record already fails the real77/78 wrappers
+at+0 and is not propagated into the root. None of these controls is selected.
 Glyph `0x00411B80` now uses the native SDK POINT layout; all 12 font comparison
 hashes remain unchanged and glyph is still nonexact +89. The subsequent bounded
 markup `0x00411FA0` work re-closes all 1744 bytes, rejects four length/lifetime
@@ -34,8 +42,11 @@ and local guard controls remain unselected; consistent bool-counter and actual
 RNG visibility controls are whole-root byte-neutral. Next investigate genuine
 provider-backed compiler/link context using the25 decoded direct callees and
 the newly reconstructed real404E60 dependency. That context now resolves with
-native providers; next vary genuine helper CIL visibility one context at a time.
-Root source and selected canonical exactness remain unchanged.
+native providers; the three one-helper CIL controls are now complete. Further
+context changes need an independent target lifetime/ownership lead. Keep native
+phase-call reloads and float-fabs round trips; root source and selected
+canonical exactness remain unchanged. Fresh native replay retains the45700-byte
+root hash/nonexact+31, counter66 and genuine spawn77/78 exact.
 Preserve the font questions without routine replay of unmodified old inputs.
 
 The generic giant mapper now separates decoded direct CALL counts from its
