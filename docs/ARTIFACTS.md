@@ -14,13 +14,67 @@ accepted comparison receipts and the currently selected source/object pins.
 Retained old source is evidence of an experiment, not automatically selected
 source or an original compiler boundary.
 
-The current ReimuObject scope is `build/reimu-object-fade-order-20261020/`,
-with recipes in `.analysis/reimu-object-fade-order-20261020/`. Its selected
-and three negative-control objects, native reports and final checks remain
-available. Nine primary database hashes are recorded in that scope's
-`primary-db-after.json`. The primary project is under
+The latest selected font checkpoint is `build/font-markup-stack-20261021/`,
+with recipes in `.analysis/font-markup-stack-20261021/`. Keep its selected
+public/Cdecl objects, extracted native `vc8-string.obj`, target/canonical bodies,
+formal comparisons, caller/stack/EH/library facts and execution receipts.
+Its `retention.json` inventories the SHA-verified `completed-controls.tar.gz`.
+The preceding `font-markup-local-20261021` and `font-setter-local-20261021`
+scopes also retain selected objects, frozen inputs and per-file archive receipts.
+`build/font-blend-20261021/local.bin` is an actual execution-harness input.
+
+The latest ReimuObject source selection is documented by
+`build/reimu-object-811-arguments-20261021/`; the earlier fade-order scope
+retains its source epoch and controls. Nine primary database hashes remain in
+`build/reimu-object-fade-order-20261020/primary-db-after.json` and were checked
+again during this cleanup. The primary project is under
 `.analysis/iku-vslot28-20261002/project/`; do not replace or delete it during
-routine cleanup.
+routine cleanup. The read-only interrupted `font-markup-lifetime-20261021`
+scope retains a fresh baseline and constructor-call census, without a selected
+source/layout change. Reconstruction is paused; there are no pending builds.
+
+## October 21 paused-session cleanup
+
+The previous 845-line handoff is preserved verbatim in
+[the October 21 snapshot](RE_HANDOFF_HISTORY_2026_10_21.md), with a historical
+warning. [The live handoff](RE_HANDOFF.md) now lists current source entry points,
+accepted versus diagnostic comparisons, blockers and focused reproduction.
+No reconstruction source, header, profile, tracking or progress edit is made.
+
+The cleanup compresses 287 completed October 20/21 JSON reports, text listings
+and logs of at least 32 KiB, saving 28,610,196 bytes; it also removes 187,096
+bytes of disposable Python cache. Every compressed file is read back and
+SHA256-checked before unlinking its original. Formal comparisons, retention
+receipts, source, frozen input ledgers, objects and binaries remain directly
+available. Current markup-stack/local/lifetime and Reimu811 reports are kept
+uncompressed. Target, selected source/objects and all nine primary DB hashes
+are checked before and after; detached worktrees and tool installations are
+untouched. Final CI caches can be removed again after verification.
+
+The private inventory is `build/handoff-cleanup-20261021/manifest.json`; the
+one-use recipe is `.analysis/handoff-cleanup-20261021/cleanup.py`. The fresh
+font baseline reproduces all 12 selected comparison results and canonical
+hashes, including the three accepted leaves and the uncredited 33-byte helper.
+No additional VC8 build or aggregate replay is needed for documentation cleanup.
+
+Restore a historical compressed report before an old recipe reads it:
+
+```bash
+gzip -dk build/PREVIOUS-SCOPE/REPORT.json.gz
+```
+
+For archived completed controls, restore only the needed members into the
+same original scope, then verify their hashes against `retention.json`:
+
+```bash
+tar -tzf build/font-markup-stack-20261021/completed-controls.tar.gz
+tar -xzf build/font-markup-stack-20261021/completed-controls.tar.gz \
+  -C build/font-markup-stack-20261021 stdcall.obj
+```
+
+Keep both compressed/archive copies. Reports and private inputs are local;
+a fresh clone requires the canonical target and pinned tools, then a fresh
+configured build rather than an old receipt.
 
 ## October 20 handoff cleanup
 
@@ -35,7 +89,9 @@ fade-control summary/log. The corrected three-control summary, individual
 comparison receipts, objects and recipes are retained. Historical bulk JSON,
 assembly listings and logs are compressed with gzip; source, COFF objects,
 linked images, compiler files and databases are preserved. Active build
-outputs and the current fade-order regression scope are kept uncompressed.
+outputs and the then-current fade-order regression scope were kept uncompressed
+at that checkpoint. Some historical reports in that scope were compressed in
+the October 21 cleanup; its source, objects and evidence remain recoverable.
 
 The local inventory and SHA256 receipts are in
 `build/handoff-cleanup-20261020/manifest.json`; the exact cleanup recipe is
