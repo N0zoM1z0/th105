@@ -20238,3 +20238,19 @@ rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAE
 kind = "vc8-vector-out-of-range"
 symbol = "?_Xran@?$vector@UDesignTextureHandle@th105@@V?$allocator@UDesignTextureHandle@th105@@@std@@@std@@KAXXZ"
 site = "0x0040BC25"
+
+[units.gpt-web-design-object-bind-alt]
+kind = "probe"
+source = "src/ui/DesignObjectBinding.cpp"
+object = "build/match-units/GptWeb_DesignObjectBinding.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete118-byte UI design lookup420B90: native map at+20, signed-ID conversion and checked iterator compare/dereference naturally reproduce all target bytes under ordinary COFF. Same physical map/class layout as the accepted design lifetime view; original method name/TU remain unknown. Native find40CDA0 remains compiler-owned without new credit. docs/DESIGN_OBJECT_BIND_ALT_2026_10_21.md."
+
+[[units.gpt-web-design-object-bind-alt.functions]]
+address = "0x00420B90"
+symbol_base = "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0",
+]

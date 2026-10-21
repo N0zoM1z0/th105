@@ -50,6 +50,7 @@ public:
     virtual void render_through(unsigned int object_id);
     virtual void render();
     void find_object(UiDesignObject **object, int object_id);
+    void bind_object_alt(UiDesignObject **object, int object_id);
 
     std::vector<DesignTextureHandle> texture_handles_04;
     std::list<UiDesignObject *> objects_14;

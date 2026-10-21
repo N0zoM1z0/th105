@@ -1478,3 +1478,4 @@ CDesignBase_virtual_cleanup
 CDesignObjectBase_render_offset
 CDesignObjectBase_set_render_parameters
 CDesignObjectBase_color_noop
+UiDesignResource_bind_object_alt

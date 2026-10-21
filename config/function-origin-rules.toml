@@ -2098,22 +2098,20 @@ required_selected_body_calls = [
 
 [[rules]]
 id = "shared-ui-design-binding-and-tile-render-authored-106a"
-addresses = ["0x004099F0", "0x00420B90"]
-expected_count = 2
-expected_bytes = 874
-expected_names = ["sub_4099F0", "sub_420B90"]
+addresses = ["0x004099F0"]
+expected_count = 1
+expected_bytes = 756
+expected_names = ["sub_4099F0"]
 origin = "authored_game"
 subsystem = "ui"
 disposition = "authored"
 confidence = "observed"
-evidence = "Fresh raw PE CFG review covers all 756/118 candidate bytes through complete RETs with INT3 padding on both sides. The tile renderer consumes game orientation helpers 0x00406360/0x004063D0, game handle lookup 0x00417800, and a draw virtual; the design binder looks up the receiver's +0x20 object tree, writes the selected game object or null to its output pointer, and has 43 calls from exact UI/game constructors. Exact UI renderers call the tile body. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md; neither body has canonical exact credit."
+evidence = "Fresh raw PE CFG review covers all756 tile-renderer candidate bytes through complete RETs with INT3 padding on both sides. The tile renderer consumes game orientation helpers0x00406360/0x004063D0, game handle lookup0x00417800 and a draw virtual; exact UI renderers call it. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md. The former sibling binder420B90 now uses canonical-exact-authored evidence; this rule only retains the nonexact tile."
 required_body_hashes = [
   { address = "0x004099F0", size = 756, sha256 = "c521a6318217f285e593bff562969f8b7b7ef4687b7e26884df446cb476416eb" },
-  { address = "0x00420B90", size = 118, sha256 = "663afb38180408beed34f80e9d9c0ddb44feec986aac016287f387669af51541" },
 ]
 required_direct_edges = [
   { caller = "0x00454890", site = "0x00454939", target = "0x004099F0", caller_status = "matching" },
-  { caller = "0x0043FCA0", site = "0x0043FDB8", target = "0x00420B90", caller_status = "matching" },
 ]
 
 [[rules]]

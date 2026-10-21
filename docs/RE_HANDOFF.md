@@ -1,6 +1,15 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+accepts UI design binder 420B90 at complete 118/118, canonical 663afb38.
+The real native map/checked-iterator source naturally recovers all 44 target
+instructions under ordinary COFF; the retained facade stays 122/nonexact.
+Only a nonvirtual declaration is added to the existing 34-byte design view.
+All 54 predecessor accepted functions in 16 affected units and the new binder
+cold-replay exact. No compiler-helper credit or aggregate replay is claimed.
+See [binder exact](DESIGN_OBJECT_BIND_ALT_2026_10_21.md).
+Next: continue larger Reimu/loader lifetimes or another bounded authored body.
+The preceding checkpoint
 tests 41B280 mode/handle argument lifetimes against its actual caller.
 Explicit mode capture, with and without a separate checked-handle capture,
 leaves the complete 360-byte helper identical to baseline 52572fee, nonexact

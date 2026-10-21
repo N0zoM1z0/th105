@@ -722,7 +722,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00420A80,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x00420AF0,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
 0x00420B80,compiler_generated,runtime,exclude,observed,generated-container-tail-aliases-106a
-0x00420B90,authored_game,ui,authored,observed,shared-ui-design-binding-and-tile-render-authored-106a
+0x00420B90,authored_game,ui,authored,observed,canonical-exact-authored
 0x00420C30,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00420C60,authored_game,battle,authored,observed,canonical-exact-authored
 0x00420D70,authored_game,battle,authored,observed,canonical-exact-authored

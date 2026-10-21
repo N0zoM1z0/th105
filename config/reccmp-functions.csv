@@ -1497,3 +1497,4 @@ CDesignBase_virtual_cleanup,0x0040BB40,function
 CDesignObjectBase_render_offset,0x0040AE50,function
 CDesignObjectBase_set_render_parameters,0x0040AE60,function
 CDesignObjectBase_color_noop,0x0040AE70,function
+UiDesignResource_bind_object_alt,0x00420B90,function
