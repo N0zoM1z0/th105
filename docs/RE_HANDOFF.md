@@ -1,6 +1,17 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+closes additional CGage field/getter and public texture-release lifetime
+controls without a source selection or new exact. CGage's six complete
+1010-byte controls leave the+190 residual; neither scale references nor the
+combined double-getter context solves it. Public release stays119/115 under
+cursor, aggregate-parameter and RTM/SP1 controls. Its CIL cursor trial fails
+strict CFG ownership on one unreachable compiler alignment instruction.
+See [render context](GAGE_RENDER_CONTEXT_2026_10_21.md) and
+[provider follow-up](DESIGN_OBJECT_EMPTY_VIRTUALS_2026_10_21.md).
+Next: return to Reimu496540's remaining call/RET ownership and908 post-wave
+source form; preserve all accepted units and the selected811 source epoch.
+The preceding checkpoint
 audits CGage41B3F0 without changing its selected1010-byte/nonexact+190 source.
 Whole-function fenv and three direct promotions are byte-neutral; statement-
 local pragmas are rejected by VC8. A genuine renderer/binder/lookup/angle CIL

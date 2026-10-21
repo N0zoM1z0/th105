@@ -216,3 +216,28 @@ and raw-root CFG receipt are in the new build scope and its `.analysis/`
 counterpart. Unselected ordinary controls are stored losslessly in the new
 scope's archive; the baseline and larger linked context stay loose. Builds
 remain serial on CPU0 at nice10. No new exact is added in this audit.
+
+## Field-lifetime and getter interaction audit
+
+`build/gage-field-lifetimes-20261021/` freshly pins the complete1010-byte/
+323-instruction target, both RET8 exits and CGage vtable6D6A38 slot1C. The
+selected source still produces canonicalfa2cc075... and first differs+190.
+Six complete source controls leave all public source and shared inputs intact:
+
+| Control | Complete extent/instructions | Unequal instructions |
+| --- | --- | --- |
+|Live reference to vertical scale in mode1|1010/323|2; same selected body|
+|Live references to both scales in mode1|1010/323|2; same selected body|
+|Reference to a physical two-float scale member|1010/323|2; same selected body|
+|Height reference spanning the whole function|1010/323|10; first+DC|
+|Double-return getter with the selected live-height context|1010/323|6; first+190|
+|Non-pure float getter declaration|1010/323|2; same selected body|
+
+The double getter trial specifically combines the current height context with
+the alternate return declaration, rather than assuming the earlier direct-
+height control covered that interaction. ST0 followed by FSTP m32 does not
+uniquely determine the original getter spelling. No alternative type or field
+layout is selected. Complete comparisons, source/object hashes and the target
+CFG/RTTI receipt are in the scope; private recipes use the same named directory
+under `.analysis/`. Controls are archived with verified lossless readback;
+the selected baseline stays loose. No new exact or native-coverage claim.

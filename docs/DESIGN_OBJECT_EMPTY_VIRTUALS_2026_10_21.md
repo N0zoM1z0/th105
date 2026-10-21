@@ -90,3 +90,27 @@ Builds remain serial on CPU0 at nice10. Next: resolve public release's genuine
 source/TU behavior before using this provider to close CDesignBase cleanup or
 the loader; continue gauge/reconstruction work without counting diagnostic
 equality as acceptance. Reimu496540 remains nonexact at49655F/+31.
+
+## Public release lifetime follow-up
+
+`build/texture-release-lifetime-20261021/` revalidates the complete115-byte/
+51-instruction target and its two RET4 exits. Four actual loop-cursor/counter
+lifetime controls each remain119 bytes. Moving live initializers across the
+null-handle guard changes register allocation but does not recover the target.
+A four-byte aggregate parameter, represented by the existing TextureHandleResult
+view in a private header copy, is byte-neutral against the current scalar
+parameter. Fresh RTM and SP1 ordinary builds are also byte-neutral, canonical
+`88bc8eca77956587e2a752aee2ac50feb60d6384566067d6814d9ef01af0b1e9`.
+Those ordinary diagnostics retain the real member definition and its normal
+COFF calling convention; they do not qualify the target's private recycling
+boundary or justify changing the shared header.
+
+The genuine CIL cursor/counter context also emits119 raw bytes. Its52 decoded
+instructions contain one unreachable four-byte compiler alignment instruction
+at+1C (`lea esp,[esp]`). The strict linked CFG gate rejects it. No alignment is
+removed or ignored to manufacture a comparison. The actual target has no such
+unreachable bytes. Existing accepted release/recycling units, the unselected
+provider source and all ledgers remain unchanged; no exact credit is added.
+Private recipes and the fresh target/control/CFG receipt are in the matching
+`.analysis/` scope. Unselected ordinary trials are losslessly archived with a
+per-file manifest; the baseline and rejected linked context remain loose.
