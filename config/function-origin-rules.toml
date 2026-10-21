@@ -3327,3 +3327,21 @@ required_body_hashes = [
 required_direct_edges = [
   { caller = "0x00412670", site = "0x00412783", target = "0x00411AD0", caller_status = "implemented" },
 ]
+
+[[rules]]
+id = "text-font-begin-authored-106a"
+addresses = ["0x004119A0"]
+expected_count = 1
+expected_bytes = 291
+expected_names = ["sub_4119A0"]
+origin = "authored_game"
+subsystem = "rendering"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete291-byte/83-instruction ESI/RET begin is called at412706 by reviewed game font entry412670. Its actual ANSI CreateFontA/GetDC/SelectObject/GetTextMetricsA sequence publishes the font handles/ascent, origin plus full outline byte, flags and active base-color pointer before deleting native list front arrays/nodes. Game font layout and resource lifetime establish authored policy, not ownership of imported GDI or native STL/runtime callees. Real static C++ in the actual caller TU naturally emits ESI and291 bytes/84 instructions, but remains nonexact+7 on56-byte source versus64-byte target frame and EDI save scope. 4320 bounded actual-instruction/list observer cases agree; no exact or real GDI claim. docs/TEXT_FONT_BEGIN_2026_10_21.md."
+required_body_hashes = [
+  { address = "0x004119A0", size = 291, sha256 = "1c9a673b94a0d9a20e34859f3dc3ef0841720700f1a13cb1e318b3314358cf00" },
+]
+required_direct_edges = [
+  { caller = "0x00412670", site = "0x00412706", target = "0x004119A0", caller_status = "implemented" },
+]

@@ -36,8 +36,9 @@ The complete behavior is:
 4. Clear font004, old_font008, then dc000, and return. The chained source
    assignment expresses this observed publication order naturally.
 
-The physical native `std::list<unsigned *>` starts15C: proxy15C, sentinel160,
-count164. Source guards the header offset at compile time. DC/font/original-font
+The physical native `std::list<unsigned *>` starts15C: allocator subobjects in its initial word, sentinel160,
+count164. The pinned VC8 release container base is empty; this word is not a
+debug proxy (see the native begin follow-up). Source guards the header offset at compile time. DC/font/original-font
 fields are actual pointers at000/004/008. The bounded view now extends through
 the native list, without claiming the full font size or representing fallback
 color168 as count164. Original class spelling and member-versus-file-local
@@ -140,3 +141,12 @@ git diff --check
 Next: native begin/color/font lifetimes and the remaining genuine providers;
 revisit EDI preservation only with new TU/lifetime evidence. Retain current
 source as nonexact and do not manufacture stack traffic to equalize a save.
+
+## Native begin provider follow-up
+
+[The native begin checkpoint](TEXT_FONT_BEGIN_2026_10_21.md) supplies actual
+ANSI GDI/font/list setup in the same TU, with natural ESI entry. Complete begin
+291/84 remains nonexact+7; end168/e1daa198 is unchanged. The selected current
+caller is322/115, canonical7087f023 and nonexact+0. Earlier source sizes/hashes
+in this note describe frozen preceding checkpoints. Current begin4320 and
+caller13100 bounded cases pass; owner and remaining providers remain open.

@@ -2,13 +2,28 @@
 
 Progress display (2026-10-21): the SVG now fills its exact bar from canonical
 exact bytes / confirmed authored bytes, even while classification is pending:
-231,894 / 2,131,665 = 10.88%. It explicitly labels the authored denominator
-provisional and keeps the separate origin/boundary review bar (74.53%, 1,025
+231,894 / 2,131,956 = 10.88%. It explicitly labels the authored denominator
+provisional and keeps the separate origin/boundary review bar (74.55%, 1,024
 pending). Four SVG regressions cover pending/completed review, byte weighting,
 verified remote ownership and empty denominators. No exact ledger, compiler
 input or reconstruction acceptance changes; no additional VC8 replay is needed.
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+adds real ANSI GDI begin4119A0 alongside end in the actual font TU. Both
+naturally receive ESI. Begin291/84 remains nonexact+7 with56-byte source versus
+64-byte target frame and conditional EDI saving; complete list loop agrees.
+End168/e1daa198 is unchanged; actual text caller is now322/115, canonical
+7087f023, nonexact+0. All4320 actual begin/list cases and13100 caller observer
+cases pass. Boolean-outline control fails4320 traces/3456 final states; late
+active-color publication fails3600 nonempty-list traces. Three new ANSI GDI
+IAT names are independently pinned, with no accepted consumers; only font and
+texture nonaccepted units rebuild, texture hashes unchanged. Source uses real
+56-byte SDK metrics, with no artificial frame storage. Native release list15C
+is allocator storage, not the previously assumed debug proxy. No new exact
+or real GDI claim. See [native begin](TEXT_FONT_BEGIN_2026_10_21.md).
+Next: genuine owner/config construction and remaining glyph/markup/blend closure
+before linked tuning; preserve current nonexact source and target save evidence.
+The preceding checkpoint
 adds real native font end411AD0 in the actual412670 caller TU. File-local
 ordinary C++ naturally recovers target ESI, complete168/49 instructions, but
 remains nonexact+7 on conditional versus whole-function EDI preservation.

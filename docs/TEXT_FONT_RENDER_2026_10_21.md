@@ -153,3 +153,12 @@ still nonexact+0; the326-byte source/hash and receipts above describe the frozen
 preceding checkpoint. VC8 naturally supplies ESI to the complete168-byte end,
 which remains nonexact+7 solely on EDI save scope. Current caller13100 and
 actual native-end576 bounded cases pass; all other providers remain open.
+
+## Native begin provider follow-up
+
+[The native begin checkpoint](TEXT_FONT_BEGIN_2026_10_21.md) supplies actual
+ANSI GDI/font/list setup in the same TU, with natural ESI entry. Complete begin
+291/84 remains nonexact+7; end168/e1daa198 is unchanged. The selected current
+caller is322/115, canonical7087f023 and nonexact+0. Earlier source sizes/hashes
+in this note describe frozen preceding checkpoints. Current begin4320 and
+caller13100 bounded cases pass; owner and remaining providers remain open.

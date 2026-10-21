@@ -1483,3 +1483,4 @@ TitleResourceManager_create_text_texture
 populate_text_texture_resource
 TextTextureFontView_render_text
 TextFont_finish_text_render
+TextFont_start_text_render

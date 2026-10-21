@@ -1502,3 +1502,4 @@ TitleResourceManager_create_text_texture,0x00404D00,function
 populate_text_texture_resource,0x004097A0,function
 TextTextureFontView_render_text,0x00412670,function
 TextFont_finish_text_render,0x00411AD0,function
+TextFont_start_text_render,0x004119A0,function
