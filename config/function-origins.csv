@@ -414,7 +414,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00411790,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004118F0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004119A0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00411AD0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00411AD0,authored_game,rendering,authored,observed,text-font-end-authored-106a
 0x00411B80,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00411DF0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00411FA0,unknown,,review,unknown,ida-1.06a-initial-inventory

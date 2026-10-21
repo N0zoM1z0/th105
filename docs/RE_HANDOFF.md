@@ -2,13 +2,25 @@
 
 Progress display (2026-10-21): the SVG now fills its exact bar from canonical
 exact bytes / confirmed authored bytes, even while classification is pending:
-231,894 / 2,131,497 = 10.88%. It explicitly labels the authored denominator
-provisional and keeps the separate origin/boundary review bar (74.50%, 1,026
+231,894 / 2,131,665 = 10.88%. It explicitly labels the authored denominator
+provisional and keeps the separate origin/boundary review bar (74.53%, 1,025
 pending). Four SVG regressions cover pending/completed review, byte weighting,
 verified remote ownership and empty denominators. No exact ledger, compiler
 input or reconstruction acceptance changes; no additional VC8 replay is needed.
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+adds real native font end411AD0 in the actual412670 caller TU. File-local
+ordinary C++ naturally recovers target ESI, complete168/49 instructions, but
+remains nonexact+7 on conditional versus whole-function EDI preservation.
+The list loop and shifted GDI/zero sequences agree; RTM/SP1 are identical.
+All576 actual native-end cases pass with explicit CRT/GDI observers; reversed
+back/pop_back fails384. Real caller is now324/116, canonicalc23fa0a9, nonexact+0;
+its13100 bounded cases pass again. Three API IAT cells are independently pinned.
+No accepted dependency/binding/native-symbol consumer is affected; only the
+nonaccepted font/texture units rebuild, texture hashes unchanged. No new exact
+or real GDI claim. See [native end](TEXT_FONT_END_2026_10_21.md).
+Next: genuine begin/color/glyph/markup/blend closure and new TU/lifetime evidence
+for EDI save scope; do not force stack traffic. The preceding checkpoint
 recovers font entry412670 with typed optional outputs and the actual SJIS lead
 ranges/signed single-byte policy. Complete326/326 remains nonexact+0, canonical
 f114c979, on frame/register/private-provider context. All13100 bounded logical

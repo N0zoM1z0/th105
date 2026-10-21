@@ -3309,3 +3309,21 @@ required_body_hashes = [
 required_direct_edges = [
   { caller = "0x004097A0", site = "0x00409883", target = "0x00412670", caller_status = "implemented" },
 ]
+
+[[rules]]
+id = "text-font-end-authored-106a"
+addresses = ["0x00411AD0"]
+expected_count = 1
+expected_bytes = 168
+expected_names = ["sub_411AD0"]
+origin = "authored_game"
+subsystem = "rendering"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete168-byte/49-instruction ESI/RET end is called at412783 by reviewed game font entry412670. It deletes native color-list front arrays/nodes, restores the original GDI font, deletes the SelectObject result, releases the current window DC and clears fields04/08/00. This font/resource lifetime is authored game policy, while native list machinery and runtime/import callees receive no credit. A real file-local C++ provider in the actual font caller TU naturally recovers ESI and emits a complete168-byte/49-instruction body, but canonical comparison remains nonexact+7 on EDI preservation scope. RTM/SP1 identical;576 bounded observer cases agree, without claiming real GDI execution or exactness. docs/TEXT_FONT_END_2026_10_21.md."
+required_body_hashes = [
+  { address = "0x00411AD0", size = 168, sha256 = "68b02c0e179c843e68bb474274a6e27b31038d81e97a900afe08ed54af9083b7" },
+]
+required_direct_edges = [
+  { caller = "0x00412670", site = "0x00412783", target = "0x00411AD0", caller_status = "implemented" },
+]

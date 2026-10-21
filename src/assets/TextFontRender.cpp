@@ -5,7 +5,27 @@
 #include <new>
 #include <string.h>
 
+struct HWND__;
+
 namespace th105 {
+
+extern HWND__ *g_main_window;
+extern "C" __declspec(dllimport) void *__stdcall SelectObject(void *, void *);
+extern "C" __declspec(dllimport) int __stdcall DeleteObject(void *);
+extern "C" __declspec(dllimport) int __stdcall ReleaseDC(HWND__ *, void *);
+
+// Real end cleanup in its actual text-render caller TU. VC8 naturally passes
+// font in ESI; conditional EDI saving still differs from the target function.
+static void __stdcall finish_text_render(TextTextureFontView *font)
+{
+    while (!font->temporary_colors_15c.empty()) {
+        delete[] font->temporary_colors_15c.front();
+        font->temporary_colors_15c.pop_front();
+    }
+    DeleteObject(SelectObject(font->dc_000, font->old_font_008));
+    ReleaseDC(g_main_window, font->dc_000);
+    font->dc_000 = font->old_font_008 = font->font_004 = 0;
+}
 
 void TextTextureFontView::render_text(const char *text, unsigned *width_out, unsigned *height_out)
 {
@@ -44,7 +64,7 @@ void TextTextureFontView::render_text(const char *text, unsigned *width_out, uns
             draw_text_glyph(character, width_out, height_out);
     }
 
-    end_text_render();
+    finish_text_render(this);
     if (render_via_intermediate_11d != 0) {
         blend_intermediate_text_surface(intermediate, static_cast<unsigned *>(surface_cursor_144));
         delete[] intermediate;

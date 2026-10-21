@@ -20288,7 +20288,7 @@ source = "src/assets/TextFontRender.cpp"
 object = "build/match-units/GptWeb_TextFontRender.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete326-byte font entry412670 with optional output pointers, actual SJIS lead ranges81..9F/E0..FE, signed single-byte codes, markup cursor advancement and outlined temporary-surface lifetime. Ordinary COFF326 remains nonexact+0 on frame/register/private-provider context. TextFontRuntime.hpp is a bounded prefix, not a complete font layout; native color-list/default-color evidence rejects the old retained composite facade. No exact or GDI runtime coverage claim. docs/TEXT_FONT_RENDER_2026_10_21.md."
+notes = "Real font entry412670 and native end411AD0 in one TU, with actual list<unsigned*> color cleanup and GDI restore/delete/release. VC8 naturally lowers the file-local end receiver into ESI; its168-byte/49-instruction body remains nonexact+7 on conditional EDI save scope, identically under RTM/SP1. Real caller324 remains nonexact+0. Header models the observed native prefix through list15C, not the full font owner. No assembly, ABI facade, fake provider or exact credit. docs/TEXT_FONT_END_2026_10_21.md; docs/TEXT_FONT_RENDER_2026_10_21.md."
 
 [[units.gpt-web-text-font-render.functions]]
 address = "0x00412670"
@@ -20298,8 +20298,18 @@ rel32_targets = [
   "??_V@YAXPAX@Z=0x0068AA26",
   "memset=0x0068A440",
   "?begin_text_render@TextTextureFontView@th105@@QAEXXZ=0x004119A0",
-  "?end_text_render@TextTextureFontView@th105@@QAEXXZ=0x00411AD0",
+  "?finish_text_render@th105@@YGXPAUTextTextureFontView@1@@Z=0x00411AD0",
   "?draw_text_glyph@TextTextureFontView@th105@@QAEXIPAI0@Z=0x00411B80",
   "?parse_text_markup@TextTextureFontView@th105@@QAEHPBDPAI1@Z=0x00411FA0",
   "?blend_intermediate_text_surface@TextTextureFontView@th105@@QAEPAEPBIPAI@Z=0x004127C0",
 ]
+
+[[units.gpt-web-text-font-render.functions]]
+address = "0x00411AD0"
+symbol_base = "?finish_text_render@th105@@YGXPAUTextTextureFontView@1@@Z"
+rel32_targets = [
+  "??_V@YAXPAX@Z=0x0068AA26",
+  "operator_delete=0x006898EA",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = ["?g_main_window@th105@@3PAUHWND__@@A=?g_main_window@th105@@3PAUHWND__@@A"]

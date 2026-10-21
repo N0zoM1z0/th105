@@ -143,3 +143,13 @@ git diff --check
 Next: recover native font begin/end/color lifetimes and real glyph/markup/blend
 providers, then measure the genuine closed TU/private-call context. Keep the
 complete selected source nonexact until canonical zero-difference comparison.
+
+## Native end provider follow-up
+
+[The native end checkpoint](TEXT_FONT_END_2026_10_21.md) supplies a real
+file-local end provider in this TU and extends the bounded prefix through its
+actual native color list. The selected caller is now324/116, canonicalc23fa0a9,
+still nonexact+0; the326-byte source/hash and receipts above describe the frozen
+preceding checkpoint. VC8 naturally supplies ESI to the complete168-byte end,
+which remains nonexact+7 solely on EDI save scope. Current caller13100 and
+actual native-end576 bounded cases pass; all other providers remain open.
