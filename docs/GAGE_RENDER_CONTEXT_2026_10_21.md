@@ -171,3 +171,48 @@ All24 trial source/object/log/diagnostic files are losslessly compressed in
 `unselected-trials.tar.gz`, with a per-file SHA256 manifest and verified readback
 before removing loose copies. Restore that archive before inspecting or
 rerunning a control. The formal baseline receipt and frozen inputs stay loose.
+
+## Floating environment and a genuine larger CIL context
+
+The subsequent `build/gage-fenv-context-20261021/baseline.json` freshly rebuilds
+the unchanged selected source:1010 bytes, canonicalfa2cc075..., nonexact+190.
+Whole-function `fenv_access(on)` and three direct expression promotions
+(fraction to double, height to double, subtraction to double) each produce
+that same complete canonical body. These are distinct from the preceding
+product-local controls: no intermediate variable/home is introduced. None
+recovers the remaining pair. No new numeric/exception coverage is claimed.
+
+VC8 rejects statement-local fenv pragmas with C4177: global or namespace scope
+is required. That trial is rejected rather than counted as an effective
+environment change. The remaining controls compile without warnings.
+
+A genuine larger CIL trial includes the actual GageRender and
+TextureStageBinding definitions, the retained TextureHandleRuntime lookup/
+recycling/release definitions, and the real AngleLookup functions. The cosine
+table uses an external declaration and its existing attested data binding;
+original TU partition is not claimed. The actual public helper entries are
+exported in this diagnostic artifact to preserve their observed normal ABIs.
+No source register facade, synthetic game callee or executable absolute
+binding is used. Precise/fenv source pragmas and the renderer's existing
+exception pragma supply the source environment; this does not establish
+equivalence to a new formally configured strict-LTCG profile.
+
+Binding compiler-owned real literals as external absolute symbols fails with
+LNK2005 duplicate definitions, and is rejected. Leaving those genuine native
+constants in the image links cleanly. The resulting source-owned root closes
+through both RET8 exits at **1012 bytes/328 instructions**; this is raw linked
+structure, not a canonical1012/1010 comparison. Strict comparison stops on
+the first unqualified internal floating-literal memory reference. Existing
+linked comparison does not yet authorize that literal surface. Neither a
+forced link nor an operand mask is introduced. The different complete extent
+also means literal support alone would not establish exactness.
+
+Public source, profiles, headers, bindings and accepted units remain unchanged.
+Consequently the previous native source-epoch receipt is retained without
+another unrelated fixture or accepted-unit replay. Fresh preflight again
+rejects the wrong IDA image; all target observations use the canonical PE.
+Recipes, source/object hashes, the successful link, rejected literal binding
+and raw-root CFG receipt are in the new build scope and its `.analysis/`
+counterpart. Unselected ordinary controls are stored losslessly in the new
+scope's archive; the baseline and larger linked context stay loose. Builds
+remain serial on CPU0 at nice10. No new exact is added in this audit.

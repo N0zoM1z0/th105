@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+audits CGage41B3F0 without changing its selected1010-byte/nonexact+190 source.
+Whole-function fenv and three direct promotions are byte-neutral; statement-
+local pragmas are rejected by VC8. A genuine renderer/binder/lookup/angle CIL
+context links to a1012-byte/328-instruction root, but canonical comparison
+blocks on its native floating literal. Absolute literal replacement is rejected
+as duplicate definitions; no gate is waived. No new exact in this audit.
+See [render context](GAGE_RENDER_CONTEXT_2026_10_21.md).
+The preceding checkpoint
 accepts three complete CDesignObjectBase empty virtual bodies40AE50/60/70,
 3/3 bytes each, from unchanged genuine loader/factory source. One shared color
 body is credited once. Parent40B000 EH and gauge41B280/+5 remain open.
