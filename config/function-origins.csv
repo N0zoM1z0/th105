@@ -266,12 +266,12 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0040BB00,authored_game,ui,authored,observed,canonical-exact-authored
 0x0040BB40,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040BC80,authored_game,ui,authored,observed,canonical-exact-authored
-0x0040BD10,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0040BE20,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0040BEC0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0040BD10,authored_game,ui,authored,observed,canonical-exact-authored
+0x0040BE20,authored_game,ui,authored,observed,canonical-exact-authored
+0x0040BEC0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0040BFE0,authored_game,ui,authored,observed,canonical-exact-authored
-0x0040C040,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0040C0A0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0040C040,authored_game,ui,authored,observed,canonical-exact-authored
+0x0040C0A0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0040C100,compiler_generated,runtime,exclude,observed,vc8-vector-uint-at-caller-identity-106a
 0x0040C160,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040C240,compiler_generated,battle,exclude,observed,vc8-generated-pat-nested-value-erase-106a
@@ -290,7 +290,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0040CB70,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040CBF0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040CC30,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
-0x0040CC50,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0040CC50,authored_game,ui,authored,observed,canonical-exact-authored
 0x0040CCD0,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
 0x0040CD00,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040CD40,compiler_generated,battle,exclude,observed,vc8-generated-pat-group-lifetime-std-comdats-106a

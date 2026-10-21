@@ -36,10 +36,11 @@ public:
     virtual void multiply_color(unsigned int);
     virtual int load(const char *path);
     virtual void virtual_cleanup();
-    virtual void move(float x, float y);
-    virtual void move_mode(float x, float y, int mode);
-    virtual void prepare(int object_id);
+    virtual void render_offset_through(float x, float y, unsigned int object_id);
+    virtual void render_offset(float x, float y);
+    virtual void render_through(unsigned int object_id);
     virtual void render();
+    void find_object(UiDesignObject **object, int object_id);
 
     std::vector<unsigned int> texture_handles_04;
     std::list<UiDesignObject *> objects_14;

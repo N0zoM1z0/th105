@@ -20131,7 +20131,47 @@ object = "build/match-units/GptWeb_DesignBaseRender.dll"
 profile = "vc8-sp1-ltcg-o2"
 enable_gs = false
 link_data_targets = []
-notes = "Complete RTTI-owned CDesignBase render40BC80. Natural member-iterator traversal, object vslot14 dispatch and final begin reset reproduce135/135 after resolved GL/LTCG. Ordinary COFF is124/135 with the same loop behavior; the linked compiler naturally retains the target8-byte stack alignment. No absolute game-data references or synthetic binding are needed; five named invalid-parameter calls are replayed."
+linked_coff_sources = ["src/library/UiDesignObjectMap.cpp"]
+notes = "Seven complete CDesignBase bodies: existing render135, color virtuals81/81, offset render153, render-through258/274 and object lookup121. Real checked iterators retain resumable member traversal and inclusive stop followed by increment/reset. A genuine ordinary native tree find instantiation preserves the shared ECX/RET8 helper ABI before CIL linking; signed lookup ID converts to the unsigned key temporary. Both independent lifetime/visibility controls remain nonexact; their combination is exact. The primary vtable now correctly has RET12 at+18 and RET8 at+1C. No forced ABI, fake alignment, absolute game data or authored credit for the compiler helper."
+
+[[units.gpt-web-design-base-render.functions]]
+address = "0x0040BD10"
+symbol_base = "?render_through@CDesignBase@th105@@UAEXI@Z"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?find_object@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x0040CC50",
+]
+
+[[units.gpt-web-design-base-render.functions]]
+address = "0x0040BEC0"
+symbol_base = "?render_offset_through@CDesignBase@th105@@UAEXMMI@Z"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?find_object@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x0040CC50",
+]
+
+[[units.gpt-web-design-base-render.functions]]
+address = "0x0040CC50"
+symbol_base = "?find_object@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0",
+]
+
+[[units.gpt-web-design-base-render.functions]]
+address = "0x0040C040"
+symbol_base = "?set_vertex_colors@CDesignBase@th105@@UAEXPBI@Z"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+
+[[units.gpt-web-design-base-render.functions]]
+address = "0x0040C0A0"
+symbol_base = "?multiply_color@CDesignBase@th105@@UAEXI@Z"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+
+[[units.gpt-web-design-base-render.functions]]
+address = "0x0040BE20"
+symbol_base = "?render_offset@CDesignBase@th105@@UAEXMM@Z"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
 
 [[units.gpt-web-design-base-render.functions]]
 address = "0x0040BC80"

@@ -1,7 +1,15 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
-accepts complete profile color40BFE0 at81/81 through genuine GL/LTCG, using
+accepts six complete CDesignBase virtual/lookup functions at81/81/153/258/274/121,
+968 new exact bytes. A real native tree find member instantiation preserves
+the shared helper ABI; signed-ID/key-conversion lifetime recovers the lookup.
+All44 predecessor accepted functions in14 actual header consumers remain exact.
+Header slots+18/+1C now have the target-proven three/two-argument signatures.
+Compiler helper40CDA0 is find, rather than lower_bound alone; its105-byte
+provider remains nonexact and receives no authored or exact credit. Next:
+implement the2666-byte loader40B000 and close cleanup40BB40.
+The preceding checkpoint accepts profile color40BFE0 at81/81 through GL/LTCG, using
 unchanged source54bcd029. Its earlier74/81 frame blocker is resolved.
 The preceding checkpoint accepts CDesignBase render40BC80 at135/135 through GL/LTCG.
 The native member-iterator source is124 bytes under ordinary COFF. Explicit
@@ -53,7 +61,17 @@ available. Independently attest any direct Ghidra project before semantic
 use, keep one process, and read back metadata changes. Do not use the factory
 adapter or patch target bytes.
 
-The latest [color checkpoint](DESIGN_BASE_COLOR_LTCG_2026_10_21.md) accepts the
+The latest [virtual/lookup checkpoint](DESIGN_BASE_VIRTUALS_2026_10_21.md)
+accepts40C040/40C0A0/40BE20/40BD10/40BEC0/40CC50 completely, while existing
+render40BC80 remains135/135. Four genuine source/library controls isolate the
+lookup key temporary and native ordinary COFF find boundary; only the combined
+control is121/121 exact. No private-register facade or aligned dummy is used.
+The header corrects the former move/move_mode argument counts, and its full
+14-unit semantic include closure preserves44 predecessor accepted functions.
+All197 origin selectors are unchanged/disjoint. The existing compiler rule's
+new body/caller witnesses pass; its provider105/105 mismatch+8 is not credited.
+
+The preceding [color checkpoint](DESIGN_BASE_COLOR_LTCG_2026_10_21.md) accepts the
 complete81-byte40BFE0 without changing any source byte. The same unit now
 uses the resolved LTCG profile, which naturally recovers EBP/ESP8 and all
 three invalid-parameter call fields. Only this unit needs replay; no shared

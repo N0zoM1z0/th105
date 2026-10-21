@@ -1,5 +1,9 @@
 # Complete CDesignBase render exact
 
+The subsequent [virtual/lookup checkpoint](DESIGN_BASE_VIRTUALS_2026_10_21.md)
+expands this unit with six more complete exact functions and a real ordinary
+native tree find provider. The original135-byte acceptance below remains exact.
+
 Target: original Japanese TH10.5 v1.06a, SHA256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 `CDesignBase_render @ 0040BC80` is complete canonical **135/135** under:

@@ -2023,7 +2023,9 @@ origin = "compiler_generated"
 subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
-evidence = "Canonical-exact CSelectScenario construction is the direct owner. Raw target walks MSVC checked-tree left/right nodes, tests the nil byte at +0x15, compares the unsigned key at node+0x0C and returns the lower_bound iterator pair. This is a compiler-generated std::_Tree/map lower-bound clone, not an independent game source function."
+evidence = "Current CDesignBase lookup40CC50 calls40CDA0 at40CC72 using the native checked map find result/const-key ABI. Raw105-byte/39-instruction body performs unsigned lower-bound traversal AND a reverse key comparison before choosing end, identifying VC8 std::_Tree::find rather than lower_bound alone. Pinned VC8 xtree959..965 and genuine native explicit find instantiation corroborate provenance; the provider is105/105 nonexact+8 and earns no byte claim. Complete game lookup121 and both render-through callers258/274 are exact. Compiler ownership/exclusion is unchanged; the historical rule ID is retained. docs/DESIGN_BASE_VIRTUALS_2026_10_21.md."
+required_body_hashes = [{ address = "0x0040CDA0", size = 105, sha256 = "507866cd98c994dbc03ba57accbce3c5f3c32fb2c0a9f3a315ca39e79e2b8c63" }]
+required_direct_edges = [{ caller = "0x0040CC50", site = "0x0040CC72", target = "0x0040CDA0", caller_status = "matching" }]
 
 [[accepted_evidence]]
 id = "battle-info-gauge-runtime-authored-106a"

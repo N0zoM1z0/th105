@@ -1486,3 +1486,9 @@ CNumber_render_bound,0x00414EB0,function
 CNumber_render_floating,0x00415050,function
 CDesignBase_load,0x0040B000,function
 CDesignBase_render,0x0040BC80,function
+CDesignBase_set_vertex_colors,0x0040C040,function
+CDesignBase_multiply_color,0x0040C0A0,function
+CDesignBase_render_offset,0x0040BE20,function
+CDesignBase_render_through,0x0040BD10,function
+CDesignBase_render_offset_through,0x0040BEC0,function
+CDesignBase_find_object,0x0040CC50,function
