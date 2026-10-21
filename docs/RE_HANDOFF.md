@@ -1,7 +1,10 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest bounded
-Ogg418B70 audit corrects its unsigned count/out-parameter/time-value facts.
+Reimu4A1CE0 audit exhausts64 angle-sharing and16 state-sharing expressions,
+without improving its fourteen body differences. Selected source3803a002 and
+canonical5440-byte payload65298d36 remain unchanged; no new exact is recorded.
+The preceding Ogg418B70 audit corrects unsigned count/out-parameter/time facts.
 Complete source is251/252 nonexact at+0; its aligned frame remains different
 from the target12-byte ESP frame. The preceding bounded
 frame audit freshly preserves the CDesignNumber matches and finds
@@ -86,6 +89,15 @@ instructions/five calls/two RET8 exits and both callers freshly close. Only
 this nonexact unit's source/profile changes; shared headers, bindings, origin
 rules and matches are unchanged. O1/Os/Zp4/speed-off controls are unselected.
 The predecessor frame-control recipe is now pinned to c5a59ef's source.
+
+The [Reimu initializer sharing audit](REIMU_ENTRY_SHARING_CONTROLS_2026_10_21.md)
+compares complete4892-byte callables plus all548 metadata bytes for the bounded
+64-expression angle family.48 distinct payloads contain no improvement over14
+body differences. The16-expression state family also fails; twelve private
+members change the code boundary to4896. Real shared selector int/short values
+at all32 source calls are byte-neutral. A member-address form is blocked on
+its genuine unqualified thunk, without invented bindings. All85 private
+controls are unselected; selected code is freshly pinned and preserved.
 
 ## Current811 coordinate-argument phase
 
