@@ -241,3 +241,32 @@ layout is selected. Complete comparisons, source/object hashes and the target
 CFG/RTTI receipt are in the scope; private recipes use the same named directory
 under `.analysis/`. Controls are archived with verified lossless readback;
 the selected baseline stays loose. No new exact or native-coverage claim.
+
+## Getter clamp lifetime controls
+
+`build/gage-clamp-context-20261021/` freshly rebuilds the unchanged selected
+source60ce4f3b: complete1010-byte canonicalfa2cc075, still nonexact+190.
+Five additional source controls test whether the getter/clamp lifetime rather
+than the final product expression explains the remaining operand choice.
+
+| Complete source control | Bytes/instructions | Result |
+| --- | --- | --- |
+|Const getter value, separate const clamped fraction|1058/341|Nonexact+10; additional strict-FP homes|
+|Const getter value, separate mutable clamped fraction|1058/341|Same whole candidate as the const-fraction control|
+|Native `std::min(value,1.0f)` after the existing ordered-zero gate|1047/326|Nonexact+10; unselected|
+|Ternary clamp assigned to the original fraction variable|1010/323|Same whole selectedfa2cc075 body|
+|Original assignment with commuted `1.0f <= fraction` guard|1010/323|Same whole selectedfa2cc075 body|
+
+These forms retain a single getter call and NaN-preserving clamp policy.
+The separately initialized fraction adds the strict-FP assignment lifetime;
+neither its const qualification nor its native minimum helper solves the
+target form. There is no reason to select those larger candidates or claim
+that the remaining two instructions require a particular original clamp API.
+No volatile/register shaping, game source, shared input, profile, binding or
+accepted unit changes. The existing source-epoch native evidence is retained;
+no new native/aggregate replay or exact byte is claimed. IDA again rejects the
+wrong image; target facts come only from the hash-attested1.06a PE. Baseline
+inputs remain loose. Five unselected controls are archived with per-file
+SHA256 round-trip checks:166210 ->29879 bytes; recipes use the matching
+`.analysis/` scope. Next: genuine source/TU context, rather than repeating
+these byte-neutral clamp forms.

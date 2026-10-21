@@ -1,6 +1,15 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+closes five CGage getter/clamp lifetime controls. Selected60ce4f3b source stays
+1010/323, canonicalfa2cc075 and nonexact+190. Same-variable ternary and commuted
+guards are byte-neutral; separate const/mutable fractions become1058/341,
+native minimum1047/326. No source/shared input/accepted unit changes or replay
+are needed. Controls are archived166210 ->29879 bytes with verified readback.
+See [clamp lifetimes](GAGE_RENDER_CONTEXT_2026_10_21.md#getter-clamp-lifetime-controls).
+Next: genuine renderer TU context or design cleanup's native assignment-loop
+and frame context; do not select larger clamp candidates or repeat neutral forms.
+The preceding checkpoint
 adds actual907 bounce/RET evidence on unchanged source3b9e4896.2048 inputs
 pass outputs, ordered writes and logical x87:256 X/224 Y callbacks and1568
 without a bounce. Wrong-axis C++ fails256; wrong `>=1280` fails128 and adds112
