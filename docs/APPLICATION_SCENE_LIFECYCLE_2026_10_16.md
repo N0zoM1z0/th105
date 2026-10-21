@@ -107,9 +107,13 @@ Raw E8 discovery followed by instruction/CFG verification identifies shared
 device-reset and audio-event list producers, using different pointer element
 types. This supports shared pointer-list growth code, without proving whether
 COMDAT folding, template ownership or another compiler phase produced it.
-An additional raw E8 candidate at `40B9DC` was **not** reached by the bounded
-`40B000` audit and remains an unverified edge; do not count it as a caller.
-See `build/application-scene-visibility-incsize-callers.json`.
+At the time of this audit, the additional raw E8 candidate at `40B9DC` had not
+been reached by the bounded `40B000` inspection. The subsequent
+[complete CDesignBase loader audit](DESIGN_BASE_NATIVE_VECTOR_2026_10_21.md)
+resolves the switch and reaches all860 instructions, including this call to
+`40C6D0`. Count that caller edge as verified; generic-helper source ownership
+remains open. The earlier receipt is
+`build/application-scene-visibility-incsize-callers.json`.
 
 The insertion helper `4089C0` still has only the independently verified scene
 handoff call at `4080DF`. The target's reference-in-EAX/list-on-stack boundary

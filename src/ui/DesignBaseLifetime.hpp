@@ -3,15 +3,17 @@
 #include <list>
 #include <map>
 #include <new>
+#include <vector>
+#include <stddef.h>
 
 namespace th105 {
 
 struct UiDesignObject;
 
-// Narrow lifetime view of the target's IColor primary base.  This stays
-// separate from the retained sprite-facing IColor declaration because the
-// original CDesignBase constructor performs no observable base-constructor
-// call or value_04 initialization.
+// The primary IColor interface contributes its vptr. The native vector at +4
+// contains an allocator subobject before its three pointers at +8/+C/+10.
+// The loader passes this+4 to vector operations; all three lifetime bodies
+// retain complete canonical matches with the native container.
 class DesignColorLifetimeView {
 public:
     DesignColorLifetimeView() {}
@@ -20,26 +22,6 @@ public:
     virtual void set_vertex_colors(const unsigned int *) = 0;
     virtual void multiply_color(unsigned int) = 0;
 
-    unsigned int value_04;
-};
-
-// The target stores exactly three pointers at CDesignBase +0x08.  VC8's
-// checked std::vector<unsigned> in the probe profile is 0x10 bytes, so this is
-// the narrower source-owned handle-storage contract observed by CDesignBase.
-struct DesignHandleVector12 {
-    unsigned int *begin;
-    unsigned int *end;
-    unsigned int *capacity;
-
-    DesignHandleVector12() : begin(0), end(0), capacity(0) {}
-    ~DesignHandleVector12()
-    {
-        if (begin != 0)
-            ::operator delete(begin);
-        begin = 0;
-        end = 0;
-        capacity = 0;
-    }
 };
 
 class CDesignBase : public DesignColorLifetimeView {
@@ -59,17 +41,25 @@ public:
     virtual void prepare(int object_id);
     virtual void render();
 
-    DesignHandleVector12 texture_handles_08;
+    std::vector<unsigned int> texture_handles_04;
     std::list<UiDesignObject *> objects_14;
     std::map<unsigned int, UiDesignObject *> object_tree_20;
     std::list<UiDesignObject *>::iterator current_2c;
 };
 
-typedef char DesignColorLifetimeView_size_must_be_0x08[
-    sizeof(DesignColorLifetimeView) == 0x08 ? 1 : -1];
-typedef char DesignHandleVector12_size_must_be_0x0c[
-    sizeof(DesignHandleVector12) == 0x0c ? 1 : -1];
+typedef char DesignColorLifetimeView_size_must_be_0x04[
+    sizeof(DesignColorLifetimeView) == 0x04 ? 1 : -1];
+typedef char DesignHandleVector_size_must_be_0x10[
+    sizeof(std::vector<unsigned int>) == 0x10 ? 1 : -1];
 typedef char CDesignBase_size_must_be_0x34[
     sizeof(CDesignBase) == 0x34 ? 1 : -1];
+typedef char CDesignBase_handle_vector_offset_must_be_0x04[
+    offsetof(CDesignBase, texture_handles_04) == 0x04 ? 1 : -1];
+typedef char CDesignBase_object_list_offset_must_be_0x14[
+    offsetof(CDesignBase, objects_14) == 0x14 ? 1 : -1];
+typedef char CDesignBase_object_tree_offset_must_be_0x20[
+    offsetof(CDesignBase, object_tree_20) == 0x20 ? 1 : -1];
+typedef char CDesignBase_current_offset_must_be_0x2c[
+    offsetof(CDesignBase, current_2c) == 0x2c ? 1 : -1];
 
 } // namespace th105

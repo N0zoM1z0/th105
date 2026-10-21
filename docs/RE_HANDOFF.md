@@ -1,7 +1,11 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest bounded
-Reimu4A1CE0 audit exhausts64 angle-sharing and16 state-sharing expressions,
+CDesignBase40B000 audit closes all2666 bytes/860 instructions and corrects the
+native vector owner to+4. All43 accepted functions in13 affected units remain
+exact, as does the666-byte caller43FCA0. Loader identity is now recorded but
+full provider source/return/TU contracts remain open; no new exact is recorded.
+The preceding Reimu4A1CE0 audit exhausts64 angle-sharing and16 state-sharing expressions,
 without improving its fourteen body differences. Selected source3803a002 and
 canonical5440-byte payload65298d36 remain unchanged; no new exact is recorded.
 The preceding Ogg418B70 audit corrects unsigned count/out-parameter/time facts.
@@ -41,6 +45,18 @@ do not use that session's semantic data. Raw canonical PE inspection remains
 available. Independently attest any direct Ghidra project before semantic
 use, keep one process, and read back metadata changes. Do not use the factory
 adapter or patch target bytes.
+
+The latest [native-vector checkpoint](DESIGN_BASE_NATIVE_VECTOR_2026_10_21.md)
+independently attests a read-only Ghidra run against all four PE sections,
+removes its temporary bounded entry and reads back absence. All nine primary
+DB hashes are unchanged. Poor private-callee stack prototypes make that
+decompilation a hypothesis; use the complete raw CFG. The seven switch tags
+resolve four factory arms and prove the40B9DC/40C6D0 edge. Native VC8 vector+4
+replaces the old unverified base-field/three-pointer-wrapper partition while
+preserving all lifetime bytes. The197 old origin selectors are unchanged and
+disjoint; only the new authored loader rule's target witnesses were replayed.
+Inherited naked assembly in TitleResourceLoad.cpp must not become the source
+model for future genuine C++ texture helper closure.
 
 Nine current primary DB pins are retained in
 `build/reimu-object-fade-order-20261020/primary-db-after.json`; they agree with

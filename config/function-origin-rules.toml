@@ -3241,3 +3241,32 @@ required_selected_body_calls = [
   { owner = "0x00415050", site = "0x00415236", target = "0x004099F0", target_status = "implemented" },
   { owner = "0x00415050", site = "0x00415288", target = "0x004099F0", target_status = "implemented" },
 ]
+
+[[rules]]
+id = "design-base-binary-loader-authored-106a"
+addresses = ["0x0040B000"]
+expected_count = 1
+expected_bytes = 2666
+expected_names = ["sub_40B000"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete2666-byte/860-instruction CDesignBase binary design loader. RTTI/vtable6C08AC/COL6D7594 owns slot+10; exact43FCA0 initializer calls it four times. Seven switch tags select four texture/design object factory arms; all normal-flow instructions reachable, RET4 boundary40BA69 excludes alignment/table. Native vector<unsigned>+4 receiver, list+14/map+20 and CDesignNumber E4 factory establish authored UI ownership. Full provider source and return contract remain open; no implementation/exact credit. docs/DESIGN_BASE_NATIVE_VECTOR_2026_10_21.md."
+required_body_hashes = [{ address = "0x0040B000", size = 2666, sha256 = "756f150004243d88a9dd987bcf9aec662b7a4c7caf808a789a72749adf2b16e2" }]
+required_direct_edges = [
+  { caller = "0x0043FCA0", site = "0x0043FD98", target = "0x0040B000", caller_status = "matching" },
+  { caller = "0x0043FCA0", site = "0x0043FDA7", target = "0x0040B000", caller_status = "matching" },
+  { caller = "0x0043FCA0", site = "0x0043FDEB", target = "0x0040B000", caller_status = "matching" },
+  { caller = "0x0043FCA0", site = "0x0043FE55", target = "0x0040B000", caller_status = "matching" },
+]
+required_dword_values = [
+  { address = "0x006C08BC", value = "0x0040B000" },
+  { address = "0x0040BA6C", value = "0x0040B437" },
+  { address = "0x0040BA70", value = "0x0040B5B8" },
+  { address = "0x0040BA74", value = "0x0040B66D" },
+  { address = "0x0040BA78", value = "0x0040B66D" },
+  { address = "0x0040BA7C", value = "0x0040B66D" },
+  { address = "0x0040BA80", value = "0x0040B66D" },
+  { address = "0x0040BA84", value = "0x0040B7ED" },
+]

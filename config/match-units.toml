@@ -7829,7 +7829,7 @@ source = "src/ui/DesignBaseLifetime.cpp"
 object = "build/match-units/CrossV106a_DesignBaseLifetime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current RTTI/vtable-owned CDesignBase lifetime. The 0x34 layout is IColor-like primary base +0, a target-observed 0x0C three-pointer handle owner +8, checked list<UiDesignObject*> +0x14, checked map<unsigned,UiDesignObject*> +0x20, and checked list iterator +0x2C. VC8 implicit virtual destruction is required because the target does not republish the derived vptr at normal-dtor entry."
+notes = "Current RTTI/vtable-owned CDesignBase lifetime. The 0x34 layout uses the four-byte IColor primary interface, native vector<unsigned> +4 with pointer storage+8/+C/+10, checked list<UiDesignObject*> +0x14, checked map<unsigned,UiDesignObject*> +0x20, and checked list iterator +0x2C. The complete40B000 loader passes this+4 to vector operations; the previous extra base field/three-pointer wrapper was an unverified ownership partition. VC8 implicit virtual destruction is required because the target does not republish the derived vptr at normal-dtor entry."
 
 [[units.cross-v106a-design-base-lifetime.functions]]
 address = "0x004217F0"
