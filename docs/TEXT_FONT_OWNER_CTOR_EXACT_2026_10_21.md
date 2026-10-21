@@ -122,3 +122,13 @@ Next: real owner destruction/configuration and glyph/markup/blend closure for
 an honest complete font TU. Constructor exactness does not resolve begin's
 56/64-byte frame difference, end's EDI save scope, text entry's aligned EBP
 frame or the larger Reimu root. Those remain explicitly nonexact.
+
+## Complete native destructor follow-up
+
+[The destructor checkpoint](TEXT_FONT_OWNER_DTOR_EXACT_2026_10_21.md) adds real
+owner destruction in this TU at210/210. Current source hash changes to635607c5,
+while constructor138/de916b65 remains exact on the affected-unit cold replay.
+Earlier source hashes and independent-unit scope above describe the frozen
+constructor-only checkpoint. The native71-byte list cleanup is separately
+qualified as a compiler witness/exclusion, with no authored credit. Only
+configure439 remains in the manual family rule and without selected source.

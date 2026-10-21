@@ -2803,22 +2803,19 @@ required_selected_body_calls = [
 
 [[rules]]
 id = "shared-visual-effect-owner-lifetime-configure-authored-106a"
-addresses = ["0x004114C0", "0x004115A0"]
-expected_count = 2
-expected_bytes = 649
-expected_names = ["sub_4114C0", "sub_4115A0"]
+addresses = ["0x004115A0"]
+expected_count = 1
+expected_bytes = 439
+expected_names = ["sub_4115A0"]
 origin = "authored_game"
 subsystem = "engine"
 disposition = "authored"
 confidence = "observed"
-evidence = "Three padding-isolated complete main spans form a game font/visual-text owner lifetime/configuration family, with a native194-byte source view. Actual begin4119A0 independently uses style fields as font weight/italic/outline/origin, superseding timing-only labels. Constructor411430 is now canonical138/138 through genuine GL/LTCG native0x128 config/list<unsigned*>/string source. Destructor210 and configure439 retain their separately observed resource/color policy and remain without selected source; configure copies0x128 bytes, packs color or builds its table and retires list payloads. Exact PlayerSlotRecord and NetworkSessionResult callers own the lifetime, and six exact profile/network/scenario callers configure it. The remaining two pending-source members retain their649 bytes, eight exact caller edges and both hashes. Constructor138 moves to the canonical exact baseline and is no longer selected by this manual origin rule. Original class spelling/TU and unobserved fields remain unknown; compiler sentinel4040B0 stays excluded without new credit. docs/TEXT_FONT_OWNER_CTOR_EXACT_2026_10_21.md supersedes constructor source-absent wording in docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+evidence = "Game font/visual-text configure4115A0 retains its complete439 bytes and six exact profile/network/scenario caller edges. It copies0x128 config bytes, packs color or builds an interpolated table and retires list payloads. Actual font begin4119A0 independently establishes style offsets as weight/italic/outline/origin. Native owner constructor411430138/138 and destructor4114C0210/210 are now canonical exact through genuine config/list<unsigned*>/string C++ GL/LTCG and are no longer selected by this manual rule. Original class/TU and unobserved fields remain unknown. Compiler sentinel4040B0 and Tidy408A00 have separate exclusions, without authored credit. docs/TEXT_FONT_OWNER_DTOR_EXACT_2026_10_21.md; docs/TEXT_FONT_OWNER_CTOR_EXACT_2026_10_21.md supersede source-absent lifetime wording in docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
 required_body_hashes = [
-  { address = "0x004114C0", size = 210, sha256 = "bca6292e5e37ba2aadd6231017c3dcc9e10d28807ba36ae84fec4e4af07aa2de" },
   { address = "0x004115A0", size = 439, sha256 = "956579b761782920fcbd5bace551efbd03e12c27f8ab1adeefb4dd0a4147e535" },
 ]
 required_direct_edges = [
-  { caller = "0x00431440", site = "0x004315E0", target = "0x004114C0", caller_status = "matching" },
-  { caller = "0x0044DCB0", site = "0x0044DEF2", target = "0x004114C0", caller_status = "matching" },
   { caller = "0x00431440", site = "0x0043156B", target = "0x004115A0", caller_status = "matching" },
   { caller = "0x00434AC0", site = "0x00434BD1", target = "0x004115A0", caller_status = "matching" },
   { caller = "0x0043FCA0", site = "0x0043FD89", target = "0x004115A0", caller_status = "matching" },
@@ -3343,4 +3340,22 @@ required_body_hashes = [
 ]
 required_direct_edges = [
   { caller = "0x00412670", site = "0x00412706", target = "0x004119A0", caller_status = "implemented" },
+]
+
+[[rules]]
+id = "vc8-word-list-tidy-generated-106a"
+addresses = ["0x00408A00"]
+expected_count = 1
+expected_bytes = 71
+expected_names = ["sub_408A00"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "The complete71-byte/24-instruction native list::_Tidy is generated from SHA-pinned VC8 SP1 <list> in the actual font-owner destructor TU. Exact destructor4114C0 calls it at411587 on its real list<unsigned*> member+15C; the CIL method is unique/unexported and naturally receives ESI. Full linked symbol/CFG comparison and a typed actual-caller witness reproduce all71 bytes, with two actual MSVCR80 operator-delete import calls independently bound to original6898EA. The native container member and exact caller establish compiler ownership separately from byte shape or adjacency. Other trivial word/pointer specializations may pool; exact original spelling/release/TU is not claimed. No authored implemented/match row or helper credit. docs/TEXT_FONT_OWNER_DTOR_EXACT_2026_10_21.md."
+required_body_hashes = [
+  { address = "0x00408A00", size = 71, sha256 = "a3e8a804e3fda4269c0a7507204778073fee77dfb715060c915916f2160007c0" },
+]
+required_direct_edges = [
+  { caller = "0x004114C0", site = "0x00411587", target = "0x00408A00", caller_status = "matching" },
 ]

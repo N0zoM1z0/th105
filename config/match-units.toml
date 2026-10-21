@@ -20331,7 +20331,7 @@ object = "build/match-units/GptWeb_TextFontOwner.dll"
 profile = "vc8-sp1-ltcg-o2"
 enable_gs = true
 link_data_targets = ["__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0"]
-notes = "Complete138-byte/29-instruction native font-owner constructor411430, canonicalde916b65 through genuine GL/LTCG. Native0x128 config defaults, list<unsigned*> sentinel and string SSO initialization recover every target store and the normal ECX/EAX-this ABI. Ordinary COFF142/+1 retains unused list receiver setup; CIL naturally removes it. The sole26-byte sentinel callee is independently reproduced through its actual MSVCR80 operator-new import and remains excluded without credit. Only existing GS runtime IAT keys resolve support code; root has no absolute data refs. No shared header/profile/binding changes or fabricated providers. docs/TEXT_FONT_OWNER_CTOR_EXACT_2026_10_21.md."
+notes = "Complete native font owner constructor411430138/138 and destructor4114C0210/210 through genuine GL/LTCG. Real config/list<unsigned*>/string construction and destruction preserve all target ownership/order. COFF142/+1 and203/+0 give way to native private list entries and aligned dtor frame under CIL; no fake ABI or layout. Compiler-only list::_Tidy408A00 is independently71/71 through its actual exported dtor caller witness, with no authored source/match credit. Sentinel26 remains excluded. No shared header/profile/data-ledger changes; only this unit affected. docs/TEXT_FONT_OWNER_DTOR_EXACT_2026_10_21.md; docs/TEXT_FONT_OWNER_CTOR_EXACT_2026_10_21.md."
 
 [[units.gpt-web-text-font-owner.functions]]
 address = "0x00411430"
@@ -20340,3 +20340,20 @@ symbol_base = "??0TextFontOwner194@th105@@QAE@XZ"
 rel32_targets = [
   "?_Buynode@?$list@PAIV?$allocator@PAI@std@@@std@@IAEPAU_Node@?$_List_nod@PAIV?$allocator@PAI@std@@@2@XZ=0x004040B0",
 ]
+
+[[units.gpt-web-text-font-owner.functions]]
+address = "0x004114C0"
+export = "font_owner_dtor"
+symbol_base = "??1TextFontOwner194@th105@@QAE@XZ"
+rel32_targets = [
+  "??_V@YAXPAX@Z=0x0068AA26",
+  "??3@YAXPAX@Z=0x006898EA",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?_Tidy@?$list@PAIV?$allocator@PAI@std@@@std@@IAEXXZ=0x00408A00",
+]
+
+[[units.gpt-web-text-font-owner.functions]]
+address = "0x00408A00"
+symbol_base = "?_Tidy@?$list@PAIV?$allocator@PAI@std@@@std@@IAEXXZ"
+private_from = { caller = "0x004114C0", site = "0x00411587" }
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]

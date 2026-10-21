@@ -2,13 +2,25 @@
 
 Progress display (2026-10-21): the SVG now fills its exact bar from canonical
 exact bytes / confirmed authored bytes, even while classification is pending:
-232,032 / 2,131,956 = 10.88%. It explicitly labels the authored denominator
-provisional and keeps the separate origin/boundary review bar (74.55%, 1,024
+232,242 / 2,131,956 = 10.89%. It explicitly labels the authored denominator
+provisional and keeps the separate origin/boundary review bar (74.58%, 1,023
 pending). Four SVG regressions cover pending/completed review, byte weighting,
 verified remote ownership and empty denominators. Fractions follow the current
 tracking ledgers; aggregate cold verification is separate from this display.
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+accepts complete native font owner destructor4114C0 at210/210,59 instructions,
+canonicalbca6292e through genuine GL/LTCG. Native array/list cleanup and automatic
+string/list member destruction recover aligned EBP, whole-function EDI save and
+actual ESI _Tidy call; ordinary COFF203 ends with a normal-ECX tail jump.
+Constructor remains138/138. Actual private caller contract and complete71-byte
+compiler _Tidy408A00 match independently; it moves review->compiler exclusion
+without authored source/match credit. Only configure439 remains in the manual
+family rule. The one affected owner unit cold-replays both authored roots and
+compiler witness; no shared header/profile/data-ledger or other unit changes.
+No aggregate replay claim. See [native destructor exact](TEXT_FONT_OWNER_DTOR_EXACT_2026_10_21.md).
+Next: real configure439 and glyph/markup/blend closure for a complete font TU;
+begin/end/text and Reimu496540 remain nonexact. The preceding checkpoint
 accepts complete native font owner constructor411430 at138/138,29 instructions,
 canonicalde916b65 through genuine GL/LTCG. Real0x128 config/list<unsigned*>/string
 construction removes ordinary142-byte unused sentinel receiver setup naturally.

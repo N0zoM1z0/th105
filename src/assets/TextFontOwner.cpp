@@ -56,6 +56,7 @@ struct TextFontOwner194 {
     int saved_y_190;
 
     TextFontOwner194();
+    ~TextFontOwner194();
 };
 TextFontOwner194::TextFontOwner194()
 {
@@ -65,6 +66,17 @@ TextFontOwner194::TextFontOwner194()
     surface_destination_144 = 0;
     active_color_154 = 0;
     base_color_158 = 0;
+}
+TextFontOwner194::~TextFontOwner194()
+{
+    while (!temporary_colors_15c.empty()) {
+        delete[] temporary_colors_15c.front();
+        temporary_colors_15c.pop_front();
+    }
+    if (base_color_158) {
+        delete[] base_color_158;
+        base_color_158 = 0;
+    }
 }
 typedef char ConfigSize[sizeof(TextFontConfig128) == 0x128 ? 1 : -1];
 typedef char OwnerSize[sizeof(TextFontOwner194) == 0x194 ? 1 : -1];
