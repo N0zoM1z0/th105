@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+tests genuine Reimu 908 wave visibility on unchanged source 3b9e4896.
+Observed owner+164 layout is byte-neutral. The real visible wave body remains
+35/35 itself but inlines all 20 caller sites, giving 45988 bytes/e27c889f;
+908 still emits counter-first FILD/memory-FADD. Root remains nonexact +31 and
+counter 4963A0 remains 66/66. No source/shared input or accepted ledger changes
+are selected. See [908 wave context](REIMU_OBJECT_908_WAVE_CONTEXT_2026_10_21.md).
+Next: recover genuine post-wave lifetimes or remaining call/RET ownership;
+do not repeat accumulator or layout-only controls. The preceding checkpoint
 accepts complete CDesignBase cleanup 40BB40 at 310/310, canonical 5c8d5c4c.
 Native four-byte handle values and clear(), in the genuine C++ release/lookup
 CIL context, recover the aligned frame and assignment loop. The sole external

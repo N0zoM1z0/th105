@@ -44,6 +44,7 @@ or compiler context. Later evidence may supersede an earlier stop condition.
 
 | Record | Scope and status |
 | --- | --- |
+| [908 wave visibility](REIMU_OBJECT_908_WAVE_CONTEXT_2026_10_21.md) | Current source unchanged; observed owner layout is byte-neutral, genuine visible wave body inlines all 20 calls without fixing post-wave load order. Counter 66/66 and wave helper 35/35 remain exact; no new credit. |
 | [907 bounce callbacks](REIMU_OBJECT_907_BOUNCE_2026_10_21.md) | Current source unchanged;2048 real-callback/RET inputs and two genuine negative controls; root nonexact. |
 | [811 coordinate arguments](REIMU_OBJECT_811_COORDINATE_ARGUMENTS_2026_10_21.md) | Current3b9e4896 source;640 prefixes and161-byte request window agree; root nonexact. |
 | [822 argument lifetimes](REIMU_OBJECT_822_ARGUMENT_LIFETIMES_2026_10_21.md) | Frozen4166880c source;624 controls,16 packet slots and99 World memberships agree; root nonexact. |
