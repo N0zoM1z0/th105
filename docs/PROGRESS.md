@@ -21,3 +21,6 @@ zero-difference comparator and is recorded in both `config/matches.csv` and
 remote source-function chunks from `config/function-byte-ownership.toml`; chunk
 alignment and compiler metadata are excluded, and unverified remote chunks do
 not contribute to the exact-byte numerator.
+
+The SVG exact bar divides exact bytes by confirmed authored bytes. This
+denominator remains provisional while origin/boundary review is pending.

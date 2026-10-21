@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Progress display (2026-10-21): the SVG now fills its exact bar from canonical
+exact bytes / confirmed authored bytes, even while classification is pending:
+231,894 / 2,131,171 = 10.88%. It explicitly labels the authored denominator
+provisional and keeps the separate origin/boundary review bar (74.48%, 1,027
+pending). Four SVG regressions cover pending/completed review, byte weighting,
+verified remote ownership and empty denominators. No exact ledger, compiler
+input or reconstruction acceptance changes; no additional VC8 replay is needed.
+
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
 adds genuine text-texture C++ source for 404D00/4097A0, with native token
 acquire/recycle definitions in the same TU. Full comparisons remain110/111

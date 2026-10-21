@@ -67,6 +67,9 @@ zero-difference comparator and is recorded in both `config/matches.csv` and
 remote source-function chunks from `config/function-byte-ownership.toml`; chunk
 alignment and compiler metadata are excluded, and unverified remote chunks do
 not contribute to the exact-byte numerator.
+
+The SVG exact bar divides exact bytes by confirmed authored bytes. This
+denominator remains provisional while origin/boundary review is pending.
 """
 
 
@@ -96,39 +99,37 @@ def render_svg() -> str:
 
     bar_width = 512
     review_filled = bar_width * review_pct / 100
+    exact_byte_pct = 100 * exact_bytes / authored_bytes if authored_bytes else 0.0
+    authored_filled = bar_width * exact_byte_pct / 100
+    authored_detail = (
+        f"{exact_bytes:,} / {authored_bytes:,} bytes · "
+        f"{len(matches):,} exact functions"
+    )
+    aria_authored = f"{exact_byte_pct:.2f}% of confirmed authored bytes exact"
     if review_pending:
-        authored_label = "denominator pending"
-        authored_filled = 0.0
-        authored_detail = (
-            f"{len(matches):,} exact functions · {exact_bytes:,} exact bytes · "
-            f"{authored_bytes:,} confirmed authored bytes"
+        scope_detail = (
+            f"Authored denominator provisional · pending review: {review_pending:,}"
         )
-        aria_authored = "authored exact denominator pending"
+        aria_authored += "; authored denominator provisional"
     else:
-        exact_byte_pct = 100 * exact_bytes / authored_bytes if authored_bytes else 0.0
-        authored_label = f"{exact_byte_pct:.2f}%"
-        authored_filled = bar_width * exact_byte_pct / 100
-        authored_detail = (
-            f"{len(matches):,} / {len(authored):,} functions · "
-            f"{exact_bytes:,} / {authored_bytes:,} bytes"
-        )
-        aria_authored = f"authored {exact_byte_pct:.2f}% exact bytes"
+        scope_detail = "All tracked candidates have completed origin/boundary review"
 
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="560" height="176" role="img" aria-label="TH105 reconstruction progress: {aria_authored}, origin review {review_pct:.2f}%">
-  <rect width="560" height="176" rx="8" fill="#1f2335"/>
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="560" height="204" viewBox="0 0 560 204" role="img" aria-label="TH105 reconstruction progress: {aria_authored}, origin review {review_pct:.2f}%">
+  <rect width="560" height="204" rx="8" fill="#1f2335"/>
   <text x="24" y="28" fill="#f4f4f5" font-family="sans-serif" font-size="16" font-weight="600">TH105 reconstruction progress</text>
 
-  <text x="24" y="52" fill="#f4f4f5" font-family="sans-serif" font-size="13" font-weight="600">Authored exact</text>
-  <text x="536" y="52" fill="#f4f4f5" text-anchor="end" font-family="monospace" font-size="13">{authored_label}</text>
-  <rect x="24" y="60" width="{bar_width}" height="12" rx="6" fill="#3b4058"/>
-  <rect x="24" y="60" width="{authored_filled:.2f}" height="12" rx="6" fill="#9b6de3"/>
-  <text x="24" y="89" fill="#c8cad2" font-family="sans-serif" font-size="12">{authored_detail}</text>
+  <text x="24" y="54" fill="#f4f4f5" font-family="sans-serif" font-size="13" font-weight="600">Exact / confirmed authored bytes</text>
+  <text x="536" y="54" fill="#f4f4f5" text-anchor="end" font-family="monospace" font-size="13">{exact_byte_pct:.2f}%</text>
+  <rect id="exact-track" x="24" y="62" width="{bar_width}" height="12" rx="6" fill="#3b4058"/>
+  <rect id="exact-fill" x="24" y="62" width="{authored_filled:.2f}" height="12" rx="6" fill="#9b6de3"/>
+  <text x="24" y="91" fill="#c8cad2" font-family="sans-serif" font-size="12">{authored_detail}</text>
+  <text x="24" y="109" fill="#c8cad2" font-family="sans-serif" font-size="11">{scope_detail}</text>
 
-  <text x="24" y="116" fill="#f4f4f5" font-family="sans-serif" font-size="13" font-weight="600">Origin/boundary reviewed</text>
-  <text x="536" y="116" fill="#f4f4f5" text-anchor="end" font-family="monospace" font-size="13">{review_pct:.2f}%</text>
-  <rect x="24" y="124" width="{bar_width}" height="12" rx="6" fill="#3b4058"/>
-  <rect x="24" y="124" width="{review_filled:.2f}" height="12" rx="6" fill="#9b6de3"/>
-  <text x="24" y="153" fill="#c8cad2" font-family="sans-serif" font-size="12">{reviewed:,} / {len(functions):,} candidates · {review_pending:,} pending</text>
+  <text x="24" y="144" fill="#f4f4f5" font-family="sans-serif" font-size="13" font-weight="600">Origin/boundary reviewed</text>
+  <text x="536" y="144" fill="#f4f4f5" text-anchor="end" font-family="monospace" font-size="13">{review_pct:.2f}%</text>
+  <rect id="review-track" x="24" y="152" width="{bar_width}" height="12" rx="6" fill="#3b4058"/>
+  <rect id="review-fill" x="24" y="152" width="{review_filled:.2f}" height="12" rx="6" fill="#9b6de3"/>
+  <text x="24" y="181" fill="#c8cad2" font-family="sans-serif" font-size="12">{reviewed:,} / {len(functions):,} candidates · {review_pending:,} pending</text>
 </svg>
 '''
 
