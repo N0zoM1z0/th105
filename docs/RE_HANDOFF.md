@@ -7,6 +7,11 @@ the same canonical source payload after moving its declaration into a header.
 The query was the one remaining missing body in the bounded real-provider
 context for496540. [Texture query evidence](TEXTURE_SIZE_QUERY_2026_10_22.md)
 records the complete boundary, actual caller edges, source and compiler context.
+The subsequent [resolved real-provider context](REIMU_OBJECT_REAL_PROVIDER_CONTEXT_2026_10_22.md)
+links20 real object inputs with pinned CRT/SDK libraries, four data bindings and
+eight source-view aliases. Both native and root-CIL images resolve; both retain
+counter66/66. Root-CIL still starts with a target-incompatible aligned EBP frame
+at+0. No giant-root exact credit or general LTCG conclusion follows.
 Glyph `0x00411B80` now uses the native SDK POINT layout; all 12 font comparison
 hashes remain unchanged and glyph is still nonexact +89. The subsequent bounded
 markup `0x00411FA0` work re-closes all 1744 bytes, rejects four length/lifetime
@@ -28,8 +33,9 @@ freshly retains call/RET membership distances11/27. Byte-variant, signed-choice
 and local guard controls remain unselected; consistent bool-counter and actual
 RNG visibility controls are whole-root byte-neutral. Next investigate genuine
 provider-backed compiler/link context using the25 decoded direct callees and
-the newly reconstructed real404E60 dependency. Root source and exactness are
-unchanged; wire the provider into the actual context before interpreting it.
+the newly reconstructed real404E60 dependency. That context now resolves with
+native providers; next vary genuine helper CIL visibility one context at a time.
+Root source and selected canonical exactness remain unchanged.
 Preserve the font questions without routine replay of unmodified old inputs.
 
 The generic giant mapper now separates decoded direct CALL counts from its

@@ -103,6 +103,10 @@ this real provider into that experimental link, then vary genuine CIL helper
 visibility one context at a time. Neither LTCG necessity nor standalone-object
 impossibility is inferred for the larger root.
 
+The subsequent [resolved real-provider record](REIMU_OBJECT_REAL_PROVIDER_CONTEXT_2026_10_22.md)
+completes that link step and supersedes this next-action note. It adds no exact
+credit for the larger root or the lookup provider.
+
 ## Reproduction and accounting
 
 ```bash
