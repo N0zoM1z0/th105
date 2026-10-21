@@ -11,9 +11,13 @@ The pre-resumption reconstruction commit was:
 See [the fresh glyph evidence](FONT_GLYPH_SDK_TYPES_2026_10_21.md) for the
 selected correction, and [markup frame evidence](FONT_MARKUP_FRAME_LIFETIMES_2026_10_22.md)
 for the new normal-CFG, stack traces, controls and independent owner placements.
-Next bounded work should restore the selected ReimuObject `496540` comparison
-and audit its remaining source/target differences. Preserve the font questions
-without routine replay of unmodified old inputs.
+The resumed ReimuObject `496540` comparison now freshly reproduces its selected
+45700-byte canonical source and +31 difference. [822 direction-width evidence](REIMU_OBJECT_822_DIRECTION_WIDTH_2026_10_22.md)
+adds exact private byte-formal wrapper witnesses (77/78) and fresh624 prefixes
+on both selected source and an unselected caller control. Width alone does not
+recover the target's constant-1/request window. Next inspect outer constant
+lifetimes and physical call/RET sharing from the unchanged selected source.
+Preserve the font questions without routine replay of unmodified old inputs.
 
 The previous 845-line operational record is preserved in the
 [October 21 snapshot](RE_HANDOFF_HISTORY_2026_10_21.md). Dated evidence pages and
@@ -144,6 +148,11 @@ selected source remains
 SHA256 `3b9e4896c3645bb1228db3b432a832154870c5639a80df6c02cb67ce2dba12cc`;
 complete 45,700-byte canonical section SHA256
 `d0ff3d3259c823cc56e322c5e0ec238456d8b490c78b4a5336a249b45a405a58`.
+The fresh `build/reimu-object-822-lifetimes-20261022/formal.json` reproduces that
+complete comparison and counter66. Native Object wrappers separately admit
+byte direction/callback formals at77/77 and78/78; original formal widths stay
+ambiguous. A private106-site caller view remains nonexact with a222-byte822
+window versus225, despite passing624 scoped cases; it is not selected.
 The 46,138-byte owned comparison includes 46,128 code bytes and 10 alignment
 bytes. The selected source has 428 physical calls / 63 RETs versus 433 / 68;
 call/RET membership distances remain 11 / 27. Same-TU counter `4963A0` is

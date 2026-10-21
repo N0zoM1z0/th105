@@ -11,6 +11,13 @@ memberships stay unchanged, distances11/27. Root remains nonexact+31 and
 same-TU4963A0 stays66/66.822/821/World/selector/packet receipts retain their
 preceding source epochs. No new exact or aggregate credit is claimed.
 
+The [October22 direction-width checkpoint](REIMU_OBJECT_822_DIRECTION_WIDTH_2026_10_22.md)
+freshly reproduces that selected whole comparison and624 scoped822 cases.
+Two independent native Object-provider controls reproduce77/77 and78/78 with
+byte direction/callback formals, leaving original formal widths ambiguous.
+The corresponding private caller view passes624 cases but still misses the
+request window and is unselected; public source and exact totals stay unchanged.
+
 The latest [907 bounce audit](REIMU_OBJECT_907_BOUNCE_2026_10_21.md) runs2048
 actual-return inputs on the unchanged selected source:256 X/224 Y callbacks
 and1568 no-bounce cases agree in outputs, ordered writes and logical x87.
@@ -44,6 +51,7 @@ or compiler context. Later evidence may supersede an earlier stop condition.
 
 | Record | Scope and status |
 | --- | --- |
+| [822 direction width](REIMU_OBJECT_822_DIRECTION_WIDTH_2026_10_22.md) | Current selected source unchanged; independent byte-formal provider witnesses77/78 exact,624 selected and624 private caller cases pass. Private request window222 versus225 remains nonexact; inspect outer constant lifetime next. |
 | [908 wave visibility](REIMU_OBJECT_908_WAVE_CONTEXT_2026_10_21.md) | Current source unchanged; observed owner layout is byte-neutral, genuine visible wave body inlines all 20 calls without fixing post-wave load order. Counter 66/66 and wave helper 35/35 remain exact; no new credit. |
 | [907 bounce callbacks](REIMU_OBJECT_907_BOUNCE_2026_10_21.md) | Current source unchanged;2048 real-callback/RET inputs and two genuine negative controls; root nonexact. |
 | [811 coordinate arguments](REIMU_OBJECT_811_COORDINATE_ARGUMENTS_2026_10_21.md) | Current3b9e4896 source;640 prefixes and161-byte request window agree; root nonexact. |
