@@ -1,10 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current as of 2026-10-21. Reconstruction is **paused at the user's request**.
-This checkpoint organizes documentation and local artifacts; it does not select
-new reconstruction source or add exact credit. Last reconstruction commit:
+Current as of 2026-10-21. Reconstruction is **active at the user's request**.
+The resumed bounded scope is glyph `0x00411B80`: fresh raw-PE closure and a
+native SDK POINT layout correction reproduce all 12 font comparison hashes;
+glyph remains nonexact at +89, with no exact credit added. The pre-resumption
+reconstruction commit was:
 `523d728` (`gpt-6.1-sol: recover native checked character access in font markup`).
-There is no unfinished source edit or running build to carry over.
+See [the fresh glyph evidence](FONT_GLYPH_SDK_TYPES_2026_10_21.md) for the
+selected correction and rejected controls.
 
 The previous 845-line operational record is preserved in the
 [October 21 snapshot](RE_HANDOFF_HISTORY_2026_10_21.md). Dated evidence pages and
@@ -19,7 +22,8 @@ Read [AGENTS.md](../AGENTS.md), [architecture](ARCHITECTURE.md),
 [workflow](RE_WORKFLOW.md) and the relevant source before changing state.
 Use one writable session, one bounded unit, serial VC8 builds and nice10/CPU0.
 Do not delegate matching. Commits use English `gpt-6.1-sol: ...`; commit and push
-stable checkpoints. Resume reconstruction only when the user asks.
+stable checkpoints. The user has authorized resumption and focused affected-unit
+replays; do not routinely repeat the aggregate cold replay.
 
 ```bash
 git status --short
@@ -55,6 +59,12 @@ SVG remain unchanged. `implemented.csv` means source-present; `matches.csv`
 means accepted exact; `claims.csv` remains header-only.
 
 ## Current font source and comparison
+
+The resumed source uses the SDK's native nested LONG origin pair in glyph
+metrics, with explicit size/offset checks. The fresh
+`build/font-glyph-coordinate-20261021/formal.json` reproduces all 12 baseline
+canonical hashes and complete extents. SDK typing and a real inline glyph-top
+control do not remove the +89 residual; only the SDK correction is selected.
 
 | Source entry | Purpose |
 | --- | --- |
@@ -140,7 +150,7 @@ Other open roots remain recorded in the October 21 snapshot: Reimu Fighter
 initializer 61F0B0, CGage 41B3F0, CDesignBase loader 40B000 and floating-number
 renderer 415050. Do not infer an LTCG or standalone-object impossibility from
 an unsuccessful control. Recheck old assumptions against target evidence.
-When work resumes, choose one bounded address; preserve both the large-root
+Choose one bounded address; preserve both the large-root
 objective and smaller exact opportunities without routine all-history replay.
 
 ## Reproduction and final gate

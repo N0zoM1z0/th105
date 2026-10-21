@@ -78,17 +78,23 @@ struct GlyphTransform {
     Fixed16_16 eM22;
 };
 
+struct GlyphPoint {
+    long x;
+    long y;
+};
+
 struct GlyphMetrics {
     unsigned gmBlackBoxX;
     unsigned gmBlackBoxY;
-    int gmptGlyphOriginX;
-    int gmptGlyphOriginY;
+    GlyphPoint gmptGlyphOrigin;
     short gmCellIncX;
     short gmCellIncY;
 };
 
 typedef char GlyphMetricsSize[sizeof(GlyphMetrics) == 20 ? 1 : -1];
 typedef char GlyphTransformSize[sizeof(GlyphTransform) == 16 ? 1 : -1];
+typedef char GlyphOriginOffset[offsetof(GlyphMetrics, gmptGlyphOrigin) == 8 ? 1 : -1];
+typedef char GlyphAdvanceOffset[offsetof(GlyphMetrics, gmCellIncX) == 16 ? 1 : -1];
 extern GlyphTransform g_text_glyph_transform;
 extern GlyphTransform g_text_accent_transform;
 extern "C" __declspec(dllimport) unsigned long __stdcall GetGlyphOutlineA(
@@ -104,14 +110,14 @@ static void __stdcall draw_text_accent_dot(TextTextureFontView *font, int center
     const int width = static_cast<int>(metrics.gmBlackBoxX);
     const int height = static_cast<int>(metrics.gmBlackBoxY);
     const unsigned stride = (bytes / metrics.gmBlackBoxY) & ~3u;
-    const int top = font->font_ascent_13c - metrics.gmptGlyphOriginY + top_y;
+    const int top = font->font_ascent_13c - metrics.gmptGlyphOrigin.y + top_y;
     if (top + height >= static_cast<int>(font->surface_height_148) || top < 0 || bytes == 0)
         return;
     unsigned char *glyph = new unsigned char[bytes];
     GetGlyphOutlineA(font->dc_000, '.', 5, &metrics, bytes, glyph,
         &g_text_accent_transform);
     unsigned *destination = static_cast<unsigned *>(font->surface_base_140) +
-        (top_y - metrics.gmptGlyphOriginY + font->font_ascent_13c) * font->surface_pitch_dwords_150 -
+        (top_y - metrics.gmptGlyphOrigin.y + font->font_ascent_13c) * font->surface_pitch_dwords_150 -
         static_cast<int>(metrics.gmBlackBoxX >> 1) + center_x;
     unsigned char *coverage = glyph;
     if (font->active_color_154) {
@@ -143,8 +149,8 @@ static void __stdcall draw_font_glyph(TextFontOwner194 *font,
     const unsigned stride = (bytes / metrics.gmBlackBoxY) & ~3u;
     const int width = static_cast<int>(metrics.gmBlackBoxX);
     const int height = static_cast<int>(metrics.gmBlackBoxY);
-    const int bottom = font->font_ascent_13c - metrics.gmptGlyphOriginY + font->cursor_y_138 + height;
-    const int right = font->cursor_x_134 + metrics.gmptGlyphOriginX + width;
+    const int bottom = font->font_ascent_13c - metrics.gmptGlyphOrigin.y + font->cursor_y_138 + height;
+    const int right = font->cursor_x_134 + metrics.gmptGlyphOrigin.x + width;
     if (bottom >= static_cast<int>(font->surface_height_148))
         return;
     if (right > static_cast<int>(font->surface_width_14c)) {
@@ -159,11 +165,11 @@ static void __stdcall draw_font_glyph(TextFontOwner194 *font,
         GetGlyphOutlineA(font->dc_000, character, 5, &metrics, bytes, coverage,
             &g_text_glyph_transform);
         unsigned *destination = static_cast<unsigned *>(font->surface_base_140) +
-            (font->font_ascent_13c - metrics.gmptGlyphOriginY + font->cursor_y_138) * font->surface_pitch_dwords_150 +
-            font->cursor_x_134 + metrics.gmptGlyphOriginX;
+            (font->font_ascent_13c - metrics.gmptGlyphOrigin.y + font->cursor_y_138) * font->surface_pitch_dwords_150 +
+            font->cursor_x_134 + metrics.gmptGlyphOrigin.x;
         unsigned *color = font->active_color_154;
         if (color) {
-            color += font->font_ascent_13c - metrics.gmptGlyphOriginY;
+            color += font->font_ascent_13c - metrics.gmptGlyphOrigin.y;
             for (int y = 0; y < height; ++y) {
                 for (int x = 0; x < width; ++x) {
                     *destination = ((0x0ff00000u * *coverage++) & 0xff000000u) | *color;
