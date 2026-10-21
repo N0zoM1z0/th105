@@ -367,8 +367,10 @@ void TextTextureFontView::render_text(const char *text, unsigned *width_out, uns
         unsigned character;
         unsigned char consumed;
         if ((lead >= 0x81 && lead < 0xa0) || (lead >= 0xe0 && lead < 0xff)) {
-            character = (static_cast<unsigned>(lead) << 8)
-                | static_cast<unsigned char>(text[offset + 1]);
+            // JP1.06a reads a DWORD before exchanging its low two bytes.
+            const unsigned packed = *reinterpret_cast<const unsigned *>(text + offset);
+            character = static_cast<unsigned char>(packed >> 8)
+                | (static_cast<unsigned>(static_cast<unsigned char>(packed)) << 8);
             consumed = 2;
         } else {
             character = static_cast<unsigned>(static_cast<int>(static_cast<signed char>(lead)));

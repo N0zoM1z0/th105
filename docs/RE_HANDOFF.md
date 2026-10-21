@@ -37,6 +37,15 @@ Explicit14.0.50727.42 driver/frontend/backend identities with fixed SP1 headers
 also reproduce all12 hashes; `/Os` instead gives glyph579/nonexact+0 and is not
 selected. Original compiler/project identity is not proved. Preserve the current
 source; further glyph work needs an independent caller/lifetime/context lead.
+The subsequent [markup stack/context audit](FONT_MARKUP_STACK_HOMES_2026_10_22.md)
+locates two4-byte gaps without direct normal ESP references; no padding is
+selected. Whole-font static/member CIL controls are byte-identical1554/frame788
+but choose EDX cursor, unlike target's EDX font. Its real-caller inspection
+finds and selects a [packed DWORD input-read correction](TEXT_FONT_PACKED_INPUT_2026_10_22.md)
+at412670. New caller324/1daa6415 remains nonexact+0;57 guarded input cases agree,
+while predecessor fails13 stop/value and39 read traces. All13100 padded caller
+cases pass with6550 real blend calls per side. Other11 complete font bodies,
+including markup1728/a3c2e09c, glyph624/a1f0b4e5 and accepted45/45/289, persist.
 The resumed ReimuObject `496540` comparison now freshly reproduces its selected
 45700-byte canonical source and +31 difference. [822 direction-width evidence](REIMU_OBJECT_822_DIRECTION_WIDTH_2026_10_22.md)
 adds exact private byte-formal wrapper witnesses (77/78) and fresh624 prefixes
@@ -147,7 +156,7 @@ three accepted leaves and one uncredited helper are byte-equal.
 | 412920 checked character | 33 / 33 | Canonical byte equality; origin review, no authored credit |
 | 411FA0 markup | 1728 / 1744 | Nonexact at 411FB0 / +16; frame reservation 788 / 796 |
 | 411B80 glyph | 624 / 624 | Nonexact at +89; differences confined to +88..103 |
-| 412670 render caller | 323 / 326 | Nonexact at entry; target aligned EBP frame differs |
+| 412670 render caller | 324 / 326 | Packed DWORD input read recovered; nonexact at entry/frame |
 | 4119A0 begin / 411AD0 end | 291 / 291; 168 / 168 | Nonexact at +7 |
 | 411DF0 accent | 433 / 417 | Nonexact at +5; native ESI allocation unresolved |
 | 411790 color / 4118F0 reset | 332 / 352; 161 / 162 | Nonexact at +2 / +7 |
