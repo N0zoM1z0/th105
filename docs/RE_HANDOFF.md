@@ -1,13 +1,19 @@
 # TH10.5 reconstruction handoff
 
-Current as of 2026-10-21. Reconstruction is **active at the user's request**.
-The resumed bounded scope is glyph `0x00411B80`: fresh raw-PE closure and a
-native SDK POINT layout correction reproduce all 12 font comparison hashes;
-glyph remains nonexact at +89, with no exact credit added. The pre-resumption
-reconstruction commit was:
+Current as of 2026-10-22. Reconstruction is **active at the user's request**.
+Glyph `0x00411B80` now uses the native SDK POINT layout; all 12 font comparison
+hashes remain unchanged and glyph is still nonexact +89. The subsequent bounded
+markup `0x00411FA0` work re-closes all 1744 bytes, rejects four length/lifetime
+controls and records independent 0x194 owner-to-cookie placements in three
+callers; its +16/frame residual remains. No exact credit is added.
+The pre-resumption reconstruction commit was:
 `523d728` (`gpt-6.1-sol: recover native checked character access in font markup`).
 See [the fresh glyph evidence](FONT_GLYPH_SDK_TYPES_2026_10_21.md) for the
-selected correction and rejected controls.
+selected correction, and [markup frame evidence](FONT_MARKUP_FRAME_LIFETIMES_2026_10_22.md)
+for the new normal-CFG, stack traces, controls and independent owner placements.
+Next bounded work should restore the selected ReimuObject `496540` comparison
+and audit its remaining source/target differences. Preserve the font questions
+without routine replay of unmodified old inputs.
 
 The previous 845-line operational record is preserved in the
 [October 21 snapshot](RE_HANDOFF_HISTORY_2026_10_21.md). Dated evidence pages and
@@ -65,6 +71,12 @@ metrics, with explicit size/offset checks. The fresh
 `build/font-glyph-coordinate-20261021/formal.json` reproduces all 12 baseline
 canonical hashes and complete extents. SDK typing and a real inline glyph-top
 control do not remove the +89 residual; only the SDK correction is selected.
+The later `build/font-markup-length-20261021/formal.json` again reproduces all
+12 complete bodies. Size_t/separate used length controls are byte-identical;
+primary consumed-length and scoped-string controls remain nonexact. No markup
+control is selected. Three independent raw constructor prologues place the
+0x194 owner immediately below live cookies; the markup frame gap alone cannot
+justify enlarging the shared type.
 
 | Source entry | Purpose |
 | --- | --- |
