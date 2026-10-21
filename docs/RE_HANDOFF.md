@@ -30,6 +30,13 @@ The pre-resumption reconstruction commit was:
 See [the fresh glyph evidence](FONT_GLYPH_SDK_TYPES_2026_10_21.md) for the
 selected correction, and [markup frame evidence](FONT_MARKUP_FRAME_LIFETIMES_2026_10_22.md)
 for the new normal-CFG, stack traces, controls and independent owner placements.
+Fresh [glyph arithmetic/compiler controls](FONT_GLYPH_ARITHMETIC_CONTROLS_2026_10_22.md)
+again close624 bytes and reproduce all12 public hashes. Isolated top, signed-long
+ascent, actual SDK GDI declarations and a pen-relative expression are byte-neutral.
+Explicit14.0.50727.42 driver/frontend/backend identities with fixed SP1 headers
+also reproduce all12 hashes; `/Os` instead gives glyph579/nonexact+0 and is not
+selected. Original compiler/project identity is not proved. Preserve the current
+source; further glyph work needs an independent caller/lifetime/context lead.
 The resumed ReimuObject `496540` comparison now freshly reproduces its selected
 45700-byte canonical source and +31 difference. [822 direction-width evidence](REIMU_OBJECT_822_DIRECTION_WIDTH_2026_10_22.md)
 adds exact private byte-formal wrapper witnesses (77/78) and fresh624 prefixes

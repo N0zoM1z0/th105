@@ -67,3 +67,9 @@ Private reproduction/capture scripts and controls are in
 original TU/profile, real GDI, allocation failure and EH unwinding remain open.
 The glyph is still nonexact. Larger font and Reimu roots are not advanced by
 this type correction.
+
+The subsequent [arithmetic/compiler controls](FONT_GLYPH_ARITHMETIC_CONTROLS_2026_10_22.md)
+revalidate the selected source, isolate the top local without changing its loops,
+and test actual SDK GDI declarations plus independently identified .42 compiler
+components. Those controls reproduce the complete624-byte residual; `/Os` gives
+579 bytes and differs at entry. No further source or exactness change is selected.
