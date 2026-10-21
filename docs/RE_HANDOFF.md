@@ -2,14 +2,28 @@
 
 Progress display (2026-10-21): the SVG now fills its exact bar from canonical
 exact bytes / confirmed authored bytes, even while classification is pending:
-232,726 / 2,135,300 = 10.90%. It explicitly labels the authored denominator
-provisional and keeps the separate origin/boundary review bar (74.73%, 1,017
+232,726 / 2,135,345 = 10.90%. It explicitly labels the authored denominator
+provisional and keeps the separate origin/boundary review bar (74.75%, 1,016
 pending). Four SVG regressions cover pending/completed review, byte weighting,
 verified remote ownership and empty denominators. Fractions follow the current
 tracking ledgers; aggregate cold verification is separate from this display.
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
-adds native reset4118F0 in actual markup TU. Complete162/47 target versus
+adds real surface setter411760 in actual native font TU. Complete45/9 target
+versus ordinary member49/10 canonical790f7c9d remains nonexact+1: normal
+ECX/four-stack/RET16 versus private target EAX+ECX/three-stack/RET12. Genuine
+five-store body preserves cursor144/base140/width14C/height148/pitch150 order,
+with no ABI facade, validation or conversion. All480 actual leaf cases pass.
+Previous nine complete candidate bodies remain unchanged; only480 affected
+ruby-close parent cases replay, now with actual target45/source49 setter
+execution (192 calls per side) and real hex45. All pass; remaining providers
+stay abstract, without GDI/EH/allocation/arbitrary-alias claims. Accepted hex45
+remains exact on focused cold build; no shared header/profile/partition or
+existing data/relocation ledger changes, no aggregate replay. See
+[native surface setter](TEXT_FONT_SURFACE_2026_10_21.md).
+Next: blend4127C0 and genuine font TU/link/EH closure;
+Reimu496540 remains nonexact49655F/+31.
+The preceding checkpoint adds native reset4118F0 in actual markup TU. Complete162/47 target versus
 161/46 canonical261fc985 remains nonexact+7 solely on conditional versus
 whole-function EDI preservation; the entire native list cleanup loop is equal.
 Real file-local typed stdcall naturally uses ESI/no stack args, with no ABI

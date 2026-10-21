@@ -3425,3 +3425,17 @@ confidence = "observed"
 evidence = "Full162-byte/47-instruction two-RET CFG and game markup call41260F establish color reset ownership. Whole native temporary list retires before restoring base active pointer or packing config-first RGB fallback while retaining active in flat mode. Native typed file-local caller-TU source naturally uses ESI;161/46 remains nonexact+7 on EDI save scope, complete cleanup loop equal. All240 bounded actual-root/list cases pass with CRT delete observers; clear-active control fails120. Changed1648/445 parent passes8640 observer cases with real hex45 and ESI reset boundary. No STL/helper exclusion, runtime GDI/EH or exact credit. docs/TEXT_FONT_RESET_2026_10_21.md."
 required_body_hashes = [{ address = "0x004118F0", size = 162, sha256 = "8b90f385b2069c2a33647ee19cf5d92e31a1cefcd5f28ebcd5acc8249afe2171" }]
 required_direct_edges = [{ caller = "0x00411FA0", site = "0x0041260F", target = "0x004118F0", caller_status = "implemented" }]
+
+[[rules]]
+id = "text-font-surface-authored-106a"
+addresses = ["0x00411760"]
+expected_count = 1
+expected_bytes = 45
+expected_names = ["sub_411760"]
+origin = "authored_game"
+subsystem = "render"
+disposition = "authored"
+confidence = "observed"
+evidence = "Full45-byte/9-instruction leaf and actual ruby markup call412359 establish game font surface ownership, independently of adjacent runtime code. Ordered cursor/base/width/height/pitch stores have no validation or conversion. Genuine ordinary member49/10 remains nonexact+1 on ECX/four-stack versus private target EAX+ECX/three-stack entry; no ABI facade. All480 actual-root cases and480 affected parent ruby-close cases pass with real setter execution (192 calls per side). Remaining parent providers stay abstract, no new exact or helper exclusion. docs/TEXT_FONT_SURFACE_2026_10_21.md."
+required_body_hashes = [{ address = "0x00411760", size = 45, sha256 = "04b792ad4009bbc903713029ed02d712df4599ebdad9a2cfc313458837d37b06" }]
+required_direct_edges = [{ caller = "0x00411FA0", site = "0x00412359", target = "0x00411760", caller_status = "implemented" }]

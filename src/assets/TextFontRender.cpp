@@ -375,4 +375,12 @@ static unsigned char __cdecl decode_markup_hex(unsigned char value)
     return 0;
 }
 
+void TextTextureFontView::set_surface(void *surface, unsigned width, unsigned height, int pitch)
+{
+    surface_base_140 = surface_cursor_144 = surface;
+    surface_width_14c = width;
+    surface_height_148 = height;
+    surface_pitch_dwords_150 = pitch;
+}
+
 } // namespace th105

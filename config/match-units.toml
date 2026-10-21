@@ -20276,7 +20276,7 @@ source = "src/assets/TextFontRender.cpp"
 object = "build/match-units/GptWeb_TextFontRender.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete hex4128F0 remains45/45 canonical79ad8cdb under ordinary COFF. Real reset4118F0 file-local typed source naturally uses ESI/no stack args;161/46 versus162/47 remains nonexact+7 on EDI save scope, complete native cleanup loop equal. All240 actual-reset/list cases pass; clear-active control fails120. Actual parent now1648/445 canonical4137c411 nonexact+16/frame788 versus796, and8640 parent cases pass with real hex45 and ABI-specific ESI reset observer. Color332/105 and other six complete candidates remain unchanged. Only affected font accepted unit cold-rebuilds; no shared header/profile/partition/existing data/relocation ledger changes, no aggregate replay. Real setter/blend and linked/LTCG/EH ownership remain open. docs/TEXT_FONT_RESET_2026_10_21.md; docs/TEXT_FONT_COLOR_2026_10_21.md; docs/TEXT_FONT_HEX_EXACT_2026_10_21.md."
+notes = "Complete hex4128F0 remains45/45 canonical79ad8cdb under ordinary COFF. Real reset4118F0 file-local typed source naturally uses ESI/no stack args;161/46 versus162/47 remains nonexact+7 on EDI save scope, complete native cleanup loop equal. All240 actual-reset/list cases pass; clear-active control fails120. Actual parent now1648/445 canonical4137c411 nonexact+16/frame788 versus796, and8640 parent cases pass with real hex45 and ABI-specific ESI reset observer. Color332/105 and other six complete candidates remain unchanged. Only affected font accepted unit cold-rebuilds; no shared header/profile/partition/existing data/relocation ledger changes, no aggregate replay. Real setter/blend and linked/LTCG/EH ownership remain open. docs/TEXT_FONT_RESET_2026_10_21.md; docs/TEXT_FONT_COLOR_2026_10_21.md; docs/TEXT_FONT_HEX_EXACT_2026_10_21.md. Native surface setter411760 is49/10 versus45/9, nonexact+1 on normal versus private entry. All480 leaf cases and only480 affected ruby-close parent cases pass with real target45/source49 setter execution (192 calls per side). Previous nine complete candidates/hex45 unchanged. docs/TEXT_FONT_SURFACE_2026_10_21.md."
 
 [[units.gpt-web-text-font-render.functions]]
 address = "0x00412670"
@@ -20397,6 +20397,10 @@ rel32_targets = [
   "operator_delete=0x006898EA",
   "__invalid_parameter_noinfo=0x0068A143",
 ]
+
+[[units.gpt-web-text-font-render.functions]]
+address = "0x00411760"
+symbol_base = "?set_surface@TextFontOwner194@th105@@QAEXPAXIIH@Z"
 
 [units.gpt-web-text-font-owner]
 kind = "linked_candidate"
