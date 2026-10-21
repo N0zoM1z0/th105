@@ -34,7 +34,7 @@ public:
     virtual void set_color(unsigned int);
     virtual void set_vertex_colors(const unsigned int *);
     virtual void multiply_color(unsigned int);
-    virtual int load(const char *path);
+    virtual void load(const char *path);
     virtual void virtual_cleanup();
     virtual void render_offset_through(float x, float y, unsigned int object_id);
     virtual void render_offset(float x, float y);

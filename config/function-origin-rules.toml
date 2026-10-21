@@ -3242,7 +3242,7 @@ origin = "authored_game"
 subsystem = "ui"
 disposition = "authored"
 confidence = "observed"
-evidence = "Complete2666-byte/860-instruction CDesignBase binary design loader. RTTI/vtable6C08AC/COL6D7594 owns slot+10; exact43FCA0 initializer calls it four times. Seven switch tags select four texture/design object factory arms; all normal-flow instructions reachable, RET4 boundary40BA69 excludes alignment/table. Native vector<unsigned>+4 receiver, list+14/map+20 and CDesignNumber E4 factory establish authored UI ownership. Full provider source and return contract remain open; no implementation/exact credit. docs/DESIGN_BASE_NATIVE_VECTOR_2026_10_21.md."
+evidence = "Complete2666-byte/860-instruction CDesignBase binary design loader, now source-present with30 verified read sites. RTTI/vtable6C08AC/COL6D7594 owns slot+10; exact43FCA0 initializer calls it four times. Seven tags select four native AC/18/BC/E4 object factories; RET4 boundary40BA69 excludes alignment/table. Native vector+4/list+14/map+20, registration and persistent iterator+2C are preserved. Source2532 callable plus28 table bytes is not canonically compared: local EH/native private boundaries remain unqualified. No exact credit; void is the supported source-facing result view. docs/DESIGN_BASE_LOADER_SOURCE_2026_10_21.md."
 required_body_hashes = [{ address = "0x0040B000", size = 2666, sha256 = "756f150004243d88a9dd987bcf9aec662b7a4c7caf808a789a72749adf2b16e2" }]
 required_direct_edges = [
   { caller = "0x0043FCA0", site = "0x0043FD98", target = "0x0040B000", caller_status = "matching" },
@@ -3260,3 +3260,18 @@ required_dword_values = [
   { address = "0x0040BA80", value = "0x0040B66D" },
   { address = "0x0040BA84", value = "0x0040B7ED" },
 ]
+
+[[rules]]
+id = "design-gage-texture-initializer-authored-106a"
+addresses = ["0x0041B280"]
+expected_count = 1
+expected_bytes = 360
+expected_names = ["sub_41B280"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete360-byte/107-instruction initializer called from40B72B for the CGage member+18 of RTTI-owned CDesignGage BC factory. ESI receiver/EAX mode and three stack fields feed texture/dimension/pivot/UV/quad/color/scale behavior; public size query404E60 aliases the handle argument as width output. CGage vtable6D6A38/COL6DCC88 and native inheritance establish authored UI ownership. Genuine same-TU definition/caller remains360/360 nonexact+5 with sourceECX mode; no facade or size-based exact credit. docs/DESIGN_BASE_LOADER_SOURCE_2026_10_21.md."
+required_body_hashes = [{ address = "0x0041B280", size = 360, sha256 = "e160e6a43225f641135b7b956e43102d8d1c34aa8a6e1962761abbc81a26d93a" }]
+required_direct_edges = [{ caller = "0x0040B000", site = "0x0040B72B", target = "0x0041B280", caller_status = "implemented" }]
+required_dword_values = [{ address = "0x006D6A38", value = "0x0040AD60" }]

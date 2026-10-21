@@ -20178,3 +20178,29 @@ address = "0x0040BC80"
 symbol_base = "?render@CDesignBase@th105@@UAEXXZ"
 export_name = "?render@CDesignBase@th105@@UAEXXZ"
 rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+[units.gpt-web-design-base-load]
+kind = "probe"
+source = "src/ui/DesignBaseLoad.cpp"
+object = "build/match-units/GptWeb_DesignBaseLoad.obj"
+profile = "vc8-sp1-probe-o2-fp-strict"
+enable_gs = true
+notes = "Complete source for2666-byte CDesignBase binary loader and360-byte gauge initializer. Main preserves unchecked open/read, native rectangle/handle tables, four typed object factories, ID registration, append and iterator reset. Only independently qualified normal public boundaries are mapped; local EH/native container/private helper bindings remain unqualified and comparison must fail closed. Genuine source-visible gauge definition retains handle-as-width output alias and interleaved float lifetimes; its complete360-byte source remains nonexact+5 with mode inECX instead of targetEAX. No assembly or fabricated register facade."
+
+[[units.gpt-web-design-base-load.functions]]
+address = "0x0040B000"
+symbol_base = "?load@CDesignBase@th105@@UAEXPBD@Z"
+rel32_targets = [
+  "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
+  "__splitpath_s=0x0068BE59",
+  "_memset=0x0068A440",
+  "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??3@YAXPAX@Z=0x006898EA",
+  "@__security_check_cookie@4=0x00689D25",
+]
+
+[[units.gpt-web-design-base-load.functions]]
+address = "0x0041B280"
+symbol_base = "?initialize_design_gage@th105@@YGXPAVDesignLoaderGage@1@HIHH@Z"
+rel32_targets = ["?get_texture_size@TitleResourceManager@th105@@QAEXIPAI0@Z=0x00404E60"]

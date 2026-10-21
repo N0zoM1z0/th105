@@ -1,14 +1,21 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
-accepts six complete CDesignBase virtual/lookup functions at81/81/153/258/274/121,
+selects complete source for the2666-byte CDesignBase loader40B000 and360-byte
+gauge initializer41B280. Parent comparison blocks on unqualified local EH;
+the helper is360/360 nonexact+5, sourceECX mode versus targetEAX. Main source
+callable2532 plus28 table bytes is structural evidence, not canonical equality.
+All50 predecessor accepted functions in14 actual header consumers remain exact
+after correcting the source-facing load result to void. No new exact is added.
+Next: qualify parent EH/TU and real private texture/gauge visibility; cleanup
+40BB40 remains open. The preceding checkpoint accepts six complete CDesignBase
+virtual/lookup functions at81/81/153/258/274/121,
 968 new exact bytes. A real native tree find member instantiation preserves
 the shared helper ABI; signed-ID/key-conversion lifetime recovers the lookup.
 All44 predecessor accepted functions in14 actual header consumers remain exact.
 Header slots+18/+1C now have the target-proven three/two-argument signatures.
 Compiler helper40CDA0 is find, rather than lower_bound alone; its105-byte
-provider remains nonexact and receives no authored or exact credit. Next:
-implement the2666-byte loader40B000 and close cleanup40BB40.
+provider remains nonexact and receives no authored or exact credit.
 The preceding checkpoint accepts profile color40BFE0 at81/81 through GL/LTCG, using
 unchanged source54bcd029. Its earlier74/81 frame blocker is resolved.
 The preceding checkpoint accepts CDesignBase render40BC80 at135/135 through GL/LTCG.
@@ -61,7 +68,21 @@ available. Independently attest any direct Ghidra project before semantic
 use, keep one process, and read back metadata changes. Do not use the factory
 adapter or patch target bytes.
 
-The latest [virtual/lookup checkpoint](DESIGN_BASE_VIRTUALS_2026_10_21.md)
+The latest [loader source checkpoint](DESIGN_BASE_LOADER_SOURCE_2026_10_21.md)
+recovers all30 read sites, counted texture/rectangle tables and all four typed
+AC/18/BC/E4 factories, including number-specific dimensions and its retained
+rectangle bounds check. It preserves ignored read/open results, nonzero-ID
+insert/disable, append and begin reset. Real source-visible gauge definition
+and caller have no register facade; size360 still fails+5. The selected strict
+FP/interleaved lifetimes retain65 x87 operation forms with scratch-home
+differences. Target handler6BE6A6/FuncInfo6E4E68 and two unwind entries are pinned
+without forcing a binding. The public normal99-byte texture declaration is used;
+inherited naked assembly is neither included nor copied. All197 old origin
+selectors are unchanged, one new authored helper rule passes, and no exact
+record changes. Header consumers15 include the new pending unit; all50 existing
+accepted functions in the14 other units remain exact.
+
+The preceding [virtual/lookup checkpoint](DESIGN_BASE_VIRTUALS_2026_10_21.md)
 accepts40C040/40C0A0/40BE20/40BD10/40BEC0/40CC50 completely, while existing
 render40BC80 remains135/135. Four genuine source/library controls isolate the
 lookup key temporary and native ordinary COFF find boundary; only the combined
@@ -254,13 +275,18 @@ claimed. These scoped negatives do not prove a compiler or LTCG barrier.
 See [Object helper follow-up](OBJECT_HELPER_CONTROLS_2026_10_21.md) for raw
 addresses, canonical hashes, limits and retained input/report paths. Reimu's821 guards/selector order remain; those preceding receipts retain their own epochs.
 
-## Profile render-list color iterator facts
+## Historical profile render-list color iterator facts
 
-40BFE0 remains74/81 nonexact+0. Its original source iterator is8 bytes/aligned4,
+This ordinary-COFF stage is superseded by the complete81/81 linked acceptance
+in [the color checkpoint](DESIGN_BASE_COLOR_LTCG_2026_10_21.md). The original
+source remains unchanged; the current unit uses resolved GL/LTCG.
+
+At that earlier stage,40BFE0 was74/81 nonexact+0. Its source iterator is8 bytes/aligned4,
 proved by compiler COFF constants; the old no-eight-byte-local statement was
 incorrect. New size/alignment assertions allocate no storage and preserve the
 whole74-byte canonical5bb8ba61 body. Selected CPP54bcd029, formal COFF56a6d083;
-ordinary SP1 O2/GS-off stays selected. Target still has EBP/ESP8; cause is open.
+ordinary SP1 O2/GS-off was then selected. Target EBP/ESP8 was still unexplained
+in that experiment; the later linked build resolves this function's frame.
 
 Postincrement,SSE2,GS,RTM andZ7 controls reproduce all74 bytes. const_iterator
 produces87 nonexact. for_each/member-callback produces unrelocated39 bytes and

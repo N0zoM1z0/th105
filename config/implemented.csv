@@ -1472,3 +1472,5 @@ CDesignBase_render_offset
 CDesignBase_render_through
 CDesignBase_render_offset_through
 CDesignBase_find_object
+CDesignBase_load
+CGage_initialize_texture
