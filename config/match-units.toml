@@ -20276,7 +20276,7 @@ source = "src/assets/TextFontRender.cpp"
 object = "build/match-units/GptWeb_TextFontRender.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete native game hex decoder4128F0 is45/45 under ordinary COFF. Genuine file-local uchar C++ naturally uses AL, retains six actual parent calls and all20 target instructions; no relocations, padding or ABI facade. Actual parent now1652/447 full c898f907 remains nonexact+16/frame788 versus796 and ordinary member/private target entry. All1024 leaf cases and8640 parent cases pass with the real helper executed; other providers remain abstract. Previous five runtime candidate bodies unchanged. Only this source/unit changes, with no shared input or relocation edits. Complete markup/GS/EH and remaining provider closure still open. docs/TEXT_FONT_HEX_EXACT_2026_10_21.md; docs/TEXT_FONT_MARKUP_SOURCE_2026_10_21.md."
+notes = "Complete native game hex decoder4128F0 is45/45 under ordinary COFF. Genuine file-local uchar C++ naturally uses AL, retains six actual parent calls and all20 target instructions; no relocations, padding or ABI facade. Actual parent now1652/447 full c898f907 remains nonexact+16/frame788 versus796 and ordinary member/private target entry. All1024 leaf cases and8640 parent cases pass with the real helper executed; other providers remain abstract. Previous five runtime candidate bodies unchanged. Only this source/unit changes, with no shared input or relocation edits. Complete markup/GS/EH and remaining provider closure still open. docs/TEXT_FONT_HEX_EXACT_2026_10_21.md; docs/TEXT_FONT_MARKUP_SOURCE_2026_10_21.md. Real markup color411790 now closes352-byte target CFG with native push_front/checked-front source332/105 nonexact+2. All576 actual-root/native Buynode51 cases pass including36 divide-zero boundaries; array/node allocation and ABI-specific Incsize observers only. Target constant1/no-stack Incsize specialization still differs from normal generic count argument. Other seven full candidate hashes/hex45 unchanged. docs/TEXT_FONT_COLOR_2026_10_21.md."
 
 [[units.gpt-web-text-font-render.functions]]
 address = "0x00412670"
@@ -20378,6 +20378,16 @@ dir32_targets = [
 [[units.gpt-web-text-font-render.functions]]
 address = "0x004128F0"
 symbol_base = "?decode_markup_hex@th105@@YAEE@Z"
+
+[[units.gpt-web-text-font-render.functions]]
+address = "0x00411790"
+symbol_base = "?set_markup_color@th105@@YGXPAUTextFontOwner194@1@EEE@Z"
+rel32_targets = [
+  "??_U@YAPAXI@Z=0x00665B8A",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?_Buynode@?$list@PAIV?$allocator@PAI@std@@@std@@IAEPAU_Node@?$_List_nod@PAIV?$allocator@PAI@std@@@2@PAU342@0ABQAI@Z=0x004129E0",
+  "?_Incsize@?$list@PAIV?$allocator@PAI@std@@@std@@IAEXI@Z=0x0040C6D0",
+]
 
 [units.gpt-web-text-font-owner]
 kind = "linked_candidate"

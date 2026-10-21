@@ -1510,3 +1510,4 @@ TextTextureFontView_draw_text_glyph,0x00411B80,function
 TextFont_draw_text_accent_dot,0x00411DF0,function
 TextFont_parse_text_markup,0x00411FA0,function
 TextFont_decode_markup_hex,0x004128F0,function
+TextFont_set_markup_color,0x00411790,function

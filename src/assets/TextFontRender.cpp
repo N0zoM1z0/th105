@@ -196,7 +196,28 @@ void TextTextureFontView::draw_text_glyph(
     }
 }
 
-void __stdcall set_markup_color(TextFontOwner194 *, unsigned char, unsigned char, unsigned char);
+void __stdcall set_markup_color(TextFontOwner194 *font,
+    unsigned char red, unsigned char green, unsigned char blue)
+{
+    if (font->base_color_158) {
+        font->temporary_colors_15c.push_front(new unsigned[font->config_00c.height_108]);
+        const int last = font->config_00c.height_108 - 1;
+        for (int y = 0; y <= last; ++y) {
+            unsigned *color = font->temporary_colors_15c.front();
+            color[y] =
+                (((red - font->config_00c.colors_100[0]) * y / last +
+                  font->config_00c.colors_100[0]) << 16) |
+                (((green - font->config_00c.colors_100[2]) * y / last +
+                  font->config_00c.colors_100[2]) << 8) |
+                ((blue - font->config_00c.colors_100[4]) * y / last +
+                  font->config_00c.colors_100[4]);
+        }
+        font->active_color_154 = font->temporary_colors_15c.front();
+    } else {
+        font->fallback_color_168 = (red << 16) | (green << 8) | blue;
+    }
+}
+
 void reset_markup_color(TextFontOwner194 *);
 static unsigned char __cdecl decode_markup_hex(unsigned char);
 int TextTextureFontView::parse_text_markup(

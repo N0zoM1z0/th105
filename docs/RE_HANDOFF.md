@@ -2,14 +2,31 @@
 
 Progress display (2026-10-21): the SVG now fills its exact bar from canonical
 exact bytes / confirmed authored bytes, even while classification is pending:
-232,726 / 2,134,786 = 10.90%. It explicitly labels the authored denominator
-provisional and keeps the separate origin/boundary review bar (74.68%, 1,019
+232,726 / 2,135,138 = 10.90%. It explicitly labels the authored denominator
+provisional and keeps the separate origin/boundary review bar (74.70%, 1,018
 pending). Four SVG regressions cover pending/completed review, byte weighting,
 verified remote ownership and empty denominators. Fractions follow the current
 tracking ledgers; aggregate cold verification is separate from this display.
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
-accepts game markup hex decoder4128F0 at complete45/45,20 instructions,
+adds real markup color411790 source in the actual font TU. Complete352/111
+raw target versus332/105 canonical471012e5 remains nonexact+2: frame8 versus12,
+conditional saves/byte argument rematerialization, unused Buynode receiver and
+native generic Incsize stack1 versus target constant1/no-stack specialization.
+Meaningful promoted locals emit identical332; no ABI facade is introduced.
+All576 bounded actual-root/native Buynode51 cases pass, including36 actual
+height1 divide exceptions after insertion. Array/node allocation and Incsize
+remain ABI-specific observers; no CRT/EH/overflow or arbitrary-alias claim.
+Wrong back insertion/previous-active-color controls fail192/216. Previous
+seven complete font candidate hashes are unchanged and accepted hex45 remains
+45/45 on the focused cold rebuild; unchanged parent instructions need no
+semantic replay. Only font source/unit is affected; shared headers/profiles/
+partition/existing data and relocation mappings stay unchanged, with no
+aggregate exact claim. Completed controls270044->66110 bytes are archived and
+per-file SHA readback-verified. See [native markup color](TEXT_FONT_COLOR_2026_10_21.md).
+Next: reset4118F0, setter411760 and blend4127C0 closure, then genuine parent
+TU/link/EH recovery; Reimu496540 remains nonexact49655F/+31.
+The preceding checkpoint accepts game markup hex decoder4128F0 at complete45/45,20 instructions,
 canonical79ad8cdb. Real file-local typed C++ naturally uses AL/no stack args,
 with six actual parent calls and no register facade, relocation or EH waiver.
 All256 byte values/four upper-EAX patterns pass1024 actual leaf cases. Parent
