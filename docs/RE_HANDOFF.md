@@ -9,7 +9,30 @@ verified remote ownership and empty denominators. Fractions follow the current
 tracking ledgers; aggregate cold verification is separate from this display.
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
-recovers native markup411FA0 EDX font/ECX height output/two stack words/RET8
+recovers all33/14 checked-character412920 bytes canonical9a726759 through a
+real native std::string::at operation and six actual parent EAX/EDI/RET calls.
+Its authored-wrapper versus specialized-library ownership remains review;
+candidate is identified, with no durable authored mapping/source/matches credit.
+Font unit reproduces the comparison as its12th function, alongside the three
+existing accepted exact leaves; configured graph538/1507, authored counts/SVG
+unchanged. Parent1728/455 canonicala3c2e09c remains nonexact411FB0/+16/frame788
+versus796. Full scope proof keeps373 outside-window instruction pairs/36 edges;
+only2400 affected color/missing-delimiter cases replay, all passing with6720
+actual helper executions per side and480 Xran-entry stops. All92 independent
+helper cases pass,27 normal references/65 unsigned full-bit range boundaries.
+Caller323/99116ccc and nine other full bodies, including accent433, are unchanged;
+no caller/other-provider semantic replay. Dynamic stack facts distinguish target
+original length/length+1 EBP from source cached length+1/delayed argument cleanup;
+no filler or unproved sizeof change. Pinned native libcpmt string.obj corroborates
+Xran/Xlen63 opcode/exception-literal/RTTI identities and adds mandatory full
+target hashes to the existing runtime rule, replacing its IDA-name-only rationale.
+No new exclusion/canonical runtime EH/actual exception credit. Only font-render
+accepted unit cold-builds, setter45/hex45/blend289 persist; headers/profiles/
+existing data bindings and other accepted units' source/definitions unchanged. No aggregate
+replay or GDI/EH/alias claim. See [checked markup and stack facts](TEXT_FONT_MARKUP_CHECKED_2026_10_21.md).
+Next: actual length/stack cleanup/state lifetimes and8-byte frame residual;
+glyph coordinate ordering and Reimu496540/nonexact49655F/+31 remain open.
+The preceding checkpoint recovers native markup411FA0 EDX font/ECX height output/two stack words/RET8
 through a genuine file-local stdcall and positive delimiter branch in its real
 caller TU. Previous normal member/private ESI-RET4 hypotheses do not generalize.
 Complete source1720/460 canonicalb36c5548 versus target1744/463 remains nonexact

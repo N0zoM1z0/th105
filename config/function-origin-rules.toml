@@ -658,7 +658,12 @@ origin = "vc8_runtime"
 subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
-evidence = "current IDA names the two std::_String_base range-error helpers immediately before the zlib island"
+evidence = "Pinned VC8 SP1 libcpmt.lib e1b17cb2 member build/intel/mt_obj/string.obj b2c7c0bc defines both native std::_String_base range helpers with complete63-byte extents. All31 nonrelocation bytes agree independently in each target body; target invalid-string-position/string-too-long literals, out_of_range/length_error RTTI and native constructor/throw relocation roles corroborate the named library identities. Full target body hashes are mandatory. This replaces an old IDA-name-only rationale; it proves runtime ownership, not canonical EH equality or actual exception execution. docs/TEXT_FONT_MARKUP_CHECKED_2026_10_21.md."
+
+required_body_hashes = [
+  { address = "0x00665AF4", size = 63, sha256 = "27510da4169479249e0f449b0a60866f05dc6d80f7d4b7364f3704ee98ed0005" },
+  { address = "0x00665B33", size = 63, sha256 = "01b09b56ff0dda9a2dee549bc42905619f52499a3cf3adac77f0449067eacdf1" },
+]
 
 [[rules]]
 id = "zlib-1.2.3-106a"
@@ -3383,7 +3388,7 @@ origin = "authored_game"
 subsystem = "render"
 disposition = "authored"
 confidence = "observed"
-evidence = "Full1744-byte/463-instruction main CFG, actual41276A incoming edge and game br/ruby/accent/color policy establish authored ownership independently of imported CRT/STL. Selected actual-caller-TU file-local stdcall/positive branch naturally recovers target EDX font/ECX height/RET8; complete1720/460 remains nonexact+16/frame788 versus796. All8640 full-parent cases pass with actual exact hex45/setter45 execution192 setters per side, remaining providers observed;280 changed whole-caller cases pass with real blend289. Complete genuine GL1497/1572 controls have wrong EDX cursor/stack font ABI, no canonical acceptance or proved universal LTCG blocker. Native four-state EH graph shares cleanup roles but metadata/funclet offsets remain unqualified; no actual GDI/EH/runtime-allocation or exact credit. docs/TEXT_FONT_MARKUP_NATIVE_2026_10_21.md."
+evidence = "Full1744-byte/463-instruction main CFG, actual41276A incoming edge and game br/ruby/accent/color policy establish authored ownership independently of CRT/STL. Selected actual-caller-TU file-local/positive source retains native EDX font/ECX height/RET8, now1728/455 nonexact+16/frame788 versus796. Its six actual EAX/EDI checked-character calls reproduce the complete33-byte native operation, whose wrapper/library origin stays review without credit. Only2400 affected color/missing-delimiter parent cases replay, all passing with6720 actual helper executions and480 Xran entry stops per side;373 outside-window instruction pairs/36 edges agree. Previous8640 full-parent/280 caller evidence stays phase-scoped; caller323 and nine other bodies unchanged. Remaining library/GDI/EH/slot/runtime behavior is unqualified; no new exact or exclusion. docs/TEXT_FONT_MARKUP_CHECKED_2026_10_21.md."
 required_body_hashes = [
   { address = "0x00411FA0", size = 1744, sha256 = "6343d2d6639459aaeadb9de2acd74ecbb0be02f8a908e4b84af385f1daeccebb" },
 ]

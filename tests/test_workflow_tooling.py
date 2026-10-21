@@ -89,7 +89,7 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(len(manifest["units"]), 538)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1506,
+            1507,
         )
         root = manifest["units"]["gpt-web-reimu-object-action-state"]
         self.assertEqual(root["kind"], "probe")

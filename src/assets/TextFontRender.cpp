@@ -243,6 +243,13 @@ struct TextSurfaceSize {
 };
 static void __stdcall set_font_surface(TextFontOwner194 *, void *, TextSurfaceSize, int);
 static unsigned char __cdecl decode_markup_hex(unsigned char);
+// Native checked-string operation at 0x412920. Original wrapper/template
+// ownership remains unresolved; the operation is not authored progress credit.
+static char &__cdecl checked_markup_character(std::string *text, unsigned index)
+{
+    return text->at(index);
+}
+
 // Real caller visibility and positive delimiter flow recover the native private
 // EDX font / ECX height output / two-stack-word entry without an ABI facade.
 static int __stdcall parse_text_markup(
@@ -319,9 +326,9 @@ static int __stdcall parse_text_markup(
             font->accent_16c = 0;
         } else if (words[0] == "color") {
             if (words.size() > 1) {
-                const unsigned char r = (decode_markup_hex(words[1].at(0)) << 4) | decode_markup_hex(words[1].at(1));
-                const unsigned char g = (decode_markup_hex(words[1].at(2)) << 4) | decode_markup_hex(words[1].at(3));
-                const unsigned char b = (decode_markup_hex(words[1].at(4)) << 4) | decode_markup_hex(words[1].at(5));
+                const unsigned char r = (decode_markup_hex(checked_markup_character(&words[1], 0)) << 4) | decode_markup_hex(checked_markup_character(&words[1], 1));
+                const unsigned char g = (decode_markup_hex(checked_markup_character(&words[1], 2)) << 4) | decode_markup_hex(checked_markup_character(&words[1], 3));
+                const unsigned char b = (decode_markup_hex(checked_markup_character(&words[1], 4)) << 4) | decode_markup_hex(checked_markup_character(&words[1], 5));
                 set_markup_color(font, r, g, b);
             }
         } else if (words[0] == "/color") {

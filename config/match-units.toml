@@ -20276,7 +20276,7 @@ source = "src/assets/TextFontRender.cpp"
 object = "build/match-units/GptWeb_TextFontRender.obj"
 profile = "vc8-sp1-probe-o2-ob1"
 enable_gs = true
-notes = "Native parser411FA0 now uses genuine file-local stdcall plus positive delimiter branch in the actual caller TU. VC8 naturally recovers target EDX font/ECX height output/two stack arguments/RET8; complete1720/460 canonicalb36c5548 remains nonexact+16 with788 versus796 frame. All8640 full parent cases pass with actual exact hex45/setter45 (192 setters per side), other providers observed. Actual render caller323/115 canonical99116ccc remains nonexact+0 with a real parser call at source41275E; whole register allocation changes and280 caller cases pass with real blend289, remaining providers observed. Ordinary member positive1720 has wrong normal ABI; original early-return member1647 and old local parser RET4 are rejected models. Complete GL baseline1497 and positive1572 both use EDX cursor/stack font/RET8 with788 frame and are diagnostics, not target ABI or a proved LTCG blocker. Other nine complete font bodies unchanged; exact setter45/hex45/blend289 and header-affected owner138/210/439/config67/compiler-only Tidy71 cold-replay, texture110/264 unchanged. No exact/count/aggregate/GDI/EH credit. docs/TEXT_FONT_MARKUP_NATIVE_2026_10_21.md."
+notes = "Native checked-character412920 is complete33/33 canonical9a726759 through a real file-local C++ std::string::at operation; natural EAX string/EDI index/RET entry has six real parser calls. Wrapper versus specialized-library ownership stays review, without authored mapping/source/exact credit. Unit now reproduces this diagnostic alongside the three accepted setter45/hex45/blend289. Parent1728/455 canonicala3c2e09c remains nonexact+16/frame788 versus796;373 unchanged outside-window instruction pairs/36 internal edges justify only2400 affected color/missing-delimiter cases, all passing with6720 actual checked-helper calls per side and480 Xran boundary stops. All92 independent helper cases pass. Native Xran symbol is corroborated against pinned libcpmt string.obj63 and target error literal; no new library/EH acceptance or exclusion. Dynamic stack trace shows target original length in stack/length+1 EBP versus source cached length+1 and delayed argument cleanup; no filler or unproved type-size change. All ten previous other full font bodies, including render323/99116ccc and full accent433, remain unchanged; only this accepted font unit rebuilds, with no header/profile/existing data-binding or unrelated accepted inputs changed. No aggregate/GDI/EH/authored exact credit. docs/TEXT_FONT_MARKUP_CHECKED_2026_10_21.md."
 
 [[units.gpt-web-text-font-render.functions]]
 address = "0x00412670"
@@ -20356,7 +20356,7 @@ rel32_targets = [
   "?configure@TextFontOwner194@th105@@QAEXPBUTextFontConfig128@2@@Z=0x004115A0",
   "?render_text@TextFontOwner194@th105@@QAEXPBDPAI1@Z=0x00412670",
   "??1TextFontOwner194@th105@@QAE@XZ=0x004114C0",
-  "?at@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAADI@Z=0x00412920",
+  "?checked_markup_character@th105@@YAAADPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@I@Z=0x00412920",
   "?decode_markup_hex@th105@@YAEE@Z=0x004128F0",
   "?set_markup_color@th105@@YGXPAUTextFontOwner194@1@EEE@Z=0x00411790",
   "?reset_markup_color@th105@@YGXPAUTextFontOwner194@1@@Z=0x004118F0",
@@ -20374,6 +20374,11 @@ dir32_targets = [
   "??_C@_06OBBGCLEO@?1color?$AA@=font_markup_literal_6D6C1C",
   "??_C@_04PGDNEJP@?5?$DN?7?6?$AA@+0x4=font_markup_delimiters_terminator",
 ]
+
+[[units.gpt-web-text-font-render.functions]]
+address = "0x00412920"
+symbol_base = "?checked_markup_character@th105@@YAAADPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@I@Z"
+rel32_targets = ["?_Xran@_String_base@std@@SAXXZ=0x00665B33"]
 
 [[units.gpt-web-text-font-render.functions]]
 address = "0x004128F0"
