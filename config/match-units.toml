@@ -20276,7 +20276,7 @@ source = "src/assets/TextFontRender.cpp"
 object = "build/match-units/GptWeb_TextFontRender.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete native blend4127C0 is289/289 canonical6c0d10cb under ordinary COFF. Genuine file-local typed stdcall plus actual caller naturally generates EAX font/RET8, full95 instructions and3 skipped alignment bytes, no ABI facade/padding/waiver. All4608 actual leaf cases pass independent full-plane/write-order/return/ABI specification with signed pitch and four overlaps; gain32/RGB-clear controls fail864/368. Caller322/115 canonical4e41eb3c changes only byte+299 ECX->EAX;80 affected outlined cases pass with actual blend, other providers abstract. Other nine previous complete bodies, including exact hex45, stay unchanged. Unused member declaration removed; both affected accepted font units cold-replay, owner138/210/439/config67 and compiler-only Tidy71 stay exact, texture110/264 hashes unchanged. No aggregate/caller/EH/GDI credit. docs/TEXT_FONT_BLEND_EXACT_2026_10_21.md."
+notes = "Exact hex4128F045/45 and native local blend4127C0289/289 persist. Glyph411B80 now genuine file-local EAX font/RET12 source624/189 canonicala1f0b4e5, nonexact+89 solely on four lower-bound arithmetic instructions within+88..103; all other full bytes/alignment agree. Early coverage lifetime and explicit destination advancement recover native buffer/loop shape. All5376 actual glyph observer cases pass; caller322/115 canonicalaed258a6 changes only byte+258 ECX->EAX and160 affected flat/outlined cases pass,80 executing actual blend, other providers abstract. Private genuine complete owner/render GL link resolves actual providers and verified ABS data/IAT without fake code, but glyph stays identical624/nonexact and linked caller334/119 is only a raw diagnostic. Removed unused glyph member declaration; both accepted font units cold-replay, owner138/210/439/config67 plus compiler-only Tidy71 exact, texture110/264 unchanged. Nine other previous complete font bodies unchanged; no new exact/aggregate/EH/GDI claim. docs/TEXT_FONT_GLYPH_NATIVE_2026_10_21.md."
 
 [[units.gpt-web-text-font-render.functions]]
 address = "0x00412670"
@@ -20287,7 +20287,7 @@ rel32_targets = [
   "memset=0x0068A440",
   "?start_text_render@th105@@YGXPAUTextFontOwner194@1@@Z=0x004119A0",
   "?finish_text_render@th105@@YGXPAUTextFontOwner194@1@@Z=0x00411AD0",
-  "?draw_text_glyph@TextFontOwner194@th105@@QAEXIPAI0@Z=0x00411B80",
+  "?draw_font_glyph@th105@@YGXPAUTextFontOwner194@1@IPAI1@Z=0x00411B80",
   "?parse_text_markup@TextFontOwner194@th105@@QAEHPBDPAI1@Z=0x00411FA0",
   "?blend_font_surface@th105@@YGPAEPAUTextFontOwner194@1@PBIPAI@Z=0x004127C0",
 ]
@@ -20314,7 +20314,7 @@ dir32_targets = ["?g_main_window@th105@@3PAUHWND__@@A=?g_main_window@th105@@3PAU
 
 [[units.gpt-web-text-font-render.functions]]
 address = "0x00411B80"
-symbol_base = "?draw_text_glyph@TextFontOwner194@th105@@QAEXIPAI0@Z"
+symbol_base = "?draw_font_glyph@th105@@YGXPAUTextFontOwner194@1@IPAI1@Z"
 rel32_targets = [
   "??_U@YAPAXI@Z=0x00665B8A",
   "??_V@YAXPAX@Z=0x0068AA26",

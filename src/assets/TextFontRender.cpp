@@ -132,59 +132,63 @@ static void __stdcall draw_text_accent_dot(TextTextureFontView *font, int center
     delete[] glyph;
 }
 
-void TextTextureFontView::draw_text_glyph(
+static void __stdcall draw_font_glyph(TextFontOwner194 *font,
     unsigned character, unsigned *width_out, unsigned *height_out)
 {
     GlyphMetrics metrics = {0};
-    const unsigned long bytes = GetGlyphOutlineA(dc_000, character, 5,
+    const unsigned long bytes = GetGlyphOutlineA(font->dc_000, character, 5,
         &metrics, 0, 0, &g_text_glyph_transform);
     if (bytes == 0xffffffffu)
         return;
     const unsigned stride = (bytes / metrics.gmBlackBoxY) & ~3u;
     const int width = static_cast<int>(metrics.gmBlackBoxX);
     const int height = static_cast<int>(metrics.gmBlackBoxY);
-    const int bottom = font_ascent_13c - metrics.gmptGlyphOriginY + cursor_y_138 + height;
-    const int right = cursor_x_134 + metrics.gmptGlyphOriginX + width;
-    if (bottom >= static_cast<int>(surface_height_148))
+    const int bottom = font->font_ascent_13c - metrics.gmptGlyphOriginY + font->cursor_y_138 + height;
+    const int right = font->cursor_x_134 + metrics.gmptGlyphOriginX + width;
+    if (bottom >= static_cast<int>(font->surface_height_148))
         return;
-    if (right > static_cast<int>(surface_width_14c)) {
-        if (!config_00c.wrap_112)
+    if (right > static_cast<int>(font->surface_width_14c)) {
+        if (!font->config_00c.wrap_112)
             return;
-        cursor_x_134 = config_00c.origin_x_118 + config_00c.outline_111;
-        cursor_y_138 += config_00c.height_108 + config_00c.spacing_y_124;
+        font->cursor_x_134 = font->config_00c.origin_x_118 + font->config_00c.outline_111;
+        font->cursor_y_138 += font->config_00c.height_108 + font->config_00c.spacing_y_124;
     }
     if (bytes != 0) {
         unsigned char *glyph = new unsigned char[bytes];
-        GetGlyphOutlineA(dc_000, character, 5, &metrics, bytes, glyph,
-            &g_text_glyph_transform);
-        unsigned *destination = static_cast<unsigned *>(surface_base_140) +
-            (font_ascent_13c - metrics.gmptGlyphOriginY + cursor_y_138) * surface_pitch_dwords_150 +
-            cursor_x_134 + metrics.gmptGlyphOriginX;
         unsigned char *coverage = glyph;
-        unsigned *color = active_color_154;
+        GetGlyphOutlineA(font->dc_000, character, 5, &metrics, bytes, coverage,
+            &g_text_glyph_transform);
+        unsigned *destination = static_cast<unsigned *>(font->surface_base_140) +
+            (font->font_ascent_13c - metrics.gmptGlyphOriginY + font->cursor_y_138) * font->surface_pitch_dwords_150 +
+            font->cursor_x_134 + metrics.gmptGlyphOriginX;
+        unsigned *color = font->active_color_154;
         if (color) {
-            color += font_ascent_13c - metrics.gmptGlyphOriginY;
+            color += font->font_ascent_13c - metrics.gmptGlyphOriginY;
             for (int y = 0; y < height; ++y) {
-                for (int x = 0; x < width; ++x)
-                    *destination++ = ((0x0ff00000u * *coverage++) & 0xff000000u) | *color;
+                for (int x = 0; x < width; ++x) {
+                    *destination = ((0x0ff00000u * *coverage++) & 0xff000000u) | *color;
+                    ++destination;
+                }
                 coverage += stride - width;
-                destination += surface_pitch_dwords_150 - width;
+                destination += font->surface_pitch_dwords_150 - width;
                 ++color;
             }
         } else {
             for (int y = 0; y < height; ++y) {
-                for (int x = 0; x < width; ++x)
-                    *destination++ = ((0x0ff00000u * *coverage++) & 0xff000000u) | fallback_color_168;
+                for (int x = 0; x < width; ++x) {
+                    *destination = ((0x0ff00000u * *coverage++) & 0xff000000u) | font->fallback_color_168;
+                    ++destination;
+                }
                 coverage += stride - width;
-                destination += surface_pitch_dwords_150 - width;
+                destination += font->surface_pitch_dwords_150 - width;
             }
         }
         delete[] glyph;
     }
-    if (accent_16c)
-        th105::draw_text_accent_dot(this, cursor_x_134 + metrics.gmCellIncX / 2,
-            cursor_y_138 - config_00c.height_108);
-    cursor_x_134 += metrics.gmCellIncX + config_00c.spacing_x_120;
+    if (font->accent_16c)
+        th105::draw_text_accent_dot(font, font->cursor_x_134 + metrics.gmCellIncX / 2,
+            font->cursor_y_138 - font->config_00c.height_108);
+    font->cursor_x_134 += metrics.gmCellIncX + font->config_00c.spacing_x_120;
     if (width_out) {
         const unsigned extent = static_cast<unsigned>(right);
         *width_out = *width_out > extent ? *width_out : extent;
@@ -354,7 +358,7 @@ void TextTextureFontView::render_text(const char *text, unsigned *width_out, uns
         else if (character == '<')
             offset += parse_text_markup(text + offset, width_out, height_out);
         else if (offset <= length)
-            draw_text_glyph(character, width_out, height_out);
+            draw_font_glyph(this, character, width_out, height_out);
     }
 
     finish_text_render(this);

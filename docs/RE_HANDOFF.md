@@ -9,7 +9,27 @@ verified remote ownership and empty denominators. Fractions follow the current
 tracking ledgers; aggregate cold verification is separate from this display.
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
-accepts complete blend4127C0 at289/289 canonical6c0d10cb under ordinary COFF.
+recovers native EAX glyph411B80 and coverage/destination cursor lifetimes.
+Complete source645->624/189 canonicala1f0b4e5 remains nonexact411BD9/+89:
+all bytes outside16-byte window+88..103 match; four lower-bound arithmetic
+instructions commute cursorY and ascent. Full8-byte skipped alignment is emitted
+naturally and retained, no padding/ABI facade/equality waiver. RTM/SP1 and
+coordinate/type controls remain nonexact. All5376 actual glyph observer cases
+pass with EAX glyph/ESI accent, actual #DE boundary and bounded transient engine
+cleanup. Caller stays322/115 canonicalaed258a6; only byte+258 ECX->EAX changes,
+and160 flat/outlined cases pass,80 executing actual blend289, with glyph/GDI
+still abstract inside caller. Private genuine public owner/render GL link
+resolves all providers and verified ABS data/IAT without fake code; diagnostic
+glyph stays identical624/a1f0b4e5 and linked caller334/119 has aligned EBP frame,
+with no canonical/private-witness/EH acceptance. This is not a proved LTCG
+blocker. Other nine complete font bodies unchanged. Removing unused glyph
+member declaration affects two accepted units; both cold-replay, exact owner/
+config/Tidy71 and hex45/blend289 persist, texture110/264 hashes unchanged.
+No new exact or aggregate credit. See
+[native glyph ABI and cursor recovery](TEXT_FONT_GLYPH_NATIVE_2026_10_21.md).
+Next: remaining coordinate expression plus setter/markup visibility and true
+native link/GS/EH ownership; Reimu496540 remains nonexact49655F/+31.
+The preceding checkpoint accepts complete blend4127C0 at289/289 canonical6c0d10cb under ordinary COFF.
 Real file-local typed stdcall plus actual render caller naturally yields EAX
 font/RET8 and all95 decoded instructions, including3 internal skipped alignment
 bytes emitted by VC8; no ABI facade, padding or comparator waiver. Normal
