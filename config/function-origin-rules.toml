@@ -2014,18 +2014,6 @@ confidence = "observed"
 evidence = "Canonical-exact FighterSequenceController enqueue calls this body to copy its embedded sprite record. Target first publishes canonical CSpriteBase vtable 0x006C0654, copies the base/POD/float fields, then publishes canonical CSprite vtable 0x006C0668: the standard implicit derived copy-constructor pattern rather than an authored gameplay function."
 
 [[rules]]
-id = "profile-render-list-color-authored-106a"
-addresses = ["0x0040BFE0"]
-expected_count = 1
-expected_bytes = 81
-expected_names = ["sub_40BFE0"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "Canonical-exact draw_profile_overlay 0x0043F900 and render_profile_ui_frame 0x00440170 call this method on loader-zero ProfileRenderList globals. Raw target fixes a checked std::list<polymorphic item*> at +0x14 and dispatches item vslot +0x04(color). Natural source is 74/81; target alone keeps an 8-byte-aligned TU frame, so no fake aligned local is introduced."
-
-[[rules]]
 id = "checked-tree-lower-bound-clone-generated-106a"
 addresses = ["0x0040CDA0"]
 expected_count = 1

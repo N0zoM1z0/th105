@@ -1,7 +1,9 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
-accepts complete CDesignBase render40BC80 at135/135 through genuine GL/LTCG.
+accepts complete profile color40BFE0 at81/81 through genuine GL/LTCG, using
+unchanged source54bcd029. Its earlier74/81 frame blocker is resolved.
+The preceding checkpoint accepts CDesignBase render40BC80 at135/135 through GL/LTCG.
 The native member-iterator source is124 bytes under ordinary COFF. Explicit
 empty linked data bindings are now supported without permitting unbound game
 addresses; all five accepted functions in four predecessor linked units
@@ -25,7 +27,7 @@ nonexact415053/+3; its64-byte target frame remains unexplained. The preceding
 TNumberValue<int*> getters4424B0/4424C0 retain6/6 exact, constructor444190 and
 integer renderer414F10 retain728/312 exact, and initializer414E40 retains102/104
 nonexact. Reimu496540 keeps the committed811 correction and remains nonexact
-49655F/+31, call-distance11/RET-distance27.40BFE0 remains74/81;4A1CE0 retains14
+49655F/+31, call-distance11/RET-distance27.40BFE0 is81/81 exact;4A1CE0 retains14
 differences. Live evidence overrides historical prose.
 
 ## Target, workflow and acceptance
@@ -51,7 +53,17 @@ available. Independently attest any direct Ghidra project before semantic
 use, keep one process, and read back metadata changes. Do not use the factory
 adapter or patch target bytes.
 
-The latest [render checkpoint](DESIGN_BASE_RENDER_2026_10_21.md) records the
+The latest [color checkpoint](DESIGN_BASE_COLOR_LTCG_2026_10_21.md) accepts the
+complete81-byte40BFE0 without changing any source byte. The same unit now
+uses the resolved LTCG profile, which naturally recovers EBP/ESP8 and all
+three invalid-parameter call fields. Only this unit needs replay; no shared
+header, caller binding or predecessor accepted profile changes. The old
+source-only authored rule yields to the canonical exact origin baseline;
+all197 surviving selectors are unchanged/disjoint. The retired rule's complete
+body hash, both exact-owner caller edges and RTTI-owned vtable cell were checked
+and recorded privately before retirement.
+
+The preceding [render checkpoint](DESIGN_BASE_RENDER_2026_10_21.md) records the
 complete54-instruction member-iterator traversal and final begin reset at
 40BC80. The formal linked unit reproduces the real8-byte-aligned frame and
 all135 bytes, with five named invalid-parameter REL32 fields and no absolute

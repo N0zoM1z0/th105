@@ -61,7 +61,7 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4024)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1356)
+        self.assertEqual(len(matching), 1357)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
@@ -81,7 +81,7 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(binder["match_percent"], "0.00")
         self.assertIn(binder["proposed_name"], implemented)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1356
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1357
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
@@ -994,8 +994,8 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 483)
-        self.assertEqual(sum(map(len, accepted.values())), 1356)
+        self.assertEqual(len(accepted), 484)
+        self.assertEqual(sum(map(len, accepted.values())), 1357)
         self.assertEqual(accepted["gpt-web-gage-design-render"], {
             "0x0040AEA0", "0x0040AF30", "0x0040AEE0",
         })
@@ -1501,7 +1501,6 @@ class WorkflowToolingTests(unittest.TestCase):
             "0X00403940": ("BgmService_fade", "76/70"),
             "0X00403990": ("BgmService_set_level", "70/69"),
             "0X004056C0": ("CScript_clear_commands", "296/170"),
-            "0X0040BFE0": ("ProfileRenderListView_set_color", "74/81"),
             "0X00414CB0": ("D3DBackend_register_reset_listener", "134/157"),
             "0X00417FF0": ("BattleBaseEffect_initialize", "71/71"),
             "0X0046F9F0": ("BattleInfoRecord_emit_group_effect", "66/85"),
@@ -1512,6 +1511,13 @@ class WorkflowToolingTests(unittest.TestCase):
             self.assertIn(residual, functions[address]["evidence"])
             self.assertEqual(origins[address]["origin"], "authored_game")
             self.assertEqual(origins[address]["disposition"], "authored")
+
+        color = functions["0X0040BFE0"]
+        self.assertEqual(color["proposed_name"], "ProfileRenderListView_set_color")
+        self.assertEqual(color["status"], "matching")
+        self.assertEqual(color["match_percent"], "100.00")
+        self.assertIn("81/81", color["evidence"])
+        self.assertEqual(origins["0X0040BFE0"]["evidence_id"], "canonical-exact-authored")
 
         ready = functions["0X004712B0"]
         self.assertEqual(ready["proposed_name"], "BattleInputGate_is_synchronized_input_ready")
@@ -1704,8 +1710,8 @@ class WorkflowToolingTests(unittest.TestCase):
             f"Origin/boundary review pending | {len(functions) - len(authored) - len(excluded):,}",
             markdown,
         )
-        self.assertIn("Canonical exact functions | 1,356", markdown)
-        self.assertIn("Canonical exact authored bytes | 230,408", markdown)
+        self.assertIn("Canonical exact functions | 1,357", markdown)
+        self.assertIn("Canonical exact authored bytes | 230,489", markdown)
         self.assertIn("Source-present authored mappings | 1,468", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown

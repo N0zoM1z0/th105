@@ -18626,12 +18626,13 @@ rel32_targets = [
 dir32_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A=?g_d3d_backend@th105@@3UD3DBackend@1@A"]
 
 [units.gpt-web-profile-render-list-color-runtime]
-kind = "probe"
+kind = "linked_candidate"
 source = "src/ui/ProfileRenderListColorRuntime.cpp"
-object = "build/match-units/GptWeb_ProfileRenderListColorRuntime.obj"
-profile = "vc8-sp1-probe-o2"
+object = "build/match-units/GptWeb_ProfileRenderListColorRuntime.dll"
+profile = "vc8-sp1-ltcg-o2"
 enable_gs = false
-notes = "Source-present40BFE0 remains74/81 nonexact+0. Raw81-byte/36-instruction target and existing exact caller edges43F951/4401DB support checked list+14/head+18 and vslot4(color). Compiler COFF layout witnesses prove source iterator8 bytes/alignment4 and container12; no-eight-byte-local prose was incorrect. Size/alignment guards preserve the whole74-byte canonical5bb8ba61 body. Postincrement,SSE2,GS,RTM,Z7 are byte-neutral; const_iterator87 is nonexact and for_each39 has an unqualified local thunk, not canonical evidence. Target EBP/ESP8 cause stays open. No header/profile/binding/accepted partition or exact change. docs/PROFILE_COLOR_ITERATOR_ABI_2026_10_21.md."
+link_data_targets = []
+notes = "Complete40BFE0 is canonical exact81/81 through resolved GL/LTCG using the unchanged source54bcd029. Ordinary COFF freshly remains74/81; the linked compiler naturally retains the observed8-byte-aligned frame. Native checked list+14/head+18 reload and callback-before-increment validation agree across all36 instructions. Three invalid-parameter REL32 fields replay, with no absolute game data or artificial stack alignment. Source ABI/layout and caller bindings are unchanged. docs/DESIGN_BASE_COLOR_LTCG_2026_10_21.md."
 
 [[units.gpt-web-profile-render-list-color-runtime.functions]]
 address = "0x0040BFE0"

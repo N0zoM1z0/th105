@@ -1,6 +1,11 @@
 # Profile render-list color iterator ABI
 
-40BFE0 remains **74/81, nonexact at+0**. The source now asserts the actual
+Historical ordinary-COFF audit. The subsequent
+[resolved LTCG checkpoint](DESIGN_BASE_COLOR_LTCG_2026_10_21.md) accepts the
+unchanged source at complete **81/81 exact**. The frame blocker below is resolved
+for this function; the controls retain their original narrower meaning.
+
+At this audit,40BFE0 remained **74/81, nonexact at+0**. The source asserted the actual
 checked-iterator size/alignment, without changing any generated callable byte.
 The older explanation that there is no eight-byte source local is incorrect:
 the existing iterator is eight bytes, aligned to four. Its size alone does not
@@ -104,6 +109,9 @@ The two duplicate initializer owner graphs are SHA-checked/gzip-compressed;
 canonical inputs and comparison receipts remain; restore the `.gz` reports
 before old private recipes. No aggregate cold replay or new aggregate
 percentage is claimed.
+
+Historical command/result before the unit switched to the linked profile;
+the current command now exits0 with81/81 exact:
 
 ```bash
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-profile-render-list-color-runtime --compare --json
