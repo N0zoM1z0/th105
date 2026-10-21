@@ -61,7 +61,7 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4024)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1373)
+        self.assertEqual(len(matching), 1374)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
@@ -81,7 +81,7 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(binder["match_percent"], "0.00")
         self.assertIn(binder["proposed_name"], implemented)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1373
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1374
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
@@ -1019,7 +1019,7 @@ class WorkflowToolingTests(unittest.TestCase):
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
         self.assertEqual(len(accepted), 488)
-        self.assertEqual(sum(map(len, accepted.values())), 1373)
+        self.assertEqual(sum(map(len, accepted.values())), 1374)
         self.assertEqual(accepted["gpt-web-design-base-cleanup"], {"0x0040BB40"})
         self.assertEqual(accepted["gpt-web-text-font-owner"], {"0x004113E0", "0x00411430", "0x004114C0", "0x004115A0"})
         self.assertEqual(accepted["gpt-web-design-object-bind-alt"], {"0x00420B90"})
@@ -1028,7 +1028,7 @@ class WorkflowToolingTests(unittest.TestCase):
         })
         self.assertNotIn("gpt-web-gage-render", accepted)
         self.assertNotIn("gpt-web-text-texture-runtime", accepted)
-        self.assertEqual(accepted["gpt-web-text-font-render"], {"0x004128F0", "0x004127C0"})
+        self.assertEqual(accepted["gpt-web-text-font-render"], {"0x004128F0", "0x004127C0", "0x00411760"})
         self.assertNotIn("0x00408A00", set().union(*accepted.values()))
         self.assertNotIn("0x0041B3F0", set().union(*accepted.values()))
         self.assertNotIn("gpt-web-texture-slot-binding", accepted)
@@ -1740,8 +1740,8 @@ class WorkflowToolingTests(unittest.TestCase):
             f"Origin/boundary review pending | {len(functions) - len(authored) - len(excluded):,}",
             markdown,
         )
-        self.assertIn("Canonical exact functions | 1,373", markdown)
-        self.assertIn("Canonical exact authored bytes | 233,015", markdown)
+        self.assertIn("Canonical exact functions | 1,374", markdown)
+        self.assertIn("Canonical exact authored bytes | 233,060", markdown)
         self.assertIn("Source-present authored mappings | 1,497", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown

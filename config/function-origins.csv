@@ -410,7 +410,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00411430,authored_game,render,authored,observed,canonical-exact-authored
 0x004114C0,authored_game,render,authored,observed,canonical-exact-authored
 0x004115A0,authored_game,render,authored,observed,canonical-exact-authored
-0x00411760,authored_game,render,authored,observed,text-font-surface-authored-106a
+0x00411760,authored_game,render,authored,observed,canonical-exact-authored
 0x00411790,authored_game,render,authored,observed,text-font-markup-color-authored-106a
 0x004118F0,authored_game,render,authored,observed,text-font-markup-reset-authored-106a
 0x004119A0,authored_game,render,authored,observed,text-font-begin-authored-106a

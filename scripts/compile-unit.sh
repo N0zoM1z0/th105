@@ -85,10 +85,21 @@ case "${TH105_FP_MODE:-default}" in
     ;;
 esac
 
+inline_args=()
+case "${TH105_INLINE_MODE:-default}" in
+  default) ;;
+  explicit) inline_args+=(/Ob1) ;;
+  *)
+    echo "unsupported TH105_INLINE_MODE: ${TH105_INLINE_MODE}" >&2
+    exit 2
+    ;;
+esac
+
 "${compiler[@]}" \
   /nologo \
   /c \
   /O2 \
+  "${inline_args[@]}" \
   "$gs_flag" \
   "${fp_args[@]}" \
   /GR \

@@ -64,6 +64,18 @@ local changes stack lifetime without changing behavior.  Return width must be
 proved at the callee too: `consume_transition_code` returns an int even though
 its current caller consumes only AL.
 
+The font surface setter `0x00411760` also shows why stack words do not establish
+independent scalar parameters. A meaningful two-DWORD by-value dimension pair
+naturally keeps width/height on the stack while VC8 privately passes the font
+and surface in EAX/ECX, reproducing all45 bytes and RET12. Scalar signatures
+instead promote height to EDX. Its explicit local `vc8-sp1-probe-o2-ob1` profile
+adds `/Ob1` after `/O2` and retains the one real parent E8 at the target callsite;
+an otherwise exact unused copy under default inlining is insufficient caller
+evidence. Only this unit selects the profile; default arguments remain unchanged
+and ambient mode is reset per unit. Original nominal type/project options are
+unproven. This does not supersede a demonstrated TU boundary or authorize
+arbitrary noinline controls. See [the complete evidence](TEXT_FONT_SURFACE_EXACT_2026_10_21.md).
+
 ### Container identity does not imply identical iterator visibility
 
 Recover native checked containers when the target proves their full physical header and operations, but keep translation-unit iterator visibility as a separate question. `CsvReader::next_int @ 0x0040F480` is the positive case: real `deque<deque<string>>` storage plus two native 0x0C iterators naturally produces all 249 target bytes. `ScoreData::refresh_story_progress @ 0x0042E3F0` is the counterexample: native `vector<int>` layout and business semantics are closed, but standalone `erase(begin,end)` keeps two always-true iterator-owner self-checks that the shipped TU omits. Changing the range to `begin + size()` changes the whole frame and is rejected. A proven container type is not permission to hand-write its iterator representation or delete safety checks manually.

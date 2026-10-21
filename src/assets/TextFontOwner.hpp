@@ -62,7 +62,6 @@ struct TextFontOwner194 {
     void configure(const TextFontConfig128 *config);
     void render_text(const char *text, unsigned *width_out, unsigned *height_out);
     int parse_text_markup(const char *cursor, unsigned *width_out, unsigned *height_out);
-    void set_surface(void *surface, unsigned width, unsigned height, int pitch);
 };
 
 typedef char ConfigSize[sizeof(TextFontConfig128) == 0x128 ? 1 : -1];

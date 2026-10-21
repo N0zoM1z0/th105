@@ -5,8 +5,8 @@
   <text x="24" y="54" fill="#f4f4f5" font-family="sans-serif" font-size="13" font-weight="600">Exact / confirmed authored bytes</text>
   <text x="536" y="54" fill="#f4f4f5" text-anchor="end" font-family="monospace" font-size="13">10.91%</text>
   <rect id="exact-track" x="24" y="62" width="512" height="12" rx="6" fill="#3b4058"/>
-  <rect id="exact-fill" x="24" y="62" width="55.86" height="12" rx="6" fill="#9b6de3"/>
-  <text x="24" y="91" fill="#c8cad2" font-family="sans-serif" font-size="12">233,015 / 2,135,634 bytes · 1,373 exact functions</text>
+  <rect id="exact-fill" x="24" y="62" width="55.87" height="12" rx="6" fill="#9b6de3"/>
+  <text x="24" y="91" fill="#c8cad2" font-family="sans-serif" font-size="12">233,060 / 2,135,634 bytes · 1,374 exact functions</text>
   <text x="24" y="109" fill="#c8cad2" font-family="sans-serif" font-size="11">Authored denominator provisional · pending review: 1,015</text>
 
   <text x="24" y="144" fill="#f4f4f5" font-family="sans-serif" font-size="13" font-weight="600">Origin/boundary reviewed</text>

@@ -1,5 +1,5 @@
 // JP1.06a native font rendering and actual file-local providers.
-// Hex and blend helpers are exact; other complete comparisons remain open.
+// Hex, blend and surface helpers are exact; other complete comparisons remain open.
 #include "TextFontRuntime.hpp"
 
 #include <new>
@@ -237,6 +237,11 @@ static void __stdcall reset_markup_color(TextFontOwner194 *font)
     }
 }
 
+struct TextSurfaceSize {
+    unsigned width;
+    unsigned height;
+};
+static void __stdcall set_font_surface(TextFontOwner194 *, void *, TextSurfaceSize, int);
 static unsigned char __cdecl decode_markup_hex(unsigned char);
 int TextTextureFontView::parse_text_markup(
     const char *cursor, unsigned *width_out, unsigned *height_out)
@@ -278,9 +283,10 @@ int TextTextureFontView::parse_text_markup(
             config.colors_100[2] = config.colors_100[3] = config_00c.colors_100[2];
             config.colors_100[4] = config.colors_100[5] = config_00c.colors_100[4];
             if (saved_y_190 >= ruby_height) {
-                ruby.set_surface(static_cast<unsigned *>(surface_base_140) +
+                TextSurfaceSize size = {surface_width_14c, surface_height_148};
+                set_font_surface(&ruby, static_cast<unsigned *>(surface_base_140) +
                     (saved_y_190 - ruby_height) * surface_pitch_dwords_150 + saved_x_18c,
-                    surface_width_14c, surface_height_148, surface_pitch_dwords_150);
+                    size, surface_pitch_dwords_150);
                 const int span = cursor_x_134 - config_00c.spacing_x_120 - saved_x_18c;
                 if (span > 0) {
                     const char *text = text_170.c_str();
@@ -379,12 +385,13 @@ static unsigned char __cdecl decode_markup_hex(unsigned char value)
     return 0;
 }
 
-void TextTextureFontView::set_surface(void *surface, unsigned width, unsigned height, int pitch)
+static void __stdcall set_font_surface(TextFontOwner194 *font,
+    void *surface, TextSurfaceSize size, int pitch)
 {
-    surface_base_140 = surface_cursor_144 = surface;
-    surface_width_14c = width;
-    surface_height_148 = height;
-    surface_pitch_dwords_150 = pitch;
+    font->surface_base_140 = font->surface_cursor_144 = surface;
+    font->surface_width_14c = size.width;
+    font->surface_height_148 = size.height;
+    font->surface_pitch_dwords_150 = pitch;
 }
 
 static unsigned char *__stdcall blend_font_surface(TextFontOwner194 *font,

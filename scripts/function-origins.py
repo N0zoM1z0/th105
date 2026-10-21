@@ -893,6 +893,7 @@ def validate_vc8_generated_anchor_evidence(
     object_path.parent.mkdir(parents=True, exist_ok=True)
     env = os.environ.copy()
     env["TH105_ENABLE_GS"] = "1" if bool(anchors_doc.get("enable_gs")) else "0"
+    env["TH105_INLINE_MODE"] = "default"
     proc = subprocess.run(
         [str(ROOT / "scripts" / "compile-unit.sh"), str(source), str(object_path)],
         cwd=ROOT,

@@ -20274,9 +20274,9 @@ dir32_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A=?g_d3d_backend@th105@@3
 kind = "probe"
 source = "src/assets/TextFontRender.cpp"
 object = "build/match-units/GptWeb_TextFontRender.obj"
-profile = "vc8-sp1-probe-o2"
+profile = "vc8-sp1-probe-o2-ob1"
 enable_gs = true
-notes = "Exact hex4128F045/45 and native local blend4127C0289/289 persist. Glyph411B80 now genuine file-local EAX font/RET12 source624/189 canonicala1f0b4e5, nonexact+89 solely on four lower-bound arithmetic instructions within+88..103; all other full bytes/alignment agree. Early coverage lifetime and explicit destination advancement recover native buffer/loop shape. All5376 actual glyph observer cases pass; caller322/115 canonicalaed258a6 changes only byte+258 ECX->EAX and160 affected flat/outlined cases pass,80 executing actual blend, other providers abstract. Private genuine complete owner/render GL link resolves actual providers and verified ABS data/IAT without fake code, but glyph stays identical624/nonexact and linked caller334/119 is only a raw diagnostic. Removed unused glyph member declaration; both accepted font units cold-replay, owner138/210/439/config67 plus compiler-only Tidy71 exact, texture110/264 unchanged. Nine other previous complete font bodies unchanged; no new exact/aggregate/EH/GDI claim. docs/TEXT_FONT_GLYPH_NATIVE_2026_10_21.md."
+notes = "Native surface setter411760 is45/45 canonical04b792ad with a meaningful two-DWORD by-value TextSurfaceSize, natural EAX font/ECX surface/RET12 and explicit local O2/Ob1 profile. One actual source E8 at canonical412359 matches the target call; default-inlined unused copy is rejected as caller evidence. All480 actual leaf and480 affected ruby-close parent cases pass with real setter45/hex45 execution192 setter calls per side. Parent1647/444 canonicalfaadf324 remains nonexact+16/frame788 versus796;420 outside-window instructions/37 edges unchanged outside setter setup/adjacent SSO selection. Other nine full font bodies unchanged; exact hex45/blend289 persist under new profile. Both header-affected accepted units cold-replay, owner138/210/439/config67/compiler-only Tidy71 exact and texture110/264 unchanged. Default profiles retain previous flags; five regressions cover optional inline policy/provenance/isolation. No original nominal type/build-option proof, parent/EH/GDI or aggregate credit. docs/TEXT_FONT_SURFACE_EXACT_2026_10_21.md."
 
 [[units.gpt-web-text-font-render.functions]]
 address = "0x00412670"
@@ -20352,7 +20352,7 @@ rel32_targets = [
   "??0TextFontOwner194@th105@@QAE@XZ=0x00411430",
   "??0TextFontConfig128@th105@@QAE@XZ=0x004113E0",
   "_strcpy_s=0x0068AD95",
-  "?set_surface@TextFontOwner194@th105@@QAEXPAXIIH@Z=0x00411760",
+  "?set_font_surface@th105@@YGXPAUTextFontOwner194@1@PAXUTextSurfaceSize@1@H@Z=0x00411760",
   "?configure@TextFontOwner194@th105@@QAEXPBUTextFontConfig128@2@@Z=0x004115A0",
   "?render_text@TextFontOwner194@th105@@QAEXPBDPAI1@Z=0x00412670",
   "??1TextFontOwner194@th105@@QAE@XZ=0x004114C0",
@@ -20400,7 +20400,7 @@ rel32_targets = [
 
 [[units.gpt-web-text-font-render.functions]]
 address = "0x00411760"
-symbol_base = "?set_surface@TextFontOwner194@th105@@QAEXPAXIIH@Z"
+symbol_base = "?set_font_surface@th105@@YGXPAUTextFontOwner194@1@PAXUTextSurfaceSize@1@H@Z"
 
 [[units.gpt-web-text-font-render.functions]]
 address = "0x004127C0"

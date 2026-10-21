@@ -2,14 +2,36 @@
 
 Progress display (2026-10-21): the SVG now fills its exact bar from canonical
 exact bytes / confirmed authored bytes, even while classification is pending:
-233,015 / 2,135,634 = 10.91%. It explicitly labels the authored denominator
+233,060 / 2,135,634 = 10.91%. It explicitly labels the authored denominator
 provisional and keeps the separate origin/boundary review bar (74.78%, 1,015
 pending). Four SVG regressions cover pending/completed review, byte weighting,
 verified remote ownership and empty denominators. Fractions follow the current
 tracking ledgers; aggregate cold verification is separate from this display.
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
-recovers native EAX glyph411B80 and coverage/destination cursor lifetimes.
+accepts complete surface setter411760 at45/45 canonical04b792ad, all9 reachable
+instructions. Meaningful two-DWORD by-value TextSurfaceSize plus genuine local
+stdcall naturally yields EAX font/ECX surface/three stack words/RET12; scalar
+controls instead promote height into EDX. Explicit local O2/Ob1 profile retains
+one actual parent E8 at canonical412359, the target site; default O2's unused
+exact copy with inlined caller is rejected as caller evidence. Original nominal
+type/name/project options remain unknown, with no ABI facade or noinline
+annotation. All480 actual leaf and480 affected ruby-close parent cases pass,
+the latter executing real setter45 exactly192 times per side plus real hex45.
+Parent1647/444 canonicalfaadf324 remains nonexact+16/frame788 versus796;
+420 instruction pairs/37 edges outside setter setup/adjacent SSO selection are
+unchanged, so unrelated tag cases are not replayed. Other nine complete font
+bodies stay unchanged; both header-affected accepted font units cold-replay,
+retaining hex45/blend289 and owner138/210/439/config67/compiler-only Tidy71.
+Texture110/264 hashes stay unchanged. Five profile regressions guard actual
+default/Ob1 arguments, bad modes, ambient isolation/provenance and local scope.
+One previously source-present function gains45 exact bytes; tracked exact
+ledger1374/233060, mapping/source1497 unchanged. No parent/EH/GDI or aggregate
+cold-replay claim. SVG regenerated from current ledgers, with visible exact and
+review fills. See [native surface value exact](TEXT_FONT_SURFACE_EXACT_2026_10_21.md).
+Next: genuine larger markup/private source context and8-byte frame/EH residual,
+plus glyph coordinate ordering; Reimu496540 remains nonexact49655F/+31.
+The preceding checkpoint recovers native EAX glyph411B80 and coverage/destination cursor lifetimes.
 Complete source645->624/189 canonicala1f0b4e5 remains nonexact411BD9/+89:
 all bytes outside16-byte window+88..103 match; four lower-bound arithmetic
 instructions commute cursorY and ascent. Full8-byte skipped alignment is emitted

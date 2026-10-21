@@ -68,6 +68,9 @@ def build_unit(
             else "default"
         )
         environment["TH105_FP_MODE"] = fp_mode
+        environment["TH105_INLINE_MODE"] = (
+            "explicit" if unit["profile"] == "vc8-sp1-probe-o2-ob1" else "default"
+        )
         environment["TH105_EXTRA_INCLUDE_DIRS"] = os.pathsep.join(include_dirs)
         command = [
             str(ROOT / "scripts" / "compile-unit.sh"),
@@ -97,6 +100,9 @@ def build_unit(
             "strict"
             if unit["profile"] == "vc8-sp1-probe-o2-fp-strict"
             else "default"
+        ),
+        "inline_mode": (
+            "explicit" if unit["profile"] == "vc8-sp1-probe-o2-ob1" else "default"
         ),
         "include_dirs": [
             str(Path(path).relative_to(ROOT)) for path in include_dirs
