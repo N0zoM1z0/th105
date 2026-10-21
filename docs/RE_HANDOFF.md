@@ -1,6 +1,15 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+selects complete310-byte CDesignBase cleanup40BB40 source, ordinary315 nonexact+0.
+It deletes/pops from list back, releases checked handles forward and erases
+the vector, without map/current reset. Native scalar erase differs from the
+target assignment loop; original handle type and TU visibility remain open.
+Gauge41B280 parameter-order and RTM controls are byte-neutral at360/nonexact+5.
+No shared header or predecessor accepted source changes; no new exact is added.
+Next: genuine texture-release provider visibility and loader EH/TU closure.
+See [cleanup and controls](DESIGN_BASE_CLEANUP_2026_10_21.md).
+The preceding checkpoint
 selects complete source for the2666-byte CDesignBase loader40B000 and360-byte
 gauge initializer41B280. Parent comparison blocks on unqualified local EH;
 the helper is360/360 nonexact+5, sourceECX mode versus targetEAX. Main source

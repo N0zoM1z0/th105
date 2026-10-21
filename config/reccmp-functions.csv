@@ -1493,3 +1493,4 @@ CDesignBase_render_through,0x0040BD10,function
 CDesignBase_render_offset_through,0x0040BEC0,function
 CDesignBase_find_object,0x0040CC50,function
 CGage_initialize_texture,0x0041B280,function
+CDesignBase_virtual_cleanup,0x0040BB40,function

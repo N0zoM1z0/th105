@@ -3275,3 +3275,17 @@ evidence = "Complete360-byte/107-instruction initializer called from40B72B for t
 required_body_hashes = [{ address = "0x0041B280", size = 360, sha256 = "e160e6a43225f641135b7b956e43102d8d1c34aa8a6e1962761abbc81a26d93a" }]
 required_direct_edges = [{ caller = "0x0040B000", site = "0x0040B72B", target = "0x0041B280", caller_status = "implemented" }]
 required_dword_values = [{ address = "0x006D6A38", value = "0x0040AD60" }]
+
+[[rules]]
+id = "design-base-cleanup-authored-106a"
+addresses = ["0x0040BB40"]
+expected_count = 1
+expected_bytes = 310
+expected_names = ["sub_40BB40"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "RTTI CDesignBase vtable6C08AC slot14 owns this complete310-byte/119-instruction cleanup. Target deletes objects from the native list back, releases checked texture handles in forward index order through public404D70 and erases the vector range; map and persistent iterator stay untouched. Full CFG includes the separately qualified vector out_of_range edge40BC25->40C350. Native source315 remains nonexact at+0; original handle element type and compiler/TU boundary are unresolved. No exact or generated-helper exclusion credit. docs/DESIGN_BASE_CLEANUP_2026_10_21.md."
+required_body_hashes = [{ address = "0x0040BB40", size = 310, sha256 = "5c8d5c4c66df8434fe8eeeb2277cac7a1960ce07de381c57e844b35bbc4502a3" }]
+required_dword_values = [{ address = "0x006C08C0", value = "0x0040BB40" }]

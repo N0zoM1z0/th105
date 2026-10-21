@@ -264,7 +264,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0040BA90,compiler_generated,runtime,exclude,inferred,rtti-inline-scalar-deleting-destructors-106a
 0x0040BAC0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0040BB00,authored_game,ui,authored,observed,canonical-exact-authored
-0x0040BB40,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0040BB40,authored_game,ui,authored,observed,design-base-cleanup-authored-106a
 0x0040BC80,authored_game,ui,authored,observed,canonical-exact-authored
 0x0040BD10,authored_game,ui,authored,observed,canonical-exact-authored
 0x0040BE20,authored_game,ui,authored,observed,canonical-exact-authored
