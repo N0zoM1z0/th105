@@ -3383,7 +3383,7 @@ origin = "authored_game"
 subsystem = "render"
 disposition = "authored"
 confidence = "observed"
-evidence = "Full1744-byte/463-instruction main CFG, actual41276A incoming edge and game br/ruby/accent/color policy establish authored ownership independently of imported CRT/STL. Selected genuine native C++ in the actual caller TU is1652/447, nonexact+16 on frame/private ABI;8640 bounded parent cases pass again with real exact hex helper execution and other providers abstract. Wrong SJIS/character-width controls each fail12 of72. Four-state cleanup graphs share roles/topology but source/target handler/frame/metadata remain unqualified; parent handler-address replay grants no EH/funclet or exact credit. docs/TEXT_FONT_MARKUP_SOURCE_2026_10_21.md; docs/TEXT_FONT_NATIVE_CLASS_2026_10_21.md."
+evidence = "Full1744-byte/463-instruction main CFG, actual41276A incoming edge and game br/ruby/accent/color policy establish authored ownership independently of imported CRT/STL. Selected genuine native C++ in the actual caller TU is1648/445, nonexact+16 on frame/private ABI;8640 bounded parent cases pass again with real exact hex helper execution and other providers abstract. Wrong SJIS/character-width controls each fail12 of72. Four-state cleanup graphs share roles/topology but source/target handler/frame/metadata remain unqualified; parent handler-address replay grants no EH/funclet or exact credit. docs/TEXT_FONT_MARKUP_SOURCE_2026_10_21.md; docs/TEXT_FONT_NATIVE_CLASS_2026_10_21.md."
 required_body_hashes = [
   { address = "0x00411FA0", size = 1744, sha256 = "6343d2d6639459aaeadb9de2acd74ecbb0be02f8a908e4b84af385f1daeccebb" },
 ]
@@ -3411,3 +3411,17 @@ confidence = "observed"
 evidence = "Full352-byte/111-instruction two-RET16 CFG, actual markup color call4125DB and game config RGB interpolation/list-owned temporary palette/active publication establish authored policy separately from native STL callees. Genuine caller-TU source332/105 remains nonexact+2 on frame/save/argument-home and compiler specialization context. All576 bounded actual-root/native Buynode51 cases pass with ABI-specific Incsize and allocation observers; wrong back/previous-color controls fail192/216. No helper exclusion, CRT/EH or exact credit. docs/TEXT_FONT_COLOR_2026_10_21.md."
 required_body_hashes = [{ address = "0x00411790", size = 352, sha256 = "268b8440de095ca5a853314b6f4d2ba8a0b36469d9f7418f0e3cad81646e7e84" }]
 required_direct_edges = [{ caller = "0x00411FA0", site = "0x004125DB", target = "0x00411790", caller_status = "implemented" }]
+
+[[rules]]
+id = "text-font-markup-reset-authored-106a"
+addresses = ["0x004118F0"]
+expected_count = 1
+expected_bytes = 162
+expected_names = ["sub_4118F0"]
+origin = "authored_game"
+subsystem = "render"
+disposition = "authored"
+confidence = "observed"
+evidence = "Full162-byte/47-instruction two-RET CFG and game markup call41260F establish color reset ownership. Whole native temporary list retires before restoring base active pointer or packing config-first RGB fallback while retaining active in flat mode. Native typed file-local caller-TU source naturally uses ESI;161/46 remains nonexact+7 on EDI save scope, complete cleanup loop equal. All240 bounded actual-root/list cases pass with CRT delete observers; clear-active control fails120. Changed1648/445 parent passes8640 observer cases with real hex45 and ESI reset boundary. No STL/helper exclusion, runtime GDI/EH or exact credit. docs/TEXT_FONT_RESET_2026_10_21.md."
+required_body_hashes = [{ address = "0x004118F0", size = 162, sha256 = "8b90f385b2069c2a33647ee19cf5d92e31a1cefcd5f28ebcd5acc8249afe2171" }]
+required_direct_edges = [{ caller = "0x00411FA0", site = "0x0041260F", target = "0x004118F0", caller_status = "implemented" }]

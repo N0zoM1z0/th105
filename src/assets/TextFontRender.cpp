@@ -218,7 +218,22 @@ void __stdcall set_markup_color(TextFontOwner194 *font,
     }
 }
 
-void reset_markup_color(TextFontOwner194 *);
+static void __stdcall reset_markup_color(TextFontOwner194 *font)
+{
+    while (!font->temporary_colors_15c.empty()) {
+        delete[] font->temporary_colors_15c.front();
+        font->temporary_colors_15c.pop_front();
+    }
+    if (font->base_color_158) {
+        font->active_color_154 = font->base_color_158;
+    } else {
+        font->fallback_color_168 =
+            (font->config_00c.colors_100[0] << 16) |
+            (font->config_00c.colors_100[2] << 8) |
+            font->config_00c.colors_100[4];
+    }
+}
+
 static unsigned char __cdecl decode_markup_hex(unsigned char);
 int TextTextureFontView::parse_text_markup(
     const char *cursor, unsigned *width_out, unsigned *height_out)

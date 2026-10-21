@@ -2,14 +2,30 @@
 
 Progress display (2026-10-21): the SVG now fills its exact bar from canonical
 exact bytes / confirmed authored bytes, even while classification is pending:
-232,726 / 2,135,138 = 10.90%. It explicitly labels the authored denominator
-provisional and keeps the separate origin/boundary review bar (74.70%, 1,018
+232,726 / 2,135,300 = 10.90%. It explicitly labels the authored denominator
+provisional and keeps the separate origin/boundary review bar (74.73%, 1,017
 pending). Four SVG regressions cover pending/completed review, byte weighting,
 verified remote ownership and empty denominators. Fractions follow the current
 tracking ledgers; aggregate cold verification is separate from this display.
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
-adds real markup color411790 source in the actual font TU. Complete352/111
+adds native reset4118F0 in actual markup TU. Complete162/47 target versus
+161/46 canonical261fc985 remains nonexact+7 solely on conditional versus
+whole-function EDI preservation; the entire native list cleanup loop is equal.
+Real file-local typed stdcall naturally uses ESI/no stack args, with no ABI
+facade. Whole list retires before base restoration/config-first RGB fallback;
+flat path retains active154, even a former-front pointer. All240 actual-reset/
+list cases pass with CRT delete observers; clear-active control fails120.
+Actual parent shrinks1652->1648/445 canonical4137c411, still nonexact+16 and
+frame788 versus796. All8640 parent cases pass again with real exact hex45 and
+an ESI reset observer; no actual reset/GDI/EH execution inside parent. Other
+seven complete candidates remain unchanged, accepted hex45 still exact on
+focused cold rebuild. Only font source/unit changes; shared headers/profiles/
+partition/existing data and relocation ledgers stay unchanged, with no aggregate
+claim. See [native reset and ESI caller](TEXT_FONT_RESET_2026_10_21.md).
+Next: genuine setter411760 and blend4127C0, then larger font TU/link/EH closure;
+Reimu496540 remains nonexact49655F/+31.
+The preceding checkpoint adds real markup color411790 source in the actual font TU. Complete352/111
 raw target versus332/105 canonical471012e5 remains nonexact+2: frame8 versus12,
 conditional saves/byte argument rematerialization, unused Buynode receiver and
 native generic Incsize stack1 versus target constant1/no-stack specialization.

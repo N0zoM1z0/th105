@@ -1492,3 +1492,4 @@ TextFont_draw_text_accent_dot
 TextFont_parse_text_markup
 TextFont_decode_markup_hex
 TextFont_set_markup_color
+TextFont_reset_markup_color
