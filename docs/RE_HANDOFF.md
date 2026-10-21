@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+tests 41B280 mode/handle argument lifetimes against its actual caller.
+Explicit mode capture, with and without a separate checked-handle capture,
+leaves the complete 360-byte helper identical to baseline 52572fee, nonexact
++5 with ECX mode rather than target EAX. Three accepted empty virtuals stay
+exact in all builds; no source/shared input or accepted ledger is changed.
+See [gauge lifetime controls](DESIGN_BASE_LOADER_SOURCE_2026_10_21.md#fresh-gauge-argument-lifetime-controls).
+Next: genuine private member/TU lowering or another bounded authored function.
+The preceding checkpoint
 tests genuine Reimu 908 wave visibility on unchanged source 3b9e4896.
 Observed owner+164 layout is byte-neutral. The real visible wave body remains
 35/35 itself but inlines all 20 caller sites, giving 45988 bytes/e27c889f;

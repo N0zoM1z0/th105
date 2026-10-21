@@ -148,3 +148,32 @@ run serially on CPU0 at nice10.
 
 Next work must qualify the EH/TU boundary and recover real private texture and
 gauge helper visibility. CDesignBase cleanup40BB40 and Reimu496540 remain open.
+
+## Fresh gauge argument-lifetime controls
+
+After the separate cleanup acceptance, a cold build of the unchanged loader
+CPP `0702b075` with the current handle-value header still leaves 41B280 at
+360 bytes, nonexact +5. Its full canonical helper SHA256 is
+`52572feed070b2da682c1b4727319d2a6118f655d32d32d9630b197f5affb1bc`.
+The three accepted empty virtuals in the same unit remain exact.
+
+Raw caller 40B707 sign-extends the actual tag into EAX before loading the
+checked handle value; 40B725 subtracts2, and 40B72B calls with ESI pointing at
+the member. This motivates two source-owned argument-lifetime controls:
+an explicit `const int mode = kind - 2` immediately before the real call, and
+that mode capture followed by a separate checked-handle capture. Each local
+feeds the actual initializer; there are no inert values or register facades.
+
+Both complete helpers are byte-identical to the baseline, including the ECX
+mode input, first +5 mismatch and scratch homes. All three accepted empty
+virtuals remain exact in both private builds. These tested captures therefore
+do not recover the target private lowering. Original source/member spelling
+and honest larger TU/LTCG context remain open; no compiler setting or public
+source is changed and no new exact is recorded.
+
+Frozen source/header/object, formal baseline, complete comparisons and raw
+instruction text are in `build/design-gage-member-context-20261021/`, with a
+matching private `.analysis/` recipe. The two completed source/object/helper
+sets are compressed only after per-file SHA256 readback. No unrelated replay
+or aggregate claim is made. The preceding cleanup blocker is now superseded
+by [its complete 310-byte acceptance](DESIGN_BASE_CLEANUP_EXACT_2026_10_21.md).
