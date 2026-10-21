@@ -87,6 +87,15 @@ python3 scripts/map-giant-action-switches.py youmu-vslot28 --json
 
 Root/table witnesses live in `config/giant-action-switches.toml`.  The mapper reads `resources/th105.exe`, validates every byte index against the destination-table count, requires every decoded destination to stay inside the reviewed callable, checks retained call/RET/group census invariants, and annotates each physical action destination with direct callees from `config/functions.csv`.  Add new roster roots to the manifest only after independently attesting their callable and metadata boundaries.  The emitted spans are source-ownership evidence; they do not split the authored exact-byte ledger.
 
+JSON `direct_call_sites` and `direct_call_target_count` count decoded immediate
+CALL instructions; `direct_call_census_basis` identifies the linear decode.
+The separate `raw_e8_sanity` is the historical byte-scan fingerprint. Manifest
+`expected_direct_call_sites/targets` still validate that raw fingerprint. An E8
+inside another instruction can pass its address-range filter: ReimuObject
+496540 has404 decoded direct calls to25 targets, versus raw405/26. Its dedicated
+CFG auditor already excludes the FLD1 byte at49C35B. Use the decoded/CFG evidence
+when selecting callees; retain raw counts only as regression guards.
+
 Compare a compiled giant-root candidate against that target ownership map with:
 
 ```bash

@@ -59,6 +59,15 @@ searching for apparent `E8` bytes inside data or instruction operands. Unknown
 indirect exits remain visible; it does not invent destinations for them or
 claim to have audited external callee bodies.
 
+The target switch mapper now exposes the same distinction in its top-level
+statistics: `direct_call_sites` and `direct_call_target_count` come from decoded CALL instructions,
+while `raw_e8_sanity` retains the historical byte fingerprint. The legacy
+manifest `expected_direct_call_*` guards continue to check raw bytes. For
+ReimuObject496540, raw405/26 includes E8 inside FLD1 at49C35A; decoded404/25
+agrees with its existing complete CFG auditor. The apparent4C611D destination
+is not a call edge. Linear instruction counts alone still do not prove CFG
+closure, source ownership or exactness.
+
 ## 2026-09-07 common Fighter recovery
 
 Later checkpoint: the [2026-09-12 landing recovery](COMMON_FIGHTER_LANDING_EVIDENCE_2026_09_12.md)

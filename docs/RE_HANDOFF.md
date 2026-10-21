@@ -19,6 +19,12 @@ recover the target's constant-1/request window. Next inspect outer constant
 lifetimes and physical call/RET sharing from the unchanged selected source.
 Preserve the font questions without routine replay of unmodified old inputs.
 
+The generic giant mapper now separates decoded direct CALL counts from its
+legacy raw E8 fingerprint. ReimuObject has404 actual direct calls to25 targets;
+raw405/26 remains a byte regression guard. The dedicated target auditor already
+excluded FLD1's embedded E8 at49C35B; the generic JSON/text output now agrees.
+Do not collect a fictitious provider at4C611D from the raw scan.
+
 The previous 845-line operational record is preserved in the
 [October 21 snapshot](RE_HANDOFF_HISTORY_2026_10_21.md). Dated evidence pages and
 snapshots describe their own source/object epochs. The live ledgers and fresh

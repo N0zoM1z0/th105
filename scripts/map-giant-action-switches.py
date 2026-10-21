@@ -195,6 +195,7 @@ def map_root(
         raise ValueError(
             f"direct-call target census {len(raw_targets)} != expected {expected_targets}"
         )
+    decoded_calls = direct_calls(callable_bytes, root_address)
     decoder = Cs(CS_ARCH_X86, CS_MODE_32)
     instruction_rets = sum(
         1 for instruction in decoder.disasm(callable_bytes, root_address)
@@ -333,8 +334,14 @@ def map_root(
         "callable_end": callable_end,
         "callable_size": callable_end - root_address,
         "metadata_end": metadata_end,
-        "direct_call_sites": raw_sites,
-        "direct_call_target_count": len(raw_targets),
+        "direct_call_sites": sum(decoded_calls.values()),
+        "direct_call_target_count": len(decoded_calls),
+        "direct_call_census_basis": "linear_instruction_decode",
+        "raw_e8_sanity": {
+            "sites": raw_sites,
+            "targets": len(raw_targets),
+            "scope": "byte-scan regression guard; may include noninstruction E8 bytes",
+        },
         "ret_opcode_count": instruction_rets,
         "unique_destination_count": len(all_destinations),
         "regions": region_output,
@@ -346,8 +353,10 @@ def format_text(result: dict[str, Any]) -> str:
     lines = [
         f"{result['name']}: {result['address']:#010x}..{result['callable_end']:#010x} "
         f"({result['callable_size']} callable bytes)",
-        f"direct calls: {result['direct_call_sites']} sites / "
+        f"decoded direct calls: {result['direct_call_sites']} sites / "
         f"{result['direct_call_target_count']} targets; RET opcodes: {result['ret_opcode_count']}",
+        f"raw E8 fingerprint: {result['raw_e8_sanity']['sites']} sites / "
+        f"{result['raw_e8_sanity']['targets']} targets (includes noninstruction bytes)",
         f"unique physical destinations: {result['unique_destination_count']}",
     ]
     for region in result["regions"]:
