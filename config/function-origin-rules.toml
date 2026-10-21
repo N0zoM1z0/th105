@@ -3336,3 +3336,21 @@ required_body_hashes = [
 required_direct_edges = [
   { caller = "0x004114C0", site = "0x00411587", target = "0x00408A00", caller_status = "matching" },
 ]
+
+[[rules]]
+id = "text-font-glyph-authored-106a"
+addresses = ["0x00411B80"]
+expected_count = 1
+expected_bytes = 624
+expected_names = ["sub_411B80"]
+origin = "authored_game"
+subsystem = "rendering"
+disposition = "authored"
+confidence = "observed"
+evidence = "Full624-byte glyph span closes through RET12 at411DED;187 reachable instructions plus8 skipped alignment bytes remain in the full comparison. Actual reviewed font entry412670 calls at412756 with EAX owner and character/two output pointers. Game cursor/wrap/table/surface/accent policy around imported ANSI GDI establishes authored ownership independently of runtime/GDI origins. Genuine C++ in the actual caller TU covers all behavior;647/192 remains nonexact+3 on normal ECX ABI/register/frame context. All5376 bounded actual-instruction observer cases pass, with816/440 failing color-row/post-wrap-extents controls. No exact, real GDI or full original TU claim. docs/TEXT_FONT_GLYPH_2026_10_21.md."
+required_body_hashes = [
+  { address = "0x00411B80", size = 624, sha256 = "3e67460ec4d76b1bdf2e30566a9dc74d44c3d34116e847e49ea78667bfb93630" },
+]
+required_direct_edges = [
+  { caller = "0x00412670", site = "0x00412756", target = "0x00411B80", caller_status = "implemented" },
+]

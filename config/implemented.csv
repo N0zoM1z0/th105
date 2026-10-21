@@ -1487,3 +1487,4 @@ TextFont_start_text_render
 TextFontOwner194_ctor
 TextFontOwner194_dtor
 TextFontOwner194_configure
+TextTextureFontView_draw_text_glyph

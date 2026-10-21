@@ -20288,7 +20288,7 @@ source = "src/assets/TextFontRender.cpp"
 object = "build/match-units/GptWeb_TextFontRender.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Real font entry412670 plus native begin4119A0/end411AD0 in one TU, with actual ANSI GDI font/metrics setup and list<unsigned*> cleanup. VC8 naturally lowers the file-local end receiver into ESI; its168-byte/49-instruction body remains nonexact+7 on conditional EDI save scope, identically under RTM/SP1. Native begin291/84 instructions remains nonexact+7 with56-byte source versus64-byte target frame. Real caller322 remains nonexact+0. Header models only the observed native prefix through flags16C/16D, not the full font owner. No assembly, ABI facade, fake provider or exact credit. docs/TEXT_FONT_BEGIN_2026_10_21.md; docs/TEXT_FONT_END_2026_10_21.md; docs/TEXT_FONT_RENDER_2026_10_21.md."
+notes = "Genuine font entry412670 plus native begin4119A0/end411AD0/glyph411B80 in the actual TU. Glyph full624-byte target versus source647/192 remains nonexact+3 on normal ECX/private EAX and register/frame context;5376 bounded actual-instruction observer cases pass with color-row/wrap negative controls. Native20-byte GLYPHMETRICS and16-byte MAT2 use independently pinned ANSI GDI IAT/global addresses. Begin291/end168/text322 retain previous complete canonical hashes, all nonexact. Real accent/markup/blend providers and full font TU remain open; no ABI facade, frame padding, fake providers or exact credit. docs/TEXT_FONT_GLYPH_2026_10_21.md; docs/TEXT_FONT_BEGIN_2026_10_21.md; docs/TEXT_FONT_END_2026_10_21.md; docs/TEXT_FONT_RENDER_2026_10_21.md."
 
 [[units.gpt-web-text-font-render.functions]]
 address = "0x00412670"
@@ -20323,6 +20323,16 @@ rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
 ]
 dir32_targets = ["?g_main_window@th105@@3PAUHWND__@@A=?g_main_window@th105@@3PAUHWND__@@A"]
+
+[[units.gpt-web-text-font-render.functions]]
+address = "0x00411B80"
+symbol_base = "?draw_text_glyph@TextTextureFontView@th105@@QAEXIPAI0@Z"
+rel32_targets = [
+  "??_U@YAPAXI@Z=0x00665B8A",
+  "??_V@YAXPAX@Z=0x0068AA26",
+  "?draw_text_accent_dot@TextTextureFontView@th105@@QAEXHH@Z=0x00411DF0",
+]
+dir32_targets = ["?g_text_glyph_transform@th105@@3UGlyphTransform@1@A=?g_text_glyph_transform@th105@@3UGlyphTransform@1@A"]
 
 [units.gpt-web-text-font-owner]
 kind = "linked_candidate"

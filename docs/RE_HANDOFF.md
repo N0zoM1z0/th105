@@ -2,13 +2,27 @@
 
 Progress display (2026-10-21): the SVG now fills its exact bar from canonical
 exact bytes / confirmed authored bytes, even while classification is pending:
-232,681 / 2,131,956 = 10.91%. It explicitly labels the authored denominator
-provisional and keeps the separate origin/boundary review bar (74.58%, 1,023
+232,681 / 2,132,580 = 10.91%. It explicitly labels the authored denominator
+provisional and keeps the separate origin/boundary review bar (74.60%, 1,022
 pending). Four SVG regressions cover pending/completed review, byte weighting,
 verified remote ownership and empty denominators. Fractions follow the current
 tracking ledgers; aggregate cold verification is separate from this display.
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+adds genuine glyph411B80 in the actual font entry TU, full624 target versus
+source647/192 canonical3e8ea4fa, nonexact+3. Raw policy retains pre-wrap extents,
+row-gradient/fallback pixel arithmetic, second-call metric updates and ordered
+accent/cursor/output updates. All5376 bounded actual-instruction cases pass;
+fixed-row/post-wrap-extents controls fail816/440. API IAT and distinct16-byte
+main MAT2 are pinned; the adjacent accent transform is separate. Target span
+has187 reachable instructions plus8 skipped alignment bytes, retained in full
+comparison; linked strict unreachable-byte policy remains unchanged. Ordinary
+source keeps normal ECX ABI; target EAX/private provider context remains open.
+One conservative accepted53-byte string predicate consumer cold-replays exact;
+all prior begin/end/text and texture candidate hashes stay unchanged. No new
+exact or aggregate claim. See [native glyph source](TEXT_FONT_GLYPH_2026_10_21.md).
+Next: real accent/markup1744/blend closure before coherent full-font linked
+tuning; larger Reimu496540 remains nonexact49655F/+31. The preceding checkpoint
 accepts complete native configure4115A0 at439/439,128 instructions,
 canonical956579b7. First natural C++ config assignment/RGB interpolation/list
 retirement is ordinary COFF404/+0; genuine GL/LTCG yields complete exact439
