@@ -9,7 +9,30 @@ verified remote ownership and empty denominators. Fractions follow the current
 tracking ledgers; aggregate cold verification is separate from this display.
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
-accepts complete surface setter411760 at45/45 canonical04b792ad, all9 reachable
+recovers native markup411FA0 EDX font/ECX height output/two stack words/RET8
+through a genuine file-local stdcall and positive delimiter branch in its real
+caller TU. Previous normal member/private ESI-RET4 hypotheses do not generalize.
+Complete source1720/460 canonicalb36c5548 versus target1744/463 remains nonexact
+411FB0/+16, frame788 versus796; no padding/ABI facade/noinline annotation.
+The other stack/arithmetic/return/state-write/alignment differences remain open.
+Source caller323/115 canonical99116ccc remains nonexact+0; one real E8 at
+source41275E passes native roles, distinct from target41276A. Persistent EBX
+height output changes whole caller allocation. All8640 full parent cases pass
+with actual exact setter45/hex45,192 setter calls per side, others observed.
+All280 whole-caller cases pass with actual blend289 executed140 times per side;
+remaining providers stay abstract. Complete genuine GL baseline1497/391 and
+positive1572/408 privatize cursor into EDX and font onto stack, retain788 frame
+and inline setter; they are diagnostics without canonical/EH acceptance or a
+proved universal LTCG blocker. Selected ordinary COFF has the right native ABI.
+Nine other full bodies stay unchanged. Removing unused parser member declaration
+affects exactly two accepted units: font render/owner both cold-build, all prior
+setter45/hex45/blend289 and owner138/210/439/config67/compiler-only Tidy71 exact;
+texture110/264 unchanged. EH graph/flags agree but metadata/funclet offsets and
+runtime unwinding remain unqualified. No exact/count/aggregate/GDI/EH credit.
+See [native markup ABI and flow](TEXT_FONT_MARKUP_NATIVE_2026_10_21.md).
+Next: actual stack-value lifetimes/state scheduling and8-byte frame residual;
+glyph coordinate ordering and Reimu496540/nonexact49655F/+31 remain open.
+The preceding checkpoint accepts complete surface setter411760 at45/45 canonical04b792ad, all9 reachable
 instructions. Meaningful two-DWORD by-value TextSurfaceSize plus genuine local
 stdcall naturally yields EAX font/ECX surface/three stack words/RET12; scalar
 controls instead promote height into EDX. Explicit local O2/Ob1 profile retains
