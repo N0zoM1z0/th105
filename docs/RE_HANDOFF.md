@@ -2,13 +2,29 @@
 
 Progress display (2026-10-21): the SVG now fills its exact bar from canonical
 exact bytes / confirmed authored bytes, even while classification is pending:
-232,681 / 2,132,997 = 10.91%. It explicitly labels the authored denominator
-provisional and keeps the separate origin/boundary review bar (74.63%, 1,021
+232,681 / 2,134,741 = 10.90%. It explicitly labels the authored denominator
+provisional and keeps the separate origin/boundary review bar (74.65%, 1,020
 pending). Four SVG regressions cover pending/completed review, byte weighting,
 verified remote ownership and empty denominators. Fractions follow the current
 tracking ledgers; aggregate cold verification is separate from this display.
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+unifies runtime and lifecycle under one actual194-byte native font/config
+class. Runtime spelling is a typedef, nested config accesses retain every byte.
+Real config constructor4113E0 is67/67 from the shared header through GL/LTCG;
+its existing credit migrates from the retired Scenario facade unit, without
+new credit. Weight400 replaces unproven duration naming. Native owner ctor138,
+dtor210/configure439 and compiler-only Tidy71 remain exact. All five runtime
+and two texture complete candidate hashes are unchanged; no semantic replay
+is needed for identical programs. One replacement accepted unit covers both
+predecessor units; no unrelated accepted inputs/relocation changes or aggregate
+claim. Full markup411FA0 main1744/463 CFG, actual EDX+ECX/RET8 entry, tag literals
+and ruby local owner/config lifetimes are pinned and named/identified, with no
+source-present/exact claim. Private native prototype1682/frame788 versus target
+1744/frame796 still needs genuine private providers and GS/EH qualification.
+See [native font class and markup audit](TEXT_FONT_NATIVE_CLASS_2026_10_21.md).
+Next: actual markup/caller context and color/reset/hex/setter/blend closure;
+Reimu496540 remains nonexact49655F/+31. The preceding checkpoint
 adds actual native accent411DF0 provider, complete417/129 target versus433/132
 source, full canonicald0a47cc5, nonexact+5. File-local typed C++ naturally
 receives ESI; ordinary member434 has ECX. Main glyph shrinks647->645/191,

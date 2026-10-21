@@ -10975,18 +10975,6 @@ rel32_targets = [
   "?try_group_a_vs_group_b_interaction@CollisionContext@th105@@QAE_NPAUCollisionObject@2@0@Z=0x0046C930",
 ]
 
-[units.cross-v106a-scenario-effect-config-default]
-kind = "probe"
-source = "src/battle/ScenarioEffectConfigDefault.cpp"
-object = "build/match-units/CrossV106a_ScenarioEffectConfigDefault.obj"
-profile = "vc8-sp1-probe-o2"
-enable_gs = false
-notes = "Current 0x128 Scenario/profile text-effect config default lifetime. Ordinary C++ writes duration 400, interval 100000, zero flags/mode/state/options and reproduces the complete 67-byte constructor."
-
-[[units.cross-v106a-scenario-effect-config-default.functions]]
-address = "0x004113E0"
-symbol_base = "ScenarioEffectConfigDefaultView_ctor"
-
 [units.cross-v106a-player-slot-color]
 kind = "probe"
 source = "src/ui/PlayerSlotColor.cpp"
@@ -20269,16 +20257,16 @@ symbol_base = "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHan
 rel32_targets = [
   "?acquire@TextTextureTokenManager@th105@@QAEPAPAXAAUResourceHandleToken@2@@Z=0x00405090",
   "?release@TextTextureTokenManager@th105@@QAEXI@Z=0x00405200",
-  "?populate_text_texture@th105@@YGJPAPAUTextTexture9@1@PBDPAUTextTextureFontView@1@IIPAI3@Z=0x004097A0",
+  "?populate_text_texture@th105@@YGJPAPAUTextTexture9@1@PBDPAUTextFontOwner194@1@IIPAI3@Z=0x004097A0",
 ]
 
 [[units.gpt-web-text-texture-runtime.functions]]
 address = "0x004097A0"
-symbol_base = "?populate_text_texture@th105@@YGJPAPAUTextTexture9@1@PBDPAUTextTextureFontView@1@IIPAI3@Z"
+symbol_base = "?populate_text_texture@th105@@YGJPAPAUTextTexture9@1@PBDPAUTextFontOwner194@1@IIPAI3@Z"
 rel32_targets = [
   "_D3DXCreateTexture@32=0x0068989C",
   "memset=0x0068A440",
-  "?render_text@TextTextureFontView@th105@@QAEXPBDPAI1@Z=0x00412670",
+  "?render_text@TextFontOwner194@th105@@QAEXPBDPAI1@Z=0x00412670",
 ]
 dir32_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A=?g_d3d_backend@th105@@3UD3DBackend@1@A"]
 
@@ -20292,21 +20280,21 @@ notes = "Real font text/begin/end/glyph/accent source in the actual TU. Native f
 
 [[units.gpt-web-text-font-render.functions]]
 address = "0x00412670"
-symbol_base = "?render_text@TextTextureFontView@th105@@QAEXPBDPAI1@Z"
+symbol_base = "?render_text@TextFontOwner194@th105@@QAEXPBDPAI1@Z"
 rel32_targets = [
   "??_U@YAPAXI@Z=0x00665B8A",
   "??_V@YAXPAX@Z=0x0068AA26",
   "memset=0x0068A440",
-  "?start_text_render@th105@@YGXPAUTextTextureFontView@1@@Z=0x004119A0",
-  "?finish_text_render@th105@@YGXPAUTextTextureFontView@1@@Z=0x00411AD0",
-  "?draw_text_glyph@TextTextureFontView@th105@@QAEXIPAI0@Z=0x00411B80",
-  "?parse_text_markup@TextTextureFontView@th105@@QAEHPBDPAI1@Z=0x00411FA0",
-  "?blend_intermediate_text_surface@TextTextureFontView@th105@@QAEPAEPBIPAI@Z=0x004127C0",
+  "?start_text_render@th105@@YGXPAUTextFontOwner194@1@@Z=0x004119A0",
+  "?finish_text_render@th105@@YGXPAUTextFontOwner194@1@@Z=0x00411AD0",
+  "?draw_text_glyph@TextFontOwner194@th105@@QAEXIPAI0@Z=0x00411B80",
+  "?parse_text_markup@TextFontOwner194@th105@@QAEHPBDPAI1@Z=0x00411FA0",
+  "?blend_intermediate_text_surface@TextFontOwner194@th105@@QAEPAEPBIPAI@Z=0x004127C0",
 ]
 
 [[units.gpt-web-text-font-render.functions]]
 address = "0x00411AD0"
-symbol_base = "?finish_text_render@th105@@YGXPAUTextTextureFontView@1@@Z"
+symbol_base = "?finish_text_render@th105@@YGXPAUTextFontOwner194@1@@Z"
 rel32_targets = [
   "??_V@YAXPAX@Z=0x0068AA26",
   "operator_delete=0x006898EA",
@@ -20316,7 +20304,7 @@ dir32_targets = ["?g_main_window@th105@@3PAUHWND__@@A=?g_main_window@th105@@3PAU
 
 [[units.gpt-web-text-font-render.functions]]
 address = "0x004119A0"
-symbol_base = "?start_text_render@th105@@YGXPAUTextTextureFontView@1@@Z"
+symbol_base = "?start_text_render@th105@@YGXPAUTextFontOwner194@1@@Z"
 rel32_targets = [
   "??_V@YAXPAX@Z=0x0068AA26",
   "operator_delete=0x006898EA",
@@ -20326,17 +20314,17 @@ dir32_targets = ["?g_main_window@th105@@3PAUHWND__@@A=?g_main_window@th105@@3PAU
 
 [[units.gpt-web-text-font-render.functions]]
 address = "0x00411B80"
-symbol_base = "?draw_text_glyph@TextTextureFontView@th105@@QAEXIPAI0@Z"
+symbol_base = "?draw_text_glyph@TextFontOwner194@th105@@QAEXIPAI0@Z"
 rel32_targets = [
   "??_U@YAPAXI@Z=0x00665B8A",
   "??_V@YAXPAX@Z=0x0068AA26",
-  "?draw_text_accent_dot@th105@@YGXPAUTextTextureFontView@1@HH@Z=0x00411DF0",
+  "?draw_text_accent_dot@th105@@YGXPAUTextFontOwner194@1@HH@Z=0x00411DF0",
 ]
 dir32_targets = ["?g_text_glyph_transform@th105@@3UGlyphTransform@1@A=?g_text_glyph_transform@th105@@3UGlyphTransform@1@A"]
 
 [[units.gpt-web-text-font-render.functions]]
 address = "0x00411DF0"
-symbol_base = "?draw_text_accent_dot@th105@@YGXPAUTextTextureFontView@1@HH@Z"
+symbol_base = "?draw_text_accent_dot@th105@@YGXPAUTextFontOwner194@1@HH@Z"
 rel32_targets = [
   "??_U@YAPAXI@Z=0x00665B8A",
   "??_V@YAXPAX@Z=0x0068AA26",
@@ -20387,3 +20375,8 @@ rel32_targets = [
   "??3@YAXPAX@Z=0x006898EA",
   "__invalid_parameter_noinfo=0x0068A143",
 ]
+
+[[units.gpt-web-text-font-owner.functions]]
+address = "0x004113E0"
+export = "font_config_ctor"
+symbol_base = "??0TextFontConfig128@th105@@QAE@XZ"

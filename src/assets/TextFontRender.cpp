@@ -32,16 +32,16 @@ extern "C" __declspec(dllimport) int __stdcall GetTextMetricsA(void *, TextMetri
 
 static void __stdcall start_text_render(TextTextureFontView *font)
 {
-    font->font_004 = CreateFontA(font->font_height_114, 0, 0, 0,
-        font->font_weight_118, font->font_italic_11c, 0, 0, 0x80, 4, 0, 2, 0x31,
-        font->face_00c);
+    font->font_004 = CreateFontA(font->config_00c.height_108, 0, 0, 0,
+        font->config_00c.weight_10c, font->config_00c.italic_110, 0, 0, 0x80, 4, 0, 2, 0x31,
+        font->config_00c.face_000);
     font->dc_000 = GetDC(g_main_window);
     font->old_font_008 = SelectObject(font->dc_000, font->font_004);
     TextMetricsA metrics;
     GetTextMetricsA(font->dc_000, &metrics);
     font->font_ascent_13c = metrics.ascent;
-    font->cursor_x_134 = font->origin_x_124 + font->render_via_intermediate_11d;
-    font->cursor_y_138 = font->origin_y_128 + font->render_via_intermediate_11d;
+    font->cursor_x_134 = font->config_00c.origin_x_118 + font->config_00c.outline_111;
+    font->cursor_y_138 = font->config_00c.origin_y_11c + font->config_00c.outline_111;
     font->accent_16c = 0;
     font->unknown_flag_16d = 0;
     font->active_color_154 = font->base_color_158;
@@ -147,10 +147,10 @@ void TextTextureFontView::draw_text_glyph(
     if (bottom >= static_cast<int>(surface_height_148))
         return;
     if (right > static_cast<int>(surface_width_14c)) {
-        if (!wrap_11e)
+        if (!config_00c.wrap_112)
             return;
-        cursor_x_134 = origin_x_124 + render_via_intermediate_11d;
-        cursor_y_138 += font_height_114 + spacing_y_130;
+        cursor_x_134 = config_00c.origin_x_118 + config_00c.outline_111;
+        cursor_y_138 += config_00c.height_108 + config_00c.spacing_y_124;
     }
     if (bytes != 0) {
         unsigned char *glyph = new unsigned char[bytes];
@@ -182,8 +182,8 @@ void TextTextureFontView::draw_text_glyph(
     }
     if (accent_16c)
         th105::draw_text_accent_dot(this, cursor_x_134 + metrics.gmCellIncX / 2,
-            cursor_y_138 - font_height_114);
-    cursor_x_134 += metrics.gmCellIncX + spacing_x_12c;
+            cursor_y_138 - config_00c.height_108);
+    cursor_x_134 += metrics.gmCellIncX + config_00c.spacing_x_120;
     if (width_out) {
         const unsigned extent = static_cast<unsigned>(right);
         *width_out = *width_out > extent ? *width_out : extent;
@@ -198,7 +198,7 @@ void TextTextureFontView::render_text(const char *text, unsigned *width_out, uns
 {
     int length = static_cast<int>(strlen(text));
     unsigned *intermediate = 0;
-    if (render_via_intermediate_11d != 0) {
+    if (config_00c.outline_111 != 0) {
         intermediate = new unsigned[surface_height_148 * surface_pitch_dwords_150];
         memset(intermediate, 0, 4 * surface_height_148 * surface_pitch_dwords_150);
         surface_base_140 = intermediate;
@@ -232,7 +232,7 @@ void TextTextureFontView::render_text(const char *text, unsigned *width_out, uns
     }
 
     finish_text_render(this);
-    if (render_via_intermediate_11d != 0) {
+    if (config_00c.outline_111 != 0) {
         blend_intermediate_text_surface(intermediate, static_cast<unsigned *>(surface_cursor_144));
         delete[] intermediate;
     }

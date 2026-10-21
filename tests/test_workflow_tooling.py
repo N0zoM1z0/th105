@@ -86,7 +86,7 @@ class WorkflowToolingTests(unittest.TestCase):
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 539)
+        self.assertEqual(len(manifest["units"]), 538)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
             1500,
@@ -1018,10 +1018,10 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 488)
+        self.assertEqual(len(accepted), 487)
         self.assertEqual(sum(map(len, accepted.values())), 1371)
         self.assertEqual(accepted["gpt-web-design-base-cleanup"], {"0x0040BB40"})
-        self.assertEqual(accepted["gpt-web-text-font-owner"], {"0x00411430", "0x004114C0", "0x004115A0"})
+        self.assertEqual(accepted["gpt-web-text-font-owner"], {"0x004113E0", "0x00411430", "0x004114C0", "0x004115A0"})
         self.assertEqual(accepted["gpt-web-design-object-bind-alt"], {"0x00420B90"})
         self.assertEqual(accepted["gpt-web-gage-design-render"], {
             "0x0040AEA0", "0x0040AF30", "0x0040AEE0",

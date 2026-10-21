@@ -3272,7 +3272,7 @@ expected_count = 1
 expected_bytes = 326
 expected_names = ["sub_412670"]
 origin = "authored_game"
-subsystem = "rendering"
+subsystem = "render"
 disposition = "authored"
 confidence = "observed"
 evidence = "Complete326-byte/120-instruction ECX/RET12 game font entry is called at409883 by the reviewed text-texture population backend. It allocates an optional outline surface, zeros optional dimension outputs, decodes exact SJIS lead ranges and signed single bytes, advances markup/glyph calls, and ends/blends/frees in the observed order. Its font fields and private begin/end/glyph/markup providers own game rendering policy rather than CRT strlen/allocation. Genuine C++326/117 instructions remains nonexact+0; bounded callee-observer agreement is separate from exact and GDI runtime coverage. docs/TEXT_FONT_RENDER_2026_10_21.md."
@@ -3290,7 +3290,7 @@ expected_count = 1
 expected_bytes = 168
 expected_names = ["sub_411AD0"]
 origin = "authored_game"
-subsystem = "rendering"
+subsystem = "render"
 disposition = "authored"
 confidence = "observed"
 evidence = "Complete168-byte/49-instruction ESI/RET end is called at412783 by reviewed game font entry412670. It deletes native color-list front arrays/nodes, restores the original GDI font, deletes the SelectObject result, releases the current window DC and clears fields04/08/00. This font/resource lifetime is authored game policy, while native list machinery and runtime/import callees receive no credit. A real file-local C++ provider in the actual font caller TU naturally recovers ESI and emits a complete168-byte/49-instruction body, but canonical comparison remains nonexact+7 on EDI preservation scope. RTM/SP1 identical;576 bounded observer cases agree, without claiming real GDI execution or exactness. docs/TEXT_FONT_END_2026_10_21.md."
@@ -3308,7 +3308,7 @@ expected_count = 1
 expected_bytes = 291
 expected_names = ["sub_4119A0"]
 origin = "authored_game"
-subsystem = "rendering"
+subsystem = "render"
 disposition = "authored"
 confidence = "observed"
 evidence = "Complete291-byte/83-instruction ESI/RET begin is called at412706 by reviewed game font entry412670. Its actual ANSI CreateFontA/GetDC/SelectObject/GetTextMetricsA sequence publishes the font handles/ascent, origin plus full outline byte, flags and active base-color pointer before deleting native list front arrays/nodes. Game font layout and resource lifetime establish authored policy, not ownership of imported GDI or native STL/runtime callees. Real static C++ in the actual caller TU naturally emits ESI and291 bytes/84 instructions, but remains nonexact+7 on56-byte source versus64-byte target frame and EDI save scope. 4320 bounded actual-instruction/list observer cases agree; no exact or real GDI claim. docs/TEXT_FONT_BEGIN_2026_10_21.md."
@@ -3344,7 +3344,7 @@ expected_count = 1
 expected_bytes = 624
 expected_names = ["sub_411B80"]
 origin = "authored_game"
-subsystem = "rendering"
+subsystem = "render"
 disposition = "authored"
 confidence = "observed"
 evidence = "Full624-byte glyph span closes through RET12 at411DED;187 reachable instructions plus8 skipped alignment bytes remain in the full comparison. Actual reviewed font entry412670 calls at412756 with EAX owner and character/two output pointers. Game cursor/wrap/table/surface/accent policy around imported ANSI GDI establishes authored ownership independently of runtime/GDI origins. Genuine C++ in the actual caller TU covers all behavior;647/192 remains nonexact+3 on normal ECX ABI/register/frame context. All5376 bounded actual-instruction observer cases pass, with816/440 failing color-row/post-wrap-extents controls. No exact, real GDI or full original TU claim. docs/TEXT_FONT_GLYPH_2026_10_21.md."
@@ -3362,7 +3362,7 @@ expected_count = 1
 expected_bytes = 417
 expected_names = ["sub_411DF0"]
 origin = "authored_game"
-subsystem = "rendering"
+subsystem = "render"
 disposition = "authored"
 confidence = "observed"
 evidence = "Full417-byte/129-instruction dot rasterizer closes through RET8 at411F8E. Reviewed actual glyph411B80 calls at411DA6 on its ESI game-font owner with two coordinates. Game clipping/centering/table/fallback/surface ownership around imported GDI establishes authored policy. Native typed file-local source naturally preserves ESI;433/132 remains nonexact+5 on argument/register/frame lifetime. All948 bounded actual-instruction observer cases pass, with170/120 first-width/row-color negative failures; changed actual glyph645/191 passes5376 cases again. Distinct accent MAT2 is6FA5A4, separate from main glyph6FA594. No exact, GDI runtime or original nominal class/TU claim. docs/TEXT_FONT_ACCENT_2026_10_21.md."
@@ -3371,4 +3371,29 @@ required_body_hashes = [
 ]
 required_direct_edges = [
   { caller = "0x00411B80", site = "0x00411DA6", target = "0x00411DF0", caller_status = "implemented" },
+]
+
+[[rules]]
+id = "text-font-markup-authored-106a"
+addresses = ["0x00411FA0"]
+expected_count = 1
+expected_bytes = 1744
+expected_names = ["sub_411FA0"]
+origin = "authored_game"
+subsystem = "render"
+disposition = "authored"
+confidence = "observed"
+evidence = "Full1744-byte/463-instruction main CFG closes at41266D RET8; reviewed render_text412670 calls at41276A with EDX font/ECX height_out and cursor/width_out stack words. Target-owned br/ruby/accent/color literals and cursor/color/ruby game policy identify authored control flow independently of imported CRT or generated STL helpers. Ruby path actually constructs/configures/destroys the canonical native font owner and renders recursively. Full hash, actual incoming edge and selected lifecycle E8s are pinned. Local deque<string>/native owner/config source interpretation is corroborated by the pinned1682-byte ordinary prototype, but the prototype remains unselected and unqualified for source/exact credit; original private ABI and GS/EH metadata closure remain unknown. docs/TEXT_FONT_NATIVE_CLASS_2026_10_21.md."
+required_body_hashes = [
+  { address = "0x00411FA0", size = 1744, sha256 = "6343d2d6639459aaeadb9de2acd74ecbb0be02f8a908e4b84af385f1daeccebb" },
+]
+required_direct_edges = [
+  { caller = "0x00412670", site = "0x0041276A", target = "0x00411FA0", caller_status = "implemented" },
+]
+required_selected_body_calls = [
+  { owner = "0x00411FA0", site = "0x00412298", target = "0x00411430", target_status = "matching" },
+  { owner = "0x00411FA0", site = "0x004122A9", target = "0x004113E0", target_status = "matching" },
+  { owner = "0x00411FA0", site = "0x0041240D", target = "0x004115A0", target_status = "matching" },
+  { owner = "0x00411FA0", site = "0x0041243B", target = "0x00412670", target_status = "implemented" },
+  { owner = "0x00411FA0", site = "0x0041244E", target = "0x004114C0", target_status = "matching" },
 ]

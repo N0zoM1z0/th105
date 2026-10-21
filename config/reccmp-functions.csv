@@ -829,7 +829,7 @@ calculate_forwarded_quantity,0x0045B4A0,function
 calculate_base_hit_quantity,0x0045B600,function
 try_outcome_path_a,0x0046D3F0,function
 dispatch_family2_against_family1,0x0046DB30,function
-ScenarioEffectConfig128_default_construct,0x004113E0,function
+TextFontConfig128_ctor,0x004113E0,function
 PlayerSlotRecord_set_profile_color,0x00431440,function
 PlayerSlotRecord_reload_profile,0x00431DA0,function
 PlayerSlotRecord_copy_deck,0x00431E50,function
@@ -1508,3 +1508,4 @@ TextFontOwner194_dtor,0x004114C0,function
 TextFontOwner194_configure,0x004115A0,function
 TextTextureFontView_draw_text_glyph,0x00411B80,function
 TextFont_draw_text_accent_dot,0x00411DF0,function
+TextFont_parse_text_markup,0x00411FA0,function
