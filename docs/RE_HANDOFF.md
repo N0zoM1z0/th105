@@ -2,13 +2,24 @@
 
 Progress display (2026-10-21): the SVG now fills its exact bar from canonical
 exact bytes / confirmed authored bytes, even while classification is pending:
-231,894 / 2,131,956 = 10.88%. It explicitly labels the authored denominator
+232,032 / 2,131,956 = 10.88%. It explicitly labels the authored denominator
 provisional and keeps the separate origin/boundary review bar (74.55%, 1,024
 pending). Four SVG regressions cover pending/completed review, byte weighting,
-verified remote ownership and empty denominators. No exact ledger, compiler
-input or reconstruction acceptance changes; no additional VC8 replay is needed.
+verified remote ownership and empty denominators. Fractions follow the current
+tracking ledgers; aggregate cold verification is separate from this display.
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+accepts complete native font owner constructor411430 at138/138,29 instructions,
+canonicalde916b65 through genuine GL/LTCG. Real0x128 config/list<unsigned*>/string
+construction removes ordinary142-byte unused sentinel receiver setup naturally.
+The sole26-byte allocator helper is independently verified through its actual
+MSVCR80 operator-new import and stays excluded without credit. Constructor moves
+to canonical origin; only destructor/configure remain in the manual family rule.
+No prior accepted unit definition, shared header/profile or relocation binding
+changes; the new isolated unit cold-replays exact. No aggregate replay claim.
+See [native constructor exact](TEXT_FONT_OWNER_CTOR_EXACT_2026_10_21.md).
+Next: real owner destruction/configure and remaining glyph/markup/blend closure;
+font begin/end/text and Reimu496540 stay nonexact. The preceding checkpoint
 adds real ANSI GDI begin4119A0 alongside end in the actual font TU. Both
 naturally receive ESI. Begin291/84 remains nonexact+7 with56-byte source versus
 64-byte target frame and conditional EDI saving; complete list loop agrees.

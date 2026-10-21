@@ -20323,3 +20323,20 @@ rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
 ]
 dir32_targets = ["?g_main_window@th105@@3PAUHWND__@@A=?g_main_window@th105@@3PAUHWND__@@A"]
+
+[units.gpt-web-text-font-owner]
+kind = "linked_candidate"
+source = "src/assets/TextFontOwner.cpp"
+object = "build/match-units/GptWeb_TextFontOwner.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = true
+link_data_targets = ["__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0"]
+notes = "Complete138-byte/29-instruction native font-owner constructor411430, canonicalde916b65 through genuine GL/LTCG. Native0x128 config defaults, list<unsigned*> sentinel and string SSO initialization recover every target store and the normal ECX/EAX-this ABI. Ordinary COFF142/+1 retains unused list receiver setup; CIL naturally removes it. The sole26-byte sentinel callee is independently reproduced through its actual MSVCR80 operator-new import and remains excluded without credit. Only existing GS runtime IAT keys resolve support code; root has no absolute data refs. No shared header/profile/binding changes or fabricated providers. docs/TEXT_FONT_OWNER_CTOR_EXACT_2026_10_21.md."
+
+[[units.gpt-web-text-font-owner.functions]]
+address = "0x00411430"
+export = "font_owner_ctor"
+symbol_base = "??0TextFontOwner194@th105@@QAE@XZ"
+rel32_targets = [
+  "?_Buynode@?$list@PAIV?$allocator@PAI@std@@@std@@IAEPAU_Node@?$_List_nod@PAIV?$allocator@PAI@std@@@2@XZ=0x004040B0",
+]

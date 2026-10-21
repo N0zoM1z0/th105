@@ -147,3 +147,12 @@ git diff --check
 Next: real owner/config construction and glyph/markup/blend provider closure,
 then measure genuine closed-TU/link context for the remaining frame/save scope.
 Do not force extra stack storage or repeat neutral compiler-version controls.
+
+## Native owner construction follow-up
+
+[The owner constructor checkpoint](TEXT_FONT_OWNER_CTOR_EXACT_2026_10_21.md)
+recovers complete411430 at138/138 through genuine GL/LTCG and native config/list/
+string source. It resolves the ordinary142-byte sentinel-receiver difference,
+without a shared runtime-prefix change or credit for the excluded helper.
+Begin/end/text results in this note stay unchanged and nonexact; real owner
+destruction/configuration and remaining providers still need recovery.
