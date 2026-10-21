@@ -9,6 +9,21 @@ verified remote ownership and empty denominators. Fractions follow the current
 tracking ledgers; aggregate cold verification is separate from this display.
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+selects genuine markup411FA0 in the actual native font TU. Complete source1682/
+459 canonical065cb3b3 remains nonexact+16, frame788 versus796 and normal member
+ECX/RET12 versus target EDX+ECX/RET8. File-local1665/RET4 control shares ESI owner
+and does not recover target. All8640 bounded actual-parent observer cases pass;
+72-case selected sensitivity passes, broad-SJIS/character-width controls each
+fail12. Source and target four-state unwind graphs [-1,0,1,0] share cleanup
+roles, but funclet stack offsets differ4 and handler slots8; handler/metadata
+remain unqualified for exact or EH-runtime claims. Ten unit-local literal/
+handler address roles are fully attested, including one-byte delimiter NUL at
+addend4, with no comparator bound waiver. Five previous complete runtime hashes
+remain unchanged. Shared headers/profiles/data rows and all accepted unit
+inputs stay unchanged; only the one nonaccepted font unit rebuilds. No exact or
+aggregate replay claim. See [native markup source](TEXT_FONT_MARKUP_SOURCE_2026_10_21.md).
+Next: real color/reset/hex/setter/blend definitions and closed-TU/link ownership;
+Reimu496540 remains nonexact49655F/+31. The preceding checkpoint
 unifies runtime and lifecycle under one actual194-byte native font/config
 class. Runtime spelling is a typedef, nested config accesses retain every byte.
 Real config constructor4113E0 is67/67 from the shared header through GL/LTCG;

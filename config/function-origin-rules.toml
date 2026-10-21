@@ -3383,7 +3383,7 @@ origin = "authored_game"
 subsystem = "render"
 disposition = "authored"
 confidence = "observed"
-evidence = "Full1744-byte/463-instruction main CFG closes at41266D RET8; reviewed render_text412670 calls at41276A with EDX font/ECX height_out and cursor/width_out stack words. Target-owned br/ruby/accent/color literals and cursor/color/ruby game policy identify authored control flow independently of imported CRT or generated STL helpers. Ruby path actually constructs/configures/destroys the canonical native font owner and renders recursively. Full hash, actual incoming edge and selected lifecycle E8s are pinned. Local deque<string>/native owner/config source interpretation is corroborated by the pinned1682-byte ordinary prototype, but the prototype remains unselected and unqualified for source/exact credit; original private ABI and GS/EH metadata closure remain unknown. docs/TEXT_FONT_NATIVE_CLASS_2026_10_21.md."
+evidence = "Full1744-byte/463-instruction main CFG, actual41276A incoming edge and game br/ruby/accent/color policy establish authored ownership independently of imported CRT/STL. Selected genuine native C++ in the actual caller TU is1682/459, nonexact+16 on frame/private ABI;8640 bounded parent observer cases pass. Wrong SJIS/character-width controls each fail12 of72. Four-state cleanup graphs share roles/topology but source/target handler/frame/metadata remain unqualified; parent handler-address replay grants no EH/funclet or exact credit. docs/TEXT_FONT_MARKUP_SOURCE_2026_10_21.md; docs/TEXT_FONT_NATIVE_CLASS_2026_10_21.md."
 required_body_hashes = [
   { address = "0x00411FA0", size = 1744, sha256 = "6343d2d6639459aaeadb9de2acd74ecbb0be02f8a908e4b84af385f1daeccebb" },
 ]

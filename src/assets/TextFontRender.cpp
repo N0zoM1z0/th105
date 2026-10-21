@@ -1,8 +1,10 @@
-// JP1.06a font entry412670 and native begin/end/glyph providers. COFF is nonexact;
+// JP1.06a font entry and native begin/end/glyph/accent/markup providers.
+// Complete canonical comparisons remain nonexact;
 // remaining provider/TU context is needed for the frame and private entries.
 #include "TextFontRuntime.hpp"
 
 #include <new>
+#include <deque>
 #include <string.h>
 
 struct HWND__;
@@ -192,6 +194,94 @@ void TextTextureFontView::draw_text_glyph(
         const unsigned extent = static_cast<unsigned>(bottom);
         *height_out = *height_out > extent ? *height_out : extent;
     }
+}
+
+void __stdcall set_markup_color(TextFontOwner194 *, unsigned char, unsigned char, unsigned char);
+void reset_markup_color(TextFontOwner194 *);
+unsigned char decode_markup_hex(unsigned char);
+int TextTextureFontView::parse_text_markup(
+    const char *cursor, unsigned *width_out, unsigned *height_out)
+{
+    std::deque<std::string> words;
+    const char *close = strchr(cursor, '>');
+    if (!close)
+        return static_cast<int>(strlen(cursor));
+    const int length = static_cast<int>(close - cursor);
+    char *buffer = new char[length + 1];
+    strncpy_s(buffer, length + 1, cursor, length);
+    buffer[length] = 0;
+    char delimiters[] = " =\t\n";
+    char *context;
+    char *token = strtok_s(buffer, delimiters, &context);
+    while (token) {
+        words.push_back(std::string(token));
+        token = strtok_s(0, delimiters, &context);
+    }
+    delete[] buffer;
+    if (words[0] == "br") {
+        cursor_y_138 += config_00c.height_108 + config_00c.spacing_y_124;
+        cursor_x_134 = config_00c.origin_x_118 + config_00c.outline_111;
+    } else if (words[0] == "ruby") {
+        if (words.size() > 1) {
+            saved_x_18c = cursor_x_134;
+            saved_y_190 = cursor_y_138;
+            text_170 = words[1];
+            unknown_flag_16d = 1;
+        }
+    } else if (words[0] == "/ruby") {
+        if (unknown_flag_16d) {
+            TextFontOwner194 ruby;
+            TextFontConfig128 config;
+            const int ruby_height = config_00c.height_108 / 3;
+            strcpy_s(config.face_000, 256, config_00c.face_000);
+            config.height_108 = ruby_height;
+            config.colors_100[0] = config.colors_100[1] = config_00c.colors_100[0];
+            config.colors_100[2] = config.colors_100[3] = config_00c.colors_100[2];
+            config.colors_100[4] = config.colors_100[5] = config_00c.colors_100[4];
+            if (saved_y_190 >= ruby_height) {
+                ruby.set_surface(static_cast<unsigned *>(surface_base_140) +
+                    (saved_y_190 - ruby_height) * surface_pitch_dwords_150 + saved_x_18c,
+                    surface_width_14c, surface_height_148, surface_pitch_dwords_150);
+                const int span = cursor_x_134 - config_00c.spacing_x_120 - saved_x_18c;
+                if (span > 0) {
+                    const char *text = text_170.c_str();
+                    const int bytes = static_cast<int>(text_170.size());
+                    int offset = 0;
+                    int characters = 0;
+                    while (offset < bytes) {
+                        const unsigned char lead = static_cast<unsigned char>(text[offset]);
+                        if ((lead >= 0x81 && lead < 0xa0) || (lead >= 0xe0 && lead < 0xff))
+                            offset += 2;
+                        else
+                            ++offset;
+                        ++characters;
+                    }
+                    const int gap = (span - bytes * ruby_height / 2) / (characters + 1);
+                    config.origin_x_118 = gap;
+                    config.origin_y_11c = 0;
+                    config.spacing_x_120 = gap;
+                    config.spacing_y_124 = 0;
+                }
+                ruby.configure(&config);
+                ruby.render_text(text_170.c_str(), width_out, height_out);
+            }
+            unknown_flag_16d = 0;
+        }
+    } else if (words[0] == "accent") {
+        accent_16c = 1;
+    } else if (words[0] == "/accent") {
+        accent_16c = 0;
+    } else if (words[0] == "color") {
+        if (words.size() > 1) {
+            const unsigned char r = (decode_markup_hex(words[1].at(0)) << 4) | decode_markup_hex(words[1].at(1));
+            const unsigned char g = (decode_markup_hex(words[1].at(2)) << 4) | decode_markup_hex(words[1].at(3));
+            const unsigned char b = (decode_markup_hex(words[1].at(4)) << 4) | decode_markup_hex(words[1].at(5));
+            set_markup_color(this, r, g, b);
+        }
+    } else if (words[0] == "/color") {
+        reset_markup_color(this);
+    }
+    return length + 1;
 }
 
 void TextTextureFontView::render_text(const char *text, unsigned *width_out, unsigned *height_out)

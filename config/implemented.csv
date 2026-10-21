@@ -1489,3 +1489,4 @@ TextFontOwner194_dtor
 TextFontOwner194_configure
 TextTextureFontView_draw_text_glyph
 TextFont_draw_text_accent_dot
+TextFont_parse_text_markup

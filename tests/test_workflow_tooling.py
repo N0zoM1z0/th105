@@ -67,7 +67,7 @@ class WorkflowToolingTests(unittest.TestCase):
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1491)
+        self.assertEqual(len(implemented), 1492)
         root = next(row for row in functions if row["address"] == "0x00496540")
         self.assertEqual(root["status"], "implemented")
         self.assertEqual(root["match_percent"], "0.00")
@@ -89,7 +89,7 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(len(manifest["units"]), 538)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1500,
+            1501,
         )
         root = manifest["units"]["gpt-web-reimu-object-action-state"]
         self.assertEqual(root["kind"], "probe")
@@ -1742,7 +1742,7 @@ class WorkflowToolingTests(unittest.TestCase):
         )
         self.assertIn("Canonical exact functions | 1,371", markdown)
         self.assertIn("Canonical exact authored bytes | 232,681", markdown)
-        self.assertIn("Source-present authored mappings | 1,491", markdown)
+        self.assertIn("Source-present authored mappings | 1,492", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
