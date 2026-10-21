@@ -13,7 +13,7 @@ are used. This is a single-core, serial compiler investigation.
 
 ## A natural counterexample to an explicit-alignment assumption
 
-The existing OggPcmRuntime.cpp has no explicit alignment declaration. Fresh
+The OggPcmRuntime.cpp at commit c5a59ef has no explicit alignment declaration. Fresh
 ordinary VC8 SP1 O2/GS-off compilation emits255 bytes beginning
 `push ebp; mov ebp,esp; and esp,-64; sub esp,34h`. Strict FP also naturally
 retains the64-byte frame, at263 bytes. Its real double current_time, loop
@@ -32,8 +32,9 @@ CNumber originally had a particular double local, attribute or command line.
 The comparison control is reproducible without changing the selected Ogg file:
 
 ```bash
-taskset -c 0 nice -n 10 scripts/compile-unit.sh src/audio/OggPcmRuntime.cpp build/ogg-frame-control.obj
-TH105_FP_MODE=strict taskset -c 0 nice -n 10 scripts/compile-unit.sh src/audio/OggPcmRuntime.cpp build/ogg-strict-frame-control.obj
+git show c5a59ef:src/audio/OggPcmRuntime.cpp > build/ogg-frame-control.cpp
+TH105_EXTRA_INCLUDE_DIRS="$PWD/src/audio" taskset -c 0 nice -n 10 scripts/compile-unit.sh build/ogg-frame-control.cpp build/ogg-frame-control.obj
+TH105_EXTRA_INCLUDE_DIRS="$PWD/src/audio" TH105_FP_MODE=strict taskset -c 0 nice -n 10 scripts/compile-unit.sh build/ogg-frame-control.cpp build/ogg-strict-frame-control.obj
 ```
 
 The FPO control prepends the pragma to a private copy and supplies

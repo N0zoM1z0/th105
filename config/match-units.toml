@@ -18182,9 +18182,9 @@ dir32_targets = [
 kind = "probe"
 source = "src/audio/OggPcmRuntime.cpp"
 object = "build/match-units/GptWeb_OggPcmRuntime.obj"
-profile = "vc8-sp1-probe-o2"
+profile = "vc8-sp1-probe-o2-fp-strict"
 enable_gs = false
-notes = "Game-side Ogg PCM fill/loop wrapper @ 0x00418B70. Two current audio callers pass OggDataSource+0x30 and an 0x8000-byte destination with stdcall cleanup. Xiph ov_read/ov_time_tell/ov_time_seek identities are independently pinned. Natural source is semantically closed but 255/252 and begins with a non-target aligned EBP frame; a separate clean TU reproduces the same result, rejecting DirectSound TU contamination."
+notes = "Game-side Ogg PCM fill/loop wrapper @ 0x00418B70. Two current audio callers pass OggDataSource+0x30 and an 0x8000-byte destination with stdcall cleanup. Xiph ov_read/ov_time_tell/ov_time_seek identities are independently pinned. Target re-audit removes the unsupported bitstream initializer, recovers unsigned remaining-count clamping and the zero-read-first branch, and preserves current_time as a genuine qword source boundary under strict FP/exceptions off. Complete source is251/252 nonexact at+0: its natural64-byte aligned EBP frame and register allocation still differ. Only this unit/profile changes; no shared header/binding or exact credit. See docs/OGG_PCM_VALUE_LIFETIMES_2026_10_21.md."
 
 [[units.gpt-web-ogg-pcm-runtime.functions]]
 address = "0x00418B70"

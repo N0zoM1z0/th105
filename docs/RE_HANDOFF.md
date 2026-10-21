@@ -1,7 +1,10 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest bounded
-frame audit freshly preserves the preceding CDesignNumber matches and finds
+Ogg418B70 audit corrects its unsigned count/out-parameter/time-value facts.
+Complete source is251/252 nonexact at+0; its aligned frame remains different
+from the target12-byte ESP frame. The preceding bounded
+frame audit freshly preserves the CDesignNumber matches and finds
 that local FPO-off can suppress VC8's natural64-byte stack alignment in the
 ordinary Ogg control. No new exact is recorded in that audit. The preceding
 follow-up accepts CDesignNumber render40AF80/40AFC0 at55/63 and private bound
@@ -74,6 +77,15 @@ literal-width, intrinsic and external-visibility controls remain nonexact;
 none is selected. Retaining EBP for the exact95-byte dispatcher is a useful
 source control, but cannot establish the floating body's original frame/TU
 provenance. Continue from actual type/lifetime and complete caller evidence.
+
+The [Ogg value checkpoint](OGG_PCM_VALUE_LIFETIMES_2026_10_21.md) removes the
+unsupported bitstream initializer, recovers unsigned JB clamping and the
+zero-read-first branch, and uses strict FP/exceptions off to materialize the
+actual qword current_time before either path. Raw target252 bytes/91
+instructions/five calls/two RET8 exits and both callers freshly close. Only
+this nonexact unit's source/profile changes; shared headers, bindings, origin
+rules and matches are unchanged. O1/Os/Zp4/speed-off controls are unselected.
+The predecessor frame-control recipe is now pinned to c5a59ef's source.
 
 ## Current811 coordinate-argument phase
 
