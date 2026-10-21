@@ -1509,3 +1509,4 @@ TextFontOwner194_configure,0x004115A0,function
 TextTextureFontView_draw_text_glyph,0x00411B80,function
 TextFont_draw_text_accent_dot,0x00411DF0,function
 TextFont_parse_text_markup,0x00411FA0,function
+TextFont_decode_markup_hex,0x004128F0,function

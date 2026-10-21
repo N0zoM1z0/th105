@@ -198,7 +198,7 @@ void TextTextureFontView::draw_text_glyph(
 
 void __stdcall set_markup_color(TextFontOwner194 *, unsigned char, unsigned char, unsigned char);
 void reset_markup_color(TextFontOwner194 *);
-unsigned char decode_markup_hex(unsigned char);
+static unsigned char __cdecl decode_markup_hex(unsigned char);
 int TextTextureFontView::parse_text_markup(
     const char *cursor, unsigned *width_out, unsigned *height_out)
 {
@@ -326,6 +326,17 @@ void TextTextureFontView::render_text(const char *text, unsigned *width_out, uns
         blend_intermediate_text_surface(intermediate, static_cast<unsigned *>(surface_cursor_144));
         delete[] intermediate;
     }
+}
+
+static unsigned char __cdecl decode_markup_hex(unsigned char value)
+{
+    if (static_cast<unsigned char>(value - '0') <= 9)
+        return static_cast<unsigned char>(value - '0');
+    if (static_cast<unsigned char>(value - 'a') <= 5)
+        return static_cast<unsigned char>(value - 'a' + 10);
+    if (static_cast<unsigned char>(value - 'A') <= 5)
+        return static_cast<unsigned char>(value - 'A' + 10);
+    return 0;
 }
 
 } // namespace th105

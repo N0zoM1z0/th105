@@ -2,13 +2,26 @@
 
 Progress display (2026-10-21): the SVG now fills its exact bar from canonical
 exact bytes / confirmed authored bytes, even while classification is pending:
-232,681 / 2,134,741 = 10.90%. It explicitly labels the authored denominator
-provisional and keeps the separate origin/boundary review bar (74.65%, 1,020
+232,726 / 2,134,786 = 10.90%. It explicitly labels the authored denominator
+provisional and keeps the separate origin/boundary review bar (74.68%, 1,019
 pending). Four SVG regressions cover pending/completed review, byte weighting,
 verified remote ownership and empty denominators. Fractions follow the current
 tracking ledgers; aggregate cold verification is separate from this display.
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+accepts game markup hex decoder4128F0 at complete45/45,20 instructions,
+canonical79ad8cdb. Real file-local typed C++ naturally uses AL/no stack args,
+with six actual parent calls and no register facade, relocation or EH waiver.
+All256 byte values/four upper-EAX patterns pass1024 actual leaf cases. Parent
+shrinks1682->1652/447, canonicalc898f907, still nonexact+16/frame788 versus796;
+all8640 parent cases pass again with real byte-identical helper execution,
+while other providers remain abstract. Previous five runtime full hashes
+stay unchanged. Only the new accepted leaf/font unit cold-rebuilds; shared
+headers/profiles/partitions/data ledgers and predecessor accepted units stay
+unchanged. No parent/EH credit or aggregate replay claim.
+See [native hex exact](TEXT_FONT_HEX_EXACT_2026_10_21.md).
+Next: real color/reset/setter/blend closure and parent TU/link/EH ownership;
+Reimu496540 remains nonexact49655F/+31. The preceding checkpoint
 selects genuine markup411FA0 in the actual native font TU. Complete source1682/
 459 canonical065cb3b3 remains nonexact+16, frame788 versus796 and normal member
 ECX/RET12 versus target EDX+ECX/RET8. File-local1665/RET4 control shares ESI owner
