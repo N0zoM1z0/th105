@@ -1,6 +1,18 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+audits CSprite406BE0/406E50 call context. Fresh complete baselines remain610
+bytes/210 instructions, nonexact+21D with nine unequal instructions each.
+RTM is byte-neutral; typed C-interface/device locals and genuine visible or
+force-inlined binder controls do not solve the tail. No game source/header,
+profile, ledger or accepted-unit change is selected. CGage vtable+20 reuses
+406BE0, while CSprite's own+20 is406E50; original override/folding is unproved.
+Adjacent41B7F0 remains a package-node constructor. Ten unselected trials are
+losslessly archived491074 ->76313 bytes; no unrelated replay is needed.
+See [fresh call-context controls](SPRITE_PRIMARY_RENDER_2026_10_16.md#fresh-call-context-controls-2026-10-21).
+Next: actual Reimu call/RET ownership or genuine renderer TU visibility;
+preserve the selected811 source and do not repeat these neutral controls.
+The preceding checkpoint
 fixes a linked-build guard that missed numbered LNK diagnostics with zero
 exit status. The real Gage/Os LNK4210 now rejects before success provenance.
 One historical pool LNK4102 is eliminated by selecting its compiler destructor

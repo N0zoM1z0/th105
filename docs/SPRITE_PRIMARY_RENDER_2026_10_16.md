@@ -127,3 +127,64 @@ comparison bytes, first differing at `+10`: the candidate hoists the handle
 load while the target reads it after geometry. This is a new bounded instance
 of the scheduling residual; do not repeat those two profiles without new
 evidence. No durable name, source-present row or exact claim was added.
+
+## Fresh call-context controls, 2026-10-21
+
+Fresh hash-attested PE inspection repeats the complete two-root boundary/CFG
+audit. CGage's nine-slot vtable6D6A38 has +1C ->41B3F0 and +20 ->406BE0.
+The latter reuses CSprite's +1C physical entry; CSprite's own +20 is406E50.
+Pointer identity alone does not establish original C++ inheritance, override
+spelling or COMDAT folding. In particular, adjacent41B7F0 is the independently
+reviewed84-byte package-node constructor, not a CGage renderer. Its current
+body SHA remains94fe2301dec70d8fd04576336b868a5c1c6a6ca39a7720dc36c272e353dfb701.
+IDA still rejects its wrong open executable; none of these facts uses that DB.
+
+Both selected renderer bodies were rebuilt on CPU0/nice10 with GS off,
+`/O2 /fp:strict` and the existing local exception-scheduling control. The
+baseline remains610 bytes/210 instructions, first unequal byte+21D, with
+exactly nine unequal instructions in the complete comparison. Its canonical
+SHA256s are
+`5de28d71b63d5f182f1dcd5d7053a6fb50248a99c71949ce3a53a2ec20e62cdc`
+and `985ab2bd4e681b8a490a9875ffda86c57364a39348b42c00cdeb7103b80a6e65`.
+These are nonexact candidate hashes. RTM reproduces both entire byte sequences;
+changing SP1 to RTM does not explain either COM tail.
+
+The following actual whole-body controls were unselected. Sizes and first
+differences are equal for both roots; none is a prefix-only comparison.
+
+| Source context | Source bytes | First unequal offset |
+| --- | ---: | ---: |
+| Baseline, SP1 or RTM |610|21D|
+| Lookup nested inside SetTexture |617|7|
+| Device local after lookup |609|1FE|
+| Device local before lookup |617|7|
+| Nested lookup rereading the receiver handle |617|7|
+| Typed COM C-interface calls |609|1FE|
+| Genuine visible binder, ordinary/compatible FP/inline keyword |546|1DF|
+| Genuine binder with compatible FP and explicit force-inline control |617|7|
+
+The C-interface diagnostic preserves all90 device slots and stdcall pointer
+arguments, with SetTexture/DrawPrimitiveUP/SetFVF at65/83/89. It yields the
+same complete bytes as the device-local-after-lookup control, rather than
+recovering the target call order. This is an unselected ABI view, not evidence
+for the original header form or a shared-interface change.
+
+The visible-binder controls use the actual
+`src/assets/TextureStageBinding.cpp` body and its real TitleResourceManager
+declaration. Ordinary visibility, matching local FP exception control and an
+inline keyword all retain an out-of-line call. Explicit force-inline instead
+recovers the same entire617-byte candidates as nested lookup; it keeps the
+non-target vtable capture before lookup and extra saved register. No stub,
+fabricated return or private convention is introduced, and the normal
+ECX/RET8 binder mapping is used only to diagnose its actual call. This closes
+these source-context hypotheses without selecting them.
+
+The existing `src/ui/SpriteRender.cpp`, shared headers, profiles, relocation
+ledgers and all accepted functions are unchanged. No new exact, authored byte
+or aggregate replay is claimed. The remaining question is genuine source/TU
+visibility and scheduling for the two COM calls; the present controls do not
+prove that standalone matching is impossible. Full receipts and target facts
+are in `build/sprite-render-call-context-20261021/facts-and-controls.json`;
+recipes are in the matching `.analysis/` directory. Ten unselected trials were
+archived with per-file SHA256 round-trip checks:491074 ->76313 bytes. The
+fresh baseline stays loose for further comparison.
