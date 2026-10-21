@@ -2,7 +2,7 @@
 // Complete canonical comparisons remain nonexact; no private ABI is fabricated.
 // See docs/TEXT_TEXTURE_RUNTIME_2026_10_21.md.
 #include "ui/Title.hpp"
-#include "assets/SpellTexturePool.hpp"
+#include "assets/TextFontRuntime.hpp"
 #include "engine/D3DBackend.hpp"
 #include <deque>
 #include <list>
@@ -32,12 +32,6 @@ struct TextTexture9 : D3DUnknown {
 extern "C" long __stdcall D3DXCreateTexture(
     D3DDevice9 *, unsigned, unsigned, unsigned, unsigned, unsigned, unsigned,
     TextTexture9 **);
-
-// The actual412670 entry uses normal ECX/RET12; its last two words are
-// optional output pointers. The original font class name remains unknown.
-struct TextTextureFontView : CompositeTextureUploadState {
-    void render_text(const char *text, unsigned *width_out, unsigned *height_out);
-};
 
 static long __stdcall populate_text_texture(TextTexture9 **texture,
     const char *text, TextTextureFontView *font, unsigned width, unsigned height,
@@ -153,6 +147,4 @@ TextureHandleResult TitleResourceManager::create_text_texture(const char *text,
 typedef char TextManagerSize[sizeof(TextTextureTokenManager) == 0x64 ? 1 : -1];
 typedef char TextManagerSlots[offsetof(TextTextureTokenManager, slots_18) == 0x18 ? 1 : -1];
 typedef char TextManagerLock[offsetof(TextTextureTokenManager, lock_48) == 0x48 ? 1 : -1];
-typedef char TextFontSize[sizeof(TextTextureFontView) == 0x168 ? 1 : -1];
-
 } // namespace th105

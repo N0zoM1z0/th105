@@ -1481,3 +1481,4 @@ CDesignObjectBase_color_noop
 UiDesignResource_bind_object_alt
 TitleResourceManager_create_text_texture
 populate_text_texture_resource
+TextTextureFontView_render_text

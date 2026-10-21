@@ -123,3 +123,15 @@ the experiments. Completed control files are compressed only after per-file
 SHA256 readback: 300,427 bytes become 65,280 bytes in
 `completed-controls.tar.gz`. The selected formal source/object/receipts remain
 available.
+
+## Font provider follow-up
+
+[The font entry checkpoint](TEXT_FONT_RENDER_2026_10_21.md) selects actual
+326-byte412670 source and a new bounded prefix declaration. The texture TU now
+includes that header instead of deriving its view from the retained composite
+facade. Fresh raw native-list/fallback-color evidence rejects that facade's
+164 label and any complete-size168 assumption. This include/type-view change
+leaves the complete wrapper/backend canonical candidates50731d79/15555b85
+unchanged; current receipts are in `build/font-render-20261021/`. The earlier
+typed-pointer source SHA above describes the frozen preceding checkpoint.
+Real provider/TU closure remains open, with no new exact acceptance.

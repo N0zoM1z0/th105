@@ -3291,3 +3291,21 @@ evidence = "Complete360-byte/107-instruction initializer called from40B72B for t
 required_body_hashes = [{ address = "0x0041B280", size = 360, sha256 = "e160e6a43225f641135b7b956e43102d8d1c34aa8a6e1962761abbc81a26d93a" }]
 required_direct_edges = [{ caller = "0x0040B000", site = "0x0040B72B", target = "0x0041B280", caller_status = "implemented" }]
 required_dword_values = [{ address = "0x006D6A38", value = "0x0040AD60" }]
+
+[[rules]]
+id = "text-font-render-authored-106a"
+addresses = ["0x00412670"]
+expected_count = 1
+expected_bytes = 326
+expected_names = ["sub_412670"]
+origin = "authored_game"
+subsystem = "rendering"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete326-byte/120-instruction ECX/RET12 game font entry is called at409883 by the reviewed text-texture population backend. It allocates an optional outline surface, zeros optional dimension outputs, decodes exact SJIS lead ranges and signed single bytes, advances markup/glyph calls, and ends/blends/frees in the observed order. Its font fields and private begin/end/glyph/markup providers own game rendering policy rather than CRT strlen/allocation. Genuine C++326/117 instructions remains nonexact+0; bounded callee-observer agreement is separate from exact and GDI runtime coverage. docs/TEXT_FONT_RENDER_2026_10_21.md."
+required_body_hashes = [
+  { address = "0x00412670", size = 326, sha256 = "5609c1c997c0d979f17f0c9e529e3df3d6d36c52456280dfc6dd04da877c3e36" },
+]
+required_direct_edges = [
+  { caller = "0x004097A0", site = "0x00409883", target = "0x00412670", caller_status = "implemented" },
+]

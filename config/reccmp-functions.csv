@@ -1500,3 +1500,4 @@ CDesignObjectBase_color_noop,0x0040AE70,function
 UiDesignResource_bind_object_alt,0x00420B90,function
 TitleResourceManager_create_text_texture,0x00404D00,function
 populate_text_texture_resource,0x004097A0,function
+TextTextureFontView_render_text,0x00412670,function

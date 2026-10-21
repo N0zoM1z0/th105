@@ -2,14 +2,26 @@
 
 Progress display (2026-10-21): the SVG now fills its exact bar from canonical
 exact bytes / confirmed authored bytes, even while classification is pending:
-231,894 / 2,131,171 = 10.88%. It explicitly labels the authored denominator
-provisional and keeps the separate origin/boundary review bar (74.48%, 1,027
+231,894 / 2,131,497 = 10.88%. It explicitly labels the authored denominator
+provisional and keeps the separate origin/boundary review bar (74.50%, 1,026
 pending). Four SVG regressions cover pending/completed review, byte weighting,
 verified remote ownership and empty denominators. No exact ledger, compiler
 input or reconstruction acceptance changes; no additional VC8 replay is needed.
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
-adds genuine text-texture C++ source for 404D00/4097A0, with native token
+recovers font entry412670 with typed optional outputs and the actual SJIS lead
+ranges/signed single-byte policy. Complete326/326 remains nonexact+0, canonical
+f114c979, on frame/register/private-provider context. All13100 bounded logical
+callee-observer cases pass; two compiled negative controls fail40/80 of100.
+Fresh raw begin/end/glyph evidence rejects the retained facade's color164 and
+full-size168 assumptions; actual native list is15C and fallback color168. A
+new bounded prefix header avoids those labels; complete text wrapper/backend
+candidates stay byte-identical50731d79/15555b85. No accepted source consumer is
+affected, so only two nonaccepted units rebuild; no new exact or GDI runtime
+coverage claim. See [font text source](TEXT_FONT_RENDER_2026_10_21.md).
+Next: real native begin/end/color and glyph/markup/blend provider closure before
+linked tuning; Reimu496540 remains nonexact+31. The preceding checkpoint
+adds genuine text-texture C++ source for404D00/4097A0, with native token
 acquire/recycle definitions in the same TU. Full comparisons remain110/111
 nonexact+7 and264/270 nonexact+0. Target font output pointers, ordered144/140
 publication and texture reload after drawing are recovered. Source backend
