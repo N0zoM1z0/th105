@@ -61,7 +61,7 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4024)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1366)
+        self.assertEqual(len(matching), 1367)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
@@ -81,7 +81,7 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(binder["match_percent"], "0.00")
         self.assertIn(binder["proposed_name"], implemented)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1366
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1367
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
@@ -994,8 +994,9 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 485)
-        self.assertEqual(sum(map(len, accepted.values())), 1366)
+        self.assertEqual(len(accepted), 486)
+        self.assertEqual(sum(map(len, accepted.values())), 1367)
+        self.assertEqual(accepted["gpt-web-design-base-cleanup"], {"0x0040BB40"})
         self.assertEqual(accepted["gpt-web-gage-design-render"], {
             "0x0040AEA0", "0x0040AF30", "0x0040AEE0",
         })
@@ -1710,8 +1711,8 @@ class WorkflowToolingTests(unittest.TestCase):
             f"Origin/boundary review pending | {len(functions) - len(authored) - len(excluded):,}",
             markdown,
         )
-        self.assertIn("Canonical exact functions | 1,366", markdown)
-        self.assertIn("Canonical exact authored bytes | 231,466", markdown)
+        self.assertIn("Canonical exact functions | 1,367", markdown)
+        self.assertIn("Canonical exact authored bytes | 231,776", markdown)
         self.assertIn("Source-present authored mappings | 1,480", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown

@@ -17,7 +17,7 @@ void CDesignBase::virtual_cleanup()
     for (unsigned int index = 0; index < texture_handles_04.size(); ++index)
         g_title_resource_manager.release_title_resource_handle(
             texture_handles_04.at(index));
-    texture_handles_04.erase(texture_handles_04.begin(), texture_handles_04.end());
+    texture_handles_04.clear();
 }
 
 } // namespace th105

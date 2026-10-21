@@ -33,6 +33,21 @@ missing declarations and unbound absolute references still fail. See
 
 ## Build and reference identity
 
+`CDesignBase::virtual_cleanup @40BB40` extends the closed-CFG contract to one
+typed vector range-error exit,310/310 exact. `error_tails` must name the actual
+unexported CIL `_Xran` helper and exact target E9 site. Independent pinned
+target error/throw/record anchors, source CRT throw thunk/IAT, native message,
+actual ThrowInfo argument and exception layouts establish the terminating
+error role. Both complete caller CFGs then close and the named E9 REL32 field
+is replayed normally. This authorizes no general escaped branch, helper/EH
+exactness, origin exclusion or literal allowance.
+
+Optional `preserve_public_members` keeps genuine normal public thiscall member
+ABIs exported without registering duplicate target functions. Unique source
+CIL ownership, actual export identity and native implementations are required;
+these roots add no match credit and cannot replace the comparison root.
+See [cleanup acceptance and rejection tests](DESIGN_BASE_CLEANUP_EXACT_2026_10_21.md).
+
 `config/tools.lock.toml` pins cl/c1xx/c2/link, both complete header trees and
 the actual VC8 `msvcrt.lib`/`msvcprt.lib` and Platform SDK `WS2_32.Lib` import libraries. The runtime libraries
 resolve runtime function identities with normal linker-produced import thunks;

@@ -115,6 +115,34 @@ class LinkedPeTests(unittest.TestCase):
         return linked.canonicalize(code, self.start, self.target, bindings or [],
             resolve or (lambda address: (_ for _ in ()).throw(ValueError("unknown call"))), self.image, self.game)
 
+    def test_preserved_members_need_distinct_public_normal_abis(self):
+        symbol = "?lookup@Pool@game@@QAEPAPAXI@Z"
+        unit = {"profile": linked.PROFILE, "object": "build/test.dll", "link_data_targets": [],
+                "functions": [{"address": "0x00401000", "symbol_base": "?root@Pool@game@@QAEXXZ"}],
+                "preserve_public_members": [symbol]}
+        linked.validate_contract(unit, set())
+        for preserved in [[symbol, symbol], ["_cdecl"], ["??_GPool@@UAEPAXI@Z"],
+                          ["?private@Pool@@AAEXXZ"], [{}], {}, [unit["functions"][0]["symbol_base"]]]:
+            with self.subTest(preserved=preserved), self.assertRaises(ValueError):
+                linked.validate_contract({**unit, "preserve_public_members": preserved}, set())
+
+    def test_preserved_member_witness_requires_a_real_owned_export(self):
+        symbol = "?lookup@Pool@game@@QAEPAPAXI@Z"
+        unit = {"preserve_public_members": [symbol]}
+        pe = VTablePe(); pe.data[0x1000:0x1010] = b"\xc2\x04\x00" + b"\xcc" * 13
+        functions = {self.start: [(symbol, "Ctx.ltcg.obj")], self.start + 16: [("_next", "Ctx.ltcg.obj")]}
+        exports = {symbol: self.start}
+        result = linked.preserved_member_witnesses(unit, pe, functions, exports, "Ctx.ltcg.obj")
+        self.assertEqual(result[0]["source_address"], self.start)
+        for bad_functions, bad_exports in [(functions, {}), (functions, {symbol: self.start + 1}),
+                ({**functions, self.start: [(symbol, "Other.obj")]}, exports),
+                ({**functions, self.start: [(symbol, "Ctx.ltcg.obj"), ("_alias", "Ctx.ltcg.obj")]}, exports)]:
+            with self.assertRaises(ValueError):
+                linked.preserved_member_witnesses(unit, pe, bad_functions, bad_exports, "Ctx.ltcg.obj")
+        pe.sections[0].Characteristics = 0x40000040
+        with self.assertRaises(ValueError):
+            linked.preserved_member_witnesses(unit, pe, functions, exports, "Ctx.ltcg.obj")
+
     def binding(self, data="00000000"):
         return {"key": "app", "symbol": "_app", "address": 0x702820,
                 "addends": [0, 0x90], "data_hex": data}

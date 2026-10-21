@@ -1,5 +1,10 @@
 # CDesignBase cleanup and gauge controls
 
+Historical source-present checkpoint. The later
+[complete310-byte exact reconstruction](DESIGN_BASE_CLEANUP_EXACT_2026_10_21.md)
+supersedes the cleanup source/type/context and nonexact status below. The
+gauge controls keep their recorded source epoch.
+
 Target: original Japanese TH10.5 v1.06a, SHA256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 This checkpoint adds complete cleanup source; **no exact function is added**.

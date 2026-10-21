@@ -1,6 +1,18 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-21. Phase: active exact reconstruction; latest checkpoint
+accepts complete CDesignBase cleanup 40BB40 at 310/310, canonical 5c8d5c4c.
+Native four-byte handle values and clear(), in the genuine C++ release/lookup
+CIL context, recover the aligned frame and assignment loop. The sole external
+E9 has a separately verified vector-error/throw witness; no helper/EH origin
+or exact credit is added. Public ABI-preserving exports have actual CIL/native
+ownership. All 59 predecessor accepted functions in 20 affected units cold-replay
+exact, as does the new cleanup. Header layout remains 34 bytes; original handle
+type spelling/TU stay open. Loader 40B000 EH and gauge 41B280/+5 remain unresolved.
+See [cleanup exact and qualification](DESIGN_BASE_CLEANUP_EXACT_2026_10_21.md).
+Next: continue Reimu 496540 source/TU recovery or loader/provider closure.
+No unrelated or cold aggregate replay is claimed.
+The preceding checkpoint
 closes five CGage getter/clamp lifetime controls. Selected60ce4f3b source stays
 1010/323, canonicalfa2cc075 and nonexact+190. Same-variable ternary and commuted
 guards are byte-neutral; separate const/mutable fractions become1058/341,

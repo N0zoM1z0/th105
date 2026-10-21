@@ -15,6 +15,7 @@ from pathlib import Path
 import re
 import struct
 import subprocess
+import sys
 import tomllib
 from functools import lru_cache
 
@@ -70,6 +71,7 @@ def comparator():
 
 def validate_contract(unit: dict, data_keys: set[str]) -> None:
     from linked_lifecycle import validate_contract as validate_lifecycle
+    from linked_noreturn import validate_contract as validate_error_tails
     validate_lifecycle(unit, data_keys)
     if unit.get("profile") != PROFILE or not str(unit.get("object", "")).endswith(".dll"):
         raise ValueError("linked_candidate requires its LTCG profile and a .dll output")
@@ -129,6 +131,7 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
     if not isinstance(functions, list) or not functions or any(not isinstance(f, dict) for f in functions):
         raise ValueError("linked unit needs function contracts")
     for function in functions:
+        validate_error_tails(function)
         if not isinstance(function, dict):
             raise ValueError("invalid linked function contract")
         symbol = function.get("symbol_base")
@@ -166,6 +169,14 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
             if not isinstance(export, str) or not SYMBOL.fullmatch(export) or export in exports:
                 raise ValueError("invalid/duplicate linked export: " + str(export))
             exports.add(export)
+    preserved = unit.get("preserve_public_members", [])
+    if (not isinstance(preserved, list)
+            or any(not isinstance(symbol, str) or not SYMBOL.fullmatch(symbol)
+                   or not re.fullmatch(r"\?[A-Za-z_]\w*@[^?]+@@Q[AB]E.+", symbol)
+                   for symbol in preserved)):
+        raise ValueError("preserved exports must be normal public thiscall members")
+    if len(preserved) != len(set(preserved)) or set(preserved) & (symbols | exports):
+        raise ValueError("preserved public exports duplicate a configured entry")
     if not exports and not unit.get("link_objects"):
         raise ValueError("linked unit needs an exported source root")
 
@@ -465,6 +476,7 @@ def build_linked(name: str, unit: dict) -> dict:
     link_command.extend("/EXPORT:" + f.get("export_name", f["symbol_base"])
                         for f in unit["functions"] if "private_from" not in f
                         and "private_global" not in f and "vtable_entry" not in f)
+    link_command.extend("/EXPORT:" + symbol for symbol in unit.get("preserve_public_members", []))
     libraries = sorted({contract["library"] for contract in sdk_imports})
     libraries.extend(STATIC_LIBS if static else ("lib/msvcrt.lib", "lib/msvcprt.lib"))
     link_command.extend(win(p) for p in [*coff_objects, obj, data_obj, *(tools / p for p in libraries),
@@ -510,7 +522,8 @@ def is_branch(instruction) -> bool:
     }
 
 
-def decode_closed_body(code: bytes, start: int, *, tail: bool = False) -> list:
+def decode_closed_body(code: bytes, start: int, *, tail: bool = False,
+                       external_exits: dict[int, int] | None = None) -> list:
     decoder = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
     decoder.detail = True
     instructions = list(decoder.disasm(code, start))
@@ -521,6 +534,14 @@ def decode_closed_body(code: bytes, start: int, *, tail: bool = False) -> list:
     if not instructions or sum(i.size for i in instructions) != len(code) or (terminal.mnemonic != "ret" and not tail_end):
         raise ValueError("linked body does not close through a complete RET boundary")
     by_address = {i.address: i for i in instructions}
+    external_exits = external_exits or {}
+    for site, destination in external_exits.items():
+        instruction = by_address.get(site)
+        if (instruction is None or instruction.size != 5 or instruction.bytes[0] != 0xE9
+                or instruction.operands[0].type != capstone.x86.X86_OP_IMM
+                or instruction.operands[0].imm != destination
+                or start <= destination < start + len(code)):
+            raise ValueError("qualified linked error exit disagrees with its exact E9 edge")
     pending, reached = [start], set()
     while pending:
         address = pending.pop()
@@ -537,7 +558,7 @@ def decode_closed_body(code: bytes, start: int, *, tail: bool = False) -> list:
         if is_branch(instruction):
             if len(instruction.operands) != 1 or instruction.operands[0].type != capstone.x86.X86_OP_IMM:
                 raise ValueError("linked indirect jumps are unsupported")
-            if tail_end and instruction.address == terminal.address:
+            if instruction.address in external_exits or (tail_end and instruction.address == terminal.address):
                 continue  # Its named destination must subsequently pass REL32 resolution.
             pending.append(instruction.operands[0].imm)
             if instruction.id == capstone.x86.X86_INS_JMP:
@@ -552,8 +573,9 @@ def decode_closed_body(code: bytes, start: int, *, tail: bool = False) -> list:
 
 def canonicalize(code: bytes, start: int, target: int, bindings: list[dict], resolve_call,
                  image_range: tuple[int, int], game_range: tuple[int, int],
-                 vtables: list[dict] = (), *, internal_refs: list[dict] = (), tail: bool = False) -> tuple[bytes, list, list]:
-    instructions = decode_closed_body(code, start, tail=tail)
+                 vtables: list[dict] = (), *, internal_refs: list[dict] = (), tail: bool = False,
+                 external_exits: dict[int, int] | None = None) -> tuple[bytes, list, list]:
+    instructions = decode_closed_body(code, start, tail=tail, external_exits=external_exits)
     native_vtables = {table["source_address"]: table for table in vtables}
     typed = {ref["source_address"]: ref for ref in internal_refs}
     if len(typed) != len(internal_refs) or set(typed) & set(native_vtables):
@@ -569,7 +591,8 @@ def canonicalize(code: bytes, start: int, target: int, bindings: list[dict], res
     for instruction in instructions:
         offset = instruction.address - start
         control_immediate = False
-        external_tail = (tail and instruction is instructions[-1] and instruction.bytes[0] == 0xe9)
+        external_tail = ((tail and instruction is instructions[-1] and instruction.bytes[0] == 0xe9)
+                         or instruction.address in (external_exits or {}))
         if ((instruction.group(capstone.CS_GRP_CALL) or external_tail)
                 and instruction.operands[0].type == capstone.x86.X86_OP_IMM):
             if instruction.size != 5 or instruction.bytes[0] not in (0xE8, 0xE9):
@@ -752,8 +775,23 @@ def private_caller_witness(function: dict, unit: dict, pe, functions: dict, expo
             "target_caller_sha256": hashlib.sha256(target).hexdigest()}
 
 
+def preserved_member_witnesses(unit: dict, pe, functions: dict, exports: dict, cil_owner: str) -> list[dict]:
+    result = []
+    for symbol in unit.get("preserve_public_members", []):
+        member = source_function_start({"symbol_base": symbol}, functions, exports, cil_owner)
+        if len(functions[member]) != 1:
+            raise ValueError("preserved public member has an aliased source entry")
+        body = linked_body(pe, functions, member)
+        if not body:
+            raise ValueError("preserved public member has no native implementation")
+        result.append({"symbol": symbol, "source_address": member,
+                       "source_sha256": hashlib.sha256(body).hexdigest()})
+    return result
+
+
 def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | None = None) -> list[dict]:
     from linked_lifecycle import layout_inputs, validate_static_entry, object_witnesses, cleanup_eh
+    from linked_noreturn import witness as error_tail_witness
     from workflow_manifest import repository_path, unit_input_digest
     c = comparator()
     target_hash = c.verify_target()
@@ -797,6 +835,7 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
         exports[export] = IMAGE_BASE + entry.address
     imports = {entry.address: (dll.dll.decode("ascii").lower(), import_identity(entry))
                for dll in getattr(pe, "DIRECTORY_ENTRY_IMPORT", []) for entry in dll.imports}
+    preserved_members = preserved_member_witnesses(unit, pe, functions, exports, image.with_suffix(".ltcg.obj").name)
     with (ROOT / "config/functions.csv").open(newline="") as stream:
         ledger = {row["address"]: row for row in csv.DictReader(stream)}
     game = pefile.PE(str(c.TARGET), fast_load=True)
@@ -824,12 +863,16 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
         address = int(function["address"], 0)
         size = int(ledger[function["address"]]["size"], 0)
         target = c.target_bytes(address, size)
+        error_exits, _, error_reports = error_tail_witness(
+            sys.modules[__name__], function, pe, game, functions, exports,
+            cil_owner, start, raw, target, c.target_bytes)
         refs, eh_reports = internal_refs, []
         if "eh_cleanup" in function:
             refs, eh_reports = cleanup_eh(function, pe, game, functions, exports, cil_owner,
                 start, raw, target, internal_refs, bindings, vtables, resolve, game_range, c.target_bytes)
         code, calls, data_refs = canonicalize(raw, start, address, bindings, resolve,
-            (IMAGE_BASE, IMAGE_BASE + pe.OPTIONAL_HEADER.SizeOfImage), game_range, vtables, internal_refs=refs)
+            (IMAGE_BASE, IMAGE_BASE + pe.OPTIONAL_HEADER.SizeOfImage), game_range, vtables,
+            internal_refs=refs, external_exits=error_exits)
         validate_body_relocations(pe, start, len(raw), data_refs)
         mismatch = c.first_mismatch(target, code, address)
         reports.append({"schema_version": 1, "result": "mismatch" if mismatch else "exact",
@@ -842,5 +885,7 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
             "validated_data_references": data_refs, "validated_vtables": vtables,
             "global_lifecycle_witness": globals_witnesses.get(function.get("private_global", {}).get("object")),
             "validated_cleanup_eh": eh_reports,
+            "validated_error_tails": error_reports,
+            "preserved_public_members": preserved_members,
             "private_caller_witness": witness})
     return reports

@@ -20219,20 +20219,22 @@ address = "0x0040AE70"
 symbol_base = "?set_color@DesignLoaderObjectBase@th105@@UAEXI@Z"
 
 [units.gpt-web-design-base-cleanup]
-kind = "probe"
-source = "src/ui/DesignBaseCleanup.cpp"
-object = "build/match-units/GptWeb_DesignBaseCleanup.obj"
-profile = "vc8-sp1-probe-o2"
+kind = "linked_candidate"
+source = "src/ui/DesignBaseCleanupLinked.cpp"
+object = "build/match-units/GptWeb_DesignBaseCleanup.dll"
+profile = "vc8-sp1-ltcg-o2"
 enable_gs = false
-notes = "Complete CDesignBase vslot14 cleanup40BB40 source: delete/pop list back until empty, release checked texture handles in index order, erase the vector range. Map and member iterator are untouched. Target310-byte/119-instruction CFG closes through RET0 and a separately qualified vector out_of_range jump. Ordinary native-container source315 remains nonexact at the frame entry; scalar vector erase uses memmove_s rather than the target assignment loop. Original element type and compiler/TU visibility remain open. No assembly, artificial frame, unqualified private callee or exact credit."
+linked_coff_sources = ["src/library/UnsignedIntList.cpp"]
+link_data_targets = ["?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A", "?g_title_texture_cache_host@th105@@3PAXA=?g_title_texture_cache_host@th105@@3PAXA", "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4", "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0"]
+preserve_public_members = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z", "?lookup_token@CHandleManager4@th105@@QAEPAPAXI@Z"]
+notes = "Complete310-byte CDesignBase vslot14 cleanup. Native four-byte handle values and clear(), in the real release/lookup CIL context, recover the aligned frame and assignment loop. A typed vector-Xran contract independently proves the sole E9 error exit through original throw metadata and the genuine CRT throw import. Only cleanup has exact credit here; provider exports preserve normal ABIs. docs/DESIGN_BASE_CLEANUP_EXACT_2026_10_21.md."
 
 [[units.gpt-web-design-base-cleanup.functions]]
 address = "0x0040BB40"
 symbol_base = "?virtual_cleanup@CDesignBase@th105@@UAEXXZ"
-rel32_targets = [
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
-  "__invalid_parameter_noinfo=0x0068A143",
-  "??3@YAXPAX@Z=0x006898EA",
-  "?_Xran@?$vector@IV?$allocator@I@std@@@std@@KAXXZ=0x0040C350",
-  "_memmove_s=0x00689EB0",
-]
+rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "__invalid_parameter_noinfo=0x0068A143", "??3@YAXPAX@Z=0x006898EA", "_memmove_s=0x00689EB0", "?_Xran@?$vector@UDesignTextureHandle@th105@@V?$allocator@UDesignTextureHandle@th105@@@std@@@std@@KAXXZ=0x0040C350"]
+
+[[units.gpt-web-design-base-cleanup.functions.error_tails]]
+kind = "vc8-vector-out-of-range"
+symbol = "?_Xran@?$vector@UDesignTextureHandle@th105@@V?$allocator@UDesignTextureHandle@th105@@@std@@@std@@KAXXZ"
+site = "0x0040BC25"
