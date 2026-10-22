@@ -16,6 +16,11 @@ nodes with only sequences2/3 excluded, without carrier allowances.903 is now
 1696/361 versus target1697/364; physical shared-tail placement remains nonexact.
 Rootfull20036/623294c3, metadata19568, canonical mismatch+22 target0F/source3B.
 Exact totals do not change; a shared float control adds unsupported spill/reload.
+The [903 placement controls](AYA_OBJECT_903_TAIL_PLACEMENT_CONTROLS_2026_10_22.md)
+show two full-payload-neutral fallthrough variants. An explicit existing-retirement
+label moves more return users into903, and earlier sequence8 retains ownership
+of its color tail; both are unselected. Source stays unchanged. Eight completed
+private OBJ/BIN files were hash-verified and archived,240624 to64375 bytes.
 
 The [AyaObject903 native-math audit](AYA_OBJECT_903_NATIVE_MATH_2026_10_22.md)
 executes3168 sequence2/3 cases through original lookup/fabs/conversion/frame
