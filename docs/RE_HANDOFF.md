@@ -1,6 +1,16 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-22. Reconstruction is **active at the user's request**.
+The [action869 parameter-prefix audit](REIMU_OBJECT_869_PREFIX_2026_10_22.md)
+now identifies target28-byte parameter-first addition. Public source agrees;
+complete-owner variants reverse operands, with3,008/3,072 live-value snapshot
+differences despite equal outputs. Reading the actual inherited340 pointer
+restores the window and all3,072 prefixes, including an explicit370 alias.
+Its804 regression also passes5,120 real-helper/full-RET cases. The private
+45,696-byte/4d0ac180 root remains nonexact+31, counter66 exact; public source
+is unchanged. Coarse deltas now leave12 regions in902/904/907. Next inspect
+902 pointer reloads/float round trips before adopting the owner model; no
+root acceptance, returning-lookup semantics or global replay claim follows.
 The [action804 velocity lifetime audit](REIMU_OBJECT_804_LIFETIMES_2026_10_22.md)
 now identifies the target's77-byte x87 window and runs5,120 real-helper cases.
 Selected public source agrees in outputs, ordered writes, logical snapshots
