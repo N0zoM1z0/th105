@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 import linked_pe as lp
 from workflow_manifest import load_manifest
+from native_callbacks import guarded_callback
 
 
 def load(name, path):
@@ -86,9 +87,10 @@ class Probe:
         uc.mem_map(STACK, 0x10000)
         uc.mem_map(RESOURCE, 0x10000, unicorn.UC_PROT_READ)
         self.initial = uc.context_save()
-        uc.hook_add(unicorn.UC_HOOK_CODE, self.step)
-        uc.hook_add(unicorn.UC_HOOK_MEM_WRITE, self.write)
-        uc.hook_add(unicorn.UC_HOOK_MEM_READ, self.read)
+        self.hook_errors = []
+        uc.hook_add(unicorn.UC_HOOK_CODE, guarded_callback(self.step, self.hook_errors))
+        uc.hook_add(unicorn.UC_HOOK_MEM_WRITE, guarded_callback(self.write, self.hook_errors))
+        uc.hook_add(unicorn.UC_HOOK_MEM_READ, guarded_callback(self.read, self.hook_errors))
 
     def step(self, uc, pc, size, data):
         if pc == 0x435160:
@@ -178,6 +180,7 @@ class Probe:
         uc.reg_write(r.UC_X86_REG_FPCW, cw)
         uc.reg_write(r.UC_X86_REG_FPSW, 0)
         uc.reg_write(r.UC_X86_REG_FPTAG, 0xFFFF)
+        self.hook_errors.clear()
         self.stop = "ret"
         self.writes = []
         self.reads = []
@@ -188,6 +191,8 @@ class Probe:
             raise ValueError(
                 f"native execution failed at {uc.reg_read(r.UC_X86_REG_EIP):#x}, calls={self.calls}, case={case}: {error}"
             ) from error
+        if self.hook_errors:
+            raise ValueError("native hook rejected execution: " + repr(self.hook_errors))
         if self.stop == "ret":
             assert uc.reg_read(r.UC_X86_REG_EIP) == RETURN
             assert uc.reg_read(r.UC_X86_REG_ESP) == sp + 4

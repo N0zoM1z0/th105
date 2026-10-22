@@ -7,6 +7,15 @@ and stable commit/push checkpoints named `gpt-6-astra-medium: ...`.
 
 ## Current checkpoint
 
+The [AyaObject903 native-math audit](AYA_OBJECT_903_NATIVE_MATH_2026_10_22.md)
+executes3168 sequence2/3 cases through original lookup/fabs/conversion/frame
+helpers and RET. Selected final effects agree;1920 alpha-read epochs still
+differ. A double-product control retains1764 live-x87 read-snapshot differences
+and is unselected. The native callback wrapper now stops and rethrows errors
+that Unicorn previously swallowed; a real injected fault is rejected, and
+6540/4288/3744 affected901/902 cases replay successfully. Source, root hashes
+and exact totals remain unchanged; mid-product alpha reads/shared tails stay open.
+
 The [AyaObject902 spawn-prefix recovery](AYA_OBJECT_902_SPAWN_PREFIX_2026_10_22.md)
 selects the actual payload snapshot, separate direction-call prefixes and
 low-sequence-first branch order.902 now has target652 bytes/159 instructions;
@@ -267,6 +276,6 @@ git diff --check
 ```
 
 Local CI is mandatory; a remote Actions pass does not replace it. Current
-workflow baseline is451 tests. Never commit private reports, executables,
+workflow baseline is453 tests. Never commit private reports, executables,
 game data, databases, toolchains or credentials. Commit stable checkpoints
 with the required prefix, push, and verify remote HEAD and clean status.
