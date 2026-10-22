@@ -6,6 +6,32 @@ An old report records a particular source/object/tool epoch and never replaces
 a fresh canonical comparison. Start with [the current handoff](RE_HANDOFF.md)
 and the ledgers before choosing an artifact.
 
+## October 22 handoff preparation
+
+The live [handoff](RE_HANDOFF.md) is reduced to current selected code, evidence
+limits, open leads and resume commands. The full preceding345-line narrative is
+preserved in [the October22 snapshot](RE_HANDOFF_HISTORY_2026_10_22.md).
+Reconstruction experiments are stopped for handoff; the user cleared the goal.
+No game source, ABI, ledger acceptance or compiler setting changes in this cleanup.
+
+468 historical diagnostic JSON/log/assembly/text reports were gzip-compressed,
+from29,876,961 to4,047,854 bytes, saving25,829,107 bytes. Every compressed file was
+decompressed and SHA256-checked before unlinking its original. The recipe is
+`.analysis/handoff-cleanup-20261022/cleanup.py`; the per-file inventory and
+protected-input hashes are in `build/handoff-cleanup-20261022/manifest.json`.
+Restore a report for an older recipe with `gzip -dk PATH.gz` and compare its
+SHA256 to that manifest. This supersedes earlier recommendations to leave
+historical diagnostic reports uncompressed; their contents remain recoverable.
+
+Current801/810/predicate scope reports, selected/formal receipts, manifests,
+source/control inputs, all match-unit outputs and VC8 references stay directly
+available. All source/scripts/config files, match-unit files, the target PE and
+the primary Ghidra project were hashed before/after compression and agree.
+Disposable Python caches are removed after the final local CI; the separate
+`cache-cleanup.json` receipt records removed bytes and repeated protected checks.
+Six old detached worktrees have uncommitted changes and were left intact.
+No database, compiler, game data, frozen object or private recipe was discarded.
+
 ## October 22 owner and renderer checkpoints
 
 Keep the accepted `animation-auxiliary-render-20261022` and
