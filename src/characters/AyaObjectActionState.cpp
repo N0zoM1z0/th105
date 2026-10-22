@@ -1863,11 +1863,11 @@ aya900_advance:
         }
         if (sequence_index_13e == 1) {
             if (phase_state_180 == 6) { ++state_six_counter_384; ++phase_index_184; phase_state_180 = 0; }
-            if (phase_state_180) {
-                if (++state_364 > 3) { phase_state_180 = 0; motion_core()->component_f0 = 30.0f; state_364 = 0; }
-                else motion_core()->component_f0 = 0.0f;
+            if (phase_state_180 && ++state_364 >= 6) {
+                phase_index_184 = 1;
+                phase_state_180 = 0;
+                state_364 = 0;
             }
-            if (static_cast<signed char>(phase_index_184) <= 0) next_sequence_block();
             switch (g_match_identifier) {
             case 3:
                 if (!(time_counter_144 <= 600 && *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x174) > 0)) { phase_index_184 = 0; next_sequence_block(); }

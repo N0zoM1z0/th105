@@ -7,6 +7,15 @@ and stable commit/push checkpoints named `gpt-6-astra-medium: ...`.
 
 ## Current checkpoint
 
+The [AyaObject902 phase correction](AYA_OBJECT_902_PHASE_RESET_2026_10_22.md)
+restores signed counter>=6 and BYTE184=1/state/count reset, removing unsupported
+velocity assignments and an extra next-block call. All3328 actual-animation
+cases pass, with1440 original next-block calls; predecessor differs in2208.
+The77-byte phase interval agrees under translation. Other-action4418 normal-return
+graph nodes agree and the901 fixture regression runs after its import refactor.
+Root61A290 remains nonexact+22, full20060/c1a40ab7, metadata19592 versus19524;
+owner diagnostics3/34 confer no exact credit.902 spawning/float layout remains open.
+
 The [AyaObject901 correction](AYA_OBJECT_901_TRANSITION_RETURNS_2026_10_22.md)
 adds immediate returns after sequence0/3 next-block calls and snapshots
 sequence2 alpha before scale stores.780 actual-animation transition cases

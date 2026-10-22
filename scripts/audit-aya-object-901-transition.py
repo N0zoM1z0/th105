@@ -32,7 +32,7 @@ parser.add_argument("--previous-object", type=Path)
 parser.add_argument(
     "--output", type=Path, default=ROOT / "build/aya901-transition.json"
 )
-args = parser.parse_args()
+args = parser.parse_args() if __name__ == "__main__" else None
 c = lp.comparator()
 c.verify_target()
 entry = load("aya901_animation", "scripts/audit-reimu-object-entry-calls.py")
@@ -54,6 +54,12 @@ assert struct.unpack("<I", c.target_bytes(0x6C624C + 0x14, 4))[0] == 0x45C220
 
 
 class Probe:
+    require_901_calls = True
+    action_id = 901
+
+    def prepare(self, case):
+        pass
+
     def __init__(self, obj=None):
         self.uc = uc = unicorn.Uc(unicorn.UC_ARCH_X86, unicorn.UC_MODE_32)
         uc.mem_map(0x400000, 0x311000, unicorn.UC_PROT_READ | unicorn.UC_PROT_EXEC)
@@ -121,7 +127,7 @@ class Probe:
         uc.context_restore(self.initial)
         uc.mem_write(OWNER, bytes(0x10000))
         uc.mem_write(STACK, bytes(0x10000))
-        graph = bytearray(entry.graph(dict(action=901, request=0)))
+        graph = bytearray(entry.graph(dict(action=self.action_id, request=0)))
         struct.pack_into("<ff", graph, entry.PARAMETERS - RESOURCE, 45.0, 12.0)
         uc.mem_write(RESOURCE, bytes(graph))
         # The real root changes its separate parameter record; animation resources stay read-only.
@@ -132,7 +138,7 @@ class Probe:
             (0xF0, "f", 100.0),
             (0x104, "b", 1),
             (0x130, "I", entry.VECTOR),
-            (0x13C, "h", 901),
+            (0x13C, "h", self.action_id),
             (0x13E, "h", seq),
             (0x144, "i", 1),
             (0x148, "h", 1),
@@ -156,6 +162,7 @@ class Probe:
             alpha, scale_x, scale_y = case[5:]
             uc.mem_write(OWNER + 0x113, struct.pack("<B", alpha))
             uc.mem_write(OWNER + 0x11C, struct.pack("<II", scale_x, scale_y))
+        self.prepare(case)
         registers = (
             r.UC_X86_REG_EBX,
             r.UC_X86_REG_ESI,
@@ -187,7 +194,8 @@ class Probe:
             assert [uc.reg_read(reg) for reg in registers] == [
                 0x11111111 * (i + 1) for i in range(4)
             ]
-        assert self.calls.count(0x45C220) == (1 if seq in (0, 3) else 0)
+        if self.require_901_calls:
+            assert self.calls.count(0x45C220) == (1 if seq in (0, 3) else 0)
         return dict(
             stop=self.stop,
             alpha_reads=self.reads,
@@ -200,91 +208,96 @@ class Probe:
         )
 
 
-objects = [ROOT / unit["object"]]
-if args.previous_object:
-    objects.insert(0, args.previous_object)
-probes = [Probe()] + [Probe(p) for p in objects]
-cases = list(
-    itertools.product(
-        (0, 3),
-        (0, 1, 2, 4, 6, 8),
-        (-1, 0),
-        (0x27F, 0x67F, 0xA7F, 0xE7F, 0x37F, 0x77F, 0xB7F, 0xF7F),
-        (-2.0, 0.0, 2.0, 20.0),
-    )
-)
-cases += list(itertools.product((0, 3), (1, 2, 6), (100,), (0x27F, 0x37F), (20.0,)))
-scale_bits = (
-    0,
-    0x80000000,
-    1,
-    0x80000001,
-    0x3F800000,
-    0xBF800000,
-    0x3F7FFFFF,
-    0x40000000,
-    0x7F800000,
-    0xFF800000,
-    0x7FC00123,
-    0x7F800001,
-)
-cases += [
-    (2, 0, 100, cw, 20.0, alpha, sx, sy)
-    for alpha, sx, sy, cw in itertools.product(
-        (0, 4, 5, 6, 255),
-        scale_bits,
-        scale_bits,
-        (0x27F, 0x67F, 0xA7F, 0xE7F, 0x37F, 0x77F, 0xB7F, 0xF7F),
-    )
-]
-counts = dict(
-    cases=0,
-    selected_differences=0,
-    previous_differences=0,
-    previous_continued=0,
-    previous_alpha_read_differences=0,
-    previous_effect_differences=0,
-)
-examples = []
-actual_helpers = set()
-for case in cases:
-    results = [p.run(case) for p in probes]
-    counts["cases"] += 1
-    actual_helpers.update(results[0]["calls"])
-    if results[0] != results[-1]:
-        counts["selected_differences"] += 1
-        if len(examples) < 2:
-            examples.append(dict(case=case, results=results))
+def main(args):
+    objects = [ROOT / unit["object"]]
     if args.previous_object:
-        counts["previous_effect_differences"] += {
-            k: v for k, v in results[0].items() if k != "alpha_reads"
-        } != {k: v for k, v in results[1].items() if k != "alpha_reads"}
-        counts["previous_alpha_read_differences"] += (
-            results[0]["alpha_reads"] != results[1]["alpha_reads"]
+        objects.insert(0, args.previous_object)
+    probes = [Probe()] + [Probe(p) for p in objects]
+    cases = list(
+        itertools.product(
+            (0, 3),
+            (0, 1, 2, 4, 6, 8),
+            (-1, 0),
+            (0x27F, 0x67F, 0xA7F, 0xE7F, 0x37F, 0x77F, 0xB7F, 0xF7F),
+            (-2.0, 0.0, 2.0, 20.0),
         )
-        counts["previous_differences"] += results[0] != results[1]
-        counts["previous_continued"] += (
-            results[1]["stop"] == "unexpected_oriented_entry"
+    )
+    cases += list(itertools.product((0, 3), (1, 2, 6), (100,), (0x27F, 0x37F), (20.0,)))
+    scale_bits = (
+        0,
+        0x80000000,
+        1,
+        0x80000001,
+        0x3F800000,
+        0xBF800000,
+        0x3F7FFFFF,
+        0x40000000,
+        0x7F800000,
+        0xFF800000,
+        0x7FC00123,
+        0x7F800001,
+    )
+    cases += [
+        (2, 0, 100, cw, 20.0, alpha, sx, sy)
+        for alpha, sx, sy, cw in itertools.product(
+            (0, 4, 5, 6, 255),
+            scale_bits,
+            scale_bits,
+            (0x27F, 0x67F, 0xA7F, 0xE7F, 0x37F, 0x77F, 0xB7F, 0xF7F),
         )
-report = dict(
-    target_sha256=c.verify_target(),
-    objects=[dict(path=str(p), sha256=lp.sha(p)) for p in objects],
-    original_helpers={
-        hex(address): dict(
-            size=helpers[address][0],
-            sha256=hashlib.sha256(
-                c.target_bytes(address, helpers[address][0])
-            ).hexdigest(),
-        )
-        for address in sorted(actual_helpers)
-    },
-    counts=counts,
-    examples=examples,
-    scope="901 sequence0/3 transition gates and sequence2 scale/fade; original phase/next-block/frame/texture-null helpers; target/selected actual RET; old source stops at unexpected oriented entry without fabricated return; finite valid animation fixture, not arbitrary resources or full-root proof",
-    input_sha256=hashlib.sha256(json.dumps(cases).encode()).hexdigest(),
-)
-args.output.parent.mkdir(parents=True, exist_ok=True)
-args.output.write_text(json.dumps(report, indent=2) + "\n")
-print(json.dumps(report, indent=2))
-if counts["selected_differences"]:
-    raise SystemExit(1)
+    ]
+    counts = dict(
+        cases=0,
+        selected_differences=0,
+        previous_differences=0,
+        previous_continued=0,
+        previous_alpha_read_differences=0,
+        previous_effect_differences=0,
+    )
+    examples = []
+    actual_helpers = set()
+    for case in cases:
+        results = [p.run(case) for p in probes]
+        counts["cases"] += 1
+        actual_helpers.update(results[0]["calls"])
+        if results[0] != results[-1]:
+            counts["selected_differences"] += 1
+            if len(examples) < 2:
+                examples.append(dict(case=case, results=results))
+        if args.previous_object:
+            counts["previous_effect_differences"] += {
+                k: v for k, v in results[0].items() if k != "alpha_reads"
+            } != {k: v for k, v in results[1].items() if k != "alpha_reads"}
+            counts["previous_alpha_read_differences"] += (
+                results[0]["alpha_reads"] != results[1]["alpha_reads"]
+            )
+            counts["previous_differences"] += results[0] != results[1]
+            counts["previous_continued"] += (
+                results[1]["stop"] == "unexpected_oriented_entry"
+            )
+    report = dict(
+        target_sha256=c.verify_target(),
+        objects=[dict(path=str(p), sha256=lp.sha(p)) for p in objects],
+        original_helpers={
+            hex(address): dict(
+                size=helpers[address][0],
+                sha256=hashlib.sha256(
+                    c.target_bytes(address, helpers[address][0])
+                ).hexdigest(),
+            )
+            for address in sorted(actual_helpers)
+        },
+        counts=counts,
+        examples=examples,
+        scope="901 sequence0/3 transition gates and sequence2 scale/fade; original phase/next-block/frame/texture-null helpers; target/selected actual RET; old source stops at unexpected oriented entry without fabricated return; finite valid animation fixture, not arbitrary resources or full-root proof",
+        input_sha256=hashlib.sha256(json.dumps(cases).encode()).hexdigest(),
+    )
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(json.dumps(report, indent=2) + "\n")
+    print(json.dumps(report, indent=2))
+    if counts["selected_differences"]:
+        raise SystemExit(1)
+
+
+if __name__ == "__main__":
+    main(args)
