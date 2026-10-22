@@ -16,7 +16,13 @@ All10840 execution cases pass, including2880 through the actual4351C0 helper
 below its virtual-call threshold. Existing translated read/spawn intervals hold.
 Update61A290 stays nonexact+22, full20060/2d034e48, metadata19592 versus19524;
 diagnostics3/34 and exact totals are unchanged. Scratch homes and shared
-next-sequence exits remain open; callback/exception behavior is not proven.
+next-sequence exit placement remains open; callback/exception behavior is not proven.
+The [scratch/exit audit](AYA_OBJECT_900_SCRATCH_AND_EXIT_AUDIT_2026_10_22.md)
+proves both shared destinations are the same17-byte slot14/RET code and adds
+3456 sequence4 prefixes through the real435160 entry. Three consumed-local
+controls are byte-neutral; separate local payload moves16 argument operands
+away from target without fixing scratch homes and is unselected. No source
+or exact-ledger change follows; repeat allocation controls only with new evidence.
 New owner/type/native-TU controls leave entry61F0B0's two register bytes unresolved.
 The genuine combined CIL link is not fully relocation-replayed and its double
 lookup/oriented provider contract is nonexact; neither is selected.
