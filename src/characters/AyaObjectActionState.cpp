@@ -1703,14 +1703,15 @@ void AyaObjectActionStateView::update_action_state()
         case 0: {
             CharacterObjectEffectEmitter *const owner = fighter_owner_348;
             short const owner_action = *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(owner) + 0x13c);
+            if (owner_action != 710) { --lifetime_330; return; }
             short const owner_sequence = *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(owner) + 0x13e);
-            if (owner_action != 710 || (owner_sequence != 1 && owner_sequence != 2)) { --lifetime_330; return; }
+            if (owner_sequence != 1 && owner_sequence != 2) { --lifetime_330; return; }
             if (!*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(owner) + 0x186))
                 sprite_004.object_x_0e8 = static_cast<float>(static_cast<double>(heading_340[1]) * sprite_004.object_facing_100 + sprite_004.object_x_0e8);
             owner->x_ec = sprite_004.object_x_0e8;
-            owner->y_f0 = sprite_004.object_y_0ec;
-            if (sprite_004.object_x_0e8 > 0.0f && sprite_004.object_x_0e8 < 1280.0f && owner_sequence == 2)
-                reinterpret_cast<AyaObjectActionStateView *>(owner)->select_sequence(1);
+            fighter_owner_348->y_f0 = sprite_004.object_y_0ec;
+            if (sprite_004.object_x_0e8 > 0.0f && sprite_004.object_x_0e8 < 1280.0f && *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x13e) == 2)
+                reinterpret_cast<AyaObjectActionStateView *>(fighter_owner_348)->select_sequence(1);
             if (((sprite_004.object_x_0e8 >= 1280.0f && sprite_004.object_facing_100 == 1) || (sprite_004.object_x_0e8 <= 0.0f && sprite_004.object_facing_100 == -1)) && !state_364) {
             switch (g_match_identifier) {
             case 3: {
@@ -1723,8 +1724,8 @@ void AyaObjectActionStateView::update_action_state()
                 float i = 0.0f; do { payload[0] = static_cast<float>(i * 20.0f + 170.0f); payload[1] = 6.0f; payload[2] = 3.0f; effect_emitter()->spawn_unparented_related_object(900, sprite_004.object_x_0e8, static_cast<float>(sprite_004.object_y_0ec + 100.0), static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3); i += 1.0f; } while (i < 2.0f); break; }
             default: break;
             }
-                if (*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(owner) + 0x13e) == 1)
-                    reinterpret_cast<AyaObjectActionStateView *>(owner)->next_sequence_block();
+                if (*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x13e) == 1)
+                    reinterpret_cast<AyaObjectActionStateView *>(fighter_owner_348)->next_sequence_block();
                 state_364 = 1;
             }
             if (!(sprite_004.object_x_0e8 >= 2000.0f || sprite_004.object_x_0e8 <= -720.0f)) break;
