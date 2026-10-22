@@ -61,13 +61,13 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4024)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1377)
+        self.assertEqual(len(matching), 1378)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1499)
+        self.assertEqual(len(implemented), 1500)
         root = next(row for row in functions if row["address"] == "0x00496540")
         self.assertEqual(root["status"], "implemented")
         self.assertEqual(root["match_percent"], "0.00")
@@ -81,15 +81,15 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(binder["match_percent"], "0.00")
         self.assertIn(binder["proposed_name"], implemented)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1377
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1378
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 541)
+        self.assertEqual(len(manifest["units"]), 542)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1509,
+            1510,
         )
         root = manifest["units"]["gpt-web-reimu-object-action-state"]
         self.assertEqual(root["kind"], "probe")
@@ -1032,9 +1032,10 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 491)
-        self.assertEqual(sum(map(len, accepted.values())), 1377)
+        self.assertEqual(len(accepted), 492)
+        self.assertEqual(sum(map(len, accepted.values())), 1378)
         self.assertEqual(accepted["cross-v106a-animation-sprite-frame"], {"0x00436760"})
+        self.assertEqual(accepted["cross-v106a-animation-auxiliary-render"], {"0x00434F30"})
         self.assertEqual(accepted["gpt-web-text-font-color-linked"], {"0x00411790"})
         self.assertEqual(accepted["gpt-web-texture-size-query"], {"0x00404E60"})
         self.assertEqual(accepted["gpt-web-design-base-cleanup"], {"0x0040BB40"})
@@ -1757,9 +1758,9 @@ class WorkflowToolingTests(unittest.TestCase):
             f"Origin/boundary review pending | {len(functions) - len(authored) - len(excluded):,}",
             markdown,
         )
-        self.assertIn("Canonical exact functions | 1,377", markdown)
-        self.assertIn("Canonical exact authored bytes | 233,895", markdown)
-        self.assertIn("Source-present authored mappings | 1,499", markdown)
+        self.assertIn("Canonical exact functions | 1,378", markdown)
+        self.assertIn("Canonical exact authored bytes | 234,336", markdown)
+        self.assertIn("Source-present authored mappings | 1,500", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )

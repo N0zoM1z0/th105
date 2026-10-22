@@ -1,13 +1,24 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-22. Reconstruction is **active at the user's request**.
+The [auxiliary sprite renderer](ANIMATION_AUXILIARY_RENDER_2026_10_22.md)
+`434F30` is newly recovered and accepted **441/441**. Its116-instruction raw
+CFG covers every byte through RET0;13 calls and nine global relocations all
+replay. Existing108h runtime storage now has a nonvirtual method declaration;
+saved Y scale/pivot, signed facing, byte render-pass flags and float round trips
+match naturally under the ordinary profile. Four accepted related functions
+pass fresh serial replay; the other header consumer, Youmu543670, remains
+nonexact. Current ledgers are1378 exact/234336 bytes, authored2136558 (10.97%).
+Next recover6656E0 luma/alpha rendering, then extend the real complete-owner
+provider graph. The giant root remains pending; no new whole-root result follows.
 The shared [animation sprite frame application](ANIMATION_SPRITE_FRAME_2026_10_22.md)
 `436760` is newly recovered and accepted **335/335**. Its complete104-instruction
 raw CFG covers every byte and both commit-transform tail exits. Actual checked
 `vector<unsigned>::at`, signed rectangle snapshots, modes0/2 and frame/transform
 lifetimes reproduce the target without changing existing partial owner views.
 Fresh serial replay passes19 comparisons in the attack/effect sequence and new
-frame units. Current ledgers are1377 exact/233895 bytes, authored2136117 (10.95%).
+frame units. Its checkpoint ledgers were1377 exact/233895 bytes,
+authored2136117 (10.95%).
 The [private complete-owner context](REIMU_OBJECT_COMPLETE_OWNER_2026_10_22.md)
 compiles the real17-slot hierarchy/pool/lifetime/root. Its natural void sequence
 chain preserves10 full exact bodies and finalize overrides preserve26/33; a
@@ -15,8 +26,9 @@ native pool witness emits the actual17-slot declaration topology. The first
 36-object owner link fails with16 unresolved names and no image. Two render
 dependencies lack selected bodies:434F30 candidate441 and6656E0 candidate248.
 Other names have real-provider/compiler-identity leads; keep the lookup return
-contracts consistent. Next recover bounded434F30, then complete real closure
-before assessing owner/LTCG codegen. The giant root remains pending; no private
+contracts consistent. The new434F30 recovery supersedes that missing-body lead;
+6656E0 is next before completing real closure and assessing owner/LTCG codegen.
+The giant root remains pending; no private
 owner control or library helper receives added exact credit.
 Font color `411790` is newly accepted **352/352** in a genuine owner/render
 CIL context with its actual renderer -> static markup -> color call path.
@@ -157,15 +169,15 @@ are described in [artifact retention](ARTIFACTS.md).
 | Layer | Current value |
 | --- | ---: |
 | Provisional candidates | 4,024 |
-| Authored / excluded / origin review | 1,593 / 1,418 / 1,013 |
-| Durable mappings / source-present | 1,517 / 1,499 |
-| Accepted authored exact | 1,377 functions / 233,895 bytes |
-| Match units / configured functions | 541 / 1,509 |
+| Authored / excluded / origin review | 1,594 / 1,418 / 1,012 |
+| Durable mappings / source-present | 1,518 / 1,500 |
+| Accepted authored exact | 1,378 functions / 234,336 bytes |
+| Match units / configured functions | 542 / 1,510 |
 
-These are ledger counts, not a new all-unit verification claim. The new335-byte
-frame application and18 related sequence callbacks have fresh scoped comparisons.
+These are ledger counts, not a new all-unit verification claim. The new441-byte
+auxiliary renderer and three related accepted functions have fresh comparisons.
 The SVG fills exact bytes against the provisional authored denominator
-(233,895 / 2,136,117 = 10.95%) and shows origin review separately.
+(234,336 / 2,136,558 = 10.97%) and shows origin review separately.
 [Generated progress](PROGRESS.md) and the SVG follow the ledgers.
 `implemented.csv` means source-present; `matches.csv`
 means accepted exact; `claims.csv` remains header-only.

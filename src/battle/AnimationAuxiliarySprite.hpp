@@ -14,6 +14,8 @@ struct AnimationSequenceTree;
 // Composition reproduces the observed CSpriteEx RTTI and ordinary lifetime;
 // it does not claim recovery of the original wrapper's source declaration.
 struct AuxiliarySpriteRuntimeView {
+    void render_auxiliary();
+
     CSpriteEx sprite_000;
     float x_e8;
     float y_ec;

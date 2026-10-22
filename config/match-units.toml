@@ -20539,3 +20539,32 @@ rel32_targets = [
   "?commit_transform@CSpriteEx@@QAEXXZ=0x004073C0",
 ]
 dir32_targets = ["__real@40000000=__real@40000000"]
+
+[units.cross-v106a-animation-auxiliary-render]
+kind = "probe"
+source = "src/battle/AnimationAuxiliaryRender.cpp"
+object = "build/match-units/CrossV106a_AnimationAuxiliaryRender.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete441-byte auxiliary sprite render434F30. Actual stencil/render-pass modes, signed facing, snapshotted Y scale/pivot across X scale, pivot rotation, world translation, battle transform and real sprite draw publisher."
+
+[[units.cross-v106a-animation-auxiliary-render.functions]]
+address = "0x00434F30"
+symbol_base = "?render_auxiliary@AuxiliarySpriteRuntimeView@th105@@QAEXXZ"
+rel32_targets = [
+  "?apply_render_mode@RenderModeManager@th105@@QAEHHE@Z=0x00404A90",
+  "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0",
+  "?scale_x@CSpriteEx@@QAEXM@Z=0x004074A0",
+  "?scale_x@CSpriteEx@@QAEXMM@Z=0x004074E0",
+  "?scale_y@CSpriteEx@@QAEXMM@Z=0x00407580",
+  "?scale_z@CSpriteEx@@QAEXMM@Z=0x00407620",
+  "?rotate_xyz@CSpriteEx@@QAEXMMMMMM@Z=0x00407680",
+  "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0",
+  "?transform_sprite@BattleBackgroundLayoutRenderView@th105@@QAEXPAVCSpriteEx@@@Z=0x004271B0",
+  "?finalize_render@CSpriteEx@@QAEXXZ=0x00407AD0",
+]
+dir32_targets = [
+  "?g_battle_render_pass@th105@@3EA=?g_battle_render_pass@th105@@3EA",
+  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
+  "?g_battle_background_layout@th105@@3UBattleBackgroundLayoutRenderView@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+]
