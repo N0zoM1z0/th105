@@ -20568,3 +20568,24 @@ dir32_targets = [
   "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A",
   "?g_battle_background_layout@th105@@3UBattleBackgroundLayoutRenderView@1@A=?g_global_battle_setup_state@th105@@3PAEA",
 ]
+
+[units.cross-v106a-sprite-render-luma-alpha]
+kind = "probe"
+source = "src/battle/SpriteRenderLumaAlpha.cpp"
+object = "build/match-units/CrossV106a_SpriteRenderLumaAlpha.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete248-byte sprite luma/alpha effect6656E0. Real seven-float thiscall, zero-alpha luma fallback, two live float vectors, named effect parameters and actual service/draw calls."
+
+[[units.cross-v106a-sprite-render-luma-alpha.functions]]
+address = "0x006656E0"
+symbol_base = "?render_luma_alpha@SpriteRenderEffectView@th105@@QAEXMMMMMMM@Z"
+rel32_targets = [
+  "?finalize_render@CSpriteEx@@QAEXXZ=0x00407AD0",
+  "?render_luma@SpriteRenderEffectView@th105@@QAEXMMM@Z=0x00665650",
+]
+dir32_targets = [
+  "?g_render_effect_service@th105@@3PAURenderEffectService@1@A=?g_render_effect_service@th105@@3PAURenderEffectService@1@A",
+  "??_C@_06EELLHCJD@v4Arg0?$AA@=??_C@_06EELLHCJD@v4Arg0?$AA@",
+  "??_C@_06FNKAEDNC@v4Arg1?$AA@=??_C@_06FNKAEDNC@v4Arg1?$AA@",
+]

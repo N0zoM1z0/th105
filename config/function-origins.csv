@@ -2661,7 +2661,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006654D0,authored_game,render,authored,observed,canonical-exact-authored
 0x006655A0,authored_game,render,authored,observed,canonical-exact-authored
 0x00665650,authored_game,render,authored,observed,canonical-exact-authored
-0x006656E0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006656E0,authored_game,render,authored,observed,canonical-exact-authored
 0x006657E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00665810,authored_game,platform,authored,observed,winmain-application-entry-authored-106a
 0x00665AC7,compiler_generated,runtime,exclude,inferred,boost-invalid-argument-eh-cleanup-tail-106a

@@ -1,26 +1,6 @@
-#include "AnimationRenderVirtuals.hpp"
+#include "SpriteRenderEffects.hpp"
 
 namespace th105 {
-
-struct RenderEffectService;
-struct RenderEffectServiceVTable {
-    void *slots_000_084[34];
-    void (__stdcall *set_vector)(
-        RenderEffectService *service,
-        const char *name,
-        const float *value);
-    void *slots_08c_0f8[28];
-    void (__stdcall *configure_pair)(
-        RenderEffectService *service, int first, int second);
-    void (__stdcall *select_mode)(RenderEffectService *service, int mode);
-    void (__stdcall *begin)(RenderEffectService *service);
-    void (__stdcall *finish_first)(RenderEffectService *service);
-    int (__stdcall *finish_second)(RenderEffectService *service);
-};
-struct RenderEffectService {
-    RenderEffectServiceVTable *vtable;
-};
-extern RenderEffectService *g_render_effect_service;
 
 void SpriteRenderEffectView::render_rgb(float red, float green, float blue)
 {

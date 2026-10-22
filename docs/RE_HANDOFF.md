@@ -1,6 +1,16 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-22. Reconstruction is **active at the user's request**.
+The [sprite luma/alpha renderer](SPRITE_LUMA_ALPHA_2026_10_22.md)
+`6656E0` is newly recovered and accepted **248/248**. Its80-instruction raw
+CFG closes both RET28 paths, two direct calls and seven real service callbacks.
+Two live float vectors and zero-alpha luma fallback match under the ordinary
+profile. Five accepted bodies pass fresh replay after moving the unchanged
+service protocol into a shared header. Current ledgers are1379 exact/234584
+bytes, authored2136806 (10.98%). Both missing authored body leads from the first
+complete-owner link now have exact source. Next include them and the existing
+real providers, resolve the excluded map helper and keep lookup return contracts
+consistent before comparing complete-owner/root output. No giant-root credit.
 The [auxiliary sprite renderer](ANIMATION_AUXILIARY_RENDER_2026_10_22.md)
 `434F30` is newly recovered and accepted **441/441**. Its116-instruction raw
 CFG covers every byte through RET0;13 calls and nine global relocations all
@@ -8,9 +18,9 @@ replay. Existing108h runtime storage now has a nonvirtual method declaration;
 saved Y scale/pivot, signed facing, byte render-pass flags and float round trips
 match naturally under the ordinary profile. Four accepted related functions
 pass fresh serial replay; the other header consumer, Youmu543670, remains
-nonexact. Current ledgers are1378 exact/234336 bytes, authored2136558 (10.97%).
-Next recover6656E0 luma/alpha rendering, then extend the real complete-owner
-provider graph. The giant root remains pending; no new whole-root result follows.
+nonexact. Its checkpoint ledgers were1378 exact/234336 bytes,
+authored2136558 (10.97%). The new6656E0 recovery supersedes its missing-body
+lead; continue the complete-owner provider graph. The giant root remains pending.
 The shared [animation sprite frame application](ANIMATION_SPRITE_FRAME_2026_10_22.md)
 `436760` is newly recovered and accepted **335/335**. Its complete104-instruction
 raw CFG covers every byte and both commit-transform tail exits. Actual checked
@@ -26,8 +36,8 @@ native pool witness emits the actual17-slot declaration topology. The first
 36-object owner link fails with16 unresolved names and no image. Two render
 dependencies lack selected bodies:434F30 candidate441 and6656E0 candidate248.
 Other names have real-provider/compiler-identity leads; keep the lookup return
-contracts consistent. The new434F30 recovery supersedes that missing-body lead;
-6656E0 is next before completing real closure and assessing owner/LTCG codegen.
+contracts consistent. The new434F30/6656E0 recoveries supersede both missing-body
+leads; complete real closure before assessing owner/LTCG codegen.
 The giant root remains pending; no private
 owner control or library helper receives added exact credit.
 Font color `411790` is newly accepted **352/352** in a genuine owner/render
@@ -169,15 +179,15 @@ are described in [artifact retention](ARTIFACTS.md).
 | Layer | Current value |
 | --- | ---: |
 | Provisional candidates | 4,024 |
-| Authored / excluded / origin review | 1,594 / 1,418 / 1,012 |
-| Durable mappings / source-present | 1,518 / 1,500 |
-| Accepted authored exact | 1,378 functions / 234,336 bytes |
-| Match units / configured functions | 542 / 1,510 |
+| Authored / excluded / origin review | 1,595 / 1,418 / 1,011 |
+| Durable mappings / source-present | 1,519 / 1,501 |
+| Accepted authored exact | 1,379 functions / 234,584 bytes |
+| Match units / configured functions | 543 / 1,511 |
 
-These are ledger counts, not a new all-unit verification claim. The new441-byte
-auxiliary renderer and three related accepted functions have fresh comparisons.
+These are ledger counts, not a new all-unit verification claim. The new248-byte
+luma/alpha renderer and four related accepted functions have fresh comparisons.
 The SVG fills exact bytes against the provisional authored denominator
-(234,336 / 2,136,558 = 10.97%) and shows origin review separately.
+(234,584 / 2,136,806 = 10.98%) and shows origin review separately.
 [Generated progress](PROGRESS.md) and the SVG follow the ledgers.
 `implemented.csv` means source-present; `matches.csv`
 means accepted exact; `claims.csv` remains header-only.

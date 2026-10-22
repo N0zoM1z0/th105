@@ -14,7 +14,7 @@ accepted comparison receipts and the currently selected source/object pins.
 Retained old source is evidence of an experiment, not automatically selected
 source or an original compiler boundary.
 
-The latest selected font checkpoint is `build/font-markup-stack-20261021/`,
+The retained October 21 font checkpoint is `build/font-markup-stack-20261021/`,
 with recipes in `.analysis/font-markup-stack-20261021/`. Keep its selected
 public/Cdecl objects, extracted native `vc8-string.obj`, target/canonical bodies,
 formal comparisons, caller/stack/EH/library facts and execution receipts.
@@ -23,7 +23,7 @@ The preceding `font-markup-local-20261021` and `font-setter-local-20261021`
 scopes also retain selected objects, frozen inputs and per-file archive receipts.
 `build/font-blend-20261021/local.bin` is an actual execution-harness input.
 
-The latest ReimuObject source selection is documented by
+The retained October 21 ReimuObject source selection is documented by
 `build/reimu-object-811-arguments-20261021/`; the earlier fade-order scope
 retains its source epoch and controls. Nine primary database hashes remain in
 `build/reimu-object-fade-order-20261020/primary-db-after.json` and were checked
@@ -31,7 +31,8 @@ again during this cleanup. The primary project is under
 `.analysis/iku-vslot28-20261002/project/`; do not replace or delete it during
 routine cleanup. The read-only interrupted `font-markup-lifetime-20261021`
 scope retains a fresh baseline and constructor-call census, without a selected
-source/layout change. Reconstruction is paused; there are no pending builds.
+source/layout change. At that October 21 checkpoint reconstruction was paused
+and no build was pending. The live handoff supplies the current active phase.
 
 ## October 21 paused-session cleanup
 

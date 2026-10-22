@@ -1498,3 +1498,4 @@ TextFont_blend_surface
 TitleResourceManager_get_texture_size
 AnimationObject_apply_current_frame
 AuxiliarySprite_render_auxiliary
+SpriteRenderEffect_render_luma_alpha

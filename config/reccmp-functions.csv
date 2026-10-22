@@ -1517,3 +1517,4 @@ TextFont_blend_surface,0x004127C0,function
 TitleResourceManager_get_texture_size,0x00404E60,function
 AnimationObject_apply_current_frame,0x00436760,function
 AuxiliarySprite_render_auxiliary,0x00434F30,function
+SpriteRenderEffect_render_luma_alpha,0x006656E0,function
