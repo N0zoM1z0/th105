@@ -1,280 +1,48 @@
 # TH10.5 reconstruction handoff
 
-Current as of 2026-10-22. Reconstruction is **active at the user's request**.
-The [begin CIL context](TEXT_FONT_BEGIN_CONTEXT_2026_10_22.md) now selects
-4119A0's actual291-byte/83-instruction private body through renderer412706.
-Target64-byte frame/full EDI scope are recovered; only10 publication/read/PUSH
-bytes differ+59. Native291/84/+7 remains diagnostic. Fresh4,320 complete
-begin/list observer cases pass. Conditional MOV/PUSH endpoint proof closes
-arbitrary32-bit data with handle/HWND/outgoing-word disjointness; write order
-differs and two overlaps change the pending argument.514 native-window cases
-validate the model. Opaque HWND, real RTM CIL/link, /Ob1, member and EHs/EHa
-controls retain all four leaf hashes. RTM's missing same-release msobj80.dll
-is restored from pinned official media;137.9MB extraction is removed.
-Default/Ob1/EHs/EHa parser FuncInfo has3 states versus target4; flags alone
-do not identify original begin/TU. Source/header/default profile/rules stay
-fixed; the two affected units cold-replay6 accepted functions. Ledgers1381
-exact/234914 bytes. Next reconcile the fourth cleanup state's construction/
-cleanup ownership; no padding or broad compiler-flag conclusion follows.
-The [font end/reset CIL checkpoint](TEXT_FONT_EDI_LTCG_2026_10_22.md) now accepts
-end411AD0 at168/168 and reset4118F0 at162/162 in the real owner/render image.
-Unchanged source naturally preserves EDI across the target scopes. Explicit
-private-static-leaf contracts require reviewed included source, unique actual
-Static symbols/no exports and full renderer->end or renderer->markup->reset
-caller paths before ordinary full byte/CFG/relocation comparison. Named-object
-ownership is unchanged; four new tests retain fail-closed coverage. Source/
-header/profile stay fixed; two descriptors move from native to existing linked
-unit. All10 accepted linked units plus native font receive scoped cold replay:
-11 units/25 functions. Ledgers1381 exact/234914 bytes, authored2136806 (10.99%).
-Begin's linked291-byte body fixes metric frame/save scope but differs+59 on
-font publication versus HWND read; native291/+7 remains selected. Next inspect
-that concrete order, keeping glyph/markup/Reimu roots pending.
-The [glyph endpoint proof](FONT_GLYPH_WINDOW_PROOF_2026_10_22.md) now establishes
-the18-byte integer residual's final register/memory/write/six-flag equality
-for arbitrary32-bit values when ascent and the stack temporary are disjoint.
-The overlapping sensitivity case is SAT with EDI20 versus5;513 actual native
-window runs agree with the symbolic model. Intermediate/read/fault/GDI/RET
-identity is not claimed. Two checked point/array pen-storage controls preserve
-all12 font hashes; full raw `.text` E8/E9 census finds only known glyph caller
-412756. Public10-body replay retains glyph624/a1f0b4e5/+89 and accepted45/45/289.
-Optional pinned SMT tooling does not change source/header/profile or strict
-acceptance. Ledgers1379 exact. Next inspect actual linked begin/end/reset EDI
-save scopes in the existing genuine owner/provider image rather than repeat
-neutral glyph field/expression controls without a new lead.
-The [member storage and action800 prefix](REIMU_OBJECT_MEMBER_STORAGE_2026_10_22.md)
-now attest22 direct field widths through1,158 target operands. A private real
-owner removes1,430 self and17 parent staging accesses with checked offsets/
-size388. Five scalar shorts lose target800's live parameter; a five-short
-array restores it and reproduces the entire selected45696/4d0ac180 payload,
-while retaining908's known integer-first discrepancy. Float grouping, signed
-lifetime-counter view and a used908 short reference are neutral. New800 audit
-executes the original5575C0 gate and stops at actual435160 entry: selected,
-short-array and prior corrected owner pass2,240 cases; scalar owner differs
-in all2,240 snapshots despite equal output/writes/FPSW. Its804/869/902 matrices
-still pass. Fresh selected comparison stays+31, helper66 exact, ledgers1379.
-No private source selection or shared interface change. Next distinguish the
-source/compiler context preserving both800/908 lifetimes and physical tails;
-observed widths do not determine unique original C++ field grouping.
-The [908 window and rebuilt owner context](REIMU_OBJECT_908_OWNER_2026_10_22.md)
-now recover target29-byte float-before-integer addition after wave. Public
-source has27 bytes and fails all2,240 live-value snapshots despite equal
-outputs. A coherent real owner with typed facing plus the902 correction has
-29/29 and passes all2,240 isolated arithmetic cases, plus804/869/902's actual
-target execution matrices. The window starts with explicit preconditions;
-no spawn/wave return or full908 RET is fabricated or claimed. Other199 action
-entries/default preserve9,344 normal semantic nodes. Rebuilt48-object native
-and root-CIL images retain17 slots/eight RTTI bases,22 switches and counter66.
-Their29-byte windows agree; roots still differ+31/+0. Corrected native45696/
-4b565d71 stays private; public77fe73a4/45696/4d0ac180 is unchanged. Fresh
-RTM45716/468308aa remains+31 and also fails the908 snapshots. Ledgers1379
-exact. Next recover remaining self/parent field access in the private actual
-owner from offset/width evidence before changing global class interfaces.
-The [action902 steering products](REIMU_OBJECT_902_PRODUCTS_2026_10_22.md)
-now have a selected source correction: five real directional intermediates
-convert facing before loading X velocity. All1,792 executions agree in output,
-ordered writes, math arguments, logical x87 and final status; predecessor
-fails every snapshot case.768 execute original atan2 to its actual return,
-512 finish full RET ABI and256 stop at first real spawn. Other199 actions
-plus default preserve9,540 normal semantic nodes after JMP/register-NOP
-contraction;904/907 deltas are alignment skips. New CPP77fe73a4 reproduces
-45696/4d0ac180, still nonexact+31, helper66 exact. Its complete native payload
-equals the private typed-self/actual340-pointer control. No shared layout/ABI,
-header/profile/binding/ownership/match row changes; ledgers stay1379 exact.
-Next reconcile target-backed remaining owner fields and use the corrected
-native body in the genuine owner/provider context.902's older pointer-reload
-lead is superseded by these raw multiplication/lifetime observations.
-The [action869 parameter-prefix audit](REIMU_OBJECT_869_PREFIX_2026_10_22.md)
-now identifies target28-byte parameter-first addition. Public source agrees;
-complete-owner variants reverse operands, with3,008/3,072 live-value snapshot
-differences despite equal outputs. Reading the actual inherited340 pointer
-restores the window and all3,072 prefixes, including an explicit370 alias.
-Its804 regression also passes5,120 real-helper/full-RET cases. The private
-45,696-byte/4d0ac180 root remains nonexact+31, counter66 exact; public source
-is unchanged. Coarse deltas now leave12 regions in902/904/907. Next inspect
-902 pointer reloads/float round trips before adopting the owner model; no
-root acceptance, returning-lookup semantics or global replay claim follows.
-The [action804 velocity lifetime audit](REIMU_OBJECT_804_LIFETIMES_2026_10_22.md)
-now identifies the target's77-byte x87 window and runs5,120 real-helper cases.
-Selected public source agrees in outputs, ordered writes, logical snapshots
-and final FPSW. The private complete-owner overlay agrees in outputs but
-loses one live x87 value in every case. Selector int-to-short alone leaves
-all ten exact sequence bodies and whole root unchanged. Typed existing self
-float storage restores the77-byte window and all5,120 cases; its45,696-byte
-root still differs+31 and remains unselected, with counter66 exact. A coarse
-delta leaves15 regions in869/902/904/907/908, while earlier804/822 scheduling
-deltas disappear. Next inspect869 floating round trips. Fresh public replay
-retains45700/d0ff3d32/+31 and counter66; ledgers stay1379 exact. No global
-cold replay or whole-root semantic claim follows.
-The [complete owner/provider graph](REIMU_OBJECT_OWNER_CLOSURE_2026_10_22.md)
-now resolves two real48-object images without a root export. Both actual17-slot
-vtables retain the root and reproduce all8 RTTI base names/PMD offsets. Both
-normal source CFGs close22 switches; counter4963A0 remains66/66. Root-CIL still
-differs+0 with an aligned EBP frame; private ordinary root45712 differs+31.
-Actual VC8 map45C320 reproduces105/105, still excluded; the needed real render
-mode provider reproduces482 plus18 bytes of switch data/alignment. Distinct
-real float/double lookup definitions remove inconsistent same-name return
-declarations; their94/88 source payloads agree pairwise but remain nonexact
-against target100/94. No private owner/compiler source is selected. Fresh public
-root replay retains45700/d0ff3d32/+31 and counter66. Coarse scheduling deltas
-locate16 regions, including804 velocity lifetime and822 addition order. Next
-inspect target804 x87/value lifetime before changing root data access or typing;
-do not infer semantics from hierarchy/count agreement. Ledgers stay1379 exact.
-The [sprite luma/alpha renderer](SPRITE_LUMA_ALPHA_2026_10_22.md)
-`6656E0` is newly recovered and accepted **248/248**. Its80-instruction raw
-CFG closes both RET28 paths, two direct calls and seven real service callbacks.
-Two live float vectors and zero-alpha luma fallback match under the ordinary
-profile. Five accepted bodies pass fresh replay after moving the unchanged
-service protocol into a shared header. Current ledgers are1379 exact/234584
-bytes, authored2136806 (10.98%). Both missing authored body leads from the first
-complete-owner link now have exact source. Next include them and the existing
-real providers and reconcile source contracts. That closure now resolves above;
-the first owner/root comparisons remain nonexact. No giant-root credit.
-The [auxiliary sprite renderer](ANIMATION_AUXILIARY_RENDER_2026_10_22.md)
-`434F30` is newly recovered and accepted **441/441**. Its116-instruction raw
-CFG covers every byte through RET0;13 calls and nine global relocations all
-replay. Existing108h runtime storage now has a nonvirtual method declaration;
-saved Y scale/pivot, signed facing, byte render-pass flags and float round trips
-match naturally under the ordinary profile. Four accepted related functions
-pass fresh serial replay; the other header consumer, Youmu543670, remains
-nonexact. Its checkpoint ledgers were1378 exact/234336 bytes,
-authored2136558 (10.97%). The new6656E0 recovery supersedes its missing-body
-lead; continue the complete-owner provider graph. The giant root remains pending.
-The shared [animation sprite frame application](ANIMATION_SPRITE_FRAME_2026_10_22.md)
-`436760` is newly recovered and accepted **335/335**. Its complete104-instruction
-raw CFG covers every byte and both commit-transform tail exits. Actual checked
-`vector<unsigned>::at`, signed rectangle snapshots, modes0/2 and frame/transform
-lifetimes reproduce the target without changing existing partial owner views.
-Fresh serial replay passes19 comparisons in the attack/effect sequence and new
-frame units. Its checkpoint ledgers were1377 exact/233895 bytes,
-authored2136117 (10.95%).
-The [private complete-owner context](REIMU_OBJECT_COMPLETE_OWNER_2026_10_22.md)
-compiles the real17-slot hierarchy/pool/lifetime/root. Its natural void sequence
-chain preserves10 full exact bodies and finalize overrides preserve26/33; a
-native pool witness emits the actual17-slot declaration topology. The first
-36-object owner link fails with16 unresolved names and no image. Two render
-dependencies lack selected bodies:434F30 candidate441 and6656E0 candidate248.
-Other names have real-provider/compiler-identity leads; keep the lookup return
-contracts consistent. The new434F30/6656E0 recoveries supersede both missing-body
-leads; complete real closure before assessing owner/LTCG codegen.
-The giant root remains pending; no private
-owner control or library helper receives added exact credit.
-Font color `411790` is newly accepted **352/352** in a genuine owner/render
-CIL context with its actual renderer -> static markup -> color call path.
-[Complete color/LTCG evidence](TEXT_FONT_COLOR_LTCG_2026_10_22.md) records the
-full canonical result and the bounded static-caller witness extension. No
-source behavior or ABI facade changes are needed. The selected renderer is335,
-nonexact+19; native324 stays available to the57-case input audit. CIL parser1572
-retains frame788 and EDX cursor rather than target EDX font; neither it nor
-Incsize158/target154 receives exact/EH credit. The original10 native font
-comparisons retain their inputs and three accepted leaves. At the color checkpoint,
-ledgers were1376 exact/233560 bytes, authored2135782 (10.94%); replay was scoped,
-without a new all-unit cold claim. Continue with the pending markup/glyph
-context and giant root; do not propagate this color result to their acceptance.
-The subsequent [glyph CIL/project controls](FONT_GLYPH_CIL_CONTEXT_2026_10_22.md)
-show the actual linked glyph retains the same624/a1f0b4e5/+89 payload and14
-different bytes. Both skipped instructions remain in the full diagnostic; the
-strict linked comparator still rejects them. Unsigned ascent/cursorY, `/Z7`
-and SSE are all12-body neutral; SSE2 changes glyph/accent and is unselected.
-`/Zi` fails C1902 despite read-back manager file versions; it has no comparison
-result. Preserve source and acceptance. Next inspect actual Reimu496540 call
-membership/behavior with its resolved real-provider context, without treating
-the decoded direct/indirect totals as semantic alignment by themselves.
-The subsequent [actual virtual-surface audit](REIMU_OBJECT_VIRTUAL_SURFACE_2026_10_22.md)
-resolves all29 target/27 native indirect calls to root-this and slots0C/14/1C/20.
-All200 action slot sets plus default agree; path-specific arguments agree for10
-actions, including the shared810/812/852 site. Two wrong source/ABI controls are
-detected. Fresh2048-case907 replay confirms two target bounce sites versus one
-source site, with480 actual slot14 callbacks per side. Root remains45700/+31,
-counter66 exact. Raw RTTI independently confirms ReimuObject's17-slot vtable,
-its8-type hierarchy and both actual pool493340 vptr writes. Existing root/pool
-views are partial, while all17 entry providers have source selections. Next
-test a real complete-owner/vtable context privately instead of force-exporting
-the root or treating physical call-count differences as missing behavior.
-Texture surface query `404E60` is newly accepted exact148/148 under a genuine
-lookup-visible LTCG unit. Its independent417800 provider remains nonexact with
-the same canonical source payload after moving its declaration into a header.
-The query was the one remaining missing body in the bounded real-provider
-context for496540. [Texture query evidence](TEXTURE_SIZE_QUERY_2026_10_22.md)
-records the complete boundary, actual caller edges, source and compiler context.
-The subsequent [resolved real-provider context](REIMU_OBJECT_REAL_PROVIDER_CONTEXT_2026_10_22.md)
-links20 real object inputs with pinned CRT/SDK libraries, four data bindings and
-eight source-view aliases. Both native and root-CIL images resolve; both retain
-counter66/66. Root-CIL still starts with a target-incompatible aligned EBP frame
-at+0. No giant-root exact credit or general LTCG conclusion follows.
-The subsequent [real helper visibility controls](REIMU_OBJECT_CIL_HELPERS_2026_10_22.md)
-close all22 source switches in four linked contexts. Helpers remain57/62/73
-exact but root-CIL is still nonexact+0; phase visibility removes two target-
-observed FLDZ reloads. Four source-only float-fabs calls explain its misleading
-direct-call total. Explicit double-fabs removes those calls without fixing
-the entry and discards target-observed float round trips in native code.
-A consistent by-value coordinate record already fails the real77/78 wrappers
-at+0 and is not propagated into the root. None of these controls is selected.
-Glyph `0x00411B80` now uses the native SDK POINT layout; all 12 font comparison
-hashes remain unchanged and glyph is still nonexact +89. The subsequent bounded
-markup `0x00411FA0` work re-closes all 1744 bytes, rejects four length/lifetime
-controls and records independent 0x194 owner-to-cookie placements in three
-callers; its +16/frame residual remains. No exact credit is added.
-The pre-resumption reconstruction commit was:
-`523d728` (`gpt-6.1-sol: recover native checked character access in font markup`).
-See [the fresh glyph evidence](FONT_GLYPH_SDK_TYPES_2026_10_21.md) for the
-selected correction, and [markup frame evidence](FONT_MARKUP_FRAME_LIFETIMES_2026_10_22.md)
-for the new normal-CFG, stack traces, controls and independent owner placements.
-Fresh [glyph arithmetic/compiler controls](FONT_GLYPH_ARITHMETIC_CONTROLS_2026_10_22.md)
-again close624 bytes and reproduce all12 public hashes. Isolated top, signed-long
-ascent, actual SDK GDI declarations and a pen-relative expression are byte-neutral.
-Explicit14.0.50727.42 driver/frontend/backend identities with fixed SP1 headers
-also reproduce all12 hashes; `/Os` instead gives glyph579/nonexact+0 and is not
-selected. Original compiler/project identity is not proved. Preserve the current
-source; further glyph work needs an independent caller/lifetime/context lead.
-The subsequent [markup stack/context audit](FONT_MARKUP_STACK_HOMES_2026_10_22.md)
-locates two4-byte gaps without direct normal ESP references; no padding is
-selected. Whole-font static/member CIL controls are byte-identical1554/frame788
-but choose EDX cursor, unlike target's EDX font. Its real-caller inspection
-finds and selects a [packed DWORD input-read correction](TEXT_FONT_PACKED_INPUT_2026_10_22.md)
-at412670. New caller324/1daa6415 remains nonexact+0;57 guarded input cases agree,
-while predecessor fails13 stop/value and39 read traces. All13100 padded caller
-cases pass with6550 real blend calls per side. Other11 complete font bodies,
-including markup1728/a3c2e09c, glyph624/a1f0b4e5 and accepted45/45/289, persist.
-The resumed ReimuObject `496540` comparison now freshly reproduces its selected
-45700-byte canonical source and +31 difference. [822 direction-width evidence](REIMU_OBJECT_822_DIRECTION_WIDTH_2026_10_22.md)
-adds exact private byte-formal wrapper witnesses (77/78) and fresh624 prefixes
-on both selected source and an unselected caller control. Width alone does not
-recover the target's constant-1/request window. The subsequent
-[constant-lifetime and sharing follow-up](REIMU_OBJECT_822_CONSTANT_HOISTING_2026_10_22.md)
-reproduces the entry-hoisting transition with a controlled source pair and
-freshly retains call/RET membership distances11/27. Byte-variant, signed-choice
-and local guard controls remain unselected; consistent bool-counter and actual
-RNG visibility controls are whole-root byte-neutral. Next investigate genuine
-provider-backed compiler/link context using the25 decoded direct callees and
-the newly reconstructed real404E60 dependency. That context now resolves with
-native providers; the three one-helper CIL controls are now complete. Further
-context changes need an independent target lifetime/ownership lead. Keep native
-phase-call reloads and float-fabs round trips; root source and selected
-canonical exactness remain unchanged. Fresh native replay retains the45700-byte
-root hash/nonexact+31, counter66 and genuine spawn77/78 exact.
-Preserve the font questions without routine replay of unmodified old inputs.
+Current as of2026-10-22. Reconstruction is **active at the user's request**.
+Use the live ledgers and fresh canonical comparisons over dated reports.
+The user authorizes focused affected-unit replays, serial low-resource builds,
+and stable commit/push checkpoints named `gpt-6.1-sol: ...`.
 
-The generic giant mapper now separates decoded direct CALL counts from its
-legacy raw E8 fingerprint. ReimuObject has404 actual direct calls to25 targets;
-raw405/26 remains a byte regression guard. The dedicated target auditor already
-excluded FLD1's embedded E8 at49C35B; the generic JSON/text output now agrees.
-Do not collect a fictitious provider at4C611D from the raw scan.
+## Current checkpoint
 
-The previous 845-line operational record is preserved in the
-[October 21 snapshot](RE_HANDOFF_HISTORY_2026_10_21.md). Dated evidence pages and
-snapshots describe their own source/object epochs. The live ledgers and fresh
-canonical comparisons override historical prose and old next-step lists.
+The [markup construction-cleanup audit](FONT_MARKUP_CONSTRUCTION_CLEANUP_2026_10_22.md)
+identifies the fourth target/native EH state as deque element placement-copy
+construction. The current CIL parser has three states because its actual
+outlined push_back owns the remaining one; its cleanup still jumps to the
+real empty placement delete. The state has not simply disappeared. The same
+RET byte at402810 also occupies CDesignObjectBase vtable slot5, so that
+candidate stays origin review. No authored local, ABI, layout, source or
+acceptance change follows from these counts.
+
+A new two-real-CIL-TU owner/render control retains parser1572/frame788 and
+all four leaf hashes. Actual RTM GL/Zi still fails C1902 before a DEBUG link;
+the loader confirms the correct client DLL but reports unsupported RPC
+AuthnSvc10. No successful PDB/code-generation comparison follows. Native
+markup1728/frame788 still differs+16 from1744/frame796. Its EDX font/ECX
+height-output/two-stack-word/RET8 ABI and four cleanup roles already agree.
+The fresh static audit and two-unit/six-accepted-function cold replay retain
+1381 exact/234914 bytes. This is not an aggregate all-unit replay claim.
+
+The preceding [begin context checkpoint](TEXT_FONT_BEGIN_CONTEXT_2026_10_22.md)
+selects the real291-byte CIL begin through renderer412706. Its64-byte metric
+frame and full EDI scope match; only10 publication/read/PUSH bytes differ+59.
+All4320 complete observed begin/list cases pass. The conditional32-bit window
+proof requires font-handle storage disjoint from the HWND cell and outgoing
+word; writes occur in a different order, and overlaps change the argument.
+The [end/reset checkpoint](TEXT_FONT_EDI_LTCG_2026_10_22.md) accepts168/168 and
+162/162 through actual static caller paths. Named-object ownership rules and
+full canonical byte/CFG/relocation comparison remain strict.
 
 ## Target and startup checks
 
-Use only original Japanese TH10.5 v1.06a, SHA256
+Only original Japanese TH10.5 v1.06a is valid:
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 Read [AGENTS.md](../AGENTS.md), [architecture](ARCHITECTURE.md),
-[workflow](RE_WORKFLOW.md) and the relevant source before changing state.
-Use one writable session, one bounded unit, serial VC8 builds and nice10/CPU0.
-Do not delegate matching. Commits use English `gpt-6.1-sol: ...`; commit and push
-stable checkpoints. The user has authorized resumption and focused affected-unit
-replays; do not routinely repeat the aggregate cold replay.
+[workflow](RE_WORKFLOW.md), relevant dated evidence and source before changes.
+Use one writable session, one bounded address and serial VC8 builds; no
+subagents or concurrent builds. Keep claims.csv header-only.
 
 ```bash
 git status --short
@@ -284,180 +52,138 @@ python3 scripts/report-reconstruction-status.py --summary
 python3 scripts/validate-tracking.py --require-target
 ```
 
-Target verification and tracking pass. IDA preflight rejects the open image:
-SHA256 `10350095bcf95edb59e03bee9849a2dc8a7714b4927ad5909c569c550fce6822`.
-Do not use that session's semantics or write metadata. Hash-attested raw PE
-inspection remains available. Independently attest a Ghidra project before
-semantic use; keep one process and read back metadata changes. Never patch
-canonical target bytes. The private primary project and its nine-file pins
-are described in [artifact retention](ARTIFACTS.md).
+Target/status/tracking pass. IDA preflight rejects the open image SHA256
+`10350095bcf95edb59e03bee9849a2dc8a7714b4927ad5909c569c550fce6822`.
+Do not use its semantics, metadata writes or patching. Independently attested
+raw target PE inspection remains available; independently attest any Ghidra
+project before use and run at most one process. Database state is not the
+durable record. Re-run IDA preflight at each bounded work-unit start.
 
 ## Ledger snapshot
 
 | Layer | Current value |
 | --- | ---: |
-| Provisional candidates | 4,024 |
-| Authored / excluded / origin review | 1,595 / 1,418 / 1,011 |
-| Durable mappings / source-present | 1,519 / 1,501 |
-| Accepted authored exact | 1,379 functions / 234,584 bytes |
-| Match units / configured functions | 543 / 1,511 |
+| Provisional candidates |4024|
+| Authored / excluded / origin review |1595 /1418 /1011|
+| Durable mappings / source-present |1519 /1501|
+| Accepted authored exact |1381 functions /234914 bytes|
+| Provisional authored byte denominator |2136806|
+| Exact byte percentage |10.99%|
+| Match units / configured functions |543 /1511|
 
-These are ledger counts, not a new all-unit verification claim. The new248-byte
-luma/alpha renderer and four related accepted functions have fresh comparisons.
-The SVG fills exact bytes against the provisional authored denominator
-(234,584 / 2,136,806 = 10.98%) and shows origin review separately.
-[Generated progress](PROGRESS.md) and the SVG follow the ledgers.
-`implemented.csv` means source-present; `matches.csv`
-means accepted exact; `claims.csv` remains header-only.
+These are current ledger totals. Focused replays qualify only their actual
+scope; a new aggregate claim requires a cold `verify-exact-units.py --all`.
+[Generated progress](PROGRESS.md) and its SVG follow the ledgers.
+Source-present is not exact; review/compiler byte equality is not authored
+progress. Original boundaries and origin review can still change the denominator.
 
-## Current font source and comparison
+## Font source and selected comparisons
 
-The resumed source uses the SDK's native nested LONG origin pair in glyph
-metrics, with explicit size/offset checks. The fresh
-`build/font-glyph-coordinate-20261021/formal.json` reproduces all 12 baseline
-canonical hashes and complete extents. SDK typing and a real inline glyph-top
-control do not remove the +89 residual; only the SDK correction is selected.
-The later `build/font-markup-length-20261021/formal.json` again reproduces all
-12 complete bodies. Size_t/separate used length controls are byte-identical;
-primary consumed-length and scoped-string controls remain nonexact. No markup
-control is selected. Three independent raw constructor prologues place the
-0x194 owner immediately below live cookies; the markup frame gap alone cannot
-justify enlarging the shared type.
+The selected owner is0x194 bytes, config0x128, native list<unsigned*> at15C,
+native string at170. Independent raw constructor sites431440/43A590/44DCB0
+place its receiver0x194 below a live cookie; a markup frame gap is insufficient
+evidence for enlargement. See [frame/lifetime evidence](FONT_MARKUP_FRAME_LIFETIMES_2026_10_22.md)
+and [stack homes](FONT_MARKUP_STACK_HOMES_2026_10_22.md).
 
-| Source entry | Purpose |
-| --- | --- |
-| [TextFontOwner.hpp](../src/assets/TextFontOwner.hpp) | Native configuration and 0x194-byte owner layout |
-| [TextFontRuntime.hpp](../src/assets/TextFontRuntime.hpp) | Shared owner alias and rendering data types |
-| [TextFontOwner.cpp](../src/assets/TextFontOwner.cpp) | Constructor, destructor and configuration |
-| [TextFontRender.cpp](../src/assets/TextFontRender.cpp) | Real rendering caller and file-local providers |
+| Address | Operation | Selected bytes / target | Result |
+| --- | --- | ---: | --- |
+|411760|Surface setter|45 /45|Accepted native exact|
+|4127C0|Outline blend|289 /289|Accepted native exact|
+|4128F0|Hex decoder|45 /45|Accepted native exact|
+|412920|Checked character|33 /33|Byte-equal; origin review, no credit|
+|411790|Color|352 /352|Accepted genuine CIL exact|
+|411AD0|End|168 /168|Accepted genuine CIL exact|
+|4118F0|Reset|162 /162|Accepted genuine CIL exact|
+|4119A0|Begin|291 /291|Genuine CIL, nonexact+59|
+|411B80|Glyph|624 /624|Native, nonexact+89|
+|411DF0|Accent|433 /417|Native, nonexact+5|
+|411FA0|Markup|1728 /1744|Native, nonexact+16|
+|412670|Renderer|335 /326|Genuine CIL, nonexact+19|
 
-The fresh pre-cleanup build at `523d728` reproduces all 12 configured render
-comparisons in `build/font-markup-lifetime-20261021/baseline-formal.json`,
-including all canonical hashes from the selected
-`build/font-markup-stack-20261021/formal.json`. Eight functions remain nonexact;
-three accepted leaves and one uncredited helper are byte-equal.
+Source: [owner layout](../src/assets/TextFontOwner.hpp),
+[runtime alias](../src/assets/TextFontRuntime.hpp),
+[lifecycle/configuration](../src/assets/TextFontOwner.cpp),
+[render/providers](../src/assets/TextFontRender.cpp),
+[combined CIL input](../src/assets/TextFontLinked.cpp).
+Render CPP SHA256 is
+`76e86737670ca41893c2b1940ae77e9f4254e863ae2424971a273634be3f66ca`.
+The owner unit separately retains config67/constructor138/destructor210/
+configure439 exact; compiler cleanup witnesses add no authored credit.
 
-| Address / operation | Source / target bytes | Current result |
-| --- | ---: | --- |
-| 411760 surface setter | 45 / 45 | Accepted exact |
-| 4127C0 outline blend | 289 / 289 | Accepted exact |
-| 4128F0 hex decoder | 45 / 45 | Accepted exact |
-| 412920 checked character | 33 / 33 | Canonical byte equality; origin review, no authored credit |
-| 411FA0 markup | 1728 / 1744 | Nonexact at 411FB0 / +16; frame reservation 788 / 796 |
-| 411B80 glyph | 624 / 624 | Nonexact at +89; differences confined to +88..103 |
-| 412670 render caller | 324 / 326 | Packed DWORD input read recovered; nonexact at entry/frame |
-| 4119A0 begin / 411AD0 end | 291 / 291; 168 / 168 | Nonexact at +7 |
-| 411DF0 accent | 433 / 417 | Nonexact at +5; native ESI allocation unresolved |
-| 411790 color / 4118F0 reset | 332 / 352; 161 / 162 | Nonexact at +2 / +7 |
-
-Markup now naturally receives font in EDX, height output in ECX and two stack
-arguments, with RET8. Its full canonical source hash is
+Glyph canonical SHA256 is
+`a1f0b4e58a76926fa837cdd852256122752fea9e5c9226332fc02139a8ac7806`.
+Its14 differing bytes sit in an18-byte integer window. The
+[conditional endpoint proof](FONT_GLYPH_WINDOW_PROOF_2026_10_22.md) preserves
+registers/memory/writes/six flags for arbitrary32-bit data under the stated
+nonalias condition; it does not turn the body into a canonical match.
+Both skipped alignment instructions remain in the full comparison.
+Markup canonical SHA256 is
 `a3c2e09c65e0af2c63da0a20950896721a938a3299bc3cf12b4ed600f99296ff`.
-The checked-character operation is a real `std::string::at` wrapper with six
-actual EAX/EDI calls; authored wrapper versus specialized library ownership is
-unresolved. Do not turn byte equality into an authored match or exclusion.
-The local O2/Ob1 profile preserves actual helper calls; default O2's unused exact
-copy with an inlined caller is insufficient caller evidence.
+Its length, outgoing-argument cleanup and fixed-frame lifetimes remain open.
 
-Latest evidence: [checked markup and stack facts](TEXT_FONT_MARKUP_CHECKED_2026_10_21.md),
-[native markup ABI](TEXT_FONT_MARKUP_NATIVE_2026_10_21.md),
-[surface exact](TEXT_FONT_SURFACE_EXACT_2026_10_21.md),
-[glyph lifetime](TEXT_FONT_GLYPH_NATIVE_2026_10_21.md) and
-[blend exact](TEXT_FONT_BLEND_EXACT_2026_10_21.md).
-The owner unit retains accepted config constructor 67, owner constructor 138,
-destructor 210 and configure 439 bytes; compiler cleanup witnesses confer no
-authored credit. See [configuration exact](TEXT_FONT_OWNER_CONFIG_EXACT_2026_10_21.md).
+Do not repeat neutral source/flag enumeration without a new target/context
+lead. [Glyph controls](FONT_GLYPH_CIL_CONTEXT_2026_10_22.md),
+[begin controls](TEXT_FONT_BEGIN_CONTEXT_2026_10_22.md),
+[packed input correction](TEXT_FONT_PACKED_INPUT_2026_10_22.md), and the
+new cleanup audit describe their own limited source epochs and observations.
+RTM tool identities, official extraction and the restored same-release
+msobj80.dll are in [VC8 RTM provenance](VC8_RTM_PROBE.md).
 
-Latest bounded execution receipts retain 92/92 checked-character cases and
-2,400/2,400 affected parent cases, with 6,720 actual helper calls per side and
-480 range-error-entry stops. Other providers remain observers; actual exception
-unwinding, GDI, allocation failure and arbitrary aliasing are unqualified.
-The preceding 8,640-parent/280-caller receipts have their own source epoch.
-EH state graphs agree, but handler/funclet metadata and runtime unwinding remain
-open. Current length/length+1 stack homes and delayed argument cleanup differ;
-the 8-byte frame residual does not establish padding or a larger owner type.
+## Larger roots
 
-The interrupted next scope, `font-markup-lifetime-20261021`, contains only
-preflight, baseline and raw constructor-call census reports. No source/layout
-change or new compiler conclusion was selected. Recipes for the latest accepted
-checkpoint remain in `.analysis/font-markup-stack-20261021/`.
+ReimuObject update496540 remains nonexact+31. The selected
+[staging source](../src/characters/ReimuObjectActionStateStaging.cpp) SHA256 is
+`77fe73a458421c55ceb7f2d9151a369aa19095f2de194404b8e8033f109fc349`;
+its complete45696-byte canonical payload SHA256 is
+`4d0ac180cace3180285c26ccfb94a48d3f05d70037761cdbd4f1d7f07c947a50`.
+Same-TU counter4963A0 remains66/66 exact. Target physical span46138 includes
+46128 owned code bytes and10 alignment bytes. Target/source433/428 physical
+calls and68/63 RETs are observations, not a behavioral proof.
 
-## Larger roots and resumption points
+The [selected902 products](REIMU_OBJECT_902_PRODUCTS_2026_10_22.md) preserve
+actual target x87 lifetimes. Subsequent [908 owner/window evidence](REIMU_OBJECT_908_OWNER_2026_10_22.md)
+and [member/800 evidence](REIMU_OBJECT_MEMBER_STORAGE_2026_10_22.md) keep the
+corrected complete owner private: scalar shorts lose800's live parameter;
+a five-short array restores800 and the complete selected payload, while908
+still needs float-first lifetime recovery. Equal final outputs do not
+qualify differing live x87 snapshots. Real48-object native/root-CIL provider
+graphs already resolve; neither giant root is exact. Original source grouping,
+compiler phase and physical tail ownership remain open.
 
-ReimuObject update `0x496540` is still **nonexact at 0x49655F / +31**. The
-selected source remains
-[ReimuObjectActionStateStaging.cpp](../src/characters/ReimuObjectActionStateStaging.cpp),
-SHA256 `3b9e4896c3645bb1228db3b432a832154870c5639a80df6c02cb67ce2dba12cc`;
-complete 45,700-byte canonical section SHA256
-`d0ff3d3259c823cc56e322c5e0ec238456d8b490c78b4a5336a249b45a405a58`.
-The fresh `build/reimu-object-822-lifetimes-20261022/formal.json` reproduces that
-complete comparison and counter66. Native Object wrappers separately admit
-byte direction/callback formals at77/77 and78/78; original formal widths stay
-ambiguous. A private106-site caller view remains nonexact with a222-byte822
-window versus225, despite passing624 scoped cases; it is not selected.
-The 46,138-byte owned comparison includes 46,128 code bytes and 10 alignment
-bytes. The selected source has 428 physical calls / 63 RETs versus 433 / 68;
-call/RET membership distances remain 11 / 27. Same-TU counter `4963A0` is
-accepted exact 66/66. Interior equal windows confer no partial exact credit.
+Use the [Reimu evidence index](REIMU_OBJECT_EVIDENCE.md) for bounded action
+receipts. Other pending roots include Reimu Fighter478FA0, ReimuObject
+initializer4A1CE0, YoumuObject543670, AyaObject61F0B0, CGage41B3F0,
+CDesignBase loader40B000 and number renderer415050. Preserve the large-root
+objective while taking independently evidenced smaller exact opportunities.
+Do not infer standalone-object impossibility from failed controls.
 
-811's 161-byte request window and 640 bounded prefixes agree, while 822's
-request register/constant allocation, 908's post-wave x87 order, and remaining
-call/RET ownership stay open. Opaque World/wave entries are execution stops;
-no whole-root proof or fabricated return follows. ECX/RET0/caller ignoring EAX
-are observations; `void` is an inferred source view, not a proven original
-return type. See [Reimu evidence index](REIMU_OBJECT_EVIDENCE.md) and
-[811 selected checkpoint](REIMU_OBJECT_811_COORDINATE_ARGUMENTS_2026_10_21.md).
+## Reproduction, retention and final gate
 
-The latest controlled822 pair builds through identical input/output paths:
-coordinate locals emit46144 bytes without entry constants; actual argument
-expressions emit45716 with EBX1/EBP0. This is a fresh current-context transition,
-not reproduction of the old46160-byte object. Do not revert selected pending
-argument lifetimes just to remove the hoists. Actual target800/821,811 and825
-advance tails have independent retirement checks; early return after the first
-decrement would change behavior. See the new constant-lifetime record and
-`build/reimu-object-822-constant-lifetime-20261022/` for pins and controls.
-
-Other open roots remain recorded in the October 21 snapshot: Reimu Fighter
-478FA0, ReimuObject initializer 4A1CE0, YoumuObject initializer 543670, AyaObject
-initializer 61F0B0, CGage 41B3F0, CDesignBase loader 40B000 and floating-number
-renderer 415050. Do not infer an LTCG or standalone-object impossibility from
-an unsuccessful control. Recheck old assumptions against target evidence.
-Choose one bounded address; preserve both the large-root
-objective and smaller exact opportunities without routine all-history replay.
-
-## Reproduction and final gate
+Use only the relevant unit for the selected scope:
 
 ```bash
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-text-font-render --compare --json
-# Expected mixed result: 8 mismatches, 3 accepted exact leaves, 1 byte-equal review helper.
-taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-text-font-owner --compare --json
-# Expected accepted owner/config roots exact; compiler witnesses are separate.
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-text-font-color-linked --compare --json
+taskset -c 0 nice -n 10 python3 scripts/audit-text-font-markup-cleanup.py --json
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-reimu-object-action-state --compare --json
-# Expected mixed result: 496540 nonexact +31, 4963A0 exact 66/66.
 ```
 
-Run only the relevant command for the chosen scope. Replay every affected
-accepted unit after shared header/layout/profile/partition/binding edits.
-A fresh aggregate claim requires `python3 scripts/verify-exact-units.py --all`.
+Mixed comparison exits are expected for units containing pending functions.
+Replay every affected accepted unit after shared layout/header/profile/
+partition/relocation changes. Keep CPU0/nice10 and serial builds. Preserve
+selected inputs and recipes; archive completed private artifacts only after
+SHA256 round-trip checks. See [artifact retention](ARTIFACTS.md).
+The [October21 historical snapshot](RE_HANDOFF_HISTORY_2026_10_21.md) and dated
+pages preserve prior epochs; Git7818466 retains the previous live handoff.
 
-[Artifact retention and recovery](ARTIFACTS.md) lists the cleanup inventory,
-retained inputs and restoration commands. Reconstruction source, ABI/layout,
-compiler profiles, ledgers and progress artifacts were left unchanged during
-cleanup. Historical bulk reports are losslessly compressed; selected objects,
-private recipes, target, toolchains, primary databases and detached worktrees
-are preserved. The original 845-line handoff is retained verbatim in its dated
-snapshot; use this page for current state.
-
-Before every commit, push or pull request, run in the finished worktree:
+After the final tracked edit, before every commit/push/PR:
 
 ```bash
 python3 scripts/ci.py
 git diff --check
 ```
 
-The local gate is mandatory after the last tracked edit. Cleanup validation
-passes all 430 workflow tests, target/tracking checks, local documentation links,
-compressed-report/archive SHA256 recovery and `git diff --check`. The local CI
-receipt is `build/handoff-cleanup-20261021/ci-final.log`.
-Do not commit private reports, executable/game data, databases, toolchains or
-credentials. Verify remote HEAD and a clean worktree after pushing.
+Local CI is mandatory; a remote Actions pass does not replace it. Current
+workflow baseline is442 tests. Never commit private reports, executables,
+game data, databases, toolchains or credentials. Commit stable checkpoints
+with the required prefix, push, and verify remote HEAD and clean status.
