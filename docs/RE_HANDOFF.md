@@ -1,6 +1,18 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-22. Reconstruction is **active at the user's request**.
+The [glyph endpoint proof](FONT_GLYPH_WINDOW_PROOF_2026_10_22.md) now establishes
+the18-byte integer residual's final register/memory/write/six-flag equality
+for arbitrary32-bit values when ascent and the stack temporary are disjoint.
+The overlapping sensitivity case is SAT with EDI20 versus5;513 actual native
+window runs agree with the symbolic model. Intermediate/read/fault/GDI/RET
+identity is not claimed. Two checked point/array pen-storage controls preserve
+all12 font hashes; full raw `.text` E8/E9 census finds only known glyph caller
+412756. Public10-body replay retains glyph624/a1f0b4e5/+89 and accepted45/45/289.
+Optional pinned SMT tooling does not change source/header/profile or strict
+acceptance. Ledgers1379 exact. Next inspect actual linked begin/end/reset EDI
+save scopes in the existing genuine owner/provider image rather than repeat
+neutral glyph field/expression controls without a new lead.
 The [member storage and action800 prefix](REIMU_OBJECT_MEMBER_STORAGE_2026_10_22.md)
 now attest22 direct field widths through1,158 target operands. A private real
 owner removes1,430 self and17 parent staging accesses with checked offsets/
