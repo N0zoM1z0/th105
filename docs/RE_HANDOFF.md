@@ -13,6 +13,15 @@ comparisons retain their inputs and three accepted leaves. Current ledgers are
 1376 exact/233560 bytes, authored2135782 (10.94%); affected-unit replay is scoped,
 without a new all-unit cold claim. Continue with the pending markup/glyph
 context and giant root; do not propagate this color result to their acceptance.
+The subsequent [glyph CIL/project controls](FONT_GLYPH_CIL_CONTEXT_2026_10_22.md)
+show the actual linked glyph retains the same624/a1f0b4e5/+89 payload and14
+different bytes. Both skipped instructions remain in the full diagnostic; the
+strict linked comparator still rejects them. Unsigned ascent/cursorY, `/Z7`
+and SSE are all12-body neutral; SSE2 changes glyph/accent and is unselected.
+`/Zi` fails C1902 despite read-back manager file versions; it has no comparison
+result. Preserve source and acceptance. Next inspect actual Reimu496540 call
+membership/behavior with its resolved real-provider context, without treating
+the decoded direct/indirect totals as semantic alignment by themselves.
 Texture surface query `404E60` is newly accepted exact148/148 under a genuine
 lookup-visible LTCG unit. Its independent417800 provider remains nonexact with
 the same canonical source payload after moving its declaration into a header.
