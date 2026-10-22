@@ -7,6 +7,17 @@ and stable commit/push checkpoints named `gpt-6.1-sol: ...`.
 
 ## Current checkpoint
 
+The [accent lifetime correction](TEXT_FONT_ACCENT_LIFETIMES_2026_10_22.md)
+selects target-observed relative clipping and an early used coverage cursor.
+Accent411DF0 is now417/129/frame32, canonical5a5cbf13, still nonexact+6.
+All948 full observer executions plus112 actual-allocation-entry prefixes
+preserve target upper-clip bearing/sum/flags and pre-raster coverage snapshots;
+predecessor and relative-only sources differ in1004/340 live checks despite
+equal normal effects. Eleven other complete configured font bodies stay
+unchanged and six accepted functions cold-replay. No exact credit is added.
+Mutable-coordinate spelling is neutral; positive countdown436 is unselected.
+Early topY/argument-home and pixel-loop placement remain open.
+
 The [markup construction-cleanup audit](FONT_MARKUP_CONSTRUCTION_CLEANUP_2026_10_22.md)
 identifies the fourth target/native EH state as deque element placement-copy
 construction. The current CIL parser has three states because its actual
@@ -96,7 +107,7 @@ and [stack homes](FONT_MARKUP_STACK_HOMES_2026_10_22.md).
 |4118F0|Reset|162 /162|Accepted genuine CIL exact|
 |4119A0|Begin|291 /291|Genuine CIL, nonexact+59|
 |411B80|Glyph|624 /624|Native, nonexact+89|
-|411DF0|Accent|433 /417|Native, nonexact+5|
+|411DF0|Accent|417 /417|Native, nonexact+6|
 |411FA0|Markup|1728 /1744|Native, nonexact+16|
 |412670|Renderer|335 /326|Genuine CIL, nonexact+19|
 
@@ -106,7 +117,7 @@ Source: [owner layout](../src/assets/TextFontOwner.hpp),
 [render/providers](../src/assets/TextFontRender.cpp),
 [combined CIL input](../src/assets/TextFontLinked.cpp).
 Render CPP SHA256 is
-`76e86737670ca41893c2b1940ae77e9f4254e863ae2424971a273634be3f66ca`.
+`c51921db3773dc926ec3c4cccf470d86677a67c419e0b7e8a34b4d2beae27ecf`.
 The owner unit separately retains config67/constructor138/destructor210/
 configure439 exact; compiler cleanup witnesses add no authored credit.
 
@@ -174,7 +185,7 @@ partition/relocation changes. Keep CPU0/nice10 and serial builds. Preserve
 selected inputs and recipes; archive completed private artifacts only after
 SHA256 round-trip checks. See [artifact retention](ARTIFACTS.md).
 The [October21 historical snapshot](RE_HANDOFF_HISTORY_2026_10_21.md) and dated
-pages preserve prior epochs; Git7818466 retains the previous live handoff.
+pages preserve prior epochs; Git6d38687 retains the pre-accent live handoff.
 
 After the final tracked edit, before every commit/push/PR:
 

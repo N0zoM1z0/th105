@@ -110,16 +110,17 @@ static void __stdcall draw_text_accent_dot(TextTextureFontView *font, int center
     const int width = static_cast<int>(metrics.gmBlackBoxX);
     const int height = static_cast<int>(metrics.gmBlackBoxY);
     const unsigned stride = (bytes / metrics.gmBlackBoxY) & ~3u;
-    const int top = font->font_ascent_13c - metrics.gmptGlyphOrigin.y + top_y;
-    if (top + height >= static_cast<int>(font->surface_height_148) || top < 0 || bytes == 0)
+    const int bearing_top = font->font_ascent_13c - metrics.gmptGlyphOrigin.y;
+    if (bearing_top + height + top_y >= static_cast<int>(font->surface_height_148) ||
+        bearing_top + top_y < 0 || bytes == 0)
         return;
     unsigned char *glyph = new unsigned char[bytes];
-    GetGlyphOutlineA(font->dc_000, '.', 5, &metrics, bytes, glyph,
+    unsigned char *coverage = glyph;
+    GetGlyphOutlineA(font->dc_000, '.', 5, &metrics, bytes, coverage,
         &g_text_accent_transform);
     unsigned *destination = static_cast<unsigned *>(font->surface_base_140) +
         (top_y - metrics.gmptGlyphOrigin.y + font->font_ascent_13c) * font->surface_pitch_dwords_150 -
         static_cast<int>(metrics.gmBlackBoxX >> 1) + center_x;
-    unsigned char *coverage = glyph;
     if (font->active_color_154) {
         for (int y = 0; y < height; ++y) {
             for (int x = 0; x < width; ++x)

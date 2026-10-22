@@ -20276,7 +20276,7 @@ source = "src/assets/TextFontRender.cpp"
 object = "build/match-units/GptWeb_TextFontRender.obj"
 profile = "vc8-sp1-probe-o2-ob1"
 enable_gs = true
-notes = "Seven native font comparisons retain unchanged source/O2/Ob1/GS: accepted surface45, hex45 and blend289; glyph624/a1f0b4e5/+89 and markup1728/a3c2e09c/+16/frame788 remain pending. Renderer/color/end/reset/begin select genuine owner/render CIL with one descriptor per address. Native begin291/728a7bf3/+7, end168/e1daa198 and reset161/261fc985 remain diagnostic alternatives in the same COFF. Input auditing retains the real packed DWORD read and source-epoch/provider scopes. docs/TEXT_FONT_PACKED_INPUT_2026_10_22.md; docs/TEXT_FONT_EDI_LTCG_2026_10_22.md; docs/TEXT_FONT_BEGIN_CONTEXT_2026_10_22.md."
+notes = "Seven native font comparisons use the current source/O2/Ob1/GS: accepted surface45, hex45 and blend289; glyph624/a1f0b4e5/+89 and markup1728/a3c2e09c/+16/frame788 remain pending. Target-backed relative accent clipping and early coverage lifetime now recover417/129/frame32, canonical5a5cbf13, still nonexact+6;948 complete cases plus112 actual-allocation-entry prefixes agree with target live values. docs/TEXT_FONT_ACCENT_LIFETIMES_2026_10_22.md. Renderer/color/end/reset/begin select genuine owner/render CIL with one descriptor per address. Native begin291/728a7bf3/+7, end168/e1daa198 and reset161/261fc985 remain diagnostic alternatives in the same COFF. Input auditing retains the real packed DWORD read and source-epoch/provider scopes. docs/TEXT_FONT_PACKED_INPUT_2026_10_22.md; docs/TEXT_FONT_EDI_LTCG_2026_10_22.md; docs/TEXT_FONT_BEGIN_CONTEXT_2026_10_22.md."
 
 [[units.gpt-web-text-font-render.functions]]
 address = "0x00411B80"
