@@ -1,6 +1,20 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-22. Reconstruction is **active at the user's request**.
+The [908 window and rebuilt owner context](REIMU_OBJECT_908_OWNER_2026_10_22.md)
+now recover target29-byte float-before-integer addition after wave. Public
+source has27 bytes and fails all2,240 live-value snapshots despite equal
+outputs. A coherent real owner with typed facing plus the902 correction has
+29/29 and passes all2,240 isolated arithmetic cases, plus804/869/902's actual
+target execution matrices. The window starts with explicit preconditions;
+no spawn/wave return or full908 RET is fabricated or claimed. Other199 action
+entries/default preserve9,344 normal semantic nodes. Rebuilt48-object native
+and root-CIL images retain17 slots/eight RTTI bases,22 switches and counter66.
+Their29-byte windows agree; roots still differ+31/+0. Corrected native45696/
+4b565d71 stays private; public77fe73a4/45696/4d0ac180 is unchanged. Fresh
+RTM45716/468308aa remains+31 and also fails the908 snapshots. Ledgers1379
+exact. Next recover remaining self/parent field access in the private actual
+owner from offset/width evidence before changing global class interfaces.
 The [action902 steering products](REIMU_OBJECT_902_PRODUCTS_2026_10_22.md)
 now have a selected source correction: five real directional intermediates
 convert facing before loading X velocity. All1,792 executions agree in output,
