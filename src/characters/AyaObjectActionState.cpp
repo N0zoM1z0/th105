@@ -386,7 +386,7 @@ void AyaObjectActionStateView::update_action_state()
                 return;
             }
         }
-        if (sequence == 1) {
+        if (sequence_index_13e == 1) {
             if (phase_state_180 == 6 && ++state_six_counter_384 < 20) {
                 ++phase_index_184;
                 phase_state_180 = 0;

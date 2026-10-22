@@ -7,6 +7,16 @@ and stable commit/push checkpoints named `gpt-6-astra-medium: ...`.
 
 ## Current checkpoint
 
+The [AyaObject810 sequence reload](AYA_OBJECT_810_SEQUENCE_RELOAD_2026_10_22.md)
+restores the independent WORD13E comparison for sequence1 at target61AA4F.
+All4096 actual-code cases pass (3360 returns/288 effect/448 spawn prefixes);
+predecessor2336 differences are sequence-read traces only. The cached sequence
+remains only in its observed sequence0/2 range. The strict
+normal-return graph outside810 preserves4364 nodes. Full20048/edd3903d,
+metadata19580; canonical19522 remains nonexact+22 target0F/source48.
+No shared helper/ABI/profile change or exact credit.810 register choice and
+shared-tail placement remain open; actual-helper execution details are in the report.
+
 The [AyaObject predicate-width recovery](AYA_OBJECT_PREDICATE_WIDTHS_2026_10_22.md)
 restores three target AL tests in actions810/821 while retaining the proven int
 callee ABI. Conservative CFG enumeration proves both original predicates return
