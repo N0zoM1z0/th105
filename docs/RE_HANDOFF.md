@@ -1,6 +1,18 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-22. Reconstruction is **active at the user's request**.
+The [action804 velocity lifetime audit](REIMU_OBJECT_804_LIFETIMES_2026_10_22.md)
+now identifies the target's77-byte x87 window and runs5,120 real-helper cases.
+Selected public source agrees in outputs, ordered writes, logical snapshots
+and final FPSW. The private complete-owner overlay agrees in outputs but
+loses one live x87 value in every case. Selector int-to-short alone leaves
+all ten exact sequence bodies and whole root unchanged. Typed existing self
+float storage restores the77-byte window and all5,120 cases; its45,696-byte
+root still differs+31 and remains unselected, with counter66 exact. A coarse
+delta leaves15 regions in869/902/904/907/908, while earlier804/822 scheduling
+deltas disappear. Next inspect869 floating round trips. Fresh public replay
+retains45700/d0ff3d32/+31 and counter66; ledgers stay1379 exact. No global
+cold replay or whole-root semantic claim follows.
 The [complete owner/provider graph](REIMU_OBJECT_OWNER_CLOSURE_2026_10_22.md)
 now resolves two real48-object images without a root export. Both actual17-slot
 vtables retain the root and reproduce all8 RTTI base names/PMD offsets. Both
