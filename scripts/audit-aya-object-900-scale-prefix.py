@@ -9,6 +9,7 @@ import itertools
 import json
 import struct
 import sys
+import tomllib
 import capstone
 import pefile
 import unicorn
@@ -18,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 import linked_pe as lp
 from workflow_manifest import load_manifest
+from native_callbacks import guarded_callback
 
 A, S, BASE, STACK, STOP, HELPER = (
     0x61A290,
@@ -70,8 +72,9 @@ class Probe:
             uc.mem_protect(S, 0x10000, unicorn.UC_PROT_READ | unicorn.UC_PROT_EXEC)
         uc.mem_map(BASE, 0x10000)
         uc.mem_map(STACK, 0x10000)
-        uc.hook_add(unicorn.UC_HOOK_CODE, self.step)
-        uc.hook_add(unicorn.UC_HOOK_MEM_WRITE, self.write)
+        self.hook_errors = []
+        uc.hook_add(unicorn.UC_HOOK_CODE, guarded_callback(self.step, self.hook_errors))
+        uc.hook_add(unicorn.UC_HOOK_MEM_WRITE, guarded_callback(self.write, self.hook_errors))
 
     def step(self, uc, pc, size, data):
         if pc == HELPER:
@@ -120,7 +123,10 @@ class Probe:
         uc.reg_write(r.UC_X86_REG_FPTAG, 0xFFFF)
         self.writes = []
         self.stopped = False
+        self.hook_errors.clear()
         uc.emu_start(self.start, 0, count=1000)
+        if self.hook_errors:
+            raise ValueError("native hook rejected execution: " + repr(self.hook_errors))
         assert self.stopped and uc.reg_read(r.UC_X86_REG_EIP) == HELPER
         assert uc.reg_read(r.UC_X86_REG_ECX) == BASE + 4
         esp = uc.reg_read(r.UC_X86_REG_ESP)
@@ -169,10 +175,32 @@ for case in cases:
 # Independently qualify the two action900 external-to-region exits.
 cs = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
 cs.detail = True
+root = mapper.load_target_mapper().select_root(
+    tomllib.loads((ROOT / "config/giant-action-switches.toml").read_text()),
+    "aya-object-vslot28",
+)
+mapping = mapper.build_candidate_map(co, root)
+primary = next(region for region in mapping["regions"] if region["name"] == "actions")
+owned = [group for group in primary["groups"] if 900 in group["cases"]]
+assert len(owned) == 1 and owned[0]["cases"] == [900]
+source_offset = owned[0]["offset"]
+source_size = owned[0]["span_to_next_destination"]
+source_payload = code[source_offset:source_offset + source_size]
+source_rows = list(cs.disasm(source_payload, S + source_offset))
+expected_exit = c.target_bytes(0x61BCF1, 17)
+source_exits = {
+    row.operands[0].imm for row in source_rows
+    if row.mnemonic in ("jne", "jle")
+    and row.operands[0].type == capstone.x86_const.X86_OP_IMM
+    and S <= row.operands[0].imm < S + len(code) - 16
+    and code[row.operands[0].imm - S:row.operands[0].imm - S + 17] == expected_exit
+}
+assert len(source_exits) == 1, "900 exits do not share the qualified17-byte destination"
+source_destination = source_exits.pop()
 exits = []
 for origin, payload, destination in (
     (0x61D83F, c.target_bytes(0x61D83F, 1773), 0x61BCF1),
-    (S + 0x361B, code[0x361B : 0x361B + 1773], S + 0x277),
+    (S + source_offset, source_payload, source_destination),
 ):
     rows = list(cs.disasm(payload, origin))
     assert len(rows) == 412 and sum(row.size for row in rows) == 1773
@@ -206,6 +234,7 @@ report = dict(
     differences=differences,
     samples=samples,
     shared_exits=exits,
+    candidate_owner=dict(offset=hex(source_offset), size=source_size),
     scope="sequence4 complete root-entry prefix to original435160, stops before helper execution; no mocked return, no callback/full-root/exception equivalence; masked x87 matrix only",
     input_sha256=hashlib.sha256(json.dumps(cases).encode()).hexdigest(),
 )

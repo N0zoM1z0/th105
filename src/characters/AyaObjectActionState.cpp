@@ -258,6 +258,8 @@ void AyaObjectActionStateView::update_action_state()
                 --lifetime_330;
                 return;
             }
+        }
+        if (sequence_index_13e == 0) {
             if (phase_state_180 == 6 && ++state_six_counter_384 < 10) {
                 ++phase_index_184;
                 phase_state_180 = 0;

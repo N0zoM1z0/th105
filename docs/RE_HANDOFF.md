@@ -7,6 +7,16 @@ and stable commit/push checkpoints named `gpt-6-astra-medium: ...`.
 
 ## Current checkpoint
 
+The [AyaObject804 reload recovery](AYA_OBJECT_804_SEQUENCE_RELOAD_2026_10_22.md)
+restores the independent WORD13E check after5575C0.804 reaches target338/73;
+3072 actual-code cases pass (2688 returns/384 effect-entry prefixes), versus384
+predecessor read-trace differences only. The real gate's false path is pure;
+no gameplay sequence mutation is invented. Outside8044487 strict graph nodes
+agree. The900 prefix auditor now locates its moved owner/17-byte exits from
+metadata and bytes;3456/10840/3300/3168 relevant900/821/903 cases replay.
+Rootfull20048/00c1b4bc, metadata19580, canonical nonexact+22 target0F/source49.
+Exact totals remain unchanged; shared return placement still differs.
+
 The [AyaObject821 counter repair](AYA_OBJECT_821_COUNTER_FIELD_2026_10_22.md)
 corrects sequence0's four WORD36C references to target-observed WORD364.
 All3300 actual integer-sine/frame-helper cases pass; predecessor differs in3190
