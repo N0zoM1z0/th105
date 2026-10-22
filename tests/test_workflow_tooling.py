@@ -61,7 +61,7 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4024)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1379)
+        self.assertEqual(len(matching), 1381)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
@@ -81,7 +81,7 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(binder["match_percent"], "0.00")
         self.assertIn(binder["proposed_name"], implemented)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1379
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1381
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
@@ -108,6 +108,16 @@ class WorkflowToolingTests(unittest.TestCase):
         child = next(f for f in color["functions"] if f["address"] == "0x00411790")
         self.assertEqual(child["private_from"]["caller"], "0x00412670")
         self.assertEqual(child["private_from"]["via"][0]["address"], "0x00411FA0")
+        end = next(f for f in color["functions"] if f["address"] == "0x00411AD0")
+        reset = next(f for f in color["functions"] if f["address"] == "0x004118F0")
+        self.assertIs(end["private_static_leaf"], True)
+        self.assertIs(reset["private_static_leaf"], True)
+        self.assertEqual(end["private_from"]["via"], [])
+        self.assertEqual(end["private_from"]["site"], "0x00412783")
+        self.assertEqual(reset["private_from"]["via"][0]["site"], "0x0041260F")
+        native = manifest["units"]["gpt-web-text-font-render"]
+        self.assertTrue({"0x00411AD0", "0x004118F0"}.isdisjoint(
+            f["address"] for f in native["functions"]))
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:
         with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
@@ -1033,11 +1043,13 @@ class WorkflowToolingTests(unittest.TestCase):
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
         self.assertEqual(len(accepted), 493)
-        self.assertEqual(sum(map(len, accepted.values())), 1379)
+        self.assertEqual(sum(map(len, accepted.values())), 1381)
         self.assertEqual(accepted["cross-v106a-animation-sprite-frame"], {"0x00436760"})
         self.assertEqual(accepted["cross-v106a-animation-auxiliary-render"], {"0x00434F30"})
         self.assertEqual(accepted["cross-v106a-sprite-render-luma-alpha"], {"0x006656E0"})
-        self.assertEqual(accepted["gpt-web-text-font-color-linked"], {"0x00411790"})
+        self.assertEqual(accepted["gpt-web-text-font-color-linked"], {
+            "0x00411790", "0x00411AD0", "0x004118F0",
+        })
         self.assertEqual(accepted["gpt-web-texture-size-query"], {"0x00404E60"})
         self.assertEqual(accepted["gpt-web-design-base-cleanup"], {"0x0040BB40"})
         self.assertEqual(accepted["gpt-web-text-font-owner"], {"0x004113E0", "0x00411430", "0x004114C0", "0x004115A0"})
@@ -1759,8 +1771,8 @@ class WorkflowToolingTests(unittest.TestCase):
             f"Origin/boundary review pending | {len(functions) - len(authored) - len(excluded):,}",
             markdown,
         )
-        self.assertIn("Canonical exact functions | 1,379", markdown)
-        self.assertIn("Canonical exact authored bytes | 234,584", markdown)
+        self.assertIn("Canonical exact functions | 1,381", markdown)
+        self.assertIn("Canonical exact authored bytes | 234,914", markdown)
         self.assertIn("Source-present authored mappings | 1,501", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown

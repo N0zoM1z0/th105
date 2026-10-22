@@ -263,6 +263,69 @@ class LinkedPeTests(unittest.TestCase):
         unit = {**f["unit"], "profile": linked.PROFILE, "object": "build/path.dll", "link_data_targets": []}
         linked.validate_contract(unit, set())
 
+    def static_leaf_fixture(self, direct=False):
+        f = self.path_fixture()
+        f["function"]["private_static_leaf"] = True
+        f["functions"][self.start+0x40] = [("_child@4", "CIL library: CIL module")]
+        f["map_text"] += f" 0001:00000040 _child@4 {self.start+0x40:08x} f CIL library: CIL module\n"
+        f["ledger"]["0x00403000"] = {
+            "size": "3", "status": "implemented", "source_file": "src/owner.cpp"}
+        if direct:
+            f["function"]["private_from"]["via"] = []
+            f["unit"]["functions"][0]["rel32_targets"] = ["_child@4=0x00403000"]
+            f["pe"].data[0x1000:0x1006] = (
+                b"\xe8"+struct.pack("<i", 0x40-5)+b"\xc3")
+            target = b"\xe8"+struct.pack("<i", 0x403000-0x401000-5)+b"\xc3"
+            f["read_target"] = lambda a,s: target if (a,s)==(0x401000,6) else b""
+        return f
+
+    def test_static_leaf_needs_full_direct_or_intermediate_path_without_relaxing_object_ownership(self):
+        for direct in (False, True):
+            f = self.static_leaf_fixture(direct)
+            result = self.path_witness(f)
+            self.assertEqual(result["static_leaf"]["source_va"], f"0x{self.start+0x40:08X}")
+            self.assertEqual(len(result["edges"]), 1 if direct else 2)
+            unit = {**f["unit"], "profile": linked.PROFILE, "object": "build/path.dll",
+                    "link_data_targets": []}
+            linked.validate_contract(unit, set())
+            with self.assertRaises(ValueError):
+                linked.source_function_start(f["function"], f["functions"], f["exports"], f["cil_owner"])
+
+    def test_static_leaf_rejects_unreviewed_source_missing_calls_and_wrong_target_sites(self):
+        changes = [lambda f: f["ledger"].pop("0x00403000"),
+                   lambda f: f["ledger"]["0x00403000"].update(status="candidate"),
+                   lambda f: f["ledger"]["0x00403000"].update(source_file="src/other.cpp"),
+                   lambda f: f["function"]["private_from"].update(site="0x00401001"),
+                   lambda f: f["pe"].data.__setitem__(slice(0x1001,0x1005), struct.pack("<i",0x20-5))]
+        for change in changes:
+            f = self.static_leaf_fixture(True);change(f)
+            with self.subTest(change=change), self.assertRaises(ValueError):self.path_witness(f)
+
+    def test_static_leaf_rejects_foreign_duplicate_exported_or_missing_map_identity(self):
+        changes = [lambda f: f["exports"].update(_alias=self.start+0x40),
+                   lambda f: f["functions"].update({self.start+0x40: [("_child@4", "other.obj")]}),
+                   lambda f: f["functions"][self.start+0x40].append(("_alias", "CIL library: CIL module")),
+                   lambda f: f["functions"].update({self.start+0x60: [("_child@4", "CIL library: CIL module")]}),
+                   lambda f: f.update(map_text=f["map_text"].replace("_child@4", "_other")),
+                   lambda f: f.update(map_text="")]
+        for change in changes:
+            f = self.static_leaf_fixture(True);change(f)
+            with self.subTest(change=change), self.assertRaises(ValueError):self.path_witness(f)
+
+    def test_static_leaf_contract_cannot_be_a_boolean_waiver_or_an_export(self):
+        changes = [lambda f: f.update(private_static_leaf=False),
+                   lambda f: f.update(private_static_leaf=1),
+                   lambda f: f.update(private_static_leaf="true"),
+                   lambda f: f.pop("private_from"),
+                   lambda f: f["private_from"].pop("via"),
+                   lambda f: f.update(export_name="_child@4")]
+        for change in changes:
+            f = self.static_leaf_fixture(True);change(f["function"])
+            unit = {**f["unit"], "profile": linked.PROFILE, "object": "build/path.dll",
+                    "link_data_targets": []}
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                linked.validate_contract(unit, set())
+
     def test_static_path_contract_rejects_cycles_aliases_malformed_nodes_and_source_escape(self):
         changes = [lambda c: c.update(via=[]), lambda c: c.update(via=True),
                    lambda c: c.update(source_file="../src/owner.cpp"), lambda c: c.update(extra="waive"),

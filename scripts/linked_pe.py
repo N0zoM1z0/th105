@@ -134,6 +134,11 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
         validate_error_tails(function)
         if not isinstance(function, dict):
             raise ValueError("invalid linked function contract")
+        if "private_static_leaf" in function and (
+                function["private_static_leaf"] is not True
+                or not isinstance(function.get("private_from"), dict)
+                or "via" not in function["private_from"]):
+            raise ValueError("private static leaf requires an explicit included-source call path")
         symbol = function.get("symbol_base")
         if not isinstance(symbol, str) or not SYMBOL.fullmatch(symbol) or symbol in symbols:
             raise ValueError("linked function needs its exact map symbol")
@@ -755,8 +760,9 @@ def validate_private_path_contract(contract: dict, function: dict) -> None:
             or not address(contract.get("caller")) or not address(contract.get("site"))
             or not isinstance(source, str) or not source.startswith("src/")
             or not source.endswith(".cpp") or ".." in Path(source).parts
-            or not isinstance(via, list) or not 1 <= len(via) <= 4):
-        raise ValueError("private path needs an explicit source file and one to four static callers")
+            or not isinstance(via, list)
+            or not (0 if function.get("private_static_leaf") is True else 1) <= len(via) <= 4):
+        raise ValueError("private path needs an explicit source file and bounded static callers")
     addresses, symbols = {int(contract["caller"], 0), int(function["address"], 0)}, {function["symbol_base"]}
     if len(addresses) != 2:
         raise ValueError("private path cannot witness itself")
@@ -835,15 +841,26 @@ def private_path_witness(function: dict, unit: dict, pe, functions: dict, export
         raise ValueError("private path needs the actual linker static-symbol table")
     statics = parse_map(map_text[marker.end():])
     starts = [source_function_start(roots[0], functions, exports, cil_owner)]
-    for node in contract["via"]:
+    def static_start(node):
         hits = [(a, aliases) for a, aliases in functions.items()
                 if any(name == node["symbol_base"] for name, _ in aliases)]
         expected = [(node["symbol_base"], "CIL library: CIL module")]
         if (len(hits) != 1 or hits[0][1] != expected
                 or statics.get(hits[0][0]) != expected or hits[0][0] in exports.values()):
-            raise ValueError("private path intermediate is not a unique unexported CIL static symbol")
-        starts.append(hits[0][0])
-    starts.append(source_function_start(function, functions, exports, cil_owner))
+            raise ValueError("private path node is not a unique unexported CIL static symbol")
+        return hits[0][0]
+    for node in contract["via"]:
+        starts.append(static_start(node))
+    leaf = None
+    if function.get("private_static_leaf") is True:
+        row = ledger.get(function["address"], {})
+        if row.get("status") not in {"implemented", "matching"} or row.get("source_file") != contract["source_file"]:
+            raise ValueError("private static leaf has no reviewed source in its included TU")
+        starts.append(static_start(function))
+        leaf = {"symbol": function["symbol_base"], "source_va": f"0x{starts[-1]:08X}",
+                "map_owner": "CIL library: CIL module"}
+    else:
+        starts.append(source_function_start(function, functions, exports, cil_owner))
     edges = []
     for index, node in enumerate(nodes[:-1]):
         row = ledger.get(node["address"], {})
@@ -871,6 +888,7 @@ def private_path_witness(function: dict, unit: dict, pe, functions: dict, export
             "target_caller_sha256": hashlib.sha256(target).hexdigest(),
             "source_only_address_fields": data})
     return {"source_file": contract["source_file"], "edges": edges,
+            **({"static_leaf": leaf} if leaf else {}),
             "scope": "complete normal caller CFG and source address-role/relocation witnesses only; no caller byte or EH equality"}
 
 
@@ -984,12 +1002,17 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
         if addresses and function["address"] not in addresses:
             continue
         cil_owner = image.with_suffix(".ltcg.obj").name
-        start = source_function_start(function, functions, exports, cil_owner, vtables)
-        raw = linked_body(pe, functions, start)
         witness = (private_caller_witness(function, unit, pe, functions, exports,
                                         cil_owner, ledger, c.target_bytes, map_text=map_text,
                                         bindings=bindings, game_range=game_range)
                    if "private_from" in function else None)
+        if function.get("private_static_leaf") is True:
+            if not witness or not witness.get("static_leaf"):
+                raise ValueError("private static leaf lacks its complete caller-path witness")
+            start = int(witness["static_leaf"]["source_va"], 0)
+        else:
+            start = source_function_start(function, functions, exports, cil_owner, vtables)
+        raw = linked_body(pe, functions, start)
         targets = dict(mapping.split("=", 1) for mapping in function.get("rel32_targets", []))
         targets = {symbol: int(address, 0) for symbol, address in targets.items()}
         if any(f"0x{destination:08X}" not in ledger for destination in targets.values()):

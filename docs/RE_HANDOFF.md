@@ -1,6 +1,19 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-22. Reconstruction is **active at the user's request**.
+The [font end/reset CIL checkpoint](TEXT_FONT_EDI_LTCG_2026_10_22.md) now accepts
+end411AD0 at168/168 and reset4118F0 at162/162 in the real owner/render image.
+Unchanged source naturally preserves EDI across the target scopes. Explicit
+private-static-leaf contracts require reviewed included source, unique actual
+Static symbols/no exports and full renderer->end or renderer->markup->reset
+caller paths before ordinary full byte/CFG/relocation comparison. Named-object
+ownership is unchanged; four new tests retain fail-closed coverage. Source/
+header/profile stay fixed; two descriptors move from native to existing linked
+unit. All10 accepted linked units plus native font receive scoped cold replay:
+11 units/25 functions. Ledgers1381 exact/234914 bytes, authored2136806 (10.99%).
+Begin's linked291-byte body fixes metric frame/save scope but differs+59 on
+font publication versus HWND read; native291/+7 remains selected. Next inspect
+that concrete order, keeping glyph/markup/Reimu roots pending.
 The [glyph endpoint proof](FONT_GLYPH_WINDOW_PROOF_2026_10_22.md) now establishes
 the18-byte integer residual's final register/memory/write/six-flag equality
 for arbitrary32-bit values when ascent and the stack temporary are disjoint.

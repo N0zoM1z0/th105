@@ -3289,24 +3289,6 @@ required_direct_edges = [
 ]
 
 [[rules]]
-id = "text-font-end-authored-106a"
-addresses = ["0x00411AD0"]
-expected_count = 1
-expected_bytes = 168
-expected_names = ["sub_411AD0"]
-origin = "authored_game"
-subsystem = "render"
-disposition = "authored"
-confidence = "observed"
-evidence = "Complete168-byte/49-instruction ESI/RET end is called at412783 by reviewed game font entry412670. It deletes native color-list front arrays/nodes, restores the original GDI font, deletes the SelectObject result, releases the current window DC and clears fields04/08/00. This font/resource lifetime is authored game policy, while native list machinery and runtime/import callees receive no credit. A real file-local C++ provider in the actual font caller TU naturally recovers ESI and emits a complete168-byte/49-instruction body, but canonical comparison remains nonexact+7 on EDI preservation scope. RTM/SP1 identical;576 bounded observer cases agree, without claiming real GDI execution or exactness. docs/TEXT_FONT_END_2026_10_21.md."
-required_body_hashes = [
-  { address = "0x00411AD0", size = 168, sha256 = "68b02c0e179c843e68bb474274a6e27b31038d81e97a900afe08ed54af9083b7" },
-]
-required_direct_edges = [
-  { caller = "0x00412670", site = "0x00412783", target = "0x00411AD0", caller_status = "implemented" },
-]
-
-[[rules]]
 id = "text-font-begin-authored-106a"
 addresses = ["0x004119A0"]
 expected_count = 1
@@ -3402,17 +3384,3 @@ required_selected_body_calls = [
   { owner = "0x00411FA0", site = "0x0041243B", target = "0x00412670", target_status = "implemented" },
   { owner = "0x00411FA0", site = "0x0041244E", target = "0x004114C0", target_status = "matching" },
 ]
-
-[[rules]]
-id = "text-font-markup-reset-authored-106a"
-addresses = ["0x004118F0"]
-expected_count = 1
-expected_bytes = 162
-expected_names = ["sub_4118F0"]
-origin = "authored_game"
-subsystem = "render"
-disposition = "authored"
-confidence = "observed"
-evidence = "Full162-byte/47-instruction two-RET CFG and game markup call41260F establish color reset ownership. Whole native temporary list retires before restoring base active pointer or packing config-first RGB fallback while retaining active in flat mode. Native typed file-local caller-TU source naturally uses ESI;161/46 remains nonexact+7 on EDI save scope, complete cleanup loop equal. All240 bounded actual-root/list cases pass with CRT delete observers; clear-active control fails120. Changed1648/445 parent passes8640 observer cases with real hex45 and ESI reset boundary. No STL/helper exclusion, runtime GDI/EH or exact credit. docs/TEXT_FONT_RESET_2026_10_21.md."
-required_body_hashes = [{ address = "0x004118F0", size = 162, sha256 = "8b90f385b2069c2a33647ee19cf5d92e31a1cefcd5f28ebcd5acc8249afe2171" }]
-required_direct_edges = [{ caller = "0x00411FA0", site = "0x0041260F", target = "0x004118F0", caller_status = "implemented" }]
