@@ -1728,9 +1728,14 @@ void AyaObjectActionStateView::update_action_state()
                 state_364 = 1;
             }
             if (!(sprite_004.object_x_0e8 >= 2000.0f || sprite_004.object_x_0e8 <= -720.0f)) break;
-            short &owner_state_730 = *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(owner) + 0x730);
-            if (!owner_state_730) { owner_state_730 = 1; if (static_cast<unsigned int>(g_match_identifier) <= 1u) owner_state_730 = 3; }
-            if (owner_state_730 == 2) owner_state_730 = 3;
+            // 61DC18..61DC64 reloads owner after each state publication.
+            if (!*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x730)) {
+                *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x730) = 1;
+                if (g_match_identifier == 0 || g_match_identifier == 1)
+                    *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x730) = 3;
+            }
+            if (*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x730) == 2)
+                *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x730) = 3;
             --lifetime_330; return;
         }
         case 1:
