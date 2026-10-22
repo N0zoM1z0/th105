@@ -102,7 +102,7 @@ export/map agreement. A function may instead declare
 `private_from = { caller = "0x00416990", site = "0x00416B01" }` when its real
 caller is another configured exported function in the same source TU. The
 private symbol must have exactly one CIL-owned map entry, without any function
-alias or export, including ordinal-only export aliases. Private chains,
+alias or export, including ordinal-only export aliases. Implicit private chains,
 self-witnesses and simultaneous export declarations are rejected.
 
 Its caller must have reviewed implemented/matching source in that TU. Source
@@ -114,6 +114,28 @@ unsupported. Caller source/target hashes and actual E8 sites join the result.
 The caller is an ownership witness, not an exact claim; selecting only the
 private function still repeats every caller check. No synthetic caller,
 resolver code or forced register declaration is added.
+
+An explicit static path may additionally specify `source_file` and `via`, as
+in `gpt-web-text-font-color-linked`: exported renderer412670 -> static
+parser411FA0 -> unexported color411790. This remains one import-runtime CIL
+input, with one to four unique static intermediates, complete caller CFGs and
+one declared ordinary E8 per edge. The file must be an actual recursive quoted
+include of the primary source, and all caller ledger rows must identify its
+reviewed source. Each intermediate must appear uniquely in the actual linker
+static-symbol table with `CIL library: CIL module` ownership and no export.
+The exported root maps its actual first callee; explicit successive path
+addresses/symbols identify each remaining edge. No intermediate is accepted
+merely by appearing in a path.
+
+Source-only caller data operands are observed without replay: external game
+addresses need attested bindings, internal data/function operands need complete
+mapped roles and exact HIGHLOW relocation-field coverage. Missing, unexpected,
+duplicate, wrong-type and control-displacement relocations fail. These caller
+roles do not establish target data or EH equality, and are never used in the
+callee canonicalizer. Its existing full ownership, relocation and zero-byte-
+difference requirements remain unchanged. The result records every caller
+hash, actual source/target callsite and observed address field. See
+[the complete font color evidence](TEXT_FONT_COLOR_LTCG_2026_10_22.md).
 
 The next linker function bounds each available span;
 only trailing linker INT3 padding outside a closed RET is removed. Full

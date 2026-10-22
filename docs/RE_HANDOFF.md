@@ -1,6 +1,18 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-22. Reconstruction is **active at the user's request**.
+Font color `411790` is newly accepted **352/352** in a genuine owner/render
+CIL context with its actual renderer -> static markup -> color call path.
+[Complete color/LTCG evidence](TEXT_FONT_COLOR_LTCG_2026_10_22.md) records the
+full canonical result and the bounded static-caller witness extension. No
+source behavior or ABI facade changes are needed. The selected renderer is335,
+nonexact+19; native324 stays available to the57-case input audit. CIL parser1572
+retains frame788 and EDX cursor rather than target EDX font; neither it nor
+Incsize158/target154 receives exact/EH credit. The original10 native font
+comparisons retain their inputs and three accepted leaves. Current ledgers are
+1376 exact/233560 bytes, authored2135782 (10.94%); affected-unit replay is scoped,
+without a new all-unit cold claim. Continue with the pending markup/glyph
+context and giant root; do not propagate this color result to their acceptance.
 Texture surface query `404E60` is newly accepted exact148/148 under a genuine
 lookup-visible LTCG unit. Its independent417800 provider remains nonexact with
 the same canonical source payload after moving its declaration into a header.

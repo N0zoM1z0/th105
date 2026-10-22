@@ -20276,21 +20276,7 @@ source = "src/assets/TextFontRender.cpp"
 object = "build/match-units/GptWeb_TextFontRender.obj"
 profile = "vc8-sp1-probe-o2-ob1"
 enable_gs = true
-notes = "Native font renderer now models the target412726 packed DWORD read before swapping its low two bytes. Caller412670 source324/116 canonical1daa6415 remains nonexact+0;57 guarded first-input cases agree (predecessor13 stop/value and39 read differences), and13100 fresh complete padded caller cases pass with6550 real exact289-byte blends per side. All other11 complete bodies preserve their prior hashes/extents: accepted setter41176045/hex4128F045/blend4127C0289, uncredited origin-review checked-character41292033/9a726759, glyph411B80624/a1f0b4e5/+89, markup411FA01728/a3c2e09c/+16/frame788 versus796, and other pending leaves. Actual EAX glyph/blend, ESI begin/end and native EDX-font/ECX-height/two-stack-word/RET8 markup call remain. Only this unit source changes; no header/layout/profile/existing relocation/accepted-match or aggregate change. Guard evidence stops before glyph/GDI; complete caller replay uses explicit other providers, with real GDI/allocation failure/EH/arbitrary aliases unqualified. docs/TEXT_FONT_PACKED_INPUT_2026_10_22.md; docs/FONT_MARKUP_STACK_HOMES_2026_10_22.md."
-
-[[units.gpt-web-text-font-render.functions]]
-address = "0x00412670"
-symbol_base = "?render_text@TextFontOwner194@th105@@QAEXPBDPAI1@Z"
-rel32_targets = [
-  "??_U@YAPAXI@Z=0x00665B8A",
-  "??_V@YAXPAX@Z=0x0068AA26",
-  "memset=0x0068A440",
-  "?start_text_render@th105@@YGXPAUTextFontOwner194@1@@Z=0x004119A0",
-  "?finish_text_render@th105@@YGXPAUTextFontOwner194@1@@Z=0x00411AD0",
-  "?draw_font_glyph@th105@@YGXPAUTextFontOwner194@1@IPAI1@Z=0x00411B80",
-  "?parse_text_markup@th105@@YGHPAUTextFontOwner194@1@PBDPAI2@Z=0x00411FA0",
-  "?blend_font_surface@th105@@YGPAEPAUTextFontOwner194@1@PBIPAI@Z=0x004127C0",
-]
+notes = "Ten native font comparisons retain the unchanged TextFontRender.cpp input and O2/Ob1/GS profile: accepted setter41176045, hex4128F045 and blend4127C0289 persist; glyph411B80624/a1f0b4e5/+89 and markup411FA01728/a3c2e09c/+16/frame788 remain pending. Renderer412670 and color411790 select the genuine owner/render CIL unit gpt-web-text-font-color-linked; no address is duplicated. Native source still emits caller324/1daa6415 and color332/471012e5 as diagnostic alternatives. The input auditor follows the relocated renderer contract and verifies the actual packed DWORD input read. Original semantic receipts keep their source epochs and provider observer scopes. docs/TEXT_FONT_PACKED_INPUT_2026_10_22.md; docs/TEXT_FONT_COLOR_LTCG_2026_10_22.md."
 
 [[units.gpt-web-text-font-render.functions]]
 address = "0x00411AD0"
@@ -20383,16 +20369,6 @@ rel32_targets = ["?_Xran@_String_base@std@@SAXXZ=0x00665B33"]
 [[units.gpt-web-text-font-render.functions]]
 address = "0x004128F0"
 symbol_base = "?decode_markup_hex@th105@@YAEE@Z"
-
-[[units.gpt-web-text-font-render.functions]]
-address = "0x00411790"
-symbol_base = "?set_markup_color@th105@@YGXPAUTextFontOwner194@1@EEE@Z"
-rel32_targets = [
-  "??_U@YAPAXI@Z=0x00665B8A",
-  "__invalid_parameter_noinfo=0x0068A143",
-  "?_Buynode@?$list@PAIV?$allocator@PAI@std@@@std@@IAEPAU_Node@?$_List_nod@PAIV?$allocator@PAI@std@@@2@PAU342@0ABQAI@Z=0x004129E0",
-  "?_Incsize@?$list@PAIV?$allocator@PAI@std@@@std@@IAEXI@Z=0x0040C6D0",
-]
 
 [[units.gpt-web-text-font-render.functions]]
 address = "0x004118F0"
@@ -20488,4 +20464,55 @@ address = "0x00404E60"
 symbol_base = "?get_texture_size@TitleResourceManager@th105@@QAEXIPAI0@Z"
 rel32_targets = [
   "?lookup_token_417800@CHandleManagerLookupView@th105@@QAEPAPAXI@Z=0x00417800",
+]
+
+[units.gpt-web-text-font-color-linked]
+kind = "linked_candidate"
+source = "src/assets/TextFontLinked.cpp"
+object = "build/match-units/GptWeb_TextFontColorLinked.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = true
+notes = "Real owner/render CIL definitions recover complete352-byte color411790 through the actual renderer412670 -> static markup411FA0 -> color call path. Exporting color changes it to343/nonexact; no forced export or ABI facade is used. Caller CFGs/address fields are ownership witnesses, not caller/EH equality. Ordinary renderer remains nonexact. Original TU partition and helper40C6D0 equality remain unproved. docs/TEXT_FONT_COLOR_LTCG_2026_10_22.md."
+link_data_targets = [
+  "__imp__TerminateProcess@8=__imp__TerminateProcess@8",
+  "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0",
+  "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4",
+  "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4",
+  "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0",
+  "?g_main_window@th105@@3PAUHWND__@@A=?g_main_window@th105@@3PAUHWND__@@A",
+  "?g_text_glyph_transform@th105@@3UGlyphTransform@1@A=?g_text_glyph_transform@th105@@3UGlyphTransform@1@A",
+  "?g_text_accent_transform@th105@@3UGlyphTransform@1@A=?g_text_accent_transform@th105@@3UGlyphTransform@1@A",
+  "__imp__CreateFontA@56=__imp__CreateFontA@56",
+  "__imp__GetDC@4=__imp__GetDC@4",
+  "__imp__SelectObject@8=__imp__SelectObject@8",
+  "__imp__GetTextMetricsA@8=__imp__GetTextMetricsA@8",
+  "__imp__DeleteObject@4=__imp__DeleteObject@4",
+  "__imp__ReleaseDC@8=__imp__ReleaseDC@8",
+  "__imp__GetGlyphOutlineA@28=__imp__GetGlyphOutlineA@28",
+]
+
+[[units.gpt-web-text-font-color-linked.functions]]
+address = "0x00412670"
+symbol_base = "?render_text@TextFontOwner194@th105@@QAEXPBDPAI1@Z"
+rel32_targets = [
+  "??_U@YAPAXI@Z=0x00665B8A",
+  "??_V@YAXPAX@Z=0x0068AA26",
+  "_memset=0x0068A440",
+  "memset=0x0068A440",
+  "?start_text_render@th105@@YGXPAUTextFontOwner194@1@@Z=0x004119A0",
+  "?finish_text_render@th105@@YGXPAUTextFontOwner194@1@@Z=0x00411AD0",
+  "?draw_font_glyph@th105@@YGXPAUTextFontOwner194@1@IPAI1@Z=0x00411B80",
+  "?parse_text_markup@th105@@YGHPAUTextFontOwner194@1@PBDPAI2@Z=0x00411FA0",
+  "?blend_font_surface@th105@@YGPAEPAUTextFontOwner194@1@PBIPAI@Z=0x004127C0",
+]
+
+[[units.gpt-web-text-font-color-linked.functions]]
+address = "0x00411790"
+symbol_base = "?set_markup_color@th105@@YGXPAUTextFontOwner194@1@EEE@Z"
+private_from = { caller = "0x00412670", site = "0x0041276A", source_file = "src/assets/TextFontRender.cpp", via = [{ address = "0x00411FA0", symbol_base = "?parse_text_markup@th105@@YGHPAUTextFontOwner194@1@PBDPAI2@Z", site = "0x004125DB" }] }
+rel32_targets = [
+  "??_U@YAPAXI@Z=0x00665B8A",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?_Buynode@?$list@PAIV?$allocator@PAI@std@@@std@@IAEPAU_Node@?$_List_nod@PAIV?$allocator@PAI@std@@@2@PAU342@0ABQAI@Z=0x004129E0",
+  "?_Incsize@?$list@PAIV?$allocator@PAI@std@@@std@@IAEXI@Z=0x0040C6D0",
 ]

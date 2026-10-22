@@ -152,10 +152,15 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
             continue  # Validated as a paired, startup-reachable lifecycle above.
         if "private_from" in function:
             witness = function["private_from"]
+            path = isinstance(witness, dict) and "via" in witness
+            if path:
+                validate_private_path_contract(witness, function)
+                if unit.get("link_runtime", "import") != "import" or unit.get("link_objects"):
+                    raise ValueError("private static paths require one import-runtime CIL input")
             if ("export_name" in function or not isinstance(witness, dict)
-                    or set(witness) != {"caller", "site"}
-                    or any(not isinstance(value, str) or not re.fullmatch(r"0x[0-9A-Fa-f]{8}", value)
-                           for value in witness.values())):
+                    or (not path and (set(witness) != {"caller", "site"}
+                        or any(not isinstance(value, str) or not re.fullmatch(r"0x[0-9A-Fa-f]{8}", value)
+                               for value in witness.values())))):
                 raise ValueError("private linked function needs only an explicit caller/site witness")
             callers = [f for f in functions if f.get("address") == witness["caller"]]
             if (len(callers) != 1 or callers[0] is function
@@ -741,9 +746,141 @@ def linked_body(pe, functions: dict, start: int) -> bytes:
     return raw.rstrip(b"\xcc")  # Padding is outside the independently decoded RET boundary.
 
 
-def private_caller_witness(function: dict, unit: dict, pe, functions: dict, exports: dict,
-                           cil_owner: str, ledger: dict, read_target) -> dict:
+def validate_private_path_contract(contract: dict, function: dict) -> None:
+    """An explicit static call path augments, rather than replaces, its export root."""
+    address = lambda value: isinstance(value, str) and re.fullmatch(r"0x[0-9A-Fa-f]{8}", value)
+    source = contract.get("source_file")
+    via = contract.get("via")
+    if (set(contract) != {"caller", "site", "source_file", "via"}
+            or not address(contract.get("caller")) or not address(contract.get("site"))
+            or not isinstance(source, str) or not source.startswith("src/")
+            or not source.endswith(".cpp") or ".." in Path(source).parts
+            or not isinstance(via, list) or not 1 <= len(via) <= 4):
+        raise ValueError("private path needs an explicit source file and one to four static callers")
+    addresses, symbols = {int(contract["caller"], 0), int(function["address"], 0)}, {function["symbol_base"]}
+    if len(addresses) != 2:
+        raise ValueError("private path cannot witness itself")
+    for node in via:
+        if (not isinstance(node, dict) or set(node) != {"address", "symbol_base", "site"}
+                or not address(node.get("address")) or not address(node.get("site"))
+                or not isinstance(node.get("symbol_base"), str)
+                or not SYMBOL.fullmatch(node["symbol_base"])
+                or int(node["address"], 0) in addresses or node["symbol_base"] in symbols):
+            raise ValueError("private path has a malformed, duplicate or cyclic static caller")
+        addresses.add(int(node["address"], 0)); symbols.add(node["symbol_base"])
+
+
+def caller_data_witness(pe, instructions: list, functions: dict, bindings: list[dict],
+                        game_range: tuple[int, int]) -> list[dict]:
+    """Observe source caller address fields without canonicalizing or accepting that caller."""
+    permitted = {}
+    for binding in bindings:
+        for addend in binding["addends"]:
+            address = binding["address"] + addend
+            permitted[address] = max(permitted.get(address, 0), len(bytes.fromhex(binding["data_hex"])))
+    start = instructions[0].address
+    refs = []
+    for instruction in instructions:
+        control = instruction.group(capstone.CS_GRP_CALL) or is_branch(instruction)
+        for operand in instruction.operands:
+            memory = operand.type == capstone.x86.X86_OP_MEM
+            if memory:
+                if operand.mem.base or operand.mem.index or operand.mem.segment in {
+                        capstone.x86.X86_REG_FS, capstone.x86.X86_REG_GS}:
+                    continue
+                value, field, width = operand.mem.disp & 0xffffffff, instruction.disp_offset, instruction.disp_size
+            elif operand.type == capstone.x86.X86_OP_IMM and not control:
+                value, field, width = operand.imm & 0xffffffff, instruction.imm_offset, instruction.imm_size
+            else:
+                continue
+            if value in permitted:
+                if memory and operand.size > permitted[value]:
+                    raise ValueError("caller access exceeds its attested binding")
+                refs.append({"offset": instruction.address - start, "address": value, "kind": "binding"})
+                continue
+            section = pe.get_section_by_rva(value - IMAGE_BASE)
+            if section is None:
+                if memory or game_range[0] <= value < game_range[1]:
+                    raise ValueError("caller has an unattested external address operand")
+                continue
+            extent = operand.size if memory else 1
+            if (width != 4 or not 0 < field <= instruction.size - 4
+                    or value + extent > IMAGE_BASE + section.VirtualAddress + section.Misc_VirtualSize
+                    or not section.Characteristics & 0x40000000
+                    or (memory and section.Characteristics & 0x20000000)
+                    or (not memory and section.Characteristics & 0x20000000 and value not in functions)):
+                raise ValueError("caller address operand has no complete mapped data/function role")
+            refs.append({"offset": instruction.address - start,
+                "field_offset": instruction.address - start + field, "source_address": value,
+                "kind": "source_only", "section": section.Name.rstrip(b"\0").decode("ascii")})
+    validate_body_relocations(pe, start, sum(i.size for i in instructions), refs)
+    return refs
+
+
+def private_path_witness(function: dict, unit: dict, pe, functions: dict, exports: dict,
+                         cil_owner: str, ledger: dict, read_target, map_text: str,
+                         bindings: list[dict], game_range: tuple[int, int]) -> dict:
+    from workflow_manifest import source_dependencies, repository_path
     contract = function["private_from"]
+    validate_private_path_contract(contract, function)
+    source_file = repository_path(contract["source_file"])
+    if source_file not in source_dependencies(unit):
+        raise ValueError("private path source is not an actual quoted-include dependency")
+    roots = [f for f in unit["functions"] if f["address"] == contract["caller"]]
+    if len(roots) != 1 or any(key in roots[0] for key in ("private_from", "private_global", "vtable_entry")):
+        raise ValueError("private path has no distinct configured exported root")
+    nodes = [dict(roots[0], site=contract["site"]), *contract["via"], function]
+    marker = re.search(r"^\s*Static symbols\s*$", map_text, re.M)
+    if marker is None:
+        raise ValueError("private path needs the actual linker static-symbol table")
+    statics = parse_map(map_text[marker.end():])
+    starts = [source_function_start(roots[0], functions, exports, cil_owner)]
+    for node in contract["via"]:
+        hits = [(a, aliases) for a, aliases in functions.items()
+                if any(name == node["symbol_base"] for name, _ in aliases)]
+        expected = [(node["symbol_base"], "CIL library: CIL module")]
+        if (len(hits) != 1 or hits[0][1] != expected
+                or statics.get(hits[0][0]) != expected or hits[0][0] in exports.values()):
+            raise ValueError("private path intermediate is not a unique unexported CIL static symbol")
+        starts.append(hits[0][0])
+    starts.append(source_function_start(function, functions, exports, cil_owner))
+    edges = []
+    for index, node in enumerate(nodes[:-1]):
+        row = ledger.get(node["address"], {})
+        if row.get("status") not in {"implemented", "matching"} or row.get("source_file") != contract["source_file"]:
+            raise ValueError("private path caller has no reviewed source in its included TU")
+        source = linked_body(pe, functions, starts[index])
+        source_rows = decode_closed_body(source, starts[index])
+        data = caller_data_witness(pe, source_rows, functions, bindings, game_range)
+        target = read_target(int(node["address"], 0), int(row["size"], 0))
+        target_rows = decode_closed_body(target, int(node["address"], 0))
+        def calls(rows, destination):
+            return [i.address for i in rows if i.size == 5 and i.bytes[0] == 0xe8
+                    and i.operands[0].imm == destination]
+        source_calls = calls(source_rows, starts[index + 1])
+        if len(source_calls) != 1 or calls(target_rows, int(nodes[index + 1]["address"], 0)) != [int(node["site"], 0)]:
+            raise ValueError("private path needs one reachable E8 per complete source/target caller")
+        if index == 0:
+            mapping = nodes[1]["symbol_base"] + "=" + nodes[1]["address"]
+            if node.get("rel32_targets", []).count(mapping) != 1:
+                raise ValueError("private path exported root does not map its actual static callee")
+        edges.append({"caller": node["address"], "callee": nodes[index + 1]["address"],
+            "target_site": node["site"], "source_caller_symbol": node["symbol_base"],
+            "source_caller_va": f"0x{starts[index]:08X}", "source_site": f"0x{source_calls[0]:08X}",
+            "source_caller_sha256": hashlib.sha256(source).hexdigest(),
+            "target_caller_sha256": hashlib.sha256(target).hexdigest(),
+            "source_only_address_fields": data})
+    return {"source_file": contract["source_file"], "edges": edges,
+            "scope": "complete normal caller CFG and source address-role/relocation witnesses only; no caller byte or EH equality"}
+
+
+def private_caller_witness(function: dict, unit: dict, pe, functions: dict, exports: dict,
+                           cil_owner: str, ledger: dict, read_target, *, map_text: str = "",
+                           bindings: list[dict] = (), game_range: tuple[int, int] = (0, 0)) -> dict:
+    contract = function["private_from"]
+    if "via" in contract:
+        return private_path_witness(function, unit, pe, functions, exports, cil_owner,
+                                    ledger, read_target, map_text, bindings, game_range)
     callers = [f for f in unit["functions"] if f["address"] == contract["caller"]]
     if len(callers) != 1 or "private_from" in callers[0]:
         raise ValueError("private linked witness has no configured exported caller")
@@ -850,7 +987,8 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
         start = source_function_start(function, functions, exports, cil_owner, vtables)
         raw = linked_body(pe, functions, start)
         witness = (private_caller_witness(function, unit, pe, functions, exports,
-                                        cil_owner, ledger, c.target_bytes)
+                                        cil_owner, ledger, c.target_bytes, map_text=map_text,
+                                        bindings=bindings, game_range=game_range)
                    if "private_from" in function else None)
         targets = dict(mapping.split("=", 1) for mapping in function.get("rel32_targets", []))
         targets = {symbol: int(address, 0) for symbol, address in targets.items()}

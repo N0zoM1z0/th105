@@ -61,7 +61,7 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4024)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1375)
+        self.assertEqual(len(matching), 1376)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
@@ -81,12 +81,12 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(binder["match_percent"], "0.00")
         self.assertIn(binder["proposed_name"], implemented)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1375
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1376
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 539)
+        self.assertEqual(len(manifest["units"]), 540)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
             1508,
@@ -102,6 +102,12 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(query["preserve_public_members"], [
             "?lookup_token_417800@CHandleManagerLookupView@th105@@QAEPAPAXI@Z",
         ])
+        color = manifest["units"]["gpt-web-text-font-color-linked"]
+        self.assertEqual(color["source"], "src/assets/TextFontLinked.cpp")
+        self.assertEqual(color["kind"], "linked_candidate")
+        child = next(f for f in color["functions"] if f["address"] == "0x00411790")
+        self.assertEqual(child["private_from"]["caller"], "0x00412670")
+        self.assertEqual(child["private_from"]["via"][0]["address"], "0x00411FA0")
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:
         with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
@@ -1026,8 +1032,9 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 489)
-        self.assertEqual(sum(map(len, accepted.values())), 1375)
+        self.assertEqual(len(accepted), 490)
+        self.assertEqual(sum(map(len, accepted.values())), 1376)
+        self.assertEqual(accepted["gpt-web-text-font-color-linked"], {"0x00411790"})
         self.assertEqual(accepted["gpt-web-texture-size-query"], {"0x00404E60"})
         self.assertEqual(accepted["gpt-web-design-base-cleanup"], {"0x0040BB40"})
         self.assertEqual(accepted["gpt-web-text-font-owner"], {"0x004113E0", "0x00411430", "0x004114C0", "0x004115A0"})
@@ -1749,8 +1756,8 @@ class WorkflowToolingTests(unittest.TestCase):
             f"Origin/boundary review pending | {len(functions) - len(authored) - len(excluded):,}",
             markdown,
         )
-        self.assertIn("Canonical exact functions | 1,375", markdown)
-        self.assertIn("Canonical exact authored bytes | 233,208", markdown)
+        self.assertIn("Canonical exact functions | 1,376", markdown)
+        self.assertIn("Canonical exact authored bytes | 233,560", markdown)
         self.assertIn("Source-present authored mappings | 1,498", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown

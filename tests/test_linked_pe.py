@@ -223,6 +223,102 @@ class LinkedPeTests(unittest.TestCase):
             with self.subTest(target=raw.hex()), self.assertRaises(ValueError):
                 linked.private_caller_witness(**bad)
 
+    def path_fixture(self):
+        root, middle, child = self.start, self.start + 0x20, self.start + 0x40
+        pe = VTablePe()
+        pe.data[0x1000:0x1050] = b"\xcc" * 0x50
+        pe.data[0x1000:0x1006] = b"\xe8" + struct.pack("<i", middle-root-5) + b"\xc3"
+        pe.data[0x1020:0x102e] = (b"\x68" + struct.pack("<I", linked.IMAGE_BASE+0x2000)
+            + b"\xe8" + struct.pack("<i", child-middle-10) + b"\x83\xc4\x04\xc3")
+        pe.data[0x1040:0x1043] = b"\xc2\x04\x00"
+        pe.DIRECTORY_ENTRY_BASERELOC = [SimpleNamespace(entries=[SimpleNamespace(type=3, rva=0x1021)])]
+        parent = {"address": "0x00401000", "symbol_base": "_root@4",
+                  "rel32_targets": ["_middle=0x00402000"]}
+        function = {"address": "0x00403000", "symbol_base": "_child@4", "private_from": {
+            "caller": "0x00401000", "site": "0x00401000", "source_file": "src/owner.cpp",
+            "via": [{"address": "0x00402000", "symbol_base": "_middle", "site": "0x00402005"}]}}
+        targets = {0x401000: b"\xe8"+struct.pack("<i", 0x402000-0x401000-5)+b"\xc3",
+                   0x402000: b"\x68\x00\x00\x6e\x00\xe8"+struct.pack("<i", 0x403000-0x402000-10)+b"\x83\xc4\x04\xc3"}
+        return {"function": function, "unit": {"source": "src/aggregate.cpp", "functions": [parent, function]},
+                "pe": pe, "functions": {root: [("_root@4", "root.ltcg.obj")],
+                    middle: [("_middle", "CIL library: CIL module")], child: [("_child@4", "root.ltcg.obj")],
+                    root+0x50: [("_next", "root.ltcg.obj")]}, "exports": {"_root@4": root},
+                "cil_owner": "root.ltcg.obj", "ledger": {f"0x{a:08X}": {
+                    "size": str(len(raw)), "status": "implemented", "source_file": "src/owner.cpp"}
+                    for a, raw in targets.items()}, "read_target": lambda a,s: targets[a] if len(targets[a])==s else b"",
+                "map_text": f" Static symbols\n 0001:00000020 _middle {middle:08x} f CIL library: CIL module\n",
+                "bindings": [], "game_range": self.game}
+
+    def path_witness(self, fixture):
+        with patch("workflow_manifest.source_dependencies", return_value={linked.ROOT/"src/owner.cpp"}):
+            return linked.private_caller_witness(**fixture)
+
+    def test_static_private_path_records_both_complete_caller_edges_without_accepting_parents(self):
+        f = self.path_fixture()
+        result = self.path_witness(f)
+        self.assertEqual([e["caller"] for e in result["edges"]], ["0x00401000", "0x00402000"])
+        refs = result["edges"][1]["source_only_address_fields"]
+        self.assertEqual([(r["kind"], r["field_offset"]) for r in refs], [("source_only", 1)])
+        self.assertIn("no caller byte or EH equality", result["scope"])
+        unit = {**f["unit"], "profile": linked.PROFILE, "object": "build/path.dll", "link_data_targets": []}
+        linked.validate_contract(unit, set())
+
+    def test_static_path_contract_rejects_cycles_aliases_malformed_nodes_and_source_escape(self):
+        changes = [lambda c: c.update(via=[]), lambda c: c.update(via=True),
+                   lambda c: c.update(source_file="../src/owner.cpp"), lambda c: c.update(extra="waive"),
+                   lambda c: c["via"][0].update(address="0x00401000"),
+                   lambda c: c["via"][0].update(address="0x00403000"),
+                   lambda c: c["via"][0].update(symbol_base="_child@4"),
+                   lambda c: c["via"][0].update(site="wrong"),
+                   lambda c: c["via"].append(copy.deepcopy(c["via"][0]))]
+        for change in changes:
+            f = self.path_fixture();change(f["function"]["private_from"])
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                self.path_witness(f)
+
+    def test_static_path_requires_actual_included_reviewed_source_and_exported_anchor(self):
+        f = self.path_fixture()
+        with patch("workflow_manifest.source_dependencies", return_value=set()), self.assertRaises(ValueError):
+            linked.private_caller_witness(**f)
+        changes = [lambda f: f["ledger"]["0x00402000"].update(status="candidate"),
+                   lambda f: f["ledger"]["0x00402000"].update(source_file="src/other.cpp"),
+                   lambda f: f["exports"].clear(),
+                   lambda f: f["unit"]["functions"][0].update(rel32_targets=[])]
+        for change in changes:
+            f = self.path_fixture();change(f)
+            with self.subTest(change=change), self.assertRaises(ValueError):self.path_witness(f)
+
+    def test_static_path_rejects_exported_or_unowned_intermediates_and_missing_static_table(self):
+        changes = [lambda f: f["exports"].update(_alias=self.start+0x20),
+                   lambda f: f.update(map_text=""),
+                   lambda f: f["functions"].update({self.start+0x20: [("_middle", "other.obj")]}),
+                   lambda f: f["functions"][self.start+0x20].append(("_alias", "CIL library: CIL module")),
+                   lambda f: f.update(map_text=f["map_text"].replace("_middle", "_other"))]
+        for change in changes:
+            f = self.path_fixture();change(f)
+            with self.subTest(change=change), self.assertRaises(ValueError):self.path_witness(f)
+
+    def test_static_path_checks_both_edges_and_rejects_unreachable_or_cropped_callers(self):
+        changes = [lambda f: f["function"]["private_from"].update(site="0x00401001"),
+                   lambda f: f["function"]["private_from"]["via"][0].update(site="0x00402006"),
+                   lambda f: f["pe"].data.__setitem__(slice(0x1020,0x1025), b"\xc3\x90\x90\x90\x90"),
+                   lambda f: f["pe"].data.__setitem__(slice(0x1025,0x102a), b"\xe8\x00\x00\x00\x00"),
+                   lambda f: f["pe"].data.__setitem__(slice(0x102a,0x102e), b"\x83\xc4\x04\x90")]
+        for change in changes:
+            f = self.path_fixture();change(f)
+            with self.subTest(change=change), self.assertRaises(ValueError):self.path_witness(f)
+
+    def test_static_path_address_fields_require_exact_highlow_operand_coverage(self):
+        changes = [lambda f: f["pe"].DIRECTORY_ENTRY_BASERELOC.clear(),
+                   lambda f: setattr(f["pe"].DIRECTORY_ENTRY_BASERELOC[0].entries[0], "type", 2),
+                   lambda f: setattr(f["pe"].DIRECTORY_ENTRY_BASERELOC[0].entries[0], "rva", 0x1026),
+                   lambda f: f["pe"].DIRECTORY_ENTRY_BASERELOC[0].entries.append(SimpleNamespace(type=3,rva=0x1021)),
+                   lambda f: f["pe"].data.__setitem__(slice(0x1021,0x1025),struct.pack("<I", self.start+1)),
+                   lambda f: f["pe"].data.__setitem__(slice(0x1021,0x1025),struct.pack("<I", 0x6e0000))]
+        for change in changes:
+            f = self.path_fixture();change(f)
+            with self.subTest(change=change), self.assertRaises(ValueError):self.path_witness(f)
+
     def test_private_witness_does_not_accept_unreviewed_parents_bad_bindings_or_internal_relocations(self):
         changes = [lambda f: f["ledger"]["0x00401000"].update(status="unclassified"),
                    lambda f: f["ledger"]["0x00401000"].update(source_file="src/other.cpp"),

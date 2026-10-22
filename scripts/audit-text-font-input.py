@@ -40,8 +40,8 @@ def source_body(path, comparator):
     mapper = importlib.util.module_from_spec(spec)
     sys.modules[spec.name] = mapper
     spec.loader.exec_module(mapper)
-    unit = load_manifest()['units']['gpt-web-text-font-render']
-    function = next(f for f in unit['functions'] if f['address'] == '0x00412670')
+    function = next(f for unit in load_manifest()['units'].values()
+                    for f in unit['functions'] if f['address'] == '0x00412670')
     obj = mapper.CoffObject(path, symbol_base=function['symbol_base'])
     targets = {name: int(address, 0) for name, address in
                (value.split('=', 1) for value in function['rel32_targets'])}
