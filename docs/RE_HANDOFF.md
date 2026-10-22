@@ -7,6 +7,17 @@ and stable commit/push checkpoints named `gpt-6-astra-medium: ...`.
 
 ## Current checkpoint
 
+The [AyaObject902 spawn-prefix recovery](AYA_OBJECT_902_SPAWN_PREFIX_2026_10_22.md)
+selects the actual payload snapshot, separate direction-call prefixes and
+low-sequence-first branch order.902 now has target652 bytes/159 instructions;
+3744 actual spawn-entry prefixes and4288 actual-animation/no-spawn cases pass.
+Predecessor2592 prefix differences are x87 status only, not gameplay errors.
+Outside902,4418 normal-return graph nodes agree only with nine explicitly
+qualified dead-carrier windows in903; strict instruction labels still differ.
+Root61A290 stays nonexact+22, full20064/d08781e4, metadata19596 versus19524.
+Owner diagnostics4/34 add no exact credit. Scratch homes, match-mode exit
+placement and full903 behavior remain open; details and limits are in the report.
+
 The [AyaObject902 phase correction](AYA_OBJECT_902_PHASE_RESET_2026_10_22.md)
 restores signed counter>=6 and BYTE184=1/state/count reset, removing unsupported
 velocity assignments and an extra next-block call. All3328 actual-animation
@@ -250,6 +261,6 @@ git diff --check
 ```
 
 Local CI is mandatory; a remote Actions pass does not replace it. Current
-workflow baseline is442 tests. Never commit private reports, executables,
+workflow baseline is451 tests. Never commit private reports, executables,
 game data, databases, toolchains or credentials. Commit stable checkpoints
 with the required prefix, push, and verify remote HEAD and clean status.

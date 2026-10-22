@@ -9,6 +9,7 @@ import itertools
 import json
 import struct
 import sys
+import tomllib
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
@@ -28,11 +29,13 @@ class Probe(base.Probe):
     action_id = 902
 
     def prepare(self, case):
-        phase, health, cw, state, index, mode, counter, speed, facing = self.settings
+        phase, health, cw, state, index, mode, counter, speed, facing = self.settings[
+            :9
+        ]
         assert counter % 3 != 0
         fields = (
             (0x13C, "h", 902),
-            (0x13E, "h", 1),
+            (0x13E, "h", self.settings[9] if len(self.settings) > 9 else 1),
             (0x144, "i", counter),
             (0x180, "i", phase),
             (0x364, "h", state),
@@ -85,6 +88,29 @@ for mode, limit in enumerate((180, 320, 500, 600)):
             (-1, 1),
         )
     )
+# Both speed branches and additional sequences, still without spawn callbacks.
+cases += [
+    (0, 100, cw, 0, 1, 4, 1, speed, facing, sequence)
+    for cw, speed, facing, sequence in itertools.product(
+        (0x27F, 0x67F, 0xA7F, 0xE7F, 0x37F, 0x77F, 0xB7F, 0xF7F),
+        (
+            -0.0,
+            0.0,
+            -0.2,
+            0.2,
+            0.4,
+            2.0,
+            3.0,
+            3.4,
+            12.0,
+            float("inf"),
+            float("-inf"),
+            float("nan"),
+        ),
+        (-1, 1),
+        (0, 2, 3, 4, 9),
+    )
+]
 counts = dict(
     cases=0, selected_differences=0, previous_differences=0, target_callbacks=0
 )
@@ -114,12 +140,20 @@ code = base.c.coff_symbol_bytes(
     dict(z.split("=", 1) for z in f.get("dir32_targets", [])),
 )
 phase_window = base.c.target_bytes(0x61E550, 77)
-phase_offset = (
-    0x4325  # Qualified current action902 interval, not another identical phase block.
+root = base.mapper.load_target_mapper().select_root(
+    tomllib.loads((ROOT / "config/giant-action-switches.toml").read_text()),
+    "aya-object-vslot28",
 )
-assert code[phase_offset : phase_offset + 77] == phase_window, (
-    "target902 phase update window differs"
+mapping = base.mapper.build_candidate_map(co, root)
+primary = next(region for region in mapping["regions"] if region["name"] == "actions")
+owned = [group for group in primary["groups"] if 902 in group["cases"]]
+assert len(owned) == 1 and owned[0]["cases"] == [902]
+start = owned[0]["offset"]
+end = start + owned[0]["span_to_next_destination"]
+assert code[start:end].count(phase_window) == 1, (
+    "target phase window differs in action902"
 )
+phase_offset = start + code[start:end].index(phase_window)
 report = dict(
     target_sha256=base.c.verify_target(),
     objects=[dict(path=str(p), sha256=base.lp.sha(p)) for p in objects],
@@ -137,7 +171,7 @@ report = dict(
         )
         for a in sorted(used)
     },
-    scope="902 sequence1; actual frame/next-block helpers and complete RET; spawn-free finite counters/phase/health fixture, masked x87; no arbitrary resources or full-root proof",
+    scope="902 sequence1 phase cases plus both speed branches in sequences0/2/3/4/9; actual frame/next-block helpers and complete RET; spawn-free finite counters/phase/health fixture, masked x87; no arbitrary resources or full-root proof",
     input_sha256=hashlib.sha256(json.dumps(cases).encode()).hexdigest(),
 )
 args.output.parent.mkdir(parents=True, exist_ok=True)

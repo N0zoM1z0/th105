@@ -1845,10 +1845,7 @@ aya900_advance:
     }
 
     case 902: {
-        if (sequence_index_13e >= 2) {
-            motion_core()->component_f0 = static_cast<float>(motion_core()->component_f0 - 0.2f);
-            if (motion_core()->component_f0 < 0.0f) motion_core()->component_f0 = 0.0f;
-        } else {
+        if (sequence_index_13e < 2) {
             motion_core()->component_f0 = static_cast<float>(motion_core()->component_f0 - 0.4000000059604645);
             if (motion_core()->component_f0 < 3.0f) motion_core()->component_f0 = 3.0f;
             if (sprite_004.object_facing_100 == 1 && sprite_004.object_x_0e8 >= 1240.0f) sprite_004.object_facing_100 = -1;
@@ -1857,9 +1854,14 @@ aya900_advance:
                 state_370 = static_cast<float>(state_370 - 16.0);
                 if (state_370 <= -180.0f) state_370 = static_cast<float>(state_370 + 360.0);
                 payload[0] = state_370; payload[1] = 15.0f; payload[2] = 1.0f;
-                int const spawn_side = !(state_370 >= 0.0f && state_370 <= 180.0f) ? -1 : 1;
-                effect_emitter()->spawn_unparented_related_object(821, sprite_004.object_x_0e8, sprite_004.object_y_0ec, static_cast<unsigned char>(sprite_004.object_facing_100), spawn_side, reinterpret_cast<const unsigned *>(payload), 3);
+                if (payload[0] >= 0.0f && payload[0] <= 180.0f)
+                    effect_emitter()->spawn_unparented_related_object(821, sprite_004.object_x_0e8, sprite_004.object_y_0ec, static_cast<unsigned char>(sprite_004.object_facing_100), 1, reinterpret_cast<const unsigned *>(payload), 3);
+                else
+                    effect_emitter()->spawn_unparented_related_object(821, sprite_004.object_x_0e8, sprite_004.object_y_0ec, static_cast<unsigned char>(sprite_004.object_facing_100), -1, reinterpret_cast<const unsigned *>(payload), 3);
             }
+        } else {
+            motion_core()->component_f0 = static_cast<float>(motion_core()->component_f0 - 0.2f);
+            if (motion_core()->component_f0 < 0.0f) motion_core()->component_f0 = 0.0f;
         }
         if (sequence_index_13e == 1) {
             if (phase_state_180 == 6) { ++state_six_counter_384; ++phase_index_184; phase_state_180 = 0; }
