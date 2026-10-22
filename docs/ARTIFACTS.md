@@ -6,6 +6,34 @@ An old report records a particular source/object/tool epoch and never replaces
 a fresh canonical comparison. Start with [the current handoff](RE_HANDOFF.md)
 and the ledgers before choosing an artifact.
 
+## October 22 owner and renderer checkpoints
+
+Keep the accepted `animation-auxiliary-render-20261022` and
+`sprite-luma-alpha-20261022` comparison receipts, raw facts and selected
+objects directly available. The successful complete-owner images and all
+active linked inputs are under `reimu-object-owner-closure-20261022` and
+the earlier provider scopes; their object hashes are in each link receipt.
+The live handoff and dated owner-closure evidence describe their limits.
+
+Two completed control objects are compressed in
+`build/reimu-object-owner-closure-20261022/completed-controls.tar.gz`: the
+unused full RenderModeManager TU from the failed47-object link and the
+earlier native pool-vtable witness. Every archive member is read back and
+SHA256-checked before unlinking its original. `retention.json` records the
+member paths/hashes and verifies that neither is an active linked input.
+Source, current48-object inputs, images, reports, toolchains and primary
+databases remain available. Restore a historical control to its original
+repository-relative path before rerunning its old recipe:
+
+```bash
+tar -xzf build/reimu-object-owner-closure-20261022/completed-controls.tar.gz -C .
+```
+
+Disposable scripts/tests CPython caches are removed after the final local
+gate. `cache-cleanup.json` records those files and repeats the active-object,
+canonical-target and public-root-source hash checks. These private recipes
+and receipts are not committed.
+
 ## Retained evidence
 
 Preserve the canonical target, compiler installations, primary analysis

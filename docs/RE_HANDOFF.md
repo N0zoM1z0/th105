@@ -1,6 +1,20 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-22. Reconstruction is **active at the user's request**.
+The [complete owner/provider graph](REIMU_OBJECT_OWNER_CLOSURE_2026_10_22.md)
+now resolves two real48-object images without a root export. Both actual17-slot
+vtables retain the root and reproduce all8 RTTI base names/PMD offsets. Both
+normal source CFGs close22 switches; counter4963A0 remains66/66. Root-CIL still
+differs+0 with an aligned EBP frame; private ordinary root45712 differs+31.
+Actual VC8 map45C320 reproduces105/105, still excluded; the needed real render
+mode provider reproduces482 plus18 bytes of switch data/alignment. Distinct
+real float/double lookup definitions remove inconsistent same-name return
+declarations; their94/88 source payloads agree pairwise but remain nonexact
+against target100/94. No private owner/compiler source is selected. Fresh public
+root replay retains45700/d0ff3d32/+31 and counter66. Coarse scheduling deltas
+locate16 regions, including804 velocity lifetime and822 addition order. Next
+inspect target804 x87/value lifetime before changing root data access or typing;
+do not infer semantics from hierarchy/count agreement. Ledgers stay1379 exact.
 The [sprite luma/alpha renderer](SPRITE_LUMA_ALPHA_2026_10_22.md)
 `6656E0` is newly recovered and accepted **248/248**. Its80-instruction raw
 CFG closes both RET28 paths, two direct calls and seven real service callbacks.
@@ -9,8 +23,8 @@ profile. Five accepted bodies pass fresh replay after moving the unchanged
 service protocol into a shared header. Current ledgers are1379 exact/234584
 bytes, authored2136806 (10.98%). Both missing authored body leads from the first
 complete-owner link now have exact source. Next include them and the existing
-real providers, resolve the excluded map helper and keep lookup return contracts
-consistent before comparing complete-owner/root output. No giant-root credit.
+real providers and reconcile source contracts. That closure now resolves above;
+the first owner/root comparisons remain nonexact. No giant-root credit.
 The [auxiliary sprite renderer](ANIMATION_AUXILIARY_RENDER_2026_10_22.md)
 `434F30` is newly recovered and accepted **441/441**. Its116-instruction raw
 CFG covers every byte through RET0;13 calls and nine global relocations all
