@@ -1895,6 +1895,8 @@ aya900_advance:
 
     case 903: {
         unsigned char &alpha = reinterpret_cast<unsigned char *>(this)[0x113];
+        double faded_scale;
+        unsigned char fade_alpha;
         switch (sequence_index_13e) {
         case 0:
             sprite_004.object_x_0e8 = static_cast<float>(sprite_004.object_x_0e8 + 40 * static_cast<signed char>(sprite_004.object_facing_100));
@@ -1923,14 +1925,19 @@ aya900_advance:
             if (initial_phase) {
                 if (time_counter_144 >= 180) state_364 = 1;
             } else {
-                sprite_004.reset_one_11c = static_cast<float>(sprite_004.reset_one_11c * 0.949999988079071);
-                if (alpha < 20) { --lifetime_330; return; }
-                alpha -= 20;
-                reinterpret_cast<unsigned char *>(this)[0x111] -= 20;
-                reinterpret_cast<unsigned char *>(this)[0x110] -= 20;
+                faded_scale = static_cast<double>(sprite_004.reset_one_11c * 0.949999988079071);
+                goto aya903_store_fade;
             }
             break;
         }
+aya903_store_fade:
+            fade_alpha = alpha;
+            sprite_004.reset_one_11c = static_cast<float>(faded_scale);
+            if (fade_alpha < 20) { --lifetime_330; return; }
+            alpha = static_cast<unsigned char>(fade_alpha - 20);
+            reinterpret_cast<unsigned char *>(this)[0x111] -= 20;
+            reinterpret_cast<unsigned char *>(this)[0x110] -= 20;
+            break;
         case 3: {
             if (*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x174) <= 0) { --lifetime_330; return; }
             if (phase_state_180 == 6) { ++state_six_counter_384; ++phase_index_184; phase_state_180 = 0; }
@@ -1944,11 +1951,8 @@ aya900_advance:
             if (initial_phase) {
                 if (time_counter_144 >= 180) state_364 = 1;
             } else {
-                sprite_004.reset_one_11c = static_cast<float>(sprite_004.reset_one_11c * 0.949999988079071);
-                if (alpha < 20) { --lifetime_330; return; }
-                alpha -= 20;
-                reinterpret_cast<unsigned char *>(this)[0x111] -= 20;
-                reinterpret_cast<unsigned char *>(this)[0x110] -= 20;
+                faded_scale = static_cast<double>(sprite_004.reset_one_11c * 0.949999988079071);
+                goto aya903_store_fade;
             }
             break;
         }

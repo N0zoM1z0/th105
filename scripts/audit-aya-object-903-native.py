@@ -9,6 +9,7 @@ import itertools
 import json
 import struct
 import sys
+import tomllib
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
@@ -73,6 +74,8 @@ class Probe(base.Probe):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--object', type=Path, default=ROOT / base.unit['object'])
+    parser.add_argument('--diagnostic', action='store_true',
+                        help='Diagnostic control only: report alpha snapshot/window differences without accepting them')
     parser.add_argument('--output', type=Path, default=ROOT / 'build/aya903-native.json')
     args = parser.parse_args()
     table, receipt = lookup_fixture(base.c)
@@ -111,10 +114,30 @@ def main():
             examples.append(dict(case=case, fields=changed,
                                  alpha_reads=[v['alpha_reads'] for v in values]))
     effect_differences = {k: v for k, v in differences.items() if k != 'alpha_reads'}
+    # Pin this non-relocated read/store interval to the actual903 owner, not
+    # an arbitrary identical sequence elsewhere in the complete root.
+    co = base.mapper.CoffObject(args.object, symbol_base=base.f['symbol_base'])
+    root = base.mapper.load_target_mapper().select_root(
+        tomllib.loads((ROOT / 'config/giant-action-switches.toml').read_text()),
+        'aya-object-vslot28',
+    )
+    mapping = base.mapper.build_candidate_map(co, root)
+    primary = next(region for region in mapping['regions'] if region['name'] == 'actions')
+    owned = [group for group in primary['groups'] if 903 in group['cases']]
+    assert len(owned) == 1 and owned[0]['cases'] == [903]
+    start = owned[0]['offset']
+    size = owned[0]['span_to_next_destination']
+    code = bytes(probes[-1].uc.mem_read(base.S + start, size))
+    window = base.c.target_bytes(0x61E829, 14)
+    count = code.count(window)
+    window_equal = count == 1
+    read_store_window = dict(target='0x61e829', bytes=14, matches=count,
+                             sha256=hashlib.sha256(window).hexdigest(),
+                             source=hex(base.S + start + code.index(window)) if window_equal else None)
     report = dict(
-        result='effects_differ' if effect_differences else 'effects_equal_read_epochs_reported_separately',
+        result='effects_differ' if effect_differences else ('read_epoch_or_window_differs' if differences or not window_equal else 'equal'),
         target_sha256=base.c.verify_target(), object_sha256=base.lp.sha(args.object),
-        cases=len(cases), differences=dict(differences), alpha_epoch_fields=dict(epoch_fields),
+        cases=len(cases), read_store_window=read_store_window, differences=dict(differences), alpha_epoch_fields=dict(epoch_fields),
         target_calls=dict(calls), examples=examples,
         lookup={k: v for k, v in receipt.items() if k != 'trace'},
         original_helpers={hex(a): dict(size=n, sha256=hashlib.sha256(base.c.target_bytes(a, n)).hexdigest())
@@ -126,7 +149,7 @@ def main():
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report, indent=2))
-    if effect_differences:
+    if effect_differences or ((differences or not window_equal) and not args.diagnostic):
         raise SystemExit(1)
 
 

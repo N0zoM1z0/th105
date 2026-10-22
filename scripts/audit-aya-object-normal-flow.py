@@ -210,6 +210,7 @@ def main():
     parser.add_argument("previous", type=Path)
     parser.add_argument("candidate", type=Path)
     parser.add_argument("--exclude-action", type=int, choices=range(800, 999))
+    parser.add_argument("--exclude-903-sequence", type=int, choices=range(10), action="append", default=[])
     parser.add_argument("--dead-carriers", action="store_true", help="Qualify short volatile-carrier renamings using checked templates and ABI liveness")
     parser.add_argument("--output", type=Path, default=R / "build/aya-flow.json")
     args = parser.parse_args()
@@ -227,26 +228,47 @@ def main():
     oldpath = args.previous
     newpath = args.candidate
     old, new = packet(oldpath), packet(newpath)
-    excluded = [None, None]
-    if args.exclude_action is not None:
-        for index, packet_ in enumerate((old, new)):
-            primary = [
-                sw for sw in packet_["switches"].values() if sw["checked_maximum"] == 198
-            ]
+    assert not (args.exclude_action is not None and args.exclude_903_sequence)
+    excluded_entries = []
+    if args.exclude_action is not None or args.exclude_903_sequence:
+        by_side = []
+        for packet_ in (old, new):
+            primary = [sw for sw in packet_["switches"].values() if sw["checked_maximum"] == 198]
             assert len(primary) == 1
             sw = primary[0]
             offset = sw["index_table"] - S
-            indices = packet_["code"][offset : offset + 199]
-            selected = indices[args.exclude_action - 800]
+            indices = packet_["code"][offset:offset + 199]
+            action = args.exclude_action if args.exclude_action is not None else 903
+            selected = indices[action - 800]
             assert indices.count(selected) == 1, "excluded action aliases another action"
-            excluded[index] = sw["destinations"][selected]
+            entry = sw["destinations"][selected]
+            if args.exclude_903_sequence:
+                # Qualify the actual signed WORD13E -> guarded dense0..9 switch.
+                rows = []
+                pc = entry
+                for _ in range(4):
+                    row = packet_["by"][pc]
+                    rows.append(row)
+                    pc += row.size
+                assert rows[0].mnemonic == "movsx" and rows[0].op_str == "eax, word ptr [esi + 0x13e]"
+                assert rows[1].mnemonic == "cmp" and rows[1].op_str == "eax, 9"
+                assert rows[2].mnemonic == "ja"
+                sw = packet_["switches"][rows[3].address]
+                assert sw["checked_maximum"] == 9 and not sw.get("index_table")
+                assert len(sw["destinations"]) == 10
+                entries = [sw["destinations"][seq] for seq in args.exclude_903_sequence]
+                assert all(sw["destinations"].count(dest) == 1 for dest in entries), "excluded sequence aliases another sequence"
+            else:
+                entries = [entry]
+            by_side.append(entries)
+        excluded_entries = list(zip(*by_side))
     pending = [(S, S)]
     seen = set()
     carrier_checks = []
     while pending:
         a, b = pending.pop()
-        if args.exclude_action is not None and (a == excluded[0] or b == excluded[1]):
-            assert (a, b) == tuple(excluded)
+        if any(a == left or b == right for left, right in excluded_entries):
+            assert (a, b) in excluded_entries
             continue
         a = contract(old, a)
         b = contract(new, b)
@@ -287,7 +309,8 @@ def main():
         } if carrier_checks else {},
         paired_nodes=len(seen),
         excluded_action=args.exclude_action,
-        scope="root instruction-labelled normal-return graph except the explicitly reported excluded action entry, if any; internal direct JMP contracted; optional reported carrier windows require template equality and dead-byte liveness through normal thiscall contracts435160/4351C0 and void RET; switch guards/index bytes and ordered edges checked; opaque calls assumed normal return, no callback/exception or canonical equivalence claim",
+        excluded_903_sequences=args.exclude_903_sequence,
+        scope="root instruction-labelled normal-return graph except the explicitly reported excluded action or903 sequence entries, if any; internal direct JMP contracted; optional reported carrier windows require template equality and dead-byte liveness through normal thiscall contracts435160/4351C0 and void RET; switch guards/index bytes and ordered edges checked; opaque calls assumed normal return, no callback/exception or canonical equivalence claim",
         previous_sha256=lp.sha(oldpath),
         candidate_sha256=lp.sha(newpath),
     )

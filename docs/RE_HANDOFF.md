@@ -7,6 +7,16 @@ and stable commit/push checkpoints named `gpt-6-astra-medium: ...`.
 
 ## Current checkpoint
 
+The [AyaObject903 shared fade-value recovery](AYA_OBJECT_903_SHARED_FADE_2026_10_22.md)
+selects a real double product carried across the2/3 branch merge. All3168
+actual-helper cases now agree including alpha-read x87 snapshots; all1920
+predecessor read-epoch differences disappear. The14-byte read/store interval
+is pinned within903. Other paths preserve4463 strictly labelled normal graph
+nodes with only sequences2/3 excluded, without carrier allowances.903 is now
+1696/361 versus target1697/364; physical shared-tail placement remains nonexact.
+Rootfull20036/623294c3, metadata19568, canonical mismatch+22 target0F/source3B.
+Exact totals do not change; a shared float control adds unsupported spill/reload.
+
 The [AyaObject903 native-math audit](AYA_OBJECT_903_NATIVE_MATH_2026_10_22.md)
 executes3168 sequence2/3 cases through original lookup/fabs/conversion/frame
 helpers and RET. Selected final effects agree;1920 alpha-read epochs still
