@@ -7,6 +7,16 @@ and stable commit/push checkpoints named `gpt-6-astra-medium: ...`.
 
 ## Current checkpoint
 
+The [AyaObject821 counter repair](AYA_OBJECT_821_COUNTER_FIELD_2026_10_22.md)
+corrects sequence0's four WORD36C references to target-observed WORD364.
+All3300 actual integer-sine/frame-helper cases pass; predecessor differs in3190
+write traces,3132 final actors and2436 sine arguments. The complete20036-byte
+canonical payload changes only four displacement bytes; other instructions and
+metadata are unchanged. Outside8214331 strict normal graph nodes agree.
+Rootfull20036/158b7e91, metadata19568; canonical remains nonexact+22.
+No exact credit is added. Continue inspecting remaining field/control discrepancies
+rather than assuming retained source correctness from earlier scoped checks.
+
 The [AyaObject903 shared fade-value recovery](AYA_OBJECT_903_SHARED_FADE_2026_10_22.md)
 selects a real double product carried across the2/3 branch merge. All3168
 actual-helper cases now agree including alpha-read x87 snapshots; all1920

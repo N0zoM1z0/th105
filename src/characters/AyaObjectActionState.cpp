@@ -865,10 +865,10 @@ void AyaObjectActionStateView::update_action_state()
         unsigned char &alpha = reinterpret_cast<unsigned char *>(this)[0x113];
         short sequence = sequence_index_13e;
         if (sequence == 0) {
-            state_36c += 6;
-            if (state_36c >= 90) state_36c = 90;
+            state_364 += 6;
+            if (state_364 >= 90) state_364 = 90;
             state_370 = static_cast<float>(state_370 + 0.05000000074505806);
-            float const scale = static_cast<float>(lookup_orientation_sine(state_36c) + 1.0 + state_370);
+            float const scale = static_cast<float>(lookup_orientation_sine(state_364) + 1.0 + state_370);
             sprite_004.reset_one_118 = scale;
             sprite_004.reset_one_11c = scale;
         }
