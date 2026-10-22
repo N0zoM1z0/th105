@@ -1,6 +1,21 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-22. Reconstruction is **active at the user's request**.
+The [begin CIL context](TEXT_FONT_BEGIN_CONTEXT_2026_10_22.md) now selects
+4119A0's actual291-byte/83-instruction private body through renderer412706.
+Target64-byte frame/full EDI scope are recovered; only10 publication/read/PUSH
+bytes differ+59. Native291/84/+7 remains diagnostic. Fresh4,320 complete
+begin/list observer cases pass. Conditional MOV/PUSH endpoint proof closes
+arbitrary32-bit data with handle/HWND/outgoing-word disjointness; write order
+differs and two overlaps change the pending argument.514 native-window cases
+validate the model. Opaque HWND, real RTM CIL/link, /Ob1, member and EHs/EHa
+controls retain all four leaf hashes. RTM's missing same-release msobj80.dll
+is restored from pinned official media;137.9MB extraction is removed.
+Default/Ob1/EHs/EHa parser FuncInfo has3 states versus target4; flags alone
+do not identify original begin/TU. Source/header/default profile/rules stay
+fixed; the two affected units cold-replay6 accepted functions. Ledgers1381
+exact/234914 bytes. Next reconcile the fourth cleanup state's construction/
+cleanup ownership; no padding or broad compiler-flag conclusion follows.
 The [font end/reset CIL checkpoint](TEXT_FONT_EDI_LTCG_2026_10_22.md) now accepts
 end411AD0 at168/168 and reset4118F0 at162/162 in the real owner/render image.
 Unchanged source naturally preserves EDI across the target scopes. Explicit

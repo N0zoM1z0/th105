@@ -110,13 +110,17 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(child["private_from"]["via"][0]["address"], "0x00411FA0")
         end = next(f for f in color["functions"] if f["address"] == "0x00411AD0")
         reset = next(f for f in color["functions"] if f["address"] == "0x004118F0")
+        begin = next(f for f in color["functions"] if f["address"] == "0x004119A0")
         self.assertIs(end["private_static_leaf"], True)
         self.assertIs(reset["private_static_leaf"], True)
+        self.assertIs(begin["private_static_leaf"], True)
         self.assertEqual(end["private_from"]["via"], [])
         self.assertEqual(end["private_from"]["site"], "0x00412783")
         self.assertEqual(reset["private_from"]["via"][0]["site"], "0x0041260F")
+        self.assertEqual(begin["private_from"]["via"], [])
+        self.assertEqual(begin["private_from"]["site"], "0x00412706")
         native = manifest["units"]["gpt-web-text-font-render"]
-        self.assertTrue({"0x00411AD0", "0x004118F0"}.isdisjoint(
+        self.assertTrue({"0x004119A0", "0x00411AD0", "0x004118F0"}.isdisjoint(
             f["address"] for f in native["functions"]))
 
     def test_source_present_rows_do_not_fall_back_to_origin_review(self) -> None:

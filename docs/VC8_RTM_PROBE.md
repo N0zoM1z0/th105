@@ -65,6 +65,37 @@ the deletion. Recreate the media extraction only if reinstalling that tree.
 | `bin/cl.exe` | `3cbf4306526c06a07d09fd4785ac290c7ac7b52355944e7b377e08f5d8e7ece7` |
 | `bin/c1xx.dll` | `e4890058a1f928538b27246af1f5c6f95551fc0ad380639b1bf1d6b143b80d09` |
 | `bin/c2.dll` | `ebca6ef587d6e028b50cc79fe71dd6155230ecb51014295399e8f00e8865ff86` |
+| `bin/link.exe` | `3f14f86bf8e079f5c4af4ff54ffc682140eebad1ca2b911ac7f7726540d7bab4` |
+| `bin/msobj80.dll` | `803d06c37d7296bf9f2a9c34eb7bebae218b5f12c18d1dd110eaaa5d323c8268` |
+
+## RTM LTCG linker companion
+
+The compiler-only extraction above omitted `msobj80.dll`. A real RTM CIL
+link on2026-10-22 stopped with LNK1296 until this same-release companion was
+restored. Retrieve and verify the same bounded official payload above, extract
+its MSI/CAB, then extract this one MSI File key from `vcsetup1.cab`:
+
+```bash
+cabextract -q \
+  -F 'FL_msobj71_dll_1_____X86.3643236F_FC70_11D3_A536_0090278A1BB8' \
+  -d build/references/vc8/rtm-media/one \
+  build/references/vc8/rtm-media/vcsetup1.cab
+cp build/references/vc8/rtm-media/one/FL_msobj71_dll_1_____X86.3643236F_FC70_11D3_A536_0090278A1BB8 \
+  .tools/msvc80-rtm/bin/msobj80.dll
+```
+
+The MSI names that key `msobj80.dll`,57,856 bytes, FileVersion8.0.50727.42;
+the extracted hash is pinned in the table. The numeric `msobj71` File key
+does not identify the DLL release. No installer ran or existing compiler/
+linker file changed. The four actual cl/C1XX/C2/link identities were checked;
+the fixed SP1 CRT/SDK inputs are recorded separately from the RTM binaries.
+
+The completed [font begin controls](TEXT_FONT_BEGIN_CONTEXT_2026_10_22.md)
+retain the same four canonical bodies under real RTM CIL compilation/linking.
+This closes the earlier failed link, not original-project provenance or a
+general compiler equivalence claim. Retrieval/install receipts are in
+`build/font-begin-handles-20261022/`. The verified137,878,428-byte media/
+extraction tree was removed after installing the single57,856-byte companion.
 
 ## Measured common-Fighter result
 

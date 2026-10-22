@@ -3298,7 +3298,7 @@ origin = "authored_game"
 subsystem = "render"
 disposition = "authored"
 confidence = "observed"
-evidence = "Complete291-byte/83-instruction ESI/RET begin is called at412706 by reviewed game font entry412670. Its actual ANSI CreateFontA/GetDC/SelectObject/GetTextMetricsA sequence publishes the font handles/ascent, origin plus full outline byte, flags and active base-color pointer before deleting native list front arrays/nodes. Game font layout and resource lifetime establish authored policy, not ownership of imported GDI or native STL/runtime callees. Real static C++ in the actual caller TU naturally emits ESI and291 bytes/84 instructions, but remains nonexact+7 on56-byte source versus64-byte target frame and EDI save scope. 4320 bounded actual-instruction/list observer cases agree; no exact or real GDI claim. docs/TEXT_FONT_BEGIN_2026_10_21.md."
+evidence = "Complete291-byte/83-instruction ESI font begin and reviewed renderer412670 call412706 establish authored GDI/style/cursor/color/list policy. The selected genuine owner/render CIL body has target64-byte frame/full EDI save scope, remains nonexact+59 with10 differing publication/read/push bytes, and passes4320 bounded actual-instruction observer cases. Runtime/list helpers receive no separate credit. Native291/84/+7 remains diagnostic; no original nominal type/TU, real GDI/EH or exact claim. docs/TEXT_FONT_BEGIN_CONTEXT_2026_10_22.md."
 required_body_hashes = [
   { address = "0x004119A0", size = 291, sha256 = "1c9a673b94a0d9a20e34859f3dc3ef0841720700f1a13cb1e318b3314358cf00" },
 ]

@@ -20276,17 +20276,7 @@ source = "src/assets/TextFontRender.cpp"
 object = "build/match-units/GptWeb_TextFontRender.obj"
 profile = "vc8-sp1-probe-o2-ob1"
 enable_gs = true
-notes = "Eight native font comparisons retain unchanged source and O2/Ob1/GS: accepted surface45, hex45 and blend289; glyph624/a1f0b4e5/+89, markup1728/a3c2e09c/+16/frame788 remain pending. Renderer, color, end and reset select the genuine owner/render CIL unit without duplicate addresses. Native end168/e1daa198 and reset161/261fc985 remain diagnostic alternatives in the same COFF. The input auditor follows the linked renderer contract and checks the packed DWORD input read. Original semantic receipts retain their source epochs/provider scopes. docs/TEXT_FONT_PACKED_INPUT_2026_10_22.md; docs/TEXT_FONT_COLOR_LTCG_2026_10_22.md; docs/TEXT_FONT_EDI_LTCG_2026_10_22.md."
-
-[[units.gpt-web-text-font-render.functions]]
-address = "0x004119A0"
-symbol_base = "?start_text_render@th105@@YGXPAUTextFontOwner194@1@@Z"
-rel32_targets = [
-  "??_V@YAXPAX@Z=0x0068AA26",
-  "operator_delete=0x006898EA",
-  "__invalid_parameter_noinfo=0x0068A143",
-]
-dir32_targets = ["?g_main_window@th105@@3PAUHWND__@@A=?g_main_window@th105@@3PAUHWND__@@A"]
+notes = "Seven native font comparisons retain unchanged source/O2/Ob1/GS: accepted surface45, hex45 and blend289; glyph624/a1f0b4e5/+89 and markup1728/a3c2e09c/+16/frame788 remain pending. Renderer/color/end/reset/begin select genuine owner/render CIL with one descriptor per address. Native begin291/728a7bf3/+7, end168/e1daa198 and reset161/261fc985 remain diagnostic alternatives in the same COFF. Input auditing retains the real packed DWORD read and source-epoch/provider scopes. docs/TEXT_FONT_PACKED_INPUT_2026_10_22.md; docs/TEXT_FONT_EDI_LTCG_2026_10_22.md; docs/TEXT_FONT_BEGIN_CONTEXT_2026_10_22.md."
 
 [[units.gpt-web-text-font-render.functions]]
 address = "0x00411B80"
@@ -20453,7 +20443,7 @@ source = "src/assets/TextFontLinked.cpp"
 object = "build/match-units/GptWeb_TextFontColorLinked.dll"
 profile = "vc8-sp1-ltcg-o2"
 enable_gs = true
-notes = "Real owner/render CIL definitions recover color352, end168 and reset162 through actual renderer/static-markup calls. End/reset retain unique unexported Static symbols/CIL module identities, reviewed included source and complete actual caller paths; no export, ABI facade or byte/CFG/relocation waiver. Caller witnesses do not accept renderer/markup or EH. Native and linked begin remain nonexact; original TU partition/helper40C6D0 equality remain open. docs/TEXT_FONT_COLOR_LTCG_2026_10_22.md; docs/TEXT_FONT_EDI_LTCG_2026_10_22.md."
+notes = "Real owner/render CIL recovers color352, end168 and reset162. Begin selects its actual291-byte/83-instruction ESI body with target64-byte frame/save scope; it remains nonexact+59 with10 differing bytes. Private leaves require reviewed included source, unique unexported Static symbols and actual complete caller paths; no export, ABI facade or byte/CFG/relocation waiver. Caller witnesses do not accept renderer/markup or EH. Original TU partition/helper40C6D0 equality remain open. docs/TEXT_FONT_COLOR_LTCG_2026_10_22.md; docs/TEXT_FONT_EDI_LTCG_2026_10_22.md; docs/TEXT_FONT_BEGIN_CONTEXT_2026_10_22.md."
 link_data_targets = [
   "__imp__TerminateProcess@8=__imp__TerminateProcess@8",
   "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0",
@@ -20514,6 +20504,17 @@ address = "0x004118F0"
 symbol_base = "?reset_markup_color@th105@@YGXPAUTextFontOwner194@1@@Z"
 private_static_leaf = true
 private_from = { caller = "0x00412670", site = "0x0041276A", source_file = "src/assets/TextFontRender.cpp", via = [{ address = "0x00411FA0", symbol_base = "?parse_text_markup@th105@@YGHPAUTextFontOwner194@1@PBDPAI2@Z", site = "0x0041260F" }] }
+rel32_targets = [
+  "??_V@YAXPAX@Z=0x0068AA26",
+  "??3@YAXPAX@Z=0x006898EA",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+
+[[units.gpt-web-text-font-color-linked.functions]]
+address = "0x004119A0"
+symbol_base = "?start_text_render@th105@@YGXPAUTextFontOwner194@1@@Z"
+private_static_leaf = true
+private_from = { caller = "0x00412670", site = "0x00412706", source_file = "src/assets/TextFontRender.cpp", via = [] }
 rel32_targets = [
   "??_V@YAXPAX@Z=0x0068AA26",
   "??3@YAXPAX@Z=0x006898EA",
