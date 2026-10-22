@@ -3,9 +3,22 @@
 Current as of2026-10-22. Reconstruction is **active at the user's request**.
 Use the live ledgers and fresh canonical comparisons over dated reports.
 The user authorizes focused affected-unit replays, serial low-resource builds,
-and stable commit/push checkpoints named `gpt-6.1-sol: ...`.
+and stable commit/push checkpoints named `gpt-6-astra-medium: ...`.
 
 ## Current checkpoint
+
+The [selected ReimuObject owner view](REIMU_OBJECT_OWNER_VIEW_SELECTED_2026_10_22.md)
+now gives496540 the complete native45696/4b565d71 payload and target29-byte908
+float-first window. The isolated17-slot model retains388 layout and existing
+global headers;380 stays opaque. All14464 scoped800/804/869/902/908 cases pass,
+and199 other action entries plus default preserve9344 normal graph nodes.
+The old root still fails2240 live908 snapshots. Counter66 remains exact; the
+whole root remains nonexact+31 with physical call/RET sharing unresolved.
+Default source symbols now follow the manifest; explicit old-object symbols
+remain supported. Raw field audit covers26 fields/1251 direct operands,
+including93 x87 accesses to370..37C. No root/RTTI/lifecycle or new exact credit.
+Local float/counter/facing views and the explicit accent store/advance416-byte
+native/CIL control are unselected. The latter does not replace selected accent417.
 
 The [accent lifetime correction](TEXT_FONT_ACCENT_LIFETIMES_2026_10_22.md)
 selects target-observed relative clipping and an early used coverage cursor.
@@ -144,22 +157,24 @@ msobj80.dll are in [VC8 RTM provenance](VC8_RTM_PROBE.md).
 
 ReimuObject update496540 remains nonexact+31. The selected
 [staging source](../src/characters/ReimuObjectActionStateStaging.cpp) SHA256 is
-`77fe73a458421c55ceb7f2d9151a369aa19095f2de194404b8e8033f109fc349`;
+`35b06db0de104e9e5bcdb12b89dbb906a18ad8b532514071c08345fe1c47b7f8`;
 its complete45696-byte canonical payload SHA256 is
-`4d0ac180cace3180285c26ccfb94a48d3f05d70037761cdbd4f1d7f07c947a50`.
+`4b565d714737cf5ddfdaf8ae5d9944369071899fccb70223f86f572b55a65bf2`.
 Same-TU counter4963A0 remains66/66 exact. Target physical span46138 includes
 46128 owned code bytes and10 alignment bytes. Target/source433/428 physical
 calls and68/63 RETs are observations, not a behavioral proof.
 
-The [selected902 products](REIMU_OBJECT_902_PRODUCTS_2026_10_22.md) preserve
-actual target x87 lifetimes. Subsequent [908 owner/window evidence](REIMU_OBJECT_908_OWNER_2026_10_22.md)
-and [member/800 evidence](REIMU_OBJECT_MEMBER_STORAGE_2026_10_22.md) keep the
-corrected complete owner private: scalar shorts lose800's live parameter;
-a five-short array restores800 and the complete selected payload, while908
-still needs float-first lifetime recovery. Equal final outputs do not
-qualify differing live x87 snapshots. Real48-object native/root-CIL provider
-graphs already resolve; neither giant root is exact. Original source grouping,
-compiler phase and physical tail ownership remain open.
+The [selected902 products](REIMU_OBJECT_902_PRODUCTS_2026_10_22.md) and the
+[new owner selection](REIMU_OBJECT_OWNER_VIEW_SELECTED_2026_10_22.md) now
+preserve the target's known804/869/902/908 x87 lifetimes together with800.
+The namespaced owner view supplies the real field/call context while retaining
+a staging view for unresolved scalar/parent storage. It is not an assertion
+of original nominal identity, complete class lifecycle or RTTI. The prior real
+48-object native/root-CIL graphs remain private contextual evidence. Removing
+all overlays through scalar members loses800; a five-short array preserves800
+but loses908. Do not repeat those local controls or promote unproved grouping.
+Original source grouping, compiler phase and physical tail ownership remain
+open; neither the native nor root-CIL giant has canonical exact acceptance.
 
 Use the [Reimu evidence index](REIMU_OBJECT_EVIDENCE.md) for bounded action
 receipts. Other pending roots include Reimu Fighter478FA0, ReimuObject
@@ -177,6 +192,7 @@ taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-text-font-render
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-text-font-color-linked --compare --json
 taskset -c 0 nice -n 10 python3 scripts/audit-text-font-markup-cleanup.py --json
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-reimu-object-action-state --compare --json
+taskset -c 0 nice -n 10 python3 scripts/audit-reimu-object-908-window.py build/match-units/GptWeb_ReimuObjectActionState.obj
 ```
 
 Mixed comparison exits are expected for units containing pending functions.
@@ -185,7 +201,7 @@ partition/relocation changes. Keep CPU0/nice10 and serial builds. Preserve
 selected inputs and recipes; archive completed private artifacts only after
 SHA256 round-trip checks. See [artifact retention](ARTIFACTS.md).
 The [October21 historical snapshot](RE_HANDOFF_HISTORY_2026_10_21.md) and dated
-pages preserve prior epochs; Git6d38687 retains the pre-accent live handoff.
+pages preserve prior epochs; Gitcf6d57d retains the pre-owner-selection live handoff.
 
 After the final tracked edit, before every commit/push/PR:
 

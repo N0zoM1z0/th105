@@ -14,6 +14,7 @@ from unicorn import x86_const as r
 
 R = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(R / "scripts"))
+from workflow_manifest import load_manifest
 
 
 def load(name, path):
@@ -39,7 +40,11 @@ PARENT = OWNER + 0x2000
 PARENT_PARAMETERS = RESOURCE + 0xE000
 RELATED = OWNER + 0x3000
 FOLLOWED = OWNER + 0x4000
-SYMBOL = "?dispatch_action_state@ReimuObjectActionStateStagingView@th105@@UAEXXZ"
+SYMBOL = next(
+    function["symbol_base"]
+    for function in load_manifest()["units"]["gpt-web-reimu-object-action-state"]["functions"]
+    if int(function["address"], 0) == A
+)
 HELPERS = dict(entry.animation.HELPERS)
 HELPERS.update(
     {
