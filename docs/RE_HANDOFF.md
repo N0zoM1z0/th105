@@ -7,6 +7,16 @@ and stable commit/push checkpoints named `gpt-6-astra-medium: ...`.
 
 ## Current checkpoint
 
+The [AyaObject801 alpha snapshot](AYA_OBJECT_801_FADE_SNAPSHOTS_2026_10_22.md)
+restores alpha reading before scale updates.3840 actual-code cases preserve
+final effects and now match alpha-read x87 snapshots;1680 predecessor alpha
+snapshot differences disappear.3012 sequence-read differences remain explicit.
+Outside8014491 strict graph nodes agree. An explicit sequence snapshot changes
+other actions' x87 scheduling and is retained as an unselected control; color-byte
+alias and early-Boolean controls are fully byte-neutral to the alpha-only form.
+Full20136/a2fafaa2, metadata19668; nonexact+22 target0F/sourceA1, no exact credit.
+The88-byte growth is unresolved compiler tail placement, not progress credit.
+
 The [AyaObject810 sequence reload](AYA_OBJECT_810_SEQUENCE_RELOAD_2026_10_22.md)
 restores the independent WORD13E comparison for sequence1 at target61AA4F.
 All4096 actual-code cases pass (3360 returns/288 effect/448 spawn prefixes);

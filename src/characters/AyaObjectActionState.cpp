@@ -222,15 +222,16 @@ void AyaObjectActionStateView::update_action_state()
         }
         unsigned char &alpha = reinterpret_cast<unsigned char *>(this)[0x113];
         if (sequence_index_13e == 1) {
+            unsigned char const prior_alpha = alpha;
             sprite_004.reset_one_118 = static_cast<float>(
                 sprite_004.reset_one_118 + 0.1f);
             sprite_004.reset_one_11c = static_cast<float>(
                 sprite_004.reset_one_11c + 0.1f);
-            if (alpha < 5) {
+            if (prior_alpha < 5) {
                 --lifetime_330;
                 return;
             }
-            alpha -= 5;
+            alpha = prior_alpha - 5;
         }
         if (sequence_index_13e == 2) {
             if (alpha < 20) {
