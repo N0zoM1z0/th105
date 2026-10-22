@@ -2555,7 +2555,7 @@ fade_902:
                 reinterpret_cast<ReimuOwnerBoundaryView *>(fighter_owner_348)->y_lower_1 = static_cast<float>(y_f0 - scale_x_11c * 45.0);
             }
             goto fade_902;
-        case 2:
+        case 2: {
             if (phase_state_180 != 0 || *reinterpret_cast<short *>(fighter_owner_348 + 0x174) <= 0) {
                 packet_902_retirement[0] = 0.0f;
                 packet_902_retirement[1] = 0.0f;
@@ -2565,8 +2565,11 @@ fade_902:
                 retiring_words = 3;
                 goto emit_retiring_world;
             }
-            heading_12c = atan2_degrees(velocity_y_f8,
-                static_cast<float>(static_cast<float>(facing_104) * velocity_x_f4));
+            // Refresh each world-space X velocity around the portal callbacks.
+            // The target converts signed facing before loading the speed.
+            double directed_x_heading = facing_104;
+            directed_x_heading *= velocity_x_f4;
+            heading_12c = atan2_degrees(velocity_y_f8, static_cast<float>(directed_x_heading));
             if (state_364 == 0) {
                 if (velocity_y_f8 > 0.0 && y_f0 > *reinterpret_cast<float *>(fighter_owner_348 + 0x7b8)) {
                     velocity_y_f8 = -velocity_y_f8;
@@ -2592,7 +2595,9 @@ fade_902:
                         902, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
                         reinterpret_cast<const unsigned *>(copied), 3);
                 }
-                if (static_cast<float>(facing_104) * velocity_x_f4 > 0.0 && x_ec > *reinterpret_cast<float *>(fighter_owner_348 + 0x7b0)) {
+                double directed_x_primary_right = facing_104;
+                directed_x_primary_right *= velocity_x_f4;
+                if (directed_x_primary_right > 0.0 && x_ec > *reinterpret_cast<float *>(fighter_owner_348 + 0x7b0)) {
                     velocity_x_f4 = -velocity_x_f4;
                     float copied[3] = {0.0f, 0.0f, 3.0f};
                     reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
@@ -2604,7 +2609,9 @@ fade_902:
                         902, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
                         reinterpret_cast<const unsigned *>(copied), 3);
                 }
-                if (static_cast<float>(facing_104) * velocity_x_f4 < 0.0 && x_ec < *reinterpret_cast<float *>(fighter_owner_348 + 0x7a8)) {
+                double directed_x_primary_left = facing_104;
+                directed_x_primary_left *= velocity_x_f4;
+                if (directed_x_primary_left < 0.0 && x_ec < *reinterpret_cast<float *>(fighter_owner_348 + 0x7a8)) {
                     velocity_x_f4 = -velocity_x_f4;
                     float copied[3] = {0.0f, 0.0f, 3.0f};
                     reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
@@ -2642,7 +2649,9 @@ fade_902:
                         902, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
                         reinterpret_cast<const unsigned *>(copied), 3);
                 }
-                if (static_cast<float>(facing_104) * velocity_x_f4 > 0.0 && x_ec > *reinterpret_cast<float *>(fighter_owner_348 + 0x7b4)) {
+                double directed_x_secondary_right = facing_104;
+                directed_x_secondary_right *= velocity_x_f4;
+                if (directed_x_secondary_right > 0.0 && x_ec > *reinterpret_cast<float *>(fighter_owner_348 + 0x7b4)) {
                     velocity_x_f4 = -velocity_x_f4;
                     float copied[3] = {0.0f, 0.0f, 3.0f};
                     reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
@@ -2654,7 +2663,9 @@ fade_902:
                         902, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
                         reinterpret_cast<const unsigned *>(copied), 3);
                 }
-                if (static_cast<float>(facing_104) * velocity_x_f4 < 0.0 && x_ec < *reinterpret_cast<float *>(fighter_owner_348 + 0x7ac)) {
+                double directed_x_secondary_left = facing_104;
+                directed_x_secondary_left *= velocity_x_f4;
+                if (directed_x_secondary_left < 0.0 && x_ec < *reinterpret_cast<float *>(fighter_owner_348 + 0x7ac)) {
                     velocity_x_f4 = -velocity_x_f4;
                     float copied[3] = {0.0f, 0.0f, 3.0f};
                     reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
@@ -2670,6 +2681,7 @@ fade_902:
             if (x_ec > 1380.0 || x_ec < -100.0 || y_f0 < -200.0 || y_f0 > 900.0)
                 goto retire;
             break;
+        }
         case 3:
             scale_x_11c = static_cast<float>(scale_x_11c * static_cast<double>(0.9f));
             scale_y_120 = scale_x_11c;

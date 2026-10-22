@@ -1,6 +1,20 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-22. Reconstruction is **active at the user's request**.
+The [action902 steering products](REIMU_OBJECT_902_PRODUCTS_2026_10_22.md)
+now have a selected source correction: five real directional intermediates
+convert facing before loading X velocity. All1,792 executions agree in output,
+ordered writes, math arguments, logical x87 and final status; predecessor
+fails every snapshot case.768 execute original atan2 to its actual return,
+512 finish full RET ABI and256 stop at first real spawn. Other199 actions
+plus default preserve9,540 normal semantic nodes after JMP/register-NOP
+contraction;904/907 deltas are alignment skips. New CPP77fe73a4 reproduces
+45696/4d0ac180, still nonexact+31, helper66 exact. Its complete native payload
+equals the private typed-self/actual340-pointer control. No shared layout/ABI,
+header/profile/binding/ownership/match row changes; ledgers stay1379 exact.
+Next reconcile target-backed remaining owner fields and use the corrected
+native body in the genuine owner/provider context.902's older pointer-reload
+lead is superseded by these raw multiplication/lifetime observations.
 The [action869 parameter-prefix audit](REIMU_OBJECT_869_PREFIX_2026_10_22.md)
 now identifies target28-byte parameter-first addition. Public source agrees;
 complete-owner variants reverse operands, with3,008/3,072 live-value snapshot
