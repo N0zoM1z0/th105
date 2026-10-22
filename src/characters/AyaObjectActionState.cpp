@@ -1766,12 +1766,11 @@ void AyaObjectActionStateView::update_action_state()
             break;
         }
         case 5: {
-            CharacterObjectEffectEmitter *const owner = fighter_owner_348;
-            owner->x_ec = sprite_004.object_x_0e8; owner->y_f0 = sprite_004.object_y_0ec;
+            fighter_owner_348->x_ec = sprite_004.object_x_0e8; fighter_owner_348->y_f0 = sprite_004.object_y_0ec;
             sprite_004.object_x_0e8 = static_cast<float>(static_cast<double>(sprite_004.object_facing_100) * motion_core()->component_f0 + sprite_004.object_x_0e8);
             sprite_004.object_y_0ec = static_cast<float>(sprite_004.object_y_0ec - motion_core()->component_f4);
             motion_core()->component_f0 = static_cast<float>(motion_core()->component_f0 - 0.75); if (motion_core()->component_f0 < 10.0f) motion_core()->component_f0 = 10.0f;
-            if (time_counter_144 >= 20) { *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(owner) + 0x730) = 1; --lifetime_330; return; }
+            if (time_counter_144 >= 20) { *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x730) = 1; --lifetime_330; return; }
             break;
         }
         default: break;

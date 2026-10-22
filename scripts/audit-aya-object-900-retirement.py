@@ -9,6 +9,7 @@ import itertools
 import json
 import struct
 import sys
+import capstone
 import pefile
 import unicorn
 from unicorn import x86_const as r
@@ -55,6 +56,7 @@ class Probe:
         uc.mem_write(STOP, b"\xcc")
         self.retirement_window = None
         self.read_windows = {}
+        self.spawn_loop_window = None
         self.start = A
         self.end = A + 19522
         if obj:
@@ -74,11 +76,49 @@ class Probe:
             window = c.target_bytes(0x61DC18, 76)
             if code.count(window) == 1:
                 self.retirement_window = S + code.index(window)
-            for address, size in ((0x61D8B9, 92), (0x61DBC8, 38), (0x61DC18, 90)):
+            for address, size in (
+                (0x61D8B9, 92),
+                (0x61DBC8, 38),
+                (0x61DC18, 90),
+                (0x61DE75, 147),
+                (0x61DF0E, 30),
+            ):
                 expected = c.target_bytes(address, size)
                 if code.count(expected) == 1:
                     self.read_windows[hex(address)] = dict(
                         size=size, source=hex(S + code.index(expected))
+                    )
+            # All four real spawn loops; replay only independently decoded CALL rel32s.
+            loop_start, loop_end = 0x61D971, 0x61DBC8
+            target_loop = c.target_bytes(loop_start, loop_end - loop_start)
+            if code.count(target_loop[:24]) == 1:
+                offset = code.index(target_loop[:24])
+                translated = bytearray(target_loop)
+                calls = []
+                for ins in capstone.Cs(
+                    capstone.CS_ARCH_X86, capstone.CS_MODE_32
+                ).disasm(target_loop, loop_start):
+                    if ins.mnemonic == "call":
+                        assert ins.bytes[0] == 0xE8 and ins.size == 5
+                        destination = (
+                            ins.address + 5 + struct.unpack("<i", ins.bytes[1:])[0]
+                        )
+                        assert destination == 0x64CCB0
+                        pc = S + offset + ins.address - loop_start
+                        struct.pack_into(
+                            "<i",
+                            translated,
+                            ins.address - loop_start + 1,
+                            destination - pc - 5,
+                        )
+                        calls.append(hex(destination))
+                assert len(calls) == 4
+                if code[offset : offset + len(translated)] == translated:
+                    self.spawn_loop_window = dict(
+                        target=hex(loop_start),
+                        source=hex(S + offset),
+                        size=len(translated),
+                        calls=calls,
                     )
             uc.mem_map(S, 0x10000)
             uc.mem_write(S, code)
@@ -144,6 +184,13 @@ class Probe:
             w(owner + 0x730, "H", state)
         else:
             w(owner + 0xA31, "h", 2)
+        if len(case) > 9:
+            # Sequence5 retires before the shared animation helper at counter >=20.
+            velocity_x, velocity_y, counter = case[9]
+            w(actor + 0x13E, "h", 5)
+            w(actor + 0x144, "i", counter)
+            w(actor + 0xF4, "I", velocity_x)
+            w(actor + 0xF8, "I", velocity_y)
         w(0x6FA894, "I", mode & 0xFFFFFFFF)
         sp = STACK + 0xF000
         w(sp, "I", STOP)
@@ -184,7 +231,8 @@ if args.previous_object:
     objects.insert(0, args.previous_object)
 probes = [Probe()] + [Probe(p) for p in objects]
 assert probes[-1].retirement_window is not None, "target retirement window differs"
-assert len(probes[-1].read_windows) == 3, "target owner-read windows differ"
+assert len(probes[-1].read_windows) == 5, "target owner-read windows differ"
+assert probes[-1].spawn_loop_window is not None, "spawn loop instructions differ"
 counts = dict(
     normal=0,
     alias=0,
@@ -230,6 +278,30 @@ cases += [
     for action in (-32768, -1, 0, 709, 711, 32767)
     for seq in (-32768, -1, 0, 1, 2, 32767)
 ]
+velocity_bits = (
+    0,
+    0x80000000,
+    1,
+    0x80000001,
+    0x41200000,
+    0x412C0000,
+    0xC1200000,
+    0x7F800000,
+    0xFF800000,
+    0x7FC00123,
+    0x7F800001,
+)
+cases += [
+    (0, 0, x, 1, cw, False, facing, None, 710, (vx, vy, counter))
+    for x, cw, facing, vx, vy, counter in itertools.product(
+        (-100.0, 2000.0),
+        (0x27F, 0x67F, 0xA7F, 0xE7F, 0x37F, 0x77F, 0xB7F, 0xF7F),
+        (-1, 1),
+        velocity_bits,
+        (0, 0x80000000, 0x42C80000),
+        (20, 21, 0x7FFFFFFF),
+    )
+]
 for case in cases:
     results = [p.run(case) for p in probes]
     kind = "alias" if case[5] else "normal"
@@ -248,6 +320,7 @@ report = dict(
     objects=[dict(path=str(p), sha256=lp.sha(p)) for p in objects],
     compared_previous=bool(args.previous_object),
     translated_read_windows=probes[-1].read_windows,
+    translated_spawn_loops=probes[-1].spawn_loop_window,
     translated_retirement_window=dict(
         target="0x61DC18", source=hex(probes[-1].retirement_window), size=76
     ),

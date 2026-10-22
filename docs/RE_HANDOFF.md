@@ -7,15 +7,15 @@ and stable commit/push checkpoints named `gpt-6-astra-medium: ...`.
 
 ## Current checkpoint
 
-The [AyaObject900 owner-read correction](AYA_OBJECT_900_OWNER_EPOCHS_2026_10_22.md)
-now guards the initial sequence read and reloads owner for Y publication,
-inside-stage selector and postspawn sequence transition. Three translated
-92/38/90-byte intervals agree, including the full retirement epilogue; real
-owner lifetimes naturally recover EAX and EDI. All4792 scoped entry/RET cases
-agree in effects and owner-read epochs. The immediately preceding source has
-equal effects but different read traces. Callback execution remains unproven.
-Update61A290 stays nonexact+22, full20044/fe3b945a, metadata19576 versus19524;
-diagnostics3/34 and exact totals are unchanged.
+The [AyaObject900 sequence5 correction](AYA_OBJECT_900_SEQUENCE5_AND_LOOPS_2026_10_22.md)
+adds current-owner reads for Y and state730 publication. Target147/30-byte
+sequence5 intervals and prior92/38/90-byte sequence0 intervals agree under
+translation. All four spawn loops already agree across599 bytes after replaying
+four real CALL displacements; no precision change is needed. All7960 scoped
+entry/RET effect/read-epoch cases pass. Previous source differs only in3168
+sequence5 read traces. Update61A290 remains nonexact+22, full20056/8b221c5c,
+metadata19588 versus19524; diagnostics3/34 and exact totals remain unchanged.
+Common animation-tail placement and scratch homes remain open.
 New owner/type/native-TU controls leave entry61F0B0's two register bytes unresolved.
 The genuine combined CIL link is not fully relocation-replayed and its double
 lookup/oriented provider contract is nonexact; neither is selected.
