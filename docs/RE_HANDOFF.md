@@ -22,6 +22,17 @@ and SSE are all12-body neutral; SSE2 changes glyph/accent and is unselected.
 result. Preserve source and acceptance. Next inspect actual Reimu496540 call
 membership/behavior with its resolved real-provider context, without treating
 the decoded direct/indirect totals as semantic alignment by themselves.
+The subsequent [actual virtual-surface audit](REIMU_OBJECT_VIRTUAL_SURFACE_2026_10_22.md)
+resolves all29 target/27 native indirect calls to root-this and slots0C/14/1C/20.
+All200 action slot sets plus default agree; path-specific arguments agree for10
+actions, including the shared810/812/852 site. Two wrong source/ABI controls are
+detected. Fresh2048-case907 replay confirms two target bounce sites versus one
+source site, with480 actual slot14 callbacks per side. Root remains45700/+31,
+counter66 exact. Raw RTTI independently confirms ReimuObject's17-slot vtable,
+its8-type hierarchy and both actual pool493340 vptr writes. Existing root/pool
+views are partial, while all17 entry providers have source selections. Next
+test a real complete-owner/vtable context privately instead of force-exporting
+the root or treating physical call-count differences as missing behavior.
 Texture surface query `404E60` is newly accepted exact148/148 under a genuine
 lookup-visible LTCG unit. Its independent417800 provider remains nonexact with
 the same canonical source payload after moving its declaration into a header.
