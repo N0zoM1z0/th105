@@ -379,7 +379,7 @@ void AyaObjectActionStateView::update_action_state()
             double object_y;
             if (frame_timer_142 > 60
                 || (sequence == 2
-                    && (!aya_is_y_at_or_below_stage_surface(this)
+                    && (!static_cast<unsigned char>(aya_is_y_at_or_below_stage_surface(this))
                         || (object_y = sprite_004.object_y_0ec,
                             aya_stage_surface_height_at_x(this) > object_y)))) {
                 select_sequence(3);
@@ -395,7 +395,7 @@ void AyaObjectActionStateView::update_action_state()
                 select_sequence(2);
                 return;
             }
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 select_sequence(2);
                 sprite_004.object_y_0ec = aya_stage_surface_height_at_x(this);
                 heading_340[0] = 0.0f;
@@ -903,7 +903,7 @@ void AyaObjectActionStateView::update_action_state()
             double object_y;
             if (phase_state_180
                 || time_counter_144 >= 90
-                || !aya_is_y_at_or_below_stage_surface(this)
+                || !static_cast<unsigned char>(aya_is_y_at_or_below_stage_surface(this))
                 || (object_y = sprite_004.object_y_0ec,
                     aya_stage_surface_height_at_x(this) > object_y)) {
                 phase_index_184 = 0; next_sequence_block();

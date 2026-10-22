@@ -7,6 +7,15 @@ and stable commit/push checkpoints named `gpt-6-astra-medium: ...`.
 
 ## Current checkpoint
 
+The [AyaObject predicate-width recovery](AYA_OBJECT_PREDICATE_WIDTHS_2026_10_22.md)
+restores three target AL tests in actions810/821 while retaining the proven int
+callee ABI. Conservative CFG enumeration proves both original predicates return
+full EAX0/1 on every normal return; the immediate JE decisions are unchanged.
+The entire20048-byte canonical payload changes only three opcode bytes85->84;
+metadata remains19580. Rootfull8af8ee94 remains nonexact+22 target0F/source49.
+Six proof controls pass; no full-root equivalence or new exact credit is claimed.
+Shared-return placement, scratch lifetimes and other action discrepancies remain.
+
 The [AyaObject804 reload recovery](AYA_OBJECT_804_SEQUENCE_RELOAD_2026_10_22.md)
 restores the independent WORD13E check after5575C0.804 reaches target338/73;
 3072 actual-code cases pass (2688 returns/384 effect-entry prefixes), versus384
@@ -311,6 +320,6 @@ git diff --check
 ```
 
 Local CI is mandatory; a remote Actions pass does not replace it. Current
-workflow baseline is453 tests. Never commit private reports, executables,
+workflow baseline is459 tests. Never commit private reports, executables,
 game data, databases, toolchains or credentials. Commit stable checkpoints
 with the required prefix, push, and verify remote HEAD and clean status.
