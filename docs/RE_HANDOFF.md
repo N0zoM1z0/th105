@@ -1,6 +1,17 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-22. Reconstruction is **active at the user's request**.
+The shared [animation sprite frame application](ANIMATION_SPRITE_FRAME_2026_10_22.md)
+`436760` is newly recovered and accepted **335/335**. Its complete104-instruction
+raw CFG covers every byte and both commit-transform tail exits. Actual checked
+`vector<unsigned>::at`, signed rectangle snapshots, modes0/2 and frame/transform
+lifetimes reproduce the target without changing existing partial owner views.
+Fresh serial replay passes19 comparisons in the attack/effect sequence and new
+frame units. Current ledgers are1377 exact/233895 bytes, authored2136117 (10.95%).
+The private complete17-slot ReimuObject hierarchy/pool/lifetime/root compiles;
+its natural void finalize overrides reproduce26/33. Complete the real-provider
+owner link next, using this newly recovered frame body. The giant root remains
+pending; no private owner control or library helper receives added exact credit.
 Font color `411790` is newly accepted **352/352** in a genuine owner/render
 CIL context with its actual renderer -> static markup -> color call path.
 [Complete color/LTCG evidence](TEXT_FONT_COLOR_LTCG_2026_10_22.md) records the
@@ -9,8 +20,8 @@ source behavior or ABI facade changes are needed. The selected renderer is335,
 nonexact+19; native324 stays available to the57-case input audit. CIL parser1572
 retains frame788 and EDX cursor rather than target EDX font; neither it nor
 Incsize158/target154 receives exact/EH credit. The original10 native font
-comparisons retain their inputs and three accepted leaves. Current ledgers are
-1376 exact/233560 bytes, authored2135782 (10.94%); affected-unit replay is scoped,
+comparisons retain their inputs and three accepted leaves. At the color checkpoint,
+ledgers were1376 exact/233560 bytes, authored2135782 (10.94%); replay was scoped,
 without a new all-unit cold claim. Continue with the pending markup/glyph
 context and giant root; do not propagate this color result to their acceptance.
 The subsequent [glyph CIL/project controls](FONT_GLYPH_CIL_CONTEXT_2026_10_22.md)
@@ -140,15 +151,15 @@ are described in [artifact retention](ARTIFACTS.md).
 | Layer | Current value |
 | --- | ---: |
 | Provisional candidates | 4,024 |
-| Authored / excluded / origin review | 1,592 / 1,418 / 1,014 |
-| Durable mappings / source-present | 1,516 / 1,498 |
-| Accepted authored exact | 1,375 functions / 233,208 bytes |
-| Match units / configured functions | 539 / 1,508 |
+| Authored / excluded / origin review | 1,593 / 1,418 / 1,013 |
+| Durable mappings / source-present | 1,517 / 1,499 |
+| Accepted authored exact | 1,377 functions / 233,895 bytes |
+| Match units / configured functions | 541 / 1,509 |
 
-These are ledger counts, not a new all-unit verification claim. The new148-byte
-query has a focused complete comparison; no aggregate cold replay is claimed.
+These are ledger counts, not a new all-unit verification claim. The new335-byte
+frame application and18 related sequence callbacks have fresh scoped comparisons.
 The SVG fills exact bytes against the provisional authored denominator
-(233,208 / 2,135,782 = 10.92%) and shows origin review separately.
+(233,895 / 2,136,117 = 10.95%) and shows origin review separately.
 [Generated progress](PROGRESS.md) and the SVG follow the ledgers.
 `implemented.csv` means source-present; `matches.csv`
 means accepted exact; `claims.csv` remains header-only.

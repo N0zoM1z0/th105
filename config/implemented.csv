@@ -1496,3 +1496,4 @@ TextFont_reset_markup_color
 TextFont_set_surface
 TextFont_blend_surface
 TitleResourceManager_get_texture_size
+AnimationObject_apply_current_frame

@@ -1116,7 +1116,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00436470,compiler_generated,runtime,exclude,observed,generated-container-tail-aliases-106a
 0x004364A0,compiler_generated,battle,exclude,observed,vc8-generated-shared-scene-bootstrap-std-comdats-106a
 0x004366A0,compiler_generated,battle,exclude,observed,vc8-generated-shared-scene-bootstrap-std-comdats-106a
-0x00436760,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00436760,authored_game,battle,authored,observed,canonical-exact-authored
 0x004368B0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00436940,authored_game,battle,authored,observed,canonical-exact-authored
 0x004369D0,unknown,,review,unknown,ida-1.06a-initial-inventory

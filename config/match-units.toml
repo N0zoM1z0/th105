@@ -20516,3 +20516,26 @@ rel32_targets = [
   "?_Buynode@?$list@PAIV?$allocator@PAI@std@@@std@@IAEPAU_Node@?$_List_nod@PAIV?$allocator@PAI@std@@@2@PAU342@0ABQAI@Z=0x004129E0",
   "?_Incsize@?$list@PAIV?$allocator@PAI@std@@@std@@IAEXI@Z=0x0040C6D0",
 ]
+
+[units.cross-v106a-animation-sprite-frame]
+kind = "probe"
+source = "src/battle/AnimationSpriteFrame.cpp"
+object = "build/match-units/CrossV106a_AnimationSpriteFrame.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Shared AnimationObject current-frame sprite application436760. Actual checked vector<unsigned>::at, signed frame rectangle/pivots, modes0/2 and transform publication. Complete335-byte raw target CFG including both commit tail exits; no fabricated return value."
+
+[[units.cross-v106a-animation-sprite-frame.functions]]
+address = "0x00436760"
+symbol_base = "?apply_current_frame@AnimationSpriteFrameView@th105@@QAEXXZ"
+rel32_targets = [
+  "?at@?$vector@IV?$allocator@I@std@@@std@@QAEAAII@Z=0x0040C100",
+  "?set_texture_options@SpriteTextureSetupView@th105@@QAEXIHHHHHH@Z=0x00407160",
+  "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0",
+  "?scale_xyz_pivots@CSpriteEx@@QAEXMMMMMM@Z=0x00434C10",
+  "?rotate_xyz@CSpriteEx@@QAEXMMMMMM@Z=0x00407680",
+  "?scale_x@CSpriteEx@@QAEXM@Z=0x004074A0",
+  "?scale_y@CSpriteEx@@QAEXM@Z=0x00407540",
+  "?commit_transform@CSpriteEx@@QAEXXZ=0x004073C0",
+]
+dir32_targets = ["__real@40000000=__real@40000000"]
