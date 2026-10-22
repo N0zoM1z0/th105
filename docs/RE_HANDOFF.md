@@ -1,6 +1,20 @@
 # TH10.5 reconstruction handoff
 
 Current as of 2026-10-22. Reconstruction is **active at the user's request**.
+The [member storage and action800 prefix](REIMU_OBJECT_MEMBER_STORAGE_2026_10_22.md)
+now attest22 direct field widths through1,158 target operands. A private real
+owner removes1,430 self and17 parent staging accesses with checked offsets/
+size388. Five scalar shorts lose target800's live parameter; a five-short
+array restores it and reproduces the entire selected45696/4d0ac180 payload,
+while retaining908's known integer-first discrepancy. Float grouping, signed
+lifetime-counter view and a used908 short reference are neutral. New800 audit
+executes the original5575C0 gate and stops at actual435160 entry: selected,
+short-array and prior corrected owner pass2,240 cases; scalar owner differs
+in all2,240 snapshots despite equal output/writes/FPSW. Its804/869/902 matrices
+still pass. Fresh selected comparison stays+31, helper66 exact, ledgers1379.
+No private source selection or shared interface change. Next distinguish the
+source/compiler context preserving both800/908 lifetimes and physical tails;
+observed widths do not determine unique original C++ field grouping.
 The [908 window and rebuilt owner context](REIMU_OBJECT_908_OWNER_2026_10_22.md)
 now recover target29-byte float-before-integer addition after wave. Public
 source has27 bytes and fails all2,240 live-value snapshots despite equal
