@@ -17,6 +17,12 @@ qualified dead-carrier windows in903; strict instruction labels still differ.
 Root61A290 stays nonexact+22, full20064/d08781e4, metadata19596 versus19524.
 Owner diagnostics4/34 add no exact credit. Scratch homes, match-mode exit
 placement and full903 behavior remain open; details and limits are in the report.
+The [mode-tail controls](AYA_OBJECT_902_MODE_TAIL_CONTROLS_2026_10_22.md)
+reject three repeated-return variants and establish four complete byte-neutral
+guard/shared-tail placement controls. Selected source remains unchanged;
+local tail spelling alone has not changed VC8's physical merge choice.
+Fourteen completed private OBJ/BIN files were hash-verified and archived,
+421977 to107600 bytes; inputs/receipts and selected objects are retained.
 
 The [AyaObject902 phase correction](AYA_OBJECT_902_PHASE_RESET_2026_10_22.md)
 restores signed counter>=6 and BYTE184=1/state/count reset, removing unsupported
