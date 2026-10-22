@@ -7,6 +7,16 @@ and stable commit/push checkpoints named `gpt-6-astra-medium: ...`.
 
 ## Current checkpoint
 
+The [AyaObject901 correction](AYA_OBJECT_901_TRANSITION_RETURNS_2026_10_22.md)
+adds immediate returns after sequence0/3 next-block calls and snapshots
+sequence2 alpha before scale stores.780 actual-animation transition cases
+now return like target; predecessor continues to oriented movement in all780.
+5760 scale/fade cases also agree, including alpha-read epochs.901 is now
+1168 bytes/293 instructions with only table/shared-code placement diagnostics.
+Other-action4285 normal-return graph nodes agree; existing900 cases replay.
+Root61A290 remains nonexact+22, full20056/b505fec8, metadata19588 versus19524;
+owner diagnostics4/34 are not exact credit. Shared headers/ABI stay unchanged.
+
 The [AyaObject900 shared-tail correction](AYA_OBJECT_900_SHARED_TAIL_2026_10_22.md)
 places the single animation tail after sequence1/2 using its real incoming
 edges. Action900 now has target1773 bytes/412 instructions; residual diagnostics

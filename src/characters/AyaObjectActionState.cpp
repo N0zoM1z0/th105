@@ -1795,7 +1795,7 @@ aya900_advance:
             if (state_374 < 0.0f) state_374 = 0.0f;
             if (phase_state_180 == 6 && ++state_six_counter_384 < 5) { ++phase_index_184; phase_state_180 = 0; }
             advance_phase_counter_conditional(5);
-            if (phase_state_180 || *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x174) <= 0) next_sequence_block();
+            if (phase_state_180 || *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x174) <= 0) { next_sequence_block(); return; }
             heading_340[1] = static_cast<float>(heading_340[1] - 0.5);
             if (heading_340[1] < 5.0f) heading_340[1] = 5.0f;
             motion_core()->set_oriented_components_f0_f4(heading_340[0], heading_340[1]);
@@ -1811,12 +1811,14 @@ aya900_advance:
             if (alpha < 20) { --lifetime_330; return; }
             alpha -= 20;
             break;
-        case 2:
+        case 2: {
+            unsigned char const previous_alpha = alpha;
             sprite_004.reset_one_118 = static_cast<float>(sprite_004.reset_one_118 + 0.1f);
             sprite_004.reset_one_11c = static_cast<float>(sprite_004.reset_one_11c + 0.1f);
-            if (alpha < 5) { --lifetime_330; return; }
-            alpha -= 5;
+            if (previous_alpha < 5) { --lifetime_330; return; }
+            alpha = static_cast<unsigned char>(previous_alpha - 5);
             break;
+        }
         case 3:
             if (!(time_counter_144 % 10)) {
                 payload[0] = heading_340[0]; payload[1] = 0.0f; payload[2] = 1.0f;
@@ -1824,7 +1826,7 @@ aya900_advance:
             }
             if (phase_state_180 == 6 && ++state_six_counter_384 < 20) { ++phase_index_184; phase_state_180 = 0; }
             advance_phase_counter_conditional(5);
-            if (phase_state_180 || *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x174) <= 0) next_sequence_block();
+            if (phase_state_180 || *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x174) <= 0) { next_sequence_block(); return; }
             heading_340[1] = static_cast<float>(heading_340[1] - 0.5);
             if (heading_340[1] < 5.0f) heading_340[1] = 5.0f;
             motion_core()->set_oriented_components_f0_f4(heading_340[0], heading_340[1]);

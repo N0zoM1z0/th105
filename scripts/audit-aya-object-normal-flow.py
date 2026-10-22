@@ -26,6 +26,7 @@ parser = argparse.ArgumentParser(
 )
 parser.add_argument("previous", type=Path)
 parser.add_argument("candidate", type=Path)
+parser.add_argument("--exclude-action", type=int, choices=range(800, 999))
 parser.add_argument("--output", type=Path, default=R / "build/aya-flow.json")
 args = parser.parse_args()
 
@@ -121,10 +122,26 @@ def edges(p, r):
 oldpath = args.previous
 newpath = args.candidate
 old, new = packet(oldpath), packet(newpath)
+excluded = [None, None]
+if args.exclude_action is not None:
+    for index, packet_ in enumerate((old, new)):
+        primary = [
+            sw for sw in packet_["switches"].values() if sw["checked_maximum"] == 198
+        ]
+        assert len(primary) == 1
+        sw = primary[0]
+        offset = sw["index_table"] - S
+        indices = packet_["code"][offset : offset + 199]
+        selected = indices[args.exclude_action - 800]
+        assert indices.count(selected) == 1, "excluded action aliases another action"
+        excluded[index] = sw["destinations"][selected]
 pending = [(S, S)]
 seen = set()
 while pending:
     a, b = pending.pop()
+    if args.exclude_action is not None and (a == excluded[0] or b == excluded[1]):
+        assert (a, b) == tuple(excluded)
+        continue
     a = contract(old, a)
     b = contract(new, b)
     if (a, b) in seen:
@@ -151,7 +168,8 @@ while pending:
 report = dict(
     result="equal",
     paired_nodes=len(seen),
-    scope="whole root instruction-labelled normal-return graph, only internal direct JMP contracted; switch guards/index bytes and ordered edges checked; opaque calls assumed normal return, no callback/exception or canonical equivalence claim",
+    excluded_action=args.exclude_action,
+    scope="root instruction-labelled normal-return graph except the explicitly reported excluded action entry, if any; only internal direct JMP contracted; switch guards/index bytes and ordered edges checked; opaque calls assumed normal return, no callback/exception or canonical equivalence claim",
     previous_sha256=lp.sha(oldpath),
     candidate_sha256=lp.sha(newpath),
 )
