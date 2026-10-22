@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Finite Aya action900 retirement audit; full entry/RET, no fabricated callees."""
+"""Finite Aya action900 audit; actual entry/RET and bounded animation helper."""
 
 from pathlib import Path
 import argparse
@@ -134,7 +134,9 @@ class Probe:
             self.stopped = True
             uc.emu_stop()
             return
-        if not self.start <= pc < self.end:
+        if pc == 0x4351C0:
+            self.animation_entries += 1
+        if not (self.start <= pc < self.end or 0x4351C0 <= pc < 0x4351FE):
             raise RuntimeError("unexpected code " + hex(pc))
 
     def write(self, uc, access, address, size, value, data):
@@ -191,6 +193,15 @@ class Probe:
             w(actor + 0x144, "i", counter)
             w(actor + 0xF4, "I", velocity_x)
             w(actor + 0xF8, "I", velocity_y)
+        if len(case) > 10:
+            sequence, frame_counter, frame_index = case[10]
+            w(actor + 0x13E, "h", sequence)
+            w(actor + 0x142, "h", frame_counter)
+            w(actor + 0x140, "h", frame_index)
+            w(actor + 0x14C, "h", 32767)
+            w(actor + 0x34C, "I", BASE + 0x4000)
+            w(BASE + 0x40EC, "f", -123.25)
+            w(BASE + 0x40F0, "f", 41.5)
         w(0x6FA894, "I", mode & 0xFFFFFFFF)
         sp = STACK + 0xF000
         w(sp, "I", STOP)
@@ -211,8 +222,10 @@ class Probe:
         self.events = []
         self.owner_reads = []
         self.stopped = False
+        self.animation_entries = 0
         uc.emu_start(self.start, 0, count=1000)
         assert self.stopped
+        assert self.animation_entries == (1 if len(case) > 10 else 0)
         assert [uc.reg_read(reg) for reg in registers] == [
             0x11111111 * (i + 1) for i in range(4)
         ]
@@ -302,6 +315,31 @@ cases += [
         (20, 21, 0x7FFFFFFF),
     )
 ]
+# The actual helper increments counters and returns below its virtual-call threshold.
+cases += [
+    (
+        0,
+        0,
+        x,
+        1,
+        cw,
+        False,
+        facing,
+        None,
+        710,
+        (0, 0, counter),
+        (sequence, frame_counter, frame_index),
+    )
+    for x, cw, facing, counter, sequence, frame_counter, frame_index in itertools.product(
+        (-100.0, 2000.0),
+        (0x27F, 0x67F, 0xA7F, 0xE7F, 0x37F, 0x77F, 0xB7F, 0xF7F),
+        (-1, 1),
+        (-1, 0, 19),
+        (1, 2, 5, 6, -1),
+        (0, -1, 32767),
+        (0, 1),
+    )
+]
 for case in cases:
     results = [p.run(case) for p in probes]
     kind = "alias" if case[5] else "normal"
@@ -326,7 +364,7 @@ report = dict(
     ),
     counts=counts,
     samples=samples,
-    scope="full root entry to actual RET; no opaque callees; finite normal disjoint-object cases; alias cases artificial raw ABI stress, not game reachability or valid C++ object overlap",
+    scope="full root entry to actual RET; actual animation helper only below virtual-call threshold; no opaque callees; finite normal disjoint-object cases; alias cases artificial raw ABI stress, not game reachability or valid C++ object overlap",
     input_sha256=hashlib.sha256(json.dumps(cases).encode()).hexdigest(),
 )
 args.output.parent.mkdir(parents=True, exist_ok=True)

@@ -1728,7 +1728,7 @@ void AyaObjectActionStateView::update_action_state()
                     reinterpret_cast<AyaObjectActionStateView *>(fighter_owner_348)->next_sequence_block();
                 state_364 = 1;
             }
-            if (!(sprite_004.object_x_0e8 >= 2000.0f || sprite_004.object_x_0e8 <= -720.0f)) break;
+            if (!(sprite_004.object_x_0e8 >= 2000.0f || sprite_004.object_x_0e8 <= -720.0f)) goto aya900_advance;
             // 61DC18..61DC64 reloads owner after each state publication.
             if (!*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x730)) {
                 *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x730) = 1;
@@ -1744,7 +1744,11 @@ void AyaObjectActionStateView::update_action_state()
             if (!related_34c) { --lifetime_330; return; }
             sprite_004.object_x_0e8 = related_34c->x_ec;
             sprite_004.object_y_0ec = static_cast<float>(static_cast<double>(related_34c->y_f0) + 100.0);
-            break;
+        // Target 61DC9E shares this tail from the other sequence paths.
+aya900_advance:
+            if (advance_frame_and_dispatch()) --lifetime_330;
+            if (!time_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_index_13e == 5) --lifetime_330;
+            return;
         case 3:
             advance_phase_counter_conditional(2);
             if (phase_state_180 == 6 && ++state_six_counter_384 < 5) { ++phase_index_184; phase_state_180 = 0; }
@@ -1754,7 +1758,7 @@ void AyaObjectActionStateView::update_action_state()
             sprite_004.object_x_0e8 +=
                 static_cast<float>(sprite_004.object_facing_100) * motion_core()->component_f0;
             sprite_004.object_y_0ec += motion_core()->component_f4;
-            break;
+            goto aya900_advance;
         case 4: {
             float const scale = static_cast<float>(sprite_004.reset_one_118 + 0.05000000074505806);
             sprite_004.reset_one_118 = scale; sprite_004.reset_one_11c = scale;
@@ -1763,7 +1767,7 @@ void AyaObjectActionStateView::update_action_state()
             sprite_004.object_x_0e8 +=
                 static_cast<float>(sprite_004.object_facing_100) * motion_core()->component_f0;
             sprite_004.object_y_0ec += motion_core()->component_f4;
-            break;
+            goto aya900_advance;
         }
         case 5: {
             fighter_owner_348->x_ec = sprite_004.object_x_0e8; fighter_owner_348->y_f0 = sprite_004.object_y_0ec;
@@ -1771,13 +1775,10 @@ void AyaObjectActionStateView::update_action_state()
             sprite_004.object_y_0ec = static_cast<float>(sprite_004.object_y_0ec - motion_core()->component_f4);
             motion_core()->component_f0 = static_cast<float>(motion_core()->component_f0 - 0.75); if (motion_core()->component_f0 < 10.0f) motion_core()->component_f0 = 10.0f;
             if (time_counter_144 >= 20) { *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x730) = 1; --lifetime_330; return; }
-            break;
+            goto aya900_advance;
         }
-        default: break;
+        default: goto aya900_advance;
         }
-        if (advance_frame_and_dispatch()) --lifetime_330;
-        if (!time_counter_144 && !frame_timer_142 && !frame_index_140 && sequence_index_13e == 5) --lifetime_330;
-        return;
     }
 
     case 901: {
