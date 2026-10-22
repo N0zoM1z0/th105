@@ -8,10 +8,16 @@ raw CFG covers every byte and both commit-transform tail exits. Actual checked
 lifetimes reproduce the target without changing existing partial owner views.
 Fresh serial replay passes19 comparisons in the attack/effect sequence and new
 frame units. Current ledgers are1377 exact/233895 bytes, authored2136117 (10.95%).
-The private complete17-slot ReimuObject hierarchy/pool/lifetime/root compiles;
-its natural void finalize overrides reproduce26/33. Complete the real-provider
-owner link next, using this newly recovered frame body. The giant root remains
-pending; no private owner control or library helper receives added exact credit.
+The [private complete-owner context](REIMU_OBJECT_COMPLETE_OWNER_2026_10_22.md)
+compiles the real17-slot hierarchy/pool/lifetime/root. Its natural void sequence
+chain preserves10 full exact bodies and finalize overrides preserve26/33; a
+native pool witness emits the actual17-slot declaration topology. The first
+36-object owner link fails with16 unresolved names and no image. Two render
+dependencies lack selected bodies:434F30 candidate441 and6656E0 candidate248.
+Other names have real-provider/compiler-identity leads; keep the lookup return
+contracts consistent. Next recover bounded434F30, then complete real closure
+before assessing owner/LTCG codegen. The giant root remains pending; no private
+owner control or library helper receives added exact credit.
 Font color `411790` is newly accepted **352/352** in a genuine owner/render
 CIL context with its actual renderer -> static markup -> color call path.
 [Complete color/LTCG evidence](TEXT_FONT_COLOR_LTCG_2026_10_22.md) records the
