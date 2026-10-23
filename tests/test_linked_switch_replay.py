@@ -170,6 +170,65 @@ class LinkedSwitchReplayTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "unused"):
             self.run_replay(qualified_direct_tails={self.start: 0x401000})
 
+    def dense_fixture(self):
+        # Independent two-case CMP/JA dispatch, with no byte index table.
+        self.image[0x1000:0x1030] = (
+            b"\xe8" + struct.pack("<i", 0x10002000 - self.start - 5)
+            + b"\xdd\x05" + struct.pack("<I", 0x10003000)
+            + b"\xa1" + struct.pack("<I", 0x6FA894)
+            + b"\x83\xf8\x01\x77\x09"
+            + b"\xff\x24\x85" + struct.pack("<I", self.start + 32)
+            + b"\xc3\xc3\xc3\x90"
+            + struct.pack("<II", self.start + 28, self.start + 29)
+            + b"\xcc" * 8
+        )
+        self.pe.DIRECTORY_ENTRY_BASERELOC[0].entries = [
+            SimpleNamespace(rva=0x1000 + offset, type=3) for offset in (7, 24, 32, 36)
+        ]
+        self.inspection["switches"] = [{
+            "dispatch": hex(self.start + 21), "table": hex(self.start + 32),
+            "destination_count": 2, "index_count": 0,
+        }]
+
+    def test_dense_switch_replays_both_destinations_without_inventing_indices(self):
+        self.dense_fixture()
+        result, report = self.run_replay()
+        expected = bytearray(self.image[0x1000:0x1030])
+        struct.pack_into("<i", expected, 1, 0x401000 - self.target - 5)
+        for offset, value in ((7, 0x6C0000), (24, self.target + 32),
+                              (32, self.target + 28), (36, self.target + 29)):
+            struct.pack_into("<I", expected, offset, value)
+        self.assertEqual(result, expected)
+        self.assertEqual(report["metadata_end_offset"], 40)
+        self.assertEqual(report["highlow_fields"], 4)
+        self.assertEqual(report["replayed"]["switch_addresses"], 1)
+        self.assertEqual(report["replayed"]["switch_destinations"], 2)
+
+    def test_dense_bound_width_register_guard_and_count_must_agree(self):
+        self.dense_fixture()
+        original = bytes(self.image)
+        for offset, value in ((16, 0x80),  # CMP AL cannot bound EAX.
+                              (18, 2),     # Three cases cannot qualify two entries.
+                              (19, 0x76),  # JBE does not reject unsigned outliers.
+                              (20, 0),     # Default cannot re-enter the dispatch.
+                              (20, 11),    # Default cannot enter metadata.
+                              (23, 0x8D)): # ECX table index differs from bounded EAX.
+            self.image[:] = original
+            self.image[0x1000 + offset] = value
+            with self.subTest(offset=offset), self.assertRaisesRegex(ValueError, "dense switch"):
+                self.run_replay()
+
+    def test_dense_destination_and_address_fields_need_all_relocations(self):
+        self.dense_fixture()
+        original = copy.deepcopy(self.pe.DIRECTORY_ENTRY_BASERELOC)
+        for missing in (7, 24, 32, 36):
+            self.pe.DIRECTORY_ENTRY_BASERELOC = copy.deepcopy(original)
+            self.pe.DIRECTORY_ENTRY_BASERELOC[0].entries = [
+                entry for entry in original[0].entries if entry.rva != 0x1000 + missing
+            ]
+            with self.subTest(missing=missing), self.assertRaises(ValueError):
+                self.run_replay()
+
 
 if __name__ == "__main__":
     unittest.main()

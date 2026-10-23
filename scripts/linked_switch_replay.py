@@ -70,31 +70,53 @@ def replay_root(pe, map_text, start, end, inspection, target, canonical,
                 or operand.mem.disp & 0xFFFFFFFF != table):
             raise ValueError("switch dispatch/table disagrees")
         number = rows.index(jump)
-        load = next((row for row in reversed(rows[max(0, number - 3):number])
-                     if row.mnemonic == "movzx"
-                     and row.operands[0].reg == operand.mem.index), None)
-        if (load is None or len(load.operands) != 2
-                or load.operands[1].type != x.X86_OP_MEM
-                or load.operands[1].size != 1):
-            raise ValueError("switch index load no longer agrees")
-        index = load.operands[1].mem.disp & 0xFFFFFFFF
-        for row, address in ((jump, table), (load, index)):
+        destination_count, index_count = fact["destination_count"], fact["index_count"]
+        if not 0 < destination_count <= 256 or not 0 <= index_count <= 256:
+            raise ValueError("unsupported switch table size")
+        address_fields = [(jump, table)]
+        table_areas = [(table, 4 * destination_count, "destinations")]
+        if index_count:
+            load = next((row for row in reversed(rows[max(0, number - 3):number])
+                         if row.mnemonic == "movzx"
+                         and row.operands[0].reg == operand.mem.index), None)
+            if (load is None or len(load.operands) != 2
+                    or load.operands[1].type != x.X86_OP_MEM
+                    or load.operands[1].size != 1):
+                raise ValueError("switch index load no longer agrees")
+            index = load.operands[1].mem.disp & 0xFFFFFFFF
+            address_fields.append((load, index))
+            table_areas.append((index, index_count, "indices"))
+        else:
+            # A separate supported lowering: adjacent CMP r32,max / JA default /
+            # JMP [r32*4+table]. A byte/word bound cannot qualify a dword index.
+            if number < 2:
+                raise ValueError("dense switch lacks adjacent unsigned bound")
+            bound, guard = rows[number - 2:number]
+            if (bound.mnemonic != "cmp" or len(bound.operands) != 2
+                    or bound.operands[0].type != x.X86_OP_REG
+                    or bound.operands[0].size != 4
+                    or bound.operands[0].reg != operand.mem.index
+                    or bound.operands[1].type != x.X86_OP_IMM
+                    or bound.operands[1].imm != destination_count - 1
+                    or guard.mnemonic != "ja" or len(guard.operands) != 1
+                    or guard.operands[0].type != x.X86_OP_IMM
+                    or guard.operands[0].imm not in by_address
+                    or bound.address <= guard.operands[0].imm < jump.address + jump.size):
+                raise ValueError("dense switch bound/index/default disagree")
+        for row, address in address_fields:
             field = row.address - start + row.disp_offset
             if row.disp_size != 4 or field in local_fields:
                 raise ValueError("unsupported/repeated switch address field")
             local_fields[field] = address
-        destination_count, index_count = fact["destination_count"], fact["index_count"]
-        if not 0 < destination_count <= 256 or not 0 < index_count <= 256:
-            raise ValueError("unsupported switch table size")
-        for address, length, kind in ((table, 4 * destination_count, "destinations"),
-                                      (index, index_count, "indices")):
+        for address, length, kind in table_areas:
             if not start + metadata <= address < address + length <= end:
                 raise ValueError("switch table escapes root metadata")
             areas.append((address - start, address - start + length, kind))
-        indices = raw[index - start:index - start + index_count]
-        if (max(indices) >= destination_count or set(indices) != set(range(destination_count))
-                or hashlib.sha256(indices).hexdigest() != fact["indices_sha256"]):
-            raise ValueError("switch indices no longer agree")
+        if index_count:
+            indices = raw[index - start:index - start + index_count]
+            if (max(indices) >= destination_count or set(indices) != set(range(destination_count))
+                    or hashlib.sha256(indices).hexdigest() != fact["indices_sha256"]):
+                raise ValueError("switch indices no longer agree")
         for field in range(table - start, table - start + 4 * destination_count, 4):
             value = struct.unpack_from("<I", raw, field)[0]
             if field not in fields or value not in by_address:

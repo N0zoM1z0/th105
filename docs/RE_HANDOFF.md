@@ -58,6 +58,7 @@ No root exact credit. The adjacent metadata is not added to the callable boundar
 | [861 shared-tail controls](AYA_OBJECT_861_SHARED_TAIL_CONTROLS_2026_10_23.md) | Target861 joins826's phase/fade blocks. Shared-source candidates pass5168 position and3072 phase cases, but lose807's second zero-sequence read in2456 cases. All unselected. Interval audits now require actual per-action hits. |
 | [852 RTM/fenv controls](AYA_OBJECT_852_RTM_AND_FENV_CONTROLS_2026_10_23.md) | RTM preserves SP1's unresolved conversion shapes. Both RTM objects pass 6528 scoped native cases; the profile changes other-action instructions. Local fenv keeps FIMUL and adds a double roundtrip; explicit if/else is byte-neutral to the int control. All unselected. |
 | [903 paths/frame transitions](AYA_OBJECT_903_PATHS_AND_FRAME_TRANSITIONS_2026_10_23.md) | 13596 paired cases cover all ten sequences, real frame/next-block calls and twelve masked control words, including PC24. Effects and alpha/gate/timer read epochs agree. Old fade object is rejected despite equal effects; ordinary color helper is byte-neutral and unselected. |
+| [Joint CIL replay](AYA_OBJECT_JOINT_CIL_REPLAY_2026_10_23.md) | Current update/init owner model links with twelve real native source providers. Full update replay consumes 362 HIGHLOW fields and seven switches, including six dense tables. Current and shared-control CIL payloads equal their native counterparts; shared807 still reads twice versus target three. Not an all-exact helper closure or DLL execution claim. |
 | [807/854 read lifetimes](AYA_OBJECT_807_854_READ_LIFETIMES_2026_10_23.md) | 3968/3840 actual-code cases agree in strict mode; outside-action graphs preserve 4464/4481 nodes. |
 | [807 angle lifetime](AYA_OBJECT_807_ANGLE_LIFETIME_2026_10_23.md) | Exact local 26-byte interval and live angle across alpha; historical sequence-read deficit is superseded by the row above. |
 | [861 phase scope](AYA_OBJECT_861_PHASE_SCOPE_2026_10_23.md) | Phase/count advance only in initial sequence 0; 2304 predecessor state differences eliminated. Existing 768 alpha/X write-order differences remain explicit. |
@@ -65,7 +66,8 @@ No root exact credit. The adjacent metadata is not added to the callable boundar
 | [801/852 controls](AYA_OBJECT_801_CONTEXT_852_FACING_CONTROLS_2026_10_23.md) | Caching remains unselected. Latest826 report closes scoped817/822 sharing and820/826 execution gaps, but finds807's recovered26-byte interval is lost. The retry after826's fix still loses it.852 promotion/conversion placement remains open. |
 | [Runtime owner context](AYA_OBJECT_RUNTIME_CONTEXT_2026_10_23.md) | Four layered/direct/typed/virtual controls were byte-neutral before826's correction; frozen payloads have the older17585ff8 hash. RTTI/allocation facts remain reproducible; nominal types and lifecycle remain open. |
 
-Latest scope: `build/aya-903-read-epochs-20261023/`; preceding compiler controls:
+Latest scope: `build/aya-joint-cil-20261023/`; preceding runtime scope:
+`build/aya-903-read-epochs-20261023/`; preceding compiler controls:
 `build/aya-852-rtm-20261023/`; preceding shared-tail controls:
 `build/aya-861-owner-y-20261023/`. The preceding 801 impact scope
 is `build/aya-801-impact-20261023/`. Earlier owner-context scope's
@@ -83,6 +85,8 @@ keeps the read deficit. Other leads are 807's facing-capture/scratch scheduling
 before selecting 801 caching, common frame tails, register and scratch placement.
 903 now has a broader non-spawning behavioral check, including frame dispatch;
 its shared fade/color/retirement placement still needs distinct context evidence.
+The current two-body CIL/native-provider context is byte-neutral after complete
+caller replay; the old eight-byte CIL result belongs to the earlier source epoch.
 Failed local controls do not prove an LTCG
 impossibility. Rebase trials onto current source rather than frozen predecessors.
 Native fixtures have scoped limits; inspect their placement assumptions and
@@ -143,6 +147,6 @@ taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
 
-Mandatory local CI baseline: 459 tests. No private reports, executables, game
+Mandatory local CI baseline: 462 tests. No private reports, executables, game
 data, databases, compilers or credentials in commits. Verify remote HEAD after
 an authorized push and leave the main worktree clean for the next session.

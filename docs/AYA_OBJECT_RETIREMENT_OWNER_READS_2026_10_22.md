@@ -1,5 +1,10 @@
 # AyaObject action900 retirement owner reads, 2026-10-22
 
+The entry/TU controls below retain their original source epoch. The
+[current joint CIL replay](AYA_OBJECT_JOINT_CIL_REPLAY_2026_10_23.md) completes
+the update caller's address replay and finds zero ordinary-byte changes against
+current native code; the older eight-byte result is not a current-source claim.
+
 ## Selected result
 
 Observed target: Japanese1.06a SHA256
