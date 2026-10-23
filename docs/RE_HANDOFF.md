@@ -33,6 +33,12 @@ Environment+130 and CObjectBase+330. A partial physical class view, /Oi-,
 /Ob1 and a negated state gate all retain its 4859-byte payload/two differences.
 Post-SP1 C2 patch levels remain untested; do not turn the old RTM/SP1 or failed
 PDB controls into a general compiler conclusion. See the [current Aya evidence](AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md#full-hierarchy-and-compiler-controls-2026-10-24).
+Further source-order controls can recover 856's ECX operand while breaking 803;
+whole comparison rejects them. Existing-temporary, normalized-index and adjacent
+Aya event/initializer TU controls retain the two differences; the event function
+replays 1177/1177 in both TU orders. One AyaObject receiver declaration for both
+initializer/update methods remains untested. Explicit fast/except FP profiles introduce
+unbound dependencies and are rejected. See the [scoped controls](AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md#source-order-tu-and-floating-profiles).
 Do not spend another large matrix on an uncertainty that a strict build can
 resolve. Preserve necessary ABI, storage widths, control flow and side effects.
 

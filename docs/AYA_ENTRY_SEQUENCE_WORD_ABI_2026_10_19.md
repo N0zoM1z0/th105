@@ -280,6 +280,46 @@ are kept separate. The function note now supersedes its old `/Zi`-failure text.
 Completed control sources/objects/payloads are compressed after full member-hash
 verification; `retention.json` lists the archive and exact restore command.
 
+### Source order, TU and floating profiles
+
+Fourteen new source/TU controls and three explicit floating profiles were
+compiled serially from selected source 5ca0fb42. Ten retain the complete 6f70b6f3
+payload: numeric case-group order, signed/unsigned normalized switch indices,
+four uses of existing heading/scalar temporaries, both adjacent Aya member-source
+TU orders, and `/fp:precise`. An unsigned-WORD index adds a third difference at
++0xA: target MOVSX versus candidate MOVZX. None is selected.
+
+Moving 856 first in the switch changes which branch gets the ECX operand.
+Its 406-byte/106-instruction owner becomes instruction/edge-identical, including
+the ECX pointer, while 803 acquires two register-operand differences. Whole
+payload comparison still differs at 3154 bytes. Three other placements are also
+worse. The owner diagnostic is not byte-exact acceptance or a compiler barrier.
+
+Compiling the complete initializer and adjacent event bridge together, in either
+source order, retains the two root differences; the existing event witness
+`0x6203B0` remains 1177/1177 exact in both objects. Compiling AyaObject's
+initializer and update under one receiver declaration remains untested.
+
+`/fp:fast` compiles a 4771-byte section with an unbound `__real@43020000`;
+`/fp:except` compiles 4623 bytes and introduces `_ftol2_sse_excpt`, whereas the
+target calls `_ftol2_sse`. Full replay correctly stops at those dependencies;
+no canonical hash or replacement binding is invented for either object.
+
+Compiler discovery recovered the [archived Connect page DownloadID32789](https://web.archive.org/web/20101225182105/http://connect.microsoft.com/VisualStudio/Downloads/DownloadDetails.aspx?DownloadID=32789) and the
+actual Visual Studio 2005 mirror forum44; the old blog linked forum43 (2008).
+Listed hotfix topics do not supply recovered binaries. The [official KB932232
+Vista package](https://www.catalog.update.microsoft.com/Search.aspx?q=932232) was
+hash-verified and its 55 CAB members inspected; no C2 payload was recovered.
+It was never executed and its temporary payloads were removed.
+No later C2 version was compiled. Empty unvalidated wildcard searches and failed
+requests do not establish package absence.
+
+Recipes: `.analysis/aya-entry-backend-20261024/`. Start with `packet.json`,
+`family-contexts.json`, `floating-profiles.json` and `vista-package.json` under
+`build/aya-entry-backend-20261024/`. Completed proofs and archived web pages are
+compressed with verified member hashes and the restore command in `retention.json`.
+Public source, compiler profiles, accepted units and exact ledgers are unchanged.
+
 ## Rejected controls and analysis limits
 
 The saved pre-change baseline is sourcec9d1abb5, canonical payloadb4f36926.
