@@ -1,9 +1,9 @@
 # TH10.5 reconstruction handoff
 
 Resumed 2026-10-23 at the user's request. Reconstruction is active, with serial
-low-resource builds and focused affected-scope verification. Last earlier game
-source checkpoint: `74e0949`; cleanup checkpoint: `730d942`. Latest source change
-is the action826 owner-Y lifetime described below.
+low-resource builds and focused affected-scope verification. Latest game
+source checkpoint: `e24fb73`; cleanup checkpoint: `730d942`. Latest 861 sharing
+controls are unselected; action826's owner-Y correction remains in source.
 Required commit format: `gpt-6.1-sol: ...`.
 The [preceding session narrative](RE_HANDOFF_HISTORY_2026_10_23.md) preserves
 older controls and references. Current ledgers and fresh objects override history.
@@ -55,6 +55,7 @@ No root exact credit. The adjacent metadata is not added to the callable boundar
 | Current evidence | Result and practical limit |
 | --- | --- |
 | [826 owner-Y lifetime](AYA_OBJECT_826_OWNER_Y_LIFETIME_2026_10_23.md) | Captured double Y spans alpha; target37-byte interval restored.2584 strict native cases agree, eliminating2584 prior ordered-write/position-snapshot differences. Only13 bytes change inside19 bytes;4438 outside826 graph nodes agree. |
+| [861 shared-tail controls](AYA_OBJECT_861_SHARED_TAIL_CONTROLS_2026_10_23.md) | Target861 joins826's phase/fade blocks. Shared-source candidates pass5168 position and3072 phase cases, but lose807's second zero-sequence read in2456 cases. All unselected. Interval audits now require actual per-action hits. |
 | [807/854 read lifetimes](AYA_OBJECT_807_854_READ_LIFETIMES_2026_10_23.md) | 3968/3840 actual-code cases agree in strict mode; outside-action graphs preserve 4464/4481 nodes. |
 | [807 angle lifetime](AYA_OBJECT_807_ANGLE_LIFETIME_2026_10_23.md) | Exact local 26-byte interval and live angle across alpha; historical sequence-read deficit is superseded by the row above. |
 | [861 phase scope](AYA_OBJECT_861_PHASE_SCOPE_2026_10_23.md) | Phase/count advance only in initial sequence 0; 2304 predecessor state differences eliminated. Existing 768 alpha/X write-order differences remain explicit. |
@@ -62,14 +63,19 @@ No root exact credit. The adjacent metadata is not added to the callable boundar
 | [801/852 controls](AYA_OBJECT_801_CONTEXT_852_FACING_CONTROLS_2026_10_23.md) | Caching remains unselected. Latest826 report closes scoped817/822 sharing and820/826 execution gaps, but finds807's recovered26-byte interval is lost. The retry after826's fix still loses it.852 promotion/conversion placement remains open. |
 | [Runtime owner context](AYA_OBJECT_RUNTIME_CONTEXT_2026_10_23.md) | Four layered/direct/typed/virtual controls were byte-neutral before826's correction; frozen payloads have the older17585ff8 hash. RTTI/allocation facts remain reproducible; nominal types and lifecycle remain open. |
 
-Latest scope: `build/aya-801-impact-20261023/`. Earlier owner-context scope's
+Latest scope: `build/aya-861-owner-y-20261023/`. The preceding 801 impact scope
+is `build/aya-801-impact-20261023/`. Earlier owner-context scope's
 accepted pool replay is 15/15 exact, including Aya acquire `0x617DF0` (519 bytes).
 Earlier selected 804/810 sequence, 821 counter and 903 fade corrections remain
 in source; links and epoch-specific hashes are in the historical handoff.
 
-Next leads: supported context for 852 promotion/conversion placement;
-807's facing-capture/scratch scheduling before selecting 801 caching; common frame-tail,
-register and scratch placement. Failed local controls do not prove an LTCG
+Next leads: supported context for 852 promotion/conversion placement, including
+the now-working native RTM toolchain. Preserve 807's second zero-sequence read
+before selecting 861/826 shared source. `/Ob1` and tiny getters are byte-neutral
+in the tested shared-phase context. Native RTM's payload is 4 bytes longer and
+keeps the read deficit. Other leads are 807's facing-capture/scratch scheduling
+before selecting 801 caching, common frame tails, register and scratch placement.
+Failed local controls do not prove an LTCG
 impossibility. Rebase trials onto current source rather than frozen predecessors.
 Native fixtures have scoped limits; inspect their placement assumptions and
 Python callback exception guards before reuse. Private flow-alignment diagnostics
@@ -84,6 +90,8 @@ taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-scale-adds.py --actions
 
 The root comparison is expected to exit nonzero for nonexactness. The runtime
 packet needs the configured object; its default run needs no frozen control.
+The selected object contains the 37-byte interval for 826, but 861 does not execute
+it; use explicit diagnostic mode for 861 position-lifetime reports.
 
 ## Other open roots
 
