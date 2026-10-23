@@ -1305,11 +1305,11 @@ void AyaObjectActionStateView::update_action_state()
             CharacterObjectEffectEmitter *const owner = fighter_owner_348;
             if (*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(owner) + 0x174) <= 0) { --lifetime_330; return; }
             CharacterObjectEffectEmitter *const owner_target = owner->target_170;
-            signed char const nested_facing = *reinterpret_cast<signed char *>(reinterpret_cast<unsigned char *>(owner_target) + 0x104);
+            int const nested_facing = *reinterpret_cast<signed char *>(reinterpret_cast<unsigned char *>(owner_target) + 0x104);
             *reinterpret_cast<float *>(reinterpret_cast<unsigned char *>(owner) + 0x6ac) =
                 sprite_004.object_facing_100 == -1
-                    ? static_cast<double>(nested_facing) * -state_374
-                    : static_cast<double>(nested_facing) * state_374;
+                    ? static_cast<float>(nested_facing) * -state_374
+                    : static_cast<float>(nested_facing) * state_374;
         }
         if (sequence_index_13e == 1) {
             motion_core()->set_oriented_components_f0_f4(-10.0f, 100.0f);

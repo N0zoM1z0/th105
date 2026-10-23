@@ -1,10 +1,9 @@
 # TH10.5 reconstruction handoff
 
-Prepared for handoff on 2026-10-23. No reconstruction trial or VC8 build is
-in flight. Latest game-source checkpoint: `e24fb73`; latest evidence checkpoint:
-`b11c6e3`. Action 826's owner-Y correction remains selected; subsequent sharing,
-compiler and CIL controls are unselected. Required commit format:
-`gpt-6-astra-medium: xxx ~`.
+Reconstruction resumed 2026-10-23. Current game source selects the 852 product
+operand-read lifetime correction after checkpoint `e24fb73`; 826's owner-Y
+correction remains selected. Previous cleanup checkpoint: `1865c6a`.
+Required commit format: `gpt-6.1-sol: ...`.
 
 Use this page for current selection and next steps, the
 [AyaObject evidence index](AYA_OBJECT_EVIDENCE.md) for scoped results, and the
@@ -42,7 +41,7 @@ writes. Independently attest any Ghidra database and run at most one process.
 | Provisional authored byte denominator | 2136806 |
 | Match units / configured functions | 543 / 1511 |
 
-These are ledger totals. This cleanup makes no aggregate cold-replay claim.
+These are ledger totals. This checkpoint makes no aggregate cold-replay claim.
 Shared header/layout/profile/partition/relocation changes require affected
 accepted-unit replay; new aggregate claims require `verify-exact-units.py --all`.
 
@@ -50,28 +49,34 @@ accepted-unit replay; new aggregate claims require `verify-exact-units.py --all`
 
 Selected [source](../src/characters/AyaObjectActionState.cpp), unit
 `gpt-web-aya-object-vslot28-full-root`. Callable ledger size 19522;
-complete canonical payload 20132, metadata starts at 19664, full SHA256:
-`a5dc22f5c6f0e93a3fc81592510327c5708c8c4d41938f2bd96eaf7947523ede`.
-Fresh restored comparison remains **nonexact +0x22**, target `0F` / source `9B`.
+complete canonical payload 20120, metadata starts at 19652, full SHA256:
+`9ef08a09283471e6cdebb8a71900e6e0c68aa6a02d2761385e0e0df8b93ad565`.
+Fresh restored comparison remains **nonexact +0x22**, target `0F` / source `8E`.
 No root exact credit. The adjacent metadata is not added to the callable boundary.
 
 Source SHA256:
-`4272f7f5d30499822931f9a70f7b52e179e6d99732e7d21962f58a6cfdef0472`.
+`d4f4d37c9dcc348bab7e3448e5600f2c863d224463a05259003081d7c4ebcb8f`.
 The first mismatch is the initial JA displacement. The
 [evidence index](AYA_OBJECT_EVIDENCE.md) separates selected changes, scoped
 behavioral checks and rejected context controls, with source-epoch limits.
 
-Latest completed scope: `build/aya-size-profile-20261023/`. Both `/O2 /Os` and
-`/O1` give the same 18,180-byte canonical payload, but lose the target entry's
-8-byte stack alignment and first differ at `+0x4`. They remain unselected.
-The preceding `build/aya-joint-cil-20261023/` closes caller address replay:
-current selected and shared CIL payloads equal their native counterparts.
-The older eight-byte CIL difference is historical, not a current blocker.
+Latest scope: `build/aya-852-expression-20261023/`. The selected int-facing /
+float-arithmetic source passes 9,728 actual-return cases including operand-read
+x87 snapshots and twelve masked control words. Predecessor fails 1,920 speed-read
+snapshots despite equal final effects. Outside only the closed product window,
+4,558 source graph pairs agree with one qualified two-instruction tail carrier;
+the public strict checker is unchanged. See [the scoped evidence](AYA_OBJECT_852_PRODUCT_READ_LIFETIMES_2026_10_23.md).
+
+Current-source joint CIL replay also equals native: seven switches, 362 HIGHLOW
+fields and 123 direct calls are closed. Three math providers remain nonexact;
+no DLL execution or original TU claim. Earlier size-profile, RTM and shared-tail
+controls retain their own source epochs in the evidence index.
 
 Resume with one target-backed lead:
 
-- Recover visibility/lifetime context for 852's early promotion and branch-local
-  conversions. Tested RTM, local fenv and explicit if/else did not recover it.
+- Preserve 852's recovered live facing at the speed read. Target has two
+  branch-local FILDs; current source hoists one before the branch. Tail EAX now
+  agrees, but scratch remains ESP+0x18 rather than target +0x14.
 - Preserve 807's second zero-sequence read before selecting shared 826/861 tails
   or 801 caching. Existing candidates fail that observation.
 - Investigate common frame tails and scratch placement with evidence beyond
@@ -87,6 +92,7 @@ limits; inspect placement assumptions and callback exception guards before reuse
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-aya-object-vslot28-full-root --compare --json
 python3 scripts/audit-aya-object-runtime-context.py
 python3 scripts/audit-aya-object-predicate-widths.py
+taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-852-native.py --product-read-lifetimes
 taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-scale-adds.py --actions 826 --position-lifetimes
 taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-903-paths.py
 ```
@@ -126,8 +132,10 @@ Prior accepted font leaves are unchanged, not newly replayed here.
 
 [Artifact retention and recovery](ARTIFACTS.md) describes this cleanup and
 restoration. Latest inventory: `build/handoff-refresh-20261023/manifest.json`.
-The same scope's `aya-final-comparison.json` records the fresh focused build;
-`ci.log` records the final local gate. Root mismatch `+0x22` is expected.
+Latest focused build, native negative-control and final gate receipts are
+`build/aya-852-expression-20261023/{final-formal,final-read-lifetimes}.json` and
+`build/aya-852-expression-20261023/ci.log`. Root mismatch `+0x22` is expected; the native command with the frozen
+predecessor also exits 1 for its known 1,920 read-epoch differences.
 Historical reports may end in `.gz`; restore with `gzip -dk PATH.gz` before
 using old recipes. Current objects, frozen controls, receipts and provider inputs remain directly
 available. Six dirty detached worktrees are retained.
