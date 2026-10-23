@@ -56,6 +56,7 @@ No root exact credit. The adjacent metadata is not added to the callable boundar
 | --- | --- |
 | [826 owner-Y lifetime](AYA_OBJECT_826_OWNER_Y_LIFETIME_2026_10_23.md) | Captured double Y spans alpha; target37-byte interval restored.2584 strict native cases agree, eliminating2584 prior ordered-write/position-snapshot differences. Only13 bytes change inside19 bytes;4438 outside826 graph nodes agree. |
 | [861 shared-tail controls](AYA_OBJECT_861_SHARED_TAIL_CONTROLS_2026_10_23.md) | Target861 joins826's phase/fade blocks. Shared-source candidates pass5168 position and3072 phase cases, but lose807's second zero-sequence read in2456 cases. All unselected. Interval audits now require actual per-action hits. |
+| [852 RTM/fenv controls](AYA_OBJECT_852_RTM_AND_FENV_CONTROLS_2026_10_23.md) | RTM preserves SP1's unresolved conversion shapes. Both RTM objects pass 6528 scoped native cases; the profile changes other-action instructions. Local fenv keeps FIMUL and adds a double roundtrip; explicit if/else is byte-neutral to the int control. All unselected. |
 | [807/854 read lifetimes](AYA_OBJECT_807_854_READ_LIFETIMES_2026_10_23.md) | 3968/3840 actual-code cases agree in strict mode; outside-action graphs preserve 4464/4481 nodes. |
 | [807 angle lifetime](AYA_OBJECT_807_ANGLE_LIFETIME_2026_10_23.md) | Exact local 26-byte interval and live angle across alpha; historical sequence-read deficit is superseded by the row above. |
 | [861 phase scope](AYA_OBJECT_861_PHASE_SCOPE_2026_10_23.md) | Phase/count advance only in initial sequence 0; 2304 predecessor state differences eliminated. Existing 768 alpha/X write-order differences remain explicit. |
@@ -63,14 +64,17 @@ No root exact credit. The adjacent metadata is not added to the callable boundar
 | [801/852 controls](AYA_OBJECT_801_CONTEXT_852_FACING_CONTROLS_2026_10_23.md) | Caching remains unselected. Latest826 report closes scoped817/822 sharing and820/826 execution gaps, but finds807's recovered26-byte interval is lost. The retry after826's fix still loses it.852 promotion/conversion placement remains open. |
 | [Runtime owner context](AYA_OBJECT_RUNTIME_CONTEXT_2026_10_23.md) | Four layered/direct/typed/virtual controls were byte-neutral before826's correction; frozen payloads have the older17585ff8 hash. RTTI/allocation facts remain reproducible; nominal types and lifecycle remain open. |
 
-Latest scope: `build/aya-861-owner-y-20261023/`. The preceding 801 impact scope
+Latest scope: `build/aya-852-rtm-20261023/`; preceding shared-tail controls:
+`build/aya-861-owner-y-20261023/`. The preceding 801 impact scope
 is `build/aya-801-impact-20261023/`. Earlier owner-context scope's
 accepted pool replay is 15/15 exact, including Aya acquire `0x617DF0` (519 bytes).
 Earlier selected 804/810 sequence, 821 counter and 903 fade corrections remain
 in source; links and epoch-specific hashes are in the historical handoff.
 
-Next leads: supported context for 852 promotion/conversion placement, including
-the now-working native RTM toolchain. Preserve 807's second zero-sequence read
+Next leads: supported visibility/lifetime/ownership context for 852's early
+promotion and branch-local conversion placement. Native RTM, local fenv access
+and explicit if/else did not recover that shape in the tested context.
+Preserve 807's second zero-sequence read
 before selecting 861/826 shared source. `/Ob1` and tiny getters are byte-neutral
 in the tested shared-phase context. Native RTM's payload is 4 bytes longer and
 keeps the read deficit. Other leads are 807's facing-capture/scratch scheduling
