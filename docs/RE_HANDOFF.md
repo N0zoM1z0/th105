@@ -19,6 +19,15 @@ metadata start19664. Full canonical SHA256:
 The configured19522-byte comparison remains **nonexact** at hex offset22,
 target0F/source9B. No Aya root exact credit has been added.
 
+Latest [801/852 context controls](AYA_OBJECT_801_CONTEXT_852_FACING_CONTROLS_2026_10_23.md)
+retain selected game source unchanged.801's new-context snapshot still grows
+136 bytes and fails outside801 strict comparison; private alignment diagnostics
+also reach817/820/826 changes beyond the older852/853/861 audits. They are
+incomplete and not acceptance evidence.852 is now pinned to a62-byte/14-instruction
+window: one pre-branch MOVSX, two per-arm FILD conversions, no FIMUL. Int/double
+locals each recover only part; neither is selected. The public facing-lifetime
+packet lists exact bytes/widths/conversion regions for further context work.
+
 Latest [807/854 read lifetimes](AYA_OBJECT_807_854_READ_LIFETIMES_2026_10_23.md):
 807's post-spawn sequence snapshot now retains the live angle across alpha.
 All3968 cases match every recorded observation, eliminating2044 read differences.
@@ -72,9 +81,9 @@ Earlier selected corrections remain in source. Their old hashes are historical:
 |903 shared fade value|[Double-product lifetime and3168 native cases](AYA_OBJECT_903_SHARED_FADE_2026_10_22.md)|
 |900/901/902 control flow|[Detailed checkpoints and limits](RE_HANDOFF_HISTORY_2026_10_22.md)|
 
-Next evidence leads:801 sequence caching in the new independently proven
-807/854 lifetime context; common frame-tail ownership; register and scratch
-and shared-return placement. Do not infer an LTCG impossibility from failed
+Next evidence leads:852 pre-branch promoted capture with per-arm conversion
+under a supported source/context change;817/820/826 impact closure before adopting
+801 caching; common frame-tail, register and scratch placement. Do not infer an LTCG impossibility from failed
 local controls. Some old fixtures have placement assumptions; recheck them
 against the current object before treating a fixture failure as game behavior.
 The guarded native callback wrappers stop and rethrow Python hook exceptions;
