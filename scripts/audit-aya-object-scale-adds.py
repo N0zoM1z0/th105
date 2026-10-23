@@ -10,6 +10,8 @@ import itertools
 import json
 import struct
 import sys
+import capstone
+from capstone import x86_const as x
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
@@ -35,13 +37,41 @@ def x87(uc):
     )
 
 
+def scale_read_sites(code, address):
+    cs = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
+    cs.detail = True
+    rows = list(cs.disasm(code, address))
+    pairs = []
+    for first, second, store in zip(rows, rows[1:], rows[2:]):
+        if first.mnemonic != 'fld' or second.mnemonic != 'fadd' or store.mnemonic not in ('fst', 'fstp'):
+            continue
+        if first.operands[0].type != x.X86_OP_MEM or second.operands[0].type != x.X86_OP_MEM:
+            continue
+        a, b = first.operands[0], second.operands[0]
+        if not (a.size == b.size == 4 and a.mem.base == b.mem.base == x.X86_REG_ESI
+                and {a.mem.disp, b.mem.disp} == {0x11C, 0x370}):
+            continue
+        assert store.operands[0].type == x.X86_OP_MEM and store.operands[0].size == 4
+        pairs.append(dict(start=hex(first.address), size=first.size + second.size,
+                          sha256=hashlib.sha256(first.bytes + second.bytes).hexdigest(),
+                          reads=[dict(pc=hex(row.address), offset=hex(row.operands[0].mem.disp))
+                                 for row in (first, second)]))
+    assert pairs, 'scale/rate operand pair missing'
+    return pairs
+
+
 class Probe(math.Probe):
     observe_position_lifetimes = False
 
-    def __init__(self, table, obj=None):
+    def __init__(self, table, obj=None, scale_read_lifetimes=False):
         super().__init__(table, obj)
+        self.scale_read_lifetimes = scale_read_lifetimes
         window = base.c.target_bytes(0x61C2BA, 37)
         code = bytes(self.uc.mem_read(self.start, self.size))
+        if scale_read_lifetimes:
+            self.scale_read_pairs = scale_read_sites(code, self.start)
+            self.scale_read_pcs = {int(row['pc'], 0): int(row['offset'], 0)
+                                   for pair in self.scale_read_pairs for row in pair['reads']}
         self.position_window_starts = []
         offset = code.find(window)
         while offset >= 0:
@@ -71,6 +101,7 @@ class Probe(math.Probe):
         self.scale_stores = []
         self.position_stores = []
         self.position_window_hits = []
+        self.scale_operand_reads = []
 
     def write(self, uc, access, address, size, value, data):
         if address in (base.OWNER + 0x11C, base.OWNER + 0x120) and size == 4:
@@ -97,8 +128,13 @@ class Probe(math.Probe):
         super().write(uc, access, address, size, value, data)
 
     def read(self, uc, access, address, size, value, data):
-        # This audit scopes scale-store snapshots, not the already-known alpha-read epochs.
-        pass
+        # Alpha-read epochs remain outside this audit.
+        if self.scale_read_lifetimes:
+            pc = uc.reg_read(base.r.UC_X86_REG_EIP)
+            if pc in self.scale_read_pcs:
+                assert size == 4 and address == base.OWNER + self.scale_read_pcs[pc]
+                self.scale_operand_reads.append(dict(
+                    offset=hex(address - base.OWNER), value=bytes(uc.mem_read(address, size)).hex(), **x87(uc)))
 
     def evaluate(self, case):
         self.settings = case
@@ -106,6 +142,9 @@ class Probe(math.Probe):
         out = base.Probe.run(self, (seq, phase, 100, cw, 20.0))
         assert out["stop"] == "ret" and len(self.scale_stores) == 2
         out["scale_stores"] = self.scale_stores
+        if self.scale_read_lifetimes:
+            assert len(self.scale_operand_reads) == 2, 'scale pair must execute both operand reads once'
+            out['scale_operand_reads'] = self.scale_operand_reads
         if getattr(self, "observe_position_lifetimes", False):
             assert len(self.position_stores) == 3
             out["position_stores"] = self.position_stores
@@ -117,6 +156,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--object", type=Path, default=ROOT / base.unit["object"])
     parser.add_argument("--control-object", type=Path)
+    parser.add_argument(
+        "--scale-read-lifetimes",
+        action="store_true",
+        help="Observe scale/rate read order and live x87; include PC24 control words",
+    )
     parser.add_argument(
         "--actions",
         type=int,
@@ -145,6 +189,8 @@ def main():
     )
     table, receipt = math.lookup_fixture(base.c)
     cws = (0x27F, 0x67F, 0xA7F, 0xE7F, 0x37F, 0x77F, 0xB7F, 0xF7F)
+    if args.scale_read_lifetimes:
+        cws = (0x7F, 0x47F, 0x87F, 0xC7F) + cws
     bits = (
         0,
         0x80000000,
@@ -194,7 +240,8 @@ def main():
         ]
     objects = [args.object] + ([args.control_object] if args.control_object else [])
     probes = {
-        action: [Probe(table)] + [Probe(table, obj) for obj in objects]
+        action: [Probe(table, scale_read_lifetimes=args.scale_read_lifetimes)]
+                + [Probe(table, obj, scale_read_lifetimes=args.scale_read_lifetimes) for obj in objects]
         for action in sorted(set(args.actions))
     }
     for action, items in probes.items():
@@ -239,6 +286,8 @@ def main():
                         candidate_position_stores=val.get("position_stores"),
                         target=values[0]["scale_stores"],
                         candidate=val["scale_stores"],
+                        target_operand_reads=values[0].get('scale_operand_reads'),
+                        candidate_operand_reads=val.get('scale_operand_reads'),
                     )
                 )
     window_report = None
@@ -272,7 +321,11 @@ def main():
         actual_returns=len(cases),
         counts=dict(counts),
         action_sequences=action_sequences,
+        diagnostic=args.diagnostic,
+        selected_target_agreement=not any(items[0] for items in diffs.values()),
         position_lifetimes=args.position_lifetimes,
+        scale_read_lifetimes=args.scale_read_lifetimes,
+        x87_control_words=[hex(cw) for cw in cws],
         position_lifetime_window=window_report,
         objects=[
             dict(
@@ -286,8 +339,16 @@ def main():
         target_calls=dict(calls),
         lookup={k: v for k, v in receipt.items() if k != "trace"},
         input_sha256=hashlib.sha256(json.dumps(cases).encode()).hexdigest(),
+        auditor_inputs={path: base.lp.sha(ROOT / path) for path in (
+            'scripts/audit-aya-object-scale-adds.py', 'scripts/audit-aya-object-903-native.py',
+            'scripts/audit-aya-object-901-transition.py', 'scripts/iku_native_math.py')},
         scope="Explicit action_sequences only, original root/frame returns; scale-store live x87 snapshots, actor/parameter bytes, ordered writes, calls and final x87 status/tag. Optional826/861 position lifetimes add X/alpha/Y write snapshots, owner-Y raw-bit cases and observed execution of the37-byte target interval by each action. Alpha-read epochs are not observed. Owner X finite, owner Y finite unless explicitly varied; masked x87 only; no spawn, arbitrary resources, callback/exception or full-root proof",
     )
+    if args.scale_read_lifetimes:
+        report['scale_read_pairs'] = [probe.scale_read_pairs for probe in probes[args.actions[0]]]
+        report['selected_operand_read_agreement'] = not any(
+            items[0].get('scale_operand_reads') for items in diffs.values())
+        report['scope'] += '; scale-read mode additionally records actual scale/rate operand order, values and live x87'
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps(report, indent=2))

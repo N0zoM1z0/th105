@@ -14,8 +14,8 @@ int __cdecl selector_random_roll(int limit);
 unsigned int __cdecl mt19937_next_u32(void);
 extern int g_match_identifier;
 float __cdecl lookup_orientation_sine(int angle);
-double __cdecl lookup_orientation_sine_quantized_abs(float phase);
-double __cdecl lookup_orientation_cosine_quantized_abs(float phase);
+float __cdecl lookup_orientation_sine_quantized_abs(float phase);
+float __cdecl lookup_orientation_cosine_quantized_abs(float phase);
 
 // Call view for 0x0064CCB0: it forwards ordinary four-byte x86 slots;
 // Aya manager 0x00618470 consumes facing and field_33c as low bytes.

@@ -93,6 +93,8 @@ def edges(p, r):
             if r.operands[0].imm not in p["by"]:
                 assert r.mnemonic == "jmp"
                 return []
+            if r.mnemonic == "jmp":
+                return [r.operands[0].imm]
             return [r.operands[0].imm, r.address + r.size]
         return list(p["switches"][r.address]["destinations"])
     return [r.address + r.size]

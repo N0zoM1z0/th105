@@ -17813,7 +17813,7 @@ source = "src/characters/AyaObjectActionState.cpp"
 object = "build/match-units/GptWeb_AyaObjectActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "JP1.06a authored AyaObject root61A290, callable19522. Selected852 promoted-byte/float arithmetic restores facing live in x87 at the speed read: 9728 actual-return cases agree, predecessor has1920 read-epoch differences despite equal effects. Outside the closed product window4558 source graph pairs agree with one qualified two-instruction tail carrier; all other852 paths are checked statically. Full20120/9ef08a09, metadata19652; canonical comparison nonexact+0x22 target0F/source8E. Current two-body CIL/native-provider context fully replays to the same native payload; no all-exact dependency or DLL execution claim. Target branch-local FILD duplication remains unresolved. No exact root or aggregate credit; no shared ABI/header/profile/partition/accepted relocation change. Current: docs/AYA_OBJECT_852_PRODUCT_READ_LIFETIMES_2026_10_23.md; epochs: docs/AYA_OBJECT_EVIDENCE.md."
+notes = "JP1.06a authored AyaObject root61A290, callable19522. Root-local float lookup view restores target scale/rate operand order in four FLD/FADD pairs, sixteen ordinary bytes. All other complete payload bytes agree at A and S. All18576 selected scale-read traces agree;861 retains3096 known ordered-write differences. Full20120/fad6fa5a, metadata19652; canonical nonexact+0x22 target0F/source8E. Genuine joint CIL fully replays to native;17/19 dependencies exact, restoring an already accepted57-byte helper. Original global return declaration, target852 branch-local FILD duplication and full root exactness remain unresolved. Only root-local float REL32 aliases added; old names retained for frozen COFF. No accepted-unit header/ABI/profile/partition/shared relocation change or aggregate credit. Current: docs/AYA_OBJECT_FLOAT_LOOKUP_SCALE_READS_2026_10_23.md; epochs: docs/AYA_OBJECT_EVIDENCE.md."
 
 [[units.gpt-web-aya-object-vslot28-full-root.functions]]
 address = "0x0061A290"
@@ -17828,8 +17828,10 @@ rel32_targets = [
   "?emit_repeated_effects_for_owner_state@CharacterObjectEffectEmitter@th105@@QAEEHHH@Z=0x005575C0",
   "?has_crossed_stage_surface_while_descending@AyaObjectActionStateView@th105@@QAEHXZ=0x005F9310",
   "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
+  "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
   "?lookup_orientation_sine@th105@@YAMH@Z=0x00406480",
   "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+  "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
   "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
   "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
   "?set_oriented_components_f0_f4@CharacterObjectRuntime@th105@@QAEXMM@Z=0x00435160",

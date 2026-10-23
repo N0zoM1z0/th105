@@ -1,9 +1,16 @@
 # TH10.5 reconstruction handoff
 
-Reconstruction resumed 2026-10-23. Current game source selects the 852 product
-operand-read lifetime correction after checkpoint `e24fb73`; 826's owner-Y
-correction remains selected. Previous cleanup checkpoint: `1865c6a`.
+Reconstruction resumed 2026-10-23. Current game source selects the float lookup
+caller view after checkpoint `a04ba76`; 852's product operand-read and 826's
+owner-Y corrections remain selected. Previous cleanup checkpoint: `1865c6a`.
 Required commit format: `gpt-6.1-sol: ...`.
+
+Latest user priority: whole-function exact first, gameplay naming later.
+Read-only TH075 review supports typed offset source, minimal receiver views,
+independently verified family reuse and short full-function compile/compare
+loops. See the [workflow](RE_WORKFLOW.md#exact-first-priority-from-the-th075-review).
+Do not spend another large matrix on an uncertainty that a strict build can
+resolve. Preserve necessary ABI, storage widths, control flow and side effects.
 
 Use this page for current selection and next steps, the
 [AyaObject evidence index](AYA_OBJECT_EVIDENCE.md) for scoped results, and the
@@ -50,27 +57,33 @@ accepted-unit replay; new aggregate claims require `verify-exact-units.py --all`
 Selected [source](../src/characters/AyaObjectActionState.cpp), unit
 `gpt-web-aya-object-vslot28-full-root`. Callable ledger size 19522;
 complete canonical payload 20120, metadata starts at 19652, full SHA256:
-`9ef08a09283471e6cdebb8a71900e6e0c68aa6a02d2761385e0e0df8b93ad565`.
+`fad6fa5af2baa1d8b9013d3fe7279bcfea3f136474a0bb9f9a0a52ccd30caf2c`.
 Fresh restored comparison remains **nonexact +0x22**, target `0F` / source `8E`.
 No root exact credit. The adjacent metadata is not added to the callable boundary.
 
 Source SHA256:
-`d4f4d37c9dcc348bab7e3448e5600f2c863d224463a05259003081d7c4ebcb8f`.
+`da5c622d4808d6dd1516dee567923ede8f1a2c6c4ae0655730ba006505710f46`.
 The first mismatch is the initial JA displacement. The
 [evidence index](AYA_OBJECT_EVIDENCE.md) separates selected changes, scoped
 behavioral checks and rejected context controls, with source-epoch limits.
 
-Latest scope: `build/aya-852-expression-20261023/`. The selected int-facing /
-float-arithmetic source passes 9,728 actual-return cases including operand-read
-x87 snapshots and twelve masked control words. Predecessor fails 1,920 speed-read
-snapshots despite equal final effects. Outside only the closed product window,
-4,558 source graph pairs agree with one qualified two-instruction tail carrier;
-the public strict checker is unchanged. See [the scoped evidence](AYA_OBJECT_852_PRODUCT_READ_LIFETIMES_2026_10_23.md).
+Latest scope: `build/aya-852-sharing-context-20261023/`. Two root-local float
+lookup declarations change only sixteen ordinary bytes in four FLD/FADD pairs
+to target scale/rate read order. All 18,576 selected operand-read traces agree;
+861 retains 3,096 known alpha/position ordered-write differences. All other
+complete-payload bytes agree at A and S. See [the selected evidence](AYA_OBJECT_FLOAT_LOOKUP_SCALE_READS_2026_10_23.md).
 
-Current-source joint CIL replay also equals native: seven switches, 362 HIGHLOW
-fields and 123 direct calls are closed. Three math providers remain nonexact;
-no DLL execution or original TU claim. Earlier size-profile, RTM and shared-tail
-controls retain their own source epochs in the evidence index.
+The preceding 852 matrix's 9,728 actual-return inputs remain applicable because
+reachable 852 code is unchanged; it was not rerun. Its 4,558 outside-product
+graph pairs plus one qualified tail carrier were revalidated after fixing a
+fabricated JMP fallthrough in the normal-flow utility. Four new CFG tests pass.
+
+Current-source joint CIL replay equals native: seven switches, 362 HIGHLOW
+fields and 123 direct calls are closed. Seventeen of nineteen requested
+dependencies compare exact; restoring the already accepted 57-byte helper
+leaves only the two lookup providers nonexact. No DLL execution or original TU
+claim. The original global lookup return declaration remains unresolved.
+Earlier controls retain their own source epochs in the evidence index.
 
 Resume with one target-backed lead:
 
@@ -78,7 +91,8 @@ Resume with one target-backed lead:
   branch-local FILDs; current source hoists one before the branch. Tail EAX now
   agrees, but scratch remains ESP+0x18 rather than target +0x14.
 - Preserve 807's second zero-sequence read before selecting shared 826/861 tails
-  or 801 caching. Existing candidates fail that observation.
+  or 801 caching. Both shared-tail variants were rebased onto the selected float
+  epoch and still lose that read in one actual-return witness.
 - Investigate common frame tails and scratch placement with evidence beyond
   local size or equal final outputs. 903's 13,596-case check covers non-spawning
   paths and read epochs; it does not establish complete root equivalence.
@@ -94,6 +108,7 @@ python3 scripts/audit-aya-object-runtime-context.py
 python3 scripts/audit-aya-object-predicate-widths.py
 taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-852-native.py --product-read-lifetimes
 taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-scale-adds.py --actions 826 --position-lifetimes
+taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-scale-adds.py --actions 820 826 853 861 --scale-read-lifetimes --diagnostic
 taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-903-paths.py
 ```
 
@@ -132,10 +147,12 @@ Prior accepted font leaves are unchanged, not newly replayed here.
 
 [Artifact retention and recovery](ARTIFACTS.md) describes this cleanup and
 restoration. Latest inventory: `build/handoff-refresh-20261023/manifest.json`.
-Latest focused build, native negative-control and final gate receipts are
-`build/aya-852-expression-20261023/{final-formal,final-read-lifetimes}.json` and
-`build/aya-852-expression-20261023/ci.log`. Root mismatch `+0x22` is expected; the native command with the frozen
-predecessor also exits 1 for its known 1,920 read-epoch differences.
+Latest focused build, final object identity, native observations and final gate
+receipts are `build/aya-852-sharing-context-20261023/{final-formal,final-identity,scale-read-lifetimes}.json`
+and `build/aya-852-sharing-context-20261023/ci.log`. Root mismatch `+0x22` is
+expected; the scale-read matrix uses explicit diagnostic mode and keeps the
+3,096 known 861 write differences visible. Earlier 852 negative-control results
+remain in `build/aya-852-expression-20261023/`.
 Historical reports may end in `.gz`; restore with `gzip -dk PATH.gz` before
 using old recipes. Current objects, frozen controls, receipts and provider inputs remain directly
 available. Six dirty detached worktrees are retained.
@@ -147,6 +164,6 @@ taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
 
-Mandatory local CI baseline: 462 tests. No private reports, executables, game
+Mandatory local CI baseline: 466 tests. No private reports, executables, game
 data, databases, compilers or credentials in commits. Verify remote HEAD after
 an authorized push and leave the main worktree clean for the next session.

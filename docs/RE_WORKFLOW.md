@@ -46,16 +46,21 @@ IDA auto-names do not imply mappings or implementations.
 
 1. Read the handoff, inspect Git state, verify target, attest IDA, and run the
    status/ledger checks from `AGENTS.md`.
-2. Select one small address or a tightly coupled group. Keep claims header-only.
+2. Select one bounded address or a tightly coupled group. Keep claims header-only.
+   Prioritize complete large authored functions and accepted byte coverage.
 3. Inspect exact disassembly plus callers, callees, xrefs, strings, globals,
    RTTI/vtables, access widths, cleanup, saved registers, and EH behavior.
 4. Reconcile the full target control flow with the candidate extent. Record
    observations, inferences, and unknowns separately.
 5. Apply supported names/types in an attested analysis database when available;
    read them back and update durable ledgers.
-6. Recover ABI, layout, ownership, and behavior before code-generation tuning.
-7. Select or adapt the smallest natural source implementation. Add it to
-   `implemented.csv` only when semantic coverage is supported.
+6. Recover the ABI, accessed storage widths, necessary layout constraints,
+   lifetimes and complete control flow needed for truthful compiling source.
+   Gameplay names and a complete nominal owner layout can remain unknown.
+7. Select or adapt a natural implementation of the complete bounded body;
+   compile and compare early. Add it to `implemented.csv` only when instruction
+   semantics and complete behavior are supported. A partial receiver view must
+   never be instantiated or embedded as a recovered complete owner.
 8. Configure one reproducible unit, compile with the pinned VC8 environment,
    compare the smallest extent first, and audit floating relocations with
    `python3 scripts/check-match-literals.py --require-target`.
@@ -67,6 +72,44 @@ IDA auto-names do not imply mappings or implementations.
 
 GitHub Actions is a second check, not a substitute for the local gate. Any edit
 after the final pass invalidates that pass and requires another local run.
+
+## Exact-first priority from the TH075 review
+
+The 2026-10-23 user instruction prioritizes full-function exactness before
+high-level semantic reconstruction. Keep provisional address/offset names,
+numeric states and declaration-only callees where they express established
+instruction and ABI facts. Defer gameplay naming, speculative class hierarchies
+and broad source cleanup. They are not prerequisites for a canonical comparison.
+
+Read-only peer evidence is pinned to TH075 commit
+`c7bcad7261e7eb85e049614623609a2a32ae6792` in
+`/home/pentester/coding/codex_ida/th075-reconstruction/th075`.
+Its ledgers record 140 exact functions /350848 bytes; 32 functions of at least
+4096 bytes account for 316943 bytes. F046 `0x004C8CD0` accepts a complete
+6504-byte AI body with 183 individually bound relocations. Its
+`src/CharacterAI4C8CD0.cpp` uses typed offset access and a pointer-only receiver;
+the thirteen-line header leaves original identity and full layout unresolved.
+Reviewed related AI statements are reused with each function's own branch and
+operand checks. Declaration-only helpers receive no implementation credit.
+These are whole-function zero-difference results, not masked structural scores.
+
+The relevant peer unit uses VC7.1 build3077 with `/Od /Ob0 /Gy /GR- /GX- /Zi`.
+TH105 uses VC8 and has 42 C++ LTCG Rich records; the current Aya root uses `/O2`.
+Copy the compile/compare discipline and independently verified family reuse,
+not addresses, fields, ABI declarations or compiler settings. The shared product
+genre alone does not establish identical internals. Peer ledger totals were
+inspected at the pinned commit; its corpus was not rebuilt in this session.
+
+For each trial, make one source-shape or compiler-context hypothesis, compile
+the complete affected function serially, then inspect canonical mismatch,
+relocations, frame/branch structure and size. Reuse a proven family body only
+after checking the new target's complete extent and distinguishing branches.
+Local matching windows and execution matrices diagnose specific uncertainties;
+they do not replace the full comparison or require every gameplay meaning to
+be settled first. Run a large matrix only when it resolves a concrete lifetime,
+floating-point or side-effect question. Reject misleading improvements early;
+retain a concise receipt and resume whole-function work. No assembly, copied
+target arrays, ABI lies, inert locals, fake returns or padding are permitted.
 
 ## Giant-root owner diagnostics
 
