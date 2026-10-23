@@ -1,9 +1,9 @@
 # TH10.5 reconstruction handoff
 
-Prepared2026-10-22 at the user's request. New reconstruction experiments have
-stopped for handoff; the prior automatic goal was cleared. There is no pending
-build or replay. Last reconstruction checkpoint: `69c4e37` (pushed).
-Resume only on a new instruction. Commit format remains `gpt-6-astra-medium: ...`.
+Resumed2026-10-23 at the user's request. Reconstruction is active again.
+Use serial low-resource builds and focused affected-scope replays; preserve
+stable commit/push checkpoints. Required commit format: `gpt-6.1-sol: ...`.
+Last selected game-source checkpoint: `69c4e37`; cleanup checkpoint: `c1beb8b`.
 
 The full preceding narrative is preserved in the
 [October22 history](RE_HANDOFF_HISTORY_2026_10_22.md). Dated reports describe
@@ -39,6 +39,13 @@ Latest [801 fade snapshot report](AYA_OBJECT_801_FADE_SNAPSHOTS_2026_10_22.md):
 - Color-member-byte and early-Boolean controls are byte-neutral to alpha-only.
   Frozen source/receipts remain in `build/aya-801-fade-20261022/`; three completed
   objects are in its SHA-verified `completed-controls.tar.gz` with `retention.json`.
+
+The [852 native control audit](AYA_OBJECT_852_NATIVE_CONTROL_2026_10_23.md)
+now verifies6528 actual returns for both selected code and the801 cached-sequence
+control, including6400 owner+6AC product-write x87 snapshots. No differences;
+non-spawning timers and masked x87 only. This closes one concrete concern, not
+whole-control acceptance.853/861 operand-order changes and854 branch/tail
+closure remain to inspect. A fresh build reproduces the selected20136-byte hash.
 
 Earlier selected corrections remain in source. Their old hashes are historical:
 
