@@ -3,7 +3,7 @@
 Resumed2026-10-23 at the user's request. Reconstruction is active again.
 Use serial low-resource builds and focused affected-scope replays; preserve
 stable commit/push checkpoints. Required commit format: `gpt-6.1-sol: ...`.
-Last selected game-source checkpoint: `69c4e37`; cleanup checkpoint: `c1beb8b`.
+Earlier game-source checkpoint: `69c4e37`; cleanup checkpoint: `c1beb8b`.
 
 The full preceding narrative is preserved in the
 [October22 history](RE_HANDOFF_HISTORY_2026_10_22.md). Dated reports describe
@@ -15,11 +15,25 @@ Source: [AyaObjectActionState.cpp](../src/characters/AyaObjectActionState.cpp).
 Configured unit: `gpt-web-aya-object-vslot28-full-root`.
 Target callable ledger size19522; selected complete canonical payload20136,
 metadata start19668. Full canonical SHA256:
-`a2fafaa2de959366066d6d2a0f2ab794c4f5b2260c294312d2ed03d3cf6b3d9d`.
+`fd8dc276b567f9d5fe846242204959697c489824250c9c29963313c6d4c04e0f`.
 The configured19522-byte comparison remains **nonexact** at hex offset22,
 target0F/sourceA1. No Aya root exact credit has been added.
 
-Latest [801 fade snapshot report](AYA_OBJECT_801_FADE_SNAPSHOTS_2026_10_22.md):
+Latest [861 phase-scope correction](AYA_OBJECT_861_PHASE_SCOPE_2026_10_23.md):
+phase/count advancement now stays inside initial sequence0. Target61D5F2 skips
+it for nonzero sequence.3072 actual-code cases have0 selected final-state or
+phase/count-write differences; predecessor differs in2304. The complete payload
+changes only the displacement byte at33E8, skipping41 bytes. Outside8614466
+strict graph nodes agree.768 existing alpha/X write-order differences remain
+explicit, with their exact two-write shape checked. No exact credit.
+
+The accompanying6216-case scale audit matches scale-store live x87 snapshots
+for selected and old801-control objects. Its phase controls exposed the counter
+bug; direct853 addition-operand reversal is fully byte-neutral and unselected.
+Frozen801 source predates this fix; rebase future controls instead of replacing
+current source wholesale.
+
+Prior [801 fade snapshot report](AYA_OBJECT_801_FADE_SNAPSHOTS_2026_10_22.md):
 
 - Source now snapshots alpha before both scale updates.3840 original-code cases
   preserve final effects and match alpha-read live x87 snapshots, eliminating1680

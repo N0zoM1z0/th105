@@ -1642,11 +1642,11 @@ void AyaObjectActionStateView::update_action_state()
                     static_cast<unsigned char>(sprite_004.object_facing_100), 1,
                     reinterpret_cast<const unsigned *>(payload), 3);
             }
-        }
-        if (phase_state_180) {
-            if (++state_364 >= 6) {
-                phase_state_180 = 0;
-                state_364 = 0;
+            if (phase_state_180) {
+                if (++state_364 >= 6) {
+                    phase_state_180 = 0;
+                    state_364 = 0;
+                }
             }
         }
         if (sequence_index_13e == 1) {
