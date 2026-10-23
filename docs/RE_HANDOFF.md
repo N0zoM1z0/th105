@@ -8,7 +8,7 @@ all metadata;21 callable register/preparation bytes remain. Reimu's local owner
 selector retains the signed-word correction. Exact ledgers are unchanged.
 Current bounded continuation: Youmu543670's five remaining call/register regions.
 Previous cleanup checkpoint: `1865c6a`.
-Required commit format: `gpt-6-astra-medium: ...`.
+Required commit format: `gpt-6.1-sol: ...`.
 
 Latest user priority: whole-function exact first, gameplay naming later.
 Read-only TH075 review supports typed offset source, minimal receiver views,
@@ -18,6 +18,9 @@ The refreshed peer snapshot `4aeea7a` includes a 31352-byte exact callable.
 A private Youmu pointer-only/offset-field control keeps the entire 5492-byte
 canonical payload identical to `206b30d`, including the 21 remaining differences;
 it is a bounded negative, with no public source or exact-ledger change.
+Further conversion/receiver/forwarding and numeric-case-order controls keep
+the same complete payload. A real member-pointer CIL link retains an extra
+generated thunk and is rejected; see the [dispatch controls](YOUMU_ENTRY_PHYSICAL_TAIL_2026_10_23.md#dispatch-source-controls).
 Do not spend another large matrix on an uncertainty that a strict build can
 resolve. Preserve necessary ABI, storage widths, control flow and side effects.
 

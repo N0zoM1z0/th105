@@ -73,7 +73,7 @@ dependency graph. No executable ABS binding or invented caller closes it.
 
 Independent complete replay checks229 fields:79 REL32 edges (78 calls plus
 the596370 tail),113 numeric references,3 metadata addresses,33 internal code
-pointers and one game-data reference. All149 HIGHLOW entries agree; the fixed
+pointers and one game-data reference. All 149 HIGHLOW entries agree; the fixed
 foreign game-data address correctly has no base relocation. MAP destinations,
 source ownership and literal bytes/widths are checked before normalization.
 The resulting5492 bytes equal native d00f4fc4, with the same21 differences.
@@ -127,3 +127,43 @@ Receipts, source, objects, full canonical payloads and field map are retained in
 `685baf4513eb54f02790fa78ff0a32953819ff3e9fff73e1ab7a37b7cd4a3c01`.
 The public source remains unchanged. No execution matrix is rerun for these
 byte-identical payloads, no new exact credit and no aggregate replay are claimed.
+
+## Dispatch-source controls
+
+Selected source `66d01e60` remains unchanged. Six further complete native builds
+retain all 5492 canonical bytes of `d00f4fc4`, with the same 21 target differences:
+an inline float-to-int conversion, minimal int-parameter receiver views with
+int/void ignored results, forwarding helpers with int/float parameters, and
+numeric source order for case 848. The latter retains both 848 entry labels and
+all 812/821/854 edges. Existing callees, bindings and shared headers remain
+unchanged. The controls do not recover an original declaration or prove another
+compiler context equivalent. Their complete-byte equality needs no new execution
+matrix; no source replacement or exact credit is justified.
+
+A genuine member-function-pointer expression in 850 instead emits a local
+virtual thunk. The ordinary comparator rejects its unmapped REL32; it is never
+assigned a fabricated game address. Although its full COFF extent is 5492 and
+metadata still starts at 5160, its last RET ends at 5157, followed by a three-byte
+alignment LEA. This is not the target's 5159-byte callable or natural single NOP.
+
+Real `/GL` compilation and `/LTCG` linking with the same 23 hash-pinned native
+inputs retain the extra root CALL at +0x750. MAP owns its five-byte vptr-load / slotC
+JMP thunk at `0x10002580` in `YoumuCil.obj`. Independent source-to-link checks
+resolve all 230 fields: 80 REL32, 113 actual numeric literals, 36 internal pointers
+and one attested nonexecutable ABS game-data reference. All 149 HIGHLOW fields
+agree; every other linked root byte equals its native COFF source. The thunk's
+complete bytes also equal the actual compiler-generated native section. This
+establishes the rejected compiler result, without normalizing the thunk to an
+unsupported target address, executing the DLL, claiming target equivalence or
+excluding other LTCG partitions. Provider exactness limits remain as above.
+
+Recipes: `.analysis/youmu-dispatch-context-20261023/`. Receipts and artifacts:
+`build/youmu-dispatch-context-20261023/`; start with `caller-views.json`,
+`forwarding.json`, `case-order.json`, `pmf850-native.json` and
+`pmf850-link/field-audit.json`. The member-pointer source SHA256 is
+`9915df5f348579a054bed38914cad6c0b23f41726ae885c2766a95f5d76e1e06`;
+its real link receipt SHA256 is
+`457e7d541dc198d6712bd839903312c20febb6023c6b1dcac0dd1b20ff084f09`.
+Completed equivalent controls are hash-verified before compression; `retention.json`
+lists their members and the active external native inputs, which must remain.
+The five remaining call/register regions are still open.
