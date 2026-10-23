@@ -1122,8 +1122,9 @@ void AyaObjectActionStateView::update_action_state()
         if (sequence_index_13e == 1) {
             CharacterObjectEffectEmitter *const owner = fighter_owner_348;
             sprite_004.object_x_0e8 = owner->x_ec;
+            double const owner_y = owner->y_f0;
             reinterpret_cast<unsigned char *>(this)[0x113] -= 10;
-            sprite_004.object_y_0ec = static_cast<float>(static_cast<double>(owner->y_f0) + 100.0);
+            sprite_004.object_y_0ec = static_cast<float>(owner_y + 100.0);
             float const scale = static_cast<float>(sprite_004.reset_one_118 + state_370);
             sprite_004.reset_one_118 = scale;
             sprite_004.reset_one_11c = scale;

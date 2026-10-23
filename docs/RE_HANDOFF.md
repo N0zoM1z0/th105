@@ -1,9 +1,10 @@
 # TH10.5 reconstruction handoff
 
-Prepared 2026-10-23 at the user's request. Experiments are stopped for handoff;
-selected source is restored and no TH105 build is pending. Last selected game
-source checkpoint: `74e0949`; subsequent evidence checkpoint: `d7b65b4`.
-Required commit format: `gpt-6-astra-medium: xxx ~`.
+Resumed 2026-10-23 at the user's request. Reconstruction is active, with serial
+low-resource builds and focused affected-scope verification. Last earlier game
+source checkpoint: `74e0949`; cleanup checkpoint: `730d942`. Latest source change
+is the action826 owner-Y lifetime described below.
+Required commit format: `gpt-6.1-sol: ...`.
 The [preceding session narrative](RE_HANDOFF_HISTORY_2026_10_23.md) preserves
 older controls and references. Current ledgers and fresh objects override history.
 
@@ -47,26 +48,27 @@ accepted-unit replay; new aggregate claims require `verify-exact-units.py --all`
 Selected [source](../src/characters/AyaObjectActionState.cpp), unit
 `gpt-web-aya-object-vslot28-full-root`. Callable ledger size 19522;
 complete canonical payload 20132, metadata starts at 19664, full SHA256:
-`17585ff8bc4fadd5f63619d3d52d470440955256a820ac76ca97daa7ee31f88f`.
+`a5dc22f5c6f0e93a3fc81592510327c5708c8c4d41938f2bd96eaf7947523ede`.
 Fresh restored comparison remains **nonexact +0x22**, target `0F` / source `9B`.
 No root exact credit. The adjacent metadata is not added to the callable boundary.
 
 | Current evidence | Result and practical limit |
 | --- | --- |
+| [826 owner-Y lifetime](AYA_OBJECT_826_OWNER_Y_LIFETIME_2026_10_23.md) | Captured double Y spans alpha; target37-byte interval restored.2584 strict native cases agree, eliminating2584 prior ordered-write/position-snapshot differences. Only13 bytes change inside19 bytes;4438 outside826 graph nodes agree. |
 | [807/854 read lifetimes](AYA_OBJECT_807_854_READ_LIFETIMES_2026_10_23.md) | 3968/3840 actual-code cases agree in strict mode; outside-action graphs preserve 4464/4481 nodes. |
 | [807 angle lifetime](AYA_OBJECT_807_ANGLE_LIFETIME_2026_10_23.md) | Exact local 26-byte interval and live angle across alpha; historical sequence-read deficit is superseded by the row above. |
 | [861 phase scope](AYA_OBJECT_861_PHASE_SCOPE_2026_10_23.md) | Phase/count advance only in initial sequence 0; 2304 predecessor state differences eliminated. Existing 768 alpha/X write-order differences remain explicit. |
 | [801 fade snapshots](AYA_OBJECT_801_FADE_SNAPSHOTS_2026_10_22.md) | Alpha snapshot corrected; affected replay still has 3012 sequence-read differences. |
-| [801/852 controls](AYA_OBJECT_801_CONTEXT_852_FACING_CONTROLS_2026_10_23.md) | New-context 801 caching changes other paths and is unselected. 852 target has pre-branch MOVSX and two per-arm FILD; int/double controls recover only parts. |
-| [Runtime owner context](AYA_OBJECT_RUNTIME_CONTEXT_2026_10_23.md) | Four layered/direct/typed/virtual controls leave the full payload identical; source restored. RTTI/allocation facts are reproducible; nominal types and lifecycle remain open. |
+| [801/852 controls](AYA_OBJECT_801_CONTEXT_852_FACING_CONTROLS_2026_10_23.md) | Caching remains unselected. Latest826 report closes scoped817/822 sharing and820/826 execution gaps, but finds807's recovered26-byte interval is lost. The retry after826's fix still loses it.852 promotion/conversion placement remains open. |
+| [Runtime owner context](AYA_OBJECT_RUNTIME_CONTEXT_2026_10_23.md) | Four layered/direct/typed/virtual controls were byte-neutral before826's correction; frozen payloads have the older17585ff8 hash. RTTI/allocation facts remain reproducible; nominal types and lifecycle remain open. |
 
-Latest scope: `build/aya-owner-context-20261023/`. Its fresh accepted pool replay
-is 15/15 exact, including Aya acquire `0x617DF0` (519 bytes).
+Latest scope: `build/aya-801-impact-20261023/`. Earlier owner-context scope's
+accepted pool replay is 15/15 exact, including Aya acquire `0x617DF0` (519 bytes).
 Earlier selected 804/810 sequence, 821 counter and 903 fade corrections remain
 in source; links and epoch-specific hashes are in the historical handoff.
 
 Next leads: supported context for 852 promotion/conversion placement;
-817/820/826 impact closure before selecting 801 caching; common frame-tail,
+807's facing-capture/scratch scheduling before selecting 801 caching; common frame-tail,
 register and scratch placement. Failed local controls do not prove an LTCG
 impossibility. Rebase trials onto current source rather than frozen predecessors.
 Native fixtures have scoped limits; inspect their placement assumptions and
@@ -77,6 +79,7 @@ are incomplete and are not acceptance evidence.
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-aya-object-vslot28-full-root --compare --json
 python3 scripts/audit-aya-object-runtime-context.py
 python3 scripts/audit-aya-object-predicate-widths.py
+taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-scale-adds.py --actions 826 --position-lifetimes
 ```
 
 The root comparison is expected to exit nonzero for nonexactness. The runtime
