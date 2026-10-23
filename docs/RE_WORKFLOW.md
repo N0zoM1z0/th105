@@ -81,24 +81,38 @@ numeric states and declaration-only callees where they express established
 instruction and ABI facts. Defer gameplay naming, speculative class hierarchies
 and broad source cleanup. They are not prerequisites for a canonical comparison.
 
-Read-only peer evidence is pinned to TH075 commit
-`c7bcad7261e7eb85e049614623609a2a32ae6792` in
+Read-only peer evidence is refreshed at TH075 commit
+`4aeea7acc76b1a7db67722aff88ce9d8f8293f5b` in
 `/home/pentester/coding/codex_ida/th075-reconstruction/th075`.
-Its ledgers record 140 exact functions /350848 bytes; 32 functions of at least
-4096 bytes account for 316943 bytes. F046 `0x004C8CD0` accepts a complete
-6504-byte AI body with 183 individually bound relocations. Its
-`src/CharacterAI4C8CD0.cpp` uses typed offset access and a pointer-only receiver;
-the thirteen-line header leaves original identity and full layout unresolved.
-Reviewed related AI statements are reused with each function's own branch and
-operand checks. Declaration-only helpers receive no implementation credit.
-These are whole-function zero-difference results, not masked structural scores.
+Its ledgers record 153 exact functions /515551 code bytes; 45 functions of at
+least 4096 bytes account for 481646 bytes. This supersedes the earlier 140/350848
+snapshot at `c7bcad7`; neither corpus is rebuilt in this session.
 
-The relevant peer unit uses VC7.1 build3077 with `/Od /Ob0 /Gy /GR- /GX- /Zi`.
+F060 `0x005FAE30` accepts 31352 callable bytes and the complete 31777-byte payload
+with 913 individually bound relocations. `src/CharacterAuxAction.cpp` retains
+numeric states, typed offset accesses, independent repeated calls, ordinary
+casts and the observed unusual conditions. Its 19-line declaration-only header
+leaves original identity and full layout unknown. F059 `0x005F3D60` reuses a
+reviewed sequence family, independently checks every changed path and accepts
+the complete 12792-byte payload/451 relocations. Its first preview exposed an
+incorrect fade threshold and missing exit; the corrected complete build then
+matched. These examples support early full-function comparison and checked
+family reuse. Declaration-only callees receive no implementation credit.
+Neither result is a masked structural score or proof of original source names.
+
+These peer units use VC7.1 build3077 with `/Od /Ob0 /Gy /GR- /GX- /Zi`.
 TH105 uses VC8 and has 42 C++ LTCG Rich records; the current Aya root uses `/O2`.
 Copy the compile/compare discipline and independently verified family reuse,
 not addresses, fields, ABI declarations or compiler settings. The shared product
-genre alone does not establish identical internals. Peer ledger totals were
-inspected at the pinned commit; its corpus was not rebuilt in this session.
+genre alone does not establish identical internals.
+
+A fresh TH105 control applies the pointer-only approach to Youmu 0x543670: remove
+the local complete-owner storage declaration and replace 309 references to 23
+used fields with typed offset accesses, keeping virtual order, operations and
+all callees unchanged. Both complete 5492-byte objects normalize to the current
+`d00f4fc4` payload and retain the same 21 callable differences. The control does
+not justify replacing public source or solving original class identity first.
+See [the bounded result](YOUMU_ENTRY_PHYSICAL_TAIL_2026_10_23.md#th075-offset-view-control).
 
 For each trial, make one source-shape or compiler-context hypothesis, compile
 the complete affected function serially, then inspect canonical mismatch,

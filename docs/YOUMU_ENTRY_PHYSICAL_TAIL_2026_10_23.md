@@ -97,3 +97,33 @@ Recipes: `.analysis/youmu-entry-tail-20261023/`. Artifacts:
 Completed controls are archived with verified member hashes. Shared headers,
 profiles, helper implementations and relocation bindings remain unchanged;
 the unit/function notes now identify this selection. No aggregate cold replay.
+
+## TH075 offset-view control
+
+The read-only TH075 review is refreshed at commit
+`4aeea7acc76b1a7db67722aff88ce9d8f8293f5b`. Its latest auxiliary action uses
+a declaration-only receiver and typed offset fields while accepting the entire
+31777-byte payload. Peer source, configuration and evidence notes were read;
+its target corpus was not rebuilt and its dirty handoff was not changed.
+
+Private recipe `.analysis/th075-exact-first-review-20261023/probe.py` applies
+that concrete source property to this 5159-byte callable. It removes the local
+complete-owner field declarations and size/offset assertions, retaining all
+virtual declarations in their existing order and all actual operations. It
+replaces 309 references to 23 used fields with typed offset lvalues. The sprite
+subobject retains its existing independently typed view. This partial receiver
+is never constructed or embedded. No helper, flag, ABI promise or binding changes.
+
+Fresh serial baseline and control builds both have a complete COFF extent of
+5492 bytes and canonical SHA256 `d00f4fc4ceca80c8fc4510ff03dcf064e3188fa5dc33afc8e25815d880da413a`.
+Both strict comparisons fail at +0x74F with the same 21 callable byte differences,
+zero alignment differences and zero metadata differences. Control source SHA256
+is `0e2a3d153a6d67af1cb6966518301a04f00ef54b4004fb622992b5cc28f4e4b4`.
+This is a native code-generation negative for this source/compiler context;
+it does not establish original layout or rule out other source shapes.
+
+Receipts, source, objects, full canonical payloads and field map are retained in
+`build/th075-exact-first-review-20261023/`. The complete `report.json` SHA256 is
+`685baf4513eb54f02790fa78ff0a32953819ff3e9fff73e1ab7a37b7cd4a3c01`.
+The public source remains unchanged. No execution matrix is rerun for these
+byte-identical payloads, no new exact credit and no aggregate replay are claimed.
