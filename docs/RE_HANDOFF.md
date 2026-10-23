@@ -1,8 +1,9 @@
 # TH10.5 reconstruction handoff
 
-Reconstruction resumed 2026-10-23. Current game source selects the float lookup
-caller view after checkpoint `a04ba76`; 852's product operand-read and 826's
-owner-Y corrections remain selected. Previous cleanup checkpoint: `1865c6a`.
+Reconstruction resumed 2026-10-23. Current source selects a partial807/817 frame
+tail,817/822 angle captures and local double lookup views after `f15dccf`.
+852's product-read and826's owner-Y corrections remain selected.
+Previous cleanup checkpoint: `1865c6a`.
 Required commit format: `gpt-6.1-sol: ...`.
 
 Latest user priority: whole-function exact first, gameplay naming later.
@@ -56,53 +57,55 @@ accepted-unit replay; new aggregate claims require `verify-exact-units.py --all`
 
 Selected [source](../src/characters/AyaObjectActionState.cpp), unit
 `gpt-web-aya-object-vslot28-full-root`. Callable ledger size 19522;
-complete canonical payload 20120, metadata starts at 19652, full SHA256:
-`fad6fa5af2baa1d8b9013d3fe7279bcfea3f136474a0bb9f9a0a52ccd30caf2c`.
-Fresh restored comparison remains **nonexact +0x22**, target `0F` / source `8E`.
+complete canonical payload 20000, metadata starts at19532, full SHA256:
+`5f2966cb6b34c844d210ac54e52894b5d510c17362c3fe2424c1d2de6b89c4ec`.
+Fresh comparison remains **nonexact +0x22**, target `0F` / source `16`.
 No root exact credit. The adjacent metadata is not added to the callable boundary.
 
 Source SHA256:
-`da5c622d4808d6dd1516dee567923ede8f1a2c6c4ae0655730ba006505710f46`.
+`59bcfc3149acb4cfe422451e0198ae92c49639894e0812206a578924b6cec928`.
 The first mismatch is the initial JA displacement. The
 [evidence index](AYA_OBJECT_EVIDENCE.md) separates selected changes, scoped
 behavioral checks and rejected context controls, with source-epoch limits.
 
-Latest scope: `build/aya-852-sharing-context-20261023/`. Two root-local float
-lookup declarations change only sixteen ordinary bytes in four FLD/FADD pairs
-to target scale/rate read order. All 18,576 selected operand-read traces agree;
-861 retains 3,096 known alpha/position ordered-write differences. All other
-complete-payload bytes agree at A and S. See [the selected evidence](AYA_OBJECT_FLOAT_LOOKUP_SCALE_READS_2026_10_23.md).
+Latest scope: `build/aya-tail-callviews-20261023/`. The selected partial exit
+join removes120 payload bytes and one frame-helper site (13 to12; target11).
+Both local double lookup views restore the four scale read orders in this
+context. Used float angle snapshots retain target817/822 rotation before alpha.
+See [the selected evidence](AYA_OBJECT_PARTIAL_FRAME_TAIL_2026_10_23.md).
 
-The preceding 852 matrix's 9,728 actual-return inputs remain applicable because
-reachable 852 code is unchanged; it was not rerun. Its 4,558 outside-product
-graph pairs plus one qualified tail carrier were revalidated after fixing a
-fabricated JMP fallthrough in the normal-flow utility. Four new CFG tests pass.
+A complete source graph proof pairs4569 nodes, excluding no actions/windows.
+It checks one delayed MOV ECX,ESI across seven identical floating instructions
+and a contracted internal JMP, before the same normal thiscall. Target807 also
+loads the receiver at the common tail. All field/x87 observations are preserved
+under that contract; callback/unmasked-exception register observers are outside
+the proof. The807 native witness retains three reads. The preceding852 matrix
+(9,728 cases) and scale matrix (18,576 cases) were not rerun; their scoped observations transfer
+through this proof. The known861 alpha-before-X write-order issue remains.
 
-Current-source joint CIL replay equals native: seven switches, 362 HIGHLOW
-fields and 123 direct calls are closed. Seventeen of nineteen requested
-dependencies compare exact; restoring the already accepted 57-byte helper
-leaves only the two lookup providers nonexact. No DLL execution or original TU
-claim. The original global lookup return declaration remains unresolved.
-Earlier controls retain their own source epochs in the evidence index.
+Current joint CIL replay equals native: seven switches,362 HIGHLOW fields,
+122 calls,287 literal references and three game-data references. The consistent
+double-view provider context retains earlier16/19 results with input hashes
+rechecked: two lookups and its private oriented body remain nonexact. The public
+accepted float-view435160 unit remains57/57. No DLL execution, original TU or
+unique original lookup declaration claim. Earlier float-context17/19 results
+retain their own source epoch.
 
-Latest experiments: `build/aya-exact-first-source-20261023/`; public selection
-is unchanged. [Seventeen whole-root source controls](AYA_OBJECT_EXACT_FIRST_SOURCE_CONTROLS_2026_10_23.md)
-exclude the tested typed-offset/minimal-owner forms and forceinline member
-tail, all byte-neutral. Raw target shares one frame/sequence2 tail across
-801/807/811/817/822/854; baseline emits three sites. Explicit sharing can reduce
-payload to20000 bytes but either hoists MOV EDI,2 before dispatch or reverses
-all four recovered scale-read pairs. Neither smaller candidate is selected.
-Local fenv and the tested sum forms do not fix that reversal. An ordinary
-member helper retains five root calls in a genuine joint LTCG image and has
-no supported target binding. No new exact credit.
+Hard 826/861 sharing still loses807's second zero-sequence read on this epoch.
+Natural owner-Y captures preserve that read but move861 alpha after Y/scale-X;
+even19992-byte/+0x1C7 candidates are rejected. Fresh RTM controls also remain
+nonexact. The preceding offset/minimal-owner, forceinline, local-fenv and sum
+controls keep their specific limits in the evidence index. No new exact credit.
 
 Resume with one target-backed lead:
 
 - Reproduce the six-action physical tail sharing at target61A5DB while keeping
-  the original dispatcher and selected scale-read order. Compare the complete
-  root first; current explicit-label/break and ordinary-helper controls do not
-  establish the original source form. Preserve the selected source epoch when
-  interpreting any return-view or operand-order result.
+  the dispatcher and recovered read lifetimes. Source now has two sites for
+  that six-action tail instead of three; one extra physical call remains.
+  Preserve the selected source epoch when interpreting return-view effects.
+- Recover861's X/alpha/Y store order together with807's repeated read. Tested
+  hard joins fix861 but lose the read; natural Y captures keep the read but
+  put alpha too late. Do not select a candidate only for its shorter prefix.
 - Preserve 852's recovered live facing at the speed read. Target has two
   branch-local FILDs; current source hoists one before the branch. Tail EAX now
   agrees, but scratch remains ESP+0x18 rather than target +0x14.
@@ -164,9 +167,10 @@ Prior accepted font leaves are unchanged, not newly replayed here.
 [Artifact retention and recovery](ARTIFACTS.md) describes this cleanup and
 restoration. Latest inventory: `build/handoff-refresh-20261023/manifest.json`.
 Latest focused public build, unchanged-input identity and final gate receipts
-are `build/aya-exact-first-source-20261023/{baseline,final-state}.json` and
-`build/aya-exact-first-source-20261023/ci.log`. Selected native observations
-remain in `build/aya-852-sharing-context-20261023/scale-read-lifetimes.json`.
+are `build/aya-tail-callviews-20261023/{final-formal,final-identity,oriented-anchor}.json`
+and `build/aya-tail-callviews-20261023/ci.log`. Earlier native observations
+remain in `build/aya-852-sharing-context-20261023/scale-read-lifetimes.json`;
+their source-graph transfer has the limits described above.
 Root mismatch `+0x22` is
 expected; the scale-read matrix uses explicit diagnostic mode and keeps the
 3,096 known 861 write differences visible. Earlier 852 negative-control results

@@ -14,8 +14,8 @@ int __cdecl selector_random_roll(int limit);
 unsigned int __cdecl mt19937_next_u32(void);
 extern int g_match_identifier;
 float __cdecl lookup_orientation_sine(int angle);
-float __cdecl lookup_orientation_sine_quantized_abs(float phase);
-float __cdecl lookup_orientation_cosine_quantized_abs(float phase);
+double __cdecl lookup_orientation_sine_quantized_abs(float phase);
+double __cdecl lookup_orientation_cosine_quantized_abs(float phase);
 
 // Call view for 0x0064CCB0: it forwards ordinary four-byte x86 slots;
 // Aya manager 0x00618470 consumes facing and field_33c as low bytes.
@@ -345,13 +345,7 @@ void AyaObjectActionStateView::update_action_state()
         sprite_004.object_x_0e8 +=
             static_cast<float>(sprite_004.object_facing_100) * motion_core()->component_f0;
         sprite_004.object_y_0ec += motion_core()->component_f4;
-        if (advance_frame_and_dispatch())
-            --lifetime_330;
-        if (!time_counter_144 && !frame_timer_142 && !frame_index_140
-            && sequence_index_13e == 2) {
-            --lifetime_330;
-        }
-        return;
+        goto aya_sequence_two_frame_tail;
     }
 
     case 810: {
@@ -731,9 +725,9 @@ void AyaObjectActionStateView::update_action_state()
             }
             alpha = static_cast<unsigned char>(current_alpha - 15);
         } else if (sequence_index_13e == 2) {
+            float const prior_rotation = sprite_004.reset_zero_128;
             unsigned char const current_alpha = alpha;
-            sprite_004.reset_zero_128 = static_cast<float>(
-                sprite_004.reset_zero_128 + state_370);
+            sprite_004.reset_zero_128 = static_cast<float>(prior_rotation + state_370);
             state_370 = static_cast<float>(state_370 * 0.949999988079071);
             float const scale = static_cast<float>(
                 sprite_004.reset_one_118 + 0.1f);
@@ -745,6 +739,8 @@ void AyaObjectActionStateView::update_action_state()
             }
             alpha = static_cast<unsigned char>(current_alpha - 20);
         }
+    }
+aya_sequence_two_frame_tail:
         if (advance_frame_and_dispatch())
             --lifetime_330;
         if (!time_counter_144 && !frame_timer_142 && !frame_index_140
@@ -752,7 +748,6 @@ void AyaObjectActionStateView::update_action_state()
             --lifetime_330;
         }
         return;
-    }
 
     case 820: {
         if (phase_state_180 == 5) {
@@ -996,9 +991,9 @@ void AyaObjectActionStateView::update_action_state()
             }
             alpha = static_cast<unsigned char>(current_alpha - 15);
         } else if (sequence_index_13e == 2) {
+            float const prior_rotation = sprite_004.reset_zero_128;
             unsigned char const current_alpha = alpha;
-            sprite_004.reset_zero_128 = static_cast<float>(
-                sprite_004.reset_zero_128 + state_370);
+            sprite_004.reset_zero_128 = static_cast<float>(prior_rotation + state_370);
             state_370 = static_cast<float>(state_370 * 0.949999988079071);
             float const scale = static_cast<float>(
                 sprite_004.reset_one_118 + 0.1f);
