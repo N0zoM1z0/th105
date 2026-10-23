@@ -13,13 +13,23 @@ specific source epochs; current ledgers and freshly verified objects take priori
 
 Source: [AyaObjectActionState.cpp](../src/characters/AyaObjectActionState.cpp).
 Configured unit: `gpt-web-aya-object-vslot28-full-root`.
-Target callable ledger size19522; selected complete canonical payload20136,
-metadata start19668. Full canonical SHA256:
-`0e7ae68b65b6d31f195d4b8d82cf726847ae05c2f600faf1a276553d864613d4`.
+Target callable ledger size19522; selected complete canonical payload20132,
+metadata start19664. Full canonical SHA256:
+`17585ff8bc4fadd5f63619d3d52d470440955256a820ac76ca97daa7ee31f88f`.
 The configured19522-byte comparison remains **nonexact** at hex offset22,
-target0F/sourceA1. No Aya root exact credit has been added.
+target0F/source9B. No Aya root exact credit has been added.
 
-Latest [807 angle lifetime recovery](AYA_OBJECT_807_ANGLE_LIFETIME_2026_10_23.md):
+Latest [807/854 read lifetimes](AYA_OBJECT_807_854_READ_LIFETIMES_2026_10_23.md):
+807's post-spawn sequence snapshot now retains the live angle across alpha.
+All3968 cases match every recorded observation, eliminating2044 read differences.
+854 captures sequence and prior alpha before fading; all3840 cases agree,
+eliminating3232 sequence-read and1776 alpha-snapshot differences. Both use strict
+native mode without allow-read flags. Stepwise outside807/854 graphs preserve
+4464/4481 nodes with no carrier allowances. Full payload shrinks4 bytes;
+register choice, exclusive-branch optimization and frame-tail placement remain
+nonexact.801's affected-auditor replay still reports3012 known read differences.
+
+Prior [807 angle lifetime recovery](AYA_OBJECT_807_ANGLE_LIFETIME_2026_10_23.md):
 a used double angle now spans the alpha write and recovers the exact26-byte
 61A86D interval.3968 actual-code cases preserve effects and688 alpha-write x87
 snapshots; all688 predecessor snapshot differences disappear.2044 sequence-read
@@ -43,32 +53,13 @@ Frozen801 source predates this fix; rebase future controls instead of replacing
 current source wholesale.
 
 Prior [801 fade snapshot report](AYA_OBJECT_801_FADE_SNAPSHOTS_2026_10_22.md):
-
-- Source now snapshots alpha before both scale updates.3840 original-code cases
-  preserve final effects and match alpha-read live x87 snapshots, eliminating1680
-  predecessor alpha-read differences. Includes3732 actual returns,36 spawn-entry
-  prefixes and72 effect-entry prefixes; stopped helpers receive no fake return.
-- **3012 sequence-read differences remain.** The audit's default strict mode
-  rejects them. `--allow-sequence-read-differences` only scopes acceptance to
-  effects/alpha snapshots and reports the unresolved sequence reads.
-- Outside801,4491 strictly labelled normal-return graph nodes agree. Calls are
-  opaque normal returns, not callback/exception proof. The payload grew88 bytes;
-  layout growth is an unresolved matching cost, not exact progress.
-- The explicit sequence-snapshot control passes all3840 scoped801 cases including
-  sequence reads, but changes other actions' x87 scheduling and tail sharing.
-  It is **unselected**, not proven wrong. One861 operand-order change agrees with
-  target61C2DF; other changes include FILD/FMUL versus FLD/FILD/FMULP. Review
-  these against target before selecting it. Do not weaken the strict graph audit.
-- Color-member-byte and early-Boolean controls are byte-neutral to alpha-only.
-  Frozen source/receipts remain in `build/aya-801-fade-20261022/`; three completed
-  objects are in its SHA-verified `completed-controls.tar.gz` with `retention.json`.
-
-The [852 native control audit](AYA_OBJECT_852_NATIVE_CONTROL_2026_10_23.md)
-now verifies6528 actual returns for both selected code and the801 cached-sequence
-control, including6400 owner+6AC product-write x87 snapshots. No differences;
-non-spawning timers and masked x87 only. This closes one concrete concern, not
-whole-control acceptance.853/861 operand-order changes and854 branch/tail
-closure remain to inspect. A fresh build reproduces the selected20136-byte hash.
+3840 cases preserve effects and corrected alpha-read snapshots;3012 sequence-read
+differences remain explicit. Its old sequence-snapshot control was unselected
+because it changed other paths. The [852 control audit](AYA_OBJECT_852_NATIVE_CONTROL_2026_10_23.md)
+and scale audits bound some of those changes, not full-control acceptance.
+Rebase any future801 trial onto current source: the frozen control predates
+861's real counter fix and807's selected angle/sequence lifetimes. Color-byte
+and early-Boolean controls were byte-neutral within their older source epoch.
 
 Earlier selected corrections remain in source. Their old hashes are historical:
 
@@ -81,8 +72,8 @@ Earlier selected corrections remain in source. Their old hashes are historical:
 |903 shared fade value|[Double-product lifetime and3168 native cases](AYA_OBJECT_903_SHARED_FADE_2026_10_22.md)|
 |900/901/902 control flow|[Detailed checkpoints and limits](RE_HANDOFF_HISTORY_2026_10_22.md)|
 
-Next evidence leads:801 sequence caching and its effects outside801;807 alpha
-store timing/sequence snapshot/shared frame tail; remaining register, scratch
+Next evidence leads:801 sequence caching in the new independently proven
+807/854 lifetime context; common frame-tail ownership; register and scratch
 and shared-return placement. Do not infer an LTCG impossibility from failed
 local controls. Some old fixtures have placement assumptions; recheck them
 against the current object before treating a fixture failure as game behavior.

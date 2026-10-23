@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Execute Aya801 fades with original helpers and observe alpha-read x87 snapshots."""
+"""Execute Aya801/854 fades with original helpers and observe alpha-read x87 snapshots."""
 from pathlib import Path
 from collections import Counter
 import argparse
@@ -34,7 +34,7 @@ class Probe(gate.Probe):
             sp = uc.reg_read(base.r.UC_X86_REG_ESP)
             assert uc.reg_read(base.r.UC_X86_REG_ECX) == base.OWNER
             words = list(struct.unpack('<7I', uc.mem_read(sp + 4, 28)))
-            assert words[0] == 801 and words[4] == 1 and words[6] == 3
+            assert words[0] == self.action_id and words[4] == 1 and words[6] == 3
             payload = bytes(uc.mem_read(words[5], 12)).hex()
             words[5] = 'payload'
             self.spawn = dict(arguments=words, payload=payload)
@@ -54,6 +54,8 @@ class Probe(gate.Probe):
         seq, phase, owner_action, counter, time, alpha, sx, sy, timer, cw = case
         result = base.Probe.run(self, (seq, phase, 100, cw, 20.0))
         assert result['stop'] in ('ret', 'original_effect_entry', 'original_spawn_entry')
+        if self.action_id == 854:
+            assert 0x5575C0 not in result['calls'] and self.effect is None
         result['sequence_reads'] = self.sequence_reads
         result['effect_entry_arguments'] = self.effect
         result['spawn_entry'] = self.spawn
@@ -62,12 +64,15 @@ class Probe(gate.Probe):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--action', type=int, choices=(801, 854), default=801)
     parser.add_argument('--object', type=Path, default=ROOT / base.unit['object'])
     parser.add_argument('--previous-object', type=Path)
     parser.add_argument('--allow-sequence-read-differences', action='store_true',
                         help='Scope acceptance to effects and alpha-read snapshots; report unresolved sequence-read differences')
-    parser.add_argument('--output', type=Path, default=ROOT / 'build/aya801-fade.json')
+    parser.add_argument('--output', type=Path)
     args = parser.parse_args()
+    if args.output is None:
+        args.output = ROOT / f'build/aya{args.action}-fade.json'
     table, receipt = math.lookup_fixture(base.c)
     cws = (0x27F, 0x67F, 0xA7F, 0xE7F, 0x37F, 0x77F, 0xB7F, 0xF7F)
     cases = list(itertools.product(
@@ -79,6 +84,8 @@ def main():
         (0, 1), (20,), (0x3F800000,), (0x3F800001,), (0,), (0x27F, 0x37F)))
     objects = ([args.previous_object] if args.previous_object else []) + [args.object]
     probes = [Probe(table)] + [Probe(table, obj) for obj in objects]
+    for probe in probes:
+        probe.action_id = args.action
     stops, calls, selected, previous = Counter(), Counter(), Counter(), Counter()
     examples = []
     for case in cases:
@@ -92,7 +99,7 @@ def main():
             examples.append(dict(case=case, alpha_reads=[r['alpha_reads'] for r in results],
                                  sequence_reads=[r['sequence_reads'] for r in results]))
     helpers = {a: n for a, (n, _) in base.helpers.items()} | math.MATH | {0x5575C0: 200}
-    report = dict(target_sha256=base.c.verify_target(), cases=len(cases), target_stops=dict(stops),
+    report = dict(target_sha256=base.c.verify_target(), action=args.action, cases=len(cases), target_stops=dict(stops),
                   selected_differing_fields=dict(selected), previous_differing_fields=dict(previous),
                   sequence_reads_required=not args.allow_sequence_read_differences,
                   objects=[dict(path=str(p), sha256=base.lp.sha(p)) for p in objects],
@@ -100,8 +107,8 @@ def main():
                   lookup={k: v for k, v in receipt.items() if k != 'trace'},
                   original_helpers={hex(a): dict(size=n, sha256=hashlib.sha256(base.c.target_bytes(a,n)).hexdigest())
                                     for a,n in helpers.items() if hex(a) in calls},
-                  input_sha256=hashlib.sha256(json.dumps(cases).encode()).hexdigest(),
-                  scope='801 original gate/math/animation returns and effect/spawn entry prefixes; alpha-read live x87 snapshots and WORD13E read epochs; masked x87 only; no fabricated returns, full spawn/effect, arbitrary resource, callback, exception or whole-root proof')
+                  input_sha256=hashlib.sha256(json.dumps(dict(action=args.action, cases=cases)).encode()).hexdigest(),
+                  scope=f'{args.action} original math/animation returns and spawn entry prefixes; original gate/effect prefixes only for801; alpha-read live x87 snapshots and WORD13E read epochs; masked x87 only; no fabricated returns, full spawn/effect, arbitrary resource, callback, exception or whole-root proof')
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report, indent=2))

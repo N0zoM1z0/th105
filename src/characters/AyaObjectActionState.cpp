@@ -317,8 +317,9 @@ void AyaObjectActionStateView::update_action_state()
                         1, reinterpret_cast<int>(payload), 3);
             }
         }
+        short const sequence = sequence_index_13e;
         unsigned char &alpha = reinterpret_cast<unsigned char *>(this)[0x113];
-        if (sequence_index_13e == 1) {
+        if (sequence == 1) {
             if (alpha <= 15) {
                 --lifetime_330;
                 return;
@@ -331,13 +332,13 @@ void AyaObjectActionStateView::update_action_state()
             sprite_004.reset_one_11c = static_cast<float>(
                 sprite_004.reset_one_11c + 0.05000000074505806);
         }
-        if (sequence_index_13e == 0) {
+        if (sequence == 0) {
             motion_core()->component_f0 =
                 static_cast<float>(motion_core()->component_f0 - 0.6000000238418579);
             sprite_004.reset_zero_128 =
                 static_cast<float>(sprite_004.reset_zero_128 + 40.0);
         }
-        if (sequence_index_13e == 2) {
+        if (sequence == 2) {
             motion_core()->component_f0 =
                 static_cast<float>(motion_core()->component_f0 * 0.8999999761581421);
         }
@@ -1447,18 +1448,20 @@ void AyaObjectActionStateView::update_action_state()
                 static_cast<float>(sprite_004.object_facing_100) * motion_core()->component_f0;
             sprite_004.object_y_0ec += motion_core()->component_f4;
         }
-        if (sequence_index_13e == 1) {
+        short const sequence = sequence_index_13e;
+        if (sequence == 1) {
+            unsigned char const prior_alpha = alpha;
             sprite_004.reset_one_118 = static_cast<float>(
                 sprite_004.reset_one_118 + 0.1f);
             sprite_004.reset_one_11c = static_cast<float>(
                 sprite_004.reset_one_11c + 0.1f);
-            if (alpha < 5) {
+            if (prior_alpha < 5) {
                 --lifetime_330;
                 return;
             }
-            alpha -= 5;
+            alpha = prior_alpha - 5;
         }
-        if (sequence_index_13e == 2) {
+        if (sequence == 2) {
             if (alpha < 20) {
                 --lifetime_330;
                 return;
