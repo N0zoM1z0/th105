@@ -5,12 +5,38 @@ under `.analysis/`. Neither is included in a fresh clone. Start from the
 [current handoff](RE_HANDOFF.md) and live ledgers: old reports retain their
 source/object/tool epoch and cannot substitute for a fresh comparison.
 
-## October 23 handoff cleanup
+## Latest handoff refresh
+
+The [live handoff](RE_HANDOFF.md) now distinguishes current selection from
+completed experiments. [AyaObject evidence](AYA_OBJECT_EVIDENCE.md) collects
+the dated results; the completed [size-profile controls](AYA_OBJECT_SIZE_PROFILES_2026_10_23.md)
+remain unselected. No game source, ABI, compiler profile or acceptance ledger
+changes accompany this refresh.
+
+Private cleanup inventory and recipe:
+`build/handoff-refresh-20261023/manifest.json` and
+`.analysis/handoff-refresh-20261023/cleanup.py`. Historical diagnostic logs and
+assembly listings are gzip-compressed only after a verified lossless readback.
+Frozen source/objects, link maps, formal receipts, current scopes, compiler
+installs, target, databases and all six dirty worktrees remain directly available.
+Git objects are repacked with pruning and reflog expiration disabled; all
+preexisting object IDs, refs and worktree states are checked afterward.
+
+322 historical exports shrink from 5,770,730 to 954,388 bytes, saving
+4,816,342 bytes before cleanup metadata. Git's allocated directory shrinks
+from roughly 113 MiB to 12 MiB; all 15,191 objects remain present. Its former
+100.44 MiB of loose objects is packed, with total packs growing only from
+9.32 to 9.89 MiB. These Git figures are rounded, not an exact combined byte total.
+The manifest references `protected-inputs.json.gz`, a verified shared snapshot
+of 41,017 hashes. Source-backed Python bytecode caches were also removed;
+repeated receipt inventories share that snapshot to avoid new duplication.
+
+## Earlier October 23 handoff cleanup
 
 The live handoff now lists selected source, current hashes, open questions and
 resume commands. The [preceding handoff](RE_HANDOFF_HISTORY_2026_10_23.md) and
 [preceding artifact notes](ARTIFACTS_HISTORY_2026_10_23.md) retain earlier detail.
-The latest Aya owner-context experiment is recorded in a
+The earlier Aya owner-context experiment is recorded in a
 [dated evidence report](AYA_OBJECT_RUNTIME_CONTEXT_2026_10_23.md); all four
 controls are byte-neutral and selected game source is restored. No source,
 ABI, compiler profile or acceptance-ledger change accompanies cleanup.

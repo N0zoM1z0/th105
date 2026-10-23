@@ -1,7 +1,13 @@
 # ReimuObject evidence index
 
-Start with [the current handoff](RE_HANDOFF.md). The selected496540 source
-is the [811 coordinate-argument checkpoint](REIMU_OBJECT_811_COORDINATE_ARGUMENTS_2026_10_21.md):
+The current selection is the [October 22 owner model](REIMU_OBJECT_OWNER_VIEW_SELECTED_2026_10_22.md):
+whole canonical payload 45,696 bytes / SHA256 `4b565d71...`, still nonexact at
+`+0x1F`; same-TU counter `0x4963A0` remains 66/66 exact. The narrative below
+preserves earlier source epochs. Use the [live handoff](RE_HANDOFF.md) for
+current pins and next steps.
+
+The earlier [811 coordinate-argument checkpoint](REIMU_OBJECT_811_COORDINATE_ARGUMENTS_2026_10_21.md)
+selected the preceding496540 source:
 CPP3b9e4896, whole45700-byte canonicald0ff3d32.640 initialized-lookup/original-
 RNG prefixes pass; predecessor fails640 facing/pending cases despite equal
 outputs. Its161-byte request window agrees after known CALL replay, diagnostic
@@ -72,7 +78,7 @@ or equal finite outputs do not establish whole-root semantics or exactness.
 Negative controls exclude their tested shapes, not every possible source
 or compiler context. Later evidence may supersede an earlier stop condition.
 
-## Selected checkpoint and immediate predecessors
+## Earlier selected checkpoints and controls
 
 | Record | Scope and status |
 | --- | --- |

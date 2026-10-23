@@ -1,12 +1,15 @@
 # TH10.5 reconstruction handoff
 
-Resumed 2026-10-23 at the user's request. Reconstruction is active, with serial
-low-resource builds and focused affected-scope verification. Latest game
-source checkpoint: `e24fb73`; cleanup checkpoint: `730d942`. Latest 861 sharing
-controls are unselected; action826's owner-Y correction remains in source.
-Required commit format: `gpt-6.1-sol: ...`.
-The [preceding session narrative](RE_HANDOFF_HISTORY_2026_10_23.md) preserves
-older controls and references. Current ledgers and fresh objects override history.
+Prepared for handoff on 2026-10-23. No reconstruction trial or VC8 build is
+in flight. Latest game-source checkpoint: `e24fb73`; latest evidence checkpoint:
+`b11c6e3`. Action 826's owner-Y correction remains selected; subsequent sharing,
+compiler and CIL controls are unselected. Required commit format:
+`gpt-6-astra-medium: xxx ~`.
+
+Use this page for current selection and next steps, the
+[AyaObject evidence index](AYA_OBJECT_EVIDENCE.md) for scoped results, and the
+[preceding session narrative](RE_HANDOFF_HISTORY_2026_10_23.md) for older history.
+Current ledgers and fresh objects override dated prose.
 
 ## Start here
 
@@ -52,46 +55,33 @@ complete canonical payload 20132, metadata starts at 19664, full SHA256:
 Fresh restored comparison remains **nonexact +0x22**, target `0F` / source `9B`.
 No root exact credit. The adjacent metadata is not added to the callable boundary.
 
-| Current evidence | Result and practical limit |
-| --- | --- |
-| [826 owner-Y lifetime](AYA_OBJECT_826_OWNER_Y_LIFETIME_2026_10_23.md) | Captured double Y spans alpha; target37-byte interval restored.2584 strict native cases agree, eliminating2584 prior ordered-write/position-snapshot differences. Only13 bytes change inside19 bytes;4438 outside826 graph nodes agree. |
-| [861 shared-tail controls](AYA_OBJECT_861_SHARED_TAIL_CONTROLS_2026_10_23.md) | Target861 joins826's phase/fade blocks. Shared-source candidates pass5168 position and3072 phase cases, but lose807's second zero-sequence read in2456 cases. All unselected. Interval audits now require actual per-action hits. |
-| [852 RTM/fenv controls](AYA_OBJECT_852_RTM_AND_FENV_CONTROLS_2026_10_23.md) | RTM preserves SP1's unresolved conversion shapes. Both RTM objects pass 6528 scoped native cases; the profile changes other-action instructions. Local fenv keeps FIMUL and adds a double roundtrip; explicit if/else is byte-neutral to the int control. All unselected. |
-| [903 paths/frame transitions](AYA_OBJECT_903_PATHS_AND_FRAME_TRANSITIONS_2026_10_23.md) | 13596 paired cases cover all ten sequences, real frame/next-block calls and twelve masked control words, including PC24. Effects and alpha/gate/timer read epochs agree. Old fade object is rejected despite equal effects; ordinary color helper is byte-neutral and unselected. |
-| [Joint CIL replay](AYA_OBJECT_JOINT_CIL_REPLAY_2026_10_23.md) | Current update/init owner model links with twelve real native source providers. Full update replay consumes 362 HIGHLOW fields and seven switches, including six dense tables. Current and shared-control CIL payloads equal their native counterparts; shared807 still reads twice versus target three. Not an all-exact helper closure or DLL execution claim. |
-| [807/854 read lifetimes](AYA_OBJECT_807_854_READ_LIFETIMES_2026_10_23.md) | 3968/3840 actual-code cases agree in strict mode; outside-action graphs preserve 4464/4481 nodes. |
-| [807 angle lifetime](AYA_OBJECT_807_ANGLE_LIFETIME_2026_10_23.md) | Exact local 26-byte interval and live angle across alpha; historical sequence-read deficit is superseded by the row above. |
-| [861 phase scope](AYA_OBJECT_861_PHASE_SCOPE_2026_10_23.md) | Phase/count advance only in initial sequence 0; 2304 predecessor state differences eliminated. Existing 768 alpha/X write-order differences remain explicit. |
-| [801 fade snapshots](AYA_OBJECT_801_FADE_SNAPSHOTS_2026_10_22.md) | Alpha snapshot corrected; affected replay still has 3012 sequence-read differences. |
-| [801/852 controls](AYA_OBJECT_801_CONTEXT_852_FACING_CONTROLS_2026_10_23.md) | Caching remains unselected. Latest826 report closes scoped817/822 sharing and820/826 execution gaps, but finds807's recovered26-byte interval is lost. The retry after826's fix still loses it.852 promotion/conversion placement remains open. |
-| [Runtime owner context](AYA_OBJECT_RUNTIME_CONTEXT_2026_10_23.md) | Four layered/direct/typed/virtual controls were byte-neutral before826's correction; frozen payloads have the older17585ff8 hash. RTTI/allocation facts remain reproducible; nominal types and lifecycle remain open. |
+Source SHA256:
+`4272f7f5d30499822931f9a70f7b52e179e6d99732e7d21962f58a6cfdef0472`.
+The first mismatch is the initial JA displacement. The
+[evidence index](AYA_OBJECT_EVIDENCE.md) separates selected changes, scoped
+behavioral checks and rejected context controls, with source-epoch limits.
 
-Latest scope: `build/aya-joint-cil-20261023/`; preceding runtime scope:
-`build/aya-903-read-epochs-20261023/`; preceding compiler controls:
-`build/aya-852-rtm-20261023/`; preceding shared-tail controls:
-`build/aya-861-owner-y-20261023/`. The preceding 801 impact scope
-is `build/aya-801-impact-20261023/`. Earlier owner-context scope's
-accepted pool replay is 15/15 exact, including Aya acquire `0x617DF0` (519 bytes).
-Earlier selected 804/810 sequence, 821 counter and 903 fade corrections remain
-in source; links and epoch-specific hashes are in the historical handoff.
+Latest completed scope: `build/aya-size-profile-20261023/`. Both `/O2 /Os` and
+`/O1` give the same 18,180-byte canonical payload, but lose the target entry's
+8-byte stack alignment and first differ at `+0x4`. They remain unselected.
+The preceding `build/aya-joint-cil-20261023/` closes caller address replay:
+current selected and shared CIL payloads equal their native counterparts.
+The older eight-byte CIL difference is historical, not a current blocker.
 
-Next leads: supported visibility/lifetime/ownership context for 852's early
-promotion and branch-local conversion placement. Native RTM, local fenv access
-and explicit if/else did not recover that shape in the tested context.
-Preserve 807's second zero-sequence read
-before selecting 861/826 shared source. `/Ob1` and tiny getters are byte-neutral
-in the tested shared-phase context. Native RTM's payload is 4 bytes longer and
-keeps the read deficit. Other leads are 807's facing-capture/scratch scheduling
-before selecting 801 caching, common frame tails, register and scratch placement.
-903 now has a broader non-spawning behavioral check, including frame dispatch;
-its shared fade/color/retirement placement still needs distinct context evidence.
-The current two-body CIL/native-provider context is byte-neutral after complete
-caller replay; the old eight-byte CIL result belongs to the earlier source epoch.
-Failed local controls do not prove an LTCG
-impossibility. Rebase trials onto current source rather than frozen predecessors.
-Native fixtures have scoped limits; inspect their placement assumptions and
-Python callback exception guards before reuse. Private flow-alignment diagnostics
-are incomplete and are not acceptance evidence.
+Resume with one target-backed lead:
+
+- Recover visibility/lifetime context for 852's early promotion and branch-local
+  conversions. Tested RTM, local fenv and explicit if/else did not recover it.
+- Preserve 807's second zero-sequence read before selecting shared 826/861 tails
+  or 801 caching. Existing candidates fail that observation.
+- Investigate common frame tails and scratch placement with evidence beyond
+  local size or equal final outputs. 903's 13,596-case check covers non-spawning
+  paths and read epochs; it does not establish complete root equivalence.
+
+Rebase trials onto current source. Negative results apply to their tested
+context, not every possible LTCG partition. Private flow-alignment diagnostics
+are incomplete and are not acceptance evidence. Native fixtures have scoped
+limits; inspect placement assumptions and callback exception guards before reuse.
 
 ```sh
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-aya-object-vslot28-full-root --compare --json
@@ -135,10 +125,12 @@ Prior accepted font leaves are unchanged, not newly replayed here.
 ## Artifacts and final gate
 
 [Artifact retention and recovery](ARTIFACTS.md) describes this cleanup and
-restoration. Private inventory: `build/handoff-cleanup-20261023/manifest.json`.
+restoration. Latest inventory: `build/handoff-refresh-20261023/manifest.json`.
+The same scope's `aya-final-comparison.json` records the fresh focused build;
+`ci.log` records the final local gate. Root mismatch `+0x22` is expected.
 Historical reports may end in `.gz`; restore with `gzip -dk PATH.gz` before
-using old recipes. Latest owner-context objects/receipts and affected accepted
-pool receipt remain directly available. Six dirty detached worktrees are retained.
+using old recipes. Current objects, frozen controls, receipts and provider inputs remain directly
+available. Six dirty detached worktrees are retained.
 
 After the final tracked edit, before every commit/push/PR:
 

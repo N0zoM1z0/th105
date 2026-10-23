@@ -67,6 +67,7 @@ python3 scripts/validate-tracking.py --require-target
 ## Documentation
 
 - [Current handoff](docs/RE_HANDOFF.md)
+- [AyaObject evidence and selected checkpoint](docs/AYA_OBJECT_EVIDENCE.md)
 - [ReimuObject evidence and historical checkpoints](docs/REIMU_OBJECT_EVIDENCE.md)
 - [Private artifacts and recovery](docs/ARTIFACTS.md)
 - [Architecture and TH08/TH105 differences](docs/ARCHITECTURE.md)
