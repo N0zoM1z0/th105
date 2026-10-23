@@ -21,6 +21,12 @@ it is a bounded negative, with no public source or exact-ledger change.
 Further conversion/receiver/forwarding and numeric-case-order controls keep
 the same complete payload. A real member-pointer CIL link retains an extra
 generated thunk and is rejected; see the [dispatch controls](YOUMU_ENTRY_PHYSICAL_TAIL_2026_10_23.md#dispatch-source-controls).
+On October 24, sequence selector `0x45C390` now uses real checked `std::map::find`;
+all 10 functions in its accepted native object and the separate short ABI
+witness replay exact. Its emitted 105-byte find equals the existing excluded
+compiler island `0x45C320`. Same-class short/int selector CIL visibility still keeps
+Youmu's 21 differences; full map CIL changes selector frame/private-call shape
+and is rejected. See the [visibility result](YOUMU_ENTRY_PHYSICAL_TAIL_2026_10_23.md#selector-visibility-and-native-map-implementation-2026-10-24).
 Do not spend another large matrix on an uncertainty that a strict build can
 resolve. Preserve necessary ABI, storage widths, control flow and side effects.
 

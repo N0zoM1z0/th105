@@ -9210,7 +9210,9 @@ symbol_base = "previous_sequence_block"
 address = "0x0045C390"
 symbol_base = "select_sequence"
 rel32_targets = [
+  # Retain the independent short-parameter ABI witness binding.
   "?lower_bound@AnimationSequenceTree@th105@@QAEPAUAnimationSequenceTreeIterator@2@PAU32@PBH@Z=0x0045C320",
+  "?find@?$_Tree@V?$_Tmap_traits@HPAUAnimationSequenceBlock@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUAnimationSequenceBlock@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
   "__invalid_parameter_noinfo=0x0068A143",
 ]
 

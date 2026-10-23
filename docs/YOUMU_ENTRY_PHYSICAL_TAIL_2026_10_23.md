@@ -167,3 +167,61 @@ its real link receipt SHA256 is
 Completed equivalent controls are hash-verified before compression; `retention.json`
 lists their members and the active external native inputs, which must remain.
 The five remaining call/register regions are still open.
+
+## Selector visibility and native map implementation, 2026-10-24
+
+The selected Youmu root remains source `66d01e60` / full payload `d00f4fc4`,
+with 21 differences. A same-class short selector definition independently matches
+the complete 202-byte `0x45C390`, as does the existing int facade. Both can be real
+exports in one `/GL` input linked with the same 23 native providers, without a
+constructed receiver, fabricated vtable or invented caller. Each selector still
+matches 202/202 after complete link replay of its three actual REL32 fields.
+The root's full 229-field/149-HIGHLOW replay is unchanged. These tested callee
+visibility contexts do not improve the five remaining root regions.
+
+The first link exposed a genuine missing dependency under the old `lower_bound`
+caller-view spelling. Its actual provider was already present: checked VC8
+`std::map::find` in `CharacterObjectSecondaryAnimation.obj`, independently
+105/105 exact against `0x45C320`. A real symbol alias resolves that source body; no
+executable ABS address or stub is used. Raw target traversal closes all 39
+instructions/105 bytes and returns with RET8. The existing compiler exclusion
+and unknown original template identity remain unchanged.
+
+The public improvement is in
+[AnimationSequenceVirtuals.cpp](../src/characters/AnimationSequenceVirtuals.cpp):
+`0x45C390` now obtains the sequence block through a real checked
+`std::map<int, AnimationSequenceBlock *>::find(key)->second`. Its native caller
+remains 202/202, and its emitted template helper independently matches 105/105
+without relocations. The complete affected object replays all 10 accepted
+functions exact. The independent short-parameter probe also remains 202/202;
+its existing caller-view binding is retained alongside the real template
+binding. Shared headers, vtable declarations and compiler flags are unchanged.
+No duplicate selector or compiler-helper credit is added. Public source SHA256:
+`f100f7b85f9a40a66f2f6232999ebf5898de20451410a3b11e4509b4aa1a0680`.
+
+A further genuine CIL input includes both real map-based selector bodies and
+the actual template definition. The root again replays to the same 5492 bytes
+and 21 differences. The selector guard rejects this CIL result before canonical
+normalization: its prologue now aligns ESP to 8, and its actual helper call
+prepares tree/key/result pointers in ESI/EBX/EAX. No private convention is
+declared to force a target match. The 202-byte diagnostic prefix is not accepted
+as the linked function's extent, and no linked selector exactness or original
+partition conclusion follows. Native accepted builds retain their full proofs.
+
+Reproduce the public object with:
+
+```sh
+python3 scripts/build.py --unit cross-v106a-animation-sequence-virtuals --compare --json
+python3 scripts/compare-function.py 0x0045C320 build/match-units/CrossV106a_AnimationSequenceVirtuals.obj --symbol-base '?find@?$_Tree@V?$_Tmap_traits@HPAUAnimationSequenceBlock@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUAnimationSequenceBlock@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z' --json
+```
+
+Recipes: `.analysis/youmu-selector-visibility-20261023/`. Artifacts:
+`build/youmu-selector-visibility-20261023/`; start with `public-selector-final.json`,
+`public-find-compare.json`, `public-word-witness.json`, `find-facts.json`,
+`selector-audits.json` and each of `link/`, `dual-link/`, `map-link/`.
+The last contains the full qualified root replay and the retained rejecting
+`selector-rejection.json`. No DLL execution or new runtime-matrix claim.
+Completed earlier link contexts are hash-verified and compressed; restore their
+sources/objects/images from `completed-visibility-controls.tar.gz` as listed in
+`retention.json`. The actual map context and all 23 external native inputs remain.
+Exact ledgers are unchanged; no aggregate cold replay is claimed.
