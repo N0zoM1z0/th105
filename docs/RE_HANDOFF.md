@@ -3,7 +3,8 @@
 Reconstruction resumed 2026-10-23. Current source selects a partial807/817 frame
 tail,817/822 angle captures and local double lookup views at `4adc63c`.
 852's product-read and826's owner-Y corrections remain selected.
-The latest bounded initializer refresh changes no source or exact ledger.
+The latest Reimu checkpoint aligns the local owner selector to a signed word;
+large-root payloads and exact ledgers remain unchanged.
 Previous cleanup checkpoint: `1865c6a`.
 Required commit format: `gpt-6.1-sol: ...`.
 
@@ -146,6 +147,14 @@ ReimuObject `0x496540` remains nonexact +0x1F (`0x49655F`). Selected
 same-TU counter `0x4963A0` is 66/66 exact. See the
 [evidence index](REIMU_OBJECT_EVIDENCE.md) and
 [selected owner model](REIMU_OBJECT_OWNER_VIEW_SELECTED_2026_10_22.md).
+The [word-selector/joint-context refresh](REIMU_OBJECT_WORD_OWNER_JOINT_CONTEXT_2026_10_23.md)
+selects short in both local owner declarations, preserving all native bytes.
+Header SHA256 is `a8603fd542e9c19dcfef3009e50283b3aef42acde72768ae1a735192b01911fa`.
+One consistent update/init TU reproduces both native payloads. Genuine joint
+LTCG with20 real providers still leaves initializer4A1CE0's14 differences;
+all247 fields/181 HIGHLOW entries close and metadata stays equal. Its fresh
+596370 provider is323/323. Linked update differs at entry; no complete linked
+update comparison is claimed. Original partition and906/999 allocation stay open.
 Physical call/RET sharing remains open. Aya initializer `0x61F0B0` retains two
 register-byte differences, +BF7/+BFF, in its4531-byte callable/4859-byte envelope.
 The [fresh source and /Zi controls](AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md#exact-first-refresh-2026-10-23)

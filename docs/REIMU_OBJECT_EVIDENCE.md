@@ -6,6 +6,14 @@ whole canonical payload 45,696 bytes / SHA256 `4b565d71...`, still nonexact at
 preserves earlier source epochs. Use the [live handoff](RE_HANDOFF.md) for
 current pins and next steps.
 
+The [October23 word-selector refresh](REIMU_OBJECT_WORD_OWNER_JOINT_CONTEXT_2026_10_23.md)
+aligns both local owner declarations to short, preserving the complete update
+payload and counter66. A consistent joint update/init native TU reproduces
+both existing payloads; its genuine20-provider LTCG context fully replays
+initializer4A1CE0's247 fields and retains the same14 differences. Linked update
+still differs at entry. A real /Zi build is also byte-neutral. No new exact
+credit or original partition claim follows.
+
 The earlier [811 coordinate-argument checkpoint](REIMU_OBJECT_811_COORDINATE_ARGUMENTS_2026_10_21.md)
 selected the preceding496540 source:
 CPP3b9e4896, whole45700-byte canonicald0ff3d32.640 initialized-lookup/original-

@@ -45,7 +45,8 @@ public:
     virtual ~AnimationObjectView() throw();
     virtual void set_action_sequence(short action, int sequence);
     virtual void set_action(short action);
-    virtual void select_sequence(int sequence) = 0;
+    // Word-facing view supported by 4A1CE0 and the 45C390 consumer witness.
+    virtual void select_sequence(short sequence) = 0;
     virtual void reset_sequence() = 0;
     virtual unsigned char next_sequence_block() = 0;
     virtual void previous_sequence_block() = 0;
@@ -65,7 +66,7 @@ public:
     virtual ~AttackObjectView() throw();
     virtual void set_action_sequence(short action, int sequence);
     virtual void set_action(short action);
-    virtual void select_sequence(int sequence);
+    virtual void select_sequence(short sequence);
     virtual void reset_sequence();
     virtual unsigned char next_sequence_block();
     virtual void previous_sequence_block();

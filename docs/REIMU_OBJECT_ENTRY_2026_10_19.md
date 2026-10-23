@@ -1,5 +1,11 @@
 # ReimuObject entry initializer, 2026-10-19
 
+The [October23 word-owner and joint-context refresh](REIMU_OBJECT_WORD_OWNER_JOINT_CONTEXT_2026_10_23.md)
+selects a consistent update-owner word declaration and replays this complete
+initializer in a genuine joint LTCG context. Its source and14-byte residual
+remain unchanged; the earlier independent initializer-only link below retains
+its own provider/source epoch.
+
 ## Target observations and boundary
 
 The original Japanese TH10.5 v1.06a executable SHA256 is

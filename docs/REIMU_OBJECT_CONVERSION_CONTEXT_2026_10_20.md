@@ -76,6 +76,11 @@ mismatch"; its code-generation effect is unknown. It is not evidence against
 an original debug-information setting. These two attempts are distinguished
 from the nineteen fully replayed controls above.
 
+The later [October23 refresh](REIMU_OBJECT_WORD_OWNER_JOINT_CONTEXT_2026_10_23.md)
+resolves the PDB tooling issue and obtains a real object/PDB. Its complete
+65298d36 payload is unchanged; the failed historical /Zi attempt above is not
+retroactively counted as a successful control.
+
 ## Conversion entries are distinct, not interchangeable aliases
 
 The pinned SP1 `libcmt.lib` has SHA256
