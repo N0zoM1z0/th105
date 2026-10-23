@@ -1,5 +1,10 @@
 # YoumuObject851 load order and native selector execution
 
+The [October23 physical-tail recovery](YOUMU_ENTRY_PHYSICAL_TAIL_2026_10_23.md)
+is the current selection: all target copies and metadata agree,21 callable
+bytes remain, and the public592-case audit passes. This page retains the
+earlier851 correction and its counterexample, with their original source pins.
+
 The subsequent [auxiliary-sprite checkpoint](ANIMATION_AUXILIARY_SPRITE_2026_10_19.md)
 shares the recovered auxiliary layout/provider and changes root source SHA to
 7b0dac5f. Its complete canonical payload594a91c1, owner diagnostics and592-case

@@ -3,8 +3,10 @@
 Reconstruction resumed 2026-10-23. Current source selects a partial807/817 frame
 tail,817/822 angle captures and local double lookup views at `4adc63c`.
 852's product-read and826's owner-Y corrections remain selected.
-The latest Reimu checkpoint aligns the local owner selector to a signed word;
-large-root payloads and exact ledgers remain unchanged.
+The latest Youmu initializer checkpoint restores its physical tail copies and
+all metadata;21 callable register/preparation bytes remain. Reimu's local owner
+selector retains the signed-word correction. Exact ledgers are unchanged.
+Current bounded continuation: Youmu543670's five remaining call/register regions.
 Previous cleanup checkpoint: `1865c6a`.
 Required commit format: `gpt-6.1-sol: ...`.
 
@@ -162,8 +164,22 @@ leave selected source5ca0fb42 and canonical6f70b6f3 unchanged. `/Zi` now genuine
 compiles after private PDB/NTLM setup; it does not fix the register choice.
 Typed payload APIs, full856 inlining and real lifetime controls were also
 unsuccessful. Do not repeat them or count register-equivalent code as exact.
+Youmu initializer `0x543670` now has a complete5159-byte callable with1294
+instructions,78 calls/21 conversions and23 RETs; its natural NOP and all332
+metadata bytes agree. Full5492-byte canonical SHA256 is
+`d00f4fc4ceca80c8fc4510ff03dcf064e3188fa5dc33afc8e25815d880da413a`;
+source SHA256 `66d01e60ca540b11515ebe4a58dc87f913ab340dd4845bcb1e992d9000c9be2d`.
+It remains nonexact with21 body bytes, first+0x74F/543DBF, across850/851/848/855/856.
+Captured821 parameters and explicit812/854 entries restore the848 handoff;
+850 uses the same verified int facade as851. Public592-case actual-return
+audit passes, including851's four ABI stress inputs. Genuine23-provider
+LTCG fully replays229 fields/149 HIGHLOW and equals the native result.
+See [the selected evidence](YOUMU_ENTRY_PHYSICAL_TAIL_2026_10_23.md).
+Remaining work is call preparation and register allocation; keep the recovered
+copy count, read order and metadata. Earlier owner scores are diagnostics only.
+
 Other pending roots: Reimu Fighter `0x478FA0`,
-initializer `0x4A1CE0`, YoumuObject `0x543670`, CGage `0x41B3F0`,
+initializer `0x4A1CE0`, CGage `0x41B3F0`,
 loader `0x40B000`, renderer `0x415050`.
 
 Font entry points: [owner](../src/assets/TextFontOwner.cpp),

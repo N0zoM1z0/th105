@@ -151,6 +151,8 @@ void YoumuObjectActionEntryView::initialize_action_entry()
     state_36a = 0;
     state_36c = 0;
 
+    //821 enters848 after its pointer load;812/854 enter before it.
+    float *sequence_parameters;
     switch (action_id_13c) {
     case 800: {
         phase_index_184 = 1;
@@ -216,8 +218,7 @@ void YoumuObjectActionEntryView::initialize_action_entry()
         return;
     case 812:
         state_17c = 2;
-        select_sequence(static_cast<int>(heading_340[2]));
-        return;
+        goto action848_load;
 
     case 813:
         sprite_004.reset_zero_128 = heading_340[0];
@@ -283,7 +284,8 @@ void YoumuObjectActionEntryView::initialize_action_entry()
         // The target enters action 850 after its two scale stores.
         goto action850_angle_and_select;
     case 821:
-        sprite_004.reset_zero_128 = heading_340[0];
+        sequence_parameters = heading_340;
+        sprite_004.reset_zero_128 = sequence_parameters[0];
         goto action848_select;
 
     case 823: {
@@ -321,7 +323,9 @@ void YoumuObjectActionEntryView::initialize_action_entry()
         sprite_004.reset_one_11c = 2.0f;
 action850_angle_and_select:
         sprite_004.reset_zero_128 = heading_340[0];
-        select_sequence(static_cast<int>(heading_340[2]));
+        // Same verified slot45C390 as851, through the existing int view.
+        reinterpret_cast<AnimationSequenceObjectView *>(this)->select_sequence(
+            static_cast<int>(heading_340[2]));
         return;
 
     case 851: {
@@ -356,12 +360,13 @@ action850_angle_and_select:
 
     case 854:
         state_344 = 1;
-        select_sequence(static_cast<int>(heading_340[2]));
-        return;
+        goto action848_load;
 
     case 848:
+action848_load:
+        sequence_parameters = heading_340;
 action848_select:
-        select_sequence(static_cast<int>(heading_340[2]));
+        select_sequence(static_cast<int>(sequence_parameters[2]));
         return;
 
 

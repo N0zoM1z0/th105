@@ -1,5 +1,9 @@
 # YoumuObject entry sequence-word and phase order, 2026-10-19
 
+The [October23 physical-tail recovery](YOUMU_ENTRY_PHYSICAL_TAIL_2026_10_23.md)
+supersedes the copy/metadata deficit below. This page retains the earlier word
+interface experiments and their original source epochs.
+
 The5159-byte initializer at543670 now uses a short sequence parameter in its
 local virtual interface and computes action902's decay before its phase
 assignment. Instruction/edge-identical owner diagnostics improve6/30->23/30.
