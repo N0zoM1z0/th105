@@ -85,8 +85,24 @@ leaves only the two lookup providers nonexact. No DLL execution or original TU
 claim. The original global lookup return declaration remains unresolved.
 Earlier controls retain their own source epochs in the evidence index.
 
+Latest experiments: `build/aya-exact-first-source-20261023/`; public selection
+is unchanged. [Seventeen whole-root source controls](AYA_OBJECT_EXACT_FIRST_SOURCE_CONTROLS_2026_10_23.md)
+exclude the tested typed-offset/minimal-owner forms and forceinline member
+tail, all byte-neutral. Raw target shares one frame/sequence2 tail across
+801/807/811/817/822/854; baseline emits three sites. Explicit sharing can reduce
+payload to20000 bytes but either hoists MOV EDI,2 before dispatch or reverses
+all four recovered scale-read pairs. Neither smaller candidate is selected.
+Local fenv and the tested sum forms do not fix that reversal. An ordinary
+member helper retains five root calls in a genuine joint LTCG image and has
+no supported target binding. No new exact credit.
+
 Resume with one target-backed lead:
 
+- Reproduce the six-action physical tail sharing at target61A5DB while keeping
+  the original dispatcher and selected scale-read order. Compare the complete
+  root first; current explicit-label/break and ordinary-helper controls do not
+  establish the original source form. Preserve the selected source epoch when
+  interpreting any return-view or operand-order result.
 - Preserve 852's recovered live facing at the speed read. Target has two
   branch-local FILDs; current source hoists one before the branch. Tail EAX now
   agrees, but scratch remains ESP+0x18 rather than target +0x14.
@@ -147,9 +163,11 @@ Prior accepted font leaves are unchanged, not newly replayed here.
 
 [Artifact retention and recovery](ARTIFACTS.md) describes this cleanup and
 restoration. Latest inventory: `build/handoff-refresh-20261023/manifest.json`.
-Latest focused build, final object identity, native observations and final gate
-receipts are `build/aya-852-sharing-context-20261023/{final-formal,final-identity,scale-read-lifetimes}.json`
-and `build/aya-852-sharing-context-20261023/ci.log`. Root mismatch `+0x22` is
+Latest focused public build, unchanged-input identity and final gate receipts
+are `build/aya-exact-first-source-20261023/{baseline,final-state}.json` and
+`build/aya-exact-first-source-20261023/ci.log`. Selected native observations
+remain in `build/aya-852-sharing-context-20261023/scale-read-lifetimes.json`.
+Root mismatch `+0x22` is
 expected; the scale-read matrix uses explicit diagnostic mode and keeps the
 3,096 known 861 write differences visible. Earlier 852 negative-control results
 remain in `build/aya-852-expression-20261023/`.

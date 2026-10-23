@@ -32,6 +32,7 @@ from the [preceding handoff](RE_HANDOFF_HISTORY_2026_10_23.md).
 
 | Record | Result and limit |
 | --- | --- |
+| [Whole-function source controls](AYA_OBJECT_EXACT_FIRST_SOURCE_CONTROLS_2026_10_23.md) | Seventeen native controls and one genuine joint CIL context. Typed offsets/minimal receiver and forceinline tail are byte-neutral. Target's six-action frame tail is split into three source sites; explicit sharing reduces size/calls but introduces a dispatch constant or reverses all four recovered scale-read pairs. The 20000-byte controls remain nonexact and unselected. Ordinary member helper survives genuine LTCG without a target binding. |
 | [Size profiles](AYA_OBJECT_SIZE_PROFILES_2026_10_23.md) | Earlier `e24fb73` source: `/O2 /Os` and `/O1` produce the same 18,180-byte payload, but lose stack alignment and differ at +0x4. Keep configured `/O2`. |
 | [Joint CIL replay](AYA_OBJECT_JOINT_CIL_REPLAY_2026_10_23.md) | Earlier `e24fb73` source: consistent update/init owner plus twelve native providers. Three math providers were nonexact in that double-view context. The selected float-view report restores the accepted 57-byte helper and leaves only two lookup providers nonexact; no DLL execution or original TU proof. |
 | [861 shared tails](AYA_OBJECT_861_SHARED_TAIL_CONTROLS_2026_10_23.md) | Target 861 joins 826 phase/fade blocks. Candidates pass 5,168 position and 3,072 phase cases but lose 807's second zero-sequence read in 2,456 cases. A replayed CIL example preserves that rejection. |
@@ -57,8 +58,9 @@ do not establish an LTCG impossibility. Rebase every trial onto selected source.
 
 Prioritize complete-function compile/compare work with gameplay naming deferred;
 see the [TH075-inspired workflow](RE_WORKFLOW.md#exact-first-priority-from-the-th075-review).
-Latest completed private scope: `build/aya-852-sharing-context-20261023/`;
-preceding scopes include `build/aya-852-expression-20261023/`,
+Latest completed private scope: `build/aya-exact-first-source-20261023/`;
+selected-source evidence remains in `build/aya-852-sharing-context-20261023/`.
+Preceding scopes include `build/aya-852-expression-20261023/`,
 `build/aya-size-profile-20261023/` and `build/aya-joint-cil-20261023/`.
 Their frozen inputs and receipts remain
 loose. Older reports may need restoration from gzip or per-scope archives;
