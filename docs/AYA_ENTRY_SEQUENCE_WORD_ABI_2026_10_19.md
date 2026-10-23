@@ -17,9 +17,10 @@ action switch; there are no unledgered direct targets or unresolved exits.
 The one NOP and tables after RET620262 are outside callable credit.
 
 AyaObject primary vtable6C624C, proved through COL6DB6FC, places45C390 at
-slot+0C and this initializer at+3C. Its RTTI hierarchy has AyaObject,
+slot+0C and this initializer at+3C. Its eight-entry RTTI hierarchy has AyaObject,
 CharacterObjectEx<Aya,AyaObject>, CharacterObject, AttackObject and
-AnimationObject at primary offset0; CObjectBase is a separate+330 base.
+AnimationObject at primary offset0, AnimationObjectBase at+4, Environment
+at+130 and CObjectBase at+330.
 The current method-prefix view does not reconstruct that full hierarchy.
 
 At45C3E8 the sequence callee loads a full four-byte stack slot into EAX.
@@ -228,6 +229,56 @@ Public source, unit, compiler profile and match ledgers remain unchanged.
 No new exact credit, native execution or aggregate replay is claimed. Further
 progress needs a different target-backed source/TU lead, rather than repeating
 these byte-neutral forms or importing TH075's VC7.1 `/Od` profile.
+
+## Full hierarchy and compiler controls, 2026-10-24
+
+Fresh configured compilation retains source 5ca0fb42 and the complete 4859-byte
+payload 6f70b6f3. The 4531 callable bytes still decode to 1195 instructions/32 RETs;
+the single NOP and all 327 metadata bytes agree. Only +BF7/+BFF differ. No new
+exact result, runtime matrix or aggregate replay is claimed.
+
+Raw COL `0x6DB6FC` points to CHD `0x6DB710`, whose base array contains eight entries.
+All PMD vbptr displacements are -1. In array order, the observed member offsets
+are 0,0,0,0x330,0,0,4,0x130: AyaObject, CharacterObjectEx<Aya,AyaObject>,
+CharacterObject, CObjectBase, AttackObject, AnimationObject,
+AnimationObjectBase and Environment. The earlier prose summarized six entries;
+it was not the complete base array. The last two data bases matter when
+testing a physical class view rather than a virtual-prefix-only inheritance.
+
+A private C++ view now represents these data-bearing bases, preserves the
+selected field types/operations and checks the observed sprite, environment
+and non-primary-base offsets at compile time. Its Animation/Attack/Character
+prefix sizes are158h/330h/348h; these are view constraints, not proof of a
+complete Aya allocation. No instance, constructor or replacement vtable is
+created. The entire 4859-byte result still equals 6f70b6f3. This tested physical
+hierarchy does not explain the two register bytes or recover original fields.
+
+Two documented compiler controls on the unchanged selected source, `/Oi-`
+and `/Ob1`, each retain the same complete payload after a manual default-profile
+parity build. Neither emits an ignored/overridden-option warning. A negated
+active-state exit in 856 is also byte-identical; a switch-based gate instead
+produces 4851 bytes, first differs at +7F and retains the original register
+differences. It is rejected. No public source or compiler profile changes.
+
+Compiler-release uncertainty remains distinct from these results. The installed
+cl/c1xx/c2 components are 14.00.50727.762. Microsoft separately documents C2
+[14.0.50727.3080](https://support.microsoft.com/en-gb/topic/fix-when-you-run-an-application-that-is-built-by-using-the-ot-compiler-option-in-microsoft-visual-studio-2005-service-pack-1-sp1-some-if-statements-may-run-incorrectly-270601b8-04f6-f517-0c20-38e6de2740d7),
+[14.0.50727.4025](https://support.microsoft.com/en-us/servicing/visual-studio/hotfix/2017/01/fix-error-message-when-you-build-a-project-that-has-a-very-large-function-in-visual-studio-2005-serv)
+and [14.0.50727.5587](https://support.microsoft.com/nb-no/servicing/visual-studio/hotfix/2017/01/fix-errors-occur-after-an-exception-is-thrown-or-a-declspec-noreturn-function-is-executed-when-you-r).
+This corroborates later releases, not their use by TH105 or applicability to
+these register choices. No later backend binary was recovered or compiled here.
+The target PE timestamp 2011-10-24 is metadata, not a compiler-version proof.
+The tested archive inventories and failed mirror requests are retained; they
+do not establish that no authentic package is obtainable elsewhere.
+
+Recipes: `.analysis/aya-entry-hierarchy-20261024/`. Artifacts:
+`build/aya-entry-hierarchy-20261024/`; start with `rtti.json`,
+`baseline-build.json`, `baseline-packet.json`, `physical-hierarchy.json`,
+`profiles.json`, `gates.json` and `compiler-provenance.json`. Raw observations,
+source hypotheses, actual compiler negatives and untested release candidates
+are kept separate. The function note now supersedes its old `/Zi`-failure text.
+Completed control sources/objects/payloads are compressed after full member-hash
+verification; `retention.json` lists the archive and exact restore command.
 
 ## Rejected controls and analysis limits
 

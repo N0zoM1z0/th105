@@ -6,7 +6,8 @@ tail,817/822 angle captures and local double lookup views at `4adc63c`.
 The latest Youmu initializer checkpoint restores its physical tail copies and
 all metadata;21 callable register/preparation bytes remain. Reimu's local owner
 selector retains the signed-word correction. Exact ledgers are unchanged.
-Current bounded continuation: Youmu543670's five remaining call/register regions.
+Current bounded continuation: Aya61F0B0's two remaining register bytes; Youmu543670
+retains its five open call/register regions.
 Previous cleanup checkpoint: `1865c6a`.
 Required commit format: `gpt-6.1-sol: ...`.
 
@@ -27,6 +28,11 @@ witness replay exact. Its emitted 105-byte find equals the existing excluded
 compiler island `0x45C320`. Same-class short/int selector CIL visibility still keeps
 Youmu's 21 differences; full map CIL changes selector frame/private-call shape
 and is rejected. See the [visibility result](YOUMU_ENTRY_PHYSICAL_TAIL_2026_10_23.md#selector-visibility-and-native-map-implementation-2026-10-24).
+The Aya revisit attests all eight RTTI entries, including AnimationObjectBase+4,
+Environment+130 and CObjectBase+330. A partial physical class view, /Oi-,
+/Ob1 and a negated state gate all retain its 4859-byte payload/two differences.
+Post-SP1 C2 patch levels remain untested; do not turn the old RTM/SP1 or failed
+PDB controls into a general compiler conclusion. See the [current Aya evidence](AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md#full-hierarchy-and-compiler-controls-2026-10-24).
 Do not spend another large matrix on an uncertainty that a strict build can
 resolve. Preserve necessary ABI, storage widths, control flow and side effects.
 
